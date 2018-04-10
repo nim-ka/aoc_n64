@@ -18,6 +18,7 @@ OBJCOPY = $(CROSS)objcopy --pad-to=0x800000 --gap-fill=0xFF
 
 ASFLAGS = -march=vr4300
 CFLAGS  = -O2 -march=vr4300 -G 0 -c
+
 LDFLAGS = undefined_syms.txt -T $(LD_SCRIPT) -Map $(BUILD_DIR)/sm64.map
 
 ####################### Other Tools #########################
@@ -31,6 +32,7 @@ EMULATOR = mupen64plus
 EMU_FLAGS = --noosd
 LOADER = loader64
 LOADER_FLAGS = -vwf
+
 SHA1SUM = sha1sum
 
 ######################## Targets #############################
