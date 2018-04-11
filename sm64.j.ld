@@ -40,7 +40,12 @@ SECTIONS
 
    /* 0x80246000 001000-0E5320 [E4320] */
    .text80246000 0x80246000 : AT(0x001000) {
-      build/asm/code_80246000.o(.text);
+      build/asm/entry.o(.text);
+      build/asm/main.o(.text);
+      build/asm/display.o(.text);
+      build/asm/input.o(.text);
+      build/asm/sound_init.o(.text);
+      build/asm/code_802495B0.o(.text);
    }
 
    /* 0x80378800 0F4210-101998 [D788] */
