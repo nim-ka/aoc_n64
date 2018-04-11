@@ -7,8 +7,8 @@ SECTIONS
 {
    /* header and boot */
    .header 0x0 : AT(0x0) {
-      * (.header);
-      * (.boot);
+      build/asm/rom_header.o(.text);
+      build/asm/boot.o(.text);
    }
 
    /* load MIO0 and level data at 0x801076A0 */
@@ -40,27 +40,29 @@ SECTIONS
 
    /* 0x80246000 001000-0E5320 [E4320] */
    .text80246000 0x80246000 : AT(0x001000) {
-      * (.text80246000);
+      build/asm/code_80246000.o(.text);
    }
 
    /* 0x80378800 0F4210-101998 [D788] */
    .text80378800 0x80378800 : AT(0x0F4210) {
-      * (.text80378800);
+      build/asm/code_80378800.o(.text);
    }
 
    /* 0x8016F000 21D7D0-255EC0 [386F0] */
    .text8016F000 0x8016F000 : AT(0x21D7D0) {
-      * (.text8016F000);
+      build/asm/code_8016F000.o(.text);
+      build/asm/unknown_255EC0.o(.text);
    }
 
    /* 271B20-2A42A0 [32780] */
    .text271B20 0x271B20 : AT(0x271B20) {
-      * (.text271B20);
+      build/asm/unknown_271B20.o(.text);
    }
 
    /* 4E9FA0-0 [0] */
    .text4E9FA0 0x4E9FA0 : AT(0x4E9FA0) {
-      * (.text4E9FA0);
+      build/asm/unknown_4E9FA0.o(.text);
+      build/asm/sound_data.o(.text);
    }
 
    /* Discard everything not specifically mentioned above. */
