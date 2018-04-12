@@ -3,7 +3,7 @@
 ################ Target Executable and Sources ###############
 
 # BUILD_DIR is location where all build artifacts are placed
-BUILD_DIR = build
+BUILD_DIR := build
 
 # Directories containing source files
 SRC_DIRS := src src/libultra
@@ -21,17 +21,21 @@ O_FILES := $(foreach file,$(C_FILES),$(BUILD_DIR)/$(file:.c=.o)) \
            $(foreach file,$(S_FILES),$(BUILD_DIR)/$(file:.s=.o))
 
 ##################### Compiler Options #######################
-CROSS = mips-linux-gnu-
-AS = $(CROSS)as
-CC = $(CROSS)gcc
-LD = $(CROSS)ld
-OBJDUMP = $(CROSS)objdump
-OBJCOPY = $(CROSS)objcopy --pad-to=0x800000 --gap-fill=0xFF
+IRIX_ROOT := tools/ido5.3_compiler
+CROSS := mips-linux-gnu-
+AS := $(CROSS)as
+CC := $(QEMU_IRIX) -L $(IRIX_ROOT) $(IRIX_ROOT)/usr/bin/cc
+LD := $(CROSS)ld
+OBJDUMP := $(CROSS)objdump
+OBJCOPY := $(CROSS)objcopy --pad-to=0x800000 --gap-fill=0xFF
 
-ASFLAGS = -march=vr4300 -I include
-CFLAGS  = -O2 -march=vr4300 -G 0 -c
+# Check code syntax with host compiler
+CC_CHECK := gcc -fsyntax-only -I include -Wall -Wextra -pedantic -Wno-unused-parameter -Werror
 
-LDFLAGS = undefined_syms.txt -T $(LD_SCRIPT) -Map $(BUILD_DIR)/sm64.map
+ASFLAGS := -march=vr4300 -I include
+CFLAGS  := -mips2 -non_shared -G 0 -Xcpluscomm -g -I include
+
+LDFLAGS = undefined_syms.txt -T $(LD_SCRIPT) -Map $(BUILD_DIR)/sm64.map --no-check-sections
 
 ####################### Other Tools #########################
 
@@ -68,6 +72,10 @@ $(MIO0_DIR)/%.mio0: $(MIO0_DIR)/%.bin
 
 $(BUILD_DIR):
 	mkdir $(BUILD_DIR) $(addprefix $(BUILD_DIR)/,$(SRC_DIRS) $(ASM_DIRS))
+
+$(BUILD_DIR)/%.o: %.c $(BUILD_DIR)
+	@$(CC_CHECK) -I include $<
+	$(CC) -c $(CFLAGS) -o $@ $<
 
 $(BUILD_DIR)/%.o: %.s $(BUILD_DIR)
 	$(AS) $(ASFLAGS) -o $@ $<

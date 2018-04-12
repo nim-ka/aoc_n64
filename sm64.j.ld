@@ -44,7 +44,7 @@ SECTIONS
       build/asm/main.o(.text);
       build/asm/display.o(.text);
       build/asm/input.o(.text);
-      build/asm/sound_init.o(.text);
+      build/src/sound_init.o(.text);
       build/asm/code_802495B0.o(.text);
    }
 
