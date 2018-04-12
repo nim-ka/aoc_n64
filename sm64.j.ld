@@ -11,22 +11,22 @@ SECTIONS
       build/asm/boot.o(.text);
    }
 
-   /* load MIO0 and level data at 0x801076A0 */
-   .rodata 0x001076A0 : AT(0x1076A0) {
+   /* load MIO0 and level data at 0x001076A0 */
+   .mio0 0x001076A0 : AT(0x1076A0) {
       FILL (0x01) /* fill unused with 0x01 */
       * (.mio0);
       * (.data);
       . = ALIGN(0x10);
    }
 
-   /* 0x268020 0x268020-0 [0] */
-   .mio0_c 0x268020 : AT(0x268020) {
-      * (.mio0_c);
-   }
-
    /* 0x2A42A0 0x2A42A0-0 [0] */
    .mio0_b 0x2A42A0 : AT(0x2A42A0) {
       * (.mio0_b);
+   }
+
+   /* 0x268020 0x268020-0 [0] */
+   .mio0_c 0x268020 : AT(0x268020) {
+      * (.mio0_c);
    }
 
    /* use segmented addressing for behaviors */
@@ -69,10 +69,20 @@ SECTIONS
       build/asm/unknown_271B20.o(.text);
    }
 
-   /* 4E9FA0-0 [0] */
+   /* 4E9FA0-? [?] */
    .text4E9FA0 0x4E9FA0 : AT(0x4E9FA0) {
       build/asm/unknown_4E9FA0.o(.text);
       build/asm/sound_data.o(.text);
+   }
+
+   /* 0E63F0-? [?] */
+   .data 0x0E63F0 : AT(0x0E63F0) {
+      build/asm/data.o(.text);
+   }
+
+   /* 0EFA50-? [?] */
+   .rodata 0x0EFA50 : AT(0x0EFA50) {
+      build/asm/rodata.o(.text);
    }
 
    /* Discard everything not specifically mentioned above. */
