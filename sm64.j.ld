@@ -50,7 +50,12 @@ SECTIONS
 
    /* 0x80378800 0F4210-101998 [D788] */
    .text80378800 0x80378800 : AT(0x0F4210) {
-      build/asm/code_80378800.o(.text);
+      build/asm/math_util.o(.text);
+      build/asm/graph_node.o(.text);
+      build/asm/geo_layout.o(.text);
+      build/asm/level_script.o(.text);
+      build/asm/surface_collision.o(.text);
+      build/asm/behavior_script.o(.text);
    }
 
    /* 0x8016F000 21D7D0-255EC0 [386F0] */
