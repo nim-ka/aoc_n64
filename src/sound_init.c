@@ -207,7 +207,7 @@ void func_802494A8(void)
     func_8031EED0();
 }
 
-void Thread4(int a)
+void Thread4(UNUSED void *arg)
 {
     InitAudioSystem();
     func_803202A0();

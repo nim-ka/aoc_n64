@@ -3,6 +3,8 @@
 
 /* Types */
 
+typedef u32 OSEvent;
+
 typedef void *OSMesg;
 
 typedef struct OSMesgQueue_s
@@ -22,5 +24,7 @@ void osCreateMesgQueue(OSMesgQueue *, OSMesg *, s32);
 s32 osSendMesg(OSMesgQueue *, OSMesg, s32);
 s32 osJamMesg(OSMesgQueue *, OSMesg, s32);
 s32 osRecvMesg(OSMesgQueue *, OSMesg *, s32);
+void osSetEventMesg(OSEvent, OSMesgQueue *, OSMesg);
+void osViSetEvent(OSMesgQueue *mq, OSMesg msg, u32 retraceCount);
 
 #endif

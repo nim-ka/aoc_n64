@@ -3,6 +3,7 @@
 
 /* Miscellaneous OS functions */
 
+void osInitialize(void);
 u32 osGetCount(void);
 
 #endif

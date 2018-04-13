@@ -9,5 +9,6 @@ typedef u64 OSTime;
 /* Functions */
 
 OSTime osGetTime(void);
+void osSetTime(OSTime time);
 
 #endif

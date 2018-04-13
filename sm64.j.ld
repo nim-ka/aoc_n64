@@ -15,7 +15,6 @@ SECTIONS
    .mio0 0x001076A0 : AT(0x1076A0) {
       FILL (0x01) /* fill unused with 0x01 */
       * (.mio0);
-      * (.data);
       . = ALIGN(0x10);
    }
 
@@ -41,11 +40,14 @@ SECTIONS
    /* 0x80246000 001000-0E5320 [E4320] */
    .text80246000 0x80246000 : AT(0x001000) {
       build/asm/entry.o(.text);
-      build/asm/main.o(.text);
+      build/src/main.o(.text);
       build/asm/display.o(.text);
       build/asm/input.o(.text);
       build/src/sound_init.o(.text);
       build/asm/code_802495B0.o(.text);
+      build/asm/data.o(.data);
+      build/src/main.o(.rodata);
+      build/asm/rodata.o(.rodata);
    }
 
    /* 0x80378800 0F4210-101998 [D788] */
@@ -73,16 +75,6 @@ SECTIONS
    .text4E9FA0 0x4E9FA0 : AT(0x4E9FA0) {
       build/asm/unknown_4E9FA0.o(.text);
       build/asm/sound_data.o(.text);
-   }
-
-   /* 0E63F0-? [?] */
-   .data 0x0E63F0 : AT(0x0E63F0) {
-      build/asm/data.o(.text);
-   }
-
-   /* 0EFA50-? [?] */
-   .rodata 0x0EFA50 : AT(0x0EFA50) {
-      build/asm/rodata.o(.text);
    }
 
    /* Discard everything not specifically mentioned above. */

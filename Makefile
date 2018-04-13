@@ -30,10 +30,10 @@ OBJDUMP := $(CROSS)objdump
 OBJCOPY := $(CROSS)objcopy --pad-to=0x800000 --gap-fill=0xFF
 
 # Check code syntax with host compiler
-CC_CHECK := gcc -fsyntax-only -I include -std=c99 -Wall -Wextra -pedantic -Wno-unused-parameter -Werror
+CC_CHECK := gcc -m32 -fsyntax-only -I include -std=c99 -Wall -Wextra -pedantic -Werror
 
 ASFLAGS := -march=vr4300 -I include
-CFLAGS  := -mips2 -non_shared -G 0 -Xcpluscomm -g -I include
+CFLAGS  := -mips2 -non_shared -G 0 -Xcpluscomm -Xfullwarn -g -I include
 
 LDFLAGS = undefined_syms.txt -T $(LD_SCRIPT) -Map $(BUILD_DIR)/sm64.map --no-check-sections
 

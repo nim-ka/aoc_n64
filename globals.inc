@@ -1617,7 +1617,7 @@
 .global sprintf
 .global osCreateMesgQueue
 .global osSetEventMsg
-.global osViSetEventMsg
+.global osViSetEvent
 .global osCreateThread
 .global osRecvMesg
 .global TaskVirtualToPhysical
@@ -1626,7 +1626,7 @@
 .global osSpTaskYield
 .global osSendMesg
 .global osStartThread
-.global osWriteBackDCacheAll
+.global osWritebackDCacheAll
 .global osCreateViManager
 .global __osViDevMgrMain
 .global osViSetMode
@@ -1681,7 +1681,7 @@
 .global osAiSetFrequency
 .global alBnkfNew
 .global alSetFileNew
-.global osWriteBackDCache
+.global osWritebackDCache
 .global osAiGetLength
 .global osAiSetNextBuffer
 .global __osTimerServicesInit

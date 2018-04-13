@@ -2,7 +2,7 @@
 .include "macros.inc"
 .include "globals.inc"
 
-.section .text, "ax"
+.section .data
 
 # Unknown region 0E63F0-0E6800 [410]
 .incbin "bin/sm64.j.0E63F0.bin"

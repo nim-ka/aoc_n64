@@ -1101,7 +1101,7 @@ glabel func_80247D84
 /* 002E80 80247E80 1420FFEB */  bnez  $at, .L80247E30
 /* 002E84 80247E84 AFAA0024 */   sw    $t2, 0x24($sp)
 .L80247E88:
-/* 002E88 80247E88 0C0C8804 */  jal   osWriteBackDCacheAll
+/* 002E88 80247E88 0C0C8804 */  jal   osWritebackDCacheAll
 /* 002E8C 80247E8C 00000000 */   nop   
 /* 002E90 80247E90 3C048034 */  lui   $a0, %hi(D_80339CA0) # $a0, 0x8034
 /* 002E94 80247E94 3C058034 */  lui   $a1, %hi(D_80339BEC) # $a1, 0x8034

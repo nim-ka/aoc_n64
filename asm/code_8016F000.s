@@ -58635,7 +58635,7 @@ glabel _InitControllers
 /* 252B28 801A4358 3C063333 */  lui   $a2, (0x33333333 >> 16) # lui $a2, 0x3333
 /* 252B2C 801A435C 34C63333 */  ori   $a2, (0x33333333 & 0xFFFF) # ori $a2, $a2, 0x3333
 /* 252B30 801A4360 24A5E830 */  addiu $a1, %lo(D_801BE830) # addiu $a1, $a1, -0x17d0
-/* 252B34 801A4364 0C0C85A8 */  jal   osSetEventMsg
+/* 252B34 801A4364 0C0C85A8 */  jal   osSetEventMesg
 /* 252B38 801A4368 24040005 */   li    $a0, 5
 /* 252B3C 801A436C 3C04801C */  lui   $a0, %hi(D_801BE830) # $a0, 0x801c
 /* 252B40 801A4370 3C05801C */  lui   $a1, %hi(D_801BAEA0) # $a1, 0x801c

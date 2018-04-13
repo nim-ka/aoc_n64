@@ -38,4 +38,32 @@ struct UnknownStruct80339E00
     struct UnknownStruct2 *unk88;
 };
 
+struct Struct8032C6AC
+{
+    u8 filler0[0x12];
+    u16 unk12;
+};
+
+struct Struct8032C630
+{
+    OSTask task;
+    OSMesgQueue *msgqueue;
+    OSMesg *msg;
+    u32 unk48;
+};
+
+struct Struct8032C620
+{
+    OSMesgQueue *queue;
+    OSMesg *msg;
+};
+
+struct Struct80333F00
+{
+    u8 filler0[0xA0];
+    OSViMode viMode;
+};
+
+
+
 #endif

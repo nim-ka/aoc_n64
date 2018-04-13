@@ -3,11 +3,15 @@
 
 // Global header for Super Mario 64
 
-#define TRUE 1
-#define FALSE 0
-
 #include "types.h"
 #include "variables.h"
 #include "functions.h"
+
+// Avoid compiler warnings for unused variables
+#ifdef __GNUC__
+#define UNUSED __attribute__((unused))
+#else
+#define UNUSED
+#endif
 
 #endif
