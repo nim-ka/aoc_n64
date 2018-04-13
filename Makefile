@@ -30,7 +30,7 @@ OBJDUMP := $(CROSS)objdump
 OBJCOPY := $(CROSS)objcopy --pad-to=0x800000 --gap-fill=0xFF
 
 # Check code syntax with host compiler
-CC_CHECK := gcc -fsyntax-only -I include -Wall -Wextra -pedantic -Wno-unused-parameter -Werror
+CC_CHECK := gcc -fsyntax-only -I include -std=c99 -Wall -Wextra -pedantic -Wno-unused-parameter -Werror
 
 ASFLAGS := -march=vr4300 -I include
 CFLAGS  := -mips2 -non_shared -G 0 -Xcpluscomm -g -I include
@@ -74,7 +74,7 @@ $(BUILD_DIR):
 	mkdir $(BUILD_DIR) $(addprefix $(BUILD_DIR)/,$(SRC_DIRS) $(ASM_DIRS))
 
 $(BUILD_DIR)/%.o: %.c $(BUILD_DIR)
-	@$(CC_CHECK) -I include $<
+	@$(CC_CHECK) $<
 	$(CC) -c $(CFLAGS) -o $@ $<
 
 $(BUILD_DIR)/%.o: %.s $(BUILD_DIR)
