@@ -66,7 +66,7 @@ extern void func_80246BB4();
 // extern ? Unknown80246CB8(?);
 // extern ? Thread1_Idle(?);
 // extern ? Main(?);
-extern void Copy32BitTriple();
+struct Vec3f **Copy32BitTriple(struct Vec3f *dest, struct Vec3f *src);
 // extern ? func_80378840(?);
 // extern ? func_8037888C(?);
 // extern ? Unknown803788E4(?);

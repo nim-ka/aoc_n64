@@ -33,7 +33,7 @@ OBJCOPY := $(CROSS)objcopy --pad-to=0x800000 --gap-fill=0xFF
 CC_CHECK := gcc -m32 -fsyntax-only -I include -std=c99 -Wall -Wextra -pedantic -Werror
 
 ASFLAGS := -march=vr4300 -I include
-CFLAGS  := -mips2 -non_shared -G 0 -Xcpluscomm -Xfullwarn -g -I include
+CFLAGS  := -Wab,-r4300_mul -mips2 -non_shared -G 0 -Xcpluscomm -Xfullwarn -g -I include
 
 LDFLAGS = undefined_syms.txt -T $(LD_SCRIPT) -Map $(BUILD_DIR)/sm64.map --no-check-sections
 

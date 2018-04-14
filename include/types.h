@@ -64,6 +64,14 @@ struct Struct80333F00
     OSViMode viMode;
 };
 
+struct Vec3f
+{
+    float x, y, z;
+};
 
+struct Vec3s
+{
+    s16 x, y, z;
+};
 
 #endif
