@@ -8,6 +8,7 @@ BUILD_DIR := build
 # Directories containing source files
 SRC_DIRS := src src/libultra
 ASM_DIRS := asm
+DATA_DIRS := data
 
 # If COMPARE is 1, check the output sha1sum when building 'all'
 COMPARE = 1
@@ -15,10 +16,12 @@ COMPARE = 1
 # Source code files
 C_FILES := $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.c))
 S_FILES := $(foreach dir,$(ASM_DIRS),$(wildcard $(dir)/*.s))
+D_FILES := $(foreach dir,$(DATA_DIRS),$(wildcard $(dir)/*.s))
 
 # Object files
 O_FILES := $(foreach file,$(C_FILES),$(BUILD_DIR)/$(file:.c=.o)) \
-           $(foreach file,$(S_FILES),$(BUILD_DIR)/$(file:.s=.o))
+           $(foreach file,$(S_FILES),$(BUILD_DIR)/$(file:.s=.o)) \
+           $(foreach file,$(D_FILES),$(BUILD_DIR)/$(file:.s=.o))
 
 ##################### Compiler Options #######################
 IRIX_ROOT := tools/ido5.3_compiler
@@ -71,7 +74,7 @@ $(MIO0_DIR)/%.mio0: $(MIO0_DIR)/%.bin
 	$(MIO0TOOL) $< $@
 
 $(BUILD_DIR):
-	mkdir $(BUILD_DIR) $(addprefix $(BUILD_DIR)/,$(SRC_DIRS) $(ASM_DIRS))
+	mkdir $(BUILD_DIR) $(addprefix $(BUILD_DIR)/,$(SRC_DIRS) $(ASM_DIRS) $(DATA_DIRS))
 
 $(BUILD_DIR)/%.o: %.c $(BUILD_DIR)
 	@$(CC_CHECK) $<

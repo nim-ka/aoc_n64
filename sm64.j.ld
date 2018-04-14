@@ -87,9 +87,10 @@ SECTIONS
       build/asm/audio_system_1.o(.text);
       build/asm/audio_system_2.o(.text);
       build/asm/libultra.o(.text);
-      build/asm/data.o(.data);
+      /* data */
+      build/data/data.o(.data);
       build/src/main.o(.rodata);
-      build/asm/rodata.o(.rodata);
+      build/data/rodata.o(.rodata);
    }
 
    /* 0x80378800 0F4210-101998 [D788] */
@@ -101,23 +102,26 @@ SECTIONS
       build/asm/level_script.o(.text);
       build/asm/surface_collision.o(.text);
       build/asm/behavior_script.o(.text);
+      /* data */
+      build/data/data_80385F88.o(.text);
    }
 
    /* 0x8016F000 21D7D0-255EC0 [386F0] */
    .text8016F000 0x8016F000 : AT(0x21D7D0) {
       build/asm/code_8016F000.o(.text);
-      build/asm/unknown_255EC0.o(.text);
+      /* data */
+      build/data/unknown_255EC0.o(.text);
    }
 
    /* 271B20-2A42A0 [32780] */
    .text271B20 0x271B20 : AT(0x271B20) {
-      build/asm/unknown_271B20.o(.text);
+      build/data/unknown_271B20.o(.text);
    }
 
    /* 4E9FA0-? [?] */
    .text4E9FA0 0x4E9FA0 : AT(0x4E9FA0) {
-      build/asm/unknown_4E9FA0.o(.text);
-      build/asm/sound_data.o(.text);
+      build/data/unknown_4E9FA0.o(.text);
+      build/data/sound_data.o(.text);
    }
 
    /* Discard everything not specifically mentioned above. */
