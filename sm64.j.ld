@@ -5,9 +5,13 @@ OUTPUT_ARCH (mips)
 
 SECTIONS
 {
-   /* header and boot */
+   /* header */
    .header 0x0 : AT(0x0) {
       build/asm/rom_header.o(.text);
+   }
+
+   /* boot */
+   .boot 0x04000040 : AT(0x40) {
       build/asm/boot.o(.text);
    }
 
