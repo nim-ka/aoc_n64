@@ -211,7 +211,7 @@ void Thread4(UNUSED void *arg)
 {
     InitAudioSystem();
     func_803202A0();
-    Copy32BitTriple(&D_80339DC0, &D_80385FD0);
+    Vec3f_Copy(D_80339DC0, D_80385FD0);
     osCreateMesgQueue(&D_80339DD0, &D_80339DE8, 1);
     func_80246B14(1, D_80339DF0, &D_80339DD0, 512);
     

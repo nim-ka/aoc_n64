@@ -689,14 +689,14 @@ glabel func_80255788
 /* 0107C4 802557C4 8FA4001C */  lw    $a0, 0x1c($sp)
 /* 0107C8 802557C8 8FA50020 */  lw    $a1, 0x20($sp)
 /* 0107CC 802557CC 24840020 */  addiu $a0, $a0, 0x20
-/* 0107D0 802557D0 0C0DE200 */  jal   Copy32BitTriple
+/* 0107D0 802557D0 0C0DE200 */  jal   Vec3f_Copy
 /* 0107D4 802557D4 24A5003C */   addiu $a1, $a1, 0x3c
 /* 0107D8 802557D8 8FA4001C */  lw    $a0, 0x1c($sp)
 /* 0107DC 802557DC 8FA80020 */  lw    $t0, 0x20($sp)
 /* 0107E0 802557E0 00002825 */  move  $a1, $zero
 /* 0107E4 802557E4 00003825 */  move  $a3, $zero
 /* 0107E8 802557E8 2484001A */  addiu $a0, $a0, 0x1a
-/* 0107EC 802557EC 0C0DE25F */  jal   func_8037897C
+/* 0107EC 802557EC 0C0DE25F */  jal   Vec3s_Set
 /* 0107F0 802557F0 8506002E */   lh    $a2, 0x2e($t0)
 /* 0107F4 802557F4 10000001 */  b     .L802557FC
 /* 0107F8 802557F8 00000000 */   nop   
@@ -742,14 +742,14 @@ glabel func_8025580C
 /* 010888 80255888 8FA40028 */  lw    $a0, 0x28($sp)
 /* 01088C 8025588C 8FA50030 */  lw    $a1, 0x30($sp)
 /* 010890 80255890 24840020 */  addiu $a0, $a0, 0x20
-/* 010894 80255894 0C0DE200 */  jal   Copy32BitTriple
+/* 010894 80255894 0C0DE200 */  jal   Vec3f_Copy
 /* 010898 80255898 24A5003C */   addiu $a1, $a1, 0x3c
 /* 01089C 8025589C 8FA40028 */  lw    $a0, 0x28($sp)
 /* 0108A0 802558A0 8FAB0030 */  lw    $t3, 0x30($sp)
 /* 0108A4 802558A4 00002825 */  move  $a1, $zero
 /* 0108A8 802558A8 00003825 */  move  $a3, $zero
 /* 0108AC 802558AC 2484001A */  addiu $a0, $a0, 0x1a
-/* 0108B0 802558B0 0C0DE25F */  jal   func_8037897C
+/* 0108B0 802558B0 0C0DE25F */  jal   Vec3s_Set
 /* 0108B4 802558B4 8566002E */   lh    $a2, 0x2e($t3)
 .L802558B8:
 /* 0108B8 802558B8 10000003 */  b     .L802558C8
@@ -851,7 +851,7 @@ glabel func_802558DC
 .L80255A24:
 /* 010A24 80255A24 8FA40040 */  lw    $a0, 0x40($sp)
 /* 010A28 80255A28 8FA50044 */  lw    $a1, 0x44($sp)
-/* 010A2C 80255A2C 0C0DE200 */  jal   Copy32BitTriple
+/* 010A2C 80255A2C 0C0DE200 */  jal   Vec3f_Copy
 /* 010A30 80255A30 2484003C */   addiu $a0, $a0, 0x3c
 /* 010A34 80255A34 8FB80030 */  lw    $t8, 0x30($sp)
 /* 010A38 80255A38 8FB90040 */  lw    $t9, 0x40($sp)
@@ -879,7 +879,7 @@ glabel func_802558DC
 /* 010A88 80255A88 8FA60028 */  lw    $a2, 0x28($sp)
 /* 010A8C 80255A8C 8D250000 */  lw    $a1, ($t1)
 /* 010A90 80255A90 8D270008 */  lw    $a3, 8($t1)
-/* 010A94 80255A94 0C0DE210 */  jal   func_80378840
+/* 010A94 80255A94 0C0DE210 */  jal   Vec3f_Set
 /* 010A98 80255A98 2484003C */   addiu $a0, $a0, 0x3c
 /* 010A9C 80255A9C 8FAA0030 */  lw    $t2, 0x30($sp)
 /* 010AA0 80255AA0 8FAB0040 */  lw    $t3, 0x40($sp)
@@ -996,14 +996,14 @@ glabel func_80255B60
 /* 010C34 80255C34 8FB80030 */  lw    $t8, 0x30($sp)
 /* 010C38 80255C38 8F040088 */  lw    $a0, 0x88($t8)
 /* 010C3C 80255C3C 2705003C */  addiu $a1, $t8, 0x3c
-/* 010C40 80255C40 0C0DE200 */  jal   Copy32BitTriple
+/* 010C40 80255C40 0C0DE200 */  jal   Vec3f_Copy
 /* 010C44 80255C44 24840020 */   addiu $a0, $a0, 0x20
 /* 010C48 80255C48 8FA80030 */  lw    $t0, 0x30($sp)
 /* 010C4C 80255C4C 00002825 */  move  $a1, $zero
 /* 010C50 80255C50 00003825 */  move  $a3, $zero
 /* 010C54 80255C54 8D040088 */  lw    $a0, 0x88($t0)
 /* 010C58 80255C58 8506002E */  lh    $a2, 0x2e($t0)
-/* 010C5C 80255C5C 0C0DE25F */  jal   func_8037897C
+/* 010C5C 80255C5C 0C0DE25F */  jal   Vec3s_Set
 /* 010C60 80255C60 2484001A */   addiu $a0, $a0, 0x1a
 /* 010C64 80255C64 8FB90028 */  lw    $t9, 0x28($sp)
 /* 010C68 80255C68 24010003 */  li    $at, 3
@@ -1115,7 +1115,7 @@ glabel func_80255C9C
 .L80255DF8:
 /* 010DF8 80255DF8 8FA40030 */  lw    $a0, 0x30($sp)
 /* 010DFC 80255DFC 27A50020 */  addiu $a1, $sp, 0x20
-/* 010E00 80255E00 0C0DE200 */  jal   Copy32BitTriple
+/* 010E00 80255E00 0C0DE200 */  jal   Vec3f_Copy
 /* 010E04 80255E04 2484003C */   addiu $a0, $a0, 0x3c
 /* 010E08 80255E08 8FAB002C */  lw    $t3, 0x2c($sp)
 /* 010E0C 80255E0C 8FAC0030 */  lw    $t4, 0x30($sp)
@@ -1158,7 +1158,7 @@ glabel func_80255E84
 /* 010E94 80255E94 AFA60058 */  sw    $a2, 0x58($sp)
 /* 010E98 80255E98 AFB00018 */  sw    $s0, 0x18($sp)
 /* 010E9C 80255E9C 27A40040 */  addiu $a0, $sp, 0x40
-/* 010EA0 80255EA0 0C0DE200 */  jal   Copy32BitTriple
+/* 010EA0 80255EA0 0C0DE200 */  jal   Vec3f_Copy
 /* 010EA4 80255EA4 8FA50054 */   lw    $a1, 0x54($sp)
 /* 010EA8 80255EA8 27A40040 */  addiu $a0, $sp, 0x40
 /* 010EAC 80255EAC 3C054316 */  lui   $a1, 0x4316
@@ -1352,7 +1352,7 @@ glabel func_80255E84
 .L80256178:
 /* 011178 80256178 8FA40050 */  lw    $a0, 0x50($sp)
 /* 01117C 8025617C 27A50040 */  addiu $a1, $sp, 0x40
-/* 011180 80256180 0C0DE200 */  jal   Copy32BitTriple
+/* 011180 80256180 0C0DE200 */  jal   Vec3f_Copy
 /* 011184 80256184 2484003C */   addiu $a0, $a0, 0x3c
 /* 011188 80256188 8FAE0030 */  lw    $t6, 0x30($sp)
 /* 01118C 8025618C 8FAF0050 */  lw    $t7, 0x50($sp)
@@ -1365,7 +1365,7 @@ glabel func_80255E84
 .L802561A8:
 /* 0111A8 802561A8 8FA40050 */  lw    $a0, 0x50($sp)
 /* 0111AC 802561AC 27A50040 */  addiu $a1, $sp, 0x40
-/* 0111B0 802561B0 0C0DE200 */  jal   Copy32BitTriple
+/* 0111B0 802561B0 0C0DE200 */  jal   Vec3f_Copy
 /* 0111B4 802561B4 2484003C */   addiu $a0, $a0, 0x3c
 /* 0111B8 802561B8 8FB90030 */  lw    $t9, 0x30($sp)
 /* 0111BC 802561BC 8FA80050 */  lw    $t0, 0x50($sp)
@@ -1999,14 +1999,14 @@ glabel func_80256940
 /* 011AA4 80256AA4 8FAB0030 */  lw    $t3, 0x30($sp)
 /* 011AA8 80256AA8 8D640088 */  lw    $a0, 0x88($t3)
 /* 011AAC 80256AAC 2565003C */  addiu $a1, $t3, 0x3c
-/* 011AB0 80256AB0 0C0DE200 */  jal   Copy32BitTriple
+/* 011AB0 80256AB0 0C0DE200 */  jal   Vec3f_Copy
 /* 011AB4 80256AB4 24840020 */   addiu $a0, $a0, 0x20
 /* 011AB8 80256AB8 8FAC0030 */  lw    $t4, 0x30($sp)
 /* 011ABC 80256ABC 00002825 */  move  $a1, $zero
 /* 011AC0 80256AC0 00003825 */  move  $a3, $zero
 /* 011AC4 80256AC4 8D840088 */  lw    $a0, 0x88($t4)
 /* 011AC8 80256AC8 8586002E */  lh    $a2, 0x2e($t4)
-/* 011ACC 80256ACC 0C0DE25F */  jal   func_8037897C
+/* 011ACC 80256ACC 0C0DE25F */  jal   Vec3s_Set
 /* 011AD0 80256AD0 2484001A */   addiu $a0, $a0, 0x1a
 /* 011AD4 80256AD4 10000003 */  b     .L80256AE4
 /* 011AD8 80256AD8 8FA20018 */   lw    $v0, 0x18($sp)

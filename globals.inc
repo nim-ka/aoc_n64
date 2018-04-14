@@ -1745,8 +1745,8 @@
 .global __osProbeTLB
 .global __osSiDeviceBusy
 .global __osAtomicDec
-.global Copy32BitTriple
-.global Unknown803788E4
+.global Vec3fCopy
+.global Vec3f_Sum
 .global Unknown803789C8
 .global Unknown80378A20
 .global Unknown80378A78

@@ -1297,14 +1297,14 @@ glabel LevelScript25
 /* 0FAD88 8037F378 8C84CE60 */  lw    $a0, %lo(D_8032CE60)($a0)
 /* 0FAD8C 8037F37C 00002825 */  move  $a1, $zero
 /* 0FAD90 8037F380 00003025 */  move  $a2, $zero
-/* 0FAD94 8037F384 0C0DE25F */  jal   func_8037897C
+/* 0FAD94 8037F384 0C0DE25F */  jal   Vec3s_Set
 /* 0FAD98 8037F388 00003825 */   move  $a3, $zero
 /* 0FAD9C 8037F38C 3C048033 */  lui   $a0, %hi(D_8032CE60) # $a0, 0x8033
 /* 0FADA0 8037F390 8C84CE60 */  lw    $a0, %lo(D_8032CE60)($a0)
 /* 0FADA4 8037F394 00002825 */  move  $a1, $zero
 /* 0FADA8 8037F398 00003025 */  move  $a2, $zero
 /* 0FADAC 8037F39C 00003825 */  move  $a3, $zero
-/* 0FADB0 8037F3A0 0C0DE25F */  jal   func_8037897C
+/* 0FADB0 8037F3A0 0C0DE25F */  jal   Vec3s_Set
 /* 0FADB4 8037F3A4 24840006 */   addiu $a0, $a0, 6
 /* 0FADB8 8037F3A8 3C0F8033 */  lui   $t7, %hi(D_8032CE60) # $t7, 0x8033
 /* 0FADBC 8037F3AC 8DEFCE60 */  lw    $t7, %lo(D_8032CE60)($t7)
@@ -1979,7 +1979,7 @@ glabel LevelScript3B
 /* 0FB79C 8037FD8C 8FA40024 */  lw    $a0, 0x24($sp)
 /* 0FB7A0 8037FD90 85E50004 */  lh    $a1, 4($t7)
 /* 0FB7A4 8037FD94 85E60006 */  lh    $a2, 6($t7)
-/* 0FB7A8 8037FD98 0C0DE25F */  jal   func_8037897C
+/* 0FB7A8 8037FD98 0C0DE25F */  jal   Vec3s_Set
 /* 0FB7AC 8037FD9C 85E70008 */   lh    $a3, 8($t7)
 /* 0FB7B0 8037FDA0 3C188039 */  lui   $t8, %hi(D_8038BE28) # $t8, 0x8039
 /* 0FB7B4 8037FDA4 8F18BE28 */  lw    $t8, %lo(D_8038BE28)($t8)
@@ -2222,7 +2222,7 @@ glabel LevelScript2B
 /* 0FBAF0 803800E0 8CA5BE28 */  lw    $a1, %lo(D_8038BE28)($a1)
 /* 0FBAF4 803800E4 3C048033 */  lui   $a0, %hi(D_8032CE60) # $a0, 0x8033
 /* 0FBAF8 803800E8 8C84CE60 */  lw    $a0, %lo(D_8032CE60)($a0)
-/* 0FBAFC 803800EC 0C0DE24F */  jal   func_8037893C
+/* 0FBAFC 803800EC 0C0DE24F */  jal   Vec3s_Copy
 /* 0FBB00 803800F0 24A50006 */   addiu $a1, $a1, 6
 /* 0FBB04 803800F4 3C198039 */  lui   $t9, %hi(D_8038BE28) # $t9, 0x8039
 /* 0FBB08 803800F8 8F39BE28 */  lw    $t9, %lo(D_8038BE28)($t9)
@@ -2237,7 +2237,7 @@ glabel LevelScript2B
 /* 0FBB2C 8038011C 00004812 */  mflo  $t1
 /* 0FBB30 80380120 01203025 */  move  $a2, $t1
 /* 0FBB34 80380124 00003825 */  move  $a3, $zero
-/* 0FBB38 80380128 0C0DE25F */  jal   func_8037897C
+/* 0FBB38 80380128 0C0DE25F */  jal   Vec3s_Set
 /* 0FBB3C 8038012C 24840006 */   addiu $a0, $a0, 6
 /* 0FBB40 80380130 3C0A8039 */  lui   $t2, %hi(D_8038BE28) # $t2, 0x8039
 /* 0FBB44 80380134 8D4ABE28 */  lw    $t2, %lo(D_8038BE28)($t2)

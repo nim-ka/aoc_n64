@@ -4,6 +4,7 @@
 // This file contains variable declarations for all of the code.
 // When a variable is used, uncomment it and add the appropriate types.
 
+extern double D_8038BA90;
 extern u16 D_8032C65C[];
 extern u16 D_8032C66C[];
 // extern ? TableInteractions;
@@ -200,8 +201,8 @@ extern u32 D_8032CE70;
 extern s8 D_80339EFE;
 extern u16 D_8032C6CC;
 extern u16 D_8032C6D0;
-extern struct Vec3f D_80339DC0;
-extern struct Vec3f D_80385FD0;
+extern Vec3f D_80339DC0;
+extern Vec3f D_80385FD0;
 extern OSMesgQueue D_80339DD0;
 extern OSMesg D_80339DE8;
 extern u8 D_80339DF0[];
@@ -1576,8 +1577,8 @@ extern float D_80386000[];
 // extern ? D_80334A34;
 // extern ? D_80334A38;
 // extern ? D_80334A30;
-// extern ? D_8038B000;
-// extern ? D_8038BC98;
+extern s16 D_8038B000[];
+extern int D_8038BC98;
 // extern ? D_8038BC90;
 // extern ? D_8038BC94;
 // extern ? D_8038BD78;

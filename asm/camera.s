@@ -666,7 +666,7 @@ glabel Unknown8027F950
 /* 03A968 8027F968 3C058033 */  lui   $a1, %hi(D_8032D000) # $a1, 0x8033
 /* 03A96C 8027F96C 8CA5D000 */  lw    $a1, %lo(D_8032D000)($a1)
 /* 03A970 8027F970 27A40034 */  addiu $a0, $sp, 0x34
-/* 03A974 8027F974 0C0DE200 */  jal   Copy32BitTriple
+/* 03A974 8027F974 0C0DE200 */  jal   Vec3f_Copy
 /* 03A978 8027F978 24A50004 */   addiu $a1, $a1, 4
 /* 03A97C 8027F97C 27AE0034 */  addiu $t6, $sp, 0x34
 /* 03A980 8027F980 C5C40004 */  lwc1  $f4, 4($t6)
@@ -1165,7 +1165,7 @@ glabel func_8027FF44
 /* 03B0C8 802800C8 87A60030 */   lh    $a2, 0x30($sp)
 /* 03B0CC 802800CC 8FA40038 */  lw    $a0, 0x38($sp)
 /* 03B0D0 802800D0 27A50024 */  addiu $a1, $sp, 0x24
-/* 03B0D4 802800D4 0C0DE223 */  jal   func_8037888C
+/* 03B0D4 802800D4 0C0DE223 */  jal   Vec3f_Add
 /* 03B0D8 802800D8 24840004 */   addiu $a0, $a0, 4
 /* 03B0DC 802800DC 10000001 */  b     .L802800E4
 /* 03B0E0 802800E0 00000000 */   nop   
@@ -2456,7 +2456,7 @@ glabel CameraChange0C
 /* 03C3A4 802813A4 27B80060 */  addiu $t8, $sp, 0x60
 /* 03C3A8 802813A8 E7100008 */  swc1  $f16, 8($t8)
 /* 03C3AC 802813AC 27A4004C */  addiu $a0, $sp, 0x4c
-/* 03C3B0 802813B0 0C0DE200 */  jal   Copy32BitTriple
+/* 03C3B0 802813B0 0C0DE200 */  jal   Vec3f_Copy
 /* 03C3B4 802813B4 8FA50108 */   lw    $a1, 0x108($sp)
 /* 03C3B8 802813B8 3C088034 */  lui   $t0, %hi(D_8033B46C) # $t0, 0x8034
 /* 03C3BC 802813BC 8D08B46C */  lw    $t0, %lo(D_8033B46C)($t0)
@@ -2467,7 +2467,7 @@ glabel CameraChange0C
 /* 03C3D0 802813D0 000948C0 */  sll   $t1, $t1, 3
 /* 03C3D4 802813D4 03292821 */  addu  $a1, $t9, $t1
 /* 03C3D8 802813D8 24A50004 */  addiu $a1, $a1, 4
-/* 03C3DC 802813DC 0C0DE200 */  jal   Copy32BitTriple
+/* 03C3DC 802813DC 0C0DE200 */  jal   Vec3f_Copy
 /* 03C3E0 802813E0 27A400E8 */   addiu $a0, $sp, 0xe8
 /* 03C3E4 802813E4 3C0B8034 */  lui   $t3, %hi(D_8033B46C) # $t3, 0x8034
 /* 03C3E8 802813E8 8D6BB46C */  lw    $t3, %lo(D_8033B46C)($t3)
@@ -2479,7 +2479,7 @@ glabel CameraChange0C
 /* 03C400 80281400 27A400E8 */  addiu $a0, $sp, 0xe8
 /* 03C404 80281404 014C2821 */  addu  $a1, $t2, $t4
 /* 03C408 80281408 24A5001C */  addiu $a1, $a1, 0x1c
-/* 03C40C 8028140C 0C0DE200 */  jal   Copy32BitTriple
+/* 03C40C 8028140C 0C0DE200 */  jal   Vec3f_Copy
 /* 03C410 80281410 2484000C */   addiu $a0, $a0, 0xc
 /* 03C414 80281414 3C0E8034 */  lui   $t6, %hi(D_8033B46C) # $t6, 0x8034
 /* 03C418 80281418 8DCEB46C */  lw    $t6, %lo(D_8033B46C)($t6)
@@ -2612,7 +2612,7 @@ glabel CameraChange0C
 /* 03C614 80281614 000E6823 */  negu  $t5, $t6
 /* 03C618 80281618 A7AD00B6 */  sh    $t5, 0xb6($sp)
 /* 03C61C 8028161C 27A400B8 */  addiu $a0, $sp, 0xb8
-/* 03C620 80281620 0C0DE200 */  jal   Copy32BitTriple
+/* 03C620 80281620 0C0DE200 */  jal   Vec3f_Copy
 /* 03C624 80281624 27A500D0 */   addiu $a1, $sp, 0xd0
 /* 03C628 80281628 27AF00B8 */  addiu $t7, $sp, 0xb8
 /* 03C62C 8028162C C5E40000 */  lwc1  $f4, ($t7)
@@ -2849,7 +2849,7 @@ glabel CameraChange0C
 /* 03C9B8 802819B8 8FA40100 */  lw    $a0, 0x100($sp)
 /* 03C9BC 802819BC 3C058034 */  lui   $a1, %hi(D_8033B478) # $a1, 0x8034
 /* 03C9C0 802819C0 24A5B478 */  addiu $a1, %lo(D_8033B478) # addiu $a1, $a1, -0x4b88
-/* 03C9C4 802819C4 0C0DE223 */  jal   func_8037888C
+/* 03C9C4 802819C4 0C0DE223 */  jal   Vec3f_Add
 /* 03C9C8 802819C8 24840010 */   addiu $a0, $a0, 0x10
 /* 03C9CC 802819CC 3C198034 */  lui   $t9, %hi(D_8033B46C) # $t9, 0x8034
 /* 03C9D0 802819D0 8F39B46C */  lw    $t9, %lo(D_8033B46C)($t9)
@@ -3029,7 +3029,7 @@ glabel CameraChange0C
 /* 03CC84 80281C84 A429B4DA */  sh    $t1, %lo(D_8033B4DA)($at)
 .L80281C88:
 /* 03CC88 80281C88 8FA40104 */  lw    $a0, 0x104($sp)
-/* 03CC8C 80281C8C 0C0DE200 */  jal   Copy32BitTriple
+/* 03CC8C 80281C8C 0C0DE200 */  jal   Vec3f_Copy
 /* 03CC90 80281C90 27A50078 */   addiu $a1, $sp, 0x78
 /* 03CC94 80281C94 27AD00B4 */  addiu $t5, $sp, 0xb4
 /* 03CC98 80281C98 AFAD0010 */  sw    $t5, 0x10($sp)
@@ -3121,7 +3121,7 @@ glabel CameraChange0D
 /* 03CDD4 80281DD4 3C058033 */  lui   $a1, %hi(D_8032D000) # $a1, 0x8033
 /* 03CDD8 80281DD8 8CA5D000 */  lw    $a1, %lo(D_8032D000)($a1)
 /* 03CDDC 80281DDC 8FA4007C */  lw    $a0, 0x7c($sp)
-/* 03CDE0 80281DE0 0C0DE200 */  jal   Copy32BitTriple
+/* 03CDE0 80281DE0 0C0DE200 */  jal   Vec3f_Copy
 /* 03CDE4 80281DE4 24A50004 */   addiu $a1, $a1, 4
 /* 03CDE8 80281DE8 3C0142FA */  li    $at, 0x42FA0000 # 0.000000
 /* 03CDEC 80281DEC 44818000 */  mtc1  $at, $f16
@@ -3144,11 +3144,11 @@ glabel CameraChange0D
 /* 03CE30 80281E30 A5000004 */  sh    $zero, 4($t0)
 /* 03CE34 80281E34 3C058033 */  lui   $a1, %hi(D_8032D00C) # $a1, 0x8033
 /* 03CE38 80281E38 24A5D00C */  addiu $a1, %lo(D_8032D00C) # addiu $a1, $a1, -0x2ff4
-/* 03CE3C 80281E3C 0C0DE200 */  jal   Copy32BitTriple
+/* 03CE3C 80281E3C 0C0DE200 */  jal   Vec3f_Copy
 /* 03CE40 80281E40 27A4003C */   addiu $a0, $sp, 0x3c
 /* 03CE44 80281E44 3C058034 */  lui   $a1, %hi(D_8033B460) # $a1, 0x8034
 /* 03CE48 80281E48 24A5B460 */  addiu $a1, %lo(D_8033B460) # addiu $a1, $a1, -0x4ba0
-/* 03CE4C 80281E4C 0C0DE223 */  jal   func_8037888C
+/* 03CE4C 80281E4C 0C0DE223 */  jal   Vec3f_Add
 /* 03CE50 80281E50 27A4003C */   addiu $a0, $sp, 0x3c
 /* 03CE54 80281E54 3C098034 */  lui   $t1, %hi(D_8033B280) # $t1, 0x8034
 /* 03CE58 80281E58 8529B280 */  lh    $t1, %lo(D_8033B280)($t1)
@@ -3792,7 +3792,7 @@ glabel func_80282730
 /* 03D79C 8028279C 2484B460 */  addiu $a0, %lo(D_8033B460) # addiu $a0, $a0, -0x4ba0
 /* 03D7A0 802827A0 24050000 */  li    $a1, 0
 /* 03D7A4 802827A4 24060000 */  li    $a2, 0
-/* 03D7A8 802827A8 0C0DE210 */  jal   func_80378840
+/* 03D7A8 802827A8 0C0DE210 */  jal   Vec3f_Set
 /* 03D7AC 802827AC 24070000 */   li    $a3, 0
 /* 03D7B0 802827B0 10000001 */  b     .L802827B8
 /* 03D7B4 802827B4 00000000 */   nop   
@@ -3856,7 +3856,7 @@ glabel CameraChange03
 /* 03D888 80282888 3C058033 */  lui   $a1, %hi(D_8032D000) # $a1, 0x8033
 /* 03D88C 8028288C 8CA5D000 */  lw    $a1, %lo(D_8032D000)($a1)
 /* 03D890 80282890 8FA4005C */  lw    $a0, 0x5c($sp)
-/* 03D894 80282894 0C0DE200 */  jal   Copy32BitTriple
+/* 03D894 80282894 0C0DE200 */  jal   Vec3f_Copy
 /* 03D898 80282898 24A50004 */   addiu $a1, $a1, 4
 /* 03D89C 8028289C 8FB90058 */  lw    $t9, 0x58($sp)
 /* 03D8A0 802828A0 C7B20020 */  lwc1  $f18, 0x20($sp)
@@ -4213,7 +4213,7 @@ glabel func_80282D90
 /* 03DDA4 80282DA4 AFAE0054 */  sw    $t6, 0x54($sp)
 /* 03DDA8 80282DA8 8FA50058 */  lw    $a1, 0x58($sp)
 /* 03DDAC 80282DAC 27A40038 */  addiu $a0, $sp, 0x38
-/* 03DDB0 80282DB0 0C0DE200 */  jal   Copy32BitTriple
+/* 03DDB0 80282DB0 0C0DE200 */  jal   Vec3f_Copy
 /* 03DDB4 80282DB4 24A50010 */   addiu $a1, $a1, 0x10
 /* 03DDB8 80282DB8 3C0F8034 */  lui   $t7, %hi(D_8033B4D8) # $t7, 0x8034
 /* 03DDBC 80282DBC 85EFB4D8 */  lh    $t7, %lo(D_8033B4D8)($t7)
@@ -4223,7 +4223,7 @@ glabel func_80282D90
 /* 03DDCC 80282DCC A438B4D8 */  sh    $t8, %lo(D_8033B4D8)($at)
 /* 03DDD0 80282DD0 8FA50058 */  lw    $a1, 0x58($sp)
 /* 03DDD4 80282DD4 27A40044 */  addiu $a0, $sp, 0x44
-/* 03DDD8 80282DD8 0C0DE200 */  jal   Copy32BitTriple
+/* 03DDD8 80282DD8 0C0DE200 */  jal   Vec3f_Copy
 /* 03DDDC 80282DDC 24A50010 */   addiu $a1, $a1, 0x10
 /* 03DDE0 80282DE0 8FB90058 */  lw    $t9, 0x58($sp)
 /* 03DDE4 80282DE4 27A60044 */  addiu $a2, $sp, 0x44
@@ -4408,7 +4408,7 @@ glabel func_80282FC8
 /* 03E08C 8028308C 8CA5D000 */  lw    $a1, %lo(D_8032D000)($a1)
 /* 03E090 80283090 8FA40050 */  lw    $a0, 0x50($sp)
 /* 03E094 80283094 24A50004 */  addiu $a1, $a1, 4
-/* 03E098 80283098 0C0DE200 */  jal   Copy32BitTriple
+/* 03E098 80283098 0C0DE200 */  jal   Vec3f_Copy
 /* 03E09C 8028309C 24840004 */   addiu $a0, $a0, 4
 /* 03E0A0 802830A0 8FB90050 */  lw    $t9, 0x50($sp)
 /* 03E0A4 802830A4 3C014248 */  li    $at, 0x42480000 # 0.000000
@@ -5142,7 +5142,7 @@ glabel func_80283548
 /* 03EB38 80283B38 E7A80014 */   swc1  $f8, 0x14($sp)
 /* 03EB3C 80283B3C 8FA500C8 */  lw    $a1, 0xc8($sp)
 /* 03EB40 80283B40 27A400B0 */  addiu $a0, $sp, 0xb0
-/* 03EB44 80283B44 0C0DE200 */  jal   Copy32BitTriple
+/* 03EB44 80283B44 0C0DE200 */  jal   Vec3f_Copy
 /* 03EB48 80283B48 24A50010 */   addiu $a1, $a1, 0x10
 /* 03EB4C 80283B4C 8FA400C8 */  lw    $a0, 0xc8($sp)
 /* 03EB50 80283B50 27A500B0 */  addiu $a1, $sp, 0xb0
@@ -5565,7 +5565,7 @@ glabel func_80283548
 /* 03F160 80284160 27A800B0 */  addiu $t0, $sp, 0xb0
 /* 03F164 80284164 E5080004 */  swc1  $f8, 4($t0)
 /* 03F168 80284168 27A400BC */  addiu $a0, $sp, 0xbc
-/* 03F16C 8028416C 0C0DE200 */  jal   Copy32BitTriple
+/* 03F16C 8028416C 0C0DE200 */  jal   Vec3f_Copy
 /* 03F170 80284170 27A500B0 */   addiu $a1, $sp, 0xb0
 /* 03F174 80284174 27A900BC */  addiu $t1, $sp, 0xbc
 /* 03F178 80284178 3C0142FA */  li    $at, 0x42FA0000 # 0.000000
@@ -5732,7 +5732,7 @@ glabel func_80283548
 /* 03F3D8 802843D8 8CA5D000 */  lw    $a1, %lo(D_8032D000)($a1)
 /* 03F3DC 802843DC 8FA400C8 */  lw    $a0, 0xc8($sp)
 /* 03F3E0 802843E0 24A50004 */  addiu $a1, $a1, 4
-/* 03F3E4 802843E4 0C0DE200 */  jal   Copy32BitTriple
+/* 03F3E4 802843E4 0C0DE200 */  jal   Vec3f_Copy
 /* 03F3E8 802843E8 24840004 */   addiu $a0, $a0, 4
 .L802843EC:
 /* 03F3EC 802843EC 3C0C8033 */  lui   $t4, %hi(D_8032D000) # $t4, 0x8033
@@ -5776,7 +5776,7 @@ glabel func_80283548
 /* 03F480 80284480 8CA5D000 */  lw    $a1, %lo(D_8032D000)($a1)
 /* 03F484 80284484 8FA400C8 */  lw    $a0, 0xc8($sp)
 /* 03F488 80284488 24A50004 */  addiu $a1, $a1, 4
-/* 03F48C 8028448C 0C0DE200 */  jal   Copy32BitTriple
+/* 03F48C 8028448C 0C0DE200 */  jal   Vec3f_Copy
 /* 03F490 80284490 24840004 */   addiu $a0, $a0, 4
 .L80284494:
 /* 03F494 80284494 3C018033 */  lui   $at, 0x8033
@@ -6013,7 +6013,7 @@ glabel CameraChange11
 /* 03F7EC 802847EC 34E78000 */  ori   $a3, (0x44D98000 & 0xFFFF) # ori $a3, $a3, 0x8000
 /* 03F7F0 802847F0 34C68000 */  ori   $a2, (0x44198000 & 0xFFFF) # ori $a2, $a2, 0x8000
 /* 03F7F4 802847F4 2484D00C */  addiu $a0, %lo(D_8032D00C) # addiu $a0, $a0, -0x2ff4
-/* 03F7F8 802847F8 0C0DE210 */  jal   func_80378840
+/* 03F7F8 802847F8 0C0DE210 */  jal   Vec3f_Set
 /* 03F7FC 802847FC 3C05C4A0 */   lui   $a1, 0xc4a0
 /* 03F800 80284800 3C018033 */  lui   $at, 0x8033
 /* 03F804 80284804 C4246060 */  lwc1  $f4, 0x6060($at)
@@ -6047,7 +6047,7 @@ glabel CameraChange11
 /* 03F874 80284874 C508000C */  lwc1  $f8, 0xc($t0)
 /* 03F878 80284878 E5280008 */  swc1  $f8, 8($t1)
 /* 03F87C 8028487C 27A40044 */  addiu $a0, $sp, 0x44
-/* 03F880 80284880 0C0DE200 */  jal   Copy32BitTriple
+/* 03F880 80284880 0C0DE200 */  jal   Vec3f_Copy
 /* 03F884 80284884 8FA50068 */   lw    $a1, 0x68($sp)
 /* 03F888 80284888 3C048033 */  lui   $a0, %hi(D_8032D00C) # $a0, 0x8033
 /* 03F88C 8028488C 27AA0058 */  addiu $t2, $sp, 0x58
@@ -6348,7 +6348,7 @@ glabel func_80284CBC
 /* 03FCC8 80284CC8 8FA50018 */  lw    $a1, 0x18($sp)
 /* 03FCCC 80284CCC 3C048034 */  lui   $a0, %hi(D_8033B498) # $a0, 0x8034
 /* 03FCD0 80284CD0 2484B498 */  addiu $a0, %lo(D_8033B498) # addiu $a0, $a0, -0x4b68
-/* 03FCD4 80284CD4 0C0DE200 */  jal   Copy32BitTriple
+/* 03FCD4 80284CD4 0C0DE200 */  jal   Vec3f_Copy
 /* 03FCD8 80284CD8 24A50010 */   addiu $a1, $a1, 0x10
 /* 03FCDC 80284CDC 3C058033 */  lui   $a1, %hi(D_8032D000) # $a1, 0x8033
 /* 03FCE0 80284CE0 8CA5D000 */  lw    $a1, %lo(D_8032D000)($a1)
@@ -6368,7 +6368,7 @@ glabel func_80284CBC
 /* 03FD18 80284D18 24050000 */  li    $a1, 0
 /* 03FD1C 80284D1C 24070000 */  li    $a3, 0
 /* 03FD20 80284D20 44064000 */  mfc1  $a2, $f8
-/* 03FD24 80284D24 0C0DE210 */  jal   func_80378840
+/* 03FD24 80284D24 0C0DE210 */  jal   Vec3f_Set
 /* 03FD28 80284D28 00000000 */   nop   
 /* 03FD2C 80284D2C 10000001 */  b     .L80284D34
 /* 03FD30 80284D30 00000000 */   nop   
@@ -6429,26 +6429,26 @@ glabel func_80284DC0
 /* 03FDF0 80284DF0 00000000 */   nop   
 /* 03FDF4 80284DF4 3C058034 */  lui   $a1, %hi(D_8033B498) # $a1, 0x8034
 /* 03FDF8 80284DF8 24A5B498 */  addiu $a1, %lo(D_8033B498) # addiu $a1, $a1, -0x4b68
-/* 03FDFC 80284DFC 0C0DE200 */  jal   Copy32BitTriple
+/* 03FDFC 80284DFC 0C0DE200 */  jal   Vec3f_Copy
 /* 03FE00 80284E00 27A40030 */   addiu $a0, $sp, 0x30
 /* 03FE04 80284E04 3C058033 */  lui   $a1, %hi(D_8032D000) # $a1, 0x8033
 /* 03FE08 80284E08 8CA5D000 */  lw    $a1, %lo(D_8032D000)($a1)
 /* 03FE0C 80284E0C 27A40030 */  addiu $a0, $sp, 0x30
-/* 03FE10 80284E10 0C0DE223 */  jal   func_8037888C
+/* 03FE10 80284E10 0C0DE223 */  jal   Vec3f_Add
 /* 03FE14 80284E14 24A50004 */   addiu $a1, $a1, 4
 /* 03FE18 80284E18 3C058034 */  lui   $a1, %hi(D_8033B498) # $a1, 0x8034
 /* 03FE1C 80284E1C 24A5B498 */  addiu $a1, %lo(D_8033B498) # addiu $a1, $a1, -0x4b68
 /* 03FE20 80284E20 24A5000C */  addiu $a1, $a1, 0xc
-/* 03FE24 80284E24 0C0DE200 */  jal   Copy32BitTriple
+/* 03FE24 80284E24 0C0DE200 */  jal   Vec3f_Copy
 /* 03FE28 80284E28 27A40024 */   addiu $a0, $sp, 0x24
 /* 03FE2C 80284E2C 3C058033 */  lui   $a1, %hi(D_8032D000) # $a1, 0x8033
 /* 03FE30 80284E30 8CA5D000 */  lw    $a1, %lo(D_8032D000)($a1)
 /* 03FE34 80284E34 27A40024 */  addiu $a0, $sp, 0x24
-/* 03FE38 80284E38 0C0DE223 */  jal   func_8037888C
+/* 03FE38 80284E38 0C0DE223 */  jal   Vec3f_Add
 /* 03FE3C 80284E3C 24A50004 */   addiu $a1, $a1, 4
 /* 03FE40 80284E40 8FA50078 */  lw    $a1, 0x78($sp)
 /* 03FE44 80284E44 27A40068 */  addiu $a0, $sp, 0x68
-/* 03FE48 80284E48 0C0DE200 */  jal   Copy32BitTriple
+/* 03FE48 80284E48 0C0DE200 */  jal   Vec3f_Copy
 /* 03FE4C 80284E4C 24A50004 */   addiu $a1, $a1, 4
 /* 03FE50 80284E50 3C198033 */  lui   $t9, %hi(D_8032D000) # $t9, 0x8033
 /* 03FE54 80284E54 8F39D000 */  lw    $t9, %lo(D_8032D000)($t9)
@@ -6470,7 +6470,7 @@ glabel func_80284DC0
 /* 03FE94 80284E94 24A50010 */   addiu $a1, $a1, 0x10
 /* 03FE98 80284E98 8FA50078 */  lw    $a1, 0x78($sp)
 /* 03FE9C 80284E9C 27A4005C */  addiu $a0, $sp, 0x5c
-/* 03FEA0 80284EA0 0C0DE200 */  jal   Copy32BitTriple
+/* 03FEA0 80284EA0 0C0DE200 */  jal   Vec3f_Copy
 /* 03FEA4 80284EA4 24A50010 */   addiu $a1, $a1, 0x10
 /* 03FEA8 80284EA8 3C0142A0 */  li    $at, 0x42A00000 # 0.000000
 /* 03FEAC 80284EAC 44814000 */  mtc1  $at, $f8
@@ -6668,7 +6668,7 @@ glabel func_80284DC0
 /* 040180 80285180 3C048034 */  lui   $a0, %hi(D_8033B498) # $a0, 0x8034
 /* 040184 80285184 2484B498 */  addiu $a0, %lo(D_8033B498) # addiu $a0, $a0, -0x4b68
 /* 040188 80285188 2484000C */  addiu $a0, $a0, 0xc
-/* 04018C 8028518C 0C0DE200 */  jal   Copy32BitTriple
+/* 04018C 8028518C 0C0DE200 */  jal   Vec3f_Copy
 /* 040190 80285190 27A50068 */   addiu $a1, $sp, 0x68
 /* 040194 80285194 3C058033 */  lui   $a1, %hi(D_8032D000) # $a1, 0x8033
 /* 040198 80285198 8CA5D000 */  lw    $a1, %lo(D_8032D000)($a1)
@@ -7029,7 +7029,7 @@ glabel func_8028547C
 /* 0406C8 802856C8 8CA5D000 */  lw    $a1, %lo(D_8032D000)($a1)
 /* 0406CC 802856CC 8FA40030 */  lw    $a0, 0x30($sp)
 /* 0406D0 802856D0 24A50004 */  addiu $a1, $a1, 4
-/* 0406D4 802856D4 0C0DE223 */  jal   func_8037888C
+/* 0406D4 802856D4 0C0DE223 */  jal   Vec3f_Add
 /* 0406D8 802856D8 24840004 */   addiu $a0, $a0, 4
 /* 0406DC 802856DC 8FAE0030 */  lw    $t6, 0x30($sp)
 /* 0406E0 802856E0 87B90020 */  lh    $t9, 0x20($sp)
@@ -7126,25 +7126,25 @@ glabel func_80285770
 /* 040830 80285830 8FA40028 */  lw    $a0, 0x28($sp)
 /* 040834 80285834 3C058034 */  lui   $a1, %hi(D_8033B498) # $a1, 0x8034
 /* 040838 80285838 24A5B498 */  addiu $a1, %lo(D_8033B498) # addiu $a1, $a1, -0x4b68
-/* 04083C 8028583C 0C0DE200 */  jal   Copy32BitTriple
+/* 04083C 8028583C 0C0DE200 */  jal   Vec3f_Copy
 /* 040840 80285840 24840010 */   addiu $a0, $a0, 0x10
 /* 040844 80285844 3C058033 */  lui   $a1, %hi(D_8032D000) # $a1, 0x8033
 /* 040848 80285848 8CA5D000 */  lw    $a1, %lo(D_8032D000)($a1)
 /* 04084C 8028584C 8FA40028 */  lw    $a0, 0x28($sp)
 /* 040850 80285850 24A50004 */  addiu $a1, $a1, 4
-/* 040854 80285854 0C0DE223 */  jal   func_8037888C
+/* 040854 80285854 0C0DE223 */  jal   Vec3f_Add
 /* 040858 80285858 24840010 */   addiu $a0, $a0, 0x10
 /* 04085C 8028585C 8FA40028 */  lw    $a0, 0x28($sp)
 /* 040860 80285860 3C058034 */  lui   $a1, %hi(D_8033B498) # $a1, 0x8034
 /* 040864 80285864 24A5B498 */  addiu $a1, %lo(D_8033B498) # addiu $a1, $a1, -0x4b68
 /* 040868 80285868 24A5000C */  addiu $a1, $a1, 0xc
-/* 04086C 8028586C 0C0DE200 */  jal   Copy32BitTriple
+/* 04086C 8028586C 0C0DE200 */  jal   Vec3f_Copy
 /* 040870 80285870 24840004 */   addiu $a0, $a0, 4
 /* 040874 80285874 3C058033 */  lui   $a1, %hi(D_8032D000) # $a1, 0x8033
 /* 040878 80285878 8CA5D000 */  lw    $a1, %lo(D_8032D000)($a1)
 /* 04087C 8028587C 8FA40028 */  lw    $a0, 0x28($sp)
 /* 040880 80285880 24A50004 */  addiu $a1, $a1, 4
-/* 040884 80285884 0C0DE223 */  jal   func_8037888C
+/* 040884 80285884 0C0DE223 */  jal   Vec3f_Add
 /* 040888 80285888 24840004 */   addiu $a0, $a0, 4
 /* 04088C 8028588C 3C048033 */  lui   $a0, %hi(D_8032D000) # $a0, 0x8033
 /* 040890 80285890 8C84D000 */  lw    $a0, %lo(D_8032D000)($a0)
@@ -7465,7 +7465,7 @@ glabel func_80285BD8
 /* 040D0C 80285D0C A02FB364 */  sb    $t7, %lo(D_8033B364)($at)
 /* 040D10 80285D10 8FA50028 */  lw    $a1, 0x28($sp)
 /* 040D14 80285D14 8FA40020 */  lw    $a0, 0x20($sp)
-/* 040D18 80285D18 0C0DE200 */  jal   Copy32BitTriple
+/* 040D18 80285D18 0C0DE200 */  jal   Vec3f_Copy
 /* 040D1C 80285D1C 24A50004 */   addiu $a1, $a1, 4
 /* 040D20 80285D20 3C058033 */  lui   $a1, %hi(D_8032D000) # $a1, 0x8033
 /* 040D24 80285D24 8CA5D000 */  lw    $a1, %lo(D_8032D000)($a1)
@@ -7475,7 +7475,7 @@ glabel func_80285BD8
 /* 040D34 80285D34 8FA40020 */  lw    $a0, 0x20($sp)
 /* 040D38 80285D38 8FA50028 */  lw    $a1, 0x28($sp)
 /* 040D3C 80285D3C 2484000C */  addiu $a0, $a0, 0xc
-/* 040D40 80285D40 0C0DE200 */  jal   Copy32BitTriple
+/* 040D40 80285D40 0C0DE200 */  jal   Vec3f_Copy
 /* 040D44 80285D44 24A50010 */   addiu $a1, $a1, 0x10
 /* 040D48 80285D48 3C058033 */  lui   $a1, %hi(D_8032D000) # $a1, 0x8033
 /* 040D4C 80285D4C 8CA5D000 */  lw    $a1, %lo(D_8032D000)($a1)
@@ -7510,7 +7510,7 @@ glabel func_80285BD8
 /* 040DC0 80285DC0 2484000C */   addiu $a0, $a0, 0xc
 /* 040DC4 80285DC4 3C058034 */  lui   $a1, %hi(D_8033B328) # $a1, 0x8034
 /* 040DC8 80285DC8 24A5B328 */  addiu $a1, %lo(D_8033B328) # addiu $a1, $a1, -0x4cd8
-/* 040DCC 80285DCC 0C0DE200 */  jal   Copy32BitTriple
+/* 040DCC 80285DCC 0C0DE200 */  jal   Vec3f_Copy
 /* 040DD0 80285DD0 8FA40024 */   lw    $a0, 0x24($sp)
 /* 040DD4 80285DD4 3C058033 */  lui   $a1, %hi(D_8032D000) # $a1, 0x8033
 /* 040DD8 80285DD8 8CA5D000 */  lw    $a1, %lo(D_8032D000)($a1)
@@ -7521,7 +7521,7 @@ glabel func_80285BD8
 /* 040DEC 80285DEC 3C058034 */  lui   $a1, %hi(D_8033B328) # $a1, 0x8034
 /* 040DF0 80285DF0 24A5B328 */  addiu $a1, %lo(D_8033B328) # addiu $a1, $a1, -0x4cd8
 /* 040DF4 80285DF4 24A5000C */  addiu $a1, $a1, 0xc
-/* 040DF8 80285DF8 0C0DE200 */  jal   Copy32BitTriple
+/* 040DF8 80285DF8 0C0DE200 */  jal   Vec3f_Copy
 /* 040DFC 80285DFC 2484000C */   addiu $a0, $a0, 0xc
 /* 040E00 80285E00 3C058033 */  lui   $a1, %hi(D_8032D000) # $a1, 0x8033
 /* 040E04 80285E04 8CA5D000 */  lw    $a1, %lo(D_8032D000)($a1)
@@ -7602,20 +7602,20 @@ glabel func_80285E70
 /* 040F18 80285F18 A42DB4DA */   sh    $t5, %lo(D_8033B4DA)($at)
 /* 040F1C 80285F1C 8FA50060 */  lw    $a1, 0x60($sp)
 /* 040F20 80285F20 27A40050 */  addiu $a0, $sp, 0x50
-/* 040F24 80285F24 0C0DE200 */  jal   Copy32BitTriple
+/* 040F24 80285F24 0C0DE200 */  jal   Vec3f_Copy
 /* 040F28 80285F28 24A50010 */   addiu $a1, $a1, 0x10
 /* 040F2C 80285F2C 8FA50060 */  lw    $a1, 0x60($sp)
 /* 040F30 80285F30 27A40044 */  addiu $a0, $sp, 0x44
-/* 040F34 80285F34 0C0DE200 */  jal   Copy32BitTriple
+/* 040F34 80285F34 0C0DE200 */  jal   Vec3f_Copy
 /* 040F38 80285F38 24A50004 */   addiu $a1, $a1, 4
 .L80285F3C:
 /* 040F3C 80285F3C 3C048034 */  lui   $a0, %hi(D_8033B1F8) # $a0, 0x8034
 /* 040F40 80285F40 2484B1F8 */  addiu $a0, %lo(D_8033B1F8) # addiu $a0, $a0, -0x4e08
-/* 040F44 80285F44 0C0DE200 */  jal   Copy32BitTriple
+/* 040F44 80285F44 0C0DE200 */  jal   Vec3f_Copy
 /* 040F48 80285F48 27A50050 */   addiu $a1, $sp, 0x50
 /* 040F4C 80285F4C 3C048034 */  lui   $a0, %hi(D_8033B208) # $a0, 0x8034
 /* 040F50 80285F50 2484B208 */  addiu $a0, %lo(D_8033B208) # addiu $a0, $a0, -0x4df8
-/* 040F54 80285F54 0C0DE200 */  jal   Copy32BitTriple
+/* 040F54 80285F54 0C0DE200 */  jal   Vec3f_Copy
 /* 040F58 80285F58 27A50044 */   addiu $a1, $sp, 0x44
 /* 040F5C 80285F5C 8FAE0060 */  lw    $t6, 0x60($sp)
 /* 040F60 80285F60 3C018034 */  lui   $at, %hi(D_8033B3A4) # $at, 0x8034
@@ -7629,13 +7629,13 @@ glabel func_80285E70
 /* 040F80 80285F80 3C048034 */  lui   $a0, %hi(D_8033B328) # $a0, 0x8034
 /* 040F84 80285F84 2484B328 */  addiu $a0, %lo(D_8033B328) # addiu $a0, $a0, -0x4cd8
 /* 040F88 80285F88 24840024 */  addiu $a0, $a0, 0x24
-/* 040F8C 80285F8C 0C0DE200 */  jal   Copy32BitTriple
+/* 040F8C 80285F8C 0C0DE200 */  jal   Vec3f_Copy
 /* 040F90 80285F90 24A50010 */   addiu $a1, $a1, 0x10
 /* 040F94 80285F94 8FA50060 */  lw    $a1, 0x60($sp)
 /* 040F98 80285F98 3C048034 */  lui   $a0, %hi(D_8033B328) # $a0, 0x8034
 /* 040F9C 80285F9C 2484B328 */  addiu $a0, %lo(D_8033B328) # addiu $a0, $a0, -0x4cd8
 /* 040FA0 80285FA0 24840018 */  addiu $a0, $a0, 0x18
-/* 040FA4 80285FA4 0C0DE200 */  jal   Copy32BitTriple
+/* 040FA4 80285FA4 0C0DE200 */  jal   Vec3f_Copy
 /* 040FA8 80285FA8 24A50004 */   addiu $a1, $a1, 4
 /* 040FAC 80285FAC 3C018034 */  lui   $at, 0x8034
 /* 040FB0 80285FB0 C424B3D4 */  lwc1  $f4, -0x4c2c($at)
@@ -7712,12 +7712,12 @@ glabel func_80285E70
 /* 0410C4 802860C4 3C0E8034 */  lui   $t6, %hi(D_8033B328) # $t6, 0x8034
 /* 0410C8 802860C8 25CEB328 */  addiu $t6, %lo(D_8033B328) # addiu $t6, $t6, -0x4cd8
 /* 0410CC 802860CC 25C4008C */  addiu $a0, $t6, 0x8c
-/* 0410D0 802860D0 0C0DE200 */  jal   Copy32BitTriple
+/* 0410D0 802860D0 0C0DE200 */  jal   Vec3f_Copy
 /* 0410D4 802860D4 25C5000C */   addiu $a1, $t6, 0xc
 /* 0410D8 802860D8 3C0F8034 */  lui   $t7, %hi(D_8033B328) # $t7, 0x8034
 /* 0410DC 802860DC 25EFB328 */  addiu $t7, %lo(D_8033B328) # addiu $t7, $t7, -0x4cd8
 /* 0410E0 802860E0 25E40080 */  addiu $a0, $t7, 0x80
-/* 0410E4 802860E4 0C0DE200 */  jal   Copy32BitTriple
+/* 0410E4 802860E4 0C0DE200 */  jal   Vec3f_Copy
 /* 0410E8 802860E8 01E02825 */   move  $a1, $t7
 /* 0410EC 802860EC 8FB80060 */  lw    $t8, 0x60($sp)
 /* 0410F0 802860F0 93190030 */  lbu   $t9, 0x30($t8)
@@ -7727,13 +7727,13 @@ glabel func_80285E70
 /* 041100 80286100 2484B328 */  addiu $a0, %lo(D_8033B328) # addiu $a0, $a0, -0x4cd8
 /* 041104 80286104 3C058034 */  lui   $a1, %hi(D_8033B218) # $a1, 0x8034
 /* 041108 80286108 24A5B218 */  addiu $a1, %lo(D_8033B218) # addiu $a1, $a1, -0x4de8
-/* 04110C 8028610C 0C0DE223 */  jal   func_8037888C
+/* 04110C 8028610C 0C0DE223 */  jal   Vec3f_Add
 /* 041110 80286110 24840080 */   addiu $a0, $a0, 0x80
 /* 041114 80286114 3C048034 */  lui   $a0, %hi(D_8033B218) # $a0, 0x8034
 /* 041118 80286118 2484B218 */  addiu $a0, %lo(D_8033B218) # addiu $a0, $a0, -0x4de8
 /* 04111C 8028611C 24050000 */  li    $a1, 0
 /* 041120 80286120 24060000 */  li    $a2, 0
-/* 041124 80286124 0C0DE210 */  jal   func_80378840
+/* 041124 80286124 0C0DE210 */  jal   Vec3f_Set
 /* 041128 80286128 24070000 */   li    $a3, 0
 .L8028612C:
 /* 04112C 8028612C 3C098034 */  lui   $t1, %hi(D_8033B328) # $t1, 0x8034
@@ -7851,7 +7851,7 @@ glabel func_80285E70
 /* 0412E0 802862E0 3C048034 */  lui   $a0, %hi(D_8033B250) # $a0, 0x8034
 /* 0412E4 802862E4 2484B250 */  addiu $a0, %lo(D_8033B250) # addiu $a0, $a0, -0x4db0
 /* 0412E8 802862E8 24840014 */  addiu $a0, $a0, 0x14
-/* 0412EC 802862EC 0C0DE200 */  jal   Copy32BitTriple
+/* 0412EC 802862EC 0C0DE200 */  jal   Vec3f_Copy
 /* 0412F0 802862F0 24A50004 */   addiu $a1, $a1, 4
 .L802862F4:
 /* 0412F4 802862F4 3C0A8034 */  lui   $t2, %hi(D_8033B328) # $t2, 0x8034
@@ -7978,13 +7978,13 @@ glabel func_80286348
 /* 0414BC 802864BC 3C058034 */  lui   $a1, %hi(D_8033B328) # $a1, 0x8034
 /* 0414C0 802864C0 24A5B328 */  addiu $a1, %lo(D_8033B328) # addiu $a1, $a1, -0x4cd8
 /* 0414C4 802864C4 24A50024 */  addiu $a1, $a1, 0x24
-/* 0414C8 802864C8 0C0DE200 */  jal   Copy32BitTriple
+/* 0414C8 802864C8 0C0DE200 */  jal   Vec3f_Copy
 /* 0414CC 802864CC 24840010 */   addiu $a0, $a0, 0x10
 /* 0414D0 802864D0 8FA40040 */  lw    $a0, 0x40($sp)
 /* 0414D4 802864D4 3C058034 */  lui   $a1, %hi(D_8033B328) # $a1, 0x8034
 /* 0414D8 802864D8 24A5B328 */  addiu $a1, %lo(D_8033B328) # addiu $a1, $a1, -0x4cd8
 /* 0414DC 802864DC 24A50018 */  addiu $a1, $a1, 0x18
-/* 0414E0 802864E0 0C0DE200 */  jal   Copy32BitTriple
+/* 0414E0 802864E0 0C0DE200 */  jal   Vec3f_Copy
 /* 0414E4 802864E4 24840004 */   addiu $a0, $a0, 4
 /* 0414E8 802864E8 3C0D8034 */  lui   $t5, %hi(D_8033B3A4) # $t5, 0x8034
 /* 0414EC 802864EC 85ADB3A4 */  lh    $t5, %lo(D_8033B3A4)($t5)
@@ -8358,7 +8358,7 @@ glabel func_802869B8
 /* 041A5C 80286A5C 3C048034 */  lui   $a0, %hi(D_8033B250) # $a0, 0x8034
 /* 041A60 80286A60 2484B250 */  addiu $a0, %lo(D_8033B250) # addiu $a0, $a0, -0x4db0
 /* 041A64 80286A64 24840014 */  addiu $a0, $a0, 0x14
-/* 041A68 80286A68 0C0DE200 */  jal   Copy32BitTriple
+/* 041A68 80286A68 0C0DE200 */  jal   Vec3f_Copy
 /* 041A6C 80286A6C 24A50004 */   addiu $a1, $a1, 4
 /* 041A70 80286A70 3C018034 */  lui   $at, %hi(D_8033B260) # $at, 0x8034
 /* 041A74 80286A74 AC20B260 */  sw    $zero, %lo(D_8033B260)($at)
@@ -8576,13 +8576,13 @@ glabel func_80286C9C
 /* 041DB4 80286DB4 2484B460 */  addiu $a0, %lo(D_8033B460) # addiu $a0, $a0, -0x4ba0
 /* 041DB8 80286DB8 24050000 */  li    $a1, 0
 /* 041DBC 80286DBC 24060000 */  li    $a2, 0
-/* 041DC0 80286DC0 0C0DE210 */  jal   func_80378840
+/* 041DC0 80286DC0 0C0DE210 */  jal   Vec3f_Set
 /* 041DC4 80286DC4 24070000 */   li    $a3, 0
 /* 041DC8 80286DC8 3C048034 */  lui   $a0, %hi(D_8033B218) # $a0, 0x8034
 /* 041DCC 80286DCC 2484B218 */  addiu $a0, %lo(D_8033B218) # addiu $a0, $a0, -0x4de8
 /* 041DD0 80286DD0 24050000 */  li    $a1, 0
 /* 041DD4 80286DD4 24060000 */  li    $a2, 0
-/* 041DD8 80286DD8 0C0DE210 */  jal   func_80378840
+/* 041DD8 80286DD8 0C0DE210 */  jal   Vec3f_Set
 /* 041DDC 80286DDC 24070000 */   li    $a3, 0
 /* 041DE0 80286DE0 3C048034 */  lui   $a0, %hi(D_8033B278) # $a0, 0x8034
 /* 041DE4 80286DE4 0C0A3D9E */  jal   func_8028F678
@@ -8786,7 +8786,7 @@ glabel func_80286C9C
 /* 0420E8 802870E8 34A59000 */  ori   $a1, (0xC53A9000 & 0xFFFF) # ori $a1, $a1, 0x9000
 /* 0420EC 802870EC 2484D00C */  addiu $a0, %lo(D_8032D00C) # addiu $a0, $a0, -0x2ff4
 /* 0420F0 802870F0 3C0643EF */  lui   $a2, 0x43ef
-/* 0420F4 802870F4 0C0DE210 */  jal   func_80378840
+/* 0420F4 802870F4 0C0DE210 */  jal   Vec3f_Set
 /* 0420F8 802870F8 3C07C5AE */   lui   $a3, 0xc5ae
 /* 0420FC 802870FC 10000001 */  b     .L80287104
 /* 042100 80287100 00000000 */   nop   
@@ -8831,7 +8831,7 @@ glabel func_80286C9C
 /* 042190 80287190 27A40028 */  addiu $a0, $sp, 0x28
 /* 042194 80287194 24050000 */  li    $a1, 0
 /* 042198 80287198 3C0643FA */  lui   $a2, 0x43fa
-/* 04219C 8028719C 0C0DE210 */  jal   func_80378840
+/* 04219C 8028719C 0C0DE210 */  jal   Vec3f_Set
 /* 0421A0 802871A0 3C07C2C8 */   lui   $a3, 0xc2c8
 /* 0421A4 802871A4 1000002F */  b     .L80287264
 /* 0421A8 802871A8 00000000 */   nop   
@@ -8922,42 +8922,42 @@ glabel func_80286C9C
 /* 0422D8 802872D8 8CA5D000 */  lw    $a1, %lo(D_8032D000)($a1)
 /* 0422DC 802872DC 8FA40038 */  lw    $a0, 0x38($sp)
 /* 0422E0 802872E0 24A50004 */  addiu $a1, $a1, 4
-/* 0422E4 802872E4 0C0DE200 */  jal   Copy32BitTriple
+/* 0422E4 802872E4 0C0DE200 */  jal   Vec3f_Copy
 /* 0422E8 802872E8 24840004 */   addiu $a0, $a0, 4
 /* 0422EC 802872EC 8FA50038 */  lw    $a1, 0x38($sp)
 /* 0422F0 802872F0 3C048034 */  lui   $a0, %hi(D_8033B328) # $a0, 0x8034
 /* 0422F4 802872F4 2484B328 */  addiu $a0, %lo(D_8033B328) # addiu $a0, $a0, -0x4cd8
 /* 0422F8 802872F8 2484000C */  addiu $a0, $a0, 0xc
-/* 0422FC 802872FC 0C0DE200 */  jal   Copy32BitTriple
+/* 0422FC 802872FC 0C0DE200 */  jal   Vec3f_Copy
 /* 042300 80287300 24A50010 */   addiu $a1, $a1, 0x10
 /* 042304 80287304 8FA50038 */  lw    $a1, 0x38($sp)
 /* 042308 80287308 3C048034 */  lui   $a0, %hi(D_8033B328) # $a0, 0x8034
 /* 04230C 8028730C 2484B328 */  addiu $a0, %lo(D_8033B328) # addiu $a0, $a0, -0x4cd8
-/* 042310 80287310 0C0DE200 */  jal   Copy32BitTriple
+/* 042310 80287310 0C0DE200 */  jal   Vec3f_Copy
 /* 042314 80287314 24A50004 */   addiu $a1, $a1, 4
 /* 042318 80287318 8FA50038 */  lw    $a1, 0x38($sp)
 /* 04231C 8028731C 3C048034 */  lui   $a0, %hi(D_8033B328) # $a0, 0x8034
 /* 042320 80287320 2484B328 */  addiu $a0, %lo(D_8033B328) # addiu $a0, $a0, -0x4cd8
 /* 042324 80287324 24840024 */  addiu $a0, $a0, 0x24
-/* 042328 80287328 0C0DE200 */  jal   Copy32BitTriple
+/* 042328 80287328 0C0DE200 */  jal   Vec3f_Copy
 /* 04232C 8028732C 24A50010 */   addiu $a1, $a1, 0x10
 /* 042330 80287330 8FA50038 */  lw    $a1, 0x38($sp)
 /* 042334 80287334 3C048034 */  lui   $a0, %hi(D_8033B328) # $a0, 0x8034
 /* 042338 80287338 2484B328 */  addiu $a0, %lo(D_8033B328) # addiu $a0, $a0, -0x4cd8
 /* 04233C 8028733C 24840018 */  addiu $a0, $a0, 0x18
-/* 042340 80287340 0C0DE200 */  jal   Copy32BitTriple
+/* 042340 80287340 0C0DE200 */  jal   Vec3f_Copy
 /* 042344 80287344 24A50004 */   addiu $a1, $a1, 4
 /* 042348 80287348 8FA50038 */  lw    $a1, 0x38($sp)
 /* 04234C 8028734C 3C048034 */  lui   $a0, %hi(D_8033B328) # $a0, 0x8034
 /* 042350 80287350 2484B328 */  addiu $a0, %lo(D_8033B328) # addiu $a0, $a0, -0x4cd8
 /* 042354 80287354 2484008C */  addiu $a0, $a0, 0x8c
-/* 042358 80287358 0C0DE200 */  jal   Copy32BitTriple
+/* 042358 80287358 0C0DE200 */  jal   Vec3f_Copy
 /* 04235C 8028735C 24A50010 */   addiu $a1, $a1, 0x10
 /* 042360 80287360 8FA50038 */  lw    $a1, 0x38($sp)
 /* 042364 80287364 3C048034 */  lui   $a0, %hi(D_8033B328) # $a0, 0x8034
 /* 042368 80287368 2484B328 */  addiu $a0, %lo(D_8033B328) # addiu $a0, $a0, -0x4cd8
 /* 04236C 8028736C 24840080 */  addiu $a0, $a0, 0x80
-/* 042370 80287370 0C0DE200 */  jal   Copy32BitTriple
+/* 042370 80287370 0C0DE200 */  jal   Vec3f_Copy
 /* 042374 80287374 24A50004 */   addiu $a1, $a1, 4
 /* 042378 80287378 8FA80038 */  lw    $t0, 0x38($sp)
 /* 04237C 8028737C 2401000D */  li    $at, 13
@@ -9178,12 +9178,12 @@ glabel func_802875F8
 /* 042690 80287690 8FA40018 */  lw    $a0, 0x18($sp)
 /* 042694 80287694 8FA50020 */  lw    $a1, 0x20($sp)
 /* 042698 80287698 24840010 */  addiu $a0, $a0, 0x10
-/* 04269C 8028769C 0C0DE200 */  jal   Copy32BitTriple
+/* 04269C 8028769C 0C0DE200 */  jal   Vec3f_Copy
 /* 0426A0 802876A0 24A5001C */   addiu $a1, $a1, 0x1c
 /* 0426A4 802876A4 8FA40018 */  lw    $a0, 0x18($sp)
 /* 0426A8 802876A8 8FA50020 */  lw    $a1, 0x20($sp)
 /* 0426AC 802876AC 24840004 */  addiu $a0, $a0, 4
-/* 0426B0 802876B0 0C0DE200 */  jal   Copy32BitTriple
+/* 0426B0 802876B0 0C0DE200 */  jal   Vec3f_Copy
 /* 0426B4 802876B4 24A50028 */   addiu $a1, $a1, 0x28
 /* 0426B8 802876B8 10000001 */  b     .L802876C0
 /* 0426BC 802876BC 00000000 */   nop   
@@ -9208,13 +9208,13 @@ glabel func_802876D0
 /* 0426FC 802876FC 3C058034 */  lui   $a1, %hi(D_8033B328) # $a1, 0x8034
 /* 042700 80287700 24A5B328 */  addiu $a1, %lo(D_8033B328) # addiu $a1, $a1, -0x4cd8
 /* 042704 80287704 24A5008C */  addiu $a1, $a1, 0x8c
-/* 042708 80287708 0C0DE200 */  jal   Copy32BitTriple
+/* 042708 80287708 0C0DE200 */  jal   Vec3f_Copy
 /* 04270C 8028770C 2484001C */   addiu $a0, $a0, 0x1c
 /* 042710 80287710 8FA40028 */  lw    $a0, 0x28($sp)
 /* 042714 80287714 3C058034 */  lui   $a1, %hi(D_8033B328) # $a1, 0x8034
 /* 042718 80287718 24A5B328 */  addiu $a1, %lo(D_8033B328) # addiu $a1, $a1, -0x4cd8
 /* 04271C 8028771C 24A50080 */  addiu $a1, $a1, 0x80
-/* 042720 80287720 0C0DE200 */  jal   Copy32BitTriple
+/* 042720 80287720 0C0DE200 */  jal   Vec3f_Copy
 /* 042724 80287724 24840028 */   addiu $a0, $a0, 0x28
 /* 042728 80287728 0C0A1D01 */  jal   func_80287404
 /* 04272C 8028772C 8FA40028 */   lw    $a0, 0x28($sp)
@@ -10100,7 +10100,7 @@ glabel func_802883C8
 /* 0433E8 802883E8 27A40060 */  addiu $a0, $sp, 0x60
 /* 0433EC 802883EC 24050000 */  li    $a1, 0
 /* 0433F0 802883F0 24060000 */  li    $a2, 0
-/* 0433F4 802883F4 0C0DE210 */  jal   func_80378840
+/* 0433F4 802883F4 0C0DE210 */  jal   Vec3f_Set
 /* 0433F8 802883F8 24070000 */   li    $a3, 0
 /* 0433FC 802883FC 1000007A */  b     .L802885E8
 /* 043400 80288400 00000000 */   nop   
@@ -10182,7 +10182,7 @@ glabel func_802883C8
 /* 043524 80288524 25F80008 */  addiu $t8, $t7, 8
 /* 043528 80288528 25E90018 */  addiu $t1, $t7, 0x18
 /* 04352C 8028852C 01282821 */  addu  $a1, $t1, $t0
-/* 043530 80288530 0C0DE24F */  jal   func_8037893C
+/* 043530 80288530 0C0DE24F */  jal   Vec3s_Copy
 /* 043534 80288534 03082021 */   addu  $a0, $t8, $t0
 /* 043538 80288538 8FAB006C */  lw    $t3, 0x6c($sp)
 /* 04353C 8028853C 256C0001 */  addiu $t4, $t3, 1
@@ -10524,7 +10524,7 @@ glabel func_80288974
 /* 043A0C 80288A0C 000C6880 */  sll   $t5, $t4, 2
 /* 043A10 80288A10 01AC6823 */  subu  $t5, $t5, $t4
 /* 043A14 80288A14 000D6880 */  sll   $t5, $t5, 2
-/* 043A18 80288A18 0C0DE200 */  jal   Copy32BitTriple
+/* 043A18 80288A18 0C0DE200 */  jal   Vec3f_Copy
 /* 043A1C 80288A1C 01AE2021 */   addu  $a0, $t5, $t6
 /* 043A20 80288A20 8FAF006C */  lw    $t7, 0x6c($sp)
 /* 043A24 80288A24 C5F2001C */  lwc1  $f18, 0x1c($t7)
@@ -10612,7 +10612,7 @@ glabel func_80288974
 /* 043B64 80288B64 000B6080 */  sll   $t4, $t3, 2
 /* 043B68 80288B68 018B6023 */  subu  $t4, $t4, $t3
 /* 043B6C 80288B6C 000C6080 */  sll   $t4, $t4, 2
-/* 043B70 80288B70 0C0DE200 */  jal   Copy32BitTriple
+/* 043B70 80288B70 0C0DE200 */  jal   Vec3f_Copy
 /* 043B74 80288B74 018D2821 */   addu  $a1, $t4, $t5
 .L80288B78:
 /* 043B78 80288B78 8FAE0020 */  lw    $t6, 0x20($sp)
@@ -10731,7 +10731,7 @@ glabel func_80288CF0
 /* 043D08 80288D08 27A40018 */  addiu $a0, $sp, 0x18
 /* 043D0C 80288D0C 8FA50028 */  lw    $a1, 0x28($sp)
 /* 043D10 80288D10 8FA6002C */  lw    $a2, 0x2c($sp)
-/* 043D14 80288D14 0C0DE210 */  jal   func_80378840
+/* 043D14 80288D14 0C0DE210 */  jal   Vec3f_Set
 /* 043D18 80288D18 8FA70030 */   lw    $a3, 0x30($sp)
 /* 043D1C 80288D1C 3C048033 */  lui   $a0, %hi(D_8032D000) # $a0, 0x8033
 /* 043D20 80288D20 8C84D000 */  lw    $a0, %lo(D_8032D000)($a0)
@@ -12270,7 +12270,7 @@ glabel func_8028A24C
 /* 0452D4 8028A2D4 46105480 */  add.s $f18, $f10, $f16
 /* 0452D8 8028A2D8 E5920008 */  swc1  $f18, 8($t4)
 /* 0452DC 8028A2DC 8FA40028 */  lw    $a0, 0x28($sp)
-/* 0452E0 8028A2E0 0C0DE200 */  jal   Copy32BitTriple
+/* 0452E0 8028A2E0 0C0DE200 */  jal   Vec3f_Copy
 /* 0452E4 8028A2E4 27A5001C */   addiu $a1, $sp, 0x1c
 /* 0452E8 8028A2E8 10000001 */  b     .L8028A2F0
 /* 0452EC 8028A2EC 00000000 */   nop   
@@ -12587,7 +12587,7 @@ glabel func_8028A764
 /* 045770 8028A770 AFA5002C */  sw    $a1, 0x2c($sp)
 /* 045774 8028A774 AFA60030 */  sw    $a2, 0x30($sp)
 /* 045778 8028A778 27A4001C */  addiu $a0, $sp, 0x1c
-/* 04577C 8028A77C 0C0DE200 */  jal   Copy32BitTriple
+/* 04577C 8028A77C 0C0DE200 */  jal   Vec3f_Copy
 /* 045780 8028A780 8FA5002C */   lw    $a1, 0x2c($sp)
 /* 045784 8028A784 97AE0032 */  lhu   $t6, 0x32($sp)
 /* 045788 8028A788 3C018038 */  lui   $at, 0x8038
@@ -12642,7 +12642,7 @@ glabel func_8028A834
 /* 045840 8028A840 AFA5002C */  sw    $a1, 0x2c($sp)
 /* 045844 8028A844 AFA60030 */  sw    $a2, 0x30($sp)
 /* 045848 8028A848 27A4001C */  addiu $a0, $sp, 0x1c
-/* 04584C 8028A84C 0C0DE200 */  jal   Copy32BitTriple
+/* 04584C 8028A84C 0C0DE200 */  jal   Vec3f_Copy
 /* 045850 8028A850 8FA5002C */   lw    $a1, 0x2c($sp)
 /* 045854 8028A854 97AF0032 */  lhu   $t7, 0x32($sp)
 /* 045858 8028A858 3C018038 */  lui   $at, 0x8038
@@ -13954,7 +13954,7 @@ glabel func_8028BA38
 /* 046A80 8028BA80 01092021 */  addu  $a0, $t0, $t1
 /* 046A84 8028BA84 24050000 */  li    $a1, 0
 /* 046A88 8028BA88 24060000 */  li    $a2, 0
-/* 046A8C 8028BA8C 0C0DE210 */  jal   func_80378840
+/* 046A8C 8028BA8C 0C0DE210 */  jal   Vec3f_Set
 /* 046A90 8028BA90 24070000 */   li    $a3, 0
 /* 046A94 8028BA94 8FAA001C */  lw    $t2, 0x1c($sp)
 /* 046A98 8028BA98 3C0D8034 */  lui   $t5, %hi(D_8033B6F0) # $t5, 0x8034
@@ -13966,7 +13966,7 @@ glabel func_8028BA38
 /* 046AB0 8028BAB0 018D2021 */  addu  $a0, $t4, $t5
 /* 046AB4 8028BAB4 24050000 */  li    $a1, 0
 /* 046AB8 8028BAB8 24060000 */  li    $a2, 0
-/* 046ABC 8028BABC 0C0DE210 */  jal   func_80378840
+/* 046ABC 8028BABC 0C0DE210 */  jal   Vec3f_Set
 /* 046AC0 8028BAC0 24070000 */   li    $a3, 0
 /* 046AC4 8028BAC4 8FAE001C */  lw    $t6, 0x1c($sp)
 /* 046AC8 8028BAC8 3C198034 */  lui   $t9, %hi(D_8033B6F0) # $t9, 0x8034
@@ -13978,7 +13978,7 @@ glabel func_8028BA38
 /* 046AE0 8028BAE0 03192021 */  addu  $a0, $t8, $t9
 /* 046AE4 8028BAE4 00002825 */  move  $a1, $zero
 /* 046AE8 8028BAE8 00003025 */  move  $a2, $zero
-/* 046AEC 8028BAEC 0C0DE25F */  jal   func_8037897C
+/* 046AEC 8028BAEC 0C0DE25F */  jal   Vec3s_Set
 /* 046AF0 8028BAF0 00003825 */   move  $a3, $zero
 /* 046AF4 8028BAF4 8FA8001C */  lw    $t0, 0x1c($sp)
 /* 046AF8 8028BAF8 3C018034 */  lui   $at, 0x8034
@@ -14502,21 +14502,21 @@ glabel func_8028C1A0
 /* 047228 8028C228 3C048034 */  lui   $a0, %hi(D_8033B328) # $a0, 0x8034
 /* 04722C 8028C22C 2484B328 */  addiu $a0, %lo(D_8033B328) # addiu $a0, $a0, -0x4cd8
 /* 047230 8028C230 2484000C */  addiu $a0, $a0, 0xc
-/* 047234 8028C234 0C0DE223 */  jal   func_8037888C
+/* 047234 8028C234 0C0DE223 */  jal   Vec3f_Add
 /* 047238 8028C238 27A50024 */   addiu $a1, $sp, 0x24
 /* 04723C 8028C23C 3C048034 */  lui   $a0, %hi(D_8033B328) # $a0, 0x8034
 /* 047240 8028C240 2484B328 */  addiu $a0, %lo(D_8033B328) # addiu $a0, $a0, -0x4cd8
-/* 047244 8028C244 0C0DE223 */  jal   func_8037888C
+/* 047244 8028C244 0C0DE223 */  jal   Vec3f_Add
 /* 047248 8028C248 27A50024 */   addiu $a1, $sp, 0x24
 /* 04724C 8028C24C 3C048034 */  lui   $a0, %hi(D_8033B328) # $a0, 0x8034
 /* 047250 8028C250 2484B328 */  addiu $a0, %lo(D_8033B328) # addiu $a0, $a0, -0x4cd8
 /* 047254 8028C254 24840024 */  addiu $a0, $a0, 0x24
-/* 047258 8028C258 0C0DE223 */  jal   func_8037888C
+/* 047258 8028C258 0C0DE223 */  jal   Vec3f_Add
 /* 04725C 8028C25C 27A50024 */   addiu $a1, $sp, 0x24
 /* 047260 8028C260 3C048034 */  lui   $a0, %hi(D_8033B328) # $a0, 0x8034
 /* 047264 8028C264 2484B328 */  addiu $a0, %lo(D_8033B328) # addiu $a0, $a0, -0x4cd8
 /* 047268 8028C268 24840018 */  addiu $a0, $a0, 0x18
-/* 04726C 8028C26C 0C0DE223 */  jal   func_8037888C
+/* 04726C 8028C26C 0C0DE223 */  jal   Vec3f_Add
 /* 047270 8028C270 27A50024 */   addiu $a1, $sp, 0x24
 /* 047274 8028C274 8FB90020 */  lw    $t9, 0x20($sp)
 /* 047278 8028C278 C7B20034 */  lwc1  $f18, 0x34($sp)
@@ -14530,18 +14530,18 @@ glabel func_8028C1A0
 /* 047298 8028C298 00000000 */  nop   
 /* 04729C 8028C29C A72B0076 */  sh    $t3, 0x76($t9)
 /* 0472A0 8028C2A0 8FA4001C */  lw    $a0, 0x1c($sp)
-/* 0472A4 8028C2A4 0C0DE223 */  jal   func_8037888C
+/* 0472A4 8028C2A4 0C0DE223 */  jal   Vec3f_Add
 /* 0472A8 8028C2A8 27A50024 */   addiu $a1, $sp, 0x24
 /* 0472AC 8028C2AC 8FA4001C */  lw    $a0, 0x1c($sp)
 /* 0472B0 8028C2B0 27A50024 */  addiu $a1, $sp, 0x24
-/* 0472B4 8028C2B4 0C0DE223 */  jal   func_8037888C
+/* 0472B4 8028C2B4 0C0DE223 */  jal   Vec3f_Add
 /* 0472B8 8028C2B8 2484000C */   addiu $a0, $a0, 0xc
 /* 0472BC 8028C2BC 8FA40018 */  lw    $a0, 0x18($sp)
-/* 0472C0 8028C2C0 0C0DE223 */  jal   func_8037888C
+/* 0472C0 8028C2C0 0C0DE223 */  jal   Vec3f_Add
 /* 0472C4 8028C2C4 27A50024 */   addiu $a1, $sp, 0x24
 /* 0472C8 8028C2C8 8FA40018 */  lw    $a0, 0x18($sp)
 /* 0472CC 8028C2CC 27A50024 */  addiu $a1, $sp, 0x24
-/* 0472D0 8028C2D0 0C0DE223 */  jal   func_8037888C
+/* 0472D0 8028C2D0 0C0DE223 */  jal   Vec3f_Add
 /* 0472D4 8028C2D4 2484000C */   addiu $a0, $a0, 0xc
 /* 0472D8 8028C2D8 10000001 */  b     .L8028C2E0
 /* 0472DC 8028C2DC 00000000 */   nop   
@@ -14768,7 +14768,7 @@ glabel func_8028C5F0
 /* 047600 8028C600 AFA60038 */  sw    $a2, 0x38($sp)
 /* 047604 8028C604 AFA7003C */  sw    $a3, 0x3c($sp)
 /* 047608 8028C608 27A40024 */  addiu $a0, $sp, 0x24
-/* 04760C 8028C60C 0C0DE200 */  jal   Copy32BitTriple
+/* 04760C 8028C60C 0C0DE200 */  jal   Vec3f_Copy
 /* 047610 8028C610 8FA50034 */   lw    $a1, 0x34($sp)
 /* 047614 8028C614 8FAF003C */  lw    $t7, 0x3c($sp)
 /* 047618 8028C618 8FAE0038 */  lw    $t6, 0x38($sp)
@@ -14878,7 +14878,7 @@ glabel func_8028C794
 /* 0477AC 8028C7AC 27A4001C */  addiu $a0, $sp, 0x1c
 /* 0477B0 8028C7B0 8FA50034 */  lw    $a1, 0x34($sp)
 /* 0477B4 8028C7B4 8FA60038 */  lw    $a2, 0x38($sp)
-/* 0477B8 8028C7B8 0C0DE210 */  jal   func_80378840
+/* 0477B8 8028C7B8 0C0DE210 */  jal   Vec3f_Set
 /* 0477BC 8028C7BC 8FA7003C */   lw    $a3, 0x3c($sp)
 /* 0477C0 8028C7C0 8FA40028 */  lw    $a0, 0x28($sp)
 /* 0477C4 8028C7C4 8FA5002C */  lw    $a1, 0x2c($sp)
@@ -14932,10 +14932,10 @@ glabel func_8028C824
 /* 047864 8028C864 A7AF007A */  sh    $t7, 0x7a($sp)
 /* 047868 8028C868 A7A00078 */  sh    $zero, 0x78($sp)
 /* 04786C 8028C86C 8FA40098 */  lw    $a0, 0x98($sp)
-/* 047870 8028C870 0C0DE200 */  jal   Copy32BitTriple
+/* 047870 8028C870 0C0DE200 */  jal   Vec3f_Copy
 /* 047874 8028C874 8FA500A0 */   lw    $a1, 0xa0($sp)
 /* 047878 8028C878 8FA4009C */  lw    $a0, 0x9c($sp)
-/* 04787C 8028C87C 0C0DE200 */  jal   Copy32BitTriple
+/* 04787C 8028C87C 0C0DE200 */  jal   Vec3f_Copy
 /* 047880 8028C880 8FA500A4 */   lw    $a1, 0xa4($sp)
 /* 047884 8028C884 3C188034 */  lui   $t8, %hi(D_8033B4DA) # $t8, 0x8034
 /* 047888 8028C888 8718B4DA */  lh    $t8, %lo(D_8033B4DA)($t8)
@@ -15220,10 +15220,10 @@ glabel func_8028C824
 /* 047CA4 8028CCA4 0C0DE9E2 */  jal   func_8037A788
 /* 047CA8 8028CCA8 AFAF0010 */   sw    $t7, 0x10($sp)
 /* 047CAC 8028CCAC 8FA4009C */  lw    $a0, 0x9c($sp)
-/* 047CB0 8028CCB0 0C0DE200 */  jal   Copy32BitTriple
+/* 047CB0 8028CCB0 0C0DE200 */  jal   Vec3f_Copy
 /* 047CB4 8028CCB4 27A50060 */   addiu $a1, $sp, 0x60
 /* 047CB8 8028CCB8 8FA40098 */  lw    $a0, 0x98($sp)
-/* 047CBC 8028CCBC 0C0DE200 */  jal   Copy32BitTriple
+/* 047CBC 8028CCBC 0C0DE200 */  jal   Vec3f_Copy
 /* 047CC0 8028CCC0 27A5006C */   addiu $a1, $sp, 0x6c
 /* 047CC4 8028CCC4 3C098034 */  lui   $t1, %hi(D_8033B860) # $t1, 0x8034
 /* 047CC8 8028CCC8 8D29B860 */  lw    $t1, %lo(D_8033B860)($t1)
@@ -15305,7 +15305,7 @@ glabel func_8028C824
 /* 047DE4 8028CDE4 3C048034 */  lui   $a0, %hi(D_8033B250) # $a0, 0x8034
 /* 047DE8 8028CDE8 2484B250 */  addiu $a0, %lo(D_8033B250) # addiu $a0, $a0, -0x4db0
 /* 047DEC 8028CDEC 24840014 */  addiu $a0, $a0, 0x14
-/* 047DF0 8028CDF0 0C0DE200 */  jal   Copy32BitTriple
+/* 047DF0 8028CDF0 0C0DE200 */  jal   Vec3f_Copy
 /* 047DF4 8028CDF4 24A50004 */   addiu $a1, $a1, 4
 /* 047DF8 8028CDF8 10000003 */  b     .L8028CE08
 /* 047DFC 8028CDFC 87A200B2 */   lh    $v0, 0xb2($sp)
@@ -15390,7 +15390,7 @@ glabel func_8028CE4C
 /* 047F18 8028CF18 2484D00C */  addiu $a0, %lo(D_8032D00C) # addiu $a0, $a0, -0x2ff4
 /* 047F1C 8028CF1C 8FA50020 */  lw    $a1, 0x20($sp)
 /* 047F20 8028CF20 8FA6001C */  lw    $a2, 0x1c($sp)
-/* 047F24 8028CF24 0C0DE210 */  jal   func_80378840
+/* 047F24 8028CF24 0C0DE210 */  jal   Vec3f_Set
 /* 047F28 8028CF28 8FA70018 */   lw    $a3, 0x18($sp)
 /* 047F2C 8028CF2C 8FAB0028 */  lw    $t3, 0x28($sp)
 /* 047F30 8028CF30 2401000D */  li    $at, 13
@@ -15414,7 +15414,7 @@ glabel func_8028CE4C
 /* 047F78 8028CF78 8F250000 */  lw    $a1, ($t9)
 /* 047F7C 8028CF7C 8F270008 */  lw    $a3, 8($t9)
 /* 047F80 8028CF80 8D060008 */  lw    $a2, 8($t0)
-/* 047F84 8028CF84 0C0DE210 */  jal   func_80378840
+/* 047F84 8028CF84 0C0DE210 */  jal   Vec3f_Set
 /* 047F88 8028CF88 24840010 */   addiu $a0, $a0, 0x10
 .L8028CF8C:
 /* 047F8C 8028CF8C 10000003 */  b     .L8028CF9C
@@ -15654,7 +15654,7 @@ glabel func_8028D288
 /* 0482CC 8028D2CC 34E72000 */  ori   $a3, (0xC4BD2000 & 0xFFFF) # ori $a3, $a3, 0x2000
 /* 0482D0 8028D2D0 34A58000 */  ori   $a1, (0x44218000 & 0xFFFF) # ori $a1, $a1, 0x8000
 /* 0482D4 8028D2D4 2484D00C */  addiu $a0, %lo(D_8032D00C) # addiu $a0, $a0, -0x2ff4
-/* 0482D8 8028D2D8 0C0DE210 */  jal   func_80378840
+/* 0482D8 8028D2D8 0C0DE210 */  jal   Vec3f_Set
 /* 0482DC 8028D2DC 3C06430F */   lui   $a2, 0x430f
 /* 0482E0 8028D2E0 1000000B */  b     .L8028D310
 /* 0482E4 8028D2E4 00000000 */   nop   
@@ -15665,7 +15665,7 @@ glabel func_8028D288
 /* 0482F4 8028D2F4 34E76000 */  ori   $a3, (0x44B46000 & 0xFFFF) # ori $a3, $a3, 0x6000
 /* 0482F8 8028D2F8 34A54000 */  ori   $a1, (0xC4104000 & 0xFFFF) # ori $a1, $a1, 0x4000
 /* 0482FC 8028D2FC 2484D00C */  addiu $a0, %lo(D_8032D00C) # addiu $a0, $a0, -0x2ff4
-/* 048300 8028D300 0C0DE210 */  jal   func_80378840
+/* 048300 8028D300 0C0DE210 */  jal   Vec3f_Set
 /* 048304 8028D304 3C06430F */   lui   $a2, 0x430f
 /* 048308 8028D308 10000001 */  b     .L8028D310
 /* 04830C 8028D30C 00000000 */   nop   
@@ -16275,7 +16275,7 @@ glabel CameraInside20
 /* 048B14 8028DB14 46105481 */  sub.s $f18, $f10, $f16
 /* 048B18 8028DB18 44074000 */  mfc1  $a3, $f8
 /* 048B1C 8028DB1C 44069000 */  mfc1  $a2, $f18
-/* 048B20 8028DB20 0C0DE210 */  jal   func_80378840
+/* 048B20 8028DB20 0C0DE210 */  jal   Vec3f_Set
 /* 048B24 8028DB24 00000000 */   nop   
 /* 048B28 8028DB28 10000001 */  b     .L8028DB30
 /* 048B2C 8028DB2C 00000000 */   nop   
@@ -16321,7 +16321,7 @@ glabel CameraInside1E
 /* 048BC0 8028DBC0 34E7A000 */  ori   $a3, (0x44BFA000 & 0xFFFF) # ori $a3, $a3, 0xa000
 /* 048BC4 8028DBC4 34C62000 */  ori   $a2, (0x44B22000 & 0xFFFF) # ori $a2, $a2, 0x2000
 /* 048BC8 8028DBC8 3C05C363 */  lui   $a1, 0xc363
-/* 048BCC 8028DBCC 0C0DE210 */  jal   func_80378840
+/* 048BCC 8028DBCC 0C0DE210 */  jal   Vec3f_Set
 /* 048BD0 8028DBD0 24840010 */   addiu $a0, $a0, 0x10
 .L8028DBD4:
 /* 048BD4 8028DBD4 10000001 */  b     .L8028DBDC
@@ -16359,7 +16359,7 @@ glabel CameraInside1F
 /* 048C48 8028DC48 34E7C000 */  ori   $a3, (0xC4AEC000 & 0xFFFF) # ori $a3, $a3, 0xc000
 /* 048C4C 8028DC4C 3C05C475 */  lui   $a1, 0xc475
 /* 048C50 8028DC50 3C064379 */  lui   $a2, 0x4379
-/* 048C54 8028DC54 0C0DE210 */  jal   func_80378840
+/* 048C54 8028DC54 0C0DE210 */  jal   Vec3f_Set
 /* 048C58 8028DC58 24840010 */   addiu $a0, $a0, 0x10
 .L8028DC5C:
 /* 048C5C 8028DC5C 10000001 */  b     .L8028DC64
@@ -16527,7 +16527,7 @@ glabel CameraBBH2E2F
 /* 048E6C 8028DE6C 27A4001C */  addiu $a0, $sp, 0x1c
 /* 048E70 8028DE70 24050000 */  li    $a1, 0
 /* 048E74 8028DE74 24060000 */  li    $a2, 0
-/* 048E78 8028DE78 0C0DE210 */  jal   func_80378840
+/* 048E78 8028DE78 0C0DE210 */  jal   Vec3f_Set
 /* 048E7C 8028DE7C 3C074396 */   lui   $a3, 0x4396
 /* 048E80 8028DE80 3C0E8033 */  lui   $t6, %hi(D_8032D000) # $t6, 0x8033
 /* 048E84 8028DE84 8DCED000 */  lw    $t6, %lo(D_8032D000)($t6)
@@ -16547,7 +16547,7 @@ glabel CameraBBH2E2F
 /* 048EBC 8028DEBC 3C058034 */  lui   $a1, %hi(D_8033B328) # $a1, 0x8034
 /* 048EC0 8028DEC0 24A5B328 */  addiu $a1, %lo(D_8033B328) # addiu $a1, $a1, -0x4cd8
 /* 048EC4 8028DEC4 24A50024 */  addiu $a1, $a1, 0x24
-/* 048EC8 8028DEC8 0C0DE200 */  jal   Copy32BitTriple
+/* 048EC8 8028DEC8 0C0DE200 */  jal   Vec3f_Copy
 /* 048ECC 8028DECC 24840010 */   addiu $a0, $a0, 0x10
 /* 048ED0 8028DED0 3C188034 */  lui   $t8, %hi(D_8033B4DA) # $t8, 0x8034
 /* 048ED4 8028DED4 8718B4DA */  lh    $t8, %lo(D_8033B4DA)($t8)
@@ -17387,7 +17387,7 @@ glabel func_8028E88C
 /* 0499E8 8028E9E8 46804220 */  cvt.s.w $f8, $f8
 /* 0499EC 8028E9EC 44063000 */  mfc1  $a2, $f6
 /* 0499F0 8028E9F0 44074000 */  mfc1  $a3, $f8
-/* 0499F4 8028E9F4 0C0DE210 */  jal   func_80378840
+/* 0499F4 8028E9F4 0C0DE210 */  jal   Vec3f_Set
 /* 0499F8 8028E9F8 00000000 */   nop   
 /* 0499FC 8028E9FC 87AC0066 */  lh    $t4, 0x66($sp)
 /* 049A00 8028EA00 8FB8005C */  lw    $t8, 0x5c($sp)
@@ -17412,7 +17412,7 @@ glabel func_8028E88C
 /* 049A4C 8028EA4C 468094A0 */  cvt.s.w $f18, $f18
 /* 049A50 8028EA50 44068000 */  mfc1  $a2, $f16
 /* 049A54 8028EA54 44079000 */  mfc1  $a3, $f18
-/* 049A58 8028EA58 0C0DE210 */  jal   func_80378840
+/* 049A58 8028EA58 0C0DE210 */  jal   Vec3f_Set
 /* 049A5C 8028EA5C 00000000 */   nop   
 /* 049A60 8028EA60 87AA0066 */  lh    $t2, 0x66($sp)
 /* 049A64 8028EA64 8FB8005C */  lw    $t8, 0x5c($sp)
@@ -18579,12 +18579,12 @@ glabel func_8028FAE0
 /* 04AB04 8028FB04 3C058034 */  lui   $a1, %hi(D_8033B4B8) # $a1, 0x8034
 /* 04AB08 8028FB08 24A5B4B8 */  addiu $a1, %lo(D_8033B4B8) # addiu $a1, $a1, -0x4b48
 /* 04AB0C 8028FB0C 24A5000C */  addiu $a1, $a1, 0xc
-/* 04AB10 8028FB10 0C0DE200 */  jal   Copy32BitTriple
+/* 04AB10 8028FB10 0C0DE200 */  jal   Vec3f_Copy
 /* 04AB14 8028FB14 24840004 */   addiu $a0, $a0, 4
 /* 04AB18 8028FB18 8FA40018 */  lw    $a0, 0x18($sp)
 /* 04AB1C 8028FB1C 3C058034 */  lui   $a1, %hi(D_8033B4B8) # $a1, 0x8034
 /* 04AB20 8028FB20 24A5B4B8 */  addiu $a1, %lo(D_8033B4B8) # addiu $a1, $a1, -0x4b48
-/* 04AB24 8028FB24 0C0DE200 */  jal   Copy32BitTriple
+/* 04AB24 8028FB24 0C0DE200 */  jal   Vec3f_Copy
 /* 04AB28 8028FB28 24840010 */   addiu $a0, $a0, 0x10
 /* 04AB2C 8028FB2C 10000001 */  b     .L8028FB34
 /* 04AB30 8028FB30 00000000 */   nop   
@@ -18627,7 +18627,7 @@ glabel func_8028FB80
 /* 04ABAC 8028FBAC A3380001 */  sb    $t8, 1($t9)
 /* 04ABB0 8028FBB0 8FA40018 */  lw    $a0, 0x18($sp)
 /* 04ABB4 8028FBB4 8FA50024 */  lw    $a1, 0x24($sp)
-/* 04ABB8 8028FBB8 0C0DE24F */  jal   func_8037893C
+/* 04ABB8 8028FBB8 0C0DE24F */  jal   Vec3s_Copy
 /* 04ABBC 8028FBBC 24840002 */   addiu $a0, $a0, 2
 /* 04ABC0 8028FBC0 10000001 */  b     .L8028FBC8
 /* 04ABC4 8028FBC4 00000000 */   nop   
@@ -19029,13 +19029,13 @@ glabel func_80290144
 /* 04B150 80290150 8FA50018 */  lw    $a1, 0x18($sp)
 /* 04B154 80290154 3C048034 */  lui   $a0, %hi(D_8033B4B8) # $a0, 0x8034
 /* 04B158 80290158 2484B4B8 */  addiu $a0, %lo(D_8033B4B8) # addiu $a0, $a0, -0x4b48
-/* 04B15C 8029015C 0C0DE200 */  jal   Copy32BitTriple
+/* 04B15C 8029015C 0C0DE200 */  jal   Vec3f_Copy
 /* 04B160 80290160 24A50010 */   addiu $a1, $a1, 0x10
 /* 04B164 80290164 8FA50018 */  lw    $a1, 0x18($sp)
 /* 04B168 80290168 3C048034 */  lui   $a0, %hi(D_8033B4B8) # $a0, 0x8034
 /* 04B16C 8029016C 2484B4B8 */  addiu $a0, %lo(D_8033B4B8) # addiu $a0, $a0, -0x4b48
 /* 04B170 80290170 2484000C */  addiu $a0, $a0, 0xc
-/* 04B174 80290174 0C0DE200 */  jal   Copy32BitTriple
+/* 04B174 80290174 0C0DE200 */  jal   Vec3f_Copy
 /* 04B178 80290178 24A50004 */   addiu $a1, $a1, 4
 /* 04B17C 8029017C 3C018034 */  lui   $at, 0x8034
 /* 04B180 80290180 C424B40C */  lwc1  $f4, -0x4bf4($at)
@@ -19060,13 +19060,13 @@ glabel func_802901B4
 /* 04B1C0 802901C0 8FA40018 */  lw    $a0, 0x18($sp)
 /* 04B1C4 802901C4 3C058034 */  lui   $a1, %hi(D_8033B4B8) # $a1, 0x8034
 /* 04B1C8 802901C8 24A5B4B8 */  addiu $a1, %lo(D_8033B4B8) # addiu $a1, $a1, -0x4b48
-/* 04B1CC 802901CC 0C0DE200 */  jal   Copy32BitTriple
+/* 04B1CC 802901CC 0C0DE200 */  jal   Vec3f_Copy
 /* 04B1D0 802901D0 24840010 */   addiu $a0, $a0, 0x10
 /* 04B1D4 802901D4 8FA40018 */  lw    $a0, 0x18($sp)
 /* 04B1D8 802901D8 3C058034 */  lui   $a1, %hi(D_8033B4B8) # $a1, 0x8034
 /* 04B1DC 802901DC 24A5B4B8 */  addiu $a1, %lo(D_8033B4B8) # addiu $a1, $a1, -0x4b48
 /* 04B1E0 802901E0 24A5000C */  addiu $a1, $a1, 0xc
-/* 04B1E4 802901E4 0C0DE200 */  jal   Copy32BitTriple
+/* 04B1E4 802901E4 0C0DE200 */  jal   Vec3f_Copy
 /* 04B1E8 802901E8 24840004 */   addiu $a0, $a0, 4
 /* 04B1EC 802901EC 3C018034 */  lui   $at, 0x8034
 /* 04B1F0 802901F0 C424B4D0 */  lwc1  $f4, -0x4b30($at)
@@ -19093,7 +19093,7 @@ glabel func_80290224
 /* 04B238 80290238 8FA50018 */  lw    $a1, 0x18($sp)
 /* 04B23C 8029023C 3C048034 */  lui   $a0, %hi(D_8033B4B8) # $a0, 0x8034
 /* 04B240 80290240 2484B4B8 */  addiu $a0, %lo(D_8033B4B8) # addiu $a0, $a0, -0x4b48
-/* 04B244 80290244 0C0DE200 */  jal   Copy32BitTriple
+/* 04B244 80290244 0C0DE200 */  jal   Vec3f_Copy
 /* 04B248 80290248 24A50010 */   addiu $a1, $a1, 0x10
 /* 04B24C 8029024C 3C0E8033 */  lui   $t6, %hi(D_8032D000) # $t6, 0x8033
 /* 04B250 80290250 8DCED000 */  lw    $t6, %lo(D_8032D000)($t6)
@@ -19127,13 +19127,13 @@ glabel func_802902A8
 /* 04B2B4 802902B4 8FA40018 */  lw    $a0, 0x18($sp)
 /* 04B2B8 802902B8 3C058034 */  lui   $a1, %hi(D_8033B4B8) # $a1, 0x8034
 /* 04B2BC 802902BC 24A5B4B8 */  addiu $a1, %lo(D_8033B4B8) # addiu $a1, $a1, -0x4b48
-/* 04B2C0 802902C0 0C0DE200 */  jal   Copy32BitTriple
+/* 04B2C0 802902C0 0C0DE200 */  jal   Vec3f_Copy
 /* 04B2C4 802902C4 24840010 */   addiu $a0, $a0, 0x10
 /* 04B2C8 802902C8 8FA40018 */  lw    $a0, 0x18($sp)
 /* 04B2CC 802902CC 3C058034 */  lui   $a1, %hi(D_8033B4B8) # $a1, 0x8034
 /* 04B2D0 802902D0 24A5B4B8 */  addiu $a1, %lo(D_8033B4B8) # addiu $a1, $a1, -0x4b48
 /* 04B2D4 802902D4 24A5000C */  addiu $a1, $a1, 0xc
-/* 04B2D8 802902D8 0C0DE200 */  jal   Copy32BitTriple
+/* 04B2D8 802902D8 0C0DE200 */  jal   Vec3f_Copy
 /* 04B2DC 802902DC 24840004 */   addiu $a0, $a0, 4
 /* 04B2E0 802902E0 10000001 */  b     .L802902E8
 /* 04B2E4 802902E4 00000000 */   nop   
@@ -19382,14 +19382,14 @@ glabel CutScenePeachEnd80290604
 /* 04B614 80290614 3C05C1D0 */  lui   $a1, 0xc1d0
 /* 04B618 80290618 24060000 */  li    $a2, 0
 /* 04B61C 8029061C 3C07C309 */  lui   $a3, 0xc309
-/* 04B620 80290620 0C0DE210 */  jal   func_80378840
+/* 04B620 80290620 0C0DE210 */  jal   Vec3f_Set
 /* 04B624 80290624 24840004 */   addiu $a0, $a0, 4
 /* 04B628 80290628 8FA40018 */  lw    $a0, 0x18($sp)
 /* 04B62C 8029062C 3C064593 */  lui   $a2, (0x4593A800 >> 16) # lui $a2, 0x4593
 /* 04B630 80290630 34C6A800 */  ori   $a2, (0x4593A800 & 0xFFFF) # ori $a2, $a2, 0xa800
 /* 04B634 80290634 3C054325 */  lui   $a1, 0x4325
 /* 04B638 80290638 3C0743A2 */  lui   $a3, 0x43a2
-/* 04B63C 8029063C 0C0DE210 */  jal   func_80378840
+/* 04B63C 8029063C 0C0DE210 */  jal   Vec3f_Set
 /* 04B640 80290640 24840010 */   addiu $a0, $a0, 0x10
 /* 04B644 80290644 10000001 */  b     .L8029064C
 /* 04B648 80290648 00000000 */   nop   
@@ -19407,7 +19407,7 @@ glabel CutScenePeachEnd8029065C
 /* 04B66C 8029066C 27A40024 */  addiu $a0, $sp, 0x24
 /* 04B670 80290670 24050000 */  li    $a1, 0
 /* 04B674 80290674 3C0642A0 */  lui   $a2, 0x42a0
-/* 04B678 80290678 0C0DE210 */  jal   func_80378840
+/* 04B678 80290678 0C0DE210 */  jal   Vec3f_Set
 /* 04B67C 8029067C 24070000 */   li    $a3, 0
 /* 04B680 80290680 3C0E8033 */  li    $t6, 0x80330000 # 0.000000
 /* 04B684 80290684 8DCED000 */  lw    $t6, %lo(D_8032D000)($t6)
@@ -19506,13 +19506,13 @@ glabel CutScenePeachEnd2
 /* 04B7D4 802907D4 34C68000 */  ori   $a2, (0x444E8000 & 0xFFFF) # ori $a2, $a2, 0x8000
 /* 04B7D8 802907D8 3C0542AA */  lui   $a1, 0x42aa
 /* 04B7DC 802907DC 3C07437A */  lui   $a3, 0x437a
-/* 04B7E0 802907E0 0C0DE210 */  jal   func_80378840
+/* 04B7E0 802907E0 0C0DE210 */  jal   Vec3f_Set
 /* 04B7E4 802907E4 24840004 */   addiu $a0, $a0, 4
 /* 04B7E8 802907E8 8FA40020 */  lw    $a0, 0x20($sp)
 /* 04B7EC 802907EC 3C05C24C */  lui   $a1, 0xc24c
 /* 04B7F0 802907F0 3C064477 */  lui   $a2, 0x4477
 /* 04B7F4 802907F4 3C07C34A */  lui   $a3, 0xc34a
-/* 04B7F8 802907F8 0C0DE210 */  jal   func_80378840
+/* 04B7F8 802907F8 0C0DE210 */  jal   Vec3f_Set
 /* 04B7FC 802907FC 24840010 */   addiu $a0, $a0, 0x10
 /* 04B800 80290800 240E2000 */  li    $t6, 8192
 /* 04B804 80290804 AFAE0010 */  sw    $t6, 0x10($sp)
@@ -19631,7 +19631,7 @@ glabel CutScenePeachEnd1
 /* 04B998 80290998 460A4400 */  add.s $f16, $f8, $f10
 /* 04B99C 8029099C 44079000 */  mfc1  $a3, $f18
 /* 04B9A0 802909A0 44068000 */  mfc1  $a2, $f16
-/* 04B9A4 802909A4 0C0DE210 */  jal   func_80378840
+/* 04B9A4 802909A4 0C0DE210 */  jal   Vec3f_Set
 /* 04B9A8 802909A8 00000000 */   nop   
 /* 04B9AC 802909AC 3C088033 */  lui   $t0, %hi(D_8032E040) # $t0, 0x8033
 /* 04B9B0 802909B0 2508E040 */  addiu $t0, %lo(D_8032E040) # addiu $t0, $t0, -0x1fc0
@@ -19652,7 +19652,7 @@ glabel CutScenePeachEnd1
 /* 04B9EC 802909EC 46105480 */  add.s $f18, $f10, $f16
 /* 04B9F0 802909F0 44063000 */  mfc1  $a2, $f6
 /* 04B9F4 802909F4 44079000 */  mfc1  $a3, $f18
-/* 04B9F8 802909F8 0C0DE210 */  jal   func_80378840
+/* 04B9F8 802909F8 0C0DE210 */  jal   Vec3f_Set
 /* 04B9FC 802909FC 00000000 */   nop   
 /* 04BA00 80290A00 240C2000 */  li    $t4, 8192
 /* 04BA04 80290A04 AFAC0010 */  sw    $t4, 0x10($sp)
@@ -19678,7 +19678,7 @@ glabel CutScenePeachEnd80290A34
 /* 04BA48 80290A48 34C6F000 */  ori   $a2, (0x4519F000 & 0xFFFF) # ori $a2, $a2, 0xf000
 /* 04BA4C 80290A4C 3C054333 */  lui   $a1, 0x4333
 /* 04BA50 80290A50 3C07C498 */  lui   $a3, 0xc498
-/* 04BA54 80290A54 0C0DE210 */  jal   func_80378840
+/* 04BA54 80290A54 0C0DE210 */  jal   Vec3f_Set
 /* 04BA58 80290A58 24840010 */   addiu $a0, $a0, 0x10
 /* 04BA5C 80290A5C 3C0E8033 */  lui   $t6, %hi(D_8032CFC4) # $t6, 0x8033
 /* 04BA60 80290A60 8DCECFC4 */  lw    $t6, %lo(D_8032CFC4)($t6)
@@ -19699,7 +19699,7 @@ glabel CutScenePeachEnd80290A34
 /* 04BA9C 80290A9C 8F0700A8 */  lw    $a3, 0xa8($t8)
 /* 04BAA0 80290AA0 24840004 */  addiu $a0, $a0, 4
 /* 04BAA4 80290AA4 44069000 */  mfc1  $a2, $f18
-/* 04BAA8 80290AA8 0C0DE210 */  jal   func_80378840
+/* 04BAA8 80290AA8 0C0DE210 */  jal   Vec3f_Set
 /* 04BAAC 80290AAC 00000000 */   nop   
 /* 04BAB0 80290AB0 10000001 */  b     .L80290AB8
 /* 04BAB4 80290AB4 00000000 */   nop   
@@ -19911,7 +19911,7 @@ glabel CutScenePeachEnd5
 /* 04BDA4 80290DA4 8DC700A8 */  lw    $a3, 0xa8($t6)
 /* 04BDA8 80290DA8 24840004 */  addiu $a0, $a0, 4
 /* 04BDAC 80290DAC 44064000 */  mfc1  $a2, $f8
-/* 04BDB0 80290DB0 0C0DE210 */  jal   func_80378840
+/* 04BDB0 80290DB0 0C0DE210 */  jal   Vec3f_Set
 /* 04BDB4 80290DB4 00000000 */   nop   
 /* 04BDB8 80290DB8 24182000 */  li    $t8, 8192
 /* 04BDBC 80290DBC AFB80010 */  sw    $t8, 0x10($sp)
@@ -20026,7 +20026,7 @@ glabel CutScenePeachEnd7
 /* 04BF4C 80290F4C 34E74000 */  ori   $a3, (0xC4874000 & 0xFFFF) # ori $a3, $a3, 0x4000
 /* 04BF50 80290F50 34C68000 */  ori   $a2, (0x44748000 & 0xFFFF) # ori $a2, $a2, 0x8000
 /* 04BF54 80290F54 3C05C323 */  lui   $a1, 0xc323
-/* 04BF58 80290F58 0C0DE210 */  jal   func_80378840
+/* 04BF58 80290F58 0C0DE210 */  jal   Vec3f_Set
 /* 04BF5C 80290F5C 24840010 */   addiu $a0, $a0, 0x10
 /* 04BF60 80290F60 240E2000 */  li    $t6, 8192
 /* 04BF64 80290F64 AFAE0010 */  sw    $t6, 0x10($sp)
@@ -20053,7 +20053,7 @@ glabel CutScenePeachEnd8
 /* 04BFAC 80290FAC 34E72000 */  ori   $a3, (0xC49F2000 & 0xFFFF) # ori $a3, $a3, 0x2000
 /* 04BFB0 80290FB0 34C6C000 */  ori   $a2, (0x4475C000 & 0xFFFF) # ori $a2, $a2, 0xc000
 /* 04BFB4 80290FB4 3C054130 */  lui   $a1, 0x4130
-/* 04BFB8 80290FB8 0C0DE210 */  jal   func_80378840
+/* 04BFB8 80290FB8 0C0DE210 */  jal   Vec3f_Set
 /* 04BFBC 80290FBC 24840004 */   addiu $a0, $a0, 4
 /* 04BFC0 80290FC0 8FA40020 */  lw    $a0, 0x20($sp)
 /* 04BFC4 80290FC4 3C05C3EC */  lui   $a1, (0xC3EC8000 >> 16) # lui $a1, 0xc3ec
@@ -20061,7 +20061,7 @@ glabel CutScenePeachEnd8
 /* 04BFCC 80290FCC 34C68000 */  ori   $a2, (0x44728000 & 0xFFFF) # ori $a2, $a2, 0x8000
 /* 04BFD0 80290FD0 34A58000 */  ori   $a1, (0xC3EC8000 & 0xFFFF) # ori $a1, $a1, 0x8000
 /* 04BFD4 80290FD4 3C07C490 */  lui   $a3, 0xc490
-/* 04BFD8 80290FD8 0C0DE210 */  jal   func_80378840
+/* 04BFD8 80290FD8 0C0DE210 */  jal   Vec3f_Set
 /* 04BFDC 80290FDC 24840010 */   addiu $a0, $a0, 0x10
 /* 04BFE0 80290FE0 240E2000 */  li    $t6, 8192
 /* 04BFE4 80290FE4 AFAE0010 */  sw    $t6, 0x10($sp)
@@ -20089,14 +20089,14 @@ glabel CutScenePeachEnd80291014
 /* 04C030 80291030 34C64000 */  ori   $a2, (0x44814000 & 0xFFFF) # ori $a2, $a2, 0x4000
 /* 04C034 80291034 3C0543AF */  lui   $a1, 0x43af
 /* 04C038 80291038 3C07C498 */  lui   $a3, 0xc498
-/* 04C03C 8029103C 0C0DE210 */  jal   func_80378840
+/* 04C03C 8029103C 0C0DE210 */  jal   Vec3f_Set
 /* 04C040 80291040 24840004 */   addiu $a0, $a0, 4
 /* 04C044 80291044 8FA40018 */  lw    $a0, 0x18($sp)
 /* 04C048 80291048 3C06447F */  lui   $a2, (0x447F4000 >> 16) # lui $a2, 0x447f
 /* 04C04C 8029104C 34C64000 */  ori   $a2, (0x447F4000 & 0xFFFF) # ori $a2, $a2, 0x4000
 /* 04C050 80291050 3C05C315 */  lui   $a1, 0xc315
 /* 04C054 80291054 3C07C498 */  lui   $a3, 0xc498
-/* 04C058 80291058 0C0DE210 */  jal   func_80378840
+/* 04C058 80291058 0C0DE210 */  jal   Vec3f_Set
 /* 04C05C 8029105C 24840010 */   addiu $a0, $a0, 0x10
 /* 04C060 80291060 10000001 */  b     .L80291068
 /* 04C064 80291064 00000000 */   nop   
@@ -20117,14 +20117,14 @@ glabel CutScenePeachEnd80291078
 /* 04C094 80291094 34E74000 */  ori   $a3, (0xC4A24000 & 0xFFFF) # ori $a3, $a3, 0x4000
 /* 04C098 80291098 34C68000 */  ori   $a2, (0x44858000 & 0xFFFF) # ori $a2, $a2, 0x8000
 /* 04C09C 8029109C 27A40020 */  addiu $a0, $sp, 0x20
-/* 04C0A0 802910A0 0C0DE210 */  jal   func_80378840
+/* 04C0A0 802910A0 0C0DE210 */  jal   Vec3f_Set
 /* 04C0A4 802910A4 3C054369 */   lui   $a1, 0x4369
 /* 04C0A8 802910A8 3C064471 */  lui   $a2, (0x44718000 >> 16) # lui $a2, 0x4471
 /* 04C0AC 802910AC 3C07C48A */  lui   $a3, (0xC48AE000 >> 16) # lui $a3, 0xc48a
 /* 04C0B0 802910B0 34E7E000 */  ori   $a3, (0xC48AE000 & 0xFFFF) # ori $a3, $a3, 0xe000
 /* 04C0B4 802910B4 34C68000 */  ori   $a2, (0x44718000 & 0xFFFF) # ori $a2, $a2, 0x8000
 /* 04C0B8 802910B8 27A4002C */  addiu $a0, $sp, 0x2c
-/* 04C0BC 802910BC 0C0DE210 */  jal   func_80378840
+/* 04C0BC 802910BC 0C0DE210 */  jal   Vec3f_Set
 /* 04C0C0 802910C0 3C05C37A */   lui   $a1, 0xc37a
 /* 04C0C4 802910C4 3C018033 */  lui   $at, 0x8033
 /* 04C0C8 802910C8 C4246224 */  lwc1  $f4, 0x6224($at)
@@ -20206,7 +20206,7 @@ glabel CutScenePeachEnd802911A4
 /* 04C1E0 802911E0 34E7C000 */  ori   $a3, (0xC42FC000 & 0xFFFF) # ori $a3, $a3, 0xc000
 /* 04C1E4 802911E4 34A5C000 */  ori   $a1, (0x442EC000 & 0xFFFF) # ori $a1, $a1, 0xc000
 /* 04C1E8 802911E8 3C0644D2 */  lui   $a2, 0x44d2
-/* 04C1EC 802911EC 0C0DE210 */  jal   func_80378840
+/* 04C1EC 802911EC 0C0DE210 */  jal   Vec3f_Set
 /* 04C1F0 802911F0 24840010 */   addiu $a0, $a0, 0x10
 /* 04C1F4 802911F4 10000001 */  b     .L802911FC
 /* 04C1F8 802911F8 00000000 */   nop   
@@ -20304,7 +20304,7 @@ glabel CutSceneGrandStar80291324
 /* 04C338 80291338 24840004 */  addiu $a0, $a0, 4
 /* 04C33C 8029133C 24050000 */  li    $a1, 0
 /* 04C340 80291340 3C064316 */  lui   $a2, 0x4316
-/* 04C344 80291344 0C0DE210 */  jal   func_80378840
+/* 04C344 80291344 0C0DE210 */  jal   Vec3f_Set
 /* 04C348 80291348 3C07C416 */   lui   $a3, 0xc416
 /* 04C34C 8029134C 3C0F8033 */  lui   $t7, %hi(D_8032D000) # $t7, 0x8033
 /* 04C350 80291350 8DEFD000 */  lw    $t7, %lo(D_8032D000)($t7)
@@ -20396,14 +20396,14 @@ glabel CutSceneGrandStar80291474
 /* 04C490 80291490 2484001C */  addiu $a0, $a0, 0x1c
 /* 04C494 80291494 00002825 */  move  $a1, $zero
 /* 04C498 80291498 00003825 */  move  $a3, $zero
-/* 04C49C 8029149C 0C0DE25F */  jal   func_8037897C
+/* 04C49C 8029149C 0C0DE25F */  jal   Vec3s_Set
 /* 04C4A0 802914A0 85C60012 */   lh    $a2, 0x12($t6)
 /* 04C4A4 802914A4 3C048034 */  lui   $a0, %hi(D_8033B6F0) # $a0, 0x8034
 /* 04C4A8 802914A8 2484B6F0 */  addiu $a0, %lo(D_8033B6F0) # addiu $a0, $a0, -0x4910
 /* 04C4AC 802914AC 2484004C */  addiu $a0, $a0, 0x4c
 /* 04C4B0 802914B0 24050000 */  li    $a1, 0
 /* 04C4B4 802914B4 24060000 */  li    $a2, 0
-/* 04C4B8 802914B8 0C0DE210 */  jal   func_80378840
+/* 04C4B8 802914B8 0C0DE210 */  jal   Vec3f_Set
 /* 04C4BC 802914BC 24070000 */   li    $a3, 0
 /* 04C4C0 802914C0 10000001 */  b     .L802914C8
 /* 04C4C4 802914C4 00000000 */   nop   
@@ -20515,7 +20515,7 @@ glabel CutSceneGrandStar802915FC
 /* 04C63C 8029163C 8DC7000C */  lw    $a3, 0xc($t6)
 /* 04C640 80291640 46128100 */  add.s $f4, $f16, $f18
 /* 04C644 80291644 44062000 */  mfc1  $a2, $f4
-/* 04C648 80291648 0C0DE210 */  jal   func_80378840
+/* 04C648 80291648 0C0DE210 */  jal   Vec3f_Set
 /* 04C64C 8029164C 00000000 */   nop   
 /* 04C650 80291650 3C013F00 */  li    $at, 0x3F000000 # 0.000000
 /* 04C654 80291654 44813000 */  mtc1  $at, $f6
@@ -20603,7 +20603,7 @@ glabel CutSceneGrandStar80291770
 /* 04C784 80291784 24840100 */  addiu $a0, $a0, 0x100
 /* 04C788 80291788 3C053F00 */  lui   $a1, 0x3f00
 /* 04C78C 8029178C 3C063F00 */  lui   $a2, 0x3f00
-/* 04C790 80291790 0C0DE210 */  jal   func_80378840
+/* 04C790 80291790 0C0DE210 */  jal   Vec3f_Set
 /* 04C794 80291794 3C073F00 */   lui   $a3, 0x3f00
 /* 04C798 80291798 3C048034 */  lui   $a0, %hi(D_8033B6F0) # $a0, 0x8034
 /* 04C79C 8029179C 3C053C23 */  lui   $a1, (0x3C23D70A >> 16) # lui $a1, 0x3c23
@@ -20611,14 +20611,14 @@ glabel CutSceneGrandStar80291770
 /* 04C7A4 802917A4 2484B6F0 */  addiu $a0, %lo(D_8033B6F0) # addiu $a0, $a0, -0x4910
 /* 04C7A8 802917A8 248400DC */  addiu $a0, $a0, 0xdc
 /* 04C7AC 802917AC 00A03021 */ addu $a2, $a1, $zero
-/* 04C7B0 802917B0 0C0DE210 */  jal   func_80378840
+/* 04C7B0 802917B0 0C0DE210 */  jal   Vec3f_Set
 /* 04C7B4 802917B4 00A03821 */  addu  $a3, $a1, $zero
 /* 04C7B8 802917B8 3C048034 */  lui   $a0, %hi(D_8033B6F0) # $a0, 0x8034
 /* 04C7BC 802917BC 2484B6F0 */  addiu $a0, %lo(D_8033B6F0) # addiu $a0, $a0, -0x4910
 /* 04C7C0 802917C0 24840094 */  addiu $a0, $a0, 0x94
 /* 04C7C4 802917C4 24050000 */  li    $a1, 0
 /* 04C7C8 802917C8 24060000 */  li    $a2, 0
-/* 04C7CC 802917CC 0C0DE210 */  jal   func_80378840
+/* 04C7CC 802917CC 0C0DE210 */  jal   Vec3f_Set
 /* 04C7D0 802917D0 24070000 */   li    $a3, 0
 /* 04C7D4 802917D4 3C0F8033 */  lui   $t7, %hi(D_8032D000) # $t7, 0x8033
 /* 04C7D8 802917D8 8DEFD000 */  lw    $t7, %lo(D_8032D000)($t7)
@@ -20632,7 +20632,7 @@ glabel CutSceneGrandStar80291770
 /* 04C7F8 802917F8 24050000 */  li    $a1, 0
 /* 04C7FC 802917FC 24070000 */  li    $a3, 0
 /* 04C800 80291800 44064000 */  mfc1  $a2, $f8
-/* 04C804 80291804 0C0DE210 */  jal   func_80378840
+/* 04C804 80291804 0C0DE210 */  jal   Vec3f_Set
 /* 04C808 80291808 00000000 */   nop   
 /* 04C80C 8029180C 44805000 */  mtc1  $zero, $f10
 /* 04C810 80291810 3C188034 */  li    $t8, 0x80340000 # 0.000000
@@ -20657,7 +20657,7 @@ glabel CutSceneGrandStar80291844
 /* 04C850 80291850 27A40024 */  addiu $a0, $sp, 0x24
 /* 04C854 80291854 3C05C416 */  lui   $a1, 0xc416
 /* 04C858 80291858 24060000 */  li    $a2, 0
-/* 04C85C 8029185C 0C0DE210 */  jal   func_80378840
+/* 04C85C 8029185C 0C0DE210 */  jal   Vec3f_Set
 /* 04C860 80291860 3C07C3C8 */   lui   $a3, 0xc3c8
 /* 04C864 80291864 3C018033 */  lui   $at, 0x8033
 /* 04C868 80291868 C4246238 */  lwc1  $f4, 0x6238($at)
@@ -21286,7 +21286,7 @@ glabel CutSceneStarDance8029209C
 /* 04D154 80292154 3C048034 */  lui   $a0, %hi(D_8033B6F0) # $a0, 0x8034
 /* 04D158 80292158 2484B6F0 */  addiu $a0, %lo(D_8033B6F0) # addiu $a0, $a0, -0x4910
 /* 04D15C 8029215C 24840148 */  addiu $a0, $a0, 0x148
-/* 04D160 80292160 0C0DE200 */  jal   Copy32BitTriple
+/* 04D160 80292160 0C0DE200 */  jal   Vec3f_Copy
 /* 04D164 80292164 24A50004 */   addiu $a1, $a1, 4
 /* 04D168 80292168 3C0B8034 */  lui   $t3, %hi(D_8033B6F0) # $t3, 0x8034
 /* 04D16C 8029216C 256BB6F0 */  addiu $t3, %lo(D_8033B6F0) # addiu $t3, $t3, -0x4910
@@ -21314,7 +21314,7 @@ glabel CutSceneStarDance80292190
 /* 04D1B8 802921B8 46062200 */  add.s $f8, $f4, $f6
 /* 04D1BC 802921BC 8DC7000C */  lw    $a3, 0xc($t6)
 /* 04D1C0 802921C0 44064000 */  mfc1  $a2, $f8
-/* 04D1C4 802921C4 0C0DE210 */  jal   func_80378840
+/* 04D1C4 802921C4 0C0DE210 */  jal   Vec3f_Set
 /* 04D1C8 802921C8 00000000 */   nop   
 /* 04D1CC 802921CC 3C018033 */  lui   $at, 0x8033
 /* 04D1D0 802921D0 C42A6240 */  lwc1  $f10, 0x6240($at)
@@ -21331,7 +21331,7 @@ glabel CutSceneStarDance80292190
 /* 04D1FC 802921FC 3C058034 */  lui   $a1, %hi(D_8033B6F0) # $a1, 0x8034
 /* 04D200 80292200 24A5B6F0 */  addiu $a1, %lo(D_8033B6F0) # addiu $a1, $a1, -0x4910
 /* 04D204 80292204 24A50148 */  addiu $a1, $a1, 0x148
-/* 04D208 80292208 0C0DE200 */  jal   Copy32BitTriple
+/* 04D208 80292208 0C0DE200 */  jal   Vec3f_Copy
 /* 04D20C 8029220C 24840004 */   addiu $a0, $a0, 4
 /* 04D210 80292210 10000001 */  b     .L80292218
 /* 04D214 80292214 00000000 */   nop   
@@ -21599,7 +21599,7 @@ glabel CutSceneStarDance802925C0
 /* 04D5D0 802925D0 3C048034 */  lui   $a0, %hi(D_8033B6F0) # $a0, 0x8034
 /* 04D5D4 802925D4 2484B6F0 */  addiu $a0, %lo(D_8033B6F0) # addiu $a0, $a0, -0x4910
 /* 04D5D8 802925D8 24840148 */  addiu $a0, $a0, 0x148
-/* 04D5DC 802925DC 0C0DE200 */  jal   Copy32BitTriple
+/* 04D5DC 802925DC 0C0DE200 */  jal   Vec3f_Copy
 /* 04D5E0 802925E0 24A50004 */   addiu $a1, $a1, 4
 /* 04D5E4 802925E4 3C014282 */  li    $at, 0x42820000 # 0.000000
 /* 04D5E8 802925E8 44812000 */  mtc1  $at, $f4
@@ -21615,7 +21615,7 @@ glabel CutSceneStarDance802925C0
 /* 04D610 80292610 27A4001C */  addiu $a0, $sp, 0x1c
 /* 04D614 80292614 8F250028 */  lw    $a1, 0x28($t9)
 /* 04D618 80292618 8F260068 */  lw    $a2, 0x68($t9)
-/* 04D61C 8029261C 0C0DE210 */  jal   func_80378840
+/* 04D61C 8029261C 0C0DE210 */  jal   Vec3f_Set
 /* 04D620 80292620 8F27002C */   lw    $a3, 0x2c($t9)
 /* 04D624 80292624 8FA50028 */  lw    $a1, 0x28($sp)
 /* 04D628 80292628 27A4001C */  addiu $a0, $sp, 0x1c
@@ -21755,7 +21755,7 @@ glabel CutSceneStarDance802927EC
 /* 04D814 80292814 46062200 */  add.s $f8, $f4, $f6
 /* 04D818 80292818 8DC7000C */  lw    $a3, 0xc($t6)
 /* 04D81C 8029281C 44064000 */  mfc1  $a2, $f8
-/* 04D820 80292820 0C0DE210 */  jal   func_80378840
+/* 04D820 80292820 0C0DE210 */  jal   Vec3f_Set
 /* 04D824 80292824 00000000 */   nop   
 /* 04D828 80292828 3C018033 */  lui   $at, 0x8033
 /* 04D82C 8029282C C42A6244 */  lwc1  $f10, 0x6244($at)
@@ -21772,7 +21772,7 @@ glabel CutSceneStarDance802927EC
 /* 04D858 80292858 3C058034 */  lui   $a1, %hi(D_8033B6F0) # $a1, 0x8034
 /* 04D85C 8029285C 24A5B6F0 */  addiu $a1, %lo(D_8033B6F0) # addiu $a1, $a1, -0x4910
 /* 04D860 80292860 24A50148 */  addiu $a1, $a1, 0x148
-/* 04D864 80292864 0C0DE200 */  jal   Copy32BitTriple
+/* 04D864 80292864 0C0DE200 */  jal   Vec3f_Copy
 /* 04D868 80292868 24840004 */   addiu $a0, $a0, 4
 /* 04D86C 8029286C 10000001 */  b     .L80292874
 /* 04D870 80292870 00000000 */   nop   
@@ -21790,7 +21790,7 @@ glabel func_80292884
 /* 04D894 80292894 3C058034 */  lui   $a1, %hi(D_8033B6F0) # $a1, 0x8034
 /* 04D898 80292898 24A5B6F0 */  addiu $a1, %lo(D_8033B6F0) # addiu $a1, $a1, -0x4910
 /* 04D89C 8029289C 24A50148 */  addiu $a1, $a1, 0x148
-/* 04D8A0 802928A0 0C0DE200 */  jal   Copy32BitTriple
+/* 04D8A0 802928A0 0C0DE200 */  jal   Vec3f_Copy
 /* 04D8A4 802928A4 24840004 */   addiu $a0, $a0, 4
 /* 04D8A8 802928A8 3C0E8034 */  lui   $t6, %hi(D_8033B6F0) # $t6, 0x8034
 /* 04D8AC 802928AC 25CEB6F0 */  addiu $t6, %lo(D_8033B6F0) # addiu $t6, $t6, -0x4910
@@ -21977,14 +21977,14 @@ glabel CutSceneKeyDance80292B24
 /* 04DB38 80292B38 24840124 */  addiu $a0, $a0, 0x124
 /* 04DB3C 80292B3C 3C054218 */  lui   $a1, 0x4218
 /* 04DB40 80292B40 3C06432B */  lui   $a2, 0x432b
-/* 04DB44 80292B44 0C0DE210 */  jal   func_80378840
+/* 04DB44 80292B44 0C0DE210 */  jal   Vec3f_Set
 /* 04DB48 80292B48 3C07C378 */   lui   $a3, 0xc378
 /* 04DB4C 80292B4C 3C048034 */  lui   $a0, %hi(D_8033B6F0) # $a0, 0x8034
 /* 04DB50 80292B50 2484B6F0 */  addiu $a0, %lo(D_8033B6F0) # addiu $a0, $a0, -0x4910
 /* 04DB54 80292B54 24840100 */  addiu $a0, $a0, 0x100
 /* 04DB58 80292B58 3C05C264 */  lui   $a1, 0xc264
 /* 04DB5C 80292B5C 3C06424C */  lui   $a2, 0x424c
-/* 04DB60 80292B60 0C0DE210 */  jal   func_80378840
+/* 04DB60 80292B60 0C0DE210 */  jal   Vec3f_Set
 /* 04DB64 80292B64 3C07433B */   lui   $a3, 0x433b
 /* 04DB68 80292B68 10000001 */  b     .L80292B70
 /* 04DB6C 80292B6C 00000000 */   nop   
@@ -22003,7 +22003,7 @@ glabel CutSceneKeyDance80292B80
 /* 04DB94 80292B94 24840124 */  addiu $a0, $a0, 0x124
 /* 04DB98 80292B98 3C05C332 */  lui   $a1, 0xc332
 /* 04DB9C 80292B9C 3C064278 */  lui   $a2, 0x4278
-/* 04DBA0 80292BA0 0C0DE210 */  jal   func_80378840
+/* 04DBA0 80292BA0 0C0DE210 */  jal   Vec3f_Set
 /* 04DBA4 80292BA4 3C07C304 */   lui   $a3, 0xc304
 /* 04DBA8 80292BA8 3C048034 */  lui   $a0, %hi(D_8033B6F0) # $a0, 0x8034
 /* 04DBAC 80292BAC 2484B6F0 */  addiu $a0, %lo(D_8033B6F0) # addiu $a0, $a0, -0x4910
@@ -22011,7 +22011,7 @@ glabel CutSceneKeyDance80292B80
 /* 04DBB4 80292BB4 34A58000 */  ori   $a1, (0x43958000 & 0xFFFF) # ori $a1, $a1, 0x8000
 /* 04DBB8 80292BB8 24840100 */  addiu $a0, $a0, 0x100
 /* 04DBBC 80292BBC 3C0642B6 */  lui   $a2, 0x42b6
-/* 04DBC0 80292BC0 0C0DE210 */  jal   func_80378840
+/* 04DBC0 80292BC0 0C0DE210 */  jal   Vec3f_Set
 /* 04DBC4 80292BC4 3C074268 */   lui   $a3, 0x4268
 /* 04DBC8 80292BC8 10000001 */  b     .L80292BD0
 /* 04DBCC 80292BCC 00000000 */   nop   
@@ -22034,14 +22034,14 @@ glabel CutSceneKeyDance80292BE0
 /* 04DC04 80292C04 34C68000 */  ori   $a2, (0x43BA8000 & 0xFFFF) # ori $a2, $a2, 0x8000
 /* 04DC08 80292C08 24840124 */  addiu $a0, $a0, 0x124
 /* 04DC0C 80292C0C 3C0542B2 */  lui   $a1, 0x42b2
-/* 04DC10 80292C10 0C0DE210 */  jal   func_80378840
+/* 04DC10 80292C10 0C0DE210 */  jal   Vec3f_Set
 /* 04DC14 80292C14 3C07C398 */   lui   $a3, 0xc398
 /* 04DC18 80292C18 3C048034 */  lui   $a0, %hi(D_8033B6F0) # $a0, 0x8034
 /* 04DC1C 80292C1C 2484B6F0 */  addiu $a0, %lo(D_8033B6F0) # addiu $a0, $a0, -0x4910
 /* 04DC20 80292C20 24840100 */  addiu $a0, $a0, 0x100
 /* 04DC24 80292C24 24050000 */  li    $a1, 0
 /* 04DC28 80292C28 3C0642FE */  lui   $a2, 0x42fe
-/* 04DC2C 80292C2C 0C0DE210 */  jal   func_80378840
+/* 04DC2C 80292C2C 0C0DE210 */  jal   Vec3f_Set
 /* 04DC30 80292C30 24070000 */   li    $a3, 0
 /* 04DC34 80292C34 10000001 */  b     .L80292C3C
 /* 04DC38 80292C38 00000000 */   nop   
@@ -22063,14 +22063,14 @@ glabel CutSceneKeyDance80292C4C
 /* 04DC6C 80292C6C 34E74000 */  ori   $a3, (0xC4284000 & 0xFFFF) # ori $a3, $a3, 0x4000
 /* 04DC70 80292C70 24840124 */  addiu $a0, $a0, 0x124
 /* 04DC74 80292C74 3C054307 */  lui   $a1, 0x4307
-/* 04DC78 80292C78 0C0DE210 */  jal   func_80378840
+/* 04DC78 80292C78 0C0DE210 */  jal   Vec3f_Set
 /* 04DC7C 80292C7C 3C06431E */   lui   $a2, 0x431e
 /* 04DC80 80292C80 3C048034 */  lui   $a0, %hi(D_8033B6F0) # $a0, 0x8034
 /* 04DC84 80292C84 2484B6F0 */  addiu $a0, %lo(D_8033B6F0) # addiu $a0, $a0, -0x4910
 /* 04DC88 80292C88 24840100 */  addiu $a0, $a0, 0x100
 /* 04DC8C 80292C8C 3C05C1A0 */  lui   $a1, 0xc1a0
 /* 04DC90 80292C90 3C064307 */  lui   $a2, 0x4307
-/* 04DC94 80292C94 0C0DE210 */  jal   func_80378840
+/* 04DC94 80292C94 0C0DE210 */  jal   Vec3f_Set
 /* 04DC98 80292C98 3C07C346 */   lui   $a3, 0xc346
 /* 04DC9C 80292C9C 10000001 */  b     .L80292CA4
 /* 04DCA0 80292CA0 00000000 */   nop   
@@ -22240,7 +22240,7 @@ glabel CutSceneEnterBowserPlatform80292E98
 /* 04DEDC 80292EDC 2484004C */  addiu $a0, $a0, 0x4c
 /* 04DEE0 80292EE0 8F0500A0 */  lw    $a1, 0xa0($t8)
 /* 04DEE4 80292EE4 8F0600A4 */  lw    $a2, 0xa4($t8)
-/* 04DEE8 80292EE8 0C0DE210 */  jal   func_80378840
+/* 04DEE8 80292EE8 0C0DE210 */  jal   Vec3f_Set
 /* 04DEEC 80292EEC 8F0700A8 */   lw    $a3, 0xa8($t8)
 /* 04DEF0 80292EF0 10000001 */  b     .L80292EF8
 /* 04DEF4 80292EF4 00000000 */   nop   
@@ -22416,7 +22416,7 @@ glabel CutSceneEnterBowserPlatform802930F4
 /* 04E148 80293148 24840004 */  addiu $a0, $a0, 4
 /* 04E14C 8029314C 24050000 */  li    $a1, 0
 /* 04E150 80293150 3C0642F0 */  lui   $a2, 0x42f0
-/* 04E154 80293154 0C0DE210 */  jal   func_80378840
+/* 04E154 80293154 0C0DE210 */  jal   Vec3f_Set
 /* 04E158 80293158 3C07C448 */   lui   $a3, 0xc448
 /* 04E15C 8029315C 3C0B8033 */  lui   $t3, %hi(D_8032CFD0) # $t3, 0x8033
 /* 04E160 80293160 8D6BCFD0 */  lw    $t3, %lo(D_8032CFD0)($t3)
@@ -22425,7 +22425,7 @@ glabel CutSceneEnterBowserPlatform802930F4
 /* 04E16C 8029316C 24840064 */  addiu $a0, $a0, 0x64
 /* 04E170 80293170 8D6500C4 */  lw    $a1, 0xc4($t3)
 /* 04E174 80293174 8D6600C8 */  lw    $a2, 0xc8($t3)
-/* 04E178 80293178 0C0DE25F */  jal   func_8037897C
+/* 04E178 80293178 0C0DE25F */  jal   Vec3s_Set
 /* 04E17C 8029317C 8D6700CC */   lw    $a3, 0xcc($t3)
 /* 04E180 80293180 0C0A4BA6 */  jal   CutSceneEnterBowserPlatform80292E98
 /* 04E184 80293184 8FA40018 */   lw    $a0, 0x18($sp)
@@ -22854,7 +22854,7 @@ glabel CutSceneExitWaterfall80293750
 /* 04E768 80293768 34E73800 */  ori   $a3, (0xC5B13800 & 0xFFFF) # ori $a3, $a3, 0x3800
 /* 04E76C 8029376C 34A5B000 */  ori   $a1, (0xC573B000 & 0xFFFF) # ori $a1, $a1, 0xb000
 /* 04E770 80293770 3C06421C */  lui   $a2, 0x421c
-/* 04E774 80293774 0C0DE210 */  jal   func_80378840
+/* 04E774 80293774 0C0DE210 */  jal   Vec3f_Set
 /* 04E778 80293778 24840010 */   addiu $a0, $a0, 0x10
 /* 04E77C 8029377C 10000001 */  b     .L80293784
 /* 04E780 80293780 00000000 */   nop   
@@ -22872,7 +22872,7 @@ glabel CutScene80293794
 /* 04E7A4 802937A4 8CA5D000 */  lw    $a1, %lo(D_8032D000)($a1)
 /* 04E7A8 802937A8 8FA40020 */  lw    $a0, 0x20($sp)
 /* 04E7AC 802937AC 24A50004 */  addiu $a1, $a1, 4
-/* 04E7B0 802937B0 0C0DE200 */  jal   Copy32BitTriple
+/* 04E7B0 802937B0 0C0DE200 */  jal   Vec3f_Copy
 /* 04E7B4 802937B4 24840004 */   addiu $a0, $a0, 4
 /* 04E7B8 802937B8 3C0E8033 */  lui   $t6, %hi(D_8032D000) # $t6, 0x8033
 /* 04E7BC 802937BC 8DCED000 */  lw    $t6, %lo(D_8032D000)($t6)
@@ -22969,7 +22969,7 @@ glabel CutSceneFallToCastleGrounds802938EC
 /* 04E904 80293904 34E71000 */  ori   $a3, (0x45791000 & 0xFFFF) # ori $a3, $a3, 0x1000
 /* 04E908 80293908 34A53000 */  ori   $a1, (0x45B63000 & 0xFFFF) # ori $a1, $a1, 0x3000
 /* 04E90C 8029390C 3C064200 */  lui   $a2, 0x4200
-/* 04E910 80293910 0C0DE210 */  jal   func_80378840
+/* 04E910 80293910 0C0DE210 */  jal   Vec3f_Set
 /* 04E914 80293914 24840010 */   addiu $a0, $a0, 0x10
 /* 04E918 80293918 10000001 */  b     .L80293920
 /* 04E91C 8029391C 00000000 */   nop   
@@ -23112,7 +23112,7 @@ glabel CutSceneSpecialStarSpawn80293ACC
 /* 04EAF8 80293AF8 24840028 */  addiu $a0, $a0, 0x28
 /* 04EAFC 80293AFC 8DE50164 */  lw    $a1, 0x164($t7)
 /* 04EB00 80293B00 8DE60168 */  lw    $a2, 0x168($t7)
-/* 04EB04 80293B04 0C0DE210 */  jal   func_80378840
+/* 04EB04 80293B04 0C0DE210 */  jal   Vec3f_Set
 /* 04EB08 80293B08 8DE7016C */   lw    $a3, 0x16c($t7)
 /* 04EB0C 80293B0C 8FA50040 */  lw    $a1, 0x40($sp)
 /* 04EB10 80293B10 3C048034 */  lui   $a0, %hi(D_8033B6F0) # $a0, 0x8034
@@ -23354,7 +23354,7 @@ glabel func_80293DE8
 /* 04EE74 80293E74 3C088034 */  lui   $t0, %hi(D_8033B6F0) # $t0, 0x8034
 /* 04EE78 80293E78 2508B6F0 */  addiu $t0, %lo(D_8033B6F0) # addiu $t0, $t0, -0x4910
 /* 04EE7C 80293E7C 25040004 */  addiu $a0, $t0, 4
-/* 04EE80 80293E80 0C0DE200 */  jal   Copy32BitTriple
+/* 04EE80 80293E80 0C0DE200 */  jal   Vec3f_Copy
 /* 04EE84 80293E84 25050070 */   addiu $a1, $t0, 0x70
 /* 04EE88 80293E88 3C098034 */  lui   $t1, %hi(D_8033B4DA) # $t1, 0x8034
 /* 04EE8C 80293E8C 8529B4DA */  lh    $t1, %lo(D_8033B4DA)($t1)
@@ -23468,7 +23468,7 @@ glabel func_80293DE8
 /* 04F02C 8029402C 3C058034 */  lui   $a1, %hi(D_8033B6F0) # $a1, 0x8034
 /* 04F030 80294030 24A5B6F0 */  addiu $a1, %lo(D_8033B6F0) # addiu $a1, $a1, -0x4910
 /* 04F034 80294034 24A50004 */  addiu $a1, $a1, 4
-/* 04F038 80294038 0C0DE200 */  jal   Copy32BitTriple
+/* 04F038 80294038 0C0DE200 */  jal   Vec3f_Copy
 /* 04F03C 8029403C 24840004 */   addiu $a0, $a0, 4
 /* 04F040 80294040 8FA40048 */  lw    $a0, 0x48($sp)
 /* 04F044 80294044 87A50056 */  lh    $a1, 0x56($sp)
@@ -23522,7 +23522,7 @@ glabel CutScenePrepareCannon802940D8
 /* 04F0F0 802940F0 3C048034 */  lui   $a0, %hi(D_8033B6F0) # $a0, 0x8034
 /* 04F0F4 802940F4 2484B6F0 */  addiu $a0, %lo(D_8033B6F0) # addiu $a0, $a0, -0x4910
 /* 04F0F8 802940F8 24840004 */  addiu $a0, $a0, 4
-/* 04F0FC 802940FC 0C0DE200 */  jal   Copy32BitTriple
+/* 04F0FC 802940FC 0C0DE200 */  jal   Vec3f_Copy
 /* 04F100 80294100 24A50004 */   addiu $a1, $a1, 4
 /* 04F104 80294104 3C0141F0 */  li    $at, 0x41F00000 # 0.000000
 /* 04F108 80294108 44812000 */  mtc1  $at, $f4
@@ -23540,7 +23540,7 @@ glabel CutScenePrepareCannon802940D8
 /* 04F138 80294138 248400D0 */  addiu $a0, $a0, 0xd0
 /* 04F13C 8029413C 00002825 */  move  $a1, $zero
 /* 04F140 80294140 00003025 */  move  $a2, $zero
-/* 04F144 80294144 0C0DE25F */  jal   func_8037897C
+/* 04F144 80294144 0C0DE25F */  jal   Vec3s_Set
 /* 04F148 80294148 00003825 */   move  $a3, $zero
 /* 04F14C 8029414C 10000001 */  b     .L80294154
 /* 04F150 80294150 00000000 */   nop   
@@ -23681,12 +23681,12 @@ glabel CutScenePrepareCannon80294260
 /* 04F33C 8029433C 3C058034 */  lui   $a1, %hi(D_8033B4B8) # $a1, 0x8034
 /* 04F340 80294340 24A5B4B8 */  addiu $a1, %lo(D_8033B4B8) # addiu $a1, $a1, -0x4b48
 /* 04F344 80294344 24A5000C */  addiu $a1, $a1, 0xc
-/* 04F348 80294348 0C0DE200 */  jal   Copy32BitTriple
+/* 04F348 80294348 0C0DE200 */  jal   Vec3f_Copy
 /* 04F34C 8029434C 24840004 */   addiu $a0, $a0, 4
 /* 04F350 80294350 8FA40020 */  lw    $a0, 0x20($sp)
 /* 04F354 80294354 3C058034 */  lui   $a1, %hi(D_8033B4B8) # $a1, 0x8034
 /* 04F358 80294358 24A5B4B8 */  addiu $a1, %lo(D_8033B4B8) # addiu $a1, $a1, -0x4b48
-/* 04F35C 8029435C 0C0DE200 */  jal   Copy32BitTriple
+/* 04F35C 8029435C 0C0DE200 */  jal   Vec3f_Copy
 /* 04F360 80294360 24840010 */   addiu $a0, $a0, 0x10
 /* 04F364 80294364 3C0A8034 */  lui   $t2, %hi(D_8033B4DA) # $t2, 0x8034
 /* 04F368 80294368 854AB4DA */  lh    $t2, %lo(D_8033B4DA)($t2)
@@ -23844,14 +23844,14 @@ glabel CutSceneDeath80294574
 /* 04F584 80294584 3C048034 */  lui   $a0, %hi(D_8033B6F0) # $a0, 0x8034
 /* 04F588 80294588 2484B6F0 */  addiu $a0, %lo(D_8033B6F0) # addiu $a0, $a0, -0x4910
 /* 04F58C 8029458C 24840004 */  addiu $a0, $a0, 4
-/* 04F590 80294590 0C0DE200 */  jal   Copy32BitTriple
+/* 04F590 80294590 0C0DE200 */  jal   Vec3f_Copy
 /* 04F594 80294594 24A50004 */   addiu $a1, $a1, 4
 /* 04F598 80294598 3C058033 */  lui   $a1, %hi(D_8032D000) # $a1, 0x8033
 /* 04F59C 8029459C 8CA5D000 */  lw    $a1, %lo(D_8032D000)($a1)
 /* 04F5A0 802945A0 3C048034 */  lui   $a0, %hi(D_8033B6F0) # $a0, 0x8034
 /* 04F5A4 802945A4 2484B6F0 */  addiu $a0, %lo(D_8033B6F0) # addiu $a0, $a0, -0x4910
 /* 04F5A8 802945A8 24840070 */  addiu $a0, $a0, 0x70
-/* 04F5AC 802945AC 0C0DE200 */  jal   Copy32BitTriple
+/* 04F5AC 802945AC 0C0DE200 */  jal   Vec3f_Copy
 /* 04F5B0 802945B0 24A50004 */   addiu $a1, $a1, 4
 /* 04F5B4 802945B4 3C0E8034 */  lui   $t6, %hi(D_8033B6F0) # $t6, 0x8034
 /* 04F5B8 802945B8 25CEB6F0 */  addiu $t6, %lo(D_8033B6F0) # addiu $t6, $t6, -0x4910
@@ -23939,7 +23939,7 @@ glabel CutSceneDeath80294684
 /* 04F6DC 802946DC 3C048034 */  lui   $a0, %hi(D_8033B6F0) # $a0, 0x8034
 /* 04F6E0 802946E0 2484B6F0 */  addiu $a0, %lo(D_8033B6F0) # addiu $a0, $a0, -0x4910
 /* 04F6E4 802946E4 24840004 */  addiu $a0, $a0, 4
-/* 04F6E8 802946E8 0C0DE200 */  jal   Copy32BitTriple
+/* 04F6E8 802946E8 0C0DE200 */  jal   Vec3f_Copy
 /* 04F6EC 802946EC 24A50004 */   addiu $a1, $a1, 4
 /* 04F6F0 802946F0 10000001 */  b     .L802946F8
 /* 04F6F4 802946F4 00000000 */   nop   
@@ -24039,7 +24039,7 @@ glabel CutSceneBBHDeath802947E4
 /* 04F83C 8029483C 3C048034 */  lui   $a0, %hi(D_8033B6F0) # $a0, 0x8034
 /* 04F840 80294840 2484B6F0 */  addiu $a0, %lo(D_8033B6F0) # addiu $a0, $a0, -0x4910
 /* 04F844 80294844 24840004 */  addiu $a0, $a0, 4
-/* 04F848 80294848 0C0DE200 */  jal   Copy32BitTriple
+/* 04F848 80294848 0C0DE200 */  jal   Vec3f_Copy
 /* 04F84C 8029484C 24A50004 */   addiu $a1, $a1, 4
 /* 04F850 80294850 10000001 */  b     .L80294858
 /* 04F854 80294854 00000000 */   nop   
@@ -24107,7 +24107,7 @@ glabel CutSceneQuicksandDeath80294918
 /* 04F928 80294928 3C048034 */  lui   $a0, %hi(D_8033B6F0) # $a0, 0x8034
 /* 04F92C 8029492C 2484B6F0 */  addiu $a0, %lo(D_8033B6F0) # addiu $a0, $a0, -0x4910
 /* 04F930 80294930 24840004 */  addiu $a0, $a0, 4
-/* 04F934 80294934 0C0DE200 */  jal   Copy32BitTriple
+/* 04F934 80294934 0C0DE200 */  jal   Vec3f_Copy
 /* 04F938 80294938 24A50004 */   addiu $a1, $a1, 4
 /* 04F93C 8029493C 10000001 */  b     .L80294944
 /* 04F940 80294940 00000000 */   nop   
@@ -24369,7 +24369,7 @@ glabel CutSceneEnterPool80294CD0
 /* 04FCE4 80294CE4 3C048034 */  lui   $a0, %hi(D_8033B6F0) # $a0, 0x8034
 /* 04FCE8 80294CE8 2484B6F0 */  addiu $a0, %lo(D_8033B6F0) # addiu $a0, $a0, -0x4910
 /* 04FCEC 80294CEC 24840070 */  addiu $a0, $a0, 0x70
-/* 04FCF0 80294CF0 0C0DE200 */  jal   Copy32BitTriple
+/* 04FCF0 80294CF0 0C0DE200 */  jal   Vec3f_Copy
 /* 04FCF4 80294CF4 24A50004 */   addiu $a1, $a1, 4
 /* 04FCF8 80294CF8 3C0E8033 */  lui   $t6, %hi(D_8032CE98) # $t6, 0x8033
 /* 04FCFC 80294CFC 85CECE98 */  lh    $t6, %lo(D_8032CE98)($t6)
@@ -24384,7 +24384,7 @@ glabel CutSceneEnterPool80294CD0
 /* 04FD20 80294D20 34E73000 */  ori   $a3, (0xC5263000 & 0xFFFF) # ori $a3, $a3, 0x3000
 /* 04FD24 80294D24 34C6A000 */  ori   $a2, (0xC4C6A000 & 0xFFFF) # ori $a2, $a2, 0xa000
 /* 04FD28 80294D28 34A55000 */  ori   $a1, (0x451B5000 & 0xFFFF) # ori $a1, $a1, 0x5000
-/* 04FD2C 80294D2C 0C0DE210 */  jal   func_80378840
+/* 04FD2C 80294D2C 0C0DE210 */  jal   Vec3f_Set
 /* 04FD30 80294D30 24840070 */   addiu $a0, $a0, 0x70
 .L80294D34:
 /* 04FD34 80294D34 3C0F8033 */  lui   $t7, %hi(D_8032CE98) # $t7, 0x8033
@@ -24399,14 +24399,14 @@ glabel CutSceneEnterPool80294CD0
 /* 04FD58 80294D58 34C66800 */  ori   $a2, (0xC58F6800 & 0xFFFF) # ori $a2, $a2, 0x6800
 /* 04FD5C 80294D5C 34A56000 */  ori   $a1, (0x45516000 & 0xFFFF) # ori $a1, $a1, 0x6000
 /* 04FD60 80294D60 24840070 */  addiu $a0, $a0, 0x70
-/* 04FD64 80294D64 0C0DE210 */  jal   func_80378840
+/* 04FD64 80294D64 0C0DE210 */  jal   Vec3f_Set
 /* 04FD68 80294D68 3C074596 */   lui   $a3, 0x4596
 .L80294D6C:
 /* 04FD6C 80294D6C 8FA50018 */  lw    $a1, 0x18($sp)
 /* 04FD70 80294D70 3C048034 */  lui   $a0, %hi(D_8033B6F0) # $a0, 0x8034
 /* 04FD74 80294D74 2484B6F0 */  addiu $a0, %lo(D_8033B6F0) # addiu $a0, $a0, -0x4910
 /* 04FD78 80294D78 24840004 */  addiu $a0, $a0, 4
-/* 04FD7C 80294D7C 0C0DE200 */  jal   Copy32BitTriple
+/* 04FD7C 80294D7C 0C0DE200 */  jal   Vec3f_Copy
 /* 04FD80 80294D80 24A50004 */   addiu $a1, $a1, 4
 /* 04FD84 80294D84 10000001 */  b     .L80294D8C
 /* 04FD88 80294D88 00000000 */   nop   
@@ -24475,7 +24475,7 @@ glabel CutScene26Todo80294E40
 /* 04FE60 80294E60 3C048034 */  lui   $a0, %hi(D_8033B6F0) # $a0, 0x8034
 /* 04FE64 80294E64 2484B6F0 */  addiu $a0, %lo(D_8033B6F0) # addiu $a0, $a0, -0x4910
 /* 04FE68 80294E68 24840028 */  addiu $a0, $a0, 0x28
-/* 04FE6C 80294E6C 0C0DE200 */  jal   Copy32BitTriple
+/* 04FE6C 80294E6C 0C0DE200 */  jal   Vec3f_Copy
 /* 04FE70 80294E70 24A50004 */   addiu $a1, $a1, 4
 /* 04FE74 80294E74 8FAE0018 */  lw    $t6, 0x18($sp)
 /* 04FE78 80294E78 3C048034 */  lui   $a0, %hi(D_8033B6F0) # $a0, 0x8034
@@ -24483,7 +24483,7 @@ glabel CutScene26Todo80294E40
 /* 04FE80 80294E80 24840070 */  addiu $a0, $a0, 0x70
 /* 04FE84 80294E84 3C0644A0 */  lui   $a2, 0x44a0
 /* 04FE88 80294E88 8DC50028 */  lw    $a1, 0x28($t6)
-/* 04FE8C 80294E8C 0C0DE210 */  jal   func_80378840
+/* 04FE8C 80294E8C 0C0DE210 */  jal   Vec3f_Set
 /* 04FE90 80294E90 8DC7002C */   lw    $a3, 0x2c($t6)
 /* 04FE94 80294E94 10000001 */  b     .L80294E9C
 /* 04FE98 80294E98 00000000 */   nop   
@@ -24550,19 +24550,19 @@ glabel CutScene26Todo80294F40
 /* 04FF68 80294F68 3C048034 */  lui   $a0, %hi(D_8033B6F0) # $a0, 0x8034
 /* 04FF6C 80294F6C 2484B6F0 */  addiu $a0, %lo(D_8033B6F0) # addiu $a0, $a0, -0x4910
 /* 04FF70 80294F70 24840094 */  addiu $a0, $a0, 0x94
-/* 04FF74 80294F74 0C0DE200 */  jal   Copy32BitTriple
+/* 04FF74 80294F74 0C0DE200 */  jal   Vec3f_Copy
 /* 04FF78 80294F78 24A50010 */   addiu $a1, $a1, 0x10
 /* 04FF7C 80294F7C 8FA50028 */  lw    $a1, 0x28($sp)
 /* 04FF80 80294F80 3C048034 */  lui   $a0, %hi(D_8033B6F0) # $a0, 0x8034
 /* 04FF84 80294F84 2484B6F0 */  addiu $a0, %lo(D_8033B6F0) # addiu $a0, $a0, -0x4910
 /* 04FF88 80294F88 248400B8 */  addiu $a0, $a0, 0xb8
-/* 04FF8C 80294F8C 0C0DE200 */  jal   Copy32BitTriple
+/* 04FF8C 80294F8C 0C0DE200 */  jal   Vec3f_Copy
 /* 04FF90 80294F90 24A50004 */   addiu $a1, $a1, 4
 /* 04FF94 80294F94 8FA40028 */  lw    $a0, 0x28($sp)
 /* 04FF98 80294F98 3C058034 */  lui   $a1, %hi(D_8033B6F0) # $a1, 0x8034
 /* 04FF9C 80294F9C 24A5B6F0 */  addiu $a1, %lo(D_8033B6F0) # addiu $a1, $a1, -0x4910
 /* 04FFA0 80294FA0 24A50070 */  addiu $a1, $a1, 0x70
-/* 04FFA4 80294FA4 0C0DE200 */  jal   Copy32BitTriple
+/* 04FFA4 80294FA4 0C0DE200 */  jal   Vec3f_Copy
 /* 04FFA8 80294FA8 24840004 */   addiu $a0, $a0, 4
 /* 04FFAC 80294FAC 3C058033 */  lui   $a1, %hi(D_8032D000) # $a1, 0x8033
 /* 04FFB0 80294FB0 8CA5D000 */  lw    $a1, %lo(D_8032D000)($a1)
@@ -24676,13 +24676,13 @@ glabel CutScene26Todo8029512C
 /* 05013C 8029513C 3C058034 */  lui   $a1, %hi(D_8033B6F0) # $a1, 0x8034
 /* 050140 80295140 24A5B6F0 */  addiu $a1, %lo(D_8033B6F0) # addiu $a1, $a1, -0x4910
 /* 050144 80295144 24A50094 */  addiu $a1, $a1, 0x94
-/* 050148 80295148 0C0DE200 */  jal   Copy32BitTriple
+/* 050148 80295148 0C0DE200 */  jal   Vec3f_Copy
 /* 05014C 8029514C 24840010 */   addiu $a0, $a0, 0x10
 /* 050150 80295150 8FA40020 */  lw    $a0, 0x20($sp)
 /* 050154 80295154 3C058034 */  lui   $a1, %hi(D_8033B6F0) # $a1, 0x8034
 /* 050158 80295158 24A5B6F0 */  addiu $a1, %lo(D_8033B6F0) # addiu $a1, $a1, -0x4910
 /* 05015C 8029515C 24A500B8 */  addiu $a1, $a1, 0xb8
-/* 050160 80295160 0C0DE200 */  jal   Copy32BitTriple
+/* 050160 80295160 0C0DE200 */  jal   Vec3f_Copy
 /* 050164 80295164 24840004 */   addiu $a0, $a0, 4
 /* 050168 80295168 0C09FCC2 */  jal   func_8027F308
 /* 05016C 8029516C 24040003 */   li    $a0, 3
@@ -24775,7 +24775,7 @@ glabel CutSceneEnterPyramidTop80295294
 /* 0502A4 802952A4 3C048034 */  lui   $a0, %hi(D_8033B6F0) # $a0, 0x8034
 /* 0502A8 802952A8 2484B6F0 */  addiu $a0, %lo(D_8033B6F0) # addiu $a0, $a0, -0x4910
 /* 0502AC 802952AC 24840004 */  addiu $a0, $a0, 4
-/* 0502B0 802952B0 0C0DE200 */  jal   Copy32BitTriple
+/* 0502B0 802952B0 0C0DE200 */  jal   Vec3f_Copy
 /* 0502B4 802952B4 24A50004 */   addiu $a1, $a1, 4
 /* 0502B8 802952B8 8FAE0018 */  lw    $t6, 0x18($sp)
 /* 0502BC 802952BC 3C048034 */  lui   $a0, %hi(D_8033B6F0) # $a0, 0x8034
@@ -24783,7 +24783,7 @@ glabel CutSceneEnterPyramidTop80295294
 /* 0502C4 802952C4 24840070 */  addiu $a0, $a0, 0x70
 /* 0502C8 802952C8 3C0644A0 */  lui   $a2, 0x44a0
 /* 0502CC 802952CC 8DC50028 */  lw    $a1, 0x28($t6)
-/* 0502D0 802952D0 0C0DE210 */  jal   func_80378840
+/* 0502D0 802952D0 0C0DE210 */  jal   Vec3f_Set
 /* 0502D4 802952D4 8DC7002C */   lw    $a3, 0x2c($t6)
 /* 0502D8 802952D8 10000001 */  b     .L802952E0
 /* 0502DC 802952DC 00000000 */   nop   
@@ -24892,7 +24892,7 @@ glabel CutSceneDialog80295418
 /* 050450 80295450 3C048034 */  lui   $a0, %hi(D_8033B6F0) # $a0, 0x8034
 /* 050454 80295454 2484B6F0 */  addiu $a0, %lo(D_8033B6F0) # addiu $a0, $a0, -0x4910
 /* 050458 80295458 24840124 */  addiu $a0, $a0, 0x124
-/* 05045C 8029545C 0C0DE200 */  jal   Copy32BitTriple
+/* 05045C 8029545C 0C0DE200 */  jal   Vec3f_Copy
 /* 050460 80295460 24A50004 */   addiu $a1, $a1, 4
 /* 050464 80295464 3C0F8034 */  lui   $t7, %hi(D_8033B6F0) # $t7, 0x8034
 /* 050468 80295468 25EFB6F0 */  addiu $t7, %lo(D_8033B6F0) # addiu $t7, $t7, -0x4910
@@ -25024,7 +25024,7 @@ glabel CutSceneDialog80295568
 /* 05064C 8029564C 24840004 */   addiu $a0, $a0, 4
 /* 050650 80295650 8FA50050 */  lw    $a1, 0x50($sp)
 /* 050654 80295654 27A40030 */  addiu $a0, $sp, 0x30
-/* 050658 80295658 0C0DE200 */  jal   Copy32BitTriple
+/* 050658 80295658 0C0DE200 */  jal   Vec3f_Copy
 /* 05065C 8029565C 24A50010 */   addiu $a1, $a1, 0x10
 /* 050660 80295660 3C088034 */  lui   $t0, %hi(D_8033B6F0) # $t0, 0x8034
 /* 050664 80295664 2508B6F0 */  addiu $t0, %lo(D_8033B6F0) # addiu $t0, $t0, -0x4910
@@ -25299,7 +25299,7 @@ glabel Unknown80295A28
 /* 050A3C 80295A3C 27A40020 */  addiu $a0, $sp, 0x20
 /* 050A40 80295A40 00002825 */  move  $a1, $zero
 /* 050A44 80295A44 00003825 */  move  $a3, $zero
-/* 050A48 80295A48 0C0DE25F */  jal   func_8037897C
+/* 050A48 80295A48 0C0DE25F */  jal   Vec3s_Set
 /* 050A4C 80295A4C 85C60012 */   lh    $a2, 0x12($t6)
 /* 050A50 80295A50 3C0142C8 */  li    $at, 0x42C80000 # 0.000000
 /* 050A54 80295A54 44812000 */  mtc1  $at, $f4
@@ -25469,14 +25469,14 @@ glabel CutSceneExitSuccess80295C90
 /* 050CA4 80295CA4 3C048034 */  lui   $a0, %hi(D_8033B6F0) # $a0, 0x8034
 /* 050CA8 80295CA8 2484B6F0 */  addiu $a0, %lo(D_8033B6F0) # addiu $a0, $a0, -0x4910
 /* 050CAC 80295CAC 24840100 */  addiu $a0, $a0, 0x100
-/* 050CB0 80295CB0 0C0DE200 */  jal   Copy32BitTriple
+/* 050CB0 80295CB0 0C0DE200 */  jal   Vec3f_Copy
 /* 050CB4 80295CB4 24A50004 */   addiu $a1, $a1, 4
 /* 050CB8 80295CB8 3C058033 */  lui   $a1, %hi(D_8032D000) # $a1, 0x8033
 /* 050CBC 80295CBC 8CA5D000 */  lw    $a1, %lo(D_8032D000)($a1)
 /* 050CC0 80295CC0 3C048034 */  lui   $a0, %hi(D_8033B6F0) # $a0, 0x8034
 /* 050CC4 80295CC4 2484B6F0 */  addiu $a0, %lo(D_8033B6F0) # addiu $a0, $a0, -0x4910
 /* 050CC8 80295CC8 24840118 */  addiu $a0, $a0, 0x118
-/* 050CCC 80295CCC 0C0DE24F */  jal   func_8037893C
+/* 050CCC 80295CCC 0C0DE24F */  jal   Vec3s_Copy
 /* 050CD0 80295CD0 24A50010 */   addiu $a1, $a1, 0x10
 /* 050CD4 80295CD4 3C048034 */  lui   $a0, %hi(D_8033B6F0) # $a0, 0x8034
 /* 050CD8 80295CD8 2484B6F0 */  addiu $a0, %lo(D_8033B6F0) # addiu $a0, $a0, -0x4910
@@ -25485,7 +25485,7 @@ glabel CutSceneExitSuccess80295C90
 /* 050CE4 80295CE4 34E7C000 */  ori   $a3, (0x4407C000 & 0xFFFF) # ori $a3, $a3, 0xc000
 /* 050CE8 80295CE8 34C68000 */  ori   $a2, (0x43B58000 & 0xFFFF) # ori $a2, $a2, 0x8000
 /* 050CEC 80295CEC 248400DC */  addiu $a0, $a0, 0xdc
-/* 050CF0 80295CF0 0C0DE210 */  jal   func_80378840
+/* 050CF0 80295CF0 0C0DE210 */  jal   Vec3f_Set
 /* 050CF4 80295CF4 3C0540C0 */   lui   $a1, 0x40c0
 /* 050CF8 80295CF8 3C048034 */  lui   $a0, %hi(D_8033B6F0) # $a0, 0x8034
 /* 050CFC 80295CFC 2484B6F0 */  addiu $a0, %lo(D_8033B6F0) # addiu $a0, $a0, -0x4910
@@ -25493,7 +25493,7 @@ glabel CutSceneExitSuccess80295C90
 /* 050D04 80295D04 34E7C000 */  ori   $a3, (0x4478C000 & 0xFFFF) # ori $a3, $a3, 0xc000
 /* 050D08 80295D08 248400B8 */  addiu $a0, $a0, 0xb8
 /* 050D0C 80295D0C 3C054309 */  lui   $a1, 0x4309
-/* 050D10 80295D10 0C0DE210 */  jal   func_80378840
+/* 050D10 80295D10 0C0DE210 */  jal   Vec3f_Set
 /* 050D14 80295D14 3C064362 */   lui   $a2, 0x4362
 /* 050D18 80295D18 10000001 */  b     .L80295D20
 /* 050D1C 80295D1C 00000000 */   nop   
@@ -25531,7 +25531,7 @@ glabel CutSceneExitSuccess80295D30
 /* 050D8C 80295D8C 34E71000 */  ori   $a3, (0xC5391000 & 0xFFFF) # ori $a3, $a3, 0x1000
 /* 050D90 80295D90 34A59000 */  ori   $a1, (0x45589000 & 0xFFFF) # ori $a1, $a1, 0x9000
 /* 050D94 80295D94 3C06C47C */  lui   $a2, 0xc47c
-/* 050D98 80295D98 0C0DE210 */  jal   func_80378840
+/* 050D98 80295D98 0C0DE210 */  jal   Vec3f_Set
 /* 050D9C 80295D9C 24840010 */   addiu $a0, $a0, 0x10
 /* 050DA0 80295DA0 10000039 */  b     .L80295E88
 /* 050DA4 80295DA4 00000000 */   nop   
@@ -25542,7 +25542,7 @@ glabel CutSceneExitSuccess80295D30
 /* 050DB4 80295DB4 34E71000 */  ori   $a3, (0xC5391000 & 0xFFFF) # ori $a3, $a3, 0x1000
 /* 050DB8 80295DB8 34A59000 */  ori   $a1, (0x45589000 & 0xFFFF) # ori $a1, $a1, 0x9000
 /* 050DBC 80295DBC 3C06C47C */  lui   $a2, 0xc47c
-/* 050DC0 80295DC0 0C0DE210 */  jal   func_80378840
+/* 050DC0 80295DC0 0C0DE210 */  jal   Vec3f_Set
 /* 050DC4 80295DC4 24840010 */   addiu $a0, $a0, 0x10
 /* 050DC8 80295DC8 1000002F */  b     .L80295E88
 /* 050DCC 80295DCC 00000000 */   nop   
@@ -25554,7 +25554,7 @@ glabel CutSceneExitSuccess80295D30
 /* 050DE0 80295DE0 34E78800 */  ori   $a3, (0x45BD8800 & 0xFFFF) # ori $a3, $a3, 0x8800
 /* 050DE4 80295DE4 34C6F000 */  ori   $a2, (0x4544F000 & 0xFFFF) # ori $a2, $a2, 0xf000
 /* 050DE8 80295DE8 34A5D000 */  ori   $a1, (0xC569D000 & 0xFFFF) # ori $a1, $a1, 0xd000
-/* 050DEC 80295DEC 0C0DE210 */  jal   func_80378840
+/* 050DEC 80295DEC 0C0DE210 */  jal   Vec3f_Set
 /* 050DF0 80295DF0 24840010 */   addiu $a0, $a0, 0x10
 /* 050DF4 80295DF4 10000024 */  b     .L80295E88
 /* 050DF8 80295DF8 00000000 */   nop   
@@ -25566,7 +25566,7 @@ glabel CutSceneExitSuccess80295D30
 /* 050E0C 80295E0C 34E71800 */  ori   $a3, (0x45B81800 & 0xFFFF) # ori $a3, $a3, 0x1800
 /* 050E10 80295E10 34C6E000 */  ori   $a2, (0x4549E000 & 0xFFFF) # ori $a2, $a2, 0xe000
 /* 050E14 80295E14 34A58000 */  ori   $a1, (0x44F68000 & 0xFFFF) # ori $a1, $a1, 0x8000
-/* 050E18 80295E18 0C0DE210 */  jal   func_80378840
+/* 050E18 80295E18 0C0DE210 */  jal   Vec3f_Set
 /* 050E1C 80295E1C 24840010 */   addiu $a0, $a0, 0x10
 /* 050E20 80295E20 10000019 */  b     .L80295E88
 /* 050E24 80295E24 00000000 */   nop   
@@ -25843,7 +25843,7 @@ glabel CutSceneBBHExitSuccess02961D4
 /* 0511EC 802961EC 34E76000 */  ori   $a3, (0x448B6000 & 0xFFFF) # ori $a3, $a3, 0x6000
 /* 0511F0 802961F0 248400B8 */  addiu $a0, $a0, 0xb8
 /* 0511F4 802961F4 3C054309 */  lui   $a1, 0x4309
-/* 0511F8 802961F8 0C0DE210 */  jal   func_80378840
+/* 0511F8 802961F8 0C0DE210 */  jal   Vec3f_Set
 /* 0511FC 802961FC 3C064376 */   lui   $a2, 0x4376
 /* 051200 80296200 10000001 */  b     .L80296208
 /* 051204 80296204 00000000 */   nop   
@@ -25912,14 +25912,14 @@ glabel CutSceneNonPaintingDeath802962D4
 /* 0512E8 802962E8 3C048034 */  lui   $a0, %hi(D_8033B6F0) # $a0, 0x8034
 /* 0512EC 802962EC 2484B6F0 */  addiu $a0, %lo(D_8033B6F0) # addiu $a0, $a0, -0x4910
 /* 0512F0 802962F0 24840100 */  addiu $a0, $a0, 0x100
-/* 0512F4 802962F4 0C0DE200 */  jal   Copy32BitTriple
+/* 0512F4 802962F4 0C0DE200 */  jal   Vec3f_Copy
 /* 0512F8 802962F8 24A50004 */   addiu $a1, $a1, 4
 /* 0512FC 802962FC 3C058033 */  lui   $a1, %hi(D_8032D000) # $a1, 0x8033
 /* 051300 80296300 8CA5D000 */  lw    $a1, %lo(D_8032D000)($a1)
 /* 051304 80296304 3C048034 */  lui   $a0, %hi(D_8033B6F0) # $a0, 0x8034
 /* 051308 80296308 2484B6F0 */  addiu $a0, %lo(D_8033B6F0) # addiu $a0, $a0, -0x4910
 /* 05130C 8029630C 24840118 */  addiu $a0, $a0, 0x118
-/* 051310 80296310 0C0DE24F */  jal   func_8037893C
+/* 051310 80296310 0C0DE24F */  jal   Vec3s_Copy
 /* 051314 80296314 24A50010 */   addiu $a1, $a1, 0x10
 /* 051318 80296318 3C048034 */  lui   $a0, %hi(D_8033B6F0) # $a0, 0x8034
 /* 05131C 8029631C 2484B6F0 */  addiu $a0, %lo(D_8033B6F0) # addiu $a0, $a0, -0x4910
@@ -25927,7 +25927,7 @@ glabel CutSceneNonPaintingDeath802962D4
 /* 051324 80296324 34E7C000 */  ori   $a3, (0x4435C000 & 0xFFFF) # ori $a3, $a3, 0xc000
 /* 051328 80296328 248400DC */  addiu $a0, $a0, 0xdc
 /* 05132C 8029632C 3C05C228 */  lui   $a1, 0xc228
-/* 051330 80296330 0C0DE210 */  jal   func_80378840
+/* 051330 80296330 0C0DE210 */  jal   Vec3f_Set
 /* 051334 80296334 3C0643AF */   lui   $a2, 0x43af
 /* 051338 80296338 3C048034 */  lui   $a0, %hi(D_8033B6F0) # $a0, 0x8034
 /* 05133C 8029633C 2484B6F0 */  addiu $a0, %lo(D_8033B6F0) # addiu $a0, $a0, -0x4910
@@ -25935,7 +25935,7 @@ glabel CutSceneNonPaintingDeath802962D4
 /* 051344 80296344 34E76000 */  ori   $a3, (0x44946000 & 0xFFFF) # ori $a3, $a3, 0x6000
 /* 051348 80296348 248400B8 */  addiu $a0, $a0, 0xb8
 /* 05134C 8029634C 3C0542D6 */  lui   $a1, 0x42d6
-/* 051350 80296350 0C0DE210 */  jal   func_80378840
+/* 051350 80296350 0C0DE210 */  jal   Vec3f_Set
 /* 051354 80296354 3C064362 */   lui   $a2, 0x4362
 /* 051358 80296358 10000001 */  b     .L80296360
 /* 05135C 8029635C 00000000 */   nop   
@@ -25997,7 +25997,7 @@ glabel CutSceneNonPaintingDeath802963DC
 /* 051420 80296420 34C68000 */  ori   $a2, (0x43B88000 & 0xFFFF) # ori $a2, $a2, 0x8000
 /* 051424 80296424 248400B8 */  addiu $a0, $a0, 0xb8
 /* 051428 80296428 3C05433B */  lui   $a1, 0x433b
-/* 05142C 8029642C 0C0DE210 */  jal   func_80378840
+/* 05142C 8029642C 0C0DE210 */  jal   Vec3f_Set
 /* 051430 80296430 3C07C345 */   lui   $a3, 0xc345
 /* 051434 80296434 10000015 */  b     .L8029648C
 /* 051438 80296438 00000000 */   nop   
@@ -26008,7 +26008,7 @@ glabel CutSceneNonPaintingDeath802963DC
 /* 051448 80296448 34C68000 */  ori   $a2, (0x43B88000 & 0xFFFF) # ori $a2, $a2, 0x8000
 /* 05144C 8029644C 248400B8 */  addiu $a0, $a0, 0xb8
 /* 051450 80296450 3C05433B */  lui   $a1, 0x433b
-/* 051454 80296454 0C0DE210 */  jal   func_80378840
+/* 051454 80296454 0C0DE210 */  jal   Vec3f_Set
 /* 051458 80296458 3C07C345 */   lui   $a3, 0xc345
 /* 05145C 8029645C 1000000B */  b     .L8029648C
 /* 051460 80296460 00000000 */   nop   
@@ -26019,7 +26019,7 @@ glabel CutSceneNonPaintingDeath802963DC
 /* 051470 80296470 34E76000 */  ori   $a3, (0x44A36000 & 0xFFFF) # ori $a3, $a3, 0x6000
 /* 051474 80296474 248400B8 */  addiu $a0, $a0, 0xb8
 /* 051478 80296478 3C0542D6 */  lui   $a1, 0x42d6
-/* 05147C 8029647C 0C0DE210 */  jal   func_80378840
+/* 05147C 8029647C 0C0DE210 */  jal   Vec3f_Set
 /* 051480 80296480 3C064376 */   lui   $a2, 0x4376
 /* 051484 80296484 10000001 */  b     .L8029648C
 /* 051488 80296488 00000000 */   nop   
@@ -26283,7 +26283,7 @@ glabel CutSceneCapSwitchPress8029682C
 /* 05183C 8029683C 8CA5D000 */  lw    $a1, %lo(D_8032D000)($a1)
 /* 051840 80296840 8FA40018 */  lw    $a0, 0x18($sp)
 /* 051844 80296844 24A50004 */  addiu $a1, $a1, 4
-/* 051848 80296848 0C0DE200 */  jal   Copy32BitTriple
+/* 051848 80296848 0C0DE200 */  jal   Vec3f_Copy
 /* 05184C 8029684C 24840004 */   addiu $a0, $a0, 4
 /* 051850 80296850 8FAE0018 */  lw    $t6, 0x18($sp)
 /* 051854 80296854 3C0142DC */  li    $at, 0x42DC0000 # 0.000000
@@ -26463,23 +26463,23 @@ glabel CutSceneUnlockKeyDoor80296AC0
 /* 051AD0 80296AD0 3C048034 */  lui   $a0, %hi(D_8033B6F0) # $a0, 0x8034
 /* 051AD4 80296AD4 2484B6F0 */  addiu $a0, %lo(D_8033B6F0) # addiu $a0, $a0, -0x4910
 /* 051AD8 80296AD8 24840004 */  addiu $a0, $a0, 4
-/* 051ADC 80296ADC 0C0DE200 */  jal   Copy32BitTriple
+/* 051ADC 80296ADC 0C0DE200 */  jal   Vec3f_Copy
 /* 051AE0 80296AE0 24A50010 */   addiu $a1, $a1, 0x10
 /* 051AE4 80296AE4 8FA50030 */  lw    $a1, 0x30($sp)
 /* 051AE8 80296AE8 3C048034 */  lui   $a0, %hi(D_8033B6F0) # $a0, 0x8034
 /* 051AEC 80296AEC 2484B6F0 */  addiu $a0, %lo(D_8033B6F0) # addiu $a0, $a0, -0x4910
 /* 051AF0 80296AF0 24840028 */  addiu $a0, $a0, 0x28
-/* 051AF4 80296AF4 0C0DE200 */  jal   Copy32BitTriple
+/* 051AF4 80296AF4 0C0DE200 */  jal   Vec3f_Copy
 /* 051AF8 80296AF8 24A50004 */   addiu $a1, $a1, 4
 /* 051AFC 80296AFC 27A40024 */  addiu $a0, $sp, 0x24
 /* 051B00 80296B00 3C05C34E */  lui   $a1, 0xc34e
 /* 051B04 80296B04 3C0642D8 */  lui   $a2, 0x42d8
-/* 051B08 80296B08 0C0DE210 */  jal   func_80378840
+/* 051B08 80296B08 0C0DE210 */  jal   Vec3f_Set
 /* 051B0C 80296B0C 3C07436A */   lui   $a3, 0x436a
 /* 051B10 80296B10 27A40018 */  addiu $a0, $sp, 0x18
 /* 051B14 80296B14 3C054240 */  lui   $a1, 0x4240
 /* 051B18 80296B18 3C0642D0 */  lui   $a2, 0x42d0
-/* 051B1C 80296B1C 0C0DE210 */  jal   func_80378840
+/* 051B1C 80296B1C 0C0DE210 */  jal   Vec3f_Set
 /* 051B20 80296B20 3C07C341 */   lui   $a3, 0xc341
 /* 051B24 80296B24 3C0E8033 */  lui   $t6, %hi(D_8032D000) # $t6, 0x8033
 /* 051B28 80296B28 8DCED000 */  lw    $t6, %lo(D_8032D000)($t6)
@@ -26717,15 +26717,15 @@ glabel func_80296DDC
 /* 051E74 80296E74 34E7C000 */  ori   $a3, (0x4591C000 & 0xFFFF) # ori $a3, $a3, 0xc000
 /* 051E78 80296E78 27A40024 */  addiu $a0, $sp, 0x24
 /* 051E7C 80296E7C 3C05C4A6 */  lui   $a1, 0xc4a6
-/* 051E80 80296E80 0C0DE210 */  jal   func_80378840
+/* 051E80 80296E80 0C0DE210 */  jal   Vec3f_Set
 /* 051E84 80296E84 3C064382 */   lui   $a2, 0x4382
 /* 051E88 80296E88 8FA40030 */  lw    $a0, 0x30($sp)
 /* 051E8C 80296E8C 27A50024 */  addiu $a1, $sp, 0x24
-/* 051E90 80296E90 0C0DE223 */  jal   func_8037888C
+/* 051E90 80296E90 0C0DE223 */  jal   Vec3f_Add
 /* 051E94 80296E94 24840004 */   addiu $a0, $a0, 4
 /* 051E98 80296E98 8FA40030 */  lw    $a0, 0x30($sp)
 /* 051E9C 80296E9C 27A50024 */  addiu $a1, $sp, 0x24
-/* 051EA0 80296EA0 0C0DE223 */  jal   func_8037888C
+/* 051EA0 80296EA0 0C0DE223 */  jal   Vec3f_Add
 /* 051EA4 80296EA4 24840010 */   addiu $a0, $a0, 0x10
 /* 051EA8 80296EA8 8FA80020 */  lw    $t0, 0x20($sp)
 /* 051EAC 80296EAC 8FA9001C */  lw    $t1, 0x1c($sp)
@@ -26798,13 +26798,13 @@ glabel CutSceneIntroPeach4
 /* 051F90 80296F90 3C048034 */  lui   $a0, %hi(D_8033B328) # $a0, 0x8034
 /* 051F94 80296F94 2484B328 */  addiu $a0, %lo(D_8033B328) # addiu $a0, $a0, -0x4cd8
 /* 051F98 80296F98 24840024 */  addiu $a0, $a0, 0x24
-/* 051F9C 80296F9C 0C0DE200 */  jal   Copy32BitTriple
+/* 051F9C 80296F9C 0C0DE200 */  jal   Vec3f_Copy
 /* 051FA0 80296FA0 24A50010 */   addiu $a1, $a1, 0x10
 /* 051FA4 80296FA4 8FA50018 */  lw    $a1, 0x18($sp)
 /* 051FA8 80296FA8 3C048034 */  lui   $a0, %hi(D_8033B328) # $a0, 0x8034
 /* 051FAC 80296FAC 2484B328 */  addiu $a0, %lo(D_8033B328) # addiu $a0, $a0, -0x4cd8
 /* 051FB0 80296FB0 24840018 */  addiu $a0, $a0, 0x18
-/* 051FB4 80296FB4 0C0DE200 */  jal   Copy32BitTriple
+/* 051FB4 80296FB4 0C0DE200 */  jal   Vec3f_Copy
 /* 051FB8 80296FB8 24A50004 */   addiu $a1, $a1, 4
 /* 051FBC 80296FBC 3C0E8034 */  lui   $t6, %hi(D_8033B4DA) # $t6, 0x8034
 /* 051FC0 80296FC0 85CEB4DA */  lh    $t6, %lo(D_8033B4DA)($t6)
@@ -27573,14 +27573,14 @@ glabel CutSceneSlidingDoors80297A80
 /* 052A94 80297A94 3C048034 */  lui   $a0, %hi(D_8033B6F0) # $a0, 0x8034
 /* 052A98 80297A98 2484B6F0 */  addiu $a0, %lo(D_8033B6F0) # addiu $a0, $a0, -0x4910
 /* 052A9C 80297A9C 24840028 */  addiu $a0, $a0, 0x28
-/* 052AA0 80297AA0 0C0DE200 */  jal   Copy32BitTriple
+/* 052AA0 80297AA0 0C0DE200 */  jal   Vec3f_Copy
 /* 052AA4 80297AA4 24A50004 */   addiu $a1, $a1, 4
 /* 052AA8 80297AA8 3C058033 */  lui   $a1, %hi(D_8032D000) # $a1, 0x8033
 /* 052AAC 80297AAC 8CA5D000 */  lw    $a1, %lo(D_8032D000)($a1)
 /* 052AB0 80297AB0 3C048034 */  lui   $a0, %hi(D_8033B6F0) # $a0, 0x8034
 /* 052AB4 80297AB4 2484B6F0 */  addiu $a0, %lo(D_8033B6F0) # addiu $a0, $a0, -0x4910
 /* 052AB8 80297AB8 2484001C */  addiu $a0, $a0, 0x1c
-/* 052ABC 80297ABC 0C0DE24F */  jal   func_8037893C
+/* 052ABC 80297ABC 0C0DE24F */  jal   Vec3s_Copy
 /* 052AC0 80297AC0 24A50010 */   addiu $a1, $a1, 0x10
 /* 052AC4 80297AC4 3C048034 */  lui   $a0, %hi(D_8033B6F0) # $a0, 0x8034
 /* 052AC8 80297AC8 2484B6F0 */  addiu $a0, %lo(D_8033B6F0) # addiu $a0, $a0, -0x4910
@@ -27588,7 +27588,7 @@ glabel CutSceneSlidingDoors80297A80
 /* 052AD0 80297AD0 34C68000 */  ori   $a2, (0x43A28000 & 0xFFFF) # ori $a2, $a2, 0x8000
 /* 052AD4 80297AD4 24840004 */  addiu $a0, $a0, 4
 /* 052AD8 80297AD8 3C0542A0 */  lui   $a1, 0x42a0
-/* 052ADC 80297ADC 0C0DE210 */  jal   func_80378840
+/* 052ADC 80297ADC 0C0DE210 */  jal   Vec3f_Set
 /* 052AE0 80297AE0 3C074348 */   lui   $a3, 0x4348
 /* 052AE4 80297AE4 10000001 */  b     .L80297AEC
 /* 052AE8 80297AE8 00000000 */   nop   
@@ -27640,7 +27640,7 @@ glabel CutSceneSlidingDoors80297B74
 /* 052B7C 80297B7C AFA40040 */  sw    $a0, 0x40($sp)
 /* 052B80 80297B80 8FA50040 */  lw    $a1, 0x40($sp)
 /* 052B84 80297B84 27A40034 */  addiu $a0, $sp, 0x34
-/* 052B88 80297B88 0C0DE200 */  jal   Copy32BitTriple
+/* 052B88 80297B88 0C0DE200 */  jal   Vec3f_Copy
 /* 052B8C 80297B8C 24A50010 */   addiu $a1, $a1, 0x10
 /* 052B90 80297B90 3C0E8033 */  lui   $t6, %hi(D_8032D000) # $t6, 0x8033
 /* 052B94 80297B94 8DCED000 */  lw    $t6, %lo(D_8032D000)($t6)
@@ -27992,14 +27992,14 @@ glabel CutSceneExitPainting80298094
 /* 0530AC 802980AC 34E7A000 */  ori   $a3, (0x4494A000 & 0xFFFF) # ori $a3, $a3, 0xa000
 /* 0530B0 802980B0 2484004C */  addiu $a0, $a0, 0x4c
 /* 0530B4 802980B4 3C054381 */  lui   $a1, 0x4381
-/* 0530B8 802980B8 0C0DE210 */  jal   func_80378840
+/* 0530B8 802980B8 0C0DE210 */  jal   Vec3f_Set
 /* 0530BC 802980BC 3C06C3B0 */   lui   $a2, 0xc3b0
 /* 0530C0 802980C0 3C048034 */  lui   $a0, %hi(D_8033B6F0) # $a0, 0x8034
 /* 0530C4 802980C4 2484B6F0 */  addiu $a0, %lo(D_8033B6F0) # addiu $a0, $a0, -0x4910
 /* 0530C8 802980C8 24840028 */  addiu $a0, $a0, 0x28
 /* 0530CC 802980CC 3C054282 */  lui   $a1, 0x4282
 /* 0530D0 802980D0 3C06C31B */  lui   $a2, 0xc31b
-/* 0530D4 802980D4 0C0DE210 */  jal   func_80378840
+/* 0530D4 802980D4 0C0DE210 */  jal   Vec3f_Set
 /* 0530D8 802980D8 3C0743DE */   lui   $a3, 0x43de
 /* 0530DC 802980DC 3C0E8033 */  li    $t6, 0x80330000 # 0.000000
 /* 0530E0 802980E0 8DCECFDC */  lw    $t6, %lo(D_8032CFDC)($t6)
@@ -28020,7 +28020,7 @@ glabel CutSceneExitPainting80298094
 /* 053118 80298118 3C048034 */  lui   $a0, %hi(D_8033B6F0) # $a0, 0x8034
 /* 05311C 8029811C 2484B6F0 */  addiu $a0, %lo(D_8033B6F0) # addiu $a0, $a0, -0x4910
 /* 053120 80298120 24840004 */  addiu $a0, $a0, 4
-/* 053124 80298124 0C0DE200 */  jal   Copy32BitTriple
+/* 053124 80298124 0C0DE200 */  jal   Vec3f_Copy
 /* 053128 80298128 24A50004 */   addiu $a1, $a1, 4
 /* 05312C 8029812C 3C198034 */  lui   $t9, %hi(D_8033B6F0) # $t9, 0x8034
 /* 053130 80298130 2739B6F0 */  addiu $t9, %lo(D_8033B6F0) # addiu $t9, $t9, -0x4910
@@ -28139,7 +28139,7 @@ glabel CutSceneExitPainting802982CC
 /* 0532D8 802982D8 3C058033 */  lui   $a1, %hi(D_8032D000) # $a1, 0x8033
 /* 0532DC 802982DC 8CA5D000 */  lw    $a1, %lo(D_8032D000)($a1)
 /* 0532E0 802982E0 27A40020 */  addiu $a0, $sp, 0x20
-/* 0532E4 802982E4 0C0DE200 */  jal   Copy32BitTriple
+/* 0532E4 802982E4 0C0DE200 */  jal   Vec3f_Copy
 /* 0532E8 802982E8 24A50004 */   addiu $a1, $a1, 4
 /* 0532EC 802982EC 3C0E8033 */  lui   $t6, %hi(D_8032D000) # $t6, 0x8033
 /* 0532F0 802982F0 8DCED000 */  lw    $t6, %lo(D_8032D000)($t6)
@@ -28237,7 +28237,7 @@ glabel CutSceneExitPainting0
 /* 053450 80298450 34E71000 */  ori   $a3, (0x455C1000 & 0xFFFF) # ori $a3, $a3, 0x1000
 /* 053454 80298454 34C6A000 */  ori   $a2, (0x449DA000 & 0xFFFF) # ori $a2, $a2, 0xa000
 /* 053458 80298458 3C05C394 */  lui   $a1, 0xc394
-/* 05345C 8029845C 0C0DE210 */  jal   func_80378840
+/* 05345C 8029845C 0C0DE210 */  jal   Vec3f_Set
 /* 053460 80298460 24840010 */   addiu $a0, $a0, 0x10
 .L80298464:
 /* 053464 80298464 0C0A3E9D */  jal   func_8028FA74
@@ -28257,14 +28257,14 @@ glabel CutScene11Todo_0
 /* 053490 80298490 27A40028 */  addiu $a0, $sp, 0x28
 /* 053494 80298494 3C054348 */  lui   $a1, 0x4348
 /* 053498 80298498 3C064396 */  lui   $a2, 0x4396
-/* 05349C 8029849C 0C0DE210 */  jal   func_80378840
+/* 05349C 8029849C 0C0DE210 */  jal   Vec3f_Set
 /* 0534A0 802984A0 3C074348 */   lui   $a3, 0x4348
 /* 0534A4 802984A4 3C0E8033 */  lui   $t6, %hi(D_8032D000) # $t6, 0x8033
 /* 0534A8 802984A8 8DCED000 */  lw    $t6, %lo(D_8032D000)($t6)
 /* 0534AC 802984AC 27A40020 */  addiu $a0, $sp, 0x20
 /* 0534B0 802984B0 00002825 */  move  $a1, $zero
 /* 0534B4 802984B4 00003825 */  move  $a3, $zero
-/* 0534B8 802984B8 0C0DE25F */  jal   func_8037897C
+/* 0534B8 802984B8 0C0DE25F */  jal   Vec3s_Set
 /* 0534BC 802984BC 85C60012 */   lh    $a2, 0x12($t6)
 /* 0534C0 802984C0 3C058033 */  lui   $a1, %hi(D_8032D000) # $a1, 0x8033
 /* 0534C4 802984C4 8CA5D000 */  lw    $a1, %lo(D_8032D000)($a1)
@@ -28302,7 +28302,7 @@ glabel CutScene11Todo_1
 /* 053538 80298538 46062200 */  add.s $f8, $f4, $f6
 /* 05353C 8029853C 8DC7000C */  lw    $a3, 0xc($t6)
 /* 053540 80298540 44064000 */  mfc1  $a2, $f8
-/* 053544 80298544 0C0DE210 */  jal   func_80378840
+/* 053544 80298544 0C0DE210 */  jal   Vec3f_Set
 /* 053548 80298548 00000000 */   nop   
 /* 05354C 8029854C 8FA40030 */  lw    $a0, 0x30($sp)
 /* 053550 80298550 24050000 */  li    $a1, 0
@@ -28623,13 +28623,13 @@ glabel CutSceneDoor0
 /* 0539F4 802989F4 3C048034 */  lui   $a0, %hi(D_8033B6F0) # $a0, 0x8034
 /* 0539F8 802989F8 2484B6F0 */  addiu $a0, %lo(D_8033B6F0) # addiu $a0, $a0, -0x4910
 /* 0539FC 802989FC 24840004 */  addiu $a0, $a0, 4
-/* 053A00 80298A00 0C0DE200 */  jal   Copy32BitTriple
+/* 053A00 80298A00 0C0DE200 */  jal   Vec3f_Copy
 /* 053A04 80298A04 24A50010 */   addiu $a1, $a1, 0x10
 /* 053A08 80298A08 8FA50018 */  lw    $a1, 0x18($sp)
 /* 053A0C 80298A0C 3C048034 */  lui   $a0, %hi(D_8033B6F0) # $a0, 0x8034
 /* 053A10 80298A10 2484B6F0 */  addiu $a0, %lo(D_8033B6F0) # addiu $a0, $a0, -0x4910
 /* 053A14 80298A14 24840028 */  addiu $a0, $a0, 0x28
-/* 053A18 80298A18 0C0DE200 */  jal   Copy32BitTriple
+/* 053A18 80298A18 0C0DE200 */  jal   Vec3f_Copy
 /* 053A1C 80298A1C 24A50004 */   addiu $a1, $a1, 4
 /* 053A20 80298A20 10000001 */  b     .L80298A28
 /* 053A24 80298A24 00000000 */   nop   
@@ -28647,13 +28647,13 @@ glabel CutSceneDoor1
 /* 053A48 80298A48 3C058034 */  lui   $a1, %hi(D_8033B6F0) # $a1, 0x8034
 /* 053A4C 80298A4C 24A5B6F0 */  addiu $a1, %lo(D_8033B6F0) # addiu $a1, $a1, -0x4910
 /* 053A50 80298A50 24A50004 */  addiu $a1, $a1, 4
-/* 053A54 80298A54 0C0DE200 */  jal   Copy32BitTriple
+/* 053A54 80298A54 0C0DE200 */  jal   Vec3f_Copy
 /* 053A58 80298A58 24840010 */   addiu $a0, $a0, 0x10
 /* 053A5C 80298A5C 8FA40018 */  lw    $a0, 0x18($sp)
 /* 053A60 80298A60 3C058034 */  lui   $a1, %hi(D_8033B6F0) # $a1, 0x8034
 /* 053A64 80298A64 24A5B6F0 */  addiu $a1, %lo(D_8033B6F0) # addiu $a1, $a1, -0x4910
 /* 053A68 80298A68 24A50028 */  addiu $a1, $a1, 0x28
-/* 053A6C 80298A6C 0C0DE200 */  jal   Copy32BitTriple
+/* 053A6C 80298A6C 0C0DE200 */  jal   Vec3f_Copy
 /* 053A70 80298A70 24840004 */   addiu $a0, $a0, 4
 /* 053A74 80298A74 10000001 */  b     .L80298A7C
 /* 053A78 80298A78 00000000 */   nop   
@@ -28708,12 +28708,12 @@ glabel CutSceneDoor2
 /* 053B20 80298B20 2484001C */  addiu $a0, $a0, 0x1c
 /* 053B24 80298B24 00002825 */  move  $a1, $zero
 /* 053B28 80298B28 00003825 */  move  $a3, $zero
-/* 053B2C 80298B2C 0C0DE25F */  jal   func_8037897C
+/* 053B2C 80298B2C 0C0DE25F */  jal   Vec3s_Set
 /* 053B30 80298B30 01F83021 */   addu  $a2, $t7, $t8
 /* 053B34 80298B34 27A40024 */  addiu $a0, $sp, 0x24
 /* 053B38 80298B38 24050000 */  li    $a1, 0
 /* 053B3C 80298B3C 3C0642FA */  li    $a2, 0x42FA0000 # 0.000000
-/* 053B40 80298B40 0C0DE210 */  jal   func_80378840
+/* 053B40 80298B40 0C0DE210 */  jal   Vec3f_Set
 /* 053B44 80298B44 3C07437A */   li    $a3, 0x437A0000 # 0.000000
 /* 053B48 80298B48 87B90022 */  lh    $t9, 0x22($sp)
 /* 053B4C 80298B4C 17200005 */  bnez  $t9, .L80298B64
@@ -30922,7 +30922,7 @@ glabel func_8029AB70
 /* 055B80 8029AB80 3C058034 */  lui   $a1, %hi(D_8033B860) # $a1, 0x8034
 /* 055B84 8029AB84 8CA5B860 */  lw    $a1, %lo(D_8033B860)($a1)
 /* 055B88 8029AB88 8FA40034 */  lw    $a0, 0x34($sp)
-/* 055B8C 8029AB8C 0C0DE223 */  jal   func_8037888C
+/* 055B8C 8029AB8C 0C0DE223 */  jal   Vec3f_Add
 /* 055B90 8029AB90 24A50010 */   addiu $a1, $a1, 0x10
 /* 055B94 8029AB94 3C0E8034 */  lui   $t6, %hi(D_8033B860) # $t6, 0x8034
 /* 055B98 8029AB98 8DCEB860 */  lw    $t6, %lo(D_8033B860)($t6)
@@ -30976,7 +30976,7 @@ glabel func_8029AC3C
 /* 055C4C 8029AC4C 27A40030 */  addiu $a0, $sp, 0x30
 /* 055C50 8029AC50 24050000 */  li    $a1, 0
 /* 055C54 8029AC54 24060000 */  li    $a2, 0
-/* 055C58 8029AC58 0C0DE210 */  jal   func_80378840
+/* 055C58 8029AC58 0C0DE210 */  jal   Vec3f_Set
 /* 055C5C 8029AC5C 24070000 */   li    $a3, 0
 /* 055C60 8029AC60 27AE0028 */  addiu $t6, $sp, 0x28
 /* 055C64 8029AC64 AFAE0010 */  sw    $t6, 0x10($sp)
@@ -31311,7 +31311,7 @@ glabel BehBeginningLakituLoop
 /* 05612C 8029B12C 34E7C000 */  ori   $a3, (0x4591C000 & 0xFFFF) # ori $a3, $a3, 0xc000
 /* 056130 8029B130 27A40058 */  addiu $a0, $sp, 0x58
 /* 056134 8029B134 3C05C48D */  lui   $a1, 0xc48d
-/* 056138 8029B138 0C0DE210 */  jal   func_80378840
+/* 056138 8029B138 0C0DE210 */  jal   Vec3f_Set
 /* 05613C 8029B13C 3C06440C */   lui   $a2, 0x440c
 /* 056140 8029B140 3C198036 */  lui   $t9, %hi(D_8035FDF0) # $t9, 0x8036
 /* 056144 8029B144 8F39FDF0 */  lw    $t9, %lo(D_8035FDF0)($t9)
@@ -31463,7 +31463,7 @@ glabel BehBeginningLakituLoop
 /* 056380 8029B380 27A40064 */  addiu $a0, $sp, 0x64
 /* 056384 8029B384 3C05C2C8 */  lui   $a1, 0xc2c8
 /* 056388 8029B388 3C0642C8 */  lui   $a2, 0x42c8
-/* 05638C 8029B38C 0C0DE210 */  jal   func_80378840
+/* 05638C 8029B38C 0C0DE210 */  jal   Vec3f_Set
 /* 056390 8029B390 3C074396 */   lui   $a3, 0x4396
 /* 056394 8029B394 3C058034 */  lui   $a1, %hi(D_8033B860) # $a1, 0x8034
 /* 056398 8029B398 3C078033 */  lui   $a3, %hi(D_8032D000) # $a3, 0x8033
@@ -31703,7 +31703,7 @@ glabel BehEndBirds1Loop
 /* 056710 8029B710 27A40034 */  addiu $a0, $sp, 0x34
 /* 056714 8029B714 8D650110 */  lw    $a1, 0x110($t3)
 /* 056718 8029B718 8D66010C */  lw    $a2, 0x10c($t3)
-/* 05671C 8029B71C 0C0DE210 */  jal   func_80378840
+/* 05671C 8029B71C 0C0DE210 */  jal   Vec3f_Set
 /* 056720 8029B720 8D670108 */   lw    $a3, 0x108($t3)
 /* 056724 8029B724 3C0C8036 */  lui   $t4, %hi(D_8035FDF0) # $t4, 0x8036
 /* 056728 8029B728 8D8CFDF0 */  lw    $t4, %lo(D_8035FDF0)($t4)

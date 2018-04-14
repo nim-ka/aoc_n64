@@ -64,14 +64,7 @@ struct Struct80333F00
     OSViMode viMode;
 };
 
-struct Vec3f
-{
-    float x, y, z;
-};
-
-struct Vec3s
-{
-    s16 x, y, z;
-};
+typedef float Vec3f[3];
+typedef s16 Vec3s[3];
 
 #endif

@@ -203,7 +203,7 @@ glabel func_8026FD94
 /* 02AE3C 8026FE3C 00000000 */   nop   
 /* 02AE40 8026FE40 8FA40030 */  lw    $a0, 0x30($sp)
 /* 02AE44 8026FE44 8FA50034 */  lw    $a1, 0x34($sp)
-/* 02AE48 8026FE48 0C0DE200 */  jal   Copy32BitTriple
+/* 02AE48 8026FE48 0C0DE200 */  jal   Vec3f_Copy
 /* 02AE4C 8026FE4C 2484003C */   addiu $a0, $a0, 0x3c
 /* 02AE50 8026FE50 8FA80024 */  lw    $t0, 0x24($sp)
 /* 02AE54 8026FE54 8FA90030 */  lw    $t1, 0x30($sp)
@@ -244,7 +244,7 @@ glabel func_8026FD94
 /* 02AED4 8026FED4 8D870008 */  lw    $a3, 8($t4)
 /* 02AED8 8026FED8 2484003C */  addiu $a0, $a0, 0x3c
 /* 02AEDC 8026FEDC 44063000 */  mfc1  $a2, $f6
-/* 02AEE0 8026FEE0 0C0DE210 */  jal   func_80378840
+/* 02AEE0 8026FEE0 0C0DE210 */  jal   Vec3f_Set
 /* 02AEE4 8026FEE4 00000000 */   nop   
 /* 02AEE8 8026FEE8 8FAD0024 */  lw    $t5, 0x24($sp)
 /* 02AEEC 8026FEEC 8FAE0030 */  lw    $t6, 0x30($sp)
@@ -274,7 +274,7 @@ glabel func_8026FD94
 /* 02AF44 8026FF44 8FA6001C */  lw    $a2, 0x1c($sp)
 /* 02AF48 8026FF48 8F050000 */  lw    $a1, ($t8)
 /* 02AF4C 8026FF4C 8F070008 */  lw    $a3, 8($t8)
-/* 02AF50 8026FF50 0C0DE210 */  jal   func_80378840
+/* 02AF50 8026FF50 0C0DE210 */  jal   Vec3f_Set
 /* 02AF54 8026FF54 2484003C */   addiu $a0, $a0, 0x3c
 /* 02AF58 8026FF58 8FB90024 */  lw    $t9, 0x24($sp)
 /* 02AF5C 8026FF5C 8FA80030 */  lw    $t0, 0x30($sp)
@@ -574,7 +574,7 @@ glabel func_802703A8
 /* 02B3BC 802703BC AFAF001C */  sw    $t7, 0x1c($sp)
 /* 02B3C0 802703C0 8FA50040 */  lw    $a1, 0x40($sp)
 /* 02B3C4 802703C4 27A40020 */  addiu $a0, $sp, 0x20
-/* 02B3C8 802703C8 0C0DE200 */  jal   Copy32BitTriple
+/* 02B3C8 802703C8 0C0DE200 */  jal   Vec3f_Copy
 /* 02B3CC 802703CC 24A50048 */   addiu $a1, $a1, 0x48
 /* 02B3D0 802703D0 8FB80040 */  lw    $t8, 0x40($sp)
 /* 02B3D4 802703D4 8F19000C */  lw    $t9, 0xc($t8)
@@ -637,7 +637,7 @@ glabel func_802703A8
 /* 02B4B0 802704B0 8FA4001C */  lw    $a0, 0x1c($sp)
 /* 02B4B4 802704B4 8FA50040 */  lw    $a1, 0x40($sp)
 /* 02B4B8 802704B8 24840020 */  addiu $a0, $a0, 0x20
-/* 02B4BC 802704BC 0C0DE200 */  jal   Copy32BitTriple
+/* 02B4BC 802704BC 0C0DE200 */  jal   Vec3f_Copy
 /* 02B4C0 802704C0 24A5003C */   addiu $a1, $a1, 0x3c
 /* 02B4C4 802704C4 8FB90040 */  lw    $t9, 0x40($sp)
 /* 02B4C8 802704C8 8FA4001C */  lw    $a0, 0x1c($sp)
@@ -645,7 +645,7 @@ glabel func_802703A8
 /* 02B4D0 802704D0 8726002E */  lh    $a2, 0x2e($t9)
 /* 02B4D4 802704D4 87270030 */  lh    $a3, 0x30($t9)
 /* 02B4D8 802704D8 2484001A */  addiu $a0, $a0, 0x1a
-/* 02B4DC 802704DC 0C0DE25F */  jal   func_8037897C
+/* 02B4DC 802704DC 0C0DE25F */  jal   Vec3s_Set
 /* 02B4E0 802704E0 00052823 */   negu  $a1, $a1
 /* 02B4E4 802704E4 10000003 */  b     .L802704F4
 /* 02B4E8 802704E8 8FA20038 */   lw    $v0, 0x38($sp)
@@ -1760,7 +1760,7 @@ glabel func_8027140C
 /* 02C49C 8027149C 00002825 */  move  $a1, $zero
 /* 02C4A0 802714A0 00003025 */  move  $a2, $zero
 /* 02C4A4 802714A4 00003825 */  move  $a3, $zero
-/* 02C4A8 802714A8 0C0DE25F */  jal   func_8037897C
+/* 02C4A8 802714A8 0C0DE25F */  jal   Vec3s_Set
 /* 02C4AC 802714AC 24840032 */   addiu $a0, $a0, 0x32
 /* 02C4B0 802714B0 3C014278 */  li    $at, 0x42780000 # 0.000000
 /* 02C4B4 802714B4 44812000 */  mtc1  $at, $f4
@@ -3617,14 +3617,14 @@ glabel func_80272BF0
 /* 02DF54 80272F54 8FA90048 */  lw    $t1, 0x48($sp)
 /* 02DF58 80272F58 8D240088 */  lw    $a0, 0x88($t1)
 /* 02DF5C 80272F5C 2525003C */  addiu $a1, $t1, 0x3c
-/* 02DF60 80272F60 0C0DE200 */  jal   Copy32BitTriple
+/* 02DF60 80272F60 0C0DE200 */  jal   Vec3f_Copy
 /* 02DF64 80272F64 24840020 */   addiu $a0, $a0, 0x20
 /* 02DF68 80272F68 8FB80048 */  lw    $t8, 0x48($sp)
 /* 02DF6C 80272F6C 00002825 */  move  $a1, $zero
 /* 02DF70 80272F70 00003825 */  move  $a3, $zero
 /* 02DF74 80272F74 8F040088 */  lw    $a0, 0x88($t8)
 /* 02DF78 80272F78 8706002E */  lh    $a2, 0x2e($t8)
-/* 02DF7C 80272F7C 0C0DE25F */  jal   func_8037897C
+/* 02DF7C 80272F7C 0C0DE25F */  jal   Vec3s_Set
 /* 02DF80 80272F80 2484001A */   addiu $a0, $a0, 0x1a
 /* 02DF84 80272F84 10000003 */  b     .L80272F94
 /* 02DF88 80272F88 00001025 */   move  $v0, $zero

@@ -436,7 +436,7 @@ glabel func_802C9120
 /* 0842D4 802C92D4 E526019C */  swc1  $f6, 0x19c($t1)
 .L802C92D8:
 /* 0842D8 802C92D8 8FA40020 */  lw    $a0, 0x20($sp)
-/* 0842DC 802C92DC 0C0DE3AD */  jal   func_80378EB4
+/* 0842DC 802C92DC 0C0DE3AD */  jal   Mtx_Identity
 /* 0842E0 802C92E0 2484021C */   addiu $a0, $a0, 0x21c
 /* 0842E4 802C92E4 8FAA0020 */  lw    $t2, 0x20($sp)
 /* 0842E8 802C92E8 A54001F6 */  sh    $zero, 0x1f6($t2)

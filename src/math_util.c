@@ -7,111 +7,112 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wreturn-local-addr"
 
-struct Vec3f **Copy32BitTriple(struct Vec3f *dest, struct Vec3f *src)
+void *Vec3f_Copy(Vec3f dest, Vec3f src)
 {
-    dest->x = src->x;
-    dest->y = src->y;
-    dest->z = src->z;
+    dest[0] = src[0];
+    dest[1] = src[1];
+    dest[2] = src[2];
     return &dest;  //! warning: function returns address of local variable
 }
 
-struct Vec3f **func_80378840(struct Vec3f *dest, float x, float y, float z)
+void *Vec3f_Set(Vec3f dest, float x, float y, float z)
 {
-    dest->x = x;
-    dest->y = y;
-    dest->z = z;
+    dest[0] = x;
+    dest[1] = y;
+    dest[2] = z;
     return &dest;  //! warning: function returns address of local variable
 }
 
-struct Vec3f **func_8037888C(struct Vec3f *dest, struct Vec3f *a)
+void *Vec3f_Add(Vec3f dest, Vec3f a)
 {
-    dest->x += a->x;
-    dest->y += a->y;
-    dest->z += a->z;
+    dest[0] += a[0];
+    dest[1] += a[1];
+    dest[2] += a[2];
     return &dest;  //! warning: function returns address of local variable
 }
 
-struct Vec3f **Unknown803788E4(struct Vec3f *dest, struct Vec3f *a, struct Vec3f *b)
+void *Vec3f_Sum(Vec3f dest, Vec3f a, Vec3f b)
 {
-    dest->x = b->x + a->x;
-    dest->y = b->y + a->y;
-    dest->z = b->z + a->z;
+    dest[0] = a[0] + b[0];
+    dest[1] = a[1] + b[1];
+    dest[2] = a[2] + b[2];
     return &dest;  //! warning: function returns address of local variable
 }
 
-struct Vec3s **func_8037893C(struct Vec3s *dest, struct Vec3s *src)
+void *Vec3s_Copy(Vec3s dest, Vec3s src)
 {
-    dest->x = src->x;
-    dest->y = src->y;
-    dest->z = src->z;
+    dest[0] = src[0];
+    dest[1] = src[1];
+    dest[2] = src[2];
     return &dest;  //! warning: function returns address of local variable
 }
 
-struct Vec3s **func_8037897C(struct Vec3s *dest, s16 x, s16 y, s16 z)
+void *Vec3s_Set(Vec3s dest, s16 x, s16 y, s16 z)
 {
-    dest->x = x;
-    dest->y = y;
-    dest->z = z;
+    dest[0] = x;
+    dest[1] = y;
+    dest[2] = z;
     return &dest;  //! warning: function returns address of local variable
 }
 
-struct Vec3s **Unknown803789C8(struct Vec3s *dest, struct Vec3s *a)
+void *Vec3s_Add(Vec3s dest, Vec3s a)
 {
-    dest->x += a->x;
-    dest->y += a->y;
-    dest->z += a->z;
+    dest[0] += a[0];
+    dest[1] += a[1];
+    dest[2] += a[2];
     return &dest;  //! warning: function returns address of local variable
 }
 
-struct Vec3s **Unknown80378A20(struct Vec3s *dest, struct Vec3s *a, struct Vec3s *b)
+void *Vec3s_Sum(Vec3s dest, Vec3s a, Vec3s b)
 {
-    dest->x = b->x + a->x;
-    dest->y = b->y + a->y;
-    dest->z = b->z + a->z;
+    dest[0] = a[0] + b[0];
+    dest[1] = a[1] + b[1];
+    dest[2] = a[2] + b[2];
     return &dest;  //! warning: function returns address of local variable
 }
 
-struct Vec3s **Unknown80378A78(struct Vec3s *dest, struct Vec3s *a)
+void *Vec3s_Sub(Vec3s dest, Vec3s a)
 {
-    dest->x -= a->x;
-    dest->y -= a->y;
-    dest->z -= a->z;
+    dest[0] -= a[0];
+    dest[1] -= a[1];
+    dest[2] -= a[2];
     return &dest;  //! warning: function returns address of local variable
 }
 
-struct Vec3f **func_80378AD0(struct Vec3f *dest, struct Vec3s *a)
+void *Vec3sToVec3f(Vec3f dest, Vec3s a)
 {
-    dest->x = a->x;
-    dest->y = a->y;
-    dest->z = a->z;
+    dest[0] = a[0];
+    dest[1] = a[1];
+    dest[2] = a[2];
     return &dest;  //! warning: function returns address of local variable
 }
 
-struct Vec3s **func_80378B34(struct Vec3s *dest, struct Vec3f *a)
+void *Vec3fToVec3s(Vec3s dest, Vec3f a)
 {
-    dest->x = ((a->x > 0) ? 0.5f : -0.5f) + a->x;
-    dest->y = ((a->y > 0) ? 0.5f : -0.5f) + a->y;
-    dest->z = ((a->z > 0) ? 0.5f : -0.5f) + a->z;
+    // add/subtract 0.5 in order to round to the nearest int instead of truncating
+    dest[0] = a[0] + ((a[0] > 0) ? 0.5f : -0.5f);
+    dest[1] = a[1] + ((a[1] > 0) ? 0.5f : -0.5f);
+    dest[2] = a[2] + ((a[2] > 0) ? 0.5f : -0.5f);
     return &dest;  //! warning: function returns address of local variable
 }
 
-struct Vec3f **func_80378C50(struct Vec3f *dest, struct Vec3f *a, struct Vec3f *b, struct Vec3f *c)
+void *func_80378C50(Vec3f dest, Vec3f a, Vec3f b, Vec3f c)
 {
-    dest->x = (b->y - a->y) * (c->z - b->z) - (b->z - a->z) * (c->y - b->y);
-    dest->y = (b->z - a->z) * (c->x - b->x) - (b->x - a->x) * (c->z - b->z);
-    dest->z = (b->x - a->x) * (c->y - b->y) - (b->y - a->y) * (c->x - b->x);
+    dest[0] = (b[1] - a[1]) * (c[2] - b[2]) - (c[1] - b[1]) * (b[2] - a[2]);
+    dest[1] = (b[2] - a[2]) * (c[0] - b[0]) - (c[2] - b[2]) * (b[0] - a[0]);
+    dest[2] = (b[0] - a[0]) * (c[1] - b[1]) - (c[0] - b[0]) * (b[1] - a[1]);
     return &dest;  //! warning: function returns address of local variable
 }
 
-struct Vec3f **func_80378D38(struct Vec3f *dest, struct Vec3f *a, struct Vec3f *b)
+void *Vec3f_CrossProd(Vec3f dest, Vec3f a, Vec3f b)
 {
-    dest->x = a->y * b->z - a->z * b->y;
-    dest->y = a->z * b->x - a->x * b->z;
-    dest->z = a->x * b->y - a->y * b->x;
+    dest[0] = a[1] * b[2] - b[1] * a[2];
+    dest[1] = a[2] * b[0] - b[2] * a[0];
+    dest[2] = a[0] * b[1] - b[0] * a[1];
     return &dest;  //! warning: function returns address of local variable
 }
 
-float **func_80378DC0(float *dest)
+void *Vec3f_Normalize(Vec3f dest)
 {
     float invsqrt = 1.0f / sqrtf(dest[0] * dest[0] + dest[1] * dest[1] + dest[2] * dest[2]);
 
@@ -123,36 +124,38 @@ float **func_80378DC0(float *dest)
 
 #pragma GCC diagnostic pop
 
-void func_80378E68(int *dest, int *src)
+void Mtx_Copy(float dest[4][4], float src[4][4])
 {
     register int i;
-    register int *d = dest;
-    register int *s = src;
+    register u32 *d = (u32 *)dest;
+    register u32 *s = (u32 *)src;
 
     for (i = 0; i < 16; i++)
         *d++ = *s++;
 }
 
-void func_80378EB4(float *a)
+void Mtx_Identity(float mtx[4][4])
 {
     register int i;
     register float *dest;
 
-    for (i = 0, dest = a + 1; i < 14; i++, dest += 1)
-        *dest = 0.0f;
-    for (i = 0, dest = a;     i <  4; i++, dest += 5)
-        *dest = 1.0f;
+    // initialize everything except the first and last cells to 0
+    for (i = 0, dest = (float *)mtx + 1; i < 14; i++, dest += 1)
+        *dest = 0;
+    // initialize the diagonal cells to 1
+    for (i = 0, dest = (float *)mtx;     i <  4; i++, dest += 5)
+        *dest = 1;
 }
 
-void func_80378F24(float *a, float *b)
+void func_80378F24(float a[4][4], Vec3f b)
 {
-    func_80378EB4(a);
-    a[12] = b[0];
-    a[13] = b[1];
-    a[14] = b[2];
+    Mtx_Identity(a);
+    a[3][0] = b[0];
+    a[3][1] = b[1];
+    a[3][2] = b[2];
 }
 
-void func_80378F84(float *a, float *b, float *c, u16 d)
+void func_80378F84(float mtx[4][4], Vec3f b, Vec3f c, s16 d)
 {
     register float f20;
     float sp48;
@@ -174,9 +177,10 @@ void func_80378F84(float *a, float *b, float *c, u16 d)
     sp48 *= f20;
     sp44 *= f20;
 
-    sp3C = D_80387000[d >> 4];
-    sp40 = D_80386000[d >> 4] * sp44;
-    sp38 = -D_80386000[d >> 4] * sp48;
+    sp3C = D_80387000[(u16)d >> 4];
+    sp40 = D_80386000[(u16)d >> 4] * sp44;
+    sp38 = -D_80386000[(u16)d >> 4] * sp48;
+
     sp34 = c[0] - b[0];
     sp30 = c[1] - b[1];
     sp2C = c[2] - b[2];
@@ -205,23 +209,439 @@ void func_80378F84(float *a, float *b, float *c, u16 d)
     sp3C *= f20;
     sp38 *= f20;
 
-    a[0] = sp28;
-    a[4] = sp24;
-    a[8] = sp20;
-    a[12] = -(b[0] * sp28 + b[1] * sp24 + b[2] * sp20);
+    mtx[0][0] = sp28;
+    mtx[1][0] = sp24;
+    mtx[2][0] = sp20;
+    mtx[3][0] = -(b[0] * sp28 + b[1] * sp24 + b[2] * sp20);
 
-    a[1] = sp40;
-    a[5] = sp3C;
-    a[9] = sp38;
-    a[13] = -(b[0] * sp40 + b[1] * sp3C + b[2] * sp38);
+    mtx[0][1] = sp40;
+    mtx[1][1] = sp3C;
+    mtx[2][1] = sp38;
+    mtx[3][1] = -(b[0] * sp40 + b[1] * sp3C + b[2] * sp38);
 
-    a[2] = sp34;
-    a[6] = sp30;
-    a[10] = sp2C;
-    a[14] = -(b[0] * sp34 + b[1] * sp30 + b[2] * sp2C);
+    mtx[0][2] = sp34;
+    mtx[1][2] = sp30;
+    mtx[2][2] = sp2C;
+    mtx[3][2] = -(b[0] * sp34 + b[1] * sp30 + b[2] * sp2C);
 
-    a[3] = 0.0;
-    a[7] = 0.0;
-    a[11] = 0.0;
-    a[15] = 1.0;
+    mtx[0][3] = 0;
+    mtx[1][3] = 0;
+    mtx[2][3] = 0;
+    mtx[3][3] = 1;
 }
+
+void func_80379440(float mtx[4][4], Vec3f b, u16 *c)
+{
+    register float f12 = D_80386000[c[0] >> 4];
+    register float f14 = D_80387000[c[0] >> 4];
+    register float f16 = D_80386000[c[1] >> 4];
+    register float f18 = D_80387000[c[1] >> 4];
+    register float spC = D_80386000[c[2] >> 4];
+    register float sp8 = D_80387000[c[2] >> 4];
+
+    mtx[0][0] = f18 * sp8 + f12 * f16 * spC;
+    mtx[1][0] = -f18 * spC + f12 * f16 * sp8;
+    mtx[2][0] = f14 * f16;
+    mtx[3][0] = b[0];
+
+    mtx[0][1] = f14 * spC;
+    mtx[1][1] = f14 * sp8;
+    mtx[2][1] = -f12;
+    mtx[3][1] = b[1];
+
+    mtx[0][2] = -f16 * sp8 + f12 * f18 * spC;
+    mtx[1][2] = f16 * spC + f12 * f18 * sp8;
+    mtx[2][2] = f14 * f18;
+    mtx[3][2] = b[2];
+
+    mtx[0][3] = mtx[1][3] = mtx[2][3] = 0;
+    mtx[3][3] = 1;
+}
+
+void func_803795F0(float mtx[4][4], Vec3f b, u16 *c)
+{
+    register float f12 = D_80386000[c[0] >> 4];
+    register float f14 = D_80387000[c[0] >> 4];
+    register float f16 = D_80386000[c[1] >> 4];
+    register float f18 = D_80387000[c[1] >> 4];
+    register float sp4 = D_80386000[c[2] >> 4];
+    register float sp0 = D_80387000[c[2] >> 4];
+
+    mtx[0][0] = f18 * sp0;
+    mtx[0][1] = f18 * sp4;
+    mtx[0][2] = -f16;
+    mtx[0][3] = 0;
+
+    mtx[1][0] = f12 * f16 * sp0 - f14 * sp4;
+    mtx[1][1] = f12 * f16 * sp4 + f14 * sp0;
+    mtx[1][2] = f12 * f18;
+    mtx[1][3] = 0;
+
+    mtx[2][0] = f14 * f16 * sp0 + f12 * sp4;
+    mtx[2][1] = f14 * f16 * sp4 - f12 * sp0;
+    mtx[2][2] = f14 * f18;
+    mtx[2][3] = 0;
+
+    mtx[3][0] = b[0];
+    mtx[3][1] = b[1];
+    mtx[3][2] = b[2];
+    mtx[3][3] = 1;
+}
+
+void func_80379798(float mtx1[4][4], float mtx2[4][4], Vec3f c, s16 d)
+{
+    mtx1[0][0] = D_80387000[(u16)d >> 4];
+    mtx1[0][1] = D_80386000[(u16)d >> 4];
+    mtx1[0][2] = 0;
+    mtx1[0][3] = 0;
+
+    mtx1[1][0] = -mtx1[0][1];
+    mtx1[1][1] = mtx1[0][0];
+    mtx1[1][2] = 0;
+    mtx1[1][3] = 0;
+
+    mtx1[2][0] = 0;
+    mtx1[2][1] = 0;
+    mtx1[2][2] = 1;
+    mtx1[2][3] = 0;
+
+    mtx1[3][0] = mtx2[0][0] * c[0] + mtx2[1][0] * c[1] + mtx2[2][0] * c[2] + mtx2[3][0];
+    mtx1[3][1] = mtx2[0][1] * c[0] + mtx2[1][1] * c[1] + mtx2[2][1] * c[2] + mtx2[3][1];
+    mtx1[3][2] = mtx2[0][2] * c[0] + mtx2[1][2] * c[1] + mtx2[2][2] * c[2] + mtx2[3][2];
+    mtx1[3][3] = 1;
+}
+
+void func_80379918(float mtx[4][4], Vec3f b, Vec3f c, s16 d)
+{
+    Vec3f sp34;
+    Vec3f sp28;
+    Vec3f sp1C;
+
+    Vec3f_Set(sp34, D_80386000[(u16)d >> 4], 0, D_80387000[(u16)d >> 4]);
+    Vec3f_Normalize(b);
+    Vec3f_CrossProd(sp28, b, sp34);
+    Vec3f_Normalize(sp28);
+    Vec3f_CrossProd(sp1C, sp28, b);
+    Vec3f_Normalize(sp1C);
+
+    mtx[0][0] = sp28[0];
+    mtx[0][1] = sp28[1];
+    mtx[0][2] = sp28[2];
+
+    mtx[3][0] = c[0];
+    mtx[1][0] = b[0];
+    mtx[1][1] = b[1];
+    mtx[1][2] = b[2];
+    mtx[3][1] = c[1];
+    mtx[2][0] = sp1C[0];
+    mtx[2][1] = sp1C[1];
+    mtx[2][2] = sp1C[2];
+    mtx[3][2] = c[2];
+    mtx[0][3] = 0;
+    mtx[1][3] = 0;
+    mtx[2][3] = 0;
+    mtx[3][3] = 1;
+}
+
+void func_80379AA4(float mtx[4][4], Vec3f b, s16 c, float d)
+{
+    int sp74;
+    Vec3f sp68;
+    Vec3f sp5C;
+    Vec3f sp50;
+    Vec3f sp44;
+    Vec3f sp38;
+    Vec3f sp2C;
+    Vec3f sp20;
+    float sp1C;
+    float sp18 = -d * 3;
+
+    sp68[0] = b[0] + d * D_80386000[(u16)(c + 0x2AAA) >> 4];
+    sp68[2] = b[2] + d * D_80387000[(u16)(c + 0x2AAA) >> 4];
+    sp5C[0] = b[0] + d * D_80386000[(u16)(c + 0x8000) >> 4];
+    sp5C[2] = b[2] + d * D_80387000[(u16)(c + 0x8000) >> 4];
+    sp50[0] = b[0] + d * D_80386000[(u16)(c + 0xD555) >> 4];
+    sp50[2] = b[2] + d * D_80387000[(u16)(c + 0xD555) >> 4];
+
+    sp68[1] = func_80381900(sp68[0], b[1] + 150, sp68[2], &sp74);
+    sp5C[1] = func_80381900(sp5C[0], b[1] + 150, sp5C[2], &sp74);
+    sp50[1] = func_80381900(sp50[0], b[1] + 150, sp50[2], &sp74);
+
+    if (sp68[1] - b[1] < sp18)
+        sp68[1] = b[1];
+
+    if (sp5C[1] - b[1] < sp18)
+        sp5C[1] = b[1];
+
+    if (sp50[1] - b[1] < sp18)
+        sp50[1] = b[1];
+
+    sp1C = (sp68[1] + sp5C[1] + sp50[1]) / 3;
+
+    Vec3f_Set(sp44, D_80386000[(u16)c >> 4], 0, D_80387000[(u16)c >> 4]);
+    func_80378C50(sp2C, sp68, sp5C, sp50);
+    Vec3f_Normalize(sp2C);
+    Vec3f_CrossProd(sp38, sp2C, sp44);
+    Vec3f_Normalize(sp38);
+    Vec3f_CrossProd(sp20, sp38, sp2C);
+    Vec3f_Normalize(sp20);
+
+    mtx[0][0] = sp38[0];
+    mtx[0][1] = sp38[1];
+    mtx[0][2] = sp38[2];
+    mtx[3][0] = b[0];
+
+    mtx[1][0] = sp2C[0];
+    mtx[1][1] = sp2C[1];
+    mtx[1][2] = sp2C[2];
+    mtx[3][1] = (sp1C < b[1]) ? b[1] : sp1C;
+
+    mtx[2][0] = sp20[0];
+    mtx[2][1] = sp20[1];
+    mtx[2][2] = sp20[2];
+    mtx[3][2] = b[2];
+
+    mtx[0][3] = 0;
+    mtx[1][3] = 0;
+    mtx[2][3] = 0;
+    mtx[3][3] = 1;
+}
+
+// Multiplies a * b, as 3x3 matrices
+void Mtx_Mul(float dest[4][4], float a[4][4], float b[4][4])
+{
+    float temp[4][4];
+    register float col0;
+    register float col1;
+    register float col2;
+
+    // row 0
+    col0 = a[0][0];
+    col1 = a[0][1];
+    col2 = a[0][2];
+    temp[0][0] = col0 * b[0][0] + col1 * b[1][0] + col2 * b[2][0];
+    temp[0][1] = col0 * b[0][1] + col1 * b[1][1] + col2 * b[2][1];
+    temp[0][2] = col0 * b[0][2] + col1 * b[1][2] + col2 * b[2][2];
+
+    // row 1
+    col0 = a[1][0];
+    col1 = a[1][1];
+    col2 = a[1][2];
+    temp[1][0] = col0 * b[0][0] + col1 * b[1][0] + col2 * b[2][0];
+    temp[1][1] = col0 * b[0][1] + col1 * b[1][1] + col2 * b[2][1];
+    temp[1][2] = col0 * b[0][2] + col1 * b[1][2] + col2 * b[2][2];
+
+    // row 2
+    col0 = a[2][0];
+    col1 = a[2][1];
+    col2 = a[2][2];
+    temp[2][0] = col0 * b[0][0] + col1 * b[1][0] + col2 * b[2][0];
+    temp[2][1] = col0 * b[0][1] + col1 * b[1][1] + col2 * b[2][1];
+    temp[2][2] = col0 * b[0][2] + col1 * b[1][2] + col2 * b[2][2];
+
+    // row 3
+    col0 = a[3][0];
+    col1 = a[3][1];
+    col2 = a[3][2];
+    temp[3][0] = col0 * b[0][0] + col1 * b[1][0] + col2 * b[2][0] + b[3][0];
+    temp[3][1] = col0 * b[0][1] + col1 * b[1][1] + col2 * b[2][1] + b[3][1];
+    temp[3][2] = col0 * b[0][2] + col1 * b[1][2] + col2 * b[2][2] + b[3][2];
+
+    temp[0][3] = temp[1][3] = temp[2][3] = 0;
+    temp[3][3] = 1;
+
+    Mtx_Copy(dest, temp);
+}
+
+void func_8037A29C(float a[4][4], float b[4][4], Vec3f c)
+{
+    register int i;
+
+    for (i = 0; i < 4; i++)
+    {
+        a[0][i] = b[0][i] * c[0];
+        a[1][i] = b[1][i] * c[1];
+        a[2][i] = b[2][i] * c[2];
+        a[3][i] = b[3][i];
+    }
+}
+
+void Unknown8037A348(float a[4][4], Vec3s b)
+{
+    register float f12 = b[0];
+    register float f14 = b[1];
+    register float f16 = b[2];
+
+    b[0] = f12 * a[0][0] + f14 * a[1][0] + f16 * a[2][0] + a[3][0];
+    b[1] = f12 * a[0][1] + f14 * a[1][1] + f16 * a[2][1] + a[3][1];
+    b[2] = f12 * a[0][2] + f14 * a[1][2] + f16 * a[2][2] + a[3][2];
+}
+
+void func_8037A434(s16 *a, float b[4][4])
+{
+    int sp14;
+    register int i;
+    register s16 *a3 = a;
+    register s16 *t0 = a + 16;
+    register float *t1 = (float *)b;
+
+    for (i = 0; i < 16; i++)
+    {
+        sp14 = *t1++ * 0x10000;
+        //! endian-dependent code
+        *a3++ = ((s16 *)&sp14)[0];
+        *t0++ = ((s16 *)&sp14)[1];
+    }
+}
+
+void func_8037A4B8(s16 *a, s16 b)
+{
+    float temp[4][4];
+
+    Mtx_Identity(temp);
+    temp[0][0] = D_80387000[(u16)b >> 4];
+    temp[0][1] = D_80386000[(u16)b >> 4];
+    temp[1][0] = -temp[0][1];
+    temp[1][1] = temp[0][0];
+    func_8037A434(a, temp);
+}
+
+void func_8037A550(Vec3f a, float b[4][4], float c[4][4])
+{
+    float spC = c[3][0] * c[0][0] + c[3][1] * c[0][1] + c[3][2] * c[0][2];
+    float sp8 = c[3][0] * c[1][0] + c[3][1] * c[1][1] + c[3][2] * c[1][2];
+    float sp4 = c[3][0] * c[2][0] + c[3][1] * c[2][1] + c[3][2] * c[2][2];
+
+    a[0] = b[3][0] * c[0][0] + b[3][1] * c[0][1] + b[3][2] * c[0][2] - spC;
+    a[1] = b[3][0] * c[1][0] + b[3][1] * c[1][1] + b[3][2] * c[1][2] - sp8;
+    a[2] = b[3][0] * c[2][0] + b[3][1] * c[2][1] + b[3][2] * c[2][2] - sp4;
+}
+
+void func_8037A69C(Vec3f a, Vec3f b, float *c, s16 *d, s16 *e)
+{
+    register float f20 = b[0] - a[0];
+    register float f22 = b[1] - a[1];
+    register float f24 = b[2] - a[2];
+
+    *c = sqrtf(f20 * f20 + f22 * f22 + f24 * f24);
+    *d = func_8037A9A8(sqrtf(f20 * f20 + f24 * f24), f22);
+    *e = func_8037A9A8(f24, f20);
+}
+
+void func_8037A788(Vec3f a, Vec3f b, float c, s16 d, s16 e)
+{
+    b[0] = a[0] + c * D_80387000[(u16)d >> 4] * D_80386000[(u16)e >> 4];
+    b[1] = a[1] + c * D_80386000[(u16)d >> 4];
+    b[2] = a[2] + c * D_80387000[(u16)d >> 4] * D_80387000[(u16)e >> 4];
+}
+
+/*
+int func_8037A860(int a, int b, int c, int d)
+{
+    if (a < b)
+    {
+        a += c;
+        if (a > b)
+            a = b;
+    }
+    else
+    {
+        a -= d;
+        if (a < b)
+            a = b;
+    }
+    return a;
+}
+
+float func_8037A8B4(float a, float b, float c, float d)
+{
+    if (a < b)
+    {
+        a += c;
+        if (a > b)
+            a = b;
+    }
+    else
+    {
+        a -= d;
+        if (a < b)
+            a = b;
+    }
+    return a;
+}
+
+u16 func_8037A924(float a, float b)
+{
+    u16 ret;
+
+    if (b == 0)
+        ret = D_8038B000[0];
+    else
+        ret = D_8038B000[(int)(a / b * 1024 + 0.5f)];
+    return ret;
+}
+
+s16 func_8037A9A8(float a, float b)
+{
+    u16 ret;
+
+    if (b >= 0)
+    {
+        if (a >= 0)
+        {
+            if (a >= b)
+                ret = func_8037A924(b, a);
+            else
+                ret = 0x4000 - func_8037A924(a, b);
+        }
+        else
+        {
+            a = -a;
+            if (a < b)
+                ret = 0x4000 + func_8037A924(a, b);
+            else
+                ret = 0x8000 - func_8037A924(b, a);
+        }
+    }
+    else
+    {
+        b = -b;
+        if (a < 0)
+        {
+            a = -a;
+            if (a >= b)
+                ret = 0x8000 + func_8037A924(b, a);
+            else
+                ret = 0xC000 - func_8037A924(a, b);
+        }
+        else
+        {
+            if (a < b)
+                ret = 0xC000 + func_8037A924(a, b);
+            else
+                ret = -func_8037A924(b, a);
+        }
+    }
+    return ret;
+}
+
+float Unknown8037AB88(float a, float b)
+{
+    return (float)func_8037A9A8(a, b) * D_8038BA90 / 0x8000;
+}
+
+void func_8037ABEC(float a, float b)
+{
+    float sp14 = 1 - a;
+    float sp10 = sp14 * sp14;
+    float spC = sp10 * sp14;
+    float sp8 = a * a;
+    float sp4 = sp8 * a;
+
+    // jump table
+    if (D_8038BC98 - 1 < 5)
+    {
+
+    }
+}
+*/
