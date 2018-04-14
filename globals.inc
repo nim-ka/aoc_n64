@@ -1,6 +1,8 @@
 # globally accessible functions and data
 # these will be accessible by C code and show up in the .map file
 
+.set NULL, 0 # todo, add include vars.inc for common incbin or data variables
+
 .global LevelProc_8016F508
 .global Geo18_8016F670
 .global Geo18_8016F984
