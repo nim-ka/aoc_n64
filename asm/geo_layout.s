@@ -20,11 +20,11 @@ glabel GeoLayout00
 /* 0F8784 8037CD74 8DCEBD80 */  lw    $t6, %lo(D_8038BD80)($t6)
 /* 0F8788 8037CD78 3C088039 */  lui   $t0, %hi(D_8038BD7A) # $t0, 0x8039
 /* 0F878C 8037CD7C 8508BD7A */  lh    $t0, %lo(D_8038BD7A)($t0)
-/* 0F8790 8037CD80 3C018039 */  lui   $at, 0x8039
+/* 0F8790 8037CD80 3C018039 */  lui   $at, %hi(D_8038BCB8)
 /* 0F8794 8037CD84 0018C880 */  sll   $t9, $t8, 2
 /* 0F8798 8037CD88 00390821 */  addu  $at, $at, $t9
 /* 0F879C 8037CD8C 25CF0008 */  addiu $t7, $t6, 8
-/* 0F87A0 8037CD90 AC2FBCB8 */  sw    $t7, -0x4348($at)
+/* 0F87A0 8037CD90 AC2FBCB8 */  sw    $t7, %lo(D_8038BCB8)($at)
 /* 0F87A4 8037CD94 3C018039 */  lui   $at, %hi(D_8038BD7A) # $at, 0x8039
 /* 0F87A8 8037CD98 25090001 */  addiu $t1, $t0, 1
 /* 0F87AC 8037CD9C A429BD7A */  sh    $t1, %lo(D_8038BD7A)($at)
@@ -36,12 +36,12 @@ glabel GeoLayout00
 /* 0F87C4 8037CDB4 858CBD7E */  lh    $t4, %lo(D_8038BD7E)($t4)
 /* 0F87C8 8037CDB8 3C0F8039 */  lui   $t7, %hi(D_8038BD7A) # $t7, 0x8039
 /* 0F87CC 8037CDBC 85EFBD7A */  lh    $t7, %lo(D_8038BD7A)($t7)
-/* 0F87D0 8037CDC0 3C018039 */  lui   $at, 0x8039
+/* 0F87D0 8037CDC0 3C018039 */  lui   $at, %hi(D_8038BCB8)
 /* 0F87D4 8037CDC4 000EC080 */  sll   $t8, $t6, 2
 /* 0F87D8 8037CDC8 000A5C00 */  sll   $t3, $t2, 0x10
 /* 0F87DC 8037CDCC 00380821 */  addu  $at, $at, $t8
 /* 0F87E0 8037CDD0 016C6821 */  addu  $t5, $t3, $t4
-/* 0F87E4 8037CDD4 AC2DBCB8 */  sw    $t5, -0x4348($at)
+/* 0F87E4 8037CDD4 AC2DBCB8 */  sw    $t5, %lo(D_8038BCB8)($at)
 /* 0F87E8 8037CDD8 3C018039 */  lui   $at, %hi(D_8038BD7A) # $at, 0x8039
 /* 0F87EC 8037CDDC 25F90001 */  addiu $t9, $t7, 1
 /* 0F87F0 8037CDE0 A439BD7A */  sh    $t9, %lo(D_8038BD7A)($at)
@@ -71,7 +71,7 @@ glabel GeoLayout01
 /* 0F8844 8037CE34 A42EBD7A */  sh    $t6, %lo(D_8038BD7A)($at)
 /* 0F8848 8037CE38 3C048039 */  lui   $a0, %hi(D_8038FFFF) # $a0, 0x8039
 /* 0F884C 8037CE3C 8484BD7A */  lh    $a0, %lo(D_8038BD7A)($a0)
-/* 0F8850 8037CE40 3C088039 */  lui   $t0, 0x8039
+/* 0F8850 8037CE40 3C088039 */  lui   $t0, %hi(D_8038BCB8)
 /* 0F8854 8037CE44 3C018039 */  lui   $at, %hi(D_8038BD7A) # $at, 0x8039
 /* 0F8858 8037CE48 2484FFFF */  addiu $a0, %lo(D_8038FFFF) # addiu $a0, $a0, -1
 /* 0F885C 8037CE4C 00047C00 */  sll   $t7, $a0, 0x10
@@ -80,23 +80,23 @@ glabel GeoLayout01
 /* 0F8868 8037CE58 03002025 */  move  $a0, $t8
 /* 0F886C 8037CE5C 0004C880 */  sll   $t9, $a0, 2
 /* 0F8870 8037CE60 01194021 */  addu  $t0, $t0, $t9
-/* 0F8874 8037CE64 8D08BCB8 */  lw    $t0, -0x4348($t0)
+/* 0F8874 8037CE64 8D08BCB8 */  lw    $t0, %lo(D_8038BCB8)($t0)
 /* 0F8878 8037CE68 A424BD7A */  sh    $a0, %lo(D_8038BD7A)($at)
 /* 0F887C 8037CE6C 3C018039 */  lui   $at, %hi(D_8038BD7E) # $at, 0x8039
 /* 0F8880 8037CE70 3109FFFF */  andi  $t1, $t0, 0xffff
 /* 0F8884 8037CE74 A429BD7E */  sh    $t1, %lo(D_8038BD7E)($at)
 /* 0F8888 8037CE78 3C0A8039 */  lui   $t2, %hi(D_8038BD7A) # $t2, 0x8039
 /* 0F888C 8037CE7C 854ABD7A */  lh    $t2, %lo(D_8038BD7A)($t2)
-/* 0F8890 8037CE80 3C0C8039 */  lui   $t4, 0x8039
+/* 0F8890 8037CE80 3C0C8039 */  lui   $t4, %hi(D_8038BCB8)
 /* 0F8894 8037CE84 3C018039 */  lui   $at, %hi(D_8038BD78) # $at, 0x8039
 /* 0F8898 8037CE88 000A5880 */  sll   $t3, $t2, 2
 /* 0F889C 8037CE8C 018B6021 */  addu  $t4, $t4, $t3
-/* 0F88A0 8037CE90 8D8CBCB8 */  lw    $t4, -0x4348($t4)
+/* 0F88A0 8037CE90 8D8CBCB8 */  lw    $t4, %lo(D_8038BCB8)($t4)
 /* 0F88A4 8037CE94 000C6C02 */  srl   $t5, $t4, 0x10
 /* 0F88A8 8037CE98 A42DBD78 */  sh    $t5, %lo(D_8038BD78)($at)
 /* 0F88AC 8037CE9C 3C048039 */  lui   $a0, %hi(D_8038FFFF) # $a0, 0x8039
 /* 0F88B0 8037CEA0 8484BD7A */  lh    $a0, %lo(D_8038BD7A)($a0)
-/* 0F88B4 8037CEA4 3C198039 */  lui   $t9, 0x8039
+/* 0F88B4 8037CEA4 3C198039 */  lui   $t9, %hi(D_8038BCB8)
 /* 0F88B8 8037CEA8 3C018039 */  lui   $at, %hi(D_8038BD7A) # $at, 0x8039
 /* 0F88BC 8037CEAC 2484FFFF */  addiu $a0, %lo(D_8038FFFF) # addiu $a0, $a0, -1
 /* 0F88C0 8037CEB0 00047400 */  sll   $t6, $a0, 0x10
@@ -105,7 +105,7 @@ glabel GeoLayout01
 /* 0F88CC 8037CEBC 01E02025 */  move  $a0, $t7
 /* 0F88D0 8037CEC0 0004C080 */  sll   $t8, $a0, 2
 /* 0F88D4 8037CEC4 0338C821 */  addu  $t9, $t9, $t8
-/* 0F88D8 8037CEC8 8F39BCB8 */  lw    $t9, -0x4348($t9)
+/* 0F88D8 8037CEC8 8F39BCB8 */  lw    $t9, %lo(D_8038BCB8)($t9)
 /* 0F88DC 8037CECC A424BD7A */  sh    $a0, %lo(D_8038BD7A)($at)
 /* 0F88E0 8037CED0 3C018039 */  lui   $at, %hi(D_8038BD80) # $at, 0x8039
 /* 0F88E4 8037CED4 AC39BD80 */  sw    $t9, %lo(D_8038BD80)($at)
@@ -130,11 +130,11 @@ glabel GeoLayout02
 /* 0F8924 8037CF14 8F18BD80 */  lw    $t8, %lo(D_8038BD80)($t8)
 /* 0F8928 8037CF18 3C0A8039 */  lui   $t2, %hi(D_8038BD7A) # $t2, 0x8039
 /* 0F892C 8037CF1C 854ABD7A */  lh    $t2, %lo(D_8038BD7A)($t2)
-/* 0F8930 8037CF20 3C018039 */  lui   $at, 0x8039
+/* 0F8930 8037CF20 3C018039 */  lui   $at, %hi(D_8038BCB8)
 /* 0F8934 8037CF24 00084880 */  sll   $t1, $t0, 2
 /* 0F8938 8037CF28 00290821 */  addu  $at, $at, $t1
 /* 0F893C 8037CF2C 27190008 */  addiu $t9, $t8, 8
-/* 0F8940 8037CF30 AC39BCB8 */  sw    $t9, -0x4348($at)
+/* 0F8940 8037CF30 AC39BCB8 */  sw    $t9, %lo(D_8038BCB8)($at)
 /* 0F8944 8037CF34 3C018039 */  lui   $at, %hi(D_8038BD7A) # $at, 0x8039
 /* 0F8948 8037CF38 254B0001 */  addiu $t3, $t2, 1
 /* 0F894C 8037CF3C A42BBD7A */  sh    $t3, %lo(D_8038BD7A)($at)
@@ -157,7 +157,7 @@ glabel GeoLayout03
 /* 0F8980 8037CF70 27BDFFF8 */  addiu $sp, $sp, -8
 /* 0F8984 8037CF74 3C048039 */  lui   $a0, %hi(D_8038FFFF) # $a0, 0x8039
 /* 0F8988 8037CF78 8484BD7A */  lh    $a0, %lo(D_8038BD7A)($a0)
-/* 0F898C 8037CF7C 3C198039 */  lui   $t9, 0x8039
+/* 0F898C 8037CF7C 3C198039 */  lui   $t9, %hi(D_8038BCB8)
 /* 0F8990 8037CF80 3C018039 */  lui   $at, %hi(D_8038BD7A) # $at, 0x8039
 /* 0F8994 8037CF84 2484FFFF */  addiu $a0, %lo(D_8038FFFF) # addiu $a0, $a0, -1
 /* 0F8998 8037CF88 00047400 */  sll   $t6, $a0, 0x10
@@ -166,7 +166,7 @@ glabel GeoLayout03
 /* 0F89A4 8037CF94 01E02025 */  move  $a0, $t7
 /* 0F89A8 8037CF98 0004C080 */  sll   $t8, $a0, 2
 /* 0F89AC 8037CF9C 0338C821 */  addu  $t9, $t9, $t8
-/* 0F89B0 8037CFA0 8F39BCB8 */  lw    $t9, -0x4348($t9)
+/* 0F89B0 8037CFA0 8F39BCB8 */  lw    $t9, %lo(D_8038BCB8)($t9)
 /* 0F89B4 8037CFA4 A424BD7A */  sh    $a0, %lo(D_8038BD7A)($at)
 /* 0F89B8 8037CFA8 3C018039 */  lui   $at, %hi(D_8038BD80) # $at, 0x8039
 /* 0F89BC 8037CFAC AC39BD80 */  sw    $t9, %lo(D_8038BD80)($at)
@@ -233,12 +233,12 @@ glabel GeoLayout06
 /* 0F8A8C 8037D07C 3C088039 */  lui   $t0, %hi(D_8038BD78) # $t0, 0x8039
 /* 0F8A90 8037D080 8508BD78 */  lh    $t0, %lo(D_8038BD78)($t0)
 /* 0F8A94 8037D084 97AC0006 */  lhu   $t4, 6($sp)
-/* 0F8A98 8037D088 3C0A8039 */  lui   $t2, 0x8039
+/* 0F8A98 8037D088 3C0A8039 */  lui   $t2, %hi(D_8038BCF8)
 /* 0F8A9C 8037D08C 3C0B8039 */  lui   $t3, %hi(D_8038BCAC) # $t3, 0x8039
 /* 0F8AA0 8037D090 00084880 */  sll   $t1, $t0, 2
 /* 0F8AA4 8037D094 8D6BBCAC */  lw    $t3, %lo(D_8038BCAC)($t3)
 /* 0F8AA8 8037D098 01495021 */  addu  $t2, $t2, $t1
-/* 0F8AAC 8037D09C 8D4ABCF8 */  lw    $t2, -0x4308($t2)
+/* 0F8AAC 8037D09C 8D4ABCF8 */  lw    $t2, %lo(D_8038BCF8)($t2)
 /* 0F8AB0 8037D0A0 000C6880 */  sll   $t5, $t4, 2
 /* 0F8AB4 8037D0A4 016D7021 */  addu  $t6, $t3, $t5
 /* 0F8AB8 8037D0A8 ADCA0000 */  sw    $t2, ($t6)
@@ -278,22 +278,22 @@ glabel GeoLayout07
 .L8037D120:
 /* 0F8B30 8037D120 3C098039 */  lui   $t1, %hi(D_8038BD78) # $t1, 0x8039
 /* 0F8B34 8037D124 8529BD78 */  lh    $t1, %lo(D_8038BD78)($t1)
-/* 0F8B38 8037D128 3C0B8039 */  lui   $t3, 0x8039
+/* 0F8B38 8037D128 3C0B8039 */  lui   $t3, %hi(D_8038BCF8)
 /* 0F8B3C 8037D12C 97A80004 */  lhu   $t0, 4($sp)
 /* 0F8B40 8037D130 00095080 */  sll   $t2, $t1, 2
 /* 0F8B44 8037D134 016A5821 */  addu  $t3, $t3, $t2
-/* 0F8B48 8037D138 8D6BBCF8 */  lw    $t3, -0x4308($t3)
+/* 0F8B48 8037D138 8D6BBCF8 */  lw    $t3, %lo(D_8038BCF8)($t3)
 /* 0F8B4C 8037D13C A5680002 */  sh    $t0, 2($t3)
 /* 0F8B50 8037D140 1000001A */  b     .L8037D1AC
 /* 0F8B54 8037D144 00000000 */   nop   
 .L8037D148:
 /* 0F8B58 8037D148 3C0C8039 */  lui   $t4, %hi(D_8038BD78) # $t4, 0x8039
 /* 0F8B5C 8037D14C 858CBD78 */  lh    $t4, %lo(D_8038BD78)($t4)
-/* 0F8B60 8037D150 3C0E8039 */  lui   $t6, 0x8039
+/* 0F8B60 8037D150 3C0E8039 */  lui   $t6, %hi(D_8038BCF8)
 /* 0F8B64 8037D154 97B80004 */  lhu   $t8, 4($sp)
 /* 0F8B68 8037D158 000C6880 */  sll   $t5, $t4, 2
 /* 0F8B6C 8037D15C 01CD7021 */  addu  $t6, $t6, $t5
-/* 0F8B70 8037D160 8DCEBCF8 */  lw    $t6, -0x4308($t6)
+/* 0F8B70 8037D160 8DCEBCF8 */  lw    $t6, %lo(D_8038BCF8)($t6)
 /* 0F8B74 8037D164 85CF0002 */  lh    $t7, 2($t6)
 /* 0F8B78 8037D168 01F8C825 */  or    $t9, $t7, $t8
 /* 0F8B7C 8037D16C A5D90002 */  sh    $t9, 2($t6)
@@ -302,11 +302,11 @@ glabel GeoLayout07
 .L8037D178:
 /* 0F8B88 8037D178 3C098039 */  lui   $t1, %hi(D_8038BD78) # $t1, 0x8039
 /* 0F8B8C 8037D17C 8529BD78 */  lh    $t1, %lo(D_8038BD78)($t1)
-/* 0F8B90 8037D180 3C088039 */  lui   $t0, 0x8039
+/* 0F8B90 8037D180 3C088039 */  lui   $t0, %hi(D_8038BCF8)
 /* 0F8B94 8037D184 97AC0004 */  lhu   $t4, 4($sp)
 /* 0F8B98 8037D188 00095080 */  sll   $t2, $t1, 2
 /* 0F8B9C 8037D18C 010A4021 */  addu  $t0, $t0, $t2
-/* 0F8BA0 8037D190 8D08BCF8 */  lw    $t0, -0x4308($t0)
+/* 0F8BA0 8037D190 8D08BCF8 */  lw    $t0, %lo(D_8038BCF8)($t0)
 /* 0F8BA4 8037D194 01806827 */  not   $t5, $t4
 /* 0F8BA8 8037D198 850B0002 */  lh    $t3, 2($t0)
 /* 0F8BAC 8037D19C 016D7824 */  and   $t7, $t3, $t5
@@ -1409,11 +1409,11 @@ glabel ProcessGeoLayout
 .L8037E144:
 /* 0F9B54 8037E144 3C0B8039 */  lui   $t3, %hi(D_8038BD80) # $t3, 0x8039
 /* 0F9B58 8037E148 8D6BBD80 */  lw    $t3, %lo(D_8038BD80)($t3)
-/* 0F9B5C 8037E14C 3C198039 */  lui   $t9, 0x8039
+/* 0F9B5C 8037E14C 3C198039 */  lui   $t9, %hi(D_8038B810)
 /* 0F9B60 8037E150 916C0000 */  lbu   $t4, ($t3)
 /* 0F9B64 8037E154 000C6880 */  sll   $t5, $t4, 2
 /* 0F9B68 8037E158 032DC821 */  addu  $t9, $t9, $t5
-/* 0F9B6C 8037E15C 8F39B810 */  lw    $t9, -0x47f0($t9)
+/* 0F9B6C 8037E15C 8F39B810 */  lw    $t9, %lo(D_8038B810)($t9)
 /* 0F9B70 8037E160 0320F809 */  jalr  $t9
 /* 0F9B74 8037E164 00000000 */  nop   
 /* 0F9B78 8037E168 3C0E8039 */  lui   $t6, %hi(D_8038BD80) # $t6, 0x8039
