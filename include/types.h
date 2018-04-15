@@ -66,5 +66,7 @@ struct Struct80333F00
 
 typedef float Vec3f[3];
 typedef s16 Vec3s[3];
+typedef float Vec4f[4];
+typedef s16 Vec4s[4];
 
 #endif

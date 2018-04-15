@@ -535,7 +535,6 @@ void func_8037A788(Vec3f a, Vec3f b, float c, s16 d, s16 e)
     b[2] = a[2] + c * D_80387000[(u16)d >> 4] * D_80387000[(u16)e >> 4];
 }
 
-/*
 int func_8037A860(int a, int b, int c, int d)
 {
     if (a < b)
@@ -627,21 +626,93 @@ s16 func_8037A9A8(float a, float b)
 
 float Unknown8037AB88(float a, float b)
 {
-    return (float)func_8037A9A8(a, b) * D_8038BA90 / 0x8000;
+    return (float)func_8037A9A8(a, b) * M_PI / 0x8000;
 }
 
-void func_8037ABEC(float a, float b)
+void func_8037ABEC(Vec4f a, float b, UNUSED int c)
 {
-    float sp14 = 1 - a;
+    float sp14 = 1 - b;
     float sp10 = sp14 * sp14;
     float spC = sp10 * sp14;
-    float sp8 = a * a;
-    float sp4 = sp8 * a;
+    float sp8 = b * b;
+    float sp4 = sp8 * b;
 
-    // jump table
-    if (D_8038BC98 - 1 < 5)
+    switch (D_8038BC98)
     {
-
+    case 1:
+        a[0] = spC;
+        a[1] = sp4 * 1.75f - sp8 * 4.5f + b * 3.0f;
+        a[2] = -sp4 * 0.9166667f + sp8 * 1.5f;
+        a[3] = sp4 * 0.16666667f;
+        break;
+    case 2:
+        a[0] = spC * 0.25f;
+        a[1] = sp4 * 0.5833333f - sp8 * 1.25f + b * 0.25f + 0.5833333f;
+        a[2] = -sp4 * 0.5f + sp8 * 0.5f + b * 0.5f + 0.16666667f;
+        a[3] = sp4 * 0.16666667f;
+        break;
+    case 3:
+        a[0] = spC * 0.16666667f;
+        a[1] = sp4 * 0.5f - sp8 + 0.6666667f;
+        a[2] = -sp4 * 0.5f + sp8 * 0.5f + b * 0.5f + 0.16666667f;
+        a[3] = sp4 * 0.16666667f;
+        break;
+    case 4:
+        a[0] = spC * 0.16666667f;
+        a[1] = -spC * 0.5f + sp10 * 0.5f + sp14 * 0.5f + 0.16666667f;
+        a[2] = spC * 0.5833333f - sp10 * 1.25f + sp14 * 0.25f + 0.5833333f;
+        a[3] = sp4 * 0.25f;
+        break;
+    case 5:
+        a[0] = spC * 0.16666667f;
+        a[1] = -spC * 0.9166667f + sp10 * 1.5f;
+        a[2] = spC * 1.75f - sp10 * 4.5f + sp14 * 3.0f;
+        a[3] = sp4;
+        break;
     }
 }
-*/
+
+void func_8037AFB8(Vec4s *a)
+{
+    D_8038BC90 = a;
+    D_8038BC94 = 0;
+    D_8038BC98 = 1;
+}
+
+int func_8037AFE8(Vec3f a)
+{
+    Vec4f sp30;
+    int i;
+    int sp28 = 0;
+
+    Vec3f_Copy(a, D_80385FD0);
+    func_8037ABEC(sp30, D_8038BC94, D_8038BC98);
+    for (i = 0; i < 4; i++)
+    {
+        a[0] += sp30[i] * D_8038BC90[i][1];
+        a[1] += sp30[i] * D_8038BC90[i][2];
+        a[2] += sp30[i] * D_8038BC90[i][3];
+    }
+    
+    if ((D_8038BC94 += D_8038BC90[0][0] / 1000.0f) >= 1)
+    {
+        D_8038BC90++;
+        D_8038BC94--;
+        switch (D_8038BC98)
+        {
+        case 5:
+            sp28 = 1;
+            break;
+        case 3:
+            if (D_8038BC90[2][0] == 0)
+                D_8038BC98 = 4;
+            break;
+        default:
+            D_8038BC98++;
+            break;
+        }
+        
+    }
+    
+    return sp28;
+}

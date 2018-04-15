@@ -4,7 +4,7 @@
 // This file contains variable declarations for all of the code.
 // When a variable is used, uncomment it and add the appropriate types.
 
-extern double D_8038BA90;
+extern const double D_8038BA90;
 extern u16 D_8032C65C[];
 extern u16 D_8032C66C[];
 // extern ? TableInteractions;
@@ -1579,8 +1579,8 @@ extern float D_80386000[];
 // extern ? D_80334A30;
 extern s16 D_8038B000[];
 extern int D_8038BC98;
-// extern ? D_8038BC90;
-// extern ? D_8038BC94;
+extern Vec4s *D_8038BC90;
+extern float D_8038BC94;
 // extern ? D_8038BD78;
 // extern ? D_8038BCA4;
 // extern ? D_8038BD7A;

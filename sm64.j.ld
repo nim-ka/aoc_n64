@@ -96,7 +96,6 @@ SECTIONS
    /* 0x80378800 0F4210-101998 [D788] */
    .text80378800 0x80378800 : AT(0x0F4210) {
       build/src/math_util.o(.text);
-      build/asm/math_util.o(.text);
       build/asm/graph_node.o(.text);
       build/asm/geo_layout.o(.text);
       build/asm/level_script.o(.text);
@@ -104,6 +103,8 @@ SECTIONS
       build/asm/behavior_script.o(.text);
       /* data */
       build/data/data_80385F88.o(.text);
+      build/src/math_util.o(.rodata);
+      build/data/rodata_8038BA90.o(.rodata);
    }
 
    /* 0x8016F000 21D7D0-255EC0 [386F0] */
