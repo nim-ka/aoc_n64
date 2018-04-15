@@ -3,8 +3,29 @@
 
 .section .text, "ax"
 
-# Unknown region 101998-107220 [5888]
-.incbin "bin/sm64.j.101998.bin"
+# 0x80385F90
+
+	.incbin "bin/sm64.j.101998.bin", 0x0, 0x40
+
+glabel D_80385FD0
+	.incbin "bin/sm64.j.101998.bin", 0x40, 0xC
+
+glabel D_80385FDC
+	.incbin "bin/sm64.j.101998.bin", 0x4C, 0x8
+
+glabel D_80385FE4
+	.incbin "bin/sm64.j.101998.bin", 0x54, 0x1C
+
+glabel D_80386000
+	.incbin "bin/sm64.j.101998.bin", 0x70, 0x1000
+
+glabel D_80387000
+	.incbin "bin/sm64.j.101998.bin", 0x1070, 0x4000
+
+glabel D_8038B000
+	.incbin "bin/sm64.j.101998.bin", 0x5070, 0x810
+
+# 0x8038B810
 
 glabel GeoLayoutJumpTable
 .word GeoLayout00
@@ -170,5 +191,54 @@ glabel BehaviorJumpTable
 .word Behavior36
 .word Behavior37
 
-# Unknown region 1074A0-1076A0 [200]
-.incbin "bin/sm64.j.1074A0.bin"
+# 0x8038BA90
+
+glabel D_8038BA90
+	.incbin "bin/sm64.j.1074A0.bin", 0x0, 0x8
+
+glabel jtbl_8038BA98
+	.incbin "bin/sm64.j.1074A0.bin", 0x8, 0x58
+
+glabel jtbl_8038BAF0
+	.incbin "bin/sm64.j.1074A0.bin", 0x60, 0x20
+
+glabel jtbl_8038BB10
+	.incbin "bin/sm64.j.1074A0.bin", 0x80, 0x14
+
+glabel jtbl_8038BB24
+	.incbin "bin/sm64.j.1074A0.bin", 0x94, 0x1C
+
+glabel D_8038BB40
+	.incbin "bin/sm64.j.1074A0.bin", 0xB0, 0xC
+
+glabel D_8038BB4C
+	.incbin "bin/sm64.j.1074A0.bin", 0xBC, 0x8
+
+glabel D_8038BB54
+	.incbin "bin/sm64.j.1074A0.bin", 0xC4, 0x8
+
+glabel D_8038BB5C
+	.incbin "bin/sm64.j.1074A0.bin", 0xCC, 0x8
+
+glabel D_8038BB64
+	.incbin "bin/sm64.j.1074A0.bin", 0xD4, 0x4
+
+glabel D_8038BB68
+	.incbin "bin/sm64.j.1074A0.bin", 0xD8, 0x4
+
+glabel D_8038BB6C
+	.incbin "bin/sm64.j.1074A0.bin", 0xDC, 0x4
+
+glabel D_8038BB70
+	.incbin "bin/sm64.j.1074A0.bin", 0xE0, 0xC
+
+glabel D_8038BB7C
+	.incbin "bin/sm64.j.1074A0.bin", 0xEC, 0xC
+
+glabel D_8038BB88
+	.incbin "bin/sm64.j.1074A0.bin", 0xF8, 0x50
+
+glabel jtbl_8038BBD8
+	.incbin "bin/sm64.j.1074A0.bin", 0x148, 0xB8
+
+# 0x8038BC90

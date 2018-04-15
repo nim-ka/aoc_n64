@@ -303,9 +303,9 @@ glabel func_8037ABEC
 /* 0F6664 8037AC54 102000D4 */  beqz  $at, .L8037AFA8
 /* 0F6668 8037AC58 00000000 */   nop   
 /* 0F666C 8037AC5C 000F7880 */  sll   $t7, $t7, 2
-/* 0F6670 8037AC60 3C018039 */  lui   $at, 0x8039
+/* 0F6670 8037AC60 3C018039 */  lui   $at, %hi(jtbl_8038BA98)
 /* 0F6674 8037AC64 002F0821 */  addu  $at, $at, $t7
-/* 0F6678 8037AC68 8C2FBA98 */  lw    $t7, -0x4568($at)
+/* 0F6678 8037AC68 8C2FBA98 */  lw    $t7, %lo(jtbl_8038BA98)($at)
 /* 0F667C 8037AC6C 01E00008 */  jr    $t7
 /* 0F6680 8037AC70 00000000 */   nop   
 /* 0F6684 8037AC74 C7A6000C */  lwc1  $f6, 0xc($sp)

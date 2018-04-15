@@ -20,9 +20,9 @@ glabel LevelAccumOp
 /* 0F9BC4 8037E1B4 1020003D */  beqz  $at, .L8037E2AC
 /* 0F9BC8 8037E1B8 00000000 */   nop   
 /* 0F9BCC 8037E1BC 00047080 */  sll   $t6, $a0, 2
-/* 0F9BD0 8037E1C0 3C018039 */  lui   $at, 0x8039
+/* 0F9BD0 8037E1C0 3C018039 */  lui   $at, %hi(jtbl_8038BAF0)
 /* 0F9BD4 8037E1C4 002E0821 */  addu  $at, $at, $t6
-/* 0F9BD8 8037E1C8 8C2EBAF0 */  lw    $t6, -0x4510($at)
+/* 0F9BD8 8037E1C8 8C2EBAF0 */  lw    $t6, %lo(jtbl_8038BAF0)($at)
 /* 0F9BDC 8037E1CC 01C00008 */  jr    $t6
 /* 0F9BE0 8037E1D0 00000000 */   nop   
 /* 0F9BE4 8037E1D4 3C0F8039 */  lui   $t7, %hi(D_8038BE24) # $t7, 0x8039
@@ -2474,9 +2474,9 @@ glabel LevelScript3C
 /* 0FBE68 80380458 10200025 */  beqz  $at, .L803804F0
 /* 0FBE6C 8038045C 00000000 */   nop   
 /* 0FBE70 80380460 0019C880 */  sll   $t9, $t9, 2
-/* 0FBE74 80380464 3C018039 */  lui   $at, 0x8039
+/* 0FBE74 80380464 3C018039 */  lui   $at, %hi(jtbl_8038BB10)
 /* 0FBE78 80380468 00390821 */  addu  $at, $at, $t9
-/* 0FBE7C 8038046C 8C39BB10 */  lw    $t9, -0x44f0($at)
+/* 0FBE7C 8038046C 8C39BB10 */  lw    $t9, %lo(jtbl_8038BB10)($at)
 /* 0FBE80 80380470 03200008 */  jr    $t9
 /* 0FBE84 80380474 00000000 */   nop   
 /* 0FBE88 80380478 3C088039 */  lui   $t0, %hi(D_8038BE24) # $t0, 0x8039
@@ -2520,9 +2520,9 @@ glabel LevelScript3C
 /* 0FBF18 80380508 10200025 */  beqz  $at, .L803805A0
 /* 0FBF1C 8038050C 00000000 */   nop   
 /* 0FBF20 80380510 000E7080 */  sll   $t6, $t6, 2
-/* 0FBF24 80380514 3C018039 */  lui   $at, 0x8039
+/* 0FBF24 80380514 3C018039 */  lui   $at, %hi(jtbl_8038BB24)
 /* 0FBF28 80380518 002E0821 */  addu  $at, $at, $t6
-/* 0FBF2C 8038051C 8C2EBB24 */  lw    $t6, -0x44dc($at)
+/* 0FBF2C 8038051C 8C2EBB24 */  lw    $t6, %lo(jtbl_8038BB24)($at)
 /* 0FBF30 80380520 01C00008 */  jr    $t6
 /* 0FBF34 80380524 00000000 */   nop   
 /* 0FBF38 80380528 3C0F8033 */  lui   $t7, %hi(D_8032CE94) # $t7, 0x8033

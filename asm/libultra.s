@@ -5067,9 +5067,9 @@ glabel func_80325B5C
 /* 0E0BDC 80325BDC 10200224 */  beqz  $at, .L80326470
 /* 0E0BE0 80325BE0 00000000 */   nop   
 /* 0E0BE4 80325BE4 000A5080 */  sll   $t2, $t2, 2
-/* 0E0BE8 80325BE8 3C018034 */  lui   $at, 0x8034
+/* 0E0BE8 80325BE8 3C018034 */  lui   $at, %hi(jtbl_80338534)
 /* 0E0BEC 80325BEC 002A0821 */  addu  $at, $at, $t2
-/* 0E0BF0 80325BF0 8C2A8534 */  lw    $t2, -0x7acc($at)
+/* 0E0BF0 80325BF0 8C2A8534 */  lw    $t2, %lo(jtbl_80338534)($at)
 /* 0E0BF4 80325BF4 01400008 */  jr    $t2
 /* 0E0BF8 80325BF8 00000000 */   nop   
 .L80325BFC:

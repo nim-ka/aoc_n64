@@ -2855,9 +2855,9 @@ glabel func_80382F84
 /* 0FE9AC 80382F9C 1020000B */  beqz  $at, .L80382FCC
 /* 0FE9B0 80382FA0 00000000 */   nop   
 /* 0FE9B4 80382FA4 000E7080 */  sll   $t6, $t6, 2
-/* 0FE9B8 80382FA8 3C018039 */  lui   $at, 0x8039
+/* 0FE9B8 80382FA8 3C018039 */  lui   $at, %hi(jtbl_8038BBD8)
 /* 0FE9BC 80382FAC 002E0821 */  addu  $at, $at, $t6
-/* 0FE9C0 80382FB0 8C2EBBD8 */  lw    $t6, -0x4428($at)
+/* 0FE9C0 80382FB0 8C2EBBD8 */  lw    $t6, %lo(jtbl_8038BBD8)($at)
 /* 0FE9C4 80382FB4 01C00008 */  jr    $t6
 /* 0FE9C8 80382FB8 00000000 */   nop   
 /* 0FE9CC 80382FBC 240F0001 */  li    $t7, 1

@@ -975,9 +975,9 @@ glabel func_80316928
 /* 0D1BB0 80316BB0 2DA10010 */  sltiu $at, $t5, 0x10
 /* 0D1BB4 80316BB4 10200019 */  beqz  $at, .L80316C1C
 /* 0D1BB8 80316BB8 000D6880 */   sll   $t5, $t5, 2
-/* 0D1BBC 80316BBC 3C018033 */  lui   $at, 0x8033
+/* 0D1BBC 80316BBC 3C018033 */  lui   $at, %hi(jtbl_80337BE0)
 /* 0D1BC0 80316BC0 002D0821 */  addu  $at, $at, $t5
-/* 0D1BC4 80316BC4 8C2D7BE0 */  lw    $t5, 0x7be0($at)
+/* 0D1BC4 80316BC4 8C2D7BE0 */  lw    $t5, %lo(jtbl_80337BE0)($at)
 /* 0D1BC8 80316BC8 01A00008 */  jr    $t5
 /* 0D1BCC 80316BCC 00000000 */   nop   
 /* 0D1BD0 80316BD0 3C018022 */  lui   $at, %hi(D_802212A3) # $at, 0x8022
