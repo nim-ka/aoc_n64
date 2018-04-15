@@ -435,7 +435,7 @@ glabel Geo18_802D2520
 /* 08CD60 802D1D60 8F39CFA0 */  lw    $t9, %lo(D_8032CFA0)($t9)
 /* 08CD64 802D1D64 AFB90058 */  sw    $t9, 0x58($sp)
 /* 08CD68 802D1D68 3C098036 */  li    $t1, 0x80360000 # 0.000000
-/* 08CD6C 802D1D6C 8D29FDE8 */  lw    $t1, %lo(D_8035FDE8)($t1)
+/* 08CD6C 802D1D6C 8D29FDE8 */  lw    $t1, %lo(gMarioObject)($t1)
 /* 08CD70 802D1D70 8FAF0058 */  lw    $t7, 0x58($sp)
 /* 08CD74 802D1D74 8D2D0214 */  lw    $t5, 0x214($t1)
 /* 08CD78 802D1D78 15AF0005 */  bne   $t5, $t7, .L802D1D90

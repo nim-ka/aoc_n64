@@ -662,16 +662,16 @@ glabel func_8027AB10
 /* 035B54 8027AB54 8D29CE6C */  lw    $t1, %lo(D_8032CE6C)($t1)
 /* 035B58 8027AB58 8FA8001C */  lw    $t0, 0x1c($sp)
 /* 035B5C 8027AB5C A1280001 */  sb    $t0, 1($t1)
-/* 035B60 8027AB60 3C0A8036 */  lui   $t2, %hi(D_8035FDE8) # $t2, 0x8036
-/* 035B64 8027AB64 8D4AFDE8 */  lw    $t2, %lo(D_8035FDE8)($t2)
+/* 035B60 8027AB60 3C0A8036 */  lui   $t2, %hi(gMarioObject) # $t2, 0x8036
+/* 035B64 8027AB64 8D4AFDE8 */  lw    $t2, %lo(gMarioObject)($t2)
 /* 035B68 8027AB68 AD4000E0 */  sw    $zero, 0xe0($t2)
 .L8027AB6C:
 /* 035B6C 8027AB6C 8FAB001C */  lw    $t3, 0x1c($sp)
 /* 035B70 8027AB70 316C0001 */  andi  $t4, $t3, 1
 /* 035B74 8027AB74 11800009 */  beqz  $t4, .L8027AB9C
 /* 035B78 8027AB78 00000000 */   nop   
-/* 035B7C 8027AB7C 3C0E8036 */  lui   $t6, %hi(D_8035FDE8) # $t6, 0x8036
-/* 035B80 8027AB80 8DCEFDE8 */  lw    $t6, %lo(D_8035FDE8)($t6)
+/* 035B7C 8027AB7C 3C0E8036 */  lui   $t6, %hi(gMarioObject) # $t6, 0x8036
+/* 035B80 8027AB80 8DCEFDE8 */  lw    $t6, %lo(gMarioObject)($t6)
 /* 035B84 8027AB84 8FAD0020 */  lw    $t5, 0x20($sp)
 /* 035B88 8027AB88 3C188033 */  lui   $t8, %hi(D_8032CE60) # $t8, 0x8033
 /* 035B8C 8027AB8C A1CD0018 */  sb    $t5, 0x18($t6)

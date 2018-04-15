@@ -87,7 +87,7 @@ void func_80248FBC(void)
     if (D_8035FFA8 != NULL && D_8035FFA8->unk7 == 2)
     {
         if (D_8032C780 == 0)
-            SetSound(0x38280081, D_80339E00[0].unk88->unk54);
+            SetSound(0x38280081, gMarioStates[0].unk88->unk54);
         D_8032C780 = 1;
     }
     else

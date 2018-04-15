@@ -67,7 +67,7 @@ SECTIONS
       build/asm/camera.o(.text);
       build/asm/code_8029BFF0.o(.text);
       build/asm/level_functions.o(.text);
-      build/asm/platform_displacement.o(.text);
+      build/src/platform_displacement.o(.text);
       build/asm/object_collision.o(.text);
       build/asm/spawn_object.o(.text);
       build/asm/code_802C9560.o(.text);

@@ -2562,8 +2562,8 @@ glabel func_8031FA4C
 /* 0DAAE4 8031FAE4 130000B9 */  beqz  $t8, .L8031FDCC
 /* 0DAAE8 8031FAE8 A3AF0057 */   sb    $t7, 0x57($sp)
 /* 0DAAEC 8031FAEC 3C0A8036 */  lui   $t2, %hi(D_8035FEE0) # $t2, 0x8036
-/* 0DAAF0 8031FAF0 3C078034 */  lui   $a3, %hi(D_80339E00) # $a3, 0x8034
-/* 0DAAF4 8031FAF4 24E79E00 */  addiu $a3, %lo(D_80339E00) # addiu $a3, $a3, -0x6200
+/* 0DAAF0 8031FAF0 3C078034 */  lui   $a3, %hi(gMarioStates) # $a3, 0x8034
+/* 0DAAF4 8031FAF4 24E79E00 */  addiu $a3, %lo(gMarioStates) # addiu $a3, $a3, -0x6200
 /* 0DAAF8 8031FAF8 254AFEE0 */  addiu $t2, %lo(D_8035FEE0) # addiu $t2, $t2, -0x120
 /* 0DAAFC 8031FAFC 256BA75A */  addiu $t3, %lo(D_8033A75A) # addiu $t3, $t3, -0x58a6
 /* 0DAB00 8031FB00 27A8003C */  addiu $t0, $sp, 0x3c

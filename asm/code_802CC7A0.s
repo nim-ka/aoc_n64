@@ -1340,8 +1340,8 @@ glabel func_802CDA44
 /* 088A74 802CDA74 1000000B */  b     .L802CDAA4
 /* 088A78 802CDA78 00000000 */   nop   
 .L802CDA7C:
-/* 088A7C 802CDA7C 3C0E8036 */  lui   $t6, %hi(D_8035FDE8) # $t6, 0x8036
-/* 088A80 802CDA80 8DCEFDE8 */  lw    $t6, %lo(D_8035FDE8)($t6)
+/* 088A7C 802CDA7C 3C0E8036 */  lui   $t6, %hi(gMarioObject) # $t6, 0x8036
+/* 088A80 802CDA80 8DCEFDE8 */  lw    $t6, %lo(gMarioObject)($t6)
 /* 088A84 802CDA84 AFAE0034 */  sw    $t6, 0x34($sp)
 /* 088A88 802CDA88 10000006 */  b     .L802CDAA4
 /* 088A8C 802CDA8C 00000000 */   nop   

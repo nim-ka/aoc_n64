@@ -3585,8 +3585,8 @@ glabel Geo18_802D5D0C
 /* 09028C 802D528C 9529CFA8 */  lhu   $t1, %lo(D_8032CFA8)($t1)
 /* 090290 802D5290 3C018033 */  lui   $at, %hi(D_803303F8) # $at, 0x8033
 /* 090294 802D5294 A42903F8 */  sh    $t1, %lo(D_803303F8)($at)
-/* 090298 802D5298 3C0A8036 */  lui   $t2, %hi(D_8035FDE8) # $t2, 0x8036
-/* 09029C 802D529C 8D4AFDE8 */  lw    $t2, %lo(D_8035FDE8)($t2)
+/* 090298 802D5298 3C0A8036 */  lui   $t2, %hi(gMarioObject) # $t2, 0x8036
+/* 09029C 802D529C 8D4AFDE8 */  lw    $t2, %lo(gMarioObject)($t2)
 /* 0902A0 802D52A0 27A7001C */  addiu $a3, $sp, 0x1c
 /* 0902A4 802D52A4 C54C00A0 */  lwc1  $f12, 0xa0($t2)
 /* 0902A8 802D52A8 C54E00A4 */  lwc1  $f14, 0xa4($t2)
@@ -3596,18 +3596,18 @@ glabel Geo18_802D5D0C
 /* 0902B8 802D52B8 3C018036 */  lui   $at, %hi(D_8035FF90) # $at, 0x8036
 /* 0902BC 802D52BC 856C0000 */  lh    $t4, ($t3)
 /* 0902C0 802D52C0 A42CFF90 */  sh    $t4, %lo(D_8035FF90)($at)
-/* 0902C4 802D52C4 3C0D8036 */  lui   $t5, %hi(D_8035FDE8) # $t5, 0x8036
-/* 0902C8 802D52C8 8DADFDE8 */  lw    $t5, %lo(D_8035FDE8)($t5)
+/* 0902C4 802D52C4 3C0D8036 */  lui   $t5, %hi(gMarioObject) # $t5, 0x8036
+/* 0902C8 802D52C8 8DADFDE8 */  lw    $t5, %lo(gMarioObject)($t5)
 /* 0902CC 802D52CC 3C018036 */  lui   $at, 0x8036
 /* 0902D0 802D52D0 C5A400A0 */  lwc1  $f4, 0xa0($t5)
 /* 0902D4 802D52D4 E424FF94 */  swc1  $f4, -0x6c($at)
-/* 0902D8 802D52D8 3C0E8036 */  lui   $t6, %hi(D_8035FDE8) # $t6, 0x8036
-/* 0902DC 802D52DC 8DCEFDE8 */  lw    $t6, %lo(D_8035FDE8)($t6)
+/* 0902D8 802D52D8 3C0E8036 */  lui   $t6, %hi(gMarioObject) # $t6, 0x8036
+/* 0902DC 802D52DC 8DCEFDE8 */  lw    $t6, %lo(gMarioObject)($t6)
 /* 0902E0 802D52E0 3C018036 */  lui   $at, 0x8036
 /* 0902E4 802D52E4 C5C600A4 */  lwc1  $f6, 0xa4($t6)
 /* 0902E8 802D52E8 E426FF98 */  swc1  $f6, -0x68($at)
-/* 0902EC 802D52EC 3C0F8036 */  lui   $t7, %hi(D_8035FDE8) # $t7, 0x8036
-/* 0902F0 802D52F0 8DEFFDE8 */  lw    $t7, %lo(D_8035FDE8)($t7)
+/* 0902EC 802D52EC 3C0F8036 */  lui   $t7, %hi(gMarioObject) # $t7, 0x8036
+/* 0902F0 802D52F0 8DEFFDE8 */  lw    $t7, %lo(gMarioObject)($t7)
 /* 0902F4 802D52F4 3C018036 */  lui   $at, 0x8036
 /* 0902F8 802D52F8 C5E800A8 */  lwc1  $f8, 0xa8($t7)
 /* 0902FC 802D52FC E428FF9C */  swc1  $f8, -0x64($at)

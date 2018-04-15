@@ -31,8 +31,8 @@ glabel Unknown802C8460
 /* 08349C 802C849C 03084821 */  addu  $t1, $t8, $t0
 /* 0834A0 802C84A0 8D2A0078 */  lw    $t2, 0x78($t1)
 /* 0834A4 802C84A4 AFAA0024 */  sw    $t2, 0x24($sp)
-/* 0834A8 802C84A8 3C0C8036 */  lui   $t4, %hi(D_8035FDE8) # $t4, 0x8036
-/* 0834AC 802C84AC 8D8CFDE8 */  lw    $t4, %lo(D_8035FDE8)($t4)
+/* 0834A8 802C84A8 3C0C8036 */  lui   $t4, %hi(gMarioObject) # $t4, 0x8036
+/* 0834AC 802C84AC 8D8CFDE8 */  lw    $t4, %lo(gMarioObject)($t4)
 /* 0834B0 802C84B0 8FAB0024 */  lw    $t3, 0x24($sp)
 /* 0834B4 802C84B4 116C0003 */  beq   $t3, $t4, .L802C84C4
 /* 0834B8 802C84B8 00000000 */   nop   
@@ -241,8 +241,8 @@ glabel func_802C870C
 /* 0837B0 802C87B0 0C0C8AC8 */  jal   sqrtf
 /* 0837B4 802C87B4 460A3300 */   add.s $f12, $f6, $f10
 /* 0837B8 802C87B8 E7A00024 */  swc1  $f0, 0x24($sp)
-/* 0837BC 802C87BC 3C0D8036 */  lui   $t5, %hi(D_8035FDE8) # $t5, 0x8036
-/* 0837C0 802C87C0 8DADFDE8 */  lw    $t5, %lo(D_8035FDE8)($t5)
+/* 0837BC 802C87BC 3C0D8036 */  lui   $t5, %hi(gMarioObject) # $t5, 0x8036
+/* 0837C0 802C87C0 8DADFDE8 */  lw    $t5, %lo(gMarioObject)($t5)
 /* 0837C4 802C87C4 8FAC0040 */  lw    $t4, 0x40($sp)
 /* 0837C8 802C87C8 158D0005 */  bne   $t4, $t5, .L802C87E0
 /* 0837CC 802C87CC 00000000 */   nop   
@@ -285,8 +285,8 @@ glabel func_802C870C
 /* 083858 802C8858 1000000F */  b     .L802C8898
 /* 08385C 802C885C 00001025 */   move  $v0, $zero
 .L802C8860:
-/* 083860 802C8860 3C0A8036 */  lui   $t2, %hi(D_8035FDE8) # $t2, 0x8036
-/* 083864 802C8864 8D4AFDE8 */  lw    $t2, %lo(D_8035FDE8)($t2)
+/* 083860 802C8860 3C0A8036 */  lui   $t2, %hi(gMarioObject) # $t2, 0x8036
+/* 083864 802C8864 8D4AFDE8 */  lw    $t2, %lo(gMarioObject)($t2)
 /* 083868 802C8868 8FA90040 */  lw    $t1, 0x40($sp)
 /* 08386C 802C886C 152A0006 */  bne   $t1, $t2, .L802C8888
 /* 083870 802C8870 00000000 */   nop   

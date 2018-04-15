@@ -4722,10 +4722,10 @@ glabel func_802548BC
 /* 00F9FC 802549FC 8D4AC9D8 */  lw    $t2, %lo(D_8032C9D8)($t2)
 /* 00FA00 80254A00 8D29CE6C */  lw    $t1, %lo(D_8032CE6C)($t1)
 /* 00FA04 80254A04 AD490090 */  sw    $t1, 0x90($t2)
-/* 00FA08 80254A08 3C0B8036 */  lui   $t3, %hi(D_8035FDE8) # $t3, 0x8036
+/* 00FA08 80254A08 3C0B8036 */  lui   $t3, %hi(gMarioObject) # $t3, 0x8036
 /* 00FA0C 80254A0C 3C0C8033 */  lui   $t4, %hi(D_8032C9D8) # $t4, 0x8033
 /* 00FA10 80254A10 8D8CC9D8 */  lw    $t4, %lo(D_8032C9D8)($t4)
-/* 00FA14 80254A14 8D6BFDE8 */  lw    $t3, %lo(D_8035FDE8)($t3)
+/* 00FA14 80254A14 8D6BFDE8 */  lw    $t3, %lo(gMarioObject)($t3)
 /* 00FA18 80254A18 AD8B0088 */  sw    $t3, 0x88($t4)
 /* 00FA1C 80254A1C 3C0D8033 */  lui   $t5, %hi(D_8032C9D8) # $t5, 0x8033
 /* 00FA20 80254A20 8DADC9D8 */  lw    $t5, %lo(D_8032C9D8)($t5)

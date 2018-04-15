@@ -6060,8 +6060,8 @@ glabel func_802DBBB0
 /* 096C7C 802DBC7C 00000000 */   nop   
 /* 096C80 802DBC80 0C0B6A1D */  jal   func_802DA874
 /* 096C84 802DBC84 00000000 */   nop   
-/* 096C88 802DBC88 3C088034 */  lui   $t0, %hi(D_80339E00) # $t0, 0x8034
-/* 096C8C 802DBC8C 25089E00 */  addiu $t0, %lo(D_80339E00) # addiu $t0, $t0, -0x6200
+/* 096C88 802DBC88 3C088034 */  lui   $t0, %hi(gMarioStates) # $t0, 0x8034
+/* 096C8C 802DBC8C 25089E00 */  addiu $t0, %lo(gMarioStates) # addiu $t0, $t0, -0x6200
 /* 096C90 802DBC90 8D09000C */  lw    $t1, 0xc($t0)
 /* 096C94 802DBC94 3C010800 */  lui   $at, 0x800
 /* 096C98 802DBC98 01215024 */  and   $t2, $t1, $at

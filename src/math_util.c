@@ -230,14 +230,14 @@ void func_80378F84(float mtx[4][4], Vec3f b, Vec3f c, s16 d)
     mtx[3][3] = 1;
 }
 
-void func_80379440(float mtx[4][4], Vec3f b, u16 *c)
+void func_80379440(float mtx[4][4], Vec3f b, Vec3s c)
 {
-    register float f12 = D_80386000[c[0] >> 4];
-    register float f14 = D_80387000[c[0] >> 4];
-    register float f16 = D_80386000[c[1] >> 4];
-    register float f18 = D_80387000[c[1] >> 4];
-    register float spC = D_80386000[c[2] >> 4];
-    register float sp8 = D_80387000[c[2] >> 4];
+    register float f12 = D_80386000[(u16) c[0] >> 4];
+    register float f14 = D_80387000[(u16) c[0] >> 4];
+    register float f16 = D_80386000[(u16) c[1] >> 4];
+    register float f18 = D_80387000[(u16) c[1] >> 4];
+    register float spC = D_80386000[(u16) c[2] >> 4];
+    register float sp8 = D_80387000[(u16) c[2] >> 4];
 
     mtx[0][0] = f18 * sp8 + f12 * f16 * spC;
     mtx[1][0] = -f18 * spC + f12 * f16 * sp8;
@@ -345,7 +345,7 @@ void func_80379918(float mtx[4][4], Vec3f b, Vec3f c, s16 d)
 
 void func_80379AA4(float mtx[4][4], Vec3f b, s16 c, float d)
 {
-    int sp74;
+    struct Surface *sp74;
     Vec3f sp68;
     Vec3f sp5C;
     Vec3f sp50;
