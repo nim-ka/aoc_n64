@@ -18,24 +18,24 @@ SECTIONS
    /* load MIO0 and level data at 0x001076A0 */
    .mio0 0x001076A0 : AT(0x1076A0) {
       FILL (0x01) /* fill unused with 0x01 */
-      * (.mio0);
+      build/data/level_actors.o(.mio0);
       . = ALIGN(0x10);
    }
 
    /* 0x2A42A0 0x2A42A0-0 [0] */
    .mio0_b 0x2A42A0 : AT(0x2A42A0) {
-      * (.mio0_b);
+      build/data/level_main.o(.mio0_b);
    }
 
    /* 0x268020 0x268020-0 [0] */
    .mio0_c 0x268020 : AT(0x268020) {
-      * (.mio0_c);
+      build/data/level_misc.o(.mio0_c);
    }
 
    /* use segmented addressing for behaviors */
    .behavior 0x13000000 : AT(0x218130) {
       FILL (0x01) /* fill unused with 0x01 */
-      * (.behavior);
+      build/data/behavior_data.o(.behavior);
       behavior_length = . - 0x13000000;
    }
    __load_behavior_data = LOADADDR(.behavior);
@@ -115,7 +115,7 @@ SECTIONS
    }
 
    /* 271B20-2A42A0 [32780] */
-   .text271B20 0x271B20 : AT(0x271B20) {
+   .text271B20 0x801B9850 : AT(0x271B20) {
       build/data/unknown_271B20.o(.text);
    }
 

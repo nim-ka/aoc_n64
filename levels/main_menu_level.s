@@ -1,7 +1,5 @@
 # level script main_menu_level from 2A42A0-2A4730
 
-
-
 .global main_menu_level
 .align 4, 0x01
 main_menu_level:
@@ -200,4 +198,5 @@ main_menu_level:
 .word   0x05000000
 .word 0x05000000
 .word 0x01000000
+.global main_menu_level_end
 main_menu_level_end:

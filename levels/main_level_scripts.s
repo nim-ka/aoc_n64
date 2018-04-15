@@ -298,4 +298,5 @@ main_level_scripts:
 .word 0x220800CE, 0x0D0001A0
 .word 0x07040000
 # begin main_level_scripts geo 0x2AAC50
+.global main_level_scripts_end
 main_level_scripts_end:

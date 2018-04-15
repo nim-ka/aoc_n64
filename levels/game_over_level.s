@@ -1,4 +1,5 @@
 # level script game_over_level from 268020-268520
+.include "macros.inc"
 .global game_over_level
 .align 4, 0x01
 game_over_level:
@@ -197,4 +198,4 @@ game_over_level:
 .word 0x05000000
 .word 0x01000000
 .word 0x00000000
-game_over_level_end:
+glabel game_over_level_end
