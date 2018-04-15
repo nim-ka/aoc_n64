@@ -112,8 +112,8 @@ ssl_level:
 .word 0x20040000
 .word 0x1E040000
 .word 0x2B0C0100, 0x0058028D, 0x002619A6
-.word 0x11080000, 0x8024BB38 # 8024BB38
-.word 0x12080001, 0x8024BB38 # 8024BB38
+.word 0x11080000, LevelProc_8024BCD8 # 8024BB38
+.word 0x12080001, LevelProc_8024BCD8 # 8024BB38
 .word 0x1C040000
 .word 0x04040001
 .word 0x02040000
@@ -123,7 +123,7 @@ ssl_level:
 # 05C0
 .word 0x200007D0
 .word 0x04000000
-.word   0x18000801, 0x802D14C8
+.word   0x18000801, Geo18_802D1FA8
 .word 0x05000000
 .word 0x01000000
 # 05D8
@@ -131,7 +131,7 @@ ssl_level:
 .word 0x04000000
 .word   0x0D000000, 0xFC180FA0
 .word   0x04000000
-.word     0x18000802, 0x802D14C8
+.word     0x18000802, Geo18_802D1FA8
 .word   0x05000000
 .word   0x0D000000, 0x0FA03200
 .word   0x04000000
@@ -157,34 +157,34 @@ ssl_level:
 .word   0x04000000
 .word     0x09000064
 .word     0x04000000
-.word       0x19000005, 0x80275E24
+.word       0x19000005, Geo19_802763D4
 .word     0x05000000
 .word   0x05000000
 .word   0x0C010000
 .word   0x04000000
-.word     0x0A01002D, 0x00644E20, 0x8029A320
+.word     0x0A01002D, 0x00644E20, Geo0A_8029AA3C
 .word     0x04000000
-.word       0x0F000001, 0x000007D0, 0x1770F800, 0x0000FC00, 0x80287748
+.word       0x0F000001, 0x000007D0, 0x1770F800, 0x0000FC00, Geo0F_80287D30
 .word       0x04000000
 .word         0x15010000, 0x07009F48
 .word         0x15010000, 0x0700BA78
 .word         0x15040000, 0x0700BC18
 .word         0x15060000, 0x0700BD00
-.word         0x18000801, 0x802D1628
-.word         0x18000000, 0x802CF700
-.word         0x18000801, 0x802D056C
-.word         0x18000851, 0x802D056C
-.word         0x18000801, 0x802D11FC
-.word         0x18000802, 0x802D11FC
-.word         0x18000803, 0x802D11FC
+.word         0x18000801, Geo18_802D2108
+.word         0x18000000, Geo18_802D01E0
+.word         0x18000801, Geo18_802D104C
+.word         0x18000851, Geo18_802D104C
+.word         0x18000801, Geo18_802D1CDC
+.word         0x18000802, Geo18_802D1CDC
+.word         0x18000803, Geo18_802D1CDC
 .word         0x17000000
-.word         0x18000000, 0x80275C20
+.word         0x18000000, Geo18_802761D0
 .word       0x05000000
 .word     0x05000000
 .word   0x05000000
 .word   0x0C000000
 .word   0x04000000
-.word     0x18000000, 0x802CC708
+.word     0x18000000, Geo18_802CD1E8
 .word   0x05000000
 .word 0x05000000
 .word 0x01000000
@@ -232,20 +232,20 @@ ssl_level:
 .word   0x05000000
 .word   0x0C010000
 .word   0x04000000
-.word     0x0A01002D, 0x00643200, 0x8029A320
+.word     0x0A01002D, 0x00643200, Geo0A_8029AA3C
 .word     0x04000000
-.word       0x0F000004, 0x000007D0, 0x17700000, 0x00000000, 0x80287748
+.word       0x0F000004, 0x000007D0, 0x17700000, 0x00000000, Geo0F_80287D30
 .word       0x04000000
 .word         0x15010000, 0x0701EE80
 .word         0x15040000, 0x0701F920
 .word         0x15060000, 0x0701FCE0
-.word         0x18000802, 0x802D1628
-.word         0x18000000, 0x802CF700
-.word         0x18000801, 0x802D1090
-.word         0x18000802, 0x802D1090
-.word         0x18000803, 0x802D1090
+.word         0x18000802, Geo18_802D2108
+.word         0x18000000, Geo18_802D01E0
+.word         0x18000801, Geo18_802D1B70
+.word         0x18000802, Geo18_802D1B70
+.word         0x18000803, Geo18_802D1B70
 .word         0x17000000
-.word         0x18000000, 0x80275C20
+.word         0x18000000, Geo18_802761D0
 .word       0x05000000
 .word     0x05000000
 .word   0x05000000
@@ -262,14 +262,14 @@ ssl_level:
 .word   0x05000000
 .word   0x0C010000
 .word   0x04000000
-.word     0x0A01002D, 0x00643200, 0x8029A320
+.word     0x0A01002D, 0x00643200, Geo0A_8029AA3C
 .word     0x04000000
-.word       0x0F000004, 0x000007D0, 0x17700000, 0x00000000, 0x80287748
+.word       0x0F000004, 0x000007D0, 0x17700000, 0x00000000, Geo0F_80287D30
 .word       0x04000000
 .word         0x15010000, 0x07021A08
 .word         0x15050000, 0x07021DE8
 .word         0x17000000
-.word         0x18000000, 0x80275C20
+.word         0x18000000, Geo18_802761D0
 .word       0x05000000
 .word     0x05000000
 .word   0x05000000

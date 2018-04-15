@@ -29,8 +29,8 @@ secret_slide_level:
 .word 0x20040000
 .word 0x1E040000
 .word 0x2B0C0100, 0x010E1600, 0x1933EA01
-.word 0x11080000, 0x8024BB38 # 8024BB38
-.word 0x12080001, 0x8024BB38 # 8024BB38
+.word 0x11080000, LevelProc_8024BCD8 # 8024BB38
+.word 0x12080001, LevelProc_8024BCD8 # 8024BB38
 .word 0x1C040000
 .word 0x04040001
 .word 0x02040000
@@ -48,9 +48,9 @@ secret_slide_level:
 .word   0x05000000
 .word   0x0C010000
 .word   0x04000000
-.word     0x0A01002D, 0x00643200, 0x8029A320
+.word     0x0A01002D, 0x00643200, Geo0A_8029AA3C
 .word     0x04000000
-.word       0x0F000009, 0x000007D0, 0x17700000, 0x00000000, 0x80287748
+.word       0x0F000009, 0x000007D0, 0x17700000, 0x00000000, Geo0F_80287D30
 .word       0x04000000
 .word         0x15010000, 0x0700A7C0
 .word         0x15010000, 0x0700AFA8
@@ -60,7 +60,7 @@ secret_slide_level:
 .word         0x15010000, 0x0700E2B0
 .word         0x15020000, 0x0700E3E8
 .word         0x17000000
-.word         0x18000000, 0x80275C20
+.word         0x18000000, Geo18_802761D0
 .word       0x05000000
 .word     0x05000000
 .word   0x05000000

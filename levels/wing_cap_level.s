@@ -38,8 +38,8 @@ wing_cap_level:
 .word 0x20040000
 .word 0x1E040000
 .word 0x2B0C0100, 0x005AF001, 0x0B770000
-.word 0x11080000, 0x8024BB38 # 8024BB38
-.word 0x12080001, 0x8024BB38 # 8024BB38
+.word 0x11080000, LevelProc_8024BCD8 # 8024BB38
+.word 0x12080001, LevelProc_8024BCD8 # 8024BB38
 .word 0x1C040000
 .word 0x04040001
 .word 0x02040000
@@ -61,20 +61,20 @@ wing_cap_level:
 .word   0x04000000
 .word     0x09000064
 .word     0x04000000
-.word       0x19000003, 0x80275E24
+.word       0x19000003, Geo19_802763D4
 .word     0x05000000
 .word   0x05000000
 .word   0x0C010000
 .word   0x04000000
-.word     0x0A01002D, 0x006461A8, 0x8029A320
+.word     0x0A01002D, 0x006461A8, Geo0A_8029AA3C
 .word     0x04000000
-.word       0x0F000010, 0x000007D0, 0x17700000, 0x00000000, 0x80287748
+.word       0x0F000010, 0x000007D0, 0x17700000, 0x00000000, Geo0F_80287D30
 .word       0x04000000
 .word         0x15010000, 0x07005D28
 .word         0x15050000, 0x07007048
 .word         0x15050000, 0x070078B8
 .word         0x17000000
-.word         0x18000000, 0x80275C20
+.word         0x18000000, Geo18_802761D0
 .word       0x05000000
 .word     0x05000000
 .word   0x05000000

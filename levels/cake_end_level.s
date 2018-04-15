@@ -16,7 +16,7 @@ cake_end_level:
 .word 0x29040100
 .word 0x3308004B, 0x00000000
 .word 0x03040078
-.word 0x11080000, 0x8024BE00 # 8024BE00
+.word 0x11080000, LevelProc_8024BFA0 # 8024BE00
 .word 0x03040001
 .word 0x05080000, 0x0E000044
 # begin cake_end_level geo 0x4AA4A0
@@ -26,14 +26,14 @@ cake_end_level:
 .word   0x04000000
 .word     0x09000064
 .word     0x04000000
-.word       0x18000000, 0x802D1DEC
+.word       0x18000000, Geo18_802D28CC
 .word     0x05000000
 .word   0x05000000
 .word   0x0C010000
 .word   0x04000000
-.word     0x0A01002D, 0x00643200, 0x8029A320
+.word     0x0A01002D, 0x00643200, Geo0A_8029AA3C
 .word     0x04000000
-.word       0x0F000001, 0x000007D0, 0x17700000, 0x00000000, 0x80287748
+.word       0x0F000001, 0x000007D0, 0x17700000, 0x00000000, Geo0F_80287D30
 .word     0x05000000
 .word   0x05000000
 .word 0x05000000

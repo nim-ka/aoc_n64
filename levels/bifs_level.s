@@ -96,8 +96,8 @@ bifs_level:
 .word 0x20040000
 .word 0x1E040000
 .word 0x2B0C0100, 0x005AE267, 0xF5340000
-.word 0x11080000, 0x8024BB38 # 8024BB38
-.word 0x12080001, 0x8024BB38 # 8024BB38
+.word 0x11080000, LevelProc_8024BCD8 # 8024BB38
+.word 0x12080001, LevelProc_8024BCD8 # 8024BB38
 .word 0x1C040000
 .word 0x04040001
 .word 0x02040000
@@ -297,22 +297,22 @@ bifs_level:
 .word   0x04000000
 .word     0x09000064
 .word     0x04000000
-.word       0x19000001, 0x80275E24
+.word       0x19000001, Geo19_802763D4
 .word     0x05000000
 .word   0x05000000
 .word   0x0C010000
 .word   0x04000000
-.word     0x0A01002D, 0x00644E20, 0x8029A320
+.word     0x0A01002D, 0x00644E20, Geo0A_8029AA3C
 .word     0x04000000
-.word       0x0F00000E, 0x000007D0, 0x17700000, 0xEE6CE0C0, 0x80287748
+.word       0x0F00000E, 0x000007D0, 0x17700000, 0xEE6CE0C0, Geo0F_80287D30
 .word       0x04000000
 .word         0x15040000, 0x07002118
-.word         0x18000000, 0x802CF700
-.word         0x18001901, 0x802D1090
-.word         0x18001902, 0x802D1090
-.word         0x18001903, 0x802D1090
+.word         0x18000000, Geo18_802D01E0
+.word         0x18001901, Geo18_802D1B70
+.word         0x18001902, Geo18_802D1B70
+.word         0x18001903, Geo18_802D1B70
 .word         0x17000000
-.word         0x1800000C, 0x80275C20
+.word         0x1800000C, Geo18_802761D0
 .word       0x05000000
 .word     0x05000000
 .word   0x05000000

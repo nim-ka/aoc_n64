@@ -76,8 +76,8 @@ bob_level:
 .word 0x20040000
 .word 0x1E040000
 .word 0x2B0C0100, 0x0087E662, 0x00001940
-.word 0x11080000, 0x8024BB38 # 8024BB38
-.word 0x12080001, 0x8024BB38 # 8024BB38
+.word 0x11080000, LevelProc_8024BCD8 # 8024BB38
+.word 0x12080001, LevelProc_8024BCD8 # 8024BB38
 .word 0x1C040000
 .word 0x04040001
 .word 0x02040000
@@ -108,14 +108,14 @@ bob_level:
 .word   0x04000000
 .word     0x09000064
 .word     0x04000000
-.word       0x19000000, 0x80275E24
+.word       0x19000000, Geo19_802763D4
 .word     0x05000000
 .word   0x05000000
 .word   0x0C010000
 .word   0x04000000
-.word     0x0A01002D, 0x00647530, 0x8029A320
+.word     0x0A01002D, 0x00647530, Geo0A_8029AA3C
 .word     0x04000000
-.word       0x0F000001, 0x000007D0, 0x17700C00, 0x0000EE00, 0x80287748
+.word       0x0F000001, 0x000007D0, 0x17700C00, 0x0000EE00, Geo0F_80287D30
 .word       0x04000000
 .word         0x15010000, 0x07004390
 .word         0x15010000, 0x07009D80
@@ -124,13 +124,13 @@ bob_level:
 .word         0x15010000, 0x0700DD18
 .word         0x15010000, 0x0700E338
 .word         0x17000000
-.word         0x18000000, 0x80275C20
+.word         0x18000000, Geo18_802761D0
 .word       0x05000000
 .word     0x05000000
 .word   0x05000000
 .word   0x0C000000
 .word   0x04000000
-.word     0x18000000, 0x802CC708
+.word     0x18000000, Geo18_802CD1E8
 .word   0x05000000
 .word 0x05000000
 .word 0x01000000

@@ -29,8 +29,8 @@ main_menu_level:
 .word 0x29040100
 .word 0x37040021
 .word 0x33080010, 0xFFFFFF00
-.word 0x11080000, 0x801765A0 # 801765A0
-.word 0x12080000, 0x80176764 # 80176764
+.word 0x11080000, LevelProc_801766DC # 801765A0
+.word 0x12080000, LevelProc_801768A0 # 80176764
 .word 0x3C040000
 .word 0x380400BE
 .word 0x33080110, 0xFFFFFF00
@@ -39,7 +39,7 @@ main_menu_level:
 .word 0x04040001
 .word 0x13040010
 .word 0x01100015, main_level_scripts, main_level_scripts_end, 0x15000000
-.word 0x11080000, 0x8024BC74 # 8024BC74
+.word 0x11080000, LevelProc_8024BE14 # 8024BC74
 .word 0x0C0C0200, 0x00000000, 0x140001C0
 .word 0x1B040000
 .word 0x16100000, menu, 0x0021D7D0, 0x268020
@@ -54,8 +54,8 @@ main_menu_level:
 .word 0x33080010, 0xFFFFFF00
 .word 0x03040010
 .word 0x3704000D
-.word 0x11080000, 0x80177420 # 80177420
-.word 0x12080000, 0x801774D0 # 801774D0
+.word 0x11080000, LevelProc_80177560 # 80177420
+.word 0x12080000, LevelProc_80177610 # 801774D0
 .word 0x3C040002
 .word 0x380400BE
 .word 0x33080110, 0xFFFFFF00
@@ -171,7 +171,7 @@ main_menu_level:
 .word   0x05000000
 .word   0x0C000000
 .word   0x04000000
-.word     0x18000000, 0x8017654C
+.word     0x18000000, Geo18_80176688
 .word   0x05000000
 .word 0x05000000
 .word 0x01000000
@@ -196,7 +196,7 @@ main_menu_level:
 .word   0x05000000
 .word   0x0C000000
 .word   0x04000000
-.word     0x18000000, 0x801773D8
+.word     0x18000000, Geo18_80177518
 .word   0x05000000
 .word 0x05000000
 .word 0x01000000

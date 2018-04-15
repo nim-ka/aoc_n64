@@ -11,7 +11,7 @@ game_over_level:
 .word 0x20040000
 .word 0x1E040000
 .word 0x29040100
-.word 0x11080000, 0x8016F508 # 8016F508
+.word 0x11080000, LevelProc_8016F508 # 8016F508
 .word 0x0304004B
 .word 0x33080110, 0x00000000
 .word 0x03040010
@@ -35,7 +35,7 @@ game_over_level:
 .word 0x37040002
 .word 0x33080814, 0x00000000
 .word 0x03040014
-.word 0x12080001, 0x8016F508 # 8016F508
+.word 0x12080001, LevelProc_8016F508 # 8016F508
 .word 0x0C0C0200, 0x00000064, 0x1400020C
 .word 0x0C0C0200, 0x00000065, 0x14000238
 .word 0x05080000, 0x14000284
@@ -55,7 +55,7 @@ game_over_level:
 .word 0x37040082
 .word 0x33080814, 0x00000000
 .word 0x03040014
-.word 0x12080002, 0x8016F508 # 8016F508
+.word 0x12080002, LevelProc_8016F508 # 8016F508
 .word 0x0C0C0200, 0x00000064, 0x1400020C
 .word 0x0C0C0200, 0x00000065, 0x14000238
 .word 0x05080000, 0x14000284
@@ -72,7 +72,7 @@ game_over_level:
 .word 0x37040002
 .word 0x33080010, 0xFFFFFF00
 .word 0x03040010
-.word 0x12080003, 0x8016F508 # 8016F508
+.word 0x12080003, LevelProc_8016F508 # 8016F508
 .word 0x0C0C0200, 0xFFFFFFFF, 0x140002A8
 .word 0x05080000, 0x1400025C
 .word 0x380400BE
@@ -120,13 +120,13 @@ game_over_level:
 .word     0x04000000
 .word       0x0F000000, 0x00000000, 0x0C800000, 0x00000000, 0x00000000
 .word       0x04000000
-.word         0x18000000, 0x8016F5D0
+.word         0x18000000, Geo18_8016F670
 .word       0x05000000
 .word     0x05000000
 .word   0x05000000
 .word   0x0C000000
 .word   0x04000000
-.word     0x18000000, 0x8016F8E4
+.word     0x18000000, Geo18_8016F984
 .word   0x05000000
 .word 0x05000000
 .word 0x01000000
@@ -136,14 +136,14 @@ game_over_level:
 .word   0x04000000
 .word     0x09000064
 .word     0x04000000
-.word       0x18000000, 0x8016FDD0
+.word       0x18000000, Geo18_8016FE70
 .word     0x05000000
 .word   0x05000000
 .word   0x0C010000
 .word   0x04000000
 .word     0x0A00002D, 0x00804000
 .word     0x04000000
-.word       0x18000002, 0x80275F00
+.word       0x18000002, Geo18_802764B0
 .word     0x05000000
 .word   0x05000000
 .word 0x05000000
@@ -154,14 +154,14 @@ game_over_level:
 .word   0x04000000
 .word     0x09000064
 .word     0x04000000
-.word       0x18000000, 0x8016FF5C
+.word       0x18000000, Geo18_8016FFFC
 .word     0x05000000
 .word   0x05000000
 .word   0x0C010000
 .word   0x04000000
 .word     0x0A00002D, 0x00804000
 .word     0x04000000
-.word       0x18000003, 0x80275F00
+.word       0x18000003, Geo18_802764B0
 .word     0x05000000
 .word   0x05000000
 .word 0x05000000
@@ -172,7 +172,7 @@ game_over_level:
 .word   0x04000000
 .word     0x09000064
 .word     0x04000000
-.word       0x18000000, 0x8016FDD0
+.word       0x18000000, Geo18_8016FE70
 .word     0x05000000
 .word   0x05000000
 .word   0x0C010000

@@ -75,8 +75,8 @@ sl_level:
 .word 0x20040000
 .word 0x1E040000
 .word 0x2B0C0100, 0x010E15A5, 0x040001BB
-.word 0x11080000, 0x8024BB38 # 8024BB38
-.word 0x12080001, 0x8024BB38 # 8024BB38
+.word 0x11080000, LevelProc_8024BCD8 # 8024BB38
+.word 0x12080001, LevelProc_8024BCD8 # 8024BB38
 .word 0x1C040000
 .word 0x04040001
 .word 0x02040000
@@ -103,14 +103,14 @@ sl_level:
 .word   0x04000000
 .word     0x09000064
 .word     0x04000000
-.word       0x19000004, 0x80275E24
+.word       0x19000004, Geo19_802763D4
 .word     0x05000000
 .word   0x05000000
 .word   0x0C010000
 .word   0x04000000
-.word     0x0A01002D, 0x00644E20, 0x8029A320
+.word     0x0A01002D, 0x00644E20, Geo0A_8029AA3C
 .word     0x04000000
-.word       0x0F000010, 0x000007D0, 0x17700000, 0x11300000, 0x80287748
+.word       0x0F000010, 0x000007D0, 0x17700000, 0x11300000, Geo0F_80287D30
 .word       0x04000000
 .word         0x15010000, 0x07005478
 .word         0x15050000, 0x070056B0
@@ -119,16 +119,16 @@ sl_level:
 .word         0x15050000, 0x070088B0
 .word         0x15060000, 0x07008D58
 .word         0x15010000, 0x0700A5A0
-.word         0x18000000, 0x802CF700
-.word         0x18001001, 0x802D056C
+.word         0x18000000, Geo18_802D01E0
+.word         0x18001001, Geo18_802D104C
 .word         0x17000000
-.word         0x18000001, 0x80275C20
+.word         0x18000001, Geo18_802761D0
 .word       0x05000000
 .word     0x05000000
 .word   0x05000000
 .word   0x0C000000
 .word   0x04000000
-.word     0x18000000, 0x802CC708
+.word     0x18000000, Geo18_802CD1E8
 .word   0x05000000
 .word 0x05000000
 .word 0x01000000
@@ -143,16 +143,16 @@ sl_level:
 .word   0x05000000
 .word   0x0C010000
 .word   0x04000000
-.word     0x0A01002D, 0x00643200, 0x8029A320
+.word     0x0A01002D, 0x00643200, Geo0A_8029AA3C
 .word     0x04000000
-.word       0x0F000004, 0x000007D0, 0x17700000, 0x00000000, 0x80287748
+.word       0x0F000004, 0x000007D0, 0x17700000, 0x00000000, Geo0F_80287D30
 .word       0x04000000
 .word         0x15010000, 0x0700BAE8
 .word         0x15010000, 0x0700BCF8
 .word         0x15050000, 0x0700C9E8
 .word         0x15050000, 0x0700CB58
 .word         0x17000000
-.word         0x18000000, 0x80275C20
+.word         0x18000000, Geo18_802761D0
 .word       0x05000000
 .word     0x05000000
 .word   0x05000000

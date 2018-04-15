@@ -106,8 +106,8 @@ castle_grounds_level:
 .word 0x20040000
 .word 0x1E040000
 .word 0x2B0C0100, 0x00B4FAD0, 0x01041238
-.word 0x11080000, 0x8024BB38 # 8024BB38
-.word 0x12080001, 0x8024BB38 # 8024BB38
+.word 0x11080000, LevelProc_8024BCD8 # 8024BB38
+.word 0x12080001, LevelProc_8024BCD8 # 8024BB38
 .word 0x1C040000
 .word 0x04040001
 .word 0x02040000
@@ -163,14 +163,14 @@ castle_grounds_level:
 .word   0x04000000
 .word     0x09000064
 .word     0x04000000
-.word       0x19000000, 0x80275E24
+.word       0x19000000, Geo19_802763D4
 .word     0x05000000
 .word   0x05000000
 .word   0x0C010000
 .word   0x04000000
-.word     0x0A01002D, 0x00644E20, 0x8029A320
+.word     0x0A01002D, 0x00644E20, Geo0A_8029AA3C
 .word     0x04000000
-.word       0x0F000010, 0x000005DC, 0x09C40000, 0x05DCD120, 0x80287748
+.word       0x0F000010, 0x000005DC, 0x09C40000, 0x05DCD120, Geo0F_80287D30
 .word       0x04000000
 .word         0x15010000, 0x07006D70
 .word         0x15010000, 0x070095F0
@@ -179,17 +179,17 @@ castle_grounds_level:
 .word         0x15040000, 0x0700BA20
 .word         0x15020000, 0x0700C430
 .word         0x15010000, 0x0700C210
-.word         0x18000000, 0x802CF700
-.word         0x18001601, 0x802D1090
-.word         0x18001601, 0x802D056C
+.word         0x18000000, Geo18_802D01E0
+.word         0x18001601, Geo18_802D1B70
+.word         0x18001601, Geo18_802D104C
 .word         0x17000000
-.word         0x18000000, 0x80275C20
+.word         0x18000000, Geo18_802761D0
 .word       0x05000000
 .word     0x05000000
 .word   0x05000000
 .word   0x0C000000
 .word   0x04000000
-.word     0x18000000, 0x802CC708
+.word     0x18000000, Geo18_802CD1E8
 .word   0x05000000
 .word 0x05000000
 .word 0x01000000
