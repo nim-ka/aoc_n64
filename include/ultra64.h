@@ -16,5 +16,6 @@
 #include <ultra64/cache.h>
 #include <ultra64/vi.h>
 #include <ultra64/pi.h>
+#include <ultra64/gbi.h>
 
 #endif

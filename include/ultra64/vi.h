@@ -41,5 +41,6 @@ void osCreateViManager(OSPri pri);
 void osViSetMode(OSViMode *mode);
 void osViBlack(u8 active);
 void osViSetSpecialFeatures(u32 func);
+void osViSwapBuffer(void *vaddr);
 
 #endif

@@ -45,7 +45,7 @@ SECTIONS
    .text80246000 0x80246000 : AT(0x001000) {
       build/asm/entry.o(.text);
       build/src/main.o(.text);
-      build/asm/display.o(.text);
+      build/src/display.o(.text);
       build/asm/input.o(.text);
       build/src/sound_init.o(.text);
       build/asm/code_802495B0.o(.text);
