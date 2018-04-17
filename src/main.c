@@ -4,9 +4,9 @@
 
 void Unknown80246050(void)
 {
-    if (D_8032C6AC->unk12 != 0)
+    if (gPlayer2Controller->buttonPressed != 0)
     {
-        if (D_8032C65C[D_8032C67C++] == D_8032C6AC->unk12)
+        if (D_8032C65C[D_8032C67C++] == gPlayer2Controller->buttonPressed)
         {
             if (D_8032C67C == 8)
                 D_8032C67C = 0, D_8032C654 ^= 1;
@@ -16,10 +16,10 @@ void Unknown80246050(void)
             D_8032C67C = 0;
         }
 
-        if (D_8032C66C[D_8032C680++] == D_8032C6AC->unk12)
+        if (D_8032C66C[D_8032C680++] == gPlayer2Controller->buttonPressed)
         {
             if (D_8032C680 == 8)
-                D_8032C680 = 0, D_8032C658 ^= 1;
+                D_8032C680 = 0, gPrintDebugInfo ^= 1;
         }
         else
         {
@@ -86,7 +86,7 @@ void CreateThread(OSThread *thread, OSId id, void (*entry)(void *), void *arg,
 
 void func_8024639C(void)
 {
-    D_8032C644 = 1;
+    gResetTimer = 1;
     D_8032C648 = 0;
     func_80320890();
     func_803208C0(2, 890);
@@ -170,8 +170,8 @@ void func_8024669C(void)
 
     Dummy802461EC();
     D_8032C640++;
-    if (D_8032C644 > 0)
-        D_8032C644++;
+    if (gResetTimer > 0)
+        gResetTimer++;
     func_802463EC();
     if (D_8032C62C != NULL)
     {
@@ -263,7 +263,7 @@ void Thread3_Main(UNUSED void *arg)
     CreateThread(&D_803398D0, 4, Thread4, NULL, D_80203200 + 0x2000, 20);
     osStartThread(&D_803398D0);
 
-    CreateThread(&D_80339720, 5, Thread5_Debug, NULL, D_80205200 + 0x2000, 10);
+    CreateThread(&D_80339720, 5, Thread5_GameLoop, NULL, D_80205200 + 0x2000, 10);
     osStartThread(&D_80339720);
 
     while (1)

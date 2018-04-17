@@ -7,7 +7,7 @@
 
 # Unknown region 0EFA50-0F4210 [47C0]
 
-glabel D_80334A70
+glabel gBufString
 	.incbin "bin/rodata.bin", 0x0, 0x10
 
 glabel D_80334A80

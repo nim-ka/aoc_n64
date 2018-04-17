@@ -15,38 +15,12 @@ SECTIONS
       build/asm/boot.o(.text);
    }
 
-   /* load MIO0 and level data at 0x001076A0 */
-   .mio0 0x001076A0 : AT(0x1076A0) {
-      FILL (0x01) /* fill unused with 0x01 */
-      build/data/level_actors.o(.mio0);
-      . = ALIGN(0x10);
-   }
-
-   /* 0x2A42A0 0x2A42A0-0 [0] */
-   .mio0_b 0x2A42A0 : AT(0x2A42A0) {
-      build/data/level_main.o(.mio0_b);
-   }
-
-   /* 0x268020 0x268020-0 [0] */
-   .mio0_c 0x268020 : AT(0x268020) {
-      build/data/level_misc.o(.mio0_c);
-   }
-
-   /* use segmented addressing for behaviors */
-   .behavior 0x13000000 : AT(0x218130) {
-      FILL (0x01) /* fill unused with 0x01 */
-      build/data/behavior_data.o(.behavior);
-      behavior_length = . - 0x13000000;
-   }
-   __load_behavior_data = LOADADDR(.behavior);
-   __load_behavior_data_end = LOADADDR(.behavior) + behavior_length;
-
    /* 0x80246000 001000-0E5320 [E4320] */
    .text80246000 0x80246000 : AT(0x001000) {
       build/asm/entry.o(.text);
       build/src/main.o(.text);
       build/src/display.o(.text);
-      build/asm/input.o(.text);
+      build/src/input.o(.text);
       build/src/sound_init.o(.text);
       build/asm/code_802495B0.o(.text);
       build/asm/interaction.o(.text);
@@ -107,6 +81,22 @@ SECTIONS
       build/data/rodata_8038BA90.o(.rodata);
    }
 
+   /* load MIO0 and level data at 0x001076A0 */
+   .mio0 0x001076A0 : AT(0x1076A0) {
+      FILL (0x01) /* fill unused with 0x01 */
+      build/data/level_actors.o(.mio0);
+      . = ALIGN(0x10);
+   }
+
+   /* use segmented addressing for behaviors */
+   .behavior 0x13000000 : AT(0x218130) {
+      FILL (0x01) /* fill unused with 0x01 */
+      build/data/behavior_data.o(.behavior);
+      behavior_length = . - 0x13000000;
+   }
+   __load_behavior_data = LOADADDR(.behavior);
+   __load_behavior_data_end = LOADADDR(.behavior) + behavior_length;
+   
    /* 0x8016F000 21D7D0-255EC0 [386F0] */
    .text8016F000 0x8016F000 : AT(0x21D7D0) {
       build/asm/code_8016F000.o(.text);
@@ -114,9 +104,19 @@ SECTIONS
       build/data/unknown_255EC0.o(.text);
    }
 
+   /* 0x268020 0x268020-0 [0] */
+   .mio0_c 0x268020 : AT(0x268020) {
+      build/data/level_misc.o(.mio0_c);
+   }
+
    /* 271B20-2A42A0 [32780] */
    .text271B20 0x801B9850 : AT(0x271B20) {
       build/data/unknown_271B20.o(.text);
+   }
+
+   /* 0x2A42A0 0x2A42A0-0 [0] */
+   .mio0_b 0x2A42A0 : AT(0x2A42A0) {
+      build/data/level_main.o(.mio0_b);
    }
 
    /* 4E9FA0-? [?] */

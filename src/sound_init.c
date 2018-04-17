@@ -122,7 +122,7 @@ void func_80249040(void)
 
 void func_80249148(u16 a, u16 b, s16 c)
 {
-    if (D_8032C644 == 0 && b != D_8032C6C8)
+    if (gResetTimer == 0 && b != D_8032C6C8)
     {
         if (D_8032CE70 != 0)
             func_80321368(7);
@@ -220,7 +220,7 @@ void Thread4(UNUSED void *arg)
         OSMesg msg;
 
         osRecvMesg(&D_80339DD0, &msg, 1);
-        if (D_8032C644 < 25)
+        if (gResetTimer < 25)
         {
             int sp18;
             

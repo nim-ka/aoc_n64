@@ -4,6 +4,29 @@
 // This file contains various data types used in Super Mario 64 that don't yet
 // have an appropriate header.
 
+struct Controller 
+{
+  /*0x00*/ s16 rawStickX;       //
+  /*0x02*/ s16 rawStickY;       //
+  /*0x04*/ float stickX;        // [-64, 64] positive is right
+  /*0x08*/ float stickY;        // [-64, 64] positive is up
+  /*0x0C*/ float stickMag;      // distance from center [0, 64]
+  /*0x10*/ u16 buttonDown;
+  /*0x12*/ u16 buttonPressed;
+  /*0x14*/ OSContStatus* statusData;
+  /*0x18*/ OSContPad *controllerData;
+};
+
+struct DemoInput
+{
+ /*0x00*/ u8 timer; // until next input: if this value 
+                    // is 0 proceeding on the demo input, it 
+                    // means the demo is over.
+ /*0x01*/ s8 rawStickX;
+ /*0x02*/ s8 rawStickY;
+ /*0x03*/ u8 button;
+};
+
 struct UnknownStruct8035FFA8
 {
     u8 filler0[7];

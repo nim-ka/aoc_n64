@@ -26,5 +26,6 @@ s32 osJamMesg(OSMesgQueue *, OSMesg, s32);
 s32 osRecvMesg(OSMesgQueue *, OSMesg *, s32);
 void osSetEventMesg(OSEvent, OSMesgQueue *, OSMesg);
 void osViSetEvent(OSMesgQueue *mq, OSMesg msg, u32 retraceCount);
+s32 osContStartReadData(OSMesgQueue *);
 
 #endif

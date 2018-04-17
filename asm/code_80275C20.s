@@ -223,8 +223,8 @@ glabel Geo18_802764B0
 /* 030F30 80275F30 24010001 */  li    $at, 1
 /* 030F34 80275F34 1701001D */  bne   $t8, $at, .L80275FAC
 /* 030F38 80275F38 00000000 */   nop   
-/* 030F3C 80275F3C 3C198033 */  lui   $t9, %hi(D_8032C6A4) # $t9, 0x8033
-/* 030F40 80275F40 8F39C6A4 */  lw    $t9, %lo(D_8032C6A4)($t9)
+/* 030F3C 80275F3C 3C198033 */  lui   $t9, %hi(gPlayer1Controller) # $t9, 0x8033
+/* 030F40 80275F40 8F39C6A4 */  lw    $t9, %lo(gPlayer1Controller)($t9)
 /* 030F44 80275F44 8F280018 */  lw    $t0, 0x18($t9)
 /* 030F48 80275F48 11000009 */  beqz  $t0, .L80275F70
 /* 030F4C 80275F4C 00000000 */   nop   
@@ -232,8 +232,8 @@ glabel Geo18_802764B0
 /* 030F54 80275F54 9129A740 */  lbu   $t1, %lo(D_8033A740)($t1)
 /* 030F58 80275F58 15200005 */  bnez  $t1, .L80275F70
 /* 030F5C 80275F5C 00000000 */   nop   
-/* 030F60 80275F60 3C0A8033 */  lui   $t2, %hi(D_8032C6A4) # $t2, 0x8033
-/* 030F64 80275F64 8D4AC6A4 */  lw    $t2, %lo(D_8032C6A4)($t2)
+/* 030F60 80275F60 3C0A8033 */  lui   $t2, %hi(gPlayer1Controller) # $t2, 0x8033
+/* 030F64 80275F64 8D4AC6A4 */  lw    $t2, %lo(gPlayer1Controller)($t2)
 /* 030F68 80275F68 0C0671FC */  jal   func_8019C7F0
 /* 030F6C 80275F6C 8D440018 */   lw    $a0, 0x18($t2)
 .L80275F70:
@@ -2128,11 +2128,11 @@ glabel MovePtrTbl2Dmem
 /* 032A40 80277A40 27BDFFF8 */  addiu $sp, $sp, -8
 /* 032A44 80277A44 AFA00004 */  sw    $zero, 4($sp)
 .L80277A48:
-/* 032A48 80277A48 3C0E8034 */  lui   $t6, %hi(D_80339CFC) # $t6, 0x8034
-/* 032A4C 80277A4C 8DCE9CFC */  lw    $t6, %lo(D_80339CFC)($t6)
-/* 032A50 80277A50 3C018034 */  lui   $at, %hi(D_80339CFC) # $at, 0x8034
+/* 032A48 80277A48 3C0E8034 */  lui   $t6, %hi(gDisplayListHead) # $t6, 0x8034
+/* 032A4C 80277A4C 8DCE9CFC */  lw    $t6, %lo(gDisplayListHead)($t6)
+/* 032A50 80277A50 3C018034 */  lui   $at, %hi(gDisplayListHead) # $at, 0x8034
 /* 032A54 80277A54 25CF0008 */  addiu $t7, $t6, 8
-/* 032A58 80277A58 AC2F9CFC */  sw    $t7, %lo(D_80339CFC)($at)
+/* 032A58 80277A58 AC2F9CFC */  sw    $t7, %lo(gDisplayListHead)($at)
 /* 032A5C 80277A5C AFAE0000 */  sw    $t6, ($sp)
 /* 032A60 80277A60 8FB80004 */  lw    $t8, 4($sp)
 /* 032A64 80277A64 8FAC0000 */  lw    $t4, ($sp)
@@ -3211,21 +3211,21 @@ glabel func_8027897C
 /* 033988 80278988 2401FFF8 */  li    $at, -8
 /* 03398C 8027898C 00817024 */  and   $t6, $a0, $at
 /* 033990 80278990 01C02025 */  move  $a0, $t6
-/* 033994 80278994 3C0F8034 */  lui   $t7, %hi(D_80339D00) # $t7, 0x8034
-/* 033998 80278998 8DEF9D00 */  lw    $t7, %lo(D_80339D00)($t7)
-/* 03399C 8027899C 3C198034 */  lui   $t9, %hi(D_80339CFC) # $t9, 0x8034
-/* 0339A0 802789A0 8F399CFC */  lw    $t9, %lo(D_80339CFC)($t9)
+/* 033994 80278994 3C0F8034 */  lui   $t7, %hi(gGfxPoolEnd) # $t7, 0x8034
+/* 033998 80278998 8DEF9D00 */  lw    $t7, %lo(gGfxPoolEnd)($t7)
+/* 03399C 8027899C 3C198034 */  lui   $t9, %hi(gDisplayListHead) # $t9, 0x8034
+/* 0339A0 802789A0 8F399CFC */  lw    $t9, %lo(gDisplayListHead)($t9)
 /* 0339A4 802789A4 01E4C023 */  subu  $t8, $t7, $a0
 /* 0339A8 802789A8 0319082B */  sltu  $at, $t8, $t9
 /* 0339AC 802789AC 1420000A */  bnez  $at, .L802789D8
 /* 0339B0 802789B0 00000000 */   nop   
-/* 0339B4 802789B4 3C088034 */  lui   $t0, %hi(D_80339D00) # $t0, 0x8034
-/* 0339B8 802789B8 8D089D00 */  lw    $t0, %lo(D_80339D00)($t0)
-/* 0339BC 802789BC 3C018034 */  lui   $at, %hi(D_80339D00) # $at, 0x8034
+/* 0339B4 802789B4 3C088034 */  lui   $t0, %hi(gGfxPoolEnd) # $t0, 0x8034
+/* 0339B8 802789B8 8D089D00 */  lw    $t0, %lo(gGfxPoolEnd)($t0)
+/* 0339BC 802789BC 3C018034 */  lui   $at, %hi(gGfxPoolEnd) # $at, 0x8034
 /* 0339C0 802789C0 01044823 */  subu  $t1, $t0, $a0
-/* 0339C4 802789C4 AC299D00 */  sw    $t1, %lo(D_80339D00)($at)
-/* 0339C8 802789C8 3C0A8034 */  lui   $t2, %hi(D_80339D00) # $t2, 0x8034
-/* 0339CC 802789CC 8D4A9D00 */  lw    $t2, %lo(D_80339D00)($t2)
+/* 0339C4 802789C4 AC299D00 */  sw    $t1, %lo(gGfxPoolEnd)($at)
+/* 0339C8 802789C8 3C0A8034 */  lui   $t2, %hi(gGfxPoolEnd) # $t2, 0x8034
+/* 0339CC 802789CC 8D4A9D00 */  lw    $t2, %lo(gGfxPoolEnd)($t2)
 /* 0339D0 802789D0 10000001 */  b     .L802789D8
 /* 0339D4 802789D4 AFAA0004 */   sw    $t2, 4($sp)
 .L802789D8:

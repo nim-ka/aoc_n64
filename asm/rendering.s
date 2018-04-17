@@ -82,8 +82,8 @@ glabel IntroPrintText
 /* 035314 8027A314 2DE10014 */  sltiu $at, $t7, 0x14
 /* 035318 8027A318 10200016 */  beqz  $at, .L8027A374
 /* 03531C 8027A31C 00000000 */   nop   
-/* 035320 8027A320 3C188034 */  lui   $t8, %hi(D_80339D08) # $t8, 0x8034
-/* 035324 8027A324 93189D08 */  lbu   $t8, %lo(D_80339D08)($t8)
+/* 035320 8027A320 3C188034 */  lui   $t8, %hi(gControllerBits) # $t8, 0x8034
+/* 035324 8027A324 93189D08 */  lbu   $t8, %lo(gControllerBits)($t8)
 /* 035328 8027A328 17000008 */  bnez  $t8, .L8027A34C
 /* 03532C 8027A32C 00000000 */   nop   
 /* 035330 8027A330 3C068033 */  lui   $a2, %hi(D_80335DD0) # $a2, 0x8033
@@ -875,11 +875,11 @@ glabel func_8027AE04
 /* 035E4C 8027AE4C 8CA5CE74 */  lw    $a1, %lo(D_8032CE74)($a1)
 /* 035E50 8027AE50 0C09F6E0 */  jal   func_8027DB80
 /* 035E54 8027AE54 8F040004 */   lw    $a0, 4($t8)
-/* 035E58 8027AE58 3C198034 */  lui   $t9, %hi(D_80339CFC) # $t9, 0x8034
-/* 035E5C 8027AE5C 8F399CFC */  lw    $t9, %lo(D_80339CFC)($t9)
-/* 035E60 8027AE60 3C018034 */  lui   $at, %hi(D_80339CFC) # $at, 0x8034
+/* 035E58 8027AE58 3C198034 */  lui   $t9, %hi(gDisplayListHead) # $t9, 0x8034
+/* 035E5C 8027AE5C 8F399CFC */  lw    $t9, %lo(gDisplayListHead)($t9)
+/* 035E60 8027AE60 3C018034 */  lui   $at, %hi(gDisplayListHead) # $at, 0x8034
 /* 035E64 8027AE64 27280008 */  addiu $t0, $t9, 8
-/* 035E68 8027AE68 AC289CFC */  sw    $t0, %lo(D_80339CFC)($at)
+/* 035E68 8027AE68 AC289CFC */  sw    $t0, %lo(gDisplayListHead)($at)
 /* 035E6C 8027AE6C AFB90034 */  sw    $t9, 0x34($sp)
 /* 035E70 8027AE70 8FAA0034 */  lw    $t2, 0x34($sp)
 /* 035E74 8027AE74 3C090380 */  lui   $t1, (0x03800010 >> 16) # lui $t1, 0x380
@@ -892,11 +892,11 @@ glabel func_8027AE04
 /* 035E90 8027AE90 256BCF00 */  addiu $t3, %lo(D_8032CF00) # addiu $t3, $t3, -0x3100
 /* 035E94 8027AE94 01616024 */  and   $t4, $t3, $at
 /* 035E98 8027AE98 ADAC0004 */  sw    $t4, 4($t5)
-/* 035E9C 8027AE9C 3C0E8034 */  lui   $t6, %hi(D_80339CFC) # $t6, 0x8034
-/* 035EA0 8027AEA0 8DCE9CFC */  lw    $t6, %lo(D_80339CFC)($t6)
-/* 035EA4 8027AEA4 3C018034 */  lui   $at, %hi(D_80339CFC) # $at, 0x8034
+/* 035E9C 8027AE9C 3C0E8034 */  lui   $t6, %hi(gDisplayListHead) # $t6, 0x8034
+/* 035EA0 8027AEA0 8DCE9CFC */  lw    $t6, %lo(gDisplayListHead)($t6)
+/* 035EA4 8027AEA4 3C018034 */  lui   $at, %hi(gDisplayListHead) # $at, 0x8034
 /* 035EA8 8027AEA8 25CF0008 */  addiu $t7, $t6, 8
-/* 035EAC 8027AEAC AC2F9CFC */  sw    $t7, %lo(D_80339CFC)($at)
+/* 035EAC 8027AEAC AC2F9CFC */  sw    $t7, %lo(gDisplayListHead)($at)
 /* 035EB0 8027AEB0 AFAE0030 */  sw    $t6, 0x30($sp)
 /* 035EB4 8027AEB4 8FB90030 */  lw    $t9, 0x30($sp)
 /* 035EB8 8027AEB8 3C18ED00 */  lui   $t8, (0xED000020 >> 16) # lui $t8, 0xed00
@@ -908,11 +908,11 @@ glabel func_8027AE04
 /* 035ED0 8027AED0 AD280004 */  sw    $t0, 4($t1)
 /* 035ED4 8027AED4 0C0B8B87 */  jal   RenderHud
 /* 035ED8 8027AED8 00000000 */   nop   
-/* 035EDC 8027AEDC 3C0A8034 */  lui   $t2, %hi(D_80339CFC) # $t2, 0x8034
-/* 035EE0 8027AEE0 8D4A9CFC */  lw    $t2, %lo(D_80339CFC)($t2)
-/* 035EE4 8027AEE4 3C018034 */  lui   $at, %hi(D_80339CFC) # $at, 0x8034
+/* 035EDC 8027AEDC 3C0A8034 */  lui   $t2, %hi(gDisplayListHead) # $t2, 0x8034
+/* 035EE0 8027AEE0 8D4A9CFC */  lw    $t2, %lo(gDisplayListHead)($t2)
+/* 035EE4 8027AEE4 3C018034 */  lui   $at, %hi(gDisplayListHead) # $at, 0x8034
 /* 035EE8 8027AEE8 254B0008 */  addiu $t3, $t2, 8
-/* 035EEC 8027AEEC AC2B9CFC */  sw    $t3, %lo(D_80339CFC)($at)
+/* 035EEC 8027AEEC AC2B9CFC */  sw    $t3, %lo(gDisplayListHead)($at)
 /* 035EF0 8027AEF0 AFAA002C */  sw    $t2, 0x2c($sp)
 /* 035EF4 8027AEF4 8FAD002C */  lw    $t5, 0x2c($sp)
 /* 035EF8 8027AEF8 3C0CED00 */  lui   $t4, 0xed00
@@ -927,11 +927,11 @@ glabel func_8027AE04
 /* 035F1C 8027AF1C 00000000 */   nop   
 /* 035F20 8027AF20 0C095B2A */  jal   func_80256CA8
 /* 035F24 8027AF24 00000000 */   nop   
-/* 035F28 8027AF28 3C188034 */  lui   $t8, %hi(D_80339CFC) # $t8, 0x8034
-/* 035F2C 8027AF2C 8F189CFC */  lw    $t8, %lo(D_80339CFC)($t8)
-/* 035F30 8027AF30 3C018034 */  lui   $at, %hi(D_80339CFC) # $at, 0x8034
+/* 035F28 8027AF28 3C188034 */  lui   $t8, %hi(gDisplayListHead) # $t8, 0x8034
+/* 035F2C 8027AF2C 8F189CFC */  lw    $t8, %lo(gDisplayListHead)($t8)
+/* 035F30 8027AF30 3C018034 */  lui   $at, %hi(gDisplayListHead) # $at, 0x8034
 /* 035F34 8027AF34 27190008 */  addiu $t9, $t8, 8
-/* 035F38 8027AF38 AC399CFC */  sw    $t9, %lo(D_80339CFC)($at)
+/* 035F38 8027AF38 AC399CFC */  sw    $t9, %lo(gDisplayListHead)($at)
 /* 035F3C 8027AF3C AFB80028 */  sw    $t8, 0x28($sp)
 /* 035F40 8027AF40 8FA90028 */  lw    $t1, 0x28($sp)
 /* 035F44 8027AF44 3C08ED00 */  lui   $t0, (0xED000020 >> 16) # lui $t0, 0xed00
@@ -964,11 +964,11 @@ glabel func_8027AE04
 /* 035FAC 8027AFAC 1000000F */  b     .L8027AFEC
 /* 035FB0 8027AFB0 00000000 */   nop   
 .L8027AFB4:
-/* 035FB4 8027AFB4 3C0F8034 */  lui   $t7, %hi(D_80339CFC) # $t7, 0x8034
-/* 035FB8 8027AFB8 8DEF9CFC */  lw    $t7, %lo(D_80339CFC)($t7)
-/* 035FBC 8027AFBC 3C018034 */  lui   $at, %hi(D_80339CFC) # $at, 0x8034
+/* 035FB4 8027AFB4 3C0F8034 */  lui   $t7, %hi(gDisplayListHead) # $t7, 0x8034
+/* 035FB8 8027AFB8 8DEF9CFC */  lw    $t7, %lo(gDisplayListHead)($t7)
+/* 035FBC 8027AFBC 3C018034 */  lui   $at, %hi(gDisplayListHead) # $at, 0x8034
 /* 035FC0 8027AFC0 25F80008 */  addiu $t8, $t7, 8
-/* 035FC4 8027AFC4 AC389CFC */  sw    $t8, %lo(D_80339CFC)($at)
+/* 035FC4 8027AFC4 AC389CFC */  sw    $t8, %lo(gDisplayListHead)($at)
 /* 035FC8 8027AFC8 AFAF0024 */  sw    $t7, 0x24($sp)
 /* 035FCC 8027AFCC 8FA80024 */  lw    $t0, 0x24($sp)
 /* 035FD0 8027AFD0 3C19ED00 */  lui   $t9, (0xED000020 >> 16) # lui $t9, 0xed00
@@ -1082,22 +1082,22 @@ glabel func_8027B110
 /* 036154 8027B154 8FAF0024 */  lw    $t7, 0x24($sp)
 /* 036158 8027B158 11E00018 */  beqz  $t7, .L8027B1BC
 /* 03615C 8027B15C 00000000 */   nop   
-/* 036160 8027B160 3C188034 */  lui   $t8, %hi(D_80339CFC) # $t8, 0x8034
-/* 036164 8027B164 8F189CFC */  lw    $t8, %lo(D_80339CFC)($t8)
-/* 036168 8027B168 3C018034 */  lui   $at, %hi(D_80339CFC) # $at, 0x8034
+/* 036160 8027B160 3C188034 */  lui   $t8, %hi(gDisplayListHead) # $t8, 0x8034
+/* 036164 8027B164 8F189CFC */  lw    $t8, %lo(gDisplayListHead)($t8)
+/* 036168 8027B168 3C018034 */  lui   $at, %hi(gDisplayListHead) # $at, 0x8034
 /* 03616C 8027B16C 27190008 */  addiu $t9, $t8, 8
-/* 036170 8027B170 AC399CFC */  sw    $t9, %lo(D_80339CFC)($at)
+/* 036170 8027B170 AC399CFC */  sw    $t9, %lo(gDisplayListHead)($at)
 /* 036174 8027B174 AFB80018 */  sw    $t8, 0x18($sp)
 /* 036178 8027B178 8FA90018 */  lw    $t1, 0x18($sp)
 /* 03617C 8027B17C 3C08E700 */  lui   $t0, 0xe700
 /* 036180 8027B180 AD280000 */  sw    $t0, ($t1)
 /* 036184 8027B184 8FAA0018 */  lw    $t2, 0x18($sp)
 /* 036188 8027B188 AD400004 */  sw    $zero, 4($t2)
-/* 03618C 8027B18C 3C0B8034 */  lui   $t3, %hi(D_80339CFC) # $t3, 0x8034
-/* 036190 8027B190 8D6B9CFC */  lw    $t3, %lo(D_80339CFC)($t3)
-/* 036194 8027B194 3C018034 */  lui   $at, %hi(D_80339CFC) # $at, 0x8034
+/* 03618C 8027B18C 3C0B8034 */  lui   $t3, %hi(gDisplayListHead) # $t3, 0x8034
+/* 036190 8027B190 8D6B9CFC */  lw    $t3, %lo(gDisplayListHead)($t3)
+/* 036194 8027B194 3C018034 */  lui   $at, %hi(gDisplayListHead) # $at, 0x8034
 /* 036198 8027B198 256C0008 */  addiu $t4, $t3, 8
-/* 03619C 8027B19C AC2C9CFC */  sw    $t4, %lo(D_80339CFC)($at)
+/* 03619C 8027B19C AC2C9CFC */  sw    $t4, %lo(gDisplayListHead)($at)
 /* 0361A0 8027B1A0 AFAB0014 */  sw    $t3, 0x14($sp)
 /* 0361A4 8027B1A4 8FAE0014 */  lw    $t6, 0x14($sp)
 /* 0361A8 8027B1A8 3C0DB700 */  lui   $t5, 0xb700
@@ -1114,11 +1114,11 @@ glabel func_8027B110
 /* 0361CC 8027B1CC 8D2A0014 */  lw    $t2, 0x14($t1)
 /* 0361D0 8027B1D0 1140003D */  beqz  $t2, .L8027B2C8
 /* 0361D4 8027B1D4 AFAA002C */   sw    $t2, 0x2c($sp)
-/* 0361D8 8027B1D8 3C0B8034 */  lui   $t3, %hi(D_80339CFC) # $t3, 0x8034
-/* 0361DC 8027B1DC 8D6B9CFC */  lw    $t3, %lo(D_80339CFC)($t3)
-/* 0361E0 8027B1E0 3C018034 */  lui   $at, %hi(D_80339CFC) # $at, 0x8034
+/* 0361D8 8027B1D8 3C0B8034 */  lui   $t3, %hi(gDisplayListHead) # $t3, 0x8034
+/* 0361DC 8027B1DC 8D6B9CFC */  lw    $t3, %lo(gDisplayListHead)($t3)
+/* 0361E0 8027B1E0 3C018034 */  lui   $at, %hi(gDisplayListHead) # $at, 0x8034
 /* 0361E4 8027B1E4 256C0008 */  addiu $t4, $t3, 8
-/* 0361E8 8027B1E8 AC2C9CFC */  sw    $t4, %lo(D_80339CFC)($at)
+/* 0361E8 8027B1E8 AC2C9CFC */  sw    $t4, %lo(gDisplayListHead)($at)
 /* 0361EC 8027B1EC AFAB0010 */  sw    $t3, 0x10($sp)
 /* 0361F0 8027B1F0 8FAE0010 */  lw    $t6, 0x10($sp)
 /* 0361F4 8027B1F4 3C0DB900 */  lui   $t5, (0xB900031D >> 16) # lui $t5, 0xb900
@@ -1139,11 +1139,11 @@ glabel func_8027B110
 /* 036230 8027B230 13000025 */  beqz  $t8, .L8027B2C8
 /* 036234 8027B234 00000000 */   nop   
 .L8027B238:
-/* 036238 8027B238 3C0F8034 */  lui   $t7, %hi(D_80339CFC) # $t7, 0x8034
-/* 03623C 8027B23C 8DEF9CFC */  lw    $t7, %lo(D_80339CFC)($t7)
-/* 036240 8027B240 3C018034 */  lui   $at, %hi(D_80339CFC) # $at, 0x8034
+/* 036238 8027B238 3C0F8034 */  lui   $t7, %hi(gDisplayListHead) # $t7, 0x8034
+/* 03623C 8027B23C 8DEF9CFC */  lw    $t7, %lo(gDisplayListHead)($t7)
+/* 036240 8027B240 3C018034 */  lui   $at, %hi(gDisplayListHead) # $at, 0x8034
 /* 036244 8027B244 25E80008 */  addiu $t0, $t7, 8
-/* 036248 8027B248 AC289CFC */  sw    $t0, %lo(D_80339CFC)($at)
+/* 036248 8027B248 AC289CFC */  sw    $t0, %lo(gDisplayListHead)($at)
 /* 03624C 8027B24C AFAF000C */  sw    $t7, 0xc($sp)
 /* 036250 8027B250 8FB9000C */  lw    $t9, 0xc($sp)
 /* 036254 8027B254 3C0A0102 */  lui   $t2, (0x01020040 >> 16) # lui $t2, 0x102
@@ -1156,11 +1156,11 @@ glabel func_8027B110
 /* 036270 8027B270 3421FFFF */  ori   $at, (0x1FFFFFFF & 0xFFFF) # ori $at, $at, 0xffff
 /* 036274 8027B274 01216024 */  and   $t4, $t1, $at
 /* 036278 8027B278 ADAC0004 */  sw    $t4, 4($t5)
-/* 03627C 8027B27C 3C0E8034 */  lui   $t6, %hi(D_80339CFC) # $t6, 0x8034
-/* 036280 8027B280 8DCE9CFC */  lw    $t6, %lo(D_80339CFC)($t6)
-/* 036284 8027B284 3C018034 */  lui   $at, %hi(D_80339CFC) # $at, 0x8034
+/* 03627C 8027B27C 3C0E8034 */  lui   $t6, %hi(gDisplayListHead) # $t6, 0x8034
+/* 036280 8027B280 8DCE9CFC */  lw    $t6, %lo(gDisplayListHead)($t6)
+/* 036284 8027B284 3C018034 */  lui   $at, %hi(gDisplayListHead) # $at, 0x8034
 /* 036288 8027B288 25D80008 */  addiu $t8, $t6, 8
-/* 03628C 8027B28C AC389CFC */  sw    $t8, %lo(D_80339CFC)($at)
+/* 03628C 8027B28C AC389CFC */  sw    $t8, %lo(gDisplayListHead)($at)
 /* 036290 8027B290 AFAE0008 */  sw    $t6, 8($sp)
 /* 036294 8027B294 8FA80008 */  lw    $t0, 8($sp)
 /* 036298 8027B298 3C0F0600 */  lui   $t7, 0x600
@@ -1184,22 +1184,22 @@ glabel func_8027B110
 /* 0362DC 8027B2DC 8FAF0024 */  lw    $t7, 0x24($sp)
 /* 0362E0 8027B2E0 11E00018 */  beqz  $t7, .L8027B344
 /* 0362E4 8027B2E4 00000000 */   nop   
-/* 0362E8 8027B2E8 3C088034 */  lui   $t0, %hi(D_80339CFC) # $t0, 0x8034
-/* 0362EC 8027B2EC 8D089CFC */  lw    $t0, %lo(D_80339CFC)($t0)
-/* 0362F0 8027B2F0 3C018034 */  lui   $at, %hi(D_80339CFC) # $at, 0x8034
+/* 0362E8 8027B2E8 3C088034 */  lui   $t0, %hi(gDisplayListHead) # $t0, 0x8034
+/* 0362EC 8027B2EC 8D089CFC */  lw    $t0, %lo(gDisplayListHead)($t0)
+/* 0362F0 8027B2F0 3C018034 */  lui   $at, %hi(gDisplayListHead) # $at, 0x8034
 /* 0362F4 8027B2F4 250A0008 */  addiu $t2, $t0, 8
-/* 0362F8 8027B2F8 AC2A9CFC */  sw    $t2, %lo(D_80339CFC)($at)
+/* 0362F8 8027B2F8 AC2A9CFC */  sw    $t2, %lo(gDisplayListHead)($at)
 /* 0362FC 8027B2FC AFA80004 */  sw    $t0, 4($sp)
 /* 036300 8027B300 8FAB0004 */  lw    $t3, 4($sp)
 /* 036304 8027B304 3C19E700 */  lui   $t9, 0xe700
 /* 036308 8027B308 AD790000 */  sw    $t9, ($t3)
 /* 03630C 8027B30C 8FA90004 */  lw    $t1, 4($sp)
 /* 036310 8027B310 AD200004 */  sw    $zero, 4($t1)
-/* 036314 8027B314 3C0C8034 */  lui   $t4, %hi(D_80339CFC) # $t4, 0x8034
-/* 036318 8027B318 8D8C9CFC */  lw    $t4, %lo(D_80339CFC)($t4)
-/* 03631C 8027B31C 3C018034 */  lui   $at, %hi(D_80339CFC) # $at, 0x8034
+/* 036314 8027B314 3C0C8034 */  lui   $t4, %hi(gDisplayListHead) # $t4, 0x8034
+/* 036318 8027B318 8D8C9CFC */  lw    $t4, %lo(gDisplayListHead)($t4)
+/* 03631C 8027B31C 3C018034 */  lui   $at, %hi(gDisplayListHead) # $at, 0x8034
 /* 036320 8027B320 258D0008 */  addiu $t5, $t4, 8
-/* 036324 8027B324 AC2D9CFC */  sw    $t5, %lo(D_80339CFC)($at)
+/* 036324 8027B324 AC2D9CFC */  sw    $t5, %lo(gDisplayListHead)($at)
 /* 036328 8027B328 AFAC0000 */  sw    $t4, ($sp)
 /* 03632C 8027B32C 8FB80000 */  lw    $t8, ($sp)
 /* 036330 8027B330 3C0EB600 */  lui   $t6, 0xb600
@@ -1409,11 +1409,11 @@ glabel func_8027B4E8
 /* 036624 8027B624 E7A40010 */  swc1  $f4, 0x10($sp)
 /* 036628 8027B628 0C0C8F91 */  jal   guFrustum
 /* 03662C 8027B62C E7AA001C */   swc1  $f10, 0x1c($sp)
-/* 036630 8027B630 3C188034 */  lui   $t8, %hi(D_80339CFC) # $t8, 0x8034
-/* 036634 8027B634 8F189CFC */  lw    $t8, %lo(D_80339CFC)($t8)
-/* 036638 8027B638 3C018034 */  lui   $at, %hi(D_80339CFC) # $at, 0x8034
+/* 036630 8027B630 3C188034 */  lui   $t8, %hi(gDisplayListHead) # $t8, 0x8034
+/* 036634 8027B634 8F189CFC */  lw    $t8, %lo(gDisplayListHead)($t8)
+/* 036638 8027B638 3C018034 */  lui   $at, %hi(gDisplayListHead) # $at, 0x8034
 /* 03663C 8027B63C 27190008 */  addiu $t9, $t8, 8
-/* 036640 8027B640 AC399CFC */  sw    $t9, %lo(D_80339CFC)($at)
+/* 036640 8027B640 AC399CFC */  sw    $t9, %lo(gDisplayListHead)($at)
 /* 036644 8027B644 AFB80030 */  sw    $t8, 0x30($sp)
 /* 036648 8027B648 8FA90030 */  lw    $t1, 0x30($sp)
 /* 03664C 8027B64C 3C08B400 */  lui   $t0, 0xb400
@@ -1421,11 +1421,11 @@ glabel func_8027B4E8
 /* 036654 8027B654 8FAB0030 */  lw    $t3, 0x30($sp)
 /* 036658 8027B658 340AFFFF */  li    $t2, 65535
 /* 03665C 8027B65C AD6A0004 */  sw    $t2, 4($t3)
-/* 036660 8027B660 3C0C8034 */  lui   $t4, %hi(D_80339CFC) # $t4, 0x8034
-/* 036664 8027B664 8D8C9CFC */  lw    $t4, %lo(D_80339CFC)($t4)
-/* 036668 8027B668 3C018034 */  lui   $at, %hi(D_80339CFC) # $at, 0x8034
+/* 036660 8027B660 3C0C8034 */  lui   $t4, %hi(gDisplayListHead) # $t4, 0x8034
+/* 036664 8027B664 8D8C9CFC */  lw    $t4, %lo(gDisplayListHead)($t4)
+/* 036668 8027B668 3C018034 */  lui   $at, %hi(gDisplayListHead) # $at, 0x8034
 /* 03666C 8027B66C 258D0008 */  addiu $t5, $t4, 8
-/* 036670 8027B670 AC2D9CFC */  sw    $t5, %lo(D_80339CFC)($at)
+/* 036670 8027B670 AC2D9CFC */  sw    $t5, %lo(gDisplayListHead)($at)
 /* 036674 8027B674 AFAC002C */  sw    $t4, 0x2c($sp)
 /* 036678 8027B678 8FAF002C */  lw    $t7, 0x2c($sp)
 /* 03667C 8027B67C 3C0E0103 */  lui   $t6, (0x01030040 >> 16) # lui $t6, 0x103
@@ -1504,11 +1504,11 @@ glabel func_8027B6C4
 /* 03678C 8027B78C 468041A0 */  cvt.s.w $f6, $f8
 /* 036790 8027B790 0C0C9038 */  jal   guPerspective
 /* 036794 8027B794 E7A60014 */   swc1  $f6, 0x14($sp)
-/* 036798 8027B798 3C188034 */  lui   $t8, %hi(D_80339CFC) # $t8, 0x8034
-/* 03679C 8027B79C 8F189CFC */  lw    $t8, %lo(D_80339CFC)($t8)
-/* 0367A0 8027B7A0 3C018034 */  lui   $at, %hi(D_80339CFC) # $at, 0x8034
+/* 036798 8027B798 3C188034 */  lui   $t8, %hi(gDisplayListHead) # $t8, 0x8034
+/* 03679C 8027B79C 8F189CFC */  lw    $t8, %lo(gDisplayListHead)($t8)
+/* 0367A0 8027B7A0 3C018034 */  lui   $at, %hi(gDisplayListHead) # $at, 0x8034
 /* 0367A4 8027B7A4 27190008 */  addiu $t9, $t8, 8
-/* 0367A8 8027B7A8 AC399CFC */  sw    $t9, %lo(D_80339CFC)($at)
+/* 0367A8 8027B7A8 AC399CFC */  sw    $t9, %lo(gDisplayListHead)($at)
 /* 0367AC 8027B7AC AFB80030 */  sw    $t8, 0x30($sp)
 /* 0367B0 8027B7B0 8FAB0030 */  lw    $t3, 0x30($sp)
 /* 0367B4 8027B7B4 3C0AB400 */  lui   $t2, 0xb400
@@ -1516,11 +1516,11 @@ glabel func_8027B6C4
 /* 0367BC 8027B7BC 97AD003E */  lhu   $t5, 0x3e($sp)
 /* 0367C0 8027B7C0 8FAC0030 */  lw    $t4, 0x30($sp)
 /* 0367C4 8027B7C4 AD8D0004 */  sw    $t5, 4($t4)
-/* 0367C8 8027B7C8 3C0E8034 */  lui   $t6, %hi(D_80339CFC) # $t6, 0x8034
-/* 0367CC 8027B7CC 8DCE9CFC */  lw    $t6, %lo(D_80339CFC)($t6)
-/* 0367D0 8027B7D0 3C018034 */  lui   $at, %hi(D_80339CFC) # $at, 0x8034
+/* 0367C8 8027B7C8 3C0E8034 */  lui   $t6, %hi(gDisplayListHead) # $t6, 0x8034
+/* 0367CC 8027B7CC 8DCE9CFC */  lw    $t6, %lo(gDisplayListHead)($t6)
+/* 0367D0 8027B7D0 3C018034 */  lui   $at, %hi(gDisplayListHead) # $at, 0x8034
 /* 0367D4 8027B7D4 25C80008 */  addiu $t0, $t6, 8
-/* 0367D8 8027B7D8 AC289CFC */  sw    $t0, %lo(D_80339CFC)($at)
+/* 0367D8 8027B7D8 AC289CFC */  sw    $t0, %lo(gDisplayListHead)($at)
 /* 0367DC 8027B7DC AFAE002C */  sw    $t6, 0x2c($sp)
 /* 0367E0 8027B7E0 8FA9002C */  lw    $t1, 0x2c($sp)
 /* 0367E4 8027B7E4 3C0F0103 */  lui   $t7, (0x01030040 >> 16) # lui $t7, 0x103
@@ -1680,11 +1680,11 @@ glabel func_8027B9A8
 /* 036A0C 8027BA0C 8FA40024 */  lw    $a0, 0x24($sp)
 /* 036A10 8027BA10 0C0DE92E */  jal   func_8037A4B8
 /* 036A14 8027BA14 8545003A */   lh    $a1, 0x3a($t2)
-/* 036A18 8027BA18 3C0B8034 */  lui   $t3, %hi(D_80339CFC) # $t3, 0x8034
-/* 036A1C 8027BA1C 8D6B9CFC */  lw    $t3, %lo(D_80339CFC)($t3)
-/* 036A20 8027BA20 3C018034 */  lui   $at, %hi(D_80339CFC) # $at, 0x8034
+/* 036A18 8027BA18 3C0B8034 */  lui   $t3, %hi(gDisplayListHead) # $t3, 0x8034
+/* 036A1C 8027BA1C 8D6B9CFC */  lw    $t3, %lo(gDisplayListHead)($t3)
+/* 036A20 8027BA20 3C018034 */  lui   $at, %hi(gDisplayListHead) # $at, 0x8034
 /* 036A24 8027BA24 256C0008 */  addiu $t4, $t3, 8
-/* 036A28 8027BA28 AC2C9CFC */  sw    $t4, %lo(D_80339CFC)($at)
+/* 036A28 8027BA28 AC2C9CFC */  sw    $t4, %lo(gDisplayListHead)($at)
 /* 036A2C 8027BA2C AFAB001C */  sw    $t3, 0x1c($sp)
 /* 036A30 8027BA30 8FAE001C */  lw    $t6, 0x1c($sp)
 /* 036A34 8027BA34 3C0D0101 */  lui   $t5, (0x01010040 >> 16) # lui $t5, 0x101
@@ -4047,11 +4047,11 @@ glabel func_8027DB80
 /* 038CFC 8027DCFC 000F4080 */  sll   $t0, $t7, 2
 /* 038D00 8027DD00 00280821 */  addu  $at, $at, $t0
 /* 038D04 8027DD04 AC2EAF78 */  sw    $t6, %lo(D_8033AF78)($at)
-/* 038D08 8027DD08 3C198034 */  lui   $t9, %hi(D_80339CFC) # $t9, 0x8034
-/* 038D0C 8027DD0C 8F399CFC */  lw    $t9, %lo(D_80339CFC)($t9)
-/* 038D10 8027DD10 3C018034 */  lui   $at, %hi(D_80339CFC) # $at, 0x8034
+/* 038D08 8027DD08 3C198034 */  lui   $t9, %hi(gDisplayListHead) # $t9, 0x8034
+/* 038D0C 8027DD0C 8F399CFC */  lw    $t9, %lo(gDisplayListHead)($t9)
+/* 038D10 8027DD10 3C018034 */  lui   $at, %hi(gDisplayListHead) # $at, 0x8034
 /* 038D14 8027DD14 27290008 */  addiu $t1, $t9, 8
-/* 038D18 8027DD18 AC299CFC */  sw    $t1, %lo(D_80339CFC)($at)
+/* 038D18 8027DD18 AC299CFC */  sw    $t1, %lo(gDisplayListHead)($at)
 /* 038D1C 8027DD1C AFB90028 */  sw    $t9, 0x28($sp)
 /* 038D20 8027DD20 8FAA0028 */  lw    $t2, 0x28($sp)
 /* 038D24 8027DD24 3C0B0380 */  lui   $t3, (0x03800010 >> 16) # lui $t3, 0x380
@@ -4063,11 +4063,11 @@ glabel func_8027DB80
 /* 038D3C 8027DD3C 3421FFFF */  ori   $at, (0x1FFFFFFF & 0xFFFF) # ori $at, $at, 0xffff
 /* 038D40 8027DD40 01816824 */  and   $t5, $t4, $at
 /* 038D44 8027DD44 AF0D0004 */  sw    $t5, 4($t8)
-/* 038D48 8027DD48 3C0F8034 */  lui   $t7, %hi(D_80339CFC) # $t7, 0x8034
-/* 038D4C 8027DD4C 8DEF9CFC */  lw    $t7, %lo(D_80339CFC)($t7)
-/* 038D50 8027DD50 3C018034 */  lui   $at, %hi(D_80339CFC) # $at, 0x8034
+/* 038D48 8027DD48 3C0F8034 */  lui   $t7, %hi(gDisplayListHead) # $t7, 0x8034
+/* 038D4C 8027DD4C 8DEF9CFC */  lw    $t7, %lo(gDisplayListHead)($t7)
+/* 038D50 8027DD50 3C018034 */  lui   $at, %hi(gDisplayListHead) # $at, 0x8034
 /* 038D54 8027DD54 25EE0008 */  addiu $t6, $t7, 8
-/* 038D58 8027DD58 AC2E9CFC */  sw    $t6, %lo(D_80339CFC)($at)
+/* 038D58 8027DD58 AC2E9CFC */  sw    $t6, %lo(gDisplayListHead)($at)
 /* 038D5C 8027DD5C AFAF0024 */  sw    $t7, 0x24($sp)
 /* 038D60 8027DD60 8FB90024 */  lw    $t9, 0x24($sp)
 /* 038D64 8027DD64 3C080102 */  lui   $t0, (0x01020040 >> 16) # lui $t0, 0x102
@@ -4097,8 +4097,8 @@ glabel func_8027DB80
 .L8027DDC4:
 /* 038DC4 8027DDC4 3C018033 */  lui   $at, %hi(D_8032CF90) # $at, 0x8033
 /* 038DC8 8027DDC8 AC20CF90 */  sw    $zero, %lo(D_8032CF90)($at)
-/* 038DCC 8027DDCC 3C198033 */  lui   $t9, %hi(D_8032C658) # $t9, 0x8033
-/* 038DD0 8027DDD0 8339C658 */  lb    $t9, %lo(D_8032C658)($t9)
+/* 038DCC 8027DDCC 3C198033 */  lui   $t9, %hi(gPrintDebugInfo) # $t9, 0x8033
+/* 038DD0 8027DDD0 8339C658 */  lb    $t9, %lo(gPrintDebugInfo)($t9)
 /* 038DD4 8027DDD4 1320000B */  beqz  $t9, .L8027DE04
 /* 038DD8 8027DDD8 00000000 */   nop   
 /* 038DDC 8027DDDC 3C098034 */  lui   $t1, %hi(D_8033B018) # $t1, 0x8034

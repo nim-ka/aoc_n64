@@ -25,8 +25,8 @@ glabel func_80278BC4
 /* 033BCC 80278BCC AFA40028 */  sw    $a0, 0x28($sp)
 /* 033BD0 80278BD0 AFA5002C */  sw    $a1, 0x2c($sp)
 /* 033BD4 80278BD4 AFA00024 */  sw    $zero, 0x24($sp)
-/* 033BD8 80278BD8 3C0E8034 */  lui   $t6, %hi(D_80339D09) # $t6, 0x8034
-/* 033BDC 80278BDC 81CE9D09 */  lb    $t6, %lo(D_80339D09)($t6)
+/* 033BD8 80278BD8 3C0E8034 */  lui   $t6, %hi(gEepromProbe) # $t6, 0x8034
+/* 033BDC 80278BDC 81CE9D09 */  lb    $t6, %lo(gEepromProbe)($t6)
 /* 033BE0 80278BE0 11C00019 */  beqz  $t6, .L80278C48
 /* 033BE4 80278BE4 00000000 */   nop   
 /* 033BE8 80278BE8 240F0004 */  li    $t7, 4
@@ -72,8 +72,8 @@ glabel func_80278C68
 /* 033C74 80278C74 AFA5002C */  sw    $a1, 0x2c($sp)
 /* 033C78 80278C78 240E0001 */  li    $t6, 1
 /* 033C7C 80278C7C AFAE0024 */  sw    $t6, 0x24($sp)
-/* 033C80 80278C80 3C0F8034 */  lui   $t7, %hi(D_80339D09) # $t7, 0x8034
-/* 033C84 80278C84 81EF9D09 */  lb    $t7, %lo(D_80339D09)($t7)
+/* 033C80 80278C80 3C0F8034 */  lui   $t7, %hi(gEepromProbe) # $t7, 0x8034
+/* 033C84 80278C84 81EF9D09 */  lb    $t7, %lo(gEepromProbe)($t7)
 /* 033C88 80278C88 11E00019 */  beqz  $t7, .L80278CF0
 /* 033C8C 80278C8C 00000000 */   nop   
 /* 033C90 80278C90 24180004 */  li    $t8, 4
@@ -1165,8 +1165,8 @@ glabel func_80279BBC
 /* 034BC0 80279BC0 8DCECE70 */  lw    $t6, %lo(D_8032CE70)($t6)
 /* 034BC4 80279BC4 15C00005 */  bnez  $t6, .L80279BDC
 /* 034BC8 80279BC8 00000000 */   nop   
-/* 034BCC 80279BCC 3C0F8033 */  lui   $t7, %hi(D_8032C6B0) # $t7, 0x8033
-/* 034BD0 80279BD0 8DEFC6B0 */  lw    $t7, %lo(D_8032C6B0)($t7)
+/* 034BCC 80279BCC 3C0F8033 */  lui   $t7, %hi(gDemoInputs) # $t7, 0x8033
+/* 034BD0 80279BD0 8DEFC6B0 */  lw    $t7, %lo(gDemoInputs)($t7)
 /* 034BD4 80279BD4 11E00003 */  beqz  $t7, .L80279BE4
 /* 034BD8 80279BD8 00000000 */   nop   
 .L80279BDC:
