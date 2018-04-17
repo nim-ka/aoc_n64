@@ -1,6 +1,7 @@
 #include <ultra64.h>
 
 #include "sm64.h"
+#include "math_util.h"
 
 // These functions have bogus return values.
 // Disable the compiler warning.

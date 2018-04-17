@@ -1,6 +1,7 @@
 #include <ultra64.h>
 
 #include "sm64.h"
+#include "math_util.h"
 
 void func_80269AD0(struct MarioState *m, s16 arg1, s16 arg2, s16 arg3)
 {

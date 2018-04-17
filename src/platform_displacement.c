@@ -1,6 +1,7 @@
 #include <ultra64.h>
 
 #include "sm64.h"
+#include "math_util.h"
 
 /**
  * Determine if mario is standing on a platform object, meaning that he is

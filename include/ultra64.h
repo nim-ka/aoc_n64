@@ -19,5 +19,7 @@
 #include <ultra64/pi.h>
 #include <ultra64/os_internal.h>
 #include <ultra64/gbi.h>
+#include <ultra64/eeprom.h>
+#include <ultra64/libc.h>
 
 #endif

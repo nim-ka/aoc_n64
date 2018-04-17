@@ -35,7 +35,7 @@ SECTIONS
       build/asm/mario_actions_submerged.o(.text);
       build/asm/mario_actions_object.o(.text);
       build/asm/code_80275C20.o(.text);
-      build/asm/save_file.o(.text);
+      build/src/save_file.o(.text);
       build/asm/rendering.o(.text);
       build/asm/code_8027DE30.o(.text);
       build/asm/decompress.o(.text);

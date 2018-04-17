@@ -7,6 +7,8 @@
 #include "variables.h"
 #include "functions.h"
 
+#define max(a, b) ((a) > (b) ? (a) : (b))
+
 #define sins(x) D_80386000[(u16) (x) >> 4]
 #define coss(x) D_80386000[0x400 + ((u16) (x) >> 4)]
 

@@ -191,4 +191,28 @@ struct MarioState
     f32 unkC4; // 0xC4
 };
 
+struct Struct80207B00_sub2
+{
+    u8 unk0;
+    u8 unk1;
+    Vec3s unk2;
+    u32 unk8;
+    u8 unkC[0x25-0xC];  // unknown length
+    u8 unk25[0x38-0x25];
+};
+
+struct Struct80207B00_sub
+{
+    u32 unk0[3];
+    u8 fillerC[4];
+    u16 unk10;
+    u8 filler12[0x20-0x12];
+};
+
+struct Struct80207B00
+{
+    struct Struct80207B00_sub2 unk0[4][2];
+    struct Struct80207B00_sub unk1C0[2];
+};
+
 #endif

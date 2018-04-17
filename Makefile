@@ -33,7 +33,7 @@ OBJDUMP := $(CROSS)objdump
 OBJCOPY := $(CROSS)objcopy --pad-to=0x800000 --gap-fill=0xFF
 
 # Check code syntax with host compiler
-CC_CHECK := gcc -m32 -fsyntax-only -I include -std=c99 -Wall -Wextra -pedantic -Werror
+CC_CHECK := gcc -m32 -fsyntax-only -I include -std=c99 -Wall -Wextra -pedantic -Werror -Wno-sign-compare
 
 ASFLAGS := -march=vr4300 -I include
 CFLAGS  := -Wab,-r4300_mul -mips2 -non_shared -G 0 -Xcpluscomm -Xfullwarn -g -I include
@@ -76,11 +76,14 @@ $(MIO0_DIR)/%.mio0: $(MIO0_DIR)/%.bin
 $(BUILD_DIR):
 	mkdir $(BUILD_DIR) $(addprefix $(BUILD_DIR)/,$(SRC_DIRS) $(ASM_DIRS) $(DATA_DIRS))
 
-$(BUILD_DIR)/%.o: %.c $(BUILD_DIR)
+# Make sure build directory exists before compiling objects
+$(O_FILES): | $(BUILD_DIR)
+
+$(BUILD_DIR)/%.o: %.c
 	@$(CC_CHECK) $<
 	$(CC) -c $(CFLAGS) -o $@ $<
 
-$(BUILD_DIR)/%.o: %.s $(BUILD_DIR)
+$(BUILD_DIR)/%.o: %.s
 	$(AS) $(ASFLAGS) -o $@ $<
 
 $(BUILD_DIR)/$(TARGET).elf: $(O_FILES) $(LD_SCRIPT)
