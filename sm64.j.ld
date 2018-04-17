@@ -30,6 +30,7 @@ SECTIONS
       build/asm/mario_actions_automatic.o(.text);
       build/asm/mario_actions_stationary.o(.text);
       build/asm/mario_actions_moving.o(.text);
+      build/src/mario_actions_airborne.o(.text);
       build/asm/mario_actions_airborne.o(.text);
       build/asm/mario_actions_submerged.o(.text);
       build/asm/mario_actions_object.o(.text);

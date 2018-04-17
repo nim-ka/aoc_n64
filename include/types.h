@@ -89,7 +89,11 @@ typedef s16 Vec4s[4];
 
 struct Object
 {
-    u8 filler0[0xA0];
+    u8 filler0[0x40];
+    s16 unk40;
+    u8 filler42[0x12];
+    u32 unk54;
+    u8 filler58[0x48];
     Vec3f pos; // 0xA0
     Vec3f vel; // 0xAC
     u8 fillerB8[0x18];
@@ -98,6 +102,13 @@ struct Object
     Vec3i platformRotation; // 0x114
     u8 filler120[0xF4];
     struct Object *platform; // 0x214
+};
+
+struct Area
+{
+    s8 index;
+    u8 v01;
+    u16 v02;
 };
 
 struct Surface
@@ -118,12 +129,66 @@ struct Surface
 
 struct MarioState
 {
-    u8 filler0[0x2C];
+    u16 unk00; // 0x00
+    u16 input; // 0x02
+    u32 flags; // 0x04
+    u32 unk08; // 0x08
+    u32 action; // 0x0C
+    u32 prevAction; // 0x10
+    u32 unk14; // 0x14
+    u16 unk18; // 0x18
+    u16 actionTimer; // 0x1A
+    u32 actionArg; // 0x1C
+    f32 intendedMag; // 0x20
+    s16 intendedYaw; // 0x24
+    s16 invincTimer; // 0x26
+    u8 framesSinceA; // 0x28
+    u8 framesSinceB; // 0x29
+    u8 wallKickTimer; // 0x2A
+    u8 doubleJumpTimer; // 0x2B
     Vec3s faceAngle; // 0x2C
-    u8 filler32[0xA];
+    Vec3s angleVel; // 0x32
+    s16 slideYaw; // 0x38
+    s16 twirlYaw; // 0x3A
     Vec3f pos; // 0x3C
-    u8 filler48[0x40];
-    struct UnknownStruct2 *unk88; // 0x88
+    Vec3f vel; // 0x48
+    f32 forwardVel; // 0x54
+    f32 slideVelX; // 0x58
+    f32 slideVelZ; // 0x5C
+    struct Surface *wall; // 0x60
+    struct Surface *ceil; // 0x64
+    struct Surface *floor; //0x68
+    f32 ceilHeight; // 0x6C
+    f32 floorHeight; // 0x70
+    s16 floorAngle; // 0x74
+    s16 waterLevel; // 0x76
+    struct Object *interactObj; // 0x78
+    struct Object *heldObj; // 0x7C
+    struct Object *usedObj; // 0x80
+    struct Object *riddenObj; // 0x84
+    struct Object *marioObj; // 0x88
+    u32 level; // 0x8C
+    struct Area *area; // 0x90
+    u32 unk94; // 0x94
+    u32 unk98; // 0x98
+    struct Controller *controller; // 0x9C
+    u32 animation; // 0xA0
+    u32 collidedObjInteractTypes; // 0xA4
+    s16 numCoins; // 0xA8
+    s16 numStars; // 0xAA
+    u8 unkAC; // 0xAC
+    s8 numLives; // 0xAD
+    s16 health; // 0xAE
+    s16 unkB0; // 0xB0
+    u8 hurtCounter; // 0xB2
+    u8 healCounter; // 0xB3
+    u8 squishTimer; // 0xB4
+    u8 unkB5; // 0xB5
+    u16 capTimer; // 0xB6
+    s16 unkB8; // 0xB8
+    f32 peakHeight; // 0xBC
+    f32 quicksandDepth; // 0xC0
+    f32 unkC4; // 0xC4
 };
 
 #endif

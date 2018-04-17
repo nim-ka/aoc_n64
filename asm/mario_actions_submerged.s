@@ -1187,7 +1187,7 @@ glabel func_80270C64
 /* 02BC88 80270C88 00000000 */   nop   
 /* 02BC8C 80270C8C 8FA40020 */  lw    $a0, 0x20($sp)
 /* 02BC90 80270C90 240542F4 */  li    $a1, 17140
-/* 02BC94 80270C94 0C094AB2 */  jal   SetMarioAction
+/* 02BC94 80270C94 0C094AB2 */  jal   set_mario_action
 /* 02BC98 80270C98 24060001 */   li    $a2, 1
 /* 02BC9C 80270C9C 10000028 */  b     .L80270D40
 /* 02BCA0 80270CA0 00000000 */   nop   
@@ -1200,7 +1200,7 @@ glabel func_80270C64
 /* 02BCB8 80270CB8 3C053000 */  lui   $a1, (0x300024E1 >> 16) # lui $a1, 0x3000
 /* 02BCBC 80270CBC 34A524E1 */  ori   $a1, (0x300024E1 & 0xFFFF) # ori $a1, $a1, 0x24e1
 /* 02BCC0 80270CC0 8FA40020 */  lw    $a0, 0x20($sp)
-/* 02BCC4 80270CC4 0C094AB2 */  jal   SetMarioAction
+/* 02BCC4 80270CC4 0C094AB2 */  jal   set_mario_action
 /* 02BCC8 80270CC8 00003025 */   move  $a2, $zero
 /* 02BCCC 80270CCC 1000001C */  b     .L80270D40
 /* 02BCD0 80270CD0 00000000 */   nop   
@@ -1213,7 +1213,7 @@ glabel func_80270C64
 /* 02BCE8 80270CE8 3C053000 */  lui   $a1, (0x300024D0 >> 16) # lui $a1, 0x3000
 /* 02BCEC 80270CEC 34A524D0 */  ori   $a1, (0x300024D0 & 0xFFFF) # ori $a1, $a1, 0x24d0
 /* 02BCF0 80270CF0 8FA40020 */  lw    $a0, 0x20($sp)
-/* 02BCF4 80270CF4 0C094AB2 */  jal   SetMarioAction
+/* 02BCF4 80270CF4 0C094AB2 */  jal   set_mario_action
 /* 02BCF8 80270CF8 00003025 */   move  $a2, $zero
 /* 02BCFC 80270CFC 10000010 */  b     .L80270D40
 /* 02BD00 80270D00 00000000 */   nop   
@@ -1251,7 +1251,7 @@ glabel func_80270D50
 /* 02BD6C 80270D6C 00000000 */   nop   
 /* 02BD70 80270D70 8FA40018 */  lw    $a0, 0x18($sp)
 /* 02BD74 80270D74 240542F5 */  li    $a1, 17141
-/* 02BD78 80270D78 0C094AB2 */  jal   SetMarioAction
+/* 02BD78 80270D78 0C094AB2 */  jal   set_mario_action
 /* 02BD7C 80270D7C 00003025 */   move  $a2, $zero
 /* 02BD80 80270D80 1000002E */  b     .L80270E3C
 /* 02BD84 80270D84 00000000 */   nop   
@@ -1265,7 +1265,7 @@ glabel func_80270D50
 /* 02BDA0 80270DA0 3C053800 */  lui   $a1, (0x380022C0 >> 16) # lui $a1, 0x3800
 /* 02BDA4 80270DA4 34A522C0 */  ori   $a1, (0x380022C0 & 0xFFFF) # ori $a1, $a1, 0x22c0
 /* 02BDA8 80270DA8 8FA40018 */  lw    $a0, 0x18($sp)
-/* 02BDAC 80270DAC 0C094BD3 */  jal   func_80252F4C
+/* 02BDAC 80270DAC 0C094BD3 */  jal   drop_and_set_mario_action
 /* 02BDB0 80270DB0 00003025 */   move  $a2, $zero
 /* 02BDB4 80270DB4 10000021 */  b     .L80270E3C
 /* 02BDB8 80270DB8 00000000 */   nop   
@@ -1278,7 +1278,7 @@ glabel func_80270D50
 /* 02BDD0 80270DD0 3C053000 */  lui   $a1, (0x300024E0 >> 16) # lui $a1, 0x3000
 /* 02BDD4 80270DD4 34A524E0 */  ori   $a1, (0x300024E0 & 0xFFFF) # ori $a1, $a1, 0x24e0
 /* 02BDD8 80270DD8 8FA40018 */  lw    $a0, 0x18($sp)
-/* 02BDDC 80270DDC 0C094AB2 */  jal   SetMarioAction
+/* 02BDDC 80270DDC 0C094AB2 */  jal   set_mario_action
 /* 02BDE0 80270DE0 00003025 */   move  $a2, $zero
 /* 02BDE4 80270DE4 10000015 */  b     .L80270E3C
 /* 02BDE8 80270DE8 00000000 */   nop   
@@ -1291,7 +1291,7 @@ glabel func_80270D50
 /* 02BE00 80270E00 3C053000 */  lui   $a1, (0x300024D3 >> 16) # lui $a1, 0x3000
 /* 02BE04 80270E04 34A524D3 */  ori   $a1, (0x300024D3 & 0xFFFF) # ori $a1, $a1, 0x24d3
 /* 02BE08 80270E08 8FA40018 */  lw    $a0, 0x18($sp)
-/* 02BE0C 80270E0C 0C094AB2 */  jal   SetMarioAction
+/* 02BE0C 80270E0C 0C094AB2 */  jal   set_mario_action
 /* 02BE10 80270E10 00003025 */   move  $a2, $zero
 /* 02BE14 80270E14 10000009 */  b     .L80270E3C
 /* 02BE18 80270E18 00000000 */   nop   
@@ -1321,7 +1321,7 @@ glabel func_80270E4C
 /* 02BE68 80270E68 00000000 */   nop   
 /* 02BE6C 80270E6C 8FA40018 */  lw    $a0, 0x18($sp)
 /* 02BE70 80270E70 240542F4 */  li    $a1, 17140
-/* 02BE74 80270E74 0C094AB2 */  jal   SetMarioAction
+/* 02BE74 80270E74 0C094AB2 */  jal   set_mario_action
 /* 02BE78 80270E78 24060001 */   li    $a2, 1
 /* 02BE7C 80270E7C 1000002A */  b     .L80270F28
 /* 02BE80 80270E80 00000000 */   nop   
@@ -1334,7 +1334,7 @@ glabel func_80270E4C
 /* 02BE98 80270E98 3C053000 */  lui   $a1, (0x300024E1 >> 16) # lui $a1, 0x3000
 /* 02BE9C 80270E9C 34A524E1 */  ori   $a1, (0x300024E1 & 0xFFFF) # ori $a1, $a1, 0x24e1
 /* 02BEA0 80270EA0 8FA40018 */  lw    $a0, 0x18($sp)
-/* 02BEA4 80270EA4 0C094AB2 */  jal   SetMarioAction
+/* 02BEA4 80270EA4 0C094AB2 */  jal   set_mario_action
 /* 02BEA8 80270EA8 00003025 */   move  $a2, $zero
 /* 02BEAC 80270EAC 1000001E */  b     .L80270F28
 /* 02BEB0 80270EB0 00000000 */   nop   
@@ -1347,7 +1347,7 @@ glabel func_80270E4C
 /* 02BEC8 80270EC8 3C053000 */  lui   $a1, (0x300024D0 >> 16) # lui $a1, 0x3000
 /* 02BECC 80270ECC 34A524D0 */  ori   $a1, (0x300024D0 & 0xFFFF) # ori $a1, $a1, 0x24d0
 /* 02BED0 80270ED0 8FA40018 */  lw    $a0, 0x18($sp)
-/* 02BED4 80270ED4 0C094AB2 */  jal   SetMarioAction
+/* 02BED4 80270ED4 0C094AB2 */  jal   set_mario_action
 /* 02BED8 80270ED8 00003025 */   move  $a2, $zero
 /* 02BEDC 80270EDC 10000012 */  b     .L80270F28
 /* 02BEE0 80270EE0 00000000 */   nop   
@@ -1363,7 +1363,7 @@ glabel func_80270E4C
 /* 02BF04 80270F04 3C053800 */  lui   $a1, (0x380022C0 >> 16) # lui $a1, 0x3800
 /* 02BF08 80270F08 34A522C0 */  ori   $a1, (0x380022C0 & 0xFFFF) # ori $a1, $a1, 0x22c0
 /* 02BF0C 80270F0C 8FA40018 */  lw    $a0, 0x18($sp)
-/* 02BF10 80270F10 0C094AB2 */  jal   SetMarioAction
+/* 02BF10 80270F10 0C094AB2 */  jal   set_mario_action
 /* 02BF14 80270F14 00003025 */   move  $a2, $zero
 .L80270F18:
 /* 02BF18 80270F18 10000003 */  b     .L80270F28
@@ -1388,7 +1388,7 @@ glabel func_80270F38
 /* 02BF58 80270F58 00000000 */   nop   
 /* 02BF5C 80270F5C 8FA40028 */  lw    $a0, 0x28($sp)
 /* 02BF60 80270F60 240542F5 */  li    $a1, 17141
-/* 02BF64 80270F64 0C094AB2 */  jal   SetMarioAction
+/* 02BF64 80270F64 0C094AB2 */  jal   set_mario_action
 /* 02BF68 80270F68 00003025 */   move  $a2, $zero
 /* 02BF6C 80270F6C 1000003E */  b     .L80271068
 /* 02BF70 80270F70 00000000 */   nop   
@@ -1402,7 +1402,7 @@ glabel func_80270F38
 /* 02BF8C 80270F8C 3C053800 */  lui   $a1, (0x380022C0 >> 16) # lui $a1, 0x3800
 /* 02BF90 80270F90 34A522C0 */  ori   $a1, (0x380022C0 & 0xFFFF) # ori $a1, $a1, 0x22c0
 /* 02BF94 80270F94 8FA40028 */  lw    $a0, 0x28($sp)
-/* 02BF98 80270F98 0C094BD3 */  jal   func_80252F4C
+/* 02BF98 80270F98 0C094BD3 */  jal   drop_and_set_mario_action
 /* 02BF9C 80270F9C 00003025 */   move  $a2, $zero
 /* 02BFA0 80270FA0 10000031 */  b     .L80271068
 /* 02BFA4 80270FA4 00000000 */   nop   
@@ -1415,7 +1415,7 @@ glabel func_80270F38
 /* 02BFBC 80270FBC 3C053000 */  lui   $a1, (0x300024E0 >> 16) # lui $a1, 0x3000
 /* 02BFC0 80270FC0 34A524E0 */  ori   $a1, (0x300024E0 & 0xFFFF) # ori $a1, $a1, 0x24e0
 /* 02BFC4 80270FC4 8FA40028 */  lw    $a0, 0x28($sp)
-/* 02BFC8 80270FC8 0C094AB2 */  jal   SetMarioAction
+/* 02BFC8 80270FC8 0C094AB2 */  jal   set_mario_action
 /* 02BFCC 80270FCC 00003025 */   move  $a2, $zero
 /* 02BFD0 80270FD0 10000025 */  b     .L80271068
 /* 02BFD4 80270FD4 00000000 */   nop   
@@ -1428,7 +1428,7 @@ glabel func_80270F38
 /* 02BFEC 80270FEC 3C053000 */  lui   $a1, (0x300024D3 >> 16) # lui $a1, 0x3000
 /* 02BFF0 80270FF0 34A524D3 */  ori   $a1, (0x300024D3 & 0xFFFF) # ori $a1, $a1, 0x24d3
 /* 02BFF4 80270FF4 8FA40028 */  lw    $a0, 0x28($sp)
-/* 02BFF8 80270FF8 0C094AB2 */  jal   SetMarioAction
+/* 02BFF8 80270FF8 0C094AB2 */  jal   set_mario_action
 /* 02BFFC 80270FFC 00003025 */   move  $a2, $zero
 /* 02C000 80271000 10000019 */  b     .L80271068
 /* 02C004 80271004 00000000 */   nop   
@@ -1453,7 +1453,7 @@ glabel func_80270F38
 /* 02C044 80271044 3C053800 */  lui   $a1, (0x380022C1 >> 16) # lui $a1, 0x3800
 /* 02C048 80271048 34A522C1 */  ori   $a1, (0x380022C1 & 0xFFFF) # ori $a1, $a1, 0x22c1
 /* 02C04C 8027104C 8FA40028 */  lw    $a0, 0x28($sp)
-/* 02C050 80271050 0C094AB2 */  jal   SetMarioAction
+/* 02C050 80271050 0C094AB2 */  jal   set_mario_action
 /* 02C054 80271054 00003025 */   move  $a2, $zero
 .L80271058:
 /* 02C058 80271058 10000003 */  b     .L80271068
@@ -1773,7 +1773,7 @@ glabel func_8027140C
 /* 02C4D0 802714D0 3C050100 */  lui   $a1, (0x01000889 >> 16) # lui $a1, 0x100
 /* 02C4D4 802714D4 34A50889 */  ori   $a1, (0x01000889 & 0xFFFF) # ori $a1, $a1, 0x889
 /* 02C4D8 802714D8 8FA40020 */  lw    $a0, 0x20($sp)
-/* 02C4DC 802714DC 0C094AB2 */  jal   SetMarioAction
+/* 02C4DC 802714DC 0C094AB2 */  jal   set_mario_action
 /* 02C4E0 802714E0 00003025 */   move  $a2, $zero
 /* 02C4E4 802714E4 1000000E */  b     .L80271520
 /* 02C4E8 802714E8 00000000 */   nop   
@@ -1783,7 +1783,7 @@ glabel func_8027140C
 /* 02C4F4 802714F4 3C050100 */  lui   $a1, (0x010008A3 >> 16) # lui $a1, 0x100
 /* 02C4F8 802714F8 34A508A3 */  ori   $a1, (0x010008A3 & 0xFFFF) # ori $a1, $a1, 0x8a3
 /* 02C4FC 802714FC 8FA40020 */  lw    $a0, 0x20($sp)
-/* 02C500 80271500 0C094AB2 */  jal   SetMarioAction
+/* 02C500 80271500 0C094AB2 */  jal   set_mario_action
 /* 02C504 80271504 00003025 */   move  $a2, $zero
 /* 02C508 80271508 10000005 */  b     .L80271520
 /* 02C50C 8027150C 00000000 */   nop   
@@ -1818,7 +1818,7 @@ glabel func_80271530
 /* 02C56C 8027156C 00000000 */   nop   
 /* 02C570 80271570 8FA40028 */  lw    $a0, 0x28($sp)
 /* 02C574 80271574 240542F4 */  li    $a1, 17140
-/* 02C578 80271578 0C094AB2 */  jal   SetMarioAction
+/* 02C578 80271578 0C094AB2 */  jal   set_mario_action
 /* 02C57C 8027157C 24060001 */   li    $a2, 1
 /* 02C580 80271580 1000007F */  b     .L80271780
 /* 02C584 80271584 00000000 */   nop   
@@ -1831,7 +1831,7 @@ glabel func_80271530
 /* 02C59C 8027159C 3C053000 */  lui   $a1, (0x300024E1 >> 16) # lui $a1, 0x3000
 /* 02C5A0 802715A0 34A524E1 */  ori   $a1, (0x300024E1 & 0xFFFF) # ori $a1, $a1, 0x24e1
 /* 02C5A4 802715A4 8FA40028 */  lw    $a0, 0x28($sp)
-/* 02C5A8 802715A8 0C094AB2 */  jal   SetMarioAction
+/* 02C5A8 802715A8 0C094AB2 */  jal   set_mario_action
 /* 02C5AC 802715AC 00003025 */   move  $a2, $zero
 /* 02C5B0 802715B0 10000073 */  b     .L80271780
 /* 02C5B4 802715B4 00000000 */   nop   
@@ -1848,7 +1848,7 @@ glabel func_80271530
 /* 02C5DC 802715DC 3C053000 */  lui   $a1, (0x300024D2 >> 16) # lui $a1, 0x3000
 /* 02C5E0 802715E0 34A524D2 */  ori   $a1, (0x300024D2 & 0xFFFF) # ori $a1, $a1, 0x24d2
 /* 02C5E4 802715E4 8FA40028 */  lw    $a0, 0x28($sp)
-/* 02C5E8 802715E8 0C094AB2 */  jal   SetMarioAction
+/* 02C5E8 802715E8 0C094AB2 */  jal   set_mario_action
 /* 02C5EC 802715EC 00003025 */   move  $a2, $zero
 /* 02C5F0 802715F0 10000063 */  b     .L80271780
 /* 02C5F4 802715F4 00000000 */   nop   
@@ -1977,7 +1977,7 @@ glabel func_80271794
 /* 02C7B0 802717B0 00000000 */   nop   
 /* 02C7B4 802717B4 8FA40018 */  lw    $a0, 0x18($sp)
 /* 02C7B8 802717B8 240542F4 */  li    $a1, 17140
-/* 02C7BC 802717BC 0C094AB2 */  jal   SetMarioAction
+/* 02C7BC 802717BC 0C094AB2 */  jal   set_mario_action
 /* 02C7C0 802717C0 24060001 */   li    $a2, 1
 /* 02C7C4 802717C4 1000005B */  b     .L80271934
 /* 02C7C8 802717C8 00000000 */   nop   
@@ -1990,7 +1990,7 @@ glabel func_80271794
 /* 02C7E0 802717E0 3C053000 */  lui   $a1, (0x300024E1 >> 16) # lui $a1, 0x3000
 /* 02C7E4 802717E4 34A524E1 */  ori   $a1, (0x300024E1 & 0xFFFF) # ori $a1, $a1, 0x24e1
 /* 02C7E8 802717E8 8FA40018 */  lw    $a0, 0x18($sp)
-/* 02C7EC 802717EC 0C094AB2 */  jal   SetMarioAction
+/* 02C7EC 802717EC 0C094AB2 */  jal   set_mario_action
 /* 02C7F0 802717F0 00003025 */   move  $a2, $zero
 /* 02C7F4 802717F4 1000004F */  b     .L80271934
 /* 02C7F8 802717F8 00000000 */   nop   
@@ -2003,7 +2003,7 @@ glabel func_80271794
 /* 02C810 80271810 3C053000 */  lui   $a1, (0x300022C2 >> 16) # lui $a1, 0x3000
 /* 02C814 80271814 34A522C2 */  ori   $a1, (0x300022C2 & 0xFFFF) # ori $a1, $a1, 0x22c2
 /* 02C818 80271818 8FA40018 */  lw    $a0, 0x18($sp)
-/* 02C81C 8027181C 0C094AB2 */  jal   SetMarioAction
+/* 02C81C 8027181C 0C094AB2 */  jal   set_mario_action
 /* 02C820 80271820 00003025 */   move  $a2, $zero
 /* 02C824 80271824 10000043 */  b     .L80271934
 /* 02C828 80271828 00000000 */   nop   
@@ -2043,7 +2043,7 @@ glabel func_80271794
 /* 02C8A4 802718A4 3C053000 */  lui   $a1, (0x300024D0 >> 16) # lui $a1, 0x3000
 /* 02C8A8 802718A8 34A524D0 */  ori   $a1, (0x300024D0 & 0xFFFF) # ori $a1, $a1, 0x24d0
 /* 02C8AC 802718AC 8FA40018 */  lw    $a0, 0x18($sp)
-/* 02C8B0 802718B0 0C094AB2 */  jal   SetMarioAction
+/* 02C8B0 802718B0 0C094AB2 */  jal   set_mario_action
 /* 02C8B4 802718B4 24060001 */   li    $a2, 1
 /* 02C8B8 802718B8 1000001E */  b     .L80271934
 /* 02C8BC 802718BC 00000000 */   nop   
@@ -2095,7 +2095,7 @@ glabel func_80271944
 /* 02C960 80271960 00000000 */   nop   
 /* 02C964 80271964 8FA40018 */  lw    $a0, 0x18($sp)
 /* 02C968 80271968 240542F4 */  li    $a1, 17140
-/* 02C96C 8027196C 0C094AB2 */  jal   SetMarioAction
+/* 02C96C 8027196C 0C094AB2 */  jal   set_mario_action
 /* 02C970 80271970 24060001 */   li    $a2, 1
 /* 02C974 80271974 1000004D */  b     .L80271AAC
 /* 02C978 80271978 00000000 */   nop   
@@ -2108,7 +2108,7 @@ glabel func_80271944
 /* 02C990 80271990 3C053000 */  lui   $a1, (0x300024E1 >> 16) # lui $a1, 0x3000
 /* 02C994 80271994 34A524E1 */  ori   $a1, (0x300024E1 & 0xFFFF) # ori $a1, $a1, 0x24e1
 /* 02C998 80271998 8FA40018 */  lw    $a0, 0x18($sp)
-/* 02C99C 8027199C 0C094AB2 */  jal   SetMarioAction
+/* 02C99C 8027199C 0C094AB2 */  jal   set_mario_action
 /* 02C9A0 802719A0 00003025 */   move  $a2, $zero
 /* 02C9A4 802719A4 10000041 */  b     .L80271AAC
 /* 02C9A8 802719A8 00000000 */   nop   
@@ -2136,7 +2136,7 @@ glabel func_80271944
 /* 02C9F8 802719F8 3C053000 */  lui   $a1, (0x300024D1 >> 16) # lui $a1, 0x3000
 /* 02C9FC 802719FC 34A524D1 */  ori   $a1, (0x300024D1 & 0xFFFF) # ori $a1, $a1, 0x24d1
 /* 02CA00 80271A00 8FA40018 */  lw    $a0, 0x18($sp)
-/* 02CA04 80271A04 0C094AB2 */  jal   SetMarioAction
+/* 02CA04 80271A04 0C094AB2 */  jal   set_mario_action
 /* 02CA08 80271A08 00003025 */   move  $a2, $zero
 /* 02CA0C 80271A0C 10000027 */  b     .L80271AAC
 /* 02CA10 80271A10 00000000 */   nop   
@@ -2197,7 +2197,7 @@ glabel func_80271ABC
 /* 02CAD8 80271AD8 00000000 */   nop   
 /* 02CADC 80271ADC 8FA40018 */  lw    $a0, 0x18($sp)
 /* 02CAE0 80271AE0 240542F5 */  li    $a1, 17141
-/* 02CAE4 80271AE4 0C094AB2 */  jal   SetMarioAction
+/* 02CAE4 80271AE4 0C094AB2 */  jal   set_mario_action
 /* 02CAE8 80271AE8 00003025 */   move  $a2, $zero
 /* 02CAEC 80271AEC 1000007F */  b     .L80271CEC
 /* 02CAF0 80271AF0 00000000 */   nop   
@@ -2211,7 +2211,7 @@ glabel func_80271ABC
 /* 02CB0C 80271B0C 3C053800 */  lui   $a1, (0x380022C0 >> 16) # lui $a1, 0x3800
 /* 02CB10 80271B10 34A522C0 */  ori   $a1, (0x380022C0 & 0xFFFF) # ori $a1, $a1, 0x22c0
 /* 02CB14 80271B14 8FA40018 */  lw    $a0, 0x18($sp)
-/* 02CB18 80271B18 0C094BD3 */  jal   func_80252F4C
+/* 02CB18 80271B18 0C094BD3 */  jal   drop_and_set_mario_action
 /* 02CB1C 80271B1C 00003025 */   move  $a2, $zero
 /* 02CB20 80271B20 10000072 */  b     .L80271CEC
 /* 02CB24 80271B24 00000000 */   nop   
@@ -2228,7 +2228,7 @@ glabel func_80271ABC
 /* 02CB4C 80271B4C 3C053000 */  lui   $a1, (0x300024D5 >> 16) # lui $a1, 0x3000
 /* 02CB50 80271B50 34A524D5 */  ori   $a1, (0x300024D5 & 0xFFFF) # ori $a1, $a1, 0x24d5
 /* 02CB54 80271B54 8FA40018 */  lw    $a0, 0x18($sp)
-/* 02CB58 80271B58 0C094AB2 */  jal   SetMarioAction
+/* 02CB58 80271B58 0C094AB2 */  jal   set_mario_action
 /* 02CB5C 80271B5C 00003025 */   move  $a2, $zero
 /* 02CB60 80271B60 10000062 */  b     .L80271CEC
 /* 02CB64 80271B64 00000000 */   nop   
@@ -2241,7 +2241,7 @@ glabel func_80271ABC
 /* 02CB7C 80271B7C 3C053000 */  lui   $a1, (0x300024E0 >> 16) # lui $a1, 0x3000
 /* 02CB80 80271B80 34A524E0 */  ori   $a1, (0x300024E0 & 0xFFFF) # ori $a1, $a1, 0x24e0
 /* 02CB84 80271B84 8FA40018 */  lw    $a0, 0x18($sp)
-/* 02CB88 80271B88 0C094AB2 */  jal   SetMarioAction
+/* 02CB88 80271B88 0C094AB2 */  jal   set_mario_action
 /* 02CB8C 80271B8C 00003025 */   move  $a2, $zero
 /* 02CB90 80271B90 10000056 */  b     .L80271CEC
 /* 02CB94 80271B94 00000000 */   nop   
@@ -2354,7 +2354,7 @@ glabel func_80271CFC
 /* 02CD18 80271D18 00000000 */   nop   
 /* 02CD1C 80271D1C 8FA40018 */  lw    $a0, 0x18($sp)
 /* 02CD20 80271D20 240542F5 */  li    $a1, 17141
-/* 02CD24 80271D24 0C094AB2 */  jal   SetMarioAction
+/* 02CD24 80271D24 0C094AB2 */  jal   set_mario_action
 /* 02CD28 80271D28 00003025 */   move  $a2, $zero
 /* 02CD2C 80271D2C 10000050 */  b     .L80271E70
 /* 02CD30 80271D30 00000000 */   nop   
@@ -2368,7 +2368,7 @@ glabel func_80271CFC
 /* 02CD4C 80271D4C 3C053800 */  lui   $a1, (0x380022C0 >> 16) # lui $a1, 0x3800
 /* 02CD50 80271D50 34A522C0 */  ori   $a1, (0x380022C0 & 0xFFFF) # ori $a1, $a1, 0x22c0
 /* 02CD54 80271D54 8FA40018 */  lw    $a0, 0x18($sp)
-/* 02CD58 80271D58 0C094BD3 */  jal   func_80252F4C
+/* 02CD58 80271D58 0C094BD3 */  jal   drop_and_set_mario_action
 /* 02CD5C 80271D5C 00003025 */   move  $a2, $zero
 /* 02CD60 80271D60 10000043 */  b     .L80271E70
 /* 02CD64 80271D64 00000000 */   nop   
@@ -2381,7 +2381,7 @@ glabel func_80271CFC
 /* 02CD7C 80271D7C 3C053000 */  lui   $a1, (0x300022C3 >> 16) # lui $a1, 0x3000
 /* 02CD80 80271D80 34A522C3 */  ori   $a1, (0x300022C3 & 0xFFFF) # ori $a1, $a1, 0x22c3
 /* 02CD84 80271D84 8FA40018 */  lw    $a0, 0x18($sp)
-/* 02CD88 80271D88 0C094AB2 */  jal   SetMarioAction
+/* 02CD88 80271D88 0C094AB2 */  jal   set_mario_action
 /* 02CD8C 80271D8C 00003025 */   move  $a2, $zero
 /* 02CD90 80271D90 10000037 */  b     .L80271E70
 /* 02CD94 80271D94 00000000 */   nop   
@@ -2394,7 +2394,7 @@ glabel func_80271CFC
 /* 02CDAC 80271DAC 3C053000 */  lui   $a1, (0x300024E0 >> 16) # lui $a1, 0x3000
 /* 02CDB0 80271DB0 34A524E0 */  ori   $a1, (0x300024E0 & 0xFFFF) # ori $a1, $a1, 0x24e0
 /* 02CDB4 80271DB4 8FA40018 */  lw    $a0, 0x18($sp)
-/* 02CDB8 80271DB8 0C094AB2 */  jal   SetMarioAction
+/* 02CDB8 80271DB8 0C094AB2 */  jal   set_mario_action
 /* 02CDBC 80271DBC 00003025 */   move  $a2, $zero
 /* 02CDC0 80271DC0 1000002B */  b     .L80271E70
 /* 02CDC4 80271DC4 00000000 */   nop   
@@ -2418,7 +2418,7 @@ glabel func_80271CFC
 /* 02CE04 80271E04 3C053000 */  lui   $a1, (0x300024D3 >> 16) # lui $a1, 0x3000
 /* 02CE08 80271E08 34A524D3 */  ori   $a1, (0x300024D3 & 0xFFFF) # ori $a1, $a1, 0x24d3
 /* 02CE0C 80271E0C 8FA40018 */  lw    $a0, 0x18($sp)
-/* 02CE10 80271E10 0C094AB2 */  jal   SetMarioAction
+/* 02CE10 80271E10 0C094AB2 */  jal   set_mario_action
 /* 02CE14 80271E14 00003025 */   move  $a2, $zero
 /* 02CE18 80271E18 10000015 */  b     .L80271E70
 /* 02CE1C 80271E1C 00000000 */   nop   
@@ -2460,7 +2460,7 @@ glabel func_80271E80
 /* 02CE9C 80271E9C 00000000 */   nop   
 /* 02CEA0 80271EA0 8FA40018 */  lw    $a0, 0x18($sp)
 /* 02CEA4 80271EA4 240542F5 */  li    $a1, 17141
-/* 02CEA8 80271EA8 0C094AB2 */  jal   SetMarioAction
+/* 02CEA8 80271EA8 0C094AB2 */  jal   set_mario_action
 /* 02CEAC 80271EAC 00003025 */   move  $a2, $zero
 /* 02CEB0 80271EB0 10000045 */  b     .L80271FC8
 /* 02CEB4 80271EB4 00000000 */   nop   
@@ -2474,7 +2474,7 @@ glabel func_80271E80
 /* 02CED0 80271ED0 3C053800 */  lui   $a1, (0x380022C0 >> 16) # lui $a1, 0x3800
 /* 02CED4 80271ED4 34A522C0 */  ori   $a1, (0x380022C0 & 0xFFFF) # ori $a1, $a1, 0x22c0
 /* 02CED8 80271ED8 8FA40018 */  lw    $a0, 0x18($sp)
-/* 02CEDC 80271EDC 0C094BD3 */  jal   func_80252F4C
+/* 02CEDC 80271EDC 0C094BD3 */  jal   drop_and_set_mario_action
 /* 02CEE0 80271EE0 00003025 */   move  $a2, $zero
 /* 02CEE4 80271EE4 10000038 */  b     .L80271FC8
 /* 02CEE8 80271EE8 00000000 */   nop   
@@ -2487,7 +2487,7 @@ glabel func_80271E80
 /* 02CF00 80271F00 3C053000 */  lui   $a1, (0x300024E0 >> 16) # lui $a1, 0x3000
 /* 02CF04 80271F04 34A524E0 */  ori   $a1, (0x300024E0 & 0xFFFF) # ori $a1, $a1, 0x24e0
 /* 02CF08 80271F08 8FA40018 */  lw    $a0, 0x18($sp)
-/* 02CF0C 80271F0C 0C094AB2 */  jal   SetMarioAction
+/* 02CF0C 80271F0C 0C094AB2 */  jal   set_mario_action
 /* 02CF10 80271F10 00003025 */   move  $a2, $zero
 /* 02CF14 80271F14 1000002C */  b     .L80271FC8
 /* 02CF18 80271F18 00000000 */   nop   
@@ -2500,7 +2500,7 @@ glabel func_80271E80
 /* 02CF30 80271F30 3C053000 */  lui   $a1, (0x300024D4 >> 16) # lui $a1, 0x3000
 /* 02CF34 80271F34 34A524D4 */  ori   $a1, (0x300024D4 & 0xFFFF) # ori $a1, $a1, 0x24d4
 /* 02CF38 80271F38 8FA40018 */  lw    $a0, 0x18($sp)
-/* 02CF3C 80271F3C 0C094AB2 */  jal   SetMarioAction
+/* 02CF3C 80271F3C 0C094AB2 */  jal   set_mario_action
 /* 02CF40 80271F40 00003025 */   move  $a2, $zero
 /* 02CF44 80271F44 10000020 */  b     .L80271FC8
 /* 02CF48 80271F48 00000000 */   nop   
@@ -2557,7 +2557,7 @@ glabel func_80271FD8
 /* 02D000 80272000 3C053800 */  lui   $a1, (0x380022C0 >> 16) # lui $a1, 0x3800
 /* 02D004 80272004 34A522C0 */  ori   $a1, (0x380022C0 & 0xFFFF) # ori $a1, $a1, 0x22c0
 /* 02D008 80272008 8FA40028 */  lw    $a0, 0x28($sp)
-/* 02D00C 8027200C 0C094BD3 */  jal   func_80252F4C
+/* 02D00C 8027200C 0C094BD3 */  jal   drop_and_set_mario_action
 /* 02D010 80272010 00003025 */   move  $a2, $zero
 /* 02D014 80272014 10000038 */  b     .L802720F8
 /* 02D018 80272018 00000000 */   nop   
@@ -2570,7 +2570,7 @@ glabel func_80271FD8
 /* 02D030 80272030 3C053000 */  lui   $a1, (0x300024E0 >> 16) # lui $a1, 0x3000
 /* 02D034 80272034 34A524E0 */  ori   $a1, (0x300024E0 & 0xFFFF) # ori $a1, $a1, 0x24e0
 /* 02D038 80272038 8FA40028 */  lw    $a0, 0x28($sp)
-/* 02D03C 8027203C 0C094AB2 */  jal   SetMarioAction
+/* 02D03C 8027203C 0C094AB2 */  jal   set_mario_action
 /* 02D040 80272040 00003025 */   move  $a2, $zero
 /* 02D044 80272044 1000002C */  b     .L802720F8
 /* 02D048 80272048 00000000 */   nop   
@@ -2595,7 +2595,7 @@ glabel func_80271FD8
 /* 02D090 80272090 3C053000 */  lui   $a1, (0x300024D2 >> 16) # lui $a1, 0x3000
 /* 02D094 80272094 34A524D2 */  ori   $a1, (0x300024D2 & 0xFFFF) # ori $a1, $a1, 0x24d2
 /* 02D098 80272098 8FA40028 */  lw    $a0, 0x28($sp)
-/* 02D09C 8027209C 0C094AB2 */  jal   SetMarioAction
+/* 02D09C 8027209C 0C094AB2 */  jal   set_mario_action
 /* 02D0A0 802720A0 00003025 */   move  $a2, $zero
 .L802720A4:
 /* 02D0A4 802720A4 8FA90028 */  lw    $t1, 0x28($sp)
@@ -2746,7 +2746,7 @@ glabel func_80272208
 /* 02D2C8 802722C8 3C053800 */  lui   $a1, (0x380022C0 >> 16) # lui $a1, 0x3800
 /* 02D2CC 802722CC 34A522C0 */  ori   $a1, (0x380022C0 & 0xFFFF) # ori $a1, $a1, 0x22c0
 /* 02D2D0 802722D0 8FA40028 */  lw    $a0, 0x28($sp)
-/* 02D2D4 802722D4 0C094AB2 */  jal   SetMarioAction
+/* 02D2D4 802722D4 0C094AB2 */  jal   set_mario_action
 /* 02D2D8 802722D8 00003025 */   move  $a2, $zero
 .L802722DC:
 /* 02D2DC 802722DC 10000003 */  b     .L802722EC
@@ -2845,7 +2845,7 @@ glabel func_80272300
 /* 02D434 80272434 3C053000 */  lui   $a1, (0x300022C2 >> 16) # lui $a1, 0x3000
 /* 02D438 80272438 34A522C2 */  ori   $a1, (0x300022C2 & 0xFFFF) # ori $a1, $a1, 0x22c2
 /* 02D43C 8027243C 8FA40028 */  lw    $a0, 0x28($sp)
-/* 02D440 80272440 0C094AB2 */  jal   SetMarioAction
+/* 02D440 80272440 0C094AB2 */  jal   set_mario_action
 /* 02D444 80272444 00003025 */   move  $a2, $zero
 .L80272448:
 /* 02D448 80272448 10000020 */  b     .L802724CC
@@ -2871,7 +2871,7 @@ glabel func_80272300
 /* 02D494 80272494 3C053000 */  lui   $a1, (0x300024D6 >> 16) # lui $a1, 0x3000
 /* 02D498 80272498 34A524D6 */  ori   $a1, (0x300024D6 & 0xFFFF) # ori $a1, $a1, 0x24d6
 /* 02D49C 8027249C 8FA40028 */  lw    $a0, 0x28($sp)
-/* 02D4A0 802724A0 0C094AB2 */  jal   SetMarioAction
+/* 02D4A0 802724A0 0C094AB2 */  jal   set_mario_action
 /* 02D4A4 802724A4 00003025 */   move  $a2, $zero
 /* 02D4A8 802724A8 10000006 */  b     .L802724C4
 /* 02D4AC 802724AC 00000000 */   nop   
@@ -2879,7 +2879,7 @@ glabel func_80272300
 /* 02D4B0 802724B0 3C053000 */  lui   $a1, (0x300022C3 >> 16) # lui $a1, 0x3000
 /* 02D4B4 802724B4 34A522C3 */  ori   $a1, (0x300022C3 & 0xFFFF) # ori $a1, $a1, 0x22c3
 /* 02D4B8 802724B8 8FA40028 */  lw    $a0, 0x28($sp)
-/* 02D4BC 802724BC 0C094AB2 */  jal   SetMarioAction
+/* 02D4BC 802724BC 0C094AB2 */  jal   set_mario_action
 /* 02D4C0 802724C0 24060001 */   li    $a2, 1
 .L802724C4:
 /* 02D4C4 802724C4 10000001 */  b     .L802724CC
@@ -2938,7 +2938,7 @@ glabel func_802724F0
 .L80272580:
 /* 02D580 80272580 8FA40028 */  lw    $a0, 0x28($sp)
 /* 02D584 80272584 02002825 */  move  $a1, $s0
-/* 02D588 80272588 0C094AB2 */  jal   SetMarioAction
+/* 02D588 80272588 0C094AB2 */  jal   set_mario_action
 /* 02D58C 8027258C 00003025 */   move  $a2, $zero
 .L80272590:
 /* 02D590 80272590 10000001 */  b     .L80272598
@@ -3046,7 +3046,7 @@ glabel func_8027263C
 .L802726FC:
 /* 02D6FC 802726FC 8FA40028 */  lw    $a0, 0x28($sp)
 /* 02D700 80272700 02002825 */  move  $a1, $s0
-/* 02D704 80272704 0C094AB2 */  jal   SetMarioAction
+/* 02D704 80272704 0C094AB2 */  jal   set_mario_action
 /* 02D708 80272708 00003025 */   move  $a2, $zero
 .L8027270C:
 /* 02D70C 8027270C 0C09C177 */  jal   func_802705DC
@@ -3294,40 +3294,40 @@ glabel func_802728CC
 /* 02DA78 80272A78 3C053000 */  lui   $a1, (0x300022C2 >> 16) # lui $a1, 0x3000
 /* 02DA7C 80272A7C 34A522C2 */  ori   $a1, (0x300022C2 & 0xFFFF) # ori $a1, $a1, 0x22c2
 /* 02DA80 80272A80 8FA40028 */  lw    $a0, 0x28($sp)
-/* 02DA84 80272A84 0C094AB2 */  jal   SetMarioAction
+/* 02DA84 80272A84 0C094AB2 */  jal   set_mario_action
 /* 02DA88 80272A88 00003025 */   move  $a2, $zero
 /* 02DA8C 80272A8C 10000022 */  b     .L80272B18
 /* 02DA90 80272A90 00000000 */   nop   
 /* 02DA94 80272A94 3C053000 */  lui   $a1, (0x300022C3 >> 16) # lui $a1, 0x3000
 /* 02DA98 80272A98 34A522C3 */  ori   $a1, (0x300022C3 & 0xFFFF) # ori $a1, $a1, 0x22c3
 /* 02DA9C 80272A9C 8FA40028 */  lw    $a0, 0x28($sp)
-/* 02DAA0 80272AA0 0C094AB2 */  jal   SetMarioAction
+/* 02DAA0 80272AA0 0C094AB2 */  jal   set_mario_action
 /* 02DAA4 80272AA4 00003025 */   move  $a2, $zero
 /* 02DAA8 80272AA8 1000001B */  b     .L80272B18
 /* 02DAAC 80272AAC 00000000 */   nop   
 /* 02DAB0 80272AB0 3C053000 */  lui   $a1, (0x300024D2 >> 16) # lui $a1, 0x3000
 /* 02DAB4 80272AB4 34A524D2 */  ori   $a1, (0x300024D2 & 0xFFFF) # ori $a1, $a1, 0x24d2
 /* 02DAB8 80272AB8 8FA40028 */  lw    $a0, 0x28($sp)
-/* 02DABC 80272ABC 0C094AB2 */  jal   SetMarioAction
+/* 02DABC 80272ABC 0C094AB2 */  jal   set_mario_action
 /* 02DAC0 80272AC0 00003025 */   move  $a2, $zero
 /* 02DAC4 80272AC4 10000014 */  b     .L80272B18
 /* 02DAC8 80272AC8 00000000 */   nop   
 /* 02DACC 80272ACC 3C053000 */  lui   $a1, (0x300024D5 >> 16) # lui $a1, 0x3000
 /* 02DAD0 80272AD0 34A524D5 */  ori   $a1, (0x300024D5 & 0xFFFF) # ori $a1, $a1, 0x24d5
 /* 02DAD4 80272AD4 8FA40028 */  lw    $a0, 0x28($sp)
-/* 02DAD8 80272AD8 0C094AB2 */  jal   SetMarioAction
+/* 02DAD8 80272AD8 0C094AB2 */  jal   set_mario_action
 /* 02DADC 80272ADC 00003025 */   move  $a2, $zero
 /* 02DAE0 80272AE0 1000000D */  b     .L80272B18
 /* 02DAE4 80272AE4 00000000 */   nop   
 /* 02DAE8 80272AE8 8FA40028 */  lw    $a0, 0x28($sp)
 /* 02DAEC 80272AEC 240542F4 */  li    $a1, 17140
-/* 02DAF0 80272AF0 0C094AB2 */  jal   SetMarioAction
+/* 02DAF0 80272AF0 0C094AB2 */  jal   set_mario_action
 /* 02DAF4 80272AF4 00003025 */   move  $a2, $zero
 /* 02DAF8 80272AF8 10000007 */  b     .L80272B18
 /* 02DAFC 80272AFC 00000000 */   nop   
 /* 02DB00 80272B00 8FA40028 */  lw    $a0, 0x28($sp)
 /* 02DB04 80272B04 240542F5 */  li    $a1, 17141
-/* 02DB08 80272B08 0C094AB2 */  jal   SetMarioAction
+/* 02DB08 80272B08 0C094AB2 */  jal   set_mario_action
 /* 02DB0C 80272B0C 00003025 */   move  $a2, $zero
 /* 02DB10 80272B10 10000001 */  b     .L80272B18
 /* 02DB14 80272B14 00000000 */   nop   
@@ -4001,7 +4001,7 @@ glabel func_802734BC
 /* 02E4E0 802734E0 3C053800 */  lui   $a1, (0x380022C0 >> 16) # lui $a1, 0x3800
 /* 02E4E4 802734E4 34A522C0 */  ori   $a1, (0x380022C0 & 0xFFFF) # ori $a1, $a1, 0x22c0
 /* 02E4E8 802734E8 8FA40028 */  lw    $a0, 0x28($sp)
-/* 02E4EC 802734EC 0C094AB2 */  jal   SetMarioAction
+/* 02E4EC 802734EC 0C094AB2 */  jal   set_mario_action
 /* 02E4F0 802734F0 00003025 */   move  $a2, $zero
 /* 02E4F4 802734F4 10000056 */  b     .L80273650
 /* 02E4F8 802734F8 00000000 */   nop   
@@ -4013,7 +4013,7 @@ glabel func_802734BC
 /* 02E50C 8027350C 00000000 */   nop   
 /* 02E510 80273510 8FA40028 */  lw    $a0, 0x28($sp)
 /* 02E514 80273514 240544F8 */  li    $a1, 17656
-/* 02E518 80273518 0C094AB2 */  jal   SetMarioAction
+/* 02E518 80273518 0C094AB2 */  jal   set_mario_action
 /* 02E51C 8027351C 00003025 */   move  $a2, $zero
 /* 02E520 80273520 1000004B */  b     .L80273650
 /* 02E524 80273524 00000000 */   nop   
@@ -4025,7 +4025,7 @@ glabel func_802734BC
 /* 02E538 80273538 00000000 */   nop   
 /* 02E53C 8027353C 8FA40028 */  lw    $a0, 0x28($sp)
 /* 02E540 80273540 240544F2 */  li    $a1, 17650
-/* 02E544 80273544 0C094AB2 */  jal   SetMarioAction
+/* 02E544 80273544 0C094AB2 */  jal   set_mario_action
 /* 02E548 80273548 00003025 */   move  $a2, $zero
 /* 02E54C 8027354C 10000040 */  b     .L80273650
 /* 02E550 80273550 00000000 */   nop   
@@ -4119,7 +4119,7 @@ glabel func_80273664
 /* 02E688 80273688 3C050800 */  lui   $a1, (0x080042F0 >> 16) # lui $a1, 0x800
 /* 02E68C 8027368C 34A542F0 */  ori   $a1, (0x080042F0 & 0xFFFF) # ori $a1, $a1, 0x42f0
 /* 02E690 80273690 8FA40018 */  lw    $a0, 0x18($sp)
-/* 02E694 80273694 0C094BD3 */  jal   func_80252F4C
+/* 02E694 80273694 0C094BD3 */  jal   drop_and_set_mario_action
 /* 02E698 80273698 00003025 */   move  $a2, $zero
 /* 02E69C 8027369C 1000002C */  b     .L80273750
 /* 02E6A0 802736A0 00000000 */   nop   
@@ -4132,7 +4132,7 @@ glabel func_80273664
 /* 02E6B8 802736B8 3C053800 */  lui   $a1, (0x380022C1 >> 16) # lui $a1, 0x3800
 /* 02E6BC 802736BC 34A522C1 */  ori   $a1, (0x380022C1 & 0xFFFF) # ori $a1, $a1, 0x22c1
 /* 02E6C0 802736C0 8FA40018 */  lw    $a0, 0x18($sp)
-/* 02E6C4 802736C4 0C094AB2 */  jal   SetMarioAction
+/* 02E6C4 802736C4 0C094AB2 */  jal   set_mario_action
 /* 02E6C8 802736C8 00003025 */   move  $a2, $zero
 /* 02E6CC 802736CC 10000020 */  b     .L80273750
 /* 02E6D0 802736D0 00000000 */   nop   
@@ -4144,7 +4144,7 @@ glabel func_80273664
 /* 02E6E4 802736E4 00000000 */   nop   
 /* 02E6E8 802736E8 8FA40018 */  lw    $a0, 0x18($sp)
 /* 02E6EC 802736EC 240544F9 */  li    $a1, 17657
-/* 02E6F0 802736F0 0C094AB2 */  jal   SetMarioAction
+/* 02E6F0 802736F0 0C094AB2 */  jal   set_mario_action
 /* 02E6F4 802736F4 00003025 */   move  $a2, $zero
 /* 02E6F8 802736F8 10000015 */  b     .L80273750
 /* 02E6FC 802736FC 00000000 */   nop   
@@ -4156,7 +4156,7 @@ glabel func_80273664
 /* 02E710 80273710 00000000 */   nop   
 /* 02E714 80273714 8FA40018 */  lw    $a0, 0x18($sp)
 /* 02E718 80273718 240544F3 */  li    $a1, 17651
-/* 02E71C 8027371C 0C094AB2 */  jal   SetMarioAction
+/* 02E71C 8027371C 0C094AB2 */  jal   set_mario_action
 /* 02E720 80273720 00003025 */   move  $a2, $zero
 /* 02E724 80273724 1000000A */  b     .L80273750
 /* 02E728 80273728 00000000 */   nop   
@@ -4189,7 +4189,7 @@ glabel func_80273760
 /* 02E784 80273784 3C053800 */  lui   $a1, (0x380022C0 >> 16) # lui $a1, 0x3800
 /* 02E788 80273788 34A522C0 */  ori   $a1, (0x380022C0 & 0xFFFF) # ori $a1, $a1, 0x22c0
 /* 02E78C 8027378C 8FA40028 */  lw    $a0, 0x28($sp)
-/* 02E790 80273790 0C094AB2 */  jal   SetMarioAction
+/* 02E790 80273790 0C094AB2 */  jal   set_mario_action
 /* 02E794 80273794 00003025 */   move  $a2, $zero
 /* 02E798 80273798 10000055 */  b     .L802738F0
 /* 02E79C 8027379C 00000000 */   nop   
@@ -4202,7 +4202,7 @@ glabel func_80273760
 /* 02E7B4 802737B4 3C050800 */  lui   $a1, (0x080042F0 >> 16) # lui $a1, 0x800
 /* 02E7B8 802737B8 34A542F0 */  ori   $a1, (0x080042F0 & 0xFFFF) # ori $a1, $a1, 0x42f0
 /* 02E7BC 802737BC 8FA40028 */  lw    $a0, 0x28($sp)
-/* 02E7C0 802737C0 0C094AB2 */  jal   SetMarioAction
+/* 02E7C0 802737C0 0C094AB2 */  jal   set_mario_action
 /* 02E7C4 802737C4 00003025 */   move  $a2, $zero
 /* 02E7C8 802737C8 10000049 */  b     .L802738F0
 /* 02E7CC 802737CC 00000000 */   nop   
@@ -4214,7 +4214,7 @@ glabel func_80273760
 /* 02E7E0 802737E0 00000000 */   nop   
 /* 02E7E4 802737E4 8FA40028 */  lw    $a0, 0x28($sp)
 /* 02E7E8 802737E8 240544F8 */  li    $a1, 17656
-/* 02E7EC 802737EC 0C094AB2 */  jal   SetMarioAction
+/* 02E7EC 802737EC 0C094AB2 */  jal   set_mario_action
 /* 02E7F0 802737F0 00003025 */   move  $a2, $zero
 /* 02E7F4 802737F4 1000003E */  b     .L802738F0
 /* 02E7F8 802737F8 00000000 */   nop   
@@ -4227,7 +4227,7 @@ glabel func_80273760
 /* 02E810 80273810 3C050800 */  li    $a1, 0x08000000 # 0.000000
 /* 02E814 80273814 34A542F0 */  ori   $a1, (0x080042F0 & 0xFFFF) # ori $a1, $a1, 0x42f0
 /* 02E818 80273818 8FA40028 */  lw    $a0, 0x28($sp)
-/* 02E81C 8027381C 0C094AB2 */  jal   SetMarioAction
+/* 02E81C 8027381C 0C094AB2 */  jal   set_mario_action
 /* 02E820 80273820 00003025 */   move  $a2, $zero
 /* 02E824 80273824 10000032 */  b     .L802738F0
 /* 02E828 80273828 00000000 */   nop   
@@ -4270,7 +4270,7 @@ glabel func_80273760
 .L802738B4:
 /* 02E8B4 802738B4 8FA40028 */  lw    $a0, 0x28($sp)
 /* 02E8B8 802738B8 240542F4 */  li    $a1, 17140
-/* 02E8BC 802738BC 0C094AB2 */  jal   SetMarioAction
+/* 02E8BC 802738BC 0C094AB2 */  jal   set_mario_action
 /* 02E8C0 802738C0 24060001 */   li    $a2, 1
 /* 02E8C4 802738C4 10000006 */  b     .L802738E0
 /* 02E8C8 802738C8 00000000 */   nop   
@@ -4305,7 +4305,7 @@ glabel func_80273904
 /* 02E928 80273928 00000000 */   nop   
 /* 02E92C 8027392C 8FA40028 */  lw    $a0, 0x28($sp)
 /* 02E930 80273930 240544F2 */  li    $a1, 17650
-/* 02E934 80273934 0C094BD3 */  jal   func_80252F4C
+/* 02E934 80273934 0C094BD3 */  jal   drop_and_set_mario_action
 /* 02E938 80273938 00003025 */   move  $a2, $zero
 /* 02E93C 8027393C 1000005B */  b     .L80273AAC
 /* 02E940 80273940 00000000 */   nop   
@@ -4318,7 +4318,7 @@ glabel func_80273904
 /* 02E958 80273958 3C053800 */  lui   $a1, (0x380022C1 >> 16) # lui $a1, 0x3800
 /* 02E95C 8027395C 34A522C1 */  ori   $a1, (0x380022C1 & 0xFFFF) # ori $a1, $a1, 0x22c1
 /* 02E960 80273960 8FA40028 */  lw    $a0, 0x28($sp)
-/* 02E964 80273964 0C094AB2 */  jal   SetMarioAction
+/* 02E964 80273964 0C094AB2 */  jal   set_mario_action
 /* 02E968 80273968 00003025 */   move  $a2, $zero
 /* 02E96C 8027396C 1000004F */  b     .L80273AAC
 /* 02E970 80273970 00000000 */   nop   
@@ -4330,7 +4330,7 @@ glabel func_80273904
 /* 02E984 80273984 00000000 */   nop   
 /* 02E988 80273988 8FA40028 */  lw    $a0, 0x28($sp)
 /* 02E98C 8027398C 240544F9 */  li    $a1, 17657
-/* 02E990 80273990 0C094AB2 */  jal   SetMarioAction
+/* 02E990 80273990 0C094AB2 */  jal   set_mario_action
 /* 02E994 80273994 00003025 */   move  $a2, $zero
 /* 02E998 80273998 10000044 */  b     .L80273AAC
 /* 02E99C 8027399C 00000000 */   nop   
@@ -4343,7 +4343,7 @@ glabel func_80273904
 /* 02E9B4 802739B4 3C050800 */  lui   $a1, (0x080042F1 >> 16) # lui $a1, 0x800
 /* 02E9B8 802739B8 34A542F1 */  ori   $a1, (0x080042F1 & 0xFFFF) # ori $a1, $a1, 0x42f1
 /* 02E9BC 802739BC 8FA40028 */  lw    $a0, 0x28($sp)
-/* 02E9C0 802739C0 0C094AB2 */  jal   SetMarioAction
+/* 02E9C0 802739C0 0C094AB2 */  jal   set_mario_action
 /* 02E9C4 802739C4 00003025 */   move  $a2, $zero
 /* 02E9C8 802739C8 10000038 */  b     .L80273AAC
 /* 02E9CC 802739CC 00000000 */   nop   
@@ -4392,7 +4392,7 @@ glabel func_80273904
 .L80273A70:
 /* 02EA70 80273A70 8FA40028 */  lw    $a0, 0x28($sp)
 /* 02EA74 80273A74 240542F5 */  li    $a1, 17141
-/* 02EA78 80273A78 0C094AB2 */  jal   SetMarioAction
+/* 02EA78 80273A78 0C094AB2 */  jal   set_mario_action
 /* 02EA7C 80273A7C 24060001 */   li    $a2, 1
 /* 02EA80 80273A80 10000006 */  b     .L80273A9C
 /* 02EA84 80273A84 00000000 */   nop   
@@ -4427,7 +4427,7 @@ glabel func_80273AC0
 /* 02EAE4 80273AE4 3C053800 */  lui   $a1, (0x380022C0 >> 16) # lui $a1, 0x3800
 /* 02EAE8 80273AE8 34A522C0 */  ori   $a1, (0x380022C0 & 0xFFFF) # ori $a1, $a1, 0x22c0
 /* 02EAEC 80273AEC 8FA40028 */  lw    $a0, 0x28($sp)
-/* 02EAF0 80273AF0 0C094AB2 */  jal   SetMarioAction
+/* 02EAF0 80273AF0 0C094AB2 */  jal   set_mario_action
 /* 02EAF4 80273AF4 00003025 */   move  $a2, $zero
 /* 02EAF8 80273AF8 1000002D */  b     .L80273BB0
 /* 02EAFC 80273AFC 00000000 */   nop   
@@ -4439,7 +4439,7 @@ glabel func_80273AC0
 /* 02EB10 80273B10 3C050100 */  li    $a1, 0x01000000 # 0.000000
 /* 02EB14 80273B14 34A50889 */  ori   $a1, (0x01000889 & 0xFFFF) # ori $a1, $a1, 0x889
 /* 02EB18 80273B18 8FA40028 */  lw    $a0, 0x28($sp)
-/* 02EB1C 80273B1C 0C094AB2 */  jal   SetMarioAction
+/* 02EB1C 80273B1C 0C094AB2 */  jal   set_mario_action
 /* 02EB20 80273B20 24060001 */   li    $a2, 1
 /* 02EB24 80273B24 10000022 */  b     .L80273BB0
 /* 02EB28 80273B28 00000000 */   nop   
@@ -4465,7 +4465,7 @@ glabel func_80273AC0
 .L80273B74:
 /* 02EB74 80273B74 8FA40028 */  lw    $a0, 0x28($sp)
 /* 02EB78 80273B78 240544FA */  li    $a1, 17658
-/* 02EB7C 80273B7C 0C094AB2 */  jal   SetMarioAction
+/* 02EB7C 80273B7C 0C094AB2 */  jal   set_mario_action
 /* 02EB80 80273B80 00003025 */   move  $a2, $zero
 /* 02EB84 80273B84 10000006 */  b     .L80273BA0
 /* 02EB88 80273B88 00000000 */   nop   
@@ -4500,7 +4500,7 @@ glabel func_80273BC4
 /* 02EBE8 80273BE8 00000000 */   nop   
 /* 02EBEC 80273BEC 8FA40028 */  lw    $a0, 0x28($sp)
 /* 02EBF0 80273BF0 240542F4 */  li    $a1, 17140
-/* 02EBF4 80273BF4 0C094BD3 */  jal   func_80252F4C
+/* 02EBF4 80273BF4 0C094BD3 */  jal   drop_and_set_mario_action
 /* 02EBF8 80273BF8 00003025 */   move  $a2, $zero
 /* 02EBFC 80273BFC 10000039 */  b     .L80273CE4
 /* 02EC00 80273C00 00000000 */   nop   
@@ -4513,7 +4513,7 @@ glabel func_80273BC4
 /* 02EC18 80273C18 3C053800 */  lui   $a1, (0x380022C1 >> 16) # lui $a1, 0x3800
 /* 02EC1C 80273C1C 34A522C1 */  ori   $a1, (0x380022C1 & 0xFFFF) # ori $a1, $a1, 0x22c1
 /* 02EC20 80273C20 8FA40028 */  lw    $a0, 0x28($sp)
-/* 02EC24 80273C24 0C094AB2 */  jal   SetMarioAction
+/* 02EC24 80273C24 0C094AB2 */  jal   set_mario_action
 /* 02EC28 80273C28 00003025 */   move  $a2, $zero
 /* 02EC2C 80273C2C 1000002D */  b     .L80273CE4
 /* 02EC30 80273C30 00000000 */   nop   
@@ -4525,7 +4525,7 @@ glabel func_80273BC4
 /* 02EC44 80273C44 3C050100 */  li    $a1, 0x01000000 # 0.000000
 /* 02EC48 80273C48 34A508A3 */  ori   $a1, (0x010008A3 & 0xFFFF) # ori $a1, $a1, 0x8a3
 /* 02EC4C 80273C4C 8FA40028 */  lw    $a0, 0x28($sp)
-/* 02EC50 80273C50 0C094AB2 */  jal   SetMarioAction
+/* 02EC50 80273C50 0C094AB2 */  jal   set_mario_action
 /* 02EC54 80273C54 24060001 */   li    $a2, 1
 /* 02EC58 80273C58 10000022 */  b     .L80273CE4
 /* 02EC5C 80273C5C 00000000 */   nop   
@@ -4551,7 +4551,7 @@ glabel func_80273BC4
 .L80273CA8:
 /* 02ECA8 80273CA8 8FA40028 */  lw    $a0, 0x28($sp)
 /* 02ECAC 80273CAC 240544FB */  li    $a1, 17659
-/* 02ECB0 80273CB0 0C094AB2 */  jal   SetMarioAction
+/* 02ECB0 80273CB0 0C094AB2 */  jal   set_mario_action
 /* 02ECB4 80273CB4 00003025 */   move  $a2, $zero
 /* 02ECB8 80273CB8 10000006 */  b     .L80273CD4
 /* 02ECBC 80273CBC 00000000 */   nop   
@@ -4586,7 +4586,7 @@ glabel func_80273CF8
 /* 02ED1C 80273D1C 3C053800 */  lui   $a1, (0x380022C0 >> 16) # lui $a1, 0x3800
 /* 02ED20 80273D20 34A522C0 */  ori   $a1, (0x380022C0 & 0xFFFF) # ori $a1, $a1, 0x22c0
 /* 02ED24 80273D24 8FA40028 */  lw    $a0, 0x28($sp)
-/* 02ED28 80273D28 0C094AB2 */  jal   SetMarioAction
+/* 02ED28 80273D28 0C094AB2 */  jal   set_mario_action
 /* 02ED2C 80273D2C 00003025 */   move  $a2, $zero
 /* 02ED30 80273D30 10000033 */  b     .L80273E00
 /* 02ED34 80273D34 00000000 */   nop   
@@ -4638,7 +4638,7 @@ glabel func_80273CF8
 /* 02EDDC 80273DDC 00000000 */   nop   
 /* 02EDE0 80273DE0 8FA40028 */  lw    $a0, 0x28($sp)
 /* 02EDE4 80273DE4 240542F6 */  li    $a1, 17142
-/* 02EDE8 80273DE8 0C094AB2 */  jal   SetMarioAction
+/* 02EDE8 80273DE8 0C094AB2 */  jal   set_mario_action
 /* 02EDEC 80273DEC 00003025 */   move  $a2, $zero
 .L80273DF0:
 /* 02EDF0 80273DF0 10000003 */  b     .L80273E00
@@ -4664,7 +4664,7 @@ glabel func_80273E14
 /* 02EE34 80273E34 00000000 */   nop   
 /* 02EE38 80273E38 8FA40018 */  lw    $a0, 0x18($sp)
 /* 02EE3C 80273E3C 240542F4 */  li    $a1, 17140
-/* 02EE40 80273E40 0C094BD3 */  jal   func_80252F4C
+/* 02EE40 80273E40 0C094BD3 */  jal   drop_and_set_mario_action
 /* 02EE44 80273E44 00003025 */   move  $a2, $zero
 /* 02EE48 80273E48 10000038 */  b     .L80273F2C
 /* 02EE4C 80273E4C 00000000 */   nop   
@@ -4677,7 +4677,7 @@ glabel func_80273E14
 /* 02EE64 80273E64 3C053800 */  lui   $a1, (0x380022C1 >> 16) # lui $a1, 0x3800
 /* 02EE68 80273E68 34A522C1 */  ori   $a1, (0x380022C1 & 0xFFFF) # ori $a1, $a1, 0x22c1
 /* 02EE6C 80273E6C 8FA40018 */  lw    $a0, 0x18($sp)
-/* 02EE70 80273E70 0C094AB2 */  jal   SetMarioAction
+/* 02EE70 80273E70 0C094AB2 */  jal   set_mario_action
 /* 02EE74 80273E74 00003025 */   move  $a2, $zero
 /* 02EE78 80273E78 1000002C */  b     .L80273F2C
 /* 02EE7C 80273E7C 00000000 */   nop   
@@ -4720,7 +4720,7 @@ glabel func_80273E14
 /* 02EF08 80273F08 00000000 */   nop   
 /* 02EF0C 80273F0C 8FA40018 */  lw    $a0, 0x18($sp)
 /* 02EF10 80273F10 240542F7 */  li    $a1, 17143
-/* 02EF14 80273F14 0C094AB2 */  jal   SetMarioAction
+/* 02EF14 80273F14 0C094AB2 */  jal   set_mario_action
 /* 02EF18 80273F18 00003025 */   move  $a2, $zero
 .L80273F1C:
 /* 02EF1C 80273F1C 10000003 */  b     .L80273F2C
@@ -4748,7 +4748,7 @@ glabel func_80273F3C
 /* 02EF68 80273F68 3C053800 */  lui   $a1, (0x380022C0 >> 16) # lui $a1, 0x3800
 /* 02EF6C 80273F6C 34A522C0 */  ori   $a1, (0x380022C0 & 0xFFFF) # ori $a1, $a1, 0x22c0
 /* 02EF70 80273F70 8FA40018 */  lw    $a0, 0x18($sp)
-/* 02EF74 80273F74 0C094AB2 */  jal   SetMarioAction
+/* 02EF74 80273F74 0C094AB2 */  jal   set_mario_action
 /* 02EF78 80273F78 00003025 */   move  $a2, $zero
 /* 02EF7C 80273F7C 10000020 */  b     .L80274000
 /* 02EF80 80273F80 00000000 */   nop   
@@ -4760,7 +4760,7 @@ glabel func_80273F3C
 /* 02EF94 80273F94 00000000 */   nop   
 /* 02EF98 80273F98 8FA40018 */  lw    $a0, 0x18($sp)
 /* 02EF9C 80273F9C 240544F2 */  li    $a1, 17650
-/* 02EFA0 80273FA0 0C094AB2 */  jal   SetMarioAction
+/* 02EFA0 80273FA0 0C094AB2 */  jal   set_mario_action
 /* 02EFA4 80273FA4 00003025 */   move  $a2, $zero
 /* 02EFA8 80273FA8 10000015 */  b     .L80274000
 /* 02EFAC 80273FAC 00000000 */   nop   
@@ -4777,7 +4777,7 @@ glabel func_80273F3C
 /* 02EFD4 80273FD4 3C050800 */  lui   $a1, (0x080042F0 >> 16) # lui $a1, 0x800
 /* 02EFD8 80273FD8 34A542F0 */  ori   $a1, (0x080042F0 & 0xFFFF) # ori $a1, $a1, 0x42f0
 /* 02EFDC 80273FDC 8FA40018 */  lw    $a0, 0x18($sp)
-/* 02EFE0 80273FE0 0C094AB2 */  jal   SetMarioAction
+/* 02EFE0 80273FE0 0C094AB2 */  jal   set_mario_action
 /* 02EFE4 80273FE4 00003025 */   move  $a2, $zero
 /* 02EFE8 80273FE8 10000005 */  b     .L80274000
 /* 02EFEC 80273FEC 00000000 */   nop   
@@ -4808,7 +4808,7 @@ glabel func_80274010
 /* 02F040 80274040 3C050800 */  lui   $a1, (0x080042F0 >> 16) # lui $a1, 0x800
 /* 02F044 80274044 34A542F0 */  ori   $a1, (0x080042F0 & 0xFFFF) # ori $a1, $a1, 0x42f0
 /* 02F048 80274048 8FA40018 */  lw    $a0, 0x18($sp)
-/* 02F04C 8027404C 0C094BD3 */  jal   func_80252F4C
+/* 02F04C 8027404C 0C094BD3 */  jal   drop_and_set_mario_action
 /* 02F050 80274050 00003025 */   move  $a2, $zero
 /* 02F054 80274054 1000002C */  b     .L80274108
 /* 02F058 80274058 00000000 */   nop   
@@ -4821,7 +4821,7 @@ glabel func_80274010
 /* 02F070 80274070 3C053800 */  lui   $a1, (0x380022C1 >> 16) # lui $a1, 0x3800
 /* 02F074 80274074 34A522C1 */  ori   $a1, (0x380022C1 & 0xFFFF) # ori $a1, $a1, 0x22c1
 /* 02F078 80274078 8FA40018 */  lw    $a0, 0x18($sp)
-/* 02F07C 8027407C 0C094AB2 */  jal   SetMarioAction
+/* 02F07C 8027407C 0C094AB2 */  jal   set_mario_action
 /* 02F080 80274080 00003025 */   move  $a2, $zero
 /* 02F084 80274084 10000020 */  b     .L80274108
 /* 02F088 80274088 00000000 */   nop   
@@ -4833,7 +4833,7 @@ glabel func_80274010
 /* 02F09C 8027409C 00000000 */   nop   
 /* 02F0A0 802740A0 8FA40018 */  lw    $a0, 0x18($sp)
 /* 02F0A4 802740A4 240544F3 */  li    $a1, 17651
-/* 02F0A8 802740A8 0C094AB2 */  jal   SetMarioAction
+/* 02F0A8 802740A8 0C094AB2 */  jal   set_mario_action
 /* 02F0AC 802740AC 00003025 */   move  $a2, $zero
 /* 02F0B0 802740B0 10000015 */  b     .L80274108
 /* 02F0B4 802740B4 00000000 */   nop   
@@ -4850,7 +4850,7 @@ glabel func_80274010
 /* 02F0DC 802740DC 3C050800 */  lui   $a1, (0x080042F1 >> 16) # lui $a1, 0x800
 /* 02F0E0 802740E0 34A542F1 */  ori   $a1, (0x080042F1 & 0xFFFF) # ori $a1, $a1, 0x42f1
 /* 02F0E4 802740E4 8FA40018 */  lw    $a0, 0x18($sp)
-/* 02F0E8 802740E8 0C094AB2 */  jal   SetMarioAction
+/* 02F0E8 802740E8 0C094AB2 */  jal   set_mario_action
 /* 02F0EC 802740EC 00003025 */   move  $a2, $zero
 /* 02F0F0 802740F0 10000005 */  b     .L80274108
 /* 02F0F4 802740F4 00000000 */   nop   
@@ -4880,7 +4880,7 @@ glabel func_80274118
 /* 02F144 80274144 3C053800 */  lui   $a1, (0x380022C0 >> 16) # lui $a1, 0x3800
 /* 02F148 80274148 34A522C0 */  ori   $a1, (0x380022C0 & 0xFFFF) # ori $a1, $a1, 0x22c0
 /* 02F14C 8027414C 8FA40018 */  lw    $a0, 0x18($sp)
-/* 02F150 80274150 0C094AB2 */  jal   SetMarioAction
+/* 02F150 80274150 0C094AB2 */  jal   set_mario_action
 /* 02F154 80274154 00003025 */   move  $a2, $zero
 /* 02F158 80274158 10000020 */  b     .L802741DC
 /* 02F15C 8027415C 00000000 */   nop   
@@ -4892,7 +4892,7 @@ glabel func_80274118
 /* 02F170 80274170 00000000 */   nop   
 /* 02F174 80274174 8FA40018 */  lw    $a0, 0x18($sp)
 /* 02F178 80274178 240544F2 */  li    $a1, 17650
-/* 02F17C 8027417C 0C094AB2 */  jal   SetMarioAction
+/* 02F17C 8027417C 0C094AB2 */  jal   set_mario_action
 /* 02F180 80274180 00003025 */   move  $a2, $zero
 /* 02F184 80274184 10000015 */  b     .L802741DC
 /* 02F188 80274188 00000000 */   nop   
@@ -4909,7 +4909,7 @@ glabel func_80274118
 /* 02F1B0 802741B0 3C050800 */  lui   $a1, (0x080042F0 >> 16) # lui $a1, 0x800
 /* 02F1B4 802741B4 34A542F0 */  ori   $a1, (0x080042F0 & 0xFFFF) # ori $a1, $a1, 0x42f0
 /* 02F1B8 802741B8 8FA40018 */  lw    $a0, 0x18($sp)
-/* 02F1BC 802741BC 0C094AB2 */  jal   SetMarioAction
+/* 02F1BC 802741BC 0C094AB2 */  jal   set_mario_action
 /* 02F1C0 802741C0 00003025 */   move  $a2, $zero
 /* 02F1C4 802741C4 10000005 */  b     .L802741DC
 /* 02F1C8 802741C8 00000000 */   nop   
@@ -4940,7 +4940,7 @@ glabel func_802741EC
 /* 02F21C 8027421C 3C050800 */  lui   $a1, (0x080042F0 >> 16) # lui $a1, 0x800
 /* 02F220 80274220 34A542F0 */  ori   $a1, (0x080042F0 & 0xFFFF) # ori $a1, $a1, 0x42f0
 /* 02F224 80274224 8FA40018 */  lw    $a0, 0x18($sp)
-/* 02F228 80274228 0C094BD3 */  jal   func_80252F4C
+/* 02F228 80274228 0C094BD3 */  jal   drop_and_set_mario_action
 /* 02F22C 8027422C 00003025 */   move  $a2, $zero
 /* 02F230 80274230 1000002C */  b     .L802742E4
 /* 02F234 80274234 00000000 */   nop   
@@ -4953,7 +4953,7 @@ glabel func_802741EC
 /* 02F24C 8027424C 3C053800 */  lui   $a1, (0x380022C1 >> 16) # lui $a1, 0x3800
 /* 02F250 80274250 34A522C1 */  ori   $a1, (0x380022C1 & 0xFFFF) # ori $a1, $a1, 0x22c1
 /* 02F254 80274254 8FA40018 */  lw    $a0, 0x18($sp)
-/* 02F258 80274258 0C094AB2 */  jal   SetMarioAction
+/* 02F258 80274258 0C094AB2 */  jal   set_mario_action
 /* 02F25C 8027425C 00003025 */   move  $a2, $zero
 /* 02F260 80274260 10000020 */  b     .L802742E4
 /* 02F264 80274264 00000000 */   nop   
@@ -4965,7 +4965,7 @@ glabel func_802741EC
 /* 02F278 80274278 00000000 */   nop   
 /* 02F27C 8027427C 8FA40018 */  lw    $a0, 0x18($sp)
 /* 02F280 80274280 240544F3 */  li    $a1, 17651
-/* 02F284 80274284 0C094AB2 */  jal   SetMarioAction
+/* 02F284 80274284 0C094AB2 */  jal   set_mario_action
 /* 02F288 80274288 00003025 */   move  $a2, $zero
 /* 02F28C 8027428C 10000015 */  b     .L802742E4
 /* 02F290 80274290 00000000 */   nop   
@@ -4982,7 +4982,7 @@ glabel func_802741EC
 /* 02F2B8 802742B8 3C050800 */  lui   $a1, (0x080042F1 >> 16) # lui $a1, 0x800
 /* 02F2BC 802742BC 34A542F1 */  ori   $a1, (0x080042F1 & 0xFFFF) # ori $a1, $a1, 0x42f1
 /* 02F2C0 802742C0 8FA40018 */  lw    $a0, 0x18($sp)
-/* 02F2C4 802742C4 0C094AB2 */  jal   SetMarioAction
+/* 02F2C4 802742C4 0C094AB2 */  jal   set_mario_action
 /* 02F2C8 802742C8 00003025 */   move  $a2, $zero
 /* 02F2CC 802742CC 10000005 */  b     .L802742E4
 /* 02F2D0 802742D0 00000000 */   nop   
@@ -5069,7 +5069,7 @@ glabel func_802742F4
 /* 02F3F8 802743F8 3C053000 */  lui   $a1, (0x300032C4 >> 16) # lui $a1, 0x3000
 /* 02F3FC 802743FC 34A532C4 */  ori   $a1, (0x300032C4 & 0xFFFF) # ori $a1, $a1, 0x32c4
 /* 02F400 80274400 8FA40018 */  lw    $a0, 0x18($sp)
-/* 02F404 80274404 0C094AB2 */  jal   SetMarioAction
+/* 02F404 80274404 0C094AB2 */  jal   set_mario_action
 /* 02F408 80274408 00003025 */   move  $a2, $zero
 .L8027440C:
 /* 02F40C 8027440C 10000003 */  b     .L8027441C

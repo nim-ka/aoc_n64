@@ -9,14 +9,12 @@
 void update_mario_platform(void)
 {
     struct Surface *floor;
-    u32 unused;
+    UNUSED u32 unused;
     f32 marioX;
     f32 marioY;
     f32 marioZ;
     f32 floorHeight;
     u32 awayFromFloor;
-
-    (void) unused;
 
     if (gMarioObject == NULL) return;
 
@@ -86,14 +84,10 @@ void apply_platform_displacement(u32 isMario, struct Object *platform)
     Vec3f relativeOffset;
     Vec3f newObjectOffset;
     Vec3s rotation;
-    s16 unused1;
-    s16 unused2;
-    s16 unused3;
+    UNUSED s16 unused1;
+    UNUSED s16 unused2;
+    UNUSED s16 unused3;
     f32 displaceMatrix[4][4];
-
-    (void) unused1;
-    (void) unused2;
-    (void) unused3;
 
     rotation[0] = platform->platformRotation[0];
     rotation[1] = platform->platformRotation[1];
