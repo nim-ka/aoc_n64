@@ -106,7 +106,7 @@ void func_80249040(void)
     {
         if (D_8032C9D8->unk68 != NULL && D_8032C9D8->unk68->unk5 == 6)
         {
-            if (D_8032C9D8->unk44 < D_80334A80)
+            if (D_8032C9D8->unk44 < 2540.0000f)
                 sp1f = TRUE;
         }
     }

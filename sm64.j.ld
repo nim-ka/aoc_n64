@@ -65,6 +65,8 @@ SECTIONS
       /* data */
       build/data/data.o(.data);
       build/src/main.o(.rodata);
+      build/src/input.o(.rodata);
+      build/src/sound_init.o(.rodata);
       build/data/rodata.o(.rodata);
    }
 
@@ -100,7 +102,19 @@ SECTIONS
    
    /* 0x8016F000 21D7D0-255EC0 [386F0] */
    .text8016F000 0x8016F000 : AT(0x21D7D0) {
-      build/asm/code_8016F000.o(.text);
+      build/asm/level_select_menu.o(.text);
+      build/asm/intro_geo.o(.text);
+      build/asm/file_select.o(.text);
+      build/asm/star_select.o(.text);
+      build/asm/debug_memory.o(.text);
+      build/asm/game_over_1.o(.text);
+      build/asm/game_over_2.o(.text);
+      build/asm/press_start_head_1.o(.text);
+      build/asm/press_start_head_2.o(.text);
+      build/asm/press_start_head_3.o(.text);
+      build/asm/press_start_head_4.o(.text);
+      build/asm/press_start_head_5.o(.text);
+      build/asm/press_start_head_6.o(.text);
       /* data */
       build/data/unknown_255EC0.o(.text);
    }

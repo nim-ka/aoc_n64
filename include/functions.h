@@ -3213,7 +3213,7 @@ extern void apply_mario_platform_displacement(void);
 // extern ? func_802D5320(?);
 // extern ? func_802D5374(?);
 // extern ? func_802D5664(?);
-extern void PrintInt(int, int, char *, int);
+extern void PrintInt(int, int, const char *, int);
 // extern ? PrintStr(?);
 // extern ? PrintXY(?);
 // extern ? func_802D5D78(?);
