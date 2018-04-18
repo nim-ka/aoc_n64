@@ -4,239 +4,77 @@
 
 void myRdpInit(void)
 {
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xE7000000;
-        g->words.w1 = 0;
-    }
+    gDPPipeSync(gDisplayListHead++);
+    gDPPipelineMode(gDisplayListHead++, G_PM_1PRIMITIVE);
+    
+    gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 0, 0, 320, 240);
+    gDPSetCombine(gDisplayListHead++, 0xFFFFFF, 0xFFFE793C);
 
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xBA001701;
-        g->words.w1 = 0x800000;
-    }
+    gDPSetTextureLOD(gDisplayListHead++, G_TL_TILE);
+    gDPSetTextureLUT(gDisplayListHead++, G_TT_NONE);
+    gDPSetTextureDetail(gDisplayListHead++, G_TD_CLAMP);
+    gDPSetTexturePersp(gDisplayListHead++, G_TP_PERSP);
+    gDPSetTextureFilter(gDisplayListHead++, G_TF_BILERP);
+    gDPSetTextureConvert(gDisplayListHead++, G_TC_FILT);
 
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xED000000;
-        g->words.w1 = 0x005003C0;
-    }
+    gDPSetCombineKey(gDisplayListHead++, G_CK_NONE);
+    gDPSetAlphaCompare(gDisplayListHead++, G_AC_NONE);
+    gDPSetRenderMode(gDisplayListHead++, 0x0F0A4000, 0x0F0A4000);
+    gDPSetColorDither(gDisplayListHead++, G_CD_MAGICSQ);
+    gDPSetCycleType(gDisplayListHead++, G_CYC_FILL);
 
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xFCFFFFFF;
-        g->words.w1 = 0xFFFE793C;
-    }
-
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xBA001001;
-        g->words.w1 = 0;
-    }
-
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xBA000E02;
-        g->words.w1 = 0;
-    }
-
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xBA001102;
-        g->words.w1 = 0;
-    }
-
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xBA001301;
-        g->words.w1 = 0x80000;
-    }
-
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xBA000C02;
-        g->words.w1 = 8192;
-    }
-
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xBA000903;
-        g->words.w1 = 3072;
-    }
-
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xBA000801;
-        g->words.w1 = 0;
-    }
-
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xB9000002;
-        g->words.w1 = 0;
-    }
-
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xB900031D;
-        g->words.w1 = 0x0F0A4000;
-    }
-
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xBA000602;
-        g->words.w1 = 0;
-    }
-
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xBA001402;
-        g->words.w1 = 0x300000;
-    }
-
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xE7000000;
-        g->words.w1 = 0;
-    }
+    gDPPipeSync(gDisplayListHead++);
 }
 
 void myRspInit(void)
 {
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xB6000000;
-        g->words.w1 = 0x001F3204;
-    }
+    gSPClearGeometryMode(gDisplayListHead++,
+        G_SHADE | G_SHADING_SMOOTH | G_CULL_BOTH | G_FOG | G_LIGHTING |
+        G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR | G_LOD);
 
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xB7000000;
-        g->words.w1 = 0x00022204;
-    }
+    gSPSetGeometryMode(gDisplayListHead++,
+        G_SHADE | G_SHADING_SMOOTH | G_CULL_BACK | G_LIGHTING);
 
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xBC000002;
-        g->words.w1 = 0x80000040;
-    }
-
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xBB000000;
-        g->words.w1 = 0;
-    }
+    gSPNumLights(gDisplayListHead++, 1);
+    gSPTexture(gDisplayListHead++, 0, 0, 0, 0, 0);
 }
 
 void ClearZBuffer(void)
 {
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xE7000000;
-        g->words.w1 = 0;
-    }
+    gDPPipeSync(gDisplayListHead++);
 
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xB9000201;
-        g->words.w1 = 0;
-    }
+    gDPSetDepthSource(gDisplayListHead++, G_ZS_PIXEL);
+    gDPSetDepthImage(gDisplayListHead++, D_80339CEC);
 
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xFE000000;
-        g->words.w1 = D_80339CEC;
-    }
+    gDPSetColorImage(gDisplayListHead++, G_IM_FMT_RGBA, 2, 320, D_80339CEC);
+    gDPSetFillColor(gDisplayListHead++,
+        GPACK_RGBA5551(255, 255, 240, 0) << 16 | GPACK_RGBA5551(255, 255, 240, 0));
 
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xFF10013F;
-        g->words.w1 = D_80339CEC;
-    }
-
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xF7000000;
-        g->words.w1 = 0xFFFCFFFC;
-    }
-
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xF64FC39C;
-        g->words.w1 = 32;
-    }
+    gDPFillRectangle(gDisplayListHead++, 0, 8, 319, 231);
 }
 
 void DisplayFrameBuffer(void)
 {
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xE7000000;
-        g->words.w1 = 0;
-    }
+    gDPPipeSync(gDisplayListHead++);
 
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xBA001402;
-        g->words.w1 = 0;
-    }
-
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xFF10013F;
-        g->words.w1 = D_80339CE0[D_8032C69C];
-    }
-
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xED000020;
-        g->words.w1 = 0x005003A0;
-    }
+    gDPSetCycleType(gDisplayListHead++, G_CYC_1CYCLE);
+    gDPSetColorImage(gDisplayListHead++, G_IM_FMT_RGBA, 2, 320, D_80339CE0[D_8032C69C]);
+    gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 0, 8, 320, 232);
 }
 
 void ClearFrameBuffer(int a)
 {
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xE7000000;
-        g->words.w1 = 0;
-    }
+    gDPPipeSync(gDisplayListHead++);
 
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xB900031D;
-        g->words.w1 = 0x0F0A4000;
-    }
+    gDPSetRenderMode(gDisplayListHead++, 0x0F0A4000, 0x0F0A4000);
+    gDPSetCycleType(gDisplayListHead++, G_CYC_FILL);
 
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xBA001402;
-        g->words.w1 = 0x00300000;
-    }
+    gDPSetFillColor(gDisplayListHead++, a);
+    gDPFillRectangle(gDisplayListHead++, 0, 8, 319, 231);
 
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xF7000000;
-        g->words.w1 = a;
-    }
+    gDPPipeSync(gDisplayListHead++);
 
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xF64FC39C;
-        g->words.w1 = 32;
-    }
-
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xE7000000;
-        g->words.w1 = 0;
-    }
-
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xBA001402;
-        g->words.w1 = 0;
-    }
+    gDPSetCycleType(gDisplayListHead++, G_CYC_1CYCLE);
 }
 
 void DisplayInit(s16 *a, int b)
@@ -246,92 +84,31 @@ void DisplayInit(s16 *a, int b)
     s16 sp22 = (a[4] + a[0]) / 4 - 2;
     s16 sp20 = (a[5] + a[1]) / 4 - 2;
 
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xE7000000;
-        g->words.w1 = 0;
-    }
+    gDPPipeSync(gDisplayListHead++);
 
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xB900031D;
-        g->words.w1 = 0x0F0A4000;
-    }
+    gDPSetRenderMode(gDisplayListHead++, 0x0F0A4000, 0x0F0A4000);
+    gDPSetCycleType(gDisplayListHead++, G_CYC_FILL);
 
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xBA001402;
-        g->words.w1 = 0x300000;
-    }
+    gDPSetFillColor(gDisplayListHead++, b);
+    gDPFillRectangle(gDisplayListHead++, sp26, sp24, sp22, sp20);
 
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xF7000000;
-        g->words.w1 = b;
-    }
+    gDPPipeSync(gDisplayListHead++);
 
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xF6000000 | ((sp22 & 0x3FF) << 14) | ((sp20 & 0x3FF) << 2);
-        g->words.w1 = ((sp26 & 0x3FF) << 14) | ((sp24 & 0x3FF) << 2);
-    }
-
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xE7000000;
-        g->words.w1 = 0;
-    }
-
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xBA001402;
-        g->words.w1 = 0;
-    }
+    gDPSetCycleType(gDisplayListHead++, G_CYC_1CYCLE);
 }
 
 void func_8024781C(void)
 {
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xE7000000;
-        g->words.w1 = 0;
-    }
+    gDPPipeSync(gDisplayListHead++);
 
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xED000000;
-        g->words.w1 = 0x005003C0;
-    }
+    gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 0, 0, 320, 240);
+    gDPSetRenderMode(gDisplayListHead++, 0x0F0A4000, 0x0F0A4000);
+    gDPSetCycleType(gDisplayListHead++, G_CYC_FILL);
 
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xB900031D;
-        g->words.w1 = 0x0F0A4000;
-    }
-
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xBA001402;
-        g->words.w1 = 0x300000;
-    }
-
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xF7000000;
-        g->words.w1 = 0;
-    }
-
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xF64FC01C;
-        g->words.w1 = 0;
-    }
-
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xF64FC3BC;
-        g->words.w1 = 928;
-    }
+    gDPSetFillColor(gDisplayListHead++,
+        GPACK_RGBA5551(0, 0, 0, 0) << 16 | GPACK_RGBA5551(0, 0, 0, 0));
+    gDPFillRectangle(gDisplayListHead++, 0, 0, 319, 7);
+    gDPFillRectangle(gDisplayListHead++, 0, 232, 319, 239);
 }
 
 void func_8024798C(s16 *a)
@@ -341,11 +118,7 @@ void func_8024798C(s16 *a)
     s16 spA = (a[4] + a[0]) / 4 - 1;
     s16 sp8 = (a[5] + a[1]) / 4 - 1;
 
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xED000000 | (((int)(spE * 4.0f) & 0xFFF) << 12) | ((int)(spC * 4.0f) & 0xFFF);
-        g->words.w1 = (((int)(spA * 4.0f) & 0xFFF) << 12) | ((int)(sp8 * 4.0f) & 0xFFF);
-    }
+    gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, spE, spC, spA, sp8);
 }
 
 void CreateTaskStructure(void)
@@ -387,17 +160,8 @@ void CleanupDisplayList(void)
     if (D_8032C654 != 0)
         func_8027EEB0();
 
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xE9000000;
-        g->words.w1 = 0;
-    }
-
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xB8000000;
-        g->words.w1 = 0;
-    }
+    gDPFullSync(gDisplayListHead++);
+    gSPEndDisplayList(gDisplayListHead++);
 
     CreateTaskStructure();
 }
