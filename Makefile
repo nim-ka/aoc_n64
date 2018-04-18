@@ -54,6 +54,20 @@ LOADER_FLAGS = -vwf
 
 SHA1SUM = sha1sum
 
+###################### Dependency Check #####################
+
+ifndef QEMU_IRIX
+$(error env variable QEMU_IRIX should point to the qemu-mips binary)
+endif
+
+EXECUTABLES = $(MIO0TOOL) $(N64CKSUM) $(N64GRAPHICS)
+K := $(foreach exec,$(EXECUTABLES),\
+        $(if $(shell which $(exec)),some string,$(error "No $(exec) in PATH, please make the tools first)))
+
+EXECUTABLES = $(AS) $(QEMU_IRIX) $(LD) $(OBJDUMP) $(OBJCOPY) gcc $(SHA1SUM) xxd
+K := $(foreach exec,$(EXECUTABLES),\
+        $(if $(shell which $(exec)),some string,$(error "No $(exec) in PATH)))
+
 ######################## Targets #############################
 
 default: all
