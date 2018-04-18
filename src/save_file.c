@@ -2,20 +2,64 @@
 
 #include "sm64.h"
 #include "math_util.h"
+#include "save_file.h"
 
-void func_80278BB0(void)
+#define MENU_DATA_MAGIC 0x4849
+#define SAVE_FILE_MAGIC 0x4441
+
+struct SaveBlockSignature
+{
+    u16 magic;
+    u16 chksum;
+};
+
+struct SaveFile
+{
+    // location of lost cap
+    // Note: the coordinates get set, but are never actually used, since the
+    // cap can always be found in a fixed spot within the course
+    u8 unk0;
+    u8 unk1;
+    Vec3s capCoords;
+
+    u32 flags;
+    u8 courseStars[25];
+    u8 courseCoinScores[19];
+};
+
+struct MainMenuSaveData
+{
+    u32 unk0[3];
+    u8 fillerC[4];
+    u16 soundMode;
+    u8 filler12[0x20-0x12];
+};
+
+struct SaveBuffer
+{
+    // Each of the four save files has two copies. If one is bad, the other is used as a backup.
+    struct SaveFile files[4][2];
+    // The main menu data has two copies. If one is bad, the other is used as a backup.
+    struct MainMenuSaveData menuData[2];
+};
+
+// TODO: This should be defined in this file.
+extern struct SaveBuffer gSaveBuffer;
+
+
+static void func_80278BB0(void)
 {
     UNUSED int pad;
 }
 
-int func_80278BC4(void *buffer, int size)
+static int read_eeprom_data(void *buffer, int size)
 {
     int result = 0;
 
     if (gEepromProbe != 0)
     {
         int tries = 4;
-        u32 offset = (u32)((u8 *)buffer - (u8 *)&D_80207B00) >> 3;
+        u32 offset = (u32)((u8 *)buffer - (u8 *)&gSaveBuffer) >> 3;
 
         do
         {
@@ -26,14 +70,14 @@ int func_80278BC4(void *buffer, int size)
     return result;
 }
 
-int func_80278C68(void *buffer, int size)
+static int write_eeprom_data(void *buffer, int size)
 {
     int result = 1;
 
     if (gEepromProbe != 0)
     {
         int tries = 4;
-        u32 offset = (u32)((u8 *)buffer - (u8 *)&D_80207B00) >> 3;
+        u32 offset = (u32)((u8 *)buffer - (u8 *)&gSaveBuffer) >> 3;
 
         do
         {
@@ -44,76 +88,78 @@ int func_80278C68(void *buffer, int size)
     return result;
 }
 
-int func_80278D10(u8 *a, int b)
+static int calc_checksum(u8 *data, int size)
 {
-    u16 ret = 0;
+    u16 chksum = 0;
 
-    while (b-- > 2)
-        ret += *a++;
-    return ret;
+    while (size-- > 2)
+        chksum += *data++;
+    return chksum;
 }
 
-int func_80278D64(void *buffer, int size, u16 c)
+// Verify the signature at the end of the block to make sure the data is valid
+static int verify_save_block_signature(void *buffer, int size, u16 magic)
 {
-    u16 *sp1C = (u16 *)((size - 4) + (u8 *)buffer);
+    struct SaveBlockSignature *sig = (struct SaveBlockSignature *)((size - 4) + (u8 *)buffer);
 
-    if (sp1C[0] != c)
-        return 0;
-    if (sp1C[1] != func_80278D10(buffer, size))
-        return 0;
-    return 1;
+    if (sig->magic != magic)
+        return FALSE;
+    if (sig->chksum != calc_checksum(buffer, size))
+        return FALSE;
+    return TRUE;
 }
 
-void CalcSaveChecksum(void *buffer, int size, u16 c)
+// Write a signature at the end of the block to make sure the data is valid
+static void add_save_block_signature(void *buffer, int size, u16 magic)
 {
-    u16 *sp1C = (u16 *)((size - 4) + (u8 *)buffer);
+    struct SaveBlockSignature *sig = (struct SaveBlockSignature *)((size - 4) + (u8 *)buffer);
 
-    sp1C[0] = c;
-    sp1C[1] = func_80278D10(buffer, size);
+    sig->magic = magic;
+    sig->chksum = calc_checksum(buffer, size);
 }
 
-void func_80278E4C(int a)
+void backup_main_menu_data(int slot)
 {
-    int sp1C = a ^ 1;
+    int backup = slot ^ 1;
 
-    CalcSaveChecksum(&D_80207B00.unk1C0[a], sizeof(D_80207B00.unk1C0[a]), 18505);
-    bcopy(&D_80207B00.unk1C0[a], &D_80207B00.unk1C0[sp1C], sizeof(D_80207B00.unk1C0[sp1C]));
-    func_80278C68(&D_80207B00.unk1C0[sp1C], 32);
+    add_save_block_signature(&gSaveBuffer.menuData[slot], sizeof(gSaveBuffer.menuData[slot]), MENU_DATA_MAGIC);
+    bcopy(&gSaveBuffer.menuData[slot], &gSaveBuffer.menuData[backup], sizeof(gSaveBuffer.menuData[backup]));
+    write_eeprom_data(&gSaveBuffer.menuData[backup], sizeof(gSaveBuffer.menuData[backup]));
 }
 
 void SaveMenuData(void)
 {
-    if (D_8033A135 != 0)
+    if (gMainMenuDataModified)
     {
-        CalcSaveChecksum(&D_80207B00.unk1C0[0], sizeof(D_80207B00.unk1C0[0]), 18505);
-        bcopy(&D_80207B00.unk1C0[0], &D_80207B00.unk1C0[1], sizeof(D_80207B00.unk1C0[1]));
-        func_80278C68(D_80207B00.unk1C0, sizeof(D_80207B00.unk1C0));
-        D_8033A135 = 0;
+        add_save_block_signature(&gSaveBuffer.menuData[0], sizeof(gSaveBuffer.menuData[0]), MENU_DATA_MAGIC);
+        bcopy(&gSaveBuffer.menuData[0], &gSaveBuffer.menuData[1], sizeof(gSaveBuffer.menuData[1]));
+        write_eeprom_data(gSaveBuffer.menuData, sizeof(gSaveBuffer.menuData));
+        gMainMenuDataModified = FALSE;
     }
 }
 
 void func_80278F6C(void)
 {
-    bzero(&D_80207B00.unk1C0[0], sizeof(D_80207B00.unk1C0[0]));
-    D_80207B00.unk1C0[0].unk0[0] = 0x3FFFFFFF;
-    D_80207B00.unk1C0[0].unk0[1] = 0x2AAAAAAA;
-    D_80207B00.unk1C0[0].unk0[2] = 0x15555555;
+    bzero(&gSaveBuffer.menuData[0], sizeof(gSaveBuffer.menuData[0]));
+    gSaveBuffer.menuData[0].unk0[0] = 0x3FFFFFFF;
+    gSaveBuffer.menuData[0].unk0[1] = 0x2AAAAAAA;
+    gSaveBuffer.menuData[0].unk0[2] = 0x15555555;
 
-    D_8033A135 = 1;
+    gMainMenuDataModified = TRUE;
     SaveMenuData();
 }
 
 int func_80278FF0(int a, int b)
 {
-    return (D_80207B00.unk1C0[0].unk0[a] >> (b * 2)) & 3;
+    return (gSaveBuffer.menuData[0].unk0[a] >> (b * 2)) & 3;
 }
 
 void func_80279024(int a, int b, int c)
 {
     int sp4 = 3 << (b * 2);
 
-    D_80207B00.unk1C0[0].unk0[a] &= ~sp4;
-    D_80207B00.unk1C0[0].unk0[a] |= c << (b * 2);
+    gSaveBuffer.menuData[0].unk0[a] &= ~sp4;
+    gSaveBuffer.menuData[0].unk0[a] |= c << (b * 2);
 }
 
 void func_802790A0(int a, int b)
@@ -131,7 +177,7 @@ void func_802790A0(int a, int b)
                 func_80279024(i, b, sp20 + 1);
         }
         func_80279024(a, b, 0);
-        D_8033A135 = 1;
+        gMainMenuDataModified = TRUE;
     }
 }
 
@@ -143,87 +189,103 @@ void func_80279150(int a)
         func_802790A0(a, i);
 }
 
-void func_80279198(int a, int b)
+void backup_save_file_data(int file, int slot)
 {
-    int sp1C = b ^ 1;
+    int backup = slot ^ 1;
 
-    CalcSaveChecksum(&D_80207B00.unk0[a][b], sizeof(D_80207B00.unk0[a][b]), 17473);
-    bcopy(&D_80207B00.unk0[a][b], &D_80207B00.unk0[a][sp1C], sizeof(D_80207B00.unk0[a][sp1C]));
-    func_80278C68(&D_80207B00.unk0[a][sp1C], sizeof(D_80207B00.unk0[a][sp1C]));
+    add_save_block_signature(&gSaveBuffer.files[file][slot],
+                             sizeof(gSaveBuffer.files[file][slot]),
+                             SAVE_FILE_MAGIC);
+    bcopy(&gSaveBuffer.files[file][slot],
+          &gSaveBuffer.files[file][backup],
+          sizeof(gSaveBuffer.files[file][backup]));
+    write_eeprom_data(&gSaveBuffer.files[file][backup], sizeof(gSaveBuffer.files[file][backup]));
 }
 
-void SaveFileData(int a)
+void save_file_do_save(int file)
 {
-    if (D_8033A136 != 0)
+    if (gSaveFileModified)
     {
-        CalcSaveChecksum(&D_80207B00.unk0[a][0], sizeof(D_80207B00.unk0[a][0]), 17473);
-        bcopy(&D_80207B00.unk0[a][0], &D_80207B00.unk0[a][1], sizeof(D_80207B00.unk0[a][1]));
-        func_80278C68(D_80207B00.unk0[a], sizeof(D_80207B00.unk0[a]));
-        D_8033A136 = 0;
+        add_save_block_signature(&gSaveBuffer.files[file][0],
+                                 sizeof(gSaveBuffer.files[file][0]),
+                                 SAVE_FILE_MAGIC);
+
+        // create backup copy
+        bcopy(&gSaveBuffer.files[file][0],
+              &gSaveBuffer.files[file][1],
+              sizeof(gSaveBuffer.files[file][1]));
+
+        // write both slots to EEPROM
+        write_eeprom_data(gSaveBuffer.files[file], sizeof(gSaveBuffer.files[file]));
+        gSaveFileModified = FALSE;
     }
     SaveMenuData();
 }
 
-void func_8027934C(int a)
+void save_file_erase(int file)
 {
-    func_80279150(a);
-    bzero(&D_80207B00.unk0[a][0], sizeof(D_80207B00.unk0[a][0]));
+    func_80279150(file);
+    bzero(&gSaveBuffer.files[file][0], sizeof(gSaveBuffer.files[file][0]));
 
-    D_8033A136 = 1;
-    SaveFileData(a);
+    gSaveFileModified = TRUE;
+    save_file_do_save(file);
 }
 
-void func_802793B0(int a, int b)
+void save_file_copy(int srcFile, int destFile)
 {
     UNUSED int pad;
 
-    func_80279150(b);
-    bcopy(&D_80207B00.unk0[a][0], &D_80207B00.unk0[b][0], sizeof(D_80207B00.unk0[b][0]));
+    func_80279150(destFile);
+    bcopy(&gSaveBuffer.files[srcFile][0],
+          &gSaveBuffer.files[destFile][0],
+          sizeof(gSaveBuffer.files[destFile][0]));
 
-    D_8033A136 = 1;
-    SaveFileData(b);
+    gSaveFileModified = TRUE;
+    save_file_do_save(destFile);
 }
 
-void CopyFromEeprom(void)
+void save_file_load_all(void)
 {
-    int sp2C;
-    int sp28;
+    int file;
+    int validSlots;
 
-    D_8033A135 = 0;
-    D_8033A136 = 0;
+    gMainMenuDataModified = FALSE;
+    gSaveFileModified = FALSE;
 
-    bzero(&D_80207B00, sizeof(D_80207B00));
-    func_80278BC4(&D_80207B00, sizeof(D_80207B00));
+    bzero(&gSaveBuffer, sizeof(gSaveBuffer));
+    read_eeprom_data(&gSaveBuffer, sizeof(gSaveBuffer));
 
-    sp28 = func_80278D64(&D_80207B00.unk1C0[0], sizeof(D_80207B00.unk1C0[0]), 18505);
-    sp28 |= func_80278D64(&D_80207B00.unk1C0[1], sizeof(D_80207B00.unk1C0[1]), 18505) << 1;
-    switch (sp28)
+    // Verify the main menu data and create a backup copy if only one of the slots is valid.
+    validSlots = verify_save_block_signature(&gSaveBuffer.menuData[0], sizeof(gSaveBuffer.menuData[0]), MENU_DATA_MAGIC);
+    validSlots |= verify_save_block_signature(&gSaveBuffer.menuData[1], sizeof(gSaveBuffer.menuData[1]), MENU_DATA_MAGIC) << 1;
+    switch (validSlots)
     {
     case 0:
         func_80278F6C();
         break;
     case 1:
-        func_80278E4C(0);
+        backup_main_menu_data(0);
         break;
     case 2:
-        func_80278E4C(1);
+        backup_main_menu_data(1);
         break;
     }
 
-    for (sp2C = 0; sp2C < 4; sp2C++)
+    for (file = 0; file < 4; file++)
     {
-        sp28 = func_80278D64(&D_80207B00.unk0[sp2C][0], sizeof(D_80207B00.unk0[sp2C][0]), 17473);
-        sp28 |= func_80278D64(&D_80207B00.unk0[sp2C][1], sizeof(D_80207B00.unk0[sp2C][1]), 17473) << 1;
-        switch (sp28)
+        // Verify the save file and create a backup copy if only one of the slots is valid.
+        validSlots = verify_save_block_signature(&gSaveBuffer.files[file][0], sizeof(gSaveBuffer.files[file][0]), SAVE_FILE_MAGIC);
+        validSlots |= verify_save_block_signature(&gSaveBuffer.files[file][1], sizeof(gSaveBuffer.files[file][1]), SAVE_FILE_MAGIC) << 1;
+        switch (validSlots)
         {
         case 0:
-            func_8027934C(sp2C);
+            save_file_erase(file);
             break;
         case 1:
-            func_80279198(sp2C, 0);
+            backup_save_file_data(file, 0);
             break;
         case 2:
-            func_80279198(sp2C, 1);
+            backup_save_file_data(file, 1);
             break;
         }
     }
@@ -233,223 +295,236 @@ void CopyFromEeprom(void)
 
 void func_80279618(void)
 {
-    bcopy(&D_80207B00.unk0[D_8032CE94 - 1][1], &D_80207B00.unk0[D_8032CE94 - 1][0], 56);
-    bcopy(&D_80207B00.unk1C0[1], &D_80207B00.unk1C0[0], sizeof(D_80207B00.unk1C0[0]));
+    bcopy(&gSaveBuffer.files[gCurrSaveFileNum - 1][1],
+          &gSaveBuffer.files[gCurrSaveFileNum - 1][0],
+          sizeof(gSaveBuffer.files[gCurrSaveFileNum - 1][0]));
 
-    D_8033A135 = 0;
-    D_8033A136 = 0;
+    bcopy(&gSaveBuffer.menuData[1],
+          &gSaveBuffer.menuData[0],
+          sizeof(gSaveBuffer.menuData[0]));
+
+    gMainMenuDataModified = FALSE;
+    gSaveFileModified = FALSE;
 }
 
-void func_80279694(s16 a, s16 b)
+void save_file_update_coin_score(s16 coins, s16 b)
 {
-    int sp34 = D_8032CE94 - 1;
-    int sp30 = D_8033A756 - 1;
+    int file = gCurrSaveFileNum - 1;
+    int course = gCurrCourseNum - 1;
     int sp2C = 1 << b;
-    UNUSED int sp28 = func_80279BBC();
+    UNUSED int flags = save_file_get_flags();
 
-    D_8032CE20 = sp30 + 1;
+    D_8032CE20 = course + 1;
     D_8032CE24 = b + 1;
     D_8032CE28 = 0;
     D_8032CE2C = 0;
 
-    if (sp30 >= 0 && sp30 < 15)
+    if (course >= 0 && course < 15)
     {
-        if (a > ((u16)func_802798D0(sp30) & 0xFFFF))
+        if (coins > ((u16)func_802798D0(course) & 0xFFFF))
             D_8032CE28 = 1;
-        if (func_80279D60(sp34, sp30) < a)
+        if (save_file_get_course_coin_score(file, course) < coins)
         {
-            D_80207B00.unk0[sp34][0].unk25[sp30] = a;
-            func_802790A0(sp34, sp30);
+            gSaveBuffer.files[file][0].courseCoinScores[course] = coins;
+            func_802790A0(file, course);
             D_8032CE2C = 1;
-            D_8033A136 = 1;
+            gSaveFileModified = TRUE;
         }
     }
 
     switch (D_8032CE98)
     {
     case 30:
-        if (!(func_80279BBC() & 0x50))
-            func_80279AF8(16);
+        if (!(save_file_get_flags() & (FLAG_HAVE_KEY_1 | FLAG_UNLOCKED_BASEMENT_DOOR)))
+            save_file_set_flags(FLAG_HAVE_KEY_1);
         break;
     case 33:
-        if (!(func_80279BBC() & 0xA0))
-            func_80279AF8(32);
+        if (!(save_file_get_flags() & (FLAG_HAVE_KEY_2 | FLAG_UNLOCKED_UPSTAIRS_DOOR)))
+            save_file_set_flags(FLAG_HAVE_KEY_2);
         break;
     case 34:
         break;
     default:
-        if (!(get_game_data(sp34, sp30) & sp2C))
-            func_80279C8C(sp34, sp30, sp2C);
+        if (!(save_file_get_obtained_stars(file, course) & sp2C))
+            save_file_set_obtained_stars(file, course, sp2C);
         break;
     }
 }
 
-int func_80279894(int a)
+int save_file_exists(int file)
 {
-    return (D_80207B00.unk0[a][0].unk8 & 1) != 0;
+    return (gSaveBuffer.files[file][0].flags & FLAG_FILE_EXISTS) != 0;
 }
 
-int func_802798D0(int a)
+int func_802798D0(int course)
 {
-    int sp3C;
+    int file;
     int sp38 = -1;
     int sp34 = -1;
     int sp30 = 0;
 
-    for (sp3C = 0; sp3C < 4; sp3C++)
+    for (file = 0; file < 4; file++)
     {
-        if (get_game_data(sp3C, a) != 0)
+        if (save_file_get_obtained_stars(file, course) != 0)
         {
-            int sp2C = func_80279D60(sp3C, a);
-            int sp28 = func_80278FF0(sp3C, a);
+            int sp2C = save_file_get_course_coin_score(file, course);
+            int sp28 = func_80278FF0(file, course);
 
             if (sp2C > sp38 || (sp2C == sp38 && sp28 > sp34))
             {
                 sp38 = sp2C;
                 sp34 = sp28;
-                sp30 = sp3C + 1;
+                sp30 = file + 1;
             }
         }
     }
     return (sp30 << 16) + max(sp38, 0);
 }
 
-int func_802799D0(int a, int b)
+int save_file_get_course_star_count(int file, int course)
 {
-    int sp24;
-    int sp20 = 0;
-    u8 sp1F = 1;
-    u8 sp1E = get_game_data(a, b);
+    int i;
+    int count = 0;
+    u8 bit = 1;
+    u8 stars = save_file_get_obtained_stars(file, course);
 
-    for (sp24 = 0; sp24 < 7; sp24++, sp1F <<= 1)
+    for (i = 0; i < 7; i++, bit <<= 1)
     {
-        if (sp1E & sp1F)
-            sp20++;
+        if (stars & bit)
+            count++;
     }
-    return sp20;
+    return count;
 }
 
-int GetStarCount(int a, int b, int c)
+int save_file_get_total_star_count(int file, int minCourse, int maxCourse)
 {
-    int sp24 = 0;
+    int count = 0;
 
-    for (; b <= c; b++)
-        sp24 += func_802799D0(a, b);
-    return func_802799D0(a, -1) + sp24;
+    // Get standard course star count.
+    for (; minCourse <= maxCourse; minCourse++)
+        count += save_file_get_course_star_count(file, minCourse);
+    // Add castle secret star count.
+    return save_file_get_course_star_count(file, -1) + count;
 }
 
-void func_80279AF8(int a)
+void save_file_set_flags(int flags)
 {
-    D_80207B00.unk0[D_8032CE94 - 1][0].unk8 |= (a | 1);
-    D_8033A136 = 1;
+    gSaveBuffer.files[gCurrSaveFileNum - 1][0].flags |= (flags | FLAG_FILE_EXISTS);
+    gSaveFileModified = TRUE;
 }
 
-void func_80279B44(int a)
+void save_file_clear_flags(int flags)
 {
-    D_80207B00.unk0[D_8032CE94 - 1][0].unk8 &= ~a;
-    D_80207B00.unk0[D_8032CE94 - 1][0].unk8 |= 1;
-    D_8033A136 = 1;
+    gSaveBuffer.files[gCurrSaveFileNum - 1][0].flags &= ~flags;
+    gSaveBuffer.files[gCurrSaveFileNum - 1][0].flags |= FLAG_FILE_EXISTS;
+    gSaveFileModified = TRUE;
 }
 
-int func_80279BBC(void)
+int save_file_get_flags(void)
 {
     if (D_8032CE70 != 0 || gDemoInputs != NULL)
         return 0;
-    return D_80207B00.unk0[D_8032CE94 - 1][0].unk8;
+    return gSaveBuffer.files[gCurrSaveFileNum - 1][0].flags;
 }
 
-int get_game_data(int a, int b)
+// Returns the bitset of obtained stars in the specified course.
+// If course is -1, returns the bitset of obtained castle secret stars.
+int save_file_get_obtained_stars(int file, int course)
 {
-    int ret;
+    int stars;
 
-    if (b == -1)
-        ret = (D_80207B00.unk0[a][0].unk8 >> 24) & 0x7F;
+    if (course == -1)
+        stars = (gSaveBuffer.files[file][0].flags >> 24) & 0x7F;
     else
-        ret = D_80207B00.unk0[a][0].unkC[b] & 0x7F;
-    return ret;
+        stars = gSaveBuffer.files[file][0].courseStars[course] & 0x7F;
+    return stars;
 }
 
-void func_80279C8C(int a, int b, int c)
+// Sets the bitset of obtained stars in the specified course.
+// If course is -1, sets the bitset of obtained castle secret stars.
+void save_file_set_obtained_stars(int file, int course, int stars)
 {
-    if (b == -1)
-        D_80207B00.unk0[a][0].unk8 |= c << 24;
+    if (course == -1)
+        gSaveBuffer.files[file][0].flags |= stars << 24;
     else
-        D_80207B00.unk0[a][0].unkC[b] |= c;
-    D_80207B00.unk0[a][0].unk8 |= 1;
-    D_8033A136 = 1;
+        gSaveBuffer.files[file][0].courseStars[course] |= stars;
+    gSaveBuffer.files[file][0].flags |= FLAG_FILE_EXISTS;
+    gSaveFileModified = TRUE;
 }
 
-int func_80279D60(int a, int b)
+int save_file_get_course_coin_score(int file, int course)
 {
-    return D_80207B00.unk0[a][0].unk25[b];
+    return gSaveBuffer.files[file][0].courseCoinScores[course];
 }
 
-int func_80279D90(void)
+// Returns TRUE if the cannon is unlocked in the current course.
+int save_file_is_cannon_unlocked(void)
 {
-    return (D_80207B00.unk0[D_8032CE94 - 1][0].unkC[D_8033A756] & 0x80) != 0;
+    return (gSaveBuffer.files[gCurrSaveFileNum - 1][0].courseStars[gCurrCourseNum] & 0x80) != 0;
 }
 
-void func_80279DE0(void)
+// Sets the cannon status to unlocked in the current course.
+void save_file_set_cannon_unlocked(void)
 {
-    D_80207B00.unk0[D_8032CE94 - 1][0].unkC[D_8033A756] |= 0x80;
-    D_80207B00.unk0[D_8032CE94 - 1][0].unk8 |= 1;
-    D_8033A136 = 1;
+    gSaveBuffer.files[gCurrSaveFileNum - 1][0].courseStars[gCurrCourseNum] |= 0x80;
+    gSaveBuffer.files[gCurrSaveFileNum - 1][0].flags |= FLAG_FILE_EXISTS;
+    gSaveFileModified = TRUE;
 }
 
-void func_80279E68(s16 a, s16 b, s16 c)
+void save_file_set_cap_location(s16 x, s16 y, s16 z)
 {
-    struct Struct80207B00_sub2 *sp1C = &D_80207B00.unk0[D_8032CE94 - 1][0];
+    struct SaveFile *saveFile = &gSaveBuffer.files[gCurrSaveFileNum - 1][0];
 
-    sp1C->unk0 = D_8032CE98;
-    sp1C->unk1 = D_8033A75A;
-    Vec3s_Set(sp1C->unk2, a, b, c);
-    func_80279AF8(0x10000);
+    saveFile->unk0 = D_8032CE98;
+    saveFile->unk1 = D_8033A75A;
+    Vec3s_Set(saveFile->capCoords, x, y, z);
+    save_file_set_flags(FLAG_CAP_ON_GROUND);
 }
 
-int func_80279EFC(Vec3s a)
+int save_file_get_cap_coords(Vec3s capCoords)
 {
-    struct Struct80207B00_sub2 *sp1C = &D_80207B00.unk0[D_8032CE94 - 1][0];
-    int sp18 = func_80279BBC();
+    struct SaveFile *saveFile = &gSaveBuffer.files[gCurrSaveFileNum - 1][0];
+    int flags = save_file_get_flags();
 
-    if (sp1C->unk0 == D_8032CE98 && sp1C->unk1 == D_8033A75A && (sp18 & 0x10000))
+    if (saveFile->unk0 == D_8032CE98 && saveFile->unk1 == D_8033A75A && (flags & FLAG_CAP_ON_GROUND))
     {
-        Vec3s_Copy(a, sp1C->unk2);
-        return 1;
+        Vec3s_Copy(capCoords, saveFile->capCoords);
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
-void func_80279FB4(u16 a)
+void save_file_set_sound_mode(u16 mode)
 {
-    func_80248DD8(a);
-    D_80207B00.unk1C0[0].unk10 = a;
+    func_80248DD8(mode);
+    gSaveBuffer.menuData[0].soundMode = mode;
 
-    D_8033A135 = 1;
+    gMainMenuDataModified = TRUE;
     SaveMenuData();
 }
 
-u16 func_8027A004(void)
+u16 save_file_get_sound_mode(void)
 {
-    return D_80207B00.unk1C0[0].unk10;
+    return gSaveBuffer.menuData[0].soundMode;
 }
 
 void func_8027A024(void)
 {
-    if (func_80279BBC() & 0x10000)
+    if (save_file_get_flags() & FLAG_CAP_ON_GROUND)
     {
-        switch (D_80207B00.unk0[D_8032CE94 - 1][0].unk0)
+        switch (gSaveBuffer.files[gCurrSaveFileNum - 1][0].unk0)
         {
         case 8:
-            func_80279AF8(0x20000);
+            save_file_set_flags(FLAG_CAP_ON_KLEPTO);
             break;
         case 10:
-            func_80279AF8(0x80000);
+            save_file_set_flags(FLAG_CAP_ON_MR_BLIZZARD);
             break;
         case 36:
-            func_80279AF8(0x40000);
+            save_file_set_flags(FLAG_CAP_ON_UKIKI);
             break;
         }
-        func_80279B44(0x10000);
+        save_file_clear_flags(FLAG_CAP_ON_GROUND);
     }
 }
 
@@ -463,7 +538,7 @@ void func_8027A100(u8 *a)
     if (a[1] & 0x80)
     {
         D_8033A130 = D_8033A758;
-        D_8033A131 = D_8033A756;
+        D_8033A131 = gCurrCourseNum;
         D_8033A132 = a[1] & 0x7F;
         D_8033A133 = a[2];
         D_8033A134 = a[3];

@@ -3172,12 +3172,12 @@ glabel func_802D4CC8
 /* 08FCD8 802D4CD8 AFA60030 */  sw    $a2, 0x30($sp)
 /* 08FCDC 802D4CDC AFA70034 */  sw    $a3, 0x34($sp)
 /* 08FCE0 802D4CE0 3C048033 */  lui   $a0, %hi(D_8032FFFF) # $a0, 0x8033
-/* 08FCE4 802D4CE4 8484CE94 */  lh    $a0, %lo(D_8032CE94)($a0)
+/* 08FCE4 802D4CE4 8484CE94 */  lh    $a0, %lo(gCurrSaveFileNum)($a0)
 /* 08FCE8 802D4CE8 24050008 */  li    $a1, 8
-/* 08FCEC 802D4CEC 0C09E706 */  jal   get_game_data
+/* 08FCEC 802D4CEC 0C09E706 */  jal   save_file_get_obtained_stars
 /* 08FCF0 802D4CF0 2484FFFF */   addiu $a0, %lo(D_8032FFFF) # addiu $a0, $a0, -1
 /* 08FCF4 802D4CF4 AFA20024 */  sw    $v0, 0x24($sp)
-/* 08FCF8 802D4CF8 0C09E6EF */  jal   func_80279BBC
+/* 08FCF8 802D4CF8 0C09E6EF */  jal   save_file_get_flags
 /* 08FCFC 802D4CFC 00000000 */   nop   
 /* 08FD00 802D4D00 AFA20020 */  sw    $v0, 0x20($sp)
 /* 08FD04 802D4D04 8FAE0024 */  lw    $t6, 0x24($sp)
@@ -3223,7 +3223,7 @@ glabel func_802D4CC8
 /* 08FDA0 802D4DA0 C7A40030 */  lwc1  $f4, 0x30($sp)
 /* 08FDA4 802D4DA4 8FB80028 */  lw    $t8, 0x28($sp)
 /* 08FDA8 802D4DA8 E7040010 */  swc1  $f4, 0x10($t8)
-/* 08FDAC 802D4DAC 0C09E6BE */  jal   func_80279AF8
+/* 08FDAC 802D4DAC 0C09E6BE */  jal   save_file_set_flags
 /* 08FDB0 802D4DB0 24040100 */   li    $a0, 256
 .L802D4DB4:
 /* 08FDB4 802D4DB4 1000000D */  b     .L802D4DEC

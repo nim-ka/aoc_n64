@@ -373,8 +373,8 @@ glabel func_802570C4
 /* 01210C 8025710C 00000000 */   nop   
 .L80257110:
 /* 012110 80257110 3C048033 */  lui   $a0, %hi(D_8032FFFF) # $a0, 0x8033
-/* 012114 80257114 8484CE94 */  lh    $a0, %lo(D_8032CE94)($a0)
-/* 012118 80257118 0C09E4A4 */  jal   SaveFileData
+/* 012114 80257114 8484CE94 */  lh    $a0, %lo(gCurrSaveFileNum)($a0)
+/* 012118 80257118 0C09E4A4 */  jal   save_file_do_save
 /* 01211C 8025711C 2484FFFF */   addiu $a0, %lo(D_8032FFFF) # addiu $a0, $a0, -1
 /* 012120 80257120 3C188034 */  lui   $t8, %hi(D_8033A760) # $t8, 0x8034
 /* 012124 80257124 8718A760 */  lh    $t8, %lo(D_8033A760)($t8)
@@ -1487,8 +1487,8 @@ glabel func_80257F0C
 /* 0130CC 802580CC 15E10005 */  bne   $t7, $at, .L802580E4
 /* 0130D0 802580D0 00000000 */   nop   
 /* 0130D4 802580D4 3C048033 */  lui   $a0, %hi(D_8032FFFF) # $a0, 0x8033
-/* 0130D8 802580D8 8484CE94 */  lh    $a0, %lo(D_8032CE94)($a0)
-/* 0130DC 802580DC 0C09E4A4 */  jal   SaveFileData
+/* 0130D8 802580D8 8484CE94 */  lh    $a0, %lo(gCurrSaveFileNum)($a0)
+/* 0130DC 802580DC 0C09E4A4 */  jal   save_file_do_save
 /* 0130E0 802580E0 2484FFFF */   addiu $a0, %lo(D_8032FFFF) # addiu $a0, $a0, -1
 .L802580E4:
 /* 0130E4 802580E4 8FA80028 */  lw    $t0, 0x28($sp)
@@ -2192,16 +2192,16 @@ glabel func_80258930
 /* 013AB8 80258AB8 000D5E03 */  sra   $t3, $t5, 0x18
 /* 013ABC 80258ABC 15610007 */  bne   $t3, $at, .L80258ADC
 /* 013AC0 80258AC0 00000000 */   nop   
-/* 013AC4 80258AC4 0C09E6BE */  jal   func_80279AF8
+/* 013AC4 80258AC4 0C09E6BE */  jal   save_file_set_flags
 /* 013AC8 80258AC8 24040080 */   li    $a0, 128
-/* 013ACC 80258ACC 0C09E6D1 */  jal   func_80279B44
+/* 013ACC 80258ACC 0C09E6D1 */  jal   save_file_clear_flags
 /* 013AD0 80258AD0 24040020 */   li    $a0, 32
 /* 013AD4 80258AD4 10000005 */  b     .L80258AEC
 /* 013AD8 80258AD8 00000000 */   nop   
 .L80258ADC:
-/* 013ADC 80258ADC 0C09E6BE */  jal   func_80279AF8
+/* 013ADC 80258ADC 0C09E6BE */  jal   save_file_set_flags
 /* 013AE0 80258AE0 24040040 */   li    $a0, 64
-/* 013AE4 80258AE4 0C09E6D1 */  jal   func_80279B44
+/* 013AE4 80258AE4 0C09E6D1 */  jal   save_file_clear_flags
 /* 013AE8 80258AE8 24040010 */   li    $a0, 16
 .L80258AEC:
 /* 013AEC 80258AEC 3C050400 */  lui   $a1, (0x04000440 >> 16) # lui $a1, 0x400
@@ -2325,7 +2325,7 @@ glabel func_80258B34
 /* 013C98 80258C98 0C093855 */  jal   func_8024E154
 /* 013C9C 80258C9C 8D640080 */   lw    $a0, 0x80($t3)
 /* 013CA0 80258CA0 00408025 */  move  $s0, $v0
-/* 013CA4 80258CA4 0C09E6BE */  jal   func_80279AF8
+/* 013CA4 80258CA4 0C09E6BE */  jal   save_file_set_flags
 /* 013CA8 80258CA8 02002025 */   move  $a0, $s0
 /* 013CAC 80258CAC 3C052000 */  lui   $a1, (0x20001305 >> 16) # lui $a1, 0x2000
 /* 013CB0 80258CB0 34A51305 */  ori   $a1, (0x20001305 & 0xFFFF) # ori $a1, $a1, 0x1305

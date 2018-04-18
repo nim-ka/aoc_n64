@@ -4098,7 +4098,7 @@ glabel func_802E6904
 /* 0A1970 802E6970 87AF002A */  lh    $t7, 0x2a($sp)
 /* 0A1974 802E6974 11E00013 */  beqz  $t7, .L802E69C4
 /* 0A1978 802E6978 00000000 */   nop   
-/* 0A197C 802E697C 0C09E778 */  jal   func_80279DE0
+/* 0A197C 802E697C 0C09E778 */  jal   save_file_set_cannon_unlocked
 /* 0A1980 802E6980 00000000 */   nop   
 /* 0A1984 802E6984 3C041300 */  lui   $a0, %hi(D_13003254) # $a0, 0x1300
 /* 0A1988 802E6988 0C0A7C78 */  jal   func_8029F1E0
@@ -4247,8 +4247,8 @@ glabel func_802E6ACC
 /* 0A1B90 802E6B90 10000010 */  b     .L802E6BD4
 /* 0A1B94 802E6B94 00000000 */   nop   
 .L802E6B98:
-/* 0A1B98 802E6B98 3C0E8034 */  lui   $t6, %hi(D_8033A756) # $t6, 0x8034
-/* 0A1B9C 802E6B9C 85CEA756 */  lh    $t6, %lo(D_8033A756)($t6)
+/* 0A1B98 802E6B98 3C0E8034 */  lui   $t6, %hi(gCurrCourseNum) # $t6, 0x8034
+/* 0A1B9C 802E6B9C 85CEA756 */  lh    $t6, %lo(gCurrCourseNum)($t6)
 /* 0A1BA0 802E6BA0 24010001 */  li    $at, 1
 /* 0A1BA4 802E6BA4 15C10006 */  bne   $t6, $at, .L802E6BC0
 /* 0A1BA8 802E6BA8 00000000 */   nop   
@@ -4393,7 +4393,7 @@ glabel BehPinkBobombLoop
 glabel BehCannonTrapDoorInit
 /* 0A1D80 802E6D80 27BDFFE0 */  addiu $sp, $sp, -0x20
 /* 0A1D84 802E6D84 AFBF0014 */  sw    $ra, 0x14($sp)
-/* 0A1D88 802E6D88 0C09E764 */  jal   func_80279D90
+/* 0A1D88 802E6D88 0C09E764 */  jal   save_file_is_cannon_unlocked
 /* 0A1D8C 802E6D8C 00000000 */   nop   
 /* 0A1D90 802E6D90 24010001 */  li    $at, 1
 /* 0A1D94 802E6D94 14410023 */  bne   $v0, $at, .L802E6E24
@@ -4548,7 +4548,7 @@ glabel BehCannonTrapDoorLoop
 /* 0A1FB8 802E6FB8 44814000 */  mtc1  $at, $f8
 /* 0A1FBC 802E6FBC 00000000 */  nop   
 /* 0A1FC0 802E6FC0 E728019C */  swc1  $f8, 0x19c($t9)
-/* 0A1FC4 802E6FC4 0C09E764 */  jal   func_80279D90
+/* 0A1FC4 802E6FC4 0C09E764 */  jal   save_file_is_cannon_unlocked
 /* 0A1FC8 802E6FC8 00000000 */   nop   
 /* 0A1FCC 802E6FCC 24010001 */  li    $at, 1
 /* 0A1FD0 802E6FD0 14410005 */  bne   $v0, $at, .L802E6FE8
@@ -14163,10 +14163,10 @@ glabel BehHiddenAt120StarsInit
 /* 0AA9A0 802EF9A0 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 0AA9A4 802EF9A4 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 0AA9A8 802EF9A8 3C048033 */  lui   $a0, %hi(D_8032FFFF) # $a0, 0x8033
-/* 0AA9AC 802EF9AC 8484CE94 */  lh    $a0, %lo(D_8032CE94)($a0)
+/* 0AA9AC 802EF9AC 8484CE94 */  lh    $a0, %lo(gCurrSaveFileNum)($a0)
 /* 0AA9B0 802EF9B0 00002825 */  move  $a1, $zero
 /* 0AA9B4 802EF9B4 24060018 */  li    $a2, 24
-/* 0AA9B8 802EF9B8 0C09E698 */  jal   GetStarCount
+/* 0AA9B8 802EF9B8 0C09E698 */  jal   save_file_get_total_star_count
 /* 0AA9BC 802EF9BC 2484FFFF */   addiu $a0, %lo(D_8032FFFF) # addiu $a0, $a0, -1
 /* 0AA9C0 802EF9C0 28410078 */  slti  $at, $v0, 0x78
 /* 0AA9C4 802EF9C4 14200004 */  bnez  $at, .L802EF9D8
@@ -14722,10 +14722,10 @@ glabel BehSnowmansHeadInit
 /* 0AB1C0 802F01C0 AFBF002C */  sw    $ra, 0x2c($sp)
 /* 0AB1C4 802F01C4 3C048033 */  lui   $a0, %hi(D_8032FFFF) # $a0, 0x8033
 /* 0AB1C8 802F01C8 3C058034 */  lui   $a1, %hi(D_8033FFFF) # $a1, 0x8034
-/* 0AB1CC 802F01CC 84A5A756 */  lh    $a1, %lo(D_8033A756)($a1)
-/* 0AB1D0 802F01D0 8484CE94 */  lh    $a0, %lo(D_8032CE94)($a0)
+/* 0AB1CC 802F01CC 84A5A756 */  lh    $a1, %lo(gCurrCourseNum)($a1)
+/* 0AB1D0 802F01D0 8484CE94 */  lh    $a0, %lo(gCurrSaveFileNum)($a0)
 /* 0AB1D4 802F01D4 24A5FFFF */  addiu $a1, %lo(D_8033FFFF) # addiu $a1, $a1, -1
-/* 0AB1D8 802F01D8 0C09E706 */  jal   get_game_data
+/* 0AB1D8 802F01D8 0C09E706 */  jal   save_file_get_obtained_stars
 /* 0AB1DC 802F01DC 2484FFFF */   addiu $a0, %lo(D_8032FFFF) # addiu $a0, $a0, -1
 /* 0AB1E0 802F01E0 A3A20037 */  sb    $v0, 0x37($sp)
 /* 0AB1E4 802F01E4 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
@@ -15823,7 +15823,7 @@ glabel BehNormalCapInit
 /* 0AC164 802F1164 4600320D */  trunc.w.s $f8, $f6
 /* 0AC168 802F1168 44052000 */  mfc1  $a1, $f4
 /* 0AC16C 802F116C 44064000 */  mfc1  $a2, $f8
-/* 0AC170 802F1170 0C09E79A */  jal   func_80279E68
+/* 0AC170 802F1170 0C09E79A */  jal   save_file_set_cap_location
 /* 0AC174 802F1174 00000000 */   nop   
 /* 0AC178 802F1178 10000001 */  b     .L802F1180
 /* 0AC17C 802F117C 00000000 */   nop   
@@ -15837,10 +15837,10 @@ glabel func_802F1190
 /* 0AC190 802F1190 27BDFFD8 */  addiu $sp, $sp, -0x28
 /* 0AC194 802F1194 AFBF001C */  sw    $ra, 0x1c($sp)
 /* 0AC198 802F1198 AFB00018 */  sw    $s0, 0x18($sp)
-/* 0AC19C 802F119C 0C09E6D1 */  jal   func_80279B44
+/* 0AC19C 802F119C 0C09E6D1 */  jal   save_file_clear_flags
 /* 0AC1A0 802F11A0 3C040001 */   lui   $a0, 1
-/* 0AC1A4 802F11A4 3C108034 */  lui   $s0, %hi(D_8033A756) # $s0, 0x8034
-/* 0AC1A8 802F11A8 8610A756 */  lh    $s0, %lo(D_8033A756)($s0)
+/* 0AC1A4 802F11A4 3C108034 */  lui   $s0, %hi(gCurrCourseNum) # $s0, 0x8034
+/* 0AC1A8 802F11A8 8610A756 */  lh    $s0, %lo(gCurrCourseNum)($s0)
 /* 0AC1AC 802F11AC 24010008 */  li    $at, 8
 /* 0AC1B0 802F11B0 12010009 */  beq   $s0, $at, .L802F11D8
 /* 0AC1B4 802F11B4 00000000 */   nop   
@@ -15853,22 +15853,22 @@ glabel func_802F1190
 /* 0AC1D0 802F11D0 1000000D */  b     .L802F1208
 /* 0AC1D4 802F11D4 00000000 */   nop   
 .L802F11D8:
-/* 0AC1D8 802F11D8 0C09E6BE */  jal   func_80279AF8
+/* 0AC1D8 802F11D8 0C09E6BE */  jal   save_file_set_flags
 /* 0AC1DC 802F11DC 3C040002 */   lui   $a0, 2
 /* 0AC1E0 802F11E0 1000000D */  b     .L802F1218
 /* 0AC1E4 802F11E4 00000000 */   nop   
 .L802F11E8:
-/* 0AC1E8 802F11E8 0C09E6BE */  jal   func_80279AF8
+/* 0AC1E8 802F11E8 0C09E6BE */  jal   save_file_set_flags
 /* 0AC1EC 802F11EC 3C040008 */   lui   $a0, 8
 /* 0AC1F0 802F11F0 10000009 */  b     .L802F1218
 /* 0AC1F4 802F11F4 00000000 */   nop   
 .L802F11F8:
-/* 0AC1F8 802F11F8 0C09E6BE */  jal   func_80279AF8
+/* 0AC1F8 802F11F8 0C09E6BE */  jal   save_file_set_flags
 /* 0AC1FC 802F11FC 3C040004 */   lui   $a0, 4
 /* 0AC200 802F1200 10000005 */  b     .L802F1218
 /* 0AC204 802F1204 00000000 */   nop   
 .L802F1208:
-/* 0AC208 802F1208 0C09E6BE */  jal   func_80279AF8
+/* 0AC208 802F1208 0C09E6BE */  jal   save_file_set_flags
 /* 0AC20C 802F120C 3C040002 */   lui   $a0, 2
 /* 0AC210 802F1210 10000001 */  b     .L802F1218
 /* 0AC214 802F1214 00000000 */   nop   
@@ -16002,7 +16002,7 @@ glabel BehNormalCapLoop
 /* 0AC3E4 802F13E4 4600218D */  trunc.w.s $f6, $f4
 /* 0AC3E8 802F13E8 44059000 */  mfc1  $a1, $f18
 /* 0AC3EC 802F13EC 44063000 */  mfc1  $a2, $f6
-/* 0AC3F0 802F13F0 0C09E79A */  jal   func_80279E68
+/* 0AC3F0 802F13F0 0C09E79A */  jal   save_file_set_cap_location
 /* 0AC3F4 802F13F4 00000000 */   nop   
 .L802F13F8:
 /* 0AC3F8 802F13F8 3C0D8036 */  lui   $t5, %hi(gCurrentObject) # $t5, 0x8036
@@ -16018,7 +16018,7 @@ glabel BehNormalCapLoop
 /* 0AC41C 802F141C 24010001 */  li    $at, 1
 /* 0AC420 802F1420 14410003 */  bne   $v0, $at, .L802F1430
 /* 0AC424 802F1424 00000000 */   nop   
-/* 0AC428 802F1428 0C09E6D1 */  jal   func_80279B44
+/* 0AC428 802F1428 0C09E6D1 */  jal   save_file_clear_flags
 /* 0AC42C 802F142C 3C040001 */   lui   $a0, 1
 .L802F1430:
 /* 0AC430 802F1430 10000001 */  b     .L802F1438
@@ -16066,10 +16066,10 @@ glabel BehCollectStarInit
 /* 0AC4C0 802F14C0 A3B9001F */  sb    $t9, 0x1f($sp)
 /* 0AC4C4 802F14C4 3C048033 */  lui   $a0, %hi(D_8032FFFF) # $a0, 0x8033
 /* 0AC4C8 802F14C8 3C058034 */  lui   $a1, %hi(D_8033FFFF) # $a1, 0x8034
-/* 0AC4CC 802F14CC 84A5A756 */  lh    $a1, %lo(D_8033A756)($a1)
-/* 0AC4D0 802F14D0 8484CE94 */  lh    $a0, %lo(D_8032CE94)($a0)
+/* 0AC4CC 802F14CC 84A5A756 */  lh    $a1, %lo(gCurrCourseNum)($a1)
+/* 0AC4D0 802F14D0 8484CE94 */  lh    $a0, %lo(gCurrSaveFileNum)($a0)
 /* 0AC4D4 802F14D4 24A5FFFF */  addiu $a1, %lo(D_8033FFFF) # addiu $a1, $a1, -1
-/* 0AC4D8 802F14D8 0C09E706 */  jal   get_game_data
+/* 0AC4D8 802F14D8 0C09E706 */  jal   save_file_get_obtained_stars
 /* 0AC4DC 802F14DC 2484FFFF */   addiu $a0, %lo(D_8032FFFF) # addiu $a0, $a0, -1
 /* 0AC4E0 802F14E0 A3A2001E */  sb    $v0, 0x1e($sp)
 /* 0AC4E4 802F14E4 83A9001F */  lb    $t1, 0x1f($sp)
@@ -16192,8 +16192,8 @@ glabel BehStarSpawnInit
 /* 0AC694 802F1694 8D6C0144 */  lw    $t4, 0x144($t3)
 /* 0AC698 802F1698 11800006 */  beqz  $t4, .L802F16B4
 /* 0AC69C 802F169C 00000000 */   nop   
-/* 0AC6A0 802F16A0 3C0D8034 */  lui   $t5, %hi(D_8033A756) # $t5, 0x8034
-/* 0AC6A4 802F16A4 85ADA756 */  lh    $t5, %lo(D_8033A756)($t5)
+/* 0AC6A0 802F16A0 3C0D8034 */  lui   $t5, %hi(gCurrCourseNum) # $t5, 0x8034
+/* 0AC6A4 802F16A4 85ADA756 */  lh    $t5, %lo(gCurrCourseNum)($t5)
 /* 0AC6A8 802F16A8 24010005 */  li    $at, 5
 /* 0AC6AC 802F16AC 15A10007 */  bne   $t5, $at, .L802F16CC
 /* 0AC6B0 802F16B0 00000000 */   nop   
@@ -16584,8 +16584,8 @@ glabel func_802F1BD4
 glabel BehHiddenRedCoinStarInit
 /* 0ACC34 802F1C34 27BDFFC8 */  addiu $sp, $sp, -0x38
 /* 0ACC38 802F1C38 AFBF002C */  sw    $ra, 0x2c($sp)
-/* 0ACC3C 802F1C3C 3C0E8034 */  lui   $t6, %hi(D_8033A756) # $t6, 0x8034
-/* 0ACC40 802F1C40 85CEA756 */  lh    $t6, %lo(D_8033A756)($t6)
+/* 0ACC3C 802F1C3C 3C0E8034 */  lui   $t6, %hi(gCurrCourseNum) # $t6, 0x8034
+/* 0ACC40 802F1C40 85CEA756 */  lh    $t6, %lo(gCurrCourseNum)($t6)
 /* 0ACC44 802F1C44 24010003 */  li    $at, 3
 /* 0ACC48 802F1C48 11C10007 */  beq   $t6, $at, .L802F1C68
 /* 0ACC4C 802F1C4C 00000000 */   nop   
@@ -17747,7 +17747,7 @@ glabel Beh1UpInit
 /* 0ADCBC 802F2CBC 8DCF0144 */  lw    $t7, 0x144($t6)
 /* 0ADCC0 802F2CC0 15E1000B */  bne   $t7, $at, .L802F2CF0
 /* 0ADCC4 802F2CC4 00000000 */   nop   
-/* 0ADCC8 802F2CC8 0C09E6EF */  jal   func_80279BBC
+/* 0ADCC8 802F2CC8 0C09E6EF */  jal   save_file_get_flags
 /* 0ADCCC 802F2CCC 00000000 */   nop   
 /* 0ADCD0 802F2CD0 30580050 */  andi  $t8, $v0, 0x50
 /* 0ADCD4 802F2CD4 17000004 */  bnez  $t8, .L802F2CE8
@@ -17765,7 +17765,7 @@ glabel Beh1UpInit
 /* 0ADCFC 802F2CFC 8D090144 */  lw    $t1, 0x144($t0)
 /* 0ADD00 802F2D00 15210009 */  bne   $t1, $at, .L802F2D28
 /* 0ADD04 802F2D04 00000000 */   nop   
-/* 0ADD08 802F2D08 0C09E6EF */  jal   func_80279BBC
+/* 0ADD08 802F2D08 0C09E6EF */  jal   save_file_get_flags
 /* 0ADD0C 802F2D0C 00000000 */   nop   
 /* 0ADD10 802F2D10 304A00A0 */  andi  $t2, $v0, 0xa0
 /* 0ADD14 802F2D14 15400004 */  bnez  $t2, .L802F2D28
@@ -22707,16 +22707,16 @@ glabel BehMipsInit
 /* 0B2400 802F7400 27BDFFE0 */  addiu $sp, $sp, -0x20
 /* 0B2404 802F7404 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 0B2408 802F7408 3C048033 */  lui   $a0, %hi(D_8032FFFF) # $a0, 0x8033
-/* 0B240C 802F740C 8484CE94 */  lh    $a0, %lo(D_8032CE94)($a0)
+/* 0B240C 802F740C 8484CE94 */  lh    $a0, %lo(gCurrSaveFileNum)($a0)
 /* 0B2410 802F7410 2405FFFF */  li    $a1, -1
-/* 0B2414 802F7414 0C09E706 */  jal   get_game_data
+/* 0B2414 802F7414 0C09E706 */  jal   save_file_get_obtained_stars
 /* 0B2418 802F7418 2484FFFF */   addiu $a0, %lo(D_8032FFFF) # addiu $a0, $a0, -1
 /* 0B241C 802F741C A3A2001F */  sb    $v0, 0x1f($sp)
 /* 0B2420 802F7420 3C048033 */  lui   $a0, %hi(D_8032FFFF) # $a0, 0x8033
-/* 0B2424 802F7424 8484CE94 */  lh    $a0, %lo(D_8032CE94)($a0)
+/* 0B2424 802F7424 8484CE94 */  lh    $a0, %lo(gCurrSaveFileNum)($a0)
 /* 0B2428 802F7428 00002825 */  move  $a1, $zero
 /* 0B242C 802F742C 24060018 */  li    $a2, 24
-/* 0B2430 802F7430 0C09E698 */  jal   GetStarCount
+/* 0B2430 802F7430 0C09E698 */  jal   save_file_get_total_star_count
 /* 0B2434 802F7434 2484FFFF */   addiu $a0, %lo(D_8032FFFF) # addiu $a0, $a0, -1
 /* 0B2438 802F7438 2841000F */  slti  $at, $v0, 0xf
 /* 0B243C 802F743C 14200009 */  bnez  $at, .L802F7464
@@ -22731,10 +22731,10 @@ glabel BehMipsInit
 /* 0B2460 802F7460 AF000144 */   sw    $zero, 0x144($t8)
 .L802F7464:
 /* 0B2464 802F7464 3C048033 */  lui   $a0, %hi(D_8032FFFF) # $a0, 0x8033
-/* 0B2468 802F7468 8484CE94 */  lh    $a0, %lo(D_8032CE94)($a0)
+/* 0B2468 802F7468 8484CE94 */  lh    $a0, %lo(gCurrSaveFileNum)($a0)
 /* 0B246C 802F746C 00002825 */  move  $a1, $zero
 /* 0B2470 802F7470 24060018 */  li    $a2, 24
-/* 0B2474 802F7474 0C09E698 */  jal   GetStarCount
+/* 0B2474 802F7474 0C09E698 */  jal   save_file_get_total_star_count
 /* 0B2478 802F7478 2484FFFF */   addiu $a0, %lo(D_8032FFFF) # addiu $a0, $a0, -1
 /* 0B247C 802F747C 28410032 */  slti  $at, $v0, 0x32
 /* 0B2480 802F7480 1420000A */  bnez  $at, .L802F74AC
@@ -23402,10 +23402,10 @@ glabel BehYoshiInit
 /* 0B2DF4 802F7DF4 24194000 */  li    $t9, 16384
 /* 0B2DF8 802F7DF8 AD190190 */  sw    $t9, 0x190($t0)
 /* 0B2DFC 802F7DFC 3C048033 */  lui   $a0, %hi(D_8032FFFF) # $a0, 0x8033
-/* 0B2E00 802F7E00 8484CE94 */  lh    $a0, %lo(D_8032CE94)($a0)
+/* 0B2E00 802F7E00 8484CE94 */  lh    $a0, %lo(gCurrSaveFileNum)($a0)
 /* 0B2E04 802F7E04 00002825 */  move  $a1, $zero
 /* 0B2E08 802F7E08 24060018 */  li    $a2, 24
-/* 0B2E0C 802F7E0C 0C09E698 */  jal   GetStarCount
+/* 0B2E0C 802F7E0C 0C09E698 */  jal   save_file_get_total_star_count
 /* 0B2E10 802F7E10 2484FFFF */   addiu $a0, %lo(D_8032FFFF) # addiu $a0, $a0, -1
 /* 0B2E14 802F7E14 28410078 */  slti  $at, $v0, 0x78
 /* 0B2E18 802F7E18 14200006 */  bnez  $at, .L802F7E34

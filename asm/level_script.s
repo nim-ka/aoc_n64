@@ -1893,7 +1893,7 @@ glabel LevelScript3B
 /* 0FB654 8037FC44 8DCEBE28 */  lw    $t6, %lo(D_8038BE28)($t6)
 /* 0FB658 8037FC48 91CF0002 */  lbu   $t7, 2($t6)
 /* 0FB65C 8037FC4C AFAF0020 */  sw    $t7, 0x20($sp)
-/* 0FB660 8037FC50 0C09E6EF */  jal   func_80279BBC
+/* 0FB660 8037FC50 0C09E6EF */  jal   save_file_get_flags
 /* 0FB664 8037FC54 00000000 */   nop   
 /* 0FB668 8037FC58 305800A0 */  andi  $t8, $v0, 0xa0
 /* 0FB66C 8037FC5C 0018C82B */  sltu  $t9, $zero, $t8
@@ -2481,14 +2481,14 @@ glabel LevelScript3C
 /* 0FBE84 80380474 00000000 */   nop   
 /* 0FBE88 80380478 3C088039 */  lui   $t0, %hi(D_8038BE24) # $t0, 0x8039
 /* 0FBE8C 8038047C 8D08BE24 */  lw    $t0, %lo(D_8038BE24)($t0)
-/* 0FBE90 80380480 3C018033 */  lui   $at, %hi(D_8032CE94) # $at, 0x8033
-/* 0FBE94 80380484 A428CE94 */  sh    $t0, %lo(D_8032CE94)($at)
+/* 0FBE90 80380480 3C018033 */  lui   $at, %hi(gCurrSaveFileNum) # $at, 0x8033
+/* 0FBE94 80380484 A428CE94 */  sh    $t0, %lo(gCurrSaveFileNum)($at)
 /* 0FBE98 80380488 10000019 */  b     .L803804F0
 /* 0FBE9C 8038048C 00000000 */   nop   
 /* 0FBEA0 80380490 3C098039 */  lui   $t1, %hi(D_8038BE24) # $t1, 0x8039
 /* 0FBEA4 80380494 8D29BE24 */  lw    $t1, %lo(D_8038BE24)($t1)
-/* 0FBEA8 80380498 3C018034 */  lui   $at, %hi(D_8033A756) # $at, 0x8034
-/* 0FBEAC 8038049C A429A756 */  sh    $t1, %lo(D_8033A756)($at)
+/* 0FBEA8 80380498 3C018034 */  lui   $at, %hi(gCurrCourseNum) # $at, 0x8034
+/* 0FBEAC 8038049C A429A756 */  sh    $t1, %lo(gCurrCourseNum)($at)
 /* 0FBEB0 803804A0 10000013 */  b     .L803804F0
 /* 0FBEB4 803804A4 00000000 */   nop   
 /* 0FBEB8 803804A8 3C0A8039 */  lui   $t2, %hi(D_8038BE24) # $t2, 0x8039
@@ -2525,14 +2525,14 @@ glabel LevelScript3C
 /* 0FBF2C 8038051C 8C2EBB24 */  lw    $t6, %lo(jtbl_8038BB24)($at)
 /* 0FBF30 80380520 01C00008 */  jr    $t6
 /* 0FBF34 80380524 00000000 */   nop   
-/* 0FBF38 80380528 3C0F8033 */  lui   $t7, %hi(D_8032CE94) # $t7, 0x8033
-/* 0FBF3C 8038052C 85EFCE94 */  lh    $t7, %lo(D_8032CE94)($t7)
+/* 0FBF38 80380528 3C0F8033 */  lui   $t7, %hi(gCurrSaveFileNum) # $t7, 0x8033
+/* 0FBF3C 8038052C 85EFCE94 */  lh    $t7, %lo(gCurrSaveFileNum)($t7)
 /* 0FBF40 80380530 3C018039 */  lui   $at, %hi(D_8038BE24) # $at, 0x8039
 /* 0FBF44 80380534 AC2FBE24 */  sw    $t7, %lo(D_8038BE24)($at)
 /* 0FBF48 80380538 10000019 */  b     .L803805A0
 /* 0FBF4C 8038053C 00000000 */   nop   
-/* 0FBF50 80380540 3C188034 */  lui   $t8, %hi(D_8033A756) # $t8, 0x8034
-/* 0FBF54 80380544 8718A756 */  lh    $t8, %lo(D_8033A756)($t8)
+/* 0FBF50 80380540 3C188034 */  lui   $t8, %hi(gCurrCourseNum) # $t8, 0x8034
+/* 0FBF54 80380544 8718A756 */  lh    $t8, %lo(gCurrCourseNum)($t8)
 /* 0FBF58 80380548 3C018039 */  lui   $at, %hi(D_8038BE24) # $at, 0x8039
 /* 0FBF5C 8038054C AC38BE24 */  sw    $t8, %lo(D_8038BE24)($at)
 /* 0FBF60 80380550 10000013 */  b     .L803805A0

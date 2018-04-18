@@ -525,14 +525,14 @@ glabel BehToadMessageInit
 /* 031360 80276360 27BDFFC8 */  addiu $sp, $sp, -0x38
 /* 031364 80276364 AFBF001C */  sw    $ra, 0x1c($sp)
 /* 031368 80276368 AFB00018 */  sw    $s0, 0x18($sp)
-/* 03136C 8027636C 0C09E6EF */  jal   func_80279BBC
+/* 03136C 8027636C 0C09E6EF */  jal   save_file_get_flags
 /* 031370 80276370 00000000 */   nop   
 /* 031374 80276374 AFA20034 */  sw    $v0, 0x34($sp)
 /* 031378 80276378 3C048033 */  lui   $a0, %hi(D_8032FFFF) # $a0, 0x8033
-/* 03137C 8027637C 8484CE94 */  lh    $a0, %lo(D_8032CE94)($a0)
+/* 03137C 8027637C 8484CE94 */  lh    $a0, %lo(gCurrSaveFileNum)($a0)
 /* 031380 80276380 00002825 */  move  $a1, $zero
 /* 031384 80276384 24060018 */  li    $a2, 24
-/* 031388 80276388 0C09E698 */  jal   GetStarCount
+/* 031388 80276388 0C09E698 */  jal   save_file_get_total_star_count
 /* 03138C 8027638C 2484FFFF */   addiu $a0, %lo(D_8032FFFF) # addiu $a0, $a0, -1
 /* 031390 80276390 AFA20030 */  sw    $v0, 0x30($sp)
 /* 031394 80276394 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036

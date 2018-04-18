@@ -10797,7 +10797,7 @@ glabel ActionActivateCapSwitch0
 /* 061710 802A6710 24010020 */  li    $at, 32
 /* 061714 802A6714 1141001E */  beq   $t2, $at, .L802A6790
 /* 061718 802A6718 00000000 */   nop   
-/* 06171C 802A671C 0C09E6EF */  jal   func_80279BBC
+/* 06171C 802A671C 0C09E6EF */  jal   save_file_get_flags
 /* 061720 802A6720 00000000 */   nop   
 /* 061724 802A6724 3C0B8036 */  lui   $t3, %hi(gCurrentObject) # $t3, 0x8036
 /* 061728 802A6728 8D6BFDF0 */  lw    $t3, %lo(gCurrentObject)($t3)
@@ -10856,7 +10856,7 @@ glabel ActionActivateCapSwitch1
 /* 0617E0 802A67E0 8DCF0144 */  lw    $t7, 0x144($t6)
 /* 0617E4 802A67E4 000FC080 */  sll   $t8, $t7, 2
 /* 0617E8 802A67E8 00982021 */  addu  $a0, $a0, $t8
-/* 0617EC 802A67EC 0C09E6BE */  jal   func_80279AF8
+/* 0617EC 802A67EC 0C09E6BE */  jal   save_file_set_flags
 /* 0617F0 802A67F0 8C84F0C0 */   lw    $a0, -0xf40($a0)
 /* 0617F4 802A67F4 3C088036 */  lui   $t0, %hi(gCurrentObject) # $t0, 0x8036
 /* 0617F8 802A67F8 8D08FDF0 */  lw    $t0, %lo(gCurrentObject)($t0)
@@ -15328,11 +15328,11 @@ glabel BehUnused080CInit
 /* 065728 802AA728 8FA40024 */   lw    $a0, 0x24($sp)
 /* 06572C 802AA72C 3C048033 */  lui   $a0, %hi(D_8032FFFF) # $a0, 0x8033
 /* 065730 802AA730 3C058034 */  lui   $a1, %hi(D_8033FFFF) # $a1, 0x8034
-/* 065734 802AA734 84A5A756 */  lh    $a1, %lo(D_8033A756)($a1)
-/* 065738 802AA738 8484CE94 */  lh    $a0, %lo(D_8032CE94)($a0)
+/* 065734 802AA734 84A5A756 */  lh    $a1, %lo(gCurrCourseNum)($a1)
+/* 065738 802AA738 8484CE94 */  lh    $a0, %lo(gCurrSaveFileNum)($a0)
 /* 06573C 802AA73C 00408025 */  move  $s0, $v0
 /* 065740 802AA740 24A5FFFF */  addiu $a1, %lo(D_8033FFFF) # addiu $a1, $a1, -1
-/* 065744 802AA744 0C09E706 */  jal   get_game_data
+/* 065744 802AA744 0C09E706 */  jal   save_file_get_obtained_stars
 /* 065748 802AA748 2484FFFF */   addiu $a0, %lo(D_8032FFFF) # addiu $a0, $a0, -1
 /* 06574C 802AA74C 00507024 */  and   $t6, $v0, $s0
 /* 065750 802AA750 11C00003 */  beqz  $t6, .L802AA760
@@ -19375,11 +19375,11 @@ glabel BehLittleCage2Loop
 /* 0690B4 802AE0B4 24040001 */   li    $a0, 1
 /* 0690B8 802AE0B8 3C048033 */  lui   $a0, %hi(D_8032FFFF) # $a0, 0x8033
 /* 0690BC 802AE0BC 3C058034 */  lui   $a1, %hi(D_8033FFFF) # $a1, 0x8034
-/* 0690C0 802AE0C0 84A5A756 */  lh    $a1, %lo(D_8033A756)($a1)
-/* 0690C4 802AE0C4 8484CE94 */  lh    $a0, %lo(D_8032CE94)($a0)
+/* 0690C0 802AE0C0 84A5A756 */  lh    $a1, %lo(gCurrCourseNum)($a1)
+/* 0690C4 802AE0C4 8484CE94 */  lh    $a0, %lo(gCurrSaveFileNum)($a0)
 /* 0690C8 802AE0C8 00408025 */  move  $s0, $v0
 /* 0690CC 802AE0CC 24A5FFFF */  addiu $a1, %lo(D_8033FFFF) # addiu $a1, $a1, -1
-/* 0690D0 802AE0D0 0C09E706 */  jal   get_game_data
+/* 0690D0 802AE0D0 0C09E706 */  jal   save_file_get_obtained_stars
 /* 0690D4 802AE0D4 2484FFFF */   addiu $a0, %lo(D_8032FFFF) # addiu $a0, $a0, -1
 /* 0690D8 802AE0D8 0050C824 */  and   $t9, $v0, $s0
 /* 0690DC 802AE0DC 13200003 */  beqz  $t9, .L802AE0EC
@@ -32188,7 +32188,7 @@ glabel func_802B95A4
 /* 0746E8 802B96E8 8D8F014C */  lw    $t7, 0x14c($t4)
 /* 0746EC 802B96EC 25F90001 */  addiu $t9, $t7, 1
 /* 0746F0 802B96F0 AD99014C */  sw    $t9, 0x14c($t4)
-/* 0746F4 802B96F4 0C09E6BE */  jal   func_80279AF8
+/* 0746F4 802B96F4 0C09E6BE */  jal   save_file_set_flags
 /* 0746F8 802B96F8 24040200 */   li    $a0, 512
 /* 0746FC 802B96FC 0C0C848A */  jal   func_80321228
 /* 074700 802B9700 00000000 */   nop   
@@ -32285,7 +32285,7 @@ glabel func_802B97E4
 glabel BehWaterLevelPillarInit
 /* 074844 802B9844 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 074848 802B9848 AFBF0014 */  sw    $ra, 0x14($sp)
-/* 07484C 802B984C 0C09E6EF */  jal   func_80279BBC
+/* 07484C 802B984C 0C09E6EF */  jal   save_file_get_flags
 /* 074850 802B9850 00000000 */   nop   
 /* 074854 802B9854 304E0200 */  andi  $t6, $v0, 0x200
 /* 074858 802B9858 11C00005 */  beqz  $t6, .L802B9870
@@ -32342,7 +32342,7 @@ glabel BehWaterLevelPillarLoop
 glabel BehInvisibleObjUnderBridge
 /* 074904 802B9904 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 074908 802B9908 AFBF0014 */  sw    $ra, 0x14($sp)
-/* 07490C 802B990C 0C09E6EF */  jal   func_80279BBC
+/* 07490C 802B990C 0C09E6EF */  jal   save_file_get_flags
 /* 074910 802B9910 00000000 */   nop   
 /* 074914 802B9914 304E0200 */  andi  $t6, $v0, 0x200
 /* 074918 802B9918 11C00009 */  beqz  $t6, .L802B9940
@@ -32585,7 +32585,7 @@ glabel BehDoorKey2Loop
 glabel BehMoatGrillsLoop
 /* 074C64 802B9C64 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 074C68 802B9C68 AFBF0014 */  sw    $ra, 0x14($sp)
-/* 074C6C 802B9C6C 0C09E6EF */  jal   func_80279BBC
+/* 074C6C 802B9C6C 0C09E6EF */  jal   save_file_get_flags
 /* 074C70 802B9C70 00000000 */   nop   
 /* 074C74 802B9C74 304E0200 */  andi  $t6, $v0, 0x200
 /* 074C78 802B9C78 11C00005 */  beqz  $t6, .L802B9C90
@@ -34134,7 +34134,7 @@ glabel BehUkikiOpenCageInit
 /* 076254 802BB254 8DCF0144 */  lw    $t7, 0x144($t6)
 /* 076258 802BB258 15E10010 */  bne   $t7, $at, .L802BB29C
 /* 07625C 802BB25C 00000000 */   nop   
-/* 076260 802BB260 0C09E6EF */  jal   func_80279BBC
+/* 076260 802BB260 0C09E6EF */  jal   save_file_get_flags
 /* 076264 802BB264 00000000 */   nop   
 /* 076268 802BB268 3C010004 */  lui   $at, 4
 /* 07626C 802BB26C 0041C024 */  and   $t8, $v0, $at
@@ -40306,7 +40306,7 @@ glabel ActionExclamationBox0
 /* 07B964 802C0964 8F18FDF0 */  lw    $t8, %lo(gCurrentObject)($t8)
 /* 07B968 802C0968 8F190144 */  lw    $t9, 0x144($t8)
 /* 07B96C 802C096C AF1900F0 */  sw    $t9, 0xf0($t8)
-/* 07B970 802C0970 0C09E6EF */  jal   func_80279BBC
+/* 07B970 802C0970 0C09E6EF */  jal   save_file_get_flags
 /* 07B974 802C0974 00000000 */   nop   
 /* 07B978 802C0978 3C088036 */  lui   $t0, %hi(gCurrentObject) # $t0, 0x8036
 /* 07B97C 802C097C 8D08FDF0 */  lw    $t0, %lo(gCurrentObject)($t0)
@@ -40377,7 +40377,7 @@ glabel ActionExclamationBox1
 /* 07BA60 802C0A60 0C0A7F51 */  jal   SetModel
 /* 07BA64 802C0A64 24040083 */   li    $a0, 131
 .L802C0A68:
-/* 07BA68 802C0A68 0C09E6EF */  jal   func_80279BBC
+/* 07BA68 802C0A68 0C09E6EF */  jal   save_file_get_flags
 /* 07BA6C 802C0A6C 00000000 */   nop   
 /* 07BA70 802C0A70 3C188036 */  lui   $t8, %hi(gCurrentObject) # $t8, 0x8036
 /* 07BA74 802C0A74 8F18FDF0 */  lw    $t8, %lo(gCurrentObject)($t8)
@@ -40803,7 +40803,7 @@ glabel BehPlaySound
 glabel BehBowsersSubLoop
 /* 07C074 802C1074 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 07C078 802C1078 AFBF0014 */  sw    $ra, 0x14($sp)
-/* 07C07C 802C107C 0C09E6EF */  jal   func_80279BBC
+/* 07C07C 802C107C 0C09E6EF */  jal   save_file_get_flags
 /* 07C080 802C1080 00000000 */   nop   
 /* 07C084 802C1084 304E00A0 */  andi  $t6, $v0, 0xa0
 /* 07C088 802C1088 11C00004 */  beqz  $t6, .L802C109C

@@ -4655,7 +4655,7 @@ glabel func_802548BC
 /* 00F8F8 802548F8 3C098033 */  lui   $t1, %hi(D_8032C9D8) # $t1, 0x8033
 /* 00F8FC 802548FC 8D29C9D8 */  lw    $t1, %lo(D_8032C9D8)($t1)
 /* 00F900 80254900 A5200026 */  sh    $zero, 0x26($t1)
-/* 00F904 80254904 0C09E6EF */  jal   func_80279BBC
+/* 00F904 80254904 0C09E6EF */  jal   save_file_get_flags
 /* 00F908 80254908 00000000 */   nop   
 /* 00F90C 8025490C 3C01000F */  lui   $at, 0xf
 /* 00F910 80254910 00415024 */  and   $t2, $v0, $at
@@ -4864,7 +4864,7 @@ glabel func_802548BC
 /* 00FC28 80254C28 8706002E */  lh    $a2, 0x2e($t8)
 /* 00FC2C 80254C2C 0C0DE25F */  jal   Vec3s_Set
 /* 00FC30 80254C30 2484001A */   addiu $a0, $a0, 0x1a
-/* 00FC34 80254C34 0C09E7BF */  jal   func_80279EFC
+/* 00FC34 80254C34 0C09E7BF */  jal   save_file_get_cap_coords
 /* 00FC38 80254C38 27A40020 */   addiu $a0, $sp, 0x20
 /* 00FC3C 80254C3C 10400022 */  beqz  $v0, .L80254CC8
 /* 00FC40 80254C40 00000000 */   nop   
@@ -4951,10 +4951,10 @@ glabel func_80254CE0
 /* 00FD74 80254D74 8F39C9D8 */  lw    $t9, %lo(D_8032C9D8)($t9)
 /* 00FD78 80254D78 A72000A8 */  sh    $zero, 0xa8($t9)
 /* 00FD7C 80254D7C 3C048033 */  lui   $a0, %hi(D_8032FFFF) # $a0, 0x8033
-/* 00FD80 80254D80 8484CE94 */  lh    $a0, %lo(D_8032CE94)($a0)
+/* 00FD80 80254D80 8484CE94 */  lh    $a0, %lo(gCurrSaveFileNum)($a0)
 /* 00FD84 80254D84 00002825 */  move  $a1, $zero
 /* 00FD88 80254D88 24060018 */  li    $a2, 24
-/* 00FD8C 80254D8C 0C09E698 */  jal   GetStarCount
+/* 00FD8C 80254D8C 0C09E698 */  jal   save_file_get_total_star_count
 /* 00FD90 80254D90 2484FFFF */   addiu $a0, %lo(D_8032FFFF) # addiu $a0, $a0, -1
 /* 00FD94 80254D94 3C088033 */  lui   $t0, %hi(D_8032C9D8) # $t0, 0x8033
 /* 00FD98 80254D98 8D08C9D8 */  lw    $t0, %lo(D_8032C9D8)($t0)

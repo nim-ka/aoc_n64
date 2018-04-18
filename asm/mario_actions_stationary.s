@@ -3269,10 +3269,10 @@ glabel func_802631DC
 /* 01E2A8 802632A8 15810026 */  bne   $t4, $at, .L80263344
 /* 01E2AC 802632AC 00000000 */   nop   
 /* 01E2B0 802632B0 3C048033 */  lui   $a0, %hi(D_8032FFFF) # $a0, 0x8033
-/* 01E2B4 802632B4 8484CE94 */  lh    $a0, %lo(D_8032CE94)($a0)
+/* 01E2B4 802632B4 8484CE94 */  lh    $a0, %lo(gCurrSaveFileNum)($a0)
 /* 01E2B8 802632B8 00002825 */  move  $a1, $zero
 /* 01E2BC 802632BC 24060018 */  li    $a2, 24
-/* 01E2C0 802632C0 0C09E698 */  jal   GetStarCount
+/* 01E2C0 802632C0 0C09E698 */  jal   save_file_get_total_star_count
 /* 01E2C4 802632C4 2484FFFF */   addiu $a0, %lo(D_8032FFFF) # addiu $a0, $a0, -1
 /* 01E2C8 802632C8 2841000A */  slti  $at, $v0, 0xa
 /* 01E2CC 802632CC 1420001D */  bnez  $at, .L80263344

@@ -662,9 +662,9 @@ glabel func_802CF414
 /* 08A470 802CF470 15E1000A */  bne   $t7, $at, .L802CF49C
 /* 08A474 802CF474 00000000 */   nop   
 /* 08A478 802CF478 3C048033 */  lui   $a0, %hi(D_8032FFFF) # $a0, 0x8033
-/* 08A47C 802CF47C 8484CE94 */  lh    $a0, %lo(D_8032CE94)($a0)
+/* 08A47C 802CF47C 8484CE94 */  lh    $a0, %lo(gCurrSaveFileNum)($a0)
 /* 08A480 802CF480 24050002 */  li    $a1, 2
-/* 08A484 802CF484 0C09E706 */  jal   get_game_data
+/* 08A484 802CF484 0C09E706 */  jal   save_file_get_obtained_stars
 /* 08A488 802CF488 2484FFFF */   addiu $a0, %lo(D_8032FFFF) # addiu $a0, $a0, -1
 /* 08A48C 802CF48C 30580001 */  andi  $t8, $v0, 1
 /* 08A490 802CF490 17000002 */  bnez  $t8, .L802CF49C

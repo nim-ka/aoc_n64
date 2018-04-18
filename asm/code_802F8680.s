@@ -16300,7 +16300,7 @@ glabel BehMrBlizzardInit
 /* 0C1FBC 80306FBC 8D6C0144 */  lw    $t4, 0x144($t3)
 /* 0C1FC0 80306FC0 1180000B */  beqz  $t4, .L80306FF0
 /* 0C1FC4 80306FC4 00000000 */   nop   
-/* 0C1FC8 80306FC8 0C09E6EF */  jal   func_80279BBC
+/* 0C1FC8 80306FC8 0C09E6EF */  jal   save_file_get_flags
 /* 0C1FCC 80306FCC 00000000 */   nop   
 /* 0C1FD0 80306FD0 3C010008 */  lui   $at, 8
 /* 0C1FD4 80306FD4 00416824 */  and   $t5, $v0, $at
@@ -16781,7 +16781,7 @@ glabel func_80307650
 /* 0C26B0 803076B0 8DF800F0 */  lw    $t8, 0xf0($t7)
 /* 0C26B4 803076B4 13000029 */  beqz  $t8, .L8030775C
 /* 0C26B8 803076B8 00000000 */   nop   
-/* 0C26BC 803076BC 0C09E6D1 */  jal   func_80279B44
+/* 0C26BC 803076BC 0C09E6D1 */  jal   save_file_clear_flags
 /* 0C26C0 803076C0 3C040008 */   lui   $a0, 8
 /* 0C26C4 803076C4 3C198036 */  lui   $t9, %hi(gCurrentObject) # $t9, 0x8036
 /* 0C26C8 803076C8 8F39FDF0 */  lw    $t9, %lo(gCurrentObject)($t9)
@@ -25532,7 +25532,7 @@ glabel BehKleptoInit
 /* 0CA3EC 8030F3EC 8D4AFDF0 */  lw    $t2, %lo(gCurrentObject)($t2)
 /* 0CA3F0 8030F3F0 C54800A8 */  lwc1  $f8, 0xa8($t2)
 /* 0CA3F4 8030F3F4 E548010C */  swc1  $f8, 0x10c($t2)
-/* 0CA3F8 8030F3F8 0C09E6EF */  jal   func_80279BBC
+/* 0CA3F8 8030F3F8 0C09E6EF */  jal   save_file_get_flags
 /* 0CA3FC 8030F3FC 00000000 */   nop   
 /* 0CA400 8030F400 3C010002 */  lui   $at, 2
 /* 0CA404 8030F404 00415824 */  and   $t3, $v0, $at
@@ -26572,7 +26572,7 @@ glabel BehKleptoLoop
 /* 0CB320 80310320 8DCF00F0 */  lw    $t7, 0xf0($t6)
 /* 0CB324 80310324 15E1000B */  bne   $t7, $at, .L80310354
 /* 0CB328 80310328 00000000 */   nop   
-/* 0CB32C 8031032C 0C09E6D1 */  jal   func_80279B44
+/* 0CB32C 8031032C 0C09E6D1 */  jal   save_file_clear_flags
 /* 0CB330 80310330 3C040002 */   lui   $a0, 2
 /* 0CB334 80310334 3C048036 */  lui   $a0, %hi(gCurrentObject) # $a0, 0x8036
 /* 0CB338 80310338 3C061300 */  lui   $a2, %hi(D_13003DD8) # $a2, 0x1300
@@ -28996,7 +28996,7 @@ glabel BehDonutPlatformLoop
 glabel BehDddYellowPolesInit
 /* 0CD5C0 803125C0 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 0CD5C4 803125C4 AFBF0014 */  sw    $ra, 0x14($sp)
-/* 0CD5C8 803125C8 0C09E6EF */  jal   func_80279BBC
+/* 0CD5C8 803125C8 0C09E6EF */  jal   save_file_get_flags
 /* 0CD5CC 803125CC 00000000 */   nop   
 /* 0CD5D0 803125D0 304E00A0 */  andi  $t6, $v0, 0xa0
 /* 0CD5D4 803125D4 15C00006 */  bnez  $t6, .L803125F0

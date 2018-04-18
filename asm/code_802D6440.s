@@ -1702,7 +1702,7 @@ glabel ShowCoins
 /* 092CF8 802D7CF8 A7B8001A */   sh    $t8, 0x1a($sp)
 .L802D7CFC:
 /* 092CFC 802D7CFC 83A40027 */  lb    $a0, 0x27($sp)
-/* 092D00 802D7D00 0C09E758 */  jal   func_80279D60
+/* 092D00 802D7D00 0C09E758 */  jal   save_file_get_course_coin_score
 /* 092D04 802D7D04 83A5002B */   lb    $a1, 0x2b($sp)
 /* 092D08 802D7D08 A7A2001A */  sh    $v0, 0x1a($sp)
 .L802D7D0C:
@@ -1754,7 +1754,7 @@ glabel ShowStars
 /* 092DB0 802D7DB0 95EF0450 */  lhu   $t7, %lo(D_80330450)($t7)
 /* 092DB4 802D7DB4 A7AF001C */  sh    $t7, 0x1c($sp)
 /* 092DB8 802D7DB8 83A4002B */  lb    $a0, 0x2b($sp)
-/* 092DBC 802D7DBC 0C09E674 */  jal   func_802799D0
+/* 092DBC 802D7DBC 0C09E674 */  jal   save_file_get_course_star_count
 /* 092DC0 802D7DC0 83A5002F */   lb    $a1, 0x2f($sp)
 /* 092DC4 802D7DC4 A7A20022 */  sh    $v0, 0x22($sp)
 /* 092DC8 802D7DC8 87B80022 */  lh    $t8, 0x22($sp)
@@ -4775,16 +4775,16 @@ glabel func_802DA8EC
 /* 095948 802DA948 0C09DE68 */  jal   SegmentedToVirtual
 /* 09594C 802DA94C 2484EAD0 */   addiu $a0, %lo(D_0200EAD0) # addiu $a0, $a0, -0x1530
 /* 095950 802DA950 AFA20044 */  sw    $v0, 0x44($sp)
-/* 095954 802DA954 3C0C8034 */  lui   $t4, %hi(D_8033A756) # $t4, 0x8034
-/* 095958 802DA958 858CA756 */  lh    $t4, %lo(D_8033A756)($t4)
+/* 095954 802DA954 3C0C8034 */  lui   $t4, %hi(gCurrCourseNum) # $t4, 0x8034
+/* 095958 802DA958 858CA756 */  lh    $t4, %lo(gCurrCourseNum)($t4)
 /* 09595C 802DA95C 258DFFFF */  addiu $t5, $t4, -1
 /* 095960 802DA960 A3AD003F */  sb    $t5, 0x3f($sp)
 /* 095964 802DA964 3C048033 */  lui   $a0, %hi(D_8032FFFF) # $a0, 0x8033
 /* 095968 802DA968 3C058034 */  lui   $a1, %hi(D_8033FFFF) # $a1, 0x8034
-/* 09596C 802DA96C 84A5A756 */  lh    $a1, %lo(D_8033A756)($a1)
-/* 095970 802DA970 8484CE94 */  lh    $a0, %lo(D_8032CE94)($a0)
+/* 09596C 802DA96C 84A5A756 */  lh    $a1, %lo(gCurrCourseNum)($a1)
+/* 095970 802DA970 8484CE94 */  lh    $a0, %lo(gCurrSaveFileNum)($a0)
 /* 095974 802DA974 24A5FFFF */  addiu $a1, %lo(D_8033FFFF) # addiu $a1, $a1, -1
-/* 095978 802DA978 0C09E706 */  jal   get_game_data
+/* 095978 802DA978 0C09E706 */  jal   save_file_get_obtained_stars
 /* 09597C 802DA97C 2484FFFF */   addiu $a0, %lo(D_8032FFFF) # addiu $a0, $a0, -1
 /* 095980 802DA980 A3A2003E */  sb    $v0, 0x3e($sp)
 /* 095984 802DA984 3C0E8034 */  lui   $t6, %hi(gDisplayListHead) # $t6, 0x8034
@@ -4821,7 +4821,7 @@ glabel func_802DA8EC
 /* 095A00 802DAA00 10200011 */  beqz  $at, .L802DAA48
 /* 095A04 802DAA04 00000000 */   nop   
 /* 095A08 802DAA08 3C058033 */  lui   $a1, %hi(D_8032FFFF) # $a1, 0x8033
-/* 095A0C 802DAA0C 84A5CE94 */  lh    $a1, %lo(D_8032CE94)($a1)
+/* 095A0C 802DAA0C 84A5CE94 */  lh    $a1, %lo(gCurrSaveFileNum)($a1)
 /* 095A10 802DAA10 24090067 */  li    $t1, 103
 /* 095A14 802DAA14 AFA90010 */  sw    $t1, 0x10($sp)
 /* 095A18 802DAA18 24040001 */  li    $a0, 1
@@ -4830,7 +4830,7 @@ glabel func_802DA8EC
 /* 095A24 802DAA24 0C0B5F30 */  jal   ShowCoins
 /* 095A28 802DAA28 24A5FFFF */   addiu $a1, %lo(D_8032FFFF) # addiu $a1, $a1, -1
 /* 095A2C 802DAA2C 3C048033 */  lui   $a0, %hi(D_8032FFFF) # $a0, 0x8033
-/* 095A30 802DAA30 8484CE94 */  lh    $a0, %lo(D_8032CE94)($a0)
+/* 095A30 802DAA30 8484CE94 */  lh    $a0, %lo(gCurrSaveFileNum)($a0)
 /* 095A34 802DAA34 93A5003F */  lbu   $a1, 0x3f($sp)
 /* 095A38 802DAA38 24060076 */  li    $a2, 118
 /* 095A3C 802DAA3C 24070067 */  li    $a3, 103
@@ -4884,9 +4884,9 @@ glabel func_802DA8EC
 /* 095AF8 802DAAF8 1020000C */  beqz  $at, .L802DAB2C
 /* 095AFC 802DAAFC 00000000 */   nop   
 /* 095B00 802DAB00 3C048033 */  lui   $a0, %hi(D_8032FFFF) # $a0, 0x8033
-/* 095B04 802DAB04 8484CE94 */  lh    $a0, %lo(D_8032CE94)($a0)
+/* 095B04 802DAB04 8484CE94 */  lh    $a0, %lo(gCurrSaveFileNum)($a0)
 /* 095B08 802DAB08 01402825 */  move  $a1, $t2
-/* 095B0C 802DAB0C 0C09E674 */  jal   func_802799D0
+/* 095B0C 802DAB0C 0C09E674 */  jal   save_file_get_course_star_count
 /* 095B10 802DAB10 2484FFFF */   addiu $a0, %lo(D_8032FFFF) # addiu $a0, $a0, -1
 /* 095B14 802DAB14 10400005 */  beqz  $v0, .L802DAB2C
 /* 095B18 802DAB18 00000000 */   nop   
@@ -4910,16 +4910,16 @@ glabel func_802DA8EC
 /* 095B5C 802DAB5C 2405009D */  li    $a1, 157
 /* 095B60 802DAB60 0C0B5AFF */  jal   PrintGenericText
 /* 095B64 802DAB64 27A60064 */   addiu $a2, $sp, 0x64
-/* 095B68 802DAB68 3C048034 */  lui   $a0, %hi(D_8033A756) # $a0, 0x8034
-/* 095B6C 802DAB6C 8484A756 */  lh    $a0, %lo(D_8033A756)($a0)
+/* 095B68 802DAB68 3C048034 */  lui   $a0, %hi(gCurrCourseNum) # $a0, 0x8034
+/* 095B6C 802DAB6C 8484A756 */  lh    $a0, %lo(gCurrCourseNum)($a0)
 /* 095B70 802DAB70 0C0B5F8F */  jal   Int2Str
 /* 095B74 802DAB74 27A50050 */   addiu $a1, $sp, 0x50
 /* 095B78 802DAB78 2404005D */  li    $a0, 93
 /* 095B7C 802DAB7C 2405009D */  li    $a1, 157
 /* 095B80 802DAB80 0C0B5AFF */  jal   PrintGenericText
 /* 095B84 802DAB84 27A60050 */   addiu $a2, $sp, 0x50
-/* 095B88 802DAB88 3C198034 */  lui   $t9, %hi(D_8033A756) # $t9, 0x8034
-/* 095B8C 802DAB8C 8739A756 */  lh    $t9, %lo(D_8033A756)($t9)
+/* 095B88 802DAB88 3C198034 */  lui   $t9, %hi(gCurrCourseNum) # $t9, 0x8034
+/* 095B8C 802DAB8C 8739A756 */  lh    $t9, %lo(gCurrCourseNum)($t9)
 /* 095B90 802DAB90 3C188033 */  lui   $t8, %hi(D_80330534) # $t8, 0x8033
 /* 095B94 802DAB94 83180534 */  lb    $t8, %lo(D_80330534)($t8)
 /* 095B98 802DAB98 00197880 */  sll   $t7, $t9, 2
@@ -5665,11 +5665,11 @@ glabel func_802DB698
 /* 0966B8 802DB6B8 95CE05B4 */  lhu   $t6, %lo(D_803305B4)($t6)
 /* 0966BC 802DB6BC A7AE0024 */  sh    $t6, 0x24($sp)
 /* 0966C0 802DB6C0 87A40052 */  lh    $a0, 0x52($sp)
-/* 0966C4 802DB6C4 0C09E706 */  jal   get_game_data
+/* 0966C4 802DB6C4 0C09E706 */  jal   save_file_get_obtained_stars
 /* 0966C8 802DB6C8 87A50056 */   lh    $a1, 0x56($sp)
 /* 0966CC 802DB6CC A3A20023 */  sb    $v0, 0x23($sp)
 /* 0966D0 802DB6D0 87A40052 */  lh    $a0, 0x52($sp)
-/* 0966D4 802DB6D4 0C09E674 */  jal   func_802799D0
+/* 0966D4 802DB6D4 0C09E674 */  jal   save_file_get_course_star_count
 /* 0966D8 802DB6D8 87A50056 */   lh    $a1, 0x56($sp)
 /* 0966DC 802DB6DC A7A20020 */  sh    $v0, 0x20($sp)
 /* 0966E0 802DB6E0 A7A0001E */  sh    $zero, 0x1e($sp)
@@ -5815,10 +5815,10 @@ glabel func_802DB840
 /* 0968E4 802DB8E4 11A1002F */  beq   $t5, $at, .L802DB9A4
 /* 0968E8 802DB8E8 00000000 */   nop   
 /* 0968EC 802DB8EC 3C048033 */  lui   $a0, %hi(D_8032FFFF) # $a0, 0x8033
-/* 0968F0 802DB8F0 8484CE94 */  lh    $a0, %lo(D_8032CE94)($a0)
+/* 0968F0 802DB8F0 8484CE94 */  lh    $a0, %lo(gCurrSaveFileNum)($a0)
 /* 0968F4 802DB8F4 3C058033 */  lui   $a1, %hi(D_80330430) # $a1, 0x8033
 /* 0968F8 802DB8F8 80A50430 */  lb    $a1, %lo(D_80330430)($a1)
-/* 0968FC 802DB8FC 0C09E674 */  jal   func_802799D0
+/* 0968FC 802DB8FC 0C09E674 */  jal   save_file_get_course_star_count
 /* 096900 802DB900 2484FFFF */   addiu $a0, %lo(D_8032FFFF) # addiu $a0, $a0, -1
 /* 096904 802DB904 14400027 */  bnez  $v0, .L802DB9A4
 /* 096908 802DB908 00000000 */   nop   
@@ -5858,10 +5858,10 @@ glabel func_802DB840
 /* 096980 802DB980 00000000 */   nop   
 .L802DB984:
 /* 096984 802DB984 3C048033 */  lui   $a0, %hi(D_8032FFFF) # $a0, 0x8033
-/* 096988 802DB988 8484CE94 */  lh    $a0, %lo(D_8032CE94)($a0)
+/* 096988 802DB988 8484CE94 */  lh    $a0, %lo(gCurrSaveFileNum)($a0)
 /* 09698C 802DB98C 3C058033 */  lui   $a1, %hi(D_8032FFFB) # $a1, 0x8033
 /* 096990 802DB990 80A50430 */  lb    $a1, %lo(D_80330430)($a1)
-/* 096994 802DB994 0C09E674 */  jal   func_802799D0
+/* 096994 802DB994 0C09E674 */  jal   save_file_get_course_star_count
 /* 096998 802DB998 2484FFFF */   addiu $a0, %lo(D_8032FFFF) # addiu $a0, $a0, -1
 /* 09699C 802DB99C 1040FFDB */  beqz  $v0, .L802DB90C
 /* 0969A0 802DB9A0 00000000 */   nop   
@@ -5909,7 +5909,7 @@ glabel func_802DB840
 /* 096A44 802DBA44 8D440000 */   lw    $a0, ($t2)
 /* 096A48 802DBA48 AFA20044 */  sw    $v0, 0x44($sp)
 /* 096A4C 802DBA4C 3C068033 */  lui   $a2, %hi(D_8032FFFF) # $a2, 0x8033
-/* 096A50 802DBA50 84C6CE94 */  lh    $a2, %lo(D_8032CE94)($a2)
+/* 096A50 802DBA50 84C6CE94 */  lh    $a2, %lo(gCurrSaveFileNum)($a2)
 /* 096A54 802DBA54 3C078033 */  lui   $a3, %hi(D_80330430) # $a3, 0x8033
 /* 096A58 802DBA58 80E70430 */  lb    $a3, %lo(D_80330430)($a3)
 /* 096A5C 802DBA5C 87A40052 */  lh    $a0, 0x52($sp)
@@ -5923,10 +5923,10 @@ glabel func_802DB840
 /* 096A7C 802DBA7C 0C0B5AFF */  jal   PrintGenericText
 /* 096A80 802DBA80 24A5FFFB */   addiu $a1, %lo(D_8032FFFB) # addiu $a1, $a1, -5
 /* 096A84 802DBA84 3C048033 */  lui   $a0, %hi(D_8032FFFF) # $a0, 0x8033
-/* 096A88 802DBA88 8484CE94 */  lh    $a0, %lo(D_8032CE94)($a0)
+/* 096A88 802DBA88 8484CE94 */  lh    $a0, %lo(gCurrSaveFileNum)($a0)
 /* 096A8C 802DBA8C 3C058033 */  lui   $a1, %hi(D_80330430) # $a1, 0x8033
 /* 096A90 802DBA90 80A50430 */  lb    $a1, %lo(D_80330430)($a1)
-/* 096A94 802DBA94 0C09E758 */  jal   func_80279D60
+/* 096A94 802DBA94 0C09E758 */  jal   save_file_get_course_coin_score
 /* 096A98 802DBA98 2484FFFF */   addiu $a0, %lo(D_8032FFFF) # addiu $a0, $a0, -1
 /* 096A9C 802DBA9C 00408025 */  move  $s0, $v0
 /* 096AA0 802DBAA0 02002025 */  move  $a0, $s0
@@ -5957,10 +5957,10 @@ glabel func_802DB840
 /* 096B00 802DBB00 0C0B5AFF */  jal   PrintGenericText
 /* 096B04 802DBB04 24A5000D */   addiu $a1, $a1, 0xd
 /* 096B08 802DBB08 3C048033 */  lui   $a0, %hi(D_8032FFFF) # $a0, 0x8033
-/* 096B0C 802DBB0C 8484CE94 */  lh    $a0, %lo(D_8032CE94)($a0)
+/* 096B0C 802DBB0C 8484CE94 */  lh    $a0, %lo(gCurrSaveFileNum)($a0)
 /* 096B10 802DBB10 2405000F */  li    $a1, 15
 /* 096B14 802DBB14 24060018 */  li    $a2, 24
-/* 096B18 802DBB18 0C09E698 */  jal   GetStarCount
+/* 096B18 802DBB18 0C09E698 */  jal   save_file_get_total_star_count
 /* 096B1C 802DBB1C 2484FFFF */   addiu $a0, %lo(D_8032FFFF) # addiu $a0, $a0, -1
 /* 096B20 802DBB20 00408025 */  move  $s0, $v0
 /* 096B24 802DBB24 02002025 */  move  $a0, $s0
@@ -6031,8 +6031,8 @@ glabel func_802DBBB0
 /* 096C14 802DBC14 24A520E0 */  addiu $a1, %lo(D_803320E0) # addiu $a1, $a1, 0x20e0
 /* 096C18 802DBC18 0C0C771E */  jal   SetSound
 /* 096C1C 802DBC1C 3484F081 */   ori   $a0, (0x7002F081 & 0xFFFF) # ori $a0, $a0, 0xf081
-/* 096C20 802DBC20 3C0F8034 */  lui   $t7, %hi(D_8033A756) # $t7, 0x8034
-/* 096C24 802DBC24 85EFA756 */  lh    $t7, %lo(D_8033A756)($t7)
+/* 096C20 802DBC20 3C0F8034 */  lui   $t7, %hi(gCurrCourseNum) # $t7, 0x8034
+/* 096C24 802DBC24 85EFA756 */  lh    $t7, %lo(gCurrCourseNum)($t7)
 /* 096C28 802DBC28 19E0000A */  blez  $t7, .L802DBC54
 /* 096C2C 802DBC2C 00000000 */   nop   
 /* 096C30 802DBC30 29E1001A */  slti  $at, $t7, 0x1a

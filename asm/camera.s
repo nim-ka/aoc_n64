@@ -14038,8 +14038,8 @@ glabel func_8028BB8C
 /* 046BB4 8028BBB4 0001C043 */  sra   $t8, $at, 1
 .L8028BBB8:
 /* 046BB8 8028BBB8 A3B80005 */  sb    $t8, 5($sp)
-/* 046BBC 8028BBBC 3C198034 */  lui   $t9, %hi(D_8033A756) # $t9, 0x8034
-/* 046BC0 8028BBC0 8739A756 */  lh    $t9, %lo(D_8033A756)($t9)
+/* 046BBC 8028BBBC 3C198034 */  lui   $t9, %hi(gCurrCourseNum) # $t9, 0x8034
+/* 046BC0 8028BBC0 8739A756 */  lh    $t9, %lo(gCurrCourseNum)($t9)
 /* 046BC4 8028BBC4 A3B90004 */  sb    $t9, 4($sp)
 /* 046BC8 8028BBC8 93A80005 */  lbu   $t0, 5($sp)
 /* 046BCC 8028BBCC 29010004 */  slti  $at, $t0, 4
@@ -18601,8 +18601,8 @@ glabel func_8028FB44
 /* 04AB50 8028FB50 87AE0022 */  lh    $t6, 0x22($sp)
 /* 04AB54 8028FB54 A7AE001E */  sh    $t6, 0x1e($sp)
 /* 04AB58 8028FB58 3C048033 */  lui   $a0, %hi(D_8032FFFF) # $a0, 0x8033
-/* 04AB5C 8028FB5C 8484CE94 */  lh    $a0, %lo(D_8032CE94)($a0)
-/* 04AB60 8028FB60 0C09E4A4 */  jal   SaveFileData
+/* 04AB5C 8028FB5C 8484CE94 */  lh    $a0, %lo(gCurrSaveFileNum)($a0)
+/* 04AB60 8028FB60 0C09E4A4 */  jal   save_file_do_save
 /* 04AB64 8028FB64 2484FFFF */   addiu $a0, %lo(D_8032FFFF) # addiu $a0, $a0, -1
 /* 04AB68 8028FB68 10000001 */  b     .L8028FB70
 /* 04AB6C 8028FB6C 00000000 */   nop   
@@ -21242,8 +21242,8 @@ glabel CutSceneStarDance8029209C
 /* 04D0B0 802920B0 24010004 */  li    $at, 4
 /* 04D0B4 802920B4 15C1000A */  bne   $t6, $at, .L802920E0
 /* 04D0B8 802920B8 00000000 */   nop   
-/* 04D0BC 802920BC 3C0F8034 */  lui   $t7, %hi(D_8033A756) # $t7, 0x8034
-/* 04D0C0 802920C0 85EFA756 */  lh    $t7, %lo(D_8033A756)($t7)
+/* 04D0BC 802920BC 3C0F8034 */  lui   $t7, %hi(gCurrCourseNum) # $t7, 0x8034
+/* 04D0C0 802920C0 85EFA756 */  lh    $t7, %lo(gCurrCourseNum)($t7)
 /* 04D0C4 802920C4 24010003 */  li    $at, 3
 /* 04D0C8 802920C8 15E10005 */  bne   $t7, $at, .L802920E0
 /* 04D0CC 802920CC 00000000 */   nop   
@@ -21257,8 +21257,8 @@ glabel CutSceneStarDance8029209C
 /* 04D0E8 802920E8 24010001 */  li    $at, 1
 /* 04D0EC 802920EC 1701000A */  bne   $t8, $at, .L80292118
 /* 04D0F0 802920F0 00000000 */   nop   
-/* 04D0F4 802920F4 3C198034 */  lui   $t9, %hi(D_8033A756) # $t9, 0x8034
-/* 04D0F8 802920F8 8739A756 */  lh    $t9, %lo(D_8033A756)($t9)
+/* 04D0F4 802920F4 3C198034 */  lui   $t9, %hi(gCurrCourseNum) # $t9, 0x8034
+/* 04D0F8 802920F8 8739A756 */  lh    $t9, %lo(gCurrCourseNum)($t9)
 /* 04D0FC 802920FC 24010009 */  li    $at, 9
 /* 04D100 80292100 17210005 */  bne   $t9, $at, .L80292118
 /* 04D104 80292104 00000000 */   nop   
@@ -21272,8 +21272,8 @@ glabel CutSceneStarDance8029209C
 /* 04D120 80292120 24010005 */  li    $at, 5
 /* 04D124 80292124 1501000A */  bne   $t0, $at, .L80292150
 /* 04D128 80292128 00000000 */   nop   
-/* 04D12C 8029212C 3C098034 */  lui   $t1, %hi(D_8033A756) # $t1, 0x8034
-/* 04D130 80292130 8529A756 */  lh    $t1, %lo(D_8033A756)($t1)
+/* 04D12C 8029212C 3C098034 */  lui   $t1, %hi(gCurrCourseNum) # $t1, 0x8034
+/* 04D130 80292130 8529A756 */  lh    $t1, %lo(gCurrCourseNum)($t1)
 /* 04D134 80292134 2401000B */  li    $at, 11
 /* 04D138 80292138 15210005 */  bne   $t1, $at, .L80292150
 /* 04D13C 8029213C 00000000 */   nop   
@@ -21352,8 +21352,8 @@ glabel CutSceneStarDance80292228
 /* 04D244 80292244 24010006 */  li    $at, 6
 /* 04D248 80292248 15E10006 */  bne   $t7, $at, .L80292264
 /* 04D24C 8029224C 00000000 */   nop   
-/* 04D250 80292250 3C188034 */  lui   $t8, %hi(D_8033A756) # $t8, 0x8034
-/* 04D254 80292254 8718A756 */  lh    $t8, %lo(D_8033A756)($t8)
+/* 04D250 80292250 3C188034 */  lui   $t8, %hi(gCurrCourseNum) # $t8, 0x8034
+/* 04D254 80292254 8718A756 */  lh    $t8, %lo(gCurrCourseNum)($t8)
 /* 04D258 80292258 2401000A */  li    $at, 10
 /* 04D25C 8029225C 1301000B */  beq   $t8, $at, .L8029228C
 /* 04D260 80292260 00000000 */   nop   
@@ -21363,8 +21363,8 @@ glabel CutSceneStarDance80292228
 /* 04D26C 8029226C 24010004 */  li    $at, 4
 /* 04D270 80292270 17210008 */  bne   $t9, $at, .L80292294
 /* 04D274 80292274 00000000 */   nop   
-/* 04D278 80292278 3C088034 */  lui   $t0, %hi(D_8033A756) # $t0, 0x8034
-/* 04D27C 8029227C 8508A756 */  lh    $t0, %lo(D_8033A756)($t0)
+/* 04D278 80292278 3C088034 */  lui   $t0, %hi(gCurrCourseNum) # $t0, 0x8034
+/* 04D27C 8029227C 8508A756 */  lh    $t0, %lo(gCurrCourseNum)($t0)
 /* 04D280 80292280 2401000E */  li    $at, 14
 /* 04D284 80292284 15010003 */  bne   $t0, $at, .L80292294
 /* 04D288 80292288 00000000 */   nop   
@@ -21632,8 +21632,8 @@ glabel CutSceneStarDance802925C0
 /* 04D650 80292650 24010006 */  li    $at, 6
 /* 04D654 80292654 1561000A */  bne   $t3, $at, .L80292680
 /* 04D658 80292658 00000000 */   nop   
-/* 04D65C 8029265C 3C0C8034 */  lui   $t4, %hi(D_8033A756) # $t4, 0x8034
-/* 04D660 80292660 858CA756 */  lh    $t4, %lo(D_8033A756)($t4)
+/* 04D65C 8029265C 3C0C8034 */  lui   $t4, %hi(gCurrCourseNum) # $t4, 0x8034
+/* 04D660 80292660 858CA756 */  lh    $t4, %lo(gCurrCourseNum)($t4)
 /* 04D664 80292664 24010004 */  li    $at, 4
 /* 04D668 80292668 15810005 */  bne   $t4, $at, .L80292680
 /* 04D66C 8029266C 00000000 */   nop   
@@ -21647,8 +21647,8 @@ glabel CutSceneStarDance802925C0
 /* 04D688 80292688 24010002 */  li    $at, 2
 /* 04D68C 8029268C 15A1000A */  bne   $t5, $at, .L802926B8
 /* 04D690 80292690 00000000 */   nop   
-/* 04D694 80292694 3C0E8034 */  lui   $t6, %hi(D_8033A756) # $t6, 0x8034
-/* 04D698 80292698 85CEA756 */  lh    $t6, %lo(D_8033A756)($t6)
+/* 04D694 80292694 3C0E8034 */  lui   $t6, %hi(gCurrCourseNum) # $t6, 0x8034
+/* 04D698 80292698 85CEA756 */  lh    $t6, %lo(gCurrCourseNum)($t6)
 /* 04D69C 8029269C 2401000C */  li    $at, 12
 /* 04D6A0 802926A0 15C10005 */  bne   $t6, $at, .L802926B8
 /* 04D6A4 802926A4 00000000 */   nop   
@@ -21662,8 +21662,8 @@ glabel CutSceneStarDance802925C0
 /* 04D6C0 802926C0 24010001 */  li    $at, 1
 /* 04D6C4 802926C4 15E1000A */  bne   $t7, $at, .L802926F0
 /* 04D6C8 802926C8 00000000 */   nop   
-/* 04D6CC 802926CC 3C188034 */  lui   $t8, %hi(D_8033A756) # $t8, 0x8034
-/* 04D6D0 802926D0 8718A756 */  lh    $t8, %lo(D_8033A756)($t8)
+/* 04D6CC 802926CC 3C188034 */  lui   $t8, %hi(gCurrCourseNum) # $t8, 0x8034
+/* 04D6D0 802926D0 8718A756 */  lh    $t8, %lo(gCurrCourseNum)($t8)
 /* 04D6D4 802926D4 2401000A */  li    $at, 10
 /* 04D6D8 802926D8 17010005 */  bne   $t8, $at, .L802926F0
 /* 04D6DC 802926DC 00000000 */   nop   
@@ -21677,8 +21677,8 @@ glabel CutSceneStarDance802925C0
 /* 04D6F8 802926F8 24010003 */  li    $at, 3
 /* 04D6FC 802926FC 1721000A */  bne   $t9, $at, .L80292728
 /* 04D700 80292700 00000000 */   nop   
-/* 04D704 80292704 3C088034 */  lui   $t0, %hi(D_8033A756) # $t0, 0x8034
-/* 04D708 80292708 8508A756 */  lh    $t0, %lo(D_8033A756)($t0)
+/* 04D704 80292704 3C088034 */  lui   $t0, %hi(gCurrCourseNum) # $t0, 0x8034
+/* 04D708 80292708 8508A756 */  lh    $t0, %lo(gCurrCourseNum)($t0)
 /* 04D70C 8029270C 2401000F */  li    $at, 15
 /* 04D710 80292710 15010005 */  bne   $t0, $at, .L80292728
 /* 04D714 80292714 00000000 */   nop   
@@ -27437,10 +27437,10 @@ glabel CutSceneCredits
 .L802978A4:
 /* 0528A4 802978A4 3C048033 */  lui   $a0, %hi(D_8032FFFF) # $a0, 0x8033
 /* 0528A8 802978A8 3C058034 */  lui   $a1, %hi(D_8033FFFF) # $a1, 0x8034
-/* 0528AC 802978AC 84A5A756 */  lh    $a1, %lo(D_8033A756)($a1)
-/* 0528B0 802978B0 8484CE94 */  lh    $a0, %lo(D_8032CE94)($a0)
+/* 0528AC 802978AC 84A5A756 */  lh    $a1, %lo(gCurrCourseNum)($a1)
+/* 0528B0 802978B0 8484CE94 */  lh    $a0, %lo(gCurrSaveFileNum)($a0)
 /* 0528B4 802978B4 24A5FFFF */  addiu $a1, %lo(D_8033FFFF) # addiu $a1, $a1, -1
-/* 0528B8 802978B8 0C09E706 */  jal   get_game_data
+/* 0528B8 802978B8 0C09E706 */  jal   save_file_get_obtained_stars
 /* 0528BC 802978BC 2484FFFF */   addiu $a0, %lo(D_8032FFFF) # addiu $a0, $a0, -1
 /* 0528C0 802978C0 304D0010 */  andi  $t5, $v0, 0x10
 /* 0528C4 802978C4 11A00008 */  beqz  $t5, .L802978E8

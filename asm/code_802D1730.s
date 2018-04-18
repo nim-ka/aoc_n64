@@ -117,7 +117,7 @@ glabel Geo18_802D2360
 /* 08C8A0 802D18A0 24010001 */  li    $at, 1
 /* 08C8A4 802D18A4 15C10032 */  bne   $t6, $at, .L802D1970
 /* 08C8A8 802D18A8 00000000 */   nop   
-/* 08C8AC 802D18AC 0C09E6EF */  jal   func_80279BBC
+/* 08C8AC 802D18AC 0C09E6EF */  jal   save_file_get_flags
 /* 08C8B0 802D18B0 00000000 */   nop   
 /* 08C8B4 802D18B4 AFA2002C */  sw    $v0, 0x2c($sp)
 /* 08C8B8 802D18B8 3C0F8034 */  lui   $t7, %hi(D_80339EF4) # $t7, 0x8034

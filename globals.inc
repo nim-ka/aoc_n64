@@ -409,12 +409,12 @@
 .global dobjCopy
 .global DynamicObjectCopy
 .global SetMarioAnimation
-.global CalcSaveChecksum
+.global add_save_block_signature
 .global SaveMenuData
-.global SaveFileData
-.global CopyFromEeprom
-.global GetStarCount
-.global get_game_data
+.global save_file_do_save
+.global save_file_load_all
+.global save_file_get_total_star_count
+.global save_file_get_obtained_stars
 .global IntroPrintText
 .global uncompress
 .global Unknown8027F5C4

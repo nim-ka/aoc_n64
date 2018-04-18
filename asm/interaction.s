@@ -691,7 +691,7 @@ glabel func_8024C788
 /* 0077C8 8024C7C8 4600848D */  trunc.w.s $f18, $f16
 /* 0077CC 8024C7CC 44055000 */  mfc1  $a1, $f10
 /* 0077D0 8024C7D0 44069000 */  mfc1  $a2, $f18
-/* 0077D4 8024C7D4 0C09E79A */  jal   func_80279E68
+/* 0077D4 8024C7D4 0C09E79A */  jal   save_file_set_cap_location
 /* 0077D8 8024C7D8 00000000 */   nop   
 /* 0077DC 8024C7DC 8FA80028 */  lw    $t0, 0x28($sp)
 /* 0077E0 8024C7E0 2401FFEE */  li    $at, -18
@@ -777,7 +777,7 @@ glabel func_8024C8C8
 .L8024C908:
 /* 007908 8024C908 3C100004 */  lui   $s0, 4
 .L8024C90C:
-/* 00790C 8024C90C 0C09E6BE */  jal   func_80279AF8
+/* 00790C 8024C90C 0C09E6BE */  jal   save_file_set_flags
 /* 007910 8024C910 02002025 */   move  $a0, $s0
 /* 007914 8024C914 3C0F8033 */  lui   $t7, %hi(D_8032C9D8) # $t7, 0x8033
 /* 007918 8024C918 8DEFC9D8 */  lw    $t7, %lo(D_8032C9D8)($t7)
@@ -805,7 +805,7 @@ glabel func_8024C958
 /* 007960 8024C960 3C048033 */  lui   $a0, %hi(D_8032C9D8) # $a0, 0x8033
 /* 007964 8024C964 0C093148 */  jal   func_8024C520
 /* 007968 8024C968 8C84C9D8 */   lw    $a0, %lo(D_8032C9D8)($a0)
-/* 00796C 8024C96C 0C09E6D1 */  jal   func_80279B44
+/* 00796C 8024C96C 0C09E6D1 */  jal   save_file_clear_flags
 /* 007970 8024C970 3C040006 */   lui   $a0, 6
 /* 007974 8024C974 3C0E8033 */  lui   $t6, %hi(D_8032C9D8) # $t6, 0x8033
 /* 007978 8024C978 8DCEC9D8 */  lw    $t6, %lo(D_8032C9D8)($t6)
@@ -1965,8 +1965,8 @@ glabel InteractionCoin
 /* 0089D4 8024D9D4 8FB90020 */  lw    $t9, 0x20($sp)
 /* 0089D8 8024D9D8 340F8000 */  li    $t7, 32768
 /* 0089DC 8024D9DC AF2F0134 */  sw    $t7, 0x134($t9)
-/* 0089E0 8024D9E0 3C088034 */  lui   $t0, %hi(D_8033A756) # $t0, 0x8034
-/* 0089E4 8024D9E4 8508A756 */  lh    $t0, %lo(D_8033A756)($t0)
+/* 0089E0 8024D9E0 3C088034 */  lui   $t0, %hi(gCurrCourseNum) # $t0, 0x8034
+/* 0089E4 8024D9E4 8508A756 */  lh    $t0, %lo(gCurrCourseNum)($t0)
 /* 0089E8 8024D9E8 19000011 */  blez  $t0, .L8024DA30
 /* 0089EC 8024D9EC 00000000 */   nop   
 /* 0089F0 8024D9F0 29010010 */  slti  $at, $t0, 0x10
@@ -2105,13 +2105,13 @@ glabel InteractionStar
 /* 008BD4 8024DBD4 AFAF0024 */  sw    $t7, 0x24($sp)
 /* 008BD8 8024DBD8 8FB80028 */  lw    $t8, 0x28($sp)
 /* 008BDC 8024DBDC 8FA50024 */  lw    $a1, 0x24($sp)
-/* 008BE0 8024DBE0 0C09E5A5 */  jal   func_80279694
+/* 008BE0 8024DBE0 0C09E5A5 */  jal   save_file_update_coin_score
 /* 008BE4 8024DBE4 870400A8 */   lh    $a0, 0xa8($t8)
 /* 008BE8 8024DBE8 3C048033 */  lui   $a0, %hi(D_8032FFFF) # $a0, 0x8033
-/* 008BEC 8024DBEC 8484CE94 */  lh    $a0, %lo(D_8032CE94)($a0)
+/* 008BEC 8024DBEC 8484CE94 */  lh    $a0, %lo(gCurrSaveFileNum)($a0)
 /* 008BF0 8024DBF0 00002825 */  move  $a1, $zero
 /* 008BF4 8024DBF4 24060018 */  li    $a2, 24
-/* 008BF8 8024DBF8 0C09E698 */  jal   GetStarCount
+/* 008BF8 8024DBF8 0C09E698 */  jal   save_file_get_total_star_count
 /* 008BFC 8024DBFC 2484FFFF */   addiu $a0, %lo(D_8032FFFF) # addiu $a0, $a0, -1
 /* 008C00 8024DC00 8FB90028 */  lw    $t9, 0x28($sp)
 /* 008C04 8024DC04 A72200AA */  sh    $v0, 0xaa($t9)
@@ -2340,7 +2340,7 @@ glabel InteractionWarpDoor
 /* 008F2C 8024DF2C AFA60040 */  sw    $a2, 0x40($sp)
 /* 008F30 8024DF30 AFB00018 */  sw    $s0, 0x18($sp)
 /* 008F34 8024DF34 AFA00034 */  sw    $zero, 0x34($sp)
-/* 008F38 8024DF38 0C09E6EF */  jal   func_80279BBC
+/* 008F38 8024DF38 0C09E6EF */  jal   save_file_get_flags
 /* 008F3C 8024DF3C 00000000 */   nop   
 /* 008F40 8024DF40 AFA20030 */  sw    $v0, 0x30($sp)
 /* 008F44 8024DF44 8FAE0040 */  lw    $t6, 0x40($sp)
@@ -2587,10 +2587,10 @@ glabel InteractionDoor
 /* 009298 8024E298 000FC603 */  sra   $t8, $t7, 0x18
 /* 00929C 8024E29C A7B80036 */  sh    $t8, 0x36($sp)
 /* 0092A0 8024E2A0 3C048033 */  lui   $a0, %hi(D_8032FFFF) # $a0, 0x8033
-/* 0092A4 8024E2A4 8484CE94 */  lh    $a0, %lo(D_8032CE94)($a0)
+/* 0092A4 8024E2A4 8484CE94 */  lh    $a0, %lo(gCurrSaveFileNum)($a0)
 /* 0092A8 8024E2A8 00002825 */  move  $a1, $zero
 /* 0092AC 8024E2AC 24060018 */  li    $a2, 24
-/* 0092B0 8024E2B0 0C09E698 */  jal   GetStarCount
+/* 0092B0 8024E2B0 0C09E698 */  jal   save_file_get_total_star_count
 /* 0092B4 8024E2B4 2484FFFF */   addiu $a0, %lo(D_8032FFFF) # addiu $a0, $a0, -1
 /* 0092B8 8024E2B8 A7A20034 */  sh    $v0, 0x34($sp)
 /* 0092BC 8024E2BC 8FB90038 */  lw    $t9, 0x38($sp)
@@ -2644,7 +2644,7 @@ glabel InteractionDoor
 /* 00936C 8024E36C 8FAD0028 */  lw    $t5, 0x28($sp)
 /* 009370 8024E370 11A00009 */  beqz  $t5, .L8024E398
 /* 009374 8024E374 00000000 */   nop   
-/* 009378 8024E378 0C09E6EF */  jal   func_80279BBC
+/* 009378 8024E378 0C09E6EF */  jal   save_file_get_flags
 /* 00937C 8024E37C 00000000 */   nop   
 /* 009380 8024E380 8FAE0028 */  lw    $t6, 0x28($sp)
 /* 009384 8024E384 004E7824 */  and   $t7, $v0, $t6
