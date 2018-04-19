@@ -4,6 +4,18 @@
 // This file contains variable declarations for all of the code.
 // When a variable is used, uncomment it and add the appropriate types.
 
+// segmented addresses
+extern u8 D_0200E454[];
+extern u8 D_0200EAD0[];
+extern u8 D_0200ED00[];
+extern u8 D_0200ED68[];
+extern u8 D_0200EE68[];
+extern u8 D_0200EEF0[];
+extern u8 D_0700D108[];
+extern u8 D_0700D160[];
+extern u8 D_0700F228[];
+
+extern u8 D_1300300C[];
 extern s8 D_8032CE37[];
 extern u16 D_8032C65C[];
 extern u16 D_8032C66C[];
@@ -1037,7 +1049,7 @@ extern u16 D_8032FEC0;
 // extern ? D_0200E454;
 // extern ? D_0200EAD0;
 // extern ? D_80360088;
-// extern ? D_80330534;
+extern u8 D_80330534;
 // extern ? D_8033054C;
 // extern ? D_80330558;
 // extern ? D_80330568;
@@ -1737,18 +1749,15 @@ extern const char gLevelSelect_StageIDText[];
 // extern ? D_801A7DA0;
 // extern ? D_801A7DA8;
 // extern ? D_1300300C;
-// extern ? D_801B98F0;
-// extern ? D_801B9912;
-// extern ? D_801B9911;
-// extern ? D_801B9913;
-// extern ? D_801A8014;
-// extern ? D_801A8010;
+// extern ? sStarSelectIcons;
+extern s8 D_801B9912;
+extern u8 D_801B9911;
+extern u8 D_801B9913;
 // extern ? D_801BFFFF;
 // extern ? D_0700F228;
 // extern ? D_801A801C;
 // extern ? D_801A8024;
-// extern ? D_801B9910;
-// extern ? D_801A8018;
+extern s8 D_801B9910;
 // extern ? D_801B5330;
 // extern ? D_801A8058;
 // extern ? D_801A8050;

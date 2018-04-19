@@ -105,7 +105,7 @@ SECTIONS
       build/src/level_select_menu.o(.text);
       build/asm/intro_geo.o(.text);
       build/asm/file_select.o(.text);
-      build/asm/star_select.o(.text);
+      build/src/star_select.o(.text);
       build/asm/debug_memory.o(.text);
       build/asm/game_over_1.o(.text);
       build/asm/game_over_2.o(.text);
@@ -120,6 +120,9 @@ SECTIONS
       build/src/level_select_menu.o(.bss);
       build/src/level_select_menu.o(.rodata);
       build/data/unknown_255EC0.o(.text);
+      build/src/star_select.o(.data);
+      build/src/star_select.o(.rodata);
+      build/data/rodata_801A8050.o(.rodata);
    }
 
    /* 0x268020 0x268020-0 [0] */

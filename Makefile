@@ -33,7 +33,7 @@ OBJDUMP := $(CROSS)objdump
 OBJCOPY := $(CROSS)objcopy --pad-to=0x800000 --gap-fill=0xFF
 
 # Check code syntax with host compiler
-CC_CHECK := gcc -m32 -fsyntax-only -I include -std=c99 -Wall -Wextra -pedantic -Werror -Wno-sign-compare
+CC_CHECK := gcc -m32 -fsyntax-only -funsigned-char -I include -std=c99 -Wall -Wextra -pedantic -Werror
 
 ASFLAGS := -march=vr4300 -I include
 CFLAGS  := -Wab,-r4300_mul -mips2 -non_shared -G 0 -Xcpluscomm -Xfullwarn -g -I include
@@ -116,7 +116,7 @@ $(BUILD_DIR)/$(TARGET).hex: $(TARGET).z64
 $(BUILD_DIR)/$(TARGET).objdump: $(BUILD_DIR)/$(TARGET).elf
 	$(OBJDUMP) -D $< > $@
 
-test: $(TARGET).z64
+test: $(BUILD_DIR)/$(TARGET).z64
 	$(EMULATOR) $(EMU_FLAGS) $<
 
 load: $(TARGET).z64

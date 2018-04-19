@@ -105,7 +105,12 @@ struct Object
     Vec3f vel; // 0xAC
     u8 fillerB8[0x18];
     Vec3i faceAngle; // 0xD0
-    u8 fillerDC[0x38];
+    u8 fillerDC[0xF4-0xDC];
+    u32 unkF4;
+    u32 unkF8;
+    u8 fillerFC[0x108-0xFC];
+    float unk108;
+    u8 filler10C[0x114-0x10C];
     Vec3i platformRotation; // 0x114
     u8 filler120[0xF4];
     struct Object *platform; // 0x214
