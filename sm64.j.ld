@@ -102,7 +102,7 @@ SECTIONS
    
    /* 0x8016F000 21D7D0-255EC0 [386F0] */
    .text8016F000 0x8016F000 : AT(0x21D7D0) {
-      build/asm/level_select_menu.o(.text);
+      build/src/level_select_menu.o(.text);
       build/asm/intro_geo.o(.text);
       build/asm/file_select.o(.text);
       build/asm/star_select.o(.text);
@@ -115,7 +115,10 @@ SECTIONS
       build/asm/press_start_head_4.o(.text);
       build/asm/press_start_head_5.o(.text);
       build/asm/press_start_head_6.o(.text);
-      /* data */
+      /* data, bss, rodata, per file */
+      build/src/level_select_menu.o(.data);
+      build/src/level_select_menu.o(.bss);
+      build/src/level_select_menu.o(.rodata);
       build/data/unknown_255EC0.o(.text);
    }
 

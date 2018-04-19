@@ -101,7 +101,7 @@ void func_80249040(void)
 {
     u8 sp1f = FALSE;
     
-    if (D_8032CE98 == 6 && D_8033A75A == 2
+    if (gCurrLevelNum == 6 && D_8033A75A == 2
      && D_8032C9D8->unkAA < 0x46)
     {
         if (D_8032C9D8->unk68 != NULL && D_8032C9D8->unk68->unk5 == 6)

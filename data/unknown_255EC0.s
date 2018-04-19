@@ -5,20 +5,8 @@
 
 # Unknown region 255EC0-268020 [12160]
 
-glabel D_801A76F0
-	.incbin "bin/sm64.j.255EC0.bin", 0x0, 0x400
-
-glabel D_801A7AF0
-	.incbin "bin/sm64.j.255EC0.bin", 0x400, 0x10
-
-glabel D_801A7B00
-	.incbin "bin/sm64.j.255EC0.bin", 0x410, 0x10
-
-glabel D_801A7B10
-	.incbin "bin/sm64.j.255EC0.bin", 0x420, 0x14
-
-glabel D_801A7B24
-	.incbin "bin/sm64.j.255EC0.bin", 0x434, 0x94
+glabel D_801A7B30
+	.incbin "bin/sm64.j.255EC0.bin", 0x440, 0x88
 
 glabel D_801A7BB8
 	.incbin "bin/sm64.j.255EC0.bin", 0x4C8, 0x18

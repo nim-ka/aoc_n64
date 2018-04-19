@@ -23,8 +23,8 @@ glabel func_8025D9F0
 /* 018A10 8025DA10 8DF8020C */  lw    $t8, 0x20c($t7)
 /* 018A14 8025DA14 1458001B */  bne   $v0, $t8, .L8025DA84
 /* 018A18 8025DA18 00000000 */   nop   
-/* 018A1C 8025DA1C 3C198033 */  lui   $t9, %hi(D_8032CE98) # $t9, 0x8033
-/* 018A20 8025DA20 8739CE98 */  lh    $t9, %lo(D_8032CE98)($t9)
+/* 018A1C 8025DA1C 3C198033 */  lui   $t9, %hi(gCurrLevelNum) # $t9, 0x8033
+/* 018A20 8025DA20 8739CE98 */  lh    $t9, %lo(gCurrLevelNum)($t9)
 /* 018A24 8025DA24 24010008 */  li    $at, 8
 /* 018A28 8025DA28 17210005 */  bne   $t9, $at, .L8025DA40
 /* 018A2C 8025DA2C 00000000 */   nop   

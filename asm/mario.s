@@ -1107,8 +1107,8 @@ glabel func_8025167C
 /* 00C6A0 802516A0 8C880068 */  lw    $t0, 0x68($a0)
 /* 00C6A4 802516A4 85090000 */  lh    $t1, ($t0)
 /* 00C6A8 802516A8 AFA90004 */  sw    $t1, 4($sp)
-/* 00C6AC 802516AC 3C0A8033 */  lui   $t2, %hi(D_8032CE98) # $t2, 0x8033
-/* 00C6B0 802516B0 854ACE98 */  lh    $t2, %lo(D_8032CE98)($t2)
+/* 00C6AC 802516AC 3C0A8033 */  lui   $t2, %hi(gCurrLevelNum) # $t2, 0x8033
+/* 00C6B0 802516B0 854ACE98 */  lh    $t2, %lo(gCurrLevelNum)($t2)
 /* 00C6B4 802516B4 24010016 */  li    $at, 22
 /* 00C6B8 802516B8 1141000E */  beq   $t2, $at, .L802516F4
 /* 00C6BC 802516BC 00000000 */   nop   

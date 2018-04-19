@@ -332,7 +332,7 @@ void save_file_update_coin_score(s16 coins, s16 b)
         }
     }
 
-    switch (D_8032CE98)
+    switch (gCurrLevelNum)
     {
     case 30:
         if (!(save_file_get_flags() & (FLAG_HAVE_KEY_1 | FLAG_UNLOCKED_BASEMENT_DOOR)))
@@ -475,7 +475,7 @@ void save_file_set_cap_location(s16 x, s16 y, s16 z)
 {
     struct SaveFile *saveFile = &gSaveBuffer.files[gCurrSaveFileNum - 1][0];
 
-    saveFile->unk0 = D_8032CE98;
+    saveFile->unk0 = gCurrLevelNum;
     saveFile->unk1 = D_8033A75A;
     Vec3s_Set(saveFile->capCoords, x, y, z);
     save_file_set_flags(FLAG_CAP_ON_GROUND);
@@ -486,7 +486,7 @@ int save_file_get_cap_coords(Vec3s capCoords)
     struct SaveFile *saveFile = &gSaveBuffer.files[gCurrSaveFileNum - 1][0];
     int flags = save_file_get_flags();
 
-    if (saveFile->unk0 == D_8032CE98 && saveFile->unk1 == D_8033A75A && (flags & FLAG_CAP_ON_GROUND))
+    if (saveFile->unk0 == gCurrLevelNum && saveFile->unk1 == D_8033A75A && (flags & FLAG_CAP_ON_GROUND))
     {
         Vec3s_Copy(capCoords, saveFile->capCoords);
         return TRUE;

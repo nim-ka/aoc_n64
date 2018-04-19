@@ -180,7 +180,7 @@ extern int D_80339CF0;
 extern void *D_80339D10;
 extern void *D_004E9FA0;
 extern int D_80339CF4;
-extern void *D_80339D20;
+extern struct Demo *gDemo; // gDemo
 extern void *D_00577BC0;
 extern void *D_001076A0;
 extern void *D_001076D0;
@@ -215,7 +215,7 @@ extern u8 D_803320E0[];
 extern struct UnknownStruct8035FFA8 *D_8035FFA8;
 extern s8 D_8032C780;
 extern struct MarioState gMarioStates[];
-extern s16 D_8032CE98;
+extern s16 gCurrLevelNum;
 extern s16 D_8033A75A;
 extern struct Struct8032C9D8 *D_8032C9D8;
 extern u8 D_8032C6D4;
@@ -256,7 +256,7 @@ extern s16 gCurrSaveFileNum;
 // extern ? D_80339EE6;
 extern s16 D_8033A75C;
 // extern ? D_8033FFFE;
-// extern ? D_8032C64C;
+extern s8 D_8032C64C;
 extern s16 D_8033A758;
 // extern ? D_80339EF2;
 // extern ? D_80339EF4;
@@ -1649,13 +1649,17 @@ extern float D_8038BC94;
 // extern ? D_8038EEE0;
 // extern ? D_13004FB4;
 // extern ? D_130032C0;
-// extern ? D_801A7AF0;
-// extern ? D_8032C6B4;
+//extern u16 gDemoCountdown;
+extern u16 gDemoInputListID;
+
+// this area is the demo input + the header. when the demo is loaded in, there is a header the size
+// of a single word next to the input list. this word is the current ID count.
+extern struct DemoInput *gDemoInputList;
+
 // extern ? D_80339D28;
-// extern ? D_801A7B00;
-// extern ? D_801A7B10;
-// extern ? D_801A7B24;
-// extern ? D_801A76F0;
+extern const char gLevelSelect_SelectStageText[];
+extern const char gLevelSelect_PressStartText[];
+extern const char gLevelSelect_StageIDText[];
 // extern ? D_0700C790;
 // extern ? D_0700C880;
 // extern ? D_801B9858;

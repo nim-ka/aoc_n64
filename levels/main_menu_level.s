@@ -4,7 +4,7 @@
 .align 4, 0x01
 main_menu_level:
 .word 0x1B040000
-.word 0x16100000, menu, 0x0021D7D0, 0x268020
+.word 0x16100000, run_press_start_demo_timer, 0x0021D7D0, 0x268020
 .word 0x180C0007, main_menu_segment7, main_menu_segment7_end
 .word 0x170C0013, __load_behavior_data, __load_behavior_data_end
 .word 0x1D040000
@@ -40,7 +40,7 @@ main_menu_level:
 .word 0x11080000, LevelProc_8024BE14 # 8024BC74
 .word 0x0C0C0200, 0x00000000, 0x140001C0
 .word 0x1B040000
-.word 0x16100000, menu, 0x0021D7D0, 0x268020
+.word 0x16100000, run_press_start_demo_timer, 0x0021D7D0, 0x268020
 .word 0x180C0007, main_menu_segment7, main_menu_segment7_end
 .word 0x1D040000
 .word 0x1F080200, 0x14000408

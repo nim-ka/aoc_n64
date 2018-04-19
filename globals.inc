@@ -1920,4 +1920,5 @@
 .global Behavior33
 .global Behavior37
 .global Behavior34
+.global CreditsList
 

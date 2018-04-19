@@ -18,13 +18,20 @@ struct Controller
 };
 
 struct DemoInput
-{
+{ // TODO: see if timer matches with s8
  /*0x00*/ u8 timer; // until next input: if this value 
                     // is 0 proceeding on the demo input, it 
                     // means the demo is over.
  /*0x01*/ s8 rawStickX;
  /*0x02*/ s8 rawStickY;
  /*0x03*/ u8 button;
+};
+
+struct Demo {
+    u32 demoId;
+    // this area is where the inputs are allocated. take the header and add 1 word
+    // to get the input list pointer.
+    struct DemoInput demoInputs[50]; // arbitrary size for struct definition convenience
 };
 
 struct UnknownStruct8035FFA8
