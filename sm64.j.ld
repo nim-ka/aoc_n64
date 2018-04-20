@@ -114,7 +114,7 @@ SECTIONS
       build/asm/file_select.o(.text);
       build/src/star_select.o(.text);
       build/asm/debug_memory.o(.text);
-      build/asm/game_over_1.o(.text);
+      build/src/game_over_1.o(.text);
       build/asm/game_over_2.o(.text);
       build/asm/press_start_head_1.o(.text);
       build/asm/press_start_head_2.o(.text);
