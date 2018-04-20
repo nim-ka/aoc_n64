@@ -297,5 +297,3 @@ glabel jtbl_80335A14
 
 glabel jtbl_80335A2C
 	.incbin "bin/rodata.bin", 0xFBC, 0x34
-
-# 0x80335A60

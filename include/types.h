@@ -130,7 +130,9 @@ struct Object
     /*0x134*/ u32 interactStatus;
     u8 filler138[0x58];
     /*0x190*/ u32 unk190;
-    u8 filler194[0x80];
+    u8 filler194[0x1FC-0x194];
+    /*0x1FC*/ float unk1FC;
+    u8 filler200[0x14];
     /*0x214*/ struct Object *platform;
 };
 
@@ -263,6 +265,15 @@ struct MarioState
     /*0xBC*/ f32 peakHeight;
     /*0xC0*/ f32 quicksandDepth;
     /*0xC4*/ f32 unkC4;
+};
+
+struct Struct8032D000
+{
+    u32 unk0;
+    Vec3f unk4;
+    //u32 unk10;
+    u8 filler10[2];
+    s16 unk12;
 };
 
 #endif

@@ -39,6 +39,7 @@ SECTIONS
       build/asm/rendering.o(.text);
       build/asm/resource_meter.o(.text);
       build/asm/decompress.o(.text);
+      build/src/camera.o(.text);
       build/asm/camera.o(.text);
       build/asm/object_list_processor.o(.text);
       build/asm/level_functions.o(.text);
@@ -64,12 +65,16 @@ SECTIONS
       build/asm/libultra.o(.text);
       /* data */
       build/data/data.o(.data);
+      build/src/camera.o(.data);
+      build/data/camera.data.o(.data);
       build/src/main.o(.rodata);
       build/src/input.o(.rodata);
       build/src/sound_init.o(.rodata);
       build/data/rodata.o(.rodata);
       build/src/mario_actions_airborne.o(.rodata);
-      build/data/rodata_80335A60.o(.rodata);
+      build/data/rodata_80335C70.o(.rodata);
+      build/src/camera.o(.rodata);
+      build/data/camera.rodata.o(.rodata);
    }
 
    /* 0x80378800 0F4210-101998 [D788] */
