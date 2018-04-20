@@ -10108,9 +10108,9 @@ glabel __osAtomicDec
 
 /* 0E5318 8032A318 00000000 */  nop   
 /* 0E531C 8032A31C 00000000 */  nop   
-rsp.boot:
-.incbin "bin/sm64.j.0E5320.rsp.boot.bin"
-rsp.boot_end:
-rsp.graphics:
-.incbin "bin/sm64.j.0E53F0.rsp.graphics.bin"
-rsp.graphics_end:
+
+glabel D_8032A320
+    .incbin "bin/sm64.j.0E5320.rsp.boot.bin"
+
+glabel D_8032A3F0
+    .incbin "bin/sm64.j.0E53F0.rsp.graphics.bin"

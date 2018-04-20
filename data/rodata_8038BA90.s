@@ -40,9 +40,33 @@ glabel D_8038BB7C
 	.incbin "bin/sm64.j.1074A0.bin", 0xEC, 0xC
 
 glabel D_8038BB88
-	.incbin "bin/sm64.j.1074A0.bin", 0xF8, 0x50
+	.incbin "bin/sm64.j.1074A0.bin", 0xF8, 0xC
+
+glabel D_8038BB94
+	.incbin "bin/sm64.j.1074A0.bin", 0x104, 0x4
+
+glabel D_8038BB98
+	.incbin "bin/sm64.j.1074A0.bin", 0x108, 0x4
+
+glabel D_8038BB9C
+	.incbin "bin/sm64.j.1074A0.bin", 0x10C, 0x4
+
+glabel D_8038BBA0
+	.incbin "bin/sm64.j.1074A0.bin", 0x110, 0x4
+
+glabel D_8038BBA4
+	.incbin "bin/sm64.j.1074A0.bin", 0x114, 0x4
+
+glabel D_8038BBA8
+	.incbin "bin/sm64.j.1074A0.bin", 0x118, 0x4
+
+glabel D_8038BBAC
+	.incbin "bin/sm64.j.1074A0.bin", 0x11C, 0x2C
 
 glabel jtbl_8038BBD8
-	.incbin "bin/sm64.j.1074A0.bin", 0x148, 0xB8
+	.incbin "bin/sm64.j.1074A0.bin", 0x148, 0xA8
+
+glabel D_8038BC80
+	.incbin "bin/sm64.j.1074A0.bin", 0x1F0, 0x10
 
 # 0x8038BC90

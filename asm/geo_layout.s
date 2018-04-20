@@ -1409,11 +1409,11 @@ glabel ProcessGeoLayout
 .L8037E144:
 /* 0F9B54 8037E144 3C0B8039 */  lui   $t3, %hi(D_8038BD80) # $t3, 0x8039
 /* 0F9B58 8037E148 8D6BBD80 */  lw    $t3, %lo(D_8038BD80)($t3)
-/* 0F9B5C 8037E14C 3C198039 */  lui   $t9, %hi(D_8038B810)
+/* 0F9B5C 8037E14C 3C198039 */  lui   $t9, %hi(GeoLayoutJumpTable)
 /* 0F9B60 8037E150 916C0000 */  lbu   $t4, ($t3)
 /* 0F9B64 8037E154 000C6880 */  sll   $t5, $t4, 2
 /* 0F9B68 8037E158 032DC821 */  addu  $t9, $t9, $t5
-/* 0F9B6C 8037E15C 8F39B810 */  lw    $t9, %lo(D_8038B810)($t9)
+/* 0F9B6C 8037E15C 8F39B810 */  lw    $t9, %lo(GeoLayoutJumpTable)($t9)
 /* 0F9B70 8037E160 0320F809 */  jalr  $t9
 /* 0F9B74 8037E164 00000000 */  nop   
 /* 0F9B78 8037E168 3C0E8039 */  lui   $t6, %hi(D_8038BD80) # $t6, 0x8039

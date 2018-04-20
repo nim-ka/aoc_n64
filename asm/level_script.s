@@ -2587,10 +2587,10 @@ glabel LevelScriptLoad
 /* 0FC010 80380600 3C198039 */  lui   $t9, %hi(D_8038BE28) # $t9, 0x8039
 /* 0FC014 80380604 8F39BE28 */  lw    $t9, %lo(D_8038BE28)($t9)
 /* 0FC018 80380608 93280000 */  lbu   $t0, ($t9)
-/* 0FC01C 8038060C 3C198039 */  lui   $t9, %hi(D_8038B8B8)
+/* 0FC01C 8038060C 3C198039 */  lui   $t9, %hi(LevelScriptJumpTable)
 /* 0FC020 80380610 00084880 */  sll   $t1, $t0, 2
 /* 0FC024 80380614 0329C821 */  addu  $t9, $t9, $t1
-/* 0FC028 80380618 8F39B8B8 */  lw    $t9, %lo(D_8038B8B8)($t9)
+/* 0FC028 80380618 8F39B8B8 */  lw    $t9, %lo(LevelScriptJumpTable)($t9)
 /* 0FC02C 8038061C 0320F809 */  jalr  $t9
 /* 0FC030 80380620 00000000 */  nop   
 /* 0FC034 80380624 3C0A8039 */  lui   $t2, %hi(D_8038BE20) # $t2, 0x8039

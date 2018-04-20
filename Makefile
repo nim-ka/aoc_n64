@@ -38,7 +38,7 @@ CC_CHECK := gcc -m32 -fsyntax-only -funsigned-char -I include -std=c99 -Wall -We
 ASFLAGS := -march=vr4300 -I include
 CFLAGS  := -Wab,-r4300_mul -mips2 -non_shared -G 0 -Xcpluscomm -Xfullwarn -g -I include
 
-LDFLAGS = undefined_syms.txt -T $(LD_SCRIPT) -Map $(BUILD_DIR)/sm64.map --no-check-sections
+LDFLAGS = -T sym_bss.txt -T undefined_syms.txt -T $(LD_SCRIPT) -Map $(BUILD_DIR)/sm64.map --no-check-sections
 
 ####################### Other Tools #########################
 
@@ -100,7 +100,7 @@ $(BUILD_DIR)/%.o: %.c
 $(BUILD_DIR)/%.o: %.s
 	$(AS) $(ASFLAGS) -o $@ $<
 
-$(BUILD_DIR)/$(TARGET).elf: $(O_FILES) $(LD_SCRIPT)
+$(BUILD_DIR)/$(TARGET).elf: $(O_FILES) $(LD_SCRIPT) sym_bss.txt undefined_syms.txt
 	$(LD) $(LDFLAGS) -o $@ $(O_FILES) $(LIBS)
 
 $(BUILD_DIR)/$(TARGET).bin: $(BUILD_DIR)/$(TARGET).elf

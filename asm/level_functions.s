@@ -9350,9 +9350,9 @@ glabel ActionMrIParticle1
 glabel BehMrIParticleLoop
 /* 060230 802A5230 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 060234 802A5234 AFBF0014 */  sw    $ra, 0x14($sp)
-/* 060238 802A5238 3C048033 */  lui   $a0, %hi(D_8032F10C) # $a0, 0x8033
+/* 060238 802A5238 3C048033 */  lui   $a0, %hi(TableMrIParticleActions) # $a0, 0x8033
 /* 06023C 802A523C 0C0A8DA2 */  jal   func_802A3688
-/* 060240 802A5240 2484F10C */   addiu $a0, %lo(D_8032F10C) # addiu $a0, $a0, -0xef4
+/* 060240 802A5240 2484F10C */   addiu $a0, %lo(TableMrIParticleActions) # addiu $a0, $a0, -0xef4
 /* 060244 802A5244 10000001 */  b     .L802A524C
 /* 060248 802A5248 00000000 */   nop   
 .L802A524C:
@@ -10519,9 +10519,9 @@ glabel BehMrILoop
 /* 061328 802A6328 24A5F124 */  addiu $a1, %lo(D_8032F124) # addiu $a1, $a1, -0xedc
 /* 06132C 802A632C 0C0A8B3F */  jal   func_802A2CFC
 /* 061330 802A6330 8C84FDF0 */   lw    $a0, %lo(gCurrentObject)($a0)
-/* 061334 802A6334 3C048033 */  lui   $a0, %hi(D_8032F114) # $a0, 0x8033
+/* 061334 802A6334 3C048033 */  lui   $a0, %hi(TableMrIActions) # $a0, 0x8033
 /* 061338 802A6338 0C0A8DA2 */  jal   func_802A3688
-/* 06133C 802A633C 2484F114 */   addiu $a0, %lo(D_8032F114) # addiu $a0, $a0, -0xeec
+/* 06133C 802A633C 2484F114 */   addiu $a0, %lo(TableMrIActions) # addiu $a0, $a0, -0xeec
 /* 061340 802A6340 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 061344 802A6344 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
 /* 061348 802A6348 24010003 */  li    $at, 3
@@ -10943,9 +10943,9 @@ glabel ActionActivateCapSwitch3
 glabel BehActivateCapSwitchLoop
 /* 06190C 802A690C 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 061910 802A6910 AFBF0014 */  sw    $ra, 0x14($sp)
-/* 061914 802A6914 3C048033 */  lui   $a0, %hi(D_8032F14C) # $a0, 0x8033
+/* 061914 802A6914 3C048033 */  lui   $a0, %hi(TableCapSwitchActions) # $a0, 0x8033
 /* 061918 802A6918 0C0A8DA2 */  jal   func_802A3688
-/* 06191C 802A691C 2484F14C */   addiu $a0, %lo(D_8032F14C) # addiu $a0, $a0, -0xeb4
+/* 06191C 802A691C 2484F14C */   addiu $a0, %lo(TableCapSwitchActions) # addiu $a0, $a0, -0xeb4
 /* 061920 802A6920 10000001 */  b     .L802A6928
 /* 061924 802A6924 00000000 */   nop   
 .L802A6928:
@@ -11962,9 +11962,9 @@ glabel func_802A7748
 /* 06277C 802A777C 0C0A87A7 */  jal   MoveObj2
 /* 062780 802A7780 00000000 */   nop   
 .L802A7784:
-/* 062784 802A7784 3C048033 */  lui   $a0, %hi(D_8032F15C) # $a0, 0x8033
+/* 062784 802A7784 3C048033 */  lui   $a0, %hi(TableKingBobombActions) # $a0, 0x8033
 /* 062788 802A7788 0C0A8DA2 */  jal   func_802A3688
-/* 06278C 802A778C 2484F15C */   addiu $a0, %lo(D_8032F15C) # addiu $a0, $a0, -0xea4
+/* 06278C 802A778C 2484F15C */   addiu $a0, %lo(TableKingBobombActions) # addiu $a0, $a0, -0xea4
 /* 062790 802A7790 3C048033 */  lui   $a0, %hi(D_8032F180) # $a0, 0x8033
 /* 062794 802A7794 0C0B2558 */  jal   func_802C9560
 /* 062798 802A7798 2484F180 */   addiu $a0, %lo(D_8032F180) # addiu $a0, $a0, -0xe80
@@ -13408,9 +13408,9 @@ glabel ActionOpenedCannon3
 glabel BehOpenedCannonLoop
 /* 063C24 802A8C24 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 063C28 802A8C28 AFBF0014 */  sw    $ra, 0x14($sp)
-/* 063C2C 802A8C2C 3C048033 */  lui   $a0, %hi(D_8032F1E0) # $a0, 0x8033
+/* 063C2C 802A8C2C 3C048033 */  lui   $a0, %hi(TableOpenedCannonActions) # $a0, 0x8033
 /* 063C30 802A8C30 0C0A8DA2 */  jal   func_802A3688
-/* 063C34 802A8C34 2484F1E0 */   addiu $a0, %lo(D_8032F1E0) # addiu $a0, $a0, -0xe20
+/* 063C34 802A8C34 2484F1E0 */   addiu $a0, %lo(TableOpenedCannonActions) # addiu $a0, $a0, -0xe20
 /* 063C38 802A8C38 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 063C3C 802A8C3C 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
 /* 063C40 802A8C40 8DCF00F8 */  lw    $t7, 0xf8($t6)
@@ -14233,9 +14233,9 @@ glabel func_802A97B8
 /* 0647BC 802A97BC AFBF0014 */  sw    $ra, 0x14($sp)
 /* 0647C0 802A97C0 0C0A86DE */  jal   MoveRelated
 /* 0647C4 802A97C4 00000000 */   nop   
-/* 0647C8 802A97C8 3C048033 */  lui   $a0, %hi(D_8032F238) # $a0, 0x8033
+/* 0647C8 802A97C8 3C048033 */  lui   $a0, %hi(TableChuckyaActions) # $a0, 0x8033
 /* 0647CC 802A97CC 0C0A8DA2 */  jal   func_802A3688
-/* 0647D0 802A97D0 2484F238 */   addiu $a0, %lo(D_8032F238) # addiu $a0, $a0, -0xdc8
+/* 0647D0 802A97D0 2484F238 */   addiu $a0, %lo(TableChuckyaActions) # addiu $a0, $a0, -0xdc8
 /* 0647D4 802A97D4 0C0A86E8 */  jal   MoveObj
 /* 0647D8 802A97D8 2404FFE2 */   li    $a0, -30
 /* 0647DC 802A97DC 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
@@ -16642,9 +16642,9 @@ glabel ActionCoinInsideBoo0
 glabel BehCoinInsideBooLoop
 /* 0669F4 802AB9F4 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 0669F8 802AB9F8 AFBF0014 */  sw    $ra, 0x14($sp)
-/* 0669FC 802AB9FC 3C048033 */  lui   $a0, %hi(D_8032F2C4) # $a0, 0x8033
+/* 0669FC 802AB9FC 3C048033 */  lui   $a0, %hi(TableCoinInsideBooActions) # $a0, 0x8033
 /* 066A00 802ABA00 0C0A8DA2 */  jal   func_802A3688
-/* 066A04 802ABA04 2484F2C4 */   addiu $a0, %lo(D_8032F2C4) # addiu $a0, $a0, -0xd3c
+/* 066A04 802ABA04 2484F2C4 */   addiu $a0, %lo(TableCoinInsideBooActions) # addiu $a0, $a0, -0xd3c
 /* 066A08 802ABA08 10000001 */  b     .L802ABA10
 /* 066A0C 802ABA0C 00000000 */   nop   
 .L802ABA10:
@@ -17820,9 +17820,9 @@ glabel ActionGrindelThwomp0
 glabel BehGrindelThwompLoop
 /* 067AAC 802ACAAC 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 067AB0 802ACAB0 AFBF0014 */  sw    $ra, 0x14($sp)
-/* 067AB4 802ACAB4 3C048033 */  lui   $a0, %hi(D_8032F338) # $a0, 0x8033
+/* 067AB4 802ACAB4 3C048033 */  lui   $a0, %hi(TableGrindelThwompActions) # $a0, 0x8033
 /* 067AB8 802ACAB8 0C0A8DA2 */  jal   func_802A3688
-/* 067ABC 802ACABC 2484F338 */   addiu $a0, %lo(D_8032F338) # addiu $a0, $a0, -0xcc8
+/* 067ABC 802ACABC 2484F338 */   addiu $a0, %lo(TableGrindelThwompActions) # addiu $a0, $a0, -0xcc8
 /* 067AC0 802ACAC0 10000001 */  b     .L802ACAC8
 /* 067AC4 802ACAC4 00000000 */   nop   
 .L802ACAC8:
@@ -18196,9 +18196,9 @@ glabel ActionTumblingBridge0
 glabel BehTumblingBridgeLoop
 /* 067FF0 802ACFF0 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 067FF4 802ACFF4 AFBF0014 */  sw    $ra, 0x14($sp)
-/* 067FF8 802ACFF8 3C048033 */  lui   $a0, %hi(D_8032F37C) # $a0, 0x8033
+/* 067FF8 802ACFF8 3C048033 */  lui   $a0, %hi(TableTumblingBridgeActions) # $a0, 0x8033
 /* 067FFC 802ACFFC 0C0A8DA2 */  jal   func_802A3688
-/* 068000 802AD000 2484F37C */   addiu $a0, %lo(D_8032F37C) # addiu $a0, $a0, -0xc84
+/* 068000 802AD000 2484F37C */   addiu $a0, %lo(TableTumblingBridgeActions) # addiu $a0, $a0, -0xc84
 /* 068004 802AD004 10000001 */  b     .L802AD00C
 /* 068008 802AD008 00000000 */   nop   
 .L802AD00C:
@@ -18682,9 +18682,9 @@ glabel BehElevatorInit
 glabel BehElevatorLoop
 /* 0686CC 802AD6CC 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 0686D0 802AD6D0 AFBF0014 */  sw    $ra, 0x14($sp)
-/* 0686D4 802AD6D4 3C048033 */  lui   $a0, %hi(D_8032F3B8) # $a0, 0x8033
+/* 0686D4 802AD6D4 3C048033 */  lui   $a0, %hi(TableElevatorActions) # $a0, 0x8033
 /* 0686D8 802AD6D8 0C0A8DA2 */  jal   func_802A3688
-/* 0686DC 802AD6DC 2484F3B8 */   addiu $a0, %lo(D_8032F3B8) # addiu $a0, $a0, -0xc48
+/* 0686DC 802AD6DC 2484F3B8 */   addiu $a0, %lo(TableElevatorActions) # addiu $a0, $a0, -0xc48
 /* 0686E0 802AD6E0 10000001 */  b     .L802AD6E8
 /* 0686E4 802AD6E4 00000000 */   nop   
 .L802AD6E8:
@@ -19542,9 +19542,9 @@ glabel ActionLittleCage3
 glabel BehLittleCageLoop
 /* 0692FC 802AE2FC 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 069300 802AE300 AFBF0014 */  sw    $ra, 0x14($sp)
-/* 069304 802AE304 3C048033 */  lui   $a0, %hi(D_8032F410) # $a0, 0x8033
+/* 069304 802AE304 3C048033 */  lui   $a0, %hi(TableLittleCageActions) # $a0, 0x8033
 /* 069308 802AE308 0C0A8DA2 */  jal   func_802A3688
-/* 06930C 802AE30C 2484F410 */   addiu $a0, %lo(D_8032F410) # addiu $a0, $a0, -0xbf0
+/* 06930C 802AE30C 2484F410 */   addiu $a0, %lo(TableLittleCageActions) # addiu $a0, $a0, -0xbf0
 /* 069310 802AE310 10000001 */  b     .L802AE318
 /* 069314 802AE314 00000000 */   nop   
 .L802AE318:
@@ -23296,9 +23296,9 @@ glabel func_802B18B4
 /* 06C8B8 802B18B8 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 06C8BC 802B18BC 0C0A86DE */  jal   MoveRelated
 /* 06C8C0 802B18C0 00000000 */   nop   
-/* 06C8C4 802B18C4 3C048033 */  lui   $a0, %hi(D_8032F488) # $a0, 0x8033
+/* 06C8C4 802B18C4 3C048033 */  lui   $a0, %hi(TableHeaveHoActions) # $a0, 0x8033
 /* 06C8C8 802B18C8 0C0A8DA2 */  jal   func_802A3688
-/* 06C8CC 802B18CC 2484F488 */   addiu $a0, %lo(D_8032F488) # addiu $a0, $a0, -0xb78
+/* 06C8CC 802B18CC 2484F488 */   addiu $a0, %lo(TableHeaveHoActions) # addiu $a0, $a0, -0xb78
 /* 06C8D0 802B18D0 0C0A86E8 */  jal   MoveObj
 /* 06C8D4 802B18D4 2404FFB2 */   li    $a0, -78
 /* 06C8D8 802B18D8 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
@@ -23793,9 +23793,9 @@ glabel func_802B1F84
 /* 06CFBC 802B1FBC 00000000 */   nop   
 /* 06CFC0 802B1FC0 0C0A86E8 */  jal   MoveObj
 /* 06CFC4 802B1FC4 2404004E */   li    $a0, 78
-/* 06CFC8 802B1FC8 3C048033 */  lui   $a0, %hi(D_8032F4A8) # $a0, 0x8033
+/* 06CFC8 802B1FC8 3C048033 */  lui   $a0, %hi(TableJumpingBoxActions) # $a0, 0x8033
 /* 06CFCC 802B1FCC 0C0A8DA2 */  jal   func_802A3688
-/* 06CFD0 802B1FD0 2484F4A8 */   addiu $a0, %lo(D_8032F4A8) # addiu $a0, $a0, -0xb58
+/* 06CFD0 802B1FD0 2484F4A8 */   addiu $a0, %lo(TableJumpingBoxActions) # addiu $a0, $a0, -0xb58
 /* 06CFD4 802B1FD4 10000001 */  b     .L802B1FDC
 /* 06CFD8 802B1FD8 00000000 */   nop   
 .L802B1FDC:
@@ -24396,9 +24396,9 @@ glabel ActionBetaBooKeyInside0
 glabel BehBetaBooKeyInsideLoop
 /* 06D868 802B2868 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 06D86C 802B286C AFBF0014 */  sw    $ra, 0x14($sp)
-/* 06D870 802B2870 3C048033 */  lui   $a0, %hi(D_8032F4C0) # $a0, 0x8033
+/* 06D870 802B2870 3C048033 */  lui   $a0, %hi(TableBetaBooKeyInsideActions) # $a0, 0x8033
 /* 06D874 802B2874 0C0A8DA2 */  jal   func_802A3688
-/* 06D878 802B2878 2484F4C0 */   addiu $a0, %lo(D_8032F4C0) # addiu $a0, $a0, -0xb40
+/* 06D878 802B2878 2484F4C0 */   addiu $a0, %lo(TableBetaBooKeyInsideActions) # addiu $a0, $a0, -0xb40
 /* 06D87C 802B287C 10000001 */  b     .L802B2884
 /* 06D880 802B2880 00000000 */   nop   
 .L802B2884:
@@ -25155,9 +25155,9 @@ glabel ActionBulletBill4
 glabel BehBulletBillLoop
 /* 06E340 802B3340 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 06E344 802B3344 AFBF0014 */  sw    $ra, 0x14($sp)
-/* 06E348 802B3348 3C048033 */  lui   $a0, %hi(D_8032F4DC) # $a0, 0x8033
+/* 06E348 802B3348 3C048033 */  lui   $a0, %hi(TableBulletBillActions) # $a0, 0x8033
 /* 06E34C 802B334C 0C0A8DA2 */  jal   func_802A3688
-/* 06E350 802B3350 2484F4DC */   addiu $a0, %lo(D_8032F4DC) # addiu $a0, $a0, -0xb24
+/* 06E350 802B3350 2484F4DC */   addiu $a0, %lo(TableBulletBillActions) # addiu $a0, $a0, -0xb24
 /* 06E354 802B3354 0C0A9340 */  jal   func_802A4D00
 /* 06E358 802B3358 00000000 */   nop   
 /* 06E35C 802B335C 10400005 */  beqz  $v0, .L802B3374
@@ -25274,9 +25274,9 @@ glabel ActionBowserTailAnchor2
 glabel BehBowserTailAnchorLoop
 /* 06E4D4 802B34D4 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 06E4D8 802B34D8 AFBF0014 */  sw    $ra, 0x14($sp)
-/* 06E4DC 802B34DC 3C048033 */  lui   $a0, %hi(D_8032F4F0) # $a0, 0x8033
+/* 06E4DC 802B34DC 3C048033 */  lui   $a0, %hi(TableBowserTailAnchorActions) # $a0, 0x8033
 /* 06E4E0 802B34E0 0C0A8DA2 */  jal   func_802A3688
-/* 06E4E4 802B34E4 2484F4F0 */   addiu $a0, %lo(D_8032F4F0) # addiu $a0, $a0, -0xb10
+/* 06E4E4 802B34E4 2484F4F0 */   addiu $a0, %lo(TableBowserTailAnchorActions) # addiu $a0, $a0, -0xb10
 /* 06E4E8 802B34E8 3C0142B4 */  lui   $at, 0x42b4
 /* 06E4EC 802B34EC 3C0E8036 */  li    $t6, 0x80360000 # 0.000000
 /* 06E4F0 802B34F0 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
@@ -28973,9 +28973,9 @@ glabel func_802B688C
 /* 0718BC 802B68BC A700010E */  sh    $zero, 0x10e($t8)
 /* 0718C0 802B68C0 0C0A86DE */  jal   MoveRelated
 /* 0718C4 802B68C4 00000000 */   nop   
-/* 0718C8 802B68C8 3C048033 */  lui   $a0, %hi(D_8032F568) # $a0, 0x8033
+/* 0718C8 802B68C8 3C048033 */  lui   $a0, %hi(TableBowserActions) # $a0, 0x8033
 /* 0718CC 802B68CC 0C0A8DA2 */  jal   func_802A3688
-/* 0718D0 802B68D0 2484F568 */   addiu $a0, %lo(D_8032F568) # addiu $a0, $a0, -0xa98
+/* 0718D0 802B68D0 2484F568 */   addiu $a0, %lo(TableBowserActions) # addiu $a0, $a0, -0xa98
 /* 0718D4 802B68D4 0C0A86E8 */  jal   MoveObj
 /* 0718D8 802B68D8 2404FFB2 */   li    $a0, -78
 /* 0718DC 802B68DC 0C0AD9F1 */  jal   func_802B67C4
@@ -30187,9 +30187,9 @@ glabel ActionFallingBowserPlatform2
 glabel BehFallingBowserPlatformLoop
 /* 072A2C 802B7A2C 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 072A30 802B7A30 AFBF0014 */  sw    $ra, 0x14($sp)
-/* 072A34 802B7A34 3C048033 */  lui   $a0, %hi(D_8032F71C) # $a0, 0x8033
+/* 072A34 802B7A34 3C048033 */  lui   $a0, %hi(TableFallingBowserPlatformActions) # $a0, 0x8033
 /* 072A38 802B7A38 0C0A8DA2 */  jal   func_802A3688
-/* 072A3C 802B7A3C 2484F71C */   addiu $a0, %lo(D_8032F71C) # addiu $a0, $a0, -0x8e4
+/* 072A3C 802B7A3C 2484F71C */   addiu $a0, %lo(TableFallingBowserPlatformActions) # addiu $a0, $a0, -0x8e4
 /* 072A40 802B7A40 10000001 */  b     .L802B7A48
 /* 072A44 802B7A44 00000000 */   nop   
 .L802B7A48:
@@ -33841,9 +33841,9 @@ glabel func_802BAE40
 /* 075E44 802BAE44 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 075E48 802BAE48 0C0A86DE */  jal   MoveRelated
 /* 075E4C 802BAE4C 00000000 */   nop   
-/* 075E50 802BAE50 3C048033 */  lui   $a0, %hi(D_8032F840) # $a0, 0x8033
+/* 075E50 802BAE50 3C048033 */  lui   $a0, %hi(TableUkikiOpenCageActions) # $a0, 0x8033
 /* 075E54 802BAE54 0C0A8DA2 */  jal   func_802A3688
-/* 075E58 802BAE58 2484F840 */   addiu $a0, %lo(D_8032F840) # addiu $a0, $a0, -0x7c0
+/* 075E58 802BAE58 2484F840 */   addiu $a0, %lo(TableUkikiOpenCageActions) # addiu $a0, $a0, -0x7c0
 /* 075E5C 802BAE5C 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 075E60 802BAE60 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
 /* 075E64 802BAE64 24010004 */  li    $at, 4
@@ -34871,9 +34871,9 @@ glabel ActionRotatingCwFireBars3
 glabel BehRotatingCwFireBarsLoop
 /* 076CC0 802BBCC0 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 076CC4 802BBCC4 AFBF0014 */  sw    $ra, 0x14($sp)
-/* 076CC8 802BBCC8 3C048033 */  lui   $a0, %hi(D_8032F8D0) # $a0, 0x8033
+/* 076CC8 802BBCC8 3C048033 */  lui   $a0, %hi(TableRotatingCwFireBarsActions) # $a0, 0x8033
 /* 076CCC 802BBCCC 0C0A8DA2 */  jal   func_802A3688
-/* 076CD0 802BBCD0 2484F8D0 */   addiu $a0, %lo(D_8032F8D0) # addiu $a0, $a0, -0x730
+/* 076CD0 802BBCD0 2484F8D0 */   addiu $a0, %lo(TableRotatingCwFireBarsActions) # addiu $a0, $a0, -0x730
 /* 076CD4 802BBCD4 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 076CD8 802BBCD8 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
 /* 076CDC 802BBCDC 8DCF0144 */  lw    $t7, 0x144($t6)
@@ -36507,9 +36507,9 @@ glabel ActionToxBox0
 glabel BehToxBoxLoop
 /* 078410 802BD410 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 078414 802BD414 AFBF0014 */  sw    $ra, 0x14($sp)
-/* 078418 802BD418 3C048033 */  lui   $a0, %hi(D_8032F978) # $a0, 0x8033
+/* 078418 802BD418 3C048033 */  lui   $a0, %hi(TableToxBoxActions) # $a0, 0x8033
 /* 07841C 802BD41C 0C0A8DA2 */  jal   func_802A3688
-/* 078420 802BD420 2484F978 */   addiu $a0, %lo(D_8032F978) # addiu $a0, $a0, -0x688
+/* 078420 802BD420 2484F978 */   addiu $a0, %lo(TableToxBoxActions) # addiu $a0, $a0, -0x688
 /* 078424 802BD424 0C0E0E73 */  jal   ProcessCollision
 /* 078428 802BD428 00000000 */   nop   
 /* 07842C 802BD42C 10000001 */  b     .L802BD434
@@ -37071,9 +37071,9 @@ glabel ActionPiranhaPlant24
 glabel BehPiranhaPlant2Loop
 /* 078BD8 802BDBD8 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 078BDC 802BDBDC AFBF0014 */  sw    $ra, 0x14($sp)
-/* 078BE0 802BDBE0 3C048033 */  lui   $a0, %hi(D_8032F9A0) # $a0, 0x8033
+/* 078BE0 802BDBE0 3C048033 */  lui   $a0, %hi(TablePiranhaPlantActions) # $a0, 0x8033
 /* 078BE4 802BDBE4 0C0A8DA2 */  jal   func_802A3688
-/* 078BE8 802BDBE8 2484F9A0 */   addiu $a0, %lo(D_8032F9A0) # addiu $a0, $a0, -0x660
+/* 078BE8 802BDBE8 2484F9A0 */   addiu $a0, %lo(TablePiranhaPlantActions) # addiu $a0, $a0, -0x660
 /* 078BEC 802BDBEC 3C0E8033 */  lui   $t6, %hi(gCurrLevelNum) # $t6, 0x8033
 /* 078BF0 802BDBF0 85CECE98 */  lh    $t6, %lo(gCurrLevelNum)($t6)
 /* 078BF4 802BDBF4 24010018 */  li    $at, 24
@@ -37554,9 +37554,9 @@ glabel BehBowserPuzzlePieceLoop
 /* 079270 802BE270 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 079274 802BE274 0C0AF7CB */  jal   func_802BDF2C
 /* 079278 802BE278 00000000 */   nop   
-/* 07927C 802BE27C 3C048033 */  lui   $a0, %hi(D_8032FBBC) # $a0, 0x8033
+/* 07927C 802BE27C 3C048033 */  lui   $a0, %hi(TableBowserPuzzlePieceActions) # $a0, 0x8033
 /* 079280 802BE280 0C0A8DA2 */  jal   func_802A3688
-/* 079284 802BE284 2484FBBC */   addiu $a0, %lo(D_8032FBBC) # addiu $a0, $a0, -0x444
+/* 079284 802BE284 2484FBBC */   addiu $a0, %lo(TableBowserPuzzlePieceActions) # addiu $a0, $a0, -0x444
 /* 079288 802BE288 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 07928C 802BE28C 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
 /* 079290 802BE290 C5C40164 */  lwc1  $f4, 0x164($t6)
@@ -38094,9 +38094,9 @@ glabel BehTuxiesMotherLoop
 /* 079A0C 802BEA0C A5D80074 */  sh    $t8, 0x74($t6)
 /* 079A10 802BEA10 0C0A86DE */  jal   MoveRelated
 /* 079A14 802BEA14 00000000 */   nop   
-/* 079A18 802BEA18 3C048033 */  lui   $a0, %hi(D_8032FBD8) # $a0, 0x8033
+/* 079A18 802BEA18 3C048033 */  lui   $a0, %hi(TableTuxiesMotherActions) # $a0, 0x8033
 /* 079A1C 802BEA1C 0C0A8DA2 */  jal   func_802A3688
-/* 079A20 802BEA20 2484FBD8 */   addiu $a0, %lo(D_8032FBD8) # addiu $a0, $a0, -0x428
+/* 079A20 802BEA20 2484FBD8 */   addiu $a0, %lo(TableTuxiesMotherActions) # addiu $a0, $a0, -0x428
 /* 079A24 802BEA24 0C0A86E8 */  jal   MoveObj
 /* 079A28 802BEA28 2404FFB2 */   li    $a0, -78
 /* 079A2C 802BEA2C 0C0AF8ED */  jal   func_802BE3B4
@@ -38550,9 +38550,9 @@ glabel func_802BF048
 .L802BF080:
 /* 07A080 802BF080 0C0A86DE */  jal   MoveRelated
 /* 07A084 802BF084 00000000 */   nop   
-/* 07A088 802BF088 3C048033 */  lui   $a0, %hi(D_8032FBE4) # $a0, 0x8033
+/* 07A088 802BF088 3C048033 */  lui   $a0, %hi(TableSmallPenguinActions) # $a0, 0x8033
 /* 07A08C 802BF08C 0C0A8DA2 */  jal   func_802A3688
-/* 07A090 802BF090 2484FBE4 */   addiu $a0, %lo(D_8032FBE4) # addiu $a0, $a0, -0x41c
+/* 07A090 802BF090 2484FBE4 */   addiu $a0, %lo(TableSmallPenguinActions) # addiu $a0, $a0, -0x41c
 /* 07A094 802BF094 0C0A86E8 */  jal   MoveObj
 /* 07A098 802BF098 2404FFB2 */   li    $a0, -78
 /* 07A09C 802BF09C 0C0AF8ED */  jal   func_802BE3B4
@@ -38906,9 +38906,9 @@ glabel ActionFish2
 glabel BehFishLoop
 /* 07A570 802BF570 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 07A574 802BF574 AFBF0014 */  sw    $ra, 0x14($sp)
-/* 07A578 802BF578 3C048033 */  lui   $a0, %hi(D_8032FBFC) # $a0, 0x8033
+/* 07A578 802BF578 3C048033 */  lui   $a0, %hi(TableFishActions) # $a0, 0x8033
 /* 07A57C 802BF57C 0C0A8DA2 */  jal   func_802A3688
-/* 07A580 802BF580 2484FBFC */   addiu $a0, %lo(D_8032FBFC) # addiu $a0, $a0, -0x404
+/* 07A580 802BF580 2484FBFC */   addiu $a0, %lo(TableFishActions) # addiu $a0, $a0, -0x404
 /* 07A584 802BF584 10000001 */  b     .L802BF58C
 /* 07A588 802BF588 00000000 */   nop   
 .L802BF58C:
@@ -39531,9 +39531,9 @@ glabel BehFishGroup2Loop
 /* 07AE80 802BFE80 00000000 */  nop   
 /* 07AE84 802BFE84 E57000F4 */  swc1  $f16, 0xf4($t3)
 .L802BFE88:
-/* 07AE88 802BFE88 3C048033 */  lui   $a0, %hi(D_8032FC08) # $a0, 0x8033
+/* 07AE88 802BFE88 3C048033 */  lui   $a0, %hi(TableFishGroupActions) # $a0, 0x8033
 /* 07AE8C 802BFE8C 0C0A8DA2 */  jal   func_802A3688
-/* 07AE90 802BFE90 2484FC08 */   addiu $a0, %lo(D_8032FC08) # addiu $a0, $a0, -0x3f8
+/* 07AE90 802BFE90 2484FC08 */   addiu $a0, %lo(TableFishGroupActions) # addiu $a0, $a0, -0x3f8
 /* 07AE94 802BFE94 0C0A87A7 */  jal   MoveObj2
 /* 07AE98 802BFE98 00000000 */   nop   
 /* 07AE9C 802BFE9C 3C0C8036 */  lui   $t4, %hi(gCurrentObject) # $t4, 0x8036
@@ -39792,9 +39792,9 @@ glabel ActionBirdChirpChirp3
 glabel BehBirdChirpChirpLoop
 /* 07B214 802C0214 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 07B218 802C0218 AFBF0014 */  sw    $ra, 0x14($sp)
-/* 07B21C 802C021C 3C048033 */  lui   $a0, %hi(D_8032FC14) # $a0, 0x8033
+/* 07B21C 802C021C 3C048033 */  lui   $a0, %hi(TableBirdChirpChirpActions) # $a0, 0x8033
 /* 07B220 802C0220 0C0A8DA2 */  jal   func_802A3688
-/* 07B224 802C0224 2484FC14 */   addiu $a0, %lo(D_8032FC14) # addiu $a0, $a0, -0x3ec
+/* 07B224 802C0224 2484FC14 */   addiu $a0, %lo(TableBirdChirpChirpActions) # addiu $a0, $a0, -0x3ec
 /* 07B228 802C0228 10000001 */  b     .L802C0230
 /* 07B22C 802C022C 00000000 */   nop   
 .L802C0230:
@@ -40246,9 +40246,9 @@ glabel BehCheepCheepLoop
 /* 07B894 802C0894 E50A0128 */  swc1  $f10, 0x128($t0)
 /* 07B898 802C0898 0C0A86DE */  jal   MoveRelated
 /* 07B89C 802C089C 00000000 */   nop   
-/* 07B8A0 802C08A0 3C048033 */  lui   $a0, %hi(D_8032FC24) # $a0, 0x8033
+/* 07B8A0 802C08A0 3C048033 */  lui   $a0, %hi(TableCheepCheepActions) # $a0, 0x8033
 /* 07B8A4 802C08A4 0C0A8DA2 */  jal   func_802A3688
-/* 07B8A8 802C08A8 2484FC24 */   addiu $a0, %lo(D_8032FC24) # addiu $a0, $a0, -0x3dc
+/* 07B8A8 802C08A8 2484FC24 */   addiu $a0, %lo(TableCheepCheepActions) # addiu $a0, $a0, -0x3dc
 /* 07B8AC 802C08AC 0C0A87A7 */  jal   MoveObj2
 /* 07B8B0 802C08B0 00000000 */   nop   
 /* 07B8B4 802C08B4 3C098036 */  lui   $t1, %hi(gCurrentObject) # $t1, 0x8036
@@ -40769,9 +40769,9 @@ glabel BehExclamationBoxLoop
 /* 07C000 802C1000 44816000 */  mtc1  $at, $f12
 /* 07C004 802C1004 0C0A7B2D */  jal   ScaleObject
 /* 07C008 802C1008 00000000 */   nop   
-/* 07C00C 802C100C 3C048033 */  lui   $a0, %hi(D_8032FCC0) # $a0, 0x8033
+/* 07C00C 802C100C 3C048033 */  lui   $a0, %hi(TableExclamationBoxActions) # $a0, 0x8033
 /* 07C010 802C1010 0C0A8DA2 */  jal   func_802A3688
-/* 07C014 802C1014 2484FCC0 */   addiu $a0, %lo(D_8032FCC0) # addiu $a0, $a0, -0x340
+/* 07C014 802C1014 2484FCC0 */   addiu $a0, %lo(TableExclamationBoxActions) # addiu $a0, $a0, -0x340
 /* 07C018 802C1018 10000001 */  b     .L802C1020
 /* 07C01C 802C101C 00000000 */   nop   
 .L802C1020:
@@ -42498,9 +42498,9 @@ glabel BehTweesterLoop
 /* 07D8E0 802C28E0 24A5FCF8 */  addiu $a1, %lo(D_8032FCF8) # addiu $a1, $a1, -0x308
 /* 07D8E4 802C28E4 0C0A8B3F */  jal   func_802A2CFC
 /* 07D8E8 802C28E8 8C84FDF0 */   lw    $a0, %lo(gCurrentObject)($a0)
-/* 07D8EC 802C28EC 3C048033 */  lui   $a0, %hi(D_8032FD08) # $a0, 0x8033
+/* 07D8EC 802C28EC 3C048033 */  lui   $a0, %hi(TableTweesterActions) # $a0, 0x8033
 /* 07D8F0 802C28F0 0C0A8DA2 */  jal   func_802A3688
-/* 07D8F4 802C28F4 2484FD08 */   addiu $a0, %lo(D_8032FD08) # addiu $a0, $a0, -0x2f8
+/* 07D8F4 802C28F4 2484FD08 */   addiu $a0, %lo(TableTweesterActions) # addiu $a0, $a0, -0x2f8
 /* 07D8F8 802C28F8 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 07D8FC 802C28FC 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
 /* 07D900 802C2900 ADC00134 */  sw    $zero, 0x134($t6)
@@ -44021,9 +44021,9 @@ glabel BehBooLoop
 /* 07EE48 802C3E48 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 07EE4C 802C3E4C 0C0A86DE */  jal   MoveRelated
 /* 07EE50 802C3E50 00000000 */   nop   
-/* 07EE54 802C3E54 3C048033 */  lui   $a0, %hi(D_8032FD38) # $a0, 0x8033
+/* 07EE54 802C3E54 3C048033 */  lui   $a0, %hi(TableBooActions) # $a0, 0x8033
 /* 07EE58 802C3E58 0C0A8DA2 */  jal   func_802A3688
-/* 07EE5C 802C3E5C 2484FD38 */   addiu $a0, %lo(D_8032FD38) # addiu $a0, $a0, -0x2c8
+/* 07EE5C 802C3E5C 2484FD38 */   addiu $a0, %lo(TableBooActions) # addiu $a0, $a0, -0x2c8
 /* 07EE60 802C3E60 0C0A86E8 */  jal   MoveObj
 /* 07EE64 802C3E64 2404004E */   li    $a0, 78
 /* 07EE68 802C3E68 0C0B0B5F */  jal   func_802C2D7C
@@ -44530,9 +44530,9 @@ glabel BehBooGivingStarLoop
 /* 07F56C 802C456C E5C800DC */  swc1  $f8, 0xdc($t6)
 /* 07F570 802C4570 0C0A86DE */  jal   MoveRelated
 /* 07F574 802C4574 00000000 */   nop   
-/* 07F578 802C4578 3C048033 */  lui   $a0, %hi(D_8032FD50) # $a0, 0x8033
+/* 07F578 802C4578 3C048033 */  lui   $a0, %hi(TableBooGivingStarActions) # $a0, 0x8033
 /* 07F57C 802C457C 0C0A8DA2 */  jal   func_802A3688
-/* 07F580 802C4580 2484FD50 */   addiu $a0, %lo(D_8032FD50) # addiu $a0, $a0, -0x2b0
+/* 07F580 802C4580 2484FD50 */   addiu $a0, %lo(TableBooGivingStarActions) # addiu $a0, $a0, -0x2b0
 /* 07F584 802C4584 0C0A86E8 */  jal   MoveObj
 /* 07F588 802C4588 2404004E */   li    $a0, 78
 /* 07F58C 802C458C 0C0B0B5F */  jal   func_802C2D7C
@@ -44713,9 +44713,9 @@ glabel BehBooWithCageLoop
 /* 07F7E0 802C47E0 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 07F7E4 802C47E4 0C0A86DE */  jal   MoveRelated
 /* 07F7E8 802C47E8 00000000 */   nop   
-/* 07F7EC 802C47EC 3C048033 */  lui   $a0, %hi(D_8032FD64) # $a0, 0x8033
+/* 07F7EC 802C47EC 3C048033 */  lui   $a0, %hi(TableBooWithCageActions) # $a0, 0x8033
 /* 07F7F0 802C47F0 0C0A8DA2 */  jal   func_802A3688
-/* 07F7F4 802C47F4 2484FD64 */   addiu $a0, %lo(D_8032FD64) # addiu $a0, $a0, -0x29c
+/* 07F7F4 802C47F4 2484FD64 */   addiu $a0, %lo(TableBooWithCageActions) # addiu $a0, $a0, -0x29c
 /* 07F7F8 802C47F8 0C0A86E8 */  jal   MoveObj
 /* 07F7FC 802C47FC 2404004E */   li    $a0, 78
 /* 07F800 802C4800 0C0B0B5F */  jal   func_802C2D7C
@@ -47485,9 +47485,9 @@ glabel BehWhompLoop
 /* 081F08 802C6F08 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 081F0C 802C6F0C 0C0A86DE */  jal   MoveRelated
 /* 081F10 802C6F10 00000000 */   nop   
-/* 081F14 802C6F14 3C048033 */  lui   $a0, %hi(D_8032FD84) # $a0, 0x8033
+/* 081F14 802C6F14 3C048033 */  lui   $a0, %hi(TableWhompActions) # $a0, 0x8033
 /* 081F18 802C6F18 0C0A8DA2 */  jal   func_802A3688
-/* 081F1C 802C6F1C 2484FD84 */   addiu $a0, %lo(D_8032FD84) # addiu $a0, $a0, -0x27c
+/* 081F1C 802C6F1C 2484FD84 */   addiu $a0, %lo(TableWhompActions) # addiu $a0, $a0, -0x27c
 /* 081F20 802C6F20 0C0A86E8 */  jal   MoveObj
 /* 081F24 802C6F24 2404FFEC */   li    $a0, -20
 /* 081F28 802C6F28 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
