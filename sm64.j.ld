@@ -31,7 +31,6 @@ SECTIONS
       build/asm/mario_actions_stationary.o(.text);
       build/asm/mario_actions_moving.o(.text);
       build/src/mario_actions_airborne.o(.text);
-      build/asm/mario_actions_airborne.o(.text);
       build/asm/mario_actions_submerged.o(.text);
       build/asm/mario_actions_object.o(.text);
       build/asm/code_80275C20.o(.text);
@@ -68,6 +67,8 @@ SECTIONS
       build/src/input.o(.rodata);
       build/src/sound_init.o(.rodata);
       build/data/rodata.o(.rodata);
+      build/src/mario_actions_airborne.o(.rodata);
+      build/data/rodata_80335A60.o(.rodata);
    }
 
    /* 0x80378800 0F4210-101998 [D788] */
