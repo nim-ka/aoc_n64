@@ -3,7 +3,7 @@
 
 
 .global rainbow_bonus_level
-.align 4, 0x01
+.align 4, 0
 rainbow_bonus_level:
 .word 0x24181F00, 0x0F9CF54D, 0x15650000, 0x00000000, 0x00520000, beh_pole_grabbing
 .word 0x24181F00, 0xF4A10DEC, 0xF0810000, 0x00000000, 0x00540000, beh_pole_grabbing

@@ -3,7 +3,7 @@
 
 
 .global metal_cap_level
-.align 4, 0x01
+.align 4, 0
 metal_cap_level:
 .word 0x24181F55, 0x0000016B, 0xE8000000, 0x00000000, 0x00010000, beh_activate_cap_switch
 .word 0x24181F00, 0x000001F4, 0xE3330000, 0x00000000, 0x00000000, beh_waterfall_sound_loop

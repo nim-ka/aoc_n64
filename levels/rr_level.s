@@ -3,7 +3,7 @@
 
 
 .global rr_level
-.align 4, 0x01
+.align 4, 0
 rr_level:
 .word 0x24181F36, 0xF2B8F80A, 0x19A40000, 0x00000000, 0x02560000, beh_sliding_platform2
 .word 0x24181F36, 0xF584FA71, 0xFFDC0000, 0x00000000, 0x02590000, beh_sliding_platform2

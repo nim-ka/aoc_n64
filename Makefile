@@ -84,11 +84,14 @@ endif
 clean:
 	$(RM) -r $(BUILD_DIR)
 
-$(MIO0_DIR)/%.mio0: $(MIO0_DIR)/%.bin
+#$(MIO0_DIR)/%.mio0: $(MIO0_DIR)/%.bin
+#	$(MIO0TOOL) $< $@
+
+$(BUILD_DIR)/mio0/%.mio0: bin/%.bin
 	$(MIO0TOOL) $< $@
 
 $(BUILD_DIR):
-	mkdir $(BUILD_DIR) $(addprefix $(BUILD_DIR)/,$(SRC_DIRS) $(ASM_DIRS) $(DATA_DIRS))
+	mkdir $(BUILD_DIR) $(addprefix $(BUILD_DIR)/,$(SRC_DIRS) $(ASM_DIRS) $(DATA_DIRS)) $(MIO0_DIR)
 
 # Make sure build directory exists before compiling objects
 $(O_FILES): | $(BUILD_DIR)
@@ -97,7 +100,7 @@ $(BUILD_DIR)/%.o: %.c
 	@$(CC_CHECK) $<
 	$(CC) -c $(CFLAGS) -o $@ $<
 
-$(BUILD_DIR)/%.o: %.s
+$(BUILD_DIR)/%.o: %.s $(MIO0_FILES)
 	$(AS) $(ASFLAGS) -o $@ $<
 
 $(BUILD_DIR)/$(TARGET).elf: $(O_FILES) $(LD_SCRIPT) sym_bss.txt undefined_syms.txt
@@ -123,3 +126,4 @@ load: $(TARGET).z64
 	$(LOADER) $(LOADER_FLAGS) $<
 
 .PHONY: all clean default diff test load
+.PRECIOUS: $(BUILD_DIR)/mio0/%.mio0

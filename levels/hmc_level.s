@@ -3,7 +3,7 @@
 
 
 .global hmc_level
-.align 4, 0x01
+.align 4, 0
 hmc_level:
 .word 0x24181F90, 0x1348FE9B, 0xEFCE0000, 0x00000000, 0x00000000, beh_burning
 .word 0x24181F90, 0x139AFE34, 0xEA490000, 0x00000000, 0x00000000, beh_burning

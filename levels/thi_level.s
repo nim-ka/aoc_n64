@@ -3,7 +3,7 @@
 
 
 .global thi_level
-.align 4, 0x01
+.align 4, 0
 thi_level:
 .word 0x07040000
 .word 0x24183F00, 0x0000FD44, 0xEE6C0000, 0x00000000, 0x03000000, beh_hidden_star

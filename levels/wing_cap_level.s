@@ -3,7 +3,7 @@
 
 
 .global wing_cap_level
-.align 4, 0x01
+.align 4, 0
 wing_cap_level:
 .word 0x24181F55, 0x0000F801, 0x000A0000, 0x00000000, 0x00000000, beh_activate_cap_switch
 .word 0x07040000

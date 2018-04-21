@@ -3,7 +3,7 @@
 
 
 .global bits_platform_level
-.align 4, 0x01
+.align 4, 0
 bits_platform_level:
 .word 0x24181F36, 0x00000000, 0x00000000, 0x00000000, 0x00010000, beh_falling_bowser_platform
 .word 0x24181F37, 0x00000000, 0x00000000, 0x00000000, 0x00020000, beh_falling_bowser_platform

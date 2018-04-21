@@ -3,7 +3,7 @@
 
 
 .global inside_castle_level
-.align 4, 0x01
+.align 4, 0
 inside_castle_level:
 .word 0x26080010, 0x01000000
 .word 0x26080110, 0x01010000

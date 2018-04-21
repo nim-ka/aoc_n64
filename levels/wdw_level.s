@@ -3,7 +3,7 @@
 
 
 .global wdw_level
-.align 4, 0x01
+.align 4, 0
 wdw_level:
 .word 0x24181F36, 0x0D3E0000, 0x01800000, 0x00B40000, 0x00000000, beh_square_floating_platform
 .word 0x24181F36, 0xFD010180, 0x0E000000, 0x00000000, 0x00000000, beh_square_floating_platform

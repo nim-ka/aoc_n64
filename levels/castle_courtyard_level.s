@@ -3,7 +3,7 @@
 
 
 .global castle_courtyard_level
-.align 4, 0x01
+.align 4, 0
 castle_courtyard_level:
 .word 0x24181F00, 0x000000C8, 0xF98C0000, 0x00000000, 0x00000000, beh_ambiant_sounds
 .word 0x24181F00, 0xF5740000, 0xF98C0000, 0x00000000, 0x00000000, beh_birds_sound_loop

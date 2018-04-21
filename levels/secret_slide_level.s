@@ -3,7 +3,7 @@
 
 
 .global secret_slide_level
-.align 4, 0x01
+.align 4, 0
 secret_slide_level:
 .word 0x1B040000
 .word 0x180C0007, secret_slide_segment7, secret_slide_segment7_end

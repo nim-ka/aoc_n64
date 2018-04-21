@@ -3,7 +3,7 @@
 
 
 .global ccm_level
-.align 4, 0x01
+.align 4, 0
 ccm_level:
 .word 0x24181F36, 0x0213EEB2, 0x191A0000, 0x00000000, 0x07120000, beh_platform_on_tracks
 .word 0x07040000

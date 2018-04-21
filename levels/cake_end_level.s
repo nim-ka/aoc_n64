@@ -3,7 +3,7 @@
 
 
 .global cake_end_level
-.align 4, 0x01
+.align 4, 0
 cake_end_level:
 .word 0x1B040000
 .word 0x180C0007, cake_end, cake_end_end

@@ -1,7 +1,7 @@
 # level script game_over_level from 268020-268520
 .include "macros.inc"
 .global game_over_level
-.align 4, 0x01
+.align 4, 0
 game_over_level:
 .word 0x1B040000
 .word 0x16100000, run_press_start_demo_timer, 0x0021D7D0, 0x268020

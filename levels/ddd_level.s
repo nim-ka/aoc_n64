@@ -3,7 +3,7 @@
 
 
 .global ddd_level
-.align 4, 0x01
+.align 4, 0
 ddd_level:
 .word 0x24181F56, 0xF401FEF2, 0x00000000, 0x00000000, 0x00000000, beh_sushi_shark
 .word 0x24181F56, 0xF401EF52, 0x00000000, 0x00000000, 0x00000000, beh_sushi_shark

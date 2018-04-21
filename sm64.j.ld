@@ -151,14 +151,12 @@ SECTIONS
 
    /* load MIO0 and level data at 0x001076A0 */
    .mio0 0x001076A0 : AT(0x1076A0) {
-      FILL (0x01) /* fill unused with 0x01 */
       build/data/level_actors.o(.mio0);
       . = ALIGN(0x10);
    }
 
    /* use segmented addressing for behaviors */
    .behavior 0x13000000 : AT(0x218130) {
-      FILL (0x01) /* fill unused with 0x01 */
       build/data/behavior_data.o(.behavior);
       behavior_length = . - 0x13000000;
    }

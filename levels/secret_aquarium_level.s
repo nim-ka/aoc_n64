@@ -3,7 +3,7 @@
 
 
 .global secret_aquarium_level
-.align 4, 0x01
+.align 4, 0
 secret_aquarium_level:
 .word 0x24181F00, 0x0000FC18, 0x00000000, 0x00000000, 0x00000000, beh_large_fish_group
 .word 0x24181F00, 0x0000FC18, 0x00000000, 0x00000000, 0x00020000, beh_large_fish_group

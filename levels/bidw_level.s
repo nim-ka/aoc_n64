@@ -3,7 +3,7 @@
 
 
 .global bidw_level
-.align 4, 0x01
+.align 4, 0
 bidw_level:
 .word 0x24181F36, 0xF852F3AE, 0x0E020000, 0x00000000, 0x00000000, beh_squarish_path_moving
 .word 0x24181F36, 0xFAB8F3AE, 0x10680000, 0x00000000, 0x00020000, beh_squarish_path_moving

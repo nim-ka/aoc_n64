@@ -3,7 +3,7 @@
 
 
 .global bits_level
-.align 4, 0x01
+.align 4, 0
 bits_level:
 .word 0x24181F36, 0xF6BEEE53, 0x00000000, 0x00000000, 0x00100000, beh_sliding_platform2
 .word 0x24181F37, 0xF5CD0DD8, 0xFC780000, 0x00000000, 0x00CF0000, beh_sliding_platform2

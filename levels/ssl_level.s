@@ -3,7 +3,7 @@
 
 
 .global ssl_level
-.align 4, 0x01
+.align 4, 0
 ssl_level:
 .word 0x24181F3A, 0xF8010600, 0xFC010000, 0x00000000, 0x00000000, beh_pyramid_top
 .word 0x07040000

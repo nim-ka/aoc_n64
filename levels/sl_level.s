@@ -3,7 +3,7 @@
 
 
 .global sl_level
-.align 4, 0x01
+.align 4, 0
 sl_level:
 .word 0x24183F7A, 0x02BC1194, 0x02B20000, 0x00000000, 0x00000000, beh_collect_star
 .word 0x24183F7A, 0x10FE0546, 0x10FE0000, 0x00000000, 0x02000000, beh_collect_star

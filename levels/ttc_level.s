@@ -3,7 +3,7 @@
 
 
 .global ttc_level
-.align 4, 0x01
+.align 4, 0
 ttc_level:
 .word 0x24181F00, 0xFBC8FCB8, 0x06250000, 0x00000000, 0x00560000, beh_pole_grabbing
 .word 0x24181F58, 0x077F182F, 0x077F0000, 0x00E10000, 0x00000000, beh_thwomp_2

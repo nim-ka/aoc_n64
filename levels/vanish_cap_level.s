@@ -3,7 +3,7 @@
 
 
 .global vanish_cap_level
-.align 4, 0x01
+.align 4, 0
 vanish_cap_level:
 .word 0x24181F36, 0x009AF881, 0xE7900000, 0x010E0000, 0x00070000, beh_solid_moving
 .word 0x24181F36, 0xF801F2CE, 0xF8010000, 0x00000000, 0x00070000, beh_solid_moving

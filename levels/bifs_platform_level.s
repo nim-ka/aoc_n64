@@ -3,7 +3,7 @@
 
 
 .global bifs_platform_level
-.align 4, 0x01
+.align 4, 0
 bifs_platform_level:
 .word 0x24181F36, 0x00000000, 0x00000000, 0x005A0000, 0x00000000, beh_tilting_bowser_lava_platform
 .word 0x24181FB3, 0x00040531, 0x0E0E0000, 0x005A0000, 0x00000000, beh_bowser_bomb

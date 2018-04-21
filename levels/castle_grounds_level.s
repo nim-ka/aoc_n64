@@ -3,7 +3,7 @@
 
 
 .global castle_grounds_level
-.align 4, 0x01
+.align 4, 0
 castle_grounds_level:
 .word 0x26080006, 0x01000000
 .word 0x26080106, 0x01010000

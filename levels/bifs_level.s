@@ -3,7 +3,7 @@
 
 
 .global bifs_level
-.align 4, 0x01
+.align 4, 0
 bifs_level:
 .word 0x24181F36, 0xE99BF401, 0x00000000, 0x00000000, 0x07330000, beh_platform_on_tracks
 .word 0x24181F37, 0xF867F367, 0xFD350000, 0x00000000, 0x00000000, beh_tilting_inverted_pyramid

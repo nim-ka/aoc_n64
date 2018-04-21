@@ -3,7 +3,7 @@
 
 
 .global bidw_platform_level
-.align 4, 0x01
+.align 4, 0
 bidw_platform_level:
 .word 0x1B040000
 .word 0x180C0007, bidw_platform_segment7, bidw_platform_segment7_end

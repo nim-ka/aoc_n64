@@ -1,7 +1,7 @@
 # level script main_menu_level from 2A42A0-2A4730
 
 .global main_menu_level
-.align 4, 0x01
+.align 4, 0
 main_menu_level:
 .word 0x1B040000
 .word 0x16100000, run_press_start_demo_timer, 0x0021D7D0, 0x268020

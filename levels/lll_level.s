@@ -3,7 +3,7 @@
 
 
 .global lll_level
-.align 4, 0x01
+.align 4, 0
 lll_level:
 .word 0x24181F03, 0x0F000000, 0xEA010000, 0x00000000, 0x00000000, beh_static_object
 .word 0x24181F04, 0x13800000, 0xFD810000, 0x00000000, 0x00000000, beh_static_object

@@ -3,7 +3,7 @@
 
 
 .global bob_level
-.align 4, 0x01
+.align 4, 0
 bob_level:
 .word 0x24181F36, 0x05B00300, 0x01BE0000, 0x01460000, 0x00000000, beh_chain_chomp_freed_explosion
 .word 0x24181F37, 0xF70102CD, 0x04000000, 0x002D0000, 0x00030000, beh_solid_moving

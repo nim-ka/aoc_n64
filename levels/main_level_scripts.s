@@ -3,7 +3,7 @@
 
 
 .global main_level_scripts
-.align 4, 0x01
+.align 4, 0
 main_level_scripts:
 .word 0x180C0004, mario, mario_end
 .word 0x180C0003, doors_trees_coins, doors_trees_coins_end

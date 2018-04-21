@@ -3,7 +3,7 @@
 
 
 .global ttm_level
-.align 4, 0x01
+.align 4, 0
 ttm_level:
 .word 0x24181F35, 0x1108F946, 0x0FA10000, 0x00300000, 0x00000000, beh_pitoune_2
 .word 0x07040000

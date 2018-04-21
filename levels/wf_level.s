@@ -3,7 +3,7 @@
 
 
 .global wf_level
-.align 4, 0x01
+.align 4, 0
 wf_level:
 .word 0x24181F03, 0x09010980, 0xFF010000, 0x00000000, 0x00000000, beh_static_object
 .word 0x24181F04, 0x0D4D0680, 0xF9010000, 0x00000000, 0x00000000, beh_static_object

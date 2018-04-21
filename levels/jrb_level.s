@@ -3,7 +3,7 @@
 
 
 .global jrb_level
-.align 4, 0x01
+.align 4, 0
 jrb_level:
 .word 0x24180139, 0x09510E05, 0x0E8F0000, 0x00000000, 0x00000000, beh_sunken_ship_part
 .word 0x2418013A, 0x09510E05, 0x0E8F0000, 0x00000000, 0x00000000, beh_sunken_ship_part

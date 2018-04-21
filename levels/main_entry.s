@@ -3,7 +3,7 @@
 .section .mio0
 
 .global main_entry
-.align 4, 0x01
+.align 4, 0
 main_entry:
 .word 0x1B040000
 .word 0x03040002

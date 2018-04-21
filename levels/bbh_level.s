@@ -3,7 +3,7 @@
 
 
 .global bbh_level
-.align 4, 0x01
+.align 4, 0
 bbh_level:
 .word 0x24181F90, 0x08290533, 0xFB9B0000, 0x010E0000, 0x00000000, beh_burning
 .word 0x24181F90, 0x05330433, 0xFACE0000, 0x005A0000, 0x00000000, beh_burning
