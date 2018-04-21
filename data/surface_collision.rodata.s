@@ -3,15 +3,7 @@
 
 .section .rodata
 
-glabel jtbl_8038BAF0
-	.incbin "bin/sm64.j.1074A0.bin", 0x60, 0x20
-
-glabel jtbl_8038BB10
-	.incbin "bin/sm64.j.1074A0.bin", 0x80, 0x14
-
-glabel jtbl_8038BB24
-	.incbin "bin/sm64.j.1074A0.bin", 0x94, 0x1C
-
+#surface collision
 glabel D_8038BB40
 	.incbin "bin/sm64.j.1074A0.bin", 0xB0, 0xC
 
@@ -68,5 +60,3 @@ glabel jtbl_8038BBD8
 
 glabel D_8038BC80
 	.incbin "bin/sm64.j.1074A0.bin", 0x1F0, 0x10
-
-# 0x8038BC90

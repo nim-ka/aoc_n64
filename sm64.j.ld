@@ -97,6 +97,7 @@ SECTIONS
       build/data/obj_behaviors_2.data.o(.data);
       build/data/audio.data.o(.data);
       build/data/libultra.data.o(.data);
+      /* rodata */
       build/src/main.o(.rodata);
       build/src/input.o(.rodata);
       build/src/sound_init.o(.rodata);
@@ -137,9 +138,15 @@ SECTIONS
       build/asm/surface_collision.o(.text);
       build/asm/behavior_script.o(.text);
       /* data */
-      build/data/data_80385F88.o(.text);
+      build/data/graph_node.data.o(.data);
+      build/data/math_util.data.o(.data);
+      build/data/geo_layout.data.o(.data);
+      build/data/level_script.data.o(.data);
+      build/data/behavior_script.data.o(.data);
+      /* rodata */
       build/src/math_util.o(.rodata);
-      build/data/rodata_8038BA90.o(.rodata);
+      build/data/level_script.rodata.o(.rodata);
+      build/data/surface_collision.rodata.o(.rodata);
    }
 
    /* load MIO0 and level data at 0x001076A0 */
@@ -173,11 +180,12 @@ SECTIONS
       build/asm/press_start_head_4.o(.text);
       build/asm/press_start_head_5.o(.text);
       build/asm/press_start_head_6.o(.text);
-      /* data, bss, rodata, per file */
+      /* data, rodata, per file */
       build/src/level_select_menu.o(.data);
-      build/src/level_select_menu.o(.bss);
       build/src/level_select_menu.o(.rodata);
-      build/data/unknown_255EC0.o(.text);
+      build/data/intro_geo.data.o(.data);
+      build/data/file_select.data.o(.data);
+      build/data/file_select.rodata.o(.rodata);
       build/src/star_select.o(.data);
       build/src/star_select.o(.rodata);
       build/data/rodata_801A8050.o(.rodata);

@@ -72,7 +72,7 @@ static char gLevelSelect_StageNamesText[64][16] = {
     ""
 };
 
-static u16 gDemoCountdown;
+static u16 gDemoCountdown = 0;
 
 // run the demo timer on the PRESS START screen.
 // this function will return a non-0 timer once

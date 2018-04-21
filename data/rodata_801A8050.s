@@ -3,6 +3,7 @@
 
 .section .rodata
 
+#game over 2
 glabel D_801A8050
 	.incbin "bin/sm64.j.255EC0.bin", 0x960, 0x8
 
@@ -33,6 +34,7 @@ glabel D_801A8118
 glabel D_801A81A0
 	.incbin "bin/sm64.j.255EC0.bin", 0xAB0, 0x20
 
+#press start head 1
 glabel D_801A81C0
 	.incbin "bin/sm64.j.255EC0.bin", 0xAD0, 0x4
 
