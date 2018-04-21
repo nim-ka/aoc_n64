@@ -276,4 +276,26 @@ struct Struct8032D000
     s16 unk12;
 };
 
+struct Struct80280550
+{
+    u8 unk0;
+    u8 filler1[3];
+    Vec3f unk4;
+    Vec3f unk10;
+    u8 filler1C[0x28-0x1C];
+    float unk28;
+    float unk2C;
+    u8 filler30[0xA];
+    s16 unk3A;
+};
+
+struct Struct8033B470
+{
+    s16 unk0;
+    u8 filler2[2];
+    Vec3f unk4;
+    float unk10;
+    float unk14;
+};
+
 #endif
