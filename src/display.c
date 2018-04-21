@@ -2,6 +2,11 @@
 
 #include "sm64.h"
 
+int unused8032C690 = 0;
+u32 D_8032C694 = 0;
+u16 D_8032C698 = 0;
+u16 D_8032C69C = 0;
+
 void myRdpInit(void)
 {
     gDPPipeSync(gDisplayListHead++);

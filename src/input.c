@@ -3,6 +3,14 @@
 #include "sm64.h"
 #include "save_file.h"
 
+void (*D_8032C6A0)(void) = NULL;
+struct Controller *gPlayer1Controller = &gControllers[0];
+struct Controller *D_8032C6A8 = &gControllers[1];
+struct Controller *gPlayer2Controller = &gControllers[2];
+struct DemoInput *gDemoInputs = NULL; // demo input sequence
+u16 gDemoInputListID = 0;
+struct DemoInput gRecordedDemoInput = {0};
+
 // this function records distinct inputs over a 255-frame interval to RAM locations and was likely
 // used to record the demo sequences seen in the final game. This function is unused.
 void record_demo(void)
@@ -24,17 +32,17 @@ void record_demo(void)
     // record the distinct input and timer so long as they
     // are unique. If the timer hits 0xFF, reset the timer
     // for the next demo input.
-    if(gRecordedDemoTimer == 0xFF 
-    || buttonMask != gRecordedDemoButton 
-    || rawStickX  != gRecordedDemoStickX 
-    || rawStickY  != gRecordedDemoStickY)
+    if(gRecordedDemoInput.timer == 0xFF 
+    || buttonMask != gRecordedDemoInput.button 
+    || rawStickX  != gRecordedDemoInput.rawStickX 
+    || rawStickY  != gRecordedDemoInput.rawStickY)
     {
-        gRecordedDemoTimer = 0;
-        gRecordedDemoButton = buttonMask;
-        gRecordedDemoStickX = rawStickX;
-        gRecordedDemoStickY = rawStickY;
+        gRecordedDemoInput.timer = 0;
+        gRecordedDemoInput.button = buttonMask;
+        gRecordedDemoInput.rawStickX = rawStickX;
+        gRecordedDemoInput.rawStickY = rawStickY;
     }
-    gRecordedDemoTimer++;
+    gRecordedDemoInput.timer++;
 }
 
 // take the updated controller struct and calculate

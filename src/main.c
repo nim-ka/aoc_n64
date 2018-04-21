@@ -2,6 +2,26 @@
 
 #include "sm64.h"
 
+struct Struct8032C620 *D_8032C620 = NULL;
+struct Struct8032C620 *D_8032C624 = NULL;
+struct Struct8032C630 *D_8032C628 = NULL;
+struct Struct8032C630 *D_8032C62C = NULL;
+struct Struct8032C630 *D_8032C630 = NULL;
+OSMesg D_8032C634 = NULL;
+OSMesg D_8032C638 = NULL;
+s8 D_8032C63C = 1;
+u32 D_8032C640 = 0;
+s8 gResetTimer = 0;
+s8 D_8032C648 = 0;
+s8 D_8032C64C = 0;
+s8 D_8032C650 = 0;
+s8 D_8032C654 = 0;
+s8 gPrintDebugInfo = 0;
+u16 D_8032C65C[] = {0x800, 0x800, 0x400, 0x400, 0x200, 0x100, 0x200, 0x100};
+u16 D_8032C66C[] = {0x400, 0x400, 0x800, 0x800, 0x200, 0x100, 0x200, 0x100};
+s16 D_8032C67C = 0;
+s16 D_8032C680 = 0;
+
 void Unknown80246050(void)
 {
     if (gPlayer2Controller->buttonPressed != 0)

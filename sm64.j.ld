@@ -65,10 +65,10 @@ SECTIONS
       build/asm/libultra.o(.text);
       /* data */
       build/data/data_8032B3F0.o(.data);
-      build/data/main.data.o(.data);
-      build/data/display.data.o(.data);
-      build/data/input.data.o(.data);
-      build/data/sound_init.data.o(.data);
+      build/src/main.o(.data);
+      build/src/display.o(.data);
+      build/src/input.o(.data);
+      build/src/sound_init.o(.data);
       build/data/credits.data.o(.data);
       build/data/interaction.data.o(.data);
       build/data/mario.data.o(.data);
@@ -79,6 +79,7 @@ SECTIONS
       build/data/mario_actions_object.data.o(.data);
       build/data/castle_message_behaviors.data.o(.data);
       build/data/memory.data.o(.data);
+      build/src/save_file.o(.data);
       build/data/save_file.data.o(.data);
       build/data/rendering.data.o(.data);
       build/data/resource_meter.data.o(.data);
