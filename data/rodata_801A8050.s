@@ -3,7 +3,6 @@
 
 .section .rodata
 
-
 glabel D_801A8050
 	.incbin "bin/sm64.j.255EC0.bin", 0x960, 0x8
 
