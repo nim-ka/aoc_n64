@@ -732,7 +732,7 @@ glabel DistanceFromObject
 /* 058B74 8029DB74 03E00008 */  jr    $ra
 /* 058B78 8029DB78 00000000 */   nop   
 
-glabel func_8029DB7C
+glabel objects_calc_distance
 /* 058B7C 8029DB7C 27BDFFD8 */  addiu $sp, $sp, -0x28
 /* 058B80 8029DB80 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 058B84 8029DB84 AFA40028 */  sw    $a0, 0x28($sp)
@@ -1478,8 +1478,8 @@ glabel func_8029E5A4
 /* 0595F8 8029E5F8 812A0018 */  lb    $t2, 0x18($t1)
 /* 0595FC 8029E5FC A16A0019 */  sb    $t2, 0x19($t3)
 /* 059600 8029E600 8FAD0028 */  lw    $t5, 0x28($sp)
-/* 059604 8029E604 3C0C8033 */  lui   $t4, %hi(D_8032CE64) # $t4, 0x8033
-/* 059608 8029E608 8D8CCE64 */  lw    $t4, %lo(D_8032CE64)($t4)
+/* 059604 8029E604 3C0C8033 */  lui   $t4, %hi(gLoadedGeoLayouts) # $t4, 0x8033
+/* 059608 8029E608 8D8CCE64 */  lw    $t4, %lo(gLoadedGeoLayouts)($t4)
 /* 05960C 8029E60C 000D7080 */  sll   $t6, $t5, 2
 /* 059610 8029E610 3C068038 */  lui   $a2, %hi(D_80385FD0) # $a2, 0x8038
 /* 059614 8029E614 3C078038 */  lui   $a3, %hi(D_80385FDC) # $a3, 0x8038
@@ -2444,7 +2444,7 @@ glabel func_8029F270
 /* 05A318 8029F318 00000000 */   nop   
 /* 05A31C 8029F31C 3C048036 */  lui   $a0, %hi(gCurrentObject) # $a0, 0x8036
 /* 05A320 8029F320 8C84FDF0 */  lw    $a0, %lo(gCurrentObject)($a0)
-/* 05A324 8029F324 0C0A76DF */  jal   func_8029DB7C
+/* 05A324 8029F324 0C0A76DF */  jal   objects_calc_distance
 /* 05A328 8029F328 8FA50024 */   lw    $a1, 0x24($sp)
 /* 05A32C 8029F32C E7A00018 */  swc1  $f0, 0x18($sp)
 /* 05A330 8029F330 C7A60018 */  lwc1  $f6, 0x18($sp)
@@ -2626,7 +2626,7 @@ glabel func_8029F520
 /* 05A59C 8029F59C 00000000 */   nop   
 /* 05A5A0 8029F5A0 3C048036 */  lui   $a0, %hi(gCurrentObject) # $a0, 0x8036
 /* 05A5A4 8029F5A4 8C84FDF0 */  lw    $a0, %lo(gCurrentObject)($a0)
-/* 05A5A8 8029F5A8 0C0A76DF */  jal   func_8029DB7C
+/* 05A5A8 8029F5A8 0C0A76DF */  jal   objects_calc_distance
 /* 05A5AC 8029F5AC 8FA5001C */   lw    $a1, 0x1c($sp)
 /* 05A5B0 8029F5B0 C7A4002C */  lwc1  $f4, 0x2c($sp)
 /* 05A5B4 8029F5B4 4604003C */  c.lt.s $f0, $f4
@@ -3200,8 +3200,8 @@ glabel func_8029FCF8
 /* 05AD40 8029FD40 00000000 */   nop   
 
 glabel SetModel
-/* 05AD44 8029FD44 3C0E8033 */  lui   $t6, %hi(D_8032CE64) # $t6, 0x8033
-/* 05AD48 8029FD48 8DCECE64 */  lw    $t6, %lo(D_8032CE64)($t6)
+/* 05AD44 8029FD44 3C0E8033 */  lui   $t6, %hi(gLoadedGeoLayouts) # $t6, 0x8033
+/* 05AD48 8029FD48 8DCECE64 */  lw    $t6, %lo(gLoadedGeoLayouts)($t6)
 /* 05AD4C 8029FD4C 00047880 */  sll   $t7, $a0, 2
 /* 05AD50 8029FD50 3C088036 */  lui   $t0, %hi(gCurrentObject) # $t0, 0x8036
 /* 05AD54 8029FD54 01CFC021 */  addu  $t8, $t6, $t7
@@ -8539,8 +8539,8 @@ glabel CreateMessageBox
 
 glabel func_802A472C
 /* 05F72C 802A472C 3084FFFF */  andi  $a0, $a0, 0xffff
-/* 05F730 802A4730 3C0E8033 */  lui   $t6, %hi(D_8032CE64) # $t6, 0x8033
-/* 05F734 802A4734 8DCECE64 */  lw    $t6, %lo(D_8032CE64)($t6)
+/* 05F730 802A4730 3C0E8033 */  lui   $t6, %hi(gLoadedGeoLayouts) # $t6, 0x8033
+/* 05F734 802A4734 8DCECE64 */  lw    $t6, %lo(gLoadedGeoLayouts)($t6)
 /* 05F738 802A4738 3C088036 */  lui   $t0, %hi(gCurrentObject) # $t0, 0x8036
 /* 05F73C 802A473C 8D08FDF0 */  lw    $t0, %lo(gCurrentObject)($t0)
 /* 05F740 802A4740 00047880 */  sll   $t7, $a0, 2
@@ -12138,7 +12138,7 @@ glabel BehBetaChestUpperLoop
 /* 0629EC 802A79EC 8DEFFDF0 */  lw    $t7, %lo(gCurrentObject)($t7)
 /* 0629F0 802A79F0 3C058036 */  lui   $a1, %hi(gMarioObject) # $a1, 0x8036
 /* 0629F4 802A79F4 8CA5FDE8 */  lw    $a1, %lo(gMarioObject)($a1)
-/* 0629F8 802A79F8 0C0A76DF */  jal   func_8029DB7C
+/* 0629F8 802A79F8 0C0A76DF */  jal   objects_calc_distance
 /* 0629FC 802A79FC 8DE40068 */   lw    $a0, 0x68($t7)
 /* 062A00 802A7A00 3C014396 */  li    $at, 0x43960000 # 300.000000
 /* 062A04 802A7A04 44812000 */  mtc1  $at, $f4
@@ -21304,7 +21304,7 @@ glabel BehTowerPlatformGroupLoop
 /* 06AC30 802AFC30 3C048036 */  lui   $a0, %hi(gCurrentObject) # $a0, 0x8036
 /* 06AC34 802AFC34 3C058036 */  lui   $a1, %hi(gMarioObject) # $a1, 0x8036
 /* 06AC38 802AFC38 8CA5FDE8 */  lw    $a1, %lo(gMarioObject)($a1)
-/* 06AC3C 802AFC3C 0C0A76DF */  jal   func_8029DB7C
+/* 06AC3C 802AFC3C 0C0A76DF */  jal   objects_calc_distance
 /* 06AC40 802AFC40 8C84FDF0 */   lw    $a0, %lo(gCurrentObject)($a0)
 /* 06AC44 802AFC44 3C0F8036 */  lui   $t7, %hi(gCurrentObject) # $t7, 0x8036
 /* 06AC48 802AFC48 8DEFFDF0 */  lw    $t7, %lo(gCurrentObject)($t7)
@@ -38492,7 +38492,7 @@ glabel ActionSmallPenguin5
 .L802BEFB4:
 /* 079FB4 802BEFB4 3C048036 */  lui   $a0, %hi(gCurrentObject) # $a0, 0x8036
 /* 079FB8 802BEFB8 8C84FDF0 */  lw    $a0, %lo(gCurrentObject)($a0)
-/* 079FBC 802BEFBC 0C0A76DF */  jal   func_8029DB7C
+/* 079FBC 802BEFBC 0C0A76DF */  jal   objects_calc_distance
 /* 079FC0 802BEFC0 8FA5001C */   lw    $a1, 0x1c($sp)
 /* 079FC4 802BEFC4 E7A00024 */  swc1  $f0, 0x24($sp)
 /* 079FC8 802BEFC8 3C048036 */  lui   $a0, %hi(gCurrentObject) # $a0, 0x8036
@@ -45283,7 +45283,7 @@ glabel BehTumblingBookshelfLoop
 /* 07FFE4 802C4FE4 3C048036 */  lui   $a0, %hi(gCurrentObject) # $a0, 0x8036
 /* 07FFE8 802C4FE8 3C058036 */  lui   $a1, %hi(gMarioObject) # $a1, 0x8036
 /* 07FFEC 802C4FEC 8CA5FDE8 */  lw    $a1, %lo(gMarioObject)($a1)
-/* 07FFF0 802C4FF0 0C0A76DF */  jal   func_8029DB7C
+/* 07FFF0 802C4FF0 0C0A76DF */  jal   objects_calc_distance
 /* 07FFF4 802C4FF4 8C84FDF0 */   lw    $a0, %lo(gCurrentObject)($a0)
 /* 07FFF8 802C4FF8 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 07FFFC 802C4FFC 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)

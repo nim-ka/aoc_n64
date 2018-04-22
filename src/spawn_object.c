@@ -125,14 +125,14 @@ void UnknownRecursive802C8FF8(struct Object *a)
 
 void func_802C9088(struct Object *a)
 {
-    a->unk74 = 0;
+    a->active = 0;
     a->unk6C = 0;
     a->gfx.unk50 = 0;
     func_803206F8(&a->gfx.unk54);
     func_8037C0BC(a);
     func_8037C044(D_8038BD88, a);
-    a->gfx.unk2 &= ~4;
-    a->gfx.unk2 &= ~1;
+    a->gfx.graphFlags &= ~4;
+    a->gfx.graphFlags &= ~1;
     func_802C8EA4(&D_8035FD80, &a->gfx);
 }
 
@@ -162,7 +162,7 @@ struct Object *func_802C9120(struct GfxNode *a)
         }
     }
 
-    sp20->unk74 = 257;
+    sp20->active = 257;
     sp20->unk68 = sp20;
     sp20->unk6C = 0;
     sp20->unk70 = 0;
@@ -173,31 +173,31 @@ struct Object *func_802C9120(struct GfxNode *a)
         sp20->unk88[i] = 0;
 
     sp20->unk1C8 = 0;
-    sp20->unk1D0 = 0;
+    sp20->stackIndex = 0;
     sp20->unk1F4 = 0;
-    sp20->unk1F8 = 50.0f;
-    sp20->unk1FC = 100.0f;
+    sp20->collisionSphere[0] = 50.0f;
+    sp20->collisionSphere[1] = 100.0f;
     sp20->unk200 = 0.0f;
     sp20->unk204 = 0.0f;
     sp20->unk208 = 0.0f;
     sp20->unk210 = 0;
     sp20->platform = NULL;
-    sp20->unk218 = 0;
+    sp20->collisionData = NULL;
     sp20->unk9C = -1;
     sp20->unk180 = 0;
     sp20->unk184 = 2048;
-    sp20->unk194 = 1000.0f;
+    sp20->collisionDistance = 1000.0f;
     if (gCurrLevelNum == 14)
-        sp20->unk19C = 2000.0f;
+        sp20->drawingDistance = 2000.0f;
     else
-        sp20->unk19C = 4000.0f;
+        sp20->drawingDistance = 4000.0f;
     Mtx_Identity(sp20->unk21C);
     sp20->unk1F6 = 0;
     sp20->unk25C = 0;
-    sp20->unk15C = 19000.0f;
+    sp20->distanceFromMario = 19000.0f;
     sp20->unk1A0 = -1;
 
-    sp20->gfx.unk2 &= ~0x10;
+    sp20->gfx.graphFlags &= ~0x10;
     sp20->gfx.unk20[0] = -10000.0f;
     sp20->gfx.unk20[1] = -10000.0f;
     sp20->gfx.unk20[2] = -10000.0f;
@@ -232,10 +232,10 @@ struct Object *func_802C9424(u32 *a)
 
     sp2C = &D_8035FD78[sp34];
     sp30 = func_802C9120(sp2C);
-    sp30->unk1CC = a;
+    sp30->behScript = a;
     sp30->unk20C = sp28;
     if (sp34 == 12)
-        sp30->unk74 |= 0x10;
+        sp30->active |= 0x10;
     switch (sp34)
     {
     case 4:
@@ -251,5 +251,5 @@ struct Object *func_802C9424(u32 *a)
 
 void func_802C9548(struct Object *obj)
 {
-    obj->unk74 = 0;
+    obj->active = 0;
 }

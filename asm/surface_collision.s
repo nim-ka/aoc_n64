@@ -3601,7 +3601,7 @@ glabel ProcessCollision
 /* 0FF438 80383A28 3C048036 */  lui   $a0, %hi(gCurrentObject) # $a0, 0x8036
 /* 0FF43C 80383A2C 3C058036 */  lui   $a1, %hi(gMarioObject) # $a1, 0x8036
 /* 0FF440 80383A30 8CA5FDE8 */  lw    $a1, %lo(gMarioObject)($a1)
-/* 0FF444 80383A34 0C0A76DF */  jal   func_8029DB7C
+/* 0FF444 80383A34 0C0A76DF */  jal   objects_calc_distance
 /* 0FF448 80383A38 8C84FDF0 */   lw    $a0, %lo(gCurrentObject)($a0)
 /* 0FF44C 80383A3C E7A0001C */  swc1  $f0, 0x1c($sp)
 .L80383A40:

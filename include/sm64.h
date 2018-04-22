@@ -12,6 +12,27 @@
 
 #define max(a, b) ((a) > (b) ? (a) : (b))
 
+#define GRAPH_0001 0x0001
+#define GRAPH_0002 0x0002
+#define GRAPH_BILLBOARD 0x0004
+
+#define OBJ_FLAG_0001 0x0001
+#define OBJ_FLAG_0002 0x0002
+#define OBJ_FLAG_0004 0x0004
+#define OBJ_FLAG_0008 0x0008
+#define OBJ_FLAG_0010 0x0010
+#define OBJ_FLAG_0020 0x0020
+#define OBJ_FLAG_0040 0x0040
+#define OBJ_FLAG_0080 0x0080
+#define OBJ_FLAG_0100 0x0100
+#define OBJ_FLAG_0200 0x0200
+#define OBJ_FLAG_0400 0x0400
+#define OBJ_FLAG_0800 0x0800
+#define OBJ_FLAG_1000 0x1000
+#define OBJ_FLAG_2000 0x2000
+#define OBJ_FLAG_4000 0x4000
+#define OBJ_FLAG_8000 0x8000
+
 #define SURFACE_LAVA 0x0001
 #define SURFACE_0005 0x0005
 #define SURFACE_0009 0x0009

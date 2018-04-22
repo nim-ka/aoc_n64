@@ -137,7 +137,7 @@ SECTIONS
       build/asm/geo_layout.o(.text);
       build/asm/level_script.o(.text);
       build/asm/surface_collision.o(.text);
-      build/asm/behavior_script.o(.text);
+      build/src/behavior_script.o(.text);
       /* data */
       build/data/graph_node.data.o(.data);
       build/data/math_util.data.o(.data);

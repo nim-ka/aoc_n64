@@ -8,7 +8,7 @@
 glabel D_8032CE60
 	.incbin "bin/sm64.j.0E7AE8.bin", 0x378, 0x4
 
-glabel D_8032CE64
+glabel gLoadedGeoLayouts
 	.incbin "bin/sm64.j.0E7AE8.bin", 0x37C, 0x4
 
 glabel D_8032CE68
