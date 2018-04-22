@@ -4814,10 +4814,10 @@ glabel func_80250218
 /* 00B288 80250288 AFA0002C */  sw    $zero, 0x2c($sp)
 .L8025028C:
 /* 00B28C 8025028C 8FAC002C */  lw    $t4, 0x2c($sp)
-/* 00B290 80250290 3C0F8033 */  lui   $t7, %hi(D_8032C9F0)
+/* 00B290 80250290 3C0F8033 */  lui   $t7, %hi(TableInteractions)
 /* 00B294 80250294 000C68C0 */  sll   $t5, $t4, 3
 /* 00B298 80250298 01ED7821 */  addu  $t7, $t7, $t5
-/* 00B29C 8025029C 8DEFC9F0 */  lw    $t7, %lo(D_8032C9F0)($t7)
+/* 00B29C 8025029C 8DEFC9F0 */  lw    $t7, %lo(TableInteractions)($t7)
 /* 00B2A0 802502A0 AFAF0028 */  sw    $t7, 0x28($sp)
 /* 00B2A4 802502A4 8FB80030 */  lw    $t8, 0x30($sp)
 /* 00B2A8 802502A8 8FB90028 */  lw    $t9, 0x28($sp)
@@ -4844,9 +4844,9 @@ glabel func_80250218
 /* 00B2FC 802502FC 8FA40030 */  lw    $a0, 0x30($sp)
 /* 00B300 80250300 8FA50028 */  lw    $a1, 0x28($sp)
 /* 00B304 80250304 001948C0 */  sll   $t1, $t9, 3
-/* 00B308 80250308 3C198033 */  lui   $t9, %hi(D_8032C9F4)
+/* 00B308 80250308 3C198033 */  lui   $t9, %hi(TableInteractions + 0x4)
 /* 00B30C 8025030C 0329C821 */  addu  $t9, $t9, $t1
-/* 00B310 80250310 8F39C9F4 */  lw    $t9, %lo(D_8032C9F4)($t9)
+/* 00B310 80250310 8F39C9F4 */  lw    $t9, %lo(TableInteractions + 0x4)($t9)
 /* 00B314 80250314 8FA60024 */  lw    $a2, 0x24($sp)
 /* 00B318 80250318 0320F809 */  jalr  $t9
 /* 00B31C 8025031C 00000000 */  nop   

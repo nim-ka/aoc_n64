@@ -4,7 +4,10 @@
 .section .data
 
 # level script
+glabel D_8038B8B0
 .word 0x8038BDA0
+
+glabel D_8038B8B4
 .word NULL
 
 glabel LevelScriptJumpTable
