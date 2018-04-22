@@ -101,24 +101,53 @@ struct UnknownStruct5 {
     /*0x10*/ u32 unk10;
 };
 
-struct Object
+// NOTE: Since GfxNode is the first member of Object, it is difficult to determine
+// whether some of these pointers point to GfxNode or Object.
+
+struct GfxNode
 {
-    u8 filler0[0x1A];
+    u8 filler0[2];
+    /*0x002*/ s16 unk2;
+    u8 filler4[0x8-0x4];
+    /*0x008*/ struct Object *unk8;
+    u8 fillerC[4];
+    /*0x010*/ struct Object *unk10;
+    u8 filler14[6];
     /*0x01A*/ Vec3s unk1A;
     /*0x020*/ Vec3f unk20;
     u8 filler2C[0xC];
     /*0x038*/ s16 unk38;
     /*0x03C*/ struct UnknownStruct5 *unk3C;
     /*0x040*/ s16 unk40;
-    u8 filler42[0x12];
+    u8 filler42[0x50-0x42];
+    /*0x050*/ u32 unk50;
     /*0x054*/ u32 unk54;
-    u8 filler58[0x48];
+    u8 filler58[0x60-0x58];
+    /*0x060*/ struct GfxNode *prev;
+    /*0x064*/ struct GfxNode *next;
+};
+
+struct Object
+{
+    /*0x000*/ struct GfxNode gfx;
+    /*0x068*/ struct Object *unk68;
+    /*0x06C*/ u32 unk6C;
+    /*0x070*/ u32 unk70;
+    /*0x074*/ s16 unk74;
+    /*0x076*/ u16 unk76;
+    u8 filler78[0x88-0x78];
+    u32 unk88[1];  // unknown length
+    u8 filler8C[0x9C-0x8C];
+    /*0x09C*/ s32 unk9C;
     /*0x0A0*/ Vec3f pos;
     /*0x0AC*/ Vec3f vel;
     u8 fillerB8[0xC];
     /*0x0C4*/ Vec3i angle;
     /*0x0D0*/ Vec3i faceAngle;
-    u8 fillerDC[0x18];
+    u8 fillerDC[0xE8-0xDC];
+    /*0x0E8*/ float unkE8;
+    /*0x0EC*/ u32 unkEC;
+    u8 fillerF0[4];
     /*0x0F4*/ u32 unkF4;
     /*0x0F8*/ u32 unkF8;
     u8 fillerFC[0xC];
@@ -128,12 +157,35 @@ struct Object
     /*0x114*/ Vec3i platformRotation;
     u8 filler120[0x14];
     /*0x134*/ u32 interactStatus;
-    u8 filler138[0x58];
+    u8 filler138[0x15C-0x138];
+    /*0x15C*/ float unk15C;
+    u8 filler160[0x180-0x160];
+    /*0x180*/ u32 unk180;
+    /*0x184*/ u32 unk184;
+    u8 filler188[0x190-0x188];
     /*0x190*/ u32 unk190;
-    u8 filler194[0x1FC-0x194];
+    /*0x194*/ float unk194;
+    u8 filler198[0x19C-0x198];
+    /*0x19C*/ float unk19C;
+    /*0x1A0*/ s32 unk1A0;
+    u8 filler1A4[0x1C8-0x1A4];
+    /*0x1C8*/ u32 unk1C8;
+    /*0x1CC*/ void *unk1CC;
+    /*0x1D0*/ u32 unk1D0;
+    u8 filler1D4[0x1F4-0x1D4];
+    /*0x1F4*/ u16 unk1F4;
+    /*0x1F6*/ u16 unk1F6;
+    /*0x1F8*/ float unk1F8;
     /*0x1FC*/ float unk1FC;
-    u8 filler200[0x14];
+    /*0x200*/ float unk200;
+    /*0x204*/ float unk204;
+    /*0x208*/ float unk208;
+    /*0x20C*/ void *unk20C;
+    /*0x210*/ u32 unk210;
     /*0x214*/ struct Object *platform;
+    /*0x218*/ u32 unk218;
+    /*0x21C*/ float unk21C[4][4];
+    /*0x25C*/ u32 unk25C;
 };
 
 struct Area
