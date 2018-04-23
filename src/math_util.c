@@ -178,9 +178,9 @@ void func_80378F84(float mtx[4][4], Vec3f b, Vec3f c, s16 d)
     sp48 *= f20;
     sp44 *= f20;
 
-    sp3C = D_80387000[(u16)d >> 4];
-    sp40 = D_80386000[(u16)d >> 4] * sp44;
-    sp38 = -D_80386000[(u16)d >> 4] * sp48;
+    sp3C = coss(d);
+    sp40 = sins(d) * sp44;
+    sp38 = -sins(d) * sp48;
 
     sp34 = c[0] - b[0];
     sp30 = c[1] - b[1];
@@ -233,12 +233,12 @@ void func_80378F84(float mtx[4][4], Vec3f b, Vec3f c, s16 d)
 
 void func_80379440(float mtx[4][4], Vec3f b, Vec3s c)
 {
-    register float f12 = D_80386000[(u16) c[0] >> 4];
-    register float f14 = D_80387000[(u16) c[0] >> 4];
-    register float f16 = D_80386000[(u16) c[1] >> 4];
-    register float f18 = D_80387000[(u16) c[1] >> 4];
-    register float spC = D_80386000[(u16) c[2] >> 4];
-    register float sp8 = D_80387000[(u16) c[2] >> 4];
+    register float f12 = sins(c[0]);
+    register float f14 = coss(c[0]);
+    register float f16 = sins(c[1]);
+    register float f18 = coss(c[1]);
+    register float spC = sins(c[2]);
+    register float sp8 = coss(c[2]);
 
     mtx[0][0] = f18 * sp8 + f12 * f16 * spC;
     mtx[1][0] = -f18 * spC + f12 * f16 * sp8;
@@ -261,12 +261,12 @@ void func_80379440(float mtx[4][4], Vec3f b, Vec3s c)
 
 void func_803795F0(float mtx[4][4], Vec3f b, u16 *c)
 {
-    register float f12 = D_80386000[c[0] >> 4];
-    register float f14 = D_80387000[c[0] >> 4];
-    register float f16 = D_80386000[c[1] >> 4];
-    register float f18 = D_80387000[c[1] >> 4];
-    register float sp4 = D_80386000[c[2] >> 4];
-    register float sp0 = D_80387000[c[2] >> 4];
+    register float f12 = sins(c[0]);
+    register float f14 = coss(c[0]);
+    register float f16 = sins(c[1]);
+    register float f18 = coss(c[1]);
+    register float sp4 = sins(c[2]);
+    register float sp0 = coss(c[2]);
 
     mtx[0][0] = f18 * sp0;
     mtx[0][1] = f18 * sp4;
@@ -291,8 +291,8 @@ void func_803795F0(float mtx[4][4], Vec3f b, u16 *c)
 
 void func_80379798(float mtx1[4][4], float mtx2[4][4], Vec3f c, s16 d)
 {
-    mtx1[0][0] = D_80387000[(u16)d >> 4];
-    mtx1[0][1] = D_80386000[(u16)d >> 4];
+    mtx1[0][0] = coss(d);
+    mtx1[0][1] = sins(d);
     mtx1[0][2] = 0;
     mtx1[0][3] = 0;
 
@@ -318,7 +318,7 @@ void func_80379918(float mtx[4][4], Vec3f b, Vec3f c, s16 d)
     Vec3f sp28;
     Vec3f sp1C;
 
-    Vec3f_Set(sp34, D_80386000[(u16)d >> 4], 0, D_80387000[(u16)d >> 4]);
+    Vec3f_Set(sp34, sins(d), 0, coss(d));
     Vec3f_Normalize(b);
     Vec3f_CrossProd(sp28, b, sp34);
     Vec3f_Normalize(sp28);
@@ -357,12 +357,12 @@ void func_80379AA4(float mtx[4][4], Vec3f b, s16 c, float d)
     float sp1C;
     float sp18 = -d * 3;
 
-    sp68[0] = b[0] + d * D_80386000[(u16)(c + 0x2AAA) >> 4];
-    sp68[2] = b[2] + d * D_80387000[(u16)(c + 0x2AAA) >> 4];
-    sp5C[0] = b[0] + d * D_80386000[(u16)(c + 0x8000) >> 4];
-    sp5C[2] = b[2] + d * D_80387000[(u16)(c + 0x8000) >> 4];
-    sp50[0] = b[0] + d * D_80386000[(u16)(c + 0xD555) >> 4];
-    sp50[2] = b[2] + d * D_80387000[(u16)(c + 0xD555) >> 4];
+    sp68[0] = b[0] + d * sins(c + 0x2AAA);
+    sp68[2] = b[2] + d * coss(c + 0x2AAA);
+    sp5C[0] = b[0] + d * sins(c + 0x8000);
+    sp5C[2] = b[2] + d * coss(c + 0x8000);
+    sp50[0] = b[0] + d * sins(c + 0xD555);
+    sp50[2] = b[2] + d * coss(c + 0xD555);
 
     sp68[1] = func_80381900(sp68[0], b[1] + 150, sp68[2], &sp74);
     sp5C[1] = func_80381900(sp5C[0], b[1] + 150, sp5C[2], &sp74);
@@ -379,7 +379,7 @@ void func_80379AA4(float mtx[4][4], Vec3f b, s16 c, float d)
 
     sp1C = (sp68[1] + sp5C[1] + sp50[1]) / 3;
 
-    Vec3f_Set(sp44, D_80386000[(u16)c >> 4], 0, D_80387000[(u16)c >> 4]);
+    Vec3f_Set(sp44, sins(c), 0, coss(c));
     func_80378C50(sp2C, sp68, sp5C, sp50);
     Vec3f_Normalize(sp2C);
     Vec3f_CrossProd(sp38, sp2C, sp44);
@@ -490,8 +490,8 @@ void func_8037A434(s16 *a, float b[4][4])
     {
         sp14 = *t1++ * 0x10000;
         //! endian-dependent code
-        *a3++ = ((s16 *)&sp14)[0];
-        *t0++ = ((s16 *)&sp14)[1];
+        *a3++ = ((s16 *)&sp14)[0];  // upper bits
+        *t0++ = ((s16 *)&sp14)[1];  // lower bits
     }
 }
 
@@ -500,8 +500,8 @@ void func_8037A4B8(s16 *a, s16 b)
     float temp[4][4];
 
     Mtx_Identity(temp);
-    temp[0][0] = D_80387000[(u16)b >> 4];
-    temp[0][1] = D_80386000[(u16)b >> 4];
+    temp[0][0] = coss(b);
+    temp[0][1] = sins(b);
     temp[1][0] = -temp[0][1];
     temp[1][1] = temp[0][0];
     func_8037A434(a, temp);
@@ -531,43 +531,43 @@ void func_8037A69C(Vec3f a, Vec3f b, float *c, s16 *d, s16 *e)
 
 void func_8037A788(Vec3f a, Vec3f b, float c, s16 d, s16 e)
 {
-    b[0] = a[0] + c * D_80387000[(u16)d >> 4] * D_80386000[(u16)e >> 4];
-    b[1] = a[1] + c * D_80386000[(u16)d >> 4];
-    b[2] = a[2] + c * D_80387000[(u16)d >> 4] * D_80387000[(u16)e >> 4];
+    b[0] = a[0] + c * coss(d) * sins(e);
+    b[1] = a[1] + c * sins(d);
+    b[2] = a[2] + c * coss(d) * coss(e);
 }
 
-int func_8037A860(int a, int b, int c, int d)
+int approach_int(int current, int target, int inc, int dec)
 {
-    if (a < b)
+    if (current < target)
     {
-        a += c;
-        if (a > b)
-            a = b;
+        current += inc;
+        if (current > target)
+            current = target;
     }
     else
     {
-        a -= d;
-        if (a < b)
-            a = b;
+        current -= dec;
+        if (current < target)
+            current = target;
     }
-    return a;
+    return current;
 }
 
-float func_8037A8B4(float a, float b, float c, float d)
+float approach_float(float current, float target, float inc, float dec)
 {
-    if (a < b)
+    if (current < target)
     {
-        a += c;
-        if (a > b)
-            a = b;
+        current += inc;
+        if (current > target)
+            current = target;
     }
     else
     {
-        a -= d;
-        if (a < b)
-            a = b;
+        current -= dec;
+        if (current < target)
+            current = target;
     }
-    return a;
+    return current;
 }
 
 u16 func_8037A924(float a, float b)
