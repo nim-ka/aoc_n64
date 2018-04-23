@@ -1912,8 +1912,8 @@ static u32 act_vertical_wind(struct MarioState *m)
         break;
     }
 
-    m->marioObj->gfx.unk1A[0] = (s16) (6144.0f * intendedMag * coss(intendedDyaw));
-    m->marioObj->gfx.unk1A[2] = (s16) (-4096.0f * intendedMag * sins(intendedDyaw));
+    m->marioObj->gfx.unk1A[0] = (s16) (6144.0f * intendedMag * coss(intendedDYaw));
+    m->marioObj->gfx.unk1A[2] = (s16) (-4096.0f * intendedMag * sins(intendedDYaw));
     return 0;
 }
 
