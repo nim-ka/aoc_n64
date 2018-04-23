@@ -3574,7 +3574,7 @@ glabel func_802FB864
 /* 0B68C0 802FB8C0 00000000 */   nop   
 /* 0B68C4 802FB8C4 3C058036 */  lui   $a1, %hi(gMarioObject) # $a1, 0x8036
 /* 0B68C8 802FB8C8 8CA5FDE8 */  lw    $a1, %lo(gMarioObject)($a1)
-/* 0B68CC 802FB8CC 0C0A76DF */  jal   func_8029DB7C
+/* 0B68CC 802FB8CC 0C0A76DF */  jal   objects_calc_distance
 /* 0B68D0 802FB8D0 01002025 */   move  $a0, $t0
 /* 0B68D4 802FB8D4 3C014348 */  li    $at, 0x43480000 # 200.000000
 /* 0B68D8 802FB8D8 44812000 */  mtc1  $at, $f4
@@ -4558,7 +4558,7 @@ glabel func_802FC5FC
 /* 0B76CC 802FC6CC 3C088036 */  lui   $t0, %hi(gCurrentObject) # $t0, 0x8036
 /* 0B76D0 802FC6D0 8D08FDF0 */  lw    $t0, %lo(gCurrentObject)($t0)
 /* 0B76D4 802FC6D4 01002025 */  move  $a0, $t0
-/* 0B76D8 802FC6D8 0C0A76DF */  jal   func_8029DB7C
+/* 0B76D8 802FC6D8 0C0A76DF */  jal   objects_calc_distance
 /* 0B76DC 802FC6DC 8D050068 */   lw    $a1, 0x68($t0)
 /* 0B76E0 802FC6E0 3C0143C8 */  li    $at, 0x43C80000 # 400.000000
 /* 0B76E4 802FC6E4 44812000 */  mtc1  $at, $f4
@@ -26829,7 +26829,7 @@ glabel func_803105C0
 /* 0CB6DC 803106DC 3C088036 */  lui   $t0, %hi(gCurrentObject) # $t0, 0x8036
 /* 0CB6E0 803106E0 8D08FDF0 */  lw    $t0, %lo(gCurrentObject)($t0)
 /* 0CB6E4 803106E4 01002025 */  move  $a0, $t0
-/* 0CB6E8 803106E8 0C0A76DF */  jal   func_8029DB7C
+/* 0CB6E8 803106E8 0C0A76DF */  jal   objects_calc_distance
 /* 0CB6EC 803106EC 8D050068 */   lw    $a1, 0x68($t0)
 /* 0CB6F0 803106F0 3C018033 */  lui   $at, %hi(D_80337B34)
 /* 0CB6F4 803106F4 C4247B34 */  lwc1  $f4, %lo(D_80337B34)($at)

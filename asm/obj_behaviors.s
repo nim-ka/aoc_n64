@@ -10183,8 +10183,8 @@ glabel BehStarCelebrationStarInit
 /* 0A7104 802EC104 8DEFFDF0 */  lw    $t7, %lo(gCurrentObject)($t7)
 /* 0A7108 802EC108 240E0064 */  li    $t6, 100
 /* 0A710C 802EC10C ADEE0108 */  sw    $t6, 0x108($t7)
-/* 0A7110 802EC110 3C188033 */  lui   $t8, %hi(D_8032CE64) # $t8, 0x8033
-/* 0A7114 802EC114 8F18CE64 */  lw    $t8, %lo(D_8032CE64)($t8)
+/* 0A7110 802EC110 3C188033 */  lui   $t8, %hi(gLoadedGeoLayouts) # $t8, 0x8033
+/* 0A7114 802EC114 8F18CE64 */  lw    $t8, %lo(gLoadedGeoLayouts)($t8)
 /* 0A7118 802EC118 3C088036 */  lui   $t0, %hi(gCurrentObject) # $t0, 0x8036
 /* 0A711C 802EC11C 8D08FDF0 */  lw    $t0, %lo(gCurrentObject)($t0)
 /* 0A7120 802EC120 8F1901E8 */  lw    $t9, 0x1e8($t8)
@@ -16079,16 +16079,16 @@ glabel BehCollectStarInit
 /* 0AC4F4 802F14F4 010B6024 */  and   $t4, $t0, $t3
 /* 0AC4F8 802F14F8 11800008 */  beqz  $t4, .L802F151C
 /* 0AC4FC 802F14FC 00000000 */   nop   
-/* 0AC500 802F1500 3C0D8033 */  lui   $t5, %hi(D_8032CE64) # $t5, 0x8033
-/* 0AC504 802F1504 8DADCE64 */  lw    $t5, %lo(D_8032CE64)($t5)
+/* 0AC500 802F1500 3C0D8033 */  lui   $t5, %hi(gLoadedGeoLayouts) # $t5, 0x8033
+/* 0AC504 802F1504 8DADCE64 */  lw    $t5, %lo(gLoadedGeoLayouts)($t5)
 /* 0AC508 802F1508 3C0F8036 */  lui   $t7, %hi(gCurrentObject) # $t7, 0x8036
 /* 0AC50C 802F150C 8DEFFDF0 */  lw    $t7, %lo(gCurrentObject)($t7)
 /* 0AC510 802F1510 8DAE01E4 */  lw    $t6, 0x1e4($t5)
 /* 0AC514 802F1514 10000007 */  b     .L802F1534
 /* 0AC518 802F1518 ADEE0014 */   sw    $t6, 0x14($t7)
 .L802F151C:
-/* 0AC51C 802F151C 3C188033 */  lui   $t8, %hi(D_8032CE64) # $t8, 0x8033
-/* 0AC520 802F1520 8F18CE64 */  lw    $t8, %lo(D_8032CE64)($t8)
+/* 0AC51C 802F151C 3C188033 */  lui   $t8, %hi(gLoadedGeoLayouts) # $t8, 0x8033
+/* 0AC520 802F1520 8F18CE64 */  lw    $t8, %lo(gLoadedGeoLayouts)($t8)
 /* 0AC524 802F1524 3C0A8036 */  lui   $t2, %hi(gCurrentObject) # $t2, 0x8036
 /* 0AC528 802F1528 8D4AFDF0 */  lw    $t2, %lo(gCurrentObject)($t2)
 /* 0AC52C 802F152C 8F1901E8 */  lw    $t9, 0x1e8($t8)

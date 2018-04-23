@@ -1575,8 +1575,8 @@ glabel func_801716E4
 /* 220054 80171884 0C09E4EC */  jal   save_file_copy
 /* 220058 80171888 24A5FFF2 */   addiu $a1, $a1, -0xe
 /* 22005C 8017188C 8FAA002C */  lw    $t2, 0x2c($sp)
-/* 220060 80171890 3C188033 */  lui   $t8, %hi(D_8032CE64) # $t8, 0x8033
-/* 220064 80171894 8F18CE64 */  lw    $t8, %lo(D_8032CE64)($t8)
+/* 220060 80171890 3C188033 */  lui   $t8, %hi(gLoadedGeoLayouts) # $t8, 0x8033
+/* 220064 80171894 8F18CE64 */  lw    $t8, %lo(gLoadedGeoLayouts)($t8)
 /* 220068 80171898 3C0D801C */  lui   $t5, %hi(D_801B9860)
 /* 22006C 8017189C 000A6080 */  sll   $t4, $t2, 2
 /* 220070 801718A0 01AC6821 */  addu  $t5, $t5, $t4
@@ -1584,8 +1584,8 @@ glabel func_801716E4
 /* 220078 801718A8 8F090020 */  lw    $t1, 0x20($t8)
 /* 22007C 801718AC ADA90014 */  sw    $t1, 0x14($t5)
 /* 220080 801718B0 8FB9002C */  lw    $t9, 0x2c($sp)
-/* 220084 801718B4 3C0B8033 */  lui   $t3, %hi(D_8032CE64) # $t3, 0x8033
-/* 220088 801718B8 8D6BCE64 */  lw    $t3, %lo(D_8032CE64)($t3)
+/* 220084 801718B4 3C0B8033 */  lui   $t3, %hi(gLoadedGeoLayouts) # $t3, 0x8033
+/* 220088 801718B8 8D6BCE64 */  lw    $t3, %lo(gLoadedGeoLayouts)($t3)
 /* 22008C 801718BC 3C0F801C */  lui   $t7, %hi(D_801B9828)
 /* 220090 801718C0 00194080 */  sll   $t0, $t9, 2
 /* 220094 801718C4 01E87821 */  addu  $t7, $t7, $t0
@@ -5296,8 +5296,8 @@ glabel func_80174BD8
 /* 2236EC 80174F1C 80847BEC */   lb    $a0, %lo(D_801A7BEC)($a0)
 /* 2236F0 80174F20 3C18801A */  lui   $t8, %hi(D_801A7BEC) # $t8, 0x801a
 /* 2236F4 80174F24 83187BEC */  lb    $t8, %lo(D_801A7BEC)($t8)
-/* 2236F8 80174F28 3C0E8033 */  lui   $t6, %hi(D_8032CE64) # $t6, 0x8033
-/* 2236FC 80174F2C 8DCECE64 */  lw    $t6, %lo(D_8032CE64)($t6)
+/* 2236F8 80174F28 3C0E8033 */  lui   $t6, %hi(gLoadedGeoLayouts) # $t6, 0x8033
+/* 2236FC 80174F2C 8DCECE64 */  lw    $t6, %lo(gLoadedGeoLayouts)($t6)
 /* 223700 80174F30 3C08801C */  lui   $t0, %hi(D_801B98B4)
 /* 223704 80174F34 0018C880 */  sll   $t9, $t8, 2
 /* 223708 80174F38 01194021 */  addu  $t0, $t0, $t9
@@ -5306,8 +5306,8 @@ glabel func_80174BD8
 /* 223714 80174F44 AD0F0014 */  sw    $t7, 0x14($t0)
 /* 223718 80174F48 3C0A801A */  lui   $t2, %hi(D_801A7BEC) # $t2, 0x801a
 /* 22371C 80174F4C 814A7BEC */  lb    $t2, %lo(D_801A7BEC)($t2)
-/* 223720 80174F50 3C098033 */  lui   $t1, %hi(D_8032CE64) # $t1, 0x8033
-/* 223724 80174F54 8D29CE64 */  lw    $t1, %lo(D_8032CE64)($t1)
+/* 223720 80174F50 3C098033 */  lui   $t1, %hi(gLoadedGeoLayouts) # $t1, 0x8033
+/* 223724 80174F54 8D29CE64 */  lw    $t1, %lo(gLoadedGeoLayouts)($t1)
 /* 223728 80174F58 3C0D801C */  lui   $t5, %hi(D_801B9860)
 /* 22372C 80174F5C 000A6080 */  sll   $t4, $t2, 2
 /* 223730 80174F60 01AC6821 */  addu  $t5, $t5, $t4

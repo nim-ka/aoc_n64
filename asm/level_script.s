@@ -1176,8 +1176,8 @@ glabel LevelScript21
 /* 0FABD4 8037F1C4 0C0DEF24 */  jal   func_8037BC90
 /* 0FABD8 8037F1C8 8FA70018 */   lw    $a3, 0x18($sp)
 /* 0FABDC 8037F1CC 87AE001E */  lh    $t6, 0x1e($sp)
-/* 0FABE0 8037F1D0 3C0D8033 */  lui   $t5, %hi(D_8032CE64) # $t5, 0x8033
-/* 0FABE4 8037F1D4 8DADCE64 */  lw    $t5, %lo(D_8032CE64)($t5)
+/* 0FABE0 8037F1D0 3C0D8033 */  lui   $t5, %hi(gLoadedGeoLayouts) # $t5, 0x8033
+/* 0FABE4 8037F1D4 8DADCE64 */  lw    $t5, %lo(gLoadedGeoLayouts)($t5)
 /* 0FABE8 8037F1D8 000E7880 */  sll   $t7, $t6, 2
 /* 0FABEC 8037F1DC 01AFC021 */  addu  $t8, $t5, $t7
 /* 0FABF0 8037F1E0 AF020000 */  sw    $v0, ($t8)
@@ -1216,8 +1216,8 @@ glabel LevelScript22
 /* 0FAC64 8037F254 0C0DF82D */  jal   ProcessGeoLayout
 /* 0FAC68 8037F258 8FA50018 */   lw    $a1, 0x18($sp)
 /* 0FAC6C 8037F25C 87AA001E */  lh    $t2, 0x1e($sp)
-/* 0FAC70 8037F260 3C098033 */  lui   $t1, %hi(D_8032CE64) # $t1, 0x8033
-/* 0FAC74 8037F264 8D29CE64 */  lw    $t1, %lo(D_8032CE64)($t1)
+/* 0FAC70 8037F260 3C098033 */  lui   $t1, %hi(gLoadedGeoLayouts) # $t1, 0x8033
+/* 0FAC74 8037F264 8D29CE64 */  lw    $t1, %lo(gLoadedGeoLayouts)($t1)
 /* 0FAC78 8037F268 000A5880 */  sll   $t3, $t2, 2
 /* 0FAC7C 8037F26C 012B6021 */  addu  $t4, $t1, $t3
 /* 0FAC80 8037F270 AD820000 */  sw    $v0, ($t4)
@@ -1270,8 +1270,8 @@ glabel LevelScript23
 /* 0FAD2C 8037F31C 0C0DEE50 */  jal   func_8037B940
 /* 0FAD30 8037F320 E7A40010 */   swc1  $f4, 0x10($sp)
 /* 0FAD34 8037F324 87B8002A */  lh    $t8, 0x2a($sp)
-/* 0FAD38 8037F328 3C0F8033 */  lui   $t7, %hi(D_8032CE64) # $t7, 0x8033
-/* 0FAD3C 8037F32C 8DEFCE64 */  lw    $t7, %lo(D_8032CE64)($t7)
+/* 0FAD38 8037F328 3C0F8033 */  lui   $t7, %hi(gLoadedGeoLayouts) # $t7, 0x8033
+/* 0FAD3C 8037F32C 8DEFCE64 */  lw    $t7, %lo(gLoadedGeoLayouts)($t7)
 /* 0FAD40 8037F330 0018C880 */  sll   $t9, $t8, 2
 /* 0FAD44 8037F334 01F94021 */  addu  $t0, $t7, $t9
 /* 0FAD48 8037F338 AD020000 */  sw    $v0, ($t0)
@@ -1327,8 +1327,8 @@ glabel LevelScript25
 /* 0FAE00 8037F3F0 AD8B0014 */  sw    $t3, 0x14($t4)
 /* 0FAE04 8037F3F4 3C0E8039 */  lui   $t6, %hi(D_8038BE28) # $t6, 0x8039
 /* 0FAE08 8037F3F8 8DCEBE28 */  lw    $t6, %lo(D_8038BE28)($t6)
-/* 0FAE0C 8037F3FC 3C0D8033 */  lui   $t5, %hi(D_8032CE64) # $t5, 0x8033
-/* 0FAE10 8037F400 8DADCE64 */  lw    $t5, %lo(D_8032CE64)($t5)
+/* 0FAE0C 8037F3FC 3C0D8033 */  lui   $t5, %hi(gLoadedGeoLayouts) # $t5, 0x8033
+/* 0FAE10 8037F400 8DADCE64 */  lw    $t5, %lo(gLoadedGeoLayouts)($t5)
 /* 0FAE14 8037F404 91CF0003 */  lbu   $t7, 3($t6)
 /* 0FAE18 8037F408 3C098033 */  lui   $t1, %hi(D_8032CE60) # $t1, 0x8033
 /* 0FAE1C 8037F40C 8D29CE60 */  lw    $t1, %lo(D_8032CE60)($t1)
@@ -1451,8 +1451,8 @@ glabel LevelScript24
 /* 0FAFE0 8037F5D0 8DF90014 */  lw    $t9, 0x14($t7)
 /* 0FAFE4 8037F5D4 AD190014 */  sw    $t9, 0x14($t0)
 /* 0FAFE8 8037F5D8 97AB001C */  lhu   $t3, 0x1c($sp)
-/* 0FAFEC 8037F5DC 3C098033 */  lui   $t1, %hi(D_8032CE64) # $t1, 0x8033
-/* 0FAFF0 8037F5E0 8D29CE64 */  lw    $t1, %lo(D_8032CE64)($t1)
+/* 0FAFEC 8037F5DC 3C098033 */  lui   $t1, %hi(gLoadedGeoLayouts) # $t1, 0x8033
+/* 0FAFF0 8037F5E0 8D29CE64 */  lw    $t1, %lo(gLoadedGeoLayouts)($t1)
 /* 0FAFF4 8037F5E4 000B6080 */  sll   $t4, $t3, 2
 /* 0FAFF8 8037F5E8 8FAE0018 */  lw    $t6, 0x18($sp)
 /* 0FAFFC 8037F5EC 012C5021 */  addu  $t2, $t1, $t4

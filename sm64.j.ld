@@ -45,7 +45,7 @@ SECTIONS
       build/asm/level_functions.o(.text);
       build/src/platform_displacement.o(.text);
       build/asm/object_collision.o(.text);
-      build/asm/spawn_object.o(.text);
+      build/src/spawn_object.o(.text);
       build/asm/mapinfo.o(.text);
       build/asm/screen_transition.o(.text);
       build/asm/rotate.o(.text);
@@ -119,7 +119,7 @@ SECTIONS
       build/data/camera.rodata.o(.rodata);
       build/data/level_functions.rodata.o(.rodata);
       build/data/object_collision.rodata.o(.rodata);
-      build/data/spawn_object.rodata.o(.rodata);
+      build/src/spawn_object.o(.rodata);
       build/data/mapinfo.rodata.o(.rodata);
       build/data/screen_transition.rodata.o(.rodata);
       build/data/rotate.rodata.o(.rodata);
@@ -137,7 +137,7 @@ SECTIONS
       build/asm/geo_layout.o(.text);
       build/asm/level_script.o(.text);
       build/asm/surface_collision.o(.text);
-      build/asm/behavior_script.o(.text);
+      build/src/behavior_script.o(.text);
       /* data */
       build/data/graph_node.data.o(.data);
       build/data/math_util.data.o(.data);
