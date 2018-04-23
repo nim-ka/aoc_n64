@@ -4077,7 +4077,7 @@ glabel func_802734BC
 /* 02E5F4 802735F4 8FA90028 */  lw    $t1, 0x28($sp)
 /* 02E5F8 802735F8 A5200018 */  sh    $zero, 0x18($t1)
 .L802735FC:
-/* 02E5FC 802735FC 0C0955E2 */  jal   func_80255788
+/* 02E5FC 802735FC 0C0955E2 */  jal   stop_and_set_height_to_ground
 /* 02E600 80273600 8FA40028 */   lw    $a0, 0x28($sp)
 /* 02E604 80273604 8FAA0028 */  lw    $t2, 0x28($sp)
 /* 02E608 80273608 854B0076 */  lh    $t3, 0x76($t2)
@@ -4161,7 +4161,7 @@ glabel func_80273664
 /* 02E724 80273724 1000000A */  b     .L80273750
 /* 02E728 80273728 00000000 */   nop   
 .L8027372C:
-/* 02E72C 8027372C 0C0955E2 */  jal   func_80255788
+/* 02E72C 8027372C 0C0955E2 */  jal   stop_and_set_height_to_ground
 /* 02E730 80273730 8FA40018 */   lw    $a0, 0x18($sp)
 /* 02E734 80273734 8FA40018 */  lw    $a0, 0x18($sp)
 /* 02E738 80273738 0C0941FA */  jal   func_802507E8
@@ -4257,7 +4257,7 @@ glabel func_80273760
 /* 02E880 80273880 8FA40028 */   lw    $a0, 0x28($sp)
 /* 02E884 80273884 0C09CC2A */  jal   func_802730A8
 /* 02E888 80273888 8FA40028 */   lw    $a0, 0x28($sp)
-/* 02E88C 8027388C 0C0956D8 */  jal   func_80255B60
+/* 02E88C 8027388C 0C0956D8 */  jal   perform_ground_step
 /* 02E890 80273890 8FA40028 */   lw    $a0, 0x28($sp)
 /* 02E894 80273894 00408025 */  move  $s0, $v0
 /* 02E898 80273898 12000006 */  beqz  $s0, .L802738B4
@@ -4379,7 +4379,7 @@ glabel func_80273904
 /* 02EA3C 80273A3C 8FA40028 */   lw    $a0, 0x28($sp)
 /* 02EA40 80273A40 0C09CC2A */  jal   func_802730A8
 /* 02EA44 80273A44 8FA40028 */   lw    $a0, 0x28($sp)
-/* 02EA48 80273A48 0C0956D8 */  jal   func_80255B60
+/* 02EA48 80273A48 0C0956D8 */  jal   perform_ground_step
 /* 02EA4C 80273A4C 8FA40028 */   lw    $a0, 0x28($sp)
 /* 02EA50 80273A50 00408025 */  move  $s0, $v0
 /* 02EA54 80273A54 12000006 */  beqz  $s0, .L80273A70
@@ -4451,7 +4451,7 @@ glabel func_80273AC0
 /* 02EB3C 80273B3C 0C0941FA */  jal   func_802507E8
 /* 02EB40 80273B40 2405004D */   li    $a1, 77
 /* 02EB44 80273B44 8FA40028 */  lw    $a0, 0x28($sp)
-/* 02EB48 80273B48 0C095A50 */  jal   func_80256940
+/* 02EB48 80273B48 0C095A50 */  jal   perform_air_step
 /* 02EB4C 80273B4C 00002825 */   move  $a1, $zero
 /* 02EB50 80273B50 00408025 */  move  $s0, $v0
 /* 02EB54 80273B54 24010001 */  li    $at, 1
@@ -4537,7 +4537,7 @@ glabel func_80273BC4
 /* 02EC70 80273C70 0C0941FA */  jal   func_802507E8
 /* 02EC74 80273C74 24050041 */   li    $a1, 65
 /* 02EC78 80273C78 8FA40028 */  lw    $a0, 0x28($sp)
-/* 02EC7C 80273C7C 0C095A50 */  jal   func_80256940
+/* 02EC7C 80273C7C 0C095A50 */  jal   perform_air_step
 /* 02EC80 80273C80 00002825 */   move  $a1, $zero
 /* 02EC84 80273C84 00408025 */  move  $s0, $v0
 /* 02EC88 80273C88 24010001 */  li    $at, 1
@@ -4765,7 +4765,7 @@ glabel func_80273F3C
 /* 02EFA8 80273FA8 10000015 */  b     .L80274000
 /* 02EFAC 80273FAC 00000000 */   nop   
 .L80273FB0:
-/* 02EFB0 80273FB0 0C0955E2 */  jal   func_80255788
+/* 02EFB0 80273FB0 0C0955E2 */  jal   stop_and_set_height_to_ground
 /* 02EFB4 80273FB4 8FA40018 */   lw    $a0, 0x18($sp)
 /* 02EFB8 80273FB8 8FA40018 */  lw    $a0, 0x18($sp)
 /* 02EFBC 80273FBC 0C0941FA */  jal   func_802507E8
@@ -4838,7 +4838,7 @@ glabel func_80274010
 /* 02F0B0 802740B0 10000015 */  b     .L80274108
 /* 02F0B4 802740B4 00000000 */   nop   
 .L802740B8:
-/* 02F0B8 802740B8 0C0955E2 */  jal   func_80255788
+/* 02F0B8 802740B8 0C0955E2 */  jal   stop_and_set_height_to_ground
 /* 02F0BC 802740BC 8FA40018 */   lw    $a0, 0x18($sp)
 /* 02F0C0 802740C0 8FA40018 */  lw    $a0, 0x18($sp)
 /* 02F0C4 802740C4 0C0941FA */  jal   func_802507E8
@@ -4897,7 +4897,7 @@ glabel func_80274118
 /* 02F184 80274184 10000015 */  b     .L802741DC
 /* 02F188 80274188 00000000 */   nop   
 .L8027418C:
-/* 02F18C 8027418C 0C0955E2 */  jal   func_80255788
+/* 02F18C 8027418C 0C0955E2 */  jal   stop_and_set_height_to_ground
 /* 02F190 80274190 8FA40018 */   lw    $a0, 0x18($sp)
 /* 02F194 80274194 8FA40018 */  lw    $a0, 0x18($sp)
 /* 02F198 80274198 0C0941FA */  jal   func_802507E8
@@ -4970,7 +4970,7 @@ glabel func_802741EC
 /* 02F28C 8027428C 10000015 */  b     .L802742E4
 /* 02F290 80274290 00000000 */   nop   
 .L80274294:
-/* 02F294 80274294 0C0955E2 */  jal   func_80255788
+/* 02F294 80274294 0C0955E2 */  jal   stop_and_set_height_to_ground
 /* 02F298 80274298 8FA40018 */   lw    $a0, 0x18($sp)
 /* 02F29C 8027429C 8FA40018 */  lw    $a0, 0x18($sp)
 /* 02F2A0 802742A0 0C0941FA */  jal   func_802507E8

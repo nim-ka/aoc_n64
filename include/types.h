@@ -373,6 +373,15 @@ struct Struct8033B470
     float unk14;
 };
 
+struct BullyCollisionData {
+  /*0x00*/ f32 conversionRatio;
+  /*0x04*/ f32 radius;
+  /*0x08*/ f32 posX;
+  /*0x0C*/ f32 posZ;
+  /*0x10*/ f32 velX;
+  /*0x14*/ f32 velZ;
+};
+
 struct Struct80278464
 {
     s32 unk0;

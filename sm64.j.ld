@@ -25,7 +25,7 @@ SECTIONS
       build/asm/credits.o(.text);
       build/asm/interaction.o(.text);
       build/asm/mario.o(.text);
-      build/asm/mario_step.o(.text);
+      build/src/mario_step.o(.text);
       build/asm/mario_actions_cutscene.o(.text);
       build/asm/mario_actions_automatic.o(.text);
       build/asm/mario_actions_stationary.o(.text);
@@ -72,7 +72,7 @@ SECTIONS
       build/data/credits.data.o(.data);
       build/data/interaction.data.o(.data);
       build/data/mario.data.o(.data);
-      build/data/mario_step.data.o(.data);
+      build/src/mario_step.o(.data);
       build/data/mario_actions_cutscene.data.o(.data);
       build/data/mario_actions_moving.data.o(.data);
       build/data/mario_actions_submerged.data.o(.data);
@@ -105,7 +105,7 @@ SECTIONS
       build/data/credits.rodata.o(.rodata);
       build/data/interaction.rodata.o(.rodata);
       build/data/mario.rodata.o(.rodata);
-      build/data/mario_step.rodata.o(.rodata);
+      build/src/mario_step.o(.rodata);
       build/data/mario_actions_cutscene.rodata.o(.rodata);
       build/data/mario_actions_automatic.rodata.o(.rodata);
       build/data/mario_actions_stationary.rodata.o(.rodata);
