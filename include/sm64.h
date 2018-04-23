@@ -42,10 +42,13 @@
 #define SURFACE_0014 0x0014
 #define SURFACE_0015 0x0015
 #define SURFACE_001B 0x001B
+#define SURFACE_0020 0x0020
 #define SURFACE_0021 0x0021
+#define SURFACE_0022 0x0022
 #define SURFACE_0023 0x0023
 #define SURFACE_0024 0x0024
 #define SURFACE_0025 0x0025
+#define SURFACE_0026 0x0026
 #define SURFACE_0027 0x0027
 #define SURFACE_0029 0x0029
 #define SURFACE_002A 0x002A
@@ -85,6 +88,12 @@
 #define INPUT_B_PRESSED              0x2000
 #define INPUT_Z_DOWN                 0x4000
 #define INPUT_Z_PRESSED              0x8000
+
+#define GROUND_STEP_LEFT_GROUND              0
+#define GROUND_STEP_NONE                     1
+#define GROUND_STEP_HIT_WALL                 2
+#define GROUND_STEP_HIT_WALL_STOP_QSTEPS     2
+#define GROUND_STEP_HIT_WALL_CONTINUE_QSTEPS 3
 
 #define AIR_STEP_CHECK_LEDGE_GRAB 0x00000001
 #define AIR_STEP_CHECK_HANG       0x00000002

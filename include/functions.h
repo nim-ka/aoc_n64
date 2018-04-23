@@ -244,7 +244,7 @@ extern void func_8037C658(struct Object *, void *);
 // extern ? LevelScript3C(?);
 extern int LevelScriptLoad(int);
 // extern ? func_80380690(?);
-// extern ? func_80380DE8(?);
+extern s32 func_80380DE8(f32 *x, f32 *y, f32 *z, f32 offsetY, f32 radius);
 // extern ? func_80380E8C(?);
 // extern ? func_80381038(?);
 extern float func_80381264(float, float, float, struct Surface **);
@@ -1175,9 +1175,9 @@ extern void func_80251348(struct MarioState *, u32);
 extern void func_80251410(struct MarioState *, u32, u32);
 extern void func_802514DC(struct MarioState *m, f32 speed);
 // extern ? func_80251550(?);
-// extern ? func_8025167C(?);
-// extern ? func_8025181C(?);
-// extern ? func_802518D0(?);
+extern u32 func_8025167C(struct MarioState *);
+extern struct Surface *func_8025181C(Vec3f, f32, f32);
+extern f32 func_802518D0(Vec3f, f32, struct Surface **);
 // extern ? func_80251928(?);
 extern u32 func_802519A8(struct MarioState *);
 // extern ? func_80251AD0(?);
@@ -1217,29 +1217,27 @@ extern u32 func_8025325C(struct MarioState *);
 // extern ? func_80254604(?);
 // extern ? func_802548BC(?);
 // extern ? func_80254CE0(?);
-// extern ? func_80254E20(?);
-// extern ? func_80254E3C(?);
-// extern ? func_80254E50(?);
-// extern ? func_80254E60(?);
-// extern ? func_80254FD8(?);
-extern void func_8025509C(struct MarioState *, u32);
-// extern ? func_802551B4(?);
-// extern ? func_802553F4(?);
-// extern ? func_802554AC(?);
-// extern ? func_802555AC(?);
-// extern ? func_80255788(?);
-// extern ? func_8025580C(?);
-// extern ? func_802558DC(?);
-// extern ? func_80255B60(?);
-// extern ? func_80255C9C(?);
-// extern ? func_80255E84(?);
-// extern ? func_802562B8(?);
-// extern ? func_8025635C(?);
-// extern ? func_802563F4(?);
-// extern ? func_802567D0(?);
-extern u32 func_80256940(struct MarioState *, u32);
-// extern ? Unknown80256AF4(?);
-// extern ? Unknown80256BA8(?);
+extern f32 zero_80254E20(void);
+extern void nop_80254E3C(u32 x);
+extern void nop_80254E50(void);
+extern void transfer_bully_speed(struct BullyCollisionData *, struct BullyCollisionData *);
+extern void init_bully_collision_data(
+    struct BullyCollisionData *data,
+    f32 posX,
+    f32 posZ,
+    f32 forwardVel,
+    s16 yaw,
+    f32 conversionRatio,
+    f32 radius);
+extern void mario_bonk_reflection(struct MarioState *, u32);
+extern u32 mario_update_quicksand(struct MarioState *, f32);
+extern u32 mario_push_off_steep_floor(struct MarioState *, u32, u32);
+extern u32 mario_update_moving_sand(struct MarioState *);
+extern u32 mario_update_windy_ground(struct MarioState *);
+extern void stop_and_set_height_to_ground(struct MarioState *);
+extern u32 stationary_ground_step(struct MarioState *);
+extern u32 perform_ground_step(struct MarioState *);
+extern u32 perform_air_step(struct MarioState *, u32);
 // extern ? func_80256C20(?);
 // extern ? func_80256CA8(?);
 // extern ? BehEndPeachLoop(?);

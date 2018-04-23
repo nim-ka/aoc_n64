@@ -17,7 +17,7 @@ glabel func_80274940
 /* 02F948 80274948 AFA40018 */  sw    $a0, 0x18($sp)
 /* 02F94C 8027494C AFA5001C */  sw    $a1, 0x1c($sp)
 /* 02F950 80274950 AFA60020 */  sw    $a2, 0x20($sp)
-/* 02F954 80274954 0C095603 */  jal   func_8025580C
+/* 02F954 80274954 0C095603 */  jal   stationary_ground_step
 /* 02F958 80274958 8FA40018 */   lw    $a0, 0x18($sp)
 /* 02F95C 8027495C 8FA40018 */  lw    $a0, 0x18($sp)
 /* 02F960 80274960 0C0941FA */  jal   func_802507E8
@@ -404,7 +404,7 @@ glabel func_80274DB8
 .L80274ECC:
 /* 02FECC 80274ECC 0C09D268 */  jal   func_802749A0
 /* 02FED0 80274ED0 8FA40018 */   lw    $a0, 0x18($sp)
-/* 02FED4 80274ED4 0C0956D8 */  jal   func_80255B60
+/* 02FED4 80274ED4 0C0956D8 */  jal   perform_ground_step
 /* 02FED8 80274ED8 8FA40018 */   lw    $a0, 0x18($sp)
 /* 02FEDC 80274EDC 10000003 */  b     .L80274EEC
 /* 02FEE0 80274EE0 00001025 */   move  $v0, $zero
@@ -513,7 +513,7 @@ glabel func_80274EFC
 /* 03005C 8027505C 0C094AB2 */  jal   set_mario_action
 /* 030060 80275060 00003025 */   move  $a2, $zero
 .L80275064:
-/* 030064 80275064 0C095603 */  jal   func_8025580C
+/* 030064 80275064 0C095603 */  jal   stationary_ground_step
 /* 030068 80275068 8FA40018 */   lw    $a0, 0x18($sp)
 /* 03006C 8027506C 10000003 */  b     .L8027507C
 /* 030070 80275070 00001025 */   move  $v0, $zero
@@ -883,7 +883,7 @@ glabel func_80275510
 /* 030594 80275594 0C094AB2 */  jal   set_mario_action
 /* 030598 80275598 00003025 */   move  $a2, $zero
 .L8027559C:
-/* 03059C 8027559C 0C095603 */  jal   func_8025580C
+/* 03059C 8027559C 0C095603 */  jal   stationary_ground_step
 /* 0305A0 802755A0 8FA40018 */   lw    $a0, 0x18($sp)
 /* 0305A4 802755A4 10000003 */  b     .L802755B4
 /* 0305A8 802755A8 00001025 */   move  $v0, $zero
@@ -1078,7 +1078,7 @@ glabel func_802755C4
 /* 03085C 8027585C 0C0C771E */  jal   SetSound
 /* 030860 80275860 24A50054 */   addiu $a1, $a1, 0x54
 .L80275864:
-/* 030864 80275864 0C095603 */  jal   func_8025580C
+/* 030864 80275864 0C095603 */  jal   stationary_ground_step
 /* 030868 80275868 8FA40028 */   lw    $a0, 0x28($sp)
 /* 03086C 8027586C 8FA80028 */  lw    $t0, 0x28($sp)
 /* 030870 80275870 85190034 */  lh    $t9, 0x34($t0)
@@ -1221,7 +1221,7 @@ glabel func_80275A30
 /* 030A54 80275A54 24020001 */   li    $v0, 1
 .L80275A58:
 /* 030A58 80275A58 8FA40028 */  lw    $a0, 0x28($sp)
-/* 030A5C 80275A5C 0C09546D */  jal   func_802551B4
+/* 030A5C 80275A5C 0C09546D */  jal   mario_update_quicksand
 /* 030A60 80275A60 3C053F00 */   lui   $a1, 0x3f00
 /* 030A64 80275A64 10400003 */  beqz  $v0, .L80275A74
 /* 030A68 80275A68 00000000 */   nop   

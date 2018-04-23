@@ -170,7 +170,7 @@ static u32 check_horizontal_wind(struct MarioState *m)
 static void update_air_with_turn(struct MarioState *m)
 {
     f32 dragThreshold;
-    s16 intendedDyaw;
+    s16 intendedDYaw;
     f32 intendedMag;
 
     if (!check_horizontal_wind(m))
@@ -180,11 +180,11 @@ static void update_air_with_turn(struct MarioState *m)
 
         if (m->input & INPUT_NONZERO_ANALOG)
         {
-            intendedDyaw = m->intendedYaw - m->faceAngle[1];
+            intendedDYaw = m->intendedYaw - m->faceAngle[1];
             intendedMag = m->intendedMag / 32.0f;
 
-            m->forwardVel += 1.5f * coss(intendedDyaw) * intendedMag;
-            m->faceAngle[1] += 512.0f * sins(intendedDyaw) * intendedMag;
+            m->forwardVel += 1.5f * coss(intendedDYaw) * intendedMag;
+            m->faceAngle[1] += 512.0f * sins(intendedDYaw) * intendedMag;
         }
 
         //! Uncapped air speed. Net positive when moving forward.
@@ -202,7 +202,7 @@ static void update_air_without_turn(struct MarioState *m)
 {
     f32 sidewaysSpeed = 0.0f;
     f32 dragThreshold;
-    s16 intendedDyaw;
+    s16 intendedDYaw;
     f32 intendedMag;
 
     if (!check_horizontal_wind(m))
@@ -212,11 +212,11 @@ static void update_air_without_turn(struct MarioState *m)
 
         if (m->input & INPUT_NONZERO_ANALOG)
         {
-            intendedDyaw = m->intendedYaw - m->faceAngle[1];
+            intendedDYaw = m->intendedYaw - m->faceAngle[1];
             intendedMag = m->intendedMag / 32.0f;
 
-            m->forwardVel += intendedMag * coss(intendedDyaw) * 1.5f;
-            sidewaysSpeed = intendedMag * sins(intendedDyaw) * 10.0f;
+            m->forwardVel += intendedMag * coss(intendedDYaw) * 1.5f;
+            sidewaysSpeed = intendedMag * sins(intendedDYaw) * 10.0f;
         }
 
         //! Uncapped air speed. Net positive when moving forward.
@@ -238,16 +238,16 @@ static void update_air_without_turn(struct MarioState *m)
 
 static void update_lava_boost_or_twirling(struct MarioState *m)
 {
-    s16 intendedDyaw;
+    s16 intendedDYaw;
     f32 intendedMag;
 
     if (m->input & INPUT_NONZERO_ANALOG)
     {
-        intendedDyaw = m->intendedYaw - m->faceAngle[1];
+        intendedDYaw = m->intendedYaw - m->faceAngle[1];
         intendedMag = m->intendedMag / 32.0f;
 
-        m->forwardVel += coss(intendedDyaw) * intendedMag;
-        m->faceAngle[1] += sins(intendedDyaw) * intendedMag * 1024.0f;
+        m->forwardVel += coss(intendedDYaw) * intendedMag;
+        m->faceAngle[1] += sins(intendedDYaw) * intendedMag * 1024.0f;
 
         if (m->forwardVel < 0.0f)
         {
@@ -380,7 +380,7 @@ static u32 common_air_action_step(
 
     update_air_without_turn(m);
 
-    stepResult = func_80256940(m, stepArg);
+    stepResult = perform_air_step(m, stepArg);
     switch (stepResult)
     {
     case AIR_STEP_NONE:
@@ -397,7 +397,7 @@ static u32 common_air_action_step(
 
         if (m->forwardVel > 16.0f)
         {
-            func_8025509C(m, 0);
+            mario_bonk_reflection(m, 0);
             m->faceAngle[1] += 0x8000;
 
             if (m->wall != NULL)
@@ -628,7 +628,7 @@ static u32 act_riding_shell_air(struct MarioState *m)
 
     update_air_without_turn(m);
 
-    switch (func_80256940(m, 0))
+    switch (perform_air_step(m, 0))
     {
     case AIR_STEP_LANDED:
         set_mario_action(m, ACT_RIDING_SHELL_GROUND, 1);
@@ -669,14 +669,14 @@ static u32 act_twirling(struct MarioState *m)
 
     update_lava_boost_or_twirling(m);
 
-    switch (func_80256940(m, 0))
+    switch (perform_air_step(m, 0))
     {
     case AIR_STEP_LANDED:
         set_mario_action(m, ACT_TWIRL_LAND, 0);
         break;
 
     case AIR_STEP_HIT_WALL:
-        func_8025509C(m, 0);
+        mario_bonk_reflection(m, 0);
         break;
 
     case AIR_STEP_HIT_LAVA_WALL:
@@ -706,7 +706,7 @@ static u32 act_dive(struct MarioState *m)
 
     update_air_without_turn(m);
 
-    switch (func_80256940(m, 0))
+    switch (perform_air_step(m, 0))
     {
     case AIR_STEP_NONE:
         if (m->vel[1] < 0.0f && m->faceAngle[0] > -0x2AAA)
@@ -736,7 +736,7 @@ static u32 act_dive(struct MarioState *m)
         break;
 
     case AIR_STEP_HIT_WALL:
-        func_8025509C(m, 1);
+        mario_bonk_reflection(m, 1);
         m->faceAngle[0] = 0;
 
         if (m->vel[1] > 0.0f)
@@ -763,7 +763,7 @@ static u32 act_air_throw(struct MarioState *m)
     func_802507E8(m, 0x0052);
     update_air_without_turn(m);
 
-    switch (func_80256940(m, 0))
+    switch (perform_air_step(m, 0))
     {
     case AIR_STEP_LANDED:
         if (!check_fall_damage_or_get_stuck(m, ACT_UNKNOWN_060))
@@ -790,7 +790,7 @@ static u32 act_water_jump(struct MarioState *m)
     func_80251410(m, 0x04328081, 0);
     func_802507E8(m, 0x004D);
 
-    switch (func_80256940(m, AIR_STEP_CHECK_LEDGE_GRAB))
+    switch (perform_air_step(m, AIR_STEP_CHECK_LEDGE_GRAB))
     {
     case AIR_STEP_LANDED:
         set_mario_action(m, ACT_JUMP_LAND, 0);
@@ -825,7 +825,7 @@ static u32 act_hold_water_jump(struct MarioState *m)
     func_80251410(m, 0x04328081, 0);
     func_802507E8(m, 0x0041);
 
-    switch (func_80256940(m, 0))
+    switch (perform_air_step(m, 0))
     {
     case AIR_STEP_LANDED:
         set_mario_action(m, ACT_UNKNOWN_074, 0);
@@ -852,7 +852,7 @@ static u32 act_steep_jump(struct MarioState *m)
     func_80251410(m, 0x04008081, 0);
     func_802514DC(m, 0.98f * m->forwardVel);
 
-    switch (func_80256940(m, 0))
+    switch (perform_air_step(m, 0))
     {
     case AIR_STEP_LANDED:
         if (!check_fall_damage_or_get_stuck(m, ACT_UNKNOWN_060))
@@ -915,7 +915,7 @@ static u32 act_ground_pound(struct MarioState *m)
     {
         func_802507E8(m, 0x003D);
 
-        stepResult = func_80256940(m, 0);
+        stepResult = perform_air_step(m, 0);
         if (stepResult == AIR_STEP_LANDED)
         {
             if (should_get_stuck_in_ground(m))
@@ -954,7 +954,7 @@ static u32 act_burning_jump(struct MarioState *m)
     func_80251410(m, 0x04008081, m->actionArg == 0 ? 0 : -1);
     func_802514DC(m, m->forwardVel);
 
-    if (func_80256940(m, 0) == AIR_STEP_LANDED)
+    if (perform_air_step(m, 0) == AIR_STEP_LANDED)
     {
         func_80251280(m, 0x04088081);
         set_mario_action(m, ACT_BURNING_GROUND, 0);
@@ -976,7 +976,7 @@ static u32 act_burning_fall(struct MarioState *m)
 {
     func_802514DC(m, m->forwardVel);
 
-    if (func_80256940(m, 0) == AIR_STEP_LANDED)
+    if (perform_air_step(m, 0) == AIR_STEP_LANDED)
     {
         func_80251280(m, 0x04088081);
         set_mario_action(m, ACT_BURNING_GROUND, 0);
@@ -1029,7 +1029,7 @@ static u32 act_crazy_box_bounce(struct MarioState *m)
 
     update_air_without_turn(m);
 
-    switch (func_80256940(m, 0))
+    switch (perform_air_step(m, 0))
     {
     case AIR_STEP_LANDED:
         if (m->actionArg < 2)
@@ -1046,7 +1046,7 @@ static u32 act_crazy_box_bounce(struct MarioState *m)
         break;
 
     case AIR_STEP_HIT_WALL:
-        func_8025509C(m, 0);
+        mario_bonk_reflection(m, 0);
         break;
 
     case AIR_STEP_HIT_LAVA_WALL:
@@ -1065,7 +1065,7 @@ static u32 common_knockback_action_step(
 
     func_802514DC(m, speed);
 
-    stepResult = func_80256940(m, 0);
+    stepResult = perform_air_step(m, 0);
     switch (stepResult)
     {
     case AIR_STEP_NONE:
@@ -1079,7 +1079,7 @@ static u32 common_knockback_action_step(
 
     case AIR_STEP_HIT_WALL:
         func_802507E8(m, 0x0002);
-        func_8025509C(m, 0);
+        mario_bonk_reflection(m, 0);
 
         if (m->vel[1] > 0.0f)
             m->vel[1] = 0.0f;
@@ -1224,7 +1224,7 @@ static u32 act_getting_blown(struct MarioState *m)
     func_80250F50(m, 0x24058081, MARIO_UNKNOWN_17);
     func_802507E8(m, 0x0002);
 
-    switch (func_80256940(m, 0))
+    switch (perform_air_step(m, 0))
     {
     case AIR_STEP_LANDED:
         set_mario_action(m, ACT_HARD_BACKWARD_AIR_KB, 0);
@@ -1232,7 +1232,7 @@ static u32 act_getting_blown(struct MarioState *m)
 
     case AIR_STEP_HIT_WALL:
         func_802507E8(m, 0x002D);
-        func_8025509C(m, 0);
+        mario_bonk_reflection(m, 0);
 
         if (m->vel[1] > 0.0f)
             m->vel[1] = 0.0f;
@@ -1301,7 +1301,7 @@ static u32 act_forward_rollout(struct MarioState *m)
 
     update_air_without_turn(m);
 
-    switch (func_80256940(m, 0))
+    switch (perform_air_step(m, 0))
     {
     case AIR_STEP_NONE:
         if (m->actionState == 1)
@@ -1346,7 +1346,7 @@ static u32 act_backward_rollout(struct MarioState *m)
 
     update_air_without_turn(m);
 
-    switch (func_80256940(m, 0))
+    switch (perform_air_step(m, 0))
     {
     case AIR_STEP_NONE:
         if (m->actionState == 1)
@@ -1386,7 +1386,7 @@ static u32 act_butt_slide_air(struct MarioState *m)
 
     update_air_with_turn(m);
 
-    switch (func_80256940(m, 0))
+    switch (perform_air_step(m, 0))
     {
     case AIR_STEP_LANDED:
         if (m->actionState == 0 && m->vel[1] < 0.0f && m->floor->normal[1] >= 0.9848077f)
@@ -1427,7 +1427,7 @@ static u32 act_hold_butt_slide_air(struct MarioState *m)
 
     update_air_with_turn(m);
 
-    switch (func_80256940(m, 0))
+    switch (perform_air_step(m, 0))
     {
     case AIR_STEP_LANDED:
         if (m->actionState == 0 && m->vel[1] < 0.0f && m->floor->normal[1] >= 0.9848077f)
@@ -1469,7 +1469,7 @@ static u32 act_lava_boost(struct MarioState *m)
 
     update_lava_boost_or_twirling(m);
 
-    switch (func_80256940(m, 0))
+    switch (perform_air_step(m, 0))
     {
     case AIR_STEP_LANDED:
         if (m->floor->type == SURFACE_LAVA)
@@ -1497,7 +1497,7 @@ static u32 act_lava_boost(struct MarioState *m)
         break;
 
     case AIR_STEP_HIT_WALL:
-        func_8025509C(m, 0);
+        mario_bonk_reflection(m, 0);
         break;
 
     case AIR_STEP_HIT_LAVA_WALL:
@@ -1534,7 +1534,7 @@ static u32 act_slide_kick(struct MarioState *m)
 
     update_air_without_turn(m);
 
-    switch (func_80256940(m, 0))
+    switch (perform_air_step(m, 0))
     {
     case AIR_STEP_NONE:
         if (m->actionState == 0)
@@ -1596,7 +1596,7 @@ static u32 act_jump_kick(struct MarioState *m)
 
     update_air_without_turn(m);
 
-    switch (func_80256940(m, 0))
+    switch (perform_air_step(m, 0))
     {
     case AIR_STEP_LANDED:
         if (!check_fall_damage_or_get_stuck(m, ACT_UNKNOWN_060))
@@ -1620,7 +1620,7 @@ static u32 act_shot_from_cannon(struct MarioState *m)
 
     func_80250F50(m, 0x24048081, MARIO_UNKNOWN_17);
 
-    switch (func_80256940(m, 0))
+    switch (perform_air_step(m, 0))
     {
     case AIR_STEP_NONE:
         func_802507E8(m, 0x0015);
@@ -1711,7 +1711,7 @@ static u32 act_flying(struct MarioState *m)
 
     update_flying(m);
 
-    switch (func_80256940(m, 0))
+    switch (perform_air_step(m, 0))
     {
     case AIR_STEP_NONE:
         m->marioObj->gfx.unk1A[0] = -m->faceAngle[0];
@@ -1853,7 +1853,7 @@ static u32 act_flying_triple_jump(struct MarioState *m)
 
     update_air_without_turn(m);
 
-    switch (func_80256940(m, 0))
+    switch (perform_air_step(m, 0))
     {
     case AIR_STEP_LANDED:
         if (!check_fall_damage_or_get_stuck(m, ACT_UNKNOWN_060))
@@ -1861,7 +1861,7 @@ static u32 act_flying_triple_jump(struct MarioState *m)
         break;
 
     case AIR_STEP_HIT_WALL:
-        func_8025509C(m, 0);
+        mario_bonk_reflection(m, 0);
         break;
 
     case AIR_STEP_HIT_LAVA_WALL:
@@ -1881,7 +1881,7 @@ static u32 act_top_of_pole_jump(struct MarioState *m)
 
 static u32 act_vertical_wind(struct MarioState *m)
 {
-    s16 intendedDyaw = m->intendedYaw - m->faceAngle[1];
+    s16 intendedDYaw = m->intendedYaw - m->faceAngle[1];
     f32 intendedMag = m->intendedMag / 32.0f;
 
     func_80250F50(m, 0x240C8081, MARIO_UNKNOWN_17);
@@ -1901,7 +1901,7 @@ static u32 act_vertical_wind(struct MarioState *m)
 
     update_air_without_turn(m);
 
-    switch (func_80256940(m, 0))
+    switch (perform_air_step(m, 0))
     {
     case AIR_STEP_LANDED:
         set_mario_action(m, ACT_DIVE_SLIDE, 0);
@@ -1929,7 +1929,7 @@ static u32 act_special_triple_jump(struct MarioState *m)
 
     update_air_without_turn(m);
 
-    switch (func_80256940(m, 0))
+    switch (perform_air_step(m, 0))
     {
     case AIR_STEP_LANDED:
         if (m->actionState++ == 0)
@@ -1940,7 +1940,7 @@ static u32 act_special_triple_jump(struct MarioState *m)
         break;
 
     case AIR_STEP_HIT_WALL:
-        func_8025509C(m, 1);
+        mario_bonk_reflection(m, 1);
         break;
     }
 

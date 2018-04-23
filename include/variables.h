@@ -303,7 +303,7 @@ extern u8 D_8032CE34;
 extern struct Object *gMarioObject;
 // extern ? D_8033B1B0;
 // extern ? D_8033A040;
-// extern ? D_8032CB98;
+extern struct Surface gWaterSurfacePseudoFloor;
 extern float D_80387000[];
 // extern ? D_8032CBE0;
 // extern ? D_80339F48;

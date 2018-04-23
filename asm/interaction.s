@@ -1055,7 +1055,7 @@ glabel func_8024CC68
 /* 007CE0 8024CCE0 27A40058 */  addiu $a0, $sp, 0x58
 /* 007CE4 8024CCE4 E7AA0018 */  swc1  $f10, 0x18($sp)
 /* 007CE8 8024CCE8 E7A80014 */  swc1  $f8, 0x14($sp)
-/* 007CEC 8024CCEC 0C0953F6 */  jal   func_80254FD8
+/* 007CEC 8024CCEC 0C0953F6 */  jal   init_bully_collision_data
 /* 007CF0 8024CCF0 AFA90010 */   sw    $t1, 0x10($sp)
 /* 007CF4 8024CCF4 8FAA0030 */  lw    $t2, 0x30($sp)
 /* 007CF8 8024CCF8 C7B00028 */  lwc1  $f16, 0x28($sp)
@@ -1070,7 +1070,7 @@ glabel func_8024CC68
 /* 007D1C 8024CD1C C55201F8 */  lwc1  $f18, 0x1f8($t2)
 /* 007D20 8024CD20 27A40040 */  addiu $a0, $sp, 0x40
 /* 007D24 8024CD24 46049180 */  add.s $f6, $f18, $f4
-/* 007D28 8024CD28 0C0953F6 */  jal   func_80254FD8
+/* 007D28 8024CD28 0C0953F6 */  jal   init_bully_collision_data
 /* 007D2C 8024CD2C E7A60018 */   swc1  $f6, 0x18($sp)
 /* 007D30 8024CD30 8FAC0070 */  lw    $t4, 0x70($sp)
 /* 007D34 8024CD34 44805000 */  mtc1  $zero, $f10
@@ -1080,13 +1080,13 @@ glabel func_8024CC68
 /* 007D44 8024CD44 45010006 */  bc1t  .L8024CD60
 /* 007D48 8024CD48 00000000 */   nop   
 /* 007D4C 8024CD4C 27A40058 */  addiu $a0, $sp, 0x58
-/* 007D50 8024CD50 0C095398 */  jal   func_80254E60
+/* 007D50 8024CD50 0C095398 */  jal   transfer_bully_speed
 /* 007D54 8024CD54 27A50040 */   addiu $a1, $sp, 0x40
 /* 007D58 8024CD58 10000004 */  b     .L8024CD6C
 /* 007D5C 8024CD5C 00000000 */   nop   
 .L8024CD60:
 /* 007D60 8024CD60 27A40040 */  addiu $a0, $sp, 0x40
-/* 007D64 8024CD64 0C095398 */  jal   func_80254E60
+/* 007D64 8024CD64 0C095398 */  jal   transfer_bully_speed
 /* 007D68 8024CD68 27A50058 */   addiu $a1, $sp, 0x58
 .L8024CD6C:
 /* 007D6C 8024CD6C C7AC006C */  lwc1  $f12, 0x6c($sp)
