@@ -250,12 +250,12 @@ void func_80248934(void)
     D_80339CE0[2] = TOPHYSICAL(D_803DA800);
     D_80339CF0 = _pool_alloc(0x4000, 0);
     SetSegmentBase(17, (void *)D_80339CF0);
-    DynamicObjectCopy(&D_80339D10, &D_004E9FA0, D_80339CF0);
+    DynamicObjectCopy(&D_80339D10, D_004E9FA0, D_80339CF0);
     D_80339CF4 = _pool_alloc(2048, 0);
     SetSegmentBase(24, (void *)D_80339CF4);
-    DynamicObjectCopy(&gDemo, &D_00577BC0, D_80339CF4);
-    DynamicIndexCopy(16, &D_001076A0, &D_001076D0, 0);
-    UncIndexCopy(2, &D_001076D0, &D_00112B50);
+    DynamicObjectCopy(&gDemo, D_00577BC0, D_80339CF4);
+    DynamicIndexCopy(16, D_001076A0, D_001076D0, 0);
+    UncIndexCopy(2, D_001076D0, D_00112B50);
 }
 
 // main game loop thread. runs forever as long as the game

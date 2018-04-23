@@ -1578,13 +1578,13 @@ extern u32 execute_airborne_action(struct MarioState *);
 // extern ? Geo1C_8027795C(?);
 // extern ? Geo18_80277B14(?);
 // extern ? Geo18_80277D6C(?);
-extern void SetSegmentBase(int, void *);
+extern int SetSegmentBase(int, void *);
 // extern ? GetSegmentBase(?);
 extern int SegmentedToVirtual(u32);
 // extern ? MakePtr(?);
 extern void MovePtrTbl2Dmem(void);
 extern void InitMemPool();
-extern int _pool_alloc(int, int);
+extern void *_pool_alloc(u32, int);
 // extern ? _pool_free(?);
 // extern ? _pool_realloc(?);
 // extern ? PoolAvailable(?);
@@ -1592,21 +1592,21 @@ extern int _pool_alloc(int, int);
 // extern ? PopPoolState(?);
 // extern ? DmaCopy(?);
 // extern ? DynamicCopy(?);
-extern void DynamicIndexCopy(int, void *, void *, int); // todo: identify types
+extern void *DynamicIndexCopy(u32, u8 *, u8 *, u32); // todo: identify types
 // extern ? FixedCopy(?);
-extern void UncIndexCopy(int, void *, void *); // todo: identify types
+extern void *UncIndexCopy(int, u8 *, u8 *); // todo: identify types
 // extern ? func_80278304(?);
 extern void CopyScriptInterpreter(void);
 // extern ? func_80278464(?);
 // extern ? SimpleAllocate(?);
 // extern ? func_80278578(?);
-extern int func_802785E8();
+struct Struct80278464 *func_802785E8(u32, u32);
 // extern ? subPrint(?);
 // extern ? func_802787C4(?);
 // extern ? func_8027897C(?);
 // extern ? dobjCopy(?);
-extern void DynamicObjectCopy(void *, void *, int);
-extern void SetMarioAnimation(struct Demo **, u16); // FIXME: does it take a ** or a *?
+void DynamicObjectCopy(struct MarioAnimation *a, void *b, void *c);
+extern int SetMarioAnimation(struct MarioAnimation *, u32); // FIXME: does it take a ** or a *?
 // extern ? func_8027A220(?);
 // extern ? func_8027A28C(?);
 extern void IntroPrintText(void);
@@ -1660,7 +1660,7 @@ extern void func_8027E01C(void);
 // extern ? func_8027E61C(?);
 // extern ? func_8027E8FC(?);
 extern void func_8027EEB0(void);
-// extern ? uncompress(?);
+extern void uncompress(void *, void *);
 extern void func_8027EFE0(s16);
 // extern ? func_8027F308(?);
 // extern ? func_8027F440(?);
@@ -4266,7 +4266,7 @@ extern float sqrtf(float);
 // extern ? osInvalDCache(?);
 // extern ? osPiStartDma(?);
 // extern ? bzero(?);
-// extern ? osInvalCache(?);
+// extern ? osInvalICache(?);
 // extern ? osEepromLongRead(?);
 // extern ? osEepromLongWrite(?);
 // extern ? bcopy(?);

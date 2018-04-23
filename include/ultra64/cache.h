@@ -3,6 +3,8 @@
 
 /* Functions */
 
+void osInvalICache(void *vaddr, s32 nbytes);
+void osInvalDCache(void *vaddr, s32 nbytes);
 void osWritebackDCache(void *vaddr, s32 nbytes);
 void osWritebackDCacheAll(void);
 
