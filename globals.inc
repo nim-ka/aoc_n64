@@ -1658,7 +1658,7 @@
 .global osInvalDCache
 .global osPiStartDma
 .global bzero
-.global osInvalCache
+.global osInvalICache
 .global osEepromLongRead
 .global osEepromLongWrite
 .global bcopy

@@ -27,12 +27,15 @@ struct DemoInput
  /*0x03*/ u8 button;
 };
 
+// Not used, probably
+/*
 struct Demo {
     u32 demoId;
     // this area is where the inputs are allocated. take the header and add 1 word
     // to get the input list pointer.
     struct DemoInput demoInputs[50]; // arbitrary size for struct definition convenience
 };
+*/
 
 struct UnknownStruct8035FFA8
 {
@@ -368,6 +371,48 @@ struct Struct8033B470
     Vec3f unk4;
     float unk10;
     float unk14;
+};
+
+struct Struct80278464
+{
+    s32 unk0;
+    s32 unk4;  
+    u8 *unk8;
+    u8 *unkC;
+};
+
+struct MemBlock
+{
+    struct MemBlock *next;
+    u32 size;
+};
+
+struct UnknownMemoryStruct2
+{
+    u32 unk0;
+    u32 unk4;
+    struct MemBlock *unk8;
+};
+
+struct UnknownMemoryStruct3
+{
+    u32 unk0;
+    void *unk4;
+    void *unkC;
+};
+
+struct MarioAnimDmaRelatedThing
+{
+    u32 unk0;
+    u32 unk4;
+};
+
+struct MarioAnimation
+{
+    struct MarioAnimDmaRelatedThing *animDmaTable;
+    u32 currentDma;
+    void *targetAnim;
+    u8 padding[4];
 };
 
 #endif

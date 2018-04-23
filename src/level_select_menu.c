@@ -96,7 +96,9 @@ int run_press_start_demo_timer(int timer)
 
                 // if the next demo sequence ID is the count limit, reset it back to
                 // the first sequence.
-                if((++gDemoInputListID) == gDemo->demoId)
+                // FIXME: Why the fuck doesn't this match?
+                //if((++gDemoInputListID) == gDemo.animDmaTable[0].unk0)
+                if((++gDemoInputListID) == gDemo.animDmaTable->unk0)
                     gDemoInputListID = 0;
 
                 gDemoInputs = gDemoInputList + 1; // add 1 (+4) to the pointer to skip the demoID.

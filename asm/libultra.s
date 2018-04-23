@@ -1525,7 +1525,7 @@ glabel osInitialize
 /* 0DDA0C 80322A0C 0C0C937C */  jal   osWritebackDCache
 /* 0DDA10 80322A10 ADF8000C */   sw    $t8, %lo(D_8000000C)($t7)
 /* 0DDA14 80322A14 3C048000 */  lui   $a0, 0x8000
-/* 0DDA18 80322A18 0C0C8DB8 */  jal   osInvalCache
+/* 0DDA18 80322A18 0C0C8DB8 */  jal   osInvalICache
 /* 0DDA1C 80322A1C 24050190 */   li    $a1, 400
 /* 0DDA20 80322A20 0C0C9E18 */  jal   func_80327860
 /* 0DDA24 80322A24 00000000 */   nop   
@@ -2441,7 +2441,7 @@ glabel bzero
 /* 0DE6D8 803236D8 00000000 */   nop   
 
 /* 0DE6DC 803236DC 00000000 */  nop   
-glabel osInvalCache
+glabel osInvalICache
 /* 0DE6E0 803236E0 18A00011 */  blez  $a1, .L80323728
 /* 0DE6E4 803236E4 00000000 */   nop   
 /* 0DE6E8 803236E8 240B4000 */  li    $t3, 16384
