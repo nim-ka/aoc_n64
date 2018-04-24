@@ -30,7 +30,7 @@ int SegmentedToVirtual(u32 addr)
 
 u32 MakePtr(u32 segment, u32 addr)
 {
-    u32 offset = (addr & 0x1FFFFFFF) - gSegmentTable[segment];
+    u32 offset = ((u32)addr & 0x1FFFFFFF) - gSegmentTable[segment];
 
     return (segment << 24) + offset;
 }

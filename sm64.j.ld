@@ -51,7 +51,7 @@ SECTIONS
       build/asm/rotate.o(.text);
       build/asm/skybox.o(.text);
       build/asm/moving_texture.o(.text);
-      build/asm/transparent_texture.o(.text);
+      build/src/transparent_texture.o(.text);
       build/asm/print.o(.text);
       build/asm/ingame_menu.o(.text);
       build/asm/hud.o(.text);
