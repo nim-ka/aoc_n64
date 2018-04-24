@@ -303,7 +303,7 @@ void func_8027FF44(struct Struct80280550 *a)
 
     sp24[2] = D_80386000[0xC0] * sp34;
 
-    func_8028A764(sp24, sp24, D_8032D000->unk12);
+    func_8028A764(sp24, sp24, D_8032D000->unk10[1]);
     sp30 = -sp30;
     func_8028A764(sp24, sp24, sp30);
     sp24[2] = 0.0f;
@@ -363,14 +363,6 @@ int CameraChange01(struct Struct80280550 *a, Vec3f b, Vec3f c)
     return sp46;
 }
 
-Vec3f D_8032D09C = {0, -150, -125};
-u8 unknown[8] = {0x00, 0x0E, 0x00, 0x01, 0x00, 0x02, 0x00, 0x04};
-
-extern float D_80335FD0;
-extern float D_80335FD4;
-extern float D_80335FD8;
-extern float D_80335FDC;
-
 int CameraChange0E(struct Struct80280550 *a, Vec3f b, Vec3f c)
 {
     UNUSED float sp4C = D_8032D000->unk4[0] - a->unk28;
@@ -386,11 +378,11 @@ int CameraChange0E(struct Struct80280550 *a, Vec3f b, Vec3f c)
     float sp28 = 1000.0f;
 
     D_8033B3EA = sp46;
-    func_8027F668(&sp40, 1.0f, 200.0f, &sp3C, D_80335FD0, 200.0f);
+    func_8027F668(&sp40, 1.0f, 200.0f, &sp3C, 0.9f, 200.0f);
     func_8027F870(b, c, sp40 + sp2C, sp3C + sp2C, D_8033B3EE + sp28, sp44, sp46);
     func_8027FF44(a);
     if (D_8032CFD8 == 370)
-        sp46 = func_802899A0(c, b, 6839.0f, 995.0f, D_80335FD4, D_80335FD8);
+        sp46 = func_802899A0(c, b, 6839.0f, 995.0f, 5994.0f, -3945.0f);
 
     return sp46;
 }
@@ -615,7 +607,7 @@ int CameraChange02(struct Struct80280550 *a, Vec3f b, Vec3f c)
     float sp2C;
 
     D_8033B3EA = sp3E - D_8033B402 - 32768;
-    func_8027F668(&sp30, 1.0f, 200.0f, &sp2C, D_80335FDC, 200.0f);
+    func_8027F668(&sp30, 1.0f, 200.0f, &sp2C, 0.9f, 200.0f);
     func_8027F870(b, c, sp30 + sp34, sp2C + sp34, D_8033B3EE + sp38, sp3C, sp3E);
 
     return sp3E;
@@ -640,10 +632,6 @@ void func_8028124C(struct Struct80280550 *a)
     func_8027FA48(a, sp1C[1]);
     func_8027FF44(a);
 }
-
-extern float D_80335FE0;
-extern float D_80335FE4;
-extern float D_80335FE8;
 
 int CameraChange0C(struct Struct80280550 *a, Vec3f b, Vec3f c)
 {
@@ -686,7 +674,7 @@ int CameraChange0C(struct Struct80280550 *a, Vec3f b, Vec3f c)
     vec3f_copy(spE8[1], D_8033B470[D_8033B46C + 1].unk4);
     spAC = D_8033B470[D_8033B46C].unk10;
     spA8 = D_8033B470[D_8033B46C].unk14;
-    func_8027F668(&sp84, 1.0f, 200.0f, &sp84, D_80335FE0, 200.0f);
+    func_8027F668(&sp84, 1.0f, 200.0f, &sp84, 0.9f, 200.0f);
     sp78[0] = D_8032D000->unk4[0];
     sp78[1] = D_8032D000->unk4[1] + 150.0f + sp84;
     sp78[2] = D_8032D000->unk4[2];
@@ -730,8 +718,8 @@ int CameraChange0C(struct Struct80280550 *a, Vec3f b, Vec3f c)
     spD0[0] = -spD0[0] * spA8;
     spD0[1] = spD0[1] * spA8;
     spD0[2] = spC4[2];
-    spB8[0] *= D_80335FE4;
-    spB8[1] *= D_80335FE8;
+    spB8[0] *= 0.3f;
+    spB8[1] *= 0.3f;
     sp58[0] = spB6;
     sp58[1] = spB4;
     spD0[2] = sp98 / 2.0f - spD0[2];
@@ -789,3 +777,218 @@ int CameraChange0C(struct Struct80280550 *a, Vec3f b, Vec3f c)
 
     return spB4;
 }
+
+int CameraChange0D(struct Struct80280550 *a, Vec3f b, UNUSED Vec3f c)
+{
+    float sp74;
+    float sp70;
+    float sp6C;
+    float sp68;
+    float sp64;
+    UNUSED u8 filler2[8];
+    float sp58 = 0.5f;
+    s16 sp56;
+    s16 sp54;
+    Vec3s sp4C;
+    struct Surface *sp48;
+    Vec3f sp3C;
+    UNUSED u8 filler[16];
+
+    func_8028B21C();
+
+    switch (D_8032CFD8)
+    {
+    case 241:
+        sp58 = 0.0f;
+        sp68 = 0.0f;
+        break;
+    case 97:
+        sp58 = 0.3f;
+        sp68 = 0.0f;
+        break;
+    case 65:
+        sp58 = 0.0f;
+        sp68 = 0.0f;
+        break;
+    }
+    func_8028B7A4(a);
+    func_8028B19C();
+    func_8027F668(&sp74, 1.0f, 200.0f, &sp74, 0.9f, 200.0f);
+    vec3f_copy(b, D_8032D000->unk4);
+    b[1] += sp74 + 125.0f;
+    func_8037A69C(b, a->unk10, &sp64, &sp4C[0], &sp4C[1]);
+    sp4C[2] = 0;
+    vec3f_copy(sp3C, D_8032D00C);
+    vec3f_add(sp3C, D_8033B460);
+
+    if (D_8033B280 != 10 && D_8033B27C != -11000.0f)
+        sp70 = D_8033B27C + sp3C[1] + sp68;
+    else
+        sp70 = D_8033B328[10];
+    if (300.0f > sp64)
+        sp70 += 300.f - sp64;
+
+    sp6C = func_80381264(a->unk10[0], sp70 - 100.0f, a->unk10[2], &sp48);
+    if (sp6C != 20000.0f)
+    {
+        if (sp70 > (sp6C -= 125.0f))
+            sp70 = sp6C;
+    }
+
+    if (D_8033B4DA & 1)
+    {
+        func_802893E4(&a->unk10[1], sp70, 15.0f);
+    }
+    else
+    {
+        if (sp70 < D_8032D000->unk4[1] - 500.0f)
+            sp70 = D_8032D000->unk4[1] - 500.0f;
+        a->unk10[1] = sp70;
+    }
+
+    a->unk10[0] = sp3C[0] + (D_8032D000->unk4[0] - sp3C[0]) * sp58;
+    a->unk10[2] = sp3C[2] + (D_8032D000->unk4[2] - sp3C[2]) * sp58;
+
+    if (sp58 != 0.0f)
+    {
+        func_8037A69C(a->unk4, a->unk10, &sp64, &sp56, &sp54);
+        if (sp64 > 1000.0f)
+        {
+            sp64 = 1000.0f;
+            func_8037A788(a->unk4, a->unk10, sp64, sp56, sp54);
+        }
+    }
+
+    return sp4C[1];
+}
+
+int CameraChange0B(struct Struct80280550 *a, Vec3f b, Vec3f c)
+{
+    struct Struct8032CFD0 *sp8C;
+    UNUSED u8 filler2[12];
+    float sp7C;
+    UNUSED u8 filler3[4];
+    float sp74;
+    float sp70;
+    float sp6C;
+    float sp68;
+    UNUSED u8 filler4[4];
+    UNUSED s16 sp62;
+    s16 sp60;
+    s16 sp5E;
+    struct Surface *sp58;
+    UNUSED u8 filler[20];
+    Vec3f sp38;
+    Vec3f sp2C = {0.0f, -150.0f, -125.0f};
+
+    func_8028B7A4(a);
+
+    if (D_8032D000->unk1E == 7)
+    {
+        func_8027F308(3);
+        D_8032D000->unk1E = 0;
+    }
+    if (D_8032D000->unk1E == 8)
+    {
+        func_8027F308(2);
+        D_8032D000->unk1E = 0;
+    }
+
+    sp60 = D_8033B402 + 0x2000;
+    if ((sp8C = D_8032CFD0) != NULL)
+    {
+        func_80287840(sp38, sp8C);
+        sp5E = sp8C->unk124;
+    }
+    else
+    {
+        sp38[0] = a->unk28;
+        sp38[1] = D_8032D000->unk4[1];
+        sp38[2] = a->unk2C;
+        sp5E = 0;
+    }
+
+    sp7C = func_8028A640(D_8032D000->unk4, sp38) * 1.6f;
+    if (sp7C < 800.0f)
+        sp7C = 800.0f;
+    if (sp7C > 5000.0f)
+        sp7C = 5000.0f;
+
+    if (sp5E == 1)
+        func_8028C5F0(sp38, D_8032D000->unk4, sp2C, D_8032D000->unk10);
+
+    b[0] = (D_8032D000->unk4[0] + sp38[0]) / 2.0f;
+    b[1] = (D_8032D000->unk4[1] + sp38[1]) / 2.0f + 125.0f;
+    b[2] = (D_8032D000->unk4[2] + sp38[2]) / 2.0f;
+
+    func_8037A788(b, c, sp7C, 4096, sp60);
+    c[1] = func_80381900(a->unk28, 20000.0f, a->unk2C, &sp58);
+    if (sp58 != NULL)
+    {
+        sp74 = sp58->normal[0];
+        sp70 = sp58->normal[1];
+        sp6C = sp58->normal[2];
+        sp68 = sp58->originOffset;
+        c[1] = 300.0f - (sp74 * c[0] + sp6C * c[2] + sp68) / sp70;
+        switch (D_8032CFD8)
+        {
+        case 145:
+            c[1] += 125.0f;
+            // fall through
+        case 385:
+            c[1] += 125.0f;
+        }
+    }
+
+    if (gCurrLevelNum == 4)
+        c[1] = 2047.0f;
+
+    if (D_8033B3F8 < 0)
+    {
+        D_8033B402 += 0x200;
+        if ((D_8033B3F8 += 0x100) > 0)
+            D_8033B3F8 = 0;
+    }
+    if (D_8033B3F8 > 0)
+    {
+        D_8033B402 -= 0x200;
+        if ((D_8033B3F8 -= 0x100) < 0)
+            D_8033B3F8 = 0;
+    }
+
+    b[1] = (D_8032D000->unk4[1] + sp38[1]) / 2.0f + 100.0f;
+    if (sp5E == 1)
+        b[1] += 300.0f * sins((gMarioStates[0].angleVel[1] > 0.0f) ? gMarioStates[0].angleVel[1] : -gMarioStates[0].angleVel[1]);
+
+    if (sp7C < 400.0f)
+        sp7C = 400.0f;
+    func_80280BD8(sp7C, 6144);
+    func_8037A788(c, c, D_8033B3EE, D_8033B3F0 + 0x1000, sp60);
+
+    return sp60;
+}
+
+void CameraChange05(UNUSED struct Struct80280550 *a, UNUSED Vec3f b, UNUSED Vec3f c)
+{
+}
+
+void Unknown80282678(UNUSED int unused)
+{
+}
+
+void func_8028268C(struct Struct80280550 *a)
+{
+    a->unk3A = CameraChange0B(a, a->unk4, a->unk10);
+}
+
+void func_802826CC(struct Struct80280550 *a)
+{
+    u16 dummy;
+
+    func_8028B3DC(a, 0.0f);
+    func_8029A478(2);
+    a->unk3A = CameraChange0C(a, a->unk4, a->unk10);
+    func_80289184(&dummy, 0, 1024);
+}
+
+u8 unknown[8] = {0x00, 0x0E, 0x00, 0x01, 0x00, 0x02, 0x00, 0x04};

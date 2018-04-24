@@ -3,51 +3,6 @@
 
 .section .rodata
 
-glabel D_80335FD0
-	.incbin "bin/rodata.bin", 0x1560, 0x4
-
-glabel D_80335FD4
-	.incbin "bin/rodata.bin", 0x1564, 0x4
-
-glabel D_80335FD8
-	.incbin "bin/rodata.bin", 0x1568, 0x4
-
-glabel D_80335FDC
-	.incbin "bin/rodata.bin", 0x156C, 0x4
-
-glabel D_80335FE0
-	.incbin "bin/rodata.bin", 0x1570, 0x4
-
-glabel D_80335FE4
-	.incbin "bin/rodata.bin", 0x1574, 0x4
-
-glabel D_80335FE8
-	.incbin "bin/rodata.bin", 0x1578, 0x8
-
-glabel D_80335FF0
-	.incbin "bin/rodata.bin", 0x1580, 0x4
-
-glabel D_80335FF4
-	.incbin "bin/rodata.bin", 0x1584, 0x4
-
-glabel D_80335FF8
-	.incbin "bin/rodata.bin", 0x1588, 0x4
-
-glabel D_80335FFC
-	.incbin "bin/rodata.bin", 0x158C, 0x4
-
-glabel D_80336000
-	.incbin "bin/rodata.bin", 0x1590, 0x4
-
-glabel D_80336004
-	.incbin "bin/rodata.bin", 0x1594, 0x4
-
-glabel D_80336008
-	.incbin "bin/rodata.bin", 0x1598, 0x4
-
-glabel D_8033600C
-	.incbin "bin/rodata.bin", 0x159C, 0x4
-
 glabel D_80336010
 	.incbin "bin/rodata.bin", 0x15A0, 0x4
 

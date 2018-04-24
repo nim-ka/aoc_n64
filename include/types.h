@@ -347,8 +347,13 @@ struct Struct8032D000
     u32 unk0;
     Vec3f unk4;
     //u32 unk10;
+    Vec3s unk10;
+    /*
     u8 filler10[2];
     s16 unk12;
+    */
+    u8 filler16[0x1E - 0x16];
+    s16 unk1E;
 };
 
 struct Struct80280550
@@ -422,6 +427,13 @@ struct MarioAnimation
     u32 currentDma;
     void *targetAnim;
     u8 padding[4];
+};
+
+// Maybe Object? I don't know...
+struct Struct8032CFD0
+{
+    u8 filler0[0x124];
+    u32 unk124;
 };
 
 #endif
