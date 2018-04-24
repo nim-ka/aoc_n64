@@ -734,7 +734,7 @@ glabel GeoLayout10
 /* 0F91B4 8037D7A4 AFA20030 */  sw    $v0, 0x30($sp)
 /* 0F91B8 8037D7A8 3C058038 */  lui   $a1, %hi(D_80385FDC) # $a1, 0x8038
 /* 0F91BC 8037D7AC 24A55FDC */  addiu $a1, %lo(D_80385FDC) # addiu $a1, $a1, 0x5fdc
-/* 0F91C0 8037D7B0 0C0DE24F */  jal   Vec3s_Copy
+/* 0F91C0 8037D7B0 0C0DE24F */  jal   vec3s_copy
 /* 0F91C4 8037D7B4 27A4003C */   addiu $a0, $sp, 0x3c
 /* 0F91C8 8037D7B8 10000022 */  b     .L8037D844
 /* 0F91CC 8037D7BC 00000000 */   nop   
@@ -746,14 +746,14 @@ glabel GeoLayout10
 /* 0F91E0 8037D7D0 AFA20030 */  sw    $v0, 0x30($sp)
 /* 0F91E4 8037D7D4 3C058038 */  lui   $a1, %hi(D_80385FDC) # $a1, 0x8038
 /* 0F91E8 8037D7D8 24A55FDC */  addiu $a1, %lo(D_80385FDC) # addiu $a1, $a1, 0x5fdc
-/* 0F91EC 8037D7DC 0C0DE24F */  jal   Vec3s_Copy
+/* 0F91EC 8037D7DC 0C0DE24F */  jal   vec3s_copy
 /* 0F91F0 8037D7E0 27A40044 */   addiu $a0, $sp, 0x44
 /* 0F91F4 8037D7E4 10000017 */  b     .L8037D844
 /* 0F91F8 8037D7E8 00000000 */   nop   
 .L8037D7EC:
 /* 0F91FC 8037D7EC 3C058038 */  lui   $a1, %hi(D_80385FDC) # $a1, 0x8038
 /* 0F9200 8037D7F0 24A55FDC */  addiu $a1, %lo(D_80385FDC) # addiu $a1, $a1, 0x5fdc
-/* 0F9204 8037D7F4 0C0DE24F */  jal   Vec3s_Copy
+/* 0F9204 8037D7F4 0C0DE24F */  jal   vec3s_copy
 /* 0F9208 8037D7F8 27A40044 */   addiu $a0, $sp, 0x44
 /* 0F920C 8037D7FC 8FA90030 */  lw    $t1, 0x30($sp)
 /* 0F9210 8037D800 240100B4 */  li    $at, 180
@@ -766,7 +766,7 @@ glabel GeoLayout10
 /* 0F922C 8037D81C 00C1001A */  div   $zero, $a2, $at
 /* 0F9230 8037D820 00005812 */  mflo  $t3
 /* 0F9234 8037D824 01603025 */  move  $a2, $t3
-/* 0F9238 8037D828 0C0DE25F */  jal   Vec3s_Set
+/* 0F9238 8037D828 0C0DE25F */  jal   vec3s_set
 /* 0F923C 8037D82C 00000000 */   nop   
 /* 0F9240 8037D830 8FAC0030 */  lw    $t4, 0x30($sp)
 /* 0F9244 8037D834 258D0004 */  addiu $t5, $t4, 4

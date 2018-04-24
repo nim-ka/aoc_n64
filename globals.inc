@@ -1746,7 +1746,7 @@
 .global __osSiDeviceBusy
 .global __osAtomicDec
 .global Vec3fCopy
-.global Vec3f_Sum
+.global vec3f_sum
 .global Unknown803789C8
 .global Unknown80378A20
 .global Unknown80378A78

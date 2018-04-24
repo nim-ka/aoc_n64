@@ -5864,7 +5864,7 @@ glabel func_802A2188
 /* 05D244 802A2244 8FA40030 */  lw    $a0, 0x30($sp)
 /* 05D248 802A2248 27A50024 */  addiu $a1, $sp, 0x24
 /* 05D24C 802A224C 27A6001C */  addiu $a2, $sp, 0x1c
-/* 05D250 802A2250 0C0DE510 */  jal   func_80379440
+/* 05D250 802A2250 0C0DE510 */  jal   mtxf_rotate_zxy_and_translate
 /* 05D254 802A2254 2484021C */   addiu $a0, $a0, 0x21c
 /* 05D258 802A2258 10000001 */  b     .L802A2260
 /* 05D25C 802A225C 00000000 */   nop   
@@ -5923,7 +5923,7 @@ glabel func_802A22DC
 /* 05D314 802A2314 2719021C */  addiu $t9, $t8, 0x21c
 /* 05D318 802A2318 03202025 */  move  $a0, $t9
 /* 05D31C 802A231C 03202825 */  move  $a1, $t9
-/* 05D320 802A2320 0C0DE7D8 */  jal   Mtx_Mul
+/* 05D320 802A2320 0C0DE7D8 */  jal   mtxf_mul
 /* 05D324 802A2324 24C6021C */   addiu $a2, $a2, 0x21c
 /* 05D328 802A2328 8FA80020 */  lw    $t0, 0x20($sp)
 /* 05D32C 802A232C C504024C */  lwc1  $f4, 0x24c($t0)
@@ -8609,7 +8609,7 @@ glabel func_802A4780
 /* 05F820 802A4820 27A50028 */  addiu $a1, $sp, 0x28
 /* 05F824 802A4824 27A6001C */  addiu $a2, $sp, 0x1c
 /* 05F828 802A4828 2504021C */  addiu $a0, $t0, 0x21c
-/* 05F82C 802A482C 0C0DE646 */  jal   func_80379918
+/* 05F82C 802A482C 0C0DE646 */  jal   mtxf_from_up_direction
 /* 05F830 802A4830 8D0700D4 */   lw    $a3, 0xd4($t0)
 /* 05F834 802A4834 3C098036 */  lui   $t1, %hi(gCurrentObject) # $t1, 0x8036
 /* 05F838 802A4838 8D29FDF0 */  lw    $t1, %lo(gCurrentObject)($t1)
@@ -35498,7 +35498,7 @@ glabel func_802BC544
 /* 0775BC 802BC5BC 8FA40030 */  lw    $a0, 0x30($sp)
 /* 0775C0 802BC5C0 27A50024 */  addiu $a1, $sp, 0x24
 /* 0775C4 802BC5C4 27A60018 */  addiu $a2, $sp, 0x18
-/* 0775C8 802BC5C8 0C0DE646 */  jal   func_80379918
+/* 0775C8 802BC5C8 0C0DE646 */  jal   mtxf_from_up_direction
 /* 0775CC 802BC5CC 00003825 */   move  $a3, $zero
 /* 0775D0 802BC5D0 10000001 */  b     .L802BC5D8
 /* 0775D4 802BC5D4 00000000 */   nop   
@@ -41141,7 +41141,7 @@ glabel BehJrbSlidingBox
 /* 07C55C 802C155C E5920008 */  swc1  $f18, 8($t4)
 /* 07C560 802C1560 27A40060 */  addiu $a0, $sp, 0x60
 /* 07C564 802C1564 27A50054 */  addiu $a1, $sp, 0x54
-/* 07C568 802C1568 0C0DE510 */  jal   func_80379440
+/* 07C568 802C1568 0C0DE510 */  jal   mtxf_rotate_zxy_and_translate
 /* 07C56C 802C156C 27A60040 */   addiu $a2, $sp, 0x40
 /* 07C570 802C1570 27A40060 */  addiu $a0, $sp, 0x60
 /* 07C574 802C1574 27A50048 */  addiu $a1, $sp, 0x48

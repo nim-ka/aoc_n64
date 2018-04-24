@@ -231,10 +231,11 @@ void stop_and_set_height_to_ground(struct MarioState *m)
     func_802514DC(m, 0.0f);
     m->vel[1] = 0.0f;
 
+    //! This is responsible for some downwarps.
     m->pos[1] = m->floorHeight;
 
-    Vec3f_Copy(marioObj->gfx.unk20, m->pos);
-    Vec3s_Set(marioObj->gfx.unk1A, 0, m->faceAngle[1], 0);
+    vec3f_copy(marioObj->gfx.unk20, m->pos);
+    vec3s_set(marioObj->gfx.unk1A, 0, m->faceAngle[1], 0);
 }
 
 u32 stationary_ground_step(struct MarioState *m)
@@ -256,8 +257,8 @@ u32 stationary_ground_step(struct MarioState *m)
         //! This is responsible for several stationary downwarps.
         m->pos[1] = m->floorHeight;
 
-        Vec3f_Copy(marioObj->gfx.unk20, m->pos);
-        Vec3s_Set(marioObj->gfx.unk1A, 0, m->faceAngle[1], 0);
+        vec3f_copy(marioObj->gfx.unk20, m->pos);
+        vec3s_set(marioObj->gfx.unk1A, 0, m->faceAngle[1], 0);
     }
 
     return stepResult;
@@ -298,7 +299,7 @@ static u32 perform_ground_quarter_step(struct MarioState *m, Vec3f nextPos)
         if (nextPos[1] + 160.0f >= ceilHeight)
             return GROUND_STEP_HIT_WALL_STOP_QSTEPS;
 
-        Vec3f_Copy(m->pos, nextPos);
+        vec3f_copy(m->pos, nextPos);
         m->floor = floor;
         m->floorHeight = floorHeight;
         return GROUND_STEP_LEFT_GROUND;
@@ -307,7 +308,7 @@ static u32 perform_ground_quarter_step(struct MarioState *m, Vec3f nextPos)
     if (floorHeight + 160.0f >= ceilHeight)
         return GROUND_STEP_HIT_WALL_STOP_QSTEPS;
 
-    Vec3f_Set(m->pos, nextPos[0], floorHeight, nextPos[2]);
+    vec3f_set(m->pos, nextPos[0], floorHeight, nextPos[2]);
     m->floor = floor;
     m->floorHeight = floorHeight;
 
@@ -347,8 +348,8 @@ u32 perform_ground_step(struct MarioState *m)
     }
 
     m->unk14 = func_8025167C(m);
-    Vec3f_Copy(m->marioObj->gfx.unk20, m->pos);
-    Vec3s_Set(m->marioObj->gfx.unk1A, 0, m->faceAngle[1], 0);
+    vec3f_copy(m->marioObj->gfx.unk20, m->pos);
+    vec3s_set(m->marioObj->gfx.unk1A, 0, m->faceAngle[1], 0);
 
     if (stepResult == GROUND_STEP_HIT_WALL_CONTINUE_QSTEPS)
         stepResult = GROUND_STEP_HIT_WALL;
@@ -384,7 +385,7 @@ static u32 check_ledge_grab(
     if (ledgePos[1] - nextPos[1] <= 100.0f)
         return 0;
 
-    Vec3f_Copy(m->pos, ledgePos);
+    vec3f_copy(m->pos, ledgePos);
     m->floor = ledgeFloor;
     m->floorHeight = ledgePos[1];
 
@@ -408,7 +409,7 @@ static u32 perform_air_quarter_step(
     f32 floorHeight;
     f32 waterLevel;
 
-    Vec3f_Copy(nextPos, intendedPos);
+    vec3f_copy(nextPos, intendedPos);
 
     upperWall = func_8025181C(nextPos, 150.0f, 50.0f);
     lowerWall = func_8025181C(nextPos, 30.0f, 50.0f);
@@ -442,6 +443,7 @@ static u32 perform_air_quarter_step(
         floor->originOffset = floorHeight; //! Incorrect origin offset (no effect)
     }
 
+    //! This check uses float, but findFloor uses short (overflow jumps)
     if (nextPos[1] <= floorHeight)
     {
         if (ceilHeight - floorHeight > 160.0f)
@@ -452,8 +454,9 @@ static u32 perform_air_quarter_step(
             m->floorHeight = floorHeight;
         }
 
-        //! The step results says that mario landed, but his movement is cancelled
-        // and his referenced floor isn't updated (pedro spots)
+        //! When ceilHeight - floorHeight <= 160, the step result says that
+        // mario landed, but his movement is cancelled and his referenced floor
+        // isn't updated (pedro spots)
         m->pos[1] = floorHeight;
         return AIR_STEP_LANDED;
     }
@@ -494,13 +497,13 @@ static u32 perform_air_quarter_step(
             return AIR_STEP_GRABBED_LEDGE;
         }
 
-        Vec3f_Copy(m->pos, nextPos);
+        vec3f_copy(m->pos, nextPos);
         m->floor = floor;
         m->floorHeight = floorHeight;
         return AIR_STEP_NONE;
     }
 
-    Vec3f_Copy(m->pos, nextPos);
+    vec3f_copy(m->pos, nextPos);
     m->floor = floor;
     m->floorHeight = floorHeight;
 
@@ -537,7 +540,7 @@ static void apply_twirl_gravity(struct MarioState *m)
         m->vel[1] = terminalVelocity;
 }
 
-static u32 func_8025635C(struct MarioState *m)
+static u32 should_strengthen_gravity_for_jump_peak(struct MarioState *m)
 {
     if (!(m->flags & MARIO_UNKNOWN_08))
         return 0;
@@ -582,7 +585,7 @@ static void apply_gravity(struct MarioState *m)
         if (m->vel[1] < -75.0f)
             m->vel[1] = -75.0f;
     }
-    else if (func_8025635C(m))
+    else if (should_strengthen_gravity_for_jump_peak(m))
     {
         m->vel[1] /= 4.0f;
     }
@@ -592,7 +595,7 @@ static void apply_gravity(struct MarioState *m)
         if (m->vel[1] < -16.0f)
             m->vel[1] = -16.0f;
     }
-    else if ((m->flags & MARIO_WING_CAP) && m->vel[1] < 0.0f && m->input & INPUT_A_DOWN)
+    else if ((m->flags & MARIO_WING_CAP) && m->vel[1] < 0.0f && (m->input & INPUT_A_DOWN))
     {
         m->unk98->unk07 = 1;
 
@@ -681,8 +684,8 @@ u32 perform_air_step(struct MarioState *m, u32 stepArg)
         apply_gravity(m);
     apply_vertical_wind(m);
 
-    Vec3f_Copy(m->marioObj->gfx.unk20, m->pos);
-    Vec3s_Set(m->marioObj->gfx.unk1A, 0, m->faceAngle[1], 0);
+    vec3f_copy(m->marioObj->gfx.unk20, m->pos);
+    vec3s_set(m->marioObj->gfx.unk1A, 0, m->faceAngle[1], 0);
 
     return stepResult;
 }

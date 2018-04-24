@@ -191,7 +191,7 @@ struct Object *func_802C9120(struct GfxNode *a)
         sp20->drawingDistance = 2000.0f;
     else
         sp20->drawingDistance = 4000.0f;
-    Mtx_Identity(sp20->unk21C);
+    mtxf_identity(sp20->unk21C);
     sp20->unk1F6 = 0;
     sp20->unk25C = 0;
     sp20->distanceFromMario = 19000.0f;

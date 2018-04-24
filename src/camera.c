@@ -207,7 +207,7 @@ void Unknown8027F950(Vec3f a, Vec3f b, float c, float d, float e, s16 f, s16 g)
     s16 sp26;
     s16 sp24;
 
-    Vec3f_Copy(sp34, D_8032D000->unk4);
+    vec3f_copy(sp34, D_8032D000->unk4);
     sp34[1] += c;
 
     func_8037A788(sp34, b, e, f + D_8033B3F0, g);
@@ -318,7 +318,7 @@ void func_8027FF44(struct Struct80280550 *a)
     sp24[0] = D_8033B40C;
     sp30 = -sp30;
     func_8028A764(sp24, sp24, sp30);
-    Vec3f_Add(a->unk4, sp24);
+    vec3f_add(a->unk4, sp24);
 }
 
 int func_802800F4(Vec3f a, Vec3f b, s16 c)
@@ -681,9 +681,9 @@ int CameraChange0C(struct Struct80280550 *a, Vec3f b, Vec3f c)
     sp60[0] = 0.0f;
     sp60[1] = 0.0f;
     sp60[2] = 0.0f;
-    Vec3f_Copy(sp4C, c);
-    Vec3f_Copy(spE8[0], D_8033B470[D_8033B46C].unk4);
-    Vec3f_Copy(spE8[1], D_8033B470[D_8033B46C + 1].unk4);
+    vec3f_copy(sp4C, c);
+    vec3f_copy(spE8[0], D_8033B470[D_8033B46C].unk4);
+    vec3f_copy(spE8[1], D_8033B470[D_8033B46C + 1].unk4);
     spAC = D_8033B470[D_8033B46C].unk10;
     spA8 = D_8033B470[D_8033B46C].unk14;
     func_8027F668(&sp84, 1.0f, 200.0f, &sp84, D_80335FE0, 200.0f);
@@ -703,7 +703,7 @@ int CameraChange0C(struct Struct80280550 *a, Vec3f b, Vec3f c)
     spB6 = -spB6;
     func_8028A834(spD0, spD0, spB6);
     spB6 = -spB6;
-    Vec3f_Copy(spB8, spD0);
+    vec3f_copy(spB8, spD0);
     spB8[0] = -spB8[0] * 0.0f;
     spB8[1] = spB8[1] * 0.0f;
     spC4[0] = c[0] - spDC[0];
@@ -752,7 +752,7 @@ int CameraChange0C(struct Struct80280550 *a, Vec3f b, Vec3f c)
     func_80288E0C(&D_8033B478[0], 0.0f, 0.025f);
     func_80288E0C(&D_8033B478[1], 0.0f, 0.025f);
     func_80288E0C(&D_8033B478[2], 0.0f, 0.025f);
-    Vec3f_Add(a->unk10, D_8033B478);
+    vec3f_add(a->unk10, D_8033B478);
 
     if (D_8033B470[D_8033B46C + 1].unk0 != 0)
     {
@@ -784,7 +784,7 @@ int CameraChange0C(struct Struct80280550 *a, Vec3f b, Vec3f c)
         }
     }
 
-    Vec3f_Copy(b, sp78);
+    vec3f_copy(b, sp78);
     func_8037A69C(b, c, &spA4, &spB6, &spB4);
 
     return spB4;

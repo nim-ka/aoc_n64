@@ -386,7 +386,7 @@ glabel func_802E33D0
 /* 09E49C 802E349C 8FA4001C */  lw    $a0, 0x1c($sp)
 /* 09E4A0 802E34A0 27A50020 */  addiu $a1, $sp, 0x20
 /* 09E4A4 802E34A4 27A6002C */  addiu $a2, $sp, 0x2c
-/* 09E4A8 802E34A8 0C0DE646 */  jal   func_80379918
+/* 09E4A8 802E34A8 0C0DE646 */  jal   mtxf_from_up_direction
 /* 09E4AC 802E34AC 8D0700D4 */   lw    $a3, 0xd4($t0)
 /* 09E4B0 802E34B0 8FA9001C */  lw    $t1, 0x1c($sp)
 /* 09E4B4 802E34B4 8FAA0038 */  lw    $t2, 0x38($sp)

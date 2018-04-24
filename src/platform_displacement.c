@@ -130,14 +130,14 @@ void apply_platform_displacement(u32 isMario, struct Object *platform)
         rotation[1] = platform->faceAngle[1] - platform->platformRotation[1];
         rotation[2] = platform->faceAngle[2] - platform->platformRotation[2];
 
-        func_80379440(displaceMatrix, currentObjectOffset, rotation);
+        mtxf_rotate_zxy_and_translate(displaceMatrix, currentObjectOffset, rotation);
         func_8029EAF8(displaceMatrix, relativeOffset, currentObjectOffset);
 
         rotation[0] = platform->faceAngle[0];
         rotation[1] = platform->faceAngle[1];
         rotation[2] = platform->faceAngle[2];
 
-        func_80379440(displaceMatrix, currentObjectOffset, rotation);
+        mtxf_rotate_zxy_and_translate(displaceMatrix, currentObjectOffset, rotation);
         func_8029EA84(displaceMatrix, newObjectOffset, relativeOffset);
 
         x = platformPosX + newObjectOffset[0];

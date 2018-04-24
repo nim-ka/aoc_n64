@@ -681,7 +681,7 @@ glabel func_802574D0
 /* 012560 80257560 0004C400 */  sll   $t8, $a0, 0x10
 /* 012564 80257564 03002025 */  move  $a0, $t8
 /* 012568 80257568 0004CC03 */  sra   $t9, $a0, 0x10
-/* 01256C 8025756C 0C0DEA18 */  jal   approach_int
+/* 01256C 8025756C 0C0DEA18 */  jal   approach_s32
 /* 012570 80257570 03202025 */   move  $a0, $t9
 /* 012574 80257574 87A8002A */  lh    $t0, 0x2a($sp)
 /* 012578 80257578 8FAA0030 */  lw    $t2, 0x30($sp)
@@ -758,21 +758,21 @@ glabel func_802574D0
 /* 012674 80257674 8FAC0030 */  lw    $t4, 0x30($sp)
 /* 012678 80257678 8D840088 */  lw    $a0, 0x88($t4)
 /* 01267C 8025767C 2585003C */  addiu $a1, $t4, 0x3c
-/* 012680 80257680 0C0DE200 */  jal   Vec3f_Copy
+/* 012680 80257680 0C0DE200 */  jal   vec3f_copy
 /* 012684 80257684 24840020 */   addiu $a0, $a0, 0x20
 /* 012688 80257688 8FAE0030 */  lw    $t6, 0x30($sp)
 /* 01268C 8025768C 00002825 */  move  $a1, $zero
 /* 012690 80257690 00003825 */  move  $a3, $zero
 /* 012694 80257694 8DC40088 */  lw    $a0, 0x88($t6)
 /* 012698 80257698 85C6002E */  lh    $a2, 0x2e($t6)
-/* 01269C 8025769C 0C0DE25F */  jal   Vec3s_Set
+/* 01269C 8025769C 0C0DE25F */  jal   vec3s_set
 /* 0126A0 802576A0 2484001A */   addiu $a0, $a0, 0x1a
 /* 0126A4 802576A4 8FA90030 */  lw    $t1, 0x30($sp)
 /* 0126A8 802576A8 00003025 */  move  $a2, $zero
 /* 0126AC 802576AC 00003825 */  move  $a3, $zero
 /* 0126B0 802576B0 8D240098 */  lw    $a0, 0x98($t1)
 /* 0126B4 802576B4 9525001A */  lhu   $a1, 0x1a($t1)
-/* 0126B8 802576B8 0C0DE25F */  jal   Vec3s_Set
+/* 0126B8 802576B8 0C0DE25F */  jal   vec3s_set
 /* 0126BC 802576BC 24840012 */   addiu $a0, $a0, 0x12
 /* 0126C0 802576C0 8FAD0030 */  lw    $t5, 0x30($sp)
 /* 0126C4 802576C4 24010008 */  li    $at, 8
@@ -815,14 +815,14 @@ glabel func_80257708
 /* 012740 80257740 8FB80028 */  lw    $t8, 0x28($sp)
 /* 012744 80257744 8F040088 */  lw    $a0, 0x88($t8)
 /* 012748 80257748 2705003C */  addiu $a1, $t8, 0x3c
-/* 01274C 8025774C 0C0DE200 */  jal   Vec3f_Copy
+/* 01274C 8025774C 0C0DE200 */  jal   vec3f_copy
 /* 012750 80257750 24840020 */   addiu $a0, $a0, 0x20
 /* 012754 80257754 8FB90028 */  lw    $t9, 0x28($sp)
 /* 012758 80257758 00002825 */  move  $a1, $zero
 /* 01275C 8025775C 00003825 */  move  $a3, $zero
 /* 012760 80257760 8F240088 */  lw    $a0, 0x88($t9)
 /* 012764 80257764 8726002E */  lh    $a2, 0x2e($t9)
-/* 012768 80257768 0C0DE25F */  jal   Vec3s_Set
+/* 012768 80257768 0C0DE25F */  jal   vec3s_set
 /* 01276C 8025776C 2484001A */   addiu $a0, $a0, 0x1a
 /* 012770 80257770 10000003 */  b     .L80257780
 /* 012774 80257774 00001025 */   move  $v0, $zero
@@ -1026,7 +1026,7 @@ glabel func_80257838
 /* 012A34 80257A34 00003825 */  move  $a3, $zero
 /* 012A38 80257A38 8D840098 */  lw    $a0, 0x98($t4)
 /* 012A3C 80257A3C 9585001A */  lhu   $a1, 0x1a($t4)
-/* 012A40 80257A40 0C0DE25F */  jal   Vec3s_Set
+/* 012A40 80257A40 0C0DE25F */  jal   vec3s_set
 /* 012A44 80257A44 24840012 */   addiu $a0, $a0, 0x12
 /* 012A48 80257A48 10000003 */  b     .L80257A58
 /* 012A4C 80257A4C 00001025 */   move  $v0, $zero
@@ -1142,14 +1142,14 @@ glabel func_80257A6C
 /* 012BE0 80257BE0 8FA40024 */  lw    $a0, 0x24($sp)
 /* 012BE4 80257BE4 8FA50028 */  lw    $a1, 0x28($sp)
 /* 012BE8 80257BE8 24840020 */  addiu $a0, $a0, 0x20
-/* 012BEC 80257BEC 0C0DE200 */  jal   Vec3f_Copy
+/* 012BEC 80257BEC 0C0DE200 */  jal   vec3f_copy
 /* 012BF0 80257BF0 24A5003C */   addiu $a1, $a1, 0x3c
 /* 012BF4 80257BF4 8FA40024 */  lw    $a0, 0x24($sp)
 /* 012BF8 80257BF8 8FAC0028 */  lw    $t4, 0x28($sp)
 /* 012BFC 80257BFC 00002825 */  move  $a1, $zero
 /* 012C00 80257C00 00003825 */  move  $a3, $zero
 /* 012C04 80257C04 2484001A */  addiu $a0, $a0, 0x1a
-/* 012C08 80257C08 0C0DE25F */  jal   Vec3s_Set
+/* 012C08 80257C08 0C0DE25F */  jal   vec3s_set
 /* 012C0C 80257C0C 8586002E */   lh    $a2, 0x2e($t4)
 /* 012C10 80257C10 10000003 */  b     .L80257C20
 /* 012C14 80257C14 00001025 */   move  $v0, $zero
@@ -1200,7 +1200,7 @@ glabel func_80257C34
 /* 012CB0 80257CB0 2405000E */   li    $a1, 14
 /* 012CB4 80257CB4 8FA50038 */  lw    $a1, 0x38($sp)
 /* 012CB8 80257CB8 27A40024 */  addiu $a0, $sp, 0x24
-/* 012CBC 80257CBC 0C0DE200 */  jal   Vec3f_Copy
+/* 012CBC 80257CBC 0C0DE200 */  jal   vec3f_copy
 /* 012CC0 80257CC0 24A5003C */   addiu $a1, $a1, 0x3c
 /* 012CC4 80257CC4 3C0C8033 */  lui   $t4, %hi(gPlayer1Controller) # $t4, 0x8033
 /* 012CC8 80257CC8 8D8CC6A4 */  lw    $t4, %lo(gPlayer1Controller)($t4)
@@ -1299,7 +1299,7 @@ glabel func_80257C34
 .L80257E30:
 /* 012E30 80257E30 8FA40038 */  lw    $a0, 0x38($sp)
 /* 012E34 80257E34 27A50024 */  addiu $a1, $sp, 0x24
-/* 012E38 80257E38 0C0DE200 */  jal   Vec3f_Copy
+/* 012E38 80257E38 0C0DE200 */  jal   vec3f_copy
 /* 012E3C 80257E3C 2484003C */   addiu $a0, $a0, 0x3c
 .L80257E40:
 /* 012E40 80257E40 8FAF0038 */  lw    $t7, 0x38($sp)
@@ -1308,14 +1308,14 @@ glabel func_80257C34
 /* 012E4C 80257E4C 8FB90038 */  lw    $t9, 0x38($sp)
 /* 012E50 80257E50 8F240088 */  lw    $a0, 0x88($t9)
 /* 012E54 80257E54 2725003C */  addiu $a1, $t9, 0x3c
-/* 012E58 80257E58 0C0DE200 */  jal   Vec3f_Copy
+/* 012E58 80257E58 0C0DE200 */  jal   vec3f_copy
 /* 012E5C 80257E5C 24840020 */   addiu $a0, $a0, 0x20
 /* 012E60 80257E60 8FA80038 */  lw    $t0, 0x38($sp)
 /* 012E64 80257E64 00002825 */  move  $a1, $zero
 /* 012E68 80257E68 00003825 */  move  $a3, $zero
 /* 012E6C 80257E6C 8D040088 */  lw    $a0, 0x88($t0)
 /* 012E70 80257E70 8506002E */  lh    $a2, 0x2e($t0)
-/* 012E74 80257E74 0C0DE25F */  jal   Vec3s_Set
+/* 012E74 80257E74 0C0DE25F */  jal   vec3s_set
 /* 012E78 80257E78 2484001A */   addiu $a0, $a0, 0x1a
 /* 012E7C 80257E7C 3C098033 */  lui   $t1, %hi(gPlayer1Controller) # $t1, 0x8033
 /* 012E80 80257E80 8D29C6A4 */  lw    $t1, %lo(gPlayer1Controller)($t1)
@@ -1626,14 +1626,14 @@ glabel func_80258264
 /* 0132B4 802582B4 8FAA0028 */  lw    $t2, 0x28($sp)
 /* 0132B8 802582B8 8D440088 */  lw    $a0, 0x88($t2)
 /* 0132BC 802582BC 2545003C */  addiu $a1, $t2, 0x3c
-/* 0132C0 802582C0 0C0DE200 */  jal   Vec3f_Copy
+/* 0132C0 802582C0 0C0DE200 */  jal   vec3f_copy
 /* 0132C4 802582C4 24840020 */   addiu $a0, $a0, 0x20
 /* 0132C8 802582C8 8FAB0028 */  lw    $t3, 0x28($sp)
 /* 0132CC 802582CC 00002825 */  move  $a1, $zero
 /* 0132D0 802582D0 00003825 */  move  $a3, $zero
 /* 0132D4 802582D4 8D640088 */  lw    $a0, 0x88($t3)
 /* 0132D8 802582D8 8566002E */  lh    $a2, 0x2e($t3)
-/* 0132DC 802582DC 0C0DE25F */  jal   Vec3s_Set
+/* 0132DC 802582DC 0C0DE25F */  jal   vec3s_set
 /* 0132E0 802582E0 2484001A */   addiu $a0, $a0, 0x1a
 /* 0132E4 802582E4 8FA40028 */  lw    $a0, 0x28($sp)
 /* 0132E8 802582E8 0C095FC3 */  jal   func_80257F0C
@@ -3806,7 +3806,7 @@ glabel func_80259E44
 /* 0151BC 8025A1BC 8D640088 */  lw    $a0, 0x88($t3)
 /* 0151C0 8025A1C0 44068000 */  mfc1  $a2, $f16
 /* 0151C4 8025A1C4 44078000 */  mfc1  $a3, $f16
-/* 0151C8 8025A1C8 0C0DE210 */  jal   Vec3f_Set
+/* 0151C8 8025A1C8 0C0DE210 */  jal   vec3f_set
 /* 0151CC 8025A1CC 2484002C */   addiu $a0, $a0, 0x2c
 .L8025A1D0:
 /* 0151D0 8025A1D0 1000000A */  b     .L8025A1FC
@@ -4265,7 +4265,7 @@ glabel func_8025A734
 /* 015848 8025A848 44054000 */  mfc1  $a1, $f8
 /* 01584C 8025A84C 2484002C */  addiu $a0, $a0, 0x2c
 /* 015850 8025A850 44078000 */  mfc1  $a3, $f16
-/* 015854 8025A854 0C0DE210 */  jal   Vec3f_Set
+/* 015854 8025A854 0C0DE210 */  jal   vec3f_set
 /* 015858 8025A858 00000000 */   nop   
 /* 01585C 8025A85C 10000026 */  b     .L8025A8F8
 /* 015860 8025A860 00000000 */   nop   
@@ -4305,7 +4305,7 @@ glabel func_8025A734
 /* 0158D8 8025A8D8 3C063D4C */  lui   $a2, (0x3D4CCCCD >> 16) # lui $a2, 0x3d4c
 /* 0158DC 8025A8DC 34C6CCCD */  ori   $a2, (0x3D4CCCCD & 0xFFFF) # ori $a2, $a2, 0xcccd
 /* 0158E0 8025A8E0 00A03821 */  addu  $a3, $a1, $zero
-/* 0158E4 8025A8E4 0C0DE210 */  jal   Vec3f_Set
+/* 0158E4 8025A8E4 0C0DE210 */  jal   vec3f_set
 /* 0158E8 8025A8E8 2484002C */   addiu $a0, $a0, 0x2c
 /* 0158EC 8025A8EC 8FAA0038 */  lw    $t2, 0x38($sp)
 /* 0158F0 8025A8F0 240C0001 */  li    $t4, 1
@@ -5275,21 +5275,21 @@ glabel func_8025B4BC
 /* 016694 8025B694 34C68000 */  ori   $a2, (0x43998000 & 0xFFFF) # ori $a2, $a2, 0x8000
 /* 016698 8025B698 24050000 */  li    $a1, 0
 /* 01669C 8025B69C 2484003C */  addiu $a0, $a0, 0x3c
-/* 0166A0 8025B6A0 0C0DE210 */  jal   Vec3f_Set
+/* 0166A0 8025B6A0 0C0DE210 */  jal   vec3f_set
 /* 0166A4 8025B6A4 8DA70110 */   lw    $a3, 0x110($t5)
 /* 0166A8 8025B6A8 0C094394 */  jal   func_80250E50
 /* 0166AC 8025B6AC 8FA40030 */   lw    $a0, 0x30($sp)
 /* 0166B0 8025B6B0 8FA4002C */  lw    $a0, 0x2c($sp)
 /* 0166B4 8025B6B4 8FA50030 */  lw    $a1, 0x30($sp)
 /* 0166B8 8025B6B8 24840020 */  addiu $a0, $a0, 0x20
-/* 0166BC 8025B6BC 0C0DE200 */  jal   Vec3f_Copy
+/* 0166BC 8025B6BC 0C0DE200 */  jal   vec3f_copy
 /* 0166C0 8025B6C0 24A5003C */   addiu $a1, $a1, 0x3c
 /* 0166C4 8025B6C4 8FA4002C */  lw    $a0, 0x2c($sp)
 /* 0166C8 8025B6C8 8FAE0030 */  lw    $t6, 0x30($sp)
 /* 0166CC 8025B6CC 00002825 */  move  $a1, $zero
 /* 0166D0 8025B6D0 00003825 */  move  $a3, $zero
 /* 0166D4 8025B6D4 2484001A */  addiu $a0, $a0, 0x1a
-/* 0166D8 8025B6D8 0C0DE25F */  jal   Vec3s_Set
+/* 0166D8 8025B6D8 0C0DE25F */  jal   vec3s_set
 /* 0166DC 8025B6DC 85C6002E */   lh    $a2, 0x2e($t6)
 /* 0166E0 8025B6E0 10000003 */  b     .L8025B6F0
 /* 0166E4 8025B6E4 00001025 */   move  $v0, $zero
@@ -5381,7 +5381,7 @@ glabel func_8025B704
 /* 016824 8025B824 A7A20026 */  sh    $v0, 0x26($sp)
 /* 016828 8025B828 8FA40048 */  lw    $a0, 0x48($sp)
 /* 01682C 8025B82C 27A5003C */  addiu $a1, $sp, 0x3c
-/* 016830 8025B830 0C0DE200 */  jal   Vec3f_Copy
+/* 016830 8025B830 0C0DE200 */  jal   vec3f_copy
 /* 016834 8025B834 2484003C */   addiu $a0, $a0, 0x3c
 /* 016838 8025B838 C7AC0028 */  lwc1  $f12, 0x28($sp)
 /* 01683C 8025B83C 0C0DEA6A */  jal   func_8037A9A8
@@ -5427,7 +5427,7 @@ glabel func_8025B704
 /* 0168D0 8025B8D0 8FAB0048 */  lw    $t3, 0x48($sp)
 /* 0168D4 8025B8D4 8D640088 */  lw    $a0, 0x88($t3)
 /* 0168D8 8025B8D8 2565003C */  addiu $a1, $t3, 0x3c
-/* 0168DC 8025B8DC 0C0DE200 */  jal   Vec3f_Copy
+/* 0168DC 8025B8DC 0C0DE200 */  jal   vec3f_copy
 /* 0168E0 8025B8E0 24840020 */   addiu $a0, $a0, 0x20
 /* 0168E4 8025B8E4 8FB90048 */  lw    $t9, 0x48($sp)
 /* 0168E8 8025B8E8 8F2F0008 */  lw    $t7, 8($t9)
@@ -6205,7 +6205,7 @@ glabel func_8025C35C
 /* 017418 8025C418 8FAC0020 */  lw    $t4, 0x20($sp)
 /* 01741C 8025C41C 8D840088 */  lw    $a0, 0x88($t4)
 /* 017420 8025C420 2585003C */  addiu $a1, $t4, 0x3c
-/* 017424 8025C424 0C0DE200 */  jal   Vec3f_Copy
+/* 017424 8025C424 0C0DE200 */  jal   vec3f_copy
 /* 017428 8025C428 24840020 */   addiu $a0, $a0, 0x20
 /* 01742C 8025C42C 8FAD0020 */  lw    $t5, 0x20($sp)
 /* 017430 8025C430 8DAE0008 */  lw    $t6, 8($t5)
@@ -6976,12 +6976,12 @@ glabel func_8025CE54
 /* 017EE0 8025CEE0 8FB80038 */  lw    $t8, 0x38($sp)
 /* 017EE4 8025CEE4 8F040088 */  lw    $a0, 0x88($t8)
 /* 017EE8 8025CEE8 2705003C */  addiu $a1, $t8, 0x3c
-/* 017EEC 8025CEEC 0C0DE200 */  jal   Vec3f_Copy
+/* 017EEC 8025CEEC 0C0DE200 */  jal   vec3f_copy
 /* 017EF0 8025CEF0 24840020 */   addiu $a0, $a0, 0x20
 /* 017EF4 8025CEF4 8FB90038 */  lw    $t9, 0x38($sp)
 /* 017EF8 8025CEF8 8F240088 */  lw    $a0, 0x88($t9)
 /* 017EFC 8025CEFC 2725002C */  addiu $a1, $t9, 0x2c
-/* 017F00 8025CF00 0C0DE24F */  jal   Vec3s_Copy
+/* 017F00 8025CF00 0C0DE24F */  jal   vec3s_copy
 /* 017F04 8025CF04 2484001A */   addiu $a0, $a0, 0x1a
 /* 017F08 8025CF08 8FA80038 */  lw    $t0, 0x38($sp)
 /* 017F0C 8025CF0C 8D090008 */  lw    $t1, 8($t0)

@@ -483,7 +483,7 @@ void save_file_set_cap_location(s16 x, s16 y, s16 z)
 
     saveFile->unk0 = gCurrLevelNum;
     saveFile->unk1 = D_8033A75A;
-    Vec3s_Set(saveFile->capCoords, x, y, z);
+    vec3s_set(saveFile->capCoords, x, y, z);
     save_file_set_flags(FLAG_CAP_ON_GROUND);
 }
 
@@ -494,7 +494,7 @@ int save_file_get_cap_coords(Vec3s capCoords)
 
     if (saveFile->unk0 == gCurrLevelNum && saveFile->unk1 == D_8033A75A && (flags & FLAG_CAP_ON_GROUND))
     {
-        Vec3s_Copy(capCoords, saveFile->capCoords);
+        vec3s_copy(capCoords, saveFile->capCoords);
         return TRUE;
     }
     return FALSE;
