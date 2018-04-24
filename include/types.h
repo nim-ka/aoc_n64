@@ -140,8 +140,8 @@ struct Object
     /*0x06C*/ struct Object *unk6C;
     /*0x070*/ u32 unk70;
     /*0x074*/ s16 active;
-    /*0x076*/ u16 unk76;
-    u8 filler78[0x88-0x78];
+    /*0x076*/ s16 unk76;
+    /*0x078*/ struct Object *unk78[4];  // unknown length
     u32 unk88[1];  // unknown length
     /*0x08C*/ u32 objFlags;
     u8 filler90[0x9C-0x90];

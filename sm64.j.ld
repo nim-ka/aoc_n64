@@ -44,7 +44,7 @@ SECTIONS
       build/asm/object_list_processor.o(.text);
       build/asm/level_functions.o(.text);
       build/src/platform_displacement.o(.text);
-      build/asm/object_collision.o(.text);
+      build/src/object_collision.o(.text);
       build/src/spawn_object.o(.text);
       build/asm/mapinfo.o(.text);
       build/asm/screen_transition.o(.text);

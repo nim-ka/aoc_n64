@@ -623,7 +623,7 @@ extern struct Controller *D_8032C6A8;
 // extern ? D_8032EF6C;
 extern u32 D_8033C110;
 // extern ? D_8033B870;
-extern struct GfxNode *D_8035FD78;
+extern struct GfxNode *D_8035FD78;  // must be GfxNode
 // extern ? D_8035FEF2;
 // extern ? D_8035FEF4;
 // extern ? D_8035FEEC;
@@ -850,7 +850,7 @@ extern struct Object *D_8035FDE0;
 // extern ? D_8033670C;
 extern struct Object *gMarioPlatform;
 extern u16 D_8032FEC0;
-// extern ? D_80336C50;
+extern u8 D_80336C50[];  // unknown type
 extern u8 D_8038BD88[];  // unknown type
 extern struct GfxNode D_8035FD80;
 // extern ? D_1300229C;

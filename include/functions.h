@@ -3047,7 +3047,7 @@ extern void func_802C9548(struct Object *);
 // extern ? func_802C9980(?);
 // extern ? func_802C9A3C(?);
 // extern ? func_802C9A88(?);
-// extern ? func_802C9AD8(?);
+extern void func_802C9AD8();
 // extern ? AnotherPrint(?);
 // extern ? func_802C9BA0(?);
 // extern ? func_802C9BF0(?);
