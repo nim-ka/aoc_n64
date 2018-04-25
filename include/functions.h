@@ -1601,7 +1601,7 @@ extern void CopyScriptInterpreter(void);
 struct Struct80278464 *func_802785E8(u32, u32);
 // extern ? subPrint(?);
 // extern ? func_802787C4(?);
-extern void *func_8027897C(u32);
+extern void *alloc_display_list(u32);
 // extern ? dobjCopy(?);
 void DynamicObjectCopy(struct MarioAnimation *a, void *b, void *c);
 extern int SetMarioAnimation(struct MarioAnimation *, u32); // FIXME: does it take a ** or a *?

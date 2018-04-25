@@ -49,6 +49,11 @@ typedef union
 #define G_IM_FMT_IA     3
 #define G_IM_FMT_I      4
 
+#define G_IM_SIZ_4b  0
+#define G_IM_SIZ_8b  1
+#define G_IM_SIZ_16b 2
+#define G_IM_SIZ_32b 3
+#define G_IM_SIZ_DD  5
 
 #define G_AC_NONE      (0 << 0)
 #define G_AC_THRESHOLD (1 << 0)
@@ -98,6 +103,29 @@ typedef union
 #define G_SC_ODD_INTERLACE  3
 #define G_SC_EVEN_INTERLACE 2
 
+#define	G_TX_NOMIRROR 0
+#define	G_TX_WRAP 0
+#define	G_TX_MIRROR 1
+#define	G_TX_CLAMP 2
+#define	G_TX_NOMASK 0
+#define	G_TX_NOLOD 0
+
+#define G_TX_LDBLK_MAX_TXL 2047
+
+#ifndef MAX
+#define MAX(a, b)				((a) > (b) ? (a) : (b))
+#endif
+
+#ifndef MIN
+#define MIN(a, b)				((a) < (b) ? (a) : (b))
+#endif
+
+#define gDPLoadSync(pkt) \
+{ \
+    Gfx *_g = (Gfx *) (pkt); \
+    _g->words.w0 = 0xE6000000; \
+    _g->words.w1 = 0x00000000; \
+}
 
 #define gDPPipeSync(pkt) \
 { \
@@ -106,11 +134,25 @@ typedef union
     _g->words.w1 = 0x00000000; \
 }
 
+#define gDPTileSync(pkt) \
+{ \
+    Gfx *_g = (Gfx *) (pkt); \
+    _g->words.w0 = 0xE8000000; \
+    _g->words.w1 = 0x00000000; \
+}
+
 #define gDPFullSync(pkt) \
 { \
     Gfx *_g = (Gfx *) (pkt); \
     _g->words.w0 = 0xE9000000; \
     _g->words.w1 = 0x00000000; \
+}
+
+#define gSPDisplayList(pkt, dl) \
+{ \
+    Gfx *_g = (Gfx *) (pkt); \
+    _g->words.w0 = 0x06000000; \
+    _g->words.w1 = (u32)(dl); \
 }
 
 #define gSPEndDisplayList(pkt) \
@@ -280,6 +322,29 @@ typedef union
     _g->words.w1 = image; \
 }
 
+#define gDPLoadBlock(pkt, tile, uls, ult, lrs, dxt) \
+{ \
+    Gfx *_g = (Gfx *)(pkt); \
+    _g->words.w0 = _SHIFTL(0xF3, 24, 8) \
+                 | _SHIFTL(uls, 12, 12) | _SHIFTL(ult, 0, 12); \
+    _g->words.w1 = _SHIFTL(tile, 24, 3) \
+                 | _SHIFTL((MIN(lrs,G_TX_LDBLK_MAX_TXL)), 12, 12) \
+                 | _SHIFTL(dxt, 0, 12); \
+}
+
+#define	gDPSetTile(pkt, fmt, siz, line, tmem, tile, palette, cmt, maskt, \
+    shiftt, cms, masks, shifts) \
+{ \
+	Gfx *_g = (Gfx *) (pkt); \
+	_g->words.w0 = _SHIFTL(0xF5, 24, 8) \
+                 | _SHIFTL(fmt, 21, 3) | _SHIFTL(siz, 19, 2) \
+                 | _SHIFTL(line, 9, 9) | _SHIFTL(tmem, 0, 9); \
+	_g->words.w1 = _SHIFTL(tile, 24, 3)   | _SHIFTL(palette, 20, 4) \
+                 | _SHIFTL(cmt, 18, 2)    | _SHIFTL(maskt, 14, 4) \
+                 | _SHIFTL(shiftt, 10, 4) | _SHIFTL(cms, 8, 2) \
+                 | _SHIFTL(masks, 4, 4)   | _SHIFTL(shifts, 0, 4); \
+}
+
 #define gDPSetDepthImage(pkt, image) \
 { \
     Gfx *_g = (Gfx *) (pkt); \
@@ -287,5 +352,32 @@ typedef union
     _g->words.w1 = image; \
 }
 
+#define gDPSetEnvColor(pkt, r, g, b, a) \
+{ \
+    Gfx *_g = (Gfx *) (pkt); \
+    _g->words.w0 = 0xFB000000; \
+    _g->words.w1 = _SHIFTL((r), 24, 8) | _SHIFTL((g), 16, 8) \
+                 | _SHIFTL((b),  8, 8) | _SHIFTL((a),  0, 8); \
+}
+
+#define gDPSetTextureImage(pkt, fmt, size, width, img) \
+{ \
+    Gfx *_g = (Gfx *) (pkt); \
+    _g->words.w0 = 0xFD000000 | _SHIFTL(fmt, 21, 3) \
+                 | _SHIFTL(size, 19, 2) | _SHIFTL((width) - 1, 0, 12); \
+    _g->words.w1 = (img); \
+}
+
+/* Matrix Operations */
+
+#define G_MTX_MODELVIEW  0x00
+#define G_MTX_PROJECTION 0x01
+
+#define gSPPopMatrix(pkt, n) \
+{ \
+    Gfx *_g = (Gfx *) (pkt); \
+    _g->words.w0 = 0xBD000000; \
+    _g->words.w1 = (n); \
+}
 
 #endif

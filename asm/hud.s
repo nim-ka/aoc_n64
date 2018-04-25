@@ -1192,7 +1192,7 @@ glabel func_802E2304
 /* 09D304 802E2304 27BDFFD0 */  addiu $sp, $sp, -0x30
 /* 09D308 802E2308 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 09D30C 802E230C AFA40030 */  sw    $a0, 0x30($sp)
-/* 09D310 802E2310 0C09E25F */  jal   func_8027897C
+/* 09D310 802E2310 0C09E25F */  jal   alloc_display_list
 /* 09D314 802E2314 24040040 */   li    $a0, 64
 /* 09D318 802E2318 AFA2002C */  sw    $v0, 0x2c($sp)
 /* 09D31C 802E231C 8FAE002C */  lw    $t6, 0x2c($sp)

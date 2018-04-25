@@ -2607,7 +2607,7 @@ glabel LevelScriptLoad
 /* 0FC05C 8038064C 00000000 */   nop   
 /* 0FC060 80380650 0C091F39 */  jal   CleanupDisplayList
 /* 0FC064 80380654 00000000 */   nop   
-/* 0FC068 80380658 0C09E25F */  jal   func_8027897C
+/* 0FC068 80380658 0C09E25F */  jal   alloc_display_list
 /* 0FC06C 8038065C 00002025 */   move  $a0, $zero
 /* 0FC070 80380660 3C028039 */  lui   $v0, %hi(D_8038BE28) # $v0, 0x8039
 /* 0FC074 80380664 10000003 */  b     .L80380674

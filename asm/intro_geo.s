@@ -46,10 +46,10 @@ glabel Geo18_8016F670
 /* 21DE18 8016F648 310900FF */  andi  $t1, $t0, 0xff
 /* 21DE1C 8016F64C 352A0100 */  ori   $t2, $t1, 0x100
 /* 21DE20 8016F650 A72A0002 */  sh    $t2, 2($t9)
-/* 21DE24 8016F654 0C09E25F */  jal   func_8027897C
+/* 21DE24 8016F654 0C09E25F */  jal   alloc_display_list
 /* 21DE28 8016F658 24040040 */   li    $a0, 64
 /* 21DE2C 8016F65C AFA20040 */  sw    $v0, 0x40($sp)
-/* 21DE30 8016F660 0C09E25F */  jal   func_8027897C
+/* 21DE30 8016F660 0C09E25F */  jal   alloc_display_list
 /* 21DE34 8016F664 24040020 */   li    $a0, 32
 /* 21DE38 8016F668 AFA20048 */  sw    $v0, 0x48($sp)
 /* 21DE3C 8016F66C 8FAB0048 */  lw    $t3, 0x48($sp)
@@ -239,7 +239,7 @@ glabel Geo18_8016F984
 /* 21E0F8 8016F928 24010001 */  li    $at, 1
 /* 21E0FC 8016F92C 17010070 */  bne   $t8, $at, .L8016FAF0
 /* 21E100 8016F930 00000000 */   nop   
-/* 21E104 8016F934 0C09E25F */  jal   func_8027897C
+/* 21E104 8016F934 0C09E25F */  jal   alloc_display_list
 /* 21E108 8016F938 24040028 */   li    $a0, 40
 /* 21E10C 8016F93C AFA20038 */  sw    $v0, 0x38($sp)
 /* 21E110 8016F940 8FB90038 */  lw    $t9, 0x38($sp)
@@ -369,10 +369,10 @@ glabel func_8016FB10
 /* 21E2E4 8016FB14 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 21E2E8 8016FB18 AFA40060 */  sw    $a0, 0x60($sp)
 /* 21E2EC 8016FB1C AFA50064 */  sw    $a1, 0x64($sp)
-/* 21E2F0 8016FB20 0C09E25F */  jal   func_8027897C
+/* 21E2F0 8016FB20 0C09E25F */  jal   alloc_display_list
 /* 21E2F4 8016FB24 24040040 */   li    $a0, 64
 /* 21E2F8 8016FB28 AFA2005C */  sw    $v0, 0x5c($sp)
-/* 21E2FC 8016FB2C 0C09E25F */  jal   func_8027897C
+/* 21E2FC 8016FB2C 0C09E25F */  jal   alloc_display_list
 /* 21E300 8016FB30 24040120 */   li    $a0, 288
 /* 21E304 8016FB34 AFA20058 */  sw    $v0, 0x58($sp)
 /* 21E308 8016FB38 8FAE0058 */  lw    $t6, 0x58($sp)
@@ -568,7 +568,7 @@ glabel Geo18_8016FE70
 /* 21E5F0 8016FE20 24010001 */  li    $at, 1
 /* 21E5F4 8016FE24 15610045 */  bne   $t3, $at, .L8016FF3C
 /* 21E5F8 8016FE28 00000000 */   nop   
-/* 21E5FC 8016FE2C 0C09E25F */  jal   func_8027897C
+/* 21E5FC 8016FE2C 0C09E25F */  jal   alloc_display_list
 /* 21E600 8016FE30 24040080 */   li    $a0, 128
 /* 21E604 8016FE34 AFA20038 */  sw    $v0, 0x38($sp)
 /* 21E608 8016FE38 8FAC0038 */  lw    $t4, 0x38($sp)
@@ -682,7 +682,7 @@ glabel Geo18_8016FFFC
 /* 21E7A0 8016FFD0 1000007A */  b     .L801701BC
 /* 21E7A4 8016FFD4 00000000 */   nop   
 .L8016FFD8:
-/* 21E7A8 8016FFD8 0C09E25F */  jal   func_8027897C
+/* 21E7A8 8016FFD8 0C09E25F */  jal   alloc_display_list
 /* 21E7AC 8016FFDC 24040080 */   li    $a0, 128
 /* 21E7B0 8016FFE0 AFA20038 */  sw    $v0, 0x38($sp)
 /* 21E7B4 8016FFE4 8FAB0038 */  lw    $t3, 0x38($sp)

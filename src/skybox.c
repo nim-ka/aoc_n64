@@ -62,7 +62,7 @@ int func_802CEC9C(s8 a)
 
 void *func_802CED24(int a, s8 b)
 {
-    void *sp3C = func_8027897C(64);
+    void *sp3C = alloc_display_list(64);
     s16 sp3A = a % 10 * 160;
     s16 sp38 = 960 - a / 10 * 120;
 
@@ -100,7 +100,7 @@ struct Hack802CEF4C
     u32 arr[1];  // unknown length
 };
 
-void func_802CEF4C(Gfx **a, s8 b, s8 c, s8 d)
+void func_802CEF4C(Gfx **dlist, s8 b, s8 c, s8 d)
 {
     int sp54;
     int sp50;
@@ -111,43 +111,23 @@ void func_802CEF4C(Gfx **a, s8 b, s8 c, s8 d)
         {
             int sp4C = D_8035FF50[c].unkC + sp54 * 10 + sp50;
             u32 sp48 = ((struct Hack802CEF4C *)SegmentedToVirtual(D_8032FFA0[b]))->arr[sp4C];
-            void *sp44 = func_802CED24(sp4C, d);
+            void *vertices = func_802CED24(sp4C, d);
 
+            // Why is the width 1 here?
+            gDPSetTextureImage((*dlist)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, sp48);
+            gDPTileSync((*dlist)++);
+            gDPSetTile((*dlist)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, 7, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD);
+            gDPLoadSync((*dlist)++);
+            gDPLoadBlock((*dlist)++, 7, 0, 0, 1023, 256);
+
+            // gSPVertex
             {
-                Gfx *g = (*a)++;
-                g->words.w0 = 0xFD100000;
-                g->words.w1 = sp48;
-            }
-            {
-                Gfx *g = (*a)++;
-                g->words.w0 = 0xE8000000;
-                g->words.w1 = 0;
-            }
-            {
-                Gfx *g = (*a)++;
-                g->words.w0 = 0xF5100000;
-                g->words.w1 = 0x07000000;
-            }
-            {
-                Gfx *g = (*a)++;
-                g->words.w0 = 0xE6000000;
-                g->words.w1 = 0;
-            }
-            {
-                Gfx *g = (*a)++;
-                g->words.w0 = 0xF3000000;
-                g->words.w1 = 0x073FF100;
-            }
-            {
-                Gfx *g = (*a)++;
+                Gfx *g = (*dlist)++;
                 g->words.w0 = 0x04300040;
-                g->words.w1 = (u32)sp44 & 0x1FFFFFFF;
+                g->words.w1 = (u32)vertices & 0x1FFFFFFF;
             }
-            {
-                Gfx *g = (*a)++;
-                g->words.w0 = 0x06000000;
-                g->words.w1 = (u32)D_020144F0;
-            }
+
+            gSPDisplayList((*dlist)++, D_020144F0);
         }
     }
 }
@@ -158,7 +138,7 @@ void *func_802CF188(s8 a)
     float sp38 = D_8035FF50[a].unk4 + 0x140;
     float sp34 = D_8035FF50[a].unk8 - 0xF0;
     float sp30 = D_8035FF50[a].unk8;
-    void *sp2C = func_8027897C(64);
+    void *sp2C = alloc_display_list(64);
 
     if (sp2C != NULL)
     {
@@ -171,11 +151,11 @@ void *func_802CF188(s8 a)
     return sp2C;
 }
 
-void *func_802CF2A8(s8 a, s8 b, s8 c)
+Gfx *func_802CF2A8(s8 a, s8 b, s8 c)
 {
     int sp3C = 68;
-    void *sp38 = func_8027897C(sp3C * 8);
-    Gfx *sp34 = sp38;
+    void *sp38 = alloc_display_list(sp3C * 8);
+    Gfx *dlist = sp38;
 
     if (sp38 == NULL)
     {
@@ -185,42 +165,25 @@ void *func_802CF2A8(s8 a, s8 b, s8 c)
     {
         void *sp30 = func_802CF188(a);
 
-        {
-            Gfx *g = sp34++;
-            g->words.w0 = 0x06000000;
-            g->words.w1 = (u32)D_02014708;
-        }
+        gSPDisplayList(dlist++, D_02014708);
 
         {
-            Gfx *g = sp34++;
+            Gfx *g = dlist++;
             g->words.w0 = 0x01010040;
             g->words.w1 = (u32)sp30 & 0x1FFFFFFF;
         }
 
-        {
-            Gfx *g = sp34++;
-            g->words.w0 = 0x06000000;
-            g->words.w1 = (u32)D_02014738;
-        }
+        gSPDisplayList(dlist++, D_02014738);
 
-        func_802CEF4C(&sp34, b, a, c);
+        func_802CEF4C(&dlist, b, a, c);
 
-        {
-            Gfx *g = sp34++;
-            g->words.w0 = 0x06000000;
-            g->words.w1 = (u32)D_02014768;
-        }
-
-        {
-            Gfx *g = sp34;
-            g->words.w0 = 0xB8000000;
-            g->words.w1 = 0;
-        }
+        gSPDisplayList(dlist++, D_02014768);
+        gSPEndDisplayList(dlist);
     }
     return sp38;
 }
 
-void *func_802CF414(s8 a, s8 b, float c, float d, float e, float f, float g,
+Gfx *func_802CF414(s8 a, s8 b, float c, float d, float e, float f, float g,
     float h, float i)
 {
     float sp34 = g - d;

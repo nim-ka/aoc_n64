@@ -449,20 +449,20 @@ void func_802787C4(struct UnknownMemoryStruct2 *a, struct MemBlock *b)
     }
 }
 
-void *func_8027897C(u32 a)
+void *alloc_display_list(u32 size)
 {
-    void *sp4 = NULL;
+    void *ptr = NULL;
 
-    a = ALIGN8(a);
-    if (gGfxPoolEnd - a >= (u8 *)gDisplayListHead)
+    size = ALIGN8(size);
+    if (gGfxPoolEnd - size >= (u8 *)gDisplayListHead)
     {
-        gGfxPoolEnd -= a;
-        sp4 = gGfxPoolEnd;
+        gGfxPoolEnd -= size;
+        ptr = gGfxPoolEnd;
     }
     else
     {
     }
-    return sp4;
+    return ptr;
 }
 
 void *dobjCopy(u8 *a)

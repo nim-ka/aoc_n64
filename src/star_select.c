@@ -137,33 +137,10 @@ void ShowSomeNum(void)
 
     func_802D6590(1, 158.0f, 81.0f, 0.0f);
 
-    {
-        Gfx *g = gDisplayListHead++;
-
-        g->words.w0 = 0x06000000;
-        g->words.w1 = (u32)D_0700F228;
-    }
-
-    {
-        Gfx *g = gDisplayListHead++;
-
-        g->words.w0 = 0xBD000000;
-        g->words.w1 = 0;
-    }
-
-    {
-        Gfx *g = gDisplayListHead++;
-
-        g->words.w0 = 0x06000000;
-        g->words.w1 = (u32)D_0200ED00;
-    }
-
-    {
-        Gfx *g = gDisplayListHead++;
-
-        g->words.w0 = 0xFB000000;
-        g->words.w1 = -1;
-    }
+    gSPDisplayList(gDisplayListHead++, D_0700F228);
+    gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+    gSPDisplayList(gDisplayListHead++, D_0200ED00);
+    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
 
     Int2Str(gCurrCourseNum, buffer);
     if (gCurrCourseNum < 10)
@@ -171,12 +148,7 @@ void ShowSomeNum(void)
     else
         PutString(2, 143, 158, buffer);
 
-    {
-        Gfx *g = gDisplayListHead++;
-
-        g->words.w0 = 0x06000000;
-        g->words.w1 = (u32)D_0200ED68;
-    }
+    gSPDisplayList(gDisplayListHead++, D_0200ED68);
 }
 
 void func_80177004(void)
@@ -193,42 +165,14 @@ void func_80177004(void)
 
     func_802D68A4();
 
-    {
-        Gfx *g = gDisplayListHead++;
-
-        g->words.w0 = 0x06000000;
-        g->words.w1 = (u32)D_0200ED00;
-    }
-
-    {
-        Gfx *g = gDisplayListHead++;
-
-        g->words.w0 = 0xFB000000;
-        g->words.w1 = -1;
-    }
+    gSPDisplayList(gDisplayListHead++, D_0200ED00);
+    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
 
     ShowCoins(1, gCurrSaveFileNum - 1, gCurrCourseNum - 1, 155, 106);
 
-    {
-        Gfx *g = gDisplayListHead++;
-
-        g->words.w0 = 0x06000000;
-        g->words.w1 = (u32)D_0200ED68;
-    }
-
-    {
-        Gfx *g = gDisplayListHead++;
-
-        g->words.w0 = 0x06000000;
-        g->words.w1 = (u32)D_0200EE68;
-    }
-
-    {
-        Gfx *g = gDisplayListHead++;
-
-        g->words.w0 = 0xFB000000;
-        g->words.w1 = 255;
-    }
+    gSPDisplayList(gDisplayListHead++, D_0200ED68);
+    gSPDisplayList(gDisplayListHead++, D_0200EE68);
+    gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, 255);
 
     if (save_file_get_course_coin_score(gCurrSaveFileNum - 1, gCurrCourseNum - 1) != 0)
         PrintGenericText(102, 118, sp60);
@@ -236,28 +180,12 @@ void func_80177004(void)
     sp4A = func_802D7B3C(160, sp54 + 3, 10.0f);
     PrintGenericText(sp4A, 33, sp54 + 3);
 
-    {
-        Gfx *g = gDisplayListHead++;
-
-        g->words.w0 = 0x06000000;
-        g->words.w1 = (u32)D_0200EEF0;
-    }
+    gSPDisplayList(gDisplayListHead++, D_0200EEF0);
 
     ShowSomeNum();
 
-    {
-        Gfx *g = gDisplayListHead++;
-
-        g->words.w0 = 0x06000000;
-        g->words.w1 = (u32)D_0700D108;
-    }
-
-    {
-        Gfx *g = gDisplayListHead++;
-
-        g->words.w0 = 0xFB000000;
-        g->words.w1 = 255;
-    }
+    gSPDisplayList(gDisplayListHead++, D_0700D108);
+    gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, 255);
 
     if (D_801B9912 != 0)
     {
@@ -272,12 +200,7 @@ void func_80177004(void)
         PrintRegularText(sp47 * 34 - D_801B9912 * 17 + 0x8B, 38, sp5C);
     }
 
-    {
-        Gfx *g = gDisplayListHead++;
-
-        g->words.w0 = 0x06000000;
-        g->words.w1 = (u32)D_0700D160;
-    }
+    gSPDisplayList(gDisplayListHead++, D_0700D160);
 }
 
 int Geo18_80177518(s16 a, UNUSED int b)
