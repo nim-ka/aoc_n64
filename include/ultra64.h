@@ -21,5 +21,6 @@
 #include <ultra64/gbi.h>
 #include <ultra64/eeprom.h>
 #include <ultra64/libc.h>
+#include <ultra64/gu.h>
 
 #endif

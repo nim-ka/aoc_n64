@@ -49,7 +49,7 @@ SECTIONS
       build/asm/mapinfo.o(.text);
       build/asm/screen_transition.o(.text);
       build/asm/rotate.o(.text);
-      build/asm/skybox.o(.text);
+      build/src/skybox.o(.text);
       build/asm/moving_texture.o(.text);
       build/src/transparent_texture.o(.text);
       build/asm/print.o(.text);
@@ -123,6 +123,7 @@ SECTIONS
       build/data/mapinfo.rodata.o(.rodata);
       build/data/screen_transition.rodata.o(.rodata);
       build/data/rotate.rodata.o(.rodata);
+      build/src/skybox.o(.rodata);
       build/data/ingame_menu.rodata.o(.rodata);
       build/data/hud.rodata.o(.rodata);
       build/data/obj_behaviors_1.rodata.o(.rodata);

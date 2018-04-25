@@ -4,8 +4,7 @@
 .section .rodata
 
 #ingame menu
-glabel D_80336FA0
-	.incbin "bin/rodata.bin", 0x2530, 0x78
+	.incbin "bin/rodata.bin", 0x2550, 0x58
 
 glabel jtbl_80337018
 	.incbin "bin/rodata.bin", 0x25A8, 0xCC
