@@ -32,7 +32,7 @@ glabel func_802D1EE0
 /* 08CF20 802D1F20 8FAB0024 */  lw    $t3, 0x24($sp)
 /* 08CF24 802D1F24 000C6880 */  sll   $t5, $t4, 2
 /* 08CF28 802D1F28 016D7021 */  addu  $t6, $t3, $t5
-/* 08CF2C 802D1F2C 0C09DE68 */  jal   SegmentedToVirtual
+/* 08CF2C 802D1F2C 0C09DE68 */  jal   segmented_to_virtual
 /* 08CF30 802D1F30 8DC40000 */   lw    $a0, ($t6)
 /* 08CF34 802D1F34 AFA20018 */  sw    $v0, 0x18($sp)
 /* 08CF38 802D1F38 8FAF0018 */  lw    $t7, 0x18($sp)
@@ -2720,11 +2720,11 @@ glabel func_802D45FC
 /* 08F624 802D4624 85090066 */  lh    $t1, 0x66($t0)
 /* 08F628 802D4628 A7A90056 */  sh    $t1, 0x56($sp)
 /* 08F62C 802D462C 8FAA0068 */  lw    $t2, 0x68($sp)
-/* 08F630 802D4630 0C09DE68 */  jal   SegmentedToVirtual
+/* 08F630 802D4630 0C09DE68 */  jal   segmented_to_virtual
 /* 08F634 802D4634 8D44005C */   lw    $a0, 0x5c($t2)
 /* 08F638 802D4638 AFA20050 */  sw    $v0, 0x50($sp)
 /* 08F63C 802D463C 8FAB0068 */  lw    $t3, 0x68($sp)
-/* 08F640 802D4640 0C09DE68 */  jal   SegmentedToVirtual
+/* 08F640 802D4640 0C09DE68 */  jal   segmented_to_virtual
 /* 08F644 802D4644 8D640060 */   lw    $a0, 0x60($t3)
 /* 08F648 802D4648 AFA2004C */  sw    $v0, 0x4c($sp)
 /* 08F64C 802D464C 87A4005A */  lh    $a0, 0x5a($sp)
@@ -2783,7 +2783,7 @@ glabel func_802D45FC
 /* 08F718 802D4718 8FAE0050 */  lw    $t6, 0x50($sp)
 /* 08F71C 802D471C 000FC080 */  sll   $t8, $t7, 2
 /* 08F720 802D4720 01D8C821 */  addu  $t9, $t6, $t8
-/* 08F724 802D4724 0C09DE68 */  jal   SegmentedToVirtual
+/* 08F724 802D4724 0C09DE68 */  jal   segmented_to_virtual
 /* 08F728 802D4728 8F240000 */   lw    $a0, ($t9)
 /* 08F72C 802D472C AFA2005C */  sw    $v0, 0x5c($sp)
 /* 08F730 802D4730 8FA8005C */  lw    $t0, 0x5c($sp)
@@ -2881,11 +2881,11 @@ glabel func_802D4874
 /* 08F890 802D4890 87190066 */  lh    $t9, 0x66($t8)
 /* 08F894 802D4894 A7B90054 */  sh    $t9, 0x54($sp)
 /* 08F898 802D4898 8FA80060 */  lw    $t0, 0x60($sp)
-/* 08F89C 802D489C 0C09DE68 */  jal   SegmentedToVirtual
+/* 08F89C 802D489C 0C09DE68 */  jal   segmented_to_virtual
 /* 08F8A0 802D48A0 8D04005C */   lw    $a0, 0x5c($t0)
 /* 08F8A4 802D48A4 AFA20050 */  sw    $v0, 0x50($sp)
 /* 08F8A8 802D48A8 8FA90060 */  lw    $t1, 0x60($sp)
-/* 08F8AC 802D48AC 0C09DE68 */  jal   SegmentedToVirtual
+/* 08F8AC 802D48AC 0C09DE68 */  jal   segmented_to_virtual
 /* 08F8B0 802D48B0 8D240060 */   lw    $a0, 0x60($t1)
 /* 08F8B4 802D48B4 AFA2004C */  sw    $v0, 0x4c($sp)
 /* 08F8B8 802D48B8 0C09E25F */  jal   alloc_display_list
@@ -2933,7 +2933,7 @@ glabel func_802D4874
 /* 08F95C 802D495C 8F280068 */  lw    $t0, 0x68($t9)
 /* 08F960 802D4960 AD280004 */  sw    $t0, 4($t1)
 /* 08F964 802D4964 8FAA0050 */  lw    $t2, 0x50($sp)
-/* 08F968 802D4968 0C09DE68 */  jal   SegmentedToVirtual
+/* 08F968 802D4968 0C09DE68 */  jal   segmented_to_virtual
 /* 08F96C 802D496C 8D440000 */   lw    $a0, ($t2)
 /* 08F970 802D4970 AFA20058 */  sw    $v0, 0x58($sp)
 /* 08F974 802D4974 8FAB0058 */  lw    $t3, 0x58($sp)
@@ -3014,11 +3014,11 @@ glabel func_802D4A8C
 /* 08FA94 802D4A94 AFA40038 */  sw    $a0, 0x38($sp)
 /* 08FA98 802D4A98 AFB00018 */  sw    $s0, 0x18($sp)
 /* 08FA9C 802D4A9C 3C040201 */  lui   $a0, %hi(D_02014A60) # $a0, 0x201
-/* 08FAA0 802D4AA0 0C09DE68 */  jal   SegmentedToVirtual
+/* 08FAA0 802D4AA0 0C09DE68 */  jal   segmented_to_virtual
 /* 08FAA4 802D4AA4 24844A60 */   addiu $a0, %lo(D_02014A60) # addiu $a0, $a0, 0x4a60
 /* 08FAA8 802D4AA8 AFA20034 */  sw    $v0, 0x34($sp)
 /* 08FAAC 802D4AAC 3C040201 */  lui   $a0, %hi(D_02015444) # $a0, 0x201
-/* 08FAB0 802D4AB0 0C09DE68 */  jal   SegmentedToVirtual
+/* 08FAB0 802D4AB0 0C09DE68 */  jal   segmented_to_virtual
 /* 08FAB4 802D4AB4 24845444 */   addiu $a0, %lo(D_02015444) # addiu $a0, $a0, 0x5444
 /* 08FAB8 802D4AB8 AFA20030 */  sw    $v0, 0x30($sp)
 /* 08FABC 802D4ABC 8FAE0034 */  lw    $t6, 0x34($sp)
@@ -3483,7 +3483,7 @@ glabel Geo18_802D5B98
 /* 090118 802D5118 8FAF001C */  lw    $t7, 0x1c($sp)
 /* 09011C 802D511C 0018C880 */  sll   $t9, $t8, 2
 /* 090120 802D5120 01F94021 */  addu  $t0, $t7, $t9
-/* 090124 802D5124 0C09DE68 */  jal   SegmentedToVirtual
+/* 090124 802D5124 0C09DE68 */  jal   segmented_to_virtual
 /* 090128 802D5128 8D040000 */   lw    $a0, ($t0)
 /* 09012C 802D512C AFA20018 */  sw    $v0, 0x18($sp)
 /* 090130 802D5130 8FA90030 */  lw    $t1, 0x30($sp)
@@ -4488,7 +4488,7 @@ glabel addchar_displist
 /* 090F1C 802D5F1C AFBF0014 */  sw    $ra, 0x14($sp)
 /* 090F20 802D5F20 AFA40028 */  sw    $a0, 0x28($sp)
 /* 090F24 802D5F24 3C040201 */  lui   $a0, %hi(D_02008250) # $a0, 0x201
-/* 090F28 802D5F28 0C09DE68 */  jal   SegmentedToVirtual
+/* 090F28 802D5F28 0C09DE68 */  jal   segmented_to_virtual
 /* 090F2C 802D5F2C 24848250 */   addiu $a0, %lo(D_02008250) # addiu $a0, $a0, -0x7db0
 /* 090F30 802D5F30 AFA20024 */  sw    $v0, 0x24($sp)
 /* 090F34 802D5F34 3C0E8034 */  lui   $t6, %hi(gDisplayListHead) # $t6, 0x8034

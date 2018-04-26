@@ -386,9 +386,9 @@
 .global Geo1C_8027795C
 .global Geo18_80277B14
 .global Geo18_80277D6C
-.global SetSegmentBase
-.global GetSegmentBase
-.global SegmentedToVirtual
+.global set_segment_base_addr
+.global get_segment_base_addr
+.global segmented_to_virtual
 .global virtual_to_segmented
 .global MovePtrTbl2Dmem
 .global InitMemPool
@@ -398,11 +398,11 @@
 .global PoolAvailable
 .global PushPoolState
 .global PopPoolState
-.global DmaCopy
+.global dma_copy
 .global DynamicCopy
-.global DynamicIndexCopy
+.global load_from_rom
 .global FixedCopy
-.global UncIndexCopy
+.global load_from_rom_decompress
 .global CopyScriptInterpreter
 .global SimpleAllocate
 .global subPrint

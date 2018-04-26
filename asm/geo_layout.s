@@ -51,7 +51,7 @@ glabel GeoLayout00
 /* 0F8800 8037CDF0 A428BD7E */  sh    $t0, %lo(D_8038BD7E)($at)
 /* 0F8804 8037CDF4 3C098039 */  lui   $t1, %hi(D_8038BD80) # $t1, 0x8039
 /* 0F8808 8037CDF8 8D29BD80 */  lw    $t1, %lo(D_8038BD80)($t1)
-/* 0F880C 8037CDFC 0C09DE68 */  jal   SegmentedToVirtual
+/* 0F880C 8037CDFC 0C09DE68 */  jal   segmented_to_virtual
 /* 0F8810 8037CE00 8D240004 */   lw    $a0, 4($t1)
 /* 0F8814 8037CE04 3C018039 */  lui   $at, %hi(D_8038BD80) # $at, 0x8039
 /* 0F8818 8037CE08 AC22BD80 */  sw    $v0, %lo(D_8038BD80)($at)
@@ -141,7 +141,7 @@ glabel GeoLayout02
 .L8037CF40:
 /* 0F8950 8037CF40 3C0C8039 */  lui   $t4, %hi(D_8038BD80) # $t4, 0x8039
 /* 0F8954 8037CF44 8D8CBD80 */  lw    $t4, %lo(D_8038BD80)($t4)
-/* 0F8958 8037CF48 0C09DE68 */  jal   SegmentedToVirtual
+/* 0F8958 8037CF48 0C09DE68 */  jal   segmented_to_virtual
 /* 0F895C 8037CF4C 8D840004 */   lw    $a0, 4($t4)
 /* 0F8960 8037CF50 3C018039 */  lui   $at, %hi(D_8038BD80) # $at, 0x8039
 /* 0F8964 8037CF54 AC22BD80 */  sw    $v0, %lo(D_8038BD80)($at)
@@ -1389,7 +1389,7 @@ glabel ProcessGeoLayout
 /* 0F9B04 8037E0F4 24180002 */  li    $t8, 2
 /* 0F9B08 8037E0F8 3C018039 */  lui   $at, %hi(D_8038BD7E) # $at, 0x8039
 /* 0F9B0C 8037E0FC A438BD7E */  sh    $t8, %lo(D_8038BD7E)($at)
-/* 0F9B10 8037E100 0C09DE68 */  jal   SegmentedToVirtual
+/* 0F9B10 8037E100 0C09DE68 */  jal   segmented_to_virtual
 /* 0F9B14 8037E104 8FA4001C */   lw    $a0, 0x1c($sp)
 /* 0F9B18 8037E108 3C018039 */  lui   $at, %hi(D_8038BD80) # $at, 0x8039
 /* 0F9B1C 8037E10C AC22BD80 */  sw    $v0, %lo(D_8038BD80)($at)

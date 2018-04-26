@@ -82,7 +82,7 @@ void *Geo18_802D2520(s32 sp80, short *sp84, UNUSED s32 sp88)
     void *sp6C;
     short *sp68 = sp84;
 
-    Gfx *sp64 = (Gfx *)SegmentedToVirtual(&D_07019248);
+    Gfx *sp64 = (Gfx *)segmented_to_virtual(&D_07019248);
     Gfx *sp60 = NULL, *sp5C = NULL;
     struct Object *sp58;
     

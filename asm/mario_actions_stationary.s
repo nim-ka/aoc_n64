@@ -1211,7 +1211,7 @@ glabel func_802615C4
 /* 01C5C8 802615C8 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 01C5CC 802615CC AFA40018 */  sw    $a0, 0x18($sp)
 /* 01C5D0 802615D0 3C041300 */  lui   $a0, %hi(D_13001650) # $a0, 0x1300
-/* 01C5D4 802615D4 0C09DE68 */  jal   SegmentedToVirtual
+/* 01C5D4 802615D4 0C09DE68 */  jal   segmented_to_virtual
 /* 01C5D8 802615D8 24841650 */   addiu $a0, %lo(D_13001650) # addiu $a0, $a0, 0x1650
 /* 01C5DC 802615DC 8FAE0018 */  lw    $t6, 0x18($sp)
 /* 01C5E0 802615E0 8DCF007C */  lw    $t7, 0x7c($t6)

@@ -683,7 +683,7 @@ glabel func_8029DA34
 /* 058AC8 8029DAC8 10000007 */  b     .L8029DAE8
 /* 058ACC 8029DACC 00000000 */   nop   
 .L8029DAD0:
-/* 058AD0 8029DAD0 0C09DE68 */  jal   SegmentedToVirtual
+/* 058AD0 8029DAD0 0C09DE68 */  jal   segmented_to_virtual
 /* 058AD4 8029DAD4 8FA4001C */   lw    $a0, 0x1c($sp)
 /* 058AD8 8029DAD8 8FAB0018 */  lw    $t3, 0x18($sp)
 /* 058ADC 8029DADC AD6201CC */  sw    $v0, 0x1cc($t3)
@@ -1460,7 +1460,7 @@ glabel func_8029E5A4
 /* 0595B0 8029E5B0 AFA50024 */  sw    $a1, 0x24($sp)
 /* 0595B4 8029E5B4 AFA60028 */  sw    $a2, 0x28($sp)
 /* 0595B8 8029E5B8 AFA7002C */  sw    $a3, 0x2c($sp)
-/* 0595BC 8029E5BC 0C09DE68 */  jal   SegmentedToVirtual
+/* 0595BC 8029E5BC 0C09DE68 */  jal   segmented_to_virtual
 /* 0595C0 8029E5C0 8FA4002C */   lw    $a0, 0x2c($sp)
 /* 0595C4 8029E5C4 AFA20018 */  sw    $v0, 0x18($sp)
 /* 0595C8 8029E5C8 0C0B2509 */  jal   func_802C9424
@@ -2402,7 +2402,7 @@ glabel func_8029F270
 /* 05A274 8029F274 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 05A278 8029F278 AFA40030 */  sw    $a0, 0x30($sp)
 /* 05A27C 8029F27C AFA50034 */  sw    $a1, 0x34($sp)
-/* 05A280 8029F280 0C09DE68 */  jal   SegmentedToVirtual
+/* 05A280 8029F280 0C09DE68 */  jal   segmented_to_virtual
 /* 05A284 8029F284 8FA40030 */   lw    $a0, 0x30($sp)
 /* 05A288 8029F288 AFA2002C */  sw    $v0, 0x2c($sp)
 /* 05A28C 8029F28C AFA00028 */  sw    $zero, 0x28($sp)
@@ -2540,7 +2540,7 @@ glabel func_8029F460
 /* 05A460 8029F460 27BDFFD8 */  addiu $sp, $sp, -0x28
 /* 05A464 8029F464 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 05A468 8029F468 AFA40028 */  sw    $a0, 0x28($sp)
-/* 05A46C 8029F46C 0C09DE68 */  jal   SegmentedToVirtual
+/* 05A46C 8029F46C 0C09DE68 */  jal   segmented_to_virtual
 /* 05A470 8029F470 8FA40028 */   lw    $a0, 0x28($sp)
 /* 05A474 8029F474 AFA20024 */  sw    $v0, 0x24($sp)
 /* 05A478 8029F478 0C0A7C66 */  jal   func_8029F198
@@ -2595,7 +2595,7 @@ glabel func_8029F520
 /* 05A524 8029F524 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 05A528 8029F528 AFA40028 */  sw    $a0, 0x28($sp)
 /* 05A52C 8029F52C AFA5002C */  sw    $a1, 0x2c($sp)
-/* 05A530 8029F530 0C09DE68 */  jal   SegmentedToVirtual
+/* 05A530 8029F530 0C09DE68 */  jal   segmented_to_virtual
 /* 05A534 8029F534 8FA40028 */   lw    $a0, 0x28($sp)
 /* 05A538 8029F538 AFA20024 */  sw    $v0, 0x24($sp)
 /* 05A53C 8029F53C 3C0E8036 */  lui   $t6, %hi(D_8035FD78) # $t6, 0x8036
@@ -3116,7 +3116,7 @@ glabel func_8029FC04
 /* 05AC10 8029FC10 E7AC0018 */  swc1  $f12, 0x18($sp)
 /* 05AC14 8029FC14 E7AE001C */  swc1  $f14, 0x1c($sp)
 /* 05AC18 8029FC18 3C041300 */  lui   $a0, %hi(D_13001850) # $a0, 0x1300
-/* 05AC1C 8029FC1C 0C09DE68 */  jal   SegmentedToVirtual
+/* 05AC1C 8029FC1C 0C09DE68 */  jal   segmented_to_virtual
 /* 05AC20 8029FC20 24841850 */   addiu $a0, %lo(D_13001850) # addiu $a0, $a0, 0x1850
 /* 05AC24 8029FC24 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 05AC28 8029FC28 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
@@ -4344,7 +4344,7 @@ glabel func_802A0D10
 /* 05BD10 802A0D10 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 05BD14 802A0D14 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 05BD18 802A0D18 AFA40018 */  sw    $a0, 0x18($sp)
-/* 05BD1C 802A0D1C 0C09DE68 */  jal   SegmentedToVirtual
+/* 05BD1C 802A0D1C 0C09DE68 */  jal   segmented_to_virtual
 /* 05BD20 802A0D20 8FA40018 */   lw    $a0, 0x18($sp)
 /* 05BD24 802A0D24 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 05BD28 802A0D28 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
@@ -4362,7 +4362,7 @@ glabel SetObjBehavior
 /* 05BD4C 802A0D4C AFBF0014 */  sw    $ra, 0x14($sp)
 /* 05BD50 802A0D50 AFA40018 */  sw    $a0, 0x18($sp)
 /* 05BD54 802A0D54 AFA5001C */  sw    $a1, 0x1c($sp)
-/* 05BD58 802A0D58 0C09DE68 */  jal   SegmentedToVirtual
+/* 05BD58 802A0D58 0C09DE68 */  jal   segmented_to_virtual
 /* 05BD5C 802A0D5C 8FA4001C */   lw    $a0, 0x1c($sp)
 /* 05BD60 802A0D60 8FAE0018 */  lw    $t6, 0x18($sp)
 /* 05BD64 802A0D64 ADC2020C */  sw    $v0, 0x20c($t6)
@@ -4378,7 +4378,7 @@ glabel CheckObjBehavior
 /* 05BD80 802A0D80 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 05BD84 802A0D84 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 05BD88 802A0D88 AFA40018 */  sw    $a0, 0x18($sp)
-/* 05BD8C 802A0D8C 0C09DE68 */  jal   SegmentedToVirtual
+/* 05BD8C 802A0D8C 0C09DE68 */  jal   segmented_to_virtual
 /* 05BD90 802A0D90 8FA40018 */   lw    $a0, 0x18($sp)
 /* 05BD94 802A0D94 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 05BD98 802A0D98 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
@@ -4406,7 +4406,7 @@ glabel CheckObjBehavior2
 /* 05BDDC 802A0DDC AFBF0014 */  sw    $ra, 0x14($sp)
 /* 05BDE0 802A0DE0 AFA40018 */  sw    $a0, 0x18($sp)
 /* 05BDE4 802A0DE4 AFA5001C */  sw    $a1, 0x1c($sp)
-/* 05BDE8 802A0DE8 0C09DE68 */  jal   SegmentedToVirtual
+/* 05BDE8 802A0DE8 0C09DE68 */  jal   segmented_to_virtual
 /* 05BDEC 802A0DEC 8FA4001C */   lw    $a0, 0x1c($sp)
 /* 05BDF0 802A0DF0 8FAE0018 */  lw    $t6, 0x18($sp)
 /* 05BDF4 802A0DF4 8DCF020C */  lw    $t7, 0x20c($t6)
@@ -7826,7 +7826,7 @@ glabel func_802A3D4C
 /* 05ED50 802A3D50 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 05ED54 802A3D54 AFA40018 */  sw    $a0, 0x18($sp)
 /* 05ED58 802A3D58 AFA5001C */  sw    $a1, 0x1c($sp)
-/* 05ED5C 802A3D5C 0C09DE68 */  jal   SegmentedToVirtual
+/* 05ED5C 802A3D5C 0C09DE68 */  jal   segmented_to_virtual
 /* 05ED60 802A3D60 8FA4001C */   lw    $a0, 0x1c($sp)
 /* 05ED64 802A3D64 8FAE0018 */  lw    $t6, 0x18($sp)
 /* 05ED68 802A3D68 ADC20218 */  sw    $v0, 0x218($t6)
@@ -17117,7 +17117,7 @@ glabel func_802AC0B8
 /* 0670B8 802AC0B8 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 0670BC 802AC0BC AFBF0014 */  sw    $ra, 0x14($sp)
 /* 0670C0 802AC0C0 3C041300 */  lui   $a0, %hi(D_13000B0C) # $a0, 0x1300
-/* 0670C4 802AC0C4 0C09DE68 */  jal   SegmentedToVirtual
+/* 0670C4 802AC0C4 0C09DE68 */  jal   segmented_to_virtual
 /* 0670C8 802AC0C8 24840B0C */   addiu $a0, %lo(D_13000B0C) # addiu $a0, $a0, 0xb0c
 /* 0670CC 802AC0CC 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 0670D0 802AC0D0 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
@@ -25331,7 +25331,7 @@ glabel BehBowserFlameSpawnLoop
 /* 06E5A4 802B35A4 C4266000 */  lwc1  $f6, %lo(D_80386000)($at)
 /* 06E5A8 802B35A8 E7A60020 */  swc1  $f6, 0x20($sp)
 /* 06E5AC 802B35AC 3C040605 */  lui   $a0, %hi(D_060576FC) # $a0, 0x605
-/* 06E5B0 802B35B0 0C09DE68 */  jal   SegmentedToVirtual
+/* 06E5B0 802B35B0 0C09DE68 */  jal   segmented_to_virtual
 /* 06E5B4 802B35B4 248476FC */   addiu $a0, %lo(D_060576FC) # addiu $a0, $a0, 0x76fc
 /* 06E5B8 802B35B8 AFA2001C */  sw    $v0, 0x1c($sp)
 /* 06E5BC 802B35BC 8FAE0034 */  lw    $t6, 0x34($sp)
@@ -32077,7 +32077,7 @@ glabel BehDddWarpLoop
 /* 074550 802B9550 11E00008 */  beqz  $t7, .L802B9574
 /* 074554 802B9554 00000000 */   nop   
 /* 074558 802B9558 3C040707 */  lui   $a0, %hi(D_0707768C) # $a0, 0x707
-/* 07455C 802B955C 0C09DE68 */  jal   SegmentedToVirtual
+/* 07455C 802B955C 0C09DE68 */  jal   segmented_to_virtual
 /* 074560 802B9560 2484768C */   addiu $a0, %lo(D_0707768C) # addiu $a0, $a0, 0x768c
 /* 074564 802B9564 3C188036 */  lui   $t8, %hi(gCurrentObject) # $t8, 0x8036
 /* 074568 802B9568 8F18FDF0 */  lw    $t8, %lo(gCurrentObject)($t8)
@@ -32085,7 +32085,7 @@ glabel BehDddWarpLoop
 /* 074570 802B9570 AF020218 */   sw    $v0, 0x218($t8)
 .L802B9574:
 /* 074574 802B9574 3C040707 */  lui   $a0, %hi(D_070775B4) # $a0, 0x707
-/* 074578 802B9578 0C09DE68 */  jal   SegmentedToVirtual
+/* 074578 802B9578 0C09DE68 */  jal   segmented_to_virtual
 /* 07457C 802B957C 248475B4 */   addiu $a0, %lo(D_070775B4) # addiu $a0, $a0, 0x75b4
 /* 074580 802B9580 3C198036 */  lui   $t9, %hi(gCurrentObject) # $t9, 0x8036
 /* 074584 802B9584 8F39FDF0 */  lw    $t9, %lo(gCurrentObject)($t9)
@@ -38703,7 +38703,7 @@ glabel GeoSwitchCase802BFBAC
 /* 07A2A0 802BF2A0 A528001E */  sh    $t0, 0x1e($t1)
 .L802BF2A4:
 /* 07A2A4 802BF2A4 3C041300 */  lui   $a0, %hi(D_13002088) # $a0, 0x1300
-/* 07A2A8 802BF2A8 0C09DE68 */  jal   SegmentedToVirtual
+/* 07A2A8 802BF2A8 0C09DE68 */  jal   segmented_to_virtual
 /* 07A2AC 802BF2AC 24842088 */   addiu $a0, %lo(D_13002088) # addiu $a0, $a0, 0x2088
 /* 07A2B0 802BF2B0 8FAA0024 */  lw    $t2, 0x24($sp)
 /* 07A2B4 802BF2B4 8D4B020C */  lw    $t3, 0x20c($t2)

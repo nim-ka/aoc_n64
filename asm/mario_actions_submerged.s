@@ -2859,7 +2859,7 @@ glabel func_80272300
 /* 02D464 80272464 10400017 */  beqz  $v0, .L802724C4
 /* 02D468 80272468 00000000 */   nop   
 /* 02D46C 8027246C 3C041300 */  lui   $a0, %hi(D_13000708) # $a0, 0x1300
-/* 02D470 80272470 0C09DE68 */  jal   SegmentedToVirtual
+/* 02D470 80272470 0C09DE68 */  jal   segmented_to_virtual
 /* 02D474 80272474 24840708 */   addiu $a0, %lo(D_13000708) # addiu $a0, $a0, 0x708
 /* 02D478 80272478 8FAD0028 */  lw    $t5, 0x28($sp)
 /* 02D47C 8027247C 8DAE007C */  lw    $t6, 0x7c($t5)

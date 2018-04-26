@@ -209,7 +209,7 @@ void func_80247D84(void)
 void func_80247ED8(void)
 {
     D_80339D04 = D_80208100;
-    SetSegmentBase(1, D_80339D04);
+    set_segment_base_addr(1, D_80339D04);
     D_80339CF8 = (struct Struct8032C630 *)((u8 *)D_80339D04 + 51200);
     gDisplayListHead = D_80339D04;
     gGfxPoolEnd = (u8 *)D_80339D04 + 51200;
@@ -225,7 +225,7 @@ void func_80247ED8(void)
 void func_80247FAC(void)
 {
     D_80339D04 = (Gfx *)((u8 *)D_80208100 + (D_8032C694 % 2) * 51280);
-    SetSegmentBase(1, D_80339D04);
+    set_segment_base_addr(1, D_80339D04);
     D_80339CF8 = (struct Struct8032C630 *)((u8 *)D_80339D04 + 51200);
     gDisplayListHead = D_80339D04;
     gGfxPoolEnd = (u8 *)D_80339D04 + 51200;

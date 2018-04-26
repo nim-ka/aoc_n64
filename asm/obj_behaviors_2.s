@@ -3893,7 +3893,7 @@ glabel func_802FBCB4
 /* 0B6D44 802FBD44 858D01AE */  lh    $t5, 0x1ae($t4)
 /* 0B6D48 802FBD48 000D7100 */  sll   $t6, $t5, 4
 /* 0B6D4C 802FBD4C 008E2021 */  addu  $a0, $a0, $t6
-/* 0B6D50 802FBD50 0C09DE68 */  jal   SegmentedToVirtual
+/* 0B6D50 802FBD50 0C09DE68 */  jal   segmented_to_virtual
 /* 0B6D54 802FBD54 8C841754 */   lw    $a0, %lo(D_80331754)($a0)
 /* 0B6D58 802FBD58 3C0F8036 */  lui   $t7, %hi(gCurrentObject) # $t7, 0x8036
 /* 0B6D5C 802FBD5C 8DEFFDF0 */  lw    $t7, %lo(gCurrentObject)($t7)
@@ -11903,7 +11903,7 @@ glabel func_803030BC
 /* 0BE0BC 803030BC 27BDFFD8 */  addiu $sp, $sp, -0x28
 /* 0BE0C0 803030C0 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 0BE0C4 803030C4 AFA40028 */  sw    $a0, 0x28($sp)
-/* 0BE0C8 803030C8 0C09DE68 */  jal   SegmentedToVirtual
+/* 0BE0C8 803030C8 0C09DE68 */  jal   segmented_to_virtual
 /* 0BE0CC 803030CC 8FA40028 */   lw    $a0, 0x28($sp)
 /* 0BE0D0 803030D0 AFA20024 */  sw    $v0, 0x24($sp)
 /* 0BE0D4 803030D4 AFA0001C */  sw    $zero, 0x1c($sp)
@@ -13021,7 +13021,7 @@ glabel BehPlatformOnTracksInit
 /* 0BF098 80304098 856D01B0 */  lh    $t5, 0x1b0($t3)
 /* 0BF09C 8030409C 000D7080 */  sll   $t6, $t5, 2
 /* 0BF0A0 803040A0 008E2021 */  addu  $a0, $a0, $t6
-/* 0BF0A4 803040A4 0C09DE68 */  jal   SegmentedToVirtual
+/* 0BF0A4 803040A4 0C09DE68 */  jal   segmented_to_virtual
 /* 0BF0A8 803040A8 8C8418BC */   lw    $a0, %lo(D_803318BC)($a0)
 /* 0BF0AC 803040AC 3C0F8036 */  lui   $t7, %hi(gCurrentObject) # $t7, 0x8036
 /* 0BF0B0 803040B0 8DEFFDF0 */  lw    $t7, %lo(gCurrentObject)($t7)
@@ -13030,7 +13030,7 @@ glabel BehPlatformOnTracksInit
 /* 0BF0BC 803040BC 3C048033 */  lui   $a0, %hi(D_803318CC)
 /* 0BF0C0 803040C0 0018C880 */  sll   $t9, $t8, 2
 /* 0BF0C4 803040C4 00992021 */  addu  $a0, $a0, $t9
-/* 0BF0C8 803040C8 0C09DE68 */  jal   SegmentedToVirtual
+/* 0BF0C8 803040C8 0C09DE68 */  jal   segmented_to_virtual
 /* 0BF0CC 803040CC 8C8418CC */   lw    $a0, %lo(D_803318CC)($a0)
 /* 0BF0D0 803040D0 3C0C8036 */  lui   $t4, %hi(gCurrentObject) # $t4, 0x8036
 /* 0BF0D4 803040D4 8D8CFDF0 */  lw    $t4, %lo(gCurrentObject)($t4)
@@ -13762,7 +13762,7 @@ glabel BehSolidMovingInit
 /* 0BFB44 80304B44 8DCF0144 */  lw    $t7, 0x144($t6)
 /* 0BFB48 80304B48 000FC080 */  sll   $t8, $t7, 2
 /* 0BFB4C 80304B4C 00982021 */  addu  $a0, $a0, $t8
-/* 0BFB50 80304B50 0C09DE68 */  jal   SegmentedToVirtual
+/* 0BFB50 80304B50 0C09DE68 */  jal   segmented_to_virtual
 /* 0BFB54 80304B54 8C8418F0 */   lw    $a0, %lo(D_803318F0)($a0)
 /* 0BFB58 80304B58 3C198036 */  lui   $t9, %hi(gCurrentObject) # $t9, 0x8036
 /* 0BFB5C 80304B5C 8F39FDF0 */  lw    $t9, %lo(gCurrentObject)($t9)
@@ -13910,7 +13910,7 @@ glabel BehFourRotatingPlatformsInit
 /* 0BFD64 80304D64 030FC023 */  subu  $t8, $t8, $t7
 /* 0BFD68 80304D68 0018C080 */  sll   $t8, $t8, 2
 /* 0BFD6C 80304D6C 00982021 */  addu  $a0, $a0, $t8
-/* 0BFD70 80304D70 0C09DE68 */  jal   SegmentedToVirtual
+/* 0BFD70 80304D70 0C09DE68 */  jal   segmented_to_virtual
 /* 0BFD74 80304D74 8C841910 */   lw    $a0, %lo(D_80331910)($a0)
 /* 0BFD78 80304D78 3C198036 */  lui   $t9, %hi(gCurrentObject) # $t9, 0x8036
 /* 0BFD7C 80304D7C 8F39FDF0 */  lw    $t9, %lo(gCurrentObject)($t9)
@@ -13948,7 +13948,7 @@ glabel BehFourRotatingPlatformsInit
 /* 0BFDF8 80304DF8 030FC023 */  subu  $t8, $t8, $t7
 /* 0BFDFC 80304DFC 0018C080 */  sll   $t8, $t8, 2
 /* 0BFE00 80304E00 00982021 */  addu  $a0, $a0, $t8
-/* 0BFE04 80304E04 0C09DE68 */  jal   SegmentedToVirtual
+/* 0BFE04 80304E04 0C09DE68 */  jal   segmented_to_virtual
 /* 0BFE08 80304E08 8C841914 */   lw    $a0, %lo(D_80331914)($a0)
 /* 0BFE0C 80304E0C 8FB9002C */  lw    $t9, 0x2c($sp)
 /* 0BFE10 80304E10 AF220218 */  sw    $v0, 0x218($t9)
@@ -14697,7 +14697,7 @@ glabel BehRotatingClockPlatformInit
 /* 0C08CC 803058CC 8DCF0144 */  lw    $t7, 0x144($t6)
 /* 0C08D0 803058D0 000FC080 */  sll   $t8, $t7, 2
 /* 0C08D4 803058D4 00982021 */  addu  $a0, $a0, $t8
-/* 0C08D8 803058D8 0C09DE68 */  jal   SegmentedToVirtual
+/* 0C08D8 803058D8 0C09DE68 */  jal   segmented_to_virtual
 /* 0C08DC 803058DC 8C841960 */   lw    $a0, %lo(D_80331960)($a0)
 /* 0C08E0 803058E0 3C198036 */  lui   $t9, %hi(gCurrentObject) # $t9, 0x8036
 /* 0C08E4 803058E4 8F39FDF0 */  lw    $t9, %lo(gCurrentObject)($t9)
@@ -15096,19 +15096,19 @@ glabel BehClockMetalPlatformInit
 /* 0C0E80 80305E80 31F80001 */  andi  $t8, $t7, 1
 /* 0C0E84 80305E84 0018C880 */  sll   $t9, $t8, 2
 /* 0C0E88 80305E88 00992021 */  addu  $a0, $a0, $t9
-/* 0C0E8C 80305E8C 0C09DE68 */  jal   SegmentedToVirtual
+/* 0C0E8C 80305E8C 0C09DE68 */  jal   segmented_to_virtual
 /* 0C0E90 80305E90 8C84197C */   lw    $a0, %lo(D_8033197C)($a0)
 /* 0C0E94 80305E94 3C088036 */  lui   $t0, %hi(gCurrentObject) # $t0, 0x8036
 /* 0C0E98 80305E98 8D08FDF0 */  lw    $t0, %lo(gCurrentObject)($t0)
 /* 0C0E9C 80305E9C AD020218 */  sw    $v0, 0x218($t0)
 /* 0C0EA0 80305EA0 3C040701 */  lui   $a0, %hi(D_07016840) # $a0, 0x701
-/* 0C0EA4 80305EA4 0C09DE68 */  jal   SegmentedToVirtual
+/* 0C0EA4 80305EA4 0C09DE68 */  jal   segmented_to_virtual
 /* 0C0EA8 80305EA8 24846840 */   addiu $a0, %lo(D_07016840) # addiu $a0, $a0, 0x6840
 /* 0C0EAC 80305EAC 3C098036 */  lui   $t1, %hi(gCurrentObject) # $t1, 0x8036
 /* 0C0EB0 80305EB0 8D29FDF0 */  lw    $t1, %lo(gCurrentObject)($t1)
 /* 0C0EB4 80305EB4 AD2200F4 */  sw    $v0, 0xf4($t1)
 /* 0C0EB8 80305EB8 3C040701 */  lui   $a0, %hi(D_07016904) # $a0, 0x701
-/* 0C0EBC 80305EBC 0C09DE68 */  jal   SegmentedToVirtual
+/* 0C0EBC 80305EBC 0C09DE68 */  jal   segmented_to_virtual
 /* 0C0EC0 80305EC0 24846904 */   addiu $a0, %lo(D_07016904) # addiu $a0, $a0, 0x6904
 /* 0C0EC4 80305EC4 3C0A8036 */  lui   $t2, %hi(gCurrentObject) # $t2, 0x8036
 /* 0C0EC8 80305EC8 8D4AFDF0 */  lw    $t2, %lo(gCurrentObject)($t2)
@@ -15664,7 +15664,7 @@ glabel BehRotatingGearPlatformInit
 /* 0C1698 80306698 0018C843 */  sra   $t9, $t8, 1
 /* 0C169C 8030669C 00194080 */  sll   $t0, $t9, 2
 /* 0C16A0 803066A0 00882021 */  addu  $a0, $a0, $t0
-/* 0C16A4 803066A4 0C09DE68 */  jal   SegmentedToVirtual
+/* 0C16A4 803066A4 0C09DE68 */  jal   segmented_to_virtual
 /* 0C16A8 803066A8 8C841998 */   lw    $a0, %lo(D_80331998)($a0)
 /* 0C16AC 803066AC 3C098036 */  lui   $t1, %hi(gCurrentObject) # $t1, 0x8036
 /* 0C16B0 803066B0 8D29FDF0 */  lw    $t1, %lo(gCurrentObject)($t1)
@@ -15788,7 +15788,7 @@ glabel BehPushableClockBoxInit
 /* 0C1860 80306860 8DCF0144 */  lw    $t7, 0x144($t6)
 /* 0C1864 80306864 000FC080 */  sll   $t8, $t7, 2
 /* 0C1868 80306868 00982021 */  addu  $a0, $a0, $t8
-/* 0C186C 8030686C 0C09DE68 */  jal   SegmentedToVirtual
+/* 0C186C 8030686C 0C09DE68 */  jal   segmented_to_virtual
 /* 0C1870 80306870 8C8419A8 */   lw    $a0, %lo(D_803319A8)($a0)
 /* 0C1874 80306874 3C198036 */  lui   $t9, %hi(gCurrentObject) # $t9, 0x8036
 /* 0C1878 80306878 8F39FDF0 */  lw    $t9, %lo(gCurrentObject)($t9)
@@ -17513,7 +17513,7 @@ glabel BehSlidingPlatform2Init
 /* 0C3128 80308128 3C048033 */  lui   $a0, %hi(D_80331A24)
 /* 0C312C 8030812C 000A5880 */  sll   $t3, $t2, 2
 /* 0C3130 80308130 008B2021 */  addu  $a0, $a0, $t3
-/* 0C3134 80308134 0C09DE68 */  jal   SegmentedToVirtual
+/* 0C3134 80308134 0C09DE68 */  jal   segmented_to_virtual
 /* 0C3138 80308138 8C841A24 */   lw    $a0, %lo(D_80331A24)($a0)
 /* 0C313C 8030813C 3C0C8036 */  lui   $t4, %hi(gCurrentObject) # $t4, 0x8036
 /* 0C3140 80308140 8D8CFDF0 */  lw    $t4, %lo(gCurrentObject)($t4)
@@ -17680,7 +17680,7 @@ glabel BehOctagonalPlatformRotatingInit
 /* 0C338C 8030838C 331900FF */  andi  $t9, $t8, 0xff
 /* 0C3390 80308390 00194080 */  sll   $t0, $t9, 2
 /* 0C3394 80308394 00882021 */  addu  $a0, $a0, $t0
-/* 0C3398 80308398 0C09DE68 */  jal   SegmentedToVirtual
+/* 0C3398 80308398 0C09DE68 */  jal   segmented_to_virtual
 /* 0C339C 8030839C 8C841A44 */   lw    $a0, %lo(D_80331A44)($a0)
 /* 0C33A0 803083A0 3C098036 */  lui   $t1, %hi(gCurrentObject) # $t1, 0x8036
 /* 0C33A4 803083A4 8D29FDF0 */  lw    $t1, %lo(gCurrentObject)($t1)
@@ -17875,7 +17875,7 @@ glabel BehFloorSwitchPressAnimationLoop
 /* 0C3644 80308644 000D70C0 */  sll   $t6, $t5, 3
 /* 0C3648 80308648 012E7821 */  addu  $t7, $t1, $t6
 /* 0C364C 8030864C 008F2021 */  addu  $a0, $a0, $t7
-/* 0C3650 80308650 0C09DE68 */  jal   SegmentedToVirtual
+/* 0C3650 80308650 0C09DE68 */  jal   segmented_to_virtual
 /* 0C3654 80308654 8C841A54 */   lw    $a0, 0x1a54($a0)
 /* 0C3658 80308658 3C0C8036 */  lui   $t4, %hi(gCurrentObject) # $t4, 0x8036
 /* 0C365C 8030865C 8D8CFDF0 */  lw    $t4, %lo(gCurrentObject)($t4)
@@ -17934,7 +17934,7 @@ glabel BehClimbableCageInit
 /* 0C3718 80308718 3C048033 */  lui   $a0, %hi(D_80331AD4)
 /* 0C371C 8030871C 000E7880 */  sll   $t7, $t6, 2
 /* 0C3720 80308720 008F2021 */  addu  $a0, $a0, $t7
-/* 0C3724 80308724 0C09DE68 */  jal   SegmentedToVirtual
+/* 0C3724 80308724 0C09DE68 */  jal   segmented_to_virtual
 /* 0C3728 80308728 8C841AD4 */   lw    $a0, %lo(D_80331AD4)($a0)
 /* 0C372C 8030872C 3C188036 */  lui   $t8, %hi(gCurrentObject) # $t8, 0x8036
 /* 0C3730 80308730 8F18FDF0 */  lw    $t8, %lo(gCurrentObject)($t8)
@@ -18622,7 +18622,7 @@ glabel BehUnagiInit
 /* 0C40F4 803090F4 11E10017 */  beq   $t7, $at, .L80309154
 /* 0C40F8 803090F8 00000000 */   nop   
 /* 0C40FC 803090FC 3C040701 */  lui   $a0, %hi(D_0700D20C) # $a0, 0x701
-/* 0C4100 80309100 0C09DE68 */  jal   SegmentedToVirtual
+/* 0C4100 80309100 0C09DE68 */  jal   segmented_to_virtual
 /* 0C4104 80309104 2484D20C */   addiu $a0, %lo(D_0700D20C) # addiu $a0, $a0, -0x2df4
 /* 0C4108 80309108 3C188036 */  lui   $t8, %hi(gCurrentObject) # $t8, 0x8036
 /* 0C410C 8030910C 8F18FDF0 */  lw    $t8, %lo(gCurrentObject)($t8)
@@ -18647,7 +18647,7 @@ glabel BehUnagiInit
 /* 0C4150 80309150 00000000 */   nop   
 .L80309154:
 /* 0C4154 80309154 3C040701 */  lui   $a0, %hi(D_0700D240) # $a0, 0x701
-/* 0C4158 80309158 0C09DE68 */  jal   SegmentedToVirtual
+/* 0C4158 80309158 0C09DE68 */  jal   segmented_to_virtual
 /* 0C415C 8030915C 2484D240 */   addiu $a0, %lo(D_0700D240) # addiu $a0, $a0, -0x2dc0
 /* 0C4160 80309160 3C0D8036 */  lui   $t5, %hi(gCurrentObject) # $t5, 0x8036
 /* 0C4164 80309164 8DADFDF0 */  lw    $t5, %lo(gCurrentObject)($t5)
@@ -19520,7 +19520,7 @@ glabel func_80309DB8
 /* 0C4E1C 80309E1C 0C0B25C0 */  jal   PlaySound2
 /* 0C4E20 80309E20 34846081 */   ori   $a0, (0x50376081 & 0xFFFF) # ori $a0, $a0, 0x6081
 /* 0C4E24 80309E24 3C040601 */  lui   $a0, %hi(D_0600FBB8) # $a0, 0x601
-/* 0C4E28 80309E28 0C09DE68 */  jal   SegmentedToVirtual
+/* 0C4E28 80309E28 0C09DE68 */  jal   segmented_to_virtual
 /* 0C4E2C 80309E2C 2484FBB8 */   addiu $a0, %lo(D_0600FBB8) # addiu $a0, $a0, -0x448
 /* 0C4E30 80309E30 3C0A8036 */  lui   $t2, %hi(gCurrentObject) # $t2, 0x8036
 /* 0C4E34 80309E34 8D4AFDF0 */  lw    $t2, %lo(gCurrentObject)($t2)
@@ -19732,7 +19732,7 @@ glabel func_8030A120
 /* 0C5120 8030A120 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 0C5124 8030A124 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 0C5128 8030A128 3C040601 */  lui   $a0, %hi(D_0600F644) # $a0, 0x601
-/* 0C512C 8030A12C 0C09DE68 */  jal   SegmentedToVirtual
+/* 0C512C 8030A12C 0C09DE68 */  jal   segmented_to_virtual
 /* 0C5130 8030A130 2484F644 */   addiu $a0, %lo(D_0600F644) # addiu $a0, $a0, -0x9bc
 /* 0C5134 8030A134 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 0C5138 8030A138 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
@@ -23890,7 +23890,7 @@ glabel func_8030DBF8
 /* 0C8C80 8030DC80 24080001 */  li    $t0, 1
 /* 0C8C84 8030DC84 ADC8014C */  sw    $t0, 0x14c($t6)
 /* 0C8C88 8030DC88 3C040703 */  lui   $a0, %hi(D_07028274) # $a0, 0x703
-/* 0C8C8C 8030DC8C 0C09DE68 */  jal   SegmentedToVirtual
+/* 0C8C8C 8030DC8C 0C09DE68 */  jal   segmented_to_virtual
 /* 0C8C90 8030DC90 24848274 */   addiu $a0, %lo(D_07028274) # addiu $a0, $a0, -0x7d8c
 /* 0C8C94 8030DC94 3C098036 */  lui   $t1, %hi(gCurrentObject) # $t1, 0x8036
 /* 0C8C98 8030DC98 8D29FDF0 */  lw    $t1, %lo(gCurrentObject)($t1)
@@ -23955,7 +23955,7 @@ glabel func_8030DBF8
 /* 0C8D78 8030DD78 05A10008 */  bgez  $t5, .L8030DD9C
 /* 0C8D7C 8030DD7C 00000000 */   nop   
 /* 0C8D80 8030DD80 3C040703 */  lui   $a0, %hi(D_070284B0) # $a0, 0x703
-/* 0C8D84 8030DD84 0C09DE68 */  jal   SegmentedToVirtual
+/* 0C8D84 8030DD84 0C09DE68 */  jal   segmented_to_virtual
 /* 0C8D88 8030DD88 248484B0 */   addiu $a0, %lo(D_070284B0) # addiu $a0, $a0, -0x7b50
 /* 0C8D8C 8030DD8C 3C188036 */  lui   $t8, %hi(gCurrentObject) # $t8, 0x8036
 /* 0C8D90 8030DD90 8F18FDF0 */  lw    $t8, %lo(gCurrentObject)($t8)
@@ -23963,7 +23963,7 @@ glabel func_8030DBF8
 /* 0C8D98 8030DD98 AF020218 */   sw    $v0, 0x218($t8)
 .L8030DD9C:
 /* 0C8D9C 8030DD9C 3C040703 */  lui   $a0, %hi(D_07028370) # $a0, 0x703
-/* 0C8DA0 8030DDA0 0C09DE68 */  jal   SegmentedToVirtual
+/* 0C8DA0 8030DDA0 0C09DE68 */  jal   segmented_to_virtual
 /* 0C8DA4 8030DDA4 24848370 */   addiu $a0, %lo(D_07028370) # addiu $a0, $a0, -0x7c90
 /* 0C8DA8 8030DDA8 3C198036 */  lui   $t9, %hi(gCurrentObject) # $t9, 0x8036
 /* 0C8DAC 8030DDAC 8F39FDF0 */  lw    $t9, %lo(gCurrentObject)($t9)
@@ -24164,7 +24164,7 @@ glabel func_8030E018
 /* 0C906C 8030E06C 240B003C */  li    $t3, 60
 /* 0C9070 8030E070 AD8B0100 */  sw    $t3, 0x100($t4)
 /* 0C9074 8030E074 3C040703 */  lui   $a0, %hi(D_070282F8) # $a0, 0x703
-/* 0C9078 8030E078 0C09DE68 */  jal   SegmentedToVirtual
+/* 0C9078 8030E078 0C09DE68 */  jal   segmented_to_virtual
 /* 0C907C 8030E07C 248482F8 */   addiu $a0, %lo(D_070282F8) # addiu $a0, $a0, -0x7d08
 /* 0C9080 8030E080 3C0D8036 */  lui   $t5, %hi(gCurrentObject) # $t5, 0x8036
 /* 0C9084 8030E084 8DADFDF0 */  lw    $t5, %lo(gCurrentObject)($t5)
@@ -24366,7 +24366,7 @@ glabel func_8030E340
 /* 0C9354 8030E354 10400026 */  beqz  $v0, .L8030E3F0
 /* 0C9358 8030E358 00000000 */   nop   
 /* 0C935C 8030E35C 3C040703 */  lui   $a0, %hi(D_07028274) # $a0, 0x703
-/* 0C9360 8030E360 0C09DE68 */  jal   SegmentedToVirtual
+/* 0C9360 8030E360 0C09DE68 */  jal   segmented_to_virtual
 /* 0C9364 8030E364 24848274 */   addiu $a0, %lo(D_07028274) # addiu $a0, $a0, -0x7d8c
 /* 0C9368 8030E368 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 0C936C 8030E36C 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
@@ -24424,7 +24424,7 @@ glabel func_8030E408
 /* 0C9428 8030E428 240E000D */  li    $t6, 13
 /* 0C942C 8030E42C ADEE014C */  sw    $t6, 0x14c($t7)
 /* 0C9430 8030E430 3C040703 */  lui   $a0, %hi(D_07028274) # $a0, 0x703
-/* 0C9434 8030E434 0C09DE68 */  jal   SegmentedToVirtual
+/* 0C9434 8030E434 0C09DE68 */  jal   segmented_to_virtual
 /* 0C9438 8030E438 24848274 */   addiu $a0, %lo(D_07028274) # addiu $a0, $a0, -0x7d8c
 /* 0C943C 8030E43C 3C188036 */  lui   $t8, %hi(gCurrentObject) # $t8, 0x8036
 /* 0C9440 8030E440 8F18FDF0 */  lw    $t8, %lo(gCurrentObject)($t8)
@@ -27010,7 +27010,7 @@ glabel func_803108E4
 /* 0CB964 80310964 8FAB0028 */  lw    $t3, 0x28($sp)
 /* 0CB968 80310968 AD6A0068 */  sw    $t2, 0x68($t3)
 /* 0CB96C 8031096C 3C040702 */  lui   $a0, %hi(D_07023604) # $a0, 0x702
-/* 0CB970 80310970 0C09DE68 */  jal   SegmentedToVirtual
+/* 0CB970 80310970 0C09DE68 */  jal   segmented_to_virtual
 /* 0CB974 80310974 24843604 */   addiu $a0, %lo(D_07023604) # addiu $a0, $a0, 0x3604
 /* 0CB978 80310978 3C0C8036 */  lui   $t4, %hi(gCurrentObject) # $t4, 0x8036
 /* 0CB97C 8031097C 8D8CFDF0 */  lw    $t4, %lo(gCurrentObject)($t4)

@@ -162,7 +162,7 @@ void func_8024C520(struct MarioState *m)
 {
     if (m->heldObj != NULL)
     {
-        if (m->heldObj->unk20C == SegmentedToVirtual(D_13000708))
+        if (m->heldObj->unk20C == segmented_to_virtual(D_13000708))
             func_8024931C();
 
         func_8029DA34(m->heldObj, D_1300344C);
@@ -181,7 +181,7 @@ void func_8024C5E0(struct MarioState *m)
 {
     if (m->heldObj != NULL)
     {
-        if (m->heldObj->unk20C == SegmentedToVirtual(D_13000708))
+        if (m->heldObj->unk20C == segmented_to_virtual(D_13000708))
             func_8024931C();
 
         func_8029DA34(m->heldObj, D_13003454);

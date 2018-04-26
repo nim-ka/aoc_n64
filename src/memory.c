@@ -9,18 +9,18 @@
 
 extern u32 gSegmentTable[];
 
-int SetSegmentBase(int segment, void *addr)
+int set_segment_base_addr(int segment, void *addr)
 {
     gSegmentTable[segment] = (u32)addr & 0x1FFFFFFF;
     return gSegmentTable[segment];
 }
 
-int GetSegmentBase(int segment)
+int get_segment_base_addr(int segment)
 {
     return gSegmentTable[segment] | 0x80000000;
 }
 
-void *SegmentedToVirtual(void *addr)
+void *segmented_to_virtual(void *addr)
 {
     u32 segment = (u32) addr >> 24;
     u32 offset = (u32) addr & 0x00FFFFFF;
@@ -179,7 +179,7 @@ u32 PopPoolState(void)
     return gPoolSize;
 }
 
-void DmaCopy(u8 *dest, u8 *srcStart, u8 *srcEnd)
+static void dma_copy(u8 *dest, u8 *srcStart, u8 *srcEnd)
 {
     u32 size = ALIGN16(srcEnd - srcStart);
 
@@ -188,8 +188,8 @@ void DmaCopy(u8 *dest, u8 *srcStart, u8 *srcEnd)
     {
         u32 copySize = (size >= 0x1000) ? 0x1000 : size;
 
-        osPiStartDma(&D_80339BD8, 0, 0, (u32)srcStart, dest, copySize, &D_80339BF0);
-        osRecvMesg(&D_80339BF0, &D_80339BEC, 1);
+        osPiStartDma(&gDmaIoMesg, 0, 0, (u32)srcStart, dest, copySize, &gDmaMesgQueue);
+        osRecvMesg(&gDmaMesgQueue, &D_80339BEC, 1);
 
         dest += copySize;
         srcStart += copySize;
@@ -197,66 +197,69 @@ void DmaCopy(u8 *dest, u8 *srcStart, u8 *srcEnd)
     }
 }
 
-void *DynamicCopy(u8 *srcStart, u8 *srcEnd, u32 allocSize)
+static void *DynamicCopy(u8 *srcStart, u8 *srcEnd, u32 allocSize)
 {
     void *dest;
     u32 size = ALIGN16(srcEnd - srcStart);
 
     dest = _pool_alloc(size, allocSize);
     if (dest != NULL)
-        DmaCopy(dest, srcStart, srcEnd);
+        dma_copy(dest, srcStart, srcEnd);
     return dest;
 }
 
-void *DynamicIndexCopy(u32 segment, u8 *srcStart, u8 *srcEnd, u32 allocSize)
+void *load_from_rom(u32 segment, u8 *srcStart, u8 *srcEnd, u32 allocSize)
 {
     void *ptr = DynamicCopy(srcStart, srcEnd, allocSize);
 
     if (ptr != NULL)
-        SetSegmentBase(segment, ptr);
+        set_segment_base_addr(segment, ptr);
     return ptr;
 }
 
-void *FixedCopy(u32 a, u8 *b, u8 *c)
+void *FixedCopy(u32 a, u8 *srcStart, u8 *srcEnd)
 {
-    void *sp24 = NULL;
-    u32 sp20 = ALIGN16(c - b);
-    u32 sp1C = ALIGN16((u32)gPoolListHeadR - a);
+    void *dest = NULL;
+    u32 size = ALIGN16(srcEnd - srcStart);
+    u32 destSize = ALIGN16((u32)gPoolListHeadR - a);
 
-    if (sp20 <= sp1C)
+    if (size <= destSize)
     {
-        sp24 = _pool_alloc(sp1C, 1);
-        if (sp24 != NULL)
+        dest = _pool_alloc(destSize, 1);
+        if (dest != NULL)
         {
-            bzero(sp24, sp1C);
+            bzero(dest, destSize);
             osWritebackDCacheAll();
-            DmaCopy(sp24, b, c);
-            osInvalICache(sp24, sp1C);
-            osInvalDCache(sp24, sp1C);
+            dma_copy(dest, srcStart, srcEnd);
+            osInvalICache(dest, destSize);
+            osInvalDCache(dest, destSize);
         }
     }
     else
     {
     }
-    return sp24;
+    return dest;
 }
 
-void *UncIndexCopy(int a, u8 *b, u8 *c)
+// Uncompresses the block of memory from srcStart to srcEnd and returns a
+// pointer to an allocated buffer holding the compressed data. Sets the
+// base address of segment to the address of the decompressed buffer.
+void *load_from_rom_decompress(int segment, u8 *srcStart, u8 *srcEnd)
 {
-    void *sp24 = NULL;
-    u32 sp20 = ALIGN16(c - b);
-    void *sp1C = _pool_alloc(sp20, 1);
-    void *sp18 = (u8 *)sp1C + 4;
+    void *dest = NULL;
+    u32 compSize = ALIGN16(srcEnd - srcStart);
+    u8 *compressed = _pool_alloc(compSize, 1);
+    u32 *pUncSize = (u32 *)(compressed + 4);
 
-    if (sp1C != NULL)
+    if (compressed != NULL)
     {
-        DmaCopy(sp1C, b, c);
-        sp24 = _pool_alloc(*(u32 *)sp18, 0);
-        if (sp24 != NULL)
+        dma_copy(compressed, srcStart, srcEnd);
+        dest = _pool_alloc(*pUncSize, 0);
+        if (dest != NULL)
         {
-            uncompress(sp1C, sp24);
-            SetSegmentBase(a, sp24);
-            _pool_free(sp1C);
+            uncompress(compressed, dest);
+            set_segment_base_addr(segment, dest);
+            _pool_free(compressed);
         }
         else
         {
@@ -265,22 +268,22 @@ void *UncIndexCopy(int a, u8 *b, u8 *c)
     else
     {
     }
-    return sp24;
+    return dest;
 }
 
-void *func_80278304(u32 a, u8 *b, u8 *c)
+void *func_80278304(u32 segment, u8 *srcStart, u8 *srcEnd)
 {
-    UNUSED void *sp24 = NULL;
-    u32 sp20 = ALIGN16(c - b);
-    void *sp1C = _pool_alloc(sp20, 1);
-    UNUSED void *sp18 = (u8 *)sp1C + 4;
+    UNUSED void *dest = NULL;
+    u32 compSize = ALIGN16(srcEnd - srcStart);
+    u8 *compressed = _pool_alloc(compSize, 1);
+    UNUSED u32 *pUncSize = (u32 *)(compressed + 4);
 
-    if (sp1C != NULL)
+    if (compressed != NULL)
     {
-        DmaCopy(sp1C, b, c);
-        uncompress(sp1C, D_801C1000);
-        SetSegmentBase(a, D_801C1000);
-        _pool_free(sp1C);
+        dma_copy(compressed, srcStart, srcEnd);
+        uncompress(compressed, D_801C1000);
+        set_segment_base_addr(segment, D_801C1000);
+        _pool_free(compressed);
     }
     else
     {
@@ -296,7 +299,7 @@ void CopyScriptInterpreter(void)
 
     bzero(sp24, sp20);
     osWritebackDCacheAll();
-    DmaCopy(sp24, D_000F4210, D_001076A0);
+    dma_copy(sp24, D_000F4210, D_001076A0);
     osInvalICache(sp24, sp20);
     osInvalDCache(sp24, sp20);
 }
@@ -498,7 +501,7 @@ int SetMarioAnimation(struct MarioAnimation *a, u32 b)
 
         if (a->currentDma != sp1C)
         {
-            DmaCopy(a->targetAnim, (void *)sp1C, (void *)(sp1C + sp18));
+            dma_copy(a->targetAnim, (void *)sp1C, (void *)(sp1C + sp18));
             a->currentDma = sp1C;
             sp24 = 1;
         }

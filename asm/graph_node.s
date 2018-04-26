@@ -1466,11 +1466,11 @@ glabel func_8037C658
 /* 0F8070 8037C660 AFA40030 */  sw    $a0, 0x30($sp)
 /* 0F8074 8037C664 AFA50034 */  sw    $a1, 0x34($sp)
 /* 0F8078 8037C668 AFB00018 */  sw    $s0, 0x18($sp)
-/* 0F807C 8037C66C 0C09DE68 */  jal   SegmentedToVirtual
+/* 0F807C 8037C66C 0C09DE68 */  jal   segmented_to_virtual
 /* 0F8080 8037C670 8FA40034 */   lw    $a0, 0x34($sp)
 /* 0F8084 8037C674 AFA2002C */  sw    $v0, 0x2c($sp)
 /* 0F8088 8037C678 8FAE002C */  lw    $t6, 0x2c($sp)
-/* 0F808C 8037C67C 0C09DE68 */  jal   SegmentedToVirtual
+/* 0F808C 8037C67C 0C09DE68 */  jal   segmented_to_virtual
 /* 0F8090 8037C680 8DC40000 */   lw    $a0, ($t6)
 /* 0F8094 8037C684 AFA20028 */  sw    $v0, 0x28($sp)
 /* 0F8098 8037C688 8FAF0030 */  lw    $t7, 0x30($sp)
@@ -1517,11 +1517,11 @@ glabel func_8037C708
 /* 0F8124 8037C714 AFA50034 */  sw    $a1, 0x34($sp)
 /* 0F8128 8037C718 AFA60038 */  sw    $a2, 0x38($sp)
 /* 0F812C 8037C71C AFB00018 */  sw    $s0, 0x18($sp)
-/* 0F8130 8037C720 0C09DE68 */  jal   SegmentedToVirtual
+/* 0F8130 8037C720 0C09DE68 */  jal   segmented_to_virtual
 /* 0F8134 8037C724 8FA40034 */   lw    $a0, 0x34($sp)
 /* 0F8138 8037C728 AFA2002C */  sw    $v0, 0x2c($sp)
 /* 0F813C 8037C72C 8FAE002C */  lw    $t6, 0x2c($sp)
-/* 0F8140 8037C730 0C09DE68 */  jal   SegmentedToVirtual
+/* 0F8140 8037C730 0C09DE68 */  jal   segmented_to_virtual
 /* 0F8144 8037C734 8DC40000 */   lw    $a0, ($t6)
 /* 0F8148 8037C738 AFA20028 */  sw    $v0, 0x28($sp)
 /* 0F814C 8037C73C 8FAF0030 */  lw    $t7, 0x30($sp)
@@ -1733,11 +1733,11 @@ glabel Unknown8037C9E8
 /* 0F8418 8037CA08 13000036 */  beqz  $t8, .L8037CAE4
 /* 0F841C 8037CA0C 00000000 */   nop   
 /* 0F8420 8037CA10 8FB90024 */  lw    $t9, 0x24($sp)
-/* 0F8424 8037CA14 0C09DE68 */  jal   SegmentedToVirtual
+/* 0F8424 8037CA14 0C09DE68 */  jal   segmented_to_virtual
 /* 0F8428 8037CA18 8F240010 */   lw    $a0, 0x10($t9)
 /* 0F842C 8037CA1C AFA20020 */  sw    $v0, 0x20($sp)
 /* 0F8430 8037CA20 8FA80024 */  lw    $t0, 0x24($sp)
-/* 0F8434 8037CA24 0C09DE68 */  jal   SegmentedToVirtual
+/* 0F8434 8037CA24 0C09DE68 */  jal   segmented_to_virtual
 /* 0F8438 8037CA28 8D04000C */   lw    $a0, 0xc($t0)
 /* 0F843C 8037CA2C AFA2001C */  sw    $v0, 0x1c($sp)
 /* 0F8440 8037CA30 8FA90028 */  lw    $t1, 0x28($sp)

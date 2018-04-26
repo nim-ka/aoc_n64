@@ -631,7 +631,7 @@ glabel func_8029C830
 /* 0578A4 8029C8A4 314BFFFF */  andi  $t3, $t2, 0xffff
 /* 0578A8 8029C8A8 A7AB001A */  sh    $t3, 0x1a($sp)
 /* 0578AC 8029C8AC 8FAC002C */  lw    $t4, 0x2c($sp)
-/* 0578B0 8029C8B0 0C09DE68 */  jal   SegmentedToVirtual
+/* 0578B0 8029C8B0 0C09DE68 */  jal   segmented_to_virtual
 /* 0578B4 8029C8B4 8D840014 */   lw    $a0, 0x14($t4)
 /* 0578B8 8029C8B8 AFA2001C */  sw    $v0, 0x1c($sp)
 /* 0578BC 8029C8BC 8FAD002C */  lw    $t5, 0x2c($sp)

@@ -3488,7 +3488,7 @@ glabel func_80383828
 /* 0FF2A4 80383894 37080001 */  ori   $t0, $t8, 1
 /* 0FF2A8 80383898 A7A80020 */  sh    $t0, 0x20($sp)
 /* 0FF2AC 8038389C 3C041300 */  lui   $a0, %hi(D_13001C34) # $a0, 0x1300
-/* 0FF2B0 803838A0 0C09DE68 */  jal   SegmentedToVirtual
+/* 0FF2B0 803838A0 0C09DE68 */  jal   segmented_to_virtual
 /* 0FF2B4 803838A4 24841C34 */   addiu $a0, %lo(D_13001C34) # addiu $a0, $a0, 0x1c34
 /* 0FF2B8 803838A8 3C098036 */  lui   $t1, %hi(gCurrentObject) # $t1, 0x8036
 /* 0FF2BC 803838AC 8D29FDF0 */  lw    $t1, %lo(gCurrentObject)($t1)

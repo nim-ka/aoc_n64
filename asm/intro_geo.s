@@ -22,11 +22,11 @@ glabel Geo18_8016F670
 /* 21DDBC 8016F5EC AFA00048 */  sw    $zero, 0x48($sp)
 /* 21DDC0 8016F5F0 AFA00044 */  sw    $zero, 0x44($sp)
 /* 21DDC4 8016F5F4 3C040701 */  lui   $a0, %hi(D_0700C790) # $a0, 0x701
-/* 21DDC8 8016F5F8 0C09DE68 */  jal   SegmentedToVirtual
+/* 21DDC8 8016F5F8 0C09DE68 */  jal   segmented_to_virtual
 /* 21DDCC 8016F5FC 2484C790 */   addiu $a0, %lo(D_0700C790) # addiu $a0, $a0, -0x3870
 /* 21DDD0 8016F600 AFA2003C */  sw    $v0, 0x3c($sp)
 /* 21DDD4 8016F604 3C040701 */  lui   $a0, %hi(D_0700C880) # $a0, 0x701
-/* 21DDD8 8016F608 0C09DE68 */  jal   SegmentedToVirtual
+/* 21DDD8 8016F608 0C09DE68 */  jal   segmented_to_virtual
 /* 21DDDC 8016F60C 2484C880 */   addiu $a0, %lo(D_0700C880) # addiu $a0, $a0, -0x3780
 /* 21DDE0 8016F610 AFA20038 */  sw    $v0, 0x38($sp)
 /* 21DDE4 8016F614 8FAF0050 */  lw    $t7, 0x50($sp)
@@ -384,7 +384,7 @@ glabel func_8016FB10
 /* 21E320 8016FB50 83280000 */  lb    $t0, ($t9)
 /* 21E324 8016FB54 00084880 */  sll   $t1, $t0, 2
 /* 21E328 8016FB58 00892021 */  addu  $a0, $a0, $t1
-/* 21E32C 8016FB5C 0C09DE68 */  jal   SegmentedToVirtual
+/* 21E32C 8016FB5C 0C09DE68 */  jal   segmented_to_virtual
 /* 21E330 8016FB60 8C847BA0 */   lw    $a0, %lo(D_801A7BA0)($a0)
 /* 21E334 8016FB64 AFA20050 */  sw    $v0, 0x50($sp)
 /* 21E338 8016FB68 8FAA0060 */  lw    $t2, 0x60($sp)

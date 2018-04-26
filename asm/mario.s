@@ -390,11 +390,11 @@ glabel func_80250C84
 /* 00BCB0 80250CB0 24840038 */   addiu $a0, $a0, 0x38
 /* 00BCB4 80250CB4 A7A2002A */  sh    $v0, 0x2a($sp)
 /* 00BCB8 80250CB8 8FB8002C */  lw    $t8, 0x2c($sp)
-/* 00BCBC 80250CBC 0C09DE68 */  jal   SegmentedToVirtual
+/* 00BCBC 80250CBC 0C09DE68 */  jal   segmented_to_virtual
 /* 00BCC0 80250CC0 8F040010 */   lw    $a0, 0x10($t8)
 /* 00BCC4 80250CC4 AFA20024 */  sw    $v0, 0x24($sp)
 /* 00BCC8 80250CC8 8FB9002C */  lw    $t9, 0x2c($sp)
-/* 00BCCC 80250CCC 0C09DE68 */  jal   SegmentedToVirtual
+/* 00BCCC 80250CCC 0C09DE68 */  jal   segmented_to_virtual
 /* 00BCD0 80250CD0 8F24000C */   lw    $a0, 0xc($t9)
 /* 00BCD4 80250CD4 AFA20020 */  sw    $v0, 0x20($sp)
 /* 00BCD8 80250CD8 97A8003E */  lhu   $t0, 0x3e($sp)

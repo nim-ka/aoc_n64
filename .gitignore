@@ -54,4 +54,5 @@ dkms.conf
 
 build/*
 *.dump
+*.swp
 *.mio0

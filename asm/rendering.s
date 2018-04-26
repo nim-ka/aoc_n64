@@ -2792,12 +2792,12 @@ glabel func_8027C988
 /* 037A70 8027CA70 2D090001 */  sltiu $t1, $t0, 1
 /* 037A74 8027CA74 A029B009 */  sb    $t1, %lo(D_8033B009)($at)
 /* 037A78 8027CA78 8FAA001C */  lw    $t2, 0x1c($sp)
-/* 037A7C 8027CA7C 0C09DE68 */  jal   SegmentedToVirtual
+/* 037A7C 8027CA7C 0C09DE68 */  jal   segmented_to_virtual
 /* 037A80 8027CA80 8D440010 */   lw    $a0, 0x10($t2)
 /* 037A84 8027CA84 3C018034 */  lui   $at, %hi(D_8033B010) # $at, 0x8034
 /* 037A88 8027CA88 AC22B010 */  sw    $v0, %lo(D_8033B010)($at)
 /* 037A8C 8027CA8C 8FAB001C */  lw    $t3, 0x1c($sp)
-/* 037A90 8027CA90 0C09DE68 */  jal   SegmentedToVirtual
+/* 037A90 8027CA90 0C09DE68 */  jal   segmented_to_virtual
 /* 037A94 8027CA94 8D64000C */   lw    $a0, 0xc($t3)
 /* 037A98 8027CA98 3C018034 */  lui   $at, %hi(D_8033B014) # $at, 0x8034
 /* 037A9C 8027CA9C AC22B014 */  sw    $v0, %lo(D_8033B014)($at)

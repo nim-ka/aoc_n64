@@ -98,7 +98,7 @@ glabel LevelScript00
 /* 0F9CEC 8037E2DC 00003825 */  move  $a3, $zero
 /* 0F9CF0 8037E2E0 85C40002 */  lh    $a0, 2($t6)
 /* 0F9CF4 8037E2E4 8DC50004 */  lw    $a1, 4($t6)
-/* 0F9CF8 8037E2E8 0C09E037 */  jal   DynamicIndexCopy
+/* 0F9CF8 8037E2E8 0C09E037 */  jal   load_from_rom
 /* 0F9CFC 8037E2EC 8DC60008 */   lw    $a2, 8($t6)
 /* 0F9D00 8037E2F0 3C0F8039 */  lui   $t7, %hi(D_8038BE28) # $t7, 0x8039
 /* 0F9D04 8037E2F4 8DEFBE28 */  lw    $t7, %lo(D_8038BE28)($t7)
@@ -128,7 +128,7 @@ glabel LevelScript00
 /* 0F9D64 8037E354 AC38B8B4 */  sw    $t8, %lo(D_8038B8B4)($at)
 /* 0F9D68 8037E358 3C0F8039 */  lui   $t7, %hi(D_8038BE28) # $t7, 0x8039
 /* 0F9D6C 8037E35C 8DEFBE28 */  lw    $t7, %lo(D_8038BE28)($t7)
-/* 0F9D70 8037E360 0C09DE68 */  jal   SegmentedToVirtual
+/* 0F9D70 8037E360 0C09DE68 */  jal   segmented_to_virtual
 /* 0F9D74 8037E364 8DE4000C */   lw    $a0, 0xc($t7)
 /* 0F9D78 8037E368 3C018039 */  lui   $at, %hi(D_8038BE28) # $at, 0x8039
 /* 0F9D7C 8037E36C AC22BE28 */  sw    $v0, %lo(D_8038BE28)($at)
@@ -156,13 +156,13 @@ glabel LevelScript01
 /* 0F9DC8 8037E3B8 00003825 */  move  $a3, $zero
 /* 0F9DCC 8037E3BC 87040002 */  lh    $a0, 2($t8)
 /* 0F9DD0 8037E3C0 8F050004 */  lw    $a1, 4($t8)
-/* 0F9DD4 8037E3C4 0C09E037 */  jal   DynamicIndexCopy
+/* 0F9DD4 8037E3C4 0C09E037 */  jal   load_from_rom
 /* 0F9DD8 8037E3C8 8F060008 */   lw    $a2, 8($t8)
 /* 0F9DDC 8037E3CC 3C198039 */  lui   $t9, %hi(D_8038B8B4) # $t9, 0x8039
 /* 0F9DE0 8037E3D0 8F39B8B4 */  lw    $t9, %lo(D_8038B8B4)($t9)
 /* 0F9DE4 8037E3D4 3C018039 */  lui   $at, %hi(D_8038B8B0) # $at, 0x8039
 /* 0F9DE8 8037E3D8 AC39B8B0 */  sw    $t9, %lo(D_8038B8B0)($at)
-/* 0F9DEC 8037E3DC 0C09DE68 */  jal   SegmentedToVirtual
+/* 0F9DEC 8037E3DC 0C09DE68 */  jal   segmented_to_virtual
 /* 0F9DF0 8037E3E0 8FA4001C */   lw    $a0, 0x1c($sp)
 /* 0F9DF4 8037E3E4 3C018039 */  lui   $at, %hi(D_8038BE28) # $at, 0x8039
 /* 0F9DF8 8037E3E8 AC22BE28 */  sw    $v0, %lo(D_8038BE28)($at)
@@ -287,7 +287,7 @@ glabel LevelScript05
 /* 0F9F94 8037E584 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 0F9F98 8037E588 3C0E8039 */  lui   $t6, %hi(D_8038BE28) # $t6, 0x8039
 /* 0F9F9C 8037E58C 8DCEBE28 */  lw    $t6, %lo(D_8038BE28)($t6)
-/* 0F9FA0 8037E590 0C09DE68 */  jal   SegmentedToVirtual
+/* 0F9FA0 8037E590 0C09DE68 */  jal   segmented_to_virtual
 /* 0F9FA4 8037E594 8DC40004 */   lw    $a0, 4($t6)
 /* 0F9FA8 8037E598 3C018039 */  lui   $at, %hi(D_8038BE28) # $at, 0x8039
 /* 0F9FAC 8037E59C AC22BE28 */  sw    $v0, %lo(D_8038BE28)($at)
@@ -316,7 +316,7 @@ glabel LevelScript06
 /* 0F9FFC 8037E5EC AC29B8B0 */  sw    $t1, %lo(D_8038B8B0)($at)
 /* 0FA000 8037E5F0 3C0A8039 */  lui   $t2, %hi(D_8038BE28) # $t2, 0x8039
 /* 0FA004 8037E5F4 8D4ABE28 */  lw    $t2, %lo(D_8038BE28)($t2)
-/* 0FA008 8037E5F8 0C09DE68 */  jal   SegmentedToVirtual
+/* 0FA008 8037E5F8 0C09DE68 */  jal   segmented_to_virtual
 /* 0FA00C 8037E5FC 8D440004 */   lw    $a0, 4($t2)
 /* 0FA010 8037E600 3C018039 */  lui   $at, %hi(D_8038BE28) # $at, 0x8039
 /* 0FA014 8037E604 AC22BE28 */  sw    $v0, %lo(D_8038BE28)($at)
@@ -510,7 +510,7 @@ glabel LevelScript0C
 /* 0FA2A8 8037E898 00000000 */   nop   
 /* 0FA2AC 8037E89C 3C0F8039 */  lui   $t7, %hi(D_8038BE28) # $t7, 0x8039
 /* 0FA2B0 8037E8A0 8DEFBE28 */  lw    $t7, %lo(D_8038BE28)($t7)
-/* 0FA2B4 8037E8A4 0C09DE68 */  jal   SegmentedToVirtual
+/* 0FA2B4 8037E8A4 0C09DE68 */  jal   segmented_to_virtual
 /* 0FA2B8 8037E8A8 8DE40008 */   lw    $a0, 8($t7)
 /* 0FA2BC 8037E8AC 3C018039 */  lui   $at, %hi(D_8038BE28) # $at, 0x8039
 /* 0FA2C0 8037E8B0 10000007 */  b     .L8037E8D0
@@ -555,7 +555,7 @@ glabel LevelScript0D
 /* 0FA348 8037E938 AC2AB8B0 */  sw    $t2, %lo(D_8038B8B0)($at)
 /* 0FA34C 8037E93C 3C0B8039 */  lui   $t3, %hi(D_8038BE28) # $t3, 0x8039
 /* 0FA350 8037E940 8D6BBE28 */  lw    $t3, %lo(D_8038BE28)($t3)
-/* 0FA354 8037E944 0C09DE68 */  jal   SegmentedToVirtual
+/* 0FA354 8037E944 0C09DE68 */  jal   segmented_to_virtual
 /* 0FA358 8037E948 8D640008 */   lw    $a0, 8($t3)
 /* 0FA35C 8037E94C 3C018039 */  lui   $at, %hi(D_8038BE28) # $at, 0x8039
 /* 0FA360 8037E950 10000007 */  b     .L8037E970
@@ -815,7 +815,7 @@ glabel LevelScript17
 /* 0FA6C4 8037ECB4 00003825 */  move  $a3, $zero
 /* 0FA6C8 8037ECB8 85C40002 */  lh    $a0, 2($t6)
 /* 0FA6CC 8037ECBC 8DC50004 */  lw    $a1, 4($t6)
-/* 0FA6D0 8037ECC0 0C09E037 */  jal   DynamicIndexCopy
+/* 0FA6D0 8037ECC0 0C09E037 */  jal   load_from_rom
 /* 0FA6D4 8037ECC4 8DC60008 */   lw    $a2, 8($t6)
 /* 0FA6D8 8037ECC8 3C0F8039 */  lui   $t7, %hi(D_8038BE28) # $t7, 0x8039
 /* 0FA6DC 8037ECCC 8DEFBE28 */  lw    $t7, %lo(D_8038BE28)($t7)
@@ -838,7 +838,7 @@ glabel LevelScript18
 /* 0FA714 8037ED04 8DCEBE28 */  lw    $t6, %lo(D_8038BE28)($t6)
 /* 0FA718 8037ED08 85C40002 */  lh    $a0, 2($t6)
 /* 0FA71C 8037ED0C 8DC50004 */  lw    $a1, 4($t6)
-/* 0FA720 8037ED10 0C09E08A */  jal   UncIndexCopy
+/* 0FA720 8037ED10 0C09E08A */  jal   load_from_rom_decompress
 /* 0FA724 8037ED14 8DC60008 */   lw    $a2, 8($t6)
 /* 0FA728 8037ED18 3C0F8039 */  lui   $t7, %hi(D_8038BE28) # $t7, 0x8039
 /* 0FA72C 8037ED1C 8DEFBE28 */  lw    $t7, %lo(D_8038BE28)($t7)
@@ -2063,7 +2063,7 @@ glabel LevelScript2E
 /* 0FB8BC 8037FEAC 00000000 */   nop   
 /* 0FB8C0 8037FEB0 3C0F8039 */  lui   $t7, %hi(D_8038BE28) # $t7, 0x8039
 /* 0FB8C4 8037FEB4 8DEFBE28 */  lw    $t7, %lo(D_8038BE28)($t7)
-/* 0FB8C8 8037FEB8 0C09DE68 */  jal   SegmentedToVirtual
+/* 0FB8C8 8037FEB8 0C09DE68 */  jal   segmented_to_virtual
 /* 0FB8CC 8037FEBC 8DE40004 */   lw    $a0, 4($t7)
 /* 0FB8D0 8037FEC0 3C198039 */  lui   $t9, %hi(D_8038B8AC) # $t9, 0x8039
 /* 0FB8D4 8037FEC4 8739B8AC */  lh    $t9, %lo(D_8038B8AC)($t9)
@@ -2099,7 +2099,7 @@ glabel LevelScript2F
 /* 0FB93C 8037FF2C 00000000 */   nop   
 /* 0FB940 8037FF30 3C0F8039 */  lui   $t7, %hi(D_8038BE28) # $t7, 0x8039
 /* 0FB944 8037FF34 8DEFBE28 */  lw    $t7, %lo(D_8038BE28)($t7)
-/* 0FB948 8037FF38 0C09DE68 */  jal   SegmentedToVirtual
+/* 0FB948 8037FF38 0C09DE68 */  jal   segmented_to_virtual
 /* 0FB94C 8037FF3C 8DE40004 */   lw    $a0, 4($t7)
 /* 0FB950 8037FF40 3C198039 */  lui   $t9, %hi(D_8038B8AC) # $t9, 0x8039
 /* 0FB954 8037FF44 8739B8AC */  lh    $t9, %lo(D_8038B8AC)($t9)
@@ -2135,7 +2135,7 @@ glabel LevelScript39
 /* 0FB9BC 8037FFAC 00000000 */   nop   
 /* 0FB9C0 8037FFB0 3C0F8039 */  lui   $t7, %hi(D_8038BE28) # $t7, 0x8039
 /* 0FB9C4 8037FFB4 8DEFBE28 */  lw    $t7, %lo(D_8038BE28)($t7)
-/* 0FB9C8 8037FFB8 0C09DE68 */  jal   SegmentedToVirtual
+/* 0FB9C8 8037FFB8 0C09DE68 */  jal   segmented_to_virtual
 /* 0FB9CC 8037FFBC 8DE40004 */   lw    $a0, 4($t7)
 /* 0FB9D0 8037FFC0 3C198039 */  lui   $t9, %hi(D_8038B8AC) # $t9, 0x8039
 /* 0FB9D4 8037FFC4 8739B8AC */  lh    $t9, %lo(D_8038B8AC)($t9)

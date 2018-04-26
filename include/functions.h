@@ -1576,9 +1576,9 @@ extern u32 execute_airborne_action(struct MarioState *);
 // extern ? Geo1C_8027795C(?);
 // extern ? Geo18_80277B14(?);
 // extern ? Geo18_80277D6C(?);
-extern int SetSegmentBase(int, void *);
-// extern ? GetSegmentBase(?);
-extern void *SegmentedToVirtual(void *);
+extern int set_segment_base_addr(int, void *);
+// extern ? get_segment_base_addr(?);
+extern void *segmented_to_virtual(void *);
 extern void *virtual_to_segmented(u32, void *);
 extern void MovePtrTbl2Dmem(void);
 extern void InitMemPool();
@@ -1588,11 +1588,11 @@ extern void *_pool_alloc(u32, int);
 // extern ? PoolAvailable(?);
 // extern ? PushPoolState(?);
 // extern ? PopPoolState(?);
-// extern ? DmaCopy(?);
+// extern ? dma_copy(?);
 // extern ? DynamicCopy(?);
-extern void *DynamicIndexCopy(u32, u8 *, u8 *, u32); // todo: identify types
+extern void *load_from_rom(u32, u8 *, u8 *, u32); // todo: identify types
 // extern ? FixedCopy(?);
-extern void *UncIndexCopy(int, u8 *, u8 *); // todo: identify types
+extern void *load_from_rom_decompress(int, u8 *, u8 *); // todo: identify types
 // extern ? func_80278304(?);
 extern void CopyScriptInterpreter(void);
 // extern ? func_80278464(?);

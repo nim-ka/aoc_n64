@@ -1067,7 +1067,7 @@ glabel InteractionWarpHole
 /* 008E88 8024DE88 8FAF0028 */  lw    $t7, 0x28($sp)
 /* 008E8C 8024DE8C ADEE0080 */  sw    $t6, 0x80($t7)
 /* 008E90 8024DE90 3C040301 */  lui   $a0, %hi(D_03009AC8) # $a0, 0x301
-/* 008E94 8024DE94 0C09DE68 */  jal   SegmentedToVirtual
+/* 008E94 8024DE94 0C09DE68 */  jal   segmented_to_virtual
 /* 008E98 8024DE98 24849AC8 */   addiu $a0, %lo(D_03009AC8) # addiu $a0, $a0, -0x6538
 /* 008E9C 8024DE9C 8FB80030 */  lw    $t8, 0x30($sp)
 /* 008EA0 8024DEA0 8F190218 */  lw    $t9, 0x218($t8)

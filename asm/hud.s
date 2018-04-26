@@ -1102,7 +1102,7 @@ glabel func_802E21A4
 /* 09D1A8 802E21A8 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 09D1AC 802E21AC AFA40038 */  sw    $a0, 0x38($sp)
 /* 09D1B0 802E21B0 3C040303 */  lui   $a0, %hi(D_030293E0) # $a0, 0x303
-/* 09D1B4 802E21B4 0C09DE68 */  jal   SegmentedToVirtual
+/* 09D1B4 802E21B4 0C09DE68 */  jal   segmented_to_virtual
 /* 09D1B8 802E21B8 248493E0 */   addiu $a0, %lo(D_030293E0) # addiu $a0, $a0, -0x6c20
 /* 09D1BC 802E21BC AFA20034 */  sw    $v0, 0x34($sp)
 /* 09D1C0 802E21C0 3C0E8034 */  lui   $t6, %hi(gDisplayListHead) # $t6, 0x8034
@@ -1716,7 +1716,7 @@ glabel RenderHudTimer
 /* 09DA4C 802E2A4C 27BDFFD0 */  addiu $sp, $sp, -0x30
 /* 09DA50 802E2A50 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 09DA54 802E2A54 3C040201 */  lui   $a0, %hi(D_02008250) # $a0, 0x201
-/* 09DA58 802E2A58 0C09DE68 */  jal   SegmentedToVirtual
+/* 09DA58 802E2A58 0C09DE68 */  jal   segmented_to_virtual
 /* 09DA5C 802E2A5C 24848250 */   addiu $a0, %lo(D_02008250) # addiu $a0, $a0, -0x7db0
 /* 09DA60 802E2A60 AFA2002C */  sw    $v0, 0x2c($sp)
 /* 09DA64 802E2A64 3C0E8034 */  lui   $t6, %hi(D_80339EFC) # $t6, 0x8034
@@ -1843,7 +1843,7 @@ glabel ShowCameraStatus
 /* 09DC30 802E2C30 AFBF001C */  sw    $ra, 0x1c($sp)
 /* 09DC34 802E2C34 AFB00018 */  sw    $s0, 0x18($sp)
 /* 09DC38 802E2C38 3C040201 */  lui   $a0, %hi(D_020087CC) # $a0, 0x201
-/* 09DC3C 802E2C3C 0C09DE68 */  jal   SegmentedToVirtual
+/* 09DC3C 802E2C3C 0C09DE68 */  jal   segmented_to_virtual
 /* 09DC40 802E2C40 248487CC */   addiu $a0, %lo(D_020087CC) # addiu $a0, $a0, -0x7834
 /* 09DC44 802E2C44 AFA20034 */  sw    $v0, 0x34($sp)
 /* 09DC48 802E2C48 240E010A */  li    $t6, 266

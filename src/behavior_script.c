@@ -5,7 +5,7 @@
 
 void func_80383B70(u32 segptr)
 {
-    gBehCommand = (u32 *)SegmentedToVirtual((void *) segptr);
+    gBehCommand = (u32 *)segmented_to_virtual((void *)segptr);
     gCurrentObject->stackIndex = 0;
 }
 
@@ -192,7 +192,7 @@ s32 Behavior02(void)
 
     gBehCommand++;
     cur_object_stack_push((u32)&gBehCommand[1]);
-    jumpAddress = (u32 *)SegmentedToVirtual((void *) gBehCommand[0]);
+    jumpAddress = (u32 *)segmented_to_virtual((void *)gBehCommand[0]);
     gBehCommand = jumpAddress;
 
     return BEH_CONTINUE;
@@ -242,7 +242,7 @@ s32 Behavior25(void)
 s32 Behavior04(void)
 {
     gBehCommand++;
-    gBehCommand = (u32 *)SegmentedToVirtual((void *) gBehCommand[0]);
+    gBehCommand = (u32 *)segmented_to_virtual((void *)gBehCommand[0]);
     return BEH_CONTINUE;
 }
 
@@ -655,7 +655,7 @@ void Unknown8038556C(s32 lastIndex)
 
 s32 Behavior2A(void)
 {
-    u32* collisionData = (u32 *)SegmentedToVirtual((void *) gBehCommand[1]);
+    u32* collisionData = segmented_to_virtual((void *)gBehCommand[1]);
     gCurrentObject->collisionData = collisionData;
     gBehCommand += 2;
     return BEH_CONTINUE;

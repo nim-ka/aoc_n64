@@ -74,7 +74,7 @@ void Dummy802461EC(void)
 
 void SetupMessageQueues(void)
 {
-    osCreateMesgQueue(&D_80339BF0, &D_80339AC8, 1);
+    osCreateMesgQueue(&gDmaMesgQueue, &D_80339AC8, 1);
     osCreateMesgQueue(&D_80339C08, &D_80339B50, 1);
     osSetEventMesg(5, &D_80339C08, NULL);
 
