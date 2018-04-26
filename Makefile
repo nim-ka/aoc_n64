@@ -30,13 +30,14 @@ AS := $(CROSS)as
 CC := $(QEMU_IRIX) -silent -L $(IRIX_ROOT) $(IRIX_ROOT)/usr/bin/cc
 LD := $(CROSS)ld
 OBJDUMP := $(CROSS)objdump
-OBJCOPY := $(CROSS)objcopy --pad-to=0x800000 --gap-fill=0xFF
+OBJCOPY := $(CROSS)objcopy
 
 # Check code syntax with host compiler
 CC_CHECK := gcc -m32 -fsyntax-only -funsigned-char -I include -std=c99 -Wall -Wextra -pedantic -Werror
 
 ASFLAGS := -march=vr4300 -I include
 CFLAGS  := -Wab,-r4300_mul -mips2 -non_shared -G 0 -Xcpluscomm -Xfullwarn -g -I include
+OBJCOPYFLAGS := --pad-to=0x800000 --gap-fill=0xFF
 
 LDFLAGS = -T sym_bss.txt -T undefined_syms.txt -T $(LD_SCRIPT) -Map $(BUILD_DIR)/sm64.map --no-check-sections
 
@@ -64,7 +65,7 @@ endif
 #K := $(foreach exec,$(EXECUTABLES),\
 #        $(if $(shell which $(exec)),some string,$(error "No $(exec) in PATH, please make the tools first)))
 
-#EXECUTABLES = $(AS) $(QEMU_IRIX) $(LD) $(OBJDUMP) $(OBJCOPY) gcc $(SHA1SUM) xxd
+#EXECUTABLES = $(AS) $(QEMU_IRIX) $(LD) $(OBJDUMP) $(OBJCOPY) gcc $(SHA1SUM)
 #K := $(foreach exec,$(EXECUTABLES),\
 #        $(if $(shell which $(exec)),some string,$(error "No $(exec) in PATH)))
 
@@ -107,14 +108,11 @@ $(BUILD_DIR)/$(TARGET).elf: $(O_FILES) $(LD_SCRIPT) sym_bss.txt undefined_syms.t
 	$(LD) $(LDFLAGS) -o $@ $(O_FILES) $(LIBS)
 
 $(BUILD_DIR)/$(TARGET).bin: $(BUILD_DIR)/$(TARGET).elf
-	$(OBJCOPY) $< $@ -O binary
+	$(OBJCOPY) $(OBJCOPYFLAGS) $< $@ -O binary
 
 # final z64 updates checksum
 $(BUILD_DIR)/$(TARGET).z64: $(BUILD_DIR)/$(TARGET).bin
 	$(N64CKSUM) $< $@
-
-$(BUILD_DIR)/$(TARGET).hex: $(TARGET).z64
-	xxd $< > $@
 
 $(BUILD_DIR)/$(TARGET).objdump: $(BUILD_DIR)/$(TARGET).elf
 	$(OBJDUMP) -D $< > $@
@@ -122,7 +120,7 @@ $(BUILD_DIR)/$(TARGET).objdump: $(BUILD_DIR)/$(TARGET).elf
 test: $(BUILD_DIR)/$(TARGET).z64
 	$(EMULATOR) $(EMU_FLAGS) $<
 
-load: $(TARGET).z64
+load: $(BUILD_DIR)/$(TARGET).z64
 	$(LOADER) $(LOADER_FLAGS) $<
 
 .PHONY: all clean default diff test load
