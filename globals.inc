@@ -389,7 +389,7 @@
 .global SetSegmentBase
 .global GetSegmentBase
 .global SegmentedToVirtual
-.global MakePtr
+.global virtual_to_segmented
 .global MovePtrTbl2Dmem
 .global InitMemPool
 .global _pool_alloc

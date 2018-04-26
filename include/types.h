@@ -55,16 +55,6 @@ struct UnknownStruct3
     s8 unk5;
 };
 
-struct Struct8032C9D8
-{
-    u8 filler0[0x44];
-    float unk44;
-    u8 filler48[0x68-0x48];
-    struct UnknownStruct3 *unk68;
-    u8 filler6C[0xAA-0x6C];
-    s16 unkAA;
-};
-
 struct Struct8032C6AC
 {
     u8 filler0[0x12];
@@ -140,15 +130,15 @@ struct Object
     /*0x06C*/ struct Object *unk6C;
     /*0x070*/ u32 unk70;
     /*0x074*/ s16 active;
-    /*0x076*/ s16 unk76;
-    /*0x078*/ struct Object *unk78[4];  // unknown length
+    /*0x076*/ s16 numCollidedObjs;
+    /*0x078*/ struct Object *collidedObjs[4];
     u32 unk88[1];  // unknown length
     /*0x08C*/ u32 objFlags;
     u8 filler90[0x9C-0x90];
     /*0x09C*/ s32 unk9C;
     /*0x0A0*/ Vec3f pos;
     /*0x0AC*/ Vec3f vel;
-    float unkB8;
+    /*0x0B8*/ f32 forwardVel;
     u8 fillerBC[0xC4-0xBC];
     /*0x0C4*/ Vec3i angle;
     /*0x0D0*/ Vec3i faceAngle;
@@ -169,7 +159,7 @@ struct Object
     /*0x124*/ u32 unk124;
     /*0x128*/ f32 unk128;
     /*0x12C*/ f32 unk12C;
-    /*0x130*/ u32 interaction;
+    /*0x130*/ u32 interactType;
     /*0x134*/ u32 interactStatus;
     u8 filler138[0xC];
     /*0x144*/ u32 behParam;
@@ -200,7 +190,8 @@ struct Object
     /*0x1D4*/ u32 stack[8];
     /*0x1F4*/ s16 unk1F4;
     /*0x1F6*/ u16 unk1F6;
-    /*0x1F8*/ Vec2f collisionSphere;
+    /*0x1F8*/ f32 hitboxRadius;
+    /*0x1FC*/ f32 hitboxHeight;
     /*0x200*/ f32 unk200;
     /*0x204*/ f32 unk204;
     /*0x208*/ f32 unk208;

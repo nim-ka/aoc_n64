@@ -2687,7 +2687,7 @@ labels:
    - [0x80277930, "SetSegmentBase"]
    - [0x80277970, "GetSegmentBase"]
    - [0x802779A0, "SegmentedToVirtual"]
-   - [0x802779F8, "MakePtr"]
+   - [0x802779F8, "virtual_to_segmented"]
    - [0x80277A40, "MovePtrTbl2Dmem"]
    - [0x80277AC4, "InitMemPool"]
    - [0x80277B70, "_pool_alloc"]

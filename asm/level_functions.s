@@ -8176,8 +8176,8 @@ glabel func_802A41B8
 /* 05F200 802A4200 8C386694 */  lw    $t8, %lo(jtbl_80336694)($at)
 /* 05F204 802A4204 03000008 */  jr    $t8
 /* 05F208 802A4208 00000000 */   nop   
-/* 05F20C 802A420C 3C198033 */  lui   $t9, %hi(D_8032C9D8) # $t9, 0x8033
-/* 05F210 802A4210 8F39C9D8 */  lw    $t9, %lo(D_8032C9D8)($t9)
+/* 05F20C 802A420C 3C198033 */  lui   $t9, %hi(gMarioState) # $t9, 0x8033
+/* 05F210 802A4210 8F39C9D8 */  lw    $t9, %lo(gMarioState)($t9)
 /* 05F214 802A4214 872800AE */  lh    $t0, 0xae($t9)
 /* 05F218 802A4218 29010100 */  slti  $at, $t0, 0x100
 /* 05F21C 802A421C 14200010 */  bnez  $at, .L802A4260
@@ -8274,8 +8274,8 @@ glabel func_802A41B8
 .L802A4368:
 /* 05F368 802A4368 10000026 */  b     .L802A4404
 /* 05F36C 802A436C 00000000 */   nop   
-/* 05F370 802A4370 3C0D8033 */  lui   $t5, %hi(D_8032C9D8) # $t5, 0x8033
-/* 05F374 802A4374 8DADC9D8 */  lw    $t5, %lo(D_8032C9D8)($t5)
+/* 05F370 802A4370 3C0D8033 */  lui   $t5, %hi(gMarioState) # $t5, 0x8033
+/* 05F374 802A4374 8DADC9D8 */  lw    $t5, %lo(gMarioState)($t5)
 /* 05F378 802A4378 3C012000 */  lui   $at, (0x20001306 >> 16) # lui $at, 0x2000
 /* 05F37C 802A437C 34211306 */  ori   $at, (0x20001306 & 0xFFFF) # ori $at, $at, 0x1306
 /* 05F380 802A4380 8DAB000C */  lw    $t3, 0xc($t5)
@@ -8354,8 +8354,8 @@ glabel CreateMessageBox
 /* 05F488 802A4488 1000009F */  b     .L802A4708
 /* 05F48C 802A448C 00000000 */   nop   
 .L802A4490:
-/* 05F490 802A4490 3C188033 */  lui   $t8, %hi(D_8032C9D8) # $t8, 0x8033
-/* 05F494 802A4494 8F18C9D8 */  lw    $t8, %lo(D_8032C9D8)($t8)
+/* 05F490 802A4490 3C188033 */  lui   $t8, %hi(gMarioState) # $t8, 0x8033
+/* 05F494 802A4494 8F18C9D8 */  lw    $t8, %lo(gMarioState)($t8)
 /* 05F498 802A4498 871900AE */  lh    $t9, 0xae($t8)
 /* 05F49C 802A449C 2B210100 */  slti  $at, $t9, 0x100
 /* 05F4A0 802A44A0 14200013 */  bnez  $at, .L802A44F0
@@ -8492,8 +8492,8 @@ glabel CreateMessageBox
 /* 05F684 802A4684 1000001E */  b     .L802A4700
 /* 05F688 802A4688 A5E00092 */   sh    $zero, 0x92($t7)
 .L802A468C:
-/* 05F68C 802A468C 3C0D8033 */  lui   $t5, %hi(D_8032C9D8) # $t5, 0x8033
-/* 05F690 802A4690 8DADC9D8 */  lw    $t5, %lo(D_8032C9D8)($t5)
+/* 05F68C 802A468C 3C0D8033 */  lui   $t5, %hi(gMarioState) # $t5, 0x8033
+/* 05F690 802A4690 8DADC9D8 */  lw    $t5, %lo(gMarioState)($t5)
 /* 05F694 802A4694 3C012000 */  lui   $at, (0x20001306 >> 16) # lui $at, 0x2000
 /* 05F698 802A4698 34211306 */  ori   $at, (0x20001306 & 0xFFFF) # ori $at, $at, 0x1306
 /* 05F69C 802A469C 8DA9000C */  lw    $t1, 0xc($t5)
@@ -32785,9 +32785,9 @@ glabel func_802B9F10
 /* 074F24 802B9F24 8DCF0144 */  lw    $t7, 0x144($t6)
 /* 074F28 802B9F28 15E10008 */  bne   $t7, $at, .L802B9F4C
 /* 074F2C 802B9F2C 00000000 */   nop   
-/* 074F30 802B9F30 3C048033 */  lui   $a0, %hi(D_8032C9D8) # $a0, 0x8033
+/* 074F30 802B9F30 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
 /* 074F34 802B9F34 0C0931D7 */  jal   func_8024C75C
-/* 074F38 802B9F38 8C84C9D8 */   lw    $a0, %lo(D_8032C9D8)($a0)
+/* 074F38 802B9F38 8C84C9D8 */   lw    $a0, %lo(gMarioState)($a0)
 /* 074F3C 802B9F3C 10400003 */  beqz  $v0, .L802B9F4C
 /* 074F40 802B9F40 00000000 */   nop   
 /* 074F44 802B9F44 10000005 */  b     .L802B9F5C
@@ -36971,8 +36971,8 @@ glabel ActionPiranhaPlant22
 /* 078A88 802BDA88 31CF8000 */  andi  $t7, $t6, 0x8000
 /* 078A8C 802BDA8C 11E0000B */  beqz  $t7, .L802BDABC
 /* 078A90 802BDA90 00000000 */   nop   
-/* 078A94 802BDA94 3C188033 */  lui   $t8, %hi(D_8032C9D8) # $t8, 0x8033
-/* 078A98 802BDA98 8F18C9D8 */  lw    $t8, %lo(D_8032C9D8)($t8)
+/* 078A94 802BDA94 3C188033 */  lui   $t8, %hi(gMarioState) # $t8, 0x8033
+/* 078A98 802BDA98 8F18C9D8 */  lw    $t8, %lo(gMarioState)($t8)
 /* 078A9C 802BDA9C 8F190004 */  lw    $t9, 4($t8)
 /* 078AA0 802BDAA0 33280004 */  andi  $t0, $t9, 4
 /* 078AA4 802BDAA4 11000005 */  beqz  $t0, .L802BDABC
@@ -47308,8 +47308,8 @@ glabel ActionWhomp6
 /* 081C90 802C6C90 29A10065 */  slti  $at, $t5, 0x65
 /* 081C94 802C6C94 1020000B */  beqz  $at, .L802C6CC4
 /* 081C98 802C6C98 00000000 */   nop   
-/* 081C9C 802C6C9C 3C0E8033 */  lui   $t6, %hi(D_8032C9D8) # $t6, 0x8033
-/* 081CA0 802C6CA0 8DCEC9D8 */  lw    $t6, %lo(D_8032C9D8)($t6)
+/* 081C9C 802C6C9C 3C0E8033 */  lui   $t6, %hi(gMarioState) # $t6, 0x8033
+/* 081CA0 802C6CA0 8DCEC9D8 */  lw    $t6, %lo(gMarioState)($t6)
 /* 081CA4 802C6CA4 3C010002 */  lui   $at, (0x00020339 >> 16) # lui $at, 2
 /* 081CA8 802C6CA8 34210339 */  ori   $at, (0x00020339 & 0xFFFF) # ori $at, $at, 0x339
 /* 081CAC 802C6CAC 8DCF000C */  lw    $t7, 0xc($t6)

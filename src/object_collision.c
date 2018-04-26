@@ -8,10 +8,10 @@ struct Object *Unknown802C8460(struct Object *a)
     UNUSED int unused;
     int i;
 
-    for (i = 0; i < a->unk76; i++)
+    for (i = 0; i < a->numCollidedObjs; i++)
     {
         func_802C9AD8(D_80336C50, 0);
-        sp24 = a->unk78[i];
+        sp24 = a->collidedObjs[i];
         if (sp24 != gMarioObject)
             return sp24;
     }
@@ -25,28 +25,28 @@ int func_802C8504(struct Object *a, struct Object *b)
     float dx = a->pos[0] - b->pos[0];
     UNUSED float sp30 = sp3C - sp38;
     float dz = a->pos[2] - b->pos[2];
-    float collisionRadius = b->collisionSphere[0] + a->collisionSphere[0];
+    float collisionRadius = a->hitboxRadius + b->hitboxRadius;
     float distance = sqrtf(dx * dx + dz * dz);
 
     if (collisionRadius > distance)
     {
-        float sp20 = a->collisionSphere[1] + sp3C;
-        float sp1C = b->collisionSphere[1] + sp38;
+        float sp20 = a->hitboxHeight + sp3C;
+        float sp1C = b->hitboxHeight + sp38;
 
         if (sp3C > sp1C)
             return 0;
         if (sp20 < sp38)
             return 0;
-        if (a->unk76 >= 4)
+        if (a->numCollidedObjs >= 4)
             return 0;
-        if (b->unk76 >= 4)
+        if (b->numCollidedObjs >= 4)
             return 0;
-        a->unk78[a->unk76] = b;
-        b->unk78[b->unk76] = a;
-        a->unk70 |= b->interaction;
-        b->unk70 |= a->interaction;
-        a->unk76++;
-        b->unk76++;
+        a->collidedObjs[a->numCollidedObjs] = b;
+        b->collidedObjs[b->numCollidedObjs] = a;
+        a->unk70 |= b->interactType;
+        b->unk70 |= a->interactType;
+        a->numCollidedObjs++;
+        b->numCollidedObjs++;
         return 1;
     }
 
@@ -68,7 +68,7 @@ int func_802C870C(struct Object *a, struct Object *b)
 
     if (sp28 > sp24)
     {
-        float sp20 = a->collisionSphere[1] + sp3C;
+        float sp20 = a->hitboxHeight + sp3C;
         float sp1C = b->unk204 + sp38;
 
         if (sp3C > sp1C)
@@ -89,7 +89,7 @@ void func_802C88A8(struct Object *a)
 
     while (sp4 != a)
     {
-        sp4->unk76 = 0;
+        sp4->numCollidedObjs = 0;
         sp4->unk70 = 0;
         if (sp4->unk9C > 0)
             sp4->unk9C--;

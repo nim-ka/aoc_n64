@@ -119,12 +119,11 @@ void func_80249040(void)
 {
     u8 sp1f = FALSE;
     
-    if (gCurrLevelNum == 6 && D_8033A75A == 2
-     && D_8032C9D8->unkAA < 0x46)
+    if (gCurrLevelNum == 6 && D_8033A75A == 2 && gMarioState->numStars < 70)
     {
-        if (D_8032C9D8->unk68 != NULL && D_8032C9D8->unk68->unk5 == 6)
+        if (gMarioState->floor != NULL && gMarioState->floor->unk05 == 6)
         {
-            if (D_8032C9D8->unk44 < 2540.0000f)
+            if (gMarioState->pos[2] < 2540.0f)
                 sp1f = TRUE;
         }
     }

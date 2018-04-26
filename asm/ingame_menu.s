@@ -6454,8 +6454,8 @@ glabel func_802DC050
 /* 097240 802DC240 24A520E0 */  addiu $a1, %lo(D_803320E0) # addiu $a1, $a1, 0x20e0
 /* 097244 802DC244 0C0C771E */  jal   SetSound
 /* 097248 802DC248 3484FF81 */   ori   $a0, (0x3058FF81 & 0xFFFF) # ori $a0, $a0, 0xff81
-/* 09724C 802DC24C 3C0F8033 */  lui   $t7, %hi(D_8032C9D8) # $t7, 0x8033
-/* 097250 802DC250 8DEFC9D8 */  lw    $t7, %lo(D_8032C9D8)($t7)
+/* 09724C 802DC24C 3C0F8033 */  lui   $t7, %hi(gMarioState) # $t7, 0x8033
+/* 097250 802DC250 8DEFC9D8 */  lw    $t7, %lo(gMarioState)($t7)
 /* 097254 802DC254 81F800AD */  lb    $t8, 0xad($t7)
 /* 097258 802DC258 27190001 */  addiu $t9, $t8, 1
 /* 09725C 802DC25C A1F900AD */  sb    $t9, 0xad($t7)

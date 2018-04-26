@@ -155,9 +155,9 @@ void func_80177004(void)
 {
     char sp60[] = {0x8E, 0x71, 0x7C, 0x79, 0x70, 0xFF};
     char sp5C[] = {0x00, 0xFF};
-    u32 *sp58 = (u32 *)SegmentedToVirtual((u32)D_0200E454);
-    u32 sp54 = SegmentedToVirtual(sp58[gCurrCourseNum - 1]);
-    u32 *sp50 = (u32 *)SegmentedToVirtual((u32)D_0200EAD0);
+    u32 *sp58 = (u32 *)SegmentedToVirtual(D_0200E454);
+    u32 sp54 = (u32) SegmentedToVirtual((void *) sp58[gCurrCourseNum - 1]);
+    u32 *sp50 = (u32 *)SegmentedToVirtual(D_0200EAD0);
     u32 sp4C;
     s16 sp4A;
     s16 sp48;
@@ -189,7 +189,7 @@ void func_80177004(void)
 
     if (D_801B9912 != 0)
     {
-        sp4C = SegmentedToVirtual(sp50[(gCurrCourseNum - 1) * 6 + sSelectedStar]);
+        sp4C = (u32) SegmentedToVirtual((void *) (sp50[(gCurrCourseNum - 1) * 6 + sSelectedStar]));
         sp48 = func_802D7B3C(158, sp4C, 8.0f);
         PrintRegularText(sp48, 81, sp4C);
     }

@@ -400,7 +400,7 @@ glabel func_8025DE9C
 /* 018F88 8025DF88 8FAB0028 */  lw    $t3, 0x28($sp)
 /* 018F8C 8025DF8C 24040013 */  li    $a0, 19
 /* 018F90 8025DF90 8D690080 */  lw    $t1, 0x80($t3)
-/* 018F94 8025DF94 0C09DE7E */  jal   MakePtr
+/* 018F94 8025DF94 0C09DE7E */  jal   virtual_to_segmented
 /* 018F98 8025DF98 8D25020C */   lw    $a1, 0x20c($t1)
 /* 018F9C 8025DF9C AFA2001C */  sw    $v0, 0x1c($sp)
 /* 018FA0 8025DFA0 3C018033 */  lui   $at, %hi(D_803357A0)

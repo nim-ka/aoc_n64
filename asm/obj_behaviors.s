@@ -17690,8 +17690,8 @@ glabel func_802F2BC4
 /* 0ADBF4 802F2BF4 24A520E0 */  addiu $a1, %lo(D_803320E0) # addiu $a1, $a1, 0x20e0
 /* 0ADBF8 802F2BF8 0C0C771E */  jal   SetSound
 /* 0ADBFC 802F2BFC 3484FF81 */   ori   $a0, (0x3058FF81 & 0xFFFF) # ori $a0, $a0, 0xff81
-/* 0ADC00 802F2C00 3C0E8033 */  lui   $t6, %hi(D_8032C9D8) # $t6, 0x8033
-/* 0ADC04 802F2C04 8DCEC9D8 */  lw    $t6, %lo(D_8032C9D8)($t6)
+/* 0ADC00 802F2C00 3C0E8033 */  lui   $t6, %hi(gMarioState) # $t6, 0x8033
+/* 0ADC04 802F2C04 8DCEC9D8 */  lw    $t6, %lo(gMarioState)($t6)
 /* 0ADC08 802F2C08 81CF00AD */  lb    $t7, 0xad($t6)
 /* 0ADC0C 802F2C0C 25F80001 */  addiu $t8, $t7, 1
 /* 0ADC10 802F2C10 A1D800AD */  sb    $t8, 0xad($t6)
@@ -23922,8 +23922,8 @@ glabel func_802F84FC
 /* 0B3574 802F8574 24A520E0 */  addiu $a1, %lo(D_803320E0) # addiu $a1, $a1, 0x20e0
 /* 0B3578 802F8578 0C0C771E */  jal   SetSound
 /* 0B357C 802F857C 34840081 */   ori   $a0, (0x70150081 & 0xFFFF) # ori $a0, $a0, 0x81
-/* 0B3580 802F8580 3C0B8033 */  lui   $t3, %hi(D_8032C9D8) # $t3, 0x8033
-/* 0B3584 802F8584 8D6BC9D8 */  lw    $t3, %lo(D_8032C9D8)($t3)
+/* 0B3580 802F8580 3C0B8033 */  lui   $t3, %hi(gMarioState) # $t3, 0x8033
+/* 0B3584 802F8584 8D6BC9D8 */  lw    $t3, %lo(gMarioState)($t3)
 /* 0B3588 802F8588 816C00AD */  lb    $t4, 0xad($t3)
 /* 0B358C 802F858C 258D0001 */  addiu $t5, $t4, 1
 /* 0B3590 802F8590 A16D00AD */  sb    $t5, 0xad($t3)

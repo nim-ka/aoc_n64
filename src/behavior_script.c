@@ -5,7 +5,7 @@
 
 void func_80383B70(u32 segptr)
 {
-    gBehCommand = (u32 *)SegmentedToVirtual(segptr);
+    gBehCommand = (u32 *)SegmentedToVirtual((void *) segptr);
     gCurrentObject->stackIndex = 0;
 }
 
@@ -192,7 +192,7 @@ s32 Behavior02(void)
 
     gBehCommand++;
     cur_object_stack_push((u32)&gBehCommand[1]);
-    jumpAddress = (u32 *)SegmentedToVirtual(gBehCommand[0]);
+    jumpAddress = (u32 *)SegmentedToVirtual((void *) gBehCommand[0]);
     gBehCommand = jumpAddress;
 
     return BEH_CONTINUE;
@@ -242,7 +242,7 @@ s32 Behavior25(void)
 s32 Behavior04(void)
 {
     gBehCommand++;
-    gBehCommand = (u32 *)SegmentedToVirtual(gBehCommand[0]);
+    gBehCommand = (u32 *)SegmentedToVirtual((void *) gBehCommand[0]);
     return BEH_CONTINUE;
 }
 
@@ -574,8 +574,8 @@ s32 Behavior23(void)
     s16 colSphereX = gBehCommand[1] >> 16;
     s16 colSphereY = gBehCommand[1] & 0xFFFF;
 
-    gCurrentObject->collisionSphere[0] = colSphereX;
-    gCurrentObject->collisionSphere[1] = colSphereY;
+    gCurrentObject->hitboxRadius = colSphereX;
+    gCurrentObject->hitboxHeight = colSphereY;
 
     gBehCommand += 2;
     return BEH_CONTINUE;
@@ -599,8 +599,8 @@ s32 Behavior2B(void)
     s16 colSphereY = gBehCommand[1] & 0xFFFF;
     s16 unknown = gBehCommand[2] >> 16;
 
-    gCurrentObject->collisionSphere[0] = colSphereX;
-    gCurrentObject->collisionSphere[1] = colSphereY;
+    gCurrentObject->hitboxRadius = colSphereX;
+    gCurrentObject->hitboxHeight = colSphereY;
     gCurrentObject->unk208 = unknown;
 
     gBehCommand += 3;
@@ -655,7 +655,7 @@ void Unknown8038556C(s32 lastIndex)
 
 s32 Behavior2A(void)
 {
-    u32* collisionData = (u32 *)SegmentedToVirtual(gBehCommand[1]);
+    u32* collisionData = (u32 *)SegmentedToVirtual((void *) gBehCommand[1]);
     gCurrentObject->collisionData = collisionData;
     gBehCommand += 2;
     return BEH_CONTINUE;
@@ -672,7 +672,7 @@ s32 Behavior2D(void)
 
 s32 Behavior2F(void)
 {
-    gCurrentObject->interaction = gBehCommand[1];
+    gCurrentObject->interactType = gBehCommand[1];
 
     gBehCommand += 2;
     return BEH_CONTINUE;

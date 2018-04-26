@@ -166,7 +166,7 @@ struct Object *func_802C9120(struct GfxNode *a)
     sp20->unk68 = sp20;
     sp20->unk6C = 0;
     sp20->unk70 = 0;
-    sp20->unk76 = 0;
+    sp20->numCollidedObjs = 0;
 
     // hmm...
     for (i = 0; i < 80; i++)
@@ -175,8 +175,8 @@ struct Object *func_802C9120(struct GfxNode *a)
     sp20->unk1C8 = 0;
     sp20->stackIndex = 0;
     sp20->unk1F4 = 0;
-    sp20->collisionSphere[0] = 50.0f;
-    sp20->collisionSphere[1] = 100.0f;
+    sp20->hitboxRadius = 50.0f;
+    sp20->hitboxHeight = 100.0f;
     sp20->unk200 = 0.0f;
     sp20->unk204 = 0.0f;
     sp20->unk208 = 0.0f;

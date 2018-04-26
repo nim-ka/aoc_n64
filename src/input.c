@@ -269,7 +269,7 @@ void Thread5_GameLoop(UNUSED void *arg)
     save_file_load_all();
 
     func_80246B14(2, &D_80339CD8, &D_80339CA0, 1);
-    addr = SegmentedToVirtual((u32)D_10000000);
+    addr = (u32) SegmentedToVirtual(D_10000000);
     func_80320AE8(2, 0, 0);
     func_80248DD8(save_file_get_sound_mode());
     func_80247ED8();

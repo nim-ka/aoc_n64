@@ -20,19 +20,19 @@ int GetSegmentBase(int segment)
     return gSegmentTable[segment] | 0x80000000;
 }
 
-int SegmentedToVirtual(u32 addr)
+void *SegmentedToVirtual(void *addr)
 {
-    u32 segment = addr >> 24;
-    u32 offset = addr & 0x00FFFFFF;
+    u32 segment = (u32) addr >> 24;
+    u32 offset = (u32) addr & 0x00FFFFFF;
 
-    return (gSegmentTable[segment] + offset) | 0x80000000;
+    return (void *) ((gSegmentTable[segment] + offset) | 0x80000000);
 }
 
-u32 MakePtr(u32 segment, u32 addr)
+void *virtual_to_segmented(u32 segment, void *addr)
 {
     u32 offset = ((u32)addr & 0x1FFFFFFF) - gSegmentTable[segment];
 
-    return (segment << 24) + offset;
+    return (void *) ((segment << 24) + offset);
 }
 
 void MovePtrTbl2Dmem(void)

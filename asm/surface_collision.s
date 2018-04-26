@@ -465,8 +465,8 @@ glabel func_80380690
 /* 0FC744 80380D34 8D8CFDE8 */  lw    $t4, %lo(gMarioObject)($t4)
 /* 0FC748 80380D38 156C0009 */  bne   $t3, $t4, .L80380D60
 /* 0FC74C 80380D3C 00000000 */   nop   
-/* 0FC750 80380D40 3C0D8033 */  lui   $t5, %hi(D_8032C9D8) # $t5, 0x8033
-/* 0FC754 80380D44 8DADC9D8 */  lw    $t5, %lo(D_8032C9D8)($t5)
+/* 0FC750 80380D40 3C0D8033 */  lui   $t5, %hi(gMarioState) # $t5, 0x8033
+/* 0FC754 80380D44 8DADC9D8 */  lw    $t5, %lo(gMarioState)($t5)
 /* 0FC758 80380D48 8DAE0004 */  lw    $t6, 4($t5)
 /* 0FC75C 80380D4C 31CF0002 */  andi  $t7, $t6, 2
 /* 0FC760 80380D50 11E00003 */  beqz  $t7, .L80380D60

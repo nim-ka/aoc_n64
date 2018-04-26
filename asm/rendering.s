@@ -119,7 +119,7 @@ glabel func_8027A38C
 /* 035394 8027A394 AFA40020 */  sw    $a0, 0x20($sp)
 /* 035398 8027A398 8FAE0020 */  lw    $t6, 0x20($sp)
 /* 03539C 8027A39C 24040013 */  li    $a0, 19
-/* 0353A0 8027A3A0 0C09DE7E */  jal   MakePtr
+/* 0353A0 8027A3A0 0C09DE7E */  jal   virtual_to_segmented
 /* 0353A4 8027A3A4 8DC5020C */   lw    $a1, 0x20c($t6)
 /* 0353A8 8027A3A8 AFA20018 */  sw    $v0, 0x18($sp)
 /* 0353AC 8027A3AC AFA0001C */  sw    $zero, 0x1c($sp)

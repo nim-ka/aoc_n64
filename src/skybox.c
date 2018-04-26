@@ -110,7 +110,7 @@ void func_802CEF4C(Gfx **dlist, s8 b, s8 c, s8 d)
         for (sp50 = 0; sp50 < 3; sp50++)
         {
             int sp4C = D_8035FF50[c].unkC + sp54 * 10 + sp50;
-            u32 sp48 = ((struct Hack802CEF4C *)SegmentedToVirtual(D_8032FFA0[b]))->arr[sp4C];
+            u32 sp48 = ((struct Hack802CEF4C *)SegmentedToVirtual((void *)D_8032FFA0[b]))->arr[sp4C];
             void *vertices = func_802CED24(sp4C, d);
 
             // Why is the width 1 here?

@@ -4302,8 +4302,8 @@ glabel func_8025435C
 /* 00F3F8 802543F8 31AE0001 */  andi  $t6, $t5, 1
 /* 00F3FC 802543FC 11C00007 */  beqz  $t6, .L8025441C
 /* 00F400 80254400 00000000 */   nop   
-/* 00F404 80254404 3C0C8033 */  lui   $t4, %hi(D_8032C9D8) # $t4, 0x8033
-/* 00F408 80254408 8D8CC9D8 */  lw    $t4, %lo(D_8032C9D8)($t4)
+/* 00F404 80254404 3C0C8033 */  lui   $t4, %hi(gMarioState) # $t4, 0x8033
+/* 00F408 80254408 8D8CC9D8 */  lw    $t4, %lo(gMarioState)($t4)
 /* 00F40C 8025440C 8D8F0088 */  lw    $t7, 0x88($t4)
 /* 00F410 80254410 85F80002 */  lh    $t8, 2($t7)
 /* 00F414 80254414 37080010 */  ori   $t0, $t8, 0x10
@@ -4408,29 +4408,29 @@ glabel Unknown8025453C
 /* 00F574 80254574 03284824 */  and   $t1, $t9, $t0
 /* 00F578 80254578 1120001C */  beqz  $t1, .L802545EC
 /* 00F57C 8025457C 00000000 */   nop   
-/* 00F580 80254580 3C0A8033 */  lui   $t2, %hi(D_8032C9D8) # $t2, 0x8033
-/* 00F584 80254584 8D4AC9D8 */  lw    $t2, %lo(D_8032C9D8)($t2)
+/* 00F580 80254580 3C0A8033 */  lui   $t2, %hi(gMarioState) # $t2, 0x8033
+/* 00F584 80254584 8D4AC9D8 */  lw    $t2, %lo(gMarioState)($t2)
 /* 00F588 80254588 8FAC001C */  lw    $t4, 0x1c($sp)
 /* 00F58C 8025458C 8D4B0004 */  lw    $t3, 4($t2)
 /* 00F590 80254590 016C6824 */  and   $t5, $t3, $t4
 /* 00F594 80254594 15A00015 */  bnez  $t5, .L802545EC
 /* 00F598 80254598 00000000 */   nop   
-/* 00F59C 8025459C 3C0F8033 */  lui   $t7, %hi(D_8032C9D8) # $t7, 0x8033
-/* 00F5A0 802545A0 8DEFC9D8 */  lw    $t7, %lo(D_8032C9D8)($t7)
+/* 00F59C 8025459C 3C0F8033 */  lui   $t7, %hi(gMarioState) # $t7, 0x8033
+/* 00F5A0 802545A0 8DEFC9D8 */  lw    $t7, %lo(gMarioState)($t7)
 /* 00F5A4 802545A4 8FAE001C */  lw    $t6, 0x1c($sp)
 /* 00F5A8 802545A8 8DF80004 */  lw    $t8, 4($t7)
 /* 00F5AC 802545AC 25D90010 */  addiu $t9, $t6, 0x10
 /* 00F5B0 802545B0 03194025 */  or    $t0, $t8, $t9
 /* 00F5B4 802545B4 ADE80004 */  sw    $t0, 4($t7)
-/* 00F5B8 802545B8 3C0A8033 */  lui   $t2, %hi(D_8032C9D8) # $t2, 0x8033
-/* 00F5BC 802545BC 8D4AC9D8 */  lw    $t2, %lo(D_8032C9D8)($t2)
+/* 00F5B8 802545B8 3C0A8033 */  lui   $t2, %hi(gMarioState) # $t2, 0x8033
+/* 00F5BC 802545BC 8D4AC9D8 */  lw    $t2, %lo(gMarioState)($t2)
 /* 00F5C0 802545C0 97A90022 */  lhu   $t1, 0x22($sp)
 /* 00F5C4 802545C4 954B00B6 */  lhu   $t3, 0xb6($t2)
 /* 00F5C8 802545C8 0169082A */  slt   $at, $t3, $t1
 /* 00F5CC 802545CC 10200005 */  beqz  $at, .L802545E4
 /* 00F5D0 802545D0 00000000 */   nop   
-/* 00F5D4 802545D4 3C0D8033 */  lui   $t5, %hi(D_8032C9D8) # $t5, 0x8033
-/* 00F5D8 802545D8 8DADC9D8 */  lw    $t5, %lo(D_8032C9D8)($t5)
+/* 00F5D4 802545D4 3C0D8033 */  lui   $t5, %hi(gMarioState) # $t5, 0x8033
+/* 00F5D8 802545D8 8DADC9D8 */  lw    $t5, %lo(gMarioState)($t5)
 /* 00F5DC 802545DC 97AC0022 */  lhu   $t4, 0x22($sp)
 /* 00F5E0 802545E0 A5AC00B6 */  sh    $t4, 0xb6($t5)
 .L802545E4:
@@ -4452,32 +4452,32 @@ glabel func_80254604
 /* 00F610 80254610 AFB00018 */  sw    $s0, 0x18($sp)
 /* 00F614 80254614 240E0001 */  li    $t6, 1
 /* 00F618 80254618 AFAE0024 */  sw    $t6, 0x24($sp)
-/* 00F61C 8025461C 3C0F8033 */  lui   $t7, %hi(D_8032C9D8) # $t7, 0x8033
-/* 00F620 80254620 8DEFC9D8 */  lw    $t7, %lo(D_8032C9D8)($t7)
+/* 00F61C 8025461C 3C0F8033 */  lui   $t7, %hi(gMarioState) # $t7, 0x8033
+/* 00F620 80254620 8DEFC9D8 */  lw    $t7, %lo(gMarioState)($t7)
 /* 00F624 80254624 8DF8000C */  lw    $t8, 0xc($t7)
 /* 00F628 80254628 1300009B */  beqz  $t8, .L80254898
 /* 00F62C 8025462C 00000000 */   nop   
-/* 00F630 80254630 3C198033 */  lui   $t9, %hi(D_8032C9D8) # $t9, 0x8033
-/* 00F634 80254634 8F39C9D8 */  lw    $t9, %lo(D_8032C9D8)($t9)
+/* 00F630 80254630 3C198033 */  lui   $t9, %hi(gMarioState) # $t9, 0x8033
+/* 00F634 80254634 8F39C9D8 */  lw    $t9, %lo(gMarioState)($t9)
 /* 00F638 80254638 2401FFEF */  li    $at, -17
 /* 00F63C 8025463C 8F280088 */  lw    $t0, 0x88($t9)
 /* 00F640 80254640 85090002 */  lh    $t1, 2($t0)
 /* 00F644 80254644 01215024 */  and   $t2, $t1, $at
 /* 00F648 80254648 A50A0002 */  sh    $t2, 2($t0)
-/* 00F64C 8025464C 3C048033 */  lui   $a0, %hi(D_8032C9D8) # $a0, 0x8033
+/* 00F64C 8025464C 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
 /* 00F650 80254650 0C095043 */  jal   func_8025410C
-/* 00F654 80254654 8C84C9D8 */   lw    $a0, %lo(D_8032C9D8)($a0)
-/* 00F658 80254658 3C048033 */  lui   $a0, %hi(D_8032C9D8) # $a0, 0x8033
+/* 00F654 80254654 8C84C9D8 */   lw    $a0, %lo(gMarioState)($a0)
+/* 00F658 80254658 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
 /* 00F65C 8025465C 0C094ECB */  jal   func_80253B2C
-/* 00F660 80254660 8C84C9D8 */   lw    $a0, %lo(D_8032C9D8)($a0)
-/* 00F664 80254664 3C048033 */  lui   $a0, %hi(D_8032C9D8) # $a0, 0x8033
+/* 00F660 80254660 8C84C9D8 */   lw    $a0, %lo(gMarioState)($a0)
+/* 00F664 80254664 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
 /* 00F668 80254668 0C094189 */  jal   func_80250624
-/* 00F66C 8025466C 8C84C9D8 */   lw    $a0, %lo(D_8032C9D8)($a0)
-/* 00F670 80254670 3C048033 */  lui   $a0, %hi(D_8032C9D8) # $a0, 0x8033
+/* 00F66C 8025466C 8C84C9D8 */   lw    $a0, %lo(gMarioState)($a0)
+/* 00F670 80254670 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
 /* 00F674 80254674 0C094086 */  jal   func_80250218
-/* 00F678 80254678 8C84C9D8 */   lw    $a0, %lo(D_8032C9D8)($a0)
-/* 00F67C 8025467C 3C0B8033 */  lui   $t3, %hi(D_8032C9D8) # $t3, 0x8033
-/* 00F680 80254680 8D6BC9D8 */  lw    $t3, %lo(D_8032C9D8)($t3)
+/* 00F678 80254678 8C84C9D8 */   lw    $a0, %lo(gMarioState)($a0)
+/* 00F67C 8025467C 3C0B8033 */  lui   $t3, %hi(gMarioState) # $t3, 0x8033
+/* 00F680 80254680 8D6BC9D8 */  lw    $t3, %lo(gMarioState)($t3)
 /* 00F684 80254684 8D6C0068 */  lw    $t4, 0x68($t3)
 /* 00F688 80254688 15800003 */  bnez  $t4, .L80254698
 /* 00F68C 8025468C 00000000 */   nop   
@@ -4488,8 +4488,8 @@ glabel func_80254604
 /* 00F69C 8025469C 11A00049 */  beqz  $t5, .L802547C4
 /* 00F6A0 802546A0 00000000 */   nop   
 .L802546A4:
-/* 00F6A4 802546A4 3C0E8033 */  lui   $t6, %hi(D_8032C9D8) # $t6, 0x8033
-/* 00F6A8 802546A8 8DCEC9D8 */  lw    $t6, %lo(D_8032C9D8)($t6)
+/* 00F6A4 802546A4 3C0E8033 */  lui   $t6, %hi(gMarioState) # $t6, 0x8033
+/* 00F6A8 802546A8 8DCEC9D8 */  lw    $t6, %lo(gMarioState)($t6)
 /* 00F6AC 802546AC 8DD0000C */  lw    $s0, 0xc($t6)
 /* 00F6B0 802546B0 320F01C0 */  andi  $t7, $s0, 0x1c0
 /* 00F6B4 802546B4 01E08025 */  move  $s0, $t7
@@ -4516,51 +4516,51 @@ glabel func_80254604
 /* 00F708 80254708 1000002B */  b     .L802547B8
 /* 00F70C 8025470C 00000000 */   nop   
 .L80254710:
-/* 00F710 80254710 3C048033 */  lui   $a0, %hi(D_8032C9D8) # $a0, 0x8033
+/* 00F710 80254710 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
 /* 00F714 80254714 0C098D23 */  jal   func_8026348C
-/* 00F718 80254718 8C84C9D8 */   lw    $a0, %lo(D_8032C9D8)($a0)
+/* 00F718 80254718 8C84C9D8 */   lw    $a0, %lo(gMarioState)($a0)
 /* 00F71C 8025471C AFA20024 */  sw    $v0, 0x24($sp)
 /* 00F720 80254720 10000025 */  b     .L802547B8
 /* 00F724 80254724 00000000 */   nop   
 .L80254728:
-/* 00F728 80254728 3C048033 */  lui   $a0, %hi(D_8032C9D8) # $a0, 0x8033
+/* 00F728 80254728 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
 /* 00F72C 8025472C 0C09A53A */  jal   func_802694E8
-/* 00F730 80254730 8C84C9D8 */   lw    $a0, %lo(D_8032C9D8)($a0)
+/* 00F730 80254730 8C84C9D8 */   lw    $a0, %lo(gMarioState)($a0)
 /* 00F734 80254734 AFA20024 */  sw    $v0, 0x24($sp)
 /* 00F738 80254738 1000001F */  b     .L802547B8
 /* 00F73C 8025473C 00000000 */   nop   
 .L80254740:
-/* 00F740 80254740 3C048033 */  lui   $a0, %hi(D_8032C9D8) # $a0, 0x8033
+/* 00F740 80254740 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
 /* 00F744 80254744 0C09BD66 */  jal   execute_airborne_action
-/* 00F748 80254748 8C84C9D8 */   lw    $a0, %lo(D_8032C9D8)($a0)
+/* 00F748 80254748 8C84C9D8 */   lw    $a0, %lo(gMarioState)($a0)
 /* 00F74C 8025474C AFA20024 */  sw    $v0, 0x24($sp)
 /* 00F750 80254750 10000019 */  b     .L802547B8
 /* 00F754 80254754 00000000 */   nop   
 .L80254758:
-/* 00F758 80254758 3C048033 */  lui   $a0, %hi(D_8032C9D8) # $a0, 0x8033
+/* 00F758 80254758 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
 /* 00F75C 8025475C 0C09D10B */  jal   func_8027442C
-/* 00F760 80254760 8C84C9D8 */   lw    $a0, %lo(D_8032C9D8)($a0)
+/* 00F760 80254760 8C84C9D8 */   lw    $a0, %lo(gMarioState)($a0)
 /* 00F764 80254764 AFA20024 */  sw    $v0, 0x24($sp)
 /* 00F768 80254768 10000013 */  b     .L802547B8
 /* 00F76C 8025476C 00000000 */   nop   
 .L80254770:
-/* 00F770 80254770 3C048033 */  lui   $a0, %hi(D_8032C9D8) # $a0, 0x8033
+/* 00F770 80254770 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
 /* 00F774 80254774 0C097506 */  jal   func_8025D418
-/* 00F778 80254778 8C84C9D8 */   lw    $a0, %lo(D_8032C9D8)($a0)
+/* 00F778 80254778 8C84C9D8 */   lw    $a0, %lo(gMarioState)($a0)
 /* 00F77C 8025477C AFA20024 */  sw    $v0, 0x24($sp)
 /* 00F780 80254780 1000000D */  b     .L802547B8
 /* 00F784 80254784 00000000 */   nop   
 .L80254788:
-/* 00F788 80254788 3C048033 */  lui   $a0, %hi(D_8032C9D8) # $a0, 0x8033
+/* 00F788 80254788 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
 /* 00F78C 8025478C 0C09807E */  jal   func_802601F8
-/* 00F790 80254790 8C84C9D8 */   lw    $a0, %lo(D_8032C9D8)($a0)
+/* 00F790 80254790 8C84C9D8 */   lw    $a0, %lo(gMarioState)($a0)
 /* 00F794 80254794 AFA20024 */  sw    $v0, 0x24($sp)
 /* 00F798 80254798 10000007 */  b     .L802547B8
 /* 00F79C 8025479C 00000000 */   nop   
 .L802547A0:
-/* 00F7A0 802547A0 3C048033 */  lui   $a0, %hi(D_8032C9D8) # $a0, 0x8033
+/* 00F7A0 802547A0 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
 /* 00F7A4 802547A4 0C09D68C */  jal   func_80275A30
-/* 00F7A8 802547A8 8C84C9D8 */   lw    $a0, %lo(D_8032C9D8)($a0)
+/* 00F7A8 802547A8 8C84C9D8 */   lw    $a0, %lo(gMarioState)($a0)
 /* 00F7AC 802547AC AFA20024 */  sw    $v0, 0x24($sp)
 /* 00F7B0 802547B0 10000001 */  b     .L802547B8
 /* 00F7B4 802547B4 00000000 */   nop   
@@ -4569,33 +4569,33 @@ glabel func_80254604
 /* 00F7BC 802547BC 1700FFB9 */  bnez  $t8, .L802546A4
 /* 00F7C0 802547C0 00000000 */   nop   
 .L802547C4:
-/* 00F7C4 802547C4 3C048033 */  lui   $a0, %hi(D_8032C9D8) # $a0, 0x8033
+/* 00F7C4 802547C4 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
 /* 00F7C8 802547C8 0C095059 */  jal   func_80254164
-/* 00F7CC 802547CC 8C84C9D8 */   lw    $a0, %lo(D_8032C9D8)($a0)
-/* 00F7D0 802547D0 3C048033 */  lui   $a0, %hi(D_8032C9D8) # $a0, 0x8033
+/* 00F7CC 802547CC 8C84C9D8 */   lw    $a0, %lo(gMarioState)($a0)
+/* 00F7D0 802547D0 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
 /* 00F7D4 802547D4 0C094CD7 */  jal   func_8025335C
-/* 00F7D8 802547D8 8C84C9D8 */   lw    $a0, %lo(D_8032C9D8)($a0)
-/* 00F7DC 802547DC 3C048033 */  lui   $a0, %hi(D_8032C9D8) # $a0, 0x8033
+/* 00F7D8 802547D8 8C84C9D8 */   lw    $a0, %lo(gMarioState)($a0)
+/* 00F7DC 802547DC 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
 /* 00F7E0 802547E0 0C094F25 */  jal   func_80253C94
-/* 00F7E4 802547E4 8C84C9D8 */   lw    $a0, %lo(D_8032C9D8)($a0)
-/* 00F7E8 802547E8 3C048033 */  lui   $a0, %hi(D_8032C9D8) # $a0, 0x8033
+/* 00F7E4 802547E4 8C84C9D8 */   lw    $a0, %lo(gMarioState)($a0)
+/* 00F7E8 802547E8 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
 /* 00F7EC 802547EC 0C094F8D */  jal   func_80253E34
-/* 00F7F0 802547F0 8C84C9D8 */   lw    $a0, %lo(D_8032C9D8)($a0)
-/* 00F7F4 802547F4 3C048033 */  lui   $a0, %hi(D_8032C9D8) # $a0, 0x8033
+/* 00F7F0 802547F0 8C84C9D8 */   lw    $a0, %lo(gMarioState)($a0)
+/* 00F7F4 802547F4 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
 /* 00F7F8 802547F8 0C095022 */  jal   func_80254088
-/* 00F7FC 802547FC 8C84C9D8 */   lw    $a0, %lo(D_8032C9D8)($a0)
-/* 00F800 80254800 3C048033 */  lui   $a0, %hi(D_8032C9D8) # $a0, 0x8033
+/* 00F7FC 802547FC 8C84C9D8 */   lw    $a0, %lo(gMarioState)($a0)
+/* 00F800 80254800 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
 /* 00F804 80254804 0C0950D7 */  jal   func_8025435C
-/* 00F808 80254808 8C84C9D8 */   lw    $a0, %lo(D_8032C9D8)($a0)
-/* 00F80C 8025480C 3C198033 */  lui   $t9, %hi(D_8032C9D8) # $t9, 0x8033
-/* 00F810 80254810 8F39C9D8 */  lw    $t9, %lo(D_8032C9D8)($t9)
+/* 00F808 80254808 8C84C9D8 */   lw    $a0, %lo(gMarioState)($a0)
+/* 00F80C 8025480C 3C198033 */  lui   $t9, %hi(gMarioState) # $t9, 0x8033
+/* 00F810 80254810 8F39C9D8 */  lw    $t9, %lo(gMarioState)($t9)
 /* 00F814 80254814 2401002C */  li    $at, 44
 /* 00F818 80254818 8F290068 */  lw    $t1, 0x68($t9)
 /* 00F81C 8025481C 852A0000 */  lh    $t2, ($t1)
 /* 00F820 80254820 15410009 */  bne   $t2, $at, .L80254848
 /* 00F824 80254824 00000000 */   nop   
-/* 00F828 80254828 3C088033 */  lui   $t0, %hi(D_8032C9D8) # $t0, 0x8033
-/* 00F82C 8025482C 8D08C9D8 */  lw    $t0, %lo(D_8032C9D8)($t0)
+/* 00F828 80254828 3C088033 */  lui   $t0, %hi(gMarioState) # $t0, 0x8033
+/* 00F82C 8025482C 8D08C9D8 */  lw    $t0, %lo(gMarioState)($t0)
 /* 00F830 80254830 00002025 */  move  $a0, $zero
 /* 00F834 80254834 8D0B0068 */  lw    $t3, 0x68($t0)
 /* 00F838 80254838 85650002 */  lh    $a1, 2($t3)
@@ -4603,8 +4603,8 @@ glabel func_80254604
 /* 00F840 80254840 0C0AB708 */  jal   func_802ADC20
 /* 00F844 80254844 01802825 */   move  $a1, $t4
 .L80254848:
-/* 00F848 80254848 3C0D8033 */  lui   $t5, %hi(D_8032C9D8) # $t5, 0x8033
-/* 00F84C 8025484C 8DADC9D8 */  lw    $t5, %lo(D_8032C9D8)($t5)
+/* 00F848 80254848 3C0D8033 */  lui   $t5, %hi(gMarioState) # $t5, 0x8033
+/* 00F84C 8025484C 8DADC9D8 */  lw    $t5, %lo(gMarioState)($t5)
 /* 00F850 80254850 24010038 */  li    $at, 56
 /* 00F854 80254854 8DAE0068 */  lw    $t6, 0x68($t5)
 /* 00F858 80254858 85CF0000 */  lh    $t7, ($t6)
@@ -4616,12 +4616,12 @@ glabel func_80254604
 .L80254870:
 /* 00F870 80254870 0C092410 */  jal   func_80249040
 /* 00F874 80254874 00000000 */   nop   
-/* 00F878 80254878 3C188033 */  lui   $t8, %hi(D_8032C9D8) # $t8, 0x8033
-/* 00F87C 8025487C 8F18C9D8 */  lw    $t8, %lo(D_8032C9D8)($t8)
+/* 00F878 80254878 3C188033 */  lui   $t8, %hi(gMarioState) # $t8, 0x8033
+/* 00F87C 8025487C 8F18C9D8 */  lw    $t8, %lo(gMarioState)($t8)
 /* 00F880 80254880 8F190088 */  lw    $t9, 0x88($t8)
 /* 00F884 80254884 AF200134 */  sw    $zero, 0x134($t9)
-/* 00F888 80254888 3C098033 */  lui   $t1, %hi(D_8032C9D8) # $t1, 0x8033
-/* 00F88C 8025488C 8D29C9D8 */  lw    $t1, %lo(D_8032C9D8)($t1)
+/* 00F888 80254888 3C098033 */  lui   $t1, %hi(gMarioState) # $t1, 0x8033
+/* 00F88C 8025488C 8D29C9D8 */  lw    $t1, %lo(gMarioState)($t1)
 /* 00F890 80254890 10000005 */  b     .L802548A8
 /* 00F894 80254894 8D220008 */   lw    $v0, 8($t1)
 .L80254898:
@@ -4641,19 +4641,19 @@ glabel func_802548BC
 /* 00F8C0 802548C0 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 00F8C4 802548C4 3C018034 */  lui   $at, %hi(D_80339F10) # $at, 0x8034
 /* 00F8C8 802548C8 AC209F10 */  sw    $zero, %lo(D_80339F10)($at)
-/* 00F8CC 802548CC 3C0E8033 */  lui   $t6, %hi(D_8032C9D8) # $t6, 0x8033
-/* 00F8D0 802548D0 8DCEC9D8 */  lw    $t6, %lo(D_8032C9D8)($t6)
+/* 00F8CC 802548CC 3C0E8033 */  lui   $t6, %hi(gMarioState) # $t6, 0x8033
+/* 00F8D0 802548D0 8DCEC9D8 */  lw    $t6, %lo(gMarioState)($t6)
 /* 00F8D4 802548D4 A5C0001A */  sh    $zero, 0x1a($t6)
-/* 00F8D8 802548D8 3C188033 */  lui   $t8, %hi(D_8032C9D8) # $t8, 0x8033
-/* 00F8DC 802548DC 8F18C9D8 */  lw    $t8, %lo(D_8032C9D8)($t8)
+/* 00F8D8 802548D8 3C188033 */  lui   $t8, %hi(gMarioState) # $t8, 0x8033
+/* 00F8DC 802548DC 8F18C9D8 */  lw    $t8, %lo(gMarioState)($t8)
 /* 00F8E0 802548E0 240F00FF */  li    $t7, 255
 /* 00F8E4 802548E4 A30F0028 */  sb    $t7, 0x28($t8)
-/* 00F8E8 802548E8 3C088033 */  lui   $t0, %hi(D_8032C9D8) # $t0, 0x8033
-/* 00F8EC 802548EC 8D08C9D8 */  lw    $t0, %lo(D_8032C9D8)($t0)
+/* 00F8E8 802548E8 3C088033 */  lui   $t0, %hi(gMarioState) # $t0, 0x8033
+/* 00F8EC 802548EC 8D08C9D8 */  lw    $t0, %lo(gMarioState)($t0)
 /* 00F8F0 802548F0 241900FF */  li    $t9, 255
 /* 00F8F4 802548F4 A1190029 */  sb    $t9, 0x29($t0)
-/* 00F8F8 802548F8 3C098033 */  lui   $t1, %hi(D_8032C9D8) # $t1, 0x8033
-/* 00F8FC 802548FC 8D29C9D8 */  lw    $t1, %lo(D_8032C9D8)($t1)
+/* 00F8F8 802548F8 3C098033 */  lui   $t1, %hi(gMarioState) # $t1, 0x8033
+/* 00F8FC 802548FC 8D29C9D8 */  lw    $t1, %lo(gMarioState)($t1)
 /* 00F900 80254900 A5200026 */  sh    $zero, 0x26($t1)
 /* 00F904 80254904 0C09E6EF */  jal   save_file_get_flags
 /* 00F908 80254908 00000000 */   nop   
@@ -4661,46 +4661,46 @@ glabel func_802548BC
 /* 00F910 80254910 00415024 */  and   $t2, $v0, $at
 /* 00F914 80254914 11400005 */  beqz  $t2, .L8025492C
 /* 00F918 80254918 00000000 */   nop   
-/* 00F91C 8025491C 3C0B8033 */  lui   $t3, %hi(D_8032C9D8) # $t3, 0x8033
-/* 00F920 80254920 8D6BC9D8 */  lw    $t3, %lo(D_8032C9D8)($t3)
+/* 00F91C 8025491C 3C0B8033 */  lui   $t3, %hi(gMarioState) # $t3, 0x8033
+/* 00F920 80254920 8D6BC9D8 */  lw    $t3, %lo(gMarioState)($t3)
 /* 00F924 80254924 10000005 */  b     .L8025493C
 /* 00F928 80254928 AD600004 */   sw    $zero, 4($t3)
 .L8025492C:
-/* 00F92C 8025492C 3C0D8033 */  lui   $t5, %hi(D_8032C9D8) # $t5, 0x8033
-/* 00F930 80254930 8DADC9D8 */  lw    $t5, %lo(D_8032C9D8)($t5)
+/* 00F92C 8025492C 3C0D8033 */  lui   $t5, %hi(gMarioState) # $t5, 0x8033
+/* 00F930 80254930 8DADC9D8 */  lw    $t5, %lo(gMarioState)($t5)
 /* 00F934 80254934 240C0011 */  li    $t4, 17
 /* 00F938 80254938 ADAC0004 */  sw    $t4, 4($t5)
 .L8025493C:
 /* 00F93C 8025493C 3C0E8033 */  li    $t6, 0x80330000 # 0.000000
-/* 00F940 80254940 8DCEC9D8 */  lw    $t6, %lo(D_8032C9D8)($t6)
+/* 00F940 80254940 8DCEC9D8 */  lw    $t6, %lo(gMarioState)($t6)
 /* 00F944 80254944 44802000 */  mtc1  $zero, $f4
 /* 00F948 80254948 00000000 */  nop   
 /* 00F94C 8025494C E5C40054 */  swc1  $f4, 0x54($t6)
-/* 00F950 80254950 3C0F8033 */  lui   $t7, %hi(D_8032C9D8) # $t7, 0x8033
-/* 00F954 80254954 8DEFC9D8 */  lw    $t7, %lo(D_8032C9D8)($t7)
+/* 00F950 80254950 3C0F8033 */  lui   $t7, %hi(gMarioState) # $t7, 0x8033
+/* 00F954 80254954 8DEFC9D8 */  lw    $t7, %lo(gMarioState)($t7)
 /* 00F958 80254958 A1E000B4 */  sb    $zero, 0xb4($t7)
-/* 00F95C 8025495C 3C188033 */  lui   $t8, %hi(D_8032C9D8) # $t8, 0x8033
-/* 00F960 80254960 8F18C9D8 */  lw    $t8, %lo(D_8032C9D8)($t8)
+/* 00F95C 8025495C 3C188033 */  lui   $t8, %hi(gMarioState) # $t8, 0x8033
+/* 00F960 80254960 8F18C9D8 */  lw    $t8, %lo(gMarioState)($t8)
 /* 00F964 80254964 A30000B2 */  sb    $zero, 0xb2($t8)
-/* 00F968 80254968 3C198033 */  lui   $t9, %hi(D_8032C9D8) # $t9, 0x8033
-/* 00F96C 8025496C 8F39C9D8 */  lw    $t9, %lo(D_8032C9D8)($t9)
+/* 00F968 80254968 3C198033 */  lui   $t9, %hi(gMarioState) # $t9, 0x8033
+/* 00F96C 8025496C 8F39C9D8 */  lw    $t9, %lo(gMarioState)($t9)
 /* 00F970 80254970 A32000B3 */  sb    $zero, 0xb3($t9)
-/* 00F974 80254974 3C088033 */  lui   $t0, %hi(D_8032C9D8) # $t0, 0x8033
-/* 00F978 80254978 8D08C9D8 */  lw    $t0, %lo(D_8032C9D8)($t0)
+/* 00F974 80254974 3C088033 */  lui   $t0, %hi(gMarioState) # $t0, 0x8033
+/* 00F978 80254978 8D08C9D8 */  lw    $t0, %lo(gMarioState)($t0)
 /* 00F97C 8025497C A50000B6 */  sh    $zero, 0xb6($t0)
 /* 00F980 80254980 3C098033 */  li    $t1, 0x80330000 # 0.000000
-/* 00F984 80254984 8D29C9D8 */  lw    $t1, %lo(D_8032C9D8)($t1)
+/* 00F984 80254984 8D29C9D8 */  lw    $t1, %lo(gMarioState)($t1)
 /* 00F988 80254988 44803000 */  mtc1  $zero, $f6
 /* 00F98C 8025498C 00000000 */  nop   
 /* 00F990 80254990 E52600C0 */  swc1  $f6, 0xc0($t1)
-/* 00F994 80254994 3C0A8033 */  lui   $t2, %hi(D_8032C9D8) # $t2, 0x8033
-/* 00F998 80254998 8D4AC9D8 */  lw    $t2, %lo(D_8032C9D8)($t2)
+/* 00F994 80254994 3C0A8033 */  lui   $t2, %hi(gMarioState) # $t2, 0x8033
+/* 00F998 80254998 8D4AC9D8 */  lw    $t2, %lo(gMarioState)($t2)
 /* 00F99C 8025499C AD40007C */  sw    $zero, 0x7c($t2)
-/* 00F9A0 802549A0 3C0B8033 */  lui   $t3, %hi(D_8032C9D8) # $t3, 0x8033
-/* 00F9A4 802549A4 8D6BC9D8 */  lw    $t3, %lo(D_8032C9D8)($t3)
+/* 00F9A0 802549A0 3C0B8033 */  lui   $t3, %hi(gMarioState) # $t3, 0x8033
+/* 00F9A4 802549A4 8D6BC9D8 */  lw    $t3, %lo(gMarioState)($t3)
 /* 00F9A8 802549A8 AD600084 */  sw    $zero, 0x84($t3)
-/* 00F9AC 802549AC 3C0C8033 */  lui   $t4, %hi(D_8032C9D8) # $t4, 0x8033
-/* 00F9B0 802549B0 8D8CC9D8 */  lw    $t4, %lo(D_8032C9D8)($t4)
+/* 00F9AC 802549AC 3C0C8033 */  lui   $t4, %hi(gMarioState) # $t4, 0x8033
+/* 00F9B0 802549B0 8D8CC9D8 */  lw    $t4, %lo(gMarioState)($t4)
 /* 00F9B4 802549B4 AD800080 */  sw    $zero, 0x80($t4)
 /* 00F9B8 802549B8 3C0D8033 */  lui   $t5, %hi(D_8032CE60) # $t5, 0x8033
 /* 00F9BC 802549BC 8DADCE60 */  lw    $t5, %lo(D_8032CE60)($t5)
@@ -4712,83 +4712,83 @@ glabel func_802548BC
 /* 00F9D4 802549D4 0C0E06E8 */  jal   func_80381BA0
 /* 00F9D8 802549D8 468053A0 */   cvt.s.w $f14, $f10
 /* 00F9DC 802549DC 4600040D */  trunc.w.s $f16, $f0
-/* 00F9E0 802549E0 3C088033 */  lui   $t0, %hi(D_8032C9D8) # $t0, 0x8033
-/* 00F9E4 802549E4 8D08C9D8 */  lw    $t0, %lo(D_8032C9D8)($t0)
+/* 00F9E0 802549E0 3C088033 */  lui   $t0, %hi(gMarioState) # $t0, 0x8033
+/* 00F9E4 802549E4 8D08C9D8 */  lw    $t0, %lo(gMarioState)($t0)
 /* 00F9E8 802549E8 44198000 */  mfc1  $t9, $f16
 /* 00F9EC 802549EC 00000000 */  nop   
 /* 00F9F0 802549F0 A5190076 */  sh    $t9, 0x76($t0)
 /* 00F9F4 802549F4 3C098033 */  lui   $t1, %hi(D_8032CE6C) # $t1, 0x8033
-/* 00F9F8 802549F8 3C0A8033 */  lui   $t2, %hi(D_8032C9D8) # $t2, 0x8033
-/* 00F9FC 802549FC 8D4AC9D8 */  lw    $t2, %lo(D_8032C9D8)($t2)
+/* 00F9F8 802549F8 3C0A8033 */  lui   $t2, %hi(gMarioState) # $t2, 0x8033
+/* 00F9FC 802549FC 8D4AC9D8 */  lw    $t2, %lo(gMarioState)($t2)
 /* 00FA00 80254A00 8D29CE6C */  lw    $t1, %lo(D_8032CE6C)($t1)
 /* 00FA04 80254A04 AD490090 */  sw    $t1, 0x90($t2)
 /* 00FA08 80254A08 3C0B8036 */  lui   $t3, %hi(gMarioObject) # $t3, 0x8036
-/* 00FA0C 80254A0C 3C0C8033 */  lui   $t4, %hi(D_8032C9D8) # $t4, 0x8033
-/* 00FA10 80254A10 8D8CC9D8 */  lw    $t4, %lo(D_8032C9D8)($t4)
+/* 00FA0C 80254A0C 3C0C8033 */  lui   $t4, %hi(gMarioState) # $t4, 0x8033
+/* 00FA10 80254A10 8D8CC9D8 */  lw    $t4, %lo(gMarioState)($t4)
 /* 00FA14 80254A14 8D6BFDE8 */  lw    $t3, %lo(gMarioObject)($t3)
 /* 00FA18 80254A18 AD8B0088 */  sw    $t3, 0x88($t4)
-/* 00FA1C 80254A1C 3C0D8033 */  lui   $t5, %hi(D_8032C9D8) # $t5, 0x8033
-/* 00FA20 80254A20 8DADC9D8 */  lw    $t5, %lo(D_8032C9D8)($t5)
+/* 00FA1C 80254A1C 3C0D8033 */  lui   $t5, %hi(gMarioState) # $t5, 0x8033
+/* 00FA20 80254A20 8DADC9D8 */  lw    $t5, %lo(gMarioState)($t5)
 /* 00FA24 80254A24 240EFFFF */  li    $t6, -1
 /* 00FA28 80254A28 8DAF0088 */  lw    $t7, 0x88($t5)
 /* 00FA2C 80254A2C A5EE0038 */  sh    $t6, 0x38($t7)
-/* 00FA30 80254A30 3C048033 */  lui   $a0, %hi(D_8032C9D8) # $a0, 0x8033
+/* 00FA30 80254A30 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
 /* 00FA34 80254A34 3C058033 */  lui   $a1, %hi(D_8032CE60) # $a1, 0x8033
 /* 00FA38 80254A38 8CA5CE60 */  lw    $a1, %lo(D_8032CE60)($a1)
-/* 00FA3C 80254A3C 8C84C9D8 */  lw    $a0, %lo(D_8032C9D8)($a0)
+/* 00FA3C 80254A3C 8C84C9D8 */  lw    $a0, %lo(gMarioState)($a0)
 /* 00FA40 80254A40 24A50006 */  addiu $a1, $a1, 6
 /* 00FA44 80254A44 0C0DE24F */  jal   vec3s_copy
 /* 00FA48 80254A48 2484002C */   addiu $a0, $a0, 0x2c
-/* 00FA4C 80254A4C 3C048033 */  lui   $a0, %hi(D_8032C9D8) # $a0, 0x8033
-/* 00FA50 80254A50 8C84C9D8 */  lw    $a0, %lo(D_8032C9D8)($a0)
+/* 00FA4C 80254A4C 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
+/* 00FA50 80254A50 8C84C9D8 */  lw    $a0, %lo(gMarioState)($a0)
 /* 00FA54 80254A54 00002825 */  move  $a1, $zero
 /* 00FA58 80254A58 00003025 */  move  $a2, $zero
 /* 00FA5C 80254A5C 00003825 */  move  $a3, $zero
 /* 00FA60 80254A60 0C0DE25F */  jal   vec3s_set
 /* 00FA64 80254A64 24840032 */   addiu $a0, $a0, 0x32
-/* 00FA68 80254A68 3C048033 */  lui   $a0, %hi(D_8032C9D8) # $a0, 0x8033
-/* 00FA6C 80254A6C 8C84C9D8 */  lw    $a0, %lo(D_8032C9D8)($a0)
+/* 00FA68 80254A68 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
+/* 00FA6C 80254A6C 8C84C9D8 */  lw    $a0, %lo(gMarioState)($a0)
 /* 00FA70 80254A70 3C058033 */  lui   $a1, %hi(D_8032CE60) # $a1, 0x8033
 /* 00FA74 80254A74 8CA5CE60 */  lw    $a1, %lo(D_8032CE60)($a1)
 /* 00FA78 80254A78 0C0DE2B4 */  jal   vec3s_to_vec3f
 /* 00FA7C 80254A7C 2484003C */   addiu $a0, $a0, 0x3c
-/* 00FA80 80254A80 3C048033 */  lui   $a0, %hi(D_8032C9D8) # $a0, 0x8033
-/* 00FA84 80254A84 8C84C9D8 */  lw    $a0, %lo(D_8032C9D8)($a0)
+/* 00FA80 80254A80 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
+/* 00FA84 80254A84 8C84C9D8 */  lw    $a0, %lo(gMarioState)($a0)
 /* 00FA88 80254A88 24050000 */  li    $a1, 0
 /* 00FA8C 80254A8C 24060000 */  li    $a2, 0
 /* 00FA90 80254A90 24070000 */  li    $a3, 0
 /* 00FA94 80254A94 0C0DE210 */  jal   vec3f_set
 /* 00FA98 80254A98 24840048 */   addiu $a0, $a0, 0x48
-/* 00FA9C 80254A9C 3C188033 */  lui   $t8, %hi(D_8032C9D8) # $t8, 0x8033
-/* 00FAA0 80254AA0 8F18C9D8 */  lw    $t8, %lo(D_8032C9D8)($t8)
+/* 00FA9C 80254A9C 3C188033 */  lui   $t8, %hi(gMarioState) # $t8, 0x8033
+/* 00FAA0 80254AA0 8F18C9D8 */  lw    $t8, %lo(gMarioState)($t8)
 /* 00FAA4 80254AA4 C70C003C */  lwc1  $f12, 0x3c($t8)
 /* 00FAA8 80254AA8 C70E0040 */  lwc1  $f14, 0x40($t8)
 /* 00FAAC 80254AAC 8F060044 */  lw    $a2, 0x44($t8)
 /* 00FAB0 80254AB0 0C0E0640 */  jal   func_80381900
 /* 00FAB4 80254AB4 27070068 */   addiu $a3, $t8, 0x68
-/* 00FAB8 80254AB8 3C198033 */  lui   $t9, %hi(D_8032C9D8) # $t9, 0x8033
-/* 00FABC 80254ABC 8F39C9D8 */  lw    $t9, %lo(D_8032C9D8)($t9)
+/* 00FAB8 80254AB8 3C198033 */  lui   $t9, %hi(gMarioState) # $t9, 0x8033
+/* 00FABC 80254ABC 8F39C9D8 */  lw    $t9, %lo(gMarioState)($t9)
 /* 00FAC0 80254AC0 E7200070 */  swc1  $f0, 0x70($t9)
-/* 00FAC4 80254AC4 3C088033 */  lui   $t0, %hi(D_8032C9D8) # $t0, 0x8033
-/* 00FAC8 80254AC8 8D08C9D8 */  lw    $t0, %lo(D_8032C9D8)($t0)
+/* 00FAC4 80254AC4 3C088033 */  lui   $t0, %hi(gMarioState) # $t0, 0x8033
+/* 00FAC8 80254AC8 8D08C9D8 */  lw    $t0, %lo(gMarioState)($t0)
 /* 00FACC 80254ACC C5120040 */  lwc1  $f18, 0x40($t0)
 /* 00FAD0 80254AD0 C5040070 */  lwc1  $f4, 0x70($t0)
 /* 00FAD4 80254AD4 4604903C */  c.lt.s $f18, $f4
 /* 00FAD8 80254AD8 00000000 */  nop   
 /* 00FADC 80254ADC 45000005 */  bc1f  .L80254AF4
 /* 00FAE0 80254AE0 00000000 */   nop   
-/* 00FAE4 80254AE4 3C098033 */  lui   $t1, %hi(D_8032C9D8) # $t1, 0x8033
-/* 00FAE8 80254AE8 8D29C9D8 */  lw    $t1, %lo(D_8032C9D8)($t1)
+/* 00FAE4 80254AE4 3C098033 */  lui   $t1, %hi(gMarioState) # $t1, 0x8033
+/* 00FAE8 80254AE8 8D29C9D8 */  lw    $t1, %lo(gMarioState)($t1)
 /* 00FAEC 80254AEC C5260070 */  lwc1  $f6, 0x70($t1)
 /* 00FAF0 80254AF0 E5260040 */  swc1  $f6, 0x40($t1)
 .L80254AF4:
-/* 00FAF4 80254AF4 3C0A8033 */  lui   $t2, %hi(D_8032C9D8) # $t2, 0x8033
-/* 00FAF8 80254AF8 8D4AC9D8 */  lw    $t2, %lo(D_8032C9D8)($t2)
+/* 00FAF4 80254AF4 3C0A8033 */  lui   $t2, %hi(gMarioState) # $t2, 0x8033
+/* 00FAF8 80254AF8 8D4AC9D8 */  lw    $t2, %lo(gMarioState)($t2)
 /* 00FAFC 80254AFC C5480040 */  lwc1  $f8, 0x40($t2)
 /* 00FB00 80254B00 8D4B0088 */  lw    $t3, 0x88($t2)
 /* 00FB04 80254B04 E5680024 */  swc1  $f8, 0x24($t3)
-/* 00FB08 80254B08 3C0C8033 */  lui   $t4, %hi(D_8032C9D8) # $t4, 0x8033
-/* 00FB0C 80254B0C 8D8CC9D8 */  lw    $t4, %lo(D_8032C9D8)($t4)
+/* 00FB08 80254B08 3C0C8033 */  lui   $t4, %hi(gMarioState) # $t4, 0x8033
+/* 00FB0C 80254B0C 8D8CC9D8 */  lw    $t4, %lo(gMarioState)($t4)
 /* 00FB10 80254B10 858D0076 */  lh    $t5, 0x76($t4)
 /* 00FB14 80254B14 C58A0040 */  lwc1  $f10, 0x40($t4)
 /* 00FB18 80254B18 25AEFF9C */  addiu $t6, $t5, -0x64
@@ -4804,60 +4804,60 @@ glabel func_802548BC
 /* 00FB40 80254B40 10000006 */  b     .L80254B5C
 /* 00FB44 80254B44 AD8F000C */   sw    $t7, 0xc($t4)
 .L80254B48:
-/* 00FB48 80254B48 3C198033 */  lui   $t9, %hi(D_8032C9D8) # $t9, 0x8033
-/* 00FB4C 80254B4C 8F39C9D8 */  lw    $t9, %lo(D_8032C9D8)($t9)
+/* 00FB48 80254B48 3C198033 */  lui   $t9, %hi(gMarioState) # $t9, 0x8033
+/* 00FB4C 80254B4C 8F39C9D8 */  lw    $t9, %lo(gMarioState)($t9)
 /* 00FB50 80254B50 3C180C40 */  lui   $t8, (0x0C400201 >> 16) # lui $t8, 0xc40
 /* 00FB54 80254B54 37180201 */  ori   $t8, (0x0C400201 & 0xFFFF) # ori $t8, $t8, 0x201
 /* 00FB58 80254B58 AF38000C */  sw    $t8, 0xc($t9)
 .L80254B5C:
-/* 00FB5C 80254B5C 3C048033 */  lui   $a0, %hi(D_8032C9D8) # $a0, 0x8033
+/* 00FB5C 80254B5C 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
 /* 00FB60 80254B60 0C095043 */  jal   func_8025410C
-/* 00FB64 80254B64 8C84C9D8 */   lw    $a0, %lo(D_8032C9D8)($a0)
-/* 00FB68 80254B68 3C048033 */  lui   $a0, %hi(D_8032C9D8) # $a0, 0x8033
+/* 00FB64 80254B64 8C84C9D8 */   lw    $a0, %lo(gMarioState)($a0)
+/* 00FB68 80254B68 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
 /* 00FB6C 80254B6C 0C095022 */  jal   func_80254088
-/* 00FB70 80254B70 8C84C9D8 */   lw    $a0, %lo(D_8032C9D8)($a0)
-/* 00FB74 80254B74 3C088033 */  lui   $t0, %hi(D_8032C9D8) # $t0, 0x8033
-/* 00FB78 80254B78 8D08C9D8 */  lw    $t0, %lo(D_8032C9D8)($t0)
+/* 00FB70 80254B70 8C84C9D8 */   lw    $a0, %lo(gMarioState)($a0)
+/* 00FB74 80254B74 3C088033 */  lui   $t0, %hi(gMarioState) # $t0, 0x8033
+/* 00FB78 80254B78 8D08C9D8 */  lw    $t0, %lo(gMarioState)($t0)
 /* 00FB7C 80254B7C 8D090098 */  lw    $t1, 0x98($t0)
 /* 00FB80 80254B80 A120000B */  sb    $zero, 0xb($t1)
-/* 00FB84 80254B84 3C0A8033 */  lui   $t2, %hi(D_8032C9D8) # $t2, 0x8033
-/* 00FB88 80254B88 8D4AC9D8 */  lw    $t2, %lo(D_8032C9D8)($t2)
+/* 00FB84 80254B84 3C0A8033 */  lui   $t2, %hi(gMarioState) # $t2, 0x8033
+/* 00FB88 80254B88 8D4AC9D8 */  lw    $t2, %lo(gMarioState)($t2)
 /* 00FB8C 80254B8C C544003C */  lwc1  $f4, 0x3c($t2)
 /* 00FB90 80254B90 8D4B0088 */  lw    $t3, 0x88($t2)
 /* 00FB94 80254B94 E56400A0 */  swc1  $f4, 0xa0($t3)
-/* 00FB98 80254B98 3C0D8033 */  lui   $t5, %hi(D_8032C9D8) # $t5, 0x8033
-/* 00FB9C 80254B9C 8DADC9D8 */  lw    $t5, %lo(D_8032C9D8)($t5)
+/* 00FB98 80254B98 3C0D8033 */  lui   $t5, %hi(gMarioState) # $t5, 0x8033
+/* 00FB9C 80254B9C 8DADC9D8 */  lw    $t5, %lo(gMarioState)($t5)
 /* 00FBA0 80254BA0 C5A60040 */  lwc1  $f6, 0x40($t5)
 /* 00FBA4 80254BA4 8DAE0088 */  lw    $t6, 0x88($t5)
 /* 00FBA8 80254BA8 E5C600A4 */  swc1  $f6, 0xa4($t6)
-/* 00FBAC 80254BAC 3C0F8033 */  lui   $t7, %hi(D_8032C9D8) # $t7, 0x8033
-/* 00FBB0 80254BB0 8DEFC9D8 */  lw    $t7, %lo(D_8032C9D8)($t7)
+/* 00FBAC 80254BAC 3C0F8033 */  lui   $t7, %hi(gMarioState) # $t7, 0x8033
+/* 00FBB0 80254BB0 8DEFC9D8 */  lw    $t7, %lo(gMarioState)($t7)
 /* 00FBB4 80254BB4 C5E80044 */  lwc1  $f8, 0x44($t7)
 /* 00FBB8 80254BB8 8DEC0088 */  lw    $t4, 0x88($t7)
 /* 00FBBC 80254BBC E58800A8 */  swc1  $f8, 0xa8($t4)
-/* 00FBC0 80254BC0 3C188033 */  lui   $t8, %hi(D_8032C9D8) # $t8, 0x8033
-/* 00FBC4 80254BC4 8F18C9D8 */  lw    $t8, %lo(D_8032C9D8)($t8)
+/* 00FBC0 80254BC0 3C188033 */  lui   $t8, %hi(gMarioState) # $t8, 0x8033
+/* 00FBC4 80254BC4 8F18C9D8 */  lw    $t8, %lo(gMarioState)($t8)
 /* 00FBC8 80254BC8 8719002C */  lh    $t9, 0x2c($t8)
 /* 00FBCC 80254BCC 8F080088 */  lw    $t0, 0x88($t8)
 /* 00FBD0 80254BD0 AD1900C4 */  sw    $t9, 0xc4($t0)
-/* 00FBD4 80254BD4 3C098033 */  lui   $t1, %hi(D_8032C9D8) # $t1, 0x8033
-/* 00FBD8 80254BD8 8D29C9D8 */  lw    $t1, %lo(D_8032C9D8)($t1)
+/* 00FBD4 80254BD4 3C098033 */  lui   $t1, %hi(gMarioState) # $t1, 0x8033
+/* 00FBD8 80254BD8 8D29C9D8 */  lw    $t1, %lo(gMarioState)($t1)
 /* 00FBDC 80254BDC 852A002E */  lh    $t2, 0x2e($t1)
 /* 00FBE0 80254BE0 8D2B0088 */  lw    $t3, 0x88($t1)
 /* 00FBE4 80254BE4 AD6A00C8 */  sw    $t2, 0xc8($t3)
-/* 00FBE8 80254BE8 3C0D8033 */  lui   $t5, %hi(D_8032C9D8) # $t5, 0x8033
-/* 00FBEC 80254BEC 8DADC9D8 */  lw    $t5, %lo(D_8032C9D8)($t5)
+/* 00FBE8 80254BE8 3C0D8033 */  lui   $t5, %hi(gMarioState) # $t5, 0x8033
+/* 00FBEC 80254BEC 8DADC9D8 */  lw    $t5, %lo(gMarioState)($t5)
 /* 00FBF0 80254BF0 85AE0030 */  lh    $t6, 0x30($t5)
 /* 00FBF4 80254BF4 8DAF0088 */  lw    $t7, 0x88($t5)
 /* 00FBF8 80254BF8 ADEE00CC */  sw    $t6, 0xcc($t7)
-/* 00FBFC 80254BFC 3C0C8033 */  lui   $t4, %hi(D_8032C9D8) # $t4, 0x8033
-/* 00FC00 80254C00 8D8CC9D8 */  lw    $t4, %lo(D_8032C9D8)($t4)
+/* 00FBFC 80254BFC 3C0C8033 */  lui   $t4, %hi(gMarioState) # $t4, 0x8033
+/* 00FC00 80254C00 8D8CC9D8 */  lw    $t4, %lo(gMarioState)($t4)
 /* 00FC04 80254C04 8D840088 */  lw    $a0, 0x88($t4)
 /* 00FC08 80254C08 2585003C */  addiu $a1, $t4, 0x3c
 /* 00FC0C 80254C0C 0C0DE200 */  jal   vec3f_copy
 /* 00FC10 80254C10 24840020 */   addiu $a0, $a0, 0x20
-/* 00FC14 80254C14 3C188033 */  lui   $t8, %hi(D_8032C9D8) # $t8, 0x8033
-/* 00FC18 80254C18 8F18C9D8 */  lw    $t8, %lo(D_8032C9D8)($t8)
+/* 00FC14 80254C14 3C188033 */  lui   $t8, %hi(gMarioState) # $t8, 0x8033
+/* 00FC18 80254C18 8F18C9D8 */  lw    $t8, %lo(gMarioState)($t8)
 /* 00FC1C 80254C1C 00002825 */  move  $a1, $zero
 /* 00FC20 80254C20 00003825 */  move  $a3, $zero
 /* 00FC24 80254C24 8F040088 */  lw    $a0, 0x88($t8)
@@ -4868,8 +4868,8 @@ glabel func_802548BC
 /* 00FC38 80254C38 27A40020 */   addiu $a0, $sp, 0x20
 /* 00FC3C 80254C3C 10400022 */  beqz  $v0, .L80254CC8
 /* 00FC40 80254C40 00000000 */   nop   
-/* 00FC44 80254C44 3C198033 */  lui   $t9, %hi(D_8032C9D8) # $t9, 0x8033
-/* 00FC48 80254C48 8F39C9D8 */  lw    $t9, %lo(D_8032C9D8)($t9)
+/* 00FC44 80254C44 3C198033 */  lui   $t9, %hi(gMarioState) # $t9, 0x8033
+/* 00FC48 80254C48 8F39C9D8 */  lw    $t9, %lo(gMarioState)($t9)
 /* 00FC4C 80254C4C 3C061300 */  lui   $a2, %hi(D_13003DD8) # $a2, 0x1300
 /* 00FC50 80254C50 24C63DD8 */  addiu $a2, %lo(D_13003DD8) # addiu $a2, $a2, 0x3dd8
 /* 00FC54 80254C54 24050088 */  li    $a1, 136
@@ -4913,42 +4913,42 @@ glabel func_802548BC
 glabel func_80254CE0
 /* 00FCE0 80254CE0 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 00FCE4 80254CE4 AFBF0014 */  sw    $ra, 0x14($sp)
-/* 00FCE8 80254CE8 3C0E8033 */  lui   $t6, %hi(D_8032C9D8) # $t6, 0x8033
-/* 00FCEC 80254CEC 8DCEC9D8 */  lw    $t6, %lo(D_8032C9D8)($t6)
+/* 00FCE8 80254CE8 3C0E8033 */  lui   $t6, %hi(gMarioState) # $t6, 0x8033
+/* 00FCEC 80254CEC 8DCEC9D8 */  lw    $t6, %lo(gMarioState)($t6)
 /* 00FCF0 80254CF0 A5C00000 */  sh    $zero, ($t6)
-/* 00FCF4 80254CF4 3C0F8033 */  lui   $t7, %hi(D_8032C9D8) # $t7, 0x8033
-/* 00FCF8 80254CF8 8DEFC9D8 */  lw    $t7, %lo(D_8032C9D8)($t7)
+/* 00FCF4 80254CF4 3C0F8033 */  lui   $t7, %hi(gMarioState) # $t7, 0x8033
+/* 00FCF8 80254CF8 8DEFC9D8 */  lw    $t7, %lo(gMarioState)($t7)
 /* 00FCFC 80254CFC ADE00004 */  sw    $zero, 4($t7)
-/* 00FD00 80254D00 3C188033 */  lui   $t8, %hi(D_8032C9D8) # $t8, 0x8033
-/* 00FD04 80254D04 8F18C9D8 */  lw    $t8, %lo(D_8032C9D8)($t8)
+/* 00FD00 80254D00 3C188033 */  lui   $t8, %hi(gMarioState) # $t8, 0x8033
+/* 00FD04 80254D04 8F18C9D8 */  lw    $t8, %lo(gMarioState)($t8)
 /* 00FD08 80254D08 AF00000C */  sw    $zero, 0xc($t8)
-/* 00FD0C 80254D0C 3C088033 */  lui   $t0, %hi(D_8032C9D8) # $t0, 0x8033
-/* 00FD10 80254D10 8D08C9D8 */  lw    $t0, %lo(D_8032C9D8)($t0)
+/* 00FD0C 80254D0C 3C088033 */  lui   $t0, %hi(gMarioState) # $t0, 0x8033
+/* 00FD10 80254D10 8D08C9D8 */  lw    $t0, %lo(gMarioState)($t0)
 /* 00FD14 80254D14 3C198034 */  lui   $t9, %hi(D_8033A140) # $t9, 0x8034
 /* 00FD18 80254D18 2739A140 */  addiu $t9, %lo(D_8033A140) # addiu $t9, $t9, -0x5ec0
 /* 00FD1C 80254D1C AD19008C */  sw    $t9, 0x8c($t0)
-/* 00FD20 80254D20 3C0A8033 */  lui   $t2, %hi(D_8032C9D8) # $t2, 0x8033
-/* 00FD24 80254D24 8D4AC9D8 */  lw    $t2, %lo(D_8032C9D8)($t2)
+/* 00FD20 80254D20 3C0A8033 */  lui   $t2, %hi(gMarioState) # $t2, 0x8033
+/* 00FD24 80254D24 8D4AC9D8 */  lw    $t2, %lo(gMarioState)($t2)
 /* 00FD28 80254D28 3C098034 */  lui   $t1, %hi(D_8033B1B0) # $t1, 0x8034
 /* 00FD2C 80254D2C 2529B1B0 */  addiu $t1, %lo(D_8033B1B0) # addiu $t1, $t1, -0x4e50
 /* 00FD30 80254D30 AD490094 */  sw    $t1, 0x94($t2)
-/* 00FD34 80254D34 3C0C8033 */  lui   $t4, %hi(D_8032C9D8) # $t4, 0x8033
-/* 00FD38 80254D38 8D8CC9D8 */  lw    $t4, %lo(D_8032C9D8)($t4)
+/* 00FD34 80254D34 3C0C8033 */  lui   $t4, %hi(gMarioState) # $t4, 0x8033
+/* 00FD38 80254D38 8D8CC9D8 */  lw    $t4, %lo(gMarioState)($t4)
 /* 00FD3C 80254D3C 3C0B8034 */  lui   $t3, %hi(D_8033A040) # $t3, 0x8034
 /* 00FD40 80254D40 256BA040 */  addiu $t3, %lo(D_8033A040) # addiu $t3, $t3, -0x5fc0
 /* 00FD44 80254D44 AD8B0098 */  sw    $t3, 0x98($t4)
-/* 00FD48 80254D48 3C0E8033 */  lui   $t6, %hi(D_8032C9D8) # $t6, 0x8033
-/* 00FD4C 80254D4C 8DCEC9D8 */  lw    $t6, %lo(D_8032C9D8)($t6)
+/* 00FD48 80254D48 3C0E8033 */  lui   $t6, %hi(gMarioState) # $t6, 0x8033
+/* 00FD4C 80254D4C 8DCEC9D8 */  lw    $t6, %lo(gMarioState)($t6)
 /* 00FD50 80254D50 3C0D8034 */  lui   $t5, %hi(gControllers) # $t5, 0x8034
 /* 00FD54 80254D54 25AD9C20 */  addiu $t5, %lo(gControllers) # addiu $t5, $t5, -0x63e0
 /* 00FD58 80254D58 ADCD009C */  sw    $t5, 0x9c($t6)
-/* 00FD5C 80254D5C 3C188033 */  lui   $t8, %hi(D_8032C9D8) # $t8, 0x8033
-/* 00FD60 80254D60 8F18C9D8 */  lw    $t8, %lo(D_8032C9D8)($t8)
+/* 00FD5C 80254D5C 3C188033 */  lui   $t8, %hi(gMarioState) # $t8, 0x8033
+/* 00FD60 80254D60 8F18C9D8 */  lw    $t8, %lo(gMarioState)($t8)
 /* 00FD64 80254D64 3C0F8034 */  lui   $t7, %hi(D_80339D10) # $t7, 0x8034
 /* 00FD68 80254D68 25EF9D10 */  addiu $t7, %lo(D_80339D10) # addiu $t7, $t7, -0x62f0
 /* 00FD6C 80254D6C AF0F00A0 */  sw    $t7, 0xa0($t8)
-/* 00FD70 80254D70 3C198033 */  lui   $t9, %hi(D_8032C9D8) # $t9, 0x8033
-/* 00FD74 80254D74 8F39C9D8 */  lw    $t9, %lo(D_8032C9D8)($t9)
+/* 00FD70 80254D70 3C198033 */  lui   $t9, %hi(gMarioState) # $t9, 0x8033
+/* 00FD74 80254D74 8F39C9D8 */  lw    $t9, %lo(gMarioState)($t9)
 /* 00FD78 80254D78 A72000A8 */  sh    $zero, 0xa8($t9)
 /* 00FD7C 80254D7C 3C048033 */  lui   $a0, %hi(D_8032FFFF) # $a0, 0x8033
 /* 00FD80 80254D80 8484CE94 */  lh    $a0, %lo(gCurrSaveFileNum)($a0)
@@ -4956,26 +4956,26 @@ glabel func_80254CE0
 /* 00FD88 80254D88 24060018 */  li    $a2, 24
 /* 00FD8C 80254D8C 0C09E698 */  jal   save_file_get_total_star_count
 /* 00FD90 80254D90 2484FFFF */   addiu $a0, %lo(D_8032FFFF) # addiu $a0, $a0, -1
-/* 00FD94 80254D94 3C088033 */  lui   $t0, %hi(D_8032C9D8) # $t0, 0x8033
-/* 00FD98 80254D98 8D08C9D8 */  lw    $t0, %lo(D_8032C9D8)($t0)
+/* 00FD94 80254D94 3C088033 */  lui   $t0, %hi(gMarioState) # $t0, 0x8033
+/* 00FD98 80254D98 8D08C9D8 */  lw    $t0, %lo(gMarioState)($t0)
 /* 00FD9C 80254D9C A50200AA */  sh    $v0, 0xaa($t0)
-/* 00FDA0 80254DA0 3C098033 */  lui   $t1, %hi(D_8032C9D8) # $t1, 0x8033
-/* 00FDA4 80254DA4 8D29C9D8 */  lw    $t1, %lo(D_8032C9D8)($t1)
+/* 00FDA0 80254DA0 3C098033 */  lui   $t1, %hi(gMarioState) # $t1, 0x8033
+/* 00FDA4 80254DA4 8D29C9D8 */  lw    $t1, %lo(gMarioState)($t1)
 /* 00FDA8 80254DA8 A12000AC */  sb    $zero, 0xac($t1)
-/* 00FDAC 80254DAC 3C0B8033 */  lui   $t3, %hi(D_8032C9D8) # $t3, 0x8033
-/* 00FDB0 80254DB0 8D6BC9D8 */  lw    $t3, %lo(D_8032C9D8)($t3)
+/* 00FDAC 80254DAC 3C0B8033 */  lui   $t3, %hi(gMarioState) # $t3, 0x8033
+/* 00FDB0 80254DB0 8D6BC9D8 */  lw    $t3, %lo(gMarioState)($t3)
 /* 00FDB4 80254DB4 240A0004 */  li    $t2, 4
 /* 00FDB8 80254DB8 A16A00AD */  sb    $t2, 0xad($t3)
-/* 00FDBC 80254DBC 3C0D8033 */  lui   $t5, %hi(D_8032C9D8) # $t5, 0x8033
-/* 00FDC0 80254DC0 8DADC9D8 */  lw    $t5, %lo(D_8032C9D8)($t5)
+/* 00FDBC 80254DBC 3C0D8033 */  lui   $t5, %hi(gMarioState) # $t5, 0x8033
+/* 00FDC0 80254DC0 8DADC9D8 */  lw    $t5, %lo(gMarioState)($t5)
 /* 00FDC4 80254DC4 240C0880 */  li    $t4, 2176
 /* 00FDC8 80254DC8 A5AC00AE */  sh    $t4, 0xae($t5)
-/* 00FDCC 80254DCC 3C0E8033 */  lui   $t6, %hi(D_8032C9D8) # $t6, 0x8033
-/* 00FDD0 80254DD0 8DCEC9D8 */  lw    $t6, %lo(D_8032C9D8)($t6)
+/* 00FDCC 80254DCC 3C0E8033 */  lui   $t6, %hi(gMarioState) # $t6, 0x8033
+/* 00FDD0 80254DD0 8DCEC9D8 */  lw    $t6, %lo(gMarioState)($t6)
 /* 00FDD4 80254DD4 85CF00AA */  lh    $t7, 0xaa($t6)
 /* 00FDD8 80254DD8 A5CF00B8 */  sh    $t7, 0xb8($t6)
-/* 00FDDC 80254DDC 3C198033 */  lui   $t9, %hi(D_8032C9D8) # $t9, 0x8033
-/* 00FDE0 80254DE0 8F39C9D8 */  lw    $t9, %lo(D_8032C9D8)($t9)
+/* 00FDDC 80254DDC 3C198033 */  lui   $t9, %hi(gMarioState) # $t9, 0x8033
+/* 00FDE0 80254DE0 8F39C9D8 */  lw    $t9, %lo(gMarioState)($t9)
 /* 00FDE4 80254DE4 241800BD */  li    $t8, 189
 /* 00FDE8 80254DE8 A73800B0 */  sh    $t8, 0xb0($t9)
 /* 00FDEC 80254DEC 3C018034 */  lui   $at, %hi(D_80339EF2) # $at, 0x8034

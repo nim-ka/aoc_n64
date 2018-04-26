@@ -3,7 +3,7 @@
 #include "sm64.h"
 #include "math_util.h"
 
-static s16 movingSandSpeeds[] = { 12, 8, 4, 0 };
+static s16 sMovingSandSpeeds[] = { 12, 8, 4, 0 };
 
 struct Surface gWaterSurfacePseudoFloor = {
   SURFACE_0013,
@@ -178,7 +178,7 @@ u32 mario_update_moving_sand(struct MarioState *m)
         floorType == SURFACE_002D)
     {
         s16 pushAngle = floor->unk02 << 8;
-        f32 pushSpeed = movingSandSpeeds[floor->unk02 >> 8];
+        f32 pushSpeed = sMovingSandSpeeds[floor->unk02 >> 8];
 
         m->vel[0] += pushSpeed * sins(pushAngle);
         m->vel[2] += pushSpeed * coss(pushAngle);

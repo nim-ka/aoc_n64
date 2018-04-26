@@ -23,6 +23,7 @@ SECTIONS
       build/src/input.o(.text);
       build/src/sound_init.o(.text);
       build/asm/credits.o(.text);
+      build/src/interaction.o(.text);
       build/asm/interaction.o(.text);
       build/asm/mario.o(.text);
       build/src/mario_step.o(.text);
@@ -103,6 +104,7 @@ SECTIONS
       build/src/input.o(.rodata);
       build/src/sound_init.o(.rodata);
       build/data/credits.rodata.o(.rodata);
+      build/src/interaction.o(.rodata);
       build/data/interaction.rodata.o(.rodata);
       build/data/mario.rodata.o(.rodata);
       build/src/mario_step.o(.rodata);

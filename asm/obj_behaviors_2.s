@@ -26905,8 +26905,8 @@ glabel BehMultipleBirdsFlyingLoop
 glabel BehRacingPenguinInit
 /* 0CB7E4 803107E4 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 0CB7E8 803107E8 AFBF0014 */  sw    $ra, 0x14($sp)
-/* 0CB7EC 803107EC 3C0E8033 */  lui   $t6, %hi(D_8032C9D8) # $t6, 0x8033
-/* 0CB7F0 803107F0 8DCEC9D8 */  lw    $t6, %lo(D_8032C9D8)($t6)
+/* 0CB7EC 803107EC 3C0E8033 */  lui   $t6, %hi(gMarioState) # $t6, 0x8033
+/* 0CB7F0 803107F0 8DCEC9D8 */  lw    $t6, %lo(gMarioState)($t6)
 /* 0CB7F4 803107F4 24010078 */  li    $at, 120
 /* 0CB7F8 803107F8 85CF00AA */  lh    $t7, 0xaa($t6)
 /* 0CB7FC 803107FC 15E1000F */  bne   $t7, $at, .L8031083C
@@ -27762,8 +27762,8 @@ glabel func_80311264
 /* 0CC428 80311428 00000000 */  nop   
 /* 0CC42C 8031142C 45010008 */  bc1t  .L80311450
 /* 0CC430 80311430 00000000 */   nop   
-/* 0CC434 80311434 3C098033 */  lui   $t1, %hi(D_8032C9D8) # $t1, 0x8033
-/* 0CC438 80311438 8D29C9D8 */  lw    $t1, %lo(D_8032C9D8)($t1)
+/* 0CC434 80311434 3C098033 */  lui   $t1, %hi(gMarioState) # $t1, 0x8033
+/* 0CC438 80311438 8D29C9D8 */  lw    $t1, %lo(gMarioState)($t1)
 /* 0CC43C 8031143C 3C010002 */  lui   $at, (0x00020339 >> 16) # lui $at, 2
 /* 0CC440 80311440 34210339 */  ori   $at, (0x00020339 & 0xFFFF) # ori $at, $at, 0x339
 /* 0CC444 80311444 8D2A000C */  lw    $t2, 0xc($t1)
