@@ -137,7 +137,7 @@ SECTIONS
    .text80378800 0x80378800 : AT(0x0F4210) {
       build/src/math_util.o(.text);
       build/asm/graph_node.o(.text);
-      build/asm/geo_layout.o(.text);
+      build/src/geo_layout.o(.text);
       build/asm/level_script.o(.text);
       build/asm/surface_collision.o(.text);
       build/src/behavior_script.o(.text);
