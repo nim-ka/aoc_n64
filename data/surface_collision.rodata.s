@@ -56,7 +56,54 @@ glabel D_8038BBAC
 	.incbin "bin/sm64.j.1074A0.bin", 0x11C, 0x2C
 
 glabel jtbl_8038BBD8
-	.incbin "bin/sm64.j.1074A0.bin", 0x148, 0xA8
+	.word .L80382FBC
+	.word .L80382FCC
+	.word .L80382FCC
+	.word .L80382FCC
+	.word .L80382FCC
+	.word .L80382FCC
+	.word .L80382FCC
+	.word .L80382FCC
+	.word .L80382FCC
+	.word .L80382FCC
+	.word .L80382FBC
+	.word .L80382FCC
+	.word .L80382FCC
+	.word .L80382FCC
+	.word .L80382FCC
+	.word .L80382FCC
+	.word .L80382FCC
+	.word .L80382FCC
+	.word .L80382FCC
+	.word .L80382FCC
+	.word .L80382FCC
+	.word .L80382FCC
+	.word .L80382FCC
+	.word .L80382FCC
+	.word .L80382FCC
+	.word .L80382FCC
+	.word .L80382FCC
+	.word .L80382FCC
+	.word .L80382FCC
+	.word .L80382FCC
+	.word .L80382FCC
+	.word .L80382FCC
+	.word .L80382FBC
+	.word .L80382FBC
+	.word .L80382FCC
+	.word .L80382FBC
+	.word .L80382FCC
+	.word .L80382FCC
+	.word .L80382FCC
+	.word .L80382FCC
+	.word .L80382FBC
+	.word .L80382FBC
 
 glabel D_8038BC80
 	.incbin "bin/sm64.j.1074A0.bin", 0x1F0, 0x10
+
+
+
+
+
+

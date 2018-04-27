@@ -17,7 +17,93 @@ glabel D_80335DF0
 	.incbin "bin/rodata.bin", 0x1380, 0xC
 
 glabel jtbl_80335DFC
-	.incbin "bin/rodata.bin", 0x138C, 0xB0
+	.word L8027D9F0
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DA20
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DA30
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DAE0
+	.word L8027DB10
+	.word L8027DAF0
+	.word L8027DB10
+	.word L8027DB00
 
 glabel jtbl_80335EAC
-	.incbin "bin/rodata.bin", 0x143C, 0xA4
+	.word L8027D9E0
+	.word L8027DB10
+	.word L8027DA00
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DA10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DA40
+	.word L8027DA50
+	.word L8027DA60
+	.word L8027DA70
+	.word L8027DA80
+	.word L8027DA90
+	.word L8027DAA0
+	.word L8027DAB0
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DB10
+	.word L8027DAC0
+	.word L8027DAD0
+
+	.word 0
+
+

@@ -86,13 +86,69 @@ glabel D_80335968
 	.incbin "bin/rodata.bin", 0xEF8, 0x4
 
 glabel jtbl_8033596C
-	.incbin "bin/rodata.bin", 0xEFC, 0x2C
+	.word L80269988
+	.word L8026999C
+	.word L802699B0
+	.word L802699C4
+	.word L80269A64
+	.word L80269A64
+	.word L80269A64
+	.word L80269A64
+	.word L80269A00
+	.word L80269A64
+	.word L80269A14
 
 glabel jtbl_80335998
-	.incbin "bin/rodata.bin", 0xF28, 0x7C
+	.word L8026980C
+	.word L80269A64
+	.word L80269A64
+	.word L80269A64
+	.word L80269A64
+	.word L80269A64
+	.word L80269A64
+	.word L80269A64
+	.word L80269A64
+	.word L80269A64
+	.word L80269A64
+	.word L80269A64
+	.word L80269A64
+	.word L80269A64
+	.word L80269A64
+	.word L80269A64
+	.word L80269A64
+	.word L80269A64
+	.word L80269A64
+	.word L80269A64
+	.word L80269A64
+	.word L80269A64
+	.word L80269A64
+	.word L802698E8
+	.word L802698FC
+	.word L80269910
+	.word L80269924
+	.word L80269938
+	.word L8026994C
+	.word L80269960
+	.word L80269974
 
 glabel jtbl_80335A14
-	.incbin "bin/rodata.bin", 0xFA4, 0x18
+	.word L802699D8
+	.word L802699EC
+	.word L80269A28
+	.word L80269A3C
+	.word L80269A64
+	.word L80269A50
 
 glabel jtbl_80335A2C
-	.incbin "bin/rodata.bin", 0xFBC, 0x34
+	.word L80269780
+	.word L802697A8
+	.word L802697BC
+	.word L80269A64
+	.word L80269A64
+	.word L80269794
+	.word L80269A64
+	.word L80269A64
+	.word L80269A64
+	.word L80269834
+
+

@@ -2371,6 +2371,7 @@ glabel func_802CE86C
 /* 089930 802CE930 8C2A6F68 */  lw    $t2, %lo(jtbl_80336F68)($at)
 /* 089934 802CE934 01400008 */  jr    $t2
 /* 089938 802CE938 00000000 */   nop   
+glabel L802CE93C
 /* 08993C 802CE93C 93AB004B */  lbu   $t3, 0x4b($sp)
 /* 089940 802CE940 C7AC0038 */  lwc1  $f12, 0x38($sp)
 /* 089944 802CE944 C7AE003C */  lwc1  $f14, 0x3c($sp)
@@ -2381,6 +2382,7 @@ glabel func_802CE86C
 /* 089958 802CE958 AFA20034 */  sw    $v0, 0x34($sp)
 /* 08995C 802CE95C 10000050 */  b     .L802CEAA0
 /* 089960 802CE960 00000000 */   nop   
+glabel L802CE964
 /* 089964 802CE964 93AC004B */  lbu   $t4, 0x4b($sp)
 /* 089968 802CE968 C7AC0038 */  lwc1  $f12, 0x38($sp)
 /* 08996C 802CE96C C7AE003C */  lwc1  $f14, 0x3c($sp)
@@ -2391,6 +2393,7 @@ glabel func_802CE86C
 /* 089980 802CE980 AFA20034 */  sw    $v0, 0x34($sp)
 /* 089984 802CE984 10000046 */  b     .L802CEAA0
 /* 089988 802CE988 00000000 */   nop   
+glabel L802CE98C
 /* 08998C 802CE98C 93AD004B */  lbu   $t5, 0x4b($sp)
 /* 089990 802CE990 C7AC0038 */  lwc1  $f12, 0x38($sp)
 /* 089994 802CE994 C7AE003C */  lwc1  $f14, 0x3c($sp)
@@ -2401,6 +2404,7 @@ glabel func_802CE86C
 /* 0899A8 802CE9A8 AFA20034 */  sw    $v0, 0x34($sp)
 /* 0899AC 802CE9AC 1000003C */  b     .L802CEAA0
 /* 0899B0 802CE9B0 00000000 */   nop   
+glabel L802CE9B4
 /* 0899B4 802CE9B4 93AE004B */  lbu   $t6, 0x4b($sp)
 /* 0899B8 802CE9B8 83AF004F */  lb    $t7, 0x4f($sp)
 /* 0899BC 802CE9BC C7AC0038 */  lwc1  $f12, 0x38($sp)
@@ -2413,6 +2417,7 @@ glabel func_802CE86C
 /* 0899D8 802CE9D8 AFA20034 */  sw    $v0, 0x34($sp)
 /* 0899DC 802CE9DC 10000030 */  b     .L802CEAA0
 /* 0899E0 802CE9E0 00000000 */   nop   
+glabel L802CE9E4
 /* 0899E4 802CE9E4 93B8004B */  lbu   $t8, 0x4b($sp)
 /* 0899E8 802CE9E8 83B9004F */  lb    $t9, 0x4f($sp)
 /* 0899EC 802CE9EC C7AC0038 */  lwc1  $f12, 0x38($sp)
@@ -2425,6 +2430,7 @@ glabel func_802CE86C
 /* 089A08 802CEA08 AFA20034 */  sw    $v0, 0x34($sp)
 /* 089A0C 802CEA0C 10000024 */  b     .L802CEAA0
 /* 089A10 802CEA10 00000000 */   nop   
+glabel L802CEA14
 /* 089A14 802CEA14 93A8004B */  lbu   $t0, 0x4b($sp)
 /* 089A18 802CEA18 83A9004F */  lb    $t1, 0x4f($sp)
 /* 089A1C 802CEA1C C7AC0038 */  lwc1  $f12, 0x38($sp)
@@ -2450,6 +2456,7 @@ glabel func_802CE86C
 /* 089A68 802CEA68 1000000D */  b     .L802CEAA0
 /* 089A6C 802CEA6C 00000000 */   nop   
 .L802CEA70:
+glabel L802CEA70
 /* 089A70 802CEA70 93AB004B */  lbu   $t3, 0x4b($sp)
 /* 089A74 802CEA74 83AC004F */  lb    $t4, 0x4f($sp)
 /* 089A78 802CEA78 C7AC0038 */  lwc1  $f12, 0x38($sp)

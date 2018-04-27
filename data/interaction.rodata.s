@@ -6,10 +6,128 @@
 #interaction
 
 glabel jtbl_80335090
-	.incbin "bin/rodata.bin", 0x620, 0xC8
+	.word L8024E1E0
+	.word L8024E260
+	.word L8024E208
+	.word L8024E260
+	.word L8024E260
+	.word L8024E260
+	.word L8024E260
+	.word L8024E230
+	.word L8024E260
+	.word L8024E260
+	.word L8024E260
+	.word L8024E260
+	.word L8024E260
+	.word L8024E260
+	.word L8024E260
+	.word L8024E260
+	.word L8024E260
+	.word L8024E260
+	.word L8024E260
+	.word L8024E260
+	.word L8024E260
+	.word L8024E260
+	.word L8024E260
+	.word L8024E260
+	.word L8024E260
+	.word L8024E260
+	.word L8024E260
+	.word L8024E260
+	.word L8024E260
+	.word L8024E240
+	.word L8024E260
+	.word L8024E260
+	.word L8024E260
+	.word L8024E260
+	.word L8024E260
+	.word L8024E260
+	.word L8024E260
+	.word L8024E260
+	.word L8024E260
+	.word L8024E260
+	.word L8024E260
+	.word L8024E260
+	.word L8024E260
+	.word L8024E260
+	.word L8024E260
+	.word L8024E260
+	.word L8024E260
+	.word L8024E260
+	.word L8024E260
+	.word L8024E250
 
 glabel jtbl_80335158
-	.incbin "bin/rodata.bin", 0x6E8, 0x118
+	.word L8024E3FC
+	.word L8024E45C
+	.word L8024E40C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E41C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E42C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E43C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E45C
+	.word L8024E44C
 
 glabel D_80335270
 	.incbin "bin/rodata.bin", 0x800, 0x4
@@ -19,3 +137,5 @@ glabel D_80335274
 
 glabel D_80335278
 	.incbin "bin/rodata.bin", 0x808, 0x8
+
+

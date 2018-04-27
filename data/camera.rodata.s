@@ -82,7 +82,23 @@ glabel D_80336074
 	.incbin "bin/rodata.bin", 0x1604, 0x4
 
 glabel jtbl_80336078
-	.incbin "bin/rodata.bin", 0x1608, 0x44
+	.word L80286724
+	.word L80286734
+	.word L802866D4
+	.word L80286744
+	.word L802867B4
+	.word L802866E4
+	.word L802867B4
+	.word L802866F4
+	.word L80286784
+	.word L80286704
+	.word L80286764
+	.word L80286774
+	.word L80286794
+	.word L80286714
+	.word L802867B4
+	.word L80286754
+	.word L802867A4
 
 glabel D_803360BC
 	.incbin "bin/rodata.bin", 0x164C, 0x4
@@ -97,7 +113,35 @@ glabel D_803360C8
 	.incbin "bin/rodata.bin", 0x1658, 0x4
 
 glabel jtbl_803360CC
-	.incbin "bin/rodata.bin", 0x165C, 0x74
+	.word L802870C8
+	.word L80287104
+	.word L80287104
+	.word L80287104
+	.word L80287104
+	.word L80287104
+	.word L80287104
+	.word L80287104
+	.word L80287104
+	.word L802870E0
+	.word L80286FB8
+	.word L80287104
+	.word L80287104
+	.word L80287104
+	.word L8028707C
+	.word L80287104
+	.word L802870AC
+	.word L80287104
+	.word L80287104
+	.word L80287104
+	.word L80287094
+	.word L80287104
+	.word L80287104
+	.word L80287104
+	.word L80286F7C
+	.word L80287104
+	.word L80287104
+	.word L80286F90
+	.word L80286FA4
 
 glabel D_80336140
 	.incbin "bin/rodata.bin", 0x16D0, 0x4
@@ -124,7 +168,12 @@ glabel D_80336160
 	.incbin "bin/rodata.bin", 0x16F0, 0x4
 
 glabel jtbl_80336164
-	.incbin "bin/rodata.bin", 0x16F4, 0x18
+	.word L802882CC
+	.word L80288338
+	.word L8028835C
+	.word L80288314
+	.word L80288380
+	.word L802882F0
 
 glabel D_8033617C
 	.incbin "bin/rodata.bin", 0x170C, 0x4
@@ -151,10 +200,19 @@ glabel D_80336198
 	.incbin "bin/rodata.bin", 0x1728, 0x4
 
 glabel jtbl_8033619C
-	.incbin "bin/rodata.bin", 0x172C, 0x18
+	.word L8028C078
+	.word L8028C098
+	.word L8028C0A8
+	.word L8028C088
+	.word L8028C068
+	.word L8028C058
 
 glabel jtbl_803361B4
-	.incbin "bin/rodata.bin", 0x1744, 0x14
+	.word L8028C124
+	.word L8028C134
+	.word L8028C144
+	.word L8028C154
+	.word L8028C164
 
 glabel D_803361C8
 	.incbin "bin/rodata.bin", 0x1758, 0x4
@@ -319,7 +377,135 @@ glabel D_8033629C
 	.incbin "bin/rodata.bin", 0x182C, 0x4
 
 glabel jtbl_803362A0
-	.incbin "bin/rodata.bin", 0x1830, 0x204
+	.word L802976E4
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297744
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297644
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297784
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L802977A4
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297684
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L802977E4
+	.word L80297908
+	.word L80297704
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297804
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297908
+	.word L80297824
 
 glabel D_803364A4
 	.incbin "bin/rodata.bin", 0x1A34, 0x4
@@ -349,10 +535,73 @@ glabel D_803364C4
 	.incbin "bin/rodata.bin", 0x1A54, 0x4
 
 glabel jtbl_803364C8
-	.incbin "bin/rodata.bin", 0x1A58, 0xD0
+	.word L80298FB8
+	.word L80299000
+	.word L80299AF8
+	.word L802990D8
+	.word L80299120
+	.word L80299168
+	.word L80299AF8
+	.word L80299AF8
+	.word L80299AF8
+	.word L80298F70
+	.word L80299048
+	.word L80299090
+	.word L80299240
+	.word L802992D0
+	.word L80299288
+	.word L80299438
+	.word L80299AF8
+	.word L802991F8
+	.word L80299AF8
+	.word L80299558
+	.word L802995A0
+	.word L802995E8
+	.word L80299630
+	.word L802996C0
+	.word L80299708
+	.word L80299750
+	.word L80299798
+	.word L802997E0
+	.word L80299828
+	.word L80299AF8
+	.word L802991B0
+	.word L80299510
+	.word L80299990
+	.word L80299A20
+	.word L80299A68
+	.word L80299360
+	.word L802993A8
+	.word L802993F0
+	.word L80299AB0
+	.word L80299870
+	.word L80299948
+	.word L802999D8
+	.word L80298EE0
+	.word L80298E50
+	.word L80298F28
+	.word L80299318
+	.word L80298E98
+	.word L80299480
+	.word L802994C8
+	.word L802998B8
+	.word L80299900
+	.word L80299678
 
 glabel jtbl_80336598
-	.incbin "bin/rodata.bin", 0x1B28, 0x34
+	.word L8029A390
+	.word L8029A3C0
+	.word L8029A440
+	.word L8029A3E0
+	.word L8029A3F0
+	.word L8029A400
+	.word L8029A3D0
+	.word L8029A440
+	.word L8029A410
+	.word L8029A420
+	.word L8029A430
+	.word L8029A3B0
+	.word L8029A3A0
 
 glabel D_803365CC
 	.incbin "bin/rodata.bin", 0x1B5C, 0x4
@@ -370,4 +619,15 @@ glabel D_803365DC
 	.incbin "bin/rodata.bin", 0x1B6C, 0x4
 
 glabel jtbl_803365E0
-	.incbin "bin/rodata.bin", 0x1B70, 0x30
+	.word L8029BBA0
+	.word L8029BB7C
+	.word L8029BBC4
+	.word L8029BE6C
+	.word L8029BDD4
+
+	.word 0, 0, 0
+
+	# more missed literals. joy.
+	.incbin "bin/rodata.bin", 0x1B90, 0x10
+
+

@@ -14,4 +14,20 @@ glabel D_80336F48
 	.incbin "bin/rodata.bin", 0x24D8, 0x20
 
 glabel jtbl_80336F68
-	.incbin "bin/rodata.bin", 0x24F8, 0x38
+	.word L802CE93C
+	.word L802CE964
+	.word L802CE98C
+	.word L802CEA70
+	.word L802CEA70
+	.word L802CEA70
+	.word L802CEA70
+	.word L802CEA70
+	.word L802CEA70
+	.word L802CEA70
+	.word L802CE9B4
+	.word L802CE9E4
+	.word L802CEA14
+
+	.word 0
+
+

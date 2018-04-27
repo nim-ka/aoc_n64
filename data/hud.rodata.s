@@ -5,10 +5,38 @@
 
 #hud
 glabel jtbl_80337130
-	.incbin "bin/rodata.bin", 0x26C0, 0x58
+	.word L802E1848
+	.word L802E187C
+	.word L802E18B0
+	.word L802E18E4
+	.word L802E1918
+	.word L802E19B4
+	.word L802E19B4
+	.word L802E19B4
+	.word L802E19B4
+	.word L802E19B4
+	.word L802E19B4
+	.word L802E19B4
+	.word L802E19B4
+	.word L802E19B4
+	.word L802E19B4
+	.word L802E19B4
+	.word L802E19B4
+	.word L802E19B4
+	.word L802E19B4
+	.word L802E19B4
+	.word L802E194C
+	.word L802E1980
 
 glabel jtbl_80337188
-	.incbin "bin/rodata.bin", 0x2718, 0x18
+	.word L802E1B9C
+	.word L802E1BC8
+	.word L802E1C20
+	.word L802E1CA0
+	.word L802E1D4C
+
+	# padding
+	.word 0
 
 glabel D_803371A0
 	.incbin "bin/rodata.bin", 0x2730, 0x4
@@ -51,3 +79,9 @@ glabel D_803371D4
 
 glabel D_803371DC
 	.incbin "bin/rodata.bin", 0x276C, 0x4
+
+
+
+
+
+

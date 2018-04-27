@@ -56,3 +56,6 @@ build/*
 *.dump
 *.swp
 *.mio0
+
+# datadump
+tools/ddump/*
