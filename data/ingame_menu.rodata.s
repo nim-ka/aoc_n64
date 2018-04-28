@@ -72,7 +72,3 @@ glabel jtbl_803370F4
 	.word L802E03B8
 
 
-
-
-
-

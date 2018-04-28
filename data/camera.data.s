@@ -3,6 +3,7 @@
 
 .section .data
 
+glabel D_8032D0B0
     .incbin "bin/sm64.j.0E8090.bin", 0x20, 0x8
 
 glabel D_8032D0B8

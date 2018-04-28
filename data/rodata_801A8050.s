@@ -17,7 +17,7 @@ glabel D_801A80E8
 	.incbin "bin/sm64.j.255EC0.bin", 0x9F8, 0xC
 
 glabel D_801A80F4
-	.incbin "bin/sm64.j.255EC0.bin", 0xA04, 0x4
+	.word 0x801a807c
 
 glabel D_801A80F8
 	.incbin "bin/sm64.j.255EC0.bin", 0xA08, 0x8
@@ -26,7 +26,11 @@ glabel D_801A8100
 	.incbin "bin/sm64.j.255EC0.bin", 0xA10, 0x4
 
 glabel D_801A8104
-	.incbin "bin/sm64.j.255EC0.bin", 0xA14, 0x14
+	.word 0x801a8070
+	.word 0x801a80dc
+	.word 0x801a807c
+	.word 0x801a80b8
+	.word 0x801a80b8
 
 glabel D_801A8118
 	.incbin "bin/sm64.j.255EC0.bin", 0xA28, 0x88
@@ -219,13 +223,39 @@ glabel D_801A8F38
 	.incbin "bin/sm64.j.255EC0.bin", 0x1848, 0x8A80
 
 glabel D_801B19B8
-	.incbin "bin/sm64.j.255EC0.bin", 0xA2C8, 0x40
+	.word 0x801b1838
+	.word 0x801b1838
+	.word 0x801b1850
+	.word 0x801b1850
+	.word 0x801b1868
+	.word 0x801b1868
+	.word 0x801b1880
+	.word 0x801b1880
+	.word 0x801b1898
+	.word 0x801b1898
+	.word 0x801b18b0
+	.word 0x801b18b0
+	.word 0x801b18c8
+	.word 0x801b18c8
+	.word 0x801b18e0
+	.word 0x801b18e0
 
 glabel D_801B19F8
 	.incbin "bin/sm64.j.255EC0.bin", 0xA308, 0x32A0
 
 glabel D_801B4C98
-	.incbin "bin/sm64.j.255EC0.bin", 0xD5A8, 0x30
+	.word 0x801b4b98
+	.word 0x801b4b98
+	.word 0x801b4b78
+	.word 0x801b4b78
+	.word 0x801b4b58
+	.word 0x801b4b58
+	.word 0x801b4b38
+	.word 0x801b4b38
+	.word 0x801b4b18
+	.word 0x801b4b18
+	.word 0x801b4bb8
+	.word 0x801b4bb8
 
 glabel D_801B4CC8
 	.incbin "bin/sm64.j.255EC0.bin", 0xD5D8, 0x438
@@ -413,8 +443,22 @@ glabel D_801B5718
 glabel D_801B571C
 	.incbin "bin/sm64.j.255EC0.bin", 0xE02C, 0x14
 
-glabel D_801B5730
-	.incbin "bin/sm64.j.255EC0.bin", 0xE040, 0x34
+glabel jtbl_801B5730
+	.word .L80178EA0
+	.word .L80178DC4
+	.word .L80178DD8
+	.word .L80178DEC
+	.word .L80178E00
+	.word .L80178E14
+	.word .L80178E28
+	.word .L80178E3C
+	.word .L80178E50
+	.word .L80178E78
+	.word .L80178E8C
+	.word .L80178E64
+
+glabel D_801B5760
+	.incbin "bin/sm64.j.255EC0.bin", 0xE070, 0x4
 
 glabel D_801B5764
 	.incbin "bin/sm64.j.255EC0.bin", 0xE074, 0x8
@@ -665,11 +709,76 @@ glabel D_801B5B3C
 glabel D_801B5B40
 	.incbin "bin/sm64.j.255EC0.bin", 0xE450, 0x4
 
-glabel D_801B5B44
-	.incbin "bin/sm64.j.255EC0.bin", 0xE454, 0x80
+glabel jtbl_801B5B44
+	.word .L8017C03C
+	.word .L8017C028
+	.word .L8017C190
+	.word .L8017C014
+	.word .L8017C190
+	.word .L8017C190
+	.word .L8017C190
+	.word .L8017C050
+	.word .L8017C190
+	.word .L8017C190
+	.word .L8017C190
+	.word .L8017C190
+	.word .L8017C190
+	.word .L8017C190
+	.word .L8017C190
+	.word .L8017C064
+	.word .L8017C190
+	.word .L8017C190
+	.word .L8017C190
+	.word .L8017C190
+	.word .L8017C190
+	.word .L8017C190
+	.word .L8017C190
+	.word .L8017C190
+	.word .L8017C190
+	.word .L8017C190
+	.word .L8017C190
+	.word .L8017C190
+	.word .L8017C190
+	.word .L8017C190
+	.word .L8017C190
+	.word .L8017C078
 
-glabel D_801B5BC4
-	.incbin "bin/sm64.j.255EC0.bin", 0xE4D4, 0x84
+glabel jtbl_801B5BC4
+	.word .L8017C348
+	.word .L8017C32C
+	.word .L8017C548
+	.word .L8017C310
+	.word .L8017C548
+	.word .L8017C548
+	.word .L8017C548
+	.word .L8017C364
+	.word .L8017C548
+	.word .L8017C548
+	.word .L8017C548
+	.word .L8017C548
+	.word .L8017C548
+	.word .L8017C548
+	.word .L8017C548
+	.word .L8017C380
+	.word .L8017C548
+	.word .L8017C548
+	.word .L8017C548
+	.word .L8017C548
+	.word .L8017C548
+	.word .L8017C548
+	.word .L8017C548
+	.word .L8017C548
+	.word .L8017C548
+	.word .L8017C548
+	.word .L8017C548
+	.word .L8017C548
+	.word .L8017C548
+	.word .L8017C548
+	.word .L8017C548
+	.word .L8017C3B8
+
+glabel D_801B5C44
+	.incbin "bin/sm64.j.255EC0.bin", 0xE554, 0x4
 
 glabel D_801B5C48
 	.incbin "bin/sm64.j.255EC0.bin", 0xE558, 0x8
@@ -680,8 +789,42 @@ glabel D_801B5C50
 glabel D_801B5C58
 	.incbin "bin/sm64.j.255EC0.bin", 0xE568, 0x4
 
-glabel D_801B5C5C
-	.incbin "bin/sm64.j.255EC0.bin", 0xE56C, 0x84
+glabel jtbl_801B5C5C
+	.word .L8017D7E0
+	.word .L8017D7A0
+	.word .L8017D890
+	.word .L8017D7C0
+	.word .L8017D890
+	.word .L8017D890
+	.word .L8017D890
+	.word .L8017D800
+	.word .L8017D890
+	.word .L8017D890
+	.word .L8017D890
+	.word .L8017D890
+	.word .L8017D890
+	.word .L8017D890
+	.word .L8017D890
+	.word .L8017D890
+	.word .L8017D890
+	.word .L8017D890
+	.word .L8017D890
+	.word .L8017D890
+	.word .L8017D890
+	.word .L8017D890
+	.word .L8017D890
+	.word .L8017D890
+	.word .L8017D890
+	.word .L8017D890
+	.word .L8017D890
+	.word .L8017D890
+	.word .L8017D890
+	.word .L8017D890
+	.word .L8017D890
+	.word .L8017D820
+
+	# padding
+	.word 0
 
 glabel D_801B5CE0
 	.incbin "bin/sm64.j.255EC0.bin", 0xE5F0, 0x10
@@ -695,8 +838,21 @@ glabel D_801B5CF8
 glabel D_801B5D00
 	.incbin "bin/sm64.j.255EC0.bin", 0xE610, 0xC
 
-glabel D_801B5D0C
-	.incbin "bin/sm64.j.255EC0.bin", 0xE61C, 0x34
+glabel jtbl_801B5D0C
+	.word .L8017F8AC
+	.word .L80180484
+	.word .L8017FF14
+	.word .L8018052C
+	.word .L80180584
+	.word .L8017F8FC
+	.word .L8017FABC
+	.word .L8017FC64
+	.word .L801804D4
+	.word .L801805F0
+	.word .L801802D0
+
+glabel D_801B5D38
+	.incbin "bin/sm64.j.255EC0.bin", 0xE648, 0x8
 
 glabel D_801B5D40
 	.incbin "bin/sm64.j.255EC0.bin", 0xE650, 0x10
@@ -1460,20 +1616,169 @@ glabel D_801B7D00
 glabel D_801B7D34
 	.incbin "bin/sm64.j.255EC0.bin", 0x10644, 0x14
 
-glabel D_801B7D48
-	.incbin "bin/sm64.j.255EC0.bin", 0x10658, 0x12C
+glabel jtbl_801B7D48
+	.word .L80183D00
+	.word .L80183D1C
+	.word .L80183D40
+	.word .L80183D64
+	.word .L80183D88
+	.word .L80183DAC
+	.word .L80183DE4
+	.word .L80183EC8
+	.word .L80183E90
+	.word .L80183EAC
+	.word .L80184014
+	.word .L80184038
+	.word .L80183CE4
+	.word .L80183FF8
+	.word .L801841C0
+	.word .L80183A8C
+	.word .L80183B08
+	.word .L80183B24
+	.word .L80183B40
+	.word .L80183FDC
+	.word .L80183F50
+	.word .L80183F34
+	.word .L80183F6C
+	.word .L80183F88
+	.word .L80183FA4
+	.word .L80183FC0
+	.word .L80183E2C
+	.word .L80183E08
+	.word .L80183B78
+	.word .L80183CC8
+	.word .L80183B5C
+	.word .L8018409C
+	.word .L801840B8
+	.word .L80184054
+	.word .L80184078
+	.word .L801840D8
+	.word .L801840F4
+	.word .L80184114
+	.word .L80184130
+	.word .L80183EE4
+	.word .L80183F00
+	.word .L80183F20
+	.word .L801841C0
+	.word .L80183A70
+	.word .L80183E50
+	.word .L80183E70
+	.word .L80183AAC
+	.word .L80183AE8
+	.word .L80183ACC
+	.word .L80183DD0
+	.word .L80183B94
+	.word .L801841C0
+	.word .L8018416C
+	.word .L8018414C
+	.word .L80184188
+	.word .L801841A4
+
+glabel jtbl_801B7E28
+	.word .L80184AFC
+	.word .L80184B50
+	.word .L80184B10
+	.word .L80184B30
+	.word .L80184BB8
+	.word .L80184C18
+	.word .L80184C34
+	.word .L80184C68
+	.word .L80184BD0
+	.word .L80184C80
+	.word .L80184C9C
+	.word .L80184CC4
+	.word .L80184CDC
+	.word .L80184D04
+	.word .L80184D38
+	.word .L80184B94
+	.word .L80184BF0
+	.word .L80184D4C
+	.word .L80184B74
 
 glabel D_801B7E74
 	.incbin "bin/sm64.j.255EC0.bin", 0x10784, 0x4
 
-glabel D_801B7E78
-	.incbin "bin/sm64.j.255EC0.bin", 0x10788, 0x2C
+glabel jtbl_801B7E78
+	.word .L80185504
+	.word .L801854E4
+	.word .L801854F4
+	.word .L80185514
+	.word .L80185514
+	.word .L801854B4
+	.word .L801854C4
+	.word .L801854D4
+	.word .L80185514
+	.word .L80185514
+	.word .L801854A4
 
-glabel D_801B7EA4
-	.incbin "bin/sm64.j.255EC0.bin", 0x107B4, 0x7C
+glabel jtbl_801B7EA4
+	.word .L80188CD4
+	.word .L8018906C
+	.word .L80188B94
+	.word .L8018906C
+	.word .L8018906C
+	.word .L8018906C
+	.word .L80188C34
+	.word .L8018906C
+	.word .L8018906C
+	.word .L8018906C
+	.word .L8018906C
+	.word .L8018906C
+	.word .L8018906C
+	.word .L8018906C
+	.word .L80188D24
+	.word .L8018906C
+	.word .L8018906C
+	.word .L8018906C
+	.word .L8018906C
+	.word .L8018906C
+	.word .L8018906C
+	.word .L8018906C
+	.word .L8018906C
+	.word .L8018906C
+	.word .L8018906C
+	.word .L8018906C
+	.word .L8018906C
+	.word .L8018906C
+	.word .L8018906C
+	.word .L8018906C
+	.word .L80188BE4
 
-glabel D_801B7F20
-	.incbin "bin/sm64.j.255EC0.bin", 0x10830, 0x80
+glabel jtbl_801B7F20
+	.word .L80189D54
+	.word .L80189E34
+	.word .L80189D34
+	.word .L80189E34
+	.word .L80189E34
+	.word .L80189E34
+	.word .L80189DF4
+	.word .L80189E34
+	.word .L80189E34
+	.word .L80189E34
+	.word .L80189E34
+	.word .L80189E34
+	.word .L80189E34
+	.word .L80189E34
+	.word .L80189DD4
+	.word .L80189E34
+	.word .L80189E34
+	.word .L80189E34
+	.word .L80189E34
+	.word .L80189E34
+	.word .L80189E34
+	.word .L80189E34
+	.word .L80189E34
+	.word .L80189E34
+	.word .L80189E34
+	.word .L80189E34
+	.word .L80189E34
+	.word .L80189E34
+	.word .L80189E34
+	.word .L80189E34
+	.word .L80189D74
+
+	# padding
+	.word 0
 
 glabel D_801B7FA0
 	.incbin "bin/sm64.j.255EC0.bin", 0x108B0, 0x18
@@ -1619,8 +1924,31 @@ glabel D_801B83B4
 glabel D_801B83B8
 	.incbin "bin/sm64.j.255EC0.bin", 0x10CC8, 0x4
 
-glabel D_801B83BC
-	.incbin "bin/sm64.j.255EC0.bin", 0x10CCC, 0x5C
+glabel jtbl_801B83BC
+	.word .L8018D304
+	.word .L8018D218
+	.word .L8018D36C
+	.word .L8018D24C
+	.word .L8018D36C
+	.word .L8018D36C
+	.word .L8018D36C
+	.word .L8018D36C
+	.word .L8018D36C
+	.word .L8018D36C
+	.word .L8018D36C
+	.word .L8018D36C
+	.word .L8018D36C
+	.word .L8018D36C
+	.word .L8018D36C
+	.word .L8018D36C
+	.word .L8018D2D0
+	.word .L8018D36C
+	.word .L8018D36C
+	.word .L8018D36C
+	.word .L8018D36C
+	.word .L8018D338
+
+	.word 0
 
 glabel D_801B8418
 	.incbin "bin/sm64.j.255EC0.bin", 0x10D28, 0x8
@@ -1787,8 +2115,16 @@ glabel D_801B87A8
 glabel D_801B87B0
 	.incbin "bin/sm64.j.255EC0.bin", 0x110C0, 0x8
 
-glabel D_801B87B8
-	.incbin "bin/sm64.j.255EC0.bin", 0x110C8, 0x28
+glabel jtbl_801B87B8
+	.word .L801935F0
+	.word .L80193638
+	.word .L80193664
+	.word .L8019360C
+	.word .L80193678
+	.word .L8019368C
+	.word .L801935F8
+
+	.word 0, 0, 0
 
 glabel D_801B87E0
 	.incbin "bin/sm64.j.255EC0.bin", 0x110F0, 0x20
@@ -1973,8 +2309,15 @@ glabel D_801B8C4C
 glabel D_801B8C5C
 	.incbin "bin/sm64.j.255EC0.bin", 0x1156C, 0x8
 
-glabel D_801B8C64
-	.incbin "bin/sm64.j.255EC0.bin", 0x11574, 0x20
+glabel jtbl_801B8C64
+	.word .L8019A0B4
+	.word .L8019A34C
+	.word .L8019A0E0
+	.word .L8019A170
+	.word .L8019A1C8
+	.word .L8019A228
+	.word .L8019A334
+	.word .L8019A2D8
 
 glabel D_801B8C84
 	.incbin "bin/sm64.j.255EC0.bin", 0x11594, 0x4
@@ -2489,14 +2832,48 @@ glabel D_801B96C8
 glabel D_801B96D0
 	.incbin "bin/sm64.j.255EC0.bin", 0x11FE0, 0x20
 
-glabel D_801B96F0
-	.incbin "bin/sm64.j.255EC0.bin", 0x12000, 0x58
+glabel jtbl_801B96F0
+	.word .L8019B7B0
+	.word .L8019B5D4
+	.word .L8019B7FC
+	.word .L8019B6C4
+	.word .L8019B7FC
+	.word .L8019B7FC
+	.word .L8019B7FC
+	.word .L8019B7FC
+	.word .L8019B7FC
+	.word .L8019B7FC
+	.word .L8019B7FC
+	.word .L8019B7FC
+	.word .L8019B7FC
+	.word .L8019B7FC
+	.word .L8019B7FC
+	.word .L8019B7FC
+	.word .L8019B778
+	.word .L8019B7FC
+	.word .L8019B7FC
+	.word .L8019B7FC
+	.word .L8019B7FC
+	.word .L8019B630
 
-glabel D_801B9748
-	.incbin "bin/sm64.j.255EC0.bin", 0x12058, 0x18
+glabel jtbl_801B9748
+	.word .L8019C58C
+	.word .L8019C5B0
+	.word .L8019C5C8
+	.word .L8019C624
+	.word .L8019C680
+	.word .L8019C6A4
 
-glabel D_801B9760
-	.incbin "bin/sm64.j.255EC0.bin", 0x12070, 0x20
+glabel jtbl_801B9760
+	.word .L8019C918
+	.word .L8019C99C
+	.word .L8019CA14
+	.word .L8019CA14
+	.word .L8019CAB8
+	.word .L8019CB3C
+
+glabel D_801B9778
+	.incbin "bin/sm64.j.255EC0.bin", 0x12088, 0x8
 
 glabel D_801B9780
 	.incbin "bin/sm64.j.255EC0.bin", 0x12090, 0x10
@@ -2525,8 +2902,19 @@ glabel D_801B97E8
 glabel D_801B97F0
 	.incbin "bin/sm64.j.255EC0.bin", 0x12100, 0x8
 
-glabel D_801B97F8
-	.incbin "bin/sm64.j.255EC0.bin", 0x12108, 0x30
+glabel jtbl_801B97F8
+	.word .L801A39A0
+	.word .L801A3ABC
+	.word .L801A3ABC
+	.word .L801A3ABC
+	.word .L801A3ABC
+	.word .L801A3ABC
+	.word .L801A3ABC
+	.word .L801A36A8
+	.word .L801A3758
+	.word .L801A387C
+	.word .L801A3ABC
+	.word .L801A3784
 
 glabel D_801B9828
 	.incbin "bin/sm64.j.255EC0.bin", 0x12138, 0x20
@@ -2535,3 +2923,5 @@ glabel D_801B9848
 	.incbin "bin/sm64.j.255EC0.bin", 0x12158, 0x8
 
 # 0x801B9850
+
+
