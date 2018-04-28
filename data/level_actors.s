@@ -5,8 +5,7 @@
 .include "levels/main_entry.s"
 
 .align 4, 0
-.global font_graphics
-font_graphics:
+glabel font_graphics
 .incbin "build/mio0/font_graphics.mio0"
 glabel font_graphics_end
 

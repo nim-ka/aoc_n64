@@ -151,7 +151,10 @@ SECTIONS
       build/src/math_util.o(.rodata);
       build/data/level_script.rodata.o(.rodata);
       build/data/surface_collision.rodata.o(.rodata);
+      text_80378800_length = . - 0x80378800;
    }
+   __load_text80378800 = LOADADDR(.text80378800);
+   __load_text80378800_end = __load_text80378800 + text_80378800_length;
 
    /* load MIO0 and level data at 0x001076A0 */
    .mio0 0x001076A0 : AT(0x1076A0) {

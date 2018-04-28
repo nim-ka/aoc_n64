@@ -254,8 +254,8 @@ void func_80248934(void)
     D_80339CF4 = _pool_alloc(2048, 0);
     set_segment_base_addr(24, (void *)D_80339CF4);
     DynamicObjectCopy(&gDemo, D_00577BC0, D_80339CF4);
-    load_from_rom(16, D_001076A0, D_001076D0, 0);
-    load_from_rom_decompress(2, D_001076D0, D_00112B50);
+    load_from_rom(16, main_entry, main_entry_end, 0);
+    load_from_rom_decompress(2, font_graphics, font_graphics_end);
 }
 
 // main game loop thread. runs forever as long as the game
