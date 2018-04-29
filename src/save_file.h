@@ -37,7 +37,7 @@ void save_file_erase(int file);
 void save_file_copy(int srcFile, int destFile);
 void save_file_load_all(void);
 void func_80279618(void);
-void save_file_update_coin_score(s16 coins, s16 b);
+void save_file_collect_star_or_key(s16 coins, s16 b);
 int save_file_exists(int file);
 int func_802798D0(int course);
 int save_file_get_course_star_count(int file, int course);

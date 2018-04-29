@@ -165,7 +165,7 @@ struct Object *func_802C9120(struct GfxNode *a)
     sp20->active = 257;
     sp20->unk68 = sp20;
     sp20->unk6C = 0;
-    sp20->unk70 = 0;
+    sp20->collidedObjInteractTypes = 0;
     sp20->numCollidedObjs = 0;
 
     // hmm...

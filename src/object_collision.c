@@ -43,8 +43,8 @@ int func_802C8504(struct Object *a, struct Object *b)
             return 0;
         a->collidedObjs[a->numCollidedObjs] = b;
         b->collidedObjs[b->numCollidedObjs] = a;
-        a->unk70 |= b->interactType;
-        b->unk70 |= a->interactType;
+        a->collidedObjInteractTypes |= b->interactType;
+        b->collidedObjInteractTypes |= a->interactType;
         a->numCollidedObjs++;
         b->numCollidedObjs++;
         return 1;
@@ -90,7 +90,7 @@ void func_802C88A8(struct Object *a)
     while (sp4 != a)
     {
         sp4->numCollidedObjs = 0;
-        sp4->unk70 = 0;
+        sp4->collidedObjInteractTypes = 0;
         if (sp4->unk9C > 0)
             sp4->unk9C--;
         sp4 = (struct Object *)sp4->gfx.prev;

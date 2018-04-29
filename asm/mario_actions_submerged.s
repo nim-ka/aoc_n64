@@ -2638,7 +2638,7 @@ glabel func_8027210C
 /* 02D12C 8027212C 1320002D */  beqz  $t9, .L802721E4
 /* 02D130 80272130 00000000 */   nop   
 /* 02D134 80272134 8FA40030 */  lw    $a0, 0x30($sp)
-/* 02D138 80272138 0C093297 */  jal   func_8024CA5C
+/* 02D138 80272138 0C093297 */  jal   mario_get_collided_object
 /* 02D13C 8027213C 24050002 */   li    $a1, 2
 /* 02D140 80272140 AFA2002C */  sw    $v0, 0x2c($sp)
 /* 02D144 80272144 8FA8002C */  lw    $t0, 0x2c($sp)
@@ -2673,7 +2673,7 @@ glabel func_8027210C
 /* 02D1B8 802721B8 8FB9002C */  lw    $t9, 0x2c($sp)
 /* 02D1BC 802721BC 8FA80030 */  lw    $t0, 0x30($sp)
 /* 02D1C0 802721C0 AD190080 */  sw    $t9, 0x80($t0)
-/* 02D1C4 802721C4 0C093133 */  jal   func_8024C4CC
+/* 02D1C4 802721C4 0C093133 */  jal   mario_grab_used_object
 /* 02D1C8 802721C8 8FA40030 */   lw    $a0, 0x30($sp)
 /* 02D1CC 802721CC 8FAA0030 */  lw    $t2, 0x30($sp)
 /* 02D1D0 802721D0 24090001 */  li    $t1, 1
@@ -2736,7 +2736,7 @@ glabel func_80272208
 /* 02D2A4 802722A4 254B0001 */  addiu $t3, $t2, 1
 /* 02D2A8 802722A8 12000003 */  beqz  $s0, .L802722B8
 /* 02D2AC 802722AC A50B001A */   sh    $t3, 0x1a($t0)
-/* 02D2B0 802722B0 0C093178 */  jal   func_8024C5E0
+/* 02D2B0 802722B0 0C093178 */  jal   mario_throw_held_object
 /* 02D2B4 802722B4 8FA40028 */   lw    $a0, 0x28($sp)
 .L802722B8:
 /* 02D2B8 802722B8 0C0941DC */  jal   func_80250770

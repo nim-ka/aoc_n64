@@ -160,7 +160,7 @@ struct Object
     /*0x000*/ struct GfxNode gfx;
     /*0x068*/ struct Object *unk68;
     /*0x06C*/ struct Object *unk6C;
-    /*0x070*/ u32 unk70;
+    /*0x070*/ u32 collidedObjInteractTypes;
     /*0x074*/ s16 active;
     /*0x076*/ s16 numCollidedObjs;
     /*0x078*/ struct Object *collidedObjs[4];
@@ -184,7 +184,7 @@ struct Object
     /*0x0F8*/ u32 unkF8;
     u8 fillerFC[0xC];
     /*0x108*/ f32 unk108;
-    u8 filler10C[0x110-0x10C];
+    /*0x10C*/ s32 unk10C;
     /*0x110*/ s32 unk110;
     /*0x114*/ Vec3i platformRotation;
     /*0x120*/ u32 *animations;
@@ -206,9 +206,9 @@ struct Object
     /*0x170*/ f32 unk170;
     /*0x174*/ f32 unk174;
     u8 filler178[0x180-0x178];
-    /*0x180*/ u32 unk180;
+    /*0x180*/ s32 unk180;
     /*0x184*/ u32 unk184;
-    /*0x188*/ u32 unk188;
+    /*0x188*/ s32 unk188;
     /*0x18C*/ u32 previousAction;
     /*0x190*/ u32 unk190;
     /*0x194*/ f32 collisionDistance;

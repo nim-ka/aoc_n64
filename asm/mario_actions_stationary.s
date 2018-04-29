@@ -15,7 +15,7 @@ glabel func_802604E0
 /* 01B4E0 802604E0 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 01B4E4 802604E4 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 01B4E8 802604E8 AFA40018 */  sw    $a0, 0x18($sp)
-/* 01B4EC 802604EC 0C093148 */  jal   func_8024C520
+/* 01B4EC 802604EC 0C093148 */  jal   mario_drop_held_object
 /* 01B4F0 802604F0 8FA40018 */   lw    $a0, 0x18($sp)
 /* 01B4F4 802604F4 8FAE0018 */  lw    $t6, 0x18($sp)
 /* 01B4F8 802604F8 3C018033 */  lui   $at, %hi(D_803357D0)
@@ -3038,7 +3038,7 @@ glabel func_80262EDC
 /* 01DF60 80262F60 95AE001A */  lhu   $t6, 0x1a($t5)
 /* 01DF64 80262F64 15C10003 */  bne   $t6, $at, .L80262F74
 /* 01DF68 80262F68 00000000 */   nop   
-/* 01DF6C 80262F6C 0C093178 */  jal   func_8024C5E0
+/* 01DF6C 80262F6C 0C093178 */  jal   mario_throw_held_object
 /* 01DF70 80262F70 8FA40018 */   lw    $a0, 0x18($sp)
 .L80262F74:
 /* 01DF74 80262F74 3C060C40 */  lui   $a2, (0x0C400201 >> 16) # lui $a2, 0xc40

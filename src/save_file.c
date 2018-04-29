@@ -313,7 +313,7 @@ void func_80279618(void)
     gSaveFileModified = FALSE;
 }
 
-void save_file_update_coin_score(s16 coins, s16 b)
+void save_file_collect_star_or_key(s16 coins, s16 b)
 {
     int file = gCurrSaveFileNum - 1;
     int course = gCurrCourseNum - 1;

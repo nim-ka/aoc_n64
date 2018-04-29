@@ -2870,7 +2870,7 @@ glabel drop_and_set_mario_action
 /* 00DF54 80252F54 AFA40018 */  sw    $a0, 0x18($sp)
 /* 00DF58 80252F58 AFA5001C */  sw    $a1, 0x1c($sp)
 /* 00DF5C 80252F5C AFA60020 */  sw    $a2, 0x20($sp)
-/* 00DF60 80252F60 0C0931BD */  jal   func_8024C6F4
+/* 00DF60 80252F60 0C0931BD */  jal   mario_stop_riding_and_holding
 /* 00DF64 80252F64 8FA40018 */   lw    $a0, 0x18($sp)
 /* 00DF68 80252F68 8FA40018 */  lw    $a0, 0x18($sp)
 /* 00DF6C 80252F6C 8FA5001C */  lw    $a1, 0x1c($sp)
@@ -4488,10 +4488,10 @@ glabel func_80254604
 /* 00F65C 8025465C 0C094ECB */  jal   func_80253B2C
 /* 00F660 80254660 8C84C9D8 */   lw    $a0, %lo(gMarioState)($a0)
 /* 00F664 80254664 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
-/* 00F668 80254668 0C094189 */  jal   func_80250624
+/* 00F668 80254668 0C094189 */  jal   mario_handle_special_floors
 /* 00F66C 8025466C 8C84C9D8 */   lw    $a0, %lo(gMarioState)($a0)
 /* 00F670 80254670 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
-/* 00F674 80254674 0C094086 */  jal   func_80250218
+/* 00F674 80254674 0C094086 */  jal   mario_process_interactions
 /* 00F678 80254678 8C84C9D8 */   lw    $a0, %lo(gMarioState)($a0)
 /* 00F67C 8025467C 3C0B8033 */  lui   $t3, %hi(gMarioState) # $t3, 0x8033
 /* 00F680 80254680 8D6BC9D8 */  lw    $t3, %lo(gMarioState)($t3)

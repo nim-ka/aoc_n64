@@ -696,9 +696,9 @@ static u32 act_dive(struct MarioState *m)
         func_80251410(m, 0x04008081, 0);
 
     func_802507E8(m, 0x0088);
-    if (func_8024CADC(m))
+    if (mario_check_object_grab(m))
     {
-        func_8024C4CC(m);
+        mario_grab_used_object(m);
         m->unk98->unk0A = 1;
         if (m->action != ACT_DIVE)
             return 1;
@@ -757,7 +757,7 @@ static u32 act_dive(struct MarioState *m)
 static u32 act_air_throw(struct MarioState *m)
 {
     if (++(m->actionTimer) == 4)
-        func_8024C5E0(m);
+        mario_throw_held_object(m);
 
     func_80250F50(m, 0x24078081, MARIO_UNKNOWN_17);
     func_802507E8(m, 0x0052);
@@ -1218,7 +1218,7 @@ static u32 act_getting_blown(struct MarioState *m)
     }
 
     if (++(m->actionTimer) == 20)
-        func_8024C788(m, 50.0f);
+        mario_blow_off_cap(m, 50.0f);
 
     func_802514DC(m, m->forwardVel);
     func_80250F50(m, 0x24058081, MARIO_UNKNOWN_17);
@@ -1247,7 +1247,7 @@ static u32 act_getting_blown(struct MarioState *m)
 static u32 act_air_hit_wall(struct MarioState *m)
 {
     if (m->heldObj != NULL)
-        func_8024C520(m);
+        mario_drop_held_object(m);
 
     if (++(m->actionTimer) <= 2)
     {
@@ -1446,7 +1446,7 @@ static u32 act_hold_butt_slide_air(struct MarioState *m)
         if (m->vel[1] > 0.0f)
             m->vel[1] = 0.0f;
 
-        func_8024C520(m);
+        mario_drop_held_object(m);
         m->unk08 |= 0x00000002;
         set_mario_action(m, ACT_BACKWARD_AIR_KB, 0);
         break;

@@ -540,16 +540,16 @@ static void apply_twirl_gravity(struct MarioState *m)
         m->vel[1] = terminalVelocity;
 }
 
-static u32 should_strengthen_gravity_for_jump_peak(struct MarioState *m)
+static u32 should_strengthen_gravity_for_jump_ascent(struct MarioState *m)
 {
     if (!(m->flags & MARIO_UNKNOWN_08))
         return 0;
 
-    if (m->action & (ACT_FLAG_UNKNOWN_12 | ACT_FLAG_UNKNOWN_17))
+    if (m->action & (ACT_FLAG_INTANGIBLE | ACT_FLAG_UNKNOWN_17))
         return 0;
 
     if (!(m->input & INPUT_A_DOWN) && m->vel[1] > 20.0f)
-        return (m->action & ACT_FLAG_UNKNOWN_25) != 0;
+        return (m->action & ACT_FLAG_CONTROL_JUMP_HEIGHT) != 0;
 
     return 0;
 }
@@ -585,7 +585,7 @@ static void apply_gravity(struct MarioState *m)
         if (m->vel[1] < -75.0f)
             m->vel[1] = -75.0f;
     }
-    else if (should_strengthen_gravity_for_jump_peak(m))
+    else if (should_strengthen_gravity_for_jump_ascent(m))
     {
         m->vel[1] /= 4.0f;
     }
