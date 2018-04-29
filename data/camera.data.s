@@ -1042,10 +1042,16 @@ glabel TableWhompActions
 
 # Unknown region 0EADAC-0EFA50 [4CA4]
 glabel D_8032FDAC
-	.incbin "bin/sm64.j.0EADAC.bin", 0x0, 0x48
+	.incbin "bin/sm64.j.0EADAC.bin", 0x0, 0x24
+
+glabel D_8032FDD0
+	.incbin "bin/sm64.j.0EADAC.bin", 0x24, 0x24
 
 glabel D_8032FDF4
-	.incbin "bin/sm64.j.0EADAC.bin", 0x48, 0x48
+	.incbin "bin/sm64.j.0EADAC.bin", 0x48, 0x24
+
+glabel D_8032FE18
+	.incbin "bin/sm64.j.0EADAC.bin", 0x6C, 0x24
 
 glabel D_8032FE3C
 	.incbin "bin/sm64.j.0EADAC.bin", 0x90, 0x10
