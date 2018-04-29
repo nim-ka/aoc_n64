@@ -1,0 +1,8 @@
+#ifndef _TEXT_STRINGS_H_
+#define _TEXT_STRINGS_H_
+
+// star select screen
+#define TEXT_MYSCORE _("マイスコア")
+#define TEXT_0       _("0")
+
+#endif

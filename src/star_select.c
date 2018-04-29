@@ -3,6 +3,8 @@
 #include "sm64.h"
 #include "save_file.h"
 
+#include "text_strings.h"
+
 /*static*/ extern struct Object *sStarSelectIcons[];
 
 static s8 sSelectedStar = 0;
@@ -153,8 +155,8 @@ void ShowSomeNum(void)
 
 void func_80177004(void)
 {
-    char sp60[] = {0x8E, 0x71, 0x7C, 0x79, 0x70, 0xFF};
-    char sp5C[] = {0x00, 0xFF};
+    char sp60[] = {TEXT_MYSCORE};
+    char sp5C[] = {TEXT_0};
     u32 *sp58 = (u32 *)segmented_to_virtual(D_0200E454);
     u32 sp54 = (u32) segmented_to_virtual((void *) sp58[gCurrCourseNum - 1]);
     u32 *sp50 = (u32 *)segmented_to_virtual(D_0200EAD0);

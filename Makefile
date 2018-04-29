@@ -48,6 +48,7 @@ TOOLS_DIR = tools
 MIO0TOOL = $(TOOLS_DIR)/mio0
 N64CKSUM = $(TOOLS_DIR)/n64cksum
 N64GRAPHICS = $(TOOLS_DIR)/n64graphics
+TEXTCONV = $(TOOLS_DIR)/textconv
 EMULATOR = mupen64plus
 EMU_FLAGS = --noosd
 LOADER = loader64
@@ -83,10 +84,10 @@ ifeq ($(COMPARE),1)
 endif
 
 clean:
-	$(RM) -r $(BUILD_DIR)
+	$(RM) -r $(BUILD_DIR) src/text_strings.h
 
-#$(MIO0_DIR)/%.mio0: $(MIO0_DIR)/%.bin
-#	$(MIO0TOOL) $< $@
+src/text_strings.h: src/text_strings.h.in
+	$(TEXTCONV) charmap.txt $< $@
 
 $(BUILD_DIR)/mio0/%.mio0: bin/%.bin
 	$(MIO0TOOL) $< $@
@@ -96,6 +97,8 @@ $(BUILD_DIR):
 
 # Make sure build directory exists before compiling objects
 $(O_FILES): | $(BUILD_DIR)
+
+$(BUILD_DIR)/src/star_select.o: src/text_strings.h
 
 $(BUILD_DIR)/%.o: %.c
 	@$(CC_CHECK) $<
