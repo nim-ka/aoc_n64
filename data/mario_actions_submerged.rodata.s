@@ -71,7 +71,3 @@ glabel jtbl_80335D04
 	.word L80274904
 
 	.word 0
-
-
-
-

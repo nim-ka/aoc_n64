@@ -17,7 +17,28 @@ glabel D_80331E30
 	.incbin "bin/sm64.j.0EADAC.bin", 0x2084, 0x4
 
 glabel D_80331E34
-	.incbin "bin/sm64.j.0EADAC.bin", 0x2088, 0x78
+	.incbin "bin/sm64.j.0EADAC.bin", 0x2088, 0x4
+
+glabel D_80331E38
+	.incbin "bin/sm64.j.0EADAC.bin", 0x208C, 0xC
+
+glabel D_80331E44
+	.incbin "bin/sm64.j.0EADAC.bin", 0x2098, 0x18
+
+glabel D_80331E5C
+	.incbin "bin/sm64.j.0EADAC.bin", 0x20B0, 0x1C
+
+glabel D_80331E78
+	.incbin "bin/sm64.j.0EADAC.bin", 0x20CC, 0x10
+
+glabel D_80331E88
+	.incbin "bin/sm64.j.0EADAC.bin", 0x20DC, 0x10
+
+glabel D_80331E98
+	.incbin "bin/sm64.j.0EADAC.bin", 0x20EC, 0x10
+
+glabel D_80331EA8
+	.incbin "bin/sm64.j.0EADAC.bin", 0x20FC, 0x4
 
 glabel D_80331EAC
 	.incbin "bin/sm64.j.0EADAC.bin", 0x2100, 0x4
@@ -26,7 +47,45 @@ glabel D_80331EB0
 	.incbin "bin/sm64.j.0EADAC.bin", 0x2104, 0x4
 
 glabel D_80331EB4
-	.incbin "bin/sm64.j.0EADAC.bin", 0x2108, 0x9C
+	.word D_80331EA8
+	.word D_80331EA8
+	.word D_80331EA8
+	.word D_80331EA8
+	.word D_80331E38
+	.word D_80331EA8
+	.word D_80331EA8
+	.word D_80331E88
+	.word D_80331EA8
+	.word D_80331EA8
+	.word D_80331EA8
+	.word D_80331E78
+	.word D_80331E5C
+	.word D_80331EA8
+	.word D_80331EA8
+	.word D_80331EA8
+	.word D_80331EA8
+	.word D_80331EA8
+	.word D_80331EA8
+	.word D_80331EA8
+	.word D_80331EA8
+	.word D_80331EA8
+	.word D_80331EA8
+	.word D_80331E44
+	.word D_80331EA8
+	.word D_80331EA8
+	.word D_80331EA8
+	.word D_80331EA8
+	.word D_80331EA8
+	.word D_80331EA8
+	.word D_80331EA8
+	.word D_80331EA8
+	.word D_80331EA8
+	.word D_80331EA8
+	.word D_80331EA8
+	.word D_80331EA8
+	.word D_80331EA8
+	.word D_80331EA8
+	.word D_80331E98
 
 glabel D_80331F50
 	.incbin "bin/sm64.j.0EADAC.bin", 0x21A4, 0x14C

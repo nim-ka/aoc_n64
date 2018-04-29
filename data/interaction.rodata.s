@@ -137,5 +137,3 @@ glabel D_80335274
 
 glabel D_80335278
 	.incbin "bin/rodata.bin", 0x808, 0x8
-
-

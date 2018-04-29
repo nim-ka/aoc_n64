@@ -101,11 +101,3 @@ glabel jtbl_8038BBD8
 
 glabel D_8038BC80
 	.incbin "bin/sm64.j.1074A0.bin", 0x1F0, 0x10
-
-
-
-
-
-
-
-

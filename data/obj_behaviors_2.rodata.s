@@ -589,11 +589,3 @@ glabel D_80337BA4
 
 glabel D_80337BD8
 	.incbin "bin/rodata.bin", 0x3168, 0x8
-
-
-
-
-
-
-
-

@@ -6,13 +6,13 @@
 
 #rendering
 glabel D_8032CE60
-	.incbin "bin/sm64.j.0E7AE8.bin", 0x378, 0x4
+	.word D_8033A140
 
 glabel gLoadedGeoLayouts
-	.incbin "bin/sm64.j.0E7AE8.bin", 0x37C, 0x4
+	.word D_8033A160
 
 glabel D_8032CE68
-	.incbin "bin/sm64.j.0E7AE8.bin", 0x380, 0x4
+	.word D_8033A560
 
 glabel D_8032CE6C
 	.incbin "bin/sm64.j.0E7AE8.bin", 0x384, 0x4

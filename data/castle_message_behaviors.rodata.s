@@ -16,11 +16,3 @@ glabel D_80335DB4
 
 glabel D_80335DB8
 	.incbin "bin/rodata.bin", 0x1348, 0x18
-
-
-
-
-
-
-
-

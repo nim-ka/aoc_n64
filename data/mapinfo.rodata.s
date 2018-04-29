@@ -8,7 +8,45 @@ glabel D_80336C70
 	.incbin "bin/rodata.bin", 0x2200, 0x4
 
 glabel D_80336C74
-	.incbin "bin/rodata.bin", 0x2204, 0x94
+	.incbin "bin/rodata.bin", 0x2204, 0xC
+
+glabel D_80336C80
+	.incbin "bin/rodata.bin", 0x2210, 0x8
+glabel D_80336C88
+	.incbin "bin/rodata.bin", 0x2218, 0x8
+glabel D_80336C90
+	.incbin "bin/rodata.bin", 0x2220, 0x8
+glabel D_80336C98
+	.incbin "bin/rodata.bin", 0x2228, 0x8
+glabel D_80336CA0
+	.incbin "bin/rodata.bin", 0x2230, 0x8
+glabel D_80336CA8
+	.incbin "bin/rodata.bin", 0x2238, 0x8
+glabel D_80336CB0
+	.incbin "bin/rodata.bin", 0x2240, 0x8
+glabel D_80336CB8
+	.incbin "bin/rodata.bin", 0x2248, 0x8
+glabel D_80336CC0
+	.incbin "bin/rodata.bin", 0x2250, 0x4
+
+glabel D_80336CC4
+	.incbin "bin/rodata.bin", 0x2254, 0x8
+glabel D_80336CCC
+	.incbin "bin/rodata.bin", 0x225C, 0x8
+glabel D_80336CD4
+	.incbin "bin/rodata.bin", 0x2264, 0x8
+glabel D_80336CDC
+	.incbin "bin/rodata.bin", 0x226C, 0x8
+glabel D_80336CE4
+	.incbin "bin/rodata.bin", 0x2274, 0x8
+glabel D_80336CEC
+	.incbin "bin/rodata.bin", 0x227C, 0x8
+glabel D_80336CF4
+	.incbin "bin/rodata.bin", 0x2284, 0x8
+glabel D_80336CFC
+	.incbin "bin/rodata.bin", 0x228C, 0x8
+glabel D_80336D04
+	.incbin "bin/rodata.bin", 0x2294, 0x4
 
 glabel D_80336D08
 	.incbin "bin/rodata.bin", 0x2298, 0xC
@@ -96,11 +134,3 @@ glabel D_80336E30
 
 glabel D_80336E3C
 	.incbin "bin/rodata.bin", 0x23CC, 0x34
-
-
-
-
-
-
-
-

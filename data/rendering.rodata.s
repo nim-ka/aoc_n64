@@ -105,7 +105,3 @@ glabel jtbl_80335EAC
 	.word L8027DAD0
 
 	.word 0
-
-
-
-

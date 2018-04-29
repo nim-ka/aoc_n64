@@ -45,7 +45,7 @@ glabel D_8032CFFC
 	.incbin "bin/sm64.j.0E7AE8.bin", 0x514, 0x4
 
 glabel D_8032D000
-	.incbin "bin/sm64.j.0E7AE8.bin", 0x518, 0x4
+	.word D_8033B1B0
 
 glabel D_8032D004
 	.incbin "bin/sm64.j.0E7AE8.bin", 0x51C, 0x8
@@ -54,21 +54,21 @@ glabel D_8032D00C
 	.incbin "bin/sm64.j.0E7AE8.bin", 0x524, 0x3C
 
 glabel TableCameraTransitions
-.word NULL
-.word CameraChange01
-.word CameraChange02
-.word CameraChange03
-.word CameraChange040710
-.word CameraChange05
-.word CameraChange06
-.word CameraChange040710
-.word CameraChange08
-.word CameraChange090F
-.word CameraChange0A
-.word CameraChange0B
-.word CameraChange0C
-.word CameraChange0D
-.word CameraChange0E
-.word CameraChange090F
-.word CameraChange040710
-.word CameraChange11
+	.word NULL
+	.word CameraChange01
+	.word CameraChange02
+	.word CameraChange03
+	.word CameraChange040710
+	.word CameraChange05
+	.word CameraChange06
+	.word CameraChange040710
+	.word CameraChange08
+	.word CameraChange090F
+	.word CameraChange0A
+	.word CameraChange0B
+	.word CameraChange0C
+	.word CameraChange0D
+	.word CameraChange0E
+	.word CameraChange090F
+	.word CameraChange040710
+	.word CameraChange11

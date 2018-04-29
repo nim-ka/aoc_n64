@@ -35,6 +35,3 @@ glabel jtbl_80335D58
 	.word L80275BB8
 
 	.word 0, 0
-
-
-

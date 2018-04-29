@@ -632,7 +632,3 @@ glabel D_80338750
 	
 glabel D_80338F50
 	.incbin "bin/rodata.bin", 0x44E0, 0x2C0
-
-
-
-

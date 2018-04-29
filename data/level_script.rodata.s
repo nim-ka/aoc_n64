@@ -29,6 +29,3 @@ glabel jtbl_8038BB24
 	.word .L80380588
 
 	.word 0, 0 #hmm. why doesnt this file pad to 0x10?
-
-
-

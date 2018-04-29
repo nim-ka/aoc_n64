@@ -629,7 +629,3 @@ glabel jtbl_803365E0
 
 	# more missed literals. joy.
 	.incbin "bin/rodata.bin", 0x1B90, 0x10
-
-
-
-
