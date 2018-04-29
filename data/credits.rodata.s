@@ -253,3 +253,4 @@ glabel jtbl_80334FF4
 	.word .L8024B874
 	.word .L8024B888
 	.word .L8024B89C
+

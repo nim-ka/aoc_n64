@@ -16,3 +16,4 @@ glabel D_8032CB80
 
 glabel D_8032CB84
 	.incbin "bin/sm64.j.0E7AE8.bin", 0x9C, 0xC
+

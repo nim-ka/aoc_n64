@@ -8,34 +8,34 @@ glabel D_80330410
 	.incbin "bin/sm64.j.0EADAC.bin", 0x664, 0xC
 
 glabel D_8033041C
-	.incbin "bin/sm64.j.0EADAC.bin", 0x670, 0x4
+	.word 0
 
 glabel D_80330420
-	.incbin "bin/sm64.j.0EADAC.bin", 0x674, 0x4
+	.word 0
 
 glabel D_80330424
 	.incbin "bin/sm64.j.0EADAC.bin", 0x678, 0x4
 
 glabel D_80330428
-	.incbin "bin/sm64.j.0EADAC.bin", 0x67C, 0x4
+	.word 0
 
 glabel D_8033042C
-	.incbin "bin/sm64.j.0EADAC.bin", 0x680, 0x4
+	.word 0
 
 glabel D_80330430
 	.incbin "bin/sm64.j.0EADAC.bin", 0x684, 0x4
 
 glabel D_80330434
-	.incbin "bin/sm64.j.0EADAC.bin", 0x688, 0x4
+	.word 0
 
 glabel D_80330438
-	.incbin "bin/sm64.j.0EADAC.bin", 0x68C, 0x4
+	.word 0
 
 glabel D_8033043C
-	.incbin "bin/sm64.j.0EADAC.bin", 0x690, 0x4
+	.word 0
 
 glabel D_80330440
-	.incbin "bin/sm64.j.0EADAC.bin", 0x694, 0x4
+	.word 0
 
 glabel D_80330444
 	.incbin "bin/sm64.j.0EADAC.bin", 0x698, 0x4
@@ -62,10 +62,41 @@ glabel D_80330474
 	.incbin "bin/sm64.j.0EADAC.bin", 0x6C8, 0x8
 
 glabel D_8033047C
-	.incbin "bin/sm64.j.0EADAC.bin", 0x6D0, 0xA4
+	.incbin "bin/sm64.j.0EADAC.bin", 0x6D0, 0x4
+
+glabel D_80330480
+	.incbin "bin/sm64.j.0EADAC.bin", 0x6D4, 0x8
+glabel D_80330488
+	.incbin "bin/sm64.j.0EADAC.bin", 0x6DC, 0x14
+glabel D_8033049C
+	.incbin "bin/sm64.j.0EADAC.bin", 0x6F0, 0x14
+glabel D_803304B0
+	.incbin "bin/sm64.j.0EADAC.bin", 0x704, 0xC
+glabel D_803304BC
+	.incbin "bin/sm64.j.0EADAC.bin", 0x710, 0x10
+glabel D_803304CC
+	.incbin "bin/sm64.j.0EADAC.bin", 0x720, 0x8
+glabel D_803304D4
+	.incbin "bin/sm64.j.0EADAC.bin", 0x728, 0x10
+glabel D_803304E4
+	.incbin "bin/sm64.j.0EADAC.bin", 0x738, 0xC
+glabel D_803304F0
+	.incbin "bin/sm64.j.0EADAC.bin", 0x744, 0x8
+
+	.word D_80330480
+	.word D_80330488
+	.word D_8033049C
+	.word D_803304B0
+	.word D_803304BC
+	.word D_803304CC
+	.word D_803304D4
+	.word D_803304E4
+	.word D_803304F0
+
+	.word 0
 
 glabel D_80330520
-	.incbin "bin/sm64.j.0EADAC.bin", 0x774, 0x4
+	.word 0
 
 glabel D_80330524
 	.incbin "bin/sm64.j.0EADAC.bin", 0x778, 0x4
@@ -74,7 +105,7 @@ glabel D_80330528
 	.incbin "bin/sm64.j.0EADAC.bin", 0x77C, 0x4
 
 glabel D_8033052C
-	.incbin "bin/sm64.j.0EADAC.bin", 0x780, 0x4
+	.word 0
 
 glabel D_80330530
 	.incbin "bin/sm64.j.0EADAC.bin", 0x784, 0x4
@@ -128,16 +159,16 @@ glabel D_803305BC
 	.incbin "bin/sm64.j.0EADAC.bin", 0x810, 0x4
 
 glabel D_803305C0
-	.incbin "bin/sm64.j.0EADAC.bin", 0x814, 0x4
+	.word 0
 
 glabel D_803305C4
-	.incbin "bin/sm64.j.0EADAC.bin", 0x818, 0x4
+	.word 0
 
 glabel D_803305C8
-	.incbin "bin/sm64.j.0EADAC.bin", 0x81C, 0x4
+	.word 0
 
 glabel D_803305CC
-	.incbin "bin/sm64.j.0EADAC.bin", 0x820, 0x4
+	.word 0
 
 glabel D_803305D0
 	.incbin "bin/sm64.j.0EADAC.bin", 0x824, 0x8
@@ -173,7 +204,8 @@ glabel D_80330624
 	.incbin "bin/sm64.j.0EADAC.bin", 0x878, 0x1C
 
 glabel D_80330640
-	.incbin "bin/sm64.j.0EADAC.bin", 0x894, 0x8
+	.word 0
+	.word 0
 
 glabel D_80330648
 	.incbin "bin/sm64.j.0EADAC.bin", 0x89C, 0x30

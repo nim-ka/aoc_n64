@@ -196,3 +196,4 @@ glabel jtbl_801A7F8C
 	.word .L8017647C
 	.word .L8017647C
 	.word .L8017646C
+

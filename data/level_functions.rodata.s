@@ -534,3 +534,4 @@ glabel D_80336C48
 
 glabel D_80336C4C
 	.incbin "bin/rodata.bin", 0x21DC, 0x4
+

@@ -4661,3 +4661,4 @@ glabel beh_intro_scene # 5684
 .word 0x09000000
 .word 0x00000000
 glabel behavior_data_end
+

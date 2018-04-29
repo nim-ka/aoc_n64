@@ -468,3 +468,4 @@ glabel jtbl_80337790
 	.word L802F8644
 
 	.word 0
+

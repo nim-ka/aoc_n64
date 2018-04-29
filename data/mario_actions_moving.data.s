@@ -31,3 +31,4 @@ glabel D_8032CD98
 
 glabel D_8032CDB0
 	.incbin "bin/sm64.j.0E7AE8.bin", 0x2C8, 0x20
+

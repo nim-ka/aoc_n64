@@ -72,3 +72,4 @@ glabel LevelScriptJumpTable
 	.word LevelScript3A
 	.word LevelScript3B
 	.word LevelScript3C
+

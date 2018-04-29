@@ -12,4 +12,4 @@ glabel D_8032CDF8
 	.incbin "bin/sm64.j.0E7AE8.bin", 0x310, 0x14
 
 glabel D_8032CE0C
-	.incbin "bin/sm64.j.0E7AE8.bin", 0x324, 0x4
+	.word 0

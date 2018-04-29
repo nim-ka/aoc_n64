@@ -7,7 +7,7 @@
 #save file
 
 glabel D_8032CE30
-	.incbin "bin/sm64.j.0E7AE8.bin", 0x348, 0x4
+	.word 0
 
 glabel D_8032CE34
 	.incbin "bin/sm64.j.0E7AE8.bin", 0x34C, 0x3

@@ -61,3 +61,4 @@ glabel BehaviorJumpTable
 	.word Behavior35
 	.word Behavior36
 	.word Behavior37
+

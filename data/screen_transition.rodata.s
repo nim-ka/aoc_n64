@@ -25,3 +25,4 @@ glabel jtbl_80336E70
 	.word L802CC254
 	.word L802CC280
 	.word L802CC2A8
+

@@ -5,7 +5,17 @@
 
 #mario actions cutscene
 glabel D_80335530
-	.incbin "bin/rodata.bin", 0xAC0, 0x1C
+	.incbin "bin/rodata.bin", 0xAC0, 0x4
+
+glabel jtbl_80335534
+	.word L80259F34
+	.word L80259FCC
+	.word L8025A068
+	.word L8025A068
+	.word L8025A1D8
+
+	# missed literal
+	.incbin "bin/rodata.bin", 0xAD8, 0x4
 
 glabel jtbl_8033554C
 	.word L8025B320
@@ -179,3 +189,4 @@ glabel jtbl_803356A8
 	.word L8025D994
 	.word L8025D994
 	.word L8025D980
+

@@ -29,3 +29,4 @@ glabel jtbl_80336F68
 	.word L802CEA14
 
 	.word 0
+

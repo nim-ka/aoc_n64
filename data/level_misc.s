@@ -24,3 +24,4 @@ mario_bg:
 .incbin "build/mio0/mario_bg.mio0"
 .align 4, 0
 mario_bg_end:
+

@@ -82,3 +82,4 @@ glabel jtbl_80335878
 	.word L80263998
 
 	.word 0, 0, 0
+

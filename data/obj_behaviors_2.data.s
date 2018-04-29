@@ -317,10 +317,11 @@ glabel D_80331D14
 	.incbin "bin/sm64.j.0EADAC.bin", 0x1F68, 0x4
 
 glabel D_80331D18
-	.incbin "bin/sm64.j.0EADAC.bin", 0x1F6C, 0x4
+	.word 0
 
 glabel D_80331D1C
 	.incbin "bin/sm64.j.0EADAC.bin", 0x1F70, 0x10
 
 glabel D_80331D2C
 	.incbin "bin/sm64.j.0EADAC.bin", 0x1F80, 0x14
+

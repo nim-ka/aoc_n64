@@ -21,7 +21,9 @@ glabel D_801A7BA0
 	.incbin "bin/sm64.j.255EC0.bin", 0x4B0, 0x8
 
 glabel D_801A7BA8
-	.incbin "bin/sm64.j.255EC0.bin", 0x4B8, 0xC
+	.word 0
+	.word 0
+	.word 0
 
 glabel D_801A7BB4
 	.word D_801A7BA8

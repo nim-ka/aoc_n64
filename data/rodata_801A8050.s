@@ -32,10 +32,11 @@ glabel D_801A80F4
 	.word D_801A807C
 
 glabel D_801A80F8
-	.incbin "bin/sm64.j.255EC0.bin", 0xA08, 0x8
+	.word 0
+	.word 0
 
 glabel D_801A8100
-	.incbin "bin/sm64.j.255EC0.bin", 0xA10, 0x4
+	.word 0
 
 glabel D_801A8104
 	.word D_801A8070
@@ -52,10 +53,13 @@ glabel D_801A81A0
 
 #press start head 1
 glabel D_801A81C0
-	.incbin "bin/sm64.j.255EC0.bin", 0xAD0, 0x4
+	.word 0
 
 glabel D_801A81C4
-	.incbin "bin/sm64.j.255EC0.bin", 0xAD4, 0x10
+	.word 0
+	.word 0
+	.word 0
+	.word 0
 
 glabel D_801A81D4
 	.incbin "bin/sm64.j.255EC0.bin", 0xAE4, 0x64
@@ -64,25 +68,33 @@ glabel D_801A8238
 	.incbin "bin/sm64.j.255EC0.bin", 0xB48, 0x18
 
 glabel D_801A8250
-	.incbin "bin/sm64.j.255EC0.bin", 0xB60, 0x4
+	.word 0
 
 glabel D_801A8254
-	.incbin "bin/sm64.j.255EC0.bin", 0xB64, 0x4
+	.word 0
 
 glabel D_801A8258
-	.incbin "bin/sm64.j.255EC0.bin", 0xB68, 0x18
+	.word 0
+	.word 0
+	.word 0
+	.word 0
+	.word 0
+	.word 0
 
 glabel D_801A8270
-	.incbin "bin/sm64.j.255EC0.bin", 0xB80, 0x10
+	.word 0
+	.word 0
+	.word 0
+	.word 0
 
 glabel D_801A8280
-	.incbin "bin/sm64.j.255EC0.bin", 0xB90, 0x4
+	.word 0
 
 glabel D_801A8284
 	.incbin "bin/sm64.j.255EC0.bin", 0xB94, 0x1C
 
 glabel D_801A82A0
-	.incbin "bin/sm64.j.255EC0.bin", 0xBB0, 0x4
+	.word 0
 
 glabel D_801A82A4
 	.incbin "bin/sm64.j.255EC0.bin", 0xBB4, 0x4
@@ -94,58 +106,66 @@ glabel D_801A82AC
 	.incbin "bin/sm64.j.255EC0.bin", 0xBBC, 0x14
 
 glabel D_801A82C0
-	.incbin "bin/sm64.j.255EC0.bin", 0xBD0, 0x10
+	.word 0
+	.word 0
+	.word 0
+	.word 0
 
 glabel D_801A82D0
-	.incbin "bin/sm64.j.255EC0.bin", 0xBE0, 0x4
+	.word 0
 
 glabel D_801A82D4
-	.incbin "bin/sm64.j.255EC0.bin", 0xBE4, 0xC
+	.word 0
+	.word 0
+	.word 0
 
 glabel D_801A82E0
-	.incbin "bin/sm64.j.255EC0.bin", 0xBF0, 0x4
+	.word 0
 
 glabel D_801A82E4
-	.incbin "bin/sm64.j.255EC0.bin", 0xBF4, 0x4
+	.word 0
 
 glabel D_801A82E8
-	.incbin "bin/sm64.j.255EC0.bin", 0xBF8, 0x4
+	.word 0
 
 glabel D_801A82EC
-	.incbin "bin/sm64.j.255EC0.bin", 0xBFC, 0x4
+	.word 0
 
 glabel D_801A82F0
-	.incbin "bin/sm64.j.255EC0.bin", 0xC00, 0x4
+	.word 0
 
 glabel D_801A82F4
-	.incbin "bin/sm64.j.255EC0.bin", 0xC04, 0x4
+	.word 0
 
 glabel D_801A82F8
 	.incbin "bin/sm64.j.255EC0.bin", 0xC08, 0x370
 
 glabel D_801A8668
-	.incbin "bin/sm64.j.255EC0.bin", 0xF78, 0xC
+	.word 0
+	.word 0
+	.word 0
 
 glabel D_801A8674
-	.incbin "bin/sm64.j.255EC0.bin", 0xF84, 0x8
+	.word 0
+	.word 0
 
 glabel D_801A867C
-	.incbin "bin/sm64.j.255EC0.bin", 0xF8C, 0x4
+	.word 0
 
 glabel D_801A8680
-	.incbin "bin/sm64.j.255EC0.bin", 0xF90, 0x4
+	.word 0
 
 glabel D_801A8684
-	.incbin "bin/sm64.j.255EC0.bin", 0xF94, 0x4
+	.word 0
 
 glabel D_801A8688
-	.incbin "bin/sm64.j.255EC0.bin", 0xF98, 0x4
+	.word 0
 
 glabel D_801A868C
-	.incbin "bin/sm64.j.255EC0.bin", 0xF9C, 0x4
+	.word 0
 
 glabel D_801A8690
-	.incbin "bin/sm64.j.255EC0.bin", 0xFA0, 0x4
+	.word 0
 
 glabel D_801A8694
 	.incbin "bin/sm64.j.255EC0.bin", 0xFA4, 0x4
@@ -154,25 +174,26 @@ glabel D_801A8698
 	.incbin "bin/sm64.j.255EC0.bin", 0xFA8, 0x4
 
 glabel D_801A869C
-	.incbin "bin/sm64.j.255EC0.bin", 0xFAC, 0x4
+	.word 0
 
 glabel D_801A86A0
-	.incbin "bin/sm64.j.255EC0.bin", 0xFB0, 0x4
+	.word 0
 
 glabel D_801A86A4
-	.incbin "bin/sm64.j.255EC0.bin", 0xFB4, 0x4
+	.word 0
 
 glabel D_801A86A8
-	.incbin "bin/sm64.j.255EC0.bin", 0xFB8, 0x4
+	.word 0
 
 glabel D_801A86AC
-	.incbin "bin/sm64.j.255EC0.bin", 0xFBC, 0x4
+	.word 0
 
 glabel D_801A86B0
-	.incbin "bin/sm64.j.255EC0.bin", 0xFC0, 0x8
+	.word 0
+	.word 0
 
 glabel D_801A86B8
-	.incbin "bin/sm64.j.255EC0.bin", 0xFC8, 0x4
+	.word 0
 
 glabel D_801A86BC
 	.incbin "bin/sm64.j.255EC0.bin", 0xFCC, 0x4
@@ -193,34 +214,35 @@ glabel D_801A86D4
 	.incbin "bin/sm64.j.255EC0.bin", 0xFE4, 0x4
 
 glabel D_801A86D8
-	.incbin "bin/sm64.j.255EC0.bin", 0xFE8, 0x4
+	.word 0
 
 glabel D_801A86DC
-	.incbin "bin/sm64.j.255EC0.bin", 0xFEC, 0x4
+	.word 0
 
 glabel D_801A86E0
-	.incbin "bin/sm64.j.255EC0.bin", 0xFF0, 0x4
+	.word 0
 
 glabel D_801A86E4
-	.incbin "bin/sm64.j.255EC0.bin", 0xFF4, 0x4
+	.word 0
 
 glabel D_801A86E8
-	.incbin "bin/sm64.j.255EC0.bin", 0xFF8, 0x4
+	.word 0
 
 glabel D_801A86EC
-	.incbin "bin/sm64.j.255EC0.bin", 0xFFC, 0x4
+	.word 0
 
 glabel D_801A86F0
-	.incbin "bin/sm64.j.255EC0.bin", 0x1000, 0x4
+	.word 0
 
 glabel D_801A86F4
-	.incbin "bin/sm64.j.255EC0.bin", 0x1004, 0x8
+	.word 0
+	.word 0
 
 glabel D_801A86FC
-	.incbin "bin/sm64.j.255EC0.bin", 0x100C, 0x4
+	.word 0
 
 glabel D_801A8700
-	.incbin "bin/sm64.j.255EC0.bin", 0x1010, 0x4
+	.word 0
 
 glabel D_801A8704
 	.incbin "bin/sm64.j.255EC0.bin", 0x1014, 0x4
@@ -2959,13 +2981,16 @@ glabel jtbl_801B97F8
 	.word .L801A3784
 
 glabel D_801B9828
-	.incbin "bin/sm64.j.255EC0.bin", 0x12138, 0x20
+	.word .L801A38F0
+	.word .L801A3A94
+	.word .L801A3A9C
+	.word .L801A3AA4
+	.word .L801A3AAC
+	.word .L801A3AB4
+	.word .L801A3A14
+	.word 0
 
 glabel D_801B9848
 	.incbin "bin/sm64.j.255EC0.bin", 0x12158, 0x8
 
 # 0x801B9850
-
-
-
-

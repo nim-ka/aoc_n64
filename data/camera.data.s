@@ -1054,7 +1054,14 @@ glabel D_8032FE4C
 	.incbin "bin/sm64.j.0EADAC.bin", 0xA0, 0x74
 
 glabel D_8032FEC0
-	.incbin "bin/sm64.j.0EADAC.bin", 0x114, 0x14
+	.word 0
+	.word 0
+	.word 0
+	.word 0
+	.word 0
 
 glabel gMarioPlatform
-	.incbin "bin/sm64.j.0EADAC.bin", 0x128, 0xC
+	.word 0
+	.word 0
+	.word 0
+

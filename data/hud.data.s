@@ -32,4 +32,6 @@ glabel D_803314EC
 	.incbin "bin/sm64.j.0EADAC.bin", 0x1740, 0xC
 
 glabel D_803314F8
-	.incbin "bin/sm64.j.0EADAC.bin", 0x174C, 0x8
+	.word 0
+	.word 0
+

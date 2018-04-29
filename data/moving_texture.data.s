@@ -8,10 +8,11 @@ glabel D_8032FFD0
 	.incbin "bin/sm64.j.0EADAC.bin", 0x224, 0x4
 
 glabel D_8032FFD4
-	.incbin "bin/sm64.j.0EADAC.bin", 0x228, 0x4
+	.word 0
 
 glabel D_8032FFD8
-	.incbin "bin/sm64.j.0EADAC.bin", 0x22C, 0x8
+	.word 0
+	.word 0
 
 glabel D_8032FFE0
 	.incbin "bin/sm64.j.0EADAC.bin", 0x234, 0x1B
@@ -33,3 +34,4 @@ glabel D_8033031C
 
 glabel D_80330388
 	.incbin "bin/sm64.j.0EADAC.bin", 0x5DC, 0x8
+

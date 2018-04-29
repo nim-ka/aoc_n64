@@ -79,3 +79,4 @@ glabel D_803371D4
 
 glabel D_803371DC
 	.incbin "bin/rodata.bin", 0x276C, 0x4
+
