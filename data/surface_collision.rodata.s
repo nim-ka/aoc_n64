@@ -53,7 +53,22 @@ glabel D_8038BBA8
 	.incbin "bin/sm64.j.1074A0.bin", 0x118, 0x4
 
 glabel D_8038BBAC
-	.incbin "bin/sm64.j.1074A0.bin", 0x11C, 0x2C
+	.incbin "bin/sm64.j.1074A0.bin", 0x11C, 0x4
+
+glabel D_8038BBB0
+	.incbin "bin/sm64.j.1074A0.bin", 0x120, 0x8
+
+glabel D_8038BBB8
+	.incbin "bin/sm64.j.1074A0.bin", 0x128, 0x8
+
+glabel D_8038BBC0
+	.incbin "bin/sm64.j.1074A0.bin", 0x130, 0x8
+
+glabel D_8038BBC8
+	.incbin "bin/sm64.j.1074A0.bin", 0x138, 0x8
+
+glabel D_8038BBD0
+	.incbin "bin/sm64.j.1074A0.bin", 0x140, 0x8
 
 glabel jtbl_8038BBD8
 	.word .L80382FBC

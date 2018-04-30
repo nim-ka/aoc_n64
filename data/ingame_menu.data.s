@@ -5,7 +5,13 @@
 
 #ingame menu
 glabel D_80330410
-	.incbin "bin/sm64.j.0EADAC.bin", 0x664, 0xC
+	.incbin "bin/sm64.j.0EADAC.bin", 0x664, 0x4
+
+glabel D_80330414
+	.incbin "bin/sm64.j.0EADAC.bin", 0x668, 0x4
+
+glabel D_80330418
+	.incbin "bin/sm64.j.0EADAC.bin", 0x66C, 0x4
 
 glabel D_8033041C
 	.word 0
@@ -220,4 +226,4 @@ glabel D_80330688
 	.incbin "bin/sm64.j.0EADAC.bin", 0x8DC, 0x10
 
 glabel D_80330698
-	.incbin "bin/sm64.j.0EADAC.bin", 0x8EC, 0xBA8
+	.incbin "bin/sm64.j.0EADAC.bin", 0x8EC, 0x38

@@ -15,4 +15,10 @@ glabel D_80335DB4
 	.incbin "bin/rodata.bin", 0x1344, 0x4
 
 glabel D_80335DB8
-	.incbin "bin/rodata.bin", 0x1348, 0x18
+	.incbin "bin/rodata.bin", 0x1348, 0x8
+
+glabel D_80335DC0
+	.incbin "bin/rodata.bin", 0x1350, 0x8
+
+glabel D_80335DC8
+	.incbin "bin/rodata.bin", 0x1358, 0x8

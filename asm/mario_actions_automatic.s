@@ -1115,13 +1115,13 @@ glabel func_8025E924
 /* 0199EC 8025E9EC 46083282 */  mul.s $f10, $f6, $f8
 /* 0199F0 8025E9F0 E72A0058 */  swc1  $f10, 0x58($t9)
 /* 0199F4 8025E9F4 8FAB0030 */  lw    $t3, 0x30($sp)
-/* 0199F8 8025E9F8 3C018038 */  li    $at, 0x80380000
+/* 0199F8 8025E9F8 3C018038 */  lui    $at, %hi(D_80387000)
 /* 0199FC 8025E9FC 956D002E */  lhu   $t5, 0x2e($t3)
 /* 019A00 8025EA00 C5720054 */  lwc1  $f18, 0x54($t3)
 /* 019A04 8025EA04 000D7103 */  sra   $t6, $t5, 4
 /* 019A08 8025EA08 000E6080 */  sll   $t4, $t6, 2
 /* 019A0C 8025EA0C 002C0821 */  addu  $at, $at, $t4
-/* 019A10 8025EA10 C4307000 */  lwc1  $f16, 0x7000($at)
+/* 019A10 8025EA10 C4307000 */  lwc1  $f16, %lo(D_80387000)($at)
 /* 019A14 8025EA14 46128102 */  mul.s $f4, $f16, $f18
 /* 019A18 8025EA18 E564005C */  swc1  $f4, 0x5c($t3)
 /* 019A1C 8025EA1C 8FB80030 */  lw    $t8, 0x30($sp)
@@ -2484,19 +2484,19 @@ glabel func_8025FD7C
 /* 01ADAC 8025FDAC A7A9003A */  sh    $t1, 0x3a($sp)
 /* 01ADB0 8025FDB0 8FAA0060 */  lw    $t2, 0x60($sp)
 /* 01ADB4 8025FDB4 8FAB003C */  lw    $t3, 0x3c($sp)
-/* 01ADB8 8025FDB8 3C018033 */  li    $at, 0x80330000
+/* 01ADB8 8025FDB8 3C018033 */  lui    $at, %hi(D_803357A8)
 /* 01ADBC 8025FDBC C544003C */  lwc1  $f4, 0x3c($t2)
 /* 01ADC0 8025FDC0 C56600A0 */  lwc1  $f6, 0xa0($t3)
-/* 01ADC4 8025FDC4 C42A57A8 */  lwc1  $f10, 0x57a8($at)
+/* 01ADC4 8025FDC4 C42A57A8 */  lwc1  $f10, %lo(D_803357A8)($at)
 /* 01ADC8 8025FDC8 46062201 */  sub.s $f8, $f4, $f6
 /* 01ADCC 8025FDCC 460A4402 */  mul.s $f16, $f8, $f10
 /* 01ADD0 8025FDD0 E7B00034 */  swc1  $f16, 0x34($sp)
 /* 01ADD4 8025FDD4 8FAC0060 */  lw    $t4, 0x60($sp)
 /* 01ADD8 8025FDD8 8FAD003C */  lw    $t5, 0x3c($sp)
-/* 01ADDC 8025FDDC 3C018033 */  li    $at, 0x80330000
+/* 01ADDC 8025FDDC 3C018033 */  lui    $at, %hi(D_803357AC)
 /* 01ADE0 8025FDE0 C5920044 */  lwc1  $f18, 0x44($t4)
 /* 01ADE4 8025FDE4 C5A400A8 */  lwc1  $f4, 0xa8($t5)
-/* 01ADE8 8025FDE8 C42857AC */  lwc1  $f8, 0x57ac($at)
+/* 01ADE8 8025FDE8 C42857AC */  lwc1  $f8, %lo(D_803357AC)($at)
 /* 01ADEC 8025FDEC 46049181 */  sub.s $f6, $f18, $f4
 /* 01ADF0 8025FDF0 46083282 */  mul.s $f10, $f6, $f8
 /* 01ADF4 8025FDF4 E7AA0030 */  swc1  $f10, 0x30($sp)

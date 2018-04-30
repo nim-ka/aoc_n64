@@ -171,5 +171,21 @@ glabel D_801A7DA0
 	.incbin "bin/sm64.j.255EC0.bin", 0x6B0, 0x8
 
 glabel D_801A7DA8
-	.incbin "bin/sm64.j.255EC0.bin", 0x6B8, 0x48
+	.incbin "bin/sm64.j.255EC0.bin", 0x6B8, 0x8
+glabel D_801A7DB0
+	.incbin "bin/sm64.j.255EC0.bin", 0x6C0, 0x8
+glabel D_801A7DB8
+	.incbin "bin/sm64.j.255EC0.bin", 0x6C8, 0x8
+glabel D_801A7DC0
+	.incbin "bin/sm64.j.255EC0.bin", 0x6D0, 0x8
 
+glabel D_801A7DC8
+	.incbin "bin/sm64.j.255EC0.bin", 0x6D8, 0x8
+glabel D_801A7DD0
+	.incbin "bin/sm64.j.255EC0.bin", 0x6E0, 0x8
+glabel D_801A7DD8
+	.incbin "bin/sm64.j.255EC0.bin", 0x6E8, 0x8
+glabel D_801A7DE0
+	.incbin "bin/sm64.j.255EC0.bin", 0x6F0, 0x8
+glabel D_801A7DE8
+	.incbin "bin/sm64.j.255EC0.bin", 0x6F8, 0x8

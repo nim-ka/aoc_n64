@@ -4,6 +4,9 @@
 .section .data
 
 #hud
+glabel D_803306D0
+	.incbin "bin/sm64.j.0EADAC.bin", 0x924, 0xB70
+
 glabel D_80331240
 	.incbin "bin/sm64.j.0EADAC.bin", 0x1494, 0x1
 

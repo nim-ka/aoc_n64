@@ -23,7 +23,25 @@ glabel jtbl_80337BE0
 	.word L80316C0C
 
 glabel D_80337C20
-	.incbin "bin/rodata.bin", 0x31B0, 0x40
+	.incbin "bin/rodata.bin", 0x31B0, 0x8
+
+glabel D_80337C28
+	.incbin "bin/rodata.bin", 0x31B8, 0x8
+
+glabel D_80337C30
+	.incbin "bin/rodata.bin", 0x31C0, 0x8
+
+glabel D_80337C38
+	.incbin "bin/rodata.bin", 0x31C8, 0x8
+
+glabel D_80337C40
+	.incbin "bin/rodata.bin", 0x31D0, 0x8
+
+glabel D_80337C48
+	.incbin "bin/rodata.bin", 0x31D8, 0x8
+
+glabel D_80337C50
+	.incbin "bin/rodata.bin", 0x31E0, 0x10
 
 glabel jtbl_80337C60
 	.word L8031A5B0
@@ -67,8 +85,14 @@ glabel jtbl_80337CDC
 	.word L8031BBF4
 	.word L8031BBE8
 
-	# more missed literals?
-	.incbin "bin/rodata.bin", 0x3280, 0x18
+glabel D_80337CF0
+	.incbin "bin/rodata.bin", 0x3280, 0x8
+
+glabel D_80337CF8
+	.incbin "bin/rodata.bin", 0x3288, 0x8
+
+glabel D_80337D00
+	.incbin "bin/rodata.bin", 0x3290, 0x8
 
 glabel jtbl_80337D08
 	.word L8031C430
@@ -314,10 +338,10 @@ glabel jtbl_80337E04
 	.word L8031C1CC
 	.word L8031C97C
 
+glabel D_803380C8
 	# even more missed literals
-	.incbin "bin/rodata.bin", 0x3658, 0x4
-
-	.word 0 # padding?
+glabel D_803380C8
+	.incbin "bin/rodata.bin", 0x3658, 0x8
 
 glabel jtbl_803380D0
 	.word L8031D204
@@ -479,8 +503,34 @@ glabel jtbl_803381B0
 	# padding
 	.word 0, 0, 0
 
-	# unknown area
-	.incbin "bin/rodata.bin", 0x38D0, 0x74
+	.incbin "bin/rodata.bin", 0x38D0, 0x38
+
+glabel D_80338378
+	.incbin "bin/rodata.bin", 0x3908, 0x8
+
+glabel D_80338380
+	.incbin "bin/rodata.bin", 0x3910, 0x8
+
+glabel D_80338388
+	.incbin "bin/rodata.bin", 0x3918, 0x8
+
+glabel D_80338390
+	.incbin "bin/rodata.bin", 0x3920, 0x4
+
+glabel D_80338394
+	.incbin "bin/rodata.bin", 0x3924, 0x4
+
+glabel D_80338398
+	.incbin "bin/rodata.bin", 0x3928, 0x8
+
+glabel D_803383A0
+	.incbin "bin/rodata.bin", 0x3930, 0x8
+
+glabel D_803383A8
+	.incbin "bin/rodata.bin", 0x3938, 0x8
+
+glabel D_803383B0
+	.incbin "bin/rodata.bin", 0x3940, 0x4
 
 glabel jtbl_803383B4
 	.word L8031F244
@@ -508,10 +558,10 @@ glabel jtbl_803383DC
 
 	.word 0 #align?
 
-	# 2 more
+glabel D_80338408
 	.incbin "bin/rodata.bin", 0x3998, 0x8
 
-	# missed literals
+glabel D_80338410
 	.incbin "bin/rodata.bin", 0x39A0, 0x8
 
 glabel jtbl_80338418
@@ -524,7 +574,11 @@ glabel jtbl_80338418
 	.word L8031FD2C
 	.word L8031FD54
 
-	.incbin "bin/rodata.bin", 0x39C8, 0x18
+glabel D_80338438
+	.incbin "bin/rodata.bin", 0x39C8, 0x8
+
+glabel D_80338440
+	.incbin "bin/rodata.bin", 0x39D0, 0x10
 
 glabel D_80338450
 	.word 0x80000000
@@ -535,10 +589,28 @@ glabel D_80338458
 	.word 0
 
 glabel D_80338460
-	.incbin "bin/rodata.bin", 0x39F0, 0x50
+	.incbin "bin/rodata.bin", 0x39F0, 0x28
+
+glabel D_80338488
+	.incbin "bin/rodata.bin", 0x3A18, 0x8
+
+glabel D_80338490
+	.incbin "bin/rodata.bin", 0x3A20, 0x8
+
+glabel D_80338498
+	.incbin "bin/rodata.bin", 0x3A28, 0x8
+
+glabel D_803384A0
+	.incbin "bin/rodata.bin", 0x3A30, 0x10
 
 glabel D_803384B0
-	.incbin "bin/rodata.bin", 0x3A40, 0x50
+	.incbin "bin/rodata.bin", 0x3A40, 0x30
+
+glabel D_803384E0
+	.incbin "bin/rodata.bin", 0x3A70, 0x8
+
+glabel D_803384E8
+	.incbin "bin/rodata.bin", 0x3A78, 0x18
 
 glabel D_80338500
 	.incbin "bin/rodata.bin", 0x3A90, 0x10

@@ -118,7 +118,10 @@ glabel D_80335404
 	.incbin "bin/rodata.bin", 0x994, 0x4
 
 glabel D_80335408
-	.incbin "bin/rodata.bin", 0x998, 0x8
+	.incbin "bin/rodata.bin", 0x998, 0x4
+
+glabel D_8033540C
+	.incbin "bin/rodata.bin", 0x99C, 0x4
 
 glabel D_80335410
 	.incbin "bin/rodata.bin", 0x9A0, 0x4
