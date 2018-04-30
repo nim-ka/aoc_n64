@@ -14771,7 +14771,7 @@ glabel BehSnowmansHeadInit
 /* 0AB1CC 802F01CC 84A5A756 */  lh    $a1, %lo(gCurrCourseNum)($a1)
 /* 0AB1D0 802F01D0 8484CE94 */  lh    $a0, %lo(gCurrSaveFileNum)($a0)
 /* 0AB1D4 802F01D4 24A5FFFF */  addiu $a1, %lo(D_8033FFFF) # addiu $a1, $a1, -1
-/* 0AB1D8 802F01D8 0C09E706 */  jal   save_file_get_obtained_stars
+/* 0AB1D8 802F01D8 0C09E706 */  jal   save_file_get_star_flags
 /* 0AB1DC 802F01DC 2484FFFF */   addiu $a0, %lo(D_8032FFFF) # addiu $a0, $a0, -1
 /* 0AB1E0 802F01E0 A3A20037 */  sb    $v0, 0x37($sp)
 /* 0AB1E4 802F01E4 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
@@ -15880,7 +15880,7 @@ glabel BehNormalCapInit
 /* 0AC164 802F1164 4600320D */  trunc.w.s $f8, $f6
 /* 0AC168 802F1168 44052000 */  mfc1  $a1, $f4
 /* 0AC16C 802F116C 44064000 */  mfc1  $a2, $f8
-/* 0AC170 802F1170 0C09E79A */  jal   save_file_set_cap_location
+/* 0AC170 802F1170 0C09E79A */  jal   save_file_set_cap_pos
 /* 0AC174 802F1174 00000000 */   nop   
 /* 0AC178 802F1178 10000001 */  b     .L802F1180
 /* 0AC17C 802F117C 00000000 */   nop   
@@ -16059,7 +16059,7 @@ glabel BehNormalCapLoop
 /* 0AC3E4 802F13E4 4600218D */  trunc.w.s $f6, $f4
 /* 0AC3E8 802F13E8 44059000 */  mfc1  $a1, $f18
 /* 0AC3EC 802F13EC 44063000 */  mfc1  $a2, $f6
-/* 0AC3F0 802F13F0 0C09E79A */  jal   save_file_set_cap_location
+/* 0AC3F0 802F13F0 0C09E79A */  jal   save_file_set_cap_pos
 /* 0AC3F4 802F13F4 00000000 */   nop   
 .L802F13F8:
 /* 0AC3F8 802F13F8 3C0D8036 */  lui   $t5, %hi(gCurrentObject) # $t5, 0x8036
@@ -16126,7 +16126,7 @@ glabel BehCollectStarInit
 /* 0AC4CC 802F14CC 84A5A756 */  lh    $a1, %lo(gCurrCourseNum)($a1)
 /* 0AC4D0 802F14D0 8484CE94 */  lh    $a0, %lo(gCurrSaveFileNum)($a0)
 /* 0AC4D4 802F14D4 24A5FFFF */  addiu $a1, %lo(D_8033FFFF) # addiu $a1, $a1, -1
-/* 0AC4D8 802F14D8 0C09E706 */  jal   save_file_get_obtained_stars
+/* 0AC4D8 802F14D8 0C09E706 */  jal   save_file_get_star_flags
 /* 0AC4DC 802F14DC 2484FFFF */   addiu $a0, %lo(D_8032FFFF) # addiu $a0, $a0, -1
 /* 0AC4E0 802F14E0 A3A2001E */  sb    $v0, 0x1e($sp)
 /* 0AC4E4 802F14E4 83A9001F */  lb    $t1, 0x1f($sp)
@@ -22773,7 +22773,7 @@ glabel BehMipsInit
 /* 0B2408 802F7408 3C048033 */  lui   $a0, %hi(D_8032FFFF) # $a0, 0x8033
 /* 0B240C 802F740C 8484CE94 */  lh    $a0, %lo(gCurrSaveFileNum)($a0)
 /* 0B2410 802F7410 2405FFFF */  li    $a1, -1
-/* 0B2414 802F7414 0C09E706 */  jal   save_file_get_obtained_stars
+/* 0B2414 802F7414 0C09E706 */  jal   save_file_get_star_flags
 /* 0B2418 802F7418 2484FFFF */   addiu $a0, %lo(D_8032FFFF) # addiu $a0, $a0, -1
 /* 0B241C 802F741C A3A2001F */  sb    $v0, 0x1f($sp)
 /* 0B2420 802F7420 3C048033 */  lui   $a0, %hi(D_8032FFFF) # $a0, 0x8033

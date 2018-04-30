@@ -3174,7 +3174,7 @@ glabel func_802D4CC8
 /* 08FCE0 802D4CE0 3C048033 */  lui   $a0, %hi(D_8032FFFF) # $a0, 0x8033
 /* 08FCE4 802D4CE4 8484CE94 */  lh    $a0, %lo(gCurrSaveFileNum)($a0)
 /* 08FCE8 802D4CE8 24050008 */  li    $a1, 8
-/* 08FCEC 802D4CEC 0C09E706 */  jal   save_file_get_obtained_stars
+/* 08FCEC 802D4CEC 0C09E706 */  jal   save_file_get_star_flags
 /* 08FCF0 802D4CF0 2484FFFF */   addiu $a0, %lo(D_8032FFFF) # addiu $a0, $a0, -1
 /* 08FCF4 802D4CF4 AFA20024 */  sw    $v0, 0x24($sp)
 /* 08FCF8 802D4CF8 0C09E6EF */  jal   save_file_get_flags

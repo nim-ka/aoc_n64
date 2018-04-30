@@ -1175,7 +1175,7 @@ glabel Geo18_802D104C
 /* 08B654 802D0654 3C048033 */  lui   $a0, %hi(D_8032FFFF) # $a0, 0x8033
 /* 08B658 802D0658 8484CE94 */  lh    $a0, %lo(gCurrSaveFileNum)($a0)
 /* 08B65C 802D065C 24050002 */  li    $a1, 2
-/* 08B660 802D0660 0C09E706 */  jal   save_file_get_obtained_stars
+/* 08B660 802D0660 0C09E706 */  jal   save_file_get_star_flags
 /* 08B664 802D0664 2484FFFF */   addiu $a0, %lo(D_8032FFFF) # addiu $a0, $a0, -1
 /* 08B668 802D0668 304F0001 */  andi  $t7, $v0, 1
 /* 08B66C 802D066C 11E00003 */  beqz  $t7, .L802D067C

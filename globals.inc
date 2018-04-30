@@ -410,11 +410,11 @@
 .global DynamicObjectCopy
 .global SetMarioAnimation
 .global add_save_block_signature
-.global SaveMenuData
+.global save_main_menu_data
 .global save_file_do_save
 .global save_file_load_all
 .global save_file_get_total_star_count
-.global save_file_get_obtained_stars
+.global save_file_get_star_flags
 .global IntroPrintText
 .global uncompress
 .global Unknown8027F5C4

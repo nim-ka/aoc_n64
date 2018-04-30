@@ -191,7 +191,7 @@ Gfx *func_802CF414(s8 a, s8 b, float c, float d, float e, float f, float g,
     float sp2C = i - f;
     s8 sp2B = 1;
 
-    if (b == 8 && !(save_file_get_obtained_stars(gCurrSaveFileNum - 1, 2) & 1))
+    if (b == 8 && !(save_file_get_star_flags(gCurrSaveFileNum - 1, 2) & 1))
         sp2B = 0;
 
     c = 90.0f;

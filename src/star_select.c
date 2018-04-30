@@ -50,7 +50,7 @@ void BehActSelectorInit(void)
 {
     s16 sp5E = 0;
     int sp34[10];
-    u8 stars = save_file_get_obtained_stars(gCurrSaveFileNum - 1, gCurrCourseNum -1);
+    u8 stars = save_file_get_star_flags(gCurrSaveFileNum - 1, gCurrCourseNum -1);
 
     D_801B9912 = 0;
     while (sp5E != D_801B9911)
@@ -98,7 +98,7 @@ void BehActSelectorLoop(void)
 {
     s8 i;
     u8 sp1E;
-    u8 stars = save_file_get_obtained_stars(gCurrSaveFileNum - 1, gCurrCourseNum -1);
+    u8 stars = save_file_get_star_flags(gCurrSaveFileNum - 1, gCurrCourseNum -1);
 
     if (D_801B9911 != 6)
     {
@@ -214,7 +214,7 @@ int Geo18_80177518(s16 a, UNUSED int b)
 
 void LevelProc_80177560(UNUSED int a, UNUSED int b)
 {
-    u8 stars = save_file_get_obtained_stars(gCurrSaveFileNum - 1, gCurrCourseNum - 1);
+    u8 stars = save_file_get_star_flags(gCurrSaveFileNum - 1, gCurrCourseNum - 1);
 
     D_801B9910 = 0;
     D_801B9913 = 0;

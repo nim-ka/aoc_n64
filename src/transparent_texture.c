@@ -38,7 +38,7 @@ struct StructGeo802D2360 *Geo18_802D2360(s32 sp30, short *sp34, UNUSED s32 sp38)
     if (sp30 == 1)
     {
         flags = save_file_get_flags();
-        if (D_80339EF4 >= 0xa && (flags & FLAG_HAVE_WING_CAP) == 0)
+        if (D_80339EF4 >= 0xa && (flags & SAVE_FLAG_HAVE_WING_CAP) == 0)
         {
             sp20 = alloc_display_list(0x10);
             if (sp20 == NULL)

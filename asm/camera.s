@@ -23744,7 +23744,7 @@ glabel L80297824
 /* 0528AC 802978AC 84A5A756 */  lh    $a1, %lo(gCurrCourseNum)($a1)
 /* 0528B0 802978B0 8484CE94 */  lh    $a0, %lo(gCurrSaveFileNum)($a0)
 /* 0528B4 802978B4 24A5FFFF */  addiu $a1, %lo(D_8033FFFF) # addiu $a1, $a1, -1
-/* 0528B8 802978B8 0C09E706 */  jal   save_file_get_obtained_stars
+/* 0528B8 802978B8 0C09E706 */  jal   save_file_get_star_flags
 /* 0528BC 802978BC 2484FFFF */   addiu $a0, %lo(D_8032FFFF) # addiu $a0, $a0, -1
 /* 0528C0 802978C0 304D0010 */  andi  $t5, $v0, 0x10
 /* 0528C4 802978C4 11A00008 */  beqz  $t5, .L802978E8

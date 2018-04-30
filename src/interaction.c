@@ -334,7 +334,7 @@ void mario_blow_off_cap(struct MarioState *m, f32 capSpeed)
 
     if (func_8024C75C(m))
     {
-        save_file_set_cap_location(m->pos[0], m->pos[1], m->pos[2]);
+        save_file_set_cap_pos(m->pos[0], m->pos[1], m->pos[2]);
 
         m->flags &= ~(MARIO_UNKNOWN_00 | MARIO_CAP_ON_HEAD);
 
@@ -355,7 +355,7 @@ u32 mario_lose_cap_to_enemy(u32 arg)
 
     if (func_8024C75C(gMarioState))
     {
-        save_file_set_flags(arg == 1 ? FLAG_CAP_ON_KLEPTO : FLAG_CAP_ON_UKIKI);
+        save_file_set_flags(arg == 1 ? SAVE_FLAG_CAP_ON_KLEPTO : SAVE_FLAG_CAP_ON_UKIKI);
         gMarioState->flags &= ~(MARIO_UNKNOWN_00 | MARIO_CAP_ON_HEAD);
         wasWearingCap = TRUE;
     }
@@ -366,7 +366,7 @@ u32 mario_lose_cap_to_enemy(u32 arg)
 void mario_retrieve_cap(void)
 {
     mario_drop_held_object(gMarioState);
-    save_file_clear_flags(FLAG_CAP_ON_KLEPTO | FLAG_CAP_ON_UKIKI);
+    save_file_clear_flags(SAVE_FLAG_CAP_ON_KLEPTO | SAVE_FLAG_CAP_ON_UKIKI);
     gMarioState->flags &= ~MARIO_CAP_ON_HEAD;
     gMarioState->flags |= MARIO_UNKNOWN_00 | MARIO_CAP_IN_HAND;
 }
@@ -914,12 +914,12 @@ static u32 interact_warp_door(struct MarioState *m, UNUSED u32 interactType, str
 
     if (m->action == ACT_WALKING || m->action == ACT_DECELERATING)
     {
-        if (warpDoorId == 1 && !(saveFlags & FLAG_UNLOCKED_UPSTAIRS_DOOR))
+        if (warpDoorId == 1 && !(saveFlags & SAVE_FLAG_UNLOCKED_UPSTAIRS_DOOR))
         {
-            if (!(saveFlags & FLAG_HAVE_KEY_2))
+            if (!(saveFlags & SAVE_FLAG_HAVE_KEY_2))
             {
                 if (!sDisplayingDoorText)
-                    set_mario_action(m, ACT_UNKNOWN_105, (saveFlags & FLAG_HAVE_KEY_1) ? 0x17 : 0x16);
+                    set_mario_action(m, ACT_UNKNOWN_105, (saveFlags & SAVE_FLAG_HAVE_KEY_1) ? 0x17 : 0x16);
                 sDisplayingDoorText = TRUE;
 
                 return FALSE;
@@ -928,13 +928,13 @@ static u32 interact_warp_door(struct MarioState *m, UNUSED u32 interactType, str
             doorAction = ACT_UNLOCKING_KEY_DOOR;
         }
 
-        if (warpDoorId == 2 && !(saveFlags & FLAG_UNLOCKED_BASEMENT_DOOR))
+        if (warpDoorId == 2 && !(saveFlags & SAVE_FLAG_UNLOCKED_BASEMENT_DOOR))
         {
-            if (!(saveFlags & FLAG_HAVE_KEY_1))
+            if (!(saveFlags & SAVE_FLAG_HAVE_KEY_1))
             {
                 if (!sDisplayingDoorText)
                     // Moat door skip was intended confirmed
-                    set_mario_action(m, ACT_UNKNOWN_105, (saveFlags & FLAG_HAVE_KEY_2) ? 0x17 : 0x16);
+                    set_mario_action(m, ACT_UNKNOWN_105, (saveFlags & SAVE_FLAG_HAVE_KEY_2) ? 0x17 : 0x16);
                 sDisplayingDoorText = TRUE;
 
                 return FALSE;
@@ -976,28 +976,28 @@ u32 get_door_save_file_flag(struct Object *door)
     {
     case 1:
         if (isPssDoor)
-            saveFileFlag = FLAG_UNLOCKED_PSS_DOOR;
+            saveFileFlag = SAVE_FLAG_UNLOCKED_PSS_DOOR;
         else
-            saveFileFlag = FLAG_UNLOCKED_WF_DOOR;
+            saveFileFlag = SAVE_FLAG_UNLOCKED_WF_DOOR;
         break;
 
     case 3:
         if (isCcmDoor)
-            saveFileFlag = FLAG_UNLOCKED_CCM_DOOR;
+            saveFileFlag = SAVE_FLAG_UNLOCKED_CCM_DOOR;
         else 
-            saveFileFlag = FLAG_UNLOCKED_JRB_DOOR;
+            saveFileFlag = SAVE_FLAG_UNLOCKED_JRB_DOOR;
         break;
 
     case 8:
-        saveFileFlag = FLAG_UNLOCKED_BITDW_DOOR;
+        saveFileFlag = SAVE_FLAG_UNLOCKED_BITDW_DOOR;
         break;
 
     case 30:
-        saveFileFlag = FLAG_UNLOCKED_BITFS_DOOR;
+        saveFileFlag = SAVE_FLAG_UNLOCKED_BITFS_DOOR;
         break;
 
     case 50:
-        saveFileFlag = FLAG_UNLOCKED_50_STAR_DOOR;
+        saveFileFlag = SAVE_FLAG_UNLOCKED_50_STAR_DOOR;
         break;
     }
  

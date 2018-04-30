@@ -469,6 +469,7 @@ ranges:
       - [0x33A88, "tex.ia",     16, 32, 32]
       - [0x34288, "tex.ia",     16, 32, 32]
       - [0x34A88, "tex.ia",     16, 32, 32]
+   - [0x125DB0, 0x128BE0, "sm64.geo",  "water_sparkles_mario"]
    - [0x128BE0, 0x130C50, "mio0", "yoshiegg_owl_thwomp"]:
       - [0x00040, "tex.rgba",   16, 32, 32]
       - [0x00A20, "tex.rgba",   16, 32, 32]
@@ -2708,7 +2709,7 @@ labels:
    - [0x80278A78, "DynamicObjectCopy"]
    - [0x80278AD4, "SetMarioAnimation"]
    - [0x80278DEC, "CalcSaveChecksum"]
-   - [0x80278EF0, "SaveMenuData"]
+   - [0x80278EF0, "save_main_menu_data"]
    - [0x80279290, "SaveFileData"]
    - [0x8027942C, "CopyFromEeprom"]
    - [0x80279A60, "GetStarCount"]

@@ -15347,7 +15347,7 @@ glabel BehUnused080CInit
 /* 065738 802AA738 8484CE94 */  lh    $a0, %lo(gCurrSaveFileNum)($a0)
 /* 06573C 802AA73C 00408025 */  move  $s0, $v0
 /* 065740 802AA740 24A5FFFF */  addiu $a1, %lo(D_8033FFFF) # addiu $a1, $a1, -1
-/* 065744 802AA744 0C09E706 */  jal   save_file_get_obtained_stars
+/* 065744 802AA744 0C09E706 */  jal   save_file_get_star_flags
 /* 065748 802AA748 2484FFFF */   addiu $a0, %lo(D_8032FFFF) # addiu $a0, $a0, -1
 /* 06574C 802AA74C 00507024 */  and   $t6, $v0, $s0
 /* 065750 802AA750 11C00003 */  beqz  $t6, .L802AA760
@@ -19404,7 +19404,7 @@ glabel BehLittleCage2Loop
 /* 0690C4 802AE0C4 8484CE94 */  lh    $a0, %lo(gCurrSaveFileNum)($a0)
 /* 0690C8 802AE0C8 00408025 */  move  $s0, $v0
 /* 0690CC 802AE0CC 24A5FFFF */  addiu $a1, %lo(D_8033FFFF) # addiu $a1, $a1, -1
-/* 0690D0 802AE0D0 0C09E706 */  jal   save_file_get_obtained_stars
+/* 0690D0 802AE0D0 0C09E706 */  jal   save_file_get_star_flags
 /* 0690D4 802AE0D4 2484FFFF */   addiu $a0, %lo(D_8032FFFF) # addiu $a0, $a0, -1
 /* 0690D8 802AE0D8 0050C824 */  and   $t9, $v0, $s0
 /* 0690DC 802AE0DC 13200003 */  beqz  $t9, .L802AE0EC
