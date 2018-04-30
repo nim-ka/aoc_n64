@@ -15,8 +15,11 @@ mario:
 .incbin "build/mio0/mario.mio0"
 glabel mario_end
 
-# Unknown region 125DB0-128BE0 [2E30]
-.incbin "bin/sm64.j.125DB0.bin"
+.align 4, 0x01
+.global water_sparkles_mario
+water_sparkles_mario:
+.include "geo/water_sparkles_mario.geo.s"
+water_sparkles_mario_end:
 
 .align 4, 0
 .global yoshiegg_owl_thwomp
