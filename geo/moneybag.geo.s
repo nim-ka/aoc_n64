@@ -35,8 +35,8 @@
 .word 0x04000000
 .word   0x1D000000, 0x00004000
 .word   0x04000000
-.word     0x18000000, 0x8029D194
-.word     0x0E000002, 0x8029D3CC
+.word     0x18000000, Geo18_8029D924
+.word     0x0E000002, GeoSwitchCase8029DB48
 .word     0x04000000
 .word       0x02010000, 0x0D000000
 .word       0x02010000, 0x0D000078

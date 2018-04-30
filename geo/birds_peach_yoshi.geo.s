@@ -31,7 +31,7 @@
 .word       0x04000000
 .word         0x13010084, 0x00000000, 0x00000000
 .word         0x04000000
-.word           0x0E000008, 0x80256F20
+.word           0x0E000008, GeoSwitchCase80257198
 .word           0x04000000
 .word             0x15010000, 0x05005CE0
 .word             0x15010000, 0x05005D38
@@ -91,7 +91,7 @@
 .word       0x04000000
 .word         0x13050084, 0x00000000, 0x00000000
 .word         0x04000000
-.word           0x0E000008, 0x80256F20
+.word           0x0E000008, GeoSwitchCase80257198
 .word           0x04000000
 .word             0x15050000, 0x05005CE0
 .word             0x15050000, 0x05005D38
@@ -146,8 +146,8 @@
 .word 0x04000000
 .word   0x1D000000, 0x00004000
 .word   0x04000000
-.word     0x1800000A, 0x8029D194
-.word     0x0E000002, 0x8029D3CC
+.word     0x1800000A, Geo18_8029D924
+.word     0x0E000002, GeoSwitchCase8029DB48
 .word     0x04000000
 .word       0x02010000, 0x0C000098
 .word       0x02010000, 0x0C000254
@@ -171,7 +171,7 @@
 .word         0x04000000
 .word           0x130100DE, 0x00000000, 0x00000000
 .word           0x04000000
-.word             0x0E000002, 0x8029D3CC
+.word             0x0E000002, GeoSwitchCase8029DB48
 .word             0x04000000
 .word               0x15010000, 0x0501D970
 .word               0x15010000, 0x0501D998

@@ -24,7 +24,7 @@
 .word     0x04000000
 .word       0x13010000, 0x00000000, 0x0500A768
 .word       0x04000000
-.word         0x18000000, 0x802B7034
+.word         0x18000000, Geo18_802B798C
 .word       0x05000000
 .word       0x04000000
 .word         0x130100C9, 0x00000000, 0x05009DD0
@@ -56,7 +56,7 @@
 .word           0x04000000
 .word             0x130101DB, 0x00000000, 0x0500D828
 .word             0x04000000
-.word               0x0E000002, 0x8029D3CC
+.word               0x0E000002, GeoSwitchCase8029DB48
 .word               0x04000000
 .word                 0x0B000000
 .word                 0x0B000000
