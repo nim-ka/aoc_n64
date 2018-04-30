@@ -8,7 +8,11 @@ glabel D_803357A0
 	.incbin "bin/rodata.bin", 0xD30, 0x4
 
 glabel D_803357A4
-	.incbin "bin/rodata.bin", 0xD34, 0xC
+	.incbin "bin/rodata.bin", 0xD34, 0x4
+glabel D_803357A8
+	.incbin "bin/rodata.bin", 0xD38, 0x4
+glabel D_803357AC
+	.incbin "bin/rodata.bin", 0xD3C, 0x4
 
 glabel jtbl_803357B0
 	.word L80260370

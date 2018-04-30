@@ -3,6 +3,12 @@
 
 .section .rodata
 
+glabel D_80336E60
+	.incbin "bin/rodata.bin", 0x23F0, 0x8
+
+glabel D_80336E68
+	.incbin "bin/rodata.bin", 0x23F8, 0x8
+
 #screen transition
 glabel jtbl_80336E70
 	.word L802CC148

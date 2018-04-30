@@ -505,7 +505,15 @@ glabel D_801B5718
 	.incbin "bin/sm64.j.255EC0.bin", 0xE028, 0x4
 
 glabel D_801B571C
-	.incbin "bin/sm64.j.255EC0.bin", 0xE02C, 0x14
+	.incbin "bin/sm64.j.255EC0.bin", 0xE02C, 0x4
+glabel D_801B5720
+	.incbin "bin/sm64.j.255EC0.bin", 0xE030, 0x4
+glabel D_801B5724
+	.incbin "bin/sm64.j.255EC0.bin", 0xE034, 0x4
+glabel D_801B5728
+	.incbin "bin/sm64.j.255EC0.bin", 0xE038, 0x4
+glabel D_801B572C
+	.incbin "bin/sm64.j.255EC0.bin", 0xE03C, 0x4
 
 glabel jtbl_801B5730
 	.word .L80178EA0

@@ -36,7 +36,10 @@ glabel D_80335CB0
 	.incbin "bin/rodata.bin", 0x1240, 0x4
 
 glabel D_80335CB4
-	.incbin "bin/rodata.bin", 0x1244, 0x8
+	.incbin "bin/rodata.bin", 0x1244, 0x4
+
+glabel D_80335CB8
+	.incbin "bin/rodata.bin", 0x1248, 0x4
 
 glabel jtbl_80335CBC
 	.word L8027474C

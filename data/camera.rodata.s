@@ -156,7 +156,10 @@ glabel D_8033614C
 	.incbin "bin/rodata.bin", 0x16DC, 0x4
 
 glabel D_80336150
-	.incbin "bin/rodata.bin", 0x16E0, 0x8
+	.incbin "bin/rodata.bin", 0x16E0, 0x4
+
+glabel D_80336154
+	.incbin "bin/rodata.bin", 0x16E4, 0x4
 
 glabel D_80336158
 	.incbin "bin/rodata.bin", 0x16E8, 0x4
@@ -627,5 +630,8 @@ glabel jtbl_803365E0
 
 	.word 0, 0, 0
 
-	# more missed literals. joy.
-	.incbin "bin/rodata.bin", 0x1B90, 0x10
+glabel D_80336600
+	.incbin "bin/rodata.bin", 0x1B90, 0x8
+
+glabel D_80336608
+	.incbin "bin/rodata.bin", 0x1B98, 0x8

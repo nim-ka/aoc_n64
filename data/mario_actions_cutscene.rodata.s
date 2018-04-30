@@ -14,7 +14,7 @@ glabel jtbl_80335534
 	.word L8025A068
 	.word L8025A1D8
 
-	# missed literal
+glabel D_80335548
 	.incbin "bin/rodata.bin", 0xAD8, 0x4
 
 glabel jtbl_8033554C
