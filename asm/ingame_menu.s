@@ -1694,7 +1694,7 @@ glabel ShowCoins
 /* 092CD8 802D7CD8 8FAE0020 */  lw    $t6, 0x20($sp)
 /* 092CDC 802D7CDC 15C00007 */  bnez  $t6, .L802D7CFC
 /* 092CE0 802D7CE0 00000000 */   nop   
-/* 092CE4 802D7CE4 0C09E634 */  jal   func_802798D0
+/* 092CE4 802D7CE4 0C09E634 */  jal   save_file_get_max_coin_score
 /* 092CE8 802D7CE8 83A4002B */   lb    $a0, 0x2b($sp)
 /* 092CEC 802D7CEC 304FFFFF */  andi  $t7, $v0, 0xffff
 /* 092CF0 802D7CF0 31F8FFFF */  andi  $t8, $t7, 0xffff
@@ -4790,7 +4790,7 @@ glabel func_802DA8EC
 /* 09596C 802DA96C 84A5A756 */  lh    $a1, %lo(gCurrCourseNum)($a1)
 /* 095970 802DA970 8484CE94 */  lh    $a0, %lo(gCurrSaveFileNum)($a0)
 /* 095974 802DA974 24A5FFFF */  addiu $a1, %lo(D_8033FFFF) # addiu $a1, $a1, -1
-/* 095978 802DA978 0C09E706 */  jal   save_file_get_obtained_stars
+/* 095978 802DA978 0C09E706 */  jal   save_file_get_star_flags
 /* 09597C 802DA97C 2484FFFF */   addiu $a0, %lo(D_8032FFFF) # addiu $a0, $a0, -1
 /* 095980 802DA980 A3A2003E */  sb    $v0, 0x3e($sp)
 /* 095984 802DA984 3C0E8034 */  lui   $t6, %hi(gDisplayListHead) # $t6, 0x8034
@@ -5671,7 +5671,7 @@ glabel func_802DB698
 /* 0966B8 802DB6B8 95CE05B4 */  lhu   $t6, %lo(D_803305B4)($t6)
 /* 0966BC 802DB6BC A7AE0024 */  sh    $t6, 0x24($sp)
 /* 0966C0 802DB6C0 87A40052 */  lh    $a0, 0x52($sp)
-/* 0966C4 802DB6C4 0C09E706 */  jal   save_file_get_obtained_stars
+/* 0966C4 802DB6C4 0C09E706 */  jal   save_file_get_star_flags
 /* 0966C8 802DB6C8 87A50056 */   lh    $a1, 0x56($sp)
 /* 0966CC 802DB6CC A3A20023 */  sb    $v0, 0x23($sp)
 /* 0966D0 802DB6D0 87A40052 */  lh    $a0, 0x52($sp)

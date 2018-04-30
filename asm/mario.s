@@ -4881,7 +4881,7 @@ glabel func_802548BC
 /* 00FC28 80254C28 8706002E */  lh    $a2, 0x2e($t8)
 /* 00FC2C 80254C2C 0C0DE25F */  jal   vec3s_set
 /* 00FC30 80254C30 2484001A */   addiu $a0, $a0, 0x1a
-/* 00FC34 80254C34 0C09E7BF */  jal   save_file_get_cap_coords
+/* 00FC34 80254C34 0C09E7BF */  jal   save_file_get_cap_pos
 /* 00FC38 80254C38 27A40020 */   addiu $a0, $sp, 0x20
 /* 00FC3C 80254C3C 10400022 */  beqz  $v0, .L80254CC8
 /* 00FC40 80254C40 00000000 */   nop   

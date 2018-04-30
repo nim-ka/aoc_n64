@@ -2708,7 +2708,7 @@ labels:
    - [0x80278A78, "DynamicObjectCopy"]
    - [0x80278AD4, "SetMarioAnimation"]
    - [0x80278DEC, "CalcSaveChecksum"]
-   - [0x80278EF0, "SaveMenuData"]
+   - [0x80278EF0, "save_main_menu_data"]
    - [0x80279290, "SaveFileData"]
    - [0x8027942C, "CopyFromEeprom"]
    - [0x80279A60, "GetStarCount"]

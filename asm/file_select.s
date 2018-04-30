@@ -6119,7 +6119,7 @@ glabel func_80175A6C
 /* 224250 80175A80 AFA7006C */  sw    $a3, 0x6c($sp)
 /* 224254 80175A84 AFB00018 */  sw    $s0, 0x18($sp)
 /* 224258 80175A88 83A40063 */  lb    $a0, 0x63($sp)
-/* 22425C 80175A8C 0C09E706 */  jal   save_file_get_obtained_stars
+/* 22425C 80175A8C 0C09E706 */  jal   save_file_get_star_flags
 /* 224260 80175A90 87A50066 */   lh    $a1, 0x66($sp)
 /* 224264 80175A94 A3A2004B */  sb    $v0, 0x4b($sp)
 /* 224268 80175A98 3C0F801A */  lui   $t7, %hi(D_801A7D74) # $t7, 0x801a
@@ -6185,7 +6185,7 @@ glabel func_80175A6C
 /* 224350 80175B80 87A5006E */  lh    $a1, 0x6e($sp)
 /* 224354 80175B84 0C0B5C67 */  jal   PrintRegularText
 /* 224358 80175B88 27A60048 */   addiu $a2, $sp, 0x48
-/* 22435C 80175B8C 0C09E634 */  jal   func_802798D0
+/* 22435C 80175B8C 0C09E634 */  jal   save_file_get_max_coin_score
 /* 224360 80175B90 87A40066 */   lh    $a0, 0x66($sp)
 /* 224364 80175B94 00408025 */  move  $s0, $v0
 /* 224368 80175B98 3204FFFF */  andi  $a0, $s0, 0xffff
@@ -6198,7 +6198,7 @@ glabel func_80175A6C
 /* 224384 80175BB4 27A6004C */  addiu $a2, $sp, 0x4c
 /* 224388 80175BB8 0C0B5C67 */  jal   PrintRegularText
 /* 22438C 80175BBC 24840010 */   addiu $a0, $a0, 0x10
-/* 224390 80175BC0 0C09E634 */  jal   func_802798D0
+/* 224390 80175BC0 0C09E634 */  jal   save_file_get_max_coin_score
 /* 224394 80175BC4 87A40066 */   lh    $a0, 0x66($sp)
 /* 224398 80175BC8 00408025 */  move  $s0, $v0
 /* 22439C 80175BCC 00104C02 */  srl   $t1, $s0, 0x10
@@ -6230,7 +6230,7 @@ glabel func_80175C10
 /* 2243F4 80175C24 AFA70044 */  sw    $a3, 0x44($sp)
 /* 2243F8 80175C28 A7A00036 */  sh    $zero, 0x36($sp)
 /* 2243FC 80175C2C 83A4003B */  lb    $a0, 0x3b($sp)
-/* 224400 80175C30 0C09E706 */  jal   save_file_get_obtained_stars
+/* 224400 80175C30 0C09E706 */  jal   save_file_get_star_flags
 /* 224404 80175C34 87A5003E */   lh    $a1, 0x3e($sp)
 /* 224408 80175C38 A3A2001F */  sb    $v0, 0x1f($sp)
 /* 22440C 80175C3C 83A4003B */  lb    $a0, 0x3b($sp)
