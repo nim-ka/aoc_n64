@@ -139,7 +139,7 @@ void ShowSomeNum(void)
 
     func_802D6590(1, 158.0f, 81.0f, 0.0f);
 
-    gSPDisplayList(gDisplayListHead++, D_0700F228);
+    gSPDisplayList(gDisplayListHead++, mm7_f3d_00F228);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
     gSPDisplayList(gDisplayListHead++, D_0200ED00);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
@@ -186,7 +186,7 @@ void func_80177004(void)
 
     ShowSomeNum();
 
-    gSPDisplayList(gDisplayListHead++, D_0700D108);
+    gSPDisplayList(gDisplayListHead++, mm7_f3d_00D108);
     gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, 255);
 
     if (D_801B9912 != 0)
@@ -202,7 +202,7 @@ void func_80177004(void)
         PrintRegularText(sp47 * 34 - D_801B9912 * 17 + 0x8B, 38, sp5C);
     }
 
-    gSPDisplayList(gDisplayListHead++, D_0700D160);
+    gSPDisplayList(gDisplayListHead++, mm7_f3d_00D160);
 }
 
 int Geo18_80177518(s16 a, UNUSED int b)

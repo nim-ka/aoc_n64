@@ -9,6 +9,7 @@ BUILD_DIR := build
 SRC_DIRS := src src/libultra
 ASM_DIRS := asm
 DATA_DIRS := data
+BIN_DIRS := bin
 
 # If COMPARE is 1, check the output sha1sum when building 'all'
 COMPARE = 1
@@ -17,11 +18,15 @@ COMPARE = 1
 C_FILES := $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.c))
 S_FILES := $(foreach dir,$(ASM_DIRS),$(wildcard $(dir)/*.s))
 D_FILES := $(foreach dir,$(DATA_DIRS),$(wildcard $(dir)/*.s))
+SEG_S_FILES := $(foreach dir,$(BIN_DIRS),$(wildcard $(dir)/*.s))
 
 # Object files
 O_FILES := $(foreach file,$(C_FILES),$(BUILD_DIR)/$(file:.c=.o)) \
            $(foreach file,$(S_FILES),$(BUILD_DIR)/$(file:.s=.o)) \
            $(foreach file,$(D_FILES),$(BUILD_DIR)/$(file:.s=.o))
+
+# Segment elf files
+SEG_FILES := $(foreach file,$(SEG_S_FILES),$(BUILD_DIR)/$(file:.s=.elf))
 
 ##################### Compiler Options #######################
 IRIX_ROOT := tools/ido5.3_compiler
@@ -39,7 +44,8 @@ ASFLAGS := -march=vr4300 -I include
 CFLAGS  := -Wab,-r4300_mul -mips2 -non_shared -G 0 -Xcpluscomm -Xfullwarn -g -I include
 OBJCOPYFLAGS := --pad-to=0x800000 --gap-fill=0xFF
 
-LDFLAGS = -T sym_bss.txt -T undefined_syms.txt -T $(LD_SCRIPT) -Map $(BUILD_DIR)/sm64.map --no-check-sections
+SYMBOL_LINKING_FLAGS := $(addprefix -R ,$(SEG_FILES))
+LDFLAGS = -T sym_bss.txt -T undefined_syms.txt -T $(LD_SCRIPT) -Map $(BUILD_DIR)/sm64.map --no-check-sections $(SYMBOL_LINKING_FLAGS)
 
 ####################### Other Tools #########################
 
@@ -93,12 +99,26 @@ $(BUILD_DIR)/mio0/%.mio0: bin/%.bin
 	$(MIO0TOOL) $< $@
 
 $(BUILD_DIR):
-	mkdir $(BUILD_DIR) $(addprefix $(BUILD_DIR)/,$(SRC_DIRS) $(ASM_DIRS) $(DATA_DIRS)) $(MIO0_DIR)
+	mkdir $(BUILD_DIR) $(addprefix $(BUILD_DIR)/,$(SRC_DIRS) $(ASM_DIRS) $(DATA_DIRS) $(BIN_DIRS)) $(MIO0_DIR)
 
 # Make sure build directory exists before compiling objects
 $(O_FILES): | $(BUILD_DIR)
 
 $(BUILD_DIR)/src/star_select.o: src/text_strings.h
+
+# compressed segment generation
+$(BUILD_DIR)/bin/%.o: bin/%.s
+	$(AS) $(ASFLAGS) -o $@ $<
+
+# TODO: ideally this would be `-Trodata-segment=0x07000000` but that doesn't set the address
+$(BUILD_DIR)/bin/%.elf: $(BUILD_DIR)/bin/%.o
+	$(LD) -e 0 -Ttext=0x07000000 -Map $@.map -o $@ $<
+
+$(BUILD_DIR)/bin/%.bin: $(BUILD_DIR)/bin/%.elf
+	$(OBJCOPY) -j .rodata $< -O binary $@
+
+$(BUILD_DIR)/mio0/%.mio0: $(BUILD_DIR)/bin/%.bin
+	$(MIO0TOOL) $< $@
 
 $(BUILD_DIR)/%.o: %.c
 	@$(CC_CHECK) $<
@@ -107,7 +127,7 @@ $(BUILD_DIR)/%.o: %.c
 $(BUILD_DIR)/%.o: %.s $(MIO0_FILES)
 	$(AS) $(ASFLAGS) -o $@ $<
 
-$(BUILD_DIR)/$(TARGET).elf: $(O_FILES) $(LD_SCRIPT) sym_bss.txt undefined_syms.txt
+$(BUILD_DIR)/$(TARGET).elf: $(O_FILES) $(SEG_FILES) $(LD_SCRIPT) sym_bss.txt undefined_syms.txt
 	$(LD) $(LDFLAGS) -o $@ $(O_FILES) $(LIBS)
 
 $(BUILD_DIR)/$(TARGET).bin: $(BUILD_DIR)/$(TARGET).elf
@@ -127,4 +147,4 @@ load: $(BUILD_DIR)/$(TARGET).z64
 	$(LOADER) $(LOADER_FLAGS) $<
 
 .PHONY: all clean default diff test load
-.PRECIOUS: $(BUILD_DIR)/mio0/%.mio0
+.PRECIOUS: $(BUILD_DIR)/mio0/%.mio0 $(BUILD_DIR)/bin/%.elf

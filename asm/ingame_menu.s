@@ -943,9 +943,9 @@ glabel PrintRegularText
 /* 0921C0 802D71C0 AFAE005C */  sw    $t6, 0x5c($sp)
 /* 0921C4 802D71C4 87AF006E */  lh    $t7, 0x6e($sp)
 /* 0921C8 802D71C8 AFAF0058 */  sw    $t7, 0x58($sp)
-/* 0921CC 802D71CC 3C040701 */  lui   $a0, %hi(D_0700CD08) # $a0, 0x701
+/* 0921CC 802D71CC 3C040701 */  lui   $a0, %hi(mm7_table_00CD08) # $a0, 0x701
 /* 0921D0 802D71D0 0C09DE68 */  jal   segmented_to_virtual
-/* 0921D4 802D71D4 2484CD08 */   addiu $a0, %lo(D_0700CD08) # addiu $a0, $a0, -0x32f8
+/* 0921D4 802D71D4 2484CD08 */   addiu $a0, %lo(mm7_table_00CD08) # addiu $a0, $a0, -0x32f8
 /* 0921D8 802D71D8 AFA20054 */  sw    $v0, 0x54($sp)
 /* 0921DC 802D71DC 8FB80070 */  lw    $t8, 0x70($sp)
 /* 0921E0 802D71E0 8FB90060 */  lw    $t9, 0x60($sp)

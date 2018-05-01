@@ -21,7 +21,7 @@ main_menu_level:
 .word 0x1F080100, 0x14000380
 .word 0x24181F00, 0x00000000, 0xB5C80000, 0x00000000, 0x04000000, beh_gray_button
 .word 0x24181F06, 0x00000000, 0xB5C80000, 0x00000000, 0x04000000, beh_yellow_background_in_menu
-.word 0x2E080000, 0x0700F2F8
+.word 0x2E080000, mm7_collision_00F2F8
 .word 0x20040000
 .word 0x1E040000
 .word 0x29040100
@@ -45,7 +45,7 @@ main_menu_level:
 .word 0x1D040000
 .word 0x1F080200, 0x14000408
 .word 0x24181F00, 0x0000FF9C, 0x00000000, 0x00000000, 0x04000000, beh_act_selector
-.word 0x2E080000, 0x0700F2F8
+.word 0x2E080000, mm7_collision_00F2F8
 .word 0x20040000
 .word 0x1E040000
 .word 0x29040200
@@ -68,8 +68,8 @@ main_menu_level:
 .word 0x04000000
 .word   0x1D000000, 0x00080000
 .word   0x04000000
-.word     0x15010000, 0x07003330
-.word     0x15010000, 0x070033D0
+.word     0x15010000, mm7_f3d_003330
+.word     0x15010000, mm7_f3d_0033D0
 .word   0x05000000
 .word 0x05000000
 .word 0x01000000
@@ -77,8 +77,8 @@ main_menu_level:
 .word 0x04000000
 .word   0x1D000000, 0x00080000
 .word   0x04000000
-.word     0x15010000, 0x07003330
-.word     0x15010000, 0x07003400
+.word     0x15010000, mm7_f3d_003330
+.word     0x15010000, mm7_f3d_003400
 .word   0x05000000
 .word 0x05000000
 .word 0x01000000
@@ -86,8 +86,8 @@ main_menu_level:
 .word 0x04000000
 .word   0x1D000000, 0x00080000
 .word   0x04000000
-.word     0x15010000, 0x07003380
-.word     0x15010000, 0x070033D0
+.word     0x15010000, mm7_f3d_003380
+.word     0x15010000, mm7_f3d_0033D0
 .word   0x05000000
 .word 0x05000000
 .word 0x01000000
@@ -95,8 +95,8 @@ main_menu_level:
 .word 0x04000000
 .word   0x1D000000, 0x00080000
 .word   0x04000000
-.word     0x15010000, 0x07003380
-.word     0x15010000, 0x07003400
+.word     0x15010000, mm7_f3d_003380
+.word     0x15010000, mm7_f3d_003400
 .word   0x05000000
 .word 0x05000000
 .word 0x01000000
@@ -104,7 +104,7 @@ main_menu_level:
 .word 0x04000000
 .word   0x1D000000, 0x00080000
 .word   0x04000000
-.word     0x15010000, 0x070061C8
+.word     0x15010000, mm7_f3d_0061C8
 .word   0x05000000
 .word 0x05000000
 .word 0x01000000
@@ -112,7 +112,7 @@ main_menu_level:
 .word 0x04000000
 .word   0x1D000000, 0x00080000
 .word   0x04000000
-.word     0x15010000, 0x070061F8
+.word     0x15010000, mm7_f3d_0061F8
 .word   0x05000000
 .word 0x05000000
 .word 0x01000000
@@ -120,7 +120,7 @@ main_menu_level:
 .word 0x04000000
 .word   0x1D000000, 0x00080000
 .word   0x04000000
-.word     0x15010000, 0x07006228
+.word     0x15010000, mm7_f3d_006228
 .word   0x05000000
 .word 0x05000000
 .word 0x01000000
@@ -128,7 +128,7 @@ main_menu_level:
 .word 0x04000000
 .word   0x1D000000, 0x00080000
 .word   0x04000000
-.word     0x15010000, 0x07006258
+.word     0x15010000, mm7_f3d_006258
 .word   0x05000000
 .word 0x05000000
 .word 0x01000000
@@ -136,7 +136,7 @@ main_menu_level:
 .word 0x04000000
 .word   0x1D000000, 0x00080000
 .word   0x04000000
-.word     0x15010000, 0x07006288
+.word     0x15010000, mm7_f3d_006288
 .word   0x05000000
 .word 0x05000000
 .word 0x01000000
@@ -144,7 +144,7 @@ main_menu_level:
 .word 0x04000000
 .word   0x1D000000, 0x00080000
 .word   0x04000000
-.word     0x15010000, 0x070062B8
+.word     0x15010000, mm7_f3d_0062B8
 .word   0x05000000
 .word 0x05000000
 .word 0x01000000
