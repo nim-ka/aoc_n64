@@ -51,7 +51,10 @@ glabel gCurrLevelNum
 	.incbin "bin/sm64.j.0E7AE8.bin", 0x3B0, 0x4
 
 glabel D_8032CE9C
-	.incbin "bin/sm64.j.0E7AE8.bin", 0x3B4, 0x64
+	.incbin "bin/sm64.j.0E7AE8.bin", 0x3B4, 0x50
+
+glabel D_8032CEEC
+	.incbin "bin/sm64.j.0E7AE8.bin", 0x404, 0x14
 
 glabel D_8032CF00
 	.incbin "bin/sm64.j.0E7AE8.bin", 0x418, 0x10

@@ -11,6 +11,7 @@ glabel D_803303A8
 glabel D_803303E4
 	.incbin "bin/sm64.j.0EADAC.bin", 0x638, 0x8
 
+glabel D_803303EC
 	.word D_803303A0
 	.word D_803303A8
 	.word D_803303E4

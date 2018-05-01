@@ -239,13 +239,13 @@ glabel func_8024980C
 /* 0048C0 802498C0 1000000B */  b     .L802498F0
 /* 0048C4 802498C4 00000000 */   nop   
 .L802498C8:
-/* 0048C8 802498C8 3C048033 */  lui   $a0, %hi(D_8032FFFF) # $a0, 0x8033
-/* 0048CC 802498CC 3C058034 */  lui   $a1, %hi(D_8033FFFF) # $a1, 0x8034
+/* 0048C8 802498C8 3C048033 */  lui   $a0, %hi(gCurrSaveFileNum) # $a0, 0x8033
+/* 0048CC 802498CC 3C058034 */  lui   $a1, %hi(gCurrCourseNum) # $a1, 0x8034
 /* 0048D0 802498D0 84A5A756 */  lh    $a1, %lo(gCurrCourseNum)($a1)
 /* 0048D4 802498D4 8484CE94 */  lh    $a0, %lo(gCurrSaveFileNum)($a0)
-/* 0048D8 802498D8 24A5FFFF */  addiu $a1, %lo(D_8033FFFF) # addiu $a1, $a1, -1
+/* 0048D8 802498D8 24A5FFFF */  addiu $a1, $a1, -1
 /* 0048DC 802498DC 0C09E706 */  jal   save_file_get_star_flags
-/* 0048E0 802498E0 2484FFFF */   addiu $a0, %lo(D_8032FFFF) # addiu $a0, $a0, -1
+/* 0048E0 802498E0 2484FFFF */   addiu $a0, $a0, -1
 /* 0048E4 802498E4 AFA2002C */  sw    $v0, 0x2c($sp)
 /* 0048E8 802498E8 10000001 */  b     .L802498F0
 /* 0048EC 802498EC 00000000 */   nop   
@@ -940,12 +940,12 @@ glabel func_8024A27C
 /* 00528C 8024A28C 24010006 */  li    $at, 6
 /* 005290 8024A290 15C1000C */  bne   $t6, $at, .L8024A2C4
 /* 005294 8024A294 00000000 */   nop   
-/* 005298 8024A298 3C048033 */  lui   $a0, %hi(D_8032FFFF) # $a0, 0x8033
+/* 005298 8024A298 3C048033 */  lui   $a0, %hi(gCurrSaveFileNum) # $a0, 0x8033
 /* 00529C 8024A29C 8484CE94 */  lh    $a0, %lo(gCurrSaveFileNum)($a0)
 /* 0052A0 8024A2A0 00002825 */  move  $a1, $zero
 /* 0052A4 8024A2A4 24060018 */  li    $a2, 24
 /* 0052A8 8024A2A8 0C09E698 */  jal   save_file_get_total_star_count
-/* 0052AC 8024A2AC 2484FFFF */   addiu $a0, %lo(D_8032FFFF) # addiu $a0, $a0, -1
+/* 0052AC 8024A2AC 2484FFFF */   addiu $a0, $a0, -1
 /* 0052B0 8024A2B0 28410046 */  slti  $at, $v0, 0x46
 /* 0052B4 8024A2B4 14200003 */  bnez  $at, .L8024A2C4
 /* 0052B8 8024A2B8 00000000 */   nop   
@@ -1696,8 +1696,8 @@ glabel func_8024AD5C
 /* 005D90 8024AD90 A4389EE4 */   sh    $t8, %lo(D_80339EE4)($at)
 /* 005D94 8024AD94 0C0B6026 */  jal   func_802D8098
 /* 005D98 8024AD98 00000000 */   nop   
-/* 005D9C 8024AD9C 3C098033 */  lui   $t1, %hi(D_8032C64C) # $t1, 0x8033
-/* 005DA0 8024ADA0 8129C64C */  lb    $t1, %lo(D_8032C64C)($t1)
+/* 005D9C 8024AD9C 3C098033 */  lui   $t1, %hi(gDebugLevelSelect) # $t1, 0x8033
+/* 005DA0 8024ADA0 8129C64C */  lb    $t1, %lo(gDebugLevelSelect)($t1)
 /* 005DA4 8024ADA4 1120000A */  beqz  $t1, .L8024ADD0
 /* 005DA8 8024ADA8 00000000 */   nop   
 /* 005DAC 8024ADAC 3C0A8034 */  lui   $t2, %hi(D_80339EE2) # $t2, 0x8034
@@ -2201,8 +2201,8 @@ glabel func_8024B434
 /* 00649C 8024B49C 1000001B */  b     .L8024B50C
 /* 0064A0 8024B4A0 00000000 */   nop   
 .L8024B4A4:
-/* 0064A4 8024B4A4 3C088033 */  lui   $t0, %hi(D_8032C64C) # $t0, 0x8033
-/* 0064A8 8024B4A8 8108C64C */  lb    $t0, %lo(D_8032C64C)($t0)
+/* 0064A4 8024B4A4 3C088033 */  lui   $t0, %hi(gDebugLevelSelect) # $t0, 0x8033
+/* 0064A8 8024B4A8 8108C64C */  lb    $t0, %lo(gDebugLevelSelect)($t0)
 /* 0064AC 8024B4AC 11000006 */  beqz  $t0, .L8024B4C8
 /* 0064B0 8024B4B0 00000000 */   nop   
 /* 0064B4 8024B4B4 2404FFF7 */  li    $a0, -9
@@ -2597,8 +2597,8 @@ glabel func_8024B8EC
 /* 0069F8 8024B9F8 10000020 */  b     .L8024BA7C
 /* 0069FC 8024B9FC 00000000 */   nop   
 .L8024BA00:
-/* 006A00 8024BA00 3C0D8033 */  lui   $t5, %hi(D_8032C64C) # $t5, 0x8033
-/* 006A04 8024BA04 81ADC64C */  lb    $t5, %lo(D_8032C64C)($t5)
+/* 006A00 8024BA00 3C0D8033 */  lui   $t5, %hi(gDebugLevelSelect) # $t5, 0x8033
+/* 006A04 8024BA04 81ADC64C */  lb    $t5, %lo(gDebugLevelSelect)($t5)
 /* 006A08 8024BA08 15A0001C */  bnez  $t5, .L8024BA7C
 /* 006A0C 8024BA0C 00000000 */   nop   
 /* 006A10 8024BA10 3C0E8033 */  lui   $t6, %hi(gMarioState) # $t6, 0x8033
@@ -2606,10 +2606,10 @@ glabel func_8024B8EC
 /* 006A18 8024BA18 8DCF000C */  lw    $t7, 0xc($t6)
 /* 006A1C 8024BA1C 11E00017 */  beqz  $t7, .L8024BA7C
 /* 006A20 8024BA20 00000000 */   nop   
-/* 006A24 8024BA24 3C048033 */  lui   $a0, %hi(D_8032FFFF) # $a0, 0x8033
+/* 006A24 8024BA24 3C048033 */  lui   $a0, %hi(gCurrSaveFileNum) # $a0, 0x8033
 /* 006A28 8024BA28 8484CE94 */  lh    $a0, %lo(gCurrSaveFileNum)($a0)
 /* 006A2C 8024BA2C 0C09E625 */  jal   save_file_exists
-/* 006A30 8024BA30 2484FFFF */   addiu $a0, %lo(D_8032FFFF) # addiu $a0, $a0, -1
+/* 006A30 8024BA30 2484FFFF */   addiu $a0, $a0, -1
 /* 006A34 8024BA34 10400009 */  beqz  $v0, .L8024BA5C
 /* 006A38 8024BA38 00000000 */   nop   
 /* 006A3C 8024BA3C 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
@@ -2732,10 +2732,10 @@ glabel LevelProc_8024BD5C
 /* 006BD4 8024BBD4 A0209ED8 */  sb    $zero, %lo(D_80339ED8)($at)
 /* 006BD8 8024BBD8 3C018034 */  lui   $at, %hi(D_80339EE2) # $at, 0x8034
 /* 006BDC 8024BBDC A4209EE2 */  sh    $zero, %lo(D_80339EE2)($at)
-/* 006BE0 8024BBE0 3C048033 */  lui   $a0, %hi(D_8032FFFF) # $a0, 0x8033
+/* 006BE0 8024BBE0 3C048033 */  lui   $a0, %hi(gCurrSaveFileNum) # $a0, 0x8033
 /* 006BE4 8024BBE4 8484CE94 */  lh    $a0, %lo(gCurrSaveFileNum)($a0)
 /* 006BE8 8024BBE8 0C09E625 */  jal   save_file_exists
-/* 006BEC 8024BBEC 2484FFFF */   addiu $a0, %lo(D_8032FFFF) # addiu $a0, $a0, -1
+/* 006BEC 8024BBEC 2484FFFF */   addiu $a0, $a0, -1
 /* 006BF0 8024BBF0 2C500001 */  sltiu $s0, $v0, 1
 /* 006BF4 8024BBF4 3C018034 */  lui   $at, %hi(D_80339EFE) # $at, 0x8034
 /* 006BF8 8024BBF8 A0309EFE */  sb    $s0, %lo(D_80339EFE)($at)
@@ -2822,13 +2822,13 @@ glabel LevelProc_8024BE14
 /* 006D28 8024BD28 A58000A8 */  sh    $zero, 0xa8($t4)
 /* 006D2C 8024BD2C 3C018034 */  lui   $at, %hi(D_80339EF2) # $at, 0x8034
 /* 006D30 8024BD30 A4209EF2 */  sh    $zero, %lo(D_80339EF2)($at)
-/* 006D34 8024BD34 3C048033 */  lui   $a0, %hi(D_8032FFFF) # $a0, 0x8033
-/* 006D38 8024BD38 3C058034 */  lui   $a1, %hi(D_8033FFFF) # $a1, 0x8034
+/* 006D34 8024BD34 3C048033 */  lui   $a0, %hi(gCurrSaveFileNum) # $a0, 0x8033
+/* 006D38 8024BD38 3C058034 */  lui   $a1, %hi(gCurrCourseNum) # $a1, 0x8034
 /* 006D3C 8024BD3C 84A5A756 */  lh    $a1, %lo(gCurrCourseNum)($a1)
 /* 006D40 8024BD40 8484CE94 */  lh    $a0, %lo(gCurrSaveFileNum)($a0)
-/* 006D44 8024BD44 24A5FFFF */  addiu $a1, %lo(D_8033FFFF) # addiu $a1, $a1, -1
+/* 006D44 8024BD44 24A5FFFF */  addiu $a1, $a1, -1
 /* 006D48 8024BD48 0C09E706 */  jal   save_file_get_star_flags
-/* 006D4C 8024BD4C 2484FFFF */   addiu $a0, %lo(D_8032FFFF) # addiu $a0, $a0, -1
+/* 006D4C 8024BD4C 2484FFFF */   addiu $a0, $a0, -1
 /* 006D50 8024BD50 3C018033 */  lui   $at, %hi(D_8032CE30) # $at, 0x8033
 /* 006D54 8024BD54 A022CE30 */  sb    $v0, %lo(D_8032CE30)($at)
 .L8024BD58:
@@ -2859,12 +2859,12 @@ glabel LevelProc_8024BE14
 /* 006DB0 8024BDB0 1000000F */  b     .L8024BDF0
 /* 006DB4 8024BDB4 00001025 */   move  $v0, $zero
 .L8024BDB8:
-/* 006DB8 8024BDB8 3C088033 */  lui   $t0, %hi(D_8032C64C) # $t0, 0x8033
-/* 006DBC 8024BDBC 8108C64C */  lb    $t0, %lo(D_8032C64C)($t0)
+/* 006DB8 8024BDB8 3C088033 */  lui   $t0, %hi(gDebugLevelSelect) # $t0, 0x8033
+/* 006DBC 8024BDBC 8108C64C */  lb    $t0, %lo(gDebugLevelSelect)($t0)
 /* 006DC0 8024BDC0 11000007 */  beqz  $t0, .L8024BDE0
 /* 006DC4 8024BDC4 00000000 */   nop   
-/* 006DC8 8024BDC8 3C098033 */  lui   $t1, %hi(D_8032C654) # $t1, 0x8033
-/* 006DCC 8024BDCC 8129C654 */  lb    $t1, %lo(D_8032C654)($t1)
+/* 006DC8 8024BDC8 3C098033 */  lui   $t1, %hi(gDebugResourceMeter) # $t1, 0x8033
+/* 006DCC 8024BDCC 8129C654 */  lb    $t1, %lo(gDebugResourceMeter)($t1)
 /* 006DD0 8024BDD0 15200003 */  bnez  $t1, .L8024BDE0
 /* 006DD4 8024BDD4 00000000 */   nop   
 /* 006DD8 8024BDD8 10000005 */  b     .L8024BDF0

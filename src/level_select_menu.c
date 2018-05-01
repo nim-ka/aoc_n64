@@ -162,7 +162,7 @@ s16 level_select_input_loop(void)
         // is the case, quit the menu instead.
         if(gPlayer1Controller->buttonDown == QUIT_LEVEL_SELECT_COMBO)
         {
-            D_8032C64C = 0;
+            gDebugLevelSelect = 0;
             return -1;
         }
         SetSound(0x701EFF81, D_803320E0);
@@ -180,7 +180,7 @@ int func_8016F3CC(void)
     if(gPlayer1Controller->buttonPressed & START_BUTTON)
     {
         SetSound(0x701EFF81, D_803320E0);
-        sp1C = 100 + D_8032C64C;
+        sp1C = 100 + gDebugLevelSelect;
     }
     return run_press_start_demo_timer(sp1C);
 }
@@ -195,7 +195,7 @@ int func_8016F444(void)
     if(gPlayer1Controller->buttonPressed & START_BUTTON)
     {
         SetSound(0x701EFF81, D_803320E0);
-        sp1C = 100 + D_8032C64C;
+        sp1C = 100 + gDebugLevelSelect;
     }
     return run_press_start_demo_timer(sp1C);
 }

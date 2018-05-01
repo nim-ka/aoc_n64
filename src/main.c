@@ -13,9 +13,9 @@ s8 D_8032C63C = 1;
 u32 D_8032C640 = 0;
 s8 gResetTimer = 0;
 s8 D_8032C648 = 0;
-s8 D_8032C64C = 0;
+s8 gDebugLevelSelect = 0;
 s8 D_8032C650 = 0;
-s8 D_8032C654 = 0;
+s8 gDebugResourceMeter = 0;
 s8 gPrintDebugInfo = 0;
 u16 D_8032C65C[] = {0x800, 0x800, 0x400, 0x400, 0x200, 0x100, 0x200, 0x100};
 u16 D_8032C66C[] = {0x400, 0x400, 0x800, 0x800, 0x200, 0x100, 0x200, 0x100};
@@ -29,7 +29,7 @@ void Unknown80246050(void)
         if (D_8032C65C[D_8032C67C++] == gPlayer2Controller->buttonPressed)
         {
             if (D_8032C67C == 8)
-                D_8032C67C = 0, D_8032C654 ^= 1;
+                D_8032C67C = 0, gDebugResourceMeter ^= 1;
         }
         else
         {

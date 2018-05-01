@@ -861,8 +861,8 @@ glabel func_802CA0CC
 /* 0850E4 802CA0E4 3C018033 */  lui   $at, %hi(D_8032FF30) # $at, 0x8033
 /* 0850E8 802CA0E8 25F80001 */  addiu $t8, $t7, 1
 /* 0850EC 802CA0EC A038FF30 */  sb    $t8, %lo(D_8032FF30)($at)
-/* 0850F0 802CA0F0 3C198033 */  lui   $t9, %hi(D_8032C64C) # $t9, 0x8033
-/* 0850F4 802CA0F4 8339C64C */  lb    $t9, %lo(D_8032C64C)($t9)
+/* 0850F0 802CA0F0 3C198033 */  lui   $t9, %hi(gDebugLevelSelect) # $t9, 0x8033
+/* 0850F4 802CA0F4 8339C64C */  lb    $t9, %lo(gDebugLevelSelect)($t9)
 /* 0850F8 802CA0F8 17200004 */  bnez  $t9, .L802CA10C
 /* 0850FC 802CA0FC 00000000 */   nop   
 /* 085100 802CA100 3C018034 */  lui   $at, %hi(D_8033BEF0) # $at, 0x8034
@@ -1156,10 +1156,10 @@ glabel Unknown802CA3BC
 /* 085510 802CA510 01284821 */  addu  $t1, $t1, $t0
 /* 085514 802CA514 8529C010 */  lh    $t1, %lo(D_8033C010)($t1)
 /* 085518 802CA518 01F95021 */  addu  $t2, $t7, $t9
-/* 08551C 802CA51C 3C018034 */  lui   $at, 0x8034
+/* 08551C 802CA51C 3C018034 */  lui   $at, %hi(D_8033BF10)
 /* 085520 802CA520 002A0821 */  addu  $at, $at, $t2
 /* 085524 802CA524 10000011 */  b     .L802CA56C
-/* 085528 802CA528 A429BF10 */   sh    $t1, -0x40f0($at)
+/* 085528 802CA528 A429BF10 */   sh    $t1, %lo(D_8033BF10)($at)
 .L802CA52C:
 /* 08552C 802CA52C 3C0B8033 */  lui   $t3, %hi(D_8032FF34) # $t3, 0x8033
 /* 085530 802CA530 3C0D8033 */  lui   $t5, %hi(D_8032FF40) # $t5, 0x8033

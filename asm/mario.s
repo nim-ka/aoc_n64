@@ -3939,8 +3939,8 @@ glabel func_80253E34
 /* 00EE9C 80253E9C 33190004 */  andi  $t9, $t8, 4
 /* 00EEA0 80253EA0 17200009 */  bnez  $t9, .L80253EC8
 /* 00EEA4 80253EA4 00000000 */   nop   
-/* 00EEA8 80253EA8 3C088033 */  lui   $t0, %hi(D_8032C64C) # $t0, 0x8033
-/* 00EEAC 80253EAC 8108C64C */  lb    $t0, %lo(D_8032C64C)($t0)
+/* 00EEA8 80253EA8 3C088033 */  lui   $t0, %hi(gDebugLevelSelect) # $t0, 0x8033
+/* 00EEAC 80253EAC 8108C64C */  lb    $t0, %lo(gDebugLevelSelect)($t0)
 /* 00EEB0 80253EB0 15000005 */  bnez  $t0, .L80253EC8
 /* 00EEB4 80253EB4 00000000 */   nop   
 /* 00EEB8 80253EB8 8FA90028 */  lw    $t1, 0x28($sp)
@@ -3986,8 +3986,8 @@ glabel func_80253E34
 /* 00EF50 80253F50 1000000F */  b     .L80253F90
 /* 00EF54 80253F54 A5F900AE */   sh    $t9, 0xae($t7)
 .L80253F58:
-/* 00EF58 80253F58 3C088033 */  lui   $t0, %hi(D_8032C64C) # $t0, 0x8033
-/* 00EF5C 80253F5C 8108C64C */  lb    $t0, %lo(D_8032C64C)($t0)
+/* 00EF58 80253F58 3C088033 */  lui   $t0, %hi(gDebugLevelSelect) # $t0, 0x8033
+/* 00EF5C 80253F5C 8108C64C */  lb    $t0, %lo(gDebugLevelSelect)($t0)
 /* 00EF60 80253F60 1500000B */  bnez  $t0, .L80253F90
 /* 00EF64 80253F64 00000000 */   nop   
 /* 00EF68 80253F68 8FAB0024 */  lw    $t3, 0x24($sp)
@@ -4967,12 +4967,12 @@ glabel func_80254CE0
 /* 00FD70 80254D70 3C198033 */  lui   $t9, %hi(gMarioState) # $t9, 0x8033
 /* 00FD74 80254D74 8F39C9D8 */  lw    $t9, %lo(gMarioState)($t9)
 /* 00FD78 80254D78 A72000A8 */  sh    $zero, 0xa8($t9)
-/* 00FD7C 80254D7C 3C048033 */  lui   $a0, %hi(D_8032FFFF) # $a0, 0x8033
+/* 00FD7C 80254D7C 3C048033 */  lui   $a0, %hi(gCurrSaveFileNum) # $a0, 0x8033
 /* 00FD80 80254D80 8484CE94 */  lh    $a0, %lo(gCurrSaveFileNum)($a0)
 /* 00FD84 80254D84 00002825 */  move  $a1, $zero
 /* 00FD88 80254D88 24060018 */  li    $a2, 24
 /* 00FD8C 80254D8C 0C09E698 */  jal   save_file_get_total_star_count
-/* 00FD90 80254D90 2484FFFF */   addiu $a0, %lo(D_8032FFFF) # addiu $a0, $a0, -1
+/* 00FD90 80254D90 2484FFFF */   addiu $a0, $a0, -1
 /* 00FD94 80254D94 3C088033 */  lui   $t0, %hi(gMarioState) # $t0, 0x8033
 /* 00FD98 80254D98 8D08C9D8 */  lw    $t0, %lo(gMarioState)($t0)
 /* 00FD9C 80254D9C A50200AA */  sh    $v0, 0xaa($t0)

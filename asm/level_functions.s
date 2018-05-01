@@ -15341,14 +15341,14 @@ glabel BehUnused080CInit
 /* 065720 802AA720 AFAD0024 */  sw    $t5, 0x24($sp)
 /* 065724 802AA724 0C0A8DDF */  jal   func_802A377C
 /* 065728 802AA728 8FA40024 */   lw    $a0, 0x24($sp)
-/* 06572C 802AA72C 3C048033 */  lui   $a0, %hi(D_8032FFFF) # $a0, 0x8033
-/* 065730 802AA730 3C058034 */  lui   $a1, %hi(D_8033FFFF) # $a1, 0x8034
+/* 06572C 802AA72C 3C048033 */  lui   $a0, %hi(gCurrSaveFileNum) # $a0, 0x8033
+/* 065730 802AA730 3C058034 */  lui   $a1, %hi(gCurrCourseNum) # $a1, 0x8034
 /* 065734 802AA734 84A5A756 */  lh    $a1, %lo(gCurrCourseNum)($a1)
 /* 065738 802AA738 8484CE94 */  lh    $a0, %lo(gCurrSaveFileNum)($a0)
 /* 06573C 802AA73C 00408025 */  move  $s0, $v0
-/* 065740 802AA740 24A5FFFF */  addiu $a1, %lo(D_8033FFFF) # addiu $a1, $a1, -1
+/* 065740 802AA740 24A5FFFF */  addiu $a1, $a1, -1
 /* 065744 802AA744 0C09E706 */  jal   save_file_get_star_flags
-/* 065748 802AA748 2484FFFF */   addiu $a0, %lo(D_8032FFFF) # addiu $a0, $a0, -1
+/* 065748 802AA748 2484FFFF */   addiu $a0, $a0, -1
 /* 06574C 802AA74C 00507024 */  and   $t6, $v0, $s0
 /* 065750 802AA750 11C00003 */  beqz  $t6, .L802AA760
 /* 065754 802AA754 00000000 */   nop   
@@ -19398,14 +19398,14 @@ glabel BehLittleCage2Loop
 /* 0690AC 802AE0AC 00000000 */   nop   
 /* 0690B0 802AE0B0 0C0A8DDF */  jal   func_802A377C
 /* 0690B4 802AE0B4 24040001 */   li    $a0, 1
-/* 0690B8 802AE0B8 3C048033 */  lui   $a0, %hi(D_8032FFFF) # $a0, 0x8033
-/* 0690BC 802AE0BC 3C058034 */  lui   $a1, %hi(D_8033FFFF) # $a1, 0x8034
+/* 0690B8 802AE0B8 3C048033 */  lui   $a0, %hi(gCurrSaveFileNum) # $a0, 0x8033
+/* 0690BC 802AE0BC 3C058034 */  lui   $a1, %hi(gCurrCourseNum) # $a1, 0x8034
 /* 0690C0 802AE0C0 84A5A756 */  lh    $a1, %lo(gCurrCourseNum)($a1)
 /* 0690C4 802AE0C4 8484CE94 */  lh    $a0, %lo(gCurrSaveFileNum)($a0)
 /* 0690C8 802AE0C8 00408025 */  move  $s0, $v0
-/* 0690CC 802AE0CC 24A5FFFF */  addiu $a1, %lo(D_8033FFFF) # addiu $a1, $a1, -1
+/* 0690CC 802AE0CC 24A5FFFF */  addiu $a1, $a1, -1
 /* 0690D0 802AE0D0 0C09E706 */  jal   save_file_get_star_flags
-/* 0690D4 802AE0D4 2484FFFF */   addiu $a0, %lo(D_8032FFFF) # addiu $a0, $a0, -1
+/* 0690D4 802AE0D4 2484FFFF */   addiu $a0, $a0, -1
 /* 0690D8 802AE0D8 0050C824 */  and   $t9, $v0, $s0
 /* 0690DC 802AE0DC 13200003 */  beqz  $t9, .L802AE0EC
 /* 0690E0 802AE0E0 00000000 */   nop   

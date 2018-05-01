@@ -294,7 +294,11 @@ glabel jtbl_803368A0
 	.word L802B044C
 
 glabel jtbl_803368B4
-	.incbin "bin/rodata.bin", 0x1E44, 0x14
+	.word L802B0A10
+	.word L802B0AA4
+	.word L802B0B00
+	.word L802B0BD0
+	.word L802B0C14
 
 glabel D_803368C8
 	.incbin "bin/rodata.bin", 0x1E58, 0x8

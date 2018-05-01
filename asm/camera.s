@@ -11582,10 +11582,10 @@ glabel func_8028FB44
 /* 04AB4C 8028FB4C AFA40020 */  sw    $a0, 0x20($sp)
 /* 04AB50 8028FB50 87AE0022 */  lh    $t6, 0x22($sp)
 /* 04AB54 8028FB54 A7AE001E */  sh    $t6, 0x1e($sp)
-/* 04AB58 8028FB58 3C048033 */  lui   $a0, %hi(D_8032FFFF) # $a0, 0x8033
+/* 04AB58 8028FB58 3C048033 */  lui   $a0, %hi(gCurrSaveFileNum) # $a0, 0x8033
 /* 04AB5C 8028FB5C 8484CE94 */  lh    $a0, %lo(gCurrSaveFileNum)($a0)
 /* 04AB60 8028FB60 0C09E4A4 */  jal   save_file_do_save
-/* 04AB64 8028FB64 2484FFFF */   addiu $a0, %lo(D_8032FFFF) # addiu $a0, $a0, -1
+/* 04AB64 8028FB64 2484FFFF */   addiu $a0, $a0, -1
 /* 04AB68 8028FB68 10000001 */  b     .L8028FB70
 /* 04AB6C 8028FB6C 00000000 */   nop   
 .L8028FB70:
@@ -20427,13 +20427,13 @@ glabel L80297824
 /* 05289C 8029789C 10000020 */  b     .L80297920
 /* 0528A0 802978A0 00000000 */   nop   
 .L802978A4:
-/* 0528A4 802978A4 3C048033 */  lui   $a0, %hi(D_8032FFFF) # $a0, 0x8033
-/* 0528A8 802978A8 3C058034 */  lui   $a1, %hi(D_8033FFFF) # $a1, 0x8034
+/* 0528A4 802978A4 3C048033 */  lui   $a0, %hi(gCurrSaveFileNum) # $a0, 0x8033
+/* 0528A8 802978A8 3C058034 */  lui   $a1, %hi(gCurrCourseNum) # $a1, 0x8034
 /* 0528AC 802978AC 84A5A756 */  lh    $a1, %lo(gCurrCourseNum)($a1)
 /* 0528B0 802978B0 8484CE94 */  lh    $a0, %lo(gCurrSaveFileNum)($a0)
-/* 0528B4 802978B4 24A5FFFF */  addiu $a1, %lo(D_8033FFFF) # addiu $a1, $a1, -1
+/* 0528B4 802978B4 24A5FFFF */  addiu $a1, $a1, -1
 /* 0528B8 802978B8 0C09E706 */  jal   save_file_get_star_flags
-/* 0528BC 802978BC 2484FFFF */   addiu $a0, %lo(D_8032FFFF) # addiu $a0, $a0, -1
+/* 0528BC 802978BC 2484FFFF */   addiu $a0, $a0, -1
 /* 0528C0 802978C0 304D0010 */  andi  $t5, $v0, 0x10
 /* 0528C4 802978C4 11A00008 */  beqz  $t5, .L802978E8
 /* 0528C8 802978C8 00000000 */   nop   
