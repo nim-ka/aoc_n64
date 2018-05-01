@@ -1,6 +1,7 @@
 #include <ultra64.h>
 
 #include "sm64.h"
+#include "math_util.h"
 #include "save_file.h"
 
 struct Struct8035FF50

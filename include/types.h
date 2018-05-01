@@ -370,20 +370,18 @@ struct Struct8032D000
 {
     u32 unk0;
     Vec3f unk4;
-    //u32 unk10;
     Vec3s unk10;
-    /*
-    u8 filler10[2];
-    s16 unk12;
-    */
-    u8 filler16[0x1E - 0x16];
+    s16 unk16;
+    s16 unk18;
+    u8 filler1A[0x1E - 0x1A];
     s16 unk1E;
 };
 
 struct Struct80280550
 {
     u8 unk0;
-    u8 filler1[3];
+    u8 filler1[1];
+    u16 unk2;
     Vec3f unk4;
     Vec3f unk10;
     u8 filler1C[0x28-0x1C];
@@ -464,6 +462,25 @@ struct Struct8032CFD0
 {
     u8 filler0[0x124];
     u32 unk124;
+};
+
+struct Struct8033B418_sub
+{
+    float unk0;
+    float unk4;
+    float unk8;
+    u8 fillerC[0x18 - 0xC];
+    float unk18;
+    s16 unk1C;
+    s16 unk1E;
+};
+
+struct Struct8033B418
+{
+    u8 filler0[4];
+    s16 unk4;
+    s16 unk6;
+    struct Struct8033B418_sub unk8[2];  // unknown length
 };
 
 #endif

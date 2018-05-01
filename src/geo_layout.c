@@ -2,6 +2,7 @@
 #include "sm64.h"
 
 #include "geo_layout.h"
+#include "math_util.h"
 
 void GeoLayout00(void)
 {

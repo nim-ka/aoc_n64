@@ -3,83 +3,13 @@
 
 .section .rodata
 
-glabel D_80336010
-	.incbin "bin/rodata.bin", 0x15A0, 0x4
-
-glabel D_80336014
-	.incbin "bin/rodata.bin", 0x15A4, 0x4
-
-glabel D_80336018
-	.incbin "bin/rodata.bin", 0x15A8, 0x4
-
-glabel D_8033601C
-	.incbin "bin/rodata.bin", 0x15AC, 0x4
-
-glabel D_80336020
-	.incbin "bin/rodata.bin", 0x15B0, 0x4
-
-glabel D_80336024
-	.incbin "bin/rodata.bin", 0x15B4, 0x4
-
-glabel D_80336028
-	.incbin "bin/rodata.bin", 0x15B8, 0x4
-
-glabel D_8033602C
-	.incbin "bin/rodata.bin", 0x15BC, 0x4
-
-glabel D_80336030
-	.incbin "bin/rodata.bin", 0x15C0, 0x4
-
-glabel D_80336034
-	.incbin "bin/rodata.bin", 0x15C4, 0x4
-
-glabel D_80336038
-	.incbin "bin/rodata.bin", 0x15C8, 0x4
-
-glabel D_8033603C
-	.incbin "bin/rodata.bin", 0x15CC, 0x4
-
-glabel D_80336040
-	.incbin "bin/rodata.bin", 0x15D0, 0x4
-
-glabel D_80336044
-	.incbin "bin/rodata.bin", 0x15D4, 0x4
-
-glabel D_80336048
-	.incbin "bin/rodata.bin", 0x15D8, 0x4
-
-glabel D_8033604C
-	.incbin "bin/rodata.bin", 0x15DC, 0x4
-
-glabel D_80336050
-	.incbin "bin/rodata.bin", 0x15E0, 0x4
-
-glabel D_80336054
-	.incbin "bin/rodata.bin", 0x15E4, 0x4
-
-glabel D_80336058
-	.incbin "bin/rodata.bin", 0x15E8, 0x4
-
-glabel D_8033605C
-	.incbin "bin/rodata.bin", 0x15EC, 0x4
-
-glabel D_80336060
-	.incbin "bin/rodata.bin", 0x15F0, 0x4
-
-glabel D_80336064
-	.incbin "bin/rodata.bin", 0x15F4, 0x4
-
-glabel D_80336068
-	.incbin "bin/rodata.bin", 0x15F8, 0x4
-
-glabel D_8033606C
-	.incbin "bin/rodata.bin", 0x15FC, 0x4
-
 glabel D_80336070
-	.incbin "bin/rodata.bin", 0x1600, 0x4
+# replacing .incbin "bin/rodata.bin", 0x00001600, 0x4
+.4byte 0xc62be000
 
 glabel D_80336074
-	.incbin "bin/rodata.bin", 0x1604, 0x4
+# replacing .incbin "bin/rodata.bin", 0x00001604, 0x4
+.4byte 0xc62be000
 
 glabel jtbl_80336078
 	.word L80286724
@@ -635,3 +565,4 @@ glabel D_80336600
 
 glabel D_80336608
 	.incbin "bin/rodata.bin", 0x1B98, 0x8
+
