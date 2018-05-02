@@ -1,0 +1,77 @@
+.include "macros.inc"
+.include "globals.inc"
+
+.section .bss2
+
+glabel D_8038BC90
+    .space 0x4
+glabel D_8038BC94
+    .space 0x4
+glabel D_8038BC98
+    .space 0x8
+glabel D_8038BCA0
+    .space 0x4
+glabel D_8038BCA4
+    .space 0x8
+glabel D_8038BCAC
+    .space 0x4
+glabel D_8038BCB0
+    .space 0x8
+glabel gGeoLayoutStack
+    .space 0x3C
+glabel D_8038BCF4
+    .space 0x4
+glabel D_8038BCF8
+    .space 0x80
+glabel D_8038BD78
+    .space 0x2
+glabel gGeoLayoutStackIndex
+    .space 0x4
+glabel D_8038BD7E
+    .space 0x2
+glabel gGeoLayoutCommand
+    .space 0x8
+glabel D_8038BD88
+    .space 0x10
+glabel D_8038BD98
+    .space 0x8
+glabel D_8038BDA0
+    .space 0x80
+glabel D_8038BE20
+    .space 0x4
+glabel D_8038BE24
+    .space 0x4
+glabel D_8038BE28
+    .space 0x8
+glabel D_8038BE30
+    .space 0x10
+glabel D_8038BE40
+    .space 0x4
+glabel D_8038BE44
+    .space 0x4
+glabel D_8038BE48
+    .space 0x4
+glabel D_8038BE4C
+    .space 0x44
+glabel D_8038BE90
+    .space 0x8
+glabel D_8038BE98
+    .space 0x8
+glabel D_8038BEA0
+    .space 0x8
+glabel D_8038BEA8
+    .space 0x17F0
+glabel D_8038D698
+    .space 0x8
+glabel D_8038D6A0
+    .space 0x8
+glabel D_8038D6A8
+    .space 0x17F0
+glabel D_8038EE98
+    .space 0x4
+glabel D_8038EE9C
+    .space 0x4
+glabel D_8038EEA0
+    .space 0x40
+glabel gRandomSeed16
+    .space 0x920

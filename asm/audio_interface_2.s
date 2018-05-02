@@ -409,9 +409,9 @@ glabel func_8031D924
 /* 0D8BC8 8031DBC8 01A57023 */  subu  $t6, $t5, $a1
 /* 0D8BCC 8031DBCC AF200044 */  sw    $zero, 0x44($t9)
 /* 0D8BD0 8031DBD0 8D230000 */  lw    $v1, ($t1)
-/* 0D8BD4 8031DBD4 3C198034 */  lui   $t9, %hi(D_80339210) # $t9, 0x8034
+/* 0D8BD4 8031DBD4 3C198034 */  lui   $t9, %hi(audio_data_end) # $t9, 0x8034
 /* 0D8BD8 8031DBD8 3C0F8033 */  lui   $t7, %hi(D_8032B800) # $t7, 0x8033
-/* 0D8BDC 8031DBDC 27399210 */  addiu $t9, %lo(D_80339210) # addiu $t9, $t9, -0x6df0
+/* 0D8BDC 8031DBDC 27399210 */  addiu $t9, %lo(audio_data_end) # addiu $t9, $t9, -0x6df0
 /* 0D8BE0 8031DBE0 AC6C0000 */  sw    $t4, ($v1)
 /* 0D8BE4 8031DBE4 25EFB800 */  addiu $t7, %lo(D_8032B800) # addiu $t7, $t7, -0x4800
 /* 0D8BE8 8031DBE8 24180800 */  li    $t8, 2048
@@ -1650,7 +1650,7 @@ glabel func_8031ED70
 /* 0D9DA4 8031EDA4 8442A75A */  lh    $v0, %lo(D_8033A75A)($v0)
 /* 0D9DA8 8031EDA8 0006C080 */  sll   $t8, $a2, 2
 /* 0D9DAC 8031EDAC 3C058022 */  lui   $a1, %hi(D_80222CC4) # 0.000000
-/* 0D9DB0 8031EDB0 2442FFFF */  addiu $v0, %lo(D_8033FFFF) # addiu $v0, $v0, -1
+/* 0D9DB0 8031EDB0 2442FFFF */  addiu $v0, $v0, -1
 /* 0D9DB4 8031EDB4 304F00FF */  andi  $t7, $v0, 0xff
 /* 0D9DB8 8031EDB8 29E10003 */  slti  $at, $t7, 3
 /* 0D9DBC 8031EDBC 14200002 */  bnez  $at, .L8031EDC8

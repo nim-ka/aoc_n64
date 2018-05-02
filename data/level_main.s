@@ -2,6 +2,8 @@
 
 .section .mio0_b, "ax"
 
+glabel gMainLevels
+
 .include "levels/main_menu_level.s"
 
 .align 4, 0

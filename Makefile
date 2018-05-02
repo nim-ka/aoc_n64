@@ -45,7 +45,7 @@ CFLAGS  := -Wab,-r4300_mul -mips2 -non_shared -G 0 -Xcpluscomm -Xfullwarn -g -I 
 OBJCOPYFLAGS := --pad-to=0x800000 --gap-fill=0xFF
 
 SYMBOL_LINKING_FLAGS := $(addprefix -R ,$(SEG_FILES))
-LDFLAGS = -T sym_bss.txt -T undefined_syms.txt -T $(LD_SCRIPT) -Map $(BUILD_DIR)/sm64.map --no-check-sections $(SYMBOL_LINKING_FLAGS)
+LDFLAGS = -T undefined_syms.txt -T $(LD_SCRIPT) -Map $(BUILD_DIR)/sm64.map --no-check-sections $(SYMBOL_LINKING_FLAGS)
 
 ####################### Other Tools #########################
 
@@ -127,7 +127,7 @@ $(BUILD_DIR)/%.o: %.c
 $(BUILD_DIR)/%.o: %.s $(MIO0_FILES)
 	$(AS) $(ASFLAGS) -o $@ $<
 
-$(BUILD_DIR)/$(TARGET).elf: $(O_FILES) $(SEG_FILES) $(LD_SCRIPT) sym_bss.txt undefined_syms.txt
+$(BUILD_DIR)/$(TARGET).elf: $(O_FILES) $(SEG_FILES) $(LD_SCRIPT) undefined_syms.txt
 	$(LD) $(LDFLAGS) -o $@ $(O_FILES) $(LIBS)
 
 $(BUILD_DIR)/$(TARGET).bin: $(BUILD_DIR)/$(TARGET).elf

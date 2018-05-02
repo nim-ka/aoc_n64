@@ -5,18 +5,25 @@ OUTPUT_ARCH (mips)
 
 SECTIONS
 {
+	__romPos = 0;
+
+	rom_start = .;
    /* header */
-   .header 0x0 : AT(0x0) {
+   .header __romPos : AT(__romPos) {
       build/asm/rom_header.o(.text);
    }
 
+   __romPos += SIZEOF(.header);
+
    /* boot */
-   .boot 0x04000040 : AT(0x40) {
+   .boot 0x04000040 : AT(__romPos) {
       build/asm/boot.o(.text);
    }
 
+   __romPos += SIZEOF(.boot);
+
    /* 0x80246000 001000-0E5320 [E4320] */
-   .text80246000 0x80246000 : AT(0x001000) {
+   .text80246000 0x80246000 : AT(__romPos) {
       build/asm/entry.o(.text);
       build/src/main.o(.text);
       build/src/display.o(.text);
@@ -131,8 +138,10 @@ SECTIONS
       build/data/audio.rodata.o(.rodata);
    }
 
+   __romPos += SIZEOF(.text80246000);
+
    /* 0x80378800 0F4210-101998 [D788] */
-   .text80378800 0x80378800 : AT(0x0F4210) {
+   .text80378800 0x80378800 : AT(__romPos) {
       build/src/math_util.o(.text);
       build/asm/graph_node.o(.text);
       build/src/geo_layout.o(.text);
@@ -154,22 +163,28 @@ SECTIONS
    __load_text80378800 = LOADADDR(.text80378800);
    __load_text80378800_end = __load_text80378800 + text_80378800_length;
 
+   __romPos += SIZEOF(.text80378800);
+
    /* load MIO0 and level data at 0x001076A0 */
-   .mio0 0x001076A0 : AT(0x1076A0) {
+   .mio0 __romPos : AT(__romPos) {
       build/data/level_actors.o(.mio0);
       . = ALIGN(0x10);
    }
 
+   __romPos += SIZEOF(.mio0);
+
    /* use segmented addressing for behaviors */
-   .behavior 0x13000000 : AT(0x218130) {
+   .behavior 0x13000000 : AT(__romPos) {
       build/data/behavior_data.o(.behavior);
       behavior_length = . - 0x13000000;
    }
    __load_behavior_data = LOADADDR(.behavior);
    __load_behavior_data_end = LOADADDR(.behavior) + behavior_length;
+
+   __romPos += SIZEOF(.behavior);
    
    /* 0x8016F000 21D7D0-255EC0 [386F0] */
-   .text8016F000 0x8016F000 : AT(0x21D7D0) {
+   .text8016F000 0x8016F000 : AT(__romPos) {
       build/src/level_select_menu.o(.text);
       build/asm/intro_geo.o(.text);
       build/asm/file_select.o(.text);
@@ -194,25 +209,50 @@ SECTIONS
       build/data/rodata_801A8050.o(.rodata);
    }
 
+   __romPos += SIZEOF(.text8016F000);
+
    /* 0x268020 0x268020-0 [0] */
-   .mio0_c 0x268020 : AT(0x268020) {
+   .mio0_c __romPos : AT(__romPos) {
       build/data/level_misc.o(.mio0_c);
    }
 
+   __romPos += SIZEOF(.mio0_c);
+
    /* 271B20-2A42A0 [32780] */
-   .text271B20 0x801B9850 : AT(0x271B20) {
+   .text271B20 __romPos : AT(__romPos) {
       build/data/unknown_271B20.o(.text);
    }
 
+   __romPos += SIZEOF(.text271B20);
+
    /* 0x2A42A0 0x2A42A0-0 [0] */
-   .mio0_b 0x2A42A0 : AT(0x2A42A0) {
+   .mio0_b __romPos : AT(__romPos) {
       build/data/level_main.o(.mio0_b);
    }
 
+   __romPos += SIZEOF(.mio0_b);
+
    /* 4E9FA0-? [?] */
-   .text4E9FA0 0x4E9FA0 : AT(0x4E9FA0) {
+   .text4E9FA0 __romPos : AT(__romPos) {
       build/data/unknown_4E9FA0.o(.text);
       build/data/sound_data.o(.text);
+   }
+
+   .bss1 ADDR(.text80246000) + SIZEOF(.text80246000) (NOLOAD) :
+   {
+      build/data/bss1.o(.bss1);
+   }
+
+   __bss1size = SIZEOF(.bss1);
+
+   .bss2 ADDR(.text80378800) + SIZEOF(.text80378800) (NOLOAD) :
+   {
+      build/data/bss2.o(.bss2);
+   }
+
+   .bss3 ADDR(.text8016F000) + SIZEOF(.text8016F000) (NOLOAD) :
+   {
+      build/data/bss3.o(.bss3);
    }
 
    /* Discard everything not specifically mentioned above. */

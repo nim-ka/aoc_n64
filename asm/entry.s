@@ -11,6 +11,8 @@
 
 .section .text, "ax"
 
+# TODO: replace 2CEE0 with __bss1size
+
 glabel EntryPoint
 /* 001000 80246000 3C088034 */  lui   $t0, %hi(D_80339210) # $t0, 0x8034
 /* 001004 80246004 3C090002 */  lui   $t1, (0x0002CEE0 >> 16) # lui $t1, 2

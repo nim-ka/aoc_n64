@@ -1,0 +1,543 @@
+.include "macros.inc"
+.include "globals.inc"
+
+.section .bss3
+
+glabel D_801B9850
+    .space 0x4
+glabel D_801B9854
+    .space 0x4
+glabel D_801B9858
+    .space 0x4
+glabel D_801B985C
+    .space 0x4
+glabel D_801B9860
+    .space 0x38
+glabel D_801B9898
+    .space 0x1C
+glabel D_801B98B4
+    .space 0x20
+glabel D_801B98D4
+    .space 0xC
+glabel D_801B98E0
+    .space 0x10
+glabel sStarSelectIcons
+    .space 0x20
+glabel D_801B9910
+    .space 0x1
+glabel D_801B9911
+    .space 0x1
+glabel D_801B9912
+    .space 0x1
+glabel D_801B9913
+    .space 0xD
+glabel D_801B9920
+    .space 0x28
+glabel D_801B9948
+    .space 0x4
+glabel D_801B994C
+    .space 0x4
+glabel D_801B9950
+    .space 0x18
+glabel D_801B9968
+    .space 0xC
+glabel D_801B9974
+    .space 0x34
+glabel D_801B99A8
+    .space 0x18
+glabel D_801B99C0
+    .space 0xC
+glabel D_801B99CC
+    .space 0xC
+glabel D_801B99D8
+    .space 0x4
+glabel D_801B99DC
+    .space 0x14
+glabel D_801B99F0
+    .space 0x4
+glabel D_801B99F4
+    .space 0x4
+glabel D_801B99F8
+    .space 0x4
+glabel D_801B99FC
+    .space 0xC
+glabel D_801B9A08
+    .space 0x8
+glabel D_801B9A10
+    .space 0x8
+glabel D_801B9A18
+    .space 0xF8
+glabel D_801B9B10
+    .space 0x4
+glabel D_801B9B14
+    .space 0x4
+glabel D_801B9B18
+    .space 0x8
+glabel D_801B9B20
+    .space 0x4
+glabel D_801B9B24
+    .space 0x94
+glabel D_801B9BB8
+    .space 0x48
+glabel D_801B9C00
+    .space 0x4
+glabel D_801B9C04
+    .space 0x4
+glabel D_801B9C08
+    .space 0xC8
+glabel D_801B9CD0
+    .space 0x4
+glabel D_801B9CD4
+    .space 0x4
+glabel D_801B9CD8
+    .space 0xC
+glabel D_801B9CE4
+    .space 0x4
+glabel D_801B9CE8
+    .space 0x4
+glabel D_801B9CEC
+    .space 0x4
+glabel D_801B9CF0
+    .space 0x4
+glabel D_801B9CF4
+    .space 0x4
+glabel D_801B9CF8
+    .space 0x8
+glabel D_801B9D00
+    .space 0x4
+glabel D_801B9D04
+    .space 0x4
+glabel D_801B9D08
+    .space 0x8
+glabel D_801B9D10
+    .space 0x4
+glabel D_801B9D14
+    .space 0x4
+glabel D_801B9D18
+    .space 0x8
+glabel D_801B9D20
+    .space 0x4
+glabel D_801B9D24
+    .space 0x4
+glabel D_801B9D28
+    .space 0x58
+glabel D_801B9D80
+    .space 0x8
+glabel D_801B9D88
+    .space 0x4
+glabel D_801B9D8C
+    .space 0x14
+glabel D_801B9DA0
+    .space 0x4
+glabel D_801B9DA4
+    .space 0x4
+glabel D_801B9DA8
+    .space 0x4
+glabel D_801B9DAC
+    .space 0x4
+glabel D_801B9DB0
+    .space 0x4
+glabel D_801B9DB4
+    .space 0x4
+glabel D_801B9DB8
+    .space 0x4
+glabel D_801B9DBC
+    .space 0x4
+glabel D_801B9DC0
+    .space 0x4
+glabel D_801B9DC4
+    .space 0x4
+glabel D_801B9DC8
+    .space 0x40
+glabel D_801B9E08
+    .space 0x4
+glabel D_801B9E0C
+    .space 0x4
+glabel D_801B9E10
+    .space 0x4
+glabel D_801B9E14
+    .space 0x4
+glabel D_801B9E18
+    .space 0x8
+glabel D_801B9E20
+    .space 0x8
+glabel D_801B9E28
+    .space 0x4
+glabel D_801B9E2C
+    .space 0x4
+glabel D_801B9E30
+    .space 0x4
+glabel D_801B9E34
+    .space 0x4
+glabel D_801B9E38
+    .space 0x4
+glabel D_801B9E3C
+    .space 0x4
+glabel D_801B9E40
+    .space 0x4
+glabel D_801B9E44
+    .space 0x4
+glabel D_801B9E48
+    .space 0x4
+glabel D_801B9E4C
+    .space 0x4
+glabel D_801B9E50
+    .space 0x4
+glabel D_801B9E54
+    .space 0x4
+glabel D_801B9E58
+    .space 0x4
+glabel D_801B9E5C
+    .space 0x4
+glabel D_801B9E60
+    .space 0x4
+glabel D_801B9E64
+    .space 0x4
+glabel D_801B9E68
+    .space 0x18
+glabel D_801B9E80
+    .space 0x4
+glabel D_801B9E84
+    .space 0x4
+glabel D_801B9E88
+    .space 0x4
+glabel D_801B9E8C
+    .space 0x4
+glabel D_801B9E90
+    .space 0x10
+glabel D_801B9EA0
+    .space 0x8
+glabel D_801B9EA8
+    .space 0x40
+glabel D_801B9EE8
+    .space 0x8
+glabel D_801B9EF0
+    .space 0x10
+glabel D_801B9F00
+    .space 0x8
+glabel D_801B9F08
+    .space 0x18
+glabel D_801B9F20
+    .space 0x8
+glabel D_801B9F28
+    .space 0x4
+glabel D_801B9F2C
+    .space 0x4
+glabel D_801B9F30
+    .space 0x4
+glabel D_801B9F34
+    .space 0x4
+glabel D_801B9F38
+    .space 0x4
+glabel D_801B9F3C
+    .space 0x4
+glabel D_801B9F40
+    .space 0x8
+glabel D_801B9F48
+    .space 0x20
+glabel D_801B9F68
+    .space 0x108
+glabel D_801BA070
+    .space 0x100
+glabel D_801BA170
+    .space 0x4
+glabel D_801BA174
+    .space 0x4
+glabel D_801BA178
+    .space 0x14
+glabel D_801BA18C
+    .space 0x4
+glabel D_801BA190
+    .space 0x8
+glabel D_801BA198
+    .space 0x100
+glabel D_801BA298
+    .space 0x8
+glabel D_801BA2A0
+    .space 0x14
+glabel D_801BA2B4
+    .space 0x4
+glabel D_801BA2B8
+    .space 0x4
+glabel D_801BA2BC
+    .space 0x4
+glabel D_801BA2C0
+    .space 0x460
+glabel D_801BA720
+    .space 0xC
+glabel D_801BA72C
+    .space 0x1F0
+glabel D_801BA91C
+    .space 0x4
+glabel D_801BA920
+    .space 0x40
+glabel D_801BA960
+    .space 0x4
+glabel D_801BA964
+    .space 0x4
+glabel D_801BA968
+    .space 0x4
+glabel D_801BA96C
+    .space 0x4
+glabel D_801BA970
+    .space 0x4
+glabel D_801BA974
+    .space 0x4
+glabel D_801BA978
+    .space 0x4
+glabel D_801BA97C
+    .space 0x4
+glabel D_801BA980
+    .space 0x8
+glabel D_801BA988
+    .space 0x28
+glabel D_801BA9B0
+    .space 0x4
+glabel D_801BA9B4
+    .space 0x4
+glabel D_801BA9B8
+    .space 0x70
+glabel D_801BAA28
+    .space 0x8
+glabel D_801BAA30
+    .space 0x28
+glabel D_801BAA58
+    .space 0x4
+glabel D_801BAA5C
+    .space 0x4
+glabel D_801BAA60
+    .space 0x70
+glabel D_801BAAD0
+    .space 0x4
+glabel D_801BAAD4
+    .space 0x4
+glabel D_801BAAD8
+    .space 0x8
+glabel D_801BAAE0
+    .space 0x4
+glabel D_801BAAE4
+    .space 0x4
+glabel D_801BAAE8
+    .space 0x8
+glabel D_801BAAF0
+    .space 0x4
+glabel D_801BAAF4
+    .space 0x4
+glabel D_801BAAF8
+    .space 0x34
+glabel D_801BAB2C
+    .space 0x10
+glabel D_801BAB3C
+    .space 0xC
+glabel D_801BAB48
+    .space 0x100
+glabel D_801BAC48
+    .space 0x4
+glabel D_801BAC4C
+    .space 0x4
+glabel D_801BAC50
+    .space 0x4
+glabel D_801BAC54
+    .space 0xC
+glabel D_801BAC60
+    .space 0x4
+glabel D_801BAC64
+    .space 0x4
+glabel D_801BAC68
+    .space 0xC
+glabel D_801BAC74
+    .space 0x4
+glabel D_801BAC78
+    .space 0x24
+glabel D_801BAC9C
+    .space 0x4
+glabel D_801BACA0
+    .space 0x18
+glabel D_801BACB8
+    .space 0x4
+glabel D_801BACBC
+    .space 0x4
+glabel D_801BACC0
+    .space 0x8
+glabel D_801BACC8
+    .space 0x4
+glabel D_801BACCC
+    .space 0x4
+glabel D_801BACD0
+    .space 0x38
+glabel D_801BAD08
+    .space 0x28
+glabel D_801BAD30
+    .space 0x4
+glabel D_801BAD34
+    .space 0x4
+glabel D_801BAD38
+    .space 0x128
+glabel D_801BAE60
+    .space 0x10
+glabel D_801BAE70
+    .space 0x18
+glabel D_801BAE88
+    .space 0x18
+glabel D_801BAEA0
+    .space 0x8
+glabel D_801BAEA8
+    .space 0x80
+glabel D_801BAF28
+    .space 0x8
+glabel D_801BAF30
+    .space 0xDC
+glabel D_801BB00C
+    .space 0x4
+glabel D_801BB010
+    .space 0x8
+glabel D_801BB018
+    .space 0x4
+glabel D_801BB01C
+    .space 0x4
+glabel D_801BB020
+    .space 0x40
+glabel D_801BB060
+    .space 0x40
+glabel D_801BB0A0
+    .space 0x4
+glabel D_801BB0A4
+    .space 0x4
+glabel D_801BB0A8
+    .space 0x4
+glabel D_801BB0AC
+    .space 0x4
+glabel D_801BB0B0
+    .space 0x4
+glabel D_801BB0B4
+    .space 0x4
+glabel D_801BB0B8
+    .space 0x4
+glabel D_801BB0BC
+    .space 0x4
+glabel D_801BB0C0
+    .space 0x4
+glabel D_801BB0C4
+    .space 0x4
+glabel D_801BB0C8
+    .space 0x4
+glabel D_801BB0CC
+    .space 0x4
+glabel D_801BB0D0
+    .space 0x4
+glabel D_801BB0D4
+    .space 0x4
+glabel D_801BB0D8
+    .space 0x8
+glabel D_801BB0E0
+    .space 0x8
+glabel D_801BB0E8
+    .space 0x4
+glabel D_801BB0EC
+    .space 0x4
+glabel D_801BB0F0
+    .space 0x10
+glabel D_801BB100
+    .space 0x40
+glabel D_801BB140
+    .space 0x40
+glabel D_801BB180
+    .space 0x4
+glabel D_801BB184
+    .space 0x4
+glabel D_801BB188
+    .space 0x8
+glabel D_801BB190
+    .space 0x4
+glabel D_801BB194
+    .space 0x4
+glabel D_801BB198
+    .space 0x8
+glabel D_801BB1A0
+    .space 0x4
+glabel D_801BB1A4
+    .space 0x4
+glabel D_801BB1A8
+    .space 0x10
+glabel D_801BB1B8
+    .space 0x3
+glabel D_801BB1BB
+    .space 0x1
+glabel D_801BB1BC
+    .space 0x3
+glabel D_801BB1BF
+    .space 0x1
+glabel D_801BB1C0
+    .space 0x3
+glabel D_801BB1C3
+    .space 0xD
+glabel D_801BB1D0
+    .space 0x8
+glabel D_801BB1D8
+    .space 0x2580
+glabel D_801BD758
+    .space 0x4
+glabel D_801BD75C
+    .space 0x4
+glabel D_801BD760
+    .space 0x8
+glabel D_801BD768
+    .space 0x4
+glabel D_801BD76C
+    .space 0x4
+glabel D_801BD770
+    .space 0x4
+glabel D_801BD774
+    .space 0x4
+glabel D_801BD778
+    .space 0x24
+glabel D_801BD79C
+    .space 0x4
+glabel D_801BD7A0
+    .space 0x8
+glabel D_801BD7A8
+    .space 0x8
+glabel D_801BD7B0
+    .space 0x8
+glabel D_801BD7B8
+    .space 0x8
+glabel D_801BD7C0
+    .space 0x8
+glabel D_801BD7C8
+    .space 0x4
+glabel D_801BD7CC
+    .space 0x14
+glabel D_801BD7E0
+    .space 0xFA0
+glabel D_801BE780
+    .space 0x4
+glabel D_801BE784
+    .space 0x4
+glabel D_801BE788
+    .space 0x8
+glabel D_801BE790
+    .space 0x40
+glabel D_801BE7D0
+    .space 0x60
+glabel D_801BE830
+    .space 0x18
+glabel D_801BE848
+    .space 0x68
+glabel D_801BE8B0
+    .space 0x8
+glabel D_801BE8B8
+    .space 0x8
+glabel D_801BE8C0
+    .space 0x8
+glabel D_801BE8C8
+    .space 0x7C
+glabel D_801BE944
+    .space 0x38
+glabel D_801BE97C
+    .space 0x4
+glabel D_801BE980
+    .space 0x14
+glabel D_801BE994
+    .space 0x166B
+glabel D_801BFFFF
+    .space 0x1001

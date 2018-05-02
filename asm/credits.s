@@ -1651,7 +1651,7 @@ glabel .L8024ACE0
 /* 005CF0 8024ACF0 8DEFC6B0 */  lw    $t7, %lo(gCurrDemoInput)($t7)
 /* 005CF4 8024ACF4 15E0000F */  bnez  $t7, .L8024AD34
 /* 005CF8 8024ACF8 00000000 */   nop   
-/* 005CFC 8024ACFC 3C048034 */  lui   $a0, %hi(D_8033FFFE) # $a0, 0x8034
+/* 005CFC 8024ACFC 3C048034 */  lui   $a0, %hi(D_80339EE4) # $a0, 0x8034
 /* 005D00 8024AD00 84849EE4 */  lh    $a0, %lo(D_80339EE4)($a0)
 /* 005D04 8024AD04 0004C080 */  sll   $t8, $a0, 2
 /* 005D08 8024AD08 0304C023 */  subu  $t8, $t8, $a0
@@ -1665,7 +1665,7 @@ glabel .L8024ACE0
 /* 005D24 8024AD24 000440C0 */  sll   $t0, $a0, 3
 /* 005D28 8024AD28 01002025 */  move  $a0, $t0
 /* 005D2C 8024AD2C 0C09247F */  jal   func_802491FC
-/* 005D30 8024AD30 2484FFFE */   addiu $a0, %lo(D_8033FFFE) # addiu $a0, $a0, -2
+/* 005D30 8024AD30 2484FFFE */   addiu $a0, $a0, -2 # addiu $a0, $a0, -2
 .L8024AD34:
 /* 005D34 8024AD34 3C028034 */  lui   $v0, %hi(D_80339EE4) # $v0, 0x8034
 /* 005D38 8024AD38 10000003 */  b     .L8024AD48

@@ -48,7 +48,7 @@ glabel D_8032D000
 	.word D_8033B1B0
 
 glabel D_8032D004
-	.word 0x8033b1d4
+	.word D_8033B1D4
 	.word 0
 
 glabel D_8032D00C

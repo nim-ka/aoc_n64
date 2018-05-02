@@ -17481,8 +17481,8 @@ glabel func_801A6F34
 /* 2557E4 801A7014 3C090027 */  lui   $t1, %hi(D_00271B20) # $t1, 0x27
 /* 2557E8 801A7018 25291B20 */  addiu $t1, %lo(D_00271B20) # addiu $t1, $t1, 0x1b20
 /* 2557EC 801A701C AFA90040 */  sw    $t1, 0x40($sp)
-/* 2557F0 801A7020 3C0A002A */  lui   $t2, %hi(D_002A42A0) # $t2, 0x2a
-/* 2557F4 801A7024 254A42A0 */  addiu $t2, %lo(D_002A42A0) # addiu $t2, $t2, 0x42a0
+/* 2557F0 801A7020 3C0A002A */  lui   $t2, %hi(gMainLevels) # $t2, 0x2a
+/* 2557F4 801A7024 254A42A0 */  addiu $t2, %lo(gMainLevels) # addiu $t2, $t2, 0x42a0
 /* 2557F8 801A7028 AFAA003C */  sw    $t2, 0x3c($sp)
 /* 2557FC 801A702C 10000004 */  b     .L801A7040
 /* 255800 801A7030 00000000 */   nop   
