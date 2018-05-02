@@ -23,7 +23,7 @@ struct Struct8032FFC8
 
 // TODO: These should be defined here
 extern struct Struct8035FF50 D_8035FF50[];
-extern u8 D_8032FFC8[][3];
+extern u8 gSkyboxColors[][3];
 extern u32 D_8032FFA0[];
 
 //! double literals are used instead of floats
@@ -61,39 +61,48 @@ int func_802CEC9C(s8 a)
     return sp0 * 10 + sp4;
 }
 
-void *func_802CED24(int a, s8 b)
+// generates vertices for some rectangle
+Vtx *make_skybox_rect(int a, s8 b)
 {
-    void *sp3C = alloc_display_list(64);
-    s16 sp3A = a % 10 * 160;
-    s16 sp38 = 960 - a / 10 * 120;
+    Vtx *verts = alloc_display_list(4 * sizeof(*verts));
+    s16 x = a % 10 * 160;
+    s16 y = 960 - a / 10 * 120;
 
-    if (sp3C != NULL)
+    if (verts != NULL)
     {
-        func_802D1730(sp3C, 0, sp3A, sp38, -1, 0, 0,
-            D_8032FFC8[b][0],
-            D_8032FFC8[b][1],
-            D_8032FFC8[b][2],
+        make_vertex(verts, 0,
+            x, y, -1,
+            0, 0,
+            gSkyboxColors[b][0],
+            gSkyboxColors[b][1],
+            gSkyboxColors[b][2],
             255);
-        func_802D1730(sp3C, 1, sp3A, sp38 - 0x78, -1, 0, 992,
-            D_8032FFC8[b][0],
-            D_8032FFC8[b][1],
-            D_8032FFC8[b][2],
+        make_vertex(verts, 1,
+            x, y - 0x78, -1,
+            0, 992,
+            gSkyboxColors[b][0],
+            gSkyboxColors[b][1],
+            gSkyboxColors[b][2],
             255);
-        func_802D1730(sp3C, 2, sp3A + 160, sp38 - 0x78, -1, 992, 992,
-            D_8032FFC8[b][0],
-            D_8032FFC8[b][1],
-            D_8032FFC8[b][2],
+        make_vertex(verts, 2,
+            x + 160, y - 0x78, -1,
+            992, 992,
+            gSkyboxColors[b][0],
+            gSkyboxColors[b][1],
+            gSkyboxColors[b][2],
             255);
-        func_802D1730(sp3C, 3, sp3A + 160, sp38, -1, 992, 0,
-            D_8032FFC8[b][0],
-            D_8032FFC8[b][1],
-            D_8032FFC8[b][2],
+        make_vertex(verts, 3,
+            x + 160, y, -1,
+            992, 0,
+            gSkyboxColors[b][0],
+            gSkyboxColors[b][1],
+            gSkyboxColors[b][2],
             255);
     }
     else
     {
     }
-    return sp3C;
+    return verts;
 }
 
 struct Hack802CEF4C
@@ -112,7 +121,7 @@ void func_802CEF4C(Gfx **dlist, s8 b, s8 c, s8 d)
         {
             int sp4C = D_8035FF50[c].unkC + sp54 * 10 + sp50;
             u32 sp48 = ((struct Hack802CEF4C *)segmented_to_virtual((void *)D_8032FFA0[b]))->arr[sp4C];
-            void *vertices = func_802CED24(sp4C, d);
+            Vtx *vertices = make_skybox_rect(sp4C, d);
 
             // Why is the width 1 here?
             gDPSetTextureImage((*dlist)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, sp48);
@@ -120,14 +129,7 @@ void func_802CEF4C(Gfx **dlist, s8 b, s8 c, s8 d)
             gDPSetTile((*dlist)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, 7, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD);
             gDPLoadSync((*dlist)++);
             gDPLoadBlock((*dlist)++, 7, 0, 0, 1023, 256);
-
-            // gSPVertex
-            {
-                Gfx *g = (*dlist)++;
-                g->words.w0 = 0x04300040;
-                g->words.w1 = (u32)vertices & 0x1FFFFFFF;
-            }
-
+            gSPVertex((*dlist)++, VIRTUAL_TO_PHYSICAL(vertices), 4, 0);
             gSPDisplayList((*dlist)++, D_020144F0);
         }
     }
@@ -135,21 +137,21 @@ void func_802CEF4C(Gfx **dlist, s8 b, s8 c, s8 d)
 
 void *func_802CF188(s8 a)
 {
-    float sp3C = D_8035FF50[a].unk4;
-    float sp38 = D_8035FF50[a].unk4 + 0x140;
-    float sp34 = D_8035FF50[a].unk8 - 0xF0;
-    float sp30 = D_8035FF50[a].unk8;
-    void *sp2C = alloc_display_list(64);
+    float left = D_8035FF50[a].unk4;
+    float right = D_8035FF50[a].unk4 + 0x140;
+    float bottom = D_8035FF50[a].unk8 - 0xF0;
+    float top = D_8035FF50[a].unk8;
+    Mtx *mtx = alloc_display_list(sizeof(*mtx));
 
-    if (sp2C != NULL)
+    if (mtx != NULL)
     {
-        guFrustum(sp2C, sp3C, sp38, sp34, sp30, 0.0f, 3.0f, 1.0f);
+        guFrustum(mtx, left, right, bottom, top, 0.0f, 3.0f, 1.0f);
     }
     else
     {
     }
 
-    return sp2C;
+    return mtx;
 }
 
 Gfx *func_802CF2A8(s8 a, s8 b, s8 c)
@@ -164,20 +166,12 @@ Gfx *func_802CF2A8(s8 a, s8 b, s8 c)
     }
     else
     {
-        void *sp30 = func_802CF188(a);
+        Mtx *mtx = func_802CF188(a);
 
         gSPDisplayList(dlist++, D_02014708);
-
-        {
-            Gfx *g = dlist++;
-            g->words.w0 = 0x01010040;
-            g->words.w1 = (u32)sp30 & 0x1FFFFFFF;
-        }
-
+        gSPMatrix(dlist++, VIRTUAL_TO_PHYSICAL(mtx), G_MTX_PROJECTION);
         gSPDisplayList(dlist++, D_02014738);
-
         func_802CEF4C(&dlist, b, a, c);
-
         gSPDisplayList(dlist++, D_02014768);
         gSPEndDisplayList(dlist);
     }

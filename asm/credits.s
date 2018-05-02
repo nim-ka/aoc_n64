@@ -710,8 +710,8 @@ glabel .L80249F3C
 /* 004F54 80249F54 10000001 */  b     .L80249F5C
 /* 004F58 80249F58 00000000 */   nop   
 .L80249F5C:
-/* 004F5C 80249F5C 3C0D8033 */  lui   $t5, %hi(gDemoInputs) # $t5, 0x8033
-/* 004F60 80249F60 8DADC6B0 */  lw    $t5, %lo(gDemoInputs)($t5)
+/* 004F5C 80249F5C 3C0D8033 */  lui   $t5, %hi(gCurrDemoInput) # $t5, 0x8033
+/* 004F60 80249F60 8DADC6B0 */  lw    $t5, %lo(gCurrDemoInput)($t5)
 /* 004F64 80249F64 15A0002B */  bnez  $t5, .L8024A014
 /* 004F68 80249F68 00000000 */   nop   
 /* 004F6C 80249F6C 3C0E8033 */  lui   $t6, %hi(D_8032CE6C) # $t6, 0x8033
@@ -1647,8 +1647,8 @@ glabel .L8024ACE0
 /* 005CE0 8024ACE0 8FAE002C */  lw    $t6, 0x2c($sp)
 /* 005CE4 8024ACE4 11C00013 */  beqz  $t6, .L8024AD34
 /* 005CE8 8024ACE8 00000000 */   nop   
-/* 005CEC 8024ACEC 3C0F8033 */  lui   $t7, %hi(gDemoInputs) # $t7, 0x8033
-/* 005CF0 8024ACF0 8DEFC6B0 */  lw    $t7, %lo(gDemoInputs)($t7)
+/* 005CEC 8024ACEC 3C0F8033 */  lui   $t7, %hi(gCurrDemoInput) # $t7, 0x8033
+/* 005CF0 8024ACF0 8DEFC6B0 */  lw    $t7, %lo(gCurrDemoInput)($t7)
 /* 005CF4 8024ACF4 15E0000F */  bnez  $t7, .L8024AD34
 /* 005CF8 8024ACF8 00000000 */   nop   
 /* 005CFC 8024ACFC 3C048034 */  lui   $a0, %hi(D_8033FFFE) # $a0, 0x8034
@@ -1710,8 +1710,8 @@ glabel func_8024AD5C
 /* 005DC8 8024ADC8 10000076 */  b     .L8024AFA4
 /* 005DCC 8024ADCC 00000000 */   nop   
 .L8024ADD0:
-/* 005DD0 8024ADD0 3C0C8033 */  lui   $t4, %hi(gDemoInputs) # $t4, 0x8033
-/* 005DD4 8024ADD4 8D8CC6B0 */  lw    $t4, %lo(gDemoInputs)($t4)
+/* 005DD0 8024ADD0 3C0C8033 */  lui   $t4, %hi(gCurrDemoInput) # $t4, 0x8033
+/* 005DD4 8024ADD4 8D8CC6B0 */  lw    $t4, %lo(gCurrDemoInput)($t4)
 /* 005DD8 8024ADD8 1180000E */  beqz  $t4, .L8024AE14
 /* 005DDC 8024ADDC 00000000 */   nop   
 /* 005DE0 8024ADE0 3C0D8034 */  lui   $t5, %hi(D_80339EE2) # $t5, 0x8034
@@ -2038,8 +2038,8 @@ glabel func_8024B244
 /* 006244 8024B244 27BDFFD8 */  addiu $sp, $sp, -0x28
 /* 006248 8024B248 AFBF001C */  sw    $ra, 0x1c($sp)
 /* 00624C 8024B24C AFB00018 */  sw    $s0, 0x18($sp)
-/* 006250 8024B250 3C0E8033 */  lui   $t6, %hi(gDemoInputs) # $t6, 0x8033
-/* 006254 8024B254 8DCEC6B0 */  lw    $t6, %lo(gDemoInputs)($t6)
+/* 006250 8024B250 3C0E8033 */  lui   $t6, %hi(gCurrDemoInput) # $t6, 0x8033
+/* 006254 8024B254 8DCEC6B0 */  lw    $t6, %lo(gCurrDemoInput)($t6)
 /* 006258 8024B258 11C00029 */  beqz  $t6, .L8024B300
 /* 00625C 8024B25C 00000000 */   nop   
 /* 006260 8024B260 0C09E8C0 */  jal   IntroPrintText
@@ -2584,8 +2584,8 @@ glabel func_8024B8EC
 /* 0069C4 8024B9C4 8D6BCE6C */  lw    $t3, %lo(D_8032CE6C)($t3)
 /* 0069C8 8024B9C8 0C0A1A6E */  jal   func_802869B8
 /* 0069CC 8024B9CC 8D640024 */   lw    $a0, 0x24($t3)
-/* 0069D0 8024B9D0 3C0C8033 */  lui   $t4, %hi(gDemoInputs) # $t4, 0x8033
-/* 0069D4 8024B9D4 8D8CC6B0 */  lw    $t4, %lo(gDemoInputs)($t4)
+/* 0069D0 8024B9D0 3C0C8033 */  lui   $t4, %hi(gCurrDemoInput) # $t4, 0x8033
+/* 0069D4 8024B9D4 8D8CC6B0 */  lw    $t4, %lo(gCurrDemoInput)($t4)
 /* 0069D8 8024B9D8 11800009 */  beqz  $t4, .L8024BA00
 /* 0069DC 8024B9DC 00000000 */   nop   
 /* 0069E0 8024B9E0 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
@@ -2651,8 +2651,8 @@ glabel func_8024B8EC
 /* 006AC0 8024BAC0 0C09EAFC */  jal   func_8027ABF0
 /* 006AC4 8024BAC4 240700FF */   li    $a3, 255
 .L8024BAC8:
-/* 006AC8 8024BAC8 3C0A8033 */  lui   $t2, %hi(gDemoInputs) # $t2, 0x8033
-/* 006ACC 8024BACC 8D4AC6B0 */  lw    $t2, %lo(gDemoInputs)($t2)
+/* 006AC8 8024BAC8 3C0A8033 */  lui   $t2, %hi(gCurrDemoInput) # $t2, 0x8033
+/* 006ACC 8024BACC 8D4AC6B0 */  lw    $t2, %lo(gCurrDemoInput)($t2)
 /* 006AD0 8024BAD0 15400007 */  bnez  $t2, .L8024BAF0
 /* 006AD4 8024BAD4 00000000 */   nop   
 /* 006AD8 8024BAD8 3C0B8033 */  lui   $t3, %hi(D_8032CE6C) # $t3, 0x8033
@@ -2790,8 +2790,8 @@ glabel LevelProc_8024BE14
 /* 006CB0 8024BCB0 0338C821 */  addu  $t9, $t9, $t8
 /* 006CB4 8024BCB4 8339CE37 */  lb    $t9, %lo(D_8032CE37)($t9)
 /* 006CB8 8024BCB8 A439A756 */  sh    $t9, %lo(gCurrCourseNum)($at)
-/* 006CBC 8024BCBC 3C088033 */  lui   $t0, %hi(gDemoInputs) # $t0, 0x8033
-/* 006CC0 8024BCC0 8D08C6B0 */  lw    $t0, %lo(gDemoInputs)($t0)
+/* 006CBC 8024BCBC 3C088033 */  lui   $t0, %hi(gCurrDemoInput) # $t0, 0x8033
+/* 006CC0 8024BCC0 8D08C6B0 */  lw    $t0, %lo(gCurrDemoInput)($t0)
 /* 006CC4 8024BCC4 15000009 */  bnez  $t0, .L8024BCEC
 /* 006CC8 8024BCC8 00000000 */   nop   
 /* 006CCC 8024BCCC 3C098033 */  lui   $t1, %hi(D_8032CE70) # $t1, 0x8033

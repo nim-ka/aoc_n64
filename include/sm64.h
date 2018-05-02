@@ -7,6 +7,8 @@
 #include "variables.h"
 #include "functions.h"
 
+#define ARRAY_COUNT(arr) (sizeof(arr) / sizeof(arr[0]))
+
 #define sins(x) D_80386000[(u16) (x) >> 4]
 #define coss(x) D_80387000[(u16) (x) >> 4]
 
@@ -416,7 +418,9 @@
 #endif
 
 // convert a virtual address to physical.
-#define TOPHYSICAL(addr)    ((u32)addr & 0x1FFFFFFF)
+#define VIRTUAL_TO_PHYSICAL(addr)    ((u32)addr & 0x1FFFFFFF)
+// convert a physical address to virtual.
+#define PHYSICAL_TO_VIRTUAL(addr)    ((u32)addr | 0x80000000)
 
 /*
  this input mask is unused by the controller, 

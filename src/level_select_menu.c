@@ -80,7 +80,7 @@ static u16 gDemoCountdown = 0;
 // the demo needs to be ran.
 int run_press_start_demo_timer(int timer)
 {
-    gDemoInputs = NULL;
+    gCurrDemoInput = NULL;
 
     if(timer == 0)
     {
@@ -101,7 +101,7 @@ int run_press_start_demo_timer(int timer)
                 if((++gDemoInputListID) == gDemo.animDmaTable->unk0)
                     gDemoInputListID = 0;
 
-                gDemoInputs = gDemoInputList + 1; // add 1 (+4) to the pointer to skip the demoID.
+                gCurrDemoInput = gDemoInputList + 1; // add 1 (+4) to the pointer to skip the demoID.
                 timer = (s8)gDemoInputList->timer; // TODO: see if making timer s8 matches
                 gCurrSaveFileNum = 1;
                 D_8033A758 = 1;

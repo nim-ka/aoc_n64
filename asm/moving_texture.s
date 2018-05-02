@@ -231,7 +231,7 @@ glabel func_802CF774
 /* 08A8C4 802CF8C4 AFAB0010 */  sw    $t3, 0x10($sp)
 /* 08A8C8 802CF8C8 AFAC0014 */  sw    $t4, 0x14($sp)
 /* 08A8CC 802CF8CC AFAD0018 */  sw    $t5, 0x18($sp)
-/* 08A8D0 802CF8D0 0C0B45CC */  jal   func_802D1730
+/* 08A8D0 802CF8D0 0C0B45CC */  jal   make_vertex
 /* 08A8D4 802CF8D4 AFB80028 */   sw    $t8, 0x28($sp)
 /* 08A8D8 802CF8D8 1000002C */  b     .L802CF98C
 /* 08A8DC 802CF8DC 00000000 */   nop   
@@ -256,7 +256,7 @@ glabel func_802CF774
 /* 08A924 802CF924 AFA80010 */  sw    $t0, 0x10($sp)
 /* 08A928 802CF928 AFA90014 */  sw    $t1, 0x14($sp)
 /* 08A92C 802CF92C AFAA0018 */  sw    $t2, 0x18($sp)
-/* 08A930 802CF930 0C0B45CC */  jal   func_802D1730
+/* 08A930 802CF930 0C0B45CC */  jal   make_vertex
 /* 08A934 802CF934 AFAC0028 */   sw    $t4, 0x28($sp)
 /* 08A938 802CF938 10000014 */  b     .L802CF98C
 /* 08A93C 802CF93C 00000000 */   nop   
@@ -278,7 +278,7 @@ glabel func_802CF774
 /* 08A978 802CF978 AFAD0010 */  sw    $t5, 0x10($sp)
 /* 08A97C 802CF97C AFAE0014 */  sw    $t6, 0x14($sp)
 /* 08A980 802CF980 AFAF0018 */  sw    $t7, 0x18($sp)
-/* 08A984 802CF984 0C0B45CC */  jal   func_802D1730
+/* 08A984 802CF984 0C0B45CC */  jal   make_vertex
 /* 08A988 802CF988 AFA90028 */   sw    $t1, 0x28($sp)
 .L802CF98C:
 /* 08A98C 802CF98C 10000001 */  b     .L802CF994
@@ -1415,7 +1415,7 @@ glabel func_802D08EC
 /* 08B9CC 802D09CC AFAF001C */  sw    $t7, 0x1c($sp)
 /* 08B9D0 802D09D0 AFB80020 */  sw    $t8, 0x20($sp)
 /* 08B9D4 802D09D4 AFB90024 */  sw    $t9, 0x24($sp)
-/* 08B9D8 802D09D8 0C0B45CC */  jal   func_802D1730
+/* 08B9D8 802D09D8 0C0B45CC */  jal   make_vertex
 /* 08B9DC 802D09DC AFA80028 */   sw    $t0, 0x28($sp)
 /* 08B9E0 802D09E0 10000025 */  b     .L802D0A78
 /* 08B9E4 802D09E4 00000000 */   nop   
@@ -1452,7 +1452,7 @@ glabel func_802D08EC
 /* 08BA5C 802D0A5C AFAC001C */  sw    $t4, 0x1c($sp)
 /* 08BA60 802D0A60 AFAD0020 */  sw    $t5, 0x20($sp)
 /* 08BA64 802D0A64 AFAE0024 */  sw    $t6, 0x24($sp)
-/* 08BA68 802D0A68 0C0B45CC */  jal   func_802D1730
+/* 08BA68 802D0A68 0C0B45CC */  jal   make_vertex
 /* 08BA6C 802D0A6C AFAF0028 */   sw    $t7, 0x28($sp)
 /* 08BA70 802D0A70 10000001 */  b     .L802D0A78
 /* 08BA74 802D0A74 00000000 */   nop   
@@ -1570,7 +1570,7 @@ glabel func_802D0A94
 /* 08BC20 802D0C20 AFB8001C */  sw    $t8, 0x1c($sp)
 /* 08BC24 802D0C24 AFAB0020 */  sw    $t3, 0x20($sp)
 /* 08BC28 802D0C28 AFAD0024 */  sw    $t5, 0x24($sp)
-/* 08BC2C 802D0C2C 0C0B45CC */  jal   func_802D1730
+/* 08BC2C 802D0C2C 0C0B45CC */  jal   make_vertex
 /* 08BC30 802D0C30 AFA90028 */   sw    $t1, 0x28($sp)
 /* 08BC34 802D0C34 10000060 */  b     .L802D0DB8
 /* 08BC38 802D0C38 00000000 */   nop   
@@ -1666,7 +1666,7 @@ glabel func_802D0A94
 /* 08BD9C 802D0D9C AFA8001C */  sw    $t0, 0x1c($sp)
 /* 08BDA0 802D0DA0 AFAD0020 */  sw    $t5, 0x20($sp)
 /* 08BDA4 802D0DA4 AFA90024 */  sw    $t1, 0x24($sp)
-/* 08BDA8 802D0DA8 0C0B45CC */  jal   func_802D1730
+/* 08BDA8 802D0DA8 0C0B45CC */  jal   make_vertex
 /* 08BDAC 802D0DAC AFAA0028 */   sw    $t2, 0x28($sp)
 /* 08BDB0 802D0DB0 10000001 */  b     .L802D0DB8
 /* 08BDB4 802D0DB4 00000000 */   nop   

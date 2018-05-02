@@ -245,7 +245,7 @@ glabel func_802CADB4
 /* 085E30 802CAE30 AFAC001C */  sw    $t4, 0x1c($sp)
 /* 085E34 802CAE34 AFAD0020 */  sw    $t5, 0x20($sp)
 /* 085E38 802CAE38 AFAE0024 */  sw    $t6, 0x24($sp)
-/* 085E3C 802CAE3C 0C0B45CC */  jal   func_802D1730
+/* 085E3C 802CAE3C 0C0B45CC */  jal   make_vertex
 /* 085E40 802CAE40 AFAF0028 */   sw    $t7, 0x28($sp)
 /* 085E44 802CAE44 93B9003B */  lbu   $t9, 0x3b($sp)
 /* 085E48 802CAE48 93A8003A */  lbu   $t0, 0x3a($sp)
@@ -262,7 +262,7 @@ glabel func_802CADB4
 /* 085E74 802CAE74 AFB9001C */  sw    $t9, 0x1c($sp)
 /* 085E78 802CAE78 AFA80020 */  sw    $t0, 0x20($sp)
 /* 085E7C 802CAE7C AFA90024 */  sw    $t1, 0x24($sp)
-/* 085E80 802CAE80 0C0B45CC */  jal   func_802D1730
+/* 085E80 802CAE80 0C0B45CC */  jal   make_vertex
 /* 085E84 802CAE84 AFAA0028 */   sw    $t2, 0x28($sp)
 /* 085E88 802CAE88 93AC003B */  lbu   $t4, 0x3b($sp)
 /* 085E8C 802CAE8C 93AD003A */  lbu   $t5, 0x3a($sp)
@@ -279,7 +279,7 @@ glabel func_802CADB4
 /* 085EB8 802CAEB8 AFAC001C */  sw    $t4, 0x1c($sp)
 /* 085EBC 802CAEBC AFAD0020 */  sw    $t5, 0x20($sp)
 /* 085EC0 802CAEC0 AFAE0024 */  sw    $t6, 0x24($sp)
-/* 085EC4 802CAEC4 0C0B45CC */  jal   func_802D1730
+/* 085EC4 802CAEC4 0C0B45CC */  jal   make_vertex
 /* 085EC8 802CAEC8 AFAF0028 */   sw    $t7, 0x28($sp)
 /* 085ECC 802CAECC 93B9003B */  lbu   $t9, 0x3b($sp)
 /* 085ED0 802CAED0 93A8003A */  lbu   $t0, 0x3a($sp)
@@ -296,7 +296,7 @@ glabel func_802CADB4
 /* 085EFC 802CAEFC AFB9001C */  sw    $t9, 0x1c($sp)
 /* 085F00 802CAF00 AFA80020 */  sw    $t0, 0x20($sp)
 /* 085F04 802CAF04 AFA90024 */  sw    $t1, 0x24($sp)
-/* 085F08 802CAF08 0C0B45CC */  jal   func_802D1730
+/* 085F08 802CAF08 0C0B45CC */  jal   make_vertex
 /* 085F0C 802CAF0C AFAA0028 */   sw    $t2, 0x28($sp)
 /* 085F10 802CAF10 10000001 */  b     .L802CAF18
 /* 085F14 802CAF14 00000000 */   nop   
@@ -805,7 +805,7 @@ glabel func_802CB508
 /* 086674 802CB674 87A7003C */  lh    $a3, 0x3c($sp)
 /* 086678 802CB678 AFAA001C */  sw    $t2, 0x1c($sp)
 /* 08667C 802CB67C AFAC0020 */  sw    $t4, 0x20($sp)
-/* 086680 802CB680 0C0B45CC */  jal   func_802D1730
+/* 086680 802CB680 0C0B45CC */  jal   make_vertex
 /* 086684 802CB684 AFAD0024 */   sw    $t5, 0x24($sp)
 /* 086688 802CB688 10000001 */  b     .L802CB690
 /* 08668C 802CB68C 00000000 */   nop   
@@ -1660,7 +1660,7 @@ glabel func_802CC2E8
 /* 087354 802CC354 00003825 */  move  $a3, $zero
 /* 087358 802CC358 AFA0001C */  sw    $zero, 0x1c($sp)
 /* 08735C 802CC35C AFA00020 */  sw    $zero, 0x20($sp)
-/* 087360 802CC360 0C0B45CC */  jal   func_802D1730
+/* 087360 802CC360 0C0B45CC */  jal   make_vertex
 /* 087364 802CC364 AFA00024 */   sw    $zero, 0x24($sp)
 /* 087368 802CC368 240BFFFF */  li    $t3, -1
 /* 08736C 802CC36C 240C0480 */  li    $t4, 1152
@@ -1676,7 +1676,7 @@ glabel func_802CC2E8
 /* 087394 802CC394 00003825 */  move  $a3, $zero
 /* 087398 802CC398 AFA0001C */  sw    $zero, 0x1c($sp)
 /* 08739C 802CC39C AFA00020 */  sw    $zero, 0x20($sp)
-/* 0873A0 802CC3A0 0C0B45CC */  jal   func_802D1730
+/* 0873A0 802CC3A0 0C0B45CC */  jal   make_vertex
 /* 0873A4 802CC3A4 AFA00024 */   sw    $zero, 0x24($sp)
 /* 0873A8 802CC3A8 240FFFFF */  li    $t7, -1
 /* 0873AC 802CC3AC 24180480 */  li    $t8, 1152
@@ -1692,7 +1692,7 @@ glabel func_802CC2E8
 /* 0873D4 802CC3D4 240700F0 */  li    $a3, 240
 /* 0873D8 802CC3D8 AFA0001C */  sw    $zero, 0x1c($sp)
 /* 0873DC 802CC3DC AFA00020 */  sw    $zero, 0x20($sp)
-/* 0873E0 802CC3E0 0C0B45CC */  jal   func_802D1730
+/* 0873E0 802CC3E0 0C0B45CC */  jal   make_vertex
 /* 0873E4 802CC3E4 AFA00024 */   sw    $zero, 0x24($sp)
 /* 0873E8 802CC3E8 2409FFFF */  li    $t1, -1
 /* 0873EC 802CC3EC 240AFB80 */  li    $t2, -1152
@@ -1708,7 +1708,7 @@ glabel func_802CC2E8
 /* 087414 802CC414 240700F0 */  li    $a3, 240
 /* 087418 802CC418 AFA0001C */  sw    $zero, 0x1c($sp)
 /* 08741C 802CC41C AFA00020 */  sw    $zero, 0x20($sp)
-/* 087420 802CC420 0C0B45CC */  jal   func_802D1730
+/* 087420 802CC420 0C0B45CC */  jal   make_vertex
 /* 087424 802CC424 AFA00024 */   sw    $zero, 0x24($sp)
 /* 087428 802CC428 8FAD007C */  lw    $t5, 0x7c($sp)
 /* 08742C 802CC42C 25AE0008 */  addiu $t6, $t5, 8

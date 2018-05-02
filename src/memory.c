@@ -40,13 +40,7 @@ void MovePtrTbl2Dmem(void)
     int i;
 
     for (i = 0; i < 16; i++)
-    {
-        {
-            Gfx *g = gDisplayListHead++;
-            g->words.w0 = 0xBC000000 | (((i << 2) & 0xFFFF) << 8) | 6;
-            g->words.w1 = gSegmentTable[i];
-        }
-    }
+        gMoveWd(gDisplayListHead++, 6, i * 4, gSegmentTable[i]);
 }
 
 struct PoolMemBlock

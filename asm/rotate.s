@@ -613,7 +613,7 @@ glabel func_802CCF0C
 /* 088010 802CD010 87A6004E */  lh    $a2, 0x4e($sp)
 /* 088014 802CD014 87A7004C */  lh    $a3, 0x4c($sp)
 /* 088018 802CD018 AFAB0010 */  sw    $t3, 0x10($sp)
-/* 08801C 802CD01C 0C0B45CC */  jal   func_802D1730
+/* 08801C 802CD01C 0C0B45CC */  jal   make_vertex
 /* 088020 802CD020 AFA90028 */   sw    $t1, 0x28($sp)
 /* 088024 802CD024 10000001 */  b     .L802CD02C
 /* 088028 802CD028 00000000 */   nop   

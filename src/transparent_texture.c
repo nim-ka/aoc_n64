@@ -5,18 +5,21 @@
 #include "variables.h"
 #include "save_file.h"
 
-void func_802D1730(void *a0, s32 a1, s16 a2, s16 a3, s16 sp12, s16 sp16, s16 sp1A, u8 sp1F, u8 sp23, u8 sp27, u8 sp2B)
+void make_vertex(Vtx *vtx, s32 n, s16 x, s16 y, s16 z, s16 tx, s16 ty, u8 r, u8 g, u8 b, u8 a)
 {
-    ((u16 *)((u32)a0 + (a1 << 0x04)))[0] = a2;
-    ((u16 *)((u32)a0 + (a1 << 0x04)))[1] = a3;
-    ((u16 *)((u32)a0 + (a1 << 0x04)))[2] = sp12;
-    ((u16 *)((u32)a0 + (a1 << 0x04)))[3] = 0;
-    ((u16 *)((u32)a0 + (a1 << 0x04)))[4] = sp16;
-    ((u16 *)((u32)a0 + (a1 << 0x04)))[5] = sp1A;
-    ((u8 *)((u32)a0 + (a1 << 0x04)))[12] = sp1F;
-    ((u8 *)((u32)a0 + (a1 << 0x04)))[13] = sp23;
-    ((u8 *)((u32)a0 + (a1 << 0x04)))[14] = sp27;
-    ((u8 *)((u32)a0 + (a1 << 0x04)))[15] = sp2B;
+    vtx[n].v.ob[0] = x;
+    vtx[n].v.ob[1] = y;
+    vtx[n].v.ob[2] = z;
+
+    vtx[n].v.flag = 0;
+
+    vtx[n].v.tc[0] = tx;
+    vtx[n].v.tc[1] = ty;
+
+    vtx[n].v.cn[0] = r;
+    vtx[n].v.cn[1] = g;
+    vtx[n].v.cn[2] = b;
+    vtx[n].v.cn[3] = a;
 }
 
 s32 func_802D17E4(float f12)
@@ -78,8 +81,8 @@ struct StructGeo802D2360 *Geo18_802D2470(s32 a0, UNUSED void *sp4, UNUSED s32 sp
 
 void *Geo18_802D2520(s32 sp80, short *sp84, UNUSED s32 sp88)
 {
-    s16 sp7E, sp7C, sp7A, sp78, sp76, sp74, sp72, sp70;
-    void *sp6C;
+    s16 n, sp7C, sp7A, x, y, z, tx, ty;
+    Vtx *verts;
     short *sp68 = sp84;
 
     Gfx *sp64 = (Gfx *)segmented_to_virtual(&D_07019248);
@@ -89,47 +92,34 @@ void *Geo18_802D2520(s32 sp80, short *sp84, UNUSED s32 sp88)
 
     if (sp80 == 1)
     {
-        sp6C = alloc_display_list(0x150);
+        verts = alloc_display_list(0x150);
         sp60 = alloc_display_list(0x38);
 
         sp5C = sp60;
 
-        if (sp6C == NULL || sp60 == NULL) return 0;
+        if (verts == NULL || sp60 == NULL) return 0;
 
         sp68[1] = (sp68[1] & 0xFF) | 0x100;
 
-        sp7E = 0;
-        do
+        for (n = 0; n <= 20; n++)
         {
-            sp7C = sp7E / 3;
-            sp7A = sp7E % 3;
+            sp7C = n / 3;
+            sp7A = n % 3;
 
-            sp78 = ((s16 *)(u32) sp64 + (sp7E << 2))[0];
-            sp76 = func_802D17E4(sins(D_80330398 + (sp7C << 0x0C) + (sp7A << 0x0E)) * 20.0);
+            x = ((s16 *)(u32) sp64 + (n << 2))[0];
+            y = func_802D17E4(sins(D_80330398 + (sp7C << 0x0C) + (sp7A << 0x0E)) * 20.0);
             
-            sp74 = ((s16 *)(u32) sp64 + (sp7E << 2))[1];
-            sp72 = ((s16 *)(u32) sp64 + (sp7E << 2))[2];
-            sp70 = ((s16 *)(u32) sp64 + (sp7E << 2))[3];
+            z = ((s16 *)(u32) sp64 + (n << 2))[1];
+            tx = ((s16 *)(u32) sp64 + (n << 2))[2];
+            ty = ((s16 *)(u32) sp64 + (n << 2))[3];
 
-            func_802D1730(sp6C, sp7E, sp78, sp76, sp74, sp72, sp70, 0, 0x7F, 0, 0xFF);
-        } while (++sp7E <= 0x14);
+            make_vertex(verts, n, x, y, z, tx, ty, 0, 127, 0, 255);
+        }
 
         gSPDisplayList(sp5C++, D_070192F0);
-
-        {
-            Gfx *sp50 = sp5C++;
-            sp50->words.w0 = 0x04B000C0;
-            sp50->words.w1 = (u32)sp6C;
-        }
-
+        gSPVertex(sp5C++, verts, 12, 0);
         gSPDisplayList(sp5C++, D_07019360);
-
-        {
-            Gfx *sp48 = sp5C++;
-            sp48->words.w0 = 0x04B000C0;
-            sp48->words.w1 = (u32)(s32 *)((u32)sp6C + 0x90);
-        }
-
+        gSPVertex(sp5C++, verts + 9, 12, 0);
         gSPDisplayList(sp5C++, D_07019360);
         gSPDisplayList(sp5C++, D_070193C8);
         gSPEndDisplayList(sp5C);

@@ -7,7 +7,7 @@ void (*D_8032C6A0)(void) = NULL;
 struct Controller *gPlayer1Controller = &gControllers[0];
 struct Controller *D_8032C6A8 = &gControllers[1];
 struct Controller *gPlayer2Controller = &gControllers[2];
-struct DemoInput *gDemoInputs = NULL; // demo input sequence
+struct DemoInput *gCurrDemoInput = NULL; // demo input sequence
 u16 gDemoInputListID = 0;
 struct DemoInput gRecordedDemoInput = {0};
 
@@ -94,7 +94,7 @@ void run_demo_inputs(void)
         exists and if so, run the
         active demo input list.
     */
-    if(gDemoInputs != NULL)
+    if(gCurrDemoInput != NULL)
     {
         /*
             clear player 2's inputs if they exist. Player 2's controller 
@@ -112,7 +112,7 @@ void run_demo_inputs(void)
 
         // the timer variable being 0 at the current input means the demo is over.
         // set the button to the END_DEMO mask to end the demo.
-        if(gDemoInputs->timer == 0)
+        if(gCurrDemoInput->timer == 0)
         {
             gControllers[0].controllerData->rawStickX = 0;
             gControllers[0].controllerData->rawStickY = 0;
@@ -125,8 +125,8 @@ void run_demo_inputs(void)
             u16 startPushed = gControllers[0].controllerData->button & START_BUTTON;
 
             // perform the demo inputs by assigning the current button mask and the stick inputs.
-            gControllers[0].controllerData->rawStickX = gDemoInputs->rawStickX;
-            gControllers[0].controllerData->rawStickY = gDemoInputs->rawStickY;
+            gControllers[0].controllerData->rawStickX = gCurrDemoInput->rawStickX;
+            gControllers[0].controllerData->rawStickY = gCurrDemoInput->rawStickY;
 
             /*
                 to assign the demo input, the button information is stored in 
@@ -137,8 +137,8 @@ void run_demo_inputs(void)
                 match the correct input mask. We then add this to the masked 
                 lower 4 bits to get the correct button mask.
             */
-            gControllers[0].controllerData->button = ((gDemoInputs->button & 0xF0) << 8) 
-                                                   + ((gDemoInputs->button & 0xF));
+            gControllers[0].controllerData->button = ((gCurrDemoInput->button & 0xF0) << 8) 
+                                                   + ((gCurrDemoInput->button & 0xF));
 
             // if start was pushed, put it into the demo sequence being input to
             // end the demo.
@@ -146,8 +146,8 @@ void run_demo_inputs(void)
             
             // run the current demo input's timer down. if it hits 0, advance the
             // demo input list.
-            if(--gDemoInputs->timer == 0)
-                gDemoInputs++;
+            if(--gCurrDemoInput->timer == 0)
+                gCurrDemoInput++;
         }
     }
 }
@@ -161,7 +161,7 @@ void read_controller_inputs(void)
     // controller information.
     if(gControllerBits)
     {
-        osRecvMesg(&D_80339C08, &D_80339BEC, 1);
+        osRecvMesg(&gSIEventMesgQueue, &D_80339BEC, 1);
         osContGetReadData(&gControllerPads[0]);
     }
     run_demo_inputs();
@@ -207,32 +207,33 @@ void read_controller_inputs(void)
 }
 
 // initialize the controller structs to point at the OSCont information.
-void InitController(void)
+void init_controllers(void)
 {
-    s16 port, j;
+    s16 port, cont;
 
     // set controller 1 to point to the set of status/pads for input 1 and
     // init the controllers.
     gControllers[0].statusData = &gControllerStatuses[0];
     gControllers[0].controllerData = &gControllerPads[0];
-    osContInit(&D_80339C08, &gControllerBits, &gControllerStatuses[0]);
+    osContInit(&gSIEventMesgQueue, &gControllerBits, &gControllerStatuses[0]);
 
     // strangely enough, the EEPROM probe for save data is done in this function.
     // save pak detection?
-    gEepromProbe = osEepromProbe(&D_80339C08);
+    gEepromProbe = osEepromProbe(&gSIEventMesgQueue);
 
     // loop over the 4 ports and link the controller structs to the appropriate
     // status and pad.
-    for(j = 0, port = 0; port < 4 && j < 2; port++)
+    for (cont = 0, port = 0; port < 4 && cont < 2; port++)
     {
         // is controller plugged in?
-        if (gControllerBits & (1 << port)) {
+        if (gControllerBits & (1 << port))
+        {
             // the game allows you to have just 1 controller plugged
             // into any port in order to play the game. this was probably
             // so if any of the ports didnt work, you can have controllers
             // plugged into any of them and it will work.
-            gControllers[j  ].statusData = &gControllerStatuses[port];
-            gControllers[j++].controllerData = &gControllerPads[port];
+            gControllers[cont  ].statusData = &gControllerStatuses[port];
+            gControllers[cont++].controllerData = &gControllerPads[port];
         }
     }
 }
@@ -244,10 +245,10 @@ void func_80248934(void)
     set_segment_base_addr(0, (void *)0x80000000);
     osCreateMesgQueue(&D_80339CB8, &D_80339CD4, 1);
     osCreateMesgQueue(&D_80339CA0, &D_80339CD0, 1);
-    D_80339CEC    = TOPHYSICAL(D_80000400);
-    D_80339CE0[0] = TOPHYSICAL(D_8038F800);
-    D_80339CE0[1] = TOPHYSICAL(D_803B5000);
-    D_80339CE0[2] = TOPHYSICAL(D_803DA800);
+    D_80339CEC    = VIRTUAL_TO_PHYSICAL(D_80000400);
+    gFrameBuffers[0] = VIRTUAL_TO_PHYSICAL(gFrameBuffer0);
+    gFrameBuffers[1] = VIRTUAL_TO_PHYSICAL(gFrameBuffer1);
+    gFrameBuffers[2] = VIRTUAL_TO_PHYSICAL(gFrameBuffer2);
     D_80339CF0 = _pool_alloc(0x4000, 0);
     set_segment_base_addr(17, (void *)D_80339CF0);
     DynamicObjectCopy(&D_80339D10, D_004E9FA0, D_80339CF0);
@@ -260,12 +261,12 @@ void func_80248934(void)
 
 // main game loop thread. runs forever as long as the game
 // continues.
-void Thread5_GameLoop(UNUSED void *arg)
+void thread5_game_loop(UNUSED void *arg)
 {
     u32 addr;
 
     func_80248934();
-    InitController();
+    init_controllers();
     save_file_load_all();
 
     func_80246B14(2, &D_80339CD8, &D_80339CA0, 1);
@@ -287,7 +288,7 @@ void Thread5_GameLoop(UNUSED void *arg)
         // if any controllers are plugged in, start read the data for when
         // read_controller_inputs is called later.
         if(gControllerBits)
-            osContStartReadData(&D_80339C08);
+            osContStartReadData(&gSIEventMesgQueue);
         
         func_802494A8();
         func_80247FAC();

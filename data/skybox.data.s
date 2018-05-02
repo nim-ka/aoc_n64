@@ -16,5 +16,5 @@ glabel D_8032FF88
 glabel D_8032FFA0
 	.incbin "bin/sm64.j.0EADAC.bin", 0x1F4, 0x28
 
-glabel D_8032FFC8
+glabel gSkyboxColors
 	.incbin "bin/sm64.j.0EADAC.bin", 0x21C, 0x8

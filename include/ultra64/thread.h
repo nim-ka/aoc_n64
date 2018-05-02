@@ -1,6 +1,17 @@
 #ifndef _ULTRA64_THREAD_H_
 #define _ULTRA64_THREAD_H_
 
+/* Recommended priorities for system threads */
+#define OS_PRIORITY_MAX      255
+#define OS_PRIORITY_VIMGR    254
+#define OS_PRIORITY_RMON     250
+#define OS_PRIORITY_RMONSPIN 200
+#define OS_PRIORITY_PIMGR    150
+#define OS_PRIORITY_SIMGR    140
+#define OS_PRIORITY_APPMAX   127
+#define OS_PRIORITY_IDLE       0
+
+
 /* Types */
 
 typedef s32 OSPri;

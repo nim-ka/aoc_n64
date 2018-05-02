@@ -89,7 +89,7 @@ static s32 read_eeprom_data(void *buffer, s32 size)
         do
         {
             triesLeft--;
-            status = osEepromLongRead(&D_80339C08, offset, buffer, size);
+            status = osEepromLongRead(&gSIEventMesgQueue, offset, buffer, size);
         } while (triesLeft > 0 && status != 0);
     }
 
@@ -116,7 +116,7 @@ static s32 write_eeprom_data(void *buffer, s32 size)
         do
         {
             triesLeft--;
-            status = osEepromLongWrite(&D_80339C08, offset, buffer, size);
+            status = osEepromLongWrite(&gSIEventMesgQueue, offset, buffer, size);
         } while (triesLeft > 0 && status != 0);
     }
 
@@ -554,7 +554,7 @@ void save_file_clear_flags(s32 flags)
 
 s32 save_file_get_flags(void)
 {
-    if (D_8032CE70 != 0 || gDemoInputs != NULL)
+    if (D_8032CE70 != 0 || gCurrDemoInput != NULL)
         return 0;
     return gSaveBuffer.files[gCurrSaveFileNum - 1][0].flags;
 }

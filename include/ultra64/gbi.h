@@ -3,6 +3,33 @@
 
 /* Types */
 
+/* Vertex (set up for use with colors) */
+typedef struct
+{
+    short          ob[3];  /* x, y, z */
+    unsigned short flag;
+    short          tc[2];  /* texture coord */
+    unsigned char  cn[4];  /* color & alpha */
+} Vtx_t;
+
+/* Vertex (set up for use with normals) */
+typedef struct
+{
+    short          ob[3];  /* x, y, z */
+    unsigned short flag;
+    short          tc[2];  /* texture coord */
+    signed char    n[3];   /* normal */
+    unsigned char  a;      /* alpha  */
+} Vtx_tn;
+
+typedef union
+{
+    Vtx_t         v;  /* Use this one for colors  */
+    Vtx_tn        n;  /* Use this one for normals */
+    long long int force_structure_alignment;
+} Vtx;
+
+
 typedef struct
 {
     unsigned int w0;
@@ -103,22 +130,40 @@ typedef union
 #define G_SC_ODD_INTERLACE  3
 #define G_SC_EVEN_INTERLACE 2
 
-#define	G_TX_NOMIRROR 0
-#define	G_TX_WRAP 0
-#define	G_TX_MIRROR 1
-#define	G_TX_CLAMP 2
-#define	G_TX_NOMASK 0
-#define	G_TX_NOLOD 0
+#define G_TX_NOMIRROR 0
+#define G_TX_WRAP 0
+#define G_TX_MIRROR 1
+#define G_TX_CLAMP 2
+#define G_TX_NOMASK 0
+#define G_TX_NOLOD 0
 
 #define G_TX_LDBLK_MAX_TXL 2047
 
 #ifndef MAX
-#define MAX(a, b)				((a) > (b) ? (a) : (b))
+#define MAX(a, b)               ((a) > (b) ? (a) : (b))
 #endif
 
 #ifndef MIN
-#define MIN(a, b)				((a) < (b) ? (a) : (b))
+#define MIN(a, b)               ((a) < (b) ? (a) : (b))
 #endif
+
+#define gSPMatrix(pkt, m, p) \
+{ \
+    Gfx *_g = (Gfx *)(pkt); \
+    _g->words.w0 = _SHIFTL(0x01, 24, 8) \
+                 | _SHIFTL((p), 16, 8) \
+                 | _SHIFTL(sizeof(Mtx), 0, 16); \
+    _g->words.w1 = (u32)(m); \
+}
+
+#define gSPVertex(pkt, v, n, v0) \
+{ \
+    Gfx *_g = (Gfx *)(pkt); \
+    _g->words.w0 = _SHIFTL(0x04, 24, 8) \
+                 | _SHIFTL(((n)-1) << 4 | (v0), 16, 8) \
+                 | _SHIFTL(sizeof(Vtx)*(n), 0, 16); \
+    _g->words.w1 = (u32)(v); \
+}
 
 #define gDPLoadSync(pkt) \
 { \
@@ -332,14 +377,14 @@ typedef union
                  | _SHIFTL(dxt, 0, 12); \
 }
 
-#define	gDPSetTile(pkt, fmt, siz, line, tmem, tile, palette, cmt, maskt, \
+#define gDPSetTile(pkt, fmt, siz, line, tmem, tile, palette, cmt, maskt, \
     shiftt, cms, masks, shifts) \
 { \
-	Gfx *_g = (Gfx *) (pkt); \
-	_g->words.w0 = _SHIFTL(0xF5, 24, 8) \
+    Gfx *_g = (Gfx *) (pkt); \
+    _g->words.w0 = _SHIFTL(0xF5, 24, 8) \
                  | _SHIFTL(fmt, 21, 3) | _SHIFTL(siz, 19, 2) \
                  | _SHIFTL(line, 9, 9) | _SHIFTL(tmem, 0, 9); \
-	_g->words.w1 = _SHIFTL(tile, 24, 3)   | _SHIFTL(palette, 20, 4) \
+    _g->words.w1 = _SHIFTL(tile, 24, 3)   | _SHIFTL(palette, 20, 4) \
                  | _SHIFTL(cmt, 18, 2)    | _SHIFTL(maskt, 14, 4) \
                  | _SHIFTL(shiftt, 10, 4) | _SHIFTL(cms, 8, 2) \
                  | _SHIFTL(masks, 4, 4)   | _SHIFTL(shifts, 0, 4); \
@@ -366,6 +411,15 @@ typedef union
     _g->words.w0 = 0xFD000000 | _SHIFTL(fmt, 21, 3) \
                  | _SHIFTL(size, 19, 2) | _SHIFTL((width) - 1, 0, 12); \
     _g->words.w1 = (img); \
+}
+
+#define gMoveWd(pkt, index, offset, data) \
+{ \
+    Gfx *_g = (Gfx *)(pkt); \
+    _g->words.w0 = _SHIFTL(0xBC, 24, 8) \
+                 | _SHIFTL((offset), 8, 16) \
+                 | _SHIFTL((index), 0, 8); \
+    _g->words.w1 = (u32)(data); \
 }
 
 /* Matrix Operations */

@@ -4,7 +4,7 @@
 
 int unused8032C690 = 0;
 u32 D_8032C694 = 0;
-u16 D_8032C698 = 0;
+static u16 sCurrFBNum = 0;
 u16 D_8032C69C = 0;
 
 void myRdpInit(void)
@@ -63,7 +63,7 @@ void DisplayFrameBuffer(void)
     gDPPipeSync(gDisplayListHead++);
 
     gDPSetCycleType(gDisplayListHead++, G_CYC_1CYCLE);
-    gDPSetColorImage(gDisplayListHead++, G_IM_FMT_RGBA, 2, 320, D_80339CE0[D_8032C69C]);
+    gDPSetColorImage(gDisplayListHead++, G_IM_FMT_RGBA, 2, 320, gFrameBuffers[D_8032C69C]);
     gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 0, 8, 320, 232);
 }
 
@@ -175,17 +175,17 @@ void func_80247D84(void)
 {
     int sp24;
     int sp20;
-    int sp1C;
+    int fbNum;
     u64 *sp18;
 
     if (gResetTimer != 0 && D_8032C648 < 15)
     {
-        if (D_8032C698 == 0)
-            sp1C = 2;
+        if (sCurrFBNum == 0)
+            fbNum = 2;
         else
-            sp1C = D_8032C698 - 1;
+            fbNum = sCurrFBNum - 1;
 
-        sp18 = (u64 *)(D_80339CE0[sp1C] | 0x80000000);
+        sp18 = (u64 *)PHYSICAL_TO_VIRTUAL(gFrameBuffers[fbNum]);
         sp18 += D_8032C648++ * 80;
 
         for (sp24 = 0; sp24 < 16; sp24++)
@@ -243,11 +243,11 @@ void func_80248060(void)
     SendDisplayList((Gfx *)((u8 *)D_80339D04 + 51200));
     func_8027DE30(3);
     osRecvMesg(&D_80339CA0, &D_80339BEC, 1);
-    osViSwapBuffer((void *)(D_80339CE0[D_8032C698] | 0x80000000));
+    osViSwapBuffer((void *)PHYSICAL_TO_VIRTUAL(gFrameBuffers[sCurrFBNum]));
     func_8027DE30(4);
     osRecvMesg(&D_80339CA0, &D_80339BEC, 1);
-    if (++D_8032C698 == 3)
-        D_8032C698 = 0;
+    if (++sCurrFBNum == 3)
+        sCurrFBNum = 0;
     if (++D_8032C69C == 3)
         D_8032C69C = 0;
     D_8032C694++;

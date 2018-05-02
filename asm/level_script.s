@@ -882,11 +882,11 @@ glabel LevelScript19
 /* 0FA798 8037ED88 34A55800 */  ori   $a1, (0x00025800 & 0xFFFF) # ori $a1, $a1, 0x5800
 /* 0FA79C 8037ED8C 0C0670B6 */  jal   func_8019C2D8
 /* 0FA7A0 8037ED90 24840400 */   addiu $a0, %lo(D_80000400) # addiu $a0, $a0, 0x400
-/* 0FA7A4 8037ED94 3C048039 */  lui   $a0, %hi(D_8038F800) # $a0, 0x8039
+/* 0FA7A4 8037ED94 3C048039 */  lui   $a0, %hi(gFrameBuffer0) # $a0, 0x8039
 /* 0FA7A8 8037ED98 3C050007 */  lui   $a1, (0x00070800 >> 16) # lui $a1, 7
 /* 0FA7AC 8037ED9C 34A50800 */  ori   $a1, (0x00070800 & 0xFFFF) # ori $a1, $a1, 0x800
 /* 0FA7B0 8037EDA0 0C0670B6 */  jal   func_8019C2D8
-/* 0FA7B4 8037EDA4 2484F800 */   addiu $a0, %lo(D_8038F800) # addiu $a0, $a0, -0x800
+/* 0FA7B4 8037EDA4 2484F800 */   addiu $a0, %lo(gFrameBuffer0) # addiu $a0, $a0, -0x800
 /* 0FA7B8 8037EDA8 0C0670EB */  jal   gdm_setup
 /* 0FA7BC 8037EDAC 00000000 */   nop   
 /* 0FA7C0 8037EDB0 3C0F8039 */  lui   $t7, %hi(D_8038BE28) # $t7, 0x8039
