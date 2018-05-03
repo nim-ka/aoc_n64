@@ -61,6 +61,7 @@ SECTIONS
       build/src/transparent_texture.o(.text);
       build/asm/print.o(.text);
       build/asm/ingame_menu.o(.text);
+      build/src/hud.o(.text);
       build/asm/hud.o(.text);
       build/asm/obj_behaviors.o(.text);
       build/asm/obj_behaviors_2.o(.text);

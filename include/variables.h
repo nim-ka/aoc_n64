@@ -678,7 +678,7 @@ extern struct Object *D_8035FDE0;
 // extern ? D_8032F270;
 // extern ? D_8032F284;
 // extern ? D_13000A14;
-// extern ? D_1300091C;
+extern void *D_1300091C;
 // extern ? D_8032F294;
 // extern ? D_130008D0;
 // extern ? TableCoinInsideBooActions;

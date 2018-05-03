@@ -215,7 +215,9 @@ struct Object
     /*0x198*/ u32 unk198;
     /*0x19C*/ f32 drawingDistance;
     /*0x1A0*/ u32 unk1A0;
-    u8 filler1A4[0x1C8-0x1A4];
+    u8 filler1A4[0x1A8-0x1A4];
+    /*0x1A8*/ u32 unk1A8;
+    u8 filler1AC[0x1C8-0x1AC];
     /*0x1C8*/ u32 unk1C8;
     /*0x1CC*/ u32 *behScript;
     /*0x1D0*/ u32 stackIndex;
