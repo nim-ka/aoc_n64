@@ -7,7 +7,7 @@
 main_level_scripts:
 .word 0x180C0004, mario, mario_end
 .word 0x180C0003, doors_trees_coins, doors_trees_coins_end
-.word 0x170C0017, 0x125DB0, 0x128BE0
+.word 0x170C0017, water_sparkles_mario, water_sparkles_mario_end
 .word 0x170C0016, coins_pipe_doors_maps_trees, coins_pipe_doors_maps_trees_end
 .word 0x170C0013, __load_behavior_data, __load_behavior_data_end
 .word 0x1D040000

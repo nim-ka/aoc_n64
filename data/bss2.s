@@ -1,7 +1,7 @@
 .include "macros.inc"
 .include "globals.inc"
 
-.section .bss2
+.section .bss
 
 glabel D_8038BC90
     .space 0x4

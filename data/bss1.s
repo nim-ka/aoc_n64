@@ -1,7 +1,7 @@
 .include "macros.inc"
 .include "globals.inc"
 
-.section .bss1
+.section .bss
 
 glabel gBss1Start
 
@@ -868,7 +868,9 @@ glabel D_80365D48
 glabel D_80365D60
     .space 0x10
 glabel D_80365D70
-    .space 0x30
+    .space 0x10
+glabel D_80365D80
+    .space 0x20
 glabel D_80365DA0
     .space 0x4
 glabel D_80365DA4

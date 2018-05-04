@@ -1,4 +1,3 @@
-
 .section .mio0_c, "ax"
 
 .include "levels/game_over_level.s"

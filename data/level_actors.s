@@ -15,11 +15,11 @@ mario:
 .incbin "build/mio0/mario.mio0"
 glabel mario_end
 
-.align 4, 0x01
+.align 4, 0
 .global water_sparkles_mario
 water_sparkles_mario:
 .include "geo/water_sparkles_mario.geo.s"
-water_sparkles_mario_end:
+glabel water_sparkles_mario_end
 
 .align 4, 0
 .global yoshiegg_owl_thwomp

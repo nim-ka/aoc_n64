@@ -78,6 +78,9 @@ static u16 gDemoCountdown = 0;
 // this function will return a non-0 timer once
 // the demo starts, signaling to the subsystem that
 // the demo needs to be ran.
+
+// don't shift this function from being the first function in the segment.
+// the level scripts assume this function is the first, so it cant be moved.
 int run_press_start_demo_timer(int timer)
 {
     gCurrDemoInput = NULL;
@@ -117,6 +120,7 @@ int run_press_start_demo_timer(int timer)
 // count if an input was received. signals the stage to be started
 // or the level select to be exited if start or the quit combo is
 // pressed.
+
 s16 level_select_input_loop(void)
 {
     int stageChanged = FALSE;

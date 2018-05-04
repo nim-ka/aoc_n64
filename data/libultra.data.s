@@ -67,7 +67,7 @@ glabel D_80334820
 	.word 0
 
 glabel D_80334830
-	.word 0x80365d80
+	.word D_80365D80
 	.word 0
 	.word 0
 	.word 0
@@ -108,6 +108,7 @@ glabel D_803348B0
 	.word 0
 	.word 0
 	.word 0
+glabel D_803348E0
 	.word 0
 	.word 0
 	.word 0
@@ -125,7 +126,7 @@ glabel D_80334910
 	.word D_803348B0
 
 glabel D_80334914
-	.word 0x803348e0
+	.word D_803348E0
 
 glabel D_80334918
 	.incbin "bin/sm64.j.0EADAC.bin", 0x4B6C, 0x4

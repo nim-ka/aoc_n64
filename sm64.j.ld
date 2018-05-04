@@ -20,6 +20,9 @@ SECTIONS
       build/asm/boot.o(.text);
    }
 
+   __segPoolStart = 0x8005C000; /* the segment pool starts here. */
+   __segCodeSection = 0x8016F000;
+   __segPoolEnd = 0x801C1000;
    __romPos += SIZEOF(.boot);
 
    /* 0x80246000 001000-0E5320 [E4320] */
@@ -72,71 +75,71 @@ SECTIONS
       build/asm/audio_interface_2.o(.text);
       build/asm/libultra.o(.text);
       /* data */
-      build/data/data_8032B3F0.o(.data);
-      build/src/main.o(.data);
-      build/src/display.o(.data);
-      build/src/input.o(.data);
-      build/src/sound_init.o(.data);
-      build/data/credits.data.o(.data);
-      build/src/interaction.o(.data);
-      build/data/mario.data.o(.data);
-      build/src/mario_step.o(.data);
-      build/data/mario_actions_cutscene.data.o(.data);
-      build/data/mario_actions_moving.data.o(.data);
-      build/data/mario_actions_submerged.data.o(.data);
-      build/data/mario_actions_object.data.o(.data);
-      build/data/castle_message_behaviors.data.o(.data);
-      build/data/memory.data.o(.data);
-      build/src/save_file.o(.data);
-      build/data/save_file.data.o(.data);
-      build/data/rendering.data.o(.data);
-      build/data/resource_meter.data.o(.data);
-      build/data/camera_before.data.o(.data);
-      build/src/camera.o(.data);
-      build/data/camera.data.o(.data);
-      build/data/mapinfo.data.o(.data);
-      build/data/screen_transition.data.o(.data);
-      build/data/skybox.data.o(.data);
-      build/data/moving_texture.data.o(.data);
-      build/data/transparent_texture.data.o(.data);
-      build/data/print.data.o(.data);
-      build/data/ingame_menu.data.o(.data);
-      build/data/hud.data.o(.data);
-      build/data/obj_behaviors_1.data.o(.data);
-      build/data/obj_behaviors_2.data.o(.data);
-      build/data/audio.data.o(.data);
-      build/data/libultra.data.o(.data);
+      build/data/data_8032B3F0.o(.data*);
+      build/src/main.o(.data*);
+      build/src/display.o(.data*);
+      build/src/input.o(.data*);
+      build/src/sound_init.o(.data*);
+      build/data/credits.data.o(.data*);
+      build/src/interaction.o(.data*);
+      build/data/mario.data.o(.data*);
+      build/src/mario_step.o(.data*);
+      build/data/mario_actions_cutscene.data.o(.data*);
+      build/data/mario_actions_moving.data.o(.data*);
+      build/data/mario_actions_submerged.data.o(.data*);
+      build/data/mario_actions_object.data.o(.data*);
+      build/data/castle_message_behaviors.data.o(.data*);
+      build/data/memory.data.o(.data*);
+      build/src/save_file.o(.data*);
+      build/data/save_file.data.o(.data*);
+      build/data/rendering.data.o(.data*);
+      build/data/resource_meter.data.o(.data*);
+      build/data/camera_before.data.o(.data*);
+      build/src/camera.o(.data*);
+      build/data/camera.data.o(.data*);
+      build/data/mapinfo.data.o(.data*);
+      build/data/screen_transition.data.o(.data*);
+      build/data/skybox.data.o(.data*);
+      build/data/moving_texture.data.o(.data*);
+      build/data/transparent_texture.data.o(.data*);
+      build/data/print.data.o(.data*);
+      build/data/ingame_menu.data.o(.data*);
+      build/data/hud.data.o(.data*);
+      build/data/obj_behaviors_1.data.o(.data*);
+      build/data/obj_behaviors_2.data.o(.data*);
+      build/data/audio.data.o(.data*);
+      build/data/libultra.data.o(.data*);
       /* rodata */
-      build/src/main.o(.rodata);
-      build/src/input.o(.rodata);
-      build/src/sound_init.o(.rodata);
-      build/data/credits.rodata.o(.rodata);
-      build/src/interaction.o(.rodata);
-      build/data/mario.rodata.o(.rodata);
-      build/src/mario_step.o(.rodata);
-      build/data/mario_actions_cutscene.rodata.o(.rodata);
-      build/data/mario_actions_automatic.rodata.o(.rodata);
-      build/data/mario_actions_stationary.rodata.o(.rodata);
-      build/data/mario_actions_moving.rodata.o(.rodata);
-      build/src/mario_actions_airborne.o(.rodata);
-      build/data/mario_actions_submerged.rodata.o(.rodata);
-      build/data/mario_actions_object.rodata.o(.rodata);
-      build/data/castle_message_behaviors.rodata.o(.rodata);
-      build/data/rendering.rodata.o(.rodata);
-      build/src/camera.o(.rodata);
-      build/data/camera.rodata.o(.rodata);
-      build/data/level_functions.rodata.o(.rodata);
-      build/data/object_collision.rodata.o(.rodata);
-      build/src/spawn_object.o(.rodata);
-      build/data/mapinfo.rodata.o(.rodata);
-      build/data/screen_transition.rodata.o(.rodata);
-      build/data/rotate.rodata.o(.rodata);
-      build/src/skybox.o(.rodata);
-      build/data/ingame_menu.rodata.o(.rodata);
-      build/data/hud.rodata.o(.rodata);
-      build/data/obj_behaviors_1.rodata.o(.rodata);
-      build/data/obj_behaviors_2.rodata.o(.rodata);
-      build/data/audio.rodata.o(.rodata);
+      build/src/main.o(.rodata*);
+      build/src/input.o(.rodata*);
+      build/src/sound_init.o(.rodata*);
+      build/data/credits.rodata.o(.rodata*);
+      build/src/interaction.o(.rodata*);
+      build/data/mario.rodata.o(.rodata*);
+      build/src/mario_step.o(.rodata*);
+      build/data/mario_actions_cutscene.rodata.o(.rodata*);
+      build/data/mario_actions_automatic.rodata.o(.rodata*);
+      build/data/mario_actions_stationary.rodata.o(.rodata*);
+      build/data/mario_actions_moving.rodata.o(.rodata*);
+      build/src/mario_actions_airborne.o(.rodata*);
+      build/data/mario_actions_submerged.rodata.o(.rodata*);
+      build/data/mario_actions_object.rodata.o(.rodata*);
+      build/data/castle_message_behaviors.rodata.o(.rodata*);
+      build/data/rendering.rodata.o(.rodata*);
+      build/src/camera.o(.rodata*);
+      build/data/camera.rodata.o(.rodata*);
+      build/data/level_functions.rodata.o(.rodata*);
+      build/data/object_collision.rodata.o(.rodata*);
+      build/src/spawn_object.o(.rodata*);
+      build/data/mapinfo.rodata.o(.rodata*);
+      build/data/screen_transition.rodata.o(.rodata*);
+      build/data/rotate.rodata.o(.rodata*);
+      build/src/skybox.o(.rodata*);
+      build/data/ingame_menu.rodata.o(.rodata*);
+      build/data/hud.rodata.o(.rodata*);
+      build/data/obj_behaviors_1.rodata.o(.rodata*);
+      build/data/obj_behaviors_2.rodata.o(.rodata*);
+      build/data/audio.rodata.o(.rodata*);
    }
 
    __romPos += SIZEOF(.text80246000);
@@ -150,15 +153,15 @@ SECTIONS
       build/asm/surface_collision.o(.text);
       build/src/behavior_script.o(.text);
       /* data */
-      build/data/graph_node.data.o(.data);
-      build/data/math_util.data.o(.data);
-      build/data/geo_layout.data.o(.data);
-      build/data/level_script.data.o(.data);
-      build/data/behavior_script.data.o(.data);
+      build/data/graph_node.data.o(.data*);
+      build/data/math_util.data.o(.data*);
+      build/data/geo_layout.data.o(.data*);
+      build/data/level_script.data.o(.data*);
+      build/data/behavior_script.data.o(.data*);
       /* rodata */
-      build/src/math_util.o(.rodata);
-      build/data/level_script.rodata.o(.rodata);
-      build/data/surface_collision.rodata.o(.rodata);
+      build/src/math_util.o(.rodata*);
+      build/data/level_script.rodata.o(.rodata*);
+      build/data/surface_collision.rodata.o(.rodata*);
       text_80378800_length = . - 0x80378800;
    }
    __load_text80378800 = LOADADDR(.text80378800);
@@ -183,9 +186,11 @@ SECTIONS
    __load_behavior_data_end = LOADADDR(.behavior) + behavior_length;
 
    __romPos += SIZEOF(.behavior);
+   __text8016F000pos = __romPos;
+   __romPos2 = __romPos; /*Hack, since otherwise romPos will update __text8016F000pos, FIXME*/
    
    /* 0x8016F000 21D7D0-255EC0 [386F0] */
-   .text8016F000 0x8016F000 : AT(__romPos) {
+   .text8016F000 __segCodeSection : AT(__romPos) {
       build/src/level_select_menu.o(.text);
       build/asm/intro_geo.o(.text);
       build/asm/file_select.o(.text);
@@ -200,60 +205,67 @@ SECTIONS
       build/asm/press_start_head_5.o(.text);
       build/asm/press_start_head_6.o(.text);
       /* data, rodata, per file */
-      build/src/level_select_menu.o(.data);
-      build/src/level_select_menu.o(.rodata);
-      build/data/intro_geo.data.o(.data);
-      build/data/file_select.data.o(.data);
-      build/data/file_select.rodata.o(.rodata);
-      build/src/star_select.o(.data);
-      build/src/star_select.o(.rodata);
-      build/data/rodata_801A8050.o(.rodata);
+      build/src/level_select_menu.o(.data*);
+      build/src/level_select_menu.o(.rodata*);
+      build/data/intro_geo.data.o(.data*);
+      build/data/file_select.data.o(.data*);
+      build/data/file_select.rodata.o(.rodata*);
+      build/src/star_select.o(.data*);
+      build/src/star_select.o(.rodata*);
+      build/data/rodata_801A8050.o(.rodata*);
    }
 
-   __romPos += SIZEOF(.text8016F000);
+   __romPos2 += SIZEOF(.text8016F000);
+   __text8016F000end = __romPos2;
+   __romPos3 = __romPos2;
 
    /* 0x268020 0x268020-0 [0] */
-   .mio0_c __romPos : AT(__romPos) {
+   .mio0_c __romPos3 : AT(__romPos3) {
       build/data/level_misc.o(.mio0_c);
    }
 
-   __romPos += SIZEOF(.mio0_c);
+   __romPos3 += SIZEOF(.mio0_c);
 
    /* 271B20-2A42A0 [32780] */
-   .text271B20 __romPos : AT(__romPos) {
+   .text271B20 __romPos3 : AT(__romPos3) {
       build/data/unknown_271B20.o(.text);
    }
 
-   __romPos += SIZEOF(.text271B20);
+   __romPos3 += SIZEOF(.text271B20);
 
    /* 0x2A42A0 0x2A42A0-0 [0] */
-   .mio0_b __romPos : AT(__romPos) {
+   .mio0_b __romPos3 : AT(__romPos3) {
       build/data/level_main.o(.mio0_b);
    }
 
-   __romPos += SIZEOF(.mio0_b);
+   __romPos3 += SIZEOF(.mio0_b);
 
    /* 4E9FA0-? [?] */
-   .text4E9FA0 __romPos : AT(__romPos) {
+   .text4E9FA0 __romPos3 : AT(__romPos3) {
       build/data/unknown_4E9FA0.o(.text);
       build/data/sound_data.o(.text);
    }
 
    .bss1 ADDR(.text80246000) + SIZEOF(.text80246000) (NOLOAD) :
    {
-      build/data/bss1.o(.bss1);
+      build/data/bss1.o(.bss*);
    }
 
    __bss1size = SIZEOF(.bss1);
 
    .bss2 ADDR(.text80378800) + SIZEOF(.text80378800) (NOLOAD) :
    {
-      build/data/bss2.o(.bss2);
+      build/data/bss2.o(.bss*);
    }
 
    .bss3 ADDR(.text8016F000) + SIZEOF(.text8016F000) (NOLOAD) :
    {
-      build/data/bss3.o(.bss3);
+      build/data/bss3.o(.bss*);
+   }
+
+   .stack ADDR(.bss3) + SIZEOF(.bss3) (NOLOAD) :
+   {
+      build/data/stack.o(.stack);
    }
 
    /* Discard everything not specifically mentioned above. */

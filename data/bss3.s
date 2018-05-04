@@ -1,7 +1,7 @@
 .include "macros.inc"
 .include "globals.inc"
 
-.section .bss3
+.section .bss
 
 glabel D_801B9850
     .space 0x4
@@ -158,7 +158,9 @@ glabel D_801B9E10
 glabel D_801B9E14
     .space 0x4
 glabel D_801B9E18
-    .space 0x8
+    .space 0x4
+glabel D_801B9E1C
+    .space 0x4
 glabel D_801B9E20
     .space 0x8
 glabel D_801B9E28
@@ -254,7 +256,13 @@ glabel D_801BA198
 glabel D_801BA298
     .space 0x8
 glabel D_801BA2A0
-    .space 0x14
+    .space 0x8
+glabel D_801BA2A8
+    .space 0x4
+glabel D_801BA2AC
+    .space 0x4
+glabel D_801BA2B0
+    .space 0x4
 glabel D_801BA2B4
     .space 0x4
 glabel D_801BA2B8
@@ -264,7 +272,11 @@ glabel D_801BA2BC
 glabel D_801BA2C0
     .space 0x460
 glabel D_801BA720
-    .space 0xC
+    .space 0x4
+glabel D_801BA724
+    .space 0x4
+glabel D_801BA728
+    .space 0x4
 glabel D_801BA72C
     .space 0x1F0
 glabel D_801BA91C
