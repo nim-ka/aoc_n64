@@ -3304,7 +3304,7 @@ glabel func_802631DC
 /* 01E334 80263334 00000000 */   nop   
 .L80263338:
 /* 01E338 80263338 8FA40020 */  lw    $a0, 0x20($sp)
-/* 01E33C 8026333C 0C092A18 */  jal   func_8024A860
+/* 01E33C 8026333C 0C092A18 */  jal   level_trigger_warp
 /* 01E340 80263340 24050001 */   li    $a1, 1
 .L80263344:
 /* 01E344 80263344 0C095603 */  jal   stationary_ground_step

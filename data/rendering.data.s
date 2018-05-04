@@ -17,7 +17,7 @@ glabel D_8032CE68
 glabel D_8032CE6C
 	.word 0
 
-glabel D_8032CE70
+glabel gCurrCreditsEntry
 	.word 0
 
 glabel D_8032CE74

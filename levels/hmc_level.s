@@ -89,8 +89,8 @@ hmc_level:
 .word 0x20040000
 .word 0x1E040000
 .word 0x2B0C0100, 0x0087E410, 0x08711C0D
-.word 0x11080000, LevelProc_8024BCD8 # 8024BB38
-.word 0x12080001, LevelProc_8024BCD8 # 8024BB38
+.word 0x11080000, lvl_init_or_update # 8024BB38
+.word 0x12080001, lvl_init_or_update # 8024BB38
 .word 0x1C040000
 .word 0x04040001
 .word 0x02040000

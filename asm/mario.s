@@ -3686,7 +3686,7 @@ glabel func_80253834
 /* 00EB04 80253B04 00000000 */   nop   
 .L80253B08:
 /* 00EB08 80253B08 8FA40028 */  lw    $a0, 0x28($sp)
-/* 00EB0C 80253B0C 0C092A18 */  jal   func_8024A860
+/* 00EB0C 80253B0C 0C092A18 */  jal   level_trigger_warp
 /* 00EB10 80253B10 24050012 */   li    $a1, 18
 .L80253B14:
 /* 00EB14 80253B14 10000001 */  b     .L80253B1C
@@ -4995,11 +4995,11 @@ glabel func_80254CE0
 /* 00FDE0 80254DE0 8F39C9D8 */  lw    $t9, %lo(gMarioState)($t9)
 /* 00FDE4 80254DE4 241800BD */  li    $t8, 189
 /* 00FDE8 80254DE8 A73800B0 */  sh    $t8, 0xb0($t9)
-/* 00FDEC 80254DEC 3C018034 */  lui   $at, %hi(D_80339EF2) # $at, 0x8034
-/* 00FDF0 80254DF0 A4209EF2 */  sh    $zero, %lo(D_80339EF2)($at)
+/* 00FDEC 80254DEC 3C018034 */  lui   $at, %hi(gDisplayedCoins) # $at, 0x8034
+/* 00FDF0 80254DF0 A4209EF2 */  sh    $zero, %lo(gDisplayedCoins)($at)
 /* 00FDF4 80254DF4 24080008 */  li    $t0, 8
-/* 00FDF8 80254DF8 3C018034 */  lui   $at, %hi(D_80339EF6) # $at, 0x8034
-/* 00FDFC 80254DFC A4289EF6 */  sh    $t0, %lo(D_80339EF6)($at)
+/* 00FDF8 80254DF8 3C018034 */  lui   $at, %hi(gDisplayedHealthWedges) # $at, 0x8034
+/* 00FDFC 80254DFC A4289EF6 */  sh    $t0, %lo(gDisplayedHealthWedges)($at)
 /* 00FE00 80254E00 10000001 */  b     .L80254E08
 /* 00FE04 80254E04 00000000 */   nop   
 .L80254E08:

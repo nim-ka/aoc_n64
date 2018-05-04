@@ -27261,8 +27261,8 @@ glabel ActionBowser10
 glabel ActionBowser9
 /* 06FFE8 802B4FE8 27BDFFD8 */  addiu $sp, $sp, -0x28
 /* 06FFEC 802B4FEC AFBF0024 */  sw    $ra, 0x24($sp)
-/* 06FFF0 802B4FF0 3C0E8034 */  lui   $t6, %hi(D_80339EF6) # $t6, 0x8034
-/* 06FFF4 802B4FF4 85CE9EF6 */  lh    $t6, %lo(D_80339EF6)($t6)
+/* 06FFF0 802B4FF0 3C0E8034 */  lui   $t6, %hi(gDisplayedHealthWedges) # $t6, 0x8034
+/* 06FFF4 802B4FF4 85CE9EF6 */  lh    $t6, %lo(gDisplayedHealthWedges)($t6)
 /* 06FFF8 802B4FF8 29C10004 */  slti  $at, $t6, 4
 /* 06FFFC 802B4FFC 10200006 */  beqz  $at, .L802B5018
 /* 070000 802B5000 00000000 */   nop   
@@ -28569,8 +28569,8 @@ glabel func_802B6254
 /* 07126C 802B626C 29E10002 */  slti  $at, $t7, 2
 /* 071270 802B6270 10200031 */  beqz  $at, .L802B6338
 /* 071274 802B6274 00000000 */   nop   
-/* 071278 802B6278 3C188034 */  lui   $t8, %hi(D_80339EF4) # $t8, 0x8034
-/* 07127C 802B627C 87189EF4 */  lh    $t8, %lo(D_80339EF4)($t8)
+/* 071278 802B6278 3C188034 */  lui   $t8, %hi(gDisplayedStars) # $t8, 0x8034
+/* 07127C 802B627C 87189EF4 */  lh    $t8, %lo(gDisplayedStars)($t8)
 /* 071280 802B6280 2B010078 */  slti  $at, $t8, 0x78
 /* 071284 802B6284 10200004 */  beqz  $at, .L802B6298
 /* 071288 802B6288 00000000 */   nop   
@@ -42869,8 +42869,8 @@ glabel func_802C2B68
 glabel BehBooGroupInit
 /* 07DCB8 802C2CB8 27BDFFD0 */  addiu $sp, $sp, -0x30
 /* 07DCBC 802C2CBC AFBF0024 */  sw    $ra, 0x24($sp)
-/* 07DCC0 802C2CC0 3C0E8034 */  lui   $t6, %hi(D_80339EF4) # $t6, 0x8034
-/* 07DCC4 802C2CC4 85CE9EF4 */  lh    $t6, %lo(D_80339EF4)($t6)
+/* 07DCC0 802C2CC0 3C0E8034 */  lui   $t6, %hi(gDisplayedStars) # $t6, 0x8034
+/* 07DCC4 802C2CC4 85CE9EF4 */  lh    $t6, %lo(gDisplayedStars)($t6)
 /* 07DCC8 802C2CC8 29C1000C */  slti  $at, $t6, 0xc
 /* 07DCCC 802C2CCC 10200006 */  beqz  $at, .L802C2CE8
 /* 07DCD0 802C2CD0 00000000 */   nop   
@@ -44766,8 +44766,8 @@ glabel ActionBooWithCage3
 glabel BehBooWithCageInit
 /* 07F764 802C4764 27BDFFE0 */  addiu $sp, $sp, -0x20
 /* 07F768 802C4768 AFBF0014 */  sw    $ra, 0x14($sp)
-/* 07F76C 802C476C 3C0E8034 */  lui   $t6, %hi(D_80339EF4) # $t6, 0x8034
-/* 07F770 802C4770 85CE9EF4 */  lh    $t6, %lo(D_80339EF4)($t6)
+/* 07F76C 802C476C 3C0E8034 */  lui   $t6, %hi(gDisplayedStars) # $t6, 0x8034
+/* 07F770 802C4770 85CE9EF4 */  lh    $t6, %lo(gDisplayedStars)($t6)
 /* 07F774 802C4774 29C1000C */  slti  $at, $t6, 0xc
 /* 07F778 802C4778 10200006 */  beqz  $at, .L802C4794
 /* 07F77C 802C477C 00000000 */   nop   
@@ -44981,8 +44981,8 @@ glabel BehBooInCastleLoop
 /* 07FA58 802C4A58 00000000 */   nop   
 /* 07FA5C 802C4A5C 0C0A7BD0 */  jal   UnHideObject
 /* 07FA60 802C4A60 00000000 */   nop   
-/* 07FA64 802C4A64 3C198034 */  lui   $t9, %hi(D_80339EF4) # $t9, 0x8034
-/* 07FA68 802C4A68 87399EF4 */  lh    $t9, %lo(D_80339EF4)($t9)
+/* 07FA64 802C4A64 3C198034 */  lui   $t9, %hi(gDisplayedStars) # $t9, 0x8034
+/* 07FA68 802C4A68 87399EF4 */  lh    $t9, %lo(gDisplayedStars)($t9)
 /* 07FA6C 802C4A6C 2B21000C */  slti  $at, $t9, 0xc
 /* 07FA70 802C4A70 10200004 */  beqz  $at, .L802C4A84
 /* 07FA74 802C4A74 00000000 */   nop   

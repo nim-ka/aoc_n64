@@ -1,6 +1,7 @@
 #include <ultra64.h>
 
 #include "sm64.h"
+#include "level_update.h"
 #include "math_util.h"
 #include "save_file.h"
 
@@ -125,7 +126,7 @@ static u32 sBackwardKnockbackActions[][3] =
 };
 
 static u8 sDisplayingDoorText = FALSE;
-static u8 sJustWarped = FALSE;
+static u8 sJustTeleported = FALSE;
 static u8 sPssSlideStarted = FALSE;
 
 static u32 get_mario_cap_flag(struct Object *capObject)
@@ -754,7 +755,7 @@ static void reset_mario_pitch(struct MarioState *m)
     if (m->action == ACT_WATER_JUMP || m->action == ACT_SHOT_FROM_CANNON ||
         m->action == ACT_FLYING)
     {
-        func_80285BD8(m->area->unk24, m->area->unk24[1], 1);
+        func_80285BD8(m->area->unk24, m->area->unk24->unk01, 1);
         m->faceAngle[0] = 0;
     }
 }
@@ -821,7 +822,9 @@ static u32 interact_star_or_key(struct MarioState *m, UNUSED u32 interactType, s
 
         starIndex = (o->unk188 >> 24) & 0x1F;
         save_file_collect_star_or_key(m->numCoins, starIndex);
-        m->numStars = save_file_get_total_star_count(gCurrSaveFileNum - 1, 0, 24);
+
+        m->numStars = save_file_get_total_star_count(
+            gCurrSaveFileNum - 1, COURSE_MIN - 1, COURSE_MAX - 1);
 
         if (!noExit)
         {
@@ -867,10 +870,10 @@ static u32 interact_warp(struct MarioState *m, UNUSED u32 interactType, struct O
     {
         action = m->action;
 
-        if (action == ACT_WARP_FADE_IN)
-            sJustWarped = TRUE;
+        if (action == ACT_TELEPORT_FADE_IN)
+            sJustTeleported = TRUE;
 
-        else if (!sJustWarped)
+        else if (!sJustTeleported)
         {
             if (action == ACT_IDLE || action == ACT_PANTING ||
                 action == ACT_STANDING_AGAINST_WALL || action == ACT_CROUCHING)
@@ -878,8 +881,8 @@ static u32 interact_warp(struct MarioState *m, UNUSED u32 interactType, struct O
                 m->interactObj = o;
                 m->usedObj = o;
 
-                sJustWarped = TRUE;
-                return set_mario_action(m, ACT_WARP_FADE_OUT, 0);
+                sJustTeleported = TRUE;
+                return set_mario_action(m, ACT_TELEPORT_FADE_OUT, 0);
             }
         }
     }
@@ -898,7 +901,7 @@ static u32 interact_warp(struct MarioState *m, UNUSED u32 interactType, struct O
                 &m->marioObj->gfx.unk54);
 
             mario_stop_riding_object(m);
-            return set_mario_action(m, ACT_DISAPPEARED, 0x00040002);
+            return set_mario_action(m, ACT_DISAPPEARED, (WARP_OP_WARP_OBJECT << 16) + 2);
         }
     }
 
@@ -1007,7 +1010,8 @@ u32 get_door_save_file_flag(struct Object *door)
 static u32 interact_door(struct MarioState *m, UNUSED u32 interactType, struct Object *o)
 {
     s16 requiredNumStars = o->unk188 >> 24;
-    s16 numStars = save_file_get_total_star_count(gCurrSaveFileNum - 1, 0, 24);
+    s16 numStars = save_file_get_total_star_count(
+        gCurrSaveFileNum - 1, COURSE_MIN - 1, COURSE_MAX - 1);
 
     if (m->action == ACT_WALKING || m->action == ACT_DECELERATING)
     {
@@ -1557,6 +1561,9 @@ static u32 interact_pole(struct MarioState *m, UNUSED u32 interactType, struct O
 static u32 interact_hoot(struct MarioState *m, UNUSED u32 interactType, struct Object *o)
 {
     s32 actionId = m->action & ACT_ID_MASK;
+
+    //! Can pause to advance the global timer without falling too far, allowing
+    // you to regrab after letting go.
     if (actionId >= 0x080 && actionId < 0x098 && (D_8032C694 - m->usedObj->unk110 > 30))
     {
         mario_stop_riding_and_holding(m);
@@ -1810,14 +1817,15 @@ void mario_process_interactions(struct MarioState *m)
     if (!(m->marioObj->collidedObjInteractTypes & (INTERACT_WARP_DOOR | INTERACT_DOOR)))
         sDisplayingDoorText = FALSE;
     if (!(m->marioObj->collidedObjInteractTypes & INTERACT_WARP))
-        sJustWarped = FALSE;
+        sJustTeleported = FALSE;
 }
 
 static void check_death_barrier(struct MarioState *m)
 {
     if (m->pos[1] < m->floorHeight + 2048.0f)
     {
-        if (func_8024A860(m, 0x13) == 0x14 && !(m->flags & MARIO_UNKNOWN_18))
+        if (level_trigger_warp(m, WARP_OP_WARP_FLOOR) == 20 &&
+            !(m->flags & MARIO_UNKNOWN_18))
         {
             SetSound(0x2410C081, &m->marioObj->gfx.unk54);
         }
@@ -1838,10 +1846,10 @@ static void check_lava_boost(struct MarioState *m)
 
 static void pss_begin_slide(UNUSED struct MarioState *m)
 {
-    if (!(D_80339EFA & 0x0040))
+    if (!(gHudDisplayFlags & 0x0040))
     {
-        func_802495B0(TIMER_CONTROL_SHOW);
-        func_802495B0(TIMER_CONTROL_START);
+        level_control_timer(TIMER_CONTROL_SHOW);
+        level_control_timer(TIMER_CONTROL_START);
         sPssSlideStarted = TRUE;
     }
 }
@@ -1851,7 +1859,7 @@ static void pss_end_slide(struct MarioState *m)
     //! This flag isn't set on death or level entry, allowing double star spawn
     if (sPssSlideStarted)
     {
-        u16 slideTime = func_802495B0(TIMER_CONTROL_STOP);
+        u16 slideTime = level_control_timer(TIMER_CONTROL_STOP);
         if (slideTime < 630)
         {
             m->marioObj->unk188 = 0x01000000;
@@ -1878,7 +1886,7 @@ void mario_handle_special_floors(struct MarioState *m)
             break;
 
         case SURFACE_0032:
-            func_8024A860(m, 0x13);
+            level_trigger_warp(m, WARP_OP_WARP_FLOOR);
             break;
         
         case SURFACE_0033:

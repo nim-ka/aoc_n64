@@ -2621,10 +2621,10 @@ labels:
    - [0x802494D0, "Thread4"]
    - [0x8024B1F0, "Proc8024B1F0"]
    - [0x8024B7A0, "Unknown8024B7A0"]
-   - [0x8024BB38, "LevelProc_8024BCD8"]
-   - [0x8024BBBC, "LevelProc_8024BD5C"]
-   - [0x8024BC74, "LevelProc_8024BE14"]
-   - [0x8024BE00, "LevelProc_8024BFA0"]
+   - [0x8024BB38, "lvl_init_or_update"]
+   - [0x8024BBBC, "lvl_init_from_save_file"]
+   - [0x8024BC74, "lvl_set_current_level"]
+   - [0x8024BE00, "lvl_play_the_end_screen_sound"]
    - [0x8024CFCC, "Unknown8024CFCC"]
    - [0x8024D98C, "InteractionCoin"]           # 00000010: Coin
    - [0x8024DA50, "InteractionHealth"]         # 00010000: Replenishes health

@@ -23962,8 +23962,8 @@ glabel func_802F84FC
 /* 0B3504 802F8504 3C0E8033 */  lui   $t6, %hi(D_8032C694) # $t6, 0x8033
 /* 0B3508 802F8508 8DCEC694 */  lw    $t6, %lo(D_8032C694)($t6)
 /* 0B350C 802F850C AFAE001C */  sw    $t6, 0x1c($sp)
-/* 0B3510 802F8510 3C0F8034 */  lui   $t7, %hi(D_80339EF0) # $t7, 0x8034
-/* 0B3514 802F8514 85EF9EF0 */  lh    $t7, %lo(D_80339EF0)($t7)
+/* 0B3510 802F8510 3C0F8034 */  lui   $t7, %hi(gDisplayedLives) # $t7, 0x8034
+/* 0B3514 802F8514 85EF9EF0 */  lh    $t7, %lo(gDisplayedLives)($t7)
 /* 0B3518 802F8518 24010064 */  li    $at, 100
 /* 0B351C 802F851C 15E1000F */  bne   $t7, $at, .L802F855C
 /* 0B3520 802F8520 00000000 */   nop   

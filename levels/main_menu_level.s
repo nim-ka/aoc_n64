@@ -37,7 +37,7 @@ main_menu_level:
 .word 0x04040001
 .word 0x13040010
 .word 0x01100015, main_level_scripts, main_level_scripts_end, 0x15000000
-.word 0x11080000, LevelProc_8024BE14 # 8024BC74
+.word 0x11080000, lvl_set_current_level # 8024BC74
 .word 0x0C0C0200, 0x00000000, 0x140001C0
 .word 0x1B040000
 .word 0x16100000, run_press_start_demo_timer, __text8016F000pos, game_over_level

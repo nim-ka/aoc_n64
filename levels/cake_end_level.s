@@ -16,7 +16,7 @@ cake_end_level:
 .word 0x29040100
 .word 0x3308004B, 0x00000000
 .word 0x03040078
-.word 0x11080000, LevelProc_8024BFA0 # 8024BE00
+.word 0x11080000, lvl_play_the_end_screen_sound # 8024BE00
 .word 0x03040001
 .word 0x05080000, 0x0E000044
 # begin cake_end_level geo 0x4AA4A0

@@ -1,6 +1,7 @@
 #include <ultra64.h>
 
 #include "sm64.h"
+#include "level_update.h"
 #include "math_util.h"
 
 static void play_flip_sounds(struct MarioState *m, s16 frame1, s16 frame2, s16 frame3)
@@ -794,7 +795,7 @@ static u32 act_water_jump(struct MarioState *m)
     {
     case AIR_STEP_LANDED:
         set_mario_action(m, ACT_JUMP_LAND, 0);
-        func_80285BD8(m->area->unk24, m->area->unk24[1], 1);
+        func_80285BD8(m->area->unk24, m->area->unk24->unk01, 1);
         break;
 
     case AIR_STEP_HIT_WALL:
@@ -803,7 +804,7 @@ static u32 act_water_jump(struct MarioState *m)
 
     case AIR_STEP_GRABBED_LEDGE:
         set_mario_action(m, ACT_LEDGE_GRAB, 0);
-        func_80285BD8(m->area->unk24, m->area->unk24[1], 1);
+        func_80285BD8(m->area->unk24, m->area->unk24->unk01, 1);
         break;
 
     case AIR_STEP_HIT_LAVA_WALL:
@@ -829,7 +830,7 @@ static u32 act_hold_water_jump(struct MarioState *m)
     {
     case AIR_STEP_LANDED:
         set_mario_action(m, ACT_UNKNOWN_074, 0);
-        func_80285BD8(m->area->unk24, m->area->unk24[1], 1);
+        func_80285BD8(m->area->unk24, m->area->unk24->unk01, 1);
         break;
 
     case AIR_STEP_HIT_WALL:
@@ -1515,7 +1516,7 @@ static u32 act_lava_boost(struct MarioState *m)
     }
 
     if (m->health < 0x100)
-        func_8024A860(m, 0x12);
+        level_trigger_warp(m, WARP_OP_DEATH);
 
     m->unk98->unk05 = 8;
     return 0;
@@ -1613,7 +1614,7 @@ static u32 act_jump_kick(struct MarioState *m)
 
 static u32 act_shot_from_cannon(struct MarioState *m)
 {
-    if (m->area->unk24[0] != 3)
+    if (m->area->unk24->unk00 != 3)
         m->unk94->unk1E = 2;
 
     func_802514DC(m, m->forwardVel);
@@ -1631,7 +1632,7 @@ static u32 act_shot_from_cannon(struct MarioState *m)
     case AIR_STEP_LANDED:
         set_mario_action(m, ACT_DIVE_SLIDE, 0);
         m->faceAngle[0] = 0;
-        func_80285BD8(m->area->unk24, m->area->unk24[1], 1);
+        func_80285BD8(m->area->unk24, m->area->unk24->unk01, 1);
         break;
 
     case AIR_STEP_HIT_WALL:
@@ -1643,7 +1644,7 @@ static u32 act_shot_from_cannon(struct MarioState *m)
 
         m->unk08 |= 0x00000002;
         set_mario_action(m, ACT_BACKWARD_AIR_KB, 0);
-        func_80285BD8(m->area->unk24, m->area->unk24[1], 1);
+        func_80285BD8(m->area->unk24, m->area->unk24->unk01, 1);
         break;
 
     case AIR_STEP_HIT_LAVA_WALL:
@@ -1668,19 +1669,19 @@ static u32 act_flying(struct MarioState *m)
 
     if (m->input & INPUT_Z_PRESSED)
     {
-        if (m->area->unk24[0] == 3)
-            func_80285BD8(m->area->unk24, m->area->unk24[1], 1);
+        if (m->area->unk24->unk00 == 3)
+            func_80285BD8(m->area->unk24, m->area->unk24->unk01, 1);
         return set_mario_action(m, ACT_GROUND_POUND, 1);
     }
 
     if (!(m->flags & MARIO_WING_CAP))
     {
-        if (m->area->unk24[0] == 3)
-            func_80285BD8(m->area->unk24, m->area->unk24[1], 1);
+        if (m->area->unk24->unk00 == 3)
+            func_80285BD8(m->area->unk24, m->area->unk24->unk01, 1);
         return set_mario_action(m, ACT_FREEFALL, 0);
     }
 
-    if (m->area->unk24[0] != 3)
+    if (m->area->unk24->unk00 != 3)
         func_80285BD8(m->area->unk24, 3, 1);
 
     if (m->actionState == 0)
@@ -1726,7 +1727,7 @@ static u32 act_flying(struct MarioState *m)
         func_80250AAC(m, 7);
 
         m->faceAngle[0] = 0;
-        func_80285BD8(m->area->unk24, m->area->unk24[1], 1);
+        func_80285BD8(m->area->unk24, m->area->unk24->unk01, 1);
         break;
 
     case AIR_STEP_HIT_WALL:
@@ -1744,7 +1745,7 @@ static u32 act_flying(struct MarioState *m)
 
             m->unk08 |= 0x00000002;
             set_mario_action(m, ACT_BACKWARD_AIR_KB, 0);
-            func_80285BD8(m->area->unk24, m->area->unk24[1], 1);
+            func_80285BD8(m->area->unk24, m->area->unk24->unk01, 1);
         }
         else {
             if (m->actionTimer++ == 0)
@@ -1839,7 +1840,7 @@ static u32 act_flying_triple_jump(struct MarioState *m)
 
     if (m->vel[1] < 4.0f)
     {
-        if (m->area->unk24[0] != 3)
+        if (m->area->unk24->unk00 != 3)
             func_80285BD8(m->area->unk24, 3, 1);
         
         if (m->forwardVel < 32.0f)
@@ -1848,7 +1849,7 @@ static u32 act_flying_triple_jump(struct MarioState *m)
         set_mario_action(m, ACT_FLYING, 1);
     }
 
-    if (m->actionTimer++ == 10 && m->area->unk24[0] != 3)
+    if (m->actionTimer++ == 10 && m->area->unk24->unk00 != 3)
         func_80285BD8(m->area->unk24, 3, 1);
 
     update_air_without_turn(m);

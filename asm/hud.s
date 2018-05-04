@@ -901,8 +901,8 @@ glabel func_802E2304
 
 glabel func_802E24A8
 /* 09D4A8 802E24A8 27BDFFF8 */  addiu $sp, $sp, -8
-/* 09D4AC 802E24AC 3C0E8034 */  lui   $t6, %hi(D_80339EFA) # $t6, 0x8034
-/* 09D4B0 802E24B0 85CE9EFA */  lh    $t6, %lo(D_80339EFA)($t6)
+/* 09D4AC 802E24AC 3C0E8034 */  lui   $t6, %hi(gHudDisplayFlags) # $t6, 0x8034
+/* 09D4B0 802E24B0 85CE9EFA */  lh    $t6, %lo(gHudDisplayFlags)($t6)
 /* 09D4B4 802E24B4 A7AE0006 */  sh    $t6, 6($sp)
 /* 09D4B8 802E24B8 87AF0006 */  lh    $t7, 6($sp)
 /* 09D4BC 802E24BC 31F88000 */  andi  $t8, $t7, 0x8000
@@ -1096,8 +1096,8 @@ glabel RenderHudHp
 /* 09D744 802E2744 27BDFFD8 */  addiu $sp, $sp, -0x28
 /* 09D748 802E2748 AFBF001C */  sw    $ra, 0x1c($sp)
 /* 09D74C 802E274C AFB00018 */  sw    $s0, 0x18($sp)
-/* 09D750 802E2750 3C0E8034 */  lui   $t6, %hi(D_80339EF6) # $t6, 0x8034
-/* 09D754 802E2754 85CE9EF6 */  lh    $t6, %lo(D_80339EF6)($t6)
+/* 09D750 802E2750 3C0E8034 */  lui   $t6, %hi(gDisplayedHealthWedges) # $t6, 0x8034
+/* 09D754 802E2754 85CE9EF6 */  lh    $t6, %lo(gDisplayedHealthWedges)($t6)
 /* 09D758 802E2758 A7AE0026 */  sh    $t6, 0x26($sp)
 /* 09D75C 802E275C 3C0F8033 */  lui   $t7, %hi(D_803314E0) # $t7, 0x8033
 /* 09D760 802E2760 81EF14E0 */  lb    $t7, %lo(D_803314E0)($t7)
@@ -1176,8 +1176,8 @@ glabel RenderHudMarioLives
 /* 09D85C 802E285C 0C0B569D */  jal   PrintStr
 /* 09D860 802E2860 240500D2 */   li    $a1, 210
 /* 09D864 802E2864 3C068033 */  lui   $a2, %hi(D_803371A8) # $a2, 0x8033
-/* 09D868 802E2868 3C078034 */  lui   $a3, %hi(D_80339EF0) # $a3, 0x8034
-/* 09D86C 802E286C 84E79EF0 */  lh    $a3, %lo(D_80339EF0)($a3)
+/* 09D868 802E2868 3C078034 */  lui   $a3, %hi(gDisplayedLives) # $a3, 0x8034
+/* 09D86C 802E286C 84E79EF0 */  lh    $a3, %lo(gDisplayedLives)($a3)
 /* 09D870 802E2870 24C671A8 */  addiu $a2, %lo(D_803371A8) # addiu $a2, $a2, 0x71a8
 /* 09D874 802E2874 24040036 */  li    $a0, 54
 /* 09D878 802E2878 0C0B55FE */  jal   PrintInt
@@ -1204,8 +1204,8 @@ glabel RenderHudCoins
 /* 09D8C0 802E28C0 0C0B569D */  jal   PrintStr
 /* 09D8C4 802E28C4 240500D2 */   li    $a1, 210
 /* 09D8C8 802E28C8 3C068033 */  lui   $a2, %hi(D_803371B4) # $a2, 0x8033
-/* 09D8CC 802E28CC 3C078034 */  lui   $a3, %hi(D_80339EF2) # $a3, 0x8034
-/* 09D8D0 802E28D0 84E79EF2 */  lh    $a3, %lo(D_80339EF2)($a3)
+/* 09D8CC 802E28CC 3C078034 */  lui   $a3, %hi(gDisplayedCoins) # $a3, 0x8034
+/* 09D8D0 802E28D0 84E79EF2 */  lh    $a3, %lo(gDisplayedCoins)($a3)
 /* 09D8D4 802E28D4 24C671B4 */  addiu $a2, %lo(D_803371B4) # addiu $a2, $a2, 0x71b4
 /* 09D8D8 802E28D8 240400C6 */  li    $a0, 198
 /* 09D8DC 802E28DC 0C0B55FE */  jal   PrintInt
@@ -1235,8 +1235,8 @@ glabel RenderHudStars
 /* 09D930 802E2930 10000024 */  b     .L802E29C4
 /* 09D934 802E2934 00000000 */   nop   
 .L802E2938:
-/* 09D938 802E2938 3C198034 */  lui   $t9, %hi(D_80339EF4) # $t9, 0x8034
-/* 09D93C 802E293C 87399EF4 */  lh    $t9, %lo(D_80339EF4)($t9)
+/* 09D938 802E2938 3C198034 */  lui   $t9, %hi(gDisplayedStars) # $t9, 0x8034
+/* 09D93C 802E293C 87399EF4 */  lh    $t9, %lo(gDisplayedStars)($t9)
 /* 09D940 802E2940 2B210064 */  slti  $at, $t9, 0x64
 /* 09D944 802E2944 10200003 */  beqz  $at, .L802E2954
 /* 09D948 802E2948 00000000 */   nop   
@@ -1260,13 +1260,13 @@ glabel RenderHudStars
 .L802E298C:
 /* 09D98C 802E298C 83A4001F */  lb    $a0, 0x1f($sp)
 /* 09D990 802E2990 3C068033 */  lui   $a2, %hi(D_803371C0) # $a2, 0x8033
-/* 09D994 802E2994 3C078034 */  lui   $a3, %hi(D_80339EF4) # $a3, 0x8034
+/* 09D994 802E2994 3C078034 */  lui   $a3, %hi(gDisplayedStars) # $a3, 0x8034
 /* 09D998 802E2998 000450C0 */  sll   $t2, $a0, 3
 /* 09D99C 802E299C 01445023 */  subu  $t2, $t2, $a0
 /* 09D9A0 802E29A0 000A5040 */  sll   $t2, $t2, 1
 /* 09D9A4 802E29A4 01402025 */  move  $a0, $t2
 /* 09D9A8 802E29A8 24840107 */  addiu $a0, $a0, 0x107
-/* 09D9AC 802E29AC 84E79EF4 */  lh    $a3, %lo(D_80339EF4)($a3)
+/* 09D9AC 802E29AC 84E79EF4 */  lh    $a3, %lo(gDisplayedStars)($a3)
 /* 09D9B0 802E29B0 24C671C0 */  addiu $a2, %lo(D_803371C0) # addiu $a2, $a2, 0x71c0
 /* 09D9B4 802E29B4 0C0B55FE */  jal   PrintInt
 /* 09D9B8 802E29B8 240500D2 */   li    $a1, 210
@@ -1281,8 +1281,8 @@ glabel RenderHudStars
 glabel func_802E29D4
 /* 09D9D4 802E29D4 27BDFFE0 */  addiu $sp, $sp, -0x20
 /* 09D9D8 802E29D8 AFBF0014 */  sw    $ra, 0x14($sp)
-/* 09D9DC 802E29DC 3C0E8034 */  lui   $t6, %hi(D_80339EF8) # $t6, 0x8034
-/* 09D9E0 802E29E0 85CE9EF8 */  lh    $t6, %lo(D_80339EF8)($t6)
+/* 09D9DC 802E29DC 3C0E8034 */  lui   $t6, %hi(gDisplayedKeys) # $t6, 0x8034
+/* 09D9E0 802E29E0 85CE9EF8 */  lh    $t6, %lo(gDisplayedKeys)($t6)
 /* 09D9E4 802E29E4 A7A0001E */  sh    $zero, 0x1e($sp)
 /* 09D9E8 802E29E8 19C00012 */  blez  $t6, .L802E2A34
 /* 09D9EC 802E29EC 00000000 */   nop   
@@ -1296,8 +1296,8 @@ glabel func_802E29D4
 /* 09DA08 802E2A08 0C0B569D */  jal   PrintStr
 /* 09DA0C 802E2A0C 2405008E */   li    $a1, 142
 /* 09DA10 802E2A10 87B8001E */  lh    $t8, 0x1e($sp)
-/* 09DA14 802E2A14 3C0A8034 */  lui   $t2, %hi(D_80339EF8) # $t2, 0x8034
-/* 09DA18 802E2A18 854A9EF8 */  lh    $t2, %lo(D_80339EF8)($t2)
+/* 09DA14 802E2A14 3C0A8034 */  lui   $t2, %hi(gDisplayedKeys) # $t2, 0x8034
+/* 09DA18 802E2A18 854A9EF8 */  lh    $t2, %lo(gDisplayedKeys)($t2)
 /* 09DA1C 802E2A1C 27190001 */  addiu $t9, $t8, 1
 /* 09DA20 802E2A20 00194400 */  sll   $t0, $t9, 0x10
 /* 09DA24 802E2A24 00084C03 */  sra   $t1, $t0, 0x10
@@ -1320,8 +1320,8 @@ glabel RenderHudTimer
 /* 09DA58 802E2A58 0C09DE68 */  jal   segmented_to_virtual
 /* 09DA5C 802E2A5C 24848250 */   addiu $a0, %lo(D_02008250) # addiu $a0, $a0, -0x7db0
 /* 09DA60 802E2A60 AFA2002C */  sw    $v0, 0x2c($sp)
-/* 09DA64 802E2A64 3C0E8034 */  lui   $t6, %hi(D_80339EFC) # $t6, 0x8034
-/* 09DA68 802E2A68 95CE9EFC */  lhu   $t6, %lo(D_80339EFC)($t6)
+/* 09DA64 802E2A64 3C0E8034 */  lui   $t6, %hi(gTimerValueInFrames) # $t6, 0x8034
+/* 09DA68 802E2A68 95CE9EFC */  lhu   $t6, %lo(gTimerValueInFrames)($t6)
 /* 09DA6C 802E2A6C A7AE002A */  sh    $t6, 0x2a($sp)
 /* 09DA70 802E2A70 97AF002A */  lhu   $t7, 0x2a($sp)
 /* 09DA74 802E2A74 24010708 */  li    $at, 1800
@@ -1577,8 +1577,8 @@ glabel ShowCameraStatus
 glabel RenderHud
 /* 09DE1C 802E2E1C 27BDFFE0 */  addiu $sp, $sp, -0x20
 /* 09DE20 802E2E20 AFBF0014 */  sw    $ra, 0x14($sp)
-/* 09DE24 802E2E24 3C0E8034 */  lui   $t6, %hi(D_80339EFA) # $t6, 0x8034
-/* 09DE28 802E2E28 85CE9EFA */  lh    $t6, %lo(D_80339EFA)($t6)
+/* 09DE24 802E2E24 3C0E8034 */  lui   $t6, %hi(gHudDisplayFlags) # $t6, 0x8034
+/* 09DE28 802E2E28 85CE9EFA */  lh    $t6, %lo(gHudDisplayFlags)($t6)
 /* 09DE2C 802E2E2C A7AE001E */  sh    $t6, 0x1e($sp)
 /* 09DE30 802E2E30 87AF001E */  lh    $t7, 0x1e($sp)
 /* 09DE34 802E2E34 15E00009 */  bnez  $t7, .L802E2E5C

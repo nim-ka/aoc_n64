@@ -32,7 +32,7 @@ SECTIONS
       build/src/display.o(.text);
       build/src/input.o(.text);
       build/src/sound_init.o(.text);
-      build/asm/credits.o(.text);
+      build/src/level_update.o(.text);
       build/src/interaction.o(.text);
       build/asm/mario.o(.text);
       build/src/mario_step.o(.text);
@@ -80,7 +80,7 @@ SECTIONS
       build/src/display.o(.data*);
       build/src/input.o(.data*);
       build/src/sound_init.o(.data*);
-      build/data/credits.data.o(.data*);
+      build/src/level_update.o(.data*);
       build/src/interaction.o(.data*);
       build/data/mario.data.o(.data*);
       build/src/mario_step.o(.data*);
@@ -113,7 +113,7 @@ SECTIONS
       build/src/main.o(.rodata*);
       build/src/input.o(.rodata*);
       build/src/sound_init.o(.rodata*);
-      build/data/credits.rodata.o(.rodata*);
+      build/src/level_update.o(.rodata*);
       build/src/interaction.o(.rodata*);
       build/data/mario.rodata.o(.rodata*);
       build/src/mario_step.o(.rodata*);
@@ -249,6 +249,8 @@ SECTIONS
    .bss1 ADDR(.text80246000) + SIZEOF(.text80246000) (NOLOAD) :
    {
       build/data/bss1.o(.bss*);
+      build/src/level_update.o(.bss*);
+      build/data/bss80339F00.o(.bss*);
    }
 
    __bss1size = SIZEOF(.bss1);

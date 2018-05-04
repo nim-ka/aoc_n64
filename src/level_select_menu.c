@@ -144,11 +144,11 @@ s16 level_select_input_loop(void)
         SetSound(0x302B0081, D_803320E0);
 
     // TODO: enum counts for the stage lists
-    if(gCurrLevelNum > 38)
-        gCurrLevelNum = 1; // exceeded max. set to min.
+    if(gCurrLevelNum > LEVEL_MAX)
+        gCurrLevelNum = LEVEL_MIN; // exceeded max. set to min.
 
-    if(gCurrLevelNum <= 0)
-        gCurrLevelNum = 38; // exceeded min. set to max.
+    if(gCurrLevelNum < LEVEL_MIN)
+        gCurrLevelNum = LEVEL_MAX; // exceeded min. set to max.
 
     gCurrSaveFileNum = 4; // file 4 is used for level select tests
     D_8033A758 = 6;

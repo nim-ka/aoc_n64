@@ -74,6 +74,7 @@
 #define SURFACE_0079 0x0079
 #define SURFACE_007A 0x007A
 #define SURFACE_007B 0x007B
+#define SURFACE_00D3 0x00D3
 
 #define INPUT_NONZERO_ANALOG         0x0001
 #define INPUT_A_PRESSED              0x0002
@@ -347,8 +348,8 @@
 #define ACT_DEATH_ON_BACK            0x00021316 // (0x116 | ACT_FLAG_UNKNOWN_09 | ACT_FLAG_INTANGIBLE | ACT_FLAG_UNKNOWN_17)
 #define ACT_EATEN_BY_BUBBA           0x00021317 // (0x117 | ACT_FLAG_UNKNOWN_09 | ACT_FLAG_INTANGIBLE | ACT_FLAG_UNKNOWN_17)
 #define ACT_PEACH_CUTSCENE           0x00001918 // (0x118 | ACT_FLAG_AIR | ACT_FLAG_INTANGIBLE)
-#define ACT_UNKNOWN_119              0x00001319 // (0x119 | ACT_FLAG_UNKNOWN_09 | ACT_FLAG_INTANGIBLE)
-#define ACT_UNKNOWN_11A              0x0000131A // (0x11A | ACT_FLAG_UNKNOWN_09 | ACT_FLAG_INTANGIBLE)
+#define ACT_CREDITS                  0x00001319 // (0x119 | ACT_FLAG_UNKNOWN_09 | ACT_FLAG_INTANGIBLE)
+#define ACT_WAVING                   0x0000131A // (0x11A | ACT_FLAG_UNKNOWN_09 | ACT_FLAG_INTANGIBLE)
 #define ACT_PULLING_DOOR             0x00001320 // (0x120 | ACT_FLAG_UNKNOWN_09 | ACT_FLAG_INTANGIBLE)
 #define ACT_PUSHING_DOOR             0x00001321 // (0x121 | ACT_FLAG_UNKNOWN_09 | ACT_FLAG_INTANGIBLE)
 #define ACT_UNKNOWN_122              0x00001322 // (0x122 | ACT_FLAG_UNKNOWN_09 | ACT_FLAG_INTANGIBLE)
@@ -370,8 +371,8 @@
 #define ACT_UNKNOWN_133              0x00001333 // (0x133 | ACT_FLAG_UNKNOWN_09 | ACT_FLAG_INTANGIBLE)
 #define ACT_BBH_ENTER_JUMP           0x00001934 // (0x134 | ACT_FLAG_AIR | ACT_FLAG_INTANGIBLE)
 #define ACT_BBH_ENTER_SPIN           0x00001535 // (0x135 | ACT_FLAG_UNKNOWN_10 | ACT_FLAG_INTANGIBLE)
-#define ACT_WARP_FADE_OUT            0x00001336 // (0x136 | ACT_FLAG_UNKNOWN_09 | ACT_FLAG_INTANGIBLE)
-#define ACT_WARP_FADE_IN             0x00001337 // (0x137 | ACT_FLAG_UNKNOWN_09 | ACT_FLAG_INTANGIBLE)
+#define ACT_TELEPORT_FADE_OUT        0x00001336 // (0x136 | ACT_FLAG_UNKNOWN_09 | ACT_FLAG_INTANGIBLE)
+#define ACT_TELEPORT_FADE_IN         0x00001337 // (0x137 | ACT_FLAG_UNKNOWN_09 | ACT_FLAG_INTANGIBLE)
 #define ACT_SHOCKED                  0x00020338 // (0x138 | ACT_FLAG_UNKNOWN_09 | ACT_FLAG_UNKNOWN_17)
 #define ACT_SQUISHED                 0x00020339 // (0x139 | ACT_FLAG_UNKNOWN_09 | ACT_FLAG_UNKNOWN_17)
 #define ACT_HEAD_STUCK_IN_GROUND     0x0002033A // (0x13A | ACT_FLAG_UNKNOWN_09 | ACT_FLAG_UNKNOWN_17)
@@ -435,11 +436,6 @@
                        L_TRIG     | R_TRIG     |                             \
                        U_CBUTTONS | D_CBUTTONS | L_CBUTTONS | R_CBUTTONS   )
 
-#define TIMER_CONTROL_SHOW  0
-#define TIMER_CONTROL_START 1
-#define TIMER_CONTROL_STOP  2
-#define TIMER_CONTROL_HIDE  3
-
 #define INTERACT_HOOT           /* 0x00000001 */ (1 <<  0)
 #define INTERACT_GRABBABLE      /* 0x00000002 */ (1 <<  1)
 #define INTERACT_DOOR           /* 0x00000004 */ (1 <<  2)
@@ -472,5 +468,79 @@
 #define INTERACT_SHOCK          /* 0x20000000 */ (1 << 29)
 #define INTERACT_IGLOO_BARRIER  /* 0x40000000 */ (1 << 30)
 #define INTERACT_UNKNOWN_31     /* 0x80000000 */ (1 << 31)
+
+#define LEVEL_MIN 1
+#define LEVEL_UNKNOWN_1         1
+#define LEVEL_UNKNOWN_2         2
+#define LEVEL_UNKNOWN_3         3
+#define LEVEL_BBH               4
+#define LEVEL_CCM               5
+#define LEVEL_CASTLE            6
+#define LEVEL_HMC               7
+#define LEVEL_SSL               8
+#define LEVEL_BOB               9
+#define LEVEL_SL               10
+#define LEVEL_WDW              11
+#define LEVEL_JRB              12
+#define LEVEL_THI              13
+#define LEVEL_TTC              14
+#define LEVEL_RR               15
+#define LEVEL_CASTLE_GROUNDS   16
+#define LEVEL_BITDW            17
+#define LEVEL_VCUTM            18
+#define LEVEL_BITFS            19
+#define LEVEL_SA               20
+#define LEVEL_BITS             21
+#define LEVEL_LLL              22
+#define LEVEL_DDD              23
+#define LEVEL_WF               24
+#define LEVEL_UNKNOWN_25       25
+#define LEVEL_CASTLE_COURTYARD 26
+#define LEVEL_PSS              27
+#define LEVEL_COTMC            28
+#define LEVEL_TOTWC            29
+#define LEVEL_BOWSER_1         30
+#define LEVEL_WMOTR            31
+#define LEVEL_UNKNOWN_32       32
+#define LEVEL_BOWSER_2         33
+#define LEVEL_BOWSER_3         34
+#define LEVEL_UNKNOWN_35       35
+#define LEVEL_TTM              36
+#define LEVEL_UNKNOWN_37       37
+#define LEVEL_UNKNOWN_38       38
+#define LEVEL_MAX 38
+
+#define COURSE_NONE        0
+#define COURSE_BOB         1
+#define COURSE_WF          2
+#define COURSE_JRB         3
+#define COURSE_CCM         4
+#define COURSE_BBH         5
+#define COURSE_HMC         6
+#define COURSE_LLL         7
+#define COURSE_SSL         8
+#define COURSE_DDD         9
+#define COURSE_SL         10
+#define COURSE_WDW        11
+#define COURSE_TTM        12
+#define COURSE_THI        13
+#define COURSE_TTC        14
+#define COURSE_RR         15
+#define COURSE_BITDW      16
+#define COURSE_BITFS      17
+#define COURSE_BITS       18
+#define COURSE_PSS        19
+#define COURSE_COTMC      20
+#define COURSE_TOTWC      21
+#define COURSE_VCUTM      22
+#define COURSE_WMTOR      23
+#define COURSE_SA         24
+#define COURSE_UNKNOWN_25 25
+
+#define COURSE_STAGES_MIN 1
+#define COURSE_STAGES_MAX 15
+#define COURSE_MIN 1
+#define COURSE_MAX 25
+#define COURSE_CAP_COURSES 20
 
 #endif

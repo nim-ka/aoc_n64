@@ -59,7 +59,7 @@ main_level_scripts:
 .word 0x2208008A, 0x16000ED4
 .word 0x2208008B, 0x16000F24
 .word 0x1E040000
-.word 0x11080000, LevelProc_8024BD5C # 8024BBBC
+.word 0x11080000, lvl_init_from_save_file # 8024BBBC
 .word 0x0A040000
 .word 0x00100014, main_menu_level, main_menu_level_end, 0x14000118
 .word 0x06080000, 0x15000278

@@ -322,10 +322,10 @@
 .global thread4_sound
 .global Proc8024B1F0
 .global Unknown8024B7A0
-.global LevelProc_8024BCD8
-.global LevelProc_8024BD5C
-.global LevelProc_8024BE14
-.global LevelProc_8024BFA0
+.global lvl_init_or_update
+.global lvl_init_from_save_file
+.global lvl_set_current_level
+.global lvl_play_the_end_screen_sound
 .global Unknown8024CFCC
 .global InteractionCoin
 .global InteractionHealth

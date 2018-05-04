@@ -48,7 +48,7 @@ void save_file_set_sound_mode(u16 mode);
 u16 save_file_get_sound_mode(void);
 void save_file_move_cap_to_default_location(void);
 void func_8027A0E8(void);
-void func_8027A100(u8 *a);
-s32 func_8027A168(u8 *a);
+void func_8027A100(struct WarpNode *a);
+s32 func_8027A168(struct WarpNode *a);
 
 #endif

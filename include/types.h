@@ -237,6 +237,18 @@ struct Object
     /*0x25C*/ u32 unk25C;
 };
 
+struct UnknownArea1C {
+    /*0x00*/ u8 unk00;
+    /*0x01*/ u8 unk01;
+    /*0x02*/ Vec3s displacement;
+};
+
+struct UnknownArea24 { // Camera or camera related
+    /*0x00*/ u8 unk00;
+    /*0x01*/ u8 unk01;
+    /*0x02*/ s16 unk02;
+};
+
 struct Area
 {
     /*0x00*/ s8 index;
@@ -247,14 +259,14 @@ struct Area
     /*0x0C*/ u32 unk0C;
     /*0x10*/ s16 *unk10;
     /*0x14*/ u32 unk14;
-    /*0x18*/ u32 unk18;
-    /*0x1C*/ u32 unk1C;
+    /*0x18*/ struct WarpNode *paintingWarpNodes;
+    /*0x1C*/ struct UnknownArea1C *unk1C;
     /*0x20*/ u32 unk20;
-    /*0x24*/ u8 *unk24;
+    /*0x24*/ struct UnknownArea24 *unk24;
     /*0x28*/ u32 unk28;
     /*0x2C*/ u32 unk2C;
     /*0x30*/ u32 unk30;
-    /*0x34*/ s8 unk34;
+    /*0x34*/ u8 unk34[1]; // Unknown size
     /*0x35*/ s8 unk35;
     /*0x36*/ u16 unk36;
     /*0x38*/ u16 unk38;
@@ -353,7 +365,7 @@ struct MarioState
     /*0xA4*/ u32 collidedObjInteractTypes;
     /*0xA8*/ s16 numCoins;
     /*0xAA*/ s16 numStars;
-    /*0xAC*/ u8 unkAC;
+    /*0xAC*/ s8 numKeys; // Unused key mechanic
     /*0xAD*/ s8 numLives;
     /*0xAE*/ s16 health;
     /*0xB0*/ s16 unkB0;
@@ -464,6 +476,42 @@ struct Struct8032CFD0
 {
     u8 filler0[0x124];
     u32 unk124;
+};
+
+struct Struct8033A140 // Level, I think
+{
+    /*0x00*/ Vec3s marioStartPos;
+    /*0x06*/ Vec3s marioStartAngle;
+    /*0x0C*/ s8 areaIndex[1];
+    /*0x0D*/ s8 unk0D;
+    /*0x10*/ u32 unk10;
+    /*0x14*/ u32 unk14;
+    /*0x18*/ u32 unk18;
+    /*0x1C*/ u32 unk1C;
+};
+
+struct WarpNode
+{
+    /*00*/ u8 id;
+    /*01*/ u8 destLevel;
+    /*02*/ u8 destArea;
+    /*03*/ u8 destNode;
+};
+
+struct ObjectWarpNode
+{
+    /*00*/ struct WarpNode node;
+    /*04*/ struct Object *object;
+};
+
+struct CreditsEntry
+{
+    /*0x00*/ u8 levelNum;
+    /*0x01*/ u8 areaIndex;
+    /*0x02*/ u8 unk02;
+    /*0x03*/ s8 marioAngle;
+    /*0x04*/ Vec3s marioPos;
+    /*0x0C*/ const char **unk0C;
 };
 
 struct Struct8033B418_sub

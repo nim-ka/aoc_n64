@@ -1,6 +1,7 @@
 #include <ultra64.h>
 
 #include "sm64.h"
+#include "level_update.h"
 #include "math_util.h"
 
 u8 D_8032C6C0 = 0;
@@ -142,7 +143,7 @@ void func_80249148(u16 a, u16 b, s16 c)
 {
     if (gResetTimer == 0 && b != D_8032C6C8)
     {
-        if (D_8032CE70 != 0)
+        if (gCurrCreditsEntry != 0)
             func_80321368(7);
         else
             func_80321368(a);

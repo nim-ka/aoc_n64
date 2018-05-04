@@ -3782,9 +3782,9 @@ glabel func_802FBB50
 /* 0B6B90 802FBB90 24050409 */  li    $a1, 1033
 /* 0B6B94 802FBB94 0C0C82BA */  jal   func_80320AE8
 /* 0B6B98 802FBB98 00003025 */   move  $a2, $zero
-/* 0B6B9C 802FBB9C 0C09256C */  jal   func_802495B0
+/* 0B6B9C 802FBB9C 0C09256C */  jal   level_control_timer
 /* 0B6BA0 802FBBA0 00002025 */   move  $a0, $zero
-/* 0B6BA4 802FBBA4 0C09256C */  jal   func_802495B0
+/* 0B6BA4 802FBBA4 0C09256C */  jal   level_control_timer
 /* 0B6BA8 802FBBA8 24040001 */   li    $a0, 1
 /* 0B6BAC 802FBBAC 3C088036 */  lui   $t0, %hi(gCurrentObject) # $t0, 0x8036
 /* 0B6BB0 802FBBB0 8D08FDF0 */  lw    $t0, %lo(gCurrentObject)($t0)
@@ -4728,7 +4728,7 @@ glabel BehWavingKoopaFlagLoop
 /* 0B78FC 802FC8FC 8D4AFDF0 */  lw    $t2, %lo(gCurrentObject)($t2)
 /* 0B7900 802FC900 24090001 */  li    $t1, 1
 /* 0B7904 802FC904 AD490104 */  sw    $t1, 0x104($t2)
-/* 0B7908 802FC908 0C09256C */  jal   func_802495B0
+/* 0B7908 802FC908 0C09256C */  jal   level_control_timer
 /* 0B790C 802FC90C 24040002 */   li    $a0, 2
 /* 0B7910 802FC910 3C0B8036 */  lui   $t3, %hi(gCurrentObject) # $t3, 0x8036
 /* 0B7914 802FC914 8D6BFDF0 */  lw    $t3, %lo(gCurrentObject)($t3)

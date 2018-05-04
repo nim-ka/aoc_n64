@@ -437,7 +437,7 @@ void save_file_collect_star_or_key(s16 coinScore, s16 starIndex)
     D_8032CE28 = 0;
     D_8032CE2C = 0;
 
-    if (courseIndex >= 0 && courseIndex < 15)
+    if (courseIndex >= COURSE_STAGES_MIN - 1 && courseIndex <= COURSE_STAGES_MAX - 1)
     {
         //! Compares the coin score as a 16 bit value, but only writes the 8 bit
         // truncation. This can allow a high score to decrease.
@@ -457,17 +457,17 @@ void save_file_collect_star_or_key(s16 coinScore, s16 starIndex)
 
     switch (gCurrLevelNum)
     {
-    case 30:
+    case LEVEL_BOWSER_1:
         if (!(save_file_get_flags() & (SAVE_FLAG_HAVE_KEY_1 | SAVE_FLAG_UNLOCKED_BASEMENT_DOOR)))
             save_file_set_flags(SAVE_FLAG_HAVE_KEY_1);
         break;
     
-    case 33:
+    case LEVEL_BOWSER_2:
         if (!(save_file_get_flags() & (SAVE_FLAG_HAVE_KEY_2 | SAVE_FLAG_UNLOCKED_UPSTAIRS_DOOR)))
             save_file_set_flags(SAVE_FLAG_HAVE_KEY_2);
         break;
     
-    case 34:
+    case LEVEL_BOWSER_3:
         break;
     
     default:
@@ -554,7 +554,7 @@ void save_file_clear_flags(s32 flags)
 
 s32 save_file_get_flags(void)
 {
-    if (D_8032CE70 != 0 || gCurrDemoInput != NULL)
+    if (gCurrCreditsEntry != 0 || gCurrDemoInput != NULL)
         return 0;
     return gSaveBuffer.files[gCurrSaveFileNum - 1][0].flags;
 }
@@ -656,13 +656,13 @@ void save_file_move_cap_to_default_location(void)
     {
         switch (gSaveBuffer.files[gCurrSaveFileNum - 1][0].capLevel)
         {
-        case 8:
+        case LEVEL_SSL:
             save_file_set_flags(SAVE_FLAG_CAP_ON_KLEPTO);
             break;
-        case 10:
+        case LEVEL_SL:
             save_file_set_flags(SAVE_FLAG_CAP_ON_MR_BLIZZARD);
             break;
-        case 36:
+        case LEVEL_TTM:
             save_file_set_flags(SAVE_FLAG_CAP_ON_UKIKI);
             break;
         }
@@ -675,28 +675,28 @@ void func_8027A0E8(void)
     D_8033A131 = 0;
 }
 
-void func_8027A100(u8 *a)
+void func_8027A100(struct WarpNode *a)
 {
-    if (a[1] & 0x80)
+    if (a->destLevel & 0x80)
     {
         D_8033A130 = D_8033A758;
         D_8033A131 = gCurrCourseNum;
-        D_8033A132 = a[1] & 0x7F;
-        D_8033A133 = a[2];
-        D_8033A134 = a[3];
+        D_8033A132 = a->destLevel & 0x7F;
+        D_8033A133 = a->destArea;
+        D_8033A134 = a->destNode;
     }
 }
 
-s32 func_8027A168(u8 *a)
+s32 func_8027A168(struct WarpNode *a)
 {
     s16 sp6 = 0;
-    s16 sp4 = D_8032CE37[a[1] & 0x7F];
+    s16 sp4 = D_8032CE37[a->destLevel & 0x7F];
 
     if (D_8033A131 != 0 && D_8033A75C == sp4 && D_8033A130 == D_8033A758)
     {
-        a[1] = D_8033A132;
-        a[2] = D_8033A133;
-        a[3] = D_8033A134;
+        a->destLevel = D_8033A132;
+        a->destArea = D_8033A133;
+        a->destNode = D_8033A134;
         sp6 = 1;
     }
     else
