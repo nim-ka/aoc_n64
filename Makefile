@@ -99,12 +99,22 @@ $(BUILD_DIR)/mio0/%.mio0: bin/%.bin
 	$(MIO0TOOL) $< $@
 
 $(BUILD_DIR):
-	mkdir $(BUILD_DIR) $(addprefix $(BUILD_DIR)/,$(SRC_DIRS) $(ASM_DIRS) $(DATA_DIRS) $(BIN_DIRS)) $(MIO0_DIR)
+	mkdir $(BUILD_DIR) $(addprefix $(BUILD_DIR)/,$(SRC_DIRS) $(ASM_DIRS) $(DATA_DIRS) $(BIN_DIRS) $(TEXTURE_DIRS)) $(MIO0_DIR)
 
 # Make sure build directory exists before compiling objects
 $(O_FILES): | $(BUILD_DIR)
 
 $(BUILD_DIR)/src/star_select.o: src/text_strings.h
+
+# texture generation
+$(BUILD_DIR)/bin/%.rgba16: textures/%.rgba16.png
+	$(N64GRAPHICS) -i $@ -g $< -f rgba16
+
+$(BUILD_DIR)/bin/%.ia16: textures/%.ia16.png
+	$(N64GRAPHICS) -i $@ -g $< -f ia16
+
+$(BUILD_DIR)/bin/%.ia8: textures/%.ia8.png
+	$(N64GRAPHICS) -i $@ -g $< -f ia8
 
 # compressed segment generation
 $(BUILD_DIR)/bin/%.o: bin/%.s

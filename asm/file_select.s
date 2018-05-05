@@ -3977,8 +3977,8 @@ glabel func_80173A40
 /* 2222BC 80173AEC 3C080600 */  lui   $t0, 0x600
 /* 2222C0 80173AF0 AD280000 */  sw    $t0, ($t1)
 /* 2222C4 80173AF4 8FAB0024 */  lw    $t3, 0x24($sp)
-/* 2222C8 80173AF8 3C0A0700 */  lui   $t2, %hi(D_070073A0) # $t2, 0x700
-/* 2222CC 80173AFC 254A73A0 */  addiu $t2, %lo(D_070073A0) # addiu $t2, $t2, 0x73a0
+/* 2222C8 80173AF8 3C0A0700 */  lui   $t2, %hi(mm7_f3d_0073A0) # $t2, 0x700
+/* 2222CC 80173AFC 254A73A0 */  addiu $t2, %lo(mm7_f3d_0073A0) # addiu $t2, $t2, 0x73a0
 /* 2222D0 80173B00 AD6A0004 */  sw    $t2, 4($t3)
 .L80173B04:
 /* 2222D4 80173B04 3C0C801A */  lui   $t4, %hi(D_801A7BE4) # $t4, 0x801a

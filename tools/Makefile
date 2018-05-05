@@ -3,7 +3,7 @@ CFLAGS := -I . -Wall -Wextra -pedantic -std=c99 -O3 -s
 PROGRAMS := n64graphics mio0 n64cksum textconv
 
 
-n64graphics_SOURCES := n64graphics.c
+n64graphics_SOURCES := n64graphics.c utils.c
 n64graphics_CFLAGS  := -DN64GRAPHICS_STANDALONE
 
 mio0_SOURCES := libmio0.c

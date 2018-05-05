@@ -2,10 +2,6 @@ TARGET = sm64.j
 LD_SCRIPT = $(TARGET).ld
 MIO0_DIR = build/mio0
 TEXTURE_DIR = textures
-GEO_DIR = geo
-LEVEL_DIR = levels
-
-MUSIC_DIR = music
 
 ifeq (0,1)
 
@@ -76,9 +72,6 @@ $(MIO0_DIR)/wood_trademark.bin: $(TEXTURE_DIR)/misc/wood_trademark/wood_trademar
 	$(N64GRAPHICS) $@ $^
 
 $(MIO0_DIR)/mario_bg.bin: $(TEXTURE_DIR)/misc/mario_bg/mario_bg.0x001C0.rgba16.png $(TEXTURE_DIR)/misc/mario_bg/mario_bg.0x00E40.rgba16.png $(TEXTURE_DIR)/misc/mario_bg/mario_bg.0x01AC0.rgba16.png $(TEXTURE_DIR)/misc/mario_bg/mario_bg.0x02740.rgba16.png $(TEXTURE_DIR)/misc/mario_bg/mario_bg.0x033C0.rgba16.png $(TEXTURE_DIR)/misc/mario_bg/mario_bg.0x04040.rgba16.png $(TEXTURE_DIR)/misc/mario_bg/mario_bg.0x04CC0.rgba16.png $(TEXTURE_DIR)/misc/mario_bg/mario_bg.0x05940.rgba16.png
-	$(N64GRAPHICS) $@ $^
-
-$(MIO0_DIR)/main_menu_segment7.bin: $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x00018.rgba16.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x00818.rgba16.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x01018.rgba16.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x02018.rgba16.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x03468.rgba16.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x03C68.rgba16.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x04468.rgba16.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x04C68.rgba16.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x05468.rgba16.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x06328.rgba16.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x06B28.rgba16.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x073D0.rgba16.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x075D0.rgba16.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x077D0.rgba16.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x079D0.rgba16.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x07BD0.rgba16.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x07DD0.rgba16.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x07FD0.rgba16.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x081D0.rgba16.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x083D0.rgba16.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x085D0.rgba16.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x087D0.rgba16.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x089D0.rgba16.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x08BD0.rgba16.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x08DD0.rgba16.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x08FD0.rgba16.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x091D0.rgba16.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x093D0.rgba16.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x095D0.rgba16.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x097D0.rgba16.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x099D0.rgba16.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x09BD0.rgba16.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x09DD0.rgba16.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x09FD0.rgba16.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0A1D0.rgba16.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0A3D0.rgba16.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0A5D0.rgba16.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0A7D0.rgba16.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0A9D0.rgba16.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0AC48.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0AC88.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0ACC8.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0AD08.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0AD48.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0AD88.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0ADC8.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0AE08.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0AE48.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0AE88.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0AEC8.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0AF08.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0AF48.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0AF88.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0AFC8.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0B008.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0B048.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0B088.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0B0C8.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0B108.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0B148.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0B188.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0B1C8.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0B208.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0B248.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0B288.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0B2C8.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0B308.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0B348.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0B388.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0B3C8.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0B408.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0B448.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0B488.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0B4C8.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0B508.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0B548.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0B588.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0B5C8.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0B608.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0B648.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0B688.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0B6C8.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0B708.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0B748.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0B788.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0B7C8.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0B808.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0B848.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0B888.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0B8C8.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0B908.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0B948.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0B988.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0B9C8.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0BA08.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0BA48.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0BA88.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0BAC8.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0BB08.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0BB48.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0BB88.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0BBC8.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0BC08.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0BC48.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0BC88.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0BCC8.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0BD08.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0BD48.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0BD88.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0BDC8.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0BE08.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0BE48.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0BE88.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0BEC8.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0BF08.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0BF48.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0BF88.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0BFC8.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0C008.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0C048.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0C088.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0C0C8.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0C108.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0C148.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0C188.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0C1C8.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0C208.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0C248.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0C288.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0C2C8.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0C308.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0C348.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0C388.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0C3C8.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0C408.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0C448.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0C488.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0C4C8.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0C508.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0C548.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0C588.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0C5C8.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0C608.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0C648.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0C688.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0C6C8.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0C708.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0C748.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0C788.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0C7C8.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0C808.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0C848.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0C888.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0C8C8.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0C908.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0C948.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0C988.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0C9C8.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0CA08.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0CA48.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0CA88.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0CAC8.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0CB08.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0CB48.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0CB88.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0CBC8.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0CC08.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0CC48.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0CC88.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0CCC8.ia8.png $(TEXTURE_DIR)/levels/main_menu/main_menu_segment7.0x0D1A8.rgba16.png
 	$(N64GRAPHICS) $@ $^
 
 $(MIO0_DIR)/water_skybox.bin: $(TEXTURE_DIR)/misc/water/water_skybox.0x00000.skybox.png
@@ -326,95 +319,179 @@ $(MIO0_DIR)/bifs_platform_segment7.mio0 \
 $(MIO0_DIR)/bits_platform_segment7.mio0 \
 $(MIO0_DIR)/ttm_segment7.mio0
 
-LEVEL_FILES = \
-$(LEVEL_DIR)/main_entry.s \
-$(GEO_DIR)/owl_thwomp_bullet_heave.geo.s \
-$(GEO_DIR)/bully_blargg.geo.s \
-$(GEO_DIR)/kingbobomb_bubble.geo.s \
-$(GEO_DIR)/sea_creatures.geo.s \
-$(GEO_DIR)/klepto_eyerock_pokey.geo.s \
-$(GEO_DIR)/mole_monkey_fwoosh.geo.s \
-$(GEO_DIR)/spindrift_penguin_blizzard.geo.s \
-$(GEO_DIR)/cap_switch.geo.s \
-$(GEO_DIR)/bookend_chair_piano_boo.geo.s \
-$(GEO_DIR)/birds_peach_yoshi.geo.s \
-$(GEO_DIR)/bubba_wiggler_lakitu.geo.s \
-$(GEO_DIR)/bowser_flames_bomb.geo.s \
-$(GEO_DIR)/skeeter_fish_manta_chest.geo.s \
-$(GEO_DIR)/koopa_log_piranha_whomp_chomp.geo.s \
-$(GEO_DIR)/lakitu_toad_mips_boo.geo.s \
-$(GEO_DIR)/moneybag.geo.s \
-$(GEO_DIR)/mri_swoop_snufit_dorrie_scuttlebug.geo.s \
-$(GEO_DIR)/cannon_box_switch_enemies.geo.s \
-$(GEO_DIR)/coins_pipe_doors_maps_trees.geo.s \
-./behavior_data.s \
-$(LEVEL_DIR)/game_over_level.s \
-$(LEVEL_DIR)/main_menu_level.s \
-$(LEVEL_DIR)/main_level_scripts.s \
-$(LEVEL_DIR)/bbh_level.s \
-$(LEVEL_DIR)/ccm_level.s \
-$(LEVEL_DIR)/inside_castle_level.s \
-$(LEVEL_DIR)/hmc_level.s \
-$(LEVEL_DIR)/ssl_level.s \
-$(LEVEL_DIR)/bob_level.s \
-$(LEVEL_DIR)/sl_level.s \
-$(LEVEL_DIR)/wdw_level.s \
-$(LEVEL_DIR)/jrb_level.s \
-$(LEVEL_DIR)/thi_level.s \
-$(LEVEL_DIR)/ttc_level.s \
-$(LEVEL_DIR)/rr_level.s \
-$(LEVEL_DIR)/castle_grounds_level.s \
-$(LEVEL_DIR)/bidw_level.s \
-$(LEVEL_DIR)/vanish_cap_level.s \
-$(LEVEL_DIR)/bifs_level.s \
-$(LEVEL_DIR)/secret_aquarium_level.s \
-$(LEVEL_DIR)/bits_level.s \
-$(LEVEL_DIR)/lll_level.s \
-$(LEVEL_DIR)/ddd_level.s \
-$(LEVEL_DIR)/wf_level.s \
-$(LEVEL_DIR)/cake_end_level.s \
-$(LEVEL_DIR)/castle_courtyard_level.s \
-$(LEVEL_DIR)/secret_slide_level.s \
-$(LEVEL_DIR)/metal_cap_level.s \
-$(LEVEL_DIR)/wing_cap_level.s \
-$(LEVEL_DIR)/bidw_platform_level.s \
-$(LEVEL_DIR)/rainbow_bonus_level.s \
-$(LEVEL_DIR)/bifs_platform_level.s \
-$(LEVEL_DIR)/bits_platform_level.s \
-$(LEVEL_DIR)/ttm_level.s
+MAIN_MENU_SEGMENT7_FILES = \
+   main_menu_segment7.00018.rgba16 \
+   main_menu_segment7.00818.rgba16 \
+   main_menu_segment7.01018.rgba16 \
+   main_menu_segment7.02018.rgba16 \
+   main_menu_segment7.03468.rgba16 \
+   main_menu_segment7.03C68.rgba16 \
+   main_menu_segment7.04468.rgba16 \
+   main_menu_segment7.04C68.rgba16 \
+   main_menu_segment7.05468.rgba16 \
+   main_menu_segment7.06328.rgba16 \
+   main_menu_segment7.06B28.rgba16 \
+   main_menu_segment7.073D0.rgba16 \
+   main_menu_segment7.075D0.rgba16 \
+   main_menu_segment7.077D0.rgba16 \
+   main_menu_segment7.079D0.rgba16 \
+   main_menu_segment7.07BD0.rgba16 \
+   main_menu_segment7.07DD0.rgba16 \
+   main_menu_segment7.07FD0.rgba16 \
+   main_menu_segment7.081D0.rgba16 \
+   main_menu_segment7.083D0.rgba16 \
+   main_menu_segment7.085D0.rgba16 \
+   main_menu_segment7.087D0.rgba16 \
+   main_menu_segment7.089D0.rgba16 \
+   main_menu_segment7.08BD0.rgba16 \
+   main_menu_segment7.08DD0.rgba16 \
+   main_menu_segment7.08FD0.rgba16 \
+   main_menu_segment7.091D0.rgba16 \
+   main_menu_segment7.093D0.rgba16 \
+   main_menu_segment7.095D0.rgba16 \
+   main_menu_segment7.097D0.rgba16 \
+   main_menu_segment7.099D0.rgba16 \
+   main_menu_segment7.09BD0.rgba16 \
+   main_menu_segment7.09DD0.rgba16 \
+   main_menu_segment7.09FD0.rgba16 \
+   main_menu_segment7.0A1D0.rgba16 \
+   main_menu_segment7.0A3D0.rgba16 \
+   main_menu_segment7.0A5D0.rgba16 \
+   main_menu_segment7.0A7D0.rgba16 \
+   main_menu_segment7.0A9D0.rgba16 \
+   main_menu_segment7.0AC48.ia8 \
+   main_menu_segment7.0AC88.ia8 \
+   main_menu_segment7.0ACC8.ia8 \
+   main_menu_segment7.0AD08.ia8 \
+   main_menu_segment7.0AD48.ia8 \
+   main_menu_segment7.0AD88.ia8 \
+   main_menu_segment7.0ADC8.ia8 \
+   main_menu_segment7.0AE08.ia8 \
+   main_menu_segment7.0AE48.ia8 \
+   main_menu_segment7.0AE88.ia8 \
+   main_menu_segment7.0AEC8.ia8 \
+   main_menu_segment7.0AF08.ia8 \
+   main_menu_segment7.0AF48.ia8 \
+   main_menu_segment7.0AF88.ia8 \
+   main_menu_segment7.0AFC8.ia8 \
+   main_menu_segment7.0B008.ia8 \
+   main_menu_segment7.0B048.ia8 \
+   main_menu_segment7.0B088.ia8 \
+   main_menu_segment7.0B0C8.ia8 \
+   main_menu_segment7.0B108.ia8 \
+   main_menu_segment7.0B148.ia8 \
+   main_menu_segment7.0B188.ia8 \
+   main_menu_segment7.0B1C8.ia8 \
+   main_menu_segment7.0B208.ia8 \
+   main_menu_segment7.0B248.ia8 \
+   main_menu_segment7.0B288.ia8 \
+   main_menu_segment7.0B2C8.ia8 \
+   main_menu_segment7.0B308.ia8 \
+   main_menu_segment7.0B348.ia8 \
+   main_menu_segment7.0B388.ia8 \
+   main_menu_segment7.0B3C8.ia8 \
+   main_menu_segment7.0B408.ia8 \
+   main_menu_segment7.0B448.ia8 \
+   main_menu_segment7.0B488.ia8 \
+   main_menu_segment7.0B4C8.ia8 \
+   main_menu_segment7.0B508.ia8 \
+   main_menu_segment7.0B548.ia8 \
+   main_menu_segment7.0B588.ia8 \
+   main_menu_segment7.0B5C8.ia8 \
+   main_menu_segment7.0B608.ia8 \
+   main_menu_segment7.0B648.ia8 \
+   main_menu_segment7.0B688.ia8 \
+   main_menu_segment7.0B6C8.ia8 \
+   main_menu_segment7.0B708.ia8 \
+   main_menu_segment7.0B748.ia8 \
+   main_menu_segment7.0B788.ia8 \
+   main_menu_segment7.0B7C8.ia8 \
+   main_menu_segment7.0B808.ia8 \
+   main_menu_segment7.0B848.ia8 \
+   main_menu_segment7.0B888.ia8 \
+   main_menu_segment7.0B8C8.ia8 \
+   main_menu_segment7.0B908.ia8 \
+   main_menu_segment7.0B948.ia8 \
+   main_menu_segment7.0B988.ia8 \
+   main_menu_segment7.0B9C8.ia8 \
+   main_menu_segment7.0BA08.ia8 \
+   main_menu_segment7.0BA48.ia8 \
+   main_menu_segment7.0BA88.ia8 \
+   main_menu_segment7.0BAC8.ia8 \
+   main_menu_segment7.0BB08.ia8 \
+   main_menu_segment7.0BB48.ia8 \
+   main_menu_segment7.0BB88.ia8 \
+   main_menu_segment7.0BBC8.ia8 \
+   main_menu_segment7.0BC08.ia8 \
+   main_menu_segment7.0BC48.ia8 \
+   main_menu_segment7.0BC88.ia8 \
+   main_menu_segment7.0BCC8.ia8 \
+   main_menu_segment7.0BD08.ia8 \
+   main_menu_segment7.0BD48.ia8 \
+   main_menu_segment7.0BD88.ia8 \
+   main_menu_segment7.0BDC8.ia8 \
+   main_menu_segment7.0BE08.ia8 \
+   main_menu_segment7.0BE48.ia8 \
+   main_menu_segment7.0BE88.ia8 \
+   main_menu_segment7.0BEC8.ia8 \
+   main_menu_segment7.0BF08.ia8 \
+   main_menu_segment7.0BF48.ia8 \
+   main_menu_segment7.0BF88.ia8 \
+   main_menu_segment7.0BFC8.ia8 \
+   main_menu_segment7.0C008.ia8 \
+   main_menu_segment7.0C048.ia8 \
+   main_menu_segment7.0C088.ia8 \
+   main_menu_segment7.0C0C8.ia8 \
+   main_menu_segment7.0C108.ia8 \
+   main_menu_segment7.0C148.ia8 \
+   main_menu_segment7.0C188.ia8 \
+   main_menu_segment7.0C1C8.ia8 \
+   main_menu_segment7.0C208.ia8 \
+   main_menu_segment7.0C248.ia8 \
+   main_menu_segment7.0C288.ia8 \
+   main_menu_segment7.0C2C8.ia8 \
+   main_menu_segment7.0C308.ia8 \
+   main_menu_segment7.0C348.ia8 \
+   main_menu_segment7.0C388.ia8 \
+   main_menu_segment7.0C3C8.ia8 \
+   main_menu_segment7.0C408.ia8 \
+   main_menu_segment7.0C448.ia8 \
+   main_menu_segment7.0C488.ia8 \
+   main_menu_segment7.0C4C8.ia8 \
+   main_menu_segment7.0C508.ia8 \
+   main_menu_segment7.0C548.ia8 \
+   main_menu_segment7.0C588.ia8 \
+   main_menu_segment7.0C5C8.ia8 \
+   main_menu_segment7.0C608.ia8 \
+   main_menu_segment7.0C648.ia8 \
+   main_menu_segment7.0C688.ia8 \
+   main_menu_segment7.0C6C8.ia8 \
+   main_menu_segment7.0C708.ia8 \
+   main_menu_segment7.0C748.ia8 \
+   main_menu_segment7.0C788.ia8 \
+   main_menu_segment7.0C7C8.ia8 \
+   main_menu_segment7.0C808.ia8 \
+   main_menu_segment7.0C848.ia8 \
+   main_menu_segment7.0C888.ia8 \
+   main_menu_segment7.0C8C8.ia8 \
+   main_menu_segment7.0C908.ia8 \
+   main_menu_segment7.0C948.ia8 \
+   main_menu_segment7.0C988.ia8 \
+   main_menu_segment7.0C9C8.ia8 \
+   main_menu_segment7.0CA08.ia8 \
+   main_menu_segment7.0CA48.ia8 \
+   main_menu_segment7.0CA88.ia8 \
+   main_menu_segment7.0CAC8.ia8 \
+   main_menu_segment7.0CB08.ia8 \
+   main_menu_segment7.0CB48.ia8 \
+   main_menu_segment7.0CB88.ia8 \
+   main_menu_segment7.0CBC8.ia8 \
+   main_menu_segment7.0CC08.ia8 \
+   main_menu_segment7.0CC48.ia8 \
+   main_menu_segment7.0CC88.ia8 \
+   main_menu_segment7.0CCC8.ia8 \
+   main_menu_segment7.0D1A8.rgba16 \
+   main_menu_segment7.0E1A8.rgba16
 
-MUSIC_FILES = \
-$(MUSIC_DIR)/seq_00.m64 \
-$(MUSIC_DIR)/seq_01.m64 \
-$(MUSIC_DIR)/seq_02.m64 \
-$(MUSIC_DIR)/seq_03.m64 \
-$(MUSIC_DIR)/seq_04.m64 \
-$(MUSIC_DIR)/seq_05.m64 \
-$(MUSIC_DIR)/seq_06.m64 \
-$(MUSIC_DIR)/seq_07.m64 \
-$(MUSIC_DIR)/seq_08.m64 \
-$(MUSIC_DIR)/seq_09.m64 \
-$(MUSIC_DIR)/seq_0A.m64 \
-$(MUSIC_DIR)/seq_0B.m64 \
-$(MUSIC_DIR)/seq_0C.m64 \
-$(MUSIC_DIR)/seq_0D.m64 \
-$(MUSIC_DIR)/seq_0E.m64 \
-$(MUSIC_DIR)/seq_0F.m64 \
-$(MUSIC_DIR)/seq_10.m64 \
-$(MUSIC_DIR)/seq_11.m64 \
-$(MUSIC_DIR)/seq_12.m64 \
-$(MUSIC_DIR)/seq_13.m64 \
-$(MUSIC_DIR)/seq_14.m64 \
-$(MUSIC_DIR)/seq_15.m64 \
-$(MUSIC_DIR)/seq_16.m64 \
-$(MUSIC_DIR)/seq_17.m64 \
-$(MUSIC_DIR)/seq_18.m64 \
-$(MUSIC_DIR)/seq_19.m64 \
-$(MUSIC_DIR)/seq_1A.m64 \
-$(MUSIC_DIR)/seq_1B.m64 \
-$(MUSIC_DIR)/seq_1C.m64 \
-$(MUSIC_DIR)/seq_1D.m64 \
-$(MUSIC_DIR)/seq_1E.m64 \
-$(MUSIC_DIR)/seq_1F.m64 \
-$(MUSIC_DIR)/seq_20.m64 \
-$(MUSIC_DIR)/seq_21.m64
+TEXTURE_DIRS = bin/main_menu_segment7
+$(BUILD_DIR)/bin/main_menu_segment7.o: $(addprefix $(BUILD_DIR)/bin/main_menu_segment7/,$(MAIN_MENU_SEGMENT7_FILES))
