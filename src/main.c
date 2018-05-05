@@ -22,35 +22,37 @@ s8 gResetTimer = 0;
 s8 D_8032C648 = 0;
 s8 gDebugLevelSelect = 0;
 s8 D_8032C650 = 0;
-s8 gDebugResourceMeter = 0;
-s8 gPrintDebugInfo = 0;
-u16 D_8032C65C[] = {0x800, 0x800, 0x400, 0x400, 0x200, 0x100, 0x200, 0x100};
-u16 D_8032C66C[] = {0x400, 0x400, 0x800, 0x800, 0x200, 0x100, 0x200, 0x100};
-s16 D_8032C67C = 0;
-s16 D_8032C680 = 0;
 
-void Unknown80246050(void)
+s8 gShowResourceMeter = FALSE;
+s8 gShowDebugText = FALSE;
+static u16 sResourceMeterKeySequence[] = {U_JPAD, U_JPAD, D_JPAD, D_JPAD, L_JPAD, R_JPAD, L_JPAD, R_JPAD};
+static u16 sDebugTextKeySequence[]     = {D_JPAD, D_JPAD, U_JPAD, U_JPAD, L_JPAD, R_JPAD, L_JPAD, R_JPAD};
+static s16 sResourceMeterKey = 0;
+static s16 sDebugTextKey = 0;
+
+// unused
+void handle_debug_key_sequences(void)
 {
     if (gPlayer2Controller->buttonPressed != 0)
     {
-        if (D_8032C65C[D_8032C67C++] == gPlayer2Controller->buttonPressed)
+        if (sResourceMeterKeySequence[sResourceMeterKey++] == gPlayer2Controller->buttonPressed)
         {
-            if (D_8032C67C == ARRAY_COUNT(D_8032C65C))
-                D_8032C67C = 0, gDebugResourceMeter ^= 1;
+            if (sResourceMeterKey == ARRAY_COUNT(sResourceMeterKeySequence))
+                sResourceMeterKey = 0, gShowResourceMeter ^= 1;
         }
         else
         {
-            D_8032C67C = 0;
+            sResourceMeterKey = 0;
         }
 
-        if (D_8032C66C[D_8032C680++] == gPlayer2Controller->buttonPressed)
+        if (sDebugTextKeySequence[sDebugTextKey++] == gPlayer2Controller->buttonPressed)
         {
-            if (D_8032C680 == ARRAY_COUNT(D_8032C66C))
-                D_8032C680 = 0, gPrintDebugInfo ^= 1;
+            if (sDebugTextKey == ARRAY_COUNT(sDebugTextKeySequence))
+                sDebugTextKey = 0, gShowDebugText ^= 1;
         }
         else
         {
-            D_8032C680 = 0;
+            sDebugTextKey = 0;
         }
     }
 }

@@ -162,8 +162,8 @@ void func_80247C9C(void)
 void CleanupDisplayList(void)
 {
     func_8024781C();
-    if (gDebugResourceMeter != 0)
-        func_8027EEB0();
+    if (gShowResourceMeter)
+        draw_resource_meter();
 
     gDPFullSync(gDisplayListHead++);
     gSPEndDisplayList(gDisplayListHead++);

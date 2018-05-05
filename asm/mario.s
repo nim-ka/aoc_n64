@@ -7,7 +7,7 @@
 .set gp=64
 
 .include "macros.inc"
-.include "globals.inc"
+
 
 .section .text, "ax"
 
@@ -3269,8 +3269,8 @@ glabel func_802534F4
 /* 00E4F8 802534F8 AFBF001C */  sw    $ra, 0x1c($sp)
 /* 00E4FC 802534FC AFA40030 */  sw    $a0, 0x30($sp)
 /* 00E500 80253500 AFB00018 */  sw    $s0, 0x18($sp)
-/* 00E504 80253504 3C0E8033 */  lui   $t6, %hi(gPrintDebugInfo) 
-/* 00E508 80253508 81CEC658 */  lb    $t6, %lo(gPrintDebugInfo)($t6)
+/* 00E504 80253504 3C0E8033 */  lui   $t6, %hi(gShowDebugText) 
+/* 00E508 80253508 81CEC658 */  lb    $t6, %lo(gShowDebugText)($t6)
 /* 00E50C 8025350C 11C00038 */  beqz  $t6, .L802535F0
 /* 00E510 80253510 00000000 */   nop   
 /* 00E514 80253514 8FAF0030 */  lw    $t7, 0x30($sp)

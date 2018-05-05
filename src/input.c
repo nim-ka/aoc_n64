@@ -297,7 +297,7 @@ void thread5_game_loop(UNUSED void *arg)
         func_80248060();
 
         // when debug info is enabled, print the "BUF %d" information.
-        if(gPrintDebugInfo)
+        if(gShowDebugText)
             // subtract the end of the gfx pool with the display list to obtain the
             // amount of free space remaining.
             PrintInt(180, 20, "BUF %d", (int)gGfxPoolEnd - (int)gDisplayListHead);

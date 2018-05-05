@@ -1,5 +1,5 @@
 .include "macros.inc"
-.include "globals.inc"
+
 
 .section .data
 

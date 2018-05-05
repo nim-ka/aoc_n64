@@ -1,5 +1,7 @@
 # Assembly Macros
 
+.set NULL, 0
+
 .macro glabel label
     .global \label
     \label:

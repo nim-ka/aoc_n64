@@ -7,7 +7,7 @@
 .set gp=64
 
 .include "macros.inc"
-.include "globals.inc"
+
 
 .section .text, "ax"
 
@@ -4117,8 +4117,8 @@ glabel func_8027DB80
 .L8027DDC4:
 /* 038DC4 8027DDC4 3C018033 */  lui   $at, %hi(D_8032CF90) # $at, 0x8033
 /* 038DC8 8027DDC8 AC20CF90 */  sw    $zero, %lo(D_8032CF90)($at)
-/* 038DCC 8027DDCC 3C198033 */  lui   $t9, %hi(gPrintDebugInfo) # $t9, 0x8033
-/* 038DD0 8027DDD0 8339C658 */  lb    $t9, %lo(gPrintDebugInfo)($t9)
+/* 038DCC 8027DDCC 3C198033 */  lui   $t9, %hi(gShowDebugText) # $t9, 0x8033
+/* 038DD0 8027DDD0 8339C658 */  lb    $t9, %lo(gShowDebugText)($t9)
 /* 038DD4 8027DDD4 1320000B */  beqz  $t9, .L8027DE04
 /* 038DD8 8027DDD8 00000000 */   nop   
 /* 038DDC 8027DDDC 3C098034 */  lui   $t1, %hi(D_8033B018) # $t1, 0x8034

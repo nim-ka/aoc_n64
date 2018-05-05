@@ -1,5 +1,4 @@
 .include "macros.inc"
-.include "globals.inc"
 
 .section .bss
 

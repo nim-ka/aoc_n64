@@ -7,7 +7,7 @@
 .set gp=64
 
 .include "macros.inc"
-.include "globals.inc"
+
 
 .section .text, "ax"
 
@@ -1117,7 +1117,7 @@ glabel func_8027E8FC
 /* 039EA8 8027EEA8 03E00008 */  jr    $ra
 /* 039EAC 8027EEAC 00000000 */   nop   
 
-glabel func_8027EEB0
+glabel draw_resource_meter
 /* 039EB0 8027EEB0 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 039EB4 8027EEB4 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 039EB8 8027EEB8 3C0E8033 */  lui   $t6, %hi(gPlayer1Controller) # $t6, 0x8033

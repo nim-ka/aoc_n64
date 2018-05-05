@@ -7,7 +7,7 @@
 .set gp=64
 
 .include "macros.inc"
-.include "globals.inc"
+
 
 .section .text, "ax" 
 

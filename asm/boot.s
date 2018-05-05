@@ -7,7 +7,7 @@
 .set gp=64
 
 .include "macros.inc"
-.include "globals.inc"
+
 
 .section .text, "ax"
 /* 000040 00000000 40806800 */  mtc0  $zero, $13
