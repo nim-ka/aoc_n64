@@ -1,8 +1,9 @@
 #include <ultra64.h>
 
 #include "sm64.h"
-#include "input.h"
+#include "game.h"
 #include "main.h"
+#include "memory.h"
 
 // round up to the next multiple
 #define ALIGN4(val)  (((val) + 0x3) & ~0x3)

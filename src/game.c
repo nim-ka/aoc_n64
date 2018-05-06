@@ -1,8 +1,9 @@
 #include <ultra64.h>
 
 #include "sm64.h"
-#include "input.h"
+#include "game.h"
 #include "main.h"
+#include "memory.h"
 #include "save_file.h"
 
 // FIXME: I'm not sure all of these variables belong in this file, but I don't
@@ -14,7 +15,7 @@ OSMesgQueue D_80339CA0;
 OSMesgQueue D_80339CB8;
 OSMesg D_80339CD0;
 OSMesg D_80339CD4;
-void *D_80339CD8;
+struct Struct8032C620 D_80339CD8;
 u32 gFrameBuffers[3];
 u32 D_80339CEC;
 void *D_80339CF0;
@@ -292,7 +293,7 @@ void thread5_game_loop(UNUSED void *arg)
     init_controllers();
     save_file_load_all();
 
-    func_80246B14(2, &D_80339CD8, &D_80339CA0, 1);
+    func_80246B14(2, &D_80339CD8, &D_80339CA0, (OSMesg)1);
     addr = (u32)segmented_to_virtual(D_10000000);
     func_80320AE8(2, 0, 0);
     func_80248DD8(save_file_get_sound_mode());

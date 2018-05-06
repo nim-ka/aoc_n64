@@ -1,8 +1,9 @@
 #include <ultra64.h>
 
 #include "sm64.h"
+#include "game.h"
 #include "main.h"
-#include "input.h"
+#include "memory.h"
 
 int unused8032C690 = 0;
 u32 D_8032C694 = 0;
@@ -218,7 +219,7 @@ void func_80247ED8(void)
     func_80247C9C();
     ClearFrameBuffer(0);
     CleanupDisplayList();
-    SendDisplayList((u8 *)D_80339D04 + 51200);
+    SendDisplayList((struct Struct8032C630 *)((u8 *)D_80339D04 + 51200));
 
     D_8032C69C++;
     D_8032C694++;
@@ -242,7 +243,7 @@ void func_80248060(void)
         D_8032C6A0();
         D_8032C6A0 = NULL;
     }
-    SendDisplayList((Gfx *)((u8 *)D_80339D04 + 51200));
+    SendDisplayList((struct Struct8032C630 *)((u8 *)D_80339D04 + 51200));
     func_8027DE30(3);
     osRecvMesg(&D_80339CA0, &D_80339BEC, 1);
     osViSwapBuffer((void *)PHYSICAL_TO_VIRTUAL(gFrameBuffers[sCurrFBNum]));

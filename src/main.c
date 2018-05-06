@@ -1,8 +1,9 @@
 #include <ultra64.h>
 
 #include "sm64.h"
-#include "input.h"
+#include "game.h"
 #include "main.h"
+#include "memory.h"
 
 // Message IDs
 #define MESG_SP_COMPLETE 100
@@ -417,6 +418,9 @@ static void Unknown80246CB8(void)
         ;
 }
 
+/**
+ * Initialize hardware, start main thread, then idle.
+ */
 static void thread1_idle(UNUSED void *arg)
 {
     osCreateViManager(OS_PRIORITY_VIMGR);

@@ -1,7 +1,8 @@
 #include <ultra64.h>
 
 #include "sm64.h"
-#include "input.h"
+#include "game.h"
+#include "memory.h"
 #include "save_file.h"
 
 #include "text_strings.h"

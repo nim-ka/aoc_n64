@@ -1,7 +1,7 @@
 #include <ultra64.h>
 
 #include "sm64.h"
-#include "input.h"
+#include "game.h"
 #include "math_util.h"
 
 extern float D_8033B438;

@@ -30,7 +30,7 @@ SECTIONS
       build/asm/entry.o(.text);
       build/src/main.o(.text);
       build/src/display.o(.text);
-      build/src/input.o(.text);
+      build/src/game.o(.text);
       build/src/sound_init.o(.text);
       build/src/level_update.o(.text);
       build/src/interaction.o(.text);
@@ -78,7 +78,7 @@ SECTIONS
       build/data/data_8032B3F0.o(.data*);
       build/src/main.o(.data*);
       build/src/display.o(.data*);
-      build/src/input.o(.data*);
+      build/src/game.o(.data*);
       build/src/sound_init.o(.data*);
       build/src/level_update.o(.data*);
       build/src/interaction.o(.data*);
@@ -112,7 +112,7 @@ SECTIONS
       build/data/libultra.data.o(.data*);
       /* rodata */
       build/src/main.o(.rodata*);
-      build/src/input.o(.rodata*);
+      build/src/game.o(.rodata*);
       build/src/sound_init.o(.rodata*);
       build/src/level_update.o(.rodata*);
       build/src/interaction.o(.rodata*);
@@ -251,7 +251,7 @@ SECTIONS
    {
       __bss1_start = .;
       build/src/main.o(.bss*);
-      build/src/input.o(.bss*);
+      build/src/game.o(.bss*);
       build/data/bss1.o(.bss*);
       build/src/level_update.o(.bss*);
       build/data/bss80339F00.o(.bss*);

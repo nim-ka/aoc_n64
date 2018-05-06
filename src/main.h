@@ -35,9 +35,9 @@ extern s8 D_8032C650;
 extern s8 gShowResourceMeter;
 extern s8 gShowDebugText;
 
-extern void func_80246B14(/*int a, struct Struct8032C620 *b, OSMesgQueue *queue, OSMesg *msg*/);
-extern void func_80246BB4(/*OSMesg *msg*/);
-extern void SendDisplayList(/*struct Struct8032C630 *a*/);
+extern void func_80246B14(int a, struct Struct8032C620 *b, OSMesgQueue *queue, OSMesg *msg);
+extern void func_80246BB4(OSMesg *msg);
+extern void SendDisplayList(struct Struct8032C630 *a);
 extern void Main(void);
 
 #endif

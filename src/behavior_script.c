@@ -2,6 +2,7 @@
 
 #include "sm64.h"
 #include "behavior_script.h"
+#include "memory.h"
 
 void func_80383B70(u32 segptr)
 {

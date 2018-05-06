@@ -22899,9 +22899,9 @@ glabel func_802F7528
 /* 0B25E4 802F75E4 00000000 */   nop   
 /* 0B25E8 802F75E8 87A90038 */  lh    $t1, 0x38($sp)
 /* 0B25EC 802F75EC 87AB003C */  lh    $t3, 0x3c($sp)
-/* 0B25F0 802F75F0 3C0A8036 */  lui    $t2, %hi(gCurrentObject) 
+/* 0B25F0 802F75F0 3C0A8036 */  lui    $t2, %hi(gMarioObject) 
 /* 0B25F4 802F75F4 44898000 */  mtc1  $t1, $f16
-/* 0B25F8 802F75F8 8D4AFDE8 */  lw    $t2, -0x218($t2)
+/* 0B25F8 802F75F8 8D4AFDE8 */  lw    $t2, %lo(gMarioObject)($t2)
 /* 0B25FC 802F75FC 448B5000 */  mtc1  $t3, $f10
 /* 0B2600 802F7600 468084A0 */  cvt.s.w $f18, $f16
 /* 0B2604 802F7604 C5440028 */  lwc1  $f4, 0x28($t2)

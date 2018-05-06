@@ -1,5 +1,5 @@
-#ifndef _INPUT_H_
-#define _INPUT_H_
+#ifndef _GAME_H_
+#define _GAME_H_
 
 extern struct Controller gControllers[3];
 extern OSContStatus gControllerStatuses[4];
@@ -8,7 +8,7 @@ extern OSMesgQueue D_80339CA0;
 extern OSMesgQueue D_80339CB8;
 extern OSMesg D_80339CD0;
 extern OSMesg D_80339CD4;
-extern void *D_80339CD8;
+extern struct Struct8032C620 D_80339CD8;
 extern u32 gFrameBuffers[3];
 extern u32 D_80339CEC;
 extern void *D_80339CF0;

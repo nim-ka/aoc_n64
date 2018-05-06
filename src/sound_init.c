@@ -233,7 +233,7 @@ void thread4_sound(UNUSED void *arg)
     func_803202A0();
     vec3f_copy(D_80339DC0, D_80385FD0);
     osCreateMesgQueue(&gSoundMesgQueue, gSoundMesgBuf, ARRAY_COUNT(gSoundMesgBuf));
-    func_80246B14(1, D_80339DF0, &gSoundMesgQueue, 512);
+    func_80246B14(1, &D_80339DF0, &gSoundMesgQueue, (OSMesg)512);
     
     while (1)
     {
@@ -242,11 +242,11 @@ void thread4_sound(UNUSED void *arg)
         osRecvMesg(&gSoundMesgQueue, &msg, 1);
         if (gResetTimer < 25)
         {
-            int sp18;
+            OSMesg *sp18;
 
             func_8027DEE0();
             sp18 = func_8031D924();
-            if (sp18 != 0)
+            if (sp18 != NULL)
                 func_80246BB4(sp18);
             func_8027DEE0();
         }

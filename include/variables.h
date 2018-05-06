@@ -176,7 +176,7 @@ extern Vec3f D_80339DC0;
 extern Vec3f D_80385FD0;
 extern OSMesgQueue gSoundMesgQueue;
 extern OSMesg gSoundMesgBuf[1];
-extern u8 D_80339DF0[];
+extern struct Struct8032C620 D_80339DF0;
 extern s16 D_80339EFA;
 extern u8 D_8033A740;
 extern struct Area *D_8032CE6C;

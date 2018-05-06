@@ -3,6 +3,7 @@
 #include "sm64.h"
 #include "level_update.h"
 #include "math_util.h"
+#include "memory.h"
 #include "save_file.h"
 
 #define INT_GROUND_POUND_OR_TWIRL (1 << 0) // 0x00000001

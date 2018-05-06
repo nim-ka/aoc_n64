@@ -1,9 +1,10 @@
 #include <ultra64.h>
 
 #include "sm64.h"
-#include "input.h"
+#include "game.h"
 #include "main.h"
 #include "math_util.h"
+#include "memory.h"
 
 #define PRESS_START_DEMO_TIMER 800
 
