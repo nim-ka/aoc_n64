@@ -169,7 +169,7 @@ Gfx *func_802CF2A8(s8 a, s8 b, s8 c)
         Mtx *mtx = func_802CF188(a);
 
         gSPDisplayList(dlist++, D_02014708);
-        gSPMatrix(dlist++, VIRTUAL_TO_PHYSICAL(mtx), G_MTX_PROJECTION);
+        gSPMatrix(dlist++, VIRTUAL_TO_PHYSICAL(mtx), G_MTX_PROJECTION | G_MTX_MUL);
         gSPDisplayList(dlist++, D_02014738);
         func_802CEF4C(&dlist, b, a, c);
         gSPDisplayList(dlist++, D_02014768);

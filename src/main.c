@@ -1,6 +1,8 @@
 #include <ultra64.h>
 
 #include "sm64.h"
+#include "input.h"
+#include "main.h"
 
 // Message IDs
 #define MESG_SP_COMPLETE 100
@@ -8,6 +10,25 @@
 #define MESG_VI_VBLANK   102
 #define MESG_UNKNOWN_103 103
 #define MESG_NMI_REQUEST 104
+
+OSThread D_80339210;  // unused?
+OSThread gIdleThread;
+OSThread gMainThread;
+OSThread gGameLoopThread;
+OSThread gSoundThread;
+OSMesgQueue gPIMesgQueue;
+OSMesgQueue gIntrMesgQueue;
+OSMesgQueue gUnknownMesgQueue;
+OSMesg gDmaMesgBuf[1];
+OSMesg gPIMesgBuf[32];
+OSMesg gSIEventMesgBuf[1];
+OSMesg gIntrMesgBuf[16];
+OSMesg gUnknownMesgBuf[16];
+OSIoMesg gDmaIoMesg;
+// FIXME: This overlaps with gDmaIoMesg.
+//OSMesg D_80339BEC;
+OSMesgQueue gDmaMesgQueue;
+OSMesgQueue gSIEventMesgQueue;
 
 struct Struct8032C620 *D_8032C620 = NULL;
 struct Struct8032C620 *D_8032C624 = NULL;
@@ -57,7 +78,7 @@ void handle_debug_key_sequences(void)
     }
 }
 
-void Unknown80246170(void)
+static void Unknown80246170(void)
 {
     // uninitialized
     OSTime time;
@@ -69,15 +90,15 @@ void Unknown80246170(void)
     proutSprintf(0, 0);
 }
 
-void Dummy802461CC(void)
+static void Dummy802461CC(void)
 {
 }
 
-void Dummy802461DC(void)
+static void Dummy802461DC(void)
 {
 }
 
-void Dummy802461EC(void)
+static void Dummy802461EC(void)
 {
 }
 
@@ -134,7 +155,7 @@ void handle_nmi_request(void)
     func_802491FC(90);
 }
 
-void func_802463EC(void)
+static void func_802463EC(void)
 {
     OSMesg msg;
 
@@ -166,7 +187,7 @@ void func_802463EC(void)
     }
 }
 
-void func_8024651C(int a)
+static void func_8024651C(int a)
 {
     UNUSED int pad;  // needed to pad the stack
 
@@ -180,7 +201,7 @@ void func_8024651C(int a)
     D_8032C628->unk48 = 1;
 }
 
-void func_8024659C(void)
+static void func_8024659C(void)
 {
     if (D_8032C628->task.t.type == M_GFXTASK)
     {
@@ -189,7 +210,7 @@ void func_8024659C(void)
     }
 }
 
-void KickTask(void)
+static void KickTask(void)
 {
     if (D_8032C628 == NULL && D_8032C630 != NULL && D_8032C630->unk48 == 0)
     {
@@ -198,14 +219,14 @@ void KickTask(void)
     }
 }
 
-void SendSPTaskDone(void)
+static void SendSPTaskDone(void)
 {
     D_8032C628 = D_8032C62C;
     D_8032C628->unk48 = 1;
     osSendMesg(&gIntrMesgQueue, (OSMesg)MESG_SP_COMPLETE, 0);
 }
 
-void handle_vblank(void)
+static void handle_vblank(void)
 {
     UNUSED int pad;  // needed to pad the stack
 
@@ -244,7 +265,7 @@ void handle_vblank(void)
         osSendMesg(D_8032C624->queue, D_8032C624->msg, 0);
 }
 
-void handle_sp_complete(void)
+static void handle_sp_complete(void)
 {
     struct Struct8032C630 *sp1C = D_8032C628;
 
@@ -286,7 +307,7 @@ void handle_sp_complete(void)
     }
 }
 
-void handle_dp_complete(void)
+static void handle_dp_complete(void)
 {
     if (D_8032C630->msgqueue != NULL)
         osSendMesg(D_8032C630->msgqueue, D_8032C630->msg, 0);
@@ -295,7 +316,7 @@ void handle_dp_complete(void)
     D_8032C630 = NULL;
 }
 
-void thread3_main(UNUSED void *arg)
+static void thread3_main(UNUSED void *arg)
 {
     setup_mesg_queues();
     AllocPool();
@@ -350,7 +371,7 @@ void func_80246B14(int a, struct Struct8032C620 *b, OSMesgQueue *queue, OSMesg *
     }
 }
 
-void SendMessage(OSMesg *msg)
+static void SendMessage(OSMesg *msg)
 {
     osWritebackDCacheAll();
     osSendMesg(&gUnknownMesgQueue, msg, 0);
@@ -384,19 +405,19 @@ void SendDisplayList(struct Struct8032C630 *a)
     }
 }
 
-void Unknown80246C9C(void)
+static void Unknown80246C9C(void)
 {
     D_8032C63C = 1;
 }
 
-void Unknown80246CB8(void)
+static void Unknown80246CB8(void)
 {
     D_8032C63C = 0;
     while (D_8032C62C != NULL)
         ;
 }
 
-void thread1_idle(UNUSED void *arg)
+static void thread1_idle(UNUSED void *arg)
 {
     osCreateViManager(OS_PRIORITY_VIMGR);
     osViSetMode(&D_80333F00.viMode);

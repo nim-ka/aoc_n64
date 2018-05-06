@@ -32,6 +32,20 @@ typedef union
 
 typedef struct
 {
+    short vscale[4];  /* scale, 2 bits fraction */
+    short vtrans[4];  /* translate, 2 bits fraction */
+    /* both the above arrays are padded to 64-bit boundary */
+} Vp_t;
+
+typedef union
+{
+    Vp_t          vp;
+    long long int force_structure_alignment;
+} Vp;
+
+
+typedef struct
+{
     unsigned int w0;
     unsigned int w1;
 } Gwords;
@@ -139,6 +153,23 @@ typedef union
 
 #define G_TX_LDBLK_MAX_TXL 2047
 
+#define G_MV_VIEWPORT 0x80
+#define G_MV_LOOKATY  0x82
+#define G_MV_LOOKATX  0x84
+#define G_MV_L0       0x86
+#define G_MV_L1       0x88
+#define G_MV_L2       0x8A
+#define G_MV_L3       0x8C
+#define G_MV_L4       0x8E
+#define G_MV_L5       0x90
+#define G_MV_L6       0x92
+#define G_MV_L7       0x94
+#define G_MV_TXTATT   0x96
+#define G_MV_MATRIX_1 0x9E
+#define G_MV_MATRIX_2 0x98
+#define G_MV_MATRIX_3 0x9A
+#define G_MV_MATRIX_4 0x9C
+
 #ifndef MAX
 #define MAX(a, b)               ((a) > (b) ? (a) : (b))
 #endif
@@ -147,22 +178,22 @@ typedef union
 #define MIN(a, b)               ((a) < (b) ? (a) : (b))
 #endif
 
-#define gSPMatrix(pkt, m, p) \
-{ \
-    Gfx *_g = (Gfx *)(pkt); \
-    _g->words.w0 = _SHIFTL(0x01, 24, 8) \
-                 | _SHIFTL((p), 16, 8) \
-                 | _SHIFTL(sizeof(Mtx), 0, 16); \
-    _g->words.w1 = (u32)(m); \
+#define gSPMatrix(pkt, m, p)                     \
+{                                                \
+    Gfx *_g = (Gfx *)(pkt);                      \
+    _g->words.w0 = _SHIFTL(0x01,        24,  8)  \
+                 | _SHIFTL((p),         16,  8)  \
+                 | _SHIFTL(sizeof(Mtx),  0, 16); \
+    _g->words.w1 = (u32)(m);                     \
 }
 
-#define gSPVertex(pkt, v, n, v0) \
-{ \
-    Gfx *_g = (Gfx *)(pkt); \
-    _g->words.w0 = _SHIFTL(0x04, 24, 8) \
-                 | _SHIFTL(((n)-1) << 4 | (v0), 16, 8) \
-                 | _SHIFTL(sizeof(Vtx)*(n), 0, 16); \
-    _g->words.w1 = (u32)(v); \
+#define gSPVertex(pkt, v, n, v0)                         \
+{                                                        \
+    Gfx *_g = (Gfx *)(pkt);                              \
+    _g->words.w0 = _SHIFTL(0x04,                24,  8)  \
+                 | _SHIFTL(((n)-1) << 4 | (v0), 16,  8)  \
+                 | _SHIFTL(sizeof(Vtx)*(n),      0, 16); \
+    _g->words.w1 = (u32)(v);                             \
 }
 
 #define gDPLoadSync(pkt) \
@@ -221,22 +252,23 @@ typedef union
     _g->words.w1 = mode; \
 }
 
-#define gDPSetScissor(pkt, mode, ulx, uly, lrx, lry) \
-{ \
-    Gfx *_g = (Gfx *) (pkt); \
-    _g->words.w0 = _SHIFTL(0xED, 24, 8) | \
-        _SHIFTL((int) ((float) ulx * 4.0f), 12, 12) | \
-        _SHIFTL((int) ((float) uly * 4.0f), 0, 12); \
-    _g->words.w1 = _SHIFTL(mode, 24, 8) | \
-        _SHIFTL((int) ((float) lrx * 4.0f), 12, 12) | \
-        _SHIFTL((int) ((float) lry * 4.0f), 0, 12); \
+#define gDPSetScissor(pkt, mode, ulx, uly, lrx, lry)          \
+{                                                             \
+    Gfx *_g = (Gfx *)(pkt);                                   \
+    _g->words.w0 = _SHIFTL(0xED,                     24,  8)  \
+                 | _SHIFTL((int)((float)(ulx)*4.0f), 12, 12)  \
+                 | _SHIFTL((int)((float)(uly)*4.0f),  0, 12); \
+    _g->words.w1 = _SHIFTL((mode),                   24,  8)  \
+                 | _SHIFTL((int)((float)(lrx)*4.0f), 12, 12)  \
+                 | _SHIFTL((int)((float)(lry)*4.0f),  0, 12); \
 }
 
-#define gDPSetCombine(pkt, muxs0, muxs1) \
-{ \
-    Gfx *_g = (Gfx *) (pkt); \
-    _g->words.w0 = _SHIFTL(0xFC, 24, 8) | _SHIFTL(muxs0, 0, 24); \
-    _g->words.w1 = muxs1; \
+#define gDPSetCombine(pkt, muxs0, muxs1)    \
+{                                           \
+    Gfx *_g = (Gfx *)(pkt);                 \
+    _g->words.w0 = _SHIFTL(0xFC,   24,  8)  \
+                 | _SHIFTL((muxs0), 0, 24); \
+    _g->words.w1 = (muxs1);                 \
 }
 
 #define gDPSetTextureLOD(pkt, type) \
@@ -303,10 +335,14 @@ typedef union
 }
 
 #define gDPFillRectangle(pkt, ulx, uly, lrx, lry) \
-{ \
-    Gfx *_g = (Gfx *) (pkt); \
-    _g->words.w0 = _SHIFTL(0xF6, 24, 8) | _SHIFTL(lrx, 14, 10) | _SHIFTL(lry, 2, 10); \
-    _g->words.w1 = _SHIFTL(0, 24, 8) | _SHIFTL(ulx, 14, 10) | _SHIFTL(uly, 2, 10); \
+{                                                 \
+    Gfx *_g = (Gfx *)(pkt);                       \
+    _g->words.w0 = _SHIFTL(0xF6,  24,  8)         \
+                 | _SHIFTL((lrx), 14, 10)         \
+                 | _SHIFTL((lry),  2, 10);        \
+    _g->words.w1 = _SHIFTL(0,     24,  8)         \
+                 | _SHIFTL((ulx), 14, 10)         \
+                 | _SHIFTL((uly),  2, 10);        \
 }
 
 #define gDPSetAlphaCompare(pkt, type) \
@@ -327,7 +363,7 @@ typedef union
 { \
     Gfx *_g = (Gfx *) (pkt); \
     _g->words.w0 = 0xB900031D; \
-    _g->words.w1 = mode1 | mode2; \
+    _g->words.w1 = (mode1) | (mode2); \
 }
 
 #define gSPClearGeometryMode(pkt, mode) \
@@ -352,86 +388,116 @@ typedef union
 }
 
 #define gSPTexture(pkt, sc, tc, level, tile, on) \
-{ \
-    Gfx *_g = (Gfx *) (pkt); \
-    _g->words.w0 = _SHIFTL(0xBB, 24, 8) | _SHIFTL(0, 16, 8)| \
-        _SHIFTL(level, 11, 3) | _SHIFTL(tile, 8, 3) | _SHIFTL(on, 0, 8); \
-    _g->words.w1 = _SHIFTL(sc, 16, 16) | _SHIFTL(tc, 0, 16); \
+{                                                \
+    Gfx *_g = (Gfx *)(pkt);                      \
+    _g->words.w0 = _SHIFTL(0xBB,    24, 8)       \
+                 | _SHIFTL(0,       16, 8)       \
+                 | _SHIFTL((level), 11, 3)       \
+                 | _SHIFTL((tile),   8, 3)       \
+                 | _SHIFTL((on),     0, 8);      \
+    _g->words.w1 = _SHIFTL((sc), 16, 16)         \
+                 | _SHIFTL((tc),  0, 16);        \
 }
 
 #define gDPSetColorImage(pkt, fmt, size, width, image) \
-{ \
-    Gfx *_g = (Gfx *) (pkt); \
-    _g->words.w0 = _SHIFTL(0xFF, 24, 8) | _SHIFTL(fmt, 21, 3)| \
-        _SHIFTL(size, 19, 2) | _SHIFTL((width) - 1, 0, 12); \
-    _g->words.w1 = image; \
+{                                                      \
+    Gfx *_g = (Gfx *)(pkt);                            \
+    _g->words.w0 = _SHIFTL(0xFF,   24, 8)              \
+                 | _SHIFTL((fmt),  21, 3)              \
+                 | _SHIFTL((size), 19, 2)              \
+                 | _SHIFTL((width)-1, 0, 12);          \
+    _g->words.w1 = (image);                            \
 }
 
-#define gDPLoadBlock(pkt, tile, uls, ult, lrs, dxt) \
-{ \
-    Gfx *_g = (Gfx *)(pkt); \
-    _g->words.w0 = _SHIFTL(0xF3, 24, 8) \
-                 | _SHIFTL(uls, 12, 12) | _SHIFTL(ult, 0, 12); \
-    _g->words.w1 = _SHIFTL(tile, 24, 3) \
-                 | _SHIFTL((MIN(lrs,G_TX_LDBLK_MAX_TXL)), 12, 12) \
-                 | _SHIFTL(dxt, 0, 12); \
+#define gDPLoadBlock(pkt, tile, uls, ult, lrs, dxt)                  \
+{                                                                    \
+    Gfx *_g = (Gfx *)(pkt);                                          \
+    _g->words.w0 = _SHIFTL(0xF3,   24,  8)                           \
+                 | _SHIFTL((uls),  12, 12)                           \
+                 | _SHIFTL((ult),   0, 12);                          \
+    _g->words.w1 = _SHIFTL((tile),                          24,  3)  \
+                 | _SHIFTL((MIN((lrs),G_TX_LDBLK_MAX_TXL)), 12, 12)  \
+                 | _SHIFTL((dxt),                            0, 12); \
 }
 
-#define gDPSetTile(pkt, fmt, siz, line, tmem, tile, palette, cmt, maskt, \
-    shiftt, cms, masks, shifts) \
-{ \
-    Gfx *_g = (Gfx *) (pkt); \
-    _g->words.w0 = _SHIFTL(0xF5, 24, 8) \
-                 | _SHIFTL(fmt, 21, 3) | _SHIFTL(siz, 19, 2) \
-                 | _SHIFTL(line, 9, 9) | _SHIFTL(tmem, 0, 9); \
-    _g->words.w1 = _SHIFTL(tile, 24, 3)   | _SHIFTL(palette, 20, 4) \
-                 | _SHIFTL(cmt, 18, 2)    | _SHIFTL(maskt, 14, 4) \
-                 | _SHIFTL(shiftt, 10, 4) | _SHIFTL(cms, 8, 2) \
-                 | _SHIFTL(masks, 4, 4)   | _SHIFTL(shifts, 0, 4); \
+#define gDPSetTile(pkt, fmt, siz, line, tmem, tile,  \
+    palette, cmt, maskt, shiftt, cms, masks, shifts) \
+{                                                    \
+    Gfx *_g = (Gfx *)(pkt);                          \
+    _g->words.w0 = _SHIFTL(0xF5,  24, 8)             \
+                 | _SHIFTL((fmt), 21, 3)             \
+                 | _SHIFTL((siz), 19, 2)             \
+                 | _SHIFTL((line), 9, 9)             \
+                 | _SHIFTL((tmem), 0, 9);            \
+    _g->words.w1 = _SHIFTL((tile),    24, 3)         \
+                 | _SHIFTL((palette), 20, 4)         \
+                 | _SHIFTL((cmt),     18, 2)         \
+                 | _SHIFTL((maskt),   14, 4)         \
+                 | _SHIFTL((shiftt),  10, 4)         \
+                 | _SHIFTL((cms),      8, 2)         \
+                 | _SHIFTL((masks),    4, 4)         \
+                 | _SHIFTL((shifts),   0, 4);        \
 }
 
-#define gDPSetDepthImage(pkt, image) \
-{ \
-    Gfx *_g = (Gfx *) (pkt); \
-    _g->words.w0 = 0xFE000000; \
-    _g->words.w1 = image; \
+#define gDPSetDepthImage(pkt, image)     \
+{                                        \
+    Gfx *_g = (Gfx *)(pkt);              \
+    _g->words.w0 = _SHIFTL(0xFE, 24, 8); \
+    _g->words.w1 = (image);              \
 }
 
-#define gDPSetEnvColor(pkt, r, g, b, a) \
-{ \
-    Gfx *_g = (Gfx *) (pkt); \
-    _g->words.w0 = 0xFB000000; \
-    _g->words.w1 = _SHIFTL((r), 24, 8) | _SHIFTL((g), 16, 8) \
-                 | _SHIFTL((b),  8, 8) | _SHIFTL((a),  0, 8); \
+#define gDPSetEnvColor(pkt, r, g, b, a)  \
+{                                        \
+    Gfx *_g = (Gfx *)(pkt);              \
+    _g->words.w0 = _SHIFTL(0xFB, 24, 8); \
+    _g->words.w1 = _SHIFTL((r), 24, 8)   \
+                 | _SHIFTL((g), 16, 8)   \
+                 | _SHIFTL((b),  8, 8)   \
+                 | _SHIFTL((a),  0, 8);  \
 }
 
 #define gDPSetTextureImage(pkt, fmt, size, width, img) \
-{ \
-    Gfx *_g = (Gfx *) (pkt); \
-    _g->words.w0 = 0xFD000000 | _SHIFTL(fmt, 21, 3) \
-                 | _SHIFTL(size, 19, 2) | _SHIFTL((width) - 1, 0, 12); \
-    _g->words.w1 = (img); \
+{                                                      \
+    Gfx *_g = (Gfx *)(pkt);                            \
+    _g->words.w0 = _SHIFTL(0xFD,      24,  8)          \
+                 | _SHIFTL((fmt),     21,  3)          \
+                 | _SHIFTL((size),    19,  2)          \
+                 | _SHIFTL((width)-1,  0, 12);         \
+    _g->words.w1 = (img);                              \
 }
 
-#define gMoveWd(pkt, index, offset, data) \
-{ \
-    Gfx *_g = (Gfx *)(pkt); \
-    _g->words.w0 = _SHIFTL(0xBC, 24, 8) \
-                 | _SHIFTL((offset), 8, 16) \
-                 | _SHIFTL((index), 0, 8); \
-    _g->words.w1 = (u32)(data); \
+#define gMoveWd(pkt, index, offset, data)     \
+{                                             \
+    Gfx *_g = (Gfx *)(pkt);                   \
+    _g->words.w0 = _SHIFTL(0xBC,     24,  8)  \
+                 | _SHIFTL((offset),  8, 16)  \
+                 | _SHIFTL((index),   0,  8); \
+    _g->words.w1 = (u32)(data);               \
 }
 
 /* Matrix Operations */
 
 #define G_MTX_MODELVIEW  0x00
 #define G_MTX_PROJECTION 0x01
+#define G_MTX_MUL        0x00
+#define G_MTX_LOAD       0x02
+#define G_MTX_NOPUSH     0x00
+#define G_MTX_PUSH       0x04
 
 #define gSPPopMatrix(pkt, n) \
 { \
     Gfx *_g = (Gfx *) (pkt); \
     _g->words.w0 = 0xBD000000; \
     _g->words.w1 = (n); \
+}
+
+#define gSPViewport(pkt, v)                        \
+{                                                  \
+    Gfx *_g = (Gfx *)(pkt);                        \
+    _g->words.w0 = _SHIFTL(0x03,          24,  8)  \
+                 | _SHIFTL(G_MV_VIEWPORT, 16,  8)  \
+                 | _SHIFTL(sizeof(Vp),     0, 16); \
+    _g->words.w1 = (u32)(v);                       \
 }
 
 #endif

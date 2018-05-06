@@ -1,6 +1,9 @@
 #ifndef _MATH_UTIL_H_
 #define _MATH_UTIL_H_
 
+extern float D_80386000[];
+extern float D_80387000[];
+
 void *vec3f_copy(Vec3f dest, Vec3f src);
 void *vec3f_set(Vec3f dest, f32 x, f32 y, f32 z);
 void *vec3f_add(Vec3f dest, Vec3f a);

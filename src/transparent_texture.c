@@ -2,8 +2,7 @@
 
 #include "sm64.h"
 #include "level_update.h"
-#include "types.h"
-#include "variables.h"
+#include "math_util.h"
 #include "save_file.h"
 
 void make_vertex(Vtx *vtx, s32 n, s16 x, s16 y, s16 z, s16 tx, s16 ty, u8 r, u8 g, u8 b, u8 a)

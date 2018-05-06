@@ -46,7 +46,7 @@ SECTIONS
       build/asm/castle_message_behaviors.o(.text);
       build/src/memory.o(.text);
       build/src/save_file.o(.text);
-      build/asm/rendering.o(.text);
+      build/src/rendering.o(.text);
       build/asm/resource_meter.o(.text);
       build/asm/decompress.o(.text);
       build/src/camera.o(.text);
@@ -92,6 +92,7 @@ SECTIONS
       build/data/memory.data.o(.data*);
       build/src/save_file.o(.data*);
       build/data/save_file.data.o(.data*);
+      build/src/rendering.o(.data*);
       build/data/rendering.data.o(.data*);
       build/data/resource_meter.data.o(.data*);
       build/data/camera_before.data.o(.data*);
@@ -125,7 +126,7 @@ SECTIONS
       build/data/mario_actions_submerged.rodata.o(.rodata*);
       build/data/mario_actions_object.rodata.o(.rodata*);
       build/data/castle_message_behaviors.rodata.o(.rodata*);
-      build/data/rendering.rodata.o(.rodata*);
+      build/src/rendering.o(.rodata*);
       build/src/camera.o(.rodata*);
       build/data/camera.rodata.o(.rodata*);
       build/data/level_functions.rodata.o(.rodata*);
@@ -248,6 +249,9 @@ SECTIONS
 
    .bss1 ADDR(.text80246000) + SIZEOF(.text80246000) (NOLOAD) :
    {
+      __bss1_start = .;
+      build/src/main.o(.bss*);
+      build/src/input.o(.bss*);
       build/data/bss1.o(.bss*);
       build/src/level_update.o(.bss*);
       build/data/bss80339F00.o(.bss*);

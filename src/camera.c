@@ -1,7 +1,14 @@
 #include <ultra64.h>
 
 #include "sm64.h"
+#include "input.h"
 #include "math_util.h"
+
+extern float D_8033B438;
+extern float D_8033B3CC;
+extern float D_8033B3D4;
+extern float D_8033B28C;
+extern float D_8033B27C;
 
 void func_8027EFE0(s16 a)
 {

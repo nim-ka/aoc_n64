@@ -57,11 +57,11 @@ typedef struct
 
 typedef struct
 {
-    OSIoMesgHdr hdr;
-    void *dramAddr;
-    u32 devAddr;
-    u32 size;
-    OSPiHandle *piHandle;
+    /*0x00*/ OSIoMesgHdr hdr;
+    /*0x08*/ void *dramAddr;
+    /*0x0C*/ u32 devAddr;
+    /*0x10*/ u32 size;
+    /*0x14*/ OSPiHandle *piHandle;
 } OSIoMesg;
 
 

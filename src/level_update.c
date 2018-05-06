@@ -1,7 +1,9 @@
 #include <ultra64.h>
 
 #include "sm64.h"
+#include "input.h"
 #include "level_update.h"
+#include "main.h"
 #include "math_util.h"
 #include "save_file.h"
 
@@ -78,35 +80,35 @@ static struct CreditsEntry sCreditsSequence[] =
 
 struct MarioState *gMarioState = &gMarioStates[0];
 
-static u8 unused1[4] = {0};
+u8 unused1[4] = {0};
 
-static s8 D_8032C9E0 = 0;
+s8 D_8032C9E0 = 0;
 
-static u8 unused2[8];
+u8 unused2[8];
 
-static s16 sCurrPlayMode;
-static u16 D_80339ECA;
+s16 sCurrPlayMode;
+u16 D_80339ECA;
 
-static s16 sTransitionTimer;
-static void (*sTransitionUpdate)(s16 *);
+s16 sTransitionTimer;
+void (*sTransitionUpdate)(s16 *);
 
-static u8 unused3[4];
+u8 unused3[4];
 
-static u8 sCurrWarpType;
-static u8 sDestLevelNum;
-static u8 sDestAreaIndex;
-static u8 sDestWarpNodeId;
-static u32 sWarpArg;
-static s16 D_80339EE0;
+u8 sCurrWarpType;
+u8 sDestLevelNum;
+u8 sDestAreaIndex;
+u8 sDestWarpNodeId;
+u32 sWarpArg;
+s16 D_80339EE0;
 
-static s16 sDelayedWarpOp;
-static s16 sDelayedWarpTimer;
-static s16 sSourceWarpNodeId;
-static s32 sDelayedWarpArg;
+s16 sDelayedWarpOp;
+s16 sDelayedWarpTimer;
+s16 sSourceWarpNodeId;
+s32 sDelayedWarpArg;
 
-static u8 unused4[2];
+u8 unused4[2];
 
-static s8 sTimerRunning;
+s8 sTimerRunning;
 s16 gDisplayedLives;
 s16 gDisplayedCoins;
 s16 gDisplayedStars;

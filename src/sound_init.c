@@ -2,6 +2,7 @@
 
 #include "sm64.h"
 #include "level_update.h"
+#include "main.h"
 #include "math_util.h"
 
 u8 D_8032C6C0 = 0;

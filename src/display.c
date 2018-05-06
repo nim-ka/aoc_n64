@@ -1,6 +1,8 @@
 #include <ultra64.h>
 
 #include "sm64.h"
+#include "main.h"
+#include "input.h"
 
 int unused8032C690 = 0;
 u32 D_8032C694 = 0;
@@ -82,12 +84,12 @@ void ClearFrameBuffer(int a)
     gDPSetCycleType(gDisplayListHead++, G_CYC_1CYCLE);
 }
 
-void DisplayInit(s16 *a, int b)
+void DisplayInit(Vp *viewport, int b)
 {
-    s16 sp26 = (a[4] - a[0]) / 4 + 1;
-    s16 sp24 = (a[5] - a[1]) / 4 + 1;
-    s16 sp22 = (a[4] + a[0]) / 4 - 2;
-    s16 sp20 = (a[5] + a[1]) / 4 - 2;
+    s16 sp26 = (viewport->vp.vtrans[0] - viewport->vp.vscale[0]) / 4 + 1;
+    s16 sp24 = (viewport->vp.vtrans[1] - viewport->vp.vscale[1]) / 4 + 1;
+    s16 sp22 = (viewport->vp.vtrans[0] + viewport->vp.vscale[0]) / 4 - 2;
+    s16 sp20 = (viewport->vp.vtrans[1] + viewport->vp.vscale[1]) / 4 - 2;
 
     gDPPipeSync(gDisplayListHead++);
 
@@ -116,12 +118,12 @@ void func_8024781C(void)
     gDPFillRectangle(gDisplayListHead++, 0, 232, 319, 239);
 }
 
-void func_8024798C(s16 *a)
+void func_8024798C(Vp *viewport)
 {
-    s16 spE = (a[4] - a[0]) / 4 + 1;
-    s16 spC = (a[5] - a[1]) / 4 + 1;
-    s16 spA = (a[4] + a[0]) / 4 - 1;
-    s16 sp8 = (a[5] + a[1]) / 4 - 1;
+    s16 spE = (viewport->vp.vtrans[0] - viewport->vp.vscale[0]) / 4 + 1;
+    s16 spC = (viewport->vp.vtrans[1] - viewport->vp.vscale[1]) / 4 + 1;
+    s16 spA = (viewport->vp.vtrans[0] + viewport->vp.vscale[0]) / 4 - 1;
+    s16 sp8 = (viewport->vp.vtrans[1] + viewport->vp.vscale[1]) / 4 - 1;
 
     gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, spE, spC, spA, sp8);
 }

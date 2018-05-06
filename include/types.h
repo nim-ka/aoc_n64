@@ -88,6 +88,8 @@ typedef s32 Vec3i[3];
 typedef float Vec4f[4];
 typedef s16 Vec4s[4];
 
+typedef float Mtx4x4f[4][4];
+
 struct UnknownStruct5 {
     u8 filler0[0x8];
     /*0x08*/ s16 unk08;
@@ -139,7 +141,8 @@ struct GfxNode
     u8 fillerC[4];
     /*0x010*/ struct Object *unk10;
     /*0x014*/ void *geoLayout;
-    u8 filler18[2];
+    /*0x018*/ u8 unk18;
+    u8 filler19[1];
     /*0x01A*/ Vec3s unk1A;
     /*0x020*/ Vec3f unk20;
     /*0x02C*/ Vec3f scale;
@@ -175,7 +178,7 @@ struct Object
     /*0x0C4*/ Vec3i angle;
     /*0x0D0*/ Vec3i faceAngle;
     /*0x0DC*/ f32 unkDC;
-    u8 fillerE0[0x4];
+    /*0x0E0*/ u32 unkE0;
     /*0x0E4*/ f32 unkE4;
     /*0x0E8*/ float unkE8;
     /*0x0EC*/ u32 unkEC;
@@ -235,41 +238,6 @@ struct Object
     /*0x218*/ void *collisionData;
     /*0x21C*/ float unk21C[4][4];
     /*0x25C*/ u32 unk25C;
-};
-
-struct UnknownArea1C {
-    /*0x00*/ u8 unk00;
-    /*0x01*/ u8 unk01;
-    /*0x02*/ Vec3s displacement;
-};
-
-struct UnknownArea24 { // Camera or camera related
-    /*0x00*/ u8 unk00;
-    /*0x01*/ u8 unk01;
-    /*0x02*/ s16 unk02;
-};
-
-struct Area
-{
-    /*0x00*/ s8 index;
-    /*0x01*/ u8 unk01;
-    /*0x02*/ u16 unk02;
-    /*0x04*/ u32 unk04;
-    /*0x08*/ s16 *unk08;
-    /*0x0C*/ u32 unk0C;
-    /*0x10*/ s16 *unk10;
-    /*0x14*/ u32 unk14;
-    /*0x18*/ struct WarpNode *paintingWarpNodes;
-    /*0x1C*/ struct UnknownArea1C *unk1C;
-    /*0x20*/ u32 unk20;
-    /*0x24*/ struct UnknownArea24 *unk24;
-    /*0x28*/ u32 unk28;
-    /*0x2C*/ u32 unk2C;
-    /*0x30*/ u32 unk30;
-    /*0x34*/ u8 unk34[1]; // Unknown size
-    /*0x35*/ s8 unk35;
-    /*0x36*/ u16 unk36;
-    /*0x38*/ u16 unk38;
 };
 
 struct Surface
@@ -500,8 +468,44 @@ struct WarpNode
 
 struct ObjectWarpNode
 {
-    /*00*/ struct WarpNode node;
-    /*04*/ struct Object *object;
+    /*0x00*/ struct WarpNode node;
+    /*0x04*/ struct Object *object;
+    /*0x08*/ struct ObjectWarpNode *unk8;
+};
+
+struct UnknownArea1C {
+    /*0x00*/ u8 unk00;
+    /*0x01*/ u8 unk01;
+    /*0x02*/ Vec3s displacement;
+};
+
+struct UnknownArea24 { // Camera or camera related
+    /*0x00*/ u8 unk00;
+    /*0x01*/ u8 unk01;
+    /*0x02*/ s16 unk02;
+};
+
+struct Area
+{
+    /*0x00*/ s8 index;
+    /*0x01*/ s8 unk01;
+    /*0x02*/ u16 unk02;
+    /*0x04*/ u32 unk04;
+    /*0x08*/ s16 *unk08;
+    /*0x0C*/ u32 unk0C;
+    /*0x10*/ s16 *unk10;
+    /*0x14*/ struct ObjectWarpNode *unk14;
+    /*0x18*/ struct WarpNode *paintingWarpNodes;
+    /*0x1C*/ struct UnknownArea1C *unk1C;
+    /*0x20*/ u32 unk20;
+    /*0x24*/ struct UnknownArea24 *unk24;
+    /*0x28*/ u32 unk28;
+    /*0x2C*/ u32 unk2C;
+    /*0x30*/ u32 unk30;
+    /*0x34*/ u8 unk34[1];
+    /*0x35*/ u8 unk35;
+    /*0x36*/ u16 unk36;
+    /*0x38*/ u16 unk38;
 };
 
 struct CreditsEntry
@@ -531,6 +535,14 @@ struct Struct8033B418
     s16 unk4;
     s16 unk6;
     struct Struct8033B418_sub unk8[2];  // unknown length
+};
+
+struct Struct8032CE60
+{
+    u8 unk0;
+    u8 filler1[0xB];
+    s8 unkC;
+    s8 unkD;
 };
 
 #endif

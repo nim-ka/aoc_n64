@@ -1,7 +1,30 @@
 #include <ultra64.h>
 
 #include "sm64.h"
+#include "input.h"
+#include "main.h"
 #include "save_file.h"
+
+// FIXME: I'm not sure all of these variables belong in this file, but I don't
+// know of a good way to split them
+struct Controller gControllers[3];
+OSContStatus gControllerStatuses[4];
+OSContPad gControllerPads[4];
+OSMesgQueue D_80339CA0;
+OSMesgQueue D_80339CB8;
+OSMesg D_80339CD0;
+OSMesg D_80339CD4;
+void *D_80339CD8;
+u32 gFrameBuffers[3];
+u32 D_80339CEC;
+void *D_80339CF0;
+void *D_80339CF4;
+struct Struct8032C630 *D_80339CF8;
+Gfx *gDisplayListHead;
+u8 *gGfxPoolEnd;
+Gfx *D_80339D04;
+u8 gControllerBits;
+s8 gEepromProbe;
 
 void (*D_8032C6A0)(void) = NULL;
 struct Controller *gPlayer1Controller = &gControllers[0];

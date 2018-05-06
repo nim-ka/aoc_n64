@@ -4,19 +4,6 @@
 
 .section .data
 
-#rendering
-glabel D_8032CE60
-	.word D_8033A140
-
-glabel gLoadedGeoLayouts
-	.word D_8033A160
-
-glabel D_8032CE68
-	.word D_8033A560
-
-glabel D_8032CE6C
-	.word 0
-
 glabel gCurrCreditsEntry
 	.word 0
 

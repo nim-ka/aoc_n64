@@ -1,6 +1,8 @@
 #include <ultra64.h>
 
 #include "sm64.h"
+#include "input.h"
+#include "main.h"
 #include "math_util.h"
 #include "save_file.h"
 

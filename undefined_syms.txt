@@ -1,3 +1,6 @@
+/* FIXME: This overlaps with gDmaIoMesg, which should be 0x18 bytes in size. */
+D_80339BEC = gDmaIoMesg + 0x14;
+
 D_B0000010 = 0x00000010;
 D_02008250 = 0x02008250;
 D_02008338 = 0x02008338;
