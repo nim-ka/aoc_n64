@@ -6,10 +6,12 @@
 BUILD_DIR := build
 
 # Directories containing source files
-SRC_DIRS := src src/libultra
+SRC_DIRS := src src/libultra src/goddard
 ASM_DIRS := asm
 DATA_DIRS := data
 BIN_DIRS := bin
+
+MIPSISET := -mips2
 
 # If COMPARE is 1, check the output sha1sum when building 'all'
 COMPARE = 1
@@ -24,6 +26,8 @@ SEG_S_FILES := $(foreach dir,$(BIN_DIRS),$(wildcard $(dir)/*.s))
 O_FILES := $(foreach file,$(C_FILES),$(BUILD_DIR)/$(file:.c=.o)) \
            $(foreach file,$(S_FILES),$(BUILD_DIR)/$(file:.s=.o)) \
            $(foreach file,$(D_FILES),$(BUILD_DIR)/$(file:.s=.o))
+
+build/src/goddard/%.o: MIPSISET := -mips1
 
 # Segment elf files
 SEG_FILES := $(foreach file,$(SEG_S_FILES),$(BUILD_DIR)/$(file:.s=.elf))
@@ -40,8 +44,9 @@ OBJCOPY := $(CROSS)objcopy
 # Check code syntax with host compiler
 CC_CHECK := gcc -m32 -fsyntax-only -funsigned-char -I include -std=c99 -Wall -Wextra -pedantic -Werror
 
+
 ASFLAGS := -march=vr4300 -I include
-CFLAGS  := -Wab,-r4300_mul -mips2 -non_shared -G 0 -Xcpluscomm -Xfullwarn -g -I include
+CFLAGS  := -Wab,-r4300_mul -non_shared -G 0 -Xcpluscomm -Xfullwarn -g -I include
 OBJCOPYFLAGS := --pad-to=0x800000 --gap-fill=0xFF
 
 SYMBOL_LINKING_FLAGS := $(addprefix -R ,$(SEG_FILES))
@@ -132,7 +137,7 @@ $(BUILD_DIR)/mio0/%.mio0: $(BUILD_DIR)/bin/%.bin
 
 $(BUILD_DIR)/%.o: %.c
 	@$(CC_CHECK) $<
-	$(CC) -c $(CFLAGS) -o $@ $<
+	$(CC) -c $(CFLAGS) $(MIPSISET) -o $@ $<
 
 $(BUILD_DIR)/%.o: %.s $(MIO0_FILES)
 	$(AS) $(ASFLAGS) -o $@ $<
