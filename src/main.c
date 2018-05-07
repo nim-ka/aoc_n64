@@ -423,8 +423,19 @@ static void Unknown80246CB8(void)
  */
 static void thread1_idle(UNUSED void *arg)
 {
+#if VERSION_US
+    int sp24 = D_U_80000300;
+#endif
+
     osCreateViManager(OS_PRIORITY_VIMGR);
+#if VERSION_US
+    if (sp24 == 1)
+        osViSetMode(&D_80333F00.viMode);
+    else
+        osViSetMode(&D_80333F00.unk500);
+#else
     osViSetMode(&D_80333F00.viMode);
+#endif
     osViBlack(TRUE);
     osViSetSpecialFeatures(OS_VI_DITHER_FILTER_ON);
     osViSetSpecialFeatures(OS_VI_GAMMA_OFF);

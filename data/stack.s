@@ -7,7 +7,11 @@ glabel D_801C1000
 glabel D_801CE000
     .space 0x31200
 glabel D_801FF200
+.ifdef VERSION_US
+    .space 0x1400
+.else
     .space 0x1800
+.endif
 glabel D_80200A00
     .space 0x800
 glabel D_80201200

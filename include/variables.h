@@ -4,6 +4,13 @@
 // This file contains variable declarations for all of the code.
 // When a variable is used, uncomment it and add the appropriate types.
 
+#if VERSION_US
+extern u32 D_U_80000300;
+extern s16 D_U_8032DDF8;
+extern s8 D_U_8033B25E;
+extern s16 D_U_8033BACA;
+#endif
+
 // segmented addresses
 extern u8 D_0200E454[];
 extern u8 D_0200EAD0[];

@@ -9,21 +9,22 @@ SECTIONS
 
 	rom_start = .;
    /* header */
-   .header __romPos : AT(__romPos) {
+   .header __romPos : AT(__romPos)
+   {
       build/asm/rom_header.o(.text);
    }
-
    __romPos += SIZEOF(.header);
 
    /* boot */
-   .boot 0x04000040 : AT(__romPos) {
+   .boot 0x04000040 : AT(__romPos)
+   {
       build/asm/boot.o(.text);
    }
+   __romPos += SIZEOF(.boot);
 
    __segPoolStart = 0x8005C000; /* the segment pool starts here. */
    __segCodeSection = 0x8016F000;
    __segPoolEnd = 0x801C1000;
-   __romPos += SIZEOF(.boot);
 
    /* 0x80246000 001000-0E5320 [E4320] */
    .text80246000 0x80246000 : AT(__romPos) {
@@ -76,6 +77,9 @@ SECTIONS
       build/asm/libultra.o(.text);
       /* data */
       build/data/data_8032B3F0.o(.data*);
+#if VERSION_US
+      . += 0xE50;
+#endif
       build/src/main.o(.data*);
       build/src/display.o(.data*);
       build/src/game.o(.data*);
@@ -163,10 +167,9 @@ SECTIONS
       build/src/math_util.o(.rodata*);
       build/data/level_script.rodata.o(.rodata*);
       build/data/surface_collision.rodata.o(.rodata*);
-      text_80378800_length = . - 0x80378800;
    }
    __load_text80378800 = LOADADDR(.text80378800);
-   __load_text80378800_end = __load_text80378800 + text_80378800_length;
+   __load_text80378800_end = LOADADDR(.text80378800) + SIZEOF(.text80378800);
 
    __romPos += SIZEOF(.text80378800);
 
@@ -247,7 +250,12 @@ SECTIONS
       build/data/sound_data.o(.text);
    }
 
+    /* TODO: Don't hardcode this address */
+#if VERSION_US
+   .bss1 0x8033A580 (NOLOAD) :
+#else
    .bss1 ADDR(.text80246000) + SIZEOF(.text80246000) (NOLOAD) :
+#endif
    {
       __bss1_start = .;
       build/src/main.o(.bss*);
@@ -280,3 +288,11 @@ SECTIONS
       *(*);
    }
 }
+
+/* TODO: Don't hardcode these addresses */
+#if VERSION_US
+gDmaMesgBuf = 0x8033AE38;
+gSIEventMesgBuf = 0x8033AEC0;
+gDmaMesgQueue = 0x8033AF60;
+gSIEventMesgQueue = 0x8033AF78;
+#endif

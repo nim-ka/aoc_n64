@@ -79,6 +79,9 @@ struct Struct80333F00
 {
     u8 filler0[0xA0];
     OSViMode viMode;
+#if VERSION_US
+    OSViMode unk500;
+#endif
 };
 
 typedef float Vec2f[2];

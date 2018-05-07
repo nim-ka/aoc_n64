@@ -4,6 +4,11 @@
 // This file contains function prototypes for all of the code.
 // When a function is used, uncomment it and add the appropriate types.
 
+#if VERSION_US
+extern int func_u_80321D5C(void);
+extern void func_u_803219AC();
+#endif
+
 extern void func_80248C10(void);
 extern void func_80248C28(s32);
 extern void func_80248CB8(s32);

@@ -343,12 +343,31 @@ static void init_mario_after_warp(void)
         if (gMarioState->flags & (MARIO_VANISH_CAP | MARIO_WING_CAP))
             func_80249368(0x0000040E);
 
-        if (sDestLevelNum == LEVEL_CASTLE &&
-            sDestAreaIndex == 1 &&
-            sDestWarpNodeId == 0x1F)
+#if VERSION_US
+        if (D_U_8032DDF8 == 9 && func_u_80321D5C() != 1033 && D_U_8033B25E != 0)
+            func_u_803219AC(0, 1033, 0);
+#endif
+
+        if (sDestLevelNum == LEVEL_CASTLE
+         && sDestAreaIndex == 1
+#if VERSION_US
+         && (sDestWarpNodeId == 31 || sDestWarpNodeId == 32)
+#else
+         && sDestWarpNodeId == 31
+#endif
+        )
         {
             SetSound(0x701DB081, D_803320E0);
         }
+#if VERSION_US
+        if (sDestLevelNum == 16
+         && sDestAreaIndex == 1
+         && (sDestWarpNodeId == 7 || sDestWarpNodeId == 10
+          || sDestWarpNodeId == 20 || sDestWarpNodeId == 30))
+        {
+            SetSound(0x701DB081, D_803320E0);
+        }
+#endif
     }
 }
 
