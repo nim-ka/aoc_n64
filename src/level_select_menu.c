@@ -5,6 +5,7 @@
 #include "main.h"
 #include "math_util.h"
 #include "memory.h"
+#include "save_file.h"
 
 #define PRESS_START_DEMO_TIMER 800
 

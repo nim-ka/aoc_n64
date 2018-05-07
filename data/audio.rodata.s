@@ -611,7 +611,10 @@ glabel D_803384E0
 	.incbin "bin/rodata.bin", 0x3A70, 0x8
 
 glabel D_803384E8
-	.incbin "bin/rodata.bin", 0x3A78, 0x18
+	.incbin "bin/rodata.bin", 0x3A78, 0x8
+
+glabel D_803384F0
+	.incbin "bin/rodata.bin", 0x3A80, 0x10
 
 glabel D_80338500
 	.incbin "bin/rodata.bin", 0x3A90, 0x10

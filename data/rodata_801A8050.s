@@ -702,16 +702,14 @@ glabel jtbl_801B5730
 	.word .L80178E64
 
 glabel D_801B5760
-	.incbin "bin/sm64.j.255EC0.bin", 0xE070, 0x4
+	.incbin "bin/sm64.j.255EC0.bin", 0xE070, 0x8
 
-glabel D_801B5764
-	.incbin "bin/sm64.j.255EC0.bin", 0xE074, 0x8
+glabel D_801B5768
+	.incbin "bin/sm64.j.255EC0.bin", 0xE078, 0x8
 
-glabel D_801B576C
-	.incbin "bin/sm64.j.255EC0.bin", 0xE07C, 0x8
+glabel D_801B5770
+	.incbin "bin/sm64.j.255EC0.bin", 0xE080, 0x8
 
-glabel D_801B5774
-	.incbin "bin/sm64.j.255EC0.bin", 0xE084, 0x4
 glabel D_801B5778
 	.incbin "bin/sm64.j.255EC0.bin", 0xE088, 0x8
 
