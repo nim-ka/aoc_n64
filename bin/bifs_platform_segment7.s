@@ -9,7 +9,7 @@
 .include "macros.inc"
 
 bifs_platform_texture_07000000: # 0x07000000
-.incbin "bin/bifs_platform_segment7/bifs_platform_segment7.00000.rgba16"
+.incbin "build/bin/bifs_platform_segment7/bifs_platform_segment7.00000.rgba16"
 
 bifs_platform_vertices_07000800: # 0x07000800
 vertex   1176,    784,  -2837,   6612,    678,  0xFF, 0xFF, 0xFF, 0xFF

@@ -19,7 +19,7 @@ bidw_platform_level:
 .word 0x26080A1E, 0x010A0000
 .word 0x2608F006, 0x01240000
 .word 0x2608F111, 0x010C0000
-.word 0x2E080000, 0x07002838
+.word 0x2E080000, bidw_platform_collision
 .word 0x36080002, 0x00070000
 .word 0x31040001
 .word 0x20040000
@@ -46,7 +46,7 @@ bidw_platform_level:
 .word     0x04000000
 .word       0x0F00000B, 0x000007D0, 0x17700000, 0x00000000, Geo0F_80287D30
 .word       0x04000000
-.word         0x15010000, 0x07002768
+.word         0x15010000, bidw_platform_f3d_07002768
 .word         0x17000000
 .word         0x18000000, Geo18_802761D0
 .word       0x05000000

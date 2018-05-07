@@ -493,5 +493,19 @@ MAIN_MENU_SEGMENT7_FILES = \
    main_menu_segment7.0D1A8.rgba16 \
    main_menu_segment7.0E1A8.rgba16
 
-TEXTURE_DIRS = bin/main_menu_segment7
+BIDW_PLATFORM_SEGMENT7_FILES = \
+   bidw_platform_segment7.00000.rgba16 \
+   bidw_platform_segment7.01000.rgba16 \
+   bidw_platform_segment7.01800.rgba16
+
+BIFS_PLATFORM_SEGMENT7_FILES = \
+   bifs_platform_segment7.00000.rgba16
+
+TEXTURE_DIRS = \
+   bin/main_menu_segment7 \
+   bin/bidw_platform_segment7 \
+   bin/bifs_platform_segment7
+
 $(BUILD_DIR)/bin/main_menu_segment7.o: $(addprefix $(BUILD_DIR)/bin/main_menu_segment7/,$(MAIN_MENU_SEGMENT7_FILES))
+$(BUILD_DIR)/bin/bidw_platform_segment7.o: $(addprefix $(BUILD_DIR)/bin/bidw_platform_segment7/,$(BIDW_PLATFORM_SEGMENT7_FILES))
+$(BUILD_DIR)/bin/bifs_platform_segment7.o: $(addprefix $(BUILD_DIR)/bin/bifs_platform_segment7/,$(BIFS_PLATFORM_SEGMENT7_FILES))
