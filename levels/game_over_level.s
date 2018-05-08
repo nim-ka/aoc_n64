@@ -4,8 +4,8 @@
 .align 4, 0
 game_over_level:
 .word 0x1B040000
-.word 0x16100000, __segCodeSection, __text8016F000pos, __text8016F000end
-.word 0x170C0013, __load_behavior_data, __load_behavior_data_end
+.word 0x16100000, __segCodeSection, _goddardSegmentRomStart, _goddardSegmentRomEnd
+.word 0x170C0013, _behaviorSegmentRomStart, _behaviorSegmentRomEnd
 .word 0x180C0007, wood_trademark, wood_trademark_end
 .word 0x1D040000
 .word 0x1F080100, 0x140002D0
@@ -22,9 +22,9 @@ game_over_level:
 .word 0x01100014, game_over_level, game_over_level_end, 0x14000078
 .word 0x1B040000
 .word 0x34040100
-.word 0x16100000, run_press_start_demo_timer, __text8016F000pos, game_over_level
+.word 0x16100000, run_press_start_demo_timer, _goddardSegmentRomStart, game_over_level
 .word 0x19040002
-.word 0x170C0013, __load_behavior_data, __load_behavior_data_end
+.word 0x170C0013, _behaviorSegmentRomStart, _behaviorSegmentRomEnd
 .word 0x1A0C000A, mario_bg, mario_bg_end
 .word 0x1D040000
 .word 0x1F080100, 0x1400035C
@@ -42,9 +42,9 @@ game_over_level:
 .word 0x05080000, 0x14000284
 .word 0x1B040000
 .word 0x34040100
-.word 0x16100000, run_press_start_demo_timer, __text8016F000pos, game_over_level
+.word 0x16100000, run_press_start_demo_timer, _goddardSegmentRomStart, game_over_level
 .word 0x19040003
-.word 0x170C0013, __load_behavior_data, __load_behavior_data_end
+.word 0x170C0013, _behaviorSegmentRomStart, _behaviorSegmentRomEnd
 .word 0x1A0C000A, mario_bg, mario_bg_end
 .word 0x1D040000
 .word 0x1F080100, 0x140003B8
@@ -61,10 +61,10 @@ game_over_level:
 .word 0x0C0C0200, 0x00000065, 0x14000238
 .word 0x05080000, 0x14000284
 .word 0x1B040000
-.word 0x170C0013, __load_behavior_data, __load_behavior_data_end
+.word 0x170C0013, _behaviorSegmentRomStart, _behaviorSegmentRomEnd
 .word 0x1A0C000A, mario_bg, mario_bg_end
 .word 0x180C0007, debug_level_select, debug_level_select_end
-.word 0x16100000, run_press_start_demo_timer, __text8016F000pos, game_over_level
+.word 0x16100000, run_press_start_demo_timer, _goddardSegmentRomStart, game_over_level
 .word 0x1D040000
 .word 0x1F080100, 0x14000414
 .word 0x20040000

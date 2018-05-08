@@ -292,11 +292,11 @@ void CopyScriptInterpreter(void)
 {
     void *sp24 = (void *)0x80378800;
     u32 sp20 = 0x17000;
-    UNUSED u32 sp1C = ALIGN16(__load_text80378800_end - __load_text80378800);
+    UNUSED u32 sp1C = ALIGN16(_engineSegmentRomEnd - _engineSegmentRomStart);
 
     bzero(sp24, sp20);
     osWritebackDCacheAll();
-    dma_copy(sp24, __load_text80378800, __load_text80378800_end);
+    dma_copy(sp24, _engineSegmentRomStart, _engineSegmentRomEnd);
     osInvalICache(sp24, sp20);
     osInvalDCache(sp24, sp20);
 }

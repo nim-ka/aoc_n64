@@ -3,31 +3,40 @@
 
 OUTPUT_ARCH (mips)
 
+__segPoolStart = 0x8005C000; /* the segment pool starts here. */
+__segCodeSection = 0x8016F000;
+__segPoolEnd = 0x801C1000;
+
+#define BEGIN_SEG(name, addr) \
+    _##name##SegmentStart = ADDR(.name); \
+    _##name##SegmentRomStart = __romPos; \
+    .name addr : AT(__romPos)
+
+#define END_SEG(name) \
+    _##name##SegmentEnd = ADDR(.name) + SIZEOF(.name); \
+    _##name##SegmentRomEnd = __romPos + SIZEOF(.name); \
+    __romPos += SIZEOF(.name); \
+
+#define BEGIN_BSS(name) \
+    _##name##SegmentBssStart = ADDR(.name.bss); \
+    .name.bss (NOLOAD) :
+
+#define END_BSS(name) \
+    _##name##SegmentBssEnd = ADDR(.name.bss) + SIZEOF(.name.bss);
+
 SECTIONS
 {
 	__romPos = 0;
 
-	rom_start = .;
-   /* header */
-   .header __romPos : AT(__romPos)
+   BEGIN_SEG(boot, 0x04000000)
    {
       build/asm/rom_header.o(.text);
-   }
-   __romPos += SIZEOF(.header);
-
-   /* boot */
-   .boot 0x04000040 : AT(__romPos)
-   {
       build/asm/boot.o(.text);
    }
-   __romPos += SIZEOF(.boot);
+   END_SEG(boot)
 
-   __segPoolStart = 0x8005C000; /* the segment pool starts here. */
-   __segCodeSection = 0x8016F000;
-   __segPoolEnd = 0x801C1000;
-
-   /* 0x80246000 001000-0E5320 [E4320] */
-   .text80246000 0x80246000 : AT(__romPos) {
+   BEGIN_SEG(main, 0x80246000)
+   {
       build/asm/entry.o(.text);
       build/src/main.o(.text);
       build/src/display.o(.text);
@@ -146,11 +155,19 @@ SECTIONS
       build/data/obj_behaviors_2.rodata.o(.rodata*);
       build/data/audio.rodata.o(.rodata*);
    }
+   END_SEG(main)
+   BEGIN_BSS(main)
+   {
+      build/src/main.o(.bss*);
+      build/src/game.o(.bss*);
+      build/data/bss1.o(.bss*);
+      build/src/level_update.o(.bss*);
+      build/data/bss80339F00.o(.bss*);
+   }
+   END_BSS(main)
 
-   __romPos += SIZEOF(.text80246000);
-
-   /* 0x80378800 0F4210-101998 [D788] */
-   .text80378800 0x80378800 : AT(__romPos) {
+   BEGIN_SEG(engine, 0x80378800)
+   {
       build/src/math_util.o(.text);
       build/asm/graph_node.o(.text);
       build/src/geo_layout.o(.text);
@@ -168,33 +185,30 @@ SECTIONS
       build/data/level_script.rodata.o(.rodata*);
       build/data/surface_collision.rodata.o(.rodata*);
    }
-   __load_text80378800 = LOADADDR(.text80378800);
-   __load_text80378800_end = LOADADDR(.text80378800) + SIZEOF(.text80378800);
-
-   __romPos += SIZEOF(.text80378800);
+   END_SEG(engine)
+   BEGIN_BSS(engine)
+   {
+      build/data/bss2.o(.bss*);
+   }
+   END_BSS(engine)
 
    /* load MIO0 and level data at 0x001076A0 */
-   .mio0 __romPos : AT(__romPos) {
+   BEGIN_SEG(mio0, __romPos)
+   {
       build/data/level_actors.o(.mio0);
-      . = ALIGN(0x10);
    }
-
-   __romPos += SIZEOF(.mio0);
+   END_SEG(mio0)
 
    /* use segmented addressing for behaviors */
-   .behavior 0x13000000 : AT(__romPos) {
+   BEGIN_SEG(behavior, 0x13000000)
+   {
       build/data/behavior_data.o(.behavior);
-      behavior_length = . - 0x13000000;
    }
-   __load_behavior_data = LOADADDR(.behavior);
-   __load_behavior_data_end = LOADADDR(.behavior) + behavior_length;
+   END_SEG(behavior)
 
-   __romPos += SIZEOF(.behavior);
-   __text8016F000pos = __romPos;
-   __romPos2 = __romPos; /*Hack, since otherwise romPos will update __text8016F000pos, FIXME*/
-   
    /* 0x8016F000 21D7D0-255EC0 [386F0] */
-   .text8016F000 __segCodeSection : AT(__romPos) {
+   BEGIN_SEG(goddard, __segCodeSection)
+   {
       build/src/level_select_menu.o(.text);
       build/asm/intro_geo.o(.text);
       build/asm/file_select.o(.text);
@@ -218,69 +232,46 @@ SECTIONS
       build/src/star_select.o(.rodata*);
       build/data/rodata_801A8050.o(.rodata*);
    }
-
-   __romPos2 += SIZEOF(.text8016F000);
-   __text8016F000end = __romPos2;
-   __romPos3 = __romPos2;
-
-   /* 0x268020 0x268020-0 [0] */
-   .mio0_c __romPos3 : AT(__romPos3) {
-      build/data/level_misc.o(.mio0_c);
-   }
-
-   __romPos3 += SIZEOF(.mio0_c);
-
-   /* 271B20-2A42A0 [32780] */
-   .text271B20 __romPos3 : AT(__romPos3) {
-      build/data/unknown_271B20.o(.text);
-   }
-
-   __romPos3 += SIZEOF(.text271B20);
-
-   /* 0x2A42A0 0x2A42A0-0 [0] */
-   .mio0_b __romPos3 : AT(__romPos3) {
-      build/data/level_main.o(.mio0_b);
-   }
-
-   __romPos3 += SIZEOF(.mio0_b);
-
-   /* 4E9FA0-? [?] */
-   .text4E9FA0 __romPos3 : AT(__romPos3) {
-      build/data/unknown_4E9FA0.o(.text);
-      build/data/sound_data.o(.text);
-   }
-
-    /* TODO: Don't hardcode this address */
-#if VERSION_US
-   .bss1 0x8033A580 (NOLOAD) :
-#else
-   .bss1 ADDR(.text80246000) + SIZEOF(.text80246000) (NOLOAD) :
-#endif
-   {
-      __bss1_start = .;
-      build/src/main.o(.bss*);
-      build/src/game.o(.bss*);
-      build/data/bss1.o(.bss*);
-      build/src/level_update.o(.bss*);
-      build/data/bss80339F00.o(.bss*);
-   }
-
-   __bss1size = SIZEOF(.bss1);
-
-   .bss2 ADDR(.text80378800) + SIZEOF(.text80378800) (NOLOAD) :
-   {
-      build/data/bss2.o(.bss*);
-   }
-
-   .bss3 ADDR(.text8016F000) + SIZEOF(.text8016F000) (NOLOAD) :
+   END_SEG(goddard)
+   BEGIN_BSS(goddard)
    {
       build/data/bss3.o(.bss*);
    }
+   END_BSS(goddard)
 
-   .stack ADDR(.bss3) + SIZEOF(.bss3) (NOLOAD) :
+   .stack (NOLOAD) :
    {
       build/data/stack.o(.stack);
    }
+
+   /* 0x268020 0x268020-0 [0] */
+   BEGIN_SEG(mio0_c, __romPos)
+   {
+      build/data/level_misc.o(.mio0_c);
+   }
+   END_SEG(mio0_c)
+
+   /* 271B20-2A42A0 [32780] */
+   BEGIN_SEG(text271B20, __romPos)
+   {
+      build/data/unknown_271B20.o(.text);
+   }
+   END_SEG(text271B20)
+
+   /* 0x2A42A0 0x2A42A0-0 [0] */
+   BEGIN_SEG(mio0_b, __romPos)
+   {
+      build/data/level_main.o(.mio0_b);
+   }
+   END_SEG(mio0_b)
+
+   /* 4E9FA0-? [?] */
+   BEGIN_SEG(text4E9FA0, __romPos)
+   {
+      build/data/unknown_4E9FA0.o(.text);
+      build/data/sound_data.o(.text);
+   }
+   END_SEG(text4E9FA0)
 
    /* Discard everything not specifically mentioned above. */
    /DISCARD/ :
