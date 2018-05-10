@@ -243,37 +243,57 @@ static int count_line_num(const char *start, const char *pos)
 
 static char *convert_string(char *pos, FILE *fout, const char *inputFileName, char *start)
 {
-    while (*pos != '"')
+    int hasString = 0;
+
+    while (1)
     {
-        struct CharmapEntry input;
-        struct CharmapEntry *entry;
-        int i;
-        int lineNum = count_line_num(start, pos);
+        pos = skip_whitespace(pos);
+        if (*pos == ')')
+        {
+            if (hasString)
+                break;
+            else
+                parse_error(inputFileName, count_line_num(start, pos), "expected quoted string after '_('");
+        }
+        else if (*pos != '"')
+            parse_error(inputFileName, count_line_num(start, pos), "unexpected character '%c'", *pos);
+        pos++;
 
-        if (*pos == 0)
-            parse_error(inputFileName, lineNum, "EOF in string literal");
-        if (*pos == '\\')
+        hasString = 1;
+
+        // convert quoted string
+        while (*pos != '"')
         {
-            pos++;
-            input.unicode = get_escape_char(*pos);
-            if (input.unicode == 0)
-                parse_error(inputFileName, lineNum, "unknown escape sequence \\%c", *pos);
-            pos++;
+            struct CharmapEntry input;
+            struct CharmapEntry *entry;
+            int i;
+
+            if (*pos == 0)
+                parse_error(inputFileName, count_line_num(start, pos), "EOF in string literal");
+            if (*pos == '\\')
+            {
+                pos++;
+                input.unicode = get_escape_char(*pos);
+                if (input.unicode == 0)
+                    parse_error(inputFileName, count_line_num(start, pos), "unknown escape sequence \\%c", *pos);
+                pos++;
+            }
+            else
+            {
+                pos = utf8_decode(pos, &input.unicode);
+                if (pos == NULL)
+                    parse_error(inputFileName, count_line_num(start, pos), "invalid unicode encountered in file");
+            }
+
+            entry = hashtable_query(charmap, &input);
+            if (entry == NULL)
+                parse_error(inputFileName, count_line_num(start, pos), "no charmap entry for U+%X", input.unicode);
+            for (i = 0; i < entry->bytesCount; i++)
+                fprintf(fout, "0x%02X,", entry->bytes[i]);
         }
-        else
-        {
-            pos = utf8_decode(pos, &input.unicode);
-            if (pos == NULL)
-                parse_error(inputFileName, lineNum, "invalid unicode encountered in file");
-        }
-        entry = hashtable_query(charmap, &input);
-        if (entry == NULL)
-            parse_error(inputFileName, lineNum, "no charmap entry for U+%X", input.unicode);
-        for (i = 0; i < entry->bytesCount; i++)
-            fprintf(fout, "0x%02X,", entry->bytes[i]);
+        pos++;  // skip over closing '"'
     }
-    pos++;
-
+    pos++;  // skip over closing ')'
     fputs("0xFF", fout);
     return pos;
 }
@@ -339,7 +359,7 @@ static void convert_file(const char *infilename, const char *outfilename)
             }
             pos++;
         }
-        // check for _(" sequence
+        // check for _( sequence
         else if (*pos == '_' && (pos == in || !is_identifier_char(pos[-1])))
         {
             end = pos;
@@ -347,21 +367,9 @@ static void convert_file(const char *infilename, const char *outfilename)
             if (*pos == '(')
             {
                 pos++;
-                pos = skip_whitespace(pos);
-                if (*pos == '"')
-                {
-                    pos++;
-                    fwrite(start, end - start, 1, fout);
-                    pos = convert_string(pos, fout, infilename, in);
-                    pos = skip_whitespace(pos);
-                    if (*pos != ')')
-                    {
-                        parse_error(infilename, count_line_num(in, pos),
-                            "expected closing )");
-                    }
-                    pos++;
-                    start = pos;
-                }
+                fwrite(start, end - start, 1, fout);
+                pos = convert_string(pos, fout, infilename, in);
+                start = pos;
             }
         }
         else
@@ -369,7 +377,7 @@ static void convert_file(const char *infilename, const char *outfilename)
             pos++;
         }
     }
-    
+
   eof:
     fwrite(start, pos - start, 1, fout);
     fclose(fout);
@@ -403,7 +411,7 @@ int main(int argc, char **argv)
 
     read_charmap(argv[1]);
     convert_file(argv[2], argv[3]);
-    
+
     hashtable_free(charmap);
 
     return 0;
