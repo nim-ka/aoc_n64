@@ -20,7 +20,7 @@ extern u8 D_0200EE68[];
 extern u8 D_0200EEF0[];
 
 // from main menu segment 7
-extern u32 mm7_table_00CD08[];
+// extern u32 mm7_table_00CD08[];
 extern u8 mm7_f3d_00D108[];
 extern u8 mm7_f3d_00D160[];
 extern u8 mm7_f3d_00F228[];
@@ -1585,12 +1585,15 @@ extern struct DemoInput *gDemoInputList;
 extern const char gLevelSelect_SelectStageText[];
 extern const char gLevelSelect_PressStartText[];
 extern const char gLevelSelect_StageIDText[];
-// extern ? D_0700C790;
-// extern ? D_0700C880;
+
+// from intro_segment7
+// extern float intro_table_0700C790[];
+// extern float intro_table_0700C880[];
+// extern u8 intro_f3d_0700B3A0[];
+// extern u8 intro_f3d_0700C6A0[];
+
 // extern ? D_801B9858;
-// extern ? D_0700B3A0;
 // extern ? D_801B985C;
-// extern ? D_0700C6A0;
 // extern ? D_0A000118;
 // extern ? D_0A000100;
 // extern ? D_0A000190;

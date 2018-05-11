@@ -21,13 +21,13 @@ glabel Geo18_8016F670
 /* 21DDB8 8016F5E8 AFAE004C */  sw    $t6, 0x4c($sp)
 /* 21DDBC 8016F5EC AFA00048 */  sw    $zero, 0x48($sp)
 /* 21DDC0 8016F5F0 AFA00044 */  sw    $zero, 0x44($sp)
-/* 21DDC4 8016F5F4 3C040701 */  lui   $a0, %hi(D_0700C790) # $a0, 0x701
+/* 21DDC4 8016F5F4 3C040701 */  lui   $a0, %hi(intro_table_0700C790) # $a0, 0x701
 /* 21DDC8 8016F5F8 0C09DE68 */  jal   segmented_to_virtual
-/* 21DDCC 8016F5FC 2484C790 */   addiu $a0, %lo(D_0700C790) # addiu $a0, $a0, -0x3870
+/* 21DDCC 8016F5FC 2484C790 */   addiu $a0, %lo(intro_table_0700C790) # addiu $a0, $a0, -0x3870
 /* 21DDD0 8016F600 AFA2003C */  sw    $v0, 0x3c($sp)
-/* 21DDD4 8016F604 3C040701 */  lui   $a0, %hi(D_0700C880) # $a0, 0x701
+/* 21DDD4 8016F604 3C040701 */  lui   $a0, %hi(intro_table_0700C880) # $a0, 0x701
 /* 21DDD8 8016F608 0C09DE68 */  jal   segmented_to_virtual
-/* 21DDDC 8016F60C 2484C880 */   addiu $a0, %lo(D_0700C880) # addiu $a0, $a0, -0x3780
+/* 21DDDC 8016F60C 2484C880 */   addiu $a0, %lo(intro_table_0700C880) # addiu $a0, $a0, -0x3780
 /* 21DDE0 8016F610 AFA20038 */  sw    $v0, 0x38($sp)
 /* 21DDE4 8016F614 8FAF0050 */  lw    $t7, 0x50($sp)
 /* 21DDE8 8016F618 24010001 */  li    $at, 1
@@ -182,8 +182,8 @@ glabel Geo18_8016F670
 /* 21E028 8016F858 3C0F0600 */  lui   $t7, 0x600
 /* 21E02C 8016F85C ADAF0000 */  sw    $t7, ($t5)
 /* 21E030 8016F860 8FA80024 */  lw    $t0, 0x24($sp)
-/* 21E034 8016F864 3C180701 */  lui   $t8, %hi(D_0700B3A0) # $t8, 0x701
-/* 21E038 8016F868 2718B3A0 */  addiu $t8, %lo(D_0700B3A0) # addiu $t8, $t8, -0x4c60
+/* 21E034 8016F864 3C180701 */  lui   $t8, %hi(intro_f3d_0700B3A0) # $t8, 0x701
+/* 21E038 8016F868 2718B3A0 */  addiu $t8, %lo(intro_f3d_0700B3A0) # addiu $t8, $t8, -0x4c60
 /* 21E03C 8016F86C AD180004 */  sw    $t8, 4($t0)
 /* 21E040 8016F870 8FAE0044 */  lw    $t6, 0x44($sp)
 /* 21E044 8016F874 25CA0008 */  addiu $t2, $t6, 8
@@ -325,8 +325,8 @@ glabel Geo18_8016F984
 /* 21E244 8016FA74 3C0D0600 */  lui   $t5, 0x600
 /* 21E248 8016FA78 ADCD0000 */  sw    $t5, ($t6)
 /* 21E24C 8016FA7C 8FA80020 */  lw    $t0, 0x20($sp)
-/* 21E250 8016FA80 3C190701 */  lui   $t9, %hi(D_0700C6A0) # $t9, 0x701
-/* 21E254 8016FA84 2739C6A0 */  addiu $t9, %lo(D_0700C6A0) # addiu $t9, $t9, -0x3960
+/* 21E250 8016FA80 3C190701 */  lui   $t9, %hi(intro_f3d_0700C6A0) # $t9, 0x701
+/* 21E254 8016FA84 2739C6A0 */  addiu $t9, %lo(intro_f3d_0700C6A0) # addiu $t9, $t9, -0x3960
 /* 21E258 8016FA88 AD190004 */  sw    $t9, 4($t0)
 /* 21E25C 8016FA8C 8FA90034 */  lw    $t1, 0x34($sp)
 /* 21E260 8016FA90 AFA9001C */  sw    $t1, 0x1c($sp)

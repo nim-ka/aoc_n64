@@ -21,7 +21,7 @@ $(MIO0_DIR)/chillychief_moneybag.mio0 \
 $(MIO0_DIR)/mri_swoop.mio0 \
 $(MIO0_DIR)/chuckya_shyguy_goomba.mio0 \
 $(MIO0_DIR)/doors_trees_coins.mio0 \
-$(MIO0_DIR)/wood_trademark.mio0 \
+$(MIO0_DIR)/intro_segment7.mio0 \
 $(MIO0_DIR)/debug_level_select.mio0 \
 $(MIO0_DIR)/mario_bg.mio0 \
 $(MIO0_DIR)/main_menu_segment7.mio0 \
@@ -79,6 +79,12 @@ $(MIO0_DIR)/rainbow_bonus_segment7.mio0 \
 $(MIO0_DIR)/bifs_platform_segment7.mio0 \
 $(MIO0_DIR)/bits_platform_segment7.mio0 \
 $(MIO0_DIR)/ttm_segment7.mio0
+
+INTRO_SEGMENT7_FILES = \
+   intro_segment7.07EA0.rgba16 \
+   intro_segment7.086A0.rgba16 \
+   intro_segment7.0B4A0.rgba16 \
+   intro_segment7.0C4A0.rgba16
 
 MAIN_MENU_SEGMENT7_FILES = \
    main_menu_segment7.00018.rgba16 \
@@ -263,10 +269,12 @@ BIFS_PLATFORM_SEGMENT7_FILES = \
    bifs_platform_segment7.00000.rgba16
 
 TEXTURE_DIRS = \
+   bin/intro_segment7 \
    bin/main_menu_segment7 \
    bin/bidw_platform_segment7 \
    bin/bifs_platform_segment7
 
+$(BUILD_DIR)/bin/intro_segment7.o: $(addprefix $(BUILD_DIR)/bin/intro_segment7/,$(INTRO_SEGMENT7_FILES))
 $(BUILD_DIR)/bin/main_menu_segment7.o: $(addprefix $(BUILD_DIR)/bin/main_menu_segment7/,$(MAIN_MENU_SEGMENT7_FILES))
 $(BUILD_DIR)/bin/bidw_platform_segment7.o: $(addprefix $(BUILD_DIR)/bin/bidw_platform_segment7/,$(BIDW_PLATFORM_SEGMENT7_FILES))
 $(BUILD_DIR)/bin/bifs_platform_segment7.o: $(addprefix $(BUILD_DIR)/bin/bifs_platform_segment7/,$(BIFS_PLATFORM_SEGMENT7_FILES))

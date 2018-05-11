@@ -113,7 +113,7 @@ load: $(ROM)
 src/text_strings.h: src/text_strings.h.in
 	$(TEXTCONV) charmap.txt $< $@
 
-$(BUILD_DIR)/mio0/%.mio0: bin/%.bin
+$(MIO0_DIR)/%.mio0: bin/%.bin
 	$(MIO0TOOL) $< $@
 
 $(BUILD_DIR):
@@ -145,7 +145,7 @@ $(BUILD_DIR)/bin/%.elf: $(BUILD_DIR)/bin/%.o
 $(BUILD_DIR)/bin/%.bin: $(BUILD_DIR)/bin/%.elf
 	$(OBJCOPY) -j .rodata $< -O binary $@
 
-$(BUILD_DIR)/mio0/%.mio0: $(BUILD_DIR)/bin/%.bin
+$(MIO0_DIR)/%.mio0: $(BUILD_DIR)/bin/%.bin
 	$(MIO0TOOL) $< $@
 
 # Source code

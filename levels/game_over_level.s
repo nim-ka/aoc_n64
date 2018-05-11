@@ -6,7 +6,7 @@ game_over_level:
 .word 0x1B040000
 .word 0x16100000, __segCodeSection, _goddardSegmentRomStart, _goddardSegmentRomEnd
 .word 0x170C0013, _behaviorSegmentRomStart, _behaviorSegmentRomEnd
-.word 0x180C0007, wood_trademark, wood_trademark_end
+.word 0x180C0007, intro_segment7, intro_segment7_end
 .word 0x1D040000
 .word 0x1F080100, 0x140002D0
 .word 0x20040000

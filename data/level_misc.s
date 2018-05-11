@@ -3,11 +3,11 @@
 .include "levels/game_over_level.s"
 
 .align 4, 0
-.global wood_trademark
-wood_trademark:
-.incbin "build/mio0/wood_trademark.mio0"
+.global intro_segment7
+intro_segment7:
+.incbin "build/mio0/intro_segment7.mio0"
 .align 4, 0
-wood_trademark_end:
+intro_segment7_end:
 
 .align 4, 0
 .global debug_level_select
