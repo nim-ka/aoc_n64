@@ -4,6 +4,7 @@
 #include "game.h"
 #include "main.h"
 #include "math_util.h"
+#include "rendering.h"
 #include "save_file.h"
 
 #define MENU_DATA_MAGIC 0x4849

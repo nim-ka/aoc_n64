@@ -280,6 +280,7 @@ struct UnknownStruct4
     /*0x0A*/ u8 unk0A;
     /*0x0B*/ u8 unk0B;
     /*0x0C*/ s16 unk0C;
+    /*0x0E*/ u8 filler0E[2];
     /*0x10*/ s16 unk10;
     /*0x12*/ s16 unk12;
     /*0x14*/ u16 unk14;
@@ -476,16 +477,24 @@ struct ObjectWarpNode
     /*0x08*/ struct ObjectWarpNode *unk8;
 };
 
-struct UnknownArea1C {
+struct UnknownArea1C
+{
     /*0x00*/ u8 unk00;
     /*0x01*/ u8 unk01;
     /*0x02*/ Vec3s displacement;
 };
 
-struct UnknownArea24 { // Camera or camera related
+struct UnknownArea24 // Camera or camera related
+{
     /*0x00*/ u8 unk00;
     /*0x01*/ u8 unk01;
     /*0x02*/ s16 unk02;
+};
+
+struct Whirlpool
+{
+    /*0x00*/ Vec3s pos;
+    /*0x03*/ s16 strength;
 };
 
 struct Area
@@ -503,8 +512,7 @@ struct Area
     /*0x20*/ u32 unk20;
     /*0x24*/ struct UnknownArea24 *unk24;
     /*0x28*/ u32 unk28;
-    /*0x2C*/ u32 unk2C;
-    /*0x30*/ u32 unk30;
+    /*0x2C*/ struct Whirlpool *whirlpools[2];
     /*0x34*/ u8 unk34[1];
     /*0x35*/ u8 unk35;
     /*0x36*/ u16 unk36;

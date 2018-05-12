@@ -1709,7 +1709,7 @@ glabel func_8025F26C
 /* 01A274 8025F274 AFA40018 */  sw    $a0, 0x18($sp)
 /* 01A278 8025F278 AFA5001C */  sw    $a1, 0x1c($sp)
 /* 01A27C 8025F27C AFA60020 */  sw    $a2, 0x20($sp)
-/* 01A280 8025F280 0C0955E2 */  jal   stop_and_set_height_to_ground
+/* 01A280 8025F280 0C0955E2 */  jal   stop_and_set_height_to_floor
 /* 01A284 8025F284 8FA40018 */   lw    $a0, 0x18($sp)
 /* 01A288 8025F288 8FA40018 */  lw    $a0, 0x18($sp)
 /* 01A28C 8025F28C 0C0941FA */  jal   func_802507E8
@@ -1911,7 +1911,7 @@ glabel func_8025F2E8
 /* 01A558 8025F558 0C0943D4 */  jal   func_80250F50
 /* 01A55C 8025F55C 3C060002 */   lui   $a2, 2
 .L8025F560:
-/* 01A560 8025F560 0C0955E2 */  jal   stop_and_set_height_to_ground
+/* 01A560 8025F560 0C0955E2 */  jal   stop_and_set_height_to_floor
 /* 01A564 8025F564 8FA40030 */   lw    $a0, 0x30($sp)
 /* 01A568 8025F568 8FA40030 */  lw    $a0, 0x30($sp)
 /* 01A56C 8025F56C 0C0941FA */  jal   func_802507E8

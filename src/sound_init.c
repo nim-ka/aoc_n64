@@ -4,6 +4,7 @@
 #include "level_update.h"
 #include "main.h"
 #include "math_util.h"
+#include "rendering.h"
 
 u8 D_8032C6C0 = 0;
 u8 D_8032C6C4 = 0;

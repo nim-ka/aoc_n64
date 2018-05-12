@@ -3,6 +3,7 @@
 #include "sm64.h"
 #include "game.h"
 #include "memory.h"
+#include "rendering.h"
 #include "save_file.h"
 
 #include "text_strings.h"

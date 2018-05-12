@@ -24,7 +24,8 @@
 #define SAVE_FLAG_CAP_ON_MR_BLIZZARD     (1 << 19)
 #define SAVE_FLAG_UNLOCKED_50_STAR_DOOR  (1 << 20)
 
-enum CourseNum {
+enum CourseNum
+{
     COURSE_NONE,                       // (0)  Overworld (Castle Grounds, etc)
     COURSE_MIN,
     /* -------------- Main Courses -------------- */
@@ -60,7 +61,8 @@ enum CourseNum {
     COURSE_MAX = COURSE_CAKE_END
 };
 
-enum LevelNum {
+enum LevelNum
+{
     LEVEL_NONE,                  // not indexed
     LEVEL_MIN,
     LEVEL_UNKNOWN_1 = LEVEL_MIN, // (1)  ""

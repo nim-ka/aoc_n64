@@ -3,6 +3,7 @@
 #include "sm64.h"
 #include "math_util.h"
 #include "memory.h"
+#include "rendering.h"
 #include "save_file.h"
 
 struct Struct8035FF50

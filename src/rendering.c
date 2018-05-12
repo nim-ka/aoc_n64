@@ -5,6 +5,7 @@
 #include "main.h"
 #include "math_util.h"
 #include "memory.h"
+#include "rendering.h"
 
 struct Struct8032CF90
 {
@@ -449,8 +450,8 @@ void func_8027A554(void)
         D_8033A560[sp4].unk20 = 0;
         D_8033A560[sp4].unk24 = 0;
         D_8033A560[sp4].unk28 = 0;
-        D_8033A560[sp4].unk2C = 0;
-        D_8033A560[sp4].unk30 = 0;
+        D_8033A560[sp4].whirlpools[0] = NULL;
+        D_8033A560[sp4].whirlpools[1] = NULL;
         D_8033A560[sp4].unk34[0] = 255;
         D_8033A560[sp4].unk35 = 255;
         D_8033A560[sp4].unk36 = 0;

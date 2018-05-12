@@ -224,7 +224,7 @@ u32 mario_update_windy_ground(struct MarioState *m)
     return 0;
 }
 
-void stop_and_set_height_to_ground(struct MarioState *m)
+void stop_and_set_height_to_floor(struct MarioState *m)
 {
     struct Object *marioObj = m->marioObj;
 

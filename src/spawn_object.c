@@ -2,6 +2,7 @@
 
 #include "sm64.h"
 #include "math_util.h"
+#include "rendering.h"
 
 struct LinkedList
 {

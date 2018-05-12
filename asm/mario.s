@@ -4555,7 +4555,7 @@ glabel func_80254604
 /* 00F754 80254754 00000000 */   nop   
 .L80254758:
 /* 00F758 80254758 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
-/* 00F75C 8025475C 0C09D10B */  jal   func_8027442C
+/* 00F75C 8025475C 0C09D10B */  jal   execute_submerged_action
 /* 00F760 80254760 8C84C9D8 */   lw    $a0, %lo(gMarioState)($a0)
 /* 00F764 80254764 AFA20024 */  sw    $v0, 0x24($sp)
 /* 00F768 80254768 10000013 */  b     .L802547B8

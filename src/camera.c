@@ -3,6 +3,7 @@
 #include "sm64.h"
 #include "game.h"
 #include "math_util.h"
+#include "rendering.h"
 
 extern float D_8033B438;
 extern float D_8033B3CC;

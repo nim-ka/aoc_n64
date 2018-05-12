@@ -842,7 +842,7 @@ glabel func_80257794
 /* 0127A0 802577A0 8FA40018 */  lw    $a0, 0x18($sp)
 /* 0127A4 802577A4 0C0941FA */  jal   func_802507E8
 /* 0127A8 802577A8 2405000E */   li    $a1, 14
-/* 0127AC 802577AC 0C0955E2 */  jal   stop_and_set_height_to_ground
+/* 0127AC 802577AC 0C0955E2 */  jal   stop_and_set_height_to_floor
 /* 0127B0 802577B0 8FA40018 */   lw    $a0, 0x18($sp)
 /* 0127B4 802577B4 8FAE0018 */  lw    $t6, 0x18($sp)
 /* 0127B8 802577B8 2401FFFE */  li    $at, -2
@@ -1587,7 +1587,7 @@ glabel func_802581A8
 /* 013230 80258230 8DF80098 */  lw    $t8, 0x98($t7)
 /* 013234 80258234 A30D0006 */  sb    $t5, 6($t8)
 .L80258238:
-/* 013238 80258238 0C0955E2 */  jal   stop_and_set_height_to_ground
+/* 013238 80258238 0C0955E2 */  jal   stop_and_set_height_to_floor
 /* 01323C 8025823C 8FA40028 */   lw    $a0, 0x28($sp)
 /* 013240 80258240 10000003 */  b     .L80258250
 /* 013244 80258244 00001025 */   move  $v0, $zero
@@ -1759,7 +1759,7 @@ glabel func_80258454
 /* 013498 80258498 24180008 */  li    $t8, 8
 /* 01349C 8025849C 8F280098 */  lw    $t0, 0x98($t9)
 /* 0134A0 802584A0 A1180005 */  sb    $t8, 5($t0)
-/* 0134A4 802584A4 0C0955E2 */  jal   stop_and_set_height_to_ground
+/* 0134A4 802584A4 0C0955E2 */  jal   stop_and_set_height_to_floor
 /* 0134A8 802584A8 8FA40020 */   lw    $a0, 0x20($sp)
 /* 0134AC 802584AC 10000003 */  b     .L802584BC
 /* 0134B0 802584B0 8FA2001C */   lw    $v0, 0x1c($sp)
@@ -2179,7 +2179,7 @@ glabel func_80258930
 .L80258A88:
 /* 013A88 80258A88 0C094394 */  jal   func_80250E50
 /* 013A8C 80258A8C 8FA40028 */   lw    $a0, 0x28($sp)
-/* 013A90 80258A90 0C0955E2 */  jal   stop_and_set_height_to_ground
+/* 013A90 80258A90 0C0955E2 */  jal   stop_and_set_height_to_floor
 /* 013A94 80258A94 8FA40028 */   lw    $a0, 0x28($sp)
 /* 013A98 80258A98 0C0941DC */  jal   func_80250770
 /* 013A9C 80258A9C 8FA40028 */   lw    $a0, 0x28($sp)
@@ -2346,7 +2346,7 @@ glabel func_80258B34
 /* 013CE4 80258CE4 E72A0044 */  swc1  $f10, 0x44($t9)
 /* 013CE8 80258CE8 0C094394 */  jal   func_80250E50
 /* 013CEC 80258CEC 8FA40028 */   lw    $a0, 0x28($sp)
-/* 013CF0 80258CF0 0C0955E2 */  jal   stop_and_set_height_to_ground
+/* 013CF0 80258CF0 0C0955E2 */  jal   stop_and_set_height_to_floor
 /* 013CF4 80258CF4 8FA40028 */   lw    $a0, 0x28($sp)
 /* 013CF8 80258CF8 10000003 */  b     .L80258D08
 /* 013CFC 80258CFC 00001025 */   move  $v0, $zero
@@ -2525,7 +2525,7 @@ glabel func_80258D1C
 /* 013F90 80258F90 0C09424D */  jal   func_80250934
 /* 013F94 80258F94 24050048 */   li    $a1, 72
 .L80258F98:
-/* 013F98 80258F98 0C0955E2 */  jal   stop_and_set_height_to_ground
+/* 013F98 80258F98 0C0955E2 */  jal   stop_and_set_height_to_floor
 /* 013F9C 80258F9C 8FA40030 */   lw    $a0, 0x30($sp)
 /* 013FA0 80258FA0 8FAC0030 */  lw    $t4, 0x30($sp)
 /* 013FA4 80258FA4 24010030 */  li    $at, 48
@@ -2594,7 +2594,7 @@ glabel func_80258FEC
 /* 014088 80259088 E5260044 */  swc1  $f6, 0x44($t1)
 /* 01408C 8025908C 0C094394 */  jal   func_80250E50
 /* 014090 80259090 8FA40018 */   lw    $a0, 0x18($sp)
-/* 014094 80259094 0C0955E2 */  jal   stop_and_set_height_to_ground
+/* 014094 80259094 0C0955E2 */  jal   stop_and_set_height_to_floor
 /* 014098 80259098 8FA40018 */   lw    $a0, 0x18($sp)
 /* 01409C 8025909C 8FAD0018 */  lw    $t5, 0x18($sp)
 /* 0140A0 802590A0 8DAC001C */  lw    $t4, 0x1c($t5)
@@ -2710,7 +2710,7 @@ glabel func_80259154
 /* 014228 80259228 8FA40018 */  lw    $a0, 0x18($sp)
 /* 01422C 8025922C 0C0941FA */  jal   func_802507E8
 /* 014230 80259230 240500C2 */   li    $a1, 194
-/* 014234 80259234 0C0955E2 */  jal   stop_and_set_height_to_ground
+/* 014234 80259234 0C0955E2 */  jal   stop_and_set_height_to_floor
 /* 014238 80259238 8FA40018 */   lw    $a0, 0x18($sp)
 /* 01423C 8025923C 10000003 */  b     .L8025924C
 /* 014240 80259240 00001025 */   move  $v0, $zero
@@ -2896,7 +2896,7 @@ glabel func_802594C8
 /* 0144C8 802594C8 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 0144CC 802594CC AFBF0014 */  sw    $ra, 0x14($sp)
 /* 0144D0 802594D0 AFA40018 */  sw    $a0, 0x18($sp)
-/* 0144D4 802594D4 0C0955E2 */  jal   stop_and_set_height_to_ground
+/* 0144D4 802594D4 0C0955E2 */  jal   stop_and_set_height_to_floor
 /* 0144D8 802594D8 8FA40018 */   lw    $a0, 0x18($sp)
 /* 0144DC 802594DC 8FA40018 */  lw    $a0, 0x18($sp)
 /* 0144E0 802594E0 0C0941FA */  jal   func_802507E8
@@ -3544,7 +3544,7 @@ glabel func_80259DC8
 /* 014DE4 80259DE4 8FA40018 */  lw    $a0, 0x18($sp)
 /* 014DE8 80259DE8 0C0941FA */  jal   func_802507E8
 /* 014DEC 80259DEC 24050057 */   li    $a1, 87
-/* 014DF0 80259DF0 0C0955E2 */  jal   stop_and_set_height_to_ground
+/* 014DF0 80259DF0 0C0955E2 */  jal   stop_and_set_height_to_floor
 /* 014DF4 80259DF4 8FA40018 */   lw    $a0, 0x18($sp)
 /* 014DF8 80259DF8 0C0941DC */  jal   func_80250770
 /* 014DFC 80259DFC 8FA40018 */   lw    $a0, 0x18($sp)
@@ -3815,7 +3815,7 @@ glabel L8025A068
 /* 0151D0 8025A1D0 1000000A */  b     .L8025A1FC
 /* 0151D4 8025A1D4 00000000 */   nop   
 glabel L8025A1D8
-/* 0151D8 8025A1D8 0C0955E2 */  jal   stop_and_set_height_to_ground
+/* 0151D8 8025A1D8 0C0955E2 */  jal   stop_and_set_height_to_floor
 /* 0151DC 8025A1DC 8FA40030 */   lw    $a0, 0x30($sp)
 /* 0151E0 8025A1E0 8FA90030 */  lw    $t1, 0x30($sp)
 /* 0151E4 8025A1E4 8D2C0088 */  lw    $t4, 0x88($t1)
@@ -3990,7 +3990,7 @@ glabel func_8025A398
 /* 015450 8025A450 0C092A18 */  jal   level_trigger_warp
 /* 015454 8025A454 24050005 */   li    $a1, 5
 .L8025A458:
-/* 015458 8025A458 0C0955E2 */  jal   stop_and_set_height_to_ground
+/* 015458 8025A458 0C0955E2 */  jal   stop_and_set_height_to_floor
 /* 01545C 8025A45C 8FA40028 */   lw    $a0, 0x28($sp)
 /* 015460 8025A460 10000003 */  b     .L8025A470
 /* 015464 8025A464 00001025 */   move  $v0, $zero
@@ -4085,7 +4085,7 @@ glabel func_8025A484
 /* 0155AC 8025A5AC 0C094AB2 */  jal   set_mario_action
 /* 0155B0 8025A5B0 00003025 */   move  $a2, $zero
 .L8025A5B4:
-/* 0155B4 8025A5B4 0C0955E2 */  jal   stop_and_set_height_to_ground
+/* 0155B4 8025A5B4 0C0955E2 */  jal   stop_and_set_height_to_floor
 /* 0155B8 8025A5B8 8FA40028 */   lw    $a0, 0x28($sp)
 /* 0155BC 8025A5BC 10000003 */  b     .L8025A5CC
 /* 0155C0 8025A5C0 00001025 */   move  $v0, $zero
@@ -4179,7 +4179,7 @@ glabel func_8025A5E0
 /* 015700 8025A700 0C094AB2 */  jal   set_mario_action
 /* 015704 8025A704 00003025 */   move  $a2, $zero
 .L8025A708:
-/* 015708 8025A708 0C0955E2 */  jal   stop_and_set_height_to_ground
+/* 015708 8025A708 0C0955E2 */  jal   stop_and_set_height_to_floor
 /* 01570C 8025A70C 8FA40028 */   lw    $a0, 0x28($sp)
 .L8025A710:
 /* 015710 8025A710 10000003 */  b     .L8025A720
@@ -4478,7 +4478,7 @@ glabel func_8025A734
 /* 015B54 8025AB54 0C094AB2 */  jal   set_mario_action
 /* 015B58 8025AB58 00003025 */   move  $a2, $zero
 .L8025AB5C:
-/* 015B5C 8025AB5C 0C0955E2 */  jal   stop_and_set_height_to_ground
+/* 015B5C 8025AB5C 0C0955E2 */  jal   stop_and_set_height_to_floor
 /* 015B60 8025AB60 8FA40038 */   lw    $a0, 0x38($sp)
 /* 015B64 8025AB64 8FA40038 */  lw    $a0, 0x38($sp)
 /* 015B68 8025AB68 0C0941FA */  jal   func_802507E8
@@ -4577,7 +4577,7 @@ glabel func_8025AC30
 /* 015CB8 8025ACB8 0C0942AB */  jal   func_80250AAC
 /* 015CBC 8025ACBC 8FA5001C */   lw    $a1, 0x1c($sp)
 .L8025ACC0:
-/* 015CC0 8025ACC0 0C0955E2 */  jal   stop_and_set_height_to_ground
+/* 015CC0 8025ACC0 0C0955E2 */  jal   stop_and_set_height_to_floor
 /* 015CC4 8025ACC4 8FA40020 */   lw    $a0, 0x20($sp)
 /* 015CC8 8025ACC8 8FA8001C */  lw    $t0, 0x1c($sp)
 /* 015CCC 8025ACCC 2401FFFF */  li    $at, -1
@@ -4923,7 +4923,7 @@ glabel func_8025B160
 /* 016188 8025B188 0C096BA0 */  jal   func_8025AE80
 /* 01618C 8025B18C 8FA40018 */   lw    $a0, 0x18($sp)
 .L8025B190:
-/* 016190 8025B190 0C0955E2 */  jal   stop_and_set_height_to_ground
+/* 016190 8025B190 0C0955E2 */  jal   stop_and_set_height_to_floor
 /* 016194 8025B194 8FA40018 */   lw    $a0, 0x18($sp)
 /* 016198 8025B198 10000001 */  b     .L8025B1A0
 /* 01619C 8025B19C 00000000 */   nop   
@@ -4978,7 +4978,7 @@ glabel func_8025B1B0
 /* 016250 8025B250 0C096BA0 */  jal   func_8025AE80
 /* 016254 8025B254 8FA40028 */   lw    $a0, 0x28($sp)
 .L8025B258:
-/* 016258 8025B258 0C0955E2 */  jal   stop_and_set_height_to_ground
+/* 016258 8025B258 0C0955E2 */  jal   stop_and_set_height_to_floor
 /* 01625C 8025B25C 8FA40028 */   lw    $a0, 0x28($sp)
 /* 016260 8025B260 10000001 */  b     .L8025B268
 /* 016264 8025B264 00000000 */   nop   
@@ -5010,7 +5010,7 @@ glabel func_8025B27C
 /* 0162C0 8025B2C0 0C094AB2 */  jal   set_mario_action
 /* 0162C4 8025B2C4 00003025 */   move  $a2, $zero
 .L8025B2C8:
-/* 0162C8 8025B2C8 0C0955E2 */  jal   stop_and_set_height_to_ground
+/* 0162C8 8025B2C8 0C0955E2 */  jal   stop_and_set_height_to_floor
 /* 0162CC 8025B2CC 8FA40018 */   lw    $a0, 0x18($sp)
 /* 0162D0 8025B2D0 10000001 */  b     .L8025B2D8
 /* 0162D4 8025B2D4 00000000 */   nop   
@@ -5759,7 +5759,7 @@ glabel func_8025BD70
 /* 016D7C 8025BD7C 8FA40030 */  lw    $a0, 0x30($sp)
 /* 016D80 8025BD80 0C0941FA */  jal   func_802507E8
 /* 016D84 8025BD84 24050057 */   li    $a1, 87
-/* 016D88 8025BD88 0C0955E2 */  jal   stop_and_set_height_to_ground
+/* 016D88 8025BD88 0C0955E2 */  jal   stop_and_set_height_to_floor
 /* 016D8C 8025BD8C 8FA40030 */   lw    $a0, 0x30($sp)
 /* 016D90 8025BD90 0C0941DC */  jal   func_80250770
 /* 016D94 8025BD94 8FA40030 */   lw    $a0, 0x30($sp)
@@ -7020,7 +7020,7 @@ glabel func_8025CE54
 /* 017F2C 8025CF2C 956C001A */  lhu   $t4, 0x1a($t3)
 /* 017F30 8025CF30 19800003 */  blez  $t4, .L8025CF40
 /* 017F34 8025CF34 00000000 */   nop   
-/* 017F38 8025CF38 0C0955E2 */  jal   stop_and_set_height_to_ground
+/* 017F38 8025CF38 0C0955E2 */  jal   stop_and_set_height_to_floor
 /* 017F3C 8025CF3C 8FA40038 */   lw    $a0, 0x38($sp)
 .L8025CF40:
 /* 017F40 8025CF40 8FAD0038 */  lw    $t5, 0x38($sp)
@@ -7271,7 +7271,7 @@ glabel func_8025D170
 /* 0182E0 8025D2E0 8FA40040 */  lw    $a0, 0x40($sp)
 /* 0182E4 8025D2E4 0C0941FA */  jal   func_802507E8
 /* 0182E8 8025D2E8 2405001D */   li    $a1, 29
-/* 0182EC 8025D2EC 0C0955E2 */  jal   stop_and_set_height_to_ground
+/* 0182EC 8025D2EC 0C0955E2 */  jal   stop_and_set_height_to_floor
 /* 0182F0 8025D2F0 8FA40040 */   lw    $a0, 0x40($sp)
 /* 0182F4 8025D2F4 8FAB0040 */  lw    $t3, 0x40($sp)
 /* 0182F8 8025D2F8 34018000 */  li    $at, 32768

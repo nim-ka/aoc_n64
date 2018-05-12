@@ -5,6 +5,7 @@
 #include "level_update.h"
 #include "main.h"
 #include "math_util.h"
+#include "rendering.h"
 #include "save_file.h"
 
 
@@ -275,7 +276,7 @@ static void set_mario_initial_action(struct MarioState *m, u32 spawnType, u32 ac
     case MARIO_SPAWN_UNKNOWN_15: set_mario_action(m, ACT_UNKNOWN_12A, 0);          break;
     case MARIO_SPAWN_UNKNOWN_16: set_mario_action(m, ACT_UNKNOWN_124, 0);          break;
     case MARIO_SPAWN_UNKNOWN_17: set_mario_action(m, ACT_FLYING, 2);               break;
-    case MARIO_SPAWN_UNKNOWN_11: set_mario_action(m, ACT_UNKNOWN_0C0, 1);          break;
+    case MARIO_SPAWN_UNKNOWN_11: set_mario_action(m, ACT_WATER_IDLE, 1);          break;
     case MARIO_SPAWN_UNKNOWN_20: set_mario_action(m, ACT_UNKNOWN_126, 0);          break;
     case MARIO_SPAWN_UNKNOWN_21: set_mario_action(m, ACT_UNKNOWN_128, 0);          break;
     case MARIO_SPAWN_UNKNOWN_22: set_mario_action(m, ACT_UNKNOWN_12D, 0);          break;

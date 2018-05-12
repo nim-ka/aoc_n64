@@ -4,6 +4,7 @@
 #include "level_update.h"
 #include "math_util.h"
 #include "memory.h"
+#include "rendering.h"
 #include "save_file.h"
 
 #define INT_GROUND_POUND_OR_TWIRL (1 << 0) // 0x00000001
@@ -116,14 +117,14 @@ static u32 sForwardKnockbackActions[][3] =
 {
     { ACT_UNKNOWN_065, ACT_UNKNOWN_063, ACT_UNKNOWN_061 },
     { ACT_FORWARD_AIR_KB, ACT_FORWARD_AIR_KB, ACT_HARD_FORWARD_AIR_KB },
-    { ACT_UNKNOWN_0C6, ACT_UNKNOWN_0C6, ACT_UNKNOWN_0C6 },
+    { ACT_FORWARD_WATER_KB, ACT_FORWARD_WATER_KB, ACT_FORWARD_WATER_KB },
 };
 
 static u32 sBackwardKnockbackActions[][3] =
 {
     { ACT_UNKNOWN_064, ACT_UNKNOWN_062, ACT_UNKNOWN_060 },
     { ACT_BACKWARD_AIR_KB, ACT_BACKWARD_AIR_KB, ACT_HARD_BACKWARD_AIR_KB },
-    { ACT_UNKNOWN_0C5, ACT_UNKNOWN_0C5, ACT_UNKNOWN_0C5 },
+    { ACT_BACKWARD_WATER_KB, ACT_BACKWARD_WATER_KB, ACT_BACKWARD_WATER_KB },
 };
 
 static u8 sDisplayingDoorText = FALSE;
