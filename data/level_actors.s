@@ -5,9 +5,9 @@
 .include "levels/main_entry.s"
 
 .align 4, 0
-glabel font_graphics
-.incbin "build/mio0/font_graphics.mio0"
-glabel font_graphics_end
+glabel segment2
+.incbin "build/mio0/segment2.mio0"
+glabel segment2_end
 
 .align 4, 0
 .global mario

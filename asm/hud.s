@@ -485,8 +485,8 @@ glabel RenderHudCamera
 /* 09CE58 802E1E58 3C180600 */  lui   $t8, 0x600
 /* 09CE5C 802E1E5C AF380000 */  sw    $t8, ($t9)
 /* 09CE60 802E1E60 8FA9000C */  lw    $t1, 0xc($sp)
-/* 09CE64 802E1E64 3C080201 */  lui   $t0, %hi(D_0200EC98) # $t0, 0x201
-/* 09CE68 802E1E68 2508EC98 */  addiu $t0, %lo(D_0200EC98) # addiu $t0, $t0, -0x1368
+/* 09CE64 802E1E64 3C080201 */  lui   $t0, %hi(seg2_f3d_00EC98) # $t0, 0x201
+/* 09CE68 802E1E68 2508EC98 */  addiu $t0, %lo(seg2_f3d_00EC98) # addiu $t0, $t0, -0x1368
 /* 09CE6C 802E1E6C AD280004 */  sw    $t0, 4($t1)
 /* 09CE70 802E1E70 3C0A8034 */  lui   $t2, %hi(gDisplayListHead) # $t2, 0x8034
 /* 09CE74 802E1E74 8D4A9CFC */  lw    $t2, %lo(gDisplayListHead)($t2)
@@ -1316,9 +1316,9 @@ glabel func_802E29D4
 glabel RenderHudTimer
 /* 09DA4C 802E2A4C 27BDFFD0 */  addiu $sp, $sp, -0x30
 /* 09DA50 802E2A50 AFBF0014 */  sw    $ra, 0x14($sp)
-/* 09DA54 802E2A54 3C040201 */  lui   $a0, %hi(D_02008250) # $a0, 0x201
+/* 09DA54 802E2A54 3C040201 */  lui   $a0, %hi(seg2_hud_lut) # $a0, 0x201
 /* 09DA58 802E2A58 0C09DE68 */  jal   segmented_to_virtual
-/* 09DA5C 802E2A5C 24848250 */   addiu $a0, %lo(D_02008250) # addiu $a0, $a0, -0x7db0
+/* 09DA5C 802E2A5C 24848250 */   addiu $a0, %lo(seg2_hud_lut) # addiu $a0, $a0, -0x7db0
 /* 09DA60 802E2A60 AFA2002C */  sw    $v0, 0x2c($sp)
 /* 09DA64 802E2A64 3C0E8034 */  lui   $t6, %hi(gTimerValueInFrames) # $t6, 0x8034
 /* 09DA68 802E2A68 95CE9EFC */  lhu   $t6, %lo(gTimerValueInFrames)($t6)
@@ -1394,8 +1394,8 @@ glabel RenderHudTimer
 /* 09DB80 802E2B80 3C0C0600 */  lui   $t4, 0x600
 /* 09DB84 802E2B84 ADCC0000 */  sw    $t4, ($t6)
 /* 09DB88 802E2B88 8FAF0020 */  lw    $t7, 0x20($sp)
-/* 09DB8C 802E2B8C 3C180201 */  lui   $t8, %hi(D_0200EC60) # $t8, 0x201
-/* 09DB90 802E2B90 2718EC60 */  addiu $t8, %lo(D_0200EC60) # addiu $t8, $t8, -0x13a0
+/* 09DB8C 802E2B8C 3C180201 */  lui   $t8, %hi(seg2_f3d_00EC60) # $t8, 0x201
+/* 09DB90 802E2B90 2718EC60 */  addiu $t8, %lo(seg2_f3d_00EC60) # addiu $t8, $t8, -0x13a0
 /* 09DB94 802E2B94 ADF80004 */  sw    $t8, 4($t7)
 /* 09DB98 802E2B98 8FA8002C */  lw    $t0, 0x2c($sp)
 /* 09DB9C 802E2B9C 240400EF */  li    $a0, 239
@@ -1417,8 +1417,8 @@ glabel RenderHudTimer
 /* 09DBDC 802E2BDC 3C0B0600 */  lui   $t3, 0x600
 /* 09DBE0 802E2BE0 ADAB0000 */  sw    $t3, ($t5)
 /* 09DBE4 802E2BE4 8FAE001C */  lw    $t6, 0x1c($sp)
-/* 09DBE8 802E2BE8 3C0C0201 */  lui   $t4, %hi(D_0200ECC8) # $t4, 0x201
-/* 09DBEC 802E2BEC 258CECC8 */  addiu $t4, %lo(D_0200ECC8) # addiu $t4, $t4, -0x1338
+/* 09DBE8 802E2BE8 3C0C0201 */  lui   $t4, %hi(seg2_f3d_00ECC8) # $t4, 0x201
+/* 09DBEC 802E2BEC 258CECC8 */  addiu $t4, %lo(seg2_f3d_00ECC8) # addiu $t4, $t4, -0x1338
 /* 09DBF0 802E2BF0 ADCC0004 */  sw    $t4, 4($t6)
 /* 09DBF4 802E2BF4 10000001 */  b     .L802E2BFC
 /* 09DBF8 802E2BF8 00000000 */   nop   
@@ -1443,9 +1443,9 @@ glabel ShowCameraStatus
 /* 09DC2C 802E2C2C 27BDFFC8 */  addiu $sp, $sp, -0x38
 /* 09DC30 802E2C30 AFBF001C */  sw    $ra, 0x1c($sp)
 /* 09DC34 802E2C34 AFB00018 */  sw    $s0, 0x18($sp)
-/* 09DC38 802E2C38 3C040201 */  lui   $a0, %hi(D_020087CC) # $a0, 0x201
+/* 09DC38 802E2C38 3C040201 */  lui   $a0, %hi(seg2_hud_camera_lut) # $a0, 0x201
 /* 09DC3C 802E2C3C 0C09DE68 */  jal   segmented_to_virtual
-/* 09DC40 802E2C40 248487CC */   addiu $a0, %lo(D_020087CC) # addiu $a0, $a0, -0x7834
+/* 09DC40 802E2C40 248487CC */   addiu $a0, %lo(seg2_hud_camera_lut) # addiu $a0, $a0, -0x7834
 /* 09DC44 802E2C44 AFA20034 */  sw    $v0, 0x34($sp)
 /* 09DC48 802E2C48 240E010A */  li    $t6, 266
 /* 09DC4C 802E2C4C AFAE0030 */  sw    $t6, 0x30($sp)
@@ -1468,8 +1468,8 @@ glabel ShowCameraStatus
 /* 09DC8C 802E2C8C 3C090600 */  lui   $t1, 0x600
 /* 09DC90 802E2C90 AD490000 */  sw    $t1, ($t2)
 /* 09DC94 802E2C94 8FAC0028 */  lw    $t4, 0x28($sp)
-/* 09DC98 802E2C98 3C0B0201 */  lui   $t3, %hi(D_0200EC60) # $t3, 0x201
-/* 09DC9C 802E2C9C 256BEC60 */  addiu $t3, %lo(D_0200EC60) # addiu $t3, $t3, -0x13a0
+/* 09DC98 802E2C98 3C0B0201 */  lui   $t3, %hi(seg2_f3d_00EC60) # $t3, 0x201
+/* 09DC9C 802E2C9C 256BEC60 */  addiu $t3, %lo(seg2_f3d_00EC60) # addiu $t3, $t3, -0x13a0
 /* 09DCA0 802E2CA0 AD8B0004 */  sw    $t3, 4($t4)
 /* 09DCA4 802E2CA4 8FAD0034 */  lw    $t5, 0x34($sp)
 /* 09DCA8 802E2CA8 8FA40030 */  lw    $a0, 0x30($sp)
@@ -1562,8 +1562,8 @@ glabel ShowCameraStatus
 /* 09DDE8 802E2DE8 3C0D0600 */  lui   $t5, 0x600
 /* 09DDEC 802E2DEC ADCD0000 */  sw    $t5, ($t6)
 /* 09DDF0 802E2DF0 8FB80024 */  lw    $t8, 0x24($sp)
-/* 09DDF4 802E2DF4 3C0F0201 */  lui   $t7, %hi(D_0200ECC8) # $t7, 0x201
-/* 09DDF8 802E2DF8 25EFECC8 */  addiu $t7, %lo(D_0200ECC8) # addiu $t7, $t7, -0x1338
+/* 09DDF4 802E2DF4 3C0F0201 */  lui   $t7, %hi(seg2_f3d_00ECC8) # $t7, 0x201
+/* 09DDF8 802E2DF8 25EFECC8 */  addiu $t7, %lo(seg2_f3d_00ECC8) # addiu $t7, $t7, -0x1338
 /* 09DDFC 802E2DFC AF0F0004 */  sw    $t7, 4($t8)
 /* 09DE00 802E2E00 10000001 */  b     .L802E2E08
 /* 09DE04 802E2E04 00000000 */   nop   

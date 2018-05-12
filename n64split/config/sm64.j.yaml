@@ -157,7 +157,7 @@ ranges:
    - [0x1073C0, 0x1074A0, "ptr", "BehaviorJumpTable"]
    # Level Scripts, Geo Layout, Graphics, and Behaviors
    - [0x1076A0, 0x1076D0, "sm64.level",  "main_entry"]
-   - [0x1076D0, 0x112B50, "mio0", "font_graphics", 0x02000000]:
+   - [0x1076D0, 0x112B50, "mio0", "segment2", 0x02000000]:
       #offset, format, depth,width,height
       - [0x00000, "tex.rgba",   16, 16, 16]
       - [0x00200, "tex.rgba",   16, 16, 16]

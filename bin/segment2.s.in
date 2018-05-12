@@ -1,0 +1,4672 @@
+# SM64 (J) Segment 02
+.section .rodata
+
+.include "macros.inc"
+
+# 0x02000000-0x02008250 textures
+seg2_texture_000000:
+.incbin "build/bin/segment2/segment2.00000.rgba16"
+seg2_texture_000200:
+.incbin "build/bin/segment2/segment2.00200.rgba16"
+seg2_texture_000400:
+.incbin "build/bin/segment2/segment2.00400.rgba16"
+seg2_texture_000600:
+.incbin "build/bin/segment2/segment2.00600.rgba16"
+seg2_texture_000800:
+.incbin "build/bin/segment2/segment2.00800.rgba16"
+seg2_texture_000A00:
+.incbin "build/bin/segment2/segment2.00A00.rgba16"
+seg2_texture_000C00:
+.incbin "build/bin/segment2/segment2.00C00.rgba16"
+seg2_texture_000E00:
+.incbin "build/bin/segment2/segment2.00E00.rgba16"
+seg2_texture_001000:
+.incbin "build/bin/segment2/segment2.01000.rgba16"
+seg2_texture_001200:
+.incbin "build/bin/segment2/segment2.01200.rgba16"
+seg2_texture_001400:
+.incbin "build/bin/segment2/segment2.01400.rgba16"
+seg2_texture_001600:
+.incbin "build/bin/segment2/segment2.01600.rgba16"
+seg2_texture_001800:
+.incbin "build/bin/segment2/segment2.01800.rgba16"
+seg2_texture_001A00:
+.incbin "build/bin/segment2/segment2.01A00.rgba16"
+seg2_texture_001C00:
+.incbin "build/bin/segment2/segment2.01C00.rgba16"
+seg2_texture_001E00:
+.incbin "build/bin/segment2/segment2.01E00.rgba16"
+seg2_texture_002000:
+.incbin "build/bin/segment2/segment2.02000.rgba16"
+seg2_texture_002200:
+.incbin "build/bin/segment2/segment2.02200.rgba16"
+seg2_texture_002400:
+.incbin "build/bin/segment2/segment2.02400.rgba16"
+seg2_texture_002600:
+.incbin "build/bin/segment2/segment2.02600.rgba16"
+seg2_texture_002800:
+.incbin "build/bin/segment2/segment2.02800.rgba16"
+seg2_texture_002A00:
+.incbin "build/bin/segment2/segment2.02A00.rgba16"
+seg2_texture_002C00:
+.incbin "build/bin/segment2/segment2.02C00.rgba16"
+seg2_texture_002E00:
+.incbin "build/bin/segment2/segment2.02E00.rgba16"
+seg2_texture_003000:
+.incbin "build/bin/segment2/segment2.03000.rgba16"
+seg2_texture_003200:
+.incbin "build/bin/segment2/segment2.03200.rgba16"
+seg2_texture_003400:
+.incbin "build/bin/segment2/segment2.03400.rgba16"
+seg2_texture_003600:
+.incbin "build/bin/segment2/segment2.03600.rgba16"
+seg2_texture_003800:
+.incbin "build/bin/segment2/segment2.03800.rgba16"
+seg2_texture_003A00:
+.incbin "build/bin/segment2/segment2.03A00.rgba16"
+seg2_texture_003C00:
+.incbin "build/bin/segment2/segment2.03C00.rgba16"
+seg2_texture_003E00:
+.incbin "build/bin/segment2/segment2.03E00.rgba16"
+seg2_texture_004000:
+.incbin "build/bin/segment2/segment2.04000.rgba16"
+seg2_texture_004200:
+.incbin "build/bin/segment2/segment2.04200.rgba16"
+seg2_texture_004400:
+.incbin "build/bin/segment2/segment2.04400.rgba16"
+seg2_texture_004600:
+.incbin "build/bin/segment2/segment2.04600.rgba16"
+seg2_texture_004800:
+.incbin "build/bin/segment2/segment2.04800.rgba16"
+seg2_texture_004A00:
+.incbin "build/bin/segment2/segment2.04A00.rgba16"
+seg2_texture_004C00:
+.incbin "build/bin/segment2/segment2.04C00.rgba16"
+seg2_texture_004E00:
+.incbin "build/bin/segment2/segment2.04E00.rgba16"
+seg2_texture_005000:
+.incbin "build/bin/segment2/segment2.05000.rgba16"
+seg2_texture_005200:
+.incbin "build/bin/segment2/segment2.05200.rgba16"
+seg2_texture_005400:
+.incbin "build/bin/segment2/segment2.05400.rgba16"
+seg2_texture_005600:
+.incbin "build/bin/segment2/segment2.05600.rgba16"
+seg2_texture_005800:
+.incbin "build/bin/segment2/segment2.05800.rgba16"
+seg2_texture_005A00:
+.incbin "build/bin/segment2/segment2.05A00.rgba16"
+seg2_texture_005C00:
+.incbin "build/bin/segment2/segment2.05C00.rgba16"
+seg2_texture_005E00:
+.incbin "build/bin/segment2/segment2.05E00.rgba16"
+seg2_texture_006000:
+.incbin "build/bin/segment2/segment2.06000.rgba16"
+seg2_texture_006200:
+.incbin "build/bin/segment2/segment2.06200.rgba16"
+seg2_texture_006280:
+.incbin "build/bin/segment2/segment2.06280.rgba16"
+seg2_texture_006300:
+.incbin "build/bin/segment2/segment2.06300.rgba16"
+seg2_texture_006380:
+.incbin "build/bin/segment2/segment2.06380.rgba16"
+seg2_texture_006400:
+.incbin "build/bin/segment2/segment2.06400.rgba16"
+seg2_texture_006480:
+.incbin "build/bin/segment2/segment2.06480.rgba16"
+seg2_texture_006500:
+.incbin "build/bin/segment2/segment2.06500.rgba16"
+seg2_texture_006580:
+.incbin "build/bin/segment2/segment2.06580.rgba16"
+seg2_texture_006600:
+.incbin "build/bin/segment2/segment2.06600.rgba16"
+seg2_texture_006680:
+.incbin "build/bin/segment2/segment2.06680.rgba16"
+seg2_texture_006700:
+.incbin "build/bin/segment2/segment2.06700.rgba16"
+seg2_texture_006780:
+.incbin "build/bin/segment2/segment2.06780.rgba16"
+seg2_texture_006800:
+.incbin "build/bin/segment2/segment2.06800.rgba16"
+seg2_texture_006880:
+.incbin "build/bin/segment2/segment2.06880.rgba16"
+seg2_texture_006900:
+.incbin "build/bin/segment2/segment2.06900.rgba16"
+seg2_texture_006980:
+.incbin "build/bin/segment2/segment2.06980.rgba16"
+seg2_texture_006A00:
+.incbin "build/bin/segment2/segment2.06A00.rgba16"
+seg2_texture_006A80:
+.incbin "build/bin/segment2/segment2.06A80.rgba16"
+seg2_texture_006B00:
+.incbin "build/bin/segment2/segment2.06B00.rgba16"
+seg2_texture_006B80:
+.incbin "build/bin/segment2/segment2.06B80.rgba16"
+seg2_texture_006C00:
+.incbin "build/bin/segment2/segment2.06C00.rgba16"
+seg2_texture_006C80:
+.incbin "build/bin/segment2/segment2.06C80.rgba16"
+seg2_texture_006D00:
+.incbin "build/bin/segment2/segment2.06D00.rgba16"
+seg2_texture_006D80:
+.incbin "build/bin/segment2/segment2.06D80.rgba16"
+seg2_texture_006E00:
+.incbin "build/bin/segment2/segment2.06E00.rgba16"
+seg2_texture_006E80:
+.incbin "build/bin/segment2/segment2.06E80.rgba16"
+seg2_texture_006F00:
+.incbin "build/bin/segment2/segment2.06F00.rgba16"
+seg2_texture_006F80:
+.incbin "build/bin/segment2/segment2.06F80.rgba16"
+seg2_texture_007000:
+.incbin "build/bin/segment2/segment2.07000.rgba16"
+seg2_texture_007080:
+.incbin "build/bin/segment2/segment2.07080.rgba16"
+seg2_texture_007100:
+.incbin "build/bin/segment2/segment2.07100.ia1"
+seg2_texture_007110:
+.incbin "build/bin/segment2/segment2.07110.ia1"
+seg2_texture_007120:
+.incbin "build/bin/segment2/segment2.07120.ia1"
+seg2_texture_007130:
+.incbin "build/bin/segment2/segment2.07130.ia1"
+seg2_texture_007140:
+.incbin "build/bin/segment2/segment2.07140.ia1"
+seg2_texture_007150:
+.incbin "build/bin/segment2/segment2.07150.ia1"
+seg2_texture_007160:
+.incbin "build/bin/segment2/segment2.07160.ia1"
+seg2_texture_007170:
+.incbin "build/bin/segment2/segment2.07170.ia1"
+seg2_texture_007180:
+.incbin "build/bin/segment2/segment2.07180.ia1"
+seg2_texture_007190:
+.incbin "build/bin/segment2/segment2.07190.ia1"
+seg2_texture_0071A0:
+.incbin "build/bin/segment2/segment2.071A0.ia1"
+seg2_texture_0071B0:
+.incbin "build/bin/segment2/segment2.071B0.ia1"
+seg2_texture_0071C0:
+.incbin "build/bin/segment2/segment2.071C0.ia1"
+seg2_texture_0071D0:
+.incbin "build/bin/segment2/segment2.071D0.ia1"
+seg2_texture_0071E0:
+.incbin "build/bin/segment2/segment2.071E0.ia1"
+seg2_texture_0071F0:
+.incbin "build/bin/segment2/segment2.071F0.ia1"
+seg2_texture_007200:
+.incbin "build/bin/segment2/segment2.07200.ia1"
+seg2_texture_007210:
+.incbin "build/bin/segment2/segment2.07210.ia1"
+seg2_texture_007220:
+.incbin "build/bin/segment2/segment2.07220.ia1"
+seg2_texture_007230:
+.incbin "build/bin/segment2/segment2.07230.ia1"
+seg2_texture_007240:
+.incbin "build/bin/segment2/segment2.07240.ia1"
+seg2_texture_007250:
+.incbin "build/bin/segment2/segment2.07250.ia1"
+seg2_texture_007260:
+.incbin "build/bin/segment2/segment2.07260.ia1"
+seg2_texture_007270:
+.incbin "build/bin/segment2/segment2.07270.ia1"
+seg2_texture_007280:
+.incbin "build/bin/segment2/segment2.07280.ia1"
+seg2_texture_007290:
+.incbin "build/bin/segment2/segment2.07290.ia1"
+seg2_texture_0072A0:
+.incbin "build/bin/segment2/segment2.072A0.ia1"
+seg2_texture_0072B0:
+.incbin "build/bin/segment2/segment2.072B0.ia1"
+seg2_texture_0072C0:
+.incbin "build/bin/segment2/segment2.072C0.ia1"
+seg2_texture_0072D0:
+.incbin "build/bin/segment2/segment2.072D0.ia1"
+seg2_texture_0072E0:
+.incbin "build/bin/segment2/segment2.072E0.ia1"
+seg2_texture_0072F0:
+.incbin "build/bin/segment2/segment2.072F0.ia1"
+seg2_texture_007300:
+.incbin "build/bin/segment2/segment2.07300.ia1"
+seg2_texture_007310:
+.incbin "build/bin/segment2/segment2.07310.ia1"
+seg2_texture_007320:
+.incbin "build/bin/segment2/segment2.07320.ia1"
+seg2_texture_007330:
+.incbin "build/bin/segment2/segment2.07330.ia1"
+seg2_texture_007340:
+.incbin "build/bin/segment2/segment2.07340.ia1"
+seg2_texture_007350:
+.incbin "build/bin/segment2/segment2.07350.ia1"
+seg2_texture_007360:
+.incbin "build/bin/segment2/segment2.07360.ia1"
+seg2_texture_007370:
+.incbin "build/bin/segment2/segment2.07370.ia1"
+seg2_texture_007380:
+.incbin "build/bin/segment2/segment2.07380.ia1"
+seg2_texture_007390:
+.incbin "build/bin/segment2/segment2.07390.ia1"
+seg2_texture_0073A0:
+.incbin "build/bin/segment2/segment2.073A0.ia1"
+seg2_texture_0073B0:
+.incbin "build/bin/segment2/segment2.073B0.ia1"
+seg2_texture_0073C0:
+.incbin "build/bin/segment2/segment2.073C0.ia1"
+seg2_texture_0073D0:
+.incbin "build/bin/segment2/segment2.073D0.ia1"
+seg2_texture_0073E0:
+.incbin "build/bin/segment2/segment2.073E0.ia1"
+seg2_texture_0073F0:
+.incbin "build/bin/segment2/segment2.073F0.ia1"
+seg2_texture_007400:
+.incbin "build/bin/segment2/segment2.07400.ia1"
+seg2_texture_007410:
+.incbin "build/bin/segment2/segment2.07410.ia1"
+seg2_texture_007420:
+.incbin "build/bin/segment2/segment2.07420.ia1"
+seg2_texture_007430:
+.incbin "build/bin/segment2/segment2.07430.ia1"
+seg2_texture_007440:
+.incbin "build/bin/segment2/segment2.07440.ia1"
+seg2_texture_007450:
+.incbin "build/bin/segment2/segment2.07450.ia1"
+seg2_texture_007460:
+.incbin "build/bin/segment2/segment2.07460.ia1"
+seg2_texture_007470:
+.incbin "build/bin/segment2/segment2.07470.ia1"
+seg2_texture_007480:
+.incbin "build/bin/segment2/segment2.07480.ia1"
+seg2_texture_007490:
+.incbin "build/bin/segment2/segment2.07490.ia1"
+seg2_texture_0074A0:
+.incbin "build/bin/segment2/segment2.074A0.ia1"
+seg2_texture_0074B0:
+.incbin "build/bin/segment2/segment2.074B0.ia1"
+seg2_texture_0074C0:
+.incbin "build/bin/segment2/segment2.074C0.ia1"
+seg2_texture_0074D0:
+.incbin "build/bin/segment2/segment2.074D0.ia1"
+seg2_texture_0074E0:
+.incbin "build/bin/segment2/segment2.074E0.ia1"
+seg2_texture_0074F0:
+.incbin "build/bin/segment2/segment2.074F0.ia1"
+seg2_texture_007500:
+.incbin "build/bin/segment2/segment2.07500.ia1"
+seg2_texture_007510:
+.incbin "build/bin/segment2/segment2.07510.ia1"
+seg2_texture_007520:
+.incbin "build/bin/segment2/segment2.07520.ia1"
+seg2_texture_007530:
+.incbin "build/bin/segment2/segment2.07530.ia1"
+seg2_texture_007540:
+.incbin "build/bin/segment2/segment2.07540.ia1"
+seg2_texture_007550:
+.incbin "build/bin/segment2/segment2.07550.ia1"
+seg2_texture_007560:
+.incbin "build/bin/segment2/segment2.07560.ia1"
+seg2_texture_007570:
+.incbin "build/bin/segment2/segment2.07570.ia1"
+seg2_texture_007580:
+.incbin "build/bin/segment2/segment2.07580.ia1"
+seg2_texture_007590:
+.incbin "build/bin/segment2/segment2.07590.ia1"
+seg2_texture_0075A0:
+.incbin "build/bin/segment2/segment2.075A0.ia1"
+seg2_texture_0075B0:
+.incbin "build/bin/segment2/segment2.075B0.ia1"
+seg2_texture_0075C0:
+.incbin "build/bin/segment2/segment2.075C0.ia1"
+seg2_texture_0075D0:
+.incbin "build/bin/segment2/segment2.075D0.ia1"
+seg2_texture_0075E0:
+.incbin "build/bin/segment2/segment2.075E0.ia1"
+seg2_texture_0075F0:
+.incbin "build/bin/segment2/segment2.075F0.ia1"
+seg2_texture_007600:
+.incbin "build/bin/segment2/segment2.07600.ia1"
+seg2_texture_007610:
+.incbin "build/bin/segment2/segment2.07610.ia1"
+seg2_texture_007620:
+.incbin "build/bin/segment2/segment2.07620.ia1"
+seg2_texture_007630:
+.incbin "build/bin/segment2/segment2.07630.ia1"
+seg2_texture_007640:
+.incbin "build/bin/segment2/segment2.07640.ia1"
+seg2_texture_007650:
+.incbin "build/bin/segment2/segment2.07650.ia1"
+seg2_texture_007660:
+.incbin "build/bin/segment2/segment2.07660.ia1"
+seg2_texture_007670:
+.incbin "build/bin/segment2/segment2.07670.ia1"
+seg2_texture_007680:
+.incbin "build/bin/segment2/segment2.07680.ia1"
+seg2_texture_007690:
+.incbin "build/bin/segment2/segment2.07690.ia1"
+seg2_texture_0076A0:
+.incbin "build/bin/segment2/segment2.076A0.ia1"
+seg2_texture_0076B0:
+.incbin "build/bin/segment2/segment2.076B0.ia1"
+seg2_texture_0076C0:
+.incbin "build/bin/segment2/segment2.076C0.ia1"
+seg2_texture_0076D0:
+.incbin "build/bin/segment2/segment2.076D0.ia1"
+seg2_texture_0076E0:
+.incbin "build/bin/segment2/segment2.076E0.ia1"
+seg2_texture_0076F0:
+.incbin "build/bin/segment2/segment2.076F0.ia1"
+seg2_texture_007700:
+.incbin "build/bin/segment2/segment2.07700.ia1"
+seg2_texture_007710:
+.incbin "build/bin/segment2/segment2.07710.ia1"
+seg2_texture_007720:
+.incbin "build/bin/segment2/segment2.07720.ia1"
+seg2_texture_007730:
+.incbin "build/bin/segment2/segment2.07730.ia1"
+seg2_texture_007740:
+.incbin "build/bin/segment2/segment2.07740.ia1"
+seg2_texture_007750:
+.incbin "build/bin/segment2/segment2.07750.ia1"
+seg2_texture_007760:
+.incbin "build/bin/segment2/segment2.07760.ia1"
+seg2_texture_007770:
+.incbin "build/bin/segment2/segment2.07770.ia1"
+seg2_texture_007780:
+.incbin "build/bin/segment2/segment2.07780.ia1"
+seg2_texture_007790:
+.incbin "build/bin/segment2/segment2.07790.ia1"
+seg2_texture_0077A0:
+.incbin "build/bin/segment2/segment2.077A0.ia1"
+seg2_texture_0077B0:
+.incbin "build/bin/segment2/segment2.077B0.ia1"
+seg2_texture_0077C0:
+.incbin "build/bin/segment2/segment2.077C0.ia1"
+seg2_texture_0077D0:
+.incbin "build/bin/segment2/segment2.077D0.ia1"
+seg2_texture_0077E0:
+.incbin "build/bin/segment2/segment2.077E0.ia1"
+seg2_texture_0077F0:
+.incbin "build/bin/segment2/segment2.077F0.ia1"
+seg2_texture_007800:
+.incbin "build/bin/segment2/segment2.07800.ia1"
+seg2_texture_007810:
+.incbin "build/bin/segment2/segment2.07810.ia1"
+seg2_texture_007820:
+.incbin "build/bin/segment2/segment2.07820.ia1"
+seg2_texture_007830:
+.incbin "build/bin/segment2/segment2.07830.ia1"
+seg2_texture_007840:
+.incbin "build/bin/segment2/segment2.07840.ia1"
+seg2_texture_007850:
+.incbin "build/bin/segment2/segment2.07850.ia1"
+seg2_texture_007860:
+.incbin "build/bin/segment2/segment2.07860.ia1"
+seg2_texture_007870:
+.incbin "build/bin/segment2/segment2.07870.ia1"
+seg2_texture_007880:
+.incbin "build/bin/segment2/segment2.07880.ia1"
+seg2_texture_007890:
+.incbin "build/bin/segment2/segment2.07890.ia1"
+seg2_texture_0078A0:
+.incbin "build/bin/segment2/segment2.078A0.ia1"
+seg2_texture_0078B0:
+.incbin "build/bin/segment2/segment2.078B0.ia1"
+seg2_texture_0078C0:
+.incbin "build/bin/segment2/segment2.078C0.ia1"
+seg2_texture_0078D0:
+.incbin "build/bin/segment2/segment2.078D0.ia1"
+seg2_texture_0078E0:
+.incbin "build/bin/segment2/segment2.078E0.ia1"
+seg2_texture_0078F0:
+.incbin "build/bin/segment2/segment2.078F0.ia1"
+seg2_texture_007900:
+.incbin "build/bin/segment2/segment2.07900.ia1"
+seg2_texture_007910:
+.incbin "build/bin/segment2/segment2.07910.ia1"
+seg2_texture_007920:
+.incbin "build/bin/segment2/segment2.07920.ia1"
+seg2_texture_007930:
+.incbin "build/bin/segment2/segment2.07930.ia1"
+seg2_texture_007940:
+.incbin "build/bin/segment2/segment2.07940.ia1"
+seg2_texture_007950:
+.incbin "build/bin/segment2/segment2.07950.ia1"
+seg2_texture_007960:
+.incbin "build/bin/segment2/segment2.07960.ia1"
+seg2_texture_007970:
+.incbin "build/bin/segment2/segment2.07970.ia1"
+seg2_texture_007980:
+.incbin "build/bin/segment2/segment2.07980.ia1"
+seg2_texture_007990:
+.incbin "build/bin/segment2/segment2.07990.ia1"
+seg2_texture_0079A0:
+.incbin "build/bin/segment2/segment2.079A0.ia1"
+seg2_texture_0079B0:
+.incbin "build/bin/segment2/segment2.079B0.ia1"
+seg2_texture_0079C0:
+.incbin "build/bin/segment2/segment2.079C0.ia1"
+seg2_texture_0079D0:
+.incbin "build/bin/segment2/segment2.079D0.ia1"
+seg2_texture_0079E0:
+.incbin "build/bin/segment2/segment2.079E0.ia1"
+seg2_texture_0079F0:
+.incbin "build/bin/segment2/segment2.079F0.ia1"
+seg2_texture_007A00:
+.incbin "build/bin/segment2/segment2.07A00.ia1"
+seg2_texture_007A10:
+.incbin "build/bin/segment2/segment2.07A10.ia1"
+seg2_texture_007A20:
+.incbin "build/bin/segment2/segment2.07A20.ia1"
+seg2_texture_007A30:
+.incbin "build/bin/segment2/segment2.07A30.ia1"
+seg2_texture_007A40:
+.incbin "build/bin/segment2/segment2.07A40.ia1"
+seg2_texture_007A50:
+.incbin "build/bin/segment2/segment2.07A50.ia1"
+seg2_texture_007A60:
+.incbin "build/bin/segment2/segment2.07A60.ia1"
+seg2_texture_007A70:
+.incbin "build/bin/segment2/segment2.07A70.ia1"
+seg2_texture_007A80:
+.incbin "build/bin/segment2/segment2.07A80.ia1"
+seg2_texture_007A90:
+.incbin "build/bin/segment2/segment2.07A90.ia1"
+seg2_texture_007AA0:
+.incbin "build/bin/segment2/segment2.07AA0.ia1"
+seg2_texture_007AB0:
+.incbin "build/bin/segment2/segment2.07AB0.ia1"
+seg2_texture_007AC0:
+.incbin "build/bin/segment2/segment2.07AC0.ia1"
+seg2_texture_007AD0:
+.incbin "build/bin/segment2/segment2.07AD0.ia1"
+seg2_texture_007AE0:
+.incbin "build/bin/segment2/segment2.07AE0.ia1"
+seg2_texture_007AF0:
+.incbin "build/bin/segment2/segment2.07AF0.ia1"
+seg2_texture_007B00:
+.incbin "build/bin/segment2/segment2.07B00.ia1"
+seg2_texture_007B10:
+.incbin "build/bin/segment2/segment2.07B10.ia1"
+seg2_texture_007B20:
+.incbin "build/bin/segment2/segment2.07B20.ia1"
+seg2_texture_007B30:
+.incbin "build/bin/segment2/segment2.07B30.ia1"
+seg2_texture_007B40:
+.incbin "build/bin/segment2/segment2.07B40.ia1"
+seg2_texture_007B50:
+.incbin "build/bin/segment2/segment2.07B50.rgba16"
+seg2_texture_007D50:
+.incbin "build/bin/segment2/segment2.07D50.rgba16"
+seg2_texture_007F50:
+.incbin "build/bin/segment2/segment2.07F50.rgba16"
+seg2_texture_008150:
+.incbin "build/bin/segment2/segment2.08150.rgba16"
+seg2_texture_0081D0:
+.incbin "build/bin/segment2/segment2.081D0.rgba16"
+
+# HUD print table 0x02008250-0x02008337
+glabel seg2_hud_lut
+.word seg2_texture_000000, seg2_texture_000200, seg2_texture_000400, seg2_texture_000600
+.word seg2_texture_000800, seg2_texture_000A00, seg2_texture_000C00, seg2_texture_000E00
+.word seg2_texture_001000, seg2_texture_001200, seg2_texture_001400, seg2_texture_001600
+.word seg2_texture_001800, seg2_texture_001A00, seg2_texture_001C00, seg2_texture_001E00
+.word seg2_texture_002000, seg2_texture_002200, seg2_texture_002400, seg2_texture_002600
+.word seg2_texture_002800, seg2_texture_002A00, seg2_texture_002C00, seg2_texture_002E00
+.word seg2_texture_003000, seg2_texture_003200, seg2_texture_003400, seg2_texture_003600
+.word seg2_texture_003800, seg2_texture_003A00, seg2_texture_003C00, seg2_texture_003E00
+.word seg2_texture_004000, seg2_texture_004200, seg2_texture_004400, seg2_texture_004600
+.word seg2_texture_004C00, seg2_texture_004E00, seg2_texture_005000, seg2_texture_005200
+.word seg2_texture_005400,                 0x0,                 0x0,                 0x0
+.word                 0x0,                 0x0,                 0x0,                 0x0
+.word                 0x0,                 0x0, seg2_texture_005600, seg2_texture_005800
+.word seg2_texture_005A00, seg2_texture_005C00, seg2_texture_005E00, seg2_texture_006000
+.word seg2_texture_004800, seg2_texture_004A00
+
+# small font HUD LUT 0x02008338-0x02008737
+glabel seg2_small_font_lut
+.word seg2_texture_007100, seg2_texture_007110, seg2_texture_007120, seg2_texture_007130
+.word seg2_texture_007140, seg2_texture_007150, seg2_texture_007160, seg2_texture_007170
+.word seg2_texture_007180, seg2_texture_007190, seg2_texture_0071A0, seg2_texture_0071B0
+.word seg2_texture_0071C0, seg2_texture_0071D0, seg2_texture_0071E0, seg2_texture_0071F0
+.word seg2_texture_007200, seg2_texture_007210, seg2_texture_007220, seg2_texture_007230
+.word seg2_texture_007240, seg2_texture_007250, seg2_texture_007260, seg2_texture_007270
+.word seg2_texture_007280, seg2_texture_007290, seg2_texture_0072A0, seg2_texture_0072B0
+.word seg2_texture_0072C0, seg2_texture_0072D0, seg2_texture_0072E0, seg2_texture_0072F0
+.word seg2_texture_007300, seg2_texture_007310, seg2_texture_007320, seg2_texture_007330
+.word                 0x0,                 0x0,                 0x0,                 0x0
+.word                 0x0,                 0x0,                 0x0,                 0x0
+.word                 0x0,                 0x0,                 0x0,                 0x0
+.word                 0x0,                 0x0,                 0x0,                 0x0
+.word                 0x0,                 0x0,                 0x0,                 0x0
+.word                 0x0,                 0x0,                 0x0,                 0x0
+.word                 0x0,                 0x0,                 0x0,                 0x0
+.word seg2_texture_007420, seg2_texture_007430, seg2_texture_007440, seg2_texture_007450
+.word seg2_texture_007460, seg2_texture_007470, seg2_texture_007480, seg2_texture_007490
+.word seg2_texture_0074A0, seg2_texture_0074B0, seg2_texture_0074C0, seg2_texture_0074D0
+.word seg2_texture_0074E0, seg2_texture_0074F0, seg2_texture_007500, seg2_texture_007510
+.word seg2_texture_007520, seg2_texture_007530, seg2_texture_007540, seg2_texture_007550
+.word seg2_texture_007560, seg2_texture_007570, seg2_texture_007580, seg2_texture_007590
+.word seg2_texture_0075A0, seg2_texture_0075B0, seg2_texture_0075C0, seg2_texture_0075D0
+.word seg2_texture_0075E0, seg2_texture_0075F0, seg2_texture_007600, seg2_texture_007610
+.word seg2_texture_007620, seg2_texture_007630, seg2_texture_007640, seg2_texture_007650
+.word seg2_texture_007660, seg2_texture_007670, seg2_texture_007680, seg2_texture_007690
+.word seg2_texture_0076A0, seg2_texture_0076B0, seg2_texture_0076C0, seg2_texture_0076D0
+.word seg2_texture_0076E0, seg2_texture_0076F0,                 0x0, seg2_texture_0077A0
+.word seg2_texture_0077B0, seg2_texture_0077C0, seg2_texture_0077D0, seg2_texture_0077E0
+.word seg2_texture_0077F0, seg2_texture_007800, seg2_texture_007810, seg2_texture_007820
+.word seg2_texture_007830, seg2_texture_007840, seg2_texture_007850, seg2_texture_007860
+.word seg2_texture_007870, seg2_texture_007880, seg2_texture_007890, seg2_texture_0078A0
+.word seg2_texture_0078B0, seg2_texture_0078C0, seg2_texture_0078D0, seg2_texture_0078E0
+.word seg2_texture_0078F0, seg2_texture_007900, seg2_texture_007910, seg2_texture_007920
+.word seg2_texture_007930, seg2_texture_007940, seg2_texture_007950, seg2_texture_007960
+.word seg2_texture_007970, seg2_texture_007980, seg2_texture_007990, seg2_texture_0079A0
+.word seg2_texture_0079B0, seg2_texture_0079C0, seg2_texture_0079D0, seg2_texture_0079E0
+.word seg2_texture_0079F0, seg2_texture_007A00, seg2_texture_007A10, seg2_texture_007A20
+.word seg2_texture_007A30, seg2_texture_007A40, seg2_texture_007A50, seg2_texture_007A60
+.word                 0x0, seg2_texture_007A70,                 0x0, seg2_texture_007340
+.word seg2_texture_007700, seg2_texture_007710, seg2_texture_007720, seg2_texture_007730
+.word seg2_texture_007740, seg2_texture_007750, seg2_texture_007760, seg2_texture_007780
+.word seg2_texture_007770,                 0x0,                 0x0,                 0x0
+.word                 0x0,                 0x0,                 0x0,                 0x0
+.word                 0x0,                 0x0,                 0x0,                 0x0
+.word                 0x0,                 0x0,                 0x0,                 0x0
+.word                 0x0,                 0x0,                 0x0,                 0x0
+.word                 0x0,                 0x0,                 0x0,                 0x0
+.word                 0x0,                 0x0,                 0x0,                 0x0
+.word                 0x0,                 0x0,                 0x0,                 0x0
+.word                 0x0,                 0x0,                 0x0,                 0x0
+.word                 0x0,                 0x0,                 0x0,                 0x0
+.word seg2_texture_007A80, seg2_texture_007A90, seg2_texture_007AA0, seg2_texture_007AB0
+.word seg2_texture_007AC0, seg2_texture_007AD0, seg2_texture_007AE0, seg2_texture_007AF0
+.word seg2_texture_007B00,                 0x0,                 0x0,                 0x0
+.word                 0x0,                 0x0,                 0x0,                 0x0
+.word                 0x0, seg2_texture_0073B0, seg2_texture_0073C0, seg2_texture_0073D0
+.word seg2_texture_0073A0,                 0x0,                 0x0,                 0x0
+.word                 0x0,                 0x0,                 0x0,                 0x0
+.word                 0x0,                 0x0,                 0x0,                 0x0
+.word seg2_texture_007360, seg2_texture_007370, seg2_texture_007350, seg2_texture_007380
+.word seg2_texture_007390, seg2_texture_007B10, seg2_texture_007B20, seg2_texture_007B30
+.word seg2_texture_007B40, seg2_texture_0073E0, seg2_texture_007400, seg2_texture_0073F0
+.word seg2_texture_007790, seg2_texture_007410,                 0x0,                 0x0
+
+# credits font LUT 0x02008738-0x020087CB
+glabel seg2_credits_font_lut
+.word                 0x0,                 0x0,                 0x0, seg2_texture_006200
+.word seg2_texture_006280,                 0x0, seg2_texture_006300,                 0x0
+.word                 0x0,                 0x0, seg2_texture_006380, seg2_texture_006400
+.word seg2_texture_006480, seg2_texture_006500, seg2_texture_006580, seg2_texture_006600
+.word seg2_texture_006680, seg2_texture_006700, seg2_texture_006780, seg2_texture_006800
+.word seg2_texture_006880, seg2_texture_006900, seg2_texture_006980, seg2_texture_006A00
+.word seg2_texture_006A80, seg2_texture_006B00, seg2_texture_006B80, seg2_texture_006C00
+.word seg2_texture_006C80, seg2_texture_006D00, seg2_texture_006D80, seg2_texture_006E00
+.word seg2_texture_006E80, seg2_texture_006F00, seg2_texture_006F80, seg2_texture_007000
+.word seg2_texture_007080
+
+# HUD camera table 0x020087CC-0x020087E3
+glabel seg2_hud_camera_lut
+.word seg2_texture_007B50, seg2_texture_005A00, seg2_texture_007D50, seg2_texture_007F50
+.word seg2_texture_008150, seg2_texture_0081D0
+
+# debug strings
+.balign 4
+Debug0: # 0x020087E4
+.byte _("STAGE SELECT\n"
+        " つづける?\n"
+        " 1 マウンテン\n"
+        " 2 ファイアｰバブル\n"
+        " 3 スノｰスライダｰ\n"
+        " 4 ウォｰタｰランド\n"
+        "   クッパ1ごう\n"
+        " もどる")
+
+.balign 4
+Debug1: # 0x0200883C
+.byte _("PAUSE    \n"
+        " つづける?\n"
+        " やめる ?")
+
+# debug text table
+.balign 4
+debug_text_entry_0:
+.word 0x00000001, 0x0800001E, 0x00C80000, Debug0
+debug_text_entry_1:
+.word 0x00000001, 0x03000064, 0x00960000, Debug1
+
+glabel seg2_debug_text_table
+.word debug_text_entry_0, debug_text_entry_1, 0x0
+
+# dialogs
+.balign 4
+Dialog000: # 0x02008884
+.byte _("おおっと，ここはキケンな\n"
+        "せんじょうの どまんなか。\n"
+        "『え』のなかのせかいには\n"
+        "クッパが ぬすんだ\n"
+        "パワｰスタｰがある。\n"
+        "まずは，あかいボムへいに\n"
+        "はなしかけてみるといい!\n"
+        "Bボタンではなしができる。\n"
+        "きっと，ちからになって\n"
+        "くれるはずだ。\n"
+        "カンバンを よむときも\n"
+        "たちどまって Bボタン!\n"
+        "AかBボタンですすめる!\n"
+        "まえにたつだけで はなし\n"
+        "かける，どうぶつもいます。")
+
+.balign 4
+Dialog001: # 0x02008958
+.byte _("あぶない あぶない!!\n"
+        "こんなところを うろうろ\n"
+        "してると，みずばくだんが\n"
+        "ふってきますよ。\n"
+        "くろいボムへいたちは\n"
+        "たたかいが だいすきで，\n"
+        "いつも ぼくらを\n"
+        "こうげきしてきます。\n"
+        "ボムキングという ボスが\n"
+        "スタｰを てにいれてから\n"
+        "ここは せんじょうに\n"
+        "なってしまいました。\n"
+        "ボムキングから スタｰを\n"
+        "とりあげてくれませんか?\n"
+        "このさきの はしをわたり\n"
+        "みちぞいにひだりにいけば，\n"
+        "ボムとりでの いりぐちに\n"
+        "つきます。キングのスタｰ\n"
+        "を とりもどしたら また\n"
+        "あいに きてください。")
+
+.balign 4
+Dialog002: # 0x02008A68
+.byte _("ちょっと あなた!\n"
+        "このさきはキケンですよ!\n"
+        "\n"
+        "そこで，アドバイスです。\n"
+        "そらから ふってくる\n"
+        "みずばくだんをよけて，\n"
+        "はしを『2つ』わたると\n"
+        "あちらの『じんち』です。\n"
+        "やまのうえのボムキングは\n"
+        "すごく ちからもちです。\n"
+        "かつぎあげられないように\n"
+        "きをつけてください。\n"
+        "ぼくら あかボムへいは\n"
+        "あなたのみかたです。\n"
+        "いつでも はなしかけて\n"
+        "きてくださいね!")
+
+.balign 4
+Dialog003: # 0x02008B34
+.byte _("おかげで ボムキングは\n"
+        "おとなしくなりました!\n"
+        "でも，たたかいは おわり\n"
+        "ません。 かいぶつたちが\n"
+        "まだスタｰをもっています。\n"
+        "スタｰをいくつかとったら\n"
+        "あたらしい へやのドアを\n"
+        "ひらくことが できます。\n"
+        "つぎのへやの せかいへと\n"
+        "すすんでください!\n"
+        "ぼくらのなかまが\n"
+        "おまちしています。\n"
+        "はなしかけて くださいね。\n"
+        "いつでも たいほうを\n"
+        "じゅんびしますよ。")
+
+.balign 4
+Dialog004: # 0x02008BFC
+.byte _("ぼくたちは へいわを\n"
+        "ねがっています。 だから\n"
+        "たいほうは つかいません。\n"
+        "けれど あなたをどこかに\n"
+        "とばすなら へいきです。\n"
+        "どうぞ つかってください。\n"
+        "このコｰスにあるすべての\n"
+        "あかボムぐん たいほうを\n"
+        "つかえるように します。")
+
+.balign 4
+Dialog005: # 0x02008C80
+.byte _("なｰんだ，マリオさんじゃ\n"
+        "ないッスか!\n"
+        "ボムキングやっつけたって\n"
+        "ほんとｰッスか?\n"
+        "いやｰ すごいッス!\n"
+        "さっすが つよいし，\n"
+        "オイラほどではないけど，\n"
+        "あしも はやいッスよね!\n"
+        "ひとつオイラと，\n"
+        "ボムキングのヤツがいた\n"
+        "おやまのちょうじょうまで\n"
+        "かけっこでもしませんか?\n"
+        "それでは オイラが，\n"
+        "『ドン!』といったら\n"
+        "スタｰト ッスよ。\n"
+        "\n"
+        " ヨｰｰｰイ!\n"
+        "\n"
+        "   ドン!  やめる")
+
+.balign 4
+Dialog006: # 0x02008D54
+.byte _("ははっ ズルッコは\n"
+        "なしッス! マリオさん。\n"
+        "またこんど\n"
+        "あそびましょうね。")
+
+.balign 4
+Dialog007: # 0x02008D80
+.byte _("ハア ハア ハア\n"
+        "いやｰまいったッス!\n"
+        "ほんと はえｰッスね!\n"
+        "オイラに かったきねんに，\n"
+        "これ，あげるッス。\n"
+        "ホイ!")
+
+.balign 4
+Dialog008: # 0x02008DC0
+.byte _("もうけんワンワン キケン\n"
+        "Cボタンの うえをおして\n"
+        "『マリオのちかく』から\n"
+        "ながめて ください。\n"
+        "とても コワイです。\n"
+        "クイのうえの あかコイン。\n"
+        "おなじコインを さがして\n"
+        "8まいあつめると，はしを\n"
+        "わたったひだりのはやしに\n"
+        "スタｰがでます。")
+
+.balign 4
+Dialog009: # 0x02008E44
+.byte _("ひっさしぶりッス! いま\n"
+        "ちょｰどかえったとこッス。\n"
+        "パワｰスタｰのせいか\n"
+        "いちだんと はやくなった\n"
+        "ようッスね!\n"
+        "このまえは まけちゃって\n"
+        "ほｰんと くやしいッス。\n"
+        "ここは オイラのホｰム\n"
+        "グランド!じしんあるッス。\n"
+        "もいちどやりましょうよ!\n"
+        "ゴｰルはカゼふきのたに!\n"
+        "しってるッスよね!?\n"
+        "そんじゃ\n"
+        " ヨｰｰｰイ!\n"
+        "   ドン!  やめる")
+
+.balign 4
+Dialog010: # 0x02008EFC
+.byte _("そらを じゆうにとべる\n"
+        "『はねのぼうし』の\n"
+        "スイッチを ふみました。\n"
+        "せかいじゅうにある\n"
+        "あかブロックから，はねの\n"
+        "ぼうしがとびだします。\n"
+        "ここまでをセｰブする?\n"
+        "\n"
+        "   はい   いいえ")
+
+.balign 4
+Dialog011: # 0x02008F68
+.byte _("むてきの からだになれる\n"
+        "『メタルのぼうし』の\n"
+        "スイッチを ふみました。\n"
+        "せかいじゅうの みどりの\n"
+        "ブロックから，メタルの\n"
+        "ぼうしが とびだします。\n"
+        "ここまでをセｰブする?\n"
+        "\n"
+        "   はい   いいえ")
+
+.balign 4
+Dialog012: # 0x02008FD8
+.byte _("すがたをけせる まほうの\n"
+        "『とうめいのぼうし』の\n"
+        "スイッチを ふみました。\n"
+        "せかいじゅうの あおい\n"
+        "ブロックから，とうめい\n"
+        "ぼうしが とびだします。\n"
+        "ここまでをセｰブする?\n"
+        "\n"
+        "   はい   いいえ")
+
+.balign 4
+Dialog013: # 0x02009048
+.byte _("100まいコインの\n"
+        "スタｰを てにいれた!\n"
+        "おしろのパワｰが\n"
+        "またひとつマリオに\n"
+        "  ちからを あたえた。\n"
+        "\n"
+        "ここまでセｰブしますか?\n"
+        "\n"
+        "   はい   いいえ")
+
+.balign 4
+Dialog014: # 0x020090A0
+.byte _("おもわぬところで\n"
+        "スタｰをてにいれた。\n"
+        "そして おしろのパワｰが\n"
+        "またひとつ マリオに\n"
+        "  ゆうきを あたえた。\n"
+        "\n"
+        "ここまでセｰブしますか?\n"
+        "\n"
+        "   はい   いいえ")
+
+.balign 4
+Dialog015: # 0x020090FC
+.byte _("てきはパンチでたおせるよ。\n"
+        "Aボタンは『ジャンプ』\n"
+        "Bボタンは『パンチ』です。\n"
+        "AとBボタンで『キック』。\n"
+        "『ものをもつ』ときも\n"
+        "       Bボタン!\n"
+        "『なげる』は もういちど\n"
+        "Bボタンをおしてください。")
+
+.balign 4
+Dialog016: # 0x02009174
+.byte _("キラキラひかったコウラに\n"
+        "のると，どんなところも\n"
+        "スイスイすすめる!\n"
+        "てきをけちらし すすめ!")
+
+.balign 4
+Dialog017: # 0x020091A8
+.byte _("ワシがボムキング，つまり\n"
+        "ばくだんの おうさまだ。\n"
+        "よくここまできた。その\n"
+        "ゆうきは ほめてやろう。\n"
+        "とはいえ，おまえにタダで\n"
+        "だいじな パワｰスタｰを\n"
+        "やるわけには いかん。\n"
+        "そこで チャンスをやろう。\n"
+        "パワｰスタｰがほしければ\n"
+        "ワシを なげとばしてみろ。\n"
+        "うしろから かつげるか?\n"
+        "さあ，かかってこい!")
+
+.balign 4
+Dialog018: # 0x02009258
+.byte _("ねむいので，ねています。\n"
+        "おこすと おこります。\n"
+        "\n"
+        "しずかに あるきましょう。")
+
+.balign 4
+Dialog019: # 0x02009284
+.byte _("ろうかは しずかに\n"
+        "あるきましょう。")
+
+.balign 4
+Dialog020: # 0x02009298
+.byte _("おしろへ あそびに\n"
+        "きてください。\n"
+        "ケｰキを つくって\n"
+        "まってます。\n"
+        "     ｰピｰチよりｰ")
+
+.balign 4
+Dialog021: # 0x020092CC
+.byte _("ようこそいらっしゃいませ\n"
+        "・・だれも いませんので\n"
+        "とっとと\n"
+        "  おかえりください。\n"
+        "ガハハハッ!")
+
+.balign 4
+Dialog022: # 0x02009304
+.byte _("カギが かかっている・・")
+
+.balign 4
+Dialog023: # 0x02009314
+.byte _("・・・カギがあわない!\n"
+        "このカギは『ちか』への\n"
+        "カギのようだ。")
+
+.balign 4
+Dialog024: # 0x0200933C
+.byte _("クッパがとじたこのドアを\n"
+        "ひらくには，スタｰの\n"
+        "パワｰが ひつようです。\n"
+        "どこかのへやの『え』の\n"
+        "なかの モンスタｰから\n"
+        "とりもどしてきてください")
+
+.balign 4
+Dialog025: # 0x02009390
+.byte _("このドアを ひらくには\n"
+        "スタｰ3まいの パワｰが\n"
+        "ひつようです。\n"
+        "あと@まいの スタｰが\n"
+        "ひつようです。")
+
+.balign 4
+Dialog026: # 0x020093CC
+.byte _("このドアを ひらくには\n"
+        "スタｰ8まいの パワｰが\n"
+        "ひつようです。\n"
+        "あと@まいの スタｰが\n"
+        "ひつようです。")
+
+.balign 4
+Dialog027: # 0x02009408
+.byte _("このドアを ひらくには\n"
+        "スタｰ30まいのパワｰが\n"
+        "ひつようです。\n"
+        "スタｰがあと\n"
+        "@まいひつようです。")
+
+.balign 4
+Dialog028: # 0x02009444
+.byte _("このドアを ひらくには\n"
+        "スタｰ50まいのパワｰが\n"
+        "ひつようです。\n"
+        "あと@まいの スタｰが\n"
+        "ひつようです。")
+
+.balign 4
+Dialog029: # 0x02009480
+.byte _("はてしない かいだんの\n"
+        "ドアを ひらくには\n"
+        "スタｰ70まいのパワｰが\n"
+        "ひつようです・・・・・\n"
+        "あと@まいの スタｰが\n"
+        "たりません・・・\n"
+        "ガハハッ!")
+
+.balign 4
+Dialog030: # 0x020094D4
+.byte _("カメラマンのジュゲムです。\n"
+        "ちょっと アドバイス!\n"
+        "しずかにあるきたいときは\n"
+        "ゆっくり あるくことです。\n"
+        "まわりを みたいときは\n"
+        "Cボタンのみぎとひだりで\n"
+        "カメラをすこしまわせます。\n"
+        "Cのしたで とおくから。\n"
+        "できないところでは\n"
+        "『ブｰッ!』といいます。\n"
+        "よろしく!! \n"
+        "      ｰジュゲム")
+
+.balign 4
+Dialog031: # 0x0200957C
+.byte _("またまた まけちゃったよ。\n"
+        "こんどはスッゴい じしん\n"
+        "あったんッスけどね・・・\n"
+        "ほんと すごいッスね!\n"
+        "このスタｰも\n"
+        "あげちゃいます!")
+
+.balign 4
+Dialog032: # 0x020095C8
+.byte _("はねぼうしの あるひとは\n"
+        "3かいれんぞくでジャンプ\n"
+        "しよう。 おおぞらたかく\n"
+        "とびあがれます。\n"
+        "たいほうでとぶと\n"
+        "さらに たかくとべます。\n"
+        "まわりをみるのはCボタン。\n"
+        "おりたいときはZボタン。")
+
+.balign 4
+Dialog033: # 0x02009638
+.byte _("ワｰプどかんを\n"
+        "くぐりぬけ，\n"
+        "ピｰチの おしろに\n"
+        "つきました。\n"
+        "そうさは カンタン。\n"
+        "Aボタンが ジャンプ!\n"
+        "Bボタンで こうげき!\n"
+        "カンバンも よめます。\n"
+        "マリオを うごかすのは\n"
+        "まんなかに ついてる\n"
+        "『3Dスティック』。\n"
+        "まずはおしろへ すすめ!")
+
+.balign 4
+Dialog034: # 0x020096C4
+.byte _("こんにちは! \n"
+        "ぼくたちカメラマンの\n"
+        "ジュゲムブラザｰズです。\n"
+        "これから，カメラをもって\n"
+        "あなたに ついていきます。\n"
+        "カメラは おすすめのいち\n"
+        "から さつえいしてます。\n"
+        "むきをかえるのはCボタン，\n"
+        "かえられない ときは\n"
+        "『ブｰッ!』といいます。\n"
+        "ちょっと たちどまったら\n"
+        "Cボタンのうえ!\n"
+        "まわりを ながめられます。\n"
+        "ゲｰムに もどすときは\n"
+        "『Aボタン』です。\n"
+        "『Rボタン』をつかうと\n"
+        "いろんなカメラモｰドに\n"
+        "きりかえられます。\n"
+        "また，かんばんなどをみて\n"
+        "おぼえてください!\n"
+        "いじょう!! カメラマン\n"
+        "ジュゲムブラザｰズからの\n"
+        "おしらせでした。\n"
+        "それじゃ，きをつけて!")
+
+.balign 4
+Dialog035: # 0x02009800
+.byte _("きいろい4つの Cボタン。\n"
+        "『うえ』をおすと\n"
+        "3Dスティックで\n"
+        "まわりを みわたせます。\n"
+        "ふだんマリオをみてるのは\n"
+        "おすすめのジュゲムカメラ。\n"
+        "Cボタンで すこし，\n"
+        "かくどが かえられます。\n"
+        "Rボタンをおすと\n"
+        "マリオの うしろからみる\n"
+        "マリオカメラに なります。\n"
+        "もどすときはもういちどR。\n"
+        "『ジュゲムカメラ』と\n"
+        "『マリオカメラ』どちらも\n"
+        "Cボタンの したをおすと，\n"
+        "とおくへ はなれます。\n"
+        "いまつかっている\n"
+        "カメラを しりたいときは，\n"
+        "がめん みぎしたの\n"
+        "アイコンを みてください。")
+
+.balign 4
+Dialog036: # 0x02009908
+.byte _(" 『てんぼうだい』\n"
+        "Cボタンの うえをおすと，\n"
+        "まわりを みわたせます。\n"
+        "みえないところは よｰく\n"
+        "たしかめてからすすめｰ!\n"
+        "Rボタンはマリオのカメラ。\n"
+        "いつも マリオのうしろを\n"
+        "ついていくぞ。ジュゲムに\n"
+        "もどすときは もういちど\n"
+        "Rボタンをおすこと。\n"
+        "ポｰズがめんで モｰドを\n"
+        "かえると，Rボタンを\n"
+        "おしてるあいだ カメラを\n"
+        "『とめる』こともできる!\n"
+        "ためしてみよう。\n"
+        "つかってるカメラモｰドは\n"
+        "みぎしたのアイコンで\n"
+        "たしかめよう。\n"
+        "マリオとの きょりは\n"
+        "きいろやじるしを みよう。")
+
+.balign 4
+Dialog037: # 0x02009A14
+.byte _("あたしの『かち』です。\n"
+        "あなたの『まけ』です。\n"
+        "ははははは!!!\n"
+        "マリオさん，とｰっても\n"
+        "おしかったですね。\n"
+        "また あそびましょう!")
+
+.balign 4
+Dialog038: # 0x02009A5C
+.byte _("パワｰスタｰの ちからで\n"
+        "つぎの せかいへのドアは\n"
+        "しずかにひらいた。")
+
+.balign 4
+Dialog039: # 0x02009A88
+.byte _("ｰボムとりで いりぐちｰ\n"
+        "  だれも はいるな!\n"
+        "\n"
+        "ワシのパワｰスタｰは\n"
+        "だれにも わたさぬ。\n"
+        "クッパどのからいただいた\n"
+        "だいじな だいじな\n"
+        "たからものだ。\n"
+        "なんまいか かくしたが\n"
+        "ばしょは おしえぬ。\n"
+        "コｰスはじめの スタｰの\n"
+        "なまえを，ヒントにする\n"
+        "ぐらいなら ゆるす。\n"
+        "\n"
+        "おやまのうえのボムキング")
+
+.balign 4
+Dialog040: # 0x02009B34
+.byte _("このさき キケン!\n"
+        "リフトのたにぞこ です。")
+
+.balign 4
+Dialog041: # 0x02009B50
+.byte _("オイラがかっちゃいました。\n"
+        "ハッハッハッ\n"
+        "たいしたことないッスね!\n"
+        "じゃ，またこんどね!")
+
+.balign 4
+Dialog042: # 0x02009B80
+.byte _("この『はし』せまい。\n"
+        "ゆっくりわたろう!\n"
+        "ガケのカドにとびついたり\n"
+        "ゆっくりと おりると\n"
+        "ぶらさがれます。\n"
+        "『て』を はなすときは\n"
+        "Zボタンか スティックを\n"
+        "マリオのうしろへ。\n"
+        "のぼるときには まえへ\n"
+        "たおしてください。\n"
+        "ぶらさがって すぐに\n"
+        "Aボタンをおすと\n"
+        "すばやく あがれます。")
+
+.balign 4
+Dialog043: # 0x02009C20
+.byte _("ジャンプしてAボタンを\n"
+        "おしっぱなしに すると\n"
+        "ぶらさがれる ところが\n"
+        "あります。\n"
+        "『とり』につかまるとき\n"
+        "と おなじです。")
+
+.balign 4
+Dialog044: # 0x02009C68
+.byte _("だれだい!  せっかく\n"
+        "いいきもちで ねてたのに。\n"
+        "あｰ カラダがおもいなｰ\n"
+        "ちょｰどいいや!わたしと\n"
+        "ひとｰっとび しません?\n"
+        "ジャンプボタンを\n"
+        "おしているあいだ\n"
+        "ぶらさがれますよｰ。\n"
+        "おりたいときに\n"
+        "はなせばいｰです。\n"
+        "おｰすきなところへ\n"
+        "おつれしまｰす。\n"
+        "かげを よｰくみて\n"
+        "Aボタンで つかまって\n"
+        "くださいねｰ!")
+
+.balign 4
+Dialog045: # 0x02009D1C
+.byte _("あｰあ，つかれたｰ・・\n"
+        "やｰっぱり おもいなｰ。\n"
+        "きょうは このあたりで!\n"
+        "『もういちどAボタンを\n"
+        "おしなおしてください。』\n"
+        "もうすこし とんだら\n"
+        "ほんとに てをはなしてね\n"
+        "\n"
+        "じゃあ，さよならｰ!")
+
+.balign 4
+Dialog046: # 0x02009D88
+.byte _("ジャンプのワザ まとめて\n"
+        "せいりしておきます。\n"
+        "とてもだいじな3つのワザ。\n"
+        "おぼえて つかって\n"
+        "みてください。\n"
+        "タイミングよく つづけて\n"
+        "とぶと たかくとべます。\n"
+        "はやく はしっていると\n"
+        "さらに たかくとべます。\n"
+        "『3だんとび』です。\n"
+        "はしりながら Zボタンで\n"
+        "しゃがんでジャンプすると\n"
+        "とおくへ とべます。\n"
+        "『はばとび』です。\n"
+        "とてもべんりです。\n"
+        "まっすぐたった カベに\n"
+        "むかって ジャンプして，\n"
+        "ぶつかった ところから\n"
+        "また ジャンプできます。\n"
+        "『カベキック』といいます。\n"
+        "だいじな テクニック\n"
+        "『3だんとび』\n"
+        "『はばとび』\n"
+        "『カベキック』\n"
+        "     わかった?")
+
+.balign 4
+Dialog047: # 0x02009ED4
+.byte _("こんにちは!\n"
+        "たいほうの じゅんびに\n"
+        "かかります!・・・・・")
+
+.balign 4
+Dialog048: # 0x02009EF8
+.byte _("ここは ツルツルすべる\n"
+        "ゆきやまの ちょうじょう。\n"
+        "まずはそこの\n"
+        "やまごやへ どうぞ。")
+
+.balign 4
+Dialog049: # 0x02009F2C
+.byte _("ジャンプわざカベキックを\n"
+        "おぼえていますか?\n"
+        "たかいところへ あがる\n"
+        "とてもだいじなテクニック。\n"
+        "カベからカベへジャンプ!\n"
+        "スティックをつかって\n"
+        "はねかえったほうに\n"
+        "かそくする。\n"
+        "よｰく\n"
+        "れんしゅう しておこう!")
+
+.balign 4
+Dialog050: # 0x02009FA4
+.byte _("Zボタンで しゃがめます。\n"
+        "『さか』では すべれます。\n"
+        "ジャンプの とちゅうなら\n"
+        "『ヒップドロップ』!!\n"
+        "とまって しゃがんでから\n"
+        "ジャンプすると\n"
+        "『バックちゅう』できる!\n"
+        "わかった? まだあります。\n"
+        "はしりながら しゃがんで\n"
+        "ジャンプで『はばとび』!\n"
+        "しゃがんでから あるくと\n"
+        "・・・ひみつです。")
+
+.balign 4
+Dialog051: # 0x0200A058
+.byte _("『き』や『ぼう』には\n"
+        "ジャンプで つかまれます。\n"
+        "『のぼる』『おりる』は\n"
+        "スティックで，やめるのは\n"
+        "Zボタンで『て』をはなす。\n"
+        "『むきをかえる』ときは\n"
+        " 3Dスティックの\n"
+        "   みぎ と ひだり。\n"
+        "Aボタンで『せなか』の\n"
+        "ほうこうにジャンプします。\n"
+        "テッペンで もういちど\n"
+        "スティックを うえにいれ，\n"
+        "『さかだち』ができる。\n"
+        "むきをきめて せなかの\n"
+        "ほうこうに ジャンプだ!")
+
+.balign 4
+Dialog052: # 0x0200A12C
+.byte _("Zボタンで しゃがめます。\n"
+        "とまって しゃがんでから\n"
+        "ジャンプすると，\n"
+        "『バックちゅう』できる!\n"
+        "すばやくユｰタｰンを\n"
+        "しながら，ジャンプすると\n"
+        "『ちゅうがえり』!\n"
+        "どちらも たかくとべます。")
+
+.balign 4
+Dialog053: # 0x0200A1A0
+.byte _("コインリングや かくれた\n"
+        "シｰクレットポイントを\n"
+        "とおると あかいすうじが\n"
+        "でてきます。5こつづけて\n"
+        "とおると ひみつのスタｰ\n"
+        "が あらわれます。")
+
+.balign 4
+Dialog054: # 0x0200A1F4
+.byte _("スライダｰへようこそ!!\n"
+        "さかを すべりはじめたら\n"
+        "スティックまえで かそく，\n"
+        "うしろで げんそくできる。")
+
+.balign 4
+Dialog055: # 0x0200A234
+.byte _("あたし，このスライダｰの\n"
+        "せかいチャンピオン!!!\n"
+        "からだ，デカイけど\n"
+        "とっても はやいよ!\n"
+        "あなたチャレンジします?\n"
+        "それでは!\n"
+        "\n"
+        " レディｰｰｰ・・・!\n"
+        "  ・・・ \n"
+        "   ゴｰ!! やめとく")
+
+.balign 4
+Dialog056: # 0x0200A2A0
+.byte _("ヒエｰｰｰッ!!!\n"
+        "セカイきろくだよ!\n"
+        "スゴイよ!あなた!!\n"
+        "きんメダルの かわりに\n"
+        "コレ あげます!\n"
+        "いやｰｰスゴイスゴイ!!")
+
+.balign 4
+Dialog057: # 0x0200A2E8
+.byte _("どこかで うちのこどもを\n"
+        "みかけません でしたか?\n"
+        "・・・わたしんち こども\n"
+        "いっぱい いましてね・・\n"
+        "なんびき いたのかも\n"
+        "おぼえてなくて・・・・\n"
+        "ほんとに・・\n"
+        "どこへ いったんでしょう。\n"
+        "だいてやると\n"
+        "とても いいこえで\n"
+        "なくんですけどね・・・\n"
+        "ヤレヤレ・・・・・")
+
+.balign 4
+Dialog058: # 0x0200A380
+.byte _("ああｰｰっ!!たしかに\n"
+        "うちの こどもです・・・\n"
+        "『こらっ! いつも\n"
+        "ちかくで あそびなさいと\n"
+        "いってるだろ!』\n"
+        "あなた とっても\n"
+        "いいひとです。 おれいに\n"
+        "これを さしあげます。\n"
+        "あったかくって とても\n"
+        "げんきに なりますよ。")
+
+.balign 4
+Dialog059: # 0x0200A3FC
+.byte _("このこは うちのこじゃｰ\n"
+        "ないようだなあ・・・\n"
+        "かわいそうに・・・\n"
+        "おやはいったい\n"
+        "なにをしてるんだろう・・")
+
+.balign 4
+Dialog060: # 0x0200A438
+.byte _("ｰみずにはいるちゅういｰ\n"
+        "\n"
+        "もぐっていると しぬほど\n"
+        "くるしくなってきます。\n"
+        "すいめんに あがるか\n"
+        "アブクをみつけて\n"
+        "さわってください。\n"
+        "ひといき つけます。\n"
+        "およぐときは Aボタン!\n"
+        "おしてるだけでも すすみ\n"
+        "タイミングよく おすと\n"
+        "スピｰドがでます。\n"
+        "もぐるときはスティックを\n"
+        "まえにたおして Aボタン。\n"
+        "うかぶときはスティックを\n"
+        "てまえにひいて Aボタン。\n"
+        "すいめんに いるときは\n"
+        "ジャンプします。\n"
+        " 『じゅんびたいそう\n"
+        "    わすれずに!!』")
+
+.balign 4
+Dialog061: # 0x0200A534
+.byte _("つめたいみず キケン!!\n"
+        "およいでは いけません!\n"
+        "この こおりのいけは\n"
+        "とびあがるぐらい\n"
+        "つめたいです!\n"
+        "        ペンギン")
+
+.balign 4
+Dialog062: # 0x0200A580
+.byte _("みどりの ブロックに\n"
+        "かくされている\n"
+        "ふしぎな ふしぎな\n"
+        "『メタルのぼうし』。\n"
+        "\n"
+        "ひをつけたってもえないし\n"
+        "てきのたまも はねかえす。\n"
+        "いきを とめても\n"
+        "へいきです。\n"
+        "こまったことにおよげない。")
+
+.balign 4
+Dialog063: # 0x0200A5EC
+.byte _("あおいブロックには\n"
+        "『とうめいぼうし』。\n"
+        "メダマも ビックリ\n"
+        "すがたをけせる。\n"
+        "テレサも まっさお\n"
+        "『ひみつのカベ』を\n"
+        "とおりぬけるぞ。")
+
+.balign 4
+Dialog064: # 0x0200A638
+.byte _("あかいブロックのなかの\n"
+        "はねのぼうしを かぶると，\n"
+        "3かいジャンプで\n"
+        "そらたかく とびあがれる。\n"
+        "そうさはスティックで!\n"
+        "てまえにひくと あがる。\n"
+        "まえにたおすと さがる。\n"
+        "やめるときはZボタンで!")
+
+.balign 4
+Dialog065: # 0x0200A6AC
+.byte _("およぎかた おしえます。\n"
+        "\n"
+        "みずにはいるとおよげます。\n"
+        "ながいあいだ『もぐる』と\n"
+        "くるしくなります。\n"
+        "すすむためには Aボタン。\n"
+        "タイミングよく おすと\n"
+        "スピｰドが でます。\n"
+        "3Dスティックを まえに\n"
+        "たおすと もぐります。\n"
+        "すいめんに もどったり，\n"
+        "みずから あがるときは\n"
+        "てまえにひいて Aボタン。\n"
+        "すいめんでジャンプだ!\n"
+        "\n"
+        "Aボタン おしっぱなしに\n"
+        "していても，およげます。\n"
+        "らくちんです。\n"
+        "およいでいるあいだは\n"
+        "ドアを あけられません。")
+
+.balign 4
+Dialog066: # 0x0200A7A8
+.byte _("マリオ!  クッパのはく\n"
+        "ほのおに きをつけて!\n"
+        "クッパを こらしめるには\n"
+        "うしろにまわりBボタンで\n"
+        "シッポをつかむのよ!\n"
+        "なげとばす まえには\n"
+        "3Dスティックで\n"
+        "グリグリふりまわすの。\n"
+        "はやく まわすほど\n"
+        "とおくまで とぶわ!\n"
+        "Cボタンで まわりを\n"
+        "よｰくみて!\n"
+        "なげとばした クッパは\n"
+        "4すみの バクダンに\n"
+        "ぶつけてやるの!\n"
+        "ねらいを\n"
+        "よｰくさだめて・・・\n"
+        "\n"
+        "もういちどBボタンよ!")
+
+.balign 4
+Dialog067: # 0x0200A884
+.byte _("ざんねんだったなマリオ!\n"
+        "ここには ピｰチちゃんは\n"
+        "いませんでした。\n"
+        "    ガハハッ!!\n"
+        "わがはいの うしろに\n"
+        "まわりこんで シッポを\n"
+        "つかめるものなら\n"
+        "つかんでみるんだな。\n"
+        "スティックでグリグリ\n"
+        "まわして なげるなど\n"
+        "できるわけが ない!!\n"
+        "  ガハハッ!!")
+
+.balign 4
+Dialog068: # 0x0200A91C
+.byte _("ここは しゃくねつの\n"
+        "ファイアバブル ランド!\n"
+        "からだに ひがついても\n"
+        "おちないように あわてず\n"
+        "そうさしよう。\n"
+        "ほのおのいけに おちると\n"
+        "はねあがる!  そうさは\n"
+        "できるので，おちついて。\n"
+        "あまりうごきまわらないで\n"
+        "ガンバレ!")
+
+.balign 4
+Dialog069: # 0x0200A99C
+.byte _("『え』のなかのカイブツの\n"
+        "せかいには，せかいの\n"
+        "はてがあります。\n"
+        "みえないカベにあたったら\n"
+        "きっと そこが\n"
+        "『え』のせかいのはてです。\n"
+        "そらを とんでいるときも\n"
+        "そこから さきには\n"
+        "すすめません。")
+
+.balign 4
+Dialog070: # 0x0200AA08
+.byte _("かいぶつたちの すんでる\n"
+        "『え』のなかのせかいから，\n"
+        "おしろの いりぐちの\n"
+        "メインホｰルに\n"
+        "いつでも もどれます。\n"
+        "かならず きちんと\n"
+        "たちどまってから!\n"
+        "スタｰトボタンでポｰズし，\n"
+        "『コｰスからでる』を\n"
+        "えらんでください。\n"
+        "ひとつのせかいのスタｰは\n"
+        "ぜんぶ とらなくても，\n"
+        "つぎのせかいにすすめます。\n"
+        "じょうずになったら，また\n"
+        "もどってきてください。\n"
+        "スタｰを1つ とるごとに\n"
+        "つぎのスタｰのヒントが\n"
+        "スタｰトがめんに でます。\n"
+        "えらんだヒントいがいの\n"
+        "スタｰをとってもOKです。")
+
+.balign 4
+Dialog071: # 0x0200AB18
+.byte _(" ｰこのさきキケンｰ\n"
+        "  あやしいケムリに\n"
+        "  ちゅうい!\n"
+        " いきができません!\n"
+        "くるしくなったら\n"
+        "たかいところへ!\n"
+        "まる・・・・・ひなんじょ\n"
+        "やじるし・・・でいりぐち")
+
+.balign 4
+Dialog072: # 0x0200AB74
+.byte _("カゼつよし!  ぼうしは\n"
+        "しっかり かぶりましょう。\n"
+        "もし ぼうしをなくしても\n"
+        "ここでなくした ぼうしは\n"
+        "このやまで みつかります。")
+
+.balign 4
+Dialog073: # 0x0200ABC0
+.byte _("ただしい じゅんばんで\n"
+        "はこを ひらくこと。\n"
+        "こたえは だれにも\n"
+        "おしえてやらない。\n"
+        "   ｰｰせんちょうｰｰ")
+
+.balign 4
+Dialog074: # 0x0200AC00
+.byte _("ガケのカドに とびつくと\n"
+        "ぶらさがれます。\n"
+        "おりるときはスティックを\n"
+        "マリオのうしろへいれるか，\n"
+        "Zボタンをおしてください。\n"
+        "のぼるときはスティックを\n"
+        "まえに たおしてください。\n"
+        "ぶらさがって\n"
+        "すぐに Aボタンをおすと\n"
+        "すばやく のぼれます!")
+
+.balign 4
+Dialog075: # 0x0200AC8C
+.byte _("マリオ!!たいへんです。\n"
+        "クッパがまた・・・・\n"
+        "おしろの パワｰスタｰを\n"
+        "ぬすんで カベのなかへ!\n"
+        "わたしたちも・・・\n"
+        "みんなカベのなかへ・・・\n"
+        "すいこまれていくわ・・・\n"
+        "『カベ』や『え』のなか\n"
+        "から パワｰスタｰを\n"
+        "とりもどして!\n"
+        "クッパの ふさいだドアは\n"
+        "パワｰスタｰの ちからで\n"
+        "ひらくことが できるわ!\n"
+        "このへやには ひみつの\n"
+        "つうろがあるの。\n"
+        "クッパにみつからなかった\n"
+        "かくしつうろの ひとつよ。\n"
+        "そこには おしろの\n"
+        "かくれスタｰが あるわ!\n"
+        "きっと やくにたつはずよ。")
+
+.balign 4
+Dialog076: # 0x0200AD94
+.byte _("パワｰスタｰのおかげで\n"
+        "おしろに，げんきが\n"
+        "もどってきました。\n"
+        "クッパなんか\n"
+        "おいはらってください。\n"
+        "おやくに たつなら\n"
+        "おしろの はなしをします。\n"
+        "『カガミのへや』では\n"
+        "カガミにうつらないものを\n"
+        "よくみてください。\n"
+        "みずのまちへ いくときは，\n"
+        "『え』にとびこむ たかさ\n"
+        "によって，まちをすっかり\n"
+        "みずびたしに できます。\n"
+        "アッ，これ みつけました。")
+
+.balign 4
+Dialog077: # 0x0200AE58
+.byte _("とびらを ひらくまえに\n"
+        "2つの はしらを\n"
+        "おしさげて おくこと。")
+
+.balign 4
+Dialog078: # 0x0200AE7C
+.byte _("あおコインのブロックを\n"
+        "ジャンプちゅうにZボタン\n"
+        "『ヒップドロップ』で\n"
+        "      ぶっつぶすと\n"
+        "あおコインがでてきます。\n"
+        "あおコイン1まいで\n"
+        "きいろコイン5まいぶん\n"
+        "とてもラッキｰ!\n"
+        "でも じかんがたつと\n"
+        "きえてしまう・・ザンネン")
+
+.balign 4
+Dialog079: # 0x0200AF04
+.byte _("いててて!\n"
+        "はなしてくれよ。\n"
+        "ウッキッキｰ!\n"
+        "チョットからかった\n"
+        "だけなのに!\n"
+        "はなしてくれたら，\n"
+        "いいもの あげるからさ。\n"
+        "ネｰネｰ はなしてくれよ。\n"
+        "\n"
+        "   はなす  いやだ")
+
+.balign 4
+Dialog080: # 0x0200AF64
+.byte _("ヘッヘッヘッ!")
+
+.balign 4
+Dialog081: # 0x0200AF6C
+.byte _("ここは みずにみちたまち。\n"
+        "このまちは，あなたが\n"
+        "ここを おとずれるときの\n"
+        "たかさと，おなじだけの\n"
+        "みずをもって\n"
+        "あなたをむかえる。")
+
+.balign 4
+Dialog082: # 0x0200AFB8
+.byte _("ぼうしを なくすと\n"
+        "ダメｰジがおおくなるので\n"
+        "だいじに してください。\n"
+        "なくしたら，なくした\n"
+        "コｰスで みつかります。\n"
+        "アアｰどうしよう・・・\n"
+        "ピｰチひめは，カベに\n"
+        "ひきこまれた ままだし。\n"
+        "はやく クッパを\n"
+        "やっつけてください。\n"
+        "えのほかにカベのなかにも\n"
+        "モンスタｰの せかいが\n"
+        "あります。  あっ!これ\n"
+        "もっていって ください。\n"
+        "かくして もってました。")
+
+.balign 4
+Dialog083: # 0x0200B080
+.byte _("とけいがとても へんです。\n"
+        "とけいに はいるとき，\n"
+        "ながいはりの ばしょに\n"
+        "ちゅういしてください!\n"
+        "これ，とりもどしました。\n"
+        "もっていって ください。\n"
+        "かっこよく\n"
+        "うけとってくださいね!")
+
+.balign 4
+Dialog084: # 0x0200B0E8
+.byte _("イテテ らんぼうなひとだ。\n"
+        "このスタｰは クッパって\n"
+        "ヤツが くれたんだよ。\n"
+        "あんたのものだ なんて\n"
+        "しらなかったよ。\n"
+        "かえすって，かえすってば，\n"
+        "かえせば いいんでしょ。\n"
+        "はなしてくれたら\n"
+        "スタｰぐらい かえすから。\n"
+        "ホイ!!")
+
+.balign 4
+Dialog085: # 0x0200B168
+.byte _("この やかたから\n"
+        "  ぶじにでられたら\n"
+        "\n"
+        "・・・エライ。・・")
+
+.balign 4
+Dialog086: # 0x0200B18C
+.byte _("まわりをクルクルまわると\n"
+        "めをまわす ヤツがいます。")
+
+.balign 4
+Dialog087: # 0x0200B1A8
+.byte _("えんとつから はいるのは\n"
+        "サンタだけではありません。\n"
+        "  ごえんりょなく\n"
+        "  おはいりください。\n"
+        "スノｰマンハウスおｰなｰ")
+
+.balign 4
+Dialog088: # 0x0200B1EC
+.byte _("ｰさぎょうリフトじょうｰ\n"
+        "\n"
+        "ここから おりるひとは\n"
+        "ひだりのぼうにつかまって，\n"
+        "きをつけて おりること。")
+
+.balign 4
+Dialog089: # 0x0200B228
+.byte _("どちらのみちも キケン!\n"
+        "くらいあしもとにチュウイ。\n"
+        "はばとび できないひとは\n"
+        "みぎのみちを すすめ。\n"
+        "みぎ・・さぎょうリフト\n"
+        "    ケムリめいろ\n"
+        "ひだり・・やみのおおあな\n"
+        "     ちていこ ヘ\n"
+        "あかまる\n"
+        " ・・2ごうエレベｰタｰ\n"
+        "      ちていこ へ\n"
+        "やじるし・・げんざいち")
+
+.balign 4
+Dialog090: # 0x0200B2C4
+.byte _("ガハハッ!\n"
+        "ワナにはまったなマリオ!\n"
+        "また ジャマをしにきた\n"
+        "ようだが，ともだちからの\n"
+        "ちゅうこくだ。\n"
+        "あしもとには きをつけな。")
+
+.balign 4
+Dialog091: # 0x0200B30C
+.byte _("つよいカゼに チュウイ!\n"
+        "でも，カゼにのると\n"
+        "フワフワきもちいいです。")
+
+.balign 4
+Dialog092: # 0x0200B334
+.byte _("いいかげんにしろマリオ!\n"
+        "いつもいつも，わがはいの\n"
+        "ジャマをしおって!\n"
+        "せっかく かいぶつたちと\n"
+        "たのしくやっているのに。\n"
+        "スタｰをかえすんだ!\n"
+        "カベのなかのヤツらには，\n"
+        "そいつが いるんだよ!!\n"
+        "ガハハッ!!")
+
+.balign 4
+Dialog093: # 0x0200B3A8
+.byte _("アララ!いつのまにきた?\n"
+        "・・・・・・ムム\n"
+        "どちらにしろ わがはいの\n"
+        "ほのおの えじきだっ!\n"
+        "どれだけスタｰのちからを\n"
+        "かりても，わがはいには\n"
+        "かなうわけがないわ!\n"
+        "ガハハッ!! マリオ!\n"
+        "キサマの おともだちも\n"
+        "みｰんな カベのなかさ。\n"
+        "ピｰチちゃんも わたさん\n"
+        "もんね!  いくぞ!!")
+
+.balign 4
+Dialog094: # 0x0200B448
+.byte _("のぼりにくい さかみちは\n"
+        "じょそうをつけて\n"
+        "げんきよく のぼる!\n"
+        "はばとび おぼえてるか?\n"
+        "はしりながら Zボタンで\n"
+        "しゃがんで ジャンプだ!")
+
+.balign 4
+Dialog095: # 0x0200B4A0
+.byte _("このように カンバンの\n"
+        "まえで Bボタンをおすと\n"
+        "よむことができます。\n"
+        "ノコノコや どうぶつたち\n"
+        "と はなすときは，まえに\n"
+        "たちどまってください。\n"
+        "このコｰスにあるクッパに\n"
+        "ぬすまれたパワｰスタｰを\n"
+        "とりかえしてください。")
+
+.balign 4
+Dialog096: # 0x0200B51C
+.byte _("このあたり みちせまし。\n"
+        "ゆっくり あるこう!\n"
+        "だれも ちょうじょうまで\n"
+        "たどりつかせない。\n"
+        "フフフ。\n"
+        "きもちよくねているひとを\n"
+        "おこすと，とっても\n"
+        "ふきげんに なります。\n"
+        "ゆっくりと しずかに\n"
+        "あるきましょう。フフフ。")
+
+.balign 4
+Dialog097: # 0x0200B594
+.byte _("たいあたり されたら\n"
+        "たいあたりで かえせ!\n"
+        "ほのおのうみにつきおとす\n"
+        "1たい1のデスマッチだ!")
+
+.balign 4
+Dialog098: # 0x0200B5C8
+.byte _("ここまでおいで・・・・\n"
+        "ケッケッケ・・")
+
+.balign 4
+Dialog099: # 0x0200B5E0
+.byte _("クックック・・\n"
+        " とりついてやる。\n"
+        "    ヒッヒッヒ!\n"
+        "カベも とおりぬけてやる。\n"
+        "こんなこと できるか?\n"
+        "     ケッケッケ!")
+
+.balign 4
+Dialog100: # 0x0200B628
+.byte _("ウッキッキｰ\n"
+        " ワッキッキｰ!\n"
+        "   ホヨホヨ。\n"
+        "いっただきｰ。")
+
+.balign 4
+Dialog101: # 0x0200B64C
+.byte _("ヘッヘッヘッ!\n"
+        "つかまっちゃいました。\n"
+        "きにいってたのになあ・・\n"
+        "かえしますよ。\n"
+        " ウッキッキｰ!!")
+
+.balign 4
+Dialog102: # 0x0200B680
+.byte _("テレサの たおしかた\n"
+        "おしえます。\n"
+        "はずかしがりやの\n"
+        "テレサです。\n"
+        "『めとめがあう』と\n"
+        "すがたをけします。\n"
+        "『とうめいのとき』は\n"
+        "あたりません。\n"
+        "『せなかをむける』と\n"
+        "あらわれます。\n"
+        "うしろにまわって\n"
+        "なぐると よわい。")
+
+.balign 4
+Dialog103: # 0x0200B6F8
+.byte _("4ほんの はしらのうえに\n"
+        "たつものに，わたしは，\n"
+        "このやかたを おとずれる\n"
+        "しかくを あたえよう。")
+
+.balign 4
+Dialog104: # 0x0200B72C
+.byte _("めのまえのブルｰグレｰの\n"
+        "はんとうめいの ほしは\n"
+        "『パワｰスタｰのだい』だ。\n"
+        "あかコインを みつけて\n"
+        "8まいぜんぶ あつめると，\n"
+        "スタｰが あらわれる。")
+
+.balign 4
+Dialog105: # 0x0200B784
+.byte _("じゅんび かんりょう!\n"
+        "そこの あなに\n"
+        "はいってみてください。\n"
+        "4つのたいほうをつかって\n"
+        "そらのしまにあるスタｰを\n"
+        "とれるはずです。\n"
+        "スティックでねらいをつけ，\n"
+        "Aではっしゃ!とびながら\n"
+        "『き』にも つかまれます。")
+
+.balign 4
+Dialog106: # 0x0200B7FC
+.byte _("じゅんびが\n"
+        "かんりょう しました!\n"
+        "それでは，おきをつけて!")
+
+.balign 4
+Dialog107: # 0x0200B820
+.byte _("おばけは し な な い\n"
+        "ケッケッケ・・\n"
+        "ぶじに でられるかな?")
+
+.balign 4
+Dialog108: # 0x0200B848
+.byte _("ぼよよｰん\n"
+        "おやかたの おでましだ。\n"
+        "カッカッカ・・")
+
+.balign 4
+Dialog109: # 0x0200B868
+.byte _("カラダが とけちゃったヨ。\n"
+        "いいカラダ いないかなｰ\n"
+        "なにか おちつかなくてネ。\n"
+        "アｰ かおがつめたいなｰ")
+
+.balign 4
+Dialog110: # 0x0200B8A4
+.byte _("しょうらい きっと\n"
+        "りっぱなカラダになろうと\n"
+        "おもってまｰす!\n"
+        "いいアタマ いないかなｰ\n"
+        "もししっていたら そこへ\n"
+        "つれてってくれませんか?\n"
+        "まえを すべってくれれば\n"
+        "うしろをついていきまｰす。\n"
+        " ヨロシクｰ!")
+
+.balign 4
+Dialog111: # 0x0200B914
+.byte _("ヤッリｰ!\n"
+        "きぶんスッキリ!りっぱな\n"
+        "カラダが みつかった!\n"
+        "おれいに これあげます!\n"
+        "もっていって ください。\n"
+        "とってもアッタカイですよ。")
+
+.balign 4
+Dialog112: # 0x0200B964
+.byte _("コインいっぱいあつめよう。\n"
+        "ちからが かいふくする。\n"
+        "えのなかの15コｰスでは\n"
+        "きろくにも のこるよ。\n"
+        "あかいハｰトにさわっても\n"
+        "ちからが かいふくする。\n"
+        "はやく かけぬけるほど\n"
+        "たくさん かいふくする!")
+
+.balign 4
+Dialog113: # 0x0200B9D0
+.byte _("あか・あお・みどりの\n"
+        "ブロックには アイテムの\n"
+        "『ぼうし』が はいってる。\n"
+        "おしろの どこかにある\n"
+        "スイッチを ふんでくると\n"
+        "つかえるように なります。")
+
+.balign 4
+Dialog114: # 0x0200BA24
+.byte _("ああ~ きにいらねえ!\n"
+        "おれたち，いしのおかげで\n"
+        "『いえ』も『しろ』も\n"
+        "できてるってｰのに。\n"
+        "いつも ふみつけるばっか\n"
+        "りで， ちったｰありがた\n"
+        "がったら どうなんでぃ!\n"
+        "おうおうっ!\n"
+        "おい! そこのニイサン!\n"
+        "ふらふらしてんじゃねｰや。\n"
+        "きげんが わるいんでぃ!\n"
+        "おしつぶしちまうぞぉ!!\n"
+        "もんくが あんなら\n"
+        "ヒップドロップで この\n"
+        "バッタンキングさまを\n"
+        "ふみつけて みやがれっ!")
+
+.balign 4
+Dialog115: # 0x0200BAFC
+.byte _("ああ くやしいぞ!\n"
+        "またまた\n"
+        "ふみつけられちまった!\n"
+        "しょせん いしは\n"
+        "    いしなのか・・・\n"
+        "おめぇの かちでぇ!\n"
+        "これ もっていきやがれ!\n"
+        "ガクッ!")
+
+.balign 4
+Dialog116: # 0x0200BB50
+.byte _("おおっ!いてて! まわり\n"
+        "こみのはやさは まだまだ\n"
+        "だが，なかなか つよいな。\n"
+        "おまえのような けらいが\n"
+        "ほしかったぞ・・\n"
+        "はじめの やくそくどおり\n"
+        "パワｰスタｰをやろう。\n"
+        "また ワシにあいたいとき\n"
+        "このスタｰをメニュｰから\n"
+        "えらぶがよい。さらばじゃ")
+
+.balign 4
+Dialog117: # 0x0200BBDC
+.byte _("ジャジャジャｰン!\n"
+        "どうだ!\n"
+        "おどろいたか??・・・\n"
+        "ムム・・・・ ならば\n"
+        "もっとオドロカセテやる!\n"
+        "イクゾ! カカッテコイ!")
+
+.balign 4
+Dialog118: # 0x0200BC28
+.byte _("オオオッ・・・\n"
+        "オマエ，いがいとツヨイ!\n"
+        "このヤカタは，きょうから\n"
+        "オマエのものダッ・・\n"
+        "ジユウニつかエ。ガクッ!")
+
+.balign 4
+Dialog119: # 0x0200BC68
+.byte _("グウウッ!  ちょっと\n"
+        "ゆだん しておったわ!\n"
+        "せっかくのケイカクが\n"
+        "ぶちこわしだ・・・しかし\n"
+        "パワｰスタｰもピｰチも\n"
+        "わがはいの てのなかに\n"
+        "あるのだ。ガハハハ!\n"
+        "まだまだ まけてはおらん。\n"
+        "これいじょうスタｰは\n"
+        "わたさんぞ。きょうはここ\n"
+        "らで かんべんしてやる!\n"
+        "おおぉ，おぼえてろよ!!")
+
+.balign 4
+Dialog120: # 0x0200BD0C
+.byte _("グググッワッ!\n"
+        "こうも かんたんに\n"
+        "やられるとは，スタｰの\n"
+        "ちからが たりんのかな?\n"
+        "わがはいがゼッコｰチョｰ\n"
+        "のときなら，キサマなんか\n"
+        "てきではない。\n"
+        "こんかいは ひきわけだっ\n"
+        "ピｰチに あいたければ，\n"
+        "とうのてっぺんまで\n"
+        "のぼってきてみろ。\n"
+        "まってるぞ!ガハハッ!!")
+
+.balign 4
+Dialog121: # 0x0200BDA4
+.byte _("あああっ・・またこんども\n"
+        "キサマのかちか マリオ!\n"
+        "キサマはな，わがはいが\n"
+        "せかいで いｰちばん\n"
+        "まけたくないヤツなのに!\n"
+        "せっかく なかまにした\n"
+        "モンスタｰたちのちからも\n"
+        "なくなり このままでは\n"
+        "またまた，わがはいの\n"
+        "だｰいきらいな\n"
+        "へいわが もどってしまう\n"
+        "ではないか! \n"
+        "ムムムッ・・・・\n"
+        "しかし，このゲｰムは\n"
+        "まだまだ おわらんぞ。\n"
+        "みんなで あつまって，\n"
+        "なかよくエンディングでも\n"
+        "みるんだな!\n"
+        "\n"
+        "ガハハハッ!")
+
+.balign 4
+Dialog122: # 0x0200BE8C
+.byte _("ｰやみにとけるおおあなｰ\n"
+        "\n"
+        "みぎ・・・さぎょうリフト\n"
+        "     ケムリめいろ\n"
+        "ひだり・・ちていこ")
+
+.balign 4
+Dialog123: # 0x0200BEC0
+.byte _(" ｰメタルのどうくつｰ\n"
+        "\n"
+        "みぎ・・・ちじょうへ\n"
+        "ひだり・・メタルスイッチ")
+
+.balign 4
+Dialog124: # 0x0200BEEC
+.byte _("ｰさぎょうようリフトｰ\n"
+        "\n"
+        "   キケン!!\n"
+        " そうさほうほうを\n"
+        " よく よむこと。\n"
+        "ふんだ，やじるしのほうに\n"
+        "すすみつづけます。\n"
+        "\n"
+        "おりると もとのばしょに\n"
+        "もどります。")
+
+.balign 4
+Dialog125: # 0x0200BF48
+.byte _("ｰケムリめいろ・でぐちｰ\n"
+        "\n"
+        "キケン! ヘイサちゅう。\n"
+        "ここからは はいれません。")
+
+.balign 4
+Dialog126: # 0x0200BF74
+.byte _("・1ごうエレベｰタｰ・\n"
+        "\n"
+        "うえ・・やみのおおあな\n"
+        "みぎ・・さぎょうリフト\n"
+        "    ケムリめいろ")
+
+.balign 4
+Dialog127: # 0x0200BFA8
+.byte _("  ｰちていこｰ\n"
+        "\n"
+        "みぎ・・メタルのどうくつ\n"
+        "ひだり・・はいこう\n"
+        "     へいさちゅう\n"
+        "おとなしい かいりゅう\n"
+        "ドッシｰが すんでます\n"
+        "せなかでヒップドロップを\n"
+        "すると，あたまをさげます。\n"
+        "エサにならないでください。")
+
+.balign 4
+Dialog128: # 0x0200C024
+.byte _("おっとっと!じょうがいに\n"
+        "なげるのは はんそくだ!\n"
+        "リングのうえでフェアｰに\n"
+        "たたかおうでは ないか!")
+
+.balign 4
+Dialog129: # 0x0200C060
+.byte _("とうめいスイッチの\n"
+        "  コｰスへ ようこそ!\n"
+        "あおいスイッチを ふむと\n"
+        "すべての あおブロックが\n"
+        "『じったい』になる。\n"
+        "とうめいぼうしで\n"
+        "とうめいに なると\n"
+        "いろんな ものを\n"
+        "とおりぬけられます。\n"
+        "まずは おためしください。")
+
+.balign 4
+Dialog130: # 0x0200C0DC
+.byte _("メタルのスイッチの\n"
+        "  コｰスヘ ようこそ!\n"
+        "みどりのスイッチを\n"
+        "ふめば みどりブロックが\n"
+        "『じったい』になる。\n"
+        "メタルのぼうしで\n"
+        "メタルになれば，\n"
+        "みずのなかでも\n"
+        "あるけてしまう。\n"
+        "まずは おためしください。")
+
+.balign 4
+Dialog131: # 0x0200C154
+.byte _("はねのスイッチの\n"
+        "  コｰスヘ ようこそ!\n"
+        "にじのリングのまんなかの\n"
+        "とうの うえにある\n"
+        "あかいスイッチを ふもう。\n"
+        "このせかいの すべての\n"
+        "あかいブロックが\n"
+        "『じったい』になる。\n"
+        "3だんとびで そらへとび，\n"
+        "Zボタンで ランディング。\n"
+        "そうさは ひこうきの\n"
+        "そうじゅうかん のように\n"
+        "まえにたおすと『さがる』\n"
+        "てまえにひくと『あがる』\n"
+        "まずは おためしを!")
+
+.balign 4
+Dialog132: # 0x0200C21C
+.byte _("ダメダメ!\n"
+        "それは きていいはんです。\n"
+        "『しっかｰく!』\n"
+        "こんどはフェアｰに\n"
+        "いきましょう。")
+
+.balign 4
+Dialog133: # 0x0200C250
+.byte _("ああよかった。\n"
+        "きてくれたんですね!\n"
+        "ピｰチひめも ぼくたちも\n"
+        "みんな『カベ』のなかに\n"
+        "とじこめられちゃいました。\n"
+        "クッパは パワｰスタｰを\n"
+        "つかって『カベ』や『え』\n"
+        "のなかにカイブツのくにを\n"
+        "つくろうと しています。\n"
+        "スタｰをとりかえして!\n"
+        "『スタｰ』をいくつか\n"
+        "とりかえしたら，クッパの\n"
+        "とじたドアが ひらきます。\n"
+        "1かいの 4つのへやを\n"
+        "さがし，すすんでください。\n"
+        "まずは，ヒダリがわの\n"
+        "ボムへいの『え』の\n"
+        "へやに はいれます。\n"
+        "このへやだけは クッパの\n"
+        "ふういんを のがれました。\n"
+        "8まい たまったら\n"
+        "おおきな ほしのドアを\n"
+        "ひらくことが できます。\n"
+        "きっと ピｰチひめは\n"
+        "そのなかです!")
+
+.balign 4
+Dialog134: # 0x0200C398
+.byte _("コｰスのはじめにえらべる\n"
+        "スタｰのなまえは，\n"
+        "つぎに みつけられそうな\n"
+        "スタｰのヒントです。\n"
+        "ヒントにでてくる\n"
+        "じゅんばんと，ちがう\n"
+        "スタｰを とりもどしても\n"
+        "かまわないですよ。\n"
+        "『スタｰ』や『てき』や\n"
+        "『アイテム』のなかには\n"
+        "そのスタｰをえらばないと\n"
+        "でないものも あります。\n"
+        "いくつか とりかえしたら\n"
+        "つぎのコｰスのドアへと\n"
+        "すすんでください。みんな\n"
+        "たすけを まっています!")
+
+.balign 4
+Dialog135: # 0x0200C468
+.byte _("クッパがスタｰをもって\n"
+        "いっちゃいました。\n"
+        "ここにかくれてみてました。\n"
+        "スタｰはひとつのコｰスに\n"
+        "6こあるはずです。\n"
+        "でも アイテムスイッチを\n"
+        "ぜんぶおしてからでないと\n"
+        "とれないスタｰもあります。\n"
+        "どんどん さきのコｰスへ\n"
+        "すすんでください。\n"
+        "スタｰトがめんでスタｰの\n"
+        "なまえが みられます。\n"
+        "むかしのてきに あいたい\n"
+        "とき，そのほしをえらぶと\n"
+        "またあえる てきもいます。")
+
+.balign 4
+Dialog136: # 0x0200C534
+.byte _("ワァすごい!もうそんなに\n"
+        "スタｰをもってるんですね。\n"
+        "もうすぐ ぼくらのことも\n"
+        "たすけだしてくれますね!\n"
+        "クッパたちは ひっしです。\n"
+        "きをつけてください。\n"
+        "コインをとると ちからが\n"
+        "かいふくします。\n"
+        "あかコインは2まいぶん。\n"
+        "あおコインは5まいぶん。\n"
+        "あおコインのブロックを\n"
+        "こわすと でてきます。\n"
+        "たかいところからおちても\n"
+        "ちじょうの ちかくで\n"
+        "『ヒップドロップ』すると\n"
+        "ダメｰジを ふせげます。")
+
+.balign 4
+Dialog137: # 0x0200C614
+.byte _("パワｰスタｰが もどって，\n"
+        "おしろのちからが\n"
+        "かいふく してきました!\n"
+        "ありがとう。 クッパは\n"
+        "このさきに にげました。\n"
+        "そうだ!コインをあつめて\n"
+        "ますか?15のコｰスでは\n"
+        "コイン100まい とると\n"
+        "スペシャルスタｰが\n"
+        "あらわれます。")
+
+.balign 4
+Dialog138: # 0x0200C698
+.byte _("・2ごうエレベｰタｰ・\n"
+        "した・・ちていこ\n"
+        "ひだり・・やみのおおあな\n"
+        "みぎ・・・ケムリめいろ\n"
+        "     へいさちゅう!")
+
+.balign 4
+Dialog139: # 0x0200C6D8
+.byte _("このうえ・・じどうリフト\n"
+        "じどうリフトは のると\n"
+        "じどうてきに うごきだし，\n"
+        "コｰスにそってすすみます。\n"
+        "おりて ほうっておくと\n"
+        "きえてしまいます。")
+
+.balign 4
+Dialog140: # 0x0200C72C
+.byte _("ｰそうさリフトじょうｰ\n"
+        "みぎ・・・ケムリめいろ\n"
+        "     いりぐち\n"
+        "ひだり・・やみのおおあな\n"
+        "  1ごうエレベｰタｰへ\n"
+        "やじるし・・げんざいち")
+
+.balign 4
+Dialog141: # 0x0200C780
+.byte _("ぬすまれたパワｰスタｰを\n"
+        "とりかえした!\n"
+        "クッパが とじてしまった\n"
+        "ドアを あけられるように\n"
+        "なったぞ!\n"
+        "2かいの ピｰチのへや，\n"
+        "1かいの とりでのへや，\n"
+        "2つのへやのドアがひらく。\n"
+        "つぎのスタｰをとりかえし\n"
+        "おしろのみんなをすくえ!\n"
+        "モンスタｰたちはどんどん\n"
+        "ちからを つけてきている。\n"
+        "いそげ マリオ!!\n"
+        "おしろの いちだいじだ!")
+
+.balign 4
+Dialog142: # 0x0200C83C
+.byte _("3このスタｰを\n"
+        "とりもどしたぞ! \n"
+        "そして スタｰに『3』の\n"
+        "すうじが ついたドアを\n"
+        "ひらけるように なった!\n"
+        "4つのへやの せかいを\n"
+        "じゆうに いききできる。\n"
+        "あたらしいカイブツたちは\n"
+        "もっと てごわいぞ。\n"
+        "きをつけて すすめ!")
+
+.balign 4
+Dialog143: # 0x0200C8BC
+.byte _("8このパワｰスタｰを\n"
+        "ぶじ とりもどし，\n"
+        "おおきな ほしのドアが\n"
+        "ひらくようになった。\n"
+        "クッパは すぐそこだ!\n"
+        "ピｰチのこえがきこえる。")
+
+.balign 4
+Dialog144: # 0x0200C90C
+.byte _("30この パワｰスタｰを\n"
+        "とりもどし，\n"
+        "おおきなスタｰのドアが\n"
+        "ひらくようになった!\n"
+        "ここですこし てんけんだ。\n"
+        "2ほんのはしらを ヒップ\n"
+        "ドロップしてみたか?\n"
+        "ぼうしはなくしてないか?\n"
+        "さばくで なくしたなら\n"
+        "ハゲたかジャンゴをさがせ。\n"
+        "クッパは うみから\n"
+        "このちかにせんにゅう\n"
+        "したらしい。\n"
+        "とうとうやつを\n"
+        "おいつめたぞ!")
+
+.balign 4
+Dialog145: # 0x0200C9C4
+.byte _("50このパワｰスタｰを\n"
+        "とりもどした!\n"
+        "3かいへの ほしのドアが\n"
+        "ひらくぞ!\n"
+        "クッパはすぐそこだ!\n"
+        "アイテムスイッチは\n"
+        "ぜんぶおしてきたか?\n"
+        "かくにん しておこう。\n"
+        "あか・あお・みどりの\n"
+        "3つのアイテムブロックは\n"
+        "とてもだいじな みかただ。\n"
+        "さあ『3かい』へすすめ!")
+
+.balign 4
+Dialog146: # 0x0200CA5C
+.byte _("70このパワｰスタｰを\n"
+        "とりもどした!\n"
+        "はてしない かいだんの\n"
+        "ナゾがとかれた。\n"
+        "クッパはかなりあせってる。\n"
+        "さあ!さいごのたたかいだ。")
+
+.balign 4
+Dialog147: # 0x0200CAAC
+.byte _("あか・あお・みどりの\n"
+        "『アイテムブロック』を\n"
+        "つかっていますか?\n"
+        "スタｰをとりもどすと\n"
+        "いりぐちがみつかる，\n"
+        "おしろのかくしコｰスで，\n"
+        "3つのスイッチを おすと\n"
+        "そのいろのブロックが\n"
+        "『じったい』となり，\n"
+        "つかえるようになります。\n"
+        "あかは はねのぼうし\n"
+        "みどりは メタルのぼうし\n"
+        "あおは とうめいのぼうし\n"
+        "\n"
+        "とてもつよい みかたです。")
+
+.balign 4
+Dialog148: # 0x0200CB64
+.byte _("このさきスノｰマンのやま\n"
+        "だれも はいるな!\n"
+        "アイスブロックシュｰタｰ\n"
+        "を 3だんとびなどして\n"
+        "とびこえては イケマセン。\n"
+        "つめたい いけでは\n"
+        "はやく たいりょくが\n"
+        "へります!\n"
+        "かいふくも しません。\n"
+        "      スノｰマン")
+
+.balign 4
+Dialog149: # 0x0200CBE0
+.byte _("ピｰチのかくれスライダｰ\n"
+        "へ ようこそ!\n"
+        "ここには クッパにみつけ\n"
+        "られなかった おしろの\n"
+        "かくれスタｰがのこってる。\n"
+        "さかを すべりはじめたら\n"
+        "スティックまえで かそく，\n"
+        "うしろで げんそくできる。\n"
+        "はやくすべれば スタｰが\n"
+        "みつかるはずだ!")
+
+.balign 4
+Dialog150: # 0x0200CC6C
+.byte _("あｰｰん，だれだい?\n"
+        "とつぜん ビショぬれに\n"
+        "なっちゃいました!\n"
+        "キチンと てんじょう\n"
+        "なおしてもらうです。")
+
+.balign 4
+Dialog151: # 0x0200CCAC
+.byte _("みずをかけられた つぎは\n"
+        "ふんづけられました。\n"
+        "もう ほんとｰに\n"
+        "おこったです!")
+
+.balign 4
+Dialog152: # 0x0200CCDC
+.byte _("いててて!!!\n"
+        "らんぼうなひとだなあ。\n"
+        "なぜかイライラしてたけど，\n"
+        "まあ，そらがみえるのも\n"
+        "わるくはないです。\n"
+        "よるには いっぱいほしが\n"
+        "みえるしね!\n"
+        "このほしは かえします。\n"
+        "あｰ，なんだか きもちが\n"
+        "おちついてきたです。")
+
+.balign 4
+Dialog153: # 0x0200CD58
+.byte _("わしの カラダに\n"
+        "のぼっては いかｰん!\n"
+        "そういうヤツは みんな\n"
+        "ふきっとばしちまうぞｰ!")
+
+.balign 4
+Dialog154: # 0x0200CD8C
+.byte _("ぼうしを なくすと\n"
+        "ダメｰジがおおくなるので\n"
+        "だいじに してください。\n"
+        "なくしたら，なくした\n"
+        "コｰスで みつかります。\n"
+        "アアｰどうしよう・・・\n"
+        "ピｰチひめは，カベに\n"
+        "ひきこまれたままだし。\n"
+        "はやく クッパを\n"
+        "やっつけてください。\n"
+        "ああ，そうだ!\n"
+        "えのほかにカベのなかにも\n"
+        "モンスタｰの せかいが\n"
+        "あります。\n"
+        "よｰく，しらべてください。")
+
+.balign 4
+Dialog155: # 0x0200CE48
+.byte _("パワｰスタｰのおかげで\n"
+        "おしろに，げんきが\n"
+        "もどってきました。\n"
+        "クッパなんか\n"
+        "おいはらってください。\n"
+        "おやくに たつなら\n"
+        "おしろの はなしをします。\n"
+        "『カガミのへや』では\n"
+        "カガミにうつらないものを\n"
+        "よくみてください。\n"
+        "みずのまちへ いくときは，\n"
+        "『え』にとびこむ たかさ\n"
+        "によって，まちをすっかり\n"
+        "みずびたしに できます。")
+
+.balign 4
+Dialog156: # 0x0200CEFC
+.byte _("とけいがとても へんです。\n"
+        "とけいに はいるとき，\n"
+        "ながいはりの ばしょに\n"
+        "ちゅういしてください!")
+
+.balign 4
+Dialog157: # 0x0200CF34
+.byte _("ながれる『すな』に\n"
+        "ながされないように\n"
+        "きをつけて!\n"
+        "からだが しずんで\n"
+        "ジャンプできません。\n"
+        "あたままでしずむと\n"
+        "いきが できません。\n"
+        "くらいいろの ところは\n"
+        "とくに キケン!!\n"
+        "そこなしの じごくです!")
+
+.balign 4
+Dialog158: # 0x0200CFAC
+.byte _("ジャンプのテクニック\n"
+        "その1\n"
+        "タイミングよく，\n"
+        "れんぞくでジャンプすると\n"
+        "だんだん たかくとべる。\n"
+        "スピｰドがはやいほど\n"
+        "たかく とびあがれる。\n"
+        "れんぞく3かいめに\n"
+        "たかくとべるわざを\n"
+        "『3だんとび』といいます。\n"
+        "その2  カベにむかって\n"
+        "ジャンプして，そこから\n"
+        "もういちどジャンプできる。\n"
+        "『カベキック』といって，\n"
+        "たかいところにのぼれます。")
+
+.balign 4
+Dialog159: # 0x0200D078
+.byte _("ジャンプのテクニック\n"
+        "その3  Zボタンわざ\n"
+        "たちどまって しゃがんで\n"
+        "から ジャンプすると，\n"
+        "『バックちゅう』できます。\n"
+        "はやくはしりながら\n"
+        "しゃがんでジャンプすると\n"
+        "とおくまで とべる。\n"
+        "『はばとび』です。")
+
+.balign 4
+Dialog160: # 0x0200D0F8
+.byte _("はやく はしりながら\n"
+        "Bボタンをおすと\n"
+        "『ボディアタック』が\n"
+        "できます。\n"
+        "おなかで\n"
+        "すべっているあいだは，\n"
+        "A・Bどちらのボタンでも\n"
+        "おきあがることができます。")
+
+.balign 4
+Dialog161: # 0x0200D158
+.byte _("いやｰ すごいです!!\n"
+        "ここにいれば あえると\n"
+        "きいてたけど，ほんとに\n"
+        "あえてしまいました!!\n"
+        "でんごんが あります。\n"
+        "『これで，おしまいですが\n"
+        "もっとあそんでほしいので\n"
+        "つまらないものですが\n"
+        "うけとって ください。』\n"
+        "ｰマリオ・スタッフよりｰ")
+
+.balign 4
+Dialog162: # 0x0200D1E4
+.byte _("イテテ あいかわらず\n"
+        "らんぼうなひとだな。\n"
+        "このスタｰは べつに\n"
+        "かくしてたわけじゃ\n"
+        "ないんだってば!\n"
+        "かえせば いいんでしょ。\n"
+        "はなしてくれたら\n"
+        "スタｰぐらい かえすから。\n"
+        "これで ほんとに\n"
+        "さいごだよ!  ホイ!")
+
+.balign 4
+Dialog163: # 0x0200D260
+.byte _("あああっ・・またこんども\n"
+        "キサマのかちか マリオ!\n"
+        "キサマはな，わがはいが\n"
+        "せかいで いｰちばん\n"
+        "まけたくないヤツなのに!\n"
+        "ほんとうに やくにたたぬ\n"
+        "カイブツどもだ!\n"
+        "キサマごときに\n"
+        "パワｰスタｰをぜｰんぶ\n"
+        "とりもどされるとは・・・\n"
+        "ぜんぶで『120こ』も\n"
+        "あったのか!?\n"
+        "『しろ』に わがはいも\n"
+        "きづかなかったスタｰが\n"
+        "のこって おったとは・・\n"
+        "またまた わがはいの\n"
+        "だｰいきらいな へいわが，\n"
+        "もどってしまうではないか。\n"
+        "わがはいは くやしｰぞ!\n"
+        "きょうは ひきあげてやる。\n"
+        "だが，こんどあうときは\n"
+        "ぜｰったい まけないぞ!\n"
+        "3Dスティックをみがいて\n"
+        "まってろよ!\n"
+        " ガハハッ!")
+
+.balign 4
+Dialog164: # 0x0200D3A8
+.byte _("しばらく やすんでたので\n"
+        "こんなにみごとに，\n"
+        "ふとっちゃいました。\n"
+        "ひさしぶりに やります?\n"
+        "では! いつものように，\n"
+        "レディｰ!\n"
+        "\n"
+        "   ゴｰ!! やめとく")
+
+.balign 4
+Dialog165: # 0x0200D400
+.byte _("このクイの まわりを\n"
+        "クルクルまわって\n"
+        "めをまわしても\n"
+        "しりません。")
+
+.balign 4
+Dialog166: # 0x0200D424
+.byte _("きょうは トレｰニングで\n"
+        "るすに してるッス!\n"
+        "オイラに ちょｰせん\n"
+        "したいひとは，またこんど\n"
+        "くるといいッス!\n"
+        "       ノコノコ")
+
+.balign 4
+Dialog167: # 0x0200D46C
+.byte _("『ピｰチの おしろ』\n"
+        "     すぐそこ\n"
+        "Aボタン『ジャンプ』\n"
+        "Zボタン『しゃがむ』\n"
+        "Bボタン『カンバンよむ』\n"
+        "    『パンチ』\n"
+        "    『ものをもつ』\n"
+        "もういちどおす『なげる』")
+
+.balign 4
+Dialog168: # 0x0200D4D4
+.byte _("アｰン，またまた \n"
+        "ふんづけられちゃいました。\n"
+        "ハナチャン かんぜんに\n"
+        "おこったです!")
+
+.balign 4
+Dialog169: # 0x0200D504
+.byte _("かってに はいるな!\n"
+        "この『どうくつ』に\n"
+        "むだんで はいるものには，\n"
+        "わざわいが おとずれる!\n"
+        "  ｰｰせんちょうより")
+
+# dialog table 0x0200D548
+.balign 4
+dialog_text_000:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog000
+dialog_text_001:
+.word 0x00000001, 0x0400005F, 0x00C80000, Dialog001
+dialog_text_002:
+.word 0x00000001, 0x0400005F, 0x00C80000, Dialog002
+dialog_text_003:
+.word 0x00000001, 0x0500005F, 0x00C80000, Dialog003
+dialog_text_004:
+.word 0x00000001, 0x0300005F, 0x00C80000, Dialog004
+dialog_text_005:
+.word 0x00000001, 0x0400001E, 0x00C80000, Dialog005
+dialog_text_006:
+.word 0x00000001, 0x0400001E, 0x00C80000, Dialog006
+dialog_text_007:
+.word 0x00000001, 0x0600001E, 0x00C80000, Dialog007
+dialog_text_008:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog008
+dialog_text_009:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog009
+dialog_text_010:
+.word 0x00000001, 0x0300001E, 0x00C80000, Dialog010
+dialog_text_011:
+.word 0x00000001, 0x0300001E, 0x00C80000, Dialog011
+dialog_text_012:
+.word 0x00000001, 0x0300001E, 0x00C80000, Dialog012
+dialog_text_013:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog013
+dialog_text_014:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog014
+dialog_text_015:
+.word 0x00000001, 0x0400001E, 0x00C80000, Dialog015
+dialog_text_016:
+.word 0x00000001, 0x0400001E, 0x00C80000, Dialog016
+dialog_text_017:
+.word 0x00000001, 0x0400001E, 0x00C80000, Dialog017
+dialog_text_018:
+.word 0x00000001, 0x0400001E, 0x00C80000, Dialog018
+dialog_text_019:
+.word 0x00000001, 0x0200001E, 0x00C80000, Dialog019
+dialog_text_020:
+.word 0x00000001, 0x0500005F, 0x00960000, Dialog020
+dialog_text_021:
+.word 0x00000001, 0x0500005F, 0x00C80000, Dialog021
+dialog_text_022:
+.word 0x00000001, 0x0300005F, 0x00C80000, Dialog022
+dialog_text_023:
+.word 0x00000001, 0x0300005F, 0x00C80000, Dialog023
+dialog_text_024:
+.word 0x00000001, 0x0300005F, 0x00C80000, Dialog024
+dialog_text_025:
+.word 0x00000001, 0x0300005F, 0x00C80000, Dialog025
+dialog_text_026:
+.word 0x00000001, 0x0300005F, 0x00C80000, Dialog026
+dialog_text_027:
+.word 0x00000001, 0x0300005F, 0x00C80000, Dialog027
+dialog_text_028:
+.word 0x00000001, 0x0300005F, 0x00C80000, Dialog028
+dialog_text_029:
+.word 0x00000001, 0x0400005F, 0x00C80000, Dialog029
+dialog_text_030:
+.word 0x00000001, 0x0400001E, 0x00C80000, Dialog030
+dialog_text_031:
+.word 0x00000001, 0x0300001E, 0x00C80000, Dialog031
+dialog_text_032:
+.word 0x00000001, 0x0400001E, 0x00C80000, Dialog032
+dialog_text_033:
+.word 0x00000001, 0x0400001E, 0x00C80000, Dialog033
+dialog_text_034:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog034
+dialog_text_035:
+.word 0x00000001, 0x0400001E, 0x00C80000, Dialog035
+dialog_text_036:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog036
+dialog_text_037:
+.word 0x00000001, 0x0300001E, 0x00C80000, Dialog037
+dialog_text_038:
+.word 0x00000001, 0x0300005F, 0x00C80000, Dialog038
+dialog_text_039:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog039
+dialog_text_040:
+.word 0x00000001, 0x0300001E, 0x00C80000, Dialog040
+dialog_text_041:
+.word 0x00000001, 0x0400001E, 0x00C80000, Dialog041
+dialog_text_042:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog042
+dialog_text_043:
+.word 0x00000001, 0x0400001E, 0x00C80000, Dialog043
+dialog_text_044:
+.word 0x00000001, 0x0500005F, 0x00C80000, Dialog044
+dialog_text_045:
+.word 0x00000001, 0x0500005F, 0x00C80000, Dialog045
+dialog_text_046:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog046
+dialog_text_047:
+.word 0x00000001, 0x0300005F, 0x00C80000, Dialog047
+dialog_text_048:
+.word 0x00000001, 0x0400001E, 0x00C80000, Dialog048
+dialog_text_049:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog049
+dialog_text_050:
+.word 0x00000001, 0x0400001E, 0x00C80000, Dialog050
+dialog_text_051:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog051
+dialog_text_052:
+.word 0x00000001, 0x0400001E, 0x00C80000, Dialog052
+dialog_text_053:
+.word 0x00000001, 0x0600001E, 0x00C80000, Dialog053
+dialog_text_054:
+.word 0x00000001, 0x0400001E, 0x00C80000, Dialog054
+dialog_text_055:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog055
+dialog_text_056:
+.word 0x00000001, 0x0300001E, 0x00C80000, Dialog056
+dialog_text_057:
+.word 0x00000001, 0x0400001E, 0x00C80000, Dialog057
+dialog_text_058:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog058
+dialog_text_059:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog059
+dialog_text_060:
+.word 0x00000001, 0x0400001E, 0x00C80000, Dialog060
+dialog_text_061:
+.word 0x00000001, 0x0600001E, 0x00C80000, Dialog061
+dialog_text_062:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog062
+dialog_text_063:
+.word 0x00000001, 0x0400001E, 0x00C80000, Dialog063
+dialog_text_064:
+.word 0x00000001, 0x0400001E, 0x00C80000, Dialog064
+dialog_text_065:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog065
+dialog_text_066:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog066
+dialog_text_067:
+.word 0x00000001, 0x0400001E, 0x00C80000, Dialog067
+dialog_text_068:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog068
+dialog_text_069:
+.word 0x00000001, 0x0300001E, 0x00C80000, Dialog069
+dialog_text_070:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog070
+dialog_text_071:
+.word 0x00000001, 0x0400001E, 0x00C80000, Dialog071
+dialog_text_072:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog072
+dialog_text_073:
+.word 0x00000001, 0x0500005F, 0x00C80000, Dialog073
+dialog_text_074:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog074
+dialog_text_075:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog075
+dialog_text_076:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog076
+dialog_text_077:
+.word 0x00000001, 0x03000096, 0x00C80000, Dialog077
+dialog_text_078:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog078
+dialog_text_079:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog079
+dialog_text_080:
+.word 0x00000001, 0x0300001E, 0x00C80000, Dialog080
+dialog_text_081:
+.word 0x00000001, 0x0600001E, 0x00C80000, Dialog081
+dialog_text_082:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog082
+dialog_text_083:
+.word 0x00000001, 0x0400001E, 0x00C80000, Dialog083
+dialog_text_084:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog084
+dialog_text_085:
+.word 0x00000001, 0x0400001E, 0x00C80000, Dialog085
+dialog_text_086:
+.word 0x00000001, 0x0300001E, 0x00C80000, Dialog086
+dialog_text_087:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog087
+dialog_text_088:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog088
+dialog_text_089:
+.word 0x00000001, 0x0400005F, 0x00C80000, Dialog089
+dialog_text_090:
+.word 0x00000001, 0x0600001E, 0x00C80000, Dialog090
+dialog_text_091:
+.word 0x00000001, 0x0300001E, 0x00C80000, Dialog091
+dialog_text_092:
+.word 0x00000001, 0x0300001E, 0x00C80000, Dialog092
+dialog_text_093:
+.word 0x00000001, 0x0400001E, 0x00C80000, Dialog093
+dialog_text_094:
+.word 0x00000001, 0x0300001E, 0x00C80000, Dialog094
+dialog_text_095:
+.word 0x00000001, 0x0300001E, 0x00C80000, Dialog095
+dialog_text_096:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog096
+dialog_text_097:
+.word 0x00000001, 0x0400001E, 0x00C80000, Dialog097
+dialog_text_098:
+.word 0x00000001, 0x0300005F, 0x00C80000, Dialog098
+dialog_text_099:
+.word 0x00000001, 0x0300005F, 0x00C80000, Dialog099
+dialog_text_100:
+.word 0x00000001, 0x0400005F, 0x00C80000, Dialog100
+dialog_text_101:
+.word 0x00000001, 0x0500005F, 0x00C80000, Dialog101
+dialog_text_102:
+.word 0x00000001, 0x0400001E, 0x00C80000, Dialog102
+dialog_text_103:
+.word 0x00000001, 0x0400005F, 0x00C80000, Dialog103
+dialog_text_104:
+.word 0x00000001, 0x0600001E, 0x00C80000, Dialog104
+dialog_text_105:
+.word 0x00000001, 0x0300005F, 0x00C80000, Dialog105
+dialog_text_106:
+.word 0x00000001, 0x0300005F, 0x00C80000, Dialog106
+dialog_text_107:
+.word 0x00000001, 0x0300005F, 0x00C80000, Dialog107
+dialog_text_108:
+.word 0x00000001, 0x0300005F, 0x00C80000, Dialog108
+dialog_text_109:
+.word 0x00000001, 0x0400005F, 0x00C80000, Dialog109
+dialog_text_110:
+.word 0x00000001, 0x0300005F, 0x00C80000, Dialog110
+dialog_text_111:
+.word 0x00000001, 0x0300005F, 0x00C80000, Dialog111
+dialog_text_112:
+.word 0x00000001, 0x0400001E, 0x00C80000, Dialog112
+dialog_text_113:
+.word 0x00000001, 0x0600001E, 0x00C80000, Dialog113
+dialog_text_114:
+.word 0x00000001, 0x0400005F, 0x00C80000, Dialog114
+dialog_text_115:
+.word 0x00000001, 0x0500005F, 0x00C80000, Dialog115
+dialog_text_116:
+.word 0x00000001, 0x0500005F, 0x00C80000, Dialog116
+dialog_text_117:
+.word 0x00000001, 0x0300005F, 0x00C80000, Dialog117
+dialog_text_118:
+.word 0x00000001, 0x0500005F, 0x00C80000, Dialog118
+dialog_text_119:
+.word 0x00000001, 0x0400001E, 0x00C80000, Dialog119
+dialog_text_120:
+.word 0x00000001, 0x0400001E, 0x00C80000, Dialog120
+dialog_text_121:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog121
+dialog_text_122:
+.word 0x00000001, 0x0600001E, 0x00C80000, Dialog122
+dialog_text_123:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog123
+dialog_text_124:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog124
+dialog_text_125:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog125
+dialog_text_126:
+.word 0x00000001, 0x0600001E, 0x00C80000, Dialog126
+dialog_text_127:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog127
+dialog_text_128:
+.word 0x00000001, 0x0400005F, 0x00C80000, Dialog128
+dialog_text_129:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog129
+dialog_text_130:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog130
+dialog_text_131:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog131
+dialog_text_132:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog132
+dialog_text_133:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog133
+dialog_text_134:
+.word 0x00000001, 0x0400001E, 0x00C80000, Dialog134
+dialog_text_135:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog135
+dialog_text_136:
+.word 0x00000001, 0x0400001E, 0x00C80000, Dialog136
+dialog_text_137:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog137
+dialog_text_138:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog138
+dialog_text_139:
+.word 0x00000001, 0x0600001E, 0x00C80000, Dialog139
+dialog_text_140:
+.word 0x00000001, 0x0600001E, 0x00C80000, Dialog140
+dialog_text_141:
+.word 0x00000001, 0x05000096, 0x00C80000, Dialog141
+dialog_text_142:
+.word 0x00000001, 0x05000096, 0x00C80000, Dialog142
+dialog_text_143:
+.word 0x00000001, 0x06000096, 0x00C80000, Dialog143
+dialog_text_144:
+.word 0x00000001, 0x05000096, 0x00C80000, Dialog144
+dialog_text_145:
+.word 0x00000001, 0x04000096, 0x00C80000, Dialog145
+dialog_text_146:
+.word 0x00000001, 0x06000096, 0x00C80000, Dialog146
+dialog_text_147:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog147
+dialog_text_148:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog148
+dialog_text_149:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog149
+dialog_text_150:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog150
+dialog_text_151:
+.word 0x00000001, 0x0400001E, 0x00C80000, Dialog151
+dialog_text_152:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog152
+dialog_text_153:
+.word 0x00000001, 0x0400001E, 0x00C80000, Dialog153
+dialog_text_154:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog154
+dialog_text_155:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog155
+dialog_text_156:
+.word 0x00000001, 0x0400001E, 0x00C80000, Dialog156
+dialog_text_157:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog157
+dialog_text_158:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog158
+dialog_text_159:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog159
+dialog_text_160:
+.word 0x00000001, 0x0400001E, 0x00C80000, Dialog160
+dialog_text_161:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog161
+dialog_text_162:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog162
+dialog_text_163:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog163
+dialog_text_164:
+.word 0x00000001, 0x0400001E, 0x00C80000, Dialog164
+dialog_text_165:
+.word 0x00000001, 0x0400001E, 0x00C80000, Dialog165
+dialog_text_166:
+.word 0x00000001, 0x0600001E, 0x00C80000, Dialog166
+dialog_text_167:
+.word 0x00000001, 0x0400001E, 0x00C80000, Dialog167
+dialog_text_168:
+.word 0x00000001, 0x0400001E, 0x00C80000, Dialog168
+dialog_text_169:
+.word 0x00000001, 0x0500001E, 0x00C80000, Dialog169
+
+# dialog table
+glabel seg2_dialog_table # 0x0200DFE8
+.word dialog_text_000, dialog_text_001, dialog_text_002, dialog_text_003
+.word dialog_text_004, dialog_text_005, dialog_text_006, dialog_text_007
+.word dialog_text_008, dialog_text_009, dialog_text_010, dialog_text_011
+.word dialog_text_012, dialog_text_013, dialog_text_014, dialog_text_015
+.word dialog_text_016, dialog_text_017, dialog_text_018, dialog_text_019
+.word dialog_text_020, dialog_text_021, dialog_text_022, dialog_text_023
+.word dialog_text_024, dialog_text_025, dialog_text_026, dialog_text_027
+.word dialog_text_028, dialog_text_029, dialog_text_030, dialog_text_031
+.word dialog_text_032, dialog_text_033, dialog_text_034, dialog_text_035
+.word dialog_text_036, dialog_text_037, dialog_text_038, dialog_text_039
+.word dialog_text_040, dialog_text_041, dialog_text_042, dialog_text_043
+.word dialog_text_044, dialog_text_045, dialog_text_046, dialog_text_047
+.word dialog_text_048, dialog_text_049, dialog_text_050, dialog_text_051
+.word dialog_text_052, dialog_text_053, dialog_text_054, dialog_text_055
+.word dialog_text_056, dialog_text_057, dialog_text_058, dialog_text_059
+.word dialog_text_060, dialog_text_061, dialog_text_062, dialog_text_063
+.word dialog_text_064, dialog_text_065, dialog_text_066, dialog_text_067
+.word dialog_text_068, dialog_text_069, dialog_text_070, dialog_text_071
+.word dialog_text_072, dialog_text_073, dialog_text_074, dialog_text_075
+.word dialog_text_076, dialog_text_077, dialog_text_078, dialog_text_079
+.word dialog_text_080, dialog_text_081, dialog_text_082, dialog_text_083
+.word dialog_text_084, dialog_text_085, dialog_text_086, dialog_text_087
+.word dialog_text_088, dialog_text_089, dialog_text_090, dialog_text_091
+.word dialog_text_092, dialog_text_093, dialog_text_094, dialog_text_095
+.word dialog_text_096, dialog_text_097, dialog_text_098, dialog_text_099
+.word dialog_text_100, dialog_text_101, dialog_text_102, dialog_text_103
+.word dialog_text_104, dialog_text_105, dialog_text_106, dialog_text_107
+.word dialog_text_108, dialog_text_109, dialog_text_110, dialog_text_111
+.word dialog_text_112, dialog_text_113, dialog_text_114, dialog_text_115
+.word dialog_text_116, dialog_text_117, dialog_text_118, dialog_text_119
+.word dialog_text_120, dialog_text_121, dialog_text_122, dialog_text_123
+.word dialog_text_124, dialog_text_125, dialog_text_126, dialog_text_127
+.word dialog_text_128, dialog_text_129, dialog_text_130, dialog_text_131
+.word dialog_text_132, dialog_text_133, dialog_text_134, dialog_text_135
+.word dialog_text_136, dialog_text_137, dialog_text_138, dialog_text_139
+.word dialog_text_140, dialog_text_141, dialog_text_142, dialog_text_143
+.word dialog_text_144, dialog_text_145, dialog_text_146, dialog_text_147
+.word dialog_text_148, dialog_text_149, dialog_text_150, dialog_text_151
+.word dialog_text_152, dialog_text_153, dialog_text_154, dialog_text_155
+.word dialog_text_156, dialog_text_157, dialog_text_158, dialog_text_159
+.word dialog_text_160, dialog_text_161, dialog_text_162, dialog_text_163
+.word dialog_text_164, dialog_text_165, dialog_text_166, dialog_text_167
+.word dialog_text_168, dialog_text_169, 0x0
+
+# level names
+.balign 4
+level_name_01: # 0x0200E294
+.byte _(" 1 ボムへいの せんじょう")
+
+.balign 4
+level_name_02: # 0x0200E2A8
+.byte _(" 2 バッタンキングの とりで")
+
+.balign 4
+level_name_03: # 0x0200E2BC
+.byte _(" 3 かいぞくの いりえ")
+
+.balign 4
+level_name_04: # 0x0200E2CC
+.byte _(" 4 さむいさむい マウンテン")
+
+.balign 4
+level_name_05: # 0x0200E2DC
+.byte _(" 5 テレサの ホラｰハウス")
+
+.balign 4
+level_name_06: # 0x0200E2EC
+.byte _(" 6 やみにとける どうくつ")
+
+.balign 4
+level_name_07: # 0x0200E2FC
+.byte _(" 7 ファイアバブル ランド")
+
+.balign 4
+level_name_08: # 0x0200E310
+.byte _(" 8 あっちっち さばく")
+
+.balign 4
+level_name_09: # 0x0200E320
+.byte _(" 9 ウォｰタｰ ランド")
+
+.balign 4
+level_name_10: # 0x0200E330
+.byte _("10 スノｰマンズ ランド")
+
+.balign 4
+level_name_11: # 0x0200E340
+.byte _("11 みずびたシティｰ")
+
+.balign 4
+level_name_12: # 0x0200E350
+.byte _("12 たかいたかいマウンテン")
+
+.balign 4
+level_name_13: # 0x0200E360
+.byte _("13 ちびでか アイランド")
+
+.balign 4
+level_name_14: # 0x0200E374
+.byte _("14 チックタックロック")
+
+.balign 4
+level_name_15: # 0x0200E384
+.byte _("15 レインボｰ クルｰズ")
+
+.balign 4
+level_name_16: # 0x0200E394
+.byte _("   やみの せかいの クッパ")
+
+.balign 4
+level_name_17: # 0x0200E3A8
+.byte _("   ほのおの うみの クッパ")
+
+.balign 4
+level_name_18: # 0x0200E3BC
+.byte _("   てんくうの たたかい!")
+
+.balign 4
+level_name_19: # 0x0200E3CC
+.byte _("   ピｰチのかくれスライダｰ")
+
+.balign 4
+level_name_20: # 0x0200E3E0
+.byte _("   メタルスイッチの たき")
+
+.balign 4
+level_name_21: # 0x0200E3F0
+.byte _("   はばたけ!はねスイッチへ")
+
+.balign 4
+level_name_22: # 0x0200E404
+.byte _("   おほりのとうめいスイッチ")
+
+.balign 4
+level_name_23: # 0x0200E414
+.byte _("   にじ かける はねマリオ")
+
+.balign 4
+level_name_24: # 0x0200E428
+.byte _("   おさかなと いっしょ")
+
+.balign 4
+level_name_25: # 0x0200E438
+.byte _("   おいしいケｰキ")
+
+.balign 4
+level_name_26: # 0x0200E444
+.byte _("   おしろのかくれスタｰ")
+
+# level name table
+.balign 4
+glabel seg2_level_name_table # 0x0200E454
+.word level_name_01, level_name_02, level_name_03, level_name_04
+.word level_name_05, level_name_06, level_name_07, level_name_08
+.word level_name_09, level_name_10, level_name_11, level_name_12
+.word level_name_13, level_name_14, level_name_15, level_name_16
+.word level_name_17, level_name_18, level_name_19, level_name_20
+.word level_name_21, level_name_22, level_name_23, level_name_24
+.word level_name_25, level_name_26, 0x0
+
+# act_name_ Names
+.balign 4
+act_name_00: # 0x0200E4C0
+.byte _("やまのうえの ボムキング")
+
+.balign 4
+act_name_01: # 0x0200E4D0
+.byte _("はくねつ ノコノコレｰス")
+
+.balign 4
+act_name_02: # 0x0200E4E0
+.byte _("そらのしままで ぶっとべ")
+
+.balign 4
+act_name_03: # 0x0200E4F0
+.byte _("8まいの あかコイン")
+
+.balign 4
+act_name_04: # 0x0200E4FC
+.byte _("そらにはばたけ はねマリオ")
+
+.balign 4
+act_name_05: # 0x0200E50C
+.byte _("ワンワンの いぬごやで")
+
+.balign 4
+act_name_06: # 0x0200E51C
+.byte _("いかりのバッタン キング")
+
+.balign 4
+act_name_07: # 0x0200E52C
+.byte _("とりでの てっぺんへ")
+
+.balign 4
+act_name_08: # 0x0200E53C
+.byte _("たいほうで ひとっとび")
+
+.balign 4
+act_name_09: # 0x0200E54C
+.byte _("うきしまの 8まいコイン")
+
+.balign 4
+act_name_10: # 0x0200E55C
+.byte _("とりかごへ ストｰン")
+
+.balign 4
+act_name_11: # 0x0200E568
+.byte _("たいほうで ぶっこわせ!")
+
+.balign 4
+act_name_12: # 0x0200E578
+.byte _("ちんぼつせんの おたから")
+
+.balign 4
+act_name_13: # 0x0200E588
+.byte _("でてこい きょだいウツボ")
+
+.balign 4
+act_name_14: # 0x0200E598
+.byte _("かいていどうくつの おたから")
+
+.balign 4
+act_name_15: # 0x0200E5A8
+.byte _("うかんだフネの あかコイン")
+
+.balign 4
+act_name_16: # 0x0200E5B8
+.byte _("いわのはしらへ ひとっとび")
+
+.balign 4
+act_name_17: # 0x0200E5C8
+.byte _("ふきだす みずを くぐれ")
+
+.balign 4
+act_name_18: # 0x0200E5D8
+.byte _("スｰパｰスノｰスライダｰ")
+
+.balign 4
+act_name_19: # 0x0200E5E8
+.byte _("まいごの こペンギン")
+
+.balign 4
+act_name_20: # 0x0200E5F8
+.byte _("ペンギン チャンピオンレｰス")
+
+.balign 4
+act_name_21: # 0x0200E60C
+.byte _("すべって 8まいあかコイン")
+
+.balign 4
+act_name_22: # 0x0200E61C
+.byte _("ゴロゴロ ゆきダルマ")
+
+.balign 4
+act_name_23: # 0x0200E62C
+.byte _("かくれ スｰパｰ カベキック")
+
+.balign 4
+act_name_24: # 0x0200E640
+.byte _("おやかたテレサを さがせ")
+
+.balign 4
+act_name_25: # 0x0200E650
+.byte _("テレサの メリｰゴｰランド")
+
+.balign 4
+act_name_26: # 0x0200E660
+.byte _("ほんだなオバケの ナゾ")
+
+.balign 4
+act_name_27: # 0x0200E670
+.byte _("8まいコインは どこだ")
+
+.balign 4
+act_name_28: # 0x0200E680
+.byte _("バルコニｰの ボステレサ")
+
+.balign 4
+act_name_29: # 0x0200E690
+.byte _("かくしべやの おおめだま")
+
+.balign 4
+act_name_30: # 0x0200E6A0
+.byte _("ドッシｰのいる ちていこ")
+
+.balign 4
+act_name_31: # 0x0200E6B0
+.byte _("そうさリフトの あかコイン")
+
+.balign 4
+act_name_32: # 0x0200E6C0
+.byte _("メタルで ダッシュ")
+
+.balign 4
+act_name_33: # 0x0200E6CC
+.byte _("ケムリめいろを ぬけて")
+
+.balign 4
+act_name_34: # 0x0200E6D8
+.byte _("ケムリめいろの ひじょうぐち")
+
+.balign 4
+act_name_35: # 0x0200E6EC
+.byte _("ゴロゴロいわの ひみつ")
+
+.balign 4
+act_name_36: # 0x0200E6FC
+.byte _("おとせ ボスどんけつ")
+
+.balign 4
+act_name_37: # 0x0200E70C
+.byte _("たたかえ!どんけつたい")
+
+.balign 4
+act_name_38: # 0x0200E71C
+.byte _("15パズルの 8まいコイン")
+
+.balign 4
+act_name_39: # 0x0200E72C
+.byte _("コロコロ まるたわたり")
+
+.balign 4
+act_name_40: # 0x0200E738
+.byte _("かざんの パワｰスタｰ")
+
+.balign 4
+act_name_41: # 0x0200E748
+.byte _("かざんの リフトツアｰ")
+
+.balign 4
+act_name_42: # 0x0200E758
+.byte _("いたずらハゲたか ジャンゴ")
+
+.balign 4
+act_name_43: # 0x0200E76C
+.byte _("ピラミッドの てっぺんで")
+
+.balign 4
+act_name_44: # 0x0200E780
+.byte _("きょだいピラミッドの ないぶ")
+
+.balign 4
+act_name_45: # 0x0200E794
+.byte _("4つのはしらに たつものへ")
+
+.balign 4
+act_name_46: # 0x0200E7A4
+.byte _("とびまわれ 8まいコイン")
+
+.balign 4
+act_name_47: # 0x0200E7B4
+.byte _("きょだいピラミッドのナゾ")
+
+.balign 4
+act_name_48: # 0x0200E7C8
+.byte _("クッパの せんすいかん")
+
+.balign 4
+act_name_49: # 0x0200E7D8
+.byte _("うずしおの たからばこ")
+
+.balign 4
+act_name_50: # 0x0200E7E8
+.byte _("にげたクッパの あかコイン")
+
+.balign 4
+act_name_51: # 0x0200E7F8
+.byte _("ふきだす みずを くぐれ")
+
+.balign 4
+act_name_52: # 0x0200E808
+.byte _("マンタの おくりもの")
+
+.balign 4
+act_name_53: # 0x0200E814
+.byte _("ボウシが そろったら")
+
+.balign 4
+act_name_54: # 0x0200E824
+.byte _("おおゆきダルマの おでこ")
+
+.balign 4
+act_name_55: # 0x0200E834
+.byte _("こおりのくにの どんけつ")
+
+.balign 4
+act_name_56: # 0x0200E844
+.byte _("こおりの オブジェ")
+
+.balign 4
+act_name_57: # 0x0200E850
+.byte _("つめたい いけを こえて")
+
+.balign 4
+act_name_58: # 0x0200E860
+.byte _("コウラにのって あかコイン")
+
+.balign 4
+act_name_59: # 0x0200E870
+.byte _("フワフワさんの おうち")
+
+.balign 4
+act_name_60: # 0x0200E87C
+.byte _("ビリビリの まめリフト")
+
+.balign 4
+act_name_61: # 0x0200E88C
+.byte _("トップオブ ザ シティｰ")
+
+.balign 4
+act_name_62: # 0x0200E89C
+.byte _("あさせと そらのシｰクレット")
+
+.balign 4
+act_name_63: # 0x0200E8AC
+.byte _("いそげ!かなあみエレベｰタｰ")
+
+.balign 4
+act_name_64: # 0x0200E8C0
+.byte _("ダウンタウンの あかコイン")
+
+.balign 4
+act_name_65: # 0x0200E8D0
+.byte _("ダウンタウンを かけろ")
+
+.balign 4
+act_name_66: # 0x0200E8E0
+.byte _("たかいたかい やまのうえ")
+
+.balign 4
+act_name_67: # 0x0200E8F0
+.byte _("いたずらザル ウッキィのオリ")
+
+.balign 4
+act_name_68: # 0x0200E904
+.byte _("おばけキノコの あかコイン")
+
+.balign 4
+act_name_69: # 0x0200E914
+.byte _("マウンテン スライダｰ")
+
+.balign 4
+act_name_70: # 0x0200E924
+.byte _("はしのうえから みわたせば")
+
+.balign 4
+act_name_71: # 0x0200E934
+.byte _("ぶっとべ はなれキノコへ")
+
+.balign 4
+act_name_72: # 0x0200E944
+.byte _("きょだいパックンフラワｰ")
+
+.balign 4
+act_name_73: # 0x0200E954
+.byte _("デカじまの てっぺんで")
+
+.balign 4
+act_name_74: # 0x0200E964
+.byte _("ノコノコ リタｰンマッチ")
+
+.balign 4
+act_name_75: # 0x0200E974
+.byte _("チビじまの 5シｰクレット")
+
+.balign 4
+act_name_76: # 0x0200E984
+.byte _("ハナチャンの あかコイン")
+
+.balign 4
+act_name_77: # 0x0200E994
+.byte _("イカリの ハナチャン")
+
+.balign 4
+act_name_78: # 0x0200E9A0
+.byte _("グルグル かごのなかへ")
+
+.balign 4
+act_name_79: # 0x0200E9B0
+.byte _("ふりこの へや")
+
+.balign 4
+act_name_80: # 0x0200E9B8
+.byte _("チックタックはりの うえ")
+
+.balign 4
+act_name_81: # 0x0200E9C8
+.byte _("えっへん てっぺん ドッスン")
+
+.balign 4
+act_name_82: # 0x0200E9DC
+.byte _("つきだしを のりこえて")
+
+.balign 4
+act_name_83: # 0x0200E9EC
+.byte _("00ふんの あかコイン")
+
+.balign 4
+act_name_84: # 0x0200E9F8
+.byte _("にじを わたる ふね")
+
+.balign 4
+act_name_85: # 0x0200EA04
+.byte _("てんくうの おやしき")
+
+.balign 4
+act_name_86: # 0x0200EA10
+.byte _("タテめいろの あかコイン")
+
+.balign 4
+act_name_87: # 0x0200EA20
+.byte _("カゼきる きょだいブランコ")
+
+.balign 4
+act_name_88: # 0x0200EA34
+.byte _("おおぞら アスレチック")
+
+.balign 4
+act_name_89: # 0x0200EA44
+.byte _("にじの かなたの しま")
+
+.balign 4
+act_name_90: # 0x0200EA54
+.byte _("おしろのかくれスタｰ")
+
+.balign 4
+act_name_91: # 0x0200EA60
+.byte _("100まいコインの スタｰ")
+
+.balign 4
+act_name_92: # 0x0200EA70
+.byte _("マウンテンのへやが ひらく!")
+
+.balign 4
+act_name_93: # 0x0200EA80
+.byte _("みずとゆき2つのへやが ひらく!")
+
+.balign 4
+act_name_94: # 0x0200EA94
+.byte _("おおきなほしの ドアがひらく!")
+
+.balign 4
+act_name_95: # 0x0200EAA8
+.byte _("クッパへの とびらがひらく!")
+
+.balign 4
+act_name_96: # 0x0200EABC
+.byte _("3がいへの とびらがひらく!")
+
+# act names table 0x0200EAD0
+.balign 4
+glabel seg2_act_name_table
+.word act_name_00, act_name_01, act_name_02, act_name_03
+.word act_name_04, act_name_05, act_name_06, act_name_07
+.word act_name_08, act_name_09, act_name_10, act_name_11
+.word act_name_12, act_name_13, act_name_14, act_name_15
+.word act_name_16, act_name_17, act_name_18, act_name_19
+.word act_name_20, act_name_21, act_name_22, act_name_23
+.word act_name_24, act_name_25, act_name_26, act_name_27
+.word act_name_28, act_name_29, act_name_30, act_name_31
+.word act_name_32, act_name_33, act_name_34, act_name_35
+.word act_name_36, act_name_37, act_name_38, act_name_39
+.word act_name_40, act_name_41, act_name_42, act_name_43
+.word act_name_44, act_name_45, act_name_46, act_name_47
+.word act_name_48, act_name_49, act_name_50, act_name_51
+.word act_name_52, act_name_53, act_name_54, act_name_55
+.word act_name_56, act_name_57, act_name_58, act_name_59
+.word act_name_60, act_name_61, act_name_62, act_name_63
+.word act_name_64, act_name_65, act_name_66, act_name_67
+.word act_name_68, act_name_69, act_name_70, act_name_71
+.word act_name_72, act_name_73, act_name_74, act_name_75
+.word act_name_76, act_name_77, act_name_78, act_name_79
+.word act_name_80, act_name_81, act_name_82, act_name_83
+.word act_name_84, act_name_85, act_name_86, act_name_87
+.word act_name_88, act_name_89, act_name_90, act_name_91
+.word act_name_92, act_name_93, act_name_94, act_name_95
+.word act_name_96, 0x0
+.word 0x0
+
+.balign 8
+# 0xEC60-0xF250: F3D and vertices
+glabel seg2_f3d_00EC60 # 0x0200EC60
+.word 0xE7000000, 0x00000000
+.word 0xBA001402, 0x00200000
+.word 0xBA001301, 0x00000000
+.word 0xB9000002, 0x00000001
+.word 0xF9000000, 0xFFFFFFFF
+.word 0xB900031D, 0x005041C8
+.word 0xB8000000, 0x00000000
+
+glabel seg2_f3d_00EC98 # 0x0200EC98
+.word 0xF5100000, 0x07010040
+.word 0xE6000000, 0x00000000
+.word 0xF3000000, 0x070FF200
+.word 0xF5100800, 0x00010040
+.word 0xF2000000, 0x0003C03C
+.word 0xB8000000, 0x00000000
+
+glabel seg2_f3d_00ECC8 # 0x0200ECC8
+.word 0xE7000000, 0x00000000
+.word 0xBA001301, 0x00080000
+.word 0xB900031D, 0x00552078
+.word 0xB9000002, 0x00000000
+.word 0xBA001402, 0x00000000
+.word 0xBB000000, 0xFFFFFFFF
+.word 0xB8000000, 0x00000000
+
+glabel seg2_f3d_00ED00 # 0x0200ED00
+.word 0xE7000000, 0x00000000
+.word 0xBA001301, 0x00000000
+.word 0xFC129A25, 0xFF37FFFF
+.word 0xFB000000, 0xFFFFFFFF
+.word 0xB900031D, 0x005041C8
+.word 0xBA000C02, 0x00000000
+.word 0xB8000000, 0x00000000
+
+glabel seg2_f3d_00ED38 # 0x0200ED38
+.word 0xF5100000, 0x07010040
+.word 0xE6000000, 0x00000000
+.word 0xF3000000, 0x070FF200
+.word 0xF5100800, 0x00010040
+.word 0xF2000000, 0x0003C03C
+.word 0xB8000000, 0x00000000
+
+glabel seg2_f3d_00ED68 # 0x0200ED68
+.word 0xE7000000, 0x00000000
+.word 0xBA001301, 0x00080000
+.word 0xB900031D, 0x00552078
+.word 0xFCFFFFFF, 0xFFFE793C
+.word 0xFB000000, 0xFFFFFFFF
+.word 0xBA000C02, 0x00002000
+.word 0xBB000000, 0xFFFFFFFF
+.word 0xB8000000, 0x00000000
+
+seg2_vertex_0EDA8:
+vertex    0,  -80,    0,    0,    0, 0xFF, 0xFF, 0xFF, 0xFF
+vertex  130,  -80,    0,    0,    0, 0xFF, 0xFF, 0xFF, 0xFF
+vertex  130,    0,    0,    0,    0, 0xFF, 0xFF, 0xFF, 0xFF
+vertex    0,    0,    0,    0,    0, 0xFF, 0xFF, 0xFF, 0xFF
+
+glabel seg2_f3d_00EDE8 # 0x0200EDE8
+.word 0xE7000000, 0x00000000
+.word 0xB6000000, 0x00020000
+.word 0xFC42CA85, 0xFF97FFFF
+.word 0xB900031D, 0x00504240
+.word 0x04300040, seg2_vertex_0EDA8
+.word 0xBF000000, 0x00000A14
+.word 0xBF000000, 0x0000141E
+.word 0xB8000000, 0x00000000
+
+seg2_vertex_0EE28:
+vertex    0,    0,    0,    0, 1024, 0xFF, 0xFF, 0xFF, 0xFF
+vertex    8,    0,    0,  512, 1024, 0xFF, 0xFF, 0xFF, 0xFF
+vertex    8,   16,    0,  512,    0, 0xFF, 0xFF, 0xFF, 0xFF
+vertex    0,   16,    0,    0,    0, 0xFF, 0xFF, 0xFF, 0xFF
+
+glabel seg2_f3d_00EE68 # 0x0200EE68
+.word 0xE7000000, 0x00000000
+.word 0xB6000000, 0x00020000
+.word 0xFC129A25, 0xFF37FFFF
+.word 0xFB000000, 0xFFFFFFFF
+.word 0xB900031D, 0x00504240
+.word 0xBA000C02, 0x00000000
+.word 0xBB000001, 0x80008000
+.word 0xB8000000, 0x00000000
+
+glabel seg2_f3d_00EEA8 # 0x0200EEA8
+.word 0xF5680000, 0x07090230
+.word 0xE6000000, 0x00000000
+.word 0xF3000000, 0x0707F800
+.word 0xF5680200, 0x00090230
+.word 0xF2000000, 0x0001C03C
+.word 0x04300040, seg2_vertex_0EE28
+.word 0xBF000000, 0x00000A14
+.word 0xBF000000, 0x0000141E
+.word 0xB8000000, 0x00000000
+
+glabel seg2_f3d_00EEF0 # 0x0200EEF0
+.word 0xE7000000, 0x00000000
+.word 0xBB000000, 0xFFFFFFFF
+.word 0xFCFFFFFF, 0xFFFE793C
+.word 0xFB000000, 0xFFFFFFFF
+.word 0xB7000000, 0x00020200
+.word 0xB900031D, 0x00552078
+.word 0xBA000C02, 0x00002000
+.word 0xB8000000, 0x00000000
+
+seg2_vertex_0EF30:
+vertex    0,    0,    0,    0,    0, 0xFF, 0xFF, 0xFF, 0xFF
+vertex    8,    8,    0,    0,    0, 0xFF, 0xFF, 0xFF, 0xFF
+vertex    0,   16,    0,    0,    0, 0xFF, 0xFF, 0xFF, 0xFF
+
+glabel seg2_f3d_00EF60 # 0x0200EF60
+.word 0xB6000000, 0x00020000
+.word 0xFC42CA85, 0xFF97FFFF
+.word 0xB900031D, 0x00504240
+.word 0xBA000C02, 0x00000000
+.word 0x04200030, seg2_vertex_0EF30
+.word 0xBF000000, 0x00000A14
+.word 0xB7000000, 0x00020000
+.word 0xB900031D, 0x00552078
+.word 0xFCFFFFFF, 0xFFFE793C
+.word 0xB8000000, 0x00000000
+
+seg2_vertex_0EFB0:
+vertex  -32,  -32,    0,    0, 1024, 0xFF, 0xFF, 0xFF, 0xFF
+vertex   32,  -32,    0, 1024, 1024, 0xFF, 0xFF, 0xFF, 0xFF
+vertex   32,   32,    0, 1024,    0, 0xFF, 0xFF, 0xFF, 0xFF
+vertex  -32,   32,    0,    0,    0, 0xFF, 0xFF, 0xFF, 0xFF
+
+glabel seg2_f3d_00EFF0 # 0x0200EFF0
+.word 0xE7000000, 0x00000000
+.word 0xFCFFFFFF, 0xFFFCF279
+.word 0xB6000000, 0x00020000
+.word 0xF5100000, 0x07000000
+.word 0xBB000001, 0x80008000
+.word 0xE8000000, 0x00000000
+.word 0xF5100800, 0x00090240
+.word 0xF2000000, 0x0003C03C
+.word 0xB8000000, 0x00000000
+
+glabel seg2_f3d_00F038 # 0x0200F038
+.word 0x04300040, seg2_vertex_0EFB0
+.word 0xBF000000, 0x00000A14
+.word 0xBF000000, 0x0000141E
+.word 0xBB000000, 0x80008000
+.word 0xE7000000, 0x00000000
+.word 0xFCFFFFFF, 0xFFFE793C
+.word 0xB7000000, 0x00020000
+.word 0xB8000000, 0x00000000
+
+glabel seg2_f3d_00F078 # 0x0200F078
+.word 0x06000000, seg2_f3d_00EFF0
+.word 0xFD100000, seg2_texture_000000
+.word 0xE6000000, 0x00000000
+.word 0xF3000000, 0x070FF200
+.word 0x06000000, seg2_f3d_00F038
+.word 0xB8000000, 0x00000000
+
+glabel seg2_f3d_00F0A8 # 0x0200F0A8
+.word 0x06000000, seg2_f3d_00EFF0
+.word 0xFD100000, seg2_texture_000200
+.word 0xE6000000, 0x00000000
+.word 0xF3000000, 0x070FF200
+.word 0x06000000, seg2_f3d_00F038
+.word 0xB8000000, 0x00000000
+
+glabel seg2_f3d_00F0D8 # 0x0200F0D8
+.word 0x06000000, seg2_f3d_00EFF0
+.word 0xFD100000, seg2_texture_000400
+.word 0xE6000000, 0x00000000
+.word 0xF3000000, 0x070FF200
+.word 0x06000000, seg2_f3d_00F038
+.word 0xB8000000, 0x00000000
+
+glabel seg2_f3d_00F108 # 0x0200F108
+.word 0x06000000, seg2_f3d_00EFF0
+.word 0xFD100000, seg2_texture_000600
+.word 0xE6000000, 0x00000000
+.word 0xF3000000, 0x070FF200
+.word 0x06000000, seg2_f3d_00F038
+.word 0xB8000000, 0x00000000
+
+glabel seg2_f3d_00F138 # 0x0200F138
+.word 0x06000000, seg2_f3d_00EFF0
+.word 0xFD100000, seg2_texture_000800
+.word 0xE6000000, 0x00000000
+.word 0xF3000000, 0x070FF200
+.word 0x06000000, seg2_f3d_00F038
+.word 0xB8000000, 0x00000000
+
+glabel seg2_f3d_00F168 # 0x0200F168
+.word 0x06000000, seg2_f3d_00EFF0
+.word 0xFD100000, seg2_texture_000A00
+.word 0xE6000000, 0x00000000
+.word 0xF3000000, 0x070FF200
+.word 0x06000000, seg2_f3d_00F038
+.word 0xB8000000, 0x00000000
+
+glabel seg2_f3d_00F198 # 0x0200F198
+.word 0x06000000, seg2_f3d_00EFF0
+.word 0xFD100000, seg2_texture_000C00
+.word 0xE6000000, 0x00000000
+.word 0xF3000000, 0x070FF200
+.word 0x06000000, seg2_f3d_00F038
+.word 0xB8000000, 0x00000000
+
+glabel seg2_f3d_00F1C8 # 0x0200F1C8
+.word 0x06000000, seg2_f3d_00EFF0
+.word 0xFD100000, seg2_texture_000E00
+.word 0xE6000000, 0x00000000
+.word 0xF3000000, 0x070FF200
+.word 0x06000000, seg2_f3d_00F038
+.word 0xB8000000, 0x00000000
+
+glabel seg2_f3d_00F1F8 # 0x0200F1F8
+.word 0x06000000, seg2_f3d_00EFF0
+.word 0xFD100000, seg2_texture_001000
+.word 0xE6000000, 0x00000000
+.word 0xF3000000, 0x070FF200
+.word 0x06000000, seg2_f3d_00F038
+.word 0xB8000000, 0x00000000
+
+glabel seg2_f3d_00F228 # 0x0200F228
+.word 0x06000000, seg2_f3d_00EFF0
+.word 0xFD100000, seg2_texture_001200
+.word 0xE6000000, 0x00000000
+.word 0xF3000000, 0x070FF200
+.word 0x06000000, seg2_f3d_00F038
+.word 0xB8000000, 0x00000000
+
+seg2_texture_00F258:
+.incbin "build/bin/segment2/segment2.0F258.ia8"
+seg2_texture_00F358:
+.incbin "build/bin/segment2/segment2.0F358.ia8"
+seg2_texture_00F458:
+.incbin "build/bin/segment2/segment2.0F458.ia8"
+seg2_texture_00FC58:
+.incbin "build/bin/segment2/segment2.0FC58.ia8"
+seg2_texture_010458:
+.incbin "build/bin/segment2/segment2.10458.ia8"
+seg2_texture_011458:
+.incbin "build/bin/segment2/segment2.11458.ia8"
+seg2_texture_011C58:
+.incbin "build/bin/segment2/segment2.11C58.rgba16"
+seg2_texture_012458:
+.incbin "build/bin/segment2/segment2.12458.rgba16"
+seg2_texture_012C58:
+.incbin "build/bin/segment2/segment2.12C58.rgba16"
+seg2_texture_013458:
+.incbin "build/bin/segment2/segment2.13458.ia16"
+seg2_texture_013C58:
+.incbin "build/bin/segment2/segment2.13C58.rgba16"
+
+# 14458-178CF: TODO
+seg2_todo_14458:
+.byte 0x40, 0x40, 0x40, 0x00, 0x40, 0x40, 0x40, 0x00
+.byte 0xFF, 0xFF, 0xFF, 0x00, 0xFF, 0xFF, 0xFF, 0x00
+.byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
+
+# 172D0-178BF: matrices, F3D, vertices
+seg2_matrix_014470:
+.hword     1,     0,     0,     0
+.hword     0,     1,     0,     0
+.hword     0,     0,     1,     0
+.hword     0,     0,     0,     1
+.hword     0,     0,     0,     0
+.hword     0,     0,     0,     0
+.hword     0,     0,     0,     0
+.hword     0,     0,     0,     0
+
+seg2_matrix_0144B0:
+.hword     0,     0,     0,     0
+.hword     0,     0,     0,     0
+.hword     0,     0,    -1,     0
+.hword    -1,    -1,    -1,     1
+.hword   409,     0,     0,     0
+.hword     0,   546,     0,     0
+.hword     0,     0,     0,     0
+.hword     0,     0,     0,     0
+
+glabel seg2_f3d_0144F0 # 0x020144F0
+.word 0xBF000000, 0x00000A14
+.word 0xBF000000, 0x0000141E
+.word 0xB8000000, 0x00000000
+
+glabel seg2_f3d_014508 # 0x02014508
+.word 0xBF000000, 0x0028323C
+.word 0xBF000000, 0x00283C46
+.word 0xB8000000, 0x00000000
+
+glabel seg2_f3d_014520 # 0x02014520
+.word 0xE7000000, 0x00000000
+.word 0xB6000000, 0x00022000
+.word 0xFC121824, 0xFF33FFFF
+.word 0xBB000001, 0xFFFFFFFF
+.word 0xB8000000, 0x00000000
+
+glabel seg2_f3d_014548 # 0x02014548
+.word 0x06000000, seg2_f3d_014520
+.word 0xFD700000, seg2_texture_00F258
+.word 0xF5700000, 0x07050140
+.word 0xE6000000, 0x00000000
+.word 0xF3000000, 0x0707F400
+.word 0xE7000000, 0x00000000
+.word 0xF5680400, 0x00050140
+.word 0xF2000000, 0x0003C03C
+.word 0xB8000000, 0x00000000
+
+glabel seg2_f3d_014590 # 0x02014590
+.word 0x06000000, seg2_f3d_014520
+.word 0xFD700000, seg2_texture_00F358
+.word 0xF5700000, 0x07050140
+.word 0xE6000000, 0x00000000
+.word 0xF3000000, 0x0707F400
+.word 0xE7000000, 0x00000000
+.word 0xF5680400, 0x00050140
+.word 0xF2000000, 0x0003C03C
+.word 0xB8000000, 0x00000000
+
+glabel seg2_f3d_0145D8 # 0x020145D8
+.word 0xBF000000, 0x00001E28
+.word 0xBF000000, 0x0000280A
+.word 0xBF000000, 0x000A2814
+.word 0xBF000000, 0x00142832
+.word 0xBF000000, 0x001E3C28
+.word 0xBF000000, 0x00283C46
+.word 0xBF000000, 0x00284650
+.word 0xBF000000, 0x00285032
+.word 0xB8000000, 0x00000000
+
+glabel seg2_f3d_014620 # 0x02014620
+.word 0xBF000000, 0x0000140A
+.word 0xBF000000, 0x000A141E
+.word 0xB8000000, 0x00000000
+
+glabel seg2_f3d_014638 # 0x02014638
+.word 0xE7000000, 0x00000000
+.word 0xBB000000, 0xFFFFFFFF
+.word 0xB7000000, 0x00022000
+.word 0xFCFFFFFF, 0xFFFE793C
+.word 0xB8000000, 0x00000000
+
+glabel seg2_f3d_014660 # 0x02014660
+.word 0xE7000000, 0x00000000
+.word 0xB6000000, 0x00020000
+.word 0x01030040, seg2_matrix_014470
+.word 0x01010040, seg2_matrix_0144B0
+.word 0x01020040, seg2_matrix_014470
+.word 0xB4000000, 0x0000FFFF
+.word 0xB8000000, 0x00000000
+
+glabel seg2_f3d_014698 # 0x02014698
+.word 0xE7000000, 0x00000000
+.word 0xB7000000, 0x00020000
+.word 0xFCFFFFFF, 0xFFFE793C
+.word 0xB900031D, 0x0F0A4000
+.word 0xB8000000, 0x00000000
+
+glabel seg2_f3d_0146C0 # 0x020146C0
+.word 0xBF000000, 0x0000280A
+.word 0xBF000000, 0x000A2832
+.word 0xBF000000, 0x000A3214
+.word 0xBF000000, 0x0014323C
+.word 0xBF000000, 0x00143C46
+.word 0xBF000000, 0x0014461E
+.word 0xBF000000, 0x001E2800
+.word 0xBF000000, 0x001E4628
+.word 0xB8000000, 0x00000000
+
+glabel seg2_f3d_014708 # 0x02014708
+.word 0xE7000000, 0x00000000
+.word 0xB6000000, 0x00020000
+.word 0xFC127E24, 0xFFFFF9FC
+.word 0xB4000000, 0x0000FFFF
+.word 0x01030040, seg2_matrix_014470
+.word 0xB8000000, 0x00000000
+
+glabel seg2_f3d_014738 # 0x02014738
+.word 0x01020040, seg2_matrix_014470
+.word 0xBB000001, 0xFFFFFFFF
+.word 0xE8000000, 0x00000000
+.word 0xF5101000, 0x00094250
+.word 0xF2000000, 0x0007C07C
+.word 0xB8000000, 0x00000000
+
+glabel seg2_f3d_014768 # 0x02014768
+.word 0xE7000000, 0x00000000
+.word 0xBB000000, 0xFFFFFFFF
+.word 0xB7000000, 0x00020000
+.word 0xFCFFFFFF, 0xFFFE793C
+.word 0xB8000000, 0x00000000
+
+glabel seg2_f3d_014790 # 0x02014790
+.word 0xE7000000, 0x00000000
+.word 0xFC121824, 0xFF33FFFF
+.word 0xB6000000, 0x00022000
+.word 0xBB000001, 0xFFFFFFFF
+.word 0xE8000000, 0x00000000
+.word 0xF5101000, 0x00014050
+.word 0xF2000000, 0x0007C07C
+.word 0xB8000000, 0x00000000
+
+glabel seg2_f3d_0147D0 # 0x020147D0
+.word 0xE7000000, 0x00000000
+.word 0xFC121824, 0xFF33FFFF
+.word 0xB6000000, 0x00022000
+.word 0xBB000001, 0xFFFFFFFF
+.word 0xE8000000, 0x00000000
+.word 0xF5701000, 0x00014050
+.word 0xF2000000, 0x0007C07C
+.word 0xB8000000, 0x00000000
+
+glabel seg2_f3d_014810 # 0x02014810
+.word 0xBB000000, 0xFFFFFFFF
+.word 0xE7000000, 0x00000000
+.word 0xB7000000, 0x00022000
+.word 0xFCFFFFFF, 0xFFFE793C
+.word 0xB8000000, 0x00000000
+
+seg2_texture_014838:
+.incbin "build/bin/segment2/segment2.14838.ia8"
+
+glabel seg2_f3d_014878 # 0x02014878
+.word 0xE7000000, 0x00000000
+.word 0xB6000000, 0x00020000
+.word 0xFC121824, 0xFF33FFFF
+.word 0xB900031D, 0x00404240
+.word 0xB4000000, 0x0000FFFF
+.word 0x01030040, seg2_matrix_014470
+.word 0xB8000000, 0x00000000
+
+glabel seg2_f3d_0148B0 # 0x020148B0
+.word 0x01020040, seg2_matrix_014470
+.word 0xE8000000, 0x00000000
+.word 0xF5102000, 0x00094260
+.word 0xF2000000, 0x000FC07C
+.word 0xBB000001, 0xFFFFFFFF
+.word 0xB8000000, 0x00000000
+
+glabel seg2_f3d_0148E0 # 0x020148E0
+.word 0xE7000000, 0x00000000
+.word 0xFC121824, 0xFF33FFFF
+.word 0xE8000000, 0x00000000
+.word 0xF5680200, 0x0008C230
+.word 0xF2000000, 0x0001C01C
+.word 0xFD680000, seg2_texture_014838
+.word 0xE8000000, 0x00000000
+.word 0xF5680000, 0x07000000
+.word 0xE6000000, 0x00000000
+.word 0xF3000000, 0x0703F800
+.word 0xB8000000, 0x00000000
+
+glabel seg2_f3d_014938 # 0x02014938
+.word 0xBB000000, 0xFFFFFFFF
+.word 0xE7000000, 0x00000000
+.word 0xFCFFFFFF, 0xFFFE793C
+.word 0xB8000000, 0x00000000
+
+seg2_light_014958:
+.byte 0x50, 0x50, 0x50, 0x00, 0x50, 0x50, 0x50, 0x00
+seg2_light_014960:
+.byte 0xFF, 0xFF, 0xFF, 0x00, 0xFF, 0xFF, 0xFF, 0x00, 0x32, 0x32, 0x32, 0x00
+
+.balign 0x10
+glabel seg2_f3d_014970 # 0x02014970
+.word 0xE7000000, 0x00000000
+.word 0xB7000000, 0x00020200
+.word 0xFC121824, 0xFF33FFFF
+.word 0x03860010, seg2_light_014960
+.word 0x03880010, seg2_light_014958
+.word 0xBB000001, 0xFFFFFFFF
+.word 0xB8000000, 0x00000000
+
+glabel seg2_f3d_0149A8 # 0x020149A8
+.word 0xBB000000, 0xFFFFFFFF
+.word 0xE7000000, 0x00000000
+.word 0xFCFFFFFF, 0xFFFE793C
+.word 0xB8000000, 0x00000000
+
+glabel seg2_f3d_0149C8 # 0x020149C8
+.word 0xE7000000, 0x00000000
+.word 0xB7000000, 0x00060000
+.word 0xFCFFFFFF, 0xFFFCF87C
+.word 0x03860010, seg2_light_014960
+.word 0x03880010, seg2_light_014958
+.word 0xBB000001, 0x40004000
+.word 0xB8000000, 0x00000000
+
+glabel seg2_f3d_014A00 # 0x02014A00
+.word 0xBB000000, 0x40004000
+.word 0xE7000000, 0x00000000
+.word 0xB7000000, 0x00020000
+.word 0xB6000000, 0x00040000
+.word 0xFCFFFFFF, 0xFFFE793C
+.word 0xB8000000, 0x00000000
+
+glabel seg2_f3d_014A30 # 0x02014A30
+.word 0xBF000000, 0x00000A14
+.word 0xBF000000, 0x001E2832
+.word 0xBF000000, 0x003C4650
+.word 0xBF000000, 0x005A646E
+.word 0xBF000000, 0x0078828C
+.word 0xB8000000, 0x00000000
+
+# 14A60-15BAD: count and triangles?
+# 14A60: triangle mesh
+glabel seg2_triangle_mesh # 0x02014A60
+.hword 157
+.hword 614, 583,   0 # 0
+.hword 614, 614,   0 # 1
+.hword 562, 614,   0 # 2
+.hword 562, 553,   1 # 3
+.hword 614, 522,   0 # 4
+.hword 511, 583,   1 # 5
+.hword 511, 614,   0 # 6
+.hword 307, 614,   0 # 7
+.hword 307, 583,   1 # 8
+.hword 358, 614,   0 # 9
+.hword 256, 614,   0 # 10
+.hword 256, 553,   1 # 11
+.hword 307, 522,   1 # 12
+.hword 358, 553,   1 # 13
+.hword 409, 583,   1 # 14
+.hword 460, 614,   0 # 15
+.hword 511, 522,   1 # 16
+.hword 460, 553,   1 # 17
+.hword 409, 522,   1 # 18
+.hword 562, 307,   1 # 19
+.hword 614, 338,   0 # 20
+.hword 562, 430,   1 # 21
+.hword 614, 399,   0 # 22
+.hword 562, 368,   1 # 23
+.hword 511, 338,   1 # 24
+.hword 460, 307,   1 # 25
+.hword 460, 430,   1 # 26
+.hword 511, 399,   1 # 27
+.hword 511, 460,   1 # 28
+.hword 409, 338,   1 # 29
+.hword 460, 368,   1 # 30
+.hword 358, 307,   1 # 31
+.hword 409, 460,   1 # 32
+.hword 358, 430,   1 # 33
+.hword 409, 399,   1 # 34
+.hword 358, 368,   1 # 35
+.hword 307, 338,   1 # 36
+.hword 256, 307,   1 # 37
+.hword 307, 399,   1 # 38
+.hword 256, 430,   1 # 39
+.hword 307, 460,   1 # 40
+.hword 614, 460,   0 # 41
+.hword 562, 491,   1 # 42
+.hword 460, 491,   1 # 43
+.hword 358, 491,   1 # 44
+.hword 256, 491,   1 # 45
+.hword 409, 276,   1 # 46
+.hword 511, 276,   1 # 47
+.hword 307, 276,   1 # 48
+.hword 614,  31,   0 # 49
+.hword 614,   0,   0 # 50
+.hword 562,   0,   0 # 51
+.hword 562, 123,   1 # 52
+.hword 614,  92,   0 # 53
+.hword 511,  31,   1 # 54
+.hword 562,  61,   1 # 55
+.hword 460,   0,   0 # 56
+.hword 511,   0,   0 # 57
+.hword 460, 123,   1 # 58
+.hword 511,  92,   1 # 59
+.hword 511, 153,   1 # 60
+.hword 409,  31,   1 # 61
+.hword 460,  61,   1 # 62
+.hword 358,   0,   0 # 63
+.hword 409,   0,   0 # 64
+.hword 409,  92,   1 # 65
+.hword 358, 123,   1 # 66
+.hword 409, 153,   1 # 67
+.hword 307,  31,   1 # 68
+.hword 358,  61,   1 # 69
+.hword 256,   0,   0 # 70
+.hword 307,   0,   0 # 71
+.hword 256, 123,   1 # 72
+.hword 307,  92,   1 # 73
+.hword 307, 153,   1 # 74
+.hword 614, 153,   0 # 75
+.hword 562, 246,   1 # 76
+.hword 614, 215,   0 # 77
+.hword 562, 184,   1 # 78
+.hword 460, 246,   1 # 79
+.hword 511, 215,   1 # 80
+.hword 460, 184,   1 # 81
+.hword 358, 246,   1 # 82
+.hword 409, 215,   1 # 83
+.hword 358, 184,   1 # 84
+.hword 256, 246,   1 # 85
+.hword 307, 215,   1 # 86
+.hword 205, 583,   1 # 87
+.hword   0, 614,   0 # 88
+.hword   0, 583,   0 # 89
+.hword  51, 614,   0 # 90
+.hword  51, 553,   1 # 91
+.hword 102, 583,   1 # 92
+.hword 205, 522,   1 # 93
+.hword 153, 553,   1 # 94
+.hword 153, 614,   0 # 95
+.hword 102, 522,   1 # 96
+.hword 256, 368,   1 # 97
+.hword 205, 338,   1 # 98
+.hword 153, 307,   1 # 99
+.hword 153, 430,   1 # 100
+.hword 205, 399,   1 # 101
+.hword 205, 460,   1 # 102
+.hword 153, 368,   1 # 103
+.hword 102, 338,   1 # 104
+.hword  51, 307,   1 # 105
+.hword  51, 430,   1 # 106
+.hword 102, 399,   1 # 107
+.hword 102, 460,   1 # 108
+.hword  51, 368,   1 # 109
+.hword   0, 338,   0 # 110
+.hword   0, 460,   0 # 111
+.hword 153, 491,   1 # 112
+.hword  51, 491,   1 # 113
+.hword 153, 246,   1 # 114
+.hword 102, 276,   1 # 115
+.hword 205, 276,   1 # 116
+.hword   0, 276,   0 # 117
+.hword  51, 246,   1 # 118
+.hword 205,  31,   1 # 119
+.hword 256,  61,   1 # 120
+.hword 205,   0,   0 # 121
+.hword 153,   0,   0 # 122
+.hword 205, 153,   1 # 123
+.hword 205,  92,   1 # 124
+.hword 153, 123,   1 # 125
+.hword 102,  31,   1 # 126
+.hword 153,  61,   1 # 127
+.hword 102,   0,   0 # 128
+.hword  51,   0,   0 # 129
+.hword  51, 123,   1 # 130
+.hword 102,  92,   1 # 131
+.hword 102, 153,   1 # 132
+.hword   0,  31,   0 # 133
+.hword  51,  61,   1 # 134
+.hword   0, 153,   0 # 135
+.hword 256, 184,   1 # 136
+.hword 205, 215,   1 # 137
+.hword 153, 184,   1 # 138
+.hword 102, 215,   1 # 139
+.hword  51, 184,   1 # 140
+.hword 409, 614,   0 # 141
+.hword 614, 307,   0 # 142
+.hword 614, 276,   0 # 143
+.hword 511, 307,   1 # 144
+.hword 409, 307,   1 # 145
+.hword 307, 307,   1 # 146
+.hword 205, 614,   0 # 147
+.hword   0, 522,   0 # 148
+.hword 102, 614,   0 # 149
+.hword 205, 307,   1 # 150
+.hword 102, 307,   1 # 151
+.hword   0, 399,   0 # 152
+.hword   0, 307,   0 # 153
+.hword   0, 215,   0 # 154
+.hword   0,  92,   0 # 155
+.hword   0,   0,   0 # 156
+# triangles
+.hword 264
+.hword   8,  12,  13 # 0
+.hword   0,   1,   2 # 1
+.hword   3,   0,   2 # 2
+.hword   4,   0,   3 # 3
+.hword   5,   2,   6 # 4
+.hword   2,   5,   3 # 5
+.hword   7,   8,   9 # 6
+.hword   8,   7,  10 # 7
+.hword  11,   8,  10 # 8
+.hword  12,   8,  11 # 9
+.hword   9,   8,  13 # 10
+.hword  13,  14,   9 # 11
+.hword  14, 141,   9 # 12
+.hword   5,   6,  15 # 13
+.hword   5,  16,   3 # 14
+.hword  16,   5,  17 # 15
+.hword  17,   5,  15 # 16
+.hword  14,  15, 141 # 17
+.hword  15,  14,  17 # 18
+.hword  18,  14,  13 # 19
+.hword  14,  18,  17 # 20
+.hword  19, 142,  20 # 21
+.hword  19,  20,  23 # 22
+.hword  28,  27,  21 # 23
+.hword  21,  23,  22 # 24
+.hword  22,  41,  21 # 25
+.hword  20,  22,  23 # 26
+.hword  23,  24,  19 # 27
+.hword  21,  27,  23 # 28
+.hword  24,  23,  27 # 29
+.hword  25, 144,  24 # 30
+.hword  19,  24, 144 # 31
+.hword  24,  27,  30 # 32
+.hword  25,  24,  30 # 33
+.hword  26,  30,  27 # 34
+.hword  27,  28,  26 # 35
+.hword  36,  38,  97 # 36
+.hword  26,  34,  30 # 37
+.hword  29,  30,  34 # 38
+.hword  30,  29,  25 # 39
+.hword  25,  29, 145 # 40
+.hword  31, 145,  29 # 41
+.hword  31,  29,  35 # 42
+.hword  29,  34,  35 # 43
+.hword  32,  34,  26 # 44
+.hword  33,  35,  34 # 45
+.hword  34,  32,  33 # 46
+.hword  33,  38,  35 # 47
+.hword  35,  36,  31 # 48
+.hword  36,  35,  38 # 49
+.hword  37,  36,  97 # 50
+.hword  37, 146,  36 # 51
+.hword  31,  36, 146 # 52
+.hword  28,  16,  43 # 53
+.hword  38,  40,  39 # 54
+.hword  39,  97,  38 # 55
+.hword  40,  38,  33 # 56
+.hword  21,  41,  42 # 57
+.hword  41,   4,  42 # 58
+.hword   3,  42,   4 # 59
+.hword  42,  28,  21 # 60
+.hword  28,  42,  16 # 61
+.hword   3,  16,  42 # 62
+.hword  26,  28,  43 # 63
+.hword  17,  43,  16 # 64
+.hword  43,  32,  26 # 65
+.hword  32,  43,  18 # 66
+.hword  17,  18,  43 # 67
+.hword  33,  32,  44 # 68
+.hword  32,  18,  44 # 69
+.hword  13,  44,  18 # 70
+.hword  44,  40,  33 # 71
+.hword  13,  12,  44 # 72
+.hword  40,  44,  12 # 73
+.hword  39,  40,  45 # 74
+.hword  40,  12,  45 # 75
+.hword  48,  31, 146 # 76
+.hword  11,  45,  12 # 77
+.hword  25,  47, 144 # 78
+.hword  46,  25, 145 # 79
+.hword  47,  19, 144 # 80
+.hword  19, 143, 142 # 81
+.hword  31,  46, 145 # 82
+.hword  60,  59,  52 # 83
+.hword  49,  53,  55 # 84
+.hword  50,  49,  51 # 85
+.hword  51,  49,  55 # 86
+.hword  52,  55,  53 # 87
+.hword  53,  75,  52 # 88
+.hword  54,  55,  59 # 89
+.hword  52,  59,  55 # 90
+.hword  55,  54,  51 # 91
+.hword  54,  59,  62 # 92
+.hword  56,  54,  62 # 93
+.hword  57,  54,  56 # 94
+.hword  54,  57,  51 # 95
+.hword  58,  62,  59 # 96
+.hword  59,  60,  58 # 97
+.hword  68,  71,  63 # 98
+.hword  61,  62,  65 # 99
+.hword  58,  65,  62 # 100
+.hword  62,  61,  56 # 101
+.hword  61,  65,  69 # 102
+.hword  63,  61,  69 # 103
+.hword  64,  61,  63 # 104
+.hword  61,  64,  56 # 105
+.hword  65,  67,  66 # 106
+.hword  66,  69,  65 # 107
+.hword  67,  65,  58 # 108
+.hword  68,  69,  73 # 109
+.hword  69,  68,  63 # 110
+.hword  66,  73,  69 # 111
+.hword  68,  73, 120 # 112
+.hword  70,  68, 120 # 113
+.hword  71,  68,  70 # 114
+.hword  72, 120,  73 # 115
+.hword  73,  74,  72 # 116
+.hword  74,  73,  66 # 117
+.hword  75,  77,  78 # 118
+.hword  52,  75,  78 # 119
+.hword  76,  78,  77 # 120
+.hword  77, 143,  76 # 121
+.hword  76,  80,  78 # 122
+.hword  60,  78,  80 # 123
+.hword  78,  60,  52 # 124
+.hword  46,  83,  79 # 125
+.hword  58,  60,  81 # 126
+.hword  60,  80,  81 # 127
+.hword  79,  81,  80 # 128
+.hword  80,  47,  79 # 129
+.hword  47,  80,  76 # 130
+.hword  81,  67,  58 # 131
+.hword  67,  81,  83 # 132
+.hword  79,  83,  81 # 133
+.hword  66,  67,  84 # 134
+.hword  67,  83,  84 # 135
+.hword  82,  84,  83 # 136
+.hword  83,  46,  82 # 137
+.hword  84,  74,  66 # 138
+.hword  82,  86,  84 # 139
+.hword  74,  84,  86 # 140
+.hword  74,  86, 136 # 141
+.hword  72,  74, 136 # 142
+.hword  85, 136,  86 # 143
+.hword  86,  48,  85 # 144
+.hword  48,  86,  82 # 145
+.hword  25,  46,  79 # 146
+.hword  79,  47,  25 # 147
+.hword  82,  46,  31 # 148
+.hword  19,  47,  76 # 149
+.hword  76, 143,  19 # 150
+.hword  31,  48,  82 # 151
+.hword  37,  48, 146 # 152
+.hword  85,  48,  37 # 153
+.hword  10,  87,  11 # 154
+.hword  87,  10, 147 # 155
+.hword  92,  95, 149 # 156
+.hword  88,  89,  90 # 157
+.hword  89, 148,  91 # 158
+.hword  90,  89,  91 # 159
+.hword  91,  92,  90 # 160
+.hword  92, 149,  90 # 161
+.hword  93,  87,  94 # 162
+.hword  87,  93,  11 # 163
+.hword  94,  87,  95 # 164
+.hword  87, 147,  95 # 165
+.hword  95,  92,  94 # 166
+.hword  96,  92,  91 # 167
+.hword  92,  96,  94 # 168
+.hword  39, 101,  97 # 169
+.hword  97,  98,  37 # 170
+.hword  98,  97, 101 # 171
+.hword  99,  98, 103 # 172
+.hword  99, 150,  98 # 173
+.hword  37,  98, 150 # 174
+.hword  98, 101, 103 # 175
+.hword 100, 103, 101 # 176
+.hword 101, 102, 100 # 177
+.hword 102, 101,  39 # 178
+.hword 100, 107, 103 # 179
+.hword 103, 104,  99 # 180
+.hword 104, 103, 107 # 181
+.hword 105, 104, 109 # 182
+.hword 105, 151, 104 # 183
+.hword  99, 104, 151 # 184
+.hword 104, 107, 109 # 185
+.hword 106, 109, 107 # 186
+.hword 107, 108, 106 # 187
+.hword 108, 107, 100 # 188
+.hword 109, 110, 105 # 189
+.hword 106, 152, 109 # 190
+.hword 110, 109, 152 # 191
+.hword 105, 110, 153 # 192
+.hword 111, 152, 106 # 193
+.hword  11,  93,  45 # 194
+.hword 102,  45,  93 # 195
+.hword  45, 102,  39 # 196
+.hword 102,  93, 112 # 197
+.hword 100, 102, 112 # 198
+.hword  94, 112,  93 # 199
+.hword 112, 108, 100 # 200
+.hword 108, 112,  96 # 201
+.hword  94,  96, 112 # 202
+.hword 106, 108, 113 # 203
+.hword 108,  96, 113 # 204
+.hword  91, 113,  96 # 205
+.hword  91, 148, 113 # 206
+.hword 113, 111, 106 # 207
+.hword 111, 113, 148 # 208
+.hword 114, 116,  99 # 209
+.hword  99, 115, 114 # 210
+.hword 115,  99, 151 # 211
+.hword  99, 116, 150 # 212
+.hword  72, 124, 120 # 213
+.hword 116,  37, 150 # 214
+.hword  37, 116,  85 # 215
+.hword 117, 105, 153 # 216
+.hword 105, 115, 151 # 217
+.hword 105, 117, 118 # 218
+.hword 118, 115, 105 # 219
+.hword 119, 120, 124 # 220
+.hword 120, 119,  70 # 221
+.hword 119, 124, 127 # 222
+.hword 119, 121,  70 # 223
+.hword 121, 119, 122 # 224
+.hword 122, 119, 127 # 225
+.hword 123, 124,  72 # 226
+.hword 124, 123, 125 # 227
+.hword 125, 127, 124 # 228
+.hword 126, 127, 131 # 229
+.hword 127, 126, 122 # 230
+.hword 125, 131, 127 # 231
+.hword 126, 131, 134 # 232
+.hword 128, 126, 129 # 233
+.hword 129, 126, 134 # 234
+.hword 126, 128, 122 # 235
+.hword 136, 123,  72 # 236
+.hword 130, 134, 131 # 237
+.hword 131, 132, 130 # 238
+.hword 132, 131, 125 # 239
+.hword 133, 134, 155 # 240
+.hword 134, 133, 129 # 241
+.hword 130, 155, 134 # 242
+.hword 133, 156, 129 # 243
+.hword 135, 155, 130 # 244
+.hword 123, 136, 137 # 245
+.hword  85, 137, 136 # 246
+.hword 139, 115, 118 # 247
+.hword 123, 137, 138 # 248
+.hword 125, 123, 138 # 249
+.hword 114, 138, 137 # 250
+.hword 137, 116, 114 # 251
+.hword 116, 137,  85 # 252
+.hword 114, 139, 138 # 253
+.hword 132, 138, 139 # 254
+.hword 138, 132, 125 # 255
+.hword 132, 139, 140 # 256
+.hword 130, 132, 140 # 257
+.hword 115, 139, 114 # 258
+.hword 118, 140, 139 # 259
+.hword 135, 140, 154 # 260
+.hword 118, 154, 140 # 261
+.hword 140, 135, 130 # 262
+.hword 117, 154, 118 # 263
+.hword 0 # TODO: alignment?
+
+glabel seg2_mesh_order # 0x02015444: TODO
+.hword   3,   1,   2,   3,   1,   1,   4
+.hword   1,   2,   4,   5,   6,   2,   3,   5
+.hword  14,  59,  62,   3,   3,  58,  59,   6
+.hword   4,   5,  13,  14,  15,  16,   2,   4
+.hword  13,   2,   6,   7,   6,   0,   6,   7
+.hword   8,   9,  10,   4,   6,  10,  11,  12
+.hword   4,   7,   8, 154, 155,   6,   8,   9
+.hword  77, 154, 163, 194,   6,   0,   9,  72
+.hword  73,  75,  77,   6,   0,  10,  11,  19
+.hword  70,  72,   6,  11,  12,  17,  18,  19
+.hword  20,   4,  13,  16,  17,  18,   6,  14
+.hword  15,  53,  61,  62,  64,   6,  15,  16
+.hword  18,  20,  64,  67,   6,  19,  20,  66
+.hword  67,  69,  70,   8,  21,  22,  27,  31
+.hword  80,  81, 149, 150,   3,  21,  22,  26
+.hword   6,  23,  24,  25,  28,  57,  60,   3
+.hword  24,  25,  26,   6,  22,  24,  26,  27
+.hword  28,  29,   6,  27,  29,  30,  31,  32
+.hword  33,   8,  30,  33,  39,  40,  78,  79
+.hword 146, 147,   6,  34,  35,  37,  44,  63
+.hword  65,   6,  23,  28,  29,  32,  34,  35
+.hword   6,  23,  35,  53,  60,  61,  63,   6
+.hword  38,  39,  40,  41,  42,  43,   6,  32
+.hword  33,  34,  37,  38,  39,   8,  41,  42
+.hword  48,  52,  76,  82, 148, 151,   6,  44
+.hword  46,  65,  66,  68,  69,   6,  45,  46
+.hword  47,  56,  68,  71,   6,  37,  38,  43
+.hword  44,  45,  46,   6,  42,  43,  45,  47
+.hword  48,  49,   6,  36,  48,  49,  50,  51
+.hword  52,   8,  50,  51, 152, 153, 170, 174
+.hword 214, 215,   6,  36,  47,  49,  54,  55
+.hword  56,   6,  54,  55,  74, 169, 178, 196
+.hword   6,  54,  56,  71,  73,  74,  75,   3
+.hword  25,  57,  58,   6,  57,  58,  59,  60
+.hword  61,  62,   6,  53,  63,  64,  65,  66
+.hword  67,   6,  68,  69,  70,  71,  72,  73
+.hword   6,  74,  75,  77, 194, 195, 196,   6
+.hword  79,  82, 125, 137, 146, 148,   6,  78
+.hword  80, 129, 130, 147, 149,   6,  76, 144
+.hword 145, 151, 152, 153,   3,  84,  85,  86
+.hword   1,  85,   4,  85,  86,  91,  95,   6
+.hword  83,  87,  88,  90, 119, 124,   3,  84
+.hword  87,  88,   6,  89,  91,  92,  93,  94
+.hword  95,   6,  84,  86,  87,  89,  90,  91
+.hword   4,  93,  94, 101, 105,   2,  94,  95
+.hword   6,  96,  97, 100, 108, 126, 131,   6
+.hword  83,  89,  90,  92,  96,  97,   6,  83
+.hword  97, 123, 124, 126, 127,   6,  99, 101
+.hword 102, 103, 104, 105,   6,  92,  93,  96
+.hword  99, 100, 101,   4,  98, 103, 104, 110
+.hword   2, 104, 105,   6,  99, 100, 102, 106
+.hword 107, 108,   6, 106, 107, 111, 117, 134
+.hword 138,   6, 106, 108, 131, 132, 134, 135
+.hword   6,  98, 109, 110, 112, 113, 114,   6
+.hword 102, 103, 107, 109, 110, 111,   4, 113
+.hword 114, 221, 223,   2,  98, 114,   6, 115
+.hword 116, 142, 213, 226, 236,   6, 109, 111
+.hword 112, 115, 116, 117,   6, 116, 117, 138
+.hword 140, 141, 142,   3,  88, 118, 119,   6
+.hword 120, 121, 122, 130, 149, 150,   3, 118
+.hword 120, 121,   6, 118, 119, 120, 122, 123
+.hword 124,   6, 125, 128, 129, 133, 146, 147
+.hword   6, 122, 123, 127, 128, 129, 130,   6
+.hword 126, 127, 128, 131, 132, 133,   6, 136
+.hword 137, 139, 145, 148, 151,   6, 125, 132
+.hword 133, 135, 136, 137,   6, 134, 135, 136
+.hword 138, 139, 140,   6, 143, 144, 153, 215
+.hword 246, 252,   6, 139, 140, 141, 143, 144
+.hword 145,   6, 154, 155, 162, 163, 164, 165
+.hword   1, 157,   3, 157, 158, 159,   4, 157
+.hword 159, 160, 161,   6, 158, 159, 160, 167
+.hword 205, 206,   6, 156, 160, 161, 166, 167
+.hword 168,   6, 162, 163, 194, 195, 197, 199
+.hword   6, 162, 164, 166, 168, 199, 202,   4
+.hword 156, 164, 165, 166,   6, 167, 168, 201
+.hword 202, 204, 205,   6,  36,  50,  55, 169
+.hword 170, 171,   6, 170, 171, 172, 173, 174
+.hword 175,   8, 172, 173, 180, 184, 209, 210
+.hword 211, 212,   6, 176, 177, 179, 188, 198
+.hword 200,   6, 169, 171, 175, 176, 177, 178
+.hword   6, 177, 178, 195, 196, 197, 198,   6
+.hword 172, 175, 176, 179, 180, 181,   6, 180
+.hword 181, 182, 183, 184, 185,   8, 182, 183
+.hword 189, 192, 216, 217, 218, 219,   6, 186
+.hword 187, 190, 193, 203, 207,   6, 179, 181
+.hword 185, 186, 187, 188,   6, 187, 188, 200
+.hword 201, 203, 204,   6, 182, 185, 186, 189
+.hword 190, 191,   3, 189, 191, 192,   3, 193
+.hword 207, 208,   6, 197, 198, 199, 200, 201
+.hword 202,   6, 203, 204, 205, 206, 207, 208
+.hword   6, 209, 210, 250, 251, 253, 258,   6
+.hword 210, 211, 217, 219, 247, 258,   6, 209
+.hword 212, 214, 215, 251, 252,   3, 216, 218
+.hword 263,   6, 218, 219, 247, 259, 261, 263
+.hword   6, 220, 221, 222, 223, 224, 225,   6
+.hword 112, 113, 115, 213, 220, 221,   2, 223
+.hword 224,   4, 224, 225, 230, 235,   6, 226
+.hword 227, 236, 245, 248, 249,   6, 213, 220
+.hword 222, 226, 227, 228,   6, 227, 228, 231
+.hword 239, 249, 255,   6, 229, 230, 232, 233
+.hword 234, 235,   6, 222, 225, 228, 229, 230
+.hword 231,   2, 233, 235,   4, 233, 234, 241
+.hword 243,   6, 237, 238, 242, 244, 257, 262
+.hword   6, 229, 231, 232, 237, 238, 239,   6
+.hword 238, 239, 254, 255, 256, 257,   3, 240
+.hword 241, 243,   6, 232, 234, 237, 240, 241
+.hword 242,   3, 244, 260, 262,   6, 141, 142
+.hword 143, 236, 245, 246,   6, 245, 246, 248
+.hword 250, 251, 252,   6, 248, 249, 250, 253
+.hword 254, 255,   6, 247, 253, 254, 256, 258
+.hword 259,   6, 256, 257, 259, 260, 261, 262
+.hword   2,  12,  17,   2,  21,  81,   3,  81
+.hword 121, 150,   4,  30,  31,  78,  80,   4
+.hword  40,  41,  79,  82,   4,  51,  52,  76
+.hword 152,   2, 155, 165,   3, 158, 206, 208
+.hword   2, 156, 161,   4, 173, 174, 212, 214
+.hword   4, 183, 184, 211, 217,   3, 190, 191
+.hword 193,   2, 192, 216,   3, 260, 261, 263
+.hword   3, 240, 242, 244,   1, 243

@@ -41,7 +41,9 @@ MIPSISET := -mips2
 # Source code files
 C_FILES := $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.c))
 S_FILES := $(foreach dir,$(ASM_DIRS),$(wildcard $(dir)/*.s))
-SEG_S_FILES := $(foreach dir,$(BIN_DIRS),$(wildcard $(dir)/*.s))
+SEG_IN_FILES := $(foreach dir,$(BIN_DIRS),$(wildcard $(dir)/*.s.in))
+SEG_S_FILES := $(foreach dir,$(BIN_DIRS),$(wildcard $(dir)/*.s)) \
+               $(foreach file,$(SEG_IN_FILES),$(file:.s.in=.s))
 
 # Object files
 O_FILES := $(foreach file,$(C_FILES),$(BUILD_DIR)/$(file:.c=.o)) \
@@ -63,7 +65,7 @@ OBJCOPY   := $(CROSS)objcopy
 # Check code syntax with host compiler
 CC_CHECK := gcc -m32 -fsyntax-only -funsigned-char -I include -std=c99 -Wall -Wextra -pedantic -Werror $(VERSION_CFLAGS)
 
-ASFLAGS := -march=vr4300 -I include $(VERSION_ASFLAGS)
+ASFLAGS := -march=vr4300 -mabi=32 -I include $(VERSION_ASFLAGS)
 CFLAGS := -Wab,-r4300_mul -non_shared -G 0 -Xcpluscomm -Xfullwarn -g -I include $(VERSION_CFLAGS)
 OBJCOPYFLAGS := --pad-to=0x800000 --gap-fill=0xFF
 SYMBOL_LINKING_FLAGS := $(addprefix -R ,$(SEG_FILES))
@@ -102,7 +104,7 @@ ifeq ($(COMPARE),1)
 endif
 
 clean:
-	$(RM) -r $(BUILD_DIR) src/text_strings.h
+	$(RM) -r $(BUILD_DIR) src/text_strings.h bin/segment2.s
 
 test: $(ROM)
 	$(EMULATOR) $(EMU_FLAGS) $<
@@ -111,6 +113,9 @@ load: $(ROM)
 	$(LOADER) $(LOADER_FLAGS) $<
 
 src/text_strings.h: src/text_strings.h.in
+	$(TEXTCONV) charmap.txt $< $@
+
+bin/segment2.s: bin/segment2.s.in
 	$(TEXTCONV) charmap.txt $< $@
 
 $(MIO0_DIR)/%.mio0: bin/%.bin
@@ -134,13 +139,16 @@ $(BUILD_DIR)/bin/%.ia16: textures/%.ia16.png
 $(BUILD_DIR)/bin/%.ia8: textures/%.ia8.png
 	$(N64GRAPHICS) -i $@ -g $< -f ia8
 
+$(BUILD_DIR)/bin/%.ia1: textures/%.ia1.png
+	$(N64GRAPHICS) -i $@ -g $< -f ia1
+
 # compressed segment generation
 $(BUILD_DIR)/bin/%.o: bin/%.s
-	$(AS) $(ASFLAGS) -o $@ $<
+	$(AS) $(ASFLAGS) --no-pad-sections -o $@ $<
 
 # TODO: ideally this would be `-Trodata-segment=0x07000000` but that doesn't set the address
 $(BUILD_DIR)/bin/%.elf: $(BUILD_DIR)/bin/%.o
-	$(LD) -e 0 -Ttext=0x07000000 -Map $@.map -o $@ $<
+	$(LD) -e 0 -Ttext=$(SEGMENT_ADDRESS) -Map $@.map -o $@ $<
 
 $(BUILD_DIR)/bin/%.bin: $(BUILD_DIR)/bin/%.elf
 	$(OBJCOPY) -j .rodata $< -O binary $@

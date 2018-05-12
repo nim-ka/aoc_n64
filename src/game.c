@@ -280,7 +280,7 @@ void func_80248934(void)
     set_segment_base_addr(24, (void *)D_80339CF4);
     DynamicObjectCopy(&gDemo, D_00577BC0, D_80339CF4);
     load_from_rom(16, main_entry, main_entry_end, 0);
-    load_from_rom_decompress(2, font_graphics, font_graphics_end);
+    load_from_rom_decompress(2, segment2, segment2_end);
 }
 
 // main game loop thread. runs forever as long as the game

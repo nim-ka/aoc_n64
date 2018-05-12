@@ -132,7 +132,7 @@ void func_802CEF4C(Gfx **dlist, s8 b, s8 c, s8 d)
             gDPLoadSync((*dlist)++);
             gDPLoadBlock((*dlist)++, 7, 0, 0, 1023, 256);
             gSPVertex((*dlist)++, VIRTUAL_TO_PHYSICAL(vertices), 4, 0);
-            gSPDisplayList((*dlist)++, D_020144F0);
+            gSPDisplayList((*dlist)++, seg2_f3d_0144F0);
         }
     }
 }
@@ -170,11 +170,11 @@ Gfx *func_802CF2A8(s8 a, s8 b, s8 c)
     {
         Mtx *mtx = func_802CF188(a);
 
-        gSPDisplayList(dlist++, D_02014708);
+        gSPDisplayList(dlist++, seg2_f3d_014708);
         gSPMatrix(dlist++, VIRTUAL_TO_PHYSICAL(mtx), G_MTX_PROJECTION | G_MTX_MUL);
-        gSPDisplayList(dlist++, D_02014738);
+        gSPDisplayList(dlist++, seg2_f3d_014738);
         func_802CEF4C(&dlist, b, a, c);
-        gSPDisplayList(dlist++, D_02014768);
+        gSPDisplayList(dlist++, seg2_f3d_014768);
         gSPEndDisplayList(dlist);
     }
     return sp38;
