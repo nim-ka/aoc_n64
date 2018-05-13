@@ -55,6 +55,18 @@ struct UnknownStruct3
     s8 unk5;
 };
 
+struct Struct8032C9D8
+{
+    u32 unk00;
+    u32 unk04;
+    u8 filler08[0x3C];
+    float unk44;
+    u8 filler48[0x68-0x48];
+    struct UnknownStruct3 *unk68;
+    u8 filler6C[0xAA-0x6C];
+    s16 unkAA;
+};
+
 struct Struct8032C6AC
 {
     u8 filler0[0x12];
@@ -154,7 +166,7 @@ struct GfxNode
     /*0x03C*/ struct UnknownStruct5 *unk3C;
     /*0x040*/ s16 unk40;
     u8 filler42[0x50-0x42];
-    /*0x050*/ u32 unk50;
+    /*0x050*/ void *unk50;
     /*0x054*/ u32 unk54;
     u8 filler58[0x60-0x58];
     /*0x060*/ struct GfxNode *prev;
@@ -450,6 +462,17 @@ struct Struct8032CFD0
     u32 unk124;
 };
 
+struct WallCollisionData {
+    /*0x00*/ float x, y, z;           
+    /*0x0C*/ float offsetY;           
+    /*0x10*/ float radius;            
+    /*0x14*/ s16 unk14;               
+    /*0x16*/ s16 numWalls;            
+    /*0x18*/ struct Surface *walls[4];
+};
+
+typedef f32 Mtxf[4][4];
+typedef f32 (*Mtxfp)[4];
 struct Struct8033A140 // Level, I think
 {
     /*0x00*/ Vec3s marioStartPos;

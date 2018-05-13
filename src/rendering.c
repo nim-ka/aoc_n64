@@ -486,7 +486,7 @@ void func_8027A894(int a)
         D_8032CE6C = &D_8033A560[a];
         D_8033A75A = D_8032CE6C->index;
         if (D_8032CE6C->unk08 != 0)
-            func_803833B8(a, D_8032CE6C->unk08, D_8032CE6C->unk0C, D_8032CE6C->unk10);
+            func_803833B8(a, D_8032CE6C->unk08, (s8 *) D_8032CE6C->unk0C, D_8032CE6C->unk10);
         if (D_8032CE6C->unk20 != 0)
             func_8029C830(0, D_8032CE6C->unk20);
         func_8027A4C4();

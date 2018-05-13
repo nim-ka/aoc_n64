@@ -174,7 +174,8 @@ SECTIONS
       build/asm/graph_node.o(.text);
       build/src/geo_layout.o(.text);
       build/asm/level_script.o(.text);
-      build/asm/surface_collision.o(.text);
+      build/src/surface_collision1.o(.text);
+      build/src/surface_collision2.o(.text);
       build/src/behavior_script.o(.text);
       /* data */
       build/data/graph_node.data.o(.data*);
@@ -185,7 +186,8 @@ SECTIONS
       /* rodata */
       build/src/math_util.o(.rodata*);
       build/data/level_script.rodata.o(.rodata*);
-      build/data/surface_collision.rodata.o(.rodata*);
+      build/src/surface_collision1.o(.rodata*);
+      build/src/surface_collision2.o(.rodata*);
    }
    END_SEG(engine)
    BEGIN_BSS(engine)

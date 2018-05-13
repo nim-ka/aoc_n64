@@ -6,6 +6,7 @@
 #include "memory.h"
 #include "rendering.h"
 #include "save_file.h"
+#include "surface_collision.h"
 
 #define INT_GROUND_POUND_OR_TWIRL (1 << 0) // 0x00000001
 #define INT_PUNCH                 (1 << 1) // 0x00000002

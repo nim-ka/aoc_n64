@@ -4,6 +4,7 @@
 #include "game.h"
 #include "math_util.h"
 #include "rendering.h"
+#include "surface_collision.h"
 
 extern float D_8033B438;
 extern float D_8033B3CC;
