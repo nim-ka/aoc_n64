@@ -9,5 +9,6 @@ void guPerspective(Mtx *m, u16 *perspNorm, float fovy, float aspect, float near,
     float far, float scale);
 void guFrustum(Mtx *m, float left, float right, float bottom, float top,
     float near, float far, float scale);
+void guRotate(Mtx m, float a, float x, float y, float z);
 
 #endif

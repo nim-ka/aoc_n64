@@ -780,10 +780,10 @@ glabel func_802CB508
 /* 086610 802CB610 460A4480 */  add.s $f18, $f8, $f10
 /* 086614 802CB614 46049180 */  add.s $f6, $f18, $f4
 /* 086618 802CB618 E7A60040 */  swc1  $f6, 0x40($sp)
-/* 08661C 802CB61C 0C0B45F9 */  jal   func_802D17E4
+/* 08661C 802CB61C 0C0B45F9 */  jal   round_float
 /* 086620 802CB620 C7AC0044 */   lwc1  $f12, 0x44($sp)
 /* 086624 802CB624 A7A2003E */  sh    $v0, 0x3e($sp)
-/* 086628 802CB628 0C0B45F9 */  jal   func_802D17E4
+/* 086628 802CB628 0C0B45F9 */  jal   round_float
 /* 08662C 802CB62C C7AC0040 */   lwc1  $f12, 0x40($sp)
 /* 086630 802CB630 A7A2003C */  sh    $v0, 0x3c($sp)
 /* 086634 802CB634 87B80072 */  lh    $t8, 0x72($sp)

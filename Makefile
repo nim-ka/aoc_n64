@@ -63,10 +63,10 @@ OBJDUMP   := $(CROSS)objdump
 OBJCOPY   := $(CROSS)objcopy
 
 # Check code syntax with host compiler
-CC_CHECK := gcc -m32 -fsyntax-only -funsigned-char -I include -std=c99 -Wall -Wextra -pedantic -Werror $(VERSION_CFLAGS)
+CC_CHECK := gcc -m32 -fsyntax-only -fsigned-char -I include -std=c99 -Wall -Wextra -pedantic -Werror $(VERSION_CFLAGS)
 
 ASFLAGS := -march=vr4300 -mabi=32 -I include $(VERSION_ASFLAGS)
-CFLAGS := -Wab,-r4300_mul -non_shared -G 0 -Xcpluscomm -Xfullwarn -g -I include $(VERSION_CFLAGS)
+CFLAGS := -Wab,-r4300_mul -non_shared -G 0 -Xcpluscomm -Xfullwarn -g -signed -I include $(VERSION_CFLAGS)
 OBJCOPYFLAGS := --pad-to=0x800000 --gap-fill=0xFF
 SYMBOL_LINKING_FLAGS := $(addprefix -R ,$(SEG_FILES))
 LDFLAGS := -T undefined_syms.txt -T $(BUILD_DIR)/$(LD_SCRIPT) -Map $(BUILD_DIR)/sm64.map --no-check-sections $(SYMBOL_LINKING_FLAGS)

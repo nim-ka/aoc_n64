@@ -167,8 +167,8 @@ void ShowSomeNum(void)
 
 void func_80177004(void)
 {
-    char sp60[] = {TEXT_MYSCORE};
-    char sp5C[] = {TEXT_0};
+    unsigned char sp60[] = {TEXT_MYSCORE};
+    unsigned char sp5C[] = {TEXT_0};
     u32 *sp58 = (u32 *)segmented_to_virtual(seg2_level_name_table);
     u32 sp54 = (u32) segmented_to_virtual((void *) sp58[gCurrCourseNum - 1]);
     u32 *sp50 = (u32 *)segmented_to_virtual(seg2_act_name_table);

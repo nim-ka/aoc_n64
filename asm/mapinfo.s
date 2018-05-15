@@ -348,7 +348,7 @@ glabel func_802C9980
 /* 0849D0 802C99D0 3C068033 */  lui   $a2, %hi(D_80336D08) # $a2, 0x8033
 /* 0849D4 802C99D4 24C66D08 */  addiu $a2, %lo(D_80336D08) # addiu $a2, $a2, 0x6d08
 /* 0849D8 802C99D8 85440002 */  lh    $a0, 2($t2)
-/* 0849DC 802C99DC 0C0B569D */  jal   PrintStr
+/* 0849DC 802C99DC 0C0B569D */  jal   print_text
 /* 0849E0 802C99E0 85450004 */   lh    $a1, 4($t2)
 /* 0849E4 802C99E4 8FAB0018 */  lw    $t3, 0x18($sp)
 /* 0849E8 802C99E8 856C0000 */  lh    $t4, ($t3)
@@ -360,7 +360,7 @@ glabel func_802C9980
 /* 0849FC 802C99FC 8FA6001C */  lw    $a2, 0x1c($sp)
 /* 084A00 802C9A00 8FA70020 */  lw    $a3, 0x20($sp)
 /* 084A04 802C9A04 85C40002 */  lh    $a0, 2($t6)
-/* 084A08 802C9A08 0C0B55FE */  jal   PrintInt
+/* 084A08 802C9A08 0C0B55FE */  jal   print_text_fmt_int
 /* 084A0C 802C9A0C 85C50004 */   lh    $a1, 4($t6)
 /* 084A10 802C9A10 8FAF0018 */  lw    $t7, 0x18($sp)
 /* 084A14 802C9A14 85E80004 */  lh    $t0, 4($t7)

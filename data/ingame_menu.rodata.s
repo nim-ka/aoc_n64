@@ -1,22 +1,6 @@
 .include "macros.inc"
 
-
 .section .rodata
-
-#ingame menu
-glabel D_80336FC0
-	.incbin "bin/rodata.bin", 0x2550, 0x10
-
-glabel D_80336FD0
-	.incbin "bin/rodata.bin", 0x2560, 0x8
-glabel D_80336FD8
-	.incbin "bin/rodata.bin", 0x2568, 0x8
-glabel D_80336FE0
-	.incbin "bin/rodata.bin", 0x2570, 0x8
-glabel D_80336FE8
-	.incbin "bin/rodata.bin", 0x2578, 0x8
-glabel D_80336FF0
-	.incbin "bin/rodata.bin", 0x2580, 0x10
 
 glabel D_80337000
 	.incbin "bin/rodata.bin", 0x2590, 0x8
@@ -110,3 +94,4 @@ glabel jtbl_803370F4
 	.word L802E0384
 	.word L802E03A4
 	.word L802E03B8
+

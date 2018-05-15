@@ -1168,19 +1168,19 @@ glabel RenderHudMarioLives
 /* 09D83C 802E283C 3C068033 */  lui   $a2, %hi(D_803371A0) # $a2, 0x8033
 /* 09D840 802E2840 24C671A0 */  addiu $a2, %lo(D_803371A0) # addiu $a2, $a2, 0x71a0
 /* 09D844 802E2844 24040016 */  li    $a0, 22
-/* 09D848 802E2848 0C0B569D */  jal   PrintStr
+/* 09D848 802E2848 0C0B569D */  jal   print_text
 /* 09D84C 802E284C 240500D2 */   li    $a1, 210
 /* 09D850 802E2850 3C068033 */  lui   $a2, %hi(D_803371A4) # $a2, 0x8033
 /* 09D854 802E2854 24C671A4 */  addiu $a2, %lo(D_803371A4) # addiu $a2, $a2, 0x71a4
 /* 09D858 802E2858 24040026 */  li    $a0, 38
-/* 09D85C 802E285C 0C0B569D */  jal   PrintStr
+/* 09D85C 802E285C 0C0B569D */  jal   print_text
 /* 09D860 802E2860 240500D2 */   li    $a1, 210
 /* 09D864 802E2864 3C068033 */  lui   $a2, %hi(D_803371A8) # $a2, 0x8033
 /* 09D868 802E2868 3C078034 */  lui   $a3, %hi(gDisplayedLives) # $a3, 0x8034
 /* 09D86C 802E286C 84E79EF0 */  lh    $a3, %lo(gDisplayedLives)($a3)
 /* 09D870 802E2870 24C671A8 */  addiu $a2, %lo(D_803371A8) # addiu $a2, $a2, 0x71a8
 /* 09D874 802E2874 24040036 */  li    $a0, 54
-/* 09D878 802E2878 0C0B55FE */  jal   PrintInt
+/* 09D878 802E2878 0C0B55FE */  jal   print_text_fmt_int
 /* 09D87C 802E287C 240500D2 */   li    $a1, 210
 /* 09D880 802E2880 10000001 */  b     .L802E2888
 /* 09D884 802E2884 00000000 */   nop   
@@ -1196,19 +1196,19 @@ glabel RenderHudCoins
 /* 09D8A0 802E28A0 3C068033 */  lui   $a2, %hi(D_803371AC) # $a2, 0x8033
 /* 09D8A4 802E28A4 24C671AC */  addiu $a2, %lo(D_803371AC) # addiu $a2, $a2, 0x71ac
 /* 09D8A8 802E28A8 240400A8 */  li    $a0, 168
-/* 09D8AC 802E28AC 0C0B569D */  jal   PrintStr
+/* 09D8AC 802E28AC 0C0B569D */  jal   print_text
 /* 09D8B0 802E28B0 240500D2 */   li    $a1, 210
 /* 09D8B4 802E28B4 3C068033 */  lui   $a2, %hi(D_803371B0) # $a2, 0x8033
 /* 09D8B8 802E28B8 24C671B0 */  addiu $a2, %lo(D_803371B0) # addiu $a2, $a2, 0x71b0
 /* 09D8BC 802E28BC 240400B8 */  li    $a0, 184
-/* 09D8C0 802E28C0 0C0B569D */  jal   PrintStr
+/* 09D8C0 802E28C0 0C0B569D */  jal   print_text
 /* 09D8C4 802E28C4 240500D2 */   li    $a1, 210
 /* 09D8C8 802E28C8 3C068033 */  lui   $a2, %hi(D_803371B4) # $a2, 0x8033
 /* 09D8CC 802E28CC 3C078034 */  lui   $a3, %hi(gDisplayedCoins) # $a3, 0x8034
 /* 09D8D0 802E28D0 84E79EF2 */  lh    $a3, %lo(gDisplayedCoins)($a3)
 /* 09D8D4 802E28D4 24C671B4 */  addiu $a2, %lo(D_803371B4) # addiu $a2, $a2, 0x71b4
 /* 09D8D8 802E28D8 240400C6 */  li    $a0, 198
-/* 09D8DC 802E28DC 0C0B55FE */  jal   PrintInt
+/* 09D8DC 802E28DC 0C0B55FE */  jal   print_text_fmt_int
 /* 09D8E0 802E28E0 240500D2 */   li    $a1, 210
 /* 09D8E4 802E28E4 10000001 */  b     .L802E28EC
 /* 09D8E8 802E28E8 00000000 */   nop   
@@ -1246,7 +1246,7 @@ glabel RenderHudStars
 /* 09D954 802E2954 3C068033 */  lui   $a2, %hi(D_803371B8) # $a2, 0x8033
 /* 09D958 802E2958 24C671B8 */  addiu $a2, %lo(D_803371B8) # addiu $a2, $a2, 0x71b8
 /* 09D95C 802E295C 240400F7 */  li    $a0, 247
-/* 09D960 802E2960 0C0B569D */  jal   PrintStr
+/* 09D960 802E2960 0C0B569D */  jal   print_text
 /* 09D964 802E2964 240500D2 */   li    $a1, 210
 /* 09D968 802E2968 83A9001F */  lb    $t1, 0x1f($sp)
 /* 09D96C 802E296C 24010001 */  li    $at, 1
@@ -1255,7 +1255,7 @@ glabel RenderHudStars
 /* 09D978 802E2978 3C068033 */  lui   $a2, %hi(D_803371BC) # $a2, 0x8033
 /* 09D97C 802E297C 24C671BC */  addiu $a2, %lo(D_803371BC) # addiu $a2, $a2, 0x71bc
 /* 09D980 802E2980 24040107 */  li    $a0, 263
-/* 09D984 802E2984 0C0B569D */  jal   PrintStr
+/* 09D984 802E2984 0C0B569D */  jal   print_text
 /* 09D988 802E2988 240500D2 */   li    $a1, 210
 .L802E298C:
 /* 09D98C 802E298C 83A4001F */  lb    $a0, 0x1f($sp)
@@ -1268,7 +1268,7 @@ glabel RenderHudStars
 /* 09D9A8 802E29A8 24840107 */  addiu $a0, $a0, 0x107
 /* 09D9AC 802E29AC 84E79EF4 */  lh    $a3, %lo(gDisplayedStars)($a3)
 /* 09D9B0 802E29B0 24C671C0 */  addiu $a2, %lo(D_803371C0) # addiu $a2, $a2, 0x71c0
-/* 09D9B4 802E29B4 0C0B55FE */  jal   PrintInt
+/* 09D9B4 802E29B4 0C0B55FE */  jal   print_text_fmt_int
 /* 09D9B8 802E29B8 240500D2 */   li    $a1, 210
 /* 09D9BC 802E29BC 10000001 */  b     .L802E29C4
 /* 09D9C0 802E29C0 00000000 */   nop   
@@ -1293,7 +1293,7 @@ glabel func_802E29D4
 /* 09D9FC 802E29FC 00047900 */  sll   $t7, $a0, 4
 /* 09DA00 802E2A00 01E02025 */  move  $a0, $t7
 /* 09DA04 802E2A04 248400DC */  addiu $a0, $a0, 0xdc
-/* 09DA08 802E2A08 0C0B569D */  jal   PrintStr
+/* 09DA08 802E2A08 0C0B569D */  jal   print_text
 /* 09DA0C 802E2A0C 2405008E */   li    $a1, 142
 /* 09DA10 802E2A10 87B8001E */  lh    $t8, 0x1e($sp)
 /* 09DA14 802E2A14 3C0A8034 */  lui   $t2, %hi(gDisplayedKeys) # $t2, 0x8034
@@ -1364,25 +1364,25 @@ glabel RenderHudTimer
 /* 09DB08 802E2B08 3C068033 */  lui   $a2, %hi(D_803371C8) # $a2, 0x8033
 /* 09DB0C 802E2B0C 24C671C8 */  addiu $a2, %lo(D_803371C8) # addiu $a2, $a2, 0x71c8
 /* 09DB10 802E2B10 240400AA */  li    $a0, 170
-/* 09DB14 802E2B14 0C0B569D */  jal   PrintStr
+/* 09DB14 802E2B14 0C0B569D */  jal   print_text
 /* 09DB18 802E2B18 240500B9 */   li    $a1, 185
 /* 09DB1C 802E2B1C 3C068033 */  lui   $a2, %hi(D_803371D0) # $a2, 0x8033
 /* 09DB20 802E2B20 24C671D0 */  addiu $a2, %lo(D_803371D0) # addiu $a2, $a2, 0x71d0
 /* 09DB24 802E2B24 240400E5 */  li    $a0, 229
 /* 09DB28 802E2B28 240500B9 */  li    $a1, 185
-/* 09DB2C 802E2B2C 0C0B55FE */  jal   PrintInt
+/* 09DB2C 802E2B2C 0C0B55FE */  jal   print_text_fmt_int
 /* 09DB30 802E2B30 97A70028 */   lhu   $a3, 0x28($sp)
 /* 09DB34 802E2B34 3C068033 */  lui   $a2, %hi(D_803371D4) # $a2, 0x8033
 /* 09DB38 802E2B38 24C671D4 */  addiu $a2, %lo(D_803371D4) # addiu $a2, $a2, 0x71d4
 /* 09DB3C 802E2B3C 240400F9 */  li    $a0, 249
 /* 09DB40 802E2B40 240500B9 */  li    $a1, 185
-/* 09DB44 802E2B44 0C0B55FE */  jal   PrintInt
+/* 09DB44 802E2B44 0C0B55FE */  jal   print_text_fmt_int
 /* 09DB48 802E2B48 97A70026 */   lhu   $a3, 0x26($sp)
 /* 09DB4C 802E2B4C 3C068033 */  lui   $a2, %hi(D_803371DC) # $a2, 0x8033
 /* 09DB50 802E2B50 24C671DC */  addiu $a2, %lo(D_803371DC) # addiu $a2, $a2, 0x71dc
 /* 09DB54 802E2B54 2404011B */  li    $a0, 283
 /* 09DB58 802E2B58 240500B9 */  li    $a1, 185
-/* 09DB5C 802E2B5C 0C0B55FE */  jal   PrintInt
+/* 09DB5C 802E2B5C 0C0B55FE */  jal   print_text_fmt_int
 /* 09DB60 802E2B60 97A70024 */   lhu   $a3, 0x24($sp)
 /* 09DB64 802E2B64 3C0B8034 */  lui   $t3, %hi(gDisplayListHead) # $t3, 0x8034
 /* 09DB68 802E2B68 8D6B9CFC */  lw    $t3, %lo(gDisplayListHead)($t3)

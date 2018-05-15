@@ -425,9 +425,9 @@
 #endif
 
 // convert a virtual address to physical.
-#define VIRTUAL_TO_PHYSICAL(addr)    ((u32)addr & 0x1FFFFFFF)
+#define VIRTUAL_TO_PHYSICAL(addr)    ((u32)(addr) & 0x1FFFFFFF)
 // convert a physical address to virtual.
-#define PHYSICAL_TO_VIRTUAL(addr)    ((u32)addr | 0x80000000)
+#define PHYSICAL_TO_VIRTUAL(addr)    ((u32)(addr) | 0x80000000)
 
 /*
  this input mask is unused by the controller, 

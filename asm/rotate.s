@@ -548,13 +548,13 @@ glabel func_802CCF0C
 /* 087F1C 802CCF1C AFA60058 */  sw    $a2, 0x58($sp)
 /* 087F20 802CCF20 AFA7005C */  sw    $a3, 0x5c($sp)
 /* 087F24 802CCF24 AFB00038 */  sw    $s0, 0x38($sp)
-/* 087F28 802CCF28 0C0B45F9 */  jal   func_802D17E4
+/* 087F28 802CCF28 0C0B45F9 */  jal   round_float
 /* 087F2C 802CCF2C C7AC0058 */   lwc1  $f12, 0x58($sp)
 /* 087F30 802CCF30 A7A2004E */  sh    $v0, 0x4e($sp)
-/* 087F34 802CCF34 0C0B45F9 */  jal   func_802D17E4
+/* 087F34 802CCF34 0C0B45F9 */  jal   round_float
 /* 087F38 802CCF38 C7AC005C */   lwc1  $f12, 0x5c($sp)
 /* 087F3C 802CCF3C A7A2004C */  sh    $v0, 0x4c($sp)
-/* 087F40 802CCF40 0C0B45F9 */  jal   func_802D17E4
+/* 087F40 802CCF40 0C0B45F9 */  jal   round_float
 /* 087F44 802CCF44 C7AC0060 */   lwc1  $f12, 0x60($sp)
 /* 087F48 802CCF48 A7A2004A */  sh    $v0, 0x4a($sp)
 /* 087F4C 802CCF4C 83B0006B */  lb    $s0, 0x6b($sp)

@@ -17,6 +17,50 @@ struct Controller
   /*0x18*/ OSContPad *controllerData;
 };
 
+struct Struct802D1F94
+{
+    s16 unk0;
+    s8 unk2;
+    s8 unk3;
+    s8 unk4;
+    s8 unk5;
+    s8 unk6;
+    s8 unk7;
+    float unk8;
+    float unkC;
+    float unk10;
+    float unk14;
+    float unk18;
+    float unk1C;
+    float unk20;
+    float unk24;
+    float unk28;
+    float unk2C;
+    float unk30;
+    float unk34;
+    float unk38;
+    float unk3C;
+    float unk40;
+    float unk44;
+    float unk48;
+    float unk4C;
+    float unk50;
+    float unk54;
+    void *unk58;
+    void *unk5C;
+    void *unk60;
+    s16 unk64;
+    s16 unk66;
+    void *unk68;
+    s8 unk6C;
+    u8 unk6D;
+    s8 unk6E;
+    s8 unk6F;
+    s8 unk70;
+    u8 filler71[3];
+    float unk74;
+};
+
 typedef float Vec2f[2];
 typedef float Vec3f[3];
 typedef s16 Vec3s[3];

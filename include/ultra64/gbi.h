@@ -500,4 +500,14 @@ typedef union
     _g->words.w1 = (u32)(v);                       \
 }
 
+#define gSP1Triangle(pkt, v0, v1, v2, flag) \
+{                                           \
+    Gfx *_g = (Gfx *)(pkt);                 \
+    _g->words.w0 = _SHIFTL(0xBF, 24, 8);    \
+    _g->words.w1 = _SHIFTL((flag),  24, 8)  \
+                 | _SHIFTL((v0)*10, 16, 8)  \
+                 | _SHIFTL((v1)*10,  8, 8)  \
+                 | _SHIFTL((v2)*10,  0, 8); \
+}
+
 #endif

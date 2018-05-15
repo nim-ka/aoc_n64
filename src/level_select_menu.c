@@ -161,10 +161,10 @@ s16 level_select_input_loop(void)
 
     gCurrSaveFileNum = 4; // file 4 is used for level select tests
     D_8033A758 = 6;
-    PrintXY(160, 80, "SELECT STAGE");
-    PrintXY(160, 30, "PRESS START BUTTON");
-    PrintInt(40, 60, "%2d", gCurrLevelNum);
-    PrintStr(80, 60, gLevelSelect_StageNamesText[gCurrLevelNum - 1]); // print stage name
+    print_text_centered(160, 80, "SELECT STAGE");
+    print_text_centered(160, 30, "PRESS START BUTTON");
+    print_text_fmt_int(40, 60, "%2d", gCurrLevelNum);
+    print_text(80, 60, gLevelSelect_StageNamesText[gCurrLevelNum - 1]); // print stage name
 
 #define QUIT_LEVEL_SELECT_COMBO (Z_TRIG | START_BUTTON | L_CBUTTONS | R_CBUTTONS)
 

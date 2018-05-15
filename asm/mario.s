@@ -3307,7 +3307,7 @@ glabel func_802534F4
 /* 00E590 80253590 460A3403 */  div.s $f16, $f6, $f10
 /* 00E594 80253594 4600848D */  trunc.w.s $f18, $f16
 /* 00E598 80253598 44079000 */  mfc1  $a3, $f18
-/* 00E59C 8025359C 0C0B55FE */  jal   PrintInt
+/* 00E59C 8025359C 0C0B55FE */  jal   print_text_fmt_int
 /* 00E5A0 802535A0 00000000 */   nop   
 /* 00E5A4 802535A4 8FAB0030 */  lw    $t3, 0x30($sp)
 /* 00E5A8 802535A8 3C068033 */  lui   $a2, %hi(D_80335288) # $a2, 0x8033
@@ -3317,7 +3317,7 @@ glabel func_802534F4
 /* 00E5B8 802535B8 24050048 */  li    $a1, 72
 /* 00E5BC 802535BC 4600220D */  trunc.w.s $f8, $f4
 /* 00E5C0 802535C0 44074000 */  mfc1  $a3, $f8
-/* 00E5C4 802535C4 0C0B55FE */  jal   PrintInt
+/* 00E5C4 802535C4 0C0B55FE */  jal   print_text_fmt_int
 /* 00E5C8 802535C8 00000000 */   nop   
 /* 00E5CC 802535CC 8FAD0030 */  lw    $t5, 0x30($sp)
 /* 00E5D0 802535D0 3C068033 */  lui   $a2, %hi(D_80335290) # $a2, 0x8033
@@ -3326,7 +3326,7 @@ glabel func_802534F4
 /* 00E5DC 802535DC 240400D2 */  li    $a0, 210
 /* 00E5E0 802535E0 24050038 */  li    $a1, 56
 /* 00E5E4 802535E4 30EE01FF */  andi  $t6, $a3, 0x1ff
-/* 00E5E8 802535E8 0C0B55FE */  jal   PrintInt
+/* 00E5E8 802535E8 0C0B55FE */  jal   print_text_fmt_int
 /* 00E5EC 802535EC 01C03825 */   move  $a3, $t6
 .L802535F0:
 /* 00E5F0 802535F0 10000001 */  b     .L802535F8

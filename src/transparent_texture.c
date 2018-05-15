@@ -39,7 +39,7 @@ void make_vertex(Vtx *vtx, s32 n, s16 x, s16 y, s16 z, s16 tx, s16 ty, u8 r, u8 
     vtx[n].v.cn[3] = a;
 }
 
-s32 func_802D17E4(float f12)
+s32 round_float(float f12)
 {
     //! double literals instead of float literals
     if (f12 >= 0.0)
@@ -124,7 +124,7 @@ void *Geo18_802D2520(s32 sp80, short *sp84, UNUSED s32 sp88)
             sp7A = n % 3;
 
             x = ((s16 *)(u32) sp64 + (n << 2))[0];
-            y = func_802D17E4(sins(D_80330398 + (sp7C << 0x0C) + (sp7A << 0x0E)) * 20.0);
+            y = round_float(sins(D_80330398 + (sp7C << 0x0C) + (sp7A << 0x0E)) * 20.0);
             
             z = ((s16 *)(u32) sp64 + (n << 2))[1];
             tx = ((s16 *)(u32) sp64 + (n << 2))[2];
@@ -166,7 +166,7 @@ Gfx *Geo18_802D28CC(s32 sp30, short *sp34, UNUSED s32 sp38)
 
     if (sp30 == 1)
     {
-        sp28 = alloc_display_list(0x18);
+        sp28 = alloc_display_list(3 * sizeof(*sp28));
         sp24 = sp28;
 
         sp2C[1] = (sp2C[1] & 0xFF) | 0x100;

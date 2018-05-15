@@ -550,7 +550,7 @@ glabel D_8035FFA8
     .space 0x4
 glabel D_8035FFAC
     .space 0x4
-glabel D_8035FFB0
+glabel sTextLabels
     .space 0x68
 glabel D_80360018
     .space 0x68

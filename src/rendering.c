@@ -390,12 +390,12 @@ void IntroPrintText(void)
     {
         if (gControllerBits == 0)
         {
-            PrintXY(160, 20, "NO CONTROLLER");
+            print_text_centered(160, 20, "NO CONTROLLER");
         }
         else
         {
-            PrintXY(60, 38, "PRESS");
-            PrintXY(60, 20, "START");
+            print_text_centered(60, 38, "PRESS");
+            print_text_centered(60, 20, "START");
         }
     }
 }
@@ -1478,7 +1478,7 @@ void func_8027DB80(struct Struct8032CF90 *a, Vp *b, Vp *c, int d)
             func_8027D8F8(a->unk10);
         D_8032CF90 = NULL;
         if (gShowDebugText)
-            PrintInt(180, 36, "MEM %d", D_8033B018->unk0 - D_8033B018->unk4);
+            print_text_fmt_int(180, 36, "MEM %d", D_8033B018->unk0 - D_8033B018->unk4);
         _pool_free(D_8033B018);
     }
     //L8027DE10

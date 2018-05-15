@@ -48,7 +48,7 @@ int func_802CEBBC(s8 a, UNUSED float b)
 {
     float sp24 = (float)D_8035FF50[a].unk2 * 360.0 / 65535.0;
     float sp20 = 360.0f * sp24 / 90.0;
-    int sp1C = func_802D17E4(sp20);
+    int sp1C = round_float(sp20);
     int sp18 = sp1C + 0x258;
 
     if (sp18 > 960)
