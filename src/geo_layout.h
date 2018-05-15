@@ -1,6 +1,8 @@
 #ifndef _GEO_LAYOUT_H_
 #define _GEO_LAYOUT_H_
 
+#include "graph_node.h"
+
 #define cur_geo_cmd_u8(offset) \
     (gGeoLayoutCommand[offset])
 
@@ -15,6 +17,19 @@
 
 typedef void (*GeoLayoutCommandProc)(void);
 extern GeoLayoutCommandProc GeoLayoutJumpTable[];
+
+extern struct Struct80278464 *D_8038BCA0;
+extern struct SceneGraphNode *D_8038BCA4;
+extern struct SceneGraphNode **D_8038BCAC;
+extern u16 D_8038BCB0;
+extern s16 D_8038BD78;
+extern u32 gGeoLayoutStack[];
+//extern struct SceneGraphNode *D_8038BCF4[];
+extern struct SceneGraphNode *D_8038BCF8[];
+extern s16 gGeoLayoutStackIndex;
+extern s16 D_8038BD7E;
+extern u8 *gGeoLayoutCommand;
+extern u8 D_8038BD88[];
 
 void GeoLayout00(void);
 void GeoLayout01(void);

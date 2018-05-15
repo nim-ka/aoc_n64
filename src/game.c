@@ -1,10 +1,18 @@
 #include <ultra64.h>
 
 #include "sm64.h"
-#include "game.h"
 #include "main.h"
 #include "memory.h"
 #include "save_file.h"
+#include "sound_init.h"
+#include "display.h"
+#include "level_script.h"
+#include "resource_meter.h"
+#include "print.h"
+#include "segment2.h"
+#include "main_entry.h"
+#include "audio_interface_2.h"
+#include "game.h"
 
 // FIXME: I'm not sure all of these variables belong in this file, but I don't
 // know of a good way to split them

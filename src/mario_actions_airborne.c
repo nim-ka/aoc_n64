@@ -3,6 +3,13 @@
 #include "sm64.h"
 #include "level_update.h"
 #include "math_util.h"
+#include "interaction.h"
+#include "mario.h"
+#include "mario_step.h"
+#include "display.h"
+#include "camera.h"
+#include "save_file.h"
+#include "audio_interface_2.h"
 
 static void play_flip_sounds(struct MarioState *m, s16 frame1, s16 frame2, s16 frame3)
 {

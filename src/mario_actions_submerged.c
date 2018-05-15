@@ -6,7 +6,13 @@
 #include "math_util.h"
 #include "rendering.h"
 #include "save_file.h"
-
+#include "sound_init.h"
+#include "surface_collision.h"
+#include "interaction.h"
+#include "mario.h"
+#include "mario_step.h"
+#include "camera.h"
+#include "audio_interface_2.h"
 
 static s16 sWasAtSurface = FALSE;
 static s16 D_8032CDD4 = 160;

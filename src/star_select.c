@@ -5,10 +5,19 @@
 #include "memory.h"
 #include "rendering.h"
 #include "save_file.h"
-
+#include "level_functions.h"
+#include "behavior_script.h"
+#include "ingame_menu.h"
 #include "text_strings.h"
+#include "audio_interface_2.h"
+#include "level_update.h"
+#include "segment2.h"
+#include "segment7.h"
+#include "star_select.h"
 
 /*static*/ extern struct Object *sStarSelectIcons[];
+
+extern u8 D_1300300C[];
 
 static s8 sSelectedStar = 0;
 static s8 D_801A8014 = 0;

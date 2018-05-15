@@ -4,6 +4,7 @@
 #include "geo_layout.h"
 #include "math_util.h"
 #include "memory.h"
+#include "graph_node.h"
 
 void GeoLayout00(void)
 {

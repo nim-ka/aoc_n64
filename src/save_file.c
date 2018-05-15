@@ -5,7 +5,9 @@
 #include "main.h"
 #include "math_util.h"
 #include "rendering.h"
+#include "level_update.h"
 #include "save_file.h"
+#include "sound_init.h"
 
 #define MENU_DATA_MAGIC 0x4849
 #define SAVE_FILE_MAGIC 0x4441

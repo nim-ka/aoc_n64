@@ -17,61 +17,15 @@ struct Controller
   /*0x18*/ OSContPad *controllerData;
 };
 
-struct DemoInput
-{ // TODO: see if timer matches with s8
- /*0x00*/ u8 timer; // until next input: if this value 
-                    // is 0 proceeding on the demo input, it 
-                    // means the demo is over.
- /*0x01*/ s8 rawStickX;
- /*0x02*/ s8 rawStickY;
- /*0x03*/ u8 button;
-};
+typedef float Vec2f[2];
+typedef float Vec3f[3];
+typedef s16 Vec3s[3];
+typedef s32 Vec3i[3];
+typedef float Vec4f[4];
+typedef s16 Vec4s[4];
 
-// Not used, probably
-/*
-struct Demo {
-    u32 demoId;
-    // this area is where the inputs are allocated. take the header and add 1 word
-    // to get the input list pointer.
-    struct DemoInput demoInputs[50]; // arbitrary size for struct definition convenience
-};
-*/
-
-struct UnknownStruct8035FFA8
-{
-    u8 filler0[7];
-    s8 unk7;
-};
-
-struct UnknownStruct2
-{
-    u8 filler0[0x54];
-    u8 unk54[100];
-};
-
-struct UnknownStruct3
-{
-    u8 filler0[5];
-    s8 unk5;
-};
-
-struct Struct8032C9D8
-{
-    u32 unk00;
-    u32 unk04;
-    u8 filler08[0x3C];
-    float unk44;
-    u8 filler48[0x68-0x48];
-    struct UnknownStruct3 *unk68;
-    u8 filler6C[0xAA-0x6C];
-    s16 unkAA;
-};
-
-struct Struct8032C6AC
-{
-    u8 filler0[0x12];
-    u16 unk12;
-};
+typedef float Mat4[4][4];
+typedef f32 (*Mat4p)[4];
 
 struct Struct8032C630
 {
@@ -87,30 +41,6 @@ struct Struct8032C620
     OSMesg *msg;
 };
 
-struct Struct80333F00
-{
-    u8 filler0[0xA0];
-    OSViMode viMode;
-#if VERSION_US
-    OSViMode unk500;
-#endif
-};
-
-typedef float Vec2f[2];
-typedef float Vec3f[3];
-typedef s16 Vec3s[3];
-typedef s32 Vec3i[3];
-typedef float Vec4f[4];
-typedef s16 Vec4s[4];
-
-typedef float Mtx4x4f[4][4];
-
-struct UnknownStruct5 {
-    u8 filler0[0x8];
-    /*0x08*/ s16 unk08;
-    /*0x0C*/ u32 unk0C;
-    /*0x10*/ u32 unk10;
-};
 
 struct SceneGraphNode
 {
@@ -146,6 +76,13 @@ struct SceneGraphNode_x29
 
 // NOTE: Since GfxNode is the first member of Object, it is difficult to determine
 // whether some of these pointers point to GfxNode or Object.
+
+struct UnknownStruct5 {
+    u8 filler0[0x8];
+    /*0x08*/ s16 unk08;
+    /*0x0C*/ u32 unk0C;
+    /*0x10*/ u32 unk10;
+};
 
 struct GfxNode
 {
@@ -364,48 +301,7 @@ struct MarioState
     /*0xC4*/ f32 unkC4;
 };
 
-struct Struct8032D000
-{
-    u32 unk0;
-    Vec3f unk4;
-    Vec3s unk10;
-    s16 unk16;
-    s16 unk18;
-    u8 filler1A[0x1E - 0x1A];
-    s16 unk1E;
-};
 
-struct Struct80280550
-{
-    u8 unk0;
-    u8 filler1[1];
-    u16 unk2;
-    Vec3f unk4;
-    Vec3f unk10;
-    u8 filler1C[0x28-0x1C];
-    float unk28;
-    float unk2C;
-    u8 filler30[0xA];
-    s16 unk3A;
-};
-
-struct Struct8033B470
-{
-    s16 unk0;
-    u8 filler2[2];
-    Vec3f unk4;
-    float unk10;
-    float unk14;
-};
-
-struct BullyCollisionData {
-  /*0x00*/ f32 conversionRatio;
-  /*0x04*/ f32 radius;
-  /*0x08*/ f32 posX;
-  /*0x0C*/ f32 posZ;
-  /*0x10*/ f32 velX;
-  /*0x14*/ f32 velZ;
-};
 
 struct Struct80278464
 {
@@ -415,24 +311,10 @@ struct Struct80278464
     u8 *unkC;
 };
 
-struct MemBlock
+struct StructGeo802D2360
 {
-    struct MemBlock *next;
-    u32 size;
-};
-
-struct UnknownMemoryStruct2
-{
-    u32 unk0;
-    u32 unk4;
-    struct MemBlock *unk8;
-};
-
-struct UnknownMemoryStruct3
-{
-    u32 unk0;
-    void *unk4;
-    void *unkC;
+    s32 unk0;
+    s32 *unk4;
 };
 
 struct MarioAnimDmaRelatedThing
@@ -447,136 +329,6 @@ struct MarioAnimation
     u32 currentDma;
     void *targetAnim;
     u8 padding[4];
-};
-
-struct StructGeo802D2360
-{
-    s32 unk0;
-    s32 *unk4;
-};
-
-// Maybe Object? I don't know...
-struct Struct8032CFD0
-{
-    u8 filler0[0x124];
-    u32 unk124;
-};
-
-struct WallCollisionData {
-    /*0x00*/ float x, y, z;           
-    /*0x0C*/ float offsetY;           
-    /*0x10*/ float radius;            
-    /*0x14*/ s16 unk14;               
-    /*0x16*/ s16 numWalls;            
-    /*0x18*/ struct Surface *walls[4];
-};
-
-typedef f32 Mtxf[4][4];
-typedef f32 (*Mtxfp)[4];
-struct Struct8033A140 // Level, I think
-{
-    /*0x00*/ Vec3s marioStartPos;
-    /*0x06*/ Vec3s marioStartAngle;
-    /*0x0C*/ s8 areaIndex[1];
-    /*0x0D*/ s8 unk0D;
-    /*0x10*/ u32 unk10;
-    /*0x14*/ u32 unk14;
-    /*0x18*/ u32 unk18;
-    /*0x1C*/ u32 unk1C;
-};
-
-struct WarpNode
-{
-    /*00*/ u8 id;
-    /*01*/ u8 destLevel;
-    /*02*/ u8 destArea;
-    /*03*/ u8 destNode;
-};
-
-struct ObjectWarpNode
-{
-    /*0x00*/ struct WarpNode node;
-    /*0x04*/ struct Object *object;
-    /*0x08*/ struct ObjectWarpNode *unk8;
-};
-
-struct UnknownArea1C
-{
-    /*0x00*/ u8 unk00;
-    /*0x01*/ u8 unk01;
-    /*0x02*/ Vec3s displacement;
-};
-
-struct UnknownArea24 // Camera or camera related
-{
-    /*0x00*/ u8 unk00;
-    /*0x01*/ u8 unk01;
-    /*0x02*/ s16 unk02;
-};
-
-struct Whirlpool
-{
-    /*0x00*/ Vec3s pos;
-    /*0x03*/ s16 strength;
-};
-
-struct Area
-{
-    /*0x00*/ s8 index;
-    /*0x01*/ s8 unk01;
-    /*0x02*/ u16 unk02;
-    /*0x04*/ u32 unk04;
-    /*0x08*/ s16 *unk08;
-    /*0x0C*/ u32 unk0C;
-    /*0x10*/ s16 *unk10;
-    /*0x14*/ struct ObjectWarpNode *unk14;
-    /*0x18*/ struct WarpNode *paintingWarpNodes;
-    /*0x1C*/ struct UnknownArea1C *unk1C;
-    /*0x20*/ u32 unk20;
-    /*0x24*/ struct UnknownArea24 *unk24;
-    /*0x28*/ u32 unk28;
-    /*0x2C*/ struct Whirlpool *whirlpools[2];
-    /*0x34*/ u8 unk34[1];
-    /*0x35*/ u8 unk35;
-    /*0x36*/ u16 unk36;
-    /*0x38*/ u16 unk38;
-};
-
-struct CreditsEntry
-{
-    /*0x00*/ u8 levelNum;
-    /*0x01*/ u8 areaIndex;
-    /*0x02*/ u8 unk02;
-    /*0x03*/ s8 marioAngle;
-    /*0x04*/ Vec3s marioPos;
-    /*0x0C*/ const char **unk0C;
-};
-
-struct Struct8033B418_sub
-{
-    float unk0;
-    float unk4;
-    float unk8;
-    u8 fillerC[0x18 - 0xC];
-    float unk18;
-    s16 unk1C;
-    s16 unk1E;
-};
-
-struct Struct8033B418
-{
-    u8 filler0[4];
-    s16 unk4;
-    s16 unk6;
-    struct Struct8033B418_sub unk8[2];  // unknown length
-};
-
-struct Struct8032CE60
-{
-    u8 unk0;
-    u8 filler1[0xB];
-    s8 unkC;
-    s8 unkD;
 };
 
 #endif

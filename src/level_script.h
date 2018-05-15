@@ -1,0 +1,82 @@
+#ifndef _LEVEL_SCRIPT_H
+#define _LEVEL_SCRIPT_H
+
+// extern ? D_8038BE24;
+// extern ? D_8038BE28;
+// extern ? D_8038B8B0;
+// extern ? D_8038B8B4;
+// extern ? D_8038BE20;
+// extern ? D_8038B8A4;
+// extern ? D_8038B8A8;
+// extern ? D_8038B8A0;
+// extern ? D_8038B8AC;
+
+extern u8 gFrameBuffer0[];
+extern u8 gFrameBuffer1[];
+extern u8 gFrameBuffer2[];
+
+// extern ? LevelAccumOp(?);
+// extern ? LevelScript00(?);
+// extern ? LevelScript01(?);
+// extern ? LevelScript02(?);
+// extern ? LevelScript03(?);
+// extern ? LevelScript04(?);
+// extern ? LevelScript05(?);
+// extern ? LevelScript06(?);
+// extern ? LevelScript07(?);
+// extern ? LevelScript08(?);
+// extern ? LevelScript09(?);
+// extern ? LevelScript0A(?);
+// extern ? LevelScript0B(?);
+// extern ? LevelScript0C(?);
+// extern ? LevelScript0D(?);
+// extern ? LevelScript0E(?);
+// extern ? LevelScript0F(?);
+// extern ? LevelScript10(?);
+// extern ? LevelScript11(?);
+// extern ? LevelScript12(?);
+// extern ? LevelScript13(?);
+// extern ? LevelScript14(?);
+// extern ? LevelScript15(?);
+// extern ? LevelScript16(?);
+// extern ? LevelScript17(?);
+// extern ? LevelScript18(?);
+// extern ? LevelScript19(?);
+// extern ? LevelScript1A(?);
+// extern ? LevelScript1B(?);
+// extern ? LevelScript1C(?);
+// extern ? LevelScript1D(?);
+// extern ? LevelScript1E(?);
+// extern ? LevelScript1F(?);
+// extern ? LevelScript20(?);
+// extern ? LevelScript21(?);
+// extern ? LevelScript22(?);
+// extern ? LevelScript23(?);
+// extern ? LevelScript25(?);
+// extern ? LevelScript24(?);
+// extern ? LevelScript26(?);
+// extern ? LevelScript28(?);
+// extern ? LevelScript31(?);
+// extern ? LevelScript27(?);
+// extern ? LevelScript3A(?);
+// extern ? LevelScript3B(?);
+// extern ? LevelScript34(?);
+// extern ? LevelScript35(?);
+// extern ? LevelScript2E(?);
+// extern ? LevelScript2F(?);
+// extern ? LevelScript39(?);
+// extern ? LevelScript29(?);
+// extern ? LevelScript2A(?);
+// extern ? LevelScript2B(?);
+// extern ? LevelScript2C(?);
+// extern ? LevelScript2D(?);
+// extern ? LevelScript33(?);
+// extern ? LevelScript32(?);
+// extern ? LevelScript30(?);
+// extern ? LevelScript36(?);
+// extern ? LevelScript37(?);
+// extern ? LevelScript38(?);
+// extern ? LevelScript3C(?);
+extern int LevelScriptLoad(int);
+
+#endif /* _LEVEL_SCRIPT_H */

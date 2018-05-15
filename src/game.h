@@ -1,6 +1,18 @@
 #ifndef _GAME_H_
 #define _GAME_H_
 
+#include "memory.h"
+
+struct DemoInput
+{ // TODO: see if timer matches with s8
+ /*0x00*/ u8 timer; // until next input: if this value 
+                    // is 0 proceeding on the demo input, it 
+                    // means the demo is over.
+ /*0x01*/ s8 rawStickX;
+ /*0x02*/ s8 rawStickY;
+ /*0x03*/ u8 button;
+};
+
 extern struct Controller gControllers[3];
 extern OSContStatus gControllerStatuses[4];
 extern OSContPad gControllerPads[4];
@@ -27,5 +39,21 @@ extern struct Controller *gPlayer2Controller;
 extern struct DemoInput *gCurrDemoInput;
 extern u16 gDemoInputListID;
 extern struct DemoInput gRecordedDemoInput;
+
+// extern ? init_controllers(?);
+// extern ? func_80248934(?);
+extern void thread5_game_loop(void *);
+extern u16 func_802495B0(u32);
+
+// this area is the demo input + the header. when the demo is loaded in, there is a header the size
+// of a single word next to the input list. this word is the current ID count.
+extern struct MarioAnimation gDemo; // gDemo
+extern struct DemoInput *gDemoInputList;
+extern struct MarioAnimation D_80339D10;
+
+extern u8 D_80000400[];
+extern u8 D_004E9FA0[];
+extern u8 D_00577BC0[];
+extern u8 D_10000000[];
 
 #endif

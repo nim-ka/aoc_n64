@@ -1,10 +1,23 @@
 #include <ultra64.h>
 
 #include "sm64.h"
+#include "castle_message_behavior.h"
 #include "game.h"
 #include "math_util.h"
 #include "rendering.h"
 #include "surface_collision.h"
+#include "behavior_script.h"
+#include "level_update.h"
+#include "ingame_menu.h"
+#include "mario_actions_cutscene.h"
+#include "camera.h"
+
+// Maybe Object? I don't know...
+struct Struct8032CFD0
+{
+    u8 filler0[0x124];
+    u32 unk124;
+};
 
 extern float D_8033B438;
 extern float D_8033B3CC;

@@ -4,11 +4,17 @@
 #include "game.h"
 #include "main.h"
 #include "memory.h"
+#include "resource_meter.h"
+#include "audio_interface_2.h"
+#include "display.h"
 
 int unused8032C690 = 0;
 u32 D_8032C694 = 0;
 static u16 sCurrFBNum = 0;
 u16 D_8032C69C = 0;
+
+extern u8 D_8032A320[];
+extern u8 D_8032A3F0[];
 
 void myRdpInit(void)
 {

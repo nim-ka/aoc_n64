@@ -5,6 +5,9 @@
 #include "memory.h"
 #include "rendering.h"
 #include "save_file.h"
+#include "segment2.h"
+#include "level_update.h"
+#include "transparent_texture.h"
 
 struct Struct8035FF50
 {

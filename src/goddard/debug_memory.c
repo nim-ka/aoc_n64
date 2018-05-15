@@ -13,35 +13,40 @@ struct Unknown80177DF4
     u32 unk0C; // 0x0C
 };
 
+extern u32 D_801B5340;
+extern u32 D_801B5354;
+extern u32 D_801B535C;
+extern f32 D_801B5364;
+
 extern char D_801B540C[];
 extern char D_801B5424[];
 extern char D_801B5420[];
-extern u32 D_801B9B10;
 extern char D_801B5438[];
 extern char D_801B546C[];
 extern char D_801B5468[];
 extern char D_801B5454[];
 extern char D_801B5450[];
 extern char D_801B543C[];
+
+extern u32 D_801B9B10;
 extern u32 D_801B9B18;
 extern u32 D_801B9B10;
 extern u32* D_801B9B14;
 extern u32 D_801B9B18;
-extern f32 D_801B5364;
-extern f32 D_801B99A8;
-extern f32 D_801B99C0;
-extern char D_801A8058[];
-extern char D_801A8050[];
-extern char D_801B5330[];
-extern u32 D_801B5338;
-extern float D_801B99CC;
+
 extern u32 D_801B9920;
 extern u32 D_801B9974;
+extern f32 D_801B99A8;
+extern f32 D_801B99C0;
+extern float D_801B99CC;
 extern u32* D_801B9A10;
 extern u32 D_801B9A18;
-extern u32 D_801B5340;
-extern u32 D_801B5354;
-extern u32 D_801B535C;
+
+extern char D_801A8058[];
+extern char D_801A8050[]; 
+
+extern char D_801B5330[];
+extern u32 D_801B5338;
 
 void osSyncPrintf(const char* format, ...);
 extern void func_80177DF4(u32 a0, u32 a1, u32 a2);

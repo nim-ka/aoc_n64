@@ -1,9 +1,13 @@
 #include <ultra64.h>
 
 #include "sm64.h"
-#include "game.h"
+#include "audio_interface_2.h"
+#include "libultra.h"
 #include "main.h"
 #include "memory.h"
+#include "sound_init.h"
+#include "resource_meter.h"
+#include "game.h"
 
 // Message IDs
 #define MESG_SP_COMPLETE 100

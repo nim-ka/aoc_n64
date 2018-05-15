@@ -4,8 +4,6 @@
 // Global header for Super Mario 64
 
 #include "types.h"
-#include "variables.h"
-#include "functions.h"
 
 #define ARRAY_COUNT(arr) (sizeof(arr) / sizeof(arr[0]))
 

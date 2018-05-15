@@ -5,6 +5,14 @@
 #include "main.h"
 #include "math_util.h"
 #include "rendering.h"
+#include "resource_meter.h"
+#include "audio_dmc.h"
+#include "audio_interface_2.h"
+#include "print.h"
+#include "sound_init.h"
+
+
+extern struct Struct8032C620 D_80339DF0;
 
 u8 D_8032C6C0 = 0;
 u8 D_8032C6C4 = 0;

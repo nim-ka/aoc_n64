@@ -2,7 +2,17 @@
 
 #include "sm64.h"
 #include "memory.h"
+#include "level_functions.h"
+#include "ingame_menu.h"
+#include "hud.h"
+#include "mario.h"
+#include "behavior_script.h"
 #include "surface_collision.h"
+
+
+extern s32 D_8038BE90;
+extern s32 D_8035FE04;
+extern s32 D_13001C34;
 
 struct SurfaceNode *func_80382490(void) {
     struct SurfaceNode *sp4 = &D_8038EE98[D_8035FDFC];
@@ -422,8 +432,8 @@ void func_80383614(s16 **data, s16 *vertexData) {
     register f32 vx;
     register f32 vy;
     register f32 vz;
-    Mtxfp transform; 
-    Mtxf m;
+    Mat4p transform; 
+    Mat4 m;
     UNUSED s16 numVerts;
 
     transform = &gCurrentObject->unk21C[0];

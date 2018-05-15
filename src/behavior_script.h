@@ -22,6 +22,7 @@
 
 typedef s32 (*BehCommandProc)(void);
 extern BehCommandProc BehaviorJumpTable[];
+extern struct Object *gCurrentObject;
 
 u16 RandomU16(void);
 float RandomFloat(void);

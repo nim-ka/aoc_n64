@@ -7,6 +7,14 @@
 #include "rendering.h"
 #include "save_file.h"
 #include "surface_collision.h"
+#include "sound_init.h"
+#include "display.h"
+#include "mario.h"
+#include "camera.h"
+#include "obj_behaviors.h"
+#include "level_functions.h"
+#include "audio_interface_2.h"
+#include "interaction.h"
 
 #define INT_GROUND_POUND_OR_TWIRL (1 << 0) // 0x00000001
 #define INT_PUNCH                 (1 << 1) // 0x00000002

@@ -4,7 +4,23 @@
 #include "level_update.h"
 #include "math_util.h"
 #include "memory.h"
+#include "segment2.h"
 #include "save_file.h"
+#include "mario.h"
+#include "mario_actions_cutscene.h"
+#include "rendering.h"
+#include "memory.h"
+#include "transparent_texture.h"
+
+extern Gfx D_0702A880[];
+extern s16 D_80330398;
+extern s16 D_80330394;
+extern s16 D_80330390;
+extern s32 D_07019248;
+extern Gfx D_070192F0[];
+extern Gfx D_07019360[];
+extern Gfx D_070193C8[];
+extern Gfx D_07026400[];
 
 void make_vertex(Vtx *vtx, s32 n, s16 x, s16 y, s16 z, s16 tx, s16 ty, u8 r, u8 g, u8 b, u8 a)
 {

@@ -1,6 +1,30 @@
 #ifndef _MEMORY_H_
 #define _MEMORY_H_
 
+struct MemBlock
+{
+    struct MemBlock *next;
+    u32 size;
+};
+
+
+struct UnknownMemoryStruct2
+{
+    u32 unk0;
+    u32 unk4;
+    struct MemBlock *unk8;
+};
+
+extern u32 gMemPoolStart;
+extern u32 gMemPoolEnd;
+extern u32 gPoolSize;
+//extern u32 gPoolListHeadL;
+//extern u32 gPoolListHeadR;
+//extern void *gPoolState;
+extern u8 D_801C1000[];
+extern u8 _engineSegmentRomStart[];
+extern u8 _engineSegmentRomEnd[];
+
 extern int set_segment_base_addr(int segment, void *addr);
 extern int get_segment_base_addr(int segment);
 extern void *segmented_to_virtual(void *addr);

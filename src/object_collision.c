@@ -1,6 +1,11 @@
 #include <ultra64.h>
 
 #include "sm64.h"
+#include "mario.h"
+#include "map_info.h"
+#include "spawn_object.h"
+
+extern u8 D_80336C50[];  // unknown type
 
 struct Object *Unknown802C8460(struct Object *a)
 {

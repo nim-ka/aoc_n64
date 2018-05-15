@@ -1,9 +1,17 @@
 #include <ultra64.h>
 
 #include "sm64.h"
+#include "decompress.h"
 #include "game.h"
 #include "main.h"
 #include "memory.h"
+
+struct UnknownMemoryStruct3
+{
+    u32 unk0;
+    void *unk4;
+    void *unkC;
+};
 
 // round up to the next multiple
 #define ALIGN4(val)  (((val) + 0x3) & ~0x3)

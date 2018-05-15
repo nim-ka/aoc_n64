@@ -2,6 +2,12 @@
 
 #include "sm64.h"
 #include "math_util.h"
+#include "surface_collision.h"
+#include "mario.h"
+#include "audio_interface_2.h"
+#include "display.h"
+#include "interaction.h"
+#include "mario_step.h"
 
 static s16 sMovingSandSpeeds[] = { 12, 8, 4, 0 };
 

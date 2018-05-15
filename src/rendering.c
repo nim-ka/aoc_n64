@@ -5,7 +5,30 @@
 #include "main.h"
 #include "math_util.h"
 #include "memory.h"
+#include "display.h"
+#include "graph_node.h"
+#include "level_script.h"
+#include "object_list_processor.h"
+#include "surface_collision.h"
+#include "ingame_menu.h"
+#include "screen_transition.h"
+#include "level_update.h"
+#include "mario.h"
+#include "mario_actions_cutscene.h"
+#include "rotate.h"
+#include "print.h"
+#include "hud.h"
+#include "sound_init.h"
+#include "audio_interface_2.h"
 #include "rendering.h"
+
+struct Struct8032CE60
+{
+    u8 unk0;
+    u8 filler1[0xB];
+    s8 unkC;
+    s8 unkD;
+};
 
 struct Struct8032CF90
 {
@@ -308,7 +331,7 @@ extern struct Struct8032CFA4 *D_8032CFA4;
 
 extern struct Struct8027B6C4 *D_8032CF98;
 
-extern Mtx4x4f D_8033A778[];
+extern Mat4 D_8033A778[];
 
 extern struct Struct8027B9A8 *D_8032CF9C;
 
@@ -1163,7 +1186,7 @@ void func_8027CB08(struct Struct8027CB08 *a)
 
 extern float D_80335DF8;
 
-int func_8027CF68(struct Struct8027D14C *a, Mtx4x4f b)
+int func_8027CF68(struct Struct8027D14C *a, Mat4 b)
 {
     s16 spE;
     s16 spC;
@@ -1192,7 +1215,7 @@ int func_8027CF68(struct Struct8027D14C *a, Mtx4x4f b)
 
 void func_8027D14C(struct Struct8027D14C *a)
 {
-    Mtx4x4f sp30;
+    Mat4 sp30;
     int sp2C = (a->unk2 & 0x20) != 0;
 
     if (a->unk18 == D_8032CF90->unk14)
@@ -1257,7 +1280,7 @@ void func_8027D460(struct Struct8027D460 *a)
 
 void func_8027D4D4(struct Struct8027D4D4 *a)
 {
-    Mtx4x4f sp30;
+    Mat4 sp30;
     Vec3f sp24;
     UNUSED s16 *sp20 = alloc_display_list(64);
 

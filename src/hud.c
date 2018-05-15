@@ -1,6 +1,7 @@
 #include <ultra64.h>
 
 #include "sm64.h"
+#include "level_functions.h"
 
 /*static*/ extern struct Object D_8035FB18;
 

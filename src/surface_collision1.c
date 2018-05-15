@@ -2,6 +2,10 @@
 
 #include "level_update.h"
 #include "sm64.h"
+#include "map_info.h"
+#include "camera.h"
+#include "mario.h"
+#include "behavior_script.h"
 #include "surface_collision.h"
 
 s32 func_80380E8C(struct WallCollisionData *collision);

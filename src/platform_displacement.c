@@ -2,6 +2,14 @@
 
 #include "sm64.h"
 #include "math_util.h"
+#include "level_functions.h"
+#include "mario.h"
+#include "behavior_script.h"
+#include "level_update.h"
+#include "surface_collision.h"
+#include "platform_displacement.h"
+
+extern u16 D_8032FEC0;
 
 /**
  * Determine if mario is standing on a platform object, meaning that he is

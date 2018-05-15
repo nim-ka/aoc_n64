@@ -1,13 +1,20 @@
 #include <ultra64.h>
 
 #include "sm64.h"
+#include "audio_interface_2.h"
 #include "game.h"
-#include "level_update.h"
 #include "main.h"
 #include "math_util.h"
 #include "rendering.h"
 #include "save_file.h"
-
+#include "sound_init.h"
+#include "mario.h"
+#include "camera.h"
+#include "object_list_processor.h"
+#include "ingame_menu.h"
+#include "obj_behaviors.h"
+#include "display.h"
+#include "level_update.h"
 
 #define PLAY_MODE_NORMAL        0
 #define PLAY_MODE_PAUSED        2
@@ -29,7 +36,6 @@
 #define WARP_NODE_CREDITS_END   0xFA
 
 #define WARP_NODE_CREDITS_MIN 0xF8
-
 
 static const char *creditsGameDirector[]        = { "1GAME DIRECTOR", "SHIGERU MIYAMOTO" };
 static const char *creditsAssistantDirectors[]  = { "2ASSISTANT DIRECTORS", "YOSHIAKI KOIZUMI", "TAKASHI TEZUKA" };

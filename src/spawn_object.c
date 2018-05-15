@@ -3,6 +3,14 @@
 #include "sm64.h"
 #include "math_util.h"
 #include "rendering.h"
+#include "geo_layout.h"
+#include "graph_node.h"
+#include "level_functions.h"
+#include "behavior_script.h"
+#include "surface_collision.h"
+#include "audio_interface_2.h"
+#include "level_update.h"
+#include "spawn_object.h"
 
 struct LinkedList
 {

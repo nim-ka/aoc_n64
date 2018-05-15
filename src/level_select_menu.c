@@ -7,6 +7,10 @@
 #include "memory.h"
 #include "rendering.h"
 #include "save_file.h"
+#include "audio_interface_2.h"
+#include "level_update.h"
+#include "sound_init.h"
+#include "print.h"
 
 #define PRESS_START_DEMO_TIMER 800
 

@@ -3,6 +3,17 @@
 #include "sm64.h"
 #include "behavior_script.h"
 #include "memory.h"
+#include "graph_node.h"
+#include "surface_collision.h"
+#include "level_functions.h"
+#include "mario.h"
+#include "display.h"
+#include "obj_behaviors_2.h"
+
+extern u32 *gBehCommand;
+extern u16 gRandomSeed16;
+extern u32 D_13004FB4[];
+extern u32 D_130032C0[];
 
 void func_80383B70(u32 segptr)
 {
