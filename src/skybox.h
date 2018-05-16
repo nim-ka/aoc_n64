@@ -3,8 +3,6 @@
 
 #include "types.h"
 
-// extern ? gSkyboxColors;
-
 // extern ? func_802CEAD0(?);
 // extern ? func_802CEBBC(?);
 // extern ? func_802CEC9C(?);

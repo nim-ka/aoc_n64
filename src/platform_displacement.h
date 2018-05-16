@@ -3,8 +3,6 @@
 
 #include "types.h"
 
-extern struct Object *gMarioPlatform;
-
 extern void update_mario_platform(void);
 extern void get_mario_pos(f32 *, f32 *, f32 *);
 extern void set_mario_pos(f32, f32, f32);

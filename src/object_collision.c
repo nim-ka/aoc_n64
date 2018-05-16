@@ -5,8 +5,6 @@
 #include "map_info.h"
 #include "spawn_object.h"
 
-extern u8 D_80336C50[];  // unknown type
-
 struct Object *Unknown802C8460(struct Object *a)
 {
     struct Object *sp24;
@@ -15,7 +13,7 @@ struct Object *Unknown802C8460(struct Object *a)
 
     for (i = 0; i < a->numCollidedObjs; i++)
     {
-        func_802C9AD8(D_80336C50, 0);
+        func_802C9AD8("ON", 0);
         sp24 = a->collidedObjs[i];
         if (sp24 != gMarioObject)
             return sp24;

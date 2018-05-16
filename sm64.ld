@@ -102,7 +102,7 @@ SECTIONS
       build/src/mario_actions_submerged.o(.data*);
       build/data/mario_actions_object.data.o(.data*);
       build/data/castle_message_behaviors.data.o(.data*);
-      build/data/memory.data.o(.data*);
+      build/src/memory.o(.data*);
       build/src/save_file.o(.data*);
       build/data/save_file.data.o(.data*);
       build/src/rendering.o(.data*);
@@ -111,13 +111,16 @@ SECTIONS
       build/data/camera_before.data.o(.data*);
       build/src/camera.o(.data*);
       build/data/camera.data.o(.data*);
+      build/src/platform_displacement.o(.data*);
       build/data/mapinfo.data.o(.data*);
       build/data/screen_transition.data.o(.data*);
-      build/data/skybox.data.o(.data*);
+      build/data/rotate.data.o(.data*);
+      build/src/skybox.o(.data*);
       build/data/moving_texture.data.o(.data*);
-      build/data/transparent_texture.data.o(.data*);
+      build/src/transparent_texture.o(.data*);
       build/src/print.o(.data*);
       build/data/ingame_menu.data.o(.data*);
+      build/src/hud.o(.data*);
       build/data/hud.data.o(.data*);
       build/data/obj_behaviors_1.data.o(.data*);
       build/data/obj_behaviors_2.data.o(.data*);
@@ -143,7 +146,7 @@ SECTIONS
       build/src/camera.o(.rodata*);
       build/data/camera.rodata.o(.rodata*);
       build/data/level_functions.rodata.o(.rodata*);
-      build/data/object_collision.rodata.o(.rodata*);
+      build/src/object_collision.o(.rodata*);
       build/src/spawn_object.o(.rodata*);
       build/data/mapinfo.rodata.o(.rodata*);
       build/data/screen_transition.rodata.o(.rodata*);
@@ -182,9 +185,9 @@ SECTIONS
       /* data */
       build/data/graph_node.data.o(.data*);
       build/data/math_util.data.o(.data*);
-      build/data/geo_layout.data.o(.data*);
+      build/src/geo_layout.o(.data*);
       build/data/level_script.data.o(.data*);
-      build/data/behavior_script.data.o(.data*);
+      build/src/behavior_script.o(.data*);
       /* rodata */
       build/src/math_util.o(.rodata*);
       build/data/level_script.rodata.o(.rodata*);

@@ -20,7 +20,6 @@ extern u32 gMemPoolEnd;
 extern u32 gPoolSize;
 //extern u32 gPoolListHeadL;
 //extern u32 gPoolListHeadR;
-//extern void *gPoolState;
 extern u8 D_801C1000[];
 extern u8 _engineSegmentRomStart[];
 extern u8 _engineSegmentRomEnd[];

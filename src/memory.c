@@ -6,6 +6,14 @@
 #include "main.h"
 #include "memory.h"
 
+struct PoolState
+{
+    u32 poolSize;
+    struct PoolMemBlock *listHeadL;
+    struct PoolMemBlock *listHeadR;
+    void *prev;
+};
+
 struct UnknownMemoryStruct3
 {
     u32 unk0;
@@ -13,12 +21,23 @@ struct UnknownMemoryStruct3
     void *unkC;
 };
 
+struct PoolMemBlock
+{
+    struct PoolMemBlock *prev;
+    struct PoolMemBlock *next;
+};
+
+extern struct PoolMemBlock *gPoolListHeadL;
+extern struct PoolMemBlock *gPoolListHeadR;
+
 // round up to the next multiple
 #define ALIGN4(val)  (((val) + 0x3) & ~0x3)
 #define ALIGN8(val)  (((val) + 0x7) & ~0x7)
 #define ALIGN16(val) (((val) + 0xF) & ~0xF)
 
 extern u32 gSegmentTable[];
+
+static struct PoolState *gPoolState = NULL;
 
 int set_segment_base_addr(int segment, void *addr)
 {
@@ -53,15 +72,6 @@ void MovePtrTbl2Dmem(void)
     for (i = 0; i < 16; i++)
         gMoveWd(gDisplayListHead++, 6, i * 4, gSegmentTable[i]);
 }
-
-struct PoolMemBlock
-{
-    struct PoolMemBlock *prev;
-    struct PoolMemBlock *next;
-};
-
-extern struct PoolMemBlock *gPoolListHeadL;
-extern struct PoolMemBlock *gPoolListHeadR;
 
 void InitMemPool(u32 start, u32 end)
 {
@@ -149,16 +159,6 @@ u32 PoolAvailable(void)
 {
     return gPoolSize - 16;
 }
-
-struct PoolState
-{
-    u32 poolSize;
-    struct PoolMemBlock *listHeadL;
-    struct PoolMemBlock *listHeadR;
-    void *prev;
-};
-
-extern struct PoolState *gPoolState;
 
 u32 PushPoolState(void)
 {

@@ -9,7 +9,11 @@
 #include "surface_collision.h"
 #include "platform_displacement.h"
 
-extern u16 D_8032FEC0;
+u16 D_8032FEC0 = 0;
+
+u32 unused_8032FEC4[4] = {0};
+
+struct Object *gMarioPlatform = NULL;
 
 /**
  * Determine if mario is standing on a platform object, meaning that he is

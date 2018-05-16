@@ -15,9 +15,6 @@
 #define cur_geo_cmd_u32(offset) \
     (*(u32 *) &gGeoLayoutCommand[offset])
 
-typedef void (*GeoLayoutCommandProc)(void);
-extern GeoLayoutCommandProc GeoLayoutJumpTable[];
-
 extern struct Struct80278464 *D_8038BCA0;
 extern struct SceneGraphNode *D_8038BCA4;
 extern struct SceneGraphNode **D_8038BCAC;
@@ -30,6 +27,11 @@ extern s16 gGeoLayoutStackIndex;
 extern s16 D_8038BD7E;
 extern u8 *gGeoLayoutCommand;
 extern u8 D_8038BD88[];
+
+extern u32 D_8038B8A0;
+extern u16 D_8038B8A4;
+extern u16 D_8038B8A8;
+extern s16 D_8038B8AC;
 
 void GeoLayout00(void);
 void GeoLayout01(void);

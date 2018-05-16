@@ -28,8 +28,17 @@ struct Struct8032FFC8
 
 // TODO: These should be defined here
 extern struct Struct8035FF50 D_8035FF50[];
-extern u8 gSkyboxColors[][3];
-extern u32 D_8032FFA0[];
+u32 D_8032FFA0[10] = 
+{ 
+    0x0A020000, 0x0A018800, 0x0A020000, 0x0A020000, 
+    0x0A020000, 0x0A020000, 0x0A014800, 0x0A020000,
+    0x0A014800, 0x0A020000,
+};
+u8 gSkyboxColors[][3] = 
+{
+    { 0x50, 0x64, 0x5A },
+    { 0xFF, 0xFF, 0xFF },
+};
 
 //! double literals are used instead of floats
 

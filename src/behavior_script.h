@@ -19,9 +19,6 @@
 #define cur_object_or_s32(offset, value)  *(s32*)_object_offset(gCurrentObject, offset) |= (s32)(value)
 
 #define object_and_s32(object, offset, value) *(s32*)_object_offset(object, offset) &= (s32)(value)
-
-typedef s32 (*BehCommandProc)(void);
-extern BehCommandProc BehaviorJumpTable[];
 extern struct Object *gCurrentObject;
 
 u16 RandomU16(void);

@@ -3,17 +3,6 @@
 
 .section .data
 
-#hud
-glabel D_803306D0
-	.incbin "bin/sm64.j.0EADAC.bin", 0x924, 0xB70
-
-# Struct members of D_803306D0
-#glabel D_803306D4
-#	.incbin "bin/sm64.j.0EADAC.bin", 0x928, 0x2
-#
-#glabel D_803306D6
-#	.incbin "bin/sm64.j.0EADAC.bin", 0x92A, 0xB6A
-
 glabel D_80331240
 	.incbin "bin/sm64.j.0EADAC.bin", 0x1494, 0x1
 

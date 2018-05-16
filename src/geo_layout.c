@@ -6,6 +6,52 @@
 #include "memory.h"
 #include "graph_node.h"
 
+typedef void (*GeoLayoutCommandProc)(void);
+
+GeoLayoutCommandProc GeoLayoutJumpTable[] = 
+{
+    GeoLayout00,
+    GeoLayout01,
+    GeoLayout02,
+    GeoLayout03,
+    GeoLayout04,
+    GeoLayout05,
+    GeoLayout06,
+    GeoLayout07,
+    GeoLayout08,
+    GeoLayout09,
+    GeoLayout0A,
+    GeoLayout0B,
+    GeoLayout0C,
+    GeoLayout0D,
+    GeoLayout0E,
+    GeoLayout0F,
+    GeoLayout10,
+    GeoLayout11,
+    GeoLayout12,
+    GeoLayout13,
+    GeoLayout14,
+    GeoLayout15,
+    GeoLayout16,
+    GeoLayout17,
+    GeoLayout18,
+    GeoLayout19,
+    GeoLayout1A,
+    GeoLayout1B,
+    GeoLayout1C,
+    GeoLayout1D,
+    GeoLayout1E,
+    GeoLayout1F,
+    GeoLayout20,
+};
+
+u32 unused_8038B894[3] = { 0 }; 
+
+u32 D_8038B8A0 = 0;
+u16 D_8038B8A4 = 0;
+u16 D_8038B8A8 = 0;
+s16 D_8038B8AC = -1;
+
 void GeoLayout00(void)
 {
     gGeoLayoutStack[gGeoLayoutStackIndex++] = (u32) &gGeoLayoutCommand[8];
