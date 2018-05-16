@@ -9,27 +9,29 @@
 
 #intro geo (all data)
 glabel D_801A7B30
-	.incbin "bin/sm64.j.255EC0.bin", 0x440, 0x10
+   .word 0x0A000130, 0x0A000148, 0x0A000160, 0x0A000178 
 
 glabel D_801A7B40
-	.incbin "bin/sm64.j.255EC0.bin", 0x450, 0x30
+   .float   0.0,  80.0, 160.0, 240.0
+   .float   0.0,  80.0, 160.0, 240.0
+   .float   0.0,  80.0, 160.0, 240.0
 
 glabel D_801A7B70
-	.incbin "bin/sm64.j.255EC0.bin", 0x480, 0x30
+   .float 160.0, 160.0, 160.0, 160.0
+   .float  80.0,  80.0,  80.0,  80.0
+   .float   0.0,   0.0,   0.0,   0.0
 
 glabel D_801A7BA0
-	.incbin "bin/sm64.j.255EC0.bin", 0x4B0, 0x8
+   .word 0x0A0065C0, 0x0A0065D0
 
 glabel D_801A7BA8
-	.word 0
-	.word 0
-	.word 0
+   .byte 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 
 glabel D_801A7BB4
-	.word D_801A7BA8
+   .word D_801A7BA8
 
 glabel D_801A7BB8
-	.incbin "bin/sm64.j.255EC0.bin", 0x4C8, 0xC
+   .byte 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01
 
 glabel D_801A7BC4
-	.incbin "bin/sm64.j.255EC0.bin", 0x4D4, 0xC
+   .byte 0x00, 0x01, 0x02, 0x03, 0x07, 0x0b, 0x0a, 0x09, 0x08, 0x04, 0x05, 0x06

@@ -409,6 +409,17 @@ typedef union
     _g->words.w1 = (image);                            \
 }
 
+#define gDPSetTileSize(pkt, tile, uls, ult, lrs, lrt) \
+{                                                     \
+    Gfx *_g = (Gfx *)(pkt);                           \
+    _g->words.w0 = _SHIFTL(0xF2, 24, 8)               \
+                 | _SHIFTL(uls, 12, 12)               \
+                 | _SHIFTL(ult, 0, 12);               \
+    _g->words.w1 = _SHIFTL(tile, 24, 3)               \
+                 | _SHIFTL(lrs, 12, 12)               \
+                 | _SHIFTL(lrt, 0, 12);               \
+}
+
 #define gDPLoadBlock(pkt, tile, uls, ult, lrs, dxt)                  \
 {                                                                    \
     Gfx *_g = (Gfx *)(pkt);                                          \
@@ -463,7 +474,7 @@ typedef union
                  | _SHIFTL((fmt),     21,  3)          \
                  | _SHIFTL((size),    19,  2)          \
                  | _SHIFTL((width)-1,  0, 12);         \
-    _g->words.w1 = (img);                              \
+    _g->words.w1 = (u32)(img);                         \
 }
 
 #define gMoveWd(pkt, index, offset, data)     \

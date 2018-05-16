@@ -121,13 +121,13 @@ game_over_level:
 .word     0x04000000
 .word       0x0F000000, 0x00000000, 0x0C800000, 0x00000000, 0x00000000
 .word       0x04000000
-.word         0x18000000, Geo18_8016F670
+.word         0x18000000, geo18_title_screen
 .word       0x05000000
 .word     0x05000000
 .word   0x05000000
 .word   0x0C000000
 .word   0x04000000
-.word     0x18000000, Geo18_8016F984
+.word     0x18000000, geo18_fade_transition
 .word   0x05000000
 .word 0x05000000
 .word 0x01000000
@@ -137,7 +137,7 @@ game_over_level:
 .word   0x04000000
 .word     0x09000064
 .word     0x04000000
-.word       0x18000000, Geo18_8016FE70
+.word       0x18000000, geo18_intro_backdrop
 .word     0x05000000
 .word   0x05000000
 .word   0x0C010000
@@ -155,7 +155,7 @@ game_over_level:
 .word   0x04000000
 .word     0x09000064
 .word     0x04000000
-.word       0x18000000, Geo18_8016FFFC
+.word       0x18000000, geo18_backdrop_tile
 .word     0x05000000
 .word   0x05000000
 .word   0x0C010000
@@ -173,7 +173,7 @@ game_over_level:
 .word   0x04000000
 .word     0x09000064
 .word     0x04000000
-.word       0x18000000, Geo18_8016FE70
+.word       0x18000000, geo18_intro_backdrop
 .word     0x05000000
 .word   0x05000000
 .word   0x0C010000

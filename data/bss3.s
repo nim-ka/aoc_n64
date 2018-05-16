@@ -7,9 +7,9 @@ glabel D_801B9850
     .space 0x4
 glabel D_801B9854
     .space 0x4
-glabel D_801B9858
+glabel gIntroFrameCounter
     .space 0x4
-glabel D_801B985C
+glabel gGeoFadeCounter
     .space 0x4
 glabel D_801B9860
     .space 0x38

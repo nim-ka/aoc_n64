@@ -2484,10 +2484,10 @@ ranges:
 # Order does not matter
 labels:
    - [0x8016F508, "LevelProc_8016F508"]
-   - [0x8016F5D0, "Geo18_8016F670"]
-   - [0x8016F8E4, "Geo18_8016F984"]
-   - [0x8016FDD0, "Geo18_8016FE70"]
-   - [0x8016FF5C, "Geo18_8016FFFC"]
+   - [0x8016F5D0, "geo18_title_screen"]
+   - [0x8016F8E4, "geo18_fade_transition"]
+   - [0x8016FDD0, "geo18_8016FE70"]
+   - [0x8016FF5C, "geo18_backdrop_tile"]
    - [0x801701E0, "BehYellowBackgroundMenuInit"]
    - [0x80170218, "BehYellowBackgroundMenuLoop"]
    - [0x80170A4C, "BehMenuGrowingButtonInit"]

@@ -201,7 +201,7 @@ extern float sqrtf(float);
 // extern ? cosf(?);
 // extern ? sinf(?);
 // extern ? Unknown80324710(?);
-// extern ? func_80324758(?);
+extern void func_80324758(Mtx*, float, float, float);
 // extern ? guRotateRPYF(?);
 // extern ? guRotateRPY(?);
 // extern ? guScaleF(?);

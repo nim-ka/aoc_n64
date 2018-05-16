@@ -216,7 +216,7 @@ SECTIONS
    BEGIN_SEG(goddard, __segCodeSection)
    {
       build/src/level_select_menu.o(.text);
-      build/asm/intro_geo.o(.text);
+      build/src/intro_geo.o(.text);
       build/asm/file_select.o(.text);
       build/src/star_select.o(.text);
       build/asm/debug_memory.o(.text);

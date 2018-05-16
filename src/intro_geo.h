@@ -1,19 +1,18 @@
 #ifndef _INTRO_GEO_H
 #define _INTRO_GEO_H
 
-// extern ? D_801B9858;
-// extern ? D_801B985C;
-// extern ? D_0A000118;
-// extern ? D_0A000100;
-// extern ? D_0A000190;
-// extern ? D_801B9850;
-// extern ? D_801B9854;
-// extern ? D_801A7BB8;
+extern u8 D_0A000118[];
+extern Gfx D_0A000100[];
+extern Gfx D_0A000190[];
+extern u32   D_801A7B30[];
+extern float D_801A7B40[];
+extern float D_801A7B70[];
+extern Gfx  *D_801A7BA0[];
 
-// extern ? Geo18_8016F670(?);
-// extern ? Geo18_8016F984(?);
-// extern ? func_8016FB10(?);
-// extern ? Geo18_8016FE70(?);
-// extern ? Geo18_8016FFFC(?);
+Gfx *geo18_title_screen(u32 a0, struct SceneGraphNode *a1, UNUSED u32 a2);
+Gfx *geo18_fade_transition(u32 a0, struct SceneGraphNode *a1, UNUSED u32 a2);
+Gfx *intro_backdrop_one_image(u32 index, s8 *backdrop_table);
+Gfx *geo18_intro_backdrop(u32 a0, struct SceneGraphNode *a1, UNUSED u32 a2);
+Gfx *geo18_backdrop_tile(u32 a0, struct SceneGraphNode *a1, UNUSED u32 a2);
 
 #endif /* _INTRO_GEO_H */

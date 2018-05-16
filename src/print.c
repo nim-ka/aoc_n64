@@ -609,7 +609,6 @@ void *func_802D3CF0(int a, s16 b, s16 c, s16 *d, s16 e, s16 f, u8 g)
 // guTranslate?
 extern void func_80324758(Mtx *, float, float, float);
 void guRotateRPY(void *, float, float, float, float);
-extern void guScale(void *, float, float, float);
 
 Gfx *func_802D43FC(struct Struct802D1F94 *a)
 {
