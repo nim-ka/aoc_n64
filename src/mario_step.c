@@ -223,7 +223,9 @@ u32 mario_update_windy_ground(struct MarioState *m)
         m->vel[0] += pushSpeed * sins(pushAngle);
         m->vel[2] += pushSpeed * coss(pushAngle);
 
+#if !VERSION_US
         SetSound(0x40108001, &m->marioObj->gfx.unk54);
+#endif
         return 1;
     }
 
@@ -643,7 +645,9 @@ static void apply_vertical_wind(struct MarioState *m)
                     m->vel[1] = maxVelY;
             }
 
+#if !VERSION_US
             SetSound(0x40108001, &m->marioObj->gfx.unk54);
+#endif
         }
     }
 }

@@ -218,11 +218,11 @@ void func_8024980C(u32 arg)
     case 0x83:
         gotAchievement = save_file_get_flags() & SAVE_FLAG_HAVE_WING_CAP;
         break;
-    
+
     case 0xFF:
         gotAchievement = TRUE;
         break;
-    
+
     default:
         gotAchievement = save_file_get_star_flags(gCurrSaveFileNum - 1, gCurrCourseNum - 1);
         break;
@@ -298,17 +298,17 @@ static void init_mario_after_warp(void)
 {
     struct ObjectWarpNode *spawnNode = func_8027A418(sDestWarpNodeId);
     u32 marioSpawnType = func_8027A38C(spawnNode->object);
-    
+
     if (gMarioState->action != ACT_UNINITIALIZED)
     {
         D_8033A140.marioStartPos[0] = (s16) spawnNode->object->pos[0];
         D_8033A140.marioStartPos[1] = (s16) spawnNode->object->pos[1];
         D_8033A140.marioStartPos[2] = (s16) spawnNode->object->pos[2];
-        
+
         D_8033A140.marioStartAngle[0] = 0;
         D_8033A140.marioStartAngle[1] = spawnNode->object->angle[1];
         D_8033A140.marioStartAngle[2] = 0;
-        
+
         if (marioSpawnType == MARIO_SPAWN_UNKNOWN_01)
             func_8024992C(&D_8033A140, sWarpArg);
 
@@ -343,10 +343,10 @@ static void init_mario_after_warp(void)
     if (gCurrDemoInput == NULL)
     {
         func_80249148(D_8032CE6C->unk36, D_8032CE6C->unk38, 0);
-        
+
         if (gMarioState->flags & MARIO_METAL_CAP)
             func_80249368(0x0000040F);
-        
+
         if (gMarioState->flags & (MARIO_VANISH_CAP | MARIO_WING_CAP))
             func_80249368(0x0000040E);
 
@@ -400,7 +400,7 @@ static void func_8024A094(void)
     gCurrLevelNum = sDestLevelNum;
 
     level_control_timer(TIMER_CONTROL_HIDE);
-    
+
     func_8027A894(sDestAreaIndex);
     init_mario_after_warp();
 }
@@ -433,7 +433,7 @@ static void func_8024A0E0(void)
         gCurrCreditsEntry->marioPos[0],
         gCurrCreditsEntry->marioPos[1],
         gCurrCreditsEntry->marioPos[2]);
-    
+
     vec3s_set(
         D_8033A140.marioStartAngle,
         0,
@@ -506,12 +506,43 @@ static void check_endless_staircase(void)
 
 static s16 func_8024A48C(s16 arg)
 {
+#if BUGFIX_KOOPA_RACE_MUSIC
+
     struct ObjectWarpNode *warpNode = func_8027A418(arg);
     s16 levelNum = warpNode->node.destLevel & 0x7F;
-    
+    s16 destArea = warpNode->node.destArea;
+    s16 val4 = TRUE;
+    s16 sp2C;
+
+    if (levelNum == 9 && levelNum == gCurrLevelNum && destArea == D_8033A75A)
+    {
+        sp2C = func_80320E98();
+        if (sp2C == 1166 || sp2C == 1038)
+            val4 = 0;
+    }
+    else
+    {
+        u16 val8 = D_8032CE68[destArea].unk36;
+        u16 val6 = D_8032CE68[destArea].unk38;
+
+        val4 =
+            levelNum == gCurrLevelNum &&
+            val8 == D_8032CE6C->unk36 &&
+            val6 == D_8032CE6C->unk38;
+
+        if (func_80320E98() != val6)
+            val4 = FALSE;
+    }
+    return val4;
+
+#else
+
+    struct ObjectWarpNode *warpNode = func_8027A418(arg);
+    s16 levelNum = warpNode->node.destLevel & 0x7F;
+
     u16 val8 = D_8032CE68[warpNode->node.destArea].unk36;
     u16 val6 = D_8032CE68[warpNode->node.destArea].unk38;
-    
+
     s16 val4 =
         levelNum == gCurrLevelNum &&
         val8 == D_8032CE6C->unk36 &&
@@ -519,8 +550,9 @@ static s16 func_8024A48C(s16 arg)
 
     if (func_80320E98() != val6)
         val4 = FALSE;
-     
     return val4;
+
+#endif
 }
 
 /**
@@ -683,6 +715,9 @@ s16 level_trigger_warp(struct MarioState *m, s32 warpOp)
             sDelayedWarpTimer = 30;
             sSourceWarpNodeId = WARP_NODE_F2;
             func_8027ABF0(0x01, 0x1E, 0xFF, 0xFF, 0xFF);
+#if VERSION_US
+            SetSound(0x701EFF81, D_803320E0);
+#endif
             break;
 
         case WARP_OP_UNKNOWN_02: // bbh enter
@@ -789,7 +824,7 @@ static void initiate_delayed_warp(void)
                     WARP_NODE_CREDITS_START,
                     0);
                 break;
-            
+
             case WARP_OP_CREDITS_NEXT:
                 func_803208C0(2, 0x3FF);
 
@@ -799,7 +834,7 @@ static void initiate_delayed_warp(void)
                     destWarpNode = WARP_NODE_CREDITS_END;
                 else
                     destWarpNode = WARP_NODE_CREDITS_NEXT;
-                
+
                 initiate_warp(
                     gCurrCreditsEntry->levelNum,
                     gCurrCreditsEntry->areaIndex,
@@ -809,13 +844,13 @@ static void initiate_delayed_warp(void)
 
             default:
                 warpNode = func_8027A418(sSourceWarpNodeId);
-                
+
                 initiate_warp(
                     warpNode->node.destLevel & 0x7F,
                     warpNode->node.destArea,
                     warpNode->node.destNode,
                     sDelayedWarpArg);
-                
+
                 func_8027A100(&warpNode->node);
                 if (sCurrWarpType != WARP_TYPE_CHANGE_LEVEL)
                     level_set_transition(2, NULL);
@@ -830,7 +865,7 @@ static void update_hud_values(void)
     if (gCurrCreditsEntry == NULL)
     {
         s16 numHealthWedges = gMarioState->health > 0 ? gMarioState->health >> 8 : 0;
- 
+
         if (gCurrCourseNum > 0)
             gHudDisplayFlags |= 0x0002;
         else
@@ -845,7 +880,7 @@ static void update_hud_values(void)
                     coinSound = 0x38128081;
                 else
                     coinSound = 0x38118081;
-                
+
                 gDisplayedCoins += 1;
                 SetSound(coinSound, &gMarioState->marioObj->gfx.unk54);
             }
@@ -854,8 +889,16 @@ static void update_hud_values(void)
         if (gMarioState->numLives > 100)
             gMarioState->numLives = 100;
 
+#if BUGFIX_MAX_LIVES
+        if (gMarioState->numCoins > 999)
+            gMarioState->numCoins = 999;
+
+        if (gDisplayedCoins > 999)
+            gDisplayedCoins = 999;
+#else
         if (gMarioState->numCoins > 999)
             gMarioState->numLives = (s8) 999; //! Wrong variable
+#endif
 
         gDisplayedStars = gMarioState->numStars;
         gDisplayedLives = gMarioState->numLives;
@@ -1107,7 +1150,7 @@ static s32 init_level(void)
     s32 val4 = 0;
 
     set_play_mode(PLAY_MODE_NORMAL);
-    
+
     sDelayedWarpOp = WARP_OP_NONE;
     sTransitionTimer = 0;
     D_80339EE0 = 0;
@@ -1178,7 +1221,7 @@ static s32 init_level(void)
 
 /**
  * Initialize the current level if initOrUpdate is 0, or update the level if it
- * is 1. 
+ * is 1.
  */
 s32 lvl_init_or_update(s16 initOrUpdate, UNUSED s32 arg1)
 {

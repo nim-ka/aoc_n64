@@ -83,11 +83,14 @@ SECTIONS
       build/asm/audio_playback.o(.text);
       build/asm/audio_interface_1.o(.text);
       build/asm/audio_interface_2.o(.text);
+#if VERSION_US
+      . += 0xD90;
+#endif
       build/asm/libultra.o(.text);
       /* data */
       build/data/data_8032B3F0.o(.data*);
 #if VERSION_US
-      . += 0xE50;
+      . += 0x10;
 #endif
       build/src/main.o(.data*);
       build/src/display.o(.data*);
@@ -163,6 +166,9 @@ SECTIONS
    END_SEG(main)
    BEGIN_BSS(main)
    {
+#if VERSION_US
+      . += 0x430;
+#endif
       build/src/main.o(.bss*);
       build/src/game.o(.bss*);
       build/data/bss1.o(.bss*);
@@ -288,11 +294,3 @@ SECTIONS
       *(*);
    }
 }
-
-/* TODO: Don't hardcode these addresses */
-#if VERSION_US
-gDmaMesgBuf = 0x8033AE38;
-gSIEventMesgBuf = 0x8033AEC0;
-gDmaMesgQueue = 0x8033AF60;
-gSIEventMesgQueue = 0x8033AF78;
-#endif

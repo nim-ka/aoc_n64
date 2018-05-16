@@ -844,7 +844,11 @@ static u32 interact_star_or_key(struct MarioState *m, UNUSED u32 interactType, s
         }
 
         SetSound(0x701EFF81, &m->marioObj->gfx.unk54);
-
+#if VERSION_US
+        func_80251F74(m);
+        //func_802521A0
+#endif
+        
         if (grandStar)
             return set_mario_action(m, ACT_GRABBED_GRAND_STAR, 0);
         
@@ -1368,6 +1372,9 @@ static u32 interact_hit_from_below(struct MarioState *m, UNUSED u32 interactType
             {
                 bounce_off_object(m, o, 80.0f);
                 reset_mario_pitch(m);
+#if VERSION_US
+                SetSound(0x24348081, &m->marioObj->gfx.unk54);
+#endif
                 return drop_and_set_mario_action(m, ACT_TWIRLING, 0);
             }
             else
@@ -1405,6 +1412,9 @@ static u32 interact_bounce_top(struct MarioState *m, UNUSED u32 interactType, st
             {
                 bounce_off_object(m, o, 80.0f);
                 reset_mario_pitch(m);
+#if VERSION_US
+                SetSound(0x24348081, &m->marioObj->gfx.unk54);
+#endif
                 return drop_and_set_mario_action(m, ACT_TWIRLING, 0);
             }
             else

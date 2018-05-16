@@ -596,6 +596,71 @@ glabel func_80250F50
 /* 00BFB4 80250FB4 03E00008 */  jr    $ra
 /* 00BFB8 80250FB8 00000000 */   nop   
 
+.ifdef VERSION_US
+glabel func_80250FBC
+/* 00C18C 8025118C 27BDFFE8 */  addiu $sp, $sp, -0x18
+/* 00C190 80251190 AFBF0014 */  sw    $ra, 0x14($sp)
+/* 00C194 80251194 AFA40018 */  sw    $a0, 0x18($sp)
+/* 00C198 80251198 8FAE0018 */  lw    $t6, 0x18($sp)
+/* 00C19C 8025119C 3C010002 */  lui   $at, 2
+/* 00C1A0 802511A0 8DCF0004 */  lw    $t7, 4($t6)
+/* 00C1A4 802511A4 01E1C024 */  and   $t8, $t7, $at
+/* 00C1A8 802511A8 1700002C */  bnez  $t8, .L8025125C
+/* 00C1AC 802511AC 00000000 */   nop   
+/* 00C1B0 802511B0 8FB90018 */  lw    $t9, 0x18($sp)
+/* 00C1B4 802511B4 3C010100 */  lui   $at, (0x01000882 >> 16) # lui $at, 0x100
+/* 00C1B8 802511B8 34210882 */  ori   $at, (0x01000882 & 0xFFFF) # ori $at, $at, 0x882
+/* 00C1BC 802511BC 8F28000C */  lw    $t0, 0xc($t9)
+/* 00C1C0 802511C0 15010012 */  bne   $t0, $at, .L8025120C
+/* 00C1C4 802511C4 00000000 */   nop   
+/* 00C1C8 802511C8 3C048022 */  lui   $a0, %hi(D_80226EB8) # $a0, 0x8022
+/* 00C1CC 802511CC 8C846CB8 */  lw    $a0, %lo(D_80226EB8)($a0)
+/* 00C1D0 802511D0 24010005 */  li    $at, 5
+/* 00C1D4 802511D4 8FAB0018 */  lw    $t3, 0x18($sp)
+/* 00C1D8 802511D8 0081001B */  divu  $zero, $a0, $at
+/* 00C1DC 802511DC 00004810 */  mfhi  $t1
+/* 00C1E0 802511E0 01202025 */  move  $a0, $t1
+/* 00C1E4 802511E4 8D650088 */  lw    $a1, 0x88($t3)
+/* 00C1E8 802511E8 00045400 */  sll   $t2, $a0, 0x10
+/* 00C1EC 802511EC 3C01242B */  lui   $at, (0x242B8081 >> 16) # lui $at, 0x242b
+/* 00C1F0 802511F0 34218081 */  ori   $at, (0x242B8081 & 0xFFFF) # ori $at, $at, 0x8081
+/* 00C1F4 802511F4 01402025 */  move  $a0, $t2
+/* 00C1F8 802511F8 00812021 */  addu  $a0, $a0, $at
+/* 00C1FC 802511FC 0C0C7AC0 */  jal   SetSound
+/* 00C200 80251200 24A50054 */   addiu $a1, $a1, 0x54
+/* 00C204 80251204 10000010 */  b     .L80251248
+/* 00C208 80251208 00000000 */   nop   
+.L8025120C:
+/* 00C20C 8025120C 3C048022 */  lui   $a0, %hi(D_80226EB8) # $a0, 0x8022
+/* 00C210 80251210 8C846CB8 */  lw    $a0, %lo(D_80226EB8)($a0)
+/* 00C214 80251214 24010003 */  li    $at, 3
+/* 00C218 80251218 8FAE0018 */  lw    $t6, 0x18($sp)
+/* 00C21C 8025121C 0081001B */  divu  $zero, $a0, $at
+/* 00C220 80251220 00006010 */  mfhi  $t4
+/* 00C224 80251224 01802025 */  move  $a0, $t4
+/* 00C228 80251228 8DC50088 */  lw    $a1, 0x88($t6)
+/* 00C22C 8025122C 00046C00 */  sll   $t5, $a0, 0x10
+/* 00C230 80251230 3C012400 */  lui   $at, (0x24008081 >> 16) # lui $at, 0x2400
+/* 00C234 80251234 34218081 */  ori   $at, (0x24008081 & 0xFFFF) # ori $at, $at, 0x8081
+/* 00C238 80251238 01A02025 */  move  $a0, $t5
+/* 00C23C 8025123C 00812021 */  addu  $a0, $a0, $at
+/* 00C240 80251240 0C0C7AC0 */  jal   SetSound
+/* 00C244 80251244 24A50054 */   addiu $a1, $a1, 0x54
+.L80251248:
+/* 00C248 80251248 8FAF0018 */  lw    $t7, 0x18($sp)
+/* 00C24C 8025124C 3C010002 */  lui   $at, 2
+/* 00C250 80251250 8DF80004 */  lw    $t8, 4($t7)
+/* 00C254 80251254 0301C825 */  or    $t9, $t8, $at
+/* 00C258 80251258 ADF90004 */  sw    $t9, 4($t7)
+.L8025125C:
+/* 00C25C 8025125C 10000001 */  b     .L80251264
+/* 00C260 80251260 00000000 */   nop   
+.L80251264:
+/* 00C264 80251264 8FBF0014 */  lw    $ra, 0x14($sp)
+/* 00C268 80251268 27BD0018 */  addiu $sp, $sp, 0x18
+/* 00C26C 8025126C 03E00008 */  jr    $ra
+/* 00C270 80251270 00000000 */   nop   
+.else
 glabel func_80250FBC
 /* 00BFBC 80250FBC 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 00BFC0 80250FC0 AFBF0014 */  sw    $ra, 0x14($sp)
@@ -634,6 +699,7 @@ glabel func_80250FBC
 /* 00C03C 8025103C 27BD0018 */  addiu $sp, $sp, 0x18
 /* 00C040 80251040 03E00008 */  jr    $ra
 /* 00C044 80251044 00000000 */   nop   
+.endif
 
 glabel func_80251048
 /* 00C048 80251048 27BDFFD8 */  addiu $sp, $sp, -0x28
@@ -4462,6 +4528,212 @@ glabel Unknown8025453C
 /* 00F5FC 802545FC 03E00008 */  jr    $ra
 /* 00F600 80254600 00000000 */   nop   
 
+.ifdef VERSION_US
+glabel func_80254604
+/* 00F830 80254830 27BDFFD8 */  addiu $sp, $sp, -0x28
+/* 00F834 80254834 AFBF001C */  sw    $ra, 0x1c($sp)
+/* 00F838 80254838 AFA40028 */  sw    $a0, 0x28($sp)
+/* 00F83C 8025483C AFB00018 */  sw    $s0, 0x18($sp)
+/* 00F840 80254840 240E0001 */  li    $t6, 1
+/* 00F844 80254844 AFAE0024 */  sw    $t6, 0x24($sp)
+/* 00F848 80254848 3C0F8033 */  lui   $t7, %hi(gMarioState) # $t7, 0x8033
+/* 00F84C 8025484C 8DEFD93C */  lw    $t7, %lo(gMarioState)($t7)
+/* 00F850 80254850 8DF8000C */  lw    $t8, 0xc($t7)
+/* 00F854 80254854 130000A9 */  beqz  $t8, .L80254AFC
+/* 00F858 80254858 00000000 */   nop   
+/* 00F85C 8025485C 3C198033 */  lui   $t9, %hi(gMarioState) # $t9, 0x8033
+/* 00F860 80254860 8F39D93C */  lw    $t9, %lo(gMarioState)($t9)
+/* 00F864 80254864 2401FFEF */  li    $at, -17
+/* 00F868 80254868 8F280088 */  lw    $t0, 0x88($t9)
+/* 00F86C 8025486C 85090002 */  lh    $t1, 2($t0)
+/* 00F870 80254870 01215024 */  and   $t2, $t1, $at
+/* 00F874 80254874 A50A0002 */  sh    $t2, 2($t0)
+/* 00F878 80254878 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
+/* 00F87C 8025487C 0C0950CE */  jal   func_8025410C
+/* 00F880 80254880 8C84D93C */   lw    $a0, %lo(gMarioState)($a0)
+/* 00F884 80254884 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
+/* 00F888 80254888 0C094F56 */  jal   func_80253B2C
+/* 00F88C 8025488C 8C84D93C */   lw    $a0, %lo(gMarioState)($a0)
+/* 00F890 80254890 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
+/* 00F894 80254894 0C0941FF */  jal   mario_handle_special_floors
+/* 00F898 80254898 8C84D93C */   lw    $a0, %lo(gMarioState)($a0)
+/* 00F89C 8025489C 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
+/* 00F8A0 802548A0 0C0940FC */  jal   mario_process_interactions
+/* 00F8A4 802548A4 8C84D93C */   lw    $a0, %lo(gMarioState)($a0)
+/* 00F8A8 802548A8 3C0B8033 */  lui   $t3, %hi(gMarioState) # $t3, 0x8033
+/* 00F8AC 802548AC 8D6BD93C */  lw    $t3, %lo(gMarioState)($t3)
+/* 00F8B0 802548B0 8D6C0068 */  lw    $t4, 0x68($t3)
+/* 00F8B4 802548B4 15800003 */  bnez  $t4, .L802548C4
+/* 00F8B8 802548B8 00000000 */   nop   
+/* 00F8BC 802548BC 10000093 */  b     .L80254B0C
+/* 00F8C0 802548C0 00001025 */   move  $v0, $zero
+.L802548C4:
+/* 00F8C4 802548C4 8FAD0024 */  lw    $t5, 0x24($sp)
+/* 00F8C8 802548C8 11A00049 */  beqz  $t5, .L802549F0
+/* 00F8CC 802548CC 00000000 */   nop   
+.L802548D0:
+/* 00F8D0 802548D0 3C0E8033 */  lui   $t6, %hi(gMarioState) # $t6, 0x8033
+/* 00F8D4 802548D4 8DCED93C */  lw    $t6, %lo(gMarioState)($t6)
+/* 00F8D8 802548D8 8DD0000C */  lw    $s0, 0xc($t6)
+/* 00F8DC 802548DC 320F01C0 */  andi  $t7, $s0, 0x1c0
+/* 00F8E0 802548E0 01E08025 */  move  $s0, $t7
+/* 00F8E4 802548E4 12000015 */  beqz  $s0, .L8025493Cu
+/* 00F8E8 802548E8 00000000 */   nop   
+/* 00F8EC 802548EC 24010040 */  li    $at, 64
+/* 00F8F0 802548F0 12010018 */  beq   $s0, $at, .L80254954
+/* 00F8F4 802548F4 00000000 */   nop   
+/* 00F8F8 802548F8 24010080 */  li    $at, 128
+/* 00F8FC 802548FC 1201001B */  beq   $s0, $at, .L8025496C
+/* 00F900 80254900 00000000 */   nop   
+/* 00F904 80254904 240100C0 */  li    $at, 192
+/* 00F908 80254908 1201001E */  beq   $s0, $at, .L80254984
+/* 00F90C 8025490C 00000000 */   nop   
+/* 00F910 80254910 24010100 */  li    $at, 256
+/* 00F914 80254914 12010021 */  beq   $s0, $at, .L8025499C
+/* 00F918 80254918 00000000 */   nop   
+/* 00F91C 8025491C 24010140 */  li    $at, 320
+/* 00F920 80254920 12010024 */  beq   $s0, $at, .L802549B4
+/* 00F924 80254924 00000000 */   nop   
+/* 00F928 80254928 24010180 */  li    $at, 384
+/* 00F92C 8025492C 12010027 */  beq   $s0, $at, .L802549CC
+/* 00F930 80254930 00000000 */   nop   
+/* 00F934 80254934 1000002B */  b     .L802549E4
+/* 00F938 80254938 00000000 */   nop   
+.L8025493Cu:
+/* 00F93C 8025493C 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
+/* 00F940 80254940 0C098E26 */  jal   func_8026348C
+/* 00F944 80254944 8C84D93C */   lw    $a0, %lo(gMarioState)($a0)
+/* 00F948 80254948 AFA20024 */  sw    $v0, 0x24($sp)
+/* 00F94C 8025494C 10000025 */  b     .L802549E4
+/* 00F950 80254950 00000000 */   nop   
+.L80254954:
+/* 00F954 80254954 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
+/* 00F958 80254958 0C09A655 */  jal   func_802694E8
+/* 00F95C 8025495C 8C84D93C */   lw    $a0, %lo(gMarioState)($a0)
+/* 00F960 80254960 AFA20024 */  sw    $v0, 0x24($sp)
+/* 00F964 80254964 1000001F */  b     .L802549E4
+/* 00F968 80254968 00000000 */   nop   
+.L8025496C:
+/* 00F96C 8025496C 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
+/* 00F970 80254970 0C09BEC1 */  jal   execute_airborne_action
+/* 00F974 80254974 8C84D93C */   lw    $a0, %lo(gMarioState)($a0)
+/* 00F978 80254978 AFA20024 */  sw    $v0, 0x24($sp)
+/* 00F97C 8025497C 10000019 */  b     .L802549E4
+/* 00F980 80254980 00000000 */   nop   
+.L80254984:
+/* 00F984 80254984 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
+/* 00F988 80254988 0C09D267 */  jal   execute_submerged_action
+/* 00F98C 8025498C 8C84D93C */   lw    $a0, %lo(gMarioState)($a0)
+/* 00F990 80254990 AFA20024 */  sw    $v0, 0x24($sp)
+/* 00F994 80254994 10000013 */  b     .L802549E4
+/* 00F998 80254998 00000000 */   nop   
+.L8025499C:
+/* 00F99C 8025499C 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
+/* 00F9A0 802549A0 0C0975E6 */  jal   func_8025D418
+/* 00F9A4 802549A4 8C84D93C */   lw    $a0, %lo(gMarioState)($a0)
+/* 00F9A8 802549A8 AFA20024 */  sw    $v0, 0x24($sp)
+/* 00F9AC 802549AC 1000000D */  b     .L802549E4
+/* 00F9B0 802549B0 00000000 */   nop   
+.L802549B4:
+/* 00F9B4 802549B4 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
+/* 00F9B8 802549B8 0C098174 */  jal   func_802601F8
+/* 00F9BC 802549BC 8C84D93C */   lw    $a0, %lo(gMarioState)($a0)
+/* 00F9C0 802549C0 AFA20024 */  sw    $v0, 0x24($sp)
+/* 00F9C4 802549C4 10000007 */  b     .L802549E4
+/* 00F9C8 802549C8 00000000 */   nop   
+.L802549CC:
+/* 00F9CC 802549CC 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
+/* 00F9D0 802549D0 0C09D7F8 */  jal   func_80275A30
+/* 00F9D4 802549D4 8C84D93C */   lw    $a0, %lo(gMarioState)($a0)
+/* 00F9D8 802549D8 AFA20024 */  sw    $v0, 0x24($sp)
+/* 00F9DC 802549DC 10000001 */  b     .L802549E4
+/* 00F9E0 802549E0 00000000 */   nop   
+.L802549E4:
+/* 00F9E4 802549E4 8FB80024 */  lw    $t8, 0x24($sp)
+/* 00F9E8 802549E8 1700FFB9 */  bnez  $t8, .L802548D0
+/* 00F9EC 802549EC 00000000 */   nop   
+.L802549F0:
+/* 00F9F0 802549F0 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
+/* 00F9F4 802549F4 0C0950E4 */  jal   func_80254164
+/* 00F9F8 802549F8 8C84D93C */   lw    $a0, %lo(gMarioState)($a0)
+/* 00F9FC 802549FC 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
+/* 00FA00 80254A00 0C094D62 */  jal   func_8025335C
+/* 00FA04 80254A04 8C84D93C */   lw    $a0, %lo(gMarioState)($a0)
+/* 00FA08 80254A08 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
+/* 00FA0C 80254A0C 0C094FB0 */  jal   func_80253C94
+/* 00FA10 80254A10 8C84D93C */   lw    $a0, %lo(gMarioState)($a0)
+/* 00FA14 80254A14 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
+/* 00FA18 80254A18 0C095018 */  jal   func_80253E34
+/* 00FA1C 80254A1C 8C84D93C */   lw    $a0, %lo(gMarioState)($a0)
+/* 00FA20 80254A20 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
+/* 00FA24 80254A24 0C0950AD */  jal   func_80254088
+/* 00FA28 80254A28 8C84D93C */   lw    $a0, %lo(gMarioState)($a0)
+/* 00FA2C 80254A2C 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
+/* 00FA30 80254A30 0C095162 */  jal   func_8025435C
+/* 00FA34 80254A34 8C84D93C */   lw    $a0, %lo(gMarioState)($a0)
+/* 00FA38 80254A38 3C198033 */  lui   $t9, %hi(gMarioState) # $t9, 0x8033
+/* 00FA3C 80254A3C 8F39D93C */  lw    $t9, %lo(gMarioState)($t9)
+/* 00FA40 80254A40 2401002C */  li    $at, 44
+/* 00FA44 80254A44 8F290068 */  lw    $t1, 0x68($t9)
+/* 00FA48 80254A48 852A0000 */  lh    $t2, ($t1)
+/* 00FA4C 80254A4C 15410010 */  bne   $t2, $at, .L80254A90
+/* 00FA50 80254A50 00000000 */   nop   
+/* 00FA54 80254A54 3C088033 */  lui   $t0, %hi(gMarioState) # $t0, 0x8033
+/* 00FA58 80254A58 8D08D93C */  lw    $t0, %lo(gMarioState)($t0)
+/* 00FA5C 80254A5C 00002025 */  move  $a0, $zero
+/* 00FA60 80254A60 8D0B0068 */  lw    $t3, 0x68($t0)
+/* 00FA64 80254A64 85650002 */  lh    $a1, 2($t3)
+/* 00FA68 80254A68 00056200 */  sll   $t4, $a1, 8
+/* 00FA6C 80254A6C 0C0AB930 */  jal   func_802ADC20
+/* 00FA70 80254A70 01802825 */   move  $a1, $t4
+/* 00FA74 80254A74 3C0D8033 */  lui   $t5, %hi(gMarioState) # $t5, 0x8033
+/* 00FA78 80254A78 8DADD93C */  lw    $t5, %lo(gMarioState)($t5)
+/* 00FA7C 80254A7C 3C044010 */  lui   $a0, (0x40108001 >> 16) # lui $a0, 0x4010
+/* 00FA80 80254A80 34848001 */  ori   $a0, (0x40108001 & 0xFFFF) # ori $a0, $a0, 0x8001
+/* 00FA84 80254A84 8DA50088 */  lw    $a1, 0x88($t5)
+/* 00FA88 80254A88 0C0C7AC0 */  jal   SetSound
+/* 00FA8C 80254A8C 24A50054 */   addiu $a1, $a1, 0x54
+.L80254A90:
+/* 00FA90 80254A90 3C0E8033 */  lui   $t6, %hi(gMarioState) # $t6, 0x8033
+/* 00FA94 80254A94 8DCED93C */  lw    $t6, %lo(gMarioState)($t6)
+/* 00FA98 80254A98 24010038 */  li    $at, 56
+/* 00FA9C 80254A9C 8DCF0068 */  lw    $t7, 0x68($t6)
+/* 00FAA0 80254AA0 85F80000 */  lh    $t8, ($t7)
+/* 00FAA4 80254AA4 1701000B */  bne   $t8, $at, .L80254AD4
+/* 00FAA8 80254AA8 00000000 */   nop   
+/* 00FAAC 80254AAC 24040001 */  li    $a0, 1
+/* 00FAB0 80254AB0 0C0AB930 */  jal   func_802ADC20
+/* 00FAB4 80254AB4 00002825 */   move  $a1, $zero
+/* 00FAB8 80254AB8 3C198033 */  lui   $t9, %hi(gMarioState) # $t9, 0x8033
+/* 00FABC 80254ABC 8F39D93C */  lw    $t9, %lo(gMarioState)($t9)
+/* 00FAC0 80254AC0 3C044010 */  lui   $a0, (0x40108001 >> 16) # lui $a0, 0x4010
+/* 00FAC4 80254AC4 34848001 */  ori   $a0, (0x40108001 & 0xFFFF) # ori $a0, $a0, 0x8001
+/* 00FAC8 80254AC8 8F250088 */  lw    $a1, 0x88($t9)
+/* 00FACC 80254ACC 0C0C7AC0 */  jal   SetSound
+/* 00FAD0 80254AD0 24A50054 */   addiu $a1, $a1, 0x54
+.L80254AD4:
+/* 00FAD4 80254AD4 0C09241C */  jal   func_80249040
+/* 00FAD8 80254AD8 00000000 */   nop   
+/* 00FADC 80254ADC 3C098033 */  lui   $t1, %hi(gMarioState) # $t1, 0x8033
+/* 00FAE0 80254AE0 8D29D93C */  lw    $t1, %lo(gMarioState)($t1)
+/* 00FAE4 80254AE4 8D2A0088 */  lw    $t2, 0x88($t1)
+/* 00FAE8 80254AE8 AD400134 */  sw    $zero, 0x134($t2)
+/* 00FAEC 80254AEC 3C088033 */  lui   $t0, %hi(gMarioState) # $t0, 0x8033
+/* 00FAF0 80254AF0 8D08D93C */  lw    $t0, %lo(gMarioState)($t0)
+/* 00FAF4 80254AF4 10000005 */  b     .L80254B0C
+/* 00FAF8 80254AF8 8D020008 */   lw    $v0, 8($t0)
+.L80254AFC:
+/* 00FAFC 80254AFC 10000003 */  b     .L80254B0C
+/* 00FB00 80254B00 00001025 */   move  $v0, $zero
+/* 00FB04 80254B04 10000001 */  b     .L80254B0C
+/* 00FB08 80254B08 00000000 */   nop   
+.L80254B0C:
+/* 00FB0C 80254B0C 8FBF001C */  lw    $ra, 0x1c($sp)
+/* 00FB10 80254B10 8FB00018 */  lw    $s0, 0x18($sp)
+/* 00FB14 80254B14 27BD0028 */  addiu $sp, $sp, 0x28
+/* 00FB18 80254B18 03E00008 */  jr    $ra
+/* 00FB1C 80254B1C 00000000 */   nop   
+.else
 glabel func_80254604
 /* 00F604 80254604 27BDFFD8 */  addiu $sp, $sp, -0x28
 /* 00F608 80254608 AFBF001C */  sw    $ra, 0x1c($sp)
@@ -4652,6 +4924,7 @@ glabel func_80254604
 /* 00F8B0 802548B0 27BD0028 */  addiu $sp, $sp, 0x28
 /* 00F8B4 802548B4 03E00008 */  jr    $ra
 /* 00F8B8 802548B8 00000000 */   nop   
+.endif
 
 glabel func_802548BC
 /* 00F8BC 802548BC 27BDFFD8 */  addiu $sp, $sp, -0x28
@@ -5007,6 +5280,3 @@ glabel func_80254CE0
 /* 00FE0C 80254E0C 27BD0018 */  addiu $sp, $sp, 0x18
 /* 00FE10 80254E10 03E00008 */  jr    $ra
 /* 00FE14 80254E14 00000000 */   nop   
-
-/* 00FE18 80254E18 00000000 */  nop   
-/* 00FE1C 80254E1C 00000000 */  nop   

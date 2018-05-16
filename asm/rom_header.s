@@ -12,5 +12,9 @@
 .word  0x00000000 # unknown
 .word  0x0000004E # cartridge
 .ascii "SM"       # cartridge ID
-.ascii "J"        # country
+.ifdef VERSION_US
+    .ascii "E"    # country
+.else
+    .ascii "J"    # country
+.endif
 .byte  0x00       # version

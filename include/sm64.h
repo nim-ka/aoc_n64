@@ -4,6 +4,20 @@
 // Global header for Super Mario 64
 
 #include "types.h"
+#include "config.h"
+
+// FIXME: find out what these are
+#if VERSION_US
+
+extern u32 D_U_80000300;
+extern s16 D_U_8032DDF8;
+extern s8 D_U_8033B25E;
+extern s16 D_U_8033BACA;
+
+extern int func_u_80321D5C(void);
+extern void func_u_803219AC();
+
+#endif
 
 #define ARRAY_COUNT(arr) (sizeof(arr) / sizeof(arr[0]))
 
