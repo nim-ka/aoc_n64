@@ -74,4 +74,4 @@ glabel D_8038EE9C
 glabel D_8038EEA0
     .space 0x40
 glabel gRandomSeed16
-    .space 0x920
+    .space 0x2

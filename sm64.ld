@@ -6,6 +6,8 @@ OUTPUT_ARCH (mips)
 __segPoolStart = 0x8005C000; /* the segment pool starts here. */
 __segCodeSection = 0x8016F000;
 __segPoolEnd = 0x801C1000;
+__rdramStart = 0x8038F800;
+__expansionRamStart = 0x80400000;
 
 #define BEGIN_SEG(name, addr) \
     _##name##SegmentStart = ADDR(.name); \
@@ -206,6 +208,22 @@ SECTIONS
       build/data/bss2.o(.bss*);
    }
    END_BSS(engine)
+
+   /*
+    RDRAM begins at 0x8038F800 and ends where
+	expansion RAM begins at 0x80400000;
+   */
+   . = __rdramStart;
+
+   BEGIN_BSS(rdram)
+   {
+      build/data/rdram.o(.bss*);
+   }
+   END_BSS(rdram)
+   __rdramEnd = .;
+   PROVIDE(rdramEnd = .);
+
+   ASSERT((rdramEnd <= 0x80400000), "Error: RDRAM expanded into Expansion RAM, despite Expansion RAM not being defined.")
 
    /* load MIO0 and level data at 0x001076A0 */
    BEGIN_SEG(mio0, __romPos)
