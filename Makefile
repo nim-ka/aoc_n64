@@ -49,6 +49,9 @@ SEG_S_FILES := $(foreach dir,$(BIN_DIRS),$(wildcard $(dir)/*.s)) \
 O_FILES := $(foreach file,$(C_FILES),$(BUILD_DIR)/$(file:.c=.o)) \
            $(foreach file,$(S_FILES),$(BUILD_DIR)/$(file:.s=.o))
 
+# Automatic dependency files
+DEP_FILES := $(O_FILES:.o=.d)
+
 # Segment elf files
 SEG_FILES := $(foreach file,$(SEG_S_FILES),$(BUILD_DIR)/$(file:.s=.elf))
 
@@ -161,11 +164,11 @@ $(MIO0_DIR)/%.mio0: $(BUILD_DIR)/bin/%.bin
 build/src/goddard/%.o: MIPSISET := -mips1
 
 $(BUILD_DIR)/%.o: %.c
-	@$(CC_CHECK) $<
+	@$(CC_CHECK) -MMD -MT $@ -MF $(BUILD_DIR)/$*.d $<
 	$(CC) -c $(CFLAGS) $(MIPSISET) -o $@ $<
 
 $(BUILD_DIR)/%.o: %.s $(MIO0_FILES)
-	$(AS) $(ASFLAGS) -o $@ $<
+	$(AS) $(ASFLAGS) -MD $(BUILD_DIR)/$*.d -o $@ $<
 
 $(BUILD_DIR)/$(LD_SCRIPT): $(LD_SCRIPT)
 	$(CPP) $(VERSION_CFLAGS) $< > $@
@@ -182,3 +185,5 @@ $(BUILD_DIR)/$(TARGET).objdump: $(ELF)
 
 .PHONY: all clean default diff test load
 .PRECIOUS: $(BUILD_DIR)/mio0/%.mio0 $(BUILD_DIR)/bin/%.elf
+
+-include $(DEP_FILES)
