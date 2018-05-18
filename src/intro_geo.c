@@ -147,7 +147,7 @@ Gfx *intro_backdrop_one_image(u32 index, s8 *backdrop_table)
    sp50 = segmented_to_virtual(D_801A7BA0[backdrop_table[index]]);
    func_80324758(mtx, D_801A7B40[index], D_801A7B70[index], 0);
    gSPMatrix(displayListIter++, mtx, G_MTX_LOAD | G_MTX_PUSH);
-   gSPDisplayList(displayListIter++, &D_0A000118);
+   gSPDisplayList(displayListIter++, &title_f3d_0A000118);
    for (i = 0; i < 4; ++i) {
       gDPSetTextureImage(displayListIter++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, sp50[i]);
       gDPSetTile(displayListIter++, 0, 2, 0, 0, 7, 0, 2, 6, 0, 2, 7, 0);
@@ -184,11 +184,11 @@ Gfx *geo18_intro_backdrop(u32 a0, struct GraphNode *a1, UNUSED u32 a2)
       displayListIter = displayList;
       sp44->node.flags = (sp44->node.flags & 0xFF) | 0x100;
       gSPDisplayList(displayListIter++, &seg2_f3d_014660);
-      gSPDisplayList(displayListIter++, &D_0A000100);
+      gSPDisplayList(displayListIter++, &title_f3d_0A000100);
       for (i = 0; i < 12; ++i) {
          gSPDisplayList(displayListIter++, intro_backdrop_one_image(i, backdrop_table));
       }
-      gSPDisplayList(displayListIter++, &D_0A000190);
+      gSPDisplayList(displayListIter++, &title_f3d_0A000190);
       gSPEndDisplayList(displayListIter);
    }
    return displayList;
@@ -232,11 +232,11 @@ Gfx *geo18_backdrop_tile(u32 a0, struct GraphNode *a1, UNUSED u32 a2)
       }
       sp3c->flags = (sp3c->flags & 0xFF) | 0x100;
       gSPDisplayList(displayListIter++, &seg2_f3d_014660);
-      gSPDisplayList(displayListIter++, &D_0A000100);
+      gSPDisplayList(displayListIter++, &title_f3d_0A000100);
       for (j = 0; j < 12; ++j) {
          gSPDisplayList(displayListIter++, intro_backdrop_one_image(j, D_801A7BB8));
       }
-      gSPDisplayList(displayListIter++, &D_0A000190);
+      gSPDisplayList(displayListIter++, &title_f3d_0A000190);
       gSPEndDisplayList(displayListIter);
    }
    return displayList;

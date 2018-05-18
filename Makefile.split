@@ -22,7 +22,7 @@ $(MIO0_DIR)/chuckya_shyguy_goomba.mio0 \
 $(MIO0_DIR)/doors_trees_coins.mio0 \
 $(MIO0_DIR)/intro_segment7.mio0 \
 $(MIO0_DIR)/debug_level_select.mio0 \
-$(MIO0_DIR)/mario_bg.mio0 \
+$(MIO0_DIR)/title_screen_bg.mio0 \
 $(MIO0_DIR)/main_menu_segment7.mio0 \
 $(MIO0_DIR)/water_skybox.mio0 \
 $(MIO0_DIR)/ccm_skybox.mio0 \
@@ -530,20 +530,33 @@ SEGMENT2_FILES = \
    segment2.13C58.rgba16 \
    segment2.14838.ia8
 
+TITLE_SCREEN_BG_FILES = \
+   title_screen_bg.001C0.rgba16 \
+   title_screen_bg.00E40.rgba16 \
+   title_screen_bg.01AC0.rgba16 \
+   title_screen_bg.02740.rgba16 \
+   title_screen_bg.033C0.rgba16 \
+   title_screen_bg.04040.rgba16 \
+   title_screen_bg.04CC0.rgba16 \
+   title_screen_bg.05940.rgba16
+
 TEXTURE_DIRS = \
    bin/segment2 \
+   bin/title_screen_bg \
    bin/intro_segment7 \
    bin/main_menu_segment7 \
    bin/bidw_platform_segment7 \
    bin/bifs_platform_segment7
 
 $(BUILD_DIR)/bin/segment2.o: $(addprefix $(BUILD_DIR)/bin/segment2/,$(SEGMENT2_FILES))
+$(BUILD_DIR)/bin/title_screen_bg.o: $(addprefix $(BUILD_DIR)/bin/title_screen_bg/,$(TITLE_SCREEN_BG_FILES))
 $(BUILD_DIR)/bin/intro_segment7.o: $(addprefix $(BUILD_DIR)/bin/intro_segment7/,$(INTRO_SEGMENT7_FILES))
 $(BUILD_DIR)/bin/main_menu_segment7.o: $(addprefix $(BUILD_DIR)/bin/main_menu_segment7/,$(MAIN_MENU_SEGMENT7_FILES))
 $(BUILD_DIR)/bin/bidw_platform_segment7.o: $(addprefix $(BUILD_DIR)/bin/bidw_platform_segment7/,$(BIDW_PLATFORM_SEGMENT7_FILES))
 $(BUILD_DIR)/bin/bifs_platform_segment7.o: $(addprefix $(BUILD_DIR)/bin/bifs_platform_segment7/,$(BIFS_PLATFORM_SEGMENT7_FILES))
 
 $(BUILD_DIR)/bin/segment2.elf: SEGMENT_ADDRESS := 0x02000000
+$(BUILD_DIR)/bin/title_screen_bg.elf: SEGMENT_ADDRESS := 0x0A000000
 $(BUILD_DIR)/bin/intro_segment7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/main_menu_segment7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/bidw_platform_segment7.elf: SEGMENT_ADDRESS := 0x07000000

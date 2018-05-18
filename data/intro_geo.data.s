@@ -1,15 +1,12 @@
 .include "macros.inc"
 
-
 .section .data
 
 # 0x801A76F0
 
-# Unknown region 255EC0-268020 [12160]
-
 #intro geo (all data)
 glabel D_801A7B30
-   .word 0x0A000130, 0x0A000148, 0x0A000160, 0x0A000178 
+   .word title_f3d_0A000130, title_f3d_0A000148, title_f3d_0A000160, title_f3d_0A000178 
 
 glabel D_801A7B40
    .float   0.0,  80.0, 160.0, 240.0
@@ -22,7 +19,7 @@ glabel D_801A7B70
    .float   0.0,   0.0,   0.0,   0.0
 
 glabel D_801A7BA0
-   .word 0x0A0065C0, 0x0A0065D0
+   .word mario_title_texture_table, game_over_texture_table
 
 glabel D_801A7BA8
    .byte 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00

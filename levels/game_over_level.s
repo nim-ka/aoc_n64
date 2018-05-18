@@ -25,7 +25,7 @@ game_over_level:
 .word 0x16100000, run_press_start_demo_timer, _goddardSegmentRomStart, game_over_level
 .word 0x19040002
 .word 0x170C0013, _behaviorSegmentRomStart, _behaviorSegmentRomEnd
-.word 0x1A0C000A, mario_bg, mario_bg_end
+.word 0x1A0C000A, title_screen_bg, title_screen_bg_end
 .word 0x1D040000
 .word 0x1F080100, 0x1400035C
 .word 0x20040000
@@ -45,7 +45,7 @@ game_over_level:
 .word 0x16100000, run_press_start_demo_timer, _goddardSegmentRomStart, game_over_level
 .word 0x19040003
 .word 0x170C0013, _behaviorSegmentRomStart, _behaviorSegmentRomEnd
-.word 0x1A0C000A, mario_bg, mario_bg_end
+.word 0x1A0C000A, title_screen_bg, title_screen_bg_end
 .word 0x1D040000
 .word 0x1F080100, 0x140003B8
 .word 0x20040000
@@ -62,7 +62,7 @@ game_over_level:
 .word 0x05080000, 0x14000284
 .word 0x1B040000
 .word 0x170C0013, _behaviorSegmentRomStart, _behaviorSegmentRomEnd
-.word 0x1A0C000A, mario_bg, mario_bg_end
+.word 0x1A0C000A, title_screen_bg, title_screen_bg_end
 .word 0x180C0007, debug_level_select, debug_level_select_end
 .word 0x16100000, run_press_start_demo_timer, _goddardSegmentRomStart, game_over_level
 .word 0x1D040000

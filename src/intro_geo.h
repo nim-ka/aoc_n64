@@ -3,10 +3,10 @@
 
 #include "graph_node.h"
 
-extern u8 D_0A000118[];
-extern Gfx D_0A000100[];
-extern Gfx D_0A000190[];
-extern u32   D_801A7B30[];
+extern Gfx title_f3d_0A000118[];
+extern Gfx title_f3d_0A000100[];
+extern Gfx title_f3d_0A000190[];
+extern Gfx  *D_801A7B30[];
 extern float D_801A7B40[];
 extern float D_801A7B70[];
 extern Gfx  *D_801A7BA0[];
