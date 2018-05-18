@@ -21,6 +21,9 @@ extern Gfx D_07026400[];
 
 s16 D_80330390 = 0x01, D_80330394 = 0, D_80330398 = 0;
 
+extern struct GraphNode018 *D_8032CFA0;
+extern u16 D_8032CFA8;
+
 void make_vertex(Vtx *vtx, s32 n, s16 x, s16 y, s16 z, s16 tx, s16 ty, u8 r, u8 g, u8 b, u8 a)
 {
     vtx[n].v.ob[0] = x;
@@ -140,7 +143,7 @@ void *Geo18_802D2520(s32 sp80, short *sp84, UNUSED s32 sp88)
         gSPDisplayList(sp5C++, D_070193C8);
         gSPEndDisplayList(sp5C);
 
-        sp58 = D_8032CFA0;
+        sp58 = (struct Object *) D_8032CFA0;
         if (gMarioObject->platform == sp58)
         {
             D_8035FF80 = 2;

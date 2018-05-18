@@ -11,9 +11,9 @@
 #define INTRO_STEPS_HOLD_1     75
 #define INTRO_STEPS_ZOOM_OUT   91
 
-struct SceneGraphNodeMore
+struct GraphNodeMore
 {
-    /*0x00*/ struct SceneGraphNode node;
+    /*0x00*/ struct GraphNode node;
     /*0x14*/ void *todo;
     /*0x18*/ u32 unk18;
 };
@@ -28,9 +28,9 @@ extern s8 *D_801A7BB4[];
 extern s8 D_801A7BB8[];
 extern s8 D_801A7BC4[];
 
-Gfx *geo18_title_screen(u32 a0, struct SceneGraphNode *a1, UNUSED u32 a2)
+Gfx *geo18_title_screen(u32 a0, struct GraphNode *a1, UNUSED u32 a2)
 {
-   struct SceneGraphNode *sp4c;
+   struct GraphNode *sp4c;
    Gfx *displayList; // sp48
    Gfx *displayListIter; // sp44
    Mtx *scaleMat; // sp40
@@ -50,7 +50,7 @@ Gfx *geo18_title_screen(u32 a0, struct SceneGraphNode *a1, UNUSED u32 a2)
    }
    else if (a0 == 1)
    {
-      sp4c->unk02 = (sp4c->unk02 & 0xFF) | 0x100;
+      sp4c->flags = (sp4c->flags & 0xFF) | 0x100;
       scaleMat = alloc_display_list(sizeof(*scaleMat));
       displayList = alloc_display_list(4 * sizeof(*displayList));
       displayListIter = displayList;
@@ -88,12 +88,12 @@ Gfx *geo18_title_screen(u32 a0, struct SceneGraphNode *a1, UNUSED u32 a2)
    return displayList;
 }
 
-Gfx *geo18_fade_transition(u32 a0, struct SceneGraphNode *a1, UNUSED u32 a2)
+Gfx *geo18_fade_transition(u32 a0, struct GraphNode *a1, UNUSED u32 a2)
 {
    // sp40 = a0
    // sp44 = a1
    // sp48 = a2
-   struct SceneGraphNode *sp3c = a1;
+   struct GraphNode *sp3c = a1;
    Gfx *displayList = NULL; // sp38
    Gfx *displayListIter = NULL; // sp34
    if (a0 != 1)
@@ -109,12 +109,12 @@ Gfx *geo18_fade_transition(u32 a0, struct SceneGraphNode *a1, UNUSED u32 a2)
       if (gGeoFadeCounter == 0xFF)
       {
          if (0) {}
-         sp3c->unk02 = (sp3c->unk02 & 0xFF) | 0x100;
+         sp3c->flags = (sp3c->flags & 0xFF) | 0x100;
          gDPSetRenderMode(displayListIter++, 0x00552048, 0); // TODO mode1 | mode2
       }
       else
       {
-         sp3c->unk02 = (sp3c->unk02 & 0xFF) | 0x500;
+         sp3c->flags = (sp3c->flags & 0xFF) | 0x500;
          gDPSetRenderMode(displayListIter++, 0x005041C8 , 0); // TODO mode1 | mode2
          if (0) {}
       }
@@ -163,26 +163,26 @@ Gfx *intro_backdrop_one_image(u32 index, s8 *backdrop_table)
    return displayList;
 }
 
-Gfx *geo18_intro_backdrop(u32 a0, struct SceneGraphNode *a1, UNUSED u32 a2)
+Gfx *geo18_intro_backdrop(u32 a0, struct GraphNode *a1, UNUSED u32 a2)
 {
    // sp48 = a0
    // sp4c = a1
    // sp50 = a2
-   struct SceneGraphNodeMore *sp44;
+   struct GraphNodeMore *sp44;
    int sp40;
    s8 *backdrop_table; // sp3c
    Gfx *displayList;
    Gfx *displayListIter;
    int i; // sp30
-   sp44 = (struct SceneGraphNodeMore *)a1;
-   sp40 = sp44->unk18 & 0xff; // TODO: word at offset 0x18 of struct SceneGraphNode
+   sp44 = (struct GraphNodeMore *)a1;
+   sp40 = sp44->unk18 & 0xff; // TODO: word at offset 0x18 of struct GraphNode
    backdrop_table = D_801A7BB4[sp40];
    displayList = NULL;
    displayListIter = NULL;
    if (a0 == 1) {
       displayList = alloc_display_list(16 * sizeof(*displayList));
       displayListIter = displayList;
-      sp44->node.unk02 = (sp44->node.unk02 & 0xFF) | 0x100;
+      sp44->node.flags = (sp44->node.flags & 0xFF) | 0x100;
       gSPDisplayList(displayListIter++, &seg2_f3d_014660);
       gSPDisplayList(displayListIter++, &D_0A000100);
       for (i = 0; i < 12; ++i) {
@@ -194,12 +194,12 @@ Gfx *geo18_intro_backdrop(u32 a0, struct SceneGraphNode *a1, UNUSED u32 a2)
    return displayList;
 }
 
-Gfx *geo18_backdrop_tile(u32 a0, struct SceneGraphNode *a1, UNUSED u32 a2)
+Gfx *geo18_backdrop_tile(u32 a0, struct GraphNode *a1, UNUSED u32 a2)
 {
    // sp40 = a0
    // sp44 = a1
    // sp48 = a2
-   struct SceneGraphNode *sp3c;
+   struct GraphNode *sp3c;
    Gfx *displayList;
    Gfx *displayListIter;
    int j; // sp30
@@ -230,7 +230,7 @@ Gfx *geo18_backdrop_tile(u32 a0, struct SceneGraphNode *a1, UNUSED u32 a2)
       if (D_801B9854 != 11) {
          D_801B9850++;
       }
-      sp3c->unk02 = (sp3c->unk02 & 0xFF) | 0x100;
+      sp3c->flags = (sp3c->flags & 0xFF) | 0x100;
       gSPDisplayList(displayListIter++, &seg2_f3d_014660);
       gSPDisplayList(displayListIter++, &D_0A000100);
       for (j = 0; j < 12; ++j) {

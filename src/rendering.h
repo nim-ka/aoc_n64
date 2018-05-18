@@ -1,7 +1,15 @@
 #ifndef _RENDERING_H
 #define _RENDERING_H
 
-extern struct Object *D_8032CFA0;
+#include "graph_node.h"
+
+extern struct GraphNodeScreenArea *D_8032CF90;
+extern struct GraphNode004 *D_8032CF94;
+extern struct GraphNodeCamFrustum *D_8032CF98;
+extern struct GraphNode114 *D_8032CF9C;
+extern struct GraphNode018 *D_8032CFA0;
+extern struct GraphNode12E *D_8032CFA4;
+extern u16 D_8032CFA8;
 extern struct Object *D_8038BD98;
 extern u8 D_8033A743;
 // extern ? D_8033A741;
@@ -19,15 +27,12 @@ extern u8 D_8033A743;
 extern u8 D_8032CF00[];
 // extern ? D_8032CF10;
 // extern ? D_8032CF50;
-//extern u32 D_8032CF94;
 extern struct Struct80278464 *D_8033B018;
 extern s16 D_8033A770;
 // extern ? D_8033A778;
-// extern ? D_8032CF98;
-// extern ? D_8032CFA4;
 extern u8 D_8033B008;
 extern s16 D_8033B00A;
-extern u8 *D_8033B010;
+extern u16 *D_8033B010;
 extern s16 *D_8033B014;
 extern u8 D_8033B009;
 extern s8 D_8035FF44;
@@ -36,7 +41,7 @@ extern s8 D_8035FF45;
 extern u8 D_8033AFF8;
 extern u8 D_8033AFF9;
 extern s16 D_8033AFFA;
-extern u8 *D_8033B000;
+extern u16 *D_8033B000;
 extern float D_8033AFFC;
 extern s16 *D_8033B004;
 extern u8 D_8033A740;
@@ -93,7 +98,7 @@ extern void func_8027ADAC(s16, s16, u8, u8, u8, s16);
 // extern ? func_8027D460(?);
 // extern ? func_8027D4D4(?);
 // extern ? func_8027D8B8(?);
-extern void func_8027D8F8(void *);
+extern void func_8027D8F8(struct GraphNode *rootGraphNode);
 extern void func_8027DB80();
 
 #endif

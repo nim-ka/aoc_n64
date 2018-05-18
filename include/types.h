@@ -4,7 +4,7 @@
 // This file contains various data types used in Super Mario 64 that don't yet
 // have an appropriate header.
 
-struct Controller 
+struct Controller
 {
   /*0x00*/ s16 rawStickX;       //
   /*0x02*/ s16 rawStickY;       //
@@ -85,47 +85,17 @@ struct Struct8032C620
     OSMesg *msg;
 };
 
-
-struct SceneGraphNode
-{
-    /*0x00*/ s16 type;
-    /*0x00*/ s16 unk02; 
-    /*0x04*/ struct SceneGraphNode *unk04;
-    /*0x08*/ struct SceneGraphNode *unk08;
-    /*0x0C*/ struct SceneGraphNode *unk0C;
-    /*0x10*/ struct SceneGraphNode *unk10;
-};
-
-struct SceneGraphDListNode
-{
-    /*0x00*/ struct SceneGraphNode node;
-    /*0x14*/ void *gfx; // Gfx* segptr
-};
-
-struct SceneGraphScreenAreaNode
-{
-    // node.type = 0x01
-    /*0x00*/ struct SceneGraphNode node;
-    u8 filler14[(0x1E)-0x14];
-    /*0x1E*/ s16 unk1E;
-    /*0x20*/ struct SceneGraphNode **unk20; // TODO: check type
-};
-
-struct SceneGraphNode_x29
-{
-    // node.type = 0x29
-    /*0x00*/ struct SceneGraphNode node;
-    /*0x14*/ struct SceneGraphNode *unk14;
-};
-
 // NOTE: Since GfxNode is the first member of Object, it is difficult to determine
 // whether some of these pointers point to GfxNode or Object.
 
 struct UnknownStruct5 {
-    u8 filler0[0x8];
+    /*0x00*/ s16 unk00; // flags
+    /*0x02*/ s16 unk02;
+    /*0x04*/ s16 unk04;
+    /*0x06*/ s16 unk06;
     /*0x08*/ s16 unk08;
-    /*0x0C*/ u32 unk0C;
-    /*0x10*/ u32 unk10;
+    /*0x0C*/ void *unk0C;
+    /*0x10*/ void *unk10;
 };
 
 struct GfxNode

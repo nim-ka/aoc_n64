@@ -67,8 +67,8 @@ struct Object *func_802C8DC4(struct GfxNode *a, struct GfxNode *b)
         return NULL;
 
     // FIXME: What types do these functions actually take?
-    func_8037C0BC((struct Object *)sp1C);
-    func_8037C044((struct Object *)D_8038BD88, (struct Object *)sp1C);
+    func_8037C0BC((struct GraphNode *)sp1C);
+    func_8037C044(&D_8038BD88, (struct GraphNode *)sp1C);
     return (struct Object *)sp1C;
 }
 
@@ -138,8 +138,8 @@ void func_802C9088(struct Object *a)
     a->unk6C = 0;
     a->gfx.unk50 = 0;
     func_803206F8(&a->gfx.unk54);
-    func_8037C0BC(a);
-    func_8037C044(D_8038BD88, a);
+    func_8037C0BC((struct GraphNode *)a);
+    func_8037C044(&D_8038BD88, (struct GraphNode *) a);
     a->gfx.graphFlags &= ~4;
     a->gfx.graphFlags &= ~1;
     func_802C8EA4(&D_8035FD80, &a->gfx);

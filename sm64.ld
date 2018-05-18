@@ -184,7 +184,7 @@ SECTIONS
    BEGIN_SEG(engine, 0x80378800)
    {
       build/src/math_util.o(.text);
-      build/asm/graph_node.o(.text);
+      build/src/graph_node.o(.text);
       build/src/geo_layout.o(.text);
       build/asm/level_script.o(.text);
       build/src/surface_collision1.o(.text);

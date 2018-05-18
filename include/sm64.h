@@ -26,10 +26,6 @@ extern void func_u_803219AC();
 
 #define max(a, b) ((a) > (b) ? (a) : (b))
 
-#define GRAPH_0001 0x0001
-#define GRAPH_0002 0x0002
-#define GRAPH_BILLBOARD 0x0004
-
 #define OBJ_FLAG_0001 0x0001
 #define OBJ_FLAG_0002 0x0002
 #define OBJ_FLAG_0004 0x0004

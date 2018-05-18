@@ -9,21 +9,19 @@ glabel D_8038BC94
     .space 0x4
 glabel D_8038BC98
     .space 0x8
-glabel D_8038BCA0
+glabel gGraphNodePool
     .space 0x4
-glabel D_8038BCA4
+glabel gCurRootGraphNode
     .space 0x8
 glabel D_8038BCAC
     .space 0x4
 glabel D_8038BCB0
     .space 0x8
 glabel gGeoLayoutStack
-    .space 0x3C
-glabel D_8038BCF4
-    .space 0x4
-glabel D_8038BCF8
+    .space 0x40
+glabel gCurGraphNodeList
     .space 0x80
-glabel D_8038BD78
+glabel gCurGraphNodeIndex
     .space 0x2
 glabel gGeoLayoutStackIndex
     .space 0x4

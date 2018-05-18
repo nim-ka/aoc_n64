@@ -938,7 +938,7 @@ glabel LevelScript1B
 /* 0FA85C 8037EE4C AFBF0014 */  sw    $ra, 0x14($sp)
 /* 0FA860 8037EE50 3C058039 */  lui   $a1, %hi(D_8038BD88) # $a1, 0x8039
 /* 0FA864 8037EE54 24A5BD88 */  addiu $a1, %lo(D_8038BD88) # addiu $a1, $a1, -0x4278
-/* 0FA868 8037EE58 0C0DED12 */  jal   func_8037B448
+/* 0FA868 8037EE58 0C0DED12 */  jal   init_graph_node_00A
 /* 0FA86C 8037EE5C 00002025 */   move  $a0, $zero
 /* 0FA870 8037EE60 0C0A7298 */  jal   func_8029CA60
 /* 0FA874 8037EE64 00000000 */   nop   
@@ -1080,7 +1080,7 @@ glabel LevelScript1F
 /* 0FAA54 8037F044 00000000 */   nop   
 /* 0FAA58 8037F048 3C048039 */  lui   $a0, %hi(D_8038B8A0) # $a0, 0x8039
 /* 0FAA5C 8037F04C 8C84B8A0 */  lw    $a0, %lo(D_8038B8A0)($a0)
-/* 0FAA60 8037F050 0C0DF82D */  jal   ProcessGeoLayout
+/* 0FAA60 8037F050 0C0DF82D */  jal   process_geo_layout
 /* 0FAA64 8037F054 8FA50020 */   lw    $a1, 0x20($sp)
 /* 0FAA68 8037F058 AFA2001C */  sw    $v0, 0x1c($sp)
 /* 0FAA6C 8037F05C 8FA9001C */  lw    $t1, 0x1c($sp)
@@ -1181,7 +1181,7 @@ glabel LevelScript21
 /* 0FABC8 8037F1B8 8C84B8A0 */  lw    $a0, %lo(D_8038B8A0)($a0)
 /* 0FABCC 8037F1BC 00002825 */  move  $a1, $zero
 /* 0FABD0 8037F1C0 87A6001C */  lh    $a2, 0x1c($sp)
-/* 0FABD4 8037F1C4 0C0DEF24 */  jal   func_8037BC90
+/* 0FABD4 8037F1C4 0C0DEF24 */  jal   init_graph_node_01B
 /* 0FABD8 8037F1C8 8FA70018 */   lw    $a3, 0x18($sp)
 /* 0FABDC 8037F1CC 87AE001E */  lh    $t6, 0x1e($sp)
 /* 0FABE0 8037F1D0 3C0D8033 */  lui   $t5, %hi(gLoadedGeoLayouts) # $t5, 0x8033
@@ -1221,7 +1221,7 @@ glabel LevelScript22
 /* 0FAC58 8037F248 00000000 */   nop   
 /* 0FAC5C 8037F24C 3C048039 */  lui   $a0, %hi(D_8038B8A0) # $a0, 0x8039
 /* 0FAC60 8037F250 8C84B8A0 */  lw    $a0, %lo(D_8038B8A0)($a0)
-/* 0FAC64 8037F254 0C0DF82D */  jal   ProcessGeoLayout
+/* 0FAC64 8037F254 0C0DF82D */  jal   process_geo_layout
 /* 0FAC68 8037F258 8FA50018 */   lw    $a1, 0x18($sp)
 /* 0FAC6C 8037F25C 87AA001E */  lh    $t2, 0x1e($sp)
 /* 0FAC70 8037F260 3C098033 */  lui   $t1, %hi(gLoadedGeoLayouts) # $t1, 0x8033
@@ -1275,7 +1275,7 @@ glabel LevelScript23
 /* 0FAD20 8037F310 00002825 */  move  $a1, $zero
 /* 0FAD24 8037F314 87A60028 */  lh    $a2, 0x28($sp)
 /* 0FAD28 8037F318 8FA70024 */  lw    $a3, 0x24($sp)
-/* 0FAD2C 8037F31C 0C0DEE50 */  jal   func_8037B940
+/* 0FAD2C 8037F31C 0C0DEE50 */  jal   init_graph_node_01C
 /* 0FAD30 8037F320 E7A40010 */   swc1  $f4, 0x10($sp)
 /* 0FAD34 8037F324 87B8002A */  lh    $t8, 0x2a($sp)
 /* 0FAD38 8037F328 3C0F8033 */  lui   $t7, %hi(gLoadedGeoLayouts) # $t7, 0x8033

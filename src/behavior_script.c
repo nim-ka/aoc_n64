@@ -179,14 +179,14 @@ s32 Behavior22(void)
 
 s32 Behavior35(void)
 {
-    gCurrentObject->gfx.graphFlags &= ~GRAPH_0001;
+    gCurrentObject->gfx.graphFlags &= ~GRAPH_RENDER_01;
     gBehCommand++;
     return BEH_CONTINUE;
 }
 
 s32 Behavior21(void)
 {
-    gCurrentObject->gfx.graphFlags |= GRAPH_BILLBOARD;
+    gCurrentObject->gfx.graphFlags |= GRAPH_RENDER_BILLBOARD;
     gBehCommand++;
     return BEH_CONTINUE;
 }
@@ -569,7 +569,7 @@ s32 Behavior28(void)
     s32 animIndex = (u8)((gBehCommand[0] >> 16) & 0xFF);
     u32* animations = gCurrentObject->animations;
 
-    func_8037C658(gCurrentObject, &animations[animIndex]);
+    func_8037C658((struct GraphNode018 *) gCurrentObject, &animations[animIndex]);
 
     gBehCommand++;
     return BEH_CONTINUE;

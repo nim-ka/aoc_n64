@@ -87,7 +87,7 @@ struct Area
     /*0x00*/ s8 index;
     /*0x01*/ s8 unk01;
     /*0x02*/ u16 unk02;
-    /*0x04*/ u32 unk04;
+    /*0x04*/ struct GraphNode *unk04;
     /*0x08*/ s16 *unk08;
     /*0x0C*/ u32 unk0C;
     /*0x10*/ s16 *unk10;
