@@ -15,6 +15,7 @@
 #include "level_functions.h"
 #include "audio_interface_2.h"
 #include "interaction.h"
+#include "behavior_data.h"
 
 #define INT_GROUND_POUND_OR_TWIRL (1 << 0) // 0x00000001
 #define INT_PUNCH                 (1 << 1) // 0x00000002

@@ -13,6 +13,7 @@
 #include "mario_step.h"
 #include "camera.h"
 #include "audio_interface_2.h"
+#include "behavior_data.h"
 
 static s16 sWasAtSurface = FALSE;
 static s16 D_8032CDD4 = 160;

@@ -1,9 +1,6 @@
 #ifndef _MARIO_ACTIONS_AUTOMATIC_H
 #define _MARIO_ACTIONS_AUTOMATIC_H
 
-// extern ? beh_tree;
-// extern ? beh_giant_pole;
-
 // extern ? add_tree_leaf_particles(?);
 // extern ? play_climbing_sounds(?);
 // extern ? func_8025DB84(?);

@@ -108,7 +108,7 @@ struct GfxNode
     /*0x010*/ struct Object *unk10;
     /*0x014*/ void *geoLayout;
     /*0x018*/ u8 unk18;
-    u8 filler19[1];
+    /*0x019*/ u8 unk19;
     /*0x01A*/ Vec3s unk1A;
     /*0x020*/ Vec3f unk20;
     /*0x02C*/ Vec3f scale;

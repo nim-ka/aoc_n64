@@ -144,6 +144,9 @@ typedef union
 #define G_SC_ODD_INTERLACE  3
 #define G_SC_EVEN_INTERLACE 2
 
+#define G_TX_LOADTILE   7
+#define G_TX_RENDERTILE 0
+
 #define G_TX_NOMIRROR 0
 #define G_TX_WRAP 0
 #define G_TX_MIRROR 1
@@ -519,6 +522,29 @@ typedef union
                  | _SHIFTL((v0)*10, 16, 8)  \
                  | _SHIFTL((v1)*10,  8, 8)  \
                  | _SHIFTL((v2)*10,  0, 8); \
+}
+
+#define gSPTextureRectangle(pkt, xl, yl, xh, yh, tile, s, t, dsdx, dtdy) \
+{                                                                        \
+    Gfx *_g = (Gfx *)(pkt);                                              \
+    _g->words.w0 = _SHIFTL(0xE4,   24,  8)                               \
+                 | _SHIFTL((xh),   12, 12)                               \
+                 | _SHIFTL((yh),    0, 12);                              \
+    _g->words.w1 = _SHIFTL((tile), 24,  3)                               \
+                 | _SHIFTL((xl),   12, 12)                               \
+                 | _SHIFTL((yl),    0, 12);                              \
+}                                                                        \
+{                                                                        \
+    Gfx *_g = gDisplayListHead++;                                        \
+    _g->words.w0 = _SHIFTL(0xB3, 24,  8);                                \
+    _g->words.w1 = _SHIFTL((s),  16, 16)                                 \
+                 | _SHIFTL((t),   0, 16);                                \
+}                                                                        \
+{                                                                        \
+    Gfx *_g = gDisplayListHead++;                                        \
+    _g->words.w0 = _SHIFTL(0xB2,   24,  8);                              \
+    _g->words.w1 = _SHIFTL((dsdx), 16, 16)                               \
+                 | _SHIFTL((dtdy),  0, 16);                              \
 }
 
 #endif

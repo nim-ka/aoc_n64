@@ -3440,7 +3440,7 @@ glabel ChangeCameraStatus
 /* 043944 80288944 356C0010 */  ori   $t4, $t3, 0x10
 /* 043948 80288948 A7AC001E */  sh    $t4, 0x1e($sp)
 .L8028894C:
-/* 04394C 8028894C 0C0B8B03 */  jal   SetCameraStatus
+/* 04394C 8028894C 0C0B8B03 */  jal   set_camera_status
 /* 043950 80288950 87A4001E */   lh    $a0, 0x1e($sp)
 /* 043954 80288954 10000003 */  b     .L80288964
 /* 043958 80288958 87A2001E */   lh    $v0, 0x1e($sp)

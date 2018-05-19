@@ -17,7 +17,7 @@
 #include "mario_actions_cutscene.h"
 #include "rotate.h"
 #include "print.h"
-#include "hud.h"
+#include "hud_print.h"
 #include "sound_init.h"
 #include "audio_interface_2.h"
 #include "rendering.h"
@@ -409,7 +409,7 @@ void func_8027AE04(void)
             g->words.w1 = VIRTUAL_TO_PHYSICAL(D_8032CF00);
         }
         gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 0, 8, 320, 232);
-        RenderHud();
+        render_hud();
         gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 0, 0, 320, 240);
         func_802D61A8();
         func_802D9D5C();

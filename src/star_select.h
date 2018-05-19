@@ -1,7 +1,6 @@
 #ifndef _STAR_SELECT_H
 #define _STAR_SELECT_H
 
-// extern ? beh_star_in_act_selector;
 // extern ? sStarSelectIcons;
 extern s8 D_801B9910;
 extern u8 D_801B9911;

@@ -8,7 +8,6 @@
 // extern ? D_801A7BD8;
 // extern ? D_801A7BE4;
 // extern ? D_801A7BD0;
-// extern ? beh_menu_growing_button;
 // extern ? D_801B9860;
 // extern ? D_801A7BFC;
 // extern ? D_801A7BF0;

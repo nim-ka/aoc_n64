@@ -9,11 +9,10 @@
 #include "mario.h"
 #include "display.h"
 #include "obj_behaviors_2.h"
+#include "behavior_data.h"
 
 extern u32 *gBehCommand;
 extern u16 gRandomSeed16;
-extern u32 beh_haunted_chair[];
-extern u32 beh_message_panel[];
 
 typedef s32 (*BehCommandProc)(void);
 static BehCommandProc BehaviorJumpTable[] =

@@ -3,7 +3,6 @@
 
 #include "types.h"
 
-// extern ? beh_plays_sound;
 // extern ? D_80336D08;
 // extern ? D_8035FF20;
 // extern ? D_8033BEF0;
@@ -40,7 +39,6 @@
 // extern ? D_80336DBC;
 // extern ? D_80336DC4;
 // extern ? D_80336DD0;
-// extern ? beh_koopa_shell;
 // extern ? D_80336DDC;
 // extern ? D_80336DE8;
 // extern ? D_80336DF4;
@@ -50,7 +48,6 @@
 // extern ? D_80336E24;
 // extern ? D_80336E30;
 // extern ? D_80336E3C;
-// extern ? beh_jumping_box;
 
 // extern ? func_802C9560(?);
 // extern ? func_802C9664(?);

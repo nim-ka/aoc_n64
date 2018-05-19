@@ -78,7 +78,7 @@ SECTIONS
       build/src/print.o(.text);
       build/asm/ingame_menu.o(.text);
       build/src/hud.o(.text);
-      build/asm/hud.o(.text);
+      build/src/hud_print.o(.text);
       build/asm/obj_behaviors.o(.text);
       build/asm/obj_behaviors_2.o(.text);
       build/asm/audio_dac.o(.text);
@@ -128,7 +128,7 @@ SECTIONS
       build/src/print.o(.data*);
       build/data/ingame_menu.data.o(.data*);
       build/src/hud.o(.data*);
-      build/data/hud.data.o(.data*);
+      build/src/hud_print.o(.data*);
       build/data/obj_behaviors_1.data.o(.data*);
       build/data/obj_behaviors_2.data.o(.data*);
       build/data/audio.data.o(.data*);
@@ -163,7 +163,8 @@ SECTIONS
       build/data/moving_texture.rodata.o(.rodata*);
       build/src/print.o(.rodata*);
       build/data/ingame_menu.rodata.o(.rodata*);
-      build/data/hud.rodata.o(.rodata*);
+      build/src/hud.o(.rodata*);
+      build/src/hud_print.o(.rodata*);
       build/data/obj_behaviors_1.rodata.o(.rodata*);
       build/data/obj_behaviors_2.rodata.o(.rodata*);
       build/data/audio.rodata.o(.rodata*);
@@ -181,6 +182,8 @@ SECTIONS
       build/data/bss80339F00.o(.bss*);
       build/src/mario_actions_submerged.o(.bss*);
       build/data/bss80339FE0.o(.bss*);
+      build/src/hud_print.o(.bss*);
+      build/data/bss803600E0.o(.bss*);
    }
    END_BSS(main)
 

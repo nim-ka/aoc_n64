@@ -4,6 +4,7 @@
 #include "audio_interface_2.h"
 #include "libultra.h"
 #include "main.h"
+#include "game.h"
 #include "memory.h"
 #include "sound_init.h"
 #include "resource_meter.h"
