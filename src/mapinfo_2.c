@@ -156,16 +156,15 @@ void func_802C9BA0(const char *str, int arg1)
 
 void func_802C9BF0(void)
 {
-    struct MyVec3f { f32 x, y, z; };
     struct Surface *pfloor;
     f32 sp28;
     f32 sp24;
     int sp20;
     int sp1C;
-    
+
     sp1C = gCurrentObject->angle[1] / 182.044000;
-    sp20  = ((((int)(((struct MyVec3f *)&gCurrentObject->pos)->z) + 0x2000) / 1024) * 16)
-          +  (((int)(((struct MyVec3f *)&gCurrentObject->pos)->x) + 0x2000) / 1024);
+    sp20  = ((int)gCurrentObject->pos[0] + 0x2000) / 1024
+          + ((int)gCurrentObject->pos[2] + 0x2000) / 1024 * 16;
 
     sp28 = func_80381900(gCurrentObject->pos[0], gCurrentObject->pos[1], gCurrentObject->pos[2], &pfloor);
     sp24 = func_80381BA0(gCurrentObject->pos[0], gCurrentObject->pos[2]);

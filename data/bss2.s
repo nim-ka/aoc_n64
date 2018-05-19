@@ -54,17 +54,9 @@ glabel D_8038BE4C
 glabel D_8038BE90
     .space 0x8
 glabel D_8038BE98
-    .space 0x8
-glabel D_8038BEA0
-    .space 0x8
-glabel D_8038BEA8
-    .space 0x17F0
+    .space 0x1800
 glabel D_8038D698
-    .space 0x8
-glabel D_8038D6A0
-    .space 0x8
-glabel D_8038D6A8
-    .space 0x17F0
+    .space 0x1800
 glabel D_8038EE98
     .space 0x4
 glabel D_8038EE9C

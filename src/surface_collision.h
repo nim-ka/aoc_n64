@@ -9,12 +9,6 @@ struct SurfaceNode
     struct Surface * tri;
 };
 
-struct SpatialPartitionCell {
-    struct SurfaceNode floors;
-    struct SurfaceNode ceils;
-    struct SurfaceNode walls;
-};
-
 struct WallCollisionData {
     /*0x00*/ float x, y, z;           
     /*0x0C*/ float offsetY;           
@@ -24,11 +18,18 @@ struct WallCollisionData {
     /*0x18*/ struct Surface *walls[4];
 };
 
+enum
+{
+    SPATIAL_PARTITION_FLOOR,
+    SPATIAL_PARTITION_CEIL,
+    SPATIAL_PARTITION_WALL
+};
+
+extern struct SurfaceNode D_8038BE98[16][16][3];
+extern struct SurfaceNode D_8038D698[16][16][3];
+
 extern s16 D_8033BF04, D_8033BF06, D_8033BF08;
 extern s32 D_8038BE30;
-extern struct SurfaceNode *D_8038D6A8;
-extern struct SpatialPartitionCell D_8038D6A0[16 * 16];
-extern struct SpatialPartitionCell D_8038BEA0[16 * 16];
 extern float D_8038BE40, D_8038BE44, D_8038BE48;
 extern float D_8038BE4C;
 extern s16 D_8035FE12;
@@ -40,9 +41,6 @@ extern s32 D_8035FE00;
 extern struct SurfaceNode *D_8038EE98;
 extern struct Surface *D_8038EE9C;
 extern s16 D_8038EEA0;
-extern struct SpatialPartitionCell D_8038D698[16 * 16];
-extern struct SurfaceNode *D_8038BEA8;
-extern struct SpatialPartitionCell D_8038BE98[16 * 16];
 
 extern f32 func_80381264(float, float, float, struct Surface **);
 extern void func_802C9A3C(s32, s32);
@@ -65,7 +63,7 @@ extern void func_80381F08(f32 sp40, f32 sp44);
 // extern ? Unknown80382294(?);
 // extern ? func_80382490(?);
 // extern ? func_803824F8(?);
-// extern ? func_80382590(?);
+// extern ? clear_surface_nodes(?);
 // extern void func_803825D0(void);
 // extern ? func_803825FC(?);
 // extern ? func_8038283C(?);

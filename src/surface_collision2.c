@@ -39,18 +39,21 @@ struct Surface *func_803824F8(void) {
     return tri;
 }
 
-void func_80382590(struct SpatialPartitionCell *partition) {
+void clear_surface_nodes(struct SurfaceNode *node)
+{
     register s32 i = 256;
-    while(i--) {
-        partition->floors.next = NULL;
-        partition->ceils.next = NULL;
-        partition->walls.next = NULL;
-        partition++;
+
+    while (i--)
+    {
+        node[SPATIAL_PARTITION_FLOOR].next = NULL;
+        node[SPATIAL_PARTITION_CEIL].next = NULL;
+        node[SPATIAL_PARTITION_WALL].next = NULL;
+        node += 3;
     }
 }
 
 void func_803825D0(void) {
-    func_80382590(D_8038BE98);
+    clear_surface_nodes(D_8038BE98[0][0]);
 }
 
 void func_803825FC(s16 dynamic, s16 xidx, s16 zidx, struct Surface *tri) {
@@ -81,10 +84,10 @@ void func_803825FC(s16 dynamic, s16 xidx, s16 zidx, struct Surface *tri) {
     triPriority = tri->vertex1[1] * sortDir;
     newNode->tri = tri;
 
-    if (dynamic) 
-        list = (struct SurfaceNode *)((u32)&D_8038D698 + zidx * 0x180 + xidx * 0x18) + listIdx;
+    if (dynamic)
+        list = &D_8038D698[zidx][xidx][listIdx];
     else
-        list = (struct SurfaceNode *)((u32)&D_8038BE98 + zidx * 0x180 + xidx * 0x18) + listIdx;
+        list = &D_8038BE98[zidx][xidx][listIdx];
 
     while (list->next != NULL) {
         priority = list->next->tri->vertex1[1] * sortDir;
@@ -97,7 +100,7 @@ void func_803825FC(s16 dynamic, s16 xidx, s16 zidx, struct Surface *tri) {
 }
 
 s16 func_8038283C(s16 a0, s16 a1, s16 a2) {
-    if (a1 < a0) 
+    if (a1 < a0)
         a0 = a1;
 
     if (a2 < a0)
@@ -107,7 +110,7 @@ s16 func_8038283C(s16 a0, s16 a1, s16 a2) {
 }
 
 s16 func_8038289C(s16 a0, s16 a1, s16 a2) {
-    if (a1 > a0) 
+    if (a1 > a0)
         a0 = a1;
 
     if (a2 > a0)
@@ -338,7 +341,7 @@ s16 *func_803831D0(s16 **data) {
 }
 
 void func_80383228(s16 **data) {
-    s32 numRegions; 
+    s32 numRegions;
     s32 i;
 
     D_8035FE14 = *data;
@@ -367,7 +370,7 @@ void func_80383340(void) {
     D_8038EE98 = _pool_alloc(7000 * sizeof(struct SurfaceNode), FALSE);
     D_8038EE9C = _pool_alloc(D_8038EEA0 * sizeof(struct Surface), FALSE);
     D_8035FEEC = 0;
-    func_802DA4DC(); 
+    func_802DA4DC();
 }
 
 void func_803833B8(s16 arg0, s16 *arg1, s8 *arg2, s16 *arg3) {
@@ -396,7 +399,7 @@ void func_803833B8(s16 arg0, s16 *arg1, s8 *arg2, s16 *arg3) {
             func_80383228(&arg1);
         else if (val == 0x41)
             continue;
-        else if (val == 0x42) 
+        else if (val == 0x42)
             break;
         else if (val > 100) {
             func_80383068(&arg1, vertexData, val, &arg2);
@@ -420,7 +423,7 @@ void func_803835A4(void) {
         D_8035FE00 = D_8035FE08;
         D_8035FDFC = D_8035FE04;
 
-        func_80382590(D_8038D698);
+        clear_surface_nodes((void *)D_8038D698);
     }
 }
 
@@ -432,12 +435,12 @@ void func_80383614(s16 **data, s16 *vertexData) {
     register f32 vx;
     register f32 vy;
     register f32 vz;
-    Mat4p transform; 
+    Mat4p transform;
     Mat4 m;
     UNUSED s16 numVerts;
 
     transform = &gCurrentObject->unk21C[0];
-    
+
 
     s1 = (*data)[0];
     (*data)++;

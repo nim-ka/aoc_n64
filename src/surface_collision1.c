@@ -13,18 +13,18 @@ s32 func_80380E8C(struct WallCollisionData *collision);
 //* 80380690(J) */
 s32 func_80380690(struct SurfaceNode * triNode, struct WallCollisionData * data) {
     register f32 offset;
-    register f32 radius = data->radius; 
-    register f32 x = data->x; 
-    register f32 y = data->y + data->offsetY; 
-    register struct Surface *tri; 
+    register f32 radius = data->radius;
+    register f32 x = data->x;
+    register f32 y = data->y + data->offsetY;
+    register struct Surface *tri;
     register f32 z = data->z;
     register f32 xP, zP;
-    register f32 w1, w2, w3; 
-    register f32 y1, y2, y3; 
-    s32 numCols = 0; 
+    register f32 w1, w2, w3;
+    register f32 y1, y2, y3;
+    s32 numCols = 0;
 
     // Max collision radius = 200
-    if (radius > 200.0f) radius = 200.0f;   
+    if (radius > 200.0f) radius = 200.0f;
 
     // Look for collisions in triangle list
     while (triNode) {
@@ -83,21 +83,21 @@ s32 func_80380690(struct SurfaceNode * triNode, struct WallCollisionData * data)
         if (D_8035FE10) {
             if (tri->flags & 0x02) continue;
         }
-        else 
+        else
         {
             if (tri->type == SURFACE_0072) {
                 continue;
             }
-            
+
             if (tri->type == SURFACE_007B) {
                 if (gCurrentObject && (gCurrentObject->active & 0x0040) != 0)
                         continue;
-                    
+
                 if (gCurrentObject && gCurrentObject == gMarioObject && (gMarioState->flags & 02) != 0)
                     continue;
             }
         }
-        
+
         data->x += tri->normal[0] * (radius - offset);
         data->z += tri->normal[2] * (radius - offset);
 
@@ -117,7 +117,7 @@ s32 func_80380DE8(f32 *xPtr, f32 *yPtr, f32 *zPtr, f32 offsetY, f32 radius) {
 
     collision.offsetY = offsetY;
     collision.radius = radius;
-    
+
     collision.x = *xPtr;
     collision.y = *yPtr;
     collision.z = *zPtr;
@@ -137,27 +137,27 @@ s32 func_80380E8C(struct WallCollisionData *collision)
     struct SurfaceNode *node;
     s16 xGrid, zGrid;
     s32 numCollisions = 0;
-    s16 x = collision->x; 
-    s16 z = collision->z;    
+    s16 x = collision->x;
+    s16 z = collision->z;
 
     collision->numWalls = 0;
 
-    if (x < -0x1fff || x >= 0x2000) return numCollisions; 
-    if (z < -0x1fff || z >= 0x2000) return numCollisions;  
+    if (x < -0x1fff || x >= 0x2000) return numCollisions;
+    if (z < -0x1fff || z >= 0x2000) return numCollisions;
 
-    // World (level) consists of a 16x16 grid. Find where the collision is on 
+    // World (level) consists of a 16x16 grid. Find where the collision is on
     // the grid (round toward -inf)
     xGrid = ((x + 0x2000) / 0x400) & 0x0F;
     zGrid = ((z + 0x2000) / 0x400) & 0x0F;
 
-    node = *(struct SurfaceNode **)((u32)&D_8038D6A8 + zGrid * 0x180 + xGrid * 0x18);
+    node = D_8038D698[zGrid][xGrid][SPATIAL_PARTITION_WALL].next;
     numCollisions += func_80380690(node, collision);
 
-    node = *(struct SurfaceNode **)((u32)&D_8038BEA8 + zGrid * 0x180 + xGrid * 0x18);
+    node = D_8038BE98[zGrid][xGrid][SPATIAL_PARTITION_WALL].next;
     numCollisions += func_80380690(node, collision);
 
     D_8033BF08++;
- 
+
     return numCollisions;
 }
 
@@ -192,7 +192,7 @@ struct Surface *func_80381038(struct SurfaceNode *triangles, s32 x, s32 y, s32 z
             continue;
         }
 
-        {   
+        {
             f32 nx = tri->normal[0];
             f32 ny = tri->normal[1];
             f32 nz = tri->normal[2];
@@ -222,7 +222,7 @@ f32 func_80381264(float posX, float posY, float posZ, struct Surface **pceil) {
     s16 x, y, z;
 
     //! PUs
-    x = (s16) posX; 
+    x = (s16) posX;
     y = (s16) posY;
     z = (s16) posZ;
     *pceil = NULL;
@@ -233,10 +233,10 @@ f32 func_80381264(float posX, float posY, float posZ, struct Surface **pceil) {
     xidx = ((x + 0x2000) / 0x400) & 0xF;
     zidx = ((z + 0x2000) / 0x400) & 0xF;
 
-    node = &(*(struct SpatialPartitionCell **)((u32)&D_8038D6A0 + zidx * 0x180 + xidx * 0x18))->floors;
+    node = D_8038D698[zidx][xidx][SPATIAL_PARTITION_CEIL].next;
     dynCeil = func_80381038(node, x, y, z, &dynHeight);
 
-    node = &(*(struct SpatialPartitionCell **)((u32)&D_8038BEA0 + zidx * 0x180 + xidx * 0x18))->floors;
+    node = D_8038BE98[zidx][xidx][SPATIAL_PARTITION_CEIL].next;
     ceil = func_80381038(node, x, y, z, &height);
 
     if (dynHeight < height) {
@@ -265,7 +265,7 @@ f32 func_803814B8(f32 sp20, f32 sp24, f32 sp28, s32 **sp2C) {
 
     *sp2C = NULL;
 
-    if (tri != NULL) { 
+    if (tri != NULL) {
         D_8038BE40 = tri->normal[0];
         D_8038BE44 = tri->normal[1];
         D_8038BE48 = tri->normal[2];
@@ -344,7 +344,7 @@ f32 func_803817E0(f32 sp38, f32 sp3C, f32 sp40, struct Surface **sp44) {
     s16 xidx = ((sp2A + 0x2000) / 0x400) & 0x0F;
     s16 zidx = ((sp26 + 0x2000) / 0x400) & 0x0F;
 
-    sp34 = &(*(struct SpatialPartitionCell **)((u32)&D_8038D698 + zidx * 0x180 + xidx * 0x18))->floors;
+    sp34 = D_8038D698[zidx][xidx][SPATIAL_PARTITION_FLOOR].next;
 
     sp30 = func_8038156C(sp34, sp2A, sp28, sp26, &sp2C);
     *sp44 = sp30;
@@ -371,10 +371,10 @@ f32 func_80381900(f32 xPos, f32 yPos, f32 zPos, struct Surface **pfloor) {
     xGrid = ((x + 0x2000) / 0x400) & 0xF;
     zGrid = ((z + 0x2000) / 0x400) & 0xF;
 
-    node = *(struct SurfaceNode **)((u32)&D_8038D698 + zGrid * 0x180 + xGrid * 0x18);
+    node = D_8038D698[zGrid][xGrid][SPATIAL_PARTITION_FLOOR].next;
     dynFloor = func_8038156C(node, x, y, z, &dynHeight);
 
-    node = *(struct SurfaceNode **)((u32)&D_8038BE98 + zGrid * 0x180 + xGrid * 0x18);
+    node = D_8038BE98[zGrid][xGrid][SPATIAL_PARTITION_FLOOR].next;
     floor = func_8038156C(node, x, y, z, &height);
 
     if (D_8035FE12 == 0) {
@@ -385,7 +385,7 @@ f32 func_80381900(f32 xPos, f32 yPos, f32 zPos, struct Surface **pfloor) {
     else {
         D_8035FE12 = 0;
     }
-   
+
 
     if (floor == NULL)
         D_8033BEF4++;
@@ -401,10 +401,10 @@ f32 func_80381900(f32 xPos, f32 yPos, f32 zPos, struct Surface **pfloor) {
 }
 
 f32 func_80381BA0(f32 x, f32 z) {
-    s32 i; 
+    s32 i;
     s32 numRegions;
     s16 val;
-    f32 loX, hiX, loZ, hiZ; 
+    f32 loX, hiX, loZ, hiZ;
     float sp8 = -11000.0f;
     s16 *p = D_8035FE14;
 
@@ -431,11 +431,11 @@ f32 func_80381BA0(f32 x, f32 z) {
 }
 
 f32 func_80381D3C(f32 x, f32 z) {
-    s32 i; 
+    s32 i;
     s32 numRegions;
     UNUSED s32 unk;
     s16 val;
-    f32 loX, hiX, loZ, hiZ; 
+    f32 loX, hiX, loZ, hiZ;
     float sp4 = -11000.0f;
     s16 *p = D_8035FE14;
 
@@ -477,32 +477,30 @@ s32 func_80381EC8(struct SurfaceNode *node) {
 
 void func_80381F08(f32 sp40, f32 sp44) {
     struct SurfaceNode *sp3C;
-    UNUSED s32 sp38 = 0;
-    UNUSED s32 sp34 = 0;
-    UNUSED s32 sp30 = 0;
+    s32 sp38 = 0;
+    s32 sp34 = 0;
+    s32 sp30 = 0;
 
     s32 sp2C = (sp40 + 0x2000) / 0x400;
     s32 sp28 = (sp44 + 0x2000) / 0x400;
 
 
-    sp3C = &(*(struct SpatialPartitionCell **)((u32)&D_8038BE98 + (sp28 & 0x0F) * 0x180 + (sp2C & 0x0F) * 0x18))->floors;
+    sp3C = D_8038BE98[sp28 & 0x0F][sp2C & 0x0F][SPATIAL_PARTITION_FLOOR].next;
     sp38 += func_80381EC8(sp3C);
 
-    sp3C = &(*(struct SpatialPartitionCell **)((u32)&D_8038D698 + (sp28 & 0x0F) * 0x180 + (sp2C & 0x0F) * 0x18))->floors;
+    sp3C = D_8038D698[sp28 & 0x0F][sp2C & 0x0F][SPATIAL_PARTITION_FLOOR].next;
     sp38 += func_80381EC8(sp3C);
 
-
-    sp3C = &(*(struct SpatialPartitionCell **)((u32)&D_8038BEA8 + (sp28 & 0x0F) * 0x180 + (sp2C & 0x0F) * 0x18))->floors;
+    sp3C = D_8038BE98[sp28 & 0x0F][sp2C & 0x0F][SPATIAL_PARTITION_WALL].next;
     sp34 += func_80381EC8(sp3C);
 
-    sp3C = &(*(struct SpatialPartitionCell **)((u32)&D_8038D6A8 + (sp28 & 0x0F) * 0x180 + (sp2C & 0x0F) * 0x18))->floors;
+    sp3C = D_8038D698[sp28 & 0x0F][sp2C & 0x0F][SPATIAL_PARTITION_WALL].next;
     sp34 += func_80381EC8(sp3C);
 
-
-    sp3C = &(*(struct SpatialPartitionCell **)((u32)&D_8038BEA0 + (sp28 & 0x0F) * 0x180 + (sp2C & 0x0F) * 0x18))->floors;
+    sp3C = D_8038BE98[sp28 & 0x0F][sp2C & 0x0F][SPATIAL_PARTITION_CEIL].next;
     sp30 += func_80381EC8(sp3C);
 
-    sp3C = &(*(struct SpatialPartitionCell **)((u32)&D_8038D6A0 + (sp28 & 0x0F) * 0x180 + (sp2C & 0x0F) * 0x18))->floors;
+    sp3C = D_8038D698[sp28 & 0x0F][sp2C & 0x0F][SPATIAL_PARTITION_CEIL].next;
     sp30 += func_80381EC8(sp3C);
 
 
@@ -520,7 +518,7 @@ void func_80381F08(f32 sp40, f32 sp44) {
 
     func_802C9A3C(-80, 0);
 
-    AnotherPrint("listal %d", D_8035FDFC);  
+    AnotherPrint("listal %d", D_8035FDFC);
     AnotherPrint("statbg %d", D_8035FE08);
     AnotherPrint("movebg %d", D_8035FE00 - D_8035FE08);
 
