@@ -827,7 +827,7 @@ static s32 act_water_punch(struct MarioState *m)
         func_802507E8(m, 0x00AE);
         if (func_80250770(m))
         {
-            if (m->heldObj->unk20C == segmented_to_virtual(D_13000708))
+            if (m->heldObj->unk20C == segmented_to_virtual(beh_koopa_shell_underwater))
             {
                 func_802492E0();
                 set_mario_action(m, ACT_WATER_SHELL_SWIMMING, 0);

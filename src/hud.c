@@ -257,7 +257,7 @@ void Unknown802E142C(void* a0, s16 a1[])
     struct Object *sp3C;
     s16 sp3A;
         
-    sp3A = &D_1300091C == a0 ? 116 : 0;
+    sp3A = &beh_collectable_coin == a0 ? 116 : 0;
     
     sp3C = func_8029E230(&D_8035FB18, 0, sp3A, a0, a1[1], a1[2], a1[3], 0, func_802E1190(a1[0]), 0);
 

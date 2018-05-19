@@ -5160,8 +5160,8 @@ glabel func_802548BC
 /* 00FC40 80254C40 00000000 */   nop   
 /* 00FC44 80254C44 3C198033 */  lui   $t9, %hi(gMarioState) # $t9, 0x8033
 /* 00FC48 80254C48 8F39C9D8 */  lw    $t9, %lo(gMarioState)($t9)
-/* 00FC4C 80254C4C 3C061300 */  lui   $a2, %hi(D_13003DD8) # $a2, 0x1300
-/* 00FC50 80254C50 24C63DD8 */  addiu $a2, %lo(D_13003DD8) # addiu $a2, $a2, 0x3dd8
+/* 00FC4C 80254C4C 3C061300 */  lui   $a2, %hi(beh_normal_cap) # $a2, 0x1300
+/* 00FC50 80254C50 24C63DD8 */  addiu $a2, %lo(beh_normal_cap) # addiu $a2, $a2, 0x3dd8
 /* 00FC54 80254C54 24050088 */  li    $a1, 136
 /* 00FC58 80254C58 0C0A7994 */  jal   SpawnObj
 /* 00FC5C 80254C5C 8F240088 */   lw    $a0, 0x88($t9)

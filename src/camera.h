@@ -230,13 +230,13 @@ extern s16 D_8035FE10;
 // extern ? D_8033B248;
 // extern ? D_8033B246;
 // extern ? D_8033B230;
-// extern ? D_13004968;
+// extern ? beh_fwoosh_blowing_wind;
 // extern ? D_8032E3CC;
 // extern ? D_8032E2B4;
-// extern ? D_130055F0;
-// extern ? D_13005618;
-// extern ? D_1300563C;
-// extern ? D_13005660;
+// extern ? beh_beginning_lakitu;
+// extern ? beh_beginning_peach;
+// extern ? beh_end_birds_1;
+// extern ? beh_end_birds_2;
 extern s16 D_8033B4D8;
 
 // extern ? TableCameraTransitions;

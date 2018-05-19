@@ -89,8 +89,8 @@ glabel func_802C9664
 /* 084668 802C9668 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 08466C 802C966C AFA40020 */  sw    $a0, 0x20($sp)
 /* 084670 802C9670 3C048036 */  lui   $a0, %hi(gCurrentObject) # $a0, 0x8036
-/* 084674 802C9674 3C061300 */  lui   $a2, %hi(D_1300229C) # $a2, 0x1300
-/* 084678 802C9678 24C6229C */  addiu $a2, %lo(D_1300229C) # addiu $a2, $a2, 0x229c
+/* 084674 802C9674 3C061300 */  lui   $a2, %hi(beh_plays_sound) # $a2, 0x1300
+/* 084678 802C9678 24C6229C */  addiu $a2, %lo(beh_plays_sound) # addiu $a2, $a2, 0x229c
 /* 08467C 802C967C 8C84FDF0 */  lw    $a0, %lo(gCurrentObject)($a0)
 /* 084680 802C9680 0C0A7994 */  jal   SpawnObj
 /* 084684 802C9684 00002825 */   move  $a1, $zero
@@ -1359,8 +1359,8 @@ glabel BehMarioLoop3
 /* 0857CC 802CA7CC 00000000 */   nop   
 /* 0857D0 802CA7D0 3C0A8036 */  lui   $t2, %hi(gCurrentObject) # $t2, 0x8036
 /* 0857D4 802CA7D4 8D4AFDF0 */  lw    $t2, %lo(gCurrentObject)($t2)
-/* 0857D8 802CA7D8 3C0C1300 */  lui   $t4, %hi(D_13001F3C) # $t4, 0x1300
-/* 0857DC 802CA7DC 258C1F3C */  addiu $t4, %lo(D_13001F3C) # addiu $t4, $t4, 0x1f3c
+/* 0857D8 802CA7D8 3C0C1300 */  lui   $t4, %hi(beh_koopa_shell) # $t4, 0x1300
+/* 0857DC 802CA7DC 258C1F3C */  addiu $t4, %lo(beh_koopa_shell) # addiu $t4, $t4, 0x1f3c
 /* 0857E0 802CA7E0 240B00BE */  li    $t3, 190
 /* 0857E4 802CA7E4 AFAB0014 */  sw    $t3, 0x14($sp)
 /* 0857E8 802CA7E8 AFAC0018 */  sw    $t4, 0x18($sp)
@@ -1379,8 +1379,8 @@ glabel BehMarioLoop3
 /* 085818 802CA818 00000000 */   nop   
 /* 08581C 802CA81C 3C188036 */  lui   $t8, %hi(gCurrentObject) # $t8, 0x8036
 /* 085820 802CA820 8F18FDF0 */  lw    $t8, %lo(gCurrentObject)($t8)
-/* 085824 802CA824 3C081300 */  lui   $t0, %hi(D_13001650) # $t0, 0x1300
-/* 085828 802CA828 25081650 */  addiu $t0, %lo(D_13001650) # addiu $t0, $t0, 0x1650
+/* 085824 802CA824 3C081300 */  lui   $t0, %hi(beh_jumping_box) # $t0, 0x1300
+/* 085828 802CA828 25081650 */  addiu $t0, %lo(beh_jumping_box) # addiu $t0, $t0, 0x1650
 /* 08582C 802CA82C 24190082 */  li    $t9, 130
 /* 085830 802CA830 AFB90014 */  sw    $t9, 0x14($sp)
 /* 085834 802CA834 AFA80018 */  sw    $t0, 0x18($sp)
@@ -1399,8 +1399,8 @@ glabel BehMarioLoop3
 /* 085864 802CA864 00000000 */   nop   
 /* 085868 802CA868 3C0C8036 */  lui   $t4, %hi(gCurrentObject) # $t4, 0x8036
 /* 08586C 802CA86C 8D8CFDF0 */  lw    $t4, %lo(gCurrentObject)($t4)
-/* 085870 802CA870 3C0E1300 */  lui   $t6, %hi(D_13000708) # $t6, 0x1300
-/* 085874 802CA874 25CE0708 */  addiu $t6, %lo(D_13000708) # addiu $t6, $t6, 0x708
+/* 085870 802CA870 3C0E1300 */  lui   $t6, %hi(beh_koopa_shell_underwater) # $t6, 0x1300
+/* 085874 802CA874 25CE0708 */  addiu $t6, %lo(beh_koopa_shell_underwater) # addiu $t6, $t6, 0x708
 /* 085878 802CA878 240D00BE */  li    $t5, 190
 /* 08587C 802CA87C AFAD0014 */  sw    $t5, 0x14($sp)
 /* 085880 802CA880 AFAE0018 */  sw    $t6, 0x18($sp)

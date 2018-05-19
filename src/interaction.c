@@ -144,13 +144,13 @@ static u32 get_mario_cap_flag(struct Object *capObject)
 {
     void *script = virtual_to_segmented(0x13, capObject->unk20C);
 
-    if (script == D_13003DD8)
+    if (script == beh_normal_cap)
         return MARIO_UNKNOWN_00;
-    else if (script == D_13003DB8)
+    else if (script == beh_metal_cap)
         return MARIO_METAL_CAP;
-    else if (script == D_13003D98)
+    else if (script == beh_wing_cap)
         return MARIO_WING_CAP;
-    else if (script == D_13003DFC)
+    else if (script == beh_vanish_cap)
         return MARIO_VANISH_CAP;
 
     return 0;
@@ -281,7 +281,7 @@ void mario_grab_used_object(struct MarioState *m)
     if (m->heldObj == NULL)
     {
         m->heldObj = m->usedObj;
-        func_8029DA34(m->heldObj, D_13003444);
+        func_8029DA34(m->heldObj, beh_carry_something3);
     }
 }
 
@@ -289,10 +289,10 @@ void mario_drop_held_object(struct MarioState *m)
 {
     if (m->heldObj != NULL)
     {
-        if (m->heldObj->unk20C == segmented_to_virtual(D_13000708))
+        if (m->heldObj->unk20C == segmented_to_virtual(beh_koopa_shell_underwater))
             func_8024931C();
 
-        func_8029DA34(m->heldObj, D_1300344C);
+        func_8029DA34(m->heldObj, beh_carry_something4);
 
         m->heldObj->pos[0] = m->unk98->unk18[0];
         m->heldObj->pos[1] = m->pos[1];
@@ -308,10 +308,10 @@ void mario_throw_held_object(struct MarioState *m)
 {
     if (m->heldObj != NULL)
     {
-        if (m->heldObj->unk20C == segmented_to_virtual(D_13000708))
+        if (m->heldObj->unk20C == segmented_to_virtual(beh_koopa_shell_underwater))
             func_8024931C();
 
-        func_8029DA34(m->heldObj, D_13003454);
+        func_8029DA34(m->heldObj, beh_carry_something5);
 
         m->heldObj->pos[0] = m->unk98->unk18[0] + 32.0f * sins(m->faceAngle[1]);
         m->heldObj->pos[1] = m->unk98->unk18[1];
@@ -350,7 +350,7 @@ void mario_blow_off_cap(struct MarioState *m, f32 capSpeed)
 
         m->flags &= ~(MARIO_UNKNOWN_00 | MARIO_CAP_ON_HEAD);
 
-        capObject = SpawnObj(m->marioObj, 136, D_13003DD8);
+        capObject = SpawnObj(m->marioObj, 136, beh_normal_cap);
 
         capObject->pos[1] += (m->action & ACT_FLAG_SHORT_HITBOX) ? 120.0f : 180.0f;
         capObject->forwardVel = capSpeed;
@@ -426,7 +426,7 @@ u32 mario_check_object_grab(struct MarioState *m)
     {
         script = virtual_to_segmented(0x13, m->interactObj->unk20C);
 
-        if (script == D_13001850)
+        if (script == beh_bowser)
         {
             s16 facingDYaw = m->faceAngle[1] - m->interactObj->angle[1];
             if (facingDYaw >= -0x5555 && facingDYaw <= 0x5555)
@@ -825,7 +825,7 @@ static u32 interact_star_or_key(struct MarioState *m, UNUSED u32 interactType, s
         if (m->action & ACT_FLAG_AIR)
             starGrabAction = ACT_FALL_AFTER_STAR_GRAB;
 
-        SpawnObj(o, 0, D_13003890);
+        SpawnObj(o, 0, beh_some_white_puff);
 
         o->interactStatus = 0x00008000;
         m->interactObj = o;
@@ -1685,7 +1685,7 @@ static u32 interact_grabbable(struct MarioState *m, u32 interactType, struct Obj
         }
     }
 
-    if (script != D_13001850)
+    if (script != beh_bowser)
         push_mario_out_of_object(m, o, -5.0f);
     return FALSE;
 }

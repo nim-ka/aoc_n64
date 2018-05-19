@@ -12,7 +12,7 @@
 
 extern s32 D_8038BE90;
 extern s32 D_8035FE04;
-extern s32 D_13001C34;
+extern s32 beh_ddd_warp;
 
 struct SurfaceNode *func_80382490(void) {
     struct SurfaceNode *sp4 = &D_8038EE98[D_8035FDFC];
@@ -481,7 +481,7 @@ void func_80383828(s16 **data, s16 *vertexData) {
     sp1E |= 0x0001;
 
 
-    if (gCurrentObject->unk20C == segmented_to_virtual(&D_13001C34))
+    if (gCurrentObject->unk20C == segmented_to_virtual(&beh_ddd_warp))
         sp1C = 5;
     else
         sp1C = 0;

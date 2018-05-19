@@ -12,17 +12,17 @@ struct BullyCollisionData {
   /*0x14*/ f32 velZ;
 };
 
-extern u8 D_13003DD8[];
-extern u8 D_13003DB8[];
-extern u8 D_13003D98[];
-extern u8 D_13003DFC[];
-extern u8 D_13003444[];
-extern u8 D_13000708[];
-extern u8 D_1300344C[];
-extern u8 D_13003454[];
-extern u8 D_13001850[];
+extern u8 beh_normal_cap[];
+extern u8 beh_metal_cap[];
+extern u8 beh_wing_cap[];
+extern u8 beh_vanish_cap[];
+extern u8 beh_carry_something3[];
+extern u8 beh_koopa_shell_underwater[];
+extern u8 beh_carry_something4[];
+extern u8 beh_carry_something5[];
+extern u8 beh_bowser[];
 extern s16 D_80339F02;
-extern u8 D_13003890[];
+extern u8 beh_some_white_puff[];
 extern u8 D_03009AC8[];
 extern u8 D_80339F00;
 

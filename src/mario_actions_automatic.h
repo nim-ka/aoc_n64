@@ -3,8 +3,8 @@
 
 #include "types.h"
 
-// extern ? D_13002A8C;
-// extern ? D_13000118;
+// extern ? beh_tree;
+// extern ? beh_giant_pole;
 
 // extern ? func_8025D9F0(?);
 // extern ? func_8025DA9C(?);

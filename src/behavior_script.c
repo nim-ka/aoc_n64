@@ -12,8 +12,8 @@
 
 extern u32 *gBehCommand;
 extern u16 gRandomSeed16;
-extern u32 D_13004FB4[];
-extern u32 D_130032C0[];
+extern u32 beh_haunted_chair[];
+extern u32 beh_message_panel[];
 
 typedef s32 (*BehCommandProc)(void);
 static BehCommandProc BehaviorJumpTable[] =
@@ -692,17 +692,17 @@ s32 Behavior24(void)
 
 s32 Behavior00(void)
 {
-    if(CheckObjBehavior((u32 *)&D_13004FB4))
+    if(CheckObjBehavior((u32 *)&beh_haunted_chair))
     {
         BehCommonInit();
     }
 
-    if(CheckObjBehavior((u32 *)&D_13005004))
+    if(CheckObjBehavior((u32 *)&beh_mad_piano))
     {
         BehCommonInit();
     }
 
-    if(CheckObjBehavior((u32 *)&D_130032C0))
+    if(CheckObjBehavior((u32 *)&beh_message_panel))
     {
         gCurrentObject->collisionDistance = 150.0f;
     }

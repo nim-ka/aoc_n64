@@ -67,8 +67,8 @@ glabel func_802E1780
 glabel L802E1848
 /* 09C848 802E1848 87AE003A */  lh    $t6, 0x3a($sp)
 /* 09C84C 802E184C 87AD0036 */  lh    $t5, 0x36($sp)
-/* 09C850 802E1850 3C051300 */  lui   $a1, %hi(D_13002898) # $a1, 0x1300
-/* 09C854 802E1854 24A52898 */  addiu $a1, %lo(D_13002898) # addiu $a1, $a1, 0x2898
+/* 09C850 802E1850 3C051300 */  lui   $a1, %hi(beh_boo_boss_spawned_bridge) # $a1, 0x1300
+/* 09C854 802E1854 24A52898 */  addiu $a1, %lo(beh_boo_boss_spawned_bridge) # addiu $a1, $a1, 0x2898
 /* 09C858 802E1858 00002025 */  move  $a0, $zero
 /* 09C85C 802E185C 87A6003E */  lh    $a2, 0x3e($sp)
 /* 09C860 802E1860 87A7003C */  lh    $a3, 0x3c($sp)
@@ -81,8 +81,8 @@ glabel L802E1848
 glabel L802E187C
 /* 09C87C 802E187C 87AF003A */  lh    $t7, 0x3a($sp)
 /* 09C880 802E1880 87B80036 */  lh    $t8, 0x36($sp)
-/* 09C884 802E1884 3C051300 */  lui   $a1, %hi(D_130028CC) # $a1, 0x1300
-/* 09C888 802E1888 24A528CC */  addiu $a1, %lo(D_130028CC) # addiu $a1, $a1, 0x28cc
+/* 09C884 802E1884 3C051300 */  lui   $a1, %hi(beh_bbh_tilt_floor_platforms) # $a1, 0x1300
+/* 09C888 802E1888 24A528CC */  addiu $a1, %lo(beh_bbh_tilt_floor_platforms) # addiu $a1, $a1, 0x28cc
 /* 09C88C 802E188C 24040036 */  li    $a0, 54
 /* 09C890 802E1890 87A6003E */  lh    $a2, 0x3e($sp)
 /* 09C894 802E1894 87A7003C */  lh    $a3, 0x3c($sp)
@@ -95,8 +95,8 @@ glabel L802E187C
 glabel L802E18B0
 /* 09C8B0 802E18B0 87B9003A */  lh    $t9, 0x3a($sp)
 /* 09C8B4 802E18B4 87A80036 */  lh    $t0, 0x36($sp)
-/* 09C8B8 802E18B8 3C051300 */  lui   $a1, %hi(D_13000C44) # $a1, 0x1300
-/* 09C8BC 802E18BC 24A50C44 */  addiu $a1, %lo(D_13000C44) # addiu $a1, $a1, 0xc44
+/* 09C8B8 802E18B8 3C051300 */  lui   $a1, %hi(beh_bbh_tumbling_platform_group) # $a1, 0x1300
+/* 09C8BC 802E18BC 24A50C44 */  addiu $a1, %lo(beh_bbh_tumbling_platform_group) # addiu $a1, $a1, 0xc44
 /* 09C8C0 802E18C0 24040037 */  li    $a0, 55
 /* 09C8C4 802E18C4 87A6003E */  lh    $a2, 0x3e($sp)
 /* 09C8C8 802E18C8 87A7003C */  lh    $a3, 0x3c($sp)
@@ -109,8 +109,8 @@ glabel L802E18B0
 glabel L802E18E4
 /* 09C8E4 802E18E4 87AB003A */  lh    $t3, 0x3a($sp)
 /* 09C8E8 802E18E8 87A90036 */  lh    $t1, 0x36($sp)
-/* 09C8EC 802E18EC 3C051300 */  lui   $a1, %hi(D_130028FC) # $a1, 0x1300
-/* 09C8F0 802E18F0 24A528FC */  addiu $a1, %lo(D_130028FC) # addiu $a1, $a1, 0x28fc
+/* 09C8EC 802E18EC 3C051300 */  lui   $a1, %hi(beh_tumbling_bookshelf) # $a1, 0x1300
+/* 09C8F0 802E18F0 24A528FC */  addiu $a1, %lo(beh_tumbling_bookshelf) # addiu $a1, $a1, 0x28fc
 /* 09C8F4 802E18F4 24040039 */  li    $a0, 57
 /* 09C8F8 802E18F8 87A6003E */  lh    $a2, 0x3e($sp)
 /* 09C8FC 802E18FC 87A7003C */  lh    $a3, 0x3c($sp)
@@ -123,8 +123,8 @@ glabel L802E18E4
 glabel L802E1918
 /* 09C918 802E1918 87AA003A */  lh    $t2, 0x3a($sp)
 /* 09C91C 802E191C 87AC0036 */  lh    $t4, 0x36($sp)
-/* 09C920 802E1920 3C051300 */  lui   $a1, %hi(D_1300292C) # $a1, 0x1300
-/* 09C924 802E1924 24A5292C */  addiu $a1, %lo(D_1300292C) # addiu $a1, $a1, 0x292c
+/* 09C920 802E1920 3C051300 */  lui   $a1, %hi(beh_mesh_elevator) # $a1, 0x1300
+/* 09C924 802E1924 24A5292C */  addiu $a1, %lo(beh_mesh_elevator) # addiu $a1, $a1, 0x292c
 /* 09C928 802E1928 2404003A */  li    $a0, 58
 /* 09C92C 802E192C 87A6003E */  lh    $a2, 0x3e($sp)
 /* 09C930 802E1930 87A7003C */  lh    $a3, 0x3c($sp)
@@ -137,8 +137,8 @@ glabel L802E1918
 glabel L802E194C
 /* 09C94C 802E194C 87AE003A */  lh    $t6, 0x3a($sp)
 /* 09C950 802E1950 87AD0036 */  lh    $t5, 0x36($sp)
-/* 09C954 802E1954 3C051300 */  lui   $a1, %hi(D_1300091C) # $a1, 0x1300
-/* 09C958 802E1958 24A5091C */  addiu $a1, %lo(D_1300091C) # addiu $a1, $a1, 0x91c
+/* 09C954 802E1954 3C051300 */  lui   $a1, %hi(beh_collectable_coin) # $a1, 0x1300
+/* 09C958 802E1958 24A5091C */  addiu $a1, %lo(beh_collectable_coin) # addiu $a1, $a1, 0x91c
 /* 09C95C 802E195C 24040074 */  li    $a0, 116
 /* 09C960 802E1960 87A6003E */  lh    $a2, 0x3e($sp)
 /* 09C964 802E1964 87A7003C */  lh    $a3, 0x3c($sp)
@@ -151,8 +151,8 @@ glabel L802E194C
 glabel L802E1980
 /* 09C980 802E1980 87AF003A */  lh    $t7, 0x3a($sp)
 /* 09C984 802E1984 87B80036 */  lh    $t8, 0x36($sp)
-/* 09C988 802E1988 3C051300 */  lui   $a1, %hi(D_1300091C) # $a1, 0x1300
-/* 09C98C 802E198C 24A5091C */  addiu $a1, %lo(D_1300091C) # addiu $a1, $a1, 0x91c
+/* 09C988 802E1988 3C051300 */  lui   $a1, %hi(beh_collectable_coin) # $a1, 0x1300
+/* 09C98C 802E198C 24A5091C */  addiu $a1, %lo(beh_collectable_coin) # addiu $a1, $a1, 0x91c
 /* 09C990 802E1990 24040074 */  li    $a0, 116
 /* 09C994 802E1994 87A6003E */  lh    $a2, 0x3e($sp)
 /* 09C998 802E1998 87A7003C */  lh    $a3, 0x3c($sp)

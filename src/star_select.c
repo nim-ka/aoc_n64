@@ -17,7 +17,7 @@
 
 /*static*/ extern struct Object *sStarSelectIcons[];
 
-extern u8 D_1300300C[];
+extern u8 beh_star_in_act_selector[];
 
 static s8 sSelectedStar = 0;
 static s8 D_801A8014 = 0;
@@ -52,7 +52,7 @@ void func_80176934(u8 stars)
 {
     if (stars & (1 << 6))
     {
-        sStarSelectIcons[6] = func_8029E230(gCurrentObject, 0, 122, D_1300300C, 370, 24, -300, 0, 0, 0);
+        sStarSelectIcons[6] = func_8029E230(gCurrentObject, 0, 122, beh_star_in_act_selector, 370, 24, -300, 0, 0, 0);
         sStarSelectIcons[6]->unk108 = 0.8;
         sStarSelectIcons[6]->unkF4 = 2;
     }
@@ -99,7 +99,7 @@ void BehActSelectorInit(void)
 
     for (sp5E = 0; sp5E < D_801B9912; sp5E++)
     {
-        sStarSelectIcons[sp5E] = func_8029E230(gCurrentObject, 0, sp34[sp5E], D_1300300C, 0x4B + D_801B9912 * -75 + sp5E * 152, 248, -300, 0, 0, 0);
+        sStarSelectIcons[sp5E] = func_8029E230(gCurrentObject, 0, sp34[sp5E], beh_star_in_act_selector, 0x4B + D_801B9912 * -75 + sp5E * 152, 248, -300, 0, 0, 0);
         sStarSelectIcons[sp5E]->unk108 = 1.0f;
     }
 

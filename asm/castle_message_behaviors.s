@@ -643,8 +643,8 @@ glabel func_802764F0
 /* 0314F4 802764F4 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 0314F8 802764F8 AFA40020 */  sw    $a0, 0x20($sp)
 /* 0314FC 802764FC 3C048036 */  lui   $a0, %hi(gCurrentObject) # $a0, 0x8036
-/* 031500 80276500 3C061300 */  lui   $a2, %hi(D_13002AD8) # $a2, 0x1300
-/* 031504 80276504 24C62AD8 */  addiu $a2, %lo(D_13002AD8) # addiu $a2, $a2, 0x2ad8
+/* 031500 80276500 3C061300 */  lui   $a2, %hi(beh_powerup_sparkles2) # $a2, 0x1300
+/* 031504 80276504 24C62AD8 */  addiu $a2, %lo(beh_powerup_sparkles2) # addiu $a2, $a2, 0x2ad8
 /* 031508 80276508 8C84FDF0 */  lw    $a0, %lo(gCurrentObject)($a0)
 /* 03150C 8027650C 0C0A7994 */  jal   SpawnObj
 /* 031510 80276510 00002825 */   move  $a1, $zero
