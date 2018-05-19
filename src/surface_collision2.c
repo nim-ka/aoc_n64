@@ -480,8 +480,7 @@ void func_80383828(s16 **data, s16 *vertexData) {
     sp1E = func_80382FEC(surfaceType);
     sp1E |= 0x0001;
 
-
-    if (gCurrentObject->unk20C == segmented_to_virtual(&beh_ddd_warp))
+    if (gCurrentObject->behavior == segmented_to_virtual(&beh_ddd_warp))
         sp1C = 5;
     else
         sp1C = 0;

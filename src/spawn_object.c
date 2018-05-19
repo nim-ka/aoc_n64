@@ -242,7 +242,7 @@ struct Object *func_802C9424(u32 *a)
     sp2C = &D_8035FD78[sp34];
     sp30 = func_802C9120(sp2C);
     sp30->behScript = a;
-    sp30->unk20C = sp28;
+    sp30->behavior = sp28;
     if (sp34 == 12)
         sp30->active |= 0x10;
     switch (sp34)

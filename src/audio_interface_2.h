@@ -96,7 +96,7 @@ extern void func_803208C0();
 // extern ? func_8032091C(?);
 extern void func_80320980();
 // extern ? Unknown803209D8(?);
-// extern ? func_80320A4C(?);
+extern void func_80320A4C();
 // extern ? func_80320A68(?);
 extern void func_80320AE8(int, int, int);
 extern void func_80320CE8();

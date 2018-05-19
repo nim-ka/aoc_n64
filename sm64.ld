@@ -49,7 +49,7 @@ SECTIONS
       build/asm/mario.o(.text);
       build/src/mario_step.o(.text);
       build/asm/mario_actions_cutscene.o(.text);
-      build/asm/mario_actions_automatic.o(.text);
+      build/src/mario_actions_automatic.o(.text);
       build/asm/mario_actions_stationary.o(.text);
       build/asm/mario_actions_moving.o(.text);
       build/src/mario_actions_airborne.o(.text);
@@ -140,7 +140,7 @@ SECTIONS
       build/data/mario.rodata.o(.rodata*);
       build/src/mario_step.o(.rodata*);
       build/data/mario_actions_cutscene.rodata.o(.rodata*);
-      build/data/mario_actions_automatic.rodata.o(.rodata*);
+      build/src/mario_actions_automatic.o(.rodata*);
       build/data/mario_actions_stationary.rodata.o(.rodata*);
       build/data/mario_actions_moving.rodata.o(.rodata*);
       build/src/mario_actions_airborne.o(.rodata*);

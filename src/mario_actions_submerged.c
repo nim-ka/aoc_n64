@@ -29,7 +29,7 @@ static void set_swimming_at_surface_flag(struct MarioState *m, u32 flag)
 
     if (atSurface)
     {
-        m->unk08 |= flag;
+        m->particleFlags |= flag;
         if (atSurface ^ sWasAtSurface)
             SetSound(0x04316081, &m->marioObj->gfx.unk54);
     }
@@ -827,7 +827,7 @@ static s32 act_water_punch(struct MarioState *m)
         func_802507E8(m, 0x00AE);
         if (func_80250770(m))
         {
-            if (m->heldObj->unk20C == segmented_to_virtual(beh_koopa_shell_underwater))
+            if (m->heldObj->behavior == segmented_to_virtual(beh_koopa_shell_underwater))
             {
                 func_802492E0();
                 set_mario_action(m, ACT_WATER_SHELL_SWIMMING, 0);
@@ -964,7 +964,7 @@ static s32 act_water_plunge(struct MarioState *m)
         if (m->peakHeight - m->pos[1] > 1150.0f)
             SetSound(0x2411F081, &m->marioObj->gfx.unk54);
 
-        m->unk08 |= 0x00000040;
+        m->particleFlags |= 0x00000040;
         m->actionState = 1;
     }
 
@@ -992,7 +992,7 @@ static s32 act_water_plunge(struct MarioState *m)
     case 5: func_802507E8(m, 0x0043); break;
     }
 
-    m->unk08 |= 0x00000200;
+    m->particleFlags |= 0x00000200;
     return FALSE;
 }
 
@@ -1066,7 +1066,7 @@ static s32 act_caught_in_whirlpool(struct MarioState *m)
 static void func_80272FA8(struct MarioState *m, u32 arg)
 {
     if (!(m->flags & MARIO_UNKNOWN_16))
-        m->unk08 |= 0x00010000;
+        m->particleFlags |= 0x00010000;
 
     func_80250F50(m, arg ? 0x04519081 : 0x04509081, MARIO_UNKNOWN_16);
 }
@@ -1076,7 +1076,7 @@ static void play_metal_water_walking_sound(struct MarioState *m)
     if (func_80250B68(m, 10) || func_80250B68(m, 49))
     {
         SetSound(0x04529081, &m->marioObj->gfx.unk54);
-        m->unk08 |= 0x00000001;
+        m->particleFlags |= 0x00000001;
     }
 }
 
@@ -1158,7 +1158,7 @@ static s32 act_metal_water_standing(struct MarioState *m)
 
     stop_and_set_height_to_floor(m);
     if (m->pos[1] >= m->waterLevel - 150)
-        m->unk08 |= 0x00000080;
+        m->particleFlags |= 0x00000080;
 
     return FALSE;
 }

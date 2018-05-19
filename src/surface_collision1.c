@@ -113,7 +113,7 @@ s32 func_80380690(struct SurfaceNode * triNode, struct WallCollisionData * data)
 
 s32 func_80380DE8(f32 *xPtr, f32 *yPtr, f32 *zPtr, f32 offsetY, f32 radius) {
     struct WallCollisionData collision;
-    s32 sp1C = 0;
+    s32 numCollisions = 0;
 
     collision.offsetY = offsetY;
     collision.radius = radius;
@@ -124,25 +124,26 @@ s32 func_80380DE8(f32 *xPtr, f32 *yPtr, f32 *zPtr, f32 offsetY, f32 radius) {
 
     collision.numWalls = 0;
 
-    sp1C = func_80380E8C(&collision);
+    numCollisions = func_80380E8C(&collision);
     *xPtr = collision.x;
     *yPtr = collision.y;
     *zPtr = collision.z;
 
-    return sp1C;
+    return numCollisions;
 }
 
-s32 func_80380E8C(struct WallCollisionData *collision) {
+s32 func_80380E8C(struct WallCollisionData *collision)
+{
     struct SurfaceNode *node;
     s16 xGrid, zGrid;
-    s32 sp2C = 0;
+    s32 numCollisions = 0;
     s16 x = collision->x; 
     s16 z = collision->z;    
 
     collision->numWalls = 0;
 
-    if (x < -0x1fff || x >= 0x2000) return sp2C; 
-    if (z < -0x1fff || z >= 0x2000) return sp2C;  
+    if (x < -0x1fff || x >= 0x2000) return numCollisions; 
+    if (z < -0x1fff || z >= 0x2000) return numCollisions;  
 
     // World (level) consists of a 16x16 grid. Find where the collision is on 
     // the grid (round toward -inf)
@@ -150,14 +151,14 @@ s32 func_80380E8C(struct WallCollisionData *collision) {
     zGrid = ((z + 0x2000) / 0x400) & 0x0F;
 
     node = *(struct SurfaceNode **)((u32)&D_8038D6A8 + zGrid * 0x180 + xGrid * 0x18);
-    sp2C += func_80380690(node, collision);
+    numCollisions += func_80380690(node, collision);
 
     node = *(struct SurfaceNode **)((u32)&D_8038BEA8 + zGrid * 0x180 + xGrid * 0x18);
-    sp2C += func_80380690(node, collision);
+    numCollisions += func_80380690(node, collision);
 
     D_8033BF08++;
  
-    return sp2C;
+    return numCollisions;
 }
 
 struct Surface *func_80381038(struct SurfaceNode *triangles, s32 x, s32 y, s32 z, f32 *pheight) {

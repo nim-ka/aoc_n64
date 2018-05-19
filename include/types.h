@@ -198,7 +198,7 @@ struct Object
     /*0x200*/ f32 unk200;
     /*0x204*/ f32 unk204;
     /*0x208*/ f32 unk208;
-    /*0x20C*/ void *unk20C;
+    /*0x20C*/ void *behavior;
     /*0x210*/ u32 unk210;
     /*0x214*/ struct Object *platform;
     /*0x218*/ void *collisionData;
@@ -230,6 +230,7 @@ struct UnknownStruct6 {
     /*0x18*/ s16 unk18;
     u8 filler1A[4];
     /*0x1E*/ u16 unk1E;
+    /*0x20*/ struct Object *unk20;
 };
 
 struct UnknownStruct4
@@ -256,7 +257,7 @@ struct MarioState
     /*0x00*/ u16 unk00;
     /*0x02*/ u16 input;
     /*0x04*/ u32 flags;
-    /*0x08*/ u32 unk08;
+    /*0x08*/ u32 particleFlags;
     /*0x0C*/ u32 action;
     /*0x10*/ u32 prevAction;
     /*0x14*/ u32 unk14;

@@ -168,7 +168,7 @@ void IntroPrintText(void)
 u32 func_8027A38C(struct Object *o)
 {
     int sp1C;
-    void *sp18 = virtual_to_segmented(0x13, o->unk20C);
+    void *sp18 = virtual_to_segmented(0x13, o->behavior);
 
     for (sp1C = 0; sp1C < 20; sp1C++)
     {

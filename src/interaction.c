@@ -142,7 +142,7 @@ static u8 sPssSlideStarted = FALSE;
 
 static u32 get_mario_cap_flag(struct Object *capObject)
 {
-    void *script = virtual_to_segmented(0x13, capObject->unk20C);
+    void *script = virtual_to_segmented(0x13, capObject->behavior);
 
     if (script == beh_normal_cap)
         return MARIO_UNKNOWN_00;
@@ -289,7 +289,7 @@ void mario_drop_held_object(struct MarioState *m)
 {
     if (m->heldObj != NULL)
     {
-        if (m->heldObj->unk20C == segmented_to_virtual(beh_koopa_shell_underwater))
+        if (m->heldObj->behavior == segmented_to_virtual(beh_koopa_shell_underwater))
             func_8024931C();
 
         func_8029DA34(m->heldObj, beh_carry_something4);
@@ -308,7 +308,7 @@ void mario_throw_held_object(struct MarioState *m)
 {
     if (m->heldObj != NULL)
     {
-        if (m->heldObj->unk20C == segmented_to_virtual(beh_koopa_shell_underwater))
+        if (m->heldObj->behavior == segmented_to_virtual(beh_koopa_shell_underwater))
             func_8024931C();
 
         func_8029DA34(m->heldObj, beh_carry_something5);
@@ -424,7 +424,7 @@ u32 mario_check_object_grab(struct MarioState *m)
 
     if (m->input & INPUT_INTERACT_OBJ_GRABBABLE)
     {
-        script = virtual_to_segmented(0x13, m->interactObj->unk20C);
+        script = virtual_to_segmented(0x13, m->interactObj->behavior);
 
         if (script == beh_bowser)
         {
@@ -696,7 +696,7 @@ static void bounce_back_from_attack(struct MarioState *m, u32 interaction)
             func_802514DC(m, -48.0f);
 
         func_8027EFE0(1);
-        m->unk08 |= 0x00040000;
+        m->particleFlags |= 0x00040000;
     }
 
     if (interaction & (INT_PUNCH | INT_KICK | INT_TRIP | INT_FAST_ATTACK_OR_SHELL))
@@ -1658,7 +1658,7 @@ static u32 interact_cap(struct MarioState *m, UNUSED u32 interactType, struct Ob
 
 static u32 interact_grabbable(struct MarioState *m, u32 interactType, struct Object *o)
 {
-    void *script = virtual_to_segmented(0x13, o->unk20C);
+    void *script = virtual_to_segmented(0x13, o->behavior);
 
     if (o->unk190 & 0x00000100)
     {
@@ -1788,15 +1788,14 @@ static void check_kick_or_punch_wall(struct MarioState *m)
 
                 func_802514DC(m, -48.0f);
                 SetSound(0x0444B081, &m->marioObj->gfx.unk54);
-                m->unk08 |= 0x00040000;
+                m->particleFlags |= 0x00040000;
             }
             else if (m->action & ACT_FLAG_AIR)
             {
                 func_802514DC(m, -16.0f);
                 SetSound(0x0444B081, &m->marioObj->gfx.unk54);
-                m->unk08 |= 0x00040000;
+                m->particleFlags |= 0x00040000;
             }
-
         }
     }
 }
