@@ -61,7 +61,7 @@ extern f32 func_80381900(f32, f32, f32, struct Surface **);
 extern float func_80381BA0(float, float);
 extern float func_80381D3C(float, float);
 // extern ? func_80381EC8(?);
-// extern ? func_80381F08(?);
+extern void func_80381F08(f32 sp40, f32 sp44);
 // extern ? Unknown80382294(?);
 // extern ? func_80382490(?);
 // extern ? func_803824F8(?);

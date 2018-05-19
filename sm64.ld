@@ -28,7 +28,7 @@ __expansionRamStart = 0x80400000;
 
 SECTIONS
 {
-	__romPos = 0;
+    __romPos = 0;
 
    BEGIN_SEG(boot, 0x04000000)
    {
@@ -68,7 +68,8 @@ SECTIONS
       build/src/platform_displacement.o(.text);
       build/src/object_collision.o(.text);
       build/src/spawn_object.o(.text);
-      build/asm/mapinfo.o(.text);
+      build/src/mapinfo_1.o(.text);
+      build/src/mapinfo_2.o(.text);
       build/asm/screen_transition.o(.text);
       build/asm/rotate.o(.text);
       build/src/skybox.o(.text);
@@ -117,7 +118,8 @@ SECTIONS
       build/src/camera.o(.data*);
       build/data/camera.data.o(.data*);
       build/src/platform_displacement.o(.data*);
-      build/data/mapinfo.data.o(.data*);
+      build/src/mapinfo_1.o(.data*);
+      build/src/mapinfo_2.o(.data*);
       build/data/screen_transition.data.o(.data*);
       build/data/rotate.data.o(.data*);
       build/src/skybox.o(.data*);
@@ -153,7 +155,8 @@ SECTIONS
       build/data/level_functions.rodata.o(.rodata*);
       build/src/object_collision.o(.rodata*);
       build/src/spawn_object.o(.rodata*);
-      build/data/mapinfo.rodata.o(.rodata*);
+      build/src/mapinfo_1.o(.rodata*);
+      build/src/mapinfo_2.o(.rodata*);
       build/data/screen_transition.rodata.o(.rodata*);
       build/data/rotate.rodata.o(.rodata*);
       build/src/skybox.o(.rodata*);
@@ -211,7 +214,7 @@ SECTIONS
 
    /*
     RDRAM begins at 0x8038F800 and ends where
-	expansion RAM begins at 0x80400000;
+    expansion RAM begins at 0x80400000;
    */
    . = __rdramStart;
 

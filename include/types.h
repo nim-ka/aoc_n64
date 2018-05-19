@@ -174,7 +174,8 @@ struct Object
     /*0x164*/ Vec3f unk164;
     /*0x170*/ f32 unk170;
     /*0x174*/ f32 unk174;
-    u8 filler178[0x180-0x178];
+    /*0x178*/ s32 unk178;
+    u8 filler17C[0x180-0x17C];
     /*0x180*/ s32 unk180;
     /*0x184*/ u32 unk184;
     /*0x188*/ s32 unk188;
