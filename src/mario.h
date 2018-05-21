@@ -3,7 +3,7 @@
 
 #include "types.h"
 
-// extern ? D_80226EB8;
+extern u32 D_80226EB8;
 // extern ? D_80335280;
 // extern ? D_80335288;
 // extern ? D_80335290;

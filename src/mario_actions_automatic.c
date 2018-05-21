@@ -115,6 +115,21 @@ static int act_holding_pole(struct MarioState *m)
 {
     struct Object *marioObj = m->marioObj;
 
+#if VERSION_US
+    if ((m->input & INPUT_Z_PRESSED) || m->health < 0x100)
+    {
+        add_tree_leaf_particles(m);
+        m->forwardVel = -2.0f;
+        return set_mario_action(m, ACT_SOFT_BONK, 0);
+    }
+
+    if (m->input & INPUT_A_PRESSED)
+    {
+        add_tree_leaf_particles(m);
+        m->faceAngle[1] += 0x8000;
+        return set_mario_action(m, ACT_WALL_KICK_AIR, 0);
+    }
+#else
     if (m->input & INPUT_A_PRESSED)
     {
         add_tree_leaf_particles(m);
@@ -128,6 +143,7 @@ static int act_holding_pole(struct MarioState *m)
         m->forwardVel = -2.0f;
         return set_mario_action(m, ACT_SOFT_BONK, 0);
     }
+#endif
 
     if (m->controller->stickY > 16.0f)
     {
@@ -175,6 +191,15 @@ static int act_climbing_pole(struct MarioState *m)
     int sp24;
     struct Object *marioObj = m->marioObj;
     s16 sp1E = m->area->unk24->unk02;
+
+#if VERSION_US
+    if (m->health < 0x100)
+    {
+        add_tree_leaf_particles(m);
+        m->forwardVel = -2.0f;
+        return set_mario_action(m, ACT_SOFT_BONK, 0);
+    }
+#endif
 
     if (m->input & INPUT_A_PRESSED)
     {
