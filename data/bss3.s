@@ -3,13 +3,13 @@
 
 .section .bss
 
-glabel D_801B9850
+glabel gGameOverFrameCounter
     .space 0x4
-glabel D_801B9854
+glabel gGameOverTableIndex
     .space 0x4
-glabel gIntroFrameCounter
+glabel gTitleZoomCounter
     .space 0x4
-glabel gGeoFadeCounter
+glabel gTitleFadeCounter
     .space 0x4
 glabel D_801B9860
     .space 0x38

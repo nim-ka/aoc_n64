@@ -155,7 +155,7 @@ game_over_level:
 .word   0x04000000
 .word     0x09000064
 .word     0x04000000
-.word       0x18000000, geo18_backdrop_tile
+.word       0x18000000, geo18_game_over_tile
 .word     0x05000000
 .word   0x05000000
 .word   0x0C010000

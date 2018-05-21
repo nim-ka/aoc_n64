@@ -264,7 +264,7 @@ SECTIONS
       /* data, rodata, per file */
       build/src/level_select_menu.o(.data*);
       build/src/level_select_menu.o(.rodata*);
-      build/data/intro_geo.data.o(.data*);
+      build/src/intro_geo.o(.data*);
       build/data/file_select.data.o(.data*);
       build/data/file_select.rodata.o(.rodata*);
       build/src/star_select.o(.data*);
