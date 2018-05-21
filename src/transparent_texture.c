@@ -17,7 +17,7 @@ extern s32 D_07019248;
 extern Gfx D_070192F0[];
 extern Gfx D_07019360[];
 extern Gfx D_070193C8[];
-extern Gfx D_07026400[];
+extern Gfx cake_end_dl_07026400[];
 
 s16 D_80330390 = 0x01, D_80330394 = 0, D_80330398 = 0;
 
@@ -173,7 +173,7 @@ Gfx *Geo18_802D28CC(s32 sp30, short *sp34, UNUSED s32 sp38)
 
         sp2C[1] = (sp2C[1] & 0xFF) | 0x100;
         gSPDisplayList(sp24++, seg2_f3d_014660);
-        gSPDisplayList(sp24++, D_07026400);
+        gSPDisplayList(sp24++, cake_end_dl_07026400);
         gSPEndDisplayList(sp24);
     }
 

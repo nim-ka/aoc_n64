@@ -257,7 +257,7 @@ MAIN_MENU_SEGMENT7_FILES = \
    main_menu_segment7.0CC88.ia8 \
    main_menu_segment7.0CCC8.ia8 \
    main_menu_segment7.0D1A8.rgba16 \
-   main_menu_segment7.0E1A8.rgba16
+   main_menu_segment7.0E1A8.rgba16 \
 
 BIDW_PLATFORM_SEGMENT7_FILES = \
    bidw_platform_segment7.00000.rgba16 \
@@ -530,6 +530,56 @@ SEGMENT2_FILES = \
    segment2.13C58.rgba16 \
    segment2.14838.ia8
 
+CAKE_END_FILES = \
+   cake_end.00000.rgba16 \
+   cake_end.00C80.rgba16 \
+   cake_end.01900.rgba16 \
+   cake_end.02580.rgba16 \
+   cake_end.03200.rgba16 \
+   cake_end.03E80.rgba16 \
+   cake_end.04B00.rgba16 \
+   cake_end.05780.rgba16 \
+   cake_end.06400.rgba16 \
+   cake_end.07080.rgba16 \
+   cake_end.07D00.rgba16 \
+   cake_end.08980.rgba16 \
+   cake_end.09600.rgba16 \
+   cake_end.0A280.rgba16 \
+   cake_end.0AF00.rgba16 \
+   cake_end.0BB80.rgba16 \
+   cake_end.0C800.rgba16 \
+   cake_end.0D480.rgba16 \
+   cake_end.0E100.rgba16 \
+   cake_end.0ED80.rgba16 \
+   cake_end.0FA00.rgba16 \
+   cake_end.10680.rgba16 \
+   cake_end.11300.rgba16 \
+   cake_end.11F80.rgba16 \
+   cake_end.12C00.rgba16 \
+   cake_end.13880.rgba16 \
+   cake_end.14500.rgba16 \
+   cake_end.15180.rgba16 \
+   cake_end.15E00.rgba16 \
+   cake_end.16A80.rgba16 \
+   cake_end.17700.rgba16 \
+   cake_end.18380.rgba16 \
+   cake_end.19000.rgba16 \
+   cake_end.19C80.rgba16 \
+   cake_end.1A900.rgba16 \
+   cake_end.1B580.rgba16 \
+   cake_end.1C200.rgba16 \
+   cake_end.1CE80.rgba16 \
+   cake_end.1DB00.rgba16 \
+   cake_end.1E780.rgba16 \
+   cake_end.1F400.rgba16 \
+   cake_end.20080.rgba16 \
+   cake_end.20D00.rgba16 \
+   cake_end.21980.rgba16 \
+   cake_end.22600.rgba16 \
+   cake_end.23280.rgba16 \
+   cake_end.23F00.rgba16 \
+   cake_end.24B80.rgba16
+
 TITLE_SCREEN_BG_FILES = \
    title_screen_bg.001C0.rgba16 \
    title_screen_bg.00E40.rgba16 \
@@ -542,6 +592,7 @@ TITLE_SCREEN_BG_FILES = \
 
 TEXTURE_DIRS = \
    bin/segment2 \
+   bin/cake_end \
    bin/title_screen_bg \
    bin/intro_segment7 \
    bin/main_menu_segment7 \
@@ -549,6 +600,7 @@ TEXTURE_DIRS = \
    bin/bifs_platform_segment7
 
 $(BUILD_DIR)/bin/segment2.o: $(addprefix $(BUILD_DIR)/bin/segment2/,$(SEGMENT2_FILES))
+$(BUILD_DIR)/bin/cake_end.o: $(addprefix $(BUILD_DIR)/bin/cake_end/,$(CAKE_END_FILES))
 $(BUILD_DIR)/bin/title_screen_bg.o: $(addprefix $(BUILD_DIR)/bin/title_screen_bg/,$(TITLE_SCREEN_BG_FILES))
 $(BUILD_DIR)/bin/intro_segment7.o: $(addprefix $(BUILD_DIR)/bin/intro_segment7/,$(INTRO_SEGMENT7_FILES))
 $(BUILD_DIR)/bin/main_menu_segment7.o: $(addprefix $(BUILD_DIR)/bin/main_menu_segment7/,$(MAIN_MENU_SEGMENT7_FILES))
@@ -556,6 +608,7 @@ $(BUILD_DIR)/bin/bidw_platform_segment7.o: $(addprefix $(BUILD_DIR)/bin/bidw_pla
 $(BUILD_DIR)/bin/bifs_platform_segment7.o: $(addprefix $(BUILD_DIR)/bin/bifs_platform_segment7/,$(BIFS_PLATFORM_SEGMENT7_FILES))
 
 $(BUILD_DIR)/bin/segment2.elf: SEGMENT_ADDRESS := 0x02000000
+$(BUILD_DIR)/bin/cake_end.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/title_screen_bg.elf: SEGMENT_ADDRESS := 0x0A000000
 $(BUILD_DIR)/bin/intro_segment7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/main_menu_segment7.elf: SEGMENT_ADDRESS := 0x07000000
