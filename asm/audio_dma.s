@@ -1623,7 +1623,7 @@ glabel InitAudioSystem
 /* 0D36D8 803186D8 3C048022 */  lui   $a0, %hi(D_80226D4C) # $a0, 0x8022
 /* 0D36DC 803186DC 3C050074 */  lui   $a1, %hi(gSoundData) # $a1, 0x74
 /* 0D36E0 803186E0 24A55F80 */  addiu $a1, %lo(gSoundData) # addiu $a1, $a1, 0x5f80
-/* 0D36E4 803186E4 0C0C936A */  jal   func_80324DA8
+/* 0D36E4 803186E4 0C0C936A */  jal   alSeqFileNew
 /* 0D36E8 803186E8 8C846D4C */   lw    $a0, %lo(D_80226D4C)($a0)
 /* 0D36EC 803186EC 3C028022 */  lui   $v0, %hi(D_80226D50) # $v0, 0x8022
 /* 0D36F0 803186F0 24426D50 */  addiu $v0, %lo(D_80226D50) # addiu $v0, $v0, 0x6d50
@@ -1662,7 +1662,7 @@ glabel InitAudioSystem
 /* 0D3774 80318774 3C048022 */  lui   $a0, %hi(D_80226D50) # $a0, 0x8022
 /* 0D3778 80318778 3C050058 */  lui   $a1, %hi(D_00579140) # $a1, 0x58
 /* 0D377C 8031877C 24A59140 */  addiu $a1, %lo(D_00579140) # addiu $a1, $a1, -0x6ec0
-/* 0D3780 80318780 0C0C936A */  jal   func_80324DA8
+/* 0D3780 80318780 0C0C936A */  jal   alSeqFileNew
 /* 0D3784 80318784 8C846D50 */   lw    $a0, %lo(D_80226D50)($a0)
 /* 0D3788 80318788 3C028022 */  lui   $v0, %hi(D_80226D54) # $v0, 0x8022
 /* 0D378C 8031878C 24426D54 */  addiu $v0, %lo(D_80226D54) # addiu $v0, $v0, 0x6d54
@@ -1694,7 +1694,7 @@ glabel InitAudioSystem
 /* 0D37F4 803187F4 3C048022 */  lui   $a0, %hi(D_80226D54) # $a0, 0x8022
 /* 0D37F8 803187F8 3C050059 */  lui   $a1, %hi(D_00590200) # $a1, 0x59
 /* 0D37FC 803187FC 24A50200 */  addiu $a1, %lo(D_00590200) # addiu $a1, $a1, 0x200
-/* 0D3800 80318800 0C0C936A */  jal   func_80324DA8
+/* 0D3800 80318800 0C0C936A */  jal   alSeqFileNew
 /* 0D3804 80318804 8C846D54 */   lw    $a0, %lo(D_80226D54)($a0)
 /* 0D3808 80318808 02202025 */  move  $a0, $s1
 /* 0D380C 8031880C 0C0C5808 */  jal   soundAlloc

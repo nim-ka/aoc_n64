@@ -191,15 +191,14 @@ extern float sqrtf(float);
 // extern ? guPerspective(?);
 // extern ? osGetTime(?);
 
-// Unknown file
-// extern ? Unknown803241D0(?);
-// extern ? Unknown803241EC(?);
-extern u64 func_80324208(f64);
-// extern ? Unknown803242A8(?);
-// extern ? Unknown80324344(?);
-// extern ? Unknown8032435C(?);
-extern f64 func_80324374(s64);
-// extern ? Unknown803243A8(?);
+// extern ? __d_to_ll(?);
+// extern ? __f_to_ll(?);
+extern u64 __d_to_ull(f64);
+// extern ? __f_to_ull(?);
+// extern ? __ll_to_d(?);
+// extern ? __ll_to_f(?);
+extern f64 __ull_to_d(s64);
+// extern ? __ull_to_f(?);
 
 // extern ? cosf(?);
 // extern ? sinf(?);
@@ -211,10 +210,9 @@ extern void guTranslate(Mtx*, float, float, float);
 // extern ? guScale(?);
 // extern ? osAiSetFrequency(?);
 
-// Unknown file (audio)
-// extern ? func_80324BB0(?);
-// extern ? func_80324CA4(?);
-// extern ? func_80324DA8(?);
+// extern ? _bnkfPatchBank(?);
+// extern ? alBnkfNew(?);
+// extern ? alSeqFileNew(?);
 
 // extern ? osWriteBackDCache(?);
 // extern ? osAiGetLength(?);
@@ -287,10 +285,10 @@ extern void guTranslate(Mtx*, float, float, float);
 // extern ? _Genld(?);
 // extern ? u32_to_string(?);
 // extern ? string_to_u32(?);
-// extern ? clear_IP6(?);
+// extern ? send_packet(?);
 // extern ? send(?);
-// extern ? func_80329B40(?);
-// extern ? func_80329B8C(?);
+// extern ? process_command_memory(?);
+// extern ? process_command_register(?);
 // extern ? kdebugserver(?);
 // extern ? __osSyncPutChars(?);
 // extern ? osSetIntMask(?);

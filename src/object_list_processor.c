@@ -350,12 +350,12 @@ u16 func_8029CD48(s64 *sp40, s32 sp44) {
     u16 sp3E;
     f64 sp30;
 
-    sp30 = func_80324374((sp40 + sp44)[0] - (sp40 + sp44)[-1]);
+    sp30 = __ull_to_d((sp40 + sp44)[0] - (sp40 + sp44)[-1]);
 
     if (sp30 < 0)
         sp30 = 0;
     
-    sp3E = (u16)(func_80324374(func_80324208(sp30) * 0x000F4240U / osClockRate) / D_80336600 * D_80336608);
+    sp3E = (u16)(__ull_to_d(__d_to_ull(sp30) * 0x000F4240U / osClockRate) / D_80336600 * D_80336608);
 
     if (sp3E >= 0x3e8) 
         sp3E = 999;

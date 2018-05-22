@@ -3208,8 +3208,8 @@ glabel osGetTime
 /* 0DF1C8 803241C8 00000000 */  nop   
 /* 0DF1CC 803241CC 00000000 */  nop   
 
-# Beginning of an unknown file
-glabel Unknown803241D0
+
+glabel __d_to_ll
 /* 0DF1D0 803241D0 46206109 */  trunc.l.d $f4, $f12
 /* 0DF1D4 803241D4 44222000 */  dmfc1 $v0, $f4
 /* 0DF1D8 803241D8 00000000 */  nop   
@@ -3218,7 +3218,7 @@ glabel Unknown803241D0
 /* 0DF1E4 803241E4 03E00008 */  jr    $ra
 /* 0DF1E8 803241E8 0002103F */   dsra32 $v0, $v0, 0
 
-glabel Unknown803241EC
+glabel __f_to_ll
 /* 0DF1EC 803241EC 46006109 */  trunc.l.s $f4, $f12
 /* 0DF1F0 803241F0 44222000 */  dmfc1 $v0, $f4
 /* 0DF1F4 803241F4 00000000 */  nop   
@@ -3227,7 +3227,7 @@ glabel Unknown803241EC
 /* 0DF200 80324200 03E00008 */  jr    $ra
 /* 0DF204 80324204 0002103F */   dsra32 $v0, $v0, 0
 
-glabel func_80324208
+glabel __d_to_ull
 /* 0DF208 80324208 444EF800 */  cfc1  $t6, $31
 /* 0DF20C 8032420C 24020001 */  li    $v0, 1
 /* 0DF210 80324210 44C2F800 */  ctc1  $v0, $31
@@ -3272,7 +3272,7 @@ glabel func_80324208
 /* 0DF2A0 803242A0 03E00008 */  jr    $ra
 /* 0DF2A4 803242A4 0002103F */   dsra32 $v0, $v0, 0
 
-glabel Unknown803242A8
+glabel __f_to_ull
 /* 0DF2A8 803242A8 444EF800 */  cfc1  $t6, $31
 /* 0DF2AC 803242AC 24020001 */  li    $v0, 1
 /* 0DF2B0 803242B0 44C2F800 */  ctc1  $v0, $31
@@ -3316,7 +3316,7 @@ glabel Unknown803242A8
 /* 0DF33C 8032433C 03E00008 */  jr    $ra
 /* 0DF340 80324340 0002103F */   dsra32 $v0, $v0, 0
 
-glabel Unknown80324344
+glabel __ll_to_d
 /* 0DF344 80324344 AFA40000 */  sw    $a0, ($sp)
 /* 0DF348 80324348 AFA50004 */  sw    $a1, 4($sp)
 /* 0DF34C 8032434C DFAE0000 */  ld    $t6, ($sp)
@@ -3324,7 +3324,7 @@ glabel Unknown80324344
 /* 0DF354 80324354 03E00008 */  jr    $ra
 /* 0DF358 80324358 46A02021 */   cvt.d.l $f0, $f4
 
-glabel Unknown8032435C
+glabel __ll_to_f
 /* 0DF35C 8032435C AFA40000 */  sw    $a0, ($sp)
 /* 0DF360 80324360 AFA50004 */  sw    $a1, 4($sp)
 /* 0DF364 80324364 DFAE0000 */  ld    $t6, ($sp)
@@ -3332,7 +3332,7 @@ glabel Unknown8032435C
 /* 0DF36C 8032436C 03E00008 */  jr    $ra
 /* 0DF370 80324370 46A02020 */   cvt.s.l $f0, $f4
 
-glabel func_80324374
+glabel __ull_to_d
 /* 0DF374 80324374 AFA40000 */  sw    $a0, ($sp)
 /* 0DF378 80324378 AFA50004 */  sw    $a1, 4($sp)
 /* 0DF37C 8032437C DFAE0000 */  ld    $t6, ($sp)
@@ -3348,7 +3348,7 @@ glabel func_80324374
 /* 0DF3A0 803243A0 03E00008 */  jr    $ra
 /* 0DF3A4 803243A4 00000000 */   nop   
 
-glabel Unknown803243A8
+glabel __ull_to_f
 /* 0DF3A8 803243A8 AFA40000 */  sw    $a0, ($sp)
 /* 0DF3AC 803243AC AFA50004 */  sw    $a1, 4($sp)
 /* 0DF3B0 803243B0 DFAE0000 */  ld    $t6, ($sp)
@@ -3365,7 +3365,7 @@ glabel Unknown803243A8
 
 /* 0DF3D8 803243D8 00000000 */  nop   
 /* 0DF3DC 803243DC 00000000 */  nop   
-# End of an unknown file
+
 
 glabel cosf
 /* 0DF3E0 803243E0 E7AC0000 */  swc1  $f12, ($sp)
@@ -3916,8 +3916,7 @@ glabel osAiSetFrequency
 /* 0DFBA8 80324BA8 03E00008 */  jr    $ra
 /* 0DFBAC 80324BAC 00000000 */   nop   
 
-# Beginning of an unknown file (audio)
-glabel func_80324BB0
+glabel _bnkfPatchBank
 /* 0DFBB0 80324BB0 908E0003 */  lbu   $t6, 3($a0)
 /* 0DFBB4 80324BB4 15C00037 */  bnez  $t6, .L80324C94
 /* 0DFBB8 80324BB8 00000000 */   nop   
@@ -3986,7 +3985,7 @@ glabel func_80324BB0
 /* 0DFC9C 80324C9C 03E00008 */  jr    $ra
 /* 0DFCA0 80324CA0 00000000 */   nop   
 
-glabel func_80324CA4
+glabel alBnkfNew
 /* 0DFCA4 80324CA4 27BDFFD0 */  addiu $sp, $sp, -0x30
 /* 0DFCA8 80324CA8 AFBF002C */  sw    $ra, 0x2c($sp)
 /* 0DFCAC 80324CAC AFB40028 */  sw    $s4, 0x28($sp)
@@ -4020,7 +4019,7 @@ glabel func_80324CA4
 /* 0DFD18 80324D18 00502021 */   addu  $a0, $v0, $s0
 /* 0DFD1C 80324D1C AF240008 */  sw    $a0, 8($t9)
 /* 0DFD20 80324D20 02002825 */  move  $a1, $s0
-/* 0DFD24 80324D24 0C0C92EC */  jal   func_80324BB0
+/* 0DFD24 80324D24 0C0C92EC */  jal   _bnkfPatchBank
 /* 0DFD28 80324D28 02203825 */   move  $a3, $s1
 .L80324D2C:
 /* 0DFD2C 80324D2C 85B80000 */  lh    $t8, ($t5)
@@ -4033,7 +4032,7 @@ glabel func_80324CA4
 /* 0DFD44 80324D44 03302021 */  addu  $a0, $t9, $s0
 /* 0DFD48 80324D48 10800003 */  beqz  $a0, .L80324D58
 /* 0DFD4C 80324D4C AD64000C */   sw    $a0, 0xc($t3)
-/* 0DFD50 80324D50 0C0C92EC */  jal   func_80324BB0
+/* 0DFD50 80324D50 0C0C92EC */  jal   _bnkfPatchBank
 /* 0DFD54 80324D54 02203825 */   move  $a3, $s1
 .L80324D58:
 /* 0DFD58 80324D58 85AF0000 */  lh    $t7, ($t5)
@@ -4060,7 +4059,7 @@ glabel func_80324CA4
 /* 0DFDA0 80324DA0 03E00008 */  jr    $ra
 /* 0DFDA4 80324DA4 27BD0030 */   addiu $sp, $sp, 0x30
 
-glabel func_80324DA8
+glabel alSeqFileNew
 /* 0DFDA8 80324DA8 848E0002 */  lh    $t6, 2($a0)
 /* 0DFDAC 80324DAC 00001025 */  move  $v0, $zero
 /* 0DFDB0 80324DB0 00801825 */  move  $v1, $a0
@@ -4082,7 +4081,6 @@ glabel func_80324DA8
 
 /* 0DFDE8 80324DE8 00000000 */  nop   
 /* 0DFDEC 80324DEC 00000000 */  nop   
-# End of an unknown file (audio)
 
 glabel osWritebackDCache
 /* 0DFDF0 80324DF0 18A00011 */  blez  $a1, .L80324E38
@@ -9448,7 +9446,7 @@ glabel string_to_u32
 /* 0E49A0 803299A0 03E00008 */  jr    $ra
 /* 0E49A4 803299A4 01001025 */   move  $v0, $t0
 
-glabel clear_IP6
+glabel send_packet
 /* 0E49A8 803299A8 27BDFFE0 */  addiu $sp, $sp, -0x20
 /* 0E49AC 803299AC 93AE001C */  lbu   $t6, 0x1c($sp)
 /* 0E49B0 803299B0 AFA50024 */  sw    $a1, 0x24($sp)
@@ -9541,7 +9539,7 @@ glabel send
 /* 0E4AE4 80329AE4 8FAC0028 */  lw    $t4, 0x28($sp)
 /* 0E4AE8 80329AE8 8FAD0024 */  lw    $t5, 0x24($sp)
 /* 0E4AEC 80329AEC 24050003 */  li    $a1, 3
-/* 0E4AF0 80329AF0 0C0CA66A */  jal   clear_IP6
+/* 0E4AF0 80329AF0 0C0CA66A */  jal   send_packet
 /* 0E4AF4 80329AF4 018D2021 */   addu  $a0, $t4, $t5
 /* 0E4AF8 80329AF8 8FAE0024 */  lw    $t6, 0x24($sp)
 /* 0E4AFC 80329AFC 8FB80020 */  lw    $t8, 0x20($sp)
@@ -9556,7 +9554,7 @@ glabel send
 /* 0E4B1C 80329B1C 8FA80028 */  lw    $t0, 0x28($sp)
 /* 0E4B20 80329B20 8FA90020 */  lw    $t1, 0x20($sp)
 /* 0E4B24 80329B24 03202825 */  move  $a1, $t9
-/* 0E4B28 80329B28 0C0CA66A */  jal   clear_IP6
+/* 0E4B28 80329B28 0C0CA66A */  jal   send_packet
 /* 0E4B2C 80329B2C 01092021 */   addu  $a0, $t0, $t1
 .L80329B30:
 /* 0E4B30 80329B30 8FBF0014 */  lw    $ra, 0x14($sp)
@@ -9564,7 +9562,7 @@ glabel send
 /* 0E4B38 80329B38 03E00008 */  jr    $ra
 /* 0E4B3C 80329B3C 00000000 */   nop   
 
-glabel func_80329B40
+glabel process_command_memory
 /* 0E4B40 80329B40 27BDFFE0 */  addiu $sp, $sp, -0x20
 /* 0E4B44 80329B44 3C048036 */  lui   $a0, %hi(D_80365E40) # $a0, 0x8036
 /* 0E4B48 80329B48 AFBF0014 */  sw    $ra, 0x14($sp)
@@ -9585,7 +9583,7 @@ glabel func_80329B40
 /* 0E4B84 80329B84 03E00008 */  jr    $ra
 /* 0E4B88 80329B88 00000000 */   nop   
 
-glabel func_80329B8C
+glabel process_command_register
 /* 0E4B8C 80329B8C 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 0E4B90 80329B90 3C048036 */  lui   $a0, %hi(D_80365F40) # $a0, 0x8036
 /* 0E4B94 80329B94 AFBF0014 */  sw    $ra, 0x14($sp)
@@ -9670,7 +9668,7 @@ glabel kdebugserver
 /* 0E4CB8 80329CB8 10000031 */  b     .L80329D80
 /* 0E4CBC 80329CBC AC384A38 */   sw    $t8, %lo(D_80334A38)($at)
 .L80329CC0:
-/* 0E4CC0 80329CC0 0C0CA6E3 */  jal   func_80329B8C
+/* 0E4CC0 80329CC0 0C0CA6E3 */  jal   process_command_register
 /* 0E4CC4 80329CC4 00000000 */   nop   
 /* 0E4CC8 80329CC8 3C018033 */  lui   $at, %hi(D_80334A30) # $at, 0x8033
 /* 0E4CCC 80329CCC AC204A30 */  sw    $zero, %lo(D_80334A30)($at)
@@ -9698,7 +9696,7 @@ glabel kdebugserver
 /* 0E4D1C 80329D1C 24010001 */  li    $at, 1
 /* 0E4D20 80329D20 1521000A */  bne   $t1, $at, .L80329D4C
 /* 0E4D24 80329D24 00000000 */   nop   
-/* 0E4D28 80329D28 0C0CA6D0 */  jal   func_80329B40
+/* 0E4D28 80329D28 0C0CA6D0 */  jal   process_command_memory
 /* 0E4D2C 80329D2C 00000000 */   nop   
 /* 0E4D30 80329D30 3C018033 */  lui   $at, %hi(D_80334A30) # $at, 0x8033
 /* 0E4D34 80329D34 AC204A30 */  sw    $zero, %lo(D_80334A30)($at)
