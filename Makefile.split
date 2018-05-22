@@ -1,603 +1,92 @@
-MIO0_FILES = \
-$(MIO0_DIR)/segment2.mio0 \
-$(MIO0_DIR)/mario.mio0 \
-$(MIO0_DIR)/yoshiegg_owl_thwomp.mio0 \
-$(MIO0_DIR)/big_bully.mio0 \
-$(MIO0_DIR)/bobombs.mio0 \
-$(MIO0_DIR)/sea_creatures_texture.mio0 \
-$(MIO0_DIR)/vulture_pokey.mio0 \
-$(MIO0_DIR)/monkey.mio0 \
-$(MIO0_DIR)/spindrift_penguin_snowman.mio0 \
-$(MIO0_DIR)/checkerboard_question.mio0 \
-$(MIO0_DIR)/piano_books.mio0 \
-$(MIO0_DIR)/peach_toadstool.mio0 \
-$(MIO0_DIR)/enemy.mio0 \
-$(MIO0_DIR)/bowser.mio0 \
-$(MIO0_DIR)/treasure_chest_fish.mio0 \
-$(MIO0_DIR)/koopa_whomp.mio0 \
-$(MIO0_DIR)/lakitu_toad.mio0 \
-$(MIO0_DIR)/chillychief_moneybag.mio0 \
-$(MIO0_DIR)/mri_swoop.mio0 \
-$(MIO0_DIR)/chuckya_shyguy_goomba.mio0 \
-$(MIO0_DIR)/doors_trees_coins.mio0 \
-$(MIO0_DIR)/intro_segment7.mio0 \
-$(MIO0_DIR)/debug_level_select.mio0 \
-$(MIO0_DIR)/title_screen_bg.mio0 \
-$(MIO0_DIR)/main_menu_segment7.mio0 \
-$(MIO0_DIR)/water_skybox.mio0 \
-$(MIO0_DIR)/ccm_skybox.mio0 \
-$(MIO0_DIR)/clouds_skybox.mio0 \
-$(MIO0_DIR)/bifs_skybox.mio0 \
-$(MIO0_DIR)/wdw_skybox.mio0 \
-$(MIO0_DIR)/cloud_floor_skybox.mio0 \
-$(MIO0_DIR)/ssl_skybox.mio0 \
-$(MIO0_DIR)/bbh_skybox.mio0 \
-$(MIO0_DIR)/bidw_skybox.mio0 \
-$(MIO0_DIR)/bits_skybox.mio0 \
-$(MIO0_DIR)/lll_textures.mio0 \
-$(MIO0_DIR)/bbh_textures.mio0 \
-$(MIO0_DIR)/bob_textures.mio0 \
-$(MIO0_DIR)/jrb_textures.mio0 \
-$(MIO0_DIR)/rr_textures.mio0 \
-$(MIO0_DIR)/ccm_textures.mio0 \
-$(MIO0_DIR)/hmc_textures.mio0 \
-$(MIO0_DIR)/ttc_textures.mio0 \
-$(MIO0_DIR)/ttm_textures.mio0 \
-$(MIO0_DIR)/wf_textures.mio0 \
-$(MIO0_DIR)/castle_grounds_textures.mio0 \
-$(MIO0_DIR)/inside_castle_textures.mio0 \
-$(MIO0_DIR)/flower_textures.mio0 \
-$(MIO0_DIR)/bbh_segment7.mio0 \
-$(MIO0_DIR)/ccm_segment7.mio0 \
-$(MIO0_DIR)/inside_castle_segment7.mio0 \
-$(MIO0_DIR)/hmc_segment7.mio0 \
-$(MIO0_DIR)/ssl_segment7.mio0 \
-$(MIO0_DIR)/bob_segment7.mio0 \
-$(MIO0_DIR)/sl_segment7.mio0 \
-$(MIO0_DIR)/wdw_segment7.mio0 \
-$(MIO0_DIR)/jrb_segment7.mio0 \
-$(MIO0_DIR)/thi_segment7.mio0 \
-$(MIO0_DIR)/ttc_segment7.mio0 \
-$(MIO0_DIR)/rr_segment7.mio0 \
-$(MIO0_DIR)/castle_grounds_segment7.mio0 \
-$(MIO0_DIR)/bidw_segment7.mio0 \
-$(MIO0_DIR)/vanish_cap_segment7.mio0 \
-$(MIO0_DIR)/bifs_segment7.mio0 \
-$(MIO0_DIR)/secret_aquarium_segment7.mio0 \
-$(MIO0_DIR)/bits_segment7.mio0 \
-$(MIO0_DIR)/lll_segment7.mio0 \
-$(MIO0_DIR)/ddd_segment7.mio0 \
-$(MIO0_DIR)/wf_segment7.mio0 \
-$(MIO0_DIR)/cake_end.mio0 \
-$(MIO0_DIR)/castle_courtyard_segment7.mio0 \
-$(MIO0_DIR)/secret_slide_segment7.mio0 \
-$(MIO0_DIR)/metal_cap_segment7.mio0 \
-$(MIO0_DIR)/wing_cap_segment7.mio0 \
-$(MIO0_DIR)/bidw_platform_segment7.mio0 \
-$(MIO0_DIR)/rainbow_bonus_segment7.mio0 \
-$(MIO0_DIR)/bifs_platform_segment7.mio0 \
-$(MIO0_DIR)/bits_platform_segment7.mio0 \
-$(MIO0_DIR)/ttm_segment7.mio0
+# segments currently in binary form. should be removed as they are decomposed into resources
+BINARY_SEGMENTS := \
+   mario \
+   yoshiegg_owl_thwomp \
+   big_bully \
+   bobombs \
+   sea_creatures_texture \
+   vulture_pokey \
+   monkey \
+   spindrift_penguin_snowman \
+   checkerboard_question \
+   piano_books \
+   peach_toadstool \
+   enemy \
+   bowser \
+   treasure_chest_fish \
+   koopa_whomp \
+   lakitu_toad \
+   chillychief_moneybag \
+   mri_swoop \
+   chuckya_shyguy_goomba \
+   doors_trees_coins \
+   debug_level_select \
+   water_skybox \
+   ccm_skybox \
+   clouds_skybox \
+   bifs_skybox \
+   wdw_skybox \
+   cloud_floor_skybox \
+   ssl_skybox \
+   bbh_skybox \
+   bidw_skybox \
+   bits_skybox \
+   lll_textures \
+   bbh_textures \
+   bob_textures \
+   jrb_textures \
+   rr_textures \
+   ccm_textures \
+   hmc_textures \
+   ttc_textures \
+   ttm_textures \
+   wf_textures \
+   castle_grounds_textures \
+   inside_castle_textures \
+   flower_textures \
+   bbh_segment7 \
+   ccm_segment7 \
+   inside_castle_segment7 \
+   hmc_segment7 \
+   ssl_segment7 \
+   bob_segment7 \
+   sl_segment7 \
+   wdw_segment7 \
+   jrb_segment7 \
+   thi_segment7 \
+   ttc_segment7 \
+   rr_segment7 \
+   castle_grounds_segment7 \
+   bidw_segment7 \
+   vanish_cap_segment7 \
+   bifs_segment7 \
+   secret_aquarium_segment7 \
+   bits_segment7 \
+   lll_segment7 \
+   ddd_segment7 \
+   wf_segment7 \
+   castle_courtyard_segment7 \
+   secret_slide_segment7 \
+   metal_cap_segment7 \
+   wing_cap_segment7 \
+   rainbow_bonus_segment7 \
+   bits_platform_segment7 \
+   ttm_segment7
 
-INTRO_SEGMENT7_FILES = \
-   intro_segment7.07EA0.rgba16 \
-   intro_segment7.086A0.rgba16 \
-   intro_segment7.0B4A0.rgba16 \
-   intro_segment7.0C4A0.rgba16
+# obtain a list of segments from the *.s and *.s.in files in bin directory
+SEGMENTS := $(notdir $(basename $(wildcard bin/*.s) $(basename $(wildcard bin/*.s.in))))
+TEXTURE_DIRS := $(addprefix bin/,$(SEGMENTS))
 
-MAIN_MENU_SEGMENT7_FILES = \
-   main_menu_segment7.00018.rgba16 \
-   main_menu_segment7.00818.rgba16 \
-   main_menu_segment7.01018.rgba16 \
-   main_menu_segment7.02018.rgba16 \
-   main_menu_segment7.03468.rgba16 \
-   main_menu_segment7.03C68.rgba16 \
-   main_menu_segment7.04468.rgba16 \
-   main_menu_segment7.04C68.rgba16 \
-   main_menu_segment7.05468.rgba16 \
-   main_menu_segment7.06328.rgba16 \
-   main_menu_segment7.06B28.rgba16 \
-   main_menu_segment7.073D0.rgba16 \
-   main_menu_segment7.075D0.rgba16 \
-   main_menu_segment7.077D0.rgba16 \
-   main_menu_segment7.079D0.rgba16 \
-   main_menu_segment7.07BD0.rgba16 \
-   main_menu_segment7.07DD0.rgba16 \
-   main_menu_segment7.07FD0.rgba16 \
-   main_menu_segment7.081D0.rgba16 \
-   main_menu_segment7.083D0.rgba16 \
-   main_menu_segment7.085D0.rgba16 \
-   main_menu_segment7.087D0.rgba16 \
-   main_menu_segment7.089D0.rgba16 \
-   main_menu_segment7.08BD0.rgba16 \
-   main_menu_segment7.08DD0.rgba16 \
-   main_menu_segment7.08FD0.rgba16 \
-   main_menu_segment7.091D0.rgba16 \
-   main_menu_segment7.093D0.rgba16 \
-   main_menu_segment7.095D0.rgba16 \
-   main_menu_segment7.097D0.rgba16 \
-   main_menu_segment7.099D0.rgba16 \
-   main_menu_segment7.09BD0.rgba16 \
-   main_menu_segment7.09DD0.rgba16 \
-   main_menu_segment7.09FD0.rgba16 \
-   main_menu_segment7.0A1D0.rgba16 \
-   main_menu_segment7.0A3D0.rgba16 \
-   main_menu_segment7.0A5D0.rgba16 \
-   main_menu_segment7.0A7D0.rgba16 \
-   main_menu_segment7.0A9D0.rgba16 \
-   main_menu_segment7.0AC48.ia8 \
-   main_menu_segment7.0AC88.ia8 \
-   main_menu_segment7.0ACC8.ia8 \
-   main_menu_segment7.0AD08.ia8 \
-   main_menu_segment7.0AD48.ia8 \
-   main_menu_segment7.0AD88.ia8 \
-   main_menu_segment7.0ADC8.ia8 \
-   main_menu_segment7.0AE08.ia8 \
-   main_menu_segment7.0AE48.ia8 \
-   main_menu_segment7.0AE88.ia8 \
-   main_menu_segment7.0AEC8.ia8 \
-   main_menu_segment7.0AF08.ia8 \
-   main_menu_segment7.0AF48.ia8 \
-   main_menu_segment7.0AF88.ia8 \
-   main_menu_segment7.0AFC8.ia8 \
-   main_menu_segment7.0B008.ia8 \
-   main_menu_segment7.0B048.ia8 \
-   main_menu_segment7.0B088.ia8 \
-   main_menu_segment7.0B0C8.ia8 \
-   main_menu_segment7.0B108.ia8 \
-   main_menu_segment7.0B148.ia8 \
-   main_menu_segment7.0B188.ia8 \
-   main_menu_segment7.0B1C8.ia8 \
-   main_menu_segment7.0B208.ia8 \
-   main_menu_segment7.0B248.ia8 \
-   main_menu_segment7.0B288.ia8 \
-   main_menu_segment7.0B2C8.ia8 \
-   main_menu_segment7.0B308.ia8 \
-   main_menu_segment7.0B348.ia8 \
-   main_menu_segment7.0B388.ia8 \
-   main_menu_segment7.0B3C8.ia8 \
-   main_menu_segment7.0B408.ia8 \
-   main_menu_segment7.0B448.ia8 \
-   main_menu_segment7.0B488.ia8 \
-   main_menu_segment7.0B4C8.ia8 \
-   main_menu_segment7.0B508.ia8 \
-   main_menu_segment7.0B548.ia8 \
-   main_menu_segment7.0B588.ia8 \
-   main_menu_segment7.0B5C8.ia8 \
-   main_menu_segment7.0B608.ia8 \
-   main_menu_segment7.0B648.ia8 \
-   main_menu_segment7.0B688.ia8 \
-   main_menu_segment7.0B6C8.ia8 \
-   main_menu_segment7.0B708.ia8 \
-   main_menu_segment7.0B748.ia8 \
-   main_menu_segment7.0B788.ia8 \
-   main_menu_segment7.0B7C8.ia8 \
-   main_menu_segment7.0B808.ia8 \
-   main_menu_segment7.0B848.ia8 \
-   main_menu_segment7.0B888.ia8 \
-   main_menu_segment7.0B8C8.ia8 \
-   main_menu_segment7.0B908.ia8 \
-   main_menu_segment7.0B948.ia8 \
-   main_menu_segment7.0B988.ia8 \
-   main_menu_segment7.0B9C8.ia8 \
-   main_menu_segment7.0BA08.ia8 \
-   main_menu_segment7.0BA48.ia8 \
-   main_menu_segment7.0BA88.ia8 \
-   main_menu_segment7.0BAC8.ia8 \
-   main_menu_segment7.0BB08.ia8 \
-   main_menu_segment7.0BB48.ia8 \
-   main_menu_segment7.0BB88.ia8 \
-   main_menu_segment7.0BBC8.ia8 \
-   main_menu_segment7.0BC08.ia8 \
-   main_menu_segment7.0BC48.ia8 \
-   main_menu_segment7.0BC88.ia8 \
-   main_menu_segment7.0BCC8.ia8 \
-   main_menu_segment7.0BD08.ia8 \
-   main_menu_segment7.0BD48.ia8 \
-   main_menu_segment7.0BD88.ia8 \
-   main_menu_segment7.0BDC8.ia8 \
-   main_menu_segment7.0BE08.ia8 \
-   main_menu_segment7.0BE48.ia8 \
-   main_menu_segment7.0BE88.ia8 \
-   main_menu_segment7.0BEC8.ia8 \
-   main_menu_segment7.0BF08.ia8 \
-   main_menu_segment7.0BF48.ia8 \
-   main_menu_segment7.0BF88.ia8 \
-   main_menu_segment7.0BFC8.ia8 \
-   main_menu_segment7.0C008.ia8 \
-   main_menu_segment7.0C048.ia8 \
-   main_menu_segment7.0C088.ia8 \
-   main_menu_segment7.0C0C8.ia8 \
-   main_menu_segment7.0C108.ia8 \
-   main_menu_segment7.0C148.ia8 \
-   main_menu_segment7.0C188.ia8 \
-   main_menu_segment7.0C1C8.ia8 \
-   main_menu_segment7.0C208.ia8 \
-   main_menu_segment7.0C248.ia8 \
-   main_menu_segment7.0C288.ia8 \
-   main_menu_segment7.0C2C8.ia8 \
-   main_menu_segment7.0C308.ia8 \
-   main_menu_segment7.0C348.ia8 \
-   main_menu_segment7.0C388.ia8 \
-   main_menu_segment7.0C3C8.ia8 \
-   main_menu_segment7.0C408.ia8 \
-   main_menu_segment7.0C448.ia8 \
-   main_menu_segment7.0C488.ia8 \
-   main_menu_segment7.0C4C8.ia8 \
-   main_menu_segment7.0C508.ia8 \
-   main_menu_segment7.0C548.ia8 \
-   main_menu_segment7.0C588.ia8 \
-   main_menu_segment7.0C5C8.ia8 \
-   main_menu_segment7.0C608.ia8 \
-   main_menu_segment7.0C648.ia8 \
-   main_menu_segment7.0C688.ia8 \
-   main_menu_segment7.0C6C8.ia8 \
-   main_menu_segment7.0C708.ia8 \
-   main_menu_segment7.0C748.ia8 \
-   main_menu_segment7.0C788.ia8 \
-   main_menu_segment7.0C7C8.ia8 \
-   main_menu_segment7.0C808.ia8 \
-   main_menu_segment7.0C848.ia8 \
-   main_menu_segment7.0C888.ia8 \
-   main_menu_segment7.0C8C8.ia8 \
-   main_menu_segment7.0C908.ia8 \
-   main_menu_segment7.0C948.ia8 \
-   main_menu_segment7.0C988.ia8 \
-   main_menu_segment7.0C9C8.ia8 \
-   main_menu_segment7.0CA08.ia8 \
-   main_menu_segment7.0CA48.ia8 \
-   main_menu_segment7.0CA88.ia8 \
-   main_menu_segment7.0CAC8.ia8 \
-   main_menu_segment7.0CB08.ia8 \
-   main_menu_segment7.0CB48.ia8 \
-   main_menu_segment7.0CB88.ia8 \
-   main_menu_segment7.0CBC8.ia8 \
-   main_menu_segment7.0CC08.ia8 \
-   main_menu_segment7.0CC48.ia8 \
-   main_menu_segment7.0CC88.ia8 \
-   main_menu_segment7.0CCC8.ia8 \
-   main_menu_segment7.0D1A8.rgba16 \
-   main_menu_segment7.0E1A8.rgba16 \
+MIO0_FILES := $(addprefix $(MIO0_DIR)/,$(addsuffix .mio0,$(BINARY_SEGMENTS) $(SEGMENTS)))
 
-BIDW_PLATFORM_SEGMENT7_FILES = \
-   bidw_platform_segment7.00000.rgba16 \
-   bidw_platform_segment7.01000.rgba16 \
-   bidw_platform_segment7.01800.rgba16
-
-BIFS_PLATFORM_SEGMENT7_FILES = \
-   bifs_platform_segment7.00000.rgba16
-
-SEGMENT2_FILES = \
-   segment2.00000.rgba16 \
-   segment2.00200.rgba16 \
-   segment2.00400.rgba16 \
-   segment2.00600.rgba16 \
-   segment2.00800.rgba16 \
-   segment2.00A00.rgba16 \
-   segment2.00C00.rgba16 \
-   segment2.00E00.rgba16 \
-   segment2.01000.rgba16 \
-   segment2.01200.rgba16 \
-   segment2.01400.rgba16 \
-   segment2.01600.rgba16 \
-   segment2.01800.rgba16 \
-   segment2.01A00.rgba16 \
-   segment2.01C00.rgba16 \
-   segment2.01E00.rgba16 \
-   segment2.02000.rgba16 \
-   segment2.02200.rgba16 \
-   segment2.02400.rgba16 \
-   segment2.02600.rgba16 \
-   segment2.02800.rgba16 \
-   segment2.02A00.rgba16 \
-   segment2.02C00.rgba16 \
-   segment2.02E00.rgba16 \
-   segment2.03000.rgba16 \
-   segment2.03200.rgba16 \
-   segment2.03400.rgba16 \
-   segment2.03600.rgba16 \
-   segment2.03800.rgba16 \
-   segment2.03A00.rgba16 \
-   segment2.03C00.rgba16 \
-   segment2.03E00.rgba16 \
-   segment2.04000.rgba16 \
-   segment2.04200.rgba16 \
-   segment2.04400.rgba16 \
-   segment2.04600.rgba16 \
-   segment2.04800.rgba16 \
-   segment2.04A00.rgba16 \
-   segment2.04C00.rgba16 \
-   segment2.04E00.rgba16 \
-   segment2.05000.rgba16 \
-   segment2.05200.rgba16 \
-   segment2.05400.rgba16 \
-   segment2.05600.rgba16 \
-   segment2.05800.rgba16 \
-   segment2.05A00.rgba16 \
-   segment2.05C00.rgba16 \
-   segment2.05E00.rgba16 \
-   segment2.06000.rgba16 \
-   segment2.06200.rgba16 \
-   segment2.06280.rgba16 \
-   segment2.06300.rgba16 \
-   segment2.06380.rgba16 \
-   segment2.06400.rgba16 \
-   segment2.06480.rgba16 \
-   segment2.06500.rgba16 \
-   segment2.06580.rgba16 \
-   segment2.06600.rgba16 \
-   segment2.06680.rgba16 \
-   segment2.06700.rgba16 \
-   segment2.06780.rgba16 \
-   segment2.06800.rgba16 \
-   segment2.06880.rgba16 \
-   segment2.06900.rgba16 \
-   segment2.06980.rgba16 \
-   segment2.06A00.rgba16 \
-   segment2.06A80.rgba16 \
-   segment2.06B00.rgba16 \
-   segment2.06B80.rgba16 \
-   segment2.06C00.rgba16 \
-   segment2.06C80.rgba16 \
-   segment2.06D00.rgba16 \
-   segment2.06D80.rgba16 \
-   segment2.06E00.rgba16 \
-   segment2.06E80.rgba16 \
-   segment2.06F00.rgba16 \
-   segment2.06F80.rgba16 \
-   segment2.07000.rgba16 \
-   segment2.07080.rgba16 \
-   segment2.07100.ia1 \
-   segment2.07110.ia1 \
-   segment2.07120.ia1 \
-   segment2.07130.ia1 \
-   segment2.07140.ia1 \
-   segment2.07150.ia1 \
-   segment2.07160.ia1 \
-   segment2.07170.ia1 \
-   segment2.07180.ia1 \
-   segment2.07190.ia1 \
-   segment2.071A0.ia1 \
-   segment2.071B0.ia1 \
-   segment2.071C0.ia1 \
-   segment2.071D0.ia1 \
-   segment2.071E0.ia1 \
-   segment2.071F0.ia1 \
-   segment2.07200.ia1 \
-   segment2.07210.ia1 \
-   segment2.07220.ia1 \
-   segment2.07230.ia1 \
-   segment2.07240.ia1 \
-   segment2.07250.ia1 \
-   segment2.07260.ia1 \
-   segment2.07270.ia1 \
-   segment2.07280.ia1 \
-   segment2.07290.ia1 \
-   segment2.072A0.ia1 \
-   segment2.072B0.ia1 \
-   segment2.072C0.ia1 \
-   segment2.072D0.ia1 \
-   segment2.072E0.ia1 \
-   segment2.072F0.ia1 \
-   segment2.07300.ia1 \
-   segment2.07310.ia1 \
-   segment2.07320.ia1 \
-   segment2.07330.ia1 \
-   segment2.07340.ia1 \
-   segment2.07350.ia1 \
-   segment2.07360.ia1 \
-   segment2.07370.ia1 \
-   segment2.07380.ia1 \
-   segment2.07390.ia1 \
-   segment2.073A0.ia1 \
-   segment2.073B0.ia1 \
-   segment2.073C0.ia1 \
-   segment2.073D0.ia1 \
-   segment2.073E0.ia1 \
-   segment2.073F0.ia1 \
-   segment2.07400.ia1 \
-   segment2.07410.ia1 \
-   segment2.07420.ia1 \
-   segment2.07430.ia1 \
-   segment2.07440.ia1 \
-   segment2.07450.ia1 \
-   segment2.07460.ia1 \
-   segment2.07470.ia1 \
-   segment2.07480.ia1 \
-   segment2.07490.ia1 \
-   segment2.074A0.ia1 \
-   segment2.074B0.ia1 \
-   segment2.074C0.ia1 \
-   segment2.074D0.ia1 \
-   segment2.074E0.ia1 \
-   segment2.074F0.ia1 \
-   segment2.07500.ia1 \
-   segment2.07510.ia1 \
-   segment2.07520.ia1 \
-   segment2.07530.ia1 \
-   segment2.07540.ia1 \
-   segment2.07550.ia1 \
-   segment2.07560.ia1 \
-   segment2.07570.ia1 \
-   segment2.07580.ia1 \
-   segment2.07590.ia1 \
-   segment2.075A0.ia1 \
-   segment2.075B0.ia1 \
-   segment2.075C0.ia1 \
-   segment2.075D0.ia1 \
-   segment2.075E0.ia1 \
-   segment2.075F0.ia1 \
-   segment2.07600.ia1 \
-   segment2.07610.ia1 \
-   segment2.07620.ia1 \
-   segment2.07630.ia1 \
-   segment2.07640.ia1 \
-   segment2.07650.ia1 \
-   segment2.07660.ia1 \
-   segment2.07670.ia1 \
-   segment2.07680.ia1 \
-   segment2.07690.ia1 \
-   segment2.076A0.ia1 \
-   segment2.076B0.ia1 \
-   segment2.076C0.ia1 \
-   segment2.076D0.ia1 \
-   segment2.076E0.ia1 \
-   segment2.076F0.ia1 \
-   segment2.07700.ia1 \
-   segment2.07710.ia1 \
-   segment2.07720.ia1 \
-   segment2.07730.ia1 \
-   segment2.07740.ia1 \
-   segment2.07750.ia1 \
-   segment2.07760.ia1 \
-   segment2.07770.ia1 \
-   segment2.07780.ia1 \
-   segment2.07790.ia1 \
-   segment2.077A0.ia1 \
-   segment2.077B0.ia1 \
-   segment2.077C0.ia1 \
-   segment2.077D0.ia1 \
-   segment2.077E0.ia1 \
-   segment2.077F0.ia1 \
-   segment2.07800.ia1 \
-   segment2.07810.ia1 \
-   segment2.07820.ia1 \
-   segment2.07830.ia1 \
-   segment2.07840.ia1 \
-   segment2.07850.ia1 \
-   segment2.07860.ia1 \
-   segment2.07870.ia1 \
-   segment2.07880.ia1 \
-   segment2.07890.ia1 \
-   segment2.078A0.ia1 \
-   segment2.078B0.ia1 \
-   segment2.078C0.ia1 \
-   segment2.078D0.ia1 \
-   segment2.078E0.ia1 \
-   segment2.078F0.ia1 \
-   segment2.07900.ia1 \
-   segment2.07910.ia1 \
-   segment2.07920.ia1 \
-   segment2.07930.ia1 \
-   segment2.07940.ia1 \
-   segment2.07950.ia1 \
-   segment2.07960.ia1 \
-   segment2.07970.ia1 \
-   segment2.07980.ia1 \
-   segment2.07990.ia1 \
-   segment2.079A0.ia1 \
-   segment2.079B0.ia1 \
-   segment2.079C0.ia1 \
-   segment2.079D0.ia1 \
-   segment2.079E0.ia1 \
-   segment2.079F0.ia1 \
-   segment2.07A00.ia1 \
-   segment2.07A10.ia1 \
-   segment2.07A20.ia1 \
-   segment2.07A30.ia1 \
-   segment2.07A40.ia1 \
-   segment2.07A50.ia1 \
-   segment2.07A60.ia1 \
-   segment2.07A70.ia1 \
-   segment2.07A80.ia1 \
-   segment2.07A90.ia1 \
-   segment2.07AA0.ia1 \
-   segment2.07AB0.ia1 \
-   segment2.07AC0.ia1 \
-   segment2.07AD0.ia1 \
-   segment2.07AE0.ia1 \
-   segment2.07AF0.ia1 \
-   segment2.07B00.ia1 \
-   segment2.07B10.ia1 \
-   segment2.07B20.ia1 \
-   segment2.07B30.ia1 \
-   segment2.07B40.ia1 \
-   segment2.07B50.rgba16 \
-   segment2.07D50.rgba16 \
-   segment2.07F50.rgba16 \
-   segment2.08150.rgba16 \
-   segment2.081D0.rgba16 \
-   segment2.0F258.ia8 \
-   segment2.0F358.ia8 \
-   segment2.0F458.ia8 \
-   segment2.0FC58.ia8 \
-   segment2.10458.ia8 \
-   segment2.11458.ia8 \
-   segment2.11C58.rgba16 \
-   segment2.12458.rgba16 \
-   segment2.12C58.rgba16 \
-   segment2.13458.ia16 \
-   segment2.13C58.rgba16 \
-   segment2.14838.ia8
-
-CAKE_END_FILES = \
-   cake_end.00000.rgba16 \
-   cake_end.00C80.rgba16 \
-   cake_end.01900.rgba16 \
-   cake_end.02580.rgba16 \
-   cake_end.03200.rgba16 \
-   cake_end.03E80.rgba16 \
-   cake_end.04B00.rgba16 \
-   cake_end.05780.rgba16 \
-   cake_end.06400.rgba16 \
-   cake_end.07080.rgba16 \
-   cake_end.07D00.rgba16 \
-   cake_end.08980.rgba16 \
-   cake_end.09600.rgba16 \
-   cake_end.0A280.rgba16 \
-   cake_end.0AF00.rgba16 \
-   cake_end.0BB80.rgba16 \
-   cake_end.0C800.rgba16 \
-   cake_end.0D480.rgba16 \
-   cake_end.0E100.rgba16 \
-   cake_end.0ED80.rgba16 \
-   cake_end.0FA00.rgba16 \
-   cake_end.10680.rgba16 \
-   cake_end.11300.rgba16 \
-   cake_end.11F80.rgba16 \
-   cake_end.12C00.rgba16 \
-   cake_end.13880.rgba16 \
-   cake_end.14500.rgba16 \
-   cake_end.15180.rgba16 \
-   cake_end.15E00.rgba16 \
-   cake_end.16A80.rgba16 \
-   cake_end.17700.rgba16 \
-   cake_end.18380.rgba16 \
-   cake_end.19000.rgba16 \
-   cake_end.19C80.rgba16 \
-   cake_end.1A900.rgba16 \
-   cake_end.1B580.rgba16 \
-   cake_end.1C200.rgba16 \
-   cake_end.1CE80.rgba16 \
-   cake_end.1DB00.rgba16 \
-   cake_end.1E780.rgba16 \
-   cake_end.1F400.rgba16 \
-   cake_end.20080.rgba16 \
-   cake_end.20D00.rgba16 \
-   cake_end.21980.rgba16 \
-   cake_end.22600.rgba16 \
-   cake_end.23280.rgba16 \
-   cake_end.23F00.rgba16 \
-   cake_end.24B80.rgba16
-
-TITLE_SCREEN_BG_FILES = \
-   title_screen_bg.001C0.rgba16 \
-   title_screen_bg.00E40.rgba16 \
-   title_screen_bg.01AC0.rgba16 \
-   title_screen_bg.02740.rgba16 \
-   title_screen_bg.033C0.rgba16 \
-   title_screen_bg.04040.rgba16 \
-   title_screen_bg.04CC0.rgba16 \
-   title_screen_bg.05940.rgba16
-
-TEXTURE_DIRS = \
-   bin/segment2 \
-   bin/cake_end \
-   bin/title_screen_bg \
-   bin/intro_segment7 \
-   bin/main_menu_segment7 \
-   bin/bidw_platform_segment7 \
-   bin/bifs_platform_segment7
+# assumes naming convention "texture.<encoding>.png" generates "texture.<encoding>"
+INTRO_SEGMENT7_FILES         := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/intro_segment7/*.png)))
+MAIN_MENU_SEGMENT7_FILES     := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/main_menu_segment7/*.png)))
+BIDW_PLATFORM_SEGMENT7_FILES := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bidw_platform_segment7/*.png)))
+BIFS_PLATFORM_SEGMENT7_FILES := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bifs_platform_segment7/*.png)))
+SEGMENT2_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/segment2/*.png)))
+CAKE_END_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/cake_end/*.png)))
+TITLE_SCREEN_BG_FILES        := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/title_screen_bg/*.png)))
 
 $(BUILD_DIR)/bin/segment2.o: $(addprefix $(BUILD_DIR)/bin/segment2/,$(SEGMENT2_FILES))
 $(BUILD_DIR)/bin/cake_end.o: $(addprefix $(BUILD_DIR)/bin/cake_end/,$(CAKE_END_FILES))
