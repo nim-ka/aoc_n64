@@ -538,7 +538,7 @@ void func_8027B4E8(struct GraphNode002 *a)
         float top    = (D_8032CF90->y - D_8032CF90->height) / 2.0f * a->unk14;
         float bottom = (D_8032CF90->y + D_8032CF90->height) / 2.0f * a->unk14;
 
-        guFrustum(mtx, left, right, bottom, top, -2.0f, 2.0f, 1.0f);
+        guOrtho(mtx, left, right, bottom, top, -2.0f, 2.0f, 1.0f);
 
         // FIXME: What command is this?
         {

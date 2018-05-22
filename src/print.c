@@ -606,10 +606,6 @@ void *func_802D3CF0(int a, s16 b, s16 c, s16 *d, s16 e, s16 f, u8 g)
     return sp80;
 }
 
-// guTranslate?
-extern void func_80324758(Mtx *, float, float, float);
-void guRotateRPY(void *, float, float, float, float);
-
 Gfx *func_802D43FC(struct Struct802D1F94 *a)
 {
     float sp4C = a->unk74 / 614.0;
@@ -624,9 +620,9 @@ Gfx *func_802D43FC(struct Struct802D1F94 *a)
     {
     }
 
-    func_80324758(sp40, a->unk10, a->unk14, a->unk18);
-    guRotateRPY(sp48, a->unk8, 1.0f, 0.0f, 0.0f);
-    guRotateRPY(sp44, a->unkC, 0.0f, 1.0f, 0.0f);
+    guTranslate(sp40, a->unk10, a->unk14, a->unk18);
+    guRotate(sp48, a->unk8, 1.0f, 0.0f, 0.0f);
+    guRotate(sp44, a->unkC, 0.0f, 1.0f, 0.0f);
     guScale(sp3C, sp4C, sp4C, sp4C);
 
     gSPMatrix(sp34++, sp40, G_MTX_MODELVIEW | G_MTX_PUSH);
@@ -1232,7 +1228,7 @@ void func_802D61A8(void)
         sTextLabelsCount = 0;
         return;
     }
-    guFrustum(mtx, 0.0f, 320.0f, 0.0f, 240.0f, -10.0f, 10.0f, 1.0f);
+    guOrtho(mtx, 0.0f, 320.0f, 0.0f, 240.0f, -10.0f, 10.0f, 1.0f);
     {
         Gfx *g = gDisplayListHead++;
         g->words.w0 = 0xB4000000;

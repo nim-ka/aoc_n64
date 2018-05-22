@@ -44,11 +44,8 @@ glabel D_803347F4
 	.word 0
 	.word 0
 
-glabel D_80334800
-	.word 0
-
-glabel D_80334804
-	.incbin "bin/sm64.j.0EADAC.bin", 0x4A58, 0x4
+glabel osClockRate
+	.dword 62500000
 
 glabel D_80334808
 	.word 0

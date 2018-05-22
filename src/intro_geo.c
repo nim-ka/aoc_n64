@@ -194,7 +194,7 @@ Gfx *intro_backdrop_one_image(u32 index, s8 *backgroundTable)
    displayList = alloc_display_list(36 * sizeof(*displayList));
    displayListIter = displayList;
    vIntroBgTable = segmented_to_virtual(introBackgroundTextureType[backgroundTable[index]]);
-   func_80324758(mtx, introBackgroundOffsetX[index], introBackgroundOffsetY[index], 0.0f);
+   guTranslate(mtx, introBackgroundOffsetX[index], introBackgroundOffsetY[index], 0.0f);
    gSPMatrix(displayListIter++, mtx, G_MTX_LOAD | G_MTX_PUSH);
    gSPDisplayList(displayListIter++, &title_f3d_0A000118);
    for (i = 0; i < 4; ++i)

@@ -118,7 +118,7 @@ glabel func_802D6590
 /* 0915C8 802D65C8 8FA40024 */  lw    $a0, 0x24($sp)
 /* 0915CC 802D65CC 8FA5002C */  lw    $a1, 0x2c($sp)
 /* 0915D0 802D65D0 8FA60030 */  lw    $a2, 0x30($sp)
-/* 0915D4 802D65D4 0C0C91D6 */  jal   func_80324758
+/* 0915D4 802D65D4 0C0C91D6 */  jal   guTranslate
 /* 0915D8 802D65D8 8FA70034 */   lw    $a3, 0x34($sp)
 /* 0915DC 802D65DC 83AF002B */  lb    $t7, 0x2b($sp)
 /* 0915E0 802D65E0 24010001 */  li    $at, 1
@@ -191,7 +191,7 @@ glabel func_802D6694
 /* 0916D4 802D66D4 8FA50034 */  lw    $a1, 0x34($sp)
 /* 0916D8 802D66D8 8FA60038 */  lw    $a2, 0x38($sp)
 /* 0916DC 802D66DC 8FA7003C */  lw    $a3, 0x3c($sp)
-/* 0916E0 802D66E0 0C0C9251 */  jal   guRotateRPY
+/* 0916E0 802D66E0 0C0C9251 */  jal   guRotate
 /* 0916E4 802D66E4 E7A40010 */   swc1  $f4, 0x10($sp)
 /* 0916E8 802D66E8 83AF0033 */  lb    $t7, 0x33($sp)
 /* 0916EC 802D66EC 24010001 */  li    $at, 1
@@ -343,7 +343,7 @@ glabel func_802D68A4
 /* 091904 802D6904 E7A40010 */  swc1  $f4, 0x10($sp)
 /* 091908 802D6908 E7A60014 */  swc1  $f6, 0x14($sp)
 /* 09190C 802D690C E7A80018 */  swc1  $f8, 0x18($sp)
-/* 091910 802D6910 0C0C8F91 */  jal   guFrustum
+/* 091910 802D6910 0C0C8F91 */  jal   guOrtho
 /* 091914 802D6914 E7AA001C */   swc1  $f10, 0x1c($sp)
 /* 091918 802D6918 3C0F8034 */  lui   $t7, %hi(gDisplayListHead) # $t7, 0x8034
 /* 09191C 802D691C 8DEF9CFC */  lw    $t7, %lo(gDisplayListHead)($t7)

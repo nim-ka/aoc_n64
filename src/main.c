@@ -92,8 +92,12 @@ static void Unknown80246170(void)
 
     osSetTime(time);
     osMapTLB(0, b, NULL, 0, 0, 0);
-    osMapTLBRdb();
-    proutSprintf(0, 0);
+    osUnmapTLBAll();
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wnonnull"
+    sprintf(NULL, NULL);
+#pragma GCC diagnostic pop
 }
 
 static void Dummy802461CC(void)
@@ -279,7 +283,7 @@ static void handle_sp_complete(void)
 
     if (sp1C->unk48 == 2)
     {
-        if (func_80321E40(sp1C) == 0)
+        if (osSpTaskYielded(sp1C) == 0)
         {
             sp1C->unk48 = 3;
             func_8027DF70(1);

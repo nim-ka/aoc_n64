@@ -159,7 +159,7 @@ void *func_802CF188(s8 a)
 
     if (mtx != NULL)
     {
-        guFrustum(mtx, left, right, bottom, top, 0.0f, 3.0f, 1.0f);
+        guOrtho(mtx, left, right, bottom, top, 0.0f, 3.0f, 1.0f);
     }
     else
     {

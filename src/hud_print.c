@@ -83,7 +83,7 @@ void func_802E2304(s16 numHealthWedges)
     if (sp2C == NULL)
         return;
 
-    func_80324758(sp2C, (f32) hudStruct.d_E2, (f32) hudStruct.d_E4, 0);
+    guTranslate(sp2C, (f32) hudStruct.d_E2, (f32) hudStruct.d_E4, 0);
 
     gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(sp2C++), (G_MTX_MODELVIEW|G_MTX_MUL|G_MTX_PUSH));
     gSPDisplayList(gDisplayListHead++, &D_03029480);

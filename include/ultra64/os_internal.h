@@ -11,7 +11,6 @@
 
 u32 __osProbeTLB(void *);
 u32 __osDisableInt(void);
-OSThread *func_8000415C();
 s32 osEepromProbe(OSMesgQueue *mq);
 
 #endif

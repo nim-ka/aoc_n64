@@ -1898,7 +1898,7 @@ glabel .L8017D7A0
 /* 22BF74 8017D7A4 8FA40028 */  lw    $a0, 0x28($sp)
 /* 22BF78 8017D7A8 3C05801B */  lui   $a1, %hi(D_801B58FC) # $a1, 0x801b
 /* 22BF7C 8017D7AC 8F260108 */  lw    $a2, 0x108($t9)
-/* 22BF80 8017D7B0 0C0C8570 */  jal   proutSprintf
+/* 22BF80 8017D7B0 0C0C8570 */  jal   sprintf
 /* 22BF84 8017D7B4 24A558FC */   addiu $a1, %lo(D_801B58FC) # addiu $a1, $a1, 0x58fc
 /* 22BF88 8017D7B8 1000003C */  b     .L8017D8AC
 /* 22BF8C 8017D7BC 00000000 */   nop   
@@ -1907,7 +1907,7 @@ glabel .L8017D7C0
 /* 22BF94 8017D7C4 8FA40028 */  lw    $a0, 0x28($sp)
 /* 22BF98 8017D7C8 3C05801B */  lui   $a1, %hi(D_801B5904) # $a1, 0x801b
 /* 22BF9C 8017D7CC 8D0601B4 */  lw    $a2, 0x1b4($t0)
-/* 22BFA0 8017D7D0 0C0C8570 */  jal   proutSprintf
+/* 22BFA0 8017D7D0 0C0C8570 */  jal   sprintf
 /* 22BFA4 8017D7D4 24A55904 */   addiu $a1, %lo(D_801B5904) # addiu $a1, $a1, 0x5904
 /* 22BFA8 8017D7D8 10000034 */  b     .L8017D8AC
 /* 22BFAC 8017D7DC 00000000 */   nop   
@@ -1916,7 +1916,7 @@ glabel .L8017D7E0
 /* 22BFB4 8017D7E4 8FA40028 */  lw    $a0, 0x28($sp)
 /* 22BFB8 8017D7E8 3C05801B */  lui   $a1, %hi(D_801B590C) # $a1, 0x801b
 /* 22BFBC 8017D7EC 8D260074 */  lw    $a2, 0x74($t1)
-/* 22BFC0 8017D7F0 0C0C8570 */  jal   proutSprintf
+/* 22BFC0 8017D7F0 0C0C8570 */  jal   sprintf
 /* 22BFC4 8017D7F4 24A5590C */   addiu $a1, %lo(D_801B590C) # addiu $a1, $a1, 0x590c
 /* 22BFC8 8017D7F8 1000002C */  b     .L8017D8AC
 /* 22BFCC 8017D7FC 00000000 */   nop   
@@ -1925,14 +1925,14 @@ glabel .L8017D800
 /* 22BFD4 8017D804 8FA40028 */  lw    $a0, 0x28($sp)
 /* 22BFD8 8017D808 3C05801B */  lui   $a1, %hi(D_801B5914) # $a1, 0x801b
 /* 22BFDC 8017D80C 8D460050 */  lw    $a2, 0x50($t2)
-/* 22BFE0 8017D810 0C0C8570 */  jal   proutSprintf
+/* 22BFE0 8017D810 0C0C8570 */  jal   sprintf
 /* 22BFE4 8017D814 24A55914 */   addiu $a1, %lo(D_801B5914) # addiu $a1, $a1, 0x5914
 /* 22BFE8 8017D818 10000024 */  b     .L8017D8AC
 /* 22BFEC 8017D81C 00000000 */   nop   
 glabel .L8017D820
 /* 22BFF0 8017D820 8FA40028 */  lw    $a0, 0x28($sp)
 /* 22BFF4 8017D824 3C05801B */  lui   $a1, %hi(D_801B591C) # $a1, 0x801b
-/* 22BFF8 8017D828 0C0C8570 */  jal   proutSprintf
+/* 22BFF8 8017D828 0C0C8570 */  jal   sprintf
 /* 22BFFC 8017D82C 24A5591C */   addiu $a1, %lo(D_801B591C) # addiu $a1, $a1, 0x591c
 /* 22C000 8017D830 1000001E */  b     .L8017D8AC
 /* 22C004 8017D834 00000000 */   nop   
@@ -1941,14 +1941,14 @@ glabel .L8017D820
 /* 22C00C 8017D83C 8FA40028 */  lw    $a0, 0x28($sp)
 /* 22C010 8017D840 3C05801B */  lui   $a1, %hi(D_801B5928) # $a1, 0x801b
 /* 22C014 8017D844 8D660028 */  lw    $a2, 0x28($t3)
-/* 22C018 8017D848 0C0C8570 */  jal   proutSprintf
+/* 22C018 8017D848 0C0C8570 */  jal   sprintf
 /* 22C01C 8017D84C 24A55928 */   addiu $a1, %lo(D_801B5928) # addiu $a1, $a1, 0x5928
 /* 22C020 8017D850 10000016 */  b     .L8017D8AC
 /* 22C024 8017D854 00000000 */   nop   
 .L8017D858:
 /* 22C028 8017D858 8FA40028 */  lw    $a0, 0x28($sp)
 /* 22C02C 8017D85C 3C05801B */  lui   $a1, %hi(D_801B5930) # $a1, 0x801b
-/* 22C030 8017D860 0C0C8570 */  jal   proutSprintf
+/* 22C030 8017D860 0C0C8570 */  jal   sprintf
 /* 22C034 8017D864 24A55930 */   addiu $a1, %lo(D_801B5930) # addiu $a1, $a1, 0x5930
 /* 22C038 8017D868 10000010 */  b     .L8017D8AC
 /* 22C03C 8017D86C 00000000 */   nop   
@@ -1957,7 +1957,7 @@ glabel .L8017D820
 /* 22C044 8017D874 8FA40028 */  lw    $a0, 0x28($sp)
 /* 22C048 8017D878 3C05801B */  lui   $a1, %hi(D_801B593C) # $a1, 0x801b
 /* 22C04C 8017D87C 8D860014 */  lw    $a2, 0x14($t4)
-/* 22C050 8017D880 0C0C8570 */  jal   proutSprintf
+/* 22C050 8017D880 0C0C8570 */  jal   sprintf
 /* 22C054 8017D884 24A5593C */   addiu $a1, %lo(D_801B593C) # addiu $a1, $a1, 0x593c
 /* 22C058 8017D888 10000008 */  b     .L8017D8AC
 /* 22C05C 8017D88C 00000000 */   nop   
@@ -1965,7 +1965,7 @@ glabel .L8017D890
 /* 22C060 8017D890 8FA40028 */  lw    $a0, 0x28($sp)
 /* 22C064 8017D894 3C05801B */  lui   $a1, %hi(D_801B5944) # $a1, 0x801b
 /* 22C068 8017D898 8FA60024 */  lw    $a2, 0x24($sp)
-/* 22C06C 8017D89C 0C0C8570 */  jal   proutSprintf
+/* 22C06C 8017D89C 0C0C8570 */  jal   sprintf
 /* 22C070 8017D8A0 24A55944 */   addiu $a1, %lo(D_801B5944) # addiu $a1, $a1, 0x5944
 /* 22C074 8017D8A4 10000001 */  b     .L8017D8AC
 /* 22C078 8017D8A8 00000000 */   nop   

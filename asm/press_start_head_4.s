@@ -689,7 +689,7 @@ glabel func_8018421C
 /* 232A38 80184268 AC289F28 */  sw    $t0, %lo(D_801B9F28)($at)
 /* 232A3C 8018426C 01003025 */  move  $a2, $t0
 /* 232A40 80184270 24A55E9C */  addiu $a1, %lo(D_801B5E9C) # addiu $a1, $a1, 0x5e9c
-/* 232A44 80184274 0C0C8570 */  jal   proutSprintf
+/* 232A44 80184274 0C0C8570 */  jal   sprintf
 /* 232A48 80184278 24849F20 */   addiu $a0, %lo(D_801B9F20) # addiu $a0, $a0, -0x60e0
 /* 232A4C 8018427C 10000005 */  b     .L80184294
 /* 232A50 80184280 00000000 */   nop   
@@ -736,7 +736,7 @@ glabel Unknown801842C0
 /* 232AD8 80184308 AC289F28 */  sw    $t0, %lo(D_801B9F28)($at)
 /* 232ADC 8018430C 01003025 */  move  $a2, $t0
 /* 232AE0 80184310 24A55EA4 */  addiu $a1, %lo(D_801B5EA4) # addiu $a1, $a1, 0x5ea4
-/* 232AE4 80184314 0C0C8570 */  jal   proutSprintf
+/* 232AE4 80184314 0C0C8570 */  jal   sprintf
 /* 232AE8 80184318 27A40018 */   addiu $a0, $sp, 0x18
 /* 232AEC 8018431C 10000004 */  b     .L80184330
 /* 232AF0 80184320 00000000 */   nop   
@@ -815,7 +815,7 @@ glabel func_801843D0
 /* 232BDC 8018440C 3C05801B */  lui   $a1, %hi(D_801B5EAC) # $a1, 0x801b
 /* 232BE0 80184410 8FA60120 */  lw    $a2, 0x120($sp)
 /* 232BE4 80184414 24A55EAC */  addiu $a1, %lo(D_801B5EAC) # addiu $a1, $a1, 0x5eac
-/* 232BE8 80184418 0C0C8570 */  jal   proutSprintf
+/* 232BE8 80184418 0C0C8570 */  jal   sprintf
 /* 232BEC 8018441C 27A4001C */   addiu $a0, $sp, 0x1c
 /* 232BF0 80184420 10000004 */  b     .L80184434
 /* 232BF4 80184424 00000000 */   nop   
@@ -922,7 +922,7 @@ glabel func_8018454C
 /* 232D58 80184588 AC2F9F40 */  sw    $t7, %lo(D_801B9F40)($at)
 /* 232D5C 8018458C 01E03025 */  move  $a2, $t7
 /* 232D60 80184590 24A55EB0 */  addiu $a1, %lo(D_801B5EB0) # addiu $a1, $a1, 0x5eb0
-/* 232D64 80184594 0C0C8570 */  jal   proutSprintf
+/* 232D64 80184594 0C0C8570 */  jal   sprintf
 /* 232D68 80184598 24849F48 */   addiu $a0, %lo(D_801B9F48) # addiu $a0, $a0, -0x60b8
 /* 232D6C 8018459C 0C062914 */  jal   dSetType
 /* 232D70 801845A0 24040004 */   li    $a0, 4
@@ -1107,7 +1107,7 @@ glabel func_801847A8
 /* 232FF8 80184828 3C05801B */  lui   $a1, %hi(D_801B5F38) # $a1, 0x801b
 /* 232FFC 8018482C 8FA60124 */  lw    $a2, 0x124($sp)
 /* 233000 80184830 24A55F38 */  addiu $a1, %lo(D_801B5F38) # addiu $a1, $a1, 0x5f38
-/* 233004 80184834 0C0C8570 */  jal   proutSprintf
+/* 233004 80184834 0C0C8570 */  jal   sprintf
 /* 233008 80184838 27A4001C */   addiu $a0, $sp, 0x1c
 /* 23300C 8018483C 10000008 */  b     .L80184860
 /* 233010 80184840 AFA00124 */   sw    $zero, 0x124($sp)
@@ -1117,7 +1117,7 @@ glabel func_801847A8
 /* 23301C 8018484C 3C05801B */  lui   $a1, %hi(D_801B5F3C) # $a1, 0x801b
 /* 233020 80184850 24A55F3C */  addiu $a1, %lo(D_801B5F3C) # addiu $a1, $a1, 0x5f3c
 /* 233024 80184854 27A4001C */  addiu $a0, $sp, 0x1c
-/* 233028 80184858 0C0C8570 */  jal   proutSprintf
+/* 233028 80184858 0C0C8570 */  jal   sprintf
 /* 23302C 8018485C 24C60001 */   addiu $a2, $a2, 1
 .L80184860:
 /* 233030 80184860 8FB90124 */  lw    $t9, 0x124($sp)
@@ -1265,7 +1265,7 @@ glabel func_80184A44
 /* 233248 80184A78 3C05801B */  lui   $a1, %hi(D_801B5FC0) # $a1, 0x801b
 /* 23324C 80184A7C 8FA60018 */  lw    $a2, 0x18($sp)
 /* 233250 80184A80 24A55FC0 */  addiu $a1, %lo(D_801B5FC0) # addiu $a1, $a1, 0x5fc0
-/* 233254 80184A84 0C0C8570 */  jal   proutSprintf
+/* 233254 80184A84 0C0C8570 */  jal   sprintf
 /* 233258 80184A88 24849F00 */   addiu $a0, %lo(D_801B9F00) # addiu $a0, $a0, -0x6100
 /* 23325C 80184A8C 3C02801C */  lui   $v0, %hi(D_801B9F00) # $v0, 0x801c
 /* 233260 80184A90 10000005 */  b     .L80184AA8
@@ -9060,7 +9060,7 @@ glabel Unknown8018B898
 /* 23A094 8018B8C4 24A57FC8 */  addiu $a1, %lo(D_801B7FC8) # addiu $a1, $a1, 0x7fc8
 /* 23A098 8018B8C8 27A40018 */  addiu $a0, $sp, 0x18
 /* 23A09C 8018B8CC 27060034 */  addiu $a2, $t8, 0x34
-/* 23A0A0 8018B8D0 0C0C8570 */  jal   proutSprintf
+/* 23A0A0 8018B8D0 0C0C8570 */  jal   sprintf
 /* 23A0A4 8018B8D4 03003825 */   move  $a3, $t8
 /* 23A0A8 8018B8D8 3C04801C */  lui   $a0, %hi(D_801BA070) # $a0, 0x801c
 /* 23A0AC 8018B8DC 2484A070 */  addiu $a0, %lo(D_801BA070) # addiu $a0, $a0, -0x5f90
