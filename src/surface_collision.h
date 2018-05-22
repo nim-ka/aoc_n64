@@ -79,7 +79,7 @@ extern void func_80381F08(f32 sp40, f32 sp44);
 // extern ? func_80383228(?);
 // extern ? func_80383340(?);
  void func_803833B8(s16 arg0, s16 *arg1, s8 *arg2, s16 *arg3);
-// extern ? func_803835A4(?);
+extern void func_803835A4(void);
 // extern ? func_80383614(?);
 // extern ? func_80383828(?);
 // extern ? ProcessCollision(?);

@@ -3,7 +3,7 @@
 
 #include "types.h"
 
-// extern ? D_8033B870;
+extern struct GfxNode D_8033B870;
 // extern ? D_8032EF6C;
 
 extern void func_8029BFF0(void);

@@ -3,20 +3,19 @@
 
 #include "types.h"
 
-// extern ? D_8035FEF2;
-// extern ? D_8035FEF4;
+extern s16 D_8035FEF2;
+extern s16 D_8035FEF4;
 extern s16 D_8035FEEC;
-// extern ? D_8035FEE6;
-// extern ? D_8035FEE0;
+extern s16 D_8035FEE6;
+extern s16 D_8035FEE0;
 
 extern u32 D_8033C110;
 extern struct Object D_8033C118[];
-// extern ? D_8035FE0C;
-// extern ? D_8033BF00;
-// extern ? D_8035FEEE;
-// extern ? D_8035FEF0;
-// extern ? D_8035FDF8;
-// extern ? D_8033BF10;
+extern struct Struct80278464 *D_8035FE0C;
+extern u32 D_8033BF00;
+extern s16 D_8035FEEE;
+extern s16 D_8035FEF0;
+extern s16 D_8035FDF8;
 // extern ? D_80336610;
 extern void **gLoadedGeoLayouts;
 extern struct Object *D_8035FDE0;

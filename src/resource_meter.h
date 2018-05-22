@@ -6,7 +6,7 @@
 // extern ? D_8032CFB4;
 // extern ? D_8033B020;
 // extern ? D_8032CFB8;
-// extern ? D_80334800;
+extern s64 D_80334800;
 // extern ? D_80334804;
 // extern ? D_8032CFB0;
 

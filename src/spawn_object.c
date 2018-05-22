@@ -135,7 +135,7 @@ void UnknownRecursive802C8FF8(struct Object *a)
 void func_802C9088(struct Object *a)
 {
     a->active = 0;
-    a->unk6C = 0;
+    a->prevObj = 0;
     a->gfx.unk50 = 0;
     func_803206F8(&a->gfx.unk54);
     func_8037C0BC((struct GraphNode *)a);
@@ -172,8 +172,8 @@ struct Object *func_802C9120(struct GfxNode *a)
     }
 
     sp20->active = 257;
-    sp20->unk68 = sp20;
-    sp20->unk6C = 0;
+    sp20->nextObj = sp20;
+    sp20->prevObj = NULL;
     sp20->collidedObjInteractTypes = 0;
     sp20->numCollidedObjs = 0;
 

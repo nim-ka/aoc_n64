@@ -11,6 +11,6 @@
 // extern ? func_802C89CC(?);
 // extern ? func_802C8AD4(?);
 // extern ? func_802C8B50(?);
-// extern ? func_802C8C44(?);
+extern void func_802C8C44(void);
 
 #endif /* _OBJECT_COLLISION_H */

@@ -220,7 +220,7 @@ s32 Behavior2C(void)
     
     CopyObjParams(object, gCurrentObject);
     
-    gCurrentObject->unk6C = object;
+    gCurrentObject->prevObj = object;
     
     gBehCommand += 3;
     return BEH_CONTINUE;
@@ -795,7 +795,7 @@ s32 Behavior33(void)
 
     flags = flags ^ 0xFFFFFFFF;
 
-    object_and_s32(gCurrentObject->unk68, objectOffset, flags);
+    object_and_s32(gCurrentObject->nextObj, objectOffset, flags);
 
     gBehCommand += 2;
     return BEH_CONTINUE;

@@ -13,7 +13,6 @@
 extern int D_8033BEF0;
 extern int D_8033BEF4;
 extern int D_8033BEFC;
-extern int D_8033BF00;
 extern s16 D_8033BF04;
 extern s16 D_8033BF06;
 extern s16 D_8033BF08;

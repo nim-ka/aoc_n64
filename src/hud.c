@@ -347,8 +347,8 @@ void func_802E1504(s16 a0, s16* a1)
             sp48->unk188   = ((sp4C[4] & 0x00FF) << 16) + (sp4C[4] & 0xFF00);
             sp48->behParam = sp4C[4] & 0x00FF;
             sp48->unk1F6   = 2;
-            sp48->unk25C   = (u32) a1 - 2;
-            sp48->unk68    = sp48;
+            sp48->unk25C   = a1 - 1;
+            sp48->nextObj    = sp48;
         }
     }
 }

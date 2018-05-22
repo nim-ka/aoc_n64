@@ -73,7 +73,7 @@ extern u32 func_8025325C(struct MarioState *);
 // extern ? func_802541BC(?);
 // extern ? func_8025435C(?);
 // extern ? Unknown8025453C(?);
-// extern ? func_80254604(?);
+extern s32 func_80254604(struct Object *);
 extern void func_802548BC(void);
 extern void func_80254CE0(void);
 

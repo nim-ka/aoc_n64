@@ -63,7 +63,7 @@ SECTIONS
       build/asm/decompress.o(.text);
       build/src/camera.o(.text);
       build/asm/camera.o(.text);
-      build/asm/object_list_processor.o(.text);
+      build/src/object_list_processor.o(.text);
       build/asm/level_functions.o(.text);
       build/src/platform_displacement.o(.text);
       build/src/object_collision.o(.text);
@@ -117,6 +117,8 @@ SECTIONS
       build/data/camera_before.data.o(.data*);
       build/src/camera.o(.data*);
       build/data/camera.data.o(.data*);
+      build/src/object_list_processor.o(.data*);
+      build/data/level_functions.data.o(.data*);
       build/src/platform_displacement.o(.data*);
       build/src/mapinfo_1.o(.data*);
       build/src/mapinfo_2.o(.data*);

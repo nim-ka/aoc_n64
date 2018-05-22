@@ -177,8 +177,10 @@ struct Struct8037C51C
     /*0x06*/ Vec3s angle; // node.unk1A
     /*0x0C*/ s8 unk0C; // node.unk18
     /*0x0D*/ s8 unk0D; // node.unk19
-    /*0x0E*/ u8 filler0E[0x18-0x0E];
-    /*0x18*/ void* unk18; // node.unk14
+    /*0x10*/ u32 unk10;
+    /*0x14*/ void *unk14;
+    /*0x18*/ void *unk18; // node.unk14
+    /*0x1C*/ struct Struct8037C51C *next;
 };
 
 struct GraphNode018_sub

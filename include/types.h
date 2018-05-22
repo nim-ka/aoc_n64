@@ -100,7 +100,7 @@ struct UnknownStruct5 {
 
 struct GfxNode
 {
-    u8 filler0[2];
+    /*0x000*/ s16 unk00;
     /*0x002*/ s16 graphFlags;
     u8 filler4[0x8-0x4];
     /*0x008*/ struct Object *unk8;
@@ -108,7 +108,7 @@ struct GfxNode
     /*0x010*/ struct Object *unk10;
     /*0x014*/ void *geoLayout;
     /*0x018*/ u8 unk18;
-    /*0x019*/ u8 unk19;
+    /*0x019*/ s8 unk19;
     /*0x01A*/ Vec3s unk1A;
     /*0x020*/ Vec3f unk20;
     /*0x02C*/ Vec3f scale;
@@ -127,8 +127,9 @@ struct GfxNode
 struct Object
 {
     /*0x000*/ struct GfxNode gfx;
-    /*0x068*/ struct Object *unk68;
-    /*0x06C*/ struct Object *unk6C;
+
+    /*0x068*/ struct Object *nextObj;
+    /*0x06C*/ struct Object *prevObj;
     /*0x070*/ u32 collidedObjInteractTypes;
     /*0x074*/ s16 active;
     /*0x076*/ s16 numCollidedObjs;
@@ -193,7 +194,7 @@ struct Object
     /*0x1D0*/ u32 stackIndex;
     /*0x1D4*/ u32 stack[8];
     /*0x1F4*/ s16 unk1F4;
-    /*0x1F6*/ u16 unk1F6;
+    /*0x1F6*/ s16 unk1F6;
     /*0x1F8*/ f32 hitboxRadius;
     /*0x1FC*/ f32 hitboxHeight;
     /*0x200*/ f32 unk200;
@@ -204,7 +205,7 @@ struct Object
     /*0x214*/ struct Object *platform;
     /*0x218*/ void *collisionData;
     /*0x21C*/ float unk21C[4][4];
-    /*0x25C*/ u32 unk25C;
+    /*0x25C*/ void *unk25C;
 };
 
 struct Surface
