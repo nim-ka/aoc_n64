@@ -3,7 +3,7 @@
 
 #include "types.h"
 
-extern struct GfxNode *D_8035FD78;
+extern struct GfxNode *gObjectLists;
 extern struct GfxNode D_8035FD80;
 
 // extern ? Unknown802C8CF0(?);

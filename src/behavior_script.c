@@ -201,7 +201,7 @@ s32 Behavior1B(void)
 s32 Behavior1C(void)
 {
     u32 arg0 = gBehCommand[1];
-    u32 arg1 = gBehCommand[2];
+    void *arg1 = (void *) gBehCommand[2];
     
     struct Object *object = func_8029E5A4(gCurrentObject, 0, arg0, arg1);
     
@@ -214,7 +214,7 @@ s32 Behavior1C(void)
 s32 Behavior2C(void)
 {
     u32 arg0 = gBehCommand[1];
-    u32 arg1 = gBehCommand[2];
+    void *arg1 = (void *) gBehCommand[2];
     
     struct Object *object = func_8029E5A4(gCurrentObject, 0, arg0, arg1);
     
@@ -230,7 +230,7 @@ s32 Behavior29(void)
 {
     u32 behParam = (s16)(gBehCommand[0] & 0xFFFF);
     u32 arg1 = gBehCommand[1];
-    u32 arg2 = gBehCommand[2];
+    void *arg2 = (void *) gBehCommand[2];
     
     struct Object *object = func_8029E5A4(gCurrentObject, 0, arg1, arg2);
     

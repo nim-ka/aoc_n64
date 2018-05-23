@@ -94,7 +94,7 @@ struct Area
     /*0x14*/ struct ObjectWarpNode *unk14;
     /*0x18*/ struct WarpNode *paintingWarpNodes;
     /*0x1C*/ struct UnknownArea1C *unk1C;
-    /*0x20*/ u32 unk20;
+    /*0x20*/ struct SpawnInfo *unk20;
     /*0x24*/ struct UnknownArea24 *unk24;
     /*0x28*/ u32 unk28;
     /*0x2C*/ struct Whirlpool *whirlpools[2];
@@ -104,16 +104,16 @@ struct Area
     /*0x38*/ u16 unk38;
 };
 
-struct Struct8033A140 // Level, I think
+struct SpawnInfo
 {
-    /*0x00*/ Vec3s marioStartPos;
-    /*0x06*/ Vec3s marioStartAngle;
-    /*0x0C*/ s8 areaIndex[1];
+    /*0x00*/ Vec3s startPos;
+    /*0x06*/ Vec3s startAngle;
+    /*0x0C*/ s8 areaIndex;
     /*0x0D*/ s8 unk0D;
-    /*0x10*/ u32 unk10;
-    /*0x14*/ u32 unk14;
-    /*0x18*/ u32 unk18;
-    /*0x1C*/ u32 unk1C;
+    /*0x10*/ u32 behaviorArg;
+    /*0x14*/ void *behaviorScript;
+    /*0x18*/ struct GraphNode *unk18;
+    /*0x1C*/ struct SpawnInfo *next;
 };
 
 struct CreditsEntry

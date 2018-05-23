@@ -235,13 +235,13 @@ void func_8024980C(u32 arg)
     }
 }
 
-static void func_8024992C(struct Struct8033A140 *level, u32 arg1)
+static void func_8024992C(struct SpawnInfo *spawnInfo, u32 arg1)
 {
     if (arg1 & 0x00000002)
-        level->marioStartAngle[1] += 0x8000;
+        spawnInfo->startAngle[1] += 0x8000;
 
-    level->marioStartPos[0] += 300.0f * sins(level->marioStartAngle[1]);
-    level->marioStartPos[2] += 300.0f * coss(level->marioStartAngle[1]);
+    spawnInfo->startPos[0] += 300.0f * sins(spawnInfo->startAngle[1]);
+    spawnInfo->startPos[2] += 300.0f * coss(spawnInfo->startAngle[1]);
 }
 
 static void set_mario_initial_cap_powerup(struct MarioState *m)
@@ -301,20 +301,20 @@ static void init_mario_after_warp(void)
 
     if (gMarioState->action != ACT_UNINITIALIZED)
     {
-        D_8033A140.marioStartPos[0] = (s16) spawnNode->object->pos[0];
-        D_8033A140.marioStartPos[1] = (s16) spawnNode->object->pos[1];
-        D_8033A140.marioStartPos[2] = (s16) spawnNode->object->pos[2];
+        gPlayerSpawnInfos[0].startPos[0] = (s16) spawnNode->object->pos[0];
+        gPlayerSpawnInfos[0].startPos[1] = (s16) spawnNode->object->pos[1];
+        gPlayerSpawnInfos[0].startPos[2] = (s16) spawnNode->object->pos[2];
 
-        D_8033A140.marioStartAngle[0] = 0;
-        D_8033A140.marioStartAngle[1] = spawnNode->object->angle[1];
-        D_8033A140.marioStartAngle[2] = 0;
+        gPlayerSpawnInfos[0].startAngle[0] = 0;
+        gPlayerSpawnInfos[0].startAngle[1] = spawnNode->object->angle[1];
+        gPlayerSpawnInfos[0].startAngle[2] = 0;
 
         if (marioSpawnType == MARIO_SPAWN_UNKNOWN_01)
-            func_8024992C(&D_8033A140, sWarpArg);
+            func_8024992C(&gPlayerSpawnInfos[0], sWarpArg);
 
         if (sCurrWarpType == WARP_TYPE_CHANGE_LEVEL || sCurrWarpType == WARP_TYPE_CHANGE_AREA)
         {
-            D_8033A140.areaIndex[0] = sDestAreaIndex;
+            gPlayerSpawnInfos[0].areaIndex = sDestAreaIndex;
             func_8027AA0C();
         }
 
@@ -429,18 +429,18 @@ static void func_8024A0E0(void)
     func_8027A894(sDestAreaIndex);
 
     vec3s_set(
-        D_8033A140.marioStartPos,
+        gPlayerSpawnInfos[0].startPos,
         gCurrCreditsEntry->marioPos[0],
         gCurrCreditsEntry->marioPos[1],
         gCurrCreditsEntry->marioPos[2]);
 
     vec3s_set(
-        D_8033A140.marioStartAngle,
+        gPlayerSpawnInfos[0].startAngle,
         0,
         0x100 * gCurrCreditsEntry->marioAngle,
         0);
 
-    D_8033A140.areaIndex[0] = sDestAreaIndex;
+    gPlayerSpawnInfos[0].areaIndex = sDestAreaIndex;
 
     func_8027AA0C();
     func_802548BC();
@@ -1171,7 +1171,7 @@ static s32 init_level(void)
     }
     else
     {
-        if (D_8033A140.areaIndex[0] >= 0)
+        if (gPlayerSpawnInfos[0].areaIndex >= 0)
         {
             func_8027AA0C();
             func_802548BC();
@@ -1284,7 +1284,7 @@ s32 lvl_set_current_level(UNUSED s16 arg0, s32 levelNum)
     if (D_8033A75C != gCurrCourseNum)
     {
         D_8033A75C = gCurrCourseNum;
-        func_8029BFF0();
+        nop_change_course();
         func_8027A0E8();
     }
 

@@ -22,14 +22,6 @@
 #include "audio_interface_2.h"
 #include "rendering.h"
 
-struct Struct8032CE60
-{
-    u8 unk0;
-    u8 filler1[0xB];
-    s8 unkC;
-    s8 unkD;
-};
-
 struct Struct8032CF90
 {
     u8 filler0[2];
@@ -120,8 +112,7 @@ extern struct Struct8032CF10 D_8032CF50[];
 extern void *D_8033A160;
 
 
-//Struct8033A140?
-struct Struct8032CE60 *D_8032CE60 = (struct Struct8032CE60 *)&D_8033A140;
+struct SpawnInfo *D_8032CE60 = &gPlayerSpawnInfos[0];
 void **gLoadedGeoLayouts = &D_8033A160;
 struct Area *D_8032CE68 = D_8033A560;
 struct Area *D_8032CE6C = NULL;
@@ -222,7 +213,7 @@ void func_8027A554(void)
     D_8032CE6C = NULL;
     D_8033A740 = 0;
     D_8033A743 = 0;
-    D_8032CE60->unkC = -1;
+    D_8032CE60->areaIndex = -1;
     for (sp4 = 0; sp4 < 8; sp4++)
     {
         D_8033A560[sp4].index = sp4;
@@ -276,7 +267,7 @@ void func_8027A894(int a)
         if (D_8032CE6C->unk08 != 0)
             func_803833B8(a, D_8032CE6C->unk08, (s8 *) D_8032CE6C->unk0C, D_8032CE6C->unk10);
         if (D_8032CE6C->unk20 != 0)
-            func_8029C830(0, D_8032CE6C->unk20);
+            spawn_objects_from_info(0, D_8032CE6C->unk20);
         func_8027A4C4();
         func_8037C360(D_8032CE6C->unk04, 3);
     }
@@ -297,11 +288,11 @@ void func_8027A998(void)
 void func_8027AA0C(void)
 {
     func_80320890();
-    func_8027A894(D_8032CE60->unkC);
-    if (D_8032CE6C->index == D_8032CE60->unkC)
+    func_8027A894(D_8032CE60->areaIndex);
+    if (D_8032CE6C->index == D_8032CE60->areaIndex)
     {
         D_8032CE6C->unk01 |= 1;
-        func_8029C830(0, D_8032CE60);
+        spawn_objects_from_info(0, D_8032CE60);
     }
 }
 
@@ -309,7 +300,7 @@ void func_8027AA88(void)
 {
     if (D_8032CE6C != NULL && (D_8032CE6C->unk01 & 1))
     {
-        func_8029C75C(0, D_8032CE60->unkD);
+        func_8029C75C(0, D_8032CE60->unk0D);
         D_8032CE6C->unk01 &= ~1;
         if (D_8032CE6C->unk01 == 0)
             func_8027A998();
@@ -329,14 +320,14 @@ void func_8027AB10(int a)
     }
     if (sp1C & 1)
     {
-        gMarioObject->gfx.unk18 = a, D_8032CE60->unkC = a;
+        gMarioObject->gfx.unk18 = a, D_8032CE60->areaIndex = a;
     }
 }
 
 void func_8027ABB4(void)
 {
     D_8032CFA8++;
-    func_8029CF08(0);
+    update_objects(0);
 }
 
 void func_8027ABF0(s16 a, s16 b, u8 c, u8 d, u8 e)

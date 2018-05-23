@@ -286,7 +286,7 @@ void func_802CA140(void)
 {
     D_8033BEF4 = 0;
     D_8033BEFC = 0;
-    D_8033BF00 = 0;
+    gUpdatedObjectCount = 0;
     D_8032FF3C = 0;
     D_8035FEE2 = 0;
     D_8035FEE4 = 0;
@@ -423,7 +423,7 @@ void func_802CA5E0(void)
         }
     }
 
-    AnotherPrint("obj  %d", D_8033BF00);
+    AnotherPrint("obj  %d", gUpdatedObjectCount);
 
     if(D_8033BEF4)
         func_802C9A88("NULLBG %d", D_8033BEF4);

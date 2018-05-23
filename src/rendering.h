@@ -2,6 +2,7 @@
 #define _RENDERING_H
 
 #include "graph_node.h"
+#include "level_update.h"
 
 extern struct GraphNodeScreenArea *D_8032CF90;
 extern struct GraphNode004 *D_8032CF94;
@@ -45,7 +46,7 @@ extern u16 *D_8033B000;
 extern float D_8033AFFC;
 extern s16 *D_8033B004;
 extern u8 D_8033A740;
-extern struct Struct8033A140 D_8033A140; 
+extern struct SpawnInfo gPlayerSpawnInfos[]; 
 
 extern Vp *D_8032CE74;
 extern Vp *D_8032CE78;

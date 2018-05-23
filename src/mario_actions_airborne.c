@@ -1104,7 +1104,7 @@ static u32 common_air_knockback_step(
         if (!check_fall_damage_or_get_stuck(m, hardFallAction))
         {
 #if VERSION_US
-            if (m->action == ACT_THROWN || m->action == ACT_HEAVED)
+            if (m->action == ACT_THROWN_FORWARD || m->action == ACT_THROWN_BACKWARD)
                 set_mario_action(m, landAction, m->hurtCounter);
             else
                 set_mario_action(m, landAction, m->actionArg);
@@ -1198,7 +1198,7 @@ static s32 act_hard_forward_air_kb(struct MarioState *m)
     return FALSE;
 }
 
-static s32 act_heaved(struct MarioState *m)
+static s32 act_thrown_backward(struct MarioState *m)
 {
     u32 landAction;
     if (m->actionArg != 0)
@@ -1210,11 +1210,12 @@ static s32 act_heaved(struct MarioState *m)
     
     common_air_knockback_step(
         m, landAction, ACT_UNKNOWN_060, 0x0002, m->forwardVel);
+    
     m->forwardVel *= 0.98f;
     return FALSE;
 }
 
-static s32 act_thrown(struct MarioState *m)
+static s32 act_thrown_forward(struct MarioState *m)
 {
     s16 pitch;
 
@@ -2096,8 +2097,8 @@ s32 execute_airborne_action(struct MarioState *m)
     case ACT_CRAZY_BOX_BOUNCE:     cancel = act_crazy_box_bounce(m);     break;
     case ACT_SPECIAL_TRIPLE_JUMP:  cancel = act_special_triple_jump(m);  break;
     case ACT_GROUND_POUND:         cancel = act_ground_pound(m);         break;
-    case ACT_THROWN:               cancel = act_thrown(m);               break;
-    case ACT_HEAVED:               cancel = act_heaved(m);               break;
+    case ACT_THROWN_FORWARD:       cancel = act_thrown_forward(m);       break;
+    case ACT_THROWN_BACKWARD:      cancel = act_thrown_backward(m);      break;
     case ACT_FLYING_TRIPLE_JUMP:   cancel = act_flying_triple_jump(m);   break;
     case ACT_SLIDE_KICK:           cancel = act_slide_kick(m);           break;
     case ACT_JUMP_KICK:            cancel = act_jump_kick(m);            break;

@@ -88,7 +88,7 @@ int func_802C870C(struct Object *a, struct Object *b)
 
 void func_802C88A8(struct Object *a)
 {
-    struct Object *sp4 = (struct Object *)a->gfx.prev;
+    struct Object *sp4 = (struct Object *)a->gfx.next;
 
     while (sp4 != a)
     {
@@ -96,7 +96,7 @@ void func_802C88A8(struct Object *a)
         sp4->collidedObjInteractTypes = 0;
         if (sp4->unk9C > 0)
             sp4->unk9C--;
-        sp4 = (struct Object *)sp4->gfx.prev;
+        sp4 = (struct Object *)sp4->gfx.next;
     }
 }
 
@@ -111,68 +111,68 @@ void func_802C8918(struct Object *a, struct Object *b, struct Object *c)
                 if (func_802C8504(a, b) && b->unk200 != 0.0f)
                     func_802C870C(a, b);
             }
-            b = (struct Object *)b->gfx.prev;
+            b = (struct Object *)b->gfx.next;
         }
     }
 }
 
 void func_802C89CC(void)
 {
-    struct Object *sp1C = (struct Object *)&D_8035FD78[0];
-    struct Object *sp18 = (struct Object *)sp1C->gfx.prev;
+    struct Object *sp1C = (struct Object *)&gObjectLists[0];
+    struct Object *sp18 = (struct Object *)sp1C->gfx.next;
 
     while (sp18 != sp1C)
     {
-        func_802C8918(sp18, (struct Object *)sp18->gfx.prev, sp1C);
-        func_802C8918(sp18, (struct Object *)D_8035FD78[10].prev, (struct Object *)&D_8035FD78[10]);
-        func_802C8918(sp18, (struct Object *)D_8035FD78[6].prev, (struct Object *)&D_8035FD78[6]);
-        func_802C8918(sp18, (struct Object *)D_8035FD78[4].prev, (struct Object *)&D_8035FD78[4]);
-        func_802C8918(sp18, (struct Object *)D_8035FD78[5].prev, (struct Object *)&D_8035FD78[5]);
-        func_802C8918(sp18, (struct Object *)D_8035FD78[9].prev, (struct Object *)&D_8035FD78[9]);
-        func_802C8918(sp18, (struct Object *)D_8035FD78[2].prev, (struct Object *)&D_8035FD78[2]);
-        sp18 = (struct Object *)sp18->gfx.prev;
+        func_802C8918(sp18, (struct Object *)sp18->gfx.next, sp1C);
+        func_802C8918(sp18, (struct Object *)gObjectLists[10].next, (struct Object *)&gObjectLists[10]);
+        func_802C8918(sp18, (struct Object *)gObjectLists[6].next, (struct Object *)&gObjectLists[6]);
+        func_802C8918(sp18, (struct Object *)gObjectLists[4].next, (struct Object *)&gObjectLists[4]);
+        func_802C8918(sp18, (struct Object *)gObjectLists[5].next, (struct Object *)&gObjectLists[5]);
+        func_802C8918(sp18, (struct Object *)gObjectLists[9].next, (struct Object *)&gObjectLists[9]);
+        func_802C8918(sp18, (struct Object *)gObjectLists[2].next, (struct Object *)&gObjectLists[2]);
+        sp18 = (struct Object *)sp18->gfx.next;
     }
 }
 
 void func_802C8AD4(void)
 {
-    struct Object *sp1C = (struct Object *)&D_8035FD78[5];
-    struct Object *sp18 = (struct Object *)sp1C->gfx.prev;
+    struct Object *sp1C = (struct Object *)&gObjectLists[5];
+    struct Object *sp18 = (struct Object *)sp1C->gfx.next;
 
     while (sp18 != sp1C)
     {
-        func_802C8918(sp18, (struct Object *)sp18->gfx.prev, sp1C);
-        sp18 = (struct Object *)sp18->gfx.prev;
+        func_802C8918(sp18, (struct Object *)sp18->gfx.next, sp1C);
+        sp18 = (struct Object *)sp18->gfx.next;
     }
 }
 
 void func_802C8B50(void)
 {
-    struct Object *sp1C = (struct Object *)&D_8035FD78[2];
-    struct Object *sp18 = (struct Object *)sp1C->gfx.prev;
+    struct Object *sp1C = (struct Object *)&gObjectLists[2];
+    struct Object *sp18 = (struct Object *)sp1C->gfx.next;
 
     while (sp18 != sp1C)
     {
         if (sp18->distanceFromMario < 2000.0f && !(sp18->active & 0x200))
         {
-            func_802C8918(sp18, (struct Object *)sp18->gfx.prev, sp1C);
-            func_802C8918(sp18, (struct Object *)D_8035FD78[4].prev, (struct Object *)&D_8035FD78[4]);
-            func_802C8918(sp18, (struct Object *)D_8035FD78[5].prev, (struct Object *)&D_8035FD78[5]);
-            func_802C8918(sp18, (struct Object *)D_8035FD78[9].prev, (struct Object *)&D_8035FD78[9]);
+            func_802C8918(sp18, (struct Object *)sp18->gfx.next, sp1C);
+            func_802C8918(sp18, (struct Object *)gObjectLists[4].next, (struct Object *)&gObjectLists[4]);
+            func_802C8918(sp18, (struct Object *)gObjectLists[5].next, (struct Object *)&gObjectLists[5]);
+            func_802C8918(sp18, (struct Object *)gObjectLists[9].next, (struct Object *)&gObjectLists[9]);
         }
-        sp18 = (struct Object *)sp18->gfx.prev;
+        sp18 = (struct Object *)sp18->gfx.next;
     }
 }
 
 void func_802C8C44(void)
 {
-    func_802C88A8((struct Object *)&D_8035FD78[10]);
-    func_802C88A8((struct Object *)&D_8035FD78[0]);
-    func_802C88A8((struct Object *)&D_8035FD78[5]);
-    func_802C88A8((struct Object *)&D_8035FD78[4]);
-    func_802C88A8((struct Object *)&D_8035FD78[6]);
-    func_802C88A8((struct Object *)&D_8035FD78[9]);
-    func_802C88A8((struct Object *)&D_8035FD78[2]);
+    func_802C88A8((struct Object *)&gObjectLists[10]);
+    func_802C88A8((struct Object *)&gObjectLists[0]);
+    func_802C88A8((struct Object *)&gObjectLists[5]);
+    func_802C88A8((struct Object *)&gObjectLists[4]);
+    func_802C88A8((struct Object *)&gObjectLists[6]);
+    func_802C88A8((struct Object *)&gObjectLists[9]);
+    func_802C88A8((struct Object *)&gObjectLists[2]);
     func_802C89CC();
     func_802C8B50();
     func_802C8AD4();

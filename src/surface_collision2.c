@@ -419,7 +419,7 @@ void func_803833B8(s16 arg0, s16 *arg1, s8 *arg2, s16 *arg3) {
 }
 
 void func_803835A4(void) {
-    if ((D_8033C110 & 0x40) == 0) {
+    if ((gTimeStopState & TIME_STOP_ACTIVE) == 0) {
         D_8035FE00 = D_8035FE08;
         D_8035FDFC = D_8035FE04;
 
@@ -525,7 +525,7 @@ void ProcessCollision(void) {
     if (gCurrentObject->collisionDistance > 4000.0f)
         gCurrentObject->drawingDistance = gCurrentObject->collisionDistance;
 
-    if (!(D_8033C110 & 0x00000040) && marioDist < tangibleDist &&
+    if (!(gTimeStopState & TIME_STOP_ACTIVE) && marioDist < tangibleDist &&
         !(gCurrentObject->active & 0x0008)) {
         val8++;
         func_80383614(&val8, vertexData);

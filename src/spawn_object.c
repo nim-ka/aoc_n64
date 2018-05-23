@@ -55,13 +55,13 @@ struct Object *func_802C8DC4(struct GfxNode *a, struct GfxNode *b)
 {
     struct GfxNode *sp1C;
 
-    if ((sp1C = b->prev) != NULL)
+    if ((sp1C = b->next) != NULL)
     {
-        b->prev = sp1C->prev;
-        sp1C->next = a->next;
-        sp1C->prev = a;
-        a->next->prev = sp1C;
-        a->next = sp1C;
+        b->next = sp1C->next;
+        sp1C->prev = a->prev;
+        sp1C->next = a;
+        a->prev->next = sp1C;
+        a->prev = sp1C;
     }
     else
         return NULL;
@@ -82,25 +82,25 @@ void Unknown802C8E70(struct LinkedList *a, struct LinkedList *b)
 
 void func_802C8EA4(struct GfxNode *a, struct GfxNode *b)
 {
-    b->prev->next = b->next;
     b->next->prev = b->prev;
-    b->prev = a->prev;
-    a->prev = b;
+    b->prev->next = b->next;
+    b->next = a->next;
+    a->next = b;
 }
 
 void func_802C8ED8(void)
 {
     int spC;
     int sp8 = 240;
-    struct Object *sp4 = &D_8033C118[0];
+    struct Object *sp4 = &gObjectPool[0];
 
     D_8035FDE0 = sp4;
     for (spC = 0; spC < sp8 - 1; spC++)
     {
-        sp4->gfx.prev = &sp4[1].gfx;
+        sp4->gfx.next = &sp4[1].gfx;
         sp4++;
     }
-    sp4->gfx.prev = NULL;
+    sp4->gfx.next = NULL;
 }
 
 void func_802C8F5C(struct GfxNode *a)
@@ -109,8 +109,8 @@ void func_802C8F5C(struct GfxNode *a)
 
     for (sp4 = 0; sp4 < 13; sp4++)
     {
-        a[sp4].prev = &a[sp4];
         a[sp4].next = &a[sp4];
+        a[sp4].prev = &a[sp4];
     }
 }
 
@@ -239,7 +239,7 @@ struct Object *func_802C9424(u32 *a)
     else
         sp34 = 8;
 
-    sp2C = &D_8035FD78[sp34];
+    sp2C = &gObjectLists[sp34];
     sp30 = func_802C9120(sp2C);
     sp30->behScript = a;
     sp30->behavior = sp28;

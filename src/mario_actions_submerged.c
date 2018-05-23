@@ -24,13 +24,13 @@ static s16 D_80339FD2;
 static f32 D_80339FD4;
 
 
-static void set_swimming_at_surface_flag(struct MarioState *m, u32 flag)
+static void set_swimming_at_surface_particles(struct MarioState *m, u32 particleFlag)
 {
     s16 atSurface = m->pos[1] >= m->waterLevel - 130;
 
     if (atSurface)
     {
-        m->particleFlags |= flag;
+        m->particleFlags |= particleFlag;
         if (atSurface ^ sWasAtSurface)
             SetSound(0x04316081, &m->marioObj->gfx.unk54);
     }
@@ -337,7 +337,7 @@ static void common_idle_step(struct MarioState *m, s32 animation, s32 arg)
     else
         func_80250934(m, animation, arg);
 
-    set_swimming_at_surface_flag(m, 0x00000080);
+    set_swimming_at_surface_particles(m, PARTICLE_7);
 }
 
 static s32 act_water_idle(struct MarioState *m)
@@ -481,7 +481,7 @@ static void common_swimming_step(struct MarioState *m, s16 swimStrength)
     m->unk98->unk12 = approach_s32(m->unk98->unk12, 0, 0x200, 0x200);
 
     func_802710CC(m);
-    set_swimming_at_surface_flag(m, 0x00000400);
+    set_swimming_at_surface_particles(m, PARTICLE_10);
 }
 
 static void func_802713A8(struct MarioState *m)
@@ -1431,7 +1431,7 @@ static s32 act_hold_metal_water_fall_land(struct MarioState *m)
     return FALSE;
 }
 
-static s32 check_exit_water(struct MarioState *m)
+static s32 check_common_submerged_cancels(struct MarioState *m)
 {
     if (m->pos[1] > m->waterLevel - 80)
     {
@@ -1466,7 +1466,7 @@ s32 execute_submerged_action(struct MarioState *m)
 {
     s32 cancel;
 
-    if (check_exit_water(m))
+    if (check_common_submerged_cancels(m))
         return TRUE;
 
     m->quicksandDepth = 0.0f;

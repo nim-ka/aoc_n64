@@ -1538,7 +1538,7 @@ static u32 check_object_grab_mario(struct MarioState *m, UNUSED u32 interactType
 
             func_80251F74(m);
             SetSound(0x240B8081, &m->marioObj->gfx.unk54);
-            return set_mario_action(m, ACT_UNKNOWN_170, 0);
+            return set_mario_action(m, ACT_GRABBED, 0);
         }
     }
 

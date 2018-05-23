@@ -43,48 +43,48 @@ extern void func_u_803219AC();
 #define OBJ_FLAG_4000 0x4000
 #define OBJ_FLAG_8000 0x8000
 
-#define SURFACE_LAVA 0x0001
-#define SURFACE_0004 0x0004
-#define SURFACE_0005 0x0005
-#define SURFACE_0009 0x0009
-#define SURFACE_000A 0x000A
-#define SURFACE_000E 0x000E
-#define SURFACE_0012 0x0012
-#define SURFACE_0013 0x0013
-#define SURFACE_0014 0x0014
-#define SURFACE_0015 0x0015
-#define SURFACE_001B 0x001B
-#define SURFACE_0020 0x0020
-#define SURFACE_0021 0x0021
-#define SURFACE_0022 0x0022
-#define SURFACE_0023 0x0023
-#define SURFACE_0024 0x0024
-#define SURFACE_0025 0x0025
-#define SURFACE_0026 0x0026
-#define SURFACE_0027 0x0027
-#define SURFACE_0029 0x0029
-#define SURFACE_002A 0x002A
-#define SURFACE_002C 0x002C
-#define SURFACE_002D 0x002D
-#define SURFACE_002E 0x002E
-#define SURFACE_002F 0x002F
-#define SURFACE_0030 0x0030
-#define SURFACE_0032 0x0032
-#define SURFACE_0033 0x0033
-#define SURFACE_0034 0x0034
-#define SURFACE_0035 0x0035
-#define SURFACE_0036 0x0036
-#define SURFACE_0037 0x0037
-#define SURFACE_0038 0x0038
-#define SURFACE_0072 0x0072
-#define SURFACE_0073 0x0073
-#define SURFACE_0074 0x0074
-#define SURFACE_0075 0x0075
-#define SURFACE_0078 0x0078
-#define SURFACE_0079 0x0079
-#define SURFACE_007A 0x007A
-#define SURFACE_007B 0x007B
-#define SURFACE_00D3 0x00D3
+#define SURFACE_LAVA     0x0001
+#define SURFACE_0004     0x0004
+#define SURFACE_HANGABLE 0x0005
+#define SURFACE_0009     0x0009
+#define SURFACE_000A     0x000A
+#define SURFACE_000E     0x000E
+#define SURFACE_0012     0x0012
+#define SURFACE_0013     0x0013
+#define SURFACE_0014     0x0014
+#define SURFACE_0015     0x0015
+#define SURFACE_001B     0x001B
+#define SURFACE_0020     0x0020
+#define SURFACE_0021     0x0021
+#define SURFACE_0022     0x0022
+#define SURFACE_0023     0x0023
+#define SURFACE_0024     0x0024
+#define SURFACE_0025     0x0025
+#define SURFACE_0026     0x0026
+#define SURFACE_0027     0x0027
+#define SURFACE_0029     0x0029
+#define SURFACE_002A     0x002A
+#define SURFACE_002C     0x002C
+#define SURFACE_002D     0x002D
+#define SURFACE_002E     0x002E
+#define SURFACE_002F     0x002F
+#define SURFACE_0030     0x0030
+#define SURFACE_0032     0x0032
+#define SURFACE_0033     0x0033
+#define SURFACE_0034     0x0034
+#define SURFACE_0035     0x0035
+#define SURFACE_0036     0x0036
+#define SURFACE_0037     0x0037
+#define SURFACE_0038     0x0038
+#define SURFACE_0072     0x0072
+#define SURFACE_0073     0x0073
+#define SURFACE_0074     0x0074
+#define SURFACE_0075     0x0075
+#define SURFACE_0078     0x0078
+#define SURFACE_0079     0x0079
+#define SURFACE_007A     0x007A
+#define SURFACE_007B     0x007B
+#define SURFACE_00D3     0x00D3
 
 #define INPUT_NONZERO_ANALOG         0x0001
 #define INPUT_A_PRESSED              0x0002
@@ -125,9 +125,26 @@ extern void func_u_803219AC();
 #define WATER_STEP_CANCELLED   3
 #define WATER_STEP_HIT_WALL    4
 
-#define PARTICLE_DUST     0x01
-#define PARTICLE_SPARKLES 0x08
-#define PARTICLE_LEAVES   0x2000
+#define PARTICLE_DUST     /* 0x00000001 */ (1 <<  0)
+#define PARTICLE_1        /* 0x00000002 */ (1 <<  1)
+#define PARTICLE_2        /* 0x00000004 */ (1 <<  2)
+#define PARTICLE_SPARKLES /* 0x00000008 */ (1 <<  3)
+#define PARTICLE_4        /* 0x00000010 */ (1 <<  4)
+#define PARTICLE_5        /* 0x00000020 */ (1 <<  5)
+#define PARTICLE_6        /* 0x00000040 */ (1 <<  6)
+#define PARTICLE_7        /* 0x00000080 */ (1 <<  7)
+#define PARTICLE_8        /* 0x00000100 */ (1 <<  8)
+#define PARTICLE_9        /* 0x00000200 */ (1 <<  9)
+#define PARTICLE_10       /* 0x00000400 */ (1 << 10)
+#define PARTICLE_11       /* 0x00000800 */ (1 << 11)
+#define PARTICLE_12       /* 0x00001000 */ (1 << 12)
+#define PARTICLE_LEAVES   /* 0x00002000 */ (1 << 13)
+#define PARTICLE_14       /* 0x00004000 */ (1 << 14)
+#define PARTICLE_15       /* 0x00008000 */ (1 << 15)
+#define PARTICLE_16       /* 0x00010000 */ (1 << 16)
+#define PARTICLE_17       /* 0x00020000 */ (1 << 17)
+#define PARTICLE_18       /* 0x00040000 */ (1 << 18)
+#define PARTICLE_19       /* 0x00080000 */ (1 << 19)
 
 #define MARIO_UNKNOWN_00  0x00000001
 #define MARIO_VANISH_CAP  0x00000002
@@ -310,8 +327,8 @@ extern void func_u_803219AC();
 #define ACT_SOFT_BONK                  0x010208B6 // (0x0B6 | ACT_FLAG_AIR | ACT_FLAG_UNKNOWN_17 | ACT_FLAG_UNKNOWN_24)
 #define ACT_LAVA_BOOST                 0x010208B7 // (0x0B7 | ACT_FLAG_AIR | ACT_FLAG_UNKNOWN_17 | ACT_FLAG_UNKNOWN_24)
 #define ACT_GETTING_BLOWN              0x010208B8 // (0x0B8 | ACT_FLAG_AIR | ACT_FLAG_UNKNOWN_17 | ACT_FLAG_UNKNOWN_24)
-#define ACT_THROWN                     0x010208BD // (0x0BD | ACT_FLAG_AIR | ACT_FLAG_UNKNOWN_17 | ACT_FLAG_UNKNOWN_24)
-#define ACT_HEAVED                     0x010208BE // (0x0BE | ACT_FLAG_AIR | ACT_FLAG_UNKNOWN_17 | ACT_FLAG_UNKNOWN_24)
+#define ACT_THROWN_FORWARD             0x010208BD // (0x0BD | ACT_FLAG_AIR | ACT_FLAG_UNKNOWN_17 | ACT_FLAG_UNKNOWN_24)
+#define ACT_THROWN_BACKWARD            0x010208BE // (0x0BE | ACT_FLAG_AIR | ACT_FLAG_UNKNOWN_17 | ACT_FLAG_UNKNOWN_24)
 
 // group 0x0C0: submerged actions
 #define ACT_WATER_IDLE                 0x380022C0 // (0x0C0 | ACT_FLAG_UNKNOWN_09 | ACT_FLAG_SWIMMING | ACT_FLAG_PAUSE_EXIT | ACT_FLAG_UNKNOWN_28 | ACT_FLAG_UNKNOWN_29)
@@ -415,7 +432,7 @@ extern void func_u_803219AC();
 #define ACT_LEDGE_CLIMB_SLOW_2         0x0000054D // (0x14D | ACT_FLAG_UNKNOWN_10)
 #define ACT_LEDGE_CLIMB_DOWN           0x0000054E // (0x14E | ACT_FLAG_UNKNOWN_10)
 #define ACT_LEDGE_CLIMB_FAST           0x0000054F // (0x14F | ACT_FLAG_UNKNOWN_10)
-#define ACT_UNKNOWN_170                0x00020370 // (0x170 | ACT_FLAG_UNKNOWN_09 | ACT_FLAG_UNKNOWN_17)
+#define ACT_GRABBED                    0x00020370 // (0x170 | ACT_FLAG_UNKNOWN_09 | ACT_FLAG_UNKNOWN_17)
 #define ACT_IN_CANNON                  0x00001371 // (0x171 | ACT_FLAG_UNKNOWN_09 | ACT_FLAG_INTANGIBLE)
 #define ACT_TORNADO_TWIRLING           0x10020372 // (0x172 | ACT_FLAG_UNKNOWN_09 | ACT_FLAG_UNKNOWN_17 | ACT_FLAG_UNKNOWN_28)
 
@@ -455,38 +472,5 @@ extern void func_u_803219AC();
                        U_JPAD     | D_JPAD     | L_JPAD     | R_JPAD       | \
                        L_TRIG     | R_TRIG     |                             \
                        U_CBUTTONS | D_CBUTTONS | L_CBUTTONS | R_CBUTTONS   )
-
-#define INTERACT_HOOT           /* 0x00000001 */ (1 <<  0)
-#define INTERACT_GRABBABLE      /* 0x00000002 */ (1 <<  1)
-#define INTERACT_DOOR           /* 0x00000004 */ (1 <<  2)
-#define INTERACT_DAMAGE         /* 0x00000008 */ (1 <<  3)
-#define INTERACT_COIN           /* 0x00000010 */ (1 <<  4)
-#define INTERACT_CAP            /* 0x00000020 */ (1 <<  5)
-#define INTERACT_POLE           /* 0x00000040 */ (1 <<  6)
-#define INTERACT_KOOPA          /* 0x00000080 */ (1 <<  7)
-#define INTERACT_UNKNOWN_08     /* 0x00000100 */ (1 <<  8)
-#define INTERACT_BREAKABLE      /* 0x00000200 */ (1 <<  9)
-#define INTERACT_WIND           /* 0x00000400 */ (1 << 10)
-#define INTERACT_WARP_DOOR      /* 0x00000800 */ (1 << 11)
-#define INTERACT_STAR_OR_KEY    /* 0x00001000 */ (1 << 12)
-#define INTERACT_WARP           /* 0x00002000 */ (1 << 13)
-#define INTERACT_CANNON_BASE    /* 0x00004000 */ (1 << 14)
-#define INTERACT_BOUNCE_TOP     /* 0x00008000 */ (1 << 15)
-#define INTERACT_WATER_RING     /* 0x00010000 */ (1 << 16)
-#define INTERACT_BULLY          /* 0x00020000 */ (1 << 17)
-#define INTERACT_FLAME          /* 0x00040000 */ (1 << 18)
-#define INTERACT_KOOPA_SHELL    /* 0x00080000 */ (1 << 19)
-#define INTERACT_UNKNOWN_20     /* 0x00100000 */ (1 << 20)
-#define INTERACT_MR_BLIZZARD    /* 0x00200000 */ (1 << 21)
-#define INTERACT_HIT_FROM_BELOW /* 0x00400000 */ (1 << 22)
-#define INTERACT_TEXT           /* 0x00800000 */ (1 << 23)
-#define INTERACT_TORNADO        /* 0x01000000 */ (1 << 24)
-#define INTERACT_WHIRLPOOL      /* 0x02000000 */ (1 << 25)
-#define INTERACT_CLAM_OR_BUBBA  /* 0x04000000 */ (1 << 26)
-#define INTERACT_BBH_ENTRANCE   /* 0x08000000 */ (1 << 27)
-#define INTERACT_SNUFIT_BULLET  /* 0x10000000 */ (1 << 28)
-#define INTERACT_SHOCK          /* 0x20000000 */ (1 << 29)
-#define INTERACT_IGLOO_BARRIER  /* 0x40000000 */ (1 << 30)
-#define INTERACT_UNKNOWN_31     /* 0x80000000 */ (1 << 31)
 
 #endif

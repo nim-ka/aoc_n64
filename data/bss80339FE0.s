@@ -40,7 +40,7 @@ glabel gMainMenuDataModified
     .space 0x1
 glabel gSaveFileModified
     .space 0xA
-glabel D_8033A140
+glabel gPlayerSpawnInfos
     .space 0x20
 glabel D_8033A160
     .space 0x400
@@ -428,7 +428,7 @@ glabel D_8033BEF4
     .space 0x8
 glabel D_8033BEFC
     .space 0x4
-glabel D_8033BF00
+glabel gUpdatedObjectCount
     .space 0x4
 glabel D_8033BF04
     .space 0x2
@@ -440,15 +440,15 @@ glabel D_8033BF10
     .space 0x100
 glabel D_8033C010
     .space 0x100
-glabel D_8033C110
+glabel gTimeStopState
     .space 0x8
-glabel D_8033C118
+glabel gObjectPool
     .space 0x74
 glabel D_8033C18C
     .space 0x2398C
 glabel D_8035FB18
     .space 0x260
-glabel D_8035FD78
+glabel gObjectLists
     .space 0x8
 glabel D_8035FD80
     .space 0x60

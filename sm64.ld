@@ -154,6 +154,7 @@ SECTIONS
       build/src/rendering.o(.rodata*);
       build/src/camera.o(.rodata*);
       build/data/camera.rodata.o(.rodata*);
+      build/src/object_list_processor.o(.rodata*);
       build/data/level_functions.rodata.o(.rodata*);
       build/src/object_collision.o(.rodata*);
       build/src/spawn_object.o(.rodata*);

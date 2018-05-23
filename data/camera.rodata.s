@@ -559,10 +559,3 @@ glabel jtbl_803365E0
 	.word L8029BDD4
 
 	.word 0, 0, 0
-
-glabel D_80336600
-	.incbin "bin/rodata.bin", 0x1B90, 0x8
-
-glabel D_80336608
-	.incbin "bin/rodata.bin", 0x1B98, 0x8
-

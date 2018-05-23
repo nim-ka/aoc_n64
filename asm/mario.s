@@ -5214,8 +5214,8 @@ glabel func_80254CE0
 /* 00FD08 80254D08 AF00000C */  sw    $zero, 0xc($t8)
 /* 00FD0C 80254D0C 3C088033 */  lui   $t0, %hi(gMarioState) # $t0, 0x8033
 /* 00FD10 80254D10 8D08C9D8 */  lw    $t0, %lo(gMarioState)($t0)
-/* 00FD14 80254D14 3C198034 */  lui   $t9, %hi(D_8033A140) # $t9, 0x8034
-/* 00FD18 80254D18 2739A140 */  addiu $t9, %lo(D_8033A140) # addiu $t9, $t9, -0x5ec0
+/* 00FD14 80254D14 3C198034 */  lui   $t9, %hi(gPlayerSpawnInfos) # $t9, 0x8034
+/* 00FD18 80254D18 2739A140 */  addiu $t9, %lo(gPlayerSpawnInfos) # addiu $t9, $t9, -0x5ec0
 /* 00FD1C 80254D1C AD19008C */  sw    $t9, 0x8c($t0)
 /* 00FD20 80254D20 3C0A8033 */  lui   $t2, %hi(gMarioState) # $t2, 0x8033
 /* 00FD24 80254D24 8D4AC9D8 */  lw    $t2, %lo(gMarioState)($t2)

@@ -169,20 +169,6 @@ struct GraphNode017
     u8 pad1E[2];
 };
 
-struct Struct8037C51C
-{
-    /*0x00*/ s16 posX; // node.unk20[0] x
-    /*0x02*/ s16 posY; // node.unk20[1] y 
-    /*0x04*/ s16 posZ; // node.unk20[2] z
-    /*0x06*/ Vec3s angle; // node.unk1A
-    /*0x0C*/ s8 unk0C; // node.unk18
-    /*0x0D*/ s8 unk0D; // node.unk19
-    /*0x10*/ u32 unk10;
-    /*0x14*/ void *unk14;
-    /*0x18*/ void *unk18; // node.unk14
-    /*0x1C*/ struct Struct8037C51C *next;
-};
-
 struct GraphNode018_sub
 {
     /*0x00 0x38*/ s16 unk00;
@@ -205,7 +191,7 @@ struct GraphNode018
     /*0x20*/ Vec3f pos;
     /*0x2C*/ Vec3f scale;
     /*0x38*/ struct GraphNode018_sub unk38;
-    /*0x4C*/ struct Struct8037C51C *unk4C;
+    /*0x4C*/ struct SpawnInfo *unk4C;
     /*0x50*/ void *unk50; // matrix ptr
     /*0x54*/ f32 unk54;
     /*0x58*/ f32 unk58;
@@ -334,7 +320,7 @@ void func_8037C360(struct GraphNode *graphNode, s32 sp1c);
 
 void func_8037C3D0(struct GraphNode018 *sp20);
 void func_8037C448(struct GraphNode018 *sp18, void *sp1c, Vec3f sp20, Vec3s sp24);
-void func_8037C51C(struct GraphNode018 *sp18, struct Struct8037C51C *sp1c);
+void func_8037C51C(struct GraphNode018 *sp18, struct SpawnInfo *sp1c);
 void func_8037C658(struct GraphNode018 *, void *);
 void func_8037C708(struct GraphNode018 *sp30, void *sp34, u32 sp38);
 

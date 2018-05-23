@@ -177,6 +177,6 @@ void apply_mario_platform_displacement(void)
     struct Object *platform;
 
     platform = gMarioPlatform;
-    if (!(D_8033C110 & 0x00000040) && gMarioObject != NULL && platform != NULL)
+    if (!(gTimeStopState & TIME_STOP_ACTIVE) && gMarioObject != NULL && platform != NULL)
         apply_platform_displacement(1, platform);
 }

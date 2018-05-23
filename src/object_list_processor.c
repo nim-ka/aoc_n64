@@ -6,64 +6,67 @@
 #include "behavior_script.h"
 #include "camera.h"
 #include "graph_node.h"
+#include "interaction.h"
 #include "mario.h"
 #include "map_info.h"
 #include "memory.h"
 #include "level_functions.h"
 #include "level_update.h"
 #include "object_collision.h"
+#include "object_list_processor.h"
 #include "platform_displacement.h"
 #include "resource_meter.h"
 #include "spawn_object.h"
 #include "surface_collision.h"
 
-struct SEF60 {
-  u32 unk0;
-  u32 unk4;
-  u8 unk8;
-  u8 unk9;
-  u16 unkA;
-  void *unkC;
+struct ParticleType
+{
+    u32 flag;
+    u32 unk4;
+    u8 unk8;
+    u8 unk9;
+    u16 unkA;
+    void *unkC;
 };
-
-extern f64 D_80336600, D_80336608;
 
 extern struct Object D_8033C18C[];
 extern s8 D_8035FE68[][2];
 
-static s8 D_8032EF60[] = { 0x0B, 0x09, 0x0A, 0x00, 0x05, 0x04, 0x02, 0x06, 0x08, 0x0C, -1 };
-
 extern struct GfxNode D_8033B870;
-extern struct GfxNode *D_8035FD78;
+extern struct GfxNode *gObjectLists;
 
-static struct SEF60 D_8032EF6C[] = {
-    { 0x00000001, 0x00000001, 0x8E, 0x00, 0x0000, beh_mario_dust_generator              },
-    { 0x00000002, 0x00040000, 0x00, 0x00, 0x0000, beh_wall_tiny_star_particle_spawn     },
-    { 0x00000010, 0x00000010, 0x00, 0x00, 0x0000, beh_pound_tiny_star_particle_spawn    },
-    { 0x00000008, 0x00000008, 0x95, 0x00, 0x0000, beh_special_triple_jump_sparkles      },
-    { 0x00000020, 0x00000020, 0xA8, 0x00, 0x0000, beh_bubble_mario                      },
-    { 0x00000040, 0x00000040, 0xA7, 0x00, 0x0000, beh_water_splash                      },
-    { 0x00000080, 0x00000080, 0xA6, 0x00, 0x0000, beh_surface_waves                     },
-    { 0x00000200, 0x00000200, 0xA4, 0x00, 0x0000, beh_water_waves                       },
-    { 0x00000400, 0x00000400, 0xA3, 0x00, 0x0000, beh_wave_trail_on_surface             },
-    { 0x00000800, 0x00000800, 0x90, 0x00, 0x0000, beh_flame_mario                       },
-    { 0x00000100, 0x00000100, 0x00, 0x00, 0x0000, beh_waves_generator                   },
-    { 0x00001000, 0x00001000, 0x00, 0x00, 0x0000, beh_surface_wave_shrinking            },
-    { 0x00002000, 0x00002000, 0x00, 0x00, 0x0000, beh_snow_leaf_particle_spawn          },
-    { 0x00004000, 0x00010000, 0x00, 0x00, 0x0000, beh_ground_snow                       },
-    { 0x00020000, 0x00020000, 0x00, 0x00, 0x0000, beh_water_mist_spawn                  },
-    { 0x00008000, 0x00004000, 0x00, 0x00, 0x0000, beh_ground_sand                       },
-    { 0x00010000, 0x00008000, 0x00, 0x00, 0x0000, beh_pound_white_puffs                 },
-    { 0x00040000, 0x00080000, 0x00, 0x00, 0x0000, beh_punch_tiny_triangle_spawn         },
-    { 0x00000000, 0x00000000, 0x00, 0x00, 0x0000, NULL                                  },
+static s8 sObjectListUpdateOrder[] = { 11, 9, 10, 0, 5, 4, 2, 6, 8, 12, -1 };
+
+static struct ParticleType sParticleTypes[] = {
+    { PARTICLE_DUST,     0x00000001, 0x8E, 0x00, 0x0000, beh_mario_dust_generator              },
+    { PARTICLE_1,        0x00040000, 0x00, 0x00, 0x0000, beh_wall_tiny_star_particle_spawn     },
+    { PARTICLE_4,        0x00000010, 0x00, 0x00, 0x0000, beh_pound_tiny_star_particle_spawn    },
+    { PARTICLE_SPARKLES, 0x00000008, 0x95, 0x00, 0x0000, beh_special_triple_jump_sparkles      },
+    { PARTICLE_5,        0x00000020, 0xA8, 0x00, 0x0000, beh_bubble_mario                      },
+    { PARTICLE_6,        0x00000040, 0xA7, 0x00, 0x0000, beh_water_splash                      },
+    { PARTICLE_7,        0x00000080, 0xA6, 0x00, 0x0000, beh_surface_waves                     },
+    { PARTICLE_9,        0x00000200, 0xA4, 0x00, 0x0000, beh_water_waves                       },
+    { PARTICLE_10,       0x00000400, 0xA3, 0x00, 0x0000, beh_wave_trail_on_surface             },
+    { PARTICLE_11,       0x00000800, 0x90, 0x00, 0x0000, beh_flame_mario                       },
+    { PARTICLE_8,        0x00000100, 0x00, 0x00, 0x0000, beh_waves_generator                   },
+    { PARTICLE_12,       0x00001000, 0x00, 0x00, 0x0000, beh_surface_wave_shrinking            },
+    { PARTICLE_LEAVES,   0x00002000, 0x00, 0x00, 0x0000, beh_snow_leaf_particle_spawn          },
+    { PARTICLE_14,       0x00010000, 0x00, 0x00, 0x0000, beh_ground_snow                       },
+    { PARTICLE_17,       0x00020000, 0x00, 0x00, 0x0000, beh_water_mist_spawn                  },
+    { PARTICLE_15,       0x00004000, 0x00, 0x00, 0x0000, beh_ground_sand                       },
+    { PARTICLE_16,       0x00008000, 0x00, 0x00, 0x0000, beh_pound_white_puffs                 },
+    { PARTICLE_18,       0x00080000, 0x00, 0x00, 0x0000, beh_punch_tiny_triangle_spawn         },
+    { 0,                 0x00000000, 0x00, 0x00, 0x0000, NULL                                  },
 };
 
-void func_8029C6D8(struct Object *, u8);
+void nop_change_course()
+{
+}
 
-void func_8029BFF0() { }
-
-void func_8029C000(void) {
+static void copy_mario_state_to_object(void)
+{
     s32 i = 0;
+    // L is real
     if (gCurrentObject != gMarioObject)
         i += 1;
 
@@ -88,101 +91,124 @@ void func_8029C000(void) {
     gCurrentObject->platformRotation[2] = gMarioStates[i].angleVel[2];
 }
 
-void func_8029C24C(u32 flags, s16 seg, void *scriptAddr) {
-    if (!(gCurrentObject->unkE0 & flags)) {
-        struct Object *obj;
+static void spawn_particle(u32 flags, s16 seg, void *script)
+{
+    if (!(gCurrentObject->unkE0 & flags))
+    {
+        struct Object *particle;
         gCurrentObject->unkE0 |= flags;
-        obj = func_8029E5A4(gCurrentObject, 0, seg, (u32)scriptAddr);
-        CopyObjParams(obj, gCurrentObject);
+        particle = func_8029E5A4(gCurrentObject, 0, seg, script);
+        CopyObjParams(particle, gCurrentObject);
     }
 }
 
-void BehMarioLoop2(void) {
-    u32 flags = 0; 
+void BehMarioLoop2(void)
+{
+    u32 particleFlags = 0; 
     s32 i;
 
-    flags = func_80254604(gCurrentObject);
-    gCurrentObject->unkF4 = flags;
-    func_8029C000();
+    particleFlags = func_80254604(gCurrentObject);
+    gCurrentObject->unkF4 = particleFlags;
+    copy_mario_state_to_object();
 
     i = 0;
-    while (D_8032EF6C[i].unk0 != 0) {
-        if (D_8032EF6C[i].unk0 & flags) {
-            func_8029C24C(D_8032EF6C[i].unk4, D_8032EF6C[i].unk8, D_8032EF6C[i].unkC);
-        }
+    while (sParticleTypes[i].flag != 0)
+    {
+        if (particleFlags & sParticleTypes[i].flag)
+            spawn_particle(sParticleTypes[i].unk4, sParticleTypes[i].unk8, sParticleTypes[i].unkC);
+
         i++;
     }
 }
 
-u32 func_8029C3B4(struct GfxNode *end, struct GfxNode *obj) {
-    u32 count = 0;
-    while (end != obj) {
-        gCurrentObject = (struct Object *) obj;
+static s32 update_objects_starting_at(struct GfxNode *listHead, struct GfxNode *firstObj)
+{
+    s32 count = 0;
+    
+    while (listHead != firstObj)
+    {
+        gCurrentObject = (struct Object *) firstObj;
 
         gCurrentObject->gfx.graphFlags |= 0x0020;
         cur_object_exec_behavior();
 
-        obj = obj->prev;
+        firstObj = firstObj->next;
         count += 1;
     }
+
     return count;
 }
 
-u32 func_8029C448(struct GfxNode *end, struct GfxNode *obj) {
-    s32 count = 0; // 1C
-    s32 executeBehavior; // 18
+static s32 update_objects_during_time_stop(struct GfxNode *listHead, struct GfxNode *firstObj)
+{
+    s32 count = 0;
+    s32 unfrozen;
 
-    while (end !=  obj) {
-        gCurrentObject = (struct Object *) obj;
+    while (listHead != firstObj)
+    {
+        gCurrentObject = (struct Object *) firstObj;
 
-        executeBehavior = FALSE;
-        if ((D_8033C110 & 0x10) == 0) { 
-            if (gCurrentObject == gMarioObject && (D_8033C110 & 0x08) == 0)
-                executeBehavior = TRUE;
+        unfrozen = FALSE;
+        if (!(gTimeStopState & TIME_STOP_ALL_OBJECTS))
+        { 
+            if (gCurrentObject == gMarioObject &&
+                !(gTimeStopState & TIME_STOP_MARIO_AND_DOORS))
+            {
+                unfrozen = TRUE;
+            }
             
-            if ((gCurrentObject->interactType & 0x804) != 0 && (D_8033C110 & 0x08) == 0)
-                executeBehavior = TRUE;
+            if ((gCurrentObject->interactType & (INTERACT_DOOR | INTERACT_WARP_DOOR)) &&
+                !(gTimeStopState & TIME_STOP_MARIO_AND_DOORS))
+            {
+                unfrozen = TRUE;
+            }
 
-            if ((gCurrentObject->active & 0x30) != 0)
-                executeBehavior = TRUE;
+            if (gCurrentObject->active & 0x30)
+                unfrozen = TRUE;
         }
 
-        if (executeBehavior) {
+        if (unfrozen)
+        {
             gCurrentObject->gfx.graphFlags |= 0x20;
             cur_object_exec_behavior();
         }
-        else {
+        else
+        {
             gCurrentObject->gfx.graphFlags &= ~0x20;
         }
 
-        obj = obj->prev;
-
+        firstObj = firstObj->next;
         count++;
     }
 
     return count;
 }
 
-u32 func_8029C5A8(struct GfxNode *head) {
+static s32 update_objects_in_list(struct GfxNode *objList)
+{
     s32 count;
-    struct GfxNode *nextObj = head->prev;
-    if (!(D_8033C110 & 0x00000040))
-        count = func_8029C3B4(head, nextObj);
+    struct GfxNode *firstObj = objList->next;
+
+    if (!(gTimeStopState & TIME_STOP_ACTIVE))
+        count = update_objects_starting_at(objList, firstObj);
     else
-        count = func_8029C448(head, nextObj);
+        count = update_objects_during_time_stop(objList, firstObj);
 
     return count;
 }
 
-u32 func_8029C618(struct GfxNode *head) { // sp20
-    struct GfxNode *nextObj = head->prev; // sp1C
+static s32 func_8029C618(struct GfxNode *objList)
+{
+    struct GfxNode *obj = objList->next;
 
-    while (head != nextObj) {
-        gCurrentObject = (struct Object *) nextObj;
+    while (objList != obj)
+    {
+        gCurrentObject = (struct Object *) obj;
+        
+        obj = obj->next;
 
-        nextObj = nextObj->prev;
-
-        if ((gCurrentObject->active & 0x01) != 1) {
+        if ((gCurrentObject->active & 0x01) != 1)
+        {
             if ((gCurrentObject->objFlags & 0x4000) == 0)
                 func_8029C6D8(gCurrentObject, 0xFF);
 
@@ -193,15 +219,18 @@ u32 func_8029C618(struct GfxNode *head) { // sp20
     return 0;
 }
 
-void func_8029C6D8(struct Object *a0, u8 a1) {  
+void func_8029C6D8(struct Object *a0, u8 a1)
+{  
     s32 *spC;
     u16 *sp8;
 
-    switch(a0->unk1F6) {
+    switch(a0->unk1F6)
+    {
     case 1:
         spC = a0->unk25C;
         *spC |= a1 << 8; 
         break;
+    
     case 2:
         sp8 = a0->unk25C;
         *sp8 |= a1 << 8; 
@@ -209,32 +238,31 @@ void func_8029C6D8(struct Object *a0, u8 a1) {
     }
 }
 
-void func_8029C75C(UNUSED s32 sp28, s32 sp2C) {
+void func_8029C75C(UNUSED s32 sp28, s32 sp2C)
+{
     struct GfxNode *sp24, *sp20, *sp1C;
     s32 sp18;
-    D_8035FD78 = &D_8033B870;
+    gObjectLists = &D_8033B870;
     
-    for (sp18 = 0; sp18 < 13; sp18++) {
-        sp1C = D_8035FD78 + sp18;
-        sp20 = sp1C->prev;
+    for (sp18 = 0; sp18 < 13; sp18++)
+    {
+        sp1C = gObjectLists + sp18;
+        sp20 = sp1C->next;
 
-        while (sp20 != sp1C) {
+        while (sp20 != sp1C)
+        {
             sp24 = sp20;
-            sp20 = sp20->prev;
+            sp20 = sp20->next;
             if (sp24->unk19 == sp2C)
                 func_802C9088((struct Object *) sp24);
         }
     }
 }
 
-void func_8029C830(UNUSED s32 sp28, struct Struct8037C51C *sp2C) {
-    struct Object *sp24;
-    UNUSED s32 sp20;
-    void *sp1C;
-    UNUSED s16 sp1A;
-
-    D_8035FD78 = &D_8033B870;
-    D_8033C110 = 0;
+void spawn_objects_from_info(UNUSED s32 unusedArg, struct SpawnInfo *spawnInfo)
+{
+    gObjectLists = &D_8033B870;
+    gTimeStopState = 0;
 
     D_8035FEF2 = 0;
     D_8035FEF4 = 0;
@@ -242,133 +270,148 @@ void func_8029C830(UNUSED s32 sp28, struct Struct8037C51C *sp2C) {
     if (D_8033A75A == 2) 
         D_8035FEEC |= 1;
 
-    while (sp2C)
+    while (spawnInfo != NULL)
     {
-        sp1A = (s16)(sp2C->unk10 & 0xFFFF);
-        sp1C = segmented_to_virtual(sp2C->unk14);
+        struct Object *object;
+        UNUSED s32 unused;
+        void *script;
+        UNUSED s16 arg16;
 
-        if ((sp2C->unk10 & 0xff00) != 65280)
+        arg16 = (s16)(spawnInfo->behaviorArg & 0xFFFF);
+        script = segmented_to_virtual(spawnInfo->behaviorScript);
+
+        if ((spawnInfo->behaviorArg & 0xFF00) != 0xFF00)
         {
-            sp24 = func_802C9424(sp1C);
+            object = func_802C9424(script);
  
-            sp24->unk188 = sp2C->unk10;
-            sp24->behParam = ((sp2C->unk10) >> 16) & 0xff;
-            sp24->behavior = sp1C;
-            sp24->unk1C8 = 0;
-            sp24->unk1F6 = 1;
-            sp24->unk25C = &sp2C->unk10; 
+            object->unk188 = spawnInfo->behaviorArg;
+            object->behParam = ((spawnInfo->behaviorArg) >> 16) & 0xff;
+            object->behavior = script;
+            object->unk1C8 = 0;
+            object->unk1F6 = 1;
+            object->unk25C = &spawnInfo->behaviorArg; 
 
-            if (sp2C->unk10 & 0x01) {
-                gMarioObject = sp24;
-                func_8037C138((struct GraphNode *) sp24);
+            if (spawnInfo->behaviorArg & 0x01)
+            {
+                gMarioObject = object;
+                func_8037C138((struct GraphNode *) object);
             }
 
-            func_8037C51C((struct GraphNode018 *) sp24, sp2C);
+            func_8037C51C((struct GraphNode018 *) object, spawnInfo);
             
-            sp24->pos[0] = sp2C->posX;
-            sp24->pos[1] = sp2C->posY;
-            sp24->pos[2] = sp2C->posZ;
-            sp24->faceAngle[0] = sp2C->angle[0];
-            sp24->faceAngle[1] = sp2C->angle[1];
-            sp24->faceAngle[2] = sp2C->angle[2];
-            sp24->angle[0] = sp2C->angle[0];
-            sp24->angle[1] = sp2C->angle[1];
-            sp24->angle[2] = sp2C->angle[2];
+            object->pos[0] = spawnInfo->startPos[0];
+            object->pos[1] = spawnInfo->startPos[1];
+            object->pos[2] = spawnInfo->startPos[2];
+
+            object->faceAngle[0] = spawnInfo->startAngle[0];
+            object->faceAngle[1] = spawnInfo->startAngle[1];
+            object->faceAngle[2] = spawnInfo->startAngle[2];
+            
+            object->angle[0] = spawnInfo->startAngle[0];
+            object->angle[1] = spawnInfo->startAngle[1];
+            object->angle[2] = spawnInfo->startAngle[2];
 
         }
         
-        sp2C = sp2C->next;
+        spawnInfo = spawnInfo->next;
     }
 }
 
-void func_8029CA50() { }
+static void func_8029CA50()
+{
+}
 
-void func_8029CA60(void) { 
-    s32 sp1C;
+void func_8029CA60(void)
+{ 
+    s32 i;
 
     D_8035FEE6 = 0;
-    D_8033C110 = 0;
+    gTimeStopState = 0;
     gMarioObject = NULL;
     D_8035FEE0 = 0;
 
-    sp1C = 0;
-    do {
-        D_8035FE68[sp1C][0] = 0;
-        D_8035FE68[sp1C][1] = 0;
+    for (i = 0; i < 60; i++)
+    {
+        D_8035FE68[i][0] = 0;
+        D_8035FE68[i][1] = 0;
     }
-    while (++sp1C < 0x3c);
 
     func_802CA0CC();
     func_802C8ED8();
     func_802C8F5C(&D_8033B870);
     func_80385BF0();
     func_8029CA50();
-    sp1C = 0;
 
-    do {
-        D_8033C18C[sp1C].gfx.unk00 = 0;
-        func_8037C3D0((struct GraphNode018 *) &D_8033C118[sp1C]);
-    } 
-    while (++sp1C < 0xf0);
+    for (i = 0; i < 240; i++)
+    {
+        D_8033C18C[i].gfx.unk00 = 0;
+        func_8037C3D0((struct GraphNode018 *) &gObjectPool[i]);
+    }
 
     D_8035FE0C = func_802785E8(0x800, 0);
-    D_8035FD78 = &D_8033B870; 
+    gObjectLists = &D_8033B870; 
     func_803835A4();
 }
 
-void func_8029CB9C() {
-    D_8033BF00 = func_8029C5A8(D_8035FD78 + 0x0B);
-    D_8033BF00 = func_8029C5A8(D_8035FD78 + 0x09);
+static void update_terrain_objects(void)
+{
+    gUpdatedObjectCount = update_objects_in_list(&gObjectLists[11]);
+    //! This was meant to be +=
+    gUpdatedObjectCount = update_objects_in_list(&gObjectLists[9]);
 } 
 
 
-void func_8029CBEC(void) {
-    UNUSED s32 sp2C; 
-    s32 sp28;
-    s32 sp24 = 2;
+static void update_non_terrain_objects(void)
+{
+    UNUSED s32 unused; 
+    s32 listIndex;
 
-    while ((sp28 = D_8032EF60[sp24]) != -1) {
-        D_8033BF00 += func_8029C5A8(&D_8035FD78[sp28]);
-        sp24 += 1;
+    s32 i = 2;
+    while ((listIndex = sObjectListUpdateOrder[i]) != -1)
+    {
+        gUpdatedObjectCount += update_objects_in_list(&gObjectLists[listIndex]);
+        i += 1;
     }
 }
 
-void func_8029CCA0(void) {
-    UNUSED s32 sp24; 
-    s32 sp20;
-    s32 sp1C = 0;
+static void func_8029CCA0(void)
+{
+    UNUSED s32 unused; 
+    s32 listIndex;
 
-    while ((sp20 = D_8032EF60[sp1C]) != -1) {
-        func_8029C618(&D_8035FD78[sp20]);
-        sp1C += 1;
+    s32 i = 0;
+    while ((listIndex = sObjectListUpdateOrder[i]) != -1)
+    {
+        func_8029C618(&gObjectLists[listIndex]);
+        i += 1;
     }
 
-    D_8033C110 &= ~0x01;
+    gTimeStopState &= ~TIME_STOP_UNKNOWN_0;
 }
 
-u16 func_8029CD48(s64 *sp40, s32 sp44) {
-    u16 sp3E;
-    f64 sp30;
+static u16 unused_get_elapsed_time(u64 *cycleCounts, s32 index)
+{
+    u16 time;
+    f64 cycles;
 
-    sp30 = __ull_to_d((sp40 + sp44)[0] - (sp40 + sp44)[-1]);
+    cycles = cycleCounts[index] - cycleCounts[index - 1];
+    if (cycles < 0)
+        cycles = 0;
 
-    if (sp30 < 0)
-        sp30 = 0;
+    time = (u16) (((u64) cycles * 1000000 / osClockRate) / 16667.0 * 1000.0);
+    if (time > 999)
+        time = 999;
     
-    sp3E = (u16)(__ull_to_d(__d_to_ull(sp30) * 0x000F4240U / osClockRate) / D_80336600 * D_80336608);
-
-    if (sp3E >= 0x3e8) 
-        sp3E = 999;
-    
-    return sp3E;
+    return time;
 }
 
-void func_8029CF08(UNUSED s32 sp108) {
-    s64 sp18[30];
+void update_objects(UNUSED s32 sp108)
+{
+    s64 cycleCounts[30];
 
-    sp18[0] = func_802C98D0();
+    cycleCounts[0] = func_802C98D0();
 
-    D_8033C110 &= ~0x0020;
+    gTimeStopState &= ~TIME_STOP_UNKNOWN_5;
 
     D_8035FEEE = 0;
     D_8035FEF0 = 0;
@@ -377,30 +420,37 @@ void func_8029CF08(UNUSED s32 sp108) {
     func_802CA140();
     func_802CA5D0();
     
-    D_8035FD78 = &D_8033B870;
+    gObjectLists = &D_8033B870;
     
-    sp18[1] = func_802C9900(sp18[0]);
+    cycleCounts[1] = func_802C9900(cycleCounts[0]);
     func_803835A4();
-    sp18[2] = func_802C9900(sp18[0]);
-    func_8029CB9C();
-    apply_mario_platform_displacement();
-    sp18[3] = func_802C9900(sp18[0]);
-    func_802C8C44();
-    sp18[4] = func_802C9900(sp18[0]);
-    func_8029CBEC();
-    sp18[5] = func_802C9900(sp18[0]);
-    func_8029CCA0();
-    sp18[6] = func_802C9900(sp18[0]);
-    update_mario_platform();
-    sp18[7] = func_802C9900(sp18[0]);  
 
-    sp18[0] = 0;
+    cycleCounts[2] = func_802C9900(cycleCounts[0]);
+    update_terrain_objects();
+    
+    apply_mario_platform_displacement();
+    
+    cycleCounts[3] = func_802C9900(cycleCounts[0]);
+    func_802C8C44();
+    
+    cycleCounts[4] = func_802C9900(cycleCounts[0]);
+    update_non_terrain_objects();
+    
+    cycleCounts[5] = func_802C9900(cycleCounts[0]);
+    func_8029CCA0();
+    
+    cycleCounts[6] = func_802C9900(cycleCounts[0]);
+    update_mario_platform();
+    
+    cycleCounts[7] = func_802C9900(cycleCounts[0]);  
+
+    cycleCounts[0] = 0;
     func_802CA5E0();
 
-    if (D_8033C110 & 0x02)
-        D_8033C110 |= 0x40;
+    if (gTimeStopState & TIME_STOP_ENABLED)
+        gTimeStopState |= TIME_STOP_ACTIVE;
     else 
-        D_8033C110 &= ~0x40;
+        gTimeStopState &= ~TIME_STOP_ACTIVE;
     
-    D_8035FDF8 = D_8033BF00;
+    D_8035FDF8 = gUpdatedObjectCount;
 }

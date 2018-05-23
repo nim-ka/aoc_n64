@@ -477,7 +477,7 @@ static u32 perform_air_quarter_step(
 
             //! Uses referenced ceiling instead of ceil (ceiling hang upwarp)
             if ((stepArg & AIR_STEP_CHECK_HANG) && m->ceil != NULL &&
-                m->ceil->type == SURFACE_0005)
+                m->ceil->type == SURFACE_HANGABLE)
             {
                 return AIR_STEP_GRABBED_CEILING;
             }

@@ -3,6 +3,39 @@
 
 #include "types.h"
 
+#define INTERACT_HOOT           /* 0x00000001 */ (1 <<  0)
+#define INTERACT_GRABBABLE      /* 0x00000002 */ (1 <<  1)
+#define INTERACT_DOOR           /* 0x00000004 */ (1 <<  2)
+#define INTERACT_DAMAGE         /* 0x00000008 */ (1 <<  3)
+#define INTERACT_COIN           /* 0x00000010 */ (1 <<  4)
+#define INTERACT_CAP            /* 0x00000020 */ (1 <<  5)
+#define INTERACT_POLE           /* 0x00000040 */ (1 <<  6)
+#define INTERACT_KOOPA          /* 0x00000080 */ (1 <<  7)
+#define INTERACT_UNKNOWN_08     /* 0x00000100 */ (1 <<  8)
+#define INTERACT_BREAKABLE      /* 0x00000200 */ (1 <<  9)
+#define INTERACT_WIND           /* 0x00000400 */ (1 << 10)
+#define INTERACT_WARP_DOOR      /* 0x00000800 */ (1 << 11)
+#define INTERACT_STAR_OR_KEY    /* 0x00001000 */ (1 << 12)
+#define INTERACT_WARP           /* 0x00002000 */ (1 << 13)
+#define INTERACT_CANNON_BASE    /* 0x00004000 */ (1 << 14)
+#define INTERACT_BOUNCE_TOP     /* 0x00008000 */ (1 << 15)
+#define INTERACT_WATER_RING     /* 0x00010000 */ (1 << 16)
+#define INTERACT_BULLY          /* 0x00020000 */ (1 << 17)
+#define INTERACT_FLAME          /* 0x00040000 */ (1 << 18)
+#define INTERACT_KOOPA_SHELL    /* 0x00080000 */ (1 << 19)
+#define INTERACT_UNKNOWN_20     /* 0x00100000 */ (1 << 20)
+#define INTERACT_MR_BLIZZARD    /* 0x00200000 */ (1 << 21)
+#define INTERACT_HIT_FROM_BELOW /* 0x00400000 */ (1 << 22)
+#define INTERACT_TEXT           /* 0x00800000 */ (1 << 23)
+#define INTERACT_TORNADO        /* 0x01000000 */ (1 << 24)
+#define INTERACT_WHIRLPOOL      /* 0x02000000 */ (1 << 25)
+#define INTERACT_CLAM_OR_BUBBA  /* 0x04000000 */ (1 << 26)
+#define INTERACT_BBH_ENTRANCE   /* 0x08000000 */ (1 << 27)
+#define INTERACT_SNUFIT_BULLET  /* 0x10000000 */ (1 << 28)
+#define INTERACT_SHOCK          /* 0x20000000 */ (1 << 29)
+#define INTERACT_IGLOO_BARRIER  /* 0x40000000 */ (1 << 30)
+#define INTERACT_UNKNOWN_31     /* 0x80000000 */ (1 << 31)
+
 struct BullyCollisionData {
   /*0x00*/ f32 conversionRatio;
   /*0x04*/ f32 radius;

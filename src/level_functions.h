@@ -3,16 +3,24 @@
 
 #include "types.h"
 
+#define TIME_STOP_UNKNOWN_0       (1 << 0)
+#define TIME_STOP_ENABLED         (1 << 1)
+#define TIME_STOP_UNKNOWN_2       (1 << 2)
+#define TIME_STOP_MARIO_AND_DOORS (1 << 3)
+#define TIME_STOP_ALL_OBJECTS     (1 << 4)
+#define TIME_STOP_UNKNOWN_5       (1 << 5)
+#define TIME_STOP_ACTIVE          (1 << 6)
+
 extern s16 D_8035FEF2;
 extern s16 D_8035FEF4;
 extern s16 D_8035FEEC;
 extern s16 D_8035FEE6;
 extern s16 D_8035FEE0;
 
-extern u32 D_8033C110;
-extern struct Object D_8033C118[];
+extern u32 gTimeStopState;
+extern struct Object gObjectPool[];
 extern struct Struct80278464 *D_8035FE0C;
-extern u32 D_8033BF00;
+extern u32 gUpdatedObjectCount;
 extern s16 D_8035FEEE;
 extern s16 D_8035FEF0;
 extern s16 D_8035FDF8;
@@ -148,7 +156,7 @@ extern struct Object *func_8029E230(struct Object *, s16, u32, void *, s16, s16,
 // extern ? func_8029E2A8(?);
 // extern ? Unknown8029E330(?);
 extern void func_8029E388(struct Object *, u32);
-extern struct Object *func_8029E5A4(struct Object *, u32, u32, u32);
+extern struct Object *func_8029E5A4(struct Object *, u32, u32, void *);
 extern struct Object *SpawnObj(struct Object *, s32, void *);
 // extern ? func_8029E6A8(?);
 // extern ? func_8029E73C(?);

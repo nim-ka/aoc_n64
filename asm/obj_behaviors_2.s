@@ -11937,8 +11937,8 @@ glabel func_803030BC
 /* 0BE0DC 803030DC 8FA40024 */   lw    $a0, 0x24($sp)
 /* 0BE0E0 803030E0 00027080 */  sll   $t6, $v0, 2
 /* 0BE0E4 803030E4 01C27023 */  subu  $t6, $t6, $v0
-/* 0BE0E8 803030E8 3C0F8036 */  lui   $t7, %hi(D_8035FD78) # $t7, 0x8036
-/* 0BE0EC 803030EC 8DEFFD78 */  lw    $t7, %lo(D_8035FD78)($t7)
+/* 0BE0E8 803030E8 3C0F8036 */  lui   $t7, %hi(gObjectLists) # $t7, 0x8036
+/* 0BE0EC 803030EC 8DEFFD78 */  lw    $t7, %lo(gObjectLists)($t7)
 /* 0BE0F0 803030F0 000E7080 */  sll   $t6, $t6, 2
 /* 0BE0F4 803030F4 01C27021 */  addu  $t6, $t6, $v0
 /* 0BE0F8 803030F8 000E70C0 */  sll   $t6, $t6, 3

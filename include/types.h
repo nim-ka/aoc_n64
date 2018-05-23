@@ -120,8 +120,8 @@ struct GfxNode
     /*0x050*/ void *unk50;
     /*0x054*/ u32 unk54;
     u8 filler58[0x60-0x58];
-    /*0x060*/ struct GfxNode *prev;
-    /*0x064*/ struct GfxNode *next;
+    /*0x060*/ struct GfxNode *next;
+    /*0x064*/ struct GfxNode *prev;
 };
 
 struct Object

@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "sm64.h"
 
+#include "level_update.h"
 #include "math_util.h"
 #include "memory.h"
 #include "graph_node.h"
@@ -660,16 +661,16 @@ void func_8037C448(struct GraphNode018 *graphNode, void *sp1c, Vec3f pos, Vec3s 
     graphNode->node.flags &= ~GRAPH_RENDER_BILLBOARD;
 }
 
-void func_8037C51C(struct GraphNode018 *graphNode, struct Struct8037C51C *sp1c)
+void func_8037C51C(struct GraphNode018 *graphNode, struct SpawnInfo *sp1c)
 {
     vec3f_set(graphNode->scale, 1.0f, 1.0f, 1.0f);
-    vec3s_copy(graphNode->angle, sp1c->angle);
+    vec3s_copy(graphNode->angle, sp1c->startAngle);
 
-    graphNode->pos[0] = (f32) sp1c->posX;
-    graphNode->pos[1] = (f32) sp1c->posY;
-    graphNode->pos[2] = (f32) sp1c->posZ;
+    graphNode->pos[0] = (f32) sp1c->startPos[0];
+    graphNode->pos[1] = (f32) sp1c->startPos[1];
+    graphNode->pos[2] = (f32) sp1c->startPos[2];
 
-    graphNode->unk18 = sp1c->unk0C;
+    graphNode->unk18 = sp1c->areaIndex;
     graphNode->unk19 = sp1c->unk0D;
     graphNode->unk14 = sp1c->unk18;
     graphNode->unk4C = sp1c;
