@@ -123,7 +123,7 @@ void UnknownRecursive802C8FF8(struct Object *a)
     if ((sp24 = a->gfx.unk10) != NULL)
         UnknownRecursive802C8FF8(sp24);
     else
-        func_802C9548(a);
+        hide_object(a);
 
     while ((sp20 = a->gfx.unk8) == sp1C)
     {
@@ -258,7 +258,7 @@ struct Object *func_802C9424(u32 *a)
     return sp30;
 }
 
-void func_802C9548(struct Object *obj)
+void hide_object(struct Object *obj)
 {
     obj->active = 0;
 }

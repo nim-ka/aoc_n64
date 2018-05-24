@@ -492,7 +492,7 @@ s32 save_file_exists(s32 fileIndex)
  * of the returned value are the score, and the upper 16 bits are the file number
  * of the save file with this score.
  */
-s32 save_file_get_max_coin_score(s32 courseIndex)
+u32 save_file_get_max_coin_score(s32 courseIndex)
 {
     s32 fileIndex;
     s32 maxCoinScore = -1;

@@ -16179,7 +16179,7 @@ glabel BehCollectStarLoop
 /* 0AC58C 802F158C 11200007 */  beqz  $t1, .L802F15AC
 /* 0AC590 802F1590 00000000 */   nop   
 /* 0AC594 802F1594 3C048036 */  lui   $a0, %hi(gCurrentObject) # $a0, 0x8036
-/* 0AC598 802F1598 0C0B2552 */  jal   func_802C9548
+/* 0AC598 802F1598 0C0B2552 */  jal   hide_object
 /* 0AC59C 802F159C 8C84FDF0 */   lw    $a0, %lo(gCurrentObject)($a0)
 /* 0AC5A0 802F15A0 3C0A8036 */  lui   $t2, %hi(gCurrentObject) # $t2, 0x8036
 /* 0AC5A4 802F15A4 8D4AFDF0 */  lw    $t2, %lo(gCurrentObject)($t2)
@@ -16487,7 +16487,7 @@ glabel BehStarSpawnLoop
 /* 0ACA0C 802F1A0C 11200007 */  beqz  $t1, .L802F1A2C
 /* 0ACA10 802F1A10 00000000 */   nop   
 /* 0ACA14 802F1A14 3C048036 */  lui   $a0, %hi(gCurrentObject) # $a0, 0x8036
-/* 0ACA18 802F1A18 0C0B2552 */  jal   func_802C9548
+/* 0ACA18 802F1A18 0C0B2552 */  jal   hide_object
 /* 0ACA1C 802F1A1C 8C84FDF0 */   lw    $a0, %lo(gCurrentObject)($a0)
 /* 0ACA20 802F1A20 3C088036 */  lui   $t0, %hi(gCurrentObject) # $t0, 0x8036
 /* 0ACA24 802F1A24 8D08FDF0 */  lw    $t0, %lo(gCurrentObject)($t0)

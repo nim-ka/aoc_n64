@@ -11,7 +11,7 @@ glabel gTitleZoomCounter
     .space 0x4
 glabel gTitleFadeCounter
     .space 0x4
-glabel D_801B9860
+glabel gMainMenuButtons
     .space 0x38
 glabel D_801B9898
     .space 0x1C

@@ -153,7 +153,7 @@ extern u32 func_8029DF18(struct Object *, struct Object *);
 // extern ? func_8029E198(?);
 // extern ? func_8029E1F0(?);
 extern struct Object *func_8029E230(struct Object *, s16, u32, void *, s16, s16, s16, s16, s16, s16);
-// extern ? func_8029E2A8(?);
+extern struct Object *func_8029E2A8();
 // extern ? Unknown8029E330(?);
 extern void func_8029E388(struct Object *, u32);
 extern struct Object *func_8029E5A4(struct Object *, u32, u32, void *);

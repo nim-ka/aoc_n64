@@ -15382,7 +15382,7 @@ glabel func_802AA788
 /* 0657B4 802AA7B4 13000007 */  beqz  $t8, .L802AA7D4
 /* 0657B8 802AA7B8 00000000 */   nop   
 /* 0657BC 802AA7BC 3C048036 */  lui   $a0, %hi(gCurrentObject) # $a0, 0x8036
-/* 0657C0 802AA7C0 0C0B2552 */  jal   func_802C9548
+/* 0657C0 802AA7C0 0C0B2552 */  jal   hide_object
 /* 0657C4 802AA7C4 8C84FDF0 */   lw    $a0, %lo(gCurrentObject)($a0)
 /* 0657C8 802AA7C8 3C198036 */  lui   $t9, %hi(gCurrentObject) # $t9, 0x8036
 /* 0657CC 802AA7CC 8F39FDF0 */  lw    $t9, %lo(gCurrentObject)($t9)
@@ -24881,7 +24881,7 @@ glabel BehBowserKey2Loop
 /* 06DEE0 802B2EE0 11200007 */  beqz  $t1, .L802B2F00
 /* 06DEE4 802B2EE4 00000000 */   nop   
 /* 06DEE8 802B2EE8 3C048036 */  lui   $a0, %hi(gCurrentObject) # $a0, 0x8036
-/* 06DEEC 802B2EEC 0C0B2552 */  jal   func_802C9548
+/* 06DEEC 802B2EEC 0C0B2552 */  jal   hide_object
 /* 06DEF0 802B2EF0 8C84FDF0 */   lw    $a0, %lo(gCurrentObject)($a0)
 /* 06DEF4 802B2EF4 3C0D8036 */  lui   $t5, %hi(gCurrentObject) # $t5, 0x8036
 /* 06DEF8 802B2EF8 8DADFDF0 */  lw    $t5, %lo(gCurrentObject)($t5)

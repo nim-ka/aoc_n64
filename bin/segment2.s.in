@@ -3182,7 +3182,7 @@ level_name_25: # 0x0200E438
 .byte _("   おいしいケｰキ")
 
 .balign 4
-level_name_26: # 0x0200E444
+level_name_castle_secret_stars: # 0x0200E444
 .byte _("   おしろのかくれスタｰ")
 
 # level name table
@@ -3194,7 +3194,7 @@ glabel seg2_level_name_table # 0x0200E454
 .word level_name_13, level_name_14, level_name_15, level_name_16
 .word level_name_17, level_name_18, level_name_19, level_name_20
 .word level_name_21, level_name_22, level_name_23, level_name_24
-.word level_name_25, level_name_26, 0x0
+.word level_name_25, level_name_castle_secret_stars, 0x0
 
 # act_name_ Names
 .balign 4

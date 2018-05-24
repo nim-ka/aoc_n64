@@ -253,7 +253,7 @@ SECTIONS
    {
       build/src/level_select_menu.o(.text);
       build/src/intro_geo.o(.text);
-      build/asm/file_select.o(.text);
+      build/src/file_select.o(.text);
       build/src/star_select.o(.text);
       build/asm/debug_memory.o(.text);
       build/src/game_over_1.o(.text);
@@ -268,8 +268,8 @@ SECTIONS
       build/src/level_select_menu.o(.data*);
       build/src/level_select_menu.o(.rodata*);
       build/src/intro_geo.o(.data*);
-      build/data/file_select.data.o(.data*);
-      build/data/file_select.rodata.o(.rodata*);
+      build/src/file_select.o(.data*);
+      build/src/file_select.o(.rodata*);
       build/src/star_select.o(.data*);
       build/src/star_select.o(.rodata*);
       build/data/rodata_801A8050.o(.rodata*);

@@ -150,9 +150,11 @@ struct Object
     /*0x0E8*/ float unkE8;
     /*0x0EC*/ u32 unkEC;
     u8 fillerF0[0x4];
-    /*0x0F4*/ u32 unkF4;
-    /*0x0F8*/ u32 unkF8;
-    u8 fillerFC[0xC];
+    /*0x0F4*/ s32 unkF4;
+    /*0x0F8*/ s32 unkF8;
+    /*0x0FC*/ float unkFC;
+    /*0x100*/ float unk100;
+    /*0x104*/ float unk104;
     /*0x108*/ f32 unk108;
     /*0x10C*/ s32 unk10C;
     /*0x110*/ s32 unk110;
@@ -163,7 +165,9 @@ struct Object
     /*0x12C*/ f32 unk12C;
     /*0x130*/ u32 interactType;
     /*0x134*/ u32 interactStatus;
-    u8 filler138[0xC];
+    /*0x138*/ float unk138;
+    /*0x13C*/ float unk13C;
+    /*0x140*/ float unk140;
     /*0x144*/ u32 behParam;
     u8 filler148[0x4];
     /*0x14C*/ u32 action;

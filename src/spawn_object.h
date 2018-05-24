@@ -18,6 +18,6 @@ extern void func_802C9088(struct Object *);
 // extern ? func_802C9120(?);
 // extern ? func_802C937C(?);
 extern struct Object *func_802C9424(u32 *a);
-extern void func_802C9548(struct Object *);
+extern void hide_object(struct Object *);
 
 #endif /* _SPAWN_OBJECT_H */
