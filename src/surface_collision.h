@@ -1,12 +1,12 @@
-#ifndef _SURFACE_COLLISION1_H
-#define _SURFACE_COLLISION1_H
+#ifndef _SURFACE_COLLISION_H
+#define _SURFACE_COLLISION_H
 
 #include "types.h"
 
 struct SurfaceNode
 {
-    struct SurfaceNode * next;
-    struct Surface * tri;
+    struct SurfaceNode *next;
+    struct Surface *surface;
 };
 
 struct WallCollisionData {
@@ -18,15 +18,14 @@ struct WallCollisionData {
     /*0x18*/ struct Surface *walls[4];
 };
 
+typedef struct SurfaceNode SpatialPartitionCell[3];
+
 enum
 {
-    SPATIAL_PARTITION_FLOOR,
-    SPATIAL_PARTITION_CEIL,
-    SPATIAL_PARTITION_WALL
+    SPATIAL_PARTITION_FLOORS,
+    SPATIAL_PARTITION_CEILS,
+    SPATIAL_PARTITION_WALLS
 };
-
-extern struct SurfaceNode D_8038BE98[16][16][3];
-extern struct SurfaceNode D_8038D698[16][16][3];
 
 extern s16 D_8033BF04, D_8033BF06, D_8033BF08;
 extern s32 D_8038BE30;
@@ -34,17 +33,15 @@ extern float D_8038BE40, D_8038BE44, D_8038BE48;
 extern float D_8038BE4C;
 extern s16 D_8035FE12;
 extern s32 D_8033BEF4;
-extern s16 *D_8035FE14;
-extern s32 D_8035FDFC;
-extern s32 D_8035FE08;
-extern s32 D_8035FE00;
-extern struct SurfaceNode *D_8038EE98;
-extern struct Surface *D_8038EE9C;
-extern s16 D_8038EEA0;
+extern s16 *gWaterRegions;
+extern s32 gSurfaceNodesAllocated;
+extern s32 gNumStaticSurfaceNodes;
+extern s32 gNumStaticSurfaces;
+extern s32 gSurfacesAllocated;
 
 extern f32 func_80381264(float, float, float, struct Surface **);
 extern void func_802C9A3C(s32, s32);
-extern void func_8029D62C(struct Object *, Mat4p, Mat4p);
+extern void func_8029D62C(struct Object *, Mat4, Mat4);
 extern void func_8029DA34(struct Object *, u8 *);
 // extern ? func_80380690(?);
 extern s32 func_80380DE8(f32 *x, f32 *y, f32 *z, f32 offsetY, f32 radius);
@@ -61,27 +58,5 @@ extern float func_80381D3C(float, float);
 // extern ? func_80381EC8(?);
 extern void func_80381F08(f32 sp40, f32 sp44);
 // extern ? Unknown80382294(?);
-// extern ? func_80382490(?);
-// extern ? func_803824F8(?);
-// extern ? clear_surface_nodes(?);
-// extern void func_803825D0(void);
-// extern ? func_803825FC(?);
-// extern ? func_8038283C(?);
-// extern ? func_8038289C(?);
-// extern ? func_803828FC(?);
-// extern ? func_80382990(?);
-// extern ? func_80382A2C(?);
-// extern ? func_80382B7C(?);
-// extern ? func_80382F84(?);
-// extern ? func_80382FEC(?);
-// extern ? func_80383068(?);
-// extern ? func_803831D0(?);
-// extern ? func_80383228(?);
-// extern ? func_80383340(?);
- void func_803833B8(s16 arg0, s16 *arg1, s8 *arg2, s16 *arg3);
-extern void func_803835A4(void);
-// extern ? func_80383614(?);
-// extern ? func_80383828(?);
-// extern ? ProcessCollision(?);
 
-#endif /* _SURFACE_COLLISION1_H */
+#endif /* _SURFACE_COLLISION_H */

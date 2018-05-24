@@ -1,6 +1,10 @@
 #ifndef _MEMORY_H_
 #define _MEMORY_H_
 
+
+#define MEMORY_POOL_LEFT  0
+#define MEMORY_POOL_RIGHT 1
+
 struct MemBlock
 {
     struct MemBlock *next;
@@ -36,7 +40,7 @@ extern void *_pool_realloc(void *ptr, u32 size);
 extern u32 PoolAvailable(void);
 extern u32 PushPoolState(void);
 extern u32 PopPoolState(void);
-extern void *load_from_rom(u32 segment, u8 *srcStart, u8 *srcEnd, u32 allocSize);
+extern void *load_from_rom(u32 segment, u8 *srcStart, u8 *srcEnd, u32 side);
 void *FixedCopy(u32 a, u8 *srcStart, u8 *srcEnd);
 void *load_from_rom_decompress(int segment, u8 *srcStart, u8 *srcEnd);
 void *func_80278304(u32 segment, u8 *srcStart, u8 *srcEnd);

@@ -18,6 +18,7 @@
 #include "resource_meter.h"
 #include "spawn_object.h"
 #include "surface_collision.h"
+#include "surface_load.h"
 
 struct ParticleType
 {
@@ -350,7 +351,7 @@ void func_8029CA60(void)
 
     D_8035FE0C = func_802785E8(0x800, 0);
     gObjectLists = &D_8033B870; 
-    func_803835A4();
+    clear_dynamic_surfaces();
 }
 
 static void update_terrain_objects(void)
@@ -423,7 +424,7 @@ void update_objects(UNUSED s32 sp108)
     gObjectLists = &D_8033B870;
     
     cycleCounts[1] = func_802C9900(cycleCounts[0]);
-    func_803835A4();
+    clear_dynamic_surfaces();
 
     cycleCounts[2] = func_802C9900(cycleCounts[0]);
     update_terrain_objects();

@@ -61,15 +61,14 @@ struct Struct802D1F94
     float unk74;
 };
 
-typedef float Vec2f[2];
-typedef float Vec3f[3];
+typedef f32 Vec2f[2];
+typedef f32 Vec3f[3];
 typedef s16 Vec3s[3];
 typedef s32 Vec3i[3];
-typedef float Vec4f[4];
+typedef f32 Vec4f[4];
 typedef s16 Vec4s[4];
 
-typedef float Mat4[4][4];
-typedef f32 (*Mat4p)[4];
+typedef f32 Mat4[4][4];
 
 struct Struct8032C630
 {
@@ -215,9 +214,9 @@ struct Object
 struct Surface
 {
     /*0x00*/ s16 type;
-    /*0x02*/ s16 unk02;
+    /*0x02*/ s16 force;
     /*0x04*/ s8 flags;
-    /*0x05*/ s8 unk05;
+    /*0x05*/ s8 room;
     /*0x06*/ s16 lowerY;
     /*0x08*/ s16 upperY;
     /*0x0A*/ Vec3s vertex1;

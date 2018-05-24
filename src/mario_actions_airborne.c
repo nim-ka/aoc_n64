@@ -156,7 +156,7 @@ static s32 check_horizontal_wind(struct MarioState *m)
 
     if (floor->type == SURFACE_002C)
     {
-        pushAngle = floor->unk02 << 8;
+        pushAngle = floor->force << 8;
 
         m->slideVelX += 1.2f * sins(pushAngle);
         m->slideVelZ += 1.2f * coss(pushAngle);

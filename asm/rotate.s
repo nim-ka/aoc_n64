@@ -343,8 +343,8 @@ glabel func_802CCBE4
 /* 087C34 802CCC34 8F260008 */   lw    $a2, 8($t9)
 /* 087C38 802CCC38 8FA80028 */  lw    $t0, 0x28($sp)
 /* 087C3C 802CCC3C E500000C */  swc1  $f0, 0xc($t0)
-/* 087C40 802CCC40 3C098036 */  lui    $t1, %hi(D_8035FE14) 
-/* 087C44 802CCC44 8D29FE14 */  lw    $t1, %lo(D_8035FE14)($t1)
+/* 087C40 802CCC40 3C098036 */  lui    $t1, %hi(gWaterRegions) 
+/* 087C44 802CCC44 8D29FE14 */  lw    $t1, %lo(gWaterRegions)($t1)
 /* 087C48 802CCC48 11200004 */  beqz  $t1, .L802CCC5C
 /* 087C4C 802CCC4C 00000000 */   nop   
 /* 087C50 802CCC50 0C0B32CD */  jal   func_802CCB34

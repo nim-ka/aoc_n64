@@ -196,8 +196,8 @@ SECTIONS
       build/src/graph_node.o(.text);
       build/src/geo_layout.o(.text);
       build/asm/level_script.o(.text);
-      build/src/surface_collision1.o(.text);
-      build/src/surface_collision2.o(.text);
+      build/src/surface_collision.o(.text);
+      build/src/surface_load.o(.text);
       build/src/behavior_script.o(.text);
       /* data */
       build/data/graph_node.data.o(.data*);
@@ -208,13 +208,15 @@ SECTIONS
       /* rodata */
       build/src/math_util.o(.rodata*);
       build/data/level_script.rodata.o(.rodata*);
-      build/src/surface_collision1.o(.rodata*);
-      build/src/surface_collision2.o(.rodata*);
+      build/src/surface_collision.o(.rodata*);
+      build/src/surface_load.o(.rodata*);
    }
    END_SEG(engine)
    BEGIN_BSS(engine)
    {
       build/data/bss2.o(.bss*);
+      build/src/surface_load.o(.bss*);
+      build/src/behavior_script.o(.bss*);
    }
    END_BSS(engine)
 

@@ -16187,7 +16187,7 @@ glabel BehClockMainRotationLoop
 /* 0C1D94 80306D94 8D380144 */  lw    $t8, 0x144($t1)
 /* 0C1D98 80306D98 17000003 */  bnez  $t8, .L80306DA8
 /* 0C1D9C 80306D9C 00000000 */   nop   
-/* 0C1DA0 80306DA0 0C0E0E73 */  jal   ProcessCollision
+/* 0C1DA0 80306DA0 0C0E0E73 */  jal   load_object_collision_model
 /* 0C1DA4 80306DA4 00000000 */   nop   
 .L80306DA8:
 /* 0C1DA8 80306DA8 10000001 */  b     .L80306DB0
@@ -25366,7 +25366,7 @@ glabel L8030F058
 /* 0CA08C 8030F08C 0C0A86E8 */  jal   MoveObj
 /* 0CA090 8030F090 2404FFB2 */   li    $a0, -78
 .L8030F094:
-/* 0CA094 8030F094 0C0E0E73 */  jal   ProcessCollision
+/* 0CA094 8030F094 0C0E0E73 */  jal   load_object_collision_model
 /* 0CA098 8030F098 00000000 */   nop   
 /* 0CA09C 8030F09C 3C0C8036 */  lui   $t4, %hi(gCurrentObject) # $t4, 0x8036
 /* 0CA0A0 8030F0A0 8D8CFDF0 */  lw    $t4, %lo(gCurrentObject)($t4)
@@ -28039,7 +28039,7 @@ glabel BehHauntedRoomCheckSubobjectLoop
 /* 0CC6CC 803116CC 10000001 */  b     .L803116D4
 /* 0CC6D0 803116D0 00000000 */   nop   
 .L803116D4:
-/* 0CC6D4 803116D4 0C0E0E73 */  jal   ProcessCollision
+/* 0CC6D4 803116D4 0C0E0E73 */  jal   load_object_collision_model
 /* 0CC6D8 803116D8 00000000 */   nop   
 .L803116DC:
 /* 0CC6DC 803116DC 10000001 */  b     .L803116E4
@@ -29073,7 +29073,7 @@ glabel BehDonutPlatformLoop
 /* 0CD598 80312598 0C0A86E8 */  jal   MoveObj
 /* 0CD59C 8031259C 2404004E */   li    $a0, 78
 .L803125A0:
-/* 0CD5A0 803125A0 0C0E0E73 */  jal   ProcessCollision
+/* 0CD5A0 803125A0 0C0E0E73 */  jal   load_object_collision_model
 /* 0CD5A4 803125A4 00000000 */   nop   
 .L803125A8:
 /* 0CD5A8 803125A8 10000001 */  b     .L803125B0

@@ -182,7 +182,7 @@ void func_802C9BF0(void)
     {
         AnotherPrint("bgcode   %d", pfloor->type);
         AnotherPrint("bgstatus %d", pfloor->flags);
-        AnotherPrint("bgarea   %d", pfloor->unk05);
+        AnotherPrint("bgarea   %d", pfloor->room);
     }
 
     if(gCurrentObject->pos[1] < sp24)

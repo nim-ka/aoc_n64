@@ -9,6 +9,7 @@
 #include "audio_dmc.h"
 #include "audio_interface_2.h"
 #include "print.h"
+#include "save_file.h"
 #include "sound_init.h"
 
 
@@ -130,9 +131,9 @@ void func_80249040(void)
 {
     u8 sp1f = FALSE;
     
-    if (gCurrLevelNum == 6 && D_8033A75A == 2 && gMarioState->numStars < 70)
+    if (gCurrLevelNum == LEVEL_CASTLE && D_8033A75A == 2 && gMarioState->numStars < 70)
     {
-        if (gMarioState->floor != NULL && gMarioState->floor->unk05 == 6)
+        if (gMarioState->floor != NULL && gMarioState->floor->room == 6)
         {
             if (gMarioState->pos[2] < 2540.0f)
                 sp1f = TRUE;

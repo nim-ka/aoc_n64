@@ -51,17 +51,3 @@ glabel D_8038BE48
     .space 0x4
 glabel D_8038BE4C
     .space 0x44
-glabel D_8038BE90
-    .space 0x8
-glabel D_8038BE98
-    .space 0x1800
-glabel D_8038D698
-    .space 0x1800
-glabel D_8038EE98
-    .space 0x4
-glabel D_8038EE9C
-    .space 0x4
-glabel D_8038EEA0
-    .space 0x40
-glabel gRandomSeed16
-    .space 0x2

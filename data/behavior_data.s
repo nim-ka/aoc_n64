@@ -17,7 +17,7 @@ glabel beh_star_door # 0000
 .word 0x08000000
 .word 0x0C000000, BehStarDoorLoop
 .word 0x0C000000, BehStarDoorLoop2
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_mr_i # 0054
 .word 0x00040000
@@ -96,7 +96,7 @@ glabel beh_cap_switch_collision_child # 01AC
 .word 0x11010009
 .word 0x2A000000, 0x05003448
 .word 0x08000000
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_activate_cap_switch # 01CC
 .word 0x00090000
@@ -104,7 +104,7 @@ glabel beh_activate_cap_switch # 01CC
 .word 0x2A000000, 0x050033D0
 .word 0x08000000
 .word 0x0C000000, BehActivateCapSwitchLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_king_bobomb # 01F4
 .word 0x00040000
@@ -311,7 +311,7 @@ glabel beh_rotating_platform # 05B4
 .word 0x2D000000
 .word 0x08000000
 .word 0x0C000000, BehRotatingPlatformLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_tower # 05D8
 .word 0x00090000
@@ -320,7 +320,7 @@ glabel beh_tower # 05D8
 .word 0x0E430BB8
 .word 0x0E454E20
 .word 0x08000000
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_bullet_bill_cannon # 0600
 .word 0x00090000
@@ -328,7 +328,7 @@ glabel beh_bullet_bill_cannon # 0600
 .word 0x2A000000, 0x07010260
 .word 0x0E43012C
 .word 0x08000000
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_breakable_wall # 0624
 .word 0x00090000
@@ -343,7 +343,7 @@ glabel beh_breakable_wall_2 # 0638
 .word 0x10050000
 .word 0x08000000
 .word 0x0C000000, BehBreakableWallLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_kickable_board # 066C
 .word 0x00090000
@@ -364,7 +364,7 @@ glabel beh_tower_door # 06A4
 .word 0x10050000
 .word 0x08000000
 .word 0x0C000000, BehTowerDoorLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_rotating_counter_clockwise # 06D8
 .word 0x00080000
@@ -375,7 +375,7 @@ glabel beh_clocklike_rotation # 06E0
 .word 0x2A000000, 0x0700FA00
 .word 0x08000000
 .word 0x0C000000, BehClocklikeRotationLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_koopa_shell_underwater # 0708
 .word 0x00040000
@@ -393,7 +393,7 @@ glabel beh_exit_podium_warp # 0720
 .word 0x10050000
 .word 0x23000000, 0x00320032
 .word 0x08000000
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x102B0000
 .word 0x09000000
 glabel beh_fading_warp # 075C
@@ -423,7 +423,7 @@ glabel beh_warp_pipe # 07A0
 .word 0x23000000, 0x00460032
 .word 0x08000000
 .word 0x0C000000, BehWarpLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_white_puff_explosion # 07DC
 .word 0x000C0000
@@ -630,7 +630,7 @@ glabel beh_grindel # 0B58
 .word 0x2D000000
 .word 0x08000000
 .word 0x0C000000, BehGrindelThwompLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_thwomp_2 # 0B8C
 .word 0x00090000
@@ -643,7 +643,7 @@ glabel beh_thwomp_2 # 0B8C
 .word 0x0E450FA0
 .word 0x08000000
 .word 0x0C000000, BehGrindelThwompLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_thwomp # 0BC8
 .word 0x00090000
@@ -656,7 +656,7 @@ glabel beh_thwomp # 0BC8
 .word 0x0E450FA0
 .word 0x08000000
 .word 0x0C000000, BehGrindelThwompLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_tumbling_bridge_platform # 0C04
 .word 0x00090000
@@ -664,7 +664,7 @@ glabel beh_tumbling_bridge_platform # 0C04
 .word 0x0E43012C
 .word 0x08000000
 .word 0x0C000000, BehTumblingBridgePlatformLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_wf_tumbling_bridge # 0C28
 .word 0x000B0000
@@ -711,7 +711,7 @@ glabel beh_another_elavator # 0CC8
 .word 0x0C000000, BehElevatorInit
 .word 0x08000000
 .word 0x0C000000, BehElevatorLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_rr_elevator_platform # 0CFC
 .word 0x00090000
@@ -721,7 +721,7 @@ glabel beh_rr_elevator_platform # 0CFC
 .word 0x0C000000, BehElevatorInit
 .word 0x08000000
 .word 0x0C000000, BehElevatorLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_hmc_elevator_platform # 0D30
 .word 0x00090000
@@ -732,7 +732,7 @@ glabel beh_hmc_elevator_platform # 0D30
 .word 0x0C000000, BehCommonInit
 .word 0x08000000
 .word 0x0C000000, BehElevatorLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_water_mist # 0D6C
 .word 0x000C0000
@@ -867,7 +867,7 @@ glabel beh_bifs_sinking_platforms # 0F9C
 .word 0x2D000000
 .word 0x08000000
 .word 0x0C000000, BehBifsSinkingPlatformLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_bifs_sinking_cage_platform # 0FC8
 .word 0x00090000
@@ -877,7 +877,7 @@ glabel beh_bifs_sinking_cage_platform # 0FC8
 .word 0x1C000000, 0x00000039, 0x13001000
 .word 0x08000000
 .word 0x0C000000, BehBifsSinkingCagePlatformLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_ddd_moving_pole # 1000
 .word 0x000A0000
@@ -897,7 +897,7 @@ glabel beh_tilting_inverted_pyramid # 1030
 .word 0x0C000000, BehTiltingPlatformInit
 .word 0x08000000
 .word 0x0C000000, BehTiltingPlatformLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_squishable_platform # 1064
 .word 0x00090000
@@ -907,7 +907,7 @@ glabel beh_squishable_platform # 1064
 .word 0x0C000000, BehTiltingPlatformInit
 .word 0x08000000
 .word 0x0C000000, BehSquishablePlatformLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_cut_out_object # 1098
 .word 0x00040000
@@ -934,7 +934,7 @@ glabel beh_rr_rotating_platform_with_fire # 10D8
 .word 0x2D000000
 .word 0x08000000
 .word 0x0C000000, BehRrRotatingPlatformFireLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_flamethrower # 1108
 .word 0x00080000
@@ -1056,7 +1056,7 @@ glabel beh_wf_sliding_platform # 1318
 .word 0x2A000000, 0x0700FB94
 .word 0x08000000
 .word 0x0C000000, BehWfSlidingPlatformLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_wf_elevator_platform # 1340
 .word 0x00090000
@@ -1064,7 +1064,7 @@ glabel beh_wf_elevator_platform # 1340
 .word 0x2A000000, 0x0700FB94
 .word 0x08000000
 .word 0x0C000000, BehWfElevatorPlatformLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_wf_solid_platform # 1368
 .word 0x00090000
@@ -1072,7 +1072,7 @@ glabel beh_wf_solid_platform # 1368
 .word 0x2A000000, 0x0700FB94
 .word 0x08000000
 .word 0x0C000000, BehWfSolidPlatformLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_snow_leaf_particle_spawn # 1390
 .word 0x00080000
@@ -1100,7 +1100,7 @@ glabel beh_another_tilting_platform # 13DC
 .word 0x0C000000, BehTiltingPlatformInit
 .word 0x08000000
 .word 0x0C000000, BehTiltingPlatformLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_squarish_path_moving # 1408
 .word 0x00090000
@@ -1139,7 +1139,7 @@ glabel beh_floor_switch_hardcoded_model # 1484
 .word 0x2A000000, 0x0800C7A8
 .word 0x08000000
 .word 0x0C000000, BehFloorSwitchLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_floor_switch_hidden_objects # 14AC
 .word 0x00090000
@@ -1161,7 +1161,7 @@ glabel beh_breakable_box # 14E0
 .word 0x0C000000, BehCommonInit
 .word 0x08000000
 .word 0x0C000000, BehBreakableBoxLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 .word 0x0A000000
 glabel beh_pushable # 1518
@@ -1172,7 +1172,7 @@ glabel beh_pushable # 1518
 .word 0x2D000000
 .word 0x08000000
 .word 0x0C000000, BehPushableLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_heave_ho # 1548
 .word 0x00040000
@@ -1219,7 +1219,7 @@ glabel beh_beta_trampoline # 1608
 .word 0x2D000000
 .word 0x08000000
 .word 0x0C000000, BehBetaTrampolineLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_beta_trampoline_spawn # 1634
 .word 0x00080000
@@ -1374,7 +1374,7 @@ glabel beh_tilting_bowser_lava_platform # 1920
 .word 0x2D000000
 .word 0x08000000
 .word 0x0C000000, BehBreakBoxTriangleLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_falling_bowser_platform # 1958
 .word 0x00090000
@@ -1384,7 +1384,7 @@ glabel beh_falling_bowser_platform # 1958
 .word 0x2D000000
 .word 0x08000000
 .word 0x0C000000, BehFallingBowserPlatformLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_blue_bowser_flame # 1984
 .word 0x00060000
@@ -1515,7 +1515,7 @@ glabel beh_water_level_pillar # 1C04
 .word 0x0C000000, BehWaterLevelPillarInit
 .word 0x08000000
 .word 0x0C000000, BehWaterLevelPillarLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_ddd_warp # 1C34
 .word 0x00090000
@@ -1523,7 +1523,7 @@ glabel beh_ddd_warp # 1C34
 .word 0x0E437530
 .word 0x08000000
 .word 0x0C000000, BehDddWarpLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_moat_grills # 1C58
 .word 0x00090000
@@ -1574,7 +1574,7 @@ glabel beh_lll_rotating_ccw # 1D14
 .word 0x08000000
 .word 0x10240100
 .word 0x0F100100
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_sinks_when_stepped_on # 1D40
 .word 0x00090000
@@ -1584,7 +1584,7 @@ glabel beh_sinks_when_stepped_on # 1D40
 .word 0x2D000000
 .word 0x08000000
 .word 0x0C000000, BehSinkWhenSteppedOnLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_stub_1D70 # 1D70
 .word 0x00080000
@@ -1596,7 +1596,7 @@ glabel beh_horizontal_movement # 1D78
 .word 0x2A000000, 0x0701D018
 .word 0x08000000
 .word 0x0C000000, BehHorizontalMovementLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_snow_ball # 1DA4
 .word 0x0A000000
@@ -1626,7 +1626,7 @@ glabel beh_lll_wood_piece # 1E04
 .word 0x2D000000
 .word 0x08000000
 .word 0x0C000000, BehLllWoodPieceLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_floating_wood_bridge # 1E30
 .word 0x00080000
@@ -1649,7 +1649,7 @@ glabel beh_lll_rotating_platform # 1E6C
 .word 0x2A000000, 0x0701D294
 .word 0x08000000
 .word 0x0C000000, BehLllRotatingPlatformLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_lll_slow_tilting_movement # 1E94
 .word 0x00090000
@@ -1659,7 +1659,7 @@ glabel beh_lll_slow_tilting_movement # 1E94
 .word 0x2D000000
 .word 0x08000000
 .word 0x0C000000, BehLllSlowTiltingMovementLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_lll_slow_up_down_movement # 1EC4
 .word 0x00090000
@@ -1670,7 +1670,7 @@ glabel beh_lll_slow_up_down_movement # 1EC4
 .word 0x2D000000
 .word 0x08000000
 .word 0x0C000000, BehLllSlowUpDownMovementLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_tilting_inverted_pyramid2 # 1EF8
 .word 0x00090000
@@ -1681,7 +1681,7 @@ glabel beh_tilting_inverted_pyramid2 # 1EF8
 .word 0x0C000000, BehTiltingPlatformInit
 .word 0x08000000
 .word 0x0C000000, BehTiltingPlatformLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_unused_1F30 # 1F30
 .word 0x00080000
@@ -1735,7 +1735,7 @@ glabel beh_lll_hexagonal_mesh # 2018
 .word 0x11010001
 .word 0x2A000000, 0x0301CECC
 .word 0x08000000
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_bowser_puzzle_piece # 2038
 .word 0x00090000
@@ -1745,7 +1745,7 @@ glabel beh_bowser_puzzle_piece # 2038
 .word 0x0E430BB8
 .word 0x08000000
 .word 0x0C000000, BehBowserPuzzlePieceLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_bowser_puzzle # 2068
 .word 0x000B0000
@@ -1819,7 +1819,7 @@ glabel beh_wdw_express_elevator # 2194
 .word 0x2D000000
 .word 0x08000000
 .word 0x0C000000, BehWdwExpressElevatorLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_wdw_express_elevator_platform # 21C0
 .word 0x00090000
@@ -1827,7 +1827,7 @@ glabel beh_wdw_express_elevator_platform # 21C0
 .word 0x2A000000, 0x070185AC
 .word 0x2D000000
 .word 0x08000000
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_chirp_chirp # 21E4
 .word 0x00080000
@@ -1882,7 +1882,7 @@ glabel beh_rock_solid # 22B8
 .word 0x11010041
 .word 0x2A000000, 0x0700C758
 .word 0x08000000
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_bowser_sub_door # 22D8
 .word 0x00090000
@@ -1892,7 +1892,7 @@ glabel beh_bowser_sub_door # 22D8
 .word 0x0E434E20
 .word 0x08000000
 .word 0x0C000000, BehBowsersSubLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_bowsers_sub # 2308
 .word 0x00090000
@@ -1902,7 +1902,7 @@ glabel beh_bowsers_sub # 2308
 .word 0x2A000000, 0x0700F17C
 .word 0x08000000
 .word 0x0C000000, BehBowsersSubLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_sushi_shark # 2338
 .word 0x00040000
@@ -1932,7 +1932,7 @@ glabel beh_jrb_sliding_box # 23A4
 .word 0x2D000000
 .word 0x08000000
 .word 0x0C000000, BehJrbSlidingBox
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_ship_part_3 # 23D0
 .word 0x00080000
@@ -1949,7 +1949,7 @@ glabel beh_in_sunken_ship_3 # 23EC
 .word 0x0E430FA0
 .word 0x08000000
 .word 0x0C000000, BehShipPart3Loop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_sunken_ship_part # 241C
 .word 0x00080000
@@ -1984,7 +1984,7 @@ glabel beh_in_sunken_ship_2 # 2480
 .word 0x0E430FA0
 .word 0x02000000, 0x1300243C
 .word 0x08000000
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_mario_dust_generator # 24AC
 .word 0x00080000
@@ -2052,7 +2052,7 @@ glabel beh_bob_hmc_cage_door # 25C0
 .word 0x11010009
 .word 0x08000000
 .word 0x0C000000, BehBobHmcCageDoorLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_openable_grill # 25E0
 .word 0x00080000
@@ -2189,7 +2189,7 @@ glabel beh_hidden_staircase_step # 286C
 .word 0x0E4303E8
 .word 0x2D000000
 .word 0x08000000
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_boo_boss_spawned_bridge # 2898
 .word 0x00090000
@@ -2200,7 +2200,7 @@ glabel beh_boo_boss_spawned_bridge # 2898
 .word 0x2D000000
 .word 0x08000000
 .word 0x0C000000, BehBooBossSpawnedBridgeLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_bbh_tilt_floor_platforms # 28CC
 .word 0x00090000
@@ -2210,7 +2210,7 @@ glabel beh_bbh_tilt_floor_platforms # 28CC
 .word 0x10460002
 .word 0x08000000
 .word 0x0C000000, BehBbhTiltFloorPlatformLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_tumbling_bookshelf # 28FC
 .word 0x00090000
@@ -2220,7 +2220,7 @@ glabel beh_tumbling_bookshelf # 28FC
 .word 0x10460006
 .word 0x08000000
 .word 0x0C000000, BehTumblingBookshelfLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_mesh_elevator # 292C
 .word 0x00090000
@@ -2232,7 +2232,7 @@ glabel beh_mesh_elevator # 292C
 .word 0x0C000000, BehElevatorInit
 .word 0x08000000
 .word 0x0C000000, BehElevatorLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_rotating_merry_go_round # 2968
 .word 0x00090000
@@ -2242,7 +2242,7 @@ glabel beh_rotating_merry_go_round # 2968
 .word 0x1046000A
 .word 0x08000000
 .word 0x0C000000, BehRotatingMerryGoRoundLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_inside_cannon # 2998
 .word 0x0A000000
@@ -2264,7 +2264,7 @@ glabel beh_static_checkered_platform # 29CC
 .word 0x2D000000
 .word 0x08000000
 .word 0x0C000000, BehStaticCheckeredPlatformLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_unused_2A10 # 29F8
 .word 0x00080000
@@ -2302,7 +2302,7 @@ glabel beh_floor_trap_in_castle # 2A64
 .word 0x2A000000, 0x07078DE4
 .word 0x08000000
 .word 0x0C000000, BehFloorTrapInCastleLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_tree # 2A8C
 .word 0x000A0000
@@ -2529,7 +2529,7 @@ glabel beh_walking_penguin # 2E34
 .word 0x2D000000
 .word 0x08000000
 .word 0x0C000000, BehWalkingPenguinLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_yellow_ball # 2E84
 .word 0x00080000
@@ -2769,7 +2769,7 @@ glabel beh_cannon_trap_door # 3254
 .word 0x0C000000, BehCannonTrapDoorInit
 .word 0x08000000
 .word 0x0C000000, BehCannonTrapDoorLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_whirlpool_death # 3288
 .word 0x000A0000
@@ -2795,7 +2795,7 @@ glabel beh_message_panel # 32C0
 .word 0x101B0000
 .word 0x08000000
 .word 0x10050000
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x102B0000
 .word 0x09000000
 glabel beh_sign_on_wall # 3304
@@ -3127,7 +3127,7 @@ glabel beh_lll_tilting_bridge # 38C8
 .word 0x2A000000, 0x0701D108
 .word 0x08000000
 .word 0x0C000000, BehLllTiltingBridgeLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_rock_formation_eyes # 38F0
 .word 0x00090000
@@ -3136,7 +3136,7 @@ glabel beh_rock_formation_eyes # 38F0
 .word 0x0C000000, BehRockFormationEyesInit
 .word 0x08000000
 .word 0x0C000000, BehRockFormationEyesLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_large_rock_eyes # 3920
 .word 0x00090000
@@ -3145,7 +3145,7 @@ glabel beh_large_rock_eyes # 3920
 .word 0x0C000000, BehLargeRockEyesInit
 .word 0x08000000
 .word 0x0C000000, BehLargeRockEyesLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_sliding_brick_platform_2 # 3950
 .word 0x00090000
@@ -3154,7 +3154,7 @@ glabel beh_sliding_brick_platform_2 # 3950
 .word 0x0C000000, BehSlidingBrickPlatform2Init
 .word 0x08000000
 .word 0x0C000000, BehSlidingBrickPlatform2Loop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_moneybag_transforming # 3980
 .word 0x00040000
@@ -3242,7 +3242,7 @@ glabel beh_spindel # 3AE0
 .word 0x0C000000, BehSpindelInit
 .word 0x08000000
 .word 0x0C000000, BehSpindelLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_moving_up_and_down # 3B10
 .word 0x00090000
@@ -3251,7 +3251,7 @@ glabel beh_moving_up_and_down # 3B10
 .word 0x0C000000, BehMovingUpAndDownInit
 .word 0x08000000
 .word 0x0C000000, BehMovingUpAndDownLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_pyramid_elevator # 3B40
 .word 0x00090000
@@ -3262,7 +3262,7 @@ glabel beh_pyramid_elevator # 3B40
 .word 0x0C000000, BehPyramidElevatorInit
 .word 0x08000000
 .word 0x0C000000, BehPyramidElevatorLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_pyramid_elevator_metal_balls # 3B78
 .word 0x00080000
@@ -3280,7 +3280,7 @@ glabel beh_pyramid_top # 3B94
 .word 0x0C000000, BehPyramidTopInit
 .word 0x08000000
 .word 0x0C000000, BehPyramidTopLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_pyramid_top_explosion # 3BCC
 .word 0x00080000
@@ -3337,7 +3337,7 @@ glabel beh_hidden_at_120_stars # 3C98
 .word 0x0E430FA0
 .word 0x0C000000, BehHiddenAt120StarsInit
 .word 0x08000000
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_snowmans_bottom # 3CC4
 .word 0x00040000
@@ -3482,7 +3482,7 @@ glabel beh_pitoune_2 # 3F20
 .word 0x0C000000, BehPitoune2Init
 .word 0x08000000
 .word 0x0C000000, BehPitouneLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_falling_when_mario_is_near # 3F58
 .word 0x00090000
@@ -3491,7 +3491,7 @@ glabel beh_falling_when_mario_is_near # 3F58
 .word 0x2D000000
 .word 0x08000000
 .word 0x0C000000, BehFallingWhenMarioNearLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_pitoune # 3F84
 .word 0x00090000
@@ -3502,7 +3502,7 @@ glabel beh_pitoune # 3F84
 .word 0x0C000000, BehPitouneInit
 .word 0x08000000
 .word 0x0C000000, BehPitouneLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_1up_walking # 3FBC
 .word 0x00060000
@@ -3609,7 +3609,7 @@ glabel beh_controllable_platform # 419C
 .word 0x0C000000, BehControllablePlatformInit
 .word 0x08000000
 .word 0x0C000000, BehControllablePlatformLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_controllable_platform_sub # 41D0
 .word 0x00090000
@@ -3617,7 +3617,7 @@ glabel beh_controllable_platform_sub # 41D0
 .word 0x2A000000, 0x0702B7F4
 .word 0x08000000
 .word 0x0C000000, BehControllablePlatformSubLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_breakable_box2 # 41F8
 .word 0x00020000
@@ -3636,7 +3636,7 @@ glabel beh_sliding_snow_mound # 4224
 .word 0x2D000000
 .word 0x08000000
 .word 0x0C000000, BehSlidingSnowMoundLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_snow_mound_spawn # 4250
 .word 0x00080000
@@ -3651,7 +3651,7 @@ glabel beh_square_floating_platform # 4264
 .word 0x2D000000
 .word 0x08000000
 .word 0x0C000000, BehFloatingPlatformLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_rect_floating_platform # 4294
 .word 0x00090000
@@ -3661,7 +3661,7 @@ glabel beh_rect_floating_platform # 4294
 .word 0x2D000000
 .word 0x08000000
 .word 0x0C000000, BehFloatingPlatformLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_jrb_floating_platform # 42C4
 .word 0x00090000
@@ -3671,7 +3671,7 @@ glabel beh_jrb_floating_platform # 42C4
 .word 0x2D000000
 .word 0x08000000
 .word 0x0C000000, BehFloatingPlatformLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_arrow_lift # 42F4
 .word 0x00090000
@@ -3681,7 +3681,7 @@ glabel beh_arrow_lift # 42F4
 .word 0x2D000000
 .word 0x08000000
 .word 0x0C000000, BehArrowLiftLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_orange_number # 4328
 .word 0x00060000
@@ -3722,7 +3722,7 @@ glabel beh_pillar_base # 43C0
 .word 0x11010001
 .word 0x2A000000, 0x0700D198
 .word 0x08000000
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_jrb_floating_box # 43E0
 .word 0x00090000
@@ -3731,7 +3731,7 @@ glabel beh_jrb_floating_box # 43E0
 .word 0x2D000000
 .word 0x08000000
 .word 0x0C000000, BehJrbFloatingBoxLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_oscillating_pendulum # 440C
 .word 0x00080000
@@ -3936,7 +3936,7 @@ glabel beh_poundable # 47FC
 .word 0x32000032
 .word 0x08000000
 .word 0x0C000000, BehPoundableLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_chain_chomp_freed_explosion # 4848
 .word 0x00090000
@@ -3945,7 +3945,7 @@ glabel beh_chain_chomp_freed_explosion # 4848
 .word 0x0C000000, BehChainChompFreedExplosionInit
 .word 0x08000000
 .word 0x0C000000, BehChainChompFreedExplosionLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_wiggler # 4878
 .word 0x00040000
@@ -4056,7 +4056,7 @@ glabel beh_platform_on_tracks # 4A90
 .word 0x0C000000, BehPlatformOnTracksInit
 .word 0x08000000
 .word 0x0C000000, BehPlatformOnTracksLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_metal_balls_for_elevators # 4AD4
 .word 0x00090000
@@ -4073,7 +4073,7 @@ glabel beh_solid_moving # 4AFC
 .word 0x0C000000, BehSolidMovingInit
 .word 0x08000000
 .word 0x0C000000, BehSolidMovingLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_four_rotating_platforms # 4B24
 .word 0x00090000
@@ -4082,14 +4082,14 @@ glabel beh_four_rotating_platforms # 4B24
 .word 0x0C000000, BehFourRotatingPlatformsInit
 .word 0x08000000
 .word 0x0F140190
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_ferris_wheel_platform # 4B4C
 .word 0x00090000
 .word 0x11010001
 .word 0x08000000
 .word 0x0C000000, BehFerrisWheelPlatformLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_water_bubble_drop # 4B6C
 .word 0x00040000
@@ -4121,7 +4121,7 @@ glabel beh_rotating_clock_platform # 4BD0
 .word 0x101B0001
 .word 0x08000000
 .word 0x0C000000, BehRotatingClockPlatformLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_clock_pendulum # 4C04
 .word 0x00090000
@@ -4132,7 +4132,7 @@ glabel beh_clock_pendulum # 4C04
 .word 0x0E1B0001
 .word 0x08000000
 .word 0x0C000000, BehClockPendulumLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_clock_metal_platform # 4C3C
 .word 0x00090000
@@ -4143,7 +4143,7 @@ glabel beh_clock_metal_platform # 4C3C
 .word 0x08000000
 .word 0x0C000000, BehClockMetalPlatformLoop
 .word 0x0C000000, PreMoveObj
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_sliding_platform # 4C74
 .word 0x00090000
@@ -4154,7 +4154,7 @@ glabel beh_sliding_platform # 4C74
 .word 0x0C000000, BehSlidingPlatformInit
 .word 0x08000000
 .word 0x0C000000, BehSlidingPlatformLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_rotating_gear_platform # 4CAC
 .word 0x00090000
@@ -4163,7 +4163,7 @@ glabel beh_rotating_gear_platform # 4CAC
 .word 0x0C000000, BehRotatingGearPlatformInit
 .word 0x08000000
 .word 0x0C000000, BehRotationGearPlatformLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_pushable_clock_box # 4CD8
 .word 0x00090000
@@ -4173,7 +4173,7 @@ glabel beh_pushable_clock_box # 4CD8
 .word 0x0C000000, BehPushableClockBoxInit
 .word 0x08000000
 .word 0x0C000000, BehPushableClockBoxLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_clock_platform # 4D08
 .word 0x00090000
@@ -4185,7 +4185,7 @@ glabel beh_clock_platform # 4D08
 .word 0x0E1B0001
 .word 0x08000000
 .word 0x0C000000, BehClockPlatformLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_clock_main_rotation # 4D44
 .word 0x00090000
@@ -4203,7 +4203,7 @@ glabel beh_rotating_clock_platform2 # 4D70
 .word 0x0E4301C2
 .word 0x08000000
 .word 0x0C000000, BehRotatingClockPlatform2Loop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_mr_blizzard # 4D9C
 .word 0x00040000
@@ -4238,7 +4238,7 @@ glabel beh_sliding_platform2 # 4E2C
 .word 0x0C000000, BehSlidingPlatform2Init
 .word 0x08000000
 .word 0x0C000000, BehSlidingPlatform2Loop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_octagonal_platform_rotating # 4E58
 .word 0x00090000
@@ -4246,7 +4246,7 @@ glabel beh_octagonal_platform_rotating # 4E58
 .word 0x0C000000, BehOctagonalPlatformRotatingInit
 .word 0x08000000
 .word 0x0C000000, BehOctagonalPlatformRotatingLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_floor_switch_press_animation # 4E80
 .word 0x00090000
@@ -4255,7 +4255,7 @@ glabel beh_floor_switch_press_animation # 4E80
 .word 0x0C000000, BehFloorSwitchPressAnimationInit
 .word 0x08000000
 .word 0x0C000000, BehFloorSwitchPressAnimationLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_climbable_cage # 4EAC
 .word 0x00090000
@@ -4264,7 +4264,7 @@ glabel beh_climbable_cage # 4EAC
 .word 0x0C000000, BehClimbableCageInit
 .word 0x08000000
 .word 0x0C000000, BehClimbableCageLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_recover_life # 4ED8
 .word 0x00060000
@@ -4313,7 +4313,7 @@ glabel beh_dorrie # 4F70
 .word 0x0C000000, BehCommonInit
 .word 0x08000000
 .word 0x0C000000, BehDorrieLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_haunted_chair # 4FB4
 .word 0x00040000
@@ -4447,7 +4447,7 @@ glabel beh_grindel2 # 523C
 .word 0x08000000
 .word 0x0C000000, MoveRelated
 .word 0x0C000000, BehGrindel2Loop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_eyerok_boss # 5294
 .word 0x00040000
@@ -4559,7 +4559,7 @@ glabel beh_pendulum_movement # 5498
 .word 0x0C000000, BehPendulumMovementInit
 .word 0x08000000
 .word 0x0C000000, BehPendulumMovementLoop
-.word 0x0C000000, ProcessCollision
+.word 0x0C000000, load_object_collision_model
 .word 0x09000000
 glabel beh_donut_platform_group # 54CC
 .word 0x000B0000

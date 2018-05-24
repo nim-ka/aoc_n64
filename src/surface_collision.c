@@ -7,6 +7,7 @@
 #include "mario.h"
 #include "behavior_script.h"
 #include "surface_collision.h"
+#include "surface_load.h"
 
 s32 func_80380E8C(struct WallCollisionData *collision);
 
@@ -29,7 +30,7 @@ s32 func_80380690(struct SurfaceNode * triNode, struct WallCollisionData * data)
     // Look for collisions in triangle list
     while (triNode) {
         // Get next triangle
-        tri = triNode->tri;
+        tri = triNode->surface;
         triNode = triNode->next;
 
         if (y < tri->lowerY || y > tri->upperY) continue;
@@ -150,10 +151,10 @@ s32 func_80380E8C(struct WallCollisionData *collision)
     xGrid = ((x + 0x2000) / 0x400) & 0x0F;
     zGrid = ((z + 0x2000) / 0x400) & 0x0F;
 
-    node = D_8038D698[zGrid][xGrid][SPATIAL_PARTITION_WALL].next;
+    node = gDynamicSurfacePartition[zGrid][xGrid][SPATIAL_PARTITION_WALLS].next;
     numCollisions += func_80380690(node, collision);
 
-    node = D_8038BE98[zGrid][xGrid][SPATIAL_PARTITION_WALL].next;
+    node = gStaticSurfacePartition[zGrid][xGrid][SPATIAL_PARTITION_WALLS].next;
     numCollisions += func_80380690(node, collision);
 
     D_8033BF08++;
@@ -168,7 +169,7 @@ struct Surface *func_80381038(struct SurfaceNode *triangles, s32 x, s32 y, s32 z
 
     sp24 = NULL;
     while (triangles != NULL) {
-        tri = triangles->tri;
+        tri = triangles->surface;
         triangles = triangles->next;
 
         x1 = tri->vertex1[0];
@@ -233,10 +234,10 @@ f32 func_80381264(float posX, float posY, float posZ, struct Surface **pceil) {
     xidx = ((x + 0x2000) / 0x400) & 0xF;
     zidx = ((z + 0x2000) / 0x400) & 0xF;
 
-    node = D_8038D698[zidx][xidx][SPATIAL_PARTITION_CEIL].next;
+    node = gDynamicSurfacePartition[zidx][xidx][SPATIAL_PARTITION_CEILS].next;
     dynCeil = func_80381038(node, x, y, z, &dynHeight);
 
-    node = D_8038BE98[zidx][xidx][SPATIAL_PARTITION_CEIL].next;
+    node = gStaticSurfacePartition[zidx][xidx][SPATIAL_PARTITION_CEILS].next;
     ceil = func_80381038(node, x, y, z, &height);
 
     if (dynHeight < height) {
@@ -285,7 +286,7 @@ struct Surface *func_8038156C(struct SurfaceNode *triangles, s32 x, s32 y, s32 z
     struct Surface *sp4 = NULL;
 
     while (triangles != NULL) {
-        tri = triangles->tri;
+        tri = triangles->surface;
         triangles = triangles->next;
 
         x1 = tri->vertex1[0];
@@ -344,7 +345,7 @@ f32 func_803817E0(f32 sp38, f32 sp3C, f32 sp40, struct Surface **sp44) {
     s16 xidx = ((sp2A + 0x2000) / 0x400) & 0x0F;
     s16 zidx = ((sp26 + 0x2000) / 0x400) & 0x0F;
 
-    sp34 = D_8038D698[zidx][xidx][SPATIAL_PARTITION_FLOOR].next;
+    sp34 = gDynamicSurfacePartition[zidx][xidx][SPATIAL_PARTITION_FLOORS].next;
 
     sp30 = func_8038156C(sp34, sp2A, sp28, sp26, &sp2C);
     *sp44 = sp30;
@@ -371,10 +372,10 @@ f32 func_80381900(f32 xPos, f32 yPos, f32 zPos, struct Surface **pfloor) {
     xGrid = ((x + 0x2000) / 0x400) & 0xF;
     zGrid = ((z + 0x2000) / 0x400) & 0xF;
 
-    node = D_8038D698[zGrid][xGrid][SPATIAL_PARTITION_FLOOR].next;
+    node = gDynamicSurfacePartition[zGrid][xGrid][SPATIAL_PARTITION_FLOORS].next;
     dynFloor = func_8038156C(node, x, y, z, &dynHeight);
 
-    node = D_8038BE98[zGrid][xGrid][SPATIAL_PARTITION_FLOOR].next;
+    node = gStaticSurfacePartition[zGrid][xGrid][SPATIAL_PARTITION_FLOORS].next;
     floor = func_8038156C(node, x, y, z, &height);
 
     if (D_8035FE12 == 0) {
@@ -406,7 +407,7 @@ f32 func_80381BA0(f32 x, f32 z) {
     s16 val;
     f32 loX, hiX, loZ, hiZ;
     float sp8 = -11000.0f;
-    s16 *p = D_8035FE14;
+    s16 *p = gWaterRegions;
 
     if (p != NULL) {
         numRegions = *p++;
@@ -437,7 +438,7 @@ f32 func_80381D3C(f32 x, f32 z) {
     s16 val;
     f32 loX, hiX, loZ, hiZ;
     float sp4 = -11000.0f;
-    s16 *p = D_8035FE14;
+    s16 *p = gWaterRegions;
 
     if (p != NULL) {
         numRegions = *p++;
@@ -485,22 +486,22 @@ void func_80381F08(f32 sp40, f32 sp44) {
     s32 sp28 = (sp44 + 0x2000) / 0x400;
 
 
-    sp3C = D_8038BE98[sp28 & 0x0F][sp2C & 0x0F][SPATIAL_PARTITION_FLOOR].next;
+    sp3C = gStaticSurfacePartition[sp28 & 0x0F][sp2C & 0x0F][SPATIAL_PARTITION_FLOORS].next;
     sp38 += func_80381EC8(sp3C);
 
-    sp3C = D_8038D698[sp28 & 0x0F][sp2C & 0x0F][SPATIAL_PARTITION_FLOOR].next;
+    sp3C = gDynamicSurfacePartition[sp28 & 0x0F][sp2C & 0x0F][SPATIAL_PARTITION_FLOORS].next;
     sp38 += func_80381EC8(sp3C);
 
-    sp3C = D_8038BE98[sp28 & 0x0F][sp2C & 0x0F][SPATIAL_PARTITION_WALL].next;
+    sp3C = gStaticSurfacePartition[sp28 & 0x0F][sp2C & 0x0F][SPATIAL_PARTITION_WALLS].next;
     sp34 += func_80381EC8(sp3C);
 
-    sp3C = D_8038D698[sp28 & 0x0F][sp2C & 0x0F][SPATIAL_PARTITION_WALL].next;
+    sp3C = gDynamicSurfacePartition[sp28 & 0x0F][sp2C & 0x0F][SPATIAL_PARTITION_WALLS].next;
     sp34 += func_80381EC8(sp3C);
 
-    sp3C = D_8038BE98[sp28 & 0x0F][sp2C & 0x0F][SPATIAL_PARTITION_CEIL].next;
+    sp3C = gStaticSurfacePartition[sp28 & 0x0F][sp2C & 0x0F][SPATIAL_PARTITION_CEILS].next;
     sp30 += func_80381EC8(sp3C);
 
-    sp3C = D_8038D698[sp28 & 0x0F][sp2C & 0x0F][SPATIAL_PARTITION_CEIL].next;
+    sp3C = gDynamicSurfacePartition[sp28 & 0x0F][sp2C & 0x0F][SPATIAL_PARTITION_CEILS].next;
     sp30 += func_80381EC8(sp3C);
 
 
@@ -518,9 +519,9 @@ void func_80381F08(f32 sp40, f32 sp44) {
 
     func_802C9A3C(-80, 0);
 
-    AnotherPrint("listal %d", D_8035FDFC);
-    AnotherPrint("statbg %d", D_8035FE08);
-    AnotherPrint("movebg %d", D_8035FE00 - D_8035FE08);
+    AnotherPrint("listal %d", gSurfaceNodesAllocated);
+    AnotherPrint("statbg %d", gNumStaticSurfaces);
+    AnotherPrint("movebg %d", gSurfacesAllocated - gNumStaticSurfaces);
 
     D_8033BF04 = 0;
     D_8033BF06 = 0;

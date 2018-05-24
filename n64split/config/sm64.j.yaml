@@ -4352,7 +4352,7 @@ labels:
    - [0x80381470, "Unknown80381470"]
    - [0x803817E0, "Unknown803817E0"]
    - [0x80382294, "Unknown80382294"]
-   - [0x803839CC, "ProcessCollision"]
+   - [0x803839CC, "load_object_collision_model"]
    - [0x80383B70, "Unknown80383B70"]
    - [0x80383BB0, "RandomU16"]
    - [0x80383CB4, "RandomFloat"]

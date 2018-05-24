@@ -4046,7 +4046,7 @@ labels:
    - [0x803817E0, "func_803817E0"]
    - [0x80382294, "func_80382294"]
    # surface_collision2
-   - [0x803839CC, "ProcessCollision"]
+   - [0x803839CC, "load_object_collision_model"]
    # behavior_script
    - [0x80383B70, "func_80383B70"]
    - [0x80383BB0, "RandomU16"]

@@ -46,7 +46,7 @@ extern u16 *D_8033B000;
 extern float D_8033AFFC;
 extern s16 *D_8033B004;
 extern u8 D_8033A740;
-extern struct SpawnInfo gPlayerSpawnInfos[]; 
+extern struct SpawnInfo gPlayerSpawnInfos[];
 
 extern Vp *D_8032CE74;
 extern Vp *D_8032CE78;

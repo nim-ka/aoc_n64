@@ -183,8 +183,8 @@ u32 mario_update_moving_sand(struct MarioState *m)
         floorType == SURFACE_0027 ||
         floorType == SURFACE_002D)
     {
-        s16 pushAngle = floor->unk02 << 8;
-        f32 pushSpeed = sMovingSandSpeeds[floor->unk02 >> 8];
+        s16 pushAngle = floor->force << 8;
+        f32 pushSpeed = sMovingSandSpeeds[floor->force >> 8];
 
         m->vel[0] += pushSpeed * sins(pushAngle);
         m->vel[2] += pushSpeed * coss(pushAngle);
@@ -202,7 +202,7 @@ u32 mario_update_windy_ground(struct MarioState *m)
     if (floor->type == SURFACE_002C)
     {
         f32 pushSpeed;
-        s16 pushAngle = floor->unk02 << 8;
+        s16 pushAngle = floor->force << 8;
 
         if (m->action & ACT_FLAG_UNKNOWN_10)
         {

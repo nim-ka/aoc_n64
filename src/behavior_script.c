@@ -12,7 +12,7 @@
 #include "behavior_data.h"
 
 extern u32 *gBehCommand;
-extern u16 gRandomSeed16;
+static u16 gRandomSeed16;
 
 typedef s32 (*BehCommandProc)(void);
 static BehCommandProc BehaviorJumpTable[] =

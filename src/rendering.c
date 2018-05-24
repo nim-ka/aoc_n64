@@ -10,6 +10,7 @@
 #include "level_script.h"
 #include "object_list_processor.h"
 #include "surface_collision.h"
+#include "surface_load.h"
 #include "ingame_menu.h"
 #include "screen_transition.h"
 #include "level_update.h"
@@ -265,7 +266,7 @@ void func_8027A894(int a)
         D_8032CE6C = &D_8033A560[a];
         D_8033A75A = D_8032CE6C->index;
         if (D_8032CE6C->unk08 != 0)
-            func_803833B8(a, D_8032CE6C->unk08, (s8 *) D_8032CE6C->unk0C, D_8032CE6C->unk10);
+            load_area_terrain(a, D_8032CE6C->unk08, (s8 *) D_8032CE6C->unk0C, D_8032CE6C->unk10);
         if (D_8032CE6C->unk20 != 0)
             spawn_objects_from_info(0, D_8032CE6C->unk20);
         func_8027A4C4();

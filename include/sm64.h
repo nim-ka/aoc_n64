@@ -1,6 +1,7 @@
 #ifndef _SM64_H_
 #define _SM64_H_
 
+#define static
 // Global header for Super Mario 64
 
 #include "types.h"
@@ -80,11 +81,17 @@ extern void func_u_803219AC();
 #define SURFACE_0073     0x0073
 #define SURFACE_0074     0x0074
 #define SURFACE_0075     0x0075
+#define SURFACE_0076     0x0076
+#define SURFACE_0077     0x0077
 #define SURFACE_0078     0x0078
 #define SURFACE_0079     0x0079
 #define SURFACE_007A     0x007A
 #define SURFACE_007B     0x007B
 #define SURFACE_00D3     0x00D3
+
+#define SURFACE_FLAG_DYNAMIC      (1 << 0)
+#define SURFACE_FLAG_1            (1 << 1)
+#define SURFACE_FLAG_X_PROJECTION (1 << 3)
 
 #define INPUT_NONZERO_ANALOG         0x0001
 #define INPUT_A_PRESSED              0x0002

@@ -96,7 +96,7 @@ void *_pool_alloc(u32 size, int b)
     if (size != 0 && gPoolSize >= size)
     {
         gPoolSize -= size;
-        if (b == 0)
+        if (b == MEMORY_POOL_LEFT)
         {
             block = (struct PoolMemBlock *)((u32)gPoolListHeadL + size);
             gPoolListHeadL->next = block;
@@ -150,7 +150,7 @@ void *_pool_realloc(void *ptr, u32 size)
     if (block->next == gPoolListHeadL)
     {
         _pool_free(ptr);
-        new = _pool_alloc(size, 0);
+        new = _pool_alloc(size, MEMORY_POOL_LEFT);
     }
     return new;
 }
@@ -167,7 +167,7 @@ u32 PushPoolState(void)
     struct PoolMemBlock *lhead = gPoolListHeadL;
     struct PoolMemBlock *rhead = gPoolListHeadR;
 
-    gPoolState = _pool_alloc(sizeof(*gPoolState), 0);
+    gPoolState = _pool_alloc(sizeof(*gPoolState), MEMORY_POOL_LEFT);
     gPoolState->poolSize = poolSize;
     gPoolState->listHeadL = lhead;
     gPoolState->listHeadR = rhead;
@@ -202,20 +202,20 @@ static void dma_copy(u8 *dest, u8 *srcStart, u8 *srcEnd)
     }
 }
 
-static void *DynamicCopy(u8 *srcStart, u8 *srcEnd, u32 allocSize)
+static void *DynamicCopy(u8 *srcStart, u8 *srcEnd, u32 side)
 {
     void *dest;
     u32 size = ALIGN16(srcEnd - srcStart);
 
-    dest = _pool_alloc(size, allocSize);
+    dest = _pool_alloc(size, side);
     if (dest != NULL)
         dma_copy(dest, srcStart, srcEnd);
     return dest;
 }
 
-void *load_from_rom(u32 segment, u8 *srcStart, u8 *srcEnd, u32 allocSize)
+void *load_from_rom(u32 segment, u8 *srcStart, u8 *srcEnd, u32 side)
 {
-    void *ptr = DynamicCopy(srcStart, srcEnd, allocSize);
+    void *ptr = DynamicCopy(srcStart, srcEnd, side);
 
     if (ptr != NULL)
         set_segment_base_addr(segment, ptr);

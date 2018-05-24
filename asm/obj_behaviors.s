@@ -22495,12 +22495,12 @@ glabel BehTreasureChestShipLoop
 /* 0B2028 802F7028 10000020 */  b     .L802F70AC
 /* 0B202C 802F702C 00000000 */   nop   
 .L802F7030:
-/* 0B2030 802F7030 3C098036 */  lui   $t1, %hi(D_8035FE14) # $t1, 0x8036
-/* 0B2034 802F7034 8D29FE14 */  lw    $t1, %lo(D_8035FE14)($t1)
+/* 0B2030 802F7030 3C098036 */  lui   $t1, %hi(gWaterRegions) # $t1, 0x8036
+/* 0B2034 802F7034 8D29FE14 */  lw    $t1, %lo(gWaterRegions)($t1)
 /* 0B2038 802F7038 1120001A */  beqz  $t1, .L802F70A4
 /* 0B203C 802F703C 00000000 */   nop   
-/* 0B2040 802F7040 3C0A8036 */  lui   $t2, %hi(D_8035FE14) # $t2, 0x8036
-/* 0B2044 802F7044 8D4AFE14 */  lw    $t2, %lo(D_8035FE14)($t2)
+/* 0B2040 802F7040 3C0A8036 */  lui   $t2, %hi(gWaterRegions) # $t2, 0x8036
+/* 0B2044 802F7044 8D4AFE14 */  lw    $t2, %lo(gWaterRegions)($t2)
 /* 0B2048 802F7048 854B000C */  lh    $t3, 0xc($t2)
 /* 0B204C 802F704C 256CFFFB */  addiu $t4, $t3, -5
 /* 0B2050 802F7050 A54C000C */  sh    $t4, 0xc($t2)
@@ -22511,14 +22511,14 @@ glabel BehTreasureChestShipLoop
 /* 0B2064 802F7064 34840001 */   ori   $a0, (0x41160001 & 0xFFFF) # ori $a0, $a0, 1
 /* 0B2068 802F7068 0C09FCC2 */  jal   func_8027F308
 /* 0B206C 802F706C 24040009 */   li    $a0, 9
-/* 0B2070 802F7070 3C0D8036 */  lui   $t5, %hi(D_8035FE14) # $t5, 0x8036
-/* 0B2074 802F7074 8DADFE14 */  lw    $t5, %lo(D_8035FE14)($t5)
+/* 0B2070 802F7070 3C0D8036 */  lui   $t5, %hi(gWaterRegions) # $t5, 0x8036
+/* 0B2074 802F7074 8DADFE14 */  lw    $t5, %lo(gWaterRegions)($t5)
 /* 0B2078 802F7078 85AE000C */  lh    $t6, 0xc($t5)
 /* 0B207C 802F707C 29C1FEB1 */  slti  $at, $t6, -0x14f
 /* 0B2080 802F7080 10200008 */  beqz  $at, .L802F70A4
 /* 0B2084 802F7084 00000000 */   nop   
-/* 0B2088 802F7088 3C188036 */  lui   $t8, %hi(D_8035FE14) # $t8, 0x8036
-/* 0B208C 802F708C 8F18FE14 */  lw    $t8, %lo(D_8035FE14)($t8)
+/* 0B2088 802F7088 3C188036 */  lui   $t8, %hi(gWaterRegions) # $t8, 0x8036
+/* 0B208C 802F708C 8F18FE14 */  lw    $t8, %lo(gWaterRegions)($t8)
 /* 0B2090 802F7090 240FFEB1 */  li    $t7, -335
 /* 0B2094 802F7094 A70F000C */  sh    $t7, 0xc($t8)
 /* 0B2098 802F7098 3C198036 */  lui   $t9, %hi(gCurrentObject) # $t9, 0x8036

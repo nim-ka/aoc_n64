@@ -10640,8 +10640,8 @@ glabel BehThiTopTrapLoop
 /* 0614B4 802A64B4 8F190154 */  lw    $t9, 0x154($t8)
 /* 0614B8 802A64B8 17200005 */  bnez  $t9, .L802A64D0
 /* 0614BC 802A64BC 00000000 */   nop   
-/* 0614C0 802A64C0 3C098036 */  lui   $t1, %hi(D_8035FE14) # $t1, 0x8036
-/* 0614C4 802A64C4 8D29FE14 */  lw    $t1, %lo(D_8035FE14)($t1)
+/* 0614C0 802A64C0 3C098036 */  lui   $t1, %hi(gWaterRegions) # $t1, 0x8036
+/* 0614C4 802A64C4 8D29FE14 */  lw    $t1, %lo(gWaterRegions)($t1)
 /* 0614C8 802A64C8 24080BB8 */  li    $t0, 3000
 /* 0614CC 802A64CC A5280024 */  sh    $t0, 0x24($t1)
 .L802A64D0:
@@ -10650,7 +10650,7 @@ glabel BehThiTopTrapLoop
 /* 0614D8 802A64D8 10000003 */  b     .L802A64E8
 /* 0614DC 802A64DC 00000000 */   nop   
 .L802A64E0:
-/* 0614E0 802A64E0 0C0E0E73 */  jal   ProcessCollision
+/* 0614E0 802A64E0 0C0E0E73 */  jal   load_object_collision_model
 /* 0614E4 802A64E4 00000000 */   nop   
 .L802A64E8:
 /* 0614E8 802A64E8 10000001 */  b     .L802A64F0
@@ -10719,8 +10719,8 @@ glabel BehThiTinyTopLoop
 /* 0615D0 802A65D0 29E10032 */  slti  $at, $t7, 0x32
 /* 0615D4 802A65D4 1020000B */  beqz  $at, .L802A6604
 /* 0615D8 802A65D8 00000000 */   nop   
-/* 0615DC 802A65DC 3C188036 */  lui   $t8, %hi(D_8035FE14) # $t8, 0x8036
-/* 0615E0 802A65E0 8F18FE14 */  lw    $t8, %lo(D_8035FE14)($t8)
+/* 0615DC 802A65DC 3C188036 */  lui   $t8, %hi(gWaterRegions) # $t8, 0x8036
+/* 0615E0 802A65E0 8F18FE14 */  lw    $t8, %lo(gWaterRegions)($t8)
 /* 0615E4 802A65E4 87190024 */  lh    $t9, 0x24($t8)
 /* 0615E8 802A65E8 2728FFFF */  addiu $t0, $t9, -1
 /* 0615EC 802A65EC A7080024 */  sh    $t0, 0x24($t8)
@@ -10751,8 +10751,8 @@ glabel BehThiTinyTopLoop
 /* 061644 802A6644 8DCF0154 */  lw    $t7, 0x154($t6)
 /* 061648 802A6648 15E00005 */  bnez  $t7, .L802A6660
 /* 06164C 802A664C 00000000 */   nop   
-/* 061650 802A6650 3C088036 */  lui   $t0, %hi(D_8035FE14) # $t0, 0x8036
-/* 061654 802A6654 8D08FE14 */  lw    $t0, %lo(D_8035FE14)($t0)
+/* 061650 802A6650 3C088036 */  lui   $t0, %hi(gWaterRegions) # $t0, 0x8036
+/* 061654 802A6654 8D08FE14 */  lw    $t0, %lo(gWaterRegions)($t0)
 /* 061658 802A6658 241902BC */  li    $t9, 700
 /* 06165C 802A665C A5190024 */  sh    $t9, 0x24($t0)
 .L802A6660:
@@ -14551,7 +14551,7 @@ glabel BehKickableBoardLoop
 /* 064BFC 802A9BFC 27280001 */  addiu $t0, $t9, 1
 /* 064C00 802A9C00 AF08014C */  sw    $t0, 0x14c($t8)
 .L802A9C04:
-/* 064C04 802A9C04 0C0E0E73 */  jal   ProcessCollision
+/* 064C04 802A9C04 0C0E0E73 */  jal   load_object_collision_model
 /* 064C08 802A9C08 00000000 */   nop   
 /* 064C0C 802A9C0C 10000095 */  b     .L802A9E64
 /* 064C10 802A9C10 00000000 */   nop   
@@ -14559,7 +14559,7 @@ glabel BehKickableBoardLoop
 /* 064C14 802A9C14 3C098036 */  lui   $t1, %hi(gCurrentObject) # $t1, 0x8036
 /* 064C18 802A9C18 8D29FDF0 */  lw    $t1, %lo(gCurrentObject)($t1)
 /* 064C1C 802A9C1C AD2000D0 */  sw    $zero, 0xd0($t1)
-/* 064C20 802A9C20 0C0E0E73 */  jal   ProcessCollision
+/* 064C20 802A9C20 0C0E0E73 */  jal   load_object_collision_model
 /* 064C24 802A9C24 00000000 */   nop   
 /* 064C28 802A9C28 3C0A8036 */  lui   $t2, %hi(gCurrentObject) # $t2, 0x8036
 /* 064C2C 802A9C2C 8D4AFDF0 */  lw    $t2, %lo(gCurrentObject)($t2)
@@ -14704,12 +14704,12 @@ glabel BehKickableBoardLoop
 /* 064E3C 802A9E3C 0C0B25C0 */  jal   PlaySound2
 /* 064E40 802A9E40 34848081 */   ori   $a0, (0x303D8081 & 0xFFFF) # ori $a0, $a0, 0x8081
 .L802A9E44:
-/* 064E44 802A9E44 0C0E0E73 */  jal   ProcessCollision
+/* 064E44 802A9E44 0C0E0E73 */  jal   load_object_collision_model
 /* 064E48 802A9E48 00000000 */   nop   
 /* 064E4C 802A9E4C 10000005 */  b     .L802A9E64
 /* 064E50 802A9E50 00000000 */   nop   
 .L802A9E54:
-/* 064E54 802A9E54 0C0E0E73 */  jal   ProcessCollision
+/* 064E54 802A9E54 0C0E0E73 */  jal   load_object_collision_model
 /* 064E58 802A9E58 00000000 */   nop   
 /* 064E5C 802A9E5C 10000001 */  b     .L802A9E64
 /* 064E60 802A9E60 00000000 */   nop   
@@ -17332,7 +17332,7 @@ glabel L802AC348
 /* 067368 802AC368 8D09014C */  lw    $t1, 0x14c($t0)
 /* 06736C 802AC36C 15200003 */  bnez  $t1, .L802AC37C
 /* 067370 802AC370 00000000 */   nop   
-/* 067374 802AC374 0C0E0E73 */  jal   ProcessCollision
+/* 067374 802AC374 0C0E0E73 */  jal   load_object_collision_model
 /* 067378 802AC378 00000000 */   nop   
 .L802AC37C:
 /* 06737C 802AC37C 0C0AB178 */  jal   BehStarDoorLoop2
@@ -19486,7 +19486,7 @@ glabel ActionLittleCage0
 /* 0691F0 802AE1F0 24180001 */  li    $t8, 1
 /* 0691F4 802AE1F4 AF38014C */  sw    $t8, 0x14c($t9)
 .L802AE1F8:
-/* 0691F8 802AE1F8 0C0E0E73 */  jal   ProcessCollision
+/* 0691F8 802AE1F8 0C0E0E73 */  jal   load_object_collision_model
 /* 0691FC 802AE1FC 00000000 */   nop   
 /* 069200 802AE200 10000001 */  b     .L802AE208
 /* 069204 802AE204 00000000 */   nop   
@@ -19515,7 +19515,7 @@ glabel ActionLittleCage1
 /* 069250 802AE250 8D0900C8 */  lw    $t1, 0xc8($t0)
 /* 069254 802AE254 252A0800 */  addiu $t2, $t1, 0x800
 /* 069258 802AE258 AD0A00C8 */  sw    $t2, 0xc8($t0)
-/* 06925C 802AE25C 0C0E0E73 */  jal   ProcessCollision
+/* 06925C 802AE25C 0C0E0E73 */  jal   load_object_collision_model
 /* 069260 802AE260 00000000 */   nop   
 /* 069264 802AE264 10000001 */  b     .L802AE26C
 /* 069268 802AE268 00000000 */   nop   
@@ -21911,7 +21911,7 @@ glabel L802B044C
 .L802B0480:
 /* 06B480 802B0480 0C0A87A7 */  jal   MoveObj2
 /* 06B484 802B0484 00000000 */   nop   
-/* 06B488 802B0488 0C0E0E73 */  jal   ProcessCollision
+/* 06B488 802B0488 0C0E0E73 */  jal   load_object_collision_model
 /* 06B48C 802B048C 00000000 */   nop   
 /* 06B490 802B0490 10000001 */  b     .L802B0498
 /* 06B494 802B0494 00000000 */   nop   
@@ -22763,7 +22763,7 @@ glabel func_802B0F54
 /* 06C0BC 802B10BC 0C0B25C0 */  jal   PlaySound2
 /* 06C0C0 802B10C0 3484C081 */   ori   $a0, (0x3041C081 & 0xFFFF) # ori $a0, $a0, 0xc081
 .L802B10C4:
-/* 06C0C4 802B10C4 0C0E0E73 */  jal   ProcessCollision
+/* 06C0C4 802B10C4 0C0E0E73 */  jal   load_object_collision_model
 /* 06C0C8 802B10C8 00000000 */   nop   
 /* 06C0CC 802B10CC 10000014 */  b     .L802B1120
 /* 06C0D0 802B10D0 00000000 */   nop   
@@ -22859,7 +22859,7 @@ glabel func_802B1138
 /* 06C218 802B1218 8F18FDF0 */  lw    $t8, %lo(gCurrentObject)($t8)
 /* 06C21C 802B121C AF00014C */  sw    $zero, 0x14c($t8)
 .L802B1220:
-/* 06C220 802B1220 0C0E0E73 */  jal   ProcessCollision
+/* 06C220 802B1220 0C0E0E73 */  jal   load_object_collision_model
 /* 06C224 802B1224 00000000 */   nop   
 .L802B1228:
 /* 06C228 802B1228 10000001 */  b     .L802B1230
@@ -23553,7 +23553,7 @@ glabel BehPoundExplodesLoop
 /* 06CBCC 802B1BCC 0C0A7F7B */  jal   DeactivateObject
 /* 06CBD0 802B1BD0 8C84FDF0 */   lw    $a0, %lo(gCurrentObject)($a0)
 .L802B1BD4:
-/* 06CBD4 802B1BD4 0C0E0E73 */  jal   ProcessCollision
+/* 06CBD4 802B1BD4 0C0E0E73 */  jal   load_object_collision_model
 /* 06CBD8 802B1BD8 00000000 */   nop   
 /* 06CBDC 802B1BDC 10000001 */  b     .L802B1BE4
 /* 06CBE0 802B1BE0 00000000 */   nop   
@@ -32122,7 +32122,7 @@ glabel L802B939C
 /* 074510 802B9510 0C0A87A7 */  jal   MoveObj2
 /* 074514 802B9514 00000000 */   nop   
 .L802B9518:
-/* 074518 802B9518 0C0E0E73 */  jal   ProcessCollision
+/* 074518 802B9518 0C0E0E73 */  jal   load_object_collision_model
 /* 07451C 802B951C 00000000 */   nop   
 /* 074520 802B9520 10000001 */  b     .L802B9528
 /* 074524 802B9524 00000000 */   nop   
@@ -32392,14 +32392,14 @@ glabel BehWaterLevelPillarLoop
 .L802B98BC:
 /* 0748BC 802B98BC 3C188036 */  lui   $t8, %hi(D_8035FE18) # $t8, 0x8036
 /* 0748C0 802B98C0 2718FE18 */  addiu $t8, %lo(D_8035FE18) # addiu $t8, $t8, -0x1e8
-/* 0748C4 802B98C4 3C088036 */  lui   $t0, %hi(D_8035FE14) # $t0, 0x8036
-/* 0748C8 802B98C8 8D08FE14 */  lw    $t0, %lo(D_8035FE14)($t0)
+/* 0748C4 802B98C4 3C088036 */  lui   $t0, %hi(gWaterRegions) # $t0, 0x8036
+/* 0748C8 802B98C8 8D08FE14 */  lw    $t0, %lo(gWaterRegions)($t0)
 /* 0748CC 802B98CC 8F190008 */  lw    $t9, 8($t8)
 /* 0748D0 802B98D0 A5190024 */  sh    $t9, 0x24($t0)
 /* 0748D4 802B98D4 3C098036 */  lui   $t1, %hi(D_8035FE18) # $t1, 0x8036
 /* 0748D8 802B98D8 2529FE18 */  addiu $t1, %lo(D_8035FE18) # addiu $t1, $t1, -0x1e8
-/* 0748DC 802B98DC 3C0B8036 */  lui   $t3, %hi(D_8035FE14) # $t3, 0x8036
-/* 0748E0 802B98E0 8D6BFE14 */  lw    $t3, %lo(D_8035FE14)($t3)
+/* 0748DC 802B98DC 3C0B8036 */  lui   $t3, %hi(gWaterRegions) # $t3, 0x8036
+/* 0748E0 802B98E0 8D6BFE14 */  lw    $t3, %lo(gWaterRegions)($t3)
 /* 0748E4 802B98E4 8D2A0000 */  lw    $t2, ($t1)
 /* 0748E8 802B98E8 A56A000C */  sh    $t2, 0xc($t3)
 /* 0748EC 802B98EC 10000001 */  b     .L802B98F4
@@ -32418,12 +32418,12 @@ glabel BehInvisibleObjUnderBridge
 /* 074914 802B9914 304E0200 */  andi  $t6, $v0, 0x200
 /* 074918 802B9918 11C00009 */  beqz  $t6, .L802B9940
 /* 07491C 802B991C 00000000 */   nop   
-/* 074920 802B9920 3C188036 */  lui   $t8, %hi(D_8035FE14) # $t8, 0x8036
-/* 074924 802B9924 8F18FE14 */  lw    $t8, %lo(D_8035FE14)($t8)
+/* 074920 802B9920 3C188036 */  lui   $t8, %hi(gWaterRegions) # $t8, 0x8036
+/* 074924 802B9924 8F18FE14 */  lw    $t8, %lo(gWaterRegions)($t8)
 /* 074928 802B9928 240FFCE0 */  li    $t7, -800
 /* 07492C 802B992C A70F000C */  sh    $t7, 0xc($t8)
-/* 074930 802B9930 3C088036 */  lui   $t0, %hi(D_8035FE14) # $t0, 0x8036
-/* 074934 802B9934 8D08FE14 */  lw    $t0, %lo(D_8035FE14)($t0)
+/* 074930 802B9930 3C088036 */  lui   $t0, %hi(gWaterRegions) # $t0, 0x8036
+/* 074934 802B9934 8D08FE14 */  lw    $t0, %lo(gWaterRegions)($t0)
 /* 074938 802B9938 2419FCE0 */  li    $t9, -800
 /* 07493C 802B993C A5190018 */  sh    $t9, 0x18($t0)
 .L802B9940:
@@ -32666,7 +32666,7 @@ glabel BehMoatGrillsLoop
 /* 074C88 802B9C88 10000003 */  b     .L802B9C98
 /* 074C8C 802B9C8C 00000000 */   nop   
 .L802B9C90:
-/* 074C90 802B9C90 0C0E0E73 */  jal   ProcessCollision
+/* 074C90 802B9C90 0C0E0E73 */  jal   load_object_collision_model
 /* 074C94 802B9C94 00000000 */   nop   
 .L802B9C98:
 /* 074C98 802B9C98 10000001 */  b     .L802B9CA0
@@ -34964,7 +34964,7 @@ glabel BehRotatingCwFireBarsLoop
 /* 076CDC 802BBCDC 8DCF0144 */  lw    $t7, 0x144($t6)
 /* 076CE0 802BBCE0 15E00003 */  bnez  $t7, .L802BBCF0
 /* 076CE4 802BBCE4 00000000 */   nop   
-/* 076CE8 802BBCE8 0C0E0E73 */  jal   ProcessCollision
+/* 076CE8 802BBCE8 0C0E0E73 */  jal   load_object_collision_model
 /* 076CEC 802BBCEC 00000000 */   nop   
 .L802BBCF0:
 /* 076CF0 802BBCF0 10000001 */  b     .L802BBCF8
@@ -36600,7 +36600,7 @@ glabel BehToxBoxLoop
 /* 078418 802BD418 3C048033 */  lui   $a0, %hi(TableToxBoxActions) # $a0, 0x8033
 /* 07841C 802BD41C 0C0A8DA2 */  jal   func_802A3688
 /* 078420 802BD420 2484F978 */   addiu $a0, %lo(TableToxBoxActions) # addiu $a0, $a0, -0x688
-/* 078424 802BD424 0C0E0E73 */  jal   ProcessCollision
+/* 078424 802BD424 0C0E0E73 */  jal   load_object_collision_model
 /* 078428 802BD428 00000000 */   nop   
 /* 07842C 802BD42C 10000001 */  b     .L802BD434
 /* 078430 802BD430 00000000 */   nop   
@@ -40563,7 +40563,7 @@ glabel ActionExclamationBox2
 /* 07BBC4 802C0BC4 240E0003 */  li    $t6, 3
 /* 07BBC8 802C0BC8 ADEE014C */  sw    $t6, 0x14c($t7)
 .L802C0BCC:
-/* 07BBCC 802C0BCC 0C0E0E73 */  jal   ProcessCollision
+/* 07BBCC 802C0BCC 0C0E0E73 */  jal   load_object_collision_model
 /* 07BBD0 802C0BD0 00000000 */   nop   
 /* 07BBD4 802C0BD4 10000001 */  b     .L802C0BDC
 /* 07BBD8 802C0BD8 00000000 */   nop   
@@ -41632,7 +41632,7 @@ glabel BehBlueCoinSwitchLoop
 /* 07CB2C 802C1B2C 0C0B25C0 */  jal   PlaySound2
 /* 07CB30 802C1B30 3484A081 */   ori   $a0, (0x3067A081 & 0xFFFF) # ori $a0, $a0, 0xa081
 .L802C1B34:
-/* 07CB34 802C1B34 0C0E0E73 */  jal   ProcessCollision
+/* 07CB34 802C1B34 0C0E0E73 */  jal   load_object_collision_model
 /* 07CB38 802C1B38 00000000 */   nop   
 /* 07CB3C 802C1B3C 10000045 */  b     .L802C1C54
 /* 07CB40 802C1B40 00000000 */   nop   
@@ -41666,7 +41666,7 @@ glabel BehBlueCoinSwitchLoop
 /* 07CBAC 802C1BAC 10000005 */  b     .L802C1BC4
 /* 07CBB0 802C1BB0 00000000 */   nop   
 .L802C1BB4:
-/* 07CBB4 802C1BB4 0C0E0E73 */  jal   ProcessCollision
+/* 07CBB4 802C1BB4 0C0E0E73 */  jal   load_object_collision_model
 /* 07CBB8 802C1BB8 00000000 */   nop   
 /* 07CBBC 802C1BBC 0C0A87A7 */  jal   MoveObj2
 /* 07CBC0 802C1BC0 00000000 */   nop   
@@ -41934,8 +41934,8 @@ glabel BehInitWaterLevelTriggerLoop
 /* 07CF6C 802C1F6C 8DCF014C */  lw    $t7, 0x14c($t6)
 /* 07CF70 802C1F70 15E0000C */  bnez  $t7, .L802C1FA4
 /* 07CF74 802C1F74 00000000 */   nop   
-/* 07CF78 802C1F78 3C188036 */  lui   $t8, %hi(D_8035FE14) # $t8, 0x8036
-/* 07CF7C 802C1F7C 8F18FE14 */  lw    $t8, %lo(D_8035FE14)($t8)
+/* 07CF78 802C1F78 3C188036 */  lui   $t8, %hi(gWaterRegions) # $t8, 0x8036
+/* 07CF7C 802C1F7C 8F18FE14 */  lw    $t8, %lo(gWaterRegions)($t8)
 /* 07CF80 802C1F80 13000006 */  beqz  $t8, .L802C1F9C
 /* 07CF84 802C1F84 00000000 */   nop   
 /* 07CF88 802C1F88 3C198036 */  lui   $t9, %hi(gCurrentObject) # $t9, 0x8036
@@ -41953,8 +41953,8 @@ glabel BehInitWaterLevelTriggerLoop
 /* 07CFB0 802C1FB0 2961000A */  slti  $at, $t3, 0xa
 /* 07CFB4 802C1FB4 10200008 */  beqz  $at, .L802C1FD8
 /* 07CFB8 802C1FB8 00000000 */   nop   
-/* 07CFBC 802C1FBC 3C0C8036 */  lui   $t4, %hi(D_8035FE14) # $t4, 0x8036
-/* 07CFC0 802C1FC0 8D8CFE14 */  lw    $t4, %lo(D_8035FE14)($t4)
+/* 07CFBC 802C1FBC 3C0C8036 */  lui   $t4, %hi(gWaterRegions) # $t4, 0x8036
+/* 07CFC0 802C1FC0 8D8CFE14 */  lw    $t4, %lo(gWaterRegions)($t4)
 /* 07CFC4 802C1FC4 3C0E8036 */  lui   $t6, %hi(D_8035FE18) # $t6, 0x8036
 /* 07CFC8 802C1FC8 25CEFE18 */  addiu $t6, %lo(D_8035FE18) # addiu $t6, $t6, -0x1e8
 /* 07CFCC 802C1FCC 858D000C */  lh    $t5, 0xc($t4)
@@ -41975,9 +41975,9 @@ glabel BehInitWaterLevelTriggerLoop
 /* 07D004 802C2004 3C0141A0 */  li    $at, 0x41A00000 # 20.000000
 /* 07D008 802C2008 44813000 */  mtc1  $at, $f6
 /* 07D00C 802C200C 448A5000 */  mtc1  $t2, $f10
-/* 07D010 802C2010 3C0D8036 */  lui   $t5, %hi(D_8035FE14) # $t5, 0x8036
+/* 07D010 802C2010 3C0D8036 */  lui   $t5, %hi(gWaterRegions) # $t5, 0x8036
 /* 07D014 802C2014 46062202 */  mul.s $f8, $f4, $f6
-/* 07D018 802C2018 8DADFE14 */  lw    $t5, %lo(D_8035FE14)($t5)
+/* 07D018 802C2018 8DADFE14 */  lw    $t5, %lo(gWaterRegions)($t5)
 /* 07D01C 802C201C 46805420 */  cvt.s.w $f16, $f10
 /* 07D020 802C2020 46104480 */  add.s $f18, $f8, $f16
 /* 07D024 802C2024 4600910D */  trunc.w.s $f4, $f18
@@ -42000,8 +42000,8 @@ glabel BehWaterLevelTriggerLoop
 /* 07D058 802C2058 27BDFFD8 */  addiu $sp, $sp, -0x28
 /* 07D05C 802C205C AFBF001C */  sw    $ra, 0x1c($sp)
 /* 07D060 802C2060 AFB00018 */  sw    $s0, 0x18($sp)
-/* 07D064 802C2064 3C0E8036 */  lui   $t6, %hi(D_8035FE14) # $t6, 0x8036
-/* 07D068 802C2068 8DCEFE14 */  lw    $t6, %lo(D_8035FE14)($t6)
+/* 07D064 802C2064 3C0E8036 */  lui   $t6, %hi(gWaterRegions) # $t6, 0x8036
+/* 07D068 802C2068 8DCEFE14 */  lw    $t6, %lo(gWaterRegions)($t6)
 /* 07D06C 802C206C 11C000A4 */  beqz  $t6, .L802C2300
 /* 07D070 802C2070 00000000 */   nop   
 /* 07D074 802C2074 3C0F8036 */  lui   $t7, %hi(gCurrentObject) # $t7, 0x8036
@@ -47614,7 +47614,7 @@ glabel BehWhompLoop
 /* 081F74 802C6F74 0C0A8F6F */  jal   func_802A3DBC
 /* 081F78 802C6F78 00000000 */   nop   
 .L802C6F7C:
-/* 081F7C 802C6F7C 0C0E0E73 */  jal   ProcessCollision
+/* 081F7C 802C6F7C 0C0E0E73 */  jal   load_object_collision_model
 /* 081F80 802C6F80 00000000 */   nop   
 .L802C6F84:
 /* 081F84 802C6F84 10000001 */  b     .L802C6F8C

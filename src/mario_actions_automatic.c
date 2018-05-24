@@ -89,9 +89,10 @@ static s32 set_pole_position(struct MarioState *m, f32 offsetY)
     if (m->pos[1] < floorHeight)
     {
         m->pos[1] = floorHeight;
-       set_mario_action(m, ACT_IDLE, 0);
+        set_mario_action(m, ACT_IDLE, 0);
         result = POLE_TOUCHED_FLOOR;
-    }    else if (*(f32 *)&marioObj->unk110 < -m->usedObj->unk208)
+    }
+    else if (*(f32 *)&marioObj->unk110 < -m->usedObj->unk208)
     {
         m->pos[1] = m->usedObj->pos[1] - m->usedObj->unk208;
         set_mario_action(m, ACT_FREEFALL, 0);
@@ -107,9 +108,10 @@ static s32 set_pole_position(struct MarioState *m, f32 offsetY)
         }
         else
         {
-           set_mario_action(m, ACT_IDLE, 0);
+            set_mario_action(m, ACT_IDLE, 0);
             result = POLE_TOUCHED_FLOOR;
-        }    }
+        }
+    }
 
     vec3f_copy(m->marioObj->gfx.unk20, m->pos);
     vec3s_set(m->marioObj->gfx.unk1A, m->usedObj->angle[0], m->faceAngle[1], m->usedObj->angle[2]);

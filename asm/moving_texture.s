@@ -32,8 +32,8 @@ glabel Geo18_802D0080
 /* 08A5E0 802CF5E0 24010001 */  li    $at, 1
 /* 08A5E4 802CF5E4 14810040 */  bne   $a0, $at, .L802CF6E8
 /* 08A5E8 802CF5E8 00000000 */   nop   
-/* 08A5EC 802CF5EC 3C098036 */  lui   $t1, %hi(D_8035FE14) # $t1, 0x8036
-/* 08A5F0 802CF5F0 8D29FE14 */  lw    $t1, %lo(D_8035FE14)($t1)
+/* 08A5EC 802CF5EC 3C098036 */  lui   $t1, %hi(gWaterRegions) # $t1, 0x8036
+/* 08A5F0 802CF5F0 8D29FE14 */  lw    $t1, %lo(gWaterRegions)($t1)
 /* 08A5F4 802CF5F4 1120003C */  beqz  $t1, .L802CF6E8
 /* 08A5F8 802CF5F8 00000000 */   nop   
 /* 08A5FC 802CF5FC 3C0A8033 */  lui   $t2, %hi(D_8032FFE0) # $t2, 0x8033
@@ -70,16 +70,16 @@ glabel Geo18_802D0080
 /* 08A670 802CF670 240D0400 */  li    $t5, 1024
 /* 08A674 802CF674 A7AD0002 */  sh    $t5, 2($sp)
 .L802CF678:
-/* 08A678 802CF678 3C198036 */  lui   $t9, %hi(D_8035FE14) # $t9, 0x8036
-/* 08A67C 802CF67C 8F39FE14 */  lw    $t9, %lo(D_8035FE14)($t9)
+/* 08A678 802CF678 3C198036 */  lui   $t9, %hi(gWaterRegions) # $t9, 0x8036
+/* 08A67C 802CF67C 8F39FE14 */  lw    $t9, %lo(gWaterRegions)($t9)
 /* 08A680 802CF680 AFA0000C */  sw    $zero, 0xc($sp)
 /* 08A684 802CF684 87380000 */  lh    $t8, ($t9)
 /* 08A688 802CF688 1B000014 */  blez  $t8, .L802CF6DC
 /* 08A68C 802CF68C 00000000 */   nop   
 .L802CF690:
 /* 08A690 802CF690 8FA8000C */  lw    $t0, 0xc($sp)
-/* 08A694 802CF694 3C0F8036 */  lui   $t7, %hi(D_8035FE14) # $t7, 0x8036
-/* 08A698 802CF698 8DEFFE14 */  lw    $t7, %lo(D_8035FE14)($t7)
+/* 08A694 802CF694 3C0F8036 */  lui   $t7, %hi(gWaterRegions) # $t7, 0x8036
+/* 08A698 802CF698 8DEFFE14 */  lw    $t7, %lo(gWaterRegions)($t7)
 /* 08A69C 802CF69C 00084880 */  sll   $t1, $t0, 2
 /* 08A6A0 802CF6A0 01284823 */  subu  $t1, $t1, $t0
 /* 08A6A4 802CF6A4 87AE0002 */  lh    $t6, 2($sp)
@@ -88,8 +88,8 @@ glabel Geo18_802D0080
 /* 08A6B0 802CF6B0 01EA5821 */  addu  $t3, $t7, $t2
 /* 08A6B4 802CF6B4 A56E000C */  sh    $t6, 0xc($t3)
 /* 08A6B8 802CF6B8 8FAC000C */  lw    $t4, 0xc($sp)
-/* 08A6BC 802CF6BC 3C198036 */  lui   $t9, %hi(D_8035FE14) # $t9, 0x8036
-/* 08A6C0 802CF6C0 8F39FE14 */  lw    $t9, %lo(D_8035FE14)($t9)
+/* 08A6BC 802CF6BC 3C198036 */  lui   $t9, %hi(gWaterRegions) # $t9, 0x8036
+/* 08A6C0 802CF6C0 8F39FE14 */  lw    $t9, %lo(gWaterRegions)($t9)
 /* 08A6C4 802CF6C4 258D0001 */  addiu $t5, $t4, 1
 /* 08A6C8 802CF6C8 AFAD000C */  sw    $t5, 0xc($sp)
 /* 08A6CC 802CF6CC 87380000 */  lh    $t8, ($t9)
@@ -1123,15 +1123,15 @@ glabel Geo18_802D104C
 /* 08B594 802D0594 00000000 */   nop   
 /* 08B598 802D0598 3C018033 */  lui   $at, %hi(D_8032FFD8) # $at, 0x8033
 /* 08B59C 802D059C A020FFD8 */  sb    $zero, %lo(D_8032FFD8)($at)
-/* 08B5A0 802D05A0 3C0F8036 */  lui   $t7, %hi(D_8035FE14) # $t7, 0x8036
-/* 08B5A4 802D05A4 8DEFFE14 */  lw    $t7, %lo(D_8035FE14)($t7)
+/* 08B5A0 802D05A0 3C0F8036 */  lui   $t7, %hi(gWaterRegions) # $t7, 0x8036
+/* 08B5A4 802D05A4 8DEFFE14 */  lw    $t7, %lo(gWaterRegions)($t7)
 /* 08B5A8 802D05A8 15E00003 */  bnez  $t7, .L802D05B8
 /* 08B5AC 802D05AC 00000000 */   nop   
 /* 08B5B0 802D05B0 100000A3 */  b     .L802D0840
 /* 08B5B4 802D05B4 00001025 */   move  $v0, $zero
 .L802D05B8:
-/* 08B5B8 802D05B8 3C188036 */  lui   $t8, %hi(D_8035FE14) # $t8, 0x8036
-/* 08B5BC 802D05BC 8F18FE14 */  lw    $t8, %lo(D_8035FE14)($t8)
+/* 08B5B8 802D05B8 3C188036 */  lui   $t8, %hi(gWaterRegions) # $t8, 0x8036
+/* 08B5BC 802D05BC 8F18FE14 */  lw    $t8, %lo(gWaterRegions)($t8)
 /* 08B5C0 802D05C0 87190000 */  lh    $t9, ($t8)
 /* 08B5C4 802D05C4 A7B90032 */  sh    $t9, 0x32($sp)
 /* 08B5C8 802D05C8 87A40032 */  lh    $a0, 0x32($sp)
@@ -1233,8 +1233,8 @@ glabel Geo18_802D104C
 /* 08B728 802D0728 00000000 */   nop   
 .L802D072C:
 /* 08B72C 802D072C 8FAC0028 */  lw    $t4, 0x28($sp)
-/* 08B730 802D0730 3C0B8036 */  lui   $t3, %hi(D_8035FE14) # $t3, 0x8036
-/* 08B734 802D0734 8D6BFE14 */  lw    $t3, %lo(D_8035FE14)($t3)
+/* 08B730 802D0730 3C0B8036 */  lui   $t3, %hi(gWaterRegions) # $t3, 0x8036
+/* 08B734 802D0734 8D6BFE14 */  lw    $t3, %lo(gWaterRegions)($t3)
 /* 08B738 802D0738 000C6880 */  sll   $t5, $t4, 2
 /* 08B73C 802D073C 01AC6823 */  subu  $t5, $t5, $t4
 /* 08B740 802D0740 000D6840 */  sll   $t5, $t5, 1
@@ -1243,8 +1243,8 @@ glabel Geo18_802D104C
 /* 08B74C 802D074C 87190002 */  lh    $t9, 2($t8)
 /* 08B750 802D0750 A7B90030 */  sh    $t9, 0x30($sp)
 /* 08B754 802D0754 8FA80028 */  lw    $t0, 0x28($sp)
-/* 08B758 802D0758 3C0E8036 */  lui   $t6, %hi(D_8035FE14) # $t6, 0x8036
-/* 08B75C 802D075C 8DCEFE14 */  lw    $t6, %lo(D_8035FE14)($t6)
+/* 08B758 802D0758 3C0E8036 */  lui   $t6, %hi(gWaterRegions) # $t6, 0x8036
+/* 08B75C 802D075C 8DCEFE14 */  lw    $t6, %lo(gWaterRegions)($t6)
 /* 08B760 802D0760 00084880 */  sll   $t1, $t0, 2
 /* 08B764 802D0764 01284823 */  subu  $t1, $t1, $t0
 /* 08B768 802D0768 00094840 */  sll   $t1, $t1, 1

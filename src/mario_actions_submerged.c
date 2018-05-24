@@ -126,8 +126,8 @@ static void apply_water_current(struct MarioState *m, Vec3f step)
 
     if (m->floor->type == SURFACE_000E)
     {
-        s16 currentAngle = m->floor->unk02 << 8;
-        f32 currentSpeed = sWaterCurrentSpeeds[m->floor->unk02 >> 8];
+        s16 currentAngle = m->floor->force << 8;
+        f32 currentSpeed = sWaterCurrentSpeeds[m->floor->force >> 8];
         
         step[0] += currentSpeed * sins(currentAngle);
         step[2] += currentSpeed * coss(currentAngle);

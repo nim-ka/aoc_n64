@@ -464,13 +464,13 @@ glabel gBehCommand
     .space 0x4
 glabel D_8035FDF8
     .space 0x4
-glabel D_8035FDFC
+glabel gSurfaceNodesAllocated
     .space 0x4
-glabel D_8035FE00
+glabel gSurfacesAllocated
     .space 0x4
-glabel D_8035FE04
+glabel gNumStaticSurfaceNodes
     .space 0x4
-glabel D_8035FE08
+glabel gNumStaticSurfaces
     .space 0x4
 glabel D_8035FE0C
     .space 0x4
@@ -478,7 +478,7 @@ glabel D_8035FE10
     .space 0x2
 glabel D_8035FE12
     .space 0x2
-glabel D_8035FE14
+glabel gWaterRegions
     .space 0x4
 glabel D_8035FE18
     .space 0x50
