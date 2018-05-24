@@ -263,7 +263,7 @@ s16 func_802E1190(s16 a0)
     return (s16) sp06;
 }
 
-void func_802E1224(u32 a0, u8 (*a1)[], s16 a2, s16 a3, s16 a4, s16 a5, s16 a6)
+void func_802E1224(u32 a0, u32 (*a1)[], s16 a2, s16 a3, s16 a4, s16 a5, s16 a6)
 {
     if (a1 != NULL)
     {
@@ -292,7 +292,7 @@ void func_802E1374(u32 a0, u8 (*a1)[], s16 a2, s16 a3, s16 a4, s16 a5, s16 a6, s
     *(f32 *) &sp34->unk110 = (f32) a7;
 }
 
-void Unknown802E142C(u8 (*a0)[], s16 a1[])
+void Unknown802E142C(u32 (*a0)[], s16 a1[])
 {    
     struct Object *sp3C;
     s16 sp3A;

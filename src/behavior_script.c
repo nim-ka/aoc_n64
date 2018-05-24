@@ -14,70 +14,10 @@
 extern u32 *gBehCommand;
 static u16 gRandomSeed16;
 
-typedef s32 (*BehCommandProc)(void);
-static BehCommandProc BehaviorJumpTable[] =
+// unused
+static void func_80383B70(u32 segptr)
 {
-    Behavior00,
-    Behavior01,
-    Behavior02,
-    Behavior03,
-    Behavior04,
-    Behavior05,
-    Behavior06,
-    Behavior07,
-    Behavior08,
-    Behavior09,
-    Behavior0A,
-    Behavior0B,
-    Behavior0C,
-    Behavior0D,
-    Behavior0E,
-    Behavior0F,
-    Behavior10,
-    Behavior11,
-    Behavior12,
-    Behavior13,
-    Behavior14,
-    Behavior15,
-    Behavior16,
-    Behavior17,
-    Behavior18,
-    Behavior19,
-    Behavior1A,
-    Behavior1B,
-    Behavior1C,
-    Behavior1D,
-    Behavior1E,
-    Behavior1F,
-    Behavior20,
-    Behavior21,
-    Behavior22,
-    Behavior23,
-    Behavior24,
-    Behavior25,
-    Behavior26,
-    Behavior27,
-    Behavior28,
-    Behavior29,
-    Behavior2A,
-    Behavior2B,
-    Behavior2C,
-    Behavior2D,
-    Behavior2E,
-    Behavior2F,
-    Behavior30,
-    Behavior31,
-    Behavior32,
-    Behavior33,
-    Behavior34,
-    Behavior35,
-    Behavior36,
-    Behavior37,
-};
-
-void func_80383B70(u32 segptr)
-{
-    gBehCommand = (u32 *)segmented_to_virtual((void *)segptr);
+    gBehCommand = segmented_to_virtual((void *)segptr);
     gCurrentObject->stackIndex = 0;
 }
 
@@ -85,10 +25,8 @@ u16 RandomU16(void)
 {
     u16 temp1, temp2;
 
-    if(gRandomSeed16 == 22026)
-    {
+    if (gRandomSeed16 == 22026)
         gRandomSeed16 = 0;
-    }
 
     temp1 = (gRandomSeed16 & 0xFF) << 8;
     temp1 = temp1 ^ gRandomSeed16;
@@ -98,16 +36,12 @@ u16 RandomU16(void)
     temp1 = ((temp1 & 0xFF) << 1) ^ gRandomSeed16;
     temp2 = (temp1 >> 1) ^ 0xFF80;
 
-    if((temp1 & 1) == 0)
+    if ((temp1 & 1) == 0)
     {
-        if(temp2 == 43605)
-        {
+        if (temp2 == 43605)
             gRandomSeed16 = 0;
-        }
         else
-        {
             gRandomSeed16 = temp2 ^ 0x1ff4;
-        }
     }
     else
     {
@@ -125,14 +59,10 @@ f32 RandomFloat(void)
 
 s32 RandomSign(void)
 {
-    if(RandomU16() >= 0x7FFF)
-    {
+    if (RandomU16() >= 0x7FFF)
         return 1;
-    }
     else
-    {
         return -1;
-    }
 }
 
 void func_80383D68(struct Object *object)
@@ -150,13 +80,13 @@ void func_80383D68(struct Object *object)
     object->gfx.unk1A[2] = object->faceAngle[2] & 0xFFFF;
 }
 
-void cur_object_stack_push(u32 value)
+static void cur_object_stack_push(u32 value)
 {
     gCurrentObject->stack[gCurrentObject->stackIndex] = value;
     gCurrentObject->stackIndex++;
 }
 
-u32 cur_object_stack_pop(void)
+static u32 cur_object_stack_pop(void)
 {
     u32 value;
     gCurrentObject->stackIndex--;
@@ -164,33 +94,33 @@ u32 cur_object_stack_pop(void)
     return value;
 }
 
-void Unknown80383E44(void) // ?
+static void Unknown80383E44(void) // ?
 {
-    for(;;);
+    for (;;);
 }
 
-s32 Behavior22(void)
+static s32 beh_cmd_unhide(void)
 {
     UnHideObject();
     gBehCommand++;
     return BEH_CONTINUE;
 }
 
-s32 Behavior35(void)
+static s32 Behavior35(void)
 {
     gCurrentObject->gfx.graphFlags &= ~GRAPH_RENDER_01;
     gBehCommand++;
     return BEH_CONTINUE;
 }
 
-s32 Behavior21(void)
+static s32 beh_cmd_billboard(void)
 {
     gCurrentObject->gfx.graphFlags |= GRAPH_RENDER_BILLBOARD;
     gBehCommand++;
     return BEH_CONTINUE;
 }
 
-s32 Behavior1B(void)
+static s32 beh_cmd_geo_layout(void)
 {
     s32 index = (s16)(gBehCommand[0] & 0xFFFF);
     gCurrentObject->gfx.geoLayout = gLoadedGeoLayouts[index];
@@ -198,7 +128,7 @@ s32 Behavior1B(void)
     return BEH_CONTINUE;
 }
 
-s32 Behavior1C(void)
+static s32 Behavior1C(void)
 {
     u32 arg0 = gBehCommand[1];
     void *arg1 = (void *) gBehCommand[2];
@@ -211,7 +141,7 @@ s32 Behavior1C(void)
     return BEH_CONTINUE;
 }
 
-s32 Behavior2C(void)
+static s32 Behavior2C(void)
 {
     u32 arg0 = gBehCommand[1];
     void *arg1 = (void *) gBehCommand[2];
@@ -226,7 +156,7 @@ s32 Behavior2C(void)
     return BEH_CONTINUE;
 }
 
-s32 Behavior29(void)
+static s32 Behavior29(void)
 {
     u32 behParam = (s16)(gBehCommand[0] & 0xFFFF);
     u32 arg1 = gBehCommand[1];
@@ -242,45 +172,46 @@ s32 Behavior29(void)
     return BEH_CONTINUE;
 }
 
-s32 Behavior1D(void)
+static s32 beh_cmd_deactivate(void)
 {
     gCurrentObject->active = 0;
     return BEH_BREAK;
 }
 
-s32 Behavior0A(void)
+static s32 beh_cmd_break(void)
 {
     return BEH_BREAK;
 }
 
-s32 Behavior0B(void)
+// unused
+static s32 Behavior0B(void)
 {
     return BEH_BREAK;
 }
 
-s32 Behavior02(void)
+static s32 beh_cmd_call(void)
 {
     u32* jumpAddress;
 
     gBehCommand++;
-    cur_object_stack_push((u32)&gBehCommand[1]);
+    cur_object_stack_push((u32)(gBehCommand + 1));
     jumpAddress = (u32 *)segmented_to_virtual((void *)gBehCommand[0]);
     gBehCommand = jumpAddress;
 
     return BEH_CONTINUE;
 }
 
-s32 Behavior03(void)
+static s32 beh_cmd_return(void)
 {
     gBehCommand = (u32 *)cur_object_stack_pop();
     return BEH_CONTINUE;
 }
 
-s32 Behavior01(void)
+static s32 beh_cmd_delay(void)
 {
     s16 arg0 = gBehCommand[0] & 0xFFFF;
 
-    if(gCurrentObject->unk1F4 < arg0 - 1)
+    if (gCurrentObject->unk1F4 < arg0 - 1)
     {
         gCurrentObject->unk1F4++;
     }
@@ -293,12 +224,12 @@ s32 Behavior01(void)
     return BEH_BREAK;
 }
 
-s32 Behavior25(void)
+static s32 beh_cmd_delay_var(void)
 {
     u8 objectOffset = (gBehCommand[0] >> 16) & 0xFF;
     s32 arg0 = cur_object_get_s32(objectOffset);
 
-    if(gCurrentObject->unk1F4 < (arg0 - 1))
+    if (gCurrentObject->unk1F4 < (arg0 - 1))
     {
         gCurrentObject->unk1F4++;
     }
@@ -311,18 +242,19 @@ s32 Behavior25(void)
     return BEH_BREAK;
 }
 
-s32 Behavior04(void)
+static s32 beh_cmd_goto(void)
 {
     gBehCommand++;
     gBehCommand = (u32 *)segmented_to_virtual((void *)gBehCommand[0]);
     return BEH_CONTINUE;
 }
 
-s32 Behavior26(void)
+// unused
+static s32 Behavior26(void)
 {
     s32 value = (u8)(gBehCommand[0] >> 16) & 0xFF;
     
-    cur_object_stack_push((u32)&gBehCommand[1]);
+    cur_object_stack_push((u32)(gBehCommand + 1));
     cur_object_stack_push(value);
     
     gBehCommand++;
@@ -330,25 +262,24 @@ s32 Behavior26(void)
     return BEH_CONTINUE;
 }
 
-s32 Behavior05(void)
+static s32 beh_cmd_begin_repeat(void)
 {
-    s32 value = (s16)(gBehCommand[0] & 0xFFFF);
+    s32 count = (s16)(gBehCommand[0] & 0xFFFF);
     
-    cur_object_stack_push((u32)&gBehCommand[1]);
-    cur_object_stack_push(value);
+    cur_object_stack_push((u32)(gBehCommand + 1));
+    cur_object_stack_push(count);
     
     gBehCommand++;
     
     return BEH_CONTINUE;
 }
 
-s32 Behavior06(void)
+static s32 beh_cmd_end_repeat(void)
 {
     u32 count = cur_object_stack_pop();
-    
-    count--;
 
-    if(count != 0)
+    count--;
+    if (count != 0)
     {
         gBehCommand = (u32 *)cur_object_stack_pop();
         cur_object_stack_push((u32)gBehCommand);
@@ -363,13 +294,12 @@ s32 Behavior06(void)
     return BEH_BREAK;
 }
 
-s32 Behavior07(void)
+static s32 beh_cmd_end_repeat_nobreak(void)
 {
     u32 count = cur_object_stack_pop();
-    
-    count--;
 
-    if(count != 0)
+    count--;
+    if (count != 0)
     {
         gBehCommand = (u32 *)cur_object_stack_pop();
         cur_object_stack_push((u32)gBehCommand);
@@ -384,15 +314,15 @@ s32 Behavior07(void)
     return BEH_CONTINUE;
 }
 
-s32 Behavior08(void)
+static s32 beh_cmd_begin_loop(void)
 {
-    cur_object_stack_push((u32)&gBehCommand[1]);
+    cur_object_stack_push((u32)(gBehCommand + 1));
 
     gBehCommand++;
     return BEH_CONTINUE;
 }
 
-s32 Behavior09(void)
+static s32 beh_cmd_end_loop(void)
 {
     gBehCommand = (u32 *)cur_object_stack_pop();
     cur_object_stack_push((u32)gBehCommand);
@@ -402,7 +332,7 @@ s32 Behavior09(void)
 
 typedef void (*BehaviorCallProc)(void);
 
-s32 Behavior0C(void)
+static s32 beh_cmd_callnative(void)
 {
     BehaviorCallProc behavior_proc = (BehaviorCallProc)gBehCommand[1];
     
@@ -412,7 +342,7 @@ s32 Behavior0C(void)
     return BEH_CONTINUE;
 }
 
-s32 Behavior0E(void)
+static s32 beh_cmd_obj_set_float(void)
 {
     u8 objectOffset = (gBehCommand[0] >> 16) & 0xFF;
     f32 value = (s16)(gBehCommand[0] & 0xFFFF);
@@ -423,91 +353,94 @@ s32 Behavior0E(void)
     return BEH_CONTINUE;
 }
 
-s32 Behavior10(void)
+static s32 beh_cmd_obj_set_int(void)
 {
     u8 objectOffset = (gBehCommand[0] >> 16) & 0xFF;
     s16 value = gBehCommand[0] & 0xFFFF;
-    
+
     cur_object_set_s32(objectOffset, value);
 
     gBehCommand++;
     return BEH_CONTINUE;
 }
 
-s32 Behavior36(void)
+// unused
+static s32 Behavior36(void)
 {
     u8 objectOffset = (gBehCommand[0] >> 16) & 0xFF;
     u32 value = (s16)(gBehCommand[1] & 0xFFFF);
-    
+
     cur_object_set_s32(objectOffset, value);
 
     gBehCommand += 2;
     return BEH_CONTINUE;
 }
 
-s32 Behavior14(void)
+static s32 beh_cmd_obj_set_float_rand(void)
 {
     u8 objectOffset = (gBehCommand[0] >> 16) & 0xFF;
-    f32 sp20 = (s16)(gBehCommand[0] & 0xFFFF);
-    f32 sp1c = (s16)(gBehCommand[1] >> 16);
+    f32 min = (s16)(gBehCommand[0] & 0xFFFF);
+    f32 max = (s16)(gBehCommand[1] >> 16);
 
-    cur_object_set_f32(objectOffset, (sp1c * RandomFloat()) + sp20);
+    cur_object_set_f32(objectOffset, (max * RandomFloat()) + min);
 
     gBehCommand += 2;
     return BEH_CONTINUE;
 }
 
-s32 Behavior15(void)
+static s32 beh_cmd_obj_set_int_rand(void)
 {
     u8 objectOffset = (gBehCommand[0] >> 16) & 0xFF;
-    s32 sp20 = (s16)(gBehCommand[0] & 0xFFFF);
-    s32 sp1c = (s16)(gBehCommand[1] >> 16);
+    s32 min = (s16)(gBehCommand[0] & 0xFFFF);
+    s32 max = (s16)(gBehCommand[1] >> 16);
 
-    cur_object_set_s32(objectOffset, (s32)((f32)sp1c * RandomFloat()) + sp20);
+    cur_object_set_s32(objectOffset, (s32)(max * RandomFloat()) + min);
 
     gBehCommand += 2;
     return BEH_CONTINUE;
 }
 
-s32 Behavior13(void)
+static s32 beh_cmd_obj_set_int_rand_rshift(void)
 {
     u8 objectOffset = (gBehCommand[0] >> 16) & 0xFF;
-    s32 sp20 = (s16)(gBehCommand[0] & 0xFFFF);
-    s32 sp1c = (s16)(gBehCommand[1] >> 16);
-    
-    cur_object_set_s32(objectOffset, (RandomU16() >> sp1c) + sp20);
+    s32 min = (s16)(gBehCommand[0] & 0xFFFF);
+    s32 rshift = (s16)(gBehCommand[1] >> 16);
+
+    cur_object_set_s32(objectOffset, (RandomU16() >> rshift) + min);
 
     gBehCommand += 2;
     return BEH_CONTINUE;
 }
 
-s32 Behavior16(void)
+static s32 beh_cmd_obj_add_float_rand(void)
 {
     u8 objectOffset = (gBehCommand[0] >> 16) & 0xFF;
-    f32 sp20 = (s16)(gBehCommand[0] & 0xFFFF);
-    f32 sp1c = (s16)(gBehCommand[1] >> 16);
-    
-    cur_object_set_f32(objectOffset, (cur_object_get_f32(objectOffset) + sp20) + (sp1c * RandomFloat()));
+    f32 min = (s16)(gBehCommand[0] & 0xFFFF);
+    f32 max = (s16)(gBehCommand[1] >> 16);
+
+    cur_object_set_f32(objectOffset,
+        (cur_object_get_f32(objectOffset) + min) + (max * RandomFloat()));
 
     gBehCommand += 2;
     return BEH_CONTINUE;
 }
 
-s32 Behavior17(void)
+// unused
+static s32 beh_cmd_obj_add_int_rand_rshift(void)
 {
     u8 objectOffset = (gBehCommand[0] >> 16) & 0xFF;
-    s32 sp20 = (s16)(gBehCommand[0] & 0xFFFF);
-    s32 sp1c = (s16)(gBehCommand[1] >> 16);
-    s32 sp18 = RandomU16();
+    s32 min = (s16)(gBehCommand[0] & 0xFFFF);
+    s32 rshift = (s16)(gBehCommand[1] >> 16);
+    s32 rnd = RandomU16();
 
     cur_object_set_s32(objectOffset,
-        (cur_object_get_s32(objectOffset) + sp20) + (sp18 >> sp1c));
+        (cur_object_get_s32(objectOffset) + min) + (rnd >> rshift));
 
     gBehCommand += 2;
     return BEH_CONTINUE;
 }
 
-s32 Behavior0D(void)
+static s32 beh_cmd_obj_add_float(void)
 {
     u8 objectOffset = (gBehCommand[0] >> 16) & 0xFF;
     f32 value = (s16)(gBehCommand[0] & 0xFFFF);
@@ -518,7 +451,7 @@ s32 Behavior0D(void)
     return BEH_CONTINUE;
 }
 
-s32 Behavior0F(void)
+static s32 beh_cmd_obj_add_int(void)
 {
     u8 objectOffset = (gBehCommand[0] >> 16) & 0xFF;
     s16 value = gBehCommand[0] & 0xFFFF;
@@ -529,31 +462,32 @@ s32 Behavior0F(void)
     return BEH_CONTINUE;
 }
 
-s32 Behavior11(void)
+static s32 beh_cmd_obj_or_int(void)
 {
     u8 objectOffset = (gBehCommand[0] >> 16) & 0xFF;
     s32 value = (s16)(gBehCommand[0] & 0xFFFF);
-    value &= 0xFFFF;
 
+    value &= 0xFFFF;
     cur_object_or_s32(objectOffset, value);
     
     gBehCommand++;
     return BEH_CONTINUE;
 }
 
-s32 Behavior12(void)
+// unused
+static s32 beh_cmd_obj_bic_int(void)
 {
     u8 objectOffset = (gBehCommand[0] >> 16) & 0xFF;
     s32 value = (s16)(gBehCommand[0] & 0xFFFF);
+
     value = (value & 0xFFFF) ^ 0xFFFF;
-    
     cur_object_and_s32(objectOffset, value);
 
     gBehCommand++;
     return BEH_CONTINUE;
 }
 
-s32 Behavior27(void)
+static s32 beh_cmd_obj_set_int32(void)
 {
     u8 objectOffset = (gBehCommand[0] >> 16) & 0xFF;
 
@@ -563,7 +497,7 @@ s32 Behavior27(void)
     return BEH_CONTINUE;
 }
 
-s32 Behavior28(void)
+static s32 Behavior28(void)
 {    
     s32 animIndex = (u8)((gBehCommand[0] >> 16) & 0xFF);
     u32* animations = gCurrentObject->animations;
@@ -574,7 +508,7 @@ s32 Behavior28(void)
     return BEH_CONTINUE;
 }
 
-s32 Behavior1E(void)
+static s32 Behavior1E(void)
 {
     f32 x = gCurrentObject->pos[0];
     f32 y = gCurrentObject->pos[1];
@@ -588,7 +522,8 @@ s32 Behavior1E(void)
     return BEH_CONTINUE;
 }
 
-s32 Behavior18(void)
+// unused
+static s32 Behavior18(void)
 {
     /* no operation */
     UNUSED u8 objectOffset = (gBehCommand[0] >> 16) & 0xFF;
@@ -597,7 +532,8 @@ s32 Behavior18(void)
     return BEH_CONTINUE;
 }
 
-s32 Behavior1A(void)
+// unused
+static s32 Behavior1A(void)
 {
     /* no operation */
     UNUSED u8 objectOffset = (gBehCommand[0] >> 16) & 0xFF;
@@ -606,7 +542,8 @@ s32 Behavior1A(void)
     return BEH_CONTINUE;
 }
 
-s32 Behavior19(void)
+// unused
+static s32 Behavior19(void)
 {
     /* no operation */
     UNUSED u8 objectOffset = (gBehCommand[0] >> 16) & 0xFF;
@@ -615,7 +552,7 @@ s32 Behavior19(void)
     return BEH_CONTINUE;
 }
 
-s32 Behavior1F(void)
+static s32 beh_cmd_obj_sum_float(void)
 {
     u32 objectOffsetDst = (u8)((gBehCommand[0] >> 16) & 0xFF);
     u32 objectOffsetSrc1 = (u8)((gBehCommand[0] >> 8) & 0xFF);
@@ -628,7 +565,8 @@ s32 Behavior1F(void)
     return BEH_CONTINUE;
 }
 
-s32 Behavior20(void)
+// unused
+static s32 beh_cmd_obj_sum_int(void)
 {
     u32 objectOffsetDst = (u8)((gBehCommand[0] >> 16) & 0xFF);
     u32 objectOffsetSrc1 = (u8)((gBehCommand[0] >> 8) & 0xFF);
@@ -641,7 +579,7 @@ s32 Behavior20(void)
     return BEH_CONTINUE;
 }
 
-s32 Behavior23(void)
+static s32 beh_cmd_set_hitbox(void)
 {
     s16 colSphereX = gBehCommand[1] >> 16;
     s16 colSphereY = gBehCommand[1] & 0xFFFF;
@@ -653,7 +591,7 @@ s32 Behavior23(void)
     return BEH_CONTINUE;
 }
 
-s32 Behavior2E(void)
+static s32 Behavior2E(void)
 {
     s16 arg0 = gBehCommand[1] >> 16;
     s16 arg1 = gBehCommand[1] & 0xFFFF;
@@ -665,7 +603,7 @@ s32 Behavior2E(void)
     return BEH_CONTINUE;
 }
 
-s32 Behavior2B(void)
+static s32 Behavior2B(void)
 {
     s16 colSphereX = gBehCommand[1] >> 16;
     s16 colSphereY = gBehCommand[1] & 0xFFFF;
@@ -679,7 +617,8 @@ s32 Behavior2B(void)
     return BEH_CONTINUE;
 }
 
-s32 Behavior24(void)
+// unused
+static s32 Behavior24(void)
 {
     /* no operation */
     UNUSED s16 arg0 = (u8)((gBehCommand[0] >> 16) & 0xFF);
@@ -689,34 +628,25 @@ s32 Behavior24(void)
     return BEH_CONTINUE;
 }
 
-s32 Behavior00(void)
+static s32 beh_cmd_begin(void)
 {
-    if(CheckObjBehavior((u32 *)&beh_haunted_chair))
-    {
+    if (CheckObjBehavior(beh_haunted_chair))
         BehCommonInit();
-    }
-
-    if(CheckObjBehavior((u32 *)&beh_mad_piano))
-    {
+    if (CheckObjBehavior(beh_mad_piano))
         BehCommonInit();
-    }
-
-    if(CheckObjBehavior((u32 *)&beh_message_panel))
-    {
+    if (CheckObjBehavior(beh_message_panel))
         gCurrentObject->collisionDistance = 150.0f;
-    }
-
     gBehCommand++;
     return BEH_CONTINUE;
 }
 
-void Unknown8038556C(s32 lastIndex)
+static void Unknown8038556C(s32 lastIndex)
 {
     u8 objectOffset = (gBehCommand[0] >> 16) & 0xFF;
     u32 table[16];
     s32 i;
 
-    for(i = 0; i <= lastIndex / 2; i += 2)
+    for (i = 0; i <= lastIndex / 2; i += 2)
     {
         table[i] = (s16)(gBehCommand[i + 1] >> 16);
         table[i + 1] = (s16)(gBehCommand[i + 1] & 0xFFFF);
@@ -725,7 +655,7 @@ void Unknown8038556C(s32 lastIndex)
     cur_object_set_s32(objectOffset, table[(s32)(lastIndex * RandomFloat())]);
 }
 
-s32 Behavior2A(void)
+static s32 beh_cmd_collision_data(void)
 {
     u32* collisionData = segmented_to_virtual((void *)gBehCommand[1]);
     gCurrentObject->collisionData = collisionData;
@@ -733,7 +663,7 @@ s32 Behavior2A(void)
     return BEH_CONTINUE;
 }
 
-s32 Behavior2D(void)
+static s32 Behavior2D(void)
 {
     gCurrentObject->unk164[0] = gCurrentObject->pos[0];
     gCurrentObject->unk164[1] = gCurrentObject->pos[1];
@@ -742,7 +672,7 @@ s32 Behavior2D(void)
     return BEH_CONTINUE;
 }
 
-s32 Behavior2F(void)
+static s32 beh_cmd_interact_type(void)
 {
     gCurrentObject->interactType = gBehCommand[1];
 
@@ -750,7 +680,8 @@ s32 Behavior2F(void)
     return BEH_CONTINUE;
 }
 
-s32 Behavior31(void)
+// unused
+static s32 Behavior31(void)
 {
     gCurrentObject->unk190 = gBehCommand[1];
 
@@ -758,7 +689,7 @@ s32 Behavior31(void)
     return BEH_CONTINUE;
 }
 
-s32 Behavior32(void)
+static s32 beh_cmd_scale(void)
 {
     UNUSED u8 sp1f = (gBehCommand[0] >> 16) & 0xFF;
     s16 sp1c = gBehCommand[0] & 0xFFFF;
@@ -769,7 +700,7 @@ s32 Behavior32(void)
     return BEH_CONTINUE;
 }
 
-s32 Behavior30(void)
+static s32 Behavior30(void)
 {
     UNUSED f32 sp04, sp00;
 
@@ -788,7 +719,7 @@ s32 Behavior30(void)
     return BEH_CONTINUE;
 }
 
-s32 Behavior33(void)
+static s32 beh_cmd_obj_bic_int32(void)
 {
     u8 objectOffset = (gBehCommand[0] >> 16) & 0xFF;
     s32 flags = gBehCommand[1];
@@ -801,7 +732,7 @@ s32 Behavior33(void)
     return BEH_CONTINUE;
 }
 
-s32 Behavior37(void)
+static s32 Behavior37(void)
 {
     u32 arg0 = gBehCommand[1];
     func_8029E388(gCurrentObject, arg0);
@@ -809,15 +740,13 @@ s32 Behavior37(void)
     return BEH_CONTINUE;
 }
 
-s32 Behavior34(void)
+static s32 Behavior34(void)
 {
     u8 objectOffset = (gBehCommand[0] >> 16) & 0xFF;
     s16 arg1 = (gBehCommand[0] & 0xFFFF);
 
-    if((D_8032C694 % arg1) == 0)
-    {
+    if ((D_8032C694 % arg1) == 0)
         cur_object_add_s32(objectOffset, 1);
-    }
 
     gBehCommand++;
     return BEH_CONTINUE;
@@ -828,18 +757,77 @@ void func_80385BF0(void)
     // (empty function)
 }
 
+typedef s32 (*BehCommandProc)(void);
+static BehCommandProc BehaviorJumpTable[] =
+{
+    beh_cmd_begin,
+    beh_cmd_delay,
+    beh_cmd_call,
+    beh_cmd_return,
+    beh_cmd_goto,
+    beh_cmd_begin_repeat,
+    beh_cmd_end_repeat,
+    beh_cmd_end_repeat_nobreak,
+    beh_cmd_begin_loop,
+    beh_cmd_end_loop,
+    beh_cmd_break,
+    Behavior0B,
+    beh_cmd_callnative,
+    beh_cmd_obj_add_float,
+    beh_cmd_obj_set_float,
+    beh_cmd_obj_add_int,
+    beh_cmd_obj_set_int,
+    beh_cmd_obj_or_int,
+    beh_cmd_obj_bic_int,
+    beh_cmd_obj_set_int_rand_rshift,
+    beh_cmd_obj_set_float_rand,
+    beh_cmd_obj_set_int_rand,
+    beh_cmd_obj_add_float_rand,
+    beh_cmd_obj_add_int_rand_rshift,
+    Behavior18,
+    Behavior19,
+    Behavior1A,
+    beh_cmd_geo_layout,
+    Behavior1C,
+    beh_cmd_deactivate,
+    Behavior1E,
+    beh_cmd_obj_sum_float,
+    beh_cmd_obj_sum_int,
+    beh_cmd_billboard,
+    beh_cmd_unhide,
+    beh_cmd_set_hitbox,
+    Behavior24,
+    beh_cmd_delay_var,
+    Behavior26,
+    beh_cmd_obj_set_int32,
+    Behavior28,
+    Behavior29,
+    beh_cmd_collision_data,
+    Behavior2B,
+    Behavior2C,
+    Behavior2D,
+    Behavior2E,
+    beh_cmd_interact_type,
+    Behavior30,
+    Behavior31,
+    beh_cmd_scale,
+    beh_cmd_obj_bic_int32,
+    Behavior34,
+    Behavior35,
+    Behavior36,
+    Behavior37,
+};
+
 void cur_object_exec_behavior(void)
 {
     UNUSED u32 unused;
 
-    s16 flagsLo;
+    s16 flagsLo = gCurrentObject->objFlags;
     f32 distanceFromMario;
-    BehCommandProc next_behavior_proc;
+    BehCommandProc behCmdFunc;
     s32 behProcResult;
-    
-    flagsLo = (s16)gCurrentObject->objFlags;
 
-    if(flagsLo & OBJ_FLAG_0040)
+    if (flagsLo & OBJ_FLAG_0040)
     {
         gCurrentObject->distanceFromMario = objects_calc_distance(gCurrentObject, gMarioObject);
         distanceFromMario = gCurrentObject->distanceFromMario;
@@ -849,12 +837,10 @@ void cur_object_exec_behavior(void)
         distanceFromMario = 0.0f;
     }
 
-    if(flagsLo & OBJ_FLAG_2000)
-    {
+    if (flagsLo & OBJ_FLAG_2000)
         gCurrentObject->unk160 = func_8029DF18(gCurrentObject, gMarioObject);
-    }
 
-    if(gCurrentObject->previousAction != gCurrentObject->action)
+    if (gCurrentObject->previousAction != gCurrentObject->action)
     {
         (void) (gCurrentObject->timer = 0,
         gCurrentObject->unk150 = 0,
@@ -865,18 +851,16 @@ void cur_object_exec_behavior(void)
 
     do
     {
-        next_behavior_proc = BehaviorJumpTable[gBehCommand[0] >> 24];
-        behProcResult = next_behavior_proc();
-    } while(behProcResult == BEH_CONTINUE);
+        behCmdFunc = BehaviorJumpTable[*gBehCommand >> 24];
+        behProcResult = behCmdFunc();
+    } while (behProcResult == BEH_CONTINUE);
 
     gCurrentObject->behScript = gBehCommand;
 
-    if(gCurrentObject->timer < 0x3FFFFFFF)
-    {
+    if (gCurrentObject->timer < 0x3FFFFFFF)
         gCurrentObject->timer++;
-    }
 
-    if(gCurrentObject->previousAction != gCurrentObject->action) 
+    if (gCurrentObject->previousAction != gCurrentObject->action) 
     {
         (void) (gCurrentObject->timer = 0,
         gCurrentObject->unk150 = 0,
@@ -885,55 +869,41 @@ void cur_object_exec_behavior(void)
 
     flagsLo = (s16)gCurrentObject->objFlags;
 
-    if(flagsLo & OBJ_FLAG_0010)
-    {
+    if (flagsLo & OBJ_FLAG_0010)
         func_8029F170(gCurrentObject);
-    }
 
-    if(flagsLo & OBJ_FLAG_0008)
-    {
+    if (flagsLo & OBJ_FLAG_0008)
         gCurrentObject->faceAngle[1] = gCurrentObject->angle[1];
-    }
 
-    if(flagsLo & OBJ_FLAG_0002)
-    {
+    if (flagsLo & OBJ_FLAG_0002)
         func_802A0A90();    
-    }
 
-    if(flagsLo & OBJ_FLAG_0004)
-    {
+    if (flagsLo & OBJ_FLAG_0004)
         func_802A0B28();
-    }
 
-    if(flagsLo & OBJ_FLAG_0200)
-    {
+    if (flagsLo & OBJ_FLAG_0200)
         func_802A22DC(gCurrentObject);
-    }
 
-    if(flagsLo & OBJ_FLAG_0800)
-    {
+    if (flagsLo & OBJ_FLAG_0800)
         func_802A2270(gCurrentObject);
-    }
 
-    if(flagsLo & OBJ_FLAG_0001)
-    {
+    if (flagsLo & OBJ_FLAG_0001)
         func_80383D68(gCurrentObject);
-    }
 
-    if(gCurrentObject->unk1A0 != 0xFFFFFFFF)
+    if (gCurrentObject->unk1A0 != 0xFFFFFFFF)
     {
         func_802A3A68();
     }
-    else if((flagsLo & OBJ_FLAG_0040) && gCurrentObject->collisionData == NULL)
+    else if ((flagsLo & OBJ_FLAG_0040) && gCurrentObject->collisionData == NULL)
     {
-        if((flagsLo & OBJ_FLAG_0080) == 0)
+        if ((flagsLo & OBJ_FLAG_0080) == 0)
         {
-            if(distanceFromMario > gCurrentObject->drawingDistance)
+            if (distanceFromMario > gCurrentObject->drawingDistance)
             {
                 gCurrentObject->gfx.graphFlags &= 0xFFFFFFFE;
                 gCurrentObject->active |= 2;
             }
-            else if(gCurrentObject->unk124 == 0)
+            else if (gCurrentObject->unk124 == 0)
             {
                 gCurrentObject->gfx.graphFlags |= 1;
                 gCurrentObject->active &= 0xFFFFFFFD;

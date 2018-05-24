@@ -42,7 +42,7 @@ extern s32 gSurfacesAllocated;
 extern f32 func_80381264(float, float, float, struct Surface **);
 extern void func_802C9A3C(s32, s32);
 extern void func_8029D62C(struct Object *, Mat4, Mat4);
-extern void func_8029DA34(struct Object *, u8 *);
+extern void func_8029DA34(struct Object *, u32 *);
 // extern ? func_80380690(?);
 extern s32 func_80380DE8(f32 *x, f32 *y, f32 *z, f32 offsetY, f32 radius);
 // extern ? func_80380E8C(?);
