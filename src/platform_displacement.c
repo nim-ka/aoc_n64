@@ -2,7 +2,7 @@
 
 #include "sm64.h"
 #include "math_util.h"
-#include "level_functions.h"
+#include "object_helpers.h"
 #include "mario.h"
 #include "behavior_script.h"
 #include "level_update.h"

@@ -2915,7 +2915,7 @@ labels:
    # object_list_processor
    - [0x8029CA58, "BehMarioLoop2"]
    - [0x8029D4D0, "Unknown8029CD48"]
-   # level_functions
+   # object_helpers
    - [0x8029D890, "Geo18_8029D890"]
    - [0x8029D924, "Geo18_8029D924"]
    - [0x8029DB48, "GeoSwitchCase8029DB48"]

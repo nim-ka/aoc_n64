@@ -10,7 +10,7 @@
 #include "mario.h"
 #include "map_info.h"
 #include "memory.h"
-#include "level_functions.h"
+#include "object_helpers.h"
 #include "level_update.h"
 #include "object_collision.h"
 #include "object_list_processor.h"

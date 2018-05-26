@@ -1,6 +1,8 @@
 #ifndef _OBJECT_LIST_PROCESSOR_H
 #define _OBJECT_LIST_PROCESSOR_H
 
+#include "level_update.h"
+
 void nop_change_course(void);
 void BehMarioLoop2(void);
 void func_8029C6D8(struct Object *, u8);

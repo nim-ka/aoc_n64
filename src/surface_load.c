@@ -3,7 +3,7 @@
 #include "sm64.h"
 #include "behavior_data.h"
 #include "memory.h"
-#include "level_functions.h"
+#include "object_helpers.h"
 #include "ingame_menu.h"
 #include "hud.h"
 #include "mario.h"

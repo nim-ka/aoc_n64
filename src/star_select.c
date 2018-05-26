@@ -5,7 +5,7 @@
 #include "memory.h"
 #include "rendering.h"
 #include "save_file.h"
-#include "level_functions.h"
+#include "object_helpers.h"
 #include "behavior_script.h"
 #include "ingame_menu.h"
 #include "text_strings.h"

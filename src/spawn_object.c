@@ -5,7 +5,7 @@
 #include "rendering.h"
 #include "geo_layout.h"
 #include "graph_node.h"
-#include "level_functions.h"
+#include "object_helpers.h"
 #include "behavior_script.h"
 #include "surface_collision.h"
 #include "audio_interface_2.h"

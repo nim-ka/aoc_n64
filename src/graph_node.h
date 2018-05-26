@@ -3,7 +3,6 @@
 
 #include "types.h"
 
-extern struct GraphNodeScreenArea *D_8032CF90;
 extern struct GraphNode004 *D_8032CF94;
 extern struct GraphNodeCamFrustum *D_8032CF98;
 extern struct GraphNode114 *D_8032CF9C;

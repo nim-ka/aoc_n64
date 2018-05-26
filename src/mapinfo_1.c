@@ -2,7 +2,7 @@
 
 #include "sm64.h"
 #include "behavior_script.h"
-#include "level_functions.h"
+#include "object_helpers.h"
 #include "audio_interface_2.h"
 
 extern void *beh_plays_sound;

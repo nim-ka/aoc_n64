@@ -1,7 +1,7 @@
 #include <ultra64.h>
 
 #include "sm64.h"
-#include "level_functions.h"
+#include "object_helpers.h"
 #include "hud.h"
 
 #include "behavior_data.h"

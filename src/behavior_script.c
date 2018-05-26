@@ -5,7 +5,7 @@
 #include "memory.h"
 #include "graph_node.h"
 #include "surface_collision.h"
-#include "level_functions.h"
+#include "object_helpers.h"
 #include "mario.h"
 #include "display.h"
 #include "obj_behaviors_2.h"

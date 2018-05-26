@@ -6,7 +6,7 @@
 #include "behavior_script.h"
 #include "game.h"
 #include "ingame_menu.h"
-#include "level_functions.h"
+#include "object_helpers.h"
 #include "math_util.h"
 #include "rendering.h"
 #include "save_file.h"

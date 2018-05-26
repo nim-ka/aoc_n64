@@ -10,7 +10,6 @@ extern u32 D_80226EB8;
 // extern ? D_8032CB80;
 // extern ? D_8032CB84;
 // extern ? D_80339F10;
-// extern ? D_8032CE60;
 extern struct Object *gMarioObject;
 
 extern u32 func_80250770(struct MarioState *);

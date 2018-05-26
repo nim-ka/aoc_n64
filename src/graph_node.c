@@ -5,6 +5,7 @@
 #include "math_util.h"
 #include "memory.h"
 #include "graph_node.h"
+#include "rendering_graph_node.h"
 
 void init_scene_graph_node_links(struct GraphNode *graphNode, s32 type)
 {
