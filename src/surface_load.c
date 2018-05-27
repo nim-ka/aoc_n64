@@ -1,7 +1,7 @@
 #include <ultra64.h>
 
 #include "sm64.h"
-#include "behavior_data.h"
+#include "surface_load.h"
 #include "memory.h"
 #include "object_helpers.h"
 #include "ingame_menu.h"
@@ -9,7 +9,8 @@
 #include "mario.h"
 #include "behavior_script.h"
 #include "surface_collision.h"
-#include "surface_load.h"
+
+extern u8 beh_ddd_warp[];
 
 
 s32 D_8038BE90;
@@ -417,8 +418,8 @@ static void load_water_regions(s16 **data)
 void alloc_surface_pools(void)
 {
     sSurfacePoolSize = 2300;
-    sSurfaceNodePool = _pool_alloc(7000 * sizeof(struct SurfaceNode), MEMORY_POOL_LEFT);
-    sSurfacePool = _pool_alloc(sSurfacePoolSize * sizeof(struct Surface), MEMORY_POOL_LEFT);
+    sSurfaceNodePool = main_pool_alloc(7000 * sizeof(struct SurfaceNode), MEMORY_POOL_LEFT);
+    sSurfacePool = main_pool_alloc(sSurfacePoolSize * sizeof(struct Surface), MEMORY_POOL_LEFT);
     D_8035FEEC = 0;
     func_802DA4DC();
 }

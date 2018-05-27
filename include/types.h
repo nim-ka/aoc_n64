@@ -321,16 +321,6 @@ struct MarioState
     /*0xC4*/ f32 unkC4;
 };
 
-
-
-struct Struct80278464
-{
-    s32 unk0;
-    s32 unk4;  
-    u8 *unk8;
-    u8 *unkC;
-};
-
 struct StructGeo802D2360
 {
     s32 unk0;

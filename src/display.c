@@ -161,7 +161,7 @@ void CreateTaskStructure(void)
 
 void func_80247C9C(void)
 {
-    MovePtrTbl2Dmem();
+    move_segment_table_to_dmem();
     myRdpInit();
     myRspInit();
     ClearZBuffer();

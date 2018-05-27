@@ -17,12 +17,12 @@ void init_scene_graph_node_links(struct GraphNode *graphNode, s32 type)
     graphNode->children = NULL;
 }
 
-struct GraphNodeScreenArea *init_graph_node_screen_area(struct Struct80278464 *pool, struct GraphNodeScreenArea *graphNode,
+struct GraphNodeScreenArea *init_graph_node_screen_area(struct AllocOnlyPool *pool, struct GraphNodeScreenArea *graphNode,
     s16 sp20, s16 x, s16 y, s16 width, s16 height)
 {
     if(pool != NULL)
     {
-        graphNode = SimpleAllocate(pool, sizeof(struct GraphNodeScreenArea));
+        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNodeScreenArea));
     }
 
     if(graphNode != NULL)
@@ -42,11 +42,11 @@ struct GraphNodeScreenArea *init_graph_node_screen_area(struct Struct80278464 *p
     return graphNode;
 }
 
-struct GraphNode002 *init_graph_node_002(struct Struct80278464 *pool, struct GraphNode002 *graphNode, f32 sp20)
+struct GraphNode002 *init_graph_node_002(struct AllocOnlyPool *pool, struct GraphNode002 *graphNode, f32 sp20)
 {
     if(pool != NULL)
     {
-        graphNode = SimpleAllocate(pool, sizeof(struct GraphNode002));
+        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNode002));
     }
 
     if(graphNode != NULL)
@@ -59,12 +59,12 @@ struct GraphNode002 *init_graph_node_002(struct Struct80278464 *pool, struct Gra
     return graphNode;
 }
 
-struct GraphNodeCamFrustum *init_graph_node_cam_frustum(struct Struct80278464 *pool, struct GraphNodeCamFrustum *graphNode,
+struct GraphNodeCamFrustum *init_graph_node_cam_frustum(struct AllocOnlyPool *pool, struct GraphNodeCamFrustum *graphNode,
     f32 fov, s16 near, s16 far, GraphNodeFunc nodeFunc, s32 sp30)
 {
     if(pool != NULL)
     {
-        graphNode = SimpleAllocate(pool, sizeof(struct GraphNodeCamFrustum));
+        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNodeCamFrustum));
     }
 
     if(graphNode != NULL)
@@ -86,11 +86,11 @@ struct GraphNodeCamFrustum *init_graph_node_cam_frustum(struct Struct80278464 *p
     return graphNode;
 }
 
-struct GraphNode00A *init_graph_node_00A(struct Struct80278464 *pool, struct GraphNode00A *graphNode)
+struct GraphNode00A *init_graph_node_00A(struct AllocOnlyPool *pool, struct GraphNode00A *graphNode)
 {
     if(pool != NULL)
     {
-        graphNode = SimpleAllocate(pool, sizeof(struct GraphNode00A));
+        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNode00A));
     }
 
     if(graphNode != NULL)
@@ -101,11 +101,11 @@ struct GraphNode00A *init_graph_node_00A(struct Struct80278464 *pool, struct Gra
     return graphNode;
 }
 
-struct GraphNode004 *init_graph_node_004(struct Struct80278464 *pool, struct GraphNode004 *graphNode, s16 sp22)
+struct GraphNode004 *init_graph_node_004(struct AllocOnlyPool *pool, struct GraphNode004 *graphNode, s16 sp22)
 {
     if(pool != NULL)
     {
-        graphNode = SimpleAllocate(pool, sizeof(struct GraphNode004));
+        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNode004));
     }
 
     if(graphNode != NULL)
@@ -121,12 +121,12 @@ struct GraphNode004 *init_graph_node_004(struct Struct80278464 *pool, struct Gra
     return graphNode;
 }
 
-struct GraphNode00B *init_graph_node_00B(struct Struct80278464 *pool, struct GraphNode00B *graphNode,
+struct GraphNode00B *init_graph_node_00B(struct AllocOnlyPool *pool, struct GraphNode00B *graphNode,
     s16 sp22, s16 sp26)
 {
     if(pool != NULL)
     {
-        graphNode = SimpleAllocate(pool, sizeof(struct GraphNode00B));
+        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNode00B));
     }
 
     if(graphNode != NULL)
@@ -140,12 +140,12 @@ struct GraphNode00B *init_graph_node_00B(struct Struct80278464 *pool, struct Gra
 }
 
 // switch
-struct GraphNode10C *init_graph_node_10C(struct Struct80278464 *pool, struct GraphNode10C *graphNode,
+struct GraphNode10C *init_graph_node_10C(struct AllocOnlyPool *pool, struct GraphNode10C *graphNode,
     s16 numCases, s16 sp26, GraphNodeFunc nodeFunc, s32 sp2c)
 {
     if(pool != NULL)
     {
-        graphNode = SimpleAllocate(pool, sizeof(struct GraphNode10C));
+        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNode10C));
     }
 
     if(graphNode != NULL)
@@ -165,12 +165,12 @@ struct GraphNode10C *init_graph_node_10C(struct Struct80278464 *pool, struct Gra
     return graphNode;
 }
 
-struct GraphNode114 *init_graph_node_114(struct Struct80278464 *pool, struct GraphNode114 * graphNode,
+struct GraphNode114 *init_graph_node_114(struct AllocOnlyPool *pool, struct GraphNode114 * graphNode,
     f32 *sp20, f32 *sp24, GraphNodeFunc sp28, s32 sp2c)
 {
     if(pool != NULL)
     {
-        graphNode = SimpleAllocate(pool, sizeof(struct GraphNode114));
+        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNode114));
     }
 
     if(graphNode != NULL)
@@ -192,12 +192,12 @@ struct GraphNode114 *init_graph_node_114(struct Struct80278464 *pool, struct Gra
     return graphNode;
 }
 
-struct GraphNode015 *init_graph_node_015(struct Struct80278464 *pool, struct GraphNode015 *graphNode,
+struct GraphNode015 *init_graph_node_015(struct AllocOnlyPool *pool, struct GraphNode015 *graphNode,
     s32 drawingLayer, void *dlist, Vec3s sp28, Vec3s sp2c)
 {
     if(pool != NULL)
     {
-        graphNode = SimpleAllocate(pool, sizeof(struct GraphNode015));
+        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNode015));
     }
 
     if(graphNode != NULL)
@@ -213,12 +213,12 @@ struct GraphNode015 *init_graph_node_015(struct Struct80278464 *pool, struct Gra
     return graphNode;
 }
 
-struct GraphNode016 *init_graph_node_016(struct Struct80278464 *pool, struct GraphNode016 *graphNode,
+struct GraphNode016 *init_graph_node_016(struct AllocOnlyPool *pool, struct GraphNode016 *graphNode,
     s32 drawingLayer, void *dlist, Vec3s sp28)
 {
     if(pool != NULL)
     {
-        graphNode = SimpleAllocate(pool, sizeof(struct GraphNode016));
+        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNode016));
     }
 
     if(graphNode != NULL)
@@ -233,12 +233,12 @@ struct GraphNode016 *init_graph_node_016(struct Struct80278464 *pool, struct Gra
     return graphNode;
 }
 
-struct GraphNode017 *init_graph_node_017(struct Struct80278464 *pool, struct GraphNode017 *graphNode,
+struct GraphNode017 *init_graph_node_017(struct AllocOnlyPool *pool, struct GraphNode017 *graphNode,
     s32 drawingLayer, void *dlist, Vec3s sp28)
 {
     if(pool != NULL)
     {
-        graphNode = SimpleAllocate(pool, sizeof(struct GraphNode017));
+        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNode017));
     }
 
     if(graphNode != NULL)
@@ -252,12 +252,12 @@ struct GraphNode017 *init_graph_node_017(struct Struct80278464 *pool, struct Gra
     return graphNode;
 }
 
-struct GraphNode01C *init_graph_node_01C(struct Struct80278464 *pool, struct GraphNode01C *graphNode,
+struct GraphNode01C *init_graph_node_01C(struct AllocOnlyPool *pool, struct GraphNode01C *graphNode,
     s32 drawingLayer, void *dlist, f32 sp28)
 {
     if(pool != NULL)
     {
-        graphNode = SimpleAllocate(pool, sizeof(struct GraphNode01C));
+        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNode01C));
     }
 
     if(graphNode != NULL)
@@ -271,12 +271,12 @@ struct GraphNode01C *init_graph_node_01C(struct Struct80278464 *pool, struct Gra
     return graphNode;
 }
 
-struct GraphNode018 *init_graph_node_018(struct Struct80278464 *pool, struct GraphNode018 *graphNode,
+struct GraphNode018 *init_graph_node_018(struct AllocOnlyPool *pool, struct GraphNode018 *graphNode,
     struct GraphNode *sp20, Vec3f pos, Vec3s angle, Vec3f scale)
 {
     if(pool != NULL)
     {
-        graphNode = SimpleAllocate(pool, sizeof(struct GraphNode018));
+        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNode018));
     }
 
     if(graphNode != NULL)
@@ -299,12 +299,12 @@ struct GraphNode018 *init_graph_node_018(struct Struct80278464 *pool, struct Gra
     return graphNode;
 }
 
-struct GraphNode02F *init_graph_node_12F(struct Struct80278464 *pool, struct GraphNode02F *graphNode,
+struct GraphNode02F *init_graph_node_12F(struct AllocOnlyPool *pool, struct GraphNode02F *graphNode,
     s16 sp22)
 {
     if(pool != NULL)
     {
-        graphNode = SimpleAllocate(pool, sizeof(struct GraphNode02F));
+        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNode02F));
     }
 
     if(graphNode != NULL)
@@ -316,12 +316,12 @@ struct GraphNode02F *init_graph_node_12F(struct Struct80278464 *pool, struct Gra
     return graphNode;
 }
 
-struct GraphNode019 *init_graph_node_019(struct Struct80278464 *pool, struct GraphNode019 * graphNode,
+struct GraphNode019 *init_graph_node_019(struct AllocOnlyPool *pool, struct GraphNode019 * graphNode,
     s32 drawingLayer, void *dlist, Vec3s relativePos)
 {
     if(pool != NULL)
     {
-        graphNode = SimpleAllocate(pool, sizeof(struct GraphNode019));
+        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNode019));
     }
 
     if(graphNode != NULL)
@@ -335,12 +335,12 @@ struct GraphNode019 *init_graph_node_019(struct Struct80278464 *pool, struct Gra
     return graphNode;
 }
 
-struct GraphNode01A *init_graph_node_01A(struct Struct80278464 *pool, struct GraphNode01A *graphNode,
+struct GraphNode01A *init_graph_node_01A(struct AllocOnlyPool *pool, struct GraphNode01A *graphNode,
     s32 drawingLayer, void *dlist, Vec3s sp28)
 {
     if(pool != NULL)
     {
-        graphNode = SimpleAllocate(pool, sizeof(struct GraphNode01A));
+        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNode01A));
     }
 
     if(graphNode != NULL)
@@ -354,12 +354,12 @@ struct GraphNode01A *init_graph_node_01A(struct Struct80278464 *pool, struct Gra
     return graphNode;
 }
 
-struct GraphNode01B *init_graph_node_01B(struct Struct80278464 *pool, struct GraphNode01B *graphNode,
+struct GraphNode01B *init_graph_node_01B(struct AllocOnlyPool *pool, struct GraphNode01B *graphNode,
     s32 drawingLayer, void *dlist)
 {
     if(pool != NULL)
     {
-        graphNode = SimpleAllocate(pool, sizeof(struct GraphNode01B));
+        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNode01B));
     }
 
     if(graphNode != NULL)
@@ -372,12 +372,12 @@ struct GraphNode01B *init_graph_node_01B(struct Struct80278464 *pool, struct Gra
     return graphNode;
 }
 
-struct GraphNode028 *init_graph_node_028(struct Struct80278464 *pool, struct GraphNode028 *graphNode,
+struct GraphNode028 *init_graph_node_028(struct AllocOnlyPool *pool, struct GraphNode028 *graphNode,
     s16 shadowScale, u8 shadowSolidity, u8 shadowType)
 {
     if(pool != NULL)
     {
-        graphNode = SimpleAllocate(pool, sizeof(struct GraphNode028));
+        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNode028));
     }
 
     if(graphNode != NULL)
@@ -391,12 +391,12 @@ struct GraphNode028 *init_graph_node_028(struct Struct80278464 *pool, struct Gra
     return graphNode;
 }
 
-struct GraphNode029 *init_graph_node_029(struct Struct80278464 *pool, struct GraphNode029 *graphNode,
+struct GraphNode029 *init_graph_node_029(struct AllocOnlyPool *pool, struct GraphNode029 *graphNode,
     struct GraphNode *sp24)
 {
     if(pool != NULL)
     {
-        graphNode = SimpleAllocate(pool, sizeof(struct GraphNode029));
+        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNode029));
     }
 
     if(graphNode != NULL)
@@ -408,12 +408,12 @@ struct GraphNode029 *init_graph_node_029(struct Struct80278464 *pool, struct Gra
     return graphNode;
 }
 
-struct GraphNode12A *init_graph_node_12A(struct Struct80278464 *pool, struct GraphNode12A *graphNode,
+struct GraphNode12A *init_graph_node_12A(struct AllocOnlyPool *pool, struct GraphNode12A *graphNode,
     GraphNodeFunc sp20, s32 sp24)
 {
     if(pool != NULL)
     {
-        graphNode = SimpleAllocate(pool, sizeof(struct GraphNode12A));
+        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNode12A));
     }
 
     if(graphNode != NULL)
@@ -432,12 +432,12 @@ struct GraphNode12A *init_graph_node_12A(struct Struct80278464 *pool, struct Gra
 }
 
 // background
-struct GraphNode12C *init_graph_node_12C(struct Struct80278464 *pool, struct GraphNode12C *graphNode,
+struct GraphNode12C *init_graph_node_12C(struct AllocOnlyPool *pool, struct GraphNode12C *graphNode,
     u16 sp22, GraphNodeFunc sp24, s32 sp28)
 {
     if(pool != NULL)
     {
-        graphNode = SimpleAllocate(pool, sizeof(struct GraphNode12C));
+        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNode12C));
     }
 
     if(graphNode != NULL)
@@ -457,12 +457,12 @@ struct GraphNode12C *init_graph_node_12C(struct Struct80278464 *pool, struct Gra
     return graphNode;
 }
 
-struct GraphNode12E *init_graph_node_12E(struct Struct80278464 *pool, struct GraphNode12E *graphNode,
+struct GraphNode12E *init_graph_node_12E(struct AllocOnlyPool *pool, struct GraphNode12E *graphNode,
     s32 sp20, Vec3s sp24, GraphNodeFunc nodeFunc, s32 sp2c)
 {
     if(pool != NULL)
     {
-        graphNode = SimpleAllocate(pool, sizeof(struct GraphNode12E));
+        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNode12E));
     }
 
     if(graphNode != NULL)

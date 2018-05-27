@@ -99,14 +99,14 @@ glabel .L8037E290
 glabel LevelScript00
 /* 0F9CD4 8037E2C4 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 0F9CD8 8037E2C8 AFBF0014 */  sw    $ra, 0x14($sp)
-/* 0F9CDC 8037E2CC 0C09DF8E */  jal   PushPoolState
+/* 0F9CDC 8037E2CC 0C09DF8E */  jal   main_pool_push_state
 /* 0F9CE0 8037E2D0 00000000 */   nop   
 /* 0F9CE4 8037E2D4 3C0E8039 */  lui   $t6, %hi(D_8038BE28) # $t6, 0x8039
 /* 0F9CE8 8037E2D8 8DCEBE28 */  lw    $t6, %lo(D_8038BE28)($t6)
 /* 0F9CEC 8037E2DC 00003825 */  move  $a3, $zero
 /* 0F9CF0 8037E2E0 85C40002 */  lh    $a0, 2($t6)
 /* 0F9CF4 8037E2E4 8DC50004 */  lw    $a1, 4($t6)
-/* 0F9CF8 8037E2E8 0C09E037 */  jal   load_from_rom
+/* 0F9CF8 8037E2E8 0C09E037 */  jal   load_segment
 /* 0F9CFC 8037E2EC 8DC60008 */   lw    $a2, 8($t6)
 /* 0F9D00 8037E2F0 3C0F8039 */  lui   $t7, %hi(D_8038BE28) # $t7, 0x8039
 /* 0F9D04 8037E2F4 8DEFBE28 */  lw    $t7, %lo(D_8038BE28)($t7)
@@ -155,16 +155,16 @@ glabel LevelScript01
 /* 0F9DA4 8037E394 8DCEBE28 */  lw    $t6, %lo(D_8038BE28)($t6)
 /* 0F9DA8 8037E398 8DCF000C */  lw    $t7, 0xc($t6)
 /* 0F9DAC 8037E39C AFAF001C */  sw    $t7, 0x1c($sp)
-/* 0F9DB0 8037E3A0 0C09DFBA */  jal   PopPoolState
+/* 0F9DB0 8037E3A0 0C09DFBA */  jal   main_pool_pop_state
 /* 0F9DB4 8037E3A4 00000000 */   nop   
-/* 0F9DB8 8037E3A8 0C09DF8E */  jal   PushPoolState
+/* 0F9DB8 8037E3A8 0C09DF8E */  jal   main_pool_push_state
 /* 0F9DBC 8037E3AC 00000000 */   nop   
 /* 0F9DC0 8037E3B0 3C188039 */  lui   $t8, %hi(D_8038BE28) # $t8, 0x8039
 /* 0F9DC4 8037E3B4 8F18BE28 */  lw    $t8, %lo(D_8038BE28)($t8)
 /* 0F9DC8 8037E3B8 00003825 */  move  $a3, $zero
 /* 0F9DCC 8037E3BC 87040002 */  lh    $a0, 2($t8)
 /* 0F9DD0 8037E3C0 8F050004 */  lw    $a1, 4($t8)
-/* 0F9DD4 8037E3C4 0C09E037 */  jal   load_from_rom
+/* 0F9DD4 8037E3C4 0C09E037 */  jal   load_segment
 /* 0F9DD8 8037E3C8 8F060008 */   lw    $a2, 8($t8)
 /* 0F9DDC 8037E3CC 3C198039 */  lui   $t9, %hi(D_8038B8B4) # $t9, 0x8039
 /* 0F9DE0 8037E3D0 8F39B8B4 */  lw    $t9, %lo(D_8038B8B4)($t9)
@@ -185,7 +185,7 @@ glabel LevelScript01
 glabel LevelScript02
 /* 0F9E14 8037E404 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 0F9E18 8037E408 AFBF0014 */  sw    $ra, 0x14($sp)
-/* 0F9E1C 8037E40C 0C09DFBA */  jal   PopPoolState
+/* 0F9E1C 8037E40C 0C09DFBA */  jal   main_pool_pop_state
 /* 0F9E20 8037E410 00000000 */   nop   
 /* 0F9E24 8037E414 3C0E8039 */  lui   $t6, %hi(D_8038B8B4) # $t6, 0x8039
 /* 0F9E28 8037E418 8DCEB8B4 */  lw    $t6, %lo(D_8038B8B4)($t6)
@@ -757,7 +757,7 @@ glabel LevelScript13
 glabel LevelScript14
 /* 0FA5E4 8037EBD4 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 0FA5E8 8037EBD8 AFBF0014 */  sw    $ra, 0x14($sp)
-/* 0FA5EC 8037EBDC 0C09DF8E */  jal   PushPoolState
+/* 0FA5EC 8037EBDC 0C09DF8E */  jal   main_pool_push_state
 /* 0FA5F0 8037EBE0 00000000 */   nop   
 /* 0FA5F4 8037EBE4 3C0E8039 */  lui   $t6, %hi(D_8038BE28) # $t6, 0x8039
 /* 0FA5F8 8037EBE8 8DCEBE28 */  lw    $t6, %lo(D_8038BE28)($t6)
@@ -776,7 +776,7 @@ glabel LevelScript14
 glabel LevelScript15
 /* 0FA624 8037EC14 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 0FA628 8037EC18 AFBF0014 */  sw    $ra, 0x14($sp)
-/* 0FA62C 8037EC1C 0C09DFBA */  jal   PopPoolState
+/* 0FA62C 8037EC1C 0C09DFBA */  jal   main_pool_pop_state
 /* 0FA630 8037EC20 00000000 */   nop   
 /* 0FA634 8037EC24 3C0E8039 */  lui   $t6, %hi(D_8038BE28) # $t6, 0x8039
 /* 0FA638 8037EC28 8DCEBE28 */  lw    $t6, %lo(D_8038BE28)($t6)
@@ -799,7 +799,7 @@ glabel LevelScript16
 /* 0FA670 8037EC60 8DCEBE28 */  lw    $t6, %lo(D_8038BE28)($t6)
 /* 0FA674 8037EC64 8DC40004 */  lw    $a0, 4($t6)
 /* 0FA678 8037EC68 8DC50008 */  lw    $a1, 8($t6)
-/* 0FA67C 8037EC6C 0C09E050 */  jal   FixedCopy
+/* 0FA67C 8037EC6C 0C09E050 */  jal   load_to_fixed_pool_addr
 /* 0FA680 8037EC70 8DC6000C */   lw    $a2, 0xc($t6)
 /* 0FA684 8037EC74 3C0F8039 */  lui   $t7, %hi(D_8038BE28) # $t7, 0x8039
 /* 0FA688 8037EC78 8DEFBE28 */  lw    $t7, %lo(D_8038BE28)($t7)
@@ -823,7 +823,7 @@ glabel LevelScript17
 /* 0FA6C4 8037ECB4 00003825 */  move  $a3, $zero
 /* 0FA6C8 8037ECB8 85C40002 */  lh    $a0, 2($t6)
 /* 0FA6CC 8037ECBC 8DC50004 */  lw    $a1, 4($t6)
-/* 0FA6D0 8037ECC0 0C09E037 */  jal   load_from_rom
+/* 0FA6D0 8037ECC0 0C09E037 */  jal   load_segment
 /* 0FA6D4 8037ECC4 8DC60008 */   lw    $a2, 8($t6)
 /* 0FA6D8 8037ECC8 3C0F8039 */  lui   $t7, %hi(D_8038BE28) # $t7, 0x8039
 /* 0FA6DC 8037ECCC 8DEFBE28 */  lw    $t7, %lo(D_8038BE28)($t7)
@@ -846,7 +846,7 @@ glabel LevelScript18
 /* 0FA714 8037ED04 8DCEBE28 */  lw    $t6, %lo(D_8038BE28)($t6)
 /* 0FA718 8037ED08 85C40002 */  lh    $a0, 2($t6)
 /* 0FA71C 8037ED0C 8DC50004 */  lw    $a1, 4($t6)
-/* 0FA720 8037ED10 0C09E08A */  jal   load_from_rom_decompress
+/* 0FA720 8037ED10 0C09E08A */  jal   load_segment_decompress
 /* 0FA724 8037ED14 8DC60008 */   lw    $a2, 8($t6)
 /* 0FA728 8037ED18 3C0F8039 */  lui   $t7, %hi(D_8038BE28) # $t7, 0x8039
 /* 0FA72C 8037ED1C 8DEFBE28 */  lw    $t7, %lo(D_8038BE28)($t7)
@@ -867,7 +867,7 @@ glabel LevelScript19
 /* 0FA75C 8037ED4C AFBF0014 */  sw    $ra, 0x14($sp)
 /* 0FA760 8037ED50 3C04000E */  lui   $a0, (0x000E1000 >> 16) # lui $a0, 0xe
 /* 0FA764 8037ED54 34841000 */  ori   $a0, (0x000E1000 & 0xFFFF) # ori $a0, $a0, 0x1000
-/* 0FA768 8037ED58 0C09DEDC */  jal   _pool_alloc
+/* 0FA768 8037ED58 0C09DEDC */  jal   main_pool_alloc
 /* 0FA76C 8037ED5C 00002825 */   move  $a1, $zero
 /* 0FA770 8037ED60 AFA2001C */  sw    $v0, 0x1c($sp)
 /* 0FA774 8037ED64 8FAE001C */  lw    $t6, 0x1c($sp)
@@ -944,7 +944,7 @@ glabel LevelScript1B
 /* 0FA874 8037EE64 00000000 */   nop   
 /* 0FA878 8037EE68 0C09E955 */  jal   func_8027A554
 /* 0FA87C 8037EE6C 00000000 */   nop   
-/* 0FA880 8037EE70 0C09DF8E */  jal   PushPoolState
+/* 0FA880 8037EE70 0C09DF8E */  jal   main_pool_push_state
 /* 0FA884 8037EE74 00000000 */   nop   
 /* 0FA888 8037EE78 3C0E8039 */  lui   $t6, %hi(D_8038BE28) # $t6, 0x8039
 /* 0FA88C 8037EE7C 8DCEBE28 */  lw    $t6, %lo(D_8038BE28)($t6)
@@ -969,7 +969,7 @@ glabel LevelScript1C
 /* 0FA8CC 8037EEBC 00000000 */   nop   
 /* 0FA8D0 8037EEC0 0C09E955 */  jal   func_8027A554
 /* 0FA8D4 8037EEC4 00000000 */   nop   
-/* 0FA8D8 8037EEC8 0C09DFBA */  jal   PopPoolState
+/* 0FA8D8 8037EEC8 0C09DFBA */  jal   main_pool_pop_state
 /* 0FA8DC 8037EECC 00000000 */   nop   
 /* 0FA8E0 8037EED0 3C0E8039 */  lui   $t6, %hi(D_8038BE28) # $t6, 0x8039
 /* 0FA8E4 8037EED4 8DCEBE28 */  lw    $t6, %lo(D_8038BE28)($t6)
@@ -993,11 +993,11 @@ glabel LevelScript1D
 /* 0FA920 8037EF10 8DCEB8A0 */  lw    $t6, %lo(D_8038B8A0)($t6)
 /* 0FA924 8037EF14 15C00009 */  bnez  $t6, .L8037EF3C
 /* 0FA928 8037EF18 00000000 */   nop   
-/* 0FA92C 8037EF1C 0C09DF86 */  jal   PoolAvailable
+/* 0FA92C 8037EF1C 0C09DF86 */  jal   main_pool_available
 /* 0FA930 8037EF20 00000000 */   nop   
 /* 0FA934 8037EF24 00408025 */  move  $s0, $v0
 /* 0FA938 8037EF28 2604FFF0 */  addiu $a0, $s0, -0x10
-/* 0FA93C 8037EF2C 0C09E119 */  jal   func_80278464
+/* 0FA93C 8037EF2C 0C09E119 */  jal   alloc_only_pool_init
 /* 0FA940 8037EF30 00002825 */   move  $a1, $zero
 /* 0FA944 8037EF34 3C018039 */  lui   $at, %hi(D_8038B8A0) # $at, 0x8039
 /* 0FA948 8037EF38 AC22B8A0 */  sw    $v0, %lo(D_8038B8A0)($at)
@@ -1023,7 +1023,7 @@ glabel LevelScript1E
 /* 0FA988 8037EF78 3C0E8039 */  lui   $t6, %hi(D_8038B8A0) # $t6, 0x8039
 /* 0FA98C 8037EF7C 8DCEB8A0 */  lw    $t6, %lo(D_8038B8A0)($t6)
 /* 0FA990 8037EF80 01C02025 */  move  $a0, $t6
-/* 0FA994 8037EF84 0C09E15E */  jal   func_80278578
+/* 0FA994 8037EF84 0C09E15E */  jal   alloc_only_pool_resize
 /* 0FA998 8037EF88 8DC50004 */   lw    $a1, 4($t6)
 /* 0FA99C 8037EF8C 3C018039 */  lui   $at, %hi(D_8038B8A0) # $at, 0x8039
 /* 0FA9A0 8037EF90 AC20B8A0 */  sw    $zero, %lo(D_8038B8A0)($at)
@@ -1392,7 +1392,7 @@ glabel LevelScript24
 /* 0FAED4 8037F4C4 A7AE001C */  sh    $t6, 0x1c($sp)
 /* 0FAED8 8037F4C8 3C048039 */  lui   $a0, %hi(D_8038B8A0) # $a0, 0x8039
 /* 0FAEDC 8037F4CC 8C84B8A0 */  lw    $a0, %lo(D_8038B8A0)($a0)
-/* 0FAEE0 8037F4D0 0C09E142 */  jal   SimpleAllocate
+/* 0FAEE0 8037F4D0 0C09E142 */  jal   alloc_only_pool_alloc
 /* 0FAEE4 8037F4D4 24050020 */   li    $a1, 32
 /* 0FAEE8 8037F4D8 AFA20018 */  sw    $v0, 0x18($sp)
 /* 0FAEEC 8037F4DC 3C188039 */  lui   $t8, %hi(D_8038BE28) # $t8, 0x8039
@@ -1512,7 +1512,7 @@ glabel LevelScript26
 /* 0FB0A4 8037F694 00000000 */   nop   
 /* 0FB0A8 8037F698 3C048039 */  lui   $a0, %hi(D_8038B8A0) # $a0, 0x8039
 /* 0FB0AC 8037F69C 8C84B8A0 */  lw    $a0, %lo(D_8038B8A0)($a0)
-/* 0FB0B0 8037F6A0 0C09E142 */  jal   SimpleAllocate
+/* 0FB0B0 8037F6A0 0C09E142 */  jal   alloc_only_pool_alloc
 /* 0FB0B4 8037F6A4 2405000C */   li    $a1, 12
 /* 0FB0B8 8037F6A8 AFA2001C */  sw    $v0, 0x1c($sp)
 /* 0FB0BC 8037F6AC 3C0F8039 */  lui   $t7, %hi(D_8038BE28) # $t7, 0x8039
@@ -1596,7 +1596,7 @@ glabel LevelScript28
 /* 0FB1E4 8037F7D4 00000000 */   nop   
 /* 0FB1E8 8037F7D8 3C048039 */  lui   $a0, %hi(D_8038B8A0) # $a0, 0x8039
 /* 0FB1EC 8037F7DC 8C84B8A0 */  lw    $a0, %lo(D_8038B8A0)($a0)
-/* 0FB1F0 8037F7E0 0C09E142 */  jal   SimpleAllocate
+/* 0FB1F0 8037F7E0 0C09E142 */  jal   alloc_only_pool_alloc
 /* 0FB1F4 8037F7E4 24050020 */   li    $a1, 32
 /* 0FB1F8 8037F7E8 3C0B8039 */  lui   $t3, %hi(D_8038B8AC) # $t3, 0x8039
 /* 0FB1FC 8037F7EC 856BB8AC */  lh    $t3, %lo(D_8038B8AC)($t3)
@@ -1735,7 +1735,7 @@ glabel LevelScript27
 /* 0FB3E8 8037F9D8 00000000 */   nop   
 /* 0FB3EC 8037F9DC 3C048039 */  lui   $a0, %hi(D_8038B8A0) # $a0, 0x8039
 /* 0FB3F0 8037F9E0 8C84B8A0 */  lw    $a0, %lo(D_8038B8A0)($a0)
-/* 0FB3F4 8037F9E4 0C09E142 */  jal   SimpleAllocate
+/* 0FB3F4 8037F9E4 0C09E142 */  jal   alloc_only_pool_alloc
 /* 0FB3F8 8037F9E8 240500B4 */   li    $a1, 180
 /* 0FB3FC 8037F9EC 3C0B8039 */  lui   $t3, %hi(D_8038B8AC) # $t3, 0x8039
 /* 0FB400 8037F9F0 856BB8AC */  lh    $t3, %lo(D_8038B8AC)($t3)
@@ -1839,7 +1839,7 @@ glabel LevelScript3A
 /* 0FB570 8037FB60 AFA90024 */   sw    $t1, 0x24($sp)
 /* 0FB574 8037FB64 3C048039 */  lui   $a0, %hi(D_8038B8A0) # $a0, 0x8039
 /* 0FB578 8037FB68 8C84B8A0 */  lw    $a0, %lo(D_8038B8A0)($a0)
-/* 0FB57C 8037FB6C 0C09E142 */  jal   SimpleAllocate
+/* 0FB57C 8037FB6C 0C09E142 */  jal   alloc_only_pool_alloc
 /* 0FB580 8037FB70 2405000A */   li    $a1, 10
 /* 0FB584 8037FB74 3C0B8039 */  lui   $t3, %hi(D_8038B8AC) # $t3, 0x8039
 /* 0FB588 8037FB78 856BB8AC */  lh    $t3, %lo(D_8038B8AC)($t3)
@@ -1965,7 +1965,7 @@ glabel LevelScript3B
 /* 0FB748 8037FD38 AFB80024 */   sw    $t8, 0x24($sp)
 /* 0FB74C 8037FD3C 3C048039 */  lui   $a0, %hi(D_8038B8A0) # $a0, 0x8039
 /* 0FB750 8037FD40 8C84B8A0 */  lw    $a0, %lo(D_8038B8A0)($a0)
-/* 0FB754 8037FD44 0C09E142 */  jal   SimpleAllocate
+/* 0FB754 8037FD44 0C09E142 */  jal   alloc_only_pool_alloc
 /* 0FB758 8037FD48 24050008 */   li    $a1, 8
 /* 0FB75C 8037FD4C AFA20024 */  sw    $v0, 0x24($sp)
 /* 0FB760 8037FD50 3C0A8039 */  lui   $t2, %hi(D_8038B8AC) # $t2, 0x8039

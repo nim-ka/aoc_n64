@@ -1,7 +1,7 @@
 #include <ultra64.h>
 
-#include "level_update.h"
 #include "sm64.h"
+#include "level_update.h"
 #include "map_info.h"
 #include "camera.h"
 #include "mario.h"

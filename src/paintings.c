@@ -32,7 +32,6 @@ extern u8 seg2_triangle_mesh[];
 extern u8 seg2_mesh_order[];
 
 extern struct Struct802D1F94 *D_8035FFA8;
-extern void *D_8033A124;
 extern u16 D_8032CFA8;
 
 extern float D_8035FF94;
@@ -431,7 +430,7 @@ void Print1(struct Struct802D1F94 *a, s16 *b, s16 c)
 {
     s16 sp1E;
 
-    D_8035FFA0 = (void *)subPrint(D_8033A124, c * 10);
+    D_8035FFA0 = mem_pool_alloc(D_8033A124, c * 10);
     if (D_8035FFA0 == NULL)
     {
     }
@@ -447,7 +446,7 @@ void Print2(s16 *a, s16 b, s16 c)
 {
     s16 sp46;
 
-    D_8035FFA4 = (void *)subPrint(D_8033A124, c * 12);
+    D_8035FFA4 = mem_pool_alloc(D_8033A124, c * 12);
     if (D_8035FFA4 == NULL)
     {
     }
@@ -711,8 +710,8 @@ Gfx *func_802D4A8C(struct Struct802D1F94 *a)
         sp28 = func_802D4874(a);
         break;
     }
-    func_802787C4((void *)D_8033A124, (void *)D_8035FFA0);
-    func_802787C4((void *)D_8033A124, (void *)D_8035FFA4);
+    mem_pool_free(D_8033A124, D_8035FFA0);
+    mem_pool_free(D_8033A124, D_8035FFA4);
     return sp28;
 }
 

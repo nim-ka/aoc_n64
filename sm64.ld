@@ -199,6 +199,8 @@ SECTIONS
       build/data/bss80339F00.o(.bss*);
       build/src/mario_actions_submerged.o(.bss*);
       build/data/bss80339FE0.o(.bss*);
+      build/src/memory.o(.bss*);
+      build/data/bss8033A130.o(.bss*);
       build/src/hud_print.o(.bss*);
       build/data/bss803600E0.o(.bss*);
    }

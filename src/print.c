@@ -149,7 +149,7 @@ void print_text_fmt_int(int x, int y, const char *str, int n)
     int len = 0;
     int srcIndex = 0;
 
-    if ((sTextLabels[sTextLabelsCount] = (struct TextLabel *)subPrint(D_8033A124, 60)) == NULL)
+    if ((sTextLabels[sTextLabelsCount] = (struct TextLabel *)mem_pool_alloc(D_8033A124, 60)) == NULL)
         return;
 
     sTextLabels[sTextLabelsCount]->x = x;
@@ -189,7 +189,7 @@ void print_text(int x, int y, const char *str)
     int len = 0;
     int srcIndex = 0;
 
-    if ((sTextLabels[sTextLabelsCount] = (struct TextLabel *)subPrint(D_8033A124, 60)) == NULL)
+    if ((sTextLabels[sTextLabelsCount] = (struct TextLabel *)mem_pool_alloc(D_8033A124, 60)) == NULL)
         return;
 
     sTextLabels[sTextLabelsCount]->x = x;
@@ -215,7 +215,7 @@ void print_text_centered(int x, int y, const char *str)
     int len = 0;
     int srcIndex = 0;
     
-    if ((sTextLabels[sTextLabelsCount] = (struct TextLabel *)subPrint(D_8033A124, 60)) == NULL)
+    if ((sTextLabels[sTextLabelsCount] = (struct TextLabel *)mem_pool_alloc(D_8033A124, 60)) == NULL)
         return;
 
     c = str[srcIndex];
@@ -357,7 +357,7 @@ void func_802D61A8(void)
                 func_802D605C(sTextLabels[i]->x, sTextLabels[i]->y, j);
             }
         }
-        func_802787C4(D_8033A124, (void *)sTextLabels[i]);
+        mem_pool_free(D_8033A124, (void *)sTextLabels[i]);
     }
     
     gSPDisplayList(gDisplayListHead++, seg2_f3d_00ECC8);

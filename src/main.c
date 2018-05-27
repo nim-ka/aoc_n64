@@ -141,11 +141,11 @@ extern char __segPoolEnd[];
 // header defines. But Nintendo was not sane when writing this.
 void AllocPool(void)
 {
-    u32 start = SEG_POOL_START;
-    u32 end   = SEG_POOL_END;
+    void *start = (void *)SEG_POOL_START;
+    void *end   = (void *)SEG_POOL_END;
 
-    InitMemPool(start, end);
-    D_8033A124 = func_802785E8(16384, 0);
+    main_pool_init(start, end);
+    D_8033A124 = mem_pool_init(0x4000, MEMORY_POOL_LEFT);
 }
 
 void create_thread(OSThread *thread, OSId id, void (*entry)(void *), void *arg,
@@ -330,7 +330,7 @@ static void thread3_main(UNUSED void *arg)
 {
     setup_mesg_queues();
     AllocPool();
-    CopyScriptInterpreter();
+    load_engine_code_segment();
 
     create_thread(&gSoundThread, 4, thread4_sound, NULL, D_80203200 + 0x2000, 20);
     osStartThread(&gSoundThread);

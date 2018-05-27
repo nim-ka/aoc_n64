@@ -1,7 +1,6 @@
 #ifndef _SM64_H_
 #define _SM64_H_
 
-#define static
 // Global header for Super Mario 64
 
 #include "types.h"

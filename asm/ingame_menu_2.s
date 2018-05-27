@@ -68,7 +68,7 @@ glabel func_802DCEE0
 /* 097FA0 802DCFA0 000550C0 */  sll   $t2, $a1, 3
 /* 097FA4 802DCFA4 01455023 */  subu  $t2, $t2, $a1
 /* 097FA8 802DCFA8 000A50C0 */  sll   $t2, $t2, 3
-/* 097FAC 802DCFAC 0C09E1AA */  jal   subPrint
+/* 097FAC 802DCFAC 0C09E1AA */  jal   mem_pool_alloc
 /* 097FB0 802DCFB0 01402825 */   move  $a1, $t2
 /* 097FB4 802DCFB4 3C018036 */  lui   $at, %hi(D_80360090) # $at, 0x8036
 /* 097FB8 802DCFB8 AC220090 */  sw    $v0, %lo(D_80360090)($at)
@@ -222,7 +222,7 @@ glabel func_802DD1AC
 /* 0981D0 802DD1D0 00000000 */   nop   
 /* 0981D4 802DD1D4 3C048034 */  lui   $a0, %hi(D_8033A124) # $a0, 0x8034
 /* 0981D8 802DD1D8 8C84A124 */  lw    $a0, %lo(D_8033A124)($a0)
-/* 0981DC 802DD1DC 0C09E1F1 */  jal   func_802787C4
+/* 0981DC 802DD1DC 0C09E1F1 */  jal   mem_pool_free
 /* 0981E0 802DD1E0 8FA50018 */   lw    $a1, 0x18($sp)
 .L802DD1E4:
 /* 0981E4 802DD1E4 3C018033 */  lui   $at, %hi(D_80330640) # $at, 0x8033
@@ -3574,7 +3574,7 @@ glabel L802E03CC
 /* 09B3DC 802E03DC 000558C0 */  sll   $t3, $a1, 3
 /* 09B3E0 802E03E0 01655823 */  subu  $t3, $t3, $a1
 /* 09B3E4 802E03E4 000B58C0 */  sll   $t3, $t3, 3
-/* 09B3E8 802E03E8 0C09E1AA */  jal   subPrint
+/* 09B3E8 802E03E8 0C09E1AA */  jal   mem_pool_alloc
 /* 09B3EC 802E03EC 01602825 */   move  $a1, $t3
 /* 09B3F0 802E03F0 3C018036 */  lui   $at, %hi(D_80360090) # $at, 0x8036
 /* 09B3F4 802E03F4 AC220090 */  sw    $v0, %lo(D_80360090)($at)

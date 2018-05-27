@@ -5,55 +5,51 @@
 #define MEMORY_POOL_LEFT  0
 #define MEMORY_POOL_RIGHT 1
 
-struct MemBlock
+
+struct AllocOnlyPool
 {
-    struct MemBlock *next;
-    u32 size;
+    s32 totalSpace;
+    s32 usedSpace;
+    u8 *startPtr;
+    u8 *freePtr;
 };
 
+struct MemoryPool;
 
-struct UnknownMemoryStruct2
-{
-    u32 unk0;
-    u32 unk4;
-    struct MemBlock *unk8;
-};
 
-extern u32 gMemPoolStart;
-extern u32 gMemPoolEnd;
-extern u32 gPoolSize;
-//extern u32 gPoolListHeadL;
-//extern u32 gPoolListHeadR;
-extern u8 D_801C1000[];
-extern u8 _engineSegmentRomStart[];
-extern u8 _engineSegmentRomEnd[];
+extern struct MemoryPool *D_8033A124;
 
-extern int set_segment_base_addr(int segment, void *addr);
-extern int get_segment_base_addr(int segment);
-extern void *segmented_to_virtual(void *addr);
-extern void *virtual_to_segmented(u32 segment, void *addr);
-extern void MovePtrTbl2Dmem(void);
-extern void InitMemPool(u32 start, u32 end);
-extern void *_pool_alloc(u32 size, int b);
-extern u32 _pool_free(void *ptr);
-extern void *_pool_realloc(void *ptr, u32 size);
-extern u32 PoolAvailable(void);
-extern u32 PushPoolState(void);
-extern u32 PopPoolState(void);
-extern void *load_from_rom(u32 segment, u8 *srcStart, u8 *srcEnd, u32 side);
-void *FixedCopy(u32 a, u8 *srcStart, u8 *srcEnd);
-void *load_from_rom_decompress(int segment, u8 *srcStart, u8 *srcEnd);
+
+u32 set_segment_base_addr(s32 segment, void *addr);
+void *get_segment_base_addr(s32 segment);
+void *segmented_to_virtual(void *addr);
+void *virtual_to_segmented(s32 segment, void *addr);
+void move_segment_table_to_dmem(void);
+
+void main_pool_init(void *start, void *end);
+void *main_pool_alloc(u32 size, u32 side);
+u32 main_pool_free(void *addr);
+void *main_pool_realloc(void *addr, u32 size);
+u32 main_pool_available(void);
+u32 main_pool_push_state(void);
+u32 main_pool_pop_state(void);
+
+void *load_segment(s32 segment, u8 *srcStart, u8 *srcEnd, u32 side);
+void *load_to_fixed_pool_addr(u8 *destAddr, u8 *srcStart, u8 *srcEnd);
+void *load_segment_decompress(s32 segment, u8 *srcStart, u8 *srcEnd);
 void *func_80278304(u32 segment, u8 *srcStart, u8 *srcEnd);
-void CopyScriptInterpreter(void);
-struct Struct80278464 *func_80278464(u32 a, u32 b);
-void *SimpleAllocate(struct Struct80278464 *a, s32 size);
-struct Struct80278464 *func_80278578(struct Struct80278464 *a, u32 size);
-struct Struct80278464 *func_802785E8(u32 size, u32 b);
-struct MemBlock *subPrint(struct MemBlock *a, u32 size);
-void func_802787C4(struct UnknownMemoryStruct2 *a, struct MemBlock *b);
+void load_engine_code_segment(void);
+
+struct AllocOnlyPool *alloc_only_pool_init(u32 size, u32 side);
+void *alloc_only_pool_alloc(struct AllocOnlyPool *pool, s32 size);
+struct AllocOnlyPool *alloc_only_pool_resize(struct AllocOnlyPool *pool, u32 size);
+
+struct MemoryPool *mem_pool_init(u32 size, u32 side);
+void *mem_pool_alloc(struct MemoryPool *pool, u32 size);
+void mem_pool_free(struct MemoryPool *pool, void *addr);
+
 void *alloc_display_list(u32 size);
-void *dobjCopy(u8 *a);
-void DynamicObjectCopy(struct MarioAnimation *a, void *b, void *c);
-int SetMarioAnimation(struct MarioAnimation *a, u32 b);
+void func_80278A78(struct MarioAnimation *a, void *b, void *c);
+s32 func_80278AD4(struct MarioAnimation *a, u32 b);
 
 #endif

@@ -3,6 +3,8 @@
 
 #include "graph_node.h"
 
+struct AllocOnlyPool;
+
 #define GEO_CMD_FLAGS_RESET 0
 #define GEO_CMD_FLAGS_SET   1
 #define GEO_CMD_FLAGS_CLEAR 2
@@ -19,7 +21,7 @@
 #define cur_geo_cmd_u32(offset) \
     (*(u32 *) &gGeoLayoutCommand[offset])
 
-extern struct Struct80278464 *D_8038BCA0;
+extern struct AllocOnlyPool *D_8038BCA0;
 extern struct GraphNode *D_8038BCA4;
 extern struct GraphNode **D_8038BCAC;
 extern u16 D_8038BCB0;
@@ -35,7 +37,7 @@ extern u16 D_8038B8A4;
 extern u16 D_8038B8A8;
 extern s16 D_8038B8AC;
 
-extern struct Struct80278464 *gGraphNodePool;
+extern struct AllocOnlyPool *gGraphNodePool;
 
 void geo_layout_cmd_00(void);
 void geo_layout_cmd_01(void);
@@ -71,6 +73,6 @@ void geo_layout_cmd_1B(void);
 void geo_layout_cmd_1C(void);
 void geo_layout_cmd_20(void);
 
-struct GraphNode *process_geo_layout(struct Struct80278464 *a0, void *segptr);
+struct GraphNode *process_geo_layout(struct AllocOnlyPool *a0, void *segptr);
 
 #endif /* _GEO_LAYOUT_H_ */

@@ -66,7 +66,7 @@ void func_8027B354(void *dlist, s16 b)
 {
     if (D_8032CF94 != 0)
     {
-        struct GraphNode004_sub *sp1C = SimpleAllocate(D_8033B018, 12);
+        struct GraphNode004_sub *sp1C = alloc_only_pool_alloc(D_8033B018, sizeof(struct GraphNode004_sub));
 
         sp1C->unk0 = D_8033AF78[D_8033A770];
         sp1C->unk4 = dlist;
@@ -779,7 +779,7 @@ void func_8027DB80(struct GraphNodeScreenArea *a, Vp *b, Vp *c, int d)
         s16 *sp30;
         Vp *viewport = alloc_display_list(sizeof(*viewport));
 
-        D_8033B018 = func_80278464(PoolAvailable() - 16, 0);
+        D_8033B018 = alloc_only_pool_init(main_pool_available() - 16, MEMORY_POOL_LEFT);
         sp30 = alloc_display_list(64);
         D_8033A770 = 0;
         D_8033B008 = 0;
@@ -810,8 +810,8 @@ void func_8027DB80(struct GraphNodeScreenArea *a, Vp *b, Vp *c, int d)
             func_8027D8F8(a->node.children);
         D_8032CF90 = NULL;
         if (gShowDebugText)
-            print_text_fmt_int(180, 36, "MEM %d", D_8033B018->unk0 - D_8033B018->unk4);
-        _pool_free(D_8033B018);
+            print_text_fmt_int(180, 36, "MEM %d", D_8033B018->totalSpace - D_8033B018->usedSpace);
+        main_pool_free(D_8033B018);
     }
     //L8027DE10
 }

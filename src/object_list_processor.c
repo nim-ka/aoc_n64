@@ -349,7 +349,7 @@ void func_8029CA60(void)
         func_8037C3D0((struct GraphNode018 *) &gObjectPool[i]);
     }
 
-    D_8035FE0C = func_802785E8(0x800, 0);
+    D_8035FE0C = mem_pool_init(0x800, MEMORY_POOL_LEFT);
     gObjectLists = &D_8033B870; 
     clear_dynamic_surfaces();
 }

@@ -104,7 +104,7 @@ int run_press_start_demo_timer(int timer)
                 // player is idle on PRESS START screen.
 
                 // start the mario demo animation for the demo list.
-                SetMarioAnimation(&gDemo, gDemoInputListID);
+                func_80278AD4(&gDemo, gDemoInputListID);
 
                 // if the next demo sequence ID is the count limit, reset it back to
                 // the first sequence.

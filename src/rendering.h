@@ -4,6 +4,8 @@
 #include "graph_node.h"
 #include "level_update.h"
 
+struct AllocOnlyPool;
+
 extern struct GraphNode004 *D_8032CF94;
 extern struct GraphNodeCamFrustum *D_8032CF98;
 extern struct GraphNode114 *D_8032CF9C;
@@ -27,7 +29,7 @@ extern u8 D_8033A743;
 extern u8 D_8032CF00[];
 // extern ? D_8032CF10;
 // extern ? D_8032CF50;
-extern struct Struct80278464 *D_8033B018;
+extern struct AllocOnlyPool *D_8033B018;
 extern s16 D_8033A770;
 // extern ? D_8033A778;
 extern u8 D_8033B008;

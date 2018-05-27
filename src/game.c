@@ -281,14 +281,14 @@ void func_80248934(void)
     gFrameBuffers[0] = VIRTUAL_TO_PHYSICAL(gFrameBuffer0);
     gFrameBuffers[1] = VIRTUAL_TO_PHYSICAL(gFrameBuffer1);
     gFrameBuffers[2] = VIRTUAL_TO_PHYSICAL(gFrameBuffer2);
-    D_80339CF0 = _pool_alloc(0x4000, 0);
+    D_80339CF0 = main_pool_alloc(0x4000, MEMORY_POOL_LEFT);
     set_segment_base_addr(17, (void *)D_80339CF0);
-    DynamicObjectCopy(&D_80339D10, D_004E9FA0, D_80339CF0);
-    D_80339CF4 = _pool_alloc(2048, 0);
+    func_80278A78(&D_80339D10, D_004E9FA0, D_80339CF0);
+    D_80339CF4 = main_pool_alloc(2048, MEMORY_POOL_LEFT);
     set_segment_base_addr(24, (void *)D_80339CF4);
-    DynamicObjectCopy(&gDemo, D_00577BC0, D_80339CF4);
-    load_from_rom(16, main_entry, main_entry_end, 0);
-    load_from_rom_decompress(2, segment2, segment2_end);
+    func_80278A78(&gDemo, D_00577BC0, D_80339CF4);
+    load_segment(16, main_entry, main_entry_end, MEMORY_POOL_LEFT);
+    load_segment_decompress(2, segment2, segment2_end);
 }
 
 // main game loop thread. runs forever as long as the game

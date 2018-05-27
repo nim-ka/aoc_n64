@@ -13,7 +13,7 @@
 
 # This file is handwritten.
 
-glabel uncompress
+glabel decompress
 /* 039F30 8027EF30 8C980004 */  lw    $t8, 4($a0)
 /* 039F34 8027EF34 8C870008 */  lw    $a3, 8($a0)
 /* 039F38 8027EF38 8C99000C */  lw    $t9, 0xc($a0)

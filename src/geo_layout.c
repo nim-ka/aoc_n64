@@ -161,7 +161,7 @@ void geo_layout_cmd_08(void)
     graphNode = init_graph_node_screen_area(gGraphNodePool, NULL, 0, x, y, width, height);
 
     // TODO: check type
-    D_8038BCAC = (struct GraphNode **) SimpleAllocate(gGraphNodePool, D_8038BCB0 * sizeof(s32));
+    D_8038BCAC = (struct GraphNode **) alloc_only_pool_alloc(gGraphNodePool, D_8038BCB0 * sizeof(s32));
 
     graphNode->unk20 = D_8038BCAC;
     graphNode->unk1E = D_8038BCB0;
@@ -595,7 +595,7 @@ void geo_layout_cmd_20(void)
     gGeoLayoutCommand += 0x04;
 }
 
-struct GraphNode *process_geo_layout(struct Struct80278464 *pool, void *segptr)
+struct GraphNode *process_geo_layout(struct AllocOnlyPool *pool, void *segptr)
 {
     gCurRootGraphNode = NULL;
 

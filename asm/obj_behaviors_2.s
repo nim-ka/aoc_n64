@@ -7152,7 +7152,7 @@ glabel func_802FEBB0
 /* 0B9BDC 802FEBDC 00000000 */   nop   
 /* 0B9BE0 802FEBE0 3C048036 */  lui   $a0, %hi(D_8035FE0C) # $a0, 0x8036
 /* 0B9BE4 802FEBE4 8C84FE0C */  lw    $a0, %lo(D_8035FE0C)($a0)
-/* 0B9BE8 802FEBE8 0C09E1AA */  jal   subPrint
+/* 0B9BE8 802FEBE8 0C09E1AA */  jal   mem_pool_alloc
 /* 0B9BEC 802FEBEC 24050064 */   li    $a1, 100
 /* 0B9BF0 802FEBF0 AFA2003C */  sw    $v0, 0x3c($sp)
 /* 0B9BF4 802FEBF4 8FAF003C */  lw    $t7, 0x3c($sp)
@@ -8349,7 +8349,7 @@ glabel func_802FFD24
 /* 0BAD38 802FFD38 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
 /* 0BAD3C 802FFD3C 3C048036 */  lui   $a0, %hi(D_8035FE0C) # $a0, 0x8036
 /* 0BAD40 802FFD40 8C84FE0C */  lw    $a0, %lo(D_8035FE0C)($a0)
-/* 0BAD44 802FFD44 0C09E1F1 */  jal   func_802787C4
+/* 0BAD44 802FFD44 0C09E1F1 */  jal   mem_pool_free
 /* 0BAD48 802FFD48 8DC500F4 */   lw    $a1, 0xf4($t6)
 /* 0BAD4C 802FFD4C 3C0F8036 */  lui   $t7, %hi(gCurrentObject) # $t7, 0x8036
 /* 0BAD50 802FFD50 8DEFFDF0 */  lw    $t7, %lo(gCurrentObject)($t7)
@@ -8827,7 +8827,7 @@ glabel func_8030041C
 /* 0BB420 80300420 AFBF0024 */  sw    $ra, 0x24($sp)
 /* 0BB424 80300424 3C048036 */  lui   $a0, %hi(D_8035FE0C) # $a0, 0x8036
 /* 0BB428 80300428 8C84FE0C */  lw    $a0, %lo(D_8035FE0C)($a0)
-/* 0BB42C 8030042C 0C09E1AA */  jal   subPrint
+/* 0BB42C 8030042C 0C09E1AA */  jal   mem_pool_alloc
 /* 0BB430 80300430 24050050 */   li    $a1, 80
 /* 0BB434 80300434 AFA20030 */  sw    $v0, 0x30($sp)
 /* 0BB438 80300438 8FAE0030 */  lw    $t6, 0x30($sp)

@@ -3,6 +3,8 @@
 
 #include "types.h"
 
+struct AllocOnlyPool;
+
 extern struct GraphNode004 *D_8032CF94;
 extern struct GraphNodeCamFrustum *D_8032CF98;
 extern struct GraphNode114 *D_8032CF9C;
@@ -268,46 +270,46 @@ struct GraphNode02F
 
 void init_scene_graph_node_links(struct GraphNode *, s32);
 
-struct GraphNodeScreenArea *init_graph_node_screen_area(struct Struct80278464 *, struct GraphNodeScreenArea *,
+struct GraphNodeScreenArea *init_graph_node_screen_area(struct AllocOnlyPool *, struct GraphNodeScreenArea *,
     s16, s16 x, s16 y, s16 width, s16 height);
-struct GraphNode002 *init_graph_node_002(struct Struct80278464 *, struct GraphNode002 *, f32);
-struct GraphNodeCamFrustum *init_graph_node_cam_frustum(struct Struct80278464 *pool, struct GraphNodeCamFrustum *sp1c,
+struct GraphNode002 *init_graph_node_002(struct AllocOnlyPool *, struct GraphNode002 *, f32);
+struct GraphNodeCamFrustum *init_graph_node_cam_frustum(struct AllocOnlyPool *pool, struct GraphNodeCamFrustum *sp1c,
     f32 sp20, s16 sp26, s16 sp2a, GraphNodeFunc sp2c, s32 sp30);
-struct GraphNode00A *init_graph_node_00A(struct Struct80278464 *pool, struct GraphNode00A *sp1c);
-struct GraphNode004 *init_graph_node_004(struct Struct80278464 *pool, struct GraphNode004 *, s16 sp22);
-struct GraphNode00B *init_graph_node_00B(struct Struct80278464 *pool, struct GraphNode00B *sp1c,
+struct GraphNode00A *init_graph_node_00A(struct AllocOnlyPool *pool, struct GraphNode00A *sp1c);
+struct GraphNode004 *init_graph_node_004(struct AllocOnlyPool *pool, struct GraphNode004 *, s16 sp22);
+struct GraphNode00B *init_graph_node_00B(struct AllocOnlyPool *pool, struct GraphNode00B *sp1c,
     s16 sp22, s16 sp26);
-struct GraphNode10C *init_graph_node_10C(struct Struct80278464 *, struct GraphNode10C *sp1c,
+struct GraphNode10C *init_graph_node_10C(struct AllocOnlyPool *, struct GraphNode10C *sp1c,
     s16 sp22, s16 sp26, GraphNodeFunc sp28, s32 sp2c);
-struct GraphNode114 *init_graph_node_114(struct Struct80278464 *pool, struct GraphNode114 * sp1c,
+struct GraphNode114 *init_graph_node_114(struct AllocOnlyPool *pool, struct GraphNode114 * sp1c,
     f32 *sp20, f32 *sp24, GraphNodeFunc sp28, s32 sp2c);
-struct GraphNode015 *init_graph_node_015(struct Struct80278464 *pool, struct GraphNode015 *graphNode,
+struct GraphNode015 *init_graph_node_015(struct AllocOnlyPool *pool, struct GraphNode015 *graphNode,
     s32 drawingLayer, void *dlist, Vec3s sp28, Vec3s sp2c);
-struct GraphNode016 *init_graph_node_016(struct Struct80278464 *pool, struct GraphNode016 *graphNode,
+struct GraphNode016 *init_graph_node_016(struct AllocOnlyPool *pool, struct GraphNode016 *graphNode,
     s32 drawingLayer, void *dlist, Vec3s sp28);
-struct GraphNode017 *init_graph_node_017(struct Struct80278464 *pool, struct GraphNode017 *graphNode,
+struct GraphNode017 *init_graph_node_017(struct AllocOnlyPool *pool, struct GraphNode017 *graphNode,
     s32 drawingLayer, void *dlist, Vec3s sp28);
-struct GraphNode01C *init_graph_node_01C(struct Struct80278464 *pool, struct GraphNode01C *graphNode,
+struct GraphNode01C *init_graph_node_01C(struct AllocOnlyPool *pool, struct GraphNode01C *graphNode,
     s32 drawingLayer, void *dlist, f32 sp28);
-struct GraphNode018 *init_graph_node_018(struct Struct80278464 *pool, struct GraphNode018 *graphNode,
+struct GraphNode018 *init_graph_node_018(struct AllocOnlyPool *pool, struct GraphNode018 *graphNode,
     struct GraphNode *sp20, Vec3f pos, Vec3s angle, Vec3f scale);
-struct GraphNode02F *init_graph_node_12F(struct Struct80278464 *pool, struct GraphNode02F *sp1c,
+struct GraphNode02F *init_graph_node_12F(struct AllocOnlyPool *pool, struct GraphNode02F *sp1c,
     s16 sp22);
-struct GraphNode019 *init_graph_node_019(struct Struct80278464 *pool, struct GraphNode019 * graphNode,
+struct GraphNode019 *init_graph_node_019(struct AllocOnlyPool *pool, struct GraphNode019 * graphNode,
     s32 drawingLayer, void *dlist, Vec3s relativePos);
-struct GraphNode01A *init_graph_node_01A(struct Struct80278464 *pool, struct GraphNode01A *graphNode,
+struct GraphNode01A *init_graph_node_01A(struct AllocOnlyPool *pool, struct GraphNode01A *graphNode,
     s32 drawingLayer, void *dlist, Vec3s sp28);
-struct GraphNode01B *init_graph_node_01B(struct Struct80278464 *pool, struct GraphNode01B *graphNode,
+struct GraphNode01B *init_graph_node_01B(struct AllocOnlyPool *pool, struct GraphNode01B *graphNode,
     s32 drawingLayer, void *dlist);
-struct GraphNode028 *init_graph_node_028(struct Struct80278464 *pool, struct GraphNode028 *sp1c,
+struct GraphNode028 *init_graph_node_028(struct AllocOnlyPool *pool, struct GraphNode028 *sp1c,
     s16 sp22, u8 sp27, u8 sp2b);
-struct GraphNode029 *init_graph_node_029(struct Struct80278464 *pool, struct GraphNode029 *sp1c,
+struct GraphNode029 *init_graph_node_029(struct AllocOnlyPool *pool, struct GraphNode029 *sp1c,
     struct GraphNode *sp20);
-struct GraphNode12A *init_graph_node_12A(struct Struct80278464 *pool, struct GraphNode12A *sp1c,
+struct GraphNode12A *init_graph_node_12A(struct AllocOnlyPool *pool, struct GraphNode12A *sp1c,
     GraphNodeFunc sp20, s32 sp24);
-struct GraphNode12C *init_graph_node_12C(struct Struct80278464 *pool, struct GraphNode12C *sp1c,
+struct GraphNode12C *init_graph_node_12C(struct AllocOnlyPool *pool, struct GraphNode12C *sp1c,
     u16 sp22, GraphNodeFunc sp24, s32 sp28);
-struct GraphNode12E *init_graph_node_12E(struct Struct80278464 *pool, struct GraphNode12E *sp1c,
+struct GraphNode12E *init_graph_node_12E(struct AllocOnlyPool *pool, struct GraphNode12E *sp1c,
     s32 sp20, Vec3s sp24, GraphNodeFunc sp28, s32 sp2c);
 
 struct GraphNode *func_8037C044(struct GraphNode *, struct GraphNode *);

@@ -3,12 +3,6 @@
 
 #include "types.h"
 
-struct SurfaceNode
-{
-    struct SurfaceNode *next;
-    struct Surface *surface;
-};
-
 struct WallCollisionData {
     /*0x00*/ float x, y, z;           
     /*0x0C*/ float offsetY;           
@@ -16,15 +10,6 @@ struct WallCollisionData {
     /*0x14*/ s16 unk14;               
     /*0x16*/ s16 numWalls;            
     /*0x18*/ struct Surface *walls[4];
-};
-
-typedef struct SurfaceNode SpatialPartitionCell[3];
-
-enum
-{
-    SPATIAL_PARTITION_FLOORS,
-    SPATIAL_PARTITION_CEILS,
-    SPATIAL_PARTITION_WALLS
 };
 
 extern s16 D_8033BF04, D_8033BF06, D_8033BF08;

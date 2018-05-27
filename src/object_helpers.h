@@ -19,7 +19,7 @@ extern s16 D_8035FEE0;
 
 extern u32 gTimeStopState;
 extern struct Object gObjectPool[];
-extern struct Struct80278464 *D_8035FE0C;
+extern struct MemoryPool *D_8035FE0C;
 extern u32 gUpdatedObjectCount;
 extern s16 D_8035FEEE;
 extern s16 D_8035FEF0;
