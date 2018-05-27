@@ -310,7 +310,7 @@ void func_8027C1F4(struct GraphNode12A *a)
 {
     if (a->fnNode.func != NULL)
     {
-        int sp1C = a->fnNode.func(1, &a->fnNode.node, (struct Struct80278464 *) D_8033A778[D_8033A770]);
+        int sp1C = a->fnNode.func(1, &a->fnNode.node, (struct AllocOnlyPool *) D_8033A778[D_8033A770]);
 
         if (sp1C != 0)
         {
@@ -327,7 +327,7 @@ void func_8027C2A8(struct GraphNode12C *a)
     int sp3C = 0;
 
     if (a->fnNode.func != NULL)
-        sp3C = a->fnNode.func(1, &a->fnNode.node, (struct Struct80278464 *) D_8033A778[D_8033A770]);
+        sp3C = a->fnNode.func(1, &a->fnNode.node, (struct AllocOnlyPool *) D_8033A778[D_8033A770]);
     if (sp3C != 0)
     {
         func_8027B354((void *)VIRTUAL_TO_PHYSICAL(sp3C), a->fnNode.node.flags >> 8);
@@ -638,7 +638,7 @@ void func_8027D4D4(struct GraphNode12E *a)
         mtxf_mul(D_8033A778[D_8033A770 + 1], sp30, D_8033A778[D_8033A770 + 1]);
         func_8037A29C(D_8033A778[D_8033A770 + 1], D_8033A778[D_8033A770 + 1], a->unk1C->scale);
         if (a->fnNode.func != NULL)
-            a->fnNode.func(5, &a->fnNode.node, (struct Struct80278464 *) D_8033A778[D_8033A770 + 1]);
+            a->fnNode.func(5, &a->fnNode.node, (struct AllocOnlyPool *) D_8033A778[D_8033A770 + 1]);
         D_8033A770++;
         func_8037A434(sp20, D_8033A778[D_8033A770]);
         D_8033AF78[D_8033A770] = sp20;

@@ -16,10 +16,13 @@ struct Struct8033B470
 
 struct Struct8033B418_sub
 {
+    /*
     float unk0;
     float unk4;
     float unk8;
-    u8 fillerC[0x18 - 0xC];
+    */
+    Vec3f unk0;
+    Vec3f unkC;
     float unk18;
     s16 unk1C;
     s16 unk1E;
@@ -27,7 +30,8 @@ struct Struct8033B418_sub
 
 struct Struct8033B418
 {
-    u8 filler0[4];
+    s16 unk0;
+    u8 filler2[2];
     s16 unk4;
     s16 unk6;
     struct Struct8033B418_sub unk8[2];  // unknown length
@@ -42,20 +46,7 @@ struct Struct8032D000
     s16 unk18;
     u8 filler1A[0x1E - 0x1A];
     s16 unk1E;
-};
-
-struct Struct80280550
-{
-    u8 unk0;
-    u8 filler1[1];
-    u16 unk2;
-    Vec3f unk4;
-    Vec3f unk10;
-    u8 filler1C[0x28-0x1C];
-    float unk28;
-    float unk2C;
-    u8 filler30[0xA];
-    s16 unk3A;
+    u32 unk20;
 };
 
 extern struct Struct8032D000 *D_8032D000;
@@ -63,7 +54,7 @@ extern s16 D_8033B3F0;
 extern Vec3f D_8032D090;
 extern s16 D_8033B4DA;
 extern float D_8033B40C;
-extern u32 D_8032CFD8;
+extern s32 D_8032CFD8;
 extern s16 D_8033B402;
 extern s16 D_8033B3EA;
 extern s16 D_8033B3EE;
@@ -378,12 +369,12 @@ extern void func_8027EFE0(s16);
 // extern ? func_80285770(?);
 // extern ? CameraChange0A(?);
 // extern ? func_802859B0(?);
-extern void func_80285A8C();
+extern void func_80285A8C(UNUSED struct Struct80280550 *a, s16 b);
 // extern ? func_80285AD8(?);
-extern void func_80285BD8(struct UnknownArea24 *, u8, u32);
+extern void func_80285BD8(struct Struct80280550 *, s16, s16);
 // extern ? func_80285E70(?);
-extern void func_80286348(struct UnknownArea24 *);
-extern void func_802869B8(struct UnknownArea24 *);
+extern void func_80286348(struct Struct80280550 *);
+extern void func_802869B8(struct Struct80280550 *);
 // extern ? func_80286C9C(?);
 // extern ? func_80287404(?);
 extern void func_802875DC(void);

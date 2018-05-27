@@ -325,7 +325,7 @@ void render_hud(void)
     } else {
         func_802D68A4();
 
-        if (D_8032CE6C != NULL && D_8032CE6C->unk24->unk00 == 10)
+        if (D_8032CE6C != NULL && D_8032CE6C->unk24->unk0 == 10)
             RenderHudCannonReticle();
         
         if (hudDisplayFlags & (1 << 0))    // 0x01

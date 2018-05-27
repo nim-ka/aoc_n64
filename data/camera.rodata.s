@@ -1,77 +1,6 @@
 .include "macros.inc"
 
-
 .section .rodata
-
-glabel D_80336070
-# replacing .incbin "bin/rodata.bin", 0x00001600, 0x4
-.4byte 0xc62be000
-
-glabel D_80336074
-# replacing .incbin "bin/rodata.bin", 0x00001604, 0x4
-.4byte 0xc62be000
-
-glabel jtbl_80336078
-	.word L80286724
-	.word L80286734
-	.word L802866D4
-	.word L80286744
-	.word L802867B4
-	.word L802866E4
-	.word L802867B4
-	.word L802866F4
-	.word L80286784
-	.word L80286704
-	.word L80286764
-	.word L80286774
-	.word L80286794
-	.word L80286714
-	.word L802867B4
-	.word L80286754
-	.word L802867A4
-
-glabel D_803360BC
-	.incbin "bin/rodata.bin", 0x164C, 0x4
-
-glabel D_803360C0
-	.incbin "bin/rodata.bin", 0x1650, 0x4
-
-glabel D_803360C4
-	.incbin "bin/rodata.bin", 0x1654, 0x4
-
-glabel D_803360C8
-	.incbin "bin/rodata.bin", 0x1658, 0x4
-
-glabel jtbl_803360CC
-	.word L802870C8
-	.word L80287104
-	.word L80287104
-	.word L80287104
-	.word L80287104
-	.word L80287104
-	.word L80287104
-	.word L80287104
-	.word L80287104
-	.word L802870E0
-	.word L80286FB8
-	.word L80287104
-	.word L80287104
-	.word L80287104
-	.word L8028707C
-	.word L80287104
-	.word L802870AC
-	.word L80287104
-	.word L80287104
-	.word L80287104
-	.word L80287094
-	.word L80287104
-	.word L80287104
-	.word L80287104
-	.word L80286F7C
-	.word L80287104
-	.word L80287104
-	.word L80286F90
-	.word L80286FA4
 
 glabel D_80336140
 	.incbin "bin/rodata.bin", 0x16D0, 0x4
@@ -559,3 +488,5 @@ glabel jtbl_803365E0
 	.word L8029BDD4
 
 	.word 0, 0, 0
+
+

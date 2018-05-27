@@ -3,7 +3,29 @@
 
 #include "types.h"
 
-extern float D_8033B328[];
+struct Struct8033B328
+{
+    Vec3f unk0[6];
+    float unk48;
+    s16 unk4C;
+    s16 unk4E;
+    u8 filler50[2];
+    Vec3s unk52;
+    u8 filler58[8];
+    Vec3f unk60;
+    Vec3s unk6C;
+    u8 filler72[8];
+    u8 unk7A[0x80-0x7A];  // unknown type
+    Vec3f unk80;
+    Vec3f unk8C;
+    u8 filler98[0xA4-0x98];
+    u8 unkA4[4];  // unknown type
+    u8 unkA8[4];  // unknown type
+    u8 unkAC[4];  // unknown type
+    u8 unkB0[4];  // unknown type
+};
+
+extern struct Struct8033B328 D_8033B328;
 // extern ? D_8032CE0C;
 // extern ? D_80385FE4;
 extern float D_80387000[];

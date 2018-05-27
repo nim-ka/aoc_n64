@@ -488,7 +488,7 @@ static void check_endless_staircase(void)
                 gMarioState->marioObj->pos[1] = gMarioState->pos[1];
                 gMarioState->marioObj->pos[2] = gMarioState->pos[2];
 
-                cameraAngle = gMarioState->area->unk24->unk02;
+                cameraAngle = gMarioState->area->unk24->unk2;
 
                 func_8027AB10(ptr->unk01);
                 gMarioState->area = D_8032CE6C;
@@ -498,7 +498,7 @@ static void check_endless_staircase(void)
                     ptr->displacement[1],
                     ptr->displacement[2]);
 
-                gMarioState->area->unk24->unk02 = cameraAngle;
+                gMarioState->area->unk24->unk2 = cameraAngle;
             }
         }
     }

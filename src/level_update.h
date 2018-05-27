@@ -54,13 +54,6 @@ struct UnknownArea1C
     /*0x02*/ Vec3s displacement;
 };
 
-struct UnknownArea24 // Camera or camera related
-{
-    /*0x00*/ u8 unk00;
-    /*0x01*/ u8 unk01;
-    /*0x02*/ s16 unk02;
-};
-
 struct WarpNode
 {
     /*00*/ u8 id;
@@ -95,7 +88,7 @@ struct Area
     /*0x18*/ struct WarpNode *paintingWarpNodes;
     /*0x1C*/ struct UnknownArea1C *unk1C;
     /*0x20*/ struct SpawnInfo *unk20;
-    /*0x24*/ struct UnknownArea24 *unk24;
+    /*0x24*/ struct Struct80280550 *unk24;
     /*0x28*/ u32 unk28;
     /*0x2C*/ struct Whirlpool *whirlpools[2];
     /*0x34*/ u8 unk34[1];

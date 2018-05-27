@@ -10,7 +10,7 @@
 extern u16 D_8032CFA8;
 // extern ? D_8032CBE8;
 extern s16 D_8033A760;
-extern u8 *D_8033B860;
+extern struct Struct80280550 *D_8033B860;
 extern u8 D_8032CE24;
 // extern ? D_80330440;
 extern u8 D_8032CE20;

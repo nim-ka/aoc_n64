@@ -768,7 +768,7 @@ static void reset_mario_pitch(struct MarioState *m)
     if (m->action == ACT_WATER_JUMP || m->action == ACT_SHOT_FROM_CANNON ||
         m->action == ACT_FLYING)
     {
-        func_80285BD8(m->area->unk24, m->area->unk24->unk01, 1);
+        func_80285BD8(m->area->unk24, m->area->unk24->unk1, 1);
         m->faceAngle[0] = 0;
     }
 }
