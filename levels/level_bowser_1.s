@@ -10,8 +10,8 @@
 
 glabel level_bowser_1_entry
     init_level
-    load_mio0 /*seg*/ 0x07, /*romStart*/ 0x004C08C0, /*romEnd*/ 0x004C2160
-    load_mio0 /*seg*/ 0x0A, /*romStart*/ 0x00300270, /*romEnd*/ 0x0030B460
+    load_mio0 /*seg*/ 0x07, /*romStart*/ _level_bowser_1_segment_7SegmentRomStart, /*romEnd*/ _level_bowser_1_segment_7SegmentRomEnd
+    load_mio0 /*seg*/ 0x0A, /*romStart*/ bidw_skybox, /*romEnd*/ bidw_skybox_end
     load_mio0 /*seg*/ 0x06, /*romStart*/ bowser, /*romEnd*/ bowser_end
     load_raw /*seg*/ 0x0D, /*romStart*/ bowser_flames_bomb, /*romEnd*/ bowser_flames_bomb_end
     alloc_level_pool

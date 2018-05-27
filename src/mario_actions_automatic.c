@@ -4,7 +4,7 @@
 #include "behavior_data.h"
 #include "mario_actions_automatic.h"
 #include "audio_interface_2.h"
-#include "level_update.h"
+#include "area.h"
 #include "mario.h"
 #include "mario_step.h"
 #include "math_util.h"
@@ -75,8 +75,8 @@ static s32 set_pole_position(struct MarioState *m, f32 offsetY)
     m->pos[2] = m->usedObj->pos[2];
     m->pos[1] = m->usedObj->pos[1] + *(f32 *)&marioObj->unk110 + offsetY;
 
-    collided  = func_80380DE8(&m->pos[0], &m->pos[1], &m->pos[2], 60.0f, 50.0f);
-    collided |= func_80380DE8(&m->pos[0], &m->pos[1], &m->pos[2], 30.0f, 24.0f);
+    collided  = resolve_wall_collisions(&m->pos[0], &m->pos[1], &m->pos[2], 60.0f, 50.0f);
+    collided |= resolve_wall_collisions(&m->pos[0], &m->pos[1], &m->pos[2], 30.0f, 24.0f);
 
     ceilHeight = func_802518D0(m->pos, m->pos[1], &ceil);
     if (m->pos[1] > ceilHeight - 160.0f)
@@ -85,7 +85,7 @@ static s32 set_pole_position(struct MarioState *m, f32 offsetY)
         *(f32 *)&marioObj->unk110 = m->pos[1] - m->usedObj->pos[1];
     }
 
-    floorHeight = func_80381900(m->pos[0], m->pos[1], m->pos[2], &floor);
+    floorHeight = find_floor(m->pos[0], m->pos[1], m->pos[2], &floor);
     if (m->pos[1] < floorHeight)
     {
         m->pos[1] = floorHeight;
@@ -328,7 +328,7 @@ static s32 perform_hanging_step(struct MarioState *m, Vec3f nextPos)
     f32 ceilOffset;
 
     m->wall = func_8025181C(nextPos, 50.0f, 50.0f);
-    floorHeight = func_80381900(nextPos[0], nextPos[1], nextPos[2], &floor);
+    floorHeight = find_floor(nextPos[0], nextPos[1], nextPos[2], &floor);
     ceilHeight = func_802518D0(nextPos, floorHeight, &ceil);
 
     if (floor == NULL)
@@ -493,7 +493,7 @@ static s32 let_go_of_ledge(struct MarioState *m)
     m->pos[0] -= 60.0f * sins(m->faceAngle[1]);
     m->pos[2] -= 60.0f * coss(m->faceAngle[1]);
 
-    floorHeight = func_80381900(m->pos[0], m->pos[1], m->pos[2], &floor);
+    floorHeight = find_floor(m->pos[0], m->pos[1], m->pos[2], &floor);
     if (floorHeight < m->pos[1] - 100.0f)
         m->pos[1] -= 100.0f;
     else
@@ -787,9 +787,9 @@ static s32 act_tornado_twirling(struct MarioState *m)
     nextPos[2] = usedObj->pos[2] - dx * sinAngleVel + dz * cosAngleVel;
     nextPos[1] = usedObj->pos[1] + *(f32 *)&marioObj->unk110;
     
-    func_80380DE8(&nextPos[0], &nextPos[1], &nextPos[2], 60.0f, 50.0f);
+    resolve_wall_collisions(&nextPos[0], &nextPos[1], &nextPos[2], 60.0f, 50.0f);
     
-    floorHeight = func_80381900(nextPos[0], nextPos[1], nextPos[2], &floor);
+    floorHeight = find_floor(nextPos[0], nextPos[1], nextPos[2], &floor);
     if (floor != NULL)
     {
         m->floor = floor;

@@ -3362,7 +3362,7 @@ glabel BehWaterAirBubbleLoop
 /* 062D54 802A7D54 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 062D58 802A7D58 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
 /* 062D5C 802A7D5C C5CC00A0 */  lwc1  $f12, 0xa0($t6)
-/* 062D60 802A7D60 0C0E06E8 */  jal   func_80381BA0
+/* 062D60 802A7D60 0C0E06E8 */  jal   find_water_level
 /* 062D64 802A7D64 C5CE00A8 */   lwc1  $f14, 0xa8($t6)
 /* 062D68 802A7D68 3C098036 */  lui   $t1, %hi(gCurrentObject) # $t1, 0x8036
 /* 062D6C 802A7D6C 8D29FDF0 */  lw    $t1, %lo(gCurrentObject)($t1)
@@ -3560,7 +3560,7 @@ glabel BehSmallWaterWaveLoop
 /* 063038 802A8038 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 06303C 802A803C 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
 /* 063040 802A8040 C5CC00A0 */  lwc1  $f12, 0xa0($t6)
-/* 063044 802A8044 0C0E06E8 */  jal   func_80381BA0
+/* 063044 802A8044 0C0E06E8 */  jal   find_water_level
 /* 063048 802A8048 C5CE00A8 */   lwc1  $f14, 0xa8($t6)
 /* 06304C 802A804C E7A0001C */  swc1  $f0, 0x1c($sp)
 /* 063050 802A8050 3C0F8036 */  lui   $t7, %hi(gCurrentObject) # $t7, 0x8036
@@ -3770,7 +3770,7 @@ glabel BehParticleLoop
 /* 063354 802A8354 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 063358 802A8358 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
 /* 06335C 802A835C C5CC00A0 */  lwc1  $f12, 0xa0($t6)
-/* 063360 802A8360 0C0E06E8 */  jal   func_80381BA0
+/* 063360 802A8360 0C0E06E8 */  jal   find_water_level
 /* 063364 802A8364 C5CE00A8 */   lwc1  $f14, 0xa8($t6)
 /* 063368 802A8368 E7A00024 */  swc1  $f0, 0x24($sp)
 /* 06336C 802A836C 3C0F8036 */  lui   $t7, %hi(gCurrentObject) # $t7, 0x8036
@@ -6977,7 +6977,7 @@ glabel BehCoinLoop
 /* 066094 802AB094 00000000 */   nop   
 /* 066098 802AB098 8FAF001C */  lw    $t7, 0x1c($sp)
 /* 06609C 802AB09C C5EC0024 */  lwc1  $f12, 0x24($t7)
-/* 0660A0 802AB0A0 0C0DEA6A */  jal   func_8037A9A8
+/* 0660A0 802AB0A0 0C0DEA6A */  jal   atan2s
 /* 0660A4 802AB0A4 C5EE001C */   lwc1  $f14, 0x1c($t7)
 /* 0660A8 802AB0A8 A7A2001A */  sh    $v0, 0x1a($sp)
 /* 0660AC 802AB0AC 87A4001A */  lh    $a0, 0x1a($sp)
@@ -8336,7 +8336,7 @@ glabel BehDoorInit
 /* 0673CC 802AC3CC C7AC0024 */  lwc1  $f12, 0x24($sp)
 /* 0673D0 802AC3D0 8FA60020 */  lw    $a2, 0x20($sp)
 /* 0673D4 802AC3D4 27A7001C */  addiu $a3, $sp, 0x1c
-/* 0673D8 802AC3D8 0C0E0640 */  jal   func_80381900
+/* 0673D8 802AC3D8 0C0E0640 */  jal   find_floor
 /* 0673DC 802AC3DC C70E00A4 */   lwc1  $f14, 0xa4($t8)
 /* 0673E0 802AC3E0 8FB9001C */  lw    $t9, 0x1c($sp)
 /* 0673E4 802AC3E4 13200006 */  beqz  $t9, .L802AC400
@@ -8382,7 +8382,7 @@ glabel BehDoorInit
 /* 067480 802AC480 C7AC0024 */  lwc1  $f12, 0x24($sp)
 /* 067484 802AC484 8FA60020 */  lw    $a2, 0x20($sp)
 /* 067488 802AC488 27A7001C */  addiu $a3, $sp, 0x1c
-/* 06748C 802AC48C 0C0E0640 */  jal   func_80381900
+/* 06748C 802AC48C 0C0E0640 */  jal   find_floor
 /* 067490 802AC490 C52E00A4 */   lwc1  $f14, 0xa4($t1)
 /* 067494 802AC494 8FAA001C */  lw    $t2, 0x1c($sp)
 /* 067498 802AC498 11400006 */  beqz  $t2, .L802AC4B4
@@ -8428,7 +8428,7 @@ glabel BehDoorInit
 /* 067534 802AC534 C7AC0024 */  lwc1  $f12, 0x24($sp)
 /* 067538 802AC538 8FA60020 */  lw    $a2, 0x20($sp)
 /* 06753C 802AC53C 27A7001C */  addiu $a3, $sp, 0x1c
-/* 067540 802AC540 0C0E0640 */  jal   func_80381900
+/* 067540 802AC540 0C0E0640 */  jal   find_floor
 /* 067544 802AC544 C5AE00A4 */   lwc1  $f14, 0xa4($t5)
 /* 067548 802AC548 8FAE001C */  lw    $t6, 0x1c($sp)
 /* 06754C 802AC54C 11C00006 */  beqz  $t6, .L802AC568
@@ -9883,7 +9883,7 @@ glabel BehWaterMist2Loop
 /* 0689A0 802AD9A0 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 0689A4 802AD9A4 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
 /* 0689A8 802AD9A8 C5CC0164 */  lwc1  $f12, 0x164($t6)
-/* 0689AC 802AD9AC 0C0E06E8 */  jal   func_80381BA0
+/* 0689AC 802AD9AC 0C0E06E8 */  jal   find_water_level
 /* 0689B0 802AD9B0 C5CE016C */   lwc1  $f14, 0x16c($t6)
 /* 0689B4 802AD9B4 3C0141A0 */  li    $at, 0x41A00000 # 20.000000
 /* 0689B8 802AD9B8 44812000 */  mtc1  $at, $f4
@@ -11755,7 +11755,7 @@ glabel BehMultipleCoinsLoop
 /* 06A44C 802AF44C 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 06A450 802AF450 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
 /* 06A454 802AF454 C5CC00A0 */  lwc1  $f12, 0xa0($t6)
-/* 06A458 802AF458 0C0E06E8 */  jal   func_80381BA0
+/* 06A458 802AF458 0C0E06E8 */  jal   find_water_level
 /* 06A45C 802AF45C C5CE00A8 */   lwc1  $f14, 0xa8($t6)
 /* 06A460 802AF460 E7A00018 */  swc1  $f0, 0x18($sp)
 /* 06A464 802AF464 10000001 */  b     .L802AF46C
@@ -13466,7 +13466,7 @@ glabel func_802B0C54
 /* 06BCD4 802B0CD4 C7AC0020 */  lwc1  $f12, 0x20($sp)
 /* 06BCD8 802B0CD8 8FA60018 */  lw    $a2, 0x18($sp)
 /* 06BCDC 802B0CDC 27A70024 */  addiu $a3, $sp, 0x24
-/* 06BCE0 802B0CE0 0C0E0640 */  jal   func_80381900
+/* 06BCE0 802B0CE0 0C0E0640 */  jal   find_floor
 /* 06BCE4 802B0CE4 C58E00A4 */   lwc1  $f14, 0xa4($t4)
 /* 06BCE8 802B0CE8 E7A0001C */  swc1  $f0, 0x1c($sp)
 /* 06BCEC 802B0CEC 3C0D8036 */  lui   $t5, %hi(gCurrentObject) # $t5, 0x8036
@@ -14263,7 +14263,7 @@ glabel ActionHeaveHo0
 /* 06C814 802B1814 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 06C818 802B1818 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
 /* 06C81C 802B181C C5CC00A0 */  lwc1  $f12, 0xa0($t6)
-/* 06C820 802B1820 0C0E06E8 */  jal   func_80381BA0
+/* 06C820 802B1820 0C0E06E8 */  jal   find_water_level
 /* 06C824 802B1824 C5CE00A8 */   lwc1  $f14, 0xa8($t6)
 /* 06C828 802B1828 3C0F8036 */  lui   $t7, %hi(gCurrentObject) # $t7, 0x8036
 /* 06C82C 802B182C 8DEFFDF0 */  lw    $t7, %lo(gCurrentObject)($t7)
@@ -15453,7 +15453,7 @@ glabel func_802B2894
 /* 06D8F4 802B28F4 460A3300 */   add.s $f12, $f6, $f10
 /* 06D8F8 802B28F8 E7A0001C */  swc1  $f0, 0x1c($sp)
 /* 06D8FC 802B28FC C7AC0020 */  lwc1  $f12, 0x20($sp)
-/* 06D900 802B2900 0C0DEA6A */  jal   func_8037A9A8
+/* 06D900 802B2900 0C0DEA6A */  jal   atan2s
 /* 06D904 802B2904 C7AE0024 */   lwc1  $f14, 0x24($sp)
 /* 06D908 802B2908 3C088036 */  lui   $t0, %hi(gCurrentObject) # $t0, 0x8036
 /* 06D90C 802B290C 8D08FDF0 */  lw    $t0, %lo(gCurrentObject)($t0)
@@ -20018,7 +20018,7 @@ glabel func_802B688C
 /* 071904 802B6904 27A70024 */  addiu $a3, $sp, 0x24
 /* 071908 802B6908 C52C00A0 */  lwc1  $f12, 0xa0($t1)
 /* 07190C 802B690C C52E00A4 */  lwc1  $f14, 0xa4($t1)
-/* 071910 802B6910 0C0E0640 */  jal   func_80381900
+/* 071910 802B6910 0C0E0640 */  jal   find_floor
 /* 071914 802B6914 8D2600A8 */   lw    $a2, 0xa8($t1)
 /* 071918 802B6918 E7A0001C */  swc1  $f0, 0x1c($sp)
 /* 07191C 802B691C 8FAA0024 */  lw    $t2, 0x24($sp)
@@ -20265,7 +20265,7 @@ glabel BehBowserLoop
 /* 071C98 802B6C98 C71200A8 */  lwc1  $f18, 0xa8($t8)
 /* 071C9C 802B6C9C C70800A0 */  lwc1  $f8, 0xa0($t8)
 /* 071CA0 802B6CA0 46128301 */  sub.s $f12, $f16, $f18
-/* 071CA4 802B6CA4 0C0DEA6A */  jal   func_8037A9A8
+/* 071CA4 802B6CA4 0C0DEA6A */  jal   atan2s
 /* 071CA8 802B6CA8 46082381 */   sub.s $f14, $f4, $f8
 /* 071CAC 802B6CAC 3C198036 */  lui   $t9, %hi(gCurrentObject) # $t9, 0x8036
 /* 071CB0 802B6CB0 8F39FDF0 */  lw    $t9, %lo(gCurrentObject)($t9)
@@ -23249,8 +23249,8 @@ glabel L802B970C
 /* 074724 802B9724 2921012C */  slti  $at, $t1, 0x12c
 /* 074728 802B9728 1020001F */  beqz  $at, .L802B97A8
 /* 07472C 802B972C 00000000 */   nop   
-/* 074730 802B9730 3C0A8036 */  lui   $t2, %hi(D_8035FE18) # $t2, 0x8036
-/* 074734 802B9734 254AFE18 */  addiu $t2, %lo(D_8035FE18) # addiu $t2, $t2, -0x1e8
+/* 074730 802B9730 3C0A8036 */  lui   $t2, %hi(gWaterLevels) # $t2, 0x8036
+/* 074734 802B9734 254AFE18 */  addiu $t2, %lo(gWaterLevels) # addiu $t2, $t2, -0x1e8
 /* 074738 802B9738 8D580008 */  lw    $t8, 8($t2)
 /* 07473C 802B973C 3C018033 */  lui    $at, %hi(D_80336A1C)
 /* 074740 802B9740 C42E6A1C */  lwc1  $f14, %lo(D_80336A1C)($at)
@@ -23259,13 +23259,13 @@ glabel L802B970C
 /* 07474C 802B974C 0C0A7746 */  jal   func_8029DD18
 /* 074750 802B9750 46805320 */   cvt.s.w $f12, $f10
 /* 074754 802B9754 4600040D */  trunc.w.s $f16, $f0
-/* 074758 802B9758 3C0E8036 */  lui   $t6, %hi(D_8035FE18) # $t6, 0x8036
-/* 07475C 802B975C 25CEFE18 */  addiu $t6, %lo(D_8035FE18) # addiu $t6, $t6, -0x1e8
+/* 074758 802B9758 3C0E8036 */  lui   $t6, %hi(gWaterLevels) # $t6, 0x8036
+/* 07475C 802B975C 25CEFE18 */  addiu $t6, %lo(gWaterLevels) # addiu $t6, $t6, -0x1e8
 /* 074760 802B9760 440D8000 */  mfc1  $t5, $f16
 /* 074764 802B9764 00000000 */  nop   
 /* 074768 802B9768 ADCD0008 */  sw    $t5, 8($t6)
-/* 07476C 802B976C 3C0F8036 */  lui   $t7, %hi(D_8035FE18) # $t7, 0x8036
-/* 074770 802B9770 25EFFE18 */  addiu $t7, %lo(D_8035FE18) # addiu $t7, $t7, -0x1e8
+/* 07476C 802B976C 3C0F8036 */  lui   $t7, %hi(gWaterLevels) # $t7, 0x8036
+/* 074770 802B9770 25EFFE18 */  addiu $t7, %lo(gWaterLevels) # addiu $t7, $t7, -0x1e8
 /* 074774 802B9774 8DF90000 */  lw    $t9, ($t7)
 /* 074778 802B9778 3C018033 */  lui    $at, %hi(D_80336A20)
 /* 07477C 802B977C C42E6A20 */  lwc1  $f14, %lo(D_80336A20)($at)
@@ -23274,8 +23274,8 @@ glabel L802B970C
 /* 074788 802B9788 0C0A7746 */  jal   func_8029DD18
 /* 07478C 802B978C 46809320 */   cvt.s.w $f12, $f18
 /* 074790 802B9790 4600010D */  trunc.w.s $f4, $f0
-/* 074794 802B9794 3C098036 */  lui   $t1, %hi(D_8035FE18) # $t1, 0x8036
-/* 074798 802B9798 2529FE18 */  addiu $t1, %lo(D_8035FE18) # addiu $t1, $t1, -0x1e8
+/* 074794 802B9794 3C098036 */  lui   $t1, %hi(gWaterLevels) # $t1, 0x8036
+/* 074798 802B9798 2529FE18 */  addiu $t1, %lo(gWaterLevels) # addiu $t1, $t1, -0x1e8
 /* 07479C 802B979C 44082000 */  mfc1  $t0, $f4
 /* 0747A0 802B97A0 10000006 */  b     .L802B97BC
 /* 0747A4 802B97A4 AD280000 */   sw    $t0, ($t1)
@@ -23313,12 +23313,12 @@ glabel func_802B97E4
 /* 074808 802B9808 C70400A4 */  lwc1  $f4, 0xa4($t8)
 /* 07480C 802B980C 46062201 */  sub.s $f8, $f4, $f6
 /* 074810 802B9810 E70800A4 */  swc1  $f8, 0xa4($t8)
-/* 074814 802B9814 3C088036 */  lui   $t0, %hi(D_8035FE18) # $t0, 0x8036
-/* 074818 802B9818 2508FE18 */  addiu $t0, %lo(D_8035FE18) # addiu $t0, $t0, -0x1e8
+/* 074814 802B9814 3C088036 */  lui   $t0, %hi(gWaterLevels) # $t0, 0x8036
+/* 074818 802B9818 2508FE18 */  addiu $t0, %lo(gWaterLevels) # addiu $t0, $t0, -0x1e8
 /* 07481C 802B981C 2419F66E */  li    $t9, -2450
 /* 074820 802B9820 AD190008 */  sw    $t9, 8($t0)
-/* 074824 802B9824 3C0A8036 */  lui   $t2, %hi(D_8035FE18) # $t2, 0x8036
-/* 074828 802B9828 254AFE18 */  addiu $t2, %lo(D_8035FE18) # addiu $t2, $t2, -0x1e8
+/* 074824 802B9824 3C0A8036 */  lui   $t2, %hi(gWaterLevels) # $t2, 0x8036
+/* 074828 802B9828 254AFE18 */  addiu $t2, %lo(gWaterLevels) # addiu $t2, $t2, -0x1e8
 /* 07482C 802B982C 2409F66E */  li    $t1, -2450
 /* 074830 802B9830 AD490000 */  sw    $t1, ($t2)
 .L802B9834:
@@ -23365,14 +23365,14 @@ glabel BehWaterLevelPillarLoop
 /* 0748B4 802B98B4 0C0AE569 */  jal   func_802B95A4
 /* 0748B8 802B98B8 00000000 */   nop   
 .L802B98BC:
-/* 0748BC 802B98BC 3C188036 */  lui   $t8, %hi(D_8035FE18) # $t8, 0x8036
-/* 0748C0 802B98C0 2718FE18 */  addiu $t8, %lo(D_8035FE18) # addiu $t8, $t8, -0x1e8
+/* 0748BC 802B98BC 3C188036 */  lui   $t8, %hi(gWaterLevels) # $t8, 0x8036
+/* 0748C0 802B98C0 2718FE18 */  addiu $t8, %lo(gWaterLevels) # addiu $t8, $t8, -0x1e8
 /* 0748C4 802B98C4 3C088036 */  lui   $t0, %hi(gWaterRegions) # $t0, 0x8036
 /* 0748C8 802B98C8 8D08FE14 */  lw    $t0, %lo(gWaterRegions)($t0)
 /* 0748CC 802B98CC 8F190008 */  lw    $t9, 8($t8)
 /* 0748D0 802B98D0 A5190024 */  sh    $t9, 0x24($t0)
-/* 0748D4 802B98D4 3C098036 */  lui   $t1, %hi(D_8035FE18) # $t1, 0x8036
-/* 0748D8 802B98D8 2529FE18 */  addiu $t1, %lo(D_8035FE18) # addiu $t1, $t1, -0x1e8
+/* 0748D4 802B98D4 3C098036 */  lui   $t1, %hi(gWaterLevels) # $t1, 0x8036
+/* 0748D8 802B98D8 2529FE18 */  addiu $t1, %lo(gWaterLevels) # addiu $t1, $t1, -0x1e8
 /* 0748DC 802B98DC 3C0B8036 */  lui   $t3, %hi(gWaterRegions) # $t3, 0x8036
 /* 0748E0 802B98E0 8D6BFE14 */  lw    $t3, %lo(gWaterRegions)($t3)
 /* 0748E4 802B98E4 8D2A0000 */  lw    $t2, ($t1)
@@ -23664,7 +23664,7 @@ glabel BehRotatingClockArmLoop
 /* 074CD0 802B9CD0 27A7001C */  addiu $a3, $sp, 0x1c
 /* 074CD4 802B9CD4 C70C00A0 */  lwc1  $f12, 0xa0($t8)
 /* 074CD8 802B9CD8 C70E00A4 */  lwc1  $f14, 0xa4($t8)
-/* 074CDC 802B9CDC 0C0E0640 */  jal   func_80381900
+/* 074CDC 802B9CDC 0C0E0640 */  jal   find_floor
 /* 074CE0 802B9CE0 8F0600A8 */   lw    $a2, 0xa8($t8)
 /* 074CE4 802B9CE4 3C198036 */  lui   $t9, %hi(gCurrentObject) # $t9, 0x8036
 /* 074CE8 802B9CE8 8F39FDF0 */  lw    $t9, %lo(gCurrentObject)($t9)
@@ -27140,7 +27140,7 @@ glabel BehKoopaShellLoop
 /* 077E14 802BCE14 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 077E18 802BCE18 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
 /* 077E1C 802BCE1C C5CC00A0 */  lwc1  $f12, 0xa0($t6)
-/* 077E20 802BCE20 0C0E06E8 */  jal   func_80381BA0
+/* 077E20 802BCE20 0C0E06E8 */  jal   find_water_level
 /* 077E24 802BCE24 C5CE00A8 */   lwc1  $f14, 0xa8($t6)
 /* 077E28 802BCE28 3C0F8036 */  lui   $t7, %hi(gCurrentObject) # $t7, 0x8036
 /* 077E2C 802BCE2C 8DEFFDF0 */  lw    $t7, %lo(gCurrentObject)($t7)
@@ -30542,7 +30542,7 @@ glabel BehFishGroup2Loop
 /* 07ADB4 802BFDB4 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 07ADB8 802BFDB8 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
 /* 07ADBC 802BFDBC C5CC00A0 */  lwc1  $f12, 0xa0($t6)
-/* 07ADC0 802BFDC0 0C0E06E8 */  jal   func_80381BA0
+/* 07ADC0 802BFDC0 0C0E06E8 */  jal   find_water_level
 /* 07ADC4 802BFDC4 C5CE00A8 */   lwc1  $f14, 0xa8($t6)
 /* 07ADC8 802BFDC8 3C0F8036 */  lui   $t7, %hi(gCurrentObject) # $t7, 0x8036
 /* 07ADCC 802BFDCC 8DEFFDF0 */  lw    $t7, %lo(gCurrentObject)($t7)
@@ -31290,7 +31290,7 @@ glabel BehCheepCheepLoop
 /* 07B840 802C0840 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 07B844 802C0844 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
 /* 07B848 802C0848 C5CC00A0 */  lwc1  $f12, 0xa0($t6)
-/* 07B84C 802C084C 0C0E06E8 */  jal   func_80381BA0
+/* 07B84C 802C084C 0C0E06E8 */  jal   find_water_level
 /* 07B850 802C0850 C5CE00A8 */   lwc1  $f14, 0xa8($t6)
 /* 07B854 802C0854 3C0F8036 */  lui   $t7, %hi(gCurrentObject) # $t7, 0x8036
 /* 07B858 802C0858 8DEFFDF0 */  lw    $t7, %lo(gCurrentObject)($t7)
@@ -31898,7 +31898,7 @@ glabel BehSushiSharkLoop
 /* 07C0CC 802C10CC 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 07C0D0 802C10D0 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
 /* 07C0D4 802C10D4 C5CC00A0 */  lwc1  $f12, 0xa0($t6)
-/* 07C0D8 802C10D8 0C0E06E8 */  jal   func_80381BA0
+/* 07C0D8 802C10D8 0C0E06E8 */  jal   find_water_level
 /* 07C0DC 802C10DC C5CE00A8 */   lwc1  $f14, 0xa8($t6)
 /* 07C0E0 802C10E0 E7A0001C */  swc1  $f0, 0x1c($sp)
 /* 07C0E4 802C10E4 3C0F8036 */  lui   $t7, %hi(gCurrentObject) # $t7, 0x8036
@@ -32259,7 +32259,7 @@ glabel BehJrbSlidingBox
 /* 07C62C 802C162C C54C0000 */  lwc1  $f12, ($t2)
 /* 07C630 802C1630 C54E0004 */  lwc1  $f14, 4($t2)
 /* 07C634 802C1634 8D460008 */  lw    $a2, 8($t2)
-/* 07C638 802C1638 0C0E0640 */  jal   func_80381900
+/* 07C638 802C1638 0C0E0640 */  jal   find_floor
 /* 07C63C 802C163C 27A70038 */   addiu $a3, $sp, 0x38
 /* 07C640 802C1640 8FA90038 */  lw    $t1, 0x38($sp)
 /* 07C644 802C1644 11200011 */  beqz  $t1, .L802C168C
@@ -32930,8 +32930,8 @@ glabel BehInitWaterLevelTriggerLoop
 /* 07CFB8 802C1FB8 00000000 */   nop   
 /* 07CFBC 802C1FBC 3C0C8036 */  lui   $t4, %hi(gWaterRegions) # $t4, 0x8036
 /* 07CFC0 802C1FC0 8D8CFE14 */  lw    $t4, %lo(gWaterRegions)($t4)
-/* 07CFC4 802C1FC4 3C0E8036 */  lui   $t6, %hi(D_8035FE18) # $t6, 0x8036
-/* 07CFC8 802C1FC8 25CEFE18 */  addiu $t6, %lo(D_8035FE18) # addiu $t6, $t6, -0x1e8
+/* 07CFC4 802C1FC4 3C0E8036 */  lui   $t6, %hi(gWaterLevels) # $t6, 0x8036
+/* 07CFC8 802C1FC8 25CEFE18 */  addiu $t6, %lo(gWaterLevels) # addiu $t6, $t6, -0x1e8
 /* 07CFCC 802C1FCC 858D000C */  lh    $t5, 0xc($t4)
 /* 07CFD0 802C1FD0 1000001D */  b     .L802C2048
 /* 07CFD4 802C1FD4 ADCD0000 */   sw    $t5, ($t6)
@@ -32939,9 +32939,9 @@ glabel BehInitWaterLevelTriggerLoop
 /* 07CFD8 802C1FD8 3C0F8036 */  lui   $t7, %hi(gCurrentObject) # $t7, 0x8036
 /* 07CFDC 802C1FDC 8DEFFDF0 */  lw    $t7, %lo(gCurrentObject)($t7)
 /* 07CFE0 802C1FE0 3C018038 */  lui   $at, %hi(D_80386000)
-/* 07CFE4 802C1FE4 3C198036 */  lui   $t9, %hi(D_8035FE18) # $t9, 0x8036
+/* 07CFE4 802C1FE4 3C198036 */  lui   $t9, %hi(gWaterLevels) # $t9, 0x8036
 /* 07CFE8 802C1FE8 95F800F6 */  lhu   $t8, 0xf6($t7)
-/* 07CFEC 802C1FEC 2739FE18 */  addiu $t9, %lo(D_8035FE18) # addiu $t9, $t9, -0x1e8
+/* 07CFEC 802C1FEC 2739FE18 */  addiu $t9, %lo(gWaterLevels) # addiu $t9, $t9, -0x1e8
 /* 07CFF0 802C1FF0 8F2A0000 */  lw    $t2, ($t9)
 /* 07CFF4 802C1FF4 00184103 */  sra   $t0, $t8, 4
 /* 07CFF8 802C1FF8 00084880 */  sll   $t1, $t0, 2
@@ -33049,8 +33049,8 @@ glabel BehWaterLevelTriggerLoop
 /* 07D16C 802C216C AD400118 */  sw    $zero, 0x118($t2)
 /* 07D170 802C2170 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 07D174 802C2174 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
-/* 07D178 802C2178 3C0B8036 */  lui   $t3, %hi(D_8035FE18) # $t3, 0x8036
-/* 07D17C 802C217C 256BFE18 */  addiu $t3, %lo(D_8035FE18) # addiu $t3, $t3, -0x1e8
+/* 07D178 802C2178 3C0B8036 */  lui   $t3, %hi(gWaterLevels) # $t3, 0x8036
+/* 07D17C 802C217C 256BFE18 */  addiu $t3, %lo(gWaterLevels) # addiu $t3, $t3, -0x1e8
 /* 07D180 802C2180 8D6D0000 */  lw    $t5, ($t3)
 /* 07D184 802C2184 8DCC00F8 */  lw    $t4, 0xf8($t6)
 /* 07D188 802C2188 3C064120 */  li    $a2, 0x41200000 
@@ -33060,15 +33060,15 @@ glabel BehWaterLevelTriggerLoop
 /* 07D198 802C2198 0C0A7746 */  jal   func_8029DD18
 /* 07D19C 802C219C 468053A0 */   cvt.s.w $f14, $f10
 /* 07D1A0 802C21A0 4600040D */  trunc.w.s $f16, $f0
-/* 07D1A4 802C21A4 3C098036 */  lui   $t1, %hi(D_8035FE18) # $t1, 0x8036
-/* 07D1A8 802C21A8 2529FE18 */  addiu $t1, %lo(D_8035FE18) # addiu $t1, $t1, -0x1e8
+/* 07D1A4 802C21A4 3C098036 */  lui   $t1, %hi(gWaterLevels) # $t1, 0x8036
+/* 07D1A8 802C21A8 2529FE18 */  addiu $t1, %lo(gWaterLevels) # addiu $t1, $t1, -0x1e8
 /* 07D1AC 802C21AC 44088000 */  mfc1  $t0, $f16
 /* 07D1B0 802C21B0 00000000 */  nop   
 /* 07D1B4 802C21B4 AD280000 */  sw    $t0, ($t1)
 /* 07D1B8 802C21B8 3C188036 */  lui   $t8, %hi(gCurrentObject) # $t8, 0x8036
 /* 07D1BC 802C21BC 8F18FDF0 */  lw    $t8, %lo(gCurrentObject)($t8)
-/* 07D1C0 802C21C0 3C0A8036 */  lui   $t2, %hi(D_8035FE18) # $t2, 0x8036
-/* 07D1C4 802C21C4 254AFE18 */  addiu $t2, %lo(D_8035FE18) # addiu $t2, $t2, -0x1e8
+/* 07D1C0 802C21C0 3C0A8036 */  lui   $t2, %hi(gWaterLevels) # $t2, 0x8036
+/* 07D1C4 802C21C4 254AFE18 */  addiu $t2, %lo(gWaterLevels) # addiu $t2, $t2, -0x1e8
 /* 07D1C8 802C21C8 8D4B0000 */  lw    $t3, ($t2)
 /* 07D1CC 802C21CC 8F1900F8 */  lw    $t9, 0xf8($t8)
 /* 07D1D0 802C21D0 172B0012 */  bne   $t9, $t3, .L802C221C
@@ -33106,8 +33106,8 @@ glabel BehWaterLevelTriggerLoop
 .L802C2244:
 /* 07D244 802C2244 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 07D248 802C2248 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
-/* 07D24C 802C224C 3C0B8036 */  lui   $t3, %hi(D_8035FE18) # $t3, 0x8036
-/* 07D250 802C2250 256BFE18 */  addiu $t3, %lo(D_8035FE18) # addiu $t3, $t3, -0x1e8
+/* 07D24C 802C224C 3C0B8036 */  lui   $t3, %hi(gWaterLevels) # $t3, 0x8036
+/* 07D250 802C2250 256BFE18 */  addiu $t3, %lo(gWaterLevels) # addiu $t3, $t3, -0x1e8
 /* 07D254 802C2254 8D6D0000 */  lw    $t5, ($t3)
 /* 07D258 802C2258 8DCF00F8 */  lw    $t7, 0xf8($t6)
 /* 07D25C 802C225C 01ED082A */  slt   $at, $t7, $t5
@@ -36454,7 +36454,7 @@ glabel func_802C50F4
 /* 08015C 802C515C 27A7001C */  addiu $a3, $sp, 0x1c
 /* 080160 802C5160 C54C00A0 */  lwc1  $f12, 0xa0($t2)
 /* 080164 802C5164 C54E00A4 */  lwc1  $f14, 0xa4($t2)
-/* 080168 802C5168 0C0E0640 */  jal   func_80381900
+/* 080168 802C5168 0C0E0640 */  jal   find_floor
 /* 08016C 802C516C 8D4600A8 */   lw    $a2, 0xa8($t2)
 /* 080170 802C5170 8FAB001C */  lw    $t3, 0x1c($sp)
 /* 080174 802C5174 15600003 */  bnez  $t3, .L802C5184
@@ -38611,7 +38611,7 @@ glabel BehWaterSplashLoop
 /* 081FB8 802C6FB8 3C188036 */  lui   $t8, %hi(gCurrentObject) # $t8, 0x8036
 /* 081FBC 802C6FBC 8F18FDF0 */  lw    $t8, %lo(gCurrentObject)($t8)
 /* 081FC0 802C6FC0 C70C00A0 */  lwc1  $f12, 0xa0($t8)
-/* 081FC4 802C6FC4 0C0E06E8 */  jal   func_80381BA0
+/* 081FC4 802C6FC4 0C0E06E8 */  jal   find_water_level
 /* 081FC8 802C6FC8 C70E00A8 */   lwc1  $f14, 0xa8($t8)
 /* 081FCC 802C6FCC 3C198036 */  lui   $t9, %hi(gCurrentObject) # $t9, 0x8036
 /* 081FD0 802C6FD0 8F39FDF0 */  lw    $t9, %lo(gCurrentObject)($t9)
@@ -38653,7 +38653,7 @@ glabel BehWaterDropsLoop
 /* 082048 802C7048 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 08204C 802C704C 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
 /* 082050 802C7050 C5CC00A0 */  lwc1  $f12, 0xa0($t6)
-/* 082054 802C7054 0C0E06E8 */  jal   func_80381BA0
+/* 082054 802C7054 0C0E06E8 */  jal   find_water_level
 /* 082058 802C7058 C5CE00A8 */   lwc1  $f14, 0xa8($t6)
 /* 08205C 802C705C E7A00020 */  swc1  $f0, 0x20($sp)
 /* 082060 802C7060 3C0F8036 */  lui   $t7, %hi(gCurrentObject) # $t7, 0x8036
@@ -38828,7 +38828,7 @@ glabel BehGfxInit
 /* 0822C4 802C72C4 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 0822C8 802C72C8 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
 /* 0822CC 802C72CC C5CC00A0 */  lwc1  $f12, 0xa0($t6)
-/* 0822D0 802C72D0 0C0E06E8 */  jal   func_80381BA0
+/* 0822D0 802C72D0 0C0E06E8 */  jal   find_water_level
 /* 0822D4 802C72D4 C5CE00A8 */   lwc1  $f14, 0xa8($t6)
 /* 0822D8 802C72D8 E7A0001C */  swc1  $f0, 0x1c($sp)
 /* 0822DC 802C72DC 3C048036 */  lui   $a0, %hi(gCurrentObject) # $a0, 0x8036
@@ -38886,7 +38886,7 @@ glabel BehWaveTrailLoop
 /* 082390 802C7390 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 082394 802C7394 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
 /* 082398 802C7398 C5CC00A0 */  lwc1  $f12, 0xa0($t6)
-/* 08239C 802C739C 0C0E06E8 */  jal   func_80381BA0
+/* 08239C 802C739C 0C0E06E8 */  jal   find_water_level
 /* 0823A0 802C73A0 C5CE00A8 */   lwc1  $f14, 0xa8($t6)
 /* 0823A4 802C73A4 E7A0001C */  swc1  $f0, 0x1c($sp)
 /* 0823A8 802C73A8 3C0F8036 */  lui   $t7, %hi(gCurrentObject) # $t7, 0x8036

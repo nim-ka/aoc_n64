@@ -4,7 +4,7 @@
 #include "level_update.h"
 #include "memory.h"
 #include "math_util.h"
-#include "rendering.h"
+#include "area.h"
 #include "save_file.h"
 #include "sound_init.h"
 #include "surface_collision.h"
@@ -78,7 +78,7 @@ static u32 perform_water_full_step(struct MarioState *m, Vec3f nextPos)
     f32 floorHeight;
 
     wall = func_8025181C(nextPos, 10.0f, 110.0f);
-    floorHeight = func_80381900(nextPos[0], nextPos[1], nextPos[2], &floor);
+    floorHeight = find_floor(nextPos[0], nextPos[1], nextPos[2], &floor);
     ceilHeight = func_802518D0(nextPos, floorHeight, &ceil);
 
     if (floor == NULL)
@@ -135,7 +135,7 @@ static void apply_water_current(struct MarioState *m, Vec3f step)
 
     for (i = 0; i < 2; i++)
     {
-        struct Whirlpool *whirlpool = D_8032CE6C->whirlpools[i];
+        struct Whirlpool *whirlpool = gCurrentArea->whirlpools[i];
         if (whirlpool != NULL)
         {
             f32 strength = 0.0f;
@@ -147,14 +147,14 @@ static void apply_water_current(struct MarioState *m, Vec3f step)
             f32 lateralDist = sqrtf(dx*dx + dz*dz);
             f32 distance = sqrtf(lateralDist*lateralDist + dy*dy);
             
-            s16 pitchToWhirlpool = func_8037A9A8(lateralDist, dy);
-            s16 yawToWhirlpool = func_8037A9A8(dz, dx);
+            s16 pitchToWhirlpool = atan2s(lateralDist, dy);
+            s16 yawToWhirlpool = atan2s(dz, dx);
             
             yawToWhirlpool -= (s16) (0x2000 * 1000.0f / (distance + 1000.0f));
 
             if (whirlpool->strength >= 0)
             {
-                if (gCurrLevelNum == LEVEL_DDD && D_8033A75A == 2)
+                if (gCurrLevelNum == LEVEL_DDD && gCurrAreaIndex == 2)
                     whirlpoolRadius = 4000.0f;
 
                 if (distance >= 26.0f && distance < whirlpoolRadius)
@@ -759,7 +759,7 @@ static s32 check_water_grab(struct MarioState *m)
         struct Object *object = mario_get_collided_object(m, INTERACT_GRABBABLE);
         f32 dx = object->pos[0] - m->pos[0];
         f32 dz = object->pos[2] - m->pos[2];
-        s16 dAngleToObject = func_8037A9A8(dz, dx) - m->faceAngle[1];
+        s16 dAngleToObject = atan2s(dz, dx) - m->faceAngle[1];
 
         if (dAngleToObject >= -0x2AAA && dAngleToObject <= 0x2AAA)
         {
@@ -1055,7 +1055,7 @@ static s32 act_caught_in_whirlpool(struct MarioState *m)
     m->pos[2] = whirlpool->pos[2] - dx * sinAngleChange + dz * cosAngleChange;
     m->pos[1] = whirlpool->pos[1] + *(f32 *) &marioObj->unk110;
 
-    m->faceAngle[1] = func_8037A9A8(dz, dx) + 0x8000;
+    m->faceAngle[1] = atan2s(dz, dx) + 0x8000;
     
     func_802507E8(m, 0x0056);
     vec3f_copy(m->marioObj->gfx.unk20, m->pos);

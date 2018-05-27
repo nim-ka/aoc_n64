@@ -4,7 +4,7 @@
 #include "level_update.h"
 #include "main.h"
 #include "math_util.h"
-#include "rendering.h"
+#include "area.h"
 #include "resource_meter.h"
 #include "audio_dmc.h"
 #include "audio_interface_2.h"
@@ -131,7 +131,7 @@ void func_80249040(void)
 {
     u8 sp1f = FALSE;
     
-    if (gCurrLevelNum == LEVEL_CASTLE && D_8033A75A == 2 && gMarioState->numStars < 70)
+    if (gCurrLevelNum == LEVEL_CASTLE && gCurrAreaIndex == 2 && gMarioState->numStars < 70)
     {
         if (gMarioState->floor != NULL && gMarioState->floor->room == 6)
         {

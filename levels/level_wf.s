@@ -79,9 +79,9 @@ script_func_local_4:
 
 glabel level_wf_entry
     init_level
-    load_mio0 /*seg*/ 0x07, /*romStart*/ 0x00494030, /*romEnd*/ 0x0049B9F0
-    load_mio0 /*seg*/ 0x0A, /*romStart*/ 0x002E5E20, /*romEnd*/ 0x002EFA80
-    cmd1A /*seg*/ 0x09, /*romStart*/ 0x003558F0, /*romEnd*/ 0x0035D2B0
+    load_mio0 /*seg*/ 0x07, /*romStart*/ _level_wf_segment_7SegmentRomStart, /*romEnd*/ _level_wf_segment_7SegmentRomEnd
+    load_mio0 /*seg*/ 0x0A, /*romStart*/ cloud_floor_skybox, /*romEnd*/ cloud_floor_skybox_end
+    cmd1A /*seg*/ 0x09, /*romStart*/ wf_textures, /*romEnd*/ wf_textures_end
     load_mio0 /*seg*/ 0x05, /*romStart*/ yoshiegg_owl_thwomp, /*romEnd*/ yoshiegg_owl_thwomp_end
     load_raw /*seg*/ 0x0C, /*romStart*/ owl_thwomp_bullet_heave, /*romEnd*/ owl_thwomp_bullet_heave_end
     load_mio0 /*seg*/ 0x06, /*romStart*/ koopa_whomp, /*romEnd*/ koopa_whomp_end

@@ -70,7 +70,7 @@ SECTIONS
       build/asm/castle_message_behaviors.o(.text);
       build/src/memory.o(.text);
       build/src/save_file.o(.text);
-      build/src/rendering.o(.text);
+      build/src/area.o(.text);
       build/src/rendering_graph_node.o(.text);
       build/asm/resource_meter.o(.text);
       build/asm/decompress.o(.text);
@@ -128,9 +128,9 @@ SECTIONS
       build/src/memory.o(.data*);
       build/src/save_file.o(.data*);
       build/data/save_file.data.o(.data*);
-      build/src/rendering.o(.data*);
+      build/src/area.o(.data*);
       build/src/rendering_graph_node.o(.data*);
-      build/data/rendering.data.o(.data*);
+      build/data/rendering_graph_node.data.o(.data*);
       build/data/resource_meter.data.o(.data*);
       build/data/camera_before.data.o(.data*);
       build/src/camera.o(.data*);
@@ -172,7 +172,7 @@ SECTIONS
       build/src/mario_actions_submerged.o(.rodata*);
       build/data/mario_actions_object.rodata.o(.rodata*);
       build/data/castle_message_behaviors.rodata.o(.rodata*);
-      build/src/rendering.o(.rodata*);
+      build/src/area.o(.rodata*);
       build/src/rendering_graph_node.o(.rodata*);
       build/src/camera.o(.rodata*);
       build/data/camera.rodata.o(.rodata*);
@@ -244,7 +244,6 @@ SECTIONS
    {
       build/data/bss2.o(.bss*);
       build/src/level_script.o(.bss*);
-      build/data/bss8038BE30.o(.bss*);
       build/src/surface_collision.o(.bss*);
       build/src/surface_load.o(.bss*);
       build/src/behavior_script.o(.bss*);

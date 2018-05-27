@@ -19,10 +19,10 @@ script_func_local_2:
 
 glabel level_sa_entry
     init_level
-    load_mio0 /*seg*/ 0x07, /*romStart*/ 0x00468FD0, /*romEnd*/ 0x0046A0E0
-    cmd1A /*seg*/ 0x09, /*romStart*/ 0x00363F20, /*romEnd*/ 0x0036DAD0
-    load_mio0 /*seg*/ 0x0A, /*romStart*/ 0x002E5E20, /*romEnd*/ 0x002EFA80
-    load_mio0 /*seg*/ 0x0B, /*romStart*/ 0x0036DAD0, /*romEnd*/ 0x003701E0
+    load_mio0 /*seg*/ 0x07, /*romStart*/ _level_sa_segment_7SegmentRomStart, /*romEnd*/ _level_sa_segment_7SegmentRomEnd
+    cmd1A /*seg*/ 0x09, /*romStart*/ inside_castle_textures, /*romEnd*/ inside_castle_textures_end
+    load_mio0 /*seg*/ 0x0A, /*romStart*/ cloud_floor_skybox, /*romEnd*/ cloud_floor_skybox_end
+    load_mio0 /*seg*/ 0x0B, /*romStart*/ flower_textures, /*romEnd*/ flower_textures_end
     load_mio0 /*seg*/ 0x05, /*romStart*/ sea_creatures_texture, /*romEnd*/ sea_creatures_texture_end
     load_raw /*seg*/ 0x0C, /*romStart*/ sea_creatures, /*romEnd*/ sea_creatures_end
     load_mio0 /*seg*/ 0x06, /*romStart*/ treasure_chest_fish, /*romEnd*/ treasure_chest_fish_end

@@ -59,6 +59,7 @@ extern s64 func_802C98D0(void);
 extern s64 func_802C9900(s64);
 // extern ? func_802C9938(?);
 // extern ? func_802C9980(?);
+extern void func_802C9A3C(s32, s32);
 // extern ? func_802C9A88(?);
 extern void func_802C9AD8();
 extern void AnotherPrint(void *, s32);

@@ -4,7 +4,7 @@
 #include "level_update.h"
 #include "math_util.h"
 #include "memory.h"
-#include "rendering.h"
+#include "area.h"
 #include "save_file.h"
 #include "surface_collision.h"
 #include "sound_init.h"
@@ -163,7 +163,7 @@ static u32 object_facing_mario(struct MarioState *m, struct Object *o, s16 angle
     f32 dx = m->pos[0] - o->pos[0];
     f32 dz = m->pos[2] - o->pos[2];
 
-    s16 angleToMario = func_8037A9A8(dz, dx);
+    s16 angleToMario = atan2s(dz, dx);
     s16 dAngle = angleToMario - o->angle[1];
 
     if (-angleRange <= dAngle && dAngle <= angleRange)
@@ -177,7 +177,7 @@ s16 mario_angle_to_object(struct MarioState *m, struct Object *o)
     f32 dx = o->pos[0] - m->pos[0];
     f32 dz = o->pos[2] - m->pos[2];
 
-    return func_8037A9A8(dz, dx);
+    return atan2s(dz, dx);
 }
 
 static u32 determine_interaction(struct MarioState *m, struct Object *o)
@@ -502,8 +502,8 @@ static u32 bully_knock_back_mario(struct MarioState *mario)
     else
         transfer_bully_speed(&bullyData, &marioData);
 
-    newMarioYaw = func_8037A9A8(marioData.velZ, marioData.velX);
-    newBullyYaw = func_8037A9A8(bullyData.velZ, bullyData.velX);
+    newMarioYaw = atan2s(marioData.velZ, marioData.velX);
+    newBullyYaw = atan2s(bullyData.velZ, bullyData.velX);
 
     marioDYaw = newMarioYaw - mario->faceAngle[1];
     bullyDYaw = newBullyYaw - bully->angle[1];
@@ -667,14 +667,14 @@ static void push_mario_out_of_object(struct MarioState *m, struct Object *o, f32
         if (distance == 0.0f)
             pushAngle = m->faceAngle[1];
         else
-            pushAngle = func_8037A9A8(offsetZ, offsetX);
+            pushAngle = atan2s(offsetZ, offsetX);
 
         newMarioX = o->pos[0] + minDistance * sins(pushAngle);
         newMarioZ = o->pos[2] + minDistance * coss(pushAngle);
 
-        func_80380DE8(&newMarioX, &m->pos[1], &newMarioZ, 60.0f, 50.0f);
+        resolve_wall_collisions(&newMarioX, &m->pos[1], &newMarioZ, 60.0f, 50.0f);
 
-        func_80381900(newMarioX, m->pos[1], newMarioZ, &floor);
+        find_floor(newMarioX, m->pos[1], newMarioZ, &floor);
         if (floor != NULL)
         {
             //! Doesn't update mario's referenced floor (allows oob death when
@@ -710,7 +710,7 @@ static u32 func_8024D664(struct MarioState *m, struct Object *o)
     f32 dx = o->pos[0] - m->pos[0];
     f32 dz = o->pos[2] - m->pos[2];
 
-    s16 dYaw = o->angle[1] - func_8037A9A8(dz, dx);
+    s16 dYaw = o->angle[1] - atan2s(dz, dx);
 
     return (dYaw >= -0x4000 && dYaw <= 0x4000) ? 0x00000001 : 0x00000002;
 }

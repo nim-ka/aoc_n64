@@ -11,6 +11,7 @@
 #include "map_info.h"
 #include "memory.h"
 #include "object_helpers.h"
+#include "area.h"
 #include "level_update.h"
 #include "object_collision.h"
 #include "object_list_processor.h"
@@ -268,7 +269,7 @@ void spawn_objects_from_info(UNUSED s32 unusedArg, struct SpawnInfo *spawnInfo)
     D_8035FEF2 = 0;
     D_8035FEF4 = 0;
 
-    if (D_8033A75A == 2) 
+    if (gCurrAreaIndex == 2) 
         D_8035FEEC |= 1;
 
     while (spawnInfo != NULL)

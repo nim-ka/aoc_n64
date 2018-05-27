@@ -7,6 +7,7 @@
 #include "save_file.h"
 #include "surface_collision.h"
 #include "transparent_texture.h"
+#include "area.h"
 
 struct TextLabel
 {
@@ -32,7 +33,7 @@ extern u8 seg2_triangle_mesh[];
 extern u8 seg2_mesh_order[];
 
 extern struct Struct802D1F94 *D_8035FFA8;
-extern u16 D_8032CFA8;
+extern u16 gAreaUpdateCounter;
 
 extern float D_8035FF94;
 extern float D_8035FF98;
@@ -898,14 +899,14 @@ int Geo18_802D5D0C(int a, UNUSED int b, UNUSED int c)
 
     if (a != 1)
     {
-        D_803303FC = D_8032CFA8 - 1;
-        D_803303F8 = D_8032CFA8;
+        D_803303FC = gAreaUpdateCounter - 1;
+        D_803303F8 = gAreaUpdateCounter;
     }
     else
     {
         D_803303FC = D_803303F8;
-        D_803303F8 = D_8032CFA8;
-        func_80381900(gMarioObject->pos[0], gMarioObject->pos[1], gMarioObject->pos[2], &sp1C);
+        D_803303F8 = gAreaUpdateCounter;
+        find_floor(gMarioObject->pos[0], gMarioObject->pos[1], gMarioObject->pos[2], &sp1C);
         D_8035FF90 = sp1C->type;
         D_8035FF94 = gMarioObject->pos[0];
         D_8035FF98 = gMarioObject->pos[1];

@@ -3,7 +3,7 @@
 
 #include "types.h"
 
-#include "level_update.h"
+struct Struct80280550;
 
 struct Struct8033B470
 {

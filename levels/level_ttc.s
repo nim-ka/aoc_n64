@@ -24,8 +24,8 @@ script_func_local_2:
 
 glabel level_ttc_entry
     init_level
-    load_mio0 /*seg*/ 0x07, /*romStart*/ 0x0042AF80, /*romEnd*/ 0x00435460
-    cmd1A /*seg*/ 0x09, /*romStart*/ 0x0034CD00, /*romEnd*/ 0x0034FF00
+    load_mio0 /*seg*/ 0x07, /*romStart*/ _level_ttc_segment_7SegmentRomStart, /*romEnd*/ _level_ttc_segment_7SegmentRomEnd
+    cmd1A /*seg*/ 0x09, /*romStart*/ ttc_textures, /*romEnd*/ ttc_textures_end
     load_mio0 /*seg*/ 0x05, /*romStart*/ yoshiegg_owl_thwomp, /*romEnd*/ yoshiegg_owl_thwomp_end
     load_raw /*seg*/ 0x0C, /*romStart*/ owl_thwomp_bullet_heave, /*romEnd*/ owl_thwomp_bullet_heave_end
     load_mio0 /*seg*/ 0x08, /*romStart*/ chuckya_shyguy_goomba, /*romEnd*/ chuckya_shyguy_goomba_end

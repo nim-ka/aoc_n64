@@ -34,9 +34,9 @@ script_func_local_3:
 
 glabel level_bitdw_entry
     init_level
-    load_mio0 /*seg*/ 0x07, /*romStart*/ 0x00452D40, /*romEnd*/ 0x00459EA0
-    load_mio0 /*seg*/ 0x0A, /*romStart*/ 0x00300270, /*romEnd*/ 0x0030B460
-    cmd1A /*seg*/ 0x09, /*romStart*/ 0x0033BCB0, /*romEnd*/ 0x0033F6E0
+    load_mio0 /*seg*/ 0x07, /*romStart*/ _level_bitdw_segment_7SegmentRomStart, /*romEnd*/ _level_bitdw_segment_7SegmentRomEnd
+    load_mio0 /*seg*/ 0x0A, /*romStart*/ bidw_skybox, /*romEnd*/ bidw_skybox_end
+    cmd1A /*seg*/ 0x09, /*romStart*/ rr_textures, /*romEnd*/ rr_textures_end
     load_mio0 /*seg*/ 0x05, /*romStart*/ enemy, /*romEnd*/ enemy_end
     load_raw /*seg*/ 0x0C, /*romStart*/ bubba_wiggler_lakitu, /*romEnd*/ bubba_wiggler_lakitu_end
     load_mio0 /*seg*/ 0x06, /*romStart*/ mri_swoop, /*romEnd*/ mri_swoop_end

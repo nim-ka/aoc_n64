@@ -50,10 +50,10 @@ script_func_local_5:
 
 glabel level_ddd_entry
     init_level
-    load_mio0 /*seg*/ 0x07, /*romStart*/ 0x0048B8D0, /*romEnd*/ 0x00493A00
-    cmd1A /*seg*/ 0x09, /*romStart*/ 0x003330D0, /*romEnd*/ 0x0033BCB0
-    load_mio0 /*seg*/ 0x0B, /*romStart*/ 0x0036DAD0, /*romEnd*/ 0x003701E0
-    load_mio0 /*seg*/ 0x0A, /*romStart*/ 0x002AAC50, /*romEnd*/ 0x002B74B0
+    load_mio0 /*seg*/ 0x07, /*romStart*/ _level_ddd_segment_7SegmentRomStart, /*romEnd*/ _level_ddd_segment_7SegmentRomEnd
+    cmd1A /*seg*/ 0x09, /*romStart*/ jrb_textures, /*romEnd*/ jrb_textures_end
+    load_mio0 /*seg*/ 0x0B, /*romStart*/ flower_textures, /*romEnd*/ flower_textures_end
+    load_mio0 /*seg*/ 0x0A, /*romStart*/ water_skybox, /*romEnd*/ water_skybox_end
     load_mio0 /*seg*/ 0x05, /*romStart*/ sea_creatures_texture, /*romEnd*/ sea_creatures_texture_end
     load_raw /*seg*/ 0x0C, /*romStart*/ sea_creatures, /*romEnd*/ sea_creatures_end
     load_mio0 /*seg*/ 0x06, /*romStart*/ treasure_chest_fish, /*romEnd*/ treasure_chest_fish_end

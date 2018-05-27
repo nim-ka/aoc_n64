@@ -513,7 +513,7 @@ static s32 Behavior1E(void)
     f32 x = gCurrentObject->pos[0];
     f32 y = gCurrentObject->pos[1];
     f32 z = gCurrentObject->pos[2];
-    f32 sp18 = func_80381794(x, y + 200.0f, z);
+    f32 sp18 = find_floor_height(x, y + 200.0f, z);
 
     gCurrentObject->pos[1] = sp18;
     gCurrentObject->unkEC |= 2;

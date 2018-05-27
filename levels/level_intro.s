@@ -12,14 +12,14 @@ glabel level_intro_entry_1
     init_level
     fixed_load /*loadAddr*/ _goddardSegmentStart, /*romStart*/ _goddardSegmentRomStart, /*romEnd*/ _goddardSegmentRomEnd
     load_raw /*seg*/ 0x13, /*romStart*/ _behaviorSegmentRomStart, /*romEnd*/ _behaviorSegmentRomEnd
-    load_mio0 /*seg*/ 0x07, /*romStart*/ 0x00268520, /*romEnd*/ 0x0026D5A0
+    load_mio0 /*seg*/ 0x07, /*romStart*/ _level_intro_segment_7SegmentRomStart, /*romEnd*/ _level_intro_segment_7SegmentRomEnd
     alloc_level_pool
 
     area /*index*/ 1, /*geo*/ 0x140002D0
     end_area
 
     free_level_pool
-    cmd29 /*unk2*/ 0x01
+    load_area /*area*/ 1
     call /*arg*/ 0, /*func*/ LevelProc_8016F508
     sleep /*frames*/ 75
     transition /*unk2*/ 1, /*unk3*/ 16, /*color*/ 0, 0, 0
@@ -35,7 +35,7 @@ glabel level_intro_entry_2
     fixed_load /*loadAddr*/ _goddardSegmentStart, /*romStart*/ _goddardSegmentRomStart, /*romEnd*/ _goddardSegmentRomEnd
     cmd19 /*unk2*/ 0x0002
     load_raw /*seg*/ 0x13, /*romStart*/ _behaviorSegmentRomStart, /*romEnd*/ _behaviorSegmentRomEnd
-    cmd1A /*seg*/ 0x0A, /*romStart*/ 0x0026EA40, /*romEnd*/ 0x00271B20
+    cmd1A /*seg*/ 0x0A, /*romStart*/ title_screen_bg, /*romEnd*/ title_screen_bg_end
     alloc_level_pool
 
     area /*index*/ 1, /*geo*/ 0x1400035C
@@ -44,7 +44,7 @@ glabel level_intro_entry_2
     free_level_pool
     sleep /*frames*/ 2
     blackout /*active*/ FALSE
-    cmd29 /*unk2*/ 0x01
+    load_area /*area*/ 1
     set_music /*seq*/ 0x0002
     transition /*unk2*/ 8, /*unk3*/ 20, /*color*/ 0, 0, 0
     sleep /*frames*/ 20
@@ -59,7 +59,7 @@ glabel level_intro_entry_3
     fixed_load /*loadAddr*/ _goddardSegmentStart, /*romStart*/ _goddardSegmentRomStart, /*romEnd*/ _goddardSegmentRomEnd
     cmd19 /*unk2*/ 0x0003
     load_raw /*seg*/ 0x13, /*romStart*/ _behaviorSegmentRomStart, /*romEnd*/ _behaviorSegmentRomEnd
-    cmd1A /*seg*/ 0x0A, /*romStart*/ 0x0026EA40, /*romEnd*/ 0x00271B20
+    cmd1A /*seg*/ 0x0A, /*romStart*/ title_screen_bg, /*romEnd*/ title_screen_bg_end
     alloc_level_pool
 
     area /*index*/ 1, /*geo*/ 0x140003B8
@@ -68,7 +68,7 @@ glabel level_intro_entry_3
     free_level_pool
     sleep /*frames*/ 2
     blackout /*active*/ FALSE
-    cmd29 /*unk2*/ 0x01
+    load_area /*area*/ 1
     set_music /*seq*/ 0x0082
     transition /*unk2*/ 8, /*unk3*/ 20, /*color*/ 0, 0, 0
     sleep /*frames*/ 20
@@ -80,8 +80,8 @@ glabel level_intro_entry_3
 glabel level_intro_entry_4
     init_level
     load_raw /*seg*/ 0x13, /*romStart*/ _behaviorSegmentRomStart, /*romEnd*/ _behaviorSegmentRomEnd
-    cmd1A /*seg*/ 0x0A, /*romStart*/ 0x0026EA40, /*romEnd*/ 0x00271B20
-    load_mio0 /*seg*/ 0x07, /*romStart*/ 0x0026D5A0, /*romEnd*/ 0x0026EA40
+    cmd1A /*seg*/ 0x0A, /*romStart*/ title_screen_bg, /*romEnd*/ title_screen_bg_end
+    load_mio0 /*seg*/ 0x07, /*romStart*/ debug_level_select, /*romEnd*/ debug_level_select_end
     fixed_load /*loadAddr*/ _goddardSegmentStart, /*romStart*/ _goddardSegmentRomStart, /*romEnd*/ _goddardSegmentRomEnd
     alloc_level_pool
 
@@ -89,7 +89,7 @@ glabel level_intro_entry_4
     end_area
 
     free_level_pool
-    cmd29 /*unk2*/ 0x01
+    load_area /*area*/ 1
     set_music /*seq*/ 0x0002
     transition /*unk2*/ 0, /*unk3*/ 16, /*color*/ -1, -1, -1
     sleep /*frames*/ 16

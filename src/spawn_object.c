@@ -2,7 +2,7 @@
 
 #include "sm64.h"
 #include "math_util.h"
-#include "rendering.h"
+#include "area.h"
 #include "geo_layout.h"
 #include "graph_node.h"
 #include "object_helpers.h"
@@ -219,7 +219,7 @@ void func_802C937C(struct Object *a)
 {
     struct Surface *surface;
 
-    a->unkE8 = func_80381900(a->pos[0], a->pos[1], a->pos[2], &surface);
+    a->unkE8 = find_floor(a->pos[0], a->pos[1], a->pos[2], &surface);
     if (a->unkE8 + 2.0f > a->pos[1] && a->pos[1] > a->unkE8 - 10.0f)
     {
         a->pos[1] = a->unkE8;

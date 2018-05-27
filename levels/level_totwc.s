@@ -18,9 +18,9 @@ script_func_local_2:
 
 glabel level_totwc_entry
     init_level
-    load_mio0 /*seg*/ 0x07, /*romStart*/ 0x004BCBD0, /*romEnd*/ 0x004C06A0
-    load_mio0 /*seg*/ 0x0A, /*romStart*/ 0x002E5E20, /*romEnd*/ 0x002EFA80
-    cmd1A /*seg*/ 0x09, /*romStart*/ 0x0033BCB0, /*romEnd*/ 0x0033F6E0
+    load_mio0 /*seg*/ 0x07, /*romStart*/ _level_totwc_segment_7SegmentRomStart, /*romEnd*/ _level_totwc_segment_7SegmentRomEnd
+    load_mio0 /*seg*/ 0x0A, /*romStart*/ cloud_floor_skybox, /*romEnd*/ cloud_floor_skybox_end
+    cmd1A /*seg*/ 0x09, /*romStart*/ rr_textures, /*romEnd*/ rr_textures_end
     load_mio0 /*seg*/ 0x05, /*romStart*/ checkerboard_question, /*romEnd*/ checkerboard_question_end
     load_raw /*seg*/ 0x0C, /*romStart*/ cap_switch, /*romEnd*/ cap_switch_end
     load_mio0 /*seg*/ 0x08, /*romStart*/ chuckya_shyguy_goomba, /*romEnd*/ chuckya_shyguy_goomba_end

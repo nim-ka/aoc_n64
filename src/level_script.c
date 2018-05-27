@@ -11,7 +11,7 @@
 #include "memory.h"
 #include "object_helpers.h"
 #include "object_list_processor.h"
-#include "rendering.h"
+#include "area.h"
 #include "save_file.h"
 #include "sound_init.h"
 #include "surface_collision.h"
@@ -354,7 +354,7 @@ static void level_cmd_init_level(void)
 {
     init_graph_node_00A(NULL, (struct GraphNode00A *) &D_8038BD88);
     func_8029CA60();
-    func_8027A554();
+    clear_areas();
     main_pool_push_state();
 
     sCurrentCmd = CMD_NEXT;
@@ -364,7 +364,7 @@ static void level_cmd_clear_level(void)
 {
     func_8029CA60();
     func_8027A7C4();
-    func_8027A554();
+    clear_areas();
     main_pool_pop_state();
 
     sCurrentCmd = CMD_NEXT;
@@ -390,7 +390,7 @@ static void level_cmd_free_level_pool(void)
 
     for (i = 0; i < 8; i++)
     {
-        if (D_8033A560[i].unk08 != NULL)
+        if (gAreaData[i].terrainData != NULL)
         {
             alloc_surface_pools();
             break;
@@ -413,12 +413,12 @@ static void level_cmd_begin_area(void)
 
         sCurrAreaIndex = areaIndex;
         screenArea->unk14 = areaIndex;
-        D_8032CE68[areaIndex].unk04 = (struct GraphNode *) screenArea;
+        gAreas[areaIndex].unk04 = (struct GraphNode *) screenArea;
 
         if (node != NULL)
-            D_8032CE68[areaIndex].unk24 = (struct Struct80280550 *) node->unk18;
+            gAreas[areaIndex].unk24 = (struct Struct80280550 *) node->unk18;
         else
-            D_8032CE68[areaIndex].unk24 = NULL;
+            gAreas[areaIndex].unk24 = NULL;
     }
 
     sCurrentCmd = CMD_NEXT;
@@ -512,9 +512,9 @@ static void level_cmd_place_object(void)
         spawnInfo->behaviorArg = CMD_GET(u32, 16);
         spawnInfo->behaviorScript = CMD_GET(void *, 20);
         spawnInfo->unk18 = gLoadedGeoLayouts[val4];
-        spawnInfo->next = D_8032CE68[sCurrAreaIndex].objectSpawnInfos;
+        spawnInfo->next = gAreas[sCurrAreaIndex].objectSpawnInfos;
         
-        D_8032CE68[sCurrAreaIndex].objectSpawnInfos = spawnInfo;
+        gAreas[sCurrAreaIndex].objectSpawnInfos = spawnInfo;
     }
 
     sCurrentCmd = CMD_NEXT;
@@ -533,8 +533,8 @@ static void level_cmd_create_warp_node(void)
         
         warpNode->object = NULL;
 
-        warpNode->next = D_8032CE68[sCurrAreaIndex].warpNodes;
-        D_8032CE68[sCurrAreaIndex].warpNodes = warpNode;
+        warpNode->next = gAreas[sCurrAreaIndex].warpNodes;
+        gAreas[sCurrAreaIndex].warpNodes = warpNode;
     }
 
     sCurrentCmd = CMD_NEXT;
@@ -547,15 +547,15 @@ static void level_cmd_create_instant_warp(void)
 
     if (sCurrAreaIndex != -1)
     {
-        if (D_8032CE68[sCurrAreaIndex].instantWarps == NULL)
+        if (gAreas[sCurrAreaIndex].instantWarps == NULL)
         {
-            D_8032CE68[sCurrAreaIndex].instantWarps = alloc_only_pool_alloc(sLevelPool, 4 * sizeof(struct InstantWarp));
+            gAreas[sCurrAreaIndex].instantWarps = alloc_only_pool_alloc(sLevelPool, 4 * sizeof(struct InstantWarp));
             
             for (i = 0; i < 4; i++)
-                D_8032CE68[sCurrAreaIndex].instantWarps[i].unk00 = 0;
+                gAreas[sCurrAreaIndex].instantWarps[i].unk00 = 0;
         }
 
-        warp = D_8032CE68[sCurrAreaIndex].instantWarps + CMD_GET(u8, 2);
+        warp = gAreas[sCurrAreaIndex].instantWarps + CMD_GET(u8, 2);
         
         warp[0].unk00 = 1;
         warp[0].area = CMD_GET(u8, 3);
@@ -571,7 +571,7 @@ static void level_cmd_create_instant_warp(void)
 static void level_cmd_set_terrain_type(void)
 {
     if (sCurrAreaIndex != -1)
-        D_8032CE68[sCurrAreaIndex].unk02 |= CMD_GET(s16, 2);
+        gAreas[sCurrAreaIndex].unk02 |= CMD_GET(s16, 2);
 
     sCurrentCmd = CMD_NEXT;
 }
@@ -583,16 +583,16 @@ static void level_cmd_create_painting_warp_node(void)
 
     if (sCurrAreaIndex != -1)
     {
-        if (D_8032CE68[sCurrAreaIndex].paintingWarpNodes == NULL)
+        if (gAreas[sCurrAreaIndex].paintingWarpNodes == NULL)
         {
-            D_8032CE68[sCurrAreaIndex].paintingWarpNodes =
+            gAreas[sCurrAreaIndex].paintingWarpNodes =
                 alloc_only_pool_alloc(sLevelPool, 45 * sizeof(struct WarpNode));
             
             for (i = 0; i < 45; i++)
-                D_8032CE68[sCurrAreaIndex].paintingWarpNodes[i].id = 0;
+                gAreas[sCurrAreaIndex].paintingWarpNodes[i].id = 0;
         }
 
-        node = &D_8032CE68[sCurrAreaIndex].paintingWarpNodes[CMD_GET(u8, 2)];
+        node = &gAreas[sCurrAreaIndex].paintingWarpNodes[CMD_GET(u8, 2)];
 
         node->id = 1;
         node->destLevel = CMD_GET(u8, 3) + CMD_GET(u8, 6);
@@ -609,8 +609,8 @@ static void level_cmd_3A(void)
 
     if (sCurrAreaIndex != -1)
     {
-        if ((val4 = D_8032CE68[sCurrAreaIndex].unk28) == NULL)
-            val4 = D_8032CE68[sCurrAreaIndex].unk28 =
+        if ((val4 = gAreas[sCurrAreaIndex].unk28) == NULL)
+            val4 = gAreas[sCurrAreaIndex].unk28 =
                 alloc_only_pool_alloc(sLevelPool, sizeof(struct UnknownArea28));
         
         val4->unk00 = CMD_GET(s16, 2);
@@ -636,10 +636,10 @@ static void level_cmd_create_whirlpool(void)
     {
         if (sCurrAreaIndex != -1 && index < 2)
         {
-            if ((whirlpool = D_8032CE68[sCurrAreaIndex].whirlpools[index]) == NULL)
+            if ((whirlpool = gAreas[sCurrAreaIndex].whirlpools[index]) == NULL)
             {
                 whirlpool = alloc_only_pool_alloc(sLevelPool, sizeof(struct Whirlpool));
-                D_8032CE68[sCurrAreaIndex].whirlpools[index] = whirlpool;
+                gAreas[sCurrAreaIndex].whirlpools[index] = whirlpool;
             }
 
             vec3s_set(whirlpool->pos, CMD_GET(s16, 4), CMD_GET(s16, 6), CMD_GET(s16, 8));
@@ -665,31 +665,31 @@ static void level_cmd_set_gamma(void)
 static void level_cmd_set_terrain_data(void)
 {
     if (sCurrAreaIndex != -1)
-        D_8032CE68[sCurrAreaIndex].unk08 = segmented_to_virtual(CMD_GET(void *, 4));
+        gAreas[sCurrAreaIndex].terrainData = segmented_to_virtual(CMD_GET(void *, 4));
     sCurrentCmd = CMD_NEXT;
 }
 
 static void level_cmd_set_rooms(void)
 {
     if (sCurrAreaIndex != -1)
-        D_8032CE68[sCurrAreaIndex].unk0C = segmented_to_virtual(CMD_GET(void *, 4));
+        gAreas[sCurrAreaIndex].surfaceRooms = segmented_to_virtual(CMD_GET(void *, 4));
     sCurrentCmd = CMD_NEXT;
 }
 
 static void level_cmd_39(void)
 {
     if (sCurrAreaIndex != -1)
-        D_8032CE68[sCurrAreaIndex].unk10 = segmented_to_virtual(CMD_GET(void *, 4));
+        gAreas[sCurrAreaIndex].unk10 = segmented_to_virtual(CMD_GET(void *, 4));
     sCurrentCmd = CMD_NEXT;
 }
 
-static void level_cmd_29(void)
+static void level_cmd_load_area(void)
 {
-    s16 val6 = CMD_GET(u8, 2);
-    UNUSED void *val0 = (u8 *) sCurrentCmd + 4;
+    s16 areaIndex = CMD_GET(u8, 2);
+    UNUSED void *unused = (u8 *) sCurrentCmd + 4;
 
     func_80320890();
-    func_8027A894(val6);
+    load_area(areaIndex);
 
     sCurrentCmd = CMD_NEXT;
 }
@@ -718,13 +718,13 @@ static void level_cmd_2C(void)
 
 static void level_cmd_2D(void)
 {
-    func_8027ABB4();
+    area_update_objects();
     sCurrentCmd = CMD_NEXT;
 }
 
 static void level_cmd_set_transition(void)
 {
-    if (D_8032CE6C != NULL)
+    if (gCurrentArea != NULL)
         func_8027ABF0(CMD_GET(u8, 2), CMD_GET(u8, 3), CMD_GET(u8, 4), CMD_GET(u8, 5), CMD_GET(u8, 6));
     sCurrentCmd = CMD_NEXT;
 }
@@ -739,7 +739,7 @@ static void level_cmd_30(void)
     if (sCurrAreaIndex != -1)
     {
         if (CMD_GET(u8, 2) < 2)
-            D_8032CE68[sCurrAreaIndex].unk34[CMD_GET(u8, 2)] = CMD_GET(u8, 3);
+            gAreas[sCurrAreaIndex].unk34[CMD_GET(u8, 2)] = CMD_GET(u8, 3);
     }
     sCurrentCmd = CMD_NEXT;
 }
@@ -748,8 +748,8 @@ static void level_cmd_set_menu_music(void)
 {
     if (sCurrAreaIndex != -1)
     {
-        D_8032CE68[sCurrAreaIndex].unk36 = CMD_GET(s16, 2);
-        D_8032CE68[sCurrAreaIndex].unk38 = CMD_GET(s16, 4);
+        gAreas[sCurrAreaIndex].unk36 = CMD_GET(s16, 2);
+        gAreas[sCurrAreaIndex].unk38 = CMD_GET(s16, 4);
     }
     sCurrentCmd = CMD_NEXT;
 }
@@ -776,7 +776,7 @@ static void level_cmd_get_or_set_var(void)
         case 1: gCurrCourseNum   = sRegister; break;
         case 2: D_8033A758       = sRegister; break;
         case 3: gCurrLevelNum    = sRegister; break;
-        case 4: D_8033A75A       = sRegister; break;
+        case 4: gCurrAreaIndex   = sRegister; break;
         }
     }
     else
@@ -787,7 +787,7 @@ static void level_cmd_get_or_set_var(void)
         case 1: sRegister = gCurrCourseNum;   break;
         case 2: sRegister = D_8033A758;       break;
         case 3: sRegister = gCurrLevelNum;    break;
-        case 4: sRegister = D_8033A75A;       break;
+        case 4: sRegister = gCurrAreaIndex;   break;
         }
     }
 
@@ -837,7 +837,7 @@ static void (*LevelScriptJumpTable[])(void) =
     /*26*/ level_cmd_create_warp_node,
     /*27*/ level_cmd_create_painting_warp_node,
     /*28*/ level_cmd_create_instant_warp,
-    /*29*/ level_cmd_29,
+    /*29*/ level_cmd_load_area,
     /*2A*/ level_cmd_2A,
     /*2B*/ level_cmd_set_mario_start_pos,
     /*2C*/ level_cmd_2C,
@@ -869,7 +869,7 @@ struct LevelCommand *level_script_execute(struct LevelCommand *cmd)
 
     func_8027DE30(1);
     func_80247C9C();
-    func_8027AE04();
+    render_game();
     CleanupDisplayList();
     alloc_display_list(0);
 

@@ -64,9 +64,9 @@ script_func_local_8:
 
 glabel level_thi_entry
     init_level
-    load_mio0 /*seg*/ 0x07, /*romStart*/ 0x00422730, /*romEnd*/ 0x0042A740
-    cmd1A /*seg*/ 0x09, /*romStart*/ 0x003558F0, /*romEnd*/ 0x0035D2B0
-    load_mio0 /*seg*/ 0x0A, /*romStart*/ 0x002AAC50, /*romEnd*/ 0x002B74B0
+    load_mio0 /*seg*/ 0x07, /*romStart*/ _level_thi_segment_7SegmentRomStart, /*romEnd*/ _level_thi_segment_7SegmentRomEnd
+    cmd1A /*seg*/ 0x09, /*romStart*/ wf_textures, /*romEnd*/ wf_textures_end
+    load_mio0 /*seg*/ 0x0A, /*romStart*/ water_skybox, /*romEnd*/ water_skybox_end
     load_mio0 /*seg*/ 0x05, /*romStart*/ enemy, /*romEnd*/ enemy_end
     load_raw /*seg*/ 0x0C, /*romStart*/ bubba_wiggler_lakitu, /*romEnd*/ bubba_wiggler_lakitu_end
     load_mio0 /*seg*/ 0x06, /*romStart*/ koopa_whomp, /*romEnd*/ koopa_whomp_end

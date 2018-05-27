@@ -68,9 +68,9 @@ script_func_local_7:
 
 glabel level_ttm_entry
     init_level
-    load_mio0 /*seg*/ 0x07, /*romStart*/ 0x004CF8B0, /*romEnd*/ 0x004E9190
-    cmd1A /*seg*/ 0x09, /*romStart*/ 0x0034FF00, /*romEnd*/ 0x003558F0
-    load_mio0 /*seg*/ 0x0A, /*romStart*/ 0x002AAC50, /*romEnd*/ 0x002B74B0
+    load_mio0 /*seg*/ 0x07, /*romStart*/ _level_ttm_segment_7SegmentRomStart, /*romEnd*/ _level_ttm_segment_7SegmentRomEnd
+    cmd1A /*seg*/ 0x09, /*romStart*/ ttm_textures, /*romEnd*/ ttm_textures_end
+    load_mio0 /*seg*/ 0x0A, /*romStart*/ water_skybox, /*romEnd*/ water_skybox_end
     load_mio0 /*seg*/ 0x05, /*romStart*/ monkey, /*romEnd*/ monkey_end
     load_raw /*seg*/ 0x0C, /*romStart*/ mole_monkey_fwoosh, /*romEnd*/ mole_monkey_fwoosh_end
     load_mio0 /*seg*/ 0x08, /*romStart*/ chuckya_shyguy_goomba, /*romEnd*/ chuckya_shyguy_goomba_end

@@ -341,24 +341,4 @@ struct MarioAnimation
     u8 padding[4];
 };
 
-// camera related
-struct Struct80280550
-{
-    u8 unk0;
-    u8 unk1;
-    s16 unk2;
-    Vec3f unk4;
-    Vec3f unk10;
-    u8 filler1C[0x28-0x1C];
-    float unk28;
-    float unk2C;
-    u8 unk30;
-    u8 filler31[0x9];
-    s16 unk3A;
-    u8 filler3C[0x64-0x3C];
-    s8 unk64;
-    u8 filler65[3];
-    float unk68;
-};
-
 #endif

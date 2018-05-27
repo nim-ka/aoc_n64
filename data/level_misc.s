@@ -2,6 +2,7 @@
 
 .align 4, 0
 .global debug_level_select
+.global debug_level_select_end
 debug_level_select:
 .incbin "build/mio0/debug_level_select.mio0"
 .align 4, 0

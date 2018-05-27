@@ -3,7 +3,7 @@
 #include "sm64.h"
 #include "game.h"
 #include "memory.h"
-#include "rendering.h"
+#include "area.h"
 #include "save_file.h"
 #include "object_helpers.h"
 #include "behavior_script.h"
@@ -254,7 +254,7 @@ int LevelProc_80177610(UNUSED int a, UNUSED int b)
             D_80330534 = sSelectedStar + 1;
         }
     }
-    func_8027ABB4();
+    area_update_objects();
     D_801A8018++;
     return D_801B9910;
 }

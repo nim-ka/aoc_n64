@@ -28,10 +28,10 @@ script_func_local_1:
 
 glabel level_bowser_3_entry
     init_level
-    load_mio0 /*seg*/ 0x07, /*romStart*/ 0x004CCBA0, /*romEnd*/ 0x004CF490
+    load_mio0 /*seg*/ 0x07, /*romStart*/ _level_bowser_3_segment_7SegmentRomStart, /*romEnd*/ _level_bowser_3_segment_7SegmentRomEnd
     load_mio0 /*seg*/ 0x06, /*romStart*/ bowser, /*romEnd*/ bowser_end
     load_raw /*seg*/ 0x0D, /*romStart*/ bowser_flames_bomb, /*romEnd*/ bowser_flames_bomb_end
-    load_mio0 /*seg*/ 0x0A, /*romStart*/ 0x0030B460, /*romEnd*/ 0x0031C770
+    load_mio0 /*seg*/ 0x0A, /*romStart*/ bits_skybox, /*romEnd*/ bits_skybox_end
     alloc_level_pool
     mario /*unk3*/ 0x01, /*behArg*/ 0x00000001, /*beh*/ beh_mario
     jump_link /*target*/ script_func_global_13

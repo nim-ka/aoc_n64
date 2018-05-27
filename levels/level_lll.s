@@ -99,10 +99,10 @@ script_func_local_7:
 
 glabel level_lll_entry
     init_level
-    load_mio0 /*seg*/ 0x07, /*romStart*/ 0x004763C0, /*romEnd*/ 0x0048A950
-    cmd1A /*seg*/ 0x09, /*romStart*/ 0x0031C770, /*romEnd*/ 0x003253E0
-    load_mio0 /*seg*/ 0x0A, /*romStart*/ 0x002CE5E0, /*romEnd*/ 0x002D4A90
-    load_mio0 /*seg*/ 0x0B, /*romStart*/ 0x0036DAD0, /*romEnd*/ 0x003701E0
+    load_mio0 /*seg*/ 0x07, /*romStart*/ _level_lll_segment_7SegmentRomStart, /*romEnd*/ _level_lll_segment_7SegmentRomEnd
+    cmd1A /*seg*/ 0x09, /*romStart*/ lll_textures, /*romEnd*/ lll_textures_end
+    load_mio0 /*seg*/ 0x0A, /*romStart*/ bifs_skybox, /*romEnd*/ bifs_skybox_end
+    load_mio0 /*seg*/ 0x0B, /*romStart*/ flower_textures, /*romEnd*/ flower_textures_end
     load_mio0 /*seg*/ 0x05, /*romStart*/ big_bully, /*romEnd*/ big_bully_end
     load_raw /*seg*/ 0x0C, /*romStart*/ bully_blargg, /*romEnd*/ bully_blargg_end
     load_mio0 /*seg*/ 0x06, /*romStart*/ mri_swoop, /*romEnd*/ mri_swoop_end

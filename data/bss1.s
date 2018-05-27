@@ -17,23 +17,3 @@ glabel gSoundMesgBuf
     .space 0x8
 glabel D_80339DF0
     .space 0x10
-glabel gMarioStates
-    .space 0x32
-glabel D_80339E32
-    .space 0x2
-glabel D_80339E34
-    .space 0x2
-glabel D_80339E36
-    .space 0x6
-glabel D_80339E3C
-    .space 0x4
-glabel D_80339E40
-    .space 0x4
-glabel D_80339E44
-    .space 0x4
-glabel D_80339E48
-    .space 0x4
-glabel D_80339E4C
-    .space 0x4
-glabel D_80339E50
-    .space 0x70

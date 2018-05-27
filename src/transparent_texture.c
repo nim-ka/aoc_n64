@@ -8,7 +8,7 @@
 #include "save_file.h"
 #include "mario.h"
 #include "mario_actions_cutscene.h"
-#include "rendering.h"
+#include "area.h"
 #include "memory.h"
 #include "transparent_texture.h"
 
@@ -22,7 +22,7 @@ extern Gfx cake_end_dl_07026400[];
 s16 D_80330390 = 0x01, D_80330394 = 0, D_80330398 = 0;
 
 extern struct GraphNode018 *D_8032CFA0;
-extern u16 D_8032CFA8;
+extern u16 gAreaUpdateCounter;
 
 void make_vertex(Vtx *vtx, s32 n, s16 x, s16 y, s16 z, s16 tx, s16 ty, u8 r, u8 g, u8 b, u8 a)
 {
@@ -84,14 +84,14 @@ struct StructGeo802D2360 *Geo18_802D2470(s32 a0, UNUSED void *sp4, UNUSED s32 sp
     if (a0 != 1)
     {
         D_80330398 = 0;
-        D_80330394 = D_8032CFA8 - 1;
-        D_80330390 = D_8032CFA8;
+        D_80330394 = gAreaUpdateCounter - 1;
+        D_80330390 = gAreaUpdateCounter;
         D_8035FF80 = 0;
     }
     else
     {
         D_80330394 = D_80330390;
-        D_80330390 = D_8032CFA8;
+        D_80330390 = gAreaUpdateCounter;
         if (D_80330394 != D_80330390) D_80330398 += 0x400;
     }
 

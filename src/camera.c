@@ -4,7 +4,7 @@
 #include "castle_message_behavior.h"
 #include "game.h"
 #include "math_util.h"
-#include "rendering.h"
+#include "area.h"
 #include "surface_collision.h"
 #include "behavior_script.h"
 #include "level_update.h"
@@ -248,7 +248,7 @@ void func_8027F668(float *a, float b, float c, float *d, float e, float f)
 
     if (!(D_8032D000->unk0 & 0x4000))
     {
-        if (sp24 < (sp20 = func_80381BA0(D_8032D000->unk4[0], D_8032D000->unk4[2])))
+        if (sp24 < (sp20 = find_water_level(D_8032D000->unk4[0], D_8032D000->unk4[2])))
             sp24 = sp20;
     }
 
@@ -280,7 +280,7 @@ void func_8027F870(Vec3f a, Vec3f b, float c, float d, float e, s16 f, s16 g)
     sp24[1] = D_8032D000->unk4[1] + c;
     sp24[2] = D_8032D000->unk4[2];
 
-    func_8037A788(sp24, b, e, f + D_8033B3F0, g);
+    vec3f_set_dist_and_angle(sp24, b, e, f + D_8033B3F0, g);
 
     a[0] = D_8032D000->unk4[0];
     a[1] = D_8032D000->unk4[1] + d;
@@ -300,10 +300,10 @@ void Unknown8027F950(Vec3f a, Vec3f b, float c, float d, float e, s16 f, s16 g)
     vec3f_copy(sp34, D_8032D000->unk4);
     sp34[1] += c;
 
-    func_8037A788(sp34, b, e, f + D_8033B3F0, g);
-    func_8037A69C(b, D_8032D000->unk4, &sp30, &sp2A, &sp28);
-    func_8037A69C(b, a, &sp2C, &sp26, &sp24);
-    func_8037A788(b, a, sp2C, sp26, sp24);
+    vec3f_set_dist_and_angle(sp34, b, e, f + D_8033B3F0, g);
+    vec3f_get_dist_and_angle(b, D_8032D000->unk4, &sp30, &sp2A, &sp28);
+    vec3f_get_dist_and_angle(b, a, &sp2C, &sp26, &sp24);
+    vec3f_set_dist_and_angle(b, a, sp2C, sp26, sp24);
 
     a[1] = D_8032D000->unk4[1] + d;
 }
@@ -319,7 +319,7 @@ void func_8027FA48(struct Struct80280550 *a, float b)
     UNUSED u8 filler[8];
     UNUSED s16 sp2E = D_8032D000->unk0;
     float sp28 = 125.0f;
-    float sp24 = func_80381264(a->unk10[0], D_8033B328.unk0[3][1] - 50.0f, a->unk10[2], &sp44);
+    float sp24 = find_ceil(a->unk10[0], D_8033B328.unk0[3][1] - 50.0f, a->unk10[2], &sp44);
 
     if (D_8032D000->unk0 & 0x200000)
     {
@@ -334,7 +334,7 @@ void func_8027FA48(struct Struct80280550 *a, float b)
     }
     else
     {
-        sp38 = func_80381900(a->unk10[0], a->unk10[1] + 100.0f, a->unk10[2], &sp44) + sp28;
+        sp38 = find_floor(a->unk10[0], a->unk10[1] + 100.0f, a->unk10[2], &sp44) + sp28;
         sp40 = sp28 + D_8033B27C;
         if (sp38 < sp40)
             sp38 = sp40;
@@ -367,7 +367,7 @@ int func_8027FDB8(u16 a)
     float sp38 = D_8032D000->unk4[0] + D_80386000[(u16)(a) >> 4] * 40.0f;
     float sp34 = D_8032D000->unk4[2] + D_80387000[(u16)(a) >> 4] * 40.0f;
 
-    sp40 = func_80381900(sp38, D_8032D000->unk4[1], sp34, &sp44) - D_8032D000->unk4[1];
+    sp40 = find_floor(sp38, D_8032D000->unk4[1], sp34, &sp44) - D_8032D000->unk4[1];
 
     if (sp44 != NULL)
     {
@@ -376,7 +376,7 @@ int func_8027FDB8(u16 a)
             if (sp44->normal[2] == 0.0f && sp40 < 100.0f)
                 sp3E = 1456;
             else
-                sp3E += func_8037A9A8(40.0f, sp40);
+                sp3E += atan2s(40.0f, sp40);
         }
     }
     return sp3E;
@@ -389,7 +389,7 @@ void func_8027FF44(struct Struct80280550 *a)
     s16 sp30;
     Vec3f sp24 = {0, 0, 0};
 
-    func_8037A69C(a->unk10, D_8032D000->unk4, &sp34, &sp32, &sp30);
+    vec3f_get_dist_and_angle(a->unk10, D_8032D000->unk4, &sp34, &sp32, &sp30);
 
     sp24[2] = D_80386000[0xC0] * sp34;
 
@@ -435,7 +435,7 @@ int CameraChange01(struct Struct80280550 *a, Vec3f b, Vec3f c)
 {
     float sp4C = D_8032D000->unk4[0] - a->unk28;
     float sp48 = D_8032D000->unk4[2] - a->unk2C;
-    s16 sp46 = func_8037A9A8(sp48, sp4C) + D_8033B402;
+    s16 sp46 = atan2s(sp48, sp4C) + D_8033B402;
     s16 sp44 = func_8027FDB8(sp46);
     UNUSED int unused1;
     float sp3C;
@@ -489,7 +489,7 @@ void func_80280550(struct Struct80280550 *a)
     float sp30 = D_8032D000->unk4[0] - a->unk28;
     float sp2C = D_8032D000->unk4[2] - a->unk2C;
     UNUSED int filler;
-    s16 sp26 = func_8028A4F0(D_8032D000->unk4, a->unk10) - func_8037A9A8(sp2C, sp30);
+    s16 sp26 = func_8028A4F0(D_8032D000->unk4, a->unk10) - atan2s(sp2C, sp30);
 
     if (sp26 > sp46)
         sp26 = sp46;
@@ -518,9 +518,9 @@ void func_80280550(struct Struct80280550 *a)
     sp3C = func_8028F2F0(a, a->unk10, &sp40, 1024);
     if (sp3C == 3)
     {
-        if (sp40 - func_8037A9A8(sp2C, sp30) + 0x4000 < 0)
+        if (sp40 - atan2s(sp2C, sp30) + 0x4000 < 0)
             sp40 += 32768;
-        sp40 -= func_8037A9A8(sp2C, sp30);
+        sp40 -= atan2s(sp2C, sp30);
         if (sp40 >= 0x4AAB)
             sp40 = 19114;
         if (sp40 <= -0x4AAB)
@@ -573,7 +573,7 @@ void func_80280550(struct Struct80280550 *a)
                 func_80289184(&D_8033B402, sp26, sp42);
             }
             if (a->unk0 == 2)
-                D_8033B402 = func_8028AF24(a, func_8037A9A8(sp2C, sp30));
+                D_8033B402 = func_8028AF24(a, atan2s(sp2C, sp30));
         }
     }
 
@@ -689,7 +689,7 @@ int CameraChange02(struct Struct80280550 *a, Vec3f b, Vec3f c)
 {
     float sp44 = D_8032D000->unk4[0] - a->unk28;
     float sp40 = D_8032D000->unk4[2] - a->unk2C;
-    s16 sp3E = func_8037A9A8(sp40, sp44) + D_8033B402 + 32768;
+    s16 sp3E = atan2s(sp40, sp44) + D_8033B402 + 32768;
     s16 sp3C = func_8027FDB8(sp3E);
     float sp38 = 1000.0f;
     float sp34 = 125.0f;
@@ -771,7 +771,7 @@ int CameraChange0C(struct Struct80280550 *a, Vec3f b, Vec3f c)
     spDC[0] = spE8[0][0] + (spE8[1][0] - spE8[0][0]) * sp88;
     spDC[1] = spE8[0][1] + (spE8[1][1] - spE8[0][1]) * sp88;
     spDC[2] = spE8[0][2] + (spE8[1][2] - spE8[0][2]) * sp88;
-    func_8037A69C(spE8[0], spE8[1], &sp98, &spB6, &spB4);
+    vec3f_get_dist_and_angle(spE8[0], spE8[1], &sp98, &spB6, &spB4);
     spD0[0] = sp78[0] - spDC[0];
     spD0[1] = sp78[1] - spDC[1];
     spD0[2] = sp78[2] - spDC[2];
@@ -816,7 +816,7 @@ int CameraChange0C(struct Struct80280550 *a, Vec3f b, Vec3f c)
     sp58[1] = spB4 + 32768;
     sp58[2] = 0;
     func_8028C5F0(c, spE8[0], spD0, sp58);
-    func_8037A69C(spE8[0], a->unk10, &spA4, &spB6, &spB4);
+    vec3f_get_dist_and_angle(spE8[0], a->unk10, &spA4, &spB6, &spB4);
     spB8[2] = sp98 / 2.0f - spB8[2];
     func_8028C5F0(a->unk4, spE8[0], spB8, sp58);
 
@@ -835,10 +835,10 @@ int CameraChange0C(struct Struct80280550 *a, Vec3f b, Vec3f c)
     if (D_8033B470[D_8033B46C + 1].unk0 != 0)
     {
         func_8028A578(D_8033B470[D_8033B46C + 1].unk4, D_8033B470[D_8033B46C + 2].unk4, &sp28, &sp24);
-        func_8037A788(D_8033B470[D_8033B46C + 1].unk4, sp34, 400.0f, sp28, sp24);
+        vec3f_set_dist_and_angle(D_8033B470[D_8033B46C + 1].unk4, sp34, 400.0f, sp28, sp24);
         sp2C = func_8028A640(sp78, sp34);
         func_8028A578(D_8033B470[D_8033B46C + 1].unk4, D_8033B470[D_8033B46C].unk4, &sp2A, &sp26);
-        func_8037A788(D_8033B470[D_8033B46C + 1].unk4, sp40, 400.0f, sp2A, sp26);
+        vec3f_set_dist_and_angle(D_8033B470[D_8033B46C + 1].unk4, sp40, 400.0f, sp2A, sp26);
         sp30 = func_8028A640(sp78, sp40);
         if (sp2C < sp30)
         {
@@ -850,10 +850,10 @@ int CameraChange0C(struct Struct80280550 *a, Vec3f b, Vec3f c)
     if (D_8033B46C != 0)
     {
         func_8028A578(D_8033B470[D_8033B46C].unk4, D_8033B470[D_8033B46C + 1].unk4, &sp28, &sp24);
-        func_8037A788(D_8033B470[D_8033B46C].unk4, sp34, 700.0f, sp28, sp24);
+        vec3f_set_dist_and_angle(D_8033B470[D_8033B46C].unk4, sp34, 700.0f, sp28, sp24);
         sp2C = func_8028A640(sp78, sp34);
         func_8028A578(D_8033B470[D_8033B46C].unk4, D_8033B470[D_8033B46C - 1].unk4, &sp2A, &sp26);
-        func_8037A788(D_8033B470[D_8033B46C].unk4, sp40, 700.0f, sp2A, sp26);
+        vec3f_set_dist_and_angle(D_8033B470[D_8033B46C].unk4, sp40, 700.0f, sp2A, sp26);
         sp30 = func_8028A640(sp78, sp40);
         if (sp2C > sp30)
         {
@@ -863,7 +863,7 @@ int CameraChange0C(struct Struct80280550 *a, Vec3f b, Vec3f c)
     }
 
     vec3f_copy(b, sp78);
-    func_8037A69C(b, c, &spA4, &spB6, &spB4);
+    vec3f_get_dist_and_angle(b, c, &spA4, &spB6, &spB4);
 
     return spB4;
 }
@@ -906,7 +906,7 @@ int CameraChange0D(struct Struct80280550 *a, Vec3f b, UNUSED Vec3f c)
     func_8027F668(&sp74, 1.0f, 200.0f, &sp74, 0.9f, 200.0f);
     vec3f_copy(b, D_8032D000->unk4);
     b[1] += sp74 + 125.0f;
-    func_8037A69C(b, a->unk10, &sp64, &sp4C[0], &sp4C[1]);
+    vec3f_get_dist_and_angle(b, a->unk10, &sp64, &sp4C[0], &sp4C[1]);
     sp4C[2] = 0;
     vec3f_copy(sp3C, D_8032D00C);
     vec3f_add(sp3C, D_8033B460);
@@ -918,7 +918,7 @@ int CameraChange0D(struct Struct80280550 *a, Vec3f b, UNUSED Vec3f c)
     if (300.0f > sp64)
         sp70 += 300.f - sp64;
 
-    sp6C = func_80381264(a->unk10[0], sp70 - 100.0f, a->unk10[2], &sp48);
+    sp6C = find_ceil(a->unk10[0], sp70 - 100.0f, a->unk10[2], &sp48);
     if (sp6C != 20000.0f)
     {
         if (sp70 > (sp6C -= 125.0f))
@@ -941,11 +941,11 @@ int CameraChange0D(struct Struct80280550 *a, Vec3f b, UNUSED Vec3f c)
 
     if (sp58 != 0.0f)
     {
-        func_8037A69C(a->unk4, a->unk10, &sp64, &sp56, &sp54);
+        vec3f_get_dist_and_angle(a->unk4, a->unk10, &sp64, &sp56, &sp54);
         if (sp64 > 1000.0f)
         {
             sp64 = 1000.0f;
-            func_8037A788(a->unk4, a->unk10, sp64, sp56, sp54);
+            vec3f_set_dist_and_angle(a->unk4, a->unk10, sp64, sp56, sp54);
         }
     }
 
@@ -1011,8 +1011,8 @@ int CameraChange0B(struct Struct80280550 *a, Vec3f b, Vec3f c)
     b[1] = (D_8032D000->unk4[1] + sp38[1]) / 2.0f + 125.0f;
     b[2] = (D_8032D000->unk4[2] + sp38[2]) / 2.0f;
 
-    func_8037A788(b, c, sp7C, 4096, sp60);
-    c[1] = func_80381900(a->unk28, 20000.0f, a->unk2C, &sp58);
+    vec3f_set_dist_and_angle(b, c, sp7C, 4096, sp60);
+    c[1] = find_floor(a->unk28, 20000.0f, a->unk2C, &sp58);
     if (sp58 != NULL)
     {
         sp74 = sp58->normal[0];
@@ -1053,7 +1053,7 @@ int CameraChange0B(struct Struct80280550 *a, Vec3f b, Vec3f c)
     if (sp7C < 400.0f)
         sp7C = 400.0f;
     func_80280BD8(sp7C, 6144);
-    func_8037A788(c, c, D_8033B3EE, D_8033B3F0 + 0x1000, sp60);
+    vec3f_set_dist_and_angle(c, c, D_8033B3EE, D_8033B3F0 + 0x1000, sp60);
 
     return sp60;
 }
@@ -1123,7 +1123,7 @@ int CameraChange03(struct Struct80280550 *a, Vec3f b, Vec3f c)
     a->unk4[1] += sp20;
     sp48 = func_8028A640(b, c);
     sp40 = func_8028A440(b, c);
-    func_8037A69C(b, c, &sp48, &sp40, &sp3E);
+    vec3f_get_dist_and_angle(b, c, &sp48, &sp40, &sp3E);
     if (sp48 > sp24)
         sp48 = sp24;
     if ((sp42 = sp40) < 0)
@@ -1202,7 +1202,7 @@ int CameraChange03(struct Struct80280550 *a, Vec3f b, Vec3f c)
     func_80289184(&sp40, sp3C, sp34);
     if (sp48 < 300.0f)
         sp48 = 300.0f;
-    func_8037A788(b, c, sp48, sp40, sp3E);
+    vec3f_set_dist_and_angle(b, c, sp48, sp40, sp3E);
     if (D_8032CFD8 == 177)
         sp3E = func_802899A0(c, b, 4508.0f, -3739.0f, 4508.0f, -3739.0f);
     if (D_8032CFD8 == 209)
@@ -1234,23 +1234,23 @@ int func_80282D90(struct Struct80280550 *a)
     a->unk10[2] = sp44[2];
     if (a->unk0 == 8)
     {
-        sp30 = func_80381900(a->unk10[0], a->unk10[1], a->unk10[2], &sp50);
+        sp30 = find_floor(a->unk10[0], a->unk10[1], a->unk10[2], &sp50);
         sp44[1] = sp54->waterLevel + 0x78;
         if (sp44[1] < (sp30 += 120.0f))
             sp44[1] = sp30;
     }
     func_8028C2F0(a, sp44[1], 50.0f);
-    sp34 = func_80381BA0(a->unk10[0], a->unk10[2]) + 100.0f;
+    sp34 = find_water_level(a->unk10[0], a->unk10[2]) + 100.0f;
     if (a->unk10[1] <= sp34)
         D_8033B4D8 |= 0x4000;
     else
         D_8033B4D8 &= ~0x4000;
     func_8028F04C(a->unk10, sp38);
-    func_8037A69C(a->unk4, a->unk10, &sp2C, &sp2A, &sp28);
+    vec3f_get_dist_and_angle(a->unk4, a->unk10, &sp2C, &sp2A, &sp28);
     if (sp2C > 800.0f)
     {
         sp2C = 800.0f;
-        func_8037A788(a->unk4, a->unk10, sp2C, sp2A, sp28);
+        vec3f_set_dist_and_angle(a->unk4, a->unk10, sp2C, sp2A, sp28);
     }
     func_8027FF44(a);
 
@@ -1279,7 +1279,7 @@ int func_80282FC8(struct Struct80280550 *a)
     func_8028B1DC();
     vec3f_copy(a->unk4, D_8032D000->unk4);
     a->unk4[1] += 50.0f;
-    func_8037A69C(a->unk4, a->unk10, &sp38, &sp2E, &sp2C);
+    vec3f_get_dist_and_angle(a->unk4, a->unk10, &sp38, &sp2E, &sp2C);
     sp34 = 800.0f;
     if (D_8032D000->unk0 == 1192)
     {
@@ -1294,29 +1294,29 @@ int func_80282FC8(struct Struct80280550 *a)
     func_80289184(&sp2E, sp26, 256);
     if (D_8032D000->unk0 != 1192 && D_8033B280 == 10)
     {
-        func_8037A788(a->unk4, sp3C, sp34 + D_8033B3EE, sp2E, sp2C);
+        vec3f_set_dist_and_angle(a->unk4, sp3C, sp34 + D_8033B3EE, sp2E, sp2C);
         a->unk10[0] = sp3C[0];
         a->unk10[2] = sp3C[2];
         func_802893E4(&a->unk10[1], a->unk4[1], 30.0f);
-        func_8037A69C(a->unk10, a->unk4, &sp38, &sp2E, &sp2C);
+        vec3f_get_dist_and_angle(a->unk10, a->unk4, &sp38, &sp2E, &sp2C);
         sp30 = (sp38 - sp34 + D_8033B3EE) / 10000.0f;
         if (sp30 > 1.0f)
             sp30 = 1.0f;
         sp2E += 4096.0f * sp30;
-        func_8037A788(a->unk10, a->unk4, sp38, sp2E, sp2C);
+        vec3f_set_dist_and_angle(a->unk10, a->unk4, sp38, sp2E, sp2C);
     }
     else
     {
-        func_8037A788(a->unk4, a->unk10, sp34 + D_8033B3EE, sp2E, sp2C);
+        vec3f_set_dist_and_angle(a->unk4, a->unk10, sp34 + D_8033B3EE, sp2E, sp2C);
         D_8033B4DA |= 2;
-        sp48 = func_80381900(a->unk10[0], a->unk10[1] + 200.0f, a->unk10[2], &sp4C) + 125.0f;
+        sp48 = find_floor(a->unk10[0], a->unk10[1] + 200.0f, a->unk10[2], &sp4C) + 125.0f;
         if (a->unk10[1] < sp48)
             a->unk10[1] = sp48;
-        func_8037A69C(a->unk4, a->unk10, &sp38, &sp2E, &sp2C);
+        vec3f_get_dist_and_angle(a->unk4, a->unk10, &sp38, &sp2E, &sp2C);
         if (sp38 > sp34 + D_8033B3EE)
         {
             sp38 = sp34 + D_8033B3EE;
-            func_8037A788(a->unk4, a->unk10, sp38, sp2E, sp2C);
+            vec3f_set_dist_and_angle(a->unk4, a->unk10, sp38, sp2E, sp2C);
         }
     }
 
@@ -1382,11 +1382,11 @@ int func_80283548(struct Struct80280550 *a)
     float sp4C;
     int sp48 = 0;
     int sp44 = 0;
-    float sp40 = func_80381264(D_8033B328.unk0[3][0], D_8033B328.unk0[3][1], D_8033B328.unk0[3][2], &sp94);
+    float sp40 = find_ceil(D_8033B328.unk0[3][0], D_8033B328.unk0[3][1], D_8033B328.unk0[3][2], &sp94);
     s16 sp3E;
 
     func_8028B7A4(a);
-    func_8037A69C(D_8032D000->unk4, a->unk10, &sp80, &sp70, &sp6E);
+    vec3f_get_dist_and_angle(D_8032D000->unk4, a->unk10, &sp80, &sp70, &sp6E);
 
     if (D_8033B4D8 & 2)
     {
@@ -1470,7 +1470,7 @@ int func_80283548(struct Struct80280550 *a)
         {
             sp52 = 4096;
             D_8032CFD4 = 0;
-            func_8037A69C(D_8032D000->unk4, a->unk10, &sp80, &sp70, &sp6E);
+            vec3f_get_dist_and_angle(D_8032D000->unk4, a->unk10, &sp80, &sp70, &sp6E);
         }
         sp44 |= 1;
     }
@@ -1486,9 +1486,9 @@ int func_80283548(struct Struct80280550 *a)
         D_8033B2AC = sp72;
         D_8033B2AE = sp6E;
         D_8033B4DA |= 0x200;
-        func_8037A69C(D_8032D000->unk4, spB0, &sp58, &sp5E, &sp5C);
+        vec3f_get_dist_and_angle(D_8032D000->unk4, spB0, &sp58, &sp5E, &sp5C);
         func_80288ECC(&sp6E, sp72, 10);
-        func_8037A788(D_8032D000->unk4, spB0, sp58, sp5E, sp5C);
+        vec3f_set_dist_and_angle(D_8032D000->unk4, spB0, sp58, sp5E, sp5C);
         D_8033B2AE = (D_8033B2AE - sp6E) / 256;
     }
     else
@@ -1524,7 +1524,7 @@ int func_80283548(struct Struct80280550 *a)
     }
     if (sp48 == 0 && !(D_8033B4DA & 0x200))
         func_80288E0C(&sp80, sp7C - 100.0f, 0.05f);
-    func_8037A788(D_8032D000->unk4, spB0, sp80, sp70, sp6E);
+    vec3f_set_dist_and_angle(D_8032D000->unk4, spB0, sp80, sp70, sp6E);
     spB0[1] += sp68 + 125.0f;
     if (func_80288974(spB0, 10.0f, 80.0f) != 0)
         D_8033B4DA |= 0x200;
@@ -1533,11 +1533,11 @@ int func_80283548(struct Struct80280550 *a)
     a->unk4[2] = D_8032D000->unk4[2];
     sp88 = 125.0f + D_8033B27C;
     spA0 = D_8033B278;
-    sp90 = func_80381900(spB0[0], spB0[1] + 50.0f, spB0[2], &sp9C) + 125.0f;
+    sp90 = find_floor(spB0[0], spB0[1] + 50.0f, spB0[2], &sp9C) + 125.0f;
     for (sp4C = 0.1f; sp4C < 1.0f; sp4C += 0.2f)
     {
         func_8028A24C(spBC, spB0, D_8032D000->unk4, sp4C);
-        sp8C = func_80381900(spBC[0], spBC[1], spBC[2], &sp98) + 125.0f;
+        sp8C = find_floor(spBC[0], spBC[1], spBC[2], &sp98) + 125.0f;
         if (sp98 != NULL && sp8C > sp88)
         {
             sp88 = sp8C;
@@ -1550,7 +1550,7 @@ int func_80283548(struct Struct80280550 *a)
         sp90 -= 35.0f;
         a->unk4[1] -= 25.0f;
     }
-    sp78 = func_80381BA0(spB0[0], spB0[2]);
+    sp78 = find_water_level(spB0[0], spB0[2]);
     if (sp78 != -11000.0f)
     {
         sp78 += 125.0f;
@@ -1634,19 +1634,19 @@ int func_80283548(struct Struct80280550 *a)
     spB0[0] = D_8033B328.unk0[3][0];
     spB0[1] = a->unk10[1];
     spB0[2] = D_8033B328.unk0[3][2];
-    func_8037A69C(spB0, a->unk10, &sp80, &sp5E, &sp5C);
+    vec3f_get_dist_and_angle(spB0, a->unk10, &sp80, &sp5E, &sp5C);
     if (sp80 > 50.0f)
     {
         sp80 = 50.0f;
-        func_8037A788(spB0, a->unk10, sp80, sp5E, sp5C);
+        vec3f_set_dist_and_angle(spB0, a->unk10, sp80, sp5E, sp5C);
     }
     if (D_8033B280 != 10)
     {
-        func_8037A69C(a->unk4, a->unk10, &sp80, &sp5E, &sp5C);
+        vec3f_get_dist_and_angle(a->unk4, a->unk10, &sp80, &sp5E, &sp5C);
         if (sp80 > sp7C)
         {
             sp80 = sp7C;
-            func_8037A788(a->unk4, a->unk10, sp80, sp5E, sp5C);
+            vec3f_set_dist_and_angle(a->unk4, a->unk10, sp80, sp5E, sp5C);
         }
     }
     if (sp40 != 20000.0f)
@@ -1704,8 +1704,8 @@ int CameraChange11(struct Struct80280550 *a, Vec3f b, Vec3f c)
     sp24 = D_8032D000->unk4[1] + 125.0f + sp2C;
     b[2] = D_8032D000->unk4[2];
     vec3f_copy(sp44, c);
-    func_8037A69C(D_8032D00C, b, &sp30, &sp5A, &sp58);
-    func_8037A69C(D_8032D00C, sp44, &sp30, &sp56, &sp54);
+    vec3f_get_dist_and_angle(D_8032D00C, b, &sp30, &sp5A, &sp58);
+    vec3f_get_dist_and_angle(D_8032D00C, sp44, &sp30, &sp56, &sp54);
     D_8033B404 = sp54 - sp58;
     if (D_8033B404 < -0x4000)
         D_8033B404 = -0x4000;
@@ -1714,11 +1714,11 @@ int CameraChange11(struct Struct80280550 *a, Vec3f b, Vec3f c)
     sp58 += D_8033B404;
     sp54 = sp58;
     func_80289184(&sp54, sp58, 4096);
-    func_8037A788(D_8032D00C, sp44, 300.0f, 0, sp54);
+    vec3f_set_dist_and_angle(D_8032D00C, sp44, 300.0f, 0, sp54);
     sp38[0] = b[0] + (sp44[0] - b[0]) * 0.7f;
     sp38[1] = b[1] + (sp44[1] - b[1]) * 0.7f + 300.0f;
     sp38[2] = b[2] + (sp44[2] - b[2]) * 0.7f;
-    sp28 = func_80381900(sp38[0], sp38[1] + 50.0f, sp38[2], &sp34);
+    sp28 = find_floor(sp38[0], sp38[1] + 50.0f, sp38[2], &sp34);
 
     if (sp28 != -11000.0f)
     {
@@ -1814,7 +1814,7 @@ int func_80284DC0(struct Struct80280550 *a)
         vec3f_copy(sp68, a->unk4);
         sp68[0] = D_8032D000->unk4[0];
         sp68[2] = D_8032D000->unk4[2];
-        func_8037A69C(sp68, a->unk10, &sp48, &sp42, &sp40);
+        vec3f_get_dist_and_angle(sp68, a->unk10, &sp48, &sp42, &sp40);
         vec3f_copy(sp5C, a->unk10);
         sp48 = 80.0f;
         if (D_8033B41A == 17 || D_8033B41A == 4 || D_8033B41A == 16)
@@ -1822,19 +1822,19 @@ int func_80284DC0(struct Struct80280550 *a)
             sp58 = 1;
             for (sp54 = 0; sp54 < 16 && sp58 == 1; sp54++)
             {
-                func_8037A788(sp68, sp5C, sp48, 0, sp40 + sp3E);
-                if (func_80380DE8(&sp5C[0], &sp5C[1], &sp5C[2], 20.0f, 50.0f) == 0)
+                vec3f_set_dist_and_angle(sp68, sp5C, sp48, 0, sp40 + sp3E);
+                if (resolve_wall_collisions(&sp5C[0], &sp5C[1], &sp5C[2], 20.0f, 50.0f) == 0)
                 {
                     for (sp44 = sp48; sp44 < D_8032CFEC; sp44 += 20.0f)
                     {
-                        func_8037A788(sp68, sp5C, sp44, 0, sp40 + sp3E);
-                        sp50 = func_80381264(sp5C[0], sp5C[1] - 150.0f, sp5C[2], &sp74) + -10.0f;
+                        vec3f_set_dist_and_angle(sp68, sp5C, sp44, 0, sp40 + sp3E);
+                        sp50 = find_ceil(sp5C[0], sp5C[1] - 150.0f, sp5C[2], &sp74) + -10.0f;
                         if (sp74 != NULL && sp50 < sp5C[1])
                             break;
-                        sp4C = func_80381900(sp5C[0], sp5C[1] + 150.0f, sp5C[2], &sp74) + 10.0f;
+                        sp4C = find_floor(sp5C[0], sp5C[1] + 150.0f, sp5C[2], &sp74) + 10.0f;
                         if (sp74 != NULL && sp4C > sp5C[1])
                             break;
-                        if (func_80380DE8(&sp5C[0], &sp5C[1], &sp5C[2], 20.0f, 50.0f) == 1)
+                        if (resolve_wall_collisions(&sp5C[0], &sp5C[1], &sp5C[2], 20.0f, 50.0f) == 1)
                             break;
                     }
                     if (sp44 >= D_8032CFEC)
@@ -1851,7 +1851,7 @@ int func_80284DC0(struct Struct80280550 *a)
             }
             if (sp58 == 0)
             {
-                func_8037A788(sp68, D_8033B498[0], D_8032CFEC, 0, sp40 + sp3E);
+                vec3f_set_dist_and_angle(sp68, D_8033B498[0], D_8032CFEC, 0, sp40 + sp3E);
                 vec3f_copy(D_8033B498[1], sp68);
                 func_80287800(D_8033B498[0], D_8032D000->unk4);
                 func_80287800(D_8033B498[1], D_8032D000->unk4);
@@ -1862,7 +1862,7 @@ int func_80284DC0(struct Struct80280550 *a)
         else
         {
             D_8033B4D8 &= ~0x2200;
-            func_8037A788(sp68, a->unk10, sp48, sp42, sp40 + sp3E);
+            vec3f_set_dist_and_angle(sp68, a->unk10, sp48, sp42, sp40 + sp3E);
         }
         func_8028B29C();
     }
@@ -1914,7 +1914,7 @@ void func_8028547C(struct Struct80280550 *a)
     a->unk4[1] = sp2C->unk0[1] + (sp28->unk0[1] - sp2C->unk0[1]) * D_8033B418.unk6 / D_8033B418.unk4;
     a->unk4[2] = sp2C->unk0[2] + (sp28->unk0[2] - sp2C->unk0[2]) * D_8033B418.unk6 / D_8033B418.unk4;
     vec3f_add(a->unk4, D_8032D000->unk4);
-    func_8037A788(a->unk4, a->unk10, sp24, sp22, sp20);
+    vec3f_set_dist_and_angle(a->unk4, a->unk10, sp24, sp22, sp20);
     D_8032D000->unk16 = 0;
     D_8032D000->unk18 = 0;
     if (++D_8033B418.unk6 == D_8033B418.unk4)
@@ -2063,8 +2063,8 @@ void func_80285BD8(struct Struct80280550 *a, s16 b, s16 c)
         func_80287800(sp24->unk0, D_8032D000->unk4);
         vec3f_copy(sp24->unkC, D_8033B328.unk0[1]);
         func_80287800(sp24->unkC, D_8032D000->unk4);
-        func_8037A69C(sp24->unk0, sp24->unkC, &sp24->unk18, &sp24->unk1C, &sp24->unk1E);
-        func_8037A69C(sp20->unk0, sp20->unkC, &sp20->unk18, &sp20->unk1C, &sp20->unk1E);
+        vec3f_get_dist_and_angle(sp24->unk0, sp24->unkC, &sp24->unk18, &sp24->unk1C, &sp24->unk1E);
+        vec3f_get_dist_and_angle(sp20->unk0, sp20->unkC, &sp20->unk18, &sp20->unk1C, &sp20->unk1E);
     }
 }
 
@@ -2132,7 +2132,7 @@ void func_80285E70(struct Struct80280550 *a)
             vec3f_add(D_8033B328.unk80, D_8033B218);
             vec3f_set(D_8033B218, 0.0f, 0.0f, 0.0f);
         }
-        func_8037A69C(D_8033B328.unk8C, D_8033B328.unk80,
+        vec3f_get_dist_and_angle(D_8033B328.unk8C, D_8033B328.unk80,
             &D_8033B328.unk48, &D_8033B328.unk4C, &D_8033B328.unk4E);
         D_8033B3A2 = 0;
         func_8028AC30(D_8033B328.unk8C, D_8033B328.unk80);
@@ -2146,7 +2146,7 @@ void func_80285E70(struct Struct80280550 *a)
         if (a->unk0 != 6 && a->unk30 == 0)
         {
             D_8035FE10 = 1;
-            sp34 = func_80381900(
+            sp34 = find_floor(
                 D_8033B328.unk8C[0],
                 D_8033B328.unk8C[1] + 20.0f,
                 D_8033B328.unk8C[2],
@@ -2444,7 +2444,7 @@ void func_80286C9C(struct Struct80280550 *a)
     D_8033B224 = 0;
     D_8033B226 = 0;
     D_8032CFDC = D_8032CFD8 / 16;
-    D_8032CFD8 = gCurrLevelNum * 16 + D_8032CE6C->index;
+    D_8032CFD8 = gCurrLevelNum * 16 + gCurrentArea->index;
     D_8033B314 &= 4;
     D_8033B228 = 0;
     D_8033B364 = a->unk0;
@@ -2554,7 +2554,7 @@ void func_80286C9C(struct Struct80280550 *a)
     }
     func_8028C5F0(a->unk10, D_8032D000->unk4, sp28, D_8032D000->unk10);
     if (a->unk0 != 3)
-        a->unk10[1] = func_80381900(D_8032D000->unk4[0], D_8032D000->unk4[1] + 100.0f, D_8032D000->unk4[2], &sp34) + 125.0f;
+        a->unk10[1] = find_floor(D_8032D000->unk4[0], D_8032D000->unk4[1] + 100.0f, D_8032D000->unk4[2], &sp34) + 125.0f;
     vec3f_copy(a->unk4, D_8032D000->unk4);
     vec3f_copy(D_8033B328.unk0[1], a->unk10);
     vec3f_copy(D_8033B328.unk0[0], a->unk4);
@@ -2603,8 +2603,8 @@ void func_80287404(struct Struct80287404 *a)
                 a->unk28[0] = D_8033B860->unk28;
                 a->unk28[1] = (D_8032D000->unk4[1] + D_8033B860->unk68) / 2.0f;
                 a->unk28[2] = D_8033B860->unk2C;
-                func_8037A69C(a->unk28, D_8032D000->unk4, &sp34, &sp32, &sp30);
-                func_8037A788(D_8032D000->unk4, a->unk1C, 6000.0f, 4096, sp30);
+                vec3f_get_dist_and_angle(a->unk28, D_8032D000->unk4, &sp34, &sp32, &sp30);
+                vec3f_set_dist_and_angle(D_8032D000->unk4, a->unk1C, 6000.0f, 4096, sp30);
                 if (gCurrLevelNum != 13)
                     func_802800F4(a->unk1C, a->unk28, 0);
             }

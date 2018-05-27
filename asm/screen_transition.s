@@ -625,7 +625,7 @@ glabel func_802CB384
 /* 0863C8 802CB3C8 468042A0 */  cvt.s.w $f10, $f8
 /* 0863CC 802CB3CC E7AA0018 */  swc1  $f10, 0x18($sp)
 /* 0863D0 802CB3D0 C7AC001C */  lwc1  $f12, 0x1c($sp)
-/* 0863D4 802CB3D4 0C0DEA6A */  jal   func_8037A9A8
+/* 0863D4 802CB3D4 0C0DEA6A */  jal   atan2s
 /* 0863D8 802CB3D8 C7AE0018 */   lwc1  $f14, 0x18($sp)
 /* 0863DC 802CB3DC 304CFFFF */  andi  $t4, $v0, 0xffff
 /* 0863E0 802CB3E0 10000003 */  b     .L802CB3F0
@@ -1911,8 +1911,8 @@ glabel Geo18_802CD1E8
 /* 08772C 802CC72C 24010001 */  li    $at, 1
 /* 087730 802CC730 15E10012 */  bne   $t7, $at, .L802CC77C
 /* 087734 802CC734 00000000 */   nop   
-/* 087738 802CC738 3C188033 */  lui   $t8, %hi(D_8032CE6C) # $t8, 0x8033
-/* 08773C 802CC73C 8F18CE6C */  lw    $t8, %lo(D_8032CE6C)($t8)
+/* 087738 802CC738 3C188033 */  lui   $t8, %hi(gCurrentArea) # $t8, 0x8033
+/* 08773C 802CC73C 8F18CE6C */  lw    $t8, %lo(gCurrentArea)($t8)
 /* 087740 802CC740 1300000E */  beqz  $t8, .L802CC77C
 /* 087744 802CC744 00000000 */   nop   
 /* 087748 802CC748 8F190024 */  lw    $t9, 0x24($t8)

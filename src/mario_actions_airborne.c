@@ -1,6 +1,7 @@
 #include <ultra64.h>
 
 #include "sm64.h"
+#include "area.h"
 #include "level_update.h"
 #include "math_util.h"
 #include "interaction.h"
@@ -47,7 +48,7 @@ void func_u_8026A090(struct MarioState *m)
 
 static s32 lava_boost_on_wall(struct MarioState *m)
 {
-    m->faceAngle[1] = func_8037A9A8(m->wall->normal[2], m->wall->normal[0]);
+    m->faceAngle[1] = atan2s(m->wall->normal[2], m->wall->normal[0]);
 
     if (m->forwardVel < 24.0f)
        m->forwardVel = 24.0f;
@@ -176,7 +177,7 @@ static s32 check_horizontal_wind(struct MarioState *m)
 
         m->vel[0] = m->slideVelX;
         m->vel[2] = m->slideVelZ;
-        m->slideYaw = func_8037A9A8(m->slideVelZ, m->slideVelX);
+        m->slideYaw = atan2s(m->slideVelZ, m->slideVelX);
         m->forwardVel = speed * coss(m->faceAngle[1] - m->slideYaw);
 
 #if !VERSION_US
@@ -1082,7 +1083,7 @@ static s32 act_crazy_box_bounce(struct MarioState *m)
         break;
     }
 
-    m->marioObj->gfx.unk1A[0] = func_8037A9A8(m->forwardVel, -m->vel[1]);
+    m->marioObj->gfx.unk1A[0] = atan2s(m->forwardVel, -m->vel[1]);
     return FALSE;
 }
 
@@ -1230,7 +1231,7 @@ static s32 act_thrown_forward(struct MarioState *m)
     if (common_air_knockback_step(
             m, landAction, ACT_UNKNOWN_061, 0x002D, m->forwardVel) == AIR_STEP_NONE)
     {
-        pitch = func_8037A9A8(m->forwardVel, -m->vel[1]);
+        pitch = atan2s(m->forwardVel, -m->vel[1]);
         if (pitch > 0x1800)
             pitch = 0x1800;
 
@@ -1599,7 +1600,7 @@ static s32 act_slide_kick(struct MarioState *m)
     case AIR_STEP_NONE:
         if (m->actionState == 0)
         {
-            m->marioObj->gfx.unk1A[0] = func_8037A9A8(m->forwardVel, -m->vel[1]);
+            m->marioObj->gfx.unk1A[0] = atan2s(m->forwardVel, -m->vel[1]);
             if (m->marioObj->gfx.unk1A[0] > 0x1800)
                 m->marioObj->gfx.unk1A[0] = 0x1800;
         }
@@ -1684,7 +1685,7 @@ static s32 act_shot_from_cannon(struct MarioState *m)
     {
     case AIR_STEP_NONE:
         func_802507E8(m, 0x0015);
-        m->faceAngle[0] = func_8037A9A8(m->forwardVel, m->vel[1]);
+        m->faceAngle[0] = atan2s(m->forwardVel, m->vel[1]);
         m->marioObj->gfx.unk1A[0] = -m->faceAngle[0];
         break;
 

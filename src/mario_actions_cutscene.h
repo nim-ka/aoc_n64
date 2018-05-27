@@ -7,7 +7,7 @@
 // extern ? D_80339F48;
 // extern ? D_80339F4C;
 // extern ? D_8032CBE4;
-extern u16 D_8032CFA8;
+extern u16 gAreaUpdateCounter;
 // extern ? D_8032CBE8;
 extern s16 D_8033A760;
 extern struct Struct80280550 *D_8033B860;

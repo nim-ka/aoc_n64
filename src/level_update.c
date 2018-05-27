@@ -5,7 +5,8 @@
 #include "game.h"
 #include "main.h"
 #include "math_util.h"
-#include "rendering.h"
+#include "graph_node.h"
+#include "area.h"
 #include "save_file.h"
 #include "sound_init.h"
 #include "mario.h"
@@ -85,13 +86,12 @@ static struct CreditsEntry sCreditsSequence[] =
     { 0,                    0,    1,    0, {    0,     0,     0}, NULL                       },
 };
 
+struct MarioState gMarioStates[1];
 struct MarioState *gMarioState = &gMarioStates[0];
 
 static u8 unused1[4] = {0};
 
 static s8 D_8032C9E0 = 0;
-
-static u8 unused2[8];
 
 static s16 sCurrPlayMode;
 static u16 D_80339ECA;
@@ -203,7 +203,7 @@ static void nop_802497FC(void)
 void func_8024980C(u32 arg)
 {
     s32 gotAchievement;
-    u32 val8 = D_8032CE6C->unk34[arg];
+    u32 val8 = gCurrentArea->unk34[arg];
 
     switch (val8)
     {
@@ -296,8 +296,8 @@ static void set_mario_initial_action(struct MarioState *m, u32 spawnType, u32 ac
 
 static void init_mario_after_warp(void)
 {
-    struct ObjectWarpNode *spawnNode = func_8027A418(sDestWarpNodeId);
-    u32 marioSpawnType = func_8027A38C(spawnNode->object);
+    struct ObjectWarpNode *spawnNode = area_get_warp_node(sDestWarpNodeId);
+    u32 marioSpawnType = get_mario_spawn_type(spawnNode->object);
 
     if (gMarioState->action != ACT_UNINITIALIZED)
     {
@@ -315,7 +315,7 @@ static void init_mario_after_warp(void)
         if (sCurrWarpType == WARP_TYPE_CHANGE_LEVEL || sCurrWarpType == WARP_TYPE_CHANGE_AREA)
         {
             gPlayerSpawnInfos[0].areaIndex = sDestAreaIndex;
-            func_8027AA0C();
+            load_mario_area();
         }
 
         func_802548BC();
@@ -325,7 +325,7 @@ static void init_mario_after_warp(void)
         gMarioState->usedObj = spawnNode->object;
     }
 
-    func_802869B8(D_8032CE6C->unk24);
+    func_802869B8(gCurrentArea->unk24);
     sCurrWarpType = WARP_TYPE_NOT_WARPING;
     sDelayedWarpOp = WARP_OP_NONE;
 
@@ -342,7 +342,7 @@ static void init_mario_after_warp(void)
 
     if (gCurrDemoInput == NULL)
     {
-        func_80249148(D_8032CE6C->unk36, D_8032CE6C->unk38, 0);
+        func_80249148(gCurrentArea->unk36, gCurrentArea->unk38, 0);
 
         if (gMarioState->flags & MARIO_METAL_CAP)
             func_80249368(0x0000040F);
@@ -387,7 +387,7 @@ static void func_8024A02C(void)
         {
             level_control_timer(TIMER_CONTROL_HIDE);
             func_8027AA88();
-            func_8027A894(sDestAreaIndex);
+            load_area(sDestAreaIndex);
         }
 
         init_mario_after_warp();
@@ -401,7 +401,7 @@ static void func_8024A094(void)
 
     level_control_timer(TIMER_CONTROL_HIDE);
 
-    func_8027A894(sDestAreaIndex);
+    load_area(sDestAreaIndex);
     init_mario_after_warp();
 }
 
@@ -426,7 +426,7 @@ static void func_8024A0E0(void)
 
     gCurrLevelNum = sDestLevelNum;
 
-    func_8027A894(sDestAreaIndex);
+    load_area(sDestAreaIndex);
 
     vec3s_set(
         gPlayerSpawnInfos[0].startPos,
@@ -442,12 +442,12 @@ static void func_8024A0E0(void)
 
     gPlayerSpawnInfos[0].areaIndex = sDestAreaIndex;
 
-    func_8027AA0C();
+    load_mario_area();
     func_802548BC();
 
     set_mario_action(gMarioState, marioAction, 0);
 
-    func_802869B8(D_8032CE6C->unk24);
+    func_802869B8(gCurrentArea->unk24);
 
     sCurrWarpType = WARP_TYPE_NOT_WARPING;
     sDelayedWarpOp = WARP_OP_NONE;
@@ -455,7 +455,7 @@ static void func_8024A0E0(void)
     func_8027ABF0(0x00, 0x14, 0x00, 0x00, 0x00);
 
     if (gCurrCreditsEntry == NULL || gCurrCreditsEntry == sCreditsSequence)
-        func_80249148(D_8032CE6C->unk36, D_8032CE6C->unk38, 0);
+        func_80249148(gCurrentArea->unk36, gCurrentArea->unk38, 0);
 }
 
 static void check_instant_warp(void)
@@ -472,9 +472,9 @@ static void check_instant_warp(void)
     if ((floor = gMarioState->floor) != NULL)
     {
         s32 index = floor->type - SURFACE_001B;
-        if (index >= 0 && index < 4 && D_8032CE6C->instantWarps != NULL)
+        if (index >= 0 && index < 4 && gCurrentArea->instantWarps != NULL)
         {
-            struct InstantWarp *warp = &D_8032CE6C->instantWarps[index];
+            struct InstantWarp *warp = &gCurrentArea->instantWarps[index];
 
             if (warp->unk00 != 0)
             {
@@ -488,8 +488,8 @@ static void check_instant_warp(void)
 
                 cameraAngle = gMarioState->area->unk24->unk2;
 
-                func_8027AB10(warp->area);
-                gMarioState->area = D_8032CE6C;
+                change_area(warp->area);
+                gMarioState->area = gCurrentArea;
 
                 func_8028C1A0(
                     warp->displacement[0],
@@ -506,13 +506,13 @@ static s16 func_8024A48C(s16 arg)
 {
 #if BUGFIX_KOOPA_RACE_MUSIC
 
-    struct ObjectWarpNode *warpNode = func_8027A418(arg);
+    struct ObjectWarpNode *warpNode = area_get_warp_node(arg);
     s16 levelNum = warpNode->node.destLevel & 0x7F;
     s16 destArea = warpNode->node.destArea;
     s16 val4 = TRUE;
     s16 sp2C;
 
-    if (levelNum == 9 && levelNum == gCurrLevelNum && destArea == D_8033A75A)
+    if (levelNum == 9 && levelNum == gCurrLevelNum && destArea == gCurrAreaIndex)
     {
         sp2C = func_80320E98();
         if (sp2C == 1166 || sp2C == 1038)
@@ -520,13 +520,13 @@ static s16 func_8024A48C(s16 arg)
     }
     else
     {
-        u16 val8 = D_8032CE68[destArea].unk36;
-        u16 val6 = D_8032CE68[destArea].unk38;
+        u16 val8 = gAreas[destArea].unk36;
+        u16 val6 = gAreas[destArea].unk38;
 
         val4 =
             levelNum == gCurrLevelNum &&
-            val8 == D_8032CE6C->unk36 &&
-            val6 == D_8032CE6C->unk38;
+            val8 == gCurrentArea->unk36 &&
+            val6 == gCurrentArea->unk38;
 
         if (func_80320E98() != val6)
             val4 = FALSE;
@@ -535,16 +535,16 @@ static s16 func_8024A48C(s16 arg)
 
 #else
 
-    struct ObjectWarpNode *warpNode = func_8027A418(arg);
+    struct ObjectWarpNode *warpNode = area_get_warp_node(arg);
     s16 levelNum = warpNode->node.destLevel & 0x7F;
 
-    u16 val8 = D_8032CE68[warpNode->node.destArea].unk36;
-    u16 val6 = D_8032CE68[warpNode->node.destArea].unk38;
+    u16 val8 = gAreas[warpNode->node.destArea].unk36;
+    u16 val6 = gAreas[warpNode->node.destArea].unk38;
 
     s16 val4 =
         levelNum == gCurrLevelNum &&
-        val8 == D_8032CE6C->unk36 &&
-        val6 == D_8032CE6C->unk38;
+        val8 == gCurrentArea->unk36 &&
+        val6 == gCurrentArea->unk38;
 
     if (func_80320E98() != val6)
         val4 = FALSE;
@@ -566,7 +566,7 @@ static void initiate_warp(s16 destLevel, s16 destArea, s16 destWarpNode, s32 arg
     {
         sCurrWarpType = WARP_TYPE_CHANGE_LEVEL;
     }
-    else if (destArea != D_8032CE6C->index)
+    else if (destArea != gCurrentArea->index)
     {
         sCurrWarpType = WARP_TYPE_CHANGE_AREA;
     }
@@ -595,7 +595,7 @@ static struct WarpNode *get_painting_warp_node(void)
         if (paintingIndex < 0x2A ||
             gMarioState->pos[1] - gMarioState->floorHeight < 80.0f)
         {
-            warpNode = &D_8032CE6C->paintingWarpNodes[paintingIndex];
+            warpNode = &gCurrentArea->paintingWarpNodes[paintingIndex];
         }
     }
 
@@ -607,7 +607,7 @@ static struct WarpNode *get_painting_warp_node(void)
  */
 static void initiate_painting_warp(void)
 {
-    if (D_8032CE6C->paintingWarpNodes != NULL && gMarioState->floor != NULL)
+    if (gCurrentArea->paintingWarpNodes != NULL && gMarioState->floor != NULL)
     {
         struct WarpNode warpNode;
         struct WarpNode *pWarpNode = get_painting_warp_node();
@@ -698,7 +698,7 @@ s16 level_trigger_warp(struct MarioState *m, s32 warpOp)
 
         case WARP_OP_WARP_FLOOR:
             sSourceWarpNodeId = WARP_NODE_WARP_FLOOR;
-            if (func_8027A418(sSourceWarpNodeId) == NULL)
+            if (area_get_warp_node(sSourceWarpNodeId) == NULL)
             {
                 if (m->numLives == 0)
                     sDelayedWarpOp = WARP_OP_GAME_OVER;
@@ -841,7 +841,7 @@ static void initiate_delayed_warp(void)
                 break;
 
             default:
-                warpNode = func_8027A418(sSourceWarpNodeId);
+                warpNode = area_get_warp_node(sSourceWarpNodeId);
 
                 initiate_warp(
                     warpNode->node.destLevel & 0x7F,
@@ -921,18 +921,18 @@ static void update_hud_values(void)
  */
 static void basic_update(UNUSED s16 *arg)
 {
-    func_8027ABB4();
+    area_update_objects();
     update_hud_values();
 
-    if (D_8032CE6C != NULL)
-        func_80286348(D_8032CE6C->unk24);
+    if (gCurrentArea != NULL)
+        func_80286348(gCurrentArea->unk24);
 }
 
 static s32 play_mode_normal(void)
 {
     if (gCurrDemoInput != NULL)
     {
-        IntroPrintText();
+        print_intro_text();
         if (gPlayer1Controller->buttonPressed & END_DEMO)
         {
             level_trigger_warp(
@@ -952,11 +952,11 @@ static s32 play_mode_normal(void)
     if (sTimerRunning && gTimerValueInFrames < 17999)
         gTimerValueInFrames += 1;
 
-    func_8027ABB4();
+    area_update_objects();
     update_hud_values();
 
-    if (D_8032CE6C != NULL)
-        func_80286348(D_8032CE6C->unk24);
+    if (gCurrentArea != NULL)
+        func_80286348(gCurrentArea->unk24);
 
     initiate_painting_warp();
     initiate_delayed_warp();
@@ -1061,7 +1061,7 @@ static s32 play_mode_change_area(void)
     //! This maybe was supposed to be sTransitionTimer == -1? sTransitionUpdate
     // is never set to -1.
     if (sTransitionUpdate == (void (*)(s16 *)) -1)
-        func_80286348(D_8032CE6C->unk24);
+        func_80286348(gCurrentArea->unk24);
     else if (sTransitionUpdate != NULL)
         sTransitionUpdate(&sTransitionTimer);
 
@@ -1171,13 +1171,13 @@ static s32 init_level(void)
     {
         if (gPlayerSpawnInfos[0].areaIndex >= 0)
         {
-            func_8027AA0C();
+            load_mario_area();
             func_802548BC();
         }
 
-        if (D_8032CE6C != NULL)
+        if (gCurrentArea != NULL)
         {
-            func_802869B8(D_8032CE6C->unk24);
+            func_802869B8(gCurrentArea->unk24);
 
             if (gCurrDemoInput != NULL)
             {
@@ -1207,7 +1207,7 @@ static s32 init_level(void)
 
         if (gCurrDemoInput == NULL)
         {
-            func_80249148(D_8032CE6C->unk36, D_8032CE6C->unk38, 0);;
+            func_80249148(gCurrentArea->unk36, gCurrentArea->unk38, 0);;
         }
     }
 

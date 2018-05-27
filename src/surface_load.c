@@ -411,7 +411,7 @@ static void load_water_regions(s16 **data)
         hiZ = *(*data)++;
         height = *(*data)++;
 
-        D_8035FE18[i] = height;
+        gWaterLevels[i] = height;
     }
 }
 
@@ -424,7 +424,7 @@ void alloc_surface_pools(void)
     func_802DA4DC();
 }
 
-void load_area_terrain(s16 arg0, s16 *data, s8 *surfaceRooms, s16 *arg3)
+void load_area_terrain(s16 index, s16 *data, s8 *surfaceRooms, s16 *arg3)
 {
     s16 terrainType;
     s16 *vertexData;
@@ -452,7 +452,7 @@ void load_area_terrain(s16 arg0, s16 *data, s8 *surfaceRooms, s16 *arg3)
         }
         else if (terrainType == 0x43)
         {
-            func_802E19DC(arg0, &data);
+            func_802E19DC(index, &data);
         }
         else if (terrainType == 0x44)
         {
@@ -476,9 +476,9 @@ void load_area_terrain(s16 arg0, s16 *data, s8 *surfaceRooms, s16 *arg3)
     if (arg3 != NULL && *arg3 != -1)
     {
         if (0 <= *arg3 && *arg3 < 30)
-            func_802E1780(arg0, arg3);
+            func_802E1780(index, arg3);
         else
-            func_802E1504(arg0, arg3);
+            func_802E1504(index, arg3);
     }
 
     gNumStaticSurfaceNodes = gSurfaceNodesAllocated;

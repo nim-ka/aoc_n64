@@ -48,77 +48,6 @@
 #define MARIO_SPAWN_UNKNOWN_27 0x27
 
 
-struct InstantWarp
-{
-    /*0x00*/ u8 unk00;
-    /*0x01*/ u8 area;
-    /*0x02*/ Vec3s displacement;
-};
-
-struct WarpNode
-{
-    /*00*/ u8 id;
-    /*01*/ u8 destLevel;
-    /*02*/ u8 destArea;
-    /*03*/ u8 destNode;
-};
-
-struct ObjectWarpNode
-{
-    /*0x00*/ struct WarpNode node;
-    /*0x04*/ struct Object *object;
-    /*0x08*/ struct ObjectWarpNode *next;
-};
-
-struct UnknownArea28
-{
-    /*0x00*/ s16 unk00;
-    /*0x02*/ s16 unk02;
-    /*0x04*/ s16 unk04;
-    /*0x06*/ s16 unk06;
-    /*0x08*/ s16 unk08;
-};
-
-struct Whirlpool
-{
-    /*0x00*/ Vec3s pos;
-    /*0x03*/ s16 strength;
-};
-
-struct Area
-{
-    /*0x00*/ s8 index;
-    /*0x01*/ s8 unk01;
-    /*0x02*/ u16 unk02;
-    /*0x04*/ struct GraphNode *unk04;
-    /*0x08*/ s16 *unk08;
-    /*0x0C*/ void *unk0C;
-    /*0x10*/ s16 *unk10;
-    /*0x14*/ struct ObjectWarpNode *warpNodes;
-    /*0x18*/ struct WarpNode *paintingWarpNodes;
-    /*0x1C*/ struct InstantWarp *instantWarps;
-    /*0x20*/ struct SpawnInfo *objectSpawnInfos;
-    /*0x24*/ struct Struct80280550 *unk24;
-    /*0x28*/ struct UnknownArea28 *unk28;
-    /*0x2C*/ struct Whirlpool *whirlpools[2];
-    /*0x34*/ u8 unk34[1];
-    /*0x35*/ u8 unk35;
-    /*0x36*/ u16 unk36;
-    /*0x38*/ u16 unk38;
-};
-
-struct SpawnInfo
-{
-    /*0x00*/ Vec3s startPos;
-    /*0x06*/ Vec3s startAngle;
-    /*0x0C*/ s8 areaIndex;
-    /*0x0D*/ s8 unk0D;
-    /*0x10*/ u32 behaviorArg;
-    /*0x14*/ void *behaviorScript;
-    /*0x18*/ struct GraphNode *unk18;
-    /*0x1C*/ struct SpawnInfo *next;
-};
-
 struct CreditsEntry
 {
     /*0x00*/ u8 levelNum;
@@ -132,8 +61,8 @@ struct CreditsEntry
 
 extern struct CreditsEntry *gCurrCreditsEntry;
 
-extern struct MarioState *gMarioState;
 extern struct MarioState gMarioStates[];
+extern struct MarioState *gMarioState;
 
 extern s16 gDisplayedLives;
 extern s16 gDisplayedCoins;
@@ -144,17 +73,6 @@ extern s16 gHudDisplayFlags;
 extern u16 gTimerValueInFrames;
 extern s8 D_80339EFE;
 
-extern s16 gCurrCourseNum;
-extern s16 D_8033A758;
-extern s16 D_8033A75A;
-extern s16 D_8033A75C;
-extern s16 D_8033A75E;
-extern struct Area D_8033A560[];
-extern struct Area *D_8032CE68;
-extern struct Area *D_8032CE6C;
-
-extern s16 gCurrSaveFileNum;
-extern s16 gCurrLevelNum;
 
 u16 level_control_timer(u32 timerOp);
 void func_80249788(u32 arg, u32 color);

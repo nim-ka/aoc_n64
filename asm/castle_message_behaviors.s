@@ -32,8 +32,8 @@ glabel Geo18_802761D0
 /* 030C64 80275C64 27280018 */  addiu $t0, $t9, 0x18
 /* 030C68 80275C68 AFA80030 */  sw    $t0, 0x30($sp)
 /* 030C6C 80275C6C 8FA90030 */  lw    $t1, 0x30($sp)
-/* 030C70 80275C70 3C0B8033 */  lui   $t3, %hi(D_8032CFA8) # $t3, 0x8033
-/* 030C74 80275C74 956BCFA8 */  lhu   $t3, %lo(D_8032CFA8)($t3)
+/* 030C70 80275C70 3C0B8033 */  lui   $t3, %hi(gAreaUpdateCounter) # $t3, 0x8033
+/* 030C74 80275C74 956BCFA8 */  lhu   $t3, %lo(gAreaUpdateCounter)($t3)
 /* 030C78 80275C78 952A0000 */  lhu   $t2, ($t1)
 /* 030C7C 80275C7C 114B004A */  beq   $t2, $t3, .L80275DA8
 /* 030C80 80275C80 00000000 */   nop   
@@ -75,7 +75,7 @@ glabel Geo18_802761D0
 /* 030D10 80275D10 24040010 */   li    $a0, 16
 /* 030D14 80275D14 AFA20038 */  sw    $v0, 0x38($sp)
 /* 030D18 80275D18 8FA40024 */  lw    $a0, 0x24($sp)
-/* 030D1C 80275D1C 0C0DE90D */  jal   func_8037A434
+/* 030D1C 80275D1C 0C0DE90D */  jal   mtxf_to_mtx
 /* 030D20 80275D20 8FA50060 */   lw    $a1, 0x60($sp)
 /* 030D24 80275D24 8FB90038 */  lw    $t9, 0x38($sp)
 /* 030D28 80275D28 AFB90020 */  sw    $t9, 0x20($sp)
@@ -107,8 +107,8 @@ glabel Geo18_802761D0
 /* 030D90 80275D90 358D0400 */  ori   $t5, $t4, 0x400
 /* 030D94 80275D94 A54D0002 */  sh    $t5, 2($t2)
 .L80275D98:
-/* 030D98 80275D98 3C0E8033 */  lui   $t6, %hi(D_8032CFA8) # $t6, 0x8033
-/* 030D9C 80275D9C 95CECFA8 */  lhu   $t6, %lo(D_8032CFA8)($t6)
+/* 030D98 80275D98 3C0E8033 */  lui   $t6, %hi(gAreaUpdateCounter) # $t6, 0x8033
+/* 030D9C 80275D9C 95CECFA8 */  lhu   $t6, %lo(gAreaUpdateCounter)($t6)
 /* 030DA0 80275DA0 8FAF0030 */  lw    $t7, 0x30($sp)
 /* 030DA4 80275DA4 A5EE0000 */  sh    $t6, ($t7)
 .L80275DA8:
@@ -1149,8 +1149,8 @@ glabel GeoSwitchCase802771BC
 /* 031C50 80276C50 15400019 */  bnez  $t2, .L80276CB8
 /* 031C54 80276C54 00000000 */   nop   
 /* 031C58 80276C58 8FAB000C */  lw    $t3, 0xc($sp)
-/* 031C5C 80276C5C 3C0E8033 */  lui   $t6, %hi(D_8032CFA8) # $t6, 0x8033
-/* 031C60 80276C60 95CECFA8 */  lhu   $t6, %lo(D_8032CFA8)($t6)
+/* 031C5C 80276C5C 3C0E8033 */  lui   $t6, %hi(gAreaUpdateCounter) # $t6, 0x8033
+/* 031C60 80276C60 95CECFA8 */  lhu   $t6, %lo(gAreaUpdateCounter)($t6)
 /* 031C64 80276C64 856C001C */  lh    $t4, 0x1c($t3)
 /* 031C68 80276C68 000C6940 */  sll   $t5, $t4, 5
 /* 031C6C 80276C6C 01AE7821 */  addu  $t7, $t5, $t6
@@ -1439,8 +1439,8 @@ glabel Geo18_802775CC
 /* 03206C 8027706C 150B0028 */  bne   $t0, $t3, .L80277110
 /* 032070 80277070 00000000 */   nop   
 /* 032074 80277074 3C0C8033 */  lui   $t4, %hi(D_8032CE0C) # $t4, 0x8033
-/* 032078 80277078 3C0D8033 */  lui   $t5, %hi(D_8032CFA8) # $t5, 0x8033
-/* 03207C 8027707C 95ADCFA8 */  lhu   $t5, %lo(D_8032CFA8)($t5)
+/* 032078 80277078 3C0D8033 */  lui   $t5, %hi(gAreaUpdateCounter) # $t5, 0x8033
+/* 03207C 8027707C 95ADCFA8 */  lhu   $t5, %lo(gAreaUpdateCounter)($t5)
 /* 032080 80277080 858CCE0C */  lh    $t4, %lo(D_8032CE0C)($t4)
 /* 032084 80277084 118D000E */  beq   $t4, $t5, .L802770C0
 /* 032088 80277088 00000000 */   nop   
@@ -1453,8 +1453,8 @@ glabel Geo18_802775CC
 /* 0320A4 802770A4 9329000B */  lbu   $t1, 0xb($t9)
 /* 0320A8 802770A8 252AFFFF */  addiu $t2, $t1, -1
 /* 0320AC 802770AC A32A000B */  sb    $t2, 0xb($t9)
-/* 0320B0 802770B0 3C088033 */  lui   $t0, %hi(D_8032CFA8) # $t0, 0x8033
-/* 0320B4 802770B4 9508CFA8 */  lhu   $t0, %lo(D_8032CFA8)($t0)
+/* 0320B0 802770B0 3C088033 */  lui   $t0, %hi(gAreaUpdateCounter) # $t0, 0x8033
+/* 0320B4 802770B4 9508CFA8 */  lhu   $t0, %lo(gAreaUpdateCounter)($t0)
 /* 0320B8 802770B8 3C018033 */  lui   $at, %hi(D_8032CE0C) # $at, 0x8033
 /* 0320BC 802770BC A428CE0C */  sh    $t0, %lo(D_8032CE0C)($at)
 .L802770C0:
@@ -1601,8 +1601,8 @@ glabel Geo18_80277824
 /* 0322B4 802772B4 8129A047 */  lb    $t1, %lo(D_8033A047)($t1)
 /* 0322B8 802772B8 15200015 */  bnez  $t1, .L80277310
 /* 0322BC 802772BC 00000000 */   nop   
-/* 0322C0 802772C0 3C0A8033 */  lui   $t2, %hi(D_8032CFA8) # $t2, 0x8033
-/* 0322C4 802772C4 954ACFA8 */  lhu   $t2, %lo(D_8032CFA8)($t2)
+/* 0322C0 802772C0 3C0A8033 */  lui   $t2, %hi(gAreaUpdateCounter) # $t2, 0x8033
+/* 0322C4 802772C4 954ACFA8 */  lhu   $t2, %lo(gAreaUpdateCounter)($t2)
 /* 0322C8 802772C8 3C018038 */  lui   $at, %hi(D_80387000)
 /* 0322CC 802772CC 314B000F */  andi  $t3, $t2, 0xf
 /* 0322D0 802772D0 000B6300 */  sll   $t4, $t3, 0xc
@@ -1622,8 +1622,8 @@ glabel Geo18_80277824
 /* 032308 80277308 10000015 */  b     .L80277360
 /* 03230C 8027730C A7B9000E */   sh    $t9, 0xe($sp)
 .L80277310:
-/* 032310 80277310 3C088033 */  lui   $t0, %hi(D_8032CFA8) # $t0, 0x8033
-/* 032314 80277314 9508CFA8 */  lhu   $t0, %lo(D_8032CFA8)($t0)
+/* 032310 80277310 3C088033 */  lui   $t0, %hi(gAreaUpdateCounter) # $t0, 0x8033
+/* 032314 80277314 9508CFA8 */  lhu   $t0, %lo(gAreaUpdateCounter)($t0)
 /* 032318 80277318 3C018038 */  lui   $at, %hi(D_80387000)
 /* 03231C 8027731C 31090007 */  andi  $t1, $t0, 7
 /* 032320 80277320 00095340 */  sll   $t2, $t1, 0xd

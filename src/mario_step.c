@@ -86,7 +86,7 @@ void mario_bonk_reflection(struct MarioState *m, u32 negateSpeed)
 {
     if (m->wall != NULL)
     {
-        s16 wallAngle = func_8037A9A8(m->wall->normal[2], m->wall->normal[0]);
+        s16 wallAngle = atan2s(m->wall->normal[2], m->wall->normal[0]);
         m->faceAngle[1] = wallAngle - (s16) (m->faceAngle[1] - wallAngle);
 
         SetSound((m->flags & MARIO_METAL_CAP) ? 0x04428081 : 0x0445A081, &m->marioObj->gfx.unk54);
@@ -285,10 +285,10 @@ static u32 perform_ground_quarter_step(struct MarioState *m, Vec3f nextPos)
     lowerWall = func_8025181C(nextPos, 30.0f, 24.0f);
     upperWall = func_8025181C(nextPos, 60.0f, 50.0f);
 
-    floorHeight = func_80381900(nextPos[0], nextPos[1], nextPos[2], &floor);
+    floorHeight = find_floor(nextPos[0], nextPos[1], nextPos[2], &floor);
     ceilHeight = func_802518D0(nextPos, floorHeight, &ceil);
 
-    waterLevel = func_80381BA0(nextPos[0], nextPos[2]);
+    waterLevel = find_water_level(nextPos[0], nextPos[2]);
 
     m->wall = upperWall;
 
@@ -322,7 +322,7 @@ static u32 perform_ground_quarter_step(struct MarioState *m, Vec3f nextPos)
 
     if (upperWall != NULL)
     {
-        s16 wallDYaw = func_8037A9A8(upperWall->normal[2], upperWall->normal[0]) - m->faceAngle[1];
+        s16 wallDYaw = atan2s(upperWall->normal[2], upperWall->normal[0]) - m->faceAngle[1];
 
         if (wallDYaw >= 0x2AAA && wallDYaw <= 0x5555)
             return GROUND_STEP_NONE;
@@ -387,7 +387,7 @@ static u32 check_ledge_grab(
     // a higher ledge than expected (glitchy ledge grab)
     ledgePos[0] = nextPos[0] - wall->normal[0] * 60.0f;
     ledgePos[2] = nextPos[2] - wall->normal[2] * 60.0f;
-    ledgePos[1] = func_80381900(
+    ledgePos[1] = find_floor(
         ledgePos[0], nextPos[1] + 160.0f, ledgePos[2], &ledgeFloor);
 
     if (ledgePos[1] - nextPos[1] <= 100.0f)
@@ -397,10 +397,10 @@ static u32 check_ledge_grab(
     m->floor = ledgeFloor;
     m->floorHeight = ledgePos[1];
 
-    m->floorAngle = func_8037A9A8(ledgeFloor->normal[2], ledgeFloor->normal[0]);
+    m->floorAngle = atan2s(ledgeFloor->normal[2], ledgeFloor->normal[0]);
 
     m->faceAngle[0] = 0;
-    m->faceAngle[1] = func_8037A9A8(wall->normal[2], wall->normal[0]) + 0x8000;
+    m->faceAngle[1] = atan2s(wall->normal[2], wall->normal[0]) + 0x8000;
     return 1;
 }
 
@@ -422,10 +422,10 @@ static u32 perform_air_quarter_step(
     upperWall = func_8025181C(nextPos, 150.0f, 50.0f);
     lowerWall = func_8025181C(nextPos, 30.0f, 50.0f);
 
-    floorHeight = func_80381900(nextPos[0], nextPos[1], nextPos[2], &floor);
+    floorHeight = find_floor(nextPos[0], nextPos[1], nextPos[2], &floor);
     ceilHeight = func_802518D0(nextPos, floorHeight, &ceil);
 
-    waterLevel = func_80381BA0(nextPos[0], nextPos[2]);
+    waterLevel = find_water_level(nextPos[0], nextPos[2]);
 
     m->wall = NULL;
 
@@ -518,7 +518,7 @@ static u32 perform_air_quarter_step(
     if (upperWall != NULL || lowerWall != NULL)
     {
         m->wall = upperWall != NULL ? upperWall : lowerWall;
-        wallDYaw = func_8037A9A8(m->wall->normal[2], m->wall->normal[0]) - m->faceAngle[1];
+        wallDYaw = atan2s(m->wall->normal[2], m->wall->normal[0]) - m->faceAngle[1];
 
         if (m->wall->type == SURFACE_LAVA)
             return AIR_STEP_HIT_LAVA_WALL;

@@ -182,7 +182,7 @@ glabel func_802E314C
 /* 09E19C 802E319C 8DEFFDF0 */  lw    $t7, %lo(gCurrentObject)($t7)
 /* 09E1A0 802E31A0 C5E401F8 */  lwc1  $f4, 0x1f8($t7)
 /* 09E1A4 802E31A4 E7A40058 */  swc1  $f4, 0x58($sp)
-/* 09E1A8 802E31A8 0C0E03A3 */  jal   func_80380E8C
+/* 09E1A8 802E31A8 0C0E03A3 */  jal   find_wall_collisions
 /* 09E1AC 802E31AC 27A40048 */   addiu $a0, $sp, 0x48
 /* 09E1B0 802E31B0 10400030 */  beqz  $v0, .L802E3274
 /* 09E1B4 802E31B4 00000000 */   nop   
@@ -226,7 +226,7 @@ glabel func_802E314C
 /* 09E24C 802E324C 0C0B8C27 */  jal   func_802E309C
 /* 09E250 802E3250 E7AA0010 */   swc1  $f10, 0x10($sp)
 /* 09E254 802E3254 C7AC002C */  lwc1  $f12, 0x2c($sp)
-/* 09E258 802E3258 0C0DEA6A */  jal   func_8037A9A8
+/* 09E258 802E3258 0C0DEA6A */  jal   atan2s
 /* 09E25C 802E325C C7AE0030 */   lwc1  $f14, 0x30($sp)
 /* 09E260 802E3260 3C198036 */  lui   $t9, %hi(gCurrentObject) # $t9, 0x8036
 /* 09E264 802E3264 8F39FDF0 */  lw    $t9, %lo(gCurrentObject)($t9)
@@ -310,7 +310,7 @@ glabel func_802E3294
 /* 09E388 802E3388 0C0B8C27 */  jal   func_802E309C
 /* 09E38C 802E338C E7AA0010 */   swc1  $f10, 0x10($sp)
 /* 09E390 802E3390 C7AC002C */  lwc1  $f12, 0x2c($sp)
-/* 09E394 802E3394 0C0DEA6A */  jal   func_8037A9A8
+/* 09E394 802E3394 0C0DEA6A */  jal   atan2s
 /* 09E398 802E3398 C7AE0030 */   lwc1  $f14, 0x30($sp)
 /* 09E39C 802E339C 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 09E3A0 802E33A0 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
@@ -654,7 +654,7 @@ glabel func_802E354C
 /* 09E894 802E3894 00000000 */   nop   
 .L802E3898:
 /* 09E898 802E3898 C7AC0034 */  lwc1  $f12, 0x34($sp)
-/* 09E89C 802E389C 0C0DEA6A */  jal   func_8037A9A8
+/* 09E89C 802E389C 0C0DEA6A */  jal   atan2s
 /* 09E8A0 802E38A0 C7AE0030 */   lwc1  $f14, 0x30($sp)
 /* 09E8A4 802E38A4 3C188036 */  lui   $t8, %hi(gCurrentObject) # $t8, 0x8036
 /* 09E8A8 802E38A8 8F18FDF0 */  lw    $t8, %lo(gCurrentObject)($t8)
@@ -970,7 +970,7 @@ glabel func_802E3904
 /* 09ED48 802E3D48 00000000 */   nop   
 .L802E3D4C:
 /* 09ED4C 802E3D4C C7AC0034 */  lwc1  $f12, 0x34($sp)
-/* 09ED50 802E3D50 0C0DEA6A */  jal   func_8037A9A8
+/* 09ED50 802E3D50 0C0DEA6A */  jal   atan2s
 /* 09ED54 802E3D54 C7AE0030 */   lwc1  $f14, 0x30($sp)
 /* 09ED58 802E3D58 3C098036 */  lui   $t1, %hi(gCurrentObject) # $t1, 0x8036
 /* 09ED5C 802E3D5C 8D29FDF0 */  lw    $t1, %lo(gCurrentObject)($t1)
@@ -1188,7 +1188,7 @@ glabel func_802E3F80
 /* 09F078 802E4078 24E700E0 */  addiu $a3, %lo(D_803600E0) # addiu $a3, $a3, 0xe0
 /* 09F07C 802E407C C7AE0038 */  lwc1  $f14, 0x38($sp)
 /* 09F080 802E4080 44069000 */  mfc1  $a2, $f18
-/* 09F084 802E4084 0C0E0640 */  jal   func_80381900
+/* 09F084 802E4084 0C0E0640 */  jal   find_floor
 /* 09F088 802E4088 46105300 */   add.s $f12, $f10, $f16
 /* 09F08C 802E408C E7A00030 */  swc1  $f0, 0x30($sp)
 /* 09F090 802E4090 3C048036 */  lui   $a0, %hi(D_803600E0) # $a0, 0x8036
@@ -1205,7 +1205,7 @@ glabel func_802E3F80
 /* 09F0BC 802E40BC C7B00034 */  lwc1  $f16, 0x34($sp)
 /* 09F0C0 802E40C0 C7A40024 */  lwc1  $f4, 0x24($sp)
 /* 09F0C4 802E40C4 460A3300 */  add.s $f12, $f6, $f10
-/* 09F0C8 802E40C8 0C0E06E8 */  jal   func_80381BA0
+/* 09F0C8 802E40C8 0C0E06E8 */  jal   find_water_level
 /* 09F0CC 802E40CC 46048380 */   add.s $f14, $f16, $f4
 /* 09F0D0 802E40D0 E7A0002C */  swc1  $f0, 0x2c($sp)
 /* 09F0D4 802E40D4 C7A8002C */  lwc1  $f8, 0x2c($sp)
@@ -1513,7 +1513,7 @@ glabel func_802E44E4
 /* 09F51C 802E451C 46105481 */  sub.s $f18, $f10, $f16
 /* 09F520 802E4520 E7B20020 */  swc1  $f18, 0x20($sp)
 /* 09F524 802E4524 C7AC0020 */  lwc1  $f12, 0x20($sp)
-/* 09F528 802E4528 0C0DEA6A */  jal   func_8037A9A8
+/* 09F528 802E4528 0C0DEA6A */  jal   atan2s
 /* 09F52C 802E452C C7AE0024 */   lwc1  $f14, 0x24($sp)
 /* 09F530 802E4530 A7A2001E */  sh    $v0, 0x1e($sp)
 /* 09F534 802E4534 C7AC002C */  lwc1  $f12, 0x2c($sp)
@@ -1605,7 +1605,7 @@ glabel func_802E45A0
 /* 09F674 802E4674 46048481 */  sub.s $f18, $f16, $f4
 /* 09F678 802E4678 E7B2001C */  swc1  $f18, 0x1c($sp)
 /* 09F67C 802E467C C7AC001C */  lwc1  $f12, 0x1c($sp)
-/* 09F680 802E4680 0C0DEA6A */  jal   func_8037A9A8
+/* 09F680 802E4680 0C0DEA6A */  jal   atan2s
 /* 09F684 802E4684 C7AE0020 */   lwc1  $f14, 0x20($sp)
 /* 09F688 802E4688 A7A20026 */  sh    $v0, 0x26($sp)
 /* 09F68C 802E468C 8FAE0028 */  lw    $t6, 0x28($sp)
@@ -1697,7 +1697,7 @@ glabel func_802E478C
 /* 09F7C8 802E47C8 E7AA0044 */  swc1  $f10, 0x44($sp)
 /* 09F7CC 802E47CC C7B00070 */  lwc1  $f16, 0x70($sp)
 /* 09F7D0 802E47D0 E7B00048 */  swc1  $f16, 0x48($sp)
-/* 09F7D4 802E47D4 0C0E03A3 */  jal   func_80380E8C
+/* 09F7D4 802E47D4 0C0E03A3 */  jal   find_wall_collisions
 /* 09F7D8 802E47D8 27A40038 */   addiu $a0, $sp, 0x38
 /* 09F7DC 802E47DC 10400014 */  beqz  $v0, .L802E4830
 /* 09F7E0 802E47E0 00000000 */   nop   
@@ -4994,7 +4994,7 @@ glabel func_802E75BC
 /* 0A25FC 802E75FC 46105481 */  sub.s $f18, $f10, $f16
 /* 0A2600 802E7600 E7B20020 */  swc1  $f18, 0x20($sp)
 /* 0A2604 802E7604 C7AC0020 */  lwc1  $f12, 0x20($sp)
-/* 0A2608 802E7608 0C0DEA6A */  jal   func_8037A9A8
+/* 0A2608 802E7608 0C0DEA6A */  jal   atan2s
 /* 0A260C 802E760C C7AE0024 */   lwc1  $f14, 0x24($sp)
 /* 0A2610 802E7610 A7A2001E */  sh    $v0, 0x1e($sp)
 /* 0A2614 802E7614 3C088036 */  lui   $t0, %hi(gCurrentObject) # $t0, 0x8036
@@ -5525,7 +5525,7 @@ glabel func_802E7D08
 /* 0A2D9C 802E7D9C C7AE0030 */  lwc1  $f14, 0x30($sp)
 /* 0A2DA0 802E7DA0 46000506 */  mov.s $f20, $f0
 /* 0A2DA4 802E7DA4 4600A306 */  mov.s $f12, $f20
-/* 0A2DA8 802E7DA8 0C0DEA6A */  jal   func_8037A9A8
+/* 0A2DA8 802E7DA8 0C0DEA6A */  jal   atan2s
 /* 0A2DAC 802E7DAC 46007387 */   neg.s $f14, $f14
 /* 0A2DB0 802E7DB0 A7A2002A */  sh    $v0, 0x2a($sp)
 /* 0A2DB4 802E7DB4 3C048036 */  lui   $a0, %hi(gCurrentObject) # $a0, 0x8036
@@ -6136,7 +6136,7 @@ glabel func_802E8638
 /* 0A3684 802E8684 46062201 */  sub.s $f8, $f4, $f6
 /* 0A3688 802E8688 E7A8002C */  swc1  $f8, 0x2c($sp)
 /* 0A368C 802E868C C7AC002C */  lwc1  $f12, 0x2c($sp)
-/* 0A3690 802E8690 0C0DEA6A */  jal   func_8037A9A8
+/* 0A3690 802E8690 0C0DEA6A */  jal   atan2s
 /* 0A3694 802E8694 C7AE0034 */   lwc1  $f14, 0x34($sp)
 /* 0A3698 802E8698 A7A2002A */  sh    $v0, 0x2a($sp)
 /* 0A369C 802E869C C7AA0034 */  lwc1  $f10, 0x34($sp)
@@ -6149,7 +6149,7 @@ glabel func_802E8638
 /* 0A36B8 802E86B8 C7AE0030 */  lwc1  $f14, 0x30($sp)
 /* 0A36BC 802E86BC 46000506 */  mov.s $f20, $f0
 /* 0A36C0 802E86C0 4600A306 */  mov.s $f12, $f20
-/* 0A36C4 802E86C4 0C0DEA6A */  jal   func_8037A9A8
+/* 0A36C4 802E86C4 0C0DEA6A */  jal   atan2s
 /* 0A36C8 802E86C8 46007387 */   neg.s $f14, $f14
 /* 0A36CC 802E86CC A7A20028 */  sh    $v0, 0x28($sp)
 /* 0A36D0 802E86D0 3C198036 */  lui   $t9, %hi(gCurrentObject) # $t9, 0x8036
@@ -6825,7 +6825,7 @@ glabel func_802E9050
 /* 0A40A8 802E90A8 44818000 */  mtc1  $at, $f16
 /* 0A40AC 802E90AC 00000000 */  nop   
 /* 0A40B0 802E90B0 E7B0002C */  swc1  $f16, 0x2c($sp)
-/* 0A40B4 802E90B4 0C0E03A3 */  jal   func_80380E8C
+/* 0A40B4 802E90B4 0C0E03A3 */  jal   find_wall_collisions
 /* 0A40B8 802E90B8 27A4001C */   addiu $a0, $sp, 0x1c
 /* 0A40BC 802E90BC 10400012 */  beqz  $v0, .L802E9108
 /* 0A40C0 802E90C0 00000000 */   nop   
@@ -6946,7 +6946,7 @@ glabel func_802E9234
 /* 0A426C 802E926C 46105481 */  sub.s $f18, $f10, $f16
 /* 0A4270 802E9270 E7B20020 */  swc1  $f18, 0x20($sp)
 /* 0A4274 802E9274 C7AC0020 */  lwc1  $f12, 0x20($sp)
-/* 0A4278 802E9278 0C0DEA6A */  jal   func_8037A9A8
+/* 0A4278 802E9278 0C0DEA6A */  jal   atan2s
 /* 0A427C 802E927C C7AE0024 */   lwc1  $f14, 0x24($sp)
 /* 0A4280 802E9280 A7A2001E */  sh    $v0, 0x1e($sp)
 /* 0A4284 802E9284 3C188036 */  lui   $t8, %hi(gCurrentObject) # $t8, 0x8036
@@ -7136,7 +7136,7 @@ glabel func_802E94E0
 /* 0A452C 802E952C 46062201 */  sub.s $f8, $f4, $f6
 /* 0A4530 802E9530 E7A8002C */  swc1  $f8, 0x2c($sp)
 /* 0A4534 802E9534 C7AC002C */  lwc1  $f12, 0x2c($sp)
-/* 0A4538 802E9538 0C0DEA6A */  jal   func_8037A9A8
+/* 0A4538 802E9538 0C0DEA6A */  jal   atan2s
 /* 0A453C 802E953C C7AE0034 */   lwc1  $f14, 0x34($sp)
 /* 0A4540 802E9540 A7A2002A */  sh    $v0, 0x2a($sp)
 /* 0A4544 802E9544 C7AA0034 */  lwc1  $f10, 0x34($sp)
@@ -7149,7 +7149,7 @@ glabel func_802E94E0
 /* 0A4560 802E9560 C7AE0030 */  lwc1  $f14, 0x30($sp)
 /* 0A4564 802E9564 46000506 */  mov.s $f20, $f0
 /* 0A4568 802E9568 4600A306 */  mov.s $f12, $f20
-/* 0A456C 802E956C 0C0DEA6A */  jal   func_8037A9A8
+/* 0A456C 802E956C 0C0DEA6A */  jal   atan2s
 /* 0A4570 802E9570 46007387 */   neg.s $f14, $f14
 /* 0A4574 802E9574 A7A20028 */  sh    $v0, 0x28($sp)
 /* 0A4578 802E9578 3C198036 */  lui   $t9, %hi(gCurrentObject) # $t9, 0x8036
@@ -7493,7 +7493,7 @@ glabel BehDirtLoop
 /* 0A4A2C 802E9A2C 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 0A4A30 802E9A30 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
 /* 0A4A34 802E9A34 C5CC00A0 */  lwc1  $f12, 0xa0($t6)
-/* 0A4A38 802E9A38 0C0E06E8 */  jal   func_80381BA0
+/* 0A4A38 802E9A38 0C0E06E8 */  jal   find_water_level
 /* 0A4A3C 802E9A3C C5CE00A8 */   lwc1  $f14, 0xa8($t6)
 /* 0A4A40 802E9A40 E7A00020 */  swc1  $f0, 0x20($sp)
 /* 0A4A44 802E9A44 3C0F8036 */  lui   $t7, %hi(gCurrentObject) # $t7, 0x8036
@@ -7553,7 +7553,7 @@ glabel BehWaterWaveInit
 /* 0A4B08 802E9B08 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 0A4B0C 802E9B0C 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
 /* 0A4B10 802E9B10 C5CC00A0 */  lwc1  $f12, 0xa0($t6)
-/* 0A4B14 802E9B14 0C0E06E8 */  jal   func_80381BA0
+/* 0A4B14 802E9B14 0C0E06E8 */  jal   find_water_level
 /* 0A4B18 802E9B18 C5CE00A8 */   lwc1  $f14, 0xa8($t6)
 /* 0A4B1C 802E9B1C 3C0F8036 */  lui   $t7, %hi(gCurrentObject) # $t7, 0x8036
 /* 0A4B20 802E9B20 8DEFFDF0 */  lw    $t7, %lo(gCurrentObject)($t7)
@@ -7618,7 +7618,7 @@ glabel BehExplosionLoop
 /* 0A4BE4 802E9BE4 3C188036 */  lui   $t8, %hi(gCurrentObject) # $t8, 0x8036
 /* 0A4BE8 802E9BE8 8F18FDF0 */  lw    $t8, %lo(gCurrentObject)($t8)
 /* 0A4BEC 802E9BEC C70C00A0 */  lwc1  $f12, 0xa0($t8)
-/* 0A4BF0 802E9BF0 0C0E06E8 */  jal   func_80381BA0
+/* 0A4BF0 802E9BF0 0C0E06E8 */  jal   find_water_level
 /* 0A4BF4 802E9BF4 C70E00A8 */   lwc1  $f14, 0xa8($t8)
 /* 0A4BF8 802E9BF8 3C198036 */  lui   $t9, %hi(gCurrentObject) # $t9, 0x8036
 /* 0A4BFC 802E9BFC 8F39FDF0 */  lw    $t9, %lo(gCurrentObject)($t9)
@@ -11660,7 +11660,7 @@ glabel func_802ED5A0
 /* 0A85D0 802ED5D0 46105481 */  sub.s $f18, $f10, $f16
 /* 0A85D4 802ED5D4 E7B20024 */  swc1  $f18, 0x24($sp)
 /* 0A85D8 802ED5D8 C7AC0024 */  lwc1  $f12, 0x24($sp)
-/* 0A85DC 802ED5DC 0C0DEA6A */  jal   func_8037A9A8
+/* 0A85DC 802ED5DC 0C0DEA6A */  jal   atan2s
 /* 0A85E0 802ED5E0 C7AE0028 */   lwc1  $f14, 0x28($sp)
 /* 0A85E4 802ED5E4 A7A20022 */  sh    $v0, 0x22($sp)
 /* 0A85E8 802ED5E8 3C188036 */  lui   $t8, %hi(gCurrentObject) # $t8, 0x8036
@@ -14536,7 +14536,7 @@ glabel func_802EFDA0
 /* 0AAE70 802EFE70 C53200A8 */  lwc1  $f18, 0xa8($t1)
 /* 0AAE74 802EFE74 C52600A0 */  lwc1  $f6, 0xa0($t1)
 /* 0AAE78 802EFE78 46128301 */  sub.s $f12, $f16, $f18
-/* 0AAE7C 802EFE7C 0C0DEA6A */  jal   func_8037A9A8
+/* 0AAE7C 802EFE7C 0C0DEA6A */  jal   atan2s
 /* 0AAE80 802EFE80 46062381 */   sub.s $f14, $f4, $f6
 /* 0AAE84 802EFE84 3C0A8036 */  lui   $t2, %hi(gCurrentObject) # $t2, 0x8036
 /* 0AAE88 802EFE88 8D4AFDF0 */  lw    $t2, %lo(gCurrentObject)($t2)
@@ -16203,7 +16203,7 @@ glabel BehStarSpawnInit
 /* 0AC5DC 802F15DC C5C80164 */  lwc1  $f8, 0x164($t6)
 /* 0AC5E0 802F15E0 C5CA00A0 */  lwc1  $f10, 0xa0($t6)
 /* 0AC5E4 802F15E4 46062301 */  sub.s $f12, $f4, $f6
-/* 0AC5E8 802F15E8 0C0DEA6A */  jal   func_8037A9A8
+/* 0AC5E8 802F15E8 0C0DEA6A */  jal   atan2s
 /* 0AC5EC 802F15EC 460A4381 */   sub.s $f14, $f8, $f10
 /* 0AC5F0 802F15F0 3C0F8036 */  lui   $t7, %hi(gCurrentObject) # $t7, 0x8036
 /* 0AC5F4 802F15F4 8DEFFDF0 */  lw    $t7, %lo(gCurrentObject)($t7)
@@ -16781,7 +16781,7 @@ glabel BehRedCoinInit
 /* 0ACE2C 802F1E2C 27A70024 */  addiu $a3, $sp, 0x24
 /* 0ACE30 802F1E30 C5CC00A0 */  lwc1  $f12, 0xa0($t6)
 /* 0ACE34 802F1E34 C5CE00A4 */  lwc1  $f14, 0xa4($t6)
-/* 0ACE38 802F1E38 0C0E0640 */  jal   func_80381900
+/* 0ACE38 802F1E38 0C0E0640 */  jal   find_floor
 /* 0ACE3C 802F1E3C 8DC600A8 */   lw    $a2, 0xa8($t6)
 /* 0ACE40 802F1E40 E7A00020 */  swc1  $f0, 0x20($sp)
 /* 0ACE44 802F1E44 3C041300 */  lui   $a0, %hi(beh_hidden_red_coin_star) # $a0, 0x1300
@@ -17938,7 +17938,7 @@ glabel func_802F2E18
 /* 0ADEA8 802F2EA8 46082300 */   add.s $f12, $f4, $f8
 /* 0ADEAC 802F2EAC 46000506 */  mov.s $f20, $f0
 /* 0ADEB0 802F2EB0 4600A306 */  mov.s $f12, $f20
-/* 0ADEB4 802F2EB4 0C0DEA6A */  jal   func_8037A9A8
+/* 0ADEB4 802F2EB4 0C0DEA6A */  jal   atan2s
 /* 0ADEB8 802F2EB8 C7AE0030 */   lwc1  $f14, 0x30($sp)
 /* 0ADEBC 802F2EBC A7A2002A */  sh    $v0, 0x2a($sp)
 /* 0ADEC0 802F2EC0 3C048036 */  lui   $a0, %hi(gCurrentObject) # $a0, 0x8036
@@ -20613,7 +20613,7 @@ glabel func_802F54F8
 /* 0B0500 802F5500 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 0B0504 802F5504 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
 /* 0B0508 802F5508 C5CC00A0 */  lwc1  $f12, 0xa0($t6)
-/* 0B050C 802F550C 0C0E06E8 */  jal   func_80381BA0
+/* 0B050C 802F550C 0C0E06E8 */  jal   find_water_level
 /* 0B0510 802F5510 C5CE00A8 */   lwc1  $f14, 0xa8($t6)
 /* 0B0514 802F5514 E7A00020 */  swc1  $f0, 0x20($sp)
 /* 0B0518 802F5518 3C0F8036 */  lui   $t7, %hi(gCurrentObject) # $t7, 0x8036
@@ -20621,7 +20621,7 @@ glabel func_802F54F8
 /* 0B0520 802F5520 27A70024 */  addiu $a3, $sp, 0x24
 /* 0B0524 802F5524 C5EC00A0 */  lwc1  $f12, 0xa0($t7)
 /* 0B0528 802F5528 C5EE00A4 */  lwc1  $f14, 0xa4($t7)
-/* 0B052C 802F552C 0C0E0640 */  jal   func_80381900
+/* 0B052C 802F552C 0C0E0640 */  jal   find_floor
 /* 0B0530 802F5530 8DE600A8 */   lw    $a2, 0xa8($t7)
 /* 0B0534 802F5534 E7A0001C */  swc1  $f0, 0x1c($sp)
 /* 0B0538 802F5538 3C188036 */  lui   $t8, %hi(gCurrentObject) # $t8, 0x8036
@@ -21659,7 +21659,7 @@ glabel func_802F6388
 /* 0B1418 802F6418 C59200A8 */  lwc1  $f18, 0xa8($t4)
 /* 0B141C 802F641C C58A00A0 */  lwc1  $f10, 0xa0($t4)
 /* 0B1420 802F6420 46128301 */  sub.s $f12, $f16, $f18
-/* 0B1424 802F6424 0C0DEA6A */  jal   func_8037A9A8
+/* 0B1424 802F6424 0C0DEA6A */  jal   atan2s
 /* 0B1428 802F6428 460A2381 */   sub.s $f14, $f4, $f10
 /* 0B142C 802F642C 10000003 */  b     .L802F643C
 /* 0B1430 802F6430 00000000 */   nop   
@@ -23658,7 +23658,7 @@ glabel func_802F7FA4
 /* 0B30A4 802F80A4 C7100164 */  lwc1  $f16, 0x164($t8)
 /* 0B30A8 802F80A8 C71200A0 */  lwc1  $f18, 0xa0($t8)
 /* 0B30AC 802F80AC 460A4301 */  sub.s $f12, $f8, $f10
-/* 0B30B0 802F80B0 0C0DEA6A */  jal   func_8037A9A8
+/* 0B30B0 802F80B0 0C0DEA6A */  jal   atan2s
 /* 0B30B4 802F80B4 46128381 */   sub.s $f14, $f16, $f18
 /* 0B30B8 802F80B8 3C198036 */  lui   $t9, %hi(gCurrentObject) # $t9, 0x8036
 /* 0B30BC 802F80BC 8F39FDF0 */  lw    $t9, %lo(gCurrentObject)($t9)
@@ -23781,7 +23781,7 @@ glabel func_802F818C
 /* 0B3274 802F8274 C5640164 */  lwc1  $f4, 0x164($t3)
 /* 0B3278 802F8278 C56600A0 */  lwc1  $f6, 0xa0($t3)
 /* 0B327C 802F827C 46128301 */  sub.s $f12, $f16, $f18
-/* 0B3280 802F8280 0C0DEA6A */  jal   func_8037A9A8
+/* 0B3280 802F8280 0C0DEA6A */  jal   atan2s
 /* 0B3284 802F8284 46062381 */   sub.s $f14, $f4, $f6
 /* 0B3288 802F8288 3C0C8036 */  lui   $t4, %hi(gCurrentObject) # $t4, 0x8036
 /* 0B328C 802F828C 8D8CFDF0 */  lw    $t4, %lo(gCurrentObject)($t4)

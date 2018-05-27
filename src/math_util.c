@@ -389,9 +389,9 @@ void func_80379AA4(f32 mtx[4][4], Vec3f b, s16 c, f32 d)
     sp50[0] = b[0] + d * sins(c + 0xD555);
     sp50[2] = b[2] + d * coss(c + 0xD555);
 
-    sp68[1] = func_80381900(sp68[0], b[1] + 150, sp68[2], &sp74);
-    sp5C[1] = func_80381900(sp5C[0], b[1] + 150, sp5C[2], &sp74);
-    sp50[1] = func_80381900(sp50[0], b[1] + 150, sp50[2], &sp74);
+    sp68[1] = find_floor(sp68[0], b[1] + 150, sp68[2], &sp74);
+    sp5C[1] = find_floor(sp5C[0], b[1] + 150, sp5C[2], &sp74);
+    sp50[1] = find_floor(sp50[0], b[1] + 150, sp50[2], &sp74);
 
     if (sp68[1] - b[1] < sp18)
         sp68[1] = b[1];
@@ -492,23 +492,23 @@ void func_8037A29C(f32 a[4][4], f32 b[4][4], Vec3f c)
     }
 }
 
-void Unknown8037A348(f32 a[4][4], Vec3s b)
+void mtxf_mul_vec3s(f32 a[4][4], Vec3s b)
 {
-    register f32 f12 = b[0];
-    register f32 f14 = b[1];
-    register f32 f16 = b[2];
+    register f32 x = b[0];
+    register f32 y = b[1];
+    register f32 z = b[2];
 
-    b[0] = f12 * a[0][0] + f14 * a[1][0] + f16 * a[2][0] + a[3][0];
-    b[1] = f12 * a[0][1] + f14 * a[1][1] + f16 * a[2][1] + a[3][1];
-    b[2] = f12 * a[0][2] + f14 * a[1][2] + f16 * a[2][2] + a[3][2];
+    b[0] = x * a[0][0] + y * a[1][0] + z * a[2][0] + a[3][0];
+    b[1] = x * a[0][1] + y * a[1][1] + z * a[2][1] + a[3][1];
+    b[2] = x * a[0][2] + y * a[1][2] + z * a[2][2] + a[3][2];
 }
 
-void func_8037A434(s16 *a, f32 b[4][4])
+void mtxf_to_mtx(Mtx *a, f32 b[4][4])
 {
     s32 sp14;
     register s32 i;
-    register s16 *a3 = a;
-    register s16 *t0 = a + 16;
+    register s16 *a3 = (s16 *)a;
+    register s16 *t0 = (s16 *)a + 16;
     register f32 *t1 = (f32 *)b;
 
     for (i = 0; i < 16; i++)
@@ -520,7 +520,7 @@ void func_8037A434(s16 *a, f32 b[4][4])
     }
 }
 
-void func_8037A4B8(s16 *a, s16 b)
+void mtxf_rotate_xy(Mtx *a, s16 b)
 {
     f32 temp[4][4];
 
@@ -529,9 +529,15 @@ void func_8037A4B8(s16 *a, s16 b)
     temp[0][1] = sins(b);
     temp[1][0] = -temp[0][1];
     temp[1][1] = temp[0][0];
-    func_8037A434(a, temp);
+    mtxf_to_mtx(a, temp);
 }
 
+/**
+ * If a = | A r | and b = | B t |
+ *        | 0 1 |         | 0 1 |
+ * return B^T (r - t). If B is orthogonal, then this is the vector v such that
+ * bv = r.
+ */
 void func_8037A550(Vec3f a, f32 b[4][4], f32 c[4][4])
 {
     f32 spC = c[3][0] * c[0][0] + c[3][1] * c[0][1] + c[3][2] * c[0][2];
@@ -543,18 +549,18 @@ void func_8037A550(Vec3f a, f32 b[4][4], f32 c[4][4])
     a[2] = b[3][0] * c[2][0] + b[3][1] * c[2][1] + b[3][2] * c[2][2] - sp4;
 }
 
-void func_8037A69C(Vec3f a, Vec3f b, f32 *c, s16 *d, s16 *e)
+void vec3f_get_dist_and_angle(Vec3f a, Vec3f b, f32 *c, s16 *d, s16 *e)
 {
     register f32 f20 = b[0] - a[0];
     register f32 f22 = b[1] - a[1];
     register f32 f24 = b[2] - a[2];
 
     *c = sqrtf(f20 * f20 + f22 * f22 + f24 * f24);
-    *d = func_8037A9A8(sqrtf(f20 * f20 + f24 * f24), f22);
-    *e = func_8037A9A8(f24, f20);
+    *d = atan2s(sqrtf(f20 * f20 + f24 * f24), f22);
+    *e = atan2s(f24, f20);
 }
 
-void func_8037A788(Vec3f a, Vec3f b, f32 c, s16 d, s16 e)
+void vec3f_set_dist_and_angle(Vec3f a, Vec3f b, f32 c, s16 d, s16 e)
 {
     b[0] = a[0] + c * coss(d) * sins(e);
     b[1] = a[1] + c * sins(d);
@@ -595,7 +601,7 @@ f32 approach_f32(f32 current, f32 target, f32 inc, f32 dec)
     return current;
 }
 
-u16 func_8037A924(f32 a, f32 b)
+static u16 atan2_lookup(f32 a, f32 b)
 {
     u16 ret;
 
@@ -606,7 +612,10 @@ u16 func_8037A924(f32 a, f32 b)
     return ret;
 }
 
-s16 func_8037A9A8(f32 a, f32 b)
+/**
+ * Note that the argument order is swapped from the standard atan2.
+ */
+s16 atan2s(f32 a, f32 b)
 {
     u16 ret;
 
@@ -615,17 +624,17 @@ s16 func_8037A9A8(f32 a, f32 b)
         if (a >= 0)
         {
             if (a >= b)
-                ret = func_8037A924(b, a);
+                ret = atan2_lookup(b, a);
             else
-                ret = 0x4000 - func_8037A924(a, b);
+                ret = 0x4000 - atan2_lookup(a, b);
         }
         else
         {
             a = -a;
             if (a < b)
-                ret = 0x4000 + func_8037A924(a, b);
+                ret = 0x4000 + atan2_lookup(a, b);
             else
-                ret = 0x8000 - func_8037A924(b, a);
+                ret = 0x8000 - atan2_lookup(b, a);
         }
     }
     else
@@ -635,24 +644,27 @@ s16 func_8037A9A8(f32 a, f32 b)
         {
             a = -a;
             if (a >= b)
-                ret = 0x8000 + func_8037A924(b, a);
+                ret = 0x8000 + atan2_lookup(b, a);
             else
-                ret = 0xC000 - func_8037A924(a, b);
+                ret = 0xC000 - atan2_lookup(a, b);
         }
         else
         {
             if (a < b)
-                ret = 0xC000 + func_8037A924(a, b);
+                ret = 0xC000 + atan2_lookup(a, b);
             else
-                ret = -func_8037A924(b, a);
+                ret = -atan2_lookup(b, a);
         }
     }
     return ret;
 }
 
-f32 Unknown8037AB88(f32 a, f32 b)
+/**
+ * Note that the argument order is swapped from the standard atan2.
+ */
+f32 atan2f(f32 a, f32 b)
 {
-    return (f32)func_8037A9A8(a, b) * M_PI / 0x8000;
+    return (f32)atan2s(a, b) * M_PI / 0x8000;
 }
 
 void func_8037ABEC(Vec4f a, f32 b, UNUSED s32 c)

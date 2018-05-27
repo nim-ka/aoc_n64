@@ -59,8 +59,8 @@ script_func_local_4:
 
 glabel level_hmc_entry
     init_level
-    load_mio0 /*seg*/ 0x07, /*romStart*/ 0x003CEE30, /*romEnd*/ 0x003E4A60
-    cmd1A /*seg*/ 0x09, /*romStart*/ 0x00345FF0, /*romEnd*/ 0x0034CD00
+    load_mio0 /*seg*/ 0x07, /*romStart*/ _level_hmc_segment_7SegmentRomStart, /*romEnd*/ _level_hmc_segment_7SegmentRomEnd
+    cmd1A /*seg*/ 0x09, /*romStart*/ hmc_textures, /*romEnd*/ hmc_textures_end
     load_mio0 /*seg*/ 0x05, /*romStart*/ monkey, /*romEnd*/ monkey_end
     load_raw /*seg*/ 0x0C, /*romStart*/ mole_monkey_fwoosh, /*romEnd*/ mole_monkey_fwoosh_end
     load_mio0 /*seg*/ 0x06, /*romStart*/ mri_swoop, /*romEnd*/ mri_swoop_end

@@ -1646,8 +1646,8 @@ glabel func_8031ED70
 .L8031ED9C:
 /* 0D9D9C 8031ED9C 304300FF */  andi  $v1, $v0, 0xff
 .L8031EDA0:
-/* 0D9DA0 8031EDA0 3C028034 */  lui   $v0, %hi(D_8033A75A) 
-/* 0D9DA4 8031EDA4 8442A75A */  lh    $v0, %lo(D_8033A75A)($v0)
+/* 0D9DA0 8031EDA0 3C028034 */  lui   $v0, %hi(gCurrAreaIndex) 
+/* 0D9DA4 8031EDA4 8442A75A */  lh    $v0, %lo(gCurrAreaIndex)($v0)
 /* 0D9DA8 8031EDA8 0006C080 */  sll   $t8, $a2, 2
 /* 0D9DAC 8031EDAC 3C058022 */  lui   $a1, %hi(D_80222CC4) 
 /* 0D9DB0 8031EDB0 2442FFFF */  addiu $v0, $v0, -1
@@ -2564,7 +2564,7 @@ glabel func_8031FA4C
 /* 0DAACC 8031FACC 8FBF0024 */   lw    $ra, 0x24($sp)
 /* 0DAAD0 8031FAD0 852F0002 */  lh    $t7, 2($t1)
 /* 0DAAD4 8031FAD4 24110002 */  li    $s1, 2
-/* 0DAAD8 8031FAD8 3C0B8034 */  lui   $t3, %hi(D_8033A75A) # $t3, 0x8034
+/* 0DAAD8 8031FAD8 3C0B8034 */  lui   $t3, %hi(gCurrAreaIndex) # $t3, 0x8034
 /* 0DAADC 8031FADC 31F0FF00 */  andi  $s0, $t7, 0xff00
 /* 0DAAE0 8031FAE0 3218FF00 */  andi  $t8, $s0, 0xff00
 /* 0DAAE4 8031FAE4 130000B9 */  beqz  $t8, .L8031FDCC
@@ -2573,7 +2573,7 @@ glabel func_8031FA4C
 /* 0DAAF0 8031FAF0 3C078034 */  lui   $a3, %hi(gMarioStates) # $a3, 0x8034
 /* 0DAAF4 8031FAF4 24E79E00 */  addiu $a3, %lo(gMarioStates) # addiu $a3, $a3, -0x6200
 /* 0DAAF8 8031FAF8 254AFEE0 */  addiu $t2, %lo(D_8035FEE0) # addiu $t2, $t2, -0x120
-/* 0DAAFC 8031FAFC 256BA75A */  addiu $t3, %lo(D_8033A75A) # addiu $t3, $t3, -0x58a6
+/* 0DAAFC 8031FAFC 256BA75A */  addiu $t3, %lo(gCurrAreaIndex) # addiu $t3, $t3, -0x58a6
 /* 0DAB00 8031FB00 27A8003C */  addiu $t0, $sp, 0x3c
 /* 0DAB04 8031FB04 27A60044 */  addiu $a2, $sp, 0x44
 .L8031FB08:

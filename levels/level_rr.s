@@ -60,9 +60,9 @@ script_func_local_3:
 
 glabel level_rr_entry
     init_level
-    load_mio0 /*seg*/ 0x07, /*romStart*/ 0x004358D0, /*romEnd*/ 0x00448200
-    cmd1A /*seg*/ 0x09, /*romStart*/ 0x0033BCB0, /*romEnd*/ 0x0033F6E0
-    load_mio0 /*seg*/ 0x0A, /*romStart*/ 0x002E5E20, /*romEnd*/ 0x002EFA80
+    load_mio0 /*seg*/ 0x07, /*romStart*/ _level_rr_segment_7SegmentRomStart, /*romEnd*/ _level_rr_segment_7SegmentRomEnd
+    cmd1A /*seg*/ 0x09, /*romStart*/ rr_textures, /*romEnd*/ rr_textures_end
+    load_mio0 /*seg*/ 0x0A, /*romStart*/ cloud_floor_skybox, /*romEnd*/ cloud_floor_skybox_end
     load_mio0 /*seg*/ 0x05, /*romStart*/ enemy, /*romEnd*/ enemy_end
     load_raw /*seg*/ 0x0C, /*romStart*/ bubba_wiggler_lakitu, /*romEnd*/ bubba_wiggler_lakitu_end
     load_mio0 /*seg*/ 0x08, /*romStart*/ chuckya_shyguy_goomba, /*romEnd*/ chuckya_shyguy_goomba_end

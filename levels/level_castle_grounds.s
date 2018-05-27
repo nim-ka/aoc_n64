@@ -83,9 +83,9 @@ script_func_local_4:
 
 glabel level_castle_grounds_entry
     init_level
-    load_mio0 /*seg*/ 0x07, /*romStart*/ 0x00448C80, /*romEnd*/ 0x00452520
-    load_mio0 /*seg*/ 0x0A, /*romStart*/ 0x002AAC50, /*romEnd*/ 0x002B74B0
-    cmd1A /*seg*/ 0x09, /*romStart*/ 0x0035D2B0, /*romEnd*/ 0x00363F20
+    load_mio0 /*seg*/ 0x07, /*romStart*/ _level_castle_grounds_segment_7SegmentRomStart, /*romEnd*/ _level_castle_grounds_segment_7SegmentRomEnd
+    load_mio0 /*seg*/ 0x0A, /*romStart*/ water_skybox, /*romEnd*/ water_skybox_end
+    cmd1A /*seg*/ 0x09, /*romStart*/ castle_grounds_textures, /*romEnd*/ castle_grounds_textures_end
     load_mio0 /*seg*/ 0x05, /*romStart*/ peach_toadstool, /*romEnd*/ peach_toadstool_end
     load_raw /*seg*/ 0x0C, /*romStart*/ birds_peach_yoshi, /*romEnd*/ birds_peach_yoshi_end
     load_mio0 /*seg*/ 0x06, /*romStart*/ lakitu_toad, /*romEnd*/ lakitu_toad_end

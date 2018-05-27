@@ -62,7 +62,7 @@ glabel func_802CC848
 /* 087850 802CC850 E7AC0018 */  swc1  $f12, 0x18($sp)
 /* 087854 802CC854 E7AE001C */  swc1  $f14, 0x1c($sp)
 /* 087858 802CC858 C7AC0018 */  lwc1  $f12, 0x18($sp)
-/* 08785C 802CC85C 0C0DEA6A */  jal   func_8037A9A8
+/* 08785C 802CC85C 0C0DEA6A */  jal   atan2s
 /* 087860 802CC860 C7AE001C */   lwc1  $f14, 0x1c($sp)
 /* 087864 802CC864 44822000 */  mtc1  $v0, $f4
 /* 087868 802CC868 3C018033 */  lui   $at, %hi(D_80336EC0)
@@ -276,7 +276,7 @@ glabel func_802CCB34
 /* 087B3C 802CCB3C AFA40020 */  sw    $a0, 0x20($sp)
 /* 087B40 802CCB40 8FAE0020 */  lw    $t6, 0x20($sp)
 /* 087B44 802CCB44 C5CC0000 */  lwc1  $f12, ($t6)
-/* 087B48 802CCB48 0C0E06E8 */  jal   func_80381BA0
+/* 087B48 802CCB48 0C0E06E8 */  jal   find_water_level
 /* 087B4C 802CCB4C C5CE0008 */   lwc1  $f14, 8($t6)
 /* 087B50 802CCB50 E7A0001C */  swc1  $f0, 0x1c($sp)
 /* 087B54 802CCB54 C7A4001C */  lwc1  $f4, 0x1c($sp)
@@ -1477,8 +1477,8 @@ glabel func_802CDBB0
 /* 088C5C 802CDC5C 24010016 */  li    $at, 22
 /* 088C60 802CDC60 15010012 */  bne   $t0, $at, .L802CDCAC
 /* 088C64 802CDC64 00000000 */   nop   
-/* 088C68 802CDC68 3C098034 */  lui   $t1, %hi(D_8033A75A) # $t1, 0x8034
-/* 088C6C 802CDC6C 8529A75A */  lh    $t1, %lo(D_8033A75A)($t1)
+/* 088C68 802CDC68 3C098034 */  lui   $t1, %hi(gCurrAreaIndex) # $t1, 0x8034
+/* 088C6C 802CDC6C 8529A75A */  lh    $t1, %lo(gCurrAreaIndex)($t1)
 /* 088C70 802CDC70 24010001 */  li    $at, 1
 /* 088C74 802CDC74 1521000D */  bne   $t1, $at, .L802CDCAC
 /* 088C78 802CDC78 00000000 */   nop   
@@ -2074,7 +2074,7 @@ glabel func_802CE48C
 /* 0894F0 802CE4F0 00000000 */   nop   
 .L802CE4F4:
 /* 0894F4 802CE4F4 C7AC0020 */  lwc1  $f12, 0x20($sp)
-/* 0894F8 802CE4F8 0C0E06E8 */  jal   func_80381BA0
+/* 0894F8 802CE4F8 0C0E06E8 */  jal   find_water_level
 /* 0894FC 802CE4FC C7AE0028 */   lwc1  $f14, 0x28($sp)
 /* 089500 802CE500 E7A00018 */  swc1  $f0, 0x18($sp)
 /* 089504 802CE504 C7AA0018 */  lwc1  $f10, 0x18($sp)
@@ -2327,7 +2327,7 @@ glabel func_802CE86C
 /* 08988C 802CE88C C7AC0038 */  lwc1  $f12, 0x38($sp)
 /* 089890 802CE890 C7AE003C */  lwc1  $f14, 0x3c($sp)
 /* 089894 802CE894 8FA60040 */  lw    $a2, 0x40($sp)
-/* 089898 802CE898 0C0E0640 */  jal   func_80381900
+/* 089898 802CE898 0C0E0640 */  jal   find_floor
 /* 08989C 802CE89C 27A70030 */   addiu $a3, $sp, 0x30
 /* 0898A0 802CE8A0 3C018036 */  lui   $at, %hi(D_8035FF44) # $at, 0x8036
 /* 0898A4 802CE8A4 A020FF44 */  sb    $zero, %lo(D_8035FF44)($at)

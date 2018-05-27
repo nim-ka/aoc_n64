@@ -20,8 +20,8 @@ script_func_local_2:
 
 glabel level_cotmc_entry
     init_level
-    load_mio0 /*seg*/ 0x07, /*romStart*/ 0x004B6070, /*romEnd*/ 0x004BC980
-    cmd1A /*seg*/ 0x09, /*romStart*/ 0x00345FF0, /*romEnd*/ 0x0034CD00
+    load_mio0 /*seg*/ 0x07, /*romStart*/ _level_cotmc_segment_7SegmentRomStart, /*romEnd*/ _level_cotmc_segment_7SegmentRomEnd
+    cmd1A /*seg*/ 0x09, /*romStart*/ hmc_textures, /*romEnd*/ hmc_textures_end
     load_mio0 /*seg*/ 0x05, /*romStart*/ checkerboard_question, /*romEnd*/ checkerboard_question_end
     load_raw /*seg*/ 0x0C, /*romStart*/ cap_switch, /*romEnd*/ cap_switch_end
     load_mio0 /*seg*/ 0x06, /*romStart*/ mri_swoop, /*romEnd*/ mri_swoop_end

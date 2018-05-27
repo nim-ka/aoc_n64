@@ -139,3 +139,5 @@ glabel inside_castle_textures_end
 flower_textures:
 .incbin "build/mio0/flower_textures.mio0"
 glabel flower_textures_end
+
+.align 4, 0

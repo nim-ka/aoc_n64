@@ -18,10 +18,10 @@ script_func_local_1:
 
 glabel level_bowser_2_entry
     init_level
-    load_mio0 /*seg*/ 0x0A, /*romStart*/ 0x002CE5E0, /*romEnd*/ 0x002D4A90
-    cmd1A /*seg*/ 0x09, /*romStart*/ 0x0031C770, /*romEnd*/ 0x003253E0
-    load_mio0 /*seg*/ 0x0B, /*romStart*/ 0x0036DAD0, /*romEnd*/ 0x003701E0
-    load_mio0 /*seg*/ 0x07, /*romStart*/ 0x004CBB70, /*romEnd*/ 0x004CC990
+    load_mio0 /*seg*/ 0x0A, /*romStart*/ bifs_skybox, /*romEnd*/ bifs_skybox_end
+    cmd1A /*seg*/ 0x09, /*romStart*/ lll_textures, /*romEnd*/ lll_textures_end
+    load_mio0 /*seg*/ 0x0B, /*romStart*/ flower_textures, /*romEnd*/ flower_textures_end
+    load_mio0 /*seg*/ 0x07, /*romStart*/ _level_bowser_2_segment_7SegmentRomStart, /*romEnd*/ _level_bowser_2_segment_7SegmentRomEnd
     load_mio0 /*seg*/ 0x06, /*romStart*/ bowser, /*romEnd*/ bowser_end
     load_raw /*seg*/ 0x0D, /*romStart*/ bowser_flames_bomb, /*romEnd*/ bowser_flames_bomb_end
     alloc_level_pool

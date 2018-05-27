@@ -11,7 +11,7 @@
 glabel level_main_menu_entry_1
     init_level
     fixed_load /*loadAddr*/ _goddardSegmentStart, /*romStart*/ _goddardSegmentRomStart, /*romEnd*/ _goddardSegmentRomEnd
-    load_mio0 /*seg*/ 0x07, /*romStart*/ 0x002A4730, /*romEnd*/ 0x002AA240
+    load_mio0 /*seg*/ 0x07, /*romStart*/ _level_main_menu_segment_7SegmentRomStart, /*romEnd*/ _level_main_menu_segment_7SegmentRomEnd
     load_raw /*seg*/ 0x13, /*romStart*/ _behaviorSegmentRomStart, /*romEnd*/ _behaviorSegmentRomEnd
     alloc_level_pool
     cmd22 /*unk2*/ 0x0003, /*unk4*/ 0x140001D0
@@ -32,7 +32,7 @@ glabel level_main_menu_entry_1
     end_area
 
     free_level_pool
-    cmd29 /*unk2*/ 0x01
+    load_area /*area*/ 1
     set_music /*seq*/ 0x0021
     transition /*unk2*/ 0, /*unk3*/ 16, /*color*/ -1, -1, -1
     call /*arg*/ 0, /*func*/ LevelProc_801766DC
@@ -51,7 +51,7 @@ glabel level_main_menu_entry_2
     jump_if /*op*/ OP_EQ, /*arg*/ 0, /*target*/ L1
     init_level
     fixed_load /*loadAddr*/ _goddardSegmentStart, /*romStart*/ _goddardSegmentRomStart, /*romEnd*/ _goddardSegmentRomEnd
-    load_mio0 /*seg*/ 0x07, /*romStart*/ 0x002A4730, /*romEnd*/ 0x002AA240
+    load_mio0 /*seg*/ 0x07, /*romStart*/ _level_main_menu_segment_7SegmentRomStart, /*romEnd*/ _level_main_menu_segment_7SegmentRomEnd
     alloc_level_pool
 
     area /*index*/ 2, /*geo*/ 0x14000408
@@ -60,7 +60,7 @@ glabel level_main_menu_entry_2
     end_area
 
     free_level_pool
-    cmd29 /*unk2*/ 0x02
+    load_area /*area*/ 2
     transition /*unk2*/ 0, /*unk3*/ 16, /*color*/ -1, -1, -1
     sleep /*frames*/ 16
     set_music /*seq*/ 0x000D

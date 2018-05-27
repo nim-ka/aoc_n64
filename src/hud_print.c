@@ -10,6 +10,7 @@
 #include "ingame_menu.h"
 #include "hud_print.h"
 #include "segment2.h"
+#include "area.h"
 
 /* The hidden second half of hud.s
  * This file seems to draw the in-game HUD
@@ -325,7 +326,7 @@ void render_hud(void)
     } else {
         func_802D68A4();
 
-        if (D_8032CE6C != NULL && D_8032CE6C->unk24->unk0 == 10)
+        if (gCurrentArea != NULL && gCurrentArea->unk24->unk0 == 10)
             RenderHudCannonReticle();
         
         if (hudDisplayFlags & (1 << 0))    // 0x01

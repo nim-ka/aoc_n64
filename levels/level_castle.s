@@ -209,8 +209,8 @@ script_func_local_4:
 
 glabel level_castle_entry
     init_level
-    load_mio0 /*seg*/ 0x07, /*romStart*/ 0x003948D0, /*romEnd*/ 0x003CD140
-    cmd1A /*seg*/ 0x09, /*romStart*/ 0x00363F20, /*romEnd*/ 0x0036DAD0
+    load_mio0 /*seg*/ 0x07, /*romStart*/ _level_castle_segment_7SegmentRomStart, /*romEnd*/ _level_castle_segment_7SegmentRomEnd
+    cmd1A /*seg*/ 0x09, /*romStart*/ inside_castle_textures, /*romEnd*/ inside_castle_textures_end
     load_mio0 /*seg*/ 0x06, /*romStart*/ lakitu_toad, /*romEnd*/ lakitu_toad_end
     load_raw /*seg*/ 0x0D, /*romStart*/ lakitu_toad_mips_boo, /*romEnd*/ lakitu_toad_mips_boo_end
     alloc_level_pool

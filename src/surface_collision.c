@@ -9,17 +9,24 @@
 #include "surface_collision.h"
 #include "surface_load.h"
 
-s32 func_80380E8C(struct WallCollisionData *collision);
 
-//* 80380690(J) */
-s32 func_80380690(struct SurfaceNode * triNode, struct WallCollisionData * data) {
+static s32 D_8038BE30[4];
+static f32 D_8038BE40, D_8038BE44, D_8038BE48;
+static f32 D_8038BE4C;
+
+static u8 unused8038BE50[0x40];
+
+
+static s32 find_wall_collisions_from_list(
+    struct SurfaceNode *surfaceNode, struct WallCollisionData *data)
+{
     register f32 offset;
     register f32 radius = data->radius;
+    register struct Surface *surf;
     register f32 x = data->x;
     register f32 y = data->y + data->offsetY;
-    register struct Surface *tri;
     register f32 z = data->z;
-    register f32 xP, zP;
+    register f32 px, pz;
     register f32 w1, w2, w3;
     register f32 y1, y2, y3;
     s32 numCols = 0;
@@ -27,84 +34,97 @@ s32 func_80380690(struct SurfaceNode * triNode, struct WallCollisionData * data)
     // Max collision radius = 200
     if (radius > 200.0f) radius = 200.0f;
 
-    // Look for collisions in triangle list
-    while (triNode) {
-        // Get next triangle
-        tri = triNode->surface;
-        triNode = triNode->next;
+    while (surfaceNode != NULL)
+    {
+        surf = surfaceNode->surface;
+        surfaceNode = surfaceNode->next;
 
-        if (y < tri->lowerY || y > tri->upperY) continue;
+        if (y < surf->lowerY || y > surf->upperY)
+            continue;
 
-        offset = tri->normal[2] * z + (tri->normal[1] * y + tri->normal[0] * x) + tri->originOffset;
+        offset = surf->normal[2] * z + (surf->normal[1] * y + surf->normal[0] * x) + surf->originOffset;
 
-        if (offset < -radius || offset > radius) continue;
+        if (offset < -radius || offset > radius)
+            continue;
 
-        xP = x;
-        zP = z;
+        px = x;
+        pz = z;
 
-        if (tri->flags & 0x08) {
-            w1 = -tri->vertex1[2];
-            w2 = -tri->vertex2[2];
-            w3 = -tri->vertex3[2];
-            y1 = tri->vertex1[1];
-            y2 = tri->vertex2[1];
-            y3 = tri->vertex3[1];
+        if (surf->flags & SURFACE_FLAG_X_PROJECTION)
+        {
+            w1 = -surf->vertex1[2];
+            w2 = -surf->vertex2[2];
+            w3 = -surf->vertex3[2];
+            y1 = surf->vertex1[1];
+            y2 = surf->vertex2[1];
+            y3 = surf->vertex3[1];
 
-            if (tri->normal[0] > 0.0f) {
-                if ((y1 - y) * (w2 - w1) - (w1 - -zP) * (y2 - y1) > 0.0f) continue;
-                if ((y2 - y) * (w3 - w2) - (w2 - -zP) * (y3 - y2) > 0.0f) continue;
-                if ((y3 - y) * (w1 - w3) - (w3 - -zP) * (y1 - y3) > 0.0f) continue;
+            if (surf->normal[0] > 0.0f)
+            {
+                if ((y1 - y) * (w2 - w1) - (w1 - -pz) * (y2 - y1) > 0.0f) continue;
+                if ((y2 - y) * (w3 - w2) - (w2 - -pz) * (y3 - y2) > 0.0f) continue;
+                if ((y3 - y) * (w1 - w3) - (w3 - -pz) * (y1 - y3) > 0.0f) continue;
             }
-            else {
-                if ((y1 - y) * (w2 - w1) - (w1 - -zP) * (y2 - y1) < 0.0f) continue;
-                if ((y2 - y) * (w3 - w2) - (w2 - -zP) * (y3 - y2) < 0.0f) continue;
-                if ((y3 - y) * (w1 - w3) - (w3 - -zP) * (y1 - y3) < 0.0f) continue;
+            else
+            {
+                if ((y1 - y) * (w2 - w1) - (w1 - -pz) * (y2 - y1) < 0.0f) continue;
+                if ((y2 - y) * (w3 - w2) - (w2 - -pz) * (y3 - y2) < 0.0f) continue;
+                if ((y3 - y) * (w1 - w3) - (w3 - -pz) * (y1 - y3) < 0.0f) continue;
             }
-        }
-        else {
-            w1 = tri->vertex1[0];
-            w2 = tri->vertex2[0];
-            w3 = tri->vertex3[0];
-            y1 = tri->vertex1[1];
-            y2 = tri->vertex2[1];
-            y3 = tri->vertex3[1];
-
-            if (tri->normal[2] > 0.0f) {
-                if ((y1 - y) * (w2 - w1) - (w1 - xP) * (y2 - y1) > 0.0f) continue;
-                if ((y2 - y) * (w3 - w2) - (w2 - xP) * (y3 - y2) > 0.0f) continue;
-                if ((y3 - y) * (w1 - w3) - (w3 - xP) * (y1 - y3) > 0.0f) continue;
-            }
-            else {
-                if ((y1 - y) * (w2 - w1) - (w1 - xP) * (y2 - y1) < 0.0f) continue;
-                if ((y2 - y) * (w3 - w2) - (w2 - xP) * (y3 - y2) < 0.0f) continue;
-                if ((y3 - y) * (w1 - w3) - (w3 - xP) * (y1 - y3) < 0.0f) continue;
-            }
-        }
-
-        if (D_8035FE10) {
-            if (tri->flags & 0x02) continue;
         }
         else
         {
-            if (tri->type == SURFACE_0072) {
+            w1 = surf->vertex1[0];
+            w2 = surf->vertex2[0];
+            w3 = surf->vertex3[0];
+            y1 = surf->vertex1[1];
+            y2 = surf->vertex2[1];
+            y3 = surf->vertex3[1];
+
+            if (surf->normal[2] > 0.0f)
+            {
+                if ((y1 - y) * (w2 - w1) - (w1 - px) * (y2 - y1) > 0.0f) continue;
+                if ((y2 - y) * (w3 - w2) - (w2 - px) * (y3 - y2) > 0.0f) continue;
+                if ((y3 - y) * (w1 - w3) - (w3 - px) * (y1 - y3) > 0.0f) continue;
+            }
+            else
+            {
+                if ((y1 - y) * (w2 - w1) - (w1 - px) * (y2 - y1) < 0.0f) continue;
+                if ((y2 - y) * (w3 - w2) - (w2 - px) * (y3 - y2) < 0.0f) continue;
+                if ((y3 - y) * (w1 - w3) - (w3 - px) * (y1 - y3) < 0.0f) continue;
+            }
+        }
+
+        if (D_8035FE10)
+        {
+            if (surf->flags & SURFACE_FLAG_1)
                 continue;
-            }
+        }
+        else
+        {
+            if (surf->type == SURFACE_0072)
+                continue;
 
-            if (tri->type == SURFACE_007B) {
-                if (gCurrentObject && (gCurrentObject->active & 0x0040) != 0)
-                        continue;
-
-                if (gCurrentObject && gCurrentObject == gMarioObject && (gMarioState->flags & 02) != 0)
+            if (surf->type == SURFACE_007B)
+            {
+                if (gCurrentObject != NULL && (gCurrentObject->active & 0x0040))
                     continue;
+
+                if (gCurrentObject != NULL && gCurrentObject == gMarioObject &&
+                    (gMarioState->flags & MARIO_VANISH_CAP))
+                {
+                    continue;
+                }
             }
         }
 
-        data->x += tri->normal[0] * (radius - offset);
-        data->z += tri->normal[2] * (radius - offset);
+        //! Because this doesn't update the x and z local variables, multiple
+        // walls can push mario more than is required.
+        data->x += surf->normal[0] * (radius - offset);
+        data->z += surf->normal[2] * (radius - offset);
 
-        if (data->numWalls < 4) {
-            data->walls[data->numWalls++] = tri;
-        }
+        if (data->numWalls < 4)
+            data->walls[data->numWalls++] = surf;
 
         numCols++;
     }
@@ -112,7 +132,8 @@ s32 func_80380690(struct SurfaceNode * triNode, struct WallCollisionData * data)
     return numCols;
 }
 
-s32 func_80380DE8(f32 *xPtr, f32 *yPtr, f32 *zPtr, f32 offsetY, f32 radius) {
+s32 resolve_wall_collisions(f32 *xPtr, f32 *yPtr, f32 *zPtr, f32 offsetY, f32 radius)
+{
     struct WallCollisionData collision;
     s32 numCollisions = 0;
 
@@ -125,7 +146,7 @@ s32 func_80380DE8(f32 *xPtr, f32 *yPtr, f32 *zPtr, f32 offsetY, f32 radius) {
 
     collision.numWalls = 0;
 
-    numCollisions = func_80380E8C(&collision);
+    numCollisions = find_wall_collisions(&collision);
     *xPtr = collision.x;
     *yPtr = collision.y;
     *zPtr = collision.z;
@@ -133,71 +154,73 @@ s32 func_80380DE8(f32 *xPtr, f32 *yPtr, f32 *zPtr, f32 offsetY, f32 radius) {
     return numCollisions;
 }
 
-s32 func_80380E8C(struct WallCollisionData *collision)
+s32 find_wall_collisions(struct WallCollisionData *colData)
 {
     struct SurfaceNode *node;
-    s16 xGrid, zGrid;
+    s16 cellX, cellZ;
     s32 numCollisions = 0;
-    s16 x = collision->x;
-    s16 z = collision->z;
+    s16 x = colData->x;
+    s16 z = colData->z;
 
-    collision->numWalls = 0;
+    colData->numWalls = 0;
 
-    if (x < -0x1fff || x >= 0x2000) return numCollisions;
-    if (z < -0x1fff || z >= 0x2000) return numCollisions;
+    if (x <= -0x2000 || x >= 0x2000) return numCollisions;
+    if (z <= -0x2000 || z >= 0x2000) return numCollisions;
 
     // World (level) consists of a 16x16 grid. Find where the collision is on
     // the grid (round toward -inf)
-    xGrid = ((x + 0x2000) / 0x400) & 0x0F;
-    zGrid = ((z + 0x2000) / 0x400) & 0x0F;
+    cellX = ((x + 0x2000) / 0x400) & 0x0F;
+    cellZ = ((z + 0x2000) / 0x400) & 0x0F;
 
-    node = gDynamicSurfacePartition[zGrid][xGrid][SPATIAL_PARTITION_WALLS].next;
-    numCollisions += func_80380690(node, collision);
+    node = gDynamicSurfacePartition[cellZ][cellX][SPATIAL_PARTITION_WALLS].next;
+    numCollisions += find_wall_collisions_from_list(node, colData);
 
-    node = gStaticSurfacePartition[zGrid][xGrid][SPATIAL_PARTITION_WALLS].next;
-    numCollisions += func_80380690(node, collision);
+    node = gStaticSurfacePartition[cellZ][cellX][SPATIAL_PARTITION_WALLS].next;
+    numCollisions += find_wall_collisions_from_list(node, colData);
 
-    D_8033BF08++;
-
+    gNumFindWallCalls += 1;
     return numCollisions;
 }
 
-struct Surface *func_80381038(struct SurfaceNode *triangles, s32 x, s32 y, s32 z, f32 *pheight) {
-    register struct Surface *tri;
+static struct Surface *find_ceil_from_list(
+    struct SurfaceNode *surfaceNode, s32 x, s32 y, s32 z, f32 *pheight)
+{
+    register struct Surface *surf;
     register s32 x1, z1, x2, z2, x3, z3;
-    struct Surface * sp24 = NULL;
+    struct Surface *ceil = NULL;
 
-    sp24 = NULL;
-    while (triangles != NULL) {
-        tri = triangles->surface;
-        triangles = triangles->next;
+    ceil = NULL;
+    while (surfaceNode != NULL)
+    {
+        surf = surfaceNode->surface;
+        surfaceNode = surfaceNode->next;
 
-        x1 = tri->vertex1[0];
-        z1 = tri->vertex1[2];
-        z2 = tri->vertex2[2];
-        x2 = tri->vertex2[0];
-
+        x1 = surf->vertex1[0];
+        z1 = surf->vertex1[2];
+        z2 = surf->vertex2[2];
+        x2 = surf->vertex2[0];
 
         if ((z1 - z) * (x2 - x1) - (x1 - x) * (z2 - z1) > 0) continue;
-        x3 = tri->vertex3[0];
-        z3 = tri->vertex3[2];
+        x3 = surf->vertex3[0];
+        z3 = surf->vertex3[2];
         if ((z2 - z) * (x3 - x2) - (x2 - x) * (z3 - z2) > 0) continue;
         if ((z3 - z) * (x1 - x3) - (x3 - x) * (z1 - z3) > 0) continue;
 
         if (D_8035FE10 != 0)
         {
-            if (tri->flags & 0x02)
+            if (surf->flags & SURFACE_FLAG_1)
                 continue;
         }
-        else if (tri->type == SURFACE_0072) {
+        else if (surf->type == SURFACE_0072)
+        {
             continue;
         }
 
         {
-            f32 nx = tri->normal[0];
-            f32 ny = tri->normal[1];
-            f32 nz = tri->normal[2];
-            f32 oo = tri->originOffset;
+            f32 nx = surf->normal[0];
+            f32 ny = surf->normal[1];
+            f32 nz = surf->normal[2];
+            f32 oo = surf->originOffset;
             f32 height;
 
             if (ny == 0.0f) continue;
@@ -206,20 +229,21 @@ struct Surface *func_80381038(struct SurfaceNode *triangles, s32 x, s32 y, s32 z
             if (y - (height - -78.0f) > 0.0f) continue;
 
             *pheight = height;
-            sp24 = tri;
+            ceil = surf;
             break;
         }
     }
 
-  return sp24;
+    return ceil;
 }
 
-f32 func_80381264(float posX, float posY, float posZ, struct Surface **pceil) {
-    s16 zidx, xidx;
-    struct Surface *ceil, *dynCeil;
-    struct SurfaceNode *node;
+f32 find_ceil(f32 posX, f32 posY, f32 posZ, struct Surface **pceil)
+{
+    s16 cellZ, cellX;
+    struct Surface *ceil, *dynamicCeil;
+    struct SurfaceNode *surfaceList;
     f32 height = 20000.0f;
-    f32 dynHeight = 20000.0f;
+    f32 dynamicHeight = 20000.0f;
     s16 x, y, z;
 
     //! PUs
@@ -231,88 +255,93 @@ f32 func_80381264(float posX, float posY, float posZ, struct Surface **pceil) {
     if (x <= -0x2000 || x >= 0x2000) return height;
     if (z <= -0x2000 || z >= 0x2000) return height;
 
-    xidx = ((x + 0x2000) / 0x400) & 0xF;
-    zidx = ((z + 0x2000) / 0x400) & 0xF;
+    cellX = ((x + 0x2000) / 0x400) & 0xF;
+    cellZ = ((z + 0x2000) / 0x400) & 0xF;
 
-    node = gDynamicSurfacePartition[zidx][xidx][SPATIAL_PARTITION_CEILS].next;
-    dynCeil = func_80381038(node, x, y, z, &dynHeight);
+    surfaceList = gDynamicSurfacePartition[cellZ][cellX][SPATIAL_PARTITION_CEILS].next;
+    dynamicCeil = find_ceil_from_list(surfaceList, x, y, z, &dynamicHeight);
 
-    node = gStaticSurfacePartition[zidx][xidx][SPATIAL_PARTITION_CEILS].next;
-    ceil = func_80381038(node, x, y, z, &height);
+    surfaceList = gStaticSurfacePartition[cellZ][cellX][SPATIAL_PARTITION_CEILS].next;
+    ceil = find_ceil_from_list(surfaceList, x, y, z, &height);
 
-    if (dynHeight < height) {
-        ceil = dynCeil;
-        height = dynHeight;
+    if (dynamicHeight < height)
+    {
+        ceil = dynamicCeil;
+        height = dynamicHeight;
     }
 
     *pceil = ceil;
-    D_8033BF06 += 1;
+
+    gNumFindCeilCalls += 1;
     return height;
 }
 
-f32 func_80381470(struct Object *a0) {
-    struct Surface *sp1C;
-    f32 sp18;
-
-    sp18 = func_80381900(a0->pos[0], a0->pos[1], a0->pos[2], &sp1C);
-
-    return sp18;
+static f32 unused_find_floor_height(struct Object *obj)
+{
+    struct Surface *floor;
+    f32 floorHeight = find_floor(obj->pos[0], obj->pos[1], obj->pos[2], &floor);
+    return floorHeight;
 }
 
-f32 func_803814B8(f32 sp20, f32 sp24, f32 sp28, s32 **sp2C) {
-    struct Surface *tri;
-    f32 sp18;
-    sp18 = func_80381900(sp20, sp24, sp28, &tri);
+f32 func_803814B8(f32 sp20, f32 sp24, f32 sp28, s32 **sp2C)
+{
+    struct Surface *floor;
+    f32 floorHeight = find_floor(sp20, sp24, sp28, &floor);
 
     *sp2C = NULL;
 
-    if (tri != NULL) {
-        D_8038BE40 = tri->normal[0];
-        D_8038BE44 = tri->normal[1];
-        D_8038BE48 = tri->normal[2];
-        D_8038BE4C = tri->originOffset;
+    if (floor != NULL)
+    {
+        D_8038BE40 = floor->normal[0];
+        D_8038BE44 = floor->normal[1];
+        D_8038BE48 = floor->normal[2];
+        D_8038BE4C = floor->originOffset;
 
-        *sp2C = &D_8038BE30;
+        *sp2C = D_8038BE30;
     }
-    return sp18;
+    return floorHeight;
 }
 
-struct Surface *func_8038156C(struct SurfaceNode *triangles, s32 x, s32 y, s32 z, f32 *pheight) {
-    register struct Surface *tri;
+static struct Surface *find_floor_from_list(
+    struct SurfaceNode *surfaceNode, s32 x, s32 y, s32 z, f32 *pheight)
+{
+    register struct Surface *surf;
     register s32 x1, z1, x2, z2, x3, z3;
     f32 nx, ny, nz;
     f32 oo;
     f32 height;
-    struct Surface *sp4 = NULL;
+    struct Surface *floor = NULL;
 
-    while (triangles != NULL) {
-        tri = triangles->surface;
-        triangles = triangles->next;
+    while (surfaceNode != NULL)
+    {
+        surf = surfaceNode->surface;
+        surfaceNode = surfaceNode->next;
 
-        x1 = tri->vertex1[0];
-        z1 = tri->vertex1[2];
-        x2 = tri->vertex2[0];
-        z2 = tri->vertex2[2];
-
+        x1 = surf->vertex1[0];
+        z1 = surf->vertex1[2];
+        x2 = surf->vertex2[0];
+        z2 = surf->vertex2[2];
 
         if ((z1 - z) * (x2 - x1) - (x1 - x) * (z2 - z1) < 0) continue;
-        x3 = tri->vertex3[0];
-        z3 = tri->vertex3[2];
+        x3 = surf->vertex3[0];
+        z3 = surf->vertex3[2];
         if ((z2 - z) * (x3 - x2) - (x2 - x) * (z3 - z2) < 0) continue;
         if ((z3 - z) * (x1 - x3) - (x3 - x) * (z1 - z3) < 0) continue;
 
         if (D_8035FE10 != 0)
         {
-            if (tri->flags & 0x02)
+            if (surf->flags & 0x02)
                 continue;
         }
-        else if (tri->type == SURFACE_0072) {
+        else if (surf->type == SURFACE_0072)
+        {
             continue;
         }
-        nx = tri->normal[0];
-        ny = tri->normal[1];
-        nz = tri->normal[2];
-        oo = tri->originOffset;
+
+        nx = surf->normal[0];
+        ny = surf->normal[1];
+        nz = surf->normal[2];
+        oo = surf->originOffset;
 
         if (ny == 0.0f) continue;
 
@@ -320,44 +349,48 @@ struct Surface *func_8038156C(struct SurfaceNode *triangles, s32 x, s32 y, s32 z
         if (y - (height + -78.0f) < 0.0f) continue;
 
         *pheight = height;
-        sp4 = tri;
+        floor = surf;
         break;
     }
 
-    return sp4;
+    return floor;
 }
 
-f32 func_80381794(f32 x, f32 y, f32 z) {
+f32 find_floor_height(f32 x, f32 y, f32 z)
+{
     struct Surface *floor;
-    f32 sp18;
-    sp18 = func_80381900(x, y, z, &floor);
-    return sp18;
+    f32 floorHeight = find_floor(x, y, z, &floor);
+    return floorHeight;
 }
 
-f32 func_803817E0(f32 sp38, f32 sp3C, f32 sp40, struct Surface **sp44) {
-    struct SurfaceNode *sp34;
-    struct Surface *sp30;
-    f32 sp2C = -11000.0f;
-    s16 sp2A = (s16) sp38;
-    s16 sp28 = (s16) sp3C;
-    s16 sp26 = (s16) sp40;
+static f32 find_dynamic_floor(f32 xPos, f32 yPos, f32 zPos, struct Surface **pfloor)
+{
+    struct SurfaceNode *surfaceList;
+    struct Surface *floor;
+    f32 floorHeight = -11000.0f;
 
-    s16 xidx = ((sp2A + 0x2000) / 0x400) & 0x0F;
-    s16 zidx = ((sp26 + 0x2000) / 0x400) & 0x0F;
+    //! PUs
+    s16 x = (s16) xPos;
+    s16 y = (s16) yPos;
+    s16 z = (s16) zPos;
 
-    sp34 = gDynamicSurfacePartition[zidx][xidx][SPATIAL_PARTITION_FLOORS].next;
+    s16 cellX = ((x + 0x2000) / 0x400) & 0x0F;
+    s16 cellZ = ((z + 0x2000) / 0x400) & 0x0F;
 
-    sp30 = func_8038156C(sp34, sp2A, sp28, sp26, &sp2C);
-    *sp44 = sp30;
-    return sp2C;
+    surfaceList = gDynamicSurfacePartition[cellZ][cellX][SPATIAL_PARTITION_FLOORS].next;
+    floor = find_floor_from_list(surfaceList, x, y, z, &floorHeight);
+
+    *pfloor = floor;
+    return floorHeight;
 }
 
-f32 func_80381900(f32 xPos, f32 yPos, f32 zPos, struct Surface **pfloor) {
-    s16 zGrid, xGrid;
-    struct Surface *floor, *dynFloor;
-    struct SurfaceNode *node;
+f32 find_floor(f32 xPos, f32 yPos, f32 zPos, struct Surface **pfloor)
+{
+    s16 cellZ, cellX;
+    struct Surface *floor, *dynamicFloor;
+    struct SurfaceNode *surfaceList;
     f32 height = -11000.0f;
-    f32 dynHeight = -11000.0f;
+    f32 dynamicHeight = -11000.0f;
 
     //! PUs
     s16 x = (s16) xPos;
@@ -369,50 +402,55 @@ f32 func_80381900(f32 xPos, f32 yPos, f32 zPos, struct Surface **pfloor) {
     if (x <= -0x2000 || x >= 0x2000) return height;
     if (z <= -0x2000 || z >= 0x2000) return height;
 
-    xGrid = ((x + 0x2000) / 0x400) & 0xF;
-    zGrid = ((z + 0x2000) / 0x400) & 0xF;
+    cellX = ((x + 0x2000) / 0x400) & 0xF;
+    cellZ = ((z + 0x2000) / 0x400) & 0xF;
 
-    node = gDynamicSurfacePartition[zGrid][xGrid][SPATIAL_PARTITION_FLOORS].next;
-    dynFloor = func_8038156C(node, x, y, z, &dynHeight);
+    surfaceList = gDynamicSurfacePartition[cellZ][cellX][SPATIAL_PARTITION_FLOORS].next;
+    dynamicFloor = find_floor_from_list(surfaceList, x, y, z, &dynamicHeight);
 
-    node = gStaticSurfacePartition[zGrid][xGrid][SPATIAL_PARTITION_FLOORS].next;
-    floor = func_8038156C(node, x, y, z, &height);
+    surfaceList = gStaticSurfacePartition[cellZ][cellX][SPATIAL_PARTITION_FLOORS].next;
+    floor = find_floor_from_list(surfaceList, x, y, z, &height);
 
-    if (D_8035FE12 == 0) {
-        if (floor != NULL && floor->type == SURFACE_0012) {
-            floor = func_8038156C(node, x, (s32) (height - 200.0f), z, &height);
-        }
+    if (!gFindFloorIncludeSurface0012)
+    {
+        if (floor != NULL && floor->type == SURFACE_0012)
+            floor = find_floor_from_list(surfaceList, x, (s32) (height - 200.0f), z, &height);
     }
-    else {
-        D_8035FE12 = 0;
+    else
+    {
+        gFindFloorIncludeSurface0012 = FALSE;
     }
-
 
     if (floor == NULL)
-        D_8033BEF4++;
+        gNumFindFloorMisses += 1;
 
-    if (dynHeight > height) {
-        floor = dynFloor;
-        height = dynHeight;
+    if (dynamicHeight > height)
+    {
+        floor = dynamicFloor;
+        height = dynamicHeight;
     }
 
     *pfloor = floor;
-    D_8033BF04++;
+    
+    gNumFindFloorCalls += 1;
     return height;
 }
 
-f32 func_80381BA0(f32 x, f32 z) {
+f32 find_water_level(f32 x, f32 z)
+{
     s32 i;
     s32 numRegions;
     s16 val;
     f32 loX, hiX, loZ, hiZ;
-    float sp8 = -11000.0f;
+    f32 waterLevel = -11000.0f;
     s16 *p = gWaterRegions;
 
-    if (p != NULL) {
+    if (p != NULL)
+    {
         numRegions = *p++;
 
-        for (i = 0; i < numRegions; i++) {
+        for (i = 0; i < numRegions; i++)
+        {
             val = *p++;
             loX = *p++;
             loZ = *p++;
@@ -421,39 +459,44 @@ f32 func_80381BA0(f32 x, f32 z) {
 
             if (loX < x && x < hiX && loZ < z && z < hiZ && val < 50)
             {
-                sp8 = *p;
+                waterLevel = *p;
                 break;
             }
             p++;
         }
     }
 
-    return sp8;
+    return waterLevel;
 }
 
-f32 func_80381D3C(f32 x, f32 z) {
+f32 func_80381D3C(f32 x, f32 z)
+{
     s32 i;
     s32 numRegions;
-    UNUSED s32 unk;
+    UNUSED s32 unused;
     s16 val;
     f32 loX, hiX, loZ, hiZ;
-    float sp4 = -11000.0f;
+    f32 waterLevel = -11000.0f;
     s16 *p = gWaterRegions;
 
-    if (p != NULL) {
+    if (p != NULL)
+    {
         numRegions = *p++;
 
-        for (i = 0; i < numRegions; i++) {
+        for (i = 0; i < numRegions; i++)
+        {
             val = *p;
 
-            if (val >= 50) {
+            if (val >= 50)
+            {
                 loX = *(p + 1);
                 loZ = *(p + 2);
                 hiX = *(p + 3);
                 hiZ = *(p + 4);
 
-                if (loX < x && x < hiX && loZ < z && z < hiZ && val % 10 == 0) {
-                    sp4 = *(p + 5);
+                if (loX < x && x < hiX && loZ < z && z < hiZ && val % 10 == 0)
+                {
+                    waterLevel = *(p + 5);
                     break;
                 }
             }
@@ -462,60 +505,61 @@ f32 func_80381D3C(f32 x, f32 z) {
         }
     }
 
-    return sp4;
+    return waterLevel;
 }
 
-s32 func_80381EC8(struct SurfaceNode *node) {
+static s32 surface_list_length(struct SurfaceNode *list)
+{
     s32 count = 0;
 
-    while (node != NULL) {
-        node = node->next;
+    while (list != NULL)
+    {
+        list = list->next;
         count++;
     }
 
     return count;
 }
 
-void func_80381F08(f32 sp40, f32 sp44) {
-    struct SurfaceNode *sp3C;
-    s32 sp38 = 0;
-    s32 sp34 = 0;
-    s32 sp30 = 0;
+void debug_surface_list_info(f32 xPos, f32 zPos)
+{
+    struct SurfaceNode *list;
+    s32 numFloors = 0;
+    s32 numWalls = 0;
+    s32 numCeils = 0;
 
-    s32 sp2C = (sp40 + 0x2000) / 0x400;
-    s32 sp28 = (sp44 + 0x2000) / 0x400;
+    s32 cellX = (xPos + 0x2000) / 0x400;
+    s32 cellZ = (zPos + 0x2000) / 0x400;
 
+    list = gStaticSurfacePartition[cellZ & 0x0F][cellX & 0x0F][SPATIAL_PARTITION_FLOORS].next;
+    numFloors += surface_list_length(list);
 
-    sp3C = gStaticSurfacePartition[sp28 & 0x0F][sp2C & 0x0F][SPATIAL_PARTITION_FLOORS].next;
-    sp38 += func_80381EC8(sp3C);
+    list = gDynamicSurfacePartition[cellZ & 0x0F][cellX & 0x0F][SPATIAL_PARTITION_FLOORS].next;
+    numFloors += surface_list_length(list);
 
-    sp3C = gDynamicSurfacePartition[sp28 & 0x0F][sp2C & 0x0F][SPATIAL_PARTITION_FLOORS].next;
-    sp38 += func_80381EC8(sp3C);
+    list = gStaticSurfacePartition[cellZ & 0x0F][cellX & 0x0F][SPATIAL_PARTITION_WALLS].next;
+    numWalls += surface_list_length(list);
 
-    sp3C = gStaticSurfacePartition[sp28 & 0x0F][sp2C & 0x0F][SPATIAL_PARTITION_WALLS].next;
-    sp34 += func_80381EC8(sp3C);
+    list = gDynamicSurfacePartition[cellZ & 0x0F][cellX & 0x0F][SPATIAL_PARTITION_WALLS].next;
+    numWalls += surface_list_length(list);
 
-    sp3C = gDynamicSurfacePartition[sp28 & 0x0F][sp2C & 0x0F][SPATIAL_PARTITION_WALLS].next;
-    sp34 += func_80381EC8(sp3C);
+    list = gStaticSurfacePartition[cellZ & 0x0F][cellX & 0x0F][SPATIAL_PARTITION_CEILS].next;
+    numCeils += surface_list_length(list);
 
-    sp3C = gStaticSurfacePartition[sp28 & 0x0F][sp2C & 0x0F][SPATIAL_PARTITION_CEILS].next;
-    sp30 += func_80381EC8(sp3C);
+    list = gDynamicSurfacePartition[cellZ & 0x0F][cellX & 0x0F][SPATIAL_PARTITION_CEILS].next;
+    numCeils += surface_list_length(list);
 
-    sp3C = gDynamicSurfacePartition[sp28 & 0x0F][sp2C & 0x0F][SPATIAL_PARTITION_CEILS].next;
-    sp30 += func_80381EC8(sp3C);
+    AnotherPrint("area   %x", cellZ * 16 + cellX);
 
-
-    AnotherPrint("area   %x", sp28 * 16 + sp2C);
-
-    AnotherPrint("dg %d", sp38);
-    AnotherPrint("dw %d", sp34);
-    AnotherPrint("dr %d", sp30);
+    AnotherPrint("dg %d", numFloors);
+    AnotherPrint("dw %d", numWalls);
+    AnotherPrint("dr %d", numCeils);
 
     func_802C9A3C(80, -3);
 
-    AnotherPrint("%d", D_8033BF04);
-    AnotherPrint("%d", D_8033BF08);
-    AnotherPrint("%d", D_8033BF06);
+    AnotherPrint("%d", gNumFindFloorCalls);
+    AnotherPrint("%d", gNumFindWallCalls);
+    AnotherPrint("%d", gNumFindCeilCalls);
 
     func_802C9A3C(-80, 0);
 
@@ -523,39 +567,45 @@ void func_80381F08(f32 sp40, f32 sp44) {
     AnotherPrint("statbg %d", gNumStaticSurfaces);
     AnotherPrint("movebg %d", gSurfacesAllocated - gNumStaticSurfaces);
 
-    D_8033BF04 = 0;
-    D_8033BF06 = 0;
-    D_8033BF08 = 0;
+    gNumFindFloorCalls = 0;
+    gNumFindCeilCalls = 0;
+    gNumFindWallCalls = 0;
 }
 
-s32 func_80382294(s32 sp40, f32 *sp44, f32 *sp48, f32 *sp4C, f32 sp50, struct Surface **sp54, f32 *sp58) {
-    f32 sp3C, sp38, sp34, sp30;
-    f32 sp2C = *sp44, sp28 = *sp48, sp24 = *sp4C;
-    f32 sp20, sp1C;
+static s32 unused_resolve_floor_or_ceil_collisions(
+    s32 checkCeil,
+    f32 *px, f32 *py, f32 *pz,
+    f32 radius,
+    struct Surface **psurface,
+    f32 *surfaceHeight)
+{
+    f32 nx, ny, nz, oo;
+    f32 x = *px, y = *py, z = *pz;
+    f32 offset, distance;
 
-    *sp54 = 0;
+    *psurface = NULL;
 
-    if (sp40 != 0)
-        *sp58 = func_80381264(sp2C, sp28, sp24, sp54);
+    if (checkCeil)
+        *surfaceHeight = find_ceil(x, y, z, psurface);
     else
-        *sp58 = func_80381900(sp2C, sp28, sp24, sp54);
+        *surfaceHeight = find_floor(x, y, z, psurface);
 
-    if (*sp54 == NULL)
+    if (*psurface == NULL)
         return -1;
 
-    sp3C = (*sp54)->normal[0];
-    sp38 = (*sp54)->normal[1];
-    sp34 = (*sp54)->normal[2];
-    sp30 = (*sp54)->originOffset;
+    nx = (*psurface)->normal[0];
+    ny = (*psurface)->normal[1];
+    nz = (*psurface)->normal[2];
+    oo = (*psurface)->originOffset;
 
-    sp20 = (sp3C * sp2C) + (sp38 * sp28) + (sp34 * sp24) + sp30;
-    sp1C = sp20 >= 0 ? sp20 : -sp20;
+    offset = nx * x + ny * y + nz * z + oo;
+    distance = offset >= 0 ? offset : -offset;
 
-    if (sp1C < sp50) {
-
-        *sp44 += sp3C * (sp50 - sp20);
-        *sp48 += sp38 * (sp50 - sp20);
-        *sp4C += sp34 * (sp50 - sp20);
+    if (distance < radius)
+    {
+        *px += nx * (radius - offset);
+        *py += ny * (radius - offset);
+        *pz += nz * (radius - offset);
 
         return 1;
     }

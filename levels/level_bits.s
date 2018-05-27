@@ -36,9 +36,9 @@ script_func_local_2:
 
 glabel level_bits_entry
     init_level
-    load_mio0 /*seg*/ 0x07, /*romStart*/ 0x0046A2E0, /*romEnd*/ 0x00475C20
-    load_mio0 /*seg*/ 0x0A, /*romStart*/ 0x0030B460, /*romEnd*/ 0x0031C770
-    cmd1A /*seg*/ 0x09, /*romStart*/ 0x0033BCB0, /*romEnd*/ 0x0033F6E0
+    load_mio0 /*seg*/ 0x07, /*romStart*/ _level_bits_segment_7SegmentRomStart, /*romEnd*/ _level_bits_segment_7SegmentRomEnd
+    load_mio0 /*seg*/ 0x0A, /*romStart*/ bits_skybox, /*romEnd*/ bits_skybox_end
+    cmd1A /*seg*/ 0x09, /*romStart*/ rr_textures, /*romEnd*/ rr_textures_end
     load_mio0 /*seg*/ 0x06, /*romStart*/ koopa_whomp, /*romEnd*/ koopa_whomp_end
     load_raw /*seg*/ 0x0D, /*romStart*/ koopa_log_piranha_whomp_chomp, /*romEnd*/ koopa_log_piranha_whomp_chomp_end
     load_mio0 /*seg*/ 0x08, /*romStart*/ chuckya_shyguy_goomba, /*romEnd*/ chuckya_shyguy_goomba_end

@@ -11,11 +11,11 @@
 #include "main.h"
 
 extern int D_8033BEF0;
-extern int D_8033BEF4;
+extern int gNumFindFloorMisses;
 extern int D_8033BEFC;
-extern s16 D_8033BF04;
-extern s16 D_8033BF06;
-extern s16 D_8033BF08;
+extern s16 gNumFindFloorCalls;
+extern s16 gNumFindCeilCalls;
+extern s16 gNumFindWallCalls;
 extern s16 D_8033BF10[][8];
 extern s16 D_8033C010[][8];
 
@@ -165,8 +165,8 @@ void func_802C9BF0(void)
     sp20  = ((int)gCurrentObject->pos[0] + 0x2000) / 1024
           + ((int)gCurrentObject->pos[2] + 0x2000) / 1024 * 16;
 
-    sp28 = func_80381900(gCurrentObject->pos[0], gCurrentObject->pos[1], gCurrentObject->pos[2], &pfloor);
-    sp24 = func_80381BA0(gCurrentObject->pos[0], gCurrentObject->pos[2]);
+    sp28 = find_floor(gCurrentObject->pos[0], gCurrentObject->pos[1], gCurrentObject->pos[2], &pfloor);
+    sp24 = find_water_level(gCurrentObject->pos[0], gCurrentObject->pos[2]);
 
     func_802C9BA0("mapinfo", 0);
     AnotherPrint("area %x", sp20);
@@ -196,7 +196,7 @@ void func_802C9E08(void)
 
 void func_802C9E38(void)
 {
-    func_80381F08(gMarioObject->pos[0], gMarioObject->pos[2]);
+    debug_surface_list_info(gMarioObject->pos[0], gMarioObject->pos[2]);
 }
 
 void func_802C9E6C(void)
@@ -276,15 +276,15 @@ void func_802CA0CC(void)
         else
             D_8033BEF0 = 2;
 
-        D_8033BF04 = 0;
-        D_8033BF06 = 0;
-        D_8033BF08 = 0;
+        gNumFindFloorCalls = 0;
+        gNumFindCeilCalls = 0;
+        gNumFindWallCalls = 0;
     }
 }
 
 void func_802CA140(void)
 {
-    D_8033BEF4 = 0;
+    gNumFindFloorMisses = 0;
     D_8033BEFC = 0;
     gUpdatedObjectCount = 0;
     D_8032FF3C = 0;
@@ -425,8 +425,8 @@ void func_802CA5E0(void)
 
     AnotherPrint("obj  %d", gUpdatedObjectCount);
 
-    if(D_8033BEF4)
-        func_802C9A88("NULLBG %d", D_8033BEF4);
+    if(gNumFindFloorMisses)
+        func_802C9A88("NULLBG %d", gNumFindFloorMisses);
 
     if(D_8033BEFC)
         func_802C9A88("WALL   %d", D_8033BEFC);

@@ -5,11 +5,27 @@
 #include "display.h"
 #include "print.h"
 #include "math_util.h"
-#include "rendering.h"
+#include "area.h"
 #include "rotate.h"
 #include "memory.h"
 #include "game.h"
 #include "rendering_graph_node.h"
+
+extern s16 D_8033A770;
+extern u16 *D_8033B000;
+extern s16 *D_8033B004;
+extern u8 D_8033B008;
+extern u8 D_8033B009;
+extern s16 D_8033B00A;
+extern u16 *D_8033B010;
+extern s16 *D_8033B014;
+extern struct AllocOnlyPool *D_8033B018;
+extern s8 D_8035FF44;
+extern s8 D_8035FF45;
+extern u8 D_8033AFF8;
+extern u8 D_8033AFF9;
+extern s16 D_8033AFFA;
+extern f32 D_8033AFFC;
 
 struct Struct8032CF10
 {
@@ -177,12 +193,12 @@ void func_8027B8D4(struct GraphNode10C *a)
 void func_8027B9A8(struct GraphNode114 *a) // 114
 {
     float sp28[4][4];
-    s16 *sp24 = alloc_display_list(64);
-    s16 *sp20 = alloc_display_list(64);
+    Mtx *sp24 = alloc_display_list(sizeof(*sp24));
+    Mtx *sp20 = alloc_display_list(sizeof(*sp20));
 
     if (a->fnNode.func != NULL)
         a->fnNode.func(1, &a->fnNode.node, D_8033A778[D_8033A770]);
-    func_8037A4B8(sp24, a->unk3A);
+    mtxf_rotate_xy(sp24, a->unk3A);
     {
         Gfx *g = gDisplayListHead++;
         g->words.w0 = 0x01010040;
@@ -191,7 +207,7 @@ void func_8027B9A8(struct GraphNode114 *a) // 114
     func_80378F84(sp28, a->unk1C, a->unk28, a->unk38);
     mtxf_mul(D_8033A778[D_8033A770 + 1], sp28, D_8033A778[D_8033A770]);
     D_8033A770++;
-    func_8037A434(sp20, D_8033A778[D_8033A770]);
+    mtxf_to_mtx(sp20, D_8033A778[D_8033A770]);
     D_8033AF78[D_8033A770] = sp20;
     if (a->fnNode.node.children != 0)
     {
@@ -207,13 +223,13 @@ void func_8027BB64(struct GraphNode015 *a)
 {
     float sp28[4][4];
     Vec3f sp1C;
-    s16 *sp18 = alloc_display_list(64);
+    Mtx *sp18 = alloc_display_list(sizeof(*sp18));
 
     vec3s_to_vec3f(sp1C, a->unk18);
     mtxf_rotate_zxy_and_translate(sp28, sp1C, a->unk1E);
     mtxf_mul(D_8033A778[D_8033A770 + 1], sp28, D_8033A778[D_8033A770]);
     D_8033A770++;
-    func_8037A434(sp18, D_8033A778[D_8033A770]);
+    mtxf_to_mtx(sp18, D_8033A778[D_8033A770]);
     D_8033AF78[D_8033A770] = sp18;
     if (a->dlist != NULL)
         func_8027B354(a->dlist, a->node.flags >> 8);
@@ -226,13 +242,13 @@ void func_8027BC88(struct GraphNode016 *a)
 {
     float sp28[4][4];
     Vec3f sp1C;
-    s16 *sp18 = alloc_display_list(64);
+    Mtx *sp18 = alloc_display_list(sizeof(*sp18));
 
     vec3s_to_vec3f(sp1C, a->unk18);
     mtxf_rotate_zxy_and_translate(sp28, sp1C, D_80385FDC);
     mtxf_mul(D_8033A778[D_8033A770 + 1], sp28, D_8033A778[D_8033A770]);
     D_8033A770++;
-    func_8037A434(sp18, D_8033A778[D_8033A770]);
+    mtxf_to_mtx(sp18, D_8033A778[D_8033A770]);
     D_8033AF78[D_8033A770] = sp18;
     if (a->dlist != NULL)
         func_8027B354(a->dlist, a->node.flags >> 8);
@@ -244,12 +260,12 @@ void func_8027BC88(struct GraphNode016 *a)
 void func_8027BDAC(struct GraphNode017 *a)
 {
     float sp20[4][4];
-    s16 *sp1C = alloc_display_list(64);
+    Mtx *sp1C = alloc_display_list(sizeof(*sp1C));
 
     mtxf_rotate_zxy_and_translate(sp20, D_80385FD0, a->unk18);
     mtxf_mul(D_8033A778[D_8033A770 + 1], sp20, D_8033A778[D_8033A770]);
     D_8033A770++;
-    func_8037A434(sp1C, D_8033A778[D_8033A770]);
+    mtxf_to_mtx(sp1C, D_8033A778[D_8033A770]);
     D_8033AF78[D_8033A770] = sp1C;
     if (a->dlist != NULL)
         func_8027B354(a->dlist, a->node.flags >> 8);
@@ -262,12 +278,12 @@ void func_8027BEC4(struct GraphNode01C *a)
 {
     UNUSED float sp28[4][4];
     Vec3f sp1C;
-    s16 *sp18 = alloc_display_list(64);
+    Mtx *sp18 = alloc_display_list(sizeof(*sp18));
 
     vec3f_set(sp1C, a->unk18, a->unk18, a->unk18);
     func_8037A29C(D_8033A778[D_8033A770 + 1], D_8033A778[D_8033A770], sp1C);
     D_8033A770++;
-    func_8037A434(sp18, D_8033A778[D_8033A770]);
+    mtxf_to_mtx(sp18, D_8033A778[D_8033A770]);
     D_8033AF78[D_8033A770] = sp18;
     if (a->dlist != NULL)
         func_8027B354(a->dlist, a->node.flags >> 8);
@@ -279,7 +295,7 @@ void func_8027BEC4(struct GraphNode01C *a)
 void func_8027BFE4(struct GraphNode01A *a)
 {
     Vec3f sp1C;
-    s16 *sp18 = alloc_display_list(64);
+    Mtx *sp18 = alloc_display_list(sizeof(*sp18));
 
     D_8033A770++;
     vec3s_to_vec3f(sp1C, a->unk18);
@@ -289,7 +305,7 @@ void func_8027BFE4(struct GraphNode01A *a)
     else if (D_8032CFA0 != NULL)
         func_8037A29C(D_8033A778[D_8033A770], D_8033A778[D_8033A770], D_8032CFA0->scale);
 
-    func_8037A434(sp18, D_8033A778[D_8033A770]);
+    mtxf_to_mtx(sp18, D_8033A778[D_8033A770]);
     D_8033AF78[D_8033A770] = sp18;
     if (a->dlist != NULL)
         func_8027B354(a->dlist, a->node.flags >> 8);
@@ -357,7 +373,7 @@ void func_8027C4C0(struct GraphNode019 *a)
     float sp40[4][4];
     Vec3s sp38;
     Vec3f sp2C;
-    s16 *sp28 = alloc_display_list(64);
+    Mtx *sp28 = alloc_display_list(sizeof(*sp28));
 
     vec3s_copy(sp38, D_80385FDC);
     vec3f_set(sp2C, a->relativePos[0], a->relativePos[1], a->relativePos[2]);
@@ -408,7 +424,7 @@ void func_8027C4C0(struct GraphNode019 *a)
     mtxf_rotate_xyz_and_translate(sp40, sp2C, sp38);
     mtxf_mul(D_8033A778[D_8033A770 + 1], sp40, D_8033A778[D_8033A770]);
     D_8033A770++;
-    func_8037A434(sp28, D_8033A778[D_8033A770]);
+    mtxf_to_mtx(sp28, D_8033A778[D_8033A770]);
     D_8033AF78[D_8033A770] = sp28;
     if (a->dlist != NULL)
         func_8027B354(a->dlist, a->node.flags >> 8);
@@ -423,7 +439,7 @@ void func_8027C988(struct GraphNode018_sub *a, int b)
 
     if (b != 0)
         a->animFrame = func_8037C844(a, &a->unk0C);
-    a->animTimer = D_8032CFA8;
+    a->animTimer = gAreaUpdateCounter;
     if (sp1C->unk00 & 8)
         D_8033B008 = 2;
     else if (sp1C->unk00 & 0x10)
@@ -455,7 +471,7 @@ void func_8027CB08(struct GraphNode028 *a)
     float sp30;
     float sp2C;
     struct GraphNode *sp28;
-    s16 *sp24;
+    Mtx *sp24;
 
     if (D_8032CF9C != NULL && D_8032CFA0 != NULL)
     {
@@ -495,11 +511,11 @@ void func_8027CB08(struct GraphNode028 *a)
         sp94 = func_802CE86C(sp48[0], sp48[1], sp48[2], sp34, a->shadowSolidity, a->shadowType);
         if (sp94 != 0)
         {
-            sp24 = alloc_display_list(64);
+            sp24 = alloc_display_list(sizeof(*sp24));
             D_8033A770++;
             mtxf_translate(sp54, sp48);
             mtxf_mul(D_8033A778[D_8033A770], sp54, D_8032CF9C->unk34);
-            func_8037A434(sp24, D_8033A778[D_8033A770]);
+            mtxf_to_mtx(sp24, D_8033A778[D_8033A770]);
             D_8033AF78[D_8033A770] = sp24;
             if (D_8035FF44 == 1)
                 func_8027B354((void *)VIRTUAL_TO_PHYSICAL(sp94), 4);
@@ -576,9 +592,9 @@ void func_8027D14C(struct GraphNode018 *a)
             func_8027C988(&a->unk38, sp2C);
         if (func_8027CF68(a, D_8033A778[D_8033A770]))
         {
-            s16 *sp28 = alloc_display_list(64);
+            Mtx *sp28 = alloc_display_list(sizeof(*sp28));
 
-            func_8037A434(sp28, D_8033A778[D_8033A770]);
+            mtxf_to_mtx(sp28, D_8033A778[D_8033A770]);
             D_8033AF78[D_8033A770] = sp28;
             if (a->unk14 != NULL)
             {
@@ -614,7 +630,7 @@ void func_8027D4D4(struct GraphNode12E *a)
 {
     Mat4 sp30;
     Vec3f sp24;
-    UNUSED s16 *sp20 = alloc_display_list(64);
+    Mtx *sp20 = alloc_display_list(sizeof(*sp20));
 
     if (a->fnNode.func != NULL)
         a->fnNode.func(1, &a->fnNode.node, D_8033A778[D_8033A770]);
@@ -640,7 +656,7 @@ void func_8027D4D4(struct GraphNode12E *a)
         if (a->fnNode.func != NULL)
             a->fnNode.func(5, &a->fnNode.node, (struct AllocOnlyPool *) D_8033A778[D_8033A770 + 1]);
         D_8033A770++;
-        func_8037A434(sp20, D_8033A778[D_8033A770]);
+        mtxf_to_mtx(sp20, D_8033A778[D_8033A770]);
         D_8033AF78[D_8033A770] = sp20;
         D_8033AFF8 = D_8033B008;
         D_8033AFF9 = D_8033B009;
@@ -776,11 +792,11 @@ void func_8027DB80(struct GraphNodeScreenArea *a, Vp *b, Vp *c, int d)
 
     if (a->node.flags & GRAPH_RENDER_01)
     {
-        s16 *sp30;
+        Mtx *sp30;
         Vp *viewport = alloc_display_list(sizeof(*viewport));
 
         D_8033B018 = alloc_only_pool_init(main_pool_available() - 16, MEMORY_POOL_LEFT);
-        sp30 = alloc_display_list(64);
+        sp30 = alloc_display_list(sizeof(*sp30));
         D_8033A770 = 0;
         D_8033B008 = 0;
         vec3s_set(viewport->vp.vtrans, a->x * 4, a->y * 4, 511);
@@ -799,7 +815,7 @@ void func_8027DB80(struct GraphNodeScreenArea *a, Vp *b, Vp *c, int d)
         }
         //L8027DCB0
         mtxf_identity(D_8033A778[D_8033A770]);
-        func_8037A434(sp30, D_8033A778[D_8033A770]);
+        mtxf_to_mtx(sp30, D_8033A778[D_8033A770]);
         D_8033AF78[D_8033A770] = sp30;
         gSPViewport(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(viewport));
         gSPMatrix(gDisplayListHead++,

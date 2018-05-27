@@ -27,8 +27,8 @@ script_func_local_3:
 
 glabel level_vcutm_entry
     init_level
-    cmd1A /*seg*/ 0x09, /*romStart*/ 0x0035D2B0, /*romEnd*/ 0x00363F20
-    load_mio0 /*seg*/ 0x07, /*romStart*/ 0x0045A540, /*romEnd*/ 0x0045F160
+    cmd1A /*seg*/ 0x09, /*romStart*/ castle_grounds_textures, /*romEnd*/ castle_grounds_textures_end
+    load_mio0 /*seg*/ 0x07, /*romStart*/ _level_vcutm_segment_7SegmentRomStart, /*romEnd*/ _level_vcutm_segment_7SegmentRomEnd
     load_mio0 /*seg*/ 0x05, /*romStart*/ checkerboard_question, /*romEnd*/ checkerboard_question_end
     load_raw /*seg*/ 0x0C, /*romStart*/ cap_switch, /*romEnd*/ cap_switch_end
     load_mio0 /*seg*/ 0x08, /*romStart*/ chuckya_shyguy_goomba, /*romEnd*/ chuckya_shyguy_goomba_end

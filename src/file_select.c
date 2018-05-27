@@ -8,7 +8,7 @@
 #include "ingame_menu.h"
 #include "object_helpers.h"
 #include "math_util.h"
-#include "rendering.h"
+#include "area.h"
 #include "save_file.h"
 #include "spawn_object.h"
 
@@ -1878,6 +1878,6 @@ void LevelProc_801766DC(UNUSED int a, UNUSED int b)
 
 int LevelProc_801768A0(UNUSED int a, UNUSED int b)
 {
-    func_8027ABB4();
+    area_update_objects();
     return D_801A7C0C;
 }

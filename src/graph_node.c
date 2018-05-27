@@ -6,6 +6,7 @@
 #include "memory.h"
 #include "graph_node.h"
 #include "rendering_graph_node.h"
+#include "area.h"
 
 void init_scene_graph_node_links(struct GraphNode *graphNode, s32 type)
 {
@@ -739,7 +740,7 @@ s16 func_8037C844(struct GraphNode018_sub *a0, s32* a1)
     
     sp00 = a0->unk04;
 
-    if(a0->animTimer == D_8032CFA8 || sp00->unk00 & 0x0004)
+    if(a0->animTimer == gAreaUpdateCounter || sp00->unk00 & 0x0004)
     {
         if(a1 != NULL)
         {

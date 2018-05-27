@@ -65,9 +65,9 @@ script_func_local_4:
 
 glabel level_bbh_entry
     init_level
-    load_mio0 /*seg*/ 0x07, /*romStart*/ 0x003701E0, /*romEnd*/ 0x00380E60
-    load_mio0 /*seg*/ 0x0A, /*romStart*/ 0x002F9750, /*romEnd*/ 0x00300270
-    cmd1A /*seg*/ 0x09, /*romStart*/ 0x003253E0, /*romEnd*/ 0x0032B610
+    load_mio0 /*seg*/ 0x07, /*romStart*/ _level_bbh_segment_7SegmentRomStart, /*romEnd*/ _level_bbh_segment_7SegmentRomEnd
+    load_mio0 /*seg*/ 0x0A, /*romStart*/ bbh_skybox, /*romEnd*/ bbh_skybox_end
+    cmd1A /*seg*/ 0x09, /*romStart*/ bbh_textures, /*romEnd*/ bbh_textures_end
     load_mio0 /*seg*/ 0x05, /*romStart*/ piano_books, /*romEnd*/ piano_books_end
     load_raw /*seg*/ 0x0C, /*romStart*/ bookend_chair_piano_boo, /*romEnd*/ bookend_chair_piano_boo_end
     load_mio0 /*seg*/ 0x06, /*romStart*/ mri_swoop, /*romEnd*/ mri_swoop_end

@@ -3,7 +3,7 @@
 #include "sm64.h"
 #include "math_util.h"
 #include "memory.h"
-#include "rendering.h"
+#include "area.h"
 #include "save_file.h"
 #include "segment2.h"
 #include "level_update.h"
@@ -204,8 +204,8 @@ Gfx *func_802CF414(s8 a, s8 b, float c, float d, float e, float f, float g,
         sp2B = 0;
 
     c = 90.0f;
-    D_8035FF50[a].unk0 = func_8037A9A8(sp2C, sp34);
-    D_8035FF50[a].unk2 = func_8037A9A8(sqrtf(sp34 * sp34 + sp2C * sp2C), sp30);
+    D_8035FF50[a].unk0 = atan2s(sp2C, sp34);
+    D_8035FF50[a].unk2 = atan2s(sqrtf(sp34 * sp34 + sp2C * sp2C), sp30);
     D_8035FF50[a].unk4 = func_802CEAD0(a, c);
     D_8035FF50[a].unk8 = func_802CEBBC(a, c);
     D_8035FF50[a].unkC = func_802CEC9C(a);

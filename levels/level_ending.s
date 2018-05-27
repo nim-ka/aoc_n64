@@ -10,7 +10,7 @@
 
 glabel level_ending_entry
     init_level
-    load_mio0 /*seg*/ 0x07, /*romStart*/ 0x0049C6B0, /*romEnd*/ 0x004AA450
+    load_mio0 /*seg*/ 0x07, /*romStart*/ _level_ending_segment_7SegmentRomStart, /*romEnd*/ _level_ending_segment_7SegmentRomEnd
     alloc_level_pool
 
     area /*index*/ 1, /*geo*/ 0x0E000050
@@ -19,7 +19,7 @@ glabel level_ending_entry
     free_level_pool
     sleep /*frames*/ 60
     blackout /*active*/ FALSE
-    cmd29 /*unk2*/ 0x01
+    load_area /*area*/ 1
     transition /*unk2*/ 0, /*unk3*/ 75, /*color*/ 0, 0, 0
     sleep /*frames*/ 120
     call /*arg*/ 0, /*func*/ lvl_play_the_end_screen_sound

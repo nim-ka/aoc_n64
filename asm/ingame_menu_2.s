@@ -150,7 +150,7 @@ glabel func_802DD028
 /* 0980CC 802DD0CC 448C2000 */  mtc1  $t4, $f4
 /* 0980D0 802DD0D0 448D3000 */  mtc1  $t5, $f6
 /* 0980D4 802DD0D4 46802320 */  cvt.s.w $f12, $f4
-/* 0980D8 802DD0D8 0C0E06E8 */  jal   func_80381BA0
+/* 0980D8 802DD0D8 0C0E06E8 */  jal   find_water_level
 /* 0980DC 802DD0DC 468033A0 */   cvt.s.w $f14, $f6
 /* 0980E0 802DD0E0 E7A00028 */  swc1  $f0, 0x28($sp)
 /* 0980E4 802DD0E4 8FAE0034 */  lw    $t6, 0x34($sp)
@@ -295,12 +295,12 @@ glabel func_802DD204
 /* 0982E0 802DD2E0 46105300 */   add.s $f12, $f10, $f16
 /* 0982E4 802DD2E4 46000506 */  mov.s $f20, $f0
 /* 0982E8 802DD2E8 4600A306 */  mov.s $f12, $f20
-/* 0982EC 802DD2EC 0C0DEA6A */  jal   func_8037A9A8
+/* 0982EC 802DD2EC 0C0DEA6A */  jal   atan2s
 /* 0982F0 802DD2F0 C7AE0028 */   lwc1  $f14, 0x28($sp)
 /* 0982F4 802DD2F4 8FAC003C */  lw    $t4, 0x3c($sp)
 /* 0982F8 802DD2F8 A5820000 */  sh    $v0, ($t4)
 /* 0982FC 802DD2FC C7AC0024 */  lwc1  $f12, 0x24($sp)
-/* 098300 802DD300 0C0DEA6A */  jal   func_8037A9A8
+/* 098300 802DD300 0C0DEA6A */  jal   atan2s
 /* 098304 802DD304 C7AE002C */   lwc1  $f14, 0x2c($sp)
 /* 098308 802DD308 8FAD0040 */  lw    $t5, 0x40($sp)
 /* 09830C 802DD30C A5A20000 */  sh    $v0, ($t5)
@@ -2553,7 +2553,7 @@ glabel func_802DF210
 /* 09A4A8 802DF4A8 27A70024 */  addiu $a3, $sp, 0x24
 /* 09A4AC 802DF4AC 468023A0 */  cvt.s.w $f14, $f4
 /* 09A4B0 802DF4B0 44069000 */  mfc1  $a2, $f18
-/* 09A4B4 802DF4B4 0C0E0640 */  jal   func_80381900
+/* 09A4B4 802DF4B4 0C0E0640 */  jal   find_floor
 /* 09A4B8 802DF4B8 46805320 */   cvt.s.w $f12, $f10
 /* 09A4BC 802DF4BC 4600018D */  trunc.w.s $f6, $f0
 /* 09A4C0 802DF4C0 44183000 */  mfc1  $t8, $f6

@@ -10,7 +10,7 @@ extern struct GraphNodeCamFrustum *D_8032CF98;
 extern struct GraphNode114 *D_8032CF9C;
 extern struct GraphNode018 *D_8032CFA0;
 extern struct GraphNode12E *D_8032CFA4;
-extern u16 D_8032CFA8;
+extern u16 gAreaUpdateCounter;
 
 extern struct GraphNode *gCurRootGraphNode;
 extern struct GraphNode *gCurGraphNodeList[];

@@ -15,7 +15,7 @@
 .set VAR_CURR_COURSE_NUM, 1
 .set VAR_D_8033A758, 2
 .set VAR_CURR_LEVEL_NUM, 3
-.set VAR_D_8033A75A, 4
+.set VAR_CURR_AREA_INDEX, 4
 
 
 .macro execute seg, script, scriptEnd, entry
@@ -285,9 +285,9 @@
     .hword 0
 .endm
 
-.macro cmd29 unk2
+.macro load_area area
     .byte 0x29, 0x04
-    .byte \unk2
+    .byte \area
     .byte 0
 .endm
 

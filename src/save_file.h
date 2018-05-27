@@ -2,7 +2,8 @@
 #define _SAVE_FILE_H_
 
 #include "types.h"
-#include "level_update.h"
+
+struct WarpNode;
 
 extern s8 gMainMenuDataModified;
 extern s8 gSaveFileModified;

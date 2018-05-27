@@ -3934,8 +3934,8 @@ labels:
    - [0x803789C8, "vec3s_add"]
    - [0x80378A20, "vec3s_sum"]
    - [0x80378A78, "vec3s_sub"]
-   - [0x8037A348, "Unknown8037A348"]
-   - [0x8037AB88, "Unknown8037AB88"]
+   - [0x8037A348, "mtxf_mul_vec3s"]
+   - [0x8037AB88, "atan2f"]
    # graph_node
    - [0x8037B220, "InitSceneGraphNodeLinks"]
    - [0x8037C9E8, "Unknown8037C9E8"]
@@ -4042,7 +4042,7 @@ labels:
    - [0x80380434, "LevelScript3C"]
    - [0x803805C8, "LevelScriptLoad"]
    # surface_collision1
-   - [0x80381470, "func_80381470"]
+   - [0x80381470, "unused_find_floor_height"]
    - [0x803817E0, "func_803817E0"]
    - [0x80382294, "func_80382294"]
    # surface_collision2

@@ -5,7 +5,7 @@
 #include "main.h"
 #include "math_util.h"
 #include "memory.h"
-#include "rendering.h"
+#include "area.h"
 #include "save_file.h"
 #include "audio_interface_2.h"
 #include "level_update.h"
@@ -188,7 +188,7 @@ int func_8016F3CC(void)
 {
     int sp1C = 0;
 
-    IntroPrintText();
+    print_intro_text();
 
     if(gPlayer1Controller->buttonPressed & START_BUTTON)
     {
@@ -203,7 +203,7 @@ int func_8016F444(void)
 {
     int sp1C = 0;
 
-    IntroPrintText();
+    print_intro_text();
 
     if(gPlayer1Controller->buttonPressed & START_BUTTON)
     {
