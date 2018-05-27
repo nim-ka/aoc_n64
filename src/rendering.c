@@ -30,7 +30,7 @@ extern s16 D_8033A754;
 
 extern void *D_8033A160;
 
-struct SpawnInfo *D_8032CE60 = &gPlayerSpawnInfos[0];
+struct SpawnInfo *gMarioSpawnInfo = &gPlayerSpawnInfos[0];
 void **gLoadedGeoLayouts = &D_8033A160;
 struct Area *D_8032CE68 = D_8033A560;
 struct Area *D_8032CE6C = NULL;
@@ -90,7 +90,7 @@ struct ObjectWarpNode *func_8027A418(u8 a)
 {
     struct ObjectWarpNode *sp4 = NULL;
 
-    for (sp4 = D_8032CE6C->unk14; sp4 != NULL; sp4 = sp4->unk8)
+    for (sp4 = D_8032CE6C->warpNodes; sp4 != NULL; sp4 = sp4->next)
     {
         if (sp4->node.id == a)
             break;
@@ -130,7 +130,7 @@ void func_8027A554(void)
     D_8032CE6C = NULL;
     D_8033A740 = 0;
     D_8033A743 = 0;
-    D_8032CE60->areaIndex = -1;
+    gMarioSpawnInfo->areaIndex = -1;
     for (sp4 = 0; sp4 < 8; sp4++)
     {
         D_8033A560[sp4].index = sp4;
@@ -140,10 +140,10 @@ void func_8027A554(void)
         D_8033A560[sp4].unk08 = 0;
         D_8033A560[sp4].unk0C = 0;
         D_8033A560[sp4].unk10 = 0;
-        D_8033A560[sp4].unk14 = 0;
+        D_8033A560[sp4].warpNodes = NULL;
         D_8033A560[sp4].paintingWarpNodes = NULL;
-        D_8033A560[sp4].unk1C = 0;
-        D_8033A560[sp4].unk20 = 0;
+        D_8033A560[sp4].instantWarps = NULL;
+        D_8033A560[sp4].objectSpawnInfos = NULL;
         D_8033A560[sp4].unk24 = 0;
         D_8033A560[sp4].unk28 = 0;
         D_8033A560[sp4].whirlpools[0] = NULL;
@@ -183,8 +183,8 @@ void func_8027A894(int a)
         D_8033A75A = D_8032CE6C->index;
         if (D_8032CE6C->unk08 != 0)
             load_area_terrain(a, D_8032CE6C->unk08, (s8 *) D_8032CE6C->unk0C, D_8032CE6C->unk10);
-        if (D_8032CE6C->unk20 != 0)
-            spawn_objects_from_info(0, D_8032CE6C->unk20);
+        if (D_8032CE6C->objectSpawnInfos != 0)
+            spawn_objects_from_info(0, D_8032CE6C->objectSpawnInfos);
         func_8027A4C4();
         func_8037C360(D_8032CE6C->unk04, 3);
     }
@@ -205,11 +205,11 @@ void func_8027A998(void)
 void func_8027AA0C(void)
 {
     func_80320890();
-    func_8027A894(D_8032CE60->areaIndex);
-    if (D_8032CE6C->index == D_8032CE60->areaIndex)
+    func_8027A894(gMarioSpawnInfo->areaIndex);
+    if (D_8032CE6C->index == gMarioSpawnInfo->areaIndex)
     {
         D_8032CE6C->unk01 |= 1;
-        spawn_objects_from_info(0, D_8032CE60);
+        spawn_objects_from_info(0, gMarioSpawnInfo);
     }
 }
 
@@ -217,7 +217,7 @@ void func_8027AA88(void)
 {
     if (D_8032CE6C != NULL && (D_8032CE6C->unk01 & 1))
     {
-        func_8029C75C(0, D_8032CE60->unk0D);
+        func_8029C75C(0, gMarioSpawnInfo->unk0D);
         D_8032CE6C->unk01 &= ~1;
         if (D_8032CE6C->unk01 == 0)
             func_8027A998();
@@ -237,7 +237,7 @@ void func_8027AB10(int a)
     }
     if (sp1C & 1)
     {
-        gMarioObject->gfx.unk18 = a, D_8032CE60->areaIndex = a;
+        gMarioObject->gfx.unk18 = a, gMarioSpawnInfo->areaIndex = a;
     }
 }
 

@@ -1,0 +1,30 @@
+# 0x0E000170
+.word 0x20001388
+.word 0x04000000
+.word   0x15010000, bifs_platform_f3d_07000FE0
+.word 0x05000000
+.word 0x01000000
+# 0x0E000188
+.word 0x0800000A, 0x00A00078, 0x00A00078
+.word 0x04000000
+.word   0x0C000000
+.word   0x04000000
+.word     0x09000064
+.word     0x04000000
+.word       0x19000001, Geo19_802763D4
+.word     0x05000000
+.word   0x05000000
+.word   0x0C010000
+.word   0x04000000
+.word     0x0A01002D, 0x00644E20, Geo0A_8029AA3C
+.word     0x04000000
+.word       0x0F00000B, 0x000007D0, 0x17700000, 0x00000000, Geo0F_80287D30
+.word       0x04000000
+.word         0x15010000, bifs_platform_f3d_07001930
+.word         0x17000000
+.word         0x1800000C, Geo18_802761D0
+.word       0x05000000
+.word     0x05000000
+.word   0x05000000
+.word 0x05000000
+.word 0x01000000

@@ -4992,8 +4992,8 @@ glabel func_802548BC
 /* 00F9AC 802549AC 3C0C8033 */  lui   $t4, %hi(gMarioState) # $t4, 0x8033
 /* 00F9B0 802549B0 8D8CC9D8 */  lw    $t4, %lo(gMarioState)($t4)
 /* 00F9B4 802549B4 AD800080 */  sw    $zero, 0x80($t4)
-/* 00F9B8 802549B8 3C0D8033 */  lui   $t5, %hi(D_8032CE60) # $t5, 0x8033
-/* 00F9BC 802549BC 8DADCE60 */  lw    $t5, %lo(D_8032CE60)($t5)
+/* 00F9B8 802549B8 3C0D8033 */  lui   $t5, %hi(gMarioSpawnInfo) # $t5, 0x8033
+/* 00F9BC 802549BC 8DADCE60 */  lw    $t5, %lo(gMarioSpawnInfo)($t5)
 /* 00F9C0 802549C0 85AE0000 */  lh    $t6, ($t5)
 /* 00F9C4 802549C4 85AF0004 */  lh    $t7, 4($t5)
 /* 00F9C8 802549C8 448E4000 */  mtc1  $t6, $f8
@@ -5023,8 +5023,8 @@ glabel func_802548BC
 /* 00FA28 80254A28 8DAF0088 */  lw    $t7, 0x88($t5)
 /* 00FA2C 80254A2C A5EE0038 */  sh    $t6, 0x38($t7)
 /* 00FA30 80254A30 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
-/* 00FA34 80254A34 3C058033 */  lui   $a1, %hi(D_8032CE60) # $a1, 0x8033
-/* 00FA38 80254A38 8CA5CE60 */  lw    $a1, %lo(D_8032CE60)($a1)
+/* 00FA34 80254A34 3C058033 */  lui   $a1, %hi(gMarioSpawnInfo) # $a1, 0x8033
+/* 00FA38 80254A38 8CA5CE60 */  lw    $a1, %lo(gMarioSpawnInfo)($a1)
 /* 00FA3C 80254A3C 8C84C9D8 */  lw    $a0, %lo(gMarioState)($a0)
 /* 00FA40 80254A40 24A50006 */  addiu $a1, $a1, 6
 /* 00FA44 80254A44 0C0DE24F */  jal   vec3s_copy
@@ -5038,8 +5038,8 @@ glabel func_802548BC
 /* 00FA64 80254A64 24840032 */   addiu $a0, $a0, 0x32
 /* 00FA68 80254A68 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
 /* 00FA6C 80254A6C 8C84C9D8 */  lw    $a0, %lo(gMarioState)($a0)
-/* 00FA70 80254A70 3C058033 */  lui   $a1, %hi(D_8032CE60) # $a1, 0x8033
-/* 00FA74 80254A74 8CA5CE60 */  lw    $a1, %lo(D_8032CE60)($a1)
+/* 00FA70 80254A70 3C058033 */  lui   $a1, %hi(gMarioSpawnInfo) # $a1, 0x8033
+/* 00FA74 80254A74 8CA5CE60 */  lw    $a1, %lo(gMarioSpawnInfo)($a1)
 /* 00FA78 80254A78 0C0DE2B4 */  jal   vec3s_to_vec3f
 /* 00FA7C 80254A7C 2484003C */   addiu $a0, $a0, 0x3c
 /* 00FA80 80254A80 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033

@@ -2,8 +2,6 @@
 
 .section .mio0, "ax"
 
-.include "levels/main_entry.s"
-
 .align 4, 0
 glabel segment2
 .incbin "build/mio0/segment2.mio0"

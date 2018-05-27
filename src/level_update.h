@@ -3,11 +3,11 @@
 
 #include "types.h"
 
+
 #define TIMER_CONTROL_SHOW  0
 #define TIMER_CONTROL_START 1
 #define TIMER_CONTROL_STOP  2
 #define TIMER_CONTROL_HIDE  3
-
 
 #define WARP_OP_NONE          0x00
 #define WARP_OP_UNKNOWN_01    0x01
@@ -47,10 +47,11 @@
 #define MARIO_SPAWN_UNKNOWN_25 0x25
 #define MARIO_SPAWN_UNKNOWN_27 0x27
 
-struct UnknownArea1C
+
+struct InstantWarp
 {
     /*0x00*/ u8 unk00;
-    /*0x01*/ u8 unk01;
+    /*0x01*/ u8 area;
     /*0x02*/ Vec3s displacement;
 };
 
@@ -66,7 +67,16 @@ struct ObjectWarpNode
 {
     /*0x00*/ struct WarpNode node;
     /*0x04*/ struct Object *object;
-    /*0x08*/ struct ObjectWarpNode *unk8;
+    /*0x08*/ struct ObjectWarpNode *next;
+};
+
+struct UnknownArea28
+{
+    /*0x00*/ s16 unk00;
+    /*0x02*/ s16 unk02;
+    /*0x04*/ s16 unk04;
+    /*0x06*/ s16 unk06;
+    /*0x08*/ s16 unk08;
 };
 
 struct Whirlpool
@@ -82,14 +92,14 @@ struct Area
     /*0x02*/ u16 unk02;
     /*0x04*/ struct GraphNode *unk04;
     /*0x08*/ s16 *unk08;
-    /*0x0C*/ u32 unk0C;
+    /*0x0C*/ void *unk0C;
     /*0x10*/ s16 *unk10;
-    /*0x14*/ struct ObjectWarpNode *unk14;
+    /*0x14*/ struct ObjectWarpNode *warpNodes;
     /*0x18*/ struct WarpNode *paintingWarpNodes;
-    /*0x1C*/ struct UnknownArea1C *unk1C;
-    /*0x20*/ struct SpawnInfo *unk20;
+    /*0x1C*/ struct InstantWarp *instantWarps;
+    /*0x20*/ struct SpawnInfo *objectSpawnInfos;
     /*0x24*/ struct Struct80280550 *unk24;
-    /*0x28*/ u32 unk28;
+    /*0x28*/ struct UnknownArea28 *unk28;
     /*0x2C*/ struct Whirlpool *whirlpools[2];
     /*0x34*/ u8 unk34[1];
     /*0x35*/ u8 unk35;
@@ -145,8 +155,6 @@ extern struct Area *D_8032CE6C;
 
 extern s16 gCurrSaveFileNum;
 extern s16 gCurrLevelNum;
-
-// extern s8 D_8032C9E0;
 
 u16 level_control_timer(u32 timerOp);
 void func_80249788(u32 arg, u32 color);

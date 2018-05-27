@@ -458,7 +458,7 @@ static void func_8024A0E0(void)
         func_80249148(D_8032CE6C->unk36, D_8032CE6C->unk38, 0);
 }
 
-static void check_endless_staircase(void)
+static void check_instant_warp(void)
 {
     s16 cameraAngle;
     struct Surface *floor;
@@ -471,18 +471,16 @@ static void check_endless_staircase(void)
 
     if ((floor = gMarioState->floor) != NULL)
     {
-        // I think only index 0 is used in game, but apparently they allow up to
-        // four "displacers"
         s32 index = floor->type - SURFACE_001B;
-        if (index >= 0 && index < 4 && D_8032CE6C->unk1C != NULL)
+        if (index >= 0 && index < 4 && D_8032CE6C->instantWarps != NULL)
         {
-            struct UnknownArea1C *ptr = &D_8032CE6C->unk1C[index];
+            struct InstantWarp *warp = &D_8032CE6C->instantWarps[index];
 
-            if (ptr->unk00 != 0)
+            if (warp->unk00 != 0)
             {
-                gMarioState->pos[0] += ptr->displacement[0];
-                gMarioState->pos[1] += ptr->displacement[1];
-                gMarioState->pos[2] += ptr->displacement[2];
+                gMarioState->pos[0] += warp->displacement[0];
+                gMarioState->pos[1] += warp->displacement[1];
+                gMarioState->pos[2] += warp->displacement[2];
 
                 gMarioState->marioObj->pos[0] = gMarioState->pos[0];
                 gMarioState->marioObj->pos[1] = gMarioState->pos[1];
@@ -490,13 +488,13 @@ static void check_endless_staircase(void)
 
                 cameraAngle = gMarioState->area->unk24->unk2;
 
-                func_8027AB10(ptr->unk01);
+                func_8027AB10(warp->area);
                 gMarioState->area = D_8032CE6C;
 
                 func_8028C1A0(
-                    ptr->displacement[0],
-                    ptr->displacement[1],
-                    ptr->displacement[2]);
+                    warp->displacement[0],
+                    warp->displacement[1],
+                    warp->displacement[2]);
 
                 gMarioState->area->unk24->unk2 = cameraAngle;
             }
@@ -949,7 +947,7 @@ static s32 play_mode_normal(void)
     }
 
     func_8024A02C();
-    check_endless_staircase();
+    check_instant_warp();
 
     if (sTimerRunning && gTimerValueInFrames < 17999)
         gTimerValueInFrames += 1;

@@ -416,13 +416,13 @@
 // extern ? setup_timers(?);
 // extern ? Unknown8019C270(?);
 // extern ? Unknown8019C288(?);
-// extern ? func_8019C2D8(?);
-// extern ? gdm_init(?);
-// extern ? gdm_setup(?);
+extern void func_8019C2D8(void *, u32);
+extern void gdm_init(void *, u32);
+extern void gdm_setup(void);
 // extern ? Unknown8019C448(?);
 // extern ? Unknown8019C45C(?);
 // extern ? func_8019C4B0(?);
-// extern ? gdm_maketestdl(?);
+extern void gdm_maketestdl(s16);
 // extern ? gdm_unused(?);
 // extern ? Unknown8019C840(?);
 // extern ? Proc8019C734(?);

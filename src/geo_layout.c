@@ -45,12 +45,7 @@ GeoLayoutCommandProc GeoLayoutJumpTable[] =
     geo_layout_cmd_20,
 };
 
-u32 unused_8038B894[3] = { 0 }; 
-
-u32 D_8038B8A0 = 0;
-u16 D_8038B8A4 = 0;
-u16 D_8038B8A8 = 0;
-s16 D_8038B8AC = -1;
+u32 unused_8038B894[3] = { 0 };
 
 extern struct GraphNode D_8038BD88;
 

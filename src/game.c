@@ -287,7 +287,7 @@ void func_80248934(void)
     D_80339CF4 = main_pool_alloc(2048, MEMORY_POOL_LEFT);
     set_segment_base_addr(24, (void *)D_80339CF4);
     func_80278A78(&gDemo, D_00577BC0, D_80339CF4);
-    load_segment(16, main_entry, main_entry_end, MEMORY_POOL_LEFT);
+    load_segment(0x10, _level_main_entrySegmentRomStart, _level_main_entrySegmentRomEnd, MEMORY_POOL_LEFT);
     load_segment_decompress(2, segment2, segment2_end);
 }
 
@@ -295,14 +295,14 @@ void func_80248934(void)
 // continues.
 void thread5_game_loop(UNUSED void *arg)
 {
-    u32 addr;
+    struct LevelCommand *addr;
 
     func_80248934();
     init_controllers();
     save_file_load_all();
 
     func_80246B14(2, &D_80339CD8, &D_80339CA0, (OSMesg)1);
-    addr = (u32)segmented_to_virtual(D_10000000);
+    addr = (struct LevelCommand *) segmented_to_virtual(D_10000000);
     func_80320AE8(2, 0, 0);
     func_80248DD8(save_file_get_sound_mode());
     func_80247ED8();
@@ -325,7 +325,7 @@ void thread5_game_loop(UNUSED void *arg)
         func_802494A8();
         func_80247FAC();
         read_controller_inputs();
-        addr = LevelScriptLoad(addr);
+        addr = level_script_execute(addr);
         func_80248060();
 
         // when debug info is enabled, print the "BUF %d" information.

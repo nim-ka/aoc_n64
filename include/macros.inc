@@ -1,6 +1,8 @@
 # Assembly Macros
 
 .set NULL, 0
+.set FALSE, 0
+.set TRUE, 1
 
 .macro glabel label
     .global \label

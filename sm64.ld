@@ -26,6 +26,18 @@ __expansionRamStart = 0x80400000;
 #define END_BSS(name) \
     _##name##SegmentBssEnd = ADDR(.name.bss) + SIZEOF(.name.bss);
 
+#define STANDARD_LEVEL(name) \
+   BEGIN_SEG(name##_segment_7, 0x07000000) \
+   { \
+      build/levels/name.o(.seg07); \
+   } \
+   END_SEG(name##_segment_7) \
+   BEGIN_SEG(name, 0x0E000000) \
+   { \
+      build/levels/name.o(.level); \
+   } \
+   END_SEG(name)
+
 SECTIONS
 {
     __romPos = 0;
@@ -211,7 +223,7 @@ SECTIONS
       build/src/math_util.o(.text);
       build/src/graph_node.o(.text);
       build/src/geo_layout.o(.text);
-      build/asm/level_script.o(.text);
+      build/src/level_script.o(.text);
       build/src/surface_collision.o(.text);
       build/src/surface_load.o(.text);
       build/src/behavior_script.o(.text);
@@ -219,11 +231,11 @@ SECTIONS
       build/data/graph_node.data.o(.data*);
       build/data/math_util.data.o(.data*);
       build/src/geo_layout.o(.data*);
-      build/data/level_script.data.o(.data*);
+      build/src/level_script.o(.data*);
       build/src/behavior_script.o(.data*);
       /* rodata */
       build/src/math_util.o(.rodata*);
-      build/data/level_script.rodata.o(.rodata*);
+      build/src/level_script.o(.rodata*);
       build/src/surface_collision.o(.rodata*);
       build/src/surface_load.o(.rodata*);
    }
@@ -231,6 +243,9 @@ SECTIONS
    BEGIN_BSS(engine)
    {
       build/data/bss2.o(.bss*);
+      build/src/level_script.o(.bss*);
+      build/data/bss8038BE30.o(.bss*);
+      build/src/surface_collision.o(.bss*);
       build/src/surface_load.o(.bss*);
       build/src/behavior_script.o(.bss*);
    }
@@ -251,6 +266,12 @@ SECTIONS
    PROVIDE(rdramEnd = .);
 
    ASSERT((rdramEnd <= 0x80400000), "Error: RDRAM expanded into Expansion RAM, despite Expansion RAM not being defined.")
+
+   BEGIN_SEG(level_main_entry, 0x10000000)
+   {
+      build/levels/level_main_entry.o(.level);
+   }
+   END_SEG(level_main_entry)
 
    /* load MIO0 and level data at 0x001076A0 */
    BEGIN_SEG(mio0, __romPos)
@@ -305,6 +326,16 @@ SECTIONS
    }
 
    /* 0x268020 0x268020-0 [0] */
+   BEGIN_SEG(level_intro, 0x14000000)
+   {
+      build/levels/level_intro.o(.level);
+   }
+   END_SEG(level_intro)
+   BEGIN_SEG(level_intro_segment_7, 0x07000000)
+   {
+      build/levels/level_intro.o(.seg07);
+   }
+   END_SEG(level_intro_segment_7)
    BEGIN_SEG(mio0_c, __romPos)
    {
       build/data/level_misc.o(.mio0_c);
@@ -318,12 +349,63 @@ SECTIONS
    }
    END_SEG(text271B20)
 
+   gMainLevels = __romPos;
+
+   BEGIN_SEG(level_main_menu, 0x14000000)
+   {
+      build/levels/level_main_menu.o(.level);
+   }
+   END_SEG(level_main_menu)
+   BEGIN_SEG(level_main_menu_segment_7, 0x07000000)
+   {
+      build/levels/level_main_menu.o(.seg07);
+   }
+   END_SEG(level_main_menu_segment_7)
+
+   BEGIN_SEG(level_main_scripts, 0x15000000)
+   {
+      build/levels/level_main_scripts.o(.level);
+   }
+   END_SEG(level_main_scripts)
+
    /* 0x2A42A0 0x2A42A0-0 [0] */
    BEGIN_SEG(mio0_b, __romPos)
    {
       build/data/level_main.o(.mio0_b);
    }
    END_SEG(mio0_b)
+
+   STANDARD_LEVEL(level_bbh)
+   STANDARD_LEVEL(level_ccm)
+   STANDARD_LEVEL(level_castle)
+   STANDARD_LEVEL(level_hmc)
+   STANDARD_LEVEL(level_ssl)
+   STANDARD_LEVEL(level_bob)
+   STANDARD_LEVEL(level_sl)
+   STANDARD_LEVEL(level_wdw)
+   STANDARD_LEVEL(level_jrb)
+   STANDARD_LEVEL(level_thi)
+   STANDARD_LEVEL(level_ttc)
+   STANDARD_LEVEL(level_rr)
+   STANDARD_LEVEL(level_castle_grounds)
+   STANDARD_LEVEL(level_bitdw)
+   STANDARD_LEVEL(level_vcutm)
+   STANDARD_LEVEL(level_bitfs)
+   STANDARD_LEVEL(level_sa)
+   STANDARD_LEVEL(level_bits)
+   STANDARD_LEVEL(level_lll)
+   STANDARD_LEVEL(level_ddd)
+   STANDARD_LEVEL(level_wf)
+   STANDARD_LEVEL(level_ending)
+   STANDARD_LEVEL(level_castle_courtyard)
+   STANDARD_LEVEL(level_pss)
+   STANDARD_LEVEL(level_cotmc)
+   STANDARD_LEVEL(level_totwc)
+   STANDARD_LEVEL(level_bowser_1)
+   STANDARD_LEVEL(level_wmotr)
+   STANDARD_LEVEL(level_bowser_2)
+   STANDARD_LEVEL(level_bowser_3)
+   STANDARD_LEVEL(level_ttm)
 
    /* 4E9FA0-? [?] */
    BEGIN_SEG(text4E9FA0, __romPos)

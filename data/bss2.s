@@ -33,21 +33,3 @@ glabel D_8038BD88
     .space 0x10
 glabel D_8038BD98
     .space 0x8
-glabel D_8038BDA0
-    .space 0x80
-glabel D_8038BE20
-    .space 0x4
-glabel D_8038BE24
-    .space 0x4
-glabel D_8038BE28
-    .space 0x8
-glabel D_8038BE30
-    .space 0x10
-glabel D_8038BE40
-    .space 0x4
-glabel D_8038BE44
-    .space 0x4
-glabel D_8038BE48
-    .space 0x4
-glabel D_8038BE4C
-    .space 0x44
