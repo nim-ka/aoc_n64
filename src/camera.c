@@ -1,7 +1,7 @@
 #include <ultra64.h>
 
 #include "sm64.h"
-#include "castle_message_behavior.h"
+#include "castle_message_behaviors.h"
 #include "game.h"
 #include "math_util.h"
 #include "area.h"

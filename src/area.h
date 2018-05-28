@@ -36,6 +36,7 @@ struct SpawnInfo
     /*0x1C*/ struct SpawnInfo *next;
 };
 
+// camera related
 struct Struct80280550
 {
     u8 unk0;

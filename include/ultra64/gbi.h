@@ -234,6 +234,13 @@ typedef union
     _g->words.w1 = (u32)(dl); \
 }
 
+#define gSPBranchList(pkt, dl) \
+{ \
+    Gfx *_g = (Gfx *)(pkt); \
+    _g->words.w0 = 0x06010000; \
+    _g->words.w1 = (u32)(dl); \
+}
+
 #define gSPEndDisplayList(pkt) \
 { \
     Gfx *_g = (Gfx *) (pkt); \

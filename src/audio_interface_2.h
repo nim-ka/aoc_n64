@@ -113,7 +113,7 @@ extern void func_803210D4();
 // extern ? func_80321264(?);
 // extern ? func_803212A0(?);
 // extern ? func_803212F0(?);
-// extern ? func_8032132C(?);
+extern void func_8032132C(void);
 extern void func_80321368();
 extern void func_80321434();
 // extern ? Unknown80321460(?);

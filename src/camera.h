@@ -215,7 +215,7 @@ extern s16 D_8035FE10;
 // extern ? D_8032EEEC;
 // extern ? D_8032EF14;
 // extern ? D_8032EF34;
-extern s32 D_8033B1B0[];
+extern struct Struct8033B1B0 D_8033B1B0;
 // extern ? D_8033B4E0;
 // extern ? D_8033B5E0;
 // extern ? D_8033B248;

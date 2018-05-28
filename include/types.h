@@ -103,10 +103,10 @@ struct GfxNode
     /*0x002*/ s16 graphFlags;
     u8 filler4[0x8-0x4];
     /*0x008*/ struct Object *unk8;
-    u8 fillerC[4];
+    /*0x00C*/ u32 unkC;
     /*0x010*/ struct Object *unk10;
     /*0x014*/ void *geoLayout;
-    /*0x018*/ u8 unk18;
+    /*0x018*/ s8 unk18;
     /*0x019*/ s8 unk19;
     /*0x01A*/ Vec3s unk1A;
     /*0x020*/ Vec3f unk20;
@@ -179,7 +179,7 @@ struct Object
     /*0x170*/ f32 unk170;
     /*0x174*/ f32 unk174;
     /*0x178*/ s32 unk178;
-    u8 filler17C[0x180-0x17C];
+    /*0x17C*/ u32 unk17C;
     /*0x180*/ s32 unk180;
     /*0x184*/ u32 unk184;
     /*0x188*/ s32 unk188;
@@ -246,7 +246,7 @@ struct UnknownStruct4
     /*0x06*/ u8 unk06;
     /*0x07*/ u8 unk07;
     /*0x08*/ u16 unk08;
-    /*0x0A*/ u8 unk0A;
+    /*0x0A*/ s8 unk0A;
     /*0x0B*/ u8 unk0B;
     /*0x0C*/ s16 unk0C;
     /*0x0E*/ u8 filler0E[2];
@@ -339,6 +339,14 @@ struct MarioAnimation
     u32 currentDma;
     void *targetAnim;
     u8 padding[4];
+};
+
+struct Struct8033B1B0
+{
+    s32 unk0;
+    Vec3f unk4;
+    u8 filler10[6];
+    Vec3s unk16;
 };
 
 #endif

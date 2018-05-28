@@ -1,6 +1,8 @@
 #include <ultra64.h>
 #include "libultra.h"
 
+#define static
+
 #include "sm64.h"
 #include "behavior_data.h"
 #include "behavior_script.h"

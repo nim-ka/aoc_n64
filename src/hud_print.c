@@ -162,7 +162,9 @@ void func_802E261C(s16 numHealthWedges)
     
     D_803600D0 = numHealthWedges;
 
-    if (D_8033B1B0[0] & 0x2000)
+    // FIXME: Why doesn't this match?
+    //if (D_8033B1B0.unk0 & 0x2000)
+    if (*(s32 *)&D_8033B1B0 & 0x2000)
     {
         if (hudStruct.d_E0 == 0 || hudStruct.d_E0 == 1)
         {

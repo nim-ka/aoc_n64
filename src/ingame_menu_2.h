@@ -16,7 +16,7 @@
 // extern ? func_802DE01C(?);
 // extern ? func_802DE424(?);
 // extern ? func_802DE838(?);
-// extern ? func_802DECB8(?);
+extern void *func_802DECB8(int, Vec3s, Vec3s, Vec3s);
 // extern ? func_802DEE40(?);
 // extern ? func_802DEEF0(?);
 // extern ? func_802DEF70(?);

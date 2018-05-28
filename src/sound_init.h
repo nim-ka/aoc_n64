@@ -21,7 +21,7 @@ extern void func_80248C28(s32);
 // extern ? func_80248D48(?);
 extern void func_80248D90(void);
 extern void func_80248DD8(u16);
-// extern ? func_80248E24(?);
+extern void func_80248E24(s16 a);
 extern void func_80248FBC(void);
 // extern ? func_80249040(?);
 extern void func_80249148(u16, u16, s16);
