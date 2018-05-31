@@ -177,9 +177,8 @@ struct Object *func_802C9120(struct GfxNode *a)
     sp20->collidedObjInteractTypes = 0;
     sp20->numCollidedObjs = 0;
 
-    // hmm...
-    for (i = 0; i < 80; i++)
-        sp20->unk88[i] = 0;
+    for (i = 0; i < 0x50; i++)
+        sp20->rawData.asU32[i] = 0;
 
     sp20->unk1C8 = 0;
     sp20->stackIndex = 0;
@@ -192,19 +191,19 @@ struct Object *func_802C9120(struct GfxNode *a)
     sp20->unk210 = 0;
     sp20->platform = NULL;
     sp20->collisionData = NULL;
-    sp20->unk9C = -1;
-    sp20->unk180 = 0;
-    sp20->unk184 = 2048;
-    sp20->collisionDistance = 1000.0f;
+    sp20->oUnk9C = -1;
+    sp20->oUnk180 = 0;
+    sp20->oUnk184 = 2048;
+    sp20->oCollisionDistance = 1000.0f;
     if (gCurrLevelNum == 14)
-        sp20->drawingDistance = 2000.0f;
+        sp20->oDrawingDistance = 2000.0f;
     else
-        sp20->drawingDistance = 4000.0f;
+        sp20->oDrawingDistance = 4000.0f;
     mtxf_identity(sp20->unk21C);
     sp20->unk1F6 = 0;
     sp20->unk25C = 0;
-    sp20->distanceFromMario = 19000.0f;
-    sp20->unk1A0 = -1;
+    sp20->oDistanceToMario = 19000.0f;
+    sp20->oUnk1A0 = -1;
 
     sp20->gfx.graphFlags &= ~0x10;
     sp20->gfx.unk20[0] = -10000.0f;
@@ -219,11 +218,11 @@ void func_802C937C(struct Object *a)
 {
     struct Surface *surface;
 
-    a->unkE8 = find_floor(a->pos[0], a->pos[1], a->pos[2], &surface);
-    if (a->unkE8 + 2.0f > a->pos[1] && a->pos[1] > a->unkE8 - 10.0f)
+    a->oUnkE8 = find_floor(a->oPosX, a->oPosY, a->oPosZ, &surface);
+    if (a->oUnkE8 + 2.0f > a->oPosY && a->oPosY > a->oUnkE8 - 10.0f)
     {
-        a->pos[1] = a->unkE8;
-        a->unkEC |= 2;
+        a->oPosY = a->oUnkE8;
+        a->oUnkEC |= 2;
     }
 }
 

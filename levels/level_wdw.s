@@ -95,7 +95,7 @@ glabel level_wdw_entry
         instant_warp /*index*/ 1, /*destArea*/ 2, /*displace*/ 0, 0, 0
         terrain /*terrainData*/ 0x07014150
         cmd39 /*unk4*/ 0x070160D8
-        set_menu_music /*unk2*/ 0x0003, /*seq*/ 0x000C
+        set_music /*unk2*/ 0x0003, /*seq*/ 0x000C
         terrain_type /*terrainType*/ 0x0001
     end_area
 
@@ -107,7 +107,7 @@ glabel level_wdw_entry
         instant_warp /*index*/ 0, /*destArea*/ 1, /*displace*/ 0, 0, 0
         terrain /*terrainData*/ 0x0701633C
         cmd39 /*unk4*/ 0x07018224
-        set_menu_music /*unk2*/ 0x0003, /*seq*/ 0x000C
+        set_music /*unk2*/ 0x0003, /*seq*/ 0x000C
         terrain_type /*terrainType*/ 0x0005
     end_area
 

@@ -3048,8 +3048,8 @@ glabel func_802D9030
 /* 094030 802D9030 27BDFFC8 */  addiu $sp, $sp, -0x38
 /* 094034 802D9034 AFBF001C */  sw    $ra, 0x1c($sp)
 /* 094038 802D9038 AFA40038 */  sw    $a0, 0x38($sp)
-/* 09403C 802D903C 3C0E8033 */  lui   $t6, %hi(D_8032C694) # $t6, 0x8033
-/* 094040 802D9040 8DCEC694 */  lw    $t6, %lo(D_8032C694)($t6)
+/* 09403C 802D903C 3C0E8033 */  lui   $t6, %hi(gGlobalTimer) # $t6, 0x8033
+/* 094040 802D9040 8DCEC694 */  lw    $t6, %lo(gGlobalTimer)($t6)
 /* 094044 802D9044 AFAE0034 */  sw    $t6, 0x34($sp)
 /* 094048 802D9048 8FAF0034 */  lw    $t7, 0x34($sp)
 /* 09404C 802D904C 31F80008 */  andi  $t8, $t7, 8
@@ -4569,8 +4569,8 @@ glabel PrintAnimatedRedCoin
 /* 09562C 802DA62C AFA40048 */  sw    $a0, 0x48($sp)
 /* 095630 802DA630 AFA5004C */  sw    $a1, 0x4c($sp)
 /* 095634 802DA634 AFB00018 */  sw    $s0, 0x18($sp)
-/* 095638 802DA638 3C0E8033 */  lui   $t6, %hi(D_8032C694) # $t6, 0x8033
-/* 09563C 802DA63C 8DCEC694 */  lw    $t6, %lo(D_8032C694)($t6)
+/* 095638 802DA638 3C0E8033 */  lui   $t6, %hi(gGlobalTimer) # $t6, 0x8033
+/* 09563C 802DA63C 8DCEC694 */  lw    $t6, %lo(gGlobalTimer)($t6)
 /* 095640 802DA640 AFAE0044 */  sw    $t6, 0x44($sp)
 /* 095644 802DA644 87AF004A */  lh    $t7, 0x4a($sp)
 /* 095648 802DA648 87B8004E */  lh    $t8, 0x4e($sp)

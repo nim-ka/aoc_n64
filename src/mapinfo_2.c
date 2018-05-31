@@ -161,20 +161,20 @@ void func_802C9BF0(void)
     int sp20;
     int sp1C;
 
-    sp1C = gCurrentObject->angle[1] / 182.044000;
-    sp20  = ((int)gCurrentObject->pos[0] + 0x2000) / 1024
-          + ((int)gCurrentObject->pos[2] + 0x2000) / 1024 * 16;
+    sp1C = gCurrentObject->oAngleYaw / 182.044000;
+    sp20  = ((int)gCurrentObject->oPosX + 0x2000) / 1024
+          + ((int)gCurrentObject->oPosZ + 0x2000) / 1024 * 16;
 
-    sp28 = find_floor(gCurrentObject->pos[0], gCurrentObject->pos[1], gCurrentObject->pos[2], &pfloor);
-    sp24 = find_water_level(gCurrentObject->pos[0], gCurrentObject->pos[2]);
+    sp28 = find_floor(gCurrentObject->oPosX, gCurrentObject->oPosY, gCurrentObject->oPosZ, &pfloor);
+    sp24 = find_water_level(gCurrentObject->oPosX, gCurrentObject->oPosZ);
 
     func_802C9BA0("mapinfo", 0);
     AnotherPrint("area %x", sp20);
-    AnotherPrint("wx   %d", gCurrentObject->pos[0]);
-    AnotherPrint("wy\t  %d", gCurrentObject->pos[1]); //! Fat finger: programmer hit tab instead of space. Japanese
+    AnotherPrint("wx   %d", gCurrentObject->oPosX);
+    AnotherPrint("wy\t  %d", gCurrentObject->oPosY); //! Fat finger: programmer hit tab instead of space. Japanese
                                                       // thumb shift keyboards had the tab key next to the spacebar,
                                                       // so this was likely the reason.
-    AnotherPrint("wz   %d", gCurrentObject->pos[2]);
+    AnotherPrint("wz   %d", gCurrentObject->oPosZ);
     AnotherPrint("bgY  %d", sp28);
     AnotherPrint("angY %d", sp1C);
 
@@ -185,7 +185,7 @@ void func_802C9BF0(void)
         AnotherPrint("bgarea   %d", pfloor->room);
     }
 
-    if(gCurrentObject->pos[1] < sp24)
+    if(gCurrentObject->oPosY < sp24)
         AnotherPrint("water %d", sp24);
 }
 
@@ -196,7 +196,7 @@ void func_802C9E08(void)
 
 void func_802C9E38(void)
 {
-    debug_surface_list_info(gMarioObject->pos[0], gMarioObject->pos[2]);
+    debug_surface_list_info(gMarioObject->oPosX, gMarioObject->oPosZ);
 }
 
 void func_802C9E6C(void)
@@ -469,24 +469,24 @@ void BehMarioLoop3(void)
 
 void Unknown802CA8B4(void)
 {
-    if(gCurrentObject->unkEC & 0x00000001)
-        func_802C9AD8("BOUND   %x", gCurrentObject->unkEC);
-    if(gCurrentObject->unkEC & 0x00000002)
-        func_802C9AD8("TOUCH   %x", gCurrentObject->unkEC);
-    if(gCurrentObject->unkEC & 0x00000004)
-        func_802C9AD8("TAKEOFF %x", gCurrentObject->unkEC);
-    if(gCurrentObject->unkEC & 0x00000008)
-        func_802C9AD8("DIVE    %x", gCurrentObject->unkEC);
-    if(gCurrentObject->unkEC & 0x00000010)
-        func_802C9AD8("S WATER %x", gCurrentObject->unkEC);
-    if(gCurrentObject->unkEC & 0x00000020)
-        func_802C9AD8("U WATER %x", gCurrentObject->unkEC);
-    if(gCurrentObject->unkEC & 0x00000040)
-        func_802C9AD8("B WATER %x", gCurrentObject->unkEC);
-    if(gCurrentObject->unkEC & 0x00000080)
-        func_802C9AD8("SKY     %x", gCurrentObject->unkEC);
-    if(gCurrentObject->unkEC & 0x00000100)
-        func_802C9AD8("OUT SCOPE %x", gCurrentObject->unkEC);
+    if(gCurrentObject->oUnkEC & 0x00000001)
+        func_802C9AD8("BOUND   %x", gCurrentObject->oUnkEC);
+    if(gCurrentObject->oUnkEC & 0x00000002)
+        func_802C9AD8("TOUCH   %x", gCurrentObject->oUnkEC);
+    if(gCurrentObject->oUnkEC & 0x00000004)
+        func_802C9AD8("TAKEOFF %x", gCurrentObject->oUnkEC);
+    if(gCurrentObject->oUnkEC & 0x00000008)
+        func_802C9AD8("DIVE    %x", gCurrentObject->oUnkEC);
+    if(gCurrentObject->oUnkEC & 0x00000010)
+        func_802C9AD8("S WATER %x", gCurrentObject->oUnkEC);
+    if(gCurrentObject->oUnkEC & 0x00000020)
+        func_802C9AD8("U WATER %x", gCurrentObject->oUnkEC);
+    if(gCurrentObject->oUnkEC & 0x00000040)
+        func_802C9AD8("B WATER %x", gCurrentObject->oUnkEC);
+    if(gCurrentObject->oUnkEC & 0x00000080)
+        func_802C9AD8("SKY     %x", gCurrentObject->oUnkEC);
+    if(gCurrentObject->oUnkEC & 0x00000100)
+        func_802C9AD8("OUT SCOPE %x", gCurrentObject->oUnkEC);
 }
 
 // unused

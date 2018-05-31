@@ -9,7 +9,7 @@
 #include "display.h"
 
 int unused8032C690 = 0;
-u32 D_8032C694 = 0;
+u32 gGlobalTimer = 0;
 static u16 sCurrFBNum = 0;
 u16 D_8032C69C = 0;
 
@@ -228,12 +228,12 @@ void func_80247ED8(void)
     SendDisplayList((struct Struct8032C630 *)((u8 *)D_80339D04 + 51200));
 
     D_8032C69C++;
-    D_8032C694++;
+    gGlobalTimer++;
 }
 
 void func_80247FAC(void)
 {
-    D_80339D04 = (Gfx *)((u8 *)D_80208100 + (D_8032C694 % 2) * 51280);
+    D_80339D04 = (Gfx *)((u8 *)D_80208100 + (gGlobalTimer % 2) * 51280);
     set_segment_base_addr(1, D_80339D04);
     D_80339CF8 = (struct Struct8032C630 *)((u8 *)D_80339D04 + 51200);
     gDisplayListHead = D_80339D04;
@@ -259,5 +259,5 @@ void func_80248060(void)
         sCurrFBNum = 0;
     if (++D_8032C69C == 3)
         D_8032C69C = 0;
-    D_8032C694++;
+    gGlobalTimer++;
 }

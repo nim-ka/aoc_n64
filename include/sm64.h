@@ -5,6 +5,7 @@
 
 #include "types.h"
 #include "config.h"
+#include "object_fields.h"
 
 // FIXME: find out what these are
 #if VERSION_US

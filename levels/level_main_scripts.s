@@ -59,11 +59,11 @@ glabel level_main_scripts_entry
     cmd22 /*unk2*/ 0x008B, /*unk4*/ 0x16000F24
     free_level_pool
     call /*arg*/ 0, /*func*/ lvl_init_from_save_file
-    link_push_zero
-    execute /*seg*/ 0x14, /*script*/ _level_main_menuSegmentRomStart, /*scriptEnd*/ _level_main_menuSegmentRomEnd, /*entry*/ level_main_menu_entry_2
-    jump_link /*target*/ script_func_local_1
-    sleep /*frames*/ 1
-    pop_twice_if /*op*/ OP_LT, /*arg*/ 0
+    loop_begin
+        execute /*seg*/ 0x14, /*script*/ _level_main_menuSegmentRomStart, /*scriptEnd*/ _level_main_menuSegmentRomEnd, /*entry*/ level_main_menu_entry_2
+        jump_link /*target*/ script_func_local_1
+        sleep /*frames*/ 1
+    loop_until /*op*/ OP_LT, /*arg*/ 0
     jump_if /*op*/ OP_EQ, /*arg*/ -1, /*target*/ L2
     jump_if /*op*/ OP_EQ, /*arg*/ -2, /*target*/ L3
     jump_if /*op*/ OP_EQ, /*arg*/ -3, /*target*/ L4

@@ -906,11 +906,11 @@ int Geo18_802D5D0C(int a, UNUSED int b, UNUSED int c)
     {
         D_803303FC = D_803303F8;
         D_803303F8 = gAreaUpdateCounter;
-        find_floor(gMarioObject->pos[0], gMarioObject->pos[1], gMarioObject->pos[2], &sp1C);
+        find_floor(gMarioObject->oPosX, gMarioObject->oPosY, gMarioObject->oPosZ, &sp1C);
         D_8035FF90 = sp1C->type;
-        D_8035FF94 = gMarioObject->pos[0];
-        D_8035FF98 = gMarioObject->pos[1];
-        D_8035FF9C = gMarioObject->pos[2];
+        D_8035FF94 = gMarioObject->oPosX;
+        D_8035FF98 = gMarioObject->oPosY;
+        D_8035FF9C = gMarioObject->oPosZ;
     }
     return 0;
 }

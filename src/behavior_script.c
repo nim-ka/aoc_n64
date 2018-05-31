@@ -67,17 +67,13 @@ s32 RandomSign(void)
 
 void func_80383D68(struct Object *object)
 {
-    /* TODO un-hack this */
+    object->gfx.unk20[0] = object->oPosX;
+    object->gfx.unk20[1] = object->oPosY + object->oUnkDC;
+    object->gfx.unk20[2] = object->oPosZ;
 
-    struct MyVec3f { f32 x, y, z; };
-
-    object->gfx.unk20[0] = object->pos[0];
-    object->gfx.unk20[1] = object->unkDC + ((struct MyVec3f *)&object->pos)->y;
-    object->gfx.unk20[2] = object->pos[2];
-
-    object->gfx.unk1A[0] = object->faceAngle[0] & 0xFFFF;
-    object->gfx.unk1A[1] = object->faceAngle[1] & 0xFFFF;
-    object->gfx.unk1A[2] = object->faceAngle[2] & 0xFFFF;
+    object->gfx.unk1A[0] = object->oFaceAnglePitch & 0xFFFF;
+    object->gfx.unk1A[1] = object->oFaceAngleYaw & 0xFFFF;
+    object->gfx.unk1A[2] = object->oFaceAngleRoll & 0xFFFF;
 }
 
 static void cur_object_stack_push(u32 value)
@@ -166,7 +162,7 @@ static s32 Behavior29(void)
     
     CopyObjParams(object, gCurrentObject);
     
-    object->behParam = behParam;
+    object->oBehParam = behParam;
     
     gBehCommand += 3;
     return BEH_CONTINUE;
@@ -500,7 +496,7 @@ static s32 beh_cmd_obj_set_int32(void)
 static s32 Behavior28(void)
 {    
     s32 animIndex = (u8)((gBehCommand[0] >> 16) & 0xFF);
-    u32* animations = gCurrentObject->animations;
+    u32* animations = gCurrentObject->oAnimations;
 
     func_8037C658((struct GraphNode018 *) gCurrentObject, &animations[animIndex]);
 
@@ -510,13 +506,13 @@ static s32 Behavior28(void)
 
 static s32 Behavior1E(void)
 {
-    f32 x = gCurrentObject->pos[0];
-    f32 y = gCurrentObject->pos[1];
-    f32 z = gCurrentObject->pos[2];
+    f32 x = gCurrentObject->oPosX;
+    f32 y = gCurrentObject->oPosY;
+    f32 z = gCurrentObject->oPosZ;
     f32 sp18 = find_floor_height(x, y + 200.0f, z);
 
-    gCurrentObject->pos[1] = sp18;
-    gCurrentObject->unkEC |= 2;
+    gCurrentObject->oPosY = sp18;
+    gCurrentObject->oUnkEC |= 2;
 
     gBehCommand++;
     return BEH_CONTINUE;
@@ -635,7 +631,7 @@ static s32 beh_cmd_begin(void)
     if (CheckObjBehavior(beh_mad_piano))
         BehCommonInit();
     if (CheckObjBehavior(beh_message_panel))
-        gCurrentObject->collisionDistance = 150.0f;
+        gCurrentObject->oCollisionDistance = 150.0f;
     gBehCommand++;
     return BEH_CONTINUE;
 }
@@ -665,16 +661,16 @@ static s32 beh_cmd_collision_data(void)
 
 static s32 Behavior2D(void)
 {
-    gCurrentObject->unk164[0] = gCurrentObject->pos[0];
-    gCurrentObject->unk164[1] = gCurrentObject->pos[1];
-    gCurrentObject->unk164[2] = gCurrentObject->pos[2];
+    gCurrentObject->oHomeX = gCurrentObject->oPosX;
+    gCurrentObject->oHomeY = gCurrentObject->oPosY;
+    gCurrentObject->oHomeZ = gCurrentObject->oPosZ;
     gBehCommand++;
     return BEH_CONTINUE;
 }
 
 static s32 beh_cmd_interact_type(void)
 {
-    gCurrentObject->interactType = gBehCommand[1];
+    gCurrentObject->oInteractType = gBehCommand[1];
 
     gBehCommand += 2;
     return BEH_CONTINUE;
@@ -683,7 +679,7 @@ static s32 beh_cmd_interact_type(void)
 // unused
 static s32 Behavior31(void)
 {
-    gCurrentObject->unk190 = gBehCommand[1];
+    gCurrentObject->oUnk190 = gBehCommand[1];
 
     gBehCommand += 2;
     return BEH_CONTINUE;
@@ -704,12 +700,12 @@ static s32 Behavior30(void)
 {
     UNUSED f32 sp04, sp00;
 
-    gCurrentObject->unk128 = (f32)(s16)(gBehCommand[1] >> 16);
-    gCurrentObject->unkE4 = (f32)(s16)(gBehCommand[1] & 0xFFFF) / 100.0f;
-    gCurrentObject->unk158 = (f32)(s16)(gBehCommand[2] >> 16) / 100.0f;
-    gCurrentObject->unk12C = (f32)(s16)(gBehCommand[2] & 0xFFFF) / 100.0f;
-    gCurrentObject->unk170 = (f32)(s16)(gBehCommand[3] >> 16) / 100.0f;
-    gCurrentObject->unk174 = (f32)(s16)(gBehCommand[3] & 0xFFFF) / 100.0f;
+    gCurrentObject->oUnk128 = (f32)(s16)(gBehCommand[1] >> 16);
+    gCurrentObject->oUnkE4 = (f32)(s16)(gBehCommand[1] & 0xFFFF) / 100.0f;
+    gCurrentObject->oUnk158 = (f32)(s16)(gBehCommand[2] >> 16) / 100.0f;
+    gCurrentObject->oUnk12C = (f32)(s16)(gBehCommand[2] & 0xFFFF) / 100.0f;
+    gCurrentObject->oUnk170 = (f32)(s16)(gBehCommand[3] >> 16) / 100.0f;
+    gCurrentObject->oUnk174 = (f32)(s16)(gBehCommand[3] & 0xFFFF) / 100.0f;
 
     // unused parameters
     sp04 = (f32)(s16)(gBehCommand[4] >> 16) / 100.0f;
@@ -745,7 +741,7 @@ static s32 Behavior34(void)
     u8 objectOffset = (gBehCommand[0] >> 16) & 0xFF;
     s16 arg1 = (gBehCommand[0] & 0xFFFF);
 
-    if ((D_8032C694 % arg1) == 0)
+    if ((gGlobalTimer % arg1) == 0)
         cur_object_add_s32(objectOffset, 1);
 
     gBehCommand++;
@@ -822,15 +818,15 @@ void cur_object_exec_behavior(void)
 {
     UNUSED u32 unused;
 
-    s16 flagsLo = gCurrentObject->objFlags;
+    s16 flagsLo = gCurrentObject->oFlags;
     f32 distanceFromMario;
     BehCommandProc behCmdFunc;
     s32 behProcResult;
 
     if (flagsLo & OBJ_FLAG_0040)
     {
-        gCurrentObject->distanceFromMario = objects_calc_distance(gCurrentObject, gMarioObject);
-        distanceFromMario = gCurrentObject->distanceFromMario;
+        gCurrentObject->oDistanceToMario = objects_calc_distance(gCurrentObject, gMarioObject);
+        distanceFromMario = gCurrentObject->oDistanceToMario;
     }
     else
     {
@@ -838,13 +834,13 @@ void cur_object_exec_behavior(void)
     }
 
     if (flagsLo & OBJ_FLAG_2000)
-        gCurrentObject->unk160 = func_8029DF18(gCurrentObject, gMarioObject);
+        gCurrentObject->oUnk160 = func_8029DF18(gCurrentObject, gMarioObject);
 
-    if (gCurrentObject->previousAction != gCurrentObject->action)
+    if (gCurrentObject->oAction != gCurrentObject->oPrevAction)
     {
-        (void) (gCurrentObject->timer = 0,
-        gCurrentObject->unk150 = 0,
-        gCurrentObject->previousAction = gCurrentObject->action);
+        (void) (gCurrentObject->oTimer = 0,
+        gCurrentObject->oUnk150 = 0,
+        gCurrentObject->oPrevAction = gCurrentObject->oAction);
     }
 
     gBehCommand = gCurrentObject->behScript;
@@ -857,23 +853,23 @@ void cur_object_exec_behavior(void)
 
     gCurrentObject->behScript = gBehCommand;
 
-    if (gCurrentObject->timer < 0x3FFFFFFF)
-        gCurrentObject->timer++;
+    if (gCurrentObject->oTimer < 0x3FFFFFFF)
+        gCurrentObject->oTimer++;
 
-    if (gCurrentObject->previousAction != gCurrentObject->action) 
+    if (gCurrentObject->oAction != gCurrentObject->oPrevAction) 
     {
-        (void) (gCurrentObject->timer = 0,
-        gCurrentObject->unk150 = 0,
-        gCurrentObject->previousAction = gCurrentObject->action);
+        (void) (gCurrentObject->oTimer = 0,
+        gCurrentObject->oUnk150 = 0,
+        gCurrentObject->oPrevAction = gCurrentObject->oAction);
     }
 
-    flagsLo = (s16)gCurrentObject->objFlags;
+    flagsLo = (s16)gCurrentObject->oFlags;
 
     if (flagsLo & OBJ_FLAG_0010)
         func_8029F170(gCurrentObject);
 
     if (flagsLo & OBJ_FLAG_0008)
-        gCurrentObject->faceAngle[1] = gCurrentObject->angle[1];
+        gCurrentObject->oFaceAngleYaw = gCurrentObject->oAngleYaw;
 
     if (flagsLo & OBJ_FLAG_0002)
         func_802A0A90();    
@@ -890,7 +886,7 @@ void cur_object_exec_behavior(void)
     if (flagsLo & OBJ_FLAG_0001)
         func_80383D68(gCurrentObject);
 
-    if (gCurrentObject->unk1A0 != 0xFFFFFFFF)
+    if (gCurrentObject->oUnk1A0 != 0xFFFFFFFF)
     {
         func_802A3A68();
     }
@@ -898,12 +894,12 @@ void cur_object_exec_behavior(void)
     {
         if ((flagsLo & OBJ_FLAG_0080) == 0)
         {
-            if (distanceFromMario > gCurrentObject->drawingDistance)
+            if (distanceFromMario > gCurrentObject->oDrawingDistance)
             {
                 gCurrentObject->gfx.graphFlags &= 0xFFFFFFFE;
                 gCurrentObject->active |= 2;
             }
-            else if (gCurrentObject->unk124 == 0)
+            else if (gCurrentObject->oUnk124 == 0)
             {
                 gCurrentObject->gfx.graphFlags |= 1;
                 gCurrentObject->active &= 0xFFFFFFFD;

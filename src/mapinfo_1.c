@@ -19,7 +19,7 @@ void PlaySound2(int);
 
 void func_802C9560(struct UnkMapInfoStruct *unkInfoStructs)
 {
-    int sp2C = gCurrentObject->unk178;
+    int sp2C = gCurrentObject->oUnk178;
 
     switch(unkInfoStructs[sp2C].unk0)
     {
@@ -45,7 +45,7 @@ void func_802C9664(u32 arg)
 {
     struct Object *obj = SpawnObj(gCurrentObject, 0, &beh_plays_sound);
 
-    obj->unkF4 = arg;
+    obj->oSoundEffectUnkF4 = arg;
 }
 
 void PlaySound(int arg)

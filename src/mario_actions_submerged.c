@@ -365,7 +365,7 @@ static s32 act_hold_water_idle(struct MarioState *m)
     if (m->flags & MARIO_METAL_CAP)
         return set_mario_action(m, ACT_HOLD_METAL_WATER_FALLING, 0);
 
-    if (m->marioObj->interactStatus & 0x00000008)
+    if (m->marioObj->oInteractStatus & 0x00000008)
         return drop_and_set_mario_action(m, ACT_WATER_IDLE, 0);
 
     if (m->input & INPUT_B_PRESSED)
@@ -400,7 +400,7 @@ static s32 act_hold_water_action_end(struct MarioState *m)
     if (m->flags & MARIO_METAL_CAP)
         return set_mario_action(m, ACT_HOLD_METAL_WATER_FALLING, 0);
 
-    if (m->marioObj->interactStatus & 0x00000008)
+    if (m->marioObj->oInteractStatus & 0x00000008)
         return drop_and_set_mario_action(m, ACT_WATER_IDLE, 0);
 
     if (m->input & INPUT_B_PRESSED)
@@ -630,7 +630,7 @@ static s32 act_hold_breaststroke(struct MarioState *m)
     if (m->flags & MARIO_METAL_CAP)
         return set_mario_action(m, ACT_HOLD_METAL_WATER_FALLING, 0);
 
-    if (m->marioObj->interactStatus & 0x00000008)
+    if (m->marioObj->oInteractStatus & 0x00000008)
         return drop_and_set_mario_action(m, ACT_WATER_IDLE, 0);
 
     if (++m->actionTimer == 17)
@@ -677,7 +677,7 @@ static s32 act_hold_swimming_end(struct MarioState *m)
     if (m->flags & MARIO_METAL_CAP)
         return set_mario_action(m, ACT_HOLD_METAL_WATER_FALLING, 0);
 
-    if (m->marioObj->interactStatus & 0x00000008)
+    if (m->marioObj->oInteractStatus & 0x00000008)
         return drop_and_set_mario_action(m, ACT_WATER_IDLE, 0);
 
     if (m->actionTimer >= 15)
@@ -705,7 +705,7 @@ static s32 act_hold_flutter_kick(struct MarioState *m)
     if (m->flags & MARIO_METAL_CAP)
         return set_mario_action(m, ACT_HOLD_METAL_WATER_FALLING, 0);
 
-    if (m->marioObj->interactStatus & 0x00000008)
+    if (m->marioObj->oInteractStatus & 0x00000008)
         return drop_and_set_mario_action(m, ACT_WATER_IDLE, 0);
 
     if (m->input & INPUT_B_PRESSED)
@@ -726,7 +726,7 @@ static s32 act_hold_flutter_kick(struct MarioState *m)
 
 static s32 act_water_shell_swimming(struct MarioState *m)
 {
-    if (m->marioObj->interactStatus & 0x00000008)
+    if (m->marioObj->oInteractStatus & 0x00000008)
         return drop_and_set_mario_action(m, ACT_WATER_IDLE, 0);
 
     if (m->input & INPUT_B_PRESSED)
@@ -734,7 +734,7 @@ static s32 act_water_shell_swimming(struct MarioState *m)
 
     if (m->actionTimer++ == 240)
     {
-        m->heldObj->interactStatus = 0x00400000;
+        m->heldObj->oInteractStatus = 0x00400000;
         m->heldObj = NULL;
         func_8024931C();
         set_mario_action(m, ACT_FLUTTER_KICK, 0);
@@ -757,8 +757,8 @@ static s32 check_water_grab(struct MarioState *m)
     if (m->marioObj->collidedObjInteractTypes & INTERACT_GRABBABLE)
     {
         struct Object *object = mario_get_collided_object(m, INTERACT_GRABBABLE);
-        f32 dx = object->pos[0] - m->pos[0];
-        f32 dz = object->pos[2] - m->pos[2];
+        f32 dx = object->oPosX - m->pos[0];
+        f32 dz = object->oPosZ - m->pos[2];
         s16 dAngleToObject = atan2s(dz, dx) - m->faceAngle[1];
 
         if (dAngleToObject >= -0x2AAA && dAngleToObject <= 0x2AAA)
@@ -1007,14 +1007,13 @@ static s32 act_caught_in_whirlpool(struct MarioState *m)
     struct Object *marioObj = m->marioObj;
     struct Object *whirlpool = m->usedObj;
     
-    f32 dx = m->pos[0] - whirlpool->pos[0];
-    f32 dz = m->pos[2] - whirlpool->pos[2];
+    f32 dx = m->pos[0] - whirlpool->oPosX;
+    f32 dz = m->pos[2] - whirlpool->oPosZ;
     f32 distance = sqrtf(dx*dx + dz*dz);
 
-    // TODO: Object data hack
-    if ((*(f32 *) &marioObj->unk110 += m->vel[1]) < 0.0f)
+    if ((marioObj->oMarioWhirlpoolPosY += m->vel[1]) < 0.0f)
     {
-        *(f32 *) &marioObj->unk110 = 0.0f;
+        marioObj->oMarioWhirlpoolPosY = 0.0f;
         if (distance < 16.1f && m->actionTimer++ == 16)
             level_trigger_warp(m, WARP_OP_DEATH);
     }
@@ -1051,9 +1050,9 @@ static s32 act_caught_in_whirlpool(struct MarioState *m)
         dz *= newDistance / distance;
     }
 
-    m->pos[0] = whirlpool->pos[0] + dx * cosAngleChange + dz * sinAngleChange;
-    m->pos[2] = whirlpool->pos[2] - dx * sinAngleChange + dz * cosAngleChange;
-    m->pos[1] = whirlpool->pos[1] + *(f32 *) &marioObj->unk110;
+    m->pos[0] = whirlpool->oPosX + dx * cosAngleChange + dz * sinAngleChange;
+    m->pos[2] = whirlpool->oPosZ - dx * sinAngleChange + dz * cosAngleChange;
+    m->pos[1] = whirlpool->oPosY + marioObj->oMarioWhirlpoolPosY;
 
     m->faceAngle[1] = atan2s(dz, dx) + 0x8000;
     
@@ -1166,7 +1165,7 @@ static s32 act_metal_water_standing(struct MarioState *m)
 
 static s32 act_hold_metal_water_standing(struct MarioState *m)
 {
-    if (m->marioObj->interactStatus & 0x00000008)
+    if (m->marioObj->oInteractStatus & 0x00000008)
         return drop_and_set_mario_action(m, ACT_METAL_WATER_STANDING, 0);
 
     if (!(m->flags & MARIO_METAL_CAP))
@@ -1224,7 +1223,7 @@ static s32 act_hold_metal_water_walking(struct MarioState *m)
 {
     s32 val04;
 
-    if (m->marioObj->interactStatus & 0x00000008)
+    if (m->marioObj->oInteractStatus & 0x00000008)
         return drop_and_set_mario_action(m, ACT_METAL_WATER_WALKING, 0);
 
     if (!(m->flags & MARIO_METAL_CAP))
@@ -1286,7 +1285,7 @@ static s32 act_metal_water_jump(struct MarioState *m)
 
 static s32 act_hold_metal_water_jump(struct MarioState *m)
 {
-    if (m->marioObj->interactStatus & 0x00000008)
+    if (m->marioObj->oInteractStatus & 0x00000008)
         return drop_and_set_mario_action(m, ACT_METAL_WATER_FALLING, 0);
 
     if (!(m->flags & MARIO_METAL_CAP))
@@ -1331,7 +1330,7 @@ static s32 act_metal_water_falling(struct MarioState *m)
 
 static s32 act_hold_metal_water_falling(struct MarioState *m)
 {
-    if (m->marioObj->interactStatus & 0x00000008)
+    if (m->marioObj->oInteractStatus & 0x00000008)
         return drop_and_set_mario_action(m, ACT_METAL_WATER_FALLING, 0);
 
     if (!(m->flags & MARIO_METAL_CAP))
@@ -1372,7 +1371,7 @@ static s32 act_hold_metal_water_jump_land(struct MarioState *m)
 {
     func_80272FA8(m, 1);
 
-    if (m->marioObj->interactStatus & 0x00000008)
+    if (m->marioObj->oInteractStatus & 0x00000008)
         return drop_and_set_mario_action(m, ACT_METAL_WATER_STANDING, 0);
 
     if (!(m->flags & MARIO_METAL_CAP))
@@ -1413,7 +1412,7 @@ static s32 act_hold_metal_water_fall_land(struct MarioState *m)
 {
     func_80272FA8(m, 1);
 
-    if (m->marioObj->interactStatus & 0x00000008)
+    if (m->marioObj->oInteractStatus & 0x00000008)
         return drop_and_set_mario_action(m, ACT_METAL_WATER_STANDING, 0);
 
     if (!(m->flags & MARIO_METAL_CAP))
@@ -1447,7 +1446,7 @@ static s32 check_common_submerged_cancels(struct MarioState *m)
             // shell on land (used for cloning in DDD).
             if (m->action == ACT_WATER_SHELL_SWIMMING && m->heldObj != NULL)
             {
-                m->heldObj->interactStatus = 0x00400000;
+                m->heldObj->oInteractStatus = 0x00400000;
                 m->heldObj = NULL;
                 func_8024931C();
             }

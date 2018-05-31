@@ -23,11 +23,11 @@ struct Object *Unknown802C8460(struct Object *a)
 
 int func_802C8504(struct Object *a, struct Object *b)
 {
-    float sp3C = a->pos[1] - a->unk208;
-    float sp38 = b->pos[1] - b->unk208;
-    float dx = a->pos[0] - b->pos[0];
+    float sp3C = a->oPosY - a->unk208;
+    float sp38 = b->oPosY - b->unk208;
+    float dx = a->oPosX - b->oPosX;
     UNUSED float sp30 = sp3C - sp38;
-    float dz = a->pos[2] - b->pos[2];
+    float dz = a->oPosZ - b->oPosZ;
     float collisionRadius = a->hitboxRadius + b->hitboxRadius;
     float distance = sqrtf(dx * dx + dz * dz);
 
@@ -46,8 +46,8 @@ int func_802C8504(struct Object *a, struct Object *b)
             return 0;
         a->collidedObjs[a->numCollidedObjs] = b;
         b->collidedObjs[b->numCollidedObjs] = a;
-        a->collidedObjInteractTypes |= b->interactType;
-        b->collidedObjInteractTypes |= a->interactType;
+        a->collidedObjInteractTypes |= b->oInteractType;
+        b->collidedObjInteractTypes |= a->oInteractType;
         a->numCollidedObjs++;
         b->numCollidedObjs++;
         return 1;
@@ -58,16 +58,16 @@ int func_802C8504(struct Object *a, struct Object *b)
 
 int func_802C870C(struct Object *a, struct Object *b)
 {
-    float sp3C = a->pos[1] - a->unk208;
-    float sp38 = b->pos[1] - b->unk208;
-    float sp34 = a->pos[0] - b->pos[0];
+    float sp3C = a->oPosY - a->unk208;
+    float sp38 = b->oPosY - b->unk208;
+    float sp34 = a->oPosX - b->oPosX;
     UNUSED float sp30 = sp3C - sp38;
-    float sp2C = a->pos[2] - b->pos[2];
+    float sp2C = a->oPosZ - b->oPosZ;
     float sp28 = a->unk200 + b->unk200;
     float sp24 = sqrtf(sp34 * sp34 + sp2C * sp2C);
 
     if (a == gMarioObject)
-        b->unk190 |= 2;
+        b->oUnk190 |= 2;
 
     if (sp28 > sp24)
     {
@@ -79,7 +79,7 @@ int func_802C870C(struct Object *a, struct Object *b)
         if (sp20 < sp38)
             return 0;
         if (a == gMarioObject)
-            b->unk190 &= ~2;
+            b->oUnk190 &= ~2;
         return 1;
     }
 
@@ -94,19 +94,19 @@ void func_802C88A8(struct Object *a)
     {
         sp4->numCollidedObjs = 0;
         sp4->collidedObjInteractTypes = 0;
-        if (sp4->unk9C > 0)
-            sp4->unk9C--;
+        if (sp4->oUnk9C > 0)
+            sp4->oUnk9C--;
         sp4 = (struct Object *)sp4->gfx.next;
     }
 }
 
 void func_802C8918(struct Object *a, struct Object *b, struct Object *c)
 {
-    if (a->unk9C == 0)
+    if (a->oUnk9C == 0)
     {
         while (b != c)
         {
-            if (b->unk9C == 0)
+            if (b->oUnk9C == 0)
             {
                 if (func_802C8504(a, b) && b->unk200 != 0.0f)
                     func_802C870C(a, b);
@@ -153,7 +153,7 @@ void func_802C8B50(void)
 
     while (sp18 != sp1C)
     {
-        if (sp18->distanceFromMario < 2000.0f && !(sp18->active & 0x200))
+        if (sp18->oDistanceToMario < 2000.0f && !(sp18->active & 0x200))
         {
             func_802C8918(sp18, (struct Object *)sp18->gfx.next, sp1C);
             func_802C8918(sp18, (struct Object *)gObjectLists[4].next, (struct Object *)&gObjectLists[4]);

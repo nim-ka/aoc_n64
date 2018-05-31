@@ -282,7 +282,7 @@ static void set_mario_initial_action(struct MarioState *m, u32 spawnType, u32 ac
     case MARIO_SPAWN_UNKNOWN_15: set_mario_action(m, ACT_UNKNOWN_12A, 0);          break;
     case MARIO_SPAWN_UNKNOWN_16: set_mario_action(m, ACT_UNKNOWN_124, 0);          break;
     case MARIO_SPAWN_UNKNOWN_17: set_mario_action(m, ACT_FLYING, 2);               break;
-    case MARIO_SPAWN_UNKNOWN_11: set_mario_action(m, ACT_WATER_IDLE, 1);          break;
+    case MARIO_SPAWN_UNKNOWN_11: set_mario_action(m, ACT_WATER_IDLE, 1);           break;
     case MARIO_SPAWN_UNKNOWN_20: set_mario_action(m, ACT_UNKNOWN_126, 0);          break;
     case MARIO_SPAWN_UNKNOWN_21: set_mario_action(m, ACT_UNKNOWN_128, 0);          break;
     case MARIO_SPAWN_UNKNOWN_22: set_mario_action(m, ACT_UNKNOWN_12D, 0);          break;
@@ -301,12 +301,12 @@ static void init_mario_after_warp(void)
 
     if (gMarioState->action != ACT_UNINITIALIZED)
     {
-        gPlayerSpawnInfos[0].startPos[0] = (s16) spawnNode->object->pos[0];
-        gPlayerSpawnInfos[0].startPos[1] = (s16) spawnNode->object->pos[1];
-        gPlayerSpawnInfos[0].startPos[2] = (s16) spawnNode->object->pos[2];
+        gPlayerSpawnInfos[0].startPos[0] = (s16) spawnNode->object->oPosX;
+        gPlayerSpawnInfos[0].startPos[1] = (s16) spawnNode->object->oPosY;
+        gPlayerSpawnInfos[0].startPos[2] = (s16) spawnNode->object->oPosZ;
 
         gPlayerSpawnInfos[0].startAngle[0] = 0;
-        gPlayerSpawnInfos[0].startAngle[1] = spawnNode->object->angle[1];
+        gPlayerSpawnInfos[0].startAngle[1] = spawnNode->object->oAngleYaw;
         gPlayerSpawnInfos[0].startAngle[2] = 0;
 
         if (marioSpawnType == MARIO_SPAWN_UNKNOWN_01)
@@ -482,9 +482,9 @@ static void check_instant_warp(void)
                 gMarioState->pos[1] += warp->displacement[1];
                 gMarioState->pos[2] += warp->displacement[2];
 
-                gMarioState->marioObj->pos[0] = gMarioState->pos[0];
-                gMarioState->marioObj->pos[1] = gMarioState->pos[1];
-                gMarioState->marioObj->pos[2] = gMarioState->pos[2];
+                gMarioState->marioObj->oPosX = gMarioState->pos[0];
+                gMarioState->marioObj->oPosY = gMarioState->pos[1];
+                gMarioState->marioObj->oPosZ = gMarioState->pos[2];
 
                 cameraAngle = gMarioState->area->unk24->unk2;
 
@@ -720,13 +720,13 @@ s16 level_trigger_warp(struct MarioState *m, s32 warpOp)
 
         case WARP_OP_UNKNOWN_02: // bbh enter
             sDelayedWarpTimer = 30;
-            sSourceWarpNodeId = (m->usedObj->unk188 & 0x00FF0000) >> 16;
+            sSourceWarpNodeId = (m->usedObj->oUnk188 & 0x00FF0000) >> 16;
             func_8027ABF0(0x01, 0x1E, 0xFF, 0xFF, 0xFF);
             break;
 
         case WARP_OP_TELEPORT:
             sDelayedWarpTimer = 20;
-            sSourceWarpNodeId = (m->usedObj->unk188 & 0x00FF0000) >> 16;
+            sSourceWarpNodeId = (m->usedObj->oUnk188 & 0x00FF0000) >> 16;
             val04 = !func_8024A48C(sSourceWarpNodeId);
             func_8027ABF0(0x01, 0x14, 0xFF, 0xFF, 0xFF);
             break;
@@ -734,14 +734,14 @@ s16 level_trigger_warp(struct MarioState *m, s32 warpOp)
         case WARP_OP_WARP_DOOR:
             sDelayedWarpTimer = 20;
             sDelayedWarpArg = m->actionArg;
-            sSourceWarpNodeId = (m->usedObj->unk188 & 0x00FF0000) >> 16;
+            sSourceWarpNodeId = (m->usedObj->oUnk188 & 0x00FF0000) >> 16;
             val04 = !func_8024A48C(sSourceWarpNodeId);
             func_8027ABF0(0x0B, 0x14, 0x00, 0x00, 0x00);
             break;
 
         case WARP_OP_WARP_OBJECT:
             sDelayedWarpTimer = 20;
-            sSourceWarpNodeId = (m->usedObj->unk188 & 0x00FF0000) >> 16;
+            sSourceWarpNodeId = (m->usedObj->oUnk188 & 0x00FF0000) >> 16;
             val04 = !func_8024A48C(sSourceWarpNodeId);
             func_8027ABF0(0x09, 0x14, 0x00, 0x00, 0x00);
             break;
@@ -871,7 +871,7 @@ static void update_hud_values(void)
 
         if (gDisplayedCoins < gMarioState->numCoins)
         {
-            if (D_8032C694 & 0x00000001)
+            if (gGlobalTimer & 0x00000001)
             {
                 u32 coinSound;
                 if (gMarioState->action & (ACT_FLAG_SWIMMING | ACT_FLAG_METAL_WATER))

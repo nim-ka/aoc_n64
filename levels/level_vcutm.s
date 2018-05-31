@@ -52,7 +52,7 @@ glabel level_vcutm_entry
         terrain /*terrainData*/ 0x07009750
         cmd39 /*unk4*/ 0x0700AB0C
         cmd30 /*unk2*/ 0x00, /*unk3*/ 0x81
-        set_menu_music /*unk2*/ 0x0000, /*seq*/ 0x0009
+        set_music /*unk2*/ 0x0000, /*seq*/ 0x0009
         terrain_type /*terrainType*/ 0x0001
     end_area
 

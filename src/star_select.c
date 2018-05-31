@@ -25,27 +25,27 @@ static s32 D_801A8018 = 0;
 
 void BehStarActSelectorLoop(void)
 {
-    switch (gCurrentObject->unkF4)
+    switch (gCurrentObject->oStarSelectorUnkF4)
     {
     case 0:
-        gCurrentObject->unk108 -= 0.1;
-        if (gCurrentObject->unk108 < 1.0)
-            gCurrentObject->unk108 = 1.0;
-        gCurrentObject->faceAngle[1] = 0;
+        gCurrentObject->oStarSelectorSize -= 0.1;
+        if (gCurrentObject->oStarSelectorSize < 1.0)
+            gCurrentObject->oStarSelectorSize = 1.0;
+        gCurrentObject->oFaceAngleYaw = 0;
         break;
     case 1:
-        gCurrentObject->unk108 += 0.1;
-        if (gCurrentObject->unk108 > 1.3)
-            gCurrentObject->unk108 = 1.3;
-        gCurrentObject->faceAngle[1] += 0x800;
+        gCurrentObject->oStarSelectorSize += 0.1;
+        if (gCurrentObject->oStarSelectorSize > 1.3)
+            gCurrentObject->oStarSelectorSize = 1.3;
+        gCurrentObject->oFaceAngleYaw += 0x800;
         break;
     case 2:
-        gCurrentObject->faceAngle[1] += 0x800;
+        gCurrentObject->oFaceAngleYaw += 0x800;
         break;
     }
 
-    ScaleObject(gCurrentObject->unk108);
-    gCurrentObject->unkF8++;
+    ScaleObject(gCurrentObject->oStarSelectorSize);
+    gCurrentObject->oStarSelectorUnkF8++;
 }
 
 void func_80176934(u8 stars)
@@ -53,8 +53,8 @@ void func_80176934(u8 stars)
     if (stars & (1 << 6))
     {
         sStarSelectIcons[6] = func_8029E230(gCurrentObject, 0, 122, beh_star_in_act_selector, 370, 24, -300, 0, 0, 0);
-        sStarSelectIcons[6]->unk108 = 0.8;
-        sStarSelectIcons[6]->unkF4 = 2;
+        sStarSelectIcons[6]->oStarSelectIconUnk108 = 0.8;
+        sStarSelectIcons[6]->oStarSelectIconUnkF4 = 2;
     }
 }
 
@@ -100,7 +100,7 @@ void BehActSelectorInit(void)
     for (sp5E = 0; sp5E < D_801B9912; sp5E++)
     {
         sStarSelectIcons[sp5E] = func_8029E230(gCurrentObject, 0, sp34[sp5E], beh_star_in_act_selector, 0x4B + D_801B9912 * -75 + sp5E * 152, 248, -300, 0, 0, 0);
-        sStarSelectIcons[sp5E]->unk108 = 1.0f;
+        sStarSelectIcons[sp5E]->oStarSelectIconUnk108 = 1.0f;
     }
 
     func_80176934(stars);
@@ -139,9 +139,9 @@ void BehActSelectorLoop(void)
     for (i = 0; i < D_801B9912; i++)
     {
         if (sSelectedStar == i)
-            sStarSelectIcons[i]->unkF4 = 1;
+            sStarSelectIcons[i]->oStarSelectIconUnkF4 = 1;
         else
-            sStarSelectIcons[i]->unkF4 = 0;
+            sStarSelectIcons[i]->oStarSelectIconUnkF4 = 0;
     }
 }
 

@@ -8,7 +8,7 @@ extern u8 D_80207D00[];
 extern u8 D_80227000[];
 extern u8 D_80207200[];
 extern Gfx D_80208100[];
-extern u32 D_8032C694;
+extern u32 gGlobalTimer;
 
 // extern ? myRdpInit(?);
 // extern ? myRspInit(?);

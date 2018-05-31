@@ -76,12 +76,12 @@
     .hword 0
 .endm
 
-.macro link_push_zero
+.macro loop_begin
     .byte 0x0A, 0x04
     .hword 0
 .endm
 
-.macro pop_twice_if op, arg
+.macro loop_until op, arg
     .byte 0x0B, 0x08
     .byte \op
     .byte 0
@@ -367,14 +367,14 @@
     .byte 0
 .endm
 
-.macro set_menu_music unk2, seq
+.macro set_music unk2, seq
     .byte 0x36, 0x08
     .hword \unk2
     .hword \seq
     .hword 0
 .endm
 
-.macro set_music seq
+.macro set_menu_music seq
     .byte 0x37, 0x04
     .hword \seq
 .endm

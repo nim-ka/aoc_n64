@@ -45,7 +45,7 @@ glabel level_cotmc_entry
         terrain /*terrainData*/ 0x0700A508
         cmd39 /*unk4*/ 0x0700BD38
         cmd30 /*unk2*/ 0x00, /*unk3*/ 0x82
-        set_menu_music /*unk2*/ 0x0004, /*seq*/ 0x000C
+        set_music /*unk2*/ 0x0004, /*seq*/ 0x000C
         terrain_type /*terrainType*/ 0x0001
     end_area
 

@@ -72,7 +72,7 @@ extern Gfx mm7_f3d_00D160[];
 extern u8 seg2_level_name_table[];
 
 extern u8 D_801B98E0[];
-extern u32 D_8032C694;
+extern u32 gGlobalTimer;
 
 extern struct Object *gMainMenuButtons[];
 
@@ -128,8 +128,8 @@ static unsigned char textNo[] = {TEXT_NO};
 
 void BehYellowBackgroundMenuInit(void)
 {
-    gCurrentObject->faceAngle[1] = 0x8000;
-    gCurrentObject->unk108 = 9.0f;
+    gCurrentObject->oFaceAngleYaw = 0x8000;
+    gCurrentObject->oMainMenuButtonUnk108 = 9.0f;
 }
 
 void BehYellowBackgroundMenuLoop(void)
@@ -156,88 +156,88 @@ static int button_hittest(s16 x, s16 y, float c)
 
 static void func_801703E8(struct Object *a)
 {
-    if (a->unkF8 < 16)
-        a->faceAngle[1] += 0x800;
-    if (a->unkF8 < 8)
-        a->faceAngle[0] += 0x800;
-    if (a->unkF8 >= 8 && a->unkF8 < 16)
-        a->faceAngle[0] -= 0x800;
-    a->unk138 -= a->unkFC / 16.0;
-    a->unk13C -= a->unk100 / 16.0;
-    if (a->pos[2] < a->unk104 + 17800.0)
-        a->unk140 += 1112.5;
-    a->unkF8++;
-    if (a->unkF8 == 16)
+    if (a->oMainMenuButtonUnkF8 < 16)
+        a->oFaceAngleYaw += 0x800;
+    if (a->oMainMenuButtonUnkF8 < 8)
+        a->oFaceAnglePitch += 0x800;
+    if (a->oMainMenuButtonUnkF8 >= 8 && a->oMainMenuButtonUnkF8 < 16)
+        a->oFaceAnglePitch -= 0x800;
+    a->oUnk138 -= a->oMainMenuButtonUnkFC / 16.0;
+    a->oUnk13C -= a->oMainMenuButtonUnk100 / 16.0;
+    if (a->oPosZ < a->oMainMenuButtonUnk104 + 17800.0)
+        a->oUnk140 += 1112.5;
+    a->oMainMenuButtonUnkF8++;
+    if (a->oMainMenuButtonUnkF8 == 16)
     {
-        a->unk138 = 0.0f;
-        a->unk13C = 0.0f;
-        a->unkF4 = 2;
-        a->unkF8 = 0;
+        a->oUnk138 = 0.0f;
+        a->oUnk13C = 0.0f;
+        a->oMainMenuButtonUnkF4 = 2;
+        a->oMainMenuButtonUnkF8 = 0;
     }
 }
 
 static void func_8017053C(struct Object *a)
 {
-    if (a->unkF8 < 16)
-        a->faceAngle[1] -= 0x800;
-    if (a->unkF8 < 8)
-        a->faceAngle[0] -= 0x800;
-    if (a->unkF8 >= 8 && a->unkF8 < 16)
-        a->faceAngle[0] += 0x800;
-    a->unk138 += a->unkFC / 16.0;
-    a->unk13C += a->unk100 / 16.0;
-    if (a->pos[2] > a->unk104)
-        a->unk140 -= 1112.5;
-    a->unkF8++;
-    if (a->unkF8 == 16)
+    if (a->oMainMenuButtonUnkF8 < 16)
+        a->oFaceAngleYaw -= 0x800;
+    if (a->oMainMenuButtonUnkF8 < 8)
+        a->oFaceAnglePitch -= 0x800;
+    if (a->oMainMenuButtonUnkF8 >= 8 && a->oMainMenuButtonUnkF8 < 16)
+        a->oFaceAnglePitch += 0x800;
+    a->oUnk138 += a->oMainMenuButtonUnkFC / 16.0;
+    a->oUnk13C += a->oMainMenuButtonUnk100 / 16.0;
+    if (a->oPosZ > a->oMainMenuButtonUnk104)
+        a->oUnk140 -= 1112.5;
+    a->oMainMenuButtonUnkF8++;
+    if (a->oMainMenuButtonUnkF8 == 16)
     {
-        a->unk138 = a->unkFC;
-        a->unk13C = a->unk100;
-        a->unkF4 = 0;
-        a->unkF8 = 0;
+        a->oUnk138 = a->oMainMenuButtonUnkFC;
+        a->oUnk13C = a->oMainMenuButtonUnk100;
+        a->oMainMenuButtonUnkF4 = 0;
+        a->oMainMenuButtonUnkF8 = 0;
     }
 }
 
 static void func_80170670(struct Object *a)
 {
-    if (a->unkF8 < 16)
-        a->faceAngle[1] += 0x800;
-    if (a->unkF8 < 8)
-        a->faceAngle[0] += 0x800;
-    if (a->unkF8 >= 8 && a->unkF8 < 16)
-        a->faceAngle[0] -= 0x800;
-    a->unk138 -= a->unkFC / 16.0;
-    a->unk13C -= a->unk100 / 16.0;
-    a->unk140 -= 116.25;
-    a->unkF8++;
-    if (a->unkF8 == 16)
+    if (a->oMainMenuButtonUnkF8 < 16)
+        a->oFaceAngleYaw += 0x800;
+    if (a->oMainMenuButtonUnkF8 < 8)
+        a->oFaceAnglePitch += 0x800;
+    if (a->oMainMenuButtonUnkF8 >= 8 && a->oMainMenuButtonUnkF8 < 16)
+        a->oFaceAnglePitch -= 0x800;
+    a->oUnk138 -= a->oMainMenuButtonUnkFC / 16.0;
+    a->oUnk13C -= a->oMainMenuButtonUnk100 / 16.0;
+    a->oUnk140 -= 116.25;
+    a->oMainMenuButtonUnkF8++;
+    if (a->oMainMenuButtonUnkF8 == 16)
     {
-        a->unk138 = 0.0f;
-        a->unk13C = 0.0f;
-        a->unkF4 = 2;
-        a->unkF8 = 0;
+        a->oUnk138 = 0.0f;
+        a->oUnk13C = 0.0f;
+        a->oMainMenuButtonUnkF4 = 2;
+        a->oMainMenuButtonUnkF8 = 0;
     }
 }
 
 static void func_80170798(struct Object *a)
 {
-    if (a->unkF8 < 16)
-        a->faceAngle[1] -= 0x800;
-    if (a->unkF8 < 8)
-        a->faceAngle[0] -= 0x800;
-    if (a->unkF8 >= 8 && a->unkF8 < 16)
-        a->faceAngle[0] += 0x800;
-    a->unk138 += a->unkFC / 16.0;
-    a->unk13C += a->unk100 / 16.0;
-    if (a->pos[2] > a->unk104)
-        a->unk140 += 116.25;
-    a->unkF8++;
-    if (a->unkF8 == 16)
+    if (a->oMainMenuButtonUnkF8 < 16)
+        a->oFaceAngleYaw -= 0x800;
+    if (a->oMainMenuButtonUnkF8 < 8)
+        a->oFaceAnglePitch -= 0x800;
+    if (a->oMainMenuButtonUnkF8 >= 8 && a->oMainMenuButtonUnkF8 < 16)
+        a->oFaceAnglePitch += 0x800;
+    a->oUnk138 += a->oMainMenuButtonUnkFC / 16.0;
+    a->oUnk13C += a->oMainMenuButtonUnk100 / 16.0;
+    if (a->oPosZ > a->oMainMenuButtonUnk104)
+        a->oUnk140 += 116.25;
+    a->oMainMenuButtonUnkF8++;
+    if (a->oMainMenuButtonUnkF8 == 16)
     {
-        a->unk138 = a->unkFC;
-        a->unk13C = a->unk100;
-        a->unkF4 = 0;
-        a->unkF8 = 0;
+        a->oUnk138 = a->oMainMenuButtonUnkFC;
+        a->oUnk13C = a->oMainMenuButtonUnk100;
+        a->oMainMenuButtonUnkF4 = 0;
+        a->oMainMenuButtonUnkF8 = 0;
     }
 }
 
@@ -245,60 +245,60 @@ static void func_801708CC(struct Object *a)
 {
     if (D_801A7BD4 == 1)
     {
-        if (a->unkF8 < 4)
-            a->unk140 -= 20.0f;
-        if (a->unkF8 >= 4)
-            a->unk140 += 20.0f;
+        if (a->oMainMenuButtonUnkF8 < 4)
+            a->oUnk140 -= 20.0f;
+        if (a->oMainMenuButtonUnkF8 >= 4)
+            a->oUnk140 += 20.0f;
     }
     else
     {
-        if (a->unkF8 < 4)
-            a->unk140 += 20.0f;
-        if (a->unkF8 >= 4)
-            a->unk140 -= 20.0f;
+        if (a->oMainMenuButtonUnkF8 < 4)
+            a->oUnk140 += 20.0f;
+        if (a->oMainMenuButtonUnkF8 >= 4)
+            a->oUnk140 -= 20.0f;
     }
-    a->unkF8++;
-    if (a->unkF8 == 8)
+    a->oMainMenuButtonUnkF8++;
+    if (a->oMainMenuButtonUnkF8 == 8)
     {
-        a->unkF4 = 0;
-        a->unkF8 = 0;
+        a->oMainMenuButtonUnkF4 = 0;
+        a->oMainMenuButtonUnkF8 = 0;
     }
 }
 
 static void func_801709AC(struct Object *a)
 {
-    a->unk108 += 0.0022;
-    a->unkF8++;
-    if (a->unkF8 == 10)
+    a->oMainMenuButtonUnk108 += 0.0022;
+    a->oMainMenuButtonUnkF8++;
+    if (a->oMainMenuButtonUnkF8 == 10)
     {
-        a->unkF4 = 0;
-        a->unkF8 = 0;
+        a->oMainMenuButtonUnkF4 = 0;
+        a->oMainMenuButtonUnkF8 = 0;
     }
 }
 
 static void func_801709FC(struct Object *a)
 {
-    a->unk108 -= 0.0022;
-    a->unkF8++;
-    if (a->unkF8 == 10)
+    a->oMainMenuButtonUnk108 -= 0.0022;
+    a->oMainMenuButtonUnkF8++;
+    if (a->oMainMenuButtonUnkF8 == 10)
     {
-        a->unkF4 = 0;
-        a->unkF8 = 0;
+        a->oMainMenuButtonUnkF4 = 0;
+        a->oMainMenuButtonUnkF8 = 0;
     }
 }
 
 void BehMenuGrowingButtonInit(void)
 {
-    gCurrentObject->unkFC = gCurrentObject->unk138;
-    gCurrentObject->unk100 = gCurrentObject->unk13C;
+    gCurrentObject->oMainMenuButtonUnkFC = gCurrentObject->oUnk138;
+    gCurrentObject->oMainMenuButtonUnk100 = gCurrentObject->oUnk13C;
 }
 
 void BehMenuGrowingButtonLoop(void)
 {
-    switch (gCurrentObject->unkF4)
+    switch (gCurrentObject->oMainMenuButtonUnkF4)
     {
     case 0:
-        gCurrentObject->unk104 = gCurrentObject->pos[2];
+        gCurrentObject->oMainMenuButtonUnk104 = gCurrentObject->oPosZ;
         break;
     case 1:
         if (D_801A7BD4 == 1)
@@ -331,17 +331,17 @@ void BehMenuGrowingButtonLoop(void)
         D_801A7BE4 = 4;
         break;
     }
-    ScaleObject(gCurrentObject->unk108);
+    ScaleObject(gCurrentObject->oMainMenuButtonUnk108);
 }
 
 static void func_80170C14(struct Object *a, s8 buttonId)
 {
-    if (a->unkF4 == 2 && D_801A7BE4 == 2)
+    if (a->oMainMenuButtonUnkF4 == 2 && D_801A7BE4 == 2)
     {
         SetSound(0x70070081, D_803320E0);
-        a->unkF4 = 3;
+        a->oMainMenuButtonUnkF4 = 3;
     }
-    if (a->unkF4 == 0)
+    if (a->oMainMenuButtonUnkF4 == 0)
     {
         sSelectedButtonId = buttonId;
         if (D_801A7BD4 == 2)
@@ -361,7 +361,7 @@ static void score_menu_create_buttons(struct Object *a)
         gMainMenuButtons[MENU_BUTTON_SCORE_FILE_A] = func_8029E2A8(a, 9, beh_menu_growing_button, 711, 311,
             -100, 0, -0x8000, 0);
     }
-    gMainMenuButtons[MENU_BUTTON_SCORE_FILE_A]->unk108 = 0.11111111f;
+    gMainMenuButtons[MENU_BUTTON_SCORE_FILE_A]->oMainMenuButtonUnk108 = 0.11111111f;
 
     if (save_file_exists(1) == TRUE)
     {
@@ -373,7 +373,7 @@ static void score_menu_create_buttons(struct Object *a)
         gMainMenuButtons[MENU_BUTTON_SCORE_FILE_B] = func_8029E2A8(a, 9, beh_menu_growing_button, -166, 311,
             -100, 0, -0x8000, 0);
     }
-    gMainMenuButtons[MENU_BUTTON_SCORE_FILE_B]->unk108 = 0.11111111f;
+    gMainMenuButtons[MENU_BUTTON_SCORE_FILE_B]->oMainMenuButtonUnk108 = 0.11111111f;
 
     if (save_file_exists(2) == TRUE)
     {
@@ -385,7 +385,7 @@ static void score_menu_create_buttons(struct Object *a)
         gMainMenuButtons[MENU_BUTTON_SCORE_FILE_C] = func_8029E2A8(a, 9, beh_menu_growing_button, 711, 0,
             -100, 0, -0x8000, 0);
     }
-    gMainMenuButtons[MENU_BUTTON_SCORE_FILE_C]->unk108 = 0.11111111f;
+    gMainMenuButtons[MENU_BUTTON_SCORE_FILE_C]->oMainMenuButtonUnk108 = 0.11111111f;
 
     if (save_file_exists(3) == TRUE)
     {
@@ -397,31 +397,31 @@ static void score_menu_create_buttons(struct Object *a)
         gMainMenuButtons[MENU_BUTTON_SCORE_FILE_D] = func_8029E2A8(a, 9, beh_menu_growing_button, -166, 0,
             -100, 0, -0x8000, 0);
     }
-    gMainMenuButtons[MENU_BUTTON_SCORE_FILE_D]->unk108 = 0.11111111f;
+    gMainMenuButtons[MENU_BUTTON_SCORE_FILE_D]->oMainMenuButtonUnk108 = 0.11111111f;
 
     gMainMenuButtons[MENU_BUTTON_SCORE_RETURN] = func_8029E2A8(a, 6, beh_menu_growing_button, 711, -388,
         -100, 0, -0x8000, 0);
-    gMainMenuButtons[MENU_BUTTON_SCORE_RETURN]->unk108 = 0.11111111f;
+    gMainMenuButtons[MENU_BUTTON_SCORE_RETURN]->oMainMenuButtonUnk108 = 0.11111111f;
 
     gMainMenuButtons[MENU_BUTTON_SCORE_COPY_FILE] = func_8029E2A8(a, 5, beh_menu_growing_button, 0, -388,
         -100, 0, -0x8000, 0);
-    gMainMenuButtons[MENU_BUTTON_SCORE_COPY_FILE]->unk108 = 0.11111111f;
+    gMainMenuButtons[MENU_BUTTON_SCORE_COPY_FILE]->oMainMenuButtonUnk108 = 0.11111111f;
 
     gMainMenuButtons[MENU_BUTTON_SCORE_ERASE_FILE] = func_8029E2A8(a, 4, beh_menu_growing_button, -711, -388,
         -100, 0, -0x8000, 0);
-    gMainMenuButtons[MENU_BUTTON_SCORE_ERASE_FILE]->unk108 = 0.11111111f;
+    gMainMenuButtons[MENU_BUTTON_SCORE_ERASE_FILE]->oMainMenuButtonUnk108 = 0.11111111f;
 }
 
 static void score_menu_handle_click(struct Object *a)
 {
-    if (a->unkF4 == 2)
+    if (a->oMainMenuButtonUnkF4 == 2)
     {
         int buttonId;
 
         for (buttonId = 7; buttonId < 14; buttonId++)
         {
-            s16 buttonX = gMainMenuButtons[buttonId]->pos[0];
-            s16 buttonY = gMainMenuButtons[buttonId]->pos[1];
+            s16 buttonX = gMainMenuButtons[buttonId]->oPosX;
+            s16 buttonY = gMainMenuButtons[buttonId]->oPosY;
 
             if (button_hittest(buttonX, buttonY, 22.0f) == TRUE && D_801A7BFC >= 31)
             {
@@ -430,7 +430,7 @@ static void score_menu_handle_click(struct Object *a)
                  || buttonId == MENU_BUTTON_SCORE_ERASE_FILE)
                 {
                     SetSound(0x70110081, D_803320E0);
-                    gMainMenuButtons[buttonId]->unkF4 = 4;
+                    gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 4;
                     sSelectedButtonId = buttonId;
                 }
                 else
@@ -440,13 +440,13 @@ static void score_menu_handle_click(struct Object *a)
                         if (save_file_exists(buttonId - 7) == TRUE)
                         {
                             SetSound(0x70060081, D_803320E0);
-                            gMainMenuButtons[buttonId]->unkF4 = 1;
+                            gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 1;
                             sSelectedButtonId = buttonId;
                         }
                         else
                         {
                             SetSound(0x700E0081, D_803320E0);
-                            gMainMenuButtons[buttonId]->unkF4 = 4;
+                            gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 4;
                             if (D_801A7BFC >= 31)
                             {
                                 sFadeOutText = 1;
@@ -474,7 +474,7 @@ static void copy_menu_create_buttons(struct Object * a)
         gMainMenuButtons[MENU_BUTTON_COPY_FILE_A] = func_8029E2A8(a, 9, beh_menu_growing_button, 711, 311,
             -100, 0, -0x8000, 0);
     }
-    gMainMenuButtons[MENU_BUTTON_COPY_FILE_A]->unk108 = 0.11111111f;
+    gMainMenuButtons[MENU_BUTTON_COPY_FILE_A]->oMainMenuButtonUnk108 = 0.11111111f;
 
     if (save_file_exists(1) == TRUE)
     {
@@ -486,7 +486,7 @@ static void copy_menu_create_buttons(struct Object * a)
         gMainMenuButtons[MENU_BUTTON_COPY_FILE_B] = func_8029E2A8(a, 9, beh_menu_growing_button, -166, 311,
             -100, 0, -0x8000, 0);
     }
-    gMainMenuButtons[MENU_BUTTON_COPY_FILE_B]->unk108 = 0.11111111f;
+    gMainMenuButtons[MENU_BUTTON_COPY_FILE_B]->oMainMenuButtonUnk108 = 0.11111111f;
 
     if (save_file_exists(2) == TRUE)
     {
@@ -498,7 +498,7 @@ static void copy_menu_create_buttons(struct Object * a)
         gMainMenuButtons[MENU_BUTTON_COPY_FILE_C] = func_8029E2A8(a, 9, beh_menu_growing_button, 711, 0,
             -100, 0, -0x8000, 0);
     }
-    gMainMenuButtons[MENU_BUTTON_COPY_FILE_C]->unk108 = 0.11111111f;
+    gMainMenuButtons[MENU_BUTTON_COPY_FILE_C]->oMainMenuButtonUnk108 = 0.11111111f;
 
     if (save_file_exists(3) == TRUE)
     {
@@ -510,24 +510,24 @@ static void copy_menu_create_buttons(struct Object * a)
         gMainMenuButtons[MENU_BUTTON_COPY_FILE_D] = func_8029E2A8(a, 9, beh_menu_growing_button, -166, 0,
             -100, 0, -0x8000, 0);
     }
-    gMainMenuButtons[MENU_BUTTON_COPY_FILE_D]->unk108 = 0.11111111f;
+    gMainMenuButtons[MENU_BUTTON_COPY_FILE_D]->oMainMenuButtonUnk108 = 0.11111111f;
 
     gMainMenuButtons[MENU_BUTTON_COPY_RETURN] = func_8029E2A8(a, 6, beh_menu_growing_button, 711, -388,
         -100, 0, -0x8000, 0);
-    gMainMenuButtons[MENU_BUTTON_COPY_RETURN]->unk108 = 0.11111111f;
+    gMainMenuButtons[MENU_BUTTON_COPY_RETURN]->oMainMenuButtonUnk108 = 0.11111111f;
 
     gMainMenuButtons[MENU_BUTTON_COPY_CHECK_SCORE] = func_8029E2A8(a, 7, beh_menu_growing_button, 0, -388,
         -100, 0, -0x8000, 0);
-    gMainMenuButtons[MENU_BUTTON_COPY_CHECK_SCORE]->unk108 = 0.11111111f;
+    gMainMenuButtons[MENU_BUTTON_COPY_CHECK_SCORE]->oMainMenuButtonUnk108 = 0.11111111f;
 
     gMainMenuButtons[MENU_BUTTON_COPY_ERASE_FILE] = func_8029E2A8(a, 4, beh_menu_growing_button, -711, -388,
         -100, 0, -0x8000, 0);
-    gMainMenuButtons[MENU_BUTTON_COPY_ERASE_FILE]->unk108 = 0.11111111f;
+    gMainMenuButtons[MENU_BUTTON_COPY_ERASE_FILE]->oMainMenuButtonUnk108 = 0.11111111f;
 }
 
 static void func_801716E4(struct Object *a, int buttonId)
 {
-    switch (a->unk10C)
+    switch (a->oMainMenuButtonUnk10C)
     {
     case 0:
         if (sAllFilesExist == TRUE)
@@ -535,16 +535,16 @@ static void func_801716E4(struct Object *a, int buttonId)
         if (save_file_exists(buttonId - 14) == TRUE)
         {
             SetSound(0x70110081, D_803320E0);
-            gMainMenuButtons[buttonId]->unkF4 = 5;
+            gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 5;
             sSelectedFile = buttonId - 14;
-            a->unk10C = 1;
+            a->oMainMenuButtonUnk10C = 1;
             sFadeOutText = 1;
             D_801A7BFC = 0;
         }
         else
         {
             SetSound(0x700E0081, D_803320E0);
-            gMainMenuButtons[buttonId]->unkF4 = 4;
+            gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 4;
             if (D_801A7BFC >= 21)
             {
                 sFadeOutText = 1;
@@ -553,11 +553,11 @@ static void func_801716E4(struct Object *a, int buttonId)
         }
         break;
     case 1:
-        gMainMenuButtons[buttonId]->unkF4 = 4;
+        gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 4;
         if (save_file_exists(buttonId - 14) == FALSE)
         {
             SetSound(0x701EFF81, D_803320E0);
-            a->unk10C = 2;
+            a->oMainMenuButtonUnk10C = 2;
             sFadeOutText = 1;
             D_801A7BFC = 0;
             save_file_copy(sSelectedFile, buttonId - 14);
@@ -569,8 +569,8 @@ static void func_801716E4(struct Object *a, int buttonId)
             if (MENU_BUTTON_COPY_FILE_A + sSelectedFile == buttonId)
             {
                 SetSound(0x700E0081, D_803320E0);
-                gMainMenuButtons[MENU_BUTTON_COPY_FILE_A + sSelectedFile]->unkF4 = 6;
-                a->unk10C = 0;
+                gMainMenuButtons[MENU_BUTTON_COPY_FILE_A + sSelectedFile]->oMainMenuButtonUnkF4 = 6;
+                a->oMainMenuButtonUnk10C = 0;
                 sFadeOutText = 1;
                 return;
             }
@@ -586,14 +586,14 @@ static void func_801716E4(struct Object *a, int buttonId)
 
 static void copy_menu_handle_click(struct Object *a)
 {
-    if (a->unkF4 == 2)
+    if (a->oMainMenuButtonUnkF4 == 2)
     {
         int buttonId;
 
         for (buttonId = 14; buttonId < 21; buttonId++)
         {
-            s16 buttonX = gMainMenuButtons[buttonId]->pos[0];
-            s16 buttonY = gMainMenuButtons[buttonId]->pos[1];
+            s16 buttonX = gMainMenuButtons[buttonId]->oPosX;
+            s16 buttonY = gMainMenuButtons[buttonId]->oPosY;
 
             if (button_hittest(buttonX, buttonY, 22.0f) == TRUE)
             {
@@ -601,26 +601,26 @@ static void copy_menu_handle_click(struct Object *a)
                  || buttonId == MENU_BUTTON_COPY_CHECK_SCORE
                  || buttonId == MENU_BUTTON_COPY_ERASE_FILE)
                 {
-                    if (a->unk10C == 0)
+                    if (a->oMainMenuButtonUnk10C == 0)
                     {
                         SetSound(0x70110081, D_803320E0);
-                        gMainMenuButtons[buttonId]->unkF4 = 4;
+                        gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 4;
                         sSelectedButtonId = buttonId;
                     }
                 }
                 else
                 {
-                    if (gMainMenuButtons[buttonId]->unkF4 == 0 && D_801A7BFC >= 31)
+                    if (gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 == 0 && D_801A7BFC >= 31)
                         func_801716E4(a, buttonId);
                 }
                 D_801A7BD4 = 2;
                 break;
             }
         }
-        if (a->unk10C == 2 && D_801A7BFC >= 31)
+        if (a->oMainMenuButtonUnk10C == 2 && D_801A7BFC >= 31)
         {
-            a->unk10C = 0;
-            gMainMenuButtons[MENU_BUTTON_COPY_FILE_A + sSelectedFile]->unkF4 = 6;
+            a->oMainMenuButtonUnk10C = 0;
+            gMainMenuButtons[MENU_BUTTON_COPY_FILE_A + sSelectedFile]->oMainMenuButtonUnkF4 = 6;
         }
     }
 }
@@ -637,7 +637,7 @@ static void erase_menu_create_buttons(struct Object *a)
         gMainMenuButtons[MENU_BUTTON_ERASE_FILE_A] = func_8029E2A8(a, 9, beh_menu_growing_button, 711, 311,
             -100, 0, -0x8000, 0);
     }
-    gMainMenuButtons[MENU_BUTTON_ERASE_FILE_A]->unk108 = 0.11111111f;
+    gMainMenuButtons[MENU_BUTTON_ERASE_FILE_A]->oMainMenuButtonUnk108 = 0.11111111f;
 
     if (save_file_exists(1) == TRUE)
     {
@@ -649,7 +649,7 @@ static void erase_menu_create_buttons(struct Object *a)
         gMainMenuButtons[MENU_BUTTON_ERASE_FILE_B] = func_8029E2A8(a, 9, beh_menu_growing_button, -166, 311,
             -100, 0, -0x8000, 0);
     }
-    gMainMenuButtons[MENU_BUTTON_ERASE_FILE_B]->unk108 = 0.11111111f;
+    gMainMenuButtons[MENU_BUTTON_ERASE_FILE_B]->oMainMenuButtonUnk108 = 0.11111111f;
 
     if (save_file_exists(2) == TRUE)
     {
@@ -661,7 +661,7 @@ static void erase_menu_create_buttons(struct Object *a)
         gMainMenuButtons[MENU_BUTTON_ERASE_FILE_C] = func_8029E2A8(a, 9, beh_menu_growing_button, 711, 0,
             -100, 0, -0x8000, 0);
     }
-    gMainMenuButtons[MENU_BUTTON_ERASE_FILE_C]->unk108 = 0.11111111f;
+    gMainMenuButtons[MENU_BUTTON_ERASE_FILE_C]->oMainMenuButtonUnk108 = 0.11111111f;
 
     if (save_file_exists(3) == TRUE)
     {
@@ -673,39 +673,39 @@ static void erase_menu_create_buttons(struct Object *a)
         gMainMenuButtons[MENU_BUTTON_ERASE_FILE_D] = func_8029E2A8(a, 9, beh_menu_growing_button, -166, 0,
             -100, 0, -0x8000, 0);
     }
-    gMainMenuButtons[MENU_BUTTON_ERASE_FILE_D]->unk108 = 0.11111111f;
+    gMainMenuButtons[MENU_BUTTON_ERASE_FILE_D]->oMainMenuButtonUnk108 = 0.11111111f;
 
     gMainMenuButtons[MENU_BUTTON_ERASE_RETURN] = func_8029E2A8(a, 6, beh_menu_growing_button, 711, -388,
         -100, 0, -0x8000, 0);
-    gMainMenuButtons[MENU_BUTTON_ERASE_RETURN]->unk108 = 0.11111111f;
+    gMainMenuButtons[MENU_BUTTON_ERASE_RETURN]->oMainMenuButtonUnk108 = 0.11111111f;
 
     gMainMenuButtons[MENU_BUTTON_ERASE_CHECK_SCORE] = func_8029E2A8(a, 7, beh_menu_growing_button, 0, -388,
         -100, 0, -0x8000, 0);
-    gMainMenuButtons[MENU_BUTTON_ERASE_CHECK_SCORE]->unk108 = 0.11111111f;
+    gMainMenuButtons[MENU_BUTTON_ERASE_CHECK_SCORE]->oMainMenuButtonUnk108 = 0.11111111f;
 
     gMainMenuButtons[MENU_BUTTON_ERASE_COPY_FILE] = func_8029E2A8(a, 5, beh_menu_growing_button, -711, -388,
         -100, 0, -0x8000, 0);
-    gMainMenuButtons[MENU_BUTTON_ERASE_COPY_FILE]->unk108 = 0.11111111f;
+    gMainMenuButtons[MENU_BUTTON_ERASE_COPY_FILE]->oMainMenuButtonUnk108 = 0.11111111f;
 }
 
 static void func_80171F74(struct Object *a, int buttonId)
 {
-    switch (a->unk10C)
+    switch (a->oMainMenuButtonUnk10C)
     {
     case 0:
         if (save_file_exists(buttonId - MENU_BUTTON_ERASE_FILE_A) == TRUE)
         {
             SetSound(0x70110081, D_803320E0);
-            gMainMenuButtons[buttonId]->unkF4 = 5;
+            gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 5;
             sSelectedFile = buttonId - MENU_BUTTON_ERASE_FILE_A;
-            a->unk10C = 1;
+            a->oMainMenuButtonUnk10C = 1;
             sFadeOutText = 1;
             D_801A7BFC = 0;
         }
         else
         {
             SetSound(0x700E0081, D_803320E0);
-            gMainMenuButtons[buttonId]->unkF4 = 4;
+            gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 4;
             if (D_801A7BFC >= 21)
             {
                 sFadeOutText = 1;
@@ -717,8 +717,8 @@ static void func_80171F74(struct Object *a, int buttonId)
         if (MENU_BUTTON_ERASE_FILE_A + sSelectedFile == buttonId)
         {
             SetSound(0x70110081, D_803320E0);
-            gMainMenuButtons[MENU_BUTTON_ERASE_FILE_A + sSelectedFile]->unkF4 = 6;
-            a->unk10C = 0;
+            gMainMenuButtons[MENU_BUTTON_ERASE_FILE_A + sSelectedFile]->oMainMenuButtonUnkF4 = 6;
+            a->oMainMenuButtonUnk10C = 0;
             sFadeOutText = 1;
         }
         break;
@@ -727,14 +727,14 @@ static void func_80171F74(struct Object *a, int buttonId)
 
 static void erase_menu_handle_click(struct Object *a)
 {
-    if (a->unkF4 == 2)
+    if (a->oMainMenuButtonUnkF4 == 2)
     {
         int buttonId;
 
         for (buttonId = 21; buttonId < 28; buttonId++)
         {
-            s16 buttonX = gMainMenuButtons[buttonId]->pos[0];
-            s16 buttonY = gMainMenuButtons[buttonId]->pos[1];
+            s16 buttonX = gMainMenuButtons[buttonId]->oPosX;
+            s16 buttonY = gMainMenuButtons[buttonId]->oPosY;
 
             if (button_hittest(buttonX, buttonY, 22.0f) == TRUE)
             {
@@ -742,10 +742,10 @@ static void erase_menu_handle_click(struct Object *a)
                  || buttonId == MENU_BUTTON_ERASE_CHECK_SCORE
                  || buttonId == MENU_BUTTON_ERASE_COPY_FILE)
                 {
-                    if (a->unk10C == 0)
+                    if (a->oMainMenuButtonUnk10C == 0)
                     {
                         SetSound(0x70110081, D_803320E0);
-                        gMainMenuButtons[buttonId]->unkF4 = 4;
+                        gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 4;
                         sSelectedButtonId = buttonId;
                     }
                 }
@@ -758,10 +758,10 @@ static void erase_menu_handle_click(struct Object *a)
                 break;
             }
         }
-        if (a->unk10C == 2 && D_801A7BFC >= 31)
+        if (a->oMainMenuButtonUnk10C == 2 && D_801A7BFC >= 31)
         {
-            a->unk10C = 0;
-            gMainMenuButtons[MENU_BUTTON_ERASE_FILE_A + sSelectedFile]->unkF4 = 6;
+            a->oMainMenuButtonUnk10C = 0;
+            gMainMenuButtons[MENU_BUTTON_ERASE_FILE_A + sSelectedFile]->oMainMenuButtonUnkF4 = 6;
         }
     }
 }
@@ -770,29 +770,29 @@ static void sound_select_menu_create_buttons(struct Object *a)
 {
     gMainMenuButtons[MENU_BUTTON_STEREO] = func_8029E2A8(a, 12, beh_menu_growing_button, 533, 0,
         -100, 0, -0x8000, 0);
-    gMainMenuButtons[MENU_BUTTON_STEREO]->unk108 = 0.11111111f;
+    gMainMenuButtons[MENU_BUTTON_STEREO]->oMainMenuButtonUnk108 = 0.11111111f;
 
     gMainMenuButtons[MENU_BUTTON_MONO] = func_8029E2A8(a, 12, beh_menu_growing_button, 0, 0,
         -100, 0, -0x8000, 0);
-    gMainMenuButtons[MENU_BUTTON_MONO]->unk108 = 0.11111111f;
+    gMainMenuButtons[MENU_BUTTON_MONO]->oMainMenuButtonUnk108 = 0.11111111f;
 
     gMainMenuButtons[MENU_BUTTON_HEADSET] = func_8029E2A8(a, 12, beh_menu_growing_button, -533, 0,
         -100, 0, -0x8000, 0);
-    gMainMenuButtons[MENU_BUTTON_HEADSET]->unk108 = 0.11111111f;
+    gMainMenuButtons[MENU_BUTTON_HEADSET]->oMainMenuButtonUnk108 = 0.11111111f;
 
-    gMainMenuButtons[29 + sSoundMode]->unkF4 = 5;
+    gMainMenuButtons[29 + sSoundMode]->oMainMenuButtonUnkF4 = 5;
 }
 
 static void sound_select_menu_handle_click(struct Object *a)
 {
-    if (a->unkF4 == 2)
+    if (a->oMainMenuButtonUnkF4 == 2)
     {
         int buttonId;
 
         for (buttonId = 29; buttonId < 32; buttonId++)
         {
-            s16 buttonX = gMainMenuButtons[buttonId]->pos[0];
-            s16 buttonY = gMainMenuButtons[buttonId]->pos[1];
+            s16 buttonX = gMainMenuButtons[buttonId]->oPosX;
+            s16 buttonY = gMainMenuButtons[buttonId]->oPosY;
 
             if (button_hittest(buttonX, buttonY, 22.0f) == TRUE)
             {
@@ -800,10 +800,10 @@ static void sound_select_menu_handle_click(struct Object *a)
                  || buttonId == MENU_BUTTON_MONO
                  || buttonId == MENU_BUTTON_HEADSET)
                 {
-                    if (a->unk10C == 0)
+                    if (a->oMainMenuButtonUnk10C == 0)
                     {
                         SetSound(0x70110081, D_803320E0);
-                        gMainMenuButtons[buttonId]->unkF4 = 4;
+                        gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 4;
                         sSelectedButtonId = buttonId;
                         sSoundMode = buttonId - 29;
                         save_file_set_sound_mode(sSoundMode);
@@ -818,7 +818,7 @@ static void sound_select_menu_handle_click(struct Object *a)
 
 static void func_8017257C(struct Object *a, int b)
 {
-    if (a->unkF4 == 2)
+    if (a->oMainMenuButtonUnkF4 == 2)
         D_801A7C0C = b;
 }
 
@@ -826,13 +826,13 @@ static void main_menu_init(s16 buttonId, struct Object *b)
 {
     int sp1C;
 
-    if (b->unkF4 == 0 && gMainMenuButtons[buttonId]->unkF4 == 2)
+    if (b->oMainMenuButtonUnkF4 == 0 && gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 == 2)
     {
         SetSound(0x70070081, D_803320E0);
-        gMainMenuButtons[buttonId]->unkF4 = 3;
+        gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 3;
         D_801A7BD4 = 1;
     }
-    if (gMainMenuButtons[buttonId]->unkF4 == 0)
+    if (gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 == 0)
     {
         sSelectedButtonId = -1;
         if (buttonId == MENU_BUTTON_SCORE)
@@ -862,13 +862,13 @@ static void score_menu_init(s16 buttonId, struct Object *b)
 {
     int sp1C;
 
-    if (b->unkF4 == 0 && gMainMenuButtons[buttonId]->unkF4 == 2)
+    if (b->oMainMenuButtonUnkF4 == 0 && gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 == 2)
     {
         SetSound(0x70070081, D_803320E0);
-        gMainMenuButtons[buttonId]->unkF4 = 3;
+        gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 3;
         D_801A7BD4 = 1;
     }
-    if (gMainMenuButtons[buttonId]->unkF4 == 0)
+    if (gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 == 0)
     {
         if (buttonId == MENU_BUTTON_SCORE)
         {
@@ -887,7 +887,7 @@ static void score_menu_init(s16 buttonId, struct Object *b)
         }
         sSelectedButtonId = MENU_BUTTON_SCORE;
         SetSound(0x70060081, D_803320E0);
-        gMainMenuButtons[MENU_BUTTON_SCORE]->unkF4 = 1;
+        gMainMenuButtons[MENU_BUTTON_SCORE]->oMainMenuButtonUnkF4 = 1;
         score_menu_create_buttons(gMainMenuButtons[MENU_BUTTON_SCORE]);
     }
 }
@@ -896,13 +896,13 @@ static void copy_menu_init(s16 buttonId, struct Object *b)
 {
     int sp1C;
 
-    if (b->unkF4 == 0 && gMainMenuButtons[buttonId]->unkF4 == 2)
+    if (b->oMainMenuButtonUnkF4 == 0 && gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 == 2)
     {
         SetSound(0x70070081, D_803320E0);
-        gMainMenuButtons[buttonId]->unkF4 = 3;
+        gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 3;
         D_801A7BD4 = 1;
     }
-    if (gMainMenuButtons[buttonId]->unkF4 == 0)
+    if (gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 == 0)
     {
         if (buttonId == MENU_BUTTON_SCORE)
         {
@@ -921,7 +921,7 @@ static void copy_menu_init(s16 buttonId, struct Object *b)
         }
         sSelectedButtonId = MENU_BUTTON_COPY;
         SetSound(0x70060081, D_803320E0);
-        gMainMenuButtons[MENU_BUTTON_COPY]->unkF4 = 1;
+        gMainMenuButtons[MENU_BUTTON_COPY]->oMainMenuButtonUnkF4 = 1;
         copy_menu_create_buttons(gMainMenuButtons[MENU_BUTTON_COPY]);
     }
 }
@@ -930,13 +930,13 @@ static void erase_menu_init(s16 buttonId, struct Object *b)
 {
     int sp1C;
 
-    if (b->unkF4 == 0 && gMainMenuButtons[buttonId]->unkF4 == 2)
+    if (b->oMainMenuButtonUnkF4 == 0 && gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 == 2)
     {
         SetSound(0x70070081, D_803320E0);
-        gMainMenuButtons[buttonId]->unkF4 = 3;
+        gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 3;
         D_801A7BD4 = 1;
     }
-    if (gMainMenuButtons[buttonId]->unkF4 == 0)
+    if (gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 == 0)
     {
         if (buttonId == MENU_BUTTON_SCORE)
         {
@@ -955,7 +955,7 @@ static void erase_menu_init(s16 buttonId, struct Object *b)
         }
         sSelectedButtonId = MENU_BUTTON_ERASE;
         SetSound(0x70060081, D_803320E0);
-        gMainMenuButtons[MENU_BUTTON_ERASE]->unkF4 = 1;
+        gMainMenuButtons[MENU_BUTTON_ERASE]->oMainMenuButtonUnkF4 = 1;
         erase_menu_create_buttons(gMainMenuButtons[MENU_BUTTON_ERASE]);
     }
 }
@@ -972,7 +972,7 @@ void BehGreyButtonInit(void)
         gMainMenuButtons[MENU_BUTTON_PLAY_FILE_A] = func_8029E2A8(gCurrentObject, 10, beh_menu_growing_button,
             -6400, 2800, 0, 0, 0, 0);
     }
-    gMainMenuButtons[MENU_BUTTON_PLAY_FILE_A]->unk108 = 1.0f;
+    gMainMenuButtons[MENU_BUTTON_PLAY_FILE_A]->oMainMenuButtonUnk108 = 1.0f;
 
     if (save_file_exists(1) == TRUE)
     {
@@ -984,7 +984,7 @@ void BehGreyButtonInit(void)
         gMainMenuButtons[MENU_BUTTON_PLAY_FILE_B] = func_8029E2A8(gCurrentObject, 10, beh_menu_growing_button,
             1500, 2800, 0, 0, 0, 0);
     }
-    gMainMenuButtons[MENU_BUTTON_PLAY_FILE_B]->unk108 = 1.0f;
+    gMainMenuButtons[MENU_BUTTON_PLAY_FILE_B]->oMainMenuButtonUnk108 = 1.0f;
 
     if (save_file_exists(2) == TRUE)
     {
@@ -996,7 +996,7 @@ void BehGreyButtonInit(void)
         gMainMenuButtons[MENU_BUTTON_PLAY_FILE_C] = func_8029E2A8(gCurrentObject, 10, beh_menu_growing_button,
             -6400, 0, 0, 0, 0, 0);
     }
-    gMainMenuButtons[MENU_BUTTON_PLAY_FILE_C]->unk108 = 1.0f;
+    gMainMenuButtons[MENU_BUTTON_PLAY_FILE_C]->oMainMenuButtonUnk108 = 1.0f;
 
     if (save_file_exists(3) == TRUE)
     {
@@ -1008,23 +1008,23 @@ void BehGreyButtonInit(void)
         gMainMenuButtons[MENU_BUTTON_PLAY_FILE_D] = func_8029E2A8(gCurrentObject, 10, beh_menu_growing_button,
             1500, 0, 0, 0, 0, 0);
     }
-    gMainMenuButtons[MENU_BUTTON_PLAY_FILE_D]->unk108 = 1.0f;
+    gMainMenuButtons[MENU_BUTTON_PLAY_FILE_D]->oMainMenuButtonUnk108 = 1.0f;
 
     gMainMenuButtons[MENU_BUTTON_SCORE] = func_8029E2A8(gCurrentObject, 7, beh_menu_growing_button,
         -6400, -3500, 0, 0, 0, 0);
-    gMainMenuButtons[MENU_BUTTON_SCORE]->unk108 = 1.0f;
+    gMainMenuButtons[MENU_BUTTON_SCORE]->oMainMenuButtonUnk108 = 1.0f;
 
     gMainMenuButtons[MENU_BUTTON_COPY] = func_8029E2A8(gCurrentObject, 5, beh_menu_growing_button,
         -2134, -3500, 0, 0, 0, 0);
-    gMainMenuButtons[MENU_BUTTON_COPY]->unk108 = 1.0f;
+    gMainMenuButtons[MENU_BUTTON_COPY]->oMainMenuButtonUnk108 = 1.0f;
 
     gMainMenuButtons[MENU_BUTTON_ERASE] = func_8029E2A8(gCurrentObject, 4, beh_menu_growing_button,
         2134, -3500, 0, 0, 0, 0);
-    gMainMenuButtons[MENU_BUTTON_ERASE]->unk108 = 1.0f;
+    gMainMenuButtons[MENU_BUTTON_ERASE]->oMainMenuButtonUnk108 = 1.0f;
 
     gMainMenuButtons[MENU_BUTTON_SOUND_MODE] = func_8029E2A8(gCurrentObject, 11, beh_menu_growing_button,
         6400, -3500, 0, 0, 0, 0);
-    gMainMenuButtons[MENU_BUTTON_SOUND_MODE]->unk108 = 1.0f;
+    gMainMenuButtons[MENU_BUTTON_SOUND_MODE]->oMainMenuButtonUnk108 = 1.0f;
 
     sTextColorAlpha = 0;
 }
@@ -1032,10 +1032,10 @@ void BehGreyButtonInit(void)
 static void main_menu_handle_click(void)
 {
     if (button_hittest(
-        gMainMenuButtons[MENU_BUTTON_SOUND_MODE]->pos[0],
-        gMainMenuButtons[MENU_BUTTON_SOUND_MODE]->pos[1], 200.0f) == TRUE)
+        gMainMenuButtons[MENU_BUTTON_SOUND_MODE]->oPosX,
+        gMainMenuButtons[MENU_BUTTON_SOUND_MODE]->oPosY, 200.0f) == TRUE)
     {
-        gMainMenuButtons[MENU_BUTTON_SOUND_MODE]->unkF4 = 1;
+        gMainMenuButtons[MENU_BUTTON_SOUND_MODE]->oMainMenuButtonUnkF4 = 1;
         sSelectedButtonId = MENU_BUTTON_SOUND_MODE;
     }
     else
@@ -1044,12 +1044,12 @@ static void main_menu_handle_click(void)
 
         for (buttonId = 0; buttonId < 7; buttonId++)
         {
-            s16 buttonX = gMainMenuButtons[buttonId]->pos[0];
-            s16 buttonY = gMainMenuButtons[buttonId]->pos[1];
+            s16 buttonX = gMainMenuButtons[buttonId]->oPosX;
+            s16 buttonY = gMainMenuButtons[buttonId]->oPosY;
 
             if (button_hittest(buttonX, buttonY, 200.0f) == TRUE)
             {
-                gMainMenuButtons[buttonId]->unkF4 = 1;
+                gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 1;
                 sSelectedButtonId = buttonId;
                 break;
             }
@@ -1427,7 +1427,7 @@ static void copy_menu_print_message(s8 messageId)
 
 static void copy_menu_update_message(void)
 {
-    switch (gMainMenuButtons[MENU_BUTTON_COPY]->unk10C)
+    switch (gMainMenuButtons[MENU_BUTTON_COPY]->oMainMenuButtonUnk10C)
     {
     case 0:
         if (D_801A7BFC == 20)
@@ -1494,7 +1494,7 @@ static void draw_copy_menu(void)
 
 static void erase_yes_no_prompt(s16 x, s16 y)
 {
-    s16 sp2E = D_8032C694 << 12;
+    s16 sp2E = gGlobalTimer << 12;
     s16 sp2C = sCursorPos[0] + 160.0f;
     s16 sp2A = sCursorPos[1] + 120.0f;
 
@@ -1521,7 +1521,7 @@ static void erase_yes_no_prompt(s16 x, s16 y)
         if (D_801A7C04 == 1)
         {
             SetSound(0x2410C081, D_803320E0);
-            gMainMenuButtons[MENU_BUTTON_ERASE]->unk10C = 2;
+            gMainMenuButtons[MENU_BUTTON_ERASE]->oMainMenuButtonUnk10C = 2;
             sFadeOutText = 1;
             D_801A7BFC = 0;
             save_file_erase(sSelectedFile);
@@ -1532,8 +1532,8 @@ static void erase_yes_no_prompt(s16 x, s16 y)
         else if (D_801A7C04 == 2)
         {
             SetSound(0x70110081, D_803320E0);
-            gMainMenuButtons[MENU_BUTTON_ERASE_FILE_A + sSelectedFile]->unkF4 = 6;
-            gMainMenuButtons[MENU_BUTTON_ERASE]->unk10C = 0;
+            gMainMenuButtons[MENU_BUTTON_ERASE_FILE_A + sSelectedFile]->oMainMenuButtonUnkF4 = 6;
+            gMainMenuButtons[MENU_BUTTON_ERASE]->oMainMenuButtonUnk10C = 0;
             sFadeOutText = 1;
             D_801A7BFC = 0;
             D_801A7C04 = 0;
@@ -1579,7 +1579,7 @@ static void erase_menu_print_message(s8 messageId)
 
 static void erase_menu_update_message(void)
 {
-    switch (gMainMenuButtons[MENU_BUTTON_ERASE]->unk10C)
+    switch (gMainMenuButtons[MENU_BUTTON_ERASE]->oMainMenuButtonUnk10C)
     {
     case 0:
         if (D_801A7BFC == 20 && sStatusMessageId == 2)

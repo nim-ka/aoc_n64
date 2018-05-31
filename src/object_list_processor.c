@@ -74,33 +74,33 @@ static void copy_mario_state_to_object(void)
     if (gCurrentObject != gMarioObject)
         i += 1;
 
-    gCurrentObject->vel[0] = gMarioStates[i].vel[0];
-    gCurrentObject->vel[1] = gMarioStates[i].vel[1];
-    gCurrentObject->vel[2] = gMarioStates[i].vel[2];
+    gCurrentObject->oVelX = gMarioStates[i].vel[0];
+    gCurrentObject->oVelY = gMarioStates[i].vel[1];
+    gCurrentObject->oVelZ = gMarioStates[i].vel[2];
 
-    gCurrentObject->pos[0] = gMarioStates[i].pos[0];
-    gCurrentObject->pos[1] = gMarioStates[i].pos[1];
-    gCurrentObject->pos[2] = gMarioStates[i].pos[2];
+    gCurrentObject->oPosX = gMarioStates[i].pos[0];
+    gCurrentObject->oPosY = gMarioStates[i].pos[1];
+    gCurrentObject->oPosZ = gMarioStates[i].pos[2];
 
-    gCurrentObject->angle[0] = gCurrentObject->gfx.unk1A[0];
-    gCurrentObject->angle[1] = gCurrentObject->gfx.unk1A[1];
-    gCurrentObject->angle[2] = gCurrentObject->gfx.unk1A[2];
+    gCurrentObject->oAnglePitch = gCurrentObject->gfx.unk1A[0];
+    gCurrentObject->oAngleYaw = gCurrentObject->gfx.unk1A[1];
+    gCurrentObject->oAngleRoll = gCurrentObject->gfx.unk1A[2];
 
-    gCurrentObject->faceAngle[0] = gCurrentObject->gfx.unk1A[0];
-    gCurrentObject->faceAngle[1] = gCurrentObject->gfx.unk1A[1];
-    gCurrentObject->faceAngle[2] = gCurrentObject->gfx.unk1A[2];
+    gCurrentObject->oFaceAnglePitch = gCurrentObject->gfx.unk1A[0];
+    gCurrentObject->oFaceAngleYaw = gCurrentObject->gfx.unk1A[1];
+    gCurrentObject->oFaceAngleRoll = gCurrentObject->gfx.unk1A[2];
 
-    gCurrentObject->platformRotation[0] = gMarioStates[i].angleVel[0];
-    gCurrentObject->platformRotation[1] = gMarioStates[i].angleVel[1];
-    gCurrentObject->platformRotation[2] = gMarioStates[i].angleVel[2];
+    gCurrentObject->oAngleVelPitch = gMarioStates[i].angleVel[0];
+    gCurrentObject->oAngleVelYaw = gMarioStates[i].angleVel[1];
+    gCurrentObject->oAngleVelRoll = gMarioStates[i].angleVel[2];
 }
 
 static void spawn_particle(u32 flags, s16 seg, void *script)
 {
-    if (!(gCurrentObject->unkE0 & flags))
+    if (!(gCurrentObject->oUnkE0 & flags))
     {
         struct Object *particle;
-        gCurrentObject->unkE0 |= flags;
+        gCurrentObject->oUnkE0 |= flags;
         particle = func_8029E5A4(gCurrentObject, 0, seg, script);
         CopyObjParams(particle, gCurrentObject);
     }
@@ -112,7 +112,7 @@ void BehMarioLoop2(void)
     s32 i;
 
     particleFlags = func_80254604(gCurrentObject);
-    gCurrentObject->unkF4 = particleFlags;
+    gCurrentObject->oMarioParticleFlags = particleFlags;
     copy_mario_state_to_object();
 
     i = 0;
@@ -161,7 +161,7 @@ static s32 update_objects_during_time_stop(struct GfxNode *listHead, struct GfxN
                 unfrozen = TRUE;
             }
             
-            if ((gCurrentObject->interactType & (INTERACT_DOOR | INTERACT_WARP_DOOR)) &&
+            if ((gCurrentObject->oInteractType & (INTERACT_DOOR | INTERACT_WARP_DOOR)) &&
                 !(gTimeStopState & TIME_STOP_MARIO_AND_DOORS))
             {
                 unfrozen = TRUE;
@@ -213,7 +213,7 @@ static s32 func_8029C618(struct GfxNode *objList)
 
         if ((gCurrentObject->active & 0x01) != 1)
         {
-            if ((gCurrentObject->objFlags & 0x4000) == 0)
+            if ((gCurrentObject->oFlags & 0x4000) == 0)
                 func_8029C6D8(gCurrentObject, 0xFF);
 
             func_802C9088(gCurrentObject);
@@ -288,8 +288,8 @@ void spawn_objects_from_info(UNUSED s32 unusedArg, struct SpawnInfo *spawnInfo)
         {
             object = func_802C9424(script);
  
-            object->unk188 = spawnInfo->behaviorArg;
-            object->behParam = ((spawnInfo->behaviorArg) >> 16) & 0xff;
+            object->oUnk188 = spawnInfo->behaviorArg;
+            object->oBehParam = ((spawnInfo->behaviorArg) >> 16) & 0xff;
             object->behavior = script;
             object->unk1C8 = 0;
             object->unk1F6 = 1;
@@ -303,17 +303,17 @@ void spawn_objects_from_info(UNUSED s32 unusedArg, struct SpawnInfo *spawnInfo)
 
             func_8037C51C((struct GraphNode018 *) object, spawnInfo);
             
-            object->pos[0] = spawnInfo->startPos[0];
-            object->pos[1] = spawnInfo->startPos[1];
-            object->pos[2] = spawnInfo->startPos[2];
+            object->oPosX = spawnInfo->startPos[0];
+            object->oPosY = spawnInfo->startPos[1];
+            object->oPosZ = spawnInfo->startPos[2];
 
-            object->faceAngle[0] = spawnInfo->startAngle[0];
-            object->faceAngle[1] = spawnInfo->startAngle[1];
-            object->faceAngle[2] = spawnInfo->startAngle[2];
+            object->oFaceAnglePitch = spawnInfo->startAngle[0];
+            object->oFaceAngleYaw = spawnInfo->startAngle[1];
+            object->oFaceAngleRoll = spawnInfo->startAngle[2];
             
-            object->angle[0] = spawnInfo->startAngle[0];
-            object->angle[1] = spawnInfo->startAngle[1];
-            object->angle[2] = spawnInfo->startAngle[2];
+            object->oAnglePitch = spawnInfo->startAngle[0];
+            object->oAngleYaw = spawnInfo->startAngle[1];
+            object->oAngleRoll = spawnInfo->startAngle[2];
 
         }
         

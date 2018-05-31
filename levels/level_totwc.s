@@ -42,7 +42,7 @@ glabel level_totwc_entry
         terrain /*terrainData*/ 0x07007A18
         cmd39 /*unk4*/ 0x070088AC
         cmd30 /*unk2*/ 0x00, /*unk3*/ 0x83
-        set_menu_music /*unk2*/ 0x0000, /*seq*/ 0x0009
+        set_music /*unk2*/ 0x0000, /*seq*/ 0x0009
         terrain_type /*terrainType*/ 0x0001
     end_area
 

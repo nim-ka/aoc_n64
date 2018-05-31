@@ -268,7 +268,7 @@ void func_802E1224(u32 a0, u32 (*a1)[], s16 a2, s16 a3, s16 a4, s16 a5, s16 a6)
     if (a1 != NULL)
     {
         struct Object *sp3C = func_8029E230(&D_8035FB18, 0, a0, a1, a2, a3, a4, 0, func_802E1190(a5), 0);
-        sp3C->unk188 = ((u32) a6) << 16;        
+        sp3C->oUnk188 = ((u32) a6) << 16;        
     }
 }
 
@@ -277,7 +277,7 @@ void func_802E12CC(u32 a0, u8 (*a1)[], s16 a2, s16 a3, s16 a4, s16 a5, s16 a6)
     if (a1 != NULL)
     {
         struct Object *sp3C = func_8029E230(&D_8035FB18, 0, a0, a1, a2, a3, a4, 0, func_802E1190(a5), 0);
-        sp3C->unk188 = ((u32) a6) << 24;        
+        sp3C->oUnk188 = ((u32) a6) << 24;        
     }
 }
 
@@ -286,10 +286,9 @@ void func_802E1374(u32 a0, u8 (*a1)[], s16 a2, s16 a3, s16 a4, s16 a5, s16 a6, s
     struct Object *sp34 = func_8029E230(&D_8035FB18, 0, a0, a1, a2, a3, a4, 0, 0, 0);
 
 
-    sp34->unk108 = (f32) a5;
-    // TODO: Fix hack
-    *(f32 *) &sp34->unk10C = (f32) a6;
-    *(f32 *) &sp34->unk110 = (f32) a7;
+    sp34->oUnknownUnk108_F32 = (f32) a5;
+    sp34->oUnknownUnk10C_F32 = (f32) a6;
+    sp34->oUnknownUnk110_F32 = (f32) a7;
 }
 
 void Unknown802E142C(u32 (*a0)[], s16 a1[])
@@ -301,8 +300,8 @@ void Unknown802E142C(u32 (*a0)[], s16 a1[])
     
     sp3C = func_8029E230(&D_8035FB18, 0, sp3A, a0, a1[1], a1[2], a1[3], 0, func_802E1190(a1[0]), 0);
 
-    sp3C->unk1A8 = a1[4];
-    sp3C->unk188 = (a1[4] & 0xFF) >> 16;    // good C
+    sp3C->oUnk1A8 = a1[4];
+    sp3C->oUnk188 = (a1[4] & 0xFF) >> 16;    // good C
 }
 
 void func_802E1504(s16 a0, s16* a1)
@@ -343,9 +342,9 @@ void func_802E1504(s16 a0, s16* a1)
         {
             sp48 = func_8029E230(&D_8035FB18, 0, sp40.unk6, sp40.beh, sp4C[1], sp4C[2], sp4C[3], 0, func_802E1190(sp4C[0]), 0);
 
-            sp48->unk1A8   = sp4C[4];
-            sp48->unk188   = ((sp4C[4] & 0x00FF) << 16) + (sp4C[4] & 0xFF00);
-            sp48->behParam = sp4C[4] & 0x00FF;
+            sp48->oUnk1A8   = sp4C[4];
+            sp48->oUnk188   = ((sp4C[4] & 0x00FF) << 16) + (sp4C[4] & 0xFF00);
+            sp48->oBehParam = sp4C[4] & 0x00FF;
             sp48->unk1F6   = 2;
             sp48->unk25C   = a1 - 1;
             sp48->nextObj    = sp48;

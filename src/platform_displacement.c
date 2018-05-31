@@ -31,9 +31,9 @@ void update_mario_platform(void)
 
     if (gMarioObject == NULL) return;
 
-    marioX = gMarioObject->pos[0];
-    marioY = gMarioObject->pos[1];
-    marioZ = gMarioObject->pos[2];
+    marioX = gMarioObject->oPosX;
+    marioY = gMarioObject->oPosY;
+    marioZ = gMarioObject->oPosZ;
     floorHeight = find_floor(marioX, marioY, marioZ, &floor);
 
     if (func_802A2E8C(marioY - floorHeight) < 4.0f)
@@ -102,9 +102,9 @@ void apply_platform_displacement(u32 isMario, struct Object *platform)
     UNUSED s16 unused3;
     f32 displaceMatrix[4][4];
 
-    rotation[0] = platform->platformRotation[0];
-    rotation[1] = platform->platformRotation[1];
-    rotation[2] = platform->platformRotation[2];
+    rotation[0] = platform->oAngleVelPitch;
+    rotation[1] = platform->oAngleVelYaw;
+    rotation[2] = platform->oAngleVelRoll;
 
     if (isMario)
     {
@@ -113,41 +113,41 @@ void apply_platform_displacement(u32 isMario, struct Object *platform)
     }
     else
     {
-        x = gCurrentObject->pos[0];
-        y = gCurrentObject->pos[1];
-        z = gCurrentObject->pos[2];
+        x = gCurrentObject->oPosX;
+        y = gCurrentObject->oPosY;
+        z = gCurrentObject->oPosZ;
     }
 
-    x += platform->vel[0];
-    z += platform->vel[2];
+    x += platform->oVelX;
+    z += platform->oVelZ;
 
     if (rotation[0] != 0 || rotation[1] != 0 || rotation[2] != 0)
     {        
         unused1 = rotation[0];
         unused2 = rotation[2];
-        unused3 = platform->faceAngle[1];
+        unused3 = platform->oFaceAngleYaw;
 
         if (isMario)
             gMarioStates[0].faceAngle[1] += rotation[1];
 
-        platformPosX = platform->pos[0];
-        platformPosY = platform->pos[1];
-        platformPosZ = platform->pos[2];
+        platformPosX = platform->oPosX;
+        platformPosY = platform->oPosY;
+        platformPosZ = platform->oPosZ;
 
         currentObjectOffset[0] = x - platformPosX;
         currentObjectOffset[1] = y - platformPosY;
         currentObjectOffset[2] = z - platformPosZ;
 
-        rotation[0] = platform->faceAngle[0] - platform->platformRotation[0];
-        rotation[1] = platform->faceAngle[1] - platform->platformRotation[1];
-        rotation[2] = platform->faceAngle[2] - platform->platformRotation[2];
+        rotation[0] = platform->oFaceAnglePitch - platform->oAngleVelPitch;
+        rotation[1] = platform->oFaceAngleYaw - platform->oAngleVelYaw;
+        rotation[2] = platform->oFaceAngleRoll - platform->oAngleVelRoll;
 
         mtxf_rotate_zxy_and_translate(displaceMatrix, currentObjectOffset, rotation);
         func_8029EAF8(displaceMatrix, relativeOffset, currentObjectOffset);
 
-        rotation[0] = platform->faceAngle[0];
-        rotation[1] = platform->faceAngle[1];
-        rotation[2] = platform->faceAngle[2];
+        rotation[0] = platform->oFaceAnglePitch;
+        rotation[1] = platform->oFaceAngleYaw;
+        rotation[2] = platform->oFaceAngleRoll;
 
         mtxf_rotate_zxy_and_translate(displaceMatrix, currentObjectOffset, rotation);
         func_8029EA84(displaceMatrix, newObjectOffset, relativeOffset);
@@ -163,9 +163,9 @@ void apply_platform_displacement(u32 isMario, struct Object *platform)
     }
     else
     {
-        gCurrentObject->pos[0] = x;
-        gCurrentObject->pos[1] = y;
-        gCurrentObject->pos[2] = z;
+        gCurrentObject->oPosX = x;
+        gCurrentObject->oPosY = y;
+        gCurrentObject->oPosZ = z;
     }
 }
 

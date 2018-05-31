@@ -594,14 +594,14 @@ void load_object_collision_model(void)
     UNUSED s32 unused;
     s16 vertexData[600];
     s16 *collisionData = gCurrentObject->collisionData;
-    f32 marioDist = gCurrentObject->distanceFromMario;
-    f32 tangibleDist = gCurrentObject->collisionDistance;
+    f32 marioDist = gCurrentObject->oDistanceToMario;
+    f32 tangibleDist = gCurrentObject->oCollisionDistance;
 
-    if (gCurrentObject->distanceFromMario == 19000.0f)
+    if (gCurrentObject->oDistanceToMario == 19000.0f)
         marioDist = objects_calc_distance(gCurrentObject, gMarioObject);
 
-    if (gCurrentObject->collisionDistance > 4000.0f)
-        gCurrentObject->drawingDistance = gCurrentObject->collisionDistance;
+    if (gCurrentObject->oCollisionDistance > 4000.0f)
+        gCurrentObject->oDrawingDistance = gCurrentObject->oCollisionDistance;
 
     if (!(gTimeStopState & TIME_STOP_ACTIVE) && marioDist < tangibleDist &&
         !(gCurrentObject->active & 0x0008))
@@ -613,7 +613,7 @@ void load_object_collision_model(void)
             load_object_surfaces(&collisionData, vertexData);
     }
 
-    if (marioDist < gCurrentObject->drawingDistance)
+    if (marioDist < gCurrentObject->oDrawingDistance)
         gCurrentObject->gfx.graphFlags |= 0x0001;
     else
         gCurrentObject->gfx.graphFlags &= ~0x0001;

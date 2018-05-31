@@ -150,7 +150,7 @@ void *Geo18_802D2520(s32 sp80, short *sp84, UNUSED s32 sp88)
         }
         else
         {
-            if (sp58->forwardVel != 0.0)
+            if (sp58->oForwardVel != 0.0)
                 D_8035FF80 = 1;
             else
                 D_8035FF80 = 0;

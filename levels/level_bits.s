@@ -92,7 +92,7 @@ glabel level_bits_entry
         jump_link /*target*/ script_func_local_2
         terrain /*terrainData*/ 0x07016E18
         cmd39 /*unk4*/ 0x0701A76C
-        set_menu_music /*unk2*/ 0x0000, /*seq*/ 0x0011
+        set_music /*unk2*/ 0x0000, /*seq*/ 0x0011
         terrain_type /*terrainType*/ 0x0001
     end_area
 

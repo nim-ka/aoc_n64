@@ -89,7 +89,7 @@ glabel level_bitdw_entry
         terrain /*terrainData*/ 0x0700D460
         cmd39 /*unk4*/ 0x0700F438
         cmd30 /*unk2*/ 0x00, /*unk3*/ 0x5A
-        set_menu_music /*unk2*/ 0x0000, /*seq*/ 0x0011
+        set_music /*unk2*/ 0x0000, /*seq*/ 0x0011
         terrain_type /*terrainType*/ 0x0001
     end_area
 

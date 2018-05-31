@@ -129,27 +129,27 @@ Gfx *Geo18_802764B0(int a, struct GraphNode *b, Mat4 *c)
 
 void func_80275FCC(void)
 {
-    if (gCurrentObject->distanceFromMario > 700.0f)
-        gCurrentObject->unk10C = 0;
-    if (gCurrentObject->unk10C == 0 && gCurrentObject->distanceFromMario < 600.0f)
-        gCurrentObject->unk110 = 2;
+    if (gCurrentObject->oDistanceToMario > 700.0f)
+        gCurrentObject->oToadMessageUnk10C = 0;
+    if (gCurrentObject->oToadMessageUnk10C == 0 && gCurrentObject->oDistanceToMario < 600.0f)
+        gCurrentObject->oToadMessageUnk110 = 2;
 }
 
 void func_8027604C(void)
 {
-    if (gCurrentObject->distanceFromMario > 700.0f)
+    if (gCurrentObject->oDistanceToMario > 700.0f)
     {
-        gCurrentObject->unk110 = 3;
+        gCurrentObject->oToadMessageUnk110 = 3;
     }
     else
     {
-        if (gCurrentObject->unk10C == 0)
+        if (gCurrentObject->oToadMessageUnk10C == 0)
         {
-            gCurrentObject->unk190 = 0x4000;
-            if (gCurrentObject->interactStatus & 0x8000)
+            gCurrentObject->oUnk190 = 0x4000;
+            if (gCurrentObject->oInteractStatus & 0x8000)
             {
-                gCurrentObject->interactStatus = 0;
-                gCurrentObject->unk110 = 4;
+                gCurrentObject->oInteractStatus = 0;
+                gCurrentObject->oToadMessageUnk110 = 4;
                 func_8032132C();
             }
         }
@@ -158,22 +158,22 @@ void func_8027604C(void)
 
 void func_80276104(void)
 {
-    if (CreateMessageBox(3, 1, 162, *(u32 *)&gCurrentObject->unk108) != 0)
+    if (CreateMessageBox(3, 1, 162, gCurrentObject->oToadMessageUnk108) != 0)
     {
-        gCurrentObject->unk10C = 1;
-        gCurrentObject->unk110 = 3;
-        switch (*(u32 *)&gCurrentObject->unk108)
+        gCurrentObject->oToadMessageUnk10C = 1;
+        gCurrentObject->oToadMessageUnk110 = 3;
+        switch (gCurrentObject->oToadMessageUnk108)
         {
         case 82:
-            *(u32 *)&gCurrentObject->unk108 = 154;
+            gCurrentObject->oToadMessageUnk108 = 154;
             func_802AACE4(0);
             break;
         case 76:
-            *(u32 *)&gCurrentObject->unk108 = 155;
+            gCurrentObject->oToadMessageUnk108 = 155;
             func_802AACE4(1);
             break;
         case 83:
-            *(u32 *)&gCurrentObject->unk108 = 156;
+            gCurrentObject->oToadMessageUnk108 = 156;
             func_802AACE4(2);
             break;
         }
@@ -182,22 +182,22 @@ void func_80276104(void)
 
 void func_80276208(void)
 {
-    if ((gCurrentObject->unk17C += 6) == 255)
-        gCurrentObject->unk110 = 1;
+    if ((gCurrentObject->oUnk17C += 6) == 255)
+        gCurrentObject->oToadMessageUnk110 = 1;
 }
 
 void func_80276254(void)
 {
-    if ((gCurrentObject->unk17C -= 6) == 81)
-        gCurrentObject->unk110 = 0;
+    if ((gCurrentObject->oUnk17C -= 6) == 81)
+        gCurrentObject->oToadMessageUnk110 = 0;
 }
 
 void BehToadMessageLoop(void)
 {
     if (gCurrentObject->gfx.graphFlags & 1)
     {
-        gCurrentObject->unk190 = 0;
-        switch (gCurrentObject->unk110)
+        gCurrentObject->oUnk190 = 0;
+        switch (gCurrentObject->oToadMessageUnk110)
         {
         case 0:
             func_80275FCC();
@@ -222,7 +222,7 @@ void BehToadMessageInit(void)
 {
     int sp34 = save_file_get_flags();
     int sp30 = save_file_get_total_star_count(gCurrSaveFileNum - 1, 0, 24);
-    int sp2C = (gCurrentObject->unk188 >> 24) & 0xFF;
+    int sp2C = (gCurrentObject->oUnk188 >> 24) & 0xFF;
     int sp28 = TRUE;
 
     switch (sp2C)
@@ -245,10 +245,10 @@ void BehToadMessageInit(void)
     }
     if (sp28)
     {
-        *(u32 *)&gCurrentObject->unk108 = sp2C;
-        gCurrentObject->unk10C = 0;
-        gCurrentObject->unk110 = 0;
-        gCurrentObject->unk17C = 81;
+        gCurrentObject->oToadMessageUnk108 = sp2C;
+        gCurrentObject->oToadMessageUnk10C = 0;
+        gCurrentObject->oToadMessageUnk110 = 0;
+        gCurrentObject->oUnk17C = 81;
     }
     else
     {
@@ -260,68 +260,68 @@ void func_802764F0(s16 a)
 {
     struct Object *sp1C = SpawnObj(gCurrentObject, 0, beh_powerup_sparkles2);
 
-    sp1C->pos[0] += 100.0f * sins((gCurrentObject->unk10C * 0x2800) + a);
-    sp1C->pos[2] += 100.0f * coss((gCurrentObject->unk10C * 0x2800) + a);
-    sp1C->pos[1] -= gCurrentObject->unk10C * 10.0f;
+    sp1C->oPosX += 100.0f * sins((gCurrentObject->oSealedDoorStarUnk10C * 0x2800) + a);
+    sp1C->oPosZ += 100.0f * coss((gCurrentObject->oSealedDoorStarUnk10C * 0x2800) + a);
+    sp1C->oPosY -= gCurrentObject->oSealedDoorStarUnk10C * 10.0f;
 }
 
 void BehSealedDoorStarInit(void)
 {
-    *(u32 *)&gCurrentObject->unk108 = 0;
-    gCurrentObject->unk10C = 0;
-    gCurrentObject->unk110 = 4096;
-    gCurrentObject->pos[0] += 30.0f * sins(gMarioState->faceAngle[1] - 0x4000);
-    gCurrentObject->pos[1] += 160.0f;
-    gCurrentObject->pos[2] += 30.0f * coss(gMarioState->faceAngle[1] - 0x4000);
-    gCurrentObject->angle[1] = 0x7800;
+    gCurrentObject->oSealedDoorStarUnk108 = 0;
+    gCurrentObject->oSealedDoorStarUnk10C = 0;
+    gCurrentObject->oSealedDoorStarUnk110 = 4096;
+    gCurrentObject->oPosX += 30.0f * sins(gMarioState->faceAngle[1] - 0x4000);
+    gCurrentObject->oPosY += 160.0f;
+    gCurrentObject->oPosZ += 30.0f * coss(gMarioState->faceAngle[1] - 0x4000);
+    gCurrentObject->oAngleYaw = 0x7800;
     func_8029EC88(gCurrentObject, 0.5f);
 }
 
 void BehSealedDoorStarLoop(void)
 {
     UNUSED u8 unused1[4];
-    s16 sp2A = gCurrentObject->angle[1];
+    s16 sp2A = gCurrentObject->oAngleYaw;
     UNUSED u8 unused2[4];
 
-    if (gCurrentObject->unk110 < 0x2400)
-        gCurrentObject->unk110 += 0x60;
-    switch (*(u32 *)&gCurrentObject->unk108)
+    if (gCurrentObject->oSealedDoorStarUnk110 < 0x2400)
+        gCurrentObject->oSealedDoorStarUnk110 += 0x60;
+    switch (gCurrentObject->oSealedDoorStarUnk108)
     {
     case 0:
-        gCurrentObject->pos[1] += 3.4f;
-        gCurrentObject->angle[1] += gCurrentObject->unk110;
-        func_8029EC88(gCurrentObject, gCurrentObject->unk10C / 50.0f + 0.5f);
-        if (++gCurrentObject->unk10C == 30)
+        gCurrentObject->oPosY += 3.4f;
+        gCurrentObject->oAngleYaw += gCurrentObject->oSealedDoorStarUnk110;
+        func_8029EC88(gCurrentObject, gCurrentObject->oSealedDoorStarUnk10C / 50.0f + 0.5f);
+        if (++gCurrentObject->oSealedDoorStarUnk10C == 30)
         {
-            gCurrentObject->unk10C = 0;
-            (*(u32 *)&gCurrentObject->unk108)++;
+            gCurrentObject->oSealedDoorStarUnk10C = 0;
+            gCurrentObject->oSealedDoorStarUnk108++;
         }
         break;
     case 1:
-        gCurrentObject->angle[1] += gCurrentObject->unk110;
-        if (++gCurrentObject->unk10C == 30)
+        gCurrentObject->oAngleYaw += gCurrentObject->oSealedDoorStarUnk110;
+        if (++gCurrentObject->oSealedDoorStarUnk10C == 30)
         {
             SetSound(0x701EFF81, &gCurrentObject->gfx.unk54);
             UnHideObject();
-            gCurrentObject->unk10C = 0;
-            (*(u32 *)&gCurrentObject->unk108)++;
+            gCurrentObject->oSealedDoorStarUnk10C = 0;
+            gCurrentObject->oSealedDoorStarUnk108++;
         }
         break;
     case 2:
         func_802764F0(0);
         func_802764F0(-0x8000);
-        if (gCurrentObject->unk10C++ == 20)
+        if (gCurrentObject->oSealedDoorStarUnk10C++ == 20)
         {
-            gCurrentObject->unk10C = 0;
-            (*(u32 *)&gCurrentObject->unk108)++;
+            gCurrentObject->oSealedDoorStarUnk10C = 0;
+            gCurrentObject->oSealedDoorStarUnk108++;
         }
         break;
     case 3:
-        if (gCurrentObject->unk10C++ == 50)
+        if (gCurrentObject->oSealedDoorStarUnk10C++ == 50)
             DeactivateObject(gCurrentObject);
         break;
     }
-    if (sp2A > (s16)gCurrentObject->angle[1])
+    if (sp2A > (s16)gCurrentObject->oAngleYaw)
         SetSound(0x30160091, &gCurrentObject->gfx.unk54);
 }
 

@@ -33,7 +33,7 @@ glabel level_main_menu_entry_1
 
     free_level_pool
     load_area /*area*/ 1
-    set_music /*seq*/ 0x0021
+    set_menu_music /*seq*/ 0x0021
     transition /*unk2*/ 0, /*unk3*/ 16, /*color*/ -1, -1, -1
     call /*arg*/ 0, /*func*/ LevelProc_801766DC
     call_loop /*arg*/ 0, /*func*/ LevelProc_801768A0
@@ -63,7 +63,7 @@ glabel level_main_menu_entry_2
     load_area /*area*/ 2
     transition /*unk2*/ 0, /*unk3*/ 16, /*color*/ -1, -1, -1
     sleep /*frames*/ 16
-    set_music /*seq*/ 0x000D
+    set_menu_music /*seq*/ 0x000D
     call /*arg*/ 0, /*func*/ LevelProc_80177560
     call_loop /*arg*/ 0, /*func*/ LevelProc_80177610
     get_or_set /*op*/ OP_SET, /*var*/ VAR_D_8033A758

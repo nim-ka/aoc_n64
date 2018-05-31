@@ -251,7 +251,7 @@ glabel level_castle_entry
         terrain /*terrainData*/ 0x07068B88
         rooms /*surfaceRooms*/ 0x0707782C
         cmd39 /*unk4*/ 0x07077764
-        set_menu_music /*unk2*/ 0x0001, /*seq*/ 0x0004
+        set_music /*unk2*/ 0x0001, /*seq*/ 0x0004
         terrain_type /*terrainType*/ 0x0001
     end_area
 
@@ -269,7 +269,7 @@ glabel level_castle_entry
         rooms /*surfaceRooms*/ 0x0707808C
         cmd39 /*unk4*/ 0x070777E0
         instant_warp /*index*/ 0, /*destArea*/ 2, /*displace*/ 0, -205, 410
-        set_menu_music /*unk2*/ 0x0001, /*seq*/ 0x0004
+        set_music /*unk2*/ 0x0001, /*seq*/ 0x0004
         terrain_type /*terrainType*/ 0x0001
     end_area
 
@@ -286,7 +286,7 @@ glabel level_castle_entry
         terrain /*terrainData*/ 0x07073AAC
         rooms /*surfaceRooms*/ 0x07078870
         cmd39 /*unk4*/ 0x070777EC
-        set_menu_music /*unk2*/ 0x0001, /*seq*/ 0x0004
+        set_music /*unk2*/ 0x0001, /*seq*/ 0x0004
         terrain_type /*terrainType*/ 0x0001
     end_area
 

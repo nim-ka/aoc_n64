@@ -125,7 +125,7 @@ glabel level_ttm_entry
         jump_link /*target*/ script_func_local_3
         terrain /*terrainData*/ 0x07013814
         cmd39 /*unk4*/ 0x07016F18
-        set_menu_music /*unk2*/ 0x0000, /*seq*/ 0x0003
+        set_music /*unk2*/ 0x0000, /*seq*/ 0x0003
         terrain_type /*terrainType*/ 0x0001
     end_area
 
@@ -138,7 +138,7 @@ glabel level_ttm_entry
         terrain /*terrainData*/ 0x0702BBD0
         cmd39 /*unk4*/ 0x070302C8
         instant_warp /*index*/ 2, /*destArea*/ 3, /*displace*/ 10240, 7168, 10240
-        set_menu_music /*unk2*/ 0x0001, /*seq*/ 0x0009
+        set_music /*unk2*/ 0x0001, /*seq*/ 0x0009
         terrain_type /*terrainType*/ 0x0006
     end_area
 
@@ -149,7 +149,7 @@ glabel level_ttm_entry
         terrain /*terrainData*/ 0x0702D5EC
         cmd39 /*unk4*/ 0x07030338
         instant_warp /*index*/ 3, /*destArea*/ 4, /*displace*/ -11264, 13312, 3072
-        set_menu_music /*unk2*/ 0x0001, /*seq*/ 0x0009
+        set_music /*unk2*/ 0x0001, /*seq*/ 0x0009
         terrain_type /*terrainType*/ 0x0006
     end_area
 
@@ -162,7 +162,7 @@ glabel level_ttm_entry
         jump_link /*target*/ script_func_local_7
         terrain /*terrainData*/ 0x0702F0F8
         cmd39 /*unk4*/ 0x07030418
-        set_menu_music /*unk2*/ 0x0001, /*seq*/ 0x0009
+        set_music /*unk2*/ 0x0001, /*seq*/ 0x0009
         terrain_type /*terrainType*/ 0x0006
     end_area
 

@@ -114,7 +114,7 @@ glabel level_castle_grounds_entry
         jump_link /*target*/ script_func_local_4
         terrain /*terrainData*/ 0x0700EAE8
         cmd39 /*unk4*/ 0x07010D08
-        set_menu_music /*unk2*/ 0x0000, /*seq*/ 0x0000
+        set_music /*unk2*/ 0x0000, /*seq*/ 0x0000
         terrain_type /*terrainType*/ 0x0000
     end_area
 

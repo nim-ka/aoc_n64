@@ -95,7 +95,7 @@ glabel level_ssl_entry
         jump_link /*target*/ script_func_local_3
         terrain /*terrainData*/ 0x0700FD80
         cmd39 /*unk4*/ 0x07012424
-        set_menu_music /*unk2*/ 0x0000, /*seq*/ 0x0006
+        set_music /*unk2*/ 0x0000, /*seq*/ 0x0006
         terrain_type /*terrainType*/ 0x0003
     end_area
 
@@ -115,7 +115,7 @@ glabel level_ssl_entry
         instant_warp /*index*/ 3, /*destArea*/ 3, /*displace*/ 0, 0, 0
         terrain /*terrainData*/ 0x07023678
         cmd39 /*unk4*/ 0x07027CD4
-        set_menu_music /*unk2*/ 0x0004, /*seq*/ 0x000C
+        set_music /*unk2*/ 0x0004, /*seq*/ 0x000C
         terrain_type /*terrainType*/ 0x0001
     end_area
 
@@ -126,7 +126,7 @@ glabel level_ssl_entry
         terrain /*terrainData*/ 0x070275BC
         cmd39 /*unk4*/ 0x07027ECC
         instant_warp /*index*/ 2, /*destArea*/ 2, /*displace*/ 0, 0, 0
-        set_menu_music /*unk2*/ 0x0004, /*seq*/ 0x000C
+        set_music /*unk2*/ 0x0004, /*seq*/ 0x000C
         terrain_type /*terrainType*/ 0x0001
     end_area
 

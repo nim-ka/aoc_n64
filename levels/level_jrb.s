@@ -137,7 +137,7 @@ glabel level_jrb_entry
         jump_link /*target*/ script_func_local_3
         terrain /*terrainData*/ 0x0700B058
         cmd39 /*unk4*/ 0x0700C4E8
-        set_menu_music /*unk2*/ 0x0003, /*seq*/ 0x0005
+        set_music /*unk2*/ 0x0003, /*seq*/ 0x0005
         terrain_type /*terrainType*/ 0x0005
     end_area
 
@@ -150,7 +150,7 @@ glabel level_jrb_entry
         jump_link /*target*/ script_func_local_5
         terrain /*terrainData*/ 0x070105B8
         cmd39 /*unk4*/ 0x07011370
-        set_menu_music /*unk2*/ 0x0003, /*seq*/ 0x0005
+        set_music /*unk2*/ 0x0003, /*seq*/ 0x0005
         terrain_type /*terrainType*/ 0x0005
     end_area
 

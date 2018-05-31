@@ -1055,8 +1055,8 @@ glabel func_802E3E78
 /* 09EE7C 802E3E7C AFBF0014 */  sw    $ra, 0x14($sp)
 /* 09EE80 802E3E80 AFA40020 */  sw    $a0, 0x20($sp)
 /* 09EE84 802E3E84 AFA50024 */  sw    $a1, 0x24($sp)
-/* 09EE88 802E3E88 3C0E8033 */  lui   $t6, %hi(D_8032C694) # $t6, 0x8033
-/* 09EE8C 802E3E8C 8DCEC694 */  lw    $t6, %lo(D_8032C694)($t6)
+/* 09EE88 802E3E88 3C0E8033 */  lui   $t6, %hi(gGlobalTimer) # $t6, 0x8033
+/* 09EE8C 802E3E8C 8DCEC694 */  lw    $t6, %lo(gGlobalTimer)($t6)
 /* 09EE90 802E3E90 AFAE001C */  sw    $t6, 0x1c($sp)
 /* 09EE94 802E3E94 8FAF0020 */  lw    $t7, 0x20($sp)
 /* 09EE98 802E3E98 3C198036 */  lui   $t9, %hi(gCurrentObject) # $t9, 0x8036
@@ -7568,8 +7568,8 @@ glabel BehWaterWaveInit
 
 glabel BehWaterWaveLoop
 /* 0A4B40 802E9B40 27BDFFF8 */  addiu $sp, $sp, -8
-/* 0A4B44 802E9B44 3C0E8033 */  lui   $t6, %hi(D_8032C694) # $t6, 0x8033
-/* 0A4B48 802E9B48 8DCEC694 */  lw    $t6, %lo(D_8032C694)($t6)
+/* 0A4B44 802E9B44 3C0E8033 */  lui   $t6, %hi(gGlobalTimer) # $t6, 0x8033
+/* 0A4B48 802E9B48 8DCEC694 */  lw    $t6, %lo(gGlobalTimer)($t6)
 /* 0A4B4C 802E9B4C AFAE0004 */  sw    $t6, 4($sp)
 /* 0A4B50 802E9B50 8FAF0004 */  lw    $t7, 4($sp)
 /* 0A4B54 802E9B54 31F8000F */  andi  $t8, $t7, 0xf
@@ -10569,8 +10569,8 @@ glabel BehLllTiltingBridgeLoop
 /* 0A7634 802EC634 27BDFFD8 */  addiu $sp, $sp, -0x28
 /* 0A7638 802EC638 AFBF001C */  sw    $ra, 0x1c($sp)
 /* 0A763C 802EC63C AFB00018 */  sw    $s0, 0x18($sp)
-/* 0A7640 802EC640 3C0E8033 */  lui   $t6, %hi(D_8032C694) # $t6, 0x8033
-/* 0A7644 802EC644 8DCEC694 */  lw    $t6, %lo(D_8032C694)($t6)
+/* 0A7640 802EC640 3C0E8033 */  lui   $t6, %hi(gGlobalTimer) # $t6, 0x8033
+/* 0A7644 802EC644 8DCEC694 */  lw    $t6, %lo(gGlobalTimer)($t6)
 /* 0A7648 802EC648 AFAE0024 */  sw    $t6, 0x24($sp)
 /* 0A764C 802EC64C 3C0F8036 */  lui   $t7, %hi(gCurrentObject) # $t7, 0x8036
 /* 0A7650 802EC650 8DEFFDF0 */  lw    $t7, %lo(gCurrentObject)($t7)
@@ -23959,8 +23959,8 @@ glabel func_802F8450
 glabel func_802F84FC
 /* 0B34FC 802F84FC 27BDFFE0 */  addiu $sp, $sp, -0x20
 /* 0B3500 802F8500 AFBF0014 */  sw    $ra, 0x14($sp)
-/* 0B3504 802F8504 3C0E8033 */  lui   $t6, %hi(D_8032C694) # $t6, 0x8033
-/* 0B3508 802F8508 8DCEC694 */  lw    $t6, %lo(D_8032C694)($t6)
+/* 0B3504 802F8504 3C0E8033 */  lui   $t6, %hi(gGlobalTimer) # $t6, 0x8033
+/* 0B3508 802F8508 8DCEC694 */  lw    $t6, %lo(gGlobalTimer)($t6)
 /* 0B350C 802F850C AFAE001C */  sw    $t6, 0x1c($sp)
 /* 0B3510 802F8510 3C0F8034 */  lui   $t7, %hi(gDisplayedLives) # $t7, 0x8034
 /* 0B3514 802F8514 85EF9EF0 */  lh    $t7, %lo(gDisplayedLives)($t7)

@@ -185,14 +185,14 @@ static void level_cmd_jump_repeat(void)
     }
 }
 
-static void level_cmd_link_push_zero(void)
+static void level_cmd_loop_begin(void)
 {
     *sStackTop++ = (u32) NEXT_CMD;
     *sStackTop++ = 0;
     sCurrentCmd = CMD_NEXT;
 }
 
-static void level_cmd_pop_twice_if(void)
+static void level_cmd_loop_until(void)
 {
     if (eval_script_op(CMD_GET(u8, 2), CMD_GET(s32, 4)) != 0)
     {
@@ -744,7 +744,7 @@ static void level_cmd_30(void)
     sCurrentCmd = CMD_NEXT;
 }
 
-static void level_cmd_set_menu_music(void)
+static void level_cmd_set_music(void)
 {
     if (sCurrAreaIndex != -1)
     {
@@ -754,7 +754,7 @@ static void level_cmd_set_menu_music(void)
     sCurrentCmd = CMD_NEXT;
 }
 
-static void level_cmd_set_music(void)
+static void level_cmd_set_menu_music(void)
 {
     func_80249148(0, CMD_GET(s16, 2), 0);
     sCurrentCmd = CMD_NEXT;
@@ -806,8 +806,8 @@ static void (*LevelScriptJumpTable[])(void) =
     /*07*/ level_cmd_return,
     /*08*/ level_cmd_jump_and_link_push_arg,
     /*09*/ level_cmd_jump_repeat,
-    /*0A*/ level_cmd_link_push_zero,
-    /*0B*/ level_cmd_pop_twice_if,
+    /*0A*/ level_cmd_loop_begin,
+    /*0B*/ level_cmd_loop_until,
     /*0C*/ level_cmd_jump_if,
     /*0D*/ level_cmd_jump_and_link_if,
     /*0E*/ level_cmd_skip_if,
@@ -850,8 +850,8 @@ static void (*LevelScriptJumpTable[])(void) =
     /*33*/ level_cmd_set_transition,
     /*34*/ level_cmd_set_blackout,
     /*35*/ level_cmd_set_gamma,
-    /*36*/ level_cmd_set_menu_music,
-    /*37*/ level_cmd_set_music,
+    /*36*/ level_cmd_set_music,
+    /*37*/ level_cmd_set_menu_music,
     /*38*/ level_cmd_38,
     /*39*/ level_cmd_39,
     /*3A*/ level_cmd_3A,

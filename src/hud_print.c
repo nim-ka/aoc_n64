@@ -223,7 +223,7 @@ void render_hud_stars(void)
 {
     s8 showX = 0;
 
-    if (D_803305CC == 1 && D_8032C694 & 0x00000008)
+    if (D_803305CC == 1 && gGlobalTimer & 0x00000008)
         return;
     
     if (gDisplayedStars < 100)

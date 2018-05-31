@@ -70,7 +70,7 @@ glabel level_sl_entry
         warp_node /*id*/ 0xF1, /*destLevel1*/ 0x06, /*destArea*/ 0x02, /*destNode*/ 0x68, /*destLevel2*/ 0x00
         terrain /*terrainData*/ 0x0700CBD8
         cmd39 /*unk4*/ 0x0700ED94
-        set_menu_music /*unk2*/ 0x0000, /*seq*/ 0x0008
+        set_music /*unk2*/ 0x0000, /*seq*/ 0x0008
         terrain_type /*terrainType*/ 0x0002
     end_area
 
@@ -84,7 +84,7 @@ glabel level_sl_entry
         warp_node /*id*/ 0xF1, /*destLevel1*/ 0x06, /*destArea*/ 0x02, /*destNode*/ 0x68, /*destLevel2*/ 0x00
         terrain /*terrainData*/ 0x0700EFFC
         cmd39 /*unk4*/ 0x0700F978
-        set_menu_music /*unk2*/ 0x0004, /*seq*/ 0x000C
+        set_music /*unk2*/ 0x0004, /*seq*/ 0x000C
         terrain_type /*terrainType*/ 0x0002
     end_area
 

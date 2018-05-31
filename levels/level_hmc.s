@@ -97,7 +97,7 @@ glabel level_hmc_entry
         terrain /*terrainData*/ 0x07025594
         cmd39 /*unk4*/ 0x0702AA78
         rooms /*surfaceRooms*/ 0x0702ADC4
-        set_menu_music /*unk2*/ 0x0004, /*seq*/ 0x000C
+        set_music /*unk2*/ 0x0004, /*seq*/ 0x000C
         terrain_type /*terrainType*/ 0x0001
     end_area
 

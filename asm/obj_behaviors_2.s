@@ -4868,8 +4868,8 @@ glabel BehPokeyHeadLoop
 .L802FCB10:
 /* 0B7B10 802FCB10 3C188036 */  lui   $t8, %hi(gCurrentObject) # $t8, 0x8036
 /* 0B7B14 802FCB14 8F18FDF0 */  lw    $t8, %lo(gCurrentObject)($t8)
-/* 0B7B18 802FCB18 3C0E8033 */  lui   $t6, %hi(D_8032C694) # $t6, 0x8033
-/* 0B7B1C 802FCB1C 8DCEC694 */  lw    $t6, %lo(D_8032C694)($t6)
+/* 0B7B18 802FCB18 3C0E8033 */  lui   $t6, %hi(gGlobalTimer) # $t6, 0x8033
+/* 0B7B1C 802FCB1C 8DCEC694 */  lw    $t6, %lo(gGlobalTimer)($t6)
 /* 0B7B20 802FCB20 8F0B0144 */  lw    $t3, 0x144($t8)
 /* 0B7B24 802FCB24 000E42C0 */  sll   $t0, $t6, 0xb
 /* 0B7B28 802FCB28 000B5380 */  sll   $t2, $t3, 0xe
@@ -5697,8 +5697,8 @@ glabel func_802FD470
 /* 0B86FC 802FD6FC 2405008C */  li    $a1, 140
 /* 0B8700 802FD700 0C0BE56C */  jal   func_802F95B0
 /* 0B8704 802FD704 8DE400F8 */   lw    $a0, 0xf8($t7)
-/* 0B8708 802FD708 3C188033 */  lui   $t8, %hi(D_8032C694) # $t8, 0x8033
-/* 0B870C 802FD70C 8F18C694 */  lw    $t8, %lo(D_8032C694)($t8)
+/* 0B8708 802FD708 3C188033 */  lui   $t8, %hi(gGlobalTimer) # $t8, 0x8033
+/* 0B870C 802FD70C 8F18C694 */  lw    $t8, %lo(gGlobalTimer)($t8)
 /* 0B8710 802FD710 3C018038 */  lui   $at, %hi(D_80387000)
 /* 0B8714 802FD714 3C0D8036 */  lui   $t5, %hi(gCurrentObject) # $t5, 0x8036
 /* 0B8718 802FD718 00187140 */  sll   $t6, $t8, 5
@@ -5727,8 +5727,8 @@ glabel func_802FD470
 /* 0B8774 802FD774 240601F4 */  li    $a2, 500
 /* 0B8778 802FD778 0C0BE614 */  jal   func_802F9850
 /* 0B877C 802FD77C 8DE400FC */   lw    $a0, 0xfc($t7)
-/* 0B8780 802FD780 3C188033 */  lui   $t8, %hi(D_8032C694) # $t8, 0x8033
-/* 0B8784 802FD784 8F18C694 */  lw    $t8, %lo(D_8032C694)($t8)
+/* 0B8780 802FD780 3C188033 */  lui   $t8, %hi(gGlobalTimer) # $t8, 0x8033
+/* 0B8784 802FD784 8F18C694 */  lw    $t8, %lo(gGlobalTimer)($t8)
 /* 0B8788 802FD788 3C01447A */  li    $at, 0x447A0000 # 1000.000000
 /* 0B878C 802FD78C 44814000 */  mtc1  $at, $f8
 /* 0B8790 802FD790 00187080 */  sll   $t6, $t8, 2
@@ -7696,8 +7696,8 @@ glabel func_802FF244
 /* 0BA3D0 802FF3D0 8D29FDF0 */  lw    $t1, %lo(gCurrentObject)($t1)
 /* 0BA3D4 802FF3D4 C5320104 */  lwc1  $f18, 0x104($t1)
 /* 0BA3D8 802FF3D8 E53200FC */  swc1  $f18, 0xfc($t1)
-/* 0BA3DC 802FF3DC 3C0A8033 */  lui   $t2, %hi(D_8032C694) # $t2, 0x8033
-/* 0BA3E0 802FF3E0 8D4AC694 */  lw    $t2, %lo(D_8032C694)($t2)
+/* 0BA3DC 802FF3DC 3C0A8033 */  lui   $t2, %hi(gGlobalTimer) # $t2, 0x8033
+/* 0BA3E0 802FF3E0 8D4AC694 */  lw    $t2, %lo(gGlobalTimer)($t2)
 /* 0BA3E4 802FF3E4 314B0001 */  andi  $t3, $t2, 1
 /* 0BA3E8 802FF3E8 11600006 */  beqz  $t3, .L802FF404
 /* 0BA3EC 802FF3EC 00000000 */   nop   
@@ -11043,8 +11043,8 @@ glabel func_8030215C
 glabel func_803023E8
 /* 0BD3E8 803023E8 27BDFFE0 */  addiu $sp, $sp, -0x20
 /* 0BD3EC 803023EC AFBF0014 */  sw    $ra, 0x14($sp)
-/* 0BD3F0 803023F0 3C0E8033 */  lui   $t6, %hi(D_8032C694) # $t6, 0x8033
-/* 0BD3F4 803023F4 8DCEC694 */  lw    $t6, %lo(D_8032C694)($t6)
+/* 0BD3F0 803023F0 3C0E8033 */  lui   $t6, %hi(gGlobalTimer) # $t6, 0x8033
+/* 0BD3F4 803023F4 8DCEC694 */  lw    $t6, %lo(gGlobalTimer)($t6)
 /* 0BD3F8 803023F8 000E7AC0 */  sll   $t7, $t6, 0xb
 /* 0BD3FC 803023FC A7AF001E */  sh    $t7, 0x1e($sp)
 /* 0BD400 80302400 3C188036 */  lui   $t8, %hi(gCurrentObject) # $t8, 0x8036
@@ -11269,8 +11269,8 @@ glabel BehFwooshFaceLoop
 /* 0BD710 80302710 A7AE0022 */  sh    $t6, 0x22($sp)
 /* 0BD714 80302714 3C0F8036 */  lui   $t7, %hi(gCurrentObject) # $t7, 0x8036
 /* 0BD718 80302718 8DEFFDF0 */  lw    $t7, %lo(gCurrentObject)($t7)
-/* 0BD71C 8030271C 3C088033 */  lui   $t0, %hi(D_8032C694) # $t0, 0x8033
-/* 0BD720 80302720 8D08C694 */  lw    $t0, %lo(D_8032C694)($t0)
+/* 0BD71C 8030271C 3C088033 */  lui   $t0, %hi(gGlobalTimer) # $t0, 0x8033
+/* 0BD720 80302720 8D08C694 */  lw    $t0, %lo(gGlobalTimer)($t0)
 /* 0BD724 80302724 8DF80144 */  lw    $t8, 0x144($t7)
 /* 0BD728 80302728 000852C0 */  sll   $t2, $t0, 0xb
 /* 0BD72C 8030272C 0018CB80 */  sll   $t9, $t8, 0xe
@@ -20462,8 +20462,8 @@ glabel func_8030A968
 /* 0C5AF0 8030AAF0 29C10015 */  slti  $at, $t6, 0x15
 /* 0C5AF4 8030AAF4 1420000E */  bnez  $at, .L8030AB30
 /* 0C5AF8 8030AAF8 00000000 */   nop   
-/* 0C5AFC 8030AAFC 3C188033 */  lui   $t8, %hi(D_8032C694) # $t8, 0x8033
-/* 0C5B00 8030AB00 8F18C694 */  lw    $t8, %lo(D_8032C694)($t8)
+/* 0C5AFC 8030AAFC 3C188033 */  lui   $t8, %hi(gGlobalTimer) # $t8, 0x8033
+/* 0C5B00 8030AB00 8F18C694 */  lw    $t8, %lo(gGlobalTimer)($t8)
 /* 0C5B04 8030AB04 33190003 */  andi  $t9, $t8, 3
 /* 0C5B08 8030AB08 17200004 */  bnez  $t9, .L8030AB1C
 /* 0C5B0C 8030AB0C 00000000 */   nop   
@@ -22858,8 +22858,8 @@ glabel BehSnufitLoop
 /* 0C7CF4 8030CCF4 460A4402 */  mul.s $f16, $f8, $f10
 /* 0C7CF8 8030CCF8 46128100 */  add.s $f4, $f16, $f18
 /* 0C7CFC 8030CCFC E5E400A0 */  swc1  $f4, 0xa0($t7)
-/* 0C7D00 8030CD00 3C0A8033 */  lui   $t2, %hi(D_8032C694) # $t2, 0x8033
-/* 0C7D04 8030CD04 8D4AC694 */  lw    $t2, %lo(D_8032C694)($t2)
+/* 0C7D00 8030CD00 3C0A8033 */  lui   $t2, %hi(gGlobalTimer) # $t2, 0x8033
+/* 0C7D04 8030CD04 8D4AC694 */  lw    $t2, %lo(gGlobalTimer)($t2)
 /* 0C7D08 8030CD08 3C018038 */  lui   $at, %hi(D_80387000)
 /* 0C7D0C 8030CD0C 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 0C7D10 8030CD10 000A5940 */  sll   $t3, $t2, 5
@@ -27963,8 +27963,8 @@ glabel func_80311520
 /* 0CC5C0 803115C0 29C1001F */  slti  $at, $t6, 0x1f
 /* 0CC5C4 803115C4 14200015 */  bnez  $at, .L8031161C
 /* 0CC5C8 803115C8 00000000 */   nop   
-/* 0CC5CC 803115CC 3C0F8033 */  lui   $t7, %hi(D_8032C694) # $t7, 0x8033
-/* 0CC5D0 803115D0 8DEFC694 */  lw    $t7, %lo(D_8032C694)($t7)
+/* 0CC5CC 803115CC 3C0F8033 */  lui   $t7, %hi(gGlobalTimer) # $t7, 0x8033
+/* 0CC5D0 803115D0 8DEFC694 */  lw    $t7, %lo(gGlobalTimer)($t7)
 /* 0CC5D4 803115D4 31F80003 */  andi  $t8, $t7, 3
 /* 0CC5D8 803115D8 17000004 */  bnez  $t8, .L803115EC
 /* 0CC5DC 803115DC 00000000 */   nop   
@@ -27972,8 +27972,8 @@ glabel func_80311520
 /* 0CC5E4 803115E4 0C0B25C0 */  jal   PlaySound2
 /* 0CC5E8 803115E8 34840081 */   ori   $a0, (0x315B0081 & 0xFFFF) # ori $a0, $a0, 0x81
 .L803115EC:
-/* 0CC5EC 803115EC 3C198033 */  lui   $t9, %hi(D_8032C694) # $t9, 0x8033
-/* 0CC5F0 803115F0 8F39C694 */  lw    $t9, %lo(D_8032C694)($t9)
+/* 0CC5EC 803115EC 3C198033 */  lui   $t9, %hi(gGlobalTimer) # $t9, 0x8033
+/* 0CC5F0 803115F0 8F39C694 */  lw    $t9, %lo(gGlobalTimer)($t9)
 /* 0CC5F4 803115F4 3C0B8036 */  lui   $t3, %hi(gCurrentObject) # $t3, 0x8036
 /* 0CC5F8 803115F8 8D6BFDF0 */  lw    $t3, %lo(gCurrentObject)($t3)
 /* 0CC5FC 803115FC 33280001 */  andi  $t0, $t9, 1
@@ -28761,8 +28761,8 @@ glabel BehWaterWaveTypeLoop
 /* 0CD118 80312118 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
 /* 0CD11C 8031211C 0C0A7B2D */  jal   ScaleObject
 /* 0CD120 80312120 C5CC002C */   lwc1  $f12, 0x2c($t6)
-/* 0CD124 80312124 3C0F8033 */  lui   $t7, %hi(D_8032C694) # $t7, 0x8033
-/* 0CD128 80312128 8DEFC694 */  lw    $t7, %lo(D_8032C694)($t7)
+/* 0CD124 80312124 3C0F8033 */  lui   $t7, %hi(gGlobalTimer) # $t7, 0x8033
+/* 0CD128 80312128 8DEFC694 */  lw    $t7, %lo(gGlobalTimer)($t7)
 /* 0CD12C 8031212C 24010006 */  li    $at, 6
 /* 0CD130 80312130 3C198036 */  lui   $t9, %hi(gCurrentObject) # $t9, 0x8036
 /* 0CD134 80312134 01E1001B */  divu  $zero, $t7, $at

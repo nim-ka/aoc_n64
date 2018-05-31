@@ -30,7 +30,7 @@ glabel level_pss_entry
         terrain /*terrainData*/ 0x0700E490
         cmd39 /*unk4*/ 0x07010F00
         terrain_type /*terrainType*/ 0x0006
-        set_menu_music /*unk2*/ 0x0001, /*seq*/ 0x0009
+        set_music /*unk2*/ 0x0001, /*seq*/ 0x0009
     end_area
 
     free_level_pool

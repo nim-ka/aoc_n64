@@ -45,7 +45,7 @@ glabel level_intro_entry_2
     sleep /*frames*/ 2
     blackout /*active*/ FALSE
     load_area /*area*/ 1
-    set_music /*seq*/ 0x0002
+    set_menu_music /*seq*/ 0x0002
     transition /*unk2*/ 8, /*unk3*/ 20, /*color*/ 0, 0, 0
     sleep /*frames*/ 20
     call_loop /*arg*/ 1, /*func*/ LevelProc_8016F508
@@ -69,7 +69,7 @@ glabel level_intro_entry_3
     sleep /*frames*/ 2
     blackout /*active*/ FALSE
     load_area /*area*/ 1
-    set_music /*seq*/ 0x0082
+    set_menu_music /*seq*/ 0x0082
     transition /*unk2*/ 8, /*unk3*/ 20, /*color*/ 0, 0, 0
     sleep /*frames*/ 20
     call_loop /*arg*/ 2, /*func*/ LevelProc_8016F508
@@ -90,7 +90,7 @@ glabel level_intro_entry_4
 
     free_level_pool
     load_area /*area*/ 1
-    set_music /*seq*/ 0x0002
+    set_menu_music /*seq*/ 0x0002
     transition /*unk2*/ 0, /*unk3*/ 16, /*color*/ -1, -1, -1
     sleep /*frames*/ 16
     call_loop /*arg*/ 3, /*func*/ LevelProc_8016F508

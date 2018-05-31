@@ -80,7 +80,7 @@ glabel level_ccm_entry
         terrain /*terrainData*/ 0x070138E8
         cmd39 /*unk4*/ 0x07016284
         cmd30 /*unk2*/ 0x00, /*unk3*/ 0x30
-        set_menu_music /*unk2*/ 0x0000, /*seq*/ 0x0008
+        set_music /*unk2*/ 0x0000, /*seq*/ 0x0008
         terrain_type /*terrainType*/ 0x0002
     end_area
 
@@ -93,7 +93,7 @@ glabel level_ccm_entry
         jump_link /*target*/ script_func_local_4
         terrain /*terrainData*/ 0x07020880
         cmd39 /*unk4*/ 0x07023468
-        set_menu_music /*unk2*/ 0x0001, /*seq*/ 0x0009
+        set_music /*unk2*/ 0x0001, /*seq*/ 0x0009
         terrain_type /*terrainType*/ 0x0006
     end_area
 

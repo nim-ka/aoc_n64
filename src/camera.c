@@ -254,8 +254,8 @@ void func_8027F668(float *a, float b, float c, float *d, float e, float f)
 
     if (D_8032D000->unk0 & 0x100000)
     {
-        if (D_8033B27C >= gMarioStates[0].usedObj->pos[1]
-         && D_8032D000->unk4[1] < 0.7f * gMarioStates[0].usedObj->hitboxHeight + gMarioStates[0].usedObj->pos[1])
+        if (D_8033B27C >= gMarioStates[0].usedObj->oPosY
+         && D_8032D000->unk4[1] < 0.7f * gMarioStates[0].usedObj->hitboxHeight + gMarioStates[0].usedObj->oPosY)
             c = 1200;
     }
 
@@ -1618,7 +1618,7 @@ int func_80283548(struct Struct80280550 *a)
     }
     if (D_8032D000->unk0 & 0x100000)
     {
-        sp90 = gMarioStates[0].usedObj->pos[1] + 125.0f;
+        sp90 = gMarioStates[0].usedObj->oPosY + 125.0f;
         if (D_8032D000->unk4[1] - 100.0f > sp90)
             sp90 = D_8032D000->unk4[1] - 100.0f;
         sp40 = 20000.0f;

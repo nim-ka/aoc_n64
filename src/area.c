@@ -137,7 +137,7 @@ static void func_8027A28C(u8 a, u8 b, u8 c)
 
 void print_intro_text(void)
 {
-    if ((D_8032C694 & 0x1F) < 20)
+    if ((gGlobalTimer & 0x1F) < 20)
     {
         if (gControllerBits == 0)
         {
@@ -178,7 +178,7 @@ struct ObjectWarpNode *area_get_warp_node(u8 id)
 
 static struct ObjectWarpNode *func_8027A478(struct Object *o)
 {
-    u8 sp1F = (o->unk188 & 0x00FF0000) >> 16;
+    u8 sp1F = (o->oUnk188 & 0x00FF0000) >> 16;
 
     return area_get_warp_node(sp1F);
 }
@@ -327,7 +327,7 @@ void change_area(s32 index)
         load_area(index);
         
         gCurrentArea->unk01 = areaFlags;
-        gMarioObject->unkE0 = 0;
+        gMarioObject->oUnkE0 = 0;
     }
 
     if (areaFlags & 0x01)

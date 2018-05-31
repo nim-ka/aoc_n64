@@ -82,7 +82,7 @@ glabel level_bob_entry
         terrain /*terrainData*/ 0x0700E958
         cmd39 /*unk4*/ 0x0701104C
         cmd30 /*unk2*/ 0x00, /*unk3*/ 0x00
-        set_menu_music /*unk2*/ 0x0000, /*seq*/ 0x0003
+        set_music /*unk2*/ 0x0000, /*seq*/ 0x0003
         terrain_type /*terrainType*/ 0x0000
     end_area
 

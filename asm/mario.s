@@ -4380,8 +4380,8 @@ glabel func_8025435C
 /* 00F3E4 802543E4 29610003 */  slti  $at, $t3, 3
 /* 00F3E8 802543E8 1420000C */  bnez  $at, .L8025441C
 /* 00F3EC 802543EC 00000000 */   nop   
-/* 00F3F0 802543F0 3C0D8033 */  lui   $t5, %hi(D_8032C694) # $t5, 0x8033
-/* 00F3F4 802543F4 8DADC694 */  lw    $t5, %lo(D_8032C694)($t5)
+/* 00F3F0 802543F0 3C0D8033 */  lui   $t5, %hi(gGlobalTimer) # $t5, 0x8033
+/* 00F3F4 802543F4 8DADC694 */  lw    $t5, %lo(gGlobalTimer)($t5)
 /* 00F3F8 802543F8 31AE0001 */  andi  $t6, $t5, 1
 /* 00F3FC 802543FC 11C00007 */  beqz  $t6, .L8025441C
 /* 00F400 80254400 00000000 */   nop   

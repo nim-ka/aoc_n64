@@ -557,10 +557,10 @@ static s32 act_freefall(struct MarioState *m)
 
 static s32 act_hold_jump(struct MarioState *m)
 {
-    if (m->marioObj->interactStatus & 0x00000008)
+    if (m->marioObj->oInteractStatus & 0x00000008)
         return drop_and_set_mario_action(m, ACT_FREEFALL, 0);
 
-    if ((m->input & INPUT_B_PRESSED) && !(m->heldObj->unk190 & 0x00000010))
+    if ((m->input & INPUT_B_PRESSED) && !(m->heldObj->oUnk190 & 0x00000010))
         return set_mario_action(m, ACT_AIR_THROW, 0);
 
     if (m->input & INPUT_Z_PRESSED)
@@ -579,10 +579,10 @@ static s32 act_hold_freefall(struct MarioState *m)
     else
         animation = 0x0044;
 
-    if (m->marioObj->interactStatus & 0x00000008)
+    if (m->marioObj->oInteractStatus & 0x00000008)
         return drop_and_set_mario_action(m, ACT_FREEFALL, 0);
 
-    if ((m->input & INPUT_B_PRESSED) && !(m->heldObj->unk190 & 0x00000010))
+    if ((m->input & INPUT_B_PRESSED) && !(m->heldObj->oUnk190 & 0x00000010))
         return set_mario_action(m, ACT_AIR_THROW, 0);
 
     if (m->input & INPUT_Z_PRESSED)
@@ -630,7 +630,7 @@ static s32 act_wall_kick_air(struct MarioState *m)
 static s32 act_long_jump(struct MarioState *m)
 {
     s32 animation;
-    if (m->marioObj->unk110 == 0)
+    if (!m->marioObj->oMarioLongJumpIsSlow)
         animation = 0x0013;
     else
         animation = 0x0014;
@@ -845,7 +845,7 @@ static s32 act_water_jump(struct MarioState *m)
 
 static s32 act_hold_water_jump(struct MarioState *m)
 {
-    if (m->marioObj->interactStatus & 0x00000008)
+    if (m->marioObj->oInteractStatus & 0x00000008)
         return drop_and_set_mario_action(m, ACT_FREEFALL, 0);
 
     if (m->forwardVel < 15.0f)
@@ -902,7 +902,7 @@ static s32 act_steep_jump(struct MarioState *m)
     }
 
     func_802507E8(m, 0x004D);
-    m->marioObj->gfx.unk1A[1] = m->marioObj->unk110;
+    m->marioObj->gfx.unk1A[1] = m->marioObj->oMarioSteepJumpYaw;
     return FALSE;
 }
 
@@ -993,7 +993,7 @@ static s32 act_burning_jump(struct MarioState *m)
     m->particleFlags |= 0x00000800;
     SetSound(0x14100001, &m->marioObj->gfx.unk54);
 
-    m->marioObj->unk110 += 3;
+    m->marioObj->oMarioBurnTimer += 3;
 
     m->health -= 10;
     if (m->health < 0x100)
@@ -1013,7 +1013,7 @@ static s32 act_burning_fall(struct MarioState *m)
 
     func_802507E8(m, 0x0056);
     m->particleFlags |= 0x00000800;
-    m->marioObj->unk110 += 3;
+    m->marioObj->oMarioBurnTimer += 3;
 
     m->health -= 10;
     if (m->health < 0x100)
@@ -1067,7 +1067,7 @@ static s32 act_crazy_box_bounce(struct MarioState *m)
         }
         else
         {
-            m->heldObj->interactStatus = 0x00400000;
+            m->heldObj->oInteractStatus = 0x00400000;
             m->heldObj = NULL;
             set_mario_action(m, ACT_STOMACH_SLIDE, 0);
         }
@@ -1480,7 +1480,7 @@ static s32 act_butt_slide_air(struct MarioState *m)
 
 static s32 act_hold_butt_slide_air(struct MarioState *m)
 {
-    if (m->marioObj->interactStatus & 0x00000008)
+    if (m->marioObj->oInteractStatus & 0x00000008)
         return drop_and_set_mario_action(m, ACT_HOLD_FREEFALL, 1);
 
     if (++(m->actionTimer) > 30 && m->pos[1] - m->floorHeight > 500.0f)
@@ -1846,20 +1846,20 @@ static s32 act_flying(struct MarioState *m)
 
 static s32 act_riding_hoot(struct MarioState *m)
 {
-    if (!(m->input & INPUT_A_DOWN) || (m->marioObj->interactStatus & 0x00000080))
+    if (!(m->input & INPUT_A_DOWN) || (m->marioObj->oInteractStatus & 0x00000080))
     {
-        m->usedObj->interactStatus = 0;
-        m->usedObj->unk110 = D_8032C694;
+        m->usedObj->oInteractStatus = 0;
+        m->usedObj->oHootMarioReleaseTime = gGlobalTimer;
 
         func_80250F50(m, 0x24058081, MARIO_UNKNOWN_17);
         return set_mario_action(m, ACT_FREEFALL, 0);
     }
 
-    m->pos[0] = m->usedObj->pos[0];
-    m->pos[1] = m->usedObj->pos[1] - 92.5f;
-    m->pos[2] = m->usedObj->pos[2];
+    m->pos[0] = m->usedObj->oPosX;
+    m->pos[1] = m->usedObj->oPosY - 92.5f;
+    m->pos[2] = m->usedObj->oPosZ;
 
-    m->faceAngle[1] = 0x4000 - m->usedObj->angle[1];
+    m->faceAngle[1] = 0x4000 - m->usedObj->oAngleYaw;
 
     if (m->actionState == 0)
     {

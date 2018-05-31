@@ -36,7 +36,7 @@ glabel level_bowser_2_entry
         warp_node /*id*/ 0xF1, /*destLevel1*/ 0x13, /*destArea*/ 0x01, /*destNode*/ 0x0C, /*destLevel2*/ 0x00
         jump_link /*target*/ script_func_local_1
         terrain /*terrainData*/ 0x070019F0
-        set_menu_music /*unk2*/ 0x0002, /*seq*/ 0x0007
+        set_music /*unk2*/ 0x0002, /*seq*/ 0x0007
         terrain_type /*terrainType*/ 0x0001
     end_area
 
