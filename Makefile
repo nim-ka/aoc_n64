@@ -98,6 +98,13 @@ SHA1SUM = sha1sum
 
 ###################### Dependency Check #####################
 
+BINUTILS_VER_MAJOR := $(shell $(LD) --version | grep ^GNU | sed 's/^.* //; s/\..*//g')
+BINUTILS_VER_MINOR := $(shell $(LD) --version | grep ^GNU | sed 's/^.* .*\.//g')
+BINUTILS_DEPEND := $(shell expr $(BINUTILS_VER_MAJOR) \>= 2 \& $(BINUTILS_VER_MINOR) \>= 27)
+ifeq ($(BINUTILS_DEPEND),0)
+$(error binutils version 2.27 required, version $(BINUTILS_VER_MAJOR).$(BINUTILS_VER_MINOR) detected)
+endif
+
 ifndef QEMU_IRIX
 $(error env variable QEMU_IRIX should point to the qemu-mips binary)
 endif
