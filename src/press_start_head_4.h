@@ -312,7 +312,7 @@
 // extern ? func_80186764(?);
 // extern ? func_80186920(?);
 // extern ? dUseObj(?);
-// extern ? func_80186B44(?);
+extern void func_80186B44();
 // extern ? func_80186B6C(?);
 // extern ? dEndGroup(?);
 // extern ? func_80186CA0(?);
@@ -336,7 +336,7 @@
 // extern ? dSetWorldPos(?);
 // extern ? func_80188868(?);
 // extern ? Unknown80188970(?);
-// extern ? func_80188A3C(?);
+extern void func_80188A3C(struct MyVec3f *);
 // extern ? func_801890B4(?);
 // extern ? dSetScale(?);
 // extern ? func_8018931C(?);
@@ -364,13 +364,13 @@
 // extern ? func_8018AE70(?);
 // extern ? dSetMatrix(?);
 // extern ? dSetRMatrix(?);
-// extern ? dGetRMatrixPtr(?);
+extern float *dGetRMatrixPtr(void);
 // extern ? dSetIMatrix(?);
 // extern ? dGetMatrixPtr(?);
 // extern ? dGetIMatrixPtr(?);
-// extern ? func_8018B57C(?);
+extern float func_8018B57C();
 // extern ? dSetSkinWeight(?);
-// extern ? get_objvalue(?);
+extern void get_objvalue();
 // extern ? Unknown8018B7A8(?);
 // extern ? Proc8018B83C(?);
 // extern ? Unknown8018B898(?);

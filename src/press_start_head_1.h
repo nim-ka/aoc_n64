@@ -101,13 +101,13 @@
 // extern ? func_8017BCB0(?);
 // extern ? func_8017BD20(?);
 // extern ? func_8017BE60(?);
-// extern ? func_8017BED0(?);
+extern void func_8017BED0();
 // extern ? func_8017BEF4(?);
 // extern ? make_object(?);
 // extern ? Unknown8017C6D0(?);
 // extern ? Unknown8017C7A0(?);
 // extern ? func_8017C800(?);
-// extern ? func_8017C8C0(?);
+extern int func_8017C8C0(void *, int);
 // extern ? func_8017C984(?);
 // extern ? func_8017CA0C(?);
 // extern ? func_8017CE3C(?);
@@ -118,7 +118,7 @@
 // extern ? func_8017D53C(?);
 // extern ? func_8017D5B4(?);
 // extern ? func_8017D62C(?);
-// extern ? func_8017D6F8(?);
+extern void func_8017D6F8(void *, int);
 // extern ? make_group(?);
 // extern ? addto_group(?);
 // extern ? func_8017DBC0(?);
@@ -129,7 +129,7 @@
 // extern ? gd_loadtexture(?);
 // extern ? D_8017E2B8(?);
 // extern ? UnknownRecursive8017E2F0(?);
-// extern ? func_8017E3E0(?);
+extern int func_8017E3E0(int, void (*)(), void *);
 // extern ? func_8017E584(?);
 // extern ? func_8017E838(?);
 // extern ? func_8017E9EC(?);
@@ -146,13 +146,13 @@
 // extern ? Unknown8017F5C4(?);
 // extern ? Unknown80180624(?);
 // extern ? func_80180924(?);
-// extern ? func_80180974(?);
+extern void func_80180974(void *);
 // extern ? Unknown801809B0(?);
 // extern ? func_80180FD4(?);
 // extern ? Unknown8018100C(?);
 // extern ? func_80181378(?);
 // extern ? func_801813B0(?);
-// extern ? func_8018145C(?);
+extern void func_8018145C();
 // extern ? func_801814F4(?);
 // extern ? func_80181538(?);
 

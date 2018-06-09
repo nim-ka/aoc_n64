@@ -299,4 +299,12 @@ struct Struct8033B1B0
     Vec3s unk16;
 };
 
+// used in goddard code
+struct MyVec3f
+{
+    float x;
+    float y;
+    float z;
+};
+
 #endif

@@ -1,8 +1,6 @@
 #ifndef _GAME_OVER_2_H
 #define _GAME_OVER_2_H
 
-#include "types.h"
-
 // extern ? D_801B9BB8;
 // extern ? D_801B5480;
 // extern ? D_801B9CF0;
@@ -82,7 +80,7 @@
 // extern ? draw_material(?);
 // extern ? Unknown80178C50(?);
 // extern ? Unknown80178CAC(?);
-// extern ? func_80178D98(?);
+extern void *func_80178D98(int);
 // extern ? Unknown80178ECC(?);
 // extern ? draw_face(?);
 // extern ? func_80179228(?);
@@ -102,7 +100,7 @@
 // extern ? Proc8017A30C(?);
 // extern ? Proc8017A550(?);
 // extern ? Proc8017A6A4(?);
-// extern ? Draw_group(?);
+extern void Draw_group();
 // extern ? Proc8017A818(?);
 // extern ? D_8017A8A0(?);
 // extern ? Proc8017A91C(?);
