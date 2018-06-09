@@ -1,0 +1,691 @@
+#include <ultra64.h>
+
+#include "sm64.h"
+#include "moving_texture.h"
+#include "area.h"
+#include "castle_message_behaviors.h"
+#include "graph_node.h"
+#include "math_util.h"
+#include "memory.h"
+#include "save_file.h"
+#include "segment2.h"
+#include "surface_collision.h"
+#include "transparent_texture.h"
+
+struct Struct802D0DD4
+{
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+    void *unkC;
+    Gfx *unk10;
+    Gfx *unk14;
+    Gfx *unk18;
+    u8 unk1C;
+    u8 unk1D;
+    u8 unk1E;
+    u8 unk1F;
+    s32 unk20;
+};
+
+s16 D_8032FFD0 = 1;
+s16 D_8032FFD4 = 0;
+s8 D_8032FFD8 = 0;
+float D_8032FFDC = 0.0f;
+s32 D_8032FFE0 = 0;
+s32 D_8032FFE4[] = {0x02011c58, 0x02013458, 0x02012458, 0x02012c58, 0x02013c58, 0x07004018, 0x07001000, 0x07015f90};
+
+struct Struct802D0DD4 D_80330004[] =
+{
+    {0x00000801, 0x00000006, 0x00000008, (void *)0x07028760, (Gfx *)0x070286a0, (Gfx *)0x07028718, (Gfx *)0x070287b8, 0xff, 0xff, 0xff, 0xff, 0x00000007},
+    {0x00000802, 0x00000006, 0x00000008, (void *)0x070287f0, (Gfx *)0x070285f0, (Gfx *)0x07028660, (Gfx *)0x070287b8, 0xff, 0xff, 0xff, 0xff, 0x00000003},
+    {0x00000803, 0x00000006, 0x00000006, (void *)0x07028844, (Gfx *)0x070286a0, (Gfx *)0x07028718, (Gfx *)0x07028888, 0xff, 0xff, 0xff, 0xff, 0x00000007},
+    {0x00001601, 0x00000000, 0x0000000f, (void *)0x07010e98, (Gfx *)0x02014790, (Gfx *)0x02014810, (Gfx *)0x07010f30, 0xff, 0xff, 0xff, 0xb4, 0x00000007},
+    {0x00001901, 0x00000004, 0x00000004, (void *)0x07015af0, (Gfx *)0x02014790, (Gfx *)0x02014810, (Gfx *)0x07015ba8, 0xff, 0xff, 0xff, 0xff, 0x00000001},
+    {0x00001902, 0x00000004, 0x00000004, (void *)0x07015b1c, (Gfx *)0x02014790, (Gfx *)0x02014810, (Gfx *)0x07015ba8, 0xff, 0xff, 0xff, 0xb4, 0x00000005},
+    {0x00001903, 0x00000004, 0x00000009, (void *)0x07015b48, (Gfx *)0x02014790, (Gfx *)0x02014810, (Gfx *)0x07015bc0, 0xff, 0xff, 0xff, 0xb4, 0x00000005},
+    {0x00002201, 0x00000004, 0x00000009, (void *)0x0702874c, (Gfx *)0x02014790, (Gfx *)0x02014810, (Gfx *)0x070287a8, 0xff, 0xff, 0xff, 0xc8, 0x00000005},
+    {0x00002202, 0x00000004, 0x00000010, (void *)0x07028820, (Gfx *)0x02014790, (Gfx *)0x02014810, (Gfx *)0x070288c8, 0xff, 0xff, 0xff, 0xb4, 0x00000007},
+    {0x00002801, 0x00000000, 0x0000000e, (void *)0x0700bed0, (Gfx *)0x0700be10, (Gfx *)0x0700be88, (Gfx *)0x0700bf60, 0xff, 0xff, 0xff, 0xb4, 0x00000007},
+    {0x00003601, 0x00000000, 0x00000006, (void *)0x07017134, (Gfx *)0x02014790, (Gfx *)0x02014810, (Gfx *)0x07017260, 0xff, 0xff, 0xff, 0xb4, 0x00000005},
+    {0x00003602, 0x00000000, 0x00000006, (void *)0x070171a0, (Gfx *)0x02014790, (Gfx *)0x02014810, (Gfx *)0x07017260, 0xff, 0xff, 0xff, 0xb4, 0x00000005},
+    {0x00003603, 0x00000000, 0x00000004, (void *)0x07017174, (Gfx *)0x02014790, (Gfx *)0x02014810, (Gfx *)0x07017288, 0xff, 0xff, 0xff, 0xb4, 0x00000007},
+    {0x00003604, 0x00000000, 0x00000004, (void *)0x070171e0, (Gfx *)0x02014790, (Gfx *)0x02014810, (Gfx *)0x07017288, 0xff, 0xff, 0xff, 0xb4, 0x00000007},
+    {0x00003605, 0x00000000, 0x00000008, (void *)0x0701720c, (Gfx *)0x02014790, (Gfx *)0x02014810, (Gfx *)0x070172a0, 0xff, 0xff, 0xff, 0xb4, 0x00000007},
+    {0x00000000, 0x00000000, 0x00000000, (void *)0x00000000, (Gfx *)0x00000000, (Gfx *)0x00000000, (Gfx *)0x00000000, 0x00, 0x00, 0x00, 0x00, 0x00000000},
+};
+
+struct Struct802D0DD4 D_80330244[] =
+{
+    {0x00000801, 0x00000005, 0x0000000c, (void *)0x070127f0, (Gfx *)0x070127e0, (Gfx *)0x070127e8, (Gfx *)0x070128b8, 0xff, 0xff, 0xff, 0xff, 0x00000001},
+    {0x00000802, 0x00000005, 0x00000010, (void *)0x07012900, (Gfx *)0x070127e0, (Gfx *)0x070127e8, (Gfx *)0x07012a08, 0xff, 0xff, 0xff, 0xff, 0x00000001}, 
+    {0x00000803, 0x00000005, 0x0000000f, (void *)0x07012a50, (Gfx *)0x070127e0, (Gfx *)0x070127e8, (Gfx *)0x07012b48, 0xff, 0xff, 0xff, 0xff, 0x00000001}, 
+    {0x00001400, 0x00000007, 0x0000000c, (void *)0x07016840, (Gfx *)0x07016790, (Gfx *)0x07016808, (Gfx *)0x070169c8, 0xff, 0xff, 0xff, 0xff, 0x00000001}, 
+    {0x00001401, 0x00000007, 0x0000000c, (void *)0x07016904, (Gfx *)0x07016790, (Gfx *)0x07016808, (Gfx *)0x070169c8, 0xff, 0xff, 0xff, 0xff, 0x00000001}, 
+    {0x00000000, 0x00000000, 0x00000000, (void *)0x00000000, (Gfx *)0x00000000, (Gfx *)0x00000000, (Gfx *)0x00000000, 0x00, 0x00, 0x00, 0x00, 0x00000000},
+};
+
+struct Struct802D0DD4 D_8033031C[] =
+{
+    {0x00000801, 0x00000005, 0x00000008, (void *)0x07004930, (Gfx *)0x07004818, (Gfx *)0x07004860, (Gfx *)0x07004a38, 0xff, 0xff, 0xff, 0xff, 0x00000001}, 
+    {0x00000802, 0x00000006, 0x00000008, (void *)0x070049b4, (Gfx *)0x07004880, (Gfx *)0x070048f8, (Gfx *)0x07004a38, 0xff, 0xff, 0xff, 0xff, 0x00000001}, 
+    {0x00000000, 0x00000000, 0x00000000, (void *)0x00000000, (Gfx *)0x00000000, (Gfx *)0x00000000, (Gfx *)0x00000000, 0x00, 0x00, 0x00, 0x00, 0x00000000},
+};
+
+int Geo18_802D0080(int a, UNUSED int b, UNUSED int c)
+{
+    int spC;
+    UNUSED u8 unused[] = {1, 0, 4, 0, 7, 0, 10, 0};
+    s16 sp2;
+
+    if (a != 1)
+    {
+        D_8032FFE0 = 0;
+    }
+    else if (a == 1 && gWaterRegions != NULL && D_8032FFE0 == 0)
+    {
+        if (D_8032FFDC <= 1382.4)
+            sp2 = 31;
+        else if (D_8032FFDC >= 1600.0)
+            sp2 = 2816;
+        else
+            sp2 = 1024;
+        for (spC = 0; spC < *gWaterRegions; spC++)
+        {
+            gWaterRegions[spC * 6 + 6] = sp2;
+        }
+        D_8032FFE0 = 1;
+    }
+    return 0;
+}
+
+int Geo18_802D01E0(int a, UNUSED int b, UNUSED int c)
+{
+    if (a != 1)
+    {
+        D_8032FFD4 = gAreaUpdateCounter - 1;
+        D_8032FFD0 = gAreaUpdateCounter;
+    }
+    else
+    {
+        D_8032FFD4 = D_8032FFD0;
+        D_8032FFD0 = gAreaUpdateCounter;
+    }
+    return 0;
+}
+
+void func_802CF774(Vtx *verts, int n, s16 x, s16 y, s16 z, s16 f, s16 g,
+    float h, u8 alpha)
+{
+    s16 tx = 32.0 * (32.0 * h - 1.0) * sins(f + g);
+    s16 ty = 32.0 * (32.0 * h - 1.0) * coss(f + g);
+    
+    if (D_8032FFD8 == 1)
+        make_vertex(verts, n, x, y, z, tx, ty, 255, 255, 0, alpha);
+    else if (D_8032FFD8 == 2)
+        make_vertex(verts, n, x, y, z, tx, ty, 255, 0, 0, alpha);
+    else
+        make_vertex(verts, n, x, y, z, tx, ty, 255, 255, 255, alpha);
+}
+
+struct Struct802CF9A4
+{
+    s16 unk0;
+    s16 unk2;
+    s16 unk4;
+    s16 unk6;
+    s16 unk8;
+    s16 unkA;
+    s16 unkC;
+    s16 unkE;
+    s16 unk10;
+    s16 unk12;
+    s16 unk14;
+    s16 unk16;
+    s16 unk18;
+    s16 unk1A;
+};
+
+extern s16 D_8035FF70;
+
+Gfx *func_802CF9A4(s16 y, struct Struct802CF9A4 *b)
+{
+    s16 sp8E;
+    s16 sp8C = b->unk2;
+    s16 sp8A = b->unk4;
+    s16 x1 = b->unk6;
+    s16 z1 = b->unk8;
+    s16 x2 = b->unkA;
+    s16 z2 = b->unkC;
+    s16 x3 = b->unkE;
+    s16 z3 = b->unk10;
+    s16 x4 = b->unk12;
+    s16 z4 = b->unk14;
+    s16 sp78 = b->unk16;
+    s16 alpha = b->unk18;
+    s16 sp74 = b->unk1A;
+    Vtx *verts = alloc_display_list(4 * sizeof(*verts));
+    Gfx *sp6C;
+    Gfx *sp68;
+
+    if (sp74 == D_8035FF70)
+        sp6C = alloc_display_list(3 * sizeof(*sp6C));
+    else
+        sp6C = alloc_display_list(8 * sizeof(*sp6C));
+    if (sp6C == NULL || verts == NULL)
+        return NULL;
+    sp68 = sp6C;
+    if (D_8032FFD0 != D_8032FFD4)
+        b->unk0 += sp8C;
+    sp8E = b->unk0;
+    if (sp78 == 0)
+    {
+        func_802CF774(verts, 0, x1, y, z1, sp8E, 0, sp8A, alpha);
+        func_802CF774(verts, 1, x2, y, z2, sp8E, 16384, sp8A, alpha);
+        func_802CF774(verts, 2, x3, y, z3, sp8E, -32768, sp8A, alpha);
+        func_802CF774(verts, 3, x4, y, z4, sp8E, -16384, sp8A, alpha);
+    }
+    else
+    {
+        func_802CF774(verts, 0, x1, y, z1, sp8E, 0, sp8A, alpha);
+        func_802CF774(verts, 1, x2, y, z2, sp8E, -16384, sp8A, alpha);
+        func_802CF774(verts, 2, x3, y, z3, sp8E, -32768, sp8A, alpha);
+        func_802CF774(verts, 3, x4, y, z4, sp8E, 16384, sp8A, alpha);
+    }
+    if (sp74 != D_8035FF70)
+    {
+        if (sp74 == 1)
+        {
+            if (0)
+            {
+            }
+            gDPSetTextureImage(sp68++, G_IM_FMT_IA, G_IM_SIZ_16b, 1, D_8032FFE4[sp74])
+            gDPTileSync(sp68++)
+            gDPSetTile(sp68++, G_IM_FMT_IA, G_IM_SIZ_16b, 0, 0, 7, 0,
+                G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD,
+                G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD)
+            gDPLoadSync(sp68++)
+            gDPLoadBlock(sp68++, 7, 0, 0, 1023, 256)
+        }
+        else
+        {
+            gDPSetTextureImage(sp68++, 0, 2, 1, D_8032FFE4[sp74])
+            gDPTileSync(sp68++)
+            gDPSetTile(sp68++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, 7, 0,
+                G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD,
+                G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD)
+            gDPLoadSync(sp68++)
+            gDPLoadBlock(sp68++, 7, 0, 0, 1023, 256)
+            if (0)
+            {
+            }
+        }
+        D_8035FF70 = sp74;
+    }
+    gSPVertex(sp68++, 0x80000000 + (u32)verts, 4, 0)
+    gSPDisplayList(sp68++, seg2_f3d_0144F0)
+    gSPEndDisplayList(sp68)
+    return sp6C;
+}
+
+Gfx *func_802CFFA4(s16 a, void *b)
+{
+    s16 *sp34 = segmented_to_virtual(b);
+    s16 sp32 = sp34[0];
+    Gfx *sp2C = alloc_display_list((sp32 + 1) * sizeof(*sp2C));
+    Gfx *sp28 = sp2C;
+    Gfx *sp24;
+    int sp20;
+
+    if (sp2C == NULL)
+        return NULL;
+    for (sp20 = 0; sp20 < sp32; sp20++)
+    {
+        sp24 = func_802CF9A4(a, (struct Struct802CF9A4 *)(&sp34[sp20 * 14 + 1]));
+        if (sp24 != NULL)
+            gSPDisplayList(sp28++, VIRTUAL_TO_PHYSICAL(sp24))
+    }
+    gSPEndDisplayList(sp28);
+    return sp2C;
+}
+
+struct Struct802D00D0
+{
+    s16 unk0;
+    u8 filler2[2];
+    void *unk4;
+};
+
+Gfx *func_802D00D0(s16 a, s16 b, void *c)
+{
+    struct Struct802D00D0 *sp1C = segmented_to_virtual(c);
+    int sp18 = 0;
+    
+    while (sp1C[sp18].unk0 != -1)
+    {
+        if (sp1C[sp18].unk0 == a)
+            return func_802CFFA4(b, sp1C[sp18].unk4);
+        sp18++;
+    }
+    return NULL;
+}
+
+extern u8 D_07026E24[];
+extern u8 D_07026E34[];
+extern u8 D_07016708[];
+extern u8 D_070790F0[];
+extern u8 D_07079100[];
+extern u8 D_0702B900[];
+extern u8 D_0702B950[];
+extern u8 D_07012778[];
+extern u8 D_070127C8[];
+extern u8 D_0700FA70[];
+extern u8 D_07018748[];
+extern u8 D_07018778[];
+extern u8 D_0700D2CC[];
+extern u8 D_0700D304[];
+extern u8 D_0701139C[];
+extern u8 D_0700E31C[];
+extern u8 D_0700E39C[];
+extern u8 D_07010E80[];
+extern u8 D_07028810[];
+extern u8 D_0700FCB4[];
+extern u8 D_0700FD00[];
+extern u8 D_07011E08[];
+extern u8 D_07006E6C[];
+extern u8 D_07017124[];
+
+void *func_802D01A4(u32 a)
+{
+    switch (a)
+    {
+    case 1024: return D_07026E24;
+    case 1025: return D_07026E34;
+    case 1281: return D_07016708;
+    case 1536: return D_070790F0;
+    case 1554: return D_07079100;
+    case 1793: return D_0702B900;
+    case 1794: return D_0702B950;
+    case 2049: return D_07012778;
+    case 2129: return D_070127C8;
+    case 4097: return D_0700FA70;
+    case 4353: return D_07018748;
+    case 4354: return D_07018778;
+    case 4609: return D_0700D2CC;
+    case 4613: return D_0700D304;
+    case 4610: return D_0701139C;
+    case 4865: return D_0700E31C;
+    case 4866: return D_0700E39C;
+    case 5633: return D_07010E80;
+    case 8706: return D_07028810;
+    case 8961: return D_0700FCB4;
+    case 8962: return D_0700FD00;
+    case 9217: return D_07011E08;
+    case 9729: return D_07006E6C;
+    case 13825: return D_07017124;
+    default: return NULL;
+    }
+}
+
+void func_802D0448(u32 a, Gfx **b)
+{
+    switch (a)
+    {
+    case 1794:
+        gSPDisplayList((*b)++, seg2_f3d_0147D0)
+        break;
+    case 2129:
+        gSPDisplayList((*b)++, seg2_f3d_0147D0)
+        break;
+    case 4613:
+        gSPDisplayList((*b)++, seg2_f3d_0147D0)
+        break;
+    default:
+        gSPDisplayList((*b)++, seg2_f3d_014790)
+        break;
+    }
+}
+
+struct Struct802D104C
+{
+    u8 filler0[2];
+    s16 unk2;
+    u8 filler4[0x18-0x4];
+    u32 unk18;
+};
+
+Gfx *Geo18_802D104C(int a, struct Struct802D104C *b, UNUSED int c)
+{
+    Gfx *sp44 = NULL;
+    Gfx *sp40 = NULL;
+    Gfx *sp3C;
+    void *sp38;
+    struct Struct802D104C *sp34;
+    s16 sp32;
+    s16 sp30;
+    s16 sp2E;
+    int sp28;
+
+    if (a == 1)
+    {
+        D_8032FFD8 = 0;
+        if (gWaterRegions == NULL)
+            return NULL;
+        sp32 = gWaterRegions[0];
+        sp44 = alloc_display_list((sp32 + 3) * sizeof(*sp44));
+        if (sp44 == NULL)
+            return NULL;
+        else
+            sp40 = sp44;
+        sp34 = b;
+        if (sp34->unk18 == 4613)
+        {
+            if (D_8033B328.unk0[3][1] < 1024.0)
+                return NULL;
+            if (save_file_get_star_flags(gCurrSaveFileNum - 1, 2) & 1)
+                return NULL;
+        }
+        else if (sp34->unk18 == 1794)
+        {
+            D_8032FFD8 = 1;
+        }
+        else if (sp34->unk18 == 2129)
+        {
+            D_8032FFD8 = 2;
+        }
+        sp38 = func_802D01A4(sp34->unk18);
+        if (sp38 == NULL)
+            return NULL;
+        sp34->unk2 = (sp34->unk2 & 0xFF) | 0x700;
+        func_802D0448(sp34->unk18, &sp40);
+        D_8035FF70 = -1;
+        for (sp28 = 0; sp28 < sp32; sp28++)
+        {
+            sp30 = gWaterRegions[sp28 * 6 + 1];
+            sp2E = gWaterRegions[sp28 * 6 + 6];
+            sp3C = func_802D00D0(sp30, sp2E, sp38);
+            if (sp3C != NULL)
+                gSPDisplayList(sp40++, VIRTUAL_TO_PHYSICAL(sp3C));
+        }
+        gSPDisplayList(sp40++, seg2_f3d_014810);
+        gSPEndDisplayList(sp40);
+    }
+    return sp44;
+}
+
+void func_802D0850(s16 *a, int b)
+{
+    s16 sp6 = a[0];
+    s16 *sp0 = a + b;
+
+    if (D_8032FFD0 != D_8032FFD4)
+    {
+        *sp0 += sp6;
+        if (*sp0 >= 0x400)
+            *sp0 -= 0x400;
+        if (*sp0 <= -0x400)
+            *sp0 += 0x400;
+    }
+}
+
+void func_802D08EC(Vtx *vtx, s16 *b, struct Struct802D0DD4 *c, s8 d)
+{
+    s16 x = b[1];
+    s16 y = b[2];
+    s16 z = b[3];
+    u8 alpha = c->unk1F;
+    u8 r1;
+    u8 g1;
+    u8 b1;
+    s8 r2;
+    s8 g2;
+    s8 b2;
+    s16 tx;
+    s16 ty;
+
+    switch (d)
+    {
+    case 0:
+        r1 = c->unk1C;
+        g1 = c->unk1D;
+        b1 = c->unk1E;
+        tx = b[4];
+        ty = b[5];
+        make_vertex(vtx, 0, x, y, z, tx, ty, r1, g1, b1, alpha);
+        break;
+    case 1:
+        r2 = b[4];
+        g2 = b[5];
+        b2 = b[6];
+        tx = b[7];
+        ty = b[8];
+        make_vertex(vtx, 0, x, y, z, tx, ty, r2, g2, b2, alpha);
+        break;
+    }
+}
+
+void func_802D0A94(Vtx *verts, int n, s16 *c, struct Struct802D0DD4 *d, s8 e)
+{
+    u8 alpha = d->unk1F;
+    s16 x;
+    s16 y;
+    s16 z;
+    s16 sp56;
+    s16 sp54;
+    s16 tx;
+    s16 ty;
+    s16 sp4E;
+    s16 sp4C;
+    u8 r1;
+    u8 g1;
+    u8 b1;
+    s8 r2;
+    s8 g2;
+    s8 b2;
+    
+    switch (e)
+    {
+    case 0:
+        x = c[n * 5 + 1];
+        y = c[n * 5 + 2];
+        z = c[n * 5 + 3];
+        sp56 = c[4];
+        sp54 = c[5];
+        sp4E = c[n * 5 + 4];
+        sp4C = c[n * 5 + 5];
+        tx = sp56 + sp4E * 32 * 32;
+        ty = sp54 + sp4C * 32 * 32;
+        r1 = d->unk1C;
+        g1 = d->unk1D;
+        b1 = d->unk1E;
+        make_vertex(verts, n, x, y, z, tx, ty, r1, g1, b1, alpha);
+        break;
+    case 1:
+        x = c[n * 8 + 1];
+        y = c[n * 8 + 2];
+        z = c[n * 8 + 3];
+        sp56 = c[7];
+        sp54 = c[8];
+        sp4E = c[n * 8 + 7];
+        sp4C = c[n * 8 + 8];
+        tx = sp56 + sp4E * 32 * 32;
+        ty = sp54 + sp4C * 32 * 32;
+        r2 = c[n * 8 + 4];
+        g2 = c[n * 8 + 5];
+        b2 = c[n * 8 + 6];
+        make_vertex(verts, n, x, y, z, tx, ty, r2, g2, b2, alpha);
+        break;
+    }
+}
+
+Gfx *func_802D0DD4(s16 *a, struct Struct802D0DD4 *b, s8 c)
+{
+    Vtx *verts = alloc_display_list(b->unk8 * sizeof(*verts));
+    Gfx *sp50 = alloc_display_list(11 * sizeof(*sp50));
+    Gfx *sp4C = sp50;
+    int sp48;
+    
+    if (verts == NULL || sp50 == NULL)
+        return NULL;
+    func_802D08EC(verts, a, b, c);
+    for (sp48 = 1; sp48 < b->unk8; sp48++)
+        func_802D0A94(verts, sp48, a, b, c);
+    gSPDisplayList(sp4C++, b->unk10)
+    gDPSetTextureImage(sp4C++, 0, 2, 1, D_8032FFE4[b->unk4])
+    gDPTileSync(sp4C++)
+    gDPSetTile(sp4C++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, 7, 0,
+                G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD,
+                G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD)
+    gDPLoadSync(sp4C++)
+    gDPLoadBlock(sp4C++, 7, 0, 0, 1023, 256)
+    gSPVertex(sp4C++, 0x80000000 + (u32)verts, b->unk8, 0)
+    gSPDisplayList(sp4C++, b->unk18)
+    gSPDisplayList(sp4C++, b->unk14)
+    gSPEndDisplayList(sp4C)
+    return sp50;
+}
+
+struct Struct802D1B70
+{
+    u8 filler0[2];
+    s16 unk2;
+    u8 filler4[0x18-0x4];
+    s32 unk18;
+};
+
+Gfx *Geo18_802D1B70(int a, struct Struct802D1B70 *b, UNUSED int c)
+{
+    int sp24;
+    s16 *sp20;
+    struct Struct802D1B70 *sp1C;
+    Gfx *sp18 = NULL;
+    
+    if (a == 1)
+    {
+        sp24 = 0;
+        sp1C = b;
+        while (D_80330004[sp24].unkC != 0)
+        {
+            if (D_80330004[sp24].unk0 == sp1C->unk18)
+            {
+                sp1C->unk2 = (sp1C->unk2 & 0xFF) | (D_80330004[sp24].unk20 << 8);
+                sp20 = segmented_to_virtual(D_80330004[sp24].unkC);
+                func_802D0850(sp20, 4);
+                sp18 = func_802D0DD4(sp20, &D_80330004[sp24], 0);
+                break;
+            }
+            sp24++;
+        }
+    }
+    return sp18;
+}
+
+Gfx *Geo18_802D1CDC(int a, struct Struct802D1B70 *b, UNUSED int c)
+{
+    int sp24;
+    s16 *sp20;
+    struct Struct802D1B70 *sp1C;
+    Gfx *sp18 = NULL;
+    
+    if (a == 1)
+    {
+        sp24 = 0;
+        sp1C = b;
+        while (D_80330244[sp24].unkC != 0)
+        {
+            if (D_80330244[sp24].unk0 == sp1C->unk18)
+            {
+                sp1C->unk2 = (sp1C->unk2 & 0xFF) | (D_80330244[sp24].unk20 << 8);
+                sp20 = segmented_to_virtual(D_80330244[sp24].unkC);
+                func_802D0850(sp20, 7);
+                sp18 = func_802D0DD4(sp20, &D_80330244[sp24], 1);
+                break;
+            }
+            sp24++;
+        }
+    }
+    return sp18;
+}
+
+Gfx *Geo18_802D1E48(int a, struct Struct802D1B70 *b, UNUSED int c)
+{
+    int sp24;
+    s16 *sp20;
+    struct Struct802D1B70 *sp1C;
+    Gfx *sp18 = NULL;
+    
+    if (a == 1)
+    {
+        sp24 = 0;
+        sp1C = b;
+        while (D_80330244[sp24].unkC != 0)
+        {
+            if (D_80330244[sp24].unk0 == sp1C->unk18)
+            {
+                sp1C->unk2 = (sp1C->unk2 & 0xFF) | (D_80330244[sp24].unk20 << 8);
+                sp20 = segmented_to_virtual(D_80330244[sp24].unkC);
+                sp18 = func_802D0DD4(sp20, &D_80330244[sp24], 1);
+                break;
+            }
+            sp24++;
+        }
+    }
+    return sp18;
+}
+
+Gfx *Geo18_802D1FA8(int a, struct Struct802D1B70 *b, UNUSED int c)
+{
+    int sp24;
+    s16 *sp20;
+    struct Struct802D1B70 *sp1C;
+    Gfx *sp18 = NULL;
+    
+    if (a == 1)
+    {
+        sp24 = 0;
+        sp1C = b;
+        while (D_8033031C[sp24].unkC != 0)
+        {
+            if (D_8033031C[sp24].unk0 == sp1C->unk18)
+            {
+                sp1C->unk2 = (sp1C->unk2 & 0xFF) | (D_8033031C[sp24].unk20 << 8);
+                sp20 = segmented_to_virtual(D_8033031C[sp24].unkC);
+                sp18 = func_802D0DD4(sp20, &D_8033031C[sp24], 1);
+                break;
+            }
+            sp24++;
+        }
+    }
+    return sp18;
+}
+
+struct Struct802D2108
+{
+    u8 filler0[0x18];
+    s32 unk18;
+};
+
+extern u8 D_07004930[];
+extern u8 D_070049B4[];
+extern u8 D_07016840[];
+extern u8 D_07016904[];
+
+Gfx *Geo18_802D2108(int a, struct Struct802D2108 *b, UNUSED int c)
+{
+    void *sp2C;
+
+    if (a == 1)
+    {
+        struct Struct802D2108 *sp28 = b;
+        
+        switch (sp28->unk18)
+        {
+        case 2049: sp2C = segmented_to_virtual(D_07004930); break;
+        case 2050: sp2C = segmented_to_virtual(D_070049B4); break;
+        case 5120: sp2C = segmented_to_virtual(D_07016840); break;
+        case 5121: sp2C = segmented_to_virtual(D_07016904); break;
+        }
+        func_802D0850(sp2C, 7);
+    }
+    return NULL;
+}

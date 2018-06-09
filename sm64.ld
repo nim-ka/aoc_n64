@@ -87,7 +87,7 @@ SECTIONS
       build/asm/screen_transition.o(.text);
       build/asm/rotate.o(.text);
       build/src/skybox.o(.text);
-      build/asm/moving_texture.o(.text);
+      build/src/moving_texture.o(.text);
       build/src/transparent_texture.o(.text);
       build/src/paintings.o(.text);
       build/src/print.o(.text);
@@ -144,7 +144,7 @@ SECTIONS
       build/data/screen_transition.data.o(.data*);
       build/data/rotate.data.o(.data*);
       build/src/skybox.o(.data*);
-      build/data/moving_texture.data.o(.data*);
+      build/src/moving_texture.o(.data*);
       build/src/transparent_texture.o(.data*);
       build/src/paintings.o(.data*);
       build/src/print.o(.data*);
@@ -186,7 +186,7 @@ SECTIONS
       build/data/screen_transition.rodata.o(.rodata*);
       build/data/rotate.rodata.o(.rodata*);
       build/src/skybox.o(.rodata*);
-      build/data/moving_texture.rodata.o(.rodata*);
+      build/src/moving_texture.o(.rodata*);
       build/src/paintings.o(.rodata*);
       build/src/print.o(.rodata*);
       build/data/ingame_menu.rodata.o(.rodata*);

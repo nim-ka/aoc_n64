@@ -1,5 +1,5 @@
-#ifndef _MOVING_TEXTURE_H
-#define _MOVING_TEXTURE_H
+#ifndef _TRANSPARENT_TEXTURE_H
+#define _TRANSPARENT_TEXTURE_H
 
 #include "types.h"
 
@@ -12,4 +12,4 @@ extern int round_float(float);
 // extern ? Geo18_802D2520(?);
 // extern ? Geo18_802D28CC(?);
 
-#endif /* _MOVING_TEXTURE_H */
+#endif /* _TRANSPARENT_TEXTURE_H */
