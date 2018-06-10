@@ -66,7 +66,7 @@ OBJDUMP   := $(CROSS)objdump
 OBJCOPY   := $(CROSS)objcopy
 
 # Check code syntax with host compiler
-CC_CHECK := gcc -fsyntax-only -fsigned-char -I include -std=c99 -Wall -Wextra -pedantic -Werror -Wno-format-security $(VERSION_CFLAGS)
+CC_CHECK := gcc -fsyntax-only -fsigned-char -I include -std=c99 -Wall -Wextra -pedantic -Wno-format-security -Werror $(VERSION_CFLAGS)
 
 ASFLAGS := -march=vr4300 -mabi=32 -I include $(VERSION_ASFLAGS)
 CFLAGS := -Wab,-r4300_mul -non_shared -G 0 -Xcpluscomm -Xfullwarn -g -signed -I include $(VERSION_CFLAGS)

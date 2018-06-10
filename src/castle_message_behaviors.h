@@ -19,10 +19,10 @@ struct Struct8033B328
     Vec3f unk80;
     Vec3f unk8C;
     u8 filler98[0xA4-0x98];
-    u8 unkA4[4];  // unknown type
-    u8 unkA8[4];  // unknown type
-    u8 unkAC[4];  // unknown type
-    u8 unkB0[4];  // unknown type
+    float unkA4;
+    float unkA8;
+    float unkAC;
+    float unkB0;
 };
 
 extern struct Struct8033B328 D_8033B328;

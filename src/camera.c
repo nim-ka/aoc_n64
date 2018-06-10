@@ -3,6 +3,7 @@
 #include "sm64.h"
 #include "castle_message_behaviors.h"
 #include "game.h"
+#include "hud_print.h"
 #include "math_util.h"
 #include "area.h"
 #include "surface_collision.h"
@@ -11,13 +12,6 @@
 #include "ingame_menu.h"
 #include "mario_actions_cutscene.h"
 #include "camera.h"
-
-// Maybe Object? I don't know...
-struct Struct8032CFD0
-{
-    u8 filler0[0x124];
-    u32 unk124;
-};
 
 struct Struct8033B250
 {
@@ -86,7 +80,16 @@ extern s16 D_8033B306;
 extern u8 D_8032E910[];
 extern s8 D_8033B4E0[][8];
 extern s8 D_8033B5E0[][8];
-extern s8 D_8033B2B8[][16];
+
+struct Struct8033B2B8
+{
+    s8 unk0;
+    u8 filler1[7];
+    Vec3s unk8;
+    u8 fillerE[2];
+};
+
+extern struct Struct8033B2B8 D_8033B2B8[];
 extern Vec3f D_8033B1F8;
 extern Vec3f D_8033B208;
 extern float D_8033B3D8;
@@ -309,6 +312,7 @@ void Unknown8027F950(Vec3f a, Vec3f b, float c, float d, float e, s16 f, s16 g)
 }
 
 #define ABS(x) ((x) > 0.0f ? (x) : -(x))
+#define ABS2(x) ((x) >= 0.0f ? (x) : -(x))
 
 void func_8027FA48(struct Struct80280550 *a, float b)
 {
@@ -954,7 +958,7 @@ int CameraChange0D(struct Struct80280550 *a, Vec3f b, UNUSED Vec3f c)
 
 int CameraChange0B(struct Struct80280550 *a, Vec3f b, Vec3f c)
 {
-    struct Struct8032CFD0 *sp8C;
+    struct Object *sp8C;
     UNUSED u8 filler2[12];
     float sp7C;
     UNUSED u8 filler3[4];
@@ -987,8 +991,9 @@ int CameraChange0B(struct Struct80280550 *a, Vec3f b, Vec3f c)
     sp60 = D_8033B402 + 0x2000;
     if ((sp8C = D_8032CFD0) != NULL)
     {
+        // FIXME: object
         func_80287840(sp38, sp8C);
-        sp5E = sp8C->unk124;
+        sp5E = sp8C->oUnk124;
     }
     else
     {
@@ -2069,9 +2074,9 @@ void func_80285BD8(struct Struct80280550 *a, s16 b, s16 c)
 }
 
 extern int func_8028C824();
-extern void func_80288C2C();
+extern int func_80288C2C(Vec3f a, Vec3f b, s16 c, s16 d);
 extern void func_8028909C(Vec3f, Vec3f, float, float, float);
-extern void func_80288D74(void *, float, float);
+extern int func_80288D74(float *, float, float);
 extern void func_8028AC30();
 extern void func_8028AD44();
 extern void func_8028AE50();
@@ -2167,7 +2172,7 @@ void func_80285E70(struct Struct80280550 *a)
 }
 
 extern u8 func_8028BCC8();
-extern void ChangeCameraStatus(struct Struct80280550 *);
+extern int ChangeCameraStatus(struct Struct80280550 *);
 extern int func_8028803C();
 extern void func_8028B36C(void);
 extern void func_80286C9C(struct Struct80280550 *);
@@ -2179,7 +2184,7 @@ extern void func_802877EC(struct Struct80280550 *);
 extern void func_8028B304(void);
 extern void func_8028B338(void);
 extern void func_8028BB3C();
-extern int func_802886FC();
+extern int func_802886FC(u16, u16, u16);
 extern int func_80288CF0(float, float, float);
 extern void func_8028D288();
 
@@ -2373,7 +2378,7 @@ void func_802869B8(struct Struct80280550 *a)
     D_8032CFC4 = 0;
     D_8032CFC8 = 0;
     D_8032CFCC = 0;
-    D_8032CFD0 = 0;
+    D_8032CFD0 = NULL;
     D_8033B31E = 0;
     vec3f_copy(D_8033B250.unk14, D_8032D000->unk4);
     D_8033B260 = 0;
@@ -2429,12 +2434,6 @@ void func_802869B8(struct Struct80280550 *a)
     D_8033B310 = 0;
 }
 
-extern float D_80336140;
-extern float D_80336144;
-extern float D_80336148;
-extern float D_8033614C;
-extern float D_80336150;
-
 void func_80286C9C(struct Struct80280550 *a)
 {
     struct Surface *sp34 = 0;
@@ -2478,7 +2477,7 @@ void func_80286C9C(struct Struct80280550 *a)
     D_8033B2FC = 0.0f;
     D_8033B2F8 = 0;
     for (sp24 = 0; sp24 < 4; sp24++)
-        D_8033B2B8[sp24][0] = -1;
+        D_8033B2B8[sp24].unk0 = -1;
     D_8033B304 = 0;
     D_8033B306 = 0;
     D_8033B308 = 0;
@@ -2503,9 +2502,9 @@ void func_80286C9C(struct Struct80280550 *a)
             sp28[0] = -400.0f;
             sp28[2] = -800.0f;
         }
-        if (func_80288CF0(D_80336140, D_80336144, -6509.0f) == 1)
+        if (func_80288CF0(-6901.0f, 2376.0f, -6509.0f) == 1)
             func_8028BB3C(a, 179);
-        if (func_80288CF0(5408.0f, D_80336148, 3637.0f) == 1)
+        if (func_80288CF0(5408.0f, 4500.0f, 3637.0f) == 1)
             func_8028BB3C(a, 180);
         D_8033B364 = 16;
         break;
@@ -2542,7 +2541,7 @@ void func_80286C9C(struct Struct80280550 *a)
         sp28[2] = -300.0f;
         break;
     case 161:
-        if (func_80288CF0(D_8033614C, D_80336150, 1399.0f) == 1)
+        if (func_80288CF0(257.0f, 2150.0f, 1399.0f) == 1)
             sp28[2] = -300.0f;
         break;
     case 81:
@@ -2577,6 +2576,8 @@ struct Struct80287404
     s32 unk18;
     Vec3f unk1C;
     Vec3f unk28;
+    u8 filler34[0x3A-0x34];
+    s16 unk3A;
 };
 
 void func_80287404(struct Struct80287404 *a)
@@ -2629,7 +2630,7 @@ void func_802875F8(struct Struct80287404 *a, struct AllocOnlyPool *b)
 {
     s16 sp1E = a->unk18;
     struct Struct80280550 *sp18 = alloc_only_pool_alloc(b, 108);
-    
+
     a->unk18 = (s32)sp18;
     sp18->unk0 = sp1E;
     sp18->unk1 = sp1E;
@@ -2641,6 +2642,530 @@ void func_802875F8(struct Struct80287404 *a, struct AllocOnlyPool *b)
     sp18->unk2 = 0;
     vec3f_copy(sp18->unk10, a->unk1C);
     vec3f_copy(sp18->unk4, a->unk28);
+}
+
+void func_802876D0(struct Struct80287404 *a)
+{
+    UNUSED u8 unused[8];
+    UNUSED int sp1C = a->unk18;
+
+    a->unk3A = D_8033B3A2;
+    vec3f_copy(a->unk1C, D_8033B328.unk8C);
+    vec3f_copy(a->unk28, D_8033B328.unk80);
+    func_80287404(a);
+}
+
+int Geo0F_80287D30(int a, struct Struct80287404 *b, struct AllocOnlyPool *c)
+{
+    struct Struct80287404 *sp2C = b;
+    UNUSED struct AllocOnlyPool *sp28 = c;
+
+    switch (a)
+    {
+    case 0:
+        func_802875F8(sp2C, c);
+        break;
+    case 1:
+        func_802876D0(sp2C);
+        break;
+    }
+    return 0;
+}
+
+void func_802877D8(UNUSED struct Struct80280550 *a)
+{
+}
+
+void func_802877EC(UNUSED struct Struct80280550 *a)
+{
+}
+
+void func_80287800(Vec3f a, Vec3f b)
+{
+    a[0] -= b[0];
+    a[1] -= b[1];
+    a[2] -= b[2];
+}
+
+void func_80287840(Vec3f a, struct Object *b)
+{
+    a[0] = b->oPosX;
+    a[1] = b->oPosY;
+    a[2] = b->oPosZ;
+}
+
+void func_80287868(struct Object *a, Vec3f b)
+{
+    a->oPosX = b[0];
+    a->oPosY = b[1];
+    a->oPosZ = b[2];
+}
+
+// unreferenced
+void Unknown80287890(Vec3s a, struct Object *b)
+{
+    a[0] = b->oAnglePitch;
+    a[1] = b->oAngleYaw;
+    a[2] = b->oAngleRoll;
+}
+
+extern float D_80336160;
+
+extern s16 D_8033B2B2;
+extern s16 D_8033B2B4;
+
+void func_802878B8(float a, Vec3f b, Vec3f c, Vec3f d, Vec3f e, Vec3f f)
+{
+    float sp40[4];
+    float sp3C;
+    float sp38;
+    float sp34;
+    UNUSED u8 unused[16];
+
+    if (a > 1.0f)
+        a = 1.0f;
+    sp40[0] = (1.0f - a) * (1.0f - a) * (1.0f - a) / 6.0f;
+    sp40[1] = a * a * a / 2.0f - a * a + 0.6666667f;
+    sp40[2] = -a * a * a / 2.0f + a * a / 2.0f + a / 2.0f + 0.16666667f;
+    sp40[3] = a * a * a / 6.0f;
+    b[0] = sp40[0] * c[0] + sp40[1] * d[0] + sp40[2] * e[0] + sp40[3] * f[0];
+    b[1] = sp40[0] * c[1] + sp40[1] * d[1] + sp40[2] * e[1] + sp40[3] * f[1];
+    b[2] = sp40[0] * c[2] + sp40[1] * d[2] + sp40[2] * e[2] + sp40[3] * f[2];
+    sp40[0] = -0.5f * a * a + a - 0.33333333f;
+    sp40[1] = 1.5f * a * a - 2.0f * a - 0.5f;
+    sp40[2] = -1.5f * a * a + a + 1.0f;
+    sp40[3] = 0.5f * a * a - 0.16666667f /*D_80336160*/;
+    sp3C = sp40[0] * c[0] + sp40[1] * d[0] + sp40[2] * e[0] + sp40[3] * f[0];
+    sp38 = sp40[0] * c[1] + sp40[1] * d[1] + sp40[2] * e[1] + sp40[3] * f[1];
+    sp34 = sp40[0] * c[2] + sp40[1] * d[2] + sp40[2] * e[2] + sp40[3] * f[2];
+    D_8033B2B2 = atan2s(sqrtf(sp3C * sp3C + sp34 * sp34), sp38);
+    D_8033B2B4 = atan2s(sp34, sp3C);
+}
+
+struct Struct80287CFC
+{
+    s8 unk0;
+    u8 unk1;
+    s16 unk2;
+    s16 unk4;
+    s16 unk6;
+};
+
+int func_80287CFC(Vec3f a, struct Struct80287CFC *b, s16 *c, float *d)
+{
+    int sp6C = 0;
+    Vec3f sp3C[4];
+    int sp38 = 0;
+    float sp34 = *d;
+    UNUSED float sp30;
+    float sp2C = 0.0f;
+    float sp28 = 0.0f;
+    int sp24 = *c;
+
+    if (*c < 0)
+    {
+        sp24 = 0;
+        sp34 = 0;
+    }
+    if (b[sp24].unk0 == -1 || b[sp24 + 1].unk0 == -1 || b[sp24 + 2].unk0 == -1)
+        return 1;
+    for (sp38 = 0; sp38 < 4; sp38++)
+    {
+        sp3C[sp38][0] = b[sp24 + sp38].unk2;
+        sp3C[sp38][1] = b[sp24 + sp38].unk4;
+        sp3C[sp38][2] = b[sp24 + sp38].unk6;
+    }
+    func_802878B8(sp34, a, sp3C[0], sp3C[1], sp3C[2], sp3C[3]);
+    if (b[*c + 1].unk1 != 0)
+        sp2C = 1.0f / b[*c + 1].unk1;
+    if (b[*c + 2].unk1 != 0)
+        sp28 = 1.0f / b[*c + 2].unk1;
+    sp30 = (sp28 - sp2C) * *d + sp2C;
+    if (1.0f <= (*d += sp30))
+    {
+        (*c)++;
+        if (b[*c + 3].unk0 == -1)
+        {
+            *c = 0;
+            sp6C = 1;
+        }
+        *d -= 1.0f;
+    }
+    return sp6C;
+}
+
+int func_8028803C(int a)
+{
+    int sp1C = 2;
+
+    if (a == 1)
+    {
+        if (!(D_8033B314 & 4))
+            D_8033B314 |= 4;
+        D_8033B31C |= 8;
+    }
+    if (a == 2 && (D_8033B314 & 4))
+    {
+        func_80288130(2);
+        D_8033B314 &= ~4;
+        D_8033B31C |= 0x10;
+    }
+    if (D_8033B314 & 4)
+        sp1C = 1;
+    return sp1C;
+}
+
+int func_80288130(int a)
+{
+    int sp4 = 2;
+    
+    if (a == 1 && !(D_8033B314 & 1))
+    {
+        D_8033B314 |= 1;
+        if (D_8033B4D8 & 2)
+        {
+            D_8033B314 |= 2;
+            D_8033B4D8 &= ~2;
+        }
+        D_8033B31C |= 2;
+    }
+    if (a == 2 && (D_8033B314 & 1))
+    {
+        D_8033B314 &= ~1;
+        if (D_8033B314 & 2)
+        {
+            D_8033B314 &= ~2;
+            D_8033B4D8 |= 2;
+        }
+        else
+        {
+            D_8033B4D8 &= ~2;
+        }
+        D_8033B31C |= 4;
+    }
+    if (D_8033B314 & 1)
+        sp4 = 1;
+    return sp4;
+}
+
+extern float D_80336180;
+extern float D_80336184;
+extern float D_80336188;
+extern float D_8033618C;
+extern float D_80336190;
+
+void func_802882A0(u8 a)
+{
+    switch (a)
+    {
+    case 1:
+        D_8033B2F8 = 1536;
+        D_8033B300 = 0.04f;
+        break;
+    case 6:
+        D_8033B2F8 = 768;
+        D_8033B300 = D_80336180;
+        break;
+    case 4:
+        D_8033B2F8 = 4096;
+        D_8033B300 = D_80336184;
+        break;
+    case 2:
+        D_8033B2F8 = 1536;
+        D_8033B300 = D_80336188;
+        break;
+    case 3:
+        D_8033B2F8 = 1536;
+        D_8033B300 = D_8033618C;
+        break;
+    case 5:
+        D_8033B2F8 = 1024;
+        D_8033B300 = D_80336190;
+        break;
+    default:
+        D_8033B2F8 = 0;
+        D_8033B300 = 0.0f;
+    }
+}
+
+extern s16 D_8033B2C0[][8];
+
+extern void func_80289618();
+
+extern float D_80336194;
+extern float D_80336198;
+
+void func_802883C8(Vec3f a, Vec3f b)
+{
+    int sp6C;
+    Vec3f sp60;
+    Vec3f sp30[4];
+    float sp2C;
+    s16 sp2A;
+    s16 sp28;
+    UNUSED u8 unused[8];
+
+    if (D_8033B2F8 == 0)
+    {
+        vec3f_set(sp60, 0.0f, 0.0f, 0.0f);
+    }
+    else
+    {
+        for (sp6C = 0; sp6C < 4; sp6C++)
+        {
+            sp30[sp6C][0] = D_8033B2C0[sp6C][0];
+            sp30[sp6C][1] = D_8033B2C0[sp6C][1];
+            sp30[sp6C][2] = D_8033B2C0[sp6C][2];
+        }
+        func_802878B8(D_8033B2FC, sp60, sp30[0], sp30[1], sp30[2], sp30[3]);
+        if (1.0f <= (D_8033B2FC += D_8033B300))
+        {
+            for (sp6C = 0; sp6C < 3; sp6C++)
+                vec3s_copy(D_8033B2B8[sp6C].unk8, D_8033B2B8[sp6C + 1].unk8);
+            func_80289618(D_8033B2B8[3].unk8, D_8033B2F8, D_8033B2F8, D_8033B2F8 / 2);
+            D_8033B2FC -= 1.0f;
+            D_8033B300 = RandomFloat() * 0.5f;
+            if (D_8033B300 < D_80336194)
+                D_8033B300 = D_80336198;
+        }
+    }
+    func_80288ECC(&D_8033B304, sp60[0], 8);
+    func_80288ECC(&D_8033B306, sp60[1], 8);
+    func_80288ECC(&D_8033B308, sp60[2], 8);
+    if (D_8033B304 | D_8033B306)
+    {
+        vec3f_get_dist_and_angle(a, b, &sp2C, &sp2A, &sp28);
+        sp2A += D_8033B304;
+        sp28 += D_8033B306;
+        vec3f_set_dist_and_angle(a, b, sp2C, sp2A, sp28);
+    }
+    D_8033B2F8 = 0;
+    D_8033B300 = 0.0f;
+}
+
+int func_802886FC(u16 a, u16 b, u16 c)
+{
+    b &= 0xF;
+    c &= 0xF;
+
+    if (b & 2)
+    {
+        a |= 2;
+        a &= ~1;
+    }
+    if (!(c & 2))
+        a &= ~2;
+
+    if (b & 1)
+    {
+        a |= 1;
+        a &= ~2;
+    }
+    if (!(c & 1))
+        a &= ~1;
+
+    if (b & 8)
+    {
+        a |= 8;
+        a &= ~4;
+    }
+    if (!(c & 8))
+        a &= ~8;
+
+    if (b & 4)
+    {
+        a |= 4;
+        a &= ~8;
+    }
+    if (!(c & 4))
+        a &= ~4;
+
+    return a;
+}
+
+int ChangeCameraStatus(struct Struct80280550 *a)
+{
+    s16 sp1E = 0;
+    
+    if (a->unk30 != 0 || ((gPlayer1Controller->buttonDown & 0x10) && func_8028803C(0) == 2))
+        sp1E |= 4;
+    else if (func_80288130(0) == 1)
+        sp1E |= 1;
+    else
+        sp1E |= 2;
+    if (D_8033B4D8 & 2)
+        sp1E |= 8;
+    if (D_8033B4D8 & 0x2000)
+        sp1E |= 0x10;
+    set_camera_status(sp1E);
+    return sp1E;
+}
+
+int func_80288974(Vec3f pos, float offsetY, float radius)
+{
+    struct WallCollisionData collisionData;
+    struct Surface *wall = NULL;
+    float sp68;
+    float sp64;
+    float sp60;
+    float sp5C;
+    float sp58;
+    float sp54;
+    Vec3f sp24[4];
+    int sp20;
+    int sp1C = 0;
+    
+    collisionData.x = pos[0];
+    collisionData.y = pos[1];
+    collisionData.z = pos[2];
+    collisionData.radius = radius;
+    collisionData.offsetY = offsetY;
+    sp1C = find_wall_collisions(&collisionData);
+    if (sp1C != 0)
+    {
+        for (sp20 = 0; sp20 < collisionData.numWalls; sp20++)
+        {
+            wall = collisionData.walls[collisionData.numWalls - 1];
+            vec3f_copy(sp24[sp20], pos);
+            sp68 = wall->normal[0];
+            sp64 = wall->normal[1];
+            sp60 = wall->normal[2];
+            sp5C = wall->originOffset;
+            sp58 = sp68 * sp24[sp20][0] + sp64 * sp24[sp20][1] + sp60 * sp24[sp20][2] + sp5C;
+            sp54 = ABS2(sp58);
+            if (sp54 < radius)
+            {
+                sp24[sp20][0] += sp68 * (radius - sp58);
+                sp24[sp20][2] += sp60 * (radius - sp58);
+                vec3f_copy(pos, sp24[sp20]);
+            }
+        }
+    }
+    return sp1C;
+}
+
+int func_80288BB0(Vec3f a, float b, float c, float d)
+{
+    int equal = FALSE;
+
+    if (a[0] == b && a[1] == c && a[2] == d)
+        equal = TRUE;
+    return equal;
+}
+
+int func_80288C2C(Vec3f a, Vec3f b, s16 c, s16 d)
+{
+    int sp2C = 0;
+    s16 sp2A;
+    s16 sp28;
+    float sp24;
+    
+    vec3f_get_dist_and_angle(a, b, &sp24, &sp2A, &sp28);
+    if (sp2A > c)
+    {
+        sp2A = c;
+        sp2C++;
+    }
+    if (sp2A < d)
+    {
+        sp2A = d;
+        sp2C++;
+    }
+    vec3f_set_dist_and_angle(a, b, sp24, sp2A, sp28);
+    return sp2C;
+}
+
+int func_80288CF0(float a, float b, float c)
+{
+    int sp24 = 0;
+    Vec3f sp18;
+
+    vec3f_set(sp18, a, b, c);
+    if (func_8028A640(D_8032D000->unk4, sp18) < 100.0f)
+        sp24 = 1;
+    return sp24;
+}
+
+int func_80288D74(float *a, float b, float c)
+{
+    if (D_8033B4DA & 1)
+        func_80288E0C(a, b, c);
+    else
+        *a = b;
+    if (*a == b)
+        return 0;
+    else
+        return 1;
+}
+
+int func_80288E0C(float *a, float b, float c)
+{
+    if (c > 1.0f)
+        c = 1.0f;
+    *a = *a + (b - *a) * c;
+    if (*a == b)
+        return 0;
+    else
+        return 1;
+}
+
+float func_80288EA0(float a, float b, float c)
+{
+    a = a + (b - a) * c;
+    return a;
+}
+
+int func_80288ECC(s16 *a, s16 b, s16 c)
+{
+    s16 sp6 = *a;
+    
+    if (c == 0)
+    {
+        *a = b;
+    }
+    else
+    {
+        sp6 -= b;
+        sp6 -= sp6 / c;
+        sp6 += b;
+        *a = sp6;
+    }
+    if (*a == b)
+        return 0;
+    else
+        return 1;
+}
+
+int func_80288F84(s16 a, s16 b, s16 c)
+{
+    s16 sp6 = a;
+    
+    if (c == 0)
+    {
+        a = b;
+    }
+    else
+    {
+        sp6 -= b;
+        sp6 -= sp6 / c;
+        sp6 += b;
+        a = sp6;
+    }
+    return a;
+}
+
+void func_80289028(Vec3f a, Vec3f b, float c, float d, float e)
+{
+    func_80288E0C(&a[0], b[0], c);
+    func_80288E0C(&a[1], b[1], d);
+    func_80288E0C(&a[2], b[2], e);
+}
+
+void func_8028909C(Vec3f a, Vec3f b, float c, float d, float e)
+{
+    func_80288D74(&a[0], b[0], c);
+    func_80288D74(&a[1], b[1], d);
+    func_80288D74(&a[2], b[2], e);
 }
 
 u8 unknown8032D0A8[8] = {0x00, 0x0E, 0x00, 0x01, 0x00, 0x02, 0x00, 0x04};
