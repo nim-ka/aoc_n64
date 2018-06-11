@@ -400,7 +400,7 @@ glabel func_80274DB8
 /* 02FE98 80274E98 00000000 */  nop   
 /* 02FE9C 80274E9C 46802120 */  cvt.s.w $f4, $f4
 /* 02FEA0 80274EA0 44052000 */  mfc1  $a1, $f4
-/* 02FEA4 80274EA4 0C094537 */  jal   func_802514DC
+/* 02FEA4 80274EA4 0C094537 */  jal   mario_set_forward_vel
 /* 02FEA8 80274EA8 00000000 */   nop   
 /* 02FEAC 80274EAC 8FAD0018 */  lw    $t5, 0x18($sp)
 /* 02FEB0 80274EB0 95AE001A */  lhu   $t6, 0x1a($t5)

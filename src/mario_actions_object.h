@@ -4,7 +4,7 @@
 #include "types.h"
 
 // extern ? func_80274940(?);
-// extern ? func_802749A0(?);
+extern void func_802749A0(struct MarioState *);
 // extern ? func_80274DB8(?);
 // extern ? func_80274EFC(?);
 // extern ? func_8027508C(?);

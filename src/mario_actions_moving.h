@@ -1,91 +1,12 @@
 #ifndef _MARIO_ACTIONS_MOVING
 #define _MARIO_ACTIONS_MOVING
 
-#include "types.h"
 
-// extern ? D_8032CCF0;
-// extern ? D_8032CD08;
-// extern ? D_8032CD20;
-// extern ? D_8032CD38;
-// extern ? D_8032CD50;
-// extern ? D_8032CD68;
-// extern ? D_8032CD80;
-// extern ? D_8032CD98;
-// extern ? D_8032CDB0;
-// extern ? D_80339F50;
+struct MarioState;
 
-// extern ? func_80263A50(?);
-// extern ? func_80263AD4(?);
-// extern ? func_80263C14(?);
-// extern ? func_80263C8C(?);
-// extern ? func_80263CEC(?);
-// extern ? func_80263EA4(?);
-// extern ? Proc80264F30(?);
-// extern ? func_80263FFC(?);
-// extern ? func_80264330(?);
-// extern ? func_80264744(?);
-// extern ? func_80264970(?);
-// extern ? func_80264A08(?);
-// extern ? func_80264C70(?);
-// extern ? func_80264DA0(?);
-// extern ? func_80264E34(?);
-// extern ? func_80265048(?);
-// extern ? func_80265104(?);
-// extern ? func_80265148(?);
-// extern ? func_80265210(?);
-// extern ? func_802652F0(?);
-// extern ? func_8026570C(?);
-// extern ? func_80265980(?);
-// extern ? func_802659E8(?);
-// extern ? func_80265C28(?);
-// extern ? func_80265DBC(?);
-// extern ? func_80265F44(?);
-// extern ? func_802661A4(?);
-// extern ? func_80266324(?);
-// extern ? func_8026658C(?);
-// extern ? func_802666E8(?);
-// extern ? func_8026693C(?);
-// extern ? func_80266A38(?);
-// extern ? func_80266BB8(?);
-// extern ? func_80266E30(?);
-// extern ? func_802670F4(?);
-// extern ? func_80267318(?);
-// extern ? func_8026754C(?);
-// extern ? func_80267814(?);
-// extern ? func_802678D4(?);
-// extern ? func_80267B74(?);
-// extern ? func_80267C44(?);
-// extern ? func_80267CA4(?);
-// extern ? func_80267D38(?);
-// extern ? func_80267F08(?);
-// extern ? func_8026807C(?);
-// extern ? func_80268190(?);
-// extern ? func_802681D8(?);
-// extern ? func_80268254(?);
-// extern ? func_80268388(?);
-// extern ? func_802685C8(?);
-// extern ? func_80268670(?);
-// extern ? func_802686F8(?);
-// extern ? func_80268744(?);
-// extern ? func_80268790(?);
-// extern ? func_802687DC(?);
-// extern ? func_80268828(?);
-// extern ? func_80268898(?);
-// extern ? func_80268960(?);
-// extern ? func_80268B0C(?);
-// extern ? func_80268C9C(?);
-// extern ? func_80268D04(?);
-// extern ? func_80268D6C(?);
-// extern ? func_80268DF8(?);
-// extern ? func_80268E94(?);
-// extern ? func_80268F30(?);
-// extern ? func_80269010(?);
-// extern ? func_80269078(?);
-// extern ? func_8026911C(?);
-// extern ? func_802691D4(?);
-// extern ? func_8026931C(?);
-// extern ? func_80269370(?);
-// extern ? func_802693C4(?);
-// extern ? func_802694E8(?);
+
+void func_80263AD4(struct MarioState *m, s16 arg1, s16 arg2);
+s32 execute_moving_action(struct MarioState *m);
+
 
 #endif /* _MARIO_ACTIONS_MOVING */

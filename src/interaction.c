@@ -126,14 +126,14 @@ static struct InteractionHandler sInteractionHandlers[] =
 
 static u32 sForwardKnockbackActions[][3] =
 {
-    { ACT_UNKNOWN_065, ACT_UNKNOWN_063, ACT_UNKNOWN_061 },
+    { ACT_SOFT_FORWARD_GROUND_KB, ACT_FORWARD_GROUND_KB, ACT_HARD_FORWARD_GROUND_KB },
     { ACT_FORWARD_AIR_KB, ACT_FORWARD_AIR_KB, ACT_HARD_FORWARD_AIR_KB },
     { ACT_FORWARD_WATER_KB, ACT_FORWARD_WATER_KB, ACT_FORWARD_WATER_KB },
 };
 
 static u32 sBackwardKnockbackActions[][3] =
 {
-    { ACT_UNKNOWN_064, ACT_UNKNOWN_062, ACT_UNKNOWN_060 },
+    { ACT_SOFT_BACKWARD_GROUND_KB, ACT_BACKWARD_GROUND_KB, ACT_HARD_BACKWARD_GROUND_KB },
     { ACT_BACKWARD_AIR_KB, ACT_BACKWARD_AIR_KB, ACT_HARD_BACKWARD_AIR_KB },
     { ACT_BACKWARD_WATER_KB, ACT_BACKWARD_WATER_KB, ACT_BACKWARD_WATER_KB },
 };
@@ -528,14 +528,14 @@ static u32 bully_knock_back_mario(struct MarioState *mario)
         if (mario->action & ACT_FLAG_AIR)
             bonkAction = ACT_BACKWARD_AIR_KB;
         else
-            bonkAction = ACT_UNKNOWN_064;
+            bonkAction = ACT_SOFT_BACKWARD_GROUND_KB;
     }
     else
     {
         if (mario->action & ACT_FLAG_AIR)
             bonkAction = ACT_FORWARD_AIR_KB;
         else
-            bonkAction = ACT_UNKNOWN_065;
+            bonkAction = ACT_SOFT_FORWARD_GROUND_KB;
     }
 
     return bonkAction;
@@ -574,7 +574,7 @@ static u32 unused_determine_knockback_action(struct MarioState *m)
         if (m->action & (ACT_FLAG_AIR | ACT_FLAG_ON_POLE | ACT_FLAG_HANGING))
             bonkAction = ACT_BACKWARD_AIR_KB;
         else
-            bonkAction = ACT_UNKNOWN_064;
+            bonkAction = ACT_SOFT_BACKWARD_GROUND_KB;
     }
     else
     {
@@ -582,7 +582,7 @@ static u32 unused_determine_knockback_action(struct MarioState *m)
         if (m->action & (ACT_FLAG_AIR | ACT_FLAG_ON_POLE | ACT_FLAG_HANGING))
             bonkAction = ACT_FORWARD_AIR_KB;
         else
-            bonkAction = ACT_UNKNOWN_065;
+            bonkAction = ACT_SOFT_FORWARD_GROUND_KB;
     }
 
     return bonkAction;
@@ -616,7 +616,7 @@ static u32 determine_knockback_action(struct MarioState *m, UNUSED s32 arg)
     if (terrainIndex == 2)
     {
         if (m->forwardVel < 28.0f)
-            func_802514DC(m, 28.0f);
+            mario_set_forward_vel(m, 28.0f);
 
         if (m->pos[1] >= m->interactObj->oPosY)
         {
@@ -632,7 +632,7 @@ static u32 determine_knockback_action(struct MarioState *m, UNUSED s32 arg)
     else
     {
         if (m->forwardVel < 16.0f)
-            func_802514DC(m, 16.0f);
+            mario_set_forward_vel(m, 16.0f);
     }
 
     if (-0x4000 <= facingDYaw && facingDYaw <= 0x4000)
@@ -693,9 +693,9 @@ static void bounce_back_from_attack(struct MarioState *m, u32 interaction)
             m->action = ACT_MOVE_PUNCHING;
 
         if (m->action & ACT_FLAG_AIR)
-            func_802514DC(m, -16.0f);
+            mario_set_forward_vel(m, -16.0f);
         else
-            func_802514DC(m, -48.0f);
+            mario_set_forward_vel(m, -48.0f);
 
         func_8027EFE0(1);
         m->particleFlags |= 0x00040000;
@@ -1117,7 +1117,7 @@ static u32 interact_tornado(struct MarioState *m, UNUSED u32 interactType, struc
     if (m->action != ACT_TORNADO_TWIRLING && m->action != ACT_SQUISHED)
     {
         mario_stop_riding_and_holding(m);
-        func_802514DC(m, 0.0f);
+        mario_set_forward_vel(m, 0.0f);
         func_80251F74(m);
 
         o->oInteractStatus = 0x00008000;
@@ -1498,7 +1498,7 @@ static u32 interact_koopa_shell(struct MarioState *m, UNUSED u32 interactType, s
 
         if (interaction == INT_HIT_FROM_ABOVE ||
             m->action == ACT_WALKING ||
-            m->action == ACT_UNKNOWN_042)
+            m->action == ACT_HOLD_WALKING)
         {
             m->interactObj = o;
             m->usedObj = o;
@@ -1785,13 +1785,13 @@ static void check_kick_or_punch_wall(struct MarioState *m)
                 if (m->action == ACT_PUNCHING)
                     m->action = ACT_MOVE_PUNCHING;
 
-                func_802514DC(m, -48.0f);
+                mario_set_forward_vel(m, -48.0f);
                 SetSound(0x0444B081, &m->marioObj->gfx.unk54);
                 m->particleFlags |= 0x00040000;
             }
             else if (m->action & ACT_FLAG_AIR)
             {
-                func_802514DC(m, -16.0f);
+                mario_set_forward_vel(m, -16.0f);
                 SetSound(0x0444B081, &m->marioObj->gfx.unk54);
                 m->particleFlags |= 0x00040000;
             }

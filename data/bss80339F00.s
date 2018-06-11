@@ -22,5 +22,3 @@ glabel D_80339F48
     .space 0x4
 glabel D_80339F4C
     .space 0x4
-glabel D_80339F50
-    .space 0x80

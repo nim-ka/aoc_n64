@@ -94,6 +94,7 @@
 #define /*0x110*/ oMarioBurnTimer OBJECT_FIELD_S32(0x22)
 #define /*0x110*/ oMarioLongJumpIsSlow OBJECT_FIELD_S32(0x22)
 #define /*0x110*/ oMarioSteepJumpYaw OBJECT_FIELD_S32(0x22)
+#define /*0x110*/ oMarioWalkingPitch OBJECT_FIELD_S32(0x22)
 
 /* Hoot */
 #define /*0x110*/ oHootMarioReleaseTime OBJECT_FIELD_S32(0x22)

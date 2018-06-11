@@ -40,9 +40,9 @@ static void play_far_fall_sound(struct MarioState *m)
 void func_u_8026A090(struct MarioState *m)
 {
     if (m->actionArg == 0 && (m->forwardVel <= -28.0f || m->forwardVel >= 28.0f))
-        func_80250F50(m, 0x24308081, 0x20000);
+        func_80250F50(m, 0x24308081, MARIO_UNKNOWN_17);
     else
-        func_80250F50(m, 0x24058081, 0x20000);
+        func_80250F50(m, 0x24058081, MARIO_UNKNOWN_17);
 }
 #endif
 
@@ -410,7 +410,7 @@ static u32 common_air_action_step(
         break;
 
     case AIR_STEP_LANDED:
-        if (!check_fall_damage_or_get_stuck(m, ACT_UNKNOWN_060))
+        if (!check_fall_damage_or_get_stuck(m, ACT_HARD_BACKWARD_GROUND_KB))
             set_mario_action(m, landAction, 0);
         break;
 
@@ -439,14 +439,14 @@ static u32 common_air_action_step(
                 else
                 {
                     if (m->forwardVel > 8.0f)
-                        func_802514DC(m, -8.0f);
+                        mario_set_forward_vel(m, -8.0f);
                     return set_mario_action(m, ACT_SOFT_BONK, 0);
                 }
             }
         }
         else
         {
-            func_802514DC(m, 0.0f);
+            mario_set_forward_vel(m, 0.0f);
         }
         break;
 
@@ -567,7 +567,7 @@ static s32 act_hold_jump(struct MarioState *m)
         return drop_and_set_mario_action(m, ACT_GROUND_POUND, 0);
 
     func_80251410(m, 0x04008081, 0);
-    common_air_action_step(m, ACT_UNKNOWN_074, 0x0041, AIR_STEP_CHECK_LEDGE_GRAB);
+    common_air_action_step(m, ACT_HOLD_JUMP_LAND, 0x0041, AIR_STEP_CHECK_LEDGE_GRAB);
     return FALSE;
 }
 
@@ -588,7 +588,7 @@ static s32 act_hold_freefall(struct MarioState *m)
     if (m->input & INPUT_Z_PRESSED)
         return drop_and_set_mario_action(m, ACT_GROUND_POUND, 0);
 
-    common_air_action_step(m, ACT_UNKNOWN_075, animation, AIR_STEP_CHECK_LEDGE_GRAB);
+    common_air_action_step(m, ACT_HOLD_FREEFALL_LAND, animation, AIR_STEP_CHECK_LEDGE_GRAB);
     return FALSE;
 }
 
@@ -661,7 +661,7 @@ static s32 act_riding_shell_air(struct MarioState *m)
         break;
 
     case AIR_STEP_HIT_WALL:
-        func_802514DC(m, 0.0f);
+        mario_set_forward_vel(m, 0.0f);
         break;
 
     case AIR_STEP_HIT_LAVA_WALL:
@@ -751,7 +751,7 @@ static s32 act_dive(struct MarioState *m)
             m->particleFlags |= 0x00010000;
             drop_and_set_mario_action(m, ACT_HEAD_STUCK_IN_GROUND, 0);
         }
-        else if (!check_fall_damage(m, ACT_UNKNOWN_061))
+        else if (!check_fall_damage(m, ACT_HARD_FORWARD_GROUND_KB))
         {
             if (m->heldObj == NULL)
                 set_mario_action(m, ACT_DIVE_SLIDE, 0);
@@ -792,12 +792,12 @@ static s32 act_air_throw(struct MarioState *m)
     switch (perform_air_step(m, 0))
     {
     case AIR_STEP_LANDED:
-        if (!check_fall_damage_or_get_stuck(m, ACT_UNKNOWN_060))
+        if (!check_fall_damage_or_get_stuck(m, ACT_HARD_BACKWARD_GROUND_KB))
             m->action = ACT_AIR_THROW_LAND;
         break;
 
     case AIR_STEP_HIT_WALL:
-        func_802514DC(m, 0.0f);
+        mario_set_forward_vel(m, 0.0f);
         break;
 
     case AIR_STEP_HIT_LAVA_WALL:
@@ -811,7 +811,7 @@ static s32 act_air_throw(struct MarioState *m)
 static s32 act_water_jump(struct MarioState *m)
 {
     if (m->forwardVel < 15.0f)
-        func_802514DC(m, 15.0f);
+        mario_set_forward_vel(m, 15.0f);
 
     func_80251410(m, 0x04328081, 0);
     func_802507E8(m, 0x004D);
@@ -824,7 +824,7 @@ static s32 act_water_jump(struct MarioState *m)
         break;
 
     case AIR_STEP_HIT_WALL:
-        func_802514DC(m, 15.0f);
+        mario_set_forward_vel(m, 15.0f);
         break;
 
     case AIR_STEP_GRABBED_LEDGE:
@@ -849,7 +849,7 @@ static s32 act_hold_water_jump(struct MarioState *m)
         return drop_and_set_mario_action(m, ACT_FREEFALL, 0);
 
     if (m->forwardVel < 15.0f)
-        func_802514DC(m, 15.0f);
+        mario_set_forward_vel(m, 15.0f);
 
     func_80251410(m, 0x04328081, 0);
     func_802507E8(m, 0x0041);
@@ -857,12 +857,12 @@ static s32 act_hold_water_jump(struct MarioState *m)
     switch (perform_air_step(m, 0))
     {
     case AIR_STEP_LANDED:
-        set_mario_action(m, ACT_UNKNOWN_074, 0);
+        set_mario_action(m, ACT_HOLD_JUMP_LAND, 0);
         func_80285BD8(m->area->unk24, m->area->unk24->unk1, 1);
         break;
 
     case AIR_STEP_HIT_WALL:
-        func_802514DC(m, 15.0f);
+        mario_set_forward_vel(m, 15.0f);
         break;
 
     case AIR_STEP_HIT_LAVA_WALL:
@@ -879,12 +879,12 @@ static s32 act_steep_jump(struct MarioState *m)
         return set_mario_action(m, ACT_DIVE, 0);
 
     func_80251410(m, 0x04008081, 0);
-    func_802514DC(m, 0.98f * m->forwardVel);
+    mario_set_forward_vel(m, 0.98f * m->forwardVel);
 
     switch (perform_air_step(m, 0))
     {
     case AIR_STEP_LANDED:
-        if (!check_fall_damage_or_get_stuck(m, ACT_UNKNOWN_060))
+        if (!check_fall_damage_or_get_stuck(m, ACT_HARD_BACKWARD_GROUND_KB))
         {
             m->faceAngle[0] = 0;
             set_mario_action(
@@ -893,7 +893,7 @@ static s32 act_steep_jump(struct MarioState *m)
         break;
 
     case AIR_STEP_HIT_WALL:
-        func_802514DC(m, 0.0f);
+        mario_set_forward_vel(m, 0.0f);
         break;
 
     case AIR_STEP_HIT_LAVA_WALL:
@@ -927,7 +927,7 @@ static s32 act_ground_pound(struct MarioState *m)
         }
 
         m->vel[1] = -50.0f;
-        func_802514DC(m, 0.0f);
+        mario_set_forward_vel(m, 0.0f);
 
         func_802507E8(m, m->actionArg == 0 ? 0x003C : 0x003B);
         if (m->actionTimer == 0)
@@ -956,7 +956,7 @@ static s32 act_ground_pound(struct MarioState *m)
             else
             {
                 func_80251348(m, 0x04608081);
-                if (!check_fall_damage(m, ACT_UNKNOWN_060))
+                if (!check_fall_damage(m, ACT_HARD_BACKWARD_GROUND_KB))
                 {
                     m->particleFlags |= 0x00010010;
                     set_mario_action(m, ACT_GROUND_POUND_LAND, 0);
@@ -966,7 +966,7 @@ static s32 act_ground_pound(struct MarioState *m)
         }
         else if (stepResult == AIR_STEP_HIT_WALL)
         {
-            func_802514DC(m, -16.0f);
+            mario_set_forward_vel(m, -16.0f);
             if (m->vel[1] > 0.0f)
                 m->vel[1] = 0.0f;
 
@@ -981,7 +981,7 @@ static s32 act_ground_pound(struct MarioState *m)
 static s32 act_burning_jump(struct MarioState *m)
 {
     func_80251410(m, 0x04008081, m->actionArg == 0 ? 0 : -1);
-    func_802514DC(m, m->forwardVel);
+    mario_set_forward_vel(m, m->forwardVel);
 
     if (perform_air_step(m, 0) == AIR_STEP_LANDED)
     {
@@ -1003,7 +1003,7 @@ static s32 act_burning_jump(struct MarioState *m)
 
 static s32 act_burning_fall(struct MarioState *m)
 {
-    func_802514DC(m, m->forwardVel);
+    mario_set_forward_vel(m, m->forwardVel);
 
     if (perform_air_step(m, 0) == AIR_STEP_LANDED)
     {
@@ -1048,7 +1048,7 @@ static s32 act_crazy_box_bounce(struct MarioState *m)
         SetSound(minSpeed < 40.0f ? 0x306C4081 : 0x306D4081, &m->marioObj->gfx.unk54);
 
         if (m->forwardVel < minSpeed)
-            func_802514DC(m, minSpeed);
+            mario_set_forward_vel(m, minSpeed);
 
         m->actionTimer = 1;
     }
@@ -1092,7 +1092,7 @@ static u32 common_air_knockback_step(
 {
     u32 stepResult;
 
-    func_802514DC(m, speed);
+    mario_set_forward_vel(m, speed);
 
     stepResult = perform_air_step(m, 0);
     switch (stepResult)
@@ -1122,7 +1122,7 @@ static u32 common_air_knockback_step(
         if (m->vel[1] > 0.0f)
             m->vel[1] = 0.0f;
 
-        func_802514DC(m, -speed);
+        mario_set_forward_vel(m, -speed);
         break;
 
     case AIR_STEP_HIT_LAVA_WALL:
@@ -1156,7 +1156,7 @@ static s32 act_backward_air_kb(struct MarioState *m)
     func_80250F50(m, 0x24058081, MARIO_UNKNOWN_17);
 #endif
     common_air_knockback_step(
-        m, ACT_UNKNOWN_062, ACT_UNKNOWN_060, 0x0002, -16.0f);
+        m, ACT_BACKWARD_GROUND_KB, ACT_HARD_BACKWARD_GROUND_KB, 0x0002, -16.0f);
     return FALSE;
 }
 
@@ -1171,7 +1171,7 @@ static s32 act_forward_air_kb(struct MarioState *m)
     func_80250F50(m, 0x24058081, MARIO_UNKNOWN_17);
 #endif
     common_air_knockback_step(
-        m, ACT_UNKNOWN_063, ACT_UNKNOWN_061, 0x002D, 16.0f);
+        m, ACT_FORWARD_GROUND_KB, ACT_HARD_FORWARD_GROUND_KB, 0x002D, 16.0f);
     return FALSE;
 }
 
@@ -1183,7 +1183,7 @@ static s32 act_hard_backward_air_kb(struct MarioState *m)
     func_80250F50(m, 0x24058081, MARIO_UNKNOWN_17);
 #endif
     common_air_knockback_step(
-        m, ACT_UNKNOWN_060, ACT_UNKNOWN_060, 0x0002, -16.0f);
+        m, ACT_HARD_BACKWARD_GROUND_KB, ACT_HARD_BACKWARD_GROUND_KB, 0x0002, -16.0f);
     return FALSE;
 }
 
@@ -1195,7 +1195,7 @@ static s32 act_hard_forward_air_kb(struct MarioState *m)
     func_80250F50(m, 0x24058081, MARIO_UNKNOWN_17);
 #endif
     common_air_knockback_step(
-        m, ACT_UNKNOWN_061, ACT_UNKNOWN_061, 0x002D, 16.0f);
+        m, ACT_HARD_FORWARD_GROUND_KB, ACT_HARD_FORWARD_GROUND_KB, 0x002D, 16.0f);
     return FALSE;
 }
 
@@ -1203,14 +1203,14 @@ static s32 act_thrown_backward(struct MarioState *m)
 {
     u32 landAction;
     if (m->actionArg != 0)
-        landAction = ACT_UNKNOWN_060;
+        landAction = ACT_HARD_BACKWARD_GROUND_KB;
     else
-        landAction = ACT_UNKNOWN_062;
+        landAction = ACT_BACKWARD_GROUND_KB;
 
     func_80250F50(m, 0x2410C081, MARIO_UNKNOWN_17);
     
     common_air_knockback_step(
-        m, landAction, ACT_UNKNOWN_060, 0x0002, m->forwardVel);
+        m, landAction, ACT_HARD_BACKWARD_GROUND_KB, 0x0002, m->forwardVel);
     
     m->forwardVel *= 0.98f;
     return FALSE;
@@ -1222,14 +1222,14 @@ static s32 act_thrown_forward(struct MarioState *m)
 
     u32 landAction;
     if (m->actionArg != 0)
-        landAction = ACT_UNKNOWN_061;
+        landAction = ACT_HARD_FORWARD_GROUND_KB;
     else
-        landAction = ACT_UNKNOWN_063;
+        landAction = ACT_FORWARD_GROUND_KB;
 
     func_80250F50(m, 0x2410C081, MARIO_UNKNOWN_17);
     
     if (common_air_knockback_step(
-            m, landAction, ACT_UNKNOWN_061, 0x002D, m->forwardVel) == AIR_STEP_NONE)
+            m, landAction, ACT_HARD_FORWARD_GROUND_KB, 0x002D, m->forwardVel) == AIR_STEP_NONE)
     {
         pitch = atan2s(m->forwardVel, -m->vel[1]);
         if (pitch > 0x1800)
@@ -1254,7 +1254,7 @@ static s32 act_soft_bonk(struct MarioState *m)
 #endif
 
     common_air_knockback_step(
-        m, ACT_FREEFALL_LAND, ACT_UNKNOWN_060, 0x0056, m->forwardVel);
+        m, ACT_FREEFALL_LAND, ACT_HARD_BACKWARD_GROUND_KB, 0x0056, m->forwardVel);
     return FALSE;
 }
 
@@ -1279,7 +1279,7 @@ static s32 act_getting_blown(struct MarioState *m)
     if (++(m->actionTimer) == 20)
         mario_blow_off_cap(m, 50.0f);
 
-    func_802514DC(m, m->forwardVel);
+    mario_set_forward_vel(m, m->forwardVel);
 #if !VERSION_US
     func_80250F50(m, 0x24058081, MARIO_UNKNOWN_17);
 #endif
@@ -1298,7 +1298,7 @@ static s32 act_getting_blown(struct MarioState *m)
         if (m->vel[1] > 0.0f)
             m->vel[1] = 0.0f;
 
-        func_802514DC(m, -m->forwardVel);
+        mario_set_forward_vel(m, -m->forwardVel);
         break;
     }
 
@@ -1335,7 +1335,7 @@ static s32 act_air_hit_wall(struct MarioState *m)
             m->vel[1] = 0.0f;
 
         if (m->forwardVel > 8.0f)
-            func_802514DC(m, -8.0f);
+            mario_set_forward_vel(m, -8.0f);
         return set_mario_action(m, ACT_SOFT_BONK, 0);
     }
 
@@ -1382,7 +1382,7 @@ static s32 act_forward_rollout(struct MarioState *m)
         break;
 
     case AIR_STEP_HIT_WALL:
-        func_802514DC(m, 0.0f);
+        mario_set_forward_vel(m, 0.0f);
         break;
 
     case AIR_STEP_HIT_LAVA_WALL:
@@ -1427,7 +1427,7 @@ static s32 act_backward_rollout(struct MarioState *m)
         break;
 
     case AIR_STEP_HIT_WALL:
-        func_802514DC(m, 0.0f);
+        mario_set_forward_vel(m, 0.0f);
         break;
 
     case AIR_STEP_HIT_LAVA_WALL:
@@ -1498,7 +1498,7 @@ static s32 act_hold_butt_slide_air(struct MarioState *m)
         }
         else
         {
-            set_mario_action(m, ACT_UNKNOWN_054, 0);
+            set_mario_action(m, ACT_HOLD_BUTT_SLIDE, 0);
         }
         func_80251280(m, 0x04088081);
         break;
@@ -1547,7 +1547,7 @@ static s32 act_lava_boost(struct MarioState *m)
             if (m->actionState < 2 && m->vel[1] < 0.0f)
             {
                 m->vel[1] = -m->vel[1] * 0.4f;
-                func_802514DC(m, m->forwardVel * 0.5f);
+                mario_set_forward_vel(m, m->forwardVel * 0.5f);
                 m->actionState += 1;
             }
             else
@@ -1660,12 +1660,12 @@ static s32 act_jump_kick(struct MarioState *m)
     switch (perform_air_step(m, 0))
     {
     case AIR_STEP_LANDED:
-        if (!check_fall_damage_or_get_stuck(m, ACT_UNKNOWN_060))
+        if (!check_fall_damage_or_get_stuck(m, ACT_HARD_BACKWARD_GROUND_KB))
             set_mario_action(m, ACT_FREEFALL_LAND, 0);
         break;
 
     case AIR_STEP_HIT_WALL:
-        func_802514DC(m, 0.0f);
+        mario_set_forward_vel(m, 0.0f);
         break;
     }
 
@@ -1677,7 +1677,7 @@ static s32 act_shot_from_cannon(struct MarioState *m)
     if (m->area->unk24->unk0 != 3)
         m->unk94->unk1E = 2;
 
-    func_802514DC(m, m->forwardVel);
+    mario_set_forward_vel(m, m->forwardVel);
 
     func_80250F50(m, 0x24048081, MARIO_UNKNOWN_17);
 
@@ -1696,7 +1696,7 @@ static s32 act_shot_from_cannon(struct MarioState *m)
         break;
 
     case AIR_STEP_HIT_WALL:
-        func_802514DC(m, -16.0f);
+        mario_set_forward_vel(m, -16.0f);
 
         m->faceAngle[0] = 0;
         if (m->vel[1] > 0.0f)
@@ -1716,7 +1716,7 @@ static s32 act_shot_from_cannon(struct MarioState *m)
         set_mario_action(m, ACT_FLYING, 0);
     
     if ((m->forwardVel -= 0.05) < 10.0f)
-        func_802514DC(m, 10.0f);
+        mario_set_forward_vel(m, 10.0f);
 
     if (m->vel[1] > 0.0f)
         m->particleFlags |= 0x00000001;
@@ -1793,7 +1793,7 @@ static s32 act_flying(struct MarioState *m)
     case AIR_STEP_HIT_WALL:
         if (m->wall != NULL)
         {
-            func_802514DC(m, -16.0f);
+            mario_set_forward_vel(m, -16.0f);
             m->faceAngle[0] = 0;
 
             if (m->vel[1] > 0.0f)
@@ -1921,7 +1921,7 @@ static s32 act_flying_triple_jump(struct MarioState *m)
             func_80285BD8(m->area->unk24, 3, 1);
         
         if (m->forwardVel < 32.0f)
-            func_802514DC(m, 32.0f);
+            mario_set_forward_vel(m, 32.0f);
         
         set_mario_action(m, ACT_FLYING, 1);
     }
@@ -1934,7 +1934,7 @@ static s32 act_flying_triple_jump(struct MarioState *m)
     switch (perform_air_step(m, 0))
     {
     case AIR_STEP_LANDED:
-        if (!check_fall_damage_or_get_stuck(m, ACT_UNKNOWN_060))
+        if (!check_fall_damage_or_get_stuck(m, ACT_HARD_BACKWARD_GROUND_KB))
             set_mario_action(m, ACT_DOUBLE_JUMP_LAND, 0);
         break;
 
@@ -1986,7 +1986,7 @@ static s32 act_vertical_wind(struct MarioState *m)
         break;
 
     case AIR_STEP_HIT_WALL:
-        func_802514DC(m, -16.0f);
+        mario_set_forward_vel(m, -16.0f);
         break;
     }
 

@@ -569,6 +569,9 @@ void vec3f_set_dist_and_angle(Vec3f a, Vec3f b, f32 c, s16 d, s16 e)
 
 s32 approach_s32(s32 current, s32 target, s32 inc, s32 dec)
 {
+    //! If target is close to the max or min s32, then it's possible to overflow
+    // past it without stopping.
+
     if (current < target)
     {
         current += inc;

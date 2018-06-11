@@ -63,7 +63,7 @@ SECTIONS
       build/asm/mario_actions_cutscene.o(.text);
       build/src/mario_actions_automatic.o(.text);
       build/asm/mario_actions_stationary.o(.text);
-      build/asm/mario_actions_moving.o(.text);
+      build/src/mario_actions_moving.o(.text);
       build/src/mario_actions_airborne.o(.text);
       build/src/mario_actions_submerged.o(.text);
       build/asm/mario_actions_object.o(.text);
@@ -121,7 +121,7 @@ SECTIONS
       build/data/mario.data.o(.data*);
       build/src/mario_step.o(.data*);
       build/data/mario_actions_cutscene.data.o(.data*);
-      build/data/mario_actions_moving.data.o(.data*);
+      build/src/mario_actions_moving.o(.data*);
       build/src/mario_actions_submerged.o(.data*);
       build/data/mario_actions_object.data.o(.data*);
       build/src/castle_message_behaviors.o(.data*);
@@ -167,7 +167,7 @@ SECTIONS
       build/data/mario_actions_cutscene.rodata.o(.rodata*);
       build/src/mario_actions_automatic.o(.rodata*);
       build/data/mario_actions_stationary.rodata.o(.rodata*);
-      build/data/mario_actions_moving.rodata.o(.rodata*);
+      build/src/mario_actions_moving.o(.rodata*);
       build/src/mario_actions_airborne.o(.rodata*);
       build/src/mario_actions_submerged.o(.rodata*);
       build/data/mario_actions_object.rodata.o(.rodata*);
@@ -209,6 +209,7 @@ SECTIONS
       build/data/bss1.o(.bss*);
       build/src/level_update.o(.bss*);
       build/data/bss80339F00.o(.bss*);
+      build/src/mario_actions_moving.o(.bss*);
       build/src/mario_actions_submerged.o(.bss*);
       build/data/bss80339FE0.o(.bss*);
       build/src/memory.o(.bss*);

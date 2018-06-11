@@ -97,7 +97,7 @@ void mario_bonk_reflection(struct MarioState *m, u32 negateSpeed)
     }
 
     if (negateSpeed)
-        func_802514DC(m, -m->forwardVel);
+        mario_set_forward_vel(m, -m->forwardVel);
     else
         m->faceAngle[1] += 0x8000;
 }
@@ -236,7 +236,7 @@ void stop_and_set_height_to_floor(struct MarioState *m)
 {
     struct Object *marioObj = m->marioObj;
 
-    func_802514DC(m, 0.0f);
+    mario_set_forward_vel(m, 0.0f);
     m->vel[1] = 0.0f;
 
     //! This is responsible for some downwarps.
@@ -252,7 +252,7 @@ u32 stationary_ground_step(struct MarioState *m)
     struct Object *marioObj = m->marioObj;
     u32 stepResult = GROUND_STEP_NONE;
 
-    func_802514DC(m, 0.0f);
+    mario_set_forward_vel(m, 0.0f);
 
     takeStep = mario_update_moving_sand(m);
     takeStep |= mario_update_windy_ground(m);
