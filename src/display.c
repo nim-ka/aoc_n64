@@ -4,7 +4,7 @@
 #include "game.h"
 #include "main.h"
 #include "memory.h"
-#include "resource_meter.h"
+#include "profiler.h"
 #include "audio_interface_2.h"
 #include "display.h"
 
@@ -171,8 +171,8 @@ void func_80247C9C(void)
 void CleanupDisplayList(void)
 {
     func_8024781C();
-    if (gShowResourceMeter)
-        draw_resource_meter();
+    if (gShowProfiler)
+        draw_profiler();
 
     gDPFullSync(gDisplayListHead++);
     gSPEndDisplayList(gDisplayListHead++);
@@ -219,13 +219,13 @@ void func_80247ED8(void)
 {
     D_80339D04 = D_80208100;
     set_segment_base_addr(1, D_80339D04);
-    D_80339CF8 = (struct Struct8032C630 *)((u8 *)D_80339D04 + 51200);
+    D_80339CF8 = (struct SPTask *)((u8 *)D_80339D04 + 51200);
     gDisplayListHead = D_80339D04;
     gGfxPoolEnd = (u8 *)D_80339D04 + 51200;
     func_80247C9C();
     ClearFrameBuffer(0);
     CleanupDisplayList();
-    SendDisplayList((struct Struct8032C630 *)((u8 *)D_80339D04 + 51200));
+    SendDisplayList((struct SPTask *)((u8 *)D_80339D04 + 51200));
 
     D_8032C69C++;
     gGlobalTimer++;
@@ -235,25 +235,25 @@ void func_80247FAC(void)
 {
     D_80339D04 = (Gfx *)((u8 *)D_80208100 + (gGlobalTimer % 2) * 51280);
     set_segment_base_addr(1, D_80339D04);
-    D_80339CF8 = (struct Struct8032C630 *)((u8 *)D_80339D04 + 51200);
+    D_80339CF8 = (struct SPTask *)((u8 *)D_80339D04 + 51200);
     gDisplayListHead = D_80339D04;
     gGfxPoolEnd = (u8 *)D_80339D04 + 51200;
 }
 
 void func_80248060(void)
 {
-    func_8027DE30(2);
+    profiler_log_thread5_time(BEFORE_DISPLAY_LISTS);
     osRecvMesg(&D_80339CB8, &D_80339BEC, 1);
     if (D_8032C6A0 != NULL)
     {
         D_8032C6A0();
         D_8032C6A0 = NULL;
     }
-    SendDisplayList((struct Struct8032C630 *)((u8 *)D_80339D04 + 51200));
-    func_8027DE30(3);
+    SendDisplayList((struct SPTask *)((u8 *)D_80339D04 + 51200));
+    profiler_log_thread5_time(AFTER_DISPLAY_LISTS);
     osRecvMesg(&D_80339CA0, &D_80339BEC, 1);
     osViSwapBuffer((void *)PHYSICAL_TO_VIRTUAL(gFrameBuffers[sCurrFBNum]));
-    func_8027DE30(4);
+    profiler_log_thread5_time(THREAD5_END);
     osRecvMesg(&D_80339CA0, &D_80339BEC, 1);
     if (++sCurrFBNum == 3)
         sCurrFBNum = 0;

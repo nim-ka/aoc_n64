@@ -5,7 +5,7 @@
 #include "main.h"
 #include "math_util.h"
 #include "area.h"
-#include "resource_meter.h"
+#include "profiler.h"
 #include "audio_dmc.h"
 #include "audio_interface_2.h"
 #include "print.h"
@@ -254,11 +254,11 @@ void thread4_sound(UNUSED void *arg)
         {
             OSMesg *sp18;
 
-            func_8027DEE0();
+            profiler_log_thread4_time();
             sp18 = func_8031D924();
             if (sp18 != NULL)
                 func_80246BB4(sp18);
-            func_8027DEE0();
+            profiler_log_thread4_time();
         }
     }
 }

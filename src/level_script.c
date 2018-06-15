@@ -17,7 +17,7 @@
 #include "surface_collision.h"
 #include "surface_load.h"
 #include "press_start_head_6.h"
-#include "resource_meter.h"
+#include "profiler.h"
 
 
 #define CMD_GET(type, offset) (*(type *) (offset + (u8 *) sCurrentCmd))
@@ -867,7 +867,7 @@ struct LevelCommand *level_script_execute(struct LevelCommand *cmd)
     while (sScriptStatus == SCRIPT_RUNNING)
         LevelScriptJumpTable[sCurrentCmd->type]();
 
-    func_8027DE30(1);
+    profiler_log_thread5_time(LEVEL_SCRIPT_EXECUTE);
     func_80247C9C();
     render_game();
     CleanupDisplayList();

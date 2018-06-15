@@ -7,7 +7,7 @@
 #include "game.h"
 #include "memory.h"
 #include "sound_init.h"
-#include "resource_meter.h"
+#include "profiler.h"
 #include "game.h"
 
 // Message IDs
@@ -38,9 +38,9 @@ OSMesgQueue gSIEventMesgQueue;
 
 struct Struct8032C620 *D_8032C620 = NULL;
 struct Struct8032C620 *D_8032C624 = NULL;
-struct Struct8032C630 *D_8032C628 = NULL;
-struct Struct8032C630 *D_8032C62C = NULL;
-struct Struct8032C630 *D_8032C630 = NULL;
+struct SPTask *gCurrentSPTask = NULL;
+struct SPTask *D_8032C62C = NULL;
+struct SPTask *D_8032C630 = NULL;
 OSMesg D_8032C634 = NULL;
 OSMesg D_8032C638 = NULL;
 s8 D_8032C63C = 1;
@@ -50,11 +50,11 @@ s8 D_8032C648 = 0;
 s8 gDebugLevelSelect = 0;
 s8 D_8032C650 = 0;
 
-s8 gShowResourceMeter = FALSE;
+s8 gShowProfiler = FALSE;
 s8 gShowDebugText = FALSE;
-static u16 sResourceMeterKeySequence[] = {U_JPAD, U_JPAD, D_JPAD, D_JPAD, L_JPAD, R_JPAD, L_JPAD, R_JPAD};
+static u16 sProfilerKeySequence[] = {U_JPAD, U_JPAD, D_JPAD, D_JPAD, L_JPAD, R_JPAD, L_JPAD, R_JPAD};
 static u16 sDebugTextKeySequence[]     = {D_JPAD, D_JPAD, U_JPAD, U_JPAD, L_JPAD, R_JPAD, L_JPAD, R_JPAD};
-static s16 sResourceMeterKey = 0;
+static s16 sProfilerKey = 0;
 static s16 sDebugTextKey = 0;
 
 // unused
@@ -62,14 +62,14 @@ void handle_debug_key_sequences(void)
 {
     if (gPlayer2Controller->buttonPressed != 0)
     {
-        if (sResourceMeterKeySequence[sResourceMeterKey++] == gPlayer2Controller->buttonPressed)
+        if (sProfilerKeySequence[sProfilerKey++] == gPlayer2Controller->buttonPressed)
         {
-            if (sResourceMeterKey == ARRAY_COUNT(sResourceMeterKeySequence))
-                sResourceMeterKey = 0, gShowResourceMeter ^= 1;
+            if (sProfilerKey == ARRAY_COUNT(sProfilerKeySequence))
+                sProfilerKey = 0, gShowProfiler ^= 1;
         }
         else
         {
-            sResourceMeterKey = 0;
+            sProfilerKey = 0;
         }
 
         if (sDebugTextKeySequence[sDebugTextKey++] == gPlayer2Controller->buttonPressed)
@@ -202,37 +202,37 @@ static void func_8024651C(int a)
     UNUSED int pad;  // needed to pad the stack
 
     if (a == 2)
-        D_8032C628 = D_8032C62C;
+        gCurrentSPTask = D_8032C62C;
     else
-        D_8032C628 = D_8032C630;
+        gCurrentSPTask = D_8032C630;
 
-    osSpTaskLoad(&D_8032C628->task);
-    osSpTaskStartGo(&D_8032C628->task);
-    D_8032C628->unk48 = 1;
+    osSpTaskLoad(&gCurrentSPTask->task);
+    osSpTaskStartGo(&gCurrentSPTask->task);
+    gCurrentSPTask->state = STATE_1;
 }
 
 static void func_8024659C(void)
 {
-    if (D_8032C628->task.t.type == M_GFXTASK)
+    if (gCurrentSPTask->task.t.type == M_GFXTASK)
     {
-        D_8032C628->unk48 = 2;
+        gCurrentSPTask->state = STATE_2;
         osSpTaskYield();
     }
 }
 
 static void KickTask(void)
 {
-    if (D_8032C628 == NULL && D_8032C630 != NULL && D_8032C630->unk48 == 0)
+    if (gCurrentSPTask == NULL && D_8032C630 != NULL && D_8032C630->state == STATE_0)
     {
-        func_8027DF70(0);
+        profiler_log_gfx_time(TASKS_QUEUED);
         func_8024651C(1);
     }
 }
 
 static void SendSPTaskDone(void)
 {
-    D_8032C628 = D_8032C62C;
-    D_8032C628->unk48 = 1;
+    gCurrentSPTask = D_8032C62C;
+    gCurrentSPTask->state = STATE_1;
     osSendMesg(&gIntrMesgQueue, (OSMesg)MESG_SP_COMPLETE, 0);
 }
 
@@ -247,13 +247,13 @@ static void handle_vblank(void)
     func_802463EC();
     if (D_8032C62C != NULL)
     {
-        if (D_8032C628 != NULL)
+        if (gCurrentSPTask != NULL)
         {
             func_8024659C();
         }
         else
         {
-            func_8027E01C();
+            profiler_log_vblank_time();
             if (D_8032C63C != 0)
                 func_8024651C(2);
             else
@@ -262,9 +262,9 @@ static void handle_vblank(void)
     }
     else
     {
-        if (D_8032C628 == NULL && D_8032C630 != NULL && D_8032C630->unk48 != 3)
+        if (gCurrentSPTask == NULL && D_8032C630 != NULL && D_8032C630->state != STATE_3)
         {
-            func_8027DF70(0);
+            profiler_log_gfx_time(TASKS_QUEUED);
             func_8024651C(1);
         }
     }
@@ -277,18 +277,18 @@ static void handle_vblank(void)
 
 static void handle_sp_complete(void)
 {
-    struct Struct8032C630 *sp1C = D_8032C628;
+    struct SPTask *curSPTask = gCurrentSPTask;
 
-    D_8032C628 = 0;
+    gCurrentSPTask = NULL;
 
-    if (sp1C->unk48 == 2)
+    if (curSPTask->state == STATE_2)
     {
-        if (osSpTaskYielded(sp1C) == 0)
+        if (osSpTaskYielded(curSPTask) == 0)
         {
-            sp1C->unk48 = 3;
-            func_8027DF70(1);
+            curSPTask->state = STATE_3;
+            profiler_log_gfx_time(RSP_COMPLETE);
         }
-        func_8027E01C();
+        profiler_log_vblank_time();
         if (D_8032C63C != 0)
             func_8024651C(2);
         else
@@ -296,23 +296,23 @@ static void handle_sp_complete(void)
     }
     else
     {
-        sp1C->unk48 = 3;
-        if (sp1C->task.t.type == M_AUDTASK)
+        curSPTask->state = STATE_3;
+        if (curSPTask->task.t.type == M_AUDTASK)
         {
-            func_8027E01C();
-            if (D_8032C630 != NULL && D_8032C630->unk48 != 3)
+            profiler_log_vblank_time();
+            if (D_8032C630 != NULL && D_8032C630->state != STATE_3)
             {
-                if (D_8032C630->unk48 != 2)
-                    func_8027DF70(0);
+                if (D_8032C630->state != STATE_2)
+                    profiler_log_gfx_time(TASKS_QUEUED);
                 func_8024651C(1);
             }
             D_8032C62C = NULL;
-            if (sp1C->msgqueue != NULL)
-                osSendMesg(sp1C->msgqueue, sp1C->msg, 0);
+            if (curSPTask->msgqueue != NULL)
+                osSendMesg(curSPTask->msgqueue, curSPTask->msg, 0);
         }
         else
         {
-            func_8027DF70(1);
+            profiler_log_gfx_time(RSP_COMPLETE);
         }
     }
 }
@@ -321,8 +321,8 @@ static void handle_dp_complete(void)
 {
     if (D_8032C630->msgqueue != NULL)
         osSendMesg(D_8032C630->msgqueue, D_8032C630->msg, 0);
-    func_8027DF70(2);
-    D_8032C630->unk48 = 4;
+    profiler_log_gfx_time(RDP_COMPLETE);
+    D_8032C630->state = STATE_4;
     D_8032C630 = NULL;
 }
 
@@ -396,12 +396,12 @@ void func_80246BB4(OSMesg *msg)
     }
 }
 
-void SendDisplayList(struct Struct8032C630 *a)
+void SendDisplayList(struct SPTask *a)
 {
     if (a != NULL)
     {
         osWritebackDCacheAll();
-        a->unk48 = 0;
+        a->state = STATE_0;
         if (D_8032C630 == NULL)
         {
             D_8032C630 = a;

@@ -18,7 +18,7 @@
 #include "object_collision.h"
 #include "object_list_processor.h"
 #include "platform_displacement.h"
-#include "resource_meter.h"
+#include "profiler.h"
 #include "spawn_object.h"
 #include "surface_collision.h"
 #include "surface_load.h"

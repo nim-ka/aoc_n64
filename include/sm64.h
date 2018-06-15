@@ -20,7 +20,7 @@ extern void func_u_803219AC();
 
 #endif
 
-#define ARRAY_COUNT(arr) (sizeof(arr) / sizeof(arr[0]))
+#define ARRAY_COUNT(arr) (s32)(sizeof(arr) / sizeof(arr[0]))
 
 #define sins(x) D_80386000[(u16) (x) >> 4]
 #define coss(x) D_80387000[(u16) (x) >> 4]

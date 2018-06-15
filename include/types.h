@@ -70,18 +70,26 @@ typedef s16 Vec4s[4];
 
 typedef f32 Mat4[4][4];
 
-struct Struct8032C630
+enum State {
+    STATE_0,
+    STATE_1,
+    STATE_2,
+    STATE_3,
+    STATE_4
+};
+
+struct SPTask
 {
     OSTask task;
     OSMesgQueue *msgqueue;
-    OSMesg *msg;
-    u32 unk48;
+    OSMesg msg;
+    enum State state;
 };
 
 struct Struct8032C620
 {
     OSMesgQueue *queue;
-    OSMesg *msg;
+    OSMesg msg;
 };
 
 // NOTE: Since GfxNode is the first member of Object, it is difficult to determine

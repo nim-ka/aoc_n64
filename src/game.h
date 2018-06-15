@@ -25,7 +25,7 @@ extern u32 gFrameBuffers[3];
 extern u32 D_80339CEC;
 extern void *D_80339CF0;
 extern void *D_80339CF4;
-extern struct Struct8032C630 *D_80339CF8;
+extern struct SPTask *D_80339CF8;
 extern Gfx *gDisplayListHead;
 extern u8 *gGfxPoolEnd;
 extern Gfx *D_80339D04;

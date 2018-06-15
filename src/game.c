@@ -7,7 +7,7 @@
 #include "sound_init.h"
 #include "display.h"
 #include "level_script.h"
-#include "resource_meter.h"
+#include "profiler.h"
 #include "print.h"
 #include "segment2.h"
 #include "main_entry.h"
@@ -28,7 +28,7 @@ u32 gFrameBuffers[3];
 u32 D_80339CEC;
 void *D_80339CF0;
 void *D_80339CF4;
-struct Struct8032C630 *D_80339CF8;
+struct SPTask *D_80339CF8;
 Gfx *gDisplayListHead;
 u8 *gGfxPoolEnd;
 Gfx *D_80339D04;
@@ -315,7 +315,7 @@ void thread5_game_loop(UNUSED void *arg)
             func_80247D84();
             continue;
         }
-        func_8027DE30(0);
+        profiler_log_thread5_time(THREAD5_START);
 
         // if any controllers are plugged in, start read the data for when
         // read_controller_inputs is called later.

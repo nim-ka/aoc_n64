@@ -1289,7 +1289,7 @@ s32 lvl_set_current_level(UNUSED s16 arg0, s32 levelNum)
     if (gCurrCourseNum > COURSE_STAGES_MAX || val4 != 0)
         return 0;
 
-    if (gDebugLevelSelect != 0 && gShowResourceMeter == 0)
+    if (gDebugLevelSelect != 0 && gShowProfiler == 0)
         return 0;
 
     return 1;

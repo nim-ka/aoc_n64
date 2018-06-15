@@ -72,7 +72,7 @@ SECTIONS
       build/src/save_file.o(.text);
       build/src/area.o(.text);
       build/src/rendering_graph_node.o(.text);
-      build/src/resource_meter.o(.text);
+      build/src/profiler.o(.text);
       build/asm/decompress.o(.text);
       build/src/camera.o(.text);
       build/asm/camera.o(.text);
@@ -131,7 +131,7 @@ SECTIONS
       build/src/area.o(.data*);
       build/src/rendering_graph_node.o(.data*);
       build/data/rendering_graph_node.data.o(.data*);
-      build/data/resource_meter.data.o(.data*);
+      build/src/profiler.o(.data*);
       build/data/camera_before.data.o(.data*);
       build/src/camera.o(.data*);
       build/data/camera.data.o(.data*);
@@ -214,7 +214,7 @@ SECTIONS
       build/data/bss80339FE0.o(.bss*);
       build/src/memory.o(.bss*);
       build/data/bss8033A130.o(.bss*);
-      build/src/resource_meter.o(.bss*);
+      build/src/profiler.o(.bss*);
       build/data/bss8033B020.o(.bss*);
       build/src/hud_print.o(.bss*);
       build/data/bss803600E0.o(.bss*);

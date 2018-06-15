@@ -21,9 +21,9 @@ extern OSMesgQueue gSIEventMesgQueue;
 
 extern struct Struct8032C620 *D_8032C620;
 extern struct Struct8032C620 *D_8032C624;
-extern struct Struct8032C630 *D_8032C628;
-extern struct Struct8032C630 *D_8032C62C;
-extern struct Struct8032C630 *D_8032C630;
+extern struct SPTask *gCurrentSPTask;
+extern struct SPTask *D_8032C62C;
+extern struct SPTask *D_8032C630;
 extern OSMesg D_8032C634;
 extern OSMesg D_8032C638;
 extern s8 D_8032C63C;
@@ -32,7 +32,7 @@ extern s8 gResetTimer;
 extern s8 D_8032C648;
 extern s8 gDebugLevelSelect;
 extern s8 D_8032C650;
-extern s8 gShowResourceMeter;
+extern s8 gShowProfiler;
 extern s8 gShowDebugText;
 
 extern u8 D_80200A00[];
@@ -42,7 +42,7 @@ extern u8 D_80201200[];
 
 extern void func_80246B14(int a, struct Struct8032C620 *b, OSMesgQueue *queue, OSMesg *msg);
 extern void func_80246BB4(OSMesg *msg);
-extern void SendDisplayList(struct Struct8032C630 *a);
+extern void SendDisplayList(struct SPTask *a);
 extern void Main(void);
 
 #endif
