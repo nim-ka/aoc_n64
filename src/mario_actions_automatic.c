@@ -46,11 +46,11 @@ static void play_climbing_sounds(struct MarioState *m, s32 b)
     if (b == 1)
     {
         if (func_80250B68(m, 1) != 0)
-            SetSound(isOnTree ? 0x043A8081 : 0x04418081, &m->marioObj->gfx.unk54);
+            SetSound(isOnTree ? SOUND_ACTION_CLIMBUPTREE : SOUND_ACTION_UNKNOWN441, &m->marioObj->gfx.unk54);
     }
     else
     {
-        SetSound(isOnTree ? 0x14128001 : 0x14110001, &m->marioObj->gfx.unk54);
+        SetSound(isOnTree ? SOUND_UNKNOWN_UNK1412 : SOUND_UNKNOWN_UNK1411, &m->marioObj->gfx.unk54);
     }
 }
 
@@ -238,7 +238,7 @@ static s32 act_climbing_pole(struct MarioState *m)
 
 static s32 act_grab_pole_slow(struct MarioState *m)
 {
-    func_80250F50(m, 0x2408C081, MARIO_UNKNOWN_17);
+    func_80250F50(m, SOUND_MARIO_WHOA, MARIO_UNKNOWN_17);
 
     if (set_pole_position(m, 0.0f) == POLE_NONE)
     {
@@ -255,7 +255,7 @@ static s32 act_grab_pole_fast(struct MarioState *m)
 {
     struct Object *marioObj = m->marioObj;
 
-    func_80250F50(m, 0x2408C081, MARIO_UNKNOWN_17);
+    func_80250F50(m, SOUND_MARIO_WHOA, MARIO_UNKNOWN_17);
     m->faceAngle[1] += marioObj->oMarioPoleYawVel;
     marioObj->oMarioPoleYawVel = marioObj->oMarioPoleYawVel * 8 / 10;
 
@@ -418,7 +418,7 @@ static s32 act_start_hanging(struct MarioState *m)
         return set_mario_action(m, ACT_FREEFALL, 0);
 
     func_802507E8(m, 0x0035);
-    func_80250F50(m, 0x042DA081, MARIO_UNKNOWN_16);
+    func_80250F50(m, SOUND_ACTION_UNKNOWN42D, MARIO_UNKNOWN_16);
     update_hang_stationary(m);
 
     if (func_80250770(m))
@@ -468,7 +468,7 @@ static s32 act_hang_moving(struct MarioState *m)
         func_802507E8(m, 0x005D);
 
     if (m->marioObj->gfx.unk40 == 12)
-        SetSound(0x042DA081, &m->marioObj->gfx.unk54);
+        SetSound(SOUND_ACTION_UNKNOWN42D, &m->marioObj->gfx.unk54);
 
     if (func_802507AC(m))
     {
@@ -581,7 +581,7 @@ static s32 act_ledge_grab(struct MarioState *m)
         return set_mario_action(m, ACT_LEDGE_CLIMB_FAST, 0);
 
     if (m->actionArg == 0)
-        func_80250F50(m, 0x2408C081, MARIO_UNKNOWN_17);
+        func_80250F50(m, SOUND_MARIO_WHOA, MARIO_UNKNOWN_17);
 
     stop_and_set_height_to_floor(m);
     func_802507E8(m, 0x0033);
@@ -602,7 +602,7 @@ static s32 act_ledge_climb_slow(struct MarioState *m)
     }
 
     if (m->actionTimer == 10)
-        func_80250F50(m, 0x24098081, MARIO_UNKNOWN_17);
+        func_80250F50(m, SOUND_MARIO_EEUH, MARIO_UNKNOWN_17);
 
     update_ledge_climb(m, 0, ACT_IDLE);
 
@@ -618,7 +618,7 @@ static s32 act_ledge_climb_down(struct MarioState *m)
     if (m->input & INPUT_OFF_FLOOR)
         return let_go_of_ledge(m);
 
-    func_80250F50(m, 0x2408C081, MARIO_UNKNOWN_17);
+    func_80250F50(m, SOUND_MARIO_WHOA, MARIO_UNKNOWN_17);
 
     update_ledge_climb(m, 0x001C, ACT_LEDGE_GRAB);
     m->actionArg = 1;
@@ -631,12 +631,12 @@ static s32 act_ledge_climb_fast(struct MarioState *m)
     if (m->input & INPUT_OFF_FLOOR)
         return let_go_of_ledge(m);
 
-    func_80250F50(m, 0x2413D081, MARIO_UNKNOWN_17);
+    func_80250F50(m, SOUND_MARIO_UH2, MARIO_UNKNOWN_17);
 
     update_ledge_climb(m, 0x0034, ACT_IDLE);
     
     if (m->marioObj->gfx.unk40 == 8)
-        func_80251280(m, 0x04088081);
+        func_80251280(m, SOUND_ACTION_UNKNOWN408);
     func_8025F188(m);
 
     return FALSE;
@@ -723,9 +723,9 @@ static s32 act_in_cannon(struct MarioState *m)
             m->pos[1] += 120.0f * sins(m->faceAngle[0]);
             m->pos[2] += 120.0f * coss(m->faceAngle[0]) * coss(m->faceAngle[1]);
             
-            SetSound(0x04568081, &m->marioObj->gfx.unk54);
-            SetSound(0x501A5081, &m->marioObj->gfx.unk54);
-            
+            SetSound(SOUND_ACTION_UNKNOWN456, &m->marioObj->gfx.unk54);
+            SetSound(SOUND_OBJECT_POUNDINGCANNON, &m->marioObj->gfx.unk54);
+
             m->marioObj->gfx.graphFlags |= 0x0001;
             
             set_mario_action(m, ACT_SHOT_FROM_CANNON, 0);
@@ -735,7 +735,7 @@ static s32 act_in_cannon(struct MarioState *m)
         else
         {
             if (m->faceAngle[0] != startFacePitch || m->faceAngle[1] != startFaceYaw)
-                SetSound(0x1D192001, &m->marioObj->gfx.unk54);
+                SetSound(SOUND_MOVING_UNKNOWN19, &m->marioObj->gfx.unk54);
         }
     }
 
@@ -813,7 +813,7 @@ static s32 act_tornado_twirling(struct MarioState *m)
 
     // Play sound on angle overflow
     if (prevTwirlYaw > m->twirlYaw)
-        SetSound(0x04388081, &m->marioObj->gfx.unk54);
+        SetSound(SOUND_ACTION_UNKNOWN438, &m->marioObj->gfx.unk54);
     
     vec3f_copy(m->marioObj->gfx.unk20, m->pos);
     vec3s_set(m->marioObj->gfx.unk1A, 0, m->faceAngle[1] + m->twirlYaw, 0);

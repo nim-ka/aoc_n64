@@ -363,16 +363,14 @@ static void init_mario_after_warp(void)
          && sDestWarpNodeId == 31
 #endif
         )
-        {
-            SetSound(0x701DB081, D_803320E0);
-        }
+        SetSound(SOUND_MENU_MARIOCASTLEWARP, D_803320E0);
 #if VERSION_US
         if (sDestLevelNum == 16
          && sDestAreaIndex == 1
          && (sDestWarpNodeId == 7 || sDestWarpNodeId == 10
           || sDestWarpNodeId == 20 || sDestWarpNodeId == 30))
         {
-            SetSound(0x701DB081, D_803320E0);
+            SetSound(SOUND_MENU_MARIOCASTLEWARP, D_803320E0);
         }
 #endif
     }
@@ -639,7 +637,7 @@ static void initiate_painting_warp(void)
 
                 gMarioState->marioObj->gfx.graphFlags &= ~0x0001;
 
-                SetSound(0x701EFF81, D_803320E0);
+                SetSound(SOUND_MENU_STARSOUND, D_803320E0);
                 func_802491FC(398);
             }
         }
@@ -693,7 +691,7 @@ s16 level_trigger_warp(struct MarioState *m, s32 warpOp)
             sDelayedWarpTimer = 48;
             sSourceWarpNodeId = WARP_NODE_DEATH;
             func_8027ABF0(0x13, 0x30, 0x00, 0x00, 0x00);
-            SetSound(0x70188081, D_803320E0);
+            SetSound(SOUND_MENU_BOWSERLAUGH, D_803320E0);
             break;
 
         case WARP_OP_WARP_FLOOR:
@@ -714,7 +712,7 @@ s16 level_trigger_warp(struct MarioState *m, s32 warpOp)
             sSourceWarpNodeId = WARP_NODE_F2;
             func_8027ABF0(0x01, 0x1E, 0xFF, 0xFF, 0xFF);
 #if VERSION_US
-            SetSound(0x701EFF81, D_803320E0);
+            SetSound(SOUND_MENU_STARSOUND, D_803320E0);
 #endif
             break;
 
@@ -903,7 +901,7 @@ static void update_hud_values(void)
         gDisplayedKeys = gMarioState->numKeys;
 
         if (numHealthWedges > gDisplayedHealthWedges)
-            SetSound(0x700D0081, D_803320E0);
+            SetSound(SOUND_MENU_POWERMETER, D_803320E0);
         gDisplayedHealthWedges = numHealthWedges;
 
         if (gMarioState->hurtCounter > 0)
@@ -1300,6 +1298,6 @@ s32 lvl_set_current_level(UNUSED s16 arg0, s32 levelNum)
  */
 s32 lvl_play_the_end_screen_sound(UNUSED s16 arg0, UNUSED s32 arg1)
 {
-    SetSound(0x701FFF81, D_803320E0);
+    SetSound(SOUND_MENU_THANKYOUPLAYINGMYGAME, D_803320E0);
     return 1;
 }

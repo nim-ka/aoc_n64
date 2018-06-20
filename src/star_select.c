@@ -246,7 +246,7 @@ int LevelProc_80177610(UNUSED int a, UNUSED int b)
          || (gPlayer2Controller->buttonPressed & START_BUTTON)
          || (gPlayer2Controller->buttonPressed & B_BUTTON))
         {
-            SetSound(0x701EFF81, D_803320E0);
+            SetSound(SOUND_MENU_STARSOUND, D_803320E0);
             if (D_801B9913 > sSelectedStar)
                 D_801B9910 = sSelectedStar + 1;
             else

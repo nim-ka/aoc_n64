@@ -301,7 +301,7 @@ void BehSealedDoorStarLoop(void)
         gCurrentObject->oAngleYaw += gCurrentObject->oSealedDoorStarUnk110;
         if (++gCurrentObject->oSealedDoorStarUnk10C == 30)
         {
-            SetSound(0x701EFF81, &gCurrentObject->gfx.unk54);
+            SetSound(SOUND_MENU_STARSOUND, &gCurrentObject->gfx.unk54);
             UnHideObject();
             gCurrentObject->oSealedDoorStarUnk10C = 0;
             gCurrentObject->oSealedDoorStarUnk108++;
@@ -322,7 +322,7 @@ void BehSealedDoorStarLoop(void)
         break;
     }
     if (sp2A > (s16)gCurrentObject->oAngleYaw)
-        SetSound(0x30160091, &gCurrentObject->gfx.unk54);
+        SetSound(SOUND_GENERAL_SHORTSTAR, &gCurrentObject->gfx.unk54);
 }
 
 struct Struct802769E0

@@ -150,7 +150,7 @@ s16 level_select_input_loop(void)
 
     // if the stage was changed, play the sound for changing a stage.
     if(stageChanged)
-        SetSound(0x302B0081, D_803320E0);
+        SetSound(SOUND_GENERAL_EXITPAINTING4, D_803320E0);
 
     // TODO: enum counts for the stage lists
     if(gCurrLevelNum > LEVEL_MAX)
@@ -178,7 +178,7 @@ s16 level_select_input_loop(void)
             gDebugLevelSelect = 0;
             return -1;
         }
-        SetSound(0x701EFF81, D_803320E0);
+        SetSound(SOUND_MENU_STARSOUND, D_803320E0);
         return gCurrLevelNum;
     }
     return 0;
@@ -192,7 +192,7 @@ int func_8016F3CC(void)
 
     if(gPlayer1Controller->buttonPressed & START_BUTTON)
     {
-        SetSound(0x701EFF81, D_803320E0);
+        SetSound(SOUND_MENU_STARSOUND, D_803320E0);
         sp1C = 100 + gDebugLevelSelect;
     }
     return run_press_start_demo_timer(sp1C);
@@ -207,7 +207,7 @@ int func_8016F444(void)
 
     if(gPlayer1Controller->buttonPressed & START_BUTTON)
     {
-        SetSound(0x701EFF81, D_803320E0);
+        SetSound(SOUND_MENU_STARSOUND, D_803320E0);
         sp1C = 100 + gDebugLevelSelect;
     }
     return run_press_start_demo_timer(sp1C);
@@ -216,7 +216,7 @@ int func_8016F444(void)
 int func_8016F4BC(void)
 {
     func_80249148(0, 0, 0);
-    SetSound(0x70140081, D_803320E0);
+    SetSound(SOUND_MENU_COINITSAMEMARIO, D_803320E0);
     return 1;
 }
 

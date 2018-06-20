@@ -338,7 +338,7 @@ static void func_80170C14(struct Object *a, s8 buttonId)
 {
     if (a->oMainMenuButtonUnkF4 == 2 && D_801A7BE4 == 2)
     {
-        SetSound(0x70070081, D_803320E0);
+        SetSound(SOUND_MENU_CAMERAZOOMOUT, D_803320E0);
         a->oMainMenuButtonUnkF4 = 3;
     }
     if (a->oMainMenuButtonUnkF4 == 0)
@@ -429,7 +429,7 @@ static void score_menu_handle_click(struct Object *a)
                  || buttonId == MENU_BUTTON_SCORE_COPY_FILE
                  || buttonId == MENU_BUTTON_SCORE_ERASE_FILE)
                 {
-                    SetSound(0x70110081, D_803320E0);
+                    SetSound(SOUND_MENU_CLICKFILESELECT, D_803320E0);
                     gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 4;
                     sSelectedButtonId = buttonId;
                 }
@@ -439,13 +439,13 @@ static void score_menu_handle_click(struct Object *a)
                     {
                         if (save_file_exists(buttonId - 7) == TRUE)
                         {
-                            SetSound(0x70060081, D_803320E0);
+                            SetSound(SOUND_MENU_CAMERAZOOMIN, D_803320E0);
                             gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 1;
                             sSelectedButtonId = buttonId;
                         }
                         else
                         {
-                            SetSound(0x700E0081, D_803320E0);
+                            SetSound(SOUND_MENU_CAMERABUZZ, D_803320E0);
                             gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 4;
                             if (D_801A7BFC >= 31)
                             {
@@ -534,7 +534,7 @@ static void func_801716E4(struct Object *a, int buttonId)
             return;
         if (save_file_exists(buttonId - 14) == TRUE)
         {
-            SetSound(0x70110081, D_803320E0);
+            SetSound(SOUND_MENU_CLICKFILESELECT, D_803320E0);
             gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 5;
             sSelectedFile = buttonId - 14;
             a->oMainMenuButtonUnk10C = 1;
@@ -543,7 +543,7 @@ static void func_801716E4(struct Object *a, int buttonId)
         }
         else
         {
-            SetSound(0x700E0081, D_803320E0);
+            SetSound(SOUND_MENU_CAMERABUZZ, D_803320E0);
             gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 4;
             if (D_801A7BFC >= 21)
             {
@@ -556,7 +556,7 @@ static void func_801716E4(struct Object *a, int buttonId)
         gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 4;
         if (save_file_exists(buttonId - 14) == FALSE)
         {
-            SetSound(0x701EFF81, D_803320E0);
+            SetSound(SOUND_MENU_STARSOUND, D_803320E0);
             a->oMainMenuButtonUnk10C = 2;
             sFadeOutText = 1;
             D_801A7BFC = 0;
@@ -568,7 +568,7 @@ static void func_801716E4(struct Object *a, int buttonId)
         {
             if (MENU_BUTTON_COPY_FILE_A + sSelectedFile == buttonId)
             {
-                SetSound(0x700E0081, D_803320E0);
+                SetSound(SOUND_MENU_CAMERABUZZ, D_803320E0);
                 gMainMenuButtons[MENU_BUTTON_COPY_FILE_A + sSelectedFile]->oMainMenuButtonUnkF4 = 6;
                 a->oMainMenuButtonUnk10C = 0;
                 sFadeOutText = 1;
@@ -603,7 +603,7 @@ static void copy_menu_handle_click(struct Object *a)
                 {
                     if (a->oMainMenuButtonUnk10C == 0)
                     {
-                        SetSound(0x70110081, D_803320E0);
+                        SetSound(SOUND_MENU_CLICKFILESELECT, D_803320E0);
                         gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 4;
                         sSelectedButtonId = buttonId;
                     }
@@ -695,7 +695,7 @@ static void func_80171F74(struct Object *a, int buttonId)
     case 0:
         if (save_file_exists(buttonId - MENU_BUTTON_ERASE_FILE_A) == TRUE)
         {
-            SetSound(0x70110081, D_803320E0);
+            SetSound(SOUND_MENU_CLICKFILESELECT, D_803320E0);
             gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 5;
             sSelectedFile = buttonId - MENU_BUTTON_ERASE_FILE_A;
             a->oMainMenuButtonUnk10C = 1;
@@ -704,7 +704,7 @@ static void func_80171F74(struct Object *a, int buttonId)
         }
         else
         {
-            SetSound(0x700E0081, D_803320E0);
+            SetSound(SOUND_MENU_CAMERABUZZ, D_803320E0);
             gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 4;
             if (D_801A7BFC >= 21)
             {
@@ -716,7 +716,7 @@ static void func_80171F74(struct Object *a, int buttonId)
     case 1:
         if (MENU_BUTTON_ERASE_FILE_A + sSelectedFile == buttonId)
         {
-            SetSound(0x70110081, D_803320E0);
+            SetSound(SOUND_MENU_CLICKFILESELECT, D_803320E0);
             gMainMenuButtons[MENU_BUTTON_ERASE_FILE_A + sSelectedFile]->oMainMenuButtonUnkF4 = 6;
             a->oMainMenuButtonUnk10C = 0;
             sFadeOutText = 1;
@@ -744,7 +744,7 @@ static void erase_menu_handle_click(struct Object *a)
                 {
                     if (a->oMainMenuButtonUnk10C == 0)
                     {
-                        SetSound(0x70110081, D_803320E0);
+                        SetSound(SOUND_MENU_CLICKFILESELECT, D_803320E0);
                         gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 4;
                         sSelectedButtonId = buttonId;
                     }
@@ -802,7 +802,7 @@ static void sound_select_menu_handle_click(struct Object *a)
                 {
                     if (a->oMainMenuButtonUnk10C == 0)
                     {
-                        SetSound(0x70110081, D_803320E0);
+                        SetSound(SOUND_MENU_CLICKFILESELECT, D_803320E0);
                         gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 4;
                         sSelectedButtonId = buttonId;
                         sSoundMode = buttonId - 29;
@@ -828,7 +828,7 @@ static void main_menu_init(s16 buttonId, struct Object *b)
 
     if (b->oMainMenuButtonUnkF4 == 0 && gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 == 2)
     {
-        SetSound(0x70070081, D_803320E0);
+        SetSound(SOUND_MENU_CAMERAZOOMOUT, D_803320E0);
         gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 3;
         D_801A7BD4 = 1;
     }
@@ -864,7 +864,7 @@ static void score_menu_init(s16 buttonId, struct Object *b)
 
     if (b->oMainMenuButtonUnkF4 == 0 && gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 == 2)
     {
-        SetSound(0x70070081, D_803320E0);
+        SetSound(SOUND_MENU_CAMERAZOOMOUT, D_803320E0);
         gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 3;
         D_801A7BD4 = 1;
     }
@@ -886,7 +886,7 @@ static void score_menu_init(s16 buttonId, struct Object *b)
                 hide_object(gMainMenuButtons[sp1C]);
         }
         sSelectedButtonId = MENU_BUTTON_SCORE;
-        SetSound(0x70060081, D_803320E0);
+        SetSound(SOUND_MENU_CAMERAZOOMIN, D_803320E0);
         gMainMenuButtons[MENU_BUTTON_SCORE]->oMainMenuButtonUnkF4 = 1;
         score_menu_create_buttons(gMainMenuButtons[MENU_BUTTON_SCORE]);
     }
@@ -898,7 +898,7 @@ static void copy_menu_init(s16 buttonId, struct Object *b)
 
     if (b->oMainMenuButtonUnkF4 == 0 && gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 == 2)
     {
-        SetSound(0x70070081, D_803320E0);
+        SetSound(SOUND_MENU_CAMERAZOOMOUT, D_803320E0);
         gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 3;
         D_801A7BD4 = 1;
     }
@@ -920,7 +920,7 @@ static void copy_menu_init(s16 buttonId, struct Object *b)
                 hide_object(gMainMenuButtons[sp1C]);
         }
         sSelectedButtonId = MENU_BUTTON_COPY;
-        SetSound(0x70060081, D_803320E0);
+        SetSound(SOUND_MENU_CAMERAZOOMIN, D_803320E0);
         gMainMenuButtons[MENU_BUTTON_COPY]->oMainMenuButtonUnkF4 = 1;
         copy_menu_create_buttons(gMainMenuButtons[MENU_BUTTON_COPY]);
     }
@@ -932,7 +932,7 @@ static void erase_menu_init(s16 buttonId, struct Object *b)
 
     if (b->oMainMenuButtonUnkF4 == 0 && gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 == 2)
     {
-        SetSound(0x70070081, D_803320E0);
+        SetSound(SOUND_MENU_CAMERAZOOMOUT, D_803320E0);
         gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 3;
         D_801A7BD4 = 1;
     }
@@ -954,7 +954,7 @@ static void erase_menu_init(s16 buttonId, struct Object *b)
                 hide_object(gMainMenuButtons[sp1C]);
         }
         sSelectedButtonId = MENU_BUTTON_ERASE;
-        SetSound(0x70060081, D_803320E0);
+        SetSound(SOUND_MENU_CAMERAZOOMIN, D_803320E0);
         gMainMenuButtons[MENU_BUTTON_ERASE]->oMainMenuButtonUnkF4 = 1;
         erase_menu_create_buttons(gMainMenuButtons[MENU_BUTTON_ERASE]);
     }
@@ -1059,31 +1059,31 @@ static void main_menu_handle_click(void)
     switch (sSelectedButtonId)
     {
     case MENU_BUTTON_PLAY_FILE_A:
-        SetSound(0x701EFF81, D_803320E0);
+        SetSound(SOUND_MENU_STARSOUND, D_803320E0);
         break;
     case MENU_BUTTON_PLAY_FILE_B:
-        SetSound(0x701EFF81, D_803320E0);
+        SetSound(SOUND_MENU_STARSOUND, D_803320E0);
         break;
     case MENU_BUTTON_PLAY_FILE_C:
-        SetSound(0x701EFF81, D_803320E0);
+        SetSound(SOUND_MENU_STARSOUND, D_803320E0);
         break;
     case MENU_BUTTON_PLAY_FILE_D:
-        SetSound(0x701EFF81, D_803320E0);
+        SetSound(SOUND_MENU_STARSOUND, D_803320E0);
         break;
     case 4:
-        SetSound(0x70060081, D_803320E0);
+        SetSound(SOUND_MENU_CAMERAZOOMIN, D_803320E0);
         score_menu_create_buttons(gMainMenuButtons[MENU_BUTTON_SCORE]);
         break;
     case 5:
-        SetSound(0x70060081, D_803320E0);
+        SetSound(SOUND_MENU_CAMERAZOOMIN, D_803320E0);
         copy_menu_create_buttons(gMainMenuButtons[MENU_BUTTON_COPY]);
         break;
     case 6:
-        SetSound(0x70060081, D_803320E0);
+        SetSound(SOUND_MENU_CAMERAZOOMIN, D_803320E0);
         erase_menu_create_buttons(gMainMenuButtons[MENU_BUTTON_ERASE]);
         break;
     case MENU_BUTTON_SOUND_MODE:
-        SetSound(0x70060081, D_803320E0);
+        SetSound(SOUND_MENU_CAMERAZOOMIN, D_803320E0);
         sound_select_menu_create_buttons(gMainMenuButtons[MENU_BUTTON_SOUND_MODE]);
         break;
     }
@@ -1210,7 +1210,7 @@ static void handle_button_presses(void)
         else if (gPlayer2Controller->buttonPressed & A_BUTTON)
         {
             D_801A7C10 = 1 - D_801A7C10;
-            SetSound(0x70110081, D_803320E0);
+            SetSound(SOUND_MENU_CLICKFILESELECT, D_803320E0);
         }
     }
     else
@@ -1520,7 +1520,7 @@ static void erase_yes_no_prompt(s16 x, s16 y)
     {
         if (D_801A7C04 == 1)
         {
-            SetSound(0x2410C081, D_803320E0);
+            SetSound(SOUND_MARIO_WAAAOOOW, D_803320E0);
             gMainMenuButtons[MENU_BUTTON_ERASE]->oMainMenuButtonUnk10C = 2;
             sFadeOutText = 1;
             D_801A7BFC = 0;
@@ -1531,7 +1531,7 @@ static void erase_yes_no_prompt(s16 x, s16 y)
         }
         else if (D_801A7C04 == 2)
         {
-            SetSound(0x70110081, D_803320E0);
+            SetSound(SOUND_MENU_CLICKFILESELECT, D_803320E0);
             gMainMenuButtons[MENU_BUTTON_ERASE_FILE_A + sSelectedFile]->oMainMenuButtonUnkF4 = 6;
             gMainMenuButtons[MENU_BUTTON_ERASE]->oMainMenuButtonUnk10C = 0;
             sFadeOutText = 1;
