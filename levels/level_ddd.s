@@ -15,7 +15,7 @@ script_func_local_1:
     object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -3071, -4270, 0, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_fish_2
     object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -3071, -2000, 0, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_chirp_chirp
     object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -3071, -3000, 0, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_chirp_chirp
-    object /*unk2*/ 0x1F, /*unk3*/ 0x57, /*pos*/ -3174, -4915, 102, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_whirlpool_death
+    object /*unk2*/ 0x1F, /*unk3*/ 0x57, /*pos*/ -3174, -4915, 102, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_whirlpool
     return
 
 script_func_local_2:
@@ -38,7 +38,7 @@ script_func_local_3:
     return
 
 script_func_local_4:
-    object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 3404, -3319, -489, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_bubbles
+    object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 3404, -3319, -489, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_jet_stream
     return
 
 script_func_local_5:

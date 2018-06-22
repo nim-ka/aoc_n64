@@ -191,7 +191,7 @@ struct Object *func_802C9120(struct GfxNode *a)
     sp20->unk210 = 0;
     sp20->platform = NULL;
     sp20->collisionData = NULL;
-    sp20->oUnk9C = -1;
+    sp20->oCollectable = -1;
     sp20->oUnk180 = 0;
     sp20->oUnk184 = 2048;
     sp20->oCollisionDistance = 1000.0f;

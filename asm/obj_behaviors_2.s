@@ -1101,7 +1101,7 @@ glabel func_802F95B0
 /* 0B45C4 802F95C4 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
 /* 0B45C8 802F95C8 87A5001A */  lh    $a1, 0x1a($sp)
 /* 0B45CC 802F95CC 87A6001E */  lh    $a2, 0x1e($sp)
-/* 0B45D0 802F95D0 0C0A776D */  jal   RotateTorwardsMario
+/* 0B45D0 802F95D0 0C0A776D */  jal   approach_target_angle
 /* 0B45D4 802F95D4 8DC400C4 */   lw    $a0, 0xc4($t6)
 /* 0B45D8 802F95D8 3C0F8036 */  lui   $t7, %hi(gCurrentObject) # $t7, 0x8036
 /* 0B45DC 802F95DC 8DEFFDF0 */  lw    $t7, %lo(gCurrentObject)($t7)
@@ -1134,7 +1134,7 @@ glabel func_802F9624
 /* 0B4638 802F9638 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
 /* 0B463C 802F963C 87A5001A */  lh    $a1, 0x1a($sp)
 /* 0B4640 802F9640 87A6001E */  lh    $a2, 0x1e($sp)
-/* 0B4644 802F9644 0C0A776D */  jal   RotateTorwardsMario
+/* 0B4644 802F9644 0C0A776D */  jal   approach_target_angle
 /* 0B4648 802F9648 8DC400D0 */   lw    $a0, 0xd0($t6)
 /* 0B464C 802F964C 3C0F8036 */  lui   $t7, %hi(gCurrentObject) # $t7, 0x8036
 /* 0B4650 802F9650 8DEFFDF0 */  lw    $t7, %lo(gCurrentObject)($t7)
@@ -1167,7 +1167,7 @@ glabel func_802F9698
 /* 0B46AC 802F96AC 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
 /* 0B46B0 802F96B0 87A5001A */  lh    $a1, 0x1a($sp)
 /* 0B46B4 802F96B4 87A6001E */  lh    $a2, 0x1e($sp)
-/* 0B46B8 802F96B8 0C0A776D */  jal   RotateTorwardsMario
+/* 0B46B8 802F96B8 0C0A776D */  jal   approach_target_angle
 /* 0B46BC 802F96BC 8DC400D4 */   lw    $a0, 0xd4($t6)
 /* 0B46C0 802F96C0 3C0F8036 */  lui   $t7, %hi(gCurrentObject) # $t7, 0x8036
 /* 0B46C4 802F96C4 8DEFFDF0 */  lw    $t7, %lo(gCurrentObject)($t7)
@@ -1200,7 +1200,7 @@ glabel func_802F970C
 /* 0B4720 802F9720 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
 /* 0B4724 802F9724 87A5001A */  lh    $a1, 0x1a($sp)
 /* 0B4728 802F9728 87A6001E */  lh    $a2, 0x1e($sp)
-/* 0B472C 802F972C 0C0A776D */  jal   RotateTorwardsMario
+/* 0B472C 802F972C 0C0A776D */  jal   approach_target_angle
 /* 0B4730 802F9730 8DC400D8 */   lw    $a0, 0xd8($t6)
 /* 0B4734 802F9734 3C0F8036 */  lui   $t7, %hi(gCurrentObject) # $t7, 0x8036
 /* 0B4738 802F9738 8DEFFDF0 */  lw    $t7, %lo(gCurrentObject)($t7)
@@ -1246,7 +1246,7 @@ glabel func_802F9780
 /* 0B47C8 802F97C8 46083282 */  mul.s $f10, $f6, $f8
 /* 0B47CC 802F97CC 4600540D */  trunc.w.s $f16, $f10
 /* 0B47D0 802F97D0 44058000 */  mfc1  $a1, $f16
-/* 0B47D4 802F97D4 0C0A776D */  jal   RotateTorwardsMario
+/* 0B47D4 802F97D4 0C0A776D */  jal   approach_target_angle
 /* 0B47D8 802F97D8 00000000 */   nop   
 /* 0B47DC 802F97DC 8FAB0020 */  lw    $t3, 0x20($sp)
 /* 0B47E0 802F97E0 A5620000 */  sh    $v0, ($t3)
@@ -1261,7 +1261,7 @@ glabel func_802F9780
 /* 0B4804 802F9804 8FAD0024 */  lw    $t5, 0x24($sp)
 /* 0B4808 802F9808 87A5002A */  lh    $a1, 0x2a($sp)
 /* 0B480C 802F980C 87A6001E */  lh    $a2, 0x1e($sp)
-/* 0B4810 802F9810 0C0A776D */  jal   RotateTorwardsMario
+/* 0B4810 802F9810 0C0A776D */  jal   approach_target_angle
 /* 0B4814 802F9814 8DA40000 */   lw    $a0, ($t5)
 /* 0B4818 802F9818 8FAE0024 */  lw    $t6, 0x24($sp)
 /* 0B481C 802F981C ADC20000 */  sw    $v0, ($t6)
@@ -11733,7 +11733,7 @@ glabel func_80302B64
 /* 0BDDE4 80302DE4 8D4AFDF0 */  lw    $t2, %lo(gCurrentObject)($t2)
 /* 0BDDE8 80302DE8 240507D0 */  li    $a1, 2000
 /* 0BDDEC 80302DEC 24060190 */  li    $a2, 400
-/* 0BDDF0 80302DF0 0C0A776D */  jal   RotateTorwardsMario
+/* 0BDDF0 80302DF0 0C0A776D */  jal   approach_target_angle
 /* 0BDDF4 80302DF4 854401AC */   lh    $a0, 0x1ac($t2)
 /* 0BDDF8 80302DF8 3C0B8036 */  lui   $t3, %hi(gCurrentObject) # $t3, 0x8036
 /* 0BDDFC 80302DFC 8D6BFDF0 */  lw    $t3, %lo(gCurrentObject)($t3)
@@ -11747,7 +11747,7 @@ glabel func_80302B64
 /* 0BDE1C 80302E1C 8DADFDF0 */  lw    $t5, %lo(gCurrentObject)($t5)
 /* 0BDE20 80302E20 240507D0 */  li    $a1, 2000
 /* 0BDE24 80302E24 24060064 */  li    $a2, 100
-/* 0BDE28 80302E28 0C0A776D */  jal   RotateTorwardsMario
+/* 0BDE28 80302E28 0C0A776D */  jal   approach_target_angle
 /* 0BDE2C 80302E2C 85A401AE */   lh    $a0, 0x1ae($t5)
 /* 0BDE30 80302E30 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 0BDE34 80302E34 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
@@ -18857,7 +18857,7 @@ glabel func_803092AC
 /* 0C439C 8030939C 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
 /* 0C43A0 803093A0 24060032 */  li    $a2, 50
 /* 0C43A4 803093A4 8DC400C4 */  lw    $a0, 0xc4($t6)
-/* 0C43A8 803093A8 0C0A776D */  jal   RotateTorwardsMario
+/* 0C43A8 803093A8 0C0A776D */  jal   approach_target_angle
 /* 0C43AC 803093AC 8DC50108 */   lw    $a1, 0x108($t6)
 /* 0C43B0 803093B0 3C0F8036 */  lui   $t7, %hi(gCurrentObject) # $t7, 0x8036
 /* 0C43B4 803093B4 8DEFFDF0 */  lw    $t7, %lo(gCurrentObject)($t7)
@@ -19660,7 +19660,7 @@ glabel func_80309DB8
 /* 0C4F6C 80309F6C 00A1001A */  div   $zero, $a1, $at
 /* 0C4F70 80309F70 00006812 */  mflo  $t5
 /* 0C4F74 80309F74 01A02825 */  move  $a1, $t5
-/* 0C4F78 80309F78 0C0A776D */  jal   RotateTorwardsMario
+/* 0C4F78 80309F78 0C0A776D */  jal   approach_target_angle
 /* 0C4F7C 80309F7C 00000000 */   nop   
 /* 0C4F80 80309F80 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 0C4F84 80309F84 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
@@ -22619,7 +22619,7 @@ glabel func_8030C914
 /* 0C7980 8030C980 8D4AFDF0 */  lw    $t2, %lo(gCurrentObject)($t2)
 /* 0C7984 8030C984 00002825 */  move  $a1, $zero
 /* 0C7988 8030C988 240605DC */  li    $a2, 1500
-/* 0C798C 8030C98C 0C0A776D */  jal   RotateTorwardsMario
+/* 0C798C 8030C98C 0C0A776D */  jal   approach_target_angle
 /* 0C7990 8030C990 8D440104 */   lw    $a0, 0x104($t2)
 /* 0C7994 8030C994 3C0B8036 */  lui   $t3, %hi(gCurrentObject) # $t3, 0x8036
 /* 0C7998 8030C998 8D6BFDF0 */  lw    $t3, %lo(gCurrentObject)($t3)
@@ -22628,7 +22628,7 @@ glabel func_8030C914
 /* 0C79A4 8030C9A4 8D8CFDF0 */  lw    $t4, %lo(gCurrentObject)($t4)
 /* 0C79A8 8030C9A8 24050258 */  li    $a1, 600
 /* 0C79AC 8030C9AC 2406000F */  li    $a2, 15
-/* 0C79B0 8030C9B0 0C0A776D */  jal   RotateTorwardsMario
+/* 0C79B0 8030C9B0 0C0A776D */  jal   approach_target_angle
 /* 0C79B4 8030C9B4 8D840108 */   lw    $a0, 0x108($t4)
 /* 0C79B8 8030C9B8 3C0D8036 */  lui   $t5, %hi(gCurrentObject) # $t5, 0x8036
 /* 0C79BC 8030C9BC 8DADFDF0 */  lw    $t5, %lo(gCurrentObject)($t5)
@@ -22674,7 +22674,7 @@ glabel func_8030CA38
 /* 0C7A44 8030CA44 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
 /* 0C7A48 8030CA48 24058000 */  li    $a1, -32768
 /* 0C7A4C 8030CA4C 24060BB8 */  li    $a2, 3000
-/* 0C7A50 8030CA50 0C0A776D */  jal   RotateTorwardsMario
+/* 0C7A50 8030CA50 0C0A776D */  jal   approach_target_angle
 /* 0C7A54 8030CA54 8DC40104 */   lw    $a0, 0x104($t6)
 /* 0C7A58 8030CA58 3C0F8036 */  lui   $t7, %hi(gCurrentObject) # $t7, 0x8036
 /* 0C7A5C 8030CA5C 8DEFFDF0 */  lw    $t7, %lo(gCurrentObject)($t7)
@@ -22683,7 +22683,7 @@ glabel func_8030CA38
 /* 0C7A68 8030CA68 8F18FDF0 */  lw    $t8, %lo(gCurrentObject)($t8)
 /* 0C7A6C 8030CA6C 240500A7 */  li    $a1, 167
 /* 0C7A70 8030CA70 24060014 */  li    $a2, 20
-/* 0C7A74 8030CA74 0C0A776D */  jal   RotateTorwardsMario
+/* 0C7A74 8030CA74 0C0A776D */  jal   approach_target_angle
 /* 0C7A78 8030CA78 8F040108 */   lw    $a0, 0x108($t8)
 /* 0C7A7C 8030CA7C 3C198036 */  lui   $t9, %hi(gCurrentObject) # $t9, 0x8036
 /* 0C7A80 8030CA80 8F39FDF0 */  lw    $t9, %lo(gCurrentObject)($t9)
@@ -27751,7 +27751,7 @@ glabel func_80311264
 /* 0CC298 80311298 8D08FDF0 */  lw    $t0, %lo(gCurrentObject)($t0)
 /* 0CC29C 8031129C 2405F830 */  li    $a1, -2000
 /* 0CC2A0 803112A0 240600C8 */  li    $a2, 200
-/* 0CC2A4 803112A4 0C0A776D */  jal   RotateTorwardsMario
+/* 0CC2A4 803112A4 0C0A776D */  jal   approach_target_angle
 /* 0CC2A8 803112A8 8D040114 */   lw    $a0, 0x114($t0)
 /* 0CC2AC 803112AC 3C098036 */  lui   $t1, %hi(gCurrentObject) # $t1, 0x8036
 /* 0CC2B0 803112B0 8D29FDF0 */  lw    $t1, %lo(gCurrentObject)($t1)
@@ -27930,7 +27930,7 @@ glabel func_80311520
 /* 0CC544 80311544 8F18FDF0 */  lw    $t8, %lo(gCurrentObject)($t8)
 /* 0CC548 80311548 240503E8 */  li    $a1, 1000
 /* 0CC54C 8031154C 240600C8 */  li    $a2, 200
-/* 0CC550 80311550 0C0A776D */  jal   RotateTorwardsMario
+/* 0CC550 80311550 0C0A776D */  jal   approach_target_angle
 /* 0CC554 80311554 8F040114 */   lw    $a0, 0x114($t8)
 /* 0CC558 80311558 3C198036 */  lui   $t9, %hi(gCurrentObject) # $t9, 0x8036
 /* 0CC55C 8031155C 8F39FDF0 */  lw    $t9, %lo(gCurrentObject)($t9)

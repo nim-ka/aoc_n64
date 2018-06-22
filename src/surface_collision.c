@@ -9,7 +9,6 @@
 #include "surface_collision.h"
 #include "surface_load.h"
 
-
 static s32 D_8038BE30[4];
 static f32 D_8038BE40, D_8038BE44, D_8038BE48;
 static f32 D_8038BE4C;

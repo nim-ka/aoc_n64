@@ -68,7 +68,7 @@ s32 RandomSign(void)
 void func_80383D68(struct Object *object)
 {
     object->gfx.unk20[0] = object->oPosX;
-    object->gfx.unk20[1] = object->oPosY + object->oUnkDC;
+    object->gfx.unk20[1] = object->oPosY + object->oGraphYOffset;
     object->gfx.unk20[2] = object->oPosZ;
 
     object->gfx.unk1A[0] = object->oFaceAnglePitch & 0xFFFF;
@@ -701,11 +701,11 @@ static s32 Behavior30(void)
     UNUSED f32 sp04, sp00;
 
     gCurrentObject->oUnk128 = (f32)(s16)(gBehCommand[1] >> 16);
-    gCurrentObject->oUnkE4 = (f32)(s16)(gBehCommand[1] & 0xFFFF) / 100.0f;
+    gCurrentObject->oGravity = (f32)(s16)(gBehCommand[1] & 0xFFFF) / 100.0f;
     gCurrentObject->oUnk158 = (f32)(s16)(gBehCommand[2] >> 16) / 100.0f;
     gCurrentObject->oUnk12C = (f32)(s16)(gBehCommand[2] & 0xFFFF) / 100.0f;
-    gCurrentObject->oUnk170 = (f32)(s16)(gBehCommand[3] >> 16) / 100.0f;
-    gCurrentObject->oUnk174 = (f32)(s16)(gBehCommand[3] & 0xFFFF) / 100.0f;
+    gCurrentObject->oGroundFVelMultiplier = (f32)(s16)(gBehCommand[3] >> 16) / 100.0f;
+    gCurrentObject->oBuoyancy = (f32)(s16)(gBehCommand[3] & 0xFFFF) / 100.0f;
 
     // unused parameters
     sp04 = (f32)(s16)(gBehCommand[4] >> 16) / 100.0f;
@@ -834,7 +834,7 @@ void cur_object_exec_behavior(void)
     }
 
     if (flagsLo & OBJ_FLAG_2000)
-        gCurrentObject->oUnk160 = func_8029DF18(gCurrentObject, gMarioObject);
+        gCurrentObject->oAngleToMario = func_8029DF18(gCurrentObject, gMarioObject);
 
     if (gCurrentObject->oAction != gCurrentObject->oPrevAction)
     {
@@ -899,7 +899,7 @@ void cur_object_exec_behavior(void)
                 gCurrentObject->gfx.graphFlags &= 0xFFFFFFFE;
                 gCurrentObject->active |= 2;
             }
-            else if (gCurrentObject->oUnk124 == 0)
+            else if (gCurrentObject->oHeldState == HELD_FREE)
             {
                 gCurrentObject->gfx.graphFlags |= 1;
                 gCurrentObject->active &= 0xFFFFFFFD;

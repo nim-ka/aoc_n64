@@ -16,9 +16,6 @@
  * This file seems to draw the in-game HUD
 **/
 
-/* External Declarations */
-/*obj_behaviors_1.rodata.s*/ extern f64 D_803371E0;
-/*obj_behaviors_1.rodata.s*/ extern f64 D_803371E8;
 //TODO: match unkXX nomenclature
 struct HUD803314E0 {
     s8  d_E0;
@@ -107,7 +104,7 @@ void func_802E24A8(void)
 
     if (!(hudDisplayFlags & 0x8000))    //0x8000 = gMarioState->hurtCounter > 0 flag
     {
-        if ( (f64) hudStruct.d_EC == D_803371E0 )
+        if ( (f64) hudStruct.d_EC == 45.0 )
             hudStruct.d_E0 = 2;
     } else {
         hudStruct.d_EC = 0;
@@ -157,7 +154,7 @@ void func_802E261C(s16 numHealthWedges)
     if (numHealthWedges == 8 && D_803600D0 == 7)
         hudStruct.d_EC = 0;
     
-    if (numHealthWedges == 8 && (f64) hudStruct.d_EC > D_803371E8)
+    if (numHealthWedges == 8 && (f64) hudStruct.d_EC > 45.0)
         hudStruct.d_E0 = 3;
     
     D_803600D0 = numHealthWedges;

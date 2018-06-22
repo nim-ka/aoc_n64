@@ -896,7 +896,7 @@ glabel func_8029DD18
 /* 058DAC 8029DDAC 03E00008 */  jr    $ra
 /* 058DB0 8029DDB0 27BD0008 */   addiu $sp, $sp, 8
 
-glabel RotateTorwardsMario
+glabel approach_target_angle
 /* 058DB4 8029DDB4 00042400 */  sll   $a0, $a0, 0x10
 /* 058DB8 8029DDB8 00052C00 */  sll   $a1, $a1, 0x10
 /* 058DBC 8029DDBC 00063400 */  sll   $a2, $a2, 0x10
@@ -965,7 +965,7 @@ glabel func_8029DE70
 /* 058E98 8029DE98 8F18FDF0 */  lw    $t8, %lo(gCurrentObject)($t8)
 /* 058E9C 8029DE9C 87A5002A */  lh    $a1, 0x2a($sp)
 /* 058EA0 8029DEA0 87A6002E */  lh    $a2, 0x2e($sp)
-/* 058EA4 8029DEA4 0C0A776D */  jal   RotateTorwardsMario
+/* 058EA4 8029DEA4 0C0A776D */  jal   approach_target_angle
 /* 058EA8 8029DEA8 8F0400C8 */   lw    $a0, 0xc8($t8)
 /* 058EAC 8029DEAC 3C198036 */  lui   $t9, %hi(gCurrentObject) # $t9, 0x8036
 /* 058EB0 8029DEB0 8F39FDF0 */  lw    $t9, %lo(gCurrentObject)($t9)
@@ -1126,7 +1126,7 @@ glabel UnknownMove
 /* 0590F0 8029E0F0 A7A80028 */  sh    $t0, 0x28($sp)
 /* 0590F4 8029E0F4 87A40028 */  lh    $a0, 0x28($sp)
 /* 0590F8 8029E0F8 87A5002A */  lh    $a1, 0x2a($sp)
-/* 0590FC 8029E0FC 0C0A776D */  jal   RotateTorwardsMario
+/* 0590FC 8029E0FC 0C0A776D */  jal   approach_target_angle
 /* 059100 8029E100 87A6004E */   lh    $a2, 0x4e($sp)
 /* 059104 8029E104 87AA004A */  lh    $t2, 0x4a($sp)
 /* 059108 8029E108 3C098036 */  lui   $t1, %hi(gCurrentObject) # $t1, 0x8036

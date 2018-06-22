@@ -24,9 +24,9 @@ script_func_local_1:
     object /*unk2*/ 0x01, /*unk3*/ 0x55, /*pos*/ 6048, -5381, 1154, /*angle*/ 0, 340, 0, /*behArg*/ 0x00000000, /*beh*/ beh_unagi
     object /*unk2*/ 0x02, /*unk3*/ 0x55, /*pos*/ 8270, -3130, 1846, /*angle*/ 0, 285, 0, /*behArg*/ 0x01010000, /*beh*/ beh_unagi
     object /*unk2*/ 0x3C, /*unk3*/ 0x55, /*pos*/ 6048, -5381, 1154, /*angle*/ 0, 340, 0, /*behArg*/ 0x02020000, /*beh*/ beh_unagi
-    object /*unk2*/ 0x3E, /*unk3*/ 0x00, /*pos*/ 4988, -5221, 2473, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_bubbles
+    object /*unk2*/ 0x3E, /*unk3*/ 0x00, /*pos*/ 4988, -5221, 2473, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_jet_stream
     object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -1800, -2812, -2100, /*angle*/ 0, 0, 0, /*behArg*/ 0x02000000, /*beh*/ beh_treasure_chests_jrb
-    object /*unk2*/ 0x3E, /*unk3*/ 0xC3, /*pos*/ -1956, 1331, 6500, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_pink_bobomb_opening_cannon
+    object /*unk2*/ 0x3E, /*unk3*/ 0xC3, /*pos*/ -1956, 1331, 6500, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_bobomb_buddy_cannon_role
     return
 
 script_func_local_2:

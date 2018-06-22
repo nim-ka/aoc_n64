@@ -993,7 +993,7 @@ int CameraChange0B(struct Struct80280550 *a, Vec3f b, Vec3f c)
     {
         // FIXME: object
         func_80287840(sp38, sp8C);
-        sp5E = sp8C->oUnk124;
+        sp5E = sp8C->oHeldState;
     }
     else
     {

@@ -134,7 +134,6 @@ struct GfxNode
 struct Object
 {
     /*0x000*/ struct GfxNode gfx;
-
     /*0x068*/ struct Object *nextObj;
     /*0x06C*/ struct Object *prevObj;
     /*0x070*/ u32 collidedObjInteractTypes;

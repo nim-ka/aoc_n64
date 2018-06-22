@@ -24,10 +24,10 @@ script_func_local_2:
     object /*unk2*/ 0x1F, /*unk3*/ 0xB4, /*pos*/ -993, 886, -3565, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_rolling_ball
     object /*unk2*/ 0x1F, /*unk3*/ 0xB4, /*pos*/ -785, 886, -4301, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_rolling_ball
     object /*unk2*/ 0x3E, /*unk3*/ 0xB4, /*pos*/ -93, 886, -3414, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_rolling_ball
-    object /*unk2*/ 0x01, /*unk3*/ 0xC3, /*pos*/ -5723, 140, 6017, /*angle*/ 0, 0, 0, /*behArg*/ 0x00020000, /*beh*/ beh_pink_bobomb_with_message
-    object /*unk2*/ 0x01, /*unk3*/ 0xC3, /*pos*/ -6250, 0, 6680, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ beh_pink_bobomb_with_message
-    object /*unk2*/ 0x3E, /*unk3*/ 0xC3, /*pos*/ -5723, 140, 6017, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_pink_bobomb_opening_cannon
-    object /*unk2*/ 0x3E, /*unk3*/ 0xC3, /*pos*/ -6250, 0, 6680, /*angle*/ 0, 0, 0, /*behArg*/ 0x00030000, /*beh*/ beh_pink_bobomb_with_message
+    object /*unk2*/ 0x01, /*unk3*/ 0xC3, /*pos*/ -5723, 140, 6017, /*angle*/ 0, 0, 0, /*behArg*/ 0x00020000, /*beh*/ beh_bobomb_buddy_advice_role
+    object /*unk2*/ 0x01, /*unk3*/ 0xC3, /*pos*/ -6250, 0, 6680, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ beh_bobomb_buddy_advice_role
+    object /*unk2*/ 0x3E, /*unk3*/ 0xC3, /*pos*/ -5723, 140, 6017, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_bobomb_buddy_cannon_role
+    object /*unk2*/ 0x3E, /*unk3*/ 0xC3, /*pos*/ -6250, 0, 6680, /*angle*/ 0, 0, 0, /*behArg*/ 0x00030000, /*beh*/ beh_bobomb_buddy_advice_role
     object /*unk2*/ 0x01, /*unk3*/ 0x80, /*pos*/ -5694, 128, 5600, /*angle*/ 0, 135, 0, /*behArg*/ 0x00010000, /*beh*/ beh_cannon
     object /*unk2*/ 0x3E, /*unk3*/ 0xC9, /*pos*/ -5694, 128, 5600, /*angle*/ 0, 180, 0, /*behArg*/ 0x00000000, /*beh*/ beh_cannon_trap_door
     object /*unk2*/ 0x02, /*unk3*/ 0x00, /*pos*/ 3304, 4242, -4603, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_waving_koopa_flag

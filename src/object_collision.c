@@ -94,19 +94,19 @@ void func_802C88A8(struct Object *a)
     {
         sp4->numCollidedObjs = 0;
         sp4->collidedObjInteractTypes = 0;
-        if (sp4->oUnk9C > 0)
-            sp4->oUnk9C--;
+        if (sp4->oCollectable > 0)
+            sp4->oCollectable--;
         sp4 = (struct Object *)sp4->gfx.next;
     }
 }
 
 void func_802C8918(struct Object *a, struct Object *b, struct Object *c)
 {
-    if (a->oUnk9C == 0)
+    if (a->oCollectable == 0)
     {
         while (b != c)
         {
-            if (b->oUnk9C == 0)
+            if (b->oCollectable == 0)
             {
                 if (func_802C8504(a, b) && b->unk200 != 0.0f)
                     func_802C870C(a, b);

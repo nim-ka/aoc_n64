@@ -574,7 +574,7 @@ glabel beh_fish_group # 0494
         callnative BehFishGroupLoop
     end_loop
 
-glabel beh_opened_cannon # 04A8
+glabel beh_cannon_base # 04A8
     begin 6
     obj_or_int VAR_01, 0x00C9
     unknown_1C 0x0000007F, beh_cannon_barrel
@@ -584,7 +584,7 @@ glabel beh_opened_cannon # 04A8
     set_hitbox 0x0096, 0x0096
     obj_set_int VAR_05, 0
     begin_loop
-        callnative BehOpenedCannonLoop
+        callnative BehCannonBaseLoop
     end_loop
 
 glabel beh_cannon_barrel # 04E4
@@ -595,13 +595,13 @@ glabel beh_cannon_barrel # 04E4
         callnative BehCannonBarrelLoop
     end_loop
 
-glabel beh_cannon_base # 0500
+glabel beh_cannon_base_unused # 0500
     begin 8
     obj_or_int VAR_01, 0x000B
     billboard
     obj_set_int VAR_1A, -1
     begin_repeat 8
-        callnative BehCannonBaseLoop
+        callnative BehCannonBaseUnusedLoop
         obj_add_int VAR_1A, 1
     end_repeat
     deactivate
@@ -3226,7 +3226,7 @@ glabel beh_act_selector # 3028
         callnative BehActSelectorLoop
     end_loop
 
-glabel beh_coin_inside_of_formation # 3048
+glabel beh_moving_yellow_coin # 3048
     begin 6
     obj_or_int VAR_01, 0x01
     billboard
@@ -3234,9 +3234,9 @@ glabel beh_coin_inside_of_formation # 3048
     obj_set_int VAR_2A, 0x10
     obj_set_int VAR_05, 0
     obj_set_int VAR_1A, -1
-    callnative BehCoinInsideFormationInit
+    callnative BehMovingYellowCoinInit
     begin_loop
-        callnative BehCoinInsideFormationLoop
+        callnative BehMovingYellowCoinLoop
         obj_add_int VAR_1A, 1
     end_loop
 
@@ -3306,19 +3306,19 @@ glabel beh_bobomb # 3154
         callnative BehBobombLoop
     end_loop
 
-glabel beh_bobomb_dust # 318C
+glabel beh_bobomb_fuse_smoke # 318C
     begin 8
     obj_or_int VAR_01, 0x01
     billboard
     obj_set_int VAR_1A, -1
-    callnative BehBobombDustInit
+    callnative BehBobombFuseSmokeInit
     delay 1
     begin_loop
         callnative BehDustSmokeLoop
         obj_add_int VAR_1A, 1
     end_loop
 
-glabel beh_pink_bobomb_with_message # 31BC
+glabel beh_bobomb_buddy_advice_role # 31BC
     begin 4
     obj_or_int VAR_01, 0x2449
     obj_set_int32 VAR_26, 0x0802396C
@@ -3328,13 +3328,13 @@ glabel beh_pink_bobomb_with_message # 31BC
     unknown_28 0x00
     obj_set_int VAR_1D, 0x0000
     unknown_2D
-    callnative BehPinkBobombInit
+    callnative BehBobombBuddyInit
     begin_loop
         obj_set_int VAR_05, 0
-        callnative BehPinkBobombLoop
+        callnative BehBobombBuddyLoop
     end_loop
 
-glabel beh_pink_bobomb_opening_cannon # 3208
+glabel beh_bobomb_buddy_cannon_role # 3208
     begin 4
     obj_or_int VAR_01, 0x6449
     obj_set_int32 VAR_26, 0x0802396C
@@ -3344,10 +3344,10 @@ glabel beh_pink_bobomb_opening_cannon # 3208
     unknown_28 0x00
     obj_set_int VAR_1D, 0x0001
     unknown_2D
-    callnative BehPinkBobombInit
+    callnative BehBobombBuddyInit
     begin_loop
         obj_set_int VAR_05, 0
-        callnative BehPinkBobombLoop
+        callnative BehBobombBuddyLoop
     end_loop
 
 glabel beh_cannon_trap_door # 3254
@@ -3361,19 +3361,19 @@ glabel beh_cannon_trap_door # 3254
         callnative load_object_collision_model
     end_loop
 
-glabel beh_whirlpool_death # 3288
+glabel beh_whirlpool # 3288
     begin 10
     obj_or_int VAR_01, 0x41
-    callnative BehWhirlpoolDeathInit
+    callnative BehWhirlpoolInit
     begin_loop
-        callnative BehWhirlpoolDeathLoop
+        callnative BehWhirlpoolLoop
     end_loop
 
-glabel beh_bubbles # 32A8
+glabel beh_jet_stream # 32A8
     begin 8
     obj_or_int VAR_01, 0x41
     begin_loop
-        callnative BehBubblesLoop
+        callnative BehJetStreamLoop
     end_loop
 
 glabel beh_message_panel # 32C0
@@ -3403,16 +3403,16 @@ glabel beh_sign_on_wall # 3304
         obj_set_int VAR_2B, 0
     end_loop
 
-glabel beh_amp_2 # 3334
+glabel beh_amp_homing # 3334
     begin 4
     obj_or_int VAR_01, 0x204B
     obj_set_int32 VAR_26, 0x08004034
     unknown_28 0x00
     obj_set_float VAR_15, 0x0028
     obj_set_int VAR_05, 0
-    callnative BehAmp2Init
+    callnative BehAmpHomingInit
     begin_loop
-        callnative BehAmp2Loop
+        callnative BehAmpHomingLoop
     end_loop
 
 glabel beh_amp # 3368
@@ -3438,15 +3438,15 @@ glabel beh_butterfly # 339C
         callnative BehButterflyLoop
     end_loop
 
-glabel beh_owl # 33CC
+glabel beh_hoot # 33CC
     begin 10
     obj_or_int VAR_01, 0x09
     obj_set_int32 VAR_26, 0x05005768
     obj_set_int VAR_2A, 0x01
     set_hitbox 0x004B, 0x004B
-    callnative BehOwlInit
+    callnative BehHootInit
     begin_loop
-        callnative BehOwlLoop
+        callnative BehHootLoop
     end_loop
 
 glabel beh_beta_green_shell # 3400

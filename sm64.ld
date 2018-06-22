@@ -95,6 +95,7 @@ SECTIONS
       build/asm/ingame_menu_2.o(.text);
       build/src/hud.o(.text);
       build/src/hud_print.o(.text);
+      build/src/obj_behaviors.o(.text);
       build/asm/obj_behaviors.o(.text);
       build/asm/obj_behaviors_2.o(.text);
       build/asm/audio_something.o(.text);
@@ -152,6 +153,7 @@ SECTIONS
       build/data/ingame_menu_2.data.o(.data*);
       build/src/hud.o(.data*);
       build/src/hud_print.o(.data*);
+      build/src/obj_behaviors.o(.data*);
       build/data/obj_behaviors_1.data.o(.data*);
       build/data/obj_behaviors_2.data.o(.data*);
       build/data/audio.data.o(.data*);
@@ -193,6 +195,7 @@ SECTIONS
       build/data/ingame_menu_2.rodata.o(.rodata*);
       build/src/hud.o(.rodata*);
       build/src/hud_print.o(.rodata*);
+      build/src/obj_behaviors.o(.rodata*);
       build/data/obj_behaviors_1.rodata.o(.rodata*);
       build/data/obj_behaviors_2.rodata.o(.rodata*);
       build/data/audio_something.rodata.o(.rodata*);

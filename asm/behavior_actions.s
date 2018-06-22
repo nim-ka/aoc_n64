@@ -2402,7 +2402,7 @@ glabel ActionKingBobomb1
 /* 061FB4 802A6FB4 8F18FDF0 */  lw    $t8, %lo(gCurrentObject)($t8)
 /* 061FB8 802A6FB8 24060200 */  li    $a2, 512
 /* 061FBC 802A6FBC 8F0400C8 */  lw    $a0, 0xc8($t8)
-/* 061FC0 802A6FC0 0C0A776D */  jal   RotateTorwardsMario
+/* 061FC0 802A6FC0 0C0A776D */  jal   approach_target_angle
 /* 061FC4 802A6FC4 8F050160 */   lw    $a1, 0x160($t8)
 /* 061FC8 802A6FC8 3C198036 */  lui   $t9, %hi(gCurrentObject) # $t9, 0x8036
 /* 061FCC 802A6FCC 8F39FDF0 */  lw    $t9, %lo(gCurrentObject)($t9)
@@ -3898,7 +3898,7 @@ glabel BehWaterWavesInit
 /* 06351C 802A851C 03E00008 */  jr    $ra
 /* 063520 802A8520 00000000 */   nop   
 
-glabel BehCannonBaseLoop
+glabel BehCannonBaseUnusedLoop
 /* 063524 802A8524 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 063528 802A8528 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
 /* 06352C 802A852C C5C400A4 */  lwc1  $f4, 0xa4($t6)
@@ -4395,7 +4395,7 @@ glabel ActionOpenedCannon3
 /* 063C1C 802A8C1C 03E00008 */  jr    $ra
 /* 063C20 802A8C20 27BD0008 */   addiu $sp, $sp, 8
 
-glabel BehOpenedCannonLoop
+glabel BehCannonBaseLoop
 /* 063C24 802A8C24 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 063C28 802A8C28 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 063C2C 802A8C2C 3C048033 */  lui   $a0, %hi(TableOpenedCannonActions) # $a0, 0x8033
@@ -14192,7 +14192,7 @@ glabel ActionHeaveHo2
 /* 06C71C 802B171C 8D6BFDF0 */  lw    $t3, %lo(gCurrentObject)($t3)
 /* 06C720 802B1720 87A6001A */  lh    $a2, 0x1a($sp)
 /* 06C724 802B1724 8D6400C8 */  lw    $a0, 0xc8($t3)
-/* 06C728 802B1728 0C0A776D */  jal   RotateTorwardsMario
+/* 06C728 802B1728 0C0A776D */  jal   approach_target_angle
 /* 06C72C 802B172C 8D650160 */   lw    $a1, 0x160($t3)
 /* 06C730 802B1730 3C0C8036 */  lui   $t4, %hi(gCurrentObject) # $t4, 0x8036
 /* 06C734 802B1734 8D8CFDF0 */  lw    $t4, %lo(gCurrentObject)($t4)
@@ -28007,7 +28007,7 @@ glabel ActionPiranhaPlant22
 /* 078A18 802BDA18 8D08FDF0 */  lw    $t0, %lo(gCurrentObject)($t0)
 /* 078A1C 802BDA1C 24060400 */  li    $a2, 1024
 /* 078A20 802BDA20 8D0400C8 */  lw    $a0, 0xc8($t0)
-/* 078A24 802BDA24 0C0A776D */  jal   RotateTorwardsMario
+/* 078A24 802BDA24 0C0A776D */  jal   approach_target_angle
 /* 078A28 802BDA28 8D050160 */   lw    $a1, 0x160($t0)
 /* 078A2C 802BDA2C 3C098036 */  lui   $t1, %hi(gCurrentObject) # $t1, 0x8036
 /* 078A30 802BDA30 8D29FDF0 */  lw    $t1, %lo(gCurrentObject)($t1)

@@ -64,8 +64,8 @@ script_func_local_3:
     object /*unk2*/ 0x3E, /*unk3*/ 0x09, /*pos*/ 1280, 3584, 896, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_bullet_bill_cannon
     object /*unk2*/ 0x3E, /*unk3*/ 0x00, /*pos*/ 0, 3483, 0, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_tower_platform_group
     object /*unk2*/ 0x3E, /*unk3*/ 0x39, /*pos*/ -511, 3584, 0, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_tower_door
-    object /*unk2*/ 0x3C, /*unk3*/ 0xC3, /*pos*/ -1700, 1140, 3500, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_pink_bobomb_opening_cannon
-    object /*unk2*/ 0x3C, /*unk3*/ 0x56, /*pos*/ 2560, 700, 4608, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_owl
+    object /*unk2*/ 0x3C, /*unk3*/ 0xC3, /*pos*/ -1700, 1140, 3500, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_bobomb_buddy_cannon_role
+    object /*unk2*/ 0x3C, /*unk3*/ 0x56, /*pos*/ 2560, 700, 4608, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_hoot
     return
 
 script_func_local_4:

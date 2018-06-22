@@ -6,6 +6,7 @@
 #include "types.h"
 #include "config.h"
 #include "object_fields.h"
+#include "object_constants.h"
 #include "audio_defines.h"
 
 // FIXME: find out what these are
