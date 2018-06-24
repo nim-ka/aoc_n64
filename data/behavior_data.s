@@ -4656,7 +4656,7 @@ glabel beh_poundable # 47FC
 
 glabel beh_chain_chomp_freed_explosion # 4848
     begin 9
-    collision_data 0x070113C0
+    collision_data bob_seg7_collision_chain_chomp_gate
     obj_or_int VAR_01, 0x41
     callnative BehChainChompFreedExplosionInit
     begin_loop

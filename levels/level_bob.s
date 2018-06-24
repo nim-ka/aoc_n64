@@ -79,8 +79,8 @@ glabel level_bob_entry
         warp_node /*id*/ 0x0E, /*destLevel1*/ 0x09, /*destArea*/ 0x01, /*destNode*/ 0x0D, /*destLevel2*/ 0x00
         warp_node /*id*/ 0xF0, /*destLevel1*/ 0x06, /*destArea*/ 0x01, /*destNode*/ 0x32, /*destLevel2*/ 0x00
         warp_node /*id*/ 0xF1, /*destLevel1*/ 0x06, /*destArea*/ 0x01, /*destNode*/ 0x64, /*destLevel2*/ 0x00
-        terrain /*terrainData*/ 0x0700E958
-        cmd39 /*unk4*/ 0x0701104C
+        terrain /*terrainData*/ bob_seg7_collision_level
+        cmd39 /*unk4*/ bob_seg7_macro_objs
         cmd30 /*unk2*/ 0x00, /*unk3*/ 0x00
         set_music /*unk2*/ 0x0000, /*seq*/ 0x0003
         terrain_type /*terrainType*/ 0x0000

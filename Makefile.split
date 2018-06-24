@@ -49,7 +49,6 @@ BINARY_SEGMENTS := \
    inside_castle_segment7 \
    hmc_segment7 \
    ssl_segment7 \
-   bob_segment7 \
    sl_segment7 \
    wdw_segment7 \
    jrb_segment7 \
@@ -80,13 +79,14 @@ TEXTURE_DIRS := $(addprefix bin/,$(SEGMENTS))
 MIO0_FILES := $(addprefix $(MIO0_DIR)/,$(addsuffix .mio0,$(BINARY_SEGMENTS) $(SEGMENTS)))
 
 # assumes naming convention "texture.<encoding>.png" generates "texture.<encoding>"
+SEGMENT2_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/segment2/*.png)))
+CAKE_END_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/cake_end/*.png)))
+TITLE_SCREEN_BG_FILES        := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/title_screen_bg/*.png)))
 INTRO_SEGMENT7_FILES         := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/intro_segment7/*.png)))
 MAIN_MENU_SEGMENT7_FILES     := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/main_menu_segment7/*.png)))
 BIDW_PLATFORM_SEGMENT7_FILES := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bidw_platform_segment7/*.png)))
 BIFS_PLATFORM_SEGMENT7_FILES := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bifs_platform_segment7/*.png)))
-SEGMENT2_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/segment2/*.png)))
-CAKE_END_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/cake_end/*.png)))
-TITLE_SCREEN_BG_FILES        := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/title_screen_bg/*.png)))
+BOB_SEGMENT7_FILES           := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bob_segment7/*.png)))
 
 $(BUILD_DIR)/bin/segment2.o: $(addprefix $(BUILD_DIR)/bin/segment2/,$(SEGMENT2_FILES))
 $(BUILD_DIR)/bin/cake_end.o: $(addprefix $(BUILD_DIR)/bin/cake_end/,$(CAKE_END_FILES))
@@ -95,6 +95,7 @@ $(BUILD_DIR)/bin/intro_segment7.o: $(addprefix $(BUILD_DIR)/bin/intro_segment7/,
 $(BUILD_DIR)/bin/main_menu_segment7.o: $(addprefix $(BUILD_DIR)/bin/main_menu_segment7/,$(MAIN_MENU_SEGMENT7_FILES))
 $(BUILD_DIR)/bin/bidw_platform_segment7.o: $(addprefix $(BUILD_DIR)/bin/bidw_platform_segment7/,$(BIDW_PLATFORM_SEGMENT7_FILES))
 $(BUILD_DIR)/bin/bifs_platform_segment7.o: $(addprefix $(BUILD_DIR)/bin/bifs_platform_segment7/,$(BIFS_PLATFORM_SEGMENT7_FILES))
+$(BUILD_DIR)/bin/bob_segment7.o: $(addprefix $(BUILD_DIR)/bin/bob_segment7/,$(BOB_SEGMENT7_FILES))
 
 $(BUILD_DIR)/bin/segment2.elf: SEGMENT_ADDRESS := 0x02000000
 $(BUILD_DIR)/bin/cake_end.elf: SEGMENT_ADDRESS := 0x07000000
@@ -103,3 +104,4 @@ $(BUILD_DIR)/bin/intro_segment7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/main_menu_segment7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/bidw_platform_segment7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/bifs_platform_segment7.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/bob_segment7.elf: SEGMENT_ADDRESS := 0x07000000

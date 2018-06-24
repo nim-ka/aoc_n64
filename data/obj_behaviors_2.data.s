@@ -20,7 +20,10 @@ glabel D_80331752
 	.incbin "bin/sm64.j.0EADAC.bin", 0x19A6, 0x2
 
 glabel D_80331754
-	.incbin "bin/sm64.j.0EADAC.bin", 0x19A8, 0x1C
+   .word bob_seg7_koopa_path
+
+glabel D_80331758
+	.incbin "bin/sm64.j.0EADAC.bin", 0x19AC, 0x18
 
 glabel D_80331770
 	.incbin "bin/sm64.j.0EADAC.bin", 0x19C4, 0x10
@@ -110,7 +113,9 @@ glabel D_803318CC
 	.incbin "bin/sm64.j.0EADAC.bin", 0x1B20, 0x24
 
 glabel D_803318F0
-	.incbin "bin/sm64.j.0EADAC.bin", 0x1B44, 0x20
+	.incbin "bin/sm64.j.0EADAC.bin", 0x1B44, 0xC
+   .word bob_seg7_collision_bridge
+	.incbin "bin/sm64.j.0EADAC.bin", 0x1B54, 0x10
 
 glabel D_80331910
 	.incbin "bin/sm64.j.0EADAC.bin", 0x1B64, 0x4

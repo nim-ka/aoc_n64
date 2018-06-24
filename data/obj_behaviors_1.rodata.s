@@ -162,8 +162,8 @@ glabel jtbl_803374A0
     .word L802EDD64
     .word L802EDD84
 
-glabel D_803374B4
-    .incbin "bin/rodata.bin", 0x2A44, 0x4
+glabel gMiniMetalBallScale
+    .float 0.3
 
 glabel D_803374B8
     .incbin "bin/rodata.bin", 0x2A48, 0x4

@@ -2231,7 +2231,10 @@ ranges:
       - [0x01000, "tex.rgba",   16, 32, 32]
       - [0x01800, "tex.rgba",   16, 32, 32]
       - [0x02000, "tex.rgba",   16, 32, 32]
-      - [0x0E958, "sm64.collision"]
+      - [0x0E958, "sm64.collision"] # level
+      - [0x113C0, "sm64.collision"] # chain chomp gate
+      - [0x113F0, "sm64.collision"] # bridge
+      - [0x11474, "sm64.collision"] # gate
    - [0x403AC0, 0x404010, "sm64.level", "bob_level"]
    - [0x404010, 0x40C8A0, "mio0", "sl_segment7", 0x07000000]:
       - [0x00000, "tex.rgba",   16, 32, 32]

@@ -12071,19 +12071,19 @@ glabel BehMoneybagLoop
 
 glabel BehTinyMetalBallInit
 /* 0A89BC 802ED9BC 3C0140B0 */  lui   $at, 0x40b0
-/* 0A89C0 802ED9C0 3C0E8036 */  lui    $t6, %hi(gCurrentObject) 
+/* 0A89C0 802ED9C0 3C0E8036 */  lui   $t6, %hi(gCurrentObject)
 /* 0A89C4 802ED9C4 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
 /* 0A89C8 802ED9C8 44812000 */  mtc1  $at, $f4
 /* 0A89CC 802ED9CC 00000000 */  nop   
 /* 0A89D0 802ED9D0 E5C400E4 */  swc1  $f4, 0xe4($t6)
 /* 0A89D4 802ED9D4 3C013F80 */  lui   $at, 0x3f80
-/* 0A89D8 802ED9D8 3C0F8036 */  lui    $t7, %hi(gCurrentObject) 
+/* 0A89D8 802ED9D8 3C0F8036 */  lui   $t7, %hi(gCurrentObject)
 /* 0A89DC 802ED9DC 8DEFFDF0 */  lw    $t7, %lo(gCurrentObject)($t7)
 /* 0A89E0 802ED9E0 44813000 */  mtc1  $at, $f6
 /* 0A89E4 802ED9E4 00000000 */  nop   
 /* 0A89E8 802ED9E8 E5E60170 */  swc1  $f6, 0x170($t7)
 /* 0A89EC 802ED9EC 3C014000 */  lui   $at, 0x4000
-/* 0A89F0 802ED9F0 3C188036 */  lui    $t8, %hi(gCurrentObject) 
+/* 0A89F0 802ED9F0 3C188036 */  lui   $t8, %hi(gCurrentObject)
 /* 0A89F4 802ED9F4 8F18FDF0 */  lw    $t8, %lo(gCurrentObject)($t8)
 /* 0A89F8 802ED9F8 44814000 */  mtc1  $at, $f8
 /* 0A89FC 802ED9FC 00000000 */  nop   
@@ -12136,9 +12136,9 @@ glabel func_802EDA6C
 /* 0A8A9C 802EDA9C 01E00008 */  jr    $t7
 /* 0A8AA0 802EDAA0 00000000 */   nop   
 glabel L802EDAA4
-/* 0A8AA4 802EDAA4 3C040701 */  lui   $a0, %hi(D_07011530) # $a0, 0x701
+/* 0A8AA4 802EDAA4 3C040701 */  lui   $a0, %hi(bob_seg7_metal_ball_path0) # $a0, 0x701
 /* 0A8AA8 802EDAA8 0C09DE68 */  jal   segmented_to_virtual
-/* 0A8AAC 802EDAAC 24841530 */   addiu $a0, %lo(D_07011530) # addiu $a0, $a0, 0x1530
+/* 0A8AAC 802EDAAC 24841530 */   addiu $a0, %lo(bob_seg7_metal_ball_path0) # addiu $a0, $a0, 0x1530
 /* 0A8AB0 802EDAB0 3C188036 */  lui   $t8, %hi(gCurrentObject) # $t8, 0x8036
 /* 0A8AB4 802EDAB4 8F18FDF0 */  lw    $t8, %lo(gCurrentObject)($t8)
 /* 0A8AB8 802EDAB8 AF0200FC */  sw    $v0, 0xfc($t8)
@@ -12154,9 +12154,9 @@ glabel L802EDAC4
 /* 0A8ADC 802EDADC 10000017 */  b     .L802EDB3C
 /* 0A8AE0 802EDAE0 00000000 */   nop   
 glabel L802EDAE4
-/* 0A8AE4 802EDAE4 3C040701 */  lui   $a0, %hi(D_070115C4) # $a0, 0x701
+/* 0A8AE4 802EDAE4 3C040701 */  lui   $a0, %hi(bob_seg7_metal_ball_path1) # $a0, 0x701
 /* 0A8AE8 802EDAE8 0C09DE68 */  jal   segmented_to_virtual
-/* 0A8AEC 802EDAEC 248415C4 */   addiu $a0, %lo(D_070115C4) # addiu $a0, $a0, 0x15c4
+/* 0A8AEC 802EDAEC 248415C4 */   addiu $a0, %lo(bob_seg7_metal_ball_path1) # addiu $a0, $a0, 0x15c4
 /* 0A8AF0 802EDAF0 3C088036 */  lui   $t0, %hi(gCurrentObject) # $t0, 0x8036
 /* 0A8AF4 802EDAF4 8D08FDF0 */  lw    $t0, %lo(gCurrentObject)($t0)
 /* 0A8AF8 802EDAF8 AD0200FC */  sw    $v0, 0xfc($t0)
@@ -12346,9 +12346,9 @@ glabel L802EDD84
 /* 0A8D90 802EDD90 44818000 */  mtc1  $at, $f16
 /* 0A8D94 802EDD94 00000000 */  nop   
 /* 0A8D98 802EDD98 E59000B8 */  swc1  $f16, 0xb8($t4)
-/* 0A8D9C 802EDD9C 3C018033 */  lui   $at, %hi(D_803374B4)
+/* 0A8D9C 802EDD9C 3C018033 */  lui   $at, %hi(gMiniMetalBallScale)
 /* 0A8DA0 802EDDA0 0C0A7B2D */  jal   ScaleObject
-/* 0A8DA4 802EDDA4 C42C74B4 */   lwc1  $f12, %lo(D_803374B4)($at)
+/* 0A8DA4 802EDDA4 C42C74B4 */   lwc1  $f12, %lo(gMiniMetalBallScale)($at)
 /* 0A8DA8 802EDDA8 3C01421C */  lui   $at, 0x421c
 /* 0A8DAC 802EDDAC 3C0D8036 */  lui    $t5, %hi(gCurrentObject) 
 /* 0A8DB0 802EDDB0 8DADFDF0 */  lw    $t5, %lo(gCurrentObject)($t5)
