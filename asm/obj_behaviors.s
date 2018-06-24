@@ -2199,8 +2199,8 @@ glabel Unknown802E4DF4
 .L802E4E20:
 /* 09FE20 802E4E20 3C088033 */  lui   $t0, %hi(D_8033150C) # $t0, 0x8033
 /* 09FE24 802E4E24 8108150C */  lb    $t0, %lo(D_8033150C)($t0)
-/* 09FE28 802E4E28 3C0C8033 */  lui   $t4, %hi(gPlayer2Controller) # $t4, 0x8033
-/* 09FE2C 802E4E2C 8D8CC6AC */  lw    $t4, %lo(gPlayer2Controller)($t4)
+/* 09FE28 802E4E28 3C0C8033 */  lui   $t4, %hi(gPlayer3Controller) # $t4, 0x8033
+/* 09FE2C 802E4E2C 8D8CC6AC */  lw    $t4, %lo(gPlayer3Controller)($t4)
 /* 09FE30 802E4E30 00084840 */  sll   $t1, $t0, 1
 /* 09FE34 802E4E34 00895021 */  addu  $t2, $a0, $t1
 /* 09FE38 802E4E38 854B0000 */  lh    $t3, ($t2)
@@ -2222,8 +2222,8 @@ glabel Unknown802E4DF4
 /* 09FE74 802E4E74 2401000A */  li    $at, 10
 /* 09FE78 802E4E78 13210006 */  beq   $t9, $at, .L802E4E94
 /* 09FE7C 802E4E7C 00000000 */   nop   
-/* 09FE80 802E4E80 3C088033 */  lui   $t0, %hi(gPlayer2Controller) # $t0, 0x8033
-/* 09FE84 802E4E84 8D08C6AC */  lw    $t0, %lo(gPlayer2Controller)($t0)
+/* 09FE80 802E4E80 3C088033 */  lui   $t0, %hi(gPlayer3Controller) # $t0, 0x8033
+/* 09FE84 802E4E84 8D08C6AC */  lw    $t0, %lo(gPlayer3Controller)($t0)
 /* 09FE88 802E4E88 95090012 */  lhu   $t1, 0x12($t0)
 /* 09FE8C 802E4E8C 11200007 */  beqz  $t1, .L802E4EAC
 /* 09FE90 802E4E90 00000000 */   nop   
@@ -6767,12 +6767,12 @@ glabel func_802E8B3C
 
 glabel func_802E8DE4
 /* 0A3DE4 802E8DE4 27BDFFF8 */  addiu $sp, $sp, -8
-/* 0A3DE8 802E8DE8 3C0E8033 */  lui   $t6, %hi(gPlayer2Controller) # $t6, 0x8033
-/* 0A3DEC 802E8DEC 8DCEC6AC */  lw    $t6, %lo(gPlayer2Controller)($t6)
+/* 0A3DE8 802E8DE8 3C0E8033 */  lui   $t6, %hi(gPlayer3Controller) # $t6, 0x8033
+/* 0A3DEC 802E8DEC 8DCEC6AC */  lw    $t6, %lo(gPlayer3Controller)($t6)
 /* 0A3DF0 802E8DF0 85CF0000 */  lh    $t7, ($t6)
 /* 0A3DF4 802E8DF4 A7AF0006 */  sh    $t7, 6($sp)
-/* 0A3DF8 802E8DF8 3C188033 */  lui   $t8, %hi(gPlayer2Controller) # $t8, 0x8033
-/* 0A3DFC 802E8DFC 8F18C6AC */  lw    $t8, %lo(gPlayer2Controller)($t8)
+/* 0A3DF8 802E8DF8 3C188033 */  lui   $t8, %hi(gPlayer3Controller) # $t8, 0x8033
+/* 0A3DFC 802E8DFC 8F18C6AC */  lw    $t8, %lo(gPlayer3Controller)($t8)
 /* 0A3E00 802E8E00 87190002 */  lh    $t9, 2($t8)
 /* 0A3E04 802E8E04 A7B90004 */  sh    $t9, 4($sp)
 /* 0A3E08 802E8E08 3C088036 */  lui   $t0, %hi(gCurrentObject) # $t0, 0x8036

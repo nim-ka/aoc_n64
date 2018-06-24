@@ -34,8 +34,8 @@ extern s8 gEepromProbe;
 
 extern void (*D_8032C6A0)(void);
 extern struct Controller *gPlayer1Controller;
-extern struct Controller *D_8032C6A8;
 extern struct Controller *gPlayer2Controller;
+extern struct Controller *gPlayer3Controller;
 extern struct DemoInput *gCurrDemoInput;
 extern u16 gDemoInputListID;
 extern struct DemoInput gRecordedDemoInput;

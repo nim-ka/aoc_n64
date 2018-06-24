@@ -242,9 +242,9 @@ int LevelProc_80177610(UNUSED int a, UNUSED int b)
 {
     if (D_801A8018 >= 11)
     {
-        if ((gPlayer2Controller->buttonPressed & A_BUTTON)
-         || (gPlayer2Controller->buttonPressed & START_BUTTON)
-         || (gPlayer2Controller->buttonPressed & B_BUTTON))
+        if ((gPlayer3Controller->buttonPressed & A_BUTTON)
+         || (gPlayer3Controller->buttonPressed & START_BUTTON)
+         || (gPlayer3Controller->buttonPressed & B_BUTTON))
         {
             SetSound(SOUND_MENU_STARSOUND, D_803320E0);
             if (D_801B9913 > sSelectedStar)

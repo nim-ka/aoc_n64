@@ -14,9 +14,9 @@
 # TODO: replace 2CEE0 with __bss1size
 
 glabel EntryPoint
-/* 001000 80246000 3C088034 */  lui   $t0, %hi(_mainSegmentBssStart) # $t0, 0x8034
+/* 001000 80246000 3C088034 */  lui   $t0, %hi(_mainSegmentNoloadStart) # $t0, 0x8034
 /* 001004 80246004 3C090002 */  lui   $t1, (0x0002CEE0 >> 16) # lui $t1, 2
-/* 001008 80246008 25089210 */  addiu $t0, %lo(_mainSegmentBssStart) # addiu $t0, $t0, -0x6df0
+/* 001008 80246008 25089210 */  addiu $t0, %lo(_mainSegmentNoloadStart) # addiu $t0, $t0, -0x6df0
 /* 00100C 8024600C 3529CEE0 */  ori   $t1, (0x0002CEE0 & 0xFFFF) # ori $t1, $t1, 0xcee0
 .L80246010:
 /* 001010 80246010 2129FFF8 */  addi  $t1, $t1, -8

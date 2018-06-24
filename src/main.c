@@ -60,9 +60,9 @@ static s16 sDebugTextKey = 0;
 // unused
 void handle_debug_key_sequences(void)
 {
-    if (gPlayer2Controller->buttonPressed != 0)
+    if (gPlayer3Controller->buttonPressed != 0)
     {
-        if (sProfilerKeySequence[sProfilerKey++] == gPlayer2Controller->buttonPressed)
+        if (sProfilerKeySequence[sProfilerKey++] == gPlayer3Controller->buttonPressed)
         {
             if (sProfilerKey == ARRAY_COUNT(sProfilerKeySequence))
                 sProfilerKey = 0, gShowProfiler ^= 1;
@@ -72,7 +72,7 @@ void handle_debug_key_sequences(void)
             sProfilerKey = 0;
         }
 
-        if (sDebugTextKeySequence[sDebugTextKey++] == gPlayer2Controller->buttonPressed)
+        if (sDebugTextKeySequence[sDebugTextKey++] == gPlayer3Controller->buttonPressed)
         {
             if (sDebugTextKey == ARRAY_COUNT(sDebugTextKeySequence))
                 sDebugTextKey = 0, gShowDebugText ^= 1;

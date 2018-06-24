@@ -1201,13 +1201,13 @@ static void handle_button_presses(void)
      || sSelectedButtonId == MENU_BUTTON_SCORE_FILE_C
      || sSelectedButtonId == MENU_BUTTON_SCORE_FILE_D)
     {
-        if (gPlayer2Controller->buttonPressed & (B_BUTTON | START_BUTTON))
+        if (gPlayer3Controller->buttonPressed & (B_BUTTON | START_BUTTON))
         {
             sClickPos[0] = sCursorPos[0];
             sClickPos[1] = sCursorPos[1];
             D_801A7BE4 = 1;
         }
-        else if (gPlayer2Controller->buttonPressed & A_BUTTON)
+        else if (gPlayer3Controller->buttonPressed & A_BUTTON)
         {
             D_801A7C10 = 1 - D_801A7C10;
             SetSound(SOUND_MENU_CLICKFILESELECT, D_803320E0);
@@ -1215,7 +1215,7 @@ static void handle_button_presses(void)
     }
     else
     {
-        if (gPlayer2Controller->buttonPressed & (A_BUTTON | B_BUTTON | START_BUTTON))
+        if (gPlayer3Controller->buttonPressed & (A_BUTTON | B_BUTTON | START_BUTTON))
         {
             sClickPos[0] = sCursorPos[0];
             sClickPos[1] = sCursorPos[1];
@@ -1226,8 +1226,8 @@ static void handle_button_presses(void)
 
 static void handle_controller_input(void)
 {
-    s16 rawStickX = gPlayer2Controller->rawStickX;
-    s16 rawStickY = gPlayer2Controller->rawStickY;
+    s16 rawStickX = gPlayer3Controller->rawStickX;
+    s16 rawStickY = gPlayer3Controller->rawStickY;
 
     if (rawStickY > -2 && rawStickY < 2)
         rawStickY = 0;

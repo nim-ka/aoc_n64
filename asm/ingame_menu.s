@@ -1443,8 +1443,8 @@ glabel func_802D7924
 /* 092944 802D7944 24010001 */  li    $at, 1
 /* 092948 802D7948 15C10015 */  bne   $t6, $at, .L802D79A0
 /* 09294C 802D794C 00000000 */   nop   
-/* 092950 802D7950 3C0F8033 */  lui   $t7, %hi(gPlayer2Controller) # $t7, 0x8033
-/* 092954 802D7954 8DEFC6AC */  lw    $t7, %lo(gPlayer2Controller)($t7)
+/* 092950 802D7950 3C0F8033 */  lui   $t7, %hi(gPlayer3Controller) # $t7, 0x8033
+/* 092954 802D7954 8DEFC6AC */  lw    $t7, %lo(gPlayer3Controller)($t7)
 /* 092958 802D7958 85F80002 */  lh    $t8, 2($t7)
 /* 09295C 802D795C 2B01003D */  slti  $at, $t8, 0x3d
 /* 092960 802D7960 14200004 */  bnez  $at, .L802D7974
@@ -1453,8 +1453,8 @@ glabel func_802D7924
 /* 09296C 802D796C 27280001 */  addiu $t0, $t9, 1
 /* 092970 802D7970 A3A8001F */  sb    $t0, 0x1f($sp)
 .L802D7974:
-/* 092974 802D7974 3C098033 */  lui   $t1, %hi(gPlayer2Controller) # $t1, 0x8033
-/* 092978 802D7978 8D29C6AC */  lw    $t1, %lo(gPlayer2Controller)($t1)
+/* 092974 802D7974 3C098033 */  lui   $t1, %hi(gPlayer3Controller) # $t1, 0x8033
+/* 092978 802D7978 8D29C6AC */  lw    $t1, %lo(gPlayer3Controller)($t1)
 /* 09297C 802D797C 852A0002 */  lh    $t2, 2($t1)
 /* 092980 802D7980 2941FFC4 */  slti  $at, $t2, -0x3c
 /* 092984 802D7984 10200004 */  beqz  $at, .L802D7998
@@ -1470,8 +1470,8 @@ glabel func_802D7924
 /* 0929A4 802D79A4 24010002 */  li    $at, 2
 /* 0929A8 802D79A8 15A10013 */  bne   $t5, $at, .L802D79F8
 /* 0929AC 802D79AC 00000000 */   nop   
-/* 0929B0 802D79B0 3C0E8033 */  lui   $t6, %hi(gPlayer2Controller) # $t6, 0x8033
-/* 0929B4 802D79B4 8DCEC6AC */  lw    $t6, %lo(gPlayer2Controller)($t6)
+/* 0929B0 802D79B0 3C0E8033 */  lui   $t6, %hi(gPlayer3Controller) # $t6, 0x8033
+/* 0929B4 802D79B4 8DCEC6AC */  lw    $t6, %lo(gPlayer3Controller)($t6)
 /* 0929B8 802D79B8 85CF0000 */  lh    $t7, ($t6)
 /* 0929BC 802D79BC 29E1003D */  slti  $at, $t7, 0x3d
 /* 0929C0 802D79C0 14200004 */  bnez  $at, .L802D79D4
@@ -1480,8 +1480,8 @@ glabel func_802D7924
 /* 0929CC 802D79CC 27190002 */  addiu $t9, $t8, 2
 /* 0929D0 802D79D0 A3B9001F */  sb    $t9, 0x1f($sp)
 .L802D79D4:
-/* 0929D4 802D79D4 3C088033 */  lui   $t0, %hi(gPlayer2Controller) # $t0, 0x8033
-/* 0929D8 802D79D8 8D08C6AC */  lw    $t0, %lo(gPlayer2Controller)($t0)
+/* 0929D4 802D79D4 3C088033 */  lui   $t0, %hi(gPlayer3Controller) # $t0, 0x8033
+/* 0929D8 802D79D8 8D08C6AC */  lw    $t0, %lo(gPlayer3Controller)($t0)
 /* 0929DC 802D79DC 85090000 */  lh    $t1, ($t0)
 /* 0929E0 802D79E0 2921FFC4 */  slti  $at, $t1, -0x3c
 /* 0929E4 802D79E4 10200004 */  beqz  $at, .L802D79F8
@@ -3426,8 +3426,8 @@ glabel func_802D93E0
 /* 0945B8 802D95B8 44802000 */  mtc1  $zero, $f4
 /* 0945BC 802D95BC 3C018033 */  lui   $at, %hi(D_80330414)
 /* 0945C0 802D95C0 E4240414 */  swc1  $f4, %lo(D_80330414)($at)
-/* 0945C4 802D95C4 3C0D8033 */  lui   $t5, %hi(gPlayer2Controller) # $t5, 0x8033
-/* 0945C8 802D95C8 8DADC6AC */  lw    $t5, %lo(gPlayer2Controller)($t5)
+/* 0945C4 802D95C4 3C0D8033 */  lui   $t5, %hi(gPlayer3Controller) # $t5, 0x8033
+/* 0945C8 802D95C8 8DADC6AC */  lw    $t5, %lo(gPlayer3Controller)($t5)
 /* 0945CC 802D95CC 95AF0012 */  lhu   $t7, 0x12($t5)
 /* 0945D0 802D95D0 31EE8000 */  andi  $t6, $t7, 0x8000
 /* 0945D4 802D95D4 15C00004 */  bnez  $t6, .L802D95E8
@@ -6080,8 +6080,8 @@ glabel func_802DBBB0
 /* 096CB4 802DBCB4 0C0B6BE7 */  jal   PauseScreen2
 /* 096CB8 802DBCB8 2407000F */   li    $a3, 15
 .L802DBCBC:
-/* 096CBC 802DBCBC 3C0B8033 */  lui   $t3, %hi(gPlayer2Controller) # $t3, 0x8033
-/* 096CC0 802DBCC0 8D6BC6AC */  lw    $t3, %lo(gPlayer2Controller)($t3)
+/* 096CBC 802DBCBC 3C0B8033 */  lui   $t3, %hi(gPlayer3Controller) # $t3, 0x8033
+/* 096CC0 802DBCC0 8D6BC6AC */  lw    $t3, %lo(gPlayer3Controller)($t3)
 /* 096CC4 802DBCC4 956C0012 */  lhu   $t4, 0x12($t3)
 /* 096CC8 802DBCC8 318D8000 */  andi  $t5, $t4, 0x8000
 /* 096CCC 802DBCCC 15A00004 */  bnez  $t5, .L802DBCE0
@@ -6132,8 +6132,8 @@ glabel func_802DBBB0
 /* 096D6C 802DBD6C 24040068 */  li    $a0, 104
 /* 096D70 802DBD70 0C0B6E10 */  jal   func_802DB840
 /* 096D74 802DBD74 2405003C */   li    $a1, 60
-/* 096D78 802DBD78 3C098033 */  lui   $t1, %hi(gPlayer2Controller) # $t1, 0x8033
-/* 096D7C 802DBD7C 8D29C6AC */  lw    $t1, %lo(gPlayer2Controller)($t1)
+/* 096D78 802DBD78 3C098033 */  lui   $t1, %hi(gPlayer3Controller) # $t1, 0x8033
+/* 096D7C 802DBD7C 8D29C6AC */  lw    $t1, %lo(gPlayer3Controller)($t1)
 /* 096D80 802DBD80 952A0012 */  lhu   $t2, 0x12($t1)
 /* 096D84 802DBD84 314B8000 */  andi  $t3, $t2, 0x8000
 /* 096D88 802DBD88 15600004 */  bnez  $t3, .L802DBD9C
@@ -7146,8 +7146,8 @@ glabel func_802DCBD4
 /* 097C98 802DCC98 2901006F */  slti  $at, $t0, 0x6f
 /* 097C9C 802DCC9C 14200024 */  bnez  $at, .L802DCD30
 /* 097CA0 802DCCA0 00000000 */   nop   
-/* 097CA4 802DCCA4 3C098033 */  lui   $t1, %hi(gPlayer2Controller) # $t1, 0x8033
-/* 097CA8 802DCCA8 8D29C6AC */  lw    $t1, %lo(gPlayer2Controller)($t1)
+/* 097CA4 802DCCA4 3C098033 */  lui   $t1, %hi(gPlayer3Controller) # $t1, 0x8033
+/* 097CA8 802DCCA8 8D29C6AC */  lw    $t1, %lo(gPlayer3Controller)($t1)
 /* 097CAC 802DCCAC 952A0012 */  lhu   $t2, 0x12($t1)
 /* 097CB0 802DCCB0 314B8000 */  andi  $t3, $t2, 0x8000
 /* 097CB4 802DCCB4 15600004 */  bnez  $t3, .L802DCCC8

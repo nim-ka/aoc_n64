@@ -19,12 +19,12 @@ __expansionRamStart = 0x80400000;
     _##name##SegmentRomEnd = __romPos + SIZEOF(.name); \
     __romPos += SIZEOF(.name); \
 
-#define BEGIN_BSS(name) \
-    _##name##SegmentBssStart = ADDR(.name.bss); \
-    .name.bss (NOLOAD) :
+#define BEGIN_NOLOAD(name) \
+    _##name##SegmentNoloadStart = ADDR(.name.noload); \
+    .name.noload (NOLOAD) :
 
-#define END_BSS(name) \
-    _##name##SegmentBssEnd = ADDR(.name.bss) + SIZEOF(.name.bss);
+#define END_NOLOAD(name) \
+    _##name##SegmentNoloadEnd = ADDR(.name.noload) + SIZEOF(.name.noload);
 
 #define STANDARD_LEVEL(name) \
    BEGIN_SEG(name##_segment_7, 0x07000000) \
@@ -202,7 +202,7 @@ SECTIONS
       build/data/audio.rodata.o(.rodata*);
    }
    END_SEG(main)
-   BEGIN_BSS(main)
+   BEGIN_NOLOAD(main)
    {
 #if VERSION_US
       . += 0x430;
@@ -222,7 +222,7 @@ SECTIONS
       build/src/hud_print.o(.bss*);
       build/data/bss803600E0.o(.bss*);
    }
-   END_BSS(main)
+   END_NOLOAD(main)
 
    BEGIN_SEG(engine, 0x80378800)
    {
@@ -246,7 +246,7 @@ SECTIONS
       build/src/surface_load.o(.rodata*);
    }
    END_SEG(engine)
-   BEGIN_BSS(engine)
+   BEGIN_NOLOAD(engine)
    {
       build/data/bss2.o(.bss*);
       build/src/level_script.o(.bss*);
@@ -254,7 +254,7 @@ SECTIONS
       build/src/surface_load.o(.bss*);
       build/src/behavior_script.o(.bss*);
    }
-   END_BSS(engine)
+   END_NOLOAD(engine)
 
    /*
     RDRAM begins at 0x8038F800 and ends where
@@ -262,11 +262,11 @@ SECTIONS
    */
    . = __rdramStart;
 
-   BEGIN_BSS(rdram)
+   BEGIN_NOLOAD(rdram)
    {
       build/data/rdram.o(.bss*);
    }
-   END_BSS(rdram)
+   END_NOLOAD(rdram)
    __rdramEnd = .;
    PROVIDE(rdramEnd = .);
 
@@ -321,16 +321,18 @@ SECTIONS
       build/data/rodata_801B5790.o(.rodata*);
    }
    END_SEG(goddard)
-   BEGIN_BSS(goddard)
+   BEGIN_NOLOAD(goddard)
    {
       build/data/bss3.o(.bss*);
    }
-   END_BSS(goddard)
+   END_NOLOAD(goddard)
 
-   .stack (NOLOAD) :
+   . = 0x801C1000; /* stack begin addr */
+   BEGIN_NOLOAD(stack)
    {
       build/data/stack.o(.stack);
    }
+   END_NOLOAD(stack)
 
    /* 0x268020 0x268020-0 [0] */
    BEGIN_SEG(level_intro, 0x14000000)

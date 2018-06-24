@@ -361,8 +361,9 @@ glabel jtbl_80337658
     .word L802F4758
     .word L802F48A0
     .word L802F49E8
-
-    .incbin "bin/rodata.bin", 0x2BFC, 0xC
+    .word L802F4B30
+    .word L802F4B48
+    .word 0
 
 glabel D_80337678
     .incbin "bin/rodata.bin", 0x2C08, 0x8

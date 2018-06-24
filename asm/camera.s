@@ -7866,8 +7866,8 @@ glabel func_8028FEFC
 /* 04AF08 8028FF08 AFA50034 */  sw    $a1, 0x34($sp)
 /* 04AF0C 8028FF0C AFA60038 */  sw    $a2, 0x38($sp)
 /* 04AF10 8028FF10 AFA7003C */  sw    $a3, 0x3c($sp)
-/* 04AF14 8028FF14 3C0E8033 */  lui   $t6, %hi(D_8032C6A8) # $t6, 0x8033
-/* 04AF18 8028FF18 8DCEC6A8 */  lw    $t6, %lo(D_8032C6A8)($t6)
+/* 04AF14 8028FF14 3C0E8033 */  lui   $t6, %hi(gPlayer2Controller) # $t6, 0x8033
+/* 04AF18 8028FF18 8DCEC6A8 */  lw    $t6, %lo(gPlayer2Controller)($t6)
 /* 04AF1C 8028FF1C 3C01437A */  li    $at, 0x437A0000 # 250.000000
 /* 04AF20 8028FF20 44813000 */  mtc1  $at, $f6
 /* 04AF24 8028FF24 C5C40004 */  lwc1  $f4, 4($t6)
@@ -7884,8 +7884,8 @@ glabel func_8028FEFC
 /* 04AF50 8028FF50 03202825 */  move  $a1, $t9
 /* 04AF54 8028FF54 0C0A23B3 */  jal   func_80288ECC
 /* 04AF58 8028FF58 00052823 */   negu  $a1, $a1
-/* 04AF5C 8028FF5C 3C088033 */  lui   $t0, %hi(D_8032C6A8) # $t0, 0x8033
-/* 04AF60 8028FF60 8D08C6A8 */  lw    $t0, %lo(D_8032C6A8)($t0)
+/* 04AF5C 8028FF5C 3C088033 */  lui   $t0, %hi(gPlayer2Controller) # $t0, 0x8033
+/* 04AF60 8028FF60 8D08C6A8 */  lw    $t0, %lo(gPlayer2Controller)($t0)
 /* 04AF64 8028FF64 3C018033 */  lui   $at, %hi(D_8033621C)
 /* 04AF68 8028FF68 C432621C */  lwc1  $f18, %lo(D_8033621C)($at)
 /* 04AF6C 8028FF6C C5100008 */  lwc1  $f16, 8($t0)

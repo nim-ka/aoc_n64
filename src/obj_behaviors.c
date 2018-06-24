@@ -663,12 +663,12 @@ s32 Unknown802E4DF4(s16 *arg0)
         return 1;
     }
     
-    if ((*(arg0 + D_8033150C) & gPlayer2Controller->buttonPressed) != 0)
+    if ((*(arg0 + D_8033150C) & gPlayer3Controller->buttonPressed) != 0)
     {
         D_8033150C++;
         D_80331510 = 0;
     }
-    else if (D_80331510 == 10 || gPlayer2Controller->buttonPressed != 0)
+    else if (D_80331510 == 10 || gPlayer3Controller->buttonPressed != 0)
     {
         D_8033150C = 0;
         D_80331510 = 0;

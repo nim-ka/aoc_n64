@@ -550,6 +550,4 @@ glabel D_801BE97C
 glabel D_801BE980
     .space 0x14
 glabel D_801BE994
-    .space 0x166B
-glabel D_801BFFFF
-    .space 0x1001
+    .space 0x4

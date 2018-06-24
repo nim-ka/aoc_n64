@@ -37,8 +37,9 @@ s8 gEepromProbe;
 
 void (*D_8032C6A0)(void) = NULL;
 struct Controller *gPlayer1Controller = &gControllers[0];
-struct Controller *D_8032C6A8 = &gControllers[1];
-struct Controller *gPlayer2Controller = &gControllers[2];
+struct Controller *gPlayer2Controller = &gControllers[1];
+// probably debug only, see note below
+struct Controller *gPlayer3Controller = &gControllers[2];
 struct DemoInput *gCurrDemoInput = NULL; // demo input sequence
 u16 gDemoInputListID = 0;
 struct DemoInput gRecordedDemoInput = {0};
@@ -227,15 +228,16 @@ void read_controller_inputs(void)
         }
     }
 
-    // since player 2 support was removed from super mario 64, the developers opted to
-    // be sure of 0 influence from player 2 by overriding player 2's inputs with player 1's.
-    gPlayer2Controller->rawStickX = gPlayer1Controller->rawStickX;
-    gPlayer2Controller->rawStickY = gPlayer1Controller->rawStickY;
-    gPlayer2Controller->stickX = gPlayer1Controller->stickX;
-    gPlayer2Controller->stickY = gPlayer1Controller->stickY;
-    gPlayer2Controller->stickMag = gPlayer1Controller->stickMag;
-    gPlayer2Controller->buttonPressed = gPlayer1Controller->buttonPressed;
-    gPlayer2Controller->buttonDown = gPlayer1Controller->buttonDown;
+    // For some reason, player 1's inputs are copied to player 3's port. This
+    // potentially may have been a way the developers "recorded" the inputs
+    // for demos, despite record_demo existing.
+    gPlayer3Controller->rawStickX = gPlayer1Controller->rawStickX;
+    gPlayer3Controller->rawStickY = gPlayer1Controller->rawStickY;
+    gPlayer3Controller->stickX = gPlayer1Controller->stickX;
+    gPlayer3Controller->stickY = gPlayer1Controller->stickY;
+    gPlayer3Controller->stickMag = gPlayer1Controller->stickMag;
+    gPlayer3Controller->buttonPressed = gPlayer1Controller->buttonPressed;
+    gPlayer3Controller->buttonDown = gPlayer1Controller->buttonDown;
 }
 
 // initialize the controller structs to point at the OSCont information.
@@ -254,7 +256,10 @@ void init_controllers(void)
     gEepromProbe = osEepromProbe(&gSIEventMesgQueue);
 
     // loop over the 4 ports and link the controller structs to the appropriate
-    // status and pad.
+    // status and pad. Interestingly, although there are pointers to 3 controllers,
+    // only 2 are connected here. The third seems to have been reserved for debug
+    // purposes and was never connected in the retail ROM, thus gPlayer3Controller
+    // cannot be used, despite being referenced in various code.
     for (cont = 0, port = 0; port < 4 && cont < 2; port++)
     {
         // is controller plugged in?
