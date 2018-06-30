@@ -210,18 +210,18 @@ void func_8027F440(s16 a, float b, float c, float d)
     switch (a)
     {
     case 4:
-        func_8028AA80(40, 8, 16384, 0x44FA0000, b, c, d);
+        func_8028AA80(40, 8, 16384, 2000.0f, b, c, d);
         break;
     case 1:
-        func_8028AA80(128, 8, 16384, 0x457A0000, b, c, d);
+        func_8028AA80(128, 8, 16384, 4000.0f, b, c, d);
         func_8029A514(1, b, c, d);
         break;
     case 2:
-        func_8028AA80(192, 8, 16384, 0x45BB8000, b, c, d);
+        func_8028AA80(192, 8, 16384, 6000.0f, b, c, d);
         func_8029A514(3, b, c, d);
         break;
     case 3:
-        func_8028AA80(256, 8, 12288, 0x45FA0000, b, c, d);
+        func_8028AA80(256, 8, 12288, 8000.0f, b, c, d);
         func_8029A514(4, b, c, d);
         break;
     }
@@ -1078,7 +1078,7 @@ void func_8028268C(struct Struct80280550 *a)
 
 void func_802826CC(struct Struct80280550 *a)
 {
-    u16 dummy;
+    s16 dummy;
 
     func_8028B3DC(a, 0.0f);
     func_8029A478(2);
@@ -2081,7 +2081,7 @@ extern void func_8028AC30();
 extern void func_8028AD44();
 extern void func_8028AE50();
 extern void func_802883C8();
-extern void func_80289354();
+int func_80289354(s16 *a, s16 b, s16 c);
 
 void func_80285E70(struct Struct80280550 *a)
 {
@@ -2818,7 +2818,7 @@ int func_8028803C(int a)
 int func_80288130(int a)
 {
     int sp4 = 2;
-    
+
     if (a == 1 && !(D_8033B314 & 1))
     {
         D_8033B314 |= 1;
@@ -2890,7 +2890,7 @@ void func_802882A0(u8 a)
 
 extern s16 D_8033B2C0[][8];
 
-extern void func_80289618();
+void func_80289618(Vec3s a, s16 b, s16 c, s16 d);
 
 extern float D_80336194;
 extern float D_80336198;
@@ -2986,7 +2986,7 @@ int func_802886FC(u16 a, u16 b, u16 c)
 int ChangeCameraStatus(struct Struct80280550 *a)
 {
     s16 sp1E = 0;
-    
+
     if (a->unk30 != 0 || ((gPlayer1Controller->buttonDown & 0x10) && func_8028803C(0) == 2))
         sp1E |= 4;
     else if (func_80288130(0) == 1)
@@ -3014,7 +3014,7 @@ int func_80288974(Vec3f pos, float offsetY, float radius)
     Vec3f sp24[4];
     int sp20;
     int sp1C = 0;
-    
+
     collisionData.x = pos[0];
     collisionData.y = pos[1];
     collisionData.z = pos[2];
@@ -3059,7 +3059,7 @@ int func_80288C2C(Vec3f a, Vec3f b, s16 c, s16 d)
     s16 sp2A;
     s16 sp28;
     float sp24;
-    
+
     vec3f_get_dist_and_angle(a, b, &sp24, &sp2A, &sp28);
     if (sp2A > c)
     {
@@ -3118,7 +3118,7 @@ float func_80288EA0(float a, float b, float c)
 int func_80288ECC(s16 *a, s16 b, s16 c)
 {
     s16 sp6 = *a;
-    
+
     if (c == 0)
     {
         *a = b;
@@ -3139,7 +3139,7 @@ int func_80288ECC(s16 *a, s16 b, s16 c)
 int func_80288F84(s16 a, s16 b, s16 c)
 {
     s16 sp6 = a;
-    
+
     if (c == 0)
     {
         a = b;
@@ -3166,6 +3166,529 @@ void func_8028909C(Vec3f a, Vec3f b, float c, float d, float e)
     func_80288D74(&a[0], b[0], c);
     func_80288D74(&a[1], b[1], d);
     func_80288D74(&a[2], b[2], e);
+}
+
+void func_80289110(Vec3s a, Vec3s b, s16 c, s16 d, s16 e)
+{
+    func_80288ECC(&a[0], b[0], c);
+    func_80288ECC(&a[1], b[1], d);
+    func_80288ECC(&a[2], b[2], e);
+}
+
+int func_80289184(s16 *a, s16 b, s16 c)
+{
+    s16 sp6 = b - *a;
+
+    if (c < 0)
+        c = -1 * c;
+    if (sp6 > 0)
+    {
+        sp6 -= c;
+        if (sp6 >= 0)
+            *a = b - sp6;
+        else
+            *a = b;
+    }
+    else
+    {
+        sp6 += c;
+        if (sp6 <= 0)
+            *a = b - sp6;
+        else
+            *a = b;
+    }
+    if (*a == b)
+        return 0;
+    else
+        return 1;
+}
+
+int func_80289264(s16 a, s16 b, s16 c)
+{
+    s16 sp6 = b - a;
+
+    if (c < 0)
+        c = -1 * c;
+    if (sp6 > 0)
+    {
+        sp6 -= c;
+        if (sp6 >= 0)
+            a = b - sp6;
+        else
+            a = b;
+    }
+    else
+    {
+        sp6 += c;
+        if (sp6 <= 0)
+            a = b - sp6;
+        else
+            a = b;
+    }
+    return a;
+}
+
+int func_80289354(s16 *a, s16 b, s16 c)
+{
+    if (D_8033B4DA & 1)
+        func_80289184(a, b, c);
+    else
+        *a = b;
+    if (*a == b)
+        return 0;
+    else
+        return 1;
+}
+
+int func_802893E4(float *a, float b, float c)
+{
+    float sp10 = b - *a;
+
+    if (c < 0)
+        c = -1 * c;
+    if (sp10 > 0)
+    {
+        sp10 -= c;
+        if (sp10 > 0)
+            *a = b - sp10;
+        else
+            *a = b;
+    }
+    else
+    {
+        sp10 += c;
+        if (sp10 < 0)
+            *a = b - sp10;
+        else
+            *a = b;
+    }
+    if (*a == b)
+        return 0;
+    else
+        return 1;
+}
+
+float func_80289524(float a, float b, float c)
+{
+    float sp10 = b - a;
+
+    if (c < 0)
+        c = -1 * c;
+    if (sp10 > 0)
+    {
+        sp10 -= c;
+        if (sp10 > 0)
+            a = b - sp10;
+        else
+            a = b;
+    }
+    else
+    {
+        sp10 += c;
+        if (sp10 < 0)
+            a = b - sp10;
+        else
+            a = b;
+    }
+    return a;
+}
+
+void func_80289618(Vec3s a, s16 b, s16 c, s16 d)
+{
+    float sp2C;
+    UNUSED u8 unused[4];
+    float sp24;
+    float sp20;
+    float sp1C;
+
+    sp2C = RandomFloat();
+    sp24 = b;
+    a[0] = sp2C * sp24 - sp24 / 2.0f;
+
+    sp2C = RandomFloat();
+    sp20 = c;
+    a[1] = sp2C * sp20 - sp20 / 2.0f;
+
+    sp2C = RandomFloat();
+    sp1C = d;
+    a[2] = sp2C * sp1C - sp1C / 2.0f;
+}
+
+int func_80289738(s16 a, float b, float c, float d, float e)
+{
+    Vec3f sp3C;
+    float sp38;
+    s16 sp36;
+    s16 sp34;
+    s16 sp32;
+    s16 sp30;
+    s16 sp2E = 0;
+    float sp28 = D_8033B328.unk0[3][0] - c;
+    float sp24 = D_8033B328.unk0[3][1] - d;
+    float sp20 = D_8033B328.unk0[3][2] - e;
+
+    sp38 = sqrtf(sp28 * sp28 + sp24 * sp24 + sp20 * sp20);
+    if (b > sp38)
+    {
+        sp3C[0] = c;
+        sp3C[1] = d;
+        sp3C[2] = e;
+        vec3f_get_dist_and_angle(D_8033B328.unk0[3], sp3C, &sp38, &sp36, &sp34);
+        if (sp38 < b)
+        {
+            func_8028A578(D_8033B328.unk0[3], D_8033B328.unk0[2], &sp32, &sp30);
+            sp36 -= sp32;
+            sp34 -= sp30;
+            sp38 -= 2000.0f;
+            if (sp38 < 0.0f)
+                sp38 = 0.0f;
+            b -= 2000.0f;
+            if (b < 2000.0f)
+                b = 2000.0f;
+            sp2E = a * (1.0f - sp38 / b);
+            if (sp36 < -0x1800 || sp36 > 0x400 || sp34 < -0x1800 || sp34 > 0x1800)
+                sp2E /= 2;
+        }
+    }
+    return sp2E;
+}
+
+int func_802899A0(Vec3f a, Vec3f b, float c, float d, float e, float f)
+{
+    s16 sp1E = D_8033B860->unk3A;
+
+    if (a[0] >= c)
+        a[0] = c;
+    if (a[0] <= d)
+        a[0] = d;
+    if (a[2] >= e)
+        a[2] = e;
+    if (a[2] <= f)
+        a[2] = f;
+    sp1E = func_8028A4F0(b, a);
+    return sp1E;
+}
+
+int func_80289A98(s16 a, s16 b)
+{
+    s16 sp2E;
+    UNUSED u8 unused[34];
+    UNUSED int sp8 = 0;
+    UNUSED int sp4 = 0;
+
+    sp2E = b - a + 0x4000;
+    if (sp2E < 0)
+        a = b;
+    else
+        a = b + 32768;
+    return a;
+}
+
+int func_80289B0C(struct Surface *a, float b, float c, float d)
+{
+    Vec3s sp38;
+    Vec3s sp30;
+    Vec3s sp28;
+    s16 sp26 = 0;
+    s16 sp24 = 0;
+    s16 sp22 = 0;
+    float sp1C;
+    float sp18;
+    float sp14;
+    UNUSED u8 unused[4];
+    int spC;
+    int sp8;
+    int sp4 = 0;
+
+    sp38[0] = a->vertex1[0];
+    sp38[1] = a->vertex2[0];
+    sp38[2] = a->vertex3[0];
+    sp30[0] = a->vertex1[1];
+    sp30[1] = a->vertex2[1];
+    sp30[2] = a->vertex3[1];
+    sp28[0] = a->vertex1[2];
+    sp28[1] = a->vertex2[2];
+    sp28[2] = a->vertex3[2];
+    for (spC = 0; spC < 3; spC++)
+    {
+        sp8 = spC + 1;
+        if (sp8 >= 3)
+            sp8 = 0;
+        sp1C = ABS(sp38[spC] - sp38[sp8]);
+        if (sp1C > sp26)
+            sp26 = sp1C;
+        sp18 = ABS(sp30[spC] - sp30[sp8]);
+        if (sp18 > sp24)
+            sp24 = sp18;
+        sp14 = ABS(sp28[spC] - sp28[sp8]);
+        if (sp14 > sp22)
+            sp22 = sp14;
+    }
+    if (c != -1.0f)
+    {
+        if (sp24 < c)
+            sp4 = 1;
+    }
+    if (b != -1.0f && d != -1.0f)
+    {
+        if (sp26 < b && sp22 < d)
+            sp4 = 1;
+    }
+    return sp4;
+}
+
+int func_80289F04(Vec3f a, struct Surface *b)
+{
+    int sp1C = 0;
+    float sp18 = (b->vertex2[1] - b->vertex1[1]) * (b->vertex3[2] - b->vertex2[2]) - (b->vertex3[1] - b->vertex2[1]) * (b->vertex2[2] - b->vertex1[2]);
+    float sp14 = (b->vertex2[2] - b->vertex1[2]) * (b->vertex3[0] - b->vertex2[0]) - (b->vertex3[2] - b->vertex2[2]) * (b->vertex2[0] - b->vertex1[0]);
+    float sp10 = (b->vertex2[0] - b->vertex1[0]) * (b->vertex3[1] - b->vertex2[1]) - (b->vertex3[0] - b->vertex2[0]) * (b->vertex2[1] - b->vertex1[1]);
+    float spC = b->vertex1[0] - a[0];
+    float sp8 = b->vertex1[1] - a[1];
+    float sp4 = b->vertex1[2] - a[2];
+
+    if (spC * sp18 + sp8 * sp14 + sp4 * sp10 < 0)
+        sp1C = 1;
+    return sp1C;
+}
+
+int func_8028A0D4(Vec3f a, Vec3f b, struct Surface *c, s16 d, s16 e)
+{
+    int sp54 = 1;
+    int sp50 = 0;
+    int sp4C = 0;
+    UNUSED u8 unused[20];
+    float sp34;
+    s16 sp32;
+    s16 sp30;
+    Vec3f sp24;
+
+    if (c != NULL)
+    {
+        if (e == -1 || c->type != e)
+        {
+            if (d == 0)
+            {
+                sp54 = func_80289F04(b, c);
+            }
+            else
+            {
+                vec3f_get_dist_and_angle(a, b, &sp34, &sp32, &sp30);
+                vec3f_set_dist_and_angle(a, sp24, sp34, sp32, sp30 + d);
+                sp50 = func_80289F04(sp24, c);
+                vec3f_set_dist_and_angle(a, sp24, sp34, sp32, sp30 - d);
+                sp4C = func_80289F04(sp24, c);
+                sp54 = sp50 * sp4C;
+            }
+        }
+    }
+    return sp54;
+}
+
+int func_8028A204(UNUSED int a, struct Surface *b)
+{
+    int sp1C = func_80289F04(D_8032D000->unk4, b);
+
+    return sp1C;
+}
+
+void func_8028A24C(Vec3f a, Vec3f b, Vec3f c, float d)
+{
+    Vec3f sp1C;
+
+    sp1C[0] = (c[0] - b[0]) * d + b[0];
+    sp1C[1] = (c[1] - b[1]) * d + b[1];
+    sp1C[2] = (c[2] - b[2]) * d + b[2];
+    vec3f_copy(a, sp1C);
+}
+
+int func_8028A300(Vec3f a, Vec3f b, Vec3f c, s16 d)
+{
+    int sp24 = 0;
+    Vec3f sp18;
+
+    sp18[0] = b[0] - a[0];
+    sp18[1] = b[1] - a[1];
+    sp18[2] = b[2] - a[2];
+    func_8028A764(sp18, sp18, d);
+    if (-c[0] < sp18[0] && sp18[0] < c[0]
+     && -c[1] < sp18[1] && sp18[1] < c[1]
+     && -c[2] < sp18[2] && sp18[2] < c[2])
+        sp24 = 1;
+    return sp24;
+}
+
+int func_8028A440(Vec3f a, Vec3f b)
+{
+    float sp34 = b[0] - a[0];
+    float sp30 = b[1] - a[1];
+    float sp2C = b[2] - a[2];
+    s16 sp2A = atan2s(sqrtf(sp34 * sp34 + sp2C * sp2C), sp30);
+
+    return sp2A;
+}
+
+s16 func_8028A4F0(Vec3f a, Vec3f b)
+{
+    float sp24 = b[0] - a[0];
+    UNUSED float sp20 = b[1] - a[1];
+    float sp1C = b[2] - a[2];
+    s16 sp1A = atan2s(sp1C, sp24);
+
+    return sp1A;
+}
+
+void func_8028A578(Vec3f a, Vec3f b, s16 *c, s16 *d)
+{
+    float sp2C = b[0] - a[0];
+    float sp28 = b[1] - a[1];
+    float sp24 = b[2] - a[2];
+
+    *c = atan2s(sqrtf(sp2C * sp2C + sp24 * sp24), sp28);
+    *d = atan2s(sp24, sp2C);
+}
+
+float func_8028A640(Vec3f a, Vec3f b)
+{
+    float sp24 = b[0] - a[0];
+    float sp20 = b[1] - a[1];
+    float sp1C = b[2] - a[2];
+    float sp18 = sqrtf(sp24 * sp24 + sp20 * sp20 + sp1C * sp1C);
+
+    return sp18;
+}
+
+float func_8028A6E4(Vec3f a, Vec3f b)
+{
+    float sp24 = b[0] - a[0];
+    float sp20 = b[2] - a[2];
+    float sp1C = sqrtf(sp24 * sp24 + sp20 * sp20);
+
+    return sp1C;
+}
+
+void func_8028A764(Vec3f a, Vec3f b, u16 c)
+{
+    Vec3f sp1C;
+
+    vec3f_copy(sp1C, b);
+    a[0] = sp1C[2] * sins(c) + sp1C[0] * coss(c);
+    a[1] = sp1C[1];
+    a[2] = sp1C[2] * coss(c) - sp1C[0] * sins(c);
+}
+
+void func_8028A834(Vec3f a, Vec3f b, u16 c)
+{
+    Vec3f sp1C;
+
+    vec3f_copy(sp1C, b);
+    a[2] = -(sp1C[2] * coss(c) - sp1C[1] * sins(c));
+    a[1] = sp1C[2] * sins(c) + sp1C[1] * coss(c);
+    a[0] = sp1C[0];
+}
+
+void func_8028A908(s16 a, s16 b, s16 c)
+{
+    if (D_8033B328.unk52[0] < a)
+    {
+        D_8033B328.unk52[0] = a;
+        D_8033B328.unk5C = b;
+        D_8033B328.unk5A = c;
+    }
+}
+
+void func_8028A964(s16 a, s16 b, s16 c)
+{
+    if (ABS(a) > ABS(D_8033B328.unk52[1]))
+    {
+        D_8033B328.unk52[1] = a;
+        D_8033B328.unkA2 = b;
+        D_8033B328.unkA0 = c;
+    }
+}
+
+void func_8028AA24(s16 a, s16 b, s16 c)
+{
+    if (D_8033B328.unk52[2] < a)
+    {
+        D_8033B328.unk52[2] = a;
+        D_8033B328.unk9C = b;
+        D_8033B328.unk9A = c;
+    }
+}
+
+void func_8028AA80(s16 a, s16 b, s16 c, float d, float e, float f, float g)
+{
+    Vec3f sp2C;
+    float sp28;
+    s16 sp26;
+    s16 sp24;
+
+    sp2C[0] = e;
+    sp2C[1] = f;
+    sp2C[2] = g;
+    vec3f_get_dist_and_angle(D_8033B328.unk0[3], sp2C, &sp28, &sp26, &sp24);
+    a = func_80289738(a, d, e, f, g);
+    if (a != 0)
+        func_8028A908(a, b, c);
+}
+
+void Unknown8028AB34(s16 a, s16 b, s16 c, float d, float e, float f, float g)
+{
+    Vec3f sp2C;
+    float sp28;
+    s16 sp26;
+    s16 sp24;
+
+    sp2C[0] = e;
+    sp2C[1] = f;
+    sp2C[2] = g;
+    vec3f_get_dist_and_angle(D_8033B328.unk0[3], sp2C, &sp28, &sp26, &sp24);
+    a = func_80289738(a, d, e, f, g);
+    if (a != 0)
+        func_8028A964(a, b, c);
+}
+
+void func_8028ABE8(s16 *a, s16 b)
+{
+    if (b == -32768)
+        *a = (*a & 0x8000) + 49152;
+    else
+        *a += b;
+}
+
+void func_8028AC30(Vec3f a, Vec3f b)
+{
+    float sp24;
+    s16 sp22;
+    s16 sp20;
+
+    if (D_8033B328.unk52[0] | D_8033B328.unk52[1])
+    {
+        vec3f_get_dist_and_angle(a, b, &sp24, &sp22, &sp20);
+        sp22 += D_8033B328.unk52[0] * sins(D_8033B328.unk58);
+        vec3f_set_dist_and_angle(a, b, sp24, sp22, sp20);
+        func_8028ABE8(&D_8033B328.unk58, D_8033B328.unk5A);
+        if (func_80289184(&D_8033B328.unk52[0], 0, D_8033B328.unk5C) == 0)
+            D_8033B328.unk58 = 0;
+    }
+}
+
+void func_8028AD44(Vec3f a, Vec3f b)
+{
+    float sp24;
+    s16 sp22;
+    s16 sp20;
+
+    if (D_8033B328.unk52[1] != 0)
+    {
+        vec3f_get_dist_and_angle(a, b, &sp24, &sp22, &sp20);
+        sp20 += D_8033B328.unk52[1] * sins(D_8033B328.unk9E);
+        vec3f_set_dist_and_angle(a, b, sp24, sp22, sp20);
+        func_8028ABE8(&D_8033B328.unk9E, D_8033B328.unkA0);
+        if (func_80289184(&D_8033B328.unk52[1], 0, D_8033B328.unkA2) == 0)
+            D_8033B328.unk9E = 0;
+    }
 }
 
 u8 unknown8032D0A8[8] = {0x00, 0x0E, 0x00, 0x01, 0x00, 0x02, 0x00, 0x04};
