@@ -290,7 +290,7 @@ glabel D_8035FDE0
     .space 0x8
 glabel gMarioObject
     .space 0x4
-glabel D_8035FDEC
+glabel gLuigiObject
     .space 0x4
 glabel gCurrentObject
     .space 0x4
@@ -352,9 +352,9 @@ glabel D_8035FF30
     .space 0x10
 glabel D_8035FF40
     .space 0x2
-glabel D_8035FF42
+glabel gSurfaceTypeBelowShadow
     .space 0x2
-glabel D_8035FF44
+glabel gShadowAboveWaterOrLava
     .space 0x1
 glabel D_8035FF45
     .space 0xB

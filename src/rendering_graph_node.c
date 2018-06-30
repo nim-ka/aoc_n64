@@ -6,7 +6,7 @@
 #include "print.h"
 #include "math_util.h"
 #include "area.h"
-#include "rotate.h"
+#include "shadow.h"
 #include "memory.h"
 #include "game.h"
 #include "rendering_graph_node.h"
@@ -20,8 +20,6 @@ extern s16 D_8033B00A;
 extern u16 *D_8033B010;
 extern s16 *D_8033B014;
 extern struct AllocOnlyPool *D_8033B018;
-extern s8 D_8035FF44;
-extern s8 D_8035FF45;
 extern u8 D_8033AFF8;
 extern u8 D_8033AFF9;
 extern s16 D_8033AFFA;
@@ -462,7 +460,7 @@ void func_8027C988(struct GraphNode018_sub *a, int b)
 
 void func_8027CB08(struct GraphNode028 *a)
 {
-    int sp94;
+    Gfx *sp94;
     float sp54[4][4];
     Vec3f sp48;
     Vec3f sp3C;
@@ -508,8 +506,8 @@ void func_8027CB08(struct GraphNode028 *a)
             }
         }
         //L8027CDBC
-        sp94 = func_802CE86C(sp48[0], sp48[1], sp48[2], sp34, a->shadowSolidity, a->shadowType);
-        if (sp94 != 0)
+        sp94 = create_shadow_below_xyz(sp48[0], sp48[1], sp48[2], sp34, a->shadowSolidity, a->shadowType);
+        if (sp94 != NULL)
         {
             sp24 = alloc_display_list(sizeof(*sp24));
             D_8033A770++;
@@ -517,7 +515,7 @@ void func_8027CB08(struct GraphNode028 *a)
             mtxf_mul(D_8033A778[D_8033A770], sp54, D_8032CF9C->unk34);
             mtxf_to_mtx(sp24, D_8033A778[D_8033A770]);
             D_8033AF78[D_8033A770] = sp24;
-            if (D_8035FF44 == 1)
+            if (gShadowAboveWaterOrLava == 1)
                 func_8027B354((void *)VIRTUAL_TO_PHYSICAL(sp94), 4);
             else if (D_8035FF45 == 1)
                 func_8027B354((void *)VIRTUAL_TO_PHYSICAL(sp94), 5);

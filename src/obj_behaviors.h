@@ -157,7 +157,7 @@ void ButterflyFollowMarioLoop(void);
 void ButterflyReturnHomeLoop(void);
 void BehButterflyLoop(void);
 void BehHootInit(void);
-f32 func_802E88EC(s32 **arg0, f32 arg1);
+f32 func_802E88EC(f32 **arg0, f32 arg1);
 // extern ? func_802E89B0(?);
 // extern ? func_802E8B3C(?);
 // extern ? func_802E8DE4(?);

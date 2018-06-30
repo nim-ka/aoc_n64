@@ -9,7 +9,8 @@
 #include "surface_collision.h"
 #include "surface_load.h"
 
-static s32 D_8038BE30[4];
+
+static f32 D_8038BE30[4];
 static f32 D_8038BE40, D_8038BE44, D_8038BE48;
 static f32 D_8038BE4C;
 
@@ -282,15 +283,17 @@ static f32 unused_find_floor_height(struct Object *obj)
     return floorHeight;
 }
 
-f32 func_803814B8(f32 sp20, f32 sp24, f32 sp28, s32 **sp2C)
+f32 func_803814B8(f32 xPos, f32 yPos, f32 zPos, f32 **sp2C)
 {
     struct Surface *floor;
-    f32 floorHeight = find_floor(sp20, sp24, sp28, &floor);
+    f32 floorHeight = find_floor(xPos, yPos, zPos, &floor);
 
     *sp2C = NULL;
 
     if (floor != NULL)
     {
+        // TODO: These are definitely part of D_8038BE30; I just can't get it
+        // to compile correctly if I have D_8038BE30 contain 8 floats.
         D_8038BE40 = floor->normal[0];
         D_8038BE44 = floor->normal[1];
         D_8038BE48 = floor->normal[2];
@@ -430,7 +433,7 @@ f32 find_floor(f32 xPos, f32 yPos, f32 zPos, struct Surface **pfloor)
     }
 
     *pfloor = floor;
-    
+
     gNumFindFloorCalls += 1;
     return height;
 }
