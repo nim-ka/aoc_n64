@@ -1,5 +1,5 @@
-#ifndef _ROTATE_H
-#define _ROTATE_H
+#ifndef _SHADOW_H
+#define _SHADOW_H
 
 #include "types.h"
 
@@ -39,4 +39,4 @@ extern s16 gSurfaceTypeBelowShadow;
 extern Gfx *create_shadow_below_xyz(
     f32 xPos, f32 yPos, f32 zPos, s16 shadowScale, u8 shadowSolidity, s8 shadowType);
 
-#endif /* _ROTATE_H */
+#endif /* _SHADOW_H */
