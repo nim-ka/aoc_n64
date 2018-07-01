@@ -6,6 +6,6 @@
 // extern ? func_801780A0(?);
 // extern ? func_801780C0(?);
 // extern ? func_801780EC(?);
-// extern ? func_80178114(?);
+extern void func_80178114(u32);
 
 #endif /* _GAME_OVER_1_H */

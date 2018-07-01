@@ -2,6 +2,7 @@
 #define _PRESS_START_HEAD_6
 
 #include "types.h"
+#include "goddard/gd_types.h"
 
 // extern ? D_801BAC54;
 // extern ? D_801BAC50;
@@ -341,12 +342,12 @@
 
 // extern ? func_80197280(?);
 extern void func_801972C0();
-// extern ? func_8019750C(?);
-// extern ? func_80197624(?);
-// extern ? func_801976D0(?);
+// extern ? gd_make_vertex(?);
+// extern ? make_face_1(?);
+// extern ? make_face_2(?);
 // extern ? Unknown8019773C(?);
 // extern ? func_801977C4(?);
-// extern ? func_8019783C(?);
+// extern ? make_shape(?);
 // extern ? func_801979D4(?);
 // extern ? func_80197A04(?);
 // extern ? func_80197A30(?);
@@ -397,15 +398,15 @@ extern void func_801972C0();
 // extern ? nextVpList(?);
 // extern ? func_8019B2DC(?);
 // extern ? func_8019B31C(?);
-// extern ? func_8019B35C(?);
+extern f64 func_8019B35C(f64);
 // extern ? Unknown8019B3D4(?);
 extern int printf(const char *format, ...);
 // extern ? D_8019B9CC(?);
 // extern ? Unknown8019B9EC(?);
 // extern ? func_8019BA04(?);
 // extern ? gd_allocblock(?);
-// extern ? gd_malloc(?);
-// extern ? func_8019BC18(?);
+extern void* gd_malloc(u32, u8);    /* gd_malloc(size, alignment? */
+extern void* func_8019BC18(u32);    /* {return gd_malloc(a0, 240);} */
 // extern ? func_8019BC50(?);
 // extern ? Unknown8019BC88(?);
 // extern ? Unknown8019BCD4(?);
@@ -504,7 +505,7 @@ extern int gd_getproperty();
 extern void gd_setproperty(int, float, float, float);
 extern void func_801A3AF0(float, float, float, float, float, float);
 extern void func_801A3C8C(float, float, float, float);
-// extern ? func_801A3E5C(?);
+extern s32 func_801A3E5C(); /* 6 arguments */
 // extern ? _InitControllers(?);
 // extern ? Proc801A43DC(?);
 // extern ? func_801A43F0(?);

@@ -2,6 +2,7 @@
 #define _PRESS_START_HEAD_3
 
 #include "types.h"
+#include "goddard/gd_types.h"
 
 // extern ? D_801B9EF0;
 // extern ? D_801B9E40;
@@ -19,12 +20,12 @@
 // extern ? func_80181EB0(?);
 // extern ? func_80182088(?);
 // extern ? func_801823A0(?);
-// extern ? func_801824F0(?);
+// extern ? make_particle(?);
 // extern ? func_801825FC(?);
 // extern ? func_80182778(?);
 // extern ? func_80182A08(?);
 // extern ? Unknown80182C84(?);
-// extern ? func_80183570(?);
+extern void func_80183570(struct ObjGroup*);
 // extern ? Unknown801835C8(?);
 // extern ? Unknown80183870(?);
 // extern ? Unknown80183884(?);

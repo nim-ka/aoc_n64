@@ -2,7 +2,7 @@
 
 #include "sm64.h"
 #include "game_over_2.h"
-#include "../press_start_head_1.h"
+#include "press_start_head_1.h"
 #include "../press_start_head_4.h"
 #include "../press_start_head_5.h"
 #include "../press_start_head_6.h"
@@ -162,7 +162,7 @@ void func_80178140(void)
     return;
 }
 
-void func_80179B64(void *);
+void func_80179B64(struct ObjGroup*);
 
 extern struct Struct801781DC_2 *D_801B9BB8;  // assumed type
 
@@ -599,7 +599,7 @@ void draw_face(struct UnknownGameOverStruct4 *a)
         sp18 = func_8019FA60(sp30, sp34, sp38, sp3C->unk40);
         // WTF???
         if (sp18 != 0)
-            *(int *)&sp3C->unk44 = (int)func_8017C8C0(*(void **)&sp3C->unk44, sp18);
+            *(int *)&sp3C->unk44 = (int)make_link_2(*(void **)&sp3C->unk44, sp18);
     }
     func_8019FEF0();
     imout();
@@ -617,12 +617,12 @@ void func_8017928C(int a, float b, float c, float d, float e)
     func_8019D708(b, c, d, e);
 }
 
-void Unknown801792F0(int a)
+void Unknown801792F0(struct ObjHeader* a)
 {
-    u8 sp28[32];  // unknown type
+    char sp28[32];
     struct MyVec3f sp1C;
 
-    func_8017D6F8(sp28, a);
+    sprint_obj_id(sp28, a);
     func_80186B44(a);
     func_80188A3C(&sp1C);
     func_801A4438(sp1C.x, sp1C.y, sp1C.z);
@@ -828,9 +828,14 @@ void Unknown80179ACC(struct Struct80179ACC *a)
     a->unk12 &= ~1;
 }
 
-void func_80179B64(void *a)
+void func_80179B64(struct ObjGroup* group)
 {
-    func_8017E3E0(41510, Unknown80179ACC, a);
+    apply_to_obj_types_in_group(
+        OBJ_TYPE_LABELS | OBJ_TYPE_GADGETS | OBJ_TYPE_CAMERAS \
+        | OBJ_TYPE_NETS | OBJ_TYPE_JOINTS | OBJ_TYPE_BONES, 
+        Unknown80179ACC, 
+        group
+    );
 }
 
 struct Struct80179B9C_2
@@ -886,7 +891,7 @@ void Unknown80179CC8(struct Struct80179CC8 *a)
     struct MyVec3f sp3C;
     UNUSED u8 unused[12];
     struct Struct80179CC8 *sp2C;
-    float *sp28;
+    Mat4 *sp28;
 
     if (D_801A80F8 == NULL)
         return;
@@ -895,9 +900,9 @@ void Unknown80179CC8(struct Struct80179CC8 *a)
         return;
     func_80186B44(sp2C);
     sp28 = dGetRMatrixPtr();
-    sp3C.x = sp28[12];
-    sp3C.y = sp28[13];
-    sp3C.z = sp28[14];
+    sp3C.x = (*sp28)[3][0];
+    sp3C.y = (*sp28)[3][1];
+    sp3C.z = (*sp28)[3][2];
     func_80179B9C(&sp3C, D_801A80F8, D_801B9CE4);
     if (ABS(D_801B99F0 - sp3C.x) < 20.0f)
     {
@@ -918,7 +923,7 @@ extern s32 D_801B9CE8;
 extern void func_8017A8A0(struct Struct80179ACC *a);
 extern void Proc8017A91C(struct Struct80179ACC *a);
 
-void drawscene(int a, void *b, void *c)
+void drawscene(int a, void *b, struct ObjGroup* group)
 {
     UNUSED u8 unused[16];
 
@@ -940,10 +945,14 @@ void drawscene(int a, void *b, void *c)
             D_801B9CE4->unk60, D_801B9CE4->unk64);
     }
 
-    if (c != 0)
+    if (group != NULL)
     {
         func_801A17B0(6);
-        func_8017E3E0(0x80008, func_8017A8A0, c);
+        apply_to_obj_types_in_group(
+            OBJ_TYPE_LIGHTS | OBJ_TYPE_PARTICLES, 
+            func_8017A8A0, 
+            group
+        );
         func_801A17B0(5);
     }
 
@@ -958,18 +967,22 @@ void drawscene(int a, void *b, void *c)
     if ((D_801B9D80 = D_801B9CE4->unk34 & 0x200000) != 0)
         D_801B9CE4->unk34 &= 0xFFDFFFFF;
     D_801B9D80 = 1;
-    func_8017E3E0(0x80000, Proc8017A91C, D_801B9BB8);
+    apply_to_obj_types_in_group(OBJ_TYPE_LIGHTS, Proc8017A91C, D_801B9BB8);
     func_8018CEEC("draw1");
     restart_timer("drawobj");
     func_8018D420("process_group");
     if (D_801B9C00 == 27)
-        func_8017E3E0(0x00FFFFFF, Unknown80179CC8, b);
+        apply_to_obj_types_in_group(0x00FFFFFF, Unknown80179CC8, b);
     else
-        func_8017E3E0(0x00082028, func_8017A8A0, b);
+        apply_to_obj_types_in_group(
+            OBJ_TYPE_LIGHTS | OBJ_TYPE_GADGETS | OBJ_TYPE_NETS | OBJ_TYPE_PARTICLES, 
+            func_8017A8A0, 
+            b
+        );
     imout();
     func_8018CEEC("drawobj");
     gd_setproperty(11, 0.0f, 0.0f, 0.0f);
-    func_8017E3E0(32768, func_8017A8A0, b);
+    apply_to_obj_types_in_group(OBJ_TYPE_LABELS, func_8017A8A0, b);
     gd_setproperty(11, 1.0f, 0.0f, 0.0f);
     func_8019F098();
     imout();
@@ -1147,7 +1160,7 @@ void Draw_group(void *a)
 {
     if (a == 0)
         myPrint1("Draw_Group: Bad group definition!");
-    func_8017E3E0(0x00FFFFFF, func_8017A8A0, a);
+    apply_to_obj_types_in_group(0x00FFFFFF, func_8017A8A0, a);
 }
 
 struct Struct8017A818
@@ -1276,9 +1289,9 @@ void func_8017AD98(struct UnknownGameOverStruct2 *a, struct MyVec3f *b)
     D_801B9D18 = b->z;
     D_801B9CF8 = NULL;
     if (D_801B9BB8 != NULL)
-        func_8017E3E0(0x80000, Proc8017A980, D_801B9BB8);
+        apply_to_obj_types_in_group(OBJ_TYPE_LIGHTS, Proc8017A980, D_801B9BB8);
     if (a->unk2C != NULL)
-        func_8017E3E0(2048, func_8017A8A0, a->unk2C);
+        apply_to_obj_types_in_group(OBJ_TYPE_MATERIALS, func_8017A8A0, a->unk2C);
     func_8019E894();
     func_8018CEEC("updateshaders");
 }
@@ -1299,7 +1312,7 @@ struct Struct8017AE88
 void func_8017AE88(struct Struct8017AE88 *a)
 {
     if (a->unk2C != NULL)
-        func_8017E3E0(2048, Unknown80178C50, a->unk2C);
+        apply_to_obj_types_in_group(OBJ_TYPE_MATERIALS, Unknown80178C50, a->unk2C);
 }
 
 struct Struct8017AEDC_2
@@ -1357,7 +1370,7 @@ int Unknown8017AF48(struct Struct8017AE88 *a)
 void func_8017B028(void *a)
 {
     // FIXME: What type is this function pointer?
-    UNUSED int sp1C = func_8017E3E0(16, (void (*)())Unknown8017AF48, a);
+    UNUSED int sp1C = apply_to_obj_types_in_group(OBJ_TYPE_SHAPES, (void (*)())Unknown8017AF48, a);
 }
 
 struct Struct8017B064_3
@@ -1659,7 +1672,7 @@ void UpdateView(struct UnknownGameOverStruct9 *a)
     D_801A80F8 = NULL;
     if (a->unk28 != NULL)
     {
-        func_8017E3E0(512, Unknown8017B5F0, a->unk28);
+        apply_to_obj_types_in_group(OBJ_TYPE_CAMERAS, Unknown8017B5F0, a->unk28);
         a->unk24 = D_801A80F8;
         if (a->unk24 != NULL)
             D_801A80F8->unk18C = a;
@@ -1731,7 +1744,7 @@ void UpdateView(struct UnknownGameOverStruct9 *a)
                             for (sp130 = 0; sp130 < sp134 - 1; sp130++)
                             {
                                 D_801B9CD0 = D_801B9C08[sp12C++];
-                                func_8017E3E0(sp128, Unknown8017B514, D_801B9CE4->unk28);
+                                apply_to_obj_types_in_group(sp128, Unknown8017B514, D_801B9CE4->unk28);
                             }
                         }
                     }

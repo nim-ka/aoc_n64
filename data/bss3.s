@@ -127,18 +127,18 @@ glabel D_801B9D88
     .space 0x4
 glabel D_801B9D8C
     .space 0x14
-glabel D_801B9DA0
-    .space 0x4
-glabel D_801B9DA4
-    .space 0x4
-glabel D_801B9DA8
-    .space 0x4
-glabel D_801B9DAC
-    .space 0x4
-glabel D_801B9DB0
-    .space 0x4
-glabel D_801B9DB4
-    .space 0x4
+glabel D_801B9DA0   # MyVec3f
+    .space 0xC
+#glabel D_801B9DA4
+#    .space 0x4
+#glabel D_801B9DA8
+#    .space 0x4
+glabel D_801B9DAC   # MyVec3f
+    .space 0xC
+#glabel D_801B9DB0
+#    .space 0x4
+#glabel D_801B9DB4
+#    .space 0x4
 glabel D_801B9DB8
     .space 0x4
 glabel D_801B9DBC
@@ -149,12 +149,12 @@ glabel D_801B9DC4
     .space 0x4
 glabel D_801B9DC8
     .space 0x40
-glabel D_801B9E08
-    .space 0x4
-glabel D_801B9E0C
-    .space 0x4
-glabel D_801B9E10
-    .space 0x4
+glabel D_801B9E08   # MyVec3f
+    .space 0xC
+#glabel D_801B9E0C
+#    .space 0x4
+#glabel D_801B9E10
+#    .space 0x4
 glabel D_801B9E14
     .space 0x4
 glabel D_801B9E18

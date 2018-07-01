@@ -374,7 +374,7 @@ glabel Unknown80181AE0
 /* 2302EC 80181B1C 3C058018 */  lui   $a1, %hi(Unknown801819D0) # $a1, 0x8018
 /* 2302F0 80181B20 8FA6001C */  lw    $a2, 0x1c($sp)
 /* 2302F4 80181B24 24A519D0 */  addiu $a1, %lo(Unknown801819D0) # addiu $a1, $a1, 0x19d0
-/* 2302F8 80181B28 0C05F8F8 */  jal   func_8017E3E0
+/* 2302F8 80181B28 0C05F8F8 */  jal   apply_to_obj_types_in_group
 /* 2302FC 80181B2C 24040100 */   li    $a0, 256
 /* 230300 80181B30 10000004 */  b     .L80181B44
 /* 230304 80181B34 AFA20024 */   sw    $v0, 0x24($sp)
@@ -424,7 +424,7 @@ glabel Unknown80181B88
 /* 23039C 80181BCC 3C058018 */  lui   $a1, %hi(Unknown80181AE0) # $a1, 0x8018
 /* 2303A0 80181BD0 8FA6001C */  lw    $a2, 0x1c($sp)
 /* 2303A4 80181BD4 24A51AE0 */  addiu $a1, %lo(Unknown80181AE0) # addiu $a1, $a1, 0x1ae0
-/* 2303A8 80181BD8 0C05F8F8 */  jal   func_8017E3E0
+/* 2303A8 80181BD8 0C05F8F8 */  jal   apply_to_obj_types_in_group
 /* 2303AC 80181BDC 24041000 */   li    $a0, 4096
 .L80181BE0:
 /* 2303B0 80181BE0 10000001 */  b     .L80181BE8

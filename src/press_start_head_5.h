@@ -2,7 +2,7 @@
 #define _PRESS_START_HEAD_5
 
 #include "types.h"
-
+#include "goddard/gd_types.h"
 
 // extern ? D_801B8160;
 // extern ? D_801A82A0;
@@ -118,7 +118,7 @@
 // extern ? func_8018C264(?);
 // extern ? func_8018C30C(?);
 // extern ? Unknown8018C410(?);
-// extern ? func_8018C458(?);
+extern void func_8018C458(const char*); /* printing function? */
 // extern ? func_8018C5C4(?);
 // extern ? func_8018C650(?);
 // extern ? func_8018C674(?);
@@ -151,7 +151,7 @@ extern void imout(void);
 // extern ? func_8018D8A8(?);
 // extern ? func_8018D9A4(?);
 // extern ? func_8018D9F8(?);
-extern void func_8018DC98(char *, char *);
+extern void func_8018DC98(char *, char *);  /* gd_strcpy? */
 // extern ? Unknown8018DCDC(?);
 // extern ? func_8018DD5C(?);
 // extern ? func_8018DDD8(?);
@@ -170,7 +170,7 @@ extern void func_8018DC98(char *, char *);
 // extern ? Proc8018EBE8(?);
 // extern ? Unknown8018EE5C(?);
 // extern ? func_8018EF78(?);
-// extern ? func_8018F048(?);
+// extern ? make_joint(?);
 // extern ? func_8018F248(?);
 // extern ? func_8018F328(?);
 // extern ? Unknown8018F4CC(?);
@@ -180,7 +180,7 @@ extern void func_8018DC98(char *, char *);
 // extern ? func_8018FAC8(?);
 // extern ? func_8018FB58(?);
 // extern ? func_8018FCA4(?);
-// extern ? func_8018FD9C(?);
+// extern ? make_bone(?);
 // extern ? Unknown8018FF14(?);
 // extern ? Unknown8018FF28(?);
 // extern ? Unknown8018FF88(?);
@@ -199,7 +199,7 @@ extern void func_8018DC98(char *, char *);
 // extern ? Unknown801913F0(?);
 // extern ? Unknown801914F8(?);
 // extern ? Unknown8019150C(?);
-// extern ? func_80191604(?);
+extern void func_80191604(struct ObjHeader*);   // maybe a ObjJoint
 // extern ? Unknown80191824(?);
 // extern ? Unknown801918F4(?);
 // extern ? Unknown80191A1C(?);
@@ -207,12 +207,12 @@ extern void func_8018DC98(char *, char *);
 // extern ? Unknown80191D60(?);
 // extern ? Unknown80191E54(?);
 // extern ? func_80191E88(?);
-// extern ? func_80191EE8(?);
+extern void func_80191EE8(void);
 // extern ? func_80191F10(?);
-// extern ? func_801920C4(?);
+extern void func_801920C4(struct ObjHeader*);   // maybe a ObjNet
 // extern ? Unknown80192294(?);
 // extern ? Unknown801922FC(?);
-// extern ? func_801923B4(?);
+// extern ? make_net(?);
 // extern ? func_80192528(?);
 // extern ? func_801926A4(?);
 // extern ? Unknown80192AD0(?);
@@ -223,28 +223,28 @@ extern void func_8018DC98(char *, char *);
 // extern ? Proc801933FC(?);
 // extern ? func_801934D0(?);
 // extern ? Unknown8019359C(?);
-// extern ? func_801936C4(?);
+extern void func_801936C4(struct ObjGroup*);
 // extern ? Unknown8019373C(?);
-// extern ? func_80193848(?);
+extern void func_80193848(struct ObjGroup*);
 // extern ? Unknown801938BC(?);
-// extern ? func_80193B10(?);
+extern void func_80193B10(void);
 // extern ? func_80193B30(?);
 // extern ? func_80193B68(?);
-// extern ? func_8019415C(?);
-// extern ? func_80194220(?);
-// extern ? func_801942E4(?);
+extern void func_8019415C(Mat4*, struct MyVec3f*);
+extern void func_80194220(Mat4*, struct MyVec3f*);
+extern void func_801942E4(Mat4*, struct MyVec3f*);
 extern void func_80194358(void *, void *, float);
-// extern ? func_80194728(?);
-// extern ? func_80194770(?);
-// extern ? func_80194880(?);
+extern f32 func_80194728(f32, f32);     /* min(f1, +/-f2) */
+extern void func_80194770(struct MyVec3f*, f32);
+extern void func_80194880(f32, f32*, f32*);
 // extern ? Unknown8019498C(?);
-// extern ? func_80194A54(?);
-// extern ? func_80194B98(?);
-extern void func_80194BF4();
-// extern ? func_80194D14(?);
+extern void func_80194A54(Mat4*, s32, f32);
+extern f32 func_80194B98(struct MyVec3f*);
+extern s32 func_80194BF4();
+extern void func_80194D14(struct MyVec3f*, struct MyVec3f*, struct MyVec3f*);
 extern float func_80194DB8(Vec3f, struct MyVec3f *);
 // extern ? Unknown80194DFC(?);
-// extern ? func_80194E7C(?);
+extern void func_80194E7C(Mat4*, Mat4*);
 // extern ? func_80194F90(?);
 // extern ? func_80195578(?);
 // extern ? func_80195844(?);
@@ -255,12 +255,13 @@ extern float func_80194DB8(Vec3f, struct MyVec3f *);
 // extern ? func_80195C78(?);
 // extern ? Unknown80195D98(?);
 // extern ? func_80195FD4(?);
-// extern ? func_801961F4(?);
-extern void func_80196280(void *);
-// extern ? func_80196360(?);
-extern void func_80196430(struct MyVec3f *, void *);
-// extern ? func_80196540(?);
-// extern ? func_80196614(?);
+extern void func_8018C30C(const char*); /* some sort of print function */
+extern void func_801961F4(Mat4*, struct MyVec3f*, f32);
+extern void func_80196280(void *);      //Mat4*; something sort of matrix4x4_init?
+extern void func_80196360(Mat4*, Mat4*);
+extern void func_80196430(struct MyVec3f *, void *);    // (struct MyVec3f*, Mat4*)
+extern void func_80196540(struct MyVec3f*, Mat4*);
+extern void func_80196614(Mat4*, Mat4*, Mat4*);
 // extern ? func_80196F8C(?);
 // extern ? func_80196FA8(?);
 // extern ? func_80196FC4(?);

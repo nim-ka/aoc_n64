@@ -176,7 +176,8 @@ $(MIO0_DIR)/%.mio0: $(BUILD_DIR)/bin/%.bin
 
 # Source code
 
-build/src/goddard/%.o: MIPSISET := -mips1
+$(BUILD_DIR)/src/goddard/press_start_head_1.o: CC_CHECK := gcc -fsyntax-only -fsigned-char -I include -std=c99 -Wall -Wextra -pedantic -Wno-format-security $(VERSION_CFLAGS)
+$(BUILD_DIR)/src/goddard/%.o: MIPSISET := -mips1
 
 $(BUILD_DIR)/%.o: %.c
 	@$(CC_CHECK) -MMD -MT $@ -MF $(BUILD_DIR)/$*.d $<

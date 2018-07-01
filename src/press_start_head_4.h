@@ -2,6 +2,7 @@
 #define _PRESS_START_HEAD_4
 
 #include "types.h"
+#include "goddard/gd_types.h"
 
 // extern ? D_801B9F38;
 // extern ? D_801A8254;
@@ -312,7 +313,7 @@
 // extern ? func_80186764(?);
 // extern ? func_80186920(?);
 // extern ? dUseObj(?);
-extern void func_80186B44();
+extern void func_80186B44();  //TODO: figure out type of argument
 // extern ? func_80186B6C(?);
 // extern ? dEndGroup(?);
 // extern ? func_80186CA0(?);
@@ -321,14 +322,14 @@ extern void func_80186B44();
 // extern ? dSetVelocity(?);
 // extern ? Unknown80187104(?);
 // extern ? Unknown8018725C(?);
-// extern ? func_80187340(?);
-// extern ? func_801874C8(?);
+extern void func_80187340(struct MyVec3f*);
+extern void func_801874C8(struct MyVec3f*);
 // extern ? dSetRelPos(?);
 // extern ? Unknown80187970(?);
 // extern ? func_80187B40(?);
-// extern ? func_80187D38(?);
+extern struct ObjGroup* func_80187D38(void);
 // extern ? Unknown80187E14(?);
-// extern ? func_80187EF0(?);
+extern void func_80187EF0(struct MyVec3f*);
 // extern ? func_80188078(?);
 // extern ? UnknownRecursive8018823C(?);
 // extern ? Unknown80188390(?);
@@ -338,7 +339,7 @@ extern void func_80186B44();
 // extern ? Unknown80188970(?);
 extern void func_80188A3C(struct MyVec3f *);
 // extern ? func_801890B4(?);
-// extern ? dSetScale(?);
+extern void dSetScale(f32, f32, f32);
 // extern ? func_8018931C(?);
 // extern ? func_80189444(?);
 // extern ? func_80189520(?);
@@ -360,14 +361,14 @@ extern void func_80188A3C(struct MyVec3f *);
 // extern ? func_8018AAE4(?);
 // extern ? func_8018ABC0(?);
 // extern ? func_8018ACF0(?);
-// extern ? func_8018AD9C(?);
-// extern ? func_8018AE70(?);
+extern struct GdPlaneF* func_8018AD9C(void);
+extern void func_8018AE70(Mat4*);
 // extern ? dSetMatrix(?);
 // extern ? dSetRMatrix(?);
-extern float *dGetRMatrixPtr(void);
-// extern ? dSetIMatrix(?);
-// extern ? dGetMatrixPtr(?);
-// extern ? dGetIMatrixPtr(?);
+extern Mat4* dGetRMatrixPtr(void);
+extern void dSetIMatrix(Mat4*);
+extern Mat4* dGetMatrixPtr(void);
+extern Mat4* dGetIMatrixPtr(void);
 extern float func_8018B57C();
 // extern ? dSetSkinWeight(?);
 extern void get_objvalue();
@@ -375,13 +376,13 @@ extern void get_objvalue();
 // extern ? Proc8018B83C(?);
 // extern ? Unknown8018B898(?);
 // extern ? Unknown8018B900(?);
-// extern ? func_8018B9C0(?);
-// extern ? func_8018BA80(?);
+// extern ? make_label(?);
+// extern ? make_gadget(?);
 // extern ? set_objvalue(?);
 // extern ? Unknown8018BD54(?);
 // extern ? D_8018BCB8(?);
 // extern ? adjust_gadget(?);
-// extern ? Unknown8018BFB4(?);
-// extern ? func_8018C170(?);
+extern void Unknown8018BFB4(struct ObjGadget*);
+extern void func_8018C170(struct ObjGroup*);
 
 #endif /* _PRESS_START_HEAD_4 */
