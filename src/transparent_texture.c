@@ -21,7 +21,7 @@ extern Gfx cake_end_dl_07026400[];
 
 s16 D_80330390 = 0x01, D_80330394 = 0, D_80330398 = 0;
 
-extern struct GraphNode018 *D_8032CFA0;
+extern struct GraphNodeObject *D_8032CFA0;
 extern u16 gAreaUpdateCounter;
 
 void make_vertex(Vtx *vtx, s32 n, s16 x, s16 y, s16 z, s16 tx, s16 ty, u8 r, u8 g, u8 b, u8 a)

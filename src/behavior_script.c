@@ -498,7 +498,7 @@ static s32 Behavior28(void)
     s32 animIndex = (u8)((gBehCommand[0] >> 16) & 0xFF);
     u32* animations = gCurrentObject->oAnimations;
 
-    func_8037C658((struct GraphNode018 *) gCurrentObject, &animations[animIndex]);
+    func_8037C658((struct GraphNodeObject *) gCurrentObject, &animations[animIndex]);
 
     gBehCommand++;
     return BEH_CONTINUE;

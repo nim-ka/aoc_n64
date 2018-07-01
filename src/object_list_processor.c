@@ -301,7 +301,7 @@ void spawn_objects_from_info(UNUSED s32 unusedArg, struct SpawnInfo *spawnInfo)
                 func_8037C138((struct GraphNode *) object);
             }
 
-            func_8037C51C((struct GraphNode018 *) object, spawnInfo);
+            func_8037C51C((struct GraphNodeObject *) object, spawnInfo);
             
             object->oPosX = spawnInfo->startPos[0];
             object->oPosY = spawnInfo->startPos[1];
@@ -349,7 +349,7 @@ void func_8029CA60(void)
     for (i = 0; i < 240; i++)
     {
         D_8033C18C[i].gfx.unk00 = 0;
-        func_8037C3D0((struct GraphNode018 *) &gObjectPool[i]);
+        func_8037C3D0((struct GraphNodeObject *) &gObjectPool[i]);
     }
 
     D_8035FE0C = mem_pool_init(0x800, MEMORY_POOL_LEFT);

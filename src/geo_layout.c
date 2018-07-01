@@ -10,38 +10,38 @@ typedef void (*GeoLayoutCommandProc)(void);
 
 GeoLayoutCommandProc GeoLayoutJumpTable[] = 
 {
-    geo_layout_cmd_00,
-    geo_layout_cmd_01,
-    geo_layout_cmd_02,
-    geo_layout_cmd_03,
-    geo_layout_cmd_04,
-    geo_layout_cmd_05,
+    geo_layout_cmd_branch_and_link,
+    geo_layout_cmd_end,
+    geo_layout_cmd_branch,
+    geo_layout_cmd_return,
+    geo_layout_cmd_open_node,
+    geo_layout_cmd_close_node,
     geo_layout_cmd_06,
-    geo_layout_cmd_07,
-    geo_layout_cmd_08,
+    geo_layout_cmd_update_node_flags,
+    geo_layout_cmd_node_screen_area,
     geo_layout_cmd_09,
-    geo_layout_cmd_0A,
-    geo_layout_cmd_0B,
-    geo_layout_cmd_0C,
-    geo_layout_cmd_0D,
-    geo_layout_cmd_0E,
+    geo_layout_cmd_node_cam_frustum,
+    geo_layout_cmd_node_start,
+    geo_layout_cmd_node_toggle_z_buffer,
+    geo_layout_cmd_node_render_range,
+    geo_layout_cmd_node_switch_case,
     geo_layout_cmd_0F,
-    geo_layout_cmd_10,
+    geo_layout_cmd_node_translation_rotation_optional_display_list,
     geo_layout_cmd_11,
     geo_layout_cmd_12,
-    geo_layout_cmd_13,
-    geo_layout_cmd_14,
-    geo_layout_cmd_15,
-    geo_layout_cmd_16,
+    geo_layout_cmd_node_display_list_translated,
+    geo_layout_cmd_node_billboard_optional_display_list,
+    geo_layout_cmd_node_display_list,
+    geo_layout_cmd_node_shadow,
     geo_layout_cmd_17,
     geo_layout_cmd_18,
-    geo_layout_cmd_19,
-    geo_layout_cmd_1A,
+    geo_layout_cmd_node_background,
+    geo_layout_cmd_nop,
     geo_layout_cmd_1B,
     geo_layout_cmd_1C,
-    geo_layout_cmd_1D,
-    geo_layout_cmd_1E,
-    geo_layout_cmd_1F,
+    geo_layout_cmd_node_scale,
+    geo_layout_cmd_nop2,
+    geo_layout_cmd_nop3,
     geo_layout_cmd_20,
 };
 
@@ -52,8 +52,11 @@ extern struct GraphNode D_8038BD88;
 extern Vec3s D_80385FDC;
 extern Vec3f D_80385FE4;
 
-// branch and store
-void geo_layout_cmd_00(void)
+/*
+  0x00: Branch and store return address
+   cmd+0x04: void *branchTarget
+*/
+void geo_layout_cmd_branch_and_link(void)
 {
     gGeoLayoutStack[gGeoLayoutStackIndex++] = (u32) &gGeoLayoutCommand[8];
     gGeoLayoutStack[gGeoLayoutStackIndex++] = (gCurGraphNodeIndex << 16) + D_8038BD7E;
@@ -61,8 +64,8 @@ void geo_layout_cmd_00(void)
     gGeoLayoutCommand = (u8 *) segmented_to_virtual((void *) cur_geo_cmd_s32(0x04));
 }
 
-// terminate geo layout
-void geo_layout_cmd_01(void)
+// 0x01: Terminate geo layout
+void geo_layout_cmd_end(void)
 {
     gGeoLayoutStackIndex = D_8038BD7E;
     D_8038BD7E = gGeoLayoutStack[--gGeoLayoutStackIndex] & 0xFFFF;
@@ -70,8 +73,11 @@ void geo_layout_cmd_01(void)
     gGeoLayoutCommand = (u8 *) gGeoLayoutStack[--gGeoLayoutStackIndex];
 }
 
-// branch geo layout
-void geo_layout_cmd_02(void)
+/*
+  0x02: Branch
+   cmd+0x04: void *branchTarget
+*/
+void geo_layout_cmd_branch(void)
 {
     if(cur_geo_cmd_u8(0x01) == 1)
     {
@@ -81,32 +87,38 @@ void geo_layout_cmd_02(void)
     gGeoLayoutCommand = (u8 *) segmented_to_virtual((void *) cur_geo_cmd_s32(0x04));
 }
 
-// return from branch
-void geo_layout_cmd_03(void)
+// 0x03: Return from branch
+void geo_layout_cmd_return(void)
 {
     gGeoLayoutCommand = (u8 *) gGeoLayoutStack[--gGeoLayoutStackIndex];
 }
 
-// open node
-void geo_layout_cmd_04(void)
+// 0x04: Open node
+void geo_layout_cmd_open_node(void)
 {
     gCurGraphNodeList[gCurGraphNodeIndex + 1] = gCurGraphNodeList[gCurGraphNodeIndex];
     gCurGraphNodeIndex++;
     gGeoLayoutCommand += 0x04;
 }
 
-// close node
-void geo_layout_cmd_05(void)
+// 0x05: Close node
+void geo_layout_cmd_close_node(void)
 {
     gCurGraphNodeIndex--;
     gGeoLayoutCommand += 0x04;
 }
 
+/*
+  0x06: ?
+   cmd+0x02: index (of D_8038BCAC)
+
+  set D_8038BCAC[index] to the current scene graph node if index < D_8038BCB0
+*/
 void geo_layout_cmd_06(void)
 {
     u16 index = cur_geo_cmd_s16(0x02);
 
-    // if index is less than num allocated (see geo_layout_cmd_08)
+    // if index is less than num allocated (see geo_layout_cmd_node_screen_area)
     if(index < D_8038BCB0)
     {
         D_8038BCAC[index] = gCurGraphNodeList[gCurGraphNodeIndex];
@@ -115,8 +127,12 @@ void geo_layout_cmd_06(void)
     gGeoLayoutCommand += 0x04;
 }
 
-// update node flags
-void geo_layout_cmd_07(void)
+/*
+  0x07: Update current scene graph node flags
+   cmd+0x01: u8 operation (0 = reset, 1 = set, 2 = clear)
+   cmd+0x02: s16 bits
+*/
+void geo_layout_cmd_update_node_flags(void)
 {
     u16 operation = cur_geo_cmd_u8(0x01);
     u16 flagBits = cur_geo_cmd_s16(0x02);
@@ -137,16 +153,23 @@ void geo_layout_cmd_07(void)
     gGeoLayoutCommand += 0x04;
 }
 
-// set screen area
-void geo_layout_cmd_08(void)
+/*
+  0x08: Create screen area scene graph node
+   cmd+0x02: s16 num entries (+2) to allocate for D_8038BCAC
+   cmd+0x04: s16 x
+   cmd+0x06: s16 y
+   cmd+0x08: s16 width
+   cmd+0x0A: s16 height
+*/
+void geo_layout_cmd_node_screen_area(void)
 {
     s32 sp34;
     struct GraphNodeScreenArea *graphNode;
 
-    s16 x = cur_geo_cmd_s16(0x04); // x
-    s16 y = cur_geo_cmd_s16(0x06); // y
-    s16 width = cur_geo_cmd_s16(0x08); // width
-    s16 height = cur_geo_cmd_s16(0x0A); // height
+    s16 x = cur_geo_cmd_s16(0x04);
+    s16 y = cur_geo_cmd_s16(0x06);
+    s16 width = cur_geo_cmd_s16(0x08);
+    s16 height = cur_geo_cmd_s16(0x0A);
     
     // number of entries to allocate for D_8038BCAC array
     // at least 2 are allocated by default
@@ -172,6 +195,10 @@ void geo_layout_cmd_08(void)
     gGeoLayoutCommand += 0x0C;
 }
 
+/*
+  0x09: Create ? scene graph node (GraphNode002)
+   cmd+0x02: s16 ?
+*/
 void geo_layout_cmd_09(void)
 {
     struct GraphNode002 *graphNode;
@@ -184,80 +211,100 @@ void geo_layout_cmd_09(void)
     gGeoLayoutCommand += 0x04;
 }
 
-// set camera frustum
-void geo_layout_cmd_0A(void)
+/*
+  0x0A: Create camera frustum scene graph node
+   cmd+0x01: u8  if nonzero, enable frustumFunc field
+   cmd+0x02: s16 field of view
+   cmd+0x04: s16 near
+   cmd+0x06: s16 far
+   [cmd+0x08: GraphNodeFunc frustumFunc]
+*/
+void geo_layout_cmd_node_cam_frustum(void)
 {
     struct GraphNodeCamFrustum *graphNode;
-    GraphNodeFunc frustumProc = NULL;
+    GraphNodeFunc frustumFunc = NULL;
     s16 fov = cur_geo_cmd_s16(0x02);
     s16 near = cur_geo_cmd_s16(0x04);
     s16 far = cur_geo_cmd_s16(0x06);
 
-    if(cur_geo_cmd_u8(0x01))
+    if(cur_geo_cmd_u8(0x01) != 0)
     {
         // optional asm function
-        frustumProc = (GraphNodeFunc) cur_geo_cmd_s32(0x08);
+        frustumFunc = (GraphNodeFunc) cur_geo_cmd_s32(0x08);
         gGeoLayoutCommand += 0x04;
     }
 
-    graphNode = init_graph_node_cam_frustum(gGraphNodePool, NULL, (float)fov, near, far, frustumProc, 0);
+    graphNode = init_graph_node_cam_frustum(gGraphNodePool, NULL, (float)fov, near, far, frustumFunc, 0);
 
     register_scene_graph_node(&graphNode->fnNode.node);
 
     gGeoLayoutCommand += 0x08;
 }
 
-// start geo layout
-void geo_layout_cmd_0B(void)
+// 0x0B: Create a root scene graph node
+void geo_layout_cmd_node_start(void)
 {
-    struct GraphNode00A *graphNode;
+    struct GraphNodeStart *graphNode;
     
-    graphNode = init_graph_node_00A(gGraphNodePool, NULL);
+    graphNode = init_graph_node_start(gGraphNodePool, NULL);
 
     register_scene_graph_node(&graphNode->node);
 
     gGeoLayoutCommand += 0x04;
 }
 
-void geo_layout_cmd_1F(void)
+// 0x1F: No operation
+void geo_layout_cmd_nop3(void)
 {
-    /* no operation */
     gGeoLayoutCommand += 0x10;
 }
 
-// toggle zbuffer
-void geo_layout_cmd_0C(void)
+/*
+  0x0C: Create zbuffer-toggling scene graph node
+   cmd+0x01: u8 enableZBuffer (1 = on, 0 = off)
+*/
+void geo_layout_cmd_node_toggle_z_buffer(void)
 {
-    struct GraphNode004 *graphNode;
+    struct GraphNodeToggleZBuffer *graphNode;
     
-    graphNode = init_graph_node_004(gGraphNodePool, NULL, cur_geo_cmd_u8(0x01));
+    graphNode = init_graph_node_toggle_z_buffer(gGraphNodePool, NULL, cur_geo_cmd_u8(0x01));
 
     register_scene_graph_node(&graphNode->node);
 
     gGeoLayoutCommand += 0x04;
 }
 
-// set render range
-void geo_layout_cmd_0D(void)
+/*
+  0x0D: Create render range scene graph node
+   cmd+0x04: s16 minDistance
+   cmd+0x06: s16 maxDistance
+*/
+void geo_layout_cmd_node_render_range(void)
 {
-    struct GraphNode00B *graphNode;
+    struct GraphNodeRenderRange *graphNode;
     s16 minDistance = cur_geo_cmd_s16(0x04);
     s16 maxDistance = cur_geo_cmd_s16(0x06);
 
-    graphNode = init_graph_node_00B(gGraphNodePool, NULL, minDistance, maxDistance);
+    graphNode = init_graph_node_render_range(gGraphNodePool, NULL, minDistance, maxDistance);
 
     register_scene_graph_node(&graphNode->node);
 
     gGeoLayoutCommand += 0x08;
 }
 
-// switch case
-// 0x02 = numCases, 0x04 = asm function
-void geo_layout_cmd_0E(void)
+/*
+  0x0E: Create switch-case scene graph node
+   cmd+0x02: s16 numCases
+   cmd+0x04: GraphNodeFunc caseSelectorFunc
+  
+  caseSelectorFunc returns an index which is used to select the node to render.
+  Used for animating coins, blinking, color selection, etc.
+*/
+void geo_layout_cmd_node_switch_case(void)
 {
-    struct GraphNode10C *graphNode;
+    struct GraphNodeSwitchCase *graphNode;
     
-    graphNode = init_graph_node_10C(gGraphNodePool, NULL,
+    graphNode = init_graph_node_switch_case(gGraphNodePool, NULL,
         cur_geo_cmd_s16(0x02), // num cases
         0,
         (GraphNodeFunc) cur_geo_cmd_s32(0x04), // asm routine
@@ -268,6 +315,17 @@ void geo_layout_cmd_0E(void)
     gGeoLayoutCommand += 0x08;
 }
 
+/*
+ 0x0F: Create ? scene graph node (GraphNode114)
+  cmd+0x02: s16 ?
+  cmd+0x04: s16 unkX
+  cmd+0x06: s16 unkY
+  cmd+0x08: s16 unkZ
+  cmd+0x0A: s16 unkX_2
+  cmd+0x0C: s16 unkY_2
+  cmd+0x0E: s16 unkZ_2
+  cmd+0x10: GraphNodeFunc func
+*/
 void geo_layout_cmd_0F(void)
 {
     struct GraphNode114 *graphNode;
@@ -289,141 +347,208 @@ void geo_layout_cmd_0F(void)
     gGeoLayoutCommand += 0x14;
 }
 
-// translate and rotate
-void geo_layout_cmd_10(void)
+/*
+  0x10: Create translation & rotation scene graph node with optional display list
+   cmd+0x01: u8 params
+     (params & 0x80): if set, enable displayList field and drawingLayer
+     ((params & 0x70)>>4): fieldLayout
+     (params & 0x0F): drawingLayer
+  
+   fieldLayout == 0:
+    cmd+0x04: s16 xTranslation
+    cmd+0x06: s16 xTranslation
+    cmd+0x08: s16 xTranslation
+    cmd+0x0A: s16 xRotation
+    cmd+0x0C: s16 xRotation
+    cmd+0x0E: s16 xRotation
+  
+   fieldLayout == 1:
+    cmd+0x02: s16 xTranslation
+    cmd+0x04: s16 yTranslation
+    cmd+0x06: s16 zTranslation
+    (rotation gets copied from D_80385FDC)
+  
+   fieldLayout == 2:
+    cmd+0x02: s16 xRotation
+    cmd+0x04: s16 yRotation
+    cmd+0x06: s16 zRotation
+    (translation gets copied from D_80385FDC)
+  
+   fieldLayout == 3:
+    cmd+0x02: s16 yRotation
+    (translation gets copied from D_80385FDC)
+    (x and z translation are set to 0)
+  
+   [cmd+var: void *displayList]
+*/
+void geo_layout_cmd_node_translation_rotation_optional_display_list(void)
 {
-    struct GraphNode015 *graphNode;
+    struct GraphNodeTranslationRotationOptionalDisplayList *graphNode;
 
-    Vec3s sp44, sp3c;
+    Vec3s translation, rotation;
 
-    void *dlist = NULL;
-    s16 sp36 = 0;
+    void *displayList = NULL;
+    s16 drawingLayer = 0;
 
-    s16 sp34 = cur_geo_cmd_u8(0x01);
+    s16 params = cur_geo_cmd_u8(0x01);
     s16 *cmdPos = (s16 *) gGeoLayoutCommand;
 
-    switch((sp34 & 0x70) >> 4)
+    switch((params & 0x70) >> 4)
     {
     case 0:
-        cmdPos = read_vec3s(sp44, &cmdPos[2]);
-        cmdPos = read_vec3s_angle(sp3c, cmdPos);
+        cmdPos = read_vec3s(translation, &cmdPos[2]);
+        cmdPos = read_vec3s_angle(rotation, cmdPos);
         break;
     case 1:
-        cmdPos = read_vec3s(sp44, &cmdPos[1]);
-        vec3s_copy(sp3c, D_80385FDC);
+        cmdPos = read_vec3s(translation, &cmdPos[1]);
+        vec3s_copy(rotation, D_80385FDC);
         break;
     case 2:
-        cmdPos = read_vec3s_angle(sp3c, &cmdPos[1]);
-        vec3s_copy(sp44, D_80385FDC);
+        cmdPos = read_vec3s_angle(rotation, &cmdPos[1]);
+        vec3s_copy(translation, D_80385FDC);
         break;
     case 3:
-        vec3s_copy(sp44, D_80385FDC);
-        vec3s_set(sp3c, 0, (cmdPos[1] << 15) / 180, 0);
+        vec3s_copy(translation, D_80385FDC);
+        vec3s_set(rotation, 0, (cmdPos[1] << 15) / 180, 0);
         cmdPos += 2;
         break;
     }
 
-    if(sp34 & 0x80)
+    if(params & 0x80)
     {
-        dlist = *(void **)&cmdPos[0];
-        sp36 = sp34 & 0x0F;
+        displayList = *(void **)&cmdPos[0];
+        drawingLayer = params & 0x0F;
         cmdPos += 2;
     }
 
-    graphNode = init_graph_node_015(gGraphNodePool, NULL, sp36, dlist, sp44, sp3c);
+    graphNode = init_graph_node_translation_rotation_optional_display_list(gGraphNodePool, NULL, drawingLayer, displayList, translation, rotation);
     register_scene_graph_node(&graphNode->node);
 
     gGeoLayoutCommand = (u8 *) cmdPos;
 }
 
+/*
+  0x11: Create ? scene graph node with optional display list
+   cmd+0x01: u8 params
+     (params & 0x80): if set, enable displayList field and drawingLayer
+     (params & 0x0F): drawingLayer
+   cmd+0x02: s16 unkX
+   cmd+0x04: s16 unkY
+   cmd+0x06: s16 unkZ
+  [cmd+0x08: void *displayList]
+*/
 void geo_layout_cmd_11(void)
 {
     struct GraphNode016 *graphNode;
 
     Vec3s sp2c;
 
-    s16 sp2a = 0;
-    s16 sp28 = cur_geo_cmd_u8(0x01);
+    s16 drawingLayer = 0;
+    s16 params = cur_geo_cmd_u8(0x01);
     s16 *cmdPos = (s16 *) gGeoLayoutCommand;
-    void *dlist = NULL;
+    void *displayList = NULL;
 
     cmdPos = read_vec3s(sp2c, &cmdPos[1]);
 
-    if(sp28 & 0x80)
+    if(params & 0x80)
     {
-        dlist = *(void **)&cmdPos[0];
-        sp2a = sp28 & 0x0F;
+        displayList = *(void **)&cmdPos[0];
+        drawingLayer = params & 0x0F;
         cmdPos += 2;
     }
 
-    graphNode = init_graph_node_016(gGraphNodePool, NULL, sp2a, dlist, sp2c);
+    graphNode = init_graph_node_016(gGraphNodePool, NULL, drawingLayer, displayList, sp2c);
 
     register_scene_graph_node(&graphNode->node);
 
     gGeoLayoutCommand = (u8 *) cmdPos;
 }
 
+/*
+  0x12: Create ? scene graph node
+   cmd+0x01: u8 params
+     (params & 0x80): if set, enable displayList field and drawingLayer
+     (params & 0x0F): drawingLayer
+   cmd+0x02: s16 unkX
+   cmd+0x04: s16 unkY
+   cmd+0x06: s16 unkZ
+  [cmd+0x08: void *displayList]
+*/
 void geo_layout_cmd_12(void)
 {
     struct GraphNode017 *graphNode;
 
     Vec3s sp2c;
 
-    s16 sp2a = 0;
-    s16 sp28 = cur_geo_cmd_u8(0x01);
+    s16 drawingLayer = 0;
+    s16 params = cur_geo_cmd_u8(0x01);
     s16 *cmdPos = (s16 *) gGeoLayoutCommand;
-    void *dlist = NULL;
+    void *displayList = NULL;
 
     cmdPos = read_vec3s_angle(sp2c, &cmdPos[1]);
 
-    if(sp28 & 0x80)
+    if(params & 0x80)
     {
-        dlist = *(void **)&cmdPos[0];
-        sp2a = sp28 & 0x0F;
+        displayList = *(void **)&cmdPos[0];
+        drawingLayer = params & 0x0F;
         cmdPos += 2;
     }
 
-    graphNode = init_graph_node_017(gGraphNodePool, NULL, sp2a, dlist, sp2c);
+    graphNode = init_graph_node_017(gGraphNodePool, NULL, drawingLayer, displayList, sp2c);
 
     register_scene_graph_node(&graphNode->node);
 
     gGeoLayoutCommand = (u8 *) cmdPos;
 }
 
-// scale model
-void geo_layout_cmd_1D(void)
+/*
+  0x1D: Create scale scene graph node with optional display list
+   cmd+0x01: u8 params
+     (params & 0x80): if set, enable displayList field and drawingLayer
+     (params & 0x0F): drawingLayer
+   cmd+0x04: u32 scale (0x10000 = 1.0)
+  [cmd+0x08: void *displayList]
+*/
+void geo_layout_cmd_node_scale(void)
 {
-    struct GraphNode01C *graphNode;
+    struct GraphNodeScaleOptionalDisplayList *graphNode;
 
-    s16 sp2a = 0;
-    s16 sp28 = cur_geo_cmd_u8(0x01);
+    s16 drawingLayer = 0;
+    s16 params = cur_geo_cmd_u8(0x01);
     f32 scale = cur_geo_cmd_u32(0x04) / 65536.0f;
-    void *dlist = NULL;
+    void *displayList = NULL;
 
-    if(sp28 & 0x80)
+    if(params & 0x80)
     {
-        dlist = (void *) cur_geo_cmd_s32(0x08);
-        sp2a = sp28 & 0x0F;
+        displayList = (void *) cur_geo_cmd_s32(0x08);
+        drawingLayer = params & 0x0F;
         gGeoLayoutCommand += 0x04;
     }
 
-    graphNode = init_graph_node_01C(gGraphNodePool, NULL, sp2a, dlist, scale);
+    graphNode = init_graph_node_scale_optional_display_list(gGraphNodePool, NULL, drawingLayer, displayList, scale);
 
     register_scene_graph_node(&graphNode->node);
 
     gGeoLayoutCommand += 0x08;
 }
 
-void geo_layout_cmd_1E(void)
+// 0x1E: No operation
+void geo_layout_cmd_nop2(void)
 {
-    /* no operation */
     gGeoLayoutCommand += 0x08;
 }
 
-// load display list
-void geo_layout_cmd_13(void)
+/*
+  0x13: Create display list scene graph node with translation
+   cmd+0x01: u8 drawingLayer
+   cmd+0x02: s16 xTranslation
+   cmd+0x04: s16 yTranslation
+   cmd+0x06: s16 zTranslation
+   cmd+0x08: void *displayList
+*/
+void geo_layout_cmd_node_display_list_translated(void)
 {
-    struct GraphNode019 *graphNode;
+    struct GraphNodeDisplayListTranslated *graphNode;
     Vec3s relativePos;
     s32 drawingLayer = cur_geo_cmd_u8(0x01);
     void *displayList = (void *) cur_geo_cmd_s32(0x08);
@@ -431,68 +556,87 @@ void geo_layout_cmd_13(void)
 
     read_vec3s(relativePos, &cmdPos[1]);
 
-    graphNode = init_graph_node_019(gGraphNodePool, NULL, drawingLayer, displayList, relativePos);
+    graphNode = init_graph_node_display_list_translated(gGraphNodePool, NULL, drawingLayer, displayList, relativePos);
 
     register_scene_graph_node(&graphNode->node);
 
     gGeoLayoutCommand += 0x0C;
 }
 
-// billboard model
-void geo_layout_cmd_14(void)
+/*
+  0x14: Create billboarding node with optional display list
+   cmd+0x01: u8 params
+     (params & 0x80): if set, enable displayList field and drawingLayer
+     (params & 0x0F): drawingLayer
+   cmd+0x02: s16 xTranslation
+   cmd+0x04: s16 yTranslation
+   cmd+0x06: s16 zTranslation
+  [cmd+0x08: void *displayList]
+*/
+void geo_layout_cmd_node_billboard_optional_display_list(void)
 {
-    struct GraphNode01A *graphNode;
-    Vec3s sp2c;
-    s16 sp2a = 0;
-    s16 sp28 = cur_geo_cmd_u8(0x01);
+    struct GraphNodeBillboardOptionalDisplayList *graphNode;
+    Vec3s translation;
+    s16 drawingLayer = 0;
+    s16 params = cur_geo_cmd_u8(0x01);
     s16 *cmdPos = (s16 *) gGeoLayoutCommand;
-    void *dlist = NULL;
+    void *displayList = NULL;
 
-    cmdPos = read_vec3s(sp2c, &cmdPos[1]);
+    cmdPos = read_vec3s(translation, &cmdPos[1]);
 
-    if(sp28 & 0x80)
+    if(params & 0x80)
     {
-        dlist = *(void **)&cmdPos[0];
-        sp2a = sp28 & 0x0F;
+        displayList = *(void **)&cmdPos[0];
+        drawingLayer = params & 0x0F;
         cmdPos += 2;
     }
 
-    graphNode = init_graph_node_01A(gGraphNodePool, NULL, sp2a, dlist, sp2c);
+    graphNode = init_graph_node_billboard_optional_display_list(gGraphNodePool, NULL, drawingLayer, displayList, translation);
 
     register_scene_graph_node(&graphNode->node);
 
     gGeoLayoutCommand = (u8 *) cmdPos;
 }
 
-// load display list
-void geo_layout_cmd_15(void)
+/*
+  0x15: Create plain display list scene graph node
+   cmd+0x01: u8 drawingLayer
+   cmd+0x04: void *displayList
+*/
+void geo_layout_cmd_node_display_list(void)
 {
-    struct GraphNode01B *graphNode;
+    struct GraphNodeDisplayList *graphNode;
     s32 drawingLayer = cur_geo_cmd_u8(0x01);
-    void *dlist = (void *) cur_geo_cmd_s32(0x04);
+    void *displayList = (void *) cur_geo_cmd_s32(0x04);
 
-    graphNode = init_graph_node_01B(gGraphNodePool, NULL, drawingLayer, dlist);
+    graphNode = init_graph_node_display_list(gGraphNodePool, NULL, drawingLayer, displayList);
 
     register_scene_graph_node(&graphNode->node);
 
     gGeoLayoutCommand += 0x08;
 }
 
-// start geo layout with shadow
-void geo_layout_cmd_16(void)
+/*
+  0x16: Create shadow scene graph node
+   cmd+0x02: u8 shadowType
+   cmd+0x04: u8 shadowSolidity
+   cmd+0x06: s16 shadowScale
+*/
+void geo_layout_cmd_node_shadow(void)
 {
-    struct GraphNode028 *graphNode;
+    struct GraphNodeShadow *graphNode;
     u8 shadowType = cur_geo_cmd_s16(0x02);
     u8 shadowSolidity = cur_geo_cmd_s16(0x04);
     s16 shadowScale = cur_geo_cmd_s16(0x06);
 
-    graphNode = init_graph_node_028(gGraphNodePool, NULL, shadowScale, shadowSolidity, shadowType);
+    graphNode = init_graph_node_shadow(gGraphNodePool, NULL, shadowScale, shadowSolidity, shadowType);
 
     register_scene_graph_node(&graphNode->node);
 
     gGeoLayoutCommand += 0x08;
 }
 
+// 0x17: Create ? scene graph node (GraphNode029)
 void geo_layout_cmd_17(void)
 {
     struct GraphNode029 *graphNode;
@@ -504,7 +648,11 @@ void geo_layout_cmd_17(void)
     gGeoLayoutCommand += 0x04;
 }
 
-// load polygons asm
+/*
+  0x18: Create ? scene graph node (GraphNode12A)
+   cmd+0x02: s16 parameter
+   cmd+0x04: GraphNodeFunc func
+*/
 void geo_layout_cmd_18(void)
 {
     struct GraphNode12A *graphNode;
@@ -518,12 +666,16 @@ void geo_layout_cmd_18(void)
     gGeoLayoutCommand += 0x08;
 }
 
-// set background
-void geo_layout_cmd_19(void)
+/*
+  0x19: Create background scene graph node
+   cmd+0x02: s16 background // background ID, or RGBA5551 color if backgroundFunc is null
+   cmd+0x04: GraphNodeFunc backgroundFunc
+*/
+void geo_layout_cmd_node_background(void)
 {
-    struct GraphNode12C *graphNode;
+    struct GraphNodeBackground *graphNode;
 
-    graphNode = init_graph_node_12C(gGraphNodePool, NULL,
+    graphNode = init_graph_node_background(gGraphNodePool, NULL,
         cur_geo_cmd_s16(0x02), // background ID, or RGBA5551 color if asm function is null
         (GraphNodeFunc) cur_geo_cmd_s32(0x04), // asm function
         0);
@@ -533,12 +685,19 @@ void geo_layout_cmd_19(void)
     gGeoLayoutCommand += 0x08;
 }
 
-void geo_layout_cmd_1A(void)
+// 0x1A: No operation
+void geo_layout_cmd_nop(void)
 {
-    /* no operation */
     gGeoLayoutCommand += 0x08;
 }
 
+/*
+  0x1B: Create ? scene graph node (GraphNode029)
+   cmd+0x02: s16 index (of D_8038BCAC)
+ 
+  if D_8038BCAC[index]'s type is GRAPH_NODE_TYPE_029,
+  copy D_8038BCAC[index]->unk14 to graphNode->unk14
+*/
 void geo_layout_cmd_1B(void)
 {
     struct GraphNode029 *graphNode;
@@ -566,6 +725,14 @@ void geo_layout_cmd_1B(void)
     gGeoLayoutCommand += 0x04;
 }
 
+/*
+  0x1C: Create ? scene graph node (GraphNode12E)
+   cmd+0x01: u8 unk01
+   cmd+0x02: s16 unkX
+   cmd+0x04: s16 unkY
+   cmd+0x06: s16 unkZ
+   cmd+0x08: GraphNodeFunc nodeFunc
+*/
 void geo_layout_cmd_1C(void)
 {
     struct GraphNode12E *graphNode;
@@ -582,25 +749,31 @@ void geo_layout_cmd_1C(void)
     gGeoLayoutCommand += 0x0C;
 }
 
+/*
+  0x20: Create render distance scene graph node (unconfirmed?)
+   cmd+0x02: s16 renderDistance?
+*/
 void geo_layout_cmd_20(void)
 {
     struct GraphNode02F *graphNode;
-    graphNode = init_graph_node_12F(gGraphNodePool, NULL, cur_geo_cmd_s16(0x02));
+    graphNode = init_graph_node_02F(gGraphNodePool, NULL, cur_geo_cmd_s16(0x02));
     register_scene_graph_node(&graphNode->node);
     gGeoLayoutCommand += 0x04;
 }
 
 struct GraphNode *process_geo_layout(struct AllocOnlyPool *pool, void *segptr)
 {
+    // set by register_scene_graph_node when gCurGraphNodeIndex is 0
+    // and gCurRootGraphNode is NULL
     gCurRootGraphNode = NULL;
 
     D_8038BCB0 = 0; // number of entries in D_8038BCAC
 
     gCurGraphNodeList[0] = 0;
-    gCurGraphNodeIndex = 0;
+    gCurGraphNodeIndex = 0; // incremented by cmd_open_node, decremented by cmd_close_node
 
     gGeoLayoutStackIndex = 2;
-    D_8038BD7E = 2; // stack index is often copied here
+    D_8038BD7E = 2; // stack index is often copied here?
 
     gGeoLayoutCommand = (u8 *) segmented_to_virtual(segptr);
 

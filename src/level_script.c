@@ -352,7 +352,7 @@ static void level_cmd_1A(void)
 
 static void level_cmd_init_level(void)
 {
-    init_graph_node_00A(NULL, (struct GraphNode00A *) &D_8038BD88);
+    init_graph_node_start(NULL, (struct GraphNodeStart *) &D_8038BD88);
     func_8029CA60();
     clear_areas();
     main_pool_push_state();
@@ -437,7 +437,7 @@ static void level_cmd_21(void)
     void *val3 = CMD_GET(void *, 4);
 
     if (val1 < 256)
-        gLoadedGeoLayouts[val1] = init_graph_node_01B(sLevelPool, 0, val2, val3);
+        gLoadedGeoLayouts[val1] = init_graph_node_display_list(sLevelPool, 0, val2, val3);
 
     sCurrentCmd = CMD_NEXT;
 }
@@ -467,7 +467,7 @@ static void level_cmd_23(void)
     arg2.i = CMD_GET(s32, 8);
 
     if (arg0L < 256)
-        gLoadedGeoLayouts[arg0L] = init_graph_node_01C(sLevelPool, 0, arg0H, arg1, arg2.f);
+        gLoadedGeoLayouts[arg0L] = init_graph_node_scale_optional_display_list(sLevelPool, 0, arg0H, arg1, arg2.f);
 
     sCurrentCmd = CMD_NEXT;
 }

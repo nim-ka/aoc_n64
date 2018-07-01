@@ -5,10 +5,10 @@
 
 struct AllocOnlyPool;
 
-extern struct GraphNode004 *D_8032CF94;
+extern struct GraphNodeToggleZBuffer *D_8032CF94;
 extern struct GraphNodeCamFrustum *D_8032CF98;
 extern struct GraphNode114 *D_8032CF9C;
-extern struct GraphNode018 *D_8032CFA0;
+extern struct GraphNodeObject *D_8032CFA0;
 extern struct GraphNode12E *D_8032CFA4;
 extern u16 gAreaUpdateCounter;
 
@@ -23,36 +23,37 @@ extern Vec3f D_80385FD0;
 extern Vec3s D_80385FDC;
 extern Vec3f D_80385FE4;
 
-#define GRAPH_RENDER_01      0x01
-#define GRAPH_RENDER_02      0x02
-#define GRAPH_RENDER_BILLBOARD 0x04
-#define GRAPH_RENDER_08      0x08
-#define GRAPH_RENDER_10      0x10
-#define GRAPH_RENDER_20      0x20
+#define GRAPH_RENDER_01        (1 << 0)
+#define GRAPH_RENDER_02        (1 << 1)
+#define GRAPH_RENDER_BILLBOARD (1 << 2)
+#define GRAPH_RENDER_Z_BUFFER  (1 << 3)
+#define GRAPH_RENDER_10        (1 << 4)
+#define GRAPH_RENDER_20        (1 << 5)
 
-#define GRAPH_NODE_TYPE_FUNCTIONAL  0x100
-#define GRAPH_NODE_TYPE_SCREEN_AREA 0x001
-#define GRAPH_NODE_TYPE_002         0x002
-#define GRAPH_NODE_TYPE_103        (0x003 | GRAPH_NODE_TYPE_FUNCTIONAL)
-#define GRAPH_NODE_TYPE_004         0x004
-#define GRAPH_NODE_TYPE_00A         0x00A
-#define GRAPH_NODE_TYPE_00B         0x00B
-#define GRAPH_NODE_TYPE_10C        (0x00C | GRAPH_NODE_TYPE_FUNCTIONAL)
-#define GRAPH_NODE_TYPE_114        (0x014 | GRAPH_NODE_TYPE_FUNCTIONAL)
-#define GRAPH_NODE_TYPE_015         0x015
-#define GRAPH_NODE_TYPE_016         0x016
-#define GRAPH_NODE_TYPE_017         0x017
-#define GRAPH_NODE_TYPE_018         0x018
-#define GRAPH_NODE_TYPE_019         0x019
-#define GRAPH_NODE_TYPE_01A         0x01A
-#define GRAPH_NODE_TYPE_01B         0x01B
-#define GRAPH_NODE_TYPE_01C         0x01C
-#define GRAPH_NODE_TYPE_028         0x028
-#define GRAPH_NODE_TYPE_029         0x029
-#define GRAPH_NODE_TYPE_12A        (0x02A | GRAPH_NODE_TYPE_FUNCTIONAL)
-#define GRAPH_NODE_TYPE_12C        (0x02C | GRAPH_NODE_TYPE_FUNCTIONAL)
-#define GRAPH_NODE_TYPE_12E        (0x02E | GRAPH_NODE_TYPE_FUNCTIONAL)
-#define GRAPH_NODE_TYPE_02F         0x02F
+#define GRAPH_NODE_TYPE_FUNCTIONAL                                  0x100
+
+#define GRAPH_NODE_TYPE_SCREEN_AREA                                 0x001
+#define GRAPH_NODE_TYPE_002                                         0x002
+#define GRAPH_NODE_TYPE_103                                        (0x003 | GRAPH_NODE_TYPE_FUNCTIONAL)
+#define GRAPH_NODE_TYPE_TOGGLE_Z_BUFFER                             0x004
+#define GRAPH_NODE_TYPE_START                                       0x00A
+#define GRAPH_NODE_TYPE_RENDER_RANGE                                0x00B
+#define GRAPH_NODE_TYPE_SWITCH_CASE                                (0x00C | GRAPH_NODE_TYPE_FUNCTIONAL)
+#define GRAPH_NODE_TYPE_114                                        (0x014 | GRAPH_NODE_TYPE_FUNCTIONAL)
+#define GRAPH_NODE_TYPE_TRANSLATION_ROTATION_OPTIONAL_DISPLAY_LIST  0x015
+#define GRAPH_NODE_TYPE_016                                         0x016
+#define GRAPH_NODE_TYPE_017                                         0x017
+#define GRAPH_NODE_TYPE_OBJECT                                      0x018
+#define GRAPH_NODE_TYPE_DISPLAY_LIST_TRANSLATED                     0x019
+#define GRAPH_NODE_TYPE_BILLBOARD_OPTIONAL_DISPLAY_LIST             0x01A
+#define GRAPH_NODE_TYPE_DISPLAY_LIST                                0x01B
+#define GRAPH_NODE_TYPE_SCALE_OPTIONAL_DISPLAY_LIST                 0x01C
+#define GRAPH_NODE_TYPE_SHADOW                                      0x028
+#define GRAPH_NODE_TYPE_029                                         0x029
+#define GRAPH_NODE_TYPE_12A                                        (0x02A | GRAPH_NODE_TYPE_FUNCTIONAL)
+#define GRAPH_NODE_TYPE_BACKGROUND                                 (0x02C | GRAPH_NODE_TYPE_FUNCTIONAL)
+#define GRAPH_NODE_TYPE_12E                                        (0x02E | GRAPH_NODE_TYPE_FUNCTIONAL)
+#define GRAPH_NODE_TYPE_02F                                         0x02F
 
 struct GraphNode
 {
@@ -85,6 +86,7 @@ struct GraphNodeScreenArea
     /*0x20*/ struct GraphNode **unk20; // TODO: check type
 };
 
+// related to background rendering
 struct GraphNode002
 {
     /*0x00*/ struct GraphNode node;
@@ -100,34 +102,34 @@ struct GraphNodeCamFrustum
     /*0x22*/ s16 far;
 };
 
-struct GraphNode004_sub
+struct GraphNodeToggleZBuffer_sub
 {
     void *unk0;
     void *unk4;
-    struct GraphNode004_sub *unk8;
+    struct GraphNodeToggleZBuffer_sub *unk8;
 };
 
-struct GraphNode004
+struct GraphNodeToggleZBuffer
 {
     /*0x00*/ struct GraphNode node;
-    /*0x14*/ struct GraphNode004_sub *unk14[8];
-    /*0x34*/ struct GraphNode004_sub *unk34[1];  // unknown length
+    /*0x14*/ struct GraphNodeToggleZBuffer_sub *unk14[8];
+    /*0x34*/ struct GraphNodeToggleZBuffer_sub *unk34[1];  // unknown length
     u8 filler38[0x54-0x38];
 };
 
-struct GraphNode00A
+struct GraphNodeStart
 {
     /*0x00*/ struct GraphNode node;
 };
 
-struct GraphNode00B
+struct GraphNodeRenderRange
 {
     /*0x00*/ struct GraphNode node;
-    /*0x14*/ s16 unk14;
-    /*0x16*/ s16 unk16;
+    /*0x14*/ s16 minDistance;
+    /*0x16*/ s16 maxDistance;
 };
 
-struct GraphNode10C
+struct GraphNodeSwitchCase
 {
     /*0x00*/ struct FnGraphNode fnNode;
     /*0x18*/ s32 unk18;
@@ -146,18 +148,18 @@ struct GraphNode114
     /*0x3A*/ s16 unk3A;
 };
 
-struct GraphNode015
+struct GraphNodeTranslationRotationOptionalDisplayList
 {
     /*0x00*/ struct GraphNode node;
-    /*0x14*/ void *dlist;
-    /*0x18*/ Vec3s unk18;
-    /*0x1E*/ Vec3s unk1E;
+    /*0x14*/ void *displayList;
+    /*0x18*/ Vec3s translation;
+    /*0x1E*/ Vec3s rotation;
 };
 
 struct GraphNode016
 {
     /*0x00*/ struct GraphNode node;
-    /*0x14*/ void *dlist;
+    /*0x14*/ void *displayList;
     /*0x18*/ Vec3s unk18;
     u8 pad1E[2];
 };
@@ -165,12 +167,12 @@ struct GraphNode016
 struct GraphNode017
 {
     /*0x00*/ struct GraphNode node;
-    /*0x14*/ void *dlist;
+    /*0x14*/ void *displayList;
     /*0x18*/ Vec3s unk18;
     u8 pad1E[2];
 };
 
-struct GraphNode018_sub
+struct GraphNodeObject_sub
 {
     /*0x00 0x38*/ s16 unk00;
     /*0x02 0x3A*/ s16 unk02;
@@ -182,7 +184,7 @@ struct GraphNode018_sub
 };
 
 // TODO this is the first member of GfxNode/Object
-struct GraphNode018
+struct GraphNodeObject
 {
     /*0x00*/ struct GraphNode node;
     /*0x14*/ struct GraphNode *unk14;
@@ -191,7 +193,7 @@ struct GraphNode018
     /*0x1A*/ Vec3s angle;
     /*0x20*/ Vec3f pos;
     /*0x2C*/ Vec3f scale;
-    /*0x38*/ struct GraphNode018_sub unk38;
+    /*0x38*/ struct GraphNodeObject_sub unk38;
     /*0x4C*/ struct SpawnInfo *unk4C;
     /*0x50*/ void *unk50; // matrix ptr
     /*0x54*/ f32 unk54;
@@ -199,34 +201,34 @@ struct GraphNode018
     /*0x5C*/ f32 unk5C;
 };
 
-struct GraphNode019
+struct GraphNodeDisplayListTranslated
 {
     /*0x00*/ struct GraphNode node;
-    /*0x14*/ void *dlist;
-    /*0x18*/ Vec3s relativePos;
+    /*0x14*/ void *displayList;
+    /*0x18*/ Vec3s translation;
 };
 
-struct GraphNode01A
+struct GraphNodeBillboardOptionalDisplayList
 {
     /*0x00*/ struct GraphNode node;
-    /*0x14*/ void *dlist;
-    /*0x18*/ Vec3s unk18;
+    /*0x14*/ void *displayList;
+    /*0x18*/ Vec3s translation;
 };
 
-struct GraphNode01B
+struct GraphNodeDisplayList
 {
     /*0x00*/ struct GraphNode node;
-    /*0x14*/ void *dlist;
+    /*0x14*/ void *displayList;
 };
 
-struct GraphNode01C
+struct GraphNodeScaleOptionalDisplayList
 {
     /*0x00*/ struct GraphNode node;
-    /*0x14*/ void *dlist;
-    /*0x18*/ f32 unk18;
+    /*0x14*/ void *displayList;
+    /*0x18*/ f32 scale;
 };
 
-struct GraphNode028
+struct GraphNodeShadow
 {
     /*0x00*/ struct GraphNode node;
     /*0x14*/ s16 shadowScale;
@@ -246,18 +248,18 @@ struct GraphNode12A
     /*0x18*/ s32 unk18;
 };
 
-struct GraphNode12C
+struct GraphNodeBackground
 {
     /*0x00*/ struct FnGraphNode fnNode;
     /*0x18*/ s32 unk18;
-    /*0x1C*/ s32 unk1C;
+    /*0x1C*/ s32 background; // background ID, or rgba5551 color if fnNode.func is null
 };
 
 struct GraphNode12E
 {
     /*0x00*/ struct FnGraphNode fnNode;
     /*0x18*/ s32 unk18;
-    /*0x1C*/ struct GraphNode018 *unk1C; // assumed type
+    /*0x1C*/ struct GraphNodeObject *unk1C; // assumed type
     /*0x20*/ Vec3s unk20;
 };
 
@@ -275,39 +277,39 @@ struct GraphNodeScreenArea *init_graph_node_screen_area(struct AllocOnlyPool *, 
 struct GraphNode002 *init_graph_node_002(struct AllocOnlyPool *, struct GraphNode002 *, f32);
 struct GraphNodeCamFrustum *init_graph_node_cam_frustum(struct AllocOnlyPool *pool, struct GraphNodeCamFrustum *sp1c,
     f32 sp20, s16 sp26, s16 sp2a, GraphNodeFunc sp2c, s32 sp30);
-struct GraphNode00A *init_graph_node_00A(struct AllocOnlyPool *pool, struct GraphNode00A *sp1c);
-struct GraphNode004 *init_graph_node_004(struct AllocOnlyPool *pool, struct GraphNode004 *, s16 sp22);
-struct GraphNode00B *init_graph_node_00B(struct AllocOnlyPool *pool, struct GraphNode00B *sp1c,
-    s16 sp22, s16 sp26);
-struct GraphNode10C *init_graph_node_10C(struct AllocOnlyPool *, struct GraphNode10C *sp1c,
-    s16 sp22, s16 sp26, GraphNodeFunc sp28, s32 sp2c);
+struct GraphNodeStart *init_graph_node_start(struct AllocOnlyPool *pool, struct GraphNodeStart *sp1c);
+struct GraphNodeToggleZBuffer *init_graph_node_toggle_z_buffer(struct AllocOnlyPool *pool, struct GraphNodeToggleZBuffer *, s16 sp22);
+struct GraphNodeRenderRange *init_graph_node_render_range(struct AllocOnlyPool *pool, struct GraphNodeRenderRange *graphNode,
+    s16 minDistance, s16 maxDistance);
+struct GraphNodeSwitchCase *init_graph_node_switch_case(struct AllocOnlyPool *pool, struct GraphNodeSwitchCase *graphNode,
+    s16 numCases, s16 sp26, GraphNodeFunc nodeFunc, s32 sp2c);
 struct GraphNode114 *init_graph_node_114(struct AllocOnlyPool *pool, struct GraphNode114 * sp1c,
     f32 *sp20, f32 *sp24, GraphNodeFunc sp28, s32 sp2c);
-struct GraphNode015 *init_graph_node_015(struct AllocOnlyPool *pool, struct GraphNode015 *graphNode,
-    s32 drawingLayer, void *dlist, Vec3s sp28, Vec3s sp2c);
+struct GraphNodeTranslationRotationOptionalDisplayList *init_graph_node_translation_rotation_optional_display_list(struct AllocOnlyPool *pool,
+    struct GraphNodeTranslationRotationOptionalDisplayList *graphNode, s32 drawingLayer, void *displayList, Vec3s sp28, Vec3s sp2c);
 struct GraphNode016 *init_graph_node_016(struct AllocOnlyPool *pool, struct GraphNode016 *graphNode,
-    s32 drawingLayer, void *dlist, Vec3s sp28);
+    s32 drawingLayer, void *displayList, Vec3s sp28);
 struct GraphNode017 *init_graph_node_017(struct AllocOnlyPool *pool, struct GraphNode017 *graphNode,
-    s32 drawingLayer, void *dlist, Vec3s sp28);
-struct GraphNode01C *init_graph_node_01C(struct AllocOnlyPool *pool, struct GraphNode01C *graphNode,
-    s32 drawingLayer, void *dlist, f32 sp28);
-struct GraphNode018 *init_graph_node_018(struct AllocOnlyPool *pool, struct GraphNode018 *graphNode,
+    s32 drawingLayer, void *displayList, Vec3s sp28);
+struct GraphNodeScaleOptionalDisplayList *init_graph_node_scale_optional_display_list(struct AllocOnlyPool *pool,
+    struct GraphNodeScaleOptionalDisplayList *graphNode, s32 drawingLayer, void *displayList, f32 sp28);
+struct GraphNodeObject *init_graph_node_object(struct AllocOnlyPool *pool, struct GraphNodeObject *graphNode,
     struct GraphNode *sp20, Vec3f pos, Vec3s angle, Vec3f scale);
-struct GraphNode02F *init_graph_node_12F(struct AllocOnlyPool *pool, struct GraphNode02F *sp1c,
+struct GraphNode02F *init_graph_node_02F(struct AllocOnlyPool *pool, struct GraphNode02F *sp1c,
     s16 sp22);
-struct GraphNode019 *init_graph_node_019(struct AllocOnlyPool *pool, struct GraphNode019 * graphNode,
-    s32 drawingLayer, void *dlist, Vec3s relativePos);
-struct GraphNode01A *init_graph_node_01A(struct AllocOnlyPool *pool, struct GraphNode01A *graphNode,
-    s32 drawingLayer, void *dlist, Vec3s sp28);
-struct GraphNode01B *init_graph_node_01B(struct AllocOnlyPool *pool, struct GraphNode01B *graphNode,
-    s32 drawingLayer, void *dlist);
-struct GraphNode028 *init_graph_node_028(struct AllocOnlyPool *pool, struct GraphNode028 *sp1c,
+struct GraphNodeDisplayListTranslated *init_graph_node_display_list_translated(struct AllocOnlyPool *pool, struct GraphNodeDisplayListTranslated * graphNode,
+    s32 drawingLayer, void *displayList, Vec3s relativePos);
+struct GraphNodeBillboardOptionalDisplayList *init_graph_node_billboard_optional_display_list(struct AllocOnlyPool *pool,
+    struct GraphNodeBillboardOptionalDisplayList *graphNode, s32 drawingLayer, void *displayList, Vec3s sp28);
+struct GraphNodeDisplayList *init_graph_node_display_list(struct AllocOnlyPool *pool, struct GraphNodeDisplayList *graphNode,
+    s32 drawingLayer, void *displayList);
+struct GraphNodeShadow *init_graph_node_shadow(struct AllocOnlyPool *pool, struct GraphNodeShadow *sp1c,
     s16 sp22, u8 sp27, u8 sp2b);
 struct GraphNode029 *init_graph_node_029(struct AllocOnlyPool *pool, struct GraphNode029 *sp1c,
     struct GraphNode *sp20);
 struct GraphNode12A *init_graph_node_12A(struct AllocOnlyPool *pool, struct GraphNode12A *sp1c,
     GraphNodeFunc sp20, s32 sp24);
-struct GraphNode12C *init_graph_node_12C(struct AllocOnlyPool *pool, struct GraphNode12C *sp1c,
+struct GraphNodeBackground *init_graph_node_background(struct AllocOnlyPool *pool, struct GraphNodeBackground *sp1c,
     u16 sp22, GraphNodeFunc sp24, s32 sp28);
 struct GraphNode12E *init_graph_node_12E(struct AllocOnlyPool *pool, struct GraphNode12E *sp1c,
     s32 sp20, Vec3s sp24, GraphNodeFunc sp28, s32 sp2c);
@@ -319,16 +321,16 @@ struct GraphNode *func_8037C138(struct GraphNode *a0);
 void func_8037C1E4(struct GraphNode *, s32);
 void func_8037C360(struct GraphNode *graphNode, s32 sp1c);
 
-void func_8037C3D0(struct GraphNode018 *sp20);
-void func_8037C448(struct GraphNode018 *sp18, void *sp1c, Vec3f sp20, Vec3s sp24);
-void func_8037C51C(struct GraphNode018 *sp18, struct SpawnInfo *sp1c);
-void func_8037C658(struct GraphNode018 *, void *);
-void func_8037C708(struct GraphNode018 *sp30, void *sp34, u32 sp38);
+void func_8037C3D0(struct GraphNodeObject *sp20);
+void func_8037C448(struct GraphNodeObject *sp18, void *sp1c, Vec3f sp20, Vec3s sp24);
+void func_8037C51C(struct GraphNodeObject *sp18, struct SpawnInfo *sp1c);
+void func_8037C658(struct GraphNodeObject *, void *);
+void func_8037C708(struct GraphNodeObject *sp30, void *sp34, u32 sp38);
 
 s32 func_8037C7D8(s32 a0, u16 **a1);
 
-s16 func_8037C844(struct GraphNode018_sub *a0, s32* a1);
-void Unknown8037C9E8(struct GraphNode018 *sp28, Vec3f sp2c);
+s16 func_8037C844(struct GraphNodeObject_sub *a0, s32* a1);
+void Unknown8037C9E8(struct GraphNodeObject *sp28, Vec3f sp2c);
 
 struct GraphNodeScreenArea *Unknown8037CB10(struct GraphNode *graphNode);
 

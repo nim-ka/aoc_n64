@@ -683,7 +683,7 @@ Gfx *Geo1C_8027795C(int a, struct GraphNode *b, Mat4 *c)
     return NULL;
 }
 
-extern struct GraphNode018 D_80339FE0;
+extern struct GraphNodeObject D_80339FE0;
 
 Gfx *Geo18_80277B14(int a, struct GraphNode *b, UNUSED Mat4 *c)
 {
@@ -693,7 +693,7 @@ Gfx *Geo18_80277B14(int a, struct GraphNode *b, UNUSED Mat4 *c)
     switch (a)
     {
     case 0:
-        init_graph_node_018(NULL, &D_80339FE0, NULL, D_80385FD0, D_80385FDC, D_80385FE4);
+        init_graph_node_object(NULL, &D_80339FE0, NULL, D_80385FD0, D_80385FDC, D_80385FE4);
         break;
     case 3:
         func_8037C044(b, &D_80339FE0.node);
@@ -709,7 +709,7 @@ Gfx *Geo18_80277B14(int a, struct GraphNode *b, UNUSED Mat4 *c)
             vec3s_copy(D_80339FE0.angle, sp30->gfx.unk1A);
             vec3f_copy(D_80339FE0.pos, sp30->gfx.unk20);
             vec3f_copy(D_80339FE0.scale, sp30->gfx.scale);
-            D_80339FE0.unk38 = *(struct GraphNode018_sub *)&sp30->gfx.unk38;
+            D_80339FE0.unk38 = *(struct GraphNodeObject_sub *)&sp30->gfx.unk38;
             sp34 = 4331.53 - D_80339FE0.pos[0];
             D_80339FE0.pos[0] = sp34 + 4331.53;
             D_80339FE0.angle[1] = -D_80339FE0.angle[1];

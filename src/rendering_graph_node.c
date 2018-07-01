@@ -41,11 +41,11 @@ extern Mat4 D_8033A778[];
 
 extern void *D_8033AF78[];
 
-void func_8027B110(struct GraphNode004 *a)
+void func_8027B110(struct GraphNodeToggleZBuffer *a)
 {
-    struct GraphNode004_sub *sp2C;
+    struct GraphNodeToggleZBuffer_sub *sp2C;
     int i;
-    int sp24 = (a->node.flags & GRAPH_RENDER_08) != 0;
+    int sp24 = (a->node.flags & GRAPH_RENDER_Z_BUFFER) != 0;
     struct Struct8032CF10 *sp20 = &D_8032CF10[sp24];
     struct Struct8032CF10 *sp1C = &D_8032CF50[sp24];
 
@@ -76,14 +76,14 @@ void func_8027B110(struct GraphNode004 *a)
     }
 }
 
-void func_8027B354(void *dlist, s16 b)
+void func_8027B354(void *displayList, s16 b)
 {
     if (D_8032CF94 != 0)
     {
-        struct GraphNode004_sub *sp1C = alloc_only_pool_alloc(D_8033B018, sizeof(struct GraphNode004_sub));
+        struct GraphNodeToggleZBuffer_sub *sp1C = alloc_only_pool_alloc(D_8033B018, sizeof(struct GraphNodeToggleZBuffer_sub));
 
         sp1C->unk0 = D_8033AF78[D_8033A770];
-        sp1C->unk4 = dlist;
+        sp1C->unk4 = displayList;
         sp1C->unk8 = 0;
         if (D_8032CF94->unk14[b] == 0)
             D_8032CF94->unk14[b] = sp1C;
@@ -94,7 +94,7 @@ void func_8027B354(void *dlist, s16 b)
     //L8027B438
 }
 
-void func_8027B450(struct GraphNode004 *a) // 004
+void func_8027B450(struct GraphNodeToggleZBuffer *a) // 004
 {
     int sp1C;
 
@@ -162,20 +162,20 @@ void func_8027B6C4(struct GraphNodeCamFrustum *a)
     }
 }
 
-void func_8027B840(struct GraphNode00B *a)
+void func_8027B840(struct GraphNodeRenderRange *a)
 {
     // Dunno what type this is
     struct GraphNodeScreenArea *sp1C = D_8033AF78[D_8033A770];
     s16 sp1A = -sp1C->height;
 
-    if (a->unk14 <= sp1A && sp1A < a->unk16)
+    if (a->minDistance <= sp1A && sp1A < a->maxDistance)
     {
         if (a->node.children != 0)
             func_8027D8F8(a->node.children);
     }
 }
 
-void func_8027B8D4(struct GraphNode10C *a)
+void func_8027B8D4(struct GraphNodeSwitchCase *a)
 {
     struct GraphNode *sp1C = a->fnNode.node.children;
     int sp18;
@@ -217,20 +217,20 @@ void func_8027B9A8(struct GraphNode114 *a) // 114
     D_8033A770--;
 }
 
-void func_8027BB64(struct GraphNode015 *a)
+void func_8027BB64(struct GraphNodeTranslationRotationOptionalDisplayList *a)
 {
     float sp28[4][4];
     Vec3f sp1C;
     Mtx *sp18 = alloc_display_list(sizeof(*sp18));
 
-    vec3s_to_vec3f(sp1C, a->unk18);
-    mtxf_rotate_zxy_and_translate(sp28, sp1C, a->unk1E);
+    vec3s_to_vec3f(sp1C, a->translation);
+    mtxf_rotate_zxy_and_translate(sp28, sp1C, a->rotation);
     mtxf_mul(D_8033A778[D_8033A770 + 1], sp28, D_8033A778[D_8033A770]);
     D_8033A770++;
     mtxf_to_mtx(sp18, D_8033A778[D_8033A770]);
     D_8033AF78[D_8033A770] = sp18;
-    if (a->dlist != NULL)
-        func_8027B354(a->dlist, a->node.flags >> 8);
+    if (a->displayList != NULL)
+        func_8027B354(a->displayList, a->node.flags >> 8);
     if (a->node.children != NULL)
         func_8027D8F8(a->node.children);
     D_8033A770--;
@@ -248,8 +248,8 @@ void func_8027BC88(struct GraphNode016 *a)
     D_8033A770++;
     mtxf_to_mtx(sp18, D_8033A778[D_8033A770]);
     D_8033AF78[D_8033A770] = sp18;
-    if (a->dlist != NULL)
-        func_8027B354(a->dlist, a->node.flags >> 8);
+    if (a->displayList != NULL)
+        func_8027B354(a->displayList, a->node.flags >> 8);
     if (a->node.children != NULL)
         func_8027D8F8(a->node.children);
     D_8033A770--;
@@ -265,38 +265,38 @@ void func_8027BDAC(struct GraphNode017 *a)
     D_8033A770++;
     mtxf_to_mtx(sp1C, D_8033A778[D_8033A770]);
     D_8033AF78[D_8033A770] = sp1C;
-    if (a->dlist != NULL)
-        func_8027B354(a->dlist, a->node.flags >> 8);
+    if (a->displayList != NULL)
+        func_8027B354(a->displayList, a->node.flags >> 8);
     if (a->node.children != NULL)
         func_8027D8F8(a->node.children);
     D_8033A770--;
 }
 
-void func_8027BEC4(struct GraphNode01C *a)
+void func_8027BEC4(struct GraphNodeScaleOptionalDisplayList *a)
 {
     UNUSED float sp28[4][4];
     Vec3f sp1C;
     Mtx *sp18 = alloc_display_list(sizeof(*sp18));
 
-    vec3f_set(sp1C, a->unk18, a->unk18, a->unk18);
+    vec3f_set(sp1C, a->scale, a->scale, a->scale);
     func_8037A29C(D_8033A778[D_8033A770 + 1], D_8033A778[D_8033A770], sp1C);
     D_8033A770++;
     mtxf_to_mtx(sp18, D_8033A778[D_8033A770]);
     D_8033AF78[D_8033A770] = sp18;
-    if (a->dlist != NULL)
-        func_8027B354(a->dlist, a->node.flags >> 8);
+    if (a->displayList != NULL)
+        func_8027B354(a->displayList, a->node.flags >> 8);
     if (a->node.children != NULL)
         func_8027D8F8(a->node.children);
     D_8033A770--;
 }
 
-void func_8027BFE4(struct GraphNode01A *a)
+void func_8027BFE4(struct GraphNodeBillboardOptionalDisplayList *a)
 {
     Vec3f sp1C;
     Mtx *sp18 = alloc_display_list(sizeof(*sp18));
 
     D_8033A770++;
-    vec3s_to_vec3f(sp1C, a->unk18);
+    vec3s_to_vec3f(sp1C, a->translation);
     func_80379798(D_8033A778[D_8033A770], D_8033A778[D_8033A770 - 1], sp1C, D_8032CF9C->unk38);
     if (D_8032CFA4 != NULL)
         func_8037A29C(D_8033A778[D_8033A770], D_8033A778[D_8033A770], D_8032CFA4->unk1C->scale);
@@ -305,17 +305,17 @@ void func_8027BFE4(struct GraphNode01A *a)
 
     mtxf_to_mtx(sp18, D_8033A778[D_8033A770]);
     D_8033AF78[D_8033A770] = sp18;
-    if (a->dlist != NULL)
-        func_8027B354(a->dlist, a->node.flags >> 8);
+    if (a->displayList != NULL)
+        func_8027B354(a->displayList, a->node.flags >> 8);
     if (a->node.children != NULL)
         func_8027D8F8(a->node.children);
     D_8033A770--;
 }
 
-void func_8027C18C(struct GraphNode01B *a)
+void func_8027C18C(struct GraphNodeDisplayList *a)
 {
-    if (a->dlist != NULL)
-        func_8027B354(a->dlist, a->node.flags >> 8);
+    if (a->displayList != NULL)
+        func_8027B354(a->displayList, a->node.flags >> 8);
     if (a->node.children != NULL)
         func_8027D8F8(a->node.children);
 }
@@ -336,7 +336,7 @@ void func_8027C1F4(struct GraphNode12A *a)
         func_8027D8F8(a->fnNode.node.children);
 }
 
-void func_8027C2A8(struct GraphNode12C *a)
+void func_8027C2A8(struct GraphNodeBackground *a)
 {
     int sp3C = 0;
 
@@ -353,7 +353,7 @@ void func_8027C2A8(struct GraphNode12C *a)
 
         gDPPipeSync(sp34++);
         gDPSetCycleType(sp34++, G_CYC_FILL);
-        gDPSetFillColor(sp34++, a->unk1C);
+        gDPSetFillColor(sp34++, a->background);
         gDPFillRectangle(sp34++, 0, 8, 319, 231);
         gDPPipeSync(sp34++);
         gDPSetCycleType(sp34++, G_CYC_1CYCLE);
@@ -366,7 +366,7 @@ void func_8027C2A8(struct GraphNode12C *a)
         func_8027D8F8(a->fnNode.node.children);
 }
 
-void func_8027C4C0(struct GraphNode019 *a)
+void func_8027C4C0(struct GraphNodeDisplayListTranslated *a)
 {
     float sp40[4][4];
     Vec3s sp38;
@@ -374,7 +374,7 @@ void func_8027C4C0(struct GraphNode019 *a)
     Mtx *sp28 = alloc_display_list(sizeof(*sp28));
 
     vec3s_copy(sp38, D_80385FDC);
-    vec3f_set(sp2C, a->relativePos[0], a->relativePos[1], a->relativePos[2]);
+    vec3f_set(sp2C, a->translation[0], a->translation[1], a->translation[2]);
     if (D_8033B008 == 1)
     {
         sp2C[0] += D_8033B014[func_8037C7D8(D_8033B00A, &D_8033B010)] * D_8033B00C;
@@ -424,14 +424,14 @@ void func_8027C4C0(struct GraphNode019 *a)
     D_8033A770++;
     mtxf_to_mtx(sp28, D_8033A778[D_8033A770]);
     D_8033AF78[D_8033A770] = sp28;
-    if (a->dlist != NULL)
-        func_8027B354(a->dlist, a->node.flags >> 8);
+    if (a->displayList != NULL)
+        func_8027B354(a->displayList, a->node.flags >> 8);
     if (a->node.children != NULL)
         func_8027D8F8(a->node.children);
     D_8033A770--;
 }
 
-void func_8027C988(struct GraphNode018_sub *a, int b)
+void func_8027C988(struct GraphNodeObject_sub *a, int b)
 {
     struct UnknownStruct5 *sp1C = a->unk04;
 
@@ -458,7 +458,7 @@ void func_8027C988(struct GraphNode018_sub *a, int b)
         D_8033B00C = (float)a->unk02 / (float)sp1C->unk02;
 }
 
-void func_8027CB08(struct GraphNode028 *a)
+void func_8027CB08(struct GraphNodeShadow *a)
 {
     Gfx *sp94;
     float sp54[4][4];
@@ -490,8 +490,8 @@ void func_8027CB08(struct GraphNode028 *a)
             if (D_8033B008 == 1 || D_8033B008 == 3)
             {
                 sp28 = a->node.children;
-                if (sp28 != NULL && sp28->type == GRAPH_NODE_TYPE_01C)
-                    sp38 = ((struct GraphNode01C *)sp28)->unk18;
+                if (sp28 != NULL && sp28->type == GRAPH_NODE_TYPE_SCALE_OPTIONAL_DISPLAY_LIST)
+                    sp38 = ((struct GraphNodeScaleOptionalDisplayList *)sp28)->scale;
                 //L8027CC3C
                 sp3C[0] = D_8033B014[func_8037C7D8(D_8033B00A, &D_8033B010)] * D_8033B00C * sp38;
                 sp3C[1] = 0.0f;
@@ -532,7 +532,7 @@ void func_8027CB08(struct GraphNode028 *a)
 
 extern float D_80335DF8;
 
-int func_8027CF68(struct GraphNode018 *a, Mat4 b)
+int func_8027CF68(struct GraphNodeObject *a, Mat4 b)
 {
     s16 spE;
     s16 spC;
@@ -559,7 +559,7 @@ int func_8027CF68(struct GraphNode018 *a, Mat4 b)
     return 1;
 }
 
-void func_8027D14C(struct GraphNode018 *a)
+void func_8027D14C(struct GraphNodeObject *a)
 {
     Mat4 sp30;
     int sp2C = (a->node.flags & GRAPH_RENDER_20) != 0;
@@ -695,7 +695,7 @@ void func_8027D8F8(struct GraphNode *rootGraphNode)
     struct GraphNode *sp24 = curGraphNode->parent;
 
     if (sp24 != NULL)
-        sp2E = (sp24->type != GRAPH_NODE_TYPE_10C);
+        sp2E = (sp24->type != GRAPH_NODE_TYPE_SWITCH_CASE);
     //L8027D944
     do
     {
@@ -716,20 +716,20 @@ void func_8027D8F8(struct GraphNode *rootGraphNode)
                 case GRAPH_NODE_TYPE_103:
                     func_8027B6C4((struct GraphNodeCamFrustum *) curGraphNode);
                     break;
-                case GRAPH_NODE_TYPE_004:
-                    func_8027B450((struct GraphNode004 *) curGraphNode);
+                case GRAPH_NODE_TYPE_TOGGLE_Z_BUFFER:
+                    func_8027B450((struct GraphNodeToggleZBuffer *) curGraphNode);
                     break;
-                case GRAPH_NODE_TYPE_00B:
-                    func_8027B840((struct GraphNode00B *) curGraphNode);
+                case GRAPH_NODE_TYPE_RENDER_RANGE:
+                    func_8027B840((struct GraphNodeRenderRange *) curGraphNode);
                     break;
-                case GRAPH_NODE_TYPE_10C:
-                    func_8027B8D4((struct GraphNode10C *) curGraphNode);
+                case GRAPH_NODE_TYPE_SWITCH_CASE:
+                    func_8027B8D4((struct GraphNodeSwitchCase *) curGraphNode);
                     break;
                 case GRAPH_NODE_TYPE_114:
                     func_8027B9A8((struct GraphNode114 *) curGraphNode);
                     break;
-                case GRAPH_NODE_TYPE_015:
-                    func_8027BB64((struct GraphNode015 *) curGraphNode);
+                case GRAPH_NODE_TYPE_TRANSLATION_ROTATION_OPTIONAL_DISPLAY_LIST:
+                    func_8027BB64((struct GraphNodeTranslationRotationOptionalDisplayList *) curGraphNode);
                     break;
                 case GRAPH_NODE_TYPE_016:
                     func_8027BC88((struct GraphNode016 *) curGraphNode);
@@ -737,23 +737,23 @@ void func_8027D8F8(struct GraphNode *rootGraphNode)
                 case GRAPH_NODE_TYPE_017:
                     func_8027BDAC((struct GraphNode017 *) curGraphNode);
                     break;
-                case GRAPH_NODE_TYPE_018:
-                    func_8027D14C((struct GraphNode018 *) curGraphNode);
+                case GRAPH_NODE_TYPE_OBJECT:
+                    func_8027D14C((struct GraphNodeObject *) curGraphNode);
                     break;
-                case GRAPH_NODE_TYPE_019:
-                    func_8027C4C0((struct GraphNode019 *) curGraphNode);
+                case GRAPH_NODE_TYPE_DISPLAY_LIST_TRANSLATED:
+                    func_8027C4C0((struct GraphNodeDisplayListTranslated *) curGraphNode);
                     break;
-                case GRAPH_NODE_TYPE_01A:
-                    func_8027BFE4((struct GraphNode01A *) curGraphNode);
+                case GRAPH_NODE_TYPE_BILLBOARD_OPTIONAL_DISPLAY_LIST:
+                    func_8027BFE4((struct GraphNodeBillboardOptionalDisplayList *) curGraphNode);
                     break;
-                case GRAPH_NODE_TYPE_01B:
-                    func_8027C18C((struct GraphNode01B *) curGraphNode);
+                case GRAPH_NODE_TYPE_DISPLAY_LIST:
+                    func_8027C18C((struct GraphNodeDisplayList *) curGraphNode);
                     break;
-                case GRAPH_NODE_TYPE_01C:
-                    func_8027BEC4((struct GraphNode01C *) curGraphNode);
+                case GRAPH_NODE_TYPE_SCALE_OPTIONAL_DISPLAY_LIST:
+                    func_8027BEC4((struct GraphNodeScaleOptionalDisplayList *) curGraphNode);
                     break;
-                case GRAPH_NODE_TYPE_028:
-                    func_8027CB08((struct GraphNode028 *) curGraphNode);
+                case GRAPH_NODE_TYPE_SHADOW:
+                    func_8027CB08((struct GraphNodeShadow *) curGraphNode);
                     break;
                 case GRAPH_NODE_TYPE_029:
                     func_8027D460((struct GraphNode029 *) curGraphNode);
@@ -761,8 +761,8 @@ void func_8027D8F8(struct GraphNode *rootGraphNode)
                 case GRAPH_NODE_TYPE_12A:
                     func_8027C1F4((struct GraphNode12A *) curGraphNode);
                     break;
-                case GRAPH_NODE_TYPE_12C:
-                    func_8027C2A8((struct GraphNode12C *) curGraphNode);
+                case GRAPH_NODE_TYPE_BACKGROUND:
+                    func_8027C2A8((struct GraphNodeBackground *) curGraphNode);
                     break;
                 case GRAPH_NODE_TYPE_12E:
                     func_8027D4D4((struct GraphNode12E *) curGraphNode);
@@ -777,8 +777,8 @@ void func_8027D8F8(struct GraphNode *rootGraphNode)
         //L8027DB28
         else
         {
-            if (curGraphNode->type == GRAPH_NODE_TYPE_018)
-                ((struct GraphNode018 *)curGraphNode)->unk50 = 0;
+            if (curGraphNode->type == GRAPH_NODE_TYPE_OBJECT)
+                ((struct GraphNodeObject *)curGraphNode)->unk50 = 0;
         }
         //L8027DB44
     } while (sp2E && (curGraphNode = curGraphNode->next) != rootGraphNode);

@@ -87,71 +87,71 @@ struct GraphNodeCamFrustum *init_graph_node_cam_frustum(struct AllocOnlyPool *po
     return graphNode;
 }
 
-struct GraphNode00A *init_graph_node_00A(struct AllocOnlyPool *pool, struct GraphNode00A *graphNode)
+struct GraphNodeStart *init_graph_node_start(struct AllocOnlyPool *pool, struct GraphNodeStart *graphNode)
 {
     if(pool != NULL)
     {
-        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNode00A));
+        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNodeStart));
     }
 
     if(graphNode != NULL)
     {
-        init_scene_graph_node_links(&graphNode->node, GRAPH_NODE_TYPE_00A);
+        init_scene_graph_node_links(&graphNode->node, GRAPH_NODE_TYPE_START);
     }
 
     return graphNode;
 }
 
-struct GraphNode004 *init_graph_node_004(struct AllocOnlyPool *pool, struct GraphNode004 *graphNode, s16 sp22)
+struct GraphNodeToggleZBuffer *init_graph_node_toggle_z_buffer(struct AllocOnlyPool *pool, struct GraphNodeToggleZBuffer *graphNode, s16 on)
 {
     if(pool != NULL)
     {
-        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNode004));
+        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNodeToggleZBuffer));
     }
 
     if(graphNode != NULL)
     {
-        init_scene_graph_node_links(&graphNode->node, GRAPH_NODE_TYPE_004);
+        init_scene_graph_node_links(&graphNode->node, GRAPH_NODE_TYPE_TOGGLE_Z_BUFFER);
 
-        if(sp22)
+        if(on)
         {
-            graphNode->node.flags |= GRAPH_RENDER_08;
+            graphNode->node.flags |= GRAPH_RENDER_Z_BUFFER;
         }
     }
 
     return graphNode;
 }
 
-struct GraphNode00B *init_graph_node_00B(struct AllocOnlyPool *pool, struct GraphNode00B *graphNode,
-    s16 sp22, s16 sp26)
+struct GraphNodeRenderRange *init_graph_node_render_range(struct AllocOnlyPool *pool, struct GraphNodeRenderRange *graphNode,
+    s16 minDistance, s16 maxDistance)
 {
     if(pool != NULL)
     {
-        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNode00B));
+        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNodeRenderRange));
     }
 
     if(graphNode != NULL)
     {
-        init_scene_graph_node_links(&graphNode->node, GRAPH_NODE_TYPE_00B);
-        graphNode->unk14 = sp22;
-        graphNode->unk16 = sp26;
+        init_scene_graph_node_links(&graphNode->node, GRAPH_NODE_TYPE_RENDER_RANGE);
+        graphNode->minDistance = minDistance;
+        graphNode->maxDistance = maxDistance;
     }
 
     return graphNode;
 }
 
 // switch
-struct GraphNode10C *init_graph_node_10C(struct AllocOnlyPool *pool, struct GraphNode10C *graphNode,
+struct GraphNodeSwitchCase *init_graph_node_switch_case(struct AllocOnlyPool *pool, struct GraphNodeSwitchCase *graphNode,
     s16 numCases, s16 sp26, GraphNodeFunc nodeFunc, s32 sp2c)
 {
     if(pool != NULL)
     {
-        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNode10C));
+        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNodeSwitchCase));
     }
 
     if(graphNode != NULL)
     {
-        init_scene_graph_node_links(&graphNode->fnNode.node, GRAPH_NODE_TYPE_10C);
+        init_scene_graph_node_links(&graphNode->fnNode.node, GRAPH_NODE_TYPE_SWITCH_CASE);
         graphNode->numCases = numCases;
         graphNode->unk1E = sp26;
         graphNode->fnNode.func = nodeFunc;
@@ -193,29 +193,29 @@ struct GraphNode114 *init_graph_node_114(struct AllocOnlyPool *pool, struct Grap
     return graphNode;
 }
 
-struct GraphNode015 *init_graph_node_015(struct AllocOnlyPool *pool, struct GraphNode015 *graphNode,
-    s32 drawingLayer, void *dlist, Vec3s sp28, Vec3s sp2c)
+struct GraphNodeTranslationRotationOptionalDisplayList *init_graph_node_translation_rotation_optional_display_list(struct AllocOnlyPool *pool,
+    struct GraphNodeTranslationRotationOptionalDisplayList *graphNode, s32 drawingLayer, void *displayList, Vec3s translation, Vec3s rotation)
 {
     if(pool != NULL)
     {
-        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNode015));
+        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNodeTranslationRotationOptionalDisplayList));
     }
 
     if(graphNode != NULL)
     {
-        init_scene_graph_node_links(&graphNode->node, GRAPH_NODE_TYPE_015);
+        init_scene_graph_node_links(&graphNode->node, GRAPH_NODE_TYPE_TRANSLATION_ROTATION_OPTIONAL_DISPLAY_LIST);
 
-        vec3s_copy(graphNode->unk18, sp28);
-        vec3s_copy(graphNode->unk1E, sp2c);
+        vec3s_copy(graphNode->translation, translation);
+        vec3s_copy(graphNode->rotation, rotation);
         graphNode->node.flags = (drawingLayer << 8) | (graphNode->node.flags & 0xFF);
-        graphNode->dlist = dlist;
+        graphNode->displayList = displayList;
     }
 
     return graphNode;
 }
 
 struct GraphNode016 *init_graph_node_016(struct AllocOnlyPool *pool, struct GraphNode016 *graphNode,
-    s32 drawingLayer, void *dlist, Vec3s sp28)
+    s32 drawingLayer, void *displayList, Vec3s sp28)
 {
     if(pool != NULL)
     {
@@ -228,14 +228,14 @@ struct GraphNode016 *init_graph_node_016(struct AllocOnlyPool *pool, struct Grap
 
         vec3s_copy(graphNode->unk18, sp28);
         graphNode->node.flags = (drawingLayer << 8) | (graphNode->node.flags & 0xFF);
-        graphNode->dlist = dlist;
+        graphNode->displayList = displayList;
     }
 
     return graphNode;
 }
 
 struct GraphNode017 *init_graph_node_017(struct AllocOnlyPool *pool, struct GraphNode017 *graphNode,
-    s32 drawingLayer, void *dlist, Vec3s sp28)
+    s32 drawingLayer, void *displayList, Vec3s sp28)
 {
     if(pool != NULL)
     {
@@ -247,42 +247,42 @@ struct GraphNode017 *init_graph_node_017(struct AllocOnlyPool *pool, struct Grap
         init_scene_graph_node_links(&graphNode->node, GRAPH_NODE_TYPE_017);
         vec3s_copy(graphNode->unk18, sp28);
         graphNode->node.flags = (drawingLayer << 8) | (graphNode->node.flags & 0xFF);
-        graphNode->dlist = dlist;
+        graphNode->displayList = displayList;
     }
 
     return graphNode;
 }
 
-struct GraphNode01C *init_graph_node_01C(struct AllocOnlyPool *pool, struct GraphNode01C *graphNode,
-    s32 drawingLayer, void *dlist, f32 sp28)
+struct GraphNodeScaleOptionalDisplayList *init_graph_node_scale_optional_display_list(struct AllocOnlyPool *pool,
+    struct GraphNodeScaleOptionalDisplayList *graphNode, s32 drawingLayer, void *displayList, f32 scale)
 {
     if(pool != NULL)
     {
-        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNode01C));
+        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNodeScaleOptionalDisplayList));
     }
 
     if(graphNode != NULL)
     {
-        init_scene_graph_node_links(&graphNode->node, GRAPH_NODE_TYPE_01C);
+        init_scene_graph_node_links(&graphNode->node, GRAPH_NODE_TYPE_SCALE_OPTIONAL_DISPLAY_LIST);
         graphNode->node.flags = (drawingLayer << 8) | (graphNode->node.flags & 0xFF);
-        graphNode->unk18 = sp28;
-        graphNode->dlist = dlist;
+        graphNode->scale = scale;
+        graphNode->displayList = displayList;
     }
 
     return graphNode;
 }
 
-struct GraphNode018 *init_graph_node_018(struct AllocOnlyPool *pool, struct GraphNode018 *graphNode,
+struct GraphNodeObject *init_graph_node_object(struct AllocOnlyPool *pool, struct GraphNodeObject *graphNode,
     struct GraphNode *sp20, Vec3f pos, Vec3s angle, Vec3f scale)
 {
     if(pool != NULL)
     {
-        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNode018));
+        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNodeObject));
     }
 
     if(graphNode != NULL)
     {
-        init_scene_graph_node_links(&graphNode->node, GRAPH_NODE_TYPE_018);
+        init_scene_graph_node_links(&graphNode->node, GRAPH_NODE_TYPE_OBJECT);
         vec3f_copy(graphNode->pos, pos);
         vec3f_copy(graphNode->scale, scale);
         vec3s_copy(graphNode->angle, angle);
@@ -300,7 +300,7 @@ struct GraphNode018 *init_graph_node_018(struct AllocOnlyPool *pool, struct Grap
     return graphNode;
 }
 
-struct GraphNode02F *init_graph_node_12F(struct AllocOnlyPool *pool, struct GraphNode02F *graphNode,
+struct GraphNode02F *init_graph_node_02F(struct AllocOnlyPool *pool, struct GraphNode02F *graphNode,
     s16 sp22)
 {
     if(pool != NULL)
@@ -317,73 +317,73 @@ struct GraphNode02F *init_graph_node_12F(struct AllocOnlyPool *pool, struct Grap
     return graphNode;
 }
 
-struct GraphNode019 *init_graph_node_019(struct AllocOnlyPool *pool, struct GraphNode019 * graphNode,
-    s32 drawingLayer, void *dlist, Vec3s relativePos)
+struct GraphNodeDisplayListTranslated *init_graph_node_display_list_translated(struct AllocOnlyPool *pool,
+    struct GraphNodeDisplayListTranslated * graphNode, s32 drawingLayer, void *displayList, Vec3s translation)
 {
     if(pool != NULL)
     {
-        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNode019));
+        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNodeDisplayListTranslated));
     }
 
     if(graphNode != NULL)
     {
-        init_scene_graph_node_links(&graphNode->node, GRAPH_NODE_TYPE_019);
-        vec3s_copy(graphNode->relativePos, relativePos);
+        init_scene_graph_node_links(&graphNode->node, GRAPH_NODE_TYPE_DISPLAY_LIST_TRANSLATED);
+        vec3s_copy(graphNode->translation, translation);
         graphNode->node.flags = (drawingLayer << 8) | (graphNode->node.flags & 0xFF);
-        graphNode->dlist = dlist;
+        graphNode->displayList = displayList;
     }
 
     return graphNode;
 }
 
-struct GraphNode01A *init_graph_node_01A(struct AllocOnlyPool *pool, struct GraphNode01A *graphNode,
-    s32 drawingLayer, void *dlist, Vec3s sp28)
+struct GraphNodeBillboardOptionalDisplayList *init_graph_node_billboard_optional_display_list(struct AllocOnlyPool *pool,
+    struct GraphNodeBillboardOptionalDisplayList *graphNode, s32 drawingLayer, void *displayList, Vec3s translation)
 {
     if(pool != NULL)
     {
-        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNode01A));
+        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNodeBillboardOptionalDisplayList));
     }
 
     if(graphNode != NULL)
     {
-        init_scene_graph_node_links(&graphNode->node, GRAPH_NODE_TYPE_01A);
-        vec3s_copy(graphNode->unk18, sp28);
+        init_scene_graph_node_links(&graphNode->node, GRAPH_NODE_TYPE_BILLBOARD_OPTIONAL_DISPLAY_LIST);
+        vec3s_copy(graphNode->translation, translation);
         graphNode->node.flags = (drawingLayer << 8) | (graphNode->node.flags & 0xFF);
-        graphNode->dlist = dlist;
+        graphNode->displayList = displayList;
     }
 
     return graphNode;
 }
 
-struct GraphNode01B *init_graph_node_01B(struct AllocOnlyPool *pool, struct GraphNode01B *graphNode,
-    s32 drawingLayer, void *dlist)
+struct GraphNodeDisplayList *init_graph_node_display_list(struct AllocOnlyPool *pool, struct GraphNodeDisplayList *graphNode,
+    s32 drawingLayer, void *displayList)
 {
     if(pool != NULL)
     {
-        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNode01B));
+        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNodeDisplayList));
     }
 
     if(graphNode != NULL)
     {
-        init_scene_graph_node_links(&graphNode->node, GRAPH_NODE_TYPE_01B);
+        init_scene_graph_node_links(&graphNode->node, GRAPH_NODE_TYPE_DISPLAY_LIST);
         graphNode->node.flags = (drawingLayer << 8) | (graphNode->node.flags & 0xFF);
-        graphNode->dlist = dlist;
+        graphNode->displayList = displayList;
     }
 
     return graphNode;
 }
 
-struct GraphNode028 *init_graph_node_028(struct AllocOnlyPool *pool, struct GraphNode028 *graphNode,
+struct GraphNodeShadow *init_graph_node_shadow(struct AllocOnlyPool *pool, struct GraphNodeShadow *graphNode,
     s16 shadowScale, u8 shadowSolidity, u8 shadowType)
 {
     if(pool != NULL)
     {
-        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNode028));
+        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNodeShadow));
     }
 
     if(graphNode != NULL)
     {
-        init_scene_graph_node_links(&graphNode->node, GRAPH_NODE_TYPE_028);
+        init_scene_graph_node_links(&graphNode->node, GRAPH_NODE_TYPE_SHADOW);
         graphNode->shadowScale = shadowScale;
         graphNode->shadowSolidity = shadowSolidity;
         graphNode->shadowType = shadowType;
@@ -433,25 +433,25 @@ struct GraphNode12A *init_graph_node_12A(struct AllocOnlyPool *pool, struct Grap
 }
 
 // background
-struct GraphNode12C *init_graph_node_12C(struct AllocOnlyPool *pool, struct GraphNode12C *graphNode,
-    u16 sp22, GraphNodeFunc sp24, s32 sp28)
+struct GraphNodeBackground *init_graph_node_background(struct AllocOnlyPool *pool, struct GraphNodeBackground *graphNode,
+    u16 background, GraphNodeFunc backgroundFunc, s32 sp28)
 {
     if(pool != NULL)
     {
-        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNode12C));
+        graphNode = alloc_only_pool_alloc(pool, sizeof(struct GraphNodeBackground));
     }
 
     if(graphNode != NULL)
     {
-        init_scene_graph_node_links(&graphNode->fnNode.node, GRAPH_NODE_TYPE_12C);
+        init_scene_graph_node_links(&graphNode->fnNode.node, GRAPH_NODE_TYPE_BACKGROUND);
 
-        graphNode->unk1C = (sp22 << 16) | sp22;
-        graphNode->fnNode.func = sp24;
+        graphNode->background = (background << 16) | background;
+        graphNode->fnNode.func = backgroundFunc;
         graphNode->unk18 = sp28;
 
-        if(sp24 != NULL)
+        if(backgroundFunc != NULL)
         {
-            sp24(0, &graphNode->fnNode.node, pool);
+            backgroundFunc(0, &graphNode->fnNode.node, pool);
         }
     }
 
@@ -470,7 +470,7 @@ struct GraphNode12E *init_graph_node_12E(struct AllocOnlyPool *pool, struct Grap
     {
         init_scene_graph_node_links(&graphNode->fnNode.node, GRAPH_NODE_TYPE_12E);
         vec3s_copy(graphNode->unk20, sp24);
-        graphNode->unk1C = (struct GraphNode018 *) sp20; // assumed type
+        graphNode->unk1C = (struct GraphNodeObject *) sp20; // assumed type
         graphNode->fnNode.func = nodeFunc;
         graphNode->unk18 = sp2c;
 
@@ -590,7 +590,7 @@ void func_8037C1E4(struct GraphNode *graphNode, s32 sp34)
         {
             switch(sp28->type)
             {
-            case GRAPH_NODE_TYPE_004: // zbuffer
+            case GRAPH_NODE_TYPE_TOGGLE_Z_BUFFER: // zbuffer
                 sp2c = (struct GraphNode **) &D_8032CF94;
                 break;
             case GRAPH_NODE_TYPE_103: // camera frustum
@@ -599,7 +599,7 @@ void func_8037C1E4(struct GraphNode *graphNode, s32 sp34)
             case GRAPH_NODE_TYPE_114:
                 sp2c = (struct GraphNode **) &D_8032CF9C;
                 break;
-            case GRAPH_NODE_TYPE_018: // object
+            case GRAPH_NODE_TYPE_OBJECT: // object
                 sp2c = (struct GraphNode **) &D_8032CFA0;
                 break;
             default:
@@ -638,15 +638,15 @@ void func_8037C360(struct GraphNode *graphNode, s32 sp1c)
     }
 }
 
-void func_8037C3D0(struct GraphNode018 *graphNode)
+void func_8037C3D0(struct GraphNodeObject *graphNode)
 {
-    init_graph_node_018(NULL, graphNode, 0, D_80385FD0, D_80385FDC, D_80385FE4);
+    init_graph_node_object(NULL, graphNode, 0, D_80385FD0, D_80385FDC, D_80385FE4);
     
     func_8037C044(&D_8038BD88, &graphNode->node);
     graphNode->node.flags &= ~GRAPH_RENDER_01;
 }
 
-void func_8037C448(struct GraphNode018 *graphNode, void *sp1c, Vec3f pos, Vec3s angle)
+void func_8037C448(struct GraphNodeObject *graphNode, void *sp1c, Vec3f pos, Vec3s angle)
 {
     vec3f_set(graphNode->scale, 1.0f, 1.0f, 1.0f);
     vec3f_copy(graphNode->pos, pos);
@@ -663,7 +663,7 @@ void func_8037C448(struct GraphNode018 *graphNode, void *sp1c, Vec3f pos, Vec3s 
     graphNode->node.flags &= ~GRAPH_RENDER_BILLBOARD;
 }
 
-void func_8037C51C(struct GraphNode018 *graphNode, struct SpawnInfo *sp1c)
+void func_8037C51C(struct GraphNodeObject *graphNode, struct SpawnInfo *sp1c)
 {
     vec3f_set(graphNode->scale, 1.0f, 1.0f, 1.0f);
     vec3s_copy(graphNode->angle, sp1c->startAngle);
@@ -685,7 +685,7 @@ void func_8037C51C(struct GraphNode018 *graphNode, struct SpawnInfo *sp1c)
     graphNode->node.flags &= ~GRAPH_RENDER_BILLBOARD;
 }
 
-void func_8037C658(struct GraphNode018 *graphNode, void *sp34)
+void func_8037C658(struct GraphNodeObject *graphNode, void *sp34)
 {
     void *sp2c = segmented_to_virtual(sp34);
     struct UnknownStruct5 *sp28 = segmented_to_virtual((void*)*(s32*)sp2c);
@@ -699,7 +699,7 @@ void func_8037C658(struct GraphNode018 *graphNode, void *sp34)
     }
 }
 
-void func_8037C708(struct GraphNode018 *graphNode, void *sp34, u32 sp38)
+void func_8037C708(struct GraphNodeObject *graphNode, void *sp34, u32 sp38)
 {
     void **sp2c = segmented_to_virtual(sp34);
     struct UnknownStruct5 *sp28 = segmented_to_virtual(sp2c[0]);
@@ -733,7 +733,7 @@ s32 func_8037C7D8(s32 a0, u16 **a1)
     return sp04;
 }
 
-s16 func_8037C844(struct GraphNode018_sub *a0, s32* a1)
+s16 func_8037C844(struct GraphNodeObject_sub *a0, s32* a1)
 {
     s32 sp04;
     struct UnknownStruct5 *sp00;
@@ -805,7 +805,7 @@ s16 func_8037C844(struct GraphNode018_sub *a0, s32* a1)
     return *(s16 *) &sp04;
 }
 
-void Unknown8037C9E8(struct GraphNode018 *sp28, Vec3f sp2c)
+void Unknown8037C9E8(struct GraphNodeObject *sp28, Vec3f sp2c)
 {
     struct UnknownStruct5 *sp24 = sp28->unk38.unk04;
     u16 *sp20;
