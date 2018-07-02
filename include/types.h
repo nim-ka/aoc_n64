@@ -92,9 +92,10 @@ struct Struct8032C620
     OSMesg msg;
 };
 
-// NOTE: Since GfxNode is the first member of Object, it is difficult to determine
-// whether some of these pointers point to GfxNode or Object.
+// NOTE: Since ObjectNode is the first member of Object, it is difficult to determine
+// whether some of these pointers point to ObjectNode or Object.
 
+// Animation?
 struct UnknownStruct5 {
     /*0x00*/ s16 unk00; // flags
     /*0x02*/ s16 unk02;
@@ -105,35 +106,55 @@ struct UnknownStruct5 {
     /*0x10*/ void *unk10;
 };
 
-struct GfxNode
+struct GraphNode
 {
-    /*0x000*/ s16 unk00;
-    /*0x002*/ s16 graphFlags;
-    u8 filler4[0x8-0x4];
-    /*0x008*/ struct Object *unk8;
-    /*0x00C*/ u32 unkC;
-    /*0x010*/ struct Object *unk10;
-    /*0x014*/ void *geoLayout;
-    /*0x018*/ s8 unk18;
-    /*0x019*/ s8 unk19;
-    /*0x01A*/ Vec3s unk1A;
-    /*0x020*/ Vec3f unk20;
-    /*0x02C*/ Vec3f scale;
-    /*0x038*/ s16 unk38;
-    /*0x03A*/ u16 unk3A;
-    /*0x03C*/ struct UnknownStruct5 *unk3C;
-    /*0x040*/ s16 unk40;
-    u8 filler42[0x50-0x42];
-    /*0x050*/ void *unk50;
-    /*0x054*/ u32 unk54;
-    u8 filler58[0x60-0x58];
-    /*0x060*/ struct GfxNode *next;
-    /*0x064*/ struct GfxNode *prev;
+    /*0x00*/ s16 type; // structure type
+    /*0x02*/ s16 flags; // hi = drawing layer, lo = rendering modes
+    /*0x04*/ struct GraphNode *prev;
+    /*0x08*/ struct GraphNode *next;
+    /*0x0C*/ struct GraphNode *parent;
+    /*0x10*/ struct GraphNode *children;
+};
+
+// struct AnimInfo?
+struct GraphNodeObject_sub
+{
+    /*0x00 0x38*/ s16 animID;
+    /*0x02 0x3A*/ s16 animYTrans;
+    /*0x04 0x3C*/ struct UnknownStruct5 *curAnim;
+    /*0x08 0x40*/ s16 animFrame;
+    /*0x0A 0x42*/ u16 animTimer;
+    /*0x0C 0x44*/ s32 animFrameAccelAssist;
+    /*0x10 0x48*/ s32 animAccel;
+};
+
+// TODO this is the first member of ObjectNode/Object
+struct GraphNodeObject
+{
+    /*0x00*/ struct GraphNode node;
+    /*0x14*/ struct GraphNode *asGraphNode;
+    /*0x18*/ s8 unk18;
+    /*0x19*/ s8 unk19;
+    /*0x1A*/ Vec3s angle;
+    /*0x20*/ Vec3f pos;
+    /*0x2C*/ Vec3f scale;
+    /*0x38*/ struct GraphNodeObject_sub unk38;
+    /*0x4C*/ struct SpawnInfo *unk4C;
+    /*0x50*/ void *throwMatrix; // matrix ptr
+    /*0x54*/ f32 unk54;
+    /*0x58*/ f32 unk58;
+    /*0x5C*/ f32 unk5C;
+};
+
+struct ObjectNode
+{
+    struct GraphNodeObject gfx;
+    struct ObjectNode *next, *prev;
 };
 
 struct Object
 {
-    /*0x000*/ struct GfxNode gfx;
+    /*0x000*/ struct ObjectNode header;
     /*0x068*/ struct Object *nextObj;
     /*0x06C*/ struct Object *prevObj;
     /*0x070*/ u32 collidedObjInteractTypes;

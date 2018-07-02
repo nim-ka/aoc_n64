@@ -46,11 +46,11 @@ static void play_climbing_sounds(struct MarioState *m, s32 b)
     if (b == 1)
     {
         if (func_80250B68(m, 1) != 0)
-            SetSound(isOnTree ? SOUND_ACTION_CLIMBUPTREE : SOUND_ACTION_UNKNOWN441, &m->marioObj->gfx.unk54);
+            SetSound(isOnTree ? SOUND_ACTION_CLIMBUPTREE : SOUND_ACTION_UNKNOWN441, &m->marioObj->header.gfx.unk54);
     }
     else
     {
-        SetSound(isOnTree ? SOUND_UNKNOWN_UNK1412 : SOUND_UNKNOWN_UNK1411, &m->marioObj->gfx.unk54);
+        SetSound(isOnTree ? SOUND_UNKNOWN_UNK1412 : SOUND_UNKNOWN_UNK1411, &m->marioObj->header.gfx.unk54);
     }
 }
 
@@ -113,8 +113,8 @@ static s32 set_pole_position(struct MarioState *m, f32 offsetY)
         }
     }
 
-    vec3f_copy(m->marioObj->gfx.unk20, m->pos);
-    vec3s_set(m->marioObj->gfx.unk1A, m->usedObj->oAnglePitch, m->faceAngle[1], m->usedObj->oAngleRoll);
+    vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
+    vec3s_set(m->marioObj->header.gfx.angle, m->usedObj->oAnglePitch, m->faceAngle[1], m->usedObj->oAngleRoll);
 
     return result;
 }
@@ -294,7 +294,7 @@ static s32 act_top_of_pole_transition(struct MarioState *m)
     else
     {
         func_802507E8(m, 0x000C);
-        if (m->marioObj->gfx.unk40 == 0)
+        if (m->marioObj->header.gfx.unk38.animFrame == 0)
             return set_mario_action(m, ACT_HOLDING_POLE, 0);
     }
 
@@ -383,8 +383,8 @@ static s32 update_hang_moving(struct MarioState *m)
 
     stepResult = perform_hanging_step(m, nextPos);
 
-    vec3f_copy(m->marioObj->gfx.unk20, m->pos);
-    vec3s_set(m->marioObj->gfx.unk1A, 0, m->faceAngle[1], 0);
+    vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
+    vec3s_set(m->marioObj->header.gfx.angle, 0, m->faceAngle[1], 0);
     return stepResult;
 }
 
@@ -397,7 +397,7 @@ static void update_hang_stationary(struct MarioState *m)
     m->pos[1] = m->ceilHeight - 160.0f;
     
     vec3f_copy(m->vel, D_80385FD0);
-    vec3f_copy(m->marioObj->gfx.unk20, m->pos);
+    vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
 }
 
 static s32 act_start_hanging(struct MarioState *m)
@@ -467,8 +467,8 @@ static s32 act_hang_moving(struct MarioState *m)
     else
         func_802507E8(m, 0x005D);
 
-    if (m->marioObj->gfx.unk40 == 12)
-        SetSound(SOUND_ACTION_UNKNOWN42D, &m->marioObj->gfx.unk54);
+    if (m->marioObj->header.gfx.unk38.animFrame == 12)
+        SetSound(SOUND_ACTION_UNKNOWN42D, &m->marioObj->header.gfx.unk54);
 
     if (func_802507AC(m))
     {
@@ -507,7 +507,7 @@ static void func_8025F0DC(struct MarioState *m)
     func_802507E8(m, 0x00C3);
     m->pos[0] += 14.0f * sins(m->faceAngle[1]);
     m->pos[2] += 14.0f * coss(m->faceAngle[1]);
-    vec3f_copy(m->marioObj->gfx.unk20, m->pos);
+    vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
 }
 
 static void func_8025F188(struct MarioState *m)
@@ -607,7 +607,7 @@ static s32 act_ledge_climb_slow(struct MarioState *m)
     update_ledge_climb(m, 0, ACT_IDLE);
 
     func_8025F188(m);
-    if (m->marioObj->gfx.unk40 == 17)
+    if (m->marioObj->header.gfx.unk38.animFrame == 17)
         m->action = ACT_LEDGE_CLIMB_SLOW_2;
 
     return FALSE;
@@ -635,7 +635,7 @@ static s32 act_ledge_climb_fast(struct MarioState *m)
 
     update_ledge_climb(m, 0x0034, ACT_IDLE);
     
-    if (m->marioObj->gfx.unk40 == 8)
+    if (m->marioObj->header.gfx.unk38.animFrame == 8)
         func_80251280(m, SOUND_ACTION_UNKNOWN408);
     func_8025F188(m);
 
@@ -649,7 +649,7 @@ static s32 act_grabbed(struct MarioState *m)
         s32 thrown = (m->marioObj->oInteractStatus & 0x00000040) == 0;
         
         m->faceAngle[1] = m->usedObj->oAngleYaw;
-        vec3f_copy(m->pos, m->marioObj->gfx.unk20);
+        vec3f_copy(m->pos, m->marioObj->header.gfx.pos);
 
         return set_mario_action(
             m, (m->forwardVel >= 0.0f) ? ACT_THROWN_FORWARD : ACT_THROWN_BACKWARD, thrown);
@@ -668,7 +668,7 @@ static s32 act_in_cannon(struct MarioState *m)
     switch (m->actionState)
     {
     case 0:
-        m->marioObj->gfx.graphFlags &= ~0x0001;
+        m->marioObj->header.gfx.node.flags &= ~0x0001;
         m->usedObj->oInteractStatus = 0x00008000;
 
         m->unk94->unk1E = 1;
@@ -723,10 +723,10 @@ static s32 act_in_cannon(struct MarioState *m)
             m->pos[1] += 120.0f * sins(m->faceAngle[0]);
             m->pos[2] += 120.0f * coss(m->faceAngle[0]) * coss(m->faceAngle[1]);
             
-            SetSound(SOUND_ACTION_UNKNOWN456, &m->marioObj->gfx.unk54);
-            SetSound(SOUND_OBJECT_POUNDINGCANNON, &m->marioObj->gfx.unk54);
+            SetSound(SOUND_ACTION_UNKNOWN456, &m->marioObj->header.gfx.unk54);
+            SetSound(SOUND_OBJECT_POUNDINGCANNON, &m->marioObj->header.gfx.unk54);
 
-            m->marioObj->gfx.graphFlags |= 0x0001;
+            m->marioObj->header.gfx.node.flags |= 0x0001;
             
             set_mario_action(m, ACT_SHOT_FROM_CANNON, 0);
             m->usedObj->oAction = 2;
@@ -735,12 +735,12 @@ static s32 act_in_cannon(struct MarioState *m)
         else
         {
             if (m->faceAngle[0] != startFacePitch || m->faceAngle[1] != startFaceYaw)
-                SetSound(SOUND_MOVING_UNKNOWN19, &m->marioObj->gfx.unk54);
+                SetSound(SOUND_MOVING_UNKNOWN19, &m->marioObj->header.gfx.unk54);
         }
     }
 
-    vec3f_copy(m->marioObj->gfx.unk20, m->pos);
-    vec3s_set(m->marioObj->gfx.unk1A, 0, m->faceAngle[1], 0);
+    vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
+    vec3s_set(m->marioObj->header.gfx.angle, 0, m->faceAngle[1], 0);
     func_802507E8(m, 0x0088);
 
     return FALSE;
@@ -813,10 +813,10 @@ static s32 act_tornado_twirling(struct MarioState *m)
 
     // Play sound on angle overflow
     if (prevTwirlYaw > m->twirlYaw)
-        SetSound(SOUND_ACTION_UNKNOWN438, &m->marioObj->gfx.unk54);
+        SetSound(SOUND_ACTION_UNKNOWN438, &m->marioObj->header.gfx.unk54);
     
-    vec3f_copy(m->marioObj->gfx.unk20, m->pos);
-    vec3s_set(m->marioObj->gfx.unk1A, 0, m->faceAngle[1] + m->twirlYaw, 0);
+    vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
+    vec3s_set(m->marioObj->header.gfx.angle, 0, m->faceAngle[1] + m->twirlYaw, 0);
 
     return FALSE;
 }

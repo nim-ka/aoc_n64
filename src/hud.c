@@ -312,8 +312,8 @@ void func_802E1504(s16 a0, s16* a1)
     struct Object * sp48;
     struct Struct803306D0 sp40;
 
-    D_8035FB18.gfx.unk18 = a0;
-    D_8035FB18.gfx.unk19 = a0;
+    D_8035FB18.header.gfx.unk18 = a0;
+    D_8035FB18.header.gfx.unk19 = a0;
 
     while (TRUE)
     {
@@ -362,8 +362,8 @@ void func_802E1780(s16 a0, s16* a1)
     s16 sp36;
     UNUSED u8 pad2[10];
 
-    D_8035FB18.gfx.unk18 = a0;
-    D_8035FB18.gfx.unk19 = a0;
+    D_8035FB18.header.gfx.unk18 = a0;
+    D_8035FB18.header.gfx.unk19 = a0;
 
     while (TRUE)
     {
@@ -424,8 +424,8 @@ void func_802E19DC(s16 a0, s16** a1)
     sp4C = **a1;
     (*a1)++;
 
-    D_8035FB18.gfx.unk18 = a0;
-    D_8035FB18.gfx.unk19 = a0;
+    D_8035FB18.header.gfx.unk18 = a0;
+    D_8035FB18.header.gfx.unk19 = a0;
 
     for (i = 0; i < sp4C; i++)
     {

@@ -1478,8 +1478,8 @@ glabel func_8029E5A4
 /* 0595F8 8029E5F8 812A0018 */  lb    $t2, 0x18($t1)
 /* 0595FC 8029E5FC A16A0019 */  sb    $t2, 0x19($t3)
 /* 059600 8029E600 8FAD0028 */  lw    $t5, 0x28($sp)
-/* 059604 8029E604 3C0C8033 */  lui   $t4, %hi(gLoadedGeoLayouts) # $t4, 0x8033
-/* 059608 8029E608 8D8CCE64 */  lw    $t4, %lo(gLoadedGeoLayouts)($t4)
+/* 059604 8029E604 3C0C8033 */  lui   $t4, %hi(gLoadedGraphNodes) # $t4, 0x8033
+/* 059608 8029E608 8D8CCE64 */  lw    $t4, %lo(gLoadedGraphNodes)($t4)
 /* 05960C 8029E60C 000D7080 */  sll   $t6, $t5, 2
 /* 059610 8029E610 3C068038 */  lui   $a2, %hi(D_80385FD0) # $a2, 0x8038
 /* 059614 8029E614 3C078038 */  lui   $a3, %hi(D_80385FDC) # $a3, 0x8038
@@ -3200,8 +3200,8 @@ glabel func_8029FCF8
 /* 05AD40 8029FD40 00000000 */   nop   
 
 glabel SetModel
-/* 05AD44 8029FD44 3C0E8033 */  lui   $t6, %hi(gLoadedGeoLayouts) # $t6, 0x8033
-/* 05AD48 8029FD48 8DCECE64 */  lw    $t6, %lo(gLoadedGeoLayouts)($t6)
+/* 05AD44 8029FD44 3C0E8033 */  lui   $t6, %hi(gLoadedGraphNodes) # $t6, 0x8033
+/* 05AD48 8029FD48 8DCECE64 */  lw    $t6, %lo(gLoadedGraphNodes)($t6)
 /* 05AD4C 8029FD4C 00047880 */  sll   $t7, $a0, 2
 /* 05AD50 8029FD50 3C088036 */  lui   $t0, %hi(gCurrentObject) # $t0, 0x8036
 /* 05AD54 8029FD54 01CFC021 */  addu  $t8, $t6, $t7
@@ -8544,8 +8544,8 @@ glabel CreateMessageBox
 
 glabel func_802A472C
 /* 05F72C 802A472C 3084FFFF */  andi  $a0, $a0, 0xffff
-/* 05F730 802A4730 3C0E8033 */  lui   $t6, %hi(gLoadedGeoLayouts) # $t6, 0x8033
-/* 05F734 802A4734 8DCECE64 */  lw    $t6, %lo(gLoadedGeoLayouts)($t6)
+/* 05F730 802A4730 3C0E8033 */  lui   $t6, %hi(gLoadedGraphNodes) # $t6, 0x8033
+/* 05F734 802A4734 8DCECE64 */  lw    $t6, %lo(gLoadedGraphNodes)($t6)
 /* 05F738 802A4738 3C088036 */  lui   $t0, %hi(gCurrentObject) # $t0, 0x8036
 /* 05F73C 802A473C 8D08FDF0 */  lw    $t0, %lo(gCurrentObject)($t0)
 /* 05F740 802A4740 00047880 */  sll   $t7, $a0, 2

@@ -286,13 +286,13 @@ struct GraphNodeObject *init_graph_node_object(struct AllocOnlyPool *pool, struc
         vec3f_copy(graphNode->pos, pos);
         vec3f_copy(graphNode->scale, scale);
         vec3s_copy(graphNode->angle, angle);
-        graphNode->unk14 = sp20;
-        graphNode->unk50 = 0;
-        graphNode->unk38.unk00 = 0;
-        graphNode->unk38.unk04 = NULL;
+        graphNode->asGraphNode = sp20;
+        graphNode->throwMatrix = NULL;
+        graphNode->unk38.animID = 0;
+        graphNode->unk38.curAnim = NULL;
         graphNode->unk38.animFrame = 0;
-        graphNode->unk38.unk0C = 0;
-        graphNode->unk38.unk10 = 0x10000;
+        graphNode->unk38.animFrameAccelAssist = 0;
+        graphNode->unk38.animAccel = 0x10000;
         graphNode->unk38.animTimer = 0;
         graphNode->node.flags |= GRAPH_RENDER_20;
     }
@@ -652,10 +652,10 @@ void func_8037C448(struct GraphNodeObject *graphNode, void *sp1c, Vec3f pos, Vec
     vec3f_copy(graphNode->pos, pos);
     vec3s_copy(graphNode->angle, angle);
 
-    graphNode->unk14 = sp1c;
+    graphNode->asGraphNode = sp1c;
     graphNode->unk4C = 0;
-    graphNode->unk50 = 0;
-    graphNode->unk38.unk04 = NULL;
+    graphNode->throwMatrix = NULL;
+    graphNode->unk38.curAnim = NULL;
 
     graphNode->node.flags |= GRAPH_RENDER_01;
     graphNode->node.flags &= ~GRAPH_RENDER_10;
@@ -674,10 +674,10 @@ void func_8037C51C(struct GraphNodeObject *graphNode, struct SpawnInfo *sp1c)
 
     graphNode->unk18 = sp1c->areaIndex;
     graphNode->unk19 = sp1c->unk0D;
-    graphNode->unk14 = sp1c->unk18;
+    graphNode->asGraphNode = sp1c->unk18;
     graphNode->unk4C = sp1c;
-    graphNode->unk50 = 0;
-    graphNode->unk38.unk04 = 0;
+    graphNode->throwMatrix = NULL;
+    graphNode->unk38.curAnim = 0;
 
     graphNode->node.flags |= GRAPH_RENDER_01;
     graphNode->node.flags &= ~GRAPH_RENDER_10;
@@ -690,12 +690,12 @@ void func_8037C658(struct GraphNodeObject *graphNode, void *sp34)
     void *sp2c = segmented_to_virtual(sp34);
     struct UnknownStruct5 *sp28 = segmented_to_virtual((void*)*(s32*)sp2c);
 
-    if(graphNode->unk38.unk04 != sp28)
+    if(graphNode->unk38.curAnim != sp28)
     {
-        graphNode->unk38.unk04 = sp28;
+        graphNode->unk38.curAnim = sp28;
         graphNode->unk38.animFrame = (sp28->unk04) + ((sp28->unk00 & 0x0002) ? 1 : -1);
-        graphNode->unk38.unk10 = 0;
-        graphNode->unk38.unk02 = 0;
+        graphNode->unk38.animAccel = 0;
+        graphNode->unk38.animYTrans = 0;
     }
 }
 
@@ -704,15 +704,15 @@ void func_8037C708(struct GraphNodeObject *graphNode, void *sp34, u32 sp38)
     void **sp2c = segmented_to_virtual(sp34);
     struct UnknownStruct5 *sp28 = segmented_to_virtual(sp2c[0]);
 
-    if(graphNode->unk38.unk04 != sp28)
+    if(graphNode->unk38.curAnim != sp28)
     {
-        graphNode->unk38.unk04 = sp28;
-        graphNode->unk38.unk02 = 0;
-        graphNode->unk38.unk0C = (sp28->unk04 << 16) + ((sp28->unk00 & 0x0002) ? sp38 : -sp38);
-        graphNode->unk38.animFrame = graphNode->unk38.unk0C >> 16;
+        graphNode->unk38.curAnim = sp28;
+        graphNode->unk38.animYTrans = 0;
+        graphNode->unk38.animFrameAccelAssist = (sp28->unk04 << 16) + ((sp28->unk00 & 0x0002) ? sp38 : -sp38);
+        graphNode->unk38.animFrame = graphNode->unk38.animFrameAccelAssist >> 16;
     }
 
-    graphNode->unk38.unk10 = sp38;
+    graphNode->unk38.animAccel = sp38;
 }
 
 s32 func_8037C7D8(s32 a0, u16 **a1)
@@ -738,13 +738,13 @@ s16 func_8037C844(struct GraphNodeObject_sub *a0, s32* a1)
     s32 sp04;
     struct UnknownStruct5 *sp00;
     
-    sp00 = a0->unk04;
+    sp00 = a0->curAnim;
 
     if(a0->animTimer == gAreaUpdateCounter || sp00->unk00 & 0x0004)
     {
         if(a1 != NULL)
         {
-            a1[0] = a0->unk0C;
+            a1[0] = a0->animFrameAccelAssist;
         }
 
         return a0->animFrame;
@@ -752,9 +752,9 @@ s16 func_8037C844(struct GraphNodeObject_sub *a0, s32* a1)
 
     if(sp00->unk00 & 0x0002)
     {
-        if(a0->unk10)
+        if(a0->animAccel)
         {
-            sp04 = a0->unk0C - a0->unk10;
+            sp04 = a0->animFrameAccelAssist - a0->animAccel;
         }
         else
         {
@@ -775,9 +775,9 @@ s16 func_8037C844(struct GraphNodeObject_sub *a0, s32* a1)
     }
     else
     {
-        if(a0->unk10 != 0)
+        if(a0->animAccel != 0)
         {
-            sp04 = a0->unk0C + a0->unk10;
+            sp04 = a0->animFrameAccelAssist + a0->animAccel;
         }
         else
         {
@@ -807,7 +807,7 @@ s16 func_8037C844(struct GraphNodeObject_sub *a0, s32* a1)
 
 void Unknown8037C9E8(struct GraphNodeObject *sp28, Vec3f sp2c)
 {
-    struct UnknownStruct5 *sp24 = sp28->unk38.unk04;
+    struct UnknownStruct5 *sp24 = sp28->unk38.curAnim;
     u16 *sp20;
     s16 *sp1c;
     s16 sp1a;

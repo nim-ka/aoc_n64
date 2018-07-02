@@ -433,10 +433,10 @@ void func_8027C4C0(struct GraphNodeDisplayListTranslated *a)
 
 void func_8027C988(struct GraphNodeObject_sub *a, int b)
 {
-    struct UnknownStruct5 *sp1C = a->unk04;
+    struct UnknownStruct5 *sp1C = a->curAnim;
 
     if (b != 0)
-        a->animFrame = func_8037C844(a, &a->unk0C);
+        a->animFrame = func_8037C844(a, &a->animFrameAccelAssist);
     a->animTimer = gAreaUpdateCounter;
     if (sp1C->unk00 & 8)
         D_8033B008 = 2;
@@ -455,7 +455,7 @@ void func_8027C988(struct GraphNodeObject_sub *a, int b)
     if (sp1C->unk02 == 0)
         D_8033B00C = 1.0f;
     else
-        D_8033B00C = (float)a->unk02 / (float)sp1C->unk02;
+        D_8033B00C = (float)a->animYTrans / (float)sp1C->unk02;
 }
 
 void func_8027CB08(struct GraphNodeShadow *a)
@@ -541,7 +541,7 @@ int func_8027CF68(struct GraphNodeObject *a, Mat4 b)
 
     if (a->node.flags & 0x10)
         return 0;
-    sp8 = a->unk14;
+    sp8 = a->asGraphNode;
     spC = (D_8032CF98->fov / 2.0f + 1.0f) * 32768.0f / 180.0f + 0.5f;
     sp4 = -b[3][2] * sins(spC) / coss(spC);
     if (sp8 != NULL && sp8->type == GRAPH_NODE_TYPE_02F)
@@ -566,9 +566,9 @@ void func_8027D14C(struct GraphNodeObject *a)
 
     if (a->unk18 == D_8032CF90->unk14)
     {
-        if (a->unk50 != NULL)
+        if (a->throwMatrix != NULL)
         {
-            mtxf_mul(D_8033A778[D_8033A770 + 1], (void *)a->unk50, D_8033A778[D_8033A770]);
+            mtxf_mul(D_8033A778[D_8033A770 + 1], (void *)a->throwMatrix, D_8033A778[D_8033A770]);
         }
         else if (a->node.flags & 4)
         {
@@ -581,12 +581,12 @@ void func_8027D14C(struct GraphNodeObject *a)
         }
 
         func_8037A29C(D_8033A778[D_8033A770 + 1], D_8033A778[D_8033A770 + 1], a->scale);
-        a->unk50 = D_8033A778[++D_8033A770];
+        a->throwMatrix = D_8033A778[++D_8033A770];
         a->unk54 = D_8033A778[D_8033A770][3][0];
         a->unk58 = D_8033A778[D_8033A770][3][1];
         a->unk5C = D_8033A778[D_8033A770][3][2];
         // FIXME: correct types
-        if (a->unk38.unk04 != 0)
+        if (a->unk38.curAnim != NULL)
             func_8027C988(&a->unk38, sp2C);
         if (func_8027CF68(a, D_8033A778[D_8033A770]))
         {
@@ -594,12 +594,12 @@ void func_8027D14C(struct GraphNodeObject *a)
 
             mtxf_to_mtx(sp28, D_8033A778[D_8033A770]);
             D_8033AF78[D_8033A770] = sp28;
-            if (a->unk14 != NULL)
+            if (a->asGraphNode != NULL)
             {
                 D_8032CFA0 = a;
-                a->unk14->parent = &a->node;
-                func_8027D8F8(a->unk14);
-                a->unk14->parent = NULL;
+                a->asGraphNode->parent = &a->node;
+                func_8027D8F8(a->asGraphNode);
+                a->asGraphNode->parent = NULL;
                 D_8032CFA0 = NULL;
             }
             if (a->node.children != NULL)
@@ -608,7 +608,7 @@ void func_8027D14C(struct GraphNodeObject *a)
         //L8027D420
         D_8033A770--;
         D_8033B008 = 0;
-        a->unk50 = NULL;
+        a->throwMatrix = NULL;
     }
 }
 
@@ -632,7 +632,7 @@ void func_8027D4D4(struct GraphNode12E *a)
 
     if (a->fnNode.func != NULL)
         a->fnNode.func(1, &a->fnNode.node, D_8033A778[D_8033A770]);
-    if (a->unk1C != NULL && a->unk1C->unk14 != NULL)
+    if (a->unk1C != NULL && a->unk1C->asGraphNode != NULL)
     {
         UNUSED int sp1C = (a->unk1C->node.flags & GRAPH_RENDER_20) != 0;
 
@@ -645,7 +645,7 @@ void func_8027D4D4(struct GraphNode12E *a)
         sp24[2] = a->unk24 / 4.0f;
         */
         mtxf_translate(sp30, sp24);
-        mtxf_copy(D_8033A778[D_8033A770 + 1], (void *)D_8032CFA0->unk50);
+        mtxf_copy(D_8033A778[D_8033A770 + 1], (void *)D_8032CFA0->throwMatrix);
         D_8033A778[D_8033A770 + 1][3][0] = D_8033A778[D_8033A770][3][0];
         D_8033A778[D_8033A770 + 1][3][1] = D_8033A778[D_8033A770][3][1];
         D_8033A778[D_8033A770 + 1][3][2] = D_8033A778[D_8033A770][3][2];
@@ -664,10 +664,10 @@ void func_8027D4D4(struct GraphNode12E *a)
         D_8033B004 = D_8033B014;
         D_8033B008 = 0;
         D_8032CFA4 = (void *)a;
-        if (a->unk1C->unk38.unk04 != 0)
+        if (a->unk1C->unk38.curAnim != NULL)
             func_8027C988(&a->unk1C->unk38, sp1C);
         //L8027D7F8
-        func_8027D8F8(a->unk1C->unk14);
+        func_8027D8F8(a->unk1C->asGraphNode);
         D_8032CFA4 = NULL;
         D_8033B008 = D_8033AFF8;
         D_8033B009 = D_8033AFF9;
@@ -778,7 +778,7 @@ void func_8027D8F8(struct GraphNode *rootGraphNode)
         else
         {
             if (curGraphNode->type == GRAPH_NODE_TYPE_OBJECT)
-                ((struct GraphNodeObject *)curGraphNode)->unk50 = 0;
+                ((struct GraphNodeObject *)curGraphNode)->throwMatrix = NULL;
         }
         //L8027DB44
     } while (sp2E && (curGraphNode = curGraphNode->next) != rootGraphNode);

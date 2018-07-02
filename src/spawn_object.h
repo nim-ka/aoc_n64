@@ -3,8 +3,8 @@
 
 #include "types.h"
 
-extern struct GfxNode *gObjectLists;
-extern struct GfxNode D_8035FD80;
+extern struct ObjectNode *gObjectLists;
+extern struct ObjectNode D_8035FD80;
 
 // extern ? Unknown802C8CF0(?);
 // extern ? Unknown802C8D60(?);
@@ -12,7 +12,7 @@ extern struct GfxNode D_8035FD80;
 // extern ? Unknown802C8E70(?);
 // extern ? func_802C8EA4(?);
 extern void func_802C8ED8(void);
-extern void func_802C8F5C(struct GfxNode *);
+extern void func_802C8F5C(struct ObjectNode *);
 // extern ? UnknownRecursive802C8FF8(?);
 extern void func_802C9088(struct Object *);
 // extern ? func_802C9120(?);

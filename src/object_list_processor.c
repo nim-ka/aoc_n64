@@ -36,8 +36,8 @@ struct ParticleType
 extern struct Object D_8033C18C[];
 extern s8 D_8035FE68[][2];
 
-extern struct GfxNode D_8033B870;
-extern struct GfxNode *gObjectLists;
+extern struct ObjectNode D_8033B870;
+extern struct ObjectNode *gObjectLists;
 
 static s8 sObjectListUpdateOrder[] = { 11, 9, 10, 0, 5, 4, 2, 6, 8, 12, -1 };
 
@@ -82,13 +82,13 @@ static void copy_mario_state_to_object(void)
     gCurrentObject->oPosY = gMarioStates[i].pos[1];
     gCurrentObject->oPosZ = gMarioStates[i].pos[2];
 
-    gCurrentObject->oAnglePitch = gCurrentObject->gfx.unk1A[0];
-    gCurrentObject->oAngleYaw = gCurrentObject->gfx.unk1A[1];
-    gCurrentObject->oAngleRoll = gCurrentObject->gfx.unk1A[2];
+    gCurrentObject->oAnglePitch = gCurrentObject->header.gfx.angle[0];
+    gCurrentObject->oAngleYaw = gCurrentObject->header.gfx.angle[1];
+    gCurrentObject->oAngleRoll = gCurrentObject->header.gfx.angle[2];
 
-    gCurrentObject->oFaceAnglePitch = gCurrentObject->gfx.unk1A[0];
-    gCurrentObject->oFaceAngleYaw = gCurrentObject->gfx.unk1A[1];
-    gCurrentObject->oFaceAngleRoll = gCurrentObject->gfx.unk1A[2];
+    gCurrentObject->oFaceAnglePitch = gCurrentObject->header.gfx.angle[0];
+    gCurrentObject->oFaceAngleYaw = gCurrentObject->header.gfx.angle[1];
+    gCurrentObject->oFaceAngleRoll = gCurrentObject->header.gfx.angle[2];
 
     gCurrentObject->oAngleVelPitch = gMarioStates[i].angleVel[0];
     gCurrentObject->oAngleVelYaw = gMarioStates[i].angleVel[1];
@@ -125,7 +125,7 @@ void BehMarioLoop2(void)
     }
 }
 
-static s32 update_objects_starting_at(struct GfxNode *listHead, struct GfxNode *firstObj)
+static s32 update_objects_starting_at(struct ObjectNode *listHead, struct ObjectNode *firstObj)
 {
     s32 count = 0;
     
@@ -133,7 +133,7 @@ static s32 update_objects_starting_at(struct GfxNode *listHead, struct GfxNode *
     {
         gCurrentObject = (struct Object *) firstObj;
 
-        gCurrentObject->gfx.graphFlags |= 0x0020;
+        gCurrentObject->header.gfx.node.flags |= 0x0020;
         cur_object_exec_behavior();
 
         firstObj = firstObj->next;
@@ -143,7 +143,7 @@ static s32 update_objects_starting_at(struct GfxNode *listHead, struct GfxNode *
     return count;
 }
 
-static s32 update_objects_during_time_stop(struct GfxNode *listHead, struct GfxNode *firstObj)
+static s32 update_objects_during_time_stop(struct ObjectNode *listHead, struct ObjectNode *firstObj)
 {
     s32 count = 0;
     s32 unfrozen;
@@ -173,12 +173,12 @@ static s32 update_objects_during_time_stop(struct GfxNode *listHead, struct GfxN
 
         if (unfrozen)
         {
-            gCurrentObject->gfx.graphFlags |= 0x20;
+            gCurrentObject->header.gfx.node.flags |= 0x20;
             cur_object_exec_behavior();
         }
         else
         {
-            gCurrentObject->gfx.graphFlags &= ~0x20;
+            gCurrentObject->header.gfx.node.flags &= ~0x20;
         }
 
         firstObj = firstObj->next;
@@ -188,10 +188,10 @@ static s32 update_objects_during_time_stop(struct GfxNode *listHead, struct GfxN
     return count;
 }
 
-static s32 update_objects_in_list(struct GfxNode *objList)
+static s32 update_objects_in_list(struct ObjectNode *objList)
 {
     s32 count;
-    struct GfxNode *firstObj = objList->next;
+    struct ObjectNode *firstObj = objList->next;
 
     if (!(gTimeStopState & TIME_STOP_ACTIVE))
         count = update_objects_starting_at(objList, firstObj);
@@ -201,9 +201,9 @@ static s32 update_objects_in_list(struct GfxNode *objList)
     return count;
 }
 
-static s32 func_8029C618(struct GfxNode *objList)
+static s32 func_8029C618(struct ObjectNode *objList)
 {
-    struct GfxNode *obj = objList->next;
+    struct ObjectNode *obj = objList->next;
 
     while (objList != obj)
     {
@@ -244,7 +244,7 @@ void func_8029C6D8(struct Object *a0, u8 a1)
 
 void func_8029C75C(UNUSED s32 sp28, s32 sp2C)
 {
-    struct GfxNode *sp24, *sp20, *sp1C;
+    struct ObjectNode *sp24, *sp20, *sp1C;
     s32 sp18;
     gObjectLists = &D_8033B870;
     
@@ -257,7 +257,7 @@ void func_8029C75C(UNUSED s32 sp28, s32 sp2C)
         {
             sp24 = sp20;
             sp20 = sp20->next;
-            if (sp24->unk19 == sp2C)
+            if (sp24->gfx.unk19 == sp2C)
                 func_802C9088((struct Object *) sp24);
         }
     }
@@ -348,7 +348,7 @@ void func_8029CA60(void)
 
     for (i = 0; i < 240; i++)
     {
-        D_8033C18C[i].gfx.unk00 = 0;
+        D_8033C18C[i].header.gfx.node.type = 0;
         func_8037C3D0((struct GraphNodeObject *) &gObjectPool[i]);
     }
 

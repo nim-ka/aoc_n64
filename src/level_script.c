@@ -437,7 +437,7 @@ static void level_cmd_21(void)
     void *val3 = CMD_GET(void *, 4);
 
     if (val1 < 256)
-        gLoadedGeoLayouts[val1] = init_graph_node_display_list(sLevelPool, 0, val2, val3);
+        gLoadedGraphNodes[val1] = (struct GraphNode *)init_graph_node_display_list(sLevelPool, 0, val2, val3);
 
     sCurrentCmd = CMD_NEXT;
 }
@@ -448,7 +448,7 @@ static void level_cmd_22(void)
     void *arg1 = CMD_GET(void *, 4);
 
     if (arg0 < 256)
-        gLoadedGeoLayouts[arg0] = process_geo_layout(sLevelPool, arg1);
+        gLoadedGraphNodes[arg0] = process_geo_layout(sLevelPool, arg1);
 
     sCurrentCmd = CMD_NEXT;
 }
@@ -467,7 +467,9 @@ static void level_cmd_23(void)
     arg2.i = CMD_GET(s32, 8);
 
     if (arg0L < 256)
-        gLoadedGeoLayouts[arg0L] = init_graph_node_scale_optional_display_list(sLevelPool, 0, arg0H, arg1, arg2.f);
+        // GraphNodeScaleOptionalDisplayList has a GraphNode at the top. This
+        // is being stored to the array, so cast the pointer.
+        gLoadedGraphNodes[arg0L] = (struct GraphNode *)init_graph_node_scale_optional_display_list(sLevelPool, 0, arg0H, arg1, arg2.f);
 
     sCurrentCmd = CMD_NEXT;
 }
@@ -481,7 +483,7 @@ static void level_cmd_init_mario(void)
     gMarioSpawnInfo->areaIndex = 0;
     gMarioSpawnInfo->behaviorArg = CMD_GET(u32, 4);
     gMarioSpawnInfo->behaviorScript = CMD_GET(void *, 8);
-    gMarioSpawnInfo->unk18 = gLoadedGeoLayouts[CMD_GET(u8, 3)];
+    gMarioSpawnInfo->unk18 = gLoadedGraphNodes[CMD_GET(u8, 3)];
     gMarioSpawnInfo->next = NULL;
 
     sCurrentCmd = CMD_NEXT;
@@ -511,7 +513,7 @@ static void level_cmd_place_object(void)
 
         spawnInfo->behaviorArg = CMD_GET(u32, 16);
         spawnInfo->behaviorScript = CMD_GET(void *, 20);
-        spawnInfo->unk18 = gLoadedGeoLayouts[val4];
+        spawnInfo->unk18 = gLoadedGraphNodes[val4];
         spawnInfo->next = gAreas[sCurrAreaIndex].objectSpawnInfos;
         
         gAreas[sCurrAreaIndex].objectSpawnInfos = spawnInfo;

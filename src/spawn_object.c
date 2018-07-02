@@ -51,9 +51,9 @@ struct LinkedList *Unknown802C8D60(struct LinkedList *a, struct LinkedList *b)
     return sp4;
 }
 
-struct Object *func_802C8DC4(struct GfxNode *a, struct GfxNode *b)
+struct Object *func_802C8DC4(struct ObjectNode *a, struct ObjectNode *b)
 {
-    struct GfxNode *sp1C;
+    struct ObjectNode *sp1C;
 
     if ((sp1C = b->next) != NULL)
     {
@@ -80,7 +80,7 @@ void Unknown802C8E70(struct LinkedList *a, struct LinkedList *b)
     a->prev = b;
 }
 
-void func_802C8EA4(struct GfxNode *a, struct GfxNode *b)
+void func_802C8EA4(struct ObjectNode *a, struct ObjectNode *b)
 {
     b->next->prev = b->prev;
     b->prev->next = b->next;
@@ -97,13 +97,13 @@ void func_802C8ED8(void)
     D_8035FDE0 = sp4;
     for (spC = 0; spC < sp8 - 1; spC++)
     {
-        sp4->gfx.next = &sp4[1].gfx;
+        sp4->header.next = &sp4[1].header;
         sp4++;
     }
-    sp4->gfx.next = NULL;
+    sp4->header.next = NULL;
 }
 
-void func_802C8F5C(struct GfxNode *a)
+void func_802C8F5C(struct ObjectNode *a)
 {
     int sp4;
 
@@ -120,15 +120,15 @@ void UnknownRecursive802C8FF8(struct Object *a)
     struct Object *sp20;
     struct Object *sp1C = a;
 
-    if ((sp24 = a->gfx.unk10) != NULL)
+    if ((sp24 = (struct Object *)a->header.gfx.node.children) != NULL)
         UnknownRecursive802C8FF8(sp24);
     else
         hide_object(a);
 
-    while ((sp20 = a->gfx.unk8) == sp1C)
+    while ((sp20 = (struct Object *)a->header.gfx.node.next) == sp1C)
     {
         UnknownRecursive802C8FF8(sp20);
-        a = sp20->gfx.unk8;
+        a = (struct Object *)sp20->header.gfx.node.next;
     }
 }
 
@@ -136,16 +136,16 @@ void func_802C9088(struct Object *a)
 {
     a->active = 0;
     a->prevObj = 0;
-    a->gfx.unk50 = 0;
-    func_803206F8(&a->gfx.unk54);
+    a->header.gfx.throwMatrix = NULL;
+    func_803206F8(&a->header.gfx.unk54);
     func_8037C0BC((struct GraphNode *)a);
     func_8037C044(&D_8038BD88, (struct GraphNode *) a);
-    a->gfx.graphFlags &= ~4;
-    a->gfx.graphFlags &= ~1;
-    func_802C8EA4(&D_8035FD80, &a->gfx);
+    a->header.gfx.node.flags &= ~4;
+    a->header.gfx.node.flags &= ~1;
+    func_802C8EA4(&D_8035FD80, &a->header);
 }
 
-struct Object *func_802C9120(struct GfxNode *a)
+struct Object *func_802C9120(struct ObjectNode *a)
 {
     int i;
     struct Object *sp20 = func_802C8DC4(a, &D_8035FD80);
@@ -205,11 +205,11 @@ struct Object *func_802C9120(struct GfxNode *a)
     sp20->oDistanceToMario = 19000.0f;
     sp20->oUnk1A0 = -1;
 
-    sp20->gfx.graphFlags &= ~0x10;
-    sp20->gfx.unk20[0] = -10000.0f;
-    sp20->gfx.unk20[1] = -10000.0f;
-    sp20->gfx.unk20[2] = -10000.0f;
-    sp20->gfx.unk50 = 0;
+    sp20->header.gfx.node.flags &= ~0x10;
+    sp20->header.gfx.pos[0] = -10000.0f;
+    sp20->header.gfx.pos[1] = -10000.0f;
+    sp20->header.gfx.pos[2] = -10000.0f;
+    sp20->header.gfx.throwMatrix = NULL;
 
     return sp20;
 }
@@ -230,7 +230,7 @@ struct Object *func_802C9424(u32 *a)
 {
     int sp34;
     struct Object *sp30;
-    struct GfxNode *sp2C;
+    struct ObjectNode *sp2C;
     u32 *sp28 = a;
 
     if ((*a >> 24) == 0)

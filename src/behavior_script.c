@@ -67,13 +67,13 @@ s32 RandomSign(void)
 
 void func_80383D68(struct Object *object)
 {
-    object->gfx.unk20[0] = object->oPosX;
-    object->gfx.unk20[1] = object->oPosY + object->oGraphYOffset;
-    object->gfx.unk20[2] = object->oPosZ;
+    object->header.gfx.pos[0] = object->oPosX;
+    object->header.gfx.pos[1] = object->oPosY + object->oGraphYOffset;
+    object->header.gfx.pos[2] = object->oPosZ;
 
-    object->gfx.unk1A[0] = object->oFaceAnglePitch & 0xFFFF;
-    object->gfx.unk1A[1] = object->oFaceAngleYaw & 0xFFFF;
-    object->gfx.unk1A[2] = object->oFaceAngleRoll & 0xFFFF;
+    object->header.gfx.angle[0] = object->oFaceAnglePitch & 0xFFFF;
+    object->header.gfx.angle[1] = object->oFaceAngleYaw & 0xFFFF;
+    object->header.gfx.angle[2] = object->oFaceAngleRoll & 0xFFFF;
 }
 
 static void cur_object_stack_push(u32 value)
@@ -104,22 +104,22 @@ static s32 beh_cmd_unhide(void)
 
 static s32 Behavior35(void)
 {
-    gCurrentObject->gfx.graphFlags &= ~GRAPH_RENDER_01;
+    gCurrentObject->header.gfx.node.flags &= ~GRAPH_RENDER_01;
     gBehCommand++;
     return BEH_CONTINUE;
 }
 
 static s32 beh_cmd_billboard(void)
 {
-    gCurrentObject->gfx.graphFlags |= GRAPH_RENDER_BILLBOARD;
+    gCurrentObject->header.gfx.node.flags |= GRAPH_RENDER_BILLBOARD;
     gBehCommand++;
     return BEH_CONTINUE;
 }
 
-static s32 beh_cmd_geo_layout(void)
+static s32 beh_cmd_graph_node(void)
 {
     s32 index = (s16)(gBehCommand[0] & 0xFFFF);
-    gCurrentObject->gfx.geoLayout = gLoadedGeoLayouts[index];
+    gCurrentObject->header.gfx.asGraphNode = gLoadedGraphNodes[index];
     gBehCommand++;
     return BEH_CONTINUE;
 }
@@ -783,7 +783,7 @@ static BehCommandProc BehaviorJumpTable[] =
     Behavior18,
     Behavior19,
     Behavior1A,
-    beh_cmd_geo_layout,
+    beh_cmd_graph_node,
     Behavior1C,
     beh_cmd_deactivate,
     Behavior1E,
@@ -896,12 +896,12 @@ void cur_object_exec_behavior(void)
         {
             if (distanceFromMario > gCurrentObject->oDrawingDistance)
             {
-                gCurrentObject->gfx.graphFlags &= 0xFFFFFFFE;
+                gCurrentObject->header.gfx.node.flags &= 0xFFFFFFFE;
                 gCurrentObject->active |= 2;
             }
             else if (gCurrentObject->oHeldState == HELD_FREE)
             {
-                gCurrentObject->gfx.graphFlags |= 1;
+                gCurrentObject->header.gfx.node.flags |= 1;
                 gCurrentObject->active &= 0xFFFFFFFD;
             }
         }    

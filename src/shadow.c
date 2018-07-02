@@ -472,8 +472,8 @@ s8 func_802CDA44(s32 isLuigi, u8 initialSolidity, struct Shadow *shadow) {
             sp34 = gLuigiObject;
             break;
     }
-    animFrame = sp34->gfx.unk40;
-    switch (sp34->gfx.unk38) {
+    animFrame = sp34->header.gfx.unk38.animFrame;
+    switch (sp34->header.gfx.unk38.animID) {
         case 51:
             sp33 = 0;
             break;

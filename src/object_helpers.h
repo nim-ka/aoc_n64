@@ -25,7 +25,7 @@ extern s16 D_8035FEEE;
 extern s16 D_8035FEF0;
 extern s16 D_8035FDF8;
 // extern ? D_80336610;
-extern void **gLoadedGeoLayouts;
+extern struct GraphNode **gLoadedGraphNodes;
 extern struct Object *D_8035FDE0;
 // extern ? D_8032F0B4;
 // extern ? D_8035FF00;

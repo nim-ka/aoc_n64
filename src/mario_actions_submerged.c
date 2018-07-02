@@ -32,7 +32,7 @@ static void set_swimming_at_surface_particles(struct MarioState *m, u32 particle
     {
         m->particleFlags |= particleFlag;
         if (atSurface ^ sWasAtSurface)
-            SetSound(SOUND_ACTION_UNKNOWN431, &m->marioObj->gfx.unk54);
+            SetSound(SOUND_ACTION_UNKNOWN431, &m->marioObj->header.gfx.unk54);
     }
 
     sWasAtSurface = atSurface;
@@ -197,8 +197,8 @@ static u32 perform_water_step(struct MarioState *m)
 
     stepResult = perform_water_full_step(m, nextPos);
 
-    vec3f_copy(marioObj->gfx.unk20, m->pos);
-    vec3s_set(marioObj->gfx.unk1A, -m->faceAngle[0], m->faceAngle[1], m->faceAngle[2]);
+    vec3f_copy(marioObj->header.gfx.pos, m->pos);
+    vec3s_set(marioObj->header.gfx.angle, -m->faceAngle[0], m->faceAngle[1], m->faceAngle[2]);
 
     return stepResult;
 }
@@ -207,14 +207,14 @@ static void func_80270504(struct MarioState *m)
 {
     struct Object *marioObj = m->marioObj;
 
-    if (marioObj->gfx.unk1A[0] > 0)
-        marioObj->gfx.unk20[1] += 60.0f * sins(marioObj->gfx.unk1A[0]) * sins(marioObj->gfx.unk1A[0]);
+    if (marioObj->header.gfx.angle[0] > 0)
+        marioObj->header.gfx.pos[1] += 60.0f * sins(marioObj->header.gfx.angle[0]) * sins(marioObj->header.gfx.angle[0]);
     
-    if (marioObj->gfx.unk1A[0] < 0)
-        marioObj->gfx.unk1A[0] = marioObj->gfx.unk1A[0] * 6 / 10;
+    if (marioObj->header.gfx.angle[0] < 0)
+        marioObj->header.gfx.angle[0] = marioObj->header.gfx.angle[0] * 6 / 10;
     
-    if (marioObj->gfx.unk1A[0] > 0)
-        marioObj->gfx.unk1A[0] = marioObj->gfx.unk1A[0] * 10 / 8;
+    if (marioObj->header.gfx.angle[0] > 0)
+        marioObj->header.gfx.angle[0] = marioObj->header.gfx.angle[0] * 10 / 8;
 }
 
 static void stationary_slow_down(struct MarioState *m)
@@ -428,7 +428,7 @@ static void func_802710CC(struct MarioState *m)
     {
         if ((D_80339FD0 += D_80339FD2) >= 0)
         {
-            m->marioObj->gfx.unk20[1] += D_80339FD4 * sins(D_80339FD0);
+            m->marioObj->header.gfx.pos[1] += D_80339FD4 * sins(D_80339FD0);
             return;
         }
     }
@@ -486,10 +486,10 @@ static void common_swimming_step(struct MarioState *m, s16 swimStrength)
 
 static void func_802713A8(struct MarioState *m)
 {
-    s16 animFrame = m->marioObj->gfx.unk40;
+    s16 animFrame = m->marioObj->header.gfx.unk38.animFrame;
 
     if (animFrame == 0 || animFrame == 12)
-        SetSound(SOUND_ACTION_UNKNOWN434, &m->marioObj->gfx.unk54);
+        SetSound(SOUND_ACTION_UNKNOWN434, &m->marioObj->header.gfx.unk54);
 }
 
 static s32 check_water_jump(struct MarioState *m)
@@ -553,7 +553,7 @@ static s32 act_breaststroke(struct MarioState *m)
 
     if (m->actionTimer == 1)
     {
-        SetSound(D_8032CDD4 == 160 ? SOUND_ACTION_UNKNOWN433 : SOUND_ACTION_UNKNOWN447, &m->marioObj->gfx.unk54);
+        SetSound(D_8032CDD4 == 160 ? SOUND_ACTION_UNKNOWN433 : SOUND_ACTION_UNKNOWN447, &m->marioObj->header.gfx.unk54);
         func_8027107C(m);
     }
 
@@ -663,7 +663,7 @@ static s32 act_hold_breaststroke(struct MarioState *m)
 
     if (m->actionTimer == 1)
     {
-        SetSound(SOUND_ACTION_UNKNOWN433, &m->marioObj->gfx.unk54);
+        SetSound(SOUND_ACTION_UNKNOWN433, &m->marioObj->header.gfx.unk54);
         func_8027107C(m);
     }
 
@@ -876,7 +876,7 @@ static s32 act_forward_water_kb(struct MarioState *m)
 static s32 act_water_shocked(struct MarioState *m)
 {
     func_80250F50(m, SOUND_MARIO_WAAAOOOW, MARIO_UNKNOWN_16);
-    SetSound(SOUND_UNKNOWN_UNK1416, &m->marioObj->gfx.unk54);
+    SetSound(SOUND_UNKNOWN_UNK1416, &m->marioObj->header.gfx.unk54);
     func_8027EFE0(10);
 
     if (func_802507E8(m, 0x007A) == 0)
@@ -911,7 +911,7 @@ static s32 act_drowning(struct MarioState *m)
     case 1:
         func_802507E8(m, 0x00A6);
         m->unk98->unk05 = 8;
-        if (m->marioObj->gfx.unk40 == 30)
+        if (m->marioObj->header.gfx.unk38.animFrame == 30)
             level_trigger_warp(m, WARP_OP_DEATH);
         break;
     }
@@ -961,9 +961,9 @@ static s32 act_water_plunge(struct MarioState *m)
 
     if (m->actionState == 0)
     {
-        SetSound(SOUND_ACTION_UNKNOWN430, &m->marioObj->gfx.unk54);
+        SetSound(SOUND_ACTION_UNKNOWN430, &m->marioObj->header.gfx.unk54);
         if (m->peakHeight - m->pos[1] > 1150.0f)
-            SetSound(SOUND_MARIO_HAHA_2, &m->marioObj->gfx.unk54);
+            SetSound(SOUND_MARIO_HAHA_2, &m->marioObj->header.gfx.unk54);
 
         m->particleFlags |= 0x00000040;
         m->actionState = 1;
@@ -1057,8 +1057,8 @@ static s32 act_caught_in_whirlpool(struct MarioState *m)
     m->faceAngle[1] = atan2s(dz, dx) + 0x8000;
     
     func_802507E8(m, 0x0056);
-    vec3f_copy(m->marioObj->gfx.unk20, m->pos);
-    vec3s_set(m->marioObj->gfx.unk1A, 0, m->faceAngle[1], 0);
+    vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
+    vec3s_set(m->marioObj->header.gfx.angle, 0, m->faceAngle[1], 0);
 
     return FALSE;
 }
@@ -1075,7 +1075,7 @@ static void play_metal_water_walking_sound(struct MarioState *m)
 {
     if (func_80250B68(m, 10) || func_80250B68(m, 49))
     {
-        SetSound(SOUND_ACTION_UNKNOWN452, &m->marioObj->gfx.unk54);
+        SetSound(SOUND_ACTION_UNKNOWN452, &m->marioObj->header.gfx.unk54);
         m->particleFlags |= 0x00000001;
     }
 }

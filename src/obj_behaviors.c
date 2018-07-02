@@ -54,7 +54,7 @@ struct Struct802E2F58 *func_802E2F58(s32 arg0, struct Object *arg1, UNUSED s32 a
 
         sp34 = (struct Struct802E2F58 *)alloc_display_list(0x18);
         sp30 = (s32 (*)[2])sp34;
-        sp28->gfx.graphFlags = (sp28->gfx.graphFlags & 0xFF) | 0x500; //sets bits 8, 10 and zeros upper byte
+        sp28->header.gfx.node.flags = (sp28->header.gfx.node.flags & 0xFF) | 0x500; //sets bits 8, 10 and zeros upper byte
         sp1c = sp30++;
         (*sp1c)[0] = 0xFB000000;
         (*sp1c)[1] = (s32)(sp2c->oUnk17C & 0xFF) | 0xFFFFFF00;
@@ -168,12 +168,12 @@ s32 TurnObjAwayFromAwkwardFloor(struct Surface* objFloor, f32 floorY, f32 objVel
 void ObjOrientGraph(struct Object *obj, f32 normalX, f32 normalY, f32 normalZ)
 {
     Vec3f sp2c, sp20;
-    f32 (*sp1c)[4][4];
+    f32 (*throwMatrix)[4][4]; // TODO: use Mtx type
 
     if (D_80331500 == 0) return;
-    if ((obj->gfx.graphFlags & 0x4) != 0) return; //bit 2
-    sp1c = (f32 (*)[4][4])alloc_display_list(0x40);
-    if (sp1c == NULL) return;
+    if ((obj->header.gfx.node.flags & 0x4) != 0) return; //bit 2
+    throwMatrix = (f32 (*)[4][4])alloc_display_list(0x40);
+    if (throwMatrix == NULL) return;
 
     sp2c[0] = obj->oPosX;
     sp2c[1] = obj->oPosY + obj->oGraphYOffset;
@@ -183,8 +183,8 @@ void ObjOrientGraph(struct Object *obj, f32 normalX, f32 normalY, f32 normalZ)
     sp20[1] = normalY;
     sp20[2] = normalZ;
 
-    mtxf_from_up_direction(*sp1c, sp20, sp2c, obj->oFaceAngleYaw);
-    obj->gfx.unk50 = (void *)sp1c;
+    mtxf_from_up_direction(*throwMatrix, sp20, sp2c, obj->oFaceAngleYaw);
+    obj->header.gfx.throwMatrix = (void *)throwMatrix;
 }
 
 //sp4 = floor_nY
@@ -388,9 +388,9 @@ void func_802E4250(struct Object* obj)
 
 s32 IsPointCloseToMario(f32 x, f32 y, f32 z, s32 dist)
 {
-    f32 mGfxX = gMarioObject->gfx.unk20[0];
-    f32 mGfxY = gMarioObject->gfx.unk20[1];
-    f32 mGfxZ = gMarioObject->gfx.unk20[2];
+    f32 mGfxX = gMarioObject->header.gfx.pos[0];
+    f32 mGfxY = gMarioObject->header.gfx.pos[1];
+    f32 mGfxZ = gMarioObject->header.gfx.pos[2];
 
     if ((x - mGfxX) * (x - mGfxX) + (y - mGfxY) * (y - mGfxY) + (z - mGfxZ) * (z - mGfxZ) < (f32)(dist * dist))
         return 1;
@@ -429,8 +429,8 @@ void SetObjectVisibility(struct Object* obj, s32 arg1)
     f32 objY = obj->oPosY;
     f32 objZ = obj->oPosZ;
 
-    if (IsPointCloseToMario(objX, objY, objZ, arg1) == 1) obj->gfx.graphFlags &= ~0x10; /* bit 4 = 0 */
-    else obj->gfx.graphFlags |= 0x10; /* bit 4 = 1 */
+    if (IsPointCloseToMario(objX, objY, objZ, arg1) == 1) obj->header.gfx.node.flags &= ~0x10; /* bit 4 = 0 */
+    else obj->header.gfx.node.flags |= 0x10; /* bit 4 = 1 */
 }
 
 //sp28 = obj
@@ -532,8 +532,8 @@ s32 ObjFlickerAndDisappear(struct Object *obj, s16 arg1)
     if (obj->oTimer < arg1) return 0;
     if (obj->oTimer < arg1 + 40)
     {
-        if (obj->oTimer % 2 != 0) obj->gfx.graphFlags |= 0x10; /* bit 4 = 1 */
-        else obj->gfx.graphFlags &= ~0x10; /* bit 4 = 0 */
+        if (obj->oTimer % 2 != 0) obj->header.gfx.node.flags |= 0x10; /* bit 4 = 1 */
+        else obj->header.gfx.node.flags &= ~0x10; /* bit 4 = 0 */
     }
     else
     {
@@ -576,7 +576,7 @@ s16 func_802E4A38(s32 *arg0, s16 arg1, f32 arg2, s32 arg3)
     if
     (
            (IsPointCloseToMario(gCurrentObject->oPosX, gCurrentObject->oPosY, gCurrentObject->oPosZ, (s32)arg2) == 1
-        &&  func_802E46C0(gCurrentObject->oFaceAngleYaw, gMarioObject->gfx.unk1A[1] + 0x8000, 0x1000) == 1
+        &&  func_802E46C0(gCurrentObject->oFaceAngleYaw, gMarioObject->header.gfx.angle[1] + 0x8000, 0x1000) == 1
         &&  func_802E46C0(gCurrentObject->oAngleYaw, gCurrentObject->oAngleToMario, 0x1000) == 1)
     ||
            (*arg0 == 1)
@@ -931,7 +931,7 @@ void BehBlueCoinJumpingLoop(void)
 
 void BehSeaweedInit(void)
 {
-    gCurrentObject->gfx.unk40 = RandomFloat() * 80.0f;
+    gCurrentObject->header.gfx.unk38.animFrame = RandomFloat() * 80.0f;
 }
 
 void BehSeaweedBundleInit(void)
@@ -942,37 +942,37 @@ void BehSeaweedBundleInit(void)
     seaweed->oFaceAngleYaw = 14523;
     seaweed->oFaceAnglePitch = 5500;
     seaweed->oFaceAngleRoll = 9600;
-    seaweed->gfx.scale[0] = 1.0;
-    seaweed->gfx.scale[1] = 1.0;
-    seaweed->gfx.scale[2] = 1.0;
-    //!gfx.unk40 uninitialized
+    seaweed->header.gfx.scale[0] = 1.0;
+    seaweed->header.gfx.scale[1] = 1.0;
+    seaweed->header.gfx.scale[2] = 1.0;
+    //!gfx.animFrame uninitialized
 
     seaweed = SpawnObj(gCurrentObject, 193, beh_seaweed);
     seaweed->oFaceAngleYaw = 41800;
     seaweed->oFaceAnglePitch = 6102;
     seaweed->oFaceAngleRoll = 0;
-    seaweed->gfx.scale[0] = 0.8;
-    seaweed->gfx.scale[1] = 0.9;
-    seaweed->gfx.scale[2] = 0.8;
-    seaweed->gfx.unk40 = RandomFloat() * 80.0f;
+    seaweed->header.gfx.scale[0] = 0.8;
+    seaweed->header.gfx.scale[1] = 0.9;
+    seaweed->header.gfx.scale[2] = 0.8;
+    seaweed->header.gfx.unk38.animFrame = RandomFloat() * 80.0f;
 
     seaweed = SpawnObj(gCurrentObject, 193, beh_seaweed);
     seaweed->oFaceAngleYaw = 40500;
     seaweed->oFaceAnglePitch = 8700;
     seaweed->oFaceAngleRoll = 4100;
-    seaweed->gfx.scale[0] = 0.8;
-    seaweed->gfx.scale[1] = 0.8;
-    seaweed->gfx.scale[2] = 0.8;
-    seaweed->gfx.unk40 = RandomFloat() * 80.0f;
+    seaweed->header.gfx.scale[0] = 0.8;
+    seaweed->header.gfx.scale[1] = 0.8;
+    seaweed->header.gfx.scale[2] = 0.8;
+    seaweed->header.gfx.unk38.animFrame = RandomFloat() * 80.0f;
 
     seaweed = SpawnObj(gCurrentObject, 193, beh_seaweed);
     seaweed->oFaceAngleYaw = 57236;
     seaweed->oFaceAnglePitch = 9500;
     seaweed->oFaceAngleRoll = 0;
-    seaweed->gfx.scale[0] = 1.2;
-    seaweed->gfx.scale[1] = 1.2;
-    seaweed->gfx.scale[2] = 1.2;
-    seaweed->gfx.unk40 = RandomFloat() * 80.0f;
+    seaweed->header.gfx.scale[0] = 1.2;
+    seaweed->header.gfx.scale[1] = 1.2;
+    seaweed->header.gfx.scale[2] = 1.2;
+    seaweed->header.gfx.unk38.animFrame = RandomFloat() * 80.0f;
 }
 
 void BehBobombInit(void)
@@ -1017,7 +1017,7 @@ void CheckBobombInteractions(void)
     {
         if ((gCurrentObject->oInteractStatus & 0x2) != 0) /* bit 1 */
         {
-            gCurrentObject->oAngleYaw = gMarioObject->gfx.unk1A[1];
+            gCurrentObject->oAngleYaw = gMarioObject->header.gfx.angle[1];
             gCurrentObject->oForwardVel = 25.0;
             gCurrentObject->oVelY = 30.0;
             gCurrentObject->oAction = BOBOMB_ACT_THROWN;
@@ -1038,7 +1038,7 @@ void BobombPatrolLoop(void)
     UNUSED s16 sp22;
     s16 collisionFlags;
 
-    sp22 = gCurrentObject->gfx.unk40;
+    sp22 = gCurrentObject->header.gfx.unk38.animFrame;
     gCurrentObject->oForwardVel = 5.0;
 
     collisionFlags = ObjectStep();
@@ -1057,7 +1057,7 @@ void BobombChaseMarioLoop(void)
     UNUSED u8 filler[4];
     s16 sp1a, collisionFlags;
 
-    sp1a = ++gCurrentObject->gfx.unk40;
+    sp1a = ++gCurrentObject->header.gfx.unk38.animFrame;
     gCurrentObject->oForwardVel = 20.0;
 
     collisionFlags = ObjectStep();
@@ -1145,7 +1145,7 @@ void BobombFreeLoop(void)
 
 void BobombHeldLoop(void)
 {
-    gCurrentObject->gfx.graphFlags |= 0x10; /* bit 4 */
+    gCurrentObject->header.gfx.node.flags |= 0x10; /* bit 4 */
     SetObjAnimation(1);
     func_8029EF64(gMarioObject, 0, 60.0f, 100.0);
 
@@ -1165,7 +1165,7 @@ void BobombDroppedLoop(void)
 {
     func_8029FCF8();
 
-    gCurrentObject->gfx.graphFlags &= ~0x10; /* bit 4 = 0 */
+    gCurrentObject->header.gfx.node.flags &= ~0x10; /* bit 4 = 0 */
     SetObjAnimation(0);
 
     gCurrentObject->oHeldState = 0;
@@ -1176,7 +1176,7 @@ void BobombHeldThrownLoop(void)
 {
     func_8029F0A4();
 
-    gCurrentObject->gfx.graphFlags &= ~0x10; /* bit 4 = 0 */
+    gCurrentObject->header.gfx.node.flags &= ~0x10; /* bit 4 = 0 */
     gCurrentObject->oHeldState = 0;
     gCurrentObject->oFlags &= ~0x8; /* bit 3 */
     gCurrentObject->oForwardVel = 25.0;
@@ -1272,7 +1272,7 @@ void BehBobombBuddyInit(void)
 void BobombBuddyIdleLoop(void)
 {
     UNUSED u8 filler[4];
-    s16 sp1a = gCurrentObject->gfx.unk40;
+    s16 sp1a = gCurrentObject->header.gfx.unk38.animFrame;
     UNUSED s16 collisionFlags = 0;
 
     gCurrentObject->oBobombBuddyPosXCopy = gCurrentObject->oPosX;
@@ -1364,7 +1364,7 @@ void BobombBuddyTalkLoop(void)
 
 void BobombBuddyTurnToTalkLoop(void)
 {
-    s16 sp1e = gCurrentObject->gfx.unk40;
+    s16 sp1e = gCurrentObject->header.gfx.unk38.animFrame;
     if ((sp1e == 5) || (sp1e == 16)) PlaySound2(0x50270081);
 
     gCurrentObject->oAngleYaw = approach_target_angle(gCurrentObject->oAngleYaw, gCurrentObject->oAngleToMario, 0x1000);
@@ -1498,7 +1498,7 @@ void BehWhirlpoolLoop(void)
 {
     if (gCurrentObject->oDistanceToMario < 5000.0f)
     {
-        gCurrentObject->gfx.graphFlags &= ~0x10; /* bit 4 */
+        gCurrentObject->header.gfx.node.flags &= ~0x10; /* bit 4 */
 
         //not sure if actually an array
         D_803600B0[7] = 60;
@@ -1517,7 +1517,7 @@ void BehWhirlpoolLoop(void)
     }
     else
     {
-        gCurrentObject->gfx.graphFlags |= 0x10; /* bit 4 */
+        gCurrentObject->header.gfx.node.flags |= 0x10; /* bit 4 */
         D_803600B0[7] = 0;
     }
 
@@ -1551,7 +1551,7 @@ void BehAmpHomingInit(void)
     gCurrentObject->oAmpHomingAvgY = gCurrentObject->oHomeY;
 
     ScaleObject(0.1f);
-    gCurrentObject->gfx.graphFlags |= 0x10; /* bit 4 */
+    gCurrentObject->header.gfx.node.flags |= 0x10; /* bit 4 */
 }
 
 void CheckAmpAttack(void)
@@ -1599,9 +1599,9 @@ void AmpHomingChaseLoop(void)
     {
         gCurrentObject->oForwardVel = 15.0f;
 
-        if (gCurrentObject->oAmpHomingAvgY > gMarioObject->gfx.unk20[1] + 150.0f)
+        if (gCurrentObject->oAmpHomingAvgY > gMarioObject->header.gfx.pos[1] + 150.0f)
             gCurrentObject->oAmpHomingAvgY -= 10.0f;
-        else gCurrentObject->oAmpHomingAvgY = gMarioObject->gfx.unk20[1] + 150.0f;
+        else gCurrentObject->oAmpHomingAvgY = gMarioObject->header.gfx.pos[1] + 150.0f;
 
         if (gCurrentObject->oTimer >= 31) gCurrentObject->oAmpHomingLockedOn = 0;
     }
@@ -1611,7 +1611,7 @@ void AmpHomingChaseLoop(void)
 
         UnknownMove(gCurrentObject, gMarioObject, 16, 0x400);
 
-        if (gCurrentObject->oAmpHomingAvgY < gMarioObject->gfx.unk20[1] + 250.0f)
+        if (gCurrentObject->oAmpHomingAvgY < gMarioObject->header.gfx.pos[1] + 250.0f)
             gCurrentObject->oAmpHomingAvgY += 10.0f;
     }
 
@@ -1634,7 +1634,7 @@ void AmpHomingGiveUpLoop(void)
         gCurrentObject->oPosX = gCurrentObject->oHomeX;
         gCurrentObject->oPosY = gCurrentObject->oHomeY;
         gCurrentObject->oPosZ = gCurrentObject->oHomeZ;
-        gCurrentObject->gfx.graphFlags |= 0x10; /* bit 4 */
+        gCurrentObject->header.gfx.node.flags |= 0x10; /* bit 4 */
         gCurrentObject->oAction = AMP_HOMING_ACT_INACTIVE;
         gCurrentObject->oAmpHomingChargeAnim = 0;
         gCurrentObject->oForwardVel = 0;
@@ -1644,7 +1644,7 @@ void AmpHomingGiveUpLoop(void)
 
 void AmpAttackCooldownLoop(void)
 {
-    gCurrentObject->gfx.unk40 += 2;
+    gCurrentObject->header.gfx.unk38.animFrame += 2;
     gCurrentObject->oForwardVel = 0;
 
     func_8029FE38();
@@ -1666,7 +1666,7 @@ void BehAmpHomingLoop(void)
             if (IsPointCloseToMario(gCurrentObject->oHomeX, gCurrentObject->oHomeY, gCurrentObject->oHomeZ, 800) == 1)
             {
                 gCurrentObject->oAction = AMP_HOMING_ACT_APPEAR;
-                gCurrentObject->gfx.graphFlags &= ~0x10; /* bit 4 */
+                gCurrentObject->header.gfx.node.flags &= ~0x10; /* bit 4 */
             }
             break;
 
@@ -1724,9 +1724,9 @@ void BehAmpInit(void)
 
 void FixedAmpIdleLoop(void)
 {
-    f32 xToMario = gMarioObject->gfx.unk20[0] - gCurrentObject->oPosX;
-    f32 yToMario = gMarioObject->gfx.unk20[1] + 120.0f - gCurrentObject->oPosY;
-    f32 zToMario = gMarioObject->gfx.unk20[2] - gCurrentObject->oPosZ;
+    f32 xToMario = gMarioObject->header.gfx.pos[0] - gCurrentObject->oPosX;
+    f32 yToMario = gMarioObject->header.gfx.pos[1] + 120.0f - gCurrentObject->oPosY;
+    f32 zToMario = gMarioObject->header.gfx.pos[2] - gCurrentObject->oPosZ;
     s16 vAngleToMario = atan2s(sqrtf(xToMario * xToMario + zToMario * zToMario), -yToMario);
 
     UnknownMove(gCurrentObject, gMarioObject, 19, 0x1000);
@@ -1774,7 +1774,7 @@ void BehButterflyInit(void)
     SetObjAnimation(1);
 
     gCurrentObject->oButterflyYOscTimer = RandomFloat() * 100.0f;
-    gCurrentObject->gfx.unk40 = RandomFloat() * 7.0f;
+    gCurrentObject->header.gfx.unk38.animFrame = RandomFloat() * 7.0f;
     gCurrentObject->oHomeX = gCurrentObject->oPosX;
     gCurrentObject->oHomeY = gCurrentObject->oPosY;
     gCurrentObject->oHomeZ = gCurrentObject->oPosZ;
@@ -1829,7 +1829,7 @@ void ButterflyRestingLoop(void)
         SetObjAnimation(0);
 
         gCurrentObject->oAction = BUTTERFLY_ACT_FOLLOW_MARIO;
-        gCurrentObject->oAngleYaw = gMarioObject->gfx.unk1A[1];
+        gCurrentObject->oAngleYaw = gMarioObject->header.gfx.angle[1];
     }
 }
 
@@ -1894,7 +1894,7 @@ void BehHootInit(void)
     gCurrentObject->oHomeX = gCurrentObject->oPosX + 800.0f;
     gCurrentObject->oHomeY = gCurrentObject->oPosY - 150.0f;
     gCurrentObject->oHomeZ = gCurrentObject->oPosZ + 300.0f;
-    gCurrentObject->gfx.graphFlags |= 0x10; /* bit 4 */
+    gCurrentObject->header.gfx.node.flags |= 0x10; /* bit 4 */
 
     func_8029FE38();
 }

@@ -635,7 +635,7 @@ static void initiate_painting_warp(void)
 
                 set_mario_action(gMarioState, ACT_DISAPPEARED, 0);
 
-                gMarioState->marioObj->gfx.graphFlags &= ~0x0001;
+                gMarioState->marioObj->header.gfx.node.flags &= ~0x0001;
 
                 SetSound(SOUND_MENU_STARSOUND, D_803320E0);
                 func_802491FC(398);
@@ -878,7 +878,7 @@ static void update_hud_values(void)
                     coinSound = 0x38118081;
 
                 gDisplayedCoins += 1;
-                SetSound(coinSound, &gMarioState->marioObj->gfx.unk54);
+                SetSound(coinSound, &gMarioState->marioObj->header.gfx.unk54);
             }
         }
 

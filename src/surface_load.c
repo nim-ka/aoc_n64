@@ -516,9 +516,9 @@ static void transform_object_vertices(s16 **data, s16 *vertexData)
 
     vertices = *data;
 
-    if (gCurrentObject->gfx.unk50 == NULL)
+    if (gCurrentObject->header.gfx.throwMatrix == NULL)
     {
-        gCurrentObject->gfx.unk50 = objectTransform;
+        gCurrentObject->header.gfx.throwMatrix = objectTransform;
         func_802A2188(gCurrentObject, 0x06, 0x12);
     }
 
@@ -614,7 +614,7 @@ void load_object_collision_model(void)
     }
 
     if (marioDist < gCurrentObject->oDrawingDistance)
-        gCurrentObject->gfx.graphFlags |= 0x0001;
+        gCurrentObject->header.gfx.node.flags |= 0x0001;
     else
-        gCurrentObject->gfx.graphFlags &= ~0x0001;
+        gCurrentObject->header.gfx.node.flags &= ~0x0001;
 }

@@ -55,16 +55,6 @@ extern Vec3f D_80385FE4;
 #define GRAPH_NODE_TYPE_12E                                        (0x02E | GRAPH_NODE_TYPE_FUNCTIONAL)
 #define GRAPH_NODE_TYPE_02F                                         0x02F
 
-struct GraphNode
-{
-    /*0x00*/ s16 type; // structure type
-    /*0x00*/ s16 flags; // hi = drawing layer, lo = rendering modes
-    /*0x04*/ struct GraphNode *prev;
-    /*0x08*/ struct GraphNode *next;
-    /*0x0C*/ struct GraphNode *parent;
-    /*0x10*/ struct GraphNode *children;
-};
-
 typedef int (*GraphNodeFunc)(s32 unk, struct GraphNode *node, void *);
 
 struct FnGraphNode
@@ -170,35 +160,6 @@ struct GraphNode017
     /*0x14*/ void *displayList;
     /*0x18*/ Vec3s unk18;
     u8 pad1E[2];
-};
-
-struct GraphNodeObject_sub
-{
-    /*0x00 0x38*/ s16 unk00;
-    /*0x02 0x3A*/ s16 unk02;
-    /*0x04 0x3C*/ struct UnknownStruct5 *unk04;
-    /*0x08 0x40*/ s16 animFrame;
-    /*0x0A 0x42*/ u16 animTimer;
-    /*0x0C 0x44*/ s32 unk0C;
-    /*0x10 0x48*/ s32 unk10;
-};
-
-// TODO this is the first member of GfxNode/Object
-struct GraphNodeObject
-{
-    /*0x00*/ struct GraphNode node;
-    /*0x14*/ struct GraphNode *unk14;
-    /*0x18*/ s8 unk18;
-    /*0x19*/ s8 unk19;
-    /*0x1A*/ Vec3s angle;
-    /*0x20*/ Vec3f pos;
-    /*0x2C*/ Vec3f scale;
-    /*0x38*/ struct GraphNodeObject_sub unk38;
-    /*0x4C*/ struct SpawnInfo *unk4C;
-    /*0x50*/ void *unk50; // matrix ptr
-    /*0x54*/ f32 unk54;
-    /*0x58*/ f32 unk58;
-    /*0x5C*/ f32 unk5C;
 };
 
 struct GraphNodeDisplayListTranslated

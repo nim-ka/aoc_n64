@@ -194,7 +194,7 @@ void func_80276254(void)
 
 void BehToadMessageLoop(void)
 {
-    if (gCurrentObject->gfx.graphFlags & 1)
+    if (gCurrentObject->header.gfx.node.flags & 1)
     {
         gCurrentObject->oUnk190 = 0;
         switch (gCurrentObject->oToadMessageUnk110)
@@ -301,7 +301,7 @@ void BehSealedDoorStarLoop(void)
         gCurrentObject->oAngleYaw += gCurrentObject->oSealedDoorStarUnk110;
         if (++gCurrentObject->oSealedDoorStarUnk10C == 30)
         {
-            SetSound(SOUND_MENU_STARSOUND, &gCurrentObject->gfx.unk54);
+            SetSound(SOUND_MENU_STARSOUND, &gCurrentObject->header.gfx.unk54);
             UnHideObject();
             gCurrentObject->oSealedDoorStarUnk10C = 0;
             gCurrentObject->oSealedDoorStarUnk108++;
@@ -322,7 +322,7 @@ void BehSealedDoorStarLoop(void)
         break;
     }
     if (sp2A > (s16)gCurrentObject->oAngleYaw)
-        SetSound(SOUND_GENERAL_SHORTSTAR, &gCurrentObject->gfx.unk54);
+        SetSound(SOUND_GENERAL_SHORTSTAR, &gCurrentObject->header.gfx.unk54);
 }
 
 struct Struct802769E0
@@ -702,14 +702,17 @@ Gfx *Geo18_80277B14(int a, struct GraphNode *b, UNUSED Mat4 *c)
         func_8037C0BC(&D_80339FE0.node);
         break;
     case 1:
-        if (sp30->gfx.unk20[0] > 1700.0f)
+        if (sp30->header.gfx.pos[0] > 1700.0f)
         {
-            D_80339FE0.unk14 = sp30->gfx.geoLayout;
-            D_80339FE0.unk18 = sp30->gfx.unk18;
-            vec3s_copy(D_80339FE0.angle, sp30->gfx.unk1A);
-            vec3f_copy(D_80339FE0.pos, sp30->gfx.unk20);
-            vec3f_copy(D_80339FE0.scale, sp30->gfx.scale);
-            D_80339FE0.unk38 = *(struct GraphNodeObject_sub *)&sp30->gfx.unk38;
+            // TODO: Is this a geo layout copy or a graph node copy?
+            D_80339FE0.asGraphNode = sp30->header.gfx.asGraphNode;
+            D_80339FE0.unk18 = sp30->header.gfx.unk18;
+            vec3s_copy(D_80339FE0.angle, sp30->header.gfx.angle);
+            vec3f_copy(D_80339FE0.pos, sp30->header.gfx.pos);
+            vec3f_copy(D_80339FE0.scale, sp30->header.gfx.scale);
+            // FIXME: why does this set unk38, an inline struct, to a ptr to another one? wrong
+            // GraphNode types again?
+            D_80339FE0.unk38 = *(struct GraphNodeObject_sub *)&sp30->header.gfx.unk38.animID;
             sp34 = 4331.53 - D_80339FE0.pos[0];
             D_80339FE0.pos[0] = sp34 + 4331.53;
             D_80339FE0.angle[1] = -D_80339FE0.angle[1];

@@ -561,8 +561,8 @@ static void func_801716E4(struct Object *a, int buttonId)
             sFadeOutText = 1;
             D_801A7BFC = 0;
             save_file_copy(sSelectedFile, buttonId - 14);
-            gMainMenuButtons[buttonId]->gfx.geoLayout = gLoadedGeoLayouts[8];
-            gMainMenuButtons[buttonId - 14]->gfx.geoLayout = gLoadedGeoLayouts[8];
+            gMainMenuButtons[buttonId]->header.gfx.asGraphNode = gLoadedGraphNodes[8];
+            gMainMenuButtons[buttonId - 14]->header.gfx.asGraphNode = gLoadedGraphNodes[8];
         }
         else
         {
@@ -1525,8 +1525,8 @@ static void erase_yes_no_prompt(s16 x, s16 y)
             sFadeOutText = 1;
             D_801A7BFC = 0;
             save_file_erase(sSelectedFile);
-            gMainMenuButtons[MENU_BUTTON_ERASE_FILE_A + sSelectedFile]->gfx.geoLayout = gLoadedGeoLayouts[10];
-            gMainMenuButtons[sSelectedFile]->gfx.geoLayout = gLoadedGeoLayouts[10];
+            gMainMenuButtons[MENU_BUTTON_ERASE_FILE_A + sSelectedFile]->header.gfx.asGraphNode = gLoadedGraphNodes[10];
+            gMainMenuButtons[sSelectedFile]->header.gfx.asGraphNode = gLoadedGraphNodes[10];
             D_801A7C04 = 0;
         }
         else if (D_801A7C04 == 2)

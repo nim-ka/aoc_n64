@@ -21,7 +21,7 @@ extern struct Object *D_8038BD98;
 
 
 extern struct SpawnInfo gPlayerSpawnInfos[1];
-extern void *D_8033A160[0x100];
+extern struct GraphNode *D_8033A160[0x100];
 extern struct Area gAreaData[8];
 
 extern u8 D_8033A740;
@@ -46,7 +46,7 @@ extern s16 D_8033A75E;
 extern s16 D_8033A760;
 
 struct SpawnInfo *gMarioSpawnInfo = &gPlayerSpawnInfos[0];
-void **gLoadedGeoLayouts = D_8033A160;
+struct GraphNode **gLoadedGraphNodes = D_8033A160;
 struct Area *gAreas = gAreaData;
 struct Area *gCurrentArea = NULL;
 struct CreditsEntry *gCurrCreditsEntry = NULL;
@@ -199,7 +199,7 @@ static void func_8027A4C4(void)
                 sp24->object = sp1C;
         }
     }
-    while ((sp20 = sp20->gfx.unk8) != D_8038BD98);
+    while ((sp20 = (struct Object *)sp20->header.gfx.node.next) != D_8038BD98);
 }
 
 void clear_areas(void)
@@ -332,7 +332,7 @@ void change_area(s32 index)
 
     if (areaFlags & 0x01)
     {
-        gMarioObject->gfx.unk18 = index, gMarioSpawnInfo->areaIndex = index;
+        gMarioObject->header.gfx.unk18 = index, gMarioSpawnInfo->areaIndex = index;
     }
 }
 
