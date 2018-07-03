@@ -3,19 +3,6 @@
 
 #include "types.h"
 
-// extern ? func_80274940(?);
-extern void func_802749A0(struct MarioState *);
-// extern ? func_80274DB8(?);
-// extern ? func_80274EFC(?);
-// extern ? func_8027508C(?);
-// extern ? func_80275158(?);
-// extern ? func_80275224(?);
-// extern ? func_80275350(?);
-// extern ? func_80275444(?);
-// extern ? func_80275510(?);
-// extern ? func_802755C4(?);
-// extern ? func_802758C8(?);
-// extern ? func_8027595C(?);
-// extern ? func_80275A30(?);
+extern s32 func_802749A0(struct MarioState *);
 
 #endif /* _MARIO_ACTIONS_OBJECT_H */

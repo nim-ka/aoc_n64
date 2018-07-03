@@ -151,7 +151,7 @@
 /* not verified */ #define SOUND_MARIO_HOOHOO           SOUND_ARG_LOAD(2, 4, 0x03, (SOUND_BITFLAG_PRIORITY), 8)
 /* not verified */ #define SOUND_MARIO_YAHOO            SOUND_ARG_LOAD(2, 4, 0x04, (SOUND_BITFLAG_PRIORITY), 8)
 /* not verified */ #define SOUND_MARIO_UH               SOUND_ARG_LOAD(2, 4, 0x05, (SOUND_BITFLAG_PRIORITY), 8)
-/* not verified */ #define SOUND_MARIO_HRMM             0x2406
+/* not verified */ #define SOUND_MARIO_HRMM             SOUND_ARG_LOAD(2, 4, 0x06, (SOUND_BITFLAG_PRIORITY), 8)
 /* not verified */ #define SOUND_MARIO_WAH2             SOUND_ARG_LOAD(2, 4, 0x07, (SOUND_BITFLAG_PRIORITY), 8)
 /* not verified */ #define SOUND_MARIO_WHOA             SOUND_ARG_LOAD(2, 4, 0x08, (SOUND_BITFLAG_PRIORITY | SOUND_BITFLAG_UNK6), 8)
 /* not verified */ #define SOUND_MARIO_EEUH             SOUND_ARG_LOAD(2, 4, 0x09, (SOUND_BITFLAG_PRIORITY), 8)
@@ -177,13 +177,13 @@
 /* not verified */ #define SOUND_MARIO_COUGHING2        0x241B
 /* not verified */ #define SOUND_MARIO_COUGHING3        0x241C
 /* not verified */ #define SOUND_MARIO_COUGHING4        0x241D
-/* not verified */ #define SOUND_MARIO_YAH2             0x241E
+/* not verified */ #define SOUND_MARIO_YAH2             SOUND_ARG_LOAD(2, 4, 0x1E, (SOUND_BITFLAG_PRIORITY), 8)
 /* not verified */ #define SOUND_MARIO_HOO6             SOUND_ARG_LOAD(2, 4, 0x1F, (SOUND_BITFLAG_PRIORITY), 8)
 /* not verified */ #define SOUND_MARIO_MAMAMIA          SOUND_ARG_LOAD(2, 4, 0x20, (SOUND_BITFLAG_PRIORITY), 8)
 /* not verified */ #define SOUND_MARIO_OKEYDOKEY        0x2421
 /* not verified */ #define SOUND_MARIO_WAH3             SOUND_ARG_LOAD(2, 4, 0x22, (SOUND_BITFLAG_PRIORITY), 8)
 /* not verified */ #define SOUND_MARIO_DROWNING         SOUND_ARG_LOAD(2, 4, 0x23, (SOUND_BITFLAG_PRIORITY | SOUND_BITFLAG_UNK6 | SOUND_BITFLAG_UNK5 | SOUND_BITFLAG_UNK4), 8)
-/* not verified */ #define SOUND_MARIO_WAH4             0x2424
+/* not verified */ #define SOUND_MARIO_WAH4             SOUND_ARG_LOAD(2, 4, 0x24, (SOUND_BITFLAG_PRIORITY), 8)
 /* not verified */ #define SOUND_MARIO_UH3              0x2425
 /* not verified */ #define SOUND_MARIO_HEAVYLIFT        0x2426
 /* not verified */ #define SOUND_MARIO_WAH5             0x2427
@@ -385,7 +385,7 @@
 /* not verified */ #define SOUND_OBJECT_BOWSERROAR           0x5004
 /* not verified */ #define SOUND_OBJECT_BOWSERTAILPICKUP     0x5005
 /* not verified */ #define SOUND_OBJECT_BOWSERDEFEATED       0x5006
-/* not verified */ #define SOUND_OBJECT_BOWSERSPINNING       0x5007
+/* not verified */ #define SOUND_OBJECT_BOWSERSPINNING       SOUND_ARG_LOAD(5, 0, 0x07, (SOUND_BITFLAG_NOFLAGS), 8)
 /* not verified */ #define SOUND_OBJECT_BOWSERINHALING       0x5008
 /* not verified */ #define SOUND_OBJECT_PENGUINWALKING2      0x5009
 /* not verified */ #define SOUND_OBJECT_UNKNOWN1             0x500A

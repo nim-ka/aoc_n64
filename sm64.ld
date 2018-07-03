@@ -66,7 +66,7 @@ SECTIONS
       build/src/mario_actions_moving.o(.text);
       build/src/mario_actions_airborne.o(.text);
       build/src/mario_actions_submerged.o(.text);
-      build/asm/mario_actions_object.o(.text);
+      build/src/mario_actions_object.o(.text);
       build/src/castle_message_behaviors.o(.text);
       build/src/memory.o(.text);
       build/src/save_file.o(.text);
@@ -124,7 +124,7 @@ SECTIONS
       build/data/mario_actions_cutscene.data.o(.data*);
       build/src/mario_actions_moving.o(.data*);
       build/src/mario_actions_submerged.o(.data*);
-      build/data/mario_actions_object.data.o(.data*);
+      build/src/mario_actions_object.o(.data*);
       build/src/castle_message_behaviors.o(.data*);
       build/src/memory.o(.data*);
       build/src/save_file.o(.data*);
@@ -172,7 +172,7 @@ SECTIONS
       build/src/mario_actions_moving.o(.rodata*);
       build/src/mario_actions_airborne.o(.rodata*);
       build/src/mario_actions_submerged.o(.rodata*);
-      build/data/mario_actions_object.rodata.o(.rodata*);
+      build/src/mario_actions_object.o(.rodata*);
       build/src/castle_message_behaviors.o(.rodata*);
       build/src/area.o(.rodata*);
       build/src/rendering_graph_node.o(.rodata*);

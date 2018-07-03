@@ -25,7 +25,7 @@ extern void func_80250F50(struct MarioState *, u32, u32);
 extern void func_80250FBC(struct MarioState *);
 extern void func_80251048(struct MarioState *);
 extern void func_802510E4(struct MarioState *, u32, u32);
-// extern ? func_80251218(?);
+extern void func_80251218(struct MarioState *, u32, u32);
 extern void func_80251280(struct MarioState *, u32);
 extern void func_802512E4(struct MarioState *, u32);
 extern void func_80251348(struct MarioState *, u32);
