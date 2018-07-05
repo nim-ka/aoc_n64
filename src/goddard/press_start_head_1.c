@@ -604,11 +604,11 @@ struct ObjAnimator* make_animator(void)
 }
 
 /* @ 22BD84 for 0x78; orig name: func_8017D5B4 */
-struct ObjWeight* make_weight(UNUSED s32 a0, s32 a1, s32 a2, f32 a3)
+struct ObjWeight* make_weight(UNUSED s32 a0, s32 a1, struct ObjVertex* a2, f32 a3)
 {
     struct ObjWeight* newWeight = (struct ObjWeight*) make_object(OBJ_TYPE_WEIGHTS);
 
-    newWeight->unk1C = a1;
+    newWeight->id = a1;
     newWeight->unk38 = a3;
     newWeight->unk3C = a2;
 

@@ -2585,7 +2585,7 @@ labels:
    - [0x8018100C, "Unknown8018100C"]
    - [0x801815E0, "Unknown801815E0"]
    - [0x801819D0, "Unknown801819D0"]
-   - [0x80181AE0, "Unknown80181AE0"]
+   - [0x80181AE0, "reset_weight"]
    - [0x80181B88, "Unknown80181B88"]
    - [0x80181D14, "Unknown80181D14"]
    - [0x80182C84, "Unknown80182C84"]

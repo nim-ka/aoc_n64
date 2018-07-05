@@ -2,12 +2,6 @@
 
 .section .rodata
 
-glabel D_801B5D50
-	.incbin "bin/sm64.j.255EC0.bin", 0xE660, 0x2C
-
-glabel D_801B5D7C
-	.incbin "bin/sm64.j.255EC0.bin", 0xE68C, 0x34
-
 glabel D_801B5DB0
 	.incbin "bin/sm64.j.255EC0.bin", 0xE6C0, 0x24
 
@@ -1284,13 +1278,13 @@ glabel D_801B87B0
 	.incbin "bin/sm64.j.255EC0.bin", 0x110C0, 0x8
 
 glabel jtbl_801B87B8
-	.word .L801935F0
-	.word .L80193638
-	.word .L80193664
-	.word .L8019360C
-	.word .L80193678
-	.word .L8019368C
-	.word .L801935F8
+	.word .L801935F0 #case 1
+	.word .L80193638 #case 2
+	.word .L80193664 #case 3
+	.word .L8019360C #case 4
+	.word .L80193678 #case 5
+	.word .L8019368C #6
+	.word .L801935F8 #7
 
 	.word 0, 0, 0
 

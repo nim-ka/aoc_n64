@@ -75,7 +75,10 @@ struct ObjGroup {
 
 struct ObjBone {
     /* 0x000 */ struct ObjHeader header;
-    /* 0x014 */ u8  pad14[0x70-0x14];
+    /* 0x014 */ u8  pad14[0x20-0x14];
+    /* 0x020 */ struct ObjBone* prev;   //maybe, based on make_bone
+    /* 0x024 */ struct ObjBone* next;   //maybe, based on make_bone 
+    /* 0x028 */ u8  pad28[0x70-0x28];
     /* 0x070 */ Mat4 unk70;
     /* 0x0B0 */ u8  padB0[0x108-0xb0];
     /* 0x108 */ s32 id;
@@ -99,7 +102,9 @@ struct ObjJoint {
     /* 0x1B4 */ s32 id;
     /* 0x1B8 */ u8  pad1B8[0xC];
     /* 0x1C4 */ struct ObjGroup* unk1C4;
-    /* 0x1C8 */ u8  pad1C8[0x64];
+    /* 0x1C8 */ u8  pad1C8[0x1f4-0x1c8];
+    /* 0x1F4 */ struct ObjGroup* unk1F4;   //Group of ObjWeights, only?
+    /* 0x1F8 */ u8  pad1F8[0x22c-0x1c8];
 }; /* sizeof = 0x22C */
 
 struct ObjParticle {
@@ -117,14 +122,43 @@ struct ObjShape {
 
 struct ObjNet {
     /* 0x000 */ struct ObjHeader header;
-    /* 0x014 */ u8  pad14[0xbc-0x14];
+    /* 0x014 */ u8  pad14[0x38-0x14];
+    /* 0x038 */ u32 unk38;      // some sort of id? from Unknown8019359C
+    /* 0x03C */ u8  pad3C[0xBC-0x3C];
     /* 0x0BC */ struct GdPlaneF unkBC;
     /* 0x0D4 */ u8  padD4[0xe8-0xd4];
     /* 0x0E8 */ Mat4 matE8;
     /* 0x128 */ Mat4 mat128;
     /* 0x168 */ Mat4 mat168;    // "r matrix"
-    /* 0x1a8 */ u8  pad168[0x220-0x1a8];
+    /* 0x1A8 */ struct ObjHeader* unk1A8;    // variable pointer based on netType...?
+    /* 0x1AC */ u8  pad1ac[0x1c4-0x1ac];
+    /* 0x1C4 */ struct ObjGroup* skinGrp;    // SkinGroup (from reset_weight) 
+    /* 0x1C8 */ struct ObjGroup* unk1C8;    // based on make_net call in func_8019A378
+    /* 0x1CC */ u8  pad1cc[0x1ec-0x1cc];
+    /* 0x1EC */ s32 netType;    // from Unknown8019359C
+    /* 0x1F0 */ u8  pad1f0[0x220-0x1f0];
 }; /* sizeof = 0x220 */
+/* Net Types (+0x1ec) -> (ptr type at 0x1a8): (from Unknown8019359C)
+    1: shape -> ObjShape (info from: func_80199EE4 "make_netfromshape")
+    2: skin -> move_skin
+    3: joint? -> ObjJoint (info from: func_8019A378->make_net call)
+    4: bone -> ObjBone (info from: func_80192C5C)
+    5: ?
+    6: ?
+    7: ?
+*/
+
+struct ObjVertex {
+    /* 0x00 */ struct ObjHeader header;
+    /* 0x14 */ struct MyVec3f vec14;
+    /* 0x20 */ struct MyVec3f vec20;
+    /* 0x2C */ struct MyVec3f vec2C;
+    /* 0x38 */ s16 unk38;
+    /* 0x3A */ u8  pad3A[2];
+    /* 0x3C */ f32 unk3C;
+    /* 0x40 */ f32 unk40;
+    /* 0x44 */ s32 unk44;
+}; /* sizeof = 0x48 */
 
 struct ObjCamera {
     /* 0x000 */ struct ObjHeader header;
@@ -169,10 +203,11 @@ struct ObjMaterial {
 struct ObjWeight {
     /* 0x00 */ struct ObjHeader header;
     /* 0x14 */ u8  pad14[0x8];
-    /* 0x1C */ s32 unk1C;
-    /* 0x20 */ u8  pad20[0x18];
+    /* 0x1C */ s32 id;   //id
+    /* 0x20 */ struct MyVec3f vec20;    //based on func_80181894? maybe a GdPlaneF?
+    /* 0x2C */ u8  pad2C[0x38-0x2c];
     /* 0x38 */ f32 unk38;
-    /* 0x3C */ s32 unk3C;
+    /* 0x3C */ struct ObjVertex* unk3C;
 }; /* sizeof = 0x40 */
 
 struct ObjGadget {

@@ -234,13 +234,13 @@ extern void func_8019415C(Mat4*, struct MyVec3f*);
 extern void func_80194220(Mat4*, struct MyVec3f*);
 extern void func_801942E4(Mat4*, struct MyVec3f*);
 extern void func_80194358(void *, void *, float);
-extern f32 func_80194728(f32, f32);     /* min(f1, +/-f2) */
+extern f32 func_80194728(f32, f32);     /* min(f1, +/-f2)? */
 extern void func_80194770(struct MyVec3f*, f32);
 extern void func_80194880(f32, f32*, f32*);
 // extern ? Unknown8019498C(?);
 extern void func_80194A54(Mat4*, s32, f32);
 extern f32 func_80194B98(struct MyVec3f*);
-extern s32 func_80194BF4();
+extern s32 func_80194BF4();     //s32 func_80194BF4(struct MyVec3f*)
 extern void func_80194D14(struct MyVec3f*, struct MyVec3f*, struct MyVec3f*);
 extern float func_80194DB8(Vec3f, struct MyVec3f *);
 // extern ? Unknown80194DFC(?);

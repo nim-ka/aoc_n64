@@ -207,7 +207,7 @@ glabel D_801B9E8C
     .space 0x4
 glabel D_801B9E90
     .space 0x10
-glabel D_801B9EA0
+glabel sSkinNetCurWeight
     .space 0x8
 glabel D_801B9EA8
     .space 0x40
@@ -283,7 +283,7 @@ glabel D_801BA91C
     .space 0x4
 glabel D_801BA920
     .space 0x40
-glabel D_801BA960
+glabel sTargetWeightID
     .space 0x4
 glabel D_801BA964
     .space 0x4
@@ -331,7 +331,7 @@ glabel D_801BAAE4
     .space 0x4
 glabel D_801BAAE8
     .space 0x8
-glabel D_801BAAF0
+glabel gGdSkinNet
     .space 0x4
 glabel D_801BAAF4
     .space 0x4

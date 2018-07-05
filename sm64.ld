@@ -303,7 +303,7 @@ SECTIONS
       build/src/game_over_1.o(.text);
       build/src/goddard/game_over_2.o(.text);
       build/src/goddard/press_start_head_1.o(.text);
-      build/asm/press_start_head_2.o(.text);
+      build/src/goddard/press_start_head_2.o(.text);
       build/asm/press_start_head_3.o(.text);
       build/asm/press_start_head_4.o(.text);
       build/asm/press_start_head_5.o(.text);
@@ -319,7 +319,8 @@ SECTIONS
       build/data/rodata_801A8050.o(.rodata*);
       build/src/goddard/game_over_2.o(.rodata*);
       build/src/goddard/press_start_head_1.o(.rodata*);
-      build/data/rodata_801B5D50.o(.rodata*);
+      build/src/goddard/press_start_head_2.o(.rodata*);
+      build/data/rodata_801B5DB0.o(.rodata*);
    }
    END_SEG(goddard)
    BEGIN_NOLOAD(goddard)

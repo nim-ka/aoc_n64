@@ -25,8 +25,8 @@ glabel func_80181C00
 /* 2303F8 80181C28 10000036 */  b     .L80181D04
 /* 2303FC 80181C2C 00000000 */   nop   
 .L80181C30:
-/* 230400 80181C30 3C18801C */  lui   $t8, %hi(D_801BAAF0) # $t8, 0x801c
-/* 230404 80181C34 8F18AAF0 */  lw    $t8, %lo(D_801BAAF0)($t8)
+/* 230400 80181C30 3C18801C */  lui   $t8, %hi(gGdSkinNet) # $t8, 0x801c
+/* 230404 80181C34 8F18AAF0 */  lw    $t8, %lo(gGdSkinNet)($t8)
 /* 230408 80181C38 00000000 */  nop   
 /* 23040C 80181C3C 8F1901C0 */  lw    $t9, 0x1c0($t8)
 /* 230410 80181C40 00000000 */  nop   
@@ -75,8 +75,8 @@ glabel func_80181C00
 /* 2304A8 80181CD8 0C06097F */  jal   func_801825FC
 /* 2304AC 80181CDC 00000000 */   nop   
 /* 2304B0 80181CE0 AFA2002C */  sw    $v0, 0x2c($sp)
-/* 2304B4 80181CE4 3C19801C */  lui   $t9, %hi(D_801BAAF0) # $t9, 0x801c
-/* 2304B8 80181CE8 8F39AAF0 */  lw    $t9, %lo(D_801BAAF0)($t9)
+/* 2304B4 80181CE4 3C19801C */  lui   $t9, %hi(gGdSkinNet) # $t9, 0x801c
+/* 2304B8 80181CE8 8F39AAF0 */  lw    $t9, %lo(gGdSkinNet)($t9)
 /* 2304BC 80181CEC 8FA5002C */  lw    $a1, 0x2c($sp)
 /* 2304C0 80181CF0 8F2401C0 */  lw    $a0, 0x1c0($t9)
 /* 2304C4 80181CF4 0C05F6B5 */  jal   addto_group
@@ -536,8 +536,8 @@ glabel func_801823A0
 /* 230B7C 801823AC AFB10018 */  sw    $s1, 0x18($sp)
 /* 230B80 801823B0 AFB00014 */  sw    $s0, 0x14($sp)
 /* 230B84 801823B4 8FAE0030 */  lw    $t6, 0x30($sp)
-/* 230B88 801823B8 3C01801C */  lui   $at, %hi(D_801BAAF0) # $at, 0x801c
-/* 230B8C 801823BC AC2EAAF0 */  sw    $t6, %lo(D_801BAAF0)($at)
+/* 230B88 801823B8 3C01801C */  lui   $at, %hi(gGdSkinNet) # $at, 0x801c
+/* 230B8C 801823BC AC2EAAF0 */  sw    $t6, %lo(gGdSkinNet)($at)
 /* 230B90 801823C0 8FAF0030 */  lw    $t7, 0x30($sp)
 /* 230B94 801823C4 24010001 */  li    $at, 1
 /* 230B98 801823C8 8DF1003C */  lw    $s1, 0x3c($t7)
@@ -1737,8 +1737,8 @@ glabel func_80183570
 /* 231D4C 8018357C 3C04801B */  lui   $a0, %hi(D_801B5DD4) # $a0, 0x801b
 /* 231D50 80183580 0C063358 */  jal   start_timer
 /* 231D54 80183584 24845DD4 */   addiu $a0, %lo(D_801B5DD4) # addiu $a0, $a0, 0x5dd4
-/* 231D58 80183588 3C01801C */  lui   $at, %hi(D_801BAAF0) # $at, 0x801c
-/* 231D5C 8018358C AC20AAF0 */  sw    $zero, %lo(D_801BAAF0)($at)
+/* 231D58 80183588 3C01801C */  lui   $at, %hi(gGdSkinNet) # $at, 0x801c
+/* 231D5C 8018358C AC20AAF0 */  sw    $zero, %lo(gGdSkinNet)($at)
 /* 231D60 80183590 3C058018 */  lui   $a1, %hi(Unknown80182C84) # $a1, 0x8018
 /* 231D64 80183594 8FA60018 */  lw    $a2, 0x18($sp)
 /* 231D68 80183598 24A52C84 */  addiu $a1, %lo(Unknown80182C84) # addiu $a1, $a1, 0x2c84
