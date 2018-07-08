@@ -404,7 +404,7 @@ extern int printf(const char *format, ...);
 // extern ? D_8019B9CC(?);
 // extern ? Unknown8019B9EC(?);
 // extern ? func_8019BA04(?);
-// extern ? gd_allocblock(?);
+extern void* gd_allocblock(u32);
 extern void* gd_malloc(u32, u8);    /* gd_malloc(size, alignment? */
 extern void* func_8019BC18(u32);    /* {return gd_malloc(a0, 240);} */
 // extern ? func_8019BC50(?);
@@ -506,7 +506,7 @@ extern void gd_setproperty(int, float, float, float);
 extern void func_801A3AF0(float, float, float, float, float, float);
 extern void func_801A3C8C(float, float, float, float);
 extern s32 func_801A3E5C(); /* 6 arguments */
-// extern ? _InitControllers(?);
+extern void _InitControllers(void);
 // extern ? Proc801A43DC(?);
 // extern ? func_801A43F0(?);
 // extern ? Proc801A4410(?);
@@ -528,9 +528,9 @@ extern void func_801A48F0();
 // extern ? Unknown801A4F58(?);
 // extern ? Proc801A5110(?);
 // extern ? func_801A5168(?);
-// extern ? func_801A520C(?);
+extern void func_801A520C(void);
 // extern ? Unknown801A5344(?);
-// extern ? gd_init(?);
+extern void gd_init(void);
 // extern ? Unknown801A5910(?);
 // extern ? func_801A5998(?);
 // extern ? func_801A59AC(?);

@@ -121,7 +121,7 @@
 extern void func_8018C458(const char*); /* printing function? */
 // extern ? func_8018C5C4(?);
 // extern ? func_8018C650(?);
-// extern ? func_8018C674(?);
+extern void func_8018C674(void);
 // extern ? func_8018C72C(?);
 // extern ? func_8018C7E0(?);
 // extern ? func_8018C7F8(?);
@@ -133,10 +133,10 @@ extern void func_8018C458(const char*); /* printing function? */
 // extern ? func_8018CB80(?);
 // extern ? Unknown8018CC5C(?);
 // extern ? Unknown8018CCCC(?);
-// extern ? start_timer(?);
+extern void start_timer(const char*);
 extern void restart_timer(const char *);
 extern void func_8018CEEC(const char *);
-// extern ? func_8018CF48(?);
+extern void func_8018CF48(char*);
 // extern ? func_8018D020(?);
 // extern ? Unknown8018D1A8(?);
 extern void myPrint1(const char *);

@@ -4972,7 +4972,7 @@ glabel func_8019BA04
 /* 24A1DC 8019BA0C AFA40028 */  sw    $a0, 0x28($sp)
 /* 24A1E0 8019BA10 AFB00018 */  sw    $s0, 0x18($sp)
 /* 24A1E4 8019BA14 8FA40028 */  lw    $a0, 0x28($sp)
-/* 24A1E8 8019BA18 0C05DE9E */  jal   Free
+/* 24A1E8 8019BA18 0C05DE9E */  jal   free_mem_block
 /* 24A1EC 8019BA1C 00000000 */   nop   
 /* 24A1F0 8019BA20 3C0E801C */  lui   $t6, %hi(D_801BB010) # $t6, 0x801c
 /* 24A1F4 8019BA24 8DCEB010 */  lw    $t6, %lo(D_801BB010)($t6)
@@ -5025,7 +5025,7 @@ glabel gd_allocblock
 /* 24A2A0 8019BAD0 01803025 */   move  $a2, $t4
 /* 24A2A4 8019BAD4 0C06319D */  jal   func_8018C674
 /* 24A2A8 8019BAD8 00000000 */   nop   
-/* 24A2AC 8019BADC 0C05DFDC */  jal   MemStats
+/* 24A2AC 8019BADC 0C05DFDC */  jal   mem_stats
 /* 24A2B0 8019BAE0 00000000 */   nop   
 /* 24A2B4 8019BAE4 3C04801C */  lui   $a0, %hi(D_801B8DB4) # $a0, 0x801c
 /* 24A2B8 8019BAE8 0C063456 */  jal   myPrintf
@@ -5067,7 +5067,7 @@ glabel gd_malloc
 /* 24A338 8019BB68 AFB80020 */  sw    $t8, 0x20($sp)
 /* 24A33C 8019BB6C 8FA40020 */  lw    $a0, 0x20($sp)
 /* 24A340 8019BB70 93A50027 */  lbu   $a1, 0x27($sp)
-/* 24A344 8019BB74 0C05DEC6 */  jal   func_80177B18
+/* 24A344 8019BB74 0C05DEC6 */  jal   request_mem_block
 /* 24A348 8019BB78 00000000 */   nop   
 /* 24A34C 8019BB7C AFA2001C */  sw    $v0, 0x1c($sp)
 /* 24A350 8019BB80 8FB9001C */  lw    $t9, 0x1c($sp)
@@ -5089,7 +5089,7 @@ glabel gd_malloc
 /* 24A390 8019BBC0 01203025 */   move  $a2, $t1
 /* 24A394 8019BBC4 0C06319D */  jal   func_8018C674
 /* 24A398 8019BBC8 00000000 */   nop   
-/* 24A39C 8019BBCC 0C05DFDC */  jal   MemStats
+/* 24A39C 8019BBCC 0C05DFDC */  jal   mem_stats
 /* 24A3A0 8019BBD0 00000000 */   nop   
 /* 24A3A4 8019BBD4 1000000C */  b     .L8019BC08
 /* 24A3A8 8019BBD8 00001025 */   move  $v0, $zero
@@ -5587,7 +5587,7 @@ glabel func_8019C2D8
 /* 24AAB4 8019C2E4 AFA5001C */  sw    $a1, 0x1c($sp)
 /* 24AAB8 8019C2E8 8FA4001C */  lw    $a0, 0x1c($sp)
 /* 24AABC 8019C2EC 8FA50018 */  lw    $a1, 0x18($sp)
-/* 24AAC0 8019C2F0 0C05DF4F */  jal   func_80177D3C
+/* 24AAC0 8019C2F0 0C05DF4F */  jal   make_free_mem_block
 /* 24AAC4 8019C2F4 24060001 */   li    $a2, 1
 /* 24AAC8 8019C2F8 10000001 */  b     .L8019C300
 /* 24AACC 8019C2FC 00000000 */   nop   
@@ -5625,7 +5625,7 @@ glabel gdm_init
 /* 24AB40 8019C370 AC20869C */  sw    $zero, %lo(D_801A869C)($at)
 /* 24AB44 8019C374 3C01801C */  lui   $at, %hi(D_801BB010) # $at, 0x801c
 /* 24AB48 8019C378 AC20B010 */  sw    $zero, %lo(D_801BB010)($at)
-/* 24AB4C 8019C37C 0C05DF73 */  jal   func_80177DCC
+/* 24AB4C 8019C37C 0C05DF73 */  jal   init_mem_block_lists
 /* 24AB50 8019C380 00000000 */   nop   
 /* 24AB54 8019C384 0C05E028 */  jal   func_801780A0
 /* 24AB58 8019C388 00000000 */   nop   
@@ -5700,7 +5700,7 @@ glabel Unknown8019C45C
 /* 24AC48 8019C478 24848FA4 */   addiu $a0, %lo(D_801B8FA4) # addiu $a0, $a0, -0x705c
 /* 24AC4C 8019C47C 0C06319D */  jal   func_8018C674
 /* 24AC50 8019C480 00000000 */   nop   
-/* 24AC54 8019C484 0C05DFDC */  jal   MemStats
+/* 24AC54 8019C484 0C05DFDC */  jal   mem_stats
 /* 24AC58 8019C488 00000000 */   nop   
 /* 24AC5C 8019C48C 3C04801C */  lui   $a0, %hi(D_801B8FB4) # $a0, 0x801c
 /* 24AC60 8019C490 0C0630C3 */  jal   func_8018C30C
@@ -15588,7 +15588,7 @@ glabel gd_init
 /* 253C00 801A5430 AFA2002C */  sw    $v0, 0x2c($sp)
 /* 253C04 801A5434 8FA40034 */  lw    $a0, 0x34($sp)
 /* 253C08 801A5438 8FA5002C */  lw    $a1, 0x2c($sp)
-/* 253C0C 801A543C 0C05DF4F */  jal   func_80177D3C
+/* 253C0C 801A543C 0C05DF4F */  jal   make_free_mem_block
 /* 253C10 801A5440 24060010 */   li    $a2, 16
 /* 253C14 801A5444 241800FF */  li    $t8, 255
 /* 253C18 801A5448 3C01801C */  lui   $at, %hi(D_801BB184) # $at, 0x801c

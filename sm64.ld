@@ -299,7 +299,8 @@ SECTIONS
       build/src/intro_geo.o(.text);
       build/src/file_select.o(.text);
       build/src/star_select.o(.text);
-      build/asm/debug_memory.o(.text);
+      build/src/goddard/gd_main.o(.text);
+      build/src/goddard/debug_memory.o(.text);
       build/src/game_over_1.o(.text);
       build/src/goddard/game_over_2.o(.text);
       build/src/goddard/press_start_head_1.o(.text);
@@ -317,6 +318,8 @@ SECTIONS
       build/src/star_select.o(.data*);
       build/src/star_select.o(.rodata*);
       build/data/rodata_801A8050.o(.rodata*);
+      build/src/goddard/gd_main.o(.rodata*);
+      build/src/goddard/debug_memory.o(.rodata*);
       build/src/goddard/game_over_2.o(.rodata*);
       build/src/goddard/press_start_head_1.o(.rodata*);
       build/src/goddard/press_start_head_2.o(.rodata*);

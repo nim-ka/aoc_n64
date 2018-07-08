@@ -2,7 +2,7 @@
 
 #include "sm64.h"
 #include "../libultra.h"
-#include "debug_memory.h"
+#include "gd_main.h"
 #include "../game_over_1.h"
 #include "game_over_2.h"
 #include "press_start_head_1.h"

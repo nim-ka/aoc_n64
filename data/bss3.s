@@ -67,11 +67,11 @@ glabel D_801B9A10
     .space 0x8
 glabel D_801B9A18
     .space 0xF8
-glabel D_801B9B10
+glabel sFreeBlockListHead
     .space 0x4
-glabel D_801B9B14
+glabel sUsedBlockListHead
     .space 0x4
-glabel D_801B9B18
+glabel sEmptyBlockListHead
     .space 0x8
 glabel D_801B9B20
     .space 0x4

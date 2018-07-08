@@ -1,0 +1,53 @@
+#include <ultra64.h>
+
+#include "sm64.h"
+#include "gd_main.h"
+#include "debug_memory.h"
+#include "press_start_head_1.h"
+#include "../press_start_head_5.h"
+#include "../press_start_head_6.h"
+
+/* This file was spilt out of debug_memory.asm based on rodata.
+ * The rodata for functions after this "__main__" function have string literals following 
+ * float literal, which implies that this is its own file
+ */
+
+/* D_801B9920 and D_801B9A18 are probably initialized in this file?
+ * Same with D_801A8050 and D_801A8058, although those might be declared 
+ * in some big common file with the oddly placed and used symbols that follow
+ */
+
+/* @ 225DA0 for 0x110 */
+u32 __main__(void)
+{
+    UNUSED u32 pad1C;
+
+    printf("%x, %x\n", (u32) &D_801A8058, (u32) &D_801A8050);
+    func_8018D420("main");
+    gd_init();
+
+    D_801B9920.unk88 = 0.46799f;
+    D_801B9920.unkA0 = -34.0f;
+    D_801B9920.unkAC = 34.0f;
+    D_801B9920.unk00 = 2;
+    D_801B9920.unk54 = 0;
+    D_801B9920.unkF0 = &D_801B9A18;
+
+    func_8018D420("main - make_scene");
+    //TODO: rename to "make_scene"?; called function does nothing, so the note could be about all of these functions
+    func_8017E20C();
+    imout();
+    
+    _InitControllers();
+    func_8018C674();
+
+    start_timer("dlgen");
+    func_8018CF48("dlgen");
+    mem_stats();
+
+    while (TRUE)
+        func_801A520C();
+    
+    imout();
+    return 0;
+}
