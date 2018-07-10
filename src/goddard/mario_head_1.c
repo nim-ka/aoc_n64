@@ -5,11 +5,11 @@
 #include "gd_main.h"
 #include "../game_over_1.h"
 #include "game_over_2.h"
-#include "press_start_head_1.h"
-#include "../press_start_head_3.h"
-#include "../press_start_head_4.h"
-#include "../press_start_head_5.h"
-#include "../press_start_head_6.h"
+#include "mario_head_1.h"
+#include "../mario_head_3.h"
+#include "../mario_head_4.h"
+#include "../mario_head_5.h"
+#include "../mario_head_6.h"
 
 #include "gd_types.h"
 

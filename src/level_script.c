@@ -16,7 +16,7 @@
 #include "sound_init.h"
 #include "surface_collision.h"
 #include "surface_load.h"
-#include "press_start_head_6.h"
+#include "mario_head_6.h"
 #include "profiler.h"
 
 

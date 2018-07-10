@@ -1,5 +1,5 @@
-#ifndef _PRESS_START_HEAD_1_H
-#define _PRESS_START_HEAD_1_H
+#ifndef _MARIO_HEAD_1_H_
+#define _MARIO_HEAD_1_H_
 
 #include "types.h"
 #include "gd_types.h"
@@ -105,4 +105,4 @@ extern void func_8018145C();    //void func_8018145C(struct ObjView*)
 extern void func_801814F4(struct ObjGroup*);    /* applies a function to ObjGadgets in group */
 extern void null_obj_lists(void);
 
-#endif /* _PRESS_START_HEAD_1_H */
+#endif /* _MARIO_HEAD_1_H_ */

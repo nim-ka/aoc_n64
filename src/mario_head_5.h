@@ -1,5 +1,5 @@
-#ifndef _PRESS_START_HEAD_5
-#define _PRESS_START_HEAD_5
+#ifndef _MARIO_HEAD_5_H_
+#define _MARIO_HEAD_5_H_
 
 #include "types.h"
 #include "goddard/gd_types.h"
@@ -268,4 +268,4 @@ extern void func_80196614(Mat4*, Mat4*, Mat4*);
 // extern ? Unknown80197068(?);
 // extern ? Unknown801970F0(?);
 
-#endif /* _PRESS_START_HEAD_5 */
+#endif /* _MARIO_HEAD_5_H_ */

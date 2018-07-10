@@ -1,5 +1,5 @@
-#ifndef _PRESS_START_HEAD_4
-#define _PRESS_START_HEAD_4
+#ifndef _MARIO_HEAD_4_H_
+#define _MARIO_HEAD_4_H_
 
 #include "types.h"
 #include "goddard/gd_types.h"
@@ -385,4 +385,4 @@ extern void get_objvalue();
 extern void Unknown8018BFB4(struct ObjGadget*);
 extern void func_8018C170(struct ObjGroup*);
 
-#endif /* _PRESS_START_HEAD_4 */
+#endif /* _MARIO_HEAD_4_H_ */

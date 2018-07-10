@@ -1,5 +1,5 @@
-#ifndef _PRESS_START_HEAD_3
-#define _PRESS_START_HEAD_3
+#ifndef _MARIO_HEAD_3_H_
+#define _MARIO_HEAD_3_H_
 
 #include "types.h"
 #include "goddard/gd_types.h"
@@ -33,4 +33,4 @@ extern void func_80183570(struct ObjGroup*);
 // extern ? Unknown801838B4(?);
 // extern ? func_801838D0(?);
 
-#endif /* _PRESS_START_HEAD_3 */
+#endif /* _MARIO_HEAD_3_H_ */

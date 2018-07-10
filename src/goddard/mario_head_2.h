@@ -1,5 +1,5 @@
-#ifndef _PRESS_START_HEAD_2_H
-#define _PRESS_START_HEAD_2_H
+#ifndef _MARIO_HEAD_2_H_
+#define _MARIO_HEAD_2_H_
 
 #include "types.h"
 #include "gd_types.h"
@@ -46,4 +46,4 @@ extern void Unknown80181B88(struct ObjJoint*);
 // extern void Unknown801819D0(struct ObjVertex*);
 // extern void reset_weight(struct ObjWeight*);
 
-#endif /* _PRESS_START_HEAD_2_H */
+#endif /* _MARIO_HEAD_2_H_ */

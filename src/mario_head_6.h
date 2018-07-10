@@ -1,5 +1,5 @@
-#ifndef _PRESS_START_HEAD_6
-#define _PRESS_START_HEAD_6
+#ifndef _MARIO_HEAD_6_H_
+#define _MARIO_HEAD_6_H_
 
 #include "types.h"
 #include "goddard/gd_types.h"
@@ -557,4 +557,4 @@ extern void func_801A5B58(float, float);
 // extern ? func_801A6E58(?);
 // extern ? func_801A6F34(?);
 
-#endif /* _PRESS_START_HEAD_6 */
+#endif /* _MARIO_HEAD_6_H_ */

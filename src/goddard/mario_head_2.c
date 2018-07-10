@@ -1,9 +1,9 @@
 #include <ultra64.h>
 
 #include "sm64.h"
-#include "press_start_head_1.h"
-#include "press_start_head_2.h"
-#include "../press_start_head_5.h"
+#include "mario_head_1.h"
+#include "mario_head_2.h"
+#include "../mario_head_5.h"
 
 #include "gd_types.h"
 

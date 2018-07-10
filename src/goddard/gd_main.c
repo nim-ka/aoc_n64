@@ -3,9 +3,9 @@
 #include "sm64.h"
 #include "gd_main.h"
 #include "debug_memory.h"
-#include "press_start_head_1.h"
-#include "../press_start_head_5.h"
-#include "../press_start_head_6.h"
+#include "mario_head_1.h"
+#include "../mario_head_5.h"
+#include "../mario_head_6.h"
 
 /* This file was spilt out of debug_memory.asm based on rodata.
  * The rodata for functions after this "__main__" function have string literals following 

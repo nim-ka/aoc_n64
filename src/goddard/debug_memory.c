@@ -2,8 +2,8 @@
 
 #include "sm64.h"
 #include "debug_memory.h"
-#include "../press_start_head_5.h"
-#include "../press_start_head_6.h"
+#include "../mario_head_5.h"
+#include "../mario_head_6.h"
 
 /* bss */
 /* static */ extern struct GMemBlock* sFreeBlockListHead;  // D_801B9B10
