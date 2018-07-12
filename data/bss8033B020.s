@@ -328,7 +328,7 @@ glabel D_8035FEE4
     .space 0x2
 glabel D_8035FEE6
     .space 0x2
-glabel D_8035FEE8
+glabel gStageParam
     .space 0x2
 glabel D_8035FEEA
     .space 0x2
@@ -346,9 +346,9 @@ glabel D_8035FF00
     .space 0x10
 glabel D_8035FF10
     .space 0x10
-glabel gDebugTextInfo1
+glabel gDebugPrintState1
     .space 0x10
-glabel gDebugTextInfo2
+glabel gDebugPrintState2
     .space 0x10
 glabel D_8035FF40
     .space 0x2

@@ -35,29 +35,18 @@ extern s16 gDebugInfoOverwrite[][8]; // most likely used to manually copy in
 
 extern s16 D_8035FEE2;
 extern s16 D_8035FEE4;
-extern s16 D_8035FEE8;
+extern s16 gStageParam;
 
-// debug 2d arrays. format is as follows:
-// [0]: stop printing boolean. changes to 1 when overflow of debug lines to stop printing info.
-// [1]: active list x coord. unchanged during mapinfo printing
-// [2]: active list y coord. changes every line printed with the length of a line (see [5])
-// [3]: ???
-// [4]: ???
-// [5]: y length. length of a line
-// [6]: ??? (set but unused, possibly not part of this array)
-// [7]: ??? (set but unused, possibly not part of this array)
-extern s16 gDebugTextInfo1[]; // prints top-down?
-extern s16 gDebugTextInfo2[]; // prints bottom-up?
+extern s16 gDebugPrintState1[]; // prints top-down?
+extern s16 gDebugPrintState2[]; // prints bottom-up?
 
-enum DebugTextInfo {
-    DEBUG_TEXT_PRINTED,
-    DEBUG_TEXT_X,
-    DEBUG_TEXT_Y,
-    DEBUG_TEXT_UNK3,
-    DEBUG_TEXT_UNK4,
-    DEBUG_TEXT_LINE_LENGTH,
-    DEBUG_TEXT_UNK6_UNUSED,
-    DEBUG_TEXT_UNK7_UNUSED
+enum DebugPrintStateInfo {
+    DEBUG_PSTATE_DISABLED,
+    DEBUG_PSTATE_X_CURSOR,
+    DEBUG_PSTATE_Y_CURSOR,
+    DEBUG_PSTATE_MIN_Y_CURSOR,
+    DEBUG_PSTATE_MAX_X_CURSOR,
+    DEBUG_PSTATE_LINE_Y_OFFSET
 };
 
 extern u8 beh_koopa_shell[];
@@ -148,49 +137,49 @@ s64 get_clock_difference(UNUSED u64 arg0)
 }
 
 /*
- * Set the print array info given a pointer to a print array and the relevent
+ * Set the print state info given a pointer to a print state and the relevent
  * information. Note the reset of the printing boolean. For all intenses and
- * purposes this creates/formats a new print array.
+ * purposes this creates/formats a new print state.
  */
-static void set_text_array_info(s16 *textArr, s16 listX, s16 listY, s16 arg3, s16 arg4, s16 yLength)
+static void set_print_state_info(s16 *printState, s16 xCursor, s16 yCursor, s16 minYCursor, s16 maxXCursor, s16 lineYOffset)
 {
-    textArr[DEBUG_TEXT_PRINTED]     = FALSE;
-    textArr[DEBUG_TEXT_X]           = listX;
-    textArr[DEBUG_TEXT_Y]           = listY;
-    textArr[DEBUG_TEXT_UNK3]        = arg3;
-    textArr[DEBUG_TEXT_UNK4]        = arg4;
-    textArr[DEBUG_TEXT_LINE_LENGTH] = yLength;
+    printState[DEBUG_PSTATE_DISABLED]      = FALSE;
+    printState[DEBUG_PSTATE_X_CURSOR]      = xCursor;
+    printState[DEBUG_PSTATE_Y_CURSOR]      = yCursor;
+    printState[DEBUG_PSTATE_MIN_Y_CURSOR]  = minYCursor;
+    printState[DEBUG_PSTATE_MAX_X_CURSOR]  = maxXCursor;
+    printState[DEBUG_PSTATE_LINE_Y_OFFSET] = lineYOffset;
 }
 
 /*
- * Take a print info array, string, and the number to print, and use its information to print
- * the next entry in the list. If the current print array is too far down the list, this
- * will print "DPRINT OVER" instead, signaling that the debug print overflowed.
+ * Take a print state array, string, and the number to print, and use its information to print
+ * the next entry in the list. If the current print state array is too far down the list, this
+ * will print "DPRINT OVER" instead, signaling that the print state overflowed.
  */
-static void print_text_array_info(s16 *textArr, const char *str, int number)
+static void print_text_array_info(s16 *printState, const char *str, int number)
 {
-    if(!textArr[DEBUG_TEXT_PRINTED])
+    if(!printState[DEBUG_PSTATE_DISABLED])
     {
-        if((textArr[DEBUG_TEXT_Y] < textArr[DEBUG_TEXT_UNK3]) 
-        || (textArr[DEBUG_TEXT_UNK4] < textArr[DEBUG_TEXT_Y]))
+        if((printState[DEBUG_PSTATE_Y_CURSOR] < printState[DEBUG_PSTATE_MIN_Y_CURSOR]) 
+        || (printState[DEBUG_PSTATE_MAX_X_CURSOR] < printState[DEBUG_PSTATE_Y_CURSOR]))
         {
-            print_text(textArr[DEBUG_TEXT_X], textArr[DEBUG_TEXT_Y], "DPRINT OVER");
-            textArr[DEBUG_TEXT_PRINTED] += 1; // why not just = TRUE...
+            print_text(printState[DEBUG_PSTATE_X_CURSOR], printState[DEBUG_PSTATE_Y_CURSOR], "DPRINT OVER");
+            printState[DEBUG_PSTATE_DISABLED] += 1; // why not just = TRUE...
         }
         else
         {
-            print_text_fmt_int(textArr[DEBUG_TEXT_X], textArr[DEBUG_TEXT_Y], str, number);
-            textArr[DEBUG_TEXT_Y] += textArr[DEBUG_TEXT_LINE_LENGTH];
+            print_text_fmt_int(printState[DEBUG_PSTATE_X_CURSOR], printState[DEBUG_PSTATE_Y_CURSOR], str, number);
+            printState[DEBUG_PSTATE_Y_CURSOR] += printState[DEBUG_PSTATE_LINE_Y_OFFSET];
         }
     }
 }
 
 void set_text_array_x_y(s32 xOffset, s32 yOffset)
 {
-    s16 *textArr = gDebugTextInfo1;
+    s16 *printState = gDebugPrintState1;
 
-    textArr[DEBUG_TEXT_X] += xOffset;
-    textArr[DEBUG_TEXT_Y] = yOffset * textArr[DEBUG_TEXT_LINE_LENGTH] + textArr[DEBUG_TEXT_Y];
+    printState[DEBUG_PSTATE_X_CURSOR] += xOffset;
+    printState[DEBUG_PSTATE_Y_CURSOR] = yOffset * printState[DEBUG_PSTATE_LINE_Y_OFFSET] + printState[DEBUG_PSTATE_Y_CURSOR];
 }
 
 /*
@@ -200,13 +189,13 @@ void set_text_array_x_y(s32 xOffset, s32 yOffset)
 void print_debug_bottom_up(const char *str, int number)
 {
     if(gDebugInfoFlags & DEBUG_INFO_FLAG_DPRINT)
-        print_text_array_info(gDebugTextInfo2, str, number);
+        print_text_array_info(gDebugPrintState2, str, number);
 }
 
 void print_debug_top_down_objectinfo(const char *str, int number)
 {
     if((gDebugInfoFlags & DEBUG_INFO_FLAG_DPRINT) && sDebugPage == DEBUG_PAGE_OBJECTINFO)
-        print_text_array_info(gDebugTextInfo1, str, number);
+        print_text_array_info(gDebugPrintState1, str, number);
 }
 
 void print_debug_top_down_mapinfo(const char *str, int number)
@@ -215,13 +204,13 @@ void print_debug_top_down_mapinfo(const char *str, int number)
         return;
 
     if(gDebugInfoFlags & DEBUG_INFO_FLAG_DPRINT)
-        print_text_array_info(gDebugTextInfo1, str, number);
+        print_text_array_info(gDebugPrintState1, str, number);
 }
 
 static void print_debug_top_down_normal(const char *str, int number)
 {
     if(gDebugInfoFlags & DEBUG_INFO_FLAG_DPRINT)
-        print_text_array_info(gDebugTextInfo1, str, number);
+        print_text_array_info(gDebugPrintState1, str, number);
 }
 
 static void print_mapinfo(void)
@@ -274,7 +263,7 @@ static void print_surfaceinfo(void)
 static void print_stageinfo(void)
 {
     print_debug_top_down_normal("stageinfo", 0);
-    print_debug_top_down_normal("stage param %d", D_8035FEE8);
+    print_debug_top_down_normal("stage param %d", gStageParam);
 }
 
 /*
@@ -372,8 +361,8 @@ void reset_debug_objectinfo(void)
     D_8035FEE2 = 0;
     D_8035FEE4 = 0;
 
-    set_text_array_info(gDebugTextInfo1, 20, 185, 40, 200, -15);
-    set_text_array_info(gDebugTextInfo2, 180, 30, 0,  150,  15);
+    set_print_state_info(gDebugPrintState1, 20, 185, 40, 200, -15);
+    set_print_state_info(gDebugPrintState2, 180, 30, 0,  150,  15);
     update_debug_dpadmask();
 }
 

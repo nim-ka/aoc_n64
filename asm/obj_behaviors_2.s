@@ -14755,8 +14755,8 @@ glabel BehRotatingClockPlatformInit
 /* 0C0914 80305914 240B0003 */  li    $t3, 3
 /* 0C0918 80305918 AD8B00F8 */  sw    $t3, 0xf8($t4)
 .L8030591C:
-/* 0C091C 8030591C 3C0D8036 */  lui   $t5, %hi(D_8035FEE8) # $t5, 0x8036
-/* 0C0920 80305920 85ADFEE8 */  lh    $t5, %lo(D_8035FEE8)($t5)
+/* 0C091C 8030591C 3C0D8036 */  lui   $t5, %hi(gStageParam) # $t5, 0x8036
+/* 0C0920 80305920 85ADFEE8 */  lh    $t5, %lo(gStageParam)($t5)
 /* 0C0924 80305924 3C0E8033 */  lui   $t6, %hi(D_80331968)
 /* 0C0928 80305928 3C0F8036 */  lui   $t7, %hi(gCurrentObject) # $t7, 0x8036
 /* 0C092C 8030592C 01CD7021 */  addu  $t6, $t6, $t5
@@ -14775,8 +14775,8 @@ glabel BehRotatingClockPlatformLoop
 /* 0C0954 80305954 27BDFFD0 */  addiu $sp, $sp, -0x30
 /* 0C0958 80305958 AFBF001C */  sw    $ra, 0x1c($sp)
 /* 0C095C 8030595C F7B40010 */  sdc1  $f20, 0x10($sp)
-/* 0C0960 80305960 3C0E8036 */  lui   $t6, %hi(D_8035FEE8) # $t6, 0x8036
-/* 0C0964 80305964 85CEFEE8 */  lh    $t6, %lo(D_8035FEE8)($t6)
+/* 0C0960 80305960 3C0E8036 */  lui   $t6, %hi(gStageParam) # $t6, 0x8036
+/* 0C0964 80305964 85CEFEE8 */  lh    $t6, %lo(gStageParam)($t6)
 /* 0C0968 80305968 24010003 */  li    $at, 3
 /* 0C096C 8030596C 11C1008F */  beq   $t6, $at, .L80305BAC
 /* 0C0970 80305970 00000000 */   nop   
@@ -14882,8 +14882,8 @@ glabel BehRotatingClockPlatformLoop
 /* 0C0AF0 80305AF0 3C0F8036 */  lui   $t7, %hi(gCurrentObject) # $t7, 0x8036
 /* 0C0AF4 80305AF4 8DEFFDF0 */  lw    $t7, %lo(gCurrentObject)($t7)
 /* 0C0AF8 80305AF8 ADE00154 */  sw    $zero, 0x154($t7)
-/* 0C0AFC 80305AFC 3C198036 */  lui   $t9, %hi(D_8035FEE8) # $t9, 0x8036
-/* 0C0B00 80305B00 8739FEE8 */  lh    $t9, %lo(D_8035FEE8)($t9)
+/* 0C0AFC 80305AFC 3C198036 */  lui   $t9, %hi(gStageParam) # $t9, 0x8036
+/* 0C0B00 80305B00 8739FEE8 */  lh    $t9, %lo(gStageParam)($t9)
 /* 0C0B04 80305B04 24010002 */  li    $at, 2
 /* 0C0B08 80305B08 17210008 */  bne   $t9, $at, .L80305B2C
 /* 0C0B0C 80305B0C 00000000 */   nop   
@@ -14947,13 +14947,13 @@ glabel BehRotatingClockPlatformLoop
 /* 0C0BDC 80305BDC 00000000 */   nop   
 
 glabel BehClockPendulumInit
-/* 0C0BE0 80305BE0 3C0E8036 */  lui   $t6, %hi(D_8035FEE8) # $t6, 0x8036
-/* 0C0BE4 80305BE4 85CEFEE8 */  lh    $t6, %lo(D_8035FEE8)($t6)
+/* 0C0BE0 80305BE0 3C0E8036 */  lui   $t6, %hi(gStageParam) # $t6, 0x8036
+/* 0C0BE4 80305BE4 85CEFEE8 */  lh    $t6, %lo(gStageParam)($t6)
 /* 0C0BE8 80305BE8 24010003 */  li    $at, 3
 /* 0C0BEC 80305BEC 11C10010 */  beq   $t6, $at, .L80305C30
 /* 0C0BF0 80305BF0 00000000 */   nop   
-/* 0C0BF4 80305BF4 3C0F8036 */  lui   $t7, %hi(D_8035FEE8) # $t7, 0x8036
-/* 0C0BF8 80305BF8 85EFFEE8 */  lh    $t7, %lo(D_8035FEE8)($t7)
+/* 0C0BF4 80305BF4 3C0F8036 */  lui   $t7, %hi(gStageParam) # $t7, 0x8036
+/* 0C0BF8 80305BF8 85EFFEE8 */  lh    $t7, %lo(gStageParam)($t7)
 /* 0C0BFC 80305BFC 3C018033 */  lui   $at, %hi(D_8033196C)
 /* 0C0C00 80305C00 3C198036 */  lui   $t9, %hi(gCurrentObject) # $t9, 0x8036
 /* 0C0C04 80305C04 000FC080 */  sll   $t8, $t7, 2
@@ -14983,8 +14983,8 @@ glabel BehClockPendulumInit
 glabel BehClockPendulumLoop
 /* 0C0C54 80305C54 27BDFFE0 */  addiu $sp, $sp, -0x20
 /* 0C0C58 80305C58 AFBF0014 */  sw    $ra, 0x14($sp)
-/* 0C0C5C 80305C5C 3C0E8036 */  lui   $t6, %hi(D_8035FEE8) # $t6, 0x8036
-/* 0C0C60 80305C60 85CEFEE8 */  lh    $t6, %lo(D_8035FEE8)($t6)
+/* 0C0C5C 80305C5C 3C0E8036 */  lui   $t6, %hi(gStageParam) # $t6, 0x8036
+/* 0C0C60 80305C60 85CEFEE8 */  lh    $t6, %lo(gStageParam)($t6)
 /* 0C0C64 80305C64 24010003 */  li    $at, 3
 /* 0C0C68 80305C68 11C10071 */  beq   $t6, $at, .L80305E30
 /* 0C0C6C 80305C6C 00000000 */   nop   
@@ -15055,8 +15055,8 @@ glabel BehClockPendulumLoop
 /* 0C0D64 80305D64 00000000 */  nop   
 /* 0C0D68 80305D68 45000029 */  bc1f  .L80305E10
 /* 0C0D6C 80305D6C 00000000 */   nop   
-/* 0C0D70 80305D70 3C0C8036 */  lui   $t4, %hi(D_8035FEE8) # $t4, 0x8036
-/* 0C0D74 80305D74 858CFEE8 */  lh    $t4, %lo(D_8035FEE8)($t4)
+/* 0C0D70 80305D70 3C0C8036 */  lui   $t4, %hi(gStageParam) # $t4, 0x8036
+/* 0C0D74 80305D74 858CFEE8 */  lh    $t4, %lo(gStageParam)($t4)
 /* 0C0D78 80305D78 24010002 */  li    $at, 2
 /* 0C0D7C 80305D7C 1581001F */  bne   $t4, $at, .L80305DFC
 /* 0C0D80 80305D80 00000000 */   nop   
@@ -15152,8 +15152,8 @@ glabel BehClockMetalPlatformInit
 /* 0C0EC4 80305EC4 3C0A8036 */  lui   $t2, %hi(gCurrentObject) # $t2, 0x8036
 /* 0C0EC8 80305EC8 8D4AFDF0 */  lw    $t2, %lo(gCurrentObject)($t2)
 /* 0C0ECC 80305ECC AD4200F8 */  sw    $v0, 0xf8($t2)
-/* 0C0ED0 80305ED0 3C0B8036 */  lui   $t3, %hi(D_8035FEE8) # $t3, 0x8036
-/* 0C0ED4 80305ED4 856BFEE8 */  lh    $t3, %lo(D_8035FEE8)($t3)
+/* 0C0ED0 80305ED0 3C0B8036 */  lui   $t3, %hi(gStageParam) # $t3, 0x8036
+/* 0C0ED4 80305ED4 856BFEE8 */  lh    $t3, %lo(gStageParam)($t3)
 /* 0C0ED8 80305ED8 3C0D8036 */  lui   $t5, %hi(gCurrentObject) # $t5, 0x8036
 /* 0C0EDC 80305EDC 8DADFDF0 */  lw    $t5, %lo(gCurrentObject)($t5)
 /* 0C0EE0 80305EE0 3C108033 */  lui   $s0, %hi(D_80331984)
@@ -15197,8 +15197,8 @@ glabel BehClockMetalPlatformLoop
 /* 0C0F68 80305F68 3C044008 */  lui   $a0, (0x40080001 >> 16) # lui $a0, 0x4008
 /* 0C0F6C 80305F6C 0C0B25AC */  jal   PlaySound
 /* 0C0F70 80305F70 34840001 */   ori   $a0, (0x40080001 & 0xFFFF) # ori $a0, $a0, 1
-/* 0C0F74 80305F74 3C198036 */  lui   $t9, %hi(D_8035FEE8) # $t9, 0x8036
-/* 0C0F78 80305F78 8739FEE8 */  lh    $t9, %lo(D_8035FEE8)($t9)
+/* 0C0F74 80305F74 3C198036 */  lui   $t9, %hi(gStageParam) # $t9, 0x8036
+/* 0C0F78 80305F78 8739FEE8 */  lh    $t9, %lo(gStageParam)($t9)
 /* 0C0F7C 80305F7C 24010002 */  li    $at, 2
 /* 0C0F80 80305F80 17210042 */  bne   $t9, $at, .L8030608C
 /* 0C0F84 80305F84 00000000 */   nop   
@@ -15293,8 +15293,8 @@ glabel BehClockMetalPlatformLoop
 
 glabel BehSlidingPlatformInit
 /* 0C10D4 803060D4 27BDFFF8 */  addiu $sp, $sp, -8
-/* 0C10D8 803060D8 3C0E8036 */  lui   $t6, %hi(D_8035FEE8) # $t6, 0x8036
-/* 0C10DC 803060DC 85CEFEE8 */  lh    $t6, %lo(D_8035FEE8)($t6)
+/* 0C10D8 803060D8 3C0E8036 */  lui   $t6, %hi(gStageParam) # $t6, 0x8036
+/* 0C10DC 803060DC 85CEFEE8 */  lh    $t6, %lo(gStageParam)($t6)
 /* 0C10E0 803060E0 3C048033 */  lui   $a0, %hi(D_8033198C)
 /* 0C10E4 803060E4 3C188036 */  lui   $t8, %hi(gCurrentObject) # $t8, 0x8036
 /* 0C10E8 803060E8 000E7840 */  sll   $t7, $t6, 1
@@ -15354,8 +15354,8 @@ glabel func_8030615C
 /* 0C11B0 803061B0 10000025 */  b     .L80306248
 /* 0C11B4 803061B4 AD2B00F8 */   sw    $t3, 0xf8($t1)
 .L803061B8:
-/* 0C11B8 803061B8 3C0C8036 */  lui   $t4, %hi(D_8035FEE8) # $t4, 0x8036
-/* 0C11BC 803061BC 858CFEE8 */  lh    $t4, %lo(D_8035FEE8)($t4)
+/* 0C11B8 803061B8 3C0C8036 */  lui   $t4, %hi(gStageParam) # $t4, 0x8036
+/* 0C11BC 803061BC 858CFEE8 */  lh    $t4, %lo(gStageParam)($t4)
 /* 0C11C0 803061C0 24010002 */  li    $at, 2
 /* 0C11C4 803061C4 15810016 */  bne   $t4, $at, .L80306220
 /* 0C11C8 803061C8 00000000 */   nop   
@@ -15559,8 +15559,8 @@ glabel func_80306350
 /* 0C1498 80306498 C5660100 */  lwc1  $f6, 0x100($t3)
 /* 0C149C 8030649C 46083280 */  add.s $f10, $f6, $f8
 /* 0C14A0 803064A0 E56A0100 */  swc1  $f10, 0x100($t3)
-/* 0C14A4 803064A4 3C0C8036 */  lui   $t4, %hi(D_8035FEE8) # $t4, 0x8036
-/* 0C14A8 803064A8 858CFEE8 */  lh    $t4, %lo(D_8035FEE8)($t4)
+/* 0C14A4 803064A4 3C0C8036 */  lui   $t4, %hi(gStageParam) # $t4, 0x8036
+/* 0C14A8 803064A8 858CFEE8 */  lh    $t4, %lo(gStageParam)($t4)
 /* 0C14AC 803064AC 24010002 */  li    $at, 2
 /* 0C14B0 803064B0 15810012 */  bne   $t4, $at, .L803064FC
 /* 0C14B4 803064B4 00000000 */   nop   
@@ -15732,8 +15732,8 @@ glabel BehRotationGearPlatformLoop
 /* 0C1700 80306700 AFBF001C */  sw    $ra, 0x1c($sp)
 /* 0C1704 80306704 AFB10018 */  sw    $s1, 0x18($sp)
 /* 0C1708 80306708 AFB00014 */  sw    $s0, 0x14($sp)
-/* 0C170C 8030670C 3C108036 */  lui   $s0, %hi(D_8035FEE8) # $s0, 0x8036
-/* 0C1710 80306710 8610FEE8 */  lh    $s0, %lo(D_8035FEE8)($s0)
+/* 0C170C 8030670C 3C108036 */  lui   $s0, %hi(gStageParam) # $s0, 0x8036
+/* 0C1710 80306710 8610FEE8 */  lh    $s0, %lo(gStageParam)($s0)
 /* 0C1714 80306714 1200000C */  beqz  $s0, .L80306748
 /* 0C1718 80306718 00000000 */   nop   
 /* 0C171C 8030671C 24010001 */  li    $at, 1
@@ -15748,8 +15748,8 @@ glabel BehRotationGearPlatformLoop
 /* 0C1740 80306740 1000002C */  b     .L803067F4
 /* 0C1744 80306744 00000000 */   nop   
 .L80306748:
-/* 0C1748 80306748 3C0E8036 */  lui   $t6, %hi(D_8035FEE8) # $t6, 0x8036
-/* 0C174C 8030674C 85CEFEE8 */  lh    $t6, %lo(D_8035FEE8)($t6)
+/* 0C1748 80306748 3C0E8036 */  lui   $t6, %hi(gStageParam) # $t6, 0x8036
+/* 0C174C 8030674C 85CEFEE8 */  lh    $t6, %lo(gStageParam)($t6)
 /* 0C1750 80306750 3C188033 */  lui   $t8, %hi(D_803319A4)
 /* 0C1754 80306754 3C198036 */  lui   $t9, %hi(gCurrentObject) # $t9, 0x8036
 /* 0C1758 80306758 000E7840 */  sll   $t7, $t6, 1
@@ -15839,8 +15839,8 @@ glabel BehPushableClockBoxInit
 /* 0C1890 80306890 C50400A4 */  lwc1  $f4, 0xa4($t0)
 /* 0C1894 80306894 46062200 */  add.s $f8, $f4, $f6
 /* 0C1898 80306898 E50800F4 */  swc1  $f8, 0xf4($t0)
-/* 0C189C 8030689C 3C098036 */  lui   $t1, %hi(D_8035FEE8) # $t1, 0x8036
-/* 0C18A0 803068A0 8529FEE8 */  lh    $t1, %lo(D_8035FEE8)($t1)
+/* 0C189C 8030689C 3C098036 */  lui   $t1, %hi(gStageParam) # $t1, 0x8036
+/* 0C18A0 803068A0 8529FEE8 */  lh    $t1, %lo(gStageParam)($t1)
 /* 0C18A4 803068A4 24010003 */  li    $at, 3
 /* 0C18A8 803068A8 15210008 */  bne   $t1, $at, .L803068CC
 /* 0C18AC 803068AC 00000000 */   nop   
@@ -15888,8 +15888,8 @@ glabel BehPushableClockBoxLoop
 /* 0C1944 80306944 AD0A00F8 */  sw    $t2, 0xf8($t0)
 /* 0C1948 80306948 3C0D8036 */  lui   $t5, %hi(gCurrentObject) # $t5, 0x8036
 /* 0C194C 8030694C 8DADFDF0 */  lw    $t5, %lo(gCurrentObject)($t5)
-/* 0C1950 80306950 3C0B8036 */  lui   $t3, %hi(D_8035FEE8) # $t3, 0x8036
-/* 0C1954 80306954 856BFEE8 */  lh    $t3, %lo(D_8035FEE8)($t3)
+/* 0C1950 80306950 3C0B8036 */  lui   $t3, %hi(gStageParam) # $t3, 0x8036
+/* 0C1954 80306954 856BFEE8 */  lh    $t3, %lo(gStageParam)($t3)
 /* 0C1958 80306958 8DAE00F8 */  lw    $t6, 0xf8($t5)
 /* 0C195C 8030695C 3C108033 */  lui   $s0, %hi(D_803319B2)
 /* 0C1960 80306960 000B60C0 */  sll   $t4, $t3, 3
@@ -15910,8 +15910,8 @@ glabel BehPushableClockBoxLoop
 .L8030699C:
 /* 0C199C 8030699C 3C0B8036 */  lui   $t3, %hi(gCurrentObject) # $t3, 0x8036
 /* 0C19A0 803069A0 8D6BFDF0 */  lw    $t3, %lo(gCurrentObject)($t3)
-/* 0C19A4 803069A4 3C0A8036 */  lui   $t2, %hi(D_8035FEE8) # $t2, 0x8036
-/* 0C19A8 803069A8 854AFEE8 */  lh    $t2, %lo(D_8035FEE8)($t2)
+/* 0C19A4 803069A4 3C0A8036 */  lui   $t2, %hi(gStageParam) # $t2, 0x8036
+/* 0C19A8 803069A8 854AFEE8 */  lh    $t2, %lo(gStageParam)($t2)
 /* 0C19AC 803069AC 8D6E00F8 */  lw    $t6, 0xf8($t3)
 /* 0C19B0 803069B0 3C188033 */  lui   $t8, %hi(D_803319B0)
 /* 0C19B4 803069B4 000A40C0 */  sll   $t0, $t2, 3
@@ -15973,8 +15973,8 @@ glabel BehClockPlatformInit
 glabel BehClockPlatformLoop
 /* 0C1A74 80306A74 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 0C1A78 80306A78 AFBF0014 */  sw    $ra, 0x14($sp)
-/* 0C1A7C 80306A7C 3C0F8036 */  lui   $t7, %hi(D_8035FEE8) # $t7, 0x8036
-/* 0C1A80 80306A80 85EFFEE8 */  lh    $t7, %lo(D_8035FEE8)($t7)
+/* 0C1A7C 80306A7C 3C0F8036 */  lui   $t7, %hi(gStageParam) # $t7, 0x8036
+/* 0C1A80 80306A80 85EFFEE8 */  lh    $t7, %lo(gStageParam)($t7)
 /* 0C1A84 80306A84 3C188033 */  lui   $t8, %hi(D_803319D0)
 /* 0C1A88 80306A88 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 0C1A8C 80306A8C 030FC021 */  addu  $t8, $t8, $t7
@@ -15985,8 +15985,8 @@ glabel BehClockPlatformLoop
 /* 0C1AA0 80306AA0 46803220 */  cvt.s.w $f8, $f6
 /* 0C1AA4 80306AA4 46082282 */  mul.s $f10, $f4, $f8
 /* 0C1AA8 80306AA8 E5CA00B0 */  swc1  $f10, 0xb0($t6)
-/* 0C1AAC 80306AAC 3C198036 */  lui   $t9, %hi(D_8035FEE8) # $t9, 0x8036
-/* 0C1AB0 80306AB0 8739FEE8 */  lh    $t9, %lo(D_8035FEE8)($t9)
+/* 0C1AAC 80306AAC 3C198036 */  lui   $t9, %hi(gStageParam) # $t9, 0x8036
+/* 0C1AB0 80306AB0 8739FEE8 */  lh    $t9, %lo(gStageParam)($t9)
 /* 0C1AB4 80306AB4 24010002 */  li    $at, 2
 /* 0C1AB8 80306AB8 17210025 */  bne   $t9, $at, .L80306B50
 /* 0C1ABC 80306ABC 00000000 */   nop   
@@ -16056,8 +16056,8 @@ glabel BehClockMainRotationInit
 /* 0C1BA4 80306BA4 27BDFFF8 */  addiu $sp, $sp, -8
 /* 0C1BA8 80306BA8 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 0C1BAC 80306BAC 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
-/* 0C1BB0 80306BB0 3C198036 */  lui   $t9, %hi(D_8035FEE8) # $t9, 0x8036
-/* 0C1BB4 80306BB4 8739FEE8 */  lh    $t9, %lo(D_8035FEE8)($t9)
+/* 0C1BB0 80306BB0 3C198036 */  lui   $t9, %hi(gStageParam) # $t9, 0x8036
+/* 0C1BB4 80306BB4 8739FEE8 */  lh    $t9, %lo(gStageParam)($t9)
 /* 0C1BB8 80306BB8 8DCF0144 */  lw    $t7, 0x144($t6)
 /* 0C1BBC 80306BBC 3C0A8033 */  lui   $t2, %hi(D_803319D8)
 /* 0C1BC0 80306BC0 00194040 */  sll   $t0, $t9, 1
@@ -16127,8 +16127,8 @@ glabel BehClockMainRotationLoop
 /* 0C1CB0 80306CB0 3C088036 */  lui   $t0, %hi(gCurrentObject) # $t0, 0x8036
 /* 0C1CB4 80306CB4 8D08FDF0 */  lw    $t0, %lo(gCurrentObject)($t0)
 /* 0C1CB8 80306CB8 AD000154 */  sw    $zero, 0x154($t0)
-/* 0C1CBC 80306CBC 3C0C8036 */  lui   $t4, %hi(D_8035FEE8) # $t4, 0x8036
-/* 0C1CC0 80306CC0 858CFEE8 */  lh    $t4, %lo(D_8035FEE8)($t4)
+/* 0C1CBC 80306CBC 3C0C8036 */  lui   $t4, %hi(gStageParam) # $t4, 0x8036
+/* 0C1CC0 80306CC0 858CFEE8 */  lh    $t4, %lo(gStageParam)($t4)
 /* 0C1CC4 80306CC4 24010002 */  li    $at, 2
 /* 0C1CC8 80306CC8 1581002A */  bne   $t4, $at, .L80306D74
 /* 0C1CCC 80306CCC 00000000 */   nop   
@@ -16201,8 +16201,8 @@ glabel BehClockMainRotationLoop
 glabel BehRotatingClockPlatform2Loop
 /* 0C1DC0 80306DC0 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 0C1DC4 80306DC4 AFBF0014 */  sw    $ra, 0x14($sp)
-/* 0C1DC8 80306DC8 3C0E8036 */  lui   $t6, %hi(D_8035FEE8) # $t6, 0x8036
-/* 0C1DCC 80306DCC 85CEFEE8 */  lh    $t6, %lo(D_8035FEE8)($t6)
+/* 0C1DC8 80306DC8 3C0E8036 */  lui   $t6, %hi(gStageParam) # $t6, 0x8036
+/* 0C1DCC 80306DCC 85CEFEE8 */  lh    $t6, %lo(gStageParam)($t6)
 /* 0C1DD0 80306DD0 3C188033 */  lui   $t8, %hi(D_803319E8)
 /* 0C1DD4 80306DD4 3C198036 */  lui   $t9, %hi(gCurrentObject) # $t9, 0x8036
 /* 0C1DD8 80306DD8 000E7840 */  sll   $t7, $t6, 1
@@ -16210,8 +16210,8 @@ glabel BehRotatingClockPlatform2Loop
 /* 0C1DE0 80306DE0 871819E8 */  lh    $t8, %lo(D_803319E8)($t8)
 /* 0C1DE4 80306DE4 8F39FDF0 */  lw    $t9, %lo(gCurrentObject)($t9)
 /* 0C1DE8 80306DE8 AF380114 */  sw    $t8, 0x114($t9)
-/* 0C1DEC 80306DEC 3C088036 */  lui   $t0, %hi(D_8035FEE8) # $t0, 0x8036
-/* 0C1DF0 80306DF0 8508FEE8 */  lh    $t0, %lo(D_8035FEE8)($t0)
+/* 0C1DEC 80306DEC 3C088036 */  lui   $t0, %hi(gStageParam) # $t0, 0x8036
+/* 0C1DF0 80306DF0 8508FEE8 */  lh    $t0, %lo(gStageParam)($t0)
 /* 0C1DF4 80306DF4 24010002 */  li    $at, 2
 /* 0C1DF8 80306DF8 1501002A */  bne   $t0, $at, .L80306EA4
 /* 0C1DFC 80306DFC 00000000 */   nop   
