@@ -23,7 +23,7 @@ static void play_flip_sounds(struct MarioState *m, s16 frame1, s16 frame2, s16 f
 static void play_far_fall_sound(struct MarioState *m)
 {
     u32 action = m->action;
-    if (!(action & ACT_FLAG_UNKNOWN_17) &&
+    if (!(action & ACT_FLAG_INVULNERABLE) &&
         action != ACT_TWIRLING &&
         action != ACT_FLYING &&
         !(m->flags & MARIO_UNKNOWN_18))
@@ -518,6 +518,7 @@ static s32 act_triple_jump(struct MarioState *m)
 #else
     func_80251410(m, 0x04008081, 0x24048081);
 #endif
+    
     common_air_action_step(m, ACT_TRIPLE_JUMP_LAND, 0x00C1, 0);
     play_flip_sounds(m, 2, 8, 20);
     return FALSE;
@@ -756,7 +757,7 @@ static s32 act_dive(struct MarioState *m)
             if (m->heldObj == NULL)
                 set_mario_action(m, ACT_DIVE_SLIDE, 0);
             else
-                set_mario_action(m, ACT_UNKNOWN_185, 0);
+                set_mario_action(m, ACT_DIVE_PICKING_UP, 0);
         }
         m->faceAngle[0] = 0;
         break;
@@ -1653,7 +1654,7 @@ static s32 act_jump_kick(struct MarioState *m)
     if (animFrame == 0)
         m->unk98->unk0B = 0x86;
     if (animFrame >= 0 && animFrame < 8)
-        m->flags |= MARIO_UNKNOWN_21;
+        m->flags |= MARIO_KICKING;
 
     update_air_without_turn(m);
 
@@ -2044,14 +2045,14 @@ static s32 check_common_airborne_cancels(struct MarioState *m)
     if (m->input & INPUT_SQUISHED)
         return drop_and_set_mario_action(m, ACT_SQUISHED, 0);
 
-    if (m->floor->type == SURFACE_0038 && (m->action & ACT_FLAG_UNKNOWN_24))
+    if (m->floor->type == SURFACE_0038 && (m->action & ACT_FLAG_ALLOW_VERTICAL_WIND_ACTION))
         return drop_and_set_mario_action(m, ACT_VERTICAL_WIND, 0);
 
     m->quicksandDepth = 0.0f;
     return FALSE;
 }
 
-s32 execute_airborne_action(struct MarioState *m)
+s32 mario_execute_airborne_action(struct MarioState *m)
 {
     u32 cancel;
 

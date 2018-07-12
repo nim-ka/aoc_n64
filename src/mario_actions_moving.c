@@ -940,7 +940,7 @@ static s32 act_move_punching(struct MarioState *m)
 
     m->actionState = 1;
 
-    func_802749A0(m);
+    mario_update_punch_sequence(m);
 
     if (m->forwardVel >= 0.0f)
     {
@@ -1017,7 +1017,7 @@ static s32 act_hold_walking(struct MarioState *m)
 static s32 act_hold_heavy_walking(struct MarioState *m)
 {
     if (m->input & INPUT_B_PRESSED)
-        return set_mario_action(m, ACT_UNKNOWN_189, 0);
+        return set_mario_action(m, ACT_HEAVY_THROW, 0);
 
     if (should_begin_sliding(m))
         return drop_and_set_mario_action(m, ACT_BEGIN_SLIDING, 0);
@@ -1602,7 +1602,7 @@ static s32 stomach_slide_action(
 
 static s32 act_stomach_slide(struct MarioState *m)
 {
-    s32 cancel = stomach_slide_action(m, ACT_UNKNOWN_186, ACT_FREEFALL, 0x0089);
+    s32 cancel = stomach_slide_action(m, ACT_STOMACH_SLIDE_STOP, ACT_FREEFALL, 0x0089);
     return cancel;
 }
 
@@ -1613,7 +1613,7 @@ static s32 act_hold_stomach_slide(struct MarioState *m)
     if (m->marioObj->oInteractStatus & 0x00000008)
         return drop_and_set_mario_action(m, ACT_STOMACH_SLIDE, 0);
 
-    cancel = stomach_slide_action(m, ACT_UNKNOWN_185, ACT_HOLD_FREEFALL, 0x0089);
+    cancel = stomach_slide_action(m, ACT_DIVE_PICKING_UP, ACT_HOLD_FREEFALL, 0x0089);
     return cancel;
 }
 
@@ -1628,10 +1628,15 @@ static s32 act_dive_slide(struct MarioState *m)
 
     func_802512E4(m, SOUND_ACTION_UNKNOWN418);
 
+    //! If the dive slide ends on the same frame that we pick up on object,
+    // mario will not be in the dive slide action for the call to
+    // mario_check_object_grab, and so will end up in the regular picking action,
+    // rather than the picking up after dive action.
+
     if (update_sliding(m, 8.0f) && func_80250770(m))
     {
         mario_set_forward_vel(m, 0.0f);
-        set_mario_action(m, ACT_UNKNOWN_186, 0);
+        set_mario_action(m, ACT_STOMACH_SLIDE_STOP, 0);
     }
 
     if (mario_check_object_grab(m))
@@ -1641,7 +1646,7 @@ static s32 act_dive_slide(struct MarioState *m)
         return TRUE;
     }
 
-    common_slide_action(m, ACT_UNKNOWN_186, ACT_FREEFALL, 0x0088);
+    common_slide_action(m, ACT_STOMACH_SLIDE_STOP, ACT_FREEFALL, 0x0088);
     return FALSE;
 }
 
@@ -1987,13 +1992,13 @@ static s32 check_common_moving_cancels(struct MarioState *m)
     if (m->pos[1] < m->waterLevel - 100)
         return func_8025325C(m);
 
-    if (!(m->action & ACT_FLAG_UNKNOWN_17) && (m->input & INPUT_UNKNOWN_10))
+    if (!(m->action & ACT_FLAG_INVULNERABLE) && (m->input & INPUT_UNKNOWN_10))
         return drop_and_set_mario_action(m, ACT_UNKNOWN_026, 0);
 
     if (m->input & INPUT_SQUISHED)
         return drop_and_set_mario_action(m, ACT_SQUISHED, 0);
 
-    if (!(m->action & ACT_FLAG_UNKNOWN_17))
+    if (!(m->action & ACT_FLAG_INVULNERABLE))
     {
         if (m->health < 0x100)
             return drop_and_set_mario_action(m, ACT_STANDING_DEATH, 0);
@@ -2002,7 +2007,7 @@ static s32 check_common_moving_cancels(struct MarioState *m)
     return FALSE;
 }
 
-s32 execute_moving_action(struct MarioState *m)
+s32 mario_execute_moving_action(struct MarioState *m)
 {
     s32 cancel;
 

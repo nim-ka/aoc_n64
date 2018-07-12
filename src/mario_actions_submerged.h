@@ -1,8 +1,8 @@
 #ifndef _MARIO_ACTIONS_SUBMERGED_H
 #define _MARIO_ACTIONS_SUBMERGED_H
 
-#include "types.h"
+struct MarioState;
 
-// extern ? execute_submerged_action(?);
+s32 mario_execute_submerged_action(struct MarioState *m);
 
 #endif /* _MARIO_ACTIONS_SUBMERGED_H */

@@ -52,7 +52,7 @@ static f32 get_buoyancy(struct MarioState *m)
 
     if (m->flags & MARIO_METAL_CAP)
     {
-        if (m->action & ACT_FLAG_UNKNOWN_17)
+        if (m->action & ACT_FLAG_INVULNERABLE)
             buoyancy = -2.0f;
         else
             buoyancy = -18.0f;
@@ -61,7 +61,7 @@ static f32 get_buoyancy(struct MarioState *m)
     {
         buoyancy = 1.25f;
     }
-    else if (!(m->action & ACT_FLAG_UNKNOWN_10))
+    else if (!(m->action & ACT_FLAG_MOVING))
     {
         buoyancy = -2.0f;
     }
@@ -239,7 +239,7 @@ static void update_swimming_speed(struct MarioState *m, f32 decelThreshold)
     f32 buoyancy = get_buoyancy(m);
     f32 maxSpeed = 28.0f;
 
-    if (m->action & ACT_FLAG_UNKNOWN_09)
+    if (m->action & ACT_FLAG_STATIONARY)
         m->forwardVel -= 2.0f;
 
     if (m->forwardVel < 0.0f)
@@ -950,7 +950,7 @@ static s32 act_water_plunge(struct MarioState *m)
 
     if (m->flags & MARIO_METAL_CAP)
         stateFlags |= 0x00000004;
-    else if ((m->prevAction & ACT_FLAG_UNKNOWN_19) || (m->input & INPUT_A_DOWN))
+    else if ((m->prevAction & ACT_FLAG_DIVING) || (m->input & INPUT_A_DOWN))
         stateFlags |= 0x00000002;
 
     m->actionTimer++;
@@ -1455,13 +1455,13 @@ static s32 check_common_submerged_cancels(struct MarioState *m)
         }
     }
 
-    if (m->health < 0x100 && !(m->action & (ACT_FLAG_INTANGIBLE | ACT_FLAG_UNKNOWN_17)))
+    if (m->health < 0x100 && !(m->action & (ACT_FLAG_INTANGIBLE | ACT_FLAG_INVULNERABLE)))
         set_mario_action(m, ACT_DROWNING, 0);
 
     return FALSE;
 }
 
-s32 execute_submerged_action(struct MarioState *m)
+s32 mario_execute_submerged_action(struct MarioState *m)
 {
     s32 cancel;
 

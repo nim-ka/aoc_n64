@@ -53,6 +53,9 @@
     INT_TRIP |\
     INT_HIT_FROM_BELOW)
 
+extern u8 sDelayInvincTimer;
+extern s16 sInvulnerable;
+
 static u32 interact_coin(struct MarioState *, u32, struct Object *);
 static u32 interact_water_ring(struct MarioState *, u32, struct Object *);
 static u32 interact_star_or_key(struct MarioState *, u32, struct Object *);
@@ -191,17 +194,17 @@ static u32 determine_interaction(struct MarioState *m, struct Object *o)
         {
             s16 dYawToObject = mario_angle_to_object(m, o) - m->faceAngle[1];
 
-            if (m->flags & MARIO_UNKNOWN_20)
+            if (m->flags & MARIO_PUNCHING)
             {
                 if (-0x2AAA <= dYawToObject && dYawToObject <= 0x2AAA)
                     interaction = INT_PUNCH;
             }
-            if (m->flags & MARIO_UNKNOWN_21)
+            if (m->flags & MARIO_KICKING)
             {
                 if (-0x2AAA <= dYawToObject && dYawToObject <= 0x2AAA)
                     interaction = INT_KICK;
             }
-            if (m->flags & MARIO_UNKNOWN_22)
+            if (m->flags & MARIO_TRIPPING)
             {
                 if (-0x4000 <= dYawToObject && dYawToObject <= 0x4000)
                     interaction = INT_TRIP;
@@ -435,7 +438,7 @@ u32 mario_check_object_grab(struct MarioState *m)
             {
                 m->faceAngle[1] = m->interactObj->oAngleYaw;
                 m->usedObj = m->interactObj;
-                result = set_mario_action(m, ACT_UNKNOWN_190, 0);
+                result = set_mario_action(m, ACT_PICKING_UP_BOWSER, 0);
             }
         }
         else
@@ -449,7 +452,7 @@ u32 mario_check_object_grab(struct MarioState *m)
                 {
                     set_mario_action(
                         m,
-                        (m->action & ACT_FLAG_UNKNOWN_19) ? ACT_UNKNOWN_185 : ACT_UNKNOWN_183,
+                        (m->action & ACT_FLAG_DIVING) ? ACT_DIVE_PICKING_UP : ACT_PICKING_UP,
                         0);
                 }
     
@@ -743,7 +746,7 @@ static u32 take_damage_and_knock_back(struct MarioState *m, struct Object *o)
 {
     u32 damage;
 
-    if (D_80339F02 == 0 && !(m->flags & MARIO_VANISH_CAP) && !(o->oUnk190 & 0x00000002))
+    if (!sInvulnerable && !(m->flags & MARIO_VANISH_CAP) && !(o->oUnk190 & 0x00000002))
     {
         o->oInteractStatus = 0x0000A000;
         m->interactObj = o;
@@ -1184,7 +1187,7 @@ static u32 interact_flame(struct MarioState *m, UNUSED u32 interactType, struct 
 {
     u32 burningAction = ACT_BURNING_JUMP;
 
-    if (D_80339F02 == 0 &&
+    if (!sInvulnerable &&
         !(m->flags & MARIO_METAL_CAP) &&
         !(m->flags & MARIO_VANISH_CAP) &&
         !(o->oUnk190 & 0x00000002))
@@ -1215,7 +1218,7 @@ static u32 interact_flame(struct MarioState *m, UNUSED u32 interactType, struct 
 
 static u32 interact_snufit_bullet(struct MarioState *m, UNUSED u32 interactType, struct Object *o)
 {
-    if (D_80339F02 == 0 && !(m->flags & MARIO_VANISH_CAP))
+    if (!sInvulnerable && !(m->flags & MARIO_VANISH_CAP))
     {
         if (m->flags & MARIO_METAL_CAP)
         {
@@ -1236,7 +1239,7 @@ static u32 interact_snufit_bullet(struct MarioState *m, UNUSED u32 interactType,
     }
 
     if (!(o->oUnk190 & 0x00000002))
-        D_80339F00 = TRUE;
+        sDelayInvincTimer = TRUE;
 
     return FALSE;
 }
@@ -1255,7 +1258,7 @@ static u32 interact_clam_or_bubba(struct MarioState *m, UNUSED u32 interactType,
     }
     
     if (!(o->oUnk190 & 0x00000002))
-        D_80339F00 = TRUE;
+        sDelayInvincTimer = TRUE;
     return TRUE;
 
 }
@@ -1285,7 +1288,7 @@ static u32 interact_bully(struct MarioState *m, UNUSED u32 interactType, struct 
         return TRUE;
     }
 
-    else if (!D_80339F02 && !(m->flags & MARIO_VANISH_CAP) && !(o->oUnk190 & 0x00000002))
+    else if (!sInvulnerable && !(m->flags & MARIO_VANISH_CAP) && !(o->oUnk190 & 0x00000002))
     {
         o->oInteractStatus = 0x00008000;
         m->invincTimer = 2;
@@ -1304,7 +1307,7 @@ static u32 interact_bully(struct MarioState *m, UNUSED u32 interactType, struct 
 
 static u32 interact_shock(struct MarioState *m, UNUSED u32 interactType, struct Object *o)
 {
-    if (!D_80339F02 && !(m->flags & MARIO_VANISH_CAP) && !(o->oUnk190 & 0x00000002))
+    if (!sInvulnerable && !(m->flags & MARIO_VANISH_CAP) && !(o->oUnk190 & 0x00000002))
     {
         u32 actionArg = (m->action & (ACT_FLAG_AIR | ACT_FLAG_ON_POLE | ACT_FLAG_HANGING)) == 0;
 
@@ -1326,14 +1329,14 @@ static u32 interact_shock(struct MarioState *m, UNUSED u32 interactType, struct 
     }
 
     if (!(o->oUnk190 & 0x00000002))
-        D_80339F00 = TRUE;
+        sDelayInvincTimer = TRUE;
     return FALSE;
 }
 
 static u32 func_8024EF8C(UNUSED struct MarioState *m, UNUSED u32 interactType, struct Object *o)
 {
     if (!(o->oUnk190 & 0x00000002))
-        D_80339F00 = TRUE;
+        sDelayInvincTimer = TRUE;
     return FALSE;
 }
 
@@ -1343,7 +1346,7 @@ static u32 interact_mr_blizzard(struct MarioState *m, UNUSED u32 interactType, s
         return TRUE;
 
     if (!(o->oUnk190 & 0x00000002))
-        D_80339F00 = TRUE;
+        sDelayInvincTimer = TRUE;
 
     return FALSE;
 }
@@ -1389,7 +1392,7 @@ static u32 interact_hit_from_below(struct MarioState *m, UNUSED u32 interactType
     }
 
     if (!(o->oUnk190 & 0x00000002))
-        D_80339F00 = TRUE;
+        sDelayInvincTimer = TRUE;
     return FALSE;
 }
 
@@ -1429,7 +1432,7 @@ static u32 interact_bounce_top(struct MarioState *m, UNUSED u32 interactType, st
     }
 
     if (!(o->oUnk190 & 0x00000002))
-        D_80339F00 = TRUE;
+        sDelayInvincTimer = TRUE;
     return FALSE;
 }
 
@@ -1448,7 +1451,7 @@ static u32 interact_unknown_08(struct MarioState *m, UNUSED u32 interactType, st
     }
 
     if (!(o->oUnk190 & 0x00000002))
-        D_80339F00 = TRUE;
+        sDelayInvincTimer = TRUE;
     return FALSE;
 }
 
@@ -1458,7 +1461,7 @@ static u32 interact_damage(struct MarioState *m, UNUSED u32 interactType, struct
         return TRUE;
 
     if (!(o->oUnk190 & 0x00000002))
-        D_80339F00 = TRUE;
+        sDelayInvincTimer = TRUE;
     return FALSE;
 }
 
@@ -1522,8 +1525,8 @@ static u32 interact_koopa_shell(struct MarioState *m, UNUSED u32 interactType, s
 
 static u32 check_object_grab_mario(struct MarioState *m, UNUSED u32 interactType, struct Object *o)
 {
-    if ((!(m->action & (ACT_FLAG_AIR | ACT_FLAG_UNKNOWN_17 | ACT_FLAG_ATTACKING)) ||
-            !D_80339F02) &&
+    if ((!(m->action & (ACT_FLAG_AIR | ACT_FLAG_INVULNERABLE | ACT_FLAG_ATTACKING)) ||
+            !sInvulnerable) &&
         (o->oUnk190 & 0x00000004))
     {
         if (object_facing_mario(m, o, 0x2AAA))
@@ -1634,7 +1637,7 @@ static u32 interact_cap(struct MarioState *m, UNUSED u32 interactType, struct Ob
         if (capTime > m->capTimer)
             m->capTimer = capTime;
 
-        if ((m->action & ACT_FLAG_UNKNOWN_22) || m->action == ACT_WALKING)
+        if ((m->action & ACT_FLAG_IDLE) || m->action == ACT_WALKING)
         {
             m->flags |= MARIO_CAP_IN_HAND;
             set_mario_action(m, ACT_PUTTING_ON_CAP, 0);
@@ -1694,7 +1697,7 @@ static u32 func_8024FC94(struct MarioState *m, u32 arg)
 {
     s16 val6;
 
-    if ((m->action & 0x00400000) != 0x00000000)
+    if ((m->action & ACT_FLAG_IDLE) != 0x00000000)
         return TRUE;
 
     if (m->action == ACT_WALKING)
@@ -1771,7 +1774,7 @@ static u32 interact_text(struct MarioState *m, UNUSED u32 interactType, struct O
 
 static void check_kick_or_punch_wall(struct MarioState *m)
 {
-    if (m->flags & (MARIO_UNKNOWN_20 | MARIO_UNKNOWN_21 | MARIO_UNKNOWN_22))
+    if (m->flags & (MARIO_PUNCHING | MARIO_KICKING | MARIO_TRIPPING))
     {
         Vec3f detector;
         detector[0] = m->pos[0] + 50.0f * sins(m->faceAngle[1]);
@@ -1801,8 +1804,8 @@ static void check_kick_or_punch_wall(struct MarioState *m)
 
 void mario_process_interactions(struct MarioState *m)
 {
-    D_80339F00 = FALSE;
-    D_80339F02 = (m->action & ACT_FLAG_UNKNOWN_17) || m->invincTimer != 0;
+    sDelayInvincTimer = FALSE;
+    sInvulnerable = (m->action & ACT_FLAG_INVULNERABLE) || m->invincTimer != 0;
 
     if (!(m->action & ACT_FLAG_INTANGIBLE) && m->collidedObjInteractTypes != 0)
     {
@@ -1825,13 +1828,13 @@ void mario_process_interactions(struct MarioState *m)
         }
     }
 
-    if (m->invincTimer > 0 && !D_80339F00)
+    if (m->invincTimer > 0 && !sDelayInvincTimer)
         m->invincTimer -= 1;
 
     //! If the kick/punch flags are set and an object collision changes mario's
     // action, he will get the kick/punch wall speed anyway.
     check_kick_or_punch_wall(m);
-    m->flags &= ~MARIO_UNKNOWN_20 & ~MARIO_UNKNOWN_21 & ~MARIO_UNKNOWN_22;
+    m->flags &= ~MARIO_PUNCHING & ~MARIO_KICKING & ~MARIO_TRIPPING;
 
     if (!(m->marioObj->collidedObjInteractTypes & (INTERACT_WARP_DOOR | INTERACT_DOOR)))
         sDisplayingDoorText = FALSE;

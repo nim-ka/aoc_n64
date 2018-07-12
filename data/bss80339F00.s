@@ -2,9 +2,9 @@
 
 .section .bss
 
-glabel D_80339F00
+glabel sDelayInvincTimer
     .space 0x2
-glabel D_80339F02
+glabel sInvulnerable
     .space 0xE
 glabel D_80339F10
     .space 0x20

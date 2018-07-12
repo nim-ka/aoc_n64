@@ -662,7 +662,7 @@ Gfx *Geo1C_8027795C(int a, struct GraphNode *b, Mat4 *c)
             switch (sp24->unk98->unk0A)
             {
             case 1:
-                if (sp24->action & 0x80000000)
+                if (sp24->action & ACT_FLAG_THROWING)
                     vec3s_set(sp2C->unk20, 50, 0, 0);
                 else
                     vec3s_set(sp2C->unk20, 50, 0, 110);

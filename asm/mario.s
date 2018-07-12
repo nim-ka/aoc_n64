@@ -4608,21 +4608,21 @@ glabel func_80254604
 /* 00F950 80254950 00000000 */   nop   
 .L80254954:
 /* 00F954 80254954 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
-/* 00F958 80254958 0C09A655 */  jal   execute_moving_action
+/* 00F958 80254958 0C09A655 */  jal   mario_execute_moving_action
 /* 00F95C 8025495C 8C84D93C */   lw    $a0, %lo(gMarioState)($a0)
 /* 00F960 80254960 AFA20024 */  sw    $v0, 0x24($sp)
 /* 00F964 80254964 1000001F */  b     .L802549E4
 /* 00F968 80254968 00000000 */   nop   
 .L8025496C:
 /* 00F96C 8025496C 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
-/* 00F970 80254970 0C09BEC1 */  jal   execute_airborne_action
+/* 00F970 80254970 0C09BEC1 */  jal   mario_execute_airborne_action
 /* 00F974 80254974 8C84D93C */   lw    $a0, %lo(gMarioState)($a0)
 /* 00F978 80254978 AFA20024 */  sw    $v0, 0x24($sp)
 /* 00F97C 8025497C 10000019 */  b     .L802549E4
 /* 00F980 80254980 00000000 */   nop   
 .L80254984:
 /* 00F984 80254984 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
-/* 00F988 80254988 0C09D267 */  jal   execute_submerged_action
+/* 00F988 80254988 0C09D267 */  jal   mario_execute_submerged_action
 /* 00F98C 8025498C 8C84D93C */   lw    $a0, %lo(gMarioState)($a0)
 /* 00F990 80254990 AFA20024 */  sw    $v0, 0x24($sp)
 /* 00F994 80254994 10000013 */  b     .L802549E4
@@ -4636,14 +4636,14 @@ glabel func_80254604
 /* 00F9B0 802549B0 00000000 */   nop   
 .L802549B4:
 /* 00F9B4 802549B4 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
-/* 00F9B8 802549B8 0C098174 */  jal   execute_automatic_action
+/* 00F9B8 802549B8 0C098174 */  jal   mario_execute_automatic_action
 /* 00F9BC 802549BC 8C84D93C */   lw    $a0, %lo(gMarioState)($a0)
 /* 00F9C0 802549C0 AFA20024 */  sw    $v0, 0x24($sp)
 /* 00F9C4 802549C4 10000007 */  b     .L802549E4
 /* 00F9C8 802549C8 00000000 */   nop   
 .L802549CC:
 /* 00F9CC 802549CC 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
-/* 00F9D0 802549D0 0C09D7F8 */  jal   func_80275A30
+/* 00F9D0 802549D0 0C09D7F8 */  jal   mario_execute_object_action
 /* 00F9D4 802549D4 8C84D93C */   lw    $a0, %lo(gMarioState)($a0)
 /* 00F9D8 802549D8 AFA20024 */  sw    $v0, 0x24($sp)
 /* 00F9DC 802549DC 10000001 */  b     .L802549E4
@@ -4813,21 +4813,21 @@ glabel func_80254604
 /* 00F724 80254724 00000000 */   nop   
 .L80254728:
 /* 00F728 80254728 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
-/* 00F72C 8025472C 0C09A53A */  jal   execute_moving_action
+/* 00F72C 8025472C 0C09A53A */  jal   mario_execute_moving_action
 /* 00F730 80254730 8C84C9D8 */   lw    $a0, %lo(gMarioState)($a0)
 /* 00F734 80254734 AFA20024 */  sw    $v0, 0x24($sp)
 /* 00F738 80254738 1000001F */  b     .L802547B8
 /* 00F73C 8025473C 00000000 */   nop   
 .L80254740:
 /* 00F740 80254740 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
-/* 00F744 80254744 0C09BD66 */  jal   execute_airborne_action
+/* 00F744 80254744 0C09BD66 */  jal   mario_execute_airborne_action
 /* 00F748 80254748 8C84C9D8 */   lw    $a0, %lo(gMarioState)($a0)
 /* 00F74C 8025474C AFA20024 */  sw    $v0, 0x24($sp)
 /* 00F750 80254750 10000019 */  b     .L802547B8
 /* 00F754 80254754 00000000 */   nop   
 .L80254758:
 /* 00F758 80254758 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
-/* 00F75C 8025475C 0C09D10B */  jal   execute_submerged_action
+/* 00F75C 8025475C 0C09D10B */  jal   mario_execute_submerged_action
 /* 00F760 80254760 8C84C9D8 */   lw    $a0, %lo(gMarioState)($a0)
 /* 00F764 80254764 AFA20024 */  sw    $v0, 0x24($sp)
 /* 00F768 80254768 10000013 */  b     .L802547B8
@@ -4841,14 +4841,14 @@ glabel func_80254604
 /* 00F784 80254784 00000000 */   nop   
 .L80254788:
 /* 00F788 80254788 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
-/* 00F78C 8025478C 0C09807E */  jal   execute_automatic_action
+/* 00F78C 8025478C 0C09807E */  jal   mario_execute_automatic_action
 /* 00F790 80254790 8C84C9D8 */   lw    $a0, %lo(gMarioState)($a0)
 /* 00F794 80254794 AFA20024 */  sw    $v0, 0x24($sp)
 /* 00F798 80254798 10000007 */  b     .L802547B8
 /* 00F79C 8025479C 00000000 */   nop   
 .L802547A0:
 /* 00F7A0 802547A0 3C048033 */  lui   $a0, %hi(gMarioState) # $a0, 0x8033
-/* 00F7A4 802547A4 0C09D68C */  jal   func_80275A30
+/* 00F7A4 802547A4 0C09D68C */  jal   mario_execute_object_action
 /* 00F7A8 802547A8 8C84C9D8 */   lw    $a0, %lo(gMarioState)($a0)
 /* 00F7AC 802547AC AFA20024 */  sw    $v0, 0x24($sp)
 /* 00F7B0 802547B0 10000001 */  b     .L802547B8

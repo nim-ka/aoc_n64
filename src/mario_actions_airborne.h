@@ -1,8 +1,8 @@
 #ifndef _MARIO_ACTIONS_AIRBORNE_H
 #define _MARIO_ACTIONS_AIRBORNE_H
 
-#include "types.h"
+struct MarioState;
 
-extern s32 execute_airborne_action(struct MarioState *);
+s32 mario_execute_airborne_action(struct MarioState *m);
 
 #endif /* _MARIO_ACTIONS_AIRBORNE_H */

@@ -829,7 +829,7 @@ static s32 check_common_automatic_cancels(struct MarioState *m)
     return FALSE;
 }
 
-s32 execute_automatic_action(struct MarioState *m)
+s32 mario_execute_automatic_action(struct MarioState *m)
 {
     s32 cancel;
 

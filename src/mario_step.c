@@ -204,7 +204,7 @@ u32 mario_update_windy_ground(struct MarioState *m)
         f32 pushSpeed;
         s16 pushAngle = floor->force << 8;
 
-        if (m->action & ACT_FLAG_UNKNOWN_10)
+        if (m->action & ACT_FLAG_MOVING)
         {
             s16 pushDYaw = m->faceAngle[1] - pushAngle;
 
@@ -551,15 +551,15 @@ static void apply_twirl_gravity(struct MarioState *m)
 static u32 should_strengthen_gravity_for_jump_ascent(struct MarioState *m)
 {
     if (!(m->flags & MARIO_UNKNOWN_08))
-        return 0;
+        return FALSE;
 
-    if (m->action & (ACT_FLAG_INTANGIBLE | ACT_FLAG_UNKNOWN_17))
-        return 0;
+    if (m->action & (ACT_FLAG_INTANGIBLE | ACT_FLAG_INVULNERABLE))
+        return FALSE;
 
     if (!(m->input & INPUT_A_DOWN) && m->vel[1] > 20.0f)
         return (m->action & ACT_FLAG_CONTROL_JUMP_HEIGHT) != 0;
 
-    return 0;
+    return FALSE;
 }
 
 static void apply_gravity(struct MarioState *m)

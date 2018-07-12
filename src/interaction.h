@@ -45,9 +45,7 @@ struct BullyCollisionData {
   /*0x14*/ f32 velZ;
 };
 
-extern s16 D_80339F02;
 extern u8 D_03009AC8[];
-extern u8 D_80339F00;
 
 extern s16 mario_angle_to_object(struct MarioState *, struct Object *);
 extern void mario_stop_riding_object(struct MarioState *);
