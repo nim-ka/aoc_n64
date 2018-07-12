@@ -1,70 +1,71 @@
 # segments currently in binary form. should be removed as they are decomposed into resources
 BINARY_SEGMENTS := \
-   mario \
-   yoshiegg_owl_thwomp \
-   big_bully \
-   bobombs \
-   sea_creatures_texture \
-   vulture_pokey \
-   monkey \
-   spindrift_penguin_snowman \
-   checkerboard_question \
-   piano_books \
-   peach_toadstool \
-   enemy \
-   bowser \
-   treasure_chest_fish \
-   koopa_whomp \
-   lakitu_toad \
-   chillychief_moneybag \
-   mri_swoop \
-   chuckya_shyguy_goomba \
-   doors_trees_coins \
-   debug_level_select \
-   water_skybox \
-   ccm_skybox \
-   clouds_skybox \
-   bifs_skybox \
-   wdw_skybox \
-   cloud_floor_skybox \
-   ssl_skybox \
-   bbh_skybox \
-   bidw_skybox \
-   bits_skybox \
-   flower_textures \
+   amp_chuckya_shyguy_goomba_boxes \
    bbh_segment7 \
+   bbh_skybox \
+   bidw_segment7 \
+   bidw_skybox \
+   bifs_segment7 \
+   bifs_skybox \
+   bits_platform_segment7 \
+   bits_segment7 \
+   bits_skybox \
+   bobombs_bubble \
+   boo_bookend_chair_piano \
+   bowser_flames_bomb \
+   bubba_wiggler_lakitu \
+   bully_blargg \
+   capswitch_springboard \
+   castle_courtyard_segment7 \
+   castle_grounds_segment7 \
    ccm_segment7 \
-   inside_castle_segment7 \
+   ccm_skybox \
+   chillychief_moneybag \
+   cloud_floor_skybox \
+   clouds_skybox \
+   coins_pipe_doors_maps_trees \
+   ddd_segment7 \
+   debug_level_select \
+   flower_textures \
    hmc_segment7 \
-   ssl_segment7 \
-   sl_segment7 \
-   wdw_segment7 \
+   hoot_thwomp_bullet_heave \
+   inside_castle_segment7 \
    jrb_segment7 \
+   klepto_eyerock_pokey \
+   koopa_log_piranha_whomp_chomp \
+   lakitu_toad_mips_boo \
+   lll_segment7 \
+   mario_water_sparkles \
+   metal_cap_segment7 \
+   mole_monkey_fwoosh \
+   mri_swoop_snufit_dorrie_scuttlebug \
+   peach_toadstool_yoshi_birds \
+   rainbow_bonus_segment7 \
+   rr_segment7 \
+   sea_creatures \
+   secret_aquarium_segment7 \
+   secret_slide_segment7 \
+   skeeter_fish_treasurechest \
+   sl_segment7 \
+   spindrift_penguin_snowman \
+   ssl_segment7 \
+   ssl_skybox \
    thi_segment7 \
    ttc_segment7 \
-   rr_segment7 \
-   castle_grounds_segment7 \
-   bidw_segment7 \
+   ttm_segment7 \
    vanish_cap_segment7 \
-   bifs_segment7 \
-   secret_aquarium_segment7 \
-   bits_segment7 \
-   lll_segment7 \
-   ddd_segment7 \
+   water_skybox \
+   wdw_segment7 \
+   wdw_skybox \
    wf_segment7 \
-   castle_courtyard_segment7 \
-   secret_slide_segment7 \
-   metal_cap_segment7 \
-   wing_cap_segment7 \
-   rainbow_bonus_segment7 \
-   bits_platform_segment7 \
-   ttm_segment7
+   wing_cap_segment7
 
 # obtain a list of segments from the *.s and *.s.in files in bin directory
 SEGMENTS := $(notdir $(basename $(wildcard bin/*.s) $(basename $(wildcard bin/*.s.in))))
 TEXTURE_DIRS := $(addprefix bin/,$(SEGMENTS))
 
 MIO0_FILES := $(addprefix $(MIO0_DIR)/,$(addsuffix .mio0,$(BINARY_SEGMENTS) $(SEGMENTS)))
+MIO0_OBJ_FILES := $(MIO0_FILES:.mio0=.mio0.o)
 
 # assumes naming convention "texture.<encoding>.png" generates "texture.<encoding>"
 SEGMENT2_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/segment2/*.png)))

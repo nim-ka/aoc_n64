@@ -17,7 +17,7 @@ __expansionRamStart = 0x80400000;
 #define END_SEG(name) \
     _##name##SegmentEnd = ADDR(.name) + SIZEOF(.name); \
     _##name##SegmentRomEnd = __romPos + SIZEOF(.name); \
-    __romPos += SIZEOF(.name); \
+    __romPos += SIZEOF(.name);
 
 #define BEGIN_NOLOAD(name) \
     _##name##SegmentNoloadStart = ADDR(.name.noload); \
@@ -25,6 +25,14 @@ __expansionRamStart = 0x80400000;
 
 #define END_NOLOAD(name) \
     _##name##SegmentNoloadEnd = ADDR(.name.noload) + SIZEOF(.name.noload);
+
+#define MIO0_SEG(name, segAddr) \
+   BEGIN_SEG(name##_mio0, segAddr) \
+   { \
+      build/mio0/name.mio0.o(.data); \
+      . = ALIGN(0x10); \
+   } \
+   END_SEG(name##_mio0)
 
 #define STANDARD_LEVEL(name) \
    BEGIN_SEG(name##_segment_7, 0x07000000) \
@@ -38,9 +46,18 @@ __expansionRamStart = 0x80400000;
    } \
    END_SEG(name)
 
+#define STANDARD_OBJECTS(name, segAddr, geoAddr) \
+   MIO0_SEG(name, segAddr) \
+   BEGIN_SEG(name##_geo, geoAddr) \
+   { \
+      build/geo/name.o(.geo); \
+      . = ALIGN(0x10); \
+   } \
+   END_SEG(name##_geo)
+
 SECTIONS
 {
-    __romPos = 0;
+   __romPos = 0;
 
    BEGIN_SEG(boot, 0x04000000)
    {
@@ -278,12 +295,33 @@ SECTIONS
    }
    END_SEG(level_main_entry)
 
-   /* load MIO0 and level data at 0x001076A0 */
-   BEGIN_SEG(mio0, __romPos)
-   {
-      build/data/level_actors.o(.mio0);
-   }
-   END_SEG(mio0)
+   /* load MIO0 and level data */
+   MIO0_SEG(segment2, 0x02000000)
+
+   STANDARD_OBJECTS(mario_water_sparkles, 0x04000000, 0x17000000)
+
+   STANDARD_OBJECTS(hoot_thwomp_bullet_heave, 0x05000000, 0x0C000000)
+   STANDARD_OBJECTS(bully_blargg, 0x05000000, 0x0C000000)
+   STANDARD_OBJECTS(bobombs_bubble, 0x05000000, 0x0C000000)
+   STANDARD_OBJECTS(sea_creatures, 0x05000000, 0x0C000000)
+   STANDARD_OBJECTS(klepto_eyerock_pokey, 0x05000000, 0x0C000000)
+   STANDARD_OBJECTS(mole_monkey_fwoosh, 0x05000000, 0x0C000000)
+   STANDARD_OBJECTS(spindrift_penguin_snowman, 0x05000000, 0x0C000000)
+   STANDARD_OBJECTS(capswitch_springboard, 0x05000000, 0x0C000000)
+   STANDARD_OBJECTS(boo_bookend_chair_piano, 0x05000000, 0x0C000000)
+   STANDARD_OBJECTS(peach_toadstool_yoshi_birds, 0x05000000, 0x0C000000)
+   STANDARD_OBJECTS(bubba_wiggler_lakitu, 0x05000000, 0x0C000000)
+
+   STANDARD_OBJECTS(bowser_flames_bomb, 0x06000000, 0x0D000000)
+   STANDARD_OBJECTS(skeeter_fish_treasurechest, 0x06000000, 0x0D000000)
+   STANDARD_OBJECTS(koopa_log_piranha_whomp_chomp, 0x06000000, 0x0D000000)
+   STANDARD_OBJECTS(lakitu_toad_mips_boo, 0x06000000, 0x0D000000)
+   STANDARD_OBJECTS(chillychief_moneybag, 0x06000000, 0x0D000000)
+   STANDARD_OBJECTS(mri_swoop_snufit_dorrie_scuttlebug, 0x06000000, 0x0D000000)
+
+   STANDARD_OBJECTS(amp_chuckya_shyguy_goomba_boxes, 0x08000000, 0x0F000000)
+
+   STANDARD_OBJECTS(coins_pipe_doors_maps_trees, 0x03000000, 0x16000000)
 
    /* use segmented addressing for behaviors */
    BEGIN_SEG(behavior, 0x13000000)
@@ -382,12 +420,30 @@ SECTIONS
    }
    END_SEG(level_main_scripts)
 
-   /* 0x2A42A0 0x2A42A0-0 [0] */
-   BEGIN_SEG(mio0_b, __romPos)
-   {
-      build/data/level_main.o(.mio0_b);
-   }
-   END_SEG(mio0_b)
+   MIO0_SEG(water_skybox, 0x0A000000)
+   MIO0_SEG(ccm_skybox, 0x0A000000)
+   MIO0_SEG(clouds_skybox, 0x0A000000)
+   MIO0_SEG(bifs_skybox, 0x0A000000)
+   MIO0_SEG(wdw_skybox, 0x0A000000)
+   MIO0_SEG(cloud_floor_skybox, 0x0A000000)
+   MIO0_SEG(ssl_skybox, 0x0A000000)
+   MIO0_SEG(bbh_skybox, 0x0A000000)
+   MIO0_SEG(bidw_skybox, 0x0A000000)
+   MIO0_SEG(bits_skybox, 0x0A000000)
+
+   MIO0_SEG(lll_textures, 0x09000000)
+   MIO0_SEG(bbh_textures, 0x09000000)
+   MIO0_SEG(bob_textures, 0x09000000)
+   MIO0_SEG(jrb_textures, 0x09000000)
+   MIO0_SEG(rr_textures, 0x09000000)
+   MIO0_SEG(ccm_textures, 0x09000000)
+   MIO0_SEG(hmc_textures, 0x09000000)
+   MIO0_SEG(ttc_textures, 0x09000000)
+   MIO0_SEG(ttm_textures, 0x09000000)
+   MIO0_SEG(wf_textures, 0x09000000)
+   MIO0_SEG(castle_grounds_textures, 0x09000000)
+   MIO0_SEG(inside_castle_textures, 0x09000000)
+   MIO0_SEG(flower_textures, 0x0B000000)
 
    STANDARD_LEVEL(level_bbh)
    STANDARD_LEVEL(level_ccm)

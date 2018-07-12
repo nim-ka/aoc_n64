@@ -20,13 +20,13 @@ script_func_local_2:
 glabel level_sa_entry
     init_level
     load_mio0 /*seg*/ 0x07, /*romStart*/ _level_sa_segment_7SegmentRomStart, /*romEnd*/ _level_sa_segment_7SegmentRomEnd
-    cmd1A /*seg*/ 0x09, /*romStart*/ inside_castle_textures, /*romEnd*/ inside_castle_textures_end
-    load_mio0 /*seg*/ 0x0A, /*romStart*/ cloud_floor_skybox, /*romEnd*/ cloud_floor_skybox_end
-    load_mio0 /*seg*/ 0x0B, /*romStart*/ flower_textures, /*romEnd*/ flower_textures_end
-    load_mio0 /*seg*/ 0x05, /*romStart*/ sea_creatures_texture, /*romEnd*/ sea_creatures_texture_end
-    load_raw /*seg*/ 0x0C, /*romStart*/ sea_creatures, /*romEnd*/ sea_creatures_end
-    load_mio0 /*seg*/ 0x06, /*romStart*/ treasure_chest_fish, /*romEnd*/ treasure_chest_fish_end
-    load_raw /*seg*/ 0x0D, /*romStart*/ skeeter_fish_manta_chest, /*romEnd*/ skeeter_fish_manta_chest_end
+    cmd1A     /*seg*/ 0x09, /*romStart*/ _inside_castle_textures_mio0SegmentRomStart, /*romEnd*/ _inside_castle_textures_mio0SegmentRomEnd
+    load_mio0 /*seg*/ 0x0A, /*romStart*/ _cloud_floor_skybox_mio0SegmentRomStart, /*romEnd*/ _cloud_floor_skybox_mio0SegmentRomEnd
+    load_mio0 /*seg*/ 0x0B, /*romStart*/ _flower_textures_mio0SegmentRomStart, /*romEnd*/ _flower_textures_mio0SegmentRomEnd
+    load_mio0 /*seg*/ 0x05, /*romStart*/ _sea_creatures_mio0SegmentRomStart, /*romEnd*/ _sea_creatures_mio0SegmentRomEnd
+    load_raw  /*seg*/ 0x0C, /*romStart*/ _sea_creatures_geoSegmentRomStart,  /*romEnd*/ _sea_creatures_geoSegmentRomEnd
+    load_mio0 /*seg*/ 0x06, /*romStart*/ _skeeter_fish_treasurechest_mio0SegmentRomStart, /*romEnd*/ _skeeter_fish_treasurechest_mio0SegmentRomEnd
+    load_raw  /*seg*/ 0x0D, /*romStart*/ _skeeter_fish_treasurechest_geoSegmentRomStart,  /*romEnd*/ _skeeter_fish_treasurechest_geoSegmentRomEnd
     alloc_level_pool
     mario /*unk3*/ 0x01, /*behArg*/ 0x00000001, /*beh*/ beh_mario
     jump_link /*target*/ script_func_global_5
@@ -54,5 +54,5 @@ glabel level_sa_entry
     exit
 
 .align 4
-.include "geo/level_sa.geo.s"
+.include "levels/geo/level_sa.s"
 .align 4

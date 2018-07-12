@@ -136,5 +136,5 @@ L5:
     exit_and_execute /*seg*/ 0x14, /*script*/ _level_introSegmentRomStart, /*scriptEnd*/ _level_introSegmentRomEnd, /*entry*/ level_intro_entry_1
 
 .align 4
-.include "geo/level_intro.geo.s"
+.include "levels/geo/level_intro.s"
 .align 4

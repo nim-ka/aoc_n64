@@ -33,7 +33,7 @@ TEXTURE_DIR := textures
 
 # Directories containing source files
 SRC_DIRS := src src/libultra src/goddard
-ASM_DIRS := asm data levels
+ASM_DIRS := asm data geo levels
 BIN_DIRS := bin
 
 MIPSISET := -mips2
@@ -146,6 +146,7 @@ $(BUILD_DIR):
 $(O_FILES): | $(BUILD_DIR)
 
 $(BUILD_DIR)/src/star_select.o: src/text_strings.h
+$(BUILD_DIR)/src/file_select.o: src/text_strings.h
 
 # texture generation
 $(BUILD_DIR)/bin/%.rgba16: textures/%.rgba16.png
@@ -174,6 +175,12 @@ $(BUILD_DIR)/bin/%.bin: $(BUILD_DIR)/bin/%.elf
 $(MIO0_DIR)/%.mio0: $(BUILD_DIR)/bin/%.bin
 	$(MIO0TOOL) $< $@
 
+$(MIO0_DIR)/%.mio0.o: $(MIO0_DIR)/%.mio0.s
+	$(AS) $(ASFLAGS) -o $@ $<
+
+$(MIO0_DIR)/%.mio0.s: $(MIO0_DIR)/%.mio0
+	printf ".section .data\n\n.incbin \"$<\"\n" > $@
+
 # Source code
 
 $(BUILD_DIR)/src/goddard/mario_head_1.o: CC_CHECK := gcc -fsyntax-only -fsigned-char -I include -std=c99 -Wall -Wextra -pedantic -Wno-format-security $(VERSION_CFLAGS)
@@ -189,7 +196,7 @@ $(BUILD_DIR)/%.o: %.s $(MIO0_FILES)
 $(BUILD_DIR)/$(LD_SCRIPT): $(LD_SCRIPT)
 	$(CPP) $(VERSION_CFLAGS) $< > $@
 
-$(ELF): $(O_FILES) $(SEG_FILES) $(BUILD_DIR)/$(LD_SCRIPT) undefined_syms.txt
+$(ELF): $(O_FILES) $(MIO0_OBJ_FILES) $(SEG_FILES) $(BUILD_DIR)/$(LD_SCRIPT) undefined_syms.txt
 	$(LD) $(LDFLAGS) -o $@ $(O_FILES) $(LIBS)
 
 $(ROM): $(ELF)
@@ -200,6 +207,6 @@ $(BUILD_DIR)/$(TARGET).objdump: $(ELF)
 	$(OBJDUMP) -D $< > $@
 
 .PHONY: all clean default diff test load
-.PRECIOUS: $(BUILD_DIR)/mio0/%.mio0 $(BUILD_DIR)/bin/%.elf
+.PRECIOUS: $(BUILD_DIR)/mio0/%.mio0 $(BUILD_DIR)/bin/%.elf $(BUILD_DIR)/mio0/%.mio0.s
 
 -include $(DEP_FILES)

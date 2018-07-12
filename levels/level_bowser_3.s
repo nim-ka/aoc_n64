@@ -29,9 +29,9 @@ script_func_local_1:
 glabel level_bowser_3_entry
     init_level
     load_mio0 /*seg*/ 0x07, /*romStart*/ _level_bowser_3_segment_7SegmentRomStart, /*romEnd*/ _level_bowser_3_segment_7SegmentRomEnd
-    load_mio0 /*seg*/ 0x06, /*romStart*/ bowser, /*romEnd*/ bowser_end
-    load_raw /*seg*/ 0x0D, /*romStart*/ bowser_flames_bomb, /*romEnd*/ bowser_flames_bomb_end
-    load_mio0 /*seg*/ 0x0A, /*romStart*/ bits_skybox, /*romEnd*/ bits_skybox_end
+    load_mio0 /*seg*/ 0x06, /*romStart*/ _bowser_flames_bomb_mio0SegmentRomStart, /*romEnd*/ _bowser_flames_bomb_mio0SegmentRomEnd
+    load_raw  /*seg*/ 0x0D, /*romStart*/ _bowser_flames_bomb_geoSegmentRomStart,  /*romEnd*/ _bowser_flames_bomb_geoSegmentRomEnd
+    load_mio0 /*seg*/ 0x0A, /*romStart*/ _bits_skybox_mio0SegmentRomStart, /*romEnd*/ _bits_skybox_mio0SegmentRomEnd
     alloc_level_pool
     mario /*unk3*/ 0x01, /*behArg*/ 0x00000001, /*beh*/ beh_mario
     jump_link /*target*/ script_func_global_13
@@ -66,5 +66,5 @@ glabel level_bowser_3_entry
     exit
 
 .align 4
-.include "geo/level_bowser_3.geo.s"
+.include "levels/geo/level_bowser_3.s"
 .align 4

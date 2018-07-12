@@ -1,3 +1,5 @@
+.section .geo, "a"
+
 # 0000
 .word 0x16000001, 0x009600FA
 .word 0x04000000

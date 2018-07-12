@@ -4,11 +4,11 @@
 .section .level, "a"
 
 glabel level_main_scripts_entry
-    load_mio0 /*seg*/ 0x04, /*romStart*/ mario, /*romEnd*/ mario_end
-    load_mio0 /*seg*/ 0x03, /*romStart*/ doors_trees_coins, /*romEnd*/ doors_trees_coins_end
-    load_raw /*seg*/ 0x17, /*romStart*/ water_sparkles_mario, /*romEnd*/ water_sparkles_mario_end
-    load_raw /*seg*/ 0x16, /*romStart*/ coins_pipe_doors_maps_trees, /*romEnd*/ coins_pipe_doors_maps_trees_end
-    load_raw /*seg*/ 0x13, /*romStart*/ _behaviorSegmentRomStart, /*romEnd*/ _behaviorSegmentRomEnd
+    load_mio0 /*seg*/ 0x04, /*romStart*/ _mario_water_sparkles_mio0SegmentRomStart, /*romEnd*/ _mario_water_sparkles_mio0SegmentRomEnd
+    load_mio0 /*seg*/ 0x03, /*romStart*/ _coins_pipe_doors_maps_trees_mio0SegmentRomStart, /*romEnd*/ _coins_pipe_doors_maps_trees_mio0SegmentRomEnd
+    load_raw  /*seg*/ 0x17, /*romStart*/ _mario_water_sparkles_geoSegmentRomStart, /*romEnd*/ _mario_water_sparkles_geoSegmentRomEnd
+    load_raw  /*seg*/ 0x16, /*romStart*/ _coins_pipe_doors_maps_trees_geoSegmentRomStart, /*romEnd*/ _coins_pipe_doors_maps_trees_geoSegmentRomEnd
+    load_raw  /*seg*/ 0x13, /*romStart*/ _behaviorSegmentRomStart, /*romEnd*/ _behaviorSegmentRomEnd
     alloc_level_pool
     cmd22 /*unk2*/ 0x0001, /*unk4*/ 0x17002DD4
     cmd22 /*unk2*/ 0x0096, /*unk4*/ 0x17000038

@@ -57,12 +57,12 @@ script_func_local_6:
 glabel level_ssl_entry
     init_level
     load_mio0 /*seg*/ 0x07, /*romStart*/ _level_ssl_segment_7SegmentRomStart, /*romEnd*/ _level_ssl_segment_7SegmentRomEnd
-    load_mio0 /*seg*/ 0x0A, /*romStart*/ ssl_skybox, /*romEnd*/ ssl_skybox_end
-    cmd1A /*seg*/ 0x09, /*romStart*/ bob_textures, /*romEnd*/ bob_textures_end
-    load_mio0 /*seg*/ 0x05, /*romStart*/ vulture_pokey, /*romEnd*/ vulture_pokey_end
-    load_raw /*seg*/ 0x0C, /*romStart*/ klepto_eyerock_pokey, /*romEnd*/ klepto_eyerock_pokey_end
-    load_mio0 /*seg*/ 0x08, /*romStart*/ chuckya_shyguy_goomba, /*romEnd*/ chuckya_shyguy_goomba_end
-    load_raw /*seg*/ 0x0F, /*romStart*/ cannon_box_switch_enemies, /*romEnd*/ cannon_box_switch_enemies_end
+    load_mio0 /*seg*/ 0x0A, /*romStart*/ _ssl_skybox_mio0SegmentRomStart, /*romEnd*/ _ssl_skybox_mio0SegmentRomEnd
+    cmd1A     /*seg*/ 0x09, /*romStart*/ _bob_textures_mio0SegmentRomStart, /*romEnd*/ _bob_textures_mio0SegmentRomEnd
+    load_mio0 /*seg*/ 0x05, /*romStart*/ _klepto_eyerock_pokey_mio0SegmentRomStart, /*romEnd*/ _klepto_eyerock_pokey_mio0SegmentRomEnd
+    load_raw  /*seg*/ 0x0C, /*romStart*/ _klepto_eyerock_pokey_geoSegmentRomStart,  /*romEnd*/ _klepto_eyerock_pokey_geoSegmentRomEnd
+    load_mio0 /*seg*/ 0x08, /*romStart*/ _amp_chuckya_shyguy_goomba_boxes_mio0SegmentRomStart, /*romEnd*/ _amp_chuckya_shyguy_goomba_boxes_mio0SegmentRomEnd
+    load_raw  /*seg*/ 0x0F, /*romStart*/ _amp_chuckya_shyguy_goomba_boxes_geoSegmentRomStart,  /*romEnd*/ _amp_chuckya_shyguy_goomba_boxes_geoSegmentRomEnd
     alloc_level_pool
     mario /*unk3*/ 0x01, /*behArg*/ 0x00000001, /*beh*/ beh_mario
     jump_link /*target*/ script_func_global_1
@@ -139,5 +139,5 @@ glabel level_ssl_entry
     exit
 
 .align 4
-.include "geo/level_ssl.geo.s"
+.include "levels/geo/level_ssl.s"
 .align 4

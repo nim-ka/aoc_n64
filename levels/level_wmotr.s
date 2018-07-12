@@ -24,14 +24,14 @@ script_func_local_2:
 glabel level_wmotr_entry
     init_level
     load_mio0 /*seg*/ 0x07, /*romStart*/ _level_wmotr_segment_7SegmentRomStart, /*romEnd*/ _level_wmotr_segment_7SegmentRomEnd
-    load_mio0 /*seg*/ 0x0A, /*romStart*/ cloud_floor_skybox, /*romEnd*/ cloud_floor_skybox_end
-    cmd1A /*seg*/ 0x09, /*romStart*/ rr_textures, /*romEnd*/ rr_textures_end
-    load_mio0 /*seg*/ 0x05, /*romStart*/ big_bully, /*romEnd*/ big_bully_end
-    load_raw /*seg*/ 0x0C, /*romStart*/ bully_blargg, /*romEnd*/ bully_blargg_end
-    load_mio0 /*seg*/ 0x06, /*romStart*/ mri_swoop, /*romEnd*/ mri_swoop_end
-    load_raw /*seg*/ 0x0D, /*romStart*/ mri_swoop_snufit_dorrie_scuttlebug, /*romEnd*/ mri_swoop_snufit_dorrie_scuttlebug_end
-    load_mio0 /*seg*/ 0x08, /*romStart*/ chuckya_shyguy_goomba, /*romEnd*/ chuckya_shyguy_goomba_end
-    load_raw /*seg*/ 0x0F, /*romStart*/ cannon_box_switch_enemies, /*romEnd*/ cannon_box_switch_enemies_end
+    load_mio0 /*seg*/ 0x0A, /*romStart*/ _cloud_floor_skybox_mio0SegmentRomStart, /*romEnd*/ _cloud_floor_skybox_mio0SegmentRomEnd
+    cmd1A     /*seg*/ 0x09, /*romStart*/ _rr_textures_mio0SegmentRomStart, /*romEnd*/ _rr_textures_mio0SegmentRomEnd
+    load_mio0 /*seg*/ 0x05, /*romStart*/ _bully_blargg_mio0SegmentRomStart, /*romEnd*/ _bully_blargg_mio0SegmentRomEnd
+    load_raw  /*seg*/ 0x0C, /*romStart*/ _bully_blargg_geoSegmentRomStart,  /*romEnd*/ _bully_blargg_geoSegmentRomEnd
+    load_mio0 /*seg*/ 0x06, /*romStart*/ _mri_swoop_snufit_dorrie_scuttlebug_mio0SegmentRomStart, /*romEnd*/ _mri_swoop_snufit_dorrie_scuttlebug_mio0SegmentRomEnd
+    load_raw  /*seg*/ 0x0D, /*romStart*/ _mri_swoop_snufit_dorrie_scuttlebug_geoSegmentRomStart,  /*romEnd*/ _mri_swoop_snufit_dorrie_scuttlebug_geoSegmentRomEnd
+    load_mio0 /*seg*/ 0x08, /*romStart*/ _amp_chuckya_shyguy_goomba_boxes_mio0SegmentRomStart, /*romEnd*/ _amp_chuckya_shyguy_goomba_boxes_mio0SegmentRomEnd
+    load_raw  /*seg*/ 0x0F, /*romStart*/ _amp_chuckya_shyguy_goomba_boxes_geoSegmentRomStart,  /*romEnd*/ _amp_chuckya_shyguy_goomba_boxes_geoSegmentRomEnd
     alloc_level_pool
     mario /*unk3*/ 0x01, /*behArg*/ 0x00000001, /*beh*/ beh_mario
     jump_link /*target*/ script_func_global_1
@@ -61,5 +61,5 @@ glabel level_wmotr_entry
     exit
 
 .align 4
-.include "geo/level_wmotr.geo.s"
+.include "levels/geo/level_wmotr.s"
 .align 4

@@ -28,5 +28,5 @@ L1:
     jump /*target*/ L1
 
 .align 4
-.include "geo/level_ending.geo.s"
+.include "levels/geo/level_ending.s"
 .align 4

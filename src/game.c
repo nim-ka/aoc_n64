@@ -293,7 +293,7 @@ void func_80248934(void)
     set_segment_base_addr(24, (void *)D_80339CF4);
     func_80278A78(&gDemo, D_00577BC0, D_80339CF4);
     load_segment(0x10, _level_main_entrySegmentRomStart, _level_main_entrySegmentRomEnd, MEMORY_POOL_LEFT);
-    load_segment_decompress(2, segment2, segment2_end);
+    load_segment_decompress(2, _segment2_mio0SegmentRomStart, _segment2_mio0SegmentRomEnd);
 }
 
 // main game loop thread. runs forever as long as the game

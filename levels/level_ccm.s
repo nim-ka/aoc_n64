@@ -37,15 +37,15 @@ script_func_local_4:
 glabel level_ccm_entry
     init_level
     load_mio0 /*seg*/ 0x07, /*romStart*/ _level_ccm_segment_7SegmentRomStart, /*romEnd*/ _level_ccm_segment_7SegmentRomEnd
-    cmd1A /*seg*/ 0x09, /*romStart*/ ccm_textures, /*romEnd*/ ccm_textures_end
-    load_mio0 /*seg*/ 0x0B, /*romStart*/ flower_textures, /*romEnd*/ flower_textures_end
-    load_mio0 /*seg*/ 0x0A, /*romStart*/ ccm_skybox, /*romEnd*/ ccm_skybox_end
-    load_mio0 /*seg*/ 0x05, /*romStart*/ spindrift_penguin_snowman, /*romEnd*/ spindrift_penguin_snowman_end
-    load_raw /*seg*/ 0x0C, /*romStart*/ spindrift_penguin_blizzard, /*romEnd*/ spindrift_penguin_blizzard_end
-    load_mio0 /*seg*/ 0x06, /*romStart*/ chillychief_moneybag, /*romEnd*/ chillychief_moneybag_end
-    load_raw /*seg*/ 0x0D, /*romStart*/ moneybag, /*romEnd*/ moneybag_end
-    load_mio0 /*seg*/ 0x08, /*romStart*/ chuckya_shyguy_goomba, /*romEnd*/ chuckya_shyguy_goomba_end
-    load_raw /*seg*/ 0x0F, /*romStart*/ cannon_box_switch_enemies, /*romEnd*/ cannon_box_switch_enemies_end
+    cmd1A     /*seg*/ 0x09, /*romStart*/ _ccm_textures_mio0SegmentRomStart, /*romEnd*/ _ccm_textures_mio0SegmentRomEnd
+    load_mio0 /*seg*/ 0x0B, /*romStart*/ _flower_textures_mio0SegmentRomStart, /*romEnd*/ _flower_textures_mio0SegmentRomEnd
+    load_mio0 /*seg*/ 0x0A, /*romStart*/ _ccm_skybox_mio0SegmentRomStart, /*romEnd*/ _ccm_skybox_mio0SegmentRomEnd
+    load_mio0 /*seg*/ 0x05, /*romStart*/ _spindrift_penguin_snowman_mio0SegmentRomStart, /*romEnd*/ _spindrift_penguin_snowman_mio0SegmentRomEnd
+    load_raw  /*seg*/ 0x0C, /*romStart*/ _spindrift_penguin_snowman_geoSegmentRomStart,  /*romEnd*/ _spindrift_penguin_snowman_geoSegmentRomEnd
+    load_mio0 /*seg*/ 0x06, /*romStart*/ _chillychief_moneybag_mio0SegmentRomStart, /*romEnd*/ _chillychief_moneybag_mio0SegmentRomEnd
+    load_raw  /*seg*/ 0x0D, /*romStart*/ _chillychief_moneybag_geoSegmentRomStart,  /*romEnd*/ _chillychief_moneybag_geoSegmentRomEnd
+    load_mio0 /*seg*/ 0x08, /*romStart*/ _amp_chuckya_shyguy_goomba_boxes_mio0SegmentRomStart, /*romEnd*/ _amp_chuckya_shyguy_goomba_boxes_mio0SegmentRomEnd
+    load_raw  /*seg*/ 0x0F, /*romStart*/ _amp_chuckya_shyguy_goomba_boxes_geoSegmentRomStart,  /*romEnd*/ _amp_chuckya_shyguy_goomba_boxes_geoSegmentRomEnd
     alloc_level_pool
     mario /*unk3*/ 0x01, /*behArg*/ 0x00000001, /*beh*/ beh_mario
     jump_link /*target*/ script_func_global_1
@@ -106,5 +106,5 @@ glabel level_ccm_entry
     exit
 
 .align 4
-.include "geo/level_ccm.geo.s"
+.include "levels/geo/level_ccm.s"
 .align 4

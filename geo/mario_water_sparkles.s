@@ -1,3 +1,5 @@
+.section .geo, "a"
+
 .word 0x0E000001, GeoSwitchCase8029DB48
 .word 0x04000000
 .word   0x15040000, 0x0401DD60

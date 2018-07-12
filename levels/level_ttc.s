@@ -25,11 +25,11 @@ script_func_local_2:
 glabel level_ttc_entry
     init_level
     load_mio0 /*seg*/ 0x07, /*romStart*/ _level_ttc_segment_7SegmentRomStart, /*romEnd*/ _level_ttc_segment_7SegmentRomEnd
-    cmd1A /*seg*/ 0x09, /*romStart*/ ttc_textures, /*romEnd*/ ttc_textures_end
-    load_mio0 /*seg*/ 0x05, /*romStart*/ yoshiegg_owl_thwomp, /*romEnd*/ yoshiegg_owl_thwomp_end
-    load_raw /*seg*/ 0x0C, /*romStart*/ owl_thwomp_bullet_heave, /*romEnd*/ owl_thwomp_bullet_heave_end
-    load_mio0 /*seg*/ 0x08, /*romStart*/ chuckya_shyguy_goomba, /*romEnd*/ chuckya_shyguy_goomba_end
-    load_raw /*seg*/ 0x0F, /*romStart*/ cannon_box_switch_enemies, /*romEnd*/ cannon_box_switch_enemies_end
+    cmd1A     /*seg*/ 0x09, /*romStart*/ _ttc_textures_mio0SegmentRomStart, /*romEnd*/ _ttc_textures_mio0SegmentRomEnd
+    load_mio0 /*seg*/ 0x05, /*romStart*/ _hoot_thwomp_bullet_heave_mio0SegmentRomStart, /*romEnd*/ _hoot_thwomp_bullet_heave_mio0SegmentRomEnd
+    load_raw  /*seg*/ 0x0C, /*romStart*/ _hoot_thwomp_bullet_heave_geoSegmentRomStart,  /*romEnd*/ _hoot_thwomp_bullet_heave_geoSegmentRomEnd
+    load_mio0 /*seg*/ 0x08, /*romStart*/ _amp_chuckya_shyguy_goomba_boxes_mio0SegmentRomStart, /*romEnd*/ _amp_chuckya_shyguy_goomba_boxes_mio0SegmentRomEnd
+    load_raw  /*seg*/ 0x0F, /*romStart*/ _amp_chuckya_shyguy_goomba_boxes_geoSegmentRomStart,  /*romEnd*/ _amp_chuckya_shyguy_goomba_boxes_geoSegmentRomEnd
     alloc_level_pool
     mario /*unk3*/ 0x01, /*behArg*/ 0x00000001, /*beh*/ beh_mario
     jump_link /*target*/ script_func_global_1
@@ -72,5 +72,5 @@ glabel level_ttc_entry
     exit
 
 .align 4
-.include "geo/level_ttc.geo.s"
+.include "levels/geo/level_ttc.s"
 .align 4

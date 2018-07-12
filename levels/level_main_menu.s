@@ -76,5 +76,5 @@ L1:
     exit
 
 .align 4
-.include "geo/level_main_menu.geo.s"
+.include "levels/geo/level_main_menu.s"
 .align 4

@@ -3,8 +3,8 @@
 
 #include "types.h"
 
-extern u8 segment2[];
-extern u8 segment2_end[];
+extern u8 _segment2_mio0SegmentRomStart[];
+extern u8 _segment2_mio0SegmentRomEnd[];
 
 extern u8 seg2_level_name_table[];
 extern u8 seg2_act_name_table[];
