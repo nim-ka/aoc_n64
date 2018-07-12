@@ -256,11 +256,11 @@ glabel D_8033B860
     .space 0x10
 glabel D_8033B870
     .space 0x680
-glabel D_8033BEF0
+glabel gDebugInfoFlags
     .space 0x4
 glabel gNumFindFloorMisses
     .space 0x8
-glabel D_8033BEFC
+glabel gUnknownWallCount
     .space 0x4
 glabel gUpdatedObjectCount
     .space 0x4
@@ -270,9 +270,9 @@ glabel gNumFindCeilCalls
     .space 0x2
 glabel gNumFindWallCalls
     .space 0x8
-glabel D_8033BF10
+glabel gDebugInfo
     .space 0x100
-glabel D_8033C010
+glabel gDebugInfoOverwrite
     .space 0x100
 glabel gTimeStopState
     .space 0x8
@@ -346,9 +346,9 @@ glabel D_8035FF00
     .space 0x10
 glabel D_8035FF10
     .space 0x10
-glabel D_8035FF20
+glabel gDebugTextInfo1
     .space 0x10
-glabel D_8035FF30
+glabel gDebugTextInfo2
     .space 0x10
 glabel D_8035FF40
     .space 0x2

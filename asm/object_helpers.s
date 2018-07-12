@@ -139,8 +139,8 @@ glabel Geo18_8029D924
 /* 0582C8 8029D2C8 8D590018 */  lw    $t9, 0x18($t2)
 /* 0582CC 8029D2CC 17210013 */  bne   $t9, $at, .L8029D31C
 /* 0582D0 8029D2D0 00000000 */   nop   
-/* 0582D4 8029D2D4 3C0C8034 */  lui   $t4, %hi(D_8033BF10) # $t4, 0x8034
-/* 0582D8 8029D2D8 258CBF10 */  addiu $t4, %lo(D_8033BF10) # addiu $t4, $t4, -0x40f0
+/* 0582D4 8029D2D4 3C0C8034 */  lui   $t4, %hi(gDebugInfo) # $t4, 0x8034
+/* 0582D8 8029D2D8 258CBF10 */  addiu $t4, %lo(gDebugInfo) # addiu $t4, $t4, -0x40f0
 /* 0582DC 8029D2DC 85890056 */  lh    $t1, 0x56($t4)
 /* 0582E0 8029D2E0 1120000C */  beqz  $t1, .L8029D314
 /* 0582E4 8029D2E4 00000000 */   nop   
@@ -294,7 +294,7 @@ glabel GeoSwitchCaseBlinking
 /* 0584FC 8029D4FC 8FB90020 */  lw    $t9, 0x20($sp)
 /* 058500 8029D500 3C048033 */  lui   $a0, %hi(D_80336610) # $a0, 0x8033
 /* 058504 8029D504 24846610 */  addiu $a0, %lo(D_80336610) # addiu $a0, $a0, 0x6610
-/* 058508 8029D508 0C0B26B6 */  jal   func_802C9AD8
+/* 058508 8029D508 0C0B26B6 */  jal   print_debug_top_down_objectinfo
 /* 05850C 8029D50C 83250005 */   lb    $a1, 5($t9)
 /* 058510 8029D510 87A80026 */  lh    $t0, 0x26($sp)
 /* 058514 8029D514 05000004 */  bltz  $t0, .L8029D528
@@ -2844,7 +2844,7 @@ glabel func_8029F828
 /* 05A884 8029F884 03E00008 */  jr    $ra
 /* 05A888 8029F888 27BD0008 */   addiu $sp, $sp, 8
 
-glabel func_8029F88C
+glabel check_anim_frame
 /* 05A88C 8029F88C 27BDFFF8 */  addiu $sp, $sp, -8
 /* 05A890 8029F890 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 05A894 8029F894 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
@@ -6863,7 +6863,7 @@ glabel func_802A3034
 /* 05E044 802A3044 00002825 */  move  $a1, $zero
 /* 05E048 802A3048 0C0AA986 */  jal   func_802AA618
 /* 05E04C 802A304C 3C064238 */   lui   $a2, 0x4238
-/* 05E050 802A3050 0C0B2599 */  jal   func_802C9664
+/* 05E050 802A3050 0C0B2599 */  jal   create_sound_spawner
 /* 05E054 802A3054 8FA40018 */   lw    $a0, 0x18($sp)
 /* 05E058 802A3058 10000001 */  b     .L802A3060
 /* 05E05C 802A305C 00000000 */   nop   
@@ -7165,8 +7165,8 @@ glabel func_802A3398
 glabel func_802A3470
 /* 05E470 802A3470 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 05E474 802A3474 AFBF0014 */  sw    $ra, 0x14($sp)
-/* 05E478 802A3478 3C0E8034 */  lui   $t6, %hi(D_8033BF10) # $t6, 0x8034
-/* 05E47C 802A347C 25CEBF10 */  addiu $t6, %lo(D_8033BF10) # addiu $t6, $t6, -0x40f0
+/* 05E478 802A3478 3C0E8034 */  lui   $t6, %hi(gDebugInfo) # $t6, 0x8034
+/* 05E47C 802A347C 25CEBF10 */  addiu $t6, %lo(gDebugInfo) # addiu $t6, $t6, -0x40f0
 /* 05E480 802A3480 85CF0050 */  lh    $t7, 0x50($t6)
 /* 05E484 802A3484 3C188036 */  lui   $t8, %hi(gCurrentObject) 
 /* 05E488 802A3488 8F18FDF0 */  lw    $t8, %lo(gCurrentObject)($t8)
@@ -7175,8 +7175,8 @@ glabel func_802A3470
 /* 05E494 802A3494 468021A0 */  cvt.s.w $f6, $f4
 /* 05E498 802A3498 46083280 */  add.s $f10, $f6, $f8
 /* 05E49C 802A349C E70A00A0 */  swc1  $f10, 0xa0($t8)
-/* 05E4A0 802A34A0 3C198034 */  lui   $t9, %hi(D_8033BF10) # $t9, 0x8034
-/* 05E4A4 802A34A4 2739BF10 */  addiu $t9, %lo(D_8033BF10) # addiu $t9, $t9, -0x40f0
+/* 05E4A0 802A34A0 3C198034 */  lui   $t9, %hi(gDebugInfo) # $t9, 0x8034
+/* 05E4A4 802A34A4 2739BF10 */  addiu $t9, %lo(gDebugInfo) # addiu $t9, $t9, -0x40f0
 /* 05E4A8 802A34A8 87280052 */  lh    $t0, 0x52($t9)
 /* 05E4AC 802A34AC 3C098036 */  lui   $t1, %hi(gCurrentObject) 
 /* 05E4B0 802A34B0 8D29FDF0 */  lw    $t1, %lo(gCurrentObject)($t1)
@@ -7185,8 +7185,8 @@ glabel func_802A3470
 /* 05E4BC 802A34BC 468084A0 */  cvt.s.w $f18, $f16
 /* 05E4C0 802A34C0 46049180 */  add.s $f6, $f18, $f4
 /* 05E4C4 802A34C4 E52600A4 */  swc1  $f6, 0xa4($t1)
-/* 05E4C8 802A34C8 3C0A8034 */  lui   $t2, %hi(D_8033BF10) # $t2, 0x8034
-/* 05E4CC 802A34CC 254ABF10 */  addiu $t2, %lo(D_8033BF10) # addiu $t2, $t2, -0x40f0
+/* 05E4C8 802A34C8 3C0A8034 */  lui   $t2, %hi(gDebugInfo) # $t2, 0x8034
+/* 05E4CC 802A34CC 254ABF10 */  addiu $t2, %lo(gDebugInfo) # addiu $t2, $t2, -0x40f0
 /* 05E4D0 802A34D0 854B0054 */  lh    $t3, 0x54($t2)
 /* 05E4D4 802A34D4 3C0C8036 */  lui   $t4, %hi(gCurrentObject) 
 /* 05E4D8 802A34D8 8D8CFDF0 */  lw    $t4, %lo(gCurrentObject)($t4)
@@ -7195,8 +7195,8 @@ glabel func_802A3470
 /* 05E4E4 802A34E4 468042A0 */  cvt.s.w $f10, $f8
 /* 05E4E8 802A34E8 46105480 */  add.s $f18, $f10, $f16
 /* 05E4EC 802A34EC E59200A8 */  swc1  $f18, 0xa8($t4)
-/* 05E4F0 802A34F0 3C0D8034 */  lui    $t5, %hi(D_8033BF10) 
-/* 05E4F4 802A34F4 25ADBF10 */  addiu $t5, %lo(D_8033BF10) # addiu $t5, $t5, -0x40f0
+/* 05E4F0 802A34F0 3C0D8034 */  lui    $t5, %hi(gDebugInfo) 
+/* 05E4F4 802A34F4 25ADBF10 */  addiu $t5, %lo(gDebugInfo) # addiu $t5, $t5, -0x40f0
 /* 05E4F8 802A34F8 85AE0056 */  lh    $t6, 0x56($t5)
 /* 05E4FC 802A34FC 3C0142C8 */  li    $at, 0x42C80000 # 100.000000
 /* 05E500 802A3500 44814000 */  mtc1  $at, $f8
@@ -7750,7 +7750,7 @@ glabel func_802A3BB8
 /* 05EC48 802A3C48 3C048036 */  lui   $a0, %hi(gCurrentObject) # $a0, 0x8036
 /* 05EC4C 802A3C4C 0C0A7F7B */  jal   DeactivateObject
 /* 05EC50 802A3C50 8C84FDF0 */   lw    $a0, %lo(gCurrentObject)($a0)
-/* 05EC54 802A3C54 0C0B2599 */  jal   func_802C9664
+/* 05EC54 802A3C54 0C0B2599 */  jal   create_sound_spawner
 /* 05EC58 802A3C58 8FA40024 */   lw    $a0, 0x24($sp)
 /* 05EC5C 802A3C5C 10000003 */  b     .L802A3C6C
 /* 05EC60 802A3C60 00000000 */   nop   
@@ -7920,33 +7920,33 @@ glabel Unknown802A3E84
 /* 05EE88 802A3E88 24010001 */  li    $at, 1
 /* 05EE8C 802A3E8C 1481001F */  bne   $a0, $at, .L802A3F0C
 /* 05EE90 802A3E90 00000000 */   nop   
-/* 05EE94 802A3E94 3C0E8034 */  lui   $t6, %hi(D_8033BF10) # $t6, 0x8034
-/* 05EE98 802A3E98 25CEBF10 */  addiu $t6, %lo(D_8033BF10) # addiu $t6, $t6, -0x40f0
+/* 05EE94 802A3E94 3C0E8034 */  lui   $t6, %hi(gDebugInfo) # $t6, 0x8034
+/* 05EE98 802A3E98 25CEBF10 */  addiu $t6, %lo(gDebugInfo) # addiu $t6, $t6, -0x40f0
 /* 05EE9C 802A3E9C 85CF0040 */  lh    $t7, 0x40($t6)
 /* 05EEA0 802A3EA0 8CB80008 */  lw    $t8, 8($a1)
 /* 05EEA4 802A3EA4 A70F0018 */  sh    $t7, 0x18($t8)
-/* 05EEA8 802A3EA8 3C198034 */  lui   $t9, %hi(D_8033BF10) # $t9, 0x8034
-/* 05EEAC 802A3EAC 2739BF10 */  addiu $t9, %lo(D_8033BF10) # addiu $t9, $t9, -0x40f0
+/* 05EEA8 802A3EA8 3C198034 */  lui   $t9, %hi(gDebugInfo) # $t9, 0x8034
+/* 05EEAC 802A3EAC 2739BF10 */  addiu $t9, %lo(gDebugInfo) # addiu $t9, $t9, -0x40f0
 /* 05EEB0 802A3EB0 87280042 */  lh    $t0, 0x42($t9)
 /* 05EEB4 802A3EB4 8CA90008 */  lw    $t1, 8($a1)
 /* 05EEB8 802A3EB8 A528001A */  sh    $t0, 0x1a($t1)
-/* 05EEBC 802A3EBC 3C0A8034 */  lui   $t2, %hi(D_8033BF10) # $t2, 0x8034
-/* 05EEC0 802A3EC0 254ABF10 */  addiu $t2, %lo(D_8033BF10) # addiu $t2, $t2, -0x40f0
+/* 05EEBC 802A3EBC 3C0A8034 */  lui   $t2, %hi(gDebugInfo) # $t2, 0x8034
+/* 05EEC0 802A3EC0 254ABF10 */  addiu $t2, %lo(gDebugInfo) # addiu $t2, $t2, -0x40f0
 /* 05EEC4 802A3EC4 854B0044 */  lh    $t3, 0x44($t2)
 /* 05EEC8 802A3EC8 8CAC0008 */  lw    $t4, 8($a1)
 /* 05EECC 802A3ECC A58B001C */  sh    $t3, 0x1c($t4)
-/* 05EED0 802A3ED0 3C0D8034 */  lui   $t5, %hi(D_8033BF10) # $t5, 0x8034
-/* 05EED4 802A3ED4 25ADBF10 */  addiu $t5, %lo(D_8033BF10) # addiu $t5, $t5, -0x40f0
+/* 05EED0 802A3ED0 3C0D8034 */  lui   $t5, %hi(gDebugInfo) # $t5, 0x8034
+/* 05EED4 802A3ED4 25ADBF10 */  addiu $t5, %lo(gDebugInfo) # addiu $t5, $t5, -0x40f0
 /* 05EED8 802A3ED8 85AE0046 */  lh    $t6, 0x46($t5)
 /* 05EEDC 802A3EDC 8CAF0008 */  lw    $t7, 8($a1)
 /* 05EEE0 802A3EE0 A5EE001E */  sh    $t6, 0x1e($t7)
-/* 05EEE4 802A3EE4 3C188034 */  lui   $t8, %hi(D_8033BF10) # $t8, 0x8034
-/* 05EEE8 802A3EE8 2718BF10 */  addiu $t8, %lo(D_8033BF10) # addiu $t8, $t8, -0x40f0
+/* 05EEE4 802A3EE4 3C188034 */  lui   $t8, %hi(gDebugInfo) # $t8, 0x8034
+/* 05EEE8 802A3EE8 2718BF10 */  addiu $t8, %lo(gDebugInfo) # addiu $t8, $t8, -0x40f0
 /* 05EEEC 802A3EEC 87190048 */  lh    $t9, 0x48($t8)
 /* 05EEF0 802A3EF0 8CA80008 */  lw    $t0, 8($a1)
 /* 05EEF4 802A3EF4 A5190020 */  sh    $t9, 0x20($t0)
-/* 05EEF8 802A3EF8 3C098034 */  lui   $t1, %hi(D_8033BF10) # $t1, 0x8034
-/* 05EEFC 802A3EFC 2529BF10 */  addiu $t1, %lo(D_8033BF10) # addiu $t1, $t1, -0x40f0
+/* 05EEF8 802A3EF8 3C098034 */  lui   $t1, %hi(gDebugInfo) # $t1, 0x8034
+/* 05EEFC 802A3EFC 2529BF10 */  addiu $t1, %lo(gDebugInfo) # addiu $t1, $t1, -0x40f0
 /* 05EF00 802A3F00 852A004A */  lh    $t2, 0x4a($t1)
 /* 05EF04 802A3F04 8CAB0008 */  lw    $t3, 8($a1)
 /* 05EF08 802A3F08 A56A0022 */  sh    $t2, 0x22($t3)
@@ -8925,11 +8925,11 @@ glabel Unknown802A4C34
 /* 05FC3C 802A4C3C AFA40018 */  sw    $a0, 0x18($sp)
 /* 05FC40 802A4C40 AFA5001C */  sw    $a1, 0x1c($sp)
 /* 05FC44 802A4C44 AFA60020 */  sw    $a2, 0x20($sp)
-/* 05FC48 802A4C48 0C0A7E23 */  jal   func_8029F88C
+/* 05FC48 802A4C48 0C0A7E23 */  jal   check_anim_frame
 /* 05FC4C 802A4C4C 8FA40018 */   lw    $a0, 0x18($sp)
 /* 05FC50 802A4C50 14400005 */  bnez  $v0, .L802A4C68
 /* 05FC54 802A4C54 00000000 */   nop   
-/* 05FC58 802A4C58 0C0A7E23 */  jal   func_8029F88C
+/* 05FC58 802A4C58 0C0A7E23 */  jal   check_anim_frame
 /* 05FC5C 802A4C5C 8FA4001C */   lw    $a0, 0x1c($sp)
 /* 05FC60 802A4C60 10400003 */  beqz  $v0, .L802A4C70
 /* 05FC64 802A4C64 00000000 */   nop   

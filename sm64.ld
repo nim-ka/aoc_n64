@@ -99,8 +99,8 @@ SECTIONS
       build/src/platform_displacement.o(.text);
       build/src/object_collision.o(.text);
       build/src/spawn_object.o(.text);
-      build/src/mapinfo_1.o(.text);
-      build/src/mapinfo_2.o(.text);
+      build/src/spawn_sound.o(.text);
+      build/src/debug.o(.text);
       build/asm/screen_transition.o(.text);
       build/src/shadow.o(.text);
       build/src/skybox.o(.text);
@@ -157,8 +157,8 @@ SECTIONS
       build/data/object_helpers.data.o(.data*);
       build/data/behavior_actions.data.o(.data*);
       build/src/platform_displacement.o(.data*);
-      build/src/mapinfo_1.o(.data*);
-      build/src/mapinfo_2.o(.data*);
+      build/src/spawn_sound.o(.data*);
+      build/src/debug.o(.data*);
       build/data/screen_transition.data.o(.data*);
       build/src/shadow.o(.data*);
       build/src/skybox.o(.data*);
@@ -200,8 +200,8 @@ SECTIONS
       build/data/behavior_actions.rodata.o(.rodata*);
       build/src/object_collision.o(.rodata*);
       build/src/spawn_object.o(.rodata*);
-      build/src/mapinfo_1.o(.rodata*);
-      build/src/mapinfo_2.o(.rodata*);
+      build/src/spawn_sound.o(.rodata*);
+      build/src/debug.o(.rodata*);
       build/data/screen_transition.rodata.o(.rodata*);
       build/src/shadow.o(.rodata*);
       build/src/skybox.o(.rodata*);

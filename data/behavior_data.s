@@ -2373,7 +2373,7 @@ glabel beh_rotating_exclamation_mark # 227C
         obj_add_int VAR_10, 0x800
     end_loop
 
-glabel beh_plays_sound # 229C
+glabel beh_sound_spawner # 229C
     begin 12
     obj_or_int VAR_01, 0x01
     delay 3
@@ -3116,9 +3116,9 @@ glabel beh_mario # 2EA0
     obj_or_int VAR_03, 0x0001
     set_hitbox 0x0025, 0x00A0
     begin_loop
-        callnative BehMarioLoop1
+        callnative try_print_debug_mario_level_info
         callnative BehMarioLoop2
-        callnative BehMarioLoop3
+        callnative try_do_mario_debug_object_spawn
     end_loop
 
 glabel beh_toad_message # 2ED8

@@ -7719,7 +7719,7 @@ glabel BehExplosionInit
 /* 0A4B7C 802E9B7C 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 0A4B80 802E9B80 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 0A4B84 802E9B84 3C04802E */  lui   $a0, (0x802E2081 >> 16) # lui $a0, 0x802e
-/* 0A4B88 802E9B88 0C0B2599 */  jal   func_802C9664
+/* 0A4B88 802E9B88 0C0B2599 */  jal   create_sound_spawner
 /* 0A4B8C 802E9B8C 34842081 */   ori   $a0, (0x802E2081 & 0xFFFF) # ori $a0, $a0, 0x2081
 /* 0A4B90 802E9B90 0C09FCC2 */  jal   func_8027F308
 /* 0A4B94 802E9B94 24040001 */   li    $a0, 1
@@ -10093,7 +10093,7 @@ glabel BehBowserBombLoop
 /* 0A6D80 802EBD80 0C0A7994 */  jal   SpawnObj
 /* 0A6D84 802EBD84 24050067 */   li    $a1, 103
 /* 0A6D88 802EBD88 3C04312F */  lui   $a0, (0x312F0081 >> 16) # lui $a0, 0x312f
-/* 0A6D8C 802EBD8C 0C0B2599 */  jal   func_802C9664
+/* 0A6D8C 802EBD8C 0C0B2599 */  jal   create_sound_spawner
 /* 0A6D90 802EBD90 34840081 */   ori   $a0, (0x312F0081 & 0xFFFF) # ori $a0, $a0, 0x81
 /* 0A6D94 802EBD94 3C0B8036 */  lui   $t3, %hi(gCurrentObject) # $t3, 0x8036
 /* 0A6D98 802EBD98 8D6BFDF0 */  lw    $t3, %lo(gCurrentObject)($t3)
@@ -11915,7 +11915,7 @@ glabel func_802ED774
 /* 0A879C 802ED79C 0C0B9214 */  jal   func_802E4850
 /* 0A87A0 802ED7A0 24050005 */   li    $a1, 5
 /* 0A87A4 802ED7A4 3C043071 */  lui   $a0, (0x30713081 >> 16) # lui $a0, 0x3071
-/* 0A87A8 802ED7A8 0C0B2599 */  jal   func_802C9664
+/* 0A87A8 802ED7A8 0C0B2599 */  jal   create_sound_spawner
 /* 0A87AC 802ED7AC 34843081 */   ori   $a0, (0x30713081 & 0xFFFF) # ori $a0, $a0, 0x3081
 /* 0A87B0 802ED7B0 0C0A8C01 */  jal   func_802A3004
 /* 0A87B4 802ED7B4 00000000 */   nop   
@@ -14067,7 +14067,7 @@ glabel BehPyramidTopLoop
 /* 0AA618 802EF618 15800004 */  bnez  $t4, .L802EF62C
 /* 0AA61C 802EF61C 00000000 */   nop   
 /* 0AA620 802EF620 3C04814C */  lui   $a0, (0x814CF081 >> 16) # lui $a0, 0x814c
-/* 0AA624 802EF624 0C0B2599 */  jal   func_802C9664
+/* 0AA624 802EF624 0C0B2599 */  jal   create_sound_spawner
 /* 0AA628 802EF628 3484F081 */   ori   $a0, (0x814CF081 & 0xFFFF) # ori $a0, $a0, 0xf081
 .L802EF62C:
 /* 0AA62C 802EF62C 0C0BBD14 */  jal   func_802EF450
@@ -16978,7 +16978,7 @@ glabel BehRedCoinLoop
 /* 0ACF20 802F1F20 256C0001 */  addiu $t4, $t3, 1
 /* 0ACF24 802F1F24 AD4C00F4 */  sw    $t4, 0xf4($t2)
 /* 0ACF28 802F1F28 3C043068 */  lui   $a0, (0x30689081 >> 16) # lui $a0, 0x3068
-/* 0ACF2C 802F1F2C 0C0B2599 */  jal   func_802C9664
+/* 0ACF2C 802F1F2C 0C0B2599 */  jal   create_sound_spawner
 /* 0ACF30 802F1F30 34849081 */   ori   $a0, (0x30689081 & 0xFFFF) # ori $a0, $a0, 0x9081
 /* 0ACF34 802F1F34 3C0D8036 */  lui   $t5, %hi(gCurrentObject) # $t5, 0x8036
 /* 0ACF38 802F1F38 8DADFDF0 */  lw    $t5, %lo(gCurrentObject)($t5)
@@ -20274,7 +20274,7 @@ glabel func_802F4DB4
 /* 0AFE70 802F4E70 0C0B9214 */  jal   func_802E4850
 /* 0AFE74 802F4E74 24050003 */   li    $a1, 3
 /* 0AFE78 802F4E78 3C043041 */  lui   $a0, (0x3041C081 >> 16) # lui $a0, 0x3041
-/* 0AFE7C 802F4E7C 0C0B2599 */  jal   func_802C9664
+/* 0AFE7C 802F4E7C 0C0B2599 */  jal   create_sound_spawner
 /* 0AFE80 802F4E80 3484C081 */   ori   $a0, (0x3041C081 & 0xFFFF) # ori $a0, $a0, 0xc081
 /* 0AFE84 802F4E84 3C0A8036 */  lui   $t2, %hi(gCurrentObject) # $t2, 0x8036
 /* 0AFE88 802F4E88 8D4AFDF0 */  lw    $t2, %lo(gCurrentObject)($t2)
@@ -21957,7 +21957,7 @@ glabel BehFallingPillarLoop
 /* 0B1698 802F6698 8F18FDF0 */  lw    $t8, %lo(gCurrentObject)($t8)
 /* 0B169C 802F669C A7000074 */  sh    $zero, 0x74($t8)
 /* 0B16A0 802F66A0 3C043044 */  lui   $a0, (0x30440081 >> 16) # lui $a0, 0x3044
-/* 0B16A4 802F66A4 0C0B2599 */  jal   func_802C9664
+/* 0B16A4 802F66A4 0C0B2599 */  jal   create_sound_spawner
 /* 0B16A8 802F66A8 34840081 */   ori   $a0, (0x30440081 & 0xFFFF) # ori $a0, $a0, 0x81
 .L802F66AC:
 /* 0B16AC 802F66AC 10000001 */  b     .L802F66B4

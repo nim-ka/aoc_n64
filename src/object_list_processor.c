@@ -10,7 +10,7 @@
 #include "graph_node.h"
 #include "interaction.h"
 #include "mario.h"
-#include "map_info.h"
+#include "debug.h"
 #include "memory.h"
 #include "object_helpers.h"
 #include "area.h"
@@ -340,7 +340,7 @@ void func_8029CA60(void)
         D_8035FE68[i][1] = 0;
     }
 
-    func_802CA0CC();
+    debug_unknown_level_select_check();
     func_802C8ED8();
     func_802C8F5C(&D_8033B870);
     func_80385BF0();
@@ -413,7 +413,7 @@ void update_objects(UNUSED s32 sp108)
 {
     s64 cycleCounts[30];
 
-    cycleCounts[0] = func_802C98D0();
+    cycleCounts[0] = get_current_clock();
 
     gTimeStopState &= ~TIME_STOP_UNKNOWN_5;
 
@@ -421,35 +421,35 @@ void update_objects(UNUSED s32 sp108)
     D_8035FEF0 = 0;
     D_8035FE10 = 0;
 
-    func_802CA140();
-    func_802CA5D0();
+    reset_debug_objectinfo();
+    stub_802CA5D0();
     
     gObjectLists = &D_8033B870;
     
-    cycleCounts[1] = func_802C9900(cycleCounts[0]);
+    cycleCounts[1] = get_clock_difference(cycleCounts[0]);
     clear_dynamic_surfaces();
 
-    cycleCounts[2] = func_802C9900(cycleCounts[0]);
+    cycleCounts[2] = get_clock_difference(cycleCounts[0]);
     update_terrain_objects();
     
     apply_mario_platform_displacement();
     
-    cycleCounts[3] = func_802C9900(cycleCounts[0]);
+    cycleCounts[3] = get_clock_difference(cycleCounts[0]);
     func_802C8C44();
     
-    cycleCounts[4] = func_802C9900(cycleCounts[0]);
+    cycleCounts[4] = get_clock_difference(cycleCounts[0]);
     update_non_terrain_objects();
     
-    cycleCounts[5] = func_802C9900(cycleCounts[0]);
+    cycleCounts[5] = get_clock_difference(cycleCounts[0]);
     func_8029CCA0();
     
-    cycleCounts[6] = func_802C9900(cycleCounts[0]);
+    cycleCounts[6] = get_clock_difference(cycleCounts[0]);
     update_mario_platform();
     
-    cycleCounts[7] = func_802C9900(cycleCounts[0]);  
+    cycleCounts[7] = get_clock_difference(cycleCounts[0]);  
 
     cycleCounts[0] = 0;
-    func_802CA5E0();
+    try_print_debug_mario_object_info();
 
     if (gTimeStopState & TIME_STOP_ENABLED)
         gTimeStopState |= TIME_STOP_ACTIVE;

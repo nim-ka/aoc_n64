@@ -2,7 +2,7 @@
 
 #include "sm64.h"
 #include "mario.h"
-#include "map_info.h"
+#include "debug.h"
 #include "spawn_object.h"
 
 struct Object *Unknown802C8460(struct Object *a)
@@ -13,7 +13,7 @@ struct Object *Unknown802C8460(struct Object *a)
 
     for (i = 0; i < a->numCollidedObjs; i++)
     {
-        func_802C9AD8("ON", 0);
+        print_debug_top_down_objectinfo("ON", 0);
         sp24 = a->collidedObjs[i];
         if (sp24 != gMarioObject)
             return sp24;

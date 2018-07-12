@@ -2,7 +2,7 @@
 
 #include "sm64.h"
 #include "level_update.h"
-#include "map_info.h"
+#include "debug.h"
 #include "camera.h"
 #include "mario.h"
 #include "behavior_script.h"
@@ -551,23 +551,23 @@ void debug_surface_list_info(f32 xPos, f32 zPos)
     list = gDynamicSurfacePartition[cellZ & 0x0F][cellX & 0x0F][SPATIAL_PARTITION_CEILS].next;
     numCeils += surface_list_length(list);
 
-    AnotherPrint("area   %x", cellZ * 16 + cellX);
+    print_debug_top_down_mapinfo("area   %x", cellZ * 16 + cellX);
 
-    AnotherPrint("dg %d", numFloors);
-    AnotherPrint("dw %d", numWalls);
-    AnotherPrint("dr %d", numCeils);
+    print_debug_top_down_mapinfo("dg %d", numFloors);
+    print_debug_top_down_mapinfo("dw %d", numWalls);
+    print_debug_top_down_mapinfo("dr %d", numCeils);
 
-    func_802C9A3C(80, -3);
+    set_text_array_x_y(80, -3);
 
-    AnotherPrint("%d", gNumFindFloorCalls);
-    AnotherPrint("%d", gNumFindWallCalls);
-    AnotherPrint("%d", gNumFindCeilCalls);
+    print_debug_top_down_mapinfo("%d", gNumFindFloorCalls);
+    print_debug_top_down_mapinfo("%d", gNumFindWallCalls);
+    print_debug_top_down_mapinfo("%d", gNumFindCeilCalls);
 
-    func_802C9A3C(-80, 0);
+    set_text_array_x_y(-80, 0);
 
-    AnotherPrint("listal %d", gSurfaceNodesAllocated);
-    AnotherPrint("statbg %d", gNumStaticSurfaces);
-    AnotherPrint("movebg %d", gSurfacesAllocated - gNumStaticSurfaces);
+    print_debug_top_down_mapinfo("listal %d", gSurfaceNodesAllocated);
+    print_debug_top_down_mapinfo("statbg %d", gNumStaticSurfaces);
+    print_debug_top_down_mapinfo("movebg %d", gSurfacesAllocated - gNumStaticSurfaces);
 
     gNumFindFloorCalls = 0;
     gNumFindCeilCalls = 0;

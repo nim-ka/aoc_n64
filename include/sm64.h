@@ -487,4 +487,6 @@ extern void func_u_803219AC();
                        L_TRIG     | R_TRIG     |                             \
                        U_CBUTTONS | D_CBUTTONS | L_CBUTTONS | R_CBUTTONS   )
 
+#define C_BUTTONS     (U_CBUTTONS | D_CBUTTONS | L_CBUTTONS | R_CBUTTONS   )
+
 #endif

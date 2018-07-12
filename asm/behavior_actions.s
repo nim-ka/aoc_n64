@@ -2120,7 +2120,7 @@ glabel ActionKingBobomb2
 /* 061BA8 802A6BA8 8F280100 */  lw    $t0, 0x100($t9)
 /* 061BAC 802A6BAC 15000012 */  bnez  $t0, .L802A6BF8
 /* 061BB0 802A6BB0 00000000 */   nop   
-/* 061BB4 802A6BB4 0C0A7E23 */  jal   func_8029F88C
+/* 061BB4 802A6BB4 0C0A7E23 */  jal   check_anim_frame
 /* 061BB8 802A6BB8 2404000F */   li    $a0, 15
 /* 061BBC 802A6BBC 10400003 */  beqz  $v0, .L802A6BCC
 /* 061BC0 802A6BC0 00000000 */   nop   
@@ -2282,7 +2282,7 @@ glabel ActionKingBobomb3
 /* 061DF4 802A6DF4 8D29FDF0 */  lw    $t1, %lo(gCurrentObject)($t1)
 /* 061DF8 802A6DF8 3C048033 */  lui   $a0, %hi(D_803366B0) # $a0, 0x8033
 /* 061DFC 802A6DFC 248466B0 */  addiu $a0, %lo(D_803366B0) # addiu $a0, $a0, 0x66b0
-/* 061E00 802A6E00 0C0B26A2 */  jal   func_802C9A88
+/* 061E00 802A6E00 0C0B26A2 */  jal   print_debug_bottom_up
 /* 061E04 802A6E04 8D2500FC */   lw    $a1, 0xfc($t1)
 /* 061E08 802A6E08 3C0A8036 */  lui   $t2, %hi(gCurrentObject) # $t2, 0x8036
 /* 061E0C 802A6E0C 8D4AFDF0 */  lw    $t2, %lo(gCurrentObject)($t2)
@@ -2345,7 +2345,7 @@ glabel ActionKingBobomb3
 .L802A6EE8:
 /* 061EE8 802A6EE8 0C0A7B4E */  jal   func_8029ED38
 /* 061EEC 802A6EEC 24040009 */   li    $a0, 9
-/* 061EF0 802A6EF0 0C0A7E23 */  jal   func_8029F88C
+/* 061EF0 802A6EF0 0C0A7E23 */  jal   check_anim_frame
 /* 061EF4 802A6EF4 2404001F */   li    $a0, 31
 /* 061EF8 802A6EF8 1040000A */  beqz  $v0, .L802A6F24
 /* 061EFC 802A6EFC 00000000 */   nop   
@@ -2562,7 +2562,7 @@ glabel ActionKingBobomb7
 /* 0621F8 802A71F8 10400025 */  beqz  $v0, .L802A7290
 /* 0621FC 802A71FC 00000000 */   nop   
 /* 062200 802A7200 3C045147 */  lui   $a0, (0x5147C081 >> 16) # lui $a0, 0x5147
-/* 062204 802A7204 0C0B2599 */  jal   func_802C9664
+/* 062204 802A7204 0C0B2599 */  jal   create_sound_spawner
 /* 062208 802A7208 3484C081 */   ori   $a0, (0x5147C081 & 0xFFFF) # ori $a0, $a0, 0xc081
 /* 06220C 802A720C 0C0A7BD0 */  jal   UnHideObject
 /* 062210 802A7210 00000000 */   nop   
@@ -2955,9 +2955,9 @@ glabel func_802A7748
 /* 062784 802A7784 3C048033 */  lui   $a0, %hi(TableKingBobombActions) # $a0, 0x8033
 /* 062788 802A7788 0C0A8DA2 */  jal   func_802A3688
 /* 06278C 802A778C 2484F15C */   addiu $a0, %lo(TableKingBobombActions) # addiu $a0, $a0, -0xea4
-/* 062790 802A7790 3C048033 */  lui   $a0, %hi(D_8032F180) # $a0, 0x8033
-/* 062794 802A7794 0C0B2558 */  jal   func_802C9560
-/* 062798 802A7798 2484F180 */   addiu $a0, %lo(D_8032F180) # addiu $a0, $a0, -0xe80
+/* 062790 802A7790 3C048033 */  lui   $a0, %hi(TableKingBobombSoundStates) # $a0, 0x8033
+/* 062794 802A7794 0C0B2558 */  jal   exec_anim_sound_state
+/* 062798 802A7798 2484F180 */   addiu $a0, %lo(TableKingBobombSoundStates) # addiu $a0, $a0, -0xe80
 /* 06279C 802A779C 3C188036 */  lui   $t8, %hi(gCurrentObject) # $t8, 0x8036
 /* 0627A0 802A77A0 8F18FDF0 */  lw    $t8, %lo(gCurrentObject)($t8)
 /* 0627A4 802A77A4 3C018033 */  lui   $at, %hi(D_80336778)
@@ -4979,7 +4979,7 @@ glabel ActionChuckya0
 .L802A9444:
 /* 064444 802A9444 3C048033 */  lui   $a0, %hi(D_803366B4) # $a0, 0x8033
 /* 064448 802A9448 248466B4 */  addiu $a0, %lo(D_803366B4) # addiu $a0, $a0, 0x66b4
-/* 06444C 802A944C 0C0B26A2 */  jal   func_802C9A88
+/* 06444C 802A944C 0C0B26A2 */  jal   print_debug_bottom_up
 /* 064450 802A9450 8FA5003C */   lw    $a1, 0x3c($sp)
 /* 064454 802A9454 3C088036 */  lui   $t0, %hi(gCurrentObject) # $t0, 0x8036
 /* 064458 802A9458 8D08FDF0 */  lw    $t0, %lo(gCurrentObject)($t0)
@@ -4988,7 +4988,7 @@ glabel ActionChuckya0
 /* 064464 802A9464 C50800B8 */  lwc1  $f8, 0xb8($t0)
 /* 064468 802A9468 4600428D */  trunc.w.s $f10, $f8
 /* 06446C 802A946C 44055000 */  mfc1  $a1, $f10
-/* 064470 802A9470 0C0B26A2 */  jal   func_802C9A88
+/* 064470 802A9470 0C0B26A2 */  jal   print_debug_bottom_up
 /* 064474 802A9474 00000000 */   nop   
 /* 064478 802A9478 10000001 */  b     .L802A9480
 /* 06447C 802A947C 00000000 */   nop   
@@ -5059,7 +5059,7 @@ glabel ActionChuckya1
 /* 06456C 802A956C 8D29FDF0 */  lw    $t1, %lo(gCurrentObject)($t1)
 /* 064570 802A9570 3C048033 */  lui   $a0, %hi(D_803366C4) # $a0, 0x8033
 /* 064574 802A9574 248466C4 */  addiu $a0, %lo(D_803366C4) # addiu $a0, $a0, 0x66c4
-/* 064578 802A9578 0C0B26A2 */  jal   func_802C9A88
+/* 064578 802A9578 0C0B26A2 */  jal   print_debug_bottom_up
 /* 06457C 802A957C 8D250100 */   lw    $a1, 0x100($t1)
 /* 064580 802A9580 3C0A8036 */  lui   $t2, %hi(gCurrentObject) # $t2, 0x8036
 /* 064584 802A9584 8D4AFDF0 */  lw    $t2, %lo(gCurrentObject)($t2)
@@ -5125,7 +5125,7 @@ glabel ActionChuckya1
 .L802A9668:
 /* 064668 802A9668 0C0A7B4E */  jal   func_8029ED38
 /* 06466C 802A966C 24040003 */   li    $a0, 3
-/* 064670 802A9670 0C0A7E23 */  jal   func_8029F88C
+/* 064670 802A9670 0C0A7E23 */  jal   check_anim_frame
 /* 064674 802A9674 24040012 */   li    $a0, 18
 /* 064678 802A9678 10400012 */  beqz  $v0, .L802A96C4
 /* 06467C 802A967C 00000000 */   nop   
@@ -5317,7 +5317,7 @@ glabel BehChuckyaLoop
 /* 064914 802A9914 8D29FDF0 */  lw    $t1, %lo(gCurrentObject)($t1)
 /* 064918 802A9918 3C048033 */  lui   $a0, %hi(D_803366C8) # $a0, 0x8033
 /* 06491C 802A991C 248466C8 */  addiu $a0, %lo(D_803366C8) # addiu $a0, $a0, 0x66c8
-/* 064920 802A9920 0C0B26A2 */  jal   func_802C9A88
+/* 064920 802A9920 0C0B26A2 */  jal   print_debug_bottom_up
 /* 064924 802A9924 8D25014C */   lw    $a1, 0x14c($t1)
 /* 064928 802A9928 10000001 */  b     .L802A9930
 /* 06492C 802A992C 00000000 */   nop   
@@ -5356,7 +5356,7 @@ glabel BehBreakableWallLoop
 /* 0649A4 802A99A4 00000000 */   nop   
 .L802A99A8:
 /* 0649A8 802A99A8 3C04300F */  lui   $a0, (0x300F0081 >> 16) # lui $a0, 0x300f
-/* 0649AC 802A99AC 0C0B2599 */  jal   func_802C9664
+/* 0649AC 802A99AC 0C0B2599 */  jal   create_sound_spawner
 /* 0649B0 802A99B0 34840081 */   ori   $a0, (0x300F0081 & 0xFFFF) # ori $a0, $a0, 0x81
 /* 0649B4 802A99B4 3C198036 */  lui   $t9, %hi(gCurrentObject) # $t9, 0x8036
 /* 0649B8 802A99B8 8F39FDF0 */  lw    $t9, %lo(gCurrentObject)($t9)
@@ -5724,7 +5724,7 @@ glabel BehTowerDoorLoop
 /* 064ED4 802A9ED4 0C0A8F26 */  jal   func_802A3C98
 /* 064ED8 802A9ED8 00002825 */   move  $a1, $zero
 /* 064EDC 802A9EDC 3C04300F */  lui   $a0, (0x300F0081 >> 16) # lui $a0, 0x300f
-/* 064EE0 802A9EE0 0C0B2599 */  jal   func_802C9664
+/* 064EE0 802A9EE0 0C0B2599 */  jal   create_sound_spawner
 /* 064EE4 802A9EE4 34840081 */   ori   $a0, (0x300F0081 & 0xFFFF) # ori $a0, $a0, 0x81
 .L802A9EE8:
 /* 064EE8 802A9EE8 10000001 */  b     .L802A9EF0
@@ -7759,8 +7759,8 @@ glabel BehPunchTinyTriangleLoop
 /* 066BB0 802ABBB0 E5CA00F4 */  swc1  $f10, 0xf4($t6)
 /* 066BB4 802ABBB4 3C0F8036 */  lui   $t7, %hi(gCurrentObject) # $t7, 0x8036
 /* 066BB8 802ABBB8 8DEFFDF0 */  lw    $t7, %lo(gCurrentObject)($t7)
-/* 066BBC 802ABBBC 3C198034 */  lui   $t9, %hi(D_8033BF10) # $t9, 0x8034
-/* 066BC0 802ABBC0 2739BF10 */  addiu $t9, %lo(D_8033BF10) # addiu $t9, $t9, -0x40f0
+/* 066BBC 802ABBBC 3C198034 */  lui   $t9, %hi(gDebugInfo) # $t9, 0x8034
+/* 066BC0 802ABBC0 2739BF10 */  addiu $t9, %lo(gDebugInfo) # addiu $t9, $t9, -0x40f0
 /* 066BC4 802ABBC4 87280040 */  lh    $t0, 0x40($t9)
 /* 066BC8 802ABBC8 8DF80154 */  lw    $t8, 0x154($t7)
 /* 066BCC 802ABBCC 25090006 */  addiu $t1, $t0, 6
@@ -13896,7 +13896,7 @@ glabel BehBreakableBoxLoop
 /* 06C2E4 802B12E4 0C0A8F26 */  jal   func_802A3C98
 /* 06C2E8 802B12E8 24050001 */   li    $a1, 1
 /* 06C2EC 802B12EC 3C043041 */  lui   $a0, (0x3041C081 >> 16) # lui $a0, 0x3041
-/* 06C2F0 802B12F0 0C0B2599 */  jal   func_802C9664
+/* 06C2F0 802B12F0 0C0B2599 */  jal   create_sound_spawner
 /* 06C2F4 802B12F4 3484C081 */   ori   $a0, (0x3041C081 & 0xFFFF) # ori $a0, $a0, 0xc081
 .L802B12F8:
 /* 06C2F8 802B12F8 10000001 */  b     .L802B1300
@@ -14882,7 +14882,7 @@ glabel BehJumpingBoxLoop
 /* 06D0CC 802B20CC 11200008 */  beqz  $t1, .L802B20F0
 /* 06D0D0 802B20D0 00000000 */   nop   
 /* 06D0D4 802B20D4 3C043041 */  lui   $a0, (0x3041C081 >> 16) # lui $a0, 0x3041
-/* 06D0D8 802B20D8 0C0B2599 */  jal   func_802C9664
+/* 06D0D8 802B20D8 0C0B2599 */  jal   create_sound_spawner
 /* 06D0DC 802B20DC 3484C081 */   ori   $a0, (0x3041C081 & 0xFFFF) # ori $a0, $a0, 0xc081
 /* 06D0E0 802B20E0 3C014238 */  li    $at, 0x42380000 # 46.000000
 /* 06D0E4 802B20E4 44816000 */  mtc1  $at, $f12
@@ -16631,7 +16631,7 @@ glabel func_802B39B8
 /* 06E9BC 802B39BC AFBF0014 */  sw    $ra, 0x14($sp)
 /* 06E9C0 802B39C0 0C0A7B4E */  jal   func_8029ED38
 /* 06E9C4 802B39C4 2404000F */   li    $a0, 15
-/* 06E9C8 802B39C8 0C0A7E23 */  jal   func_8029F88C
+/* 06E9C8 802B39C8 0C0A7E23 */  jal   check_anim_frame
 /* 06E9CC 802B39CC 24040015 */   li    $a0, 21
 /* 06E9D0 802B39D0 10400007 */  beqz  $v0, .L802B39F0
 /* 06E9D4 802B39D4 00000000 */   nop   
@@ -16698,7 +16698,7 @@ glabel func_802B3A98
 /* 06EA9C 802B3A9C AFBF0014 */  sw    $ra, 0x14($sp)
 /* 06EAA0 802B3AA0 0C0A7B4E */  jal   func_8029ED38
 /* 06EAA4 802B3AA4 2404000E */   li    $a0, 14
-/* 06EAA8 802B3AA8 0C0A7E23 */  jal   func_8029F88C
+/* 06EAA8 802B3AA8 0C0A7E23 */  jal   check_anim_frame
 /* 06EAAC 802B3AAC 24040014 */   li    $a0, 20
 /* 06EAB0 802B3AB0 10400006 */  beqz  $v0, .L802B3ACC
 /* 06EAB4 802B3AB4 00000000 */   nop   
@@ -16860,13 +16860,13 @@ glabel ActionBowser6
 /* 06ECC8 802B3CC8 00000000 */   nop   
 
 glabel Unknown802B3CCC
-/* 06ECCC 802B3CCC 3C0E8034 */  lui   $t6, %hi(D_8033BF10) # $t6, 0x8034
-/* 06ECD0 802B3CD0 25CEBF10 */  addiu $t6, %lo(D_8033BF10) # addiu $t6, $t6, -0x40f0
+/* 06ECCC 802B3CCC 3C0E8034 */  lui   $t6, %hi(gDebugInfo) # $t6, 0x8034
+/* 06ECD0 802B3CD0 25CEBF10 */  addiu $t6, %lo(gDebugInfo) # addiu $t6, $t6, -0x40f0
 /* 06ECD4 802B3CD4 85CF0052 */  lh    $t7, 0x52($t6)
 /* 06ECD8 802B3CD8 11E0000E */  beqz  $t7, .L802B3D14
 /* 06ECDC 802B3CDC 00000000 */   nop   
-/* 06ECE0 802B3CE0 3C188034 */  lui   $t8, %hi(D_8033BF10) # $t8, 0x8034
-/* 06ECE4 802B3CE4 2718BF10 */  addiu $t8, %lo(D_8033BF10) # addiu $t8, $t8, -0x40f0
+/* 06ECE0 802B3CE0 3C188034 */  lui   $t8, %hi(gDebugInfo) # $t8, 0x8034
+/* 06ECE4 802B3CE4 2718BF10 */  addiu $t8, %lo(gDebugInfo) # addiu $t8, $t8, -0x40f0
 /* 06ECE8 802B3CE8 87190054 */  lh    $t9, 0x54($t8)
 /* 06ECEC 802B3CEC 3C098033 */  lui   $t1, %hi(D_8032F4FC)
 /* 06ECF0 802B3CF0 3C0A8036 */  lui   $t2, %hi(gCurrentObject) # $t2, 0x8036
@@ -16875,8 +16875,8 @@ glabel Unknown802B3CCC
 /* 06ECFC 802B3CFC 8129F4FC */  lb    $t1, %lo(D_8032F4FC)($t1)
 /* 06ED00 802B3D00 8D4AFDF0 */  lw    $t2, %lo(gCurrentObject)($t2)
 /* 06ED04 802B3D04 AD49014C */  sw    $t1, 0x14c($t2)
-/* 06ED08 802B3D08 3C0B8034 */  lui   $t3, %hi(D_8033BF10) # $t3, 0x8034
-/* 06ED0C 802B3D0C 256BBF10 */  addiu $t3, %lo(D_8033BF10) # addiu $t3, $t3, -0x40f0
+/* 06ED08 802B3D08 3C0B8034 */  lui   $t3, %hi(gDebugInfo) # $t3, 0x8034
+/* 06ED0C 802B3D0C 256BBF10 */  addiu $t3, %lo(gDebugInfo) # addiu $t3, $t3, -0x40f0
 /* 06ED10 802B3D10 A5600052 */  sh    $zero, 0x52($t3)
 .L802B3D14:
 /* 06ED14 802B3D14 03E00008 */  jr    $ra
@@ -17832,7 +17832,7 @@ glabel func_802B4A44
 /* 06FA48 802B4A48 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 06FA4C 802B4A4C 0C0A7B4E */  jal   func_8029ED38
 /* 06FA50 802B4A50 24040009 */   li    $a0, 9
-/* 06FA54 802B4A54 0C0A7E23 */  jal   func_8029F88C
+/* 06FA54 802B4A54 0C0A7E23 */  jal   check_anim_frame
 /* 06FA58 802B4A58 2404000B */   li    $a0, 11
 /* 06FA5C 802B4A5C 10400005 */  beqz  $v0, .L802B4A74
 /* 06FA60 802B4A60 00000000 */   nop   
@@ -18264,7 +18264,7 @@ glabel ActionBowser9
 .L802B5050:
 /* 070050 802B5050 0C0A7B4E */  jal   func_8029ED38
 /* 070054 802B5054 24040016 */   li    $a0, 22
-/* 070058 802B5058 0C0A7E23 */  jal   func_8029F88C
+/* 070058 802B5058 0C0A7E23 */  jal   check_anim_frame
 /* 07005C 802B505C 24040005 */   li    $a0, 5
 /* 070060 802B5060 10400010 */  beqz  $v0, .L802B50A4
 /* 070064 802B5064 00000000 */   nop   
@@ -18872,7 +18872,7 @@ glabel ActionBowser2
 .L802B58DC:
 /* 0708DC 802B58DC 0C0A7B4E */  jal   func_8029ED38
 /* 0708E0 802B58E0 24040009 */   li    $a0, 9
-/* 0708E4 802B58E4 0C0A7E23 */  jal   func_8029F88C
+/* 0708E4 802B58E4 0C0A7E23 */  jal   check_anim_frame
 /* 0708E8 802B58E8 2404000B */   li    $a0, 11
 /* 0708EC 802B58EC 10400018 */  beqz  $v0, .L802B5950
 /* 0708F0 802B58F0 00000000 */   nop   
@@ -19080,7 +19080,7 @@ glabel ActionBowser2
 /* 070BE0 802B5BE0 C53000B8 */  lwc1  $f16, 0xb8($t1)
 /* 070BE4 802B5BE4 4600848D */  trunc.w.s $f18, $f16
 /* 070BE8 802B5BE8 44059000 */  mfc1  $a1, $f18
-/* 070BEC 802B5BEC 0C0B26A2 */  jal   func_802C9A88
+/* 070BEC 802B5BEC 0C0B26A2 */  jal   print_debug_bottom_up
 /* 070BF0 802B5BF0 00000000 */   nop   
 /* 070BF4 802B5BF4 10000001 */  b     .L802B5BFC
 /* 070BF8 802B5BF8 00000000 */   nop   
@@ -20039,7 +20039,7 @@ glabel func_802B688C
 /* 071954 802B6954 ADE00214 */  sw    $zero, 0x214($t7)
 .L802B6958:
 /* 071958 802B6958 3C048033 */  lui   $a0, %hi(D_8032F5B8) # $a0, 0x8033
-/* 07195C 802B695C 0C0B2558 */  jal   func_802C9560
+/* 07195C 802B695C 0C0B2558 */  jal   exec_anim_sound_state
 /* 071960 802B6960 2484F5B8 */   addiu $a0, %lo(D_8032F5B8) # addiu $a0, $a0, -0xa48
 /* 071964 802B6964 10000001 */  b     .L802B696C
 /* 071968 802B6968 00000000 */   nop   
@@ -20964,8 +20964,8 @@ glabel ActionFallingBowserPlatform1
 .L802B7660:
 /* 072660 802B7660 3C0F8036 */  lui   $t7, %hi(gCurrentObject) # $t7, 0x8036
 /* 072664 802B7664 8DEFFDF0 */  lw    $t7, %lo(gCurrentObject)($t7)
-/* 072668 802B7668 3C0E8034 */  lui   $t6, %hi(D_8033BF10) # $t6, 0x8034
-/* 07266C 802B766C 25CEBF10 */  addiu $t6, %lo(D_8033BF10) # addiu $t6, $t6, -0x40f0
+/* 072668 802B7668 3C0E8034 */  lui   $t6, %hi(gDebugInfo) # $t6, 0x8034
+/* 07266C 802B766C 25CEBF10 */  addiu $t6, %lo(gDebugInfo) # addiu $t6, $t6, -0x40f0
 /* 072670 802B7670 85D8004C */  lh    $t8, 0x4c($t6)
 /* 072674 802B7674 8DE80144 */  lw    $t0, 0x144($t7)
 /* 072678 802B7678 8DEB00FC */  lw    $t3, 0xfc($t7)
@@ -21051,8 +21051,8 @@ glabel ActionFallingBowserPlatform2
 /* 072794 802B7794 00000000 */   nop   
 /* 072798 802B7798 3C098036 */  lui   $t1, %hi(gCurrentObject) # $t1, 0x8036
 /* 07279C 802B779C 8D29FDF0 */  lw    $t1, %lo(gCurrentObject)($t1)
-/* 0727A0 802B77A0 3C188034 */  lui   $t8, %hi(D_8033BF10) # $t8, 0x8034
-/* 0727A4 802B77A4 2718BF10 */  addiu $t8, %lo(D_8033BF10) # addiu $t8, $t8, -0x40f0
+/* 0727A0 802B77A0 3C188034 */  lui   $t8, %hi(gDebugInfo) # $t8, 0x8034
+/* 0727A4 802B77A4 2718BF10 */  addiu $t8, %lo(gDebugInfo) # addiu $t8, $t8, -0x40f0
 /* 0727A8 802B77A8 8D2A0144 */  lw    $t2, 0x144($t1)
 /* 0727AC 802B77AC 3C0C8033 */  lui   $t4, %hi(D_8032F6A0)
 /* 0727B0 802B77B0 87190042 */  lh    $t9, 0x42($t8)
@@ -24926,7 +24926,7 @@ glabel func_802BAE40
 /* 075EB4 802BAEB4 15400004 */  bnez  $t2, .L802BAEC8
 /* 075EB8 802BAEB8 00000000 */   nop   
 /* 075EBC 802BAEBC 3C048033 */  lui   $a0, %hi(D_8032F7D8) # $a0, 0x8033
-/* 075EC0 802BAEC0 0C0B2558 */  jal   func_802C9560
+/* 075EC0 802BAEC0 0C0B2558 */  jal   exec_anim_sound_state
 /* 075EC4 802BAEC4 2484F7D8 */   addiu $a0, %lo(D_8032F7D8) # addiu $a0, $a0, -0x828
 .L802BAEC8:
 /* 075EC8 802BAEC8 10000001 */  b     .L802BAED0
@@ -25300,13 +25300,13 @@ glabel BehUkikiOpenCageLoop
 /* 0763CC 802BB3CC 8DEFFDF0 */  lw    $t7, %lo(gCurrentObject)($t7)
 /* 0763D0 802BB3D0 3C048033 */  lui   $a0, %hi(D_803366D8) # $a0, 0x8033
 /* 0763D4 802BB3D4 248466D8 */  addiu $a0, %lo(D_803366D8) # addiu $a0, $a0, 0x66d8
-/* 0763D8 802BB3D8 0C0B26A2 */  jal   func_802C9A88
+/* 0763D8 802BB3D8 0C0B26A2 */  jal   print_debug_bottom_up
 /* 0763DC 802BB3DC 8DE5014C */   lw    $a1, 0x14c($t7)
 /* 0763E0 802BB3E0 3C188036 */  lui   $t8, %hi(gCurrentObject) # $t8, 0x8036
 /* 0763E4 802BB3E4 8F18FDF0 */  lw    $t8, %lo(gCurrentObject)($t8)
 /* 0763E8 802BB3E8 3C048033 */  lui   $a0, %hi(D_803366E4) # $a0, 0x8033
 /* 0763EC 802BB3EC 248466E4 */  addiu $a0, %lo(D_803366E4) # addiu $a0, $a0, 0x66e4
-/* 0763F0 802BB3F0 0C0B26A2 */  jal   func_802C9A88
+/* 0763F0 802BB3F0 0C0B26A2 */  jal   print_debug_bottom_up
 /* 0763F4 802BB3F4 8F050124 */   lw    $a1, 0x124($t8)
 /* 0763F8 802BB3F8 10000001 */  b     .L802BB400
 /* 0763FC 802BB3FC 00000000 */   nop   
@@ -25599,7 +25599,7 @@ glabel BehHorizontalMovementLoop
 /* 07680C 802BB80C 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
 /* 076810 802BB810 3C048033 */  lui   $a0, %hi(D_803366F0) # $a0, 0x8033
 /* 076814 802BB814 248466F0 */  addiu $a0, %lo(D_803366F0) # addiu $a0, $a0, 0x66f0
-/* 076818 802BB818 0C0B26B6 */  jal   func_802C9AD8
+/* 076818 802BB818 0C0B26B6 */  jal   print_debug_top_down_objectinfo
 /* 07681C 802BB81C 8DC500F8 */   lw    $a1, 0xf8($t6)
 /* 076820 802BB820 0C0A87A7 */  jal   MoveObj2
 /* 076824 802BB824 00000000 */   nop   
@@ -29132,7 +29132,7 @@ glabel ActionTuxiesMother0
 /* 0799B4 802BE9B4 10000001 */  b     .L802BE9BC
 /* 0799B8 802BE9B8 00000000 */   nop   
 .L802BE9BC:
-/* 0799BC 802BE9BC 0C0A7E23 */  jal   func_8029F88C
+/* 0799BC 802BE9BC 0C0A7E23 */  jal   check_anim_frame
 /* 0799C0 802BE9C0 24040001 */   li    $a0, 1
 /* 0799C4 802BE9C4 10400004 */  beqz  $v0, .L802BE9D8
 /* 0799C8 802BE9C8 00000000 */   nop   
@@ -31780,7 +31780,7 @@ glabel ActionExclamationBox4
 /* 07BF4C 802C0F4C 0C0AB60B */  jal   func_802AD82C
 /* 07BF50 802C0F50 8DE700F0 */   lw    $a3, 0xf0($t7)
 /* 07BF54 802C0F54 3C043041 */  lui   $a0, (0x3041C081 >> 16) # lui $a0, 0x3041
-/* 07BF58 802C0F58 0C0B2599 */  jal   func_802C9664
+/* 07BF58 802C0F58 0C0B2599 */  jal   create_sound_spawner
 /* 07BF5C 802C0F5C 3484C081 */   ori   $a0, (0x3041C081 & 0xFFFF) # ori $a0, $a0, 0xc081
 /* 07BF60 802C0F60 3C188036 */  lui   $t8, %hi(gCurrentObject) # $t8, 0x8036
 /* 07BF64 802C0F64 8F18FDF0 */  lw    $t8, %lo(gCurrentObject)($t8)
@@ -33405,7 +33405,7 @@ glabel ActionTweester1
 /* 07D6A0 802C26A0 8D640160 */   lw    $a0, 0x160($t3)
 /* 07D6A4 802C26A4 3C048033 */  lui   $a0, %hi(D_803366FC) # $a0, 0x8033
 /* 07D6A8 802C26A8 248466FC */  addiu $a0, %lo(D_803366FC) # addiu $a0, $a0, 0x66fc
-/* 07D6AC 802C26AC 0C0B26B6 */  jal   func_802C9AD8
+/* 07D6AC 802C26AC 0C0B26B6 */  jal   print_debug_top_down_objectinfo
 /* 07D6B0 802C26B0 00002825 */   move  $a1, $zero
 /* 07D6B4 802C26B4 3C0C8034 */  lui   $t4, %hi(gMarioStates) # $t4, 0x8034
 /* 07D6B8 802C26B8 258C9E00 */  addiu $t4, %lo(gMarioStates) # addiu $t4, $t4, -0x6200
@@ -34972,7 +34972,7 @@ glabel ActionBoo1
 /* 07ECCC 802C3CCC 15010004 */  bne   $t0, $at, .L802C3CE0
 /* 07ECD0 802C3CD0 00000000 */   nop   
 /* 07ECD4 802C3CD4 3C045024 */  lui   $a0, (0x50244081 >> 16) # lui $a0, 0x5024
-/* 07ECD8 802C3CD8 0C0B2599 */  jal   func_802C9664
+/* 07ECD8 802C3CD8 0C0B2599 */  jal   create_sound_spawner
 /* 07ECDC 802C3CDC 34844081 */   ori   $a0, (0x50244081 & 0xFFFF) # ori $a0, $a0, 0x4081
 .L802C3CE0:
 /* 07ECE0 802C3CE0 10000001 */  b     .L802C3CE8
@@ -35061,7 +35061,7 @@ glabel ActionBoo4
 /* 07EDF4 802C3DF4 1040000D */  beqz  $v0, .L802C3E2C
 /* 07EDF8 802C3DF8 00000000 */   nop   
 /* 07EDFC 802C3DFC 3C045024 */  lui   $a0, (0x50244081 >> 16) # lui $a0, 0x5024
-/* 07EE00 802C3E00 0C0B2599 */  jal   func_802C9664
+/* 07EE00 802C3E00 0C0B2599 */  jal   create_sound_spawner
 /* 07EE04 802C3E04 34844081 */   ori   $a0, (0x50244081 & 0xFFFF) # ori $a0, $a0, 0x4081
 /* 07EE08 802C3E08 3C048036 */  lui   $a0, %hi(gCurrentObject) # $a0, 0x8036
 /* 07EE0C 802C3E0C 0C0A7F7B */  jal   DeactivateObject
@@ -35292,7 +35292,7 @@ glabel ActionBooGivingStar1
 /* 07F138 802C4138 15410004 */  bne   $t2, $at, .L802C414C
 /* 07F13C 802C413C 00000000 */   nop   
 /* 07F140 802C4140 3C04500C */  lui   $a0, (0x500CA081 >> 16) # lui $a0, 0x500c
-/* 07F144 802C4144 0C0B2599 */  jal   func_802C9664
+/* 07F144 802C4144 0C0B2599 */  jal   create_sound_spawner
 /* 07F148 802C4148 3484A081 */   ori   $a0, (0x500CA081 & 0xFFFF) # ori $a0, $a0, 0xa081
 .L802C414C:
 /* 07F14C 802C414C 10000001 */  b     .L802C4154
@@ -36600,8 +36600,8 @@ glabel BehRotatingMerryGoRoundLoop
 glabel BehStaticCheckeredPlatformLoop
 /* 080360 802C5360 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 080364 802C5364 AFBF0014 */  sw    $ra, 0x14($sp)
-/* 080368 802C5368 3C0E8034 */  lui   $t6, %hi(D_8033BF10) # $t6, 0x8034
-/* 08036C 802C536C 25CEBF10 */  addiu $t6, %lo(D_8033BF10) # addiu $t6, $t6, -0x40f0
+/* 080368 802C5368 3C0E8034 */  lui   $t6, %hi(gDebugInfo) # $t6, 0x8034
+/* 08036C 802C536C 25CEBF10 */  addiu $t6, %lo(gDebugInfo) # addiu $t6, $t6, -0x40f0
 /* 080370 802C5370 85CF0050 */  lh    $t7, 0x50($t6)
 /* 080374 802C5374 24010001 */  li    $at, 1
 /* 080378 802C5378 15E10010 */  bne   $t7, $at, .L802C53BC
@@ -36622,54 +36622,54 @@ glabel BehStaticCheckeredPlatformLoop
 /* 0803B4 802C53B4 8D08FDF0 */  lw    $t0, %lo(gCurrentObject)($t0)
 /* 0803B8 802C53B8 AD00011C */  sw    $zero, 0x11c($t0)
 .L802C53BC:
-/* 0803BC 802C53BC 3C098034 */  lui   $t1, %hi(D_8033BF10) # $t1, 0x8034
-/* 0803C0 802C53C0 2529BF10 */  addiu $t1, %lo(D_8033BF10) # addiu $t1, $t1, -0x40f0
+/* 0803BC 802C53BC 3C098034 */  lui   $t1, %hi(gDebugInfo) # $t1, 0x8034
+/* 0803C0 802C53C0 2529BF10 */  addiu $t1, %lo(gDebugInfo) # addiu $t1, $t1, -0x40f0
 /* 0803C4 802C53C4 852A0050 */  lh    $t2, 0x50($t1)
 /* 0803C8 802C53C8 24010002 */  li    $at, 2
 /* 0803CC 802C53CC 15410016 */  bne   $t2, $at, .L802C5428
 /* 0803D0 802C53D0 00000000 */   nop   
-/* 0803D4 802C53D4 3C0B8034 */  lui   $t3, %hi(D_8033BF10) # $t3, 0x8034
-/* 0803D8 802C53D8 256BBF10 */  addiu $t3, %lo(D_8033BF10) # addiu $t3, $t3, -0x40f0
+/* 0803D4 802C53D4 3C0B8034 */  lui   $t3, %hi(gDebugInfo) # $t3, 0x8034
+/* 0803D8 802C53D8 256BBF10 */  addiu $t3, %lo(gDebugInfo) # addiu $t3, $t3, -0x40f0
 /* 0803DC 802C53DC 856C0052 */  lh    $t4, 0x52($t3)
 /* 0803E0 802C53E0 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 0803E4 802C53E4 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
 /* 0803E8 802C53E8 000C6B00 */  sll   $t5, $t4, 0xc
 /* 0803EC 802C53EC ADCD00D0 */  sw    $t5, 0xd0($t6)
-/* 0803F0 802C53F0 3C0F8034 */  lui   $t7, %hi(D_8033BF10) # $t7, 0x8034
-/* 0803F4 802C53F4 25EFBF10 */  addiu $t7, %lo(D_8033BF10) # addiu $t7, $t7, -0x40f0
+/* 0803F0 802C53F0 3C0F8034 */  lui   $t7, %hi(gDebugInfo) # $t7, 0x8034
+/* 0803F4 802C53F4 25EFBF10 */  addiu $t7, %lo(gDebugInfo) # addiu $t7, $t7, -0x40f0
 /* 0803F8 802C53F8 85F80054 */  lh    $t8, 0x54($t7)
 /* 0803FC 802C53FC 3C088036 */  lui   $t0, %hi(gCurrentObject) # $t0, 0x8036
 /* 080400 802C5400 8D08FDF0 */  lw    $t0, %lo(gCurrentObject)($t0)
 /* 080404 802C5404 0018CB00 */  sll   $t9, $t8, 0xc
 /* 080408 802C5408 AD1900D4 */  sw    $t9, 0xd4($t0)
-/* 08040C 802C540C 3C098034 */  lui   $t1, %hi(D_8033BF10) # $t1, 0x8034
-/* 080410 802C5410 2529BF10 */  addiu $t1, %lo(D_8033BF10) # addiu $t1, $t1, -0x40f0
+/* 08040C 802C540C 3C098034 */  lui   $t1, %hi(gDebugInfo) # $t1, 0x8034
+/* 080410 802C5410 2529BF10 */  addiu $t1, %lo(gDebugInfo) # addiu $t1, $t1, -0x40f0
 /* 080414 802C5414 852A0056 */  lh    $t2, 0x56($t1)
 /* 080418 802C5418 3C0C8036 */  lui   $t4, %hi(gCurrentObject) # $t4, 0x8036
 /* 08041C 802C541C 8D8CFDF0 */  lw    $t4, %lo(gCurrentObject)($t4)
 /* 080420 802C5420 000A5B00 */  sll   $t3, $t2, 0xc
 /* 080424 802C5424 AD8B00D8 */  sw    $t3, 0xd8($t4)
 .L802C5428:
-/* 080428 802C5428 3C0D8034 */  lui   $t5, %hi(D_8033BF10) # $t5, 0x8034
-/* 08042C 802C542C 25ADBF10 */  addiu $t5, %lo(D_8033BF10) # addiu $t5, $t5, -0x40f0
+/* 080428 802C5428 3C0D8034 */  lui   $t5, %hi(gDebugInfo) # $t5, 0x8034
+/* 08042C 802C542C 25ADBF10 */  addiu $t5, %lo(gDebugInfo) # addiu $t5, $t5, -0x40f0
 /* 080430 802C5430 3C0F8036 */  lui   $t7, %hi(gCurrentObject) # $t7, 0x8036
 /* 080434 802C5434 8DEFFDF0 */  lw    $t7, %lo(gCurrentObject)($t7)
 /* 080438 802C5438 85AE0058 */  lh    $t6, 0x58($t5)
 /* 08043C 802C543C ADEE0114 */  sw    $t6, 0x114($t7)
-/* 080440 802C5440 3C188034 */  lui   $t8, %hi(D_8033BF10) # $t8, 0x8034
-/* 080444 802C5444 2718BF10 */  addiu $t8, %lo(D_8033BF10) # addiu $t8, $t8, -0x40f0
+/* 080440 802C5440 3C188034 */  lui   $t8, %hi(gDebugInfo) # $t8, 0x8034
+/* 080444 802C5444 2718BF10 */  addiu $t8, %lo(gDebugInfo) # addiu $t8, $t8, -0x40f0
 /* 080448 802C5448 3C088036 */  lui   $t0, %hi(gCurrentObject) # $t0, 0x8036
 /* 08044C 802C544C 8D08FDF0 */  lw    $t0, %lo(gCurrentObject)($t0)
 /* 080450 802C5450 8719005A */  lh    $t9, 0x5a($t8)
 /* 080454 802C5454 AD190118 */  sw    $t9, 0x118($t0)
-/* 080458 802C5458 3C098034 */  lui   $t1, %hi(D_8033BF10) # $t1, 0x8034
-/* 08045C 802C545C 2529BF10 */  addiu $t1, %lo(D_8033BF10) # addiu $t1, $t1, -0x40f0
+/* 080458 802C5458 3C098034 */  lui   $t1, %hi(gDebugInfo) # $t1, 0x8034
+/* 08045C 802C545C 2529BF10 */  addiu $t1, %lo(gDebugInfo) # addiu $t1, $t1, -0x40f0
 /* 080460 802C5460 3C0B8036 */  lui   $t3, %hi(gCurrentObject) # $t3, 0x8036
 /* 080464 802C5464 8D6BFDF0 */  lw    $t3, %lo(gCurrentObject)($t3)
 /* 080468 802C5468 852A005C */  lh    $t2, 0x5c($t1)
 /* 08046C 802C546C AD6A011C */  sw    $t2, 0x11c($t3)
-/* 080470 802C5470 3C0C8034 */  lui   $t4, %hi(D_8033BF10) # $t4, 0x8034
-/* 080474 802C5474 258CBF10 */  addiu $t4, %lo(D_8033BF10) # addiu $t4, $t4, -0x40f0
+/* 080470 802C5470 3C0C8034 */  lui   $t4, %hi(gDebugInfo) # $t4, 0x8034
+/* 080474 802C5474 258CBF10 */  addiu $t4, %lo(gDebugInfo) # addiu $t4, $t4, -0x40f0
 /* 080478 802C5478 858D0050 */  lh    $t5, 0x50($t4)
 /* 08047C 802C547C 24010003 */  li    $at, 3
 /* 080480 802C5480 15A10013 */  bne   $t5, $at, .L802C54D0
@@ -36710,8 +36710,8 @@ glabel BehInsideCannonLoop
 /* 0804FC 802C54FC 3C0641F0 */  lui   $a2, 0x41f0
 /* 080500 802C5500 0C0A7BD9 */  jal   func_8029EF64
 /* 080504 802C5504 3C074396 */   lui   $a3, 0x4396
-/* 080508 802C5508 3C0E8034 */  lui   $t6, %hi(D_8033BF10) # $t6, 0x8034
-/* 08050C 802C550C 25CEBF10 */  addiu $t6, %lo(D_8033BF10) # addiu $t6, $t6, -0x40f0
+/* 080508 802C5508 3C0E8034 */  lui   $t6, %hi(gDebugInfo) # $t6, 0x8034
+/* 08050C 802C550C 25CEBF10 */  addiu $t6, %lo(gDebugInfo) # addiu $t6, $t6, -0x40f0
 /* 080510 802C5510 85CF0040 */  lh    $t7, 0x40($t6)
 /* 080514 802C5514 3C198036 */  lui   $t9, %hi(gCurrentObject) # $t9, 0x8036
 /* 080518 802C5518 8F39FDF0 */  lw    $t9, %lo(gCurrentObject)($t9)
@@ -36720,8 +36720,8 @@ glabel BehInsideCannonLoop
 /* 080524 802C5524 00000000 */  nop   
 /* 080528 802C5528 468021A0 */  cvt.s.w $f6, $f4
 /* 08052C 802C552C E72601F8 */  swc1  $f6, 0x1f8($t9)
-/* 080530 802C5530 3C088034 */  lui   $t0, %hi(D_8033BF10) # $t0, 0x8034
-/* 080534 802C5534 2508BF10 */  addiu $t0, %lo(D_8033BF10) # addiu $t0, $t0, -0x40f0
+/* 080530 802C5530 3C088034 */  lui   $t0, %hi(gDebugInfo) # $t0, 0x8034
+/* 080534 802C5534 2508BF10 */  addiu $t0, %lo(gDebugInfo) # addiu $t0, $t0, -0x40f0
 /* 080538 802C5538 85090042 */  lh    $t1, 0x42($t0)
 /* 08053C 802C553C 3C0B8036 */  lui   $t3, %hi(gCurrentObject) # $t3, 0x8036
 /* 080540 802C5540 8D6BFDF0 */  lw    $t3, %lo(gCurrentObject)($t3)
@@ -37636,10 +37636,10 @@ glabel func_802C61CC
 /* 081204 802C6204 00000000 */  nop   
 /* 081208 802C6208 4500000B */  bc1f  .L802C6238
 /* 08120C 802C620C 00000000 */   nop   
-/* 081210 802C6210 0C0A7E23 */  jal   func_8029F88C
+/* 081210 802C6210 0C0A7E23 */  jal   check_anim_frame
 /* 081214 802C6214 00002025 */   move  $a0, $zero
 /* 081218 802C6218 AFA20028 */  sw    $v0, 0x28($sp)
-/* 08121C 802C621C 0C0A7E23 */  jal   func_8029F88C
+/* 08121C 802C621C 0C0A7E23 */  jal   check_anim_frame
 /* 081220 802C6220 24040017 */   li    $a0, 23
 /* 081224 802C6224 8FB90028 */  lw    $t9, 0x28($sp)
 /* 081228 802C6228 00408025 */  move  $s0, $v0
@@ -38522,7 +38522,7 @@ glabel ActionWhomp8
 /* 081E8C 802C6E8C 0C0A9249 */  jal   ShakeScreen
 /* 081E90 802C6E90 24040001 */   li    $a0, 1
 /* 081E94 802C6E94 3C04500C */  lui   $a0, (0x500CA081 >> 16) # lui $a0, 0x500c
-/* 081E98 802C6E98 0C0B2599 */  jal   func_802C9664
+/* 081E98 802C6E98 0C0B2599 */  jal   create_sound_spawner
 /* 081E9C 802C6E9C 3484A081 */   ori   $a0, (0x500CA081 & 0xFFFF) # ori $a0, $a0, 0xa081
 /* 081EA0 802C6EA0 3C048036 */  lui   $a0, %hi(gCurrentObject) # $a0, 0x8036
 /* 081EA4 802C6EA4 0C0A7F7B */  jal   DeactivateObject
@@ -39655,7 +39655,7 @@ glabel BehWalkingPenguinLoop
 /* 082EC8 802C7EC8 C5D200A0 */  lwc1  $f18, 0xa0($t6)
 /* 082ECC 802C7ECC 4600920D */  trunc.w.s $f8, $f18
 /* 082ED0 802C7ED0 44054000 */  mfc1  $a1, $f8
-/* 082ED4 802C7ED4 0C0B26A2 */  jal   func_802C9A88
+/* 082ED4 802C7ED4 0C0B26A2 */  jal   print_debug_bottom_up
 /* 082ED8 802C7ED8 00000000 */   nop   
 /* 082EDC 802C7EDC 3C0A8036 */  lui   $t2, %hi(gCurrentObject) # $t2, 0x8036
 /* 082EE0 802C7EE0 8D4AFDF0 */  lw    $t2, %lo(gCurrentObject)($t2)
@@ -39664,7 +39664,7 @@ glabel BehWalkingPenguinLoop
 /* 082EEC 802C7EEC C54400A8 */  lwc1  $f4, 0xa8($t2)
 /* 082EF0 802C7EF0 4600218D */  trunc.w.s $f6, $f4
 /* 082EF4 802C7EF4 44053000 */  mfc1  $a1, $f6
-/* 082EF8 802C7EF8 0C0B26A2 */  jal   func_802C9A88
+/* 082EF8 802C7EF8 0C0B26A2 */  jal   print_debug_bottom_up
 /* 082EFC 802C7EFC 00000000 */   nop   
 /* 082F00 802C7F00 10000001 */  b     .L802C7F08
 /* 082F04 802C7F04 00000000 */   nop   
