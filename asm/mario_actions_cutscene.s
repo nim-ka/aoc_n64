@@ -1518,8 +1518,8 @@ glabel func_80257F0C
 /* 012F70 80257F70 00000000 */   nop   
 .L80257F74:
 /* 012F74 80257F74 8FAA0028 */  lw    $t2, 0x28($sp)
-/* 012F78 80257F78 3C061300 */  lui   $a2, %hi(beh_star_celebration_star) # $a2, 0x1300
-/* 012F7C 80257F7C 24C63848 */  addiu $a2, %lo(beh_star_celebration_star) # addiu $a2, $a2, 0x3848
+/* 012F78 80257F78 3C061300 */  lui   $a2, %hi(beh_celebration_star) # $a2, 0x1300
+/* 012F7C 80257F7C 24C63848 */  addiu $a2, %lo(beh_celebration_star) # addiu $a2, $a2, 0x3848
 /* 012F80 80257F80 2405007A */  li    $a1, 122
 /* 012F84 80257F84 0C0A7994 */  jal   SpawnObj
 /* 012F88 80257F88 8D440088 */   lw    $a0, 0x88($t2)

@@ -30,7 +30,7 @@ script_func_local_4:
     object /*unk2*/ 0x1F, /*unk3*/ 0x64, /*pos*/ -6481, -2047, -5998, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ beh_piranha_plant
     object /*unk2*/ 0x1F, /*unk3*/ 0x64, /*pos*/ -5577, -2047, -4961, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ beh_piranha_plant
     object /*unk2*/ 0x1F, /*unk3*/ 0x64, /*pos*/ -6865, -2047, -4568, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ beh_piranha_plant
-    object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -4413, 204, -2140, /*angle*/ 0, 0, 0, /*behArg*/ 0x00030000, /*beh*/ beh_mini_metal_balls_generator
+    object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -4413, 204, -2140, /*angle*/ 0, 0, 0, /*behArg*/ 0x00030000, /*beh*/ beh_thi_bowling_ball_spawner
     object /*unk2*/ 0x1F, /*unk3*/ 0x59, /*pos*/ -6241, -3300, -716, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_bubba
     object /*unk2*/ 0x1F, /*unk3*/ 0x59, /*pos*/ 1624, -3300, 8142, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_bubba
     return
@@ -41,7 +41,7 @@ script_func_local_5:
 
 script_func_local_6:
     object /*unk2*/ 0x1F, /*unk3*/ 0x37, /*pos*/ 0, 1167, -460, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_thi_tiny_top
-    object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -1382, 80, -649, /*angle*/ 0, 0, 0, /*behArg*/ 0x00040000, /*beh*/ beh_mini_metal_balls_generator
+    object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -1382, 80, -649, /*angle*/ 0, 0, 0, /*behArg*/ 0x00040000, /*beh*/ beh_thi_bowling_ball_spawner
     return
 
 script_func_local_7:

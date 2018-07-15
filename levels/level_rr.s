@@ -20,12 +20,12 @@ script_func_local_1:
     object /*unk2*/ 0x1F, /*unk3*/ 0x38, /*pos*/ 663, -1321, 1179, /*angle*/ 0, 180, 0, /*behArg*/ 0x03010000, /*beh*/ beh_octagonal_platform_rotating
     object /*unk2*/ 0x1F, /*unk3*/ 0x38, /*pos*/ -502, -1321, -51, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ beh_octagonal_platform_rotating
     object /*unk2*/ 0x1F, /*unk3*/ 0x39, /*pos*/ 5043, 1342, 300, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ beh_rr_rotating_platform_with_fire
-    object /*unk2*/ 0x1F, /*unk3*/ 0x3B, /*pos*/ 3473, 2422, -1821, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_flapping_wing
-    object /*unk2*/ 0x1F, /*unk3*/ 0x3B, /*pos*/ 4084, 2431, -2883, /*angle*/ 45, 180, 180, /*behArg*/ 0x00010000, /*beh*/ beh_flapping_wing
-    object /*unk2*/ 0x1F, /*unk3*/ 0x3B, /*pos*/ 3470, 2420, -2869, /*angle*/ 45, 180, 180, /*behArg*/ 0x00010000, /*beh*/ beh_flapping_wing
-    object /*unk2*/ 0x1F, /*unk3*/ 0x3B, /*pos*/ 2856, 2410, -2855, /*angle*/ 45, 180, 180, /*behArg*/ 0x00010000, /*beh*/ beh_flapping_wing
-    object /*unk2*/ 0x1F, /*unk3*/ 0x3B, /*pos*/ 4101, 2435, -1813, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_flapping_wing
-    object /*unk2*/ 0x1F, /*unk3*/ 0x3B, /*pos*/ 2859, 2411, -1834, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_flapping_wing
+    object /*unk2*/ 0x1F, /*unk3*/ 0x3B, /*pos*/ 3473, 2422, -1821, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_rr_cruiser_wing
+    object /*unk2*/ 0x1F, /*unk3*/ 0x3B, /*pos*/ 4084, 2431, -2883, /*angle*/ 45, 180, 180, /*behArg*/ 0x00010000, /*beh*/ beh_rr_cruiser_wing
+    object /*unk2*/ 0x1F, /*unk3*/ 0x3B, /*pos*/ 3470, 2420, -2869, /*angle*/ 45, 180, 180, /*behArg*/ 0x00010000, /*beh*/ beh_rr_cruiser_wing
+    object /*unk2*/ 0x1F, /*unk3*/ 0x3B, /*pos*/ 2856, 2410, -2855, /*angle*/ 45, 180, 180, /*behArg*/ 0x00010000, /*beh*/ beh_rr_cruiser_wing
+    object /*unk2*/ 0x1F, /*unk3*/ 0x3B, /*pos*/ 4101, 2435, -1813, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_rr_cruiser_wing
+    object /*unk2*/ 0x1F, /*unk3*/ 0x3B, /*pos*/ 2859, 2411, -1834, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_rr_cruiser_wing
     object /*unk2*/ 0x1F, /*unk3*/ 0x3C, /*pos*/ -6013, -2857, 6564, /*angle*/ 0, 270, 0, /*behArg*/ 0x00050000, /*beh*/ beh_solid_moving
     object /*unk2*/ 0x1F, /*unk3*/ 0x3C, /*pos*/ 614, -3574, 6564, /*angle*/ 0, 270, 0, /*behArg*/ 0x00050000, /*beh*/ beh_solid_moving
     object /*unk2*/ 0x1F, /*unk3*/ 0x3E, /*pos*/ -3557, -809, 4619, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_pendulum_movement

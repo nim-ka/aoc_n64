@@ -18636,8 +18636,8 @@ glabel ActionBowser7
 glabel func_802B5588
 /* 070588 802B5588 27BDFFE0 */  addiu $sp, $sp, -0x20
 /* 07058C 802B558C AFBF0014 */  sw    $ra, 0x14($sp)
-/* 070590 802B5590 3C041300 */  lui   $a0, %hi(beh_bowser_bomb) # $a0, 0x1300
-/* 070594 802B5594 248437CC */  addiu $a0, %lo(beh_bowser_bomb) # addiu $a0, $a0, 0x37cc
+/* 070590 802B5590 3C041300 */  lui   $a0, %hi(beh_bowser_mine) # $a0, 0x1300
+/* 070594 802B5594 248437CC */  addiu $a0, %lo(beh_bowser_mine) # addiu $a0, $a0, 0x37cc
 /* 070598 802B5598 0C0A7C9C */  jal   func_8029F270
 /* 07059C 802B559C 27A50018 */   addiu $a1, $sp, 0x18
 /* 0705A0 802B55A0 AFA2001C */  sw    $v0, 0x1c($sp)
@@ -38822,7 +38822,7 @@ glabel BehWaterSurfaceWhiteWaveInit
 /* 0822B4 802C72B4 03E00008 */  jr    $ra
 /* 0822B8 802C72B8 00000000 */   nop   
 
-glabel BehGfxInit
+glabel BehObjectBubbleRipplesInit
 /* 0822BC 802C72BC 27BDFFE0 */  addiu $sp, $sp, -0x20
 /* 0822C0 802C72C0 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 0822C4 802C72C4 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036

@@ -12,6 +12,7 @@
 #define OBJECT_FIELD_S32(index) rawData.asS32[index]
 #define OBJECT_FIELD_F32(index) rawData.asF32[index]
 #define OBJECT_FIELD_ANIMS(index) rawData.asAnims[index]
+#define OBJECT_FIELD_VPTR(index) rawData.asVoidPtr[index]
 
 
 /* Common fields */
@@ -35,7 +36,7 @@
 #define /*0x0E4*/ oGravity OBJECT_FIELD_F32(0x17)
 #define /*0x0E8*/ oUnkE8 OBJECT_FIELD_F32(0x18)
 #define /*0x0EC*/ oUnkEC OBJECT_FIELD_U32(0x19)
-#define /*0x0F0*/ oEyesClosed OBJECT_FIELD_S32(0x1A)
+#define /*0x0F0*/ oAnimState OBJECT_FIELD_S32(0x1A)
 // 0x0F4-0x110 (0x1B-0x22) are object specific and defined below the common fields.
 #define /*0x114*/ oAngleVelPitch OBJECT_FIELD_S32(0x23)
 #define /*0x118*/ oAngleVelYaw OBJECT_FIELD_S32(0x24)
@@ -59,10 +60,10 @@
 #define /*0x164*/ oHomeX OBJECT_FIELD_F32(0x37)
 #define /*0x168*/ oHomeY OBJECT_FIELD_F32(0x38)
 #define /*0x16C*/ oHomeZ OBJECT_FIELD_F32(0x39)
-#define /*0x170*/ oGroundFVelMultiplier OBJECT_FIELD_F32(0x3A)
+#define /*0x170*/ oFriction OBJECT_FIELD_F32(0x3A)
 #define /*0x174*/ oBuoyancy OBJECT_FIELD_F32(0x3B)
 #define /*0x178*/ oSoundStateID OBJECT_FIELD_S32(0x3C)
-#define /*0x17C*/ oUnk17C OBJECT_FIELD_U32(0x3D)
+#define /*0x17C*/ oOpacity OBJECT_FIELD_S32(0x3D)
 #define /*0x180*/ oUnk180 OBJECT_FIELD_S32(0x3E)
 #define /*0x184*/ oUnk184 OBJECT_FIELD_U32(0x3F)
 #define /*0x188*/ oUnk188 OBJECT_FIELD_S32(0x40)
@@ -96,9 +97,6 @@
 #define /*0x110*/ oMarioLongJumpIsSlow OBJECT_FIELD_S32(0x22)
 #define /*0x110*/ oMarioSteepJumpYaw OBJECT_FIELD_S32(0x22)
 #define /*0x110*/ oMarioWalkingPitch OBJECT_FIELD_S32(0x22)
-
-/* Hoot */
-#define /*0x110*/ oHootMarioReleaseTime OBJECT_FIELD_S32(0x22)
 
 /* Star selector */
 #define /*0x0F4*/ oStarSelectorUnkF4 OBJECT_FIELD_S32(0x1B)
@@ -150,17 +148,82 @@
 #define /*0x0F8*/ oWhirlpoolInitFaceRoll OBJECT_FIELD_S32(0x1C)
 
 /* Homing Amp */
-#define /*0x0F0*/ oAmpHomingChargeAnim OBJECT_FIELD_S32(0x1A)
 #define /*0x0F4*/ oAmpHomingLockedOn OBJECT_FIELD_S32(0x1B)
-#define /*0x0F8*/ oAmpHomingYOscTimer OBJECT_FIELD_S32(0x1C)
+#define /*0x0F8*/ oAmpHomingYPhase OBJECT_FIELD_S32(0x1C)
 #define /*0x0FC*/ oAmpHomingAvgY OBJECT_FIELD_F32(0x1D)
 
 /* Amp */
-#define /*0x0F0*/ oAmpChargeAnim OBJECT_FIELD_S32(0x1A)
 #define /*0x0F4*/ oAmpRadiusOfRotation OBJECT_FIELD_F32(0x1B)
-#define /*0x0F8*/ oAmpYOscTimer OBJECT_FIELD_S32(0x1C)
+#define /*0x0F8*/ oAmpYPhase OBJECT_FIELD_S32(0x1C)
 
 /* Butterfly */
-#define /*0x0F4*/ oButterflyYOscTimer OBJECT_FIELD_S32(0x1B)
+#define /*0x0F4*/ oButterflyYPhase OBJECT_FIELD_S32(0x1B)
+
+/* Hoot */
+#define /*0x0F4*/ oHootAvailability OBJECT_FIELD_S32(0x1B)
+#define /*0x110*/ oHootMarioReleaseTime OBJECT_FIELD_S32(0x22)
+
+/* Bob-omb Explosion Bubble */
+#define /*0x0FC*/ oBobombExpBubGfxScaleFacX OBJECT_FIELD_S32(0x1D)
+#define /*0x100*/ oBobombExpBubGfxScaleFacY OBJECT_FIELD_S32(0x1E)
+#define /*0x104*/ oBobombExpBubGfxExpRateX OBJECT_FIELD_S32(0x1F)
+#define /*0x108*/ oBobombExpBubGfxExpRateY OBJECT_FIELD_S32(0x20)
+
+/* Bob-omb and Cork Box Respawner */
+#define /*0x0F4*/ oBreakableBoxBackupUnkF4 OBJECT_FIELD_S32(0x1B)
+#define /*0x0F8*/ oBBCBRespawnerMinSpawnDist OBJECT_FIELD_F32(0x1C)
+#define /*0x0FC*/ oBBCBRespawnerBehaviorToSpawn OBJECT_FIELD_VPTR(0x1D)
+
+/* Bully (all variants) */
+#define /*0x0F4*/ oBullySubtype OBJECT_FIELD_S32(0x1B)
+#define /*0x0F8*/ oBullyPrevX OBJECT_FIELD_F32(0x1C)
+#define /*0x0FC*/ oBullyPrevY OBJECT_FIELD_F32(0x1D)
+#define /*0x100*/ oBullyPrevZ OBJECT_FIELD_F32(0x1E)
+#define /*0x104*/ oBullyKBTimerAndMinionKOCounter OBJECT_FIELD_S32(0x1F)
+#define /*0x108*/ oBullyMarioCollisionAngle OBJECT_FIELD_S32(0x20)
+
+/* Water Ring (both variants) */
+#define /*0x0F4*/ oWaterRingScalePhaseX OBJECT_FIELD_S32(0x1B)
+#define /*0x0F8*/ oWaterRingScalePhaseY OBJECT_FIELD_S32(0x1C)
+#define /*0x0FC*/ oWaterRingScalePhaseZ OBJECT_FIELD_S32(0x1D)
+#define /*0x100*/ oWaterRingNormalX OBJECT_FIELD_F32(0x1E)
+#define /*0x104*/ oWaterRingNormalY OBJECT_FIELD_F32(0x1F)
+#define /*0x108*/ oWaterRingNormalZ OBJECT_FIELD_F32(0x20)
+#define /*0x10C*/ oWaterRingMarioDistInFront OBJECT_FIELD_F32(0x21)
+#define /*0x110*/ oWaterRingIndex OBJECT_FIELD_S32(0x22)
+#define /*0x1AC*/ oWaterRingAvgScale OBJECT_FIELD_F32(0x49)
+
+/* Water Ring Spawner (Jet Stream Ring Spawner and Manta Ray) */
+#define /*0x1AC*/ oWaterRingSpawnerRingsCollected OBJECT_FIELD_S32(0x49)
+
+/* Water Ring Manager (Jet Stream Ring Spawner and Manta Ray Ring Manager) */
+#define /*0x0F4*/ oWaterRingMgrNextRingIndex OBJECT_FIELD_S32(0x1B)
+#define /*0x0F8*/ oWaterRingMgrLastRingCollected OBJECT_FIELD_S32(0x1C)
+
+/* Celebration Star */
+#define /*0x108*/ oCelebStarDiameterOfRotation OBJECT_FIELD_S32(0x20)
+
+/* Bomp (small) */
+#define /*0x100*/ oSmallBompInitX OBJECT_FIELD_F32(0x1E)
+
+/* WF Sliding Brick Platform */
+#define /*0x0F4*/ oWFSlidBrickPtfmMovVel OBJECT_FIELD_F32(0x1B) 
+
+/* Moneybag */
+#define /*0x0F4*/ oMoneybagJumpState OBJECT_FIELD_S32(0x1B) 
+
+/* Bowling Ball */
+#define /*0x0F4*/ oBowlingBallTargetYaw OBJECT_FIELD_S32(0x1B)
+#define /*0x0FC*/ oBowlingBallUnkFC OBJECT_FIELD_VPTR(0x1D)
+#define /*0x10C*/ oBowlingBallInitYaw OBJECT_FIELD_S32(0x21)
+
+/* Bowling Ball Spawner (Generic) */
+#define /*0x0F4*/ oBBallSpwnrMaxSpawnDist OBJECT_FIELD_F32(0x1B)
+#define /*0x0F8*/ oBBallSpwnrSpawnOdds OBJECT_FIELD_F32(0x1C)
+#define /*0x0FC*/ oBBallSpwnrPeriodMinus1 OBJECT_FIELD_S32(0x1D)
+
+/* RR Cruiser Wing */
+#define /*0x0F4*/ oRRCruiserWingUnkF4 OBJECT_FIELD_S32(0x1B)
+#define /*0x0F8*/ oRRCruiserWingUnkF8 OBJECT_FIELD_S32(0x1C)
 
 #endif

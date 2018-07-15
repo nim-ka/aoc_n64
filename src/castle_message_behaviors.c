@@ -182,13 +182,13 @@ void func_80276104(void)
 
 void func_80276208(void)
 {
-    if ((gCurrentObject->oUnk17C += 6) == 255)
+    if ((gCurrentObject->oOpacity += 6) == 255)
         gCurrentObject->oToadMessageUnk110 = 1;
 }
 
 void func_80276254(void)
 {
-    if ((gCurrentObject->oUnk17C -= 6) == 81)
+    if ((gCurrentObject->oOpacity -= 6) == 81)
         gCurrentObject->oToadMessageUnk110 = 0;
 }
 
@@ -248,7 +248,7 @@ void BehToadMessageInit(void)
         gCurrentObject->oToadMessageUnk108 = sp2C;
         gCurrentObject->oToadMessageUnk10C = 0;
         gCurrentObject->oToadMessageUnk110 = 0;
-        gCurrentObject->oUnk17C = 81;
+        gCurrentObject->oOpacity = 81;
     }
     else
     {

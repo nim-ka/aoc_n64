@@ -3946,8 +3946,8 @@ glabel func_802FBCB4
 glabel func_802FBDE4
 /* 0B6DE4 802FBDE4 27BDFFD8 */  addiu $sp, $sp, -0x28
 /* 0B6DE8 802FBDE8 AFBF0014 */  sw    $ra, 0x14($sp)
-/* 0B6DEC 802FBDEC 3C041300 */  lui   $a0, %hi(beh_tiny_metal_ball) # $a0, 0x1300
-/* 0B6DF0 802FBDF0 24843A38 */  addiu $a0, %lo(beh_tiny_metal_ball) # addiu $a0, $a0, 0x3a38
+/* 0B6DEC 802FBDEC 3C041300 */  lui   $a0, %hi(beh_bowling_ball) # $a0, 0x1300
+/* 0B6DF0 802FBDF0 24843A38 */  addiu $a0, %lo(beh_bowling_ball) # addiu $a0, $a0, 0x3a38
 /* 0B6DF4 802FBDF4 0C0A7C9C */  jal   func_8029F270
 /* 0B6DF8 802FBDF8 27A50020 */   addiu $a1, $sp, 0x20
 /* 0B6DFC 802FBDFC AFA20024 */  sw    $v0, 0x24($sp)

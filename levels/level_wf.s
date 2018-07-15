@@ -21,13 +21,13 @@ script_func_local_1:
     return
 
 script_func_local_2:
-    object /*unk2*/ 0x1F, /*unk3*/ 0xAE, /*pos*/ 3300, 1070, 1, /*angle*/ 0, 90, 0, /*behArg*/ 0x00000000, /*beh*/ beh_rock_formation_eyes
-    object /*unk2*/ 0x1F, /*unk3*/ 0xAE, /*pos*/ 3300, 1070, 1281, /*angle*/ 0, 90, 0, /*behArg*/ 0x00000000, /*beh*/ beh_rock_formation_eyes
-    object /*unk2*/ 0x1F, /*unk3*/ 0xB1, /*pos*/ 3300, 1070, 641, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_large_rock_eyes
+    object /*unk2*/ 0x1F, /*unk3*/ 0xAE, /*pos*/ 3300, 1070, 1, /*angle*/ 0, 90, 0, /*behArg*/ 0x00000000, /*beh*/ beh_small_bomp
+    object /*unk2*/ 0x1F, /*unk3*/ 0xAE, /*pos*/ 3300, 1070, 1281, /*angle*/ 0, 90, 0, /*behArg*/ 0x00000000, /*beh*/ beh_small_bomp
+    object /*unk2*/ 0x1F, /*unk3*/ 0xB1, /*pos*/ 3300, 1070, 641, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_large_bomp
     object /*unk2*/ 0x1F, /*unk3*/ 0xAF, /*pos*/ -255, 2560, 2304, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_clocklike_rotation
-    object /*unk2*/ 0x1F, /*unk3*/ 0xAD, /*pos*/ 3328, 1075, -1791, /*angle*/ 0, 90, 0, /*behArg*/ 0x00020000, /*beh*/ beh_sliding_brick_platform_2
-    object /*unk2*/ 0x1F, /*unk3*/ 0xAD, /*pos*/ 3328, 1075, -767, /*angle*/ 0, 90, 0, /*behArg*/ 0x00010000, /*beh*/ beh_sliding_brick_platform_2
-    object /*unk2*/ 0x1F, /*unk3*/ 0xAD, /*pos*/ 3328, 1075, -2815, /*angle*/ 0, 90, 0, /*behArg*/ 0x00030000, /*beh*/ beh_sliding_brick_platform_2
+    object /*unk2*/ 0x1F, /*unk3*/ 0xAD, /*pos*/ 3328, 1075, -1791, /*angle*/ 0, 90, 0, /*behArg*/ 0x00020000, /*beh*/ beh_wf_sliding_brick_platform
+    object /*unk2*/ 0x1F, /*unk3*/ 0xAD, /*pos*/ 3328, 1075, -767, /*angle*/ 0, 90, 0, /*behArg*/ 0x00010000, /*beh*/ beh_wf_sliding_brick_platform
+    object /*unk2*/ 0x1F, /*unk3*/ 0xAD, /*pos*/ 3328, 1075, -2815, /*angle*/ 0, 90, 0, /*behArg*/ 0x00030000, /*beh*/ beh_wf_sliding_brick_platform
     object /*unk2*/ 0x1F, /*unk3*/ 0xB2, /*pos*/ 1792, 2496, 1600, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_wf_tumbling_bridge
     object /*unk2*/ 0x1F, /*unk3*/ 0x36, /*pos*/ 512, 2176, 2944, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_breakable_wall
     object /*unk2*/ 0x1F, /*unk3*/ 0x37, /*pos*/ -1023, 2176, 2944, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_breakable_wall_2

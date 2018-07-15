@@ -44,7 +44,7 @@ script_func_local_4:
 script_func_local_5:
     object /*unk2*/ 0x3F, /*unk3*/ 0x7A, /*pos*/ 3900, 850, -600, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_collect_star
     object /*unk2*/ 0x3F, /*unk3*/ 0x00, /*pos*/ 5513, 1200, 900, /*angle*/ 0, 0, 0, /*behArg*/ 0x02000000, /*beh*/ beh_hidden_red_coin_star
-    object /*unk2*/ 0x3F, /*unk3*/ 0x00, /*pos*/ 3404, -3319, -489, /*angle*/ 0, 0, 0, /*behArg*/ 0x03000000, /*beh*/ beh_manta_rings_generator
+    object /*unk2*/ 0x3F, /*unk3*/ 0x00, /*pos*/ 3404, -3319, -489, /*angle*/ 0, 0, 0, /*behArg*/ 0x03000000, /*beh*/ beh_jet_stream_ring_spawner
     object /*unk2*/ 0x3F, /*unk3*/ 0x7A, /*pos*/ 2030, -3700, -2780, /*angle*/ 0, 0, 0, /*behArg*/ 0x05000000, /*beh*/ beh_collect_star
     return
 

@@ -704,7 +704,7 @@ static s32 Behavior30(void)
     gCurrentObject->oGravity = (f32)(s16)(gBehCommand[1] & 0xFFFF) / 100.0f;
     gCurrentObject->oUnk158 = (f32)(s16)(gBehCommand[2] >> 16) / 100.0f;
     gCurrentObject->oUnk12C = (f32)(s16)(gBehCommand[2] & 0xFFFF) / 100.0f;
-    gCurrentObject->oGroundFVelMultiplier = (f32)(s16)(gBehCommand[3] >> 16) / 100.0f;
+    gCurrentObject->oFriction = (f32)(s16)(gBehCommand[3] >> 16) / 100.0f;
     gCurrentObject->oBuoyancy = (f32)(s16)(gBehCommand[3] & 0xFFFF) / 100.0f;
 
     // unused parameters
@@ -722,7 +722,7 @@ static s32 beh_cmd_obj_bic_int32(void)
 
     flags = flags ^ 0xFFFFFFFF;
 
-    object_and_s32(gCurrentObject->nextObj, objectOffset, flags);
+    object_and_s32(gCurrentObject->parentObj, objectOffset, flags);
 
     gBehCommand += 2;
     return BEH_CONTINUE;

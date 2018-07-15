@@ -13,7 +13,7 @@ script_func_local_1:
     return
 
 script_func_local_2:
-    object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -1639, 1146, -1742, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ beh_metal_ball_generator_2
+    object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -1639, 1146, -1742, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ beh_ttm_bowling_ball_spawner
     object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 3295, -3692, 2928, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_waterfall_sound_loop
     object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 2004, -1580, 1283, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_waterfall_sound_loop
     object /*unk2*/ 0x1F, /*unk3*/ 0x54, /*pos*/ -2077, -1023, -1969, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_monty_mole_in_hole

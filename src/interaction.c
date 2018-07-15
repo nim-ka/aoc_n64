@@ -830,7 +830,7 @@ static u32 interact_star_or_key(struct MarioState *m, UNUSED u32 interactType, s
         if (m->action & ACT_FLAG_AIR)
             starGrabAction = ACT_FALL_AFTER_STAR_GRAB;
 
-        SpawnObj(o, 0, beh_some_white_puff);
+        SpawnObj(o, 0, beh_star_key_collection_puff_spawner);
 
         o->oInteractStatus = 0x00008000;
         m->interactObj = o;

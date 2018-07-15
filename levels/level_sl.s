@@ -22,7 +22,7 @@ script_func_local_3:
     object /*unk2*/ 0x1F, /*unk3*/ 0x57, /*pos*/ 1715, 3328, 518, /*angle*/ 0, -51, 0, /*behArg*/ 0x00000000, /*beh*/ beh_walking_penguin
     object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 700, 3428, 700, /*angle*/ 0, 30, 0, /*behArg*/ 0x00000000, /*beh*/ beh_snowman_wind_blowing
     object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 480, 2300, 1370, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_igloo
-    object /*unk2*/ 0x1F, /*unk3*/ 0x65, /*pos*/ 315, 1331, -4852, /*angle*/ 0, 0, 0, /*behArg*/ 0x01000000, /*beh*/ beh_chill_bully_boss
+    object /*unk2*/ 0x1F, /*unk3*/ 0x65, /*pos*/ 315, 1331, -4852, /*angle*/ 0, 0, 0, /*behArg*/ 0x01000000, /*beh*/ beh_big_chill_bully
     object /*unk2*/ 0x1F, /*unk3*/ 0x55, /*pos*/ 2954, 970, 750, /*angle*/ 0, 0, 0, /*behArg*/ 0x00020000, /*beh*/ beh_mr_blizzard
     return
 

@@ -172,7 +172,7 @@ struct Object *func_802C9120(struct ObjectNode *a)
     }
 
     sp20->active = 257;
-    sp20->nextObj = sp20;
+    sp20->parentObj = sp20;
     sp20->prevObj = NULL;
     sp20->collidedObjInteractTypes = 0;
     sp20->numCollidedObjs = 0;

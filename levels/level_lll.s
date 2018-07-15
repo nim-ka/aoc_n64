@@ -26,7 +26,7 @@ script_func_local_1:
     return
 
 script_func_local_2:
-    object /*unk2*/ 0x1F, /*unk3*/ 0x38, /*pos*/ -1919, 307, 3648, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_bascule_bridge
+    object /*unk2*/ 0x1F, /*unk3*/ 0x38, /*pos*/ -1919, 307, 3648, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_lll_drawbridge_spawner
     object /*unk2*/ 0x1F, /*unk3*/ 0x3A, /*pos*/ -5119, 307, -4095, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_rotating_cw_with_fire_bars
     object /*unk2*/ 0x1F, /*unk3*/ 0x3E, /*pos*/ 0, 0, 0, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_lll_rotating_platform
     object /*unk2*/ 0x1F, /*unk3*/ 0x3F, /*pos*/ 3968, 0, 1408, /*angle*/ 0, 90, 0, /*behArg*/ 0x00000000, /*beh*/ beh_lll_slow_tilting_movement
@@ -52,8 +52,8 @@ script_func_local_3:
 
 script_func_local_4:
     object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -3199, 307, 3456, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_mr_i
-    object /*unk2*/ 0x1F, /*unk3*/ 0x57, /*pos*/ 0, 307, -4385, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_big_bully_boss
-    object /*unk2*/ 0x1F, /*unk3*/ 0x57, /*pos*/ 4046, 2234, -5521, /*angle*/ 0, 0, 0, /*behArg*/ 0x01000000, /*beh*/ beh_bully
+    object /*unk2*/ 0x1F, /*unk3*/ 0x57, /*pos*/ 0, 307, -4385, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_big_bully
+    object /*unk2*/ 0x1F, /*unk3*/ 0x57, /*pos*/ 4046, 2234, -5521, /*angle*/ 0, 0, 0, /*behArg*/ 0x01000000, /*beh*/ beh_big_bully_with_minions
     object /*unk2*/ 0x1F, /*unk3*/ 0x56, /*pos*/ -5119, 307, -2482, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_small_bully
     object /*unk2*/ 0x1F, /*unk3*/ 0x56, /*pos*/ 0, 307, 3712, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_small_bully
     object /*unk2*/ 0x1F, /*unk3*/ 0x56, /*pos*/ 6813, 307, 1613, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_small_bully

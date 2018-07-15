@@ -155,7 +155,7 @@ struct ObjectNode
 struct Object
 {
     /*0x000*/ struct ObjectNode header;
-    /*0x068*/ struct Object *nextObj;
+    /*0x068*/ struct Object *parentObj;
     /*0x06C*/ struct Object *prevObj;
     /*0x070*/ u32 collidedObjInteractTypes;
     /*0x074*/ s16 active;
@@ -169,6 +169,7 @@ struct Object
         s32 asS32[0x50];
         f32 asF32[0x50];
         u32 *asAnims[0x50];
+        void *asVoidPtr[0x50];
     } rawData;
     /*0x1C8*/ u32 unk1C8;
     /*0x1CC*/ u32 *behScript;

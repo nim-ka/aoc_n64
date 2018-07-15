@@ -2978,14 +2978,14 @@ glabel beh_water_surface_white_wave # 2C64
     end_repeat
     deactivate
 
-glabel beh_gfx # 2C8C
+glabel beh_object_bubble_ripples # 2C8C
     begin 8
     obj_or_int VAR_01, 0x01
     obj_set_float VAR_12, 0
     obj_set_float VAR_13, 0
     obj_set_float VAR_14, 0
     obj_set_int VAR_1A, -1
-    callnative BehGfxInit
+    callnative BehObjectBubbleRipplesInit
     begin_repeat 6
         obj_add_int VAR_1A, 1
     end_repeat
@@ -3480,35 +3480,35 @@ glabel beh_carry_something6 # 345C
     begin 8
     break
 
-glabel beh_dirt # 3464
+glabel beh_object_bubble # 3464
     begin 12
     obj_or_int VAR_01, 0x0007
     billboard
     obj_or_int VAR_01, 0x01
     obj_set_int VAR_1A, -1
-    callnative BehDirtInit
+    callnative BehObjectBubbleInit
     obj_set_float_rand VAR_0A, 0x0003, 0x0006
     obj_set_int_rand_rshift VAR_10, 0x0000, 0x0000
     delay 1
     begin_loop
-        callnative BehDirtLoop
+        callnative BehObjectBubbleLoop
     end_loop
 
-glabel beh_water_wave # 34A4
+glabel beh_object_water_wave # 34A4
     begin 12
     obj_or_int VAR_01, 0x01
     obj_set_float VAR_12, 0
     obj_set_float VAR_13, 0
     obj_set_float VAR_14, 0
     obj_set_int VAR_1A, -1
-    callnative BehWaterWaveInit
+    callnative BehObjectWaterWaveInit
     obj_add_int VAR_1A, 1
     delay 6
     begin_loop
-        callnative BehWaterWaveLoop
+        callnative BehObjectWaterWaveLoop
         obj_add_int VAR_1A, 1
     begin_repeat 6
-        callnative BehWaterWaveLoop
+        callnative BehObjectWaterWaveLoop
     end_repeat
     end_loop
 
@@ -3527,12 +3527,12 @@ glabel beh_explosion # 34F0
         obj_add_int VAR_1A, 1
     end_loop
 
-glabel beh_large_white_smoke_cloud # 3538
+glabel beh_bobomb_bully_death_smoke # 3538
     begin 12
     obj_or_int VAR_01, 0x0007
     billboard
     obj_set_int VAR_1A, -1
-    callnative BehLargeWhiteSmokeCloundInit
+    callnative BehBobombBullyDeathSmokeInit
     delay 1
     begin_loop
         callnative BehDustSmokeLoop
@@ -3550,31 +3550,31 @@ glabel beh_smoke # 3568
         obj_add_int VAR_1A, 1
     end_loop
 
-glabel beh_white_particle_water_drop # 3590
+glabel beh_bobomb_explosion_bubble # 3590
     begin 8
     billboard
     obj_or_int VAR_01, 0x01
-    callnative BehWhiteParticleWaterDropInit
+    callnative BehBobombExplosionBubbleInit
     obj_add_float_rand VAR_06, -50, 100
     obj_add_float_rand VAR_07, -50, 100
     obj_add_float_rand VAR_08, -50, 100
-    call beh_white_particle_water_drop_3600
+    call beh_bobomb_explosion_bubble_3600
     delay 1
     begin_loop
-        call beh_white_particle_water_drop_3600
-        callnative BehWhiteParticleWaterDropLoop
+        call beh_bobomb_explosion_bubble_3600
+        callnative BehBobombExplosionBubbleLoop
     end_loop
 
-glabel beh_white_particle_water_drop_3600 # 35E0
+glabel beh_bobomb_explosion_bubble_3600 # 35E0
     obj_add_float_rand VAR_06, -2, 4
     obj_add_float_rand VAR_08, -2, 4
     return
 
-glabel beh_breakable_box_backup # 35F4
+glabel beh_bobomb_cork_box_respawner # 35F4
     begin 8
     obj_or_int VAR_01, 0x01
     begin_loop
-        callnative BehBreakableBoxBackupLoop
+        callnative BehBobombCorkBoxRespawnerLoop
     end_loop
 
 glabel beh_small_bully # 360C
@@ -3586,33 +3586,33 @@ glabel beh_small_bully # 360C
     callnative BehSmallBullyInit
     begin_loop
         obj_set_int VAR_05, 0
-        callnative BehBullyCommonLoop
+        callnative BehBullyLoop
     end_loop
 
-glabel beh_big_bully_boss # 3640
+glabel beh_big_bully # 3640
     begin 4
     obj_or_int VAR_01, 0x09
     obj_set_int32 VAR_26, 0x0500470C
     unknown_1E
     unknown_2D
-    callnative BehBullyBossInit
+    callnative BehBigBullyInit
     begin_loop
         obj_set_int VAR_05, 0
-        callnative BehBullyCommonLoop
+        callnative BehBullyLoop
     end_loop
 
-glabel beh_bully # 3674
+glabel beh_big_bully_with_minions # 3674
     begin 4
     obj_or_int VAR_01, 0x09
     obj_set_int32 VAR_26, 0x0500470C
     unknown_2D
-    callnative BehBullyBossInit
-    callnative BehBullyInit
+    callnative BehBigBullyInit
+    callnative BehBigBullyWithMinionsInit
     begin_loop
-        callnative BehBullyLoop
+        callnative BehBigBullyWithMinionsLoop
     end_loop
 
-glabel beh_small_ice_bully # 36A8
+glabel beh_small_chill_bully # 36A8
     begin 4
     obj_or_int VAR_01, 0x09
     obj_set_int32 VAR_26, 0x06003994
@@ -3622,30 +3622,30 @@ glabel beh_small_ice_bully # 36A8
     callnative BehSmallBullyInit
     begin_loop
         obj_set_int VAR_05, 0
-        callnative BehBullyCommonLoop
+        callnative BehBullyLoop
     end_loop
 
-glabel beh_chill_bully_boss # 36E0
+glabel beh_big_chill_bully # 36E0
     begin 4
     obj_or_int VAR_01, 0x09
     obj_set_int32 VAR_26, 0x06003994
     unknown_1E
     unknown_2D
     obj_set_int VAR_1B, 0x0010
-    callnative BehBullyBossInit
+    callnative BehBigBullyInit
     begin_loop
         obj_set_int VAR_05, 0
-        callnative BehBullyCommonLoop
+        callnative BehBullyLoop
     end_loop
 
-glabel beh_manta_rings_generator # 3718
+glabel beh_jet_stream_ring_spawner # 3718
     begin 8
     unhide
     begin_loop
-        callnative BehMantaRingsGeneratorLoop
+        callnative BehJetStreamRingSpawnerLoop
     end_loop
 
-glabel beh_air_bubble_water_rings # 3730
+glabel beh_jet_stream_water_ring # 3730
     begin 6
     obj_or_int VAR_01, 0x01
     obj_set_int32 VAR_26, 0x06013F7C
@@ -3653,13 +3653,13 @@ glabel beh_air_bubble_water_rings # 3730
     interact_type 0x00010000
     obj_set_int VAR_3E, 2
     obj_set_int VAR_05, 0
-    callnative BehAirBubbleWaterRingsInit
+    callnative BehJetStreamWaterRingInit
     begin_loop
         obj_set_int VAR_05, 0
-        callnative BehAirBubbleWaterRingsLoop
+        callnative BehJetStreamWaterRingLoop
     end_loop
 
-glabel beh_air_bubble_water_rings_underwater # 3778
+glabel beh_manta_ray_water_ring # 3778
     begin 6
     obj_or_int VAR_01, 0x01
     obj_set_int32 VAR_26, 0x06013F7C
@@ -3667,18 +3667,18 @@ glabel beh_air_bubble_water_rings_underwater # 3778
     interact_type 0x00010000
     obj_set_int VAR_3E, 2
     obj_set_int VAR_05, 0
-    callnative BehAirBubbleWaterRingsUnderwaterInit
+    callnative BehMantaRayWaterRingInit
     begin_loop
         obj_set_int VAR_05, 0
-        callnative BehAirBubbleWaterRingsUnderwaterLoop
+        callnative BehMantaRayWaterRingLoop
     end_loop
 
-glabel beh_something_invisible # 37C0
+glabel beh_manta_ray_ring_manager # 37C0
     begin 8
     begin_loop
     end_loop
 
-glabel beh_bowser_bomb # 37CC
+glabel beh_bowser_mine # 37CC
     begin 4
     obj_or_int VAR_01, 0x01
     obj_set_int VAR_05, 0
@@ -3686,20 +3686,20 @@ glabel beh_bowser_bomb # 37CC
     delay 1
     begin_loop
         obj_set_int VAR_05, 0
-        callnative BehBowserBombLoop
+        callnative BehBowserMineLoop
     end_loop
 
-glabel beh_spikey_bomb_explosion_1 # 37FC
+glabel beh_bowser_mine_explosion # 37FC
     begin 8
     obj_or_int VAR_01, 0x01
     billboard
     obj_set_float VAR_15, 0xFEE0
     obj_set_int VAR_1A, -1
     begin_loop
-        callnative BehSpikeyBombExplosion1Loop
+        callnative BehBowserMineExplosionLoop
     end_loop
 
-glabel beh_spikey_bomb_explosion_2 # 3820
+glabel beh_bowser_mine_smoke # 3820
     begin 8
     obj_or_int VAR_01, 0x01
     billboard
@@ -3707,18 +3707,18 @@ glabel beh_spikey_bomb_explosion_2 # 3820
     obj_set_int VAR_3D, 0x00FF
     obj_set_int VAR_1A, -1
     begin_loop
-        callnative BehSpikeyBombExplosion2Loop
+        callnative BehBowserMineSmokeLoop
     end_loop
 
-glabel beh_star_celebration_star # 3848
+glabel beh_celebration_star # 3848
     begin 6
     obj_or_int VAR_01, 0x01
-    callnative BehStarCelebrationStarInit
+    callnative BehCelebrationStarInit
     begin_loop
-        callnative BehStarCelebrationStarLoop
+        callnative BehCelebrationStarLoop
     end_loop
 
-glabel beh_key_grab_sparkles # 3868
+glabel beh_celebration_star_sparkle # 3868
     begin 12
     billboard
     obj_or_int VAR_01, 0x01
@@ -3726,77 +3726,77 @@ glabel beh_key_grab_sparkles # 3868
     obj_set_int VAR_1A, -1
     begin_loop
         obj_add_int VAR_1A, 1
-        callnative BehKeyGrabSparklesLoop
+        callnative BehCelebrationStarSparkleLoop
     end_loop
 
-glabel beh_some_white_puff # 3890
+glabel beh_star_key_collection_puff_spawner # 3890
     begin 8
     billboard
     obj_or_int VAR_01, 0x01
     obj_set_int VAR_1A, -1
     begin_loop
-        callnative BehSomeWhitePuffLoop
+        callnative BehStarKeyCollectionPuffSpawnerLoop
     end_loop
 
-glabel beh_bascule_bridge # 38B0
+glabel beh_lll_drawbridge_spawner # 38B0
     begin 8
     unhide
     begin_loop
-        callnative BehBasculeBridgeLoop
+        callnative BehLLLDrawbridgeSpawnerLoop
     end_loop
 
-glabel beh_lll_tilting_bridge # 38C8
+glabel beh_lll_drawbridge # 38C8
     begin 9
     obj_or_int VAR_01, 0x09
     collision_data 0x0701D108
     begin_loop
-        callnative BehLllTiltingBridgeLoop
+        callnative BehLLLDrawbridgeLoop
         callnative load_object_collision_model
     end_loop
 
-glabel beh_rock_formation_eyes # 38F0
+glabel beh_small_bomp # 38F0
     begin 9
     obj_or_int VAR_01, 0x03
     collision_data 0x0700F868
-    callnative BehRockFormationEyesInit
+    callnative BehSmallBompInit
     begin_loop
-        callnative BehRockFormationEyesLoop
+        callnative BehSmallBompLoop
         callnative load_object_collision_model
     end_loop
 
-glabel beh_large_rock_eyes # 3920
+glabel beh_large_bomp # 3920
     begin 9
     obj_or_int VAR_01, 0x03
     collision_data 0x0700F934
-    callnative BehLargeRockEyesInit
+    callnative BehLargeBompInit
     begin_loop
-        callnative BehLargeRockEyesLoop
+        callnative BehLargeBompLoop
         callnative load_object_collision_model
     end_loop
 
-glabel beh_sliding_brick_platform_2 # 3950
+glabel beh_wf_sliding_brick_platform # 3950
     begin 9
     obj_or_int VAR_01, 0x03
     collision_data 0x0700FAA4
-    callnative BehSlidingBrickPlatform2Init
+    callnative BehWFSlidingBrickPlatformInit
     begin_loop
-        callnative BehSlidingBrickPlatform2Loop
+        callnative BehWFSlidingBrickPlatformLoop
         callnative load_object_collision_model
     end_loop
 
-glabel beh_moneybag_transforming # 3980
+glabel beh_moneybag # 3980
     begin 4
     obj_or_int VAR_01, 0x2009
     obj_set_int32 VAR_26, 0x06005E5C
     unknown_1E
     unknown_2D
     obj_set_int VAR_05, -1
-    callnative BehMoneybagTransformingInit
+    callnative BehMoneybagInit
     begin_loop
-        callnative BehMoneybagTransformingLoop
+        callnative BehMoneybagLoop
     end_loop
 
-glabel beh_moneybag # 39B4
+glabel beh_fake_moneybag_coin # 39B4
     begin 6
     obj_or_int VAR_01, 0x01
     obj_set_float VAR_15, 0x001B
@@ -3806,70 +3806,70 @@ glabel beh_moneybag # 39B4
     obj_set_int VAR_1A, -1
     begin_loop
         obj_add_int VAR_1A, 1
-        callnative BehMoneybagLoop
+        callnative BehFakeMoneybagCoinLoop
     end_loop
 
-glabel beh_rolling_ball # 39E8
+glabel beh_bob_pit_bowling_ball # 39E8
     begin 4
     obj_or_int VAR_01, 0x01
     billboard
     obj_set_float VAR_15, 130
-    callnative BehRollingBallInit
+    callnative BehBOBPitBowlingBallInit
     begin_loop
-        callnative BehRollingBallLoop
+        callnative BehBOBPitBowlingBallLoop
     end_loop
 
-glabel beh_rolling_metal_ball # 3A10
+glabel beh_free_bowling_ball # 3A10
     begin 4
     obj_or_int VAR_01, 0x01
     billboard
     obj_set_float VAR_15, 130
-    callnative BehRollingMetalBallInit
+    callnative BehFreeBowlingBallInit
     begin_loop
-        callnative BehRollingMetalBallLoop
+        callnative BehFreeBowlingBallLoop
     end_loop
 
-glabel beh_tiny_metal_ball # 3A38
+glabel beh_bowling_ball # 3A38
     begin 4
     obj_or_int VAR_01, 0x01
     billboard
     obj_set_float VAR_15, 130
-    callnative BehTinyMetalBallInit
+    callnative BehBowlingBallInit
     begin_loop
-        callnative BehTinyMetalBallLoop
+        callnative BehBowlingBallLoop
     end_loop
 
-glabel beh_metal_ball_generator_2 # 3A60
+glabel beh_ttm_bowling_ball_spawner # 3A60
     begin 4
     obj_or_int VAR_01, 0x01
     obj_set_int VAR_1D, 0x003F
-    callnative BehMetalBallGeneratorInit
+    callnative BehGenericBowlingBallSpawnerInit
     begin_loop
-        callnative BehMetalBallGeneratorLoop
+        callnative BehGenericBowlingBallSpawnerLoop
     end_loop
 
-glabel beh_metal_ball_generator # 3A84
+glabel beh_bob_bowling_ball_spawner # 3A84
     begin 4
     obj_or_int VAR_01, 0x01
     obj_set_int VAR_1D, 0x007F
-    callnative BehMetalBallGeneratorInit
+    callnative BehGenericBowlingBallSpawnerInit
     begin_loop
-        callnative BehMetalBallGeneratorLoop
+        callnative BehGenericBowlingBallSpawnerLoop
     end_loop
 
-glabel beh_mini_metal_balls_generator # 3AA8
+glabel beh_thi_bowling_ball_spawner # 3AA8
     begin 4
     obj_or_int VAR_01, 0x01
     begin_loop
-        callnative BehMiniMetalBallGeneratorLoop
+        callnative BehTHIBowlingBallSpawnerLoop
     end_loop
 
-glabel beh_flapping_wing # 3AC0
+glabel beh_rr_cruiser_wing # 3AC0
     begin 8
     obj_or_int VAR_01, 0x01
-    callnative BehFlappingWingInit
+    callnative BehRRCruiserWingInit
     begin_loop
-        callnative BehFlappingWingLoop
+        callnative BehRRCruiserWingLoop
     end_loop
 
 glabel beh_spindel # 3AE0

@@ -17,13 +17,13 @@ script_func_local_1:
     return
 
 script_func_local_2:
-    object /*unk2*/ 0x03, /*unk3*/ 0x00, /*pos*/ 1535, 3840, -5561, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_metal_ball_generator
-    object /*unk2*/ 0x3C, /*unk3*/ 0x00, /*pos*/ 1535, 3840, -5561, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_metal_ball_generator_2
-    object /*unk2*/ 0x03, /*unk3*/ 0x00, /*pos*/ 524, 2825, -5400, /*angle*/ 0, 0, 0, /*behArg*/ 0x00020000, /*beh*/ beh_metal_ball_generator
-    object /*unk2*/ 0x3C, /*unk3*/ 0x00, /*pos*/ 524, 2825, -5400, /*angle*/ 0, 0, 0, /*behArg*/ 0x00020000, /*beh*/ beh_metal_ball_generator_2
-    object /*unk2*/ 0x1F, /*unk3*/ 0xB4, /*pos*/ -993, 886, -3565, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_rolling_ball
-    object /*unk2*/ 0x1F, /*unk3*/ 0xB4, /*pos*/ -785, 886, -4301, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_rolling_ball
-    object /*unk2*/ 0x3E, /*unk3*/ 0xB4, /*pos*/ -93, 886, -3414, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_rolling_ball
+    object /*unk2*/ 0x03, /*unk3*/ 0x00, /*pos*/ 1535, 3840, -5561, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_bob_bowling_ball_spawner
+    object /*unk2*/ 0x3C, /*unk3*/ 0x00, /*pos*/ 1535, 3840, -5561, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_ttm_bowling_ball_spawner
+    object /*unk2*/ 0x03, /*unk3*/ 0x00, /*pos*/ 524, 2825, -5400, /*angle*/ 0, 0, 0, /*behArg*/ 0x00020000, /*beh*/ beh_bob_bowling_ball_spawner
+    object /*unk2*/ 0x3C, /*unk3*/ 0x00, /*pos*/ 524, 2825, -5400, /*angle*/ 0, 0, 0, /*behArg*/ 0x00020000, /*beh*/ beh_ttm_bowling_ball_spawner
+    object /*unk2*/ 0x1F, /*unk3*/ 0xB4, /*pos*/ -993, 886, -3565, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_bob_pit_bowling_ball
+    object /*unk2*/ 0x1F, /*unk3*/ 0xB4, /*pos*/ -785, 886, -4301, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_bob_pit_bowling_ball
+    object /*unk2*/ 0x3E, /*unk3*/ 0xB4, /*pos*/ -93, 886, -3414, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_bob_pit_bowling_ball
     object /*unk2*/ 0x01, /*unk3*/ 0xC3, /*pos*/ -5723, 140, 6017, /*angle*/ 0, 0, 0, /*behArg*/ 0x00020000, /*beh*/ beh_bobomb_buddy_advice_role
     object /*unk2*/ 0x01, /*unk3*/ 0xC3, /*pos*/ -6250, 0, 6680, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ beh_bobomb_buddy_advice_role
     object /*unk2*/ 0x3E, /*unk3*/ 0xC3, /*pos*/ -5723, 140, 6017, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_bobomb_buddy_cannon_role

@@ -10,10 +10,10 @@
 
 script_func_local_1:
     object /*unk2*/ 0x1F, /*unk3*/ 0x36, /*pos*/ 0, 0, 0, /*angle*/ 0, 90, 0, /*behArg*/ 0x00000000, /*beh*/ beh_tilting_bowser_lava_platform
-    object /*unk2*/ 0x1F, /*unk3*/ 0xB3, /*pos*/ 4, 1329, 3598, /*angle*/ 0, 90, 0, /*behArg*/ 0x00000000, /*beh*/ beh_bowser_bomb
-    object /*unk2*/ 0x1F, /*unk3*/ 0xB3, /*pos*/ 3584, 1329, 0, /*angle*/ 0, 90, 0, /*behArg*/ 0x00000000, /*beh*/ beh_bowser_bomb
-    object /*unk2*/ 0x1F, /*unk3*/ 0xB3, /*pos*/ 0, 1329, -3583, /*angle*/ 0, 90, 0, /*behArg*/ 0x00000000, /*beh*/ beh_bowser_bomb
-    object /*unk2*/ 0x1F, /*unk3*/ 0xB3, /*pos*/ -3583, 1329, 0, /*angle*/ 0, 90, 0, /*behArg*/ 0x00000000, /*beh*/ beh_bowser_bomb
+    object /*unk2*/ 0x1F, /*unk3*/ 0xB3, /*pos*/ 4, 1329, 3598, /*angle*/ 0, 90, 0, /*behArg*/ 0x00000000, /*beh*/ beh_bowser_mine
+    object /*unk2*/ 0x1F, /*unk3*/ 0xB3, /*pos*/ 3584, 1329, 0, /*angle*/ 0, 90, 0, /*behArg*/ 0x00000000, /*beh*/ beh_bowser_mine
+    object /*unk2*/ 0x1F, /*unk3*/ 0xB3, /*pos*/ 0, 1329, -3583, /*angle*/ 0, 90, 0, /*behArg*/ 0x00000000, /*beh*/ beh_bowser_mine
+    object /*unk2*/ 0x1F, /*unk3*/ 0xB3, /*pos*/ -3583, 1329, 0, /*angle*/ 0, 90, 0, /*behArg*/ 0x00000000, /*beh*/ beh_bowser_mine
     return
 
 glabel level_bowser_2_entry

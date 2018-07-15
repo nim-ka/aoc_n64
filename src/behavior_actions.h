@@ -84,7 +84,7 @@
 // extern ? BehWarpLoop(?);
 // extern ? BehFadingWarpLoop(?);
 // extern ? BehWhitePuffExplosingLoop(?);
-// extern ? func_802AA618(?);
+extern void func_802AA618(s32, s32, f32);
 // extern ? BehUnused080CInit(?);
 // extern ? func_802AA788(?);
 // extern ? func_802AA7EC(?);
@@ -563,7 +563,7 @@ extern void func_802AACE4(u32);
 // extern ? BehWaterDropsLoop(?);
 // extern ? BehSurfaceWavesLoop(?);
 // extern ? BehWaterSurfaceWhiteWaveInit(?);
-// extern ? BehGfxInit(?);
+// extern ? BehObjectBubbleRipplesInit(?);
 // extern ? BehSurfaceWaveShrinkingInit(?);
 // extern ? BehWaveTrailLoop(?);
 // extern ? BehWhiteWindParticleLoop(?);
