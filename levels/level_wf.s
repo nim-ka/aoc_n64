@@ -93,39 +93,39 @@ glabel level_wf_entry
     jump_link /*target*/ script_func_global_1
     jump_link /*target*/ script_func_global_2
     jump_link /*target*/ script_func_global_15
-    cmd22 /*unk2*/ 0x0017, /*unk4*/ 0x16000FE8
-    cmd22 /*unk2*/ 0x0003, /*unk4*/ 0x0E0007E0
-    cmd22 /*unk2*/ 0x0004, /*unk4*/ 0x0E000820
-    cmd22 /*unk2*/ 0x0005, /*unk4*/ 0x0E000860
-    cmd22 /*unk2*/ 0x0006, /*unk4*/ 0x0E000878
-    cmd22 /*unk2*/ 0x0007, /*unk4*/ 0x0E000890
-    cmd22 /*unk2*/ 0x0008, /*unk4*/ 0x0E0008A8
-    cmd22 /*unk2*/ 0x0009, /*unk4*/ 0x0E0008E8
-    cmd22 /*unk2*/ 0x000A, /*unk4*/ 0x0E000900
-    cmd22 /*unk2*/ 0x000C, /*unk4*/ 0x0E000940
-    cmd22 /*unk2*/ 0x000D, /*unk4*/ 0x0E000AE0
-    cmd22 /*unk2*/ 0x000E, /*unk4*/ 0x0E000958
-    cmd22 /*unk2*/ 0x000F, /*unk4*/ 0x0E0009A0
-    cmd22 /*unk2*/ 0x0010, /*unk4*/ 0x0E0009B8
-    cmd22 /*unk2*/ 0x0011, /*unk4*/ 0x0E0009D0
-    cmd22 /*unk2*/ 0x0012, /*unk4*/ 0x0E0009E8
-    cmd22 /*unk2*/ 0x00AE, /*unk4*/ 0x0E000A00
-    cmd22 /*unk2*/ 0x00B1, /*unk4*/ 0x0E000A40
-    cmd22 /*unk2*/ 0x00AF, /*unk4*/ 0x0E000A58
-    cmd22 /*unk2*/ 0x00AD, /*unk4*/ 0x0E000A98
-    cmd22 /*unk2*/ 0x00B0, /*unk4*/ 0x0E000AB0
-    cmd22 /*unk2*/ 0x00B2, /*unk4*/ 0x0E000AC8
-    cmd22 /*unk2*/ 0x002C, /*unk4*/ 0x0E000AF8
-    cmd22 /*unk2*/ 0x002D, /*unk4*/ 0x0E000B10
-    cmd22 /*unk2*/ 0x002E, /*unk4*/ 0x0E000B38
-    cmd22 /*unk2*/ 0x002F, /*unk4*/ 0x0E000B60
-    cmd22 /*unk2*/ 0x0036, /*unk4*/ 0x0E000B78
-    cmd22 /*unk2*/ 0x0037, /*unk4*/ 0x0E000B90
-    cmd22 /*unk2*/ 0x0038, /*unk4*/ 0x0E000BA8
-    cmd22 /*unk2*/ 0x0039, /*unk4*/ 0x0E000BE0
-    cmd22 /*unk2*/ 0x003A, /*unk4*/ 0x0E000BC8
+    cmd22 /*unk2*/ 0x0017, /*unk4*/ coin_X_geo_000FE8
+    cmd22 /*unk2*/ 0x0003, /*unk4*/ wf_geo_0007E0
+    cmd22 /*unk2*/ 0x0004, /*unk4*/ wf_geo_000820
+    cmd22 /*unk2*/ 0x0005, /*unk4*/ wf_geo_000860
+    cmd22 /*unk2*/ 0x0006, /*unk4*/ wf_geo_000878
+    cmd22 /*unk2*/ 0x0007, /*unk4*/ wf_geo_000890
+    cmd22 /*unk2*/ 0x0008, /*unk4*/ wf_geo_0008A8
+    cmd22 /*unk2*/ 0x0009, /*unk4*/ wf_geo_0008E8
+    cmd22 /*unk2*/ 0x000A, /*unk4*/ wf_geo_000900
+    cmd22 /*unk2*/ 0x000C, /*unk4*/ wf_geo_000940
+    cmd22 /*unk2*/ 0x000D, /*unk4*/ wf_geo_000AE0
+    cmd22 /*unk2*/ 0x000E, /*unk4*/ wf_geo_000958
+    cmd22 /*unk2*/ 0x000F, /*unk4*/ wf_geo_0009A0
+    cmd22 /*unk2*/ 0x0010, /*unk4*/ wf_geo_0009B8
+    cmd22 /*unk2*/ 0x0011, /*unk4*/ wf_geo_0009D0
+    cmd22 /*unk2*/ 0x0012, /*unk4*/ wf_geo_0009E8
+    cmd22 /*unk2*/ 0x00AE, /*unk4*/ wf_geo_000A00
+    cmd22 /*unk2*/ 0x00B1, /*unk4*/ wf_geo_000A40
+    cmd22 /*unk2*/ 0x00AF, /*unk4*/ wf_geo_000A58
+    cmd22 /*unk2*/ 0x00AD, /*unk4*/ wf_geo_000A98
+    cmd22 /*unk2*/ 0x00B0, /*unk4*/ wf_geo_000AB0
+    cmd22 /*unk2*/ 0x00B2, /*unk4*/ wf_geo_000AC8
+    cmd22 /*unk2*/ 0x002C, /*unk4*/ wf_geo_000AF8
+    cmd22 /*unk2*/ 0x002D, /*unk4*/ wf_geo_000B10
+    cmd22 /*unk2*/ 0x002E, /*unk4*/ wf_geo_000B38
+    cmd22 /*unk2*/ 0x002F, /*unk4*/ wf_geo_000B60
+    cmd22 /*unk2*/ 0x0036, /*unk4*/ wf_geo_000B78
+    cmd22 /*unk2*/ 0x0037, /*unk4*/ wf_geo_000B90
+    cmd22 /*unk2*/ 0x0038, /*unk4*/ wf_geo_000BA8
+    cmd22 /*unk2*/ 0x0039, /*unk4*/ wf_geo_000BE0
+    cmd22 /*unk2*/ 0x003A, /*unk4*/ wf_geo_000BC8
 
-    area /*index*/ 1, /*geo*/ 0x0E000BF8
+    area /*index*/ 1, /*geo*/ wf_geo_000BF8
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 2600, 1256, 5120, /*angle*/ 0, 90, 0, /*behArg*/ 0x000A0000, /*beh*/ beh_warps_74
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -2925, 2560, -947, /*angle*/ 0, 19, 0, /*behArg*/ 0x000B0000, /*beh*/ beh_fading_warp
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 2548, 1075, -3962, /*angle*/ 0, 51, 0, /*behArg*/ 0x000C0000, /*beh*/ beh_fading_warp
@@ -138,8 +138,8 @@ glabel level_wf_entry
         jump_link /*target*/ script_func_local_2
         jump_link /*target*/ script_func_local_3
         jump_link /*target*/ script_func_local_4
-        terrain /*terrainData*/ 0x070102D8
-        cmd39 /*unk4*/ 0x07011C38
+        terrain /*terrainData*/ wf_seg7_collision
+        cmd39 /*unk4*/ wf_seg7_macro_objs
         cmd30 /*unk2*/ 0x00, /*unk3*/ 0x1E
         set_music /*unk2*/ 0x0005, /*seq*/ 0x0003
         terrain_type /*terrainType*/ 0x0001

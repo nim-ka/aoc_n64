@@ -71,44 +71,44 @@ glabel level_rr_entry
     mario /*unk3*/ 0x01, /*behArg*/ 0x00000001, /*beh*/ beh_mario
     jump_link /*target*/ script_func_global_12
     jump_link /*target*/ script_func_global_1
-    cmd22 /*unk2*/ 0x0003, /*unk4*/ 0x0E000660
-    cmd22 /*unk2*/ 0x0004, /*unk4*/ 0x0E000678
-    cmd22 /*unk2*/ 0x0005, /*unk4*/ 0x0E000690
-    cmd22 /*unk2*/ 0x0006, /*unk4*/ 0x0E0006A8
-    cmd22 /*unk2*/ 0x0007, /*unk4*/ 0x0E0006C0
-    cmd22 /*unk2*/ 0x0008, /*unk4*/ 0x0E0006D8
-    cmd22 /*unk2*/ 0x0009, /*unk4*/ 0x0E0006F0
-    cmd22 /*unk2*/ 0x000A, /*unk4*/ 0x0E000708
-    cmd22 /*unk2*/ 0x000B, /*unk4*/ 0x0E000720
-    cmd22 /*unk2*/ 0x000C, /*unk4*/ 0x0E000738
-    cmd22 /*unk2*/ 0x000D, /*unk4*/ 0x0E000758
-    cmd22 /*unk2*/ 0x000E, /*unk4*/ 0x0E000770
-    cmd22 /*unk2*/ 0x000F, /*unk4*/ 0x0E000788
-    cmd22 /*unk2*/ 0x0010, /*unk4*/ 0x0E0007A0
-    cmd22 /*unk2*/ 0x0011, /*unk4*/ 0x0E0007B8
-    cmd22 /*unk2*/ 0x0012, /*unk4*/ 0x0E0007D0
-    cmd22 /*unk2*/ 0x0013, /*unk4*/ 0x0E0007E8
-    cmd22 /*unk2*/ 0x0014, /*unk4*/ 0x0E000800
-    cmd22 /*unk2*/ 0x0015, /*unk4*/ 0x0E000818
-    cmd22 /*unk2*/ 0x0016, /*unk4*/ 0x0E000830
-    cmd22 /*unk2*/ 0x0036, /*unk4*/ 0x0E0008C0
-    cmd22 /*unk2*/ 0x0037, /*unk4*/ 0x0E000848
-    cmd22 /*unk2*/ 0x0038, /*unk4*/ 0x0E0008A8
-    cmd22 /*unk2*/ 0x0039, /*unk4*/ 0x0E000878
-    cmd22 /*unk2*/ 0x003A, /*unk4*/ 0x0E0008D8
-    cmd22 /*unk2*/ 0x003B, /*unk4*/ 0x0E000890
-    cmd22 /*unk2*/ 0x003C, /*unk4*/ 0x0E000908
-    cmd22 /*unk2*/ 0x003D, /*unk4*/ 0x0E000940
-    cmd22 /*unk2*/ 0x003E, /*unk4*/ 0x0E000860
-    cmd22 /*unk2*/ 0x003F, /*unk4*/ 0x0E000920
-    cmd22 /*unk2*/ 0x0040, /*unk4*/ 0x0E0008F0
-    cmd22 /*unk2*/ 0x0041, /*unk4*/ 0x0E000958
-    cmd22 /*unk2*/ 0x0042, /*unk4*/ 0x0E000970
-    cmd22 /*unk2*/ 0x0043, /*unk4*/ 0x0E000988
-    cmd22 /*unk2*/ 0x0044, /*unk4*/ 0x0E0009A0
-    cmd22 /*unk2*/ 0x0045, /*unk4*/ 0x0E0009B8
+    cmd22 /*unk2*/ 0x0003, /*unk4*/ rr_geo_000660
+    cmd22 /*unk2*/ 0x0004, /*unk4*/ rr_geo_000678
+    cmd22 /*unk2*/ 0x0005, /*unk4*/ rr_geo_000690
+    cmd22 /*unk2*/ 0x0006, /*unk4*/ rr_geo_0006A8
+    cmd22 /*unk2*/ 0x0007, /*unk4*/ rr_geo_0006C0
+    cmd22 /*unk2*/ 0x0008, /*unk4*/ rr_geo_0006D8
+    cmd22 /*unk2*/ 0x0009, /*unk4*/ rr_geo_0006F0
+    cmd22 /*unk2*/ 0x000A, /*unk4*/ rr_geo_000708
+    cmd22 /*unk2*/ 0x000B, /*unk4*/ rr_geo_000720
+    cmd22 /*unk2*/ 0x000C, /*unk4*/ rr_geo_000738
+    cmd22 /*unk2*/ 0x000D, /*unk4*/ rr_geo_000758
+    cmd22 /*unk2*/ 0x000E, /*unk4*/ rr_geo_000770
+    cmd22 /*unk2*/ 0x000F, /*unk4*/ rr_geo_000788
+    cmd22 /*unk2*/ 0x0010, /*unk4*/ rr_geo_0007A0
+    cmd22 /*unk2*/ 0x0011, /*unk4*/ rr_geo_0007B8
+    cmd22 /*unk2*/ 0x0012, /*unk4*/ rr_geo_0007D0
+    cmd22 /*unk2*/ 0x0013, /*unk4*/ rr_geo_0007E8
+    cmd22 /*unk2*/ 0x0014, /*unk4*/ rr_geo_000800
+    cmd22 /*unk2*/ 0x0015, /*unk4*/ rr_geo_000818
+    cmd22 /*unk2*/ 0x0016, /*unk4*/ rr_geo_000830
+    cmd22 /*unk2*/ 0x0036, /*unk4*/ rr_geo_0008C0
+    cmd22 /*unk2*/ 0x0037, /*unk4*/ rr_geo_000848
+    cmd22 /*unk2*/ 0x0038, /*unk4*/ rr_geo_0008A8
+    cmd22 /*unk2*/ 0x0039, /*unk4*/ rr_geo_000878
+    cmd22 /*unk2*/ 0x003A, /*unk4*/ rr_geo_0008D8
+    cmd22 /*unk2*/ 0x003B, /*unk4*/ rr_geo_000890
+    cmd22 /*unk2*/ 0x003C, /*unk4*/ rr_geo_000908
+    cmd22 /*unk2*/ 0x003D, /*unk4*/ rr_geo_000940
+    cmd22 /*unk2*/ 0x003E, /*unk4*/ rr_geo_000860
+    cmd22 /*unk2*/ 0x003F, /*unk4*/ rr_geo_000920
+    cmd22 /*unk2*/ 0x0040, /*unk4*/ rr_geo_0008F0
+    cmd22 /*unk2*/ 0x0041, /*unk4*/ rr_geo_000958
+    cmd22 /*unk2*/ 0x0042, /*unk4*/ rr_geo_000970
+    cmd22 /*unk2*/ 0x0043, /*unk4*/ rr_geo_000988
+    cmd22 /*unk2*/ 0x0044, /*unk4*/ rr_geo_0009A0
+    cmd22 /*unk2*/ 0x0045, /*unk4*/ rr_geo_0009B8
 
-    area /*index*/ 1, /*geo*/ 0x0E0009D0
+    area /*index*/ 1, /*geo*/ rr_geo_0009D0
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 2599, -833, 2071, /*angle*/ 0, 90, 0, /*behArg*/ 0x000A0000, /*beh*/ beh_warps_74
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -7092, 2364, -63, /*angle*/ 0, 90, 0, /*behArg*/ 0x000B0000, /*beh*/ beh_fading_warp
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -4213, 3379, -2815, /*angle*/ 0, 180, 0, /*behArg*/ 0x000C0000, /*beh*/ beh_fading_warp
@@ -120,8 +120,8 @@ glabel level_rr_entry
         jump_link /*target*/ script_func_local_1
         jump_link /*target*/ script_func_local_2
         jump_link /*target*/ script_func_local_3
-        terrain /*terrainData*/ 0x0702A9A8
-        cmd39 /*unk4*/ 0x0702E9D8
+        terrain /*terrainData*/ rr_seg7_collision
+        cmd39 /*unk4*/ rr_seg7_macro_objs
         set_music /*unk2*/ 0x0000, /*seq*/ 0x0009
         terrain_type /*terrainType*/ 0x0001
     end_area

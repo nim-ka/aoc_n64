@@ -91,7 +91,7 @@ void BehActSelectorInit(void)
         D_801A8014 = D_801B9912;
         D_801B9912++;
     }
-    
+
     if (D_801B9911 == 6)
         D_801B9913 = D_801B9912;
     if (D_801B9911 == 0)
@@ -151,7 +151,7 @@ void ShowSomeNum(void)
 
     func_802D6590(1, 158.0f, 81.0f, 0.0f);
 
-    gSPDisplayList(gDisplayListHead++, mm7_f3d_00F228);
+    gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700F228);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
     gSPDisplayList(gDisplayListHead++, seg2_f3d_00ED00);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
@@ -198,7 +198,7 @@ void func_80177004(void)
 
     ShowSomeNum();
 
-    gSPDisplayList(gDisplayListHead++, mm7_f3d_00D108);
+    gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D108);
     gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, 255);
 
     if (D_801B9912 != 0)
@@ -214,7 +214,7 @@ void func_80177004(void)
         PrintRegularText(sp47 * 34 - D_801B9912 * 17 + 0x8B, 38, sp5C);
     }
 
-    gSPDisplayList(gDisplayListHead++, mm7_f3d_00D160);
+    gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D160);
 }
 
 int Geo18_80177518(s16 a, UNUSED int b)

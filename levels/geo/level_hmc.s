@@ -1,305 +1,351 @@
-# 0530
-.word 0x200003E8
-.word 0x04000000
-.word   0x15040000, 0x0701FFF8
-.word 0x05000000
-.word 0x01000000
-# 0548
-.word 0x2000012C
-.word 0x04000000
-.word   0x16000000, 0x00B40190
-.word   0x04000000
-.word     0x15010000, 0x07023BC8
-.word   0x05000000
-.word 0x05000000
-.word 0x01000000
-# 0570
-.word 0x20000096
-.word 0x04000000
-.word   0x15010000, 0x07023E10
-.word 0x05000000
-.word 0x01000000
-# 0588
-.word 0x20000064
-.word 0x04000000
-.word   0x15010000, 0x07024110
-.word 0x05000000
-.word 0x01000000
-# 05A0
-.word 0x20000226
-.word 0x04000000
-.word   0x15010000, 0x07022DA0
-.word 0x05000000
-.word 0x01000000
-# 05B8
-.word 0x200000C8
-.word 0x04000000
-.word   0x15010000, 0x07023090
-.word 0x05000000
-.word 0x01000000
-# 05D0
-.word 0x200001F4
-.word 0x04000000
-.word   0x15010000, 0x07022AA0
-.word 0x05000000
-.word 0x01000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x070078B0
-.word   0x15040000, 0x07007B50
-.word   0x15050000, 0x070080E8
-.word   0x15010000, 0x070093F0
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x0700E448
-.word   0x15040000, 0x0700EF00
-.word   0x15050000, 0x0700F3E8
-.word   0x15010000, 0x0700FA40
-.word   0x15050000, 0x0700FEF0
-.word   0x15020000, 0x07010070
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x07013CA8
-.word   0x15040000, 0x07013E80
-.word   0x15050000, 0x07014300
-.word   0x15050000, 0x07014B08
-.word   0x15010000, 0x07014C00
-.word   0x15050000, 0x07014E48
-.word   0x18000000, Geo18_802D01E0
-.word   0x18000702, Geo18_802D104C
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x070173A8
-.word   0x15040000, 0x07017C98
-.word   0x15050000, 0x07018200
-.word   0x15010000, 0x07019248
-.word   0x15050000, 0x07019368
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x0701A080
-.word   0x15040000, 0x0701A400
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x0701E820
-.word   0x15040000, 0x0701F1B0
-.word   0x15050000, 0x0701F690
-.word   0x15050000, 0x0701F818
-.word   0x15010000, 0x0701FD58
-.word   0x18000000, Geo18_802D01E0
-.word   0x18000701, Geo18_802D104C
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x07020FD0
-.word   0x18000000, Geo18_802D5D0C
-.word   0x18000000, Geo18_802D5B98
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x07021760
-.word   0x15050000, 0x07021BA0
-.word   0x15010000, 0x070228A0
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x070078B0
-.word   0x15040000, 0x07007B50
-.word   0x15050000, 0x070080E8
-.word   0x15010000, 0x070093F0
-.word   0x15010000, 0x0700E448
-.word   0x15040000, 0x0700EF00
-.word   0x15050000, 0x0700F3E8
-.word   0x15010000, 0x0700FA40
-.word   0x15050000, 0x0700FEF0
-.word   0x15020000, 0x07010070
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x070078B0
-.word   0x15040000, 0x07007B50
-.word   0x15050000, 0x070080E8
-.word   0x15010000, 0x070093F0
-.word   0x15010000, 0x070173A8
-.word   0x15040000, 0x07017C98
-.word   0x15050000, 0x07018200
-.word   0x15010000, 0x07019248
-.word   0x15050000, 0x07019368
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x0700E448
-.word   0x15040000, 0x0700EF00
-.word   0x15050000, 0x0700F3E8
-.word   0x15010000, 0x0700FA40
-.word   0x15050000, 0x0700FEF0
-.word   0x15020000, 0x07010070
-.word   0x15010000, 0x07013CA8
-.word   0x15040000, 0x07013E80
-.word   0x15050000, 0x07014300
-.word   0x15050000, 0x07014B08
-.word   0x15010000, 0x07014C00
-.word   0x15050000, 0x07014E48
-.word   0x18000000, Geo18_802D01E0
-.word   0x18000702, Geo18_802D104C
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x0700E448
-.word   0x15040000, 0x0700EF00
-.word   0x15050000, 0x0700F3E8
-.word   0x15010000, 0x0700FA40
-.word   0x15050000, 0x0700FEF0
-.word   0x15020000, 0x07010070
-.word   0x15010000, 0x070173A8
-.word   0x15040000, 0x07017C98
-.word   0x15050000, 0x07018200
-.word   0x15010000, 0x07019248
-.word   0x15050000, 0x07019368
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x07013CA8
-.word   0x15040000, 0x07013E80
-.word   0x15050000, 0x07014300
-.word   0x15050000, 0x07014B08
-.word   0x15010000, 0x07014C00
-.word   0x15050000, 0x07014E48
-.word   0x15010000, 0x0701A080
-.word   0x15040000, 0x0701A400
-.word   0x18000000, Geo18_802D01E0
-.word   0x18000702, Geo18_802D104C
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x07013CA8
-.word   0x15040000, 0x07013E80
-.word   0x15050000, 0x07014300
-.word   0x15050000, 0x07014B08
-.word   0x15010000, 0x07014C00
-.word   0x15050000, 0x07014E48
-.word   0x15010000, 0x0701E820
-.word   0x15040000, 0x0701F1B0
-.word   0x15050000, 0x0701F690
-.word   0x15050000, 0x0701F818
-.word   0x15010000, 0x0701FD58
-.word   0x18000000, Geo18_802D01E0
-.word   0x18000701, Geo18_802D104C
-.word   0x18000702, Geo18_802D104C
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x070173A8
-.word   0x15040000, 0x07017C98
-.word   0x15050000, 0x07018200
-.word   0x15010000, 0x07019248
-.word   0x15050000, 0x07019368
-.word   0x15010000, 0x0701E820
-.word   0x15040000, 0x0701F1B0
-.word   0x15050000, 0x0701F690
-.word   0x15050000, 0x0701F818
-.word   0x15010000, 0x0701FD58
-.word   0x18000000, Geo18_802D01E0
-.word   0x18000701, Geo18_802D104C
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x0701E820
-.word   0x15040000, 0x0701F1B0
-.word   0x15050000, 0x0701F690
-.word   0x15050000, 0x0701F818
-.word   0x15010000, 0x0701FD58
-.word   0x15010000, 0x07020FD0
-.word   0x18000000, Geo18_802D5D0C
-.word   0x18000000, Geo18_802D5B98
-.word   0x18000000, Geo18_802D01E0
-.word   0x18000701, Geo18_802D104C
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x0701E820
-.word   0x15040000, 0x0701F1B0
-.word   0x15050000, 0x0701F690
-.word   0x15050000, 0x0701F818
-.word   0x15010000, 0x0701FD58
-.word   0x15010000, 0x07021760
-.word   0x15050000, 0x07021BA0
-.word   0x15010000, 0x070228A0
-.word   0x18000000, Geo18_802D01E0
-.word   0x18000701, Geo18_802D104C
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x070173A8
-.word   0x15040000, 0x07017C98
-.word   0x15050000, 0x07018200
-.word   0x15010000, 0x07019248
-.word   0x15050000, 0x07019368
-.word   0x15010000, 0x0701A080
-.word   0x15040000, 0x0701A400
-.word 0x05000000
-.word 0x03000000
-.word 0x0800000A, 0x00A00078, 0x00A00078
-.word 0x04000000
-.word   0x0C000000
-.word   0x04000000
-.word     0x09000064
-.word     0x04000000
-.word       0x19000001, 0x00000000
-.word     0x05000000
-.word   0x05000000
-.word   0x0C010000
-.word   0x04000000
-.word     0x0A01002D, 0x00643200, Geo0A_8029AA3C
-.word     0x04000000
-.word       0x0F000010, 0x000007D0, 0x17700000, 0x00000000, Geo0F_80287D30
-.word       0x04000000
-.word         0x0E000012, GeoSwitchCaseBlinking
-.word         0x04000000
-.word           0x02010000, 0x0E0005E8
-.word           0x02010000, 0x0E000618
-.word           0x02010000, 0x0E000658
-.word           0x02010000, 0x0E0006A8
-.word           0x02010000, 0x0E0006E0
-.word           0x02010000, 0x0E000700
-.word           0x02010000, 0x0E000748
-.word           0x02010000, 0x0E000770
-.word           0x02010000, 0x0E000798
-.word           0x02010000, 0x0E0007F8
-.word           0x02010000, 0x0E000850
-.word           0x02010000, 0x0E0008D0
-.word           0x02010000, 0x0E000938
-.word           0x02010000, 0x0E000998
-.word           0x02010000, 0x0E000A18
-.word           0x02010000, 0x0E000A88
-.word           0x02010000, 0x0E000AE8
-.word           0x02010000, 0x0E000B48
-.word         0x05000000
-.word         0x17000000
-.word         0x18000000, Geo18_802761D0
-.word       0x05000000
-.word     0x05000000
-.word   0x05000000
-.word 0x05000000
-.word 0x01000000
+.include "geo_commands.inc"
+
+glabel hmc_geo_000530 # 0530
+   geo_start_distance 1000
+      geo_open_node
+         geo_display_list 0x04, hmc_seg7_dl_0701FFF8
+      geo_close_node
+   geo_end
+
+glabel hmc_geo_000548 # 0548
+   geo_start_distance 300
+      geo_open_node
+         geo_shadow SHADOW_CIRCLE_UNK0, 0xB4, 400
+            geo_open_node
+               geo_display_list 0x01, hmc_seg7_dl_07023BC8
+            geo_close_node
+         geo_close_node
+      geo_end
+
+glabel hmc_geo_000570 # 0570
+   geo_start_distance 150
+      geo_open_node
+         geo_display_list 0x01, hmc_seg7_dl_07023E10
+      geo_close_node
+   geo_end
+
+glabel hmc_geo_000588 # 0588
+   geo_start_distance 100
+      geo_open_node
+         geo_display_list 0x01, hmc_seg7_dl_07024110
+      geo_close_node
+   geo_end
+
+glabel hmc_geo_0005A0 # 05A0
+   geo_start_distance 550
+      geo_open_node
+         geo_display_list 0x01, hmc_seg7_dl_07022DA0
+      geo_close_node
+   geo_end
+
+glabel hmc_geo_0005B8 # 05B8
+   geo_start_distance 200
+      geo_open_node
+         geo_display_list 0x01, hmc_seg7_dl_07023090
+      geo_close_node
+   geo_end
+
+glabel hmc_geo_0005D0 # 05D0
+   geo_start_distance 500
+      geo_open_node
+         geo_display_list 0x01, hmc_seg7_dl_07022AA0
+      geo_close_node
+   geo_end
+
+glabel hmc_geo_0005E8 # 05E8
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, hmc_seg7_dl_070078B0
+         geo_display_list 0x04, hmc_seg7_dl_07007B50
+         geo_display_list 0x05, hmc_seg7_dl_070080E8
+         geo_display_list 0x01, hmc_seg7_dl_070093F0
+      geo_close_node
+   geo_return
+
+glabel hmc_geo_000618 # 0618
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, hmc_seg7_dl_0700E448
+         geo_display_list 0x04, hmc_seg7_dl_0700EF00
+         geo_display_list 0x05, hmc_seg7_dl_0700F3E8
+         geo_display_list 0x01, hmc_seg7_dl_0700FA40
+         geo_display_list 0x05, hmc_seg7_dl_0700FEF0
+         geo_display_list 0x02, hmc_seg7_dl_07010070
+      geo_close_node
+   geo_return
+
+glabel hmc_geo_000658 # 0658
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, hmc_seg7_dl_07013CA8
+         geo_display_list 0x04, hmc_seg7_dl_07013E80
+         geo_display_list 0x05, hmc_seg7_dl_07014300
+         geo_display_list 0x05, hmc_seg7_dl_07014B08
+         geo_display_list 0x01, hmc_seg7_dl_07014C00
+         geo_display_list 0x05, hmc_seg7_dl_07014E48
+         geo_asm    0, Geo18_802D01E0
+         geo_asm 1794, Geo18_802D104C
+      geo_close_node
+   geo_return
+
+glabel hmc_geo_0006A8 # 06A8
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, hmc_seg7_dl_070173A8
+         geo_display_list 0x04, hmc_seg7_dl_07017C98
+         geo_display_list 0x05, hmc_seg7_dl_07018200
+         geo_display_list 0x01, hmc_seg7_dl_07019248
+         geo_display_list 0x05, hmc_seg7_dl_07019368
+      geo_close_node
+   geo_return
+
+glabel hmc_geo_0006E0 # 06E0
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, hmc_seg7_dl_0701A080
+         geo_display_list 0x04, hmc_seg7_dl_0701A400
+      geo_close_node
+   geo_return
+
+glabel hmc_geo_000700 # 0700
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, hmc_seg7_dl_0701E820
+         geo_display_list 0x04, hmc_seg7_dl_0701F1B0
+         geo_display_list 0x05, hmc_seg7_dl_0701F690
+         geo_display_list 0x05, hmc_seg7_dl_0701F818
+         geo_display_list 0x01, hmc_seg7_dl_0701FD58
+         geo_asm 0, Geo18_802D01E0
+         geo_asm 1793, Geo18_802D104C
+      geo_close_node
+   geo_return
+
+glabel hmc_geo_000748 # 0748
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, hmc_seg7_dl_07020FD0
+         geo_asm 0, Geo18_802D5D0C
+         geo_asm 0, Geo18_802D5B98
+      geo_close_node
+   geo_return
+
+glabel hmc_geo_000770 # 0770
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, hmc_seg7_dl_07021760
+         geo_display_list 0x05, hmc_seg7_dl_07021BA0
+         geo_display_list 0x01, hmc_seg7_dl_070228A0
+      geo_close_node
+   geo_return
+
+glabel hmc_geo_000798 # 0798
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, hmc_seg7_dl_070078B0
+         geo_display_list 0x04, hmc_seg7_dl_07007B50
+         geo_display_list 0x05, hmc_seg7_dl_070080E8
+         geo_display_list 0x01, hmc_seg7_dl_070093F0
+         geo_display_list 0x01, hmc_seg7_dl_0700E448
+         geo_display_list 0x04, hmc_seg7_dl_0700EF00
+         geo_display_list 0x05, hmc_seg7_dl_0700F3E8
+         geo_display_list 0x01, hmc_seg7_dl_0700FA40
+         geo_display_list 0x05, hmc_seg7_dl_0700FEF0
+         geo_display_list 0x02, hmc_seg7_dl_07010070
+      geo_close_node
+   geo_return
+
+glabel hmc_geo_0007F8 # 07F8
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, hmc_seg7_dl_070078B0
+         geo_display_list 0x04, hmc_seg7_dl_07007B50
+         geo_display_list 0x05, hmc_seg7_dl_070080E8
+         geo_display_list 0x01, hmc_seg7_dl_070093F0
+         geo_display_list 0x01, hmc_seg7_dl_070173A8
+         geo_display_list 0x04, hmc_seg7_dl_07017C98
+         geo_display_list 0x05, hmc_seg7_dl_07018200
+         geo_display_list 0x01, hmc_seg7_dl_07019248
+         geo_display_list 0x05, hmc_seg7_dl_07019368
+      geo_close_node
+   geo_return
+
+glabel hmc_geo_000850 # 0850
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, hmc_seg7_dl_0700E448
+         geo_display_list 0x04, hmc_seg7_dl_0700EF00
+         geo_display_list 0x05, hmc_seg7_dl_0700F3E8
+         geo_display_list 0x01, hmc_seg7_dl_0700FA40
+         geo_display_list 0x05, hmc_seg7_dl_0700FEF0
+         geo_display_list 0x02, hmc_seg7_dl_07010070
+         geo_display_list 0x01, hmc_seg7_dl_07013CA8
+         geo_display_list 0x04, hmc_seg7_dl_07013E80
+         geo_display_list 0x05, hmc_seg7_dl_07014300
+         geo_display_list 0x05, hmc_seg7_dl_07014B08
+         geo_display_list 0x01, hmc_seg7_dl_07014C00
+         geo_display_list 0x05, hmc_seg7_dl_07014E48
+         geo_asm    0, Geo18_802D01E0
+         geo_asm 1794, Geo18_802D104C
+      geo_close_node
+   geo_return
+
+glabel hmc_geo_0008D0 # 08D0
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, hmc_seg7_dl_0700E448
+         geo_display_list 0x04, hmc_seg7_dl_0700EF00
+         geo_display_list 0x05, hmc_seg7_dl_0700F3E8
+         geo_display_list 0x01, hmc_seg7_dl_0700FA40
+         geo_display_list 0x05, hmc_seg7_dl_0700FEF0
+         geo_display_list 0x02, hmc_seg7_dl_07010070
+         geo_display_list 0x01, hmc_seg7_dl_070173A8
+         geo_display_list 0x04, hmc_seg7_dl_07017C98
+         geo_display_list 0x05, hmc_seg7_dl_07018200
+         geo_display_list 0x01, hmc_seg7_dl_07019248
+         geo_display_list 0x05, hmc_seg7_dl_07019368
+      geo_close_node
+   geo_return
+
+glabel hmc_geo_000938 # 0938
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, hmc_seg7_dl_07013CA8
+         geo_display_list 0x04, hmc_seg7_dl_07013E80
+         geo_display_list 0x05, hmc_seg7_dl_07014300
+         geo_display_list 0x05, hmc_seg7_dl_07014B08
+         geo_display_list 0x01, hmc_seg7_dl_07014C00
+         geo_display_list 0x05, hmc_seg7_dl_07014E48
+         geo_display_list 0x01, hmc_seg7_dl_0701A080
+         geo_display_list 0x04, hmc_seg7_dl_0701A400
+         geo_asm    0, Geo18_802D01E0
+         geo_asm 1794, Geo18_802D104C
+      geo_close_node
+   geo_return
+
+glabel hmc_geo_000998 # 0998
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, hmc_seg7_dl_07013CA8
+         geo_display_list 0x04, hmc_seg7_dl_07013E80
+         geo_display_list 0x05, hmc_seg7_dl_07014300
+         geo_display_list 0x05, hmc_seg7_dl_07014B08
+         geo_display_list 0x01, hmc_seg7_dl_07014C00
+         geo_display_list 0x05, hmc_seg7_dl_07014E48
+         geo_display_list 0x01, hmc_seg7_dl_0701E820
+         geo_display_list 0x04, hmc_seg7_dl_0701F1B0
+         geo_display_list 0x05, hmc_seg7_dl_0701F690
+         geo_display_list 0x05, hmc_seg7_dl_0701F818
+         geo_display_list 0x01, hmc_seg7_dl_0701FD58
+         geo_asm    0, Geo18_802D01E0
+         geo_asm 1793, Geo18_802D104C
+         geo_asm 1794, Geo18_802D104C
+      geo_close_node
+   geo_return
+
+glabel hmc_geo_000A18 # 0A18
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, hmc_seg7_dl_070173A8
+         geo_display_list 0x04, hmc_seg7_dl_07017C98
+         geo_display_list 0x05, hmc_seg7_dl_07018200
+         geo_display_list 0x01, hmc_seg7_dl_07019248
+         geo_display_list 0x05, hmc_seg7_dl_07019368
+         geo_display_list 0x01, hmc_seg7_dl_0701E820
+         geo_display_list 0x04, hmc_seg7_dl_0701F1B0
+         geo_display_list 0x05, hmc_seg7_dl_0701F690
+         geo_display_list 0x05, hmc_seg7_dl_0701F818
+         geo_display_list 0x01, hmc_seg7_dl_0701FD58
+         geo_asm    0, Geo18_802D01E0
+         geo_asm 1793, Geo18_802D104C
+      geo_close_node
+   geo_return
+
+glabel hmc_geo_000A88 # 0A88
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, hmc_seg7_dl_0701E820
+         geo_display_list 0x04, hmc_seg7_dl_0701F1B0
+         geo_display_list 0x05, hmc_seg7_dl_0701F690
+         geo_display_list 0x05, hmc_seg7_dl_0701F818
+         geo_display_list 0x01, hmc_seg7_dl_0701FD58
+         geo_display_list 0x01, hmc_seg7_dl_07020FD0
+         geo_asm    0, Geo18_802D5D0C
+         geo_asm    0, Geo18_802D5B98
+         geo_asm    0, Geo18_802D01E0
+         geo_asm 1793, Geo18_802D104C
+      geo_close_node
+   geo_return
+
+glabel hmc_geo_000AE8 # 0AE8
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, hmc_seg7_dl_0701E820
+         geo_display_list 0x04, hmc_seg7_dl_0701F1B0
+         geo_display_list 0x05, hmc_seg7_dl_0701F690
+         geo_display_list 0x05, hmc_seg7_dl_0701F818
+         geo_display_list 0x01, hmc_seg7_dl_0701FD58
+         geo_display_list 0x01, hmc_seg7_dl_07021760
+         geo_display_list 0x05, hmc_seg7_dl_07021BA0
+         geo_display_list 0x01, hmc_seg7_dl_070228A0
+         geo_asm    0, Geo18_802D01E0
+         geo_asm 1793, Geo18_802D104C
+      geo_close_node
+   geo_return
+
+glabel hmc_geo_000B48 # 0B48
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, hmc_seg7_dl_070173A8
+         geo_display_list 0x04, hmc_seg7_dl_07017C98
+         geo_display_list 0x05, hmc_seg7_dl_07018200
+         geo_display_list 0x01, hmc_seg7_dl_07019248
+         geo_display_list 0x05, hmc_seg7_dl_07019368
+         geo_display_list 0x01, hmc_seg7_dl_0701A080
+         geo_display_list 0x04, hmc_seg7_dl_0701A400
+      geo_close_node
+   geo_return
+
+glabel hmc_geo_000B90 # 0B90
+   geo_node_screen_area 10, 160, 120, 160, 120
+      geo_open_node
+         geo_zbuffer 0
+         geo_open_node
+            geo_todo_09 100
+            geo_open_node
+               geo_background 0x0001
+            geo_close_node
+         geo_close_node
+         geo_zbuffer 1
+         geo_open_node
+            geo_camera_frustum 45, 100, 12800, Geo0A_8029AA3C
+            geo_open_node
+               geo_todo_0F 16, 0, 2000, 6000, 0, 0, 0, Geo0F_80287D30
+               geo_open_node
+                  geo_switch_case 18, GeoSwitchCaseBlinking
+                  geo_open_node
+                     geo_branch 1, hmc_geo_0005E8 # 0x0E0005E8
+                     geo_branch 1, hmc_geo_000618 # 0x0E000618
+                     geo_branch 1, hmc_geo_000658 # 0x0E000658
+                     geo_branch 1, hmc_geo_0006A8 # 0x0E0006A8
+                     geo_branch 1, hmc_geo_0006E0 # 0x0E0006E0
+                     geo_branch 1, hmc_geo_000700 # 0x0E000700
+                     geo_branch 1, hmc_geo_000748 # 0x0E000748
+                     geo_branch 1, hmc_geo_000770 # 0x0E000770
+                     geo_branch 1, hmc_geo_000798 # 0x0E000798
+                     geo_branch 1, hmc_geo_0007F8 # 0x0E0007F8
+                     geo_branch 1, hmc_geo_000850 # 0x0E000850
+                     geo_branch 1, hmc_geo_0008D0 # 0x0E0008D0
+                     geo_branch 1, hmc_geo_000938 # 0x0E000938
+                     geo_branch 1, hmc_geo_000998 # 0x0E000998
+                     geo_branch 1, hmc_geo_000A18 # 0x0E000A18
+                     geo_branch 1, hmc_geo_000A88 # 0x0E000A88
+                     geo_branch 1, hmc_geo_000AE8 # 0x0E000AE8
+                     geo_branch 1, hmc_geo_000B48 # 0x0E000B48
+                  geo_close_node
+                  geo_todo_17
+                  geo_asm 0, Geo18_802761D0
+               geo_close_node
+            geo_close_node
+         geo_close_node
+      geo_close_node
+   geo_end

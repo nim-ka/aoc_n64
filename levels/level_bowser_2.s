@@ -27,15 +27,15 @@ glabel level_bowser_2_entry
     alloc_level_pool
     mario /*unk3*/ 0x01, /*behArg*/ 0x00000001, /*beh*/ beh_mario
     jump_link /*target*/ script_func_global_13
-    cmd22 /*unk2*/ 0x0036, /*unk4*/ 0x0E000170
+    cmd22 /*unk2*/ 0x0036, /*unk4*/ bowser_2_geo_000170
 
-    area /*index*/ 1, /*geo*/ 0x0E000188
+    area /*index*/ 1, /*geo*/ bowser_2_geo_000188
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 0, 2229, 0, /*angle*/ 0, 180, 0, /*behArg*/ 0x000A0000, /*beh*/ beh_warps_6C
         warp_node /*id*/ 0x0A, /*destLevel1*/ 0x21, /*destArea*/ 0x01, /*destNode*/ 0x0A, /*destLevel2*/ 0x00
         warp_node /*id*/ 0xF0, /*destLevel1*/ 0x06, /*destArea*/ 0x03, /*destNode*/ 0x36, /*destLevel2*/ 0x00
         warp_node /*id*/ 0xF1, /*destLevel1*/ 0x13, /*destArea*/ 0x01, /*destNode*/ 0x0C, /*destLevel2*/ 0x00
         jump_link /*target*/ script_func_local_1
-        terrain /*terrainData*/ 0x070019F0
+        terrain /*terrainData*/ bowser_2_seg7_collision
         set_music /*unk2*/ 0x0002, /*seq*/ 0x0007
         terrain_type /*terrainType*/ 0x0001
     end_area

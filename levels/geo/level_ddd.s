@@ -1,82 +1,90 @@
-# 0450
-.word 0x200002BC
-.word 0x04000000
-.word   0x1600000A, 0x00B40078
-.word   0x04000000
-.word     0x15010000, 0x0700D2A0
-.word   0x05000000
-.word 0x05000000
-.word 0x01000000
-# 0478
-.word 0x20002710
-.word 0x04000000
-.word   0x15050000, 0x07009030
-.word   0x15010000, 0x07009120
-.word   0x15050000, 0x07009208
-.word 0x05000000
-.word 0x01000000
-# 04A0
-.word 0x20002710
-.word 0x04000000
-.word   0x15010000, 0x0700AF10
-.word   0x15040000, 0x0700B068
-.word 0x05000000
-.word 0x01000000
-.word 0x0800000A, 0x00A00078, 0x00A00078
-.word 0x04000000
-.word   0x0C000000
-.word   0x04000000
-.word     0x09000064
-.word     0x04000000
-.word       0x19000000, Geo19_802763D4
-.word     0x05000000
-.word   0x05000000
-.word   0x0C010000
-.word   0x04000000
-.word     0x0A01002D, 0x00643200, Geo0A_8029AA3C
-.word     0x04000000
-.word       0x0F000002, 0x000007D0, 0x17700A00, 0x00000200, Geo0F_80287D30
-.word       0x04000000
-.word         0x15010000, 0x07004D48
-.word         0x15010000, 0x070057E8
-.word         0x15040000, 0x07005C40
-.word         0x15050000, 0x07005F78
-.word         0x18000000, Geo18_802D01E0
-.word         0x18002301, Geo18_802D104C
-.word         0x17000000
-.word         0x1800000D, Geo18_802761D0
-.word       0x05000000
-.word     0x05000000
-.word   0x05000000
-.word 0x05000000
-.word 0x01000000
-.word 0x0800000A, 0x00A00078, 0x00A00078
-.word 0x04000000
-.word   0x0C000000
-.word   0x04000000
-.word     0x09000064
-.word     0x04000000
-.word       0x19000001, 0x00000000
-.word     0x05000000
-.word   0x05000000
-.word   0x0C010000
-.word   0x04000000
-.word     0x0A01002D, 0x00643200, Geo0A_8029AA3C
-.word     0x04000000
-.word       0x0F000004, 0x000007D0, 0x17700A00, 0x00000200, Geo0F_80287D30
-.word       0x04000000
-.word         0x15010000, 0x07007408
-.word         0x15010000, 0x07007CB8
-.word         0x15040000, 0x07008C48
-.word         0x15050000, 0x07008F80
-.word         0x15040000, 0x0700BAE0
-.word         0x15010000, 0x0700CE48
-.word         0x18000000, Geo18_802D01E0
-.word         0x18002302, Geo18_802D104C
-.word         0x17000000
-.word         0x1800000E, Geo18_802761D0
-.word       0x05000000
-.word     0x05000000
-.word   0x05000000
-.word 0x05000000
-.word 0x01000000
+.include "geo_commands.inc"
+
+glabel ddd_geo_000450 # 0450
+   geo_start_distance 700
+      geo_open_node
+         geo_shadow SHADOW_SQUARE_PERMANENT, 0xB4, 120
+            geo_open_node
+               geo_display_list 0x01, ddd_seg7_dl_0700D2A0
+            geo_close_node
+         geo_close_node
+      geo_end
+
+glabel ddd_geo_000478 # 0478
+   geo_start_distance 10000
+      geo_open_node
+         geo_display_list 0x05, ddd_seg7_dl_07009030
+         geo_display_list 0x01, ddd_seg7_dl_07009120
+         geo_display_list 0x05, ddd_seg7_dl_07009208
+      geo_close_node
+   geo_end
+
+glabel ddd_geo_0004A0 # 04A0
+   geo_start_distance 10000
+      geo_open_node
+         geo_display_list 0x01, ddd_seg7_dl_0700AF10
+         geo_display_list 0x04, ddd_seg7_dl_0700B068
+      geo_close_node
+   geo_end
+
+glabel ddd_geo_0004C0 # 04C0
+   geo_node_screen_area 10, 160, 120, 160, 120
+      geo_open_node
+         geo_zbuffer 0
+         geo_open_node
+            geo_todo_09 100
+            geo_open_node
+               geo_background 0, Geo19_802763D4
+            geo_close_node
+         geo_close_node
+         geo_zbuffer 1
+         geo_open_node
+            geo_camera_frustum 45, 100, 12800, Geo0A_8029AA3C
+            geo_open_node
+               geo_todo_0F 2, 0, 2000, 6000, 2560, 0, 512, Geo0F_80287D30
+               geo_open_node
+                  geo_display_list 0x01, ddd_seg7_dl_07004D48
+                  geo_display_list 0x01, ddd_seg7_dl_070057E8
+                  geo_display_list 0x04, ddd_seg7_dl_07005C40
+                  geo_display_list 0x05, ddd_seg7_dl_07005F78
+                  geo_asm    0, Geo18_802D01E0
+                  geo_asm 8961, Geo18_802D104C
+                  geo_todo_17
+                  geo_asm   13, Geo18_802761D0
+               geo_close_node
+            geo_close_node
+         geo_close_node
+      geo_close_node
+   geo_end
+
+glabel ddd_geo_000570 # 0570
+   geo_node_screen_area 10, 160, 120, 160, 120
+      geo_open_node
+         geo_zbuffer 0
+         geo_open_node
+            geo_todo_09 100
+            geo_open_node
+               geo_background 0x0001
+            geo_close_node
+         geo_close_node
+         geo_zbuffer 1
+         geo_open_node
+            geo_camera_frustum 45, 100, 12800, Geo0A_8029AA3C
+            geo_open_node
+               geo_todo_0F 4, 0, 2000, 6000, 2560, 0, 512, Geo0F_80287D30
+               geo_open_node
+                  geo_display_list 0x01, ddd_seg7_dl_07007408
+                  geo_display_list 0x01, ddd_seg7_dl_07007CB8
+                  geo_display_list 0x04, ddd_seg7_dl_07008C48
+                  geo_display_list 0x05, ddd_seg7_dl_07008F80
+                  geo_display_list 0x04, ddd_seg7_dl_0700BAE0
+                  geo_display_list 0x01, ddd_seg7_dl_0700CE48
+                  geo_asm    0, Geo18_802D01E0
+                  geo_asm 8962, Geo18_802D104C
+                  geo_todo_17
+                  geo_asm   14, Geo18_802761D0
+               geo_close_node
+            geo_close_node
+         geo_close_node
+      geo_close_node
+   geo_end

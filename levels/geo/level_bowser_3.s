@@ -1,89 +1,103 @@
-# 0290
-.word 0x20001388
-.word 0x04000000
-.word   0x15010000, 0x070022A8
-.word 0x05000000
-.word 0x01000000
-# 02A8
-.word 0x20001388
-.word 0x04000000
-.word   0x15010000, 0x070025E0
-.word 0x05000000
-.word 0x01000000
-# 02C0
-.word 0x20001388
-.word 0x04000000
-.word   0x15010000, 0x07002918
-.word 0x05000000
-.word 0x01000000
-# 02D8
-.word 0x20001388
-.word 0x04000000
-.word   0x15010000, 0x07002C50
-.word 0x05000000
-.word 0x01000000
-# 02F0
-.word 0x20001388
-.word 0x04000000
-.word   0x15010000, 0x07002F88
-.word 0x05000000
-.word 0x01000000
-# 0308
-.word 0x20001388
-.word 0x04000000
-.word   0x15010000, 0x070032C0
-.word 0x05000000
-.word 0x01000000
-# 0320
-.word 0x20001388
-.word 0x04000000
-.word   0x15010000, 0x070035F8
-.word 0x05000000
-.word 0x01000000
-# 0338
-.word 0x20001388
-.word 0x04000000
-.word   0x15010000, 0x07003930
-.word 0x05000000
-.word 0x01000000
-# 0350
-.word 0x20001388
-.word 0x04000000
-.word   0x15010000, 0x07003C68
-.word 0x05000000
-.word 0x01000000
-# 0368
-.word 0x20001388
-.word 0x04000000
-.word   0x15010000, 0x07003FA0
-.word 0x05000000
-.word 0x01000000
-# 0380
-.word 0x200002BC
-.word 0x04000000
-.word   0x15010000, 0x07004958
-.word 0x05000000
-.word 0x01000000
-.word 0x0800000A, 0x00A00078, 0x00A00078
-.word 0x04000000
-.word   0x0C000000
-.word   0x04000000
-.word     0x09000064
-.word     0x04000000
-.word       0x19000009, Geo19_802763D4
-.word     0x05000000
-.word   0x05000000
-.word   0x0C010000
-.word   0x04000000
-.word     0x0A01002D, 0x00643200, Geo0A_8029AA3C
-.word     0x04000000
-.word       0x0F00000B, 0x000007D0, 0x17700000, 0x00000000, Geo0F_80287D30
-.word       0x04000000
-.word         0x15010000, 0x070046B0
-.word         0x17000000
-.word         0x18000000, Geo18_802761D0
-.word       0x05000000
-.word     0x05000000
-.word   0x05000000
-.word 0x05000000
-.word 0x01000000
+.include "geo_commands.inc"
+
+glabel bowser_3_geo_000290 # 0290
+   geo_start_distance 5000
+      geo_open_node
+         geo_display_list 0x01, bowser_3_seg7_dl_070022A8
+      geo_close_node
+   geo_end
+
+glabel bowser_3_geo_0002A8 # 02A8
+   geo_start_distance 5000
+      geo_open_node
+         geo_display_list 0x01, bowser_3_seg7_dl_070025E0
+      geo_close_node
+   geo_end
+
+glabel bowser_3_geo_0002C0 # 02C0
+   geo_start_distance 5000
+      geo_open_node
+         geo_display_list 0x01, bowser_3_seg7_dl_07002918
+      geo_close_node
+   geo_end
+
+glabel bowser_3_geo_0002D8 # 02D8
+   geo_start_distance 5000
+      geo_open_node
+         geo_display_list 0x01, bowser_3_seg7_dl_07002C50
+      geo_close_node
+   geo_end
+
+glabel bowser_3_geo_0002F0 # 02F0
+   geo_start_distance 5000
+      geo_open_node
+         geo_display_list 0x01, bowser_3_seg7_dl_07002F88
+      geo_close_node
+   geo_end
+
+glabel bowser_3_geo_000308 # 0308
+   geo_start_distance 5000
+      geo_open_node
+         geo_display_list 0x01, bowser_3_seg7_dl_070032C0
+      geo_close_node
+   geo_end
+
+glabel bowser_3_geo_000320 # 0320
+   geo_start_distance 5000
+      geo_open_node
+         geo_display_list 0x01, bowser_3_seg7_dl_070035F8
+      geo_close_node
+   geo_end
+
+glabel bowser_3_geo_000338 # 0338
+   geo_start_distance 5000
+      geo_open_node
+         geo_display_list 0x01, bowser_3_seg7_dl_07003930
+      geo_close_node
+   geo_end
+
+glabel bowser_3_geo_000350 # 0350
+   geo_start_distance 5000
+      geo_open_node
+         geo_display_list 0x01, bowser_3_seg7_dl_07003C68
+      geo_close_node
+   geo_end
+
+glabel bowser_3_geo_000368 # 0368
+   geo_start_distance 5000
+      geo_open_node
+         geo_display_list 0x01, bowser_3_seg7_dl_07003FA0
+      geo_close_node
+   geo_end
+
+glabel bowser_3_geo_000380 # 0380
+   geo_start_distance 700
+      geo_open_node
+         geo_display_list 0x01, bowser_3_seg7_dl_07004958
+      geo_close_node
+   geo_end
+
+glabel bowser_3_geo_000398 # 0398
+   geo_node_screen_area 10, 160, 120, 160, 120
+      geo_open_node
+         geo_zbuffer 0
+         geo_open_node
+            geo_todo_09 100
+            geo_open_node
+               geo_background 9, Geo19_802763D4
+            geo_close_node
+         geo_close_node
+         geo_zbuffer 1
+         geo_open_node
+            geo_camera_frustum 45, 100, 12800, Geo0A_8029AA3C
+            geo_open_node
+               geo_todo_0F 11, 0, 2000, 6000, 0, 0, 0, Geo0F_80287D30
+               geo_open_node
+                  geo_display_list 0x01, bowser_3_seg7_dl_070046B0
+                  geo_todo_17
+                  geo_asm 0, Geo18_802761D0
+               geo_close_node
+            geo_close_node
+         geo_close_node
+      geo_close_node
+   geo_end

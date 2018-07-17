@@ -47,12 +47,12 @@ glabel level_sl_entry
     jump_link /*target*/ script_func_global_1
     jump_link /*target*/ script_func_global_8
     jump_link /*target*/ script_func_global_17
-    cmd22 /*unk2*/ 0x0036, /*unk4*/ 0x0E000390
-    cmd22 /*unk2*/ 0x0037, /*unk4*/ 0x0E000360
-    cmd22 /*unk2*/ 0x0038, /*unk4*/ 0x0E000378
-    cmd22 /*unk2*/ 0x0019, /*unk4*/ 0x16001018
+    cmd22 /*unk2*/ 0x0036, /*unk4*/ sl_geo_000390
+    cmd22 /*unk2*/ 0x0037, /*unk4*/ sl_geo_000360
+    cmd22 /*unk2*/ 0x0038, /*unk4*/ sl_geo_000378
+    cmd22 /*unk2*/ 0x0019, /*unk4*/ coin_X_geo_001018
 
-    area /*index*/ 1, /*geo*/ 0x0E0003A8
+    area /*index*/ 1, /*geo*/ sl_geo_0003A8
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 5541, 2024, 443, /*angle*/ 0, 270, 0, /*behArg*/ 0x000A0000, /*beh*/ beh_warps_74
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 257, 2150, 1399, /*angle*/ 0, 290, 0, /*behArg*/ 0x000B0000, /*beh*/ beh_warps_60
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 569, 2150, 1336, /*angle*/ 0, 0, 0, /*behArg*/ 0x060C0000, /*beh*/ beh_warp
@@ -68,13 +68,13 @@ glabel level_sl_entry
         jump_link /*target*/ script_func_local_3
         warp_node /*id*/ 0xF0, /*destLevel1*/ 0x06, /*destArea*/ 0x02, /*destNode*/ 0x36, /*destLevel2*/ 0x00
         warp_node /*id*/ 0xF1, /*destLevel1*/ 0x06, /*destArea*/ 0x02, /*destNode*/ 0x68, /*destLevel2*/ 0x00
-        terrain /*terrainData*/ 0x0700CBD8
-        cmd39 /*unk4*/ 0x0700ED94
+        terrain /*terrainData*/ sl_seg7_area_1_collision
+        cmd39 /*unk4*/ sl_seg7_area_1_macro_objs
         set_music /*unk2*/ 0x0000, /*seq*/ 0x0008
         terrain_type /*terrainType*/ 0x0002
     end_area
 
-    area /*index*/ 2, /*geo*/ 0x0E000484
+    area /*index*/ 2, /*geo*/ sl_geo_000484
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 0, 0, 2867, /*angle*/ 0, 180, 0, /*behArg*/ 0x000A0000, /*beh*/ beh_warps_60
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 0, 0, 3277, /*angle*/ 0, 0, 0, /*behArg*/ 0x140B0000, /*beh*/ beh_warp
         warp_node /*id*/ 0x0A, /*destLevel1*/ 0x0A, /*destArea*/ 0x02, /*destNode*/ 0x0A, /*destLevel2*/ 0x00
@@ -82,8 +82,8 @@ glabel level_sl_entry
         jump_link /*target*/ script_func_local_4
         warp_node /*id*/ 0xF0, /*destLevel1*/ 0x06, /*destArea*/ 0x02, /*destNode*/ 0x36, /*destLevel2*/ 0x00
         warp_node /*id*/ 0xF1, /*destLevel1*/ 0x06, /*destArea*/ 0x02, /*destNode*/ 0x68, /*destLevel2*/ 0x00
-        terrain /*terrainData*/ 0x0700EFFC
-        cmd39 /*unk4*/ 0x0700F978
+        terrain /*terrainData*/ sl_seg7_area_2_collision
+        cmd39 /*unk4*/ sl_seg7_area_2_macro_objs
         set_music /*unk2*/ 0x0004, /*seq*/ 0x000C
         terrain_type /*terrainType*/ 0x0002
     end_area

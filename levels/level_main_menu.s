@@ -14,21 +14,21 @@ glabel level_main_menu_entry_1
     load_mio0 /*seg*/ 0x07, /*romStart*/ _level_main_menu_segment_7SegmentRomStart, /*romEnd*/ _level_main_menu_segment_7SegmentRomEnd
     load_raw /*seg*/ 0x13, /*romStart*/ _behaviorSegmentRomStart, /*romEnd*/ _behaviorSegmentRomEnd
     alloc_level_pool
-    cmd22 /*unk2*/ 0x0003, /*unk4*/ 0x140001D0
-    cmd22 /*unk2*/ 0x0004, /*unk4*/ 0x14000290
-    cmd22 /*unk2*/ 0x0005, /*unk4*/ 0x140002B8
-    cmd22 /*unk2*/ 0x0006, /*unk4*/ 0x140002E0
-    cmd22 /*unk2*/ 0x0007, /*unk4*/ 0x14000308
-    cmd22 /*unk2*/ 0x0008, /*unk4*/ 0x14000200
-    cmd22 /*unk2*/ 0x0009, /*unk4*/ 0x14000230
-    cmd22 /*unk2*/ 0x000A, /*unk4*/ 0x14000260
-    cmd22 /*unk2*/ 0x000B, /*unk4*/ 0x14000330
-    cmd22 /*unk2*/ 0x000C, /*unk4*/ 0x14000358
+    cmd22 /*unk2*/ 0x0003, /*unk4*/ main_menu_geo_0001D0
+    cmd22 /*unk2*/ 0x0004, /*unk4*/ main_menu_geo_000290
+    cmd22 /*unk2*/ 0x0005, /*unk4*/ main_menu_geo_0002B8
+    cmd22 /*unk2*/ 0x0006, /*unk4*/ main_menu_geo_0002E0
+    cmd22 /*unk2*/ 0x0007, /*unk4*/ main_menu_geo_000308
+    cmd22 /*unk2*/ 0x0008, /*unk4*/ main_menu_geo_000200
+    cmd22 /*unk2*/ 0x0009, /*unk4*/ main_menu_geo_000230
+    cmd22 /*unk2*/ 0x000A, /*unk4*/ main_menu_geo_000260
+    cmd22 /*unk2*/ 0x000B, /*unk4*/ main_menu_geo_000330
+    cmd22 /*unk2*/ 0x000C, /*unk4*/ main_menu_geo_000358
 
-    area /*index*/ 1, /*geo*/ 0x14000380
+    area /*index*/ 1, /*geo*/ main_menu_geo_000380
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 0, 0, -19000, /*angle*/ 0, 0, 0, /*behArg*/ 0x04000000, /*beh*/ beh_gray_button
         object /*unk2*/ 0x1F, /*unk3*/ 0x06, /*pos*/ 0, 0, -19000, /*angle*/ 0, 0, 0, /*behArg*/ 0x04000000, /*beh*/ beh_yellow_background_in_menu
-        terrain /*terrainData*/ 0x0700F2F8
+        terrain /*terrainData*/ main_menu_collision
     end_area
 
     free_level_pool
@@ -54,9 +54,9 @@ glabel level_main_menu_entry_2
     load_mio0 /*seg*/ 0x07, /*romStart*/ _level_main_menu_segment_7SegmentRomStart, /*romEnd*/ _level_main_menu_segment_7SegmentRomEnd
     alloc_level_pool
 
-    area /*index*/ 2, /*geo*/ 0x14000408
+    area /*index*/ 2, /*geo*/ main_menu_geo_000408
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 0, -100, 0, /*angle*/ 0, 0, 0, /*behArg*/ 0x04000000, /*beh*/ beh_act_selector
-        terrain /*terrainData*/ 0x0700F2F8
+        terrain /*terrainData*/ main_menu_collision
     end_area
 
     free_level_pool

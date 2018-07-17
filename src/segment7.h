@@ -5,9 +5,9 @@
 
 // from main menu segment 7
 // extern u32 mm7_table_00CD08[];
-extern u8 mm7_f3d_00D108[]; 
-extern u8 mm7_f3d_00D160[];
-extern u8 mm7_f3d_00F228[];
+extern u8 main_menu_seg7_dl_0700D108[];
+extern u8 main_menu_seg7_dl_0700D160[];
+extern u8 main_menu_seg7_dl_0700F228[];
 
 // from intro_segment7
 extern float intro_table_0700C790[];

@@ -356,11 +356,11 @@ void geo_layout_cmd_0F(void)
   
    fieldLayout == 0:
     cmd+0x04: s16 xTranslation
-    cmd+0x06: s16 xTranslation
-    cmd+0x08: s16 xTranslation
+    cmd+0x06: s16 yTranslation
+    cmd+0x08: s16 zTranslation
     cmd+0x0A: s16 xRotation
-    cmd+0x0C: s16 xRotation
-    cmd+0x0E: s16 xRotation
+    cmd+0x0C: s16 yRotation
+    cmd+0x0E: s16 zRotation
   
    fieldLayout == 1:
     cmd+0x02: s16 xTranslation
@@ -618,8 +618,8 @@ void geo_layout_cmd_node_display_list(void)
 
 /*
   0x16: Create shadow scene graph node
-   cmd+0x02: u8 shadowType
-   cmd+0x04: u8 shadowSolidity
+   cmd+0x02: s16 shadowType
+   cmd+0x04: s16 shadowSolidity
    cmd+0x06: s16 shadowScale
 */
 void geo_layout_cmd_node_shadow(void)

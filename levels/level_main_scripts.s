@@ -18,45 +18,45 @@ glabel level_main_scripts_entry
     cmd22 /*unk2*/ 0x00A6, /*unk4*/ 0x17000124
     cmd22 /*unk2*/ 0x00A7, /*unk4*/ 0x17000230
     cmd22 /*unk2*/ 0x00A3, /*unk4*/ 0x17000168
-    cmd22 /*unk2*/ 0x0074, /*unk4*/ 0x1600013C
-    cmd22 /*unk2*/ 0x007A, /*unk4*/ 0x16000EA0
-    cmd22 /*unk2*/ 0x0079, /*unk4*/ 0x16000F6C
-    cmd22 /*unk2*/ 0x007C, /*unk4*/ 0x16000FB4
+    cmd22 /*unk2*/ 0x0074, /*unk4*/ coin_X_geo_00013C
+    cmd22 /*unk2*/ 0x007A, /*unk4*/ coin_X_geo_000EA0
+    cmd22 /*unk2*/ 0x0079, /*unk4*/ coin_X_geo_000F6C
+    cmd22 /*unk2*/ 0x007C, /*unk4*/ coin_X_geo_000FB4
     cmd21 /*unk2*/ 0x40A4, /*unk4*/ 0x04032A18
-    cmd22 /*unk2*/ 0x0090, /*unk4*/ 0x16000B2C
-    cmd22 /*unk2*/ 0x0091, /*unk4*/ 0x16000B8C
+    cmd22 /*unk2*/ 0x0090, /*unk4*/ coin_X_geo_000B2C
+    cmd22 /*unk2*/ 0x0091, /*unk4*/ coin_X_geo_000B8C
     cmd22 /*unk2*/ 0x0094, /*unk4*/ 0x17000084
-    cmd22 /*unk2*/ 0x00A2, /*unk4*/ 0x16000C8C
+    cmd22 /*unk2*/ 0x00A2, /*unk4*/ coin_X_geo_000C8C
     cmd22 /*unk2*/ 0x00AA, /*unk4*/ 0x1700001C
-    cmd22 /*unk2*/ 0x00B9, /*unk4*/ 0x16000C44
-    cmd22 /*unk2*/ 0x00BA, /*unk4*/ 0x16000BEC
+    cmd22 /*unk2*/ 0x00B9, /*unk4*/ coin_X_geo_000C44
+    cmd22 /*unk2*/ 0x00BA, /*unk4*/ coin_X_geo_000BEC
     cmd22 /*unk2*/ 0x008F, /*unk4*/ 0x17000284
     cmd21 /*unk2*/ 0x409F, /*unk4*/ 0x0302BCD0
-    cmd22 /*unk2*/ 0x00BB, /*unk4*/ 0x160000A8
+    cmd22 /*unk2*/ 0x00BB, /*unk4*/ coin_X_geo_0000A8
     cmd22 /*unk2*/ 0x009C, /*unk4*/ 0x17000084
     cmd21 /*unk2*/ 0x40A1, /*unk4*/ 0x0301CB00
-    cmd22 /*unk2*/ 0x008E, /*unk4*/ 0x16000000
-    cmd22 /*unk2*/ 0x00E0, /*unk4*/ 0x16000020
+    cmd22 /*unk2*/ 0x008E, /*unk4*/ coin_X_geo_000000
+    cmd22 /*unk2*/ 0x00E0, /*unk4*/ coin_X_geo_000020
     cmd21 /*unk2*/ 0x409E, /*unk4*/ 0x0302C8A0
-    cmd22 /*unk2*/ 0x00A0, /*unk4*/ 0x16000F98
-    cmd22 /*unk2*/ 0x0075, /*unk4*/ 0x160001A0
-    cmd22 /*unk2*/ 0x0076, /*unk4*/ 0x16000200
-    cmd22 /*unk2*/ 0x0077, /*unk4*/ 0x16000264
-    cmd22 /*unk2*/ 0x0085, /*unk4*/ 0x16000DA8
-    cmd22 /*unk2*/ 0x0086, /*unk4*/ 0x16000CF0
-    cmd22 /*unk2*/ 0x0087, /*unk4*/ 0x16000D3C
-    cmd22 /*unk2*/ 0x0088, /*unk4*/ 0x16000CA4
-    cmd22 /*unk2*/ 0x0088, /*unk4*/ 0x16000CA4
-    cmd22 /*unk2*/ 0x00C8, /*unk4*/ 0x16000AB0
-    cmd22 /*unk2*/ 0x00CC, /*unk4*/ 0x16000A84
-    cmd22 /*unk2*/ 0x00CB, /*unk4*/ 0x16000B10
-    cmd22 /*unk2*/ 0x00D4, /*unk4*/ 0x16000E84
-    cmd22 /*unk2*/ 0x00D7, /*unk4*/ 0x160002C4
-    cmd22 /*unk2*/ 0x00D8, /*unk4*/ 0x16000328
-    cmd22 /*unk2*/ 0x00DB, /*unk4*/ 0x16000E14
-    cmd22 /*unk2*/ 0x00CD, /*unk4*/ 0x16000040
-    cmd22 /*unk2*/ 0x008A, /*unk4*/ 0x16000ED4
-    cmd22 /*unk2*/ 0x008B, /*unk4*/ 0x16000F24
+    cmd22 /*unk2*/ 0x00A0, /*unk4*/ coin_X_geo_000F98
+    cmd22 /*unk2*/ 0x0075, /*unk4*/ coin_X_geo_0001A0
+    cmd22 /*unk2*/ 0x0076, /*unk4*/ coin_X_geo_000200
+    cmd22 /*unk2*/ 0x0077, /*unk4*/ coin_X_geo_000264
+    cmd22 /*unk2*/ 0x0085, /*unk4*/ coin_X_geo_000DA8
+    cmd22 /*unk2*/ 0x0086, /*unk4*/ coin_X_geo_000CF0
+    cmd22 /*unk2*/ 0x0087, /*unk4*/ coin_X_geo_000D3C
+    cmd22 /*unk2*/ 0x0088, /*unk4*/ coin_X_geo_000CA4
+    cmd22 /*unk2*/ 0x0088, /*unk4*/ coin_X_geo_000CA4
+    cmd22 /*unk2*/ 0x00C8, /*unk4*/ coin_X_geo_000AB0
+    cmd22 /*unk2*/ 0x00CC, /*unk4*/ coin_X_geo_000A84
+    cmd22 /*unk2*/ 0x00CB, /*unk4*/ coin_X_geo_000B10
+    cmd22 /*unk2*/ 0x00D4, /*unk4*/ coin_X_geo_000E84
+    cmd22 /*unk2*/ 0x00D7, /*unk4*/ coin_X_geo_0002C4
+    cmd22 /*unk2*/ 0x00D8, /*unk4*/ coin_X_geo_000328
+    cmd22 /*unk2*/ 0x00DB, /*unk4*/ coin_X_geo_000E14
+    cmd22 /*unk2*/ 0x00CD, /*unk4*/ coin_X_geo_000040
+    cmd22 /*unk2*/ 0x008A, /*unk4*/ coin_X_geo_000ED4
+    cmd22 /*unk2*/ 0x008B, /*unk4*/ coin_X_geo_000F24
     free_level_pool
     call /*arg*/ 0, /*func*/ lvl_init_from_save_file
     loop_begin
@@ -244,67 +244,67 @@ L36:
     return
 
 glabel script_func_global_1
-    cmd22 /*unk2*/ 0x008C, /*unk4*/ 0x0F000000
-    cmd22 /*unk2*/ 0x00C2, /*unk4*/ 0x0F000028
-    cmd22 /*unk2*/ 0x00CF, /*unk4*/ 0x0F0004CC
-    cmd22 /*unk2*/ 0x00CA, /*unk4*/ 0x0F0004E4
-    cmd22 /*unk2*/ 0x0081, /*unk4*/ 0x0F0005D0
-    cmd22 /*unk2*/ 0x0082, /*unk4*/ 0x0F000610
-    cmd22 /*unk2*/ 0x0083, /*unk4*/ 0x0F000A58
-    cmd22 /*unk2*/ 0x0089, /*unk4*/ 0x0F000694
-    cmd22 /*unk2*/ 0x00C0, /*unk4*/ 0x0F0006E4
+    cmd22 /*unk2*/ 0x008C, /*unk4*/ amp_X_geo_000000
+    cmd22 /*unk2*/ 0x00C2, /*unk4*/ amp_X_geo_000028
+    cmd22 /*unk2*/ 0x00CF, /*unk4*/ amp_X_geo_0004CC
+    cmd22 /*unk2*/ 0x00CA, /*unk4*/ amp_X_geo_0004E4
+    cmd22 /*unk2*/ 0x0081, /*unk4*/ amp_X_geo_0005D0
+    cmd22 /*unk2*/ 0x0082, /*unk4*/ amp_X_geo_000610
+    cmd22 /*unk2*/ 0x0083, /*unk4*/ amp_X_geo_000A58
+    cmd22 /*unk2*/ 0x0089, /*unk4*/ amp_X_geo_000694
+    cmd22 /*unk2*/ 0x00C0, /*unk4*/ amp_X_geo_0006E4
     cmd21 /*unk2*/ 0x4084, /*unk4*/ 0x08025F08
-    cmd22 /*unk2*/ 0x00BE, /*unk4*/ 0x0F000AB0
-    cmd22 /*unk2*/ 0x00D9, /*unk4*/ 0x0F000A30
+    cmd22 /*unk2*/ 0x00BE, /*unk4*/ amp_X_geo_000AB0
+    cmd22 /*unk2*/ 0x00D9, /*unk4*/ amp_X_geo_000A30
     cmd21 /*unk2*/ 0x10DA, /*unk4*/ 0x08024BB8
-    cmd22 /*unk2*/ 0x00BC, /*unk4*/ 0x0F0007B8
-    cmd22 /*unk2*/ 0x00C3, /*unk4*/ 0x0F0008F4
+    cmd22 /*unk2*/ 0x00BC, /*unk4*/ amp_X_geo_0007B8
+    cmd22 /*unk2*/ 0x00C3, /*unk4*/ amp_X_geo_0008F4
     cmd21 /*unk2*/ 0x10C9, /*unk4*/ 0x080048E0
-    cmd22 /*unk2*/ 0x00B4, /*unk4*/ 0x0F000640
-    cmd22 /*unk2*/ 0x007F, /*unk4*/ 0x0F0001C0
-    cmd22 /*unk2*/ 0x0080, /*unk4*/ 0x0F0001A8
-    cmd22 /*unk2*/ 0x0078, /*unk4*/ 0x0F0004FC
-    cmd22 /*unk2*/ 0x00DC, /*unk4*/ 0x0F000518
-    cmd22 /*unk2*/ 0x00DF, /*unk4*/ 0x0F0001D8
-    cmd22 /*unk2*/ 0x00E1, /*unk4*/ 0x0F00066C
+    cmd22 /*unk2*/ 0x00B4, /*unk4*/ amp_X_geo_000640
+    cmd22 /*unk2*/ 0x007F, /*unk4*/ amp_X_geo_0001C0
+    cmd22 /*unk2*/ 0x0080, /*unk4*/ amp_X_geo_0001A8
+    cmd22 /*unk2*/ 0x0078, /*unk4*/ amp_X_geo_0004FC
+    cmd22 /*unk2*/ 0x00DC, /*unk4*/ amp_X_geo_000518
+    cmd22 /*unk2*/ 0x00DF, /*unk4*/ amp_X_geo_0001D8
+    cmd22 /*unk2*/ 0x00E1, /*unk4*/ amp_X_geo_00066C
     return
 
 glabel script_func_global_2
-    cmd22 /*unk2*/ 0x0054, /*unk4*/ 0x0C000264
-    cmd22 /*unk2*/ 0x0055, /*unk4*/ 0x0C000000
-    cmd22 /*unk2*/ 0x0056, /*unk4*/ 0x0C000018
-    cmd22 /*unk2*/ 0x0057, /*unk4*/ 0x0C0001E4
-    cmd22 /*unk2*/ 0x0058, /*unk4*/ 0x0C000248
-    cmd22 /*unk2*/ 0x0059, /*unk4*/ 0x0C00028C
+    cmd22 /*unk2*/ 0x0054, /*unk4*/ hoot_X_geo_000264
+    cmd22 /*unk2*/ 0x0055, /*unk4*/ hoot_X_geo_000000
+    cmd22 /*unk2*/ 0x0056, /*unk4*/ hoot_X_geo_000018
+    cmd22 /*unk2*/ 0x0057, /*unk4*/ hoot_X_geo_0001E4
+    cmd22 /*unk2*/ 0x0058, /*unk4*/ hoot_X_geo_000248
+    cmd22 /*unk2*/ 0x0059, /*unk4*/ hoot_X_geo_00028C
     return
 
 glabel script_func_global_3
-    cmd22 /*unk2*/ 0x0054, /*unk4*/ 0x0C000240
-    cmd22 /*unk2*/ 0x0056, /*unk4*/ 0x0C000000
-    cmd22 /*unk2*/ 0x0057, /*unk4*/ 0x0C000120
+    cmd22 /*unk2*/ 0x0054, /*unk4*/ bully_X_geo_000240
+    cmd22 /*unk2*/ 0x0056, /*unk4*/ bully_X_geo_000000
+    cmd22 /*unk2*/ 0x0057, /*unk4*/ bully_X_geo_000120
     return
 
 glabel script_func_global_4
-    cmd22 /*unk2*/ 0x0054, /*unk4*/ 0x0C000308
-    cmd22 /*unk2*/ 0x0055, /*unk4*/ 0x0C000328
-    cmd22 /*unk2*/ 0x0056, /*unk4*/ 0x0C000000
+    cmd22 /*unk2*/ 0x0054, /*unk4*/ bobombs_X_geo_000308
+    cmd22 /*unk2*/ 0x0055, /*unk4*/ bobombs_X_geo_000328
+    cmd22 /*unk2*/ 0x0056, /*unk4*/ bobombs_X_geo_000000
     return
 
 glabel script_func_global_5
     cmd22 /*unk2*/ 0x0054, /*unk4*/ 0x05008D14
-    cmd22 /*unk2*/ 0x0055, /*unk4*/ 0x0C00010C
-    cmd22 /*unk2*/ 0x0056, /*unk4*/ 0x0C000068
+    cmd22 /*unk2*/ 0x0055, /*unk4*/ sea_creatures_X_geo_00010C
+    cmd22 /*unk2*/ 0x0056, /*unk4*/ sea_creatures_X_geo_000068
     cmd21 /*unk2*/ 0x5057, /*unk4*/ 0x05013CB8
-    cmd22 /*unk2*/ 0x0058, /*unk4*/ 0x0C000000
+    cmd22 /*unk2*/ 0x0058, /*unk4*/ sea_creatures_X_geo_000000
     return
 
 glabel script_func_global_6
-    cmd22 /*unk2*/ 0x0054, /*unk4*/ 0x0C000610
-    cmd22 /*unk2*/ 0x0055, /*unk4*/ 0x0C000644
+    cmd22 /*unk2*/ 0x0054, /*unk4*/ klepto_X_geo_000610
+    cmd22 /*unk2*/ 0x0055, /*unk4*/ klepto_X_geo_000644
     cmd22 /*unk2*/ 0x0056, /*unk4*/ 0x05014630
-    cmd22 /*unk2*/ 0x0057, /*unk4*/ 0x0C000000
-    cmd22 /*unk2*/ 0x0058, /*unk4*/ 0x0C0005A8
-    cmd22 /*unk2*/ 0x0059, /*unk4*/ 0x0C0005E4
+    cmd22 /*unk2*/ 0x0057, /*unk4*/ klepto_X_geo_000000
+    cmd22 /*unk2*/ 0x0058, /*unk4*/ klepto_X_geo_0005A8
+    cmd22 /*unk2*/ 0x0059, /*unk4*/ klepto_X_geo_0005E4
     return
 
 glabel script_func_global_7
@@ -315,26 +315,26 @@ glabel script_func_global_7
     return
 
 glabel script_func_global_8
-    cmd22 /*unk2*/ 0x0054, /*unk4*/ 0x0C000000
-    cmd22 /*unk2*/ 0x0055, /*unk4*/ 0x0C00021C
-    cmd22 /*unk2*/ 0x0056, /*unk4*/ 0x0C000348
-    cmd22 /*unk2*/ 0x0057, /*unk4*/ 0x0C000104
+    cmd22 /*unk2*/ 0x0054, /*unk4*/ spindrift_X_geo_000000
+    cmd22 /*unk2*/ 0x0055, /*unk4*/ spindrift_X_geo_00021C
+    cmd22 /*unk2*/ 0x0056, /*unk4*/ spindrift_X_geo_000348
+    cmd22 /*unk2*/ 0x0057, /*unk4*/ spindrift_X_geo_000104
     return
 
 glabel script_func_global_9
     cmd21 /*unk2*/ 0x4054, /*unk4*/ 0x05002E00
-    cmd22 /*unk2*/ 0x0055, /*unk4*/ 0x0C000048
+    cmd22 /*unk2*/ 0x0055, /*unk4*/ geo_layout_cap_switch
     cmd21 /*unk2*/ 0x1056, /*unk4*/ 0x05003120
     return
 
 glabel script_func_global_10
-    cmd22 /*unk2*/ 0x0054, /*unk4*/ 0x0C000224
-    cmd22 /*unk2*/ 0x0055, /*unk4*/ 0x0C000188
-    cmd22 /*unk2*/ 0x0056, /*unk4*/ 0x0C0000D8
-    cmd22 /*unk2*/ 0x0057, /*unk4*/ 0x0C0001B4
-    cmd22 /*unk2*/ 0x0058, /*unk4*/ 0x0C000000
-    cmd22 /*unk2*/ 0x0059, /*unk4*/ 0x0C0000C0
-    cmd22 /*unk2*/ 0x005A, /*unk4*/ 0x0C000274
+    cmd22 /*unk2*/ 0x0054, /*unk4*/ boo_X_geo_000224
+    cmd22 /*unk2*/ 0x0055, /*unk4*/ boo_X_geo_000188
+    cmd22 /*unk2*/ 0x0056, /*unk4*/ boo_X_geo_0000D8
+    cmd22 /*unk2*/ 0x0057, /*unk4*/ boo_X_geo_0001B4
+    cmd22 /*unk2*/ 0x0058, /*unk4*/ boo_X_geo_000000
+    cmd22 /*unk2*/ 0x0059, /*unk4*/ boo_X_geo_0000C0
+    cmd22 /*unk2*/ 0x005A, /*unk4*/ boo_X_geo_000274
     return
 
 glabel script_func_global_11
@@ -344,66 +344,66 @@ glabel script_func_global_11
     return
 
 glabel script_func_global_12
-    cmd22 /*unk2*/ 0x0054, /*unk4*/ 0x0C0001BC
-    cmd22 /*unk2*/ 0x0055, /*unk4*/ 0x0C000290
-    cmd22 /*unk2*/ 0x0056, /*unk4*/ 0x0C000328
-    cmd22 /*unk2*/ 0x0057, /*unk4*/ 0x0C000030
+    cmd22 /*unk2*/ 0x0054, /*unk4*/ bubba_X_geo_0001BC
+    cmd22 /*unk2*/ 0x0055, /*unk4*/ bubba_X_geo_000290
+    cmd22 /*unk2*/ 0x0056, /*unk4*/ bubba_X_geo_000328
+    cmd22 /*unk2*/ 0x0057, /*unk4*/ bubba_X_geo_000030
     cmd22 /*unk2*/ 0x0058, /*unk4*/ 0x0500C778
-    cmd22 /*unk2*/ 0x0059, /*unk4*/ 0x0C000000
+    cmd22 /*unk2*/ 0x0059, /*unk4*/ bubba_X_geo_000000
     return
 
 glabel script_func_global_13
-    cmd22 /*unk2*/ 0x0064, /*unk4*/ 0x0D000AB8
-    cmd22 /*unk2*/ 0x0065, /*unk4*/ 0x0D000B78
-    cmd22 /*unk2*/ 0x00B3, /*unk4*/ 0x0D000B78
-    cmd22 /*unk2*/ 0x0066, /*unk4*/ 0x0D000BB8
-    cmd22 /*unk2*/ 0x0067, /*unk4*/ 0x0D000000
-    cmd22 /*unk2*/ 0x0068, /*unk4*/ 0x0D000090
-    cmd22 /*unk2*/ 0x0069, /*unk4*/ 0x0D000B18
+    cmd22 /*unk2*/ 0x0064, /*unk4*/ bowser_X_geo_000AB8
+    cmd22 /*unk2*/ 0x0065, /*unk4*/ bowser_X_geo_000B78
+    cmd22 /*unk2*/ 0x00B3, /*unk4*/ bowser_X_geo_000B78
+    cmd22 /*unk2*/ 0x0066, /*unk4*/ bowser_X_geo_000BB8
+    cmd22 /*unk2*/ 0x0067, /*unk4*/ bowser_X_geo_000000
+    cmd22 /*unk2*/ 0x0068, /*unk4*/ bowser_X_geo_000090
+    cmd22 /*unk2*/ 0x0069, /*unk4*/ bowser_X_geo_000B18
     return
 
 glabel script_func_global_14
-    cmd22 /*unk2*/ 0x0064, /*unk4*/ 0x0D00038C
-    cmd22 /*unk2*/ 0x0065, /*unk4*/ 0x0D000450
-    cmd22 /*unk2*/ 0x0066, /*unk4*/ 0x0D000468
-    cmd22 /*unk2*/ 0x0067, /*unk4*/ 0x0D000324
-    cmd22 /*unk2*/ 0x0068, /*unk4*/ 0x0D000414
-    cmd22 /*unk2*/ 0x00B3, /*unk4*/ 0x0D0002F4
-    cmd22 /*unk2*/ 0x00C1, /*unk4*/ 0x0D000284
-    cmd22 /*unk2*/ 0x0069, /*unk4*/ 0x0D000000
+    cmd22 /*unk2*/ 0x0064, /*unk4*/ skeeter_X_geo_00038C
+    cmd22 /*unk2*/ 0x0065, /*unk4*/ skeeter_X_geo_000450
+    cmd22 /*unk2*/ 0x0066, /*unk4*/ skeeter_X_geo_000468
+    cmd22 /*unk2*/ 0x0067, /*unk4*/ skeeter_X_geo_000324
+    cmd22 /*unk2*/ 0x0068, /*unk4*/ skeeter_X_geo_000414
+    cmd22 /*unk2*/ 0x00B3, /*unk4*/ skeeter_X_geo_0002F4
+    cmd22 /*unk2*/ 0x00C1, /*unk4*/ skeeter_X_geo_000284
+    cmd22 /*unk2*/ 0x0069, /*unk4*/ skeeter_X_geo_000000
     return
 
 glabel script_func_global_15
-    cmd22 /*unk2*/ 0x0064, /*unk4*/ 0x0D000358
-    cmd22 /*unk2*/ 0x0067, /*unk4*/ 0x0D000480
-    cmd22 /*unk2*/ 0x0068, /*unk4*/ 0x0D000214
-    cmd22 /*unk2*/ 0x00BF, /*unk4*/ 0x0D0000D0
-    cmd22 /*unk2*/ 0x0065, /*unk4*/ 0x0D0005D0
-    cmd22 /*unk2*/ 0x0066, /*unk4*/ 0x0D0005EC
-    cmd22 /*unk2*/ 0x006A, /*unk4*/ 0x0D000000
-    cmd22 /*unk2*/ 0x006B, /*unk4*/ 0x0D0000B8
+    cmd22 /*unk2*/ 0x0064, /*unk4*/ koopa_X_geo_000358
+    cmd22 /*unk2*/ 0x0067, /*unk4*/ koopa_X_geo_000480
+    cmd22 /*unk2*/ 0x0068, /*unk4*/ koopa_X_geo_000214
+    cmd22 /*unk2*/ 0x00BF, /*unk4*/ koopa_X_geo_0000D0
+    cmd22 /*unk2*/ 0x0065, /*unk4*/ koopa_X_geo_0005D0
+    cmd22 /*unk2*/ 0x0066, /*unk4*/ koopa_X_geo_0005EC
+    cmd22 /*unk2*/ 0x006A, /*unk4*/ koopa_X_geo_000000
+    cmd22 /*unk2*/ 0x006B, /*unk4*/ koopa_X_geo_0000B8
     return
 
 glabel script_func_global_16
-    cmd22 /*unk2*/ 0x0064, /*unk4*/ 0x0D000448
-    cmd22 /*unk2*/ 0x0065, /*unk4*/ 0x0D0005B0
-    cmd22 /*unk2*/ 0x0066, /*unk4*/ 0x0D000000
-    cmd22 /*unk2*/ 0x00DD, /*unk4*/ 0x0D0003E4
+    cmd22 /*unk2*/ 0x0064, /*unk4*/ lakitu_X_geo_000448
+    cmd22 /*unk2*/ 0x0065, /*unk4*/ lakitu_X_geo_0005B0
+    cmd22 /*unk2*/ 0x0066, /*unk4*/ lakitu_X_geo_000000
+    cmd22 /*unk2*/ 0x00DD, /*unk4*/ lakitu_X_geo_0003E4
     return
 
 glabel script_func_global_17
     cmd22 /*unk2*/ 0x0064, /*unk4*/ 0x06003754
     cmd22 /*unk2*/ 0x0065, /*unk4*/ 0x06003874
-    cmd22 /*unk2*/ 0x0066, /*unk4*/ 0x0D0000F0
+    cmd22 /*unk2*/ 0x0066, /*unk4*/ chillychief_X_geo_0000F0
     return
 
 glabel script_func_global_18
-    cmd22 /*unk2*/ 0x0064, /*unk4*/ 0x0D0000DC
-    cmd22 /*unk2*/ 0x0065, /*unk4*/ 0x0D000394
-    cmd22 /*unk2*/ 0x0066, /*unk4*/ 0x0D00001C
-    cmd22 /*unk2*/ 0x0067, /*unk4*/ 0x0D000000
-    cmd22 /*unk2*/ 0x0068, /*unk4*/ 0x0D000230
-    cmd22 /*unk2*/ 0x00CE, /*unk4*/ 0x0D0001A0
+    cmd22 /*unk2*/ 0x0064, /*unk4*/ mri_X_geo_0000DC
+    cmd22 /*unk2*/ 0x0065, /*unk4*/ mri_X_geo_000394
+    cmd22 /*unk2*/ 0x0066, /*unk4*/ mri_X_geo_00001C
+    cmd22 /*unk2*/ 0x0067, /*unk4*/ mri_X_geo_000000
+    cmd22 /*unk2*/ 0x0068, /*unk4*/ mri_X_geo_000230
+    cmd22 /*unk2*/ 0x00CE, /*unk4*/ mri_X_geo_0001A0
     return
 
 .align 4

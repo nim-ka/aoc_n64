@@ -1,105 +1,112 @@
+.include "macros.inc"
+.include "geo_commands.inc"
+
 .section .geo, "a"
 
-# 0000
-.word 0x16000001, 0x00C80046
-.word 0x04000000
-.word   0x1D000000, 0x00006000
-.word   0x04000000
-.word     0x13010000, 0x00000000, 0x00000000
-.word     0x04000000
-.word       0x13010000, 0x00000000, 0x00000000
-.word       0x04000000
-.word         0x13010000, 0x0000004B, 0x00000000
-.word         0x04000000
-.word           0x13010000, 0x00000000, 0x00000000
-.word           0x04000000
-.word             0x13010092, 0x00000000, 0x00000000
-.word             0x04000000
-.word               0x13010000, 0x00000000, 0x05003708
-.word             0x05000000
-.word           0x05000000
-.word         0x05000000
-.word         0x13010000, 0x0000FFB5, 0x00000000
-.word         0x04000000
-.word           0x13010000, 0x00000000, 0x00000000
-.word           0x04000000
-.word             0x13010092, 0x00000000, 0x00000000
-.word             0x04000000
-.word               0x13010000, 0x00000000, 0x050037A0
-.word             0x05000000
-.word           0x05000000
-.word         0x05000000
-.word         0x13010000, 0x00000000, 0x00000000
-.word         0x04000000
-.word           0x14000000, 0x00000000
-.word           0x04000000
-.word             0x15040000, 0x05003D40
-.word           0x05000000
-.word         0x05000000
-.word         0x13010000, 0x00000000, 0x05000398
-.word         0x13040000, 0x00000000, 0x05003FC8
-.word       0x05000000
-.word     0x05000000
-.word   0x05000000
-.word 0x05000000
-.word 0x01000000
-# 0120
-.word 0x16000001, 0x00C800D2
-.word 0x04000000
-.word   0x1D000000, 0x0000C000
-.word   0x04000000
-.word     0x13010000, 0x00000000, 0x00000000
-.word     0x04000000
-.word       0x13010000, 0x00000000, 0x00000000
-.word       0x04000000
-.word         0x13010000, 0x0000004B, 0x00000000
-.word         0x04000000
-.word           0x13010000, 0x00000000, 0x00000000
-.word           0x04000000
-.word             0x13010092, 0x00000000, 0x00000000
-.word             0x04000000
-.word               0x13010000, 0x00000000, 0x05003708
-.word             0x05000000
-.word           0x05000000
-.word         0x05000000
-.word         0x13010000, 0x0000FFB5, 0x00000000
-.word         0x04000000
-.word           0x13010000, 0x00000000, 0x00000000
-.word           0x04000000
-.word             0x13010092, 0x00000000, 0x00000000
-.word             0x04000000
-.word               0x13010000, 0x00000000, 0x050037A0
-.word             0x05000000
-.word           0x05000000
-.word         0x05000000
-.word         0x13010000, 0x00000000, 0x00000000
-.word         0x04000000
-.word           0x14000000, 0x00000000
-.word           0x04000000
-.word             0x15040000, 0x05003EA8
-.word           0x05000000
-.word         0x05000000
-.word         0x13010000, 0x00000000, 0x05000398
-.word         0x13040000, 0x00000000, 0x05003FC8
-.word       0x05000000
-.word     0x05000000
-.word   0x05000000
-.word 0x05000000
-.word 0x01000000
-.word 0x1D000000, 0x00004000
-.word 0x04000000
-.word   0x13010000, 0x00000000, 0x00000000
-.word   0x04000000
-.word     0x13010000, 0x00000000, 0x05005D00
-.word     0x04000000
-.word       0x13010132, 0x00000000, 0x05005A60
-.word       0x04000000
-.word         0x13010006, 0x00030000, 0x00000000
-.word         0x04000000
-.word           0x13010000, 0x00000000, 0x050058D0
-.word         0x05000000
-.word       0x05000000
-.word     0x05000000
-.word   0x05000000
-.word 0x05000000
-.word 0x01000000
+glabel bully_X_geo_000000 # 0x0C000000
+   geo_shadow SHADOW_CIRCLE_UNK1, 0xC8, 70
+      geo_open_node
+         geo_scale 0x00, 24576
+         geo_open_node
+            geo_dl_translated 0x01, 0, 0, 0
+            geo_open_node
+               geo_dl_translated 0x01, 0, 0, 0
+               geo_open_node
+                  geo_dl_translated 0x01, 0, 0, 75
+                  geo_open_node
+                     geo_dl_translated 0x01, 0, 0, 0
+                     geo_open_node
+                        geo_dl_translated 0x01, 146, 0, 0
+                        geo_open_node
+                           geo_dl_translated 0x01, 0, 0, 0, bully_X_seg5_dl_05003708
+                        geo_close_node
+                     geo_close_node
+                  geo_close_node
+                  geo_dl_translated 0x01, 0, 0, -75
+                  geo_open_node
+                     geo_dl_translated 0x01, 0, 0, 0
+                     geo_open_node
+                        geo_dl_translated 0x01, 146, 0, 0
+                        geo_open_node
+                           geo_dl_translated 0x01, 0, 0, 0, bully_X_seg5_dl_050037A0
+                        geo_close_node
+                     geo_close_node
+                  geo_close_node
+                  geo_dl_translated 0x01, 0, 0, 0
+                  geo_open_node
+                     geo_billboard
+                     geo_open_node
+                        geo_display_list 0x04, bully_X_seg5_dl_05003D40
+                     geo_close_node
+                  geo_close_node
+                  geo_dl_translated 0x01, 0, 0, 0, bully_X_seg5_dl_05000398
+                  geo_dl_translated 0x04, 0, 0, 0, bully_X_seg5_dl_05003FC8
+               geo_close_node
+            geo_close_node
+         geo_close_node
+      geo_close_node
+   geo_end
+
+glabel bully_X_geo_000120 # 0x0C000120
+   geo_shadow SHADOW_CIRCLE_UNK1, 0xC8, 210
+      geo_open_node
+         geo_scale 0x00, 49152
+         geo_open_node
+            geo_dl_translated 0x01, 0, 0, 0
+            geo_open_node
+               geo_dl_translated 0x01, 0, 0, 0
+               geo_open_node
+                  geo_dl_translated 0x01, 0, 0, 75
+                  geo_open_node
+                     geo_dl_translated 0x01, 0, 0, 0
+                     geo_open_node
+                        geo_dl_translated 0x01, 146, 0, 0
+                        geo_open_node
+                           geo_dl_translated 0x01, 0, 0, 0, bully_X_seg5_dl_05003708
+                        geo_close_node
+                     geo_close_node
+                  geo_close_node
+                  geo_dl_translated 0x01, 0, 0, -75
+                  geo_open_node
+                     geo_dl_translated 0x01, 0, 0, 0
+                     geo_open_node
+                        geo_dl_translated 0x01, 146, 0, 0
+                        geo_open_node
+                           geo_dl_translated 0x01, 0, 0, 0, bully_X_seg5_dl_050037A0
+                        geo_close_node
+                     geo_close_node
+                  geo_close_node
+                  geo_dl_translated 0x01, 0, 0, 0
+                  geo_open_node
+                     geo_billboard
+                     geo_open_node
+                        geo_display_list 0x04, bully_X_seg5_dl_05003EA8
+                     geo_close_node
+                  geo_close_node
+                  geo_dl_translated 0x01, 0, 0, 0, bully_X_seg5_dl_05000398
+                  geo_dl_translated 0x04, 0, 0, 0, bully_X_seg5_dl_05003FC8
+               geo_close_node
+            geo_close_node
+         geo_close_node
+      geo_close_node
+   geo_end
+
+# TODO: this seems broken
+glabel bully_X_geo_000240 # 0x0C000240
+   geo_scale 0x00, 16384
+   geo_open_node
+      geo_dl_translated 0x01, 0, 0, 0
+      geo_open_node
+         geo_dl_translated 0x01, 0, 0, 0, bully_X_seg5_dl_05005D00
+         geo_open_node
+            geo_dl_translated 0x01, 306, 0, 0, bully_X_seg5_dl_05005A60
+            geo_open_node
+               geo_dl_translated 0x01, 6, 3, 0
+               geo_open_node
+                  geo_dl_translated 0x01, 0, 0, 0, bully_X_seg5_dl_050058D0
+               geo_close_node
+            geo_close_node
+         geo_close_node
+      geo_close_node
+   geo_close_node
+geo_end

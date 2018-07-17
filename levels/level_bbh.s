@@ -79,17 +79,17 @@ glabel level_bbh_entry
     jump_link /*target*/ script_func_global_1
     jump_link /*target*/ script_func_global_10
     jump_link /*target*/ script_func_global_18
-    cmd22 /*unk2*/ 0x001D, /*unk4*/ 0x16000720
-    cmd22 /*unk2*/ 0x0035, /*unk4*/ 0x0E0005B0
-    cmd22 /*unk2*/ 0x0036, /*unk4*/ 0x0E0005C8
-    cmd22 /*unk2*/ 0x0037, /*unk4*/ 0x0E0005E0
-    cmd22 /*unk2*/ 0x0038, /*unk4*/ 0x0E0005F8
-    cmd22 /*unk2*/ 0x0039, /*unk4*/ 0x0E000610
-    cmd22 /*unk2*/ 0x003A, /*unk4*/ 0x0E000628
-    cmd22 /*unk2*/ 0x003B, /*unk4*/ 0x0E000640
-    cmd22 /*unk2*/ 0x003C, /*unk4*/ 0x0E000658
+    cmd22 /*unk2*/ 0x001D, /*unk4*/ coin_X_geo_000720 # coins doors pipes
+    cmd22 /*unk2*/ 0x0035, /*unk4*/ geo_bbh_0005B0
+    cmd22 /*unk2*/ 0x0036, /*unk4*/ geo_bbh_0005C8
+    cmd22 /*unk2*/ 0x0037, /*unk4*/ geo_bbh_0005E0
+    cmd22 /*unk2*/ 0x0038, /*unk4*/ geo_bbh_0005F8
+    cmd22 /*unk2*/ 0x0039, /*unk4*/ geo_bbh_000610
+    cmd22 /*unk2*/ 0x003A, /*unk4*/ geo_bbh_000628
+    cmd22 /*unk2*/ 0x003B, /*unk4*/ geo_bbh_000640
+    cmd22 /*unk2*/ 0x003C, /*unk4*/ geo_bbh_000658
 
-    area /*index*/ 1, /*geo*/ 0x0E000F00
+    area /*index*/ 1, /*geo*/ geo_bbh_000F00
         jump_link /*target*/ script_func_local_1
         jump_link /*target*/ script_func_local_2
         jump_link /*target*/ script_func_local_3
@@ -98,9 +98,9 @@ glabel level_bbh_entry
         warp_node /*id*/ 0x0A, /*destLevel1*/ 0x04, /*destArea*/ 0x01, /*destNode*/ 0x0A, /*destLevel2*/ 0x00
         warp_node /*id*/ 0xF0, /*destLevel1*/ 0x1A, /*destArea*/ 0x01, /*destNode*/ 0x0A, /*destLevel2*/ 0x00
         warp_node /*id*/ 0xF1, /*destLevel1*/ 0x1A, /*destArea*/ 0x01, /*destNode*/ 0x0B, /*destLevel2*/ 0x00
-        terrain /*terrainData*/ 0x070207A0
-        cmd39 /*unk4*/ 0x070268C4
-        rooms /*surfaceRooms*/ 0x0702605C
+        terrain /*terrainData*/ bbh_seg7_collision
+        cmd39 /*unk4*/ bbh_seg7_macro_objs
+        rooms /*surfaceRooms*/ bbh_seg7_rooms
         cmd30 /*unk2*/ 0x00, /*unk3*/ 0x62
         set_music /*unk2*/ 0x0006, /*seq*/ 0x000A
         terrain_type /*terrainType*/ 0x0004

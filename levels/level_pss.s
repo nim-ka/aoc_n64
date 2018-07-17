@@ -21,14 +21,14 @@ glabel level_pss_entry
     jump_link /*target*/ script_func_global_1
     jump_link /*target*/ script_func_global_9
 
-    area /*index*/ 1, /*geo*/ 0x0E000100
+    area /*index*/ 1, /*geo*/ pss_geo_000100
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 5632, 6751, -5631, /*angle*/ 0, 270, 0, /*behArg*/ 0x000A0000, /*beh*/ beh_warps_64
         warp_node /*id*/ 0x0A, /*destLevel1*/ 0x1B, /*destArea*/ 0x01, /*destNode*/ 0x0A, /*destLevel2*/ 0x00
         warp_node /*id*/ 0xF3, /*destLevel1*/ 0x06, /*destArea*/ 0x01, /*destNode*/ 0x20, /*destLevel2*/ 0x00
         warp_node /*id*/ 0xF0, /*destLevel1*/ 0x06, /*destArea*/ 0x01, /*destNode*/ 0x26, /*destLevel2*/ 0x00
         warp_node /*id*/ 0xF1, /*destLevel1*/ 0x06, /*destArea*/ 0x01, /*destNode*/ 0x23, /*destLevel2*/ 0x00
-        terrain /*terrainData*/ 0x0700E490
-        cmd39 /*unk4*/ 0x07010F00
+        terrain /*terrainData*/ pss_seg7_collision
+        cmd39 /*unk4*/ pss_seg7_macro_objs
         terrain_type /*terrainType*/ 0x0006
         set_music /*unk2*/ 0x0001, /*seq*/ 0x0009
     end_area

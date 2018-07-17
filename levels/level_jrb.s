@@ -113,19 +113,19 @@ glabel level_jrb_entry
     jump_link /*target*/ script_func_global_1
     jump_link /*target*/ script_func_global_5
     jump_link /*target*/ script_func_global_14
-    cmd22 /*unk2*/ 0x0035, /*unk4*/ 0x0E000978
-    cmd22 /*unk2*/ 0x0036, /*unk4*/ 0x0E0009B0
-    cmd22 /*unk2*/ 0x0037, /*unk4*/ 0x0E0009E8
-    cmd22 /*unk2*/ 0x0038, /*unk4*/ 0x0E000A00
-    cmd22 /*unk2*/ 0x0039, /*unk4*/ 0x0E000990
-    cmd22 /*unk2*/ 0x003A, /*unk4*/ 0x0E0009C8
-    cmd22 /*unk2*/ 0x003B, /*unk4*/ 0x0E000930
-    cmd22 /*unk2*/ 0x003C, /*unk4*/ 0x0E000960
-    cmd22 /*unk2*/ 0x003D, /*unk4*/ 0x0E000900
-    cmd22 /*unk2*/ 0x003E, /*unk4*/ 0x0E000918
-    cmd22 /*unk2*/ 0x003F, /*unk4*/ 0x0E000948
+    cmd22 /*unk2*/ 0x0035, /*unk4*/ jrb_geo_000978
+    cmd22 /*unk2*/ 0x0036, /*unk4*/ jrb_geo_0009B0
+    cmd22 /*unk2*/ 0x0037, /*unk4*/ jrb_geo_0009E8
+    cmd22 /*unk2*/ 0x0038, /*unk4*/ jrb_geo_000A00
+    cmd22 /*unk2*/ 0x0039, /*unk4*/ jrb_geo_000990
+    cmd22 /*unk2*/ 0x003A, /*unk4*/ jrb_geo_0009C8
+    cmd22 /*unk2*/ 0x003B, /*unk4*/ jrb_geo_000930
+    cmd22 /*unk2*/ 0x003C, /*unk4*/ jrb_geo_000960
+    cmd22 /*unk2*/ 0x003D, /*unk4*/ jrb_geo_000900
+    cmd22 /*unk2*/ 0x003E, /*unk4*/ jrb_geo_000918
+    cmd22 /*unk2*/ 0x003F, /*unk4*/ jrb_geo_000948
 
-    area /*index*/ 1, /*geo*/ 0x0E000A18
+    area /*index*/ 1, /*geo*/ jrb_geo_000A18
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -6750, 2126, 1482, /*angle*/ 0, 90, 0, /*behArg*/ 0x000A0000, /*beh*/ beh_warps_74
         warp_node /*id*/ 0x0A, /*destLevel1*/ 0x0C, /*destArea*/ 0x01, /*destNode*/ 0x0A, /*destLevel2*/ 0x00
         warp_node /*id*/ 0xF3, /*destLevel1*/ 0x0C, /*destArea*/ 0x02, /*destNode*/ 0x0A, /*destLevel2*/ 0x00
@@ -135,21 +135,21 @@ glabel level_jrb_entry
         jump_link /*target*/ script_func_local_1
         jump_link /*target*/ script_func_local_2
         jump_link /*target*/ script_func_local_3
-        terrain /*terrainData*/ 0x0700B058
-        cmd39 /*unk4*/ 0x0700C4E8
+        terrain /*terrainData*/ jrb_seg7_area_1_collision
+        cmd39 /*unk4*/ jrb_seg7_area_1_macro_objs 
         set_music /*unk2*/ 0x0003, /*seq*/ 0x0005
         terrain_type /*terrainType*/ 0x0005
     end_area
 
-    area /*index*/ 2, /*geo*/ 0x0E000AFC
+    area /*index*/ 2, /*geo*/ jrb_geo_000AFC
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 928, 1050, -1248, /*angle*/ 0, 180, 0, /*behArg*/ 0x000A0000, /*beh*/ beh_warps_94
         warp_node /*id*/ 0x0A, /*destLevel1*/ 0x0C, /*destArea*/ 0x02, /*destNode*/ 0x0A, /*destLevel2*/ 0x00
         warp_node /*id*/ 0xF0, /*destLevel1*/ 0x06, /*destArea*/ 0x01, /*destNode*/ 0x35, /*destLevel2*/ 0x00
         warp_node /*id*/ 0xF1, /*destLevel1*/ 0x06, /*destArea*/ 0x01, /*destNode*/ 0x67, /*destLevel2*/ 0x00
         jump_link /*target*/ script_func_local_4
         jump_link /*target*/ script_func_local_5
-        terrain /*terrainData*/ 0x070105B8
-        cmd39 /*unk4*/ 0x07011370
+        terrain /*terrainData*/ jrb_seg7_area_2_collision
+        cmd39 /*unk4*/ jrb_seg7_area_2_macro_objs 
         set_music /*unk2*/ 0x0003, /*seq*/ 0x0005
         terrain_type /*terrainType*/ 0x0005
     end_area

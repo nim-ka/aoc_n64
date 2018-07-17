@@ -120,7 +120,7 @@ vertex  -2171,    307,  -2171,      0,    -16, 0xBB, 0x5C, 0xCC, 0xFF
 vertex  -2171,  -2047,  -2171,      0,   1988, 0xB4, 0x00, 0x9B, 0xFF
 vertex  -3071,    307,      0,    990,     -8, 0xB8, 0x68, 0x09, 0xFF
 
-bidw_platform_f3d_07002578: # 0x07002578
+bowser_1_seg7_dl_07002578: # 0x07002578
 .word 0xFD100000, texture_07001800
 .word 0xE6000000, 0x00000000
 .word 0xF3000000, 0x073FF100
@@ -138,7 +138,7 @@ bidw_platform_f3d_07002578: # 0x07002578
 .word 0xBF000000, 0x00000A14
 .word 0xB8000000, 0x00000000
 
-bidw_platform_f3d_070025F8: # 0x070025F8
+bowser_1_seg7_dl_070025F8: # 0x070025F8
 .word 0xFD100000, texture_07001000
 .word 0xE6000000, 0x00000000
 .word 0xF3000000, 0x073FF100
@@ -163,7 +163,7 @@ bidw_platform_f3d_070025F8: # 0x070025F8
 .word 0xBF000000, 0x00001E0A
 .word 0xB8000000, 0x00000000
 
-bidw_platform_f3d_070026B0: # 0x070026B0
+bowser_1_seg7_dl_070026B0: # 0x070026B0
 .word 0xFD100000, texture_07000000
 .word 0xE6000000, 0x00000000
 .word 0xF3000000, 0x077FF100
@@ -188,7 +188,7 @@ bidw_platform_f3d_070026B0: # 0x070026B0
 .word 0xBF000000, 0x00001E0A
 .word 0xB8000000, 0x00000000
 
-glabel bidw_platform_f3d_07002768 # 0x07002768
+glabel bowser_1_seg7_dl_07002768 # 0x07002768
 .word 0xE7000000, 0x00000000
 .word 0xBA001402, 0x00100000
 .word 0xB900031D, 0xC8112078
@@ -202,12 +202,12 @@ glabel bidw_platform_f3d_07002768 # 0x07002768
 .word 0xE8000000, 0x00000000
 .word 0xF5101000, 0x00014050
 .word 0xF2000000, 0x0007C07C
-.word 0x06000000, bidw_platform_f3d_07002578
-.word 0x06000000, bidw_platform_f3d_070025F8
+.word 0x06000000, bowser_1_seg7_dl_07002578
+.word 0x06000000, bowser_1_seg7_dl_070025F8
 .word 0xE8000000, 0x00000000
 .word 0xF5101000, 0x00098050
 .word 0xF2000000, 0x0007C0FC
-.word 0x06000000, bidw_platform_f3d_070026B0
+.word 0x06000000, bowser_1_seg7_dl_070026B0
 .word 0xBB000000, 0xFFFFFFFF
 .word 0xE7000000, 0x00000000
 .word 0xBA001402, 0x00000000
@@ -216,5 +216,5 @@ glabel bidw_platform_f3d_07002768 # 0x07002768
 .word 0xFCFFFFFF, 0xFFFE793C
 .word 0xB8000000, 0x00000000
 
-glabel bidw_platform_collision # 0x07002838
+glabel bowser_1_seg7_collision # 0x07002838
 .incbin "bin/bidw_platform_segment7/bidw_platform_segment7.02838.collision"

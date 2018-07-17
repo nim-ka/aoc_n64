@@ -33,11 +33,11 @@ glabel level_castle_courtyard_entry
     mario /*unk3*/ 0x01, /*behArg*/ 0x00000001, /*beh*/ beh_mario
     jump_link /*target*/ script_func_global_1
     jump_link /*target*/ script_func_global_10
-    cmd22 /*unk2*/ 0x0018, /*unk4*/ 0x16001000
-    cmd22 /*unk2*/ 0x0027, /*unk4*/ 0x160004D0
-    cmd22 /*unk2*/ 0x0003, /*unk4*/ 0x0E000200
+    cmd22 /*unk2*/ 0x0018, /*unk4*/ coin_X_geo_001000
+    cmd22 /*unk2*/ 0x0027, /*unk4*/ coin_X_geo_0004D0
+    cmd22 /*unk2*/ 0x0003, /*unk4*/ castle_courtyard_geo_000200
 
-    area /*index*/ 1, /*geo*/ 0x0E000218
+    area /*index*/ 1, /*geo*/ castle_courtyard_geo_000218
         object /*unk2*/ 0x1F, /*unk3*/ 0x54, /*pos*/ -2360, -100, -2712, /*angle*/ 0, 0, 0, /*behArg*/ 0x01050000, /*beh*/ beh_boo_with_cage
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 0, 51, -1000, /*angle*/ 0, 180, 0, /*behArg*/ 0x000A0000, /*beh*/ beh_warps_8C
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 0, 51, -1000, /*angle*/ 0, 180, 0, /*behArg*/ 0x000B0000, /*beh*/ beh_warps_90
@@ -48,8 +48,8 @@ glabel level_castle_courtyard_entry
         warp_node /*id*/ 0xF1, /*destLevel1*/ 0x10, /*destArea*/ 0x01, /*destNode*/ 0x03, /*destLevel2*/ 0x00
         jump_link /*target*/ script_func_local_1
         jump_link /*target*/ script_func_local_2
-        terrain /*terrainData*/ 0x070059A8
-        cmd39 /*unk4*/ 0x07006E20
+        terrain /*terrainData*/ castle_courtyard_seg7_collision
+        cmd39 /*unk4*/ castle_courtyard_seg7_macro_objs
         set_music /*unk2*/ 0x0000, /*seq*/ 0x0000
         terrain_type /*terrainType*/ 0x0001
     end_area

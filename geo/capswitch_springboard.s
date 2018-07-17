@@ -1,33 +1,42 @@
+.include "macros.inc"
+.include "geo_commands.inc"
+
 .section .geo, "a"
 
-# 0000
-.word 0x200001F4
-.word 0x04000000
-.word   0x15010000, 0x050016B8
-.word 0x05000000
-.word 0x01000000
-# 0018
-.word 0x200001F4
-.word 0x04000000
-.word   0x15010000, 0x05001800
-.word 0x05000000
-.word 0x01000000
-# 0030
-.word 0x200001F4
-.word 0x04000000
-.word   0x15010000, 0x05001900
-.word 0x05000000
-.word 0x01000000
-# 0048
-.word 0x20000258
-.word 0x04000000
-.word   0x15060000, 0x05002E00
-.word   0x0E000004, GeoSwitchCase8029DB48
-.word   0x04000000
-.word     0x15010000, 0x05003350
-.word     0x15010000, 0x05003370
-.word     0x15010000, 0x05003390
-.word     0x15010000, 0x050033B0
-.word   0x05000000
-.word 0x05000000
-.word 0x01000000
+# unused
+glabel geo_layout_springboard_checkerboard1 # 0x0C000000
+   geo_start_distance 500
+      geo_open_node
+         geo_display_list 0x01, seg5_dl_050016B8
+      geo_close_node
+   geo_end
+
+# unused
+glabel geo_layout_springboard_spring # 0x0C000018
+   geo_start_distance 500
+      geo_open_node
+         geo_display_list 0x01, seg5_dl_05001800
+      geo_close_node
+   geo_end
+
+# unused
+glabel geo_layout_springboard_checkerboard2 # 0x0C000030
+   geo_start_distance 500
+      geo_open_node
+         geo_display_list 0x01, seg5_dl_05001900
+      geo_close_node
+   geo_end
+
+glabel geo_layout_cap_switch # 0x0C000048
+   geo_start_distance 600
+      geo_open_node
+         geo_display_list 0x06, seg5_dl_05002E00
+         geo_switch_case 4, GeoSwitchCase8029DB48
+         geo_open_node
+            geo_display_list 0x01, seg5_dl_05003350
+            geo_display_list 0x01, seg5_dl_05003370
+            geo_display_list 0x01, seg5_dl_05003390
+            geo_display_list 0x01, seg5_dl_050033B0
+         geo_close_node
+      geo_close_node
+   geo_end

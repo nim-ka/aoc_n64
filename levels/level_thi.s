@@ -78,13 +78,13 @@ glabel level_thi_entry
     jump_link /*target*/ script_func_global_1
     jump_link /*target*/ script_func_global_12
     jump_link /*target*/ script_func_global_15
-    cmd22 /*unk2*/ 0x0017, /*unk4*/ 0x16000FE8
-    cmd22 /*unk2*/ 0x0003, /*unk4*/ 0x0E0005F0
-    cmd22 /*unk2*/ 0x0016, /*unk4*/ 0x16000388
-    cmd22 /*unk2*/ 0x0036, /*unk4*/ 0x0E0005B0
-    cmd22 /*unk2*/ 0x0037, /*unk4*/ 0x0E0005C8
+    cmd22 /*unk2*/ 0x0017, /*unk4*/ coin_X_geo_000FE8
+    cmd22 /*unk2*/ 0x0003, /*unk4*/ thi_geo_0005F0
+    cmd22 /*unk2*/ 0x0016, /*unk4*/ common_seg16_geo_pipe
+    cmd22 /*unk2*/ 0x0036, /*unk4*/ thi_geo_0005B0
+    cmd22 /*unk2*/ 0x0037, /*unk4*/ thi_geo_0005C8
 
-    area /*index*/ 1, /*geo*/ 0x0E000608
+    area /*index*/ 1, /*geo*/ thi_geo_000608
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -7372, -1969, 7373, /*angle*/ 0, 149, 0, /*behArg*/ 0x000A0000, /*beh*/ beh_warps_74
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 410, -512, 922, /*angle*/ 0, 0, 0, /*behArg*/ 0x000B0000, /*beh*/ beh_warps_60
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 410, -512, 717, /*angle*/ 0, 0, 0, /*behArg*/ 0x050C0000, /*beh*/ beh_warp
@@ -99,13 +99,13 @@ glabel level_thi_entry
         jump_link /*target*/ script_func_local_1
         jump_link /*target*/ script_func_local_5
         jump_link /*target*/ script_func_local_4
-        terrain /*terrainData*/ 0x07009FC8
-        cmd39 /*unk4*/ 0x0700DD50
+        terrain /*terrainData*/ thi_seg7_area_1_collision
+        cmd39 /*unk4*/ thi_seg7_area_1_macro_objs
         set_music /*unk2*/ 0x0000, /*seq*/ 0x0003
         terrain_type /*terrainType*/ 0x0000
     end_area
 
-    area /*index*/ 2, /*geo*/ 0x0E0006D4
+    area /*index*/ 2, /*geo*/ thi_geo_0006D4
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -2211, 110, 2212, /*angle*/ 0, 149, 0, /*behArg*/ 0x000A0000, /*beh*/ beh_warps_74
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 280, -767, -4180, /*angle*/ 0, 0, 0, /*behArg*/ 0x000B0000, /*beh*/ beh_fading_warp
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -1638, 0, -1988, /*angle*/ 0, -126, 0, /*behArg*/ 0x000C0000, /*beh*/ beh_fading_warp
@@ -117,13 +117,13 @@ glabel level_thi_entry
         jump_link /*target*/ script_func_local_8
         jump_link /*target*/ script_func_local_2
         jump_link /*target*/ script_func_local_6
-        terrain /*terrainData*/ 0x0700BD60
-        cmd39 /*unk4*/ 0x0700DEE4
+        terrain /*terrainData*/ thi_seg7_area_2_collision
+        cmd39 /*unk4*/ thi_seg7_area_2_macro_objs
         set_music /*unk2*/ 0x0000, /*seq*/ 0x0003
         terrain_type /*terrainType*/ 0x0000
     end_area
 
-    area /*index*/ 3, /*geo*/ 0x0E00079C
+    area /*index*/ 3, /*geo*/ thi_geo_00079C
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 512, 1024, 2150, /*angle*/ 0, 180, 0, /*behArg*/ 0x000A0000, /*beh*/ beh_warps_60
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 0, 3277, 0, /*angle*/ 0, 0, 0, /*behArg*/ 0x000B0000, /*beh*/ beh_warps_64
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 512, 1024, 2355, /*angle*/ 0, 0, 0, /*behArg*/ 0x050C0000, /*beh*/ beh_warp
@@ -133,8 +133,8 @@ glabel level_thi_entry
         warp_node /*id*/ 0xF0, /*destLevel1*/ 0x06, /*destArea*/ 0x02, /*destNode*/ 0x37, /*destLevel2*/ 0x00
         warp_node /*id*/ 0xF1, /*destLevel1*/ 0x06, /*destArea*/ 0x02, /*destNode*/ 0x69, /*destLevel2*/ 0x00
         jump_link /*target*/ script_func_local_3
-        terrain /*terrainData*/ 0x0700D444
-        cmd39 /*unk4*/ 0x0700E190
+        terrain /*terrainData*/ thi_seg7_area_3_collision
+        cmd39 /*unk4*/ thi_seg7_area_3_macro_objs
         set_music /*unk2*/ 0x0004, /*seq*/ 0x000C
         terrain_type /*terrainType*/ 0x0000
     end_area

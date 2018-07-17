@@ -19,12 +19,12 @@ glabel level_bowser_1_entry
     jump_link /*target*/ script_func_global_13
     cmd22 /*unk2*/ 0x0003, /*unk4*/ 0x0D0000B0
 
-    area /*index*/ 1, /*geo*/ 0x0E0000D0
+    area /*index*/ 1, /*geo*/ bowser_1_geo_0000D0
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 0, 1307, 0, /*angle*/ 0, 180, 0, /*behArg*/ 0x000A0000, /*beh*/ beh_warps_6C
         warp_node /*id*/ 0x0A, /*destLevel1*/ 0x1E, /*destArea*/ 0x01, /*destNode*/ 0x0A, /*destLevel2*/ 0x00
         warp_node /*id*/ 0xF0, /*destLevel1*/ 0x06, /*destArea*/ 0x01, /*destNode*/ 0x24, /*destLevel2*/ 0x00
         warp_node /*id*/ 0xF1, /*destLevel1*/ 0x11, /*destArea*/ 0x01, /*destNode*/ 0x0C, /*destLevel2*/ 0x00
-        terrain /*terrainData*/ 0x07002838
+        terrain /*terrainData*/ bowser_1_seg7_collision
         set_music /*unk2*/ 0x0002, /*seq*/ 0x0007
         terrain_type /*terrainType*/ 0x0001
     end_area

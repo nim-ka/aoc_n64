@@ -58,12 +58,12 @@ glabel level_bob_entry
     jump_link /*target*/ script_func_global_1
     jump_link /*target*/ script_func_global_4
     jump_link /*target*/ script_func_global_15
-    cmd22 /*unk2*/ 0x0017, /*unk4*/ 0x16000FE8
-    cmd22 /*unk2*/ 0x0036, /*unk4*/ 0x0E000440
-    cmd22 /*unk2*/ 0x0037, /*unk4*/ 0x0E000458
-    cmd22 /*unk2*/ 0x0038, /*unk4*/ 0x0E000470
+    cmd22 /*unk2*/ 0x0017, /*unk4*/ coin_X_geo_000FE8
+    cmd22 /*unk2*/ 0x0036, /*unk4*/ bob_geo_000440
+    cmd22 /*unk2*/ 0x0037, /*unk4*/ bob_geo_000458
+    cmd22 /*unk2*/ 0x0038, /*unk4*/ bob_geo_000470
 
-    area /*index*/ 1, /*geo*/ 0x0E000488
+    area /*index*/ 1, /*geo*/ bob_geo_000488
         jump_link /*target*/ script_func_local_1
         jump_link /*target*/ script_func_local_2
         jump_link /*target*/ script_func_local_3

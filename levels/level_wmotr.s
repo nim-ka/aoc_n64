@@ -38,7 +38,7 @@ glabel level_wmotr_entry
     jump_link /*target*/ script_func_global_3
     jump_link /*target*/ script_func_global_18
 
-    area /*index*/ 1, /*geo*/ 0x0E0001F0
+    area /*index*/ 1, /*geo*/ wmotr_geo_0001F0
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -67, 2669, -16, /*angle*/ 0, 270, 0, /*behArg*/ 0x000A0000, /*beh*/ beh_warps_64
         warp_node /*id*/ 0x0A, /*destLevel1*/ 0x1F, /*destArea*/ 0x01, /*destNode*/ 0x0A, /*destLevel2*/ 0x00
         warp_node /*id*/ 0xF0, /*destLevel1*/ 0x06, /*destArea*/ 0x02, /*destNode*/ 0x38, /*destLevel2*/ 0x00
@@ -46,8 +46,8 @@ glabel level_wmotr_entry
         warp_node /*id*/ 0xF3, /*destLevel1*/ 0x10, /*destArea*/ 0x01, /*destNode*/ 0x0A, /*destLevel2*/ 0x00
         jump_link /*target*/ script_func_local_1
         jump_link /*target*/ script_func_local_2
-        terrain /*terrainData*/ 0x07010688
-        cmd39 /*unk4*/ 0x070136A8
+        terrain /*terrainData*/ wmotr_seg7_collision 
+        cmd39 /*unk4*/ wmotr_seg7_macro_objs
         set_music /*unk2*/ 0x0000, /*seq*/ 0x0009
         terrain_type /*terrainType*/ 0x0002
     end_area

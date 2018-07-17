@@ -13,7 +13,7 @@ glabel level_ending_entry
     load_mio0 /*seg*/ 0x07, /*romStart*/ _level_ending_segment_7SegmentRomStart, /*romEnd*/ _level_ending_segment_7SegmentRomEnd
     alloc_level_pool
 
-    area /*index*/ 1, /*geo*/ 0x0E000050
+    area /*index*/ 1, /*geo*/ ending_geo_000050
     end_area
 
     free_level_pool

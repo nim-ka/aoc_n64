@@ -8,10 +8,10 @@
 
 .include "macros.inc"
 
-bifs_platform_texture_07000000: # 0x07000000
+bowser_2_seg7_texture_07000000: # 0x07000000
 .incbin "build/bin/bifs_platform_segment7/bifs_platform_segment7.00000.rgba16"
 
-bifs_platform_vertices_07000800: # 0x07000800
+bowser_2_seg7_vertices_07000800: # 0x07000800
 vertex   1176,    784,  -2837,   6612,    678,  0xFF, 0xFF, 0xFF, 0xFF
 vertex   2838,   1229,  -1175,   7634,    990,  0xFF, 0xFF, 0xFF, 0xFF
 vertex   2838,    784,  -1175,   7634,    678,  0xFF, 0xFF, 0xFF, 0xFF
@@ -29,7 +29,7 @@ vertex      0,   -306,      0,   1502,    552,  0xFF, 0xFF, 0xFF, 0xFF
 vertex  -1175,    784,   2838,   1246,    812,  0xFF, 0xFF, 0xFF, 0xFF
 vertex  -2837,    784,   1176,   1756,    812,  0xFF, 0xFF, 0xFF, 0xFF
 
-bifs_platform_vertices_07000900: # 0x07000900
+bowser_2_seg7_vertices_07000900: # 0x07000900
 vertex   1176,    784,  -2837,   6612,    678,  0xFF, 0xFF, 0xFF, 0xFF
 vertex   1176,   1229,  -2837,   6612,    990,  0xFF, 0xFF, 0xFF, 0xFF
 vertex   2838,   1229,  -1175,   7634,    990,  0xFF, 0xFF, 0xFF, 0xFF
@@ -47,7 +47,7 @@ vertex      0,   -306,      0,   2524,    552,  0xFF, 0xFF, 0xFF, 0xFF
 vertex   1176,    784,  -2837,   3290,    812,  0xFF, 0xFF, 0xFF, 0xFF
 vertex      0,   -306,      0,   3034,    552,  0xFF, 0xFF, 0xFF, 0xFF
 
-bifs_platform_vertices_07000A00: # 0x07000A00
+bowser_2_seg7_vertices_07000A00: # 0x07000A00
 vertex   1176,    784,  -2837,   3290,    812,  0xFF, 0xFF, 0xFF, 0xFF
 vertex   2838,    784,  -1175,   3800,    812,  0xFF, 0xFF, 0xFF, 0xFF
 vertex      0,   -306,      0,   3546,    552,  0xFF, 0xFF, 0xFF, 0xFF
@@ -59,7 +59,7 @@ vertex      0,   -306,      0,    480,    552,  0xFF, 0xFF, 0xFF, 0xFF
 vertex  -1175,    784,   2838,   1246,    812,  0xFF, 0xFF, 0xFF, 0xFF
 vertex      0,   -306,      0,    990,    552,  0xFF, 0xFF, 0xFF, 0xFF
 
-bifs_platform_vertices_07000AA0: # 0x07000AA0
+bowser_2_seg7_vertices_07000AA0: # 0x07000AA0
 vertex   2838,   1229,  -1175,   5298,  -4574,  0xAD, 0x10, 0x16, 0xFF
 vertex   1703,   1229,    705,   3210,  -1892,  0xAD, 0x10, 0x16, 0xFF
 vertex   2838,   1229,   1176,   4460,  -1222,  0xAD, 0x10, 0x16, 0xFF
@@ -77,7 +77,7 @@ vertex   1176,   1229,   2838,   1792,   1146,  0xAD, 0x10, 0x16, 0xFF
 vertex    705,   1229,   1703,   1610,   -470,  0xAD, 0x10, 0x16, 0xFF
 vertex   1703,   1229,   -704,   3714,  -3904,  0xAD, 0x10, 0x16, 0xFF
 
-bifs_platform_vertices_07000BA0: # 0x07000BA0
+bowser_2_seg7_vertices_07000BA0: # 0x07000BA0
 vertex  -1418,   1229,    588,   3034,  -2076,  0xFD, 0x42, 0x34, 0xFF
 vertex   -587,   1229,   1419,   5202,  -1178,  0xFD, 0x42, 0x34, 0xFF
 vertex      0,   1229,      0,   3034,    990,  0xFD, 0x42, 0x34, 0xFF
@@ -88,7 +88,7 @@ vertex   1419,   1229,   -587,   3034,   4054,  0xFD, 0x42, 0x34, 0xFF
 vertex    588,   1229,  -1418,    866,   3156,  0xFD, 0x42, 0x34, 0xFF
 vertex   -587,   1229,  -1418,      0,    990,  0xFD, 0x42, 0x34, 0xFF
 
-bifs_platform_vertices_07000C30: # 0x07000C30
+bowser_2_seg7_vertices_07000C30: # 0x07000C30
 vertex   -704,   1229,   1703,      0,    850,  0xFD, 0x42, 0x34, 0xFF
 vertex    705,   1229,   1703,   4568,  -1054,  0xFD, 0x42, 0x34, 0xFF
 vertex    588,   1229,   1419,   3800,  -1820,  0xFD, 0x42, 0x34, 0xFF
@@ -106,11 +106,11 @@ vertex   1419,   1229,    588,   5388,  -5652,  0xFD, 0x42, 0x34, 0xFF
 vertex   1703,   1229,   -704,   4568, -10252,  0xFD, 0x42, 0x34, 0xFF
 vertex   1419,   1229,   -587,   3800,  -9486,  0xFD, 0x42, 0x34, 0xFF
 
-glabel bifs_platform_f3d_07000D30 # 0x07000D30
+glabel bowser_2_seg7_dl_07000D30 # 0x07000D30
 .word 0xFD100000, lll_texture_09009800
 .word 0xE6000000, 0x00000000
 .word 0xF3000000, 0x073FF100
-.word 0x04F00100, bifs_platform_vertices_07000800
+.word 0x04F00100, bowser_2_seg7_vertices_07000800
 .word 0xBF000000, 0x00000A14
 .word 0xBF000000, 0x001E2832
 .word 0xBF000000, 0x003C281E
@@ -121,7 +121,7 @@ glabel bifs_platform_f3d_07000D30 # 0x07000D30
 .word 0xBF000000, 0x00146E78
 .word 0xBF000000, 0x00140A6E
 .word 0xBF000000, 0x00828C96
-.word 0x04F00100, bifs_platform_vertices_07000900
+.word 0x04F00100, bowser_2_seg7_vertices_07000900
 .word 0xBF000000, 0x00000A14
 .word 0xBF000000, 0x001E0A00
 .word 0xBF000000, 0x001E280A
@@ -132,18 +132,18 @@ glabel bifs_platform_f3d_07000D30 # 0x07000D30
 .word 0xBF000000, 0x005A646E
 .word 0xBF000000, 0x00647882
 .word 0xBF000000, 0x00788C96
-.word 0x049000A0, bifs_platform_vertices_07000A00
+.word 0x049000A0, bowser_2_seg7_vertices_07000A00
 .word 0xBF000000, 0x00000A14
 .word 0xBF000000, 0x000A1E28
 .word 0xBF000000, 0x00323C46
 .word 0xBF000000, 0x003C505A
 .word 0xB8000000, 0x00000000
 
-bifs_platform_f3d_07000E28: # 0x07000E28
+bowser_2_seg7_dl_07000E28: # 0x07000E28
 .word 0xFD100000, lll_texture_09003000
 .word 0xE6000000, 0x00000000
 .word 0xF3000000, 0x073FF100
-.word 0x04F00100, bifs_platform_vertices_07000AA0
+.word 0x04F00100, bowser_2_seg7_vertices_07000AA0
 .word 0xBF000000, 0x00000A14
 .word 0xBF000000, 0x001E2832
 .word 0xBF000000, 0x003C461E
@@ -162,11 +162,11 @@ bifs_platform_f3d_07000E28: # 0x07000E28
 .word 0xBF000000, 0x00649600
 .word 0xB8000000, 0x00000000
 
-bifs_platform_f3d_07000ED0: # 0x07000ED0
+bowser_2_seg7_dl_07000ED0: # 0x07000ED0
 .word 0xFD100000, lll_texture_09005800
 .word 0xE6000000, 0x00000000
 .word 0xF3000000, 0x073FF100
-.word 0x04800090, bifs_platform_vertices_07000BA0
+.word 0x04800090, bowser_2_seg7_vertices_07000BA0
 .word 0xBF000000, 0x00000A14
 .word 0xBF000000, 0x000A1E14
 .word 0xBF000000, 0x001E2814
@@ -177,11 +177,11 @@ bifs_platform_f3d_07000ED0: # 0x07000ED0
 .word 0xBF000000, 0x00465014
 .word 0xB8000000, 0x00000000
 
-bifs_platform_f3d_07000F38: # 0x07000F38
+bowser_2_seg7_dl_07000F38: # 0x07000F38
 .word 0xFD100000, lll_texture_09005000
 .word 0xE6000000, 0x00000000
 .word 0xF3000000, 0x073FF100
-.word 0x04F00100, bifs_platform_vertices_07000C30
+.word 0x04F00100, bowser_2_seg7_vertices_07000C30
 .word 0xBF000000, 0x00000A14
 .word 0xBF000000, 0x001E2832
 .word 0xBF000000, 0x0032283C
@@ -200,7 +200,7 @@ bifs_platform_f3d_07000F38: # 0x07000F38
 .word 0xBF000000, 0x0064968C
 .word 0xB8000000, 0x00000000
 
-glabel bifs_platform_f3d_07000FE0 # 0x07000FE0
+glabel bowser_2_seg7_dl_07000FE0 # 0x07000FE0
 .word 0xE7000000, 0x00000000
 .word 0xBA001402, 0x00100000
 .word 0xB900031D, 0xC8112078
@@ -215,10 +215,10 @@ glabel bifs_platform_f3d_07000FE0 # 0x07000FE0
 .word 0xE8000000, 0x00000000
 .word 0xF5101000, 0x00014050
 .word 0xF2000000, 0x0007C07C
-.word 0x06000000, bifs_platform_f3d_07000D30
-.word 0x06000000, bifs_platform_f3d_07000E28
-.word 0x06000000, bifs_platform_f3d_07000ED0
-.word 0x06000000, bifs_platform_f3d_07000F38
+.word 0x06000000, bowser_2_seg7_dl_07000D30
+.word 0x06000000, bowser_2_seg7_dl_07000E28
+.word 0x06000000, bowser_2_seg7_dl_07000ED0
+.word 0x06000000, bowser_2_seg7_dl_07000F38
 .word 0xBB000000, 0xFFFFFFFF
 .word 0xE7000000, 0x00000000
 .word 0xBA001402, 0x00000000
@@ -228,7 +228,7 @@ glabel bifs_platform_f3d_07000FE0 # 0x07000FE0
 .word 0xB7000000, 0x00020000
 .word 0xB8000000, 0x00000000
 
-bifs_platform_vertices_070010B0: # 0x070010B0
+bowser_2_seg7_vertices_070010B0: # 0x070010B0
 vertex   6546,   -511,   2618,   4910,    248,  0xFF, 0xFF, 0xFF, 0xFF
 vertex   6480,  -3071,  -2776,   8112,    772,  0xFF, 0xFF, 0xFF, 0xFF
 vertex   6480,   -511,  -2776,   8100,    232,  0xFF, 0xFF, 0xFF, 0xFF
@@ -246,7 +246,7 @@ vertex  -2776,   -511,  -6479,    782,   1298,  0xFF, 0xFF, 0xFF, 0xFF
 vertex   2777,   -511,   6480,  -1526,  -4090,  0xFF, 0xFF, 0xFF, 0xFF
 vertex   6546,   -511,   2618,  -3092,  -2484,  0xFF, 0xFF, 0xFF, 0xFF
 
-bifs_platform_vertices_070011B0: # 0x070011B0
+bowser_2_seg7_vertices_070011B0: # 0x070011B0
 vertex   6546,   -511,   2618,   4910,    248,  0xFF, 0xFF, 0xFF, 0xFF
 vertex   6546,  -3071,   2618,   4924,    788,  0xFF, 0xFF, 0xFF, 0xFF
 vertex   6480,  -3071,  -2776,   8112,    772,  0xFF, 0xFF, 0xFF, 0xFF
@@ -264,12 +264,12 @@ vertex   2777,   -511,   6480,  -1526,  -4090,  0xFF, 0xFF, 0xFF, 0xFF
 vertex   6546,   -511,   2618,  -3092,  -2484,  0xFF, 0xFF, 0xFF, 0xFF
 vertex   6480,   -511,  -2776,  -3066,   -240,  0xFF, 0xFF, 0xFF, 0xFF
 
-bifs_platform_vertices_070012B0: # 0x070012B0
+bowser_2_seg7_vertices_070012B0: # 0x070012B0
 vertex  -2776,   -511,  -6479,    782,   1298,  0xFF, 0xFF, 0xFF, 0xFF
 vertex   6480,   -511,  -2776,  -3066,   -240,  0xFF, 0xFF, 0xFF, 0xFF
 vertex   2618,   -511,  -6545,  -1460,   1326,  0xFF, 0xFF, 0xFF, 0xFF
 
-bifs_platform_vertices_070012E0: # 0x070012E0
+bowser_2_seg7_vertices_070012E0: # 0x070012E0
 vertex  -3512,   -511,   -889,   -356,    984,  0xFD, 0x42, 0x34, 0xFF
 vertex  -3159,   -511,   -886,   -360,    440,  0xFD, 0x42, 0x34, 0xFF
 vertex  -3323,    399,  -1105,    -26,    692,  0xFD, 0x42, 0x34, 0xFF
@@ -287,7 +287,7 @@ vertex  -3158,   -511,   4009,   -360,    440,  0xFD, 0x42, 0x34, 0xFF
 vertex  -3019,   -511,   3670,    158,    228,  0xFD, 0x42, 0x34, 0xFF
 vertex  -3021,   -511,  -1224,    158,    228,  0xFD, 0x42, 0x34, 0xFF
 
-bifs_platform_vertices_070013E0: # 0x070013E0
+bowser_2_seg7_vertices_070013E0: # 0x070013E0
 vertex  -3021,   -511,  -1224,    158,    228,  0xFD, 0x42, 0x34, 0xFF
 vertex  -3408,   -511,  -1420,    458,    824,  0xFD, 0x42, 0x34, 0xFF
 vertex  -3323,    399,  -1105,    -26,    692,  0xFD, 0x42, 0x34, 0xFF
@@ -305,7 +305,7 @@ vertex   3098,    399,   2799,    -26,    692,  0xFD, 0x42, 0x34, 0xFF
 vertex   3262,   -511,   3019,   -360,    440,  0xFD, 0x42, 0x34, 0xFF
 vertex   3400,   -511,   2680,    158,    228,  0xFD, 0x42, 0x34, 0xFF
 
-bifs_platform_vertices_070014E0: # 0x070014E0
+bowser_2_seg7_vertices_070014E0: # 0x070014E0
 vertex   3013,   -511,   2484,    458,    824,  0xFD, 0x42, 0x34, 0xFF
 vertex   2820,   -511,   2679,    160,   1116,  0xFD, 0x42, 0x34, 0xFF
 vertex   3098,    399,   2799,    -26,    692,  0xFD, 0x42, 0x34, 0xFF
@@ -323,7 +323,7 @@ vertex   -286,   -511,   3931,    652,    938,  0xFD, 0x42, 0x34, 0xFF
 vertex    256,   -511,   3936,    926,    670,  0xFD, 0x42, 0x34, 0xFF
 vertex    469,   -511,   3415,    772,    304,  0xFD, 0x42, 0x34, 0xFF
 
-bifs_platform_vertices_070015E0: # 0x070015E0
+bowser_2_seg7_vertices_070015E0: # 0x070015E0
 vertex   3453,   -511,   -484,    458,    824,  0xFD, 0x42, 0x34, 0xFF
 vertex   3157,   -511,   -185,    160,   1116,  0xFD, 0x42, 0x34, 0xFF
 vertex   3584,   1229,      0,    -26,    692,  0xFD, 0x42, 0x34, 0xFF
@@ -337,11 +337,11 @@ vertex  -3874,   -511,    333,    298,    556,  0xFD, 0x42, 0x34, 0xFF
 vertex  -3118,   -511,   -183,   -216,   -198,  0xFD, 0x42, 0x34, 0xFF
 vertex  -3330,   -511,    338,    302,     14,  0xFD, 0x42, 0x34, 0xFF
 
-bifs_platform_f3d_070016A0: # 0x070016A0
-.word 0xFD100000, bifs_platform_texture_07000000
+bowser_2_seg7_dl_070016A0: # 0x070016A0
+.word 0xFD100000, bowser_2_seg7_texture_07000000
 .word 0xE6000000, 0x00000000
 .word 0xF3000000, 0x073FF100
-.word 0x04F00100, bifs_platform_vertices_070010B0
+.word 0x04F00100, bowser_2_seg7_vertices_070010B0
 .word 0xBF000000, 0x00000A14
 .word 0xBF000000, 0x001E2832
 .word 0xBF000000, 0x001E323C
@@ -354,7 +354,7 @@ bifs_platform_f3d_070016A0: # 0x070016A0
 .word 0xBF000000, 0x0014786E
 .word 0xBF000000, 0x00140A78
 .word 0xBF000000, 0x00828C96
-.word 0x04F00100, bifs_platform_vertices_070011B0
+.word 0x04F00100, bowser_2_seg7_vertices_070011B0
 .word 0xBF000000, 0x00000A14
 .word 0xBF000000, 0x001E0A00
 .word 0xBF000000, 0x001E280A
@@ -364,15 +364,15 @@ bifs_platform_f3d_070016A0: # 0x070016A0
 .word 0xBF000000, 0x005A6E78
 .word 0xBF000000, 0x005A7882
 .word 0xBF000000, 0x005A8C96
-.word 0x04200030, bifs_platform_vertices_070012B0
+.word 0x04200030, bowser_2_seg7_vertices_070012B0
 .word 0xBF000000, 0x00000A14
 .word 0xB8000000, 0x00000000
 
-bifs_platform_f3d_07001788: # 0x07001788
+bowser_2_seg7_dl_07001788: # 0x07001788
 .word 0xFD100000, lll_texture_09005800
 .word 0xE6000000, 0x00000000
 .word 0xF3000000, 0x073FF100
-.word 0x04F00100, bifs_platform_vertices_070012E0
+.word 0x04F00100, bowser_2_seg7_vertices_070012E0
 .word 0xBF000000, 0x00000A14
 .word 0xBF000000, 0x001E2832
 .word 0xBF000000, 0x003C1E32
@@ -385,7 +385,7 @@ bifs_platform_f3d_07001788: # 0x07001788
 .word 0xBF000000, 0x008C5A6E
 .word 0xBF000000, 0x00828C6E
 .word 0xBF000000, 0x000A9614
-.word 0x04F00100, bifs_platform_vertices_070013E0
+.word 0x04F00100, bowser_2_seg7_vertices_070013E0
 .word 0xBF000000, 0x00000A14
 .word 0xBF000000, 0x000A1E14
 .word 0xBF000000, 0x001E2814
@@ -397,7 +397,7 @@ bifs_platform_f3d_07001788: # 0x07001788
 .word 0xBF000000, 0x006E7882
 .word 0xBF000000, 0x00788C82
 .word 0xBF000000, 0x008C9682
-.word 0x04F00100, bifs_platform_vertices_070014E0
+.word 0x04F00100, bowser_2_seg7_vertices_070014E0
 .word 0xBF000000, 0x00000A14
 .word 0xBF000000, 0x001E0014
 .word 0xBF000000, 0x0028323C
@@ -410,7 +410,7 @@ bifs_platform_f3d_07001788: # 0x07001788
 .word 0xBF000000, 0x00828C78
 .word 0xBF000000, 0x00966478
 .word 0xBF000000, 0x008C9678
-.word 0x04B000C0, bifs_platform_vertices_070015E0
+.word 0x04B000C0, bowser_2_seg7_vertices_070015E0
 .word 0xBF000000, 0x00000A14
 .word 0xBF000000, 0x000A1E14
 .word 0xBF000000, 0x001E2814
@@ -423,7 +423,7 @@ bifs_platform_f3d_07001788: # 0x07001788
 .word 0xBF000000, 0x005A6E50
 .word 0xB8000000, 0x00000000
 
-glabel bifs_platform_f3d_07001930 # 0x07001930
+glabel bowser_2_seg7_dl_07001930 # 0x07001930
 .word 0xE7000000, 0x00000000
 .word 0xBA001402, 0x00100000
 .word 0xB900031D, 0xC8112078
@@ -438,8 +438,8 @@ glabel bifs_platform_f3d_07001930 # 0x07001930
 .word 0xE8000000, 0x00000000
 .word 0xF5101000, 0x00014050
 .word 0xF2000000, 0x0007C07C
-.word 0x06000000, bifs_platform_f3d_070016A0
-.word 0x06000000, bifs_platform_f3d_07001788
+.word 0x06000000, bowser_2_seg7_dl_070016A0
+.word 0x06000000, bowser_2_seg7_dl_07001788
 .word 0xBB000000, 0xFFFFFFFF
 .word 0xE7000000, 0x00000000
 .word 0xBA001402, 0x00000000
@@ -449,5 +449,5 @@ glabel bifs_platform_f3d_07001930 # 0x07001930
 .word 0xB7000000, 0x00020000
 .word 0xB8000000, 0x00000000
 
-glabel bifs_platform_collision # 0x070019F0
+glabel bowser_2_seg7_collision # 0x070019F0
 .incbin "bin/bifs_platform_segment7/bifs_platform_segment7.019F0.collision"

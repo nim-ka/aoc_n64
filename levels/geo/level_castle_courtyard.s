@@ -1,33 +1,37 @@
-# 0200
-.word 0x20000A28
-.word 0x04000000
-.word   0x15010000, 0x07005078
-.word 0x05000000
-.word 0x01000000
-.word 0x0800000A, 0x00A00078, 0x00A00078
-.word 0x04000000
-.word   0x0C000000
-.word   0x04000000
-.word     0x09000064
-.word     0x04000000
-.word       0x19000000, Geo19_802763D4
-.word     0x05000000
-.word   0x05000000
-.word   0x0C010000
-.word   0x04000000
-.word     0x0A01002D, 0x00643200, Geo0A_8029AA3C
-.word     0x04000000
-.word       0x0F000010, 0x000007D0, 0x17700000, 0x00000000, Geo0F_80287D30
-.word       0x04000000
-.word         0x15010000, 0x070048B8
-.word         0x15060000, 0x07005698
-.word         0x15040000, 0x07005938
-.word         0x18000000, Geo18_802D01E0
-.word         0x18002601, Geo18_802D104C
-.word         0x17000000
-.word         0x18000000, Geo18_802761D0
-.word       0x05000000
-.word     0x05000000
-.word   0x05000000
-.word 0x05000000
-.word 0x01000000
+.include "geo_commands.inc"
+
+glabel castle_courtyard_geo_000200 # 0200
+   geo_start_distance 2600
+      geo_open_node
+         geo_display_list 0x01, castle_courtyard_seg7_dl_07005078
+      geo_close_node
+   geo_end
+
+glabel castle_courtyard_geo_000218 # 0218
+   geo_node_screen_area 10, 160, 120, 160, 120
+      geo_open_node
+         geo_zbuffer 0
+         geo_open_node
+            geo_todo_09 100
+            geo_open_node
+               geo_background 0, Geo19_802763D4
+            geo_close_node
+         geo_close_node
+         geo_zbuffer 1
+         geo_open_node
+            geo_camera_frustum 45, 100, 12800, Geo0A_8029AA3C
+            geo_open_node
+               geo_todo_0F 16, 0, 2000, 6000, 0, 0, 0, Geo0F_80287D30
+               geo_open_node
+                  geo_display_list 0x01, castle_courtyard_seg7_dl_070048B8
+                  geo_display_list 0x06, castle_courtyard_seg7_dl_07005698
+                  geo_display_list 0x04, castle_courtyard_seg7_dl_07005938
+                  geo_asm    0, Geo18_802D01E0
+                  geo_asm 9729, Geo18_802D104C
+                  geo_todo_17
+                  geo_asm 0, Geo18_802761D0
+               geo_close_node
+            geo_close_node
+         geo_close_node
+      geo_close_node
+   geo_end

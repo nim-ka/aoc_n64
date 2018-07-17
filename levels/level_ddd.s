@@ -65,11 +65,11 @@ glabel level_ddd_entry
     jump_link /*target*/ script_func_global_1
     jump_link /*target*/ script_func_global_5
     jump_link /*target*/ script_func_global_14
-    cmd22 /*unk2*/ 0x0036, /*unk4*/ 0x0E000478
-    cmd22 /*unk2*/ 0x0037, /*unk4*/ 0x0E0004A0
-    cmd22 /*unk2*/ 0x0038, /*unk4*/ 0x0E000450
+    cmd22 /*unk2*/ 0x0036, /*unk4*/ ddd_geo_000478
+    cmd22 /*unk2*/ 0x0037, /*unk4*/ ddd_geo_0004A0
+    cmd22 /*unk2*/ 0x0038, /*unk4*/ ddd_geo_000450
 
-    area /*index*/ 1, /*geo*/ 0x0E0004C0
+    area /*index*/ 1, /*geo*/ ddd_geo_0004C0
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -3071, 3000, 0, /*angle*/ 0, 7, 0, /*behArg*/ 0x000A0000, /*beh*/ beh_warps_74
         warp_node /*id*/ 0x0A, /*destLevel1*/ 0x17, /*destArea*/ 0x01, /*destNode*/ 0x0A, /*destLevel2*/ 0x00
         warp_node /*id*/ 0xF0, /*destLevel1*/ 0x06, /*destArea*/ 0x03, /*destNode*/ 0x35, /*destLevel2*/ 0x00
@@ -78,13 +78,13 @@ glabel level_ddd_entry
         jump_link /*target*/ script_func_local_1
         jump_link /*target*/ script_func_local_2
         instant_warp /*index*/ 3, /*destArea*/ 2, /*displace*/ -8192, 0, 0
-        terrain /*terrainData*/ 0x0700D310
-        cmd39 /*unk4*/ 0x0700EEF4
+        terrain /*terrainData*/ ddd_seg7_area_1_collision
+        cmd39 /*unk4*/ ddd_seg7_area_1_macro_objs
         set_music /*unk2*/ 0x0003, /*seq*/ 0x0005
         terrain_type /*terrainType*/ 0x0005
     end_area
 
-    area /*index*/ 2, /*geo*/ 0x0E000570
+    area /*index*/ 2, /*geo*/ ddd_geo_000570
         whirlpool /*unk2*/ 0, /*unk3*/ 0, /*pos*/ 3355, -3575, -515, /*strength*/ -30
         whirlpool /*unk2*/ 1, /*unk3*/ 2, /*pos*/ 3917, -2040, -6041, /*strength*/ 50
         warp_node /*id*/ 0xF0, /*destLevel1*/ 0x06, /*destArea*/ 0x03, /*destNode*/ 0x35, /*destLevel2*/ 0x00
@@ -94,8 +94,8 @@ glabel level_ddd_entry
         jump_link /*target*/ script_func_local_4
         jump_link /*target*/ script_func_local_5
         instant_warp /*index*/ 2, /*destArea*/ 1, /*displace*/ 8192, 0, 0
-        terrain /*terrainData*/ 0x0700DE70
-        cmd39 /*unk4*/ 0x0700EFAC
+        terrain /*terrainData*/ ddd_seg7_area_2_collision
+        cmd39 /*unk4*/ ddd_seg7_area_2_macro_objs
         set_music /*unk2*/ 0x0003, /*seq*/ 0x0005
         terrain_type /*terrainType*/ 0x0005
     end_area

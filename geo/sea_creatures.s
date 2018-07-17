@@ -1,100 +1,104 @@
+.include "macros.inc"
+.include "geo_commands.inc"
+
 .section .geo, "a"
 
-.word 0x0B000000
-.word 0x04000000
-.word   0x1D000000, 0x00004000
-.word   0x04000000
-.word     0x13010000, 0x00000000, 0x00000000
-.word     0x04000000
-.word       0x13010000, 0x00000000, 0x05001568
-.word       0x04000000
-.word         0x1301FDF8, 0xFFFA0000, 0x00000000
-.word         0x04000000
-.word           0x13010000, 0x00000000, 0x050012B8
-.word         0x05000000
-.word       0x05000000
-.word     0x05000000
-.word   0x05000000
-.word 0x05000000
-.word 0x01000000
-# 0068
-.word 0x20000320
-.word 0x04000000
-.word   0x1D000000, 0x00004000
-.word   0x04000000
-.word     0x13010000, 0x00000000, 0x00000000
-.word     0x04000000
-.word       0x13010000, 0x00000000, 0x0500A768
-.word       0x04000000
-.word         0x18000000, Geo18_802B798C
-.word       0x05000000
-.word       0x04000000
-.word         0x130100C9, 0x00000000, 0x05009DD0
-.word         0x04000000
-.word           0x1301019F, 0x00000000, 0x0500A008
-.word           0x04000000
-.word             0x130101E6, 0x00000000, 0x0500A160
-.word           0x05000000
-.word         0x05000000
-.word       0x05000000
-.word       0x13040000, 0x00000000, 0x0500A990
-.word       0x13040000, 0x00000000, 0x0500A8A8
-.word     0x05000000
-.word   0x05000000
-.word 0x05000000
-.word 0x01000000
-# 010C
-.word 0x200007D0
-.word 0x04000000
-.word   0x1D000000, 0x00004000
-.word   0x04000000
-.word     0x13010000, 0x00000000, 0x00000000
-.word     0x04000000
-.word       0x13010000, 0x00000000, 0x0500D268
-.word       0x04000000
-.word         0x130100F5, 0x00000000, 0x0500D468
-.word         0x04000000
-.word           0x130101EE, 0x00000000, 0x0500D668
-.word           0x04000000
-.word             0x130101DB, 0x00000000, 0x0500D828
-.word             0x04000000
-.word               0x0E000002, GeoSwitchCase8029DB48
-.word               0x04000000
-.word                 0x0B000000
-.word                 0x0B000000
-.word                 0x04000000
-.word                   0x1D000000, 0x00004000
-.word                   0x04000000
-.word                     0x10810000, 0x07D00000, 0x00000000, 0x00000000
-.word                     0x0302B870
-.word                     0x10840000, 0x07D00000, 0x00000000, 0x00000000
-.word                     0x0302BA18
-.word                   0x05000000
-.word                 0x05000000
-.word               0x05000000
-.word             0x05000000
-.word           0x05000000
-.word         0x05000000
-.word         0x1301FF02, 0x00000000, 0x00000000
-.word         0x04000000
-.word           0x13010000, 0x00000000, 0x0500D050
-.word           0x04000000
-.word             0x1304020F, 0x00000000, 0x0500DEB8
-.word             0x04000000
-.word               0x130100E2, 0x00410000, 0x00000000
-.word               0x04000000
-.word                 0x13040000, 0x00000000, 0x0500E258
-.word                 0x13010000, 0x00000000, 0x0500CDD0
-.word                 0x13010000, 0x00000000, 0x00000000
-.word               0x05000000
-.word             0x05000000
-.word             0x1304020F, 0x00000000, 0x0500E088
-.word             0x1301020F, 0x00000000, 0x0500DD08
-.word             0x1301020F, 0x00000000, 0x00000000
-.word           0x05000000
-.word         0x05000000
-.word       0x05000000
-.word     0x05000000
-.word   0x05000000
-.word 0x05000000
-.word 0x01000000
+glabel sea_creatures_X_geo_000000 # 0x0C000000
+   geo_node_start
+   geo_open_node
+      geo_scale 0x00, 16384
+      geo_open_node
+         geo_dl_translated 0x01, 0, 0, 0
+         geo_open_node
+            geo_dl_translated 0x01, 0, 0, 0, sea_creatures_X_seg5_dl_05001568
+            geo_open_node
+               geo_dl_translated 0x01, -520, -6, 0
+               geo_open_node
+                  geo_dl_translated 0x01, 0, 0, 0, sea_creatures_X_seg5_dl_050012B8
+               geo_close_node
+            geo_close_node
+         geo_close_node
+      geo_close_node
+   geo_close_node
+geo_end
+
+glabel sea_creatures_X_geo_000068 # 0x0C000068
+   geo_start_distance 800
+      geo_open_node
+         geo_scale 0x00, 16384
+         geo_open_node
+            geo_dl_translated 0x01, 0, 0, 0
+            geo_open_node
+               geo_dl_translated 0x01, 0, 0, 0, sea_creatures_X_seg5_dl_0500A768
+               geo_open_node
+                  geo_asm 0, Geo18_802B798C
+               geo_close_node
+               geo_open_node
+                  geo_dl_translated 0x01, 201, 0, 0, sea_creatures_X_seg5_dl_05009DD0
+                  geo_open_node
+                     geo_dl_translated 0x01, 415, 0, 0, sea_creatures_X_seg5_dl_0500A008
+                     geo_open_node
+                        geo_dl_translated 0x01, 486, 0, 0, sea_creatures_X_seg5_dl_0500A160
+                     geo_close_node
+                  geo_close_node
+               geo_close_node
+               geo_dl_translated 0x04, 0, 0, 0, sea_creatures_X_seg5_dl_0500A990
+               geo_dl_translated 0x04, 0, 0, 0, sea_creatures_X_seg5_dl_0500A8A8
+            geo_close_node
+         geo_close_node
+      geo_close_node
+   geo_end
+
+glabel sea_creatures_X_geo_00010C # 0x0C00010C
+   geo_start_distance 2000
+      geo_open_node
+         geo_scale 0x00, 16384
+         geo_open_node
+            geo_dl_translated 0x01, 0, 0, 0
+            geo_open_node
+               geo_dl_translated 0x01, 0, 0, 0, sea_creatures_X_seg5_dl_0500D268
+               geo_open_node
+                  geo_dl_translated 0x01, 245, 0, 0, sea_creatures_X_seg5_dl_0500D468
+                  geo_open_node
+                     geo_dl_translated 0x01, 494, 0, 0, sea_creatures_X_seg5_dl_0500D668
+                     geo_open_node
+                        geo_dl_translated 0x01, 475, 0, 0, sea_creatures_X_seg5_dl_0500D828
+                        geo_open_node
+                           geo_switch_case 2, GeoSwitchCase8029DB48
+                           geo_open_node
+                              geo_node_start
+                              geo_node_start
+                              geo_open_node
+                                 geo_scale 0x00, 16384
+                                 geo_open_node
+                                    geo_translate_rotate 1, 2000, 0, 0, 0, 0, 0, coins_X_seg3_dl_0302B870
+                                    geo_translate_rotate 4, 2000, 0, 0, 0, 0, 0, coins_X_seg3_dl_0302BA18
+                                 geo_close_node
+                              geo_close_node
+                           geo_close_node
+                        geo_close_node
+                     geo_close_node
+                  geo_close_node
+                  geo_dl_translated 0x01, -254, 0, 0
+                  geo_open_node
+                     geo_dl_translated 0x01, 0, 0, 0, sea_creatures_X_seg5_dl_0500D050
+                     geo_open_node
+                        geo_dl_translated 0x04, 527, 0, 0, sea_creatures_X_seg5_dl_0500DEB8
+                        geo_open_node
+                           geo_dl_translated 0x01, 226, 65, 0
+                           geo_open_node
+                              geo_dl_translated 0x04, 0, 0, 0, sea_creatures_X_seg5_dl_0500E258
+                              geo_dl_translated 0x01, 0, 0, 0, sea_creatures_X_seg5_dl_0500CDD0
+                              geo_dl_translated 0x01, 0, 0, 0
+                           geo_close_node
+                        geo_close_node
+                        geo_dl_translated 0x04, 527, 0, 0, sea_creatures_X_seg5_dl_0500E088
+                        geo_dl_translated 0x01, 527, 0, 0, sea_creatures_X_seg5_dl_0500DD08
+                        geo_dl_translated 0x01, 527, 0, 0
+                     geo_close_node
+                  geo_close_node
+               geo_close_node
+            geo_close_node
+         geo_close_node
+      geo_close_node
+   geo_end

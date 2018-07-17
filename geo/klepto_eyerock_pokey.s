@@ -1,238 +1,243 @@
+.include "macros.inc"
+.include "geo_commands.inc"
+
 .section .geo, "a"
 
-# 0000
-.word 0x16000001, 0x009600FA
-.word 0x04000000
-.word   0x1D000000, 0x00010000
-.word   0x04000000
-.word     0x13010000, 0x00000000, 0x00000000
-.word     0x04000000
-.word       0x13040000, 0x00000000, 0x050041E8
-.word       0x04000000
-.word         0x1301003E, 0x00000000, 0x05003F20
-.word         0x04000000
-.word           0x1301002C, 0x00000000, 0x05003D80
-.word           0x04000000
-.word             0x1301003A, 0x00000000, 0x05003BD0
-.word           0x05000000
-.word         0x05000000
-.word         0x1301FFFD, 0x00110011, 0x00000000
-.word         0x04000000
-.word           0x13010000, 0x00000000, 0x05004330
-.word           0x04000000
-.word             0x13010044, 0x00000000, 0x050047C8
-.word             0x13010000, 0x00000000, 0x00000000
-.word             0x13010000, 0x00000000, 0x00000000
-.word             0x13010000, 0x00000000, 0x00000000
-.word             0x04000000
-.word               0x0E000004, GeoSwitchCase8029DB48
-.word               0x04000000
-.word                 0x0B000000
-.word                 0x0B000000
-.word                 0x04000000
-.word                   0x1D000000, 0x00004000
-.word                   0x04000000
-.word                     0x18000000, Geo18_802A45E4
-.word                     0x10810000, 0x00000064, 0x000000B4, 0x010E0000
-.word                     0x03022F48
-.word                   0x05000000
-.word                 0x05000000
-.word                 0x0B000000
-.word                 0x04000000
-.word                   0x1D000000, 0x00004000
-.word                   0x04000000
-.word                     0x18000000, Geo18_802A45E4
-.word                     0x10810000, 0x00000064, 0x000000B4, 0x010E0000
-.word                     0x0302B870
-.word                     0x18000000, Geo18_802A45E4
-.word                     0x10840000, 0x00000064, 0x000000B4, 0x010E0000
-.word                     0x0302BA18
-.word                   0x05000000
-.word                 0x05000000
-.word                 0x0B000000
-.word                 0x04000000
-.word                   0x1D000000, 0x00004000
-.word                   0x04000000
-.word                     0x18000000, Geo18_802A45E4
-.word                     0x10810000, 0x00000064, 0x000000B4, 0x010E0000
-.word                     0x0302C620
-.word                   0x05000000
-.word                 0x05000000
-.word               0x05000000
-.word             0x05000000
-.word           0x05000000
-.word         0x05000000
-.word         0x1301FFFD, 0x0011FFEF, 0x00000000
-.word         0x04000000
-.word           0x13010000, 0x00000000, 0x05004438
-.word           0x04000000
-.word             0x13010044, 0x00000000, 0x05004B58
-.word             0x13010000, 0x00000000, 0x00000000
-.word             0x13010000, 0x00000000, 0x00000000
-.word             0x13010000, 0x00000000, 0x00000000
-.word           0x05000000
-.word         0x05000000
-.word         0x13010031, 0xFFF7FFEF, 0x00000000
-.word         0x04000000
-.word           0x13040000, 0x00000000, 0x05004D38
-.word           0x04000000
-.word             0x13040022, 0x00000000, 0x05004F58
-.word             0x04000000
-.word               0x1304004F, 0x00000000, 0x05005178
-.word             0x05000000
-.word           0x05000000
-.word         0x05000000
-.word         0x13010031, 0xFFF70011, 0x00000000
-.word         0x04000000
-.word           0x13040000, 0x00000000, 0x05004C28
-.word           0x04000000
-.word             0x13040022, 0x00000000, 0x05004E48
-.word             0x04000000
-.word               0x1304004F, 0x00000000, 0x05005068
-.word             0x05000000
-.word           0x05000000
-.word         0x05000000
-.word       0x05000000
-.word       0x13010000, 0x00000000, 0x05004118
-.word     0x05000000
-.word   0x05000000
-.word 0x05000000
-.word 0x01000000
-.word 0x13010000, 0x00000000, 0x00000000
-.word 0x04000000
-.word   0x13010000, 0x00000000, 0x00000000
-.word   0x04000000
-.word     0x130101BF, 0x00000000, 0x00000000
-.word     0x04000000
-.word       0x13010000, 0x00000000, 0x0500C640
-.word       0x13010119, 0x0005FE5D, 0x00000000
-.word       0x04000000
-.word         0x13010000, 0x00000000, 0x00000000
-.word         0x04000000
-.word           0x13010190, 0x00000000, 0x00000000
-.word           0x04000000
-.word             0x13010191, 0x00000000, 0x00000000
-.word             0x04000000
-.word               0x13010000, 0x00000000, 0x0500BF00
-.word             0x05000000
-.word             0x13010000, 0x00000000, 0x0500C100
-.word           0x05000000
-.word           0x13010000, 0x00000000, 0x0500C378
-.word         0x05000000
-.word       0x05000000
-.word       0x13010119, 0x0005FF26, 0x00000000
-.word       0x04000000
-.word         0x13010000, 0x00000000, 0x00000000
-.word         0x04000000
-.word           0x13010190, 0x00000000, 0x00000000
-.word           0x04000000
-.word             0x13010191, 0x00000000, 0x00000000
-.word             0x04000000
-.word               0x13010000, 0x00000000, 0x0500BF00
-.word             0x05000000
-.word             0x13010000, 0x00000000, 0x0500C100
-.word           0x05000000
-.word           0x13010000, 0x00000000, 0x0500C378
-.word         0x05000000
-.word       0x05000000
-.word       0x13010119, 0x0005FFEE, 0x00000000
-.word       0x04000000
-.word         0x13010000, 0x00000000, 0x00000000
-.word         0x04000000
-.word           0x13010190, 0x00000000, 0x00000000
-.word           0x04000000
-.word             0x13010191, 0x00000000, 0x00000000
-.word             0x04000000
-.word               0x13010000, 0x00000000, 0x0500BF00
-.word             0x05000000
-.word             0x13010000, 0x00000000, 0x0500C100
-.word           0x05000000
-.word           0x13010000, 0x00000000, 0x0500C378
-.word         0x05000000
-.word       0x05000000
-.word       0x13010119, 0x000500B4, 0x00000000
-.word       0x04000000
-.word         0x13010000, 0x00000000, 0x00000000
-.word         0x04000000
-.word           0x13010190, 0x00000000, 0x00000000
-.word           0x04000000
-.word             0x13010191, 0x00000000, 0x00000000
-.word             0x04000000
-.word               0x13010000, 0x00000000, 0x0500BF00
-.word             0x05000000
-.word             0x13010000, 0x00000000, 0x0500C100
-.word           0x05000000
-.word           0x13010000, 0x00000000, 0x0500C378
-.word         0x05000000
-.word       0x05000000
-.word     0x05000000
-.word     0x13010000, 0x00000000, 0x0500C908
-.word     0x04000000
-.word       0x0E000004, GeoSwitchCase8029DB48
-.word       0x04000000
-.word         0x15040000, 0x0500C9B8
-.word         0x15040000, 0x0500CA50
-.word         0x15040000, 0x0500CAE8
-.word         0x15040000, 0x0500CB80
-.word       0x05000000
-.word     0x05000000
-.word     0x130100B5, 0x00590050, 0x00000000
-.word     0x04000000
-.word       0x13010000, 0x00000000, 0x00000000
-.word       0x04000000
-.word         0x130100C7, 0x00000000, 0x00000000
-.word         0x04000000
-.word           0x13010000, 0x00000000, 0x0500BC88
-.word           0x130100C8, 0x00C700C7, 0x00000000
-.word           0x04000000
-.word             0x13010000, 0x00000000, 0x00000000
-.word             0x04000000
-.word               0x13010150, 0x00000000, 0x00000000
-.word               0x04000000
-.word                 0x13010000, 0x00000000, 0x0500B748
-.word               0x05000000
-.word               0x13010000, 0x00000000, 0x0500B9C0
-.word             0x05000000
-.word           0x05000000
-.word         0x05000000
-.word       0x05000000
-.word     0x05000000
-.word   0x05000000
-.word 0x05000000
-.word 0x03000000
-# 05A8
-.word 0x1600000B, 0x00B4012C
-.word 0x04000000
-.word   0x1D000000, 0x00004000
-.word   0x04000000
-.word     0x15010000, 0x0500CC18
-.word     0x02010000, 0x0C0002AC
-.word     0x15010000, 0x0500CC30
-.word   0x05000000
-.word 0x05000000
-.word 0x01000000
-# 05E4
-.word 0x1600000B, 0x00B4012C
-.word 0x04000000
-.word   0x1D000000, 0x00004000
-.word   0x04000000
-.word     0x02010000, 0x0C0002AC
-.word   0x05000000
-.word 0x05000000
-.word 0x01000000
-# 0610
-.word 0x16000001, 0x00960032
-.word 0x04000000
-.word   0x0E000002, GeoSwitchCase8029DB48
-.word   0x04000000
-.word     0x15040000, 0x050127D8
-.word     0x15040000, 0x05012808
-.word   0x05000000
-.word 0x05000000
-.word 0x01000000
-# 0644
-.word 0x16000001, 0x00960032
-.word 0x04000000
-.word   0x15040000, 0x050130B0
-.word 0x05000000
-.word 0x01000000
+glabel klepto_X_geo_000000 # 0000
+   geo_shadow SHADOW_CIRCLE_UNK1, 0x96, 250
+      geo_open_node
+         geo_scale 0x00, 65536
+         geo_open_node
+            geo_dl_translated 0x01, 0, 0, 0
+            geo_open_node
+               geo_dl_translated 0x04, 0, 0, 0, klepto_X_seg5_dl_050041E8
+               geo_open_node
+                  geo_dl_translated 0x01, 62, 0, 0, klepto_X_seg5_dl_05003F20
+                  geo_open_node
+                     geo_dl_translated 0x01, 44, 0, 0, klepto_X_seg5_dl_05003D80
+                     geo_open_node
+                        geo_dl_translated 0x01, 58, 0, 0, klepto_X_seg5_dl_05003BD0
+                     geo_close_node
+                  geo_close_node
+                  geo_dl_translated 0x01, -3, 17, 17
+                  geo_open_node
+                     geo_dl_translated 0x01, 0, 0, 0, klepto_X_seg5_dl_05004330
+                     geo_open_node
+                        geo_dl_translated 0x01, 68, 0, 0, klepto_X_seg5_dl_050047C8
+                        geo_dl_translated 0x01, 0, 0, 0
+                        geo_dl_translated 0x01, 0, 0, 0
+                        geo_dl_translated 0x01, 0, 0, 0
+                        geo_open_node
+                           geo_switch_case 4, GeoSwitchCase8029DB48
+                           geo_open_node
+                              geo_node_start
+                              geo_node_start
+                              geo_open_node
+                                 geo_scale 0x00, 16384
+                                 geo_open_node
+                                    geo_asm 0, Geo18_802A45E4
+                                    geo_translate_rotate 1, 0, 100, 0, 180, 270, 0, coins_X_seg3_dl_03022F48
+                                 geo_close_node
+                              geo_close_node
+                              geo_node_start
+                              geo_open_node
+                                 geo_scale 0x00, 16384
+                                 geo_open_node
+                                    geo_asm 0, Geo18_802A45E4
+                                    geo_translate_rotate 1, 0, 100, 0, 180, 270, 0, coins_X_seg3_dl_0302B870
+                                    geo_asm 0, Geo18_802A45E4
+                                    geo_translate_rotate 4, 0, 100, 0, 180, 270, 0, coins_X_seg3_dl_0302BA18
+                                 geo_close_node
+                              geo_close_node
+                              geo_node_start
+                              geo_open_node
+                                 geo_scale 0x00, 16384
+                                 geo_open_node
+                                    geo_asm 0, Geo18_802A45E4
+                                    geo_translate_rotate 1, 0, 100, 0, 180, 270, 0, coins_X_seg3_dl_0302C620
+                                 geo_close_node
+                              geo_close_node
+                           geo_close_node
+                        geo_close_node
+                     geo_close_node
+                  geo_close_node
+                  geo_dl_translated 0x01, -3, 17, -17
+                  geo_open_node
+                     geo_dl_translated 0x01, 0, 0, 0, klepto_X_seg5_dl_05004438
+                     geo_open_node
+                        geo_dl_translated 0x01, 68, 0, 0, klepto_X_seg5_dl_05004B58
+                        geo_dl_translated 0x01, 0, 0, 0
+                        geo_dl_translated 0x01, 0, 0, 0
+                        geo_dl_translated 0x01, 0, 0, 0
+                     geo_close_node
+                  geo_close_node
+                  geo_dl_translated 0x01, 49, -9, -17
+                  geo_open_node
+                     geo_dl_translated 0x04, 0, 0, 0, klepto_X_seg5_dl_05004D38
+                     geo_open_node
+                        geo_dl_translated 0x04, 34, 0, 0, klepto_X_seg5_dl_05004F58
+                        geo_open_node
+                           geo_dl_translated 0x04, 79, 0, 0, klepto_X_seg5_dl_05005178
+                        geo_close_node
+                     geo_close_node
+                  geo_close_node
+                  geo_dl_translated 0x01, 49, -9, 17
+                  geo_open_node
+                     geo_dl_translated 0x04, 0, 0, 0, klepto_X_seg5_dl_05004C28
+                     geo_open_node
+                        geo_dl_translated 0x04, 34, 0, 0, klepto_X_seg5_dl_05004E48
+                        geo_open_node
+                           geo_dl_translated 0x04, 79, 0, 0, klepto_X_seg5_dl_05005068
+                        geo_close_node
+                     geo_close_node
+                  geo_close_node
+               geo_close_node
+               geo_dl_translated 0x01, 0, 0, 0, klepto_X_seg5_dl_05004118
+            geo_close_node
+         geo_close_node
+      geo_close_node
+   geo_end
+
+glabel klepto_X_geo_0002AC # 0x0C0002AC
+   geo_dl_translated 0x01, 0, 0, 0
+   geo_open_node
+      geo_dl_translated 0x01, 0, 0, 0
+      geo_open_node
+         geo_dl_translated 0x01, 447, 0, 0
+         geo_open_node
+            geo_dl_translated 0x01, 0, 0, 0, klepto_X_seg5_dl_0500C640
+            geo_dl_translated 0x01, 281, 5, -419
+            geo_open_node
+               geo_dl_translated 0x01, 0, 0, 0
+               geo_open_node
+                  geo_dl_translated 0x01, 400, 0, 0
+                  geo_open_node
+                     geo_dl_translated 0x01, 401, 0, 0
+                     geo_open_node
+                        geo_dl_translated 0x01, 0, 0, 0, klepto_X_seg5_dl_0500BF00
+                     geo_close_node
+                     geo_dl_translated 0x01, 0, 0, 0, klepto_X_seg5_dl_0500C100
+                  geo_close_node
+                  geo_dl_translated 0x01, 0, 0, 0, klepto_X_seg5_dl_0500C378
+               geo_close_node
+            geo_close_node
+            geo_dl_translated 0x01, 281, 5, -218
+            geo_open_node
+               geo_dl_translated 0x01, 0, 0, 0
+               geo_open_node
+                  geo_dl_translated 0x01, 400, 0, 0
+                  geo_open_node
+                     geo_dl_translated 0x01, 401, 0, 0
+                     geo_open_node
+                        geo_dl_translated 0x01, 0, 0, 0, klepto_X_seg5_dl_0500BF00
+                     geo_close_node
+                     geo_dl_translated 0x01, 0, 0, 0, klepto_X_seg5_dl_0500C100
+                  geo_close_node
+                  geo_dl_translated 0x01, 0, 0, 0, klepto_X_seg5_dl_0500C378
+               geo_close_node
+            geo_close_node
+            geo_dl_translated 0x01, 281, 5, -18
+            geo_open_node
+               geo_dl_translated 0x01, 0, 0, 0
+               geo_open_node
+                  geo_dl_translated 0x01, 400, 0, 0
+                  geo_open_node
+                     geo_dl_translated 0x01, 401, 0, 0
+                     geo_open_node
+                        geo_dl_translated 0x01, 0, 0, 0, klepto_X_seg5_dl_0500BF00
+                     geo_close_node
+                     geo_dl_translated 0x01, 0, 0, 0, klepto_X_seg5_dl_0500C100
+                  geo_close_node
+                  geo_dl_translated 0x01, 0, 0, 0, klepto_X_seg5_dl_0500C378
+               geo_close_node
+            geo_close_node
+            geo_dl_translated 0x01, 281, 5, 180
+            geo_open_node
+               geo_dl_translated 0x01, 0, 0, 0
+               geo_open_node
+                  geo_dl_translated 0x01, 400, 0, 0
+                  geo_open_node
+                     geo_dl_translated 0x01, 401, 0, 0
+                     geo_open_node
+                        geo_dl_translated 0x01, 0, 0, 0, klepto_X_seg5_dl_0500BF00
+                     geo_close_node
+                     geo_dl_translated 0x01, 0, 0, 0, klepto_X_seg5_dl_0500C100
+                  geo_close_node
+                  geo_dl_translated 0x01, 0, 0, 0, klepto_X_seg5_dl_0500C378
+               geo_close_node
+            geo_close_node
+         geo_close_node
+         geo_dl_translated 0x01, 0, 0, 0, klepto_X_seg5_dl_0500C908
+         geo_open_node
+            geo_switch_case 4, GeoSwitchCase8029DB48
+            geo_open_node
+               geo_display_list 0x04, klepto_X_seg5_dl_0500C9B8
+               geo_display_list 0x04, klepto_X_seg5_dl_0500CA50
+               geo_display_list 0x04, klepto_X_seg5_dl_0500CAE8
+               geo_display_list 0x04, klepto_X_seg5_dl_0500CB80
+            geo_close_node
+         geo_close_node
+         geo_dl_translated 0x01, 181, 89, 80
+         geo_open_node
+            geo_dl_translated 0x01, 0, 0, 0
+            geo_open_node
+               geo_dl_translated 0x01, 199, 0, 0
+               geo_open_node
+                  geo_dl_translated 0x01, 0, 0, 0, klepto_X_seg5_dl_0500BC88
+                  geo_dl_translated 0x01, 200, 199, 199
+                  geo_open_node
+                     geo_dl_translated 0x01, 0, 0, 0
+                     geo_open_node
+                        geo_dl_translated 0x01, 336, 0, 0
+                        geo_open_node
+                           geo_dl_translated 0x01, 0, 0, 0, klepto_X_seg5_dl_0500B748
+                        geo_close_node
+                        geo_dl_translated 0x01, 0, 0, 0, klepto_X_seg5_dl_0500B9C0
+                     geo_close_node
+                  geo_close_node
+               geo_close_node
+            geo_close_node
+         geo_close_node
+      geo_close_node
+   geo_close_node
+geo_return
+
+glabel klepto_X_geo_0005A8 # 0x0C0005A8
+   geo_shadow SHADOW_SQUARE_SCALABLE, 0xB4, 300
+      geo_open_node
+         geo_scale 0x00, 16384
+         geo_open_node
+            geo_display_list 0x01, klepto_X_seg5_dl_0500CC18
+            geo_branch 1, klepto_X_geo_0002AC # 0x0C0002AC
+            geo_display_list 0x01, klepto_X_seg5_dl_0500CC30
+         geo_close_node
+      geo_close_node
+   geo_end
+
+glabel klepto_X_geo_0005E4 # 05E4
+   geo_shadow SHADOW_SQUARE_SCALABLE, 0xB4, 300
+      geo_open_node
+         geo_scale 0x00, 16384
+         geo_open_node
+            geo_branch 1, klepto_X_geo_0002AC # 0x0C0002AC
+         geo_close_node
+      geo_close_node
+   geo_end
+
+glabel klepto_X_geo_000610 # 0610
+   geo_shadow SHADOW_CIRCLE_UNK1, 0x96, 50
+      geo_open_node
+         geo_switch_case 2, GeoSwitchCase8029DB48
+         geo_open_node
+            geo_display_list 0x04, klepto_X_seg5_dl_050127D8
+            geo_display_list 0x04, klepto_X_seg5_dl_05012808
+         geo_close_node
+      geo_close_node
+   geo_end
+
+glabel klepto_X_geo_000644 # 0644
+   geo_shadow SHADOW_CIRCLE_UNK1, 0x96, 50
+      geo_open_node
+         geo_display_list 0x04, klepto_X_seg5_dl_050130B0
+      geo_close_node
+   geo_end

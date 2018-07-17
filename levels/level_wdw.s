@@ -72,16 +72,16 @@ glabel level_wdw_entry
     jump_link /*target*/ script_func_global_1
     jump_link /*target*/ script_func_global_2
     jump_link /*target*/ script_func_global_14
-    cmd22 /*unk2*/ 0x0017, /*unk4*/ 0x16000FE8
-    cmd22 /*unk2*/ 0x0036, /*unk4*/ 0x0E000580
-    cmd22 /*unk2*/ 0x0037, /*unk4*/ 0x0E000598
-    cmd22 /*unk2*/ 0x0038, /*unk4*/ 0x0E0005C0
-    cmd22 /*unk2*/ 0x0039, /*unk4*/ 0x0E0005E8
-    cmd22 /*unk2*/ 0x003A, /*unk4*/ 0x0E000610
-    cmd22 /*unk2*/ 0x003B, /*unk4*/ 0x0E000628
-    cmd22 /*unk2*/ 0x003C, /*unk4*/ 0x0E000640
+    cmd22 /*unk2*/ 0x0017, /*unk4*/ coin_X_geo_000FE8
+    cmd22 /*unk2*/ 0x0036, /*unk4*/ wdw_geo_000580
+    cmd22 /*unk2*/ 0x0037, /*unk4*/ wdw_geo_000598
+    cmd22 /*unk2*/ 0x0038, /*unk4*/ wdw_geo_0005C0
+    cmd22 /*unk2*/ 0x0039, /*unk4*/ wdw_geo_0005E8
+    cmd22 /*unk2*/ 0x003A, /*unk4*/ wdw_geo_000610
+    cmd22 /*unk2*/ 0x003B, /*unk4*/ wdw_geo_000628
+    cmd22 /*unk2*/ 0x003C, /*unk4*/ wdw_geo_000640
 
-    area /*index*/ 1, /*geo*/ 0x0E000658
+    area /*index*/ 1, /*geo*/ wdw_geo_000658
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 3395, 3580, 384, /*angle*/ 0, 180, 0, /*behArg*/ 0x000A0000, /*beh*/ beh_warps_74
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 818, 0, 3634, /*angle*/ 0, 45, 0, /*behArg*/ 0x000B0000, /*beh*/ beh_fading_warp
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -2865, 3328, 3065, /*angle*/ 0, 0, 0, /*behArg*/ 0x000C0000, /*beh*/ beh_fading_warp
@@ -93,20 +93,20 @@ glabel level_wdw_entry
         warp_node /*id*/ 0xF0, /*destLevel1*/ 0x06, /*destArea*/ 0x02, /*destNode*/ 0x32, /*destLevel2*/ 0x00
         warp_node /*id*/ 0xF1, /*destLevel1*/ 0x06, /*destArea*/ 0x02, /*destNode*/ 0x64, /*destLevel2*/ 0x00
         instant_warp /*index*/ 1, /*destArea*/ 2, /*displace*/ 0, 0, 0
-        terrain /*terrainData*/ 0x07014150
-        cmd39 /*unk4*/ 0x070160D8
+        terrain /*terrainData*/ wdw_seg7_area_1_collision 
+        cmd39 /*unk4*/ wdw_seg7_area_1_macro_objs 
         set_music /*unk2*/ 0x0003, /*seq*/ 0x000C
         terrain_type /*terrainType*/ 0x0001
     end_area
 
-    area /*index*/ 2, /*geo*/ 0x0E000724
+    area /*index*/ 2, /*geo*/ wdw_geo_000724
         jump_link /*target*/ script_func_local_4
         jump_link /*target*/ script_func_local_2
         warp_node /*id*/ 0xF0, /*destLevel1*/ 0x06, /*destArea*/ 0x02, /*destNode*/ 0x32, /*destLevel2*/ 0x00
         warp_node /*id*/ 0xF1, /*destLevel1*/ 0x06, /*destArea*/ 0x02, /*destNode*/ 0x64, /*destLevel2*/ 0x00
         instant_warp /*index*/ 0, /*destArea*/ 1, /*displace*/ 0, 0, 0
-        terrain /*terrainData*/ 0x0701633C
-        cmd39 /*unk4*/ 0x07018224
+        terrain /*terrainData*/ wdw_seg7_area_2_collision 
+        cmd39 /*unk4*/ wdw_seg7_area_2_macro_objs 
         set_music /*unk2*/ 0x0003, /*seq*/ 0x000C
         terrain_type /*terrainType*/ 0x0005
     end_area

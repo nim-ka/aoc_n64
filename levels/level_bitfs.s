@@ -57,39 +57,39 @@ glabel level_bitfs_entry
     jump_link /*target*/ script_func_global_3
     jump_link /*target*/ script_func_global_18
     jump_link /*target*/ script_func_global_1
-    cmd22 /*unk2*/ 0x0003, /*unk4*/ 0x0E0004B0
-    cmd22 /*unk2*/ 0x0004, /*unk4*/ 0x0E0004C8
-    cmd22 /*unk2*/ 0x0005, /*unk4*/ 0x0E0004E0
-    cmd22 /*unk2*/ 0x0006, /*unk4*/ 0x0E0004F8
-    cmd22 /*unk2*/ 0x0007, /*unk4*/ 0x0E000510
-    cmd22 /*unk2*/ 0x0008, /*unk4*/ 0x0E000528
-    cmd22 /*unk2*/ 0x0009, /*unk4*/ 0x0E000540
-    cmd22 /*unk2*/ 0x000A, /*unk4*/ 0x0E000558
-    cmd22 /*unk2*/ 0x000B, /*unk4*/ 0x0E000570
-    cmd22 /*unk2*/ 0x000C, /*unk4*/ 0x0E000588
-    cmd22 /*unk2*/ 0x000D, /*unk4*/ 0x0E0005A0
-    cmd22 /*unk2*/ 0x000E, /*unk4*/ 0x0E0005B8
-    cmd22 /*unk2*/ 0x000F, /*unk4*/ 0x0E0005D0
-    cmd22 /*unk2*/ 0x0010, /*unk4*/ 0x0E0005E8
-    cmd22 /*unk2*/ 0x0011, /*unk4*/ 0x0E000600
-    cmd22 /*unk2*/ 0x0012, /*unk4*/ 0x0E000618
-    cmd22 /*unk2*/ 0x0013, /*unk4*/ 0x0E000630
-    cmd22 /*unk2*/ 0x0014, /*unk4*/ 0x0E000648
-    cmd22 /*unk2*/ 0x0015, /*unk4*/ 0x0E000660
-    cmd22 /*unk2*/ 0x0036, /*unk4*/ 0x0E000758
-    cmd22 /*unk2*/ 0x0037, /*unk4*/ 0x0E0006C0
-    cmd22 /*unk2*/ 0x0038, /*unk4*/ 0x0E000770
-    cmd22 /*unk2*/ 0x0039, /*unk4*/ 0x0E0006A8
-    cmd22 /*unk2*/ 0x003A, /*unk4*/ 0x0E000690
-    cmd22 /*unk2*/ 0x003B, /*unk4*/ 0x0E000678
-    cmd22 /*unk2*/ 0x003C, /*unk4*/ 0x0E000708
-    cmd22 /*unk2*/ 0x003D, /*unk4*/ 0x0E000788
-    cmd22 /*unk2*/ 0x003E, /*unk4*/ 0x0E000728
-    cmd22 /*unk2*/ 0x003F, /*unk4*/ 0x0E000740
-    cmd22 /*unk2*/ 0x0040, /*unk4*/ 0x0E0006D8
-    cmd22 /*unk2*/ 0x0041, /*unk4*/ 0x0E0006F0
+    cmd22 /*unk2*/ 0x0003, /*unk4*/ bitfs_geo_0004B0
+    cmd22 /*unk2*/ 0x0004, /*unk4*/ bitfs_geo_0004C8
+    cmd22 /*unk2*/ 0x0005, /*unk4*/ bitfs_geo_0004E0
+    cmd22 /*unk2*/ 0x0006, /*unk4*/ bitfs_geo_0004F8
+    cmd22 /*unk2*/ 0x0007, /*unk4*/ bitfs_geo_000510
+    cmd22 /*unk2*/ 0x0008, /*unk4*/ bitfs_geo_000528
+    cmd22 /*unk2*/ 0x0009, /*unk4*/ bitfs_geo_000540
+    cmd22 /*unk2*/ 0x000A, /*unk4*/ bitfs_geo_000558
+    cmd22 /*unk2*/ 0x000B, /*unk4*/ bitfs_geo_000570
+    cmd22 /*unk2*/ 0x000C, /*unk4*/ bitfs_geo_000588
+    cmd22 /*unk2*/ 0x000D, /*unk4*/ bitfs_geo_0005A0
+    cmd22 /*unk2*/ 0x000E, /*unk4*/ bitfs_geo_0005B8
+    cmd22 /*unk2*/ 0x000F, /*unk4*/ bitfs_geo_0005D0
+    cmd22 /*unk2*/ 0x0010, /*unk4*/ bitfs_geo_0005E8
+    cmd22 /*unk2*/ 0x0011, /*unk4*/ bitfs_geo_000600
+    cmd22 /*unk2*/ 0x0012, /*unk4*/ bitfs_geo_000618
+    cmd22 /*unk2*/ 0x0013, /*unk4*/ bitfs_geo_000630
+    cmd22 /*unk2*/ 0x0014, /*unk4*/ bitfs_geo_000648
+    cmd22 /*unk2*/ 0x0015, /*unk4*/ bitfs_geo_000660
+    cmd22 /*unk2*/ 0x0036, /*unk4*/ bitfs_geo_000758
+    cmd22 /*unk2*/ 0x0037, /*unk4*/ bitfs_geo_0006C0
+    cmd22 /*unk2*/ 0x0038, /*unk4*/ bitfs_geo_000770
+    cmd22 /*unk2*/ 0x0039, /*unk4*/ bitfs_geo_0006A8
+    cmd22 /*unk2*/ 0x003A, /*unk4*/ bitfs_geo_000690
+    cmd22 /*unk2*/ 0x003B, /*unk4*/ bitfs_geo_000678
+    cmd22 /*unk2*/ 0x003C, /*unk4*/ bitfs_geo_000708
+    cmd22 /*unk2*/ 0x003D, /*unk4*/ bitfs_geo_000788
+    cmd22 /*unk2*/ 0x003E, /*unk4*/ bitfs_geo_000728
+    cmd22 /*unk2*/ 0x003F, /*unk4*/ bitfs_geo_000740
+    cmd22 /*unk2*/ 0x0040, /*unk4*/ bitfs_geo_0006D8
+    cmd22 /*unk2*/ 0x0041, /*unk4*/ bitfs_geo_0006F0
 
-    area /*index*/ 1, /*geo*/ 0x0E0007A0
+    area /*index*/ 1, /*geo*/ bitfs_geo_0007A0
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -7577, -1764, 0, /*angle*/ 0, 90, 0, /*behArg*/ 0x000A0000, /*beh*/ beh_warps_64
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 6735, 3681, 99, /*angle*/ 0, 0, 0, /*behArg*/ 0x140B0000, /*beh*/ beh_warp
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 5886, 5000, 99, /*angle*/ 0, 90, 0, /*behArg*/ 0x000C0000, /*beh*/ beh_warps_70
@@ -100,8 +100,8 @@ glabel level_bitfs_entry
         jump_link /*target*/ script_func_local_1
         jump_link /*target*/ script_func_local_2
         jump_link /*target*/ script_func_local_3
-        terrain /*terrainData*/ 0x07011E98
-        cmd39 /*unk4*/ 0x07014F90
+        terrain /*terrainData*/ bitfs_seg7_collision
+        cmd39 /*unk4*/ bitfs_seg7_macro_objs
         set_music /*unk2*/ 0x0000, /*seq*/ 0x0011
         terrain_type /*terrainType*/ 0x0001
     end_area

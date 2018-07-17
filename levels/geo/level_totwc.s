@@ -1,34 +1,38 @@
-# 0160
-.word 0x200007D0
-.word 0x04000000
-.word   0x14000000, 0x00000000
-.word   0x04000000
-.word     0x15050000, 0x070079A8
-.word   0x05000000
-.word 0x05000000
-.word 0x01000000
-.word 0x0800000A, 0x00A00078, 0x00A00078
-.word 0x04000000
-.word   0x0C000000
-.word   0x04000000
-.word     0x09000064
-.word     0x04000000
-.word       0x19000003, Geo19_802763D4
-.word     0x05000000
-.word   0x05000000
-.word   0x0C010000
-.word   0x04000000
-.word     0x0A01002D, 0x006461A8, Geo0A_8029AA3C
-.word     0x04000000
-.word       0x0F000010, 0x000007D0, 0x17700000, 0x00000000, Geo0F_80287D30
-.word       0x04000000
-.word         0x15010000, 0x07005D28
-.word         0x15050000, 0x07007048
-.word         0x15050000, 0x070078B8
-.word         0x17000000
-.word         0x18000000, Geo18_802761D0
-.word       0x05000000
-.word     0x05000000
-.word   0x05000000
-.word 0x05000000
-.word 0x01000000
+.include "geo_commands.inc"
+
+glabel totwc_geo_000160 # 0160
+   geo_start_distance 2000
+      geo_open_node
+         geo_billboard
+         geo_open_node
+            geo_display_list 0x05, totwc_seg7_dl_070079A8
+         geo_close_node
+      geo_close_node
+   geo_end
+
+glabel totwc_geo_000188 # 0188
+   geo_node_screen_area 10, 160, 120, 160, 120
+      geo_open_node
+         geo_zbuffer 0
+         geo_open_node
+            geo_todo_09 100
+            geo_open_node
+               geo_background 3, Geo19_802763D4
+            geo_close_node
+         geo_close_node
+         geo_zbuffer 1
+         geo_open_node
+            geo_camera_frustum 45, 100, 25000, Geo0A_8029AA3C
+            geo_open_node
+               geo_todo_0F 16, 0, 2000, 6000, 0, 0, 0, Geo0F_80287D30
+               geo_open_node
+                  geo_display_list 0x01, totwc_seg7_dl_07005D28
+                  geo_display_list 0x05, totwc_seg7_dl_07007048
+                  geo_display_list 0x05, totwc_seg7_dl_070078B8
+                  geo_todo_17
+                  geo_asm 0, Geo18_802761D0
+               geo_close_node
+            geo_close_node
+         geo_close_node
+      geo_close_node
+   geo_end

@@ -1,79 +1,86 @@
-# 0660
-.word 0x200003E8
-.word 0x04000000
-.word   0x1D000000, 0x00006000
-.word   0x04000000
-.word     0x13010000, 0x00000000, 0x00000000
-.word     0x04000000
-.word       0x13010000, 0x00000000, 0x0700C768
-.word       0x04000000
-.word         0x130101CB, 0x00000000, 0x0700C728
-.word         0x04000000
-.word           0x130101CC, 0x00000000, 0x0700C6E8
-.word           0x04000000
-.word             0x13010159, 0x00000000, 0x0700C6A8
-.word             0x04000000
-.word               0x1301011F, 0x00000000, 0x0700C670
-.word             0x05000000
-.word           0x05000000
-.word         0x05000000
-.word       0x05000000
-.word     0x05000000
-.word   0x05000000
-.word 0x05000000
-.word 0x05000000
-.word 0x01000000
-# 06F4
-.word 0x20000834
-.word 0x04000000
-.word   0x15010000, 0x0700A290
-.word 0x05000000
-.word 0x01000000
-# 070C
-.word 0x20003A98
-.word 0x04000000
-.word   0x15040000, 0x0700BB80
-.word 0x05000000
-.word 0x01000000
-# 0724
-.word 0x20003A98
-.word 0x04000000
-.word   0x15040000, 0x0700BC68
-.word 0x05000000
-.word 0x01000000
-.word 0x0800000A, 0x00A00078, 0x00A00078
-.word 0x04000000
-.word   0x0C000000
-.word   0x04000000
-.word     0x09000064
-.word     0x04000000
-.word       0x19000000, Geo19_802763D4
-.word     0x05000000
-.word   0x05000000
-.word   0x0C010000
-.word   0x04000000
-.word     0x0A01002D, 0x00644E20, Geo0A_8029AA3C
-.word     0x04000000
-.word       0x0F000010, 0x000005DC, 0x09C40000, 0x05DCD120, Geo0F_80287D30
-.word       0x04000000
-.word         0x15010000, 0x07006D70
-.word         0x15010000, 0x070095F0
-.word         0x15040000, 0x0700A860
-.word         0x15060000, 0x0700B1D0
-.word         0x15040000, 0x0700BA20
-.word         0x15020000, 0x0700C430
-.word         0x15010000, 0x0700C210
-.word         0x18000000, Geo18_802D01E0
-.word         0x18001601, Geo18_802D1B70
-.word         0x18001601, Geo18_802D104C
-.word         0x17000000
-.word         0x18000000, Geo18_802761D0
-.word       0x05000000
-.word     0x05000000
-.word   0x05000000
-.word   0x0C000000
-.word   0x04000000
-.word     0x18000000, Geo18_802CD1E8
-.word   0x05000000
-.word 0x05000000
-.word 0x01000000
+.include "geo_commands.inc"
+
+glabel castle_grounds_geo_000660 # 0660
+   geo_start_distance 1000
+      geo_open_node
+         geo_scale 0x00, 24576
+         geo_open_node
+            geo_dl_translated 0x01, 0, 0, 0
+            geo_open_node
+               geo_dl_translated 0x01, 0, 0, 0, castle_grounds_seg7_dl_0700C768
+               geo_open_node
+                  geo_dl_translated 0x01, 459, 0, 0, castle_grounds_seg7_dl_0700C728
+                  geo_open_node
+                     geo_dl_translated 0x01, 460, 0, 0, castle_grounds_seg7_dl_0700C6E8
+                     geo_open_node
+                        geo_dl_translated 0x01, 345, 0, 0, castle_grounds_seg7_dl_0700C6A8
+                        geo_open_node
+                           geo_dl_translated 0x01, 287, 0, 0, castle_grounds_seg7_dl_0700C670
+                        geo_close_node
+                     geo_close_node
+                  geo_close_node
+               geo_close_node
+            geo_close_node
+         geo_close_node
+      geo_close_node
+   geo_close_node
+geo_end
+
+glabel castle_grounds_geo_0006F4 # 06F4
+   geo_start_distance 2100
+      geo_open_node
+         geo_display_list 0x01, castle_grounds_seg7_dl_0700A290
+      geo_close_node
+   geo_end
+
+glabel castle_grounds_geo_00070C # 070C
+   geo_start_distance 15000
+      geo_open_node
+         geo_display_list 0x04, castle_grounds_seg7_dl_0700BB80
+      geo_close_node
+   geo_end
+
+glabel castle_grounds_geo_000724 # 0724
+   geo_start_distance 15000
+      geo_open_node
+         geo_display_list 0x04, castle_grounds_seg7_dl_0700BC68
+      geo_close_node
+   geo_end
+
+glabel castle_grounds_geo_00073C # 073C
+   geo_node_screen_area 10, 160, 120, 160, 120
+      geo_open_node
+         geo_zbuffer 0
+         geo_open_node
+            geo_todo_09 100
+            geo_open_node
+               geo_background 0, Geo19_802763D4
+            geo_close_node
+         geo_close_node
+         geo_zbuffer 1
+         geo_open_node
+            geo_camera_frustum 45, 100, 20000, Geo0A_8029AA3C
+            geo_open_node
+               geo_todo_0F 16, 0, 1500, 2500, 0, 1500, -12000, Geo0F_80287D30
+               geo_open_node
+                  geo_display_list 0x01, castle_grounds_seg7_dl_07006D70
+                  geo_display_list 0x01, castle_grounds_seg7_dl_070095F0
+                  geo_display_list 0x04, castle_grounds_seg7_dl_0700A860
+                  geo_display_list 0x06, castle_grounds_seg7_dl_0700B1D0
+                  geo_display_list 0x04, castle_grounds_seg7_dl_0700BA20
+                  geo_display_list 0x02, castle_grounds_seg7_dl_0700C430
+                  geo_display_list 0x01, castle_grounds_seg7_dl_0700C210
+                  geo_asm    0, Geo18_802D01E0
+                  geo_asm 5633, Geo18_802D1B70
+                  geo_asm 5633, Geo18_802D104C
+                  geo_todo_17
+                  geo_asm 0, Geo18_802761D0
+               geo_close_node
+            geo_close_node
+         geo_close_node
+         geo_zbuffer 0
+         geo_open_node
+            geo_asm 0, Geo18_802CD1E8
+         geo_close_node
+      geo_close_node
+   geo_end

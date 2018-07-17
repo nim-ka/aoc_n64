@@ -47,40 +47,40 @@ glabel level_bits_entry
     mario /*unk3*/ 0x01, /*behArg*/ 0x00000001, /*beh*/ beh_mario
     jump_link /*target*/ script_func_global_15
     jump_link /*target*/ script_func_global_1
-    cmd22 /*unk2*/ 0x0003, /*unk4*/ 0x0E000430
-    cmd22 /*unk2*/ 0x0004, /*unk4*/ 0x0E000448
-    cmd22 /*unk2*/ 0x0005, /*unk4*/ 0x0E000460
-    cmd22 /*unk2*/ 0x0006, /*unk4*/ 0x0E000478
-    cmd22 /*unk2*/ 0x0007, /*unk4*/ 0x0E000490
-    cmd22 /*unk2*/ 0x0008, /*unk4*/ 0x0E0004A8
-    cmd22 /*unk2*/ 0x0009, /*unk4*/ 0x0E0004C0
-    cmd22 /*unk2*/ 0x000A, /*unk4*/ 0x0E0004D8
-    cmd22 /*unk2*/ 0x000B, /*unk4*/ 0x0E0004F0
-    cmd22 /*unk2*/ 0x000C, /*unk4*/ 0x0E000508
-    cmd22 /*unk2*/ 0x000D, /*unk4*/ 0x0E000520
-    cmd22 /*unk2*/ 0x000E, /*unk4*/ 0x0E000538
-    cmd22 /*unk2*/ 0x000F, /*unk4*/ 0x0E000550
-    cmd22 /*unk2*/ 0x0010, /*unk4*/ 0x0E000568
-    cmd22 /*unk2*/ 0x0011, /*unk4*/ 0x0E000580
-    cmd22 /*unk2*/ 0x0012, /*unk4*/ 0x0E000598
-    cmd22 /*unk2*/ 0x0013, /*unk4*/ 0x0E0005B0
-    cmd22 /*unk2*/ 0x0014, /*unk4*/ 0x0E0005C8
-    cmd22 /*unk2*/ 0x0036, /*unk4*/ 0x0E0005E0
-    cmd22 /*unk2*/ 0x0037, /*unk4*/ 0x0E0005F8
-    cmd22 /*unk2*/ 0x0039, /*unk4*/ 0x0E000610
-    cmd22 /*unk2*/ 0x003C, /*unk4*/ 0x0E000628
-    cmd22 /*unk2*/ 0x003D, /*unk4*/ 0x0E000640
-    cmd22 /*unk2*/ 0x003E, /*unk4*/ 0x0E000658
-    cmd22 /*unk2*/ 0x003F, /*unk4*/ 0x0E000670
-    cmd22 /*unk2*/ 0x0040, /*unk4*/ 0x0E000688
-    cmd22 /*unk2*/ 0x0041, /*unk4*/ 0x0E0006A0
-    cmd22 /*unk2*/ 0x0042, /*unk4*/ 0x0E0006B8
-    cmd22 /*unk2*/ 0x0043, /*unk4*/ 0x0E0006D0
-    cmd22 /*unk2*/ 0x0044, /*unk4*/ 0x0E0006E8
-    cmd22 /*unk2*/ 0x0045, /*unk4*/ 0x0E000700
-    cmd22 /*unk2*/ 0x0049, /*unk4*/ 0x16000388
+    cmd22 /*unk2*/ 0x0003, /*unk4*/ bits_geo_000430
+    cmd22 /*unk2*/ 0x0004, /*unk4*/ bits_geo_000448
+    cmd22 /*unk2*/ 0x0005, /*unk4*/ bits_geo_000460
+    cmd22 /*unk2*/ 0x0006, /*unk4*/ bits_geo_000478
+    cmd22 /*unk2*/ 0x0007, /*unk4*/ bits_geo_000490
+    cmd22 /*unk2*/ 0x0008, /*unk4*/ bits_geo_0004A8
+    cmd22 /*unk2*/ 0x0009, /*unk4*/ bits_geo_0004C0
+    cmd22 /*unk2*/ 0x000A, /*unk4*/ bits_geo_0004D8
+    cmd22 /*unk2*/ 0x000B, /*unk4*/ bits_geo_0004F0
+    cmd22 /*unk2*/ 0x000C, /*unk4*/ bits_geo_000508
+    cmd22 /*unk2*/ 0x000D, /*unk4*/ bits_geo_000520
+    cmd22 /*unk2*/ 0x000E, /*unk4*/ bits_geo_000538
+    cmd22 /*unk2*/ 0x000F, /*unk4*/ bits_geo_000550
+    cmd22 /*unk2*/ 0x0010, /*unk4*/ bits_geo_000568
+    cmd22 /*unk2*/ 0x0011, /*unk4*/ bits_geo_000580
+    cmd22 /*unk2*/ 0x0012, /*unk4*/ bits_geo_000598
+    cmd22 /*unk2*/ 0x0013, /*unk4*/ bits_geo_0005B0
+    cmd22 /*unk2*/ 0x0014, /*unk4*/ bits_geo_0005C8
+    cmd22 /*unk2*/ 0x0036, /*unk4*/ bits_geo_0005E0
+    cmd22 /*unk2*/ 0x0037, /*unk4*/ bits_geo_0005F8
+    cmd22 /*unk2*/ 0x0039, /*unk4*/ bits_geo_000610
+    cmd22 /*unk2*/ 0x003C, /*unk4*/ bits_geo_000628
+    cmd22 /*unk2*/ 0x003D, /*unk4*/ bits_geo_000640
+    cmd22 /*unk2*/ 0x003E, /*unk4*/ bits_geo_000658
+    cmd22 /*unk2*/ 0x003F, /*unk4*/ bits_geo_000670
+    cmd22 /*unk2*/ 0x0040, /*unk4*/ bits_geo_000688
+    cmd22 /*unk2*/ 0x0041, /*unk4*/ bits_geo_0006A0
+    cmd22 /*unk2*/ 0x0042, /*unk4*/ bits_geo_0006B8
+    cmd22 /*unk2*/ 0x0043, /*unk4*/ bits_geo_0006D0
+    cmd22 /*unk2*/ 0x0044, /*unk4*/ bits_geo_0006E8
+    cmd22 /*unk2*/ 0x0045, /*unk4*/ bits_geo_000700
+    cmd22 /*unk2*/ 0x0049, /*unk4*/ common_seg16_geo_pipe
 
-    area /*index*/ 1, /*geo*/ 0x0E000718
+    area /*index*/ 1, /*geo*/ bits_geo_000718
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -7039, -3812, 4, /*angle*/ 0, 90, 0, /*behArg*/ 0x000A0000, /*beh*/ beh_warps_64
         object /*unk2*/ 0x1F, /*unk3*/ 0x49, /*pos*/ 351, 6652, -6030, /*angle*/ 0, 0, 0, /*behArg*/ 0x000B0000, /*beh*/ beh_warp_pipe
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 351, 6800, -3900, /*angle*/ 0, 180, 0, /*behArg*/ 0x000C0000, /*beh*/ beh_warps_70
@@ -90,8 +90,8 @@ glabel level_bits_entry
         warp_node /*id*/ 0xF1, /*destLevel1*/ 0x06, /*destArea*/ 0x02, /*destNode*/ 0x6B, /*destLevel2*/ 0x00
         jump_link /*target*/ script_func_local_1
         jump_link /*target*/ script_func_local_2
-        terrain /*terrainData*/ 0x07016E18
-        cmd39 /*unk4*/ 0x0701A76C
+        terrain /*terrainData*/ bits_seg7_collision
+        cmd39 /*unk4*/ bits_seg7_macro_objs
         set_music /*unk2*/ 0x0000, /*seq*/ 0x0011
         terrain_type /*terrainType*/ 0x0001
     end_area

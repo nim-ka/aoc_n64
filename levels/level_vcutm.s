@@ -37,10 +37,10 @@ glabel level_vcutm_entry
     mario /*unk3*/ 0x01, /*behArg*/ 0x00000001, /*beh*/ beh_mario
     jump_link /*target*/ script_func_global_1
     jump_link /*target*/ script_func_global_9
-    cmd22 /*unk2*/ 0x0036, /*unk4*/ 0x0E0001F0
-    cmd22 /*unk2*/ 0x0016, /*unk4*/ 0x16000388
+    cmd22 /*unk2*/ 0x0036, /*unk4*/ vcutm_geo_0001F0
+    cmd22 /*unk2*/ 0x0016, /*unk4*/ common_seg16_geo_pipe
 
-    area /*index*/ 1, /*geo*/ 0x0E000208
+    area /*index*/ 1, /*geo*/ vcutm_geo_000208
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -6143, 6734, -6143, /*angle*/ 0, 0, 0, /*behArg*/ 0x000A0000, /*beh*/ beh_warps_64
         warp_node /*id*/ 0x0A, /*destLevel1*/ 0x12, /*destArea*/ 0x01, /*destNode*/ 0x0A, /*destLevel2*/ 0x00
         warp_node /*id*/ 0xF3, /*destLevel1*/ 0x10, /*destArea*/ 0x01, /*destNode*/ 0x07, /*destLevel2*/ 0x00
@@ -49,8 +49,8 @@ glabel level_vcutm_entry
         jump_link /*target*/ script_func_local_3
         jump_link /*target*/ script_func_local_1
         jump_link /*target*/ script_func_local_2
-        terrain /*terrainData*/ 0x07009750
-        cmd39 /*unk4*/ 0x0700AB0C
+        terrain /*terrainData*/ vcutm_seg7_collision
+        cmd39 /*unk4*/ vcutm_seg7_macro_objs
         cmd30 /*unk2*/ 0x00, /*unk3*/ 0x81
         set_music /*unk2*/ 0x0000, /*seq*/ 0x0009
         terrain_type /*terrainType*/ 0x0001

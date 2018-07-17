@@ -34,7 +34,7 @@ glabel level_cotmc_entry
     jump_link /*target*/ script_func_global_18
     jump_link /*target*/ script_func_global_1
 
-    area /*index*/ 1, /*geo*/ 0x0E0001A0
+    area /*index*/ 1, /*geo*/ cotmc_geo_0001A0
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -4185, 1020, -47, /*angle*/ 0, 90, 0, /*behArg*/ 0x000A0000, /*beh*/ beh_warps_64
         warp_node /*id*/ 0x0A, /*destLevel1*/ 0x1C, /*destArea*/ 0x01, /*destNode*/ 0x0A, /*destLevel2*/ 0x00
         warp_node /*id*/ 0xF0, /*destLevel1*/ 0x06, /*destArea*/ 0x03, /*destNode*/ 0x34, /*destLevel2*/ 0x00
@@ -42,8 +42,8 @@ glabel level_cotmc_entry
         warp_node /*id*/ 0xF3, /*destLevel1*/ 0x10, /*destArea*/ 0x01, /*destNode*/ 0x14, /*destLevel2*/ 0x00
         jump_link /*target*/ script_func_local_2
         jump_link /*target*/ script_func_local_1
-        terrain /*terrainData*/ 0x0700A508
-        cmd39 /*unk4*/ 0x0700BD38
+        terrain /*terrainData*/ cotmc_seg7_collision
+        cmd39 /*unk4*/ cotmc_seg7_macro_objs
         cmd30 /*unk2*/ 0x00, /*unk3*/ 0x82
         set_music /*unk2*/ 0x0004, /*seq*/ 0x000C
         terrain_type /*terrainType*/ 0x0001

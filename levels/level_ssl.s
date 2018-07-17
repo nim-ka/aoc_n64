@@ -67,17 +67,17 @@ glabel level_ssl_entry
     mario /*unk3*/ 0x01, /*behArg*/ 0x00000001, /*beh*/ beh_mario
     jump_link /*target*/ script_func_global_1
     jump_link /*target*/ script_func_global_6
-    cmd22 /*unk2*/ 0x001B, /*unk4*/ 0x16001048
-    cmd22 /*unk2*/ 0x0003, /*unk4*/ 0x0E0005C0
-    cmd22 /*unk2*/ 0x0004, /*unk4*/ 0x0E0005D8
-    cmd22 /*unk2*/ 0x003A, /*unk4*/ 0x0E000618
-    cmd22 /*unk2*/ 0x0036, /*unk4*/ 0x0E000734
-    cmd22 /*unk2*/ 0x0037, /*unk4*/ 0x0E000764
-    cmd22 /*unk2*/ 0x0038, /*unk4*/ 0x0E000794
-    cmd22 /*unk2*/ 0x0039, /*unk4*/ 0x0E0007AC
-    cmd22 /*unk2*/ 0x00C7, /*unk4*/ 0x0E000630
+    cmd22 /*unk2*/ 0x001B, /*unk4*/ coin_X_geo_001048
+    cmd22 /*unk2*/ 0x0003, /*unk4*/ ssl_geo_0005C0
+    cmd22 /*unk2*/ 0x0004, /*unk4*/ ssl_geo_0005D8
+    cmd22 /*unk2*/ 0x003A, /*unk4*/ ssl_geo_000618
+    cmd22 /*unk2*/ 0x0036, /*unk4*/ ssl_geo_000734
+    cmd22 /*unk2*/ 0x0037, /*unk4*/ ssl_geo_000764
+    cmd22 /*unk2*/ 0x0038, /*unk4*/ ssl_geo_000794
+    cmd22 /*unk2*/ 0x0039, /*unk4*/ ssl_geo_0007AC
+    cmd22 /*unk2*/ 0x00C7, /*unk4*/ ssl_geo_000630
 
-    area /*index*/ 1, /*geo*/ 0x0E000648
+    area /*index*/ 1, /*geo*/ ssl_geo_000648
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 653, 1038, 6566, /*angle*/ 0, 90, 0, /*behArg*/ 0x000A0000, /*beh*/ beh_warps_74
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -2048, 0, 56, /*angle*/ 0, 0, 0, /*behArg*/ 0x00140000, /*beh*/ beh_warp
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -2048, 768, -1024, /*angle*/ 0, 0, 0, /*behArg*/ 0x0F1E0000, /*beh*/ beh_warp
@@ -93,13 +93,13 @@ glabel level_ssl_entry
         jump_link /*target*/ script_func_local_1
         jump_link /*target*/ script_func_local_2
         jump_link /*target*/ script_func_local_3
-        terrain /*terrainData*/ 0x0700FD80
-        cmd39 /*unk4*/ 0x07012424
+        terrain /*terrainData*/ ssl_seg7_area_1_collision
+        cmd39 /*unk4*/ ssl_seg7_area_1_macro_objs
         set_music /*unk2*/ 0x0000, /*seq*/ 0x0006
         terrain_type /*terrainType*/ 0x0003
     end_area
 
-    area /*index*/ 2, /*geo*/ 0x0E0007CC
+    area /*index*/ 2, /*geo*/ ssl_geo_0007CC
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 0, 300, 6451, /*angle*/ 0, 180, 0, /*behArg*/ 0x000A0000, /*beh*/ beh_warps_64
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 0, 5500, 256, /*angle*/ 0, 180, 0, /*behArg*/ 0x00140000, /*beh*/ beh_warps_64
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 3070, 1280, 2900, /*angle*/ 0, 180, 0, /*behArg*/ 0x00150000, /*beh*/ beh_fading_warp
@@ -113,18 +113,18 @@ glabel level_ssl_entry
         jump_link /*target*/ script_func_local_4
         jump_link /*target*/ script_func_local_5
         instant_warp /*index*/ 3, /*destArea*/ 3, /*displace*/ 0, 0, 0
-        terrain /*terrainData*/ 0x07023678
-        cmd39 /*unk4*/ 0x07027CD4
+        terrain /*terrainData*/ ssl_seg7_area_2_collision
+        cmd39 /*unk4*/ ssl_seg7_area_2_macro_objs
         set_music /*unk2*/ 0x0004, /*seq*/ 0x000C
         terrain_type /*terrainType*/ 0x0001
     end_area
 
-    area /*index*/ 3, /*geo*/ 0x0E00088C
+    area /*index*/ 3, /*geo*/ ssl_geo_00088C
         warp_node /*id*/ 0xF0, /*destLevel1*/ 0x06, /*destArea*/ 0x03, /*destNode*/ 0x33, /*destLevel2*/ 0x00
         warp_node /*id*/ 0xF1, /*destLevel1*/ 0x06, /*destArea*/ 0x03, /*destNode*/ 0x65, /*destLevel2*/ 0x00
         jump_link /*target*/ script_func_local_6
-        terrain /*terrainData*/ 0x070275BC
-        cmd39 /*unk4*/ 0x07027ECC
+        terrain /*terrainData*/ ssl_seg7_area_3_collision
+        cmd39 /*unk4*/ ssl_seg7_area_3_macro_objs
         instant_warp /*index*/ 2, /*destArea*/ 2, /*displace*/ 0, 0, 0
         set_music /*unk2*/ 0x0004, /*seq*/ 0x000C
         terrain_type /*terrainType*/ 0x0001

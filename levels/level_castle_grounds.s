@@ -97,23 +97,23 @@ glabel level_castle_grounds_entry
     jump_link /*target*/ script_func_global_1
     jump_link /*target*/ script_func_global_11
     jump_link /*target*/ script_func_global_16
-    cmd22 /*unk2*/ 0x0003, /*unk4*/ 0x0E0006F4
-    cmd22 /*unk2*/ 0x0017, /*unk4*/ 0x16000FE8
-    cmd22 /*unk2*/ 0x0016, /*unk4*/ 0x16000388
-    cmd22 /*unk2*/ 0x0026, /*unk4*/ 0x160003A8
-    cmd22 /*unk2*/ 0x0029, /*unk4*/ 0x160005F8
-    cmd22 /*unk2*/ 0x0036, /*unk4*/ 0x0E00070C
-    cmd22 /*unk2*/ 0x0037, /*unk4*/ 0x0E000660
-    cmd22 /*unk2*/ 0x0038, /*unk4*/ 0x0E000724
+    cmd22 /*unk2*/ 0x0003, /*unk4*/ castle_grounds_geo_0006F4
+    cmd22 /*unk2*/ 0x0017, /*unk4*/ coin_X_geo_000FE8
+    cmd22 /*unk2*/ 0x0016, /*unk4*/ common_seg16_geo_pipe
+    cmd22 /*unk2*/ 0x0026, /*unk4*/ coin_X_geo_0003A8
+    cmd22 /*unk2*/ 0x0029, /*unk4*/ coin_X_geo_0005F8
+    cmd22 /*unk2*/ 0x0036, /*unk4*/ castle_grounds_geo_00070C
+    cmd22 /*unk2*/ 0x0037, /*unk4*/ castle_grounds_geo_000660
+    cmd22 /*unk2*/ 0x0038, /*unk4*/ castle_grounds_geo_000724
 
-    area /*index*/ 1, /*geo*/ 0x0E00073C
+    area /*index*/ 1, /*geo*/ castle_grounds_geo_00073C
         warp_node /*id*/ 0xF1, /*destLevel1*/ 0x10, /*destArea*/ 0x01, /*destNode*/ 0x03, /*destLevel2*/ 0x00
         jump_link /*target*/ script_func_local_1
         jump_link /*target*/ script_func_local_2
         jump_link /*target*/ script_func_local_3
         jump_link /*target*/ script_func_local_4
-        terrain /*terrainData*/ 0x0700EAE8
-        cmd39 /*unk4*/ 0x07010D08
+        terrain /*terrainData*/ castle_grounds_collision
+        cmd39 /*unk4*/ castle_grounds_macro_objs
         set_music /*unk2*/ 0x0000, /*seq*/ 0x0000
         terrain_type /*terrainType*/ 0x0000
     end_area

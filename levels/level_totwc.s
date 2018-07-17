@@ -29,9 +29,9 @@ glabel level_totwc_entry
     mario /*unk3*/ 0x01, /*behArg*/ 0x00000001, /*beh*/ beh_mario
     jump_link /*target*/ script_func_global_1
     jump_link /*target*/ script_func_global_9
-    cmd22 /*unk2*/ 0x0003, /*unk4*/ 0x0E000160
+    cmd22 /*unk2*/ 0x0003, /*unk4*/ totwc_geo_000160
 
-    area /*index*/ 1, /*geo*/ 0x0E000188
+    area /*index*/ 1, /*geo*/ totwc_geo_000188
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -4095, 2935, 0, /*angle*/ 0, 90, 0, /*behArg*/ 0x000A0000, /*beh*/ beh_warps_78
         warp_node /*id*/ 0x0A, /*destLevel1*/ 0x1D, /*destArea*/ 0x01, /*destNode*/ 0x0A, /*destLevel2*/ 0x00
         warp_node /*id*/ 0xF3, /*destLevel1*/ 0x06, /*destArea*/ 0x01, /*destNode*/ 0x20, /*destLevel2*/ 0x00
@@ -39,8 +39,8 @@ glabel level_totwc_entry
         warp_node /*id*/ 0xF1, /*destLevel1*/ 0x06, /*destArea*/ 0x01, /*destNode*/ 0x23, /*destLevel2*/ 0x00
         jump_link /*target*/ script_func_local_2
         jump_link /*target*/ script_func_local_1
-        terrain /*terrainData*/ 0x07007A18
-        cmd39 /*unk4*/ 0x070088AC
+        terrain /*terrainData*/ totwc_seg7_collision
+        cmd39 /*unk4*/ totwc_seg7_macro_objs
         cmd30 /*unk2*/ 0x00, /*unk3*/ 0x83
         set_music /*unk2*/ 0x0000, /*seq*/ 0x0009
         terrain_type /*terrainType*/ 0x0001

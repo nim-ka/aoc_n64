@@ -216,26 +216,26 @@ glabel level_castle_entry
     alloc_level_pool
     mario /*unk3*/ 0x01, /*behArg*/ 0x00000001, /*beh*/ beh_mario
     jump_link /*target*/ script_func_global_16
-    cmd22 /*unk2*/ 0x0035, /*unk4*/ 0x0E000F18
-    cmd22 /*unk2*/ 0x0036, /*unk4*/ 0x0E001940
-    cmd22 /*unk2*/ 0x0037, /*unk4*/ 0x0E001530
-    cmd22 /*unk2*/ 0x0038, /*unk4*/ 0x0E001548
-    cmd22 /*unk2*/ 0x0039, /*unk4*/ 0x0E001518
-    cmd22 /*unk2*/ 0x0026, /*unk4*/ 0x160003A8
-    cmd22 /*unk2*/ 0x0027, /*unk4*/ 0x160004D0
-    cmd22 /*unk2*/ 0x0029, /*unk4*/ 0x160005F8
-    cmd22 /*unk2*/ 0x001C, /*unk4*/ 0x160003A8
-    cmd22 /*unk2*/ 0x001D, /*unk4*/ 0x160004D0
-    cmd22 /*unk2*/ 0x0022, /*unk4*/ 0x160007B4
-    cmd22 /*unk2*/ 0x0023, /*unk4*/ 0x16000868
-    cmd22 /*unk2*/ 0x0024, /*unk4*/ 0x1600091C
-    cmd22 /*unk2*/ 0x0025, /*unk4*/ 0x160009D0
-    cmd22 /*unk2*/ 0x00D0, /*unk4*/ 0x0E000F00
-    cmd22 /*unk2*/ 0x00D5, /*unk4*/ 0x0E000F00
-    cmd22 /*unk2*/ 0x00D1, /*unk4*/ 0x0E000F00
-    cmd22 /*unk2*/ 0x00D6, /*unk4*/ 0x0E000F00
+    cmd22 /*unk2*/ 0x0035, /*unk4*/ castle_geo_000F18
+    cmd22 /*unk2*/ 0x0036, /*unk4*/ castle_geo_001940
+    cmd22 /*unk2*/ 0x0037, /*unk4*/ castle_geo_001530
+    cmd22 /*unk2*/ 0x0038, /*unk4*/ castle_geo_001548
+    cmd22 /*unk2*/ 0x0039, /*unk4*/ castle_geo_001518
+    cmd22 /*unk2*/ 0x0026, /*unk4*/ coin_X_geo_0003A8
+    cmd22 /*unk2*/ 0x0027, /*unk4*/ coin_X_geo_0004D0
+    cmd22 /*unk2*/ 0x0029, /*unk4*/ coin_X_geo_0005F8
+    cmd22 /*unk2*/ 0x001C, /*unk4*/ coin_X_geo_0003A8
+    cmd22 /*unk2*/ 0x001D, /*unk4*/ coin_X_geo_0004D0
+    cmd22 /*unk2*/ 0x0022, /*unk4*/ coin_X_geo_0007B4
+    cmd22 /*unk2*/ 0x0023, /*unk4*/ coin_X_geo_000868
+    cmd22 /*unk2*/ 0x0024, /*unk4*/ coin_X_geo_00091C
+    cmd22 /*unk2*/ 0x0025, /*unk4*/ coin_X_geo_0009D0
+    cmd22 /*unk2*/ 0x00D0, /*unk4*/ castle_geo_000F00
+    cmd22 /*unk2*/ 0x00D5, /*unk4*/ castle_geo_000F00
+    cmd22 /*unk2*/ 0x00D1, /*unk4*/ castle_geo_000F00
+    cmd22 /*unk2*/ 0x00D6, /*unk4*/ castle_geo_000F00
 
-    area /*index*/ 1, /*geo*/ 0x0E001400
+    area /*index*/ 1, /*geo*/ castle_geo_001400
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -5513, 717, -4324, /*angle*/ 0, 45, 0, /*behArg*/ 0x00140000, /*beh*/ beh_castle_floor_trap
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 2477, 307, -2000, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_fish_group
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 2774, 507, -1716, /*angle*/ 0, 90, 0, /*behArg*/ 0x00000000, /*beh*/ beh_tank_fish_groups
@@ -248,14 +248,14 @@ glabel level_castle_entry
         object /*unk2*/ 0x1F, /*unk3*/ 0xDD, /*pos*/ 596, -306, -2637, /*angle*/ 0, 152, 0, /*behArg*/ 0x87000000, /*beh*/ beh_toad_message
         jump_link /*target*/ script_func_local_1
         warp_node /*id*/ 0xF1, /*destLevel1*/ 0x10, /*destArea*/ 0x01, /*destNode*/ 0x03, /*destLevel2*/ 0x00
-        terrain /*terrainData*/ 0x07068B88
-        rooms /*surfaceRooms*/ 0x0707782C
-        cmd39 /*unk4*/ 0x07077764
+        terrain /*terrainData*/ castle_seg7_area_1_collision
+        rooms /*surfaceRooms*/ castle_seg7_area_1_rooms
+        cmd39 /*unk4*/ castle_seg7_area_1_macro_objs
         set_music /*unk2*/ 0x0001, /*seq*/ 0x0004
         terrain_type /*terrainType*/ 0x0001
     end_area
 
-    area /*index*/ 2, /*geo*/ 0x0E001858
+    area /*index*/ 2, /*geo*/ castle_geo_001858
         object /*unk2*/ 0x1F, /*unk3*/ 0x37, /*pos*/ -205, 2918, 7222, /*angle*/ 0, 180, 0, /*behArg*/ 0x00000000, /*beh*/ beh_clock_big_arm
         object /*unk2*/ 0x1F, /*unk3*/ 0x38, /*pos*/ -205, 2918, 7222, /*angle*/ 0, 180, 0, /*behArg*/ 0x00000000, /*beh*/ beh_rotating_small_clock_arm
         object /*unk2*/ 0x1F, /*unk3*/ 0x39, /*pos*/ -205, 2611, 7140, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_oscillating_pendulum
@@ -265,15 +265,15 @@ glabel level_castle_entry
         object /*unk2*/ 0x1F, /*unk3*/ 0xDD, /*pos*/ 837, 1203, 3020, /*angle*/ 0, 180, 0, /*behArg*/ 0x89000000, /*beh*/ beh_toad_message
         jump_link /*target*/ script_func_local_2
         warp_node /*id*/ 0xF1, /*destLevel1*/ 0x10, /*destArea*/ 0x01, /*destNode*/ 0x03, /*destLevel2*/ 0x00
-        terrain /*terrainData*/ 0x0706E364
-        rooms /*surfaceRooms*/ 0x0707808C
-        cmd39 /*unk4*/ 0x070777E0
+        terrain /*terrainData*/ castle_seg7_area_2_collision
+        rooms /*surfaceRooms*/ castle_seg7_area_2_rooms
+        cmd39 /*unk4*/ castle_seg7_area_2_macro_objs
         instant_warp /*index*/ 0, /*destArea*/ 2, /*displace*/ 0, -205, 410
         set_music /*unk2*/ 0x0001, /*seq*/ 0x0004
         terrain_type /*terrainType*/ 0x0001
     end_area
 
-    area /*index*/ 3, /*geo*/ 0x0E001C10
+    area /*index*/ 3, /*geo*/ castle_geo_001C10
         object /*unk2*/ 0x1F, /*unk3*/ 0x36, /*pos*/ 7066, -1178, -819, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_water_level_pillar
         object /*unk2*/ 0x1F, /*unk3*/ 0x36, /*pos*/ 7066, -1178, -205, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_water_level_pillar
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 0, 0, 0, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_ddd_warp
@@ -283,9 +283,9 @@ glabel level_castle_entry
         jump_link /*target*/ script_func_local_3
         jump_link /*target*/ script_func_local_4
         warp_node /*id*/ 0xF1, /*destLevel1*/ 0x10, /*destArea*/ 0x01, /*destNode*/ 0x03, /*destLevel2*/ 0x00
-        terrain /*terrainData*/ 0x07073AAC
-        rooms /*surfaceRooms*/ 0x07078870
-        cmd39 /*unk4*/ 0x070777EC
+        terrain /*terrainData*/ castle_seg7_area_3_collision
+        rooms /*surfaceRooms*/ castle_seg7_area_3_rooms
+        cmd39 /*unk4*/ castle_seg7_area_3_macro_objs
         set_music /*unk2*/ 0x0001, /*seq*/ 0x0004
         terrain_type /*terrainType*/ 0x0001
     end_area

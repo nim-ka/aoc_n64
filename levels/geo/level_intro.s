@@ -1,92 +1,102 @@
-.word 0x08000000, 0x00A00078, 0x00A00078
-.word 0x04000000
-.word   0x0C000000
-.word   0x04000000
-.word     0x09000064
-.word     0x04000000
-.word       0x19000001, 0x00000000
-.word     0x05000000
-.word   0x05000000
-.word   0x0C010000
-.word   0x04000000
-.word     0x0A00002D, 0x00804000
-.word     0x04000000
-.word       0x0F000000, 0x00000000, 0x0C800000, 0x00000000, 0x00000000
-.word       0x04000000
-.word         0x18000000, geo18_title_screen
-.word       0x05000000
-.word     0x05000000
-.word   0x05000000
-.word   0x0C000000
-.word   0x04000000
-.word     0x18000000, geo18_fade_transition
-.word   0x05000000
-.word 0x05000000
-.word 0x01000000
-.word 0x08000000, 0x00A00078, 0x00A00078
-.word 0x04000000
-.word   0x0C000000
-.word   0x04000000
-.word     0x09000064
-.word     0x04000000
-.word       0x18000000, geo18_intro_backdrop
-.word     0x05000000
-.word   0x05000000
-.word   0x0C010000
-.word   0x04000000
-.word     0x0A00002D, 0x00804000
-.word     0x04000000
-.word       0x18000002, Geo18_802764B0
-.word     0x05000000
-.word   0x05000000
-.word 0x05000000
-.word 0x01000000
-.word 0x08000000, 0x00A00078, 0x00A00078
-.word 0x04000000
-.word   0x0C000000
-.word   0x04000000
-.word     0x09000064
-.word     0x04000000
-.word       0x18000000, geo18_game_over_tile
-.word     0x05000000
-.word   0x05000000
-.word   0x0C010000
-.word   0x04000000
-.word     0x0A00002D, 0x00804000
-.word     0x04000000
-.word       0x18000003, Geo18_802764B0
-.word     0x05000000
-.word   0x05000000
-.word 0x05000000
-.word 0x01000000
-.word 0x08000000, 0x00A00078, 0x00A00078
-.word 0x04000000
-.word   0x0C000000
-.word   0x04000000
-.word     0x09000064
-.word     0x04000000
-.word       0x18000000, geo18_intro_backdrop
-.word     0x05000000
-.word   0x05000000
-.word   0x0C010000
-.word   0x04000000
-.word     0x0A00002D, 0x00804000
-.word     0x04000000
-.word       0x0F000000, 0x00000000, 0x04B00000, 0x00000000, 0x00000000
-.word       0x04000000
-.word         0x1181FF1A, 0x012C0000, 0x07000858
-.word         0x1181FF88, 0x012C0000, 0x07001100
-.word         0x1181FFEC, 0x012C0000, 0x07001BA0
-.word         0x11810064, 0x012C0000, 0x070025F0
-.word         0x118100FA, 0x012C0000, 0x07003258
-.word         0x1181FECA, 0x00640000, 0x07003DB8
-.word         0x1181FFA6, 0x00640000, 0x070048C8
-.word         0x1181003C, 0x00640000, 0x07005558
-.word         0x118100B4, 0x00640000, 0x070059F8
-.word         0x1181012C, 0x00640000, 0x070063B0
-.word       0x05000000
-.word     0x05000000
-.word   0x05000000
-.word 0x05000000
-.word 0x01000000
-.word 0x00000000
+.include "geo_commands.inc"
+
+glabel intro_geo_0002D0 # 02D0
+   geo_node_screen_area 0, 160, 120, 160, 120
+      geo_open_node
+         geo_zbuffer 0
+         geo_open_node
+            geo_todo_09 100
+            geo_open_node
+               geo_background 0x0001
+            geo_close_node
+         geo_close_node
+         geo_zbuffer 1
+         geo_open_node
+            geo_camera_frustum 45, 128, 16384
+            geo_open_node
+               geo_todo_0F 0, 0, 0, 3200, 0, 0, 0, 0x00000000
+               geo_open_node
+                  geo_asm 0, geo18_title_screen
+               geo_close_node
+            geo_close_node
+         geo_close_node
+         geo_zbuffer 0
+         geo_open_node
+            geo_asm 0, geo18_fade_transition
+         geo_close_node
+      geo_close_node
+   geo_end
+
+glabel intro_geo_00035C # 035C
+   geo_node_screen_area 0, 160, 120, 160, 120
+      geo_open_node
+         geo_zbuffer 0
+         geo_open_node
+            geo_todo_09 100
+            geo_open_node
+               geo_asm 0, geo18_intro_backdrop
+            geo_close_node
+         geo_close_node
+         geo_zbuffer 1
+         geo_open_node
+            geo_camera_frustum 45, 128, 16384
+            geo_open_node
+               geo_asm 2, Geo18_802764B0
+            geo_close_node
+         geo_close_node
+      geo_close_node
+   geo_end
+
+glabel intro_geo_0003B8 # 03B8
+   geo_node_screen_area 0, 160, 120, 160, 120
+      geo_open_node
+         geo_zbuffer 0
+         geo_open_node
+            geo_todo_09 100
+            geo_open_node
+               geo_asm 0, geo18_game_over_tile
+            geo_close_node
+         geo_close_node
+         geo_zbuffer 1
+         geo_open_node
+            geo_camera_frustum 45, 128, 16384
+            geo_open_node
+               geo_asm 3, Geo18_802764B0
+            geo_close_node
+         geo_close_node
+      geo_close_node
+   geo_end
+
+glabel intro_geo_000414 # 0414
+   geo_node_screen_area 0, 160, 120, 160, 120
+      geo_open_node
+         geo_zbuffer 0
+         geo_open_node
+            geo_todo_09 100
+            geo_open_node
+               geo_asm 0, geo18_intro_backdrop
+            geo_close_node
+         geo_close_node
+         geo_zbuffer 1
+         geo_open_node
+            geo_camera_frustum 45, 128, 16384
+            geo_open_node
+               geo_todo_0F 0, 0, 0, 1200, 0, 0, 0, 0x00000000
+               geo_open_node
+                  geo_todo_11 0x01, -230, 300, 0, debug_seg7_dl_07000858
+                  geo_todo_11 0x01, -120, 300, 0, debug_seg7_dl_07001100
+                  geo_todo_11 0x01,  -20, 300, 0, debug_seg7_dl_07001BA0
+                  geo_todo_11 0x01,  100, 300, 0, debug_seg7_dl_070025F0
+                  geo_todo_11 0x01,  250, 300, 0, debug_seg7_dl_07003258
+                  geo_todo_11 0x01, -310, 100, 0, debug_seg7_dl_07003DB8
+                  geo_todo_11 0x01,  -90, 100, 0, debug_seg7_dl_070048C8
+                  geo_todo_11 0x01,   60, 100, 0, debug_seg7_dl_07005558
+                  geo_todo_11 0x01,  180, 100, 0, debug_seg7_dl_070059F8
+                  geo_todo_11 0x01,  300, 100, 0, debug_seg7_dl_070063B0
+               geo_close_node
+            geo_close_node
+         geo_close_node
+      geo_close_node
+   geo_end
+
+.word 0x0

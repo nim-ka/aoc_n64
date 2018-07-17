@@ -79,34 +79,34 @@ glabel level_ttm_entry
     mario /*unk3*/ 0x01, /*behArg*/ 0x00000001, /*beh*/ beh_mario
     jump_link /*target*/ script_func_global_1
     jump_link /*target*/ script_func_global_7
-    cmd22 /*unk2*/ 0x007B, /*unk4*/ 0x0E000DF4
-    cmd22 /*unk2*/ 0x0035, /*unk4*/ 0x0E000730
-    cmd22 /*unk2*/ 0x0036, /*unk4*/ 0x0E000710
-    cmd22 /*unk2*/ 0x0037, /*unk4*/ 0x0E000D14
-    cmd22 /*unk2*/ 0x0038, /*unk4*/ 0x0E000D4C
-    cmd22 /*unk2*/ 0x0039, /*unk4*/ 0x0E000D84
-    cmd22 /*unk2*/ 0x003A, /*unk4*/ 0x0E000DBC
-    cmd22 /*unk2*/ 0x0003, /*unk4*/ 0x0E000748
-    cmd22 /*unk2*/ 0x0004, /*unk4*/ 0x0E000778
-    cmd22 /*unk2*/ 0x0005, /*unk4*/ 0x0E0007A8
-    cmd22 /*unk2*/ 0x0006, /*unk4*/ 0x0E0007D8
-    cmd22 /*unk2*/ 0x0007, /*unk4*/ 0x0E000808
-    cmd22 /*unk2*/ 0x0008, /*unk4*/ 0x0E000830
-    cmd22 /*unk2*/ 0x0009, /*unk4*/ 0x0E000858
-    cmd22 /*unk2*/ 0x000A, /*unk4*/ 0x0E000880
-    cmd22 /*unk2*/ 0x000B, /*unk4*/ 0x0E0008A8
-    cmd22 /*unk2*/ 0x000C, /*unk4*/ 0x0E0008D0
-    cmd22 /*unk2*/ 0x000D, /*unk4*/ 0x0E0008F8
-    cmd22 /*unk2*/ 0x000F, /*unk4*/ 0x0E000920
-    cmd22 /*unk2*/ 0x0010, /*unk4*/ 0x0E000948
-    cmd22 /*unk2*/ 0x0011, /*unk4*/ 0x0E000970
-    cmd22 /*unk2*/ 0x0012, /*unk4*/ 0x0E000990
-    cmd22 /*unk2*/ 0x0013, /*unk4*/ 0x0E0009C0
-    cmd22 /*unk2*/ 0x0014, /*unk4*/ 0x0E0009F0
-    cmd22 /*unk2*/ 0x0015, /*unk4*/ 0x0E000A18
-    cmd22 /*unk2*/ 0x0016, /*unk4*/ 0x0E000A40
+    cmd22 /*unk2*/ 0x007B, /*unk4*/ ttm_geo_000DF4
+    cmd22 /*unk2*/ 0x0035, /*unk4*/ ttm_geo_000730
+    cmd22 /*unk2*/ 0x0036, /*unk4*/ ttm_geo_000710
+    cmd22 /*unk2*/ 0x0037, /*unk4*/ ttm_geo_000D14
+    cmd22 /*unk2*/ 0x0038, /*unk4*/ ttm_geo_000D4C
+    cmd22 /*unk2*/ 0x0039, /*unk4*/ ttm_geo_000D84
+    cmd22 /*unk2*/ 0x003A, /*unk4*/ ttm_geo_000DBC
+    cmd22 /*unk2*/ 0x0003, /*unk4*/ ttm_geo_000748
+    cmd22 /*unk2*/ 0x0004, /*unk4*/ ttm_geo_000778
+    cmd22 /*unk2*/ 0x0005, /*unk4*/ ttm_geo_0007A8
+    cmd22 /*unk2*/ 0x0006, /*unk4*/ ttm_geo_0007D8
+    cmd22 /*unk2*/ 0x0007, /*unk4*/ ttm_geo_000808
+    cmd22 /*unk2*/ 0x0008, /*unk4*/ ttm_geo_000830
+    cmd22 /*unk2*/ 0x0009, /*unk4*/ ttm_geo_000858
+    cmd22 /*unk2*/ 0x000A, /*unk4*/ ttm_geo_000880
+    cmd22 /*unk2*/ 0x000B, /*unk4*/ ttm_geo_0008A8
+    cmd22 /*unk2*/ 0x000C, /*unk4*/ ttm_geo_0008D0
+    cmd22 /*unk2*/ 0x000D, /*unk4*/ ttm_geo_0008F8
+    cmd22 /*unk2*/ 0x000F, /*unk4*/ ttm_geo_000920
+    cmd22 /*unk2*/ 0x0010, /*unk4*/ ttm_geo_000948
+    cmd22 /*unk2*/ 0x0011, /*unk4*/ ttm_geo_000970
+    cmd22 /*unk2*/ 0x0012, /*unk4*/ ttm_geo_000990
+    cmd22 /*unk2*/ 0x0013, /*unk4*/ ttm_geo_0009C0
+    cmd22 /*unk2*/ 0x0014, /*unk4*/ ttm_geo_0009F0
+    cmd22 /*unk2*/ 0x0015, /*unk4*/ ttm_geo_000A18
+    cmd22 /*unk2*/ 0x0016, /*unk4*/ ttm_geo_000A40
 
-    area /*index*/ 1, /*geo*/ 0x0E000A70
+    area /*index*/ 1, /*geo*/ ttm_geo_000A70
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 102, -3332, 5734, /*angle*/ 0, 45, 0, /*behArg*/ 0x000A0000, /*beh*/ beh_warps_74
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -2447, -2457, 3952, /*angle*/ 0, -105, 0, /*behArg*/ 0x00140000, /*beh*/ beh_warps_64
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 2267, -3006, -3788, /*angle*/ 0, 148, 0, /*behArg*/ 0x00150000, /*beh*/ beh_fading_warp
@@ -123,45 +123,45 @@ glabel level_ttm_entry
         jump_link /*target*/ script_func_local_1
         jump_link /*target*/ script_func_local_2
         jump_link /*target*/ script_func_local_3
-        terrain /*terrainData*/ 0x07013814
-        cmd39 /*unk4*/ 0x07016F18
+        terrain /*terrainData*/ ttm_seg7_area_1_collision
+        cmd39 /*unk4*/ ttm_seg7_area_1_macro_objs
         set_music /*unk2*/ 0x0000, /*seq*/ 0x0003
         terrain_type /*terrainType*/ 0x0001
     end_area
 
-    area /*index*/ 2, /*geo*/ 0x0E000B5C
+    area /*index*/ 2, /*geo*/ ttm_geo_000B5C
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 7000, 5381, 6750, /*angle*/ 0, 225, 0, /*behArg*/ 0x000A0000, /*beh*/ beh_warps_64
         warp_node /*id*/ 0x0A, /*destLevel1*/ 0x24, /*destArea*/ 0x02, /*destNode*/ 0x0A, /*destLevel2*/ 0x00
         warp_node /*id*/ 0xF0, /*destLevel1*/ 0x06, /*destArea*/ 0x02, /*destNode*/ 0x34, /*destLevel2*/ 0x00
         warp_node /*id*/ 0xF1, /*destLevel1*/ 0x06, /*destArea*/ 0x02, /*destNode*/ 0x66, /*destLevel2*/ 0x00
         jump_link /*target*/ script_func_local_4
-        terrain /*terrainData*/ 0x0702BBD0
-        cmd39 /*unk4*/ 0x070302C8
+        terrain /*terrainData*/ ttm_seg7_area_2_collision
+        cmd39 /*unk4*/ ttm_seg7_area_2_macro_objs
         instant_warp /*index*/ 2, /*destArea*/ 3, /*displace*/ 10240, 7168, 10240
         set_music /*unk2*/ 0x0001, /*seq*/ 0x0009
         terrain_type /*terrainType*/ 0x0006
     end_area
 
-    area /*index*/ 3, /*geo*/ 0x0E000BEC
+    area /*index*/ 3, /*geo*/ ttm_geo_000BEC
         warp_node /*id*/ 0xF0, /*destLevel1*/ 0x06, /*destArea*/ 0x02, /*destNode*/ 0x34, /*destLevel2*/ 0x00
         warp_node /*id*/ 0xF1, /*destLevel1*/ 0x06, /*destArea*/ 0x02, /*destNode*/ 0x66, /*destLevel2*/ 0x00
         jump_link /*target*/ script_func_local_5
-        terrain /*terrainData*/ 0x0702D5EC
-        cmd39 /*unk4*/ 0x07030338
+        terrain /*terrainData*/ ttm_seg7_area_3_collision
+        cmd39 /*unk4*/ ttm_seg7_area_3_macro_objs
         instant_warp /*index*/ 3, /*destArea*/ 4, /*displace*/ -11264, 13312, 3072
         set_music /*unk2*/ 0x0001, /*seq*/ 0x0009
         terrain_type /*terrainType*/ 0x0006
     end_area
 
-    area /*index*/ 4, /*geo*/ 0x0E000C84
+    area /*index*/ 4, /*geo*/ ttm_geo_000C84
         object /*unk2*/ 0x1F, /*unk3*/ 0x7B, /*pos*/ -7285, -1866, -4812, /*angle*/ 0, 0, 0, /*behArg*/ 0x000A0000, /*beh*/ beh_exit_podium_warp
         warp_node /*id*/ 0x0A, /*destLevel1*/ 0x24, /*destArea*/ 0x01, /*destNode*/ 0x14, /*destLevel2*/ 0x00
         warp_node /*id*/ 0xF0, /*destLevel1*/ 0x06, /*destArea*/ 0x02, /*destNode*/ 0x34, /*destLevel2*/ 0x00
         warp_node /*id*/ 0xF1, /*destLevel1*/ 0x06, /*destArea*/ 0x02, /*destNode*/ 0x66, /*destLevel2*/ 0x00
         jump_link /*target*/ script_func_local_6
         jump_link /*target*/ script_func_local_7
-        terrain /*terrainData*/ 0x0702F0F8
-        cmd39 /*unk4*/ 0x07030418
+        terrain /*terrainData*/ ttm_seg7_area_4_collision
+        cmd39 /*unk4*/ ttm_seg7_area_4_macro_objs
         set_music /*unk2*/ 0x0001, /*seq*/ 0x0009
         terrain_type /*terrainType*/ 0x0006
     end_area

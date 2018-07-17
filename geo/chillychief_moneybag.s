@@ -1,53 +1,61 @@
+.include "macros.inc"
+.include "geo_commands.inc"
+
 .section .geo, "a"
 
-.word 0x13010000, 0x00000000, 0x00000000
-.word 0x04000000
-.word   0x13010000, 0x00000000, 0x06005750
-.word   0x04000000
-.word     0x13010000, 0x0000FF88, 0x00000000
-.word     0x04000000
-.word       0x13010000, 0x00000000, 0x06005980
-.word     0x05000000
-.word     0x13010000, 0x00000078, 0x00000000
-.word     0x04000000
-.word       0x13010000, 0x00000000, 0x060059F0
-.word     0x05000000
-.word   0x05000000
-.word   0x13010000, 0x00000000, 0x06005688
-.word 0x05000000
-.word 0x03000000
-.word 0x13010000, 0x00000000, 0x00000000
-.word 0x04000000
-.word   0x13050000, 0x00000000, 0x06005750
-.word   0x04000000
-.word     0x13010000, 0x0000FF88, 0x00000000
-.word     0x04000000
-.word       0x13050000, 0x00000000, 0x06005980
-.word     0x05000000
-.word     0x13010000, 0x00000078, 0x00000000
-.word     0x04000000
-.word       0x13050000, 0x00000000, 0x060059F0
-.word     0x05000000
-.word   0x05000000
-.word   0x13050000, 0x00000000, 0x06005688
-.word 0x05000000
-.word 0x03000000
-# 00F0
-.word 0x16000001, 0x00C80064
-.word 0x04000000
-.word   0x1D000000, 0x00004000
-.word   0x04000000
-.word     0x18000000, Geo18_8029D924
-.word     0x0E000002, GeoSwitchCase8029DB48
-.word     0x04000000
-.word       0x02010000, 0x0D000000
-.word       0x02010000, 0x0D000078
-.word     0x05000000
-.word   0x05000000
-.word 0x05000000
-.word 0x05000000
-.word 0x01000000
-.word 0x00000000
-.word 0x00000000
-.word 0x00000000
-.word 0x00000000
+glabel chillychief_X_geo_000000 # 0x0D000000
+      geo_dl_translated 0x01, 0, 0, 0
+      geo_open_node
+         geo_dl_translated 0x01, 0, 0, 0, chillychief_X_seg6_dl_06005750
+         geo_open_node
+            geo_dl_translated 0x01, 0, 0, -120
+            geo_open_node
+               geo_dl_translated 0x01, 0, 0, 0, chillychief_X_seg6_dl_06005980
+            geo_close_node
+            geo_dl_translated 0x01, 0, 0, 120
+            geo_open_node
+               geo_dl_translated 0x01, 0, 0, 0, chillychief_X_seg6_dl_060059F0
+            geo_close_node
+         geo_close_node
+         geo_dl_translated 0x01, 0, 0, 0, chillychief_X_seg6_dl_06005688
+      geo_close_node
+   geo_return
+
+glabel chillychief_X_geo_000078 # 0x0D000078
+      geo_dl_translated 0x01, 0, 0, 0
+      geo_open_node
+         geo_dl_translated 0x05, 0, 0, 0, chillychief_X_seg6_dl_06005750
+         geo_open_node
+            geo_dl_translated 0x01, 0, 0, -120
+            geo_open_node
+               geo_dl_translated 0x05, 0, 0, 0, chillychief_X_seg6_dl_06005980
+            geo_close_node
+            geo_dl_translated 0x01, 0, 0, 120
+            geo_open_node
+               geo_dl_translated 0x05, 0, 0, 0, chillychief_X_seg6_dl_060059F0
+            geo_close_node
+         geo_close_node
+         geo_dl_translated 0x05, 0, 0, 0, chillychief_X_seg6_dl_06005688
+      geo_close_node
+   geo_return
+
+glabel chillychief_X_geo_0000F0 # 0x0D0000F0
+geo_shadow SHADOW_CIRCLE_UNK1, 0xC8, 100
+   geo_open_node
+      geo_scale 0x00, 16384
+      geo_open_node
+         geo_asm 0, Geo18_8029D924
+         geo_switch_case 2, GeoSwitchCase8029DB48
+         geo_open_node
+            geo_branch 1, chillychief_X_geo_000000 # 0x0D000000
+            geo_branch 1, chillychief_X_geo_000078 # 0x0D000078
+         geo_close_node
+      geo_close_node
+   geo_close_node
+geo_close_node
+geo_end
+
+.word 0x0
+.word 0x0
+.word 0x0
+.word 0x0

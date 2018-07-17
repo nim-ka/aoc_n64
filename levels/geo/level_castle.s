@@ -1,561 +1,650 @@
-# 0F00
-.word 0x20000190
-.word 0x04000000
-.word   0x15010000, 0x0703BFA8
-.word 0x05000000
-.word 0x01000000
-# 0F18
-.word 0x20000258
-.word 0x04000000
-.word   0x15010000, 0x0703BCB8
-.word 0x05000000
-.word 0x01000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x07028FD0
-.word   0x15040000, 0x07029578
-.word   0x15010000, 0x0702A650
-.word   0x15060000, 0x0702AA10
-.word   0x15040000, 0x0702AB20
-.word   0x18000000, Geo18_802D2360
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x0702E408
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x0702FD30
-.word   0x15010000, 0x07023DB0
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x07031588
-.word   0x15040000, 0x07031720
-.word   0x15040000, 0x07031830
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x07032FC0
-.word   0x15040000, 0x07033158
-.word   0x18000000, Geo18_802D5D0C
-.word   0x18000100, Geo18_802D5B98
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x07034D88
-.word   0x15040000, 0x07035178
-.word   0x15040000, 0x07035288
-.word   0x18000000, Geo18_802D5D0C
-.word   0x18000102, Geo18_802D5B98
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x07036D88
-.word   0x15010000, 0x07037988
-.word   0x15010000, 0x07037BF8
-.word   0x15050000, 0x07037DE8
-.word   0x15050000, 0x07038240
-.word   0x15040000, 0x07038350
-.word   0x18000000, Geo18_802D5D0C
-.word   0x18000103, Geo18_802D5B98
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x0703A6C8
-.word   0x15040000, 0x0703A808
-.word   0x15010000, 0x070234C0
-.word   0x15010000, 0x07023520
-.word   0x18000000, Geo18_802D5D0C
-.word   0x18000101, Geo18_802D5B98
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x07028FD0
-.word   0x15040000, 0x07029578
-.word   0x15010000, 0x0702A650
-.word   0x15060000, 0x0702AA10
-.word   0x15040000, 0x0702AB20
-.word   0x18000000, Geo18_802D2360
-.word   0x15010000, 0x0703BA08
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x07028FD0
-.word   0x15040000, 0x07029578
-.word   0x15010000, 0x0702A650
-.word   0x15060000, 0x0702AA10
-.word   0x15040000, 0x0702AB20
-.word   0x18000000, Geo18_802D2360
-.word   0x15010000, 0x0702E408
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x07028FD0
-.word   0x15040000, 0x07029578
-.word   0x15010000, 0x0702A650
-.word   0x15060000, 0x0702AA10
-.word   0x15040000, 0x0702AB20
-.word   0x18000000, Geo18_802D2360
-.word   0x15010000, 0x0702FD30
-.word   0x15010000, 0x07023DB0
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x07028FD0
-.word   0x15040000, 0x07029578
-.word   0x15010000, 0x0702A650
-.word   0x15060000, 0x0702AA10
-.word   0x15040000, 0x0702AB20
-.word   0x18000000, Geo18_802D2360
-.word   0x15010000, 0x07031588
-.word   0x15040000, 0x07031720
-.word   0x15040000, 0x07031830
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x07028FD0
-.word   0x15040000, 0x07029578
-.word   0x15010000, 0x0702A650
-.word   0x15060000, 0x0702AA10
-.word   0x15040000, 0x0702AB20
-.word   0x18000000, Geo18_802D2360
-.word   0x15010000, 0x07032FC0
-.word   0x15040000, 0x07033158
-.word   0x18000000, Geo18_802D5D0C
-.word   0x18000100, Geo18_802D5B98
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x07028FD0
-.word   0x15040000, 0x07029578
-.word   0x15010000, 0x0702A650
-.word   0x15060000, 0x0702AA10
-.word   0x15040000, 0x0702AB20
-.word   0x18000000, Geo18_802D2360
-.word   0x15010000, 0x07034D88
-.word   0x15040000, 0x07035178
-.word   0x15040000, 0x07035288
-.word   0x18000000, Geo18_802D5D0C
-.word   0x18000102, Geo18_802D5B98
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x07028FD0
-.word   0x15040000, 0x07029578
-.word   0x15010000, 0x0702A650
-.word   0x15060000, 0x0702AA10
-.word   0x15040000, 0x0702AB20
-.word   0x18000000, Geo18_802D2360
-.word   0x15010000, 0x07036D88
-.word   0x15010000, 0x07037988
-.word   0x15010000, 0x07037BF8
-.word   0x15050000, 0x07037DE8
-.word   0x15050000, 0x07038240
-.word   0x15040000, 0x07038350
-.word   0x18000000, Geo18_802D5D0C
-.word   0x18000103, Geo18_802D5B98
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x07028FD0
-.word   0x15040000, 0x07029578
-.word   0x15010000, 0x0702A650
-.word   0x15060000, 0x0702AA10
-.word   0x15040000, 0x0702AB20
-.word   0x18000000, Geo18_802D2360
-.word   0x15010000, 0x0703A6C8
-.word   0x15040000, 0x0703A808
-.word   0x15010000, 0x070234C0
-.word   0x15010000, 0x07023520
-.word   0x18000000, Geo18_802D5D0C
-.word   0x18000101, Geo18_802D5B98
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x07028FD0
-.word   0x15040000, 0x07029578
-.word   0x15010000, 0x0702A650
-.word   0x15060000, 0x0702AA10
-.word   0x15040000, 0x0702AB20
-.word   0x18000000, Geo18_802D2360
-.word   0x15010000, 0x0703BA08
-.word 0x05000000
-.word 0x03000000
-.word 0x0800000A, 0x00A00078, 0x00A00078
-.word 0x04000000
-.word   0x0C000000
-.word   0x04000000
-.word     0x09000064
-.word     0x04000000
-.word       0x19000001, 0x00000000
-.word     0x05000000
-.word   0x05000000
-.word   0x0C010000
-.word   0x04000000
-.word     0x0A010040, 0x00321B58, Geo0A_8029AA3C
-.word     0x04000000
-.word       0x0F00000D, 0x000007D0, 0x17700000, 0x00000000, Geo0F_80287D30
-.word       0x04000000
-.word         0x0E000011, GeoSwitchCaseBlinking
-.word         0x04000000
-.word           0x02010000, 0x0E000F30
-.word           0x02010000, 0x0E000F70
-.word           0x02010000, 0x0E000F88
-.word           0x02010000, 0x0E000FA8
-.word           0x02010000, 0x0E000FD0
-.word           0x02010000, 0x0E001000
-.word           0x02010000, 0x0E001038
-.word           0x02010000, 0x0E001088
-.word           0x02010000, 0x0E0010C8
-.word           0x02010000, 0x0E001110
-.word           0x02010000, 0x0E001158
-.word           0x02010000, 0x0E0011A8
-.word           0x02010000, 0x0E001200
-.word           0x02010000, 0x0E001260
-.word           0x02010000, 0x0E0012C8
-.word           0x02010000, 0x0E001348
-.word           0x02010000, 0x0E0013B8
-.word         0x05000000
-.word         0x17000000
-.word         0x18000000, Geo18_802761D0
-.word       0x05000000
-.word     0x05000000
-.word   0x05000000
-.word 0x05000000
-.word 0x01000000
-# 1518
-.word 0x20000258
-.word 0x04000000
-.word   0x15010000, 0x070512F8
-.word 0x05000000
-.word 0x01000000
-# 1530
-.word 0x2000012C
-.word 0x04000000
-.word   0x15010000, 0x07058950
-.word 0x05000000
-.word 0x01000000
-# 1548
-.word 0x2000012C
-.word 0x04000000
-.word   0x15010000, 0x07059190
-.word 0x05000000
-.word 0x01000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x0703E6F0
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x07043028
-.word   0x15010000, 0x07043B48
-.word   0x15040000, 0x07043CD8
-.word   0x18000000, Geo18_802D5D0C
-.word   0x18000108, Geo18_802D5B98
-.word   0x1800010A, Geo18_802D5B98
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x0704A0E8
-.word   0x15050000, 0x0704A2E0
-.word   0x15010000, 0x0704AA98
-.word   0x18000000, Geo18_802D5D0C
-.word   0x1800010C, Geo18_802D5B98
-.word   0x18000000, Geo18_80277B14
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x0704C7D8
-.word   0x18000000, Geo18_802D5D0C
-.word   0x18000109, Geo18_802D5B98
-.word   0x1800010D, Geo18_802D5B98
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x07050938
-.word   0x15040000, 0x07051678
-.word   0x15050000, 0x070519C8
-.word   0x15050000, 0x07051B60
-.word   0x18000000, Geo18_802D5D0C
-.word   0x1800010B, Geo18_802D5B98
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x070558D0
-.word   0x15010000, 0x070572A0
-.word   0x15010000, 0x07057F00
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x0703E6F0
-.word   0x15010000, 0x07043028
-.word   0x15010000, 0x07043B48
-.word   0x15040000, 0x07043CD8
-.word   0x18000000, Geo18_802D5D0C
-.word   0x18000108, Geo18_802D5B98
-.word   0x1800010A, Geo18_802D5B98
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x07043028
-.word   0x15010000, 0x07043B48
-.word   0x15040000, 0x07043CD8
-.word   0x15010000, 0x0704A0E8
-.word   0x15050000, 0x0704A2E0
-.word   0x15010000, 0x0704AA98
-.word   0x18000000, Geo18_802D5D0C
-.word   0x18000108, Geo18_802D5B98
-.word   0x1800010A, Geo18_802D5B98
-.word   0x1800010C, Geo18_802D5B98
-.word   0x18000000, Geo18_80277B14
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x07043028
-.word   0x15010000, 0x07043B48
-.word   0x15040000, 0x07043CD8
-.word   0x15010000, 0x0704C7D8
-.word   0x18000000, Geo18_802D5D0C
-.word   0x18000108, Geo18_802D5B98
-.word   0x18000109, Geo18_802D5B98
-.word   0x1800010A, Geo18_802D5B98
-.word   0x1800010D, Geo18_802D5B98
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x07043028
-.word   0x15010000, 0x07043B48
-.word   0x15040000, 0x07043CD8
-.word   0x15010000, 0x07050938
-.word   0x15040000, 0x07051678
-.word   0x15050000, 0x070519C8
-.word   0x15050000, 0x07051B60
-.word   0x18000000, Geo18_802D5D0C
-.word   0x18000108, Geo18_802D5B98
-.word   0x1800010A, Geo18_802D5B98
-.word   0x1800010B, Geo18_802D5B98
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x07050938
-.word   0x15040000, 0x07051678
-.word   0x15050000, 0x070519C8
-.word   0x15050000, 0x07051B60
-.word   0x15010000, 0x070558D0
-.word   0x15010000, 0x070572A0
-.word   0x15010000, 0x07057F00
-.word   0x18000000, Geo18_802D5D0C
-.word   0x1800010B, Geo18_802D5B98
-.word 0x05000000
-.word 0x03000000
-.word 0x0800000A, 0x00A00078, 0x00A00078
-.word 0x04000000
-.word   0x0C000000
-.word   0x04000000
-.word     0x09000064
-.word     0x04000000
-.word       0x19000001, 0x00000000
-.word     0x05000000
-.word   0x05000000
-.word   0x0C010000
-.word   0x04000000
-.word     0x0A010040, 0x00321F40, Geo0A_8029AA3C
-.word     0x04000000
-.word       0x0F000004, 0x000007D0, 0x17700000, 0x00000000, Geo0F_80287D30
-.word       0x04000000
-.word         0x0E00000B, GeoSwitchCaseBlinking
-.word         0x04000000
-.word           0x02010000, 0x0E001560
-.word           0x02010000, 0x0E001578
-.word           0x02010000, 0x0E0015B8
-.word           0x02010000, 0x0E0015F8
-.word           0x02010000, 0x0E001628
-.word           0x02010000, 0x0E001668
-.word           0x02010000, 0x0E001690
-.word           0x02010000, 0x0E0016D8
-.word           0x02010000, 0x0E001740
-.word           0x02010000, 0x0E001798
-.word           0x02010000, 0x0E001800
-.word         0x05000000
-.word         0x17000000
-.word         0x18000000, Geo18_802761D0
-.word       0x05000000
-.word     0x05000000
-.word   0x05000000
-.word 0x05000000
-.word 0x01000000
-# 1940
-.word 0x20000226
-.word 0x04000000
-.word   0x15010000, 0x07068B10
-.word 0x05000000
-.word 0x01000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x0705E088
-.word   0x15040000, 0x0705E2A0
-.word   0x15050000, 0x0705E450
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x070616E8
-.word   0x15050000, 0x07061C20
-.word   0x18000000, Geo18_802D5D0C
-.word   0x18000104, Geo18_802D5B98
-.word   0x18000105, Geo18_802D5B98
-.word   0x18000000, Geo18_802D01E0
-.word   0x18000600, Geo18_802D104C
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x07064B78
-.word   0x15040000, 0x07064D58
-.word   0x18000000, Geo18_802D5D0C
-.word   0x18000106, Geo18_802D5B98
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x07066CE0
-.word   0x15050000, 0x07066E90
-.word   0x15040000, 0x07066FA0
-.word   0x18000000, Geo18_802D01E0
-.word   0x18000612, Geo18_802D104C
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x07068850
-.word   0x18000000, Geo18_802D5D0C
-.word   0x18000107, Geo18_802D5B98
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x0705E088
-.word   0x15040000, 0x0705E2A0
-.word   0x15050000, 0x0705E450
-.word   0x15010000, 0x070616E8
-.word   0x15050000, 0x07061C20
-.word   0x18000000, Geo18_802D5D0C
-.word   0x18000104, Geo18_802D5B98
-.word   0x18000105, Geo18_802D5B98
-.word   0x18000000, Geo18_802D01E0
-.word   0x18000600, Geo18_802D104C
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x0705E088
-.word   0x15040000, 0x0705E2A0
-.word   0x15050000, 0x0705E450
-.word   0x15010000, 0x07068850
-.word   0x18000000, Geo18_802D5D0C
-.word   0x18000107, Geo18_802D5B98
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x0705E088
-.word   0x15040000, 0x0705E2A0
-.word   0x15050000, 0x0705E450
-.word   0x15010000, 0x07066CE0
-.word   0x15050000, 0x07066E90
-.word   0x15040000, 0x07066FA0
-.word   0x18000000, Geo18_802D01E0
-.word   0x18000612, Geo18_802D104C
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x070616E8
-.word   0x15050000, 0x07061C20
-.word   0x15010000, 0x07066CE0
-.word   0x15050000, 0x07066E90
-.word   0x15040000, 0x07066FA0
-.word   0x18000000, Geo18_802D5D0C
-.word   0x18000104, Geo18_802D5B98
-.word   0x18000105, Geo18_802D5B98
-.word   0x18000000, Geo18_802D01E0
-.word   0x18000600, Geo18_802D104C
-.word   0x18000612, Geo18_802D104C
-.word 0x05000000
-.word 0x03000000
-.word 0x0B000000
-.word 0x04000000
-.word   0x15010000, 0x070616E8
-.word   0x15050000, 0x07061C20
-.word   0x15010000, 0x07064B78
-.word   0x15040000, 0x07064D58
-.word   0x18000000, Geo18_802D5D0C
-.word   0x18000104, Geo18_802D5B98
-.word   0x18000105, Geo18_802D5B98
-.word   0x18000106, Geo18_802D5B98
-.word   0x18000000, Geo18_802D01E0
-.word   0x18000600, Geo18_802D104C
-.word 0x05000000
-.word 0x03000000
-.word 0x0800000A, 0x00A00078, 0x00A00078
-.word 0x04000000
-.word   0x0C000000
-.word   0x04000000
-.word     0x09000064
-.word     0x04000000
-.word       0x19000001, 0x00000000
-.word     0x05000000
-.word   0x05000000
-.word   0x0C010000
-.word   0x04000000
-.word     0x0A010040, 0x00321900, Geo0A_8029AA3C
-.word     0x04000000
-.word       0x0F000004, 0x000007D0, 0x17700000, 0x00000000, Geo0F_80287D30
-.word       0x04000000
-.word         0x0E00000A, GeoSwitchCaseBlinking
-.word         0x04000000
-.word           0x02010000, 0x0E001958
-.word           0x02010000, 0x0E001980
-.word           0x02010000, 0x0E0019C8
-.word           0x02010000, 0x0E0019F8
-.word           0x02010000, 0x0E001A30
-.word           0x02010000, 0x0E001A58
-.word           0x02010000, 0x0E001AB8
-.word           0x02010000, 0x0E001AF8
-.word           0x02010000, 0x0E001B48
-.word           0x02010000, 0x0E001BB0
-.word         0x05000000
-.word         0x17000000
-.word         0x18000000, Geo18_802761D0
-.word       0x05000000
-.word     0x05000000
-.word   0x05000000
-.word 0x05000000
-.word 0x01000000
+.include "geo_commands.inc"
+
+glabel castle_geo_000F00 # 0F00
+   geo_start_distance 400
+      geo_open_node
+         geo_display_list 0x01, castle_seg7_dl_0703BFA8
+      geo_close_node
+   geo_end
+
+glabel castle_geo_000F18 # 0F18
+   geo_start_distance 600
+      geo_open_node
+         geo_display_list 0x01, castle_seg7_dl_0703BCB8
+      geo_close_node
+   geo_end
+
+glabel castle_geo_000F30 # 0F30
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, castle_seg7_dl_07028FD0
+         geo_display_list 0x04, castle_seg7_dl_07029578
+         geo_display_list 0x01, castle_seg7_dl_0702A650
+         geo_display_list 0x06, castle_seg7_dl_0702AA10
+         geo_display_list 0x04, castle_seg7_dl_0702AB20
+         geo_asm 0, Geo18_802D2360
+      geo_close_node
+   geo_return
+
+glabel castle_geo_000F70 # 0F70
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, castle_seg7_dl_0702E408
+      geo_close_node
+   geo_return
+
+glabel castle_geo_000F88 # 0F88
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, castle_seg7_dl_0702FD30
+         geo_display_list 0x01, castle_seg7_dl_07023DB0
+      geo_close_node
+   geo_return
+
+glabel castle_geo_000FA8 # 0FA8
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, castle_seg7_dl_07031588
+         geo_display_list 0x04, castle_seg7_dl_07031720
+         geo_display_list 0x04, castle_seg7_dl_07031830
+      geo_close_node
+   geo_return
+
+glabel castle_geo_000FD0 # 0FD0
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, castle_seg7_dl_07032FC0
+         geo_display_list 0x04, castle_seg7_dl_07033158
+         geo_asm   0, Geo18_802D5D0C
+         geo_asm 256, Geo18_802D5B98
+      geo_close_node
+   geo_return
+
+glabel castle_geo_001000 # 1000
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, castle_seg7_dl_07034D88
+         geo_display_list 0x04, castle_seg7_dl_07035178
+         geo_display_list 0x04, castle_seg7_dl_07035288
+         geo_asm   0, Geo18_802D5D0C
+         geo_asm 258, Geo18_802D5B98
+      geo_close_node
+   geo_return
+
+glabel castle_geo_001038 # 1038
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, castle_seg7_dl_07036D88
+         geo_display_list 0x01, castle_seg7_dl_07037988
+         geo_display_list 0x01, castle_seg7_dl_07037BF8
+         geo_display_list 0x05, castle_seg7_dl_07037DE8
+         geo_display_list 0x05, castle_seg7_dl_07038240
+         geo_display_list 0x04, castle_seg7_dl_07038350
+         geo_asm   0, Geo18_802D5D0C
+         geo_asm 259, Geo18_802D5B98
+      geo_close_node
+   geo_return
+
+glabel castle_geo_001088 # 1088
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, castle_seg7_dl_0703A6C8
+         geo_display_list 0x04, castle_seg7_dl_0703A808
+         geo_display_list 0x01, castle_seg7_dl_070234C0
+         geo_display_list 0x01, castle_seg7_dl_07023520
+         geo_asm   0, Geo18_802D5D0C
+         geo_asm 257, Geo18_802D5B98
+      geo_close_node
+   geo_return
+
+glabel castle_geo_0010C8 # 10C8
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, castle_seg7_dl_07028FD0
+         geo_display_list 0x04, castle_seg7_dl_07029578
+         geo_display_list 0x01, castle_seg7_dl_0702A650
+         geo_display_list 0x06, castle_seg7_dl_0702AA10
+         geo_display_list 0x04, castle_seg7_dl_0702AB20
+         geo_asm 0, Geo18_802D2360
+         geo_display_list 0x01, castle_seg7_dl_0703BA08
+      geo_close_node
+   geo_return
+
+glabel castle_geo_001110 # 1110
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, castle_seg7_dl_07028FD0
+         geo_display_list 0x04, castle_seg7_dl_07029578
+         geo_display_list 0x01, castle_seg7_dl_0702A650
+         geo_display_list 0x06, castle_seg7_dl_0702AA10
+         geo_display_list 0x04, castle_seg7_dl_0702AB20
+         geo_asm 0, Geo18_802D2360
+         geo_display_list 0x01, castle_seg7_dl_0702E408
+      geo_close_node
+   geo_return
+
+glabel castle_geo_001158 # 1158
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, castle_seg7_dl_07028FD0
+         geo_display_list 0x04, castle_seg7_dl_07029578
+         geo_display_list 0x01, castle_seg7_dl_0702A650
+         geo_display_list 0x06, castle_seg7_dl_0702AA10
+         geo_display_list 0x04, castle_seg7_dl_0702AB20
+         geo_asm 0, Geo18_802D2360
+         geo_display_list 0x01, castle_seg7_dl_0702FD30
+         geo_display_list 0x01, castle_seg7_dl_07023DB0
+      geo_close_node
+   geo_return
+
+glabel castle_geo_0011A8 # 11A8
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, castle_seg7_dl_07028FD0
+         geo_display_list 0x04, castle_seg7_dl_07029578
+         geo_display_list 0x01, castle_seg7_dl_0702A650
+         geo_display_list 0x06, castle_seg7_dl_0702AA10
+         geo_display_list 0x04, castle_seg7_dl_0702AB20
+         geo_asm 0, Geo18_802D2360
+         geo_display_list 0x01, castle_seg7_dl_07031588
+         geo_display_list 0x04, castle_seg7_dl_07031720
+         geo_display_list 0x04, castle_seg7_dl_07031830
+      geo_close_node
+   geo_return
+
+glabel castle_geo_001200 # 1200
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, castle_seg7_dl_07028FD0
+         geo_display_list 0x04, castle_seg7_dl_07029578
+         geo_display_list 0x01, castle_seg7_dl_0702A650
+         geo_display_list 0x06, castle_seg7_dl_0702AA10
+         geo_display_list 0x04, castle_seg7_dl_0702AB20
+         geo_asm   0, Geo18_802D2360
+         geo_display_list 0x01, castle_seg7_dl_07032FC0
+         geo_display_list 0x04, castle_seg7_dl_07033158
+         geo_asm   0, Geo18_802D5D0C
+         geo_asm 256, Geo18_802D5B98
+      geo_close_node
+   geo_return
+
+glabel castle_geo_001260 # 1260
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, castle_seg7_dl_07028FD0
+         geo_display_list 0x04, castle_seg7_dl_07029578
+         geo_display_list 0x01, castle_seg7_dl_0702A650
+         geo_display_list 0x06, castle_seg7_dl_0702AA10
+         geo_display_list 0x04, castle_seg7_dl_0702AB20
+         geo_asm   0, Geo18_802D2360
+         geo_display_list 0x01, castle_seg7_dl_07034D88
+         geo_display_list 0x04, castle_seg7_dl_07035178
+         geo_display_list 0x04, castle_seg7_dl_07035288
+         geo_asm   0, Geo18_802D5D0C
+         geo_asm 258, Geo18_802D5B98
+      geo_close_node
+   geo_return
+
+glabel castle_geo_0012C8 # 12C8
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, castle_seg7_dl_07028FD0
+         geo_display_list 0x04, castle_seg7_dl_07029578
+         geo_display_list 0x01, castle_seg7_dl_0702A650
+         geo_display_list 0x06, castle_seg7_dl_0702AA10
+         geo_display_list 0x04, castle_seg7_dl_0702AB20
+         geo_asm   0, Geo18_802D2360
+         geo_display_list 0x01, castle_seg7_dl_07036D88
+         geo_display_list 0x01, castle_seg7_dl_07037988
+         geo_display_list 0x01, castle_seg7_dl_07037BF8
+         geo_display_list 0x05, castle_seg7_dl_07037DE8
+         geo_display_list 0x05, castle_seg7_dl_07038240
+         geo_display_list 0x04, castle_seg7_dl_07038350
+         geo_asm   0, Geo18_802D5D0C
+         geo_asm 259, Geo18_802D5B98
+      geo_close_node
+   geo_return
+
+glabel castle_geo_001348 # 1348
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, castle_seg7_dl_07028FD0
+         geo_display_list 0x04, castle_seg7_dl_07029578
+         geo_display_list 0x01, castle_seg7_dl_0702A650
+         geo_display_list 0x06, castle_seg7_dl_0702AA10
+         geo_display_list 0x04, castle_seg7_dl_0702AB20
+         geo_asm   0, Geo18_802D2360
+         geo_display_list 0x01, castle_seg7_dl_0703A6C8
+         geo_display_list 0x04, castle_seg7_dl_0703A808
+         geo_display_list 0x01, castle_seg7_dl_070234C0
+         geo_display_list 0x01, castle_seg7_dl_07023520
+         geo_asm   0, Geo18_802D5D0C
+         geo_asm 257, Geo18_802D5B98
+      geo_close_node
+   geo_return
+
+glabel castle_geo_0013B8 # 13B8
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, castle_seg7_dl_07028FD0
+         geo_display_list 0x04, castle_seg7_dl_07029578
+         geo_display_list 0x01, castle_seg7_dl_0702A650
+         geo_display_list 0x06, castle_seg7_dl_0702AA10
+         geo_display_list 0x04, castle_seg7_dl_0702AB20
+         geo_asm 0, Geo18_802D2360
+         geo_display_list 0x01, castle_seg7_dl_0703BA08
+      geo_close_node
+   geo_return
+
+glabel castle_geo_001400 # 1400
+   geo_node_screen_area 10, 160, 120, 160, 120
+      geo_open_node
+         geo_zbuffer 0
+         geo_open_node
+            geo_todo_09 100
+            geo_open_node
+               geo_background 0x0001
+            geo_close_node
+         geo_close_node
+         geo_zbuffer 1
+         geo_open_node
+            geo_camera_frustum 64, 50, 7000, Geo0A_8029AA3C
+            geo_open_node
+               geo_todo_0F 13, 0, 2000, 6000, 0, 0, 0, Geo0F_80287D30
+               geo_open_node
+                  geo_switch_case 17, GeoSwitchCaseBlinking
+                  geo_open_node
+                     geo_branch 1, castle_geo_000F30 # 0x0E000F30
+                     geo_branch 1, castle_geo_000F70 # 0x0E000F70
+                     geo_branch 1, castle_geo_000F88 # 0x0E000F88
+                     geo_branch 1, castle_geo_000FA8 # 0x0E000FA8
+                     geo_branch 1, castle_geo_000FD0 # 0x0E000FD0
+                     geo_branch 1, castle_geo_001000 # 0x0E001000
+                     geo_branch 1, castle_geo_001038 # 0x0E001038
+                     geo_branch 1, castle_geo_001088 # 0x0E001088
+                     geo_branch 1, castle_geo_0010C8 # 0x0E0010C8
+                     geo_branch 1, castle_geo_001110 # 0x0E001110
+                     geo_branch 1, castle_geo_001158 # 0x0E001158
+                     geo_branch 1, castle_geo_0011A8 # 0x0E0011A8
+                     geo_branch 1, castle_geo_001200 # 0x0E001200
+                     geo_branch 1, castle_geo_001260 # 0x0E001260
+                     geo_branch 1, castle_geo_0012C8 # 0x0E0012C8
+                     geo_branch 1, castle_geo_001348 # 0x0E001348
+                     geo_branch 1, castle_geo_0013B8 # 0x0E0013B8
+                  geo_close_node
+                  geo_todo_17
+                  geo_asm 0, Geo18_802761D0
+               geo_close_node
+            geo_close_node
+         geo_close_node
+      geo_close_node
+   geo_end
+
+glabel castle_geo_001518 # 1518
+   geo_start_distance 600
+      geo_open_node
+         geo_display_list 0x01, castle_seg7_dl_070512F8
+      geo_close_node
+   geo_end
+
+glabel castle_geo_001530 # 1530
+   geo_start_distance 300
+      geo_open_node
+         geo_display_list 0x01, castle_seg7_dl_07058950
+      geo_close_node
+   geo_end
+
+glabel castle_geo_001548 # 1548
+   geo_start_distance 300
+      geo_open_node
+         geo_display_list 0x01, castle_seg7_dl_07059190
+      geo_close_node
+   geo_end
+
+glabel castle_geo_001560 # 1560
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, castle_seg7_dl_0703E6F0
+      geo_close_node
+   geo_return
+
+glabel castle_geo_001578 # 1578
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, castle_seg7_dl_07043028
+         geo_display_list 0x01, castle_seg7_dl_07043B48
+         geo_display_list 0x04, castle_seg7_dl_07043CD8
+         geo_asm   0, Geo18_802D5D0C
+         geo_asm 264, Geo18_802D5B98
+         geo_asm 266, Geo18_802D5B98
+      geo_close_node
+   geo_return
+
+glabel castle_geo_0015B8 # 15B8
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, castle_seg7_dl_0704A0E8
+         geo_display_list 0x05, castle_seg7_dl_0704A2E0
+         geo_display_list 0x01, castle_seg7_dl_0704AA98
+         geo_asm   0, Geo18_802D5D0C
+         geo_asm 268, Geo18_802D5B98
+         geo_asm   0, Geo18_80277B14
+      geo_close_node
+   geo_return
+
+glabel castle_geo_0015F8 # 15F8
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, castle_seg7_dl_0704C7D8
+         geo_asm   0, Geo18_802D5D0C
+         geo_asm 265, Geo18_802D5B98
+         geo_asm 269, Geo18_802D5B98
+      geo_close_node
+   geo_return
+
+glabel castle_geo_001628 # 1628
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, castle_seg7_dl_07050938
+         geo_display_list 0x04, castle_seg7_dl_07051678
+         geo_display_list 0x05, castle_seg7_dl_070519C8
+         geo_display_list 0x05, castle_seg7_dl_07051B60
+         geo_asm   0, Geo18_802D5D0C
+         geo_asm 267, Geo18_802D5B98
+      geo_close_node
+   geo_return
+
+glabel castle_geo_001668 # 1668
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, castle_seg7_dl_070558D0
+         geo_display_list 0x01, castle_seg7_dl_070572A0
+         geo_display_list 0x01, castle_seg7_dl_07057F00
+      geo_close_node
+   geo_return
+
+glabel castle_geo_001690 # 1690
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, castle_seg7_dl_0703E6F0
+         geo_display_list 0x01, castle_seg7_dl_07043028
+         geo_display_list 0x01, castle_seg7_dl_07043B48
+         geo_display_list 0x04, castle_seg7_dl_07043CD8
+         geo_asm   0, Geo18_802D5D0C
+         geo_asm 264, Geo18_802D5B98
+         geo_asm 266, Geo18_802D5B98
+      geo_close_node
+   geo_return
+
+glabel castle_geo_0016D8 # 16D8
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, castle_seg7_dl_07043028
+         geo_display_list 0x01, castle_seg7_dl_07043B48
+         geo_display_list 0x04, castle_seg7_dl_07043CD8
+         geo_display_list 0x01, castle_seg7_dl_0704A0E8
+         geo_display_list 0x05, castle_seg7_dl_0704A2E0
+         geo_display_list 0x01, castle_seg7_dl_0704AA98
+         geo_asm   0, Geo18_802D5D0C
+         geo_asm 264, Geo18_802D5B98
+         geo_asm 266, Geo18_802D5B98
+         geo_asm 268, Geo18_802D5B98
+         geo_asm   0, Geo18_80277B14
+      geo_close_node
+   geo_return
+
+glabel castle_geo_001740 # 1740
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, castle_seg7_dl_07043028
+         geo_display_list 0x01, castle_seg7_dl_07043B48
+         geo_display_list 0x04, castle_seg7_dl_07043CD8
+         geo_display_list 0x01, castle_seg7_dl_0704C7D8
+         geo_asm   0, Geo18_802D5D0C
+         geo_asm 264, Geo18_802D5B98
+         geo_asm 265, Geo18_802D5B98
+         geo_asm 266, Geo18_802D5B98
+         geo_asm 269, Geo18_802D5B98
+      geo_close_node
+   geo_return
+
+glabel castle_geo_001798 # 1798
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, castle_seg7_dl_07043028
+         geo_display_list 0x01, castle_seg7_dl_07043B48
+         geo_display_list 0x04, castle_seg7_dl_07043CD8
+         geo_display_list 0x01, castle_seg7_dl_07050938
+         geo_display_list 0x04, castle_seg7_dl_07051678
+         geo_display_list 0x05, castle_seg7_dl_070519C8
+         geo_display_list 0x05, castle_seg7_dl_07051B60
+         geo_asm   0, Geo18_802D5D0C
+         geo_asm 264, Geo18_802D5B98
+         geo_asm 266, Geo18_802D5B98
+         geo_asm 267, Geo18_802D5B98
+      geo_close_node
+   geo_return
+
+glabel castle_geo_001800 # 1800
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, castle_seg7_dl_07050938
+         geo_display_list 0x04, castle_seg7_dl_07051678
+         geo_display_list 0x05, castle_seg7_dl_070519C8
+         geo_display_list 0x05, castle_seg7_dl_07051B60
+         geo_display_list 0x01, castle_seg7_dl_070558D0
+         geo_display_list 0x01, castle_seg7_dl_070572A0
+         geo_display_list 0x01, castle_seg7_dl_07057F00
+         geo_asm   0, Geo18_802D5D0C
+         geo_asm 267, Geo18_802D5B98
+      geo_close_node
+   geo_return
+
+glabel castle_geo_001858 # 1858
+   geo_node_screen_area 10, 160, 120, 160, 120
+      geo_open_node
+         geo_zbuffer 0
+         geo_open_node
+            geo_todo_09 100
+            geo_open_node
+               geo_background 0x0001
+            geo_close_node
+         geo_close_node
+         geo_zbuffer 1
+         geo_open_node
+            geo_camera_frustum 64, 50, 8000, Geo0A_8029AA3C
+            geo_open_node
+               geo_todo_0F 4, 0, 2000, 6000, 0, 0, 0, Geo0F_80287D30
+               geo_open_node
+                  geo_switch_case 11, GeoSwitchCaseBlinking
+                  geo_open_node
+                     geo_branch 1, castle_geo_001560 # 0x0E001560
+                     geo_branch 1, castle_geo_001578 # 0x0E001578
+                     geo_branch 1, castle_geo_0015B8 # 0x0E0015B8
+                     geo_branch 1, castle_geo_0015F8 # 0x0E0015F8
+                     geo_branch 1, castle_geo_001628 # 0x0E001628
+                     geo_branch 1, castle_geo_001668 # 0x0E001668
+                     geo_branch 1, castle_geo_001690 # 0x0E001690
+                     geo_branch 1, castle_geo_0016D8 # 0x0E0016D8
+                     geo_branch 1, castle_geo_001740 # 0x0E001740
+                     geo_branch 1, castle_geo_001798 # 0x0E001798
+                     geo_branch 1, castle_geo_001800 # 0x0E001800
+                  geo_close_node
+                  geo_todo_17
+                  geo_asm 0, Geo18_802761D0
+               geo_close_node
+            geo_close_node
+         geo_close_node
+      geo_close_node
+   geo_end
+
+glabel castle_geo_001940 # 1940
+   geo_start_distance 550
+      geo_open_node
+         geo_display_list 0x01, castle_seg7_dl_07068B10
+      geo_close_node
+   geo_end
+
+glabel castle_geo_001958 # 1958
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, castle_seg7_dl_0705E088
+         geo_display_list 0x04, castle_seg7_dl_0705E2A0
+         geo_display_list 0x05, castle_seg7_dl_0705E450
+      geo_close_node
+   geo_return
+
+glabel castle_geo_001980 # 1980
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, castle_seg7_dl_070616E8
+         geo_display_list 0x05, castle_seg7_dl_07061C20
+         geo_asm    0, Geo18_802D5D0C
+         geo_asm  260, Geo18_802D5B98
+         geo_asm  261, Geo18_802D5B98
+         geo_asm    0, Geo18_802D01E0
+         geo_asm 1536, Geo18_802D104C
+      geo_close_node
+   geo_return
+
+glabel castle_geo_0019C8 # 19C8
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, castle_seg7_dl_07064B78
+         geo_display_list 0x04, castle_seg7_dl_07064D58
+         geo_asm 0, Geo18_802D5D0C
+         geo_asm 262, Geo18_802D5B98
+      geo_close_node
+   geo_return
+
+glabel castle_geo_0019F8 # 19F8
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, castle_seg7_dl_07066CE0
+         geo_display_list 0x05, castle_seg7_dl_07066E90
+         geo_display_list 0x04, castle_seg7_dl_07066FA0
+         geo_asm    0, Geo18_802D01E0
+         geo_asm 1554, Geo18_802D104C
+      geo_close_node
+   geo_return
+
+glabel castle_geo_001A30 # 1A30
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, castle_seg7_dl_07068850
+         geo_asm   0, Geo18_802D5D0C
+         geo_asm 263, Geo18_802D5B98
+      geo_close_node
+   geo_return
+
+glabel castle_geo_001A58 # 1A58
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, castle_seg7_dl_0705E088
+         geo_display_list 0x04, castle_seg7_dl_0705E2A0
+         geo_display_list 0x05, castle_seg7_dl_0705E450
+         geo_display_list 0x01, castle_seg7_dl_070616E8
+         geo_display_list 0x05, castle_seg7_dl_07061C20
+         geo_asm    0, Geo18_802D5D0C
+         geo_asm  260, Geo18_802D5B98
+         geo_asm  261, Geo18_802D5B98
+         geo_asm    0, Geo18_802D01E0
+         geo_asm 1536, Geo18_802D104C
+      geo_close_node
+   geo_return
+
+glabel castle_geo_001AB8 # 1AB8
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, castle_seg7_dl_0705E088
+         geo_display_list 0x04, castle_seg7_dl_0705E2A0
+         geo_display_list 0x05, castle_seg7_dl_0705E450
+         geo_display_list 0x01, castle_seg7_dl_07068850
+         geo_asm   0, Geo18_802D5D0C
+         geo_asm 263, Geo18_802D5B98
+      geo_close_node
+   geo_return
+
+glabel castle_geo_001AF8 # 1AF8
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, castle_seg7_dl_0705E088
+         geo_display_list 0x04, castle_seg7_dl_0705E2A0
+         geo_display_list 0x05, castle_seg7_dl_0705E450
+         geo_display_list 0x01, castle_seg7_dl_07066CE0
+         geo_display_list 0x05, castle_seg7_dl_07066E90
+         geo_display_list 0x04, castle_seg7_dl_07066FA0
+         geo_asm    0, Geo18_802D01E0
+         geo_asm 1554, Geo18_802D104C
+      geo_close_node
+   geo_return
+
+glabel castle_geo_001B48 # 1B48
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, castle_seg7_dl_070616E8
+         geo_display_list 0x05, castle_seg7_dl_07061C20
+         geo_display_list 0x01, castle_seg7_dl_07066CE0
+         geo_display_list 0x05, castle_seg7_dl_07066E90
+         geo_display_list 0x04, castle_seg7_dl_07066FA0
+         geo_asm    0, Geo18_802D5D0C
+         geo_asm  260, Geo18_802D5B98
+         geo_asm  261, Geo18_802D5B98
+         geo_asm    0, Geo18_802D01E0
+         geo_asm 1536, Geo18_802D104C
+         geo_asm 1554, Geo18_802D104C
+      geo_close_node
+   geo_return
+
+glabel castle_geo_001BB0 # 1BB0
+   geo_node_start
+      geo_open_node
+         geo_display_list 0x01, castle_seg7_dl_070616E8
+         geo_display_list 0x05, castle_seg7_dl_07061C20
+         geo_display_list 0x01, castle_seg7_dl_07064B78
+         geo_display_list 0x04, castle_seg7_dl_07064D58
+         geo_asm    0, Geo18_802D5D0C
+         geo_asm  260, Geo18_802D5B98
+         geo_asm  261, Geo18_802D5B98
+         geo_asm  262, Geo18_802D5B98
+         geo_asm    0, Geo18_802D01E0
+         geo_asm 1536, Geo18_802D104C
+      geo_close_node
+   geo_return
+
+glabel castle_geo_001C10 # 1C10
+   geo_node_screen_area 10, 160, 120, 160, 120
+      geo_open_node
+         geo_zbuffer 0
+         geo_open_node
+            geo_todo_09 100
+            geo_open_node
+               geo_background 0x0001
+            geo_close_node
+         geo_close_node
+         geo_zbuffer 1
+         geo_open_node
+            geo_camera_frustum 64, 50, 6400, Geo0A_8029AA3C
+            geo_open_node
+               geo_todo_0F 4, 0, 2000, 6000, 0, 0, 0, Geo0F_80287D30
+               geo_open_node
+                  geo_switch_case 10, GeoSwitchCaseBlinking
+                  geo_open_node
+                     geo_branch 1, castle_geo_001958 # 0x0E001958
+                     geo_branch 1, castle_geo_001980 # 0x0E001980
+                     geo_branch 1, castle_geo_0019C8 # 0x0E0019C8
+                     geo_branch 1, castle_geo_0019F8 # 0x0E0019F8
+                     geo_branch 1, castle_geo_001A30 # 0x0E001A30
+                     geo_branch 1, castle_geo_001A58 # 0x0E001A58
+                     geo_branch 1, castle_geo_001AB8 # 0x0E001AB8
+                     geo_branch 1, castle_geo_001AF8 # 0x0E001AF8
+                     geo_branch 1, castle_geo_001B48 # 0x0E001B48
+                     geo_branch 1, castle_geo_001BB0 # 0x0E001BB0
+                  geo_close_node
+                  geo_todo_17
+                  geo_asm 0, Geo18_802761D0
+               geo_close_node
+            geo_close_node
+         geo_close_node
+      geo_close_node
+   geo_end

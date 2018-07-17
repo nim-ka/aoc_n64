@@ -35,7 +35,7 @@ enum
     MENU_BUTTON_SCORE_RETURN,
     MENU_BUTTON_SCORE_COPY_FILE,
     MENU_BUTTON_SCORE_ERASE_FILE,
-    
+
     // Copy Menu (COPY FILE)
     MENU_BUTTON_COPY_FILE_A,
     MENU_BUTTON_COPY_FILE_B,
@@ -61,14 +61,14 @@ enum
     MENU_BUTTON_HEADSET
 };
 
-extern Gfx mm7_f3d_0073A0[];
+extern Gfx main_menu_seg7_dl_070073A0[];
 extern Gfx D_070073B8[];
 extern Gfx seg2_f3d_00ED00[];
 extern Gfx seg2_f3d_00ED68[];
 extern Gfx seg2_f3d_00EE68[];
 extern Gfx seg2_f3d_00EEF0[];
-extern Gfx mm7_f3d_00D108[];
-extern Gfx mm7_f3d_00D160[];
+extern Gfx main_menu_seg7_dl_0700D108[];
+extern Gfx main_menu_seg7_dl_0700D160[];
 extern u8 seg2_level_name_table[];
 
 extern u8 D_801B98E0[];
@@ -1256,7 +1256,7 @@ static void func_80173A40(void)
     handle_controller_input();
     func_802D6590(1, sCursorPos[0] + 160.0f - 5.0, sCursorPos[1] + 120.0f - 25.0, 0.0f);
     if (D_801A7BE4 == 0)
-        gSPDisplayList(gDisplayListHead++, mm7_f3d_0073A0);
+        gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_070073A0);
     if (D_801A7BE4 != 0)
         gSPDisplayList(gDisplayListHead++, D_070073B8);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
@@ -1344,13 +1344,13 @@ static void draw_main_menu(void)
     PrintGenericText(180, 39, textErase);
     PrintGenericText(235, 39, textSoundModes[sSoundMode]);
     gSPDisplayList(gDisplayListHead++, seg2_f3d_00EEF0);
-    gSPDisplayList(gDisplayListHead++, mm7_f3d_00D108);
+    gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D108);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextColorAlpha);
     PrintRegularText(92, 65, textMarioA);
     PrintRegularText(207, 65, textMarioB);
     PrintRegularText(92, 105, textMarioC);
     PrintRegularText(207, 105, textMarioD);
-    gSPDisplayList(gDisplayListHead++, mm7_f3d_00D160);
+    gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D160);
 }
 
 static void print_file_score_message(s8 a)
@@ -1391,13 +1391,13 @@ static void draw_score_menu(void)
     PrintGenericText(128, 35, textFileCopy);
     PrintGenericText(228, 35, textFileDelete);
     gSPDisplayList(gDisplayListHead++, seg2_f3d_00EEF0);
-    gSPDisplayList(gDisplayListHead++, mm7_f3d_00D108);
+    gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D108);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextColorAlpha);
     PrintRegularText(89, 62, textMarioA);
     PrintRegularText(211, 62, textMarioB);
     PrintRegularText(89, 105, textMarioC);
     PrintRegularText(211, 105, textMarioD);
-    gSPDisplayList(gDisplayListHead++, mm7_f3d_00D160);
+    gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D160);
 }
 
 static void copy_menu_print_message(s8 messageId)
@@ -1483,13 +1483,13 @@ static void draw_copy_menu(void)
     PrintGenericText(133, 35, textViewScore);
     PrintGenericText(220, 35, textFileDelete);
     gSPDisplayList(gDisplayListHead++, seg2_f3d_00EEF0);
-    gSPDisplayList(gDisplayListHead++, mm7_f3d_00D108);
+    gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D108);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextColorAlpha);
     PrintRegularText(89, 62, textMarioA);
     PrintRegularText(211, 62, textMarioB);
     PrintRegularText(89, 105, textMarioC);
     PrintRegularText(211, 105, textMarioD);
-    gSPDisplayList(gDisplayListHead++, mm7_f3d_00D160);
+    gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D160);
 }
 
 static void erase_yes_no_prompt(s16 x, s16 y)
@@ -1633,13 +1633,13 @@ static void draw_erase_menu(void)
     PrintGenericText(133, 35, textViewScore);
     PrintGenericText(223, 35, textFileCopy);
     gSPDisplayList(gDisplayListHead++, seg2_f3d_00EEF0);
-    gSPDisplayList(gDisplayListHead++, mm7_f3d_00D108);
+    gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D108);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextColorAlpha);
     PrintRegularText(89, 62, textMarioA);
     PrintRegularText(211, 62, textMarioB);
     PrintRegularText(89, 105, textMarioC);
     PrintRegularText(211, 105, textMarioD);
-    gSPDisplayList(gDisplayListHead++, mm7_f3d_00D160);
+    gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D160);
 }
 
 static void draw_sound_mode_menu(void)
@@ -1739,7 +1739,7 @@ static void draw_file_scores_menu(s8 file)
     PutString(2, 86, 15, sp50);
     draw_file_button_label(file, 124, 15);
     gSPDisplayList(gDisplayListHead++, seg2_f3d_00ED68);
-    gSPDisplayList(gDisplayListHead++, mm7_f3d_00D108);
+    gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D108);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextColorAlpha);
 
     //! for loops exist for a reason
@@ -1775,7 +1775,7 @@ static void draw_file_scores_menu(s8 file)
     else
         PrintRegularText(237, 24, textHiScore);
 
-    gSPDisplayList(gDisplayListHead++, mm7_f3d_00D160);
+    gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D160);
 }
 
 static void draw_current_menu(void)

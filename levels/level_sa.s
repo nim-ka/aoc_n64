@@ -32,15 +32,15 @@ glabel level_sa_entry
     jump_link /*target*/ script_func_global_5
     jump_link /*target*/ script_func_global_14
 
-    area /*index*/ 1, /*geo*/ 0x0E000170
+    area /*index*/ 1, /*geo*/ sa_geo_000170
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 0, -1535, 0, /*angle*/ 0, 90, 0, /*behArg*/ 0x000A0000, /*beh*/ beh_warps_94
         warp_node /*id*/ 0x0A, /*destLevel1*/ 0x14, /*destArea*/ 0x01, /*destNode*/ 0x0A, /*destLevel2*/ 0x00
         warp_node /*id*/ 0xF0, /*destLevel1*/ 0x06, /*destArea*/ 0x01, /*destNode*/ 0x27, /*destLevel2*/ 0x00
         warp_node /*id*/ 0xF1, /*destLevel1*/ 0x06, /*destArea*/ 0x01, /*destNode*/ 0x28, /*destLevel2*/ 0x00
         jump_link /*target*/ script_func_local_1
         jump_link /*target*/ script_func_local_2
-        terrain /*terrainData*/ 0x07003000
-        cmd39 /*unk4*/ 0x07003284
+        terrain /*terrainData*/ sa_seg7_collision
+        cmd39 /*unk4*/ sa_seg7_macro_objs
         set_music /*unk2*/ 0x0003, /*seq*/ 0x0085
         terrain_type /*terrainType*/ 0x0005
     end_area

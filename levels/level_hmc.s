@@ -72,18 +72,18 @@ glabel level_hmc_entry
     jump_link /*target*/ script_func_global_1
     jump_link /*target*/ script_func_global_7
     jump_link /*target*/ script_func_global_18
-    cmd22 /*unk2*/ 0x001D, /*unk4*/ 0x160004D0
-    cmd22 /*unk2*/ 0x001F, /*unk4*/ 0x160005F8
-    cmd22 /*unk2*/ 0x0020, /*unk4*/ 0x1600068C
-    cmd22 /*unk2*/ 0x0036, /*unk4*/ 0x0E0005A0
-    cmd22 /*unk2*/ 0x0037, /*unk4*/ 0x0E0005B8
-    cmd22 /*unk2*/ 0x0038, /*unk4*/ 0x0E0005D0
-    cmd22 /*unk2*/ 0x0039, /*unk4*/ 0x0E000548
-    cmd22 /*unk2*/ 0x003A, /*unk4*/ 0x0E000570
-    cmd22 /*unk2*/ 0x003B, /*unk4*/ 0x0E000588
-    cmd22 /*unk2*/ 0x003C, /*unk4*/ 0x0E000530
+    cmd22 /*unk2*/ 0x001D, /*unk4*/ coin_X_geo_0004D0
+    cmd22 /*unk2*/ 0x001F, /*unk4*/ coin_X_geo_0005F8
+    cmd22 /*unk2*/ 0x0020, /*unk4*/ coin_X_geo_00068C
+    cmd22 /*unk2*/ 0x0036, /*unk4*/ hmc_geo_0005A0
+    cmd22 /*unk2*/ 0x0037, /*unk4*/ hmc_geo_0005B8
+    cmd22 /*unk2*/ 0x0038, /*unk4*/ hmc_geo_0005D0
+    cmd22 /*unk2*/ 0x0039, /*unk4*/ hmc_geo_000548
+    cmd22 /*unk2*/ 0x003A, /*unk4*/ hmc_geo_000570
+    cmd22 /*unk2*/ 0x003B, /*unk4*/ hmc_geo_000588
+    cmd22 /*unk2*/ 0x003C, /*unk4*/ hmc_geo_000530
 
-    area /*index*/ 1, /*geo*/ 0x0E000B90
+    area /*index*/ 1, /*geo*/ hmc_geo_000B90
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -7152, 3161, 7181, /*angle*/ 0, 135, 0, /*behArg*/ 0x000A0000, /*beh*/ beh_warps_74
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 3351, -4690, 4773, /*angle*/ 0, 0, 0, /*behArg*/ 0x340B0000, /*beh*/ beh_warp
         warp_node /*id*/ 0x0A, /*destLevel1*/ 0x07, /*destArea*/ 0x01, /*destNode*/ 0x0A, /*destLevel2*/ 0x00
@@ -94,9 +94,9 @@ glabel level_hmc_entry
         jump_link /*target*/ script_func_local_2
         jump_link /*target*/ script_func_local_3
         jump_link /*target*/ script_func_local_4
-        terrain /*terrainData*/ 0x07025594
-        cmd39 /*unk4*/ 0x0702AA78
-        rooms /*surfaceRooms*/ 0x0702ADC4
+        terrain /*terrainData*/ hmc_seg7_collision
+        cmd39 /*unk4*/ hmc_seg7_macro_objs
+        rooms /*surfaceRooms*/ hmc_seg7_rooms
         set_music /*unk2*/ 0x0004, /*seq*/ 0x000C
         terrain_type /*terrainType*/ 0x0001
     end_area

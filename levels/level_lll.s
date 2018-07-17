@@ -114,48 +114,48 @@ glabel level_lll_entry
     jump_link /*target*/ script_func_global_1
     jump_link /*target*/ script_func_global_3
     jump_link /*target*/ script_func_global_18
-    cmd22 /*unk2*/ 0x0003, /*unk4*/ 0x0E0009E0
-    cmd22 /*unk2*/ 0x0004, /*unk4*/ 0x0E0009F8
-    cmd22 /*unk2*/ 0x0005, /*unk4*/ 0x0E000A10
-    cmd22 /*unk2*/ 0x0006, /*unk4*/ 0x0E000A28
-    cmd22 /*unk2*/ 0x0007, /*unk4*/ 0x0E000A40
-    cmd22 /*unk2*/ 0x0008, /*unk4*/ 0x0E000A60
-    cmd22 /*unk2*/ 0x000A, /*unk4*/ 0x0E000A90
-    cmd22 /*unk2*/ 0x000B, /*unk4*/ 0x0E000AA8
-    cmd22 /*unk2*/ 0x000C, /*unk4*/ 0x0E000AC0
-    cmd22 /*unk2*/ 0x000D, /*unk4*/ 0x0E000AD8
-    cmd22 /*unk2*/ 0x000E, /*unk4*/ 0x0E000AF0
-    cmd22 /*unk2*/ 0x0038, /*unk4*/ 0x0E000B20
-    cmd22 /*unk2*/ 0x003A, /*unk4*/ 0x0E000B38
-    cmd22 /*unk2*/ 0x003E, /*unk4*/ 0x0E000BB0
-    cmd22 /*unk2*/ 0x003F, /*unk4*/ 0x0E000BC8
-    cmd22 /*unk2*/ 0x0040, /*unk4*/ 0x0E000BE0
-    cmd22 /*unk2*/ 0x0041, /*unk4*/ 0x0E000BF8
-    cmd22 /*unk2*/ 0x0043, /*unk4*/ 0x0E000C10
-    cmd22 /*unk2*/ 0x0044, /*unk4*/ 0x0E000C30
-    cmd22 /*unk2*/ 0x0045, /*unk4*/ 0x0E000C50
-    cmd22 /*unk2*/ 0x0046, /*unk4*/ 0x0E000C70
-    cmd22 /*unk2*/ 0x0047, /*unk4*/ 0x0E000C90
-    cmd22 /*unk2*/ 0x0048, /*unk4*/ 0x0E000CB0
-    cmd22 /*unk2*/ 0x0049, /*unk4*/ 0x0E000CD0
-    cmd22 /*unk2*/ 0x004A, /*unk4*/ 0x0E000CF0
-    cmd22 /*unk2*/ 0x004B, /*unk4*/ 0x0E000D10
-    cmd22 /*unk2*/ 0x004C, /*unk4*/ 0x0E000D30
-    cmd22 /*unk2*/ 0x004D, /*unk4*/ 0x0E000D50
-    cmd22 /*unk2*/ 0x004E, /*unk4*/ 0x0E000D70
-    cmd22 /*unk2*/ 0x004F, /*unk4*/ 0x0E000D90
-    cmd22 /*unk2*/ 0x0050, /*unk4*/ 0x0E000DB0
-    cmd22 /*unk2*/ 0x0036, /*unk4*/ 0x0E000B08
-    cmd22 /*unk2*/ 0x0037, /*unk4*/ 0x0E000DD0
-    cmd22 /*unk2*/ 0x0039, /*unk4*/ 0x0E000DE8
-    cmd22 /*unk2*/ 0x0009, /*unk4*/ 0x0E000A78
-    cmd22 /*unk2*/ 0x0035, /*unk4*/ 0x0E000B50
-    cmd22 /*unk2*/ 0x003B, /*unk4*/ 0x0E000B68
-    cmd22 /*unk2*/ 0x003C, /*unk4*/ 0x0E000B80
-    cmd22 /*unk2*/ 0x003D, /*unk4*/ 0x0E000B98
-    cmd22 /*unk2*/ 0x0053, /*unk4*/ 0x0E000EA8
+    cmd22 /*unk2*/ 0x0003, /*unk4*/ lll_geo_0009E0
+    cmd22 /*unk2*/ 0x0004, /*unk4*/ lll_geo_0009F8
+    cmd22 /*unk2*/ 0x0005, /*unk4*/ lll_geo_000A10
+    cmd22 /*unk2*/ 0x0006, /*unk4*/ lll_geo_000A28
+    cmd22 /*unk2*/ 0x0007, /*unk4*/ lll_geo_000A40
+    cmd22 /*unk2*/ 0x0008, /*unk4*/ lll_geo_000A60
+    cmd22 /*unk2*/ 0x000A, /*unk4*/ lll_geo_000A90
+    cmd22 /*unk2*/ 0x000B, /*unk4*/ lll_geo_000AA8
+    cmd22 /*unk2*/ 0x000C, /*unk4*/ lll_geo_000AC0
+    cmd22 /*unk2*/ 0x000D, /*unk4*/ lll_geo_000AD8
+    cmd22 /*unk2*/ 0x000E, /*unk4*/ lll_geo_000AF0
+    cmd22 /*unk2*/ 0x0038, /*unk4*/ lll_geo_000B20
+    cmd22 /*unk2*/ 0x003A, /*unk4*/ lll_geo_000B38
+    cmd22 /*unk2*/ 0x003E, /*unk4*/ lll_geo_000BB0
+    cmd22 /*unk2*/ 0x003F, /*unk4*/ lll_geo_000BC8
+    cmd22 /*unk2*/ 0x0040, /*unk4*/ lll_geo_000BE0
+    cmd22 /*unk2*/ 0x0041, /*unk4*/ lll_geo_000BF8
+    cmd22 /*unk2*/ 0x0043, /*unk4*/ lll_geo_000C10
+    cmd22 /*unk2*/ 0x0044, /*unk4*/ lll_geo_000C30
+    cmd22 /*unk2*/ 0x0045, /*unk4*/ lll_geo_000C50
+    cmd22 /*unk2*/ 0x0046, /*unk4*/ lll_geo_000C70
+    cmd22 /*unk2*/ 0x0047, /*unk4*/ lll_geo_000C90
+    cmd22 /*unk2*/ 0x0048, /*unk4*/ lll_geo_000CB0
+    cmd22 /*unk2*/ 0x0049, /*unk4*/ lll_geo_000CD0
+    cmd22 /*unk2*/ 0x004A, /*unk4*/ lll_geo_000CF0
+    cmd22 /*unk2*/ 0x004B, /*unk4*/ lll_geo_000D10
+    cmd22 /*unk2*/ 0x004C, /*unk4*/ lll_geo_000D30
+    cmd22 /*unk2*/ 0x004D, /*unk4*/ lll_geo_000D50
+    cmd22 /*unk2*/ 0x004E, /*unk4*/ lll_geo_000D70
+    cmd22 /*unk2*/ 0x004F, /*unk4*/ lll_geo_000D90
+    cmd22 /*unk2*/ 0x0050, /*unk4*/ lll_geo_000DB0
+    cmd22 /*unk2*/ 0x0036, /*unk4*/ lll_geo_000B08
+    cmd22 /*unk2*/ 0x0037, /*unk4*/ lll_geo_000DD0
+    cmd22 /*unk2*/ 0x0039, /*unk4*/ lll_geo_000DE8
+    cmd22 /*unk2*/ 0x0009, /*unk4*/ lll_geo_000A78
+    cmd22 /*unk2*/ 0x0035, /*unk4*/ lll_geo_000B50
+    cmd22 /*unk2*/ 0x003B, /*unk4*/ lll_geo_000B68
+    cmd22 /*unk2*/ 0x003C, /*unk4*/ lll_geo_000B80
+    cmd22 /*unk2*/ 0x003D, /*unk4*/ lll_geo_000B98
+    cmd22 /*unk2*/ 0x0053, /*unk4*/ lll_geo_000EA8
 
-    area /*index*/ 1, /*geo*/ 0x0E000E00
+    area /*index*/ 1, /*geo*/ lll_geo_000E00
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -3839, 1154, 6272, /*angle*/ 0, 90, 0, /*behArg*/ 0x000A0000, /*beh*/ beh_warps_74
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 0, 105, 0, /*angle*/ 0, 0, 0, /*behArg*/ 0x190B0000, /*beh*/ beh_warp
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -3200, 11, 3456, /*angle*/ 0, -100, 0, /*behArg*/ 0x000C0000, /*beh*/ beh_fading_warp
@@ -171,22 +171,22 @@ glabel level_lll_entry
         jump_link /*target*/ script_func_local_3
         jump_link /*target*/ script_func_local_4
         jump_link /*target*/ script_func_local_5
-        terrain /*terrainData*/ 0x0701ADE8
-        cmd39 /*unk4*/ 0x0701CE18
+        terrain /*terrainData*/ lll_seg7_area_1_collision
+        cmd39 /*unk4*/ lll_seg7_area_1_macro_objs
         cmd30 /*unk2*/ 0x00, /*unk3*/ 0x61
         set_music /*unk2*/ 0x0000, /*seq*/ 0x0006
         terrain_type /*terrainType*/ 0x0001
     end_area
 
-    area /*index*/ 2, /*geo*/ 0x0E000EC0
+    area /*index*/ 2, /*geo*/ lll_geo_000EC0
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -955, 1103, -1029, /*angle*/ 0, 118, 0, /*behArg*/ 0x000A0000, /*beh*/ beh_warps_64
         warp_node /*id*/ 0x0A, /*destLevel1*/ 0x16, /*destArea*/ 0x02, /*destNode*/ 0x0A, /*destLevel2*/ 0x00
         warp_node /*id*/ 0xF0, /*destLevel1*/ 0x06, /*destArea*/ 0x03, /*destNode*/ 0x32, /*destLevel2*/ 0x00
         warp_node /*id*/ 0xF1, /*destLevel1*/ 0x06, /*destArea*/ 0x03, /*destNode*/ 0x64, /*destLevel2*/ 0x00
         jump_link /*target*/ script_func_local_6
         jump_link /*target*/ script_func_local_7
-        terrain /*terrainData*/ 0x07025F80
-        cmd39 /*unk4*/ 0x070283D4
+        terrain /*terrainData*/ lll_seg7_area_2_collision
+        cmd39 /*unk4*/ lll_seg7_area_2_macro_objs
         set_music /*unk2*/ 0x0004, /*seq*/ 0x0006
         terrain_type /*terrainType*/ 0x0001
     end_area

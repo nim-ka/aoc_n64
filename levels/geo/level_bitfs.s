@@ -1,216 +1,251 @@
-# 04B0
-.word 0x20000A8C
-.word 0x04000000
-.word   0x15010000, 0x07002A78
-.word 0x05000000
-.word 0x01000000
-# 04C8
-.word 0x20000834
-.word 0x04000000
-.word   0x15010000, 0x07003670
-.word 0x05000000
-.word 0x01000000
-# 04E0
-.word 0x200009C4
-.word 0x04000000
-.word   0x15010000, 0x07003C60
-.word 0x05000000
-.word 0x01000000
-# 04F8
-.word 0x20000C80
-.word 0x04000000
-.word   0x15010000, 0x070040B0
-.word 0x05000000
-.word 0x01000000
-# 0510
-.word 0x20000A28
-.word 0x04000000
-.word   0x15040000, 0x07004630
-.word 0x05000000
-.word 0x01000000
-# 0528
-.word 0x20000DAC
-.word 0x04000000
-.word   0x15010000, 0x07006B90
-.word 0x05000000
-.word 0x01000000
-# 0540
-.word 0x2000076C
-.word 0x04000000
-.word   0x15040000, 0x07007070
-.word 0x05000000
-.word 0x01000000
-# 0558
-.word 0x200011F8
-.word 0x04000000
-.word   0x15010000, 0x07007720
-.word 0x05000000
-.word 0x01000000
-# 0570
-.word 0x200001F4
-.word 0x04000000
-.word   0x15010000, 0x07007958
-.word 0x05000000
-.word 0x01000000
-# 0588
-.word 0x20000898
-.word 0x04000000
-.word   0x15010000, 0x07008F48
-.word 0x05000000
-.word 0x01000000
-# 05A0
-.word 0x20000834
-.word 0x04000000
-.word   0x15040000, 0x070091E0
-.word 0x05000000
-.word 0x01000000
-# 05B8
-.word 0x20000514
-.word 0x04000000
-.word   0x15010000, 0x070095E0
-.word 0x05000000
-.word 0x01000000
-# 05D0
-.word 0x2000076C
-.word 0x04000000
-.word   0x15010000, 0x0700AA00
-.word 0x05000000
-.word 0x01000000
-# 05E8
-.word 0x20000384
-.word 0x04000000
-.word   0x15040000, 0x0700AB90
-.word 0x05000000
-.word 0x01000000
-# 0600
-.word 0x20000AF0
-.word 0x04000000
-.word   0x15010000, 0x0700BED8
-.word 0x05000000
-.word 0x01000000
-# 0618
-.word 0x200009C4
-.word 0x04000000
-.word   0x15040000, 0x0700C3C0
-.word 0x05000000
-.word 0x01000000
-# 0630
-.word 0x20000640
-.word 0x04000000
-.word   0x15010000, 0x0700EC78
-.word 0x05000000
-.word 0x01000000
-# 0648
-.word 0x20000258
-.word 0x04000000
-.word   0x15050000, 0x0700ED90
-.word 0x05000000
-.word 0x01000000
-# 0660
-.word 0x20001004
-.word 0x04000000
-.word   0x15010000, 0x0700F1C8
-.word 0x05000000
-.word 0x01000000
-# 0678
-.word 0x20000190
-.word 0x04000000
-.word   0x15010000, 0x0700F508
-.word 0x05000000
-.word 0x01000000
-# 0690
-.word 0x20000226
-.word 0x04000000
-.word   0x15040000, 0x0700F6A8
-.word 0x05000000
-.word 0x01000000
-# 06A8
-.word 0x20000384
-.word 0x04000000
-.word   0x15010000, 0x0700FB38
-.word 0x05000000
-.word 0x01000000
-# 06C0
-.word 0x200002BC
-.word 0x04000000
-.word   0x15010000, 0x0700FD08
-.word 0x05000000
-.word 0x01000000
-# 06D8
-.word 0x20000190
-.word 0x04000000
-.word   0x15010000, 0x0700FF90
-.word 0x05000000
-.word 0x01000000
-# 06F0
-.word 0x20000320
-.word 0x04000000
-.word   0x15010000, 0x07010168
-.word 0x05000000
-.word 0x01000000
-# 0708
-.word 0x20000BB8
-.word 0x04000000
-.word   0x15040000, 0x07010340
-.word   0x15010000, 0x07011138
-.word 0x05000000
-.word 0x01000000
-# 0728
-.word 0x2000028A
-.word 0x04000000
-.word   0x15010000, 0x07011318
-.word 0x05000000
-.word 0x01000000
-# 0740
-.word 0x20000226
-.word 0x04000000
-.word   0x15010000, 0x07011568
-.word 0x05000000
-.word 0x01000000
-# 0758
-.word 0x20000258
-.word 0x04000000
-.word   0x15040000, 0x07011798
-.word 0x05000000
-.word 0x01000000
-# 0770
-.word 0x20000514
-.word 0x04000000
-.word   0x15010000, 0x07011BA0
-.word 0x05000000
-.word 0x01000000
-# 0788
-.word 0x20000320
-.word 0x04000000
-.word   0x15010000, 0x07011E28
-.word 0x05000000
-.word 0x01000000
-.word 0x0800000A, 0x00A00078, 0x00A00078
-.word 0x04000000
-.word   0x0C000000
-.word   0x04000000
-.word     0x09000064
-.word     0x04000000
-.word       0x19000001, Geo19_802763D4
-.word     0x05000000
-.word   0x05000000
-.word   0x0C010000
-.word   0x04000000
-.word     0x0A01002D, 0x00644E20, Geo0A_8029AA3C
-.word     0x04000000
-.word       0x0F00000E, 0x000007D0, 0x17700000, 0xEE6CE0C0, Geo0F_80287D30
-.word       0x04000000
-.word         0x15040000, 0x07002118
-.word         0x18000000, Geo18_802D01E0
-.word         0x18001901, Geo18_802D1B70
-.word         0x18001902, Geo18_802D1B70
-.word         0x18001903, Geo18_802D1B70
-.word         0x17000000
-.word         0x1800000C, Geo18_802761D0
-.word       0x05000000
-.word     0x05000000
-.word   0x05000000
-.word 0x05000000
-.word 0x01000000
-.word 0x00000000
-.word 0x00000000
+.include "geo_commands.inc"
+
+glabel bitfs_geo_0004B0 # 04B0
+   geo_start_distance 2700
+      geo_open_node
+         geo_display_list 0x01, bitfs_seg7_dl_07002A78
+      geo_close_node
+   geo_end
+
+glabel bitfs_geo_0004C8 # 04C8
+   geo_start_distance 2100
+      geo_open_node
+         geo_display_list 0x01, bitfs_seg7_dl_07003670
+      geo_close_node
+   geo_end
+
+glabel bitfs_geo_0004E0 # 04E0
+   geo_start_distance 2500
+      geo_open_node
+         geo_display_list 0x01, bitfs_seg7_dl_07003C60
+      geo_close_node
+   geo_end
+
+glabel bitfs_geo_0004F8 # 04F8
+   geo_start_distance 3200
+      geo_open_node
+         geo_display_list 0x01, bitfs_seg7_dl_070040B0
+      geo_close_node
+   geo_end
+
+glabel bitfs_geo_000510 # 0510
+   geo_start_distance 2600
+      geo_open_node
+         geo_display_list 0x04, bitfs_seg7_dl_07004630
+      geo_close_node
+   geo_end
+
+glabel bitfs_geo_000528 # 0528
+   geo_start_distance 3500
+      geo_open_node
+         geo_display_list 0x01, bitfs_seg7_dl_07006B90
+      geo_close_node
+   geo_end
+
+glabel bitfs_geo_000540 # 0540
+   geo_start_distance 1900
+      geo_open_node
+         geo_display_list 0x04, bitfs_seg7_dl_07007070
+      geo_close_node
+   geo_end
+
+glabel bitfs_geo_000558 # 0558
+   geo_start_distance 4600
+      geo_open_node
+         geo_display_list 0x01, bitfs_seg7_dl_07007720
+      geo_close_node
+   geo_end
+
+glabel bitfs_geo_000570 # 0570
+   geo_start_distance 500
+      geo_open_node
+         geo_display_list 0x01, bitfs_seg7_dl_07007958
+      geo_close_node
+   geo_end
+
+glabel bitfs_geo_000588 # 0588
+   geo_start_distance 2200
+      geo_open_node
+         geo_display_list 0x01, bitfs_seg7_dl_07008F48
+      geo_close_node
+   geo_end
+
+glabel bitfs_geo_0005A0 # 05A0
+   geo_start_distance 2100
+      geo_open_node
+         geo_display_list 0x04, bitfs_seg7_dl_070091E0
+      geo_close_node
+   geo_end
+
+glabel bitfs_geo_0005B8 # 05B8
+   geo_start_distance 1300
+      geo_open_node
+         geo_display_list 0x01, bitfs_seg7_dl_070095E0
+      geo_close_node
+   geo_end
+
+glabel bitfs_geo_0005D0 # 05D0
+   geo_start_distance 1900
+      geo_open_node
+         geo_display_list 0x01, bitfs_seg7_dl_0700AA00
+      geo_close_node
+   geo_end
+
+glabel bitfs_geo_0005E8 # 05E8
+   geo_start_distance 900
+      geo_open_node
+         geo_display_list 0x04, bitfs_seg7_dl_0700AB90
+      geo_close_node
+   geo_end
+
+glabel bitfs_geo_000600 # 0600
+   geo_start_distance 2800
+      geo_open_node
+         geo_display_list 0x01, bitfs_seg7_dl_0700BED8
+      geo_close_node
+   geo_end
+
+glabel bitfs_geo_000618 # 0618
+   geo_start_distance 2500
+      geo_open_node
+         geo_display_list 0x04, bitfs_seg7_dl_0700C3C0
+      geo_close_node
+   geo_end
+
+glabel bitfs_geo_000630 # 0630
+   geo_start_distance 1600
+      geo_open_node
+         geo_display_list 0x01, bitfs_seg7_dl_0700EC78
+      geo_close_node
+   geo_end
+
+glabel bitfs_geo_000648 # 0648
+   geo_start_distance 600
+      geo_open_node
+         geo_display_list 0x05, bitfs_seg7_dl_0700ED90
+      geo_close_node
+   geo_end
+
+glabel bitfs_geo_000660 # 0660
+   geo_start_distance 4100
+      geo_open_node
+         geo_display_list 0x01, bitfs_seg7_dl_0700F1C8
+      geo_close_node
+   geo_end
+
+glabel bitfs_geo_000678 # 0678
+   geo_start_distance 400
+      geo_open_node
+         geo_display_list 0x01, bitfs_seg7_dl_0700F508
+      geo_close_node
+   geo_end
+
+glabel bitfs_geo_000690 # 0690
+   geo_start_distance 550
+      geo_open_node
+         geo_display_list 0x04, bitfs_seg7_dl_0700F6A8
+      geo_close_node
+   geo_end
+
+glabel bitfs_geo_0006A8 # 06A8
+   geo_start_distance 900
+      geo_open_node
+         geo_display_list 0x01, bitfs_seg7_dl_0700FB38
+      geo_close_node
+   geo_end
+
+glabel bitfs_geo_0006C0 # 06C0
+   geo_start_distance 700
+      geo_open_node
+         geo_display_list 0x01, bitfs_seg7_dl_0700FD08
+      geo_close_node
+   geo_end
+
+glabel bitfs_geo_0006D8 # 06D8
+   geo_start_distance 400
+      geo_open_node
+         geo_display_list 0x01, bitfs_seg7_dl_0700FF90
+      geo_close_node
+   geo_end
+
+glabel bitfs_geo_0006F0 # 06F0
+   geo_start_distance 800
+      geo_open_node
+         geo_display_list 0x01, bitfs_seg7_dl_07010168
+      geo_close_node
+   geo_end
+
+glabel bitfs_geo_000708 # 0708
+   geo_start_distance 3000
+      geo_open_node
+         geo_display_list 0x04, bitfs_seg7_dl_07010340
+         geo_display_list 0x01, bitfs_seg7_dl_07011138
+      geo_close_node
+   geo_end
+
+glabel bitfs_geo_000728 # 0728
+   geo_start_distance 650
+      geo_open_node
+         geo_display_list 0x01, bitfs_seg7_dl_07011318
+      geo_close_node
+   geo_end
+
+glabel bitfs_geo_000740 # 0740
+   geo_start_distance 550
+      geo_open_node
+         geo_display_list 0x01, bitfs_seg7_dl_07011568
+      geo_close_node
+   geo_end
+
+glabel bitfs_geo_000758 # 0758
+   geo_start_distance 600
+      geo_open_node
+         geo_display_list 0x04, bitfs_seg7_dl_07011798
+      geo_close_node
+   geo_end
+
+glabel bitfs_geo_000770 # 0770
+   geo_start_distance 1300
+      geo_open_node
+         geo_display_list 0x01, bitfs_seg7_dl_07011BA0
+      geo_close_node
+   geo_end
+
+glabel bitfs_geo_000788 # 0788
+   geo_start_distance 800
+      geo_open_node
+         geo_display_list 0x01, bitfs_seg7_dl_07011E28
+      geo_close_node
+   geo_end
+
+glabel bitfs_geo_0007A0 # 07A0
+   geo_node_screen_area 10, 160, 120, 160, 120
+      geo_open_node
+         geo_zbuffer 0
+         geo_open_node
+            geo_todo_09 100
+            geo_open_node
+               geo_background 1, Geo19_802763D4
+            geo_close_node
+         geo_close_node
+         geo_zbuffer 1
+         geo_open_node
+            geo_camera_frustum 45, 100, 20000, Geo0A_8029AA3C
+            geo_open_node
+               geo_todo_0F 14, 0, 2000, 6000, 0, -4500, -8000, Geo0F_80287D30
+               geo_open_node
+                  geo_display_list 0x04, bitfs_seg7_dl_07002118
+                  geo_asm    0, Geo18_802D01E0
+                  geo_asm 6401, Geo18_802D1B70
+                  geo_asm 6402, Geo18_802D1B70
+                  geo_asm 6403, Geo18_802D1B70
+                  geo_todo_17
+                  geo_asm   12, Geo18_802761D0
+               geo_close_node
+            geo_close_node
+         geo_close_node
+      geo_close_node
+   geo_end
+
+.word 0x0
+.word 0x0
