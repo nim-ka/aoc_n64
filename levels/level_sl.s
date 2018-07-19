@@ -50,7 +50,7 @@ glabel level_sl_entry
     cmd22 /*unk2*/ 0x0036, /*unk4*/ sl_geo_000390
     cmd22 /*unk2*/ 0x0037, /*unk4*/ sl_geo_000360
     cmd22 /*unk2*/ 0x0038, /*unk4*/ sl_geo_000378
-    cmd22 /*unk2*/ 0x0019, /*unk4*/ coin_X_geo_001018
+    cmd22 /*unk2*/ 0x0019, /*unk4*/ snow_tree_geo
 
     area /*index*/ 1, /*geo*/ sl_geo_0003A8
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 5541, 2024, 443, /*angle*/ 0, 270, 0, /*behArg*/ 0x000A0000, /*beh*/ beh_warps_74

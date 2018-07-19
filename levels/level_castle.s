@@ -221,15 +221,15 @@ glabel level_castle_entry
     cmd22 /*unk2*/ 0x0037, /*unk4*/ castle_geo_001530
     cmd22 /*unk2*/ 0x0038, /*unk4*/ castle_geo_001548
     cmd22 /*unk2*/ 0x0039, /*unk4*/ castle_geo_001518
-    cmd22 /*unk2*/ 0x0026, /*unk4*/ coin_X_geo_0003A8
-    cmd22 /*unk2*/ 0x0027, /*unk4*/ coin_X_geo_0004D0
-    cmd22 /*unk2*/ 0x0029, /*unk4*/ coin_X_geo_0005F8
-    cmd22 /*unk2*/ 0x001C, /*unk4*/ coin_X_geo_0003A8
-    cmd22 /*unk2*/ 0x001D, /*unk4*/ coin_X_geo_0004D0
-    cmd22 /*unk2*/ 0x0022, /*unk4*/ coin_X_geo_0007B4
-    cmd22 /*unk2*/ 0x0023, /*unk4*/ coin_X_geo_000868
-    cmd22 /*unk2*/ 0x0024, /*unk4*/ coin_X_geo_00091C
-    cmd22 /*unk2*/ 0x0025, /*unk4*/ coin_X_geo_0009D0
+    cmd22 /*unk2*/ 0x0026, /*unk4*/ castle_door_geo
+    cmd22 /*unk2*/ 0x0027, /*unk4*/ wooden_door_geo
+    cmd22 /*unk2*/ 0x0029, /*unk4*/ metal_door_geo
+    cmd22 /*unk2*/ 0x001C, /*unk4*/ castle_door_geo
+    cmd22 /*unk2*/ 0x001D, /*unk4*/ wooden_door_geo
+    cmd22 /*unk2*/ 0x0022, /*unk4*/ castle_door_0_star_geo
+    cmd22 /*unk2*/ 0x0023, /*unk4*/ castle_door_1_star_geo
+    cmd22 /*unk2*/ 0x0024, /*unk4*/ castle_door_3_stars_geo
+    cmd22 /*unk2*/ 0x0025, /*unk4*/ locked_castle_door_geo
     cmd22 /*unk2*/ 0x00D0, /*unk4*/ castle_geo_000F00
     cmd22 /*unk2*/ 0x00D5, /*unk4*/ castle_geo_000F00
     cmd22 /*unk2*/ 0x00D1, /*unk4*/ castle_geo_000F00

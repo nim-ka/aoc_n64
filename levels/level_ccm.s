@@ -56,8 +56,8 @@ glabel level_ccm_entry
     cmd22 /*unk2*/ 0x0005, /*unk4*/ ccm_geo_000494
     cmd22 /*unk2*/ 0x0006, /*unk4*/ ccm_geo_0004BC
     cmd22 /*unk2*/ 0x0007, /*unk4*/ ccm_geo_0004E4
-    cmd22 /*unk2*/ 0x0027, /*unk4*/ coin_X_geo_00043C
-    cmd22 /*unk2*/ 0x0019, /*unk4*/ coin_X_geo_001018
+    cmd22 /*unk2*/ 0x0027, /*unk4*/ cabin_door_geo
+    cmd22 /*unk2*/ 0x0019, /*unk4*/ snow_tree_geo
     cmd22 /*unk2*/ 0x0036, /*unk4*/ ccm_geo_0003D0
     cmd22 /*unk2*/ 0x00D2, /*unk4*/ ccm_geo_0003F0
     cmd22 /*unk2*/ 0x0037, /*unk4*/ ccm_geo_00040C

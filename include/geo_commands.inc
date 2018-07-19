@@ -77,11 +77,11 @@
 .endm
 
 # 0x0A: Create camera frustum scene graph node
-#   0x01: u8  if nonzero, enable frustumFunc field
+#   0x01: u8  if nonzero, enable function field
 #   0x02: s16 field of view
 #   0x04: s16 near
 #   0x06: s16 far
-#   0x08: GraphNodeFunc frustumFunc]
+#   0x08: [GraphNodeFunc function]
 .macro geo_camera_frustum fov, near, far, function=0
     .byte 0x0A
     .if (\function != 0)

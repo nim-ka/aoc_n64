@@ -79,7 +79,7 @@ glabel level_bbh_entry
     jump_link /*target*/ script_func_global_1
     jump_link /*target*/ script_func_global_10
     jump_link /*target*/ script_func_global_18
-    cmd22 /*unk2*/ 0x001D, /*unk4*/ coin_X_geo_000720 # coins doors pipes
+    cmd22 /*unk2*/ 0x001D, /*unk4*/ haunted_door_geo
     cmd22 /*unk2*/ 0x0035, /*unk4*/ geo_bbh_0005B0
     cmd22 /*unk2*/ 0x0036, /*unk4*/ geo_bbh_0005C8
     cmd22 /*unk2*/ 0x0037, /*unk4*/ geo_bbh_0005E0

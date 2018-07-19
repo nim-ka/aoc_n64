@@ -78,7 +78,7 @@ glabel level_bits_entry
     cmd22 /*unk2*/ 0x0043, /*unk4*/ bits_geo_0006D0
     cmd22 /*unk2*/ 0x0044, /*unk4*/ bits_geo_0006E8
     cmd22 /*unk2*/ 0x0045, /*unk4*/ bits_geo_000700
-    cmd22 /*unk2*/ 0x0049, /*unk4*/ common_seg16_geo_pipe
+    cmd22 /*unk2*/ 0x0049, /*unk4*/ warp_pipe_geo
 
     area /*index*/ 1, /*geo*/ bits_geo_000718
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -7039, -3812, 4, /*angle*/ 0, 90, 0, /*behArg*/ 0x000A0000, /*beh*/ beh_warps_64

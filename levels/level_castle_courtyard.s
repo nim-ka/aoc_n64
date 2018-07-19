@@ -33,8 +33,8 @@ glabel level_castle_courtyard_entry
     mario /*unk3*/ 0x01, /*behArg*/ 0x00000001, /*beh*/ beh_mario
     jump_link /*target*/ script_func_global_1
     jump_link /*target*/ script_func_global_10
-    cmd22 /*unk2*/ 0x0018, /*unk4*/ coin_X_geo_001000
-    cmd22 /*unk2*/ 0x0027, /*unk4*/ coin_X_geo_0004D0
+    cmd22 /*unk2*/ 0x0018, /*unk4*/ spiky_tree_geo
+    cmd22 /*unk2*/ 0x0027, /*unk4*/ wooden_door_geo
     cmd22 /*unk2*/ 0x0003, /*unk4*/ castle_courtyard_geo_000200
 
     area /*index*/ 1, /*geo*/ castle_courtyard_geo_000218

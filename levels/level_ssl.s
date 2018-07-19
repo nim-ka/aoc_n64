@@ -67,7 +67,7 @@ glabel level_ssl_entry
     mario /*unk3*/ 0x01, /*behArg*/ 0x00000001, /*beh*/ beh_mario
     jump_link /*target*/ script_func_global_1
     jump_link /*target*/ script_func_global_6
-    cmd22 /*unk2*/ 0x001B, /*unk4*/ coin_X_geo_001048
+    cmd22 /*unk2*/ 0x001B, /*unk4*/ palm_tree_geo
     cmd22 /*unk2*/ 0x0003, /*unk4*/ ssl_geo_0005C0
     cmd22 /*unk2*/ 0x0004, /*unk4*/ ssl_geo_0005D8
     cmd22 /*unk2*/ 0x003A, /*unk4*/ ssl_geo_000618

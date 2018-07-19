@@ -4631,8 +4631,8 @@ glabel PrintAnimatedRedCoin
 /* 095720 802DA720 3C180600 */  lui   $t8, 0x600
 /* 095724 802DA724 AF380000 */  sw    $t8, ($t9)
 /* 095728 802DA728 8FA9003C */  lw    $t1, 0x3c($sp)
-/* 09572C 802DA72C 3C080300 */  lui   $t0, %hi(D_03007940) # $t0, 0x300
-/* 095730 802DA730 25087940 */  addiu $t0, %lo(D_03007940) # addiu $t0, $t0, 0x7940
+/* 09572C 802DA72C 3C080300 */  lui   $t0, %hi(red_coin_seg3_dl_03007940) # $t0, 0x300
+/* 095730 802DA730 25087940 */  addiu $t0, %lo(red_coin_seg3_dl_03007940) # addiu $t0, $t0, 0x7940
 /* 095734 802DA734 AD280004 */  sw    $t0, 4($t1)
 /* 095738 802DA738 1000002E */  b     .L802DA7F4
 /* 09573C 802DA73C 00000000 */   nop   
@@ -4647,8 +4647,8 @@ glabel PrintAnimatedRedCoin
 /* 09575C 802DA75C 3C0C0600 */  lui   $t4, 0x600
 /* 095760 802DA760 ADAC0000 */  sw    $t4, ($t5)
 /* 095764 802DA764 8FAF0038 */  lw    $t7, 0x38($sp)
-/* 095768 802DA768 3C0E0300 */  lui   $t6, %hi(D_03007968) # $t6, 0x300
-/* 09576C 802DA76C 25CE7968 */  addiu $t6, %lo(D_03007968) # addiu $t6, $t6, 0x7968
+/* 095768 802DA768 3C0E0300 */  lui   $t6, %hi(red_coin_seg3_dl_03007968) # $t6, 0x300
+/* 09576C 802DA76C 25CE7968 */  addiu $t6, %lo(red_coin_seg3_dl_03007968) # addiu $t6, $t6, 0x7968
 /* 095770 802DA770 ADEE0004 */  sw    $t6, 4($t7)
 /* 095774 802DA774 1000001F */  b     .L802DA7F4
 /* 095778 802DA778 00000000 */   nop   
@@ -4663,8 +4663,8 @@ glabel PrintAnimatedRedCoin
 /* 095798 802DA798 3C080600 */  lui   $t0, 0x600
 /* 09579C 802DA79C AD280000 */  sw    $t0, ($t1)
 /* 0957A0 802DA7A0 8FAB0034 */  lw    $t3, 0x34($sp)
-/* 0957A4 802DA7A4 3C0A0300 */  lui   $t2, %hi(D_03007990) # $t2, 0x300
-/* 0957A8 802DA7A8 254A7990 */  addiu $t2, %lo(D_03007990) # addiu $t2, $t2, 0x7990
+/* 0957A4 802DA7A4 3C0A0300 */  lui   $t2, %hi(red_coin_seg3_dl_03007990) # $t2, 0x300
+/* 0957A8 802DA7A8 254A7990 */  addiu $t2, %lo(red_coin_seg3_dl_03007990) # addiu $t2, $t2, 0x7990
 /* 0957AC 802DA7AC AD6A0004 */  sw    $t2, 4($t3)
 /* 0957B0 802DA7B0 10000010 */  b     .L802DA7F4
 /* 0957B4 802DA7B4 00000000 */   nop   
@@ -4679,8 +4679,8 @@ glabel PrintAnimatedRedCoin
 /* 0957D4 802DA7D4 3C0E0600 */  lui   $t6, 0x600
 /* 0957D8 802DA7D8 ADEE0000 */  sw    $t6, ($t7)
 /* 0957DC 802DA7DC 8FB90030 */  lw    $t9, 0x30($sp)
-/* 0957E0 802DA7E0 3C180300 */  lui   $t8, %hi(D_030079B8) # $t8, 0x300
-/* 0957E4 802DA7E4 271879B8 */  addiu $t8, %lo(D_030079B8) # addiu $t8, $t8, 0x79b8
+/* 0957E0 802DA7E0 3C180300 */  lui   $t8, %hi(red_coin_seg3_dl_030079B8) # $t8, 0x300
+/* 0957E4 802DA7E4 271879B8 */  addiu $t8, %lo(red_coin_seg3_dl_030079B8) # addiu $t8, $t8, 0x79b8
 /* 0957E8 802DA7E8 AF380004 */  sw    $t8, 4($t9)
 /* 0957EC 802DA7EC 10000001 */  b     .L802DA7F4
 /* 0957F0 802DA7F0 00000000 */   nop   

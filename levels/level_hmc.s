@@ -72,9 +72,9 @@ glabel level_hmc_entry
     jump_link /*target*/ script_func_global_1
     jump_link /*target*/ script_func_global_7
     jump_link /*target*/ script_func_global_18
-    cmd22 /*unk2*/ 0x001D, /*unk4*/ coin_X_geo_0004D0
-    cmd22 /*unk2*/ 0x001F, /*unk4*/ coin_X_geo_0005F8
-    cmd22 /*unk2*/ 0x0020, /*unk4*/ coin_X_geo_00068C
+    cmd22 /*unk2*/ 0x001D, /*unk4*/ wooden_door_geo
+    cmd22 /*unk2*/ 0x001F, /*unk4*/ metal_door_geo
+    cmd22 /*unk2*/ 0x0020, /*unk4*/ hazy_maze_door_geo
     cmd22 /*unk2*/ 0x0036, /*unk4*/ hmc_geo_0005A0
     cmd22 /*unk2*/ 0x0037, /*unk4*/ hmc_geo_0005B8
     cmd22 /*unk2*/ 0x0038, /*unk4*/ hmc_geo_0005D0

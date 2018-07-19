@@ -17,7 +17,7 @@ glabel level_bowser_1_entry
     alloc_level_pool
     mario /*unk3*/ 0x01, /*behArg*/ 0x00000001, /*beh*/ beh_mario
     jump_link /*target*/ script_func_global_13
-    cmd22 /*unk2*/ 0x0003, /*unk4*/ 0x0D0000B0
+    cmd22 /*unk2*/ 0x0003, /*unk4*/ bowser_1_yellow_sphere_geo
 
     area /*index*/ 1, /*geo*/ bowser_1_geo_0000D0
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 0, 1307, 0, /*angle*/ 0, 180, 0, /*behArg*/ 0x000A0000, /*beh*/ beh_warps_6C

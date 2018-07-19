@@ -98,10 +98,10 @@ glabel level_castle_grounds_entry
     jump_link /*target*/ script_func_global_11
     jump_link /*target*/ script_func_global_16
     cmd22 /*unk2*/ 0x0003, /*unk4*/ castle_grounds_geo_0006F4
-    cmd22 /*unk2*/ 0x0017, /*unk4*/ coin_X_geo_000FE8
-    cmd22 /*unk2*/ 0x0016, /*unk4*/ common_seg16_geo_pipe
-    cmd22 /*unk2*/ 0x0026, /*unk4*/ coin_X_geo_0003A8
-    cmd22 /*unk2*/ 0x0029, /*unk4*/ coin_X_geo_0005F8
+    cmd22 /*unk2*/ 0x0017, /*unk4*/ bubbly_tree_geo
+    cmd22 /*unk2*/ 0x0016, /*unk4*/ warp_pipe_geo
+    cmd22 /*unk2*/ 0x0026, /*unk4*/ castle_door_geo
+    cmd22 /*unk2*/ 0x0029, /*unk4*/ metal_door_geo
     cmd22 /*unk2*/ 0x0036, /*unk4*/ castle_grounds_geo_00070C
     cmd22 /*unk2*/ 0x0037, /*unk4*/ castle_grounds_geo_000660
     cmd22 /*unk2*/ 0x0038, /*unk4*/ castle_grounds_geo_000724

@@ -72,7 +72,7 @@ glabel level_wdw_entry
     jump_link /*target*/ script_func_global_1
     jump_link /*target*/ script_func_global_2
     jump_link /*target*/ script_func_global_14
-    cmd22 /*unk2*/ 0x0017, /*unk4*/ coin_X_geo_000FE8
+    cmd22 /*unk2*/ 0x0017, /*unk4*/ bubbly_tree_geo
     cmd22 /*unk2*/ 0x0036, /*unk4*/ wdw_geo_000580
     cmd22 /*unk2*/ 0x0037, /*unk4*/ wdw_geo_000598
     cmd22 /*unk2*/ 0x0038, /*unk4*/ wdw_geo_0005C0

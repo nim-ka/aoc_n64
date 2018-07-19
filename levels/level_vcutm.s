@@ -38,7 +38,7 @@ glabel level_vcutm_entry
     jump_link /*target*/ script_func_global_1
     jump_link /*target*/ script_func_global_9
     cmd22 /*unk2*/ 0x0036, /*unk4*/ vcutm_geo_0001F0
-    cmd22 /*unk2*/ 0x0016, /*unk4*/ common_seg16_geo_pipe
+    cmd22 /*unk2*/ 0x0016, /*unk4*/ warp_pipe_geo
 
     area /*index*/ 1, /*geo*/ vcutm_geo_000208
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -6143, 6734, -6143, /*angle*/ 0, 0, 0, /*behArg*/ 0x000A0000, /*beh*/ beh_warps_64

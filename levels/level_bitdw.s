@@ -63,7 +63,7 @@ glabel level_bitdw_entry
     cmd22 /*unk2*/ 0x000F, /*unk4*/ geo_bitdw_0004E0
     cmd22 /*unk2*/ 0x0010, /*unk4*/ geo_bitdw_0004F8
     cmd22 /*unk2*/ 0x0011, /*unk4*/ geo_bitdw_000510
-    cmd22 /*unk2*/ 0x0012, /*unk4*/ common_seg16_geo_pipe
+    cmd22 /*unk2*/ 0x0012, /*unk4*/ warp_pipe_geo
     cmd22 /*unk2*/ 0x0036, /*unk4*/ geo_bitdw_000558
     cmd22 /*unk2*/ 0x0037, /*unk4*/ geo_bitdw_000540
     cmd22 /*unk2*/ 0x0038, /*unk4*/ geo_bitdw_000528
