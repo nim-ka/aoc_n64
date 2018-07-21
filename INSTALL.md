@@ -11,6 +11,7 @@
 * zlib1g-dev
 * libglib2.0-dev
 * libpixman-1-dev
+* libcapstone3
 
 2] Clone https://github.com/camthesaxman/qemu-irix to somewhere and follow its install instructions in the README.
 
