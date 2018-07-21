@@ -85,7 +85,12 @@ script_func_local_2:
 
 script_func_local_3:
     object /*unk2*/ 0x3F, /*unk3*/ 0x00, /*pos*/ 4900, 2400, 800, /*angle*/ 0, 0, 0, /*behArg*/ 0x03000000, /*beh*/ beh_hidden_red_coin_star
+.ifdef VERSION_JP
     object /*unk2*/ 0x3F, /*unk3*/ 0x7A, /*pos*/ 1540, 2160, 2130, /*angle*/ 0, 0, 0, /*behArg*/ 0x04000000, /*beh*/ beh_collect_star
+.endif
+.ifdef VERSION_US
+    object /*unk2*/ 0x3F, /*unk3*/ 0x89, /*pos*/ 1540, 2160, 2130, /*angle*/ 0, 0, 0, /*behArg*/ 0x04080000, /*beh*/ beh_exclamation_box
+.endif
     object /*unk2*/ 0x3E, /*unk3*/ 0x7A, /*pos*/ 5000, -4800, 2500, /*angle*/ 0, 0, 0, /*behArg*/ 0x05000000, /*beh*/ beh_collect_star
     return
 

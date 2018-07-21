@@ -2784,6 +2784,15 @@ glabel beh_rotating_merry_go_round # 2968
         callnative load_object_collision_model
     end_loop
 
+.ifdef VERSION_US
+glabel beh_plays_music_track_when_touched # 2998
+    begin 8
+    obj_or_int VAR_01, 0x41
+    begin_loop
+        callnative BehPlayMusicTrackWhenTouchedLoop
+    end_loop
+.endif
+
 glabel beh_inside_cannon # 2998
     break
 
@@ -2970,6 +2979,11 @@ glabel beh_water_drops # 2C48
 glabel beh_water_surface_white_wave # 2C64
     begin 8
     obj_or_int VAR_01, 0x01
+.ifdef VERSION_US
+    obj_set_int VAR_12, 0
+    obj_set_int VAR_13, 0
+    obj_set_int VAR_14, 0
+.endif
     callnative BehWaterSurfaceWhiteWaveInit
     obj_add_float VAR_07, 5
     obj_set_int VAR_1A, -1
@@ -2981,9 +2995,16 @@ glabel beh_water_surface_white_wave # 2C64
 glabel beh_object_bubble_ripples # 2C8C
     begin 8
     obj_or_int VAR_01, 0x01
+.ifdef VERSION_JP
     obj_set_float VAR_12, 0
     obj_set_float VAR_13, 0
     obj_set_float VAR_14, 0
+.endif
+.ifdef VERSION_US
+    obj_set_int VAR_12, 0
+    obj_set_int VAR_13, 0
+    obj_set_int VAR_14, 0
+.endif
     obj_set_int VAR_1A, -1
     callnative BehObjectBubbleRipplesInit
     begin_repeat 6
@@ -2994,9 +3015,16 @@ glabel beh_object_bubble_ripples # 2C8C
 glabel beh_surface_waves # 2CBC
     begin 8
     obj_or_int VAR_01, 0x01
+.ifdef VERSION_JP
     obj_set_float VAR_12, 0
     obj_set_float VAR_13, 0
     obj_set_float VAR_14, 0
+.endif
+.ifdef VERSION_US
+    obj_set_int VAR_12, 0
+    obj_set_int VAR_13, 0
+    obj_set_int VAR_14, 0
+.endif
     obj_set_int VAR_1A, -1
     obj_add_int VAR_1A, 1
     begin_loop
@@ -3011,9 +3039,16 @@ glabel beh_surface_waves # 2CBC
 glabel beh_water_surface_white_wave_2 # 2D04
     begin 12
     obj_or_int VAR_01, 0x01
+.ifdef VERSION_JP
     obj_set_float VAR_12, 0
     obj_set_float VAR_13, 0
     obj_set_float VAR_14, 0
+.endif
+.ifdef VERSION_US
+    obj_set_int VAR_12, 0
+    obj_set_int VAR_13, 0
+    obj_set_int VAR_14, 0
+.endif
     obj_set_int VAR_1A, -1
     begin_repeat 6
         obj_add_int VAR_1A, 1
