@@ -109,9 +109,23 @@ struct ObjJoint {
 
 struct ObjParticle {
     /* 0x00 */ struct ObjHeader header;
-    /* 0x14 */ u8  pad14[0x3C];
+    /* 0x14 */ u8  pad14[0x1C-0x14];
+    /* 0x1C */ s32 unk1C;
+    /* 0x20 */ float unk20;
+    /* 0x24 */ float unk24;
+    /* 0x28 */ float unk28;
+    /* 0x2C */ u8 filler2C[0x38-0x2C];
+    /* 0x38 */ float unk38;
+    /* 0x3C */ float unk3C;
+    /* 0x40 */ float unk40;
+    /* 0x44 */ u8 filler44[0x50-0x44];
     /* 0x50 */ s32 id;
-    /* 0x54 */ u8  pad54[0x6C];
+    /* 0x54 */ u32 unk54;
+    /* 0x58 */ s32 unk58;
+    /* 0x5C */ s32 unk5C;
+    /* 0x60 */ u8 filler60[0xB0-0x60];
+    /* 0xB0 */ s32 unkB0;
+    /* 0xB4 */ u8 padB4[0xC0-0xB4];
 }; /* sizeof = 0xC0 */
 
 struct ObjShape {
@@ -124,17 +138,20 @@ struct ObjNet {
     /* 0x000 */ struct ObjHeader header;
     /* 0x014 */ u8  pad14[0x38-0x14];
     /* 0x038 */ u32 unk38;      // some sort of id? from Unknown8019359C
-    /* 0x03C */ u8  pad3C[0xBC-0x3C];
+    /* 0x03C */ s32 unk3C;
+    /* 0x040 */ u8  pad40[0xBC-0x40];
     /* 0x0BC */ struct GdPlaneF unkBC;
     /* 0x0D4 */ u8  padD4[0xe8-0xd4];
     /* 0x0E8 */ Mat4 matE8;
     /* 0x128 */ Mat4 mat128;
     /* 0x168 */ Mat4 mat168;    // "r matrix"
-    /* 0x1A8 */ struct ObjHeader* unk1A8;    // variable pointer based on netType...?
-    /* 0x1AC */ u8  pad1ac[0x1c4-0x1ac];
-    /* 0x1C4 */ struct ObjGroup* skinGrp;    // SkinGroup (from reset_weight) 
-    /* 0x1C8 */ struct ObjGroup* unk1C8;    // based on make_net call in func_8019A378
-    /* 0x1CC */ u8  pad1cc[0x1ec-0x1cc];
+    /* 0x1A8 */ struct ObjHeader *unk1A8;    // variable pointer based on netType...?
+    /* 0x1AC */ u8  pad1ac[0x1c0-0x1ac];
+    /* 0x1C0 */ struct ObjGroup *unk1C0;
+    /* 0x1C4 */ struct ObjGroup *skinGrp;    // SkinGroup (from reset_weight) 
+    /* 0x1C8 */ struct ObjGroup *unk1C8;    // based on make_net call in func_8019A378
+    /* 0x1CC */ struct ObjGroup *unk1CC;
+    /* 0x1D0 */ u8  pad1d0[0x1ec-0x1d0];
     /* 0x1EC */ s32 netType;    // from Unknown8019359C
     /* 0x1F0 */ u8  pad1f0[0x220-0x1f0];
 }; /* sizeof = 0x220 */
@@ -187,7 +204,7 @@ struct ObjCamera {
     /* 0x178 */ f32 unk178;
     /* 0x17C */ f32 unk17C;
     /* 0x180 */ struct MyVec3f unk180;
-    /* 0x18C */ u8  pad18C[0x4];
+    /* 0x18C */ void *unk18C;
 }; /* sizeof = 0x190 */
 
 struct ObjMaterial {

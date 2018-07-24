@@ -406,7 +406,7 @@ extern int printf(const char *format, ...);
 // extern ? func_8019BA04(?);
 extern void* gd_allocblock(u32);
 extern void* gd_malloc(u32, u8);    /* gd_malloc(size, alignment? */
-extern void* func_8019BC18(u32);    /* {return gd_malloc(a0, 240);} */
+extern void *func_8019BC18(int);    /* {return gd_malloc(a0, 240);} */
 // extern ? func_8019BC50(?);
 // extern ? Unknown8019BC88(?);
 // extern ? Unknown8019BCD4(?);

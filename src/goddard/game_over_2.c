@@ -107,7 +107,7 @@ struct UnknownGameOverStruct2
 struct Struct80178900_2
 {
     u8 filler0[0x14];
-    s32 unk14;
+    void *unk14;
     s32 unk18;
     s32 unk1C;
     s32 unk20;
@@ -286,24 +286,6 @@ void Draw_shape(struct UnknownGameOverStruct2 *a, int b, float c, float d,
     func_8018CEEC("drawshape");
 }
 
-struct UnknownGameOverStruct7
-{
-    u8 filler0[0x14];
-    struct MyVec3f unk14;
-    u8 filler20[0x30-0x20];
-    s32 unk30;
-    float unk34;
-    float unk38;
-    float unk3C;
-    u8 filler40[0xA4-0x40];
-    float unkA4;
-    u8 fillerA8[0xE8-0xA8];
-    u8 unkE8[0x18C-0xE8];  // unknown type
-    void *unk18C;  // TODO: UnknownGameOverStruct9
-};
-
-extern struct UnknownGameOverStruct7 *D_801A80F8;
-
 void func_8017880C(struct UnknownGameOverStruct2 *a, int b,
     UNUSED float c, UNUSED float d, UNUSED float e,
     float f, float g, float h,
@@ -396,7 +378,7 @@ extern struct Struct801B9CF8 *D_801B9CF8;
 extern float D_801B9D00;
 extern float D_801B9D10;
 
-extern void func_801A0478(int, struct UnknownGameOverStruct7 *, void *, void *, void *,
+extern void func_801A0478(int, struct ObjCamera *, void *, void *, void *,
     void *);
 
 void draw_material(struct UnknownGameOverStruct3 *a)
@@ -752,10 +734,10 @@ void Proc8017976C(struct Struct80179628 *a)
 
 #define ABS(x) ((x) < 0.0f ? -(x) : (x))
 
-extern void func_8019F318(struct UnknownGameOverStruct7 *a, float, float, float,
+extern void func_8019F318(struct ObjCamera *a, float, float, float,
     float, float, float, float);
 
-void Draw_Camera(struct UnknownGameOverStruct7 *a)
+void Draw_Camera(struct ObjCamera *a)
 {
     struct MyVec3f sp44;
     UNUSED float sp40 = 0.0f;
@@ -767,16 +749,16 @@ void Draw_Camera(struct UnknownGameOverStruct7 *a)
     {
         func_80186B44(a->unk30);
         func_80188A3C(&sp44);
-        sp44.x += a->unk34;
-        sp44.y += a->unk38;
-        sp44.z += a->unk3C;
+        sp44.x += a->unk34.x;
+        sp44.y += a->unk34.y;
+        sp44.z += a->unk34.z;
         ;  // needed to match
     }
     else
     {
-        sp44.x = a->unk34;
-        sp44.y = a->unk38;
-        sp44.z = a->unk3C;
+        sp44.x = a->unk34.x;
+        sp44.y = a->unk34.y;
+        sp44.z = a->unk34.z;
     }
 
     if (0)
@@ -861,7 +843,7 @@ struct Struct80179B9C
     float unk68;
 };
 
-void func_80179B9C(struct MyVec3f *a, struct UnknownGameOverStruct7 *b, struct Struct80179B9C *c)
+void func_80179B9C(struct MyVec3f *a, struct ObjCamera *b, struct Struct80179B9C *c)
 {
     func_80196430(a, b->unkE8);
     if (a->z > -256.0f)
@@ -1621,7 +1603,7 @@ void Unknown8017B514(struct Struct8017B514 *a)
     }
 }
 
-void Unknown8017B5F0(struct UnknownGameOverStruct7 *a)
+void Unknown8017B5F0(struct ObjCamera *a)
 {
     if (D_801A80F8 != NULL)
         return;
@@ -1631,7 +1613,7 @@ void Unknown8017B5F0(struct UnknownGameOverStruct7 *a)
 struct UnknownGameOverStruct9
 {
     u8 filler0[0x24];
-    struct UnknownGameOverStruct7 *unk24;
+    struct ObjCamera *unk24;
     void *unk28;
     u8 filler2C[0x34-0x2C];
     u32 unk34;

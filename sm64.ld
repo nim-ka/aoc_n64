@@ -343,7 +343,7 @@ SECTIONS
       build/src/goddard/game_over_2.o(.text);
       build/src/goddard/mario_head_1.o(.text);
       build/src/goddard/mario_head_2.o(.text);
-      build/asm/mario_head_3.o(.text);
+      build/src/goddard/mario_head_3.o(.text);
       build/asm/mario_head_4.o(.text);
       build/asm/mario_head_5.o(.text);
       build/asm/mario_head_6.o(.text);
@@ -361,7 +361,8 @@ SECTIONS
       build/src/goddard/game_over_2.o(.rodata*);
       build/src/goddard/mario_head_1.o(.rodata*);
       build/src/goddard/mario_head_2.o(.rodata*);
-      build/data/rodata_801B5DB0.o(.rodata*);
+      build/src/goddard/mario_head_3.o(.rodata*);
+      build/data/rodata_801B5E50.o(.rodata*);
    }
    END_SEG(goddard)
    BEGIN_NOLOAD(goddard)

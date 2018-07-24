@@ -278,8 +278,8 @@
 // extern ? D_801B813C;
 // extern ? D_801BA720;
 
-// extern ? func_80183910(?);
-// extern ? func_80183940(?);
+extern void func_80183910(void);
+extern void func_80183940(void);
 // extern ? func_80183970(?);
 // extern ? func_801839E0(?);
 // extern ? func_8018421C(?);
@@ -313,7 +313,7 @@
 // extern ? func_80186764(?);
 // extern ? func_80186920(?);
 // extern ? dUseObj(?);
-extern void func_80186B44();  //TODO: figure out type of argument
+extern void func_80186B44(void *);
 // extern ? func_80186B6C(?);
 // extern ? dEndGroup(?);
 // extern ? func_80186CA0(?);

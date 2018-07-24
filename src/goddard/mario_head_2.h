@@ -5,7 +5,7 @@
 #include "gd_types.h"
 
 /****** .bss ******/
-extern struct ObjNet* gGdSkinNet;   // D_801BAAF0
+extern struct ObjNet* gGdSkinNet;   // gGdSkinNet
 
 /****** Static .bss ******/
 // struct ObjWeight* sSkinNetCurWeight; // D_801B9EA0
