@@ -2488,7 +2488,14 @@ void func_80286C9C(struct Struct80280550 *a)
     switch (gCurrLevelNum - 6)
     {
     case 24:
+#if VERSION_US
+        if (gCurrDemoInput == NULL)
+            func_8028BB3C(a, 144);
+        else if (D_8032CFD0 != NULL)
+            D_8032CFD0->OBJECT_FIELD_U32(0x00) = 2;
+#else
         func_8028BB3C(a, 144);
+#endif
         break;
     case 27:
         func_8028BB3C(a, 144);

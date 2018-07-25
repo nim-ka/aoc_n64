@@ -12,7 +12,6 @@
 #include "memory.h"
 #include "behavior_data.h"
 
-
 struct LandingAction
 {
     s16 numFrames;
@@ -1704,7 +1703,7 @@ static s32 act_hard_backward_ground_kb(struct MarioState *m)
     if (val04 == 0x2B && m->health < 0x100)
         set_mario_action(m, ACT_DEATH_ON_BACK, 0);
 
-#ifdef US_VERSION
+#if VERSION_US
     if (val04 == 0x36 && m->prevAction == ACT_UNKNOWN_12C)
         SetSound(SOUND_MARIO_MAMAMIA, &m->marioObj->header.gfx.unk54);
 #endif
