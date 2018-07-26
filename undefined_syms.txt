@@ -1615,7 +1615,7 @@ water_splash_seg4_dl_040326A0 = 0x040326A0;
 water_splash_seg4_dl_040326B8 = 0x040326B8;
 water_splash_seg4_dl_040326D0 = 0x040326D0;
 water_splash_seg4_dl_040326E8 = 0x040326E8;
-mario_TODO_seg4_dl_04032A18 = 0x04032A18;
+snowball_seg4_dl_04032A18 = 0x04032A18;
 sparkles_animation_seg4_dl_04035300 = 0x04035300;
 sparkles_animation_seg4_dl_04035318 = 0x04035318;
 sparkles_animation_seg4_dl_04035330 = 0x04035330;
@@ -1654,7 +1654,7 @@ ukiki_seg5_dl_0500D108 = 0x0500D108;
 fwoosh_seg5_dl_05016040 = 0x05016040;
 
 /* Mr.I Swoop Snufit Dorrie Scuttlebug */
-mri_TODO_seg6_dl_06002080 = 0x06002080;
+mri_seg6_dl_06002080 = 0x06002080;
 mri_seg6_dl_060041D8 = 0x060041D8;
 mri_seg6_dl_060041F0 = 0x060041F0;
 mri_seg6_dl_06004208 = 0x06004208;

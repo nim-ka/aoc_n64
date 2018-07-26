@@ -22,12 +22,12 @@ glabel level_main_scripts_entry
     cmd22 /*unk2*/ 0x007A, /*unk4*/ star_geo
     cmd22 /*unk2*/ 0x0079, /*unk4*/ transparent_star_geo
     cmd22 /*unk2*/ 0x007C, /*unk4*/ wooden_signpost_geo
-    cmd21 /*unk2*/ 0x40A4, /*unk4*/ mario_TODO_seg4_dl_04032A18
+    cmd21 /*unk2*/ 0x40A4, /*unk4*/ snowball_seg4_dl_04032A18
     cmd22 /*unk2*/ 0x0090, /*unk4*/ red_flame_geo
     cmd22 /*unk2*/ 0x0091, /*unk4*/ blue_flame_geo
     cmd22 /*unk2*/ 0x0094, /*unk4*/ dirt2_geo
     cmd22 /*unk2*/ 0x00A2, /*unk4*/ leaves_geo
-    cmd22 /*unk2*/ 0x00AA, /*unk4*/ purple_marble
+    cmd22 /*unk2*/ 0x00AA, /*unk4*/ purple_marble_geo
     cmd22 /*unk2*/ 0x00B9, /*unk4*/ fish_geo
     cmd22 /*unk2*/ 0x00BA, /*unk4*/ fish2_geo
     cmd22 /*unk2*/ 0x008F, /*unk4*/ sparkles_animation_geo
@@ -38,10 +38,10 @@ glabel level_main_scripts_entry
     cmd22 /*unk2*/ 0x008E, /*unk4*/ mist_geo
     cmd22 /*unk2*/ 0x00E0, /*unk4*/ white_puff_geo
     cmd21 /*unk2*/ 0x409E, /*unk4*/ snow_ball_seg3_dl_0302C8A0
-    cmd22 /*unk2*/ 0x00A0, /*unk4*/ snow_ball_geo
-    cmd22 /*unk2*/ 0x0075, /*unk4*/ yellow_coin_TODO_geo_0001A0
+    cmd22 /*unk2*/ 0x00A0, /*unk4*/ snowman_snow_ball_geo
+    cmd22 /*unk2*/ 0x0075, /*unk4*/ yellow_coin_no_shadow_geo
     cmd22 /*unk2*/ 0x0076, /*unk4*/ blue_coin_geo
-    cmd22 /*unk2*/ 0x0077, /*unk4*/ blue_coin_TODO_geo_000264
+    cmd22 /*unk2*/ 0x0077, /*unk4*/ blue_coin_no_shadow_geo
     cmd22 /*unk2*/ 0x0085, /*unk4*/ marios_winged_metal_cap_geo
     cmd22 /*unk2*/ 0x0086, /*unk4*/ marios_metal_cap_geo
     cmd22 /*unk2*/ 0x0087, /*unk4*/ marios_wing_cap_geo
@@ -52,7 +52,7 @@ glabel level_main_scripts_entry
     cmd22 /*unk2*/ 0x00CB, /*unk4*/ red_flame_shadow_geo
     cmd22 /*unk2*/ 0x00D4, /*unk4*/ mushroom_1up_geo
     cmd22 /*unk2*/ 0x00D7, /*unk4*/ red_coin_geo
-    cmd22 /*unk2*/ 0x00D8, /*unk4*/ red_coin_TODO_geo_000328
+    cmd22 /*unk2*/ 0x00D8, /*unk4*/ red_coin_no_shadow_geo
     cmd22 /*unk2*/ 0x00DB, /*unk4*/ number_geo
     cmd22 /*unk2*/ 0x00CD, /*unk4*/ explosion_geo
     cmd22 /*unk2*/ 0x008A, /*unk4*/ dirt_animation_geo
@@ -286,7 +286,7 @@ glabel script_func_global_3
 
 glabel script_func_global_4
     cmd22 /*unk2*/ 0x0054, /*unk4*/ water_bubble_geo
-    cmd22 /*unk2*/ 0x0055, /*unk4*/ bobombs_TODO_geo_000328
+    cmd22 /*unk2*/ 0x0055, /*unk4*/ water_bubble_shadow_geo
     cmd22 /*unk2*/ 0x0056, /*unk4*/ king_bobomb_geo
     return
 
@@ -400,8 +400,8 @@ glabel script_func_global_17
 glabel script_func_global_18
     cmd22 /*unk2*/ 0x0064, /*unk4*/ swoop_geo
     cmd22 /*unk2*/ 0x0065, /*unk4*/ scuttlebug_geo
-    cmd22 /*unk2*/ 0x0066, /*unk4*/ mri_geo
-    cmd22 /*unk2*/ 0x0067, /*unk4*/ mri_TODO_geo_000000
+    cmd22 /*unk2*/ 0x0066, /*unk4*/ mri_iris_geo
+    cmd22 /*unk2*/ 0x0067, /*unk4*/ mri_geo
     cmd22 /*unk2*/ 0x0068, /*unk4*/ dorrie_geo
     cmd22 /*unk2*/ 0x00CE, /*unk4*/ snufit_geo
     return

@@ -5,44 +5,44 @@
 
 glabel lakitu_geo # 0x0D000000
    geo_shadow SHADOW_CIRCLE_UNK1, 0x96, 100
+   geo_open_node
+      geo_scale 0x00, 16384
       geo_open_node
-         geo_scale 0x00, 16384
+         geo_dl_translated 0x01, 0, 0, 0
          geo_open_node
-            geo_dl_translated 0x01, 0, 0, 0
+            geo_dl_translated 0x01, 0, 0, 0, lakitu_seg6_dl_06003E30
             geo_open_node
-               geo_dl_translated 0x01, 0, 0, 0, lakitu_seg6_dl_06003E30
+               geo_dl_translated 0x01, 132, 0, 0, lakitu_seg6_dl_06004680
                geo_open_node
-                  geo_dl_translated 0x01, 132, 0, 0, lakitu_seg6_dl_06004680
+                  geo_switch_case 2, GeoSwitchCase8029DB48
                   geo_open_node
-                     geo_switch_case 2, GeoSwitchCase8029DB48
-                     geo_open_node
-                        geo_display_list 0x04, lakitu_seg6_dl_06004C60
-                        geo_display_list 0x04, lakitu_seg6_dl_06004C88
-                     geo_close_node
+                     geo_display_list 0x04, lakitu_seg6_dl_06004C60
+                     geo_display_list 0x04, lakitu_seg6_dl_06004C88
                   geo_close_node
-                  geo_dl_translated 0x01, 87, 18, 72
+               geo_close_node
+               geo_dl_translated 0x01, 87, 18, 72
+               geo_open_node
+                  geo_dl_translated 0x01, 0, 0, 0, lakitu_seg6_dl_060047E8
+               geo_close_node
+               geo_dl_translated 0x01, 87, 18, -72
+               geo_open_node
+                  geo_dl_translated 0x01, 0, 0, 0, lakitu_seg6_dl_060049E0
                   geo_open_node
-                     geo_dl_translated 0x01, 0, 0, 0, lakitu_seg6_dl_060047E8
-                  geo_close_node
-                  geo_dl_translated 0x01, 87, 18, -72
-                  geo_open_node
-                     geo_dl_translated 0x01, 0, 0, 0, lakitu_seg6_dl_060049E0
+                     geo_dl_translated 0x01, 334, -214, -50
                      geo_open_node
-                        geo_dl_translated 0x01, 334, -214, -50
+                        geo_dl_translated 0x01, 0, 0, 0, lakitu_seg6_dl_06005610
                         geo_open_node
-                           geo_dl_translated 0x01, 0, 0, 0, lakitu_seg6_dl_06005610
-                           geo_open_node
-                              geo_dl_translated 0x01, 191, 0, 0, lakitu_seg6_dl_06005360
-                           geo_close_node
-                           geo_dl_translated 0x01, 0, 0, 0, lakitu_seg6_dl_060055E8
+                           geo_dl_translated 0x01, 191, 0, 0, lakitu_seg6_dl_06005360
                         geo_close_node
+                        geo_dl_translated 0x01, 0, 0, 0, lakitu_seg6_dl_060055E8
                      geo_close_node
-                     geo_dl_translated 0x01, 0, 0, 0, lakitu_seg6_dl_06005598
                   geo_close_node
+                  geo_dl_translated 0x01, 0, 0, 0, lakitu_seg6_dl_06005598
                geo_close_node
             geo_close_node
          geo_close_node
       geo_close_node
+   geo_close_node
    geo_end
 
 glabel toad_geo_000114 # 0x0D000114
@@ -95,7 +95,7 @@ glabel toad_geo_000114 # 0x0D000114
          geo_close_node
       geo_close_node
    geo_close_node
-geo_return
+   geo_return
 
 glabel toad_geo_00027C # 0x0D00027C
    geo_node_start
@@ -147,24 +147,24 @@ glabel toad_geo_00027C # 0x0D00027C
          geo_close_node
       geo_close_node
    geo_close_node
-geo_return
+   geo_return
 
 glabel toad_geo # 0x0D0003E4
    geo_start_distance 1000
    geo_open_node
       geo_shadow SHADOW_CIRCLE_UNK0, 0x96, 100
+      geo_open_node
+         geo_scale 0x00, 16384
          geo_open_node
-            geo_scale 0x00, 16384
+            geo_asm 10, Geo18_8029D924
+            geo_switch_case 2, GeoSwitchCase8029DB48
             geo_open_node
-               geo_asm 10, Geo18_8029D924
-               geo_switch_case 2, GeoSwitchCase8029DB48
-               geo_open_node
-                  geo_branch 1, toad_geo_000114
-                  geo_branch 1, toad_geo_00027C
-               geo_close_node
+               geo_branch 1, toad_geo_000114
+               geo_branch 1, toad_geo_00027C
             geo_close_node
          geo_close_node
       geo_close_node
+   geo_close_node
    geo_end
 
 .word 0x0
@@ -173,48 +173,47 @@ glabel toad_geo # 0x0D0003E4
 
 glabel mips_geo # 0x0D000448
    geo_shadow SHADOW_CIRCLE_UNK1, 0x96, 100
+   geo_open_node
+      geo_scale 0x00, 16384
       geo_open_node
-         geo_scale 0x00, 16384
+         geo_dl_translated 0x01, 0, 0, 0
          geo_open_node
-            geo_dl_translated 0x01, 0, 0, 0
+            geo_dl_translated 0x01, 0, 0, 0, mips_seg6_dl_06010C40
             geo_open_node
-               geo_dl_translated 0x01, 0, 0, 0, mips_seg6_dl_06010C40
+               geo_dl_translated 0x01, 64, 0, 0, mips_seg6_dl_060107B8
                geo_open_node
-                  geo_dl_translated 0x01, 64, 0, 0, mips_seg6_dl_060107B8
+                  geo_dl_translated 0x01, 52, -24, -32
                   geo_open_node
-                     geo_dl_translated 0x01, 52, -24, -32
+                     geo_dl_translated 0x01, 0, 0, 0, mips_seg6_dl_06011DB0
                      geo_open_node
-                        geo_dl_translated 0x01, 0, 0, 0, mips_seg6_dl_06011DB0
-                        geo_open_node
-                           geo_dl_translated 0x01, 79, 0, 0, mips_seg6_dl_06011BB0
-                        geo_close_node
-                     geo_close_node
-                     geo_dl_translated 0x01, 52, -24, 32
-                     geo_open_node
-                        geo_dl_translated 0x01, 0, 0, 0, mips_seg6_dl_060110B0
-                        geo_open_node
-                           geo_dl_translated 0x01, 79, 0, 0, mips_seg6_dl_06010E60
-                        geo_close_node
+                        geo_dl_translated 0x01, 79, 0, 0, mips_seg6_dl_06011BB0
                      geo_close_node
                   geo_close_node
-                  geo_dl_translated 0x01, -31, 4, -39
+                  geo_dl_translated 0x01, 52, -24, 32
                   geo_open_node
-                     geo_dl_translated 0x01, 0, 0, 0, mips_seg6_dl_06011FC0
+                     geo_dl_translated 0x01, 0, 0, 0, mips_seg6_dl_060110B0
                      geo_open_node
-                        geo_dl_translated 0x01, 45, 0, 0, mips_seg6_dl_06011990
-                        geo_open_node
-                           geo_dl_translated 0x01, 52, 0, 0, mips_seg6_dl_06011780
-                        geo_close_node
+                        geo_dl_translated 0x01, 79, 0, 0, mips_seg6_dl_06010E60
                      geo_close_node
                   geo_close_node
-                  geo_dl_translated 0x01, -31, 4, 40
+               geo_close_node
+               geo_dl_translated 0x01, -31, 4, -39
+               geo_open_node
+                  geo_dl_translated 0x01, 0, 0, 0, mips_seg6_dl_06011FC0
                   geo_open_node
-                     geo_dl_translated 0x01, 0, 0, 0, mips_seg6_dl_06011ED8
+                     geo_dl_translated 0x01, 45, 0, 0, mips_seg6_dl_06011990
                      geo_open_node
-                        geo_dl_translated 0x01, 45, 0, 0, mips_seg6_dl_06011520
-                        geo_open_node
-                           geo_dl_translated 0x01, 52, 0, 0, mips_seg6_dl_06011310
-                        geo_close_node
+                        geo_dl_translated 0x01, 52, 0, 0, mips_seg6_dl_06011780
+                     geo_close_node
+                  geo_close_node
+               geo_close_node
+               geo_dl_translated 0x01, -31, 4, 40
+               geo_open_node
+                  geo_dl_translated 0x01, 0, 0, 0, mips_seg6_dl_06011ED8
+                  geo_open_node
+                     geo_dl_translated 0x01, 45, 0, 0, mips_seg6_dl_06011520
+                     geo_open_node
+                        geo_dl_translated 0x01, 52, 0, 0, mips_seg6_dl_06011310
                      geo_close_node
                   geo_close_node
                geo_close_node
@@ -222,6 +221,7 @@ glabel mips_geo # 0x0D000448
          geo_close_node
       geo_close_node
    geo_close_node
+geo_close_node #! more close than open nodes
 geo_end
 
 .word 0x0
@@ -230,16 +230,16 @@ geo_end
 
 glabel boo_castle_geo # 0x0D0005B0
    geo_shadow SHADOW_CIRCLE_UNK1, 0x96, 70
+   geo_open_node
+      geo_scale 0x00, 26214
       geo_open_node
-         geo_scale 0x00, 26214
+         geo_asm 0, Geo18_8029D924
+         geo_switch_case 2, GeoSwitchCase8029DB48
          geo_open_node
-            geo_asm 0, Geo18_8029D924
-            geo_switch_case 2, GeoSwitchCase8029DB48
-            geo_open_node
-               geo_display_list 0x01, boo_castle_seg6_dl_06017CE0
-               geo_display_list 0x05, boo_castle_seg6_dl_06017CE0
-            geo_close_node
+            geo_display_list 0x01, boo_castle_seg6_dl_06017CE0
+            geo_display_list 0x05, boo_castle_seg6_dl_06017CE0
          geo_close_node
       geo_close_node
    geo_close_node
+geo_close_node #! more close than open nodes
 geo_end

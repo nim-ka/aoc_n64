@@ -5,76 +5,76 @@
 
 glabel spindrift_geo # 0x0C000000
    geo_shadow SHADOW_CIRCLE_UNK1, 0x96, 100
+   geo_open_node
+      geo_scale 0x00, 32768
       geo_open_node
-         geo_scale 0x00, 32768
+         geo_dl_translated 0x01, 0, 0, 0
          geo_open_node
+            geo_dl_translated 0x04, 0, 0, 0, spindrift_seg5_dl_05002900
+            geo_open_node
+               geo_dl_translated 0x01, 100, 0, 0, spindrift_seg5_dl_05000328
+               geo_dl_translated 0x04, 100, 0, 0, spindrift_seg5_dl_05002A20
+               geo_dl_translated 0x04, 100, 0, 0, spindrift_seg5_dl_05002B30
+               geo_dl_translated 0x01, -88, -32, 0
+               geo_open_node
+                  geo_dl_translated 0x01, 0, 0, 0, spindrift_seg5_dl_050002A0
+                  geo_dl_translated 0x04, 0, 0, 0, spindrift_seg5_dl_05002D08
+                  geo_dl_translated 0x01, 0, 0, 0
+                  geo_dl_translated 0x01, 0, 0, 0
+                  geo_dl_translated 0x01, 0, 0, 0
+                  geo_dl_translated 0x01, 0, 0, 0
+               geo_close_node
+            geo_close_node
             geo_dl_translated 0x01, 0, 0, 0
             geo_open_node
-               geo_dl_translated 0x04, 0, 0, 0, spindrift_seg5_dl_05002900
+               geo_billboard
                geo_open_node
-                  geo_dl_translated 0x01, 100, 0, 0, spindrift_seg5_dl_05000328
-                  geo_dl_translated 0x04, 100, 0, 0, spindrift_seg5_dl_05002A20
-                  geo_dl_translated 0x04, 100, 0, 0, spindrift_seg5_dl_05002B30
-                  geo_dl_translated 0x01, -88, -32, 0
-                  geo_open_node
-                     geo_dl_translated 0x01, 0, 0, 0, spindrift_seg5_dl_050002A0
-                     geo_dl_translated 0x04, 0, 0, 0, spindrift_seg5_dl_05002D08
-                     geo_dl_translated 0x01, 0, 0, 0
-                     geo_dl_translated 0x01, 0, 0, 0
-                     geo_dl_translated 0x01, 0, 0, 0
-                     geo_dl_translated 0x01, 0, 0, 0
-                  geo_close_node
+                  geo_display_list 0x04, spindrift_seg5_dl_05002748
                geo_close_node
-               geo_dl_translated 0x01, 0, 0, 0
-               geo_open_node
-                  geo_billboard
-                  geo_open_node
-                     geo_display_list 0x04, spindrift_seg5_dl_05002748
-                  geo_close_node
-               geo_close_node
-               geo_dl_translated 0x04, 0, 0, 0, spindrift_seg5_dl_05002830
             geo_close_node
+            geo_dl_translated 0x04, 0, 0, 0, spindrift_seg5_dl_05002830
          geo_close_node
       geo_close_node
+   geo_close_node
    geo_end
 
 glabel penguin_geo # 0x0C000104
    geo_shadow SHADOW_CIRCLE_UNK1, 0x96, 100
+   geo_open_node
+      geo_scale 0x00, 16384
       geo_open_node
-         geo_scale 0x00, 16384
+         geo_dl_translated 0x01, 0, 0, 40, penguin_seg5_dl_05007540
          geo_open_node
-            geo_dl_translated 0x01, 0, 0, 40, penguin_seg5_dl_05007540
+            geo_dl_translated 0x01, -51, 84, -13
             geo_open_node
-               geo_dl_translated 0x01, -51, 84, -13
+               geo_dl_translated 0x01, 0, 0, 0, penguin_seg5_dl_05007198
+            geo_close_node
+            geo_dl_translated 0x01, 51, 84, -13
+            geo_open_node
+               geo_dl_translated 0x01, 0, 0, 0, penguin_seg5_dl_050071E8
+            geo_close_node
+            geo_dl_translated 0x01, -38, -54, -13
+            geo_open_node
+               geo_dl_translated 0x01, 0, 0, 0, penguin_seg5_dl_05007238
+            geo_close_node
+            geo_dl_translated 0x01, 38, -54, -13
+            geo_open_node
+               geo_dl_translated 0x01, 0, 0, 0, penguin_seg5_dl_050072C8
+            geo_close_node
+            geo_dl_translated 0x01, 0, 111, -19
+            geo_open_node
+               geo_switch_case 5, GeoSwitchCase802BFBAC
                geo_open_node
-                  geo_dl_translated 0x01, 0, 0, 0, penguin_seg5_dl_05007198
-               geo_close_node
-               geo_dl_translated 0x01, 51, 84, -13
-               geo_open_node
-                  geo_dl_translated 0x01, 0, 0, 0, penguin_seg5_dl_050071E8
-               geo_close_node
-               geo_dl_translated 0x01, -38, -54, -13
-               geo_open_node
-                  geo_dl_translated 0x01, 0, 0, 0, penguin_seg5_dl_05007238
-               geo_close_node
-               geo_dl_translated 0x01, 38, -54, -13
-               geo_open_node
-                  geo_dl_translated 0x01, 0, 0, 0, penguin_seg5_dl_050072C8
-               geo_close_node
-               geo_dl_translated 0x01, 0, 111, -19
-               geo_open_node
-                  geo_switch_case 5, GeoSwitchCase802BFBAC
-                  geo_open_node
-                     geo_dl_translated 0x01, 0, 0, 0, penguin_seg5_dl_05006428
-                     geo_dl_translated 0x01, 0, 0, 0, penguin_seg5_dl_05006458
-                     geo_dl_translated 0x01, 0, 0, 0, penguin_seg5_dl_05006488
-                     geo_dl_translated 0x01, 0, 0, 0, penguin_seg5_dl_050064B8
-                     geo_dl_translated 0x01, 0, 0, 0, penguin_seg5_dl_050064E8
-                  geo_close_node
+                  geo_dl_translated 0x01, 0, 0, 0, penguin_seg5_dl_05006428
+                  geo_dl_translated 0x01, 0, 0, 0, penguin_seg5_dl_05006458
+                  geo_dl_translated 0x01, 0, 0, 0, penguin_seg5_dl_05006488
+                  geo_dl_translated 0x01, 0, 0, 0, penguin_seg5_dl_050064B8
+                  geo_dl_translated 0x01, 0, 0, 0, penguin_seg5_dl_050064E8
                geo_close_node
             geo_close_node
          geo_close_node
       geo_close_node
+   geo_close_node
    geo_end
 
 glabel mr_blizzard_hidden_geo # 0x0C00021C
@@ -122,13 +122,13 @@ glabel mr_blizzard_hidden_geo # 0x0C00021C
          geo_close_node
       geo_close_node
    geo_close_node
-geo_end
+   geo_end
 
 glabel mr_blizzard_geo # 0x0C000348
    geo_shadow SHADOW_CIRCLE_UNK1, 0xB4, 160
-      geo_open_node
-         geo_branch_and_link mr_blizzard_hidden_geo
-      geo_close_node
+   geo_open_node
+      geo_branch_and_link mr_blizzard_hidden_geo
+   geo_close_node
    geo_end
 
 .word 0x0

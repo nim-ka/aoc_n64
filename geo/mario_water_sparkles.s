@@ -10,7 +10,7 @@ glabel bubble_geo # 0x17000000
    geo_close_node
    geo_end
 
-glabel purple_marble # 0x1700001C
+glabel purple_marble_geo # 0x1700001C
    geo_switch_case 1, GeoSwitchCase8029DB48
    geo_open_node
       geo_display_list 0x04, purple_marble_seg4_dl_0401DDE0
@@ -1823,17 +1823,17 @@ glabel mario_geo_002D7C # 0x17002D7C
 
 glabel mario_geo # 0x17002DD4
    geo_shadow SHADOW_CIRCLE_PLAYER, 0xB4, 100
+   geo_open_node
+      geo_scale 0x00, 16384
       geo_open_node
-         geo_scale 0x00, 16384
+         geo_asm 0, Geo18_80277D6C
+         geo_asm 0, Geo18_802770A4
+         geo_switch_case 0, GeoSwitchCase80277150
          geo_open_node
-            geo_asm 0, Geo18_80277D6C
-            geo_asm 0, Geo18_802770A4
-            geo_switch_case 0, GeoSwitchCase80277150
-            geo_open_node
-               geo_branch 1, mario_geo_002CE0
-               geo_branch 1, mario_geo_002D7C
-            geo_close_node
-            geo_asm 1, Geo18_80277D6C
+            geo_branch 1, mario_geo_002CE0
+            geo_branch 1, mario_geo_002D7C
          geo_close_node
+         geo_asm 1, Geo18_80277D6C
       geo_close_node
+   geo_close_node
    geo_end
