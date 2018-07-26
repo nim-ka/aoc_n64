@@ -62,7 +62,7 @@ BINARY_SEGMENTS := \
 
 # obtain a list of segments from the *.s and *.s.in files in bin directory
 SEGMENTS := $(notdir $(basename $(wildcard bin/*.s) $(basename $(wildcard bin/*.s.in))))
-TEXTURE_DIRS := $(addprefix bin/,$(SEGMENTS))
+TEXTURE_DIRS := $(addprefix bin/,$(SEGMENTS)) bin/intro_raw
 
 MIO0_FILES := $(addprefix $(MIO0_DIR)/,$(addsuffix .mio0,$(BINARY_SEGMENTS) $(SEGMENTS)))
 MIO0_OBJ_FILES := $(MIO0_FILES:.mio0=.mio0.o)
@@ -130,3 +130,7 @@ $(BUILD_DIR)/bin/rr_textures.elf: SEGMENT_ADDRESS := 0x09000000
 $(BUILD_DIR)/bin/ttc_textures.elf: SEGMENT_ADDRESS := 0x09000000
 $(BUILD_DIR)/bin/ttm_textures.elf: SEGMENT_ADDRESS := 0x09000000
 $(BUILD_DIR)/bin/wf_textures.elf: SEGMENT_ADDRESS := 0x09000000
+
+# intro_raw textures are not compressed
+INTRO_RAW_FILES              := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/intro_raw/*.png)))
+$(BUILD_DIR)/data/rodata_801A8050.o: $(addprefix $(BUILD_DIR)/bin/intro_raw/,$(INTRO_RAW_FILES))
