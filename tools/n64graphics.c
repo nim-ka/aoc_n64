@@ -377,7 +377,7 @@ rgba *png2rgba(const char *png_filename, int *width, int *height)
    int channels = 0;
    int img_size;
 
-   stbi_uc *data = stbi_load(png_filename, &w, &h, &channels, 4);
+   stbi_uc *data = stbi_load(png_filename, &w, &h, &channels, STBI_default);
    if (!data || w <= 0 || h <= 0) {
       ERROR("Error loading \"%s\"\n", png_filename);
       return NULL;
@@ -433,7 +433,6 @@ rgba *png2rgba(const char *png_filename, int *width, int *height)
    return img;
 }
 
-// save IA data to grayscale PNG file
 ia *png2ia(const char *png_filename, int *width, int *height)
 {
    ia *img = NULL;
@@ -441,7 +440,7 @@ ia *png2ia(const char *png_filename, int *width, int *height)
    int channels = 0;
    int img_size;
 
-   stbi_uc *data = stbi_load(png_filename, &w, &h, &channels, 2);
+   stbi_uc *data = stbi_load(png_filename, &w, &h, &channels, STBI_default);
    if (!data || w <= 0 || h <= 0) {
       ERROR("Error loading \"%s\"\n", png_filename);
       return NULL;
