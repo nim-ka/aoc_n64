@@ -624,7 +624,7 @@ glabel D_801B4CC8
    .word 0xB8000000, 0
 
 glabel D_801B4D00
-   .incbin "build/bin/intro_raw/some_dot.ia16"
+   .incbin "build/bin/intro_raw/mario_face_shine.ia8"
 
 glabel D_801B5100
    .word 0xB7000000, 0x00040000
