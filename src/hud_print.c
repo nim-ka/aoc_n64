@@ -16,25 +16,45 @@
  * This file seems to draw the in-game HUD
 **/
 
-//TODO: match unkXX nomenclature
-struct HUD803314E0 {
-    s8  d_E0;
-    s16 d_E2;
-    s16 d_E4;
+enum PowerMeterAnimation {
+    POWER_METER_HIDDEN,
+    POWER_METER_EMPHASIZED,
+    POWER_METER_DEEMPHASIZING,
+    POWER_METER_HIDING,
+    POWER_METER_VISIBLE
+};
+
+struct PowerMeterHUD {
+    s8  animation;
+    s16 x;
+    s16 y;
     f32 u_E8;
     s32 d_EC;
+};
+
+struct UnknownStruct803314F0 {
     u32 u_F0;
     u16 u_F4;
     u16 u_F6;
+};
+
+struct CameraHUD {
     s16 d_F8;
 };
 
 // some sort of store for shown health wedges (0-8); maybe from previous frame/update?
 static s16 D_803600D0;
 
-static struct HUD803314E0 hudStruct = {
-    0x00, 140, 166, 1.0, 0x00000000,
-    0x00000000, 0x000A, 0x0000, 0x0000
+static struct PowerMeterHUD sPowerMeterHUD = {
+    POWER_METER_HIDDEN, 140, 166, 1.0, 0x00000000,
+};
+
+static struct UnknownStruct803314F0 D_803314F0 = {
+    0x00000000, 0x000A, 0x0000
+};
+
+static struct CameraHUD sCameraHUD = {
+    0x0000
 };
 
 void render_hud_camera(s32 x, s32 y, u8 texture[])
@@ -81,7 +101,7 @@ void func_802E2304(s16 numHealthWedges)
     if (sp2C == NULL)
         return;
 
-    guTranslate(sp2C, (f32) hudStruct.d_E2, (f32) hudStruct.d_E4, 0);
+    guTranslate(sp2C, (f32) sPowerMeterHUD.x, (f32) sPowerMeterHUD.y, 0);
 
     gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(sp2C++), (G_MTX_MODELVIEW|G_MTX_MUL|G_MTX_PUSH));
     gSPDisplayList(gDisplayListHead++, &D_03029480);
@@ -97,65 +117,65 @@ void func_802E2304(s16 numHealthWedges)
 }
 
 
-void func_802E24A8(void)
+static void animate_power_meter_emphasized(void)
 {
     s16 hudDisplayFlags;
     hudDisplayFlags = gHudDisplayFlags;
 
     if (!(hudDisplayFlags & HUD_DISPLAY_FLAG_EMPHASIZE_POWER))
     {
-        if ( (f64) hudStruct.d_EC == 45.0 )
-            hudStruct.d_E0 = 2;
+        if ( (f64) sPowerMeterHUD.d_EC == 45.0 )
+            sPowerMeterHUD.animation = POWER_METER_DEEMPHASIZING;
     } else {
-        hudStruct.d_EC = 0;
+        sPowerMeterHUD.d_EC = 0;
     }
 }
 
-void func_802E2520(void)
+static void animate_power_meter_deemphasizing(void)
 {
-    s16 sp6 = 5;
+    s16 speed = 5;
     
-    if (hudStruct.d_E4 >= 0xB5)
-        sp6 = 3;
+    if (sPowerMeterHUD.y >= 181)
+        speed = 3;
     
-    if (hudStruct.d_E4 >= 0xBF)
-        sp6 = 2;
+    if (sPowerMeterHUD.y >= 191)
+        speed = 2;
     
-    if (hudStruct.d_E4 >= 0xC4)
-        sp6 = 1;
+    if (sPowerMeterHUD.y >= 196)
+        speed = 1;
     
-    hudStruct.d_E4 += sp6;
+    sPowerMeterHUD.y += speed;
 
-    if (hudStruct.d_E4 >= 0xC9)
+    if (sPowerMeterHUD.y >= 201)
     {
-        hudStruct.d_E4 = 0xC8;
-        hudStruct.d_E0 = 4;
+        sPowerMeterHUD.y = 200;
+        sPowerMeterHUD.animation = POWER_METER_VISIBLE;
     }
 }
 
-void func_802E25D4(void)
+static void animate_power_meter_hiding(void)
 {
-    hudStruct.d_E4 += 0x14;
-    if (hudStruct.d_E4 >= 0x12D)
+    sPowerMeterHUD.y += 20;
+    if (sPowerMeterHUD.y >= 301)
     {
-        hudStruct.d_E0 = 0;
-        hudStruct.d_EC = 0;
+        sPowerMeterHUD.animation = POWER_METER_HIDDEN;
+        sPowerMeterHUD.d_EC = 0;
     }
 }
 
 void func_802E261C(s16 numHealthWedges)
 {
-    if (numHealthWedges < 8 && D_803600D0 == 8 && hudStruct.d_E0 == 0)
+    if (numHealthWedges < 8 && D_803600D0 == 8 && sPowerMeterHUD.animation == POWER_METER_HIDDEN)
     {
-        hudStruct.d_E0 = 1;
-        hudStruct.d_E4 = 0xA6;
+        sPowerMeterHUD.animation = POWER_METER_EMPHASIZED;
+        sPowerMeterHUD.y = 166;
     }
 
     if (numHealthWedges == 8 && D_803600D0 == 7)
-        hudStruct.d_EC = 0;
+        sPowerMeterHUD.d_EC = 0;
     
-    if (numHealthWedges == 8 && (f64) hudStruct.d_EC > 45.0)
-        hudStruct.d_E0 = 3;
+    if (numHealthWedges == 8 && (f64) sPowerMeterHUD.d_EC > 45.0)
+        sPowerMeterHUD.animation = POWER_METER_HIDING;
     
     D_803600D0 = numHealthWedges;
 
@@ -163,12 +183,12 @@ void func_802E261C(s16 numHealthWedges)
     //if (D_8033B1B0.unk0 & 0x2000)
     if (*(s32 *)&D_8033B1B0 & 0x2000)
     {
-        if (hudStruct.d_E0 == 0 || hudStruct.d_E0 == 1)
+        if (sPowerMeterHUD.animation == POWER_METER_HIDDEN || sPowerMeterHUD.animation == POWER_METER_EMPHASIZED)
         {
-            hudStruct.d_E0 = 2;
-            hudStruct.d_E4 = 0xA6;
+            sPowerMeterHUD.animation = POWER_METER_DEEMPHASIZING;
+            sPowerMeterHUD.y = 166;
         }
-        hudStruct.d_EC = 0;
+        sPowerMeterHUD.d_EC = 0;
     }
 }
 
@@ -176,22 +196,22 @@ void render_hud_hp(void)
 {
     s16 shownHealthWedges = gDisplayedHealthWedges;
 
-    if (hudStruct.d_E0 != 3)
+    if (sPowerMeterHUD.animation != POWER_METER_HIDING)
         func_802E261C(shownHealthWedges);
     
-    if (hudStruct.d_E0 == 0)
+    if (sPowerMeterHUD.animation == POWER_METER_HIDDEN)
         return;
 
-    switch (hudStruct.d_E0)
+    switch (sPowerMeterHUD.animation)
     {
-        case 1:
-            func_802E24A8();
+        case POWER_METER_EMPHASIZED:
+            animate_power_meter_emphasized();
             break;
-        case 2:
-            func_802E2520();
+        case POWER_METER_DEEMPHASIZING:
+            animate_power_meter_deemphasizing();
             break;
-        case 3:
-            func_802E25D4();
+        case POWER_METER_HIDING:
+            animate_power_meter_hiding();
             break;
         default:
             break;
@@ -199,7 +219,7 @@ void render_hud_hp(void)
 
     func_802E2304(shownHealthWedges);
 
-    hudStruct.d_EC += 1;
+    sPowerMeterHUD.d_EC += 1;
 }
 
 void render_hud_mario_lives(void)
@@ -266,7 +286,7 @@ void render_hud_timer(void)
 
 void set_camera_status(s16 a0)
 {
-    hudStruct.d_F8 = a0;
+    sCameraHUD.d_F8 = a0;
 }
 
 void show_camera_status(void)
@@ -279,13 +299,13 @@ void show_camera_status(void)
     x = 266;
     y = 205;
 
-    if (hudStruct.d_F8 == 0)
+    if (sCameraHUD.d_F8 == 0)
         return;
     
     gSPDisplayList(gDisplayListHead++, seg2_f3d_00EC60);
     render_hud_camera(x, y, (*cameraLUT)[0]);
 
-    switch (hudStruct.d_F8 & 0x07)
+    switch (sCameraHUD.d_F8 & 0x07)
     {
         case 1 << 0:    // 1
             render_hud_camera(x + 16, y, (*cameraLUT)[1]);
@@ -298,7 +318,7 @@ void show_camera_status(void)
             break;
     }
 
-    switch (hudStruct.d_F8 & 0x18)
+    switch (sCameraHUD.d_F8 & 0x18)
     {
         case 1 << 3:    // 8
             render_hud_c_buttons(x + 4, y + 16, (*cameraLUT)[5]);
@@ -319,9 +339,9 @@ void render_hud(void)
 
     if (hudDisplayFlags == HUD_DISPLAY_NONE)
     {
-        hudStruct.d_E0 = 0;
+        sPowerMeterHUD.animation = POWER_METER_HIDDEN;
         D_803600D0 = 8;
-        hudStruct.d_EC = 0;
+        sPowerMeterHUD.d_EC = 0;
     } else {
         func_802D68A4();
 
