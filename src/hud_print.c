@@ -102,7 +102,7 @@ void func_802E24A8(void)
     s16 hudDisplayFlags;
     hudDisplayFlags = gHudDisplayFlags;
 
-    if (!(hudDisplayFlags & 0x8000))    //0x8000 = gMarioState->hurtCounter > 0 flag
+    if (!(hudDisplayFlags & HUD_DISPLAY_FLAG_EMPHASIZE_POWER))
     {
         if ( (f64) hudStruct.d_EC == 45.0 )
             hudStruct.d_E0 = 2;
@@ -317,7 +317,7 @@ void render_hud(void)
 
     hudDisplayFlags = gHudDisplayFlags;
 
-    if (hudDisplayFlags == 0)
+    if (hudDisplayFlags == HUD_DISPLAY_NONE)
     {
         hudStruct.d_E0 = 0;
         D_803600D0 = 8;
@@ -328,25 +328,25 @@ void render_hud(void)
         if (gCurrentArea != NULL && gCurrentArea->unk24->unk0 == 10)
             RenderHudCannonReticle();
         
-        if (hudDisplayFlags & (1 << 0))    // 0x01
+        if (hudDisplayFlags & HUD_DISPLAY_FLAG_LIVES)
             render_hud_mario_lives();
         
-        if (hudDisplayFlags & (1 << 1))    // 0x02
+        if (hudDisplayFlags & HUD_DISPLAY_FLAG_COIN_COUNT)
             render_hud_coins();
         
-        if (hudDisplayFlags & (1 << 2))    // 0x04
+        if (hudDisplayFlags & HUD_DISPLAY_FLAG_STAR_COUNT)
             render_hud_stars();
         
-        if (hudDisplayFlags & (1 << 4))    // 0x10
+        if (hudDisplayFlags & HUD_DISPLAY_FLAG_UNKNOWN_0010)
             func_802E29D4();
         
-        if (hudDisplayFlags & (1 << 3))    // 0x08
+        if (hudDisplayFlags & HUD_DISPLAY_FLAG_CAMERA_AND_POWER)
         {
             render_hud_hp();
             show_camera_status();
         }
 
-        if (hudDisplayFlags & (1 << 6))    // 0x40
+        if (hudDisplayFlags & HUD_DISPLAY_FLAG_TIMER)
             render_hud_timer();
     }
 }

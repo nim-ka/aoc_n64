@@ -1868,7 +1868,7 @@ static void check_lava_boost(struct MarioState *m)
 
 static void pss_begin_slide(UNUSED struct MarioState *m)
 {
-    if (!(gHudDisplayFlags & 0x0040))
+    if (!(gHudDisplayFlags & HUD_DISPLAY_FLAG_TIMER))
     {
         level_control_timer(TIMER_CONTROL_SHOW);
         level_control_timer(TIMER_CONTROL_START);

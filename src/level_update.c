@@ -134,7 +134,7 @@ u16 level_control_timer(u32 timerOp)
     switch (timerOp)
     {
     case TIMER_CONTROL_SHOW:
-        gHudDisplayFlags |= 0x0040;
+        gHudDisplayFlags |= HUD_DISPLAY_FLAG_TIMER;
         sTimerRunning = FALSE;
         gTimerValueInFrames = 0;
         break;
@@ -148,7 +148,7 @@ u16 level_control_timer(u32 timerOp)
         break;
 
     case TIMER_CONTROL_HIDE:
-        gHudDisplayFlags &= ~0x0040;
+        gHudDisplayFlags &= ~HUD_DISPLAY_FLAG_TIMER;
         sTimerRunning = FALSE;
         gTimerValueInFrames = 0;
         break;
@@ -863,9 +863,9 @@ static void update_hud_values(void)
         s16 numHealthWedges = gMarioState->health > 0 ? gMarioState->health >> 8 : 0;
 
         if (gCurrCourseNum > 0)
-            gHudDisplayFlags |= 0x0002;
+            gHudDisplayFlags |= HUD_DISPLAY_FLAG_COIN_COUNT;
         else
-            gHudDisplayFlags &= ~0x0002;
+            gHudDisplayFlags &= ~HUD_DISPLAY_FLAG_COIN_COUNT;
 
         if (gDisplayedCoins < gMarioState->numCoins)
         {
@@ -905,9 +905,9 @@ static void update_hud_values(void)
         gDisplayedHealthWedges = numHealthWedges;
 
         if (gMarioState->hurtCounter > 0)
-            gHudDisplayFlags |= 0x8000;
+            gHudDisplayFlags |= HUD_DISPLAY_FLAG_EMPHASIZE_POWER;
         else
-            gHudDisplayFlags &= ~0x8000;
+            gHudDisplayFlags &= ~HUD_DISPLAY_FLAG_EMPHASIZE_POWER;
     }
 }
 
@@ -1087,7 +1087,7 @@ static s32 play_mode_change_level(void)
     //! If sTransitionTimer is -1, this will miss.
     if (--sTransitionTimer == -1)
     {
-        gHudDisplayFlags = 0;
+        gHudDisplayFlags = HUD_DISPLAY_NONE;
         sTransitionTimer = 0;
         sTransitionUpdate = NULL;
 
@@ -1108,7 +1108,7 @@ static s32 play_mode_unused(void)
 {
     if (--sTransitionTimer == -1)
     {
-        gHudDisplayFlags = 0;
+        gHudDisplayFlags = HUD_DISPLAY_NONE;
 
         if (sCurrWarpType != WARP_TYPE_NOT_WARPING)
             return sDestLevelNum;
@@ -1152,9 +1152,9 @@ static s32 init_level(void)
     D_80339EE0 = 0;
 
     if (gCurrCreditsEntry == NULL)
-        gHudDisplayFlags = 0x003F;
+        gHudDisplayFlags = HUD_DISPLAY_DEFAULT;
     else
-        gHudDisplayFlags = 0;
+        gHudDisplayFlags = HUD_DISPLAY_NONE;
 
     sTimerRunning = 0;
 

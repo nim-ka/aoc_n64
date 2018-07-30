@@ -4853,7 +4853,7 @@ glabel func_8025AEA4
 /* 015EA8 8025AEA8 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 015EAC 8025AEAC AFA40018 */  sw    $a0, 0x18($sp)
 /* 015EB0 8025AEB0 3C018034 */  lui   $at, %hi(gHudDisplayFlags) # $at, 0x8034
-/* 015EB4 8025AEB4 A4209EFA */  sh    $zero, %lo(gHudDisplayFlags)($at)
+/* 015EB4 8025AEB4 A4209EFA */  sh    $zero, %lo(gHudDisplayFlags)($at) # HUD_DISPLAY_NONE
 /* 015EB8 8025AEB8 8FAF0018 */  lw    $t7, 0x18($sp)
 /* 015EBC 8025AEBC 240E0009 */  li    $t6, 9
 /* 015EC0 8025AEC0 8DF80094 */  lw    $t8, 0x94($t7)
@@ -4987,7 +4987,7 @@ glabel func_8025B074
 /* 016304 8025B304 95CF001A */  lhu   $t7, 0x1a($t6)
 /* 016308 8025B308 15E10004 */  bne   $t7, $at, .L8025B31C
 /* 01630C 8025B30C 00000000 */   nop   
-/* 016310 8025B310 2418003F */  li    $t8, 63
+/* 016310 8025B310 2418003F */  li    $t8, 63 # HUD_DISPLAY_DEFAULT
 /* 016314 8025B314 3C018034 */  lui   $at, %hi(gHudDisplayFlags) # $at, 0x8034
 /* 016318 8025B318 A438B26A */  sh    $t8, %lo(gHudDisplayFlags)($at)
 .L8025B31C:
@@ -5062,7 +5062,7 @@ glabel func_8025B074
 /* 01608C 8025B08C 95CF001A */  lhu   $t7, 0x1a($t6)
 /* 016090 8025B090 15E10004 */  bne   $t7, $at, .L8025B0A4
 /* 016094 8025B094 00000000 */   nop   
-/* 016098 8025B098 2418003F */  li    $t8, 63
+/* 016098 8025B098 2418003F */  li    $t8, 63 # HUD_DISPLAY_DEFAULT
 /* 01609C 8025B09C 3C018034 */  lui   $at, %hi(gHudDisplayFlags) # $at, 0x8034
 /* 0160A0 8025B0A0 A4389EFA */  sh    $t8, %lo(gHudDisplayFlags)($at)
 .L8025B0A4:
