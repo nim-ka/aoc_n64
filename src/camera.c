@@ -2994,7 +2994,7 @@ int ChangeCameraStatus(struct Struct80280550 *a)
 {
     s16 sp1E = 0;
 
-    if (a->unk30 != 0 || ((gPlayer1Controller->buttonDown & 0x10) && func_8028803C(0) == 2))
+    if (a->unk30 != 0 || ((gPlayer1Controller->buttonDown & R_TRIG) && func_8028803C(0) == 2))
         sp1E |= 4;
     else if (func_80288130(0) == 1)
         sp1E |= 1;
