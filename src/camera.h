@@ -16,11 +16,6 @@ struct Struct8033B470
 
 struct Struct8033B418_sub
 {
-    /*
-    float unk0;
-    float unk4;
-    float unk8;
-    */
     Vec3f unk0;
     Vec3f unkC;
     float unk18;
@@ -64,7 +59,7 @@ extern s16 D_8033B280;
 extern s16 D_8033B298;
 extern s16 D_8033B318;
 extern s16 D_8033B43E;
-extern u16 D_8033B3EC;
+extern s16 D_8033B3EC;
 extern u32 D_8033B46C;
 extern struct Struct8033B470 *D_8033B470;
 extern Vec3f D_8033B478;
@@ -438,7 +433,7 @@ extern void func_8028AA80(s16, s16, s16, float, float, float, float);
 // extern ? func_8028AC30(?);
 // extern ? func_8028AD44(?);
 // extern ? func_8028AE50(?);
-extern int func_8028AF24();
+extern int func_8028AF24(struct Struct80280550 *a, s16 b);
 // extern ? func_8028B13C(?);
 // extern ? func_8028B16C(?);
 extern void func_8028B19C(void);
@@ -450,7 +445,7 @@ extern void func_8028B2D0(void);
 // extern ? func_8028B304(?);
 // extern ? func_8028B338(?);
 // extern ? func_8028B36C(?);
-extern int func_8028B3DC(void *, float);
+extern int func_8028B3DC(struct Struct80280550 *a, float b);
 // extern ? StopMario(?);
 extern void func_8028B7A4(struct Struct80280550 *);
 // extern ? func_8028BA38(?);
@@ -547,7 +542,7 @@ extern void func_8028F04C(Vec3f, Vec3f);
 extern int func_8028F2F0();
 // extern ? func_8028F678(?);
 // extern ? func_8028F800(?);
-// extern ? func_8028F834(?);
+extern void func_8028F834(int);
 // extern ? Unknown8028F860(?);
 extern s16 func_8028F8E0(s32 arg0, struct Object* obj, s16 arg2);
 // extern ? func_8028F9A4(?);

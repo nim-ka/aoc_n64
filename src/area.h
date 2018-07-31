@@ -132,7 +132,7 @@ struct Struct80280550
     u8 filler31[0x9];
     s16 unk3A;
     u8 filler3C[0x64-0x3C];
-    s8 unk64;
+    u8 unk64;
     u8 filler65[3];
     float unk68;
 };

@@ -2,48 +2,6 @@
 
 .section .rodata
 
-glabel D_80336180
-	.incbin "bin/rodata.bin", 0x1710, 0x4
-
-glabel D_80336184
-	.incbin "bin/rodata.bin", 0x1714, 0x4
-
-glabel D_80336188
-	.incbin "bin/rodata.bin", 0x1718, 0x4
-
-glabel D_8033618C
-	.incbin "bin/rodata.bin", 0x171C, 0x4
-
-glabel D_80336190
-	.incbin "bin/rodata.bin", 0x1720, 0x4
-
-glabel D_80336194
-	.incbin "bin/rodata.bin", 0x1724, 0x4
-
-glabel D_80336198
-	.incbin "bin/rodata.bin", 0x1728, 0x4
-
-glabel jtbl_8033619C
-	.word L8028C078
-	.word L8028C098
-	.word L8028C0A8
-	.word L8028C088
-	.word L8028C068
-	.word L8028C058
-
-glabel jtbl_803361B4
-	.word L8028C124
-	.word L8028C134
-	.word L8028C144
-	.word L8028C154
-	.word L8028C164
-
-glabel D_803361C8
-	.incbin "bin/rodata.bin", 0x1758, 0x4
-
-glabel D_803361CC
-	.incbin "bin/rodata.bin", 0x175C, 0x4
-
 glabel D_803361D0
 	.incbin "bin/rodata.bin", 0x1760, 0x4
 
@@ -450,6 +408,7 @@ glabel jtbl_803365E0
 	.word L8029BDD4
 
 	.word 0, 0, 0
+
 
 
 

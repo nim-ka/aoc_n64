@@ -18,10 +18,12 @@ struct Struct8033B328
     Vec3f unk60;
     Vec3s unk6C;
     u8 filler72[8];
-    u8 unk7A[0x80-0x7A];  // unknown type
+    s16 unk7A;
+    u8 filler7C[4];
+    //u8 unk7A[0x80-0x7A];  // unknown type
     Vec3f unk80;
     Vec3f unk8C;
-    u8 filler98[0x9A-0x98];
+    s16 unk98;
     s16 unk9A;
     s16 unk9C;
     s16 unk9E;

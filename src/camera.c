@@ -1,6 +1,7 @@
 #include <ultra64.h>
 
 #include "sm64.h"
+#include "audio_interface_2.h"
 #include "castle_message_behaviors.h"
 #include "game.h"
 #include "hud_print.h"
@@ -13,9 +14,17 @@
 #include "mario_actions_cutscene.h"
 #include "camera.h"
 
+#define CBUTTON_MASK (U_CBUTTONS | D_CBUTTONS | L_CBUTTONS | R_CBUTTONS)
+
 struct Struct8033B250
 {
-    u8 filler0[0x14];
+    s16 unk0;
+    s16 unk2;
+    float unk4;
+    s16 unk8;
+    s16 unkA;
+    float unkC;
+    s32 unk10;
     Vec3f unk14;
 };
 
@@ -61,7 +70,7 @@ extern float D_8033B234;
 extern float D_8033B238;
 extern float D_8033B240;
 extern s16 D_8033B244;
-extern s8 D_8032CFF0;
+extern u8 D_8032CFF0;
 extern u32 D_8033B30C;
 extern u32 D_8033B310;
 extern s16 D_8033B224;
@@ -1963,7 +1972,7 @@ int func_80285770(struct Struct80280550 *a)
         }
     }
     D_8033B40C = 0.0f;
-    if (gPlayer1Controller->buttonPressed & 0xC007)
+    if (gPlayer1Controller->buttonPressed & (A_BUTTON | B_BUTTON | D_CBUTTONS | L_CBUTTONS | R_CBUTTONS))
         func_80284DC0(a);
     return 0;
 }
@@ -1984,7 +1993,7 @@ void func_802859B0(struct Struct80280550 *a)
     D_8033B3F0 = 0;
     D_8033B4D8 &= ~0x100;
     a->unk3A = CameraChange0A(a, a->unk4, a->unk10);
-    if (gPlayer1Controller->buttonPressed & 0x8000)
+    if (gPlayer1Controller->buttonPressed & A_BUTTON)
     {
         func_80285BD8(a, 3, 1);
         D_8033B40C = 0;
@@ -2073,13 +2082,13 @@ void func_80285BD8(struct Struct80280550 *a, s16 b, s16 c)
     }
 }
 
-extern int func_8028C824();
+int func_8028C824(Vec3f a, Vec3f b, Vec3f c, Vec3f d, Vec3f e, Vec3f f, s16 g);
 extern int func_80288C2C(Vec3f a, Vec3f b, s16 c, s16 d);
 extern void func_8028909C(Vec3f, Vec3f, float, float, float);
 extern int func_80288D74(float *, float, float);
 extern void func_8028AC30();
 extern void func_8028AD44();
-extern void func_8028AE50();
+extern void func_8028AE50(s16 *);
 extern void func_802883C8();
 int func_80289354(s16 *a, s16 b, s16 c);
 
@@ -2142,7 +2151,7 @@ void func_80285E70(struct Struct80280550 *a)
         D_8033B3A2 = 0;
         func_8028AC30(D_8033B328.unk8C, D_8033B328.unk80);
         func_8028AD44(D_8033B328.unk8C, D_8033B328.unk80);
-        func_8028AE50(D_8033B328.unk7A);
+        func_8028AE50(&D_8033B328.unk7A);
         func_802883C8(D_8033B328.unk8C, D_8033B328.unk80);
         if (D_8032D000->unk0 == 0x0188088A && D_8033B3E0 != 0x0188088A)
             func_8027EFE0(8);
@@ -2183,7 +2192,7 @@ extern void func_80298DCC(struct Struct80280550 *);
 extern void func_802877EC(struct Struct80280550 *);
 extern void func_8028B304(void);
 extern void func_8028B338(void);
-extern void func_8028BB3C();
+void func_8028BB3C(struct Struct80280550 *a, u8 b);
 extern int func_802886FC(u16, u16, u16);
 extern int func_80288CF0(float, float, float);
 extern void func_8028D288();
@@ -2198,7 +2207,7 @@ void func_80286348(struct Struct80280550 *a)
     {
         if (func_8028803C(0) == 1)
         {
-            if (gPlayer1Controller->buttonPressed & 0x10)
+            if (gPlayer1Controller->buttonPressed & R_TRIG)
             {
                 if (func_80288130(0) == 2)
                     func_80288130(1);
@@ -2328,10 +2337,10 @@ void func_80286348(struct Struct80280550 *a)
     D_8035FE10 = 0;
     if (gCurrLevelNum != 6)
     {
-        if ((a->unk30 == 0 && (gPlayer1Controller->buttonDown & 0x10) && func_8028803C(0) == 2)
+        if ((a->unk30 == 0 && (gPlayer1Controller->buttonDown & R_TRIG) && func_8028803C(0) == 2)
          || (D_8033B4D8 & 0x40) || (D_8032D000->unk0) == 0x010208B8)
         {
-            if (a->unk30 == 0 && (gPlayer1Controller->buttonPressed & 0x10) && func_8028803C(0) == 2)
+            if (a->unk30 == 0 && (gPlayer1Controller->buttonPressed & R_TRIG) && func_8028803C(0) == 2)
             {
                 D_8033B31C |= 0x20;
                 func_8028B338();
@@ -2353,7 +2362,7 @@ void func_80286348(struct Struct80280550 *a)
     }
     else
     {
-        if ((gPlayer1Controller->buttonPressed & 0x10) && func_8028803C(0) == 2)
+        if ((gPlayer1Controller->buttonPressed & R_TRIG) && func_8028803C(0) == 2)
             func_8028B304();
     }
     func_80285E70(a);
@@ -2855,12 +2864,6 @@ int func_80288130(int a)
     return sp4;
 }
 
-extern float D_80336180;
-extern float D_80336184;
-extern float D_80336188;
-extern float D_8033618C;
-extern float D_80336190;
-
 void func_802882A0(u8 a)
 {
     switch (a)
@@ -2871,23 +2874,23 @@ void func_802882A0(u8 a)
         break;
     case 6:
         D_8033B2F8 = 768;
-        D_8033B300 = D_80336180;
+        D_8033B300 = 0.06f;
         break;
     case 4:
         D_8033B2F8 = 4096;
-        D_8033B300 = D_80336184;
+        D_8033B300 = 0.1f;
         break;
     case 2:
         D_8033B2F8 = 1536;
-        D_8033B300 = D_80336188;
+        D_8033B300 = 0.07f;
         break;
     case 3:
         D_8033B2F8 = 1536;
-        D_8033B300 = D_8033618C;
+        D_8033B300 = 0.07f;
         break;
     case 5:
         D_8033B2F8 = 1024;
-        D_8033B300 = D_80336190;
+        D_8033B300 = 0.07f;
         break;
     default:
         D_8033B2F8 = 0;
@@ -2898,9 +2901,6 @@ void func_802882A0(u8 a)
 extern s16 D_8033B2C0[][8];
 
 void func_80289618(Vec3s a, s16 b, s16 c, s16 d);
-
-extern float D_80336194;
-extern float D_80336198;
 
 void func_802883C8(Vec3f a, Vec3f b)
 {
@@ -2932,8 +2932,8 @@ void func_802883C8(Vec3f a, Vec3f b)
             func_80289618(D_8033B2B8[3].unk8, D_8033B2F8, D_8033B2F8, D_8033B2F8 / 2);
             D_8033B2FC -= 1.0f;
             D_8033B300 = RandomFloat() * 0.5f;
-            if (D_8033B300 < D_80336194)
-                D_8033B300 = D_80336198;
+            if (D_8033B300 < 0.02f)
+                D_8033B300 = 0.02f;
         }
     }
     func_80288ECC(&D_8033B304, sp60[0], 8);
@@ -2950,41 +2950,41 @@ void func_802883C8(Vec3f a, Vec3f b)
     D_8033B300 = 0.0f;
 }
 
-int func_802886FC(u16 a, u16 b, u16 c)
+int func_802886FC(u16 a, u16 buttonsPressed, u16 buttonsDown)
 {
-    b &= 0xF;
-    c &= 0xF;
+    buttonsPressed &= CBUTTON_MASK;
+    buttonsDown &= CBUTTON_MASK;
 
-    if (b & 2)
+    if (buttonsPressed & L_CBUTTONS)
     {
         a |= 2;
         a &= ~1;
     }
-    if (!(c & 2))
+    if (!(buttonsDown & L_CBUTTONS))
         a &= ~2;
 
-    if (b & 1)
+    if (buttonsPressed & R_CBUTTONS)
     {
         a |= 1;
         a &= ~2;
     }
-    if (!(c & 1))
+    if (!(buttonsDown & R_CBUTTONS))
         a &= ~1;
 
-    if (b & 8)
+    if (buttonsPressed & U_CBUTTONS)
     {
         a |= 8;
         a &= ~4;
     }
-    if (!(c & 8))
+    if (!(buttonsDown & U_CBUTTONS))
         a &= ~8;
 
-    if (b & 4)
+    if (buttonsPressed & D_CBUTTONS)
     {
         a |= 4;
         a &= ~8;
     }
-    if (!(c & 4))
+    if (!(buttonsDown & D_CBUTTONS))
         a &= ~4;
 
     return a;
@@ -3696,6 +3696,792 @@ void func_8028AD44(Vec3f a, Vec3f b)
         if (func_80289184(&D_8033B328.unk52[1], 0, D_8033B328.unkA2) == 0)
             D_8033B328.unk9E = 0;
     }
+}
+
+void func_8028AE50(s16 *a)
+{
+    UNUSED u8 unused[8];
+
+    if (D_8033B328.unk52[2] != 0)
+    {
+        func_8028ABE8(&D_8033B328.unk98, D_8033B328.unk9A);
+        *a += D_8033B328.unk52[2] * sins(D_8033B328.unk98);
+        if (func_80289184(&D_8033B328.unk52[2], 0, D_8033B328.unk9C) == 0)
+            D_8033B328.unk98 = 0;
+    }
+}
+
+int func_8028AF24(struct Struct80280550 *a, s16 b)
+{
+    s16 sp3E = 10922;
+    s16 sp3C = D_8033B402;
+    float sp38;
+    Vec3f sp2C;
+    s16 sp2A;
+
+    switch (D_8032CFD8)
+    {
+    case 225:
+        sp2C[0] = a->unk28;
+        sp2C[1] = D_8032D000->unk4[1];
+        sp2C[2] = a->unk2C;
+        sp38 = func_8028A640(sp2C, D_8032D000->unk4);
+        if (800.0f > sp38)
+            sp3E = 14336;
+        break;
+    case 130:
+        sp3E = (b & 0xC000) - b + 0x2000;
+        if (sp3E < 0)
+            sp3E = -sp3E;
+        sp3E = sp3E / 32 * 48;
+        break;
+    case 353:
+        sp3E = 0;
+        break;
+    }
+    sp2A = gMarioStates[0].forwardVel / 32.0f * 128.0f;
+    if (D_8033B3EC < 0)
+        func_80289184(&sp3C, -sp3E, sp2A);
+    if (D_8033B3EC > 0)
+        func_80289184(&sp3C, sp3E, sp2A);
+    if (sp3C < -0x2AAA)
+        func_80289184(&sp3C, -sp3E, 512);
+    if (sp3C > 0x2AAA)
+        func_80289184(&sp3C, sp3E, 512);
+    return sp3C;
+}
+
+void func_8028B13C(void)
+{
+    func_80320AE8(0, 1053, 0);
+}
+
+void func_8028B16C(void)
+{
+    func_80320AE8(0, 3870, 0);
+}
+
+void func_8028B19C(void)
+{
+    if (gPlayer1Controller->buttonPressed & D_CBUTTONS)
+        func_8028B304();
+}
+
+void func_8028B1DC(void)
+{
+    if (gPlayer1Controller->buttonPressed & CBUTTON_MASK)
+        func_8028B304();
+}
+
+void func_8028B21C(void)
+{
+    if ((gPlayer1Controller->buttonPressed & L_CBUTTONS) || (gPlayer1Controller->buttonPressed & R_CBUTTONS))
+        func_8028B304();
+}
+
+void func_8028B268(void)
+{
+    SetSound(0x70060081, D_803320E0);
+}
+
+void func_8028B29C(void)
+{
+    SetSound(0x70070081, D_803320E0);
+}
+
+void func_8028B2D0(void)
+{
+    SetSound(0x700F0081, D_803320E0);
+}
+
+void func_8028B304(void)
+{
+    SetSound(0x700E0081, D_803320E0);
+}
+
+void func_8028B338(void)
+{
+    SetSound(0x701A8081, D_803320E0);
+}
+
+void func_8028B36C(void)
+{
+    if (D_8033B31C & 2)
+        func_8028B338();
+    if (D_8033B31C & 4)
+        func_8028B338();
+    D_8033B31C &= ~6;
+}
+
+int func_8028B3DC(struct Struct80280550 *a, UNUSED float b)
+{
+    s16 sp1E;
+
+    if ((D_8033B4D8 & 0x10) || !(D_8033B4D8 & 0xD))
+    {
+        if (gPlayer1Controller->buttonPressed & (L_CBUTTONS | R_CBUTTONS))
+            D_8033B4D8 &= ~0x10;
+        if (gPlayer1Controller->buttonPressed & R_CBUTTONS)
+        {
+            if (D_8033B402 > -0x800)
+            {
+                if (!(D_8033B4D8 & 4))
+                    D_8033B4D8 |= 4;
+                if (a->unk0 == 1)
+                {
+                    if (D_8033B402 > 0x22AA)
+                        D_8033B318 |= 4;
+                    if (D_8033B402 == 19114)
+                        func_8028B304();
+                    else
+                        func_8028B2D0();
+                }
+                else
+                {
+                    if (D_8033B402 == 10922)
+                        func_8028B304();
+                    else
+                        func_8028B2D0();
+                }
+            }
+            else
+            {
+                D_8033B4D8 |= 1;
+                func_8028B268();
+            }
+        }
+        if (gPlayer1Controller->buttonPressed & L_CBUTTONS)
+        {
+            if (D_8033B402 < 0x800)
+            {
+                if (!(D_8033B4D8 & 8))
+                    D_8033B4D8 |= 8;
+                if (a->unk0 == 1)
+                {
+                    if (D_8033B402 < -0x22AA)
+                        D_8033B318 |= 8;
+                    if (D_8033B402 == -19114)
+                        func_8028B304();
+                    else
+                        func_8028B2D0();
+                }
+                else
+                {
+                    if (D_8033B402 == -10922)
+                        func_8028B304();
+                    else
+                        func_8028B2D0();
+                }
+            }
+            else
+            {
+                D_8033B4D8 |= 1;
+                func_8028B268();
+            }
+        }
+    }
+    if (gPlayer1Controller->buttonPressed & U_CBUTTONS)
+    {
+        if (D_8033B4D8 & 2)
+        {
+            D_8033B4D8 &= ~2;
+            func_8028B268();
+        }
+        else
+        {
+            func_80284D44(a);
+        }
+    }
+    if (gPlayer1Controller->buttonPressed & D_CBUTTONS)
+    {
+        if (D_8033B4D8 & 2)
+        {
+            D_8033B4D8 |= 0x1000;
+        }
+        else
+        {
+            D_8033B4D8 |= 2;
+            func_8028B29C();
+        }
+    }
+
+    //! returning uninitialized variable
+    return sp1E;
+}
+
+int StopMario(int a)
+{
+    int sp1C = 0;
+    UNUSED struct Struct80280550 *sp18 = D_8033B860;
+
+    if (a == 1)
+        func_8028F834(171);
+    if (a == 2)
+        ;
+    return sp1C;
+}
+
+void func_8028B7A4(struct Struct80280550 *a)
+{
+    s16 sp1E;
+
+    if (gPlayer1Controller->buttonPressed & U_CBUTTONS)
+    {
+        if (a->unk0 != 13 && (D_8033B4D8 & 2))
+        {
+            D_8033B4D8 &= ~2;
+            func_8028B268();
+        }
+        else
+        {
+            func_80284D44(a);
+            if (D_8033B3FC > D_8032CFEC)
+                D_8033B3F4 = -D_8032CFEC;
+            else
+                D_8033B3F4 = D_8032CFEC;
+        }
+    }
+    if (a->unk0 != 13)
+    {
+        if (gPlayer1Controller->buttonPressed & D_CBUTTONS)
+        {
+            if (D_8033B4D8 & 2)
+            {
+                D_8033B4D8 |= 0x1000;
+                D_8033B3F4 = D_8032CFEC + 400.0f;
+            }
+            else
+            {
+                D_8033B4D8 |= 2;
+                D_8033B3F4 = D_8032CFEC + 400.0f;
+                func_8028B29C();
+            }
+        }
+        sp1E = 4096;
+        if (gPlayer1Controller->buttonPressed & R_CBUTTONS)
+        {
+            if (D_8033B4D8 & 8)
+            {
+                D_8033B4D8 &= ~8;
+            }
+            else
+            {
+                D_8033B4D8 |= 4;
+                if (D_8033B3F8 == 0)
+                    func_8028B2D0();
+                D_8033B3F8 = -sp1E;
+            }
+        }
+        if (gPlayer1Controller->buttonPressed & L_CBUTTONS)
+        {
+            if (D_8033B4D8 & 4)
+            {
+                D_8033B4D8 &= ~4;
+            }
+            else
+            {
+                D_8033B4D8 |= 8;
+                if (D_8033B3F8 == 0)
+                    func_8028B2D0();
+                D_8033B3F8 = sp1E;
+            }
+        }
+    }
+}
+
+struct Struct8033B6F0
+{
+    s32 unk0;
+    Vec3f unk4;
+    Vec3f unk10;
+    Vec3s unk1C;
+    s16 unk22;
+};
+
+extern struct Struct8033B6F0 D_8033B6F0[];
+
+void func_8028BA38(UNUSED struct Struct80280550 *a)
+{
+    int sp1C;
+
+    for (sp1C = 0; sp1C < 10; sp1C++)
+    {
+        D_8033B6F0[sp1C].unk0 = 0;
+        vec3f_set(D_8033B6F0[sp1C].unk4, 0.0f, 0.0f, 0.0f);
+        vec3f_set(D_8033B6F0[sp1C].unk10, 0.0f, 0.0f, 0.0f);
+        vec3s_set(D_8033B6F0[sp1C].unk1C, 0, 0, 0);
+        D_8033B6F0[sp1C].unk22 = 0;
+    }
+}
+
+void func_8028BB3C(struct Struct80280550 *a, u8 b)
+{
+    if (a->unk30 != b)
+    {
+        a->unk30 = b;
+        func_8028BA38(a);
+    }
+}
+
+extern u8 D_8032D0B8[];
+extern u8 D_8032E8A4[][4];
+
+int func_8028BB8C(UNUSED struct Struct80280550 *a)
+{
+    u8 sp7 = 0;
+    u8 sp6 = 0;
+    u8 sp5 = (D_8032CE24 - 1) / 2;
+    u8 sp4 = gCurrCourseNum;
+
+    if (sp5 >= 4)
+        sp5 = 0;
+    if (sp4 >= 26)
+        sp4 = 0;
+    sp6 = D_8032E8A4[sp4][sp5];
+    if (D_8032CE24 & 1)
+        sp6 &= 0xF;
+    else
+        sp6 = sp6 >> 4;
+    sp7 = D_8032D0B8[sp6];
+    return sp7;
+}
+
+u8 func_8028BC6C(u8 a, u8 b)
+{
+    u16 sp6;
+
+    if (D_8032D000->unk0 == 4896)
+        sp6 = a;
+    if (D_8032D000->unk0 == 4897)
+        sp6 = b;
+    return sp6;
+}
+
+u8 func_8028BCC8(struct Struct80280550 *a)
+{
+    UNUSED u8 unused1[4];
+    u8 sp33 = a->unk30;
+    UNUSED u8 unused2[12];
+
+    if (sp33 == 0)
+    {
+        sp33 = D_8032CFF0;
+        D_8032CFF0 = 0;
+        if (D_8032D000->unk1E == 6)
+        {
+            switch (D_8032CFD8)
+            {
+            case 97:
+                if (a->unk0 == 17 || a->unk0 == 4 || a->unk64 == 2)
+                    sp33 = func_8028BC6C(140, 141);
+                else
+                    sp33 = func_8028BC6C(130, 131);
+                break;
+            case 65:
+                if (a->unk64 == 1)
+                    sp33 = func_8028BC6C(130, 131);
+                else
+                    sp33 = func_8028BC6C(140, 141);
+                break;
+            default:
+                sp33 = func_8028BC6C(130, 131);
+                break;
+            }
+        }
+        if (D_8032D000->unk1E == 5)
+            sp33 = 139;
+        if (D_8032D000->unk1E == 1)
+            sp33 = 133;
+        if (D_8033B280 >= 0xD3 && D_8033B280 < 0xFD)
+            sp33 = 134;
+        switch (D_8032D000->unk0)
+        {
+        case 6440:
+            sp33 = 135;
+            break;
+        case 6438:
+            sp33 = 160;
+            break;
+        case 6443:
+            if (D_8032CFDC == 30 || D_8032CFDC == 33 || D_8032CFDC == 34)
+                sp33 = 157;
+            else
+                sp33 = 169;
+            break;
+        case 6444:
+            if (D_8032CFDC == 30 || D_8032CFDC == 33 || D_8032CFDC == 34)
+                sp33 = 158;
+            else
+                sp33 = 170;
+            break;
+        case 4913:
+            if (a->unk64 == 0)
+                sp33 = 149;
+            else
+                sp33 = 140;
+            break;
+        case 4910:
+            sp33 = 151;
+            break;
+        case 0x300032C7:
+            sp33 = 159;
+            break;
+        case 0x21316:
+            sp33 = 154;
+            break;
+        case 0x21315:
+            sp33 = 153;
+            break;
+        case 0x21311:
+            sp33 = 152;
+            break;
+        case 0x21314:
+            sp33 = 156;
+            break;
+        case 0x21312:
+            sp33 = 155;
+            break;
+        case 0x21313:
+            sp33 = 152;
+            break;
+        case 4866:
+            sp33 = func_8028BB8C(a);
+            break;
+        case 4867:
+            sp33 = func_8028BB8C(a);
+            break;
+        case 4871:
+            sp33 = 175;
+            break;
+        }
+        switch (D_8032D000->unk1E)
+        {
+        case 9:
+            sp33 = 142;
+            break;
+        case 10:
+            sp33 = 174;
+            break;
+        case 11:
+            sp33 = 172;
+            break;
+        case 12:
+            sp33 = 177;
+            break;
+        case 13:
+            sp33 = 178;
+            break;
+        }
+    }
+    a->unk64 = 0;
+    return sp33;
+}
+
+void func_8028C1A0(float a, float b, float c)
+{
+    Vec3f sp24;
+    struct MarioState *sp20 = &gMarioStates[0];
+    struct Struct8033B418_sub *sp1C = &D_8033B418.unk8[0];
+    struct Struct8033B418_sub *sp28 = &D_8033B418.unk8[1];
+
+    D_8032CFD8 = gCurrLevelNum * 16 + gCurrentArea->index;
+    sp24[0] = a;
+    sp24[1] = b;
+    sp24[2] = c;
+    vec3f_add(D_8033B328.unk0[1], sp24);
+    vec3f_add(D_8033B328.unk0[0], sp24);
+    vec3f_add(D_8033B328.unk0[3], sp24);
+    vec3f_add(D_8033B328.unk0[2], sp24);
+    sp20->waterLevel += b;
+    vec3f_add(sp1C->unk0, sp24);
+    vec3f_add(sp1C->unkC, sp24);
+    vec3f_add(sp28->unk0, sp24);
+    vec3f_add(sp28->unkC, sp24);
+}
+
+void func_8028C2F0(struct Struct80280550 *a, float b, float c)
+{
+    if (D_8033B4DA & 1)
+    {
+        if (a->unk10[1] < b)
+        {
+            if ((a->unk10[1] += c) > b)
+                a->unk10[1] = b;
+        }
+        else
+        {
+            if ((a->unk10[1] -= c) < b)
+                a->unk10[1] = b;
+        }
+    }
+    else
+    {
+        a->unk10[1] = b;
+    }
+}
+
+void Unknown8028C3AC(UNUSED int a, UNUSED int b, UNUSED int c, UNUSED int d)
+{
+}
+
+void func_8028C3CC(float a[] /*unknown type*/, float b, float c, float d, s16 e)
+{
+    u16 sp26;
+    UNUSED u8 unused[2];
+    float sp20;
+
+    func_8027F668(&sp20, 1.0f, 200.0f, &sp20, 0.9f, 200.0f);
+    sp26 = D_8032D000->unk10[1] + e;
+    a[3] = D_8032D000->unk4[2] + d * coss(sp26) - b * sins(sp26);
+    a[1] = D_8032D000->unk4[0] + d * sins(sp26) + b * coss(sp26);
+    a[2] = D_8032D000->unk4[1] + c + sp20;
+}
+
+void Unknown8028C508(float a[] /*unknown type*/, float b, float c, float d, s16 e)
+{
+    u16 sp6 = D_8032D000->unk10[1] + e;
+
+    a[4] = D_8032D000->unk4[0] + d * sins(sp6) + b * coss(sp6);
+    a[5] = D_8032D000->unk4[1] + c;
+    a[6] = D_8032D000->unk4[2] + d * coss(sp6) - b * sins(sp6);
+}
+
+void func_8028C5F0(Vec3f a, Vec3f b, Vec3f c, Vec3s d)
+{
+    Vec3f sp24;
+    Vec3f sp18;
+
+    vec3f_copy(sp24, b);
+    sp18[2] = -(c[2] * coss(d[0]) - c[1] * sins(d[0]));
+    sp18[1] = c[2] * sins(d[0]) + c[1] * coss(d[0]);
+    sp18[0] = c[0];
+    a[0] = b[0] + sp18[2] * sins(d[1]) + sp18[0] * coss(d[1]);
+    a[1] = b[1] + sp18[1];
+    a[2] = b[2] + sp18[2] * coss(d[1]) - sp18[0] * sins(d[1]);
+}
+
+void func_8028C794(Vec3f a, Vec3f b, Vec3s c, float d, float e, float f)
+{
+    Vec3f sp1C;
+
+    vec3f_set(sp1C, d, e, f);
+    func_8028C5F0(a, b, sp1C, c);
+}
+
+void func_8028C7EC(s16 *a)
+{
+    if (D_8032D000->unk0 == 4896)
+        *a = 0;
+    else
+        *a = -32768;
+}
+
+extern float D_8033B264[];
+
+int func_8028C824(Vec3f a, Vec3f b, Vec3f c, Vec3f d, Vec3f e, Vec3f f, s16 g)
+{
+    s16 sp96;
+    s16 sp94;
+    float sp90;
+    float sp8C;
+    UNUSED u8 unused1[4];
+    s16 sp86;
+    s16 sp84;
+    UNUSED u8 unused2[4];
+    float sp7C = D_8033B260;
+    s16 sp7A = D_8033B260;
+    UNUSED s16 sp78 = 0;
+    Vec3f sp6C;
+    Vec3f sp60;
+    Vec3f sp54;
+    Vec3f sp48;
+    int sp44;
+    float sp40;
+    struct Surface *sp3C;
+
+    vec3f_copy(a, c);
+    vec3f_copy(b, d);
+    if (D_8033B4DA & 0x400)
+    {
+        for (sp44 = 0; sp44 < 3; sp44++)
+        {
+            sp54[sp44] = e[sp44] + D_8032D000->unk4[sp44] - D_8033B264[sp44];
+            sp48[sp44] = f[sp44] + D_8032D000->unk4[sp44] - D_8033B264[sp44];
+        }
+        vec3f_get_dist_and_angle(d, sp48, &D_8033B250.unkC, &D_8033B250.unk8, &D_8033B250.unkA);
+        vec3f_get_dist_and_angle(d, sp54, &D_8033B250.unk4, &D_8033B250.unk0, &D_8033B250.unk2);
+        D_8033B4DA &= ~1024;
+    }
+    if (D_8033B260 > 0)
+    {
+        sp78 = 1;
+        vec3f_get_dist_and_angle(d, c, &sp8C, &sp86, &sp84);
+        sp90 = ABS(sp8C - D_8033B250.unk4) / sp7C;
+        sp94 = ABS(sp86 - D_8033B250.unk0) / sp7A;
+        sp96 = ABS(sp84 - D_8033B250.unk2) / sp7A;
+        func_802893E4(&D_8033B250.unk4, sp8C, sp90);
+        func_80289184(&D_8033B250.unk2, sp84, sp96);
+        func_80289184(&D_8033B250.unk0, sp86, sp94);
+        vec3f_set_dist_and_angle(d, sp6C, D_8033B250.unk4, D_8033B250.unk0, D_8033B250.unk2);
+        vec3f_get_dist_and_angle(c, d, &sp8C, &sp86, &sp84);
+        sp94 = D_8033B250.unk8 / (s16)D_8033B250.unk10;
+        sp96 = D_8033B250.unkA / (s16)D_8033B250.unk10;
+        sp90 = D_8033B250.unkC / D_8033B250.unk10;
+        func_80289184(&D_8033B250.unk8, sp86, sp94);
+        func_80289184(&D_8033B250.unkA, sp84, sp96);
+        func_802893E4(&D_8033B250.unkC, 0, sp90);
+        vec3f_set_dist_and_angle(d, sp60, D_8033B250.unkC, D_8033B250.unk8, D_8033B250.unkA);
+        vec3f_copy(b, sp60);
+        vec3f_copy(a, sp6C);
+        if (D_8033B860->unk30 != 0 || !(D_8033B4D8 & 0x2000))
+        {
+            sp40 = find_floor(a[0], a[1], a[2], &sp3C);
+            if (sp40 != -11000.0f)
+            {
+                if ((sp40 += 125.0f) > a[1])
+                    a[1] = sp40;
+            }
+            resolve_wall_collisions(&a[0], &a[1], &a[2], 0.0f, 100.0f);
+        }
+        D_8033B260--;
+        g = func_8028A4F0(b, a);
+    }
+    else
+    {
+        D_8033B250.unk4 = 0.0f;
+        D_8033B250.unk0 = 0;
+        D_8033B250.unk2 = 0;
+        D_8033B4DA &= ~2048;
+    }
+    vec3f_copy(D_8033B250.unk14, D_8032D000->unk4);
+    return g;
+}
+
+void Unknown8028CE1C(void)
+{
+    D_8033B4DA &= ~3072;
+    D_8033B260 = 0;
+}
+
+int func_8028CE4C(struct Struct80280550 *a, s16 b, s16 c, s16 d)
+{
+    int sp24 = 0;
+    float sp20 = b;
+    float sp1C = c;
+    float sp18 = d;
+
+    if (D_8032D00C[0] != sp20 || D_8032D00C[1] != sp1C || D_8032D00C[2] != sp18)
+    {
+        sp24 = 1;
+        D_8033B4DA &= ~1;
+    }
+    vec3f_set(D_8032D00C, sp20, sp1C, sp18);
+    if (a->unk0 != 13)
+    {
+        D_8033B4DA &= ~1;
+        a->unk0 = 13;
+        vec3f_set(a->unk10, D_8032D00C[0], D_8032D000->unk4[1], D_8032D00C[2]);
+    }
+    return sp24;
+}
+
+void func_8028CFAC(struct Struct80280550 *a)
+{
+    if (a->unk0 != 14)
+    {
+        a->unk0 = 14;
+        D_8033B4DA &= ~1;
+        D_8033B406 = 0;
+        D_8033B408 = 0;
+    }
+}
+
+void func_8028CFFC(struct Struct80280550 *a)
+{
+    if (a->unk0 != 11)
+    {
+        func_80285AD8(a, 11, 15);
+        D_8033B402 = a->unk3A - 0x2000;
+    }
+}
+
+void func_8028D058(u8 *a)
+{
+    if (*a != 4)
+    {
+        D_8033B4DA &= ~1;
+        *a = 4;
+    }
+}
+
+void func_8028D098(struct Struct80280550 *a, s16 b)
+{
+    Vec3f sp24;
+    s16 sp22;
+
+    sp24[0] = a->unk28;
+    sp24[1] = D_8032D000->unk4[1];
+    sp24[2] = a->unk2C;
+    if (a->unk0 != 1)
+    {
+        sp22 = func_8028A4F0(sp24, D_8032D000->unk4) - func_8028A4F0(a->unk4, a->unk10) + 0x4000;
+        if (sp22 > 0)
+        {
+            func_80285AD8(a, 1, b);
+        }
+        else
+        {
+            a->unk0 = 1;
+            D_8033B4DA &= ~1;
+        }
+        D_8033B402 = 0;
+    }
+}
+
+void func_8028D19C(struct Struct80280550 *a, struct Struct8033B470 *b)
+{
+    if (a->unk0 != 12)
+    {
+        D_8033B470 = b;
+        D_8033B46C = 0;
+        D_8033B478[0] = 0.0f;
+        D_8033B478[1] = 0.0f;
+        D_8033B478[2] = 0.0f;
+        a->unk10[0] = (D_8033B470[0].unk4[0] + D_8033B470[1].unk4[0]) / 2.0f;
+        a->unk10[1] = (D_8033B470[0].unk4[1] + D_8033B470[1].unk4[1]) / 2.0f;
+        a->unk10[2] = (D_8033B470[0].unk4[2] + D_8033B470[1].unk4[2]) / 2.0f;
+        D_8033B4DA &= ~1;
+        a->unk0 = 12;
+    }
+}
+
+void func_8028D288(UNUSED int a)
+{
+    switch (D_8032CFD8)
+    {
+    case 321:
+        vec3f_set(D_8032D00C, 646.0f, 143.0f, -1513.0f);
+        break;
+    case 97:
+        vec3f_set(D_8032D00C, -577.0f, 143.0f, 1443.0f);
+        break;
+    }
+}
+
+void func_8028D32C(u8 *a)
+{
+    if ((D_8032D000->unk0 & 0x4000) || *a == 3 || *a == 8)
+        D_8033B4DA |= 0x1000;
+    if (gCurrLevelNum == 23 || gCurrLevelNum == 11 || gCurrLevelNum == 28)
+        D_8033B4DA &= ~4096;
+    if ((*a == 3 && !(D_8032D000->unk0 & 0x6000)) || *a == 10)
+        D_8033B4DA |= 0x1000;
+}
+
+void CameraRR00(struct Struct80280550 *a)
+{
+    func_8028CFAC(a);
+    D_8033B406 = 16384;
 }
 
 u8 unknown8032D0A8[8] = {0x00, 0x0E, 0x00, 0x01, 0x00, 0x02, 0x00, 0x04};
