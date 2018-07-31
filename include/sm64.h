@@ -13,8 +13,6 @@
 #if VERSION_US
 
 extern u32 D_U_80000300;
-extern s16 D_U_8032DDF8;
-extern s8 D_U_8033B25E;
 extern s16 D_U_8033BACA;
 
 extern int func_u_80321D5C(void);

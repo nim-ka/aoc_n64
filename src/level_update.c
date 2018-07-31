@@ -351,7 +351,7 @@ static void init_mario_after_warp(void)
             func_80249368(0x0000040E);
 
 #if VERSION_US
-        if (D_U_8032DDF8 == 9 && func_u_80321D5C() != 1033 && D_U_8033B25E != 0)
+        if (gCurrLevelNum == 9 && func_u_80321D5C() != 1033 && sTimerRunning != 0)
             func_u_803219AC(0, 1033, 0);
 #endif
 
