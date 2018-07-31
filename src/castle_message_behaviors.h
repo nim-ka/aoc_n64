@@ -38,7 +38,6 @@ struct Struct8033B328
 extern struct Struct8033B328 D_8033B328;
 // extern ? D_8032CE0C;
 // extern ? D_80385FE4;
-extern float D_80387000[];
 // extern ? D_80339FE0;
 // extern ? D_80339FF4;
 // extern ? D_80339FF8;
