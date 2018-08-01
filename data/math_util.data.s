@@ -4,10 +4,10 @@
 .section .data
 
 #math util
-glabel D_80386000
+glabel gSineTable
 	.incbin "bin/sm64.j.101998.bin", 0x70, 0x1000
 
-glabel D_80387000
+glabel gCosineTable
 	.incbin "bin/sm64.j.101998.bin", 0x1070, 0x4000
 
 glabel D_8038B000

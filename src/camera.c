@@ -377,8 +377,8 @@ int func_8027FDB8(u16 a)
     struct Surface *sp44;
     float sp40;
     s16 sp3E = 1456;
-    float sp38 = D_8032D000->unk4[0] + D_80386000[(u16)(a) >> 4] * 40.0f;
-    float sp34 = D_8032D000->unk4[2] + D_80387000[(u16)(a) >> 4] * 40.0f;
+    float sp38 = D_8032D000->unk4[0] + gSineTable[(u16)(a) >> 4] * 40.0f;
+    float sp34 = D_8032D000->unk4[2] + gCosineTable[(u16)(a) >> 4] * 40.0f;
 
     sp40 = find_floor(sp38, D_8032D000->unk4[1], sp34, &sp44) - D_8032D000->unk4[1];
 
@@ -404,7 +404,7 @@ void func_8027FF44(struct Struct80280550 *a)
 
     vec3f_get_dist_and_angle(a->unk10, D_8032D000->unk4, &sp34, &sp32, &sp30);
 
-    sp24[2] = D_80386000[0xC0] * sp34;
+    sp24[2] = gSineTable[0xC0] * sp34;
 
     func_8028A764(sp24, sp24, D_8032D000->unk10[1]);
     sp30 = -sp30;
