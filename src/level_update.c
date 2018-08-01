@@ -351,7 +351,7 @@ static void init_mario_after_warp(void)
             func_80249368(0x0000040E);
 
 #if VERSION_US
-        if (gCurrLevelNum == 9 && func_u_80321D5C() != 1033 && sTimerRunning != 0)
+        if (gCurrLevelNum == LEVEL_BOB && func_u_80321D5C() != 1033 && sTimerRunning != 0)
             func_u_803219AC(0, 1033, 0);
 #endif
 
@@ -510,7 +510,7 @@ static s16 func_8024A48C(s16 arg)
     s16 val4 = TRUE;
     s16 sp2C;
 
-    if (levelNum == 9 && levelNum == gCurrLevelNum && destArea == gCurrAreaIndex)
+    if (levelNum == LEVEL_BOB && levelNum == gCurrLevelNum && destArea == gCurrAreaIndex)
     {
         sp2C = func_80320E98();
         if (sp2C == 1166 || sp2C == 1038)
