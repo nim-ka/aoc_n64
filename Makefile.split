@@ -43,7 +43,6 @@ BINARY_SEGMENTS := \
    rainbow_bonus_segment7 \
    rr_segment7 \
    sea_creatures \
-   secret_aquarium_segment7 \
    secret_slide_segment7 \
    skeeter_fish_treasurechest \
    sl_segment7 \
@@ -118,6 +117,7 @@ $(BUILD_DIR)/bin/main_menu_segment7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/bidw_platform_segment7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/bifs_platform_segment7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/bob_segment7.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/sa_segment7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/bbh_textures.elf: SEGMENT_ADDRESS := 0x09000000
 $(BUILD_DIR)/bin/bob_textures.elf: SEGMENT_ADDRESS := 0x09000000
 $(BUILD_DIR)/bin/castle_grounds_textures.elf: SEGMENT_ADDRESS := 0x09000000

@@ -776,12 +776,6 @@ rr_seg7_dl_07028FA8 = 0x07028FA8;
 rr_seg7_collision = 0x0702A9A8;
 rr_seg7_macro_objs = 0x0702E9D8;
 
-/* SA symbols */
-sa_seg7_dl_07002DE8 = 0x07002DE8;
-sa_seg7_dl_07002FD0 = 0x07002FD0;
-sa_seg7_collision = 0x07003000;
-sa_seg7_macro_objs = 0x07003284;
-
 /* SL symbols */
 sl_seg7_dl_07005478 = 0x07005478;
 sl_seg7_dl_070056B0 = 0x070056B0;
