@@ -94,6 +94,7 @@ SECTIONS
       build/src/camera.o(.text);
       build/asm/camera.o(.text);
       build/src/object_list_processor.o(.text);
+      build/src/object_helpers.o(.text);
       build/asm/object_helpers.o(.text);
       build/asm/behavior_actions.o(.text);
       build/src/platform_displacement.o(.text);

@@ -3,6 +3,20 @@
 
 #include "types.h"
 
+struct struct8029E388 {
+    s16 unk00;
+    s16 unk02;
+    void *unk04;
+    s16 unk08;
+    s16 unk0A;
+    f32 unk0C;
+    f32 unk10;
+    f32 unk14;
+    f32 unk18;
+    f32 unk1C;
+    f32 unk20;
+};
+
 #define TIME_STOP_UNKNOWN_0       (1 << 0)
 #define TIME_STOP_ENABLED         (1 << 1)
 #define TIME_STOP_UNKNOWN_2       (1 << 2)
@@ -138,7 +152,7 @@ extern s32 gWaterLevels[2];
 // extern ? Geo18_8029D924(?);
 // extern ? GeoSwitchCase8029DB48(?);
 // extern ? GeoSwitchCaseBlinking(?);
-// extern ? func_8029D558(?);
+extern void func_8029D558(Mat4, struct Object *);
 void func_8029D62C(struct Object *, Mat4, Mat4);
 // extern ? func_8029D704(?);
 void func_8029DA34(struct Object *, void *);
@@ -147,17 +161,17 @@ extern f32 objects_calc_distance(struct Object *, struct Object *);
 // extern ? func_8029DC1C(?);
 // extern ? func_8029DC6C(?);
 // extern ? func_8029DD18(?);
-extern s32 approach_target_angle(s32 arg0, s16 arg1, s32 arg2);
+extern s16 approach_target_angle(s16 arg0, s16 arg1, s16 arg2);
 // extern ? func_8029DE70(?);
 extern u32 func_8029DF18(struct Object *, struct Object *);
-extern void UnknownMove(struct Object *obj, struct Object *marioObj, s32 arg2, s32 arg3);
+extern s16 UnknownMove(struct Object *, struct Object *, s16, s16);
 // extern ? func_8029E140(?);
 // extern ? func_8029E198(?);
 // extern ? func_8029E1F0(?);
 extern struct Object *func_8029E230(struct Object *, s16, u32, void *, s16, s16, s16, s16, s16, s16);
-extern struct Object *func_8029E2A8();
+extern struct Object *func_8029E2A8(struct Object *sp20, u32 sp24, void *sp28, s16 sp2E, s16 sp32, s16 sp36, s16 sp3A, s16 sp3E, s16 sp42);
 // extern ? Unknown8029E330(?);
-extern void func_8029E388(struct Object *, u32);
+extern struct Object *func_8029E388(struct Object *, struct struct8029E388 *);
 extern struct Object *func_8029E5A4(struct Object *, u32, u32, void *);
 extern struct Object *SpawnObj(struct Object *, s32, void *);
 // extern ? func_8029E6A8(?);
@@ -288,10 +302,10 @@ extern void func_802A22DC(struct Object *);
 // extern ? Unknown802A2474(?);
 extern s32 func_802A24B4(UNUSED s32);
 // extern ? func_802A272C(?);
-// extern ? func_802A276C(?);
+extern f32 func_802A276C(f32);
 // extern ? func_802A27B4(?);
-// extern ? func_802A2818(?);
-// extern ? func_802A28E4(?);
+extern void func_802A2818(struct Object *, f32);
+extern void func_802A28E4(struct Object *, f32);
 // extern ? func_802A297C(?);
 // extern ? func_802A2A38(?);
 // extern ? func_802A2AC0(?);
