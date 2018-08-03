@@ -509,10 +509,10 @@ static s32 Behavior1E(void)
     f32 x = gCurrentObject->oPosX;
     f32 y = gCurrentObject->oPosY;
     f32 z = gCurrentObject->oPosZ;
-    f32 sp18 = find_floor_height(x, y + 200.0f, z);
+    f32 floor = find_floor_height(x, y + 200.0f, z);
 
-    gCurrentObject->oPosY = sp18;
-    gCurrentObject->oUnkEC |= 2;
+    gCurrentObject->oPosY = floor;
+    gCurrentObject->oMoveFlags |= OBJ_MOV_GROUND;
 
     gBehCommand++;
     return BEH_CONTINUE;

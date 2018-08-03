@@ -7,6 +7,7 @@
 #include "config.h"
 #include "object_fields.h"
 #include "object_constants.h"
+#include "object_lists.h"
 #include "audio_defines.h"
 
 // FIXME: find out what these are

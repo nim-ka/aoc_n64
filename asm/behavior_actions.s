@@ -3080,7 +3080,7 @@ glabel BehBetaChestInit
 /* 062948 802A7948 00002825 */  move  $a1, $zero
 /* 06294C 802A794C 24060061 */  li    $a2, 97
 /* 062950 802A7950 2407FFB3 */  li    $a3, -77
-/* 062954 802A7954 0C0A79FA */  jal   SpawnObjAdv
+/* 062954 802A7954 0C0A79FA */  jal   spawn_obj_adv
 /* 062958 802A7958 AFB80010 */   sw    $t8, 0x10($sp)
 /* 06295C 802A795C 10000001 */  b     .L802A7964
 /* 062960 802A7960 00000000 */   nop   
@@ -3162,7 +3162,7 @@ glabel BehBetaChestUpperLoop
 /* 062A6C 802A7A6C 00002825 */  move  $a1, $zero
 /* 062A70 802A7A70 2406FFB0 */  li    $a2, -80
 /* 062A74 802A7A74 24070078 */  li    $a3, 120
-/* 062A78 802A7A78 0C0A79FA */  jal   SpawnObjAdv
+/* 062A78 802A7A78 0C0A79FA */  jal   spawn_obj_adv
 /* 062A7C 802A7A7C AFAB0010 */   sw    $t3, 0x10($sp)
 /* 062A80 802A7A80 3C058036 */  lui   $a1, %hi(gCurrentObject) # $a1, 0x8036
 /* 062A84 802A7A84 8CA5FDF0 */  lw    $a1, %lo(gCurrentObject)($a1)
@@ -3631,8 +3631,8 @@ glabel BehSmallWaterWaveLoop
 /* 063154 802A8154 C5D000A4 */  lwc1  $f16, 0xa4($t6)
 /* 063158 802A8158 46128100 */  add.s $f4, $f16, $f18
 /* 06315C 802A815C E5C400A4 */  swc1  $f4, 0xa4($t6)
-/* 063160 802A8160 3C188036 */  lui   $t8, %hi(D_8035FDE0) # $t8, 0x8036
-/* 063164 802A8164 8F18FDE0 */  lw    $t8, %lo(D_8035FDE0)($t8)
+/* 063160 802A8160 3C188036 */  lui   $t8, %hi(D_8035FD80 + 0x60) # $t8, 0x8036
+/* 063164 802A8164 8F18FDE0 */  lw    $t8, %lo(D_8035FD80 + 0x60)($t8)
 /* 063168 802A8168 13000007 */  beqz  $t8, .L802A8188
 /* 06316C 802A816C 00000000 */   nop   
 /* 063170 802A8170 3C048036 */  lui   $a0, %hi(gCurrentObject) # $a0, 0x8036
@@ -7355,7 +7355,7 @@ glabel L802AB580
 /* 066604 802AB604 AFB80014 */  sw    $t8, 0x14($sp)
 /* 066608 802AB608 AFB90018 */  sw    $t9, 0x18($sp)
 /* 06660C 802AB60C 8FA40050 */  lw    $a0, 0x50($sp)
-/* 066610 802AB610 0C0A79FA */  jal   SpawnObjAdv
+/* 066610 802AB610 0C0A79FA */  jal   spawn_obj_adv
 /* 066614 802AB614 AFAF0010 */   sw    $t7, 0x10($sp)
 /* 066618 802AB618 AFA2004C */  sw    $v0, 0x4c($sp)
 /* 06661C 802AB61C 8FA80038 */  lw    $t0, 0x38($sp)
@@ -9069,7 +9069,7 @@ glabel ActionTumblingBridge1
 /* 067E34 802ACE34 8FA70034 */  lw    $a3, 0x34($sp)
 /* 067E38 802ACE38 AFA80014 */  sw    $t0, 0x14($sp)
 /* 067E3C 802ACE3C AFAD0010 */  sw    $t5, 0x10($sp)
-/* 067E40 802ACE40 0C0A79FA */  jal   SpawnObjAdv
+/* 067E40 802ACE40 0C0A79FA */  jal   spawn_obj_adv
 /* 067E44 802ACE44 01EC3021 */   addu  $a2, $t7, $t4
 /* 067E48 802ACE48 AFA20044 */  sw    $v0, 0x44($sp)
 /* 067E4C 802ACE4C 8FAA003C */  lw    $t2, 0x3c($sp)
@@ -11098,7 +11098,7 @@ glabel BehFlamethrowerLoop
 /* 069AE8 802AEAE8 00003025 */  move  $a2, $zero
 /* 069AEC 802AEAEC 00003825 */  move  $a3, $zero
 /* 069AF0 802AEAF0 AFAF0010 */  sw    $t7, 0x10($sp)
-/* 069AF4 802AEAF4 0C0A79FA */  jal   SpawnObjAdv
+/* 069AF4 802AEAF4 0C0A79FA */  jal   spawn_obj_adv
 /* 069AF8 802AEAF8 AFB80014 */   sw    $t8, 0x14($sp)
 /* 069AFC 802AEAFC AFA2003C */  sw    $v0, 0x3c($sp)
 /* 069B00 802AEB00 C7B00038 */  lwc1  $f16, 0x38($sp)
@@ -12488,8 +12488,8 @@ glabel BehTreeSnowOrLeafLoop
 /* 06AED0 802AFED0 0C0A7F7B */  jal   DeactivateObject
 /* 06AED4 802AFED4 8C84FDF0 */   lw    $a0, %lo(gCurrentObject)($a0)
 .L802AFED8:
-/* 06AED8 802AFED8 3C098036 */  lui   $t1, %hi(D_8035FDF8) # $t1, 0x8036
-/* 06AEDC 802AFEDC 8529FDF8 */  lh    $t1, %lo(D_8035FDF8)($t1)
+/* 06AED8 802AFED8 3C098036 */  lui   $t1, %hi(gPostUpdateObjCount) # $t1, 0x8036
+/* 06AEDC 802AFEDC 8529FDF8 */  lh    $t1, %lo(gPostUpdateObjCount)($t1)
 /* 06AEE0 802AFEE0 292100D5 */  slti  $at, $t1, 0xd5
 /* 06AEE4 802AFEE4 14200004 */  bnez  $at, .L802AFEF8
 /* 06AEE8 802AFEE8 00000000 */   nop   
@@ -15113,7 +15113,7 @@ glabel func_802B2328
 /* 06D410 802B2410 44058000 */  mfc1  $a1, $f16
 /* 06D414 802B2414 00003012 */  mflo  $a2
 /* 06D418 802B2418 44072000 */  mfc1  $a3, $f4
-/* 06D41C 802B241C 0C0A79FA */  jal   SpawnObjAdv
+/* 06D41C 802B241C 0C0A79FA */  jal   spawn_obj_adv
 /* 06D420 802B2420 00000000 */   nop   
 /* 06D424 802B2424 8FAF002C */  lw    $t7, 0x2c($sp)
 /* 06D428 802B2428 8FB90030 */  lw    $t9, 0x30($sp)
@@ -17656,7 +17656,7 @@ glabel ActionBowser8
 /* 06F7CC 802B47CC 00002825 */  move  $a1, $zero
 /* 06F7D0 802B47D0 24060190 */  li    $a2, 400
 /* 06F7D4 802B47D4 24070064 */  li    $a3, 100
-/* 06F7D8 802B47D8 0C0A79FA */  jal   SpawnObjAdv
+/* 06F7D8 802B47D8 0C0A79FA */  jal   spawn_obj_adv
 /* 06F7DC 802B47DC AFA80010 */   sw    $t0, 0x10($sp)
 /* 06F7E0 802B47E0 1000000E */  b     .L802B481C
 /* 06F7E4 802B47E4 00000000 */   nop   
@@ -17672,7 +17672,7 @@ glabel ActionBowser8
 /* 06F808 802B4808 00002825 */  move  $a1, $zero
 /* 06F80C 802B480C 24060190 */  li    $a2, 400
 /* 06F810 802B4810 24070064 */  li    $a3, 100
-/* 06F814 802B4814 0C0A79FA */  jal   SpawnObjAdv
+/* 06F814 802B4814 0C0A79FA */  jal   spawn_obj_adv
 /* 06F818 802B4818 AFAB0010 */   sw    $t3, 0x10($sp)
 .L802B481C:
 /* 06F81C 802B481C 0C0A7DE2 */  jal   func_8029F788
@@ -22650,7 +22650,7 @@ glabel BehTankFishGroupsLoop
 /* 073EBC 802B8EBC 2405012C */  li    $a1, 300
 /* 073EC0 802B8EC0 00003025 */  move  $a2, $zero
 /* 073EC4 802B8EC4 2407FF38 */  li    $a3, -200
-/* 073EC8 802B8EC8 0C0A79FA */  jal   SpawnObjAdv
+/* 073EC8 802B8EC8 0C0A79FA */  jal   spawn_obj_adv
 /* 073ECC 802B8ECC AFB80010 */   sw    $t8, 0x10($sp)
 /* 073ED0 802B8ED0 AFA2003C */  sw    $v0, 0x3c($sp)
 /* 073ED4 802B8ED4 8FA4003C */  lw    $a0, 0x3c($sp)
@@ -22781,7 +22781,7 @@ glabel BehCheckerboardElevatorGroupInit
 /* 07408C 802B908C 01A02025 */  move  $a0, $t5
 /* 074090 802B9090 AFAF0010 */  sw    $t7, 0x10($sp)
 /* 074094 802B9094 00003012 */  mflo  $a2
-/* 074098 802B9098 0C0A79FA */  jal   SpawnObjAdv
+/* 074098 802B9098 0C0A79FA */  jal   spawn_obj_adv
 /* 07409C 802B909C 00000000 */   nop   
 /* 0740A0 802B90A0 AFA2002C */  sw    $v0, 0x2c($sp)
 /* 0740A4 802B90A4 8FA80034 */  lw    $t0, 0x34($sp)
@@ -26055,7 +26055,7 @@ glabel BehFloatingWoodBridgeLoop
 /* 076E80 802BBE80 00002025 */  move  $a0, $zero
 /* 076E84 802BBE84 00003025 */  move  $a2, $zero
 /* 076E88 802BBE88 00003825 */  move  $a3, $zero
-/* 076E8C 802BBE8C 0C0A79FA */  jal   SpawnObjAdv
+/* 076E8C 802BBE8C 0C0A79FA */  jal   spawn_obj_adv
 /* 076E90 802BBE90 AFA80010 */   sw    $t0, 0x10($sp)
 /* 076E94 802BBE94 AFA2003C */  sw    $v0, 0x3c($sp)
 /* 076E98 802BBE98 8FAB0038 */  lw    $t3, 0x38($sp)
@@ -32792,7 +32792,7 @@ glabel BehOpenableGrillLoop
 /* 07CDBC 802C1DBC 2404FFFF */  li    $a0, -1
 /* 07CDC0 802C1DC0 00003025 */  move  $a2, $zero
 /* 07CDC4 802C1DC4 00003825 */  move  $a3, $zero
-/* 07CDC8 802C1DC8 0C0A79FA */  jal   SpawnObjAdv
+/* 07CDC8 802C1DC8 0C0A79FA */  jal   spawn_obj_adv
 /* 07CDCC 802C1DCC AFAC0014 */   sw    $t4, 0x14($sp)
 /* 07CDD0 802C1DD0 AFA2003C */  sw    $v0, 0x3c($sp)
 /* 07CDD4 802C1DD4 8FAE003C */  lw    $t6, 0x3c($sp)
@@ -32824,7 +32824,7 @@ glabel BehOpenableGrillLoop
 /* 07CE3C 802C1E3C 00003025 */  move  $a2, $zero
 /* 07CE40 802C1E40 00003825 */  move  $a3, $zero
 /* 07CE44 802C1E44 00052823 */  negu  $a1, $a1
-/* 07CE48 802C1E48 0C0A79FA */  jal   SpawnObjAdv
+/* 07CE48 802C1E48 0C0A79FA */  jal   spawn_obj_adv
 /* 07CE4C 802C1E4C AFAF0014 */   sw    $t7, 0x14($sp)
 /* 07CE50 802C1E50 AFA2003C */  sw    $v0, 0x3c($sp)
 /* 07CE54 802C1E54 8FAE0038 */  lw    $t6, 0x38($sp)
@@ -33875,7 +33875,7 @@ glabel BehBooGroupInit
 /* 07DD28 802C2D28 AFAA0014 */  sw    $t2, 0x14($sp)
 /* 07DD2C 802C2D2C AFAB0018 */  sw    $t3, 0x18($sp)
 /* 07DD30 802C2D30 24040001 */  li    $a0, 1
-/* 07DD34 802C2D34 0C0A79FA */  jal   SpawnObjAdv
+/* 07DD34 802C2D34 0C0A79FA */  jal   spawn_obj_adv
 /* 07DD38 802C2D38 AFA90010 */   sw    $t1, 0x10($sp)
 /* 07DD3C 802C2D3C AFA20028 */  sw    $v0, 0x28($sp)
 /* 07DD40 802C2D40 0C0E0EEC */  jal   RandomU16
@@ -35531,7 +35531,7 @@ glabel ActionBooGivingStar4
 /* 07F484 802C4484 00002825 */  move  $a1, $zero
 /* 07F488 802C4488 00003025 */  move  $a2, $zero
 /* 07F48C 802C448C 00003825 */  move  $a3, $zero
-/* 07F490 802C4490 0C0A79FA */  jal   SpawnObjAdv
+/* 07F490 802C4490 0C0A79FA */  jal   spawn_obj_adv
 /* 07F494 802C4494 AFA80010 */   sw    $t0, 0x10($sp)
 /* 07F498 802C4498 3C0B8036 */  lui   $t3, %hi(gCurrentObject) # $t3, 0x8036
 /* 07F49C 802C449C 8D6BFDF0 */  lw    $t3, %lo(gCurrentObject)($t3)
@@ -35544,7 +35544,7 @@ glabel ActionBooGivingStar4
 /* 07F4B8 802C44B8 00002825 */  move  $a1, $zero
 /* 07F4BC 802C44BC 00003025 */  move  $a2, $zero
 /* 07F4C0 802C44C0 2407FF38 */  li    $a3, -200
-/* 07F4C4 802C44C4 0C0A79FA */  jal   SpawnObjAdv
+/* 07F4C4 802C44C4 0C0A79FA */  jal   spawn_obj_adv
 /* 07F4C8 802C44C8 AFAB0010 */   sw    $t3, 0x10($sp)
 /* 07F4CC 802C44CC 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 07F4D0 802C44D0 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
@@ -35557,7 +35557,7 @@ glabel ActionBooGivingStar4
 /* 07F4EC 802C44EC 00002825 */  move  $a1, $zero
 /* 07F4F0 802C44F0 00003025 */  move  $a2, $zero
 /* 07F4F4 802C44F4 240700C8 */  li    $a3, 200
-/* 07F4F8 802C44F8 0C0A79FA */  jal   SpawnObjAdv
+/* 07F4F8 802C44F8 0C0A79FA */  jal   spawn_obj_adv
 /* 07F4FC 802C44FC AFAE0010 */   sw    $t6, 0x10($sp)
 /* 07F500 802C4500 3C048036 */  lui   $a0, %hi(gCurrentObject) # $a0, 0x8036
 /* 07F504 802C4504 0C0A7F7B */  jal   DeactivateObject
@@ -36782,7 +36782,7 @@ glabel BehCastleFloorTrapInit
 /* 080600 802C5600 2405FE9A */  li    $a1, -358
 /* 080604 802C5604 00003025 */  move  $a2, $zero
 /* 080608 802C5608 00003825 */  move  $a3, $zero
-/* 08060C 802C560C 0C0A79FA */  jal   SpawnObjAdv
+/* 08060C 802C560C 0C0A79FA */  jal   spawn_obj_adv
 /* 080610 802C5610 AFAE0010 */   sw    $t6, 0x10($sp)
 /* 080614 802C5614 AFA2002C */  sw    $v0, 0x2c($sp)
 /* 080618 802C5618 3C198036 */  lui   $t9, %hi(gCurrentObject) # $t9, 0x8036
@@ -36796,7 +36796,7 @@ glabel BehCastleFloorTrapInit
 /* 080638 802C5638 24050166 */  li    $a1, 358
 /* 08063C 802C563C 00003025 */  move  $a2, $zero
 /* 080640 802C5640 00003825 */  move  $a3, $zero
-/* 080644 802C5644 0C0A79FA */  jal   SpawnObjAdv
+/* 080644 802C5644 0C0A79FA */  jal   spawn_obj_adv
 /* 080648 802C5648 AFB90010 */   sw    $t9, 0x10($sp)
 /* 08064C 802C564C AFA2002C */  sw    $v0, 0x2c($sp)
 /* 080650 802C5650 8FAA002C */  lw    $t2, 0x2c($sp)

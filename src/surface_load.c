@@ -9,6 +9,7 @@
 #include "mario.h"
 #include "behavior_script.h"
 #include "surface_collision.h"
+#include "object_list_processor.h"
 
 extern u8 beh_ddd_warp[];
 

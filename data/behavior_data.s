@@ -1,5 +1,21 @@
 .include "macros.inc"
 
+# see include/object_lists.h for comments
+# TODO: Use C preprocessor define instead of redefining the list seperately.
+.set OBJ_LIST_PLAYER,         0
+.set OBJ_LIST_UNK1,           1
+.set OBJ_LIST_DESTRUCTIVE,    2
+.set OBJ_LIST_UNK3,           3
+.set OBJ_LIST_GENACTOR,       4
+.set OBJ_LIST_PUSHABLE,       5
+.set OBJ_LIST_LEVEL,          6
+.set OBJ_LIST_UNK7,           7
+.set OBJ_LIST_DEFAULT,        8
+.set OBJ_LIST_SURFACE,        9
+.set OBJ_LIST_POLELIKE,       10
+.set OBJ_LIST_SPAWNER,        11
+.set OBJ_LIST_UNIMPORTANT,    12
+
 .macro begin arg1
     .word (0x00 << 24) | (\arg1 << 16)
 .endm
@@ -305,7 +321,7 @@
 
 glabel behavior_data
 glabel beh_star_door # 0000
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_set_int VAR_2A, 4
     collision_data 0x07078E14
     obj_set_int VAR_42, 32
@@ -322,7 +338,7 @@ glabel beh_star_door # 0000
     end_loop
 
 glabel beh_mr_i # 0054
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 75
     unknown_2D
     unknown_1C 0x00000066, beh_mr_i_body
@@ -334,7 +350,7 @@ glabel beh_mr_i # 0054
     end_loop
 
 glabel beh_mr_i_body # 008C
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     callnative BehCommonInit
     begin_loop
@@ -342,7 +358,7 @@ glabel beh_mr_i_body # 008C
     end_loop
 
 glabel beh_mr_i_particle # 00AC
-    begin 6
+    begin OBJ_LIST_LEVEL
     billboard
     obj_or_int VAR_01, 0x03
     obj_set_int VAR_05, 0
@@ -356,7 +372,7 @@ glabel beh_mr_i_particle # 00AC
     end_loop
 
 glabel beh_giant_piranha_particle # 00F8
-    begin 12
+    begin OBJ_LIST_UNIMPORTANT
     billboard
     obj_or_int VAR_01, 0x01
     begin_repeat 10
@@ -365,7 +381,7 @@ glabel beh_giant_piranha_particle # 00F8
     deactivate
 
 glabel beh_giant_pole # 0118
-    begin 10
+    begin OBJ_LIST_POLELIKE
     obj_or_int VAR_01, 0x01
     obj_set_int VAR_2A, 0x40
     set_hitbox 0x0050, 0x0834
@@ -376,7 +392,7 @@ glabel beh_giant_pole # 0118
     end_loop
 
 glabel beh_pole_grabbing # 0144
-    begin 10
+    begin OBJ_LIST_POLELIKE
     obj_or_int VAR_01, 0x01
     obj_set_int VAR_2A, 0x40
     set_hitbox 0x0050, 0x05DC
@@ -387,7 +403,7 @@ glabel beh_pole_grabbing # 0144
     end_loop
 
 glabel beh_thi_top_trap # 0174
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
     collision_data 0x0700E228
     begin_loop
@@ -395,14 +411,14 @@ glabel beh_thi_top_trap # 0174
     end_loop
 
 glabel beh_thi_tiny_top # 0194
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x41
     begin_loop
         callnative BehThiTinyTopLoop
     end_loop
 
 glabel beh_cap_switch_collision_child # 01AC
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x09
     collision_data 0x05003448
     begin_loop
@@ -410,7 +426,7 @@ glabel beh_cap_switch_collision_child # 01AC
     end_loop
 
 glabel beh_activate_cap_switch # 01CC
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x09
     collision_data 0x050033D0
     begin_loop
@@ -419,7 +435,7 @@ glabel beh_activate_cap_switch # 01CC
     end_loop
 
 glabel beh_king_bobomb # 01F4
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x20C9
     obj_set_int32 VAR_26, 0x0500FE30
     obj_set_int VAR_2A, 0x02
@@ -436,7 +452,7 @@ glabel beh_king_bobomb # 01F4
     end_loop
 
 glabel beh_bobomb_anchor_mario # 0254
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x09
     billboard
     obj_set_float VAR_2C, 0x0064
@@ -446,7 +462,7 @@ glabel beh_bobomb_anchor_mario # 0254
     end_loop
 
 glabel beh_beta_chest # 0278
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x09
     unknown_1E
     callnative BehBetaChestInit
@@ -455,7 +471,7 @@ glabel beh_beta_chest # 0278
     end_loop
 
 glabel beh_beta_chest_upper # 029C
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x09
     unknown_2D
     begin_loop
@@ -463,7 +479,7 @@ glabel beh_beta_chest_upper # 029C
     end_loop
 
 glabel beh_bubble_mario # 02B8
-    begin 8
+    begin OBJ_LIST_DEFAULT
     unknown_35
     obj_set_int_rand VAR_1B, 0x0002, 0x0009
     delay_var VAR_1B
@@ -472,7 +488,7 @@ glabel beh_bubble_mario # 02B8
     deactivate
 
 glabel beh_bubble_maybe # 02E4
-    begin 12
+    begin OBJ_LIST_UNIMPORTANT
     obj_or_int VAR_01, 0x01
     billboard
     callnative BehBubbleWaveInit
@@ -490,7 +506,7 @@ glabel beh_bubble_maybe # 02E4
     deactivate
 
 glabel beh_small_water_wave # 0338
-    begin 12
+    begin OBJ_LIST_UNIMPORTANT
     obj_or_int VAR_01, 0x01
     billboard
     callnative BehBubbleWaveInit
@@ -518,7 +534,7 @@ glabel beh_small_water_wave_398 # 0398
     return
 
 glabel beh_water_air_bubble # 03BC
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x01
     billboard
     unknown_2B 0x0190, 0x0096, 0xFF6A
@@ -532,7 +548,7 @@ glabel beh_water_air_bubble # 03BC
     end_loop
 
 glabel beh_small_particle # 0400
-    begin 12
+    begin OBJ_LIST_UNIMPORTANT
     billboard
     obj_or_int VAR_01, 0x01
     callnative BehParticleInit
@@ -542,14 +558,14 @@ glabel beh_small_particle # 0400
     deactivate
 
 glabel beh_water_waves # 0428
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_bic_int32 VAR_16, 0x00000200
     unknown_35
     callnative BehWaterWavesInit
     deactivate
 
 glabel beh_small_particle_snow # 0444
-    begin 12
+    begin OBJ_LIST_UNIMPORTANT
     billboard
     obj_or_int VAR_01, 0x01
     callnative BehParticleInit
@@ -559,7 +575,7 @@ glabel beh_small_particle_snow # 0444
     deactivate
 
 glabel beh_small_particle_bubbles # 046C
-    begin 12
+    begin OBJ_LIST_UNIMPORTANT
     billboard
     obj_or_int VAR_01, 0x01
     callnative BehParticleInit
@@ -569,13 +585,13 @@ glabel beh_small_particle_bubbles # 046C
     deactivate
 
 glabel beh_fish_group # 0494
-    begin 8
+    begin OBJ_LIST_DEFAULT
     begin_loop
         callnative BehFishGroupLoop
     end_loop
 
 glabel beh_cannon_base # 04A8
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x00C9
     unknown_1C 0x0000007F, beh_cannon_barrel
     obj_set_int VAR_2A, 0x4000
@@ -588,7 +604,7 @@ glabel beh_cannon_base # 04A8
     end_loop
 
 glabel beh_cannon_barrel # 04E4
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x00C9
     unknown_1E
     begin_loop
@@ -596,7 +612,7 @@ glabel beh_cannon_barrel # 04E4
     end_loop
 
 glabel beh_cannon_base_unused # 0500
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x000B
     billboard
     obj_set_int VAR_1A, -1
@@ -607,7 +623,7 @@ glabel beh_cannon_base_unused # 0500
     deactivate
 
 glabel beh_chuckya # 0528
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x0449
     obj_set_int32 VAR_26, 0x0800C070
     unknown_28 0x05
@@ -623,7 +639,7 @@ glabel beh_chuckya # 0528
     end_loop
 
 glabel beh_chuckya_anchor_mario # 0584
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x09
     billboard
     obj_set_float VAR_2D, 0xFFC4
@@ -633,12 +649,12 @@ glabel beh_chuckya_anchor_mario # 0584
     end_loop
 
 glabel beh_unused_05A8 # 05A8
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     break
 
 glabel beh_rotating_platform # 05B4
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
     unknown_2D
     begin_loop
@@ -647,7 +663,7 @@ glabel beh_rotating_platform # 05B4
     end_loop
 
 glabel beh_tower # 05D8
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
     collision_data 0x0700FE14
     obj_set_float VAR_43, 0x0BB8
@@ -657,7 +673,7 @@ glabel beh_tower # 05D8
     end_loop
 
 glabel beh_bullet_bill_cannon # 0600
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
     collision_data 0x07010260
     obj_set_float VAR_43, 0x012C
@@ -666,11 +682,11 @@ glabel beh_bullet_bill_cannon # 0600
     end_loop
 
 glabel beh_breakable_wall # 0624
-    begin 9
+    begin OBJ_LIST_SURFACE
     collision_data 0x0700FC0C
     goto .L13000644
 glabel beh_breakable_wall_2 # 0638
-    begin 9
+    begin OBJ_LIST_SURFACE
     collision_data 0x0700FC44
 .L13000644: # 0644
     obj_or_int VAR_01, 0x00C9
@@ -682,7 +698,7 @@ glabel beh_breakable_wall_2 # 0638
     end_loop
 
 glabel beh_kickable_board # 066C
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x20C9
     collision_data 0x0700FC7C
     set_hitbox 0x0064, 0x04B0
@@ -694,7 +710,7 @@ glabel beh_kickable_board # 066C
     end_loop
 
 glabel beh_tower_door # 06A4
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0xC1
     collision_data 0x0700FD00
     set_hitbox 0x0064, 0x0064
@@ -705,11 +721,11 @@ glabel beh_tower_door # 06A4
     end_loop
 
 glabel beh_rotating_counter_clockwise # 06D8
-    begin 8
+    begin OBJ_LIST_DEFAULT
     break
 
 glabel beh_clocklike_rotation # 06E0
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
     collision_data 0x0700FA00
     begin_loop
@@ -718,14 +734,14 @@ glabel beh_clocklike_rotation # 06E0
     end_loop
 
 glabel beh_koopa_shell_underwater # 0708
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x0441
     begin_loop
         callnative BehKoopaShellUnderwaterLoop
     end_loop
 
 glabel beh_exit_podium_warp # 0720
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x09
     obj_set_int VAR_2A, 0x2000
     unknown_1E
@@ -739,7 +755,7 @@ glabel beh_exit_podium_warp # 0720
     end_loop
 
 glabel beh_fading_warp # 075C
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_set_int VAR_42, 0x0001
     obj_or_int VAR_01, 0x09
     obj_set_int VAR_2A, 0x2000
@@ -749,7 +765,7 @@ glabel beh_fading_warp # 075C
     end_loop
 
 glabel beh_warp # 0780
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x09
     obj_set_int VAR_2A, 0x2000
     obj_set_int VAR_05, 0
@@ -758,7 +774,7 @@ glabel beh_warp # 0780
     end_loop
 
 glabel beh_warp_pipe # 07A0
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x09
     obj_set_int VAR_2A, 0x2000
     collision_data 0x03009AC8
@@ -771,7 +787,7 @@ glabel beh_warp_pipe # 07A0
     end_loop
 
 glabel beh_white_puff_explosion # 07DC
-    begin 12
+    begin OBJ_LIST_UNIMPORTANT
     obj_or_int VAR_01, 0x01
     billboard
     begin_loop
@@ -779,12 +795,12 @@ glabel beh_white_puff_explosion # 07DC
     end_loop
 
 glabel beh_spawned_star # 07F8
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x01
     obj_set_int VAR_2F, 1
     goto .L13000814
 glabel beh_unused_080C # 080C
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x01
 .L13000814: # 0814
     unknown_2D
@@ -794,7 +810,7 @@ glabel beh_unused_080C # 080C
     end_loop
 
 glabel beh_mr_i_blue_coin # 0830
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_set_int VAR_2A, 0x10
     obj_or_int VAR_01, 0x01
     billboard
@@ -811,7 +827,7 @@ glabel beh_mr_i_blue_coin # 0830
     end_loop
 
 glabel beh_coin_inside_boo # 0888
-    begin 6
+    begin OBJ_LIST_LEVEL
     set_hitbox 0x0064, 0x0040
     obj_set_int VAR_2A, 0x10
     obj_or_int VAR_01, 0x0081
@@ -824,7 +840,7 @@ glabel beh_coin_inside_boo # 0888
     end_loop
 
 glabel beh_coin_formation_spawn # 08D0
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x01
     billboard
     begin_loop
@@ -832,7 +848,7 @@ glabel beh_coin_formation_spawn # 08D0
     end_loop
 
 glabel beh_coin_formation # 08EC
-    begin 11
+    begin OBJ_LIST_SPAWNER
     obj_or_int VAR_01, 0x41
     callnative BehCoinFormationInit
     begin_loop
@@ -840,11 +856,11 @@ glabel beh_coin_formation # 08EC
     end_loop
 
 glabel beh_one_coin # 090C
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_set_int VAR_2F, 1
     goto .L13000920
 glabel beh_collectable_coin # 091C
-    begin 6
+    begin OBJ_LIST_LEVEL
 .L13000920: # 0920
     billboard
     obj_or_int VAR_01, 0x41
@@ -854,7 +870,7 @@ glabel beh_collectable_coin # 091C
     end_loop
 
 glabel beh_temporary_coin # 0940
-    begin 6
+    begin OBJ_LIST_LEVEL
     billboard
     obj_or_int VAR_01, 0x01
     callnative BehTempCoinInit
@@ -863,7 +879,7 @@ glabel beh_temporary_coin # 0940
     end_loop
 
 glabel beh_three_coins_spawn # 0964
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     begin_repeat 3
         unknown_1C 0x00000074, beh_single_coin_gets_spawned
@@ -871,7 +887,7 @@ glabel beh_three_coins_spawn # 0964
     deactivate
 
 glabel beh_ten_coins_spawn # 0984
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     begin_repeat 10
         unknown_1C 0x00000074, beh_single_coin_gets_spawned
@@ -879,7 +895,7 @@ glabel beh_ten_coins_spawn # 0984
     deactivate
 
 glabel beh_single_coin_gets_spawned # 09A4
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x01
     billboard
     callnative BehCoinInit
@@ -890,7 +906,7 @@ glabel beh_single_coin_gets_spawned # 09A4
     end_loop
 
 glabel beh_coin_sparkles # 09E0
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     billboard
     obj_set_float VAR_15, 25
@@ -904,7 +920,7 @@ glabel beh_coin_sparkles # 09E0
     deactivate
 
 glabel beh_golden_coin_sparkles # 0A14
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     unknown_35
     begin_repeat 3
@@ -913,7 +929,7 @@ glabel beh_golden_coin_sparkles # 0A14
     deactivate
 
 glabel beh_wall_tiny_star_particle # 0A34
-    begin 12
+    begin OBJ_LIST_UNIMPORTANT
     obj_or_int VAR_01, 0x01
     billboard
     begin_repeat 10
@@ -922,7 +938,7 @@ glabel beh_wall_tiny_star_particle # 0A34
     deactivate
 
 glabel beh_wall_tiny_star_particle_spawn # 0A54
-    begin 8
+    begin OBJ_LIST_DEFAULT
     unknown_35
     obj_or_int VAR_01, 0x01
     obj_bic_int32 VAR_16, 0x00040000
@@ -931,7 +947,7 @@ glabel beh_wall_tiny_star_particle_spawn # 0A54
     deactivate
 
 glabel beh_pound_tiny_star_particle # 0A78
-    begin 12
+    begin OBJ_LIST_UNIMPORTANT
     obj_or_int VAR_01, 0x01
     billboard
     begin_repeat 10
@@ -940,7 +956,7 @@ glabel beh_pound_tiny_star_particle # 0A78
     deactivate
 
 glabel beh_pound_tiny_star_particle_spawn # 0A98
-    begin 8
+    begin OBJ_LIST_DEFAULT
     unknown_35
     obj_or_int VAR_01, 0x01
     obj_bic_int32 VAR_16, 0x00000010
@@ -949,7 +965,7 @@ glabel beh_pound_tiny_star_particle_spawn # 0A98
     deactivate
 
 glabel beh_punch_tiny_triangle # 0ABC
-    begin 12
+    begin OBJ_LIST_UNIMPORTANT
     obj_or_int VAR_01, 0x01
     billboard
     begin_loop
@@ -957,7 +973,7 @@ glabel beh_punch_tiny_triangle # 0ABC
     end_loop
 
 glabel beh_punch_tiny_triangle_spawn # 0AD8
-    begin 8
+    begin OBJ_LIST_DEFAULT
     unknown_35
     obj_or_int VAR_01, 0x01
     obj_bic_int32 VAR_16, 0x00080000
@@ -966,11 +982,11 @@ glabel beh_punch_tiny_triangle_spawn # 0AD8
     deactivate
 
 glabel beh_door_warp # 0AFC
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_set_int VAR_2A, 0x800
     goto .L13000B14
 glabel beh_door # 0B0C
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_set_int VAR_2A, 0x04
 .L13000B14: # 0B14
     obj_or_int VAR_01, 0x00C9
@@ -987,7 +1003,7 @@ glabel beh_door # 0B0C
     end_loop
 
 glabel beh_grindel # 0B58
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x49
     collision_data 0x07027ED0
     unknown_1E
@@ -999,7 +1015,7 @@ glabel beh_grindel # 0B58
     end_loop
 
 glabel beh_thwomp_2 # 0B8C
-    begin 9
+    begin OBJ_LIST_SURFACE
     collision_data 0x0500B92C
     obj_or_int VAR_01, 0x49
     unknown_1E
@@ -1013,7 +1029,7 @@ glabel beh_thwomp_2 # 0B8C
     end_loop
 
 glabel beh_thwomp # 0BC8
-    begin 9
+    begin OBJ_LIST_SURFACE
     collision_data 0x0500B7D0
     obj_or_int VAR_01, 0x49
     unknown_1E
@@ -1027,7 +1043,7 @@ glabel beh_thwomp # 0BC8
     end_loop
 
 glabel beh_tumbling_bridge_platform # 0C04
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x09
     obj_set_float VAR_43, 0x012C
     begin_loop
@@ -1036,7 +1052,7 @@ glabel beh_tumbling_bridge_platform # 0C04
     end_loop
 
 glabel beh_wf_tumbling_bridge # 0C28
-    begin 11
+    begin OBJ_LIST_SPAWNER
     obj_or_int VAR_01, 0xC1
     unknown_2D
     begin_loop
@@ -1044,7 +1060,7 @@ glabel beh_wf_tumbling_bridge # 0C28
     end_loop
 
 glabel beh_bbh_tumbling_platform_group # 0C44
-    begin 11
+    begin OBJ_LIST_SPAWNER
     obj_or_int VAR_01, 0xC1
     unknown_2D
     obj_set_int VAR_2F, 1
@@ -1053,7 +1069,7 @@ glabel beh_bbh_tumbling_platform_group # 0C44
     end_loop
 
 glabel beh_tumbling_platform # 0C64
-    begin 11
+    begin OBJ_LIST_SPAWNER
     obj_or_int VAR_01, 0xC1
     unknown_2D
     obj_set_int VAR_2F, 2
@@ -1062,7 +1078,7 @@ glabel beh_tumbling_platform # 0C64
     end_loop
 
 glabel beh_burning # 0C84
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x01
     billboard
     unknown_2D
@@ -1077,7 +1093,7 @@ glabel beh_burning # 0C84
     end_loop
 
 glabel beh_another_elavator # 0CC8
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x41
     collision_data 0x0702B5E4
     unknown_2D
@@ -1088,7 +1104,7 @@ glabel beh_another_elavator # 0CC8
     end_loop
 
 glabel beh_rr_elevator_platform # 0CFC
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x41
     collision_data 0x070296CC
     unknown_2D
@@ -1099,7 +1115,7 @@ glabel beh_rr_elevator_platform # 0CFC
     end_loop
 
 glabel beh_hmc_elevator_platform # 0D30
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x41
     collision_data 0x0702B5E4
     unknown_2D
@@ -1111,7 +1127,7 @@ glabel beh_hmc_elevator_platform # 0D30
     end_loop
 
 glabel beh_water_mist # 0D6C
-    begin 12
+    begin OBJ_LIST_UNIMPORTANT
     obj_or_int VAR_01, 0x01
     billboard
     obj_set_int VAR_3D, 0xFE
@@ -1123,7 +1139,7 @@ glabel beh_water_mist # 0D6C
     end_loop
 
 glabel beh_water_mist_spawn # 0D98
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     begin_repeat 8
         callnative BehWaterMistSpawnLoop
@@ -1131,7 +1147,7 @@ glabel beh_water_mist_spawn # 0D98
     deactivate
 
 glabel beh_break_box_triangle # 0DB4
-    begin 12
+    begin OBJ_LIST_UNIMPORTANT
     obj_or_int VAR_01, 0x01
     begin_repeat 18
         callnative BehBreakBoxTriangleLoop
@@ -1140,7 +1156,7 @@ glabel beh_break_box_triangle # 0DB4
     deactivate
 
 glabel beh_water_mist2 # 0DD8
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x41
     unknown_2D
     obj_set_int VAR_12, 0xC000
@@ -1150,7 +1166,7 @@ glabel beh_water_mist2 # 0DD8
     end_loop
 
 glabel beh_unused_0DFC # 0DFC
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     obj_set_int VAR_1A, -1
     obj_set_float VAR_12, 0
@@ -1162,37 +1178,37 @@ glabel beh_unused_0DFC # 0DFC
     deactivate
 
 glabel beh_pound_white_puffs # 0E24
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     callnative BehPoundWhitePuffsInit
     delay 1
     deactivate
 
 glabel beh_ground_sand # 0E3C
-    begin 8
+    begin OBJ_LIST_DEFAULT
 glabel beh_unused_0E40 # 0E40
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     callnative BehUnused0E40Init
     delay 1
     deactivate
 
 glabel beh_ground_snow # 0E58
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     callnative BehGroundSnowInit
     delay 1
     deactivate
 
 glabel beh_wind # 0E70
-    begin 12
+    begin OBJ_LIST_UNIMPORTANT
     obj_or_int VAR_01, 0x01
     begin_loop
         callnative BehWindLoop
     end_loop
 
 glabel beh_end_toad # 0E88
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     obj_set_int32 VAR_26, 0x0600FB58
     unknown_28 0x00
@@ -1201,7 +1217,7 @@ glabel beh_end_toad # 0E88
     end_loop
 
 glabel beh_end_peach # 0EAC
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     obj_set_int32 VAR_26, 0x0501C41C
     unknown_28 0x00
@@ -1210,7 +1226,7 @@ glabel beh_end_peach # 0EAC
     end_loop
 
 glabel beh_piranha_particles_spawn # 0ED0
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x01
     unknown_30 0x001E, 0xFE70, 0xFFCE, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
     obj_set_int VAR_05, 0
@@ -1220,10 +1236,10 @@ glabel beh_piranha_particles_spawn # 0ED0
     end_loop
 
 glabel beh_ukiki # 0F08
-    begin 4
+    begin OBJ_LIST_GENACTOR
     goto .L13001CB4
 glabel beh_unused_0F14 # 0F14
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x01
     obj_set_float VAR_06, 0x0A00
     obj_set_float VAR_07, 0x05B1
@@ -1231,7 +1247,7 @@ glabel beh_unused_0F14 # 0F14
     break
 
 glabel beh_little_cage2 # 0F2C
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     unknown_2D
     begin_loop
@@ -1239,7 +1255,7 @@ glabel beh_little_cage2 # 0F2C
     end_loop
 
 glabel beh_little_cage # 0F48
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x09
     unknown_2D
     collision_data 0x07013790
@@ -1252,7 +1268,7 @@ glabel beh_little_cage # 0F48
     end_loop
 
 glabel beh_bifs_sinking_platforms # 0F9C
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
     collision_data 0x07015858
     unknown_2D
@@ -1262,7 +1278,7 @@ glabel beh_bifs_sinking_platforms # 0F9C
     end_loop
 
 glabel beh_bifs_sinking_cage_platform # 0FC8
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
     collision_data 0x070151B4
     unknown_2D
@@ -1273,7 +1289,7 @@ glabel beh_bifs_sinking_cage_platform # 0FC8
     end_loop
 
 glabel beh_ddd_moving_pole # 1000
-    begin 10
+    begin OBJ_LIST_POLELIKE
     obj_or_int VAR_01, 0x01
     obj_set_int VAR_2A, 0x40
     set_hitbox 0x0050, 0x02C6
@@ -1284,7 +1300,7 @@ glabel beh_ddd_moving_pole # 1000
     end_loop
 
 glabel beh_tilting_inverted_pyramid # 1030
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x49
     collision_data 0x07015238
     unknown_2D
@@ -1295,7 +1311,7 @@ glabel beh_tilting_inverted_pyramid # 1030
     end_loop
 
 glabel beh_squishable_platform # 1064
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x49
     collision_data 0x0701530C
     obj_set_float VAR_43, 0x2710
@@ -1306,7 +1322,7 @@ glabel beh_squishable_platform # 1064
     end_loop
 
 glabel beh_cut_out_object # 1098
-    begin 4
+    begin OBJ_LIST_GENACTOR
     unknown_35
     obj_or_int VAR_01, 0x01
     break
@@ -1317,7 +1333,7 @@ glabel beh_beta_moving_flames_spawn # 10A8
     end_loop
 
 glabel beh_beta_moving_flames # 10B8
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x000B
     billboard
     begin_loop
@@ -1326,7 +1342,7 @@ glabel beh_beta_moving_flames # 10B8
     end_loop
 
 glabel beh_rr_rotating_platform_with_fire # 10D8
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x49
     collision_data 0x07029308
     obj_set_float VAR_43, 0x05DC
@@ -1337,7 +1353,7 @@ glabel beh_rr_rotating_platform_with_fire # 10D8
     end_loop
 
 glabel beh_flamethrower # 1108
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x49
     unknown_2D
     begin_loop
@@ -1345,7 +1361,7 @@ glabel beh_flamethrower # 1108
     end_loop
 
 glabel beh_flamethrower_flame # 1124
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x01
     interact_type 0x00040000
     unknown_2B 0x0032, 0x0019, 0x0019
@@ -1359,7 +1375,7 @@ glabel beh_flamethrower_flame # 1124
     end_loop
 
 glabel beh_bouncing_fireball # 1168
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x41
     unknown_35
     begin_loop
@@ -1367,7 +1383,7 @@ glabel beh_bouncing_fireball # 1168
     end_loop
 
 glabel beh_bouncing_fireball_flame # 1184
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x01
     interact_type 0x00040000
     obj_set_float VAR_15, 30
@@ -1380,7 +1396,7 @@ glabel beh_bouncing_fireball_flame # 1184
     end_loop
 
 glabel beh_bowser_shock_wave # 11D0
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0xC1
     obj_set_int VAR_3D, 0x00FF
     begin_loop
@@ -1388,7 +1404,7 @@ glabel beh_bowser_shock_wave # 11D0
     end_loop
 
 glabel beh_flame_mario # 11EC
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     billboard
     obj_set_float VAR_15, 0x0046
@@ -1399,7 +1415,7 @@ glabel beh_flame_mario # 11EC
     end_loop
 
 glabel beh_black_smoke_mario # 1214
-    begin 12
+    begin OBJ_LIST_UNIMPORTANT
     obj_or_int VAR_01, 0x000B
     billboard
     obj_set_int VAR_1A, 0x0004
@@ -1414,7 +1430,7 @@ glabel beh_black_smoke_mario # 1214
     deactivate
 
 glabel beh_black_smoke_bowser # 1254
-    begin 12
+    begin OBJ_LIST_UNIMPORTANT
     obj_or_int VAR_01, 0x000B
     billboard
     obj_set_float VAR_15, 0x0000
@@ -1425,7 +1441,7 @@ glabel beh_black_smoke_bowser # 1254
     deactivate
 
 glabel beh_black_smoke_upward # 127C
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     begin_repeat 4
         callnative BehBlackSmokeUpwardLoop
@@ -1433,7 +1449,7 @@ glabel beh_black_smoke_upward # 127C
     deactivate
 
 glabel beh_multiple_coins # 1298
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x41
     unknown_35
     begin_loop
@@ -1441,7 +1457,7 @@ glabel beh_multiple_coins # 1298
     end_loop
 
 glabel beh_spindrift # 12B4
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x49
     obj_set_int32 VAR_26, 0x05002D68
     unknown_28 0x00
@@ -1453,7 +1469,7 @@ glabel beh_spindrift # 12B4
     end_loop
 
 glabel beh_tower_platform_group # 12F4
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
     unknown_35
     obj_add_float VAR_07, 300
@@ -1463,7 +1479,7 @@ glabel beh_tower_platform_group # 12F4
     end_loop
 
 glabel beh_wf_sliding_platform # 1318
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x09
     collision_data 0x0700FB94
     begin_loop
@@ -1472,7 +1488,7 @@ glabel beh_wf_sliding_platform # 1318
     end_loop
 
 glabel beh_wf_elevator_platform # 1340
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x09
     collision_data 0x0700FB94
     begin_loop
@@ -1481,7 +1497,7 @@ glabel beh_wf_elevator_platform # 1340
     end_loop
 
 glabel beh_wf_solid_platform # 1368
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x09
     collision_data 0x0700FB94
     begin_loop
@@ -1490,14 +1506,14 @@ glabel beh_wf_solid_platform # 1368
     end_loop
 
 glabel beh_snow_leaf_particle_spawn # 1390
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     callnative BehSnowLeafParticleSpawnInit
     delay 1
     deactivate
 
 glabel beh_tree_snow # 13A8
-    begin 12
+    begin OBJ_LIST_UNIMPORTANT
     obj_or_int VAR_01, 0x03
     billboard
     begin_loop
@@ -1505,14 +1521,14 @@ glabel beh_tree_snow # 13A8
     end_loop
 
 glabel beh_tree_leaf # 13C4
-    begin 12
+    begin OBJ_LIST_UNIMPORTANT
     obj_or_int VAR_01, 0x03
     begin_loop
         callnative BehTreeSnowOrLeafLoop
     end_loop
 
 glabel beh_another_tilting_platform # 13DC
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x41
     unknown_2D
     callnative BehTiltingPlatformInit
@@ -1522,7 +1538,7 @@ glabel beh_another_tilting_platform # 13DC
     end_loop
 
 glabel beh_squarish_path_moving # 1408
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
     collision_data 0x0700F790
     unknown_2D
@@ -1531,7 +1547,7 @@ glabel beh_squarish_path_moving # 1408
     end_loop
 
 glabel beh_piranha_plant_bubble # 142C
-    begin 12
+    begin OBJ_LIST_UNIMPORTANT
     obj_or_int VAR_01, 0x01
     billboard
     begin_loop
@@ -1539,7 +1555,7 @@ glabel beh_piranha_plant_bubble # 142C
     end_loop
 
 glabel beh_piranha_plant_waking_bubbles # 1448
-    begin 12
+    begin OBJ_LIST_UNIMPORTANT
     billboard
     obj_or_int VAR_01, 0x0081
     begin_repeat 10
@@ -1548,14 +1564,14 @@ glabel beh_piranha_plant_waking_bubbles # 1448
     deactivate
 
 glabel beh_purple_switch_staircase # 1468
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_set_int VAR_2F, 1
     goto .Lbeh_floor_switch_1488
 glabel beh_floor_switch_grills # 1478
-    begin 9
+    begin OBJ_LIST_SURFACE
     goto .Lbeh_floor_switch_1488
 glabel beh_floor_switch_hardcoded_model # 1484
-    begin 9
+    begin OBJ_LIST_SURFACE
 .Lbeh_floor_switch_1488: # 1488
     obj_or_int VAR_01, 0x01
     collision_data 0x0800C7A8
@@ -1565,11 +1581,11 @@ glabel beh_floor_switch_hardcoded_model # 1484
     end_loop
 
 glabel beh_floor_switch_hidden_objects # 14AC
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_set_int VAR_2F, 2
     goto .Lbeh_floor_switch_1488
 glabel beh_hidden_object # 14BC
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
     collision_data 0x08012D70
     obj_set_float VAR_43, 0x012C
@@ -1578,7 +1594,7 @@ glabel beh_hidden_object # 14BC
     end_loop
 
 glabel beh_breakable_box # 14E0
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
     collision_data 0x08012D70
     obj_set_float VAR_43, 0x01F4
@@ -1590,7 +1606,7 @@ glabel beh_breakable_box # 14E0
     break
 
 glabel beh_pushable # 1518
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
     collision_data 0x08024C28
     obj_set_float VAR_43, 0x01F4
@@ -1601,7 +1617,7 @@ glabel beh_pushable # 1518
     end_loop
 
 glabel beh_heave_ho # 1548
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2449
     obj_set_int32 VAR_26, 0x0501534C
     unknown_28 0x00
@@ -1617,7 +1633,7 @@ glabel beh_heave_ho # 1548
     end_loop
 
 glabel beh_heave_ho_throw_mario # 15A4
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x09
     billboard
     begin_loop
@@ -1625,7 +1641,7 @@ glabel beh_heave_ho_throw_mario # 15A4
     end_loop
 
 glabel beh_ccm_touched_star_spawn # 15C0
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x4001
     set_hitbox 0x01F4, 0x01F4
     obj_set_int VAR_05, 0
@@ -1634,7 +1650,7 @@ glabel beh_ccm_touched_star_spawn # 15C0
     end_loop
 
 glabel beh_pound_explodes # 15E4
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
     collision_data 0x0700EFC0
     unknown_2D
@@ -1643,7 +1659,7 @@ glabel beh_pound_explodes # 15E4
     end_loop
 
 glabel beh_beta_trampoline # 1608
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
     collision_data 0x05001A28
     unknown_2D
@@ -1653,7 +1669,7 @@ glabel beh_beta_trampoline # 1608
     end_loop
 
 glabel beh_beta_trampoline_spawn # 1634
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     unknown_2D
     begin_loop
@@ -1661,7 +1677,7 @@ glabel beh_beta_trampoline_spawn # 1634
     end_loop
 
 glabel beh_jumping_box # 1650
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x0441
     unknown_30 0x001E, 0xFE70, 0xFFCE, 0x03E8, 0x03E8, 0x0258, 0x0000, 0x0000
     begin_loop
@@ -1669,7 +1685,7 @@ glabel beh_jumping_box # 1650
     end_loop
 
 glabel beh_boo_cage # 167C
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x09
     obj_set_float VAR_15, 0x000A
     unknown_30 0x001E, 0xFE70, 0xFFCE, 0x0000, 0x0000, 0x00C8, 0x0000, 0x0000
@@ -1678,12 +1694,12 @@ glabel beh_boo_cage # 167C
     end_loop
 
 glabel beh_stub # 16AC
-    begin 8
+    begin OBJ_LIST_DEFAULT
     unknown_35
     break
 
 glabel beh_igloo # 16B8
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x01
     interact_type 0x40000000
     set_hitbox 0x0064, 0x00C8
@@ -1694,7 +1710,7 @@ glabel beh_igloo # 16B8
     end_loop
 
 glabel beh_bowser_key_2 # 16E4
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x01
     unknown_2D
     unknown_30 0x001E, 0xFE70, 0xFFBA, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
@@ -1703,7 +1719,7 @@ glabel beh_bowser_key_2 # 16E4
     end_loop
 
 glabel beh_grand_star # 1714
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x01
     interact_type 0x00001000
     obj_set_int VAR_42, 0x0800
@@ -1714,7 +1730,7 @@ glabel beh_grand_star # 1714
     end_loop
 
 glabel beh_beta_boo_key_inside # 1744
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x01
     set_hitbox 0x0020, 0x0040
     unknown_30 0x001E, 0xFE70, 0xFFBA, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
@@ -1723,7 +1739,7 @@ glabel beh_beta_boo_key_inside # 1744
     end_loop
 
 glabel beh_beta_boo_key_outside # 1778
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x01
     set_hitbox 0x0020, 0x0040
     obj_set_int VAR_05, 0
@@ -1732,7 +1748,7 @@ glabel beh_beta_boo_key_outside # 1778
     end_loop
 
 glabel beh_bullet_bill # 179C
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x204B
     unknown_2D
     unknown_2B 0x0032, 0x0032, 0x0032
@@ -1747,7 +1763,7 @@ glabel beh_bullet_bill # 179C
     end_loop
 
 glabel beh_white_puff_smoke # 17F4
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     billboard
     obj_add_float VAR_07, -100
@@ -1759,11 +1775,11 @@ glabel beh_white_puff_smoke # 17F4
     deactivate
 
 glabel beh_unused_1820 # 1820
-    begin 8
+    begin OBJ_LIST_DEFAULT
     break
 
 glabel beh_bowser_tail_anchor # 1828
-    begin 4
+    begin OBJ_LIST_GENACTOR
     unknown_2B 0x0064, 0x0032, 0xFFCE
     obj_set_int VAR_05, 0
     unknown_35
@@ -1772,7 +1788,7 @@ glabel beh_bowser_tail_anchor # 1828
     end_loop
 
 glabel beh_bowser # 1850
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x24C9
     obj_set_int VAR_2A, 0x02
     set_hitbox 0x0190, 0x0190
@@ -1791,7 +1807,7 @@ glabel beh_bowser # 1850
     end_loop
 
 glabel beh_bowser_body_anchor # 18CC
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x01
     set_hitbox 0x0064, 0x012C
     interact_type 0x00000008
@@ -1804,7 +1820,7 @@ glabel beh_bowser_body_anchor # 18CC
     end_loop
 
 glabel beh_bowser_flame_spawn # 1904
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     geo_layout 0x0000
     begin_loop
@@ -1812,7 +1828,7 @@ glabel beh_bowser_flame_spawn # 1904
     end_loop
 
 glabel beh_tilting_bowser_lava_platform # 1920
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x2001
     collision_data 0x07001A68
     obj_set_float VAR_45, 0x4E20
@@ -1825,7 +1841,7 @@ glabel beh_tilting_bowser_lava_platform # 1920
     end_loop
 
 glabel beh_falling_bowser_platform # 1958
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
     obj_set_float VAR_45, 0x4E20
     obj_set_float VAR_43, 0x4E20
@@ -1836,7 +1852,7 @@ glabel beh_falling_bowser_platform # 1958
     end_loop
 
 glabel beh_blue_bowser_flame # 1984
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x01
     interact_type 0x00040000
     billboard
@@ -1848,7 +1864,7 @@ glabel beh_blue_bowser_flame # 1984
     end_loop
 
 glabel beh_flame_floating_landing # 19C8
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x01
     interact_type 0x00040000
     billboard
@@ -1860,7 +1876,7 @@ glabel beh_flame_floating_landing # 19C8
     end_loop
 
 glabel beh_blue_flames_group # 1A0C
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x2001
     interact_type 0x00040000
     billboard
@@ -1869,7 +1885,7 @@ glabel beh_blue_flames_group # 1A0C
     end_loop
 
 glabel beh_flame_bouncing # 1A30
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x2001
     interact_type 0x00040000
     billboard
@@ -1881,7 +1897,7 @@ glabel beh_flame_bouncing # 1A30
     end_loop
 
 glabel beh_flame_moving_forward_growing # 1A74
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x01
     interact_type 0x00040000
     billboard
@@ -1892,7 +1908,7 @@ glabel beh_flame_moving_forward_growing # 1A74
     end_loop
 
 glabel beh_flame_bowser # 1AA4
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x01
     interact_type 0x00040000
     billboard
@@ -1904,7 +1920,7 @@ glabel beh_flame_bowser # 1AA4
     end_loop
 
 glabel beh_flame_large_burning_out # 1AE8
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x01
     interact_type 0x00040000
     billboard
@@ -1916,7 +1932,7 @@ glabel beh_flame_large_burning_out # 1AE8
     end_loop
 
 glabel beh_blue_fish # 1B2C
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x09
     unknown_2D
     obj_set_int32 VAR_26, 0x0301C2B0
@@ -1926,7 +1942,7 @@ glabel beh_blue_fish # 1B2C
     end_loop
 
 glabel beh_tank_fish_groups # 1B54
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     unknown_2D
     begin_loop
@@ -1934,14 +1950,14 @@ glabel beh_tank_fish_groups # 1B54
     end_loop
 
 glabel beh_checkerboard_elevator_group # 1B70
-    begin 11
+    begin OBJ_LIST_SPAWNER
     obj_or_int VAR_01, 0x01
     callnative BehCheckerboardElevatorGroupInit
     delay 1
     deactivate
 
 glabel beh_checkerboard_platform_sub # 1B88
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x41
     collision_data 0x0800D710
     callnative BehCheckerboardPlatformInit
@@ -1951,7 +1967,7 @@ glabel beh_checkerboard_platform_sub # 1B88
     end_loop
 
 glabel beh_door_key1 # 1BB4
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_set_int32 VAR_26, 0x030172D0
     obj_or_int VAR_01, 0x01
     begin_loop
@@ -1959,7 +1975,7 @@ glabel beh_door_key1 # 1BB4
     end_loop
 
 glabel beh_door_key2 # 1BD4
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_set_int32 VAR_26, 0x030172D0
     obj_or_int VAR_01, 0x01
     begin_loop
@@ -1967,12 +1983,12 @@ glabel beh_door_key2 # 1BD4
     end_loop
 
 glabel beh_invisible_objects_under_bridge # 1BF4
-    begin 8
+    begin OBJ_LIST_DEFAULT
     callnative BehInvisibleObjUnderBridge
     break
 
 glabel beh_water_level_pillar # 1C04
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
     collision_data 0x07078E80
     callnative BehWaterLevelPillarInit
@@ -1982,7 +1998,7 @@ glabel beh_water_level_pillar # 1C04
     end_loop
 
 glabel beh_ddd_warp # 1C34
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
     obj_set_float VAR_43, 0x7530
     begin_loop
@@ -1991,7 +2007,7 @@ glabel beh_ddd_warp # 1C34
     end_loop
 
 glabel beh_moat_grills # 1C58
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
     collision_data 0x07010DB4
     obj_set_float VAR_43, 0x7530
@@ -2000,11 +2016,11 @@ glabel beh_moat_grills # 1C58
     end_loop
 
 glabel beh_clock_big_arm # 1C7C
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_set_int VAR_25, 0xFE80
     goto .L13001C94
 glabel beh_rotating_small_clock_arm # 1C8C
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_set_int VAR_25, 0xFFE0
 .L13001C94: # 1C94
     obj_or_int VAR_01, 0x01
@@ -2014,7 +2030,7 @@ glabel beh_rotating_small_clock_arm # 1C8C
     end_loop
 
 glabel beh_ukiki_open_cage # 1CB0
-    begin 4
+    begin OBJ_LIST_GENACTOR
 .L13001CB4: # 1CB4
     obj_or_int VAR_01, 0x2449
     obj_set_int VAR_2A, 0x02
@@ -2032,11 +2048,11 @@ glabel beh_ukiki_open_cage # 1CB0
     end_loop
 
 glabel beh_stub_1D0C # 1D0C
-    begin 8
+    begin OBJ_LIST_DEFAULT
     deactivate
 
 glabel beh_lll_rotating_ccw # 1D14
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x09
     collision_data 0x0701D71C
     unknown_2D
@@ -2047,7 +2063,7 @@ glabel beh_lll_rotating_ccw # 1D14
     end_loop
 
 glabel beh_sinks_when_stepped_on # 1D40
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x09
     collision_data 0x0701D590
     obj_add_float VAR_07, -50
@@ -2058,11 +2074,11 @@ glabel beh_sinks_when_stepped_on # 1D40
     end_loop
 
 glabel beh_stub_1D70 # 1D70
-    begin 8
+    begin OBJ_LIST_DEFAULT
     break
 
 glabel beh_horizontal_movement # 1D78
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x41
     obj_add_float VAR_07, -50
     collision_data 0x0701D018
@@ -2075,7 +2091,7 @@ glabel beh_snow_ball # 1DA4
     break
 
 glabel beh_rotating_cw_with_fire_bars # 1DA8
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x49
     collision_data 0x0701D138
     obj_set_float VAR_43, 0x0FA0
@@ -2084,7 +2100,7 @@ glabel beh_rotating_cw_with_fire_bars # 1DA8
     end_loop
 
 glabel beh_lll_rotating_hex_flame # 1DCC
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x49
     interact_type 0x00040000
     unknown_2B 0x0032, 0x0064, 0x0032
@@ -2096,7 +2112,7 @@ glabel beh_lll_rotating_hex_flame # 1DCC
     end_loop
 
 glabel beh_lll_wood_piece # 1E04
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x49
     collision_data 0x0701D1EC
     unknown_2D
@@ -2106,7 +2122,7 @@ glabel beh_lll_wood_piece # 1E04
     end_loop
 
 glabel beh_floating_wood_bridge # 1E30
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x49
     geo_layout 0x0000
     begin_loop
@@ -2114,7 +2130,7 @@ glabel beh_floating_wood_bridge # 1E30
     end_loop
 
 glabel beh_volcano_flames # 1E4C
-    begin 12
+    begin OBJ_LIST_UNIMPORTANT
     obj_or_int VAR_01, 0x49
     billboard
     begin_loop
@@ -2123,7 +2139,7 @@ glabel beh_volcano_flames # 1E4C
     end_loop
 
 glabel beh_lll_rotating_platform # 1E6C
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x49
     collision_data 0x0701D294
     begin_loop
@@ -2132,7 +2148,7 @@ glabel beh_lll_rotating_platform # 1E6C
     end_loop
 
 glabel beh_lll_slow_tilting_movement # 1E94
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x49
     collision_data 0x0701D408
     obj_set_float VAR_43, 0x07D0
@@ -2143,7 +2159,7 @@ glabel beh_lll_slow_tilting_movement # 1E94
     end_loop
 
 glabel beh_lll_slow_up_down_movement # 1EC4
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x49
     collision_data 0x0701D450
     obj_add_float VAR_07, 5
@@ -2155,7 +2171,7 @@ glabel beh_lll_slow_up_down_movement # 1EC4
     end_loop
 
 glabel beh_tilting_inverted_pyramid2 # 1EF8
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x49
     collision_data 0x0701D510
     obj_add_float VAR_07, 5
@@ -2167,12 +2183,12 @@ glabel beh_tilting_inverted_pyramid2 # 1EF8
     end_loop
 
 glabel beh_unused_1F30 # 1F30
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x49
     break
 
 glabel beh_koopa_shell # 1F3C
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x01
     unknown_30 0x001E, 0xFE70, 0xFFCE, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
     begin_loop
@@ -2180,7 +2196,7 @@ glabel beh_koopa_shell # 1F3C
     end_loop
 
 glabel beh_koopa_shell_flame # 1F68
-    begin 12
+    begin OBJ_LIST_UNIMPORTANT
     obj_or_int VAR_01, 0x01
     interact_type 0x00040000
     billboard
@@ -2190,7 +2206,7 @@ glabel beh_koopa_shell_flame # 1F68
     end_loop
 
 glabel beh_tox_box # 1F90
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x49
     collision_data 0x07012644
     obj_add_float VAR_07, 256
@@ -2201,7 +2217,7 @@ glabel beh_tox_box # 1F90
     end_loop
 
 glabel beh_piranha_plant_2 # 1FBC
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2049
     obj_set_int32 VAR_26, 0x0601C31C
     unknown_28 0x00
@@ -2219,7 +2235,7 @@ glabel beh_piranha_plant_2 # 1FBC
     end_loop
 
 glabel beh_lll_hexagonal_mesh # 2018
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
     collision_data 0x0301CECC
     begin_loop
@@ -2227,7 +2243,7 @@ glabel beh_lll_hexagonal_mesh # 2018
     end_loop
 
 glabel beh_bowser_puzzle_piece # 2038
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x41
     collision_data 0x0701D560
     unknown_2D
@@ -2238,7 +2254,7 @@ glabel beh_bowser_puzzle_piece # 2038
     end_loop
 
 glabel beh_bowser_puzzle # 2068
-    begin 11
+    begin OBJ_LIST_SPAWNER
     unknown_35
     obj_or_int VAR_01, 0x41
     obj_add_float VAR_08, -50
@@ -2247,7 +2263,7 @@ glabel beh_bowser_puzzle # 2068
     end_loop
 
 glabel beh_tuxies_mother # 2088
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2049
     obj_set_int32 VAR_26, 0x05008B74
     unknown_28 0x03
@@ -2261,15 +2277,15 @@ glabel beh_tuxies_mother # 2088
     end_loop
 
 glabel beh_penguin_baby # 20D8
-    begin 4
+    begin OBJ_LIST_GENACTOR
     break
 
 glabel beh_unused_20E0 # 20E0
-    begin 4
+    begin OBJ_LIST_GENACTOR
     break
 
 glabel beh_small_penguin # 20E8
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2449
     unknown_1E
     obj_set_int32 VAR_26, 0x05008B74
@@ -2285,15 +2301,15 @@ glabel beh_small_penguin # 20E8
     end_loop
 
 glabel beh_fish_2 # 213C
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_set_int VAR_2F, 0x0000
     goto beh_fish_common
 glabel beh_fish_3 # 214C
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_set_int VAR_2F, 1
     goto beh_fish_common
 glabel beh_large_fish_group # 215C
-    begin 8
+    begin OBJ_LIST_DEFAULT
 glabel beh_fish_common # 2160
     unknown_35
     obj_or_int VAR_01, 0x49
@@ -2302,7 +2318,7 @@ glabel beh_fish_common # 2160
     end_loop
 
 glabel beh_fish_group2 # 2178
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x2049
     unknown_2D
     begin_loop
@@ -2310,7 +2326,7 @@ glabel beh_fish_group2 # 2178
     end_loop
 
 glabel beh_wdw_express_elevator # 2194
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x41
     collision_data 0x070185AC
     unknown_2D
@@ -2320,7 +2336,7 @@ glabel beh_wdw_express_elevator # 2194
     end_loop
 
 glabel beh_wdw_express_elevator_platform # 21C0
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x41
     collision_data 0x070185AC
     unknown_2D
@@ -2329,7 +2345,7 @@ glabel beh_wdw_express_elevator_platform # 21C0
     end_loop
 
 glabel beh_chirp_chirp # 21E4
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_set_int VAR_1B, 1
     goto .Lbeh_chirp_chirp_21F4
 .Lbeh_chirp_chirp_21F4: # 21F4
@@ -2340,7 +2356,7 @@ glabel beh_chirp_chirp # 21E4
     end_loop
 
 glabel beh_cheep_cheep # 220C
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2049
     obj_set_int32 VAR_26, 0x06012354
     unknown_28 0x00
@@ -2354,7 +2370,7 @@ glabel beh_cheep_cheep # 220C
     end_loop
 
 glabel beh_exclamation_box # 2250
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x09
     collision_data 0x08025F78
     obj_or_int VAR_01, 0x01
@@ -2365,7 +2381,7 @@ glabel beh_exclamation_box # 2250
     end_loop
 
 glabel beh_rotating_exclamation_mark # 227C
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x09
     scale 200
     begin_loop
@@ -2374,7 +2390,7 @@ glabel beh_rotating_exclamation_mark # 227C
     end_loop
 
 glabel beh_sound_spawner # 229C
-    begin 12
+    begin OBJ_LIST_UNIMPORTANT
     obj_or_int VAR_01, 0x01
     delay 3
     callnative BehPlaySound
@@ -2382,7 +2398,7 @@ glabel beh_sound_spawner # 229C
     deactivate
 
 glabel beh_rock_solid # 22B8
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x41
     collision_data 0x0700C758
     begin_loop
@@ -2390,7 +2406,7 @@ glabel beh_rock_solid # 22B8
     end_loop
 
 glabel beh_bowser_sub_door # 22D8
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x0081
     collision_data 0x0700FC48
     obj_set_float VAR_45, 0x4E20
@@ -2401,7 +2417,7 @@ glabel beh_bowser_sub_door # 22D8
     end_loop
 
 glabel beh_bowsers_sub # 2308
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x0081
     obj_set_float VAR_45, 0x4E20
     obj_set_float VAR_43, 0x4E20
@@ -2412,7 +2428,7 @@ glabel beh_bowsers_sub # 2308
     end_loop
 
 glabel beh_sushi_shark # 2338
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x49
     obj_set_int32 VAR_26, 0x0500AE54
     unknown_2C 0x00000000, beh_sushi_shark_collision_child
@@ -2427,7 +2443,7 @@ glabel beh_sushi_shark # 2338
     end_loop
 
 glabel beh_sushi_shark_collision_child # 2388
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x01
     unknown_35
     begin_loop
@@ -2435,7 +2451,7 @@ glabel beh_sushi_shark_collision_child # 2388
     end_loop
 
 glabel beh_jrb_sliding_box # 23A4
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
     collision_data 0x0700C8A8
     unknown_2D
@@ -2445,7 +2461,7 @@ glabel beh_jrb_sliding_box # 23A4
     end_loop
 
 glabel beh_ship_part_3 # 23D0
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     unknown_2D
     begin_loop
@@ -2453,7 +2469,7 @@ glabel beh_ship_part_3 # 23D0
     end_loop
 
 glabel beh_in_sunken_ship_3 # 23EC
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
     collision_data 0x0700C92C
     unknown_2D
@@ -2464,7 +2480,7 @@ glabel beh_in_sunken_ship_3 # 23EC
     end_loop
 
 glabel beh_sunken_ship_part # 241C
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0xC1
     scale 50
     unknown_2D
@@ -2478,7 +2494,7 @@ glabel beh_unused_243C # 243C
     obj_set_int VAR_14, 0x0C80
     return
 glabel beh_sunken_ship_part_2 # 244C
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x41
     scale 100
     obj_set_float VAR_45, 0x1770
@@ -2487,11 +2503,11 @@ glabel beh_sunken_ship_part_2 # 244C
     break
 
 glabel beh_in_sunken_ship # 246C
-    begin 9
+    begin OBJ_LIST_SURFACE
     collision_data 0x0700CE5C
     goto .Lbeh_in_sunken_ship_248C
 glabel beh_in_sunken_ship_2 # 2480
-    begin 9
+    begin OBJ_LIST_SURFACE
     collision_data 0x0700CF80
 .Lbeh_in_sunken_ship_248C: # 248C
     obj_or_int VAR_01, 0x01
@@ -2502,7 +2518,7 @@ glabel beh_in_sunken_ship_2 # 2480
     end_loop
 
 glabel beh_mario_dust_generator # 24AC
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_bic_int32 VAR_16, 0x00000001
     unknown_35
     unknown_1C 0x0000008E, beh_white_puff1
@@ -2511,7 +2527,7 @@ glabel beh_mario_dust_generator # 24AC
     deactivate
 
 glabel beh_white_puff1 # 24DC
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_bic_int32 VAR_16, 0x00000001
     obj_or_int VAR_01, 0x01
     billboard
@@ -2520,7 +2536,7 @@ glabel beh_white_puff1 # 24DC
     end_loop
 
 glabel beh_white_puff2 # 2500
-    begin 12
+    begin OBJ_LIST_UNIMPORTANT
     obj_or_int VAR_01, 0x03
     billboard
     obj_set_int VAR_1A, -1
@@ -2531,7 +2547,7 @@ glabel beh_white_puff2 # 2500
     deactivate
 
 glabel beh_white_puff_smoke2 # 2528
-    begin 12
+    begin OBJ_LIST_UNIMPORTANT
     obj_or_int VAR_01, 0x01
     billboard
     obj_set_int VAR_1A, -1
@@ -2543,11 +2559,11 @@ glabel beh_white_puff_smoke2 # 2528
     deactivate
 
 glabel beh_purple_switch_hidden_boxes # 2558
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_set_int VAR_2F, 2
     goto .Lbeh_floor_switch_1488
 glabel beh_blue_coin_switch # 2568
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
     collision_data 0x08000E98
     begin_loop
@@ -2555,7 +2571,7 @@ glabel beh_blue_coin_switch # 2568
     end_loop
 
 glabel beh_hidden_blue_coin # 2588
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_set_int VAR_2A, 0x10
     obj_or_int VAR_01, 0xC1
     billboard
@@ -2569,7 +2585,7 @@ glabel beh_hidden_blue_coin # 2588
     end_loop
 
 glabel beh_bob_hmc_cage_door # 25C0
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x09
     begin_loop
         callnative BehBobHmcCageDoorLoop
@@ -2577,14 +2593,14 @@ glabel beh_bob_hmc_cage_door # 25C0
     end_loop
 
 glabel beh_openable_grill # 25E0
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x09
     begin_loop
         callnative BehOpenableGrillLoop
     end_loop
 
 glabel beh_water_level_trigger # 25F8
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
     set_hitbox 0x0046, 0x001E
     obj_set_float VAR_43, 0x00C8
@@ -2594,13 +2610,13 @@ glabel beh_water_level_trigger # 25F8
     end_loop
 
 glabel beh_initialize_water_level_trigger # 2620
-    begin 8
+    begin OBJ_LIST_DEFAULT
     begin_loop
         callnative BehInitWaterLevelTriggerLoop
     end_loop
 
 glabel beh_tweester_sand_particle # 2634
-    begin 12
+    begin OBJ_LIST_UNIMPORTANT
     obj_or_int VAR_01, 0x03
     billboard
     begin_loop
@@ -2608,7 +2624,7 @@ glabel beh_tweester_sand_particle # 2634
     end_loop
 
 glabel beh_tweester # 2650
-    begin 10
+    begin OBJ_LIST_POLELIKE
     obj_or_int VAR_01, 0x20C1
     unknown_30 0x001E, 0xFE70, 0x0000, 0x0000, 0x0000, 0x00C8, 0x0000, 0x0000
     unknown_1E
@@ -2618,14 +2634,14 @@ glabel beh_tweester # 2650
     end_loop
 
 glabel beh_spawn_big_boo # 2684
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x41
     begin_loop
         callnative BehSpawnBigBooLoop
     end_loop
 
 glabel beh_animated_texture # 269C
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x01
     unknown_30 0x001E, 0xFE70, 0xFFBA, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
     billboard
@@ -2636,7 +2652,7 @@ glabel beh_animated_texture # 269C
     end_loop
 
 glabel beh_boo_in_castle # 26D4
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x2049
     unknown_2D
     obj_set_float VAR_15, 0x003C
@@ -2647,7 +2663,7 @@ glabel beh_boo_in_castle # 26D4
     end_loop
 
 glabel beh_boo_with_cage # 2710
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2049
     unknown_2D
     obj_set_int VAR_3E, 3
@@ -2662,17 +2678,17 @@ glabel beh_boo_with_cage # 2710
     end_loop
 
 glabel beh_patrolling_boo # 2768
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_set_int VAR_2F, 2
     obj_set_int VAR_49, 10
     goto .Lbeh_boo_2794
 glabel beh_spawned_boo # 277C
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_set_int VAR_2F, 1
     obj_set_int VAR_49, 10
     goto .Lbeh_boo_2794
 glabel beh_boo_giving_star # 2790
-    begin 4
+    begin OBJ_LIST_GENACTOR
 .Lbeh_boo_2794: # 2794
     obj_or_int VAR_01, 0x2049
     unknown_2D
@@ -2684,21 +2700,21 @@ glabel beh_boo_giving_star # 2790
     end_loop
 
 glabel beh_boo_group # 27D0
-    begin 8
+    begin OBJ_LIST_DEFAULT
     unknown_35
     callnative BehBooGroupInit
     deactivate
 
 glabel beh_boo_3 # 27E4
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_set_int VAR_2F, 1
     goto .Lbeh_boo_2808
 glabel beh_spawned_boo_2 # 27F4
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_set_int VAR_2F, 2
     goto .Lbeh_boo_2808
 glabel beh_boo_2 # 2804
-    begin 4
+    begin OBJ_LIST_GENACTOR
 .Lbeh_boo_2808: # 2808
     obj_or_int VAR_01, 0x2049
     obj_set_int VAR_05, 0
@@ -2716,7 +2732,7 @@ glabel beh_boo_2 # 2804
     end_loop
 
 glabel beh_hidden_staircase_step # 286C
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
     collision_data 0x07026A1C
     obj_set_int VAR_46, 0x0001
@@ -2727,7 +2743,7 @@ glabel beh_hidden_staircase_step # 286C
     end_loop
 
 glabel beh_boo_boss_spawned_bridge # 2898
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
     collision_data 0x07026A1C
     obj_set_int VAR_46, 0x0001
@@ -2739,7 +2755,7 @@ glabel beh_boo_boss_spawned_bridge # 2898
     end_loop
 
 glabel beh_bbh_tilt_floor_platforms # 28CC
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x2041
     collision_data 0x07026A98
     unknown_2D
@@ -2750,7 +2766,7 @@ glabel beh_bbh_tilt_floor_platforms # 28CC
     end_loop
 
 glabel beh_tumbling_bookshelf # 28FC
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
     collision_data 0x07026B4C
     unknown_2D
@@ -2761,7 +2777,7 @@ glabel beh_tumbling_bookshelf # 28FC
     end_loop
 
 glabel beh_mesh_elevator # 292C
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
     collision_data 0x07026B94
     unknown_2D
@@ -2774,7 +2790,7 @@ glabel beh_mesh_elevator # 292C
     end_loop
 
 glabel beh_rotating_merry_go_round # 2968
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x41
     collision_data 0x07026C1C
     obj_set_float VAR_43, 0x07D0
@@ -2786,7 +2802,7 @@ glabel beh_rotating_merry_go_round # 2968
 
 .ifdef VERSION_US
 glabel beh_plays_music_track_when_touched # 2998
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x41
     begin_loop
         callnative BehPlayMusicTrackWhenTouchedLoop
@@ -2797,7 +2813,7 @@ glabel beh_inside_cannon # 2998
     break
 
 glabel beh_bait_coin # 299C
-    begin 2
+    begin OBJ_LIST_DESTRUCTIVE
     obj_or_int VAR_01, 0x49
     billboard
     unknown_2D
@@ -2809,7 +2825,7 @@ glabel beh_bait_coin # 299C
     end_loop
 
 glabel beh_static_checkered_platform # 29CC
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
     collision_data 0x0800D710
     unknown_2D
@@ -2819,13 +2835,13 @@ glabel beh_static_checkered_platform # 29CC
     end_loop
 
 glabel beh_unused_2A10 # 29F8
-    begin 8
+    begin OBJ_LIST_DEFAULT
     billboard
     obj_or_int VAR_01, 0x01
     break
 
 glabel beh_star # 2A08
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     begin_loop
         obj_add_int VAR_12, 256
@@ -2839,16 +2855,16 @@ glabel beh_star # 2A08
     break
 
 glabel beh_static_object # 2A30
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     break
 
 glabel beh_unused_2A54 # 2A3C
-    begin 8
+    begin OBJ_LIST_DEFAULT
     break
 
 glabel beh_castle_floor_trap # 2A44
-    begin 8
+    begin OBJ_LIST_DEFAULT
     unknown_35
     callnative BehCastleFloorTrapInit
     begin_loop
@@ -2856,7 +2872,7 @@ glabel beh_castle_floor_trap # 2A44
     end_loop
 
 glabel beh_floor_trap_in_castle # 2A64
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x09
     collision_data 0x07078DE4
     begin_loop
@@ -2865,7 +2881,7 @@ glabel beh_floor_trap_in_castle # 2A64
     end_loop
 
 glabel beh_tree # 2A8C
-    begin 10
+    begin OBJ_LIST_POLELIKE
     billboard
     obj_or_int VAR_01, 0x01
     obj_set_int VAR_2A, 0x40
@@ -2876,7 +2892,7 @@ glabel beh_tree # 2A8C
     end_loop
 
 glabel beh_powerup_sparkles1 # 2AB8
-    begin 12
+    begin OBJ_LIST_UNIMPORTANT
     billboard
     obj_or_int VAR_01, 0x01
     obj_set_int VAR_1A, -1
@@ -2886,17 +2902,17 @@ glabel beh_powerup_sparkles1 # 2AB8
     deactivate
 
 glabel beh_powerup_sparkles2 # 2AD8
-    begin 12
+    begin OBJ_LIST_UNIMPORTANT
     obj_or_int VAR_01, 0x01
     begin_loop
         callnative BehPowerupSparklesLoop
     end_loop
 
 glabel beh_special_triple_jump_sparkles # 2AF0
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_bic_int32 VAR_16, 0x00000008
 glabel beh_some_gfx # 2AFC
-    begin 12
+    begin OBJ_LIST_UNIMPORTANT
     billboard
     obj_or_int VAR_01, 0x01
     obj_set_float VAR_15, 25
@@ -2913,7 +2929,7 @@ glabel beh_some_gfx # 2AFC
     deactivate
 
 glabel beh_scuttlebug # 2B44
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x49
     obj_set_int32 VAR_26, 0x06015064
     unknown_28 0x00
@@ -2925,19 +2941,19 @@ glabel beh_scuttlebug # 2B44
     end_loop
 
 glabel beh_scuttlebug_spawn # 2B88
-    begin 11
+    begin OBJ_LIST_SPAWNER
     obj_or_int VAR_01, 0x41
     begin_loop
         callnative BehScuttlebugSpawnLoop
     end_loop
 
 glabel beh_whomp_king_boss # 2BA0
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_set_int VAR_2F, 1
     obj_set_int VAR_3F, 0x0003
     goto .Lbeh_whomp_2BD4
 glabel beh_small_whomp # 2BB4
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_set_int VAR_44, 5
 .Lbeh_whomp_2BD4: # 2BBC
     obj_or_int VAR_01, 0x2049
@@ -2951,7 +2967,7 @@ glabel beh_small_whomp # 2BB4
     end_loop
 
 glabel beh_water_splash # 2BFC
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     billboard
     obj_set_int VAR_1A, -1
@@ -2969,7 +2985,7 @@ glabel beh_water_splash # 2BFC
     deactivate
 
 glabel beh_water_drops # 2C48
-    begin 12
+    begin OBJ_LIST_UNIMPORTANT
     obj_or_int VAR_01, 0x000B
     billboard
     begin_loop
@@ -2977,7 +2993,7 @@ glabel beh_water_drops # 2C48
     end_loop
 
 glabel beh_water_surface_white_wave # 2C64
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
 .ifdef VERSION_US
     obj_set_int VAR_12, 0
@@ -2993,7 +3009,7 @@ glabel beh_water_surface_white_wave # 2C64
     deactivate
 
 glabel beh_object_bubble_ripples # 2C8C
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
 .ifdef VERSION_JP
     obj_set_float VAR_12, 0
@@ -3013,7 +3029,7 @@ glabel beh_object_bubble_ripples # 2C8C
     deactivate
 
 glabel beh_surface_waves # 2CBC
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
 .ifdef VERSION_JP
     obj_set_float VAR_12, 0
@@ -3037,7 +3053,7 @@ glabel beh_surface_waves # 2CBC
     end_loop
 
 glabel beh_water_surface_white_wave_2 # 2D04
-    begin 12
+    begin OBJ_LIST_UNIMPORTANT
     obj_or_int VAR_01, 0x01
 .ifdef VERSION_JP
     obj_set_float VAR_12, 0
@@ -3056,7 +3072,7 @@ glabel beh_water_surface_white_wave_2 # 2D04
     deactivate
 
 glabel beh_waves_generator # 2D2C
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     unknown_35
     begin_repeat 5
@@ -3067,7 +3083,7 @@ glabel beh_waves_generator # 2D2C
     deactivate
 
 glabel beh_surface_wave_shrinking # 2D58
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     unknown_35
     begin_repeat 18
@@ -3079,11 +3095,11 @@ glabel beh_surface_wave_shrinking # 2D58
     deactivate
 
 glabel beh_water_type # 2D8C
-    begin 12
+    begin OBJ_LIST_UNIMPORTANT
     obj_or_int VAR_01, 0x01
     goto .Lbeh_wave_trail_2DD0
 glabel beh_wave_trail_on_surface # 2D9C
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     obj_bic_int32 VAR_16, 0x00000400
 .Lbeh_wave_trail_2DD0: # 2DAC
@@ -3100,7 +3116,7 @@ glabel beh_wave_trail_on_surface # 2D9C
     deactivate
 
 glabel beh_tiny_white_wind_particle # 2DE0
-    begin 12
+    begin OBJ_LIST_UNIMPORTANT
     obj_or_int VAR_01, 0x01
     billboard
     begin_loop
@@ -3108,7 +3124,7 @@ glabel beh_tiny_white_wind_particle # 2DE0
     end_loop
 
 glabel beh_wind_particle # 2DFC
-    begin 10
+    begin OBJ_LIST_POLELIKE
     obj_or_int VAR_01, 0x01
     billboard
     begin_loop
@@ -3116,7 +3132,7 @@ glabel beh_wind_particle # 2DFC
     end_loop
 
 glabel beh_snowman_wind_blowing # 2E18
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x2041
     unknown_2D
     begin_loop
@@ -3124,7 +3140,7 @@ glabel beh_snowman_wind_blowing # 2E18
     end_loop
 
 glabel beh_walking_penguin # 2E34
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x2049
     collision_data 0x05008B88
     obj_set_int32 VAR_26, 0x05008B74
@@ -3138,14 +3154,14 @@ glabel beh_walking_penguin # 2E34
     end_loop
 
 glabel beh_yellow_ball # 2E84
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     billboard
     break
 
     .align 4
 glabel beh_mario # 2EA0
-    begin 0
+    begin OBJ_LIST_PLAYER
     obj_set_int VAR_05, 0
     obj_or_int VAR_01, 0x0100
     obj_or_int VAR_03, 0x0001
@@ -3157,7 +3173,7 @@ glabel beh_mario # 2EA0
     end_loop
 
 glabel beh_toad_message # 2ED8
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x4049
     obj_set_int32 VAR_26, 0x0600FB58
     unknown_28 0x06
@@ -3171,7 +3187,7 @@ glabel beh_toad_message # 2ED8
     end_loop
 
 glabel beh_sealed_door_star # 2F20
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x09
     callnative BehSealedDoorStarInit
     begin_loop
@@ -3209,7 +3225,7 @@ glabel beh_warps_94 # 2F74
 
     .align 4
 glabel beh_random_animated_texture # 2F80
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x01
     obj_set_float VAR_15, 0xFFF0
     billboard
@@ -3219,7 +3235,7 @@ glabel beh_random_animated_texture # 2F80
     end_loop
 
 glabel beh_yellow_background_in_menu # 2FA0
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x01
     callnative BehYellowBackgroundMenuInit
     begin_loop
@@ -3228,7 +3244,7 @@ glabel beh_yellow_background_in_menu # 2FA0
     end_loop
 
 glabel beh_menu_growing_button # 2FC4
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x01
     callnative BehMenuGrowingButtonInit
     begin_loop
@@ -3237,7 +3253,7 @@ glabel beh_menu_growing_button # 2FC4
     end_loop
 
 glabel beh_gray_button # 2FE8
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x0821
     callnative BehGreyButtonInit
     begin_loop
@@ -3246,7 +3262,7 @@ glabel beh_gray_button # 2FE8
     end_loop
 
 glabel beh_star_in_act_selector # 300C
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     unknown_2D
     begin_loop
@@ -3254,7 +3270,7 @@ glabel beh_star_in_act_selector # 300C
     end_loop
 
 glabel beh_act_selector # 3028
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     callnative BehActSelectorInit
     begin_loop
@@ -3262,7 +3278,7 @@ glabel beh_act_selector # 3028
     end_loop
 
 glabel beh_moving_yellow_coin # 3048
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x01
     billboard
     set_hitbox 0x0064, 0x0040
@@ -3276,7 +3292,7 @@ glabel beh_moving_yellow_coin # 3048
     end_loop
 
 glabel beh_moving_blue_coin # 3084
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x01
     billboard
     obj_set_int VAR_05, 0
@@ -3288,7 +3304,7 @@ glabel beh_moving_blue_coin # 3084
     end_loop
 
 glabel beh_blue_coin_sliding # 30B4
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2041
     billboard
     obj_set_int VAR_05, 0
@@ -3300,7 +3316,7 @@ glabel beh_blue_coin_sliding # 30B4
     end_loop
 
 glabel beh_blue_coin_jumping # 30E4
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2041
     billboard
     obj_set_int VAR_05, 0
@@ -3312,7 +3328,7 @@ glabel beh_blue_coin_jumping # 30E4
     end_loop
 
 glabel beh_seaweed # 3114
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x01
     obj_set_int32 VAR_26, 0x0600A4D4
     unknown_28 0x00
@@ -3321,7 +3337,7 @@ glabel beh_seaweed # 3114
     end_loop
 
 glabel beh_seaweed_bundle # 3138
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x01
     unknown_1E
     callnative BehSeaweedBundleInit
@@ -3329,7 +3345,7 @@ glabel beh_seaweed_bundle # 3138
     end_loop
 
 glabel beh_bobomb # 3154
-    begin 2
+    begin OBJ_LIST_DESTRUCTIVE
     obj_or_int VAR_01, 0x6449
     obj_set_int32 VAR_26, 0x0802396C
     unknown_1E
@@ -3342,7 +3358,7 @@ glabel beh_bobomb # 3154
     end_loop
 
 glabel beh_bobomb_fuse_smoke # 318C
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     billboard
     obj_set_int VAR_1A, -1
@@ -3354,7 +3370,7 @@ glabel beh_bobomb_fuse_smoke # 318C
     end_loop
 
 glabel beh_bobomb_buddy_advice_role # 31BC
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2449
     obj_set_int32 VAR_26, 0x0802396C
     interact_type 0x00800000
@@ -3370,7 +3386,7 @@ glabel beh_bobomb_buddy_advice_role # 31BC
     end_loop
 
 glabel beh_bobomb_buddy_cannon_role # 3208
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x6449
     obj_set_int32 VAR_26, 0x0802396C
     interact_type 0x00800000
@@ -3386,7 +3402,7 @@ glabel beh_bobomb_buddy_cannon_role # 3208
     end_loop
 
 glabel beh_cannon_trap_door # 3254
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x4001
     collision_data 0x08004950
     unknown_2D
@@ -3397,7 +3413,7 @@ glabel beh_cannon_trap_door # 3254
     end_loop
 
 glabel beh_whirlpool # 3288
-    begin 10
+    begin OBJ_LIST_POLELIKE
     obj_or_int VAR_01, 0x41
     callnative BehWhirlpoolInit
     begin_loop
@@ -3405,14 +3421,14 @@ glabel beh_whirlpool # 3288
     end_loop
 
 glabel beh_jet_stream # 32A8
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x41
     begin_loop
         callnative BehJetStreamLoop
     end_loop
 
 glabel beh_message_panel # 32C0
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
     collision_data 0x0302DD80
     interact_type 0x00800000
@@ -3427,7 +3443,7 @@ glabel beh_message_panel # 32C0
     end_loop
 
 glabel beh_sign_on_wall # 3304
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
     interact_type 0x00800000
     obj_set_int VAR_42, 0x1000
@@ -3439,7 +3455,7 @@ glabel beh_sign_on_wall # 3304
     end_loop
 
 glabel beh_amp_homing # 3334
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x204B
     obj_set_int32 VAR_26, 0x08004034
     unknown_28 0x00
@@ -3451,7 +3467,7 @@ glabel beh_amp_homing # 3334
     end_loop
 
 glabel beh_amp # 3368
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2043
     obj_set_int32 VAR_26, 0x08004034
     unknown_28 0x00
@@ -3463,7 +3479,7 @@ glabel beh_amp # 3368
     end_loop
 
 glabel beh_butterfly # 339C
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x09
     obj_set_int32 VAR_26, 0x030056B0
     unknown_1E
@@ -3474,7 +3490,7 @@ glabel beh_butterfly # 339C
     end_loop
 
 glabel beh_hoot # 33CC
-    begin 10
+    begin OBJ_LIST_POLELIKE
     obj_or_int VAR_01, 0x09
     obj_set_int32 VAR_26, 0x05005768
     obj_set_int VAR_2A, 0x01
@@ -3485,7 +3501,7 @@ glabel beh_hoot # 33CC
     end_loop
 
 glabel beh_beta_green_shell # 3400
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x0401
     obj_set_int VAR_2A, 0x02
     unknown_1E
@@ -3497,26 +3513,26 @@ glabel beh_beta_green_shell # 3400
     end_loop
 
 glabel beh_carry_something1 # 3434
-    begin 8
+    begin OBJ_LIST_DEFAULT
     break
 glabel beh_carry_something2 # 343C
-    begin 8
+    begin OBJ_LIST_DEFAULT
     break
 glabel beh_carry_something3 # 3444
-    begin 8
+    begin OBJ_LIST_DEFAULT
     break
 glabel beh_carry_something4 # 344C
-    begin 8
+    begin OBJ_LIST_DEFAULT
     break
 glabel beh_carry_something5 # 3454
-    begin 8
+    begin OBJ_LIST_DEFAULT
     break
 glabel beh_carry_something6 # 345C
-    begin 8
+    begin OBJ_LIST_DEFAULT
     break
 
 glabel beh_object_bubble # 3464
-    begin 12
+    begin OBJ_LIST_UNIMPORTANT
     obj_or_int VAR_01, 0x0007
     billboard
     obj_or_int VAR_01, 0x01
@@ -3530,7 +3546,7 @@ glabel beh_object_bubble # 3464
     end_loop
 
 glabel beh_object_water_wave # 34A4
-    begin 12
+    begin OBJ_LIST_UNIMPORTANT
     obj_or_int VAR_01, 0x01
     obj_set_float VAR_12, 0
     obj_set_float VAR_13, 0
@@ -3548,7 +3564,7 @@ glabel beh_object_water_wave # 34A4
     end_loop
 
 glabel beh_explosion # 34F0
-    begin 2
+    begin OBJ_LIST_DESTRUCTIVE
     obj_or_int VAR_01, 0x41
     billboard
     interact_type 0x00000008
@@ -3563,7 +3579,7 @@ glabel beh_explosion # 34F0
     end_loop
 
 glabel beh_bobomb_bully_death_smoke # 3538
-    begin 12
+    begin OBJ_LIST_UNIMPORTANT
     obj_or_int VAR_01, 0x0007
     billboard
     obj_set_int VAR_1A, -1
@@ -3575,7 +3591,7 @@ glabel beh_bobomb_bully_death_smoke # 3538
     end_loop
 
 glabel beh_smoke # 3568
-    begin 12
+    begin OBJ_LIST_UNIMPORTANT
     obj_or_int VAR_01, 0x0007
     billboard
     obj_set_int VAR_1A, -1
@@ -3586,7 +3602,7 @@ glabel beh_smoke # 3568
     end_loop
 
 glabel beh_bobomb_explosion_bubble # 3590
-    begin 8
+    begin OBJ_LIST_DEFAULT
     billboard
     obj_or_int VAR_01, 0x01
     callnative BehBobombExplosionBubbleInit
@@ -3606,14 +3622,14 @@ glabel beh_bobomb_explosion_bubble_3600 # 35E0
     return
 
 glabel beh_bobomb_cork_box_respawner # 35F4
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     begin_loop
         callnative BehBobombCorkBoxRespawnerLoop
     end_loop
 
 glabel beh_small_bully # 360C
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x09
     obj_set_int32 VAR_26, 0x0500470C
     unknown_1E
@@ -3625,7 +3641,7 @@ glabel beh_small_bully # 360C
     end_loop
 
 glabel beh_big_bully # 3640
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x09
     obj_set_int32 VAR_26, 0x0500470C
     unknown_1E
@@ -3637,7 +3653,7 @@ glabel beh_big_bully # 3640
     end_loop
 
 glabel beh_big_bully_with_minions # 3674
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x09
     obj_set_int32 VAR_26, 0x0500470C
     unknown_2D
@@ -3648,7 +3664,7 @@ glabel beh_big_bully_with_minions # 3674
     end_loop
 
 glabel beh_small_chill_bully # 36A8
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x09
     obj_set_int32 VAR_26, 0x06003994
     unknown_1E
@@ -3661,7 +3677,7 @@ glabel beh_small_chill_bully # 36A8
     end_loop
 
 glabel beh_big_chill_bully # 36E0
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x09
     obj_set_int32 VAR_26, 0x06003994
     unknown_1E
@@ -3674,14 +3690,14 @@ glabel beh_big_chill_bully # 36E0
     end_loop
 
 glabel beh_jet_stream_ring_spawner # 3718
-    begin 8
+    begin OBJ_LIST_DEFAULT
     unhide
     begin_loop
         callnative BehJetStreamRingSpawnerLoop
     end_loop
 
 glabel beh_jet_stream_water_ring # 3730
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x01
     obj_set_int32 VAR_26, 0x06013F7C
     unknown_2B 0x004B, 0x0014, 0x0014
@@ -3695,7 +3711,7 @@ glabel beh_jet_stream_water_ring # 3730
     end_loop
 
 glabel beh_manta_ray_water_ring # 3778
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x01
     obj_set_int32 VAR_26, 0x06013F7C
     unknown_2B 0x004B, 0x0014, 0x0014
@@ -3709,12 +3725,12 @@ glabel beh_manta_ray_water_ring # 3778
     end_loop
 
 glabel beh_manta_ray_ring_manager # 37C0
-    begin 8
+    begin OBJ_LIST_DEFAULT
     begin_loop
     end_loop
 
 glabel beh_bowser_mine # 37CC
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x01
     obj_set_int VAR_05, 0
     unknown_2B 0x0028, 0x0028, 0x0028
@@ -3725,7 +3741,7 @@ glabel beh_bowser_mine # 37CC
     end_loop
 
 glabel beh_bowser_mine_explosion # 37FC
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     billboard
     obj_set_float VAR_15, 0xFEE0
@@ -3735,7 +3751,7 @@ glabel beh_bowser_mine_explosion # 37FC
     end_loop
 
 glabel beh_bowser_mine_smoke # 3820
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     billboard
     obj_set_float VAR_15, 0xFEE0
@@ -3746,7 +3762,7 @@ glabel beh_bowser_mine_smoke # 3820
     end_loop
 
 glabel beh_celebration_star # 3848
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x01
     callnative BehCelebrationStarInit
     begin_loop
@@ -3754,7 +3770,7 @@ glabel beh_celebration_star # 3848
     end_loop
 
 glabel beh_celebration_star_sparkle # 3868
-    begin 12
+    begin OBJ_LIST_UNIMPORTANT
     billboard
     obj_or_int VAR_01, 0x01
     obj_set_float VAR_15, 25
@@ -3765,7 +3781,7 @@ glabel beh_celebration_star_sparkle # 3868
     end_loop
 
 glabel beh_star_key_collection_puff_spawner # 3890
-    begin 8
+    begin OBJ_LIST_DEFAULT
     billboard
     obj_or_int VAR_01, 0x01
     obj_set_int VAR_1A, -1
@@ -3774,14 +3790,14 @@ glabel beh_star_key_collection_puff_spawner # 3890
     end_loop
 
 glabel beh_lll_drawbridge_spawner # 38B0
-    begin 8
+    begin OBJ_LIST_DEFAULT
     unhide
     begin_loop
         callnative BehLLLDrawbridgeSpawnerLoop
     end_loop
 
 glabel beh_lll_drawbridge # 38C8
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x09
     collision_data 0x0701D108
     begin_loop
@@ -3790,7 +3806,7 @@ glabel beh_lll_drawbridge # 38C8
     end_loop
 
 glabel beh_small_bomp # 38F0
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x03
     collision_data 0x0700F868
     callnative BehSmallBompInit
@@ -3800,7 +3816,7 @@ glabel beh_small_bomp # 38F0
     end_loop
 
 glabel beh_large_bomp # 3920
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x03
     collision_data 0x0700F934
     callnative BehLargeBompInit
@@ -3810,7 +3826,7 @@ glabel beh_large_bomp # 3920
     end_loop
 
 glabel beh_wf_sliding_brick_platform # 3950
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x03
     collision_data 0x0700FAA4
     callnative BehWFSlidingBrickPlatformInit
@@ -3820,7 +3836,7 @@ glabel beh_wf_sliding_brick_platform # 3950
     end_loop
 
 glabel beh_moneybag # 3980
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2009
     obj_set_int32 VAR_26, 0x06005E5C
     unknown_1E
@@ -3832,7 +3848,7 @@ glabel beh_moneybag # 3980
     end_loop
 
 glabel beh_fake_moneybag_coin # 39B4
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x01
     obj_set_float VAR_15, 0x001B
     billboard
@@ -3845,7 +3861,7 @@ glabel beh_fake_moneybag_coin # 39B4
     end_loop
 
 glabel beh_bob_pit_bowling_ball # 39E8
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x01
     billboard
     obj_set_float VAR_15, 130
@@ -3855,7 +3871,7 @@ glabel beh_bob_pit_bowling_ball # 39E8
     end_loop
 
 glabel beh_free_bowling_ball # 3A10
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x01
     billboard
     obj_set_float VAR_15, 130
@@ -3865,7 +3881,7 @@ glabel beh_free_bowling_ball # 3A10
     end_loop
 
 glabel beh_bowling_ball # 3A38
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x01
     billboard
     obj_set_float VAR_15, 130
@@ -3875,7 +3891,7 @@ glabel beh_bowling_ball # 3A38
     end_loop
 
 glabel beh_ttm_bowling_ball_spawner # 3A60
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x01
     obj_set_int VAR_1D, 0x003F
     callnative BehGenericBowlingBallSpawnerInit
@@ -3884,7 +3900,7 @@ glabel beh_ttm_bowling_ball_spawner # 3A60
     end_loop
 
 glabel beh_bob_bowling_ball_spawner # 3A84
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x01
     obj_set_int VAR_1D, 0x007F
     callnative BehGenericBowlingBallSpawnerInit
@@ -3893,14 +3909,14 @@ glabel beh_bob_bowling_ball_spawner # 3A84
     end_loop
 
 glabel beh_thi_bowling_ball_spawner # 3AA8
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x01
     begin_loop
         callnative BehTHIBowlingBallSpawnerLoop
     end_loop
 
 glabel beh_rr_cruiser_wing # 3AC0
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     callnative BehRRCruiserWingInit
     begin_loop
@@ -3908,7 +3924,7 @@ glabel beh_rr_cruiser_wing # 3AC0
     end_loop
 
 glabel beh_spindel # 3AE0
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x11
     collision_data 0x07027F54
     callnative BehSpindelInit
@@ -3918,7 +3934,7 @@ glabel beh_spindel # 3AE0
     end_loop
 
 glabel beh_moving_up_and_down # 3B10
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x11
     collision_data 0x0702808C
     callnative BehMovingUpAndDownInit
@@ -3928,7 +3944,7 @@ glabel beh_moving_up_and_down # 3B10
     end_loop
 
 glabel beh_pyramid_elevator # 3B40
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
     collision_data 0x07028110
     unknown_2D
@@ -3940,7 +3956,7 @@ glabel beh_pyramid_elevator # 3B40
     end_loop
 
 glabel beh_pyramid_elevator_metal_balls # 3B78
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     billboard
     begin_loop
@@ -3948,7 +3964,7 @@ glabel beh_pyramid_elevator_metal_balls # 3B78
     end_loop
 
 glabel beh_pyramid_top # 3B94
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
     collision_data 0x070125F4
     unknown_2D
@@ -3960,7 +3976,7 @@ glabel beh_pyramid_top # 3B94
     end_loop
 
 glabel beh_pyramid_top_explosion # 3BCC
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     callnative BehPyramidTopExplosionInit
     begin_loop
@@ -3968,7 +3984,7 @@ glabel beh_pyramid_top_explosion # 3BCC
     end_loop
 
 glabel beh_collision_box_subbehavior # 3BEC
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x01
     set_hitbox 0x0032, 0x0032
     obj_set_int VAR_05, 0
@@ -3977,19 +3993,19 @@ glabel beh_collision_box_subbehavior # 3BEC
     end_loop
 
 glabel beh_waterfall_sound_loop # 3C10
-    begin 8
+    begin OBJ_LIST_DEFAULT
     begin_loop
         callnative BehWaterfallSoundLoop
     end_loop
 
 glabel beh_volcano_sound_loop # 3C24
-    begin 8
+    begin OBJ_LIST_DEFAULT
     begin_loop
         callnative BehVolcanoSoundLoop
     end_loop
 
 glabel beh_castle_flag_waving # 3C38
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     obj_set_int32 VAR_26, 0x0700C95C
     unknown_28 0x00
@@ -3998,25 +4014,25 @@ glabel beh_castle_flag_waving # 3C38
     end_loop
 
 glabel beh_birds_sound_loop # 3C5C
-    begin 8
+    begin OBJ_LIST_DEFAULT
     begin_loop
         callnative BehBirdsSoundLoop
     end_loop
 
 glabel beh_ambiant_sounds # 3C70
-    begin 8
+    begin OBJ_LIST_DEFAULT
     callnative BehAmbiantSoundsInit
     begin_loop
     end_loop
 
 glabel beh_sand_sound_loop # 3C84
-    begin 8
+    begin OBJ_LIST_DEFAULT
     begin_loop
         callnative BehSandSoundLoop
     end_loop
 
 glabel beh_hidden_at_120_stars # 3C98
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
     collision_data 0x07010E10
     obj_set_float VAR_43, 0x0FA0
@@ -4026,7 +4042,7 @@ glabel beh_hidden_at_120_stars # 3C98
     end_loop
 
 glabel beh_snowmans_bottom # 3CC4
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2009
     unknown_1E
     obj_set_int VAR_05, 0
@@ -4036,7 +4052,7 @@ glabel beh_snowmans_bottom # 3CC4
     end_loop
 
 glabel beh_snowmans_head # 3CEC
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x2001
     unknown_1E
     obj_set_float VAR_15, 0x006E
@@ -4046,14 +4062,14 @@ glabel beh_snowmans_head # 3CEC
     end_loop
 
 glabel beh_snowmans_body_checkpoint # 3D14
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     begin_loop
         callnative BehSnowmansBodyCheckpointLoop
     end_loop
 
 glabel beh_big_snowman_whole # 3D2C
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x01
     obj_set_float VAR_15, 0x00B4
     interact_type 0x00800000
@@ -4063,7 +4079,7 @@ glabel beh_big_snowman_whole # 3D2C
     end_loop
 
 glabel beh_big_boulder # 3D54
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2009
     obj_set_float VAR_15, 0x00B4
     callnative BehBigBoulderInit
@@ -4074,14 +4090,14 @@ glabel beh_big_boulder # 3D54
     end_loop
 
 glabel beh_big_boulder_generator # 3D80
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     begin_loop
         callnative BehBigBoulderGeneratorLoop
     end_loop
 
 glabel beh_wing_cap # 3D98
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x2001
     callnative BehWingCapInit
     begin_loop
@@ -4089,7 +4105,7 @@ glabel beh_wing_cap # 3D98
     end_loop
 
 glabel beh_metal_cap # 3DB8
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x2001
     callnative BehMetalCapInit
     begin_loop
@@ -4097,7 +4113,7 @@ glabel beh_metal_cap # 3DB8
     end_loop
 
 glabel beh_normal_cap # 3DD8
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x2001
     callnative BehNormalCapInit
     begin_loop
@@ -4106,7 +4122,7 @@ glabel beh_normal_cap # 3DD8
     end_loop
 
 glabel beh_vanish_cap # 3DFC
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x2001
     callnative BehVanishCapInit
     begin_loop
@@ -4114,7 +4130,7 @@ glabel beh_vanish_cap # 3DFC
     end_loop
 
 glabel beh_collect_star # 3E1C
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x01
     callnative BehCommonInit
     callnative BehCollectStarInit
@@ -4123,7 +4139,7 @@ glabel beh_collect_star # 3E1C
     end_loop
 
 glabel beh_star_spawn_coordinates # 3E44
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x01
     callnative BehCollectStarInit
     callnative BehStarSpawnInit
@@ -4132,7 +4148,7 @@ glabel beh_star_spawn_coordinates # 3E44
     end_loop
 
 glabel beh_hidden_red_coin_star # 3E6C
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x4001
     callnative BehHiddenRedCoinStarInit
     begin_loop
@@ -4140,7 +4156,7 @@ glabel beh_hidden_red_coin_star # 3E6C
     end_loop
 
 glabel beh_red_coin # 3E8C
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x01
     billboard
     obj_set_int VAR_05, 0
@@ -4153,14 +4169,14 @@ glabel beh_red_coin # 3E8C
     end_loop
 
 glabel beh_bowser_course_red_coin_star # 3EC4
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x4001
     begin_loop
         callnative BehBowserCourseRedCoinStarLoop
     end_loop
 
 glabel beh_hidden_star # 3EDC
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x4001
     callnative BehHiddenStarInit
     begin_loop
@@ -4168,7 +4184,7 @@ glabel beh_hidden_star # 3EDC
     end_loop
 
 glabel beh_checkpoint # 3EFC
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x01
     set_hitbox 0x0064, 0x0064
     obj_set_int VAR_05, 0
@@ -4177,7 +4193,7 @@ glabel beh_checkpoint # 3EFC
     end_loop
 
 glabel beh_pitoune_2 # 3F20
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
     collision_data 0x07013678
     unknown_2D
@@ -4189,7 +4205,7 @@ glabel beh_pitoune_2 # 3F20
     end_loop
 
 glabel beh_falling_when_mario_is_near # 3F58
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
     collision_data 0x070284DC
     unknown_2D
@@ -4199,7 +4215,7 @@ glabel beh_falling_when_mario_is_near # 3F58
     end_loop
 
 glabel beh_pitoune # 3F84
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
     collision_data 0x0701D608
     unknown_2D
@@ -4211,7 +4227,7 @@ glabel beh_pitoune # 3F84
     end_loop
 
 glabel beh_1up_walking # 3FBC
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x2001
     billboard
     unknown_2B 0x001E, 0x001E, 0x0000
@@ -4222,7 +4238,7 @@ glabel beh_1up_walking # 3FBC
     end_loop
 
 glabel beh_1up_running_away # 3FF0
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x2001
     billboard
     unknown_2B 0x001E, 0x001E, 0x0000
@@ -4233,7 +4249,7 @@ glabel beh_1up_running_away # 3FF0
     end_loop
 
 glabel beh_1up_sliding # 4024
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x01
     billboard
     unknown_2B 0x001E, 0x001E, 0x0000
@@ -4245,7 +4261,7 @@ glabel beh_1up_sliding # 4024
     end_loop
 
 glabel beh_1up # 405C
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x01
     billboard
     unknown_2B 0x001E, 0x001E, 0x0000
@@ -4257,7 +4273,7 @@ glabel beh_1up # 405C
     end_loop
 
 glabel beh_1up_jump_on_approach # 4094
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x2001
     billboard
     unknown_2B 0x001E, 0x001E, 0x0000
@@ -4269,7 +4285,7 @@ glabel beh_1up_jump_on_approach # 4094
     end_loop
 
 glabel beh_1up_hidden # 40CC
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x2001
     billboard
     unknown_2B 0x001E, 0x001E, 0x0000
@@ -4281,7 +4297,7 @@ glabel beh_1up_hidden # 40CC
     end_loop
 
 glabel beh_1up_hidden_trigger # 4104
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x01
     set_hitbox 0x0064, 0x0064
     obj_set_int VAR_05, 0
@@ -4290,7 +4306,7 @@ glabel beh_1up_hidden_trigger # 4104
     end_loop
 
 glabel beh_1up_hidden_tree_pole # 4128
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x2001
     billboard
     unknown_2B 0x001E, 0x001E, 0x0000
@@ -4302,7 +4318,7 @@ glabel beh_1up_hidden_tree_pole # 4128
     end_loop
 
 glabel beh_1up_hidden_tree_pole_trigger # 4160
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x01
     set_hitbox 0x0064, 0x0064
     obj_set_int VAR_05, 0
@@ -4311,14 +4327,14 @@ glabel beh_1up_hidden_tree_pole_trigger # 4160
     end_loop
 
 glabel beh_1up_hidden_in_tree # 4184
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x01
     begin_loop
         callnative Beh1UpHiddenInTreeLoop
     end_loop
 
 glabel beh_controllable_platform # 419C
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x0821
     collision_data 0x0702B6E0
     unknown_2D
@@ -4329,7 +4345,7 @@ glabel beh_controllable_platform # 419C
     end_loop
 
 glabel beh_controllable_platform_sub # 41D0
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
     collision_data 0x0702B7F4
     begin_loop
@@ -4338,7 +4354,7 @@ glabel beh_controllable_platform_sub # 41D0
     end_loop
 
 glabel beh_breakable_box2 # 41F8
-    begin 2
+    begin OBJ_LIST_DESTRUCTIVE
     obj_or_int VAR_01, 0x0449
     unknown_1E
     unknown_2D
@@ -4349,7 +4365,7 @@ glabel beh_breakable_box2 # 41F8
     end_loop
 
 glabel beh_sliding_snow_mound # 4224
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
     collision_data 0x0700EF6C
     unknown_2D
@@ -4359,13 +4375,13 @@ glabel beh_sliding_snow_mound # 4224
     end_loop
 
 glabel beh_snow_mound_spawn # 4250
-    begin 8
+    begin OBJ_LIST_DEFAULT
     begin_loop
         callnative BehSnowMoundSpawnLoop
     end_loop
 
 glabel beh_square_floating_platform # 4264
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x09
     collision_data 0x070183C0
     obj_set_float VAR_1D, 0x0040
@@ -4376,7 +4392,7 @@ glabel beh_square_floating_platform # 4264
     end_loop
 
 glabel beh_rect_floating_platform # 4294
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x09
     collision_data 0x07018630
     obj_set_float VAR_1D, 0x0040
@@ -4387,7 +4403,7 @@ glabel beh_rect_floating_platform # 4294
     end_loop
 
 glabel beh_jrb_floating_platform # 42C4
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x09
     collision_data 0x0700C824
     obj_set_float VAR_1D, 0x0040
@@ -4398,7 +4414,7 @@ glabel beh_jrb_floating_platform # 42C4
     end_loop
 
 glabel beh_arrow_lift # 42F4
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
     collision_data 0x07018444
     obj_set_int_rand_rshift VAR_1E, 0x0001, 0x0020
@@ -4409,7 +4425,7 @@ glabel beh_arrow_lift # 42F4
     end_loop
 
 glabel beh_orange_number # 4328
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x01
     billboard
     unknown_2D
@@ -4419,7 +4435,7 @@ glabel beh_orange_number # 4328
     end_loop
 
 glabel beh_manta_ray # 4350
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x11
     obj_set_int32 VAR_26, 0x05008EB4
     unknown_28 0x00
@@ -4430,7 +4446,7 @@ glabel beh_manta_ray # 4350
     end_loop
 
 glabel beh_falling_pillar # 4380
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2001
     unknown_2D
     callnative BehFallingPillarInit
@@ -4439,7 +4455,7 @@ glabel beh_falling_pillar # 4380
     end_loop
 
 glabel beh_some_subojbject_of_falling_pillar # 43A4
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x01
     unknown_2D
     begin_loop
@@ -4447,7 +4463,7 @@ glabel beh_some_subojbject_of_falling_pillar # 43A4
     end_loop
 
 glabel beh_pillar_base # 43C0
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
     collision_data 0x0700D198
     begin_loop
@@ -4455,7 +4471,7 @@ glabel beh_pillar_base # 43C0
     end_loop
 
 glabel beh_jrb_floating_box # 43E0
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
     collision_data 0x0700C8A8
     unknown_2D
@@ -4465,7 +4481,7 @@ glabel beh_jrb_floating_box # 43E0
     end_loop
 
 glabel beh_oscillating_pendulum # 440C
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     callnative BehOscillatingPendulumInit
     begin_loop
@@ -4473,7 +4489,7 @@ glabel beh_oscillating_pendulum # 440C
     end_loop
 
 glabel beh_treasure_chests_ship # 442C
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     unknown_1E
     callnative BehTreasureChestShipInit
@@ -4482,7 +4498,7 @@ glabel beh_treasure_chests_ship # 442C
     end_loop
 
 glabel beh_treasure_chests_jrb # 4450
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     unknown_1E
     callnative BehTreasureChestJrbInit
@@ -4491,7 +4507,7 @@ glabel beh_treasure_chests_jrb # 4450
     end_loop
 
 glabel beh_treasure_chests # 4474
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     unknown_1E
     callnative BehTreasureChestInit
@@ -4500,7 +4516,7 @@ glabel beh_treasure_chests # 4474
     end_loop
 
 glabel beh_treasure_chest_bottom # 4498
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x01
     unknown_1E
     callnative BehTreasureChestBottomInit
@@ -4510,7 +4526,7 @@ glabel beh_treasure_chest_bottom # 4498
     end_loop
 
 glabel beh_treasure_chest_top # 44C0
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     unknown_2D
     begin_loop
@@ -4518,7 +4534,7 @@ glabel beh_treasure_chest_top # 44C0
     end_loop
 
 glabel beh_mips # 44DC
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x0409
     obj_set_int32 VAR_26, 0x06015634
     obj_set_int VAR_2A, 0x02
@@ -4531,7 +4547,7 @@ glabel beh_mips # 44DC
     end_loop
 
 glabel beh_yoshi # 4518
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2009
     obj_set_int32 VAR_26, 0x05024100
     interact_type 0x00800000
@@ -4546,7 +4562,7 @@ glabel beh_yoshi # 4518
     end_loop
 
 glabel beh_koopa # 4560
-    begin 5
+    begin OBJ_LIST_PUSHABLE
     obj_or_int VAR_01, 0x2041
     unknown_1E
     obj_set_int32 VAR_26, 0x06011364
@@ -4561,7 +4577,7 @@ glabel beh_koopa # 4560
     end_loop
 
 glabel beh_waving_koopa_flag # 45B0
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x41
     unknown_1E
     unknown_29 0x0000, 0x0000006A, beh_koopa_flag
@@ -4570,7 +4586,7 @@ glabel beh_waving_koopa_flag # 45B0
     end_loop
 
 glabel beh_koopa_flag # 45D8
-    begin 10
+    begin OBJ_LIST_POLELIKE
     interact_type 0x00000040
     set_hitbox 0x0050, 0x02BC
     obj_set_int VAR_05, 0
@@ -4583,7 +4599,7 @@ glabel beh_koopa_flag # 45D8
     end_loop
 
 glabel beh_pokey # 4614
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2041
     unknown_1E
     unknown_2D
@@ -4593,7 +4609,7 @@ glabel beh_pokey # 4614
     end_loop
 
 glabel beh_pokey_head # 4648
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2041
     unknown_30 0x003C, 0xFE70, 0x0000, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
     billboard
@@ -4602,7 +4618,7 @@ glabel beh_pokey_head # 4648
     end_loop
 
 glabel beh_bat # 4678
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2049
     obj_set_int32 VAR_26, 0x060070D0
     unknown_2D
@@ -4614,7 +4630,7 @@ glabel beh_bat # 4678
     end_loop
 
 glabel beh_fly_guy # 46BC
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2041
     obj_set_int32 VAR_26, 0x08011A64
     unknown_28 0x00
@@ -4629,7 +4645,7 @@ glabel beh_fly_guy # 46BC
     end_loop
 
 glabel beh_goomba_walk # 470C
-    begin 5
+    begin OBJ_LIST_PUSHABLE
     obj_or_int VAR_01, 0x2049
     unknown_1E
     obj_set_int32 VAR_26, 0x0801DA4C
@@ -4641,7 +4657,7 @@ glabel beh_goomba_walk # 470C
     end_loop
 
 glabel beh_goombas_group # 4750
-    begin 5
+    begin OBJ_LIST_PUSHABLE
     obj_or_int VAR_01, 0x41
     unknown_1E
     begin_loop
@@ -4649,7 +4665,7 @@ glabel beh_goombas_group # 4750
     end_loop
 
 glabel beh_chain_chomp # 476C
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x20C9
     unknown_1E
     obj_set_int32 VAR_26, 0x06025178
@@ -4665,7 +4681,7 @@ glabel beh_chain_chomp # 476C
     end_loop
 
 glabel beh_chain_chomp_chains # 47C4
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x01
     billboard
     unknown_30 0x0000, 0xFE70, 0xFFCE, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
@@ -4676,7 +4692,7 @@ glabel beh_chain_chomp_chains # 47C4
     end_loop
 
 glabel beh_poundable # 47FC
-    begin 9
+    begin OBJ_LIST_SURFACE
     collision_data 0x06002490
     obj_or_int VAR_01, 0x2041
     unknown_30 0x0000, 0xFE70, 0xFFCE, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
@@ -4690,7 +4706,7 @@ glabel beh_poundable # 47FC
     end_loop
 
 glabel beh_chain_chomp_freed_explosion # 4848
-    begin 9
+    begin OBJ_LIST_SURFACE
     collision_data bob_seg7_collision_chain_chomp_gate
     obj_or_int VAR_01, 0x41
     callnative BehChainChompFreedExplosionInit
@@ -4700,7 +4716,7 @@ glabel beh_chain_chomp_freed_explosion # 4848
     end_loop
 
 glabel beh_wiggler # 4878
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2041
     unknown_1E
     obj_set_int32 VAR_26, 0x0500EC8C
@@ -4714,7 +4730,7 @@ glabel beh_wiggler # 4878
     end_loop
 
 glabel beh_wiggler_body_parts # 48C0
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x01
     obj_set_int32 VAR_26, 0x0500C874
     unknown_30 0x0000, 0xFE70, 0x0000, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
@@ -4724,7 +4740,7 @@ glabel beh_wiggler_body_parts # 48C0
     end_loop
 
 glabel beh_evil_lakitu # 48F8
-    begin 5
+    begin OBJ_LIST_PUSHABLE
     obj_or_int VAR_01, 0x2041
     obj_set_int32 VAR_26, 0x050144D4
     unknown_28 0x00
@@ -4735,7 +4751,7 @@ glabel beh_evil_lakitu # 48F8
     end_loop
 
 glabel beh_lakitu # 4934
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x2041
     obj_set_int32 VAR_26, 0x060058F8
     unknown_28 0x00
@@ -4746,7 +4762,7 @@ glabel beh_lakitu # 4934
     end_loop
 
 glabel beh_fwoosh_blowing_wind # 4968
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x2049
     billboard
     unknown_2D
@@ -4756,7 +4772,7 @@ glabel beh_fwoosh_blowing_wind # 4968
     end_loop
 
 glabel beh_fwoosh_face # 498C
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     obj_set_int VAR_3D, 0x00F0
     begin_loop
@@ -4764,7 +4780,7 @@ glabel beh_fwoosh_face # 498C
     end_loop
 
 glabel beh_spiny # 49A8
-    begin 5
+    begin OBJ_LIST_PUSHABLE
     obj_or_int VAR_01, 0x2049
     obj_set_int32 VAR_26, 0x05016EAC
     unknown_28 0x00
@@ -4774,7 +4790,7 @@ glabel beh_spiny # 49A8
     end_loop
 
 glabel beh_monty_mole # 49E0
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2049
     unknown_1E
     obj_set_int32 VAR_26, 0x05007248
@@ -4791,7 +4807,7 @@ glabel beh_monty_mole # 49E0
     end_loop
 
 glabel beh_monty_mole_in_hole # 4A38
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x2041
     unknown_1E
     scale 150
@@ -4800,7 +4816,7 @@ glabel beh_monty_mole_in_hole # 4A38
     end_loop
 
 glabel beh_monty_mole_rock # 4A58
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x49
     billboard
     unknown_30 0x001E, 0xFE70, 0xFFCE, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
@@ -4811,7 +4827,7 @@ glabel beh_monty_mole_rock # 4A58
     end_loop
 
 glabel beh_platform_on_tracks # 4A90
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x2041
     unknown_30 0x0032, 0xFF9C, 0xFFCE, 0x0064, 0x03E8, 0x00C8, 0x0000, 0x0000
     callnative BehCommonInit
@@ -4822,7 +4838,7 @@ glabel beh_platform_on_tracks # 4A90
     end_loop
 
 glabel beh_metal_balls_for_elevators # 4AD4
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
     billboard
     callnative BehCommonInit
@@ -4832,7 +4848,7 @@ glabel beh_metal_balls_for_elevators # 4AD4
     end_loop
 
 glabel beh_solid_moving # 4AFC
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x2049
     callnative BehSolidMovingInit
     begin_loop
@@ -4841,7 +4857,7 @@ glabel beh_solid_moving # 4AFC
     end_loop
 
 glabel beh_four_rotating_platforms # 4B24
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
     obj_add_int VAR_10, 0x4000
     callnative BehFourRotatingPlatformsInit
@@ -4851,7 +4867,7 @@ glabel beh_four_rotating_platforms # 4B24
     end_loop
 
 glabel beh_ferris_wheel_platform # 4B4C
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
     begin_loop
         callnative BehFerrisWheelPlatformLoop
@@ -4859,7 +4875,7 @@ glabel beh_ferris_wheel_platform # 4B4C
     end_loop
 
 glabel beh_water_bubble_drop # 4B6C
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x41
     unknown_1E
     begin_loop
@@ -4867,7 +4883,7 @@ glabel beh_water_bubble_drop # 4B6C
     end_loop
 
 glabel beh_water_bomb # 4B88
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2001
     unknown_30 0x0078, 0xFE70, 0x0000, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
     begin_loop
@@ -4875,7 +4891,7 @@ glabel beh_water_bomb # 4B88
     end_loop
 
 glabel beh_water_bomb_shadow # 4BB4
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x01
     scale 150
     begin_loop
@@ -4883,7 +4899,7 @@ glabel beh_water_bomb_shadow # 4BB4
     end_loop
 
 glabel beh_rotating_clock_platform # 4BD0
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x41
     unknown_2D
     obj_set_float VAR_43, 0x01C2
@@ -4895,7 +4911,7 @@ glabel beh_rotating_clock_platform # 4BD0
     end_loop
 
 glabel beh_clock_pendulum # 4C04
-    begin 9
+    begin OBJ_LIST_SURFACE
     collision_data 0x0701508C
     obj_or_int VAR_01, 0x2041
     obj_set_float VAR_43, 0x05DC
@@ -4907,7 +4923,7 @@ glabel beh_clock_pendulum # 4C04
     end_loop
 
 glabel beh_clock_metal_platform # 4C3C
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x41
     obj_set_float VAR_43, 0x02EE
     callnative BehClockMetalPlatformInit
@@ -4919,7 +4935,7 @@ glabel beh_clock_metal_platform # 4C3C
     end_loop
 
 glabel beh_sliding_platform # 4C74
-    begin 9
+    begin OBJ_LIST_SURFACE
     collision_data 0x0701550C
     obj_or_int VAR_01, 0x41
     unknown_2D
@@ -4931,7 +4947,7 @@ glabel beh_sliding_platform # 4C74
     end_loop
 
 glabel beh_rotating_gear_platform # 4CAC
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x41
     obj_set_float VAR_43, 0x0190
     callnative BehRotatingGearPlatformInit
@@ -4941,7 +4957,7 @@ glabel beh_rotating_gear_platform # 4CAC
     end_loop
 
 glabel beh_pushable_clock_box # 4CD8
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x41
     unknown_2D
     obj_set_float VAR_43, 0x015E
@@ -4952,7 +4968,7 @@ glabel beh_pushable_clock_box # 4CD8
     end_loop
 
 glabel beh_clock_platform # 4D08
-    begin 9
+    begin OBJ_LIST_SURFACE
     collision_data 0x0701585C
     obj_or_int VAR_01, 0x41
     unknown_2D
@@ -4965,7 +4981,7 @@ glabel beh_clock_platform # 4D08
     end_loop
 
 glabel beh_clock_main_rotation # 4D44
-    begin 9
+    begin OBJ_LIST_SURFACE
     collision_data 0x070158E0
     obj_or_int VAR_01, 0x01
     obj_set_float VAR_43, 0x0708
@@ -4975,7 +4991,7 @@ glabel beh_clock_main_rotation # 4D44
     end_loop
 
 glabel beh_rotating_clock_platform2 # 4D70
-    begin 9
+    begin OBJ_LIST_SURFACE
     collision_data 0x070159D0
     obj_or_int VAR_01, 0x01
     obj_set_float VAR_43, 0x01C2
@@ -4985,7 +5001,7 @@ glabel beh_rotating_clock_platform2 # 4D70
     end_loop
 
 glabel beh_mr_blizzard # 4D9C
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2049
     unknown_1E
     obj_set_int32 VAR_26, 0x0500D118
@@ -4999,7 +5015,7 @@ glabel beh_mr_blizzard # 4D9C
     end_loop
 
 glabel beh_snowman_snowball # 4DE8
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x41
     billboard
     unknown_30 0x001E, 0xFED4, 0xFFCE, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
@@ -5013,7 +5029,7 @@ glabel beh_snowman_snowball # 4DE8
     end_loop
 
 glabel beh_sliding_platform2 # 4E2C
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x41
     unknown_2D
     callnative BehSlidingPlatform2Init
@@ -5023,7 +5039,7 @@ glabel beh_sliding_platform2 # 4E2C
     end_loop
 
 glabel beh_octagonal_platform_rotating # 4E58
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
     callnative BehOctagonalPlatformRotatingInit
     begin_loop
@@ -5032,7 +5048,7 @@ glabel beh_octagonal_platform_rotating # 4E58
     end_loop
 
 glabel beh_floor_switch_press_animation # 4E80
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x41
     obj_set_float VAR_43, 0x1F40
     callnative BehFloorSwitchPressAnimationInit
@@ -5042,7 +5058,7 @@ glabel beh_floor_switch_press_animation # 4E80
     end_loop
 
 glabel beh_climbable_cage # 4EAC
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x41
     unknown_2D
     callnative BehClimbableCageInit
@@ -5052,28 +5068,28 @@ glabel beh_climbable_cage # 4EAC
     end_loop
 
 glabel beh_recover_life # 4ED8
-    begin 6
+    begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x2041
     begin_loop
         callnative BehRecoverLifeLoop
     end_loop
 
 glabel beh_cannon # 4EF0
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x41
     begin_loop
         callnative BehCannonLoop
     end_loop
 
 glabel beh_cannon_barrel_bubbles # 4F08
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x09
     begin_loop
         callnative BehCannonBarrelBubblesLoop
     end_loop
 
 glabel beh_unagi # 4F20
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2049
     obj_set_int32 VAR_26, 0x05012824
     unknown_28 0x06
@@ -5086,14 +5102,14 @@ glabel beh_unagi # 4F20
     end_loop
 
 glabel beh_unagi_subobject # 4F58
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x41
     begin_loop
         callnative BehUnagiSubobjectLoop
     end_loop
 
 glabel beh_dorrie # 4F70
-    begin 9
+    begin OBJ_LIST_SURFACE
     collision_data 0x0600F644
     obj_or_int VAR_01, 0x2049
     obj_set_int32 VAR_26, 0x0600F638
@@ -5107,7 +5123,7 @@ glabel beh_dorrie # 4F70
     end_loop
 
 glabel beh_haunted_chair # 4FB4
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2041
     unknown_1E
     obj_set_int32 VAR_26, 0x05005784
@@ -5121,7 +5137,7 @@ glabel beh_haunted_chair # 4FB4
     end_loop
 
 glabel beh_mad_piano # 5004
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2041
     unknown_1E
     obj_set_int32 VAR_26, 0x05009B14
@@ -5134,7 +5150,7 @@ glabel beh_mad_piano # 5004
     end_loop
 
 glabel beh_flying_bookend # 504C
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2049
     obj_set_int32 VAR_26, 0x05002540
     unknown_28 0x00
@@ -5147,7 +5163,7 @@ glabel beh_flying_bookend # 504C
     end_loop
 
 glabel beh_bookend_spawn # 5094
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2041
     callnative BehCommonInit
     begin_loop
@@ -5155,7 +5171,7 @@ glabel beh_bookend_spawn # 5094
     end_loop
 
 glabel beh_bookshelf_thing # 50B4
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2041
     callnative BehCommonInit
     begin_loop
@@ -5163,7 +5179,7 @@ glabel beh_bookshelf_thing # 50B4
     end_loop
 
 glabel beh_book_switch # 50D4
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x41
     unknown_2D
     obj_set_float VAR_15, 30
@@ -5174,7 +5190,7 @@ glabel beh_book_switch # 50D4
     end_loop
 
 glabel beh_piranha_plant # 5100
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2049
     unknown_1E
     obj_set_int32 VAR_26, 0x0601C31C
@@ -5187,7 +5203,7 @@ glabel beh_piranha_plant # 5100
     end_loop
 
 glabel beh_small_piranha_flame # 5138
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2041
     billboard
     unknown_30 0x001E, 0x0000, 0xFFCE, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
@@ -5197,7 +5213,7 @@ glabel beh_small_piranha_flame # 5138
     end_loop
 
 glabel beh_fire_spewer # 516C
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2041
     billboard
     scale 40
@@ -5206,7 +5222,7 @@ glabel beh_fire_spewer # 516C
     end_loop
 
 glabel beh_flyguy_flame # 518C
-    begin 12
+    begin OBJ_LIST_UNIMPORTANT
     obj_or_int VAR_01, 0x01
     billboard
     unknown_30 0x0000, 0x00C8, 0x0000, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
@@ -5216,7 +5232,7 @@ glabel beh_flyguy_flame # 518C
     end_loop
 
 glabel beh_snufit # 51C0
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2049
     unknown_2D
     unknown_30 0x001E, 0x0000, 0xFFCE, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000
@@ -5227,7 +5243,7 @@ glabel beh_snufit # 51C0
     end_loop
 
 glabel beh_snufit_balls # 51FC
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x41
     billboard
     unknown_30 0x000A, 0x0000, 0xFFCE, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
@@ -5239,7 +5255,7 @@ glabel beh_snufit_balls # 51FC
     end_loop
 
 glabel beh_grindel2 # 523C
-    begin 9
+    begin OBJ_LIST_SURFACE
     collision_data 0x07027ED0
     obj_or_int VAR_01, 0x01
     unknown_1E
@@ -5254,7 +5270,7 @@ glabel beh_grindel2 # 523C
     end_loop
 
 glabel beh_eyerok_boss # 5294
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2041
     unknown_2D
     begin_loop
@@ -5262,7 +5278,7 @@ glabel beh_eyerok_boss # 5294
     end_loop
 
 glabel beh_eyerok_hand # 52B0
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x2041
     obj_set_int32 VAR_26, 0x050116E4
     unknown_28 0x06
@@ -5274,7 +5290,7 @@ glabel beh_eyerok_hand # 52B0
     end_loop
 
 glabel beh_klepto # 52F0
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x20C9
     obj_set_int32 VAR_26, 0x05008CFC
     unknown_28 0x00
@@ -5286,7 +5302,7 @@ glabel beh_klepto # 52F0
     end_loop
 
 glabel beh_multiple_birds_flying # 5334
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x2049
     obj_set_int32 VAR_26, 0x050009E8
     unknown_28 0x00
@@ -5297,7 +5313,7 @@ glabel beh_multiple_birds_flying # 5334
     end_loop
 
 glabel beh_racing_penguin # 5360
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x20C9
     obj_set_int32 VAR_26, 0x05008B74
     unknown_28 0x03
@@ -5309,21 +5325,21 @@ glabel beh_racing_penguin # 5360
     end_loop
 
 glabel beh_finish_line_check # 53A4
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0xC1
     begin_loop
         callnative BehFinishLineCheckLoop
     end_loop
 
 glabel beh_shortcut_check # 53BC
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x41
     begin_loop
         callnative BehShortcutCheckLoop
     end_loop
 
 glabel beh_haunted_room_check # 53D4
-    begin 9
+    begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x41
     callnative BehCommonInit
     begin_loop
@@ -5331,7 +5347,7 @@ glabel beh_haunted_room_check # 53D4
     end_loop
 
 glabel beh_haunted_room_check_subobject # 53F4
-    begin 9
+    begin OBJ_LIST_SURFACE
     collision_data 0x07026D18
     obj_or_int VAR_01, 0x41
     unknown_2D
@@ -5341,7 +5357,7 @@ glabel beh_haunted_room_check_subobject # 53F4
     end_loop
 
 glabel beh_clam_shell # 5420
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2049
     unknown_1E
     obj_set_int32 VAR_26, 0x05001744
@@ -5351,7 +5367,7 @@ glabel beh_clam_shell # 5420
     end_loop
 
 glabel beh_skeeter # 5448
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2049
     obj_set_int32 VAR_26, 0x06007DE0
     unknown_2D
@@ -5361,14 +5377,14 @@ glabel beh_skeeter # 5448
     end_loop
 
 glabel beh_water_wave_type # 5480
-    begin 12
+    begin OBJ_LIST_UNIMPORTANT
     obj_or_int VAR_01, 0x01
     begin_loop
         callnative BehWaterWaveTypeLoop
     end_loop
 
 glabel beh_pendulum_movement # 5498
-    begin 9
+    begin OBJ_LIST_SURFACE
     collision_data 0x07029154
     obj_or_int VAR_01, 0x01
     obj_set_float VAR_43, 0x07D0
@@ -5379,14 +5395,14 @@ glabel beh_pendulum_movement # 5498
     end_loop
 
 glabel beh_donut_platform_group # 54CC
-    begin 11
+    begin OBJ_LIST_SPAWNER
     obj_or_int VAR_01, 0x01
     begin_loop
         callnative BehDonutPlatformGroupLoop
     end_loop
 
 glabel beh_donut_platform # 54E4
-    begin 9
+    begin OBJ_LIST_SURFACE
     collision_data 0x070297D4
     obj_or_int VAR_01, 0x41
     unknown_2D
@@ -5395,7 +5411,7 @@ glabel beh_donut_platform # 54E4
     end_loop
 
 glabel beh_ddd_yellow_poles # 5508
-    begin 10
+    begin OBJ_LIST_POLELIKE
     interact_type 0x00000040
     set_hitbox 0x0050, 0x0320
     obj_set_int VAR_05, 0
@@ -5409,7 +5425,7 @@ glabel beh_ddd_yellow_poles # 5508
     end_loop
 
 glabel beh_shadow_star_for_red_star # 554C
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     unknown_1E
     scale 150
@@ -5421,7 +5437,7 @@ glabel beh_shadow_star_for_red_star # 554C
     end_loop
 
 glabel beh_three_butterflies # 5578
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2049
     obj_set_int32 VAR_26, 0x030056B0
     unknown_28 0x00
@@ -5434,7 +5450,7 @@ glabel beh_three_butterflies # 5578
     end_loop
 
 glabel beh_bubba # 55BC
-    begin 4
+    begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2049
     unknown_2D
     unknown_30 0x00C8, 0xFE70, 0xFFCE, 0x03E8, 0x03E8, 0x0000, 0x0000, 0x0000
@@ -5444,7 +5460,7 @@ glabel beh_bubba # 55BC
     end_loop
 
 glabel beh_beginning_lakitu # 55F0
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     obj_set_int32 VAR_26, 0x060058F8
     unknown_28 0x00
@@ -5454,7 +5470,7 @@ glabel beh_beginning_lakitu # 55F0
     end_loop
 
 glabel beh_beginning_peach # 5618
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     obj_set_int32 VAR_26, 0x0501C41C
     unknown_28 0x00
@@ -5463,7 +5479,7 @@ glabel beh_beginning_peach # 5618
     end_loop
 
 glabel beh_end_birds_1 # 563C
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x11
     obj_set_int32 VAR_26, 0x050009E8
     unknown_28 0x00
@@ -5472,7 +5488,7 @@ glabel beh_end_birds_1 # 563C
     end_loop
 
 glabel beh_end_birds_2 # 5660
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x11
     obj_set_int32 VAR_26, 0x050009E8
     unknown_28 0x00
@@ -5481,7 +5497,7 @@ glabel beh_end_birds_2 # 5660
     end_loop
 
 glabel beh_intro_scene # 5684
-    begin 8
+    begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     begin_loop
         callnative BehIntroSceneLoop

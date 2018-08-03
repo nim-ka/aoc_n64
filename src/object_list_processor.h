@@ -4,6 +4,13 @@
 struct Object;
 struct SpawnInfo;
 
+#define OBJECT_ARRAY_SIZE 240
+
+extern u32 gTimeStopState;
+extern struct Object gObjectPool[];
+extern struct Object D_8035FB18;
+extern struct ObjectNode *gObjectLists;
+
 void nop_change_course(void);
 void BehMarioLoop2(void);
 void func_8029C6D8(struct Object *, u8);

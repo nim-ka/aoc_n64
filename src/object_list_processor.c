@@ -1,8 +1,6 @@
 #include <ultra64.h>
 #include "libultra.h"
 
-#define static
-
 #include "sm64.h"
 #include "behavior_data.h"
 #include "behavior_script.h"
@@ -30,16 +28,32 @@ struct ParticleType
     u8 unk8;
     u8 unk9;
     u16 unkA;
-    void *unkC;
+    void *beh;
 };
 
-extern struct Object D_8033C18C[];
+u32 gTimeStopState;
+struct Object gObjectPool[OBJECT_ARRAY_SIZE];
+struct Object D_8035FB18;
+struct ObjectNode *gObjectLists;
+
 extern s8 D_8035FE68[][2];
 
 extern struct ObjectNode D_8033B870;
-extern struct ObjectNode *gObjectLists;
 
-static s8 sObjectListUpdateOrder[] = { 11, 9, 10, 0, 5, 4, 2, 6, 8, 12, -1 };
+static s8 sObjectListUpdateOrder[] = 
+{ 
+    OBJ_LIST_SPAWNER,
+    OBJ_LIST_SURFACE,
+    OBJ_LIST_POLELIKE,
+    OBJ_LIST_PLAYER,
+    OBJ_LIST_PUSHABLE,
+    OBJ_LIST_GENACTOR,
+    OBJ_LIST_DESTRUCTIVE,
+    OBJ_LIST_LEVEL,
+    OBJ_LIST_DEFAULT,
+    OBJ_LIST_UNIMPORTANT,
+    -1
+};
 
 static struct ParticleType sParticleTypes[] = {
     { PARTICLE_DUST,     0x00000001, 0x8E, 0x00, 0x0000, beh_mario_dust_generator              },
@@ -119,7 +133,7 @@ void BehMarioLoop2(void)
     while (sParticleTypes[i].flag != 0)
     {
         if (particleFlags & sParticleTypes[i].flag)
-            spawn_particle(sParticleTypes[i].unk4, sParticleTypes[i].unk8, sParticleTypes[i].unkC);
+            spawn_particle(sParticleTypes[i].unk4, sParticleTypes[i].unk8, sParticleTypes[i].beh);
 
         i++;
     }
@@ -216,7 +230,7 @@ static s32 func_8029C618(struct ObjectNode *objList)
             if ((gCurrentObject->oFlags & 0x4000) == 0)
                 func_8029C6D8(gCurrentObject, 0xFF);
 
-            func_802C9088(gCurrentObject);
+            unload_obj(gCurrentObject);
         }
     }
 
@@ -258,7 +272,7 @@ void func_8029C75C(UNUSED s32 sp28, s32 sp2C)
             sp24 = sp20;
             sp20 = sp20->next;
             if (sp24->gfx.unk19 == sp2C)
-                func_802C9088((struct Object *) sp24);
+                unload_obj((struct Object *) sp24);
         }
     }
 }
@@ -286,7 +300,7 @@ void spawn_objects_from_info(UNUSED s32 unusedArg, struct SpawnInfo *spawnInfo)
 
         if ((spawnInfo->behaviorArg & 0xFF00) != 0xFF00)
         {
-            object = func_802C9424(script);
+            object = create_object(script);
  
             object->oUnk188 = spawnInfo->behaviorArg;
             object->oBehParam = ((spawnInfo->behaviorArg) >> 16) & 0xff;
@@ -341,27 +355,27 @@ void func_8029CA60(void)
     }
 
     debug_unknown_level_select_check();
-    func_802C8ED8();
-    func_802C8F5C(&D_8033B870);
+    init_free_obj_list();
+    clear_object_lists(&D_8033B870);
     func_80385BF0();
     func_8029CA50();
 
-    for (i = 0; i < 240; i++)
+    for (i = 0; i < OBJECT_ARRAY_SIZE; i++)
     {
-        D_8033C18C[i].header.gfx.node.type = 0;
-        func_8037C3D0((struct GraphNodeObject *) &gObjectPool[i]);
+        gObjectPool[i].active = 0;
+        func_8037C3D0(&gObjectPool[i].header.gfx);
     }
 
     D_8035FE0C = mem_pool_init(0x800, MEMORY_POOL_LEFT);
-    gObjectLists = &D_8033B870; 
+    gObjectLists = &D_8033B870;
     clear_dynamic_surfaces();
 }
 
 static void update_terrain_objects(void)
 {
-    gUpdatedObjectCount = update_objects_in_list(&gObjectLists[11]);
+    gUpdatedObjectCount = update_objects_in_list(&gObjectLists[OBJ_LIST_SPAWNER]);
     //! This was meant to be +=
-    gUpdatedObjectCount = update_objects_in_list(&gObjectLists[9]);
+    gUpdatedObjectCount = update_objects_in_list(&gObjectLists[OBJ_LIST_SURFACE]);
 } 
 
 
@@ -456,5 +470,5 @@ void update_objects(UNUSED s32 sp108)
     else 
         gTimeStopState &= ~TIME_STOP_ACTIVE;
     
-    D_8035FDF8 = gUpdatedObjectCount;
+    gPostUpdateObjCount = gUpdatedObjectCount;
 }

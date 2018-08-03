@@ -2165,7 +2165,7 @@ glabel SpawnOrangeNumber
 /* 09FDAC 802E4DAC 87A50036 */  lh    $a1, 0x36($sp)
 /* 09FDB0 802E4DB0 87A6003A */  lh    $a2, 0x3a($sp)
 /* 09FDB4 802E4DB4 87A7003E */  lh    $a3, 0x3e($sp)
-/* 09FDB8 802E4DB8 0C0A79FA */  jal   SpawnObjAdv
+/* 09FDB8 802E4DB8 0C0A79FA */  jal   spawn_obj_adv
 /* 09FDBC 802E4DBC AFAF0010 */   sw    $t7, 0x10($sp)
 /* 09FDC0 802E4DC0 AFA2002C */  sw    $v0, 0x2c($sp)
 /* 09FDC4 802E4DC4 8FA8002C */  lw    $t0, 0x2c($sp)
@@ -7651,8 +7651,8 @@ glabel BehObjectBubbleLoop
 /* 0A4A60 802E9A60 00000000 */  nop   
 /* 0A4A64 802E9A64 45000020 */  bc1f  .L802E9AE8
 /* 0A4A68 802E9A68 00000000 */   nop   
-/* 0A4A6C 802E9A6C 3C188036 */  lui   $t8, %hi(D_8035FDE0) # $t8, 0x8036
-/* 0A4A70 802E9A70 8F18FDE0 */  lw    $t8, %lo(D_8035FDE0)($t8)
+/* 0A4A6C 802E9A6C 3C188036 */  lui   $t8, %hi(D_8035FD80 + 0x60) # $t8, 0x8036
+/* 0A4A70 802E9A70 8F18FDE0 */  lw    $t8, %lo(D_8035FD80 + 0x60)($t8)
 /* 0A4A74 802E9A74 13000019 */  beqz  $t8, .L802E9ADC
 /* 0A4A78 802E9A78 00000000 */   nop   
 /* 0A4A7C 802E9A7C 3C048036 */  lui   $a0, %hi(gCurrentObject) # $a0, 0x8036
@@ -19054,7 +19054,7 @@ glabel Beh1UpHiddenInTreeLoop
 /* 0AEB34 802F3B34 00002825 */  move  $a1, $zero
 /* 0AEB38 802F3B38 24060032 */  li    $a2, 50
 /* 0AEB3C 802F3B3C 00003825 */  move  $a3, $zero
-/* 0AEB40 802F3B40 0C0A79FA */  jal   SpawnObjAdv
+/* 0AEB40 802F3B40 0C0A79FA */  jal   spawn_obj_adv
 /* 0AEB44 802F3B44 AFAF0010 */   sw    $t7, 0x10($sp)
 /* 0AEB48 802F3B48 A3A0002F */  sb    $zero, 0x2f($sp)
 .L802F3B4C:
@@ -19075,7 +19075,7 @@ glabel Beh1UpHiddenInTreeLoop
 /* 0AEB84 802F3B84 00002825 */  move  $a1, $zero
 /* 0AEB88 802F3B88 00003825 */  move  $a3, $zero
 /* 0AEB8C 802F3B8C AFA00014 */  sw    $zero, 0x14($sp)
-/* 0AEB90 802F3B90 0C0A79FA */  jal   SpawnObjAdv
+/* 0AEB90 802F3B90 0C0A79FA */  jal   spawn_obj_adv
 /* 0AEB94 802F3B94 AFA90010 */   sw    $t1, 0x10($sp)
 /* 0AEB98 802F3B98 83AB002F */  lb    $t3, 0x2f($sp)
 /* 0AEB9C 802F3B9C 256C0001 */  addiu $t4, $t3, 1
@@ -21831,7 +21831,7 @@ glabel func_802F6308
 /* 0B1348 802F6348 00003825 */  move  $a3, $zero
 /* 0B134C 802F634C AFA00014 */  sw    $zero, 0x14($sp)
 /* 0B1350 802F6350 01C02025 */  move  $a0, $t6
-/* 0B1354 802F6354 0C0A79FA */  jal   SpawnObjAdv
+/* 0B1354 802F6354 0C0A79FA */  jal   spawn_obj_adv
 /* 0B1358 802F6358 AFAF0010 */   sw    $t7, 0x10($sp)
 /* 0B135C 802F635C 8FB9002C */  lw    $t9, 0x2c($sp)
 /* 0B1360 802F6360 27280001 */  addiu $t0, $t9, 1
@@ -22337,7 +22337,7 @@ glabel BehTreasureChestTopLoop
 /* 0B1AA0 802F6AA0 00002825 */  move  $a1, $zero
 /* 0B1AA4 802F6AA4 2406FFB0 */  li    $a2, -80
 /* 0B1AA8 802F6AA8 24070078 */  li    $a3, 120
-/* 0B1AAC 802F6AAC 0C0A79FA */  jal   SpawnObjAdv
+/* 0B1AAC 802F6AAC 0C0A79FA */  jal   spawn_obj_adv
 /* 0B1AB0 802F6AB0 AFB90010 */   sw    $t9, 0x10($sp)
 /* 0B1AB4 802F6AB4 3C058036 */  lui   $a1, %hi(gCurrentObject) # $a1, 0x8036
 /* 0B1AB8 802F6AB8 8CA5FDF0 */  lw    $a1, %lo(gCurrentObject)($a1)
@@ -22448,7 +22448,7 @@ glabel BehTreasureChestBottomInit
 /* 0B1C34 802F6C34 00002825 */  move  $a1, $zero
 /* 0B1C38 802F6C38 24060066 */  li    $a2, 102
 /* 0B1C3C 802F6C3C 2407FFB3 */  li    $a3, -77
-/* 0B1C40 802F6C40 0C0A79FA */  jal   SpawnObjAdv
+/* 0B1C40 802F6C40 0C0A79FA */  jal   spawn_obj_adv
 /* 0B1C44 802F6C44 AFAE0010 */   sw    $t6, 0x10($sp)
 /* 0B1C48 802F6C48 3C048036 */  lui   $a0, %hi(gCurrentObject) # $a0, 0x8036
 /* 0B1C4C 802F6C4C 3C058033 */  lui   $a1, %hi(D_8033170C) # $a1, 0x8033

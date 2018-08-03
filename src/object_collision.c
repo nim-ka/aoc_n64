@@ -4,6 +4,7 @@
 #include "mario.h"
 #include "debug.h"
 #include "spawn_object.h"
+#include "object_list_processor.h"
 
 struct Object *Unknown802C8460(struct Object *a)
 {
@@ -118,25 +119,31 @@ void func_802C8918(struct Object *a, struct Object *b, struct Object *c)
 
 void func_802C89CC(void)
 {
-    struct Object *sp1C = (struct Object *)&gObjectLists[0];
+    struct Object *sp1C = (struct Object *)&gObjectLists[OBJ_LIST_PLAYER];
     struct Object *sp18 = (struct Object *)sp1C->header.next;
 
     while (sp18 != sp1C)
     {
         func_802C8918(sp18, (struct Object *)sp18->header.next, sp1C);
-        func_802C8918(sp18, (struct Object *)gObjectLists[10].next, (struct Object *)&gObjectLists[10]);
-        func_802C8918(sp18, (struct Object *)gObjectLists[6].next, (struct Object *)&gObjectLists[6]);
-        func_802C8918(sp18, (struct Object *)gObjectLists[4].next, (struct Object *)&gObjectLists[4]);
-        func_802C8918(sp18, (struct Object *)gObjectLists[5].next, (struct Object *)&gObjectLists[5]);
-        func_802C8918(sp18, (struct Object *)gObjectLists[9].next, (struct Object *)&gObjectLists[9]);
-        func_802C8918(sp18, (struct Object *)gObjectLists[2].next, (struct Object *)&gObjectLists[2]);
+        func_802C8918(sp18, (struct Object *) gObjectLists[OBJ_LIST_POLELIKE].next, 
+                            (struct Object *)&gObjectLists[OBJ_LIST_POLELIKE]);
+        func_802C8918(sp18, (struct Object *) gObjectLists[OBJ_LIST_LEVEL].next, 
+                            (struct Object *)&gObjectLists[OBJ_LIST_LEVEL]);
+        func_802C8918(sp18, (struct Object *) gObjectLists[OBJ_LIST_GENACTOR].next, 
+                            (struct Object *)&gObjectLists[OBJ_LIST_GENACTOR]);
+        func_802C8918(sp18, (struct Object *) gObjectLists[OBJ_LIST_PUSHABLE].next, 
+                            (struct Object *)&gObjectLists[OBJ_LIST_PUSHABLE]);
+        func_802C8918(sp18, (struct Object *) gObjectLists[OBJ_LIST_SURFACE].next, 
+                            (struct Object *)&gObjectLists[OBJ_LIST_SURFACE]);
+        func_802C8918(sp18, (struct Object *) gObjectLists[OBJ_LIST_DESTRUCTIVE].next, 
+                            (struct Object *)&gObjectLists[OBJ_LIST_DESTRUCTIVE]);
         sp18 = (struct Object *)sp18->header.next;
     }
 }
 
 void func_802C8AD4(void)
 {
-    struct Object *sp1C = (struct Object *)&gObjectLists[5];
+    struct Object *sp1C = (struct Object *)&gObjectLists[OBJ_LIST_PUSHABLE];
     struct Object *sp18 = (struct Object *)sp1C->header.next;
 
     while (sp18 != sp1C)
@@ -148,7 +155,7 @@ void func_802C8AD4(void)
 
 void func_802C8B50(void)
 {
-    struct Object *sp1C = (struct Object *)&gObjectLists[2];
+    struct Object *sp1C = (struct Object *)&gObjectLists[OBJ_LIST_DESTRUCTIVE];
     struct Object *sp18 = (struct Object *)sp1C->header.next;
 
     while (sp18 != sp1C)
@@ -156,9 +163,12 @@ void func_802C8B50(void)
         if (sp18->oDistanceToMario < 2000.0f && !(sp18->active & 0x200))
         {
             func_802C8918(sp18, (struct Object *)sp18->header.next, sp1C);
-            func_802C8918(sp18, (struct Object *)gObjectLists[4].next, (struct Object *)&gObjectLists[4]);
-            func_802C8918(sp18, (struct Object *)gObjectLists[5].next, (struct Object *)&gObjectLists[5]);
-            func_802C8918(sp18, (struct Object *)gObjectLists[9].next, (struct Object *)&gObjectLists[9]);
+            func_802C8918(sp18, (struct Object *) gObjectLists[OBJ_LIST_GENACTOR].next, 
+                                (struct Object *)&gObjectLists[OBJ_LIST_GENACTOR]);
+            func_802C8918(sp18, (struct Object *) gObjectLists[OBJ_LIST_PUSHABLE].next, 
+                                (struct Object *)&gObjectLists[OBJ_LIST_PUSHABLE]);
+            func_802C8918(sp18, (struct Object *) gObjectLists[OBJ_LIST_SURFACE].next, 
+                                (struct Object *)&gObjectLists[OBJ_LIST_SURFACE]);
         }
         sp18 = (struct Object *)sp18->header.next;
     }
@@ -166,13 +176,13 @@ void func_802C8B50(void)
 
 void func_802C8C44(void)
 {
-    func_802C88A8((struct Object *)&gObjectLists[10]);
-    func_802C88A8((struct Object *)&gObjectLists[0]);
-    func_802C88A8((struct Object *)&gObjectLists[5]);
-    func_802C88A8((struct Object *)&gObjectLists[4]);
-    func_802C88A8((struct Object *)&gObjectLists[6]);
-    func_802C88A8((struct Object *)&gObjectLists[9]);
-    func_802C88A8((struct Object *)&gObjectLists[2]);
+    func_802C88A8((struct Object *)&gObjectLists[OBJ_LIST_POLELIKE]);
+    func_802C88A8((struct Object *)&gObjectLists[OBJ_LIST_PLAYER]);
+    func_802C88A8((struct Object *)&gObjectLists[OBJ_LIST_PUSHABLE]);
+    func_802C88A8((struct Object *)&gObjectLists[OBJ_LIST_GENACTOR]);
+    func_802C88A8((struct Object *)&gObjectLists[OBJ_LIST_LEVEL]);
+    func_802C88A8((struct Object *)&gObjectLists[OBJ_LIST_SURFACE]);
+    func_802C88A8((struct Object *)&gObjectLists[OBJ_LIST_DESTRUCTIVE]);
     func_802C89CC();
     func_802C8B50();
     func_802C8AD4();

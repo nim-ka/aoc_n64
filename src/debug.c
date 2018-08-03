@@ -565,35 +565,35 @@ void try_do_mario_debug_object_spawn(void)
     if(sDebugPage == DEBUG_PAGE_STAGEINFO && gDebugInfo[DEBUG_PAGE_ENEMYINFO][7] == 1)
     {
         if(gPlayer1Controller->buttonPressed & R_JPAD)
-            SpawnObjAdv(0, 0, 100, 200, gCurrentObject, 190, beh_koopa_shell);
+            spawn_obj_adv(0, 0, 100, 200, gCurrentObject, 190, beh_koopa_shell);
         if(gPlayer1Controller->buttonPressed & L_JPAD)
-            SpawnObjAdv(0, 0, 100, 200, gCurrentObject, 130, beh_jumping_box);
+            spawn_obj_adv(0, 0, 100, 200, gCurrentObject, 130, beh_jumping_box);
         if(gPlayer1Controller->buttonPressed & D_JPAD)
-            SpawnObjAdv(0, 0, 100, 200, gCurrentObject, 190, beh_koopa_shell_underwater);
+            spawn_obj_adv(0, 0, 100, 200, gCurrentObject, 190, beh_koopa_shell_underwater);
     }
 }
 
 // TODO: figure out what this is
 static void Unknown802CA8B4(void)
 {
-    if(gCurrentObject->oUnkEC & 0x00000001)
-        print_debug_top_down_objectinfo("BOUND   %x", gCurrentObject->oUnkEC);
-    if(gCurrentObject->oUnkEC & 0x00000002)
-        print_debug_top_down_objectinfo("TOUCH   %x", gCurrentObject->oUnkEC);
-    if(gCurrentObject->oUnkEC & 0x00000004)
-        print_debug_top_down_objectinfo("TAKEOFF %x", gCurrentObject->oUnkEC);
-    if(gCurrentObject->oUnkEC & 0x00000008)
-        print_debug_top_down_objectinfo("DIVE    %x", gCurrentObject->oUnkEC);
-    if(gCurrentObject->oUnkEC & 0x00000010)
-        print_debug_top_down_objectinfo("S WATER %x", gCurrentObject->oUnkEC);
-    if(gCurrentObject->oUnkEC & 0x00000020)
-        print_debug_top_down_objectinfo("U WATER %x", gCurrentObject->oUnkEC);
-    if(gCurrentObject->oUnkEC & 0x00000040)
-        print_debug_top_down_objectinfo("B WATER %x", gCurrentObject->oUnkEC);
-    if(gCurrentObject->oUnkEC & 0x00000080)
-        print_debug_top_down_objectinfo("SKY     %x", gCurrentObject->oUnkEC);
-    if(gCurrentObject->oUnkEC & 0x00000100)
-        print_debug_top_down_objectinfo("OUT SCOPE %x", gCurrentObject->oUnkEC);
+    if(gCurrentObject->oMoveFlags & OBJ_MOV_0)
+        print_debug_top_down_objectinfo("BOUND   %x", gCurrentObject->oMoveFlags);
+    if(gCurrentObject->oMoveFlags & OBJ_MOV_GROUND)
+        print_debug_top_down_objectinfo("TOUCH   %x", gCurrentObject->oMoveFlags);
+    if(gCurrentObject->oMoveFlags & OBJ_MOV_2)
+        print_debug_top_down_objectinfo("TAKEOFF %x", gCurrentObject->oMoveFlags);
+    if(gCurrentObject->oMoveFlags & OBJ_MOV_3)
+        print_debug_top_down_objectinfo("DIVE    %x", gCurrentObject->oMoveFlags);
+    if(gCurrentObject->oMoveFlags & OBJ_MOV_4)
+        print_debug_top_down_objectinfo("S WATER %x", gCurrentObject->oMoveFlags);
+    if(gCurrentObject->oMoveFlags & OBJ_MOV_5)
+        print_debug_top_down_objectinfo("U WATER %x", gCurrentObject->oMoveFlags);
+    if(gCurrentObject->oMoveFlags & OBJ_MOV_6)
+        print_debug_top_down_objectinfo("B WATER %x", gCurrentObject->oMoveFlags);
+    if(gCurrentObject->oMoveFlags & OBJ_MOV_7)
+        print_debug_top_down_objectinfo("SKY     %x", gCurrentObject->oMoveFlags);
+    if(gCurrentObject->oMoveFlags & OBJ_MOV_8)
+        print_debug_top_down_objectinfo("OUT SCOPE %x", gCurrentObject->oMoveFlags);
 }
 
 // unused, what is this?

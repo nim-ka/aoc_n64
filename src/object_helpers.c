@@ -475,7 +475,7 @@ struct Object *func_8029E5A4(struct Object *sp20, UNUSED u32 sp24, u32 sp28, voi
     struct Object *sp18;
 
     sp18 = segmented_to_virtual(sp2C);
-    sp1C = func_802C9424((u32 *)sp18);
+    sp1C = create_object((u32 *)sp18);
 
     sp1C->parentObj = sp20;
     sp1C->header.gfx.unk18 = sp20->header.gfx.unk18;

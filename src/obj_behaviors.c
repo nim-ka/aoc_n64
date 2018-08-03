@@ -21,6 +21,7 @@
 #include "level_update.h"
 #include "audio_interface_2.h"
 #include "behavior_actions.h"
+#include "spawn_object.h"
 
 #define o gCurrentObject
 
@@ -663,7 +664,7 @@ void SpawnOrangeNumber(s8 arg0, s16 arg1, s16 arg2, s16 arg3)
     
     if (arg0 >= 10) return;
 
-    orangeNumber = SpawnObjAdv(arg0, arg1, arg2, arg3, o, 219, beh_orange_number);
+    orangeNumber = spawn_obj_adv(arg0, arg1, arg2, arg3, o, 219, beh_orange_number);
     orangeNumber->oPosY += 25.0f;
 }
 
@@ -2239,7 +2240,7 @@ void BehObjectBubbleLoop(void)
     
     if (bubbleY > waterY)
     {
-        if (D_8035FDE0)
+        if (D_8035FD80.next)
         {
             bubbleRipples = func_8029E5A4(o, 0, 165, beh_object_bubble_ripples);
             bubbleRipples->oPosX = o->oPosX;

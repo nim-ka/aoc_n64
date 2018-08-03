@@ -34,8 +34,8 @@
 #define /*0x0DC*/ oGraphYOffset OBJECT_FIELD_F32(0x15)
 #define /*0x0E0*/ oUnkE0 OBJECT_FIELD_U32(0x16)
 #define /*0x0E4*/ oGravity OBJECT_FIELD_F32(0x17)
-#define /*0x0E8*/ oUnkE8 OBJECT_FIELD_F32(0x18)
-#define /*0x0EC*/ oUnkEC OBJECT_FIELD_U32(0x19)
+#define /*0x0E8*/ oFloorHeight OBJECT_FIELD_F32(0x18)
+#define /*0x0EC*/ oMoveFlags OBJECT_FIELD_U32(0x19)
 #define /*0x0F0*/ oAnimState OBJECT_FIELD_S32(0x1A)
 // 0x0F4-0x110 (0x1B-0x22) are object specific and defined below the common fields.
 #define /*0x114*/ oAngleVelPitch OBJECT_FIELD_S32(0x23)

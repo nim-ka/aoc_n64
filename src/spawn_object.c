@@ -11,6 +11,7 @@
 #include "audio_interface_2.h"
 #include "level_update.h"
 #include "spawn_object.h"
+#include "object_list_processor.h"
 
 struct LinkedList
 {
@@ -51,25 +52,27 @@ struct LinkedList *Unknown802C8D60(struct LinkedList *a, struct LinkedList *b)
     return sp4;
 }
 
-struct Object *func_802C8DC4(struct ObjectNode *a, struct ObjectNode *b)
+struct Object *try_get_next_obj(struct ObjectNode *objList, struct ObjectNode *b)
 {
-    struct ObjectNode *sp1C;
+    struct ObjectNode *nextObj;
 
-    if ((sp1C = b->next) != NULL)
+    // if the next pointer isnt NULL, we are not at the end of the list.
+    // Set and nest the nextObj pointer.
+    if ((nextObj = b->next) != NULL)
     {
-        b->next = sp1C->next;
-        sp1C->prev = a->prev;
-        sp1C->next = a;
-        a->prev->next = sp1C;
-        a->prev = sp1C;
+        b->next = nextObj->next;
+        nextObj->prev = objList->prev;
+        nextObj->next = objList;
+        objList->prev->next = nextObj;
+        objList->prev = nextObj;
     }
     else
-        return NULL;
+        return NULL; // we are at the end of the list. There is nothing to allocate.
 
     // FIXME: What types do these functions actually take?
-    func_8037C0BC((struct GraphNode *)sp1C);
-    func_8037C044(&D_8038BD88, (struct GraphNode *)sp1C);
-    return (struct Object *)sp1C;
+    func_8037C0BC((struct GraphNode *)nextObj);
+    func_8037C044(&D_8038BD88, (struct GraphNode *)nextObj);
+    return (struct Object *)nextObj;
 }
 
 void Unknown802C8E70(struct LinkedList *a, struct LinkedList *b)
@@ -88,29 +91,30 @@ void func_802C8EA4(struct ObjectNode *a, struct ObjectNode *b)
     a->next = b;
 }
 
-void func_802C8ED8(void)
+void init_free_obj_list(void)
 {
-    int spC;
-    int sp8 = 240;
-    struct Object *sp4 = &gObjectPool[0];
+    int i;
+    int objLimit = OBJECT_ARRAY_SIZE;
+    struct Object *obj = &gObjectPool[0];
 
-    D_8035FDE0 = sp4;
-    for (spC = 0; spC < sp8 - 1; spC++)
+    D_8035FD80.next = (struct ObjectNode *)obj;
+
+    for (i = 0; i < objLimit - 1; i++)
     {
-        sp4->header.next = &sp4[1].header;
-        sp4++;
+        obj->header.next = &obj[1].header;
+        obj++;
     }
-    sp4->header.next = NULL;
+    obj->header.next = NULL;
 }
 
-void func_802C8F5C(struct ObjectNode *a)
+void clear_object_lists(struct ObjectNode *obj)
 {
-    int sp4;
+    int i;
 
-    for (sp4 = 0; sp4 < 13; sp4++)
+    for (i = 0; i < 13; i++)
     {
-        a[sp4].next = &a[sp4];
-        a[sp4].prev = &a[sp4];
+        obj[i].next = &obj[i];
+        obj[i].prev = &obj[i];
     }
 }
 
@@ -132,129 +136,140 @@ void UnknownRecursive802C8FF8(struct Object *a)
     }
 }
 
-void func_802C9088(struct Object *a)
+void unload_obj(struct Object *obj)
 {
-    a->active = 0;
-    a->prevObj = 0;
-    a->header.gfx.throwMatrix = NULL;
-    func_803206F8(&a->header.gfx.unk54);
-    func_8037C0BC((struct GraphNode *)a);
-    func_8037C044(&D_8038BD88, (struct GraphNode *) a);
-    a->header.gfx.node.flags &= ~4;
-    a->header.gfx.node.flags &= ~1;
-    func_802C8EA4(&D_8035FD80, &a->header);
+    obj->active = 0;
+    obj->prevObj = 0;
+    obj->header.gfx.throwMatrix = NULL;
+    func_803206F8(&obj->header.gfx.unk54);
+    func_8037C0BC((struct GraphNode *)obj);
+    func_8037C044(&D_8038BD88, (struct GraphNode *) obj);
+    obj->header.gfx.node.flags &= ~4;
+    obj->header.gfx.node.flags &= ~1;
+    func_802C8EA4(&D_8035FD80, &obj->header);
 }
 
-struct Object *func_802C9120(struct ObjectNode *a)
+struct Object *try_init_object(struct ObjectNode *objList)
 {
     int i;
-    struct Object *sp20 = func_802C8DC4(a, &D_8035FD80);
-    struct Object *sp1C;
+    struct Object *obj = try_get_next_obj(objList, &D_8035FD80);
+    struct Object *unloadObj;
 
-    if (sp20 == NULL)
+    // The object list is full if the newly created pointer is NULL.
+    // If this happens, we first attempt to unload unimportant objects
+    // in order to finish allocating the object.
+    if (obj == NULL)
     {
-        sp1C = func_8029F3A0();
+        unloadObj = get_next_unimportant_obj(); // try to get the pointer to the next unimportant obj.
 
-        if (sp1C == NULL)
+        // if the retrieved slot is NULL, it is because the object list is
+        // completely exhausted with important objects. This behavior if left
+        // unchecked quickly becomes erroneous, so hang the game forever if
+        // the object list gets full with important objects.
+        if (unloadObj == NULL)
         {
-            // Endless loop?
             while (1)
                 ;
         }
         else
         {
-            func_802C9088(sp1C);
-            sp20 = func_802C8DC4(a, &D_8035FD80);
-            if (gCurrentObject == sp20)
+            // unload the unimportant object and load the new object in.
+            unload_obj(unloadObj);
+            obj = try_get_next_obj(objList, &D_8035FD80);
+            if (gCurrentObject == obj) // hmm...
             {
             }
         }
     }
 
-    sp20->active = 257;
-    sp20->parentObj = sp20;
-    sp20->prevObj = NULL;
-    sp20->collidedObjInteractTypes = 0;
-    sp20->numCollidedObjs = 0;
+    // we have gotten a good pointer to an object. initialize the
+    // object contents below.
+    obj->active = 257;
+    obj->parentObj = obj;
+    obj->prevObj = NULL;
+    obj->collidedObjInteractTypes = 0;
+    obj->numCollidedObjs = 0;
 
     for (i = 0; i < 0x50; i++)
-        sp20->rawData.asU32[i] = 0;
+        obj->rawData.asU32[i] = 0;
 
-    sp20->unk1C8 = 0;
-    sp20->stackIndex = 0;
-    sp20->unk1F4 = 0;
-    sp20->hitboxRadius = 50.0f;
-    sp20->hitboxHeight = 100.0f;
-    sp20->unk200 = 0.0f;
-    sp20->unk204 = 0.0f;
-    sp20->unk208 = 0.0f;
-    sp20->unk210 = 0;
-    sp20->platform = NULL;
-    sp20->collisionData = NULL;
-    sp20->oCollectable = -1;
-    sp20->oUnk180 = 0;
-    sp20->oUnk184 = 2048;
-    sp20->oCollisionDistance = 1000.0f;
+    obj->unk1C8 = 0;
+    obj->stackIndex = 0;
+    obj->unk1F4 = 0;
+    obj->hitboxRadius = 50.0f;
+    obj->hitboxHeight = 100.0f;
+    obj->unk200 = 0.0f;
+    obj->unk204 = 0.0f;
+    obj->unk208 = 0.0f;
+    obj->unk210 = 0;
+    obj->platform = NULL;
+    obj->collisionData = NULL;
+    obj->oCollectable = -1;
+    obj->oUnk180 = 0;
+    obj->oUnk184 = 2048;
+    obj->oCollisionDistance = 1000.0f;
     if (gCurrLevelNum == 14)
-        sp20->oDrawingDistance = 2000.0f;
+        obj->oDrawingDistance = 2000.0f;
     else
-        sp20->oDrawingDistance = 4000.0f;
-    mtxf_identity(sp20->unk21C);
-    sp20->unk1F6 = 0;
-    sp20->unk25C = 0;
-    sp20->oDistanceToMario = 19000.0f;
-    sp20->oUnk1A0 = -1;
+        obj->oDrawingDistance = 4000.0f;
+    mtxf_identity(obj->unk21C);
+    obj->unk1F6 = 0;
+    obj->unk25C = 0;
+    obj->oDistanceToMario = 19000.0f;
+    obj->oUnk1A0 = -1;
 
-    sp20->header.gfx.node.flags &= ~0x10;
-    sp20->header.gfx.pos[0] = -10000.0f;
-    sp20->header.gfx.pos[1] = -10000.0f;
-    sp20->header.gfx.pos[2] = -10000.0f;
-    sp20->header.gfx.throwMatrix = NULL;
+    obj->header.gfx.node.flags &= ~0x10;
+    obj->header.gfx.pos[0] = -10000.0f;
+    obj->header.gfx.pos[1] = -10000.0f;
+    obj->header.gfx.pos[2] = -10000.0f;
+    obj->header.gfx.throwMatrix = NULL;
 
-    return sp20;
+    return obj;
 }
 
-void func_802C937C(struct Object *a)
+void put_obj_on_floor(struct Object *obj)
 {
     struct Surface *surface;
 
-    a->oUnkE8 = find_floor(a->oPosX, a->oPosY, a->oPosZ, &surface);
-    if (a->oUnkE8 + 2.0f > a->oPosY && a->oPosY > a->oUnkE8 - 10.0f)
+    obj->oFloorHeight = find_floor(obj->oPosX, obj->oPosY, obj->oPosZ, &surface);
+    if (obj->oFloorHeight + 2.0f > obj->oPosY && obj->oPosY > obj->oFloorHeight - 10.0f)
     {
-        a->oPosY = a->oUnkE8;
-        a->oUnkEC |= 2;
+        obj->oPosY = obj->oFloorHeight;
+        obj->oMoveFlags |= OBJ_MOV_GROUND;
     }
 }
 
-struct Object *func_802C9424(u32 *a)
+struct Object *create_object(u32 *behScript)
 {
-    int sp34;
-    struct Object *sp30;
-    struct ObjectNode *sp2C;
-    u32 *sp28 = a;
+    int listIndex;
+    struct Object *obj;
+    struct ObjectNode *objList;
+    u32 *behavior = behScript;
 
-    if ((*a >> 24) == 0)
-        sp34 = (*a >> 16) & 0xFFFF;
+    if ((*behScript >> 24) == 0)
+        listIndex = (*behScript >> 16) & 0xFFFF;
     else
-        sp34 = 8;
+        listIndex = 8;
 
-    sp2C = &gObjectLists[sp34];
-    sp30 = func_802C9120(sp2C);
-    sp30->behScript = a;
-    sp30->behavior = sp28;
-    if (sp34 == 12)
-        sp30->active |= 0x10;
-    switch (sp34)
+    objList = &gObjectLists[listIndex];
+    obj = try_init_object(objList);
+    obj->behScript = behScript;
+    obj->behavior = behavior;
+    if (listIndex == OBJ_LIST_UNIMPORTANT)
+        obj->active |= 0x10;
+    switch (listIndex)
     {
-    case 4:
-    case 5:
-    case 10:
-        func_802C937C(sp30);
+    // these types of objects should spawn on the ground, so where they are created,
+    // place them on the ground.
+    case OBJ_LIST_GENACTOR:
+    case OBJ_LIST_PUSHABLE:
+    case OBJ_LIST_POLELIKE:
+        put_obj_on_floor(obj);
         break;
     default:
         break;
     }
-    return sp30;
+    return obj;
 }
 
 void hide_object(struct Object *obj)

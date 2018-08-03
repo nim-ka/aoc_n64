@@ -237,6 +237,8 @@ SECTIONS
       build/data/bss8033A130.o(.bss*);
       build/src/profiler.o(.bss*);
       build/data/bss8033B020.o(.bss*);
+      build/src/object_list_processor.o(.bss*);
+      build/data/bss8035FD80.o(.bss*);
       build/src/hud_print.o(.bss*);
       build/data/bss803600E0.o(.bss*);
    }

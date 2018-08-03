@@ -3,6 +3,7 @@
 #include "sm64.h"
 #include "object_helpers.h"
 #include "hud.h"
+#include "object_list_processor.h"
 
 #include "behavior_data.h"
 

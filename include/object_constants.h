@@ -14,6 +14,17 @@
 #define OBJ_ACT_LAVA_DEATH 100
 #define OBJ_ACT_DEATH_PLANE_DEATH 101
 
+/* oMoveFlags */
+#define OBJ_MOV_0       (1 << 0) // 0x0001
+#define OBJ_MOV_GROUND  (1 << 1) // 0x0002
+#define OBJ_MOV_2       (1 << 2) // 0x0004
+#define OBJ_MOV_3       (1 << 3) // 0x0008
+#define OBJ_MOV_4       (1 << 4) // 0x0010
+#define OBJ_MOV_5       (1 << 5) // 0x0020
+#define OBJ_MOV_6       (1 << 6) // 0x0040
+#define OBJ_MOV_7       (1 << 7) // 0x0080
+#define OBJ_MOV_8       (1 << 8) // 0x0100
+
 /* Bob-omb */
     /* oBehParam */
     #define BOBOMB_BP_STYPE_GENERIC 0
