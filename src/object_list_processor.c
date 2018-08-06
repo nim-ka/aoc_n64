@@ -21,6 +21,10 @@
 #include "surface_collision.h"
 #include "surface_load.h"
 
+#if VERSION_US
+extern void func_u_802C8F28(void);
+#endif
+
 struct ParticleType
 {
     u32 flag;
@@ -284,6 +288,10 @@ void spawn_objects_from_info(UNUSED s32 unusedArg, struct SpawnInfo *spawnInfo)
 
     D_8035FEF2 = 0;
     D_8035FEF4 = 0;
+
+#if VERSION_US
+    func_u_802C8F28();
+#endif
 
     if (gCurrAreaIndex == 2) 
         D_8035FEEC |= 1;

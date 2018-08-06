@@ -3897,6 +3897,9 @@ int func_8028B3DC(struct Struct80280550 *a, UNUSED float b)
         if (D_8033B4D8 & 2)
         {
             D_8033B4D8 |= 0x1000;
+#if VERSION_US
+            func_8028B19C();
+#endif
         }
         else
         {
@@ -3949,6 +3952,9 @@ void func_8028B7A4(struct Struct80280550 *a)
             {
                 D_8033B4D8 |= 0x1000;
                 D_8033B3F4 = D_8032CFEC + 400.0f;
+#if VERSION_US
+                func_8028B19C();
+#endif
             }
             else
             {
