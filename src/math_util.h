@@ -1,10 +1,13 @@
 #ifndef _MATH_UTIL_H_
 #define _MATH_UTIL_H_
 
-#include <ultra64.h>
-
 extern f32 gSineTable[];
 extern f32 gCosineTable[];
+
+#define sins(x) gSineTable[(u16) (x) >> 4]
+#define coss(x) gCosineTable[(u16) (x) >> 4]
+
+#define max(a, b) ((a) > (b) ? (a) : (b))
 
 void *vec3f_copy(Vec3f dest, Vec3f src);
 void *vec3f_set(Vec3f dest, f32 x, f32 y, f32 z);
