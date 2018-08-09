@@ -1593,9 +1593,9 @@ glabel InitAudioSystem
 /* 0D3660 80318660 3C028022 */  lui   $v0, %hi(D_80226D4C) # $v0, 0x8022
 /* 0D3664 80318664 24426D4C */  addiu $v0, %lo(D_80226D4C) # addiu $v0, $v0, 0x6d4c
 /* 0D3668 80318668 27C50068 */  addiu $a1, $fp, 0x68
-/* 0D366C 8031866C 3C040074 */  lui   $a0, %hi(gSoundData) # $a0, 0x74
+/* 0D366C 8031866C 3C040074 */  lui   $a0, %hi(gMusicData) # $a0, 0x74
 /* 0D3670 80318670 AC450000 */  sw    $a1, ($v0)
-/* 0D3674 80318674 24845F80 */  addiu $a0, %lo(gSoundData) # addiu $a0, $a0, 0x5f80
+/* 0D3674 80318674 24845F80 */  addiu $a0, %lo(gMusicData) # addiu $a0, $a0, 0x5f80
 /* 0D3678 80318678 0C0C5BEC */  jal   BlockDmaCopy
 /* 0D367C 8031867C 24060010 */   li    $a2, 16
 /* 0D3680 80318680 3C0A8022 */  lui   $t2, %hi(D_80226D4C) # $t2, 0x8022
@@ -1614,23 +1614,23 @@ glabel InitAudioSystem
 /* 0D36B4 803186B4 A44B0000 */   sh    $t3, ($v0)
 /* 0D36B8 803186B8 3C038022 */  lui   $v1, %hi(D_80226D4C) # $v1, 0x8022
 /* 0D36BC 803186BC 24636D4C */  addiu $v1, %lo(D_80226D4C) # addiu $v1, $v1, 0x6d4c
-/* 0D36C0 803186C0 3C040074 */  lui   $a0, %hi(gSoundData) # $a0, 0x74
+/* 0D36C0 803186C0 3C040074 */  lui   $a0, %hi(gMusicData) # $a0, 0x74
 /* 0D36C4 803186C4 AC620000 */  sw    $v0, ($v1)
-/* 0D36C8 803186C8 24845F80 */  addiu $a0, %lo(gSoundData) # addiu $a0, $a0, 0x5f80
+/* 0D36C8 803186C8 24845F80 */  addiu $a0, %lo(gMusicData) # addiu $a0, $a0, 0x5f80
 /* 0D36CC 803186CC 00402825 */  move  $a1, $v0
 /* 0D36D0 803186D0 0C0C5BEC */  jal   BlockDmaCopy
 /* 0D36D4 803186D4 02003025 */   move  $a2, $s0
 /* 0D36D8 803186D8 3C048022 */  lui   $a0, %hi(D_80226D4C) # $a0, 0x8022
-/* 0D36DC 803186DC 3C050074 */  lui   $a1, %hi(gSoundData) # $a1, 0x74
-/* 0D36E0 803186E0 24A55F80 */  addiu $a1, %lo(gSoundData) # addiu $a1, $a1, 0x5f80
+/* 0D36DC 803186DC 3C050074 */  lui   $a1, %hi(gMusicData) # $a1, 0x74
+/* 0D36E0 803186E0 24A55F80 */  addiu $a1, %lo(gMusicData) # addiu $a1, $a1, 0x5f80
 /* 0D36E4 803186E4 0C0C936A */  jal   alSeqFileNew
 /* 0D36E8 803186E8 8C846D4C */   lw    $a0, %lo(D_80226D4C)($a0)
 /* 0D36EC 803186EC 3C028022 */  lui   $v0, %hi(D_80226D50) # $v0, 0x8022
 /* 0D36F0 803186F0 24426D50 */  addiu $v0, %lo(D_80226D50) # addiu $v0, $v0, 0x6d50
 /* 0D36F4 803186F4 27C50068 */  addiu $a1, $fp, 0x68
-/* 0D36F8 803186F8 3C040058 */  lui   $a0, %hi(D_00579140) # $a0, 0x58
+/* 0D36F8 803186F8 3C040058 */  lui   $a0, %hi(gSoundDataADSR) # $a0, 0x58
 /* 0D36FC 803186FC AC450000 */  sw    $a1, ($v0)
-/* 0D3700 80318700 24849140 */  addiu $a0, %lo(D_00579140) # addiu $a0, $a0, -0x6ec0
+/* 0D3700 80318700 24849140 */  addiu $a0, %lo(gSoundDataADSR) # addiu $a0, $a0, -0x6ec0
 /* 0D3704 80318704 0C0C5BEC */  jal   BlockDmaCopy
 /* 0D3708 80318708 24060010 */   li    $a2, 16
 /* 0D370C 8031870C 3C188022 */  lui   $t8, %hi(D_80226D50) # $t8, 0x8022
@@ -1653,23 +1653,23 @@ glabel InitAudioSystem
 /* 0D3750 80318750 02002825 */   move  $a1, $s0
 /* 0D3754 80318754 3C038022 */  lui   $v1, %hi(D_80226D50) # $v1, 0x8022
 /* 0D3758 80318758 24636D50 */  addiu $v1, %lo(D_80226D50) # addiu $v1, $v1, 0x6d50
-/* 0D375C 8031875C 3C040058 */  lui   $a0, %hi(D_00579140) # $a0, 0x58
+/* 0D375C 8031875C 3C040058 */  lui   $a0, %hi(gSoundDataADSR) # $a0, 0x58
 /* 0D3760 80318760 AC620000 */  sw    $v0, ($v1)
-/* 0D3764 80318764 24849140 */  addiu $a0, %lo(D_00579140) # addiu $a0, $a0, -0x6ec0
+/* 0D3764 80318764 24849140 */  addiu $a0, %lo(gSoundDataADSR) # addiu $a0, $a0, -0x6ec0
 /* 0D3768 80318768 00402825 */  move  $a1, $v0
 /* 0D376C 8031876C 0C0C5BEC */  jal   BlockDmaCopy
 /* 0D3770 80318770 02003025 */   move  $a2, $s0
 /* 0D3774 80318774 3C048022 */  lui   $a0, %hi(D_80226D50) # $a0, 0x8022
-/* 0D3778 80318778 3C050058 */  lui   $a1, %hi(D_00579140) # $a1, 0x58
-/* 0D377C 8031877C 24A59140 */  addiu $a1, %lo(D_00579140) # addiu $a1, $a1, -0x6ec0
+/* 0D3778 80318778 3C050058 */  lui   $a1, %hi(gSoundDataADSR) # $a1, 0x58
+/* 0D377C 8031877C 24A59140 */  addiu $a1, %lo(gSoundDataADSR) # addiu $a1, $a1, -0x6ec0
 /* 0D3780 80318780 0C0C936A */  jal   alSeqFileNew
 /* 0D3784 80318784 8C846D50 */   lw    $a0, %lo(D_80226D50)($a0)
 /* 0D3788 80318788 3C028022 */  lui   $v0, %hi(D_80226D54) # $v0, 0x8022
 /* 0D378C 8031878C 24426D54 */  addiu $v0, %lo(D_80226D54) # addiu $v0, $v0, 0x6d54
 /* 0D3790 80318790 27C50068 */  addiu $a1, $fp, 0x68
-/* 0D3794 80318794 3C040058 */  lui   $a0, %hi(D_00579140) # $a0, 0x58
+/* 0D3794 80318794 3C040058 */  lui   $a0, %hi(gSoundDataADSR) # $a0, 0x58
 /* 0D3798 80318798 AC450000 */  sw    $a1, ($v0)
-/* 0D379C 8031879C 24849140 */  addiu $a0, %lo(D_00579140) # addiu $a0, $a0, -0x6ec0
+/* 0D379C 8031879C 24849140 */  addiu $a0, %lo(gSoundDataADSR) # addiu $a0, $a0, -0x6ec0
 /* 0D37A0 803187A0 0C0C5BEC */  jal   BlockDmaCopy
 /* 0D37A4 803187A4 24060010 */   li    $a2, 16
 /* 0D37A8 803187A8 3C098022 */  lui   $t1, %hi(D_80226D54) # $t1, 0x8022
@@ -1685,15 +1685,15 @@ glabel InitAudioSystem
 /* 0D37D0 803187D0 00A08025 */   move  $s0, $a1
 /* 0D37D4 803187D4 3C038022 */  lui   $v1, %hi(D_80226D54) # $v1, 0x8022
 /* 0D37D8 803187D8 24636D54 */  addiu $v1, %lo(D_80226D54) # addiu $v1, $v1, 0x6d54
-/* 0D37DC 803187DC 3C040059 */  lui   $a0, %hi(D_00590200) # $a0, 0x59
+/* 0D37DC 803187DC 3C040059 */  lui   $a0, %hi(gSoundDataRaw) # $a0, 0x59
 /* 0D37E0 803187E0 AC620000 */  sw    $v0, ($v1)
-/* 0D37E4 803187E4 24840200 */  addiu $a0, %lo(D_00590200) # addiu $a0, $a0, 0x200
+/* 0D37E4 803187E4 24840200 */  addiu $a0, %lo(gSoundDataRaw) # addiu $a0, $a0, 0x200
 /* 0D37E8 803187E8 00402825 */  move  $a1, $v0
 /* 0D37EC 803187EC 0C0C5BEC */  jal   BlockDmaCopy
 /* 0D37F0 803187F0 02003025 */   move  $a2, $s0
 /* 0D37F4 803187F4 3C048022 */  lui   $a0, %hi(D_80226D54) # $a0, 0x8022
-/* 0D37F8 803187F8 3C050059 */  lui   $a1, %hi(D_00590200) # $a1, 0x59
-/* 0D37FC 803187FC 24A50200 */  addiu $a1, %lo(D_00590200) # addiu $a1, $a1, 0x200
+/* 0D37F8 803187F8 3C050059 */  lui   $a1, %hi(gSoundDataRaw) # $a1, 0x59
+/* 0D37FC 803187FC 24A50200 */  addiu $a1, %lo(gSoundDataRaw) # addiu $a1, $a1, 0x200
 /* 0D3800 80318800 0C0C936A */  jal   alSeqFileNew
 /* 0D3804 80318804 8C846D54 */   lw    $a0, %lo(D_80226D54)($a0)
 /* 0D3808 80318808 02202025 */  move  $a0, $s1

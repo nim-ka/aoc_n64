@@ -1,10 +1,11 @@
 .include "macros.inc"
 
-glabel gSoundData
+glabel gMusicData
 # music sequence table
 music_sequence_table_header:
 # region 745F80
-.hword 3, 34
+.hword 3 # current segment
+.hword 34 # number of entries
 music_sequence_table:
 .word (seq_00 - music_sequence_table_header), (seq_00_end - seq_00) # 0x00120, 0x3200
 .word (seq_01 - music_sequence_table_header), (seq_01_end - seq_01) # 0x03320, 0x0280
@@ -290,4 +291,3 @@ instrument_set_20:
 instrument_set_21:
 .byte 0x01, 0x24
 instrument_sets_end:
-
