@@ -33,7 +33,7 @@ TEXTURE_DIR := textures
 
 # Directories containing source files
 SRC_DIRS := src src/libultra src/goddard
-ASM_DIRS := asm data geo levels sound
+ASM_DIRS := asm data geo levels sound demos
 BIN_DIRS := bin
 
 MIPSISET := -mips2

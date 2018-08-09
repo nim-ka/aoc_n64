@@ -485,6 +485,7 @@ SECTIONS
    BEGIN_SEG(text4E9FA0, __romPos)
    {
       build/data/unknown_4E9FA0.o(.text);
+      build/demos/demo_data.o(.text);
       build/sound/sound_data.o(.text);
       build/sound/music_data.o(.text);
    }
