@@ -1,11 +1,17 @@
 .include "macros.inc"
 
+.ifdef VERSION_US
+.set MUSIC_LIST_COUNT, 35
+.else
+.set MUSIC_LIST_COUNT, 34
+.endif
+
 glabel gMusicData
 # music sequence table
 music_sequence_table_header:
-# region 745F80
+# region 745F80 (US: 7B0860)
 .hword 3 # current segment
-.hword 34 # number of entries
+.hword MUSIC_LIST_COUNT # number of entries
 music_sequence_table:
 .word (seq_00 - music_sequence_table_header), (seq_00_end - seq_00) # 0x00120, 0x3200
 .word (seq_01 - music_sequence_table_header), (seq_01_end - seq_01) # 0x03320, 0x0280
@@ -41,149 +47,67 @@ music_sequence_table:
 .word (seq_1F - music_sequence_table_header), (seq_1F_end - seq_1F) # 0x1A8E0, 0x0820
 .word (seq_20 - music_sequence_table_header), (seq_20_end - seq_20) # 0x1B100, 0x0770
 .word (seq_21 - music_sequence_table_header), (seq_21_end - seq_21) # 0x1B870, 0x0320
+.ifdef VERSION_US
+.word (seq_22 - music_sequence_table_header), (seq_22_end - seq_22)
+.endif
 music_sequence_table_end:
 
 .align 4, 0x00
 
-seq_00:
-.incbin "music/seq_00.m64"
-seq_00_end:
+.macro sequence name
+\name:
+.ifdef VERSION_JP
+.incbin "music/jp/\name\().m64"
+.endif
+.ifdef VERSION_US
+.incbin "music/us/\name\().m64"
+.endif
+\name\()_end:
+.endm
 
-seq_01:
-.incbin "music/seq_01.m64"
-seq_01_end:
+sequence seq_00
+sequence seq_01
+sequence seq_02
+sequence seq_03
+sequence seq_04
+sequence seq_05
+sequence seq_06
+sequence seq_07
+sequence seq_08
+sequence seq_09
+sequence seq_0A
+sequence seq_0B
+sequence seq_0C
+sequence seq_0D
+sequence seq_0E
+sequence seq_0F
+sequence seq_10
+sequence seq_11
+sequence seq_12
+sequence seq_13
+sequence seq_14
+sequence seq_15
+sequence seq_16
+sequence seq_17
+sequence seq_18
+sequence seq_19
+sequence seq_1A
+sequence seq_1B
+sequence seq_1C
+sequence seq_1D
+sequence seq_1E
+sequence seq_1F
+sequence seq_20
+sequence seq_21
+.ifdef VERSION_US
+sequence seq_22
+.endif
 
-seq_02:
-.incbin "music/seq_02.m64"
-seq_02_end:
-
-seq_03:
-.incbin "music/seq_03.m64"
-seq_03_end:
-
-seq_04:
-.incbin "music/seq_04.m64"
-seq_04_end:
-
-seq_05:
-.incbin "music/seq_05.m64"
-seq_05_end:
-
-seq_06:
-.incbin "music/seq_06.m64"
-seq_06_end:
-
-seq_07:
-.incbin "music/seq_07.m64"
-seq_07_end:
-
-seq_08:
-.incbin "music/seq_08.m64"
-seq_08_end:
-
-seq_09:
-.incbin "music/seq_09.m64"
-seq_09_end:
-
-seq_0A:
-.incbin "music/seq_0A.m64"
-seq_0A_end:
-
-seq_0B:
-.incbin "music/seq_0B.m64"
-seq_0B_end:
-
-seq_0C:
-.incbin "music/seq_0C.m64"
-seq_0C_end:
-
-seq_0D:
-.incbin "music/seq_0D.m64"
-seq_0D_end:
-
-seq_0E:
-.incbin "music/seq_0E.m64"
-seq_0E_end:
-
-seq_0F:
-.incbin "music/seq_0F.m64"
-seq_0F_end:
-
-seq_10:
-.incbin "music/seq_10.m64"
-seq_10_end:
-
-seq_11:
-.incbin "music/seq_11.m64"
-seq_11_end:
-
-seq_12:
-.incbin "music/seq_12.m64"
-seq_12_end:
-
-seq_13:
-.incbin "music/seq_13.m64"
-seq_13_end:
-
-seq_14:
-.incbin "music/seq_14.m64"
-seq_14_end:
-
-seq_15:
-.incbin "music/seq_15.m64"
-seq_15_end:
-
-seq_16:
-.incbin "music/seq_16.m64"
-seq_16_end:
-
-seq_17:
-.incbin "music/seq_17.m64"
-seq_17_end:
-
-seq_18:
-.incbin "music/seq_18.m64"
-seq_18_end:
-
-seq_19:
-.incbin "music/seq_19.m64"
-seq_19_end:
-
-seq_1A:
-.incbin "music/seq_1A.m64"
-seq_1A_end:
-
-seq_1B:
-.incbin "music/seq_1B.m64"
-seq_1B_end:
-
-seq_1C:
-.incbin "music/seq_1C.m64"
-seq_1C_end:
-
-seq_1D:
-.incbin "music/seq_1D.m64"
-seq_1D_end:
-
-seq_1E:
-.incbin "music/seq_1E.m64"
-seq_1E_end:
-
-seq_1F:
-.incbin "music/seq_1F.m64"
-seq_1F_end:
-
-seq_20:
-.incbin "music/seq_20.m64"
-seq_20_end:
-
-seq_21:
-.incbin "music/seq_21.m64"
-seq_21_end:
-# Unknown region 761B10-761B40 [30]
+.ifdef VERSION_JP # for some reason only the JP version has this padding.
 .byte 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 .byte 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 .byte 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+.endif
 
 glabel gInstrumentSets
 instrument_sets:
@@ -221,6 +145,9 @@ instrument_sets:
 .hword instrument_set_1F - instrument_sets # 0x008D
 .hword instrument_set_20 - instrument_sets # 0x008F
 .hword instrument_set_21 - instrument_sets # 0x0091
+.ifdef VERSION_US
+.hword instrument_set_22 - instrument_sets # 0x0093
+.endif
 
 instrument_set_00:
 .byte 0x0B, 0x0A, 0x09, 0x08, 0x07, 0x06, 0x05, 0x04, 0x03, 0x02, 0x01, 0x00
@@ -290,4 +217,8 @@ instrument_set_20:
 .byte 0x01, 0x23
 instrument_set_21:
 .byte 0x01, 0x24
+.ifdef VERSION_US
+instrument_set_22:
+.byte 0x01, 0x1B
+.endif
 instrument_sets_end:
