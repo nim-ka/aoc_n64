@@ -721,7 +721,7 @@ struct ObjGroup* make_group(struct GroupInfo info)
         // get the next pointer in the struct.
         nextPtr = *( (sp64 = ((struct ObjGroup**) (( ((u32) sp64) + 3) & ~3) + 1)) - 1);
 
-        if (nextPtr == NULL) // one if our pointers was NULL. raise an error.
+        if (nextPtr == NULL) // one of our pointers was NULL. raise an error.
             myPrintf("make_group() NULL group ptr");
 
         sp58 = &nextPtr->header;
