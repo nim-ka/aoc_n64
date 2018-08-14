@@ -679,10 +679,10 @@ void sprint_obj_id(char* str, struct ObjHeader* obj)
 const char* sUnusedGroupFmtStr = "Made group no.%d\n";
 
 /* @ 22C094 for 0x210 */
-struct ObjGroup* make_group(struct ObjGroup** a0, UNUSED u32 a1, UNUSED u32 a2, UNUSED u32 a3)
+struct ObjGroup* make_group(struct GroupInfo info)
 {
     struct ObjGroup** sp64;
-    s32 sp60;
+    s32 count;
     UNUSED u32 sp5C;
     struct ObjHeader* sp58;
     UNUSED u32 sp54;
@@ -690,7 +690,7 @@ struct ObjGroup* make_group(struct ObjGroup** a0, UNUSED u32 a1, UNUSED u32 a2, 
     UNUSED u32 sp4C;
     struct ObjGroup* newGroup;
     struct ObjGroup* oldGroupListHead;
-    struct ObjGroup* sp40;
+    struct ObjGroup* nextPtr;
     char idStrBuf[0x20];
     struct Links* curLink;
 
@@ -708,29 +708,27 @@ struct ObjGroup* make_group(struct ObjGroup** a0, UNUSED u32 a1, UNUSED u32 a2, 
         oldGroupListHead->prev = newGroup;
     }
 
-    if (a0 == NULL)
+    if (info.count == 0)
         return newGroup;
-    // wtf?
-    #pragma GCC diagnostic push
-    #pragma GCC diagnostic ignored "-Wpointer-to-int-cast"
-    #pragma GCC diagnostic ignored "-Wint-to-pointer-cast"
-    sp64 = (struct ObjGroup**) ((s32) &a0 + 4);
+
+    // set base pointer to ptr1 in the GroupInfo struct.
+    sp64 = &info.ptr1;
     curLink = NULL;
 
-    for (sp60 = 0; sp60 < (s32) a0; sp60++)
+    // iterate through the GroupInfo's pointers.
+    for (count = 0; count < info.count; count++)
     {
-        //wtff? some sort of align() macro
-        sp40 = *( (sp64 = ((struct ObjGroup**) (( ((u32) sp64) + 3) & ~3) + 1)) - 1);
+        // get the next pointer in the struct.
+        nextPtr = *( (sp64 = ((struct ObjGroup**) (( ((u32) sp64) + 3) & ~3) + 1)) - 1);
 
-        if (sp40 == NULL)
+        if (nextPtr == NULL) // one if our pointers was NULL. raise an error.
             myPrintf("make_group() NULL group ptr");
-        
-        sp58 = &sp40->header;
+
+        sp58 = &nextPtr->header;
         newGroup->groupObjTypes |= sp58->type;
-        addto_group(newGroup, &sp40->header);
+        addto_group(newGroup, &nextPtr->header);
 
     }
-    #pragma GCC diagnostic pop
 
     curLink = newGroup->link1C;
     while (curLink != NULL)

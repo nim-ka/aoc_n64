@@ -358,4 +358,11 @@ struct ObjUnk200000 {
     /* 0x34 */ s32 unk34;
 }; /* sizeof = 0x38*/
 
+struct GroupInfo {
+    /* 0x00 */ s32 count; // can have up to 3 pointers.
+    /* 0x04 */ struct ObjGroup *ptr1;
+    /* 0x08 */ struct ObjGroup *ptr2;
+    /* 0x0C */ struct ObjGroup *ptr3;
+}; /* sizeof = 0x10*/
+
 #endif /* _GD_TYPES_H */

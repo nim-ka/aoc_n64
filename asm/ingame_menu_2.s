@@ -1730,7 +1730,7 @@ glabel func_802DE838
 /* 09989C 802DE89C AD810000 */  sw    $at, ($t4)
 /* 0998A0 802DE8A0 95A10004 */  lhu   $at, 4($t5)
 /* 0998A4 802DE8A4 A5810004 */  sh    $at, 4($t4)
-/* 0998A8 802DE8A8 3C048036 */  lui   $a0, %hi(D_80360018) # $a0, 0x8036
+/* 0998A8 802DE8A8 3C048036 */  lui   $a0, %hi(D_803600A4) # $a0, 0x8036
 /* 0998AC 802DE8AC 848400A4 */  lh    $a0, %lo(D_803600A4)($a0)
 /* 0998B0 802DE8B0 00047880 */  sll   $t7, $a0, 2
 /* 0998B4 802DE8B4 01E47823 */  subu  $t7, $t7, $a0
@@ -1739,7 +1739,7 @@ glabel func_802DE838
 /* 0998C0 802DE8C0 0004C8C0 */  sll   $t9, $a0, 3
 /* 0998C4 802DE8C4 03202025 */  move  $a0, $t9
 /* 0998C8 802DE8C8 0C09E25F */  jal   alloc_display_list
-/* 0998CC 802DE8CC 24840018 */   addiu $a0, %lo(D_80360018) # addiu $a0, $a0, 0x18
+/* 0998CC 802DE8CC 24840018 */   addiu $a0, $a0, 0x18
 /* 0998D0 802DE8D0 AFA20054 */  sw    $v0, 0x54($sp)
 /* 0998D4 802DE8D4 8FAA0054 */  lw    $t2, 0x54($sp)
 /* 0998D8 802DE8D8 AFAA0050 */  sw    $t2, 0x50($sp)

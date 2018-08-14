@@ -13,7 +13,7 @@ struct Controller
   /*0x0C*/ float stickMag;      // distance from center [0, 64]
   /*0x10*/ u16 buttonDown;
   /*0x12*/ u16 buttonPressed;
-  /*0x14*/ OSContStatus* statusData;
+  /*0x14*/ OSContStatus *statusData;
   /*0x18*/ OSContPad *controllerData;
 };
 
