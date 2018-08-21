@@ -349,6 +349,7 @@ SECTIONS
       build/src/goddard/mario_head_3.o(.text);
       build/asm/mario_head_4.o(.text);
       build/asm/mario_head_5.o(.text);
+      build/src/goddard/half_6.o(.text);
       build/asm/mario_head_6.o(.text);
       /* data, rodata, per file */
       build/src/level_select_menu.o(.data*);
@@ -365,7 +366,10 @@ SECTIONS
       build/src/goddard/mario_head_1.o(.rodata*);
       build/src/goddard/mario_head_2.o(.rodata*);
       build/src/goddard/mario_head_3.o(.rodata*);
-      build/data/rodata_801B5E50.o(.rodata*);
+      build/data/mario_head_4.rodata.o(.rodata*);
+      build/data/mario_head_5.rodata.o(.rodata*);
+      build/src/goddard/half_6.o(.rodata*);
+      build/data/mario_head_6.rodata.o(.rodata*);
    }
    END_SEG(goddard)
    BEGIN_NOLOAD(goddard)

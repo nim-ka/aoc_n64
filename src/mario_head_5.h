@@ -145,8 +145,8 @@ extern void myPrintf(const char *, ...);
 extern void func_8018D420(const char *);
 extern void imout(void);
 extern float func_8018D560(void);
-// extern ? func_8018D6A8(?);
-// extern ? func_8018D808(?);
+extern s32 func_8018D6A8(char*); /* s32 gd_atoi(char*) */
+extern f64 func_8018D808(char*, UNUSED u32*);   /* return (f64) gd_atoi(char*); lol */
 // extern ? func_8018D848(?);
 // extern ? func_8018D8A8(?);
 // extern ? func_8018D9A4(?);
@@ -156,22 +156,22 @@ extern void func_8018DC98(char *, char *);  /* gd_strcpy? */
 // extern ? func_8018DD5C(?);
 // extern ? func_8018DDD8(?);
 // extern ? func_8018DE2C(?);
-// extern ? func_8018DEB0(?);
-// extern ? func_8018DF58(?);
-// extern ? func_8018DFE8(?);
+extern s32 func_8018DEB0(char*, char*); /* gd_strcmp? */ 
+extern s32 func_8018DF58(char*, char*); // gd_strstr?
+extern s32 func_8018DFE8(struct GdFile*);  /* get GdFile->unk0C bit 3 (->0c & 0x4); file end reached? */
 // extern ? func_8018E00C(?);
-// extern ? gd_fopen(?);
-// extern ? func_8018E23C(?);
-// extern ? func_8018E368(?);
+extern struct GdFile* gd_fopen(char*, char*);
+extern s32 func_8018E23C(s8*, s32, s32, struct GdFile*); /* read_into(buf*, number, size, fd*)? */
+extern void func_8018E368(struct GdFile*); /* gd_fclose? */
 // extern ? func_8018E384(?);
 // extern ? func_8018E3A0(?);
-// extern ? func_8018E3D8(?);
+extern s32 func_8018E3D8(char*, u32, struct GdFile*);   /* gd_read_file? gd_fgets? */
 // extern ? Proc8018E520(?);
-// extern ? Proc8018EBE8(?);
+extern void Proc8018EBE8(struct ObjJoint*);
 // extern ? Unknown8018EE5C(?);
 // extern ? func_8018EF78(?);
 // extern ? make_joint(?);
-// extern ? func_8018F248(?);
+extern struct ObjJoint* func_8018F248(void*, s32, f32, f32, f32);
 // extern ? func_8018F328(?);
 // extern ? Unknown8018F4CC(?);
 // extern ? func_8018F520(?);
@@ -212,7 +212,7 @@ extern void func_80191EE8(void);
 extern void func_801920C4(struct ObjHeader*);   // maybe a ObjNet
 // extern ? Unknown80192294(?);
 // extern ? Unknown801922FC(?);
-// extern ? make_net(?);
+extern struct ObjNet* make_net(s32, struct ObjShape*, void* , struct ObjGroup*, struct ObjGroup*);
 // extern ? func_80192528(?);
 // extern ? func_801926A4(?);
 // extern ? Unknown80192AD0(?);
@@ -242,7 +242,7 @@ extern void func_80194A54(Mat4*, s32, f32);
 extern f32 func_80194B98(struct MyVec3f*);
 extern s32 func_80194BF4();     //s32 func_80194BF4(struct MyVec3f*)
 extern void func_80194D14(struct MyVec3f*, struct MyVec3f*, struct MyVec3f*);
-extern float func_80194DB8(Vec3f, struct MyVec3f *);
+extern float func_80194DB8(); //extern float func_80194DB8(struct MyVec3f *, struct MyVec3f *);
 // extern ? Unknown80194DFC(?);
 extern void func_80194E7C(Mat4*, Mat4*);
 // extern ? func_80194F90(?);
@@ -262,7 +262,7 @@ extern void func_80196360(Mat4*, Mat4*);
 extern void func_80196430(struct MyVec3f *, void *);    // (struct MyVec3f*, Mat4*)
 extern void func_80196540(struct MyVec3f*, Mat4*);
 extern void func_80196614(Mat4*, Mat4*, Mat4*);
-// extern ? func_80196F8C(?);
+extern void func_80196F8C(char*, struct MyVec3f*);
 // extern ? func_80196FA8(?);
 // extern ? func_80196FC4(?);
 // extern ? Unknown80197068(?);

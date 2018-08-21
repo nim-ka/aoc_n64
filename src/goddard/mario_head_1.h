@@ -59,7 +59,7 @@ extern struct Links* make_link_to_obj(struct Links*, struct ObjHeader*);
 extern void* make_link_2();   //struct Links* make_link_2(struct Links*, struct ObjHeader*)
 extern struct ObjValPtrs* make_valptrs(void*, void*, void*, void*);
 extern void reset_plane(struct ObjPlane*);
-extern struct ObjPlane* make_plane(void*, struct ObjPlaneSub*);
+extern struct ObjPlane* make_plane(void*, struct ObjFace*);
 extern struct ObjCamera* make_camera(s32, struct ObjHeader*);
 extern struct ObjMaterial* make_material(UNUSED s32, char*, s32);
 extern struct ObjLight* make_light(s32, char*, s32);

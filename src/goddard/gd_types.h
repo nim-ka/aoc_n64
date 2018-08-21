@@ -14,6 +14,16 @@ struct GdTriangleF {
     struct MyVec3f vec2;
 };
 
+/* based on fields set in gd_fopen; func_8019BC18(84) for size */
+struct GdFile {
+    /* 0x00 */ u8  pad00[4];
+    /* 0x04 */ u32 unk04;
+    /* 0x08 */ u32 unk08;
+    /* 0x0C */ u32 unk0C;   /* some sort of bit field */
+    /* 0x10 */ u8  pad10[0x50-0x10];
+    /* 0x50 */ u32 unk50;
+}; /* sizeof() = 0x54 */
+
 /* Goddard Code Object Structs */
 /* Object Type Flags */
 enum ObjTypeFlag {
@@ -40,9 +50,11 @@ enum ObjTypeFlag {
     OBJ_TYPE_ZONES     = 0x00100000,
     OBJ_TYPE_UNK200000 = 0x00200000
 };
+/* This constant seems to be used to indicate the type of any or all objects */
+#define OBJ_TYPE_ALL 0x00FFFFFF
 
 /* This is a header sub-struct that is embeded into the other object structs
- * It can be used as a "generic object" to cast into the other object types  */
+** It can be used as a "generic object" to cast into the other object types  */
 struct ObjHeader {
     /* 0x00 */ struct ObjHeader* prev;
     /* 0x04 */ struct ObjHeader* next;
@@ -88,7 +100,9 @@ struct ObjBone {
 
 struct ObjJoint {
     /* 0x000 */ struct ObjHeader header;
-    /* 0x014 */ u8  pad14[0x60];
+    /* 0x014 */ u8  pad14[0x2c-0x14];
+    /* 0x02C */ void (*fn2C)(struct ObjJoint*);
+    /* 0x030 */ u8  pad30[0x74-0x30];
     /* 0x074 */ struct MyVec3f unk74;
     /* 0x080 */ struct MyVec3f unk80;
     /* 0x08C */ u8  pad8C[0x18];
@@ -102,36 +116,60 @@ struct ObjJoint {
     /* 0x1B4 */ s32 id;
     /* 0x1B8 */ u8  pad1B8[0xC];
     /* 0x1C4 */ struct ObjGroup* unk1C4;
-    /* 0x1C8 */ u8  pad1C8[0x1f4-0x1c8];
+    /* 0x1C8 */ u8  pad1C8[0x1d0-0x1c8];
+    /* 0x1D0 */ struct ObjAnimator* unk1D0;
+    /* 0x1D4 */ u8  pad1D4[0x1f4-0x1d4];
     /* 0x1F4 */ struct ObjGroup* unk1F4;   //Group of ObjWeights, only?
-    /* 0x1F8 */ u8  pad1F8[0x22c-0x1c8];
+    /* 0x1F8 */ struct ObjGroup* unk1F8;
+    /* 0x1FC */ u8  pad1F8[0x22c-0x1FC];
 }; /* sizeof = 0x22C */
 
 struct ObjParticle {
     /* 0x00 */ struct ObjHeader header;
-    /* 0x14 */ u8  pad14[0x1C-0x14];
-    /* 0x1C */ s32 unk1C;
-    /* 0x20 */ float unk20;
-    /* 0x24 */ float unk24;
-    /* 0x28 */ float unk28;
-    /* 0x2C */ u8 filler2C[0x38-0x2C];
-    /* 0x38 */ float unk38;
-    /* 0x3C */ float unk3C;
-    /* 0x40 */ float unk40;
-    /* 0x44 */ u8 filler44[0x50-0x44];
+    /* 0x14 */ u8 pad14[0x1C-0x14];
+    /* 0x1C */ void* unk1C;
+    /* 0x20 */ f32 unk20;
+    /* 0x24 */ f32 unk24;
+    /* 0x28 */ f32 unk28;
+    /* 0x2C */ u8 pad2C[0x38-0x2C];
+    /* 0x38 */ f32 unk38;
+    /* 0x3C */ f32 unk3C;
+    /* 0x40 */ f32 unk40;
+    /* 0x44 */ f32 unk44; //vec?
+    /* 0x48 */ f32 unk48; //vec?
+    /* 0x4C */ u8 pad4C[0x50-0x4C];
     /* 0x50 */ s32 id;
     /* 0x54 */ u32 unk54;
     /* 0x58 */ s32 unk58;
     /* 0x5C */ s32 unk5C;
-    /* 0x60 */ u8 filler60[0xB0-0x60];
+    /* 0x60 */ s32 unk60;
+    /* 0x64 */ s32 unk64;
+    /* 0x68 */ u8 pad68[0xB0-0x68];
     /* 0xB0 */ s32 unkB0;
-    /* 0xB4 */ u8 padB4[0xC0-0xB4];
+    /* 0xB4 */ u8 padB4[0xBC-0xB4];
+    /* 0xBC */ struct ObjCamera* unkBC; //maybe?
 }; /* sizeof = 0xC0 */
 
 struct ObjShape {
     /* 0x00 */ struct ObjHeader header;
-    /* 0x14 */ struct GdPlaneF unk14;
-    /* 0x2C */ u8  pad2C[0x9c-0x2C];
+    /* 0x14 */ struct ObjShape* prevShape;
+    /* 0x18 */ struct ObjShape* nextShape;
+    /* 0x1C */ struct ObjGroup* faceGroup;  /* face group; based on get_3DG1_shape */
+    /* 0x20 */ struct ObjGroup* vtxGroup;  /* vtx group; based on get_3DG1_shape */
+    /* 0x24 */ u8  pad24[0x2c-0x24];
+    /* 0x2C */ struct ObjGroup* unk2C;  /* what does this group do? materials? */
+    /* 0x30 */ s32 unk30;
+    /* 0x34 */ s32 faceCount;   /* face count? based on get_3DG1_shape */
+    /* 0x38 */ s32 vtxCount;   /* vtx count? based on get_3DG1_shape */
+    /* 0x3C */ s32 unk3C;
+    /* 0x40 */ u32 id;
+    /* 0x44 */ void* unk44; //group?
+    /* 0x48 */ s32 unk48;
+    /* 0x4C */ s32 unk4C;
+    /* 0x50 */ s32 unk50;
+    /* 0x54 */ u8  pad54[0x58-0x54];
+    /* 0x58 */ f32 unk58;
+    /* 0x5C */ char name[0x9c-0x5c];
 }; /* sizeof = 0x9C */
 
 struct ObjNet {
@@ -156,7 +194,7 @@ struct ObjNet {
     /* 0x1F0 */ u8  pad1f0[0x220-0x1f0];
 }; /* sizeof = 0x220 */
 /* Net Types (+0x1ec) -> (ptr type at 0x1a8): (from Unknown8019359C)
-    1: shape -> ObjShape (info from: func_80199EE4 "make_netfromshape")
+    1: shape -> ObjShape (info from: make_netfromshape "make_netfromshape")
     2: skin -> move_skin
     3: joint? -> ObjJoint (info from: func_8019A378->make_net call)
     4: bone -> ObjBone (info from: func_80192C5C)
@@ -164,6 +202,17 @@ struct ObjNet {
     6: ?
     7: ?
 */
+
+struct ObjPlane {
+    /* 0x00 */ struct ObjHeader header;
+    /* 0x14 */ u32 id;
+    /* 0x18 */ void* unk18;     // maybe?
+    /* 0x1C */ f32 unk1C;
+    /* 0x20 */ s32 unk20;
+    /* 0x24 */ s32 unk24;
+    /* 0x28 */ struct GdPlaneF plane28;
+    /* 0x40 */ struct ObjFace* unk40;
+}; /* sizeof = 0x44*/
 
 struct ObjVertex {
     /* 0x00 */ struct ObjHeader header;
@@ -176,6 +225,17 @@ struct ObjVertex {
     /* 0x40 */ f32 unk40;
     /* 0x44 */ s32 unk44;
 }; /* sizeof = 0x48 */
+
+struct ObjFace {
+    /* 0x00 */ struct ObjHeader header;
+    /* 0x14 */ struct MyVec3f vec14;
+    /* 0x20 */ u8  pad20[0x24-0x20];
+    /* 0x24 */ struct MyVec3f vec24;    //normal?
+    /* 0x30 */ s32 vtxCount;
+    /* 0x34 */ struct ObjVertex* vertices[4];
+    /* 0x44 */ s32 unk44; // initialize to -1
+    /* 0x48 */ struct ObjMaterial* unk48; // initialize to 0 (NULL?)
+}; /* sizeof = 0x4C */
 
 struct ObjCamera {
     /* 0x000 */ struct ObjHeader header;
@@ -209,11 +269,13 @@ struct ObjCamera {
 
 struct ObjMaterial {
     /* 0x00 */ struct ObjHeader header;
-    /* 0x14 */ u8  pad[8];
+    /* 0x14 */ u8  pad14[8];
     /* 0x1C */ s32 unk1C;
     /* 0x20 */ char name[8];
     /* 0x28 */ s32 unk28;
-    /* 0x2C */ u8  pad2[0x30];
+    /* 0x2C */ u8  pad2C[0x3C-0x2C];
+    /* 0x3C */ struct MyVec3f vec3C;    // normal?
+    /* 0x48 */ u8  pad48[0x5C-0x48];
     /* 0x5C */ s32 unk5C;
 }; /* sizeof = 0x60 */
 
@@ -273,8 +335,9 @@ struct ObjAnimator {
     /* 0x2C */ u8  pad2C[0x18];
     /* 0x44 */ struct ObjAnimator* unk44;   //maybe
     /* 0x48 */ void (*fn48) (struct ObjAnimator*);
-    /* 0x4C */ s32 unk4C;
-    /* 0x50 */ u8  pad50[0x8];
+    /* 0x4C */ s32 unk4C;   //state enum? 
+    /* 0x50 */ s32 unk50;
+    /* 0x54 */ s32 unk54;
 }; /* sizeof = 0x58 */
 
 struct SubAnim1 {
@@ -302,25 +365,6 @@ struct ObjValPtrs {
     /* 0x20 */ void* unk20;
 }; /* sizeof = 0x24 */
 
-
-struct ObjPlane {
-    /* 0x00 */ struct ObjHeader header;
-    /* 0x14 */ u32 id;
-    /* 0x18 */ void* unk18;     // maybe?
-    /* 0x1C */ f32 unk1C;
-    /* 0x20 */ s32 unk20;
-    /* 0x24 */ s32 unk24;
-    /* 0x28 */ struct GdPlaneF plane28;
-    /* 0x40 */ struct ObjPlaneSub* unk40;
-}; /* sizeof = 0x44*/
-
-struct ObjPlaneSub {
-    /* 0x00 */ u8  pad[0x24];
-    /* 0x24 */ struct MyVec3f myVec3f24;
-    /* 0x30 */ s32 unk30;
-    /* 0x34 */ f32* unk34;
-};
-
 struct ObjLight {
     /* 0x00 */ struct ObjHeader header;
     /* 0x14 */ u8  pad0[0x8];
@@ -334,7 +378,8 @@ struct ObjLight {
     /* 0x40 */ s32 unk40;
     /* 0x44 */ u8  pad3[0x8];
     /* 0x4C */ s32 unk4C;
-    /* 0x50 */ u8  pad4[0x18];
+    /* 0x50 */ struct MyVec3f unk50;    // 0x50 to 0x90 -> Matrix?
+    /* 0x5C */ u8  pad5C[0x68-0x5C];
     /* 0x68 */ struct MyVec3f unk68;
     /* 0x74 */ struct MyVec3f unk74;
     /* 0x80 */ struct MyVec3f unk80;
@@ -353,11 +398,14 @@ struct ObjZone {
 
 struct ObjUnk200000 {
     /* 0x00 */ struct ObjHeader header;
-    /* 0x14 */ u8  pad[0x1C];
+    /* 0x14 */ u8  pad14[0x20-0x14];
+    /* 0x20 */ struct ObjGroup* unk20;
+    /* 0x24 */ u8  pad24[0x30-0x24];
     /* 0x30 */ s32 unk30;
     /* 0x34 */ s32 unk34;
 }; /* sizeof = 0x38*/
 
+/* Used when calling make_group */
 struct GroupInfo {
     /* 0x00 */ s32 count; // can have up to 3 pointers.
     /* 0x04 */ struct ObjGroup *ptr1;

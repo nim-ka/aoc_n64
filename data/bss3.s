@@ -337,21 +337,21 @@ glabel D_801BAAF4
     .space 0x4
 glabel D_801BAAF8
     .space 0x34
-glabel D_801BAB2C
+glabel sCubeShapeGroup
     .space 0x10
-glabel D_801BAB3C
+glabel sCubeShape
     .space 0xC
-glabel D_801BAB48
+glabel sGdLineBuf # D_801BAB48; char[0xFF + 1]
     .space 0x100
-glabel D_801BAC48
+glabel sGdLineBufCsr # D_801BAC48
     .space 0x4
-glabel D_801BAC4C
+glabel sGdShapeFile # D_801BAC4C
     .space 0x4
-glabel D_801BAC50
+glabel sGdShapeListHead
     .space 0x4
-glabel D_801BAC54
+glabel sGdShapeCount
     .space 0xC
-glabel D_801BAC60
+glabel D_801BAC60 #MyVec3f
     .space 0x4
 glabel D_801BAC64
     .space 0x4

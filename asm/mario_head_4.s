@@ -1035,7 +1035,7 @@ glabel dMakeNetFromShape
 /* 232EF4 80184724 8FAF001C */  lw    $t7, 0x1c($sp)
 /* 232EF8 80184728 00000000 */  nop   
 /* 232EFC 8018472C 8DE40008 */  lw    $a0, 8($t7)
-/* 232F00 80184730 0C0667B9 */  jal   func_80199EE4
+/* 232F00 80184730 0C0667B9 */  jal   make_netfromshape
 /* 232F04 80184734 00000000 */   nop   
 /* 232F08 80184738 AFA20018 */  sw    $v0, 0x18($sp)
 /* 232F0C 8018473C 8FA40018 */  lw    $a0, 0x18($sp)
@@ -1056,7 +1056,7 @@ glabel func_80184760
 /* 232F3C 8018476C 8FAE0020 */  lw    $t6, 0x20($sp)
 /* 232F40 80184770 00000000 */  nop   
 /* 232F44 80184774 8DC40000 */  lw    $a0, ($t6)
-/* 232F48 80184778 0C0667B9 */  jal   func_80199EE4
+/* 232F48 80184778 0C0667B9 */  jal   make_netfromshape
 /* 232F4C 8018477C 00000000 */   nop   
 /* 232F50 80184780 AFA20018 */  sw    $v0, 0x18($sp)
 /* 232F54 80184784 8FA40018 */  lw    $a0, 0x18($sp)
@@ -1281,6 +1281,29 @@ glabel func_80184A44
 /* 233280 80184AB0 03E00008 */  jr    $ra
 /* 233284 80184AB4 00000000 */   nop   
 
+################################################################################
+# For future reference: dMakeobj first arg enum ("object type")
+# 0  : "dmakeobj() Car dynamics are missing!"
+# 1  : ObjNet
+# 2  : ObjJoint
+# 3  : ObjJoint
+# 4  : ObjCamera
+# 5  : ObjVertex
+# 6  : ObjFace (from make_face_1)
+# 7  : ObjPlane
+# 8  : ObjBone
+# 9  : ObjMaterial
+# 10 : ObjShape
+# 11 : ObjGadget
+# 12 : ObjLabel
+# 13 : ObjView
+# 14 : ObjAnimator
+# 15 : Calls itself-> dMakeobj(18, a1); maybe the unknown 0x200000 object?
+# 16 : ObjParticle
+# 17 : ObjLight
+# 18 : ObjGroup
+# 19+: default case; "dMakeObj(): Unkown object type"
+################################################################################
 glabel dMakeobj
 /* 233288 80184AB8 27BDFFC0 */  addiu $sp, $sp, -0x40
 /* 23328C 80184ABC AFBF002C */  sw    $ra, 0x2c($sp)
@@ -1299,13 +1322,13 @@ glabel dMakeobj
 /* 2332C0 80184AF0 00000000 */  nop   
 /* 2332C4 80184AF4 01C00008 */  jr    $t6
 /* 2332C8 80184AF8 00000000 */   nop   
-glabel .L80184AFC
+glabel .L80184AFC #case 0
 /* 2332CC 80184AFC 3C04801B */  lui    $a0, %hi(D_801B5FC4) 
 /* 2332D0 80184B00 0C063456 */  jal   myPrintf
 /* 2332D4 80184B04 24845FC4 */   addiu $a0, %lo(D_801B5FC4) # addiu $a0, $a0, 0x5fc4
 /* 2332D8 80184B08 1000009F */  b     .L80184D88
 /* 2332DC 80184B0C 00000000 */   nop   
-glabel .L80184B10
+glabel .L80184B10 #case 2
 /* 2332E0 80184B10 00002025 */  move  $a0, $zero
 /* 2332E4 80184B14 24050000 */  li    $a1, 0
 /* 2332E8 80184B18 24060000 */  li    $a2, 0
@@ -1314,7 +1337,7 @@ glabel .L80184B10
 /* 2332F4 80184B24 AFA2003C */  sw    $v0, 0x3c($sp)
 /* 2332F8 80184B28 10000097 */  b     .L80184D88
 /* 2332FC 80184B2C 00000000 */   nop   
-glabel .L80184B30
+glabel .L80184B30 #case 3
 /* 233300 80184B30 00002025 */  move  $a0, $zero
 /* 233304 80184B34 24050000 */  li    $a1, 0
 /* 233308 80184B38 24060000 */  li    $a2, 0
@@ -1323,7 +1346,7 @@ glabel .L80184B30
 /* 233314 80184B44 AFA2003C */  sw    $v0, 0x3c($sp)
 /* 233318 80184B48 1000008F */  b     .L80184D88
 /* 23331C 80184B4C 00000000 */   nop   
-glabel .L80184B50
+glabel .L80184B50 #case 1
 /* 233320 80184B50 00002025 */  move  $a0, $zero
 /* 233324 80184B54 00002825 */  move  $a1, $zero
 /* 233328 80184B58 00003025 */  move  $a2, $zero
@@ -1333,7 +1356,7 @@ glabel .L80184B50
 /* 233338 80184B68 AFA2003C */  sw    $v0, 0x3c($sp)
 /* 23333C 80184B6C 10000086 */  b     .L80184D88
 /* 233340 80184B70 00000000 */   nop   
-glabel .L80184B74
+glabel .L80184B74 #case 18
 /* 233344 80184B74 0C05F631 */  jal   make_group
 /* 233348 80184B78 00002025 */   move  $a0, $zero
 /* 23334C 80184B7C AFA2003C */  sw    $v0, 0x3c($sp)
@@ -1342,7 +1365,7 @@ glabel .L80184B74
 /* 233358 80184B88 AFAF0038 */  sw    $t7, 0x38($sp)
 /* 23335C 80184B8C 1000007E */  b     .L80184D88
 /* 233360 80184B90 00000000 */   nop   
-glabel .L80184B94
+glabel .L80184B94 #case 15
 /* 233364 80184B94 8FA50044 */  lw    $a1, 0x44($sp)
 /* 233368 80184B98 0C0612AE */  jal   dMakeobj
 /* 23336C 80184B9C 24040012 */   li    $a0, 18
@@ -1352,14 +1375,14 @@ glabel .L80184B94
 /* 23337C 80184BAC AF380030 */  sw    $t8, 0x30($t9)
 /* 233380 80184BB0 1000007E */  b     .L80184DAC
 /* 233384 80184BB4 00000000 */   nop   
-glabel .L80184BB8
+glabel .L80184BB8 #case 4
 /* 233388 80184BB8 00002025 */  move  $a0, $zero
 /* 23338C 80184BBC 0C05F3B4 */  jal   make_camera
 /* 233390 80184BC0 00002825 */   move  $a1, $zero
 /* 233394 80184BC4 AFA2003C */  sw    $v0, 0x3c($sp)
 /* 233398 80184BC8 1000006F */  b     .L80184D88
 /* 23339C 80184BCC 00000000 */   nop   
-glabel .L80184BD0
+glabel .L80184BD0 #case 8
 /* 2333A0 80184BD0 00002025 */  move  $a0, $zero
 /* 2333A4 80184BD4 00002825 */  move  $a1, $zero
 /* 2333A8 80184BD8 00003025 */  move  $a2, $zero
@@ -1368,7 +1391,7 @@ glabel .L80184BD0
 /* 2333B4 80184BE4 AFA2003C */  sw    $v0, 0x3c($sp)
 /* 2333B8 80184BE8 10000067 */  b     .L80184D88
 /* 2333BC 80184BEC 00000000 */   nop   
-glabel .L80184BF0
+glabel .L80184BF0 #case 16
 /* 2333C0 80184BF0 44802000 */  mtc1  $zero, $f4
 /* 2333C4 80184BF4 00002025 */  move  $a0, $zero
 /* 2333C8 80184BF8 00002825 */  move  $a1, $zero
@@ -1379,7 +1402,7 @@ glabel .L80184BF0
 /* 2333DC 80184C0C AFA2003C */  sw    $v0, 0x3c($sp)
 /* 2333E0 80184C10 1000005D */  b     .L80184D88
 /* 2333E4 80184C14 00000000 */   nop   
-glabel .L80184C18
+glabel .L80184C18 #case 5
 /* 2333E8 80184C18 44806000 */  mtc1  $zero, $f12
 /* 2333EC 80184C1C 44807000 */  mtc1  $zero, $f14
 /* 2333F0 80184C20 0C065D43 */  jal   gd_make_vertex
@@ -1387,7 +1410,7 @@ glabel .L80184C18
 /* 2333F8 80184C28 AFA2003C */  sw    $v0, 0x3c($sp)
 /* 2333FC 80184C2C 10000056 */  b     .L80184D88
 /* 233400 80184C30 00000000 */   nop   
-glabel .L80184C34
+glabel .L80184C34 #case 6
 /* 233404 80184C34 3C013FF0 */  li    $at, 0x3FF00000 # 1.875000
 /* 233408 80184C38 44813800 */  mtc1  $at, $f7
 /* 23340C 80184C3C 44803000 */  mtc1  $zero, $f6
@@ -1401,14 +1424,14 @@ glabel .L80184C34
 /* 23342C 80184C5C AFA2003C */  sw    $v0, 0x3c($sp)
 /* 233430 80184C60 10000049 */  b     .L80184D88
 /* 233434 80184C64 00000000 */   nop   
-glabel .L80184C68
+glabel .L80184C68 #case 7
 /* 233438 80184C68 00002025 */  move  $a0, $zero
 /* 23343C 80184C6C 0C05F38F */  jal   make_plane
 /* 233440 80184C70 00002825 */   move  $a1, $zero
 /* 233444 80184C74 AFA2003C */  sw    $v0, 0x3c($sp)
 /* 233448 80184C78 10000043 */  b     .L80184D88
 /* 23344C 80184C7C 00000000 */   nop   
-glabel .L80184C80
+glabel .L80184C80 #case 9
 /* 233450 80184C80 00002025 */  move  $a0, $zero
 /* 233454 80184C84 00002825 */  move  $a1, $zero
 /* 233458 80184C88 0C05F43B */  jal   make_material
@@ -1416,7 +1439,7 @@ glabel .L80184C80
 /* 233460 80184C90 AFA2003C */  sw    $v0, 0x3c($sp)
 /* 233464 80184C94 1000003C */  b     .L80184D88
 /* 233468 80184C98 00000000 */   nop   
-glabel .L80184C9C
+glabel .L80184C9C #case 10
 /* 23346C 80184C9C 8FA40044 */  lw    $a0, 0x44($sp)
 /* 233470 80184CA0 0C061291 */  jal   func_80184A44
 /* 233474 80184CA4 00000000 */   nop   
@@ -1427,14 +1450,14 @@ glabel .L80184C9C
 /* 233488 80184CB8 AFA2003C */  sw    $v0, 0x3c($sp)
 /* 23348C 80184CBC 10000032 */  b     .L80184D88
 /* 233490 80184CC0 00000000 */   nop   
-glabel .L80184CC4
+glabel .L80184CC4 #case 11
 /* 233494 80184CC4 00002025 */  move  $a0, $zero
 /* 233498 80184CC8 0C062EA0 */  jal   make_gadget
 /* 23349C 80184CCC 00002825 */   move  $a1, $zero
 /* 2334A0 80184CD0 AFA2003C */  sw    $v0, 0x3c($sp)
 /* 2334A4 80184CD4 1000002C */  b     .L80184D88
 /* 2334A8 80184CD8 00000000 */   nop   
-glabel .L80184CDC
+glabel .L80184CDC #case 12
 /* 2334AC 80184CDC 00002025 */  move  $a0, $zero
 /* 2334B0 80184CE0 00002825 */  move  $a1, $zero
 /* 2334B4 80184CE4 24060008 */  li    $a2, 8
@@ -1445,7 +1468,7 @@ glabel .L80184CDC
 /* 2334C8 80184CF8 AFA2003C */  sw    $v0, 0x3c($sp)
 /* 2334CC 80184CFC 10000022 */  b     .L80184D88
 /* 2334D0 80184D00 00000000 */   nop   
-glabel .L80184D04
+glabel .L80184D04 #case 13
 /* 2334D4 80184D04 3C05000E */  lui   $a1, (0x000E6018 >> 16) # lui $a1, 0xe
 /* 2334D8 80184D08 34A56018 */  ori   $a1, (0x000E6018 & 0xFFFF) # ori $a1, $a1, 0x6018
 /* 2334DC 80184D0C 00002025 */  move  $a0, $zero
@@ -1459,13 +1482,13 @@ glabel .L80184D04
 /* 2334FC 80184D2C AFA2003C */  sw    $v0, 0x3c($sp)
 /* 233500 80184D30 10000015 */  b     .L80184D88
 /* 233504 80184D34 00000000 */   nop   
-glabel .L80184D38
+glabel .L80184D38 #case 14
 /* 233508 80184D38 0C05F54F */  jal   make_animator
 /* 23350C 80184D3C 00000000 */   nop   
 /* 233510 80184D40 AFA2003C */  sw    $v0, 0x3c($sp)
 /* 233514 80184D44 10000010 */  b     .L80184D88
 /* 233518 80184D48 00000000 */   nop   
-glabel .L80184D4C
+glabel .L80184D4C #case 17
 /* 23351C 80184D4C 00002025 */  move  $a0, $zero
 /* 233520 80184D50 00002825 */  move  $a1, $zero
 /* 233524 80184D54 0C05F465 */  jal   make_light
@@ -2486,7 +2509,7 @@ glabel chk_shapegen
 /* 2343C8 80185BF8 8DC60000 */  lw    $a2, ($t6)
 /* 2343CC 80185BFC 8DE70000 */  lw    $a3, ($t7)
 /* 2343D0 80185C00 8FA4005C */  lw    $a0, 0x5c($sp)
-/* 2343D4 80185C04 0C065DF1 */  jal   func_801977C4
+/* 2343D4 80185C04 0C065DF1 */  jal   add_3_vtx_to_face
 /* 2343D8 80185C08 00000000 */   nop   
 /* 2343DC 80185C0C 8FB90030 */  lw    $t9, 0x30($sp)
 /* 2343E0 80185C10 8FAC0038 */  lw    $t4, 0x38($sp)
@@ -6880,7 +6903,7 @@ glabel func_80189850
 /* 238288 80189AB8 14200004 */  bnez  $at, .L80189ACC
 /* 23828C 80189ABC 00000000 */   nop   
 /* 238290 80189AC0 8FA40034 */  lw    $a0, 0x34($sp)
-/* 238294 80189AC4 0C065CB0 */  jal   func_801972C0
+/* 238294 80189AC4 0C065CB0 */  jal   calc_face_normal
 /* 238298 80189AC8 00000000 */   nop   
 .L80189ACC:
 /* 23829C 80189ACC 1000002A */  b     .L80189B78

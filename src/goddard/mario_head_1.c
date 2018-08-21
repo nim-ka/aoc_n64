@@ -9,6 +9,7 @@
 #include "../mario_head_3.h"
 #include "../mario_head_4.h"
 #include "../mario_head_5.h"
+#include "half_6.h"
 #include "../mario_head_6.h"
 
 #include "gd_types.h"
@@ -44,6 +45,7 @@ void func_8017BCB0(void)
 }
 
 //TODO: fix first argument's type once type of func_80186B44 is known
+// Should be an ObjVertex* 
 /* @ 22A4F0 for 0x140 */
 void func_8017BD20(void* a0)
 {
@@ -348,7 +350,7 @@ struct ObjValPtrs* make_valptrs(void* a0, void* a1, void* a2, void* a3)
 /* @ 22B1DC for 0x430 */
 void reset_plane(struct ObjPlane* plane)
 {
-    struct ObjPlaneSub* sp4C;
+    struct ObjFace* sp4C;
     f32 sp48;
     f32 sp44;
     UNUSED u32 sp40;
@@ -361,12 +363,11 @@ void reset_plane(struct ObjPlane* plane)
     func_8018D420("reset_plane");
 
     sp4C = plane->unk40;
-    func_801972C0(sp4C);
-
-    plane->unk1C = func_80194DB8(&sp4C->unk34[8], &sp4C->myVec3f24);
+    calc_face_normal(sp4C);
+    plane->unk1C = func_80194DB8(&sp4C->vertices[0]->vec20, &sp4C->vec24);
     sp48 = 0.0f;
     
-    sp28 = sp4C->myVec3f24.x < 0.0f ? -sp4C->myVec3f24.x : sp4C->myVec3f24.x;
+    sp28 = sp4C->vec24.x < 0.0f ? -sp4C->vec24.x : sp4C->vec24.x;
     sp44 = sp28;
     if (sp44 > sp48)
     {
@@ -374,7 +375,7 @@ void reset_plane(struct ObjPlane* plane)
         sp48 = sp44;
     }
 
-    sp28 = sp4C->myVec3f24.y < 0.0f ? -sp4C->myVec3f24.y : sp4C->myVec3f24.y;
+    sp28 = sp4C->vec24.y < 0.0f ? -sp4C->vec24.y : sp4C->vec24.y;
     sp44 = sp28;
     if (sp44 > sp48)
     {
@@ -382,7 +383,7 @@ void reset_plane(struct ObjPlane* plane)
         sp48 = sp44;
     }
 
-    sp28 = sp4C->myVec3f24.z < 0.0f ? -sp4C->myVec3f24.z : sp4C->myVec3f24.z;
+    sp28 = sp4C->vec24.z < 0.0f ? -sp4C->vec24.z : sp4C->vec24.z;
     sp44 = sp28;
     if (sp44 > sp48)
         sp30 = 2;
@@ -405,13 +406,9 @@ void reset_plane(struct ObjPlane* plane)
     }
 
     func_8017BCB0();
-    //! FIXME plz
-    #pragma GCC diagnostic push
-    #pragma GCC diagnostic ignored "-Wpointer-to-int-cast"
-    #pragma GCC diagnostic ignored "-Wint-to-pointer-cast"
-    for (i = 0; i < sp4C->unk30; i++)
-        func_8017BD20( ((struct ObjPlaneSub*)((int)(sp4C) + (i << 2)))->unk34);
-    #pragma GCC diagnostic pop
+
+    for (i = 0; i < sp4C->vtxCount; i++)
+      func_8017BD20(sp4C->vertices[i]);      
 
     plane->plane28.vec0.x = D_801B9DA0.x;
     plane->plane28.vec0.y = D_801B9DA0.y;
@@ -438,7 +435,7 @@ void reset_plane(struct ObjPlane* plane)
 }
 
 /* @ 22B60C for 0x94; orig name: func_8017CE3C */
-struct ObjPlane* make_plane(void* a0, struct ObjPlaneSub* a1)
+struct ObjPlane* make_plane(void* a0, struct ObjFace* a1)
 {
     UNUSED u32 pad1C;
     struct ObjPlane* newPlane = (struct ObjPlane*) make_object(OBJ_TYPE_PLANES);

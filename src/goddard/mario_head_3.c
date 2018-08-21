@@ -540,7 +540,7 @@ void Unknown80182C84(struct Struct80181D14 *a)
                 for (sp58 = 0; sp58 < 50; sp58++)
                 {
                     sp60 = make_particle(1, -1, a->unk20, a->unk24, a->unk28);
-                    sp60->unk1C = a->unk1C;
+                    sp60->unk1C = (void*) a->unk1C;
                     addto_group(a->unk6C, &sp60->header);
                     sp60->unk54 &= ~8;
                 }
@@ -551,7 +551,7 @@ void Unknown80182C84(struct Struct80181D14 *a)
                 for (sp58 = 0; sp58 < 30; sp58++)
                 {
                     sp60 = make_particle(1, -1, a->unk20, a->unk24, a->unk28);
-                    sp60->unk1C = a->unk1C;
+                    sp60->unk1C = (void*) a->unk1C;
                     addto_group(a->unk6C, &sp60->header);
                     sp60->unk54 &= ~8;
                 }

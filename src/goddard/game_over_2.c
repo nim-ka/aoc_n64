@@ -5,6 +5,7 @@
 #include "mario_head_1.h"
 #include "../mario_head_4.h"
 #include "../mario_head_5.h"
+#include "half_6.h"
 #include "../mario_head_6.h"
 
 struct Struct801781DC_6
@@ -1485,13 +1486,13 @@ static const char unusedString1[] = "Generated '%s' (%d) display list ok.(%d)\n"
 static const char unusedString2[] = "Generated 'UNKNOWN' (%d) display list ok.(%d)\n";
 static const char unusedString3[] = "made %d display lists\n";
 
-void find_thisface_verts(struct UnknownGameOverStruct8 *a, struct Struct8017B118_2 *b)
+void find_thisface_verts(struct ObjFace *face, struct Struct8017B118_2 *b)
 {
     int sp2C;
     u8 *sp28;
     struct Struct8017B118_3 *sp24;
 
-    for (sp2C = 0; sp2C < a->unk30; sp2C++)
+    for (sp2C = 0; sp2C < face->vtxCount; sp2C++)
     {
         sp24 = b->unk1C;
         sp28 = 0;
@@ -1500,16 +1501,16 @@ void find_thisface_verts(struct UnknownGameOverStruct8 *a, struct Struct8017B118
             if (sp24->unk8->unkC == 256 || sp24->unk8->unkC == 8)
             {
                 //! wut?
-                if (sp28++ == (u8 *)a->unk34[sp2C])
+                if (sp28++ == (u8 *)face->vertices[sp2C])
                     break;
             }
             sp24 = sp24->unk4;
         }
         if (sp24 == NULL)
             myPrintf("find_thisface_verts(): Vertex not found");
-        a->unk34[sp2C] = sp24->unk8;
+        face->vertices[sp2C] = (struct ObjVertex*) sp24->unk8;
     }
-    func_801972C0(a);
+    calc_face_normal(face);
 }
 
 struct Struct8017B3F8_2
@@ -1540,7 +1541,7 @@ void func_8017B3F8(struct Struct8017B3F8 *a, struct Struct8017B118_2 *b)
     while (s0 != NULL)
     {
         sp28 = s0->unk8;
-        find_thisface_verts(sp28, b);
+        find_thisface_verts((struct ObjFace*) sp28, b);
         s0 = s0->unk4;
     }
 
