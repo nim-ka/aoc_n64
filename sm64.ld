@@ -486,14 +486,14 @@ SECTIONS
    STANDARD_LEVEL(level_ttm)
 
    /* 4E9FA0-? [?] */
-   BEGIN_SEG(text4E9FA0, __romPos)
+   BEGIN_SEG(assets, __romPos)
    {
-      build/data/unknown_4E9FA0.o(.text);
-      build/demos/demo_data.o(.text);
-      build/sound/sound_data.o(.text);
-      build/sound/music_data.o(.text);
+      build/anims/mario_anim_data.o(.data);
+      build/demos/demo_data.o(.data);
+      build/sound/sound_data.o(.data);
+      build/sound/music_data.o(.data);
    }
-   END_SEG(text4E9FA0)
+   END_SEG(assets)
 
    /* Discard everything not specifically mentioned above. */
    /DISCARD/ :

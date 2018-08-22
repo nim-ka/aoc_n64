@@ -1,276 +1,169 @@
 .include "macros.inc"
 
-adsr_begin: # US: 57B720
-glabel gSoundDataADSR
+.section .data
+
+.macro adsrtable name
+.word (\name - gSoundDataADSR), (\name\()_end - \name)
+.endm
+
+.macro adsr name
+\name:
+.ifdef VERSION_JP
+.incbin "sound/adsr/jp/\name\().bin"
+.endif
+.ifdef VERSION_US
+.incbin "sound/adsr/us/\name\().bin"
+.endif
+\name\()_end:
+.endm
+
+glabel gSoundDataADSR # US: 57B720
 .hword 1 # current sequence
-.hword 38 # number of entries
+.hword (adsr_entry_end - adsr_entry_start) / 8 # number of entries
 
-.word (adsr_00 - adsr_begin), (adsr_00_end - adsr_00)
-.word (adsr_01 - adsr_begin), (adsr_01_end - adsr_01)
-.word (adsr_02 - adsr_begin), (adsr_02_end - adsr_02)
-.word (adsr_03 - adsr_begin), (adsr_03_end - adsr_03)
-.word (adsr_04 - adsr_begin), (adsr_04_end - adsr_04)
-.word (adsr_05 - adsr_begin), (adsr_05_end - adsr_05)
-.word (adsr_06 - adsr_begin), (adsr_06_end - adsr_06)
-.word (adsr_07 - adsr_begin), (adsr_07_end - adsr_07)
-.word (adsr_08 - adsr_begin), (adsr_08_end - adsr_08)
-.word (adsr_09 - adsr_begin), (adsr_09_end - adsr_09)
-.word (adsr_0A - adsr_begin), (adsr_0A_end - adsr_0A)
-.word (adsr_0B - adsr_begin), (adsr_0B_end - adsr_0B)
-.word (adsr_0C - adsr_begin), (adsr_0C_end - adsr_0C)
-.word (adsr_0D - adsr_begin), (adsr_0D_end - adsr_0D)
-.word (adsr_0E - adsr_begin), (adsr_0E_end - adsr_0E)
-.word (adsr_0F - adsr_begin), (adsr_0F_end - adsr_0F)
-.word (adsr_10 - adsr_begin), (adsr_10_end - adsr_10)
-.word (adsr_11 - adsr_begin), (adsr_11_end - adsr_11)
-.word (adsr_12 - adsr_begin), (adsr_12_end - adsr_12)
-.word (adsr_13 - adsr_begin), (adsr_13_end - adsr_13)
-.word (adsr_14 - adsr_begin), (adsr_14_end - adsr_14)
-.word (adsr_15 - adsr_begin), (adsr_15_end - adsr_15)
-.word (adsr_16 - adsr_begin), (adsr_16_end - adsr_16)
-.word (adsr_17 - adsr_begin), (adsr_17_end - adsr_17)
-.word (adsr_18 - adsr_begin), (adsr_18_end - adsr_18)
-.word (adsr_19 - adsr_begin), (adsr_19_end - adsr_19)
-.word (adsr_1A - adsr_begin), (adsr_1A_end - adsr_1A)
-.word (adsr_1B - adsr_begin), (adsr_1B_end - adsr_1B)
-.word (adsr_1C - adsr_begin), (adsr_1C_end - adsr_1C)
-.word (adsr_1D - adsr_begin), (adsr_1D_end - adsr_1D)
-.word (adsr_1E - adsr_begin), (adsr_1E_end - adsr_1E)
-.word (adsr_1F - adsr_begin), (adsr_1F_end - adsr_1F)
-.word (adsr_20 - adsr_begin), (adsr_20_end - adsr_20)
-.word (adsr_21 - adsr_begin), (adsr_21_end - adsr_21)
-.word (adsr_22 - adsr_begin), (adsr_22_end - adsr_22)
-.word (adsr_23 - adsr_begin), (adsr_23_end - adsr_23)
-.word (adsr_24 - adsr_begin), (adsr_24_end - adsr_24)
-.word (adsr_25 - adsr_begin), (adsr_25_end - adsr_25)
+adsr_entry_start:
+adsrtable adsr_00
+adsrtable adsr_01
+adsrtable adsr_02
+adsrtable adsr_03
+adsrtable adsr_04
+adsrtable adsr_05
+adsrtable adsr_06
+adsrtable adsr_07
+adsrtable adsr_08
+adsrtable adsr_09
+adsrtable adsr_0A
+adsrtable adsr_0B
+adsrtable adsr_0C
+adsrtable adsr_0D
+adsrtable adsr_0E
+adsrtable adsr_0F
+adsrtable adsr_10
+adsrtable adsr_11
+adsrtable adsr_12
+adsrtable adsr_13
+adsrtable adsr_14
+adsrtable adsr_15
+adsrtable adsr_16
+adsrtable adsr_17
+adsrtable adsr_18
+adsrtable adsr_19
+adsrtable adsr_1A
+adsrtable adsr_1B
+adsrtable adsr_1C
+adsrtable adsr_1D
+adsrtable adsr_1E
+adsrtable adsr_1F
+adsrtable adsr_20
+adsrtable adsr_21
+adsrtable adsr_22
+adsrtable adsr_23
+adsrtable adsr_24
+adsrtable adsr_25
+adsr_entry_end:
 
-.align 4, 0x00
+.word 0, 0, 0 # you cant use an align 4, 0x00 here or else the table calculation above will not work.
 
-# TODO: Dissassemble ADSR lists fully and process via toolchain
-adsr_00: # US: 57B860
-.incbin "bin/sm64.j.4E9FA0.bin", 0x8F2E0, 0x420
-adsr_00_end:
-
-adsr_01: # US: 57BC80
-.incbin "bin/sm64.j.4E9FA0.bin", 0x8F700, 0x560
-adsr_01_end:
-
-adsr_02: # US: 57C1E0
-.incbin "bin/sm64.j.4E9FA0.bin", 0x8FC60, 0x230
-adsr_02_end:
-
-adsr_03:
-.incbin "bin/sm64.j.4E9FA0.bin", 0x8FE90, 0x7D0
-adsr_03_end:
-
-adsr_04:
-.incbin "bin/sm64.j.4E9FA0.bin", 0x90660, 0xA00
-adsr_04_end:
-
-adsr_05:
-.incbin "bin/sm64.j.4E9FA0.bin", 0x91060, 0xB60
-adsr_05_end:
-
-adsr_06:
-.incbin "bin/sm64.j.4E9FA0.bin", 0x91BC0, 0xA20
-adsr_06_end:
-
-adsr_07: # US: 57EB60
-.ifdef VERSION_JP
-.incbin "bin/sm64.j.4E9FA0.bin", 0x925E0, 0x910
-.endif
-.ifdef VERSION_US
-.incbin "sound/adsr_07_us.bin"
-.endif
-adsr_07_end:
-
-adsr_08: # US: 57F510
-.ifdef VERSION_JP
-.incbin "bin/sm64.j.4E9FA0.bin", 0x92EF0, 0xA70
-.endif
-.ifdef VERSION_US
-.incbin "sound/adsr_08_us.bin"
-.endif
-adsr_08_end:
-
-adsr_09: # US: 580680
-.incbin "bin/sm64.j.4E9FA0.bin", 0x93960, 0x530
-adsr_09_end:
-
-adsr_0A: # US: 580BB0
-.ifdef VERSION_JP
-.incbin "bin/sm64.j.4E9FA0.bin", 0x93E90, 0x920
-.endif
-.ifdef VERSION_US
-.incbin "sound/adsr_0A_us.bin"
-.endif
-adsr_0A_end:
-
-adsr_0B:
-.incbin "bin/sm64.j.4E9FA0.bin", 0x947B0, 0x620
-adsr_0B_end:
-
-adsr_0C:
-.incbin "bin/sm64.j.4E9FA0.bin", 0x94DD0, 0x1300
-adsr_0C_end:
-
-adsr_0D:
-.incbin "bin/sm64.j.4E9FA0.bin", 0x960D0, 0x1200
-adsr_0D_end:
-
-adsr_0E:
-.incbin "bin/sm64.j.4E9FA0.bin", 0x972D0, 0x5A0
-adsr_0E_end:
-
-adsr_0F:
-.incbin "bin/sm64.j.4E9FA0.bin", 0x97870, 0x450
-adsr_0F_end:
-
-adsr_10:
-.incbin "bin/sm64.j.4E9FA0.bin", 0x97CC0, 0xC10
-adsr_10_end:
-
-adsr_11:
-.incbin "bin/sm64.j.4E9FA0.bin", 0x988D0, 0x14C0
-adsr_11_end:
-
-adsr_12:
-.incbin "bin/sm64.j.4E9FA0.bin", 0x99D90, 0x940
-adsr_12_end:
-
-adsr_13:
-.incbin "bin/sm64.j.4E9FA0.bin", 0x9A6D0, 0xFE0
-adsr_13_end:
-
-adsr_14:
-.incbin "bin/sm64.j.4E9FA0.bin", 0x9B6B0, 0x1A0
-adsr_14_end:
-
-adsr_15:
-.incbin "bin/sm64.j.4E9FA0.bin", 0x9B850, 0xF80
-adsr_15_end:
-
-adsr_16:
-.incbin "bin/sm64.j.4E9FA0.bin", 0x9C7D0, 0x100
-adsr_16_end:
-
-adsr_17:
-.incbin "bin/sm64.j.4E9FA0.bin", 0x9C8D0, 0x1340
-adsr_17_end:
-
-adsr_18:
-.incbin "bin/sm64.j.4E9FA0.bin", 0x9DC10, 0x1140
-adsr_18_end:
-
-adsr_19:
-.incbin "bin/sm64.j.4E9FA0.bin", 0x9ED50, 0x13B0
-adsr_19_end:
-
-adsr_1A:
-.incbin "bin/sm64.j.4E9FA0.bin", 0xA0100, 0x8E0
-adsr_1A_end:
-
-adsr_1B:
-.incbin "bin/sm64.j.4E9FA0.bin", 0xA09E0, 0xFE0
-adsr_1B_end:
-
-adsr_1C:
-.incbin "bin/sm64.j.4E9FA0.bin", 0xA19C0, 0x310
-adsr_1C_end:
-
-adsr_1D:
-.incbin "bin/sm64.j.4E9FA0.bin", 0xA1CD0, 0x330
-adsr_1D_end:
-
-adsr_1E:
-.incbin "bin/sm64.j.4E9FA0.bin", 0xA2000, 0x370
-adsr_1E_end:
-
-adsr_1F:
-.incbin "bin/sm64.j.4E9FA0.bin", 0xA2370, 0x330
-adsr_1F_end:
-
-adsr_20:
-.incbin "bin/sm64.j.4E9FA0.bin", 0xA26A0, 0x350
-adsr_20_end:
-
-adsr_21:
-.incbin "bin/sm64.j.4E9FA0.bin", 0xA29F0, 0x200
-adsr_21_end:
-
-adsr_22:
-.incbin "bin/sm64.j.4E9FA0.bin", 0xA2BF0, 0xEE0
-adsr_22_end:
-
-adsr_23:
-.incbin "bin/sm64.j.4E9FA0.bin", 0xA3AD0, 0x480
-adsr_23_end:
-
-adsr_24:
-.incbin "bin/sm64.j.4E9FA0.bin", 0xA3F50, 0xC90
-adsr_24_end:
-
-adsr_25:
-.incbin "bin/sm64.j.4E9FA0.bin", 0xA4BE0, 0x1650
-adsr_25_end:
+adsr adsr_00
+adsr adsr_01
+adsr adsr_02
+adsr adsr_03
+adsr adsr_04
+adsr adsr_05
+adsr adsr_06
+adsr adsr_07
+adsr adsr_08
+adsr adsr_09
+adsr adsr_0A
+adsr adsr_0B
+adsr adsr_0C
+adsr adsr_0D
+adsr adsr_0E
+adsr adsr_0F
+adsr adsr_10
+adsr adsr_11
+adsr adsr_12
+adsr adsr_13
+adsr adsr_14
+adsr adsr_15
+adsr adsr_16
+adsr adsr_17
+adsr adsr_18
+adsr adsr_19
+adsr adsr_1A
+adsr adsr_1B
+adsr adsr_1C
+adsr adsr_1D
+adsr adsr_1E
+adsr adsr_1F
+adsr adsr_20
+adsr adsr_21
+adsr adsr_22
+adsr adsr_23
+adsr adsr_24
+adsr adsr_25
 
 .byte 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 .byte 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 .byte 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+
+.macro soundtable name
+.word (\name - gSoundDataRaw), (\name\()_end - \name)
+.endm
 
 # US: 593560 - 7B0860
 # raw sound data area
 raw_sound_begin:
 glabel gSoundDataRaw # the nlist entries below are part of this area.
 .hword 2 # current segment
-.hword 38 # number of entries (pair of words as described below)
+.hword (sound_table_end - sound_table) / 8 # number of entries (pair of words as described below)
 
 # Each pair of words represents the following:
 # 1: Relative offset of the nlist
 # 2: Size of the nlist
 
 sound_table:
-.word (nlist_00 - raw_sound_begin), (nlist_00_end   - nlist_00)
-.word (nlist_01 - raw_sound_begin), (nlist_01_end   - nlist_01)
-.word (nlist_02 - raw_sound_begin), (nlist_02_end   - nlist_02)
-.word (nlist_03 - raw_sound_begin), (nlist_03_end   - nlist_03)
-.word (nlist_04_05 - raw_sound_begin), (nlist_04_05_end - nlist_04_05)
-.word (nlist_04_05 - raw_sound_begin), (nlist_04_05_end - nlist_04_05) 
-.word (nlist_06 - raw_sound_begin), (nlist_06_end   - nlist_06)
-.word (nlist_07 - raw_sound_begin), (nlist_07_end   - nlist_07)
-.word (nlist_08 - raw_sound_begin), (nlist_08_end   - nlist_08)
-.word (nlist_09 - raw_sound_begin), (nlist_09_end   - nlist_09)
-.word (nlist_0A - raw_sound_begin), (nlist_0A_end   - nlist_0A)
-.word (nlist_0B_rest - raw_sound_begin), (nlist_0B_rest_end   - nlist_0B_rest)
-.word (nlist_0B_rest - raw_sound_begin), (nlist_0B_rest_end   - nlist_0B_rest)
-.word (nlist_0B_rest - raw_sound_begin), (nlist_0B_rest_end   - nlist_0B_rest)
-.word (nlist_0B_rest - raw_sound_begin), (nlist_0B_rest_end   - nlist_0B_rest)
-.word (nlist_0B_rest - raw_sound_begin), (nlist_0B_rest_end   - nlist_0B_rest)
-.word (nlist_0B_rest - raw_sound_begin), (nlist_0B_rest_end   - nlist_0B_rest)
-.word (nlist_0B_rest - raw_sound_begin), (nlist_0B_rest_end   - nlist_0B_rest)
-.word (nlist_0B_rest - raw_sound_begin), (nlist_0B_rest_end   - nlist_0B_rest)
-.word (nlist_0B_rest - raw_sound_begin), (nlist_0B_rest_end   - nlist_0B_rest)
-.word (nlist_extra_1 - raw_sound_begin), (nlist_extra_1_end   - nlist_extra_1)
-.word (nlist_0B_rest - raw_sound_begin), (nlist_0B_rest_end   - nlist_0B_rest)
-.word (nlist_extra_2 - raw_sound_begin), (nlist_extra_2_end   - nlist_extra_2)
-.word (nlist_0B_rest - raw_sound_begin), (nlist_0B_rest_end   - nlist_0B_rest)
-.word (nlist_0B_rest - raw_sound_begin), (nlist_0B_rest_end   - nlist_0B_rest)
-.word (nlist_0B_rest - raw_sound_begin), (nlist_0B_rest_end   - nlist_0B_rest)
-.word (nlist_0B_rest - raw_sound_begin), (nlist_0B_rest_end   - nlist_0B_rest)
-.word (nlist_0B_rest - raw_sound_begin), (nlist_0B_rest_end   - nlist_0B_rest)
-.word (nlist_0B_rest - raw_sound_begin), (nlist_0B_rest_end   - nlist_0B_rest)
-.word (nlist_extra_3 - raw_sound_begin), (nlist_extra_3_end   - nlist_extra_3)
-.word (nlist_0B_rest - raw_sound_begin), (nlist_0B_rest_end   - nlist_0B_rest)
-.word (nlist_0B_rest - raw_sound_begin), (nlist_0B_rest_end   - nlist_0B_rest)
-.word (nlist_0B_rest - raw_sound_begin), (nlist_0B_rest_end   - nlist_0B_rest)
-.word (nlist_0B_rest - raw_sound_begin), (nlist_0B_rest_end   - nlist_0B_rest)
-.word (nlist_0B_rest - raw_sound_begin), (nlist_0B_rest_end   - nlist_0B_rest)
-.word (nlist_0B_rest - raw_sound_begin), (nlist_0B_rest_end   - nlist_0B_rest)
-.word (nlist_0B_rest - raw_sound_begin), (nlist_0B_rest_end   - nlist_0B_rest)
-.word (nlist_0B_rest - raw_sound_begin), (nlist_0B_rest_end   - nlist_0B_rest)
+soundtable nlist_00
+soundtable nlist_01
+soundtable nlist_02
+soundtable nlist_03
+soundtable nlist_04_05
+soundtable nlist_04_05 
+soundtable nlist_06
+soundtable nlist_07
+soundtable nlist_08
+soundtable nlist_09
+soundtable nlist_0A
+soundtable nlist_0B_rest
+soundtable nlist_0B_rest
+soundtable nlist_0B_rest
+soundtable nlist_0B_rest
+soundtable nlist_0B_rest
+soundtable nlist_0B_rest
+soundtable nlist_0B_rest
+soundtable nlist_0B_rest
+soundtable nlist_0B_rest
+soundtable nlist_extra_1
+soundtable nlist_0B_rest
+soundtable nlist_extra_2
+soundtable nlist_0B_rest
+soundtable nlist_0B_rest
+soundtable nlist_0B_rest
+soundtable nlist_0B_rest
+soundtable nlist_0B_rest
+soundtable nlist_0B_rest
+soundtable nlist_extra_3
+soundtable nlist_0B_rest
+soundtable nlist_0B_rest
+soundtable nlist_0B_rest
+soundtable nlist_0B_rest
+soundtable nlist_0B_rest
+soundtable nlist_0B_rest
+soundtable nlist_0B_rest
+soundtable nlist_0B_rest
 sound_table_end:
 
-.align 4, 0x00
+.word 0, 0, 0
 
 nlist_00: # US: 5936A0
 .align 4, 0x00

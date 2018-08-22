@@ -288,7 +288,7 @@ void func_80248934(void)
     gFrameBuffers[2] = VIRTUAL_TO_PHYSICAL(gFrameBuffer2);
     D_80339CF0 = main_pool_alloc(0x4000, MEMORY_POOL_LEFT);
     set_segment_base_addr(17, (void *)D_80339CF0);
-    func_80278A78(&D_80339D10, D_004E9FA0, D_80339CF0);
+    func_80278A78(&D_80339D10, gMarioAnims, D_80339CF0);
     D_80339CF4 = main_pool_alloc(2048, MEMORY_POOL_LEFT);
     set_segment_base_addr(24, (void *)D_80339CF4);
     func_80278A78(&gDemo, gDemoInputs, D_80339CF4);

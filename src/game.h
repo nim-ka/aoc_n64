@@ -52,7 +52,7 @@ extern struct DemoInput *gDemoInputList;
 extern struct MarioAnimation D_80339D10;
 
 extern u8 D_80000400[];
-extern u8 D_004E9FA0[];
+extern u8 gMarioAnims[];
 extern u8 gDemoInputs[];
 extern u8 D_10000000[];
 
