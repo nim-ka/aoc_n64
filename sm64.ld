@@ -489,9 +489,13 @@ SECTIONS
    BEGIN_SEG(assets, __romPos)
    {
       build/anims/mario_anim_data.o(.data);
+      . = ALIGN(0x10);
       build/demos/demo_data.o(.data);
+      . = ALIGN(0x10);
       build/sound/sound_data.o(.data);
+      . = ALIGN(0x10);
       build/sound/music_data.o(.data);
+      . = ALIGN(0x10);
    }
    END_SEG(assets)
 
