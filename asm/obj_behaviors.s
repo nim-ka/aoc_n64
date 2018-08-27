@@ -14615,9 +14615,9 @@ glabel func_802EFB84
 glabel func_802EFC44
 /* 0AAC44 802EFC44 27BDFFD8 */  addiu $sp, $sp, -0x28
 /* 0AAC48 802EFC48 AFBF0014 */  sw    $ra, 0x14($sp)
-/* 0AAC4C 802EFC4C 3C040701 */  lui   $a0, %hi(D_070165A8) # $a0, 0x701
+/* 0AAC4C 802EFC4C 3C040701 */  lui   $a0, %hi(ccm_seg7_trajectory_snowman) # $a0, 0x701
 /* 0AAC50 802EFC50 0C09DE68 */  jal   segmented_to_virtual
-/* 0AAC54 802EFC54 248465A8 */   addiu $a0, %lo(D_070165A8) # addiu $a0, $a0, 0x65a8
+/* 0AAC54 802EFC54 248465A8 */   addiu $a0, %lo(ccm_seg7_trajectory_snowman) # addiu $a0, $a0, 0x65a8
 /* 0AAC58 802EFC58 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 0AAC5C 802EFC5C 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
 /* 0AAC60 802EFC60 ADC200FC */  sw    $v0, 0xfc($t6)

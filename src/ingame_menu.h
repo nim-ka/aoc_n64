@@ -32,7 +32,6 @@
 // extern ? D_8033052C;
 // extern ? D_8036008A;
 // extern ? D_8036008C;
-// extern ? D_0700EA58;
 // extern ? D_8036008E;
 // extern ? D_80330530;
 // extern ? D_03007940;

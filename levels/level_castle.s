@@ -3,7 +3,7 @@
 
 .section .seg07, "a"
 .align 4
-.incbin "build/mio0/inside_castle_segment7.mio0"
+.incbin "build/mio0/inside_castle_seg7.mio0"
 .align 4
 
 .section .level, "a"

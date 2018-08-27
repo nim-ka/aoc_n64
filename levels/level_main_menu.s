@@ -3,7 +3,7 @@
 
 .section .seg07, "a"
 .align 4
-.incbin "build/mio0/main_menu_segment7.mio0"
+.incbin "build/mio0/main_menu_seg7.mio0"
 .align 4
 
 .section .level, "a"
@@ -28,7 +28,7 @@ glabel level_main_menu_entry_1
     area /*index*/ 1, /*geo*/ main_menu_geo_000380
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 0, 0, -19000, /*angle*/ 0, 0, 0, /*behArg*/ 0x04000000, /*beh*/ beh_gray_button
         object /*unk2*/ 0x1F, /*unk3*/ 0x06, /*pos*/ 0, 0, -19000, /*angle*/ 0, 0, 0, /*behArg*/ 0x04000000, /*beh*/ beh_yellow_background_in_menu
-        terrain /*terrainData*/ main_menu_collision
+        terrain /*terrainData*/ main_menu_seg7_collision
     end_area
 
     free_level_pool
@@ -56,7 +56,7 @@ glabel level_main_menu_entry_2
 
     area /*index*/ 2, /*geo*/ main_menu_geo_000408
         object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 0, -100, 0, /*angle*/ 0, 0, 0, /*behArg*/ 0x04000000, /*beh*/ beh_act_selector
-        terrain /*terrainData*/ main_menu_collision
+        terrain /*terrainData*/ main_menu_seg7_collision
     end_area
 
     free_level_pool

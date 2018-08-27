@@ -24,13 +24,13 @@ struct GraphNodeMore
 };
 
 // title screen segment A
-extern Gfx title_f3d_0A000118[];
-extern Gfx title_f3d_0A000100[];
-extern Gfx title_f3d_0A000130[];
-extern Gfx title_f3d_0A000148[];
-extern Gfx title_f3d_0A000160[];
-extern Gfx title_f3d_0A000178[];
-extern Gfx title_f3d_0A000190[];
+extern Gfx title_screen_bg_dl_0A000118[];
+extern Gfx title_screen_bg_dl_0A000100[];
+extern Gfx title_screen_bg_dl_0A000130[];
+extern Gfx title_screen_bg_dl_0A000148[];
+extern Gfx title_screen_bg_dl_0A000160[];
+extern Gfx title_screen_bg_dl_0A000178[];
+extern Gfx title_screen_bg_dl_0A000190[];
 extern Gfx mario_title_texture_table[];
 extern Gfx game_over_texture_table[];
 
@@ -41,7 +41,7 @@ extern int gGameOverFrameCounter;
 extern int gGameOverTableIndex;
 
 // intro screen background display lists for each of four 80x20 textures
-Gfx *introBackgroundDlRows[] = {title_f3d_0A000130, title_f3d_0A000148, title_f3d_0A000160, title_f3d_0A000178};
+Gfx *introBackgroundDlRows[] = {title_screen_bg_dl_0A000130, title_screen_bg_dl_0A000148, title_screen_bg_dl_0A000160, title_screen_bg_dl_0A000178};
 
 // intro screen background texture X offsets
 float introBackgroundOffsetX[] =
@@ -96,8 +96,8 @@ Gfx *geo18_title_screen(u32 sp50, struct GraphNode *sp54, UNUSED u32 sp58)
    graphNode = sp54;
    displayList = NULL;
    displayListIter = NULL;
-   scaleTable1 = segmented_to_virtual(intro_table_0700C790);
-   scaleTable2 = segmented_to_virtual(intro_table_0700C880);
+   scaleTable1 = segmented_to_virtual(intro_seg7_table_0700C790);
+   scaleTable2 = segmented_to_virtual(intro_seg7_table_0700C880);
    if (sp50 != 1)
    {
       gTitleZoomCounter = 0;
@@ -134,7 +134,7 @@ Gfx *geo18_title_screen(u32 sp50, struct GraphNode *sp54, UNUSED u32 sp58)
       }
       guScale(scaleMat, scaleX, scaleY, scaleZ);
       gSPMatrix(displayListIter++, scaleMat, G_MTX_PUSH);
-      gSPDisplayList(displayListIter++, &intro_f3d_0700B3A0);
+      gSPDisplayList(displayListIter++, &intro_seg7_dl_0700B3A0);
       gSPPopMatrix(displayListIter++, G_MTX_MODELVIEW);
       gSPEndDisplayList(displayListIter);
       gTitleZoomCounter++;
@@ -169,7 +169,7 @@ Gfx *geo18_fade_transition(u32 sp40, struct GraphNode *sp44, UNUSED u32 sp48)
          gDPSetRenderMode(displayListIter++, 0x005041C8 , 0); // TODO mode1 | mode2
          if (0) {}
       }
-      gSPDisplayList(displayListIter++, &intro_f3d_0700C6A0);
+      gSPDisplayList(displayListIter++, &intro_seg7_dl_0700C6A0);
       gSPEndDisplayList(displayListIter);
       if (gTitleZoomCounter >= 0x13)
       {
@@ -196,7 +196,7 @@ Gfx *intro_backdrop_one_image(u32 index, s8 *backgroundTable)
    vIntroBgTable = segmented_to_virtual(introBackgroundTextureType[backgroundTable[index]]);
    guTranslate(mtx, introBackgroundOffsetX[index], introBackgroundOffsetY[index], 0.0f);
    gSPMatrix(displayListIter++, mtx, G_MTX_LOAD | G_MTX_PUSH);
-   gSPDisplayList(displayListIter++, &title_f3d_0A000118);
+   gSPDisplayList(displayListIter++, &title_screen_bg_dl_0A000118);
    for (i = 0; i < 4; ++i)
    {
       gDPSetTextureImage(displayListIter++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, vIntroBgTable[i]);
@@ -232,12 +232,12 @@ Gfx *geo18_intro_backdrop(u32 sp48, struct GraphNode *sp4c, UNUSED u32 sp50)
       displayListIter = displayList;
       graphNode->node.flags = (graphNode->node.flags & 0xFF) | 0x100;
       gSPDisplayList(displayListIter++, &seg2_f3d_014660);
-      gSPDisplayList(displayListIter++, &title_f3d_0A000100);
+      gSPDisplayList(displayListIter++, &title_screen_bg_dl_0A000100);
       for (i = 0; i < 12; ++i)
       {
          gSPDisplayList(displayListIter++, intro_backdrop_one_image(i, backgroundTable));
       }
-      gSPDisplayList(displayListIter++, &title_f3d_0A000190);
+      gSPDisplayList(displayListIter++, &title_screen_bg_dl_0A000190);
       gSPEndDisplayList(displayListIter);
    }
    return displayList;
@@ -289,12 +289,12 @@ Gfx *geo18_game_over_tile(u32 sp40, struct GraphNode *sp44, UNUSED u32 sp48)
       }
       graphNode->flags = (graphNode->flags & 0xFF) | 0x100;
       gSPDisplayList(displayListIter++, &seg2_f3d_014660);
-      gSPDisplayList(displayListIter++, &title_f3d_0A000100);
+      gSPDisplayList(displayListIter++, &title_screen_bg_dl_0A000100);
       for (j = 0; j < (int)sizeof(gameOverBackgroundTable); ++j)
       {
          gSPDisplayList(displayListIter++, intro_backdrop_one_image(j, gameOverBackgroundTable));
       }
-      gSPDisplayList(displayListIter++, &title_f3d_0A000190);
+      gSPDisplayList(displayListIter++, &title_screen_bg_dl_0A000190);
       gSPEndDisplayList(displayListIter);
    }
    return displayList;

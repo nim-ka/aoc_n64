@@ -750,9 +750,9 @@ glabel PutString
 /* 091EE0 802D6EE0 AFA60058 */  sw    $a2, 0x58($sp)
 /* 091EE4 802D6EE4 AFA7005C */  sw    $a3, 0x5c($sp)
 /* 091EE8 802D6EE8 AFA0004C */  sw    $zero, 0x4c($sp)
-/* 091EEC 802D6EEC 3C040701 */  lui   $a0, %hi(D_0700ABD0) # $a0, 0x701
+/* 091EEC 802D6EEC 3C040701 */  lui   $a0, %hi(main_menu_seg7_table_0700ABD0) # $a0, 0x701
 /* 091EF0 802D6EF0 0C09DE68 */  jal   segmented_to_virtual
-/* 091EF4 802D6EF4 2484ABD0 */   addiu $a0, %lo(D_0700ABD0) # addiu $a0, $a0, -0x5430
+/* 091EF4 802D6EF4 2484ABD0 */   addiu $a0, %lo(main_menu_seg7_table_0700ABD0) # addiu $a0, $a0, -0x5430
 /* 091EF8 802D6EF8 AFA20048 */  sw    $v0, 0x48($sp)
 /* 091EFC 802D6EFC 3C040201 */  lui   $a0, %hi(seg2_hud_lut) # $a0, 0x201
 /* 091F00 802D6F00 0C09DE68 */  jal   segmented_to_virtual
@@ -943,9 +943,9 @@ glabel PrintRegularText
 /* 0921C0 802D71C0 AFAE005C */  sw    $t6, 0x5c($sp)
 /* 0921C4 802D71C4 87AF006E */  lh    $t7, 0x6e($sp)
 /* 0921C8 802D71C8 AFAF0058 */  sw    $t7, 0x58($sp)
-/* 0921CC 802D71CC 3C040701 */  lui   $a0, %hi(mm7_table_00CD08) # $a0, 0x701
+/* 0921CC 802D71CC 3C040701 */  lui   $a0, %hi(main_menu_seg7_table_0700CD08) # $a0, 0x701
 /* 0921D0 802D71D0 0C09DE68 */  jal   segmented_to_virtual
-/* 0921D4 802D71D4 2484CD08 */   addiu $a0, %lo(mm7_table_00CD08) # addiu $a0, $a0, -0x32f8
+/* 0921D4 802D71D4 2484CD08 */   addiu $a0, %lo(main_menu_seg7_table_0700CD08) # addiu $a0, $a0, -0x32f8
 /* 0921D8 802D71D8 AFA20054 */  sw    $v0, 0x54($sp)
 /* 0921DC 802D71DC 8FB80070 */  lw    $t8, 0x70($sp)
 /* 0921E0 802D71E0 8FB90060 */  lw    $t9, 0x60($sp)
@@ -4157,8 +4157,8 @@ glabel func_802D9F58
 /* 095010 802DA010 3C090600 */  lui   $t1, 0x600
 /* 095014 802DA014 AD490000 */  sw    $t1, ($t2)
 /* 095018 802DA018 8FAC002C */  lw    $t4, 0x2c($sp)
-/* 09501C 802DA01C 3C0B0701 */  lui   $t3, %hi(D_0700EA58) # $t3, 0x701
-/* 095020 802DA020 256BEA58 */  addiu $t3, %lo(D_0700EA58) # addiu $t3, $t3, -0x15a8
+/* 09501C 802DA01C 3C0B0701 */  lui   $t3, %hi(castle_grounds_seg7_dl_0700EA58) # $t3, 0x701
+/* 095020 802DA020 256BEA58 */  addiu $t3, %lo(castle_grounds_seg7_dl_0700EA58) # addiu $t3, $t3, -0x15a8
 /* 095024 802DA024 AD8B0004 */  sw    $t3, 4($t4)
 /* 095028 802DA028 3C0D8034 */  lui   $t5, %hi(gDisplayListHead) # $t5, 0x8034
 /* 09502C 802DA02C 8DAD9CFC */  lw    $t5, %lo(gDisplayListHead)($t5)

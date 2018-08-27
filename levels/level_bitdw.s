@@ -3,7 +3,7 @@
 
 .section .seg07, "a"
 .align 4
-.incbin "build/mio0/bidw_segment7.mio0"
+.incbin "build/mio0/bitdw_seg7.mio0"
 .align 4
 
 .section .level, "a"
@@ -86,7 +86,7 @@ glabel level_bitdw_entry
         jump_link /*target*/ script_func_local_1
         jump_link /*target*/ script_func_local_2
         jump_link /*target*/ script_func_local_3
-        terrain /*terrainData*/ bitdw_seg7_collision
+        terrain /*terrainData*/ bitdw_seg7_collision_level
         cmd39 /*unk4*/ bitdw_seg7_macro_objs
         cmd30 /*unk2*/ 0x00, /*unk3*/ 0x5A
         set_music /*unk2*/ 0x0000, /*seq*/ 0x0011

@@ -23,26 +23,15 @@ D_070049B4 = 0x070049B4;
 D_07006E6C = 0x07006E6C;
 D_070073A0 = 0x070073A0;
 D_070073B8 = 0x070073B8;
-D_0700ABD0 = 0x0700ABD0;
-D_0700D20C = 0x0700D20C;
-D_0700D240 = 0x0700D240;
-D_0700D2CC = 0x0700D2CC;
-D_0700D304 = 0x0700D304;
 D_0700E31C = 0x0700E31C;
 D_0700E39C = 0x0700E39C;
-D_0700EA58 = 0x0700EA58;
 D_0700FA70 = 0x0700FA70;
 D_0700FCB4 = 0x0700FCB4;
 D_0700FD00 = 0x0700FD00;
-D_07010E80 = 0x07010E80;
-D_0701139C = 0x0701139C;
 D_07011530 = 0x07011530;
 D_070115C4 = 0x070115C4;
-D_07011E08 = 0x07011E08;
 D_07012778 = 0x07012778;
 D_070127C8 = 0x070127C8;
-D_070165A8 = 0x070165A8;
-D_07016708 = 0x07016708;
 D_07016840 = 0x07016840;
 D_07016904 = 0x07016904;
 D_070170A0 = 0x070170A0;
@@ -54,7 +43,6 @@ D_07019248 = 0x07019248;
 D_070192F0 = 0x070192F0;
 D_07019360 = 0x07019360;
 D_070193C8 = 0x070193C8;
-D_07023604 = 0x07023604;
 D_07026E24 = 0x07026E24;
 D_07026E34 = 0x07026E34;
 D_07028274 = 0x07028274;
@@ -214,36 +202,6 @@ bbh_seg7_collision = 0x070207A0;
 bbh_seg7_macro_objs = 0x070268C4;
 bbh_seg7_rooms = 0x0702605C;
 
-/* BitDW symbols */
-bitdw_seg7_dl_070028A0 = 0x070028A0;
-bitdw_seg7_dl_070032F8 = 0x070032F8;
-bitdw_seg7_dl_07003BF0 = 0x07003BF0;
-bitdw_seg7_dl_07004318 = 0x07004318;
-bitdw_seg7_dl_07005078 = 0x07005078;
-bitdw_seg7_dl_07005BC0 = 0x07005BC0;
-bitdw_seg7_dl_070065F0 = 0x070065F0;
-bitdw_seg7_dl_07007AA8 = 0x07007AA8;
-bitdw_seg7_dl_07008FF0 = 0x07008FF0;
-bitdw_seg7_dl_0700A368 = 0x0700A368;
-bitdw_seg7_dl_0700AD10 = 0x0700AD10;
-bitdw_seg7_dl_0700AFA0 = 0x0700AFA0;
-bitdw_seg7_dl_0700B220 = 0x0700B220;
-bitdw_seg7_dl_0700B480 = 0x0700B480;
-bitdw_seg7_dl_0700B8D8 = 0x0700B8D8;
-bitdw_seg7_dl_0700BB58 = 0x0700BB58;
-bitdw_seg7_dl_0700C0E0 = 0x0700C0E0;
-bitdw_seg7_dl_0700C670 = 0x0700C670;
-bitdw_seg7_dl_0700CC00 = 0x0700CC00;
-bitdw_seg7_dl_0700D190 = 0x0700D190;
-bitdw_seg7_dl_0700D3E8 = 0x0700D3E8;
-bitdw_seg7_dl_070020C8 = 0x070020C8;
-bitdw_seg7_dl_07003608 = 0x07003608;
-bitdw_seg7_dl_070045C0 = 0x070045C0;
-bitdw_seg7_dl_0700A6A8 = 0x0700A6A8;
-bitdw_seg7_dl_070093B0 = 0x070093B0;
-bitdw_seg7_collision = 0x0700D460;
-bitdw_seg7_macro_objs = 0x0700F438;
-
 /* BitFS symbols */
 bitfs_seg7_dl_07002A78 = 0x07002A78;
 bitfs_seg7_dl_07003670 = 0x07003670;
@@ -340,25 +298,6 @@ castle_courtyard_seg7_dl_07005698 = 0x07005698;
 castle_courtyard_seg7_collision = 0x070059A8;
 castle_courtyard_seg7_macro_objs = 0x07006E20;
 
-/* Castle Grounds symbols */
-castle_grounds_seg7_dl_07006D70 = 0x07006D70;
-castle_grounds_seg7_dl_070095F0 = 0x070095F0;
-castle_grounds_seg7_dl_0700A290 = 0x0700A290;
-castle_grounds_seg7_dl_0700C210 = 0x0700C210;
-castle_grounds_seg7_dl_0700C430 = 0x0700C430;
-castle_grounds_seg7_dl_0700A860 = 0x0700A860;
-castle_grounds_seg7_dl_0700BA20 = 0x0700BA20;
-castle_grounds_seg7_dl_0700BB80 = 0x0700BB80;
-castle_grounds_seg7_dl_0700BC68 = 0x0700BC68;
-castle_grounds_seg7_dl_0700B1D0 = 0x0700B1D0;
-castle_grounds_seg7_dl_0700C768 = 0x0700C768;
-castle_grounds_seg7_dl_0700C670 = 0x0700C670;
-castle_grounds_seg7_dl_0700C6A8 = 0x0700C6A8;
-castle_grounds_seg7_dl_0700C728 = 0x0700C728;
-castle_grounds_seg7_dl_0700C6E8 = 0x0700C6E8;
-castle_grounds_collision = 0x0700EAE8;
-castle_grounds_macro_objs = 0x07010D08;
-
 /* Castle symbols */
 castle_seg7_dl_070234C0 = 0x070234C0;
 castle_seg7_dl_07023520 = 0x07023520;
@@ -428,39 +367,6 @@ castle_seg7_area_2_macro_objs = 0x070777E0;
 castle_seg7_area_3_collision = 0x07073AAC;
 castle_seg7_area_3_rooms = 0x07078870;
 castle_seg7_area_3_macro_objs = 0x070777EC;
-
-/* CCM symbols */
-ccm_seg7_dl_0700B090 = 0x0700B090;
-ccm_seg7_dl_0700B1D8 = 0x0700B1D8;
-ccm_seg7_dl_0700C380 = 0x0700C380;
-ccm_seg7_dl_0700E708 = 0x0700E708;
-ccm_seg7_dl_0700F440 = 0x0700F440;
-ccm_seg7_dl_0700FB00 = 0x0700FB00;
-ccm_seg7_dl_0700D578 = 0x0700D578;
-ccm_seg7_dl_0700DDF0 = 0x0700DDF0;
-ccm_seg7_dl_0700E970 = 0x0700E970;
-ccm_seg7_dl_0700F650 = 0x0700F650;
-ccm_seg7_dl_070109D0 = 0x070109D0;
-ccm_seg7_dl_07010F28 = 0x07010F28;
-ccm_seg7_dl_07013870 = 0x07013870;
-ccm_seg7_dl_0701FC78 = 0x0701FC78;
-ccm_seg7_dl_0701FD78 = 0x0701FD78;
-ccm_seg7_dl_0700F780 = 0x0700F780;
-ccm_seg7_dl_0700FD08 = 0x0700FD08;
-ccm_seg7_dl_07010660 = 0x07010660;
-ccm_seg7_dl_07010B50 = 0x07010B50;
-ccm_seg7_dl_070118B0 = 0x070118B0;
-ccm_seg7_dl_07012BD8 = 0x07012BD8;
-ccm_seg7_dl_070136D0 = 0x070136D0;
-ccm_seg7_area_1_collision = 0x070138E8;
-ccm_seg7_area_1_macro_objs = 0x07016284;
-ccm_seg7_dl_0701CE30 = 0x0701CE30;
-ccm_seg7_dl_0701E558 = 0x0701E558;
-ccm_seg7_dl_0701E6B0 = 0x0701E6B0;
-ccm_seg7_dl_0701FE60 = 0x0701FE60;
-ccm_seg7_dl_070207F0 = 0x070207F0;
-ccm_seg7_area_2_collision = 0x07020880;
-ccm_seg7_area_2_macro_objs = 0x07023468;
 
 /* CotMC symbols */
 cotmc_seg7_dl_07007D48 = 0x07007D48;
@@ -639,33 +545,6 @@ debug_seg7_dl_07005558 = 0x07005558;
 debug_seg7_dl_070059F8 = 0x070059F8;
 debug_seg7_dl_070063B0 = 0x070063B0;
 
-/* JRB symbols */
-jrb_seg7_dl_07002FD0 = 0x07002FD0;
-jrb_seg7_dl_07004940 = 0x07004940;
-jrb_seg7_dl_07004C78 = 0x07004C78;
-jrb_seg7_dl_070058C8 = 0x070058C8;
-jrb_seg7_dl_070069B0 = 0x070069B0;
-jrb_seg7_dl_07007570 = 0x07007570;
-jrb_seg7_dl_07007718 = 0x07007718;
-jrb_seg7_dl_07007AC8 = 0x07007AC8;
-jrb_seg7_dl_07007DC8 = 0x07007DC8;
-jrb_seg7_dl_070080F8 = 0x070080F8;
-jrb_seg7_dl_07008FD8 = 0x07008FD8;
-jrb_seg7_dl_070090B0 = 0x070090B0;
-jrb_seg7_dl_07009A58 = 0x07009A58;
-jrb_seg7_dl_07009B30 = 0x07009B30;
-jrb_seg7_dl_0700A608 = 0x0700A608;
-jrb_seg7_dl_0700AC68 = 0x0700AC68;
-jrb_seg7_dl_0700AE48 = 0x0700AE48;
-jrb_seg7_dl_0700AFB0 = 0x0700AFB0;
-jrb_seg7_area_1_collision = 0x0700B058;
-jrb_seg7_area_1_macro_objs = 0x0700C4E8;
-jrb_seg7_dl_0700EF00 = 0x0700EF00;
-jrb_seg7_dl_0700FE48 = 0x0700FE48;
-jrb_seg7_dl_07010548 = 0x07010548;
-jrb_seg7_area_2_collision = 0x070105B8;
-jrb_seg7_area_2_macro_objs = 0x07011370;
-
 /* LLL symbols */
 lll_seg7_dl_070134E0 = 0x070134E0;
 lll_seg7_dl_07013D28 = 0x07013D28;
@@ -721,20 +600,6 @@ lll_seg7_dl_0701A628 = 0x0701A628;
 lll_seg7_dl_070255D8 = 0x070255D8;
 lll_seg7_area_2_collision = 0x07025F80;
 lll_seg7_area_2_macro_objs = 0x070283D4;
-
-/* main menu symbols */
-main_menu_collision = 0x0700F2F8;
-
-/* PSS symbols */
-pss_seg7_dl_0700A7C0 = 0x0700A7C0;
-pss_seg7_dl_0700AFA8 = 0x0700AFA8;
-pss_seg7_dl_0700B3F0 = 0x0700B3F0;
-pss_seg7_dl_0700D338 = 0x0700D338;
-pss_seg7_dl_0700DAD8 = 0x0700DAD8;
-pss_seg7_dl_0700E2B0 = 0x0700E2B0;
-pss_seg7_dl_0700E3E8 = 0x0700E3E8;
-pss_seg7_collision = 0x0700E490;
-pss_seg7_macro_objs = 0x07010F00;
 
 /* RR symbols */
 rr_seg7_dl_07002168 = 0x07002168;
@@ -929,15 +794,6 @@ ttm_seg7_area_3_macro_objs = 0x07030338;
 ttm_seg7_area_4_collision = 0x0702F0F8;
 ttm_seg7_area_4_macro_objs = 0x07030418;
 
-/* VCutM symbols */
-vcutm_seg7_dl_07007E88 = 0x07007E88;
-vcutm_seg7_dl_070080D0 = 0x070080D0;
-vcutm_seg7_dl_07008E10 = 0x07008E10;
-vcutm_seg7_dl_070093E8 = 0x070093E8;
-vcutm_seg7_dl_070096E0 = 0x070096E0;
-vcutm_seg7_collision = 0x07009750;
-vcutm_seg7_macro_objs = 0x0700AB0C;
-
 /* WDW symbols */
 wdw_seg7_dl_07009AB0 = 0x07009AB0;
 wdw_seg7_dl_0700A138 = 0x0700A138;
@@ -956,50 +812,6 @@ wdw_seg7_area_1_collision = 0x07014150;
 wdw_seg7_area_1_macro_objs = 0x070160D8;
 wdw_seg7_area_2_collision = 0x0701633C;
 wdw_seg7_area_2_macro_objs = 0x07018224;
-
-/* WF symbols */
-wf_seg7_dl_070050C8 = 0x070050C8;
-wf_seg7_dl_070052B8 = 0x070052B8;
-wf_seg7_dl_07005538 = 0x07005538;
-wf_seg7_dl_07005690 = 0x07005690;
-wf_seg7_dl_07005DD8 = 0x07005DD8;
-wf_seg7_dl_07005EE8 = 0x07005EE8;
-wf_seg7_dl_070064E8 = 0x070064E8;
-wf_seg7_dl_070065F8 = 0x070065F8;
-wf_seg7_dl_07006820 = 0x07006820;
-wf_seg7_dl_07007220 = 0x07007220;
-wf_seg7_dl_07007518 = 0x07007518;
-wf_seg7_dl_070087B0 = 0x070087B0;
-wf_seg7_dl_07008FE8 = 0x07008FE8;
-wf_seg7_dl_07009278 = 0x07009278;
-wf_seg7_dl_07009780 = 0x07009780;
-wf_seg7_dl_07009890 = 0x07009890;
-wf_seg7_dl_07009DB0 = 0x07009DB0;
-wf_seg7_dl_0700A170 = 0x0700A170;
-wf_seg7_dl_0700ABA0 = 0x0700ABA0;
-wf_seg7_dl_0700AEC8 = 0x0700AEC8;
-wf_seg7_dl_0700AFB8 = 0x0700AFB8;
-wf_seg7_dl_0700BA28 = 0x0700BA28;
-wf_seg7_dl_0700BF50 = 0x0700BF50;
-wf_seg7_dl_0700D028 = 0x0700D028;
-wf_seg7_dl_0700D300 = 0x0700D300;
-wf_seg7_dl_0700D708 = 0x0700D708;
-wf_seg7_dl_0700D9F0 = 0x0700D9F0;
-wf_seg7_dl_0700DE20 = 0x0700DE20;
-wf_seg7_dl_0700E0F0 = 0x0700E0F0;
-wf_seg7_dl_0700E3D0 = 0x0700E3D0;
-wf_seg7_dl_0700E760 = 0x0700E760;
-wf_seg7_dl_0700E9B8 = 0x0700E9B8;
-wf_seg7_dl_0700EB40 = 0x0700EB40;
-wf_seg7_dl_0700EDC0 = 0x0700EDC0;
-wf_seg7_dl_0700F018 = 0x0700F018;
-wf_seg7_dl_0700F1A8 = 0x0700F1A8;
-wf_seg7_dl_0700F340 = 0x0700F340;
-wf_seg7_dl_0700F610 = 0x0700F610;
-wf_seg7_dl_0700F6C0 = 0x0700F6C0;
-wf_seg7_dl_0700F7F8 = 0x0700F7F8;
-wf_seg7_collision = 0x070102D8;
-wf_seg7_macro_objs = 0x07011C38;
 
 /* WMotR symbols */
 wmotr_seg7_dl_0700C1F8 = 0x0700C1F8;

@@ -18668,9 +18668,9 @@ glabel BehUnagiInit
 /* 0C40F0 803090F0 8DCF0144 */  lw    $t7, 0x144($t6)
 /* 0C40F4 803090F4 11E10017 */  beq   $t7, $at, .L80309154
 /* 0C40F8 803090F8 00000000 */   nop   
-/* 0C40FC 803090FC 3C040701 */  lui   $a0, %hi(D_0700D20C) # $a0, 0x701
+/* 0C40FC 803090FC 3C040701 */  lui   $a0, %hi(jrb_seg7_trajectory_unagi_1) # $a0, 0x701
 /* 0C4100 80309100 0C09DE68 */  jal   segmented_to_virtual
-/* 0C4104 80309104 2484D20C */   addiu $a0, %lo(D_0700D20C) # addiu $a0, $a0, -0x2df4
+/* 0C4104 80309104 2484D20C */   addiu $a0, %lo(jrb_seg7_trajectory_unagi_1) # addiu $a0, $a0, -0x2df4
 /* 0C4108 80309108 3C188036 */  lui   $t8, %hi(gCurrentObject) # $t8, 0x8036
 /* 0C410C 8030910C 8F18FDF0 */  lw    $t8, %lo(gCurrentObject)($t8)
 /* 0C4110 80309110 AF0200FC */  sw    $v0, 0xfc($t8)
@@ -18693,9 +18693,9 @@ glabel BehUnagiInit
 /* 0C414C 8030914C 10000013 */  b     .L8030919C
 /* 0C4150 80309150 00000000 */   nop   
 .L80309154:
-/* 0C4154 80309154 3C040701 */  lui   $a0, %hi(D_0700D240) # $a0, 0x701
+/* 0C4154 80309154 3C040701 */  lui   $a0, %hi(jrb_seg7_trajectory_unagi_2) # $a0, 0x701
 /* 0C4158 80309158 0C09DE68 */  jal   segmented_to_virtual
-/* 0C415C 8030915C 2484D240 */   addiu $a0, %lo(D_0700D240) # addiu $a0, $a0, -0x2dc0
+/* 0C415C 8030915C 2484D240 */   addiu $a0, %lo(jrb_seg7_trajectory_unagi_2) # addiu $a0, $a0, -0x2dc0
 /* 0C4160 80309160 3C0D8036 */  lui   $t5, %hi(gCurrentObject) # $t5, 0x8036
 /* 0C4164 80309164 8DADFDF0 */  lw    $t5, %lo(gCurrentObject)($t5)
 /* 0C4168 80309168 ADA200FC */  sw    $v0, 0xfc($t5)
@@ -27094,9 +27094,9 @@ glabel func_803108E4
 /* 0CB960 80310960 8D4AFDF0 */  lw    $t2, %lo(gCurrentObject)($t2)
 /* 0CB964 80310964 8FAB0028 */  lw    $t3, 0x28($sp)
 /* 0CB968 80310968 AD6A0068 */  sw    $t2, 0x68($t3)
-/* 0CB96C 8031096C 3C040702 */  lui   $a0, %hi(D_07023604) # $a0, 0x702
+/* 0CB96C 8031096C 3C040702 */  lui   $a0, %hi(ccm_seg7_trajectory_penguin_race) # $a0, 0x702
 /* 0CB970 80310970 0C09DE68 */  jal   segmented_to_virtual
-/* 0CB974 80310974 24843604 */   addiu $a0, %lo(D_07023604) # addiu $a0, $a0, 0x3604
+/* 0CB974 80310974 24843604 */   addiu $a0, %lo(ccm_seg7_trajectory_penguin_race) # addiu $a0, $a0, 0x3604
 /* 0CB978 80310978 3C0C8036 */  lui   $t4, %hi(gCurrentObject) # $t4, 0x8036
 /* 0CB97C 8031097C 8D8CFDF0 */  lw    $t4, %lo(gCurrentObject)($t4)
 /* 0CB980 80310980 00408025 */  move  $s0, $v0

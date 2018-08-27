@@ -3,7 +3,7 @@
 
 .section .seg07, "a"
 .align 4
-.incbin "build/mio0/wf_segment7.mio0"
+.incbin "build/mio0/wf_seg7.mio0"
 .align 4
 
 .section .level, "a"
@@ -138,7 +138,7 @@ glabel level_wf_entry
         jump_link /*target*/ script_func_local_2
         jump_link /*target*/ script_func_local_3
         jump_link /*target*/ script_func_local_4
-        terrain /*terrainData*/ wf_seg7_collision
+        terrain /*terrainData*/ wf_seg7_collision_070102D8
         cmd39 /*unk4*/ wf_seg7_macro_objs
         cmd30 /*unk2*/ 0x00, /*unk3*/ 0x1E
         set_music /*unk2*/ 0x0005, /*seq*/ 0x0003

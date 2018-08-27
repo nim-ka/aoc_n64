@@ -3,7 +3,7 @@
 
 .section .seg07, "a"
 .align 4
-.incbin "build/mio0/bidw_platform_segment7.mio0"
+.incbin "build/mio0/bowser_1_seg7.mio0"
 .align 4
 
 .section .level, "a"
@@ -24,7 +24,7 @@ glabel level_bowser_1_entry
         warp_node /*id*/ 0x0A, /*destLevel1*/ 0x1E, /*destArea*/ 0x01, /*destNode*/ 0x0A, /*destLevel2*/ 0x00
         warp_node /*id*/ 0xF0, /*destLevel1*/ 0x06, /*destArea*/ 0x01, /*destNode*/ 0x24, /*destLevel2*/ 0x00
         warp_node /*id*/ 0xF1, /*destLevel1*/ 0x11, /*destArea*/ 0x01, /*destNode*/ 0x0C, /*destLevel2*/ 0x00
-        terrain /*terrainData*/ bowser_1_seg7_collision
+        terrain /*terrainData*/ bowser_1_seg7_collision_level
         set_music /*unk2*/ 0x0002, /*seq*/ 0x0007
         terrain_type /*terrainType*/ 0x0001
     end_area

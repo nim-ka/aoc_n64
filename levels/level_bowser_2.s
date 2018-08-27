@@ -3,7 +3,7 @@
 
 .section .seg07, "a"
 .align 4
-.incbin "build/mio0/bifs_platform_segment7.mio0"
+.incbin "build/mio0/bowser_2_seg7.mio0"
 .align 4
 
 .section .level, "a"
@@ -18,7 +18,7 @@ script_func_local_1:
 
 glabel level_bowser_2_entry
     init_level
-    load_mio0 /*seg*/ 0x0A, /*romStart*/ _bifs_skybox_mio0SegmentRomStart, /*romEnd*/ _bifs_skybox_mio0SegmentRomEnd
+    load_mio0 /*seg*/ 0x0A, /*romStart*/ _bitfs_skybox_mio0SegmentRomStart, /*romEnd*/ _bitfs_skybox_mio0SegmentRomEnd
     cmd1A     /*seg*/ 0x09, /*romStart*/ _lll_textures_mio0SegmentRomStart, /*romEnd*/ _lll_textures_mio0SegmentRomEnd
     load_mio0 /*seg*/ 0x0B, /*romStart*/ _flower_textures_mio0SegmentRomStart, /*romEnd*/ _flower_textures_mio0SegmentRomEnd
     load_mio0 /*seg*/ 0x07, /*romStart*/ _level_bowser_2_segment_7SegmentRomStart, /*romEnd*/ _level_bowser_2_segment_7SegmentRomEnd
@@ -35,7 +35,7 @@ glabel level_bowser_2_entry
         warp_node /*id*/ 0xF0, /*destLevel1*/ 0x06, /*destArea*/ 0x03, /*destNode*/ 0x36, /*destLevel2*/ 0x00
         warp_node /*id*/ 0xF1, /*destLevel1*/ 0x13, /*destArea*/ 0x01, /*destNode*/ 0x0C, /*destLevel2*/ 0x00
         jump_link /*target*/ script_func_local_1
-        terrain /*terrainData*/ bowser_2_seg7_collision
+        terrain /*terrainData*/ bowser_2_seg7_collision_lava
         set_music /*unk2*/ 0x0002, /*seq*/ 0x0007
         terrain_type /*terrainType*/ 0x0001
     end_area

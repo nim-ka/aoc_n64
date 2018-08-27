@@ -665,7 +665,7 @@ glabel beh_rotating_platform # 05B4
 glabel beh_tower # 05D8
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
-    collision_data 0x0700FE14
+    collision_data wf_seg7_collision_tower
     obj_set_float VAR_43, 0x0BB8
     obj_set_float VAR_45, 0x4E20
     begin_loop
@@ -675,7 +675,7 @@ glabel beh_tower # 05D8
 glabel beh_bullet_bill_cannon # 0600
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
-    collision_data 0x07010260
+    collision_data wf_seg7_collision_bullet_bill_cannon
     obj_set_float VAR_43, 0x012C
     begin_loop
         callnative load_object_collision_model
@@ -683,11 +683,11 @@ glabel beh_bullet_bill_cannon # 0600
 
 glabel beh_breakable_wall # 0624
     begin OBJ_LIST_SURFACE
-    collision_data 0x0700FC0C
+    collision_data wf_seg7_collision_breakable_wall
     goto .L13000644
 glabel beh_breakable_wall_2 # 0638
     begin OBJ_LIST_SURFACE
-    collision_data 0x0700FC44
+    collision_data wf_seg7_collision_breakable_wall_2
 .L13000644: # 0644
     obj_or_int VAR_01, 0x00C9
     set_hitbox 0x012C, 0x0190
@@ -700,7 +700,7 @@ glabel beh_breakable_wall_2 # 0638
 glabel beh_kickable_board # 066C
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x20C9
-    collision_data 0x0700FC7C
+    collision_data wf_seg7_collision_kickable_board
     set_hitbox 0x0064, 0x04B0
     unknown_2E 0x0001, 0x0001
     obj_set_float VAR_43, 0x05DC
@@ -712,7 +712,7 @@ glabel beh_kickable_board # 066C
 glabel beh_tower_door # 06A4
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0xC1
-    collision_data 0x0700FD00
+    collision_data wf_seg7_collision_tower_door
     set_hitbox 0x0064, 0x0064
     obj_set_int VAR_05, 0
     begin_loop
@@ -727,7 +727,7 @@ glabel beh_rotating_counter_clockwise # 06D8
 glabel beh_clocklike_rotation # 06E0
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
-    collision_data 0x0700FA00
+    collision_data wf_seg7_collision_clocklike_rotation
     begin_loop
         callnative BehClocklikeRotationLoop
         callnative load_object_collision_model
@@ -1481,7 +1481,7 @@ glabel beh_tower_platform_group # 12F4
 glabel beh_wf_sliding_platform # 1318
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x09
-    collision_data 0x0700FB94
+    collision_data wf_seg7_collision_platform
     begin_loop
         callnative BehWfSlidingPlatformLoop
         callnative load_object_collision_model
@@ -1490,7 +1490,7 @@ glabel beh_wf_sliding_platform # 1318
 glabel beh_wf_elevator_platform # 1340
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x09
-    collision_data 0x0700FB94
+    collision_data wf_seg7_collision_platform
     begin_loop
         callnative BehWfElevatorPlatformLoop
         callnative load_object_collision_model
@@ -1499,7 +1499,7 @@ glabel beh_wf_elevator_platform # 1340
 glabel beh_wf_solid_platform # 1368
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x09
-    collision_data 0x0700FB94
+    collision_data wf_seg7_collision_platform
     begin_loop
         callnative BehWfSolidPlatformLoop
         callnative load_object_collision_model
@@ -1540,7 +1540,7 @@ glabel beh_another_tilting_platform # 13DC
 glabel beh_squarish_path_moving # 1408
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
-    collision_data 0x0700F790
+    collision_data bitdw_seg7_collision_moving_pyramid
     unknown_2D
     begin_loop
         callnative BehSquarishPathMovingLoop
@@ -1830,7 +1830,7 @@ glabel beh_bowser_flame_spawn # 1904
 glabel beh_tilting_bowser_lava_platform # 1920
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x2001
-    collision_data 0x07001A68
+    collision_data bowser_2_seg7_collision_tilting_platform
     obj_set_float VAR_45, 0x4E20
     obj_set_float VAR_43, 0x4E20
     obj_set_int VAR_13, 0x0000
@@ -2009,7 +2009,7 @@ glabel beh_ddd_warp # 1C34
 glabel beh_moat_grills # 1C58
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
-    collision_data 0x07010DB4
+    collision_data castle_grounds_seg7_collision_moat_grills
     obj_set_float VAR_43, 0x7530
     begin_loop
         callnative BehMoatGrillsLoop
@@ -2400,7 +2400,7 @@ glabel beh_sound_spawner # 229C
 glabel beh_rock_solid # 22B8
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x41
-    collision_data 0x0700C758
+    collision_data jrb_seg7_collision_rock_solid
     begin_loop
         callnative load_object_collision_model
     end_loop
@@ -2471,7 +2471,7 @@ glabel beh_ship_part_3 # 23D0
 glabel beh_in_sunken_ship_3 # 23EC
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
-    collision_data 0x0700C92C
+    collision_data jrb_seg7_collision_in_sunken_ship_3
     unknown_2D
     obj_set_float VAR_43, 0x0FA0
     begin_loop
@@ -2504,11 +2504,11 @@ glabel beh_sunken_ship_part_2 # 244C
 
 glabel beh_in_sunken_ship # 246C
     begin OBJ_LIST_SURFACE
-    collision_data 0x0700CE5C
+    collision_data jrb_seg7_collision_in_sunken_ship
     goto .Lbeh_in_sunken_ship_248C
 glabel beh_in_sunken_ship_2 # 2480
     begin OBJ_LIST_SURFACE
-    collision_data 0x0700CF80
+    collision_data jrb_seg7_collision_in_sunken_ship_2
 .Lbeh_in_sunken_ship_248C: # 248C
     obj_or_int VAR_01, 0x01
     obj_set_float VAR_43, 0x0FA0
@@ -3808,7 +3808,7 @@ glabel beh_lll_drawbridge # 38C8
 glabel beh_small_bomp # 38F0
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x03
-    collision_data 0x0700F868
+    collision_data wf_seg7_collision_small_bomp
     callnative BehSmallBompInit
     begin_loop
         callnative BehSmallBompLoop
@@ -3818,7 +3818,7 @@ glabel beh_small_bomp # 38F0
 glabel beh_large_bomp # 3920
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x03
-    collision_data 0x0700F934
+    collision_data wf_seg7_collision_large_bomp
     callnative BehLargeBompInit
     begin_loop
         callnative BehLargeBompLoop
@@ -3828,7 +3828,7 @@ glabel beh_large_bomp # 3920
 glabel beh_wf_sliding_brick_platform # 3950
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x03
-    collision_data 0x0700FAA4
+    collision_data wf_seg7_collision_sliding_brick_platform
     callnative BehWFSlidingBrickPlatformInit
     begin_loop
         callnative BehWFSlidingBrickPlatformLoop
@@ -4007,7 +4007,7 @@ glabel beh_volcano_sound_loop # 3C24
 glabel beh_castle_flag_waving # 3C38
     begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
-    obj_set_int32 VAR_26, 0x0700C95C
+    obj_set_int32 VAR_26, castle_grounds_seg7_anim_flags
     unknown_28 0x00
     callnative BehCastleFlagWavingInit
     begin_loop
@@ -4034,7 +4034,7 @@ glabel beh_sand_sound_loop # 3C84
 glabel beh_hidden_at_120_stars # 3C98
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
-    collision_data 0x07010E10
+    collision_data castle_grounds_seg7_collision_cannon_grill
     obj_set_float VAR_43, 0x0FA0
     callnative BehHiddenAt120StarsInit
     begin_loop
@@ -4405,7 +4405,7 @@ glabel beh_rect_floating_platform # 4294
 glabel beh_jrb_floating_platform # 42C4
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x09
-    collision_data 0x0700C824
+    collision_data jrb_seg7_collision_floating_platform
     obj_set_float VAR_1D, 0x0040
     unknown_2D
     begin_loop
@@ -4465,7 +4465,7 @@ glabel beh_some_subojbject_of_falling_pillar # 43A4
 glabel beh_pillar_base # 43C0
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
-    collision_data 0x0700D198
+    collision_data jrb_seg7_collision_pillar_base
     begin_loop
         callnative load_object_collision_model
     end_loop
@@ -4473,7 +4473,7 @@ glabel beh_pillar_base # 43C0
 glabel beh_jrb_floating_box # 43E0
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
-    collision_data 0x0700C8A8
+    collision_data jrb_seg7_collision_floating_box
     unknown_2D
     begin_loop
         callnative BehJrbFloatingBoxLoop

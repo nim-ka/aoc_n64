@@ -85,11 +85,46 @@
    f3d_noparam G_ENDDL
 .endm
 
+/* B9: G_SETOTHERMODE_L */
+.set G_SETOTHERMODE_L, 0xB9
+/* G_SETOTHERMODE_L sft: shift count */
+.set G_MDSFT_ALPHACOMPARE, 0
+.set G_MDSFT_ZSRCSEL,      2
+.set G_MDSFT_RENDERMODE,   3
+.set G_MDSFT_BLENDER,     16
+
+/* BA: G_SETOTHERMODE_H */
+.set G_SETOTHERMODE_H, 0xBA
+/* G_SETOTHERMODE_H sft: shift count */
+.set G_MDSFT_ALPHADITHER,  4
+.set G_MDSFT_RGBDITHER,    6
+.set G_MDSFT_COMBKEY,      8
+.set G_MDSFT_TEXTCONV,     9
+.set G_MDSFT_TEXTFILT,    12
+.set G_MDSFT_TEXTLUT,     14
+.set G_MDSFT_TEXTLOD,     16
+.set G_MDSFT_TEXTDETAIL,  17
+.set G_MDSFT_TEXTPERSP,   19
+.set G_MDSFT_CYCLETYPE,   20
+.set G_MDSFT_PIPELINE,    23
+
+.macro gsSPSetOtherMode cmd, sft, len, data
+   .word ((\cmd & 0xFF) << 24) | ((\sft & 0xFF) << 8) | (\len & 0xFF)
+   .word \data
+.endm
+
 /* BB: G_TEXTURE */
 .set G_TEXTURE, 0xBB
 .macro gsSPTexture scaleS, scaleT, level, tile, enable
    .word (G_TEXTURE << 24) | ((\level & 0x7) << 11) | ((\tile & 0x7) << 8) | \enable
    .word ((\scaleS & 0xFFFF) << 16) | (\scaleT & 0xFFFF)
+.endm
+
+/* BC: G_MOVEWORD */
+.set G_MOVEWORD, 0xBC
+.macro gsMoveWd index, offset, data
+   .word G_MOVEWORD << 24 | ((\index & 0xFFFF) << 8) | (\offset & 0xFF)
+   .word \data
 .endm
 
 /* BF: G_TRI1 */

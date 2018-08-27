@@ -3,7 +3,7 @@
 
 .section .seg07, "a"
 .align 4
-.incbin "build/mio0/lll_segment7.mio0"
+.incbin "build/mio0/lll_seg7.mio0"
 .align 4
 
 .section .level, "a"
@@ -101,7 +101,7 @@ glabel level_lll_entry
     init_level
     load_mio0 /*seg*/ 0x07, /*romStart*/ _level_lll_segment_7SegmentRomStart, /*romEnd*/ _level_lll_segment_7SegmentRomEnd
     cmd1A     /*seg*/ 0x09, /*romStart*/ _lll_textures_mio0SegmentRomStart, /*romEnd*/ _lll_textures_mio0SegmentRomEnd
-    load_mio0 /*seg*/ 0x0A, /*romStart*/ _bifs_skybox_mio0SegmentRomStart, /*romEnd*/ _bifs_skybox_mio0SegmentRomEnd
+    load_mio0 /*seg*/ 0x0A, /*romStart*/ _bitfs_skybox_mio0SegmentRomStart, /*romEnd*/ _bitfs_skybox_mio0SegmentRomEnd
     load_mio0 /*seg*/ 0x0B, /*romStart*/ _flower_textures_mio0SegmentRomStart, /*romEnd*/ _flower_textures_mio0SegmentRomEnd
     load_mio0 /*seg*/ 0x05, /*romStart*/ _bully_blargg_mio0SegmentRomStart, /*romEnd*/ _bully_blargg_mio0SegmentRomEnd
     load_raw  /*seg*/ 0x0C, /*romStart*/ _bully_blargg_geoSegmentRomStart,  /*romEnd*/ _bully_blargg_geoSegmentRomEnd

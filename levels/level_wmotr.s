@@ -3,7 +3,7 @@
 
 .section .seg07, "a"
 .align 4
-.incbin "build/mio0/rainbow_bonus_segment7.mio0"
+.incbin "build/mio0/wmotr_seg7.mio0"
 .align 4
 
 .section .level, "a"

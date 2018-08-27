@@ -49,7 +49,6 @@ extern u8 bob_seg7_metal_ball_path1[];
 extern u8 D_803315B4[];
 extern u8 D_80331608[];
 // extern ? D_80331654;
-// extern ? D_070165A8;
 // extern ? D_80331664;
 // extern ? D_80331674;
 // extern ? D_80331684;
