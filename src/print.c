@@ -17,10 +17,10 @@ struct TextLabel
     char buffer[1];  // unknown length
 };
 
-extern u8 seg2_f3d_00EC60[];
-extern u8 seg2_f3d_00ECC8[];
+extern u8 seg2_dl_0200EC60[];
+extern u8 seg2_dl_0200ECC8[];
 extern u8 seg2_hud_lut[];
-extern u8 seg2_f3d_00EC98[];
+extern u8 seg2_dl_0200EC98[];
 
 extern struct TextLabel *sTextLabels[];
 
@@ -273,7 +273,7 @@ static void add_glyph_texture(s8 glyphIndex)
 
     gDPPipeSync(gDisplayListHead++);
     gDPSetTextureImage(gDisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, glyphs[glyphIndex]);
-    gSPDisplayList(gDisplayListHead++, seg2_f3d_00EC98);
+    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EC98);
 }
 
 static void func_802D5FEC(int *x, int *y)
@@ -344,7 +344,7 @@ void func_802D61A8(void)
         g->words.w0 = 0x01030040;
         g->words.w1 = VIRTUAL_TO_PHYSICAL(mtx);
     }
-    gSPDisplayList(gDisplayListHead++, seg2_f3d_00EC60);
+    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EC60);
 
     for (i = 0; i < sTextLabelsCount; i++)
     {
@@ -360,7 +360,7 @@ void func_802D61A8(void)
         mem_pool_free(D_8033A124, (void *)sTextLabels[i]);
     }
     
-    gSPDisplayList(gDisplayListHead++, seg2_f3d_00ECC8);
+    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ECC8);
 
     sTextLabelsCount = 0;
 }

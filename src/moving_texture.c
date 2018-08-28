@@ -226,7 +226,7 @@ Gfx *func_802CF9A4(s16 y, struct Struct802CF9A4 *b)
         D_8035FF70 = sp74;
     }
     gSPVertex(sp68++, 0x80000000 + (u32)verts, 4, 0)
-    gSPDisplayList(sp68++, seg2_f3d_0144F0)
+    gSPDisplayList(sp68++, seg2_dl_020144F0)
     gSPEndDisplayList(sp68)
     return sp6C;
 }
@@ -335,16 +335,16 @@ void func_802D0448(u32 a, Gfx **b)
     switch (a)
     {
     case 1794:
-        gSPDisplayList((*b)++, seg2_f3d_0147D0)
+        gSPDisplayList((*b)++, seg2_dl_020147D0)
         break;
     case 2129:
-        gSPDisplayList((*b)++, seg2_f3d_0147D0)
+        gSPDisplayList((*b)++, seg2_dl_020147D0)
         break;
     case 4613:
-        gSPDisplayList((*b)++, seg2_f3d_0147D0)
+        gSPDisplayList((*b)++, seg2_dl_020147D0)
         break;
     default:
-        gSPDisplayList((*b)++, seg2_f3d_014790)
+        gSPDisplayList((*b)++, seg2_dl_02014790)
         break;
     }
 }
@@ -410,7 +410,7 @@ Gfx *Geo18_802D104C(int a, struct Struct802D104C *b, UNUSED int c)
             if (sp3C != NULL)
                 gSPDisplayList(sp40++, VIRTUAL_TO_PHYSICAL(sp3C));
         }
-        gSPDisplayList(sp40++, seg2_f3d_014810);
+        gSPDisplayList(sp40++, seg2_dl_02014810);
         gSPEndDisplayList(sp40);
     }
     return sp44;

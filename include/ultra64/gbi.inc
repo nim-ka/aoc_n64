@@ -5,6 +5,10 @@
    .word (\cmd << 24), 0x00000000
 .endm
 
+.macro gsImmp1 cmd, param
+   .word (\cmd << 24), \param
+.endm
+
 /* DMA helper */
 .macro gsDma1p cmd, segAddr, length, params
    .byte \cmd, \params
@@ -23,7 +27,7 @@
 
 .set G_MTX, 0x01
 .macro gsSPMatrix matrix, params
-   gsDma1p G_MTRX, \matrix, 64, \params
+   gsDma1p G_MTX, \matrix, 64, \params
 .endm
 
 /* 02: reserved */
@@ -64,6 +68,12 @@
 .set G_LIGHTING,           0x00020000
 .set G_TEXTURE_GEN,        0x00040000
 .set G_TEXTURE_GEN_LINEAR, 0x00080000
+
+/* B3: G_RDPHALF_2 */
+.set G_RDPHALF_2, 0xB3
+
+/* B4: G_RDPHALF_1 */
+.set G_RDPHALF_1, 0xB4
 
 /* B6: G_CLEARGEOMETRYMODE */
 .set G_CLEARGEOMETRYMODE, 0xB6

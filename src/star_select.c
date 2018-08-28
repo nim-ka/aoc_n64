@@ -153,7 +153,7 @@ void ShowSomeNum(void)
 
     gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700F228);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
-    gSPDisplayList(gDisplayListHead++, seg2_f3d_00ED00);
+    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED00);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
 
     Int2Str(gCurrCourseNum, buffer);
@@ -162,7 +162,7 @@ void ShowSomeNum(void)
     else
         PutString(2, 143, 158, buffer);
 
-    gSPDisplayList(gDisplayListHead++, seg2_f3d_00ED68);
+    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED68);
 }
 
 void func_80177004(void)
@@ -179,13 +179,13 @@ void func_80177004(void)
 
     func_802D68A4();
 
-    gSPDisplayList(gDisplayListHead++, seg2_f3d_00ED00);
+    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED00);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
 
     ShowCoins(1, gCurrSaveFileNum - 1, gCurrCourseNum - 1, 155, 106);
 
-    gSPDisplayList(gDisplayListHead++, seg2_f3d_00ED68);
-    gSPDisplayList(gDisplayListHead++, seg2_f3d_00EE68);
+    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED68);
+    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
     gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, 255);
 
     if (save_file_get_course_coin_score(gCurrSaveFileNum - 1, gCurrCourseNum - 1) != 0)
@@ -194,7 +194,7 @@ void func_80177004(void)
     sp4A = func_802D7B3C(160, sp54 + 3, 10.0f);
     PrintGenericText(sp4A, 33, sp54 + 3);
 
-    gSPDisplayList(gDisplayListHead++, seg2_f3d_00EEF0);
+    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
 
     ShowSomeNum();
 

@@ -155,7 +155,7 @@ Gfx *geo18_fade_transition(u32 sp40, struct GraphNode *sp44, UNUSED u32 sp48)
    {
       displayList = alloc_display_list(5 * sizeof(*displayList));
       displayListIter = displayList;
-      gSPDisplayList(displayListIter++, seg2_f3d_014660);
+      gSPDisplayList(displayListIter++, seg2_dl_02014660);
       gDPSetEnvColor(displayListIter++, 0xFF, 0xFF, 0xFF, gTitleFadeCounter);
       if (gTitleFadeCounter == 0xFF)
       {
@@ -231,7 +231,7 @@ Gfx *geo18_intro_backdrop(u32 sp48, struct GraphNode *sp4c, UNUSED u32 sp50)
       displayList = alloc_display_list(16 * sizeof(*displayList));
       displayListIter = displayList;
       graphNode->node.flags = (graphNode->node.flags & 0xFF) | 0x100;
-      gSPDisplayList(displayListIter++, &seg2_f3d_014660);
+      gSPDisplayList(displayListIter++, &seg2_dl_02014660);
       gSPDisplayList(displayListIter++, &title_screen_bg_dl_0A000100);
       for (i = 0; i < 12; ++i)
       {
@@ -288,7 +288,7 @@ Gfx *geo18_game_over_tile(u32 sp40, struct GraphNode *sp44, UNUSED u32 sp48)
          gGameOverFrameCounter++;
       }
       graphNode->flags = (graphNode->flags & 0xFF) | 0x100;
-      gSPDisplayList(displayListIter++, &seg2_f3d_014660);
+      gSPDisplayList(displayListIter++, &seg2_dl_02014660);
       gSPDisplayList(displayListIter++, &title_screen_bg_dl_0A000100);
       for (j = 0; j < (int)sizeof(gameOverBackgroundTable); ++j)
       {

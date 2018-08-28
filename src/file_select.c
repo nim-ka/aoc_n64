@@ -63,10 +63,10 @@ enum
 
 extern Gfx main_menu_seg7_dl_070073A0[];
 extern Gfx D_070073B8[];
-extern Gfx seg2_f3d_00ED00[];
-extern Gfx seg2_f3d_00ED68[];
-extern Gfx seg2_f3d_00EE68[];
-extern Gfx seg2_f3d_00EEF0[];
+extern Gfx seg2_dl_0200ED00[];
+extern Gfx seg2_dl_0200ED68[];
+extern Gfx seg2_dl_0200EE68[];
+extern Gfx seg2_dl_0200EEF0[];
 extern Gfx main_menu_seg7_dl_0700D108[];
 extern Gfx main_menu_seg7_dl_0700D160[];
 extern u8 seg2_level_name_table[];
@@ -1270,18 +1270,18 @@ static void func_80173A40(void)
 
 static void PutString1(s8 a, s16 b, s16 c, const unsigned char *d)
 {
-    gSPDisplayList(gDisplayListHead++, seg2_f3d_00ED00);
+    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED00);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextColorAlpha - sTextTransparency);
     PutString(a, b, c, d);
-    gSPDisplayList(gDisplayListHead++, seg2_f3d_00ED68);
+    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED68);
 }
 
 static void PutString2(s16 x, s16 y, const unsigned char *text)
 {
-    gSPDisplayList(gDisplayListHead++, seg2_f3d_00EE68);
+    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextColorAlpha - sTextTransparency);
     PrintGenericText(x, y, text);
-    gSPDisplayList(gDisplayListHead++, seg2_f3d_00EEF0);
+    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
 }
 
 static int update_text_fade(void)
@@ -1329,21 +1329,21 @@ static void draw_file_button_label(s8 file, s16 x, s16 y)
 
 static void draw_main_menu(void)
 {
-    gSPDisplayList(gDisplayListHead++, seg2_f3d_00ED00);
+    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED00);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextColorAlpha);
     PutString(1, 96, 35, D_801A7C7C);
     draw_file_button_label(0, 92, 78);
     draw_file_button_label(1, 209, 78);
     draw_file_button_label(2, 92, 118);
     draw_file_button_label(3, 209, 118);
-    gSPDisplayList(gDisplayListHead++, seg2_f3d_00ED68);
-    gSPDisplayList(gDisplayListHead++, seg2_f3d_00EE68);
+    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED68);
+    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextColorAlpha);
     PrintGenericText(50, 39, textScore);
     PrintGenericText(115, 39, textCopy);
     PrintGenericText(180, 39, textErase);
     PrintGenericText(235, 39, textSoundModes[sSoundMode]);
-    gSPDisplayList(gDisplayListHead++, seg2_f3d_00EEF0);
+    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
     gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D108);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextColorAlpha);
     PrintRegularText(92, 65, textMarioA);
@@ -1378,19 +1378,19 @@ static void draw_score_menu(void)
             sStatusMessageId = 0;
     }
     print_file_score_message(sStatusMessageId);
-    gSPDisplayList(gDisplayListHead++, seg2_f3d_00ED00);
+    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED00);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextColorAlpha);
     draw_file_button_label(0, 90, 76);
     draw_file_button_label(1, 211, 76);
     draw_file_button_label(2, 90, 119);
     draw_file_button_label(3, 211, 119);
-    gSPDisplayList(gDisplayListHead++, seg2_f3d_00ED68);
-    gSPDisplayList(gDisplayListHead++, seg2_f3d_00EE68);
+    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED68);
+    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextColorAlpha);
     PrintGenericText(45, 35, textReturn);
     PrintGenericText(128, 35, textFileCopy);
     PrintGenericText(228, 35, textFileDelete);
-    gSPDisplayList(gDisplayListHead++, seg2_f3d_00EEF0);
+    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
     gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D108);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextColorAlpha);
     PrintRegularText(89, 62, textMarioA);
@@ -1470,19 +1470,19 @@ static void draw_copy_menu(void)
     copy_menu_update_message();
     copy_menu_print_message(sStatusMessageId);
 
-    gSPDisplayList(gDisplayListHead++, seg2_f3d_00ED00);
+    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED00);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextColorAlpha);
     draw_file_button_label(0, 90, 76);
     draw_file_button_label(1, 211, 76);
     draw_file_button_label(2, 90, 119);
     draw_file_button_label(3, 211, 119);
-    gSPDisplayList(gDisplayListHead++, seg2_f3d_00ED68);
-    gSPDisplayList(gDisplayListHead++, seg2_f3d_00EE68);
+    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED68);
+    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextColorAlpha);
     PrintGenericText(45, 35, textReturn);
     PrintGenericText(133, 35, textViewScore);
     PrintGenericText(220, 35, textFileDelete);
-    gSPDisplayList(gDisplayListHead++, seg2_f3d_00EEF0);
+    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
     gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D108);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextColorAlpha);
     PrintRegularText(89, 62, textMarioA);
@@ -1539,12 +1539,12 @@ static void erase_yes_no_prompt(s16 x, s16 y)
             D_801A7C04 = 0;
         }
     }
-    gSPDisplayList(gDisplayListHead++, seg2_f3d_00EE68);
+    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
     gDPSetEnvColor(gDisplayListHead++, D_801B98E0[0], D_801B98E0[0], D_801B98E0[0], sTextColorAlpha);
     PrintGenericText(x + 56, y, textYes);
     gDPSetEnvColor(gDisplayListHead++, D_801B98E0[1], D_801B98E0[1], D_801B98E0[1], sTextColorAlpha);
     PrintGenericText(x + 98, y, textNo);
-    gSPDisplayList(gDisplayListHead++, seg2_f3d_00EEF0);
+    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
 }
 
 static void erase_menu_print_message(s8 messageId)
@@ -1620,19 +1620,19 @@ static void draw_erase_menu(void)
     erase_menu_update_message();
     erase_menu_print_message(sStatusMessageId);
 
-    gSPDisplayList(gDisplayListHead++, seg2_f3d_00ED00);
+    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED00);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextColorAlpha);
     draw_file_button_label(0, 90, 76);
     draw_file_button_label(1, 211, 76);
     draw_file_button_label(2, 90, 119);
     draw_file_button_label(3, 211, 119);
-    gSPDisplayList(gDisplayListHead++, seg2_f3d_00ED68);
-    gSPDisplayList(gDisplayListHead++, seg2_f3d_00EE68);
+    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED68);
+    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextColorAlpha);
     PrintGenericText(45, 35, textReturn);
     PrintGenericText(133, 35, textViewScore);
     PrintGenericText(223, 35, textFileCopy);
-    gSPDisplayList(gDisplayListHead++, seg2_f3d_00EEF0);
+    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
     gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D108);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextColorAlpha);
     PrintRegularText(89, 62, textMarioA);
@@ -1647,11 +1647,11 @@ static void draw_sound_mode_menu(void)
     int mode;
     unsigned char sp38[] = {0x18, 0x19, 0x1A, 0x1B, 0x04, 0x05, 0x06, 0x07, 0xFF};
 
-    gSPDisplayList(gDisplayListHead++, seg2_f3d_00ED00);
+    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED00);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextColorAlpha);
     PutString(1, 96, 35, sp38);
-    gSPDisplayList(gDisplayListHead++, seg2_f3d_00ED68);
-    gSPDisplayList(gDisplayListHead++, seg2_f3d_00EE68);
+    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED68);
+    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
     for (mode = 0; mode < 3; mode++)
     {
         if (mode == sSoundMode)
@@ -1664,7 +1664,7 @@ static void draw_sound_mode_menu(void)
         }
         PrintGenericText(mode * 74 + 67, 87, textSoundModes[mode]);
     }
-    gSPDisplayList(gDisplayListHead++, seg2_f3d_00EEF0);
+    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
 }
 
 static unsigned char D_801A7D70[] = {0xFA, 0xFB, 0xFF};
@@ -1733,12 +1733,12 @@ static void draw_file_scores_menu(s8 file)
     unsigned char textMyScore[] = {TEXT_MYSCORE};
 
     sp50[0] = file + 10;
-    gSPDisplayList(gDisplayListHead++, seg2_f3d_00ED00);
+    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED00);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextColorAlpha);
     PutString(1, 28, 15, sp54);
     PutString(2, 86, 15, sp50);
     draw_file_button_label(file, 124, 15);
-    gSPDisplayList(gDisplayListHead++, seg2_f3d_00ED68);
+    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED68);
     gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D108);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextColorAlpha);
 

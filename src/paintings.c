@@ -24,11 +24,11 @@ struct Struct802D1EE0
     u8 unk7;
 };
 
-extern u8 seg2_f3d_014A30[];
-extern u8 seg2_f3d_014970[];
-extern u8 seg2_f3d_0149A8[];
-extern u8 seg2_f3d_0149C8[];
-extern u8 seg2_f3d_014A00[];
+extern u8 seg2_dl_02014A30[];
+extern u8 seg2_dl_02014970[];
+extern u8 seg2_dl_020149A8[];
+extern u8 seg2_dl_020149C8[];
+extern u8 seg2_dl_02014A00[];
 extern u8 seg2_triangle_mesh[];
 extern u8 seg2_mesh_order[];
 
@@ -575,7 +575,7 @@ void *func_802D3CF0(int a, s16 b, s16 c, s16 *d, s16 e, s16 f, u8 g)
                 g);
         }
         gSPVertex(sp7C++, VIRTUAL_TO_PHYSICAL(verts + sp9E * 15), 15, 0);
-        gSPDisplayList(sp7C++, seg2_f3d_014A30);
+        gSPDisplayList(sp7C++, seg2_dl_02014A30);
     }
 
     sp9A = e * 3 + sp90 * 15 + 2;
@@ -646,7 +646,7 @@ Gfx *func_802D45FC(struct Struct802D1F94 *a)
         return sp48;
 
     gSPDisplayList(sp44++, func_802D43FC(a));
-    gSPDisplayList(sp44++, seg2_f3d_014970);
+    gSPDisplayList(sp44++, seg2_dl_02014970);
     gSPDisplayList(sp44++, a->unk68);
 
     for (sp62 = 0; sp62 < sp5A; sp62++)
@@ -658,7 +658,7 @@ Gfx *func_802D45FC(struct Struct802D1F94 *a)
     }
     func_802D310C(a);
     gSPPopMatrix(sp44++, G_MTX_MODELVIEW);
-    gSPDisplayList(sp44++, seg2_f3d_0149A8);
+    gSPDisplayList(sp44++, seg2_dl_020149A8);
     gSPEndDisplayList(sp44);
     return sp48;
 }
@@ -678,7 +678,7 @@ Gfx *func_802D4874(struct Struct802D1F94 *a)
     if (sp48 == NULL)
         return sp48;
     gSPDisplayList(sp44++, func_802D43FC(a));
-    gSPDisplayList(sp44++, seg2_f3d_0149C8);
+    gSPDisplayList(sp44++, seg2_dl_020149C8);
     gSPDisplayList(sp44++, a->unk68);
     sp58 = segmented_to_virtual(sp50[0]);
     sp5E = sp58[0];
@@ -686,7 +686,7 @@ Gfx *func_802D4874(struct Struct802D1F94 *a)
     gSPDisplayList(sp44++, func_802D3CF0(sp4C[0], sp56, sp54, sp58, sp5E, sp5C, a->unk6D));
     func_802D310C(a);
     gSPPopMatrix(sp44++, G_MTX_MODELVIEW);
-    gSPDisplayList(sp44++, seg2_f3d_014A00);
+    gSPDisplayList(sp44++, seg2_dl_02014A00);
     gSPEndDisplayList(sp44);
     return sp48;
 }

@@ -411,23 +411,23 @@ void add_shadow_to_display_list(
 ) {
     switch (shadowShape) {
         case SHADOW_SHAPE_CIRCLE:
-            gSPDisplayList(displayListHead++, seg2_f3d_014548);
+            gSPDisplayList(displayListHead++, seg2_dl_02014548);
             break;
         case SHADOW_SHAPE_SQUARE:
-            gSPDisplayList(displayListHead++, seg2_f3d_014590)
+            gSPDisplayList(displayListHead++, seg2_dl_02014590)
             break;
     }
     switch (shadowVertexType) {
         case SHADOW_WITH_9_VERTS:
             gSPVertex(displayListHead++, verts, 9, 0x80);
-            gSPDisplayList(displayListHead++, seg2_f3d_0145D8);
+            gSPDisplayList(displayListHead++, seg2_dl_020145D8);
             break;
         case SHADOW_WITH_4_VERTS:
             gSPVertex(displayListHead++, verts, 4, 0x30);
-            gSPDisplayList(displayListHead++, seg2_f3d_014620);
+            gSPDisplayList(displayListHead++, seg2_dl_02014620);
             break;
     }
-    gSPDisplayList(displayListHead++, seg2_f3d_014638);
+    gSPDisplayList(displayListHead++, seg2_dl_02014638);
     gSPEndDisplayList(displayListHead);
 }
 

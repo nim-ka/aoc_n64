@@ -1,610 +1,857 @@
 # SM64 (J) Segment 02
 .section .rodata
-
 .include "macros.inc"
+.include "ultra64/gbi.inc"
 
-# 0x02000000-0x02008250 textures
-seg2_texture_000000:
+seg2_texture_02000000:
 .incbin "build/bin/segment2/segment2.00000.rgba16"
-seg2_texture_000200:
+
+seg2_texture_02000200:
 .incbin "build/bin/segment2/segment2.00200.rgba16"
-seg2_texture_000400:
+
+seg2_texture_02000400:
 .incbin "build/bin/segment2/segment2.00400.rgba16"
-seg2_texture_000600:
+
+seg2_texture_02000600:
 .incbin "build/bin/segment2/segment2.00600.rgba16"
-seg2_texture_000800:
+
+seg2_texture_02000800:
 .incbin "build/bin/segment2/segment2.00800.rgba16"
-seg2_texture_000A00:
+
+seg2_texture_02000A00:
 .incbin "build/bin/segment2/segment2.00A00.rgba16"
-seg2_texture_000C00:
+
+seg2_texture_02000C00:
 .incbin "build/bin/segment2/segment2.00C00.rgba16"
-seg2_texture_000E00:
+
+seg2_texture_02000E00:
 .incbin "build/bin/segment2/segment2.00E00.rgba16"
-seg2_texture_001000:
+
+seg2_texture_02001000:
 .incbin "build/bin/segment2/segment2.01000.rgba16"
-seg2_texture_001200:
+
+seg2_texture_02001200:
 .incbin "build/bin/segment2/segment2.01200.rgba16"
-seg2_texture_001400:
+
+seg2_texture_02001400:
 .incbin "build/bin/segment2/segment2.01400.rgba16"
-seg2_texture_001600:
+
+seg2_texture_02001600:
 .incbin "build/bin/segment2/segment2.01600.rgba16"
-seg2_texture_001800:
+
+seg2_texture_02001800:
 .incbin "build/bin/segment2/segment2.01800.rgba16"
-seg2_texture_001A00:
+
+seg2_texture_02001A00:
 .incbin "build/bin/segment2/segment2.01A00.rgba16"
-seg2_texture_001C00:
+
+seg2_texture_02001C00:
 .incbin "build/bin/segment2/segment2.01C00.rgba16"
-seg2_texture_001E00:
+
+seg2_texture_02001E00:
 .incbin "build/bin/segment2/segment2.01E00.rgba16"
-seg2_texture_002000:
+
+seg2_texture_02002000:
 .incbin "build/bin/segment2/segment2.02000.rgba16"
-seg2_texture_002200:
+
+seg2_texture_02002200:
 .incbin "build/bin/segment2/segment2.02200.rgba16"
-seg2_texture_002400:
+
+seg2_texture_02002400:
 .incbin "build/bin/segment2/segment2.02400.rgba16"
-seg2_texture_002600:
+
+seg2_texture_02002600:
 .incbin "build/bin/segment2/segment2.02600.rgba16"
-seg2_texture_002800:
+
+seg2_texture_02002800:
 .incbin "build/bin/segment2/segment2.02800.rgba16"
-seg2_texture_002A00:
+
+seg2_texture_02002A00:
 .incbin "build/bin/segment2/segment2.02A00.rgba16"
-seg2_texture_002C00:
+
+seg2_texture_02002C00:
 .incbin "build/bin/segment2/segment2.02C00.rgba16"
-seg2_texture_002E00:
+
+seg2_texture_02002E00:
 .incbin "build/bin/segment2/segment2.02E00.rgba16"
-seg2_texture_003000:
+
+seg2_texture_02003000:
 .incbin "build/bin/segment2/segment2.03000.rgba16"
-seg2_texture_003200:
+
+seg2_texture_02003200:
 .incbin "build/bin/segment2/segment2.03200.rgba16"
-seg2_texture_003400:
+
+seg2_texture_02003400:
 .incbin "build/bin/segment2/segment2.03400.rgba16"
-seg2_texture_003600:
+
+seg2_texture_02003600:
 .incbin "build/bin/segment2/segment2.03600.rgba16"
-seg2_texture_003800:
+
+seg2_texture_02003800:
 .incbin "build/bin/segment2/segment2.03800.rgba16"
-seg2_texture_003A00:
+
+seg2_texture_02003A00:
 .incbin "build/bin/segment2/segment2.03A00.rgba16"
-seg2_texture_003C00:
+
+seg2_texture_02003C00:
 .incbin "build/bin/segment2/segment2.03C00.rgba16"
-seg2_texture_003E00:
+
+seg2_texture_02003E00:
 .incbin "build/bin/segment2/segment2.03E00.rgba16"
-seg2_texture_004000:
+
+seg2_texture_02004000:
 .incbin "build/bin/segment2/segment2.04000.rgba16"
-seg2_texture_004200:
+
+seg2_texture_02004200:
 .incbin "build/bin/segment2/segment2.04200.rgba16"
-seg2_texture_004400:
+
+seg2_texture_02004400:
 .incbin "build/bin/segment2/segment2.04400.rgba16"
-seg2_texture_004600:
+
+seg2_texture_02004600:
 .incbin "build/bin/segment2/segment2.04600.rgba16"
-seg2_texture_004800:
+
+seg2_texture_02004800:
 .incbin "build/bin/segment2/segment2.04800.rgba16"
-seg2_texture_004A00:
+
+seg2_texture_02004A00:
 .incbin "build/bin/segment2/segment2.04A00.rgba16"
-seg2_texture_004C00:
+
+seg2_texture_02004C00:
 .incbin "build/bin/segment2/segment2.04C00.rgba16"
-seg2_texture_004E00:
+
+seg2_texture_02004E00:
 .incbin "build/bin/segment2/segment2.04E00.rgba16"
-seg2_texture_005000:
+
+seg2_texture_02005000:
 .incbin "build/bin/segment2/segment2.05000.rgba16"
-seg2_texture_005200:
+
+seg2_texture_02005200:
 .incbin "build/bin/segment2/segment2.05200.rgba16"
-seg2_texture_005400:
+
+seg2_texture_02005400:
 .incbin "build/bin/segment2/segment2.05400.rgba16"
-seg2_texture_005600:
+
+seg2_texture_02005600:
 .incbin "build/bin/segment2/segment2.05600.rgba16"
-seg2_texture_005800:
+
+seg2_texture_02005800:
 .incbin "build/bin/segment2/segment2.05800.rgba16"
-seg2_texture_005A00:
+
+seg2_texture_02005A00:
 .incbin "build/bin/segment2/segment2.05A00.rgba16"
-seg2_texture_005C00:
+
+seg2_texture_02005C00:
 .incbin "build/bin/segment2/segment2.05C00.rgba16"
-seg2_texture_005E00:
+
+seg2_texture_02005E00:
 .incbin "build/bin/segment2/segment2.05E00.rgba16"
-seg2_texture_006000:
+
+seg2_texture_02006000:
 .incbin "build/bin/segment2/segment2.06000.rgba16"
-seg2_texture_006200:
+
+seg2_texture_02006200:
 .incbin "build/bin/segment2/segment2.06200.rgba16"
-seg2_texture_006280:
+
+seg2_texture_02006280:
 .incbin "build/bin/segment2/segment2.06280.rgba16"
-seg2_texture_006300:
+
+seg2_texture_02006300:
 .incbin "build/bin/segment2/segment2.06300.rgba16"
-seg2_texture_006380:
+
+seg2_texture_02006380:
 .incbin "build/bin/segment2/segment2.06380.rgba16"
-seg2_texture_006400:
+
+seg2_texture_02006400:
 .incbin "build/bin/segment2/segment2.06400.rgba16"
-seg2_texture_006480:
+
+seg2_texture_02006480:
 .incbin "build/bin/segment2/segment2.06480.rgba16"
-seg2_texture_006500:
+
+seg2_texture_02006500:
 .incbin "build/bin/segment2/segment2.06500.rgba16"
-seg2_texture_006580:
+
+seg2_texture_02006580:
 .incbin "build/bin/segment2/segment2.06580.rgba16"
-seg2_texture_006600:
+
+seg2_texture_02006600:
 .incbin "build/bin/segment2/segment2.06600.rgba16"
-seg2_texture_006680:
+
+seg2_texture_02006680:
 .incbin "build/bin/segment2/segment2.06680.rgba16"
-seg2_texture_006700:
+
+seg2_texture_02006700:
 .incbin "build/bin/segment2/segment2.06700.rgba16"
-seg2_texture_006780:
+
+seg2_texture_02006780:
 .incbin "build/bin/segment2/segment2.06780.rgba16"
-seg2_texture_006800:
+
+seg2_texture_02006800:
 .incbin "build/bin/segment2/segment2.06800.rgba16"
-seg2_texture_006880:
+
+seg2_texture_02006880:
 .incbin "build/bin/segment2/segment2.06880.rgba16"
-seg2_texture_006900:
+
+seg2_texture_02006900:
 .incbin "build/bin/segment2/segment2.06900.rgba16"
-seg2_texture_006980:
+
+seg2_texture_02006980:
 .incbin "build/bin/segment2/segment2.06980.rgba16"
-seg2_texture_006A00:
+
+seg2_texture_02006A00:
 .incbin "build/bin/segment2/segment2.06A00.rgba16"
-seg2_texture_006A80:
+
+seg2_texture_02006A80:
 .incbin "build/bin/segment2/segment2.06A80.rgba16"
-seg2_texture_006B00:
+
+seg2_texture_02006B00:
 .incbin "build/bin/segment2/segment2.06B00.rgba16"
-seg2_texture_006B80:
+
+seg2_texture_02006B80:
 .incbin "build/bin/segment2/segment2.06B80.rgba16"
-seg2_texture_006C00:
+
+seg2_texture_02006C00:
 .incbin "build/bin/segment2/segment2.06C00.rgba16"
-seg2_texture_006C80:
+
+seg2_texture_02006C80:
 .incbin "build/bin/segment2/segment2.06C80.rgba16"
-seg2_texture_006D00:
+
+seg2_texture_02006D00:
 .incbin "build/bin/segment2/segment2.06D00.rgba16"
-seg2_texture_006D80:
+
+seg2_texture_02006D80:
 .incbin "build/bin/segment2/segment2.06D80.rgba16"
-seg2_texture_006E00:
+
+seg2_texture_02006E00:
 .incbin "build/bin/segment2/segment2.06E00.rgba16"
-seg2_texture_006E80:
+
+seg2_texture_02006E80:
 .incbin "build/bin/segment2/segment2.06E80.rgba16"
-seg2_texture_006F00:
+
+seg2_texture_02006F00:
 .incbin "build/bin/segment2/segment2.06F00.rgba16"
-seg2_texture_006F80:
+
+seg2_texture_02006F80:
 .incbin "build/bin/segment2/segment2.06F80.rgba16"
-seg2_texture_007000:
+
+seg2_texture_02007000:
 .incbin "build/bin/segment2/segment2.07000.rgba16"
-seg2_texture_007080:
+
+seg2_texture_02007080:
 .incbin "build/bin/segment2/segment2.07080.rgba16"
-seg2_texture_007100:
+
+seg2_texture_02007100:
 .incbin "build/bin/segment2/segment2.07100.ia1"
-seg2_texture_007110:
+
+seg2_texture_02007110:
 .incbin "build/bin/segment2/segment2.07110.ia1"
-seg2_texture_007120:
+
+seg2_texture_02007120:
 .incbin "build/bin/segment2/segment2.07120.ia1"
-seg2_texture_007130:
+
+seg2_texture_02007130:
 .incbin "build/bin/segment2/segment2.07130.ia1"
-seg2_texture_007140:
+
+seg2_texture_02007140:
 .incbin "build/bin/segment2/segment2.07140.ia1"
-seg2_texture_007150:
+
+seg2_texture_02007150:
 .incbin "build/bin/segment2/segment2.07150.ia1"
-seg2_texture_007160:
+
+seg2_texture_02007160:
 .incbin "build/bin/segment2/segment2.07160.ia1"
-seg2_texture_007170:
+
+seg2_texture_02007170:
 .incbin "build/bin/segment2/segment2.07170.ia1"
-seg2_texture_007180:
+
+seg2_texture_02007180:
 .incbin "build/bin/segment2/segment2.07180.ia1"
-seg2_texture_007190:
+
+seg2_texture_02007190:
 .incbin "build/bin/segment2/segment2.07190.ia1"
-seg2_texture_0071A0:
+
+seg2_texture_020071A0:
 .incbin "build/bin/segment2/segment2.071A0.ia1"
-seg2_texture_0071B0:
+
+seg2_texture_020071B0:
 .incbin "build/bin/segment2/segment2.071B0.ia1"
-seg2_texture_0071C0:
+
+seg2_texture_020071C0:
 .incbin "build/bin/segment2/segment2.071C0.ia1"
-seg2_texture_0071D0:
+
+seg2_texture_020071D0:
 .incbin "build/bin/segment2/segment2.071D0.ia1"
-seg2_texture_0071E0:
+
+seg2_texture_020071E0:
 .incbin "build/bin/segment2/segment2.071E0.ia1"
-seg2_texture_0071F0:
+
+seg2_texture_020071F0:
 .incbin "build/bin/segment2/segment2.071F0.ia1"
-seg2_texture_007200:
+
+seg2_texture_02007200:
 .incbin "build/bin/segment2/segment2.07200.ia1"
-seg2_texture_007210:
+
+seg2_texture_02007210:
 .incbin "build/bin/segment2/segment2.07210.ia1"
-seg2_texture_007220:
+
+seg2_texture_02007220:
 .incbin "build/bin/segment2/segment2.07220.ia1"
-seg2_texture_007230:
+
+seg2_texture_02007230:
 .incbin "build/bin/segment2/segment2.07230.ia1"
-seg2_texture_007240:
+
+seg2_texture_02007240:
 .incbin "build/bin/segment2/segment2.07240.ia1"
-seg2_texture_007250:
+
+seg2_texture_02007250:
 .incbin "build/bin/segment2/segment2.07250.ia1"
-seg2_texture_007260:
+
+seg2_texture_02007260:
 .incbin "build/bin/segment2/segment2.07260.ia1"
-seg2_texture_007270:
+
+seg2_texture_02007270:
 .incbin "build/bin/segment2/segment2.07270.ia1"
-seg2_texture_007280:
+
+seg2_texture_02007280:
 .incbin "build/bin/segment2/segment2.07280.ia1"
-seg2_texture_007290:
+
+seg2_texture_02007290:
 .incbin "build/bin/segment2/segment2.07290.ia1"
-seg2_texture_0072A0:
+
+seg2_texture_020072A0:
 .incbin "build/bin/segment2/segment2.072A0.ia1"
-seg2_texture_0072B0:
+
+seg2_texture_020072B0:
 .incbin "build/bin/segment2/segment2.072B0.ia1"
-seg2_texture_0072C0:
+
+seg2_texture_020072C0:
 .incbin "build/bin/segment2/segment2.072C0.ia1"
-seg2_texture_0072D0:
+
+seg2_texture_020072D0:
 .incbin "build/bin/segment2/segment2.072D0.ia1"
-seg2_texture_0072E0:
+
+seg2_texture_020072E0:
 .incbin "build/bin/segment2/segment2.072E0.ia1"
-seg2_texture_0072F0:
+
+seg2_texture_020072F0:
 .incbin "build/bin/segment2/segment2.072F0.ia1"
-seg2_texture_007300:
+
+seg2_texture_02007300:
 .incbin "build/bin/segment2/segment2.07300.ia1"
-seg2_texture_007310:
+
+seg2_texture_02007310:
 .incbin "build/bin/segment2/segment2.07310.ia1"
-seg2_texture_007320:
+
+seg2_texture_02007320:
 .incbin "build/bin/segment2/segment2.07320.ia1"
-seg2_texture_007330:
+
+seg2_texture_02007330:
 .incbin "build/bin/segment2/segment2.07330.ia1"
-seg2_texture_007340:
+
+seg2_texture_02007340:
 .incbin "build/bin/segment2/segment2.07340.ia1"
-seg2_texture_007350:
+
+seg2_texture_02007350:
 .incbin "build/bin/segment2/segment2.07350.ia1"
-seg2_texture_007360:
+
+seg2_texture_02007360:
 .incbin "build/bin/segment2/segment2.07360.ia1"
-seg2_texture_007370:
+
+seg2_texture_02007370:
 .incbin "build/bin/segment2/segment2.07370.ia1"
-seg2_texture_007380:
+
+seg2_texture_02007380:
 .incbin "build/bin/segment2/segment2.07380.ia1"
-seg2_texture_007390:
+
+seg2_texture_02007390:
 .incbin "build/bin/segment2/segment2.07390.ia1"
-seg2_texture_0073A0:
+
+seg2_texture_020073A0:
 .incbin "build/bin/segment2/segment2.073A0.ia1"
-seg2_texture_0073B0:
+
+seg2_texture_020073B0:
 .incbin "build/bin/segment2/segment2.073B0.ia1"
-seg2_texture_0073C0:
+
+seg2_texture_020073C0:
 .incbin "build/bin/segment2/segment2.073C0.ia1"
-seg2_texture_0073D0:
+
+seg2_texture_020073D0:
 .incbin "build/bin/segment2/segment2.073D0.ia1"
-seg2_texture_0073E0:
+
+seg2_texture_020073E0:
 .incbin "build/bin/segment2/segment2.073E0.ia1"
-seg2_texture_0073F0:
+
+seg2_texture_020073F0:
 .incbin "build/bin/segment2/segment2.073F0.ia1"
-seg2_texture_007400:
+
+seg2_texture_02007400:
 .incbin "build/bin/segment2/segment2.07400.ia1"
-seg2_texture_007410:
+
+seg2_texture_02007410:
 .incbin "build/bin/segment2/segment2.07410.ia1"
-seg2_texture_007420:
+
+seg2_texture_02007420:
 .incbin "build/bin/segment2/segment2.07420.ia1"
-seg2_texture_007430:
+
+seg2_texture_02007430:
 .incbin "build/bin/segment2/segment2.07430.ia1"
-seg2_texture_007440:
+
+seg2_texture_02007440:
 .incbin "build/bin/segment2/segment2.07440.ia1"
-seg2_texture_007450:
+
+seg2_texture_02007450:
 .incbin "build/bin/segment2/segment2.07450.ia1"
-seg2_texture_007460:
+
+seg2_texture_02007460:
 .incbin "build/bin/segment2/segment2.07460.ia1"
-seg2_texture_007470:
+
+seg2_texture_02007470:
 .incbin "build/bin/segment2/segment2.07470.ia1"
-seg2_texture_007480:
+
+seg2_texture_02007480:
 .incbin "build/bin/segment2/segment2.07480.ia1"
-seg2_texture_007490:
+
+seg2_texture_02007490:
 .incbin "build/bin/segment2/segment2.07490.ia1"
-seg2_texture_0074A0:
+
+seg2_texture_020074A0:
 .incbin "build/bin/segment2/segment2.074A0.ia1"
-seg2_texture_0074B0:
+
+seg2_texture_020074B0:
 .incbin "build/bin/segment2/segment2.074B0.ia1"
-seg2_texture_0074C0:
+
+seg2_texture_020074C0:
 .incbin "build/bin/segment2/segment2.074C0.ia1"
-seg2_texture_0074D0:
+
+seg2_texture_020074D0:
 .incbin "build/bin/segment2/segment2.074D0.ia1"
-seg2_texture_0074E0:
+
+seg2_texture_020074E0:
 .incbin "build/bin/segment2/segment2.074E0.ia1"
-seg2_texture_0074F0:
+
+seg2_texture_020074F0:
 .incbin "build/bin/segment2/segment2.074F0.ia1"
-seg2_texture_007500:
+
+seg2_texture_02007500:
 .incbin "build/bin/segment2/segment2.07500.ia1"
-seg2_texture_007510:
+
+seg2_texture_02007510:
 .incbin "build/bin/segment2/segment2.07510.ia1"
-seg2_texture_007520:
+
+seg2_texture_02007520:
 .incbin "build/bin/segment2/segment2.07520.ia1"
-seg2_texture_007530:
+
+seg2_texture_02007530:
 .incbin "build/bin/segment2/segment2.07530.ia1"
-seg2_texture_007540:
+
+seg2_texture_02007540:
 .incbin "build/bin/segment2/segment2.07540.ia1"
-seg2_texture_007550:
+
+seg2_texture_02007550:
 .incbin "build/bin/segment2/segment2.07550.ia1"
-seg2_texture_007560:
+
+seg2_texture_02007560:
 .incbin "build/bin/segment2/segment2.07560.ia1"
-seg2_texture_007570:
+
+seg2_texture_02007570:
 .incbin "build/bin/segment2/segment2.07570.ia1"
-seg2_texture_007580:
+
+seg2_texture_02007580:
 .incbin "build/bin/segment2/segment2.07580.ia1"
-seg2_texture_007590:
+
+seg2_texture_02007590:
 .incbin "build/bin/segment2/segment2.07590.ia1"
-seg2_texture_0075A0:
+
+seg2_texture_020075A0:
 .incbin "build/bin/segment2/segment2.075A0.ia1"
-seg2_texture_0075B0:
+
+seg2_texture_020075B0:
 .incbin "build/bin/segment2/segment2.075B0.ia1"
-seg2_texture_0075C0:
+
+seg2_texture_020075C0:
 .incbin "build/bin/segment2/segment2.075C0.ia1"
-seg2_texture_0075D0:
+
+seg2_texture_020075D0:
 .incbin "build/bin/segment2/segment2.075D0.ia1"
-seg2_texture_0075E0:
+
+seg2_texture_020075E0:
 .incbin "build/bin/segment2/segment2.075E0.ia1"
-seg2_texture_0075F0:
+
+seg2_texture_020075F0:
 .incbin "build/bin/segment2/segment2.075F0.ia1"
-seg2_texture_007600:
+
+seg2_texture_02007600:
 .incbin "build/bin/segment2/segment2.07600.ia1"
-seg2_texture_007610:
+
+seg2_texture_02007610:
 .incbin "build/bin/segment2/segment2.07610.ia1"
-seg2_texture_007620:
+
+seg2_texture_02007620:
 .incbin "build/bin/segment2/segment2.07620.ia1"
-seg2_texture_007630:
+
+seg2_texture_02007630:
 .incbin "build/bin/segment2/segment2.07630.ia1"
-seg2_texture_007640:
+
+seg2_texture_02007640:
 .incbin "build/bin/segment2/segment2.07640.ia1"
-seg2_texture_007650:
+
+seg2_texture_02007650:
 .incbin "build/bin/segment2/segment2.07650.ia1"
-seg2_texture_007660:
+
+seg2_texture_02007660:
 .incbin "build/bin/segment2/segment2.07660.ia1"
-seg2_texture_007670:
+
+seg2_texture_02007670:
 .incbin "build/bin/segment2/segment2.07670.ia1"
-seg2_texture_007680:
+
+seg2_texture_02007680:
 .incbin "build/bin/segment2/segment2.07680.ia1"
-seg2_texture_007690:
+
+seg2_texture_02007690:
 .incbin "build/bin/segment2/segment2.07690.ia1"
-seg2_texture_0076A0:
+
+seg2_texture_020076A0:
 .incbin "build/bin/segment2/segment2.076A0.ia1"
-seg2_texture_0076B0:
+
+seg2_texture_020076B0:
 .incbin "build/bin/segment2/segment2.076B0.ia1"
-seg2_texture_0076C0:
+
+seg2_texture_020076C0:
 .incbin "build/bin/segment2/segment2.076C0.ia1"
-seg2_texture_0076D0:
+
+seg2_texture_020076D0:
 .incbin "build/bin/segment2/segment2.076D0.ia1"
-seg2_texture_0076E0:
+
+seg2_texture_020076E0:
 .incbin "build/bin/segment2/segment2.076E0.ia1"
-seg2_texture_0076F0:
+
+seg2_texture_020076F0:
 .incbin "build/bin/segment2/segment2.076F0.ia1"
-seg2_texture_007700:
+
+seg2_texture_02007700:
 .incbin "build/bin/segment2/segment2.07700.ia1"
-seg2_texture_007710:
+
+seg2_texture_02007710:
 .incbin "build/bin/segment2/segment2.07710.ia1"
-seg2_texture_007720:
+
+seg2_texture_02007720:
 .incbin "build/bin/segment2/segment2.07720.ia1"
-seg2_texture_007730:
+
+seg2_texture_02007730:
 .incbin "build/bin/segment2/segment2.07730.ia1"
-seg2_texture_007740:
+
+seg2_texture_02007740:
 .incbin "build/bin/segment2/segment2.07740.ia1"
-seg2_texture_007750:
+
+seg2_texture_02007750:
 .incbin "build/bin/segment2/segment2.07750.ia1"
-seg2_texture_007760:
+
+seg2_texture_02007760:
 .incbin "build/bin/segment2/segment2.07760.ia1"
-seg2_texture_007770:
+
+seg2_texture_02007770:
 .incbin "build/bin/segment2/segment2.07770.ia1"
-seg2_texture_007780:
+
+seg2_texture_02007780:
 .incbin "build/bin/segment2/segment2.07780.ia1"
-seg2_texture_007790:
+
+seg2_texture_02007790:
 .incbin "build/bin/segment2/segment2.07790.ia1"
-seg2_texture_0077A0:
+
+seg2_texture_020077A0:
 .incbin "build/bin/segment2/segment2.077A0.ia1"
-seg2_texture_0077B0:
+
+seg2_texture_020077B0:
 .incbin "build/bin/segment2/segment2.077B0.ia1"
-seg2_texture_0077C0:
+
+seg2_texture_020077C0:
 .incbin "build/bin/segment2/segment2.077C0.ia1"
-seg2_texture_0077D0:
+
+seg2_texture_020077D0:
 .incbin "build/bin/segment2/segment2.077D0.ia1"
-seg2_texture_0077E0:
+
+seg2_texture_020077E0:
 .incbin "build/bin/segment2/segment2.077E0.ia1"
-seg2_texture_0077F0:
+
+seg2_texture_020077F0:
 .incbin "build/bin/segment2/segment2.077F0.ia1"
-seg2_texture_007800:
+
+seg2_texture_02007800:
 .incbin "build/bin/segment2/segment2.07800.ia1"
-seg2_texture_007810:
+
+seg2_texture_02007810:
 .incbin "build/bin/segment2/segment2.07810.ia1"
-seg2_texture_007820:
+
+seg2_texture_02007820:
 .incbin "build/bin/segment2/segment2.07820.ia1"
-seg2_texture_007830:
+
+seg2_texture_02007830:
 .incbin "build/bin/segment2/segment2.07830.ia1"
-seg2_texture_007840:
+
+seg2_texture_02007840:
 .incbin "build/bin/segment2/segment2.07840.ia1"
-seg2_texture_007850:
+
+seg2_texture_02007850:
 .incbin "build/bin/segment2/segment2.07850.ia1"
-seg2_texture_007860:
+
+seg2_texture_02007860:
 .incbin "build/bin/segment2/segment2.07860.ia1"
-seg2_texture_007870:
+
+seg2_texture_02007870:
 .incbin "build/bin/segment2/segment2.07870.ia1"
-seg2_texture_007880:
+
+seg2_texture_02007880:
 .incbin "build/bin/segment2/segment2.07880.ia1"
-seg2_texture_007890:
+
+seg2_texture_02007890:
 .incbin "build/bin/segment2/segment2.07890.ia1"
-seg2_texture_0078A0:
+
+seg2_texture_020078A0:
 .incbin "build/bin/segment2/segment2.078A0.ia1"
-seg2_texture_0078B0:
+
+seg2_texture_020078B0:
 .incbin "build/bin/segment2/segment2.078B0.ia1"
-seg2_texture_0078C0:
+
+seg2_texture_020078C0:
 .incbin "build/bin/segment2/segment2.078C0.ia1"
-seg2_texture_0078D0:
+
+seg2_texture_020078D0:
 .incbin "build/bin/segment2/segment2.078D0.ia1"
-seg2_texture_0078E0:
+
+seg2_texture_020078E0:
 .incbin "build/bin/segment2/segment2.078E0.ia1"
-seg2_texture_0078F0:
+
+seg2_texture_020078F0:
 .incbin "build/bin/segment2/segment2.078F0.ia1"
-seg2_texture_007900:
+
+seg2_texture_02007900:
 .incbin "build/bin/segment2/segment2.07900.ia1"
-seg2_texture_007910:
+
+seg2_texture_02007910:
 .incbin "build/bin/segment2/segment2.07910.ia1"
-seg2_texture_007920:
+
+seg2_texture_02007920:
 .incbin "build/bin/segment2/segment2.07920.ia1"
-seg2_texture_007930:
+
+seg2_texture_02007930:
 .incbin "build/bin/segment2/segment2.07930.ia1"
-seg2_texture_007940:
+
+seg2_texture_02007940:
 .incbin "build/bin/segment2/segment2.07940.ia1"
-seg2_texture_007950:
+
+seg2_texture_02007950:
 .incbin "build/bin/segment2/segment2.07950.ia1"
-seg2_texture_007960:
+
+seg2_texture_02007960:
 .incbin "build/bin/segment2/segment2.07960.ia1"
-seg2_texture_007970:
+
+seg2_texture_02007970:
 .incbin "build/bin/segment2/segment2.07970.ia1"
-seg2_texture_007980:
+
+seg2_texture_02007980:
 .incbin "build/bin/segment2/segment2.07980.ia1"
-seg2_texture_007990:
+
+seg2_texture_02007990:
 .incbin "build/bin/segment2/segment2.07990.ia1"
-seg2_texture_0079A0:
+
+seg2_texture_020079A0:
 .incbin "build/bin/segment2/segment2.079A0.ia1"
-seg2_texture_0079B0:
+
+seg2_texture_020079B0:
 .incbin "build/bin/segment2/segment2.079B0.ia1"
-seg2_texture_0079C0:
+
+seg2_texture_020079C0:
 .incbin "build/bin/segment2/segment2.079C0.ia1"
-seg2_texture_0079D0:
+
+seg2_texture_020079D0:
 .incbin "build/bin/segment2/segment2.079D0.ia1"
-seg2_texture_0079E0:
+
+seg2_texture_020079E0:
 .incbin "build/bin/segment2/segment2.079E0.ia1"
-seg2_texture_0079F0:
+
+seg2_texture_020079F0:
 .incbin "build/bin/segment2/segment2.079F0.ia1"
-seg2_texture_007A00:
+
+seg2_texture_02007A00:
 .incbin "build/bin/segment2/segment2.07A00.ia1"
-seg2_texture_007A10:
+
+seg2_texture_02007A10:
 .incbin "build/bin/segment2/segment2.07A10.ia1"
-seg2_texture_007A20:
+
+seg2_texture_02007A20:
 .incbin "build/bin/segment2/segment2.07A20.ia1"
-seg2_texture_007A30:
+
+seg2_texture_02007A30:
 .incbin "build/bin/segment2/segment2.07A30.ia1"
-seg2_texture_007A40:
+
+seg2_texture_02007A40:
 .incbin "build/bin/segment2/segment2.07A40.ia1"
-seg2_texture_007A50:
+
+seg2_texture_02007A50:
 .incbin "build/bin/segment2/segment2.07A50.ia1"
-seg2_texture_007A60:
+
+seg2_texture_02007A60:
 .incbin "build/bin/segment2/segment2.07A60.ia1"
-seg2_texture_007A70:
+
+seg2_texture_02007A70:
 .incbin "build/bin/segment2/segment2.07A70.ia1"
-seg2_texture_007A80:
+
+seg2_texture_02007A80:
 .incbin "build/bin/segment2/segment2.07A80.ia1"
-seg2_texture_007A90:
+
+seg2_texture_02007A90:
 .incbin "build/bin/segment2/segment2.07A90.ia1"
-seg2_texture_007AA0:
+
+seg2_texture_02007AA0:
 .incbin "build/bin/segment2/segment2.07AA0.ia1"
-seg2_texture_007AB0:
+
+seg2_texture_02007AB0:
 .incbin "build/bin/segment2/segment2.07AB0.ia1"
-seg2_texture_007AC0:
+
+seg2_texture_02007AC0:
 .incbin "build/bin/segment2/segment2.07AC0.ia1"
-seg2_texture_007AD0:
+
+seg2_texture_02007AD0:
 .incbin "build/bin/segment2/segment2.07AD0.ia1"
-seg2_texture_007AE0:
+
+seg2_texture_02007AE0:
 .incbin "build/bin/segment2/segment2.07AE0.ia1"
-seg2_texture_007AF0:
+
+seg2_texture_02007AF0:
 .incbin "build/bin/segment2/segment2.07AF0.ia1"
-seg2_texture_007B00:
+
+seg2_texture_02007B00:
 .incbin "build/bin/segment2/segment2.07B00.ia1"
-seg2_texture_007B10:
+
+seg2_texture_02007B10:
 .incbin "build/bin/segment2/segment2.07B10.ia1"
-seg2_texture_007B20:
+
+seg2_texture_02007B20:
 .incbin "build/bin/segment2/segment2.07B20.ia1"
-seg2_texture_007B30:
+
+seg2_texture_02007B30:
 .incbin "build/bin/segment2/segment2.07B30.ia1"
-seg2_texture_007B40:
+
+seg2_texture_02007B40:
 .incbin "build/bin/segment2/segment2.07B40.ia1"
-seg2_texture_007B50:
+
+seg2_texture_02007B50:
 .incbin "build/bin/segment2/segment2.07B50.rgba16"
-seg2_texture_007D50:
+
+seg2_texture_02007D50:
 .incbin "build/bin/segment2/segment2.07D50.rgba16"
-seg2_texture_007F50:
+
+seg2_texture_02007F50:
 .incbin "build/bin/segment2/segment2.07F50.rgba16"
-seg2_texture_008150:
+
+seg2_texture_02008150:
 .incbin "build/bin/segment2/segment2.08150.rgba16"
-seg2_texture_0081D0:
+
+seg2_texture_020081D0:
 .incbin "build/bin/segment2/segment2.081D0.rgba16"
 
 # HUD print table 0x02008250-0x02008337
 glabel seg2_hud_lut
-.word seg2_texture_000000, seg2_texture_000200, seg2_texture_000400, seg2_texture_000600
-.word seg2_texture_000800, seg2_texture_000A00, seg2_texture_000C00, seg2_texture_000E00
-.word seg2_texture_001000, seg2_texture_001200, seg2_texture_001400, seg2_texture_001600
-.word seg2_texture_001800, seg2_texture_001A00, seg2_texture_001C00, seg2_texture_001E00
-.word seg2_texture_002000, seg2_texture_002200, seg2_texture_002400, seg2_texture_002600
-.word seg2_texture_002800, seg2_texture_002A00, seg2_texture_002C00, seg2_texture_002E00
-.word seg2_texture_003000, seg2_texture_003200, seg2_texture_003400, seg2_texture_003600
-.word seg2_texture_003800, seg2_texture_003A00, seg2_texture_003C00, seg2_texture_003E00
-.word seg2_texture_004000, seg2_texture_004200, seg2_texture_004400, seg2_texture_004600
-.word seg2_texture_004C00, seg2_texture_004E00, seg2_texture_005000, seg2_texture_005200
-.word seg2_texture_005400,                 0x0,                 0x0,                 0x0
-.word                 0x0,                 0x0,                 0x0,                 0x0
-.word                 0x0,                 0x0, seg2_texture_005600, seg2_texture_005800
-.word seg2_texture_005A00, seg2_texture_005C00, seg2_texture_005E00, seg2_texture_006000
-.word seg2_texture_004800, seg2_texture_004A00
+.word seg2_texture_02000000, seg2_texture_02000200, seg2_texture_02000400, seg2_texture_02000600
+.word seg2_texture_02000800, seg2_texture_02000A00, seg2_texture_02000C00, seg2_texture_02000E00
+.word seg2_texture_02001000, seg2_texture_02001200, seg2_texture_02001400, seg2_texture_02001600
+.word seg2_texture_02001800, seg2_texture_02001A00, seg2_texture_02001C00, seg2_texture_02001E00
+.word seg2_texture_02002000, seg2_texture_02002200, seg2_texture_02002400, seg2_texture_02002600
+.word seg2_texture_02002800, seg2_texture_02002A00, seg2_texture_02002C00, seg2_texture_02002E00
+.word seg2_texture_02003000, seg2_texture_02003200, seg2_texture_02003400, seg2_texture_02003600
+.word seg2_texture_02003800, seg2_texture_02003A00, seg2_texture_02003C00, seg2_texture_02003E00
+.word seg2_texture_02004000, seg2_texture_02004200, seg2_texture_02004400, seg2_texture_02004600
+.word seg2_texture_02004C00, seg2_texture_02004E00, seg2_texture_02005000, seg2_texture_02005200
+.word seg2_texture_02005400,                   0x0,                   0x0,                   0x0
+.word                   0x0,                   0x0,                   0x0,                   0x0
+.word                   0x0,                   0x0, seg2_texture_02005600, seg2_texture_02005800
+.word seg2_texture_02005A00, seg2_texture_02005C00, seg2_texture_02005E00, seg2_texture_02006000
+.word seg2_texture_02004800, seg2_texture_02004A00
 
 # small font HUD LUT 0x02008338-0x02008737
 glabel seg2_small_font_lut
-.word seg2_texture_007100, seg2_texture_007110, seg2_texture_007120, seg2_texture_007130
-.word seg2_texture_007140, seg2_texture_007150, seg2_texture_007160, seg2_texture_007170
-.word seg2_texture_007180, seg2_texture_007190, seg2_texture_0071A0, seg2_texture_0071B0
-.word seg2_texture_0071C0, seg2_texture_0071D0, seg2_texture_0071E0, seg2_texture_0071F0
-.word seg2_texture_007200, seg2_texture_007210, seg2_texture_007220, seg2_texture_007230
-.word seg2_texture_007240, seg2_texture_007250, seg2_texture_007260, seg2_texture_007270
-.word seg2_texture_007280, seg2_texture_007290, seg2_texture_0072A0, seg2_texture_0072B0
-.word seg2_texture_0072C0, seg2_texture_0072D0, seg2_texture_0072E0, seg2_texture_0072F0
-.word seg2_texture_007300, seg2_texture_007310, seg2_texture_007320, seg2_texture_007330
-.word                 0x0,                 0x0,                 0x0,                 0x0
-.word                 0x0,                 0x0,                 0x0,                 0x0
-.word                 0x0,                 0x0,                 0x0,                 0x0
-.word                 0x0,                 0x0,                 0x0,                 0x0
-.word                 0x0,                 0x0,                 0x0,                 0x0
-.word                 0x0,                 0x0,                 0x0,                 0x0
-.word                 0x0,                 0x0,                 0x0,                 0x0
-.word seg2_texture_007420, seg2_texture_007430, seg2_texture_007440, seg2_texture_007450
-.word seg2_texture_007460, seg2_texture_007470, seg2_texture_007480, seg2_texture_007490
-.word seg2_texture_0074A0, seg2_texture_0074B0, seg2_texture_0074C0, seg2_texture_0074D0
-.word seg2_texture_0074E0, seg2_texture_0074F0, seg2_texture_007500, seg2_texture_007510
-.word seg2_texture_007520, seg2_texture_007530, seg2_texture_007540, seg2_texture_007550
-.word seg2_texture_007560, seg2_texture_007570, seg2_texture_007580, seg2_texture_007590
-.word seg2_texture_0075A0, seg2_texture_0075B0, seg2_texture_0075C0, seg2_texture_0075D0
-.word seg2_texture_0075E0, seg2_texture_0075F0, seg2_texture_007600, seg2_texture_007610
-.word seg2_texture_007620, seg2_texture_007630, seg2_texture_007640, seg2_texture_007650
-.word seg2_texture_007660, seg2_texture_007670, seg2_texture_007680, seg2_texture_007690
-.word seg2_texture_0076A0, seg2_texture_0076B0, seg2_texture_0076C0, seg2_texture_0076D0
-.word seg2_texture_0076E0, seg2_texture_0076F0,                 0x0, seg2_texture_0077A0
-.word seg2_texture_0077B0, seg2_texture_0077C0, seg2_texture_0077D0, seg2_texture_0077E0
-.word seg2_texture_0077F0, seg2_texture_007800, seg2_texture_007810, seg2_texture_007820
-.word seg2_texture_007830, seg2_texture_007840, seg2_texture_007850, seg2_texture_007860
-.word seg2_texture_007870, seg2_texture_007880, seg2_texture_007890, seg2_texture_0078A0
-.word seg2_texture_0078B0, seg2_texture_0078C0, seg2_texture_0078D0, seg2_texture_0078E0
-.word seg2_texture_0078F0, seg2_texture_007900, seg2_texture_007910, seg2_texture_007920
-.word seg2_texture_007930, seg2_texture_007940, seg2_texture_007950, seg2_texture_007960
-.word seg2_texture_007970, seg2_texture_007980, seg2_texture_007990, seg2_texture_0079A0
-.word seg2_texture_0079B0, seg2_texture_0079C0, seg2_texture_0079D0, seg2_texture_0079E0
-.word seg2_texture_0079F0, seg2_texture_007A00, seg2_texture_007A10, seg2_texture_007A20
-.word seg2_texture_007A30, seg2_texture_007A40, seg2_texture_007A50, seg2_texture_007A60
-.word                 0x0, seg2_texture_007A70,                 0x0, seg2_texture_007340
-.word seg2_texture_007700, seg2_texture_007710, seg2_texture_007720, seg2_texture_007730
-.word seg2_texture_007740, seg2_texture_007750, seg2_texture_007760, seg2_texture_007780
-.word seg2_texture_007770,                 0x0,                 0x0,                 0x0
-.word                 0x0,                 0x0,                 0x0,                 0x0
-.word                 0x0,                 0x0,                 0x0,                 0x0
-.word                 0x0,                 0x0,                 0x0,                 0x0
-.word                 0x0,                 0x0,                 0x0,                 0x0
-.word                 0x0,                 0x0,                 0x0,                 0x0
-.word                 0x0,                 0x0,                 0x0,                 0x0
-.word                 0x0,                 0x0,                 0x0,                 0x0
-.word                 0x0,                 0x0,                 0x0,                 0x0
-.word                 0x0,                 0x0,                 0x0,                 0x0
-.word seg2_texture_007A80, seg2_texture_007A90, seg2_texture_007AA0, seg2_texture_007AB0
-.word seg2_texture_007AC0, seg2_texture_007AD0, seg2_texture_007AE0, seg2_texture_007AF0
-.word seg2_texture_007B00,                 0x0,                 0x0,                 0x0
-.word                 0x0,                 0x0,                 0x0,                 0x0
-.word                 0x0, seg2_texture_0073B0, seg2_texture_0073C0, seg2_texture_0073D0
-.word seg2_texture_0073A0,                 0x0,                 0x0,                 0x0
-.word                 0x0,                 0x0,                 0x0,                 0x0
-.word                 0x0,                 0x0,                 0x0,                 0x0
-.word seg2_texture_007360, seg2_texture_007370, seg2_texture_007350, seg2_texture_007380
-.word seg2_texture_007390, seg2_texture_007B10, seg2_texture_007B20, seg2_texture_007B30
-.word seg2_texture_007B40, seg2_texture_0073E0, seg2_texture_007400, seg2_texture_0073F0
-.word seg2_texture_007790, seg2_texture_007410,                 0x0,                 0x0
+.word seg2_texture_02007100, seg2_texture_02007110, seg2_texture_02007120, seg2_texture_02007130
+.word seg2_texture_02007140, seg2_texture_02007150, seg2_texture_02007160, seg2_texture_02007170
+.word seg2_texture_02007180, seg2_texture_02007190, seg2_texture_020071A0, seg2_texture_020071B0
+.word seg2_texture_020071C0, seg2_texture_020071D0, seg2_texture_020071E0, seg2_texture_020071F0
+.word seg2_texture_02007200, seg2_texture_02007210, seg2_texture_02007220, seg2_texture_02007230
+.word seg2_texture_02007240, seg2_texture_02007250, seg2_texture_02007260, seg2_texture_02007270
+.word seg2_texture_02007280, seg2_texture_02007290, seg2_texture_020072A0, seg2_texture_020072B0
+.word seg2_texture_020072C0, seg2_texture_020072D0, seg2_texture_020072E0, seg2_texture_020072F0
+.word seg2_texture_02007300, seg2_texture_02007310, seg2_texture_02007320, seg2_texture_02007330
+.word                   0x0,                   0x0,                   0x0,                   0x0
+.word                   0x0,                   0x0,                   0x0,                   0x0
+.word                   0x0,                   0x0,                   0x0,                   0x0
+.word                   0x0,                   0x0,                   0x0,                   0x0
+.word                   0x0,                   0x0,                   0x0,                   0x0
+.word                   0x0,                   0x0,                   0x0,                   0x0
+.word                   0x0,                   0x0,                   0x0,                   0x0
+.word seg2_texture_02007420, seg2_texture_02007430, seg2_texture_02007440, seg2_texture_02007450
+.word seg2_texture_02007460, seg2_texture_02007470, seg2_texture_02007480, seg2_texture_02007490
+.word seg2_texture_020074A0, seg2_texture_020074B0, seg2_texture_020074C0, seg2_texture_020074D0
+.word seg2_texture_020074E0, seg2_texture_020074F0, seg2_texture_02007500, seg2_texture_02007510
+.word seg2_texture_02007520, seg2_texture_02007530, seg2_texture_02007540, seg2_texture_02007550
+.word seg2_texture_02007560, seg2_texture_02007570, seg2_texture_02007580, seg2_texture_02007590
+.word seg2_texture_020075A0, seg2_texture_020075B0, seg2_texture_020075C0, seg2_texture_020075D0
+.word seg2_texture_020075E0, seg2_texture_020075F0, seg2_texture_02007600, seg2_texture_02007610
+.word seg2_texture_02007620, seg2_texture_02007630, seg2_texture_02007640, seg2_texture_02007650
+.word seg2_texture_02007660, seg2_texture_02007670, seg2_texture_02007680, seg2_texture_02007690
+.word seg2_texture_020076A0, seg2_texture_020076B0, seg2_texture_020076C0, seg2_texture_020076D0
+.word seg2_texture_020076E0, seg2_texture_020076F0,                   0x0, seg2_texture_020077A0
+.word seg2_texture_020077B0, seg2_texture_020077C0, seg2_texture_020077D0, seg2_texture_020077E0
+.word seg2_texture_020077F0, seg2_texture_02007800, seg2_texture_02007810, seg2_texture_02007820
+.word seg2_texture_02007830, seg2_texture_02007840, seg2_texture_02007850, seg2_texture_02007860
+.word seg2_texture_02007870, seg2_texture_02007880, seg2_texture_02007890, seg2_texture_020078A0
+.word seg2_texture_020078B0, seg2_texture_020078C0, seg2_texture_020078D0, seg2_texture_020078E0
+.word seg2_texture_020078F0, seg2_texture_02007900, seg2_texture_02007910, seg2_texture_02007920
+.word seg2_texture_02007930, seg2_texture_02007940, seg2_texture_02007950, seg2_texture_02007960
+.word seg2_texture_02007970, seg2_texture_02007980, seg2_texture_02007990, seg2_texture_020079A0
+.word seg2_texture_020079B0, seg2_texture_020079C0, seg2_texture_020079D0, seg2_texture_020079E0
+.word seg2_texture_020079F0, seg2_texture_02007A00, seg2_texture_02007A10, seg2_texture_02007A20
+.word seg2_texture_02007A30, seg2_texture_02007A40, seg2_texture_02007A50, seg2_texture_02007A60
+.word                   0x0, seg2_texture_02007A70,                   0x0, seg2_texture_02007340
+.word seg2_texture_02007700, seg2_texture_02007710, seg2_texture_02007720, seg2_texture_02007730
+.word seg2_texture_02007740, seg2_texture_02007750, seg2_texture_02007760, seg2_texture_02007780
+.word seg2_texture_02007770,                   0x0,                   0x0,                   0x0
+.word                   0x0,                   0x0,                   0x0,                   0x0
+.word                   0x0,                   0x0,                   0x0,                   0x0
+.word                   0x0,                   0x0,                   0x0,                   0x0
+.word                   0x0,                   0x0,                   0x0,                   0x0
+.word                   0x0,                   0x0,                   0x0,                   0x0
+.word                   0x0,                   0x0,                   0x0,                   0x0
+.word                   0x0,                   0x0,                   0x0,                   0x0
+.word                   0x0,                   0x0,                   0x0,                   0x0
+.word                   0x0,                   0x0,                   0x0,                   0x0
+.word seg2_texture_02007A80, seg2_texture_02007A90, seg2_texture_02007AA0, seg2_texture_02007AB0
+.word seg2_texture_02007AC0, seg2_texture_02007AD0, seg2_texture_02007AE0, seg2_texture_02007AF0
+.word seg2_texture_02007B00,                   0x0,                   0x0,                   0x0
+.word                   0x0,                   0x0,                   0x0,                   0x0
+.word                   0x0, seg2_texture_020073B0, seg2_texture_020073C0, seg2_texture_020073D0
+.word seg2_texture_020073A0,                   0x0,                   0x0,                   0x0
+.word                   0x0,                   0x0,                   0x0,                   0x0
+.word                   0x0,                   0x0,                   0x0,                   0x0
+.word seg2_texture_02007360, seg2_texture_02007370, seg2_texture_02007350, seg2_texture_02007380
+.word seg2_texture_02007390, seg2_texture_02007B10, seg2_texture_02007B20, seg2_texture_02007B30
+.word seg2_texture_02007B40, seg2_texture_020073E0, seg2_texture_02007400, seg2_texture_020073F0
+.word seg2_texture_02007790, seg2_texture_02007410,                   0x0,                   0x0
 
 # credits font LUT 0x02008738-0x020087CB
 glabel seg2_credits_font_lut
-.word                 0x0,                 0x0,                 0x0, seg2_texture_006200
-.word seg2_texture_006280,                 0x0, seg2_texture_006300,                 0x0
-.word                 0x0,                 0x0, seg2_texture_006380, seg2_texture_006400
-.word seg2_texture_006480, seg2_texture_006500, seg2_texture_006580, seg2_texture_006600
-.word seg2_texture_006680, seg2_texture_006700, seg2_texture_006780, seg2_texture_006800
-.word seg2_texture_006880, seg2_texture_006900, seg2_texture_006980, seg2_texture_006A00
-.word seg2_texture_006A80, seg2_texture_006B00, seg2_texture_006B80, seg2_texture_006C00
-.word seg2_texture_006C80, seg2_texture_006D00, seg2_texture_006D80, seg2_texture_006E00
-.word seg2_texture_006E80, seg2_texture_006F00, seg2_texture_006F80, seg2_texture_007000
-.word seg2_texture_007080
+.word                   0x0,                   0x0,                   0x0, seg2_texture_02006200
+.word seg2_texture_02006280,                   0x0, seg2_texture_02006300,                   0x0
+.word                   0x0,                   0x0, seg2_texture_02006380, seg2_texture_02006400
+.word seg2_texture_02006480, seg2_texture_02006500, seg2_texture_02006580, seg2_texture_02006600
+.word seg2_texture_02006680, seg2_texture_02006700, seg2_texture_02006780, seg2_texture_02006800
+.word seg2_texture_02006880, seg2_texture_02006900, seg2_texture_02006980, seg2_texture_02006A00
+.word seg2_texture_02006A80, seg2_texture_02006B00, seg2_texture_02006B80, seg2_texture_02006C00
+.word seg2_texture_02006C80, seg2_texture_02006D00, seg2_texture_02006D80, seg2_texture_02006E00
+.word seg2_texture_02006E80, seg2_texture_02006F00, seg2_texture_02006F80, seg2_texture_02007000
+.word seg2_texture_02007080
 
 # HUD camera table 0x020087CC-0x020087E3
 glabel seg2_hud_camera_lut
-.word seg2_texture_007B50, seg2_texture_005A00, seg2_texture_007D50, seg2_texture_007F50
-.word seg2_texture_008150, seg2_texture_0081D0
+.word seg2_texture_02007B50, seg2_texture_02005A00, seg2_texture_02007D50, seg2_texture_02007F50
+.word seg2_texture_02008150, seg2_texture_020081D0
 
 # debug strings
 .balign 4
@@ -3613,261 +3860,270 @@ glabel seg2_act_name_table
 .word act_name_88, act_name_89, act_name_90, act_name_91
 .word act_name_92, act_name_93, act_name_94, act_name_95
 .word act_name_96, 0x0
-.word 0x0
 
-.balign 8
-# 0xEC60-0xF250: F3D and vertices
-glabel seg2_f3d_00EC60 # 0x0200EC60
-.word 0xE7000000, 0x00000000
-.word 0xBA001402, 0x00200000
-.word 0xBA001301, 0x00000000
-.word 0xB9000002, 0x00000001
-.word 0xF9000000, 0xFFFFFFFF
-.word 0xB900031D, 0x005041C8
-.word 0xB8000000, 0x00000000
+.balign 0x10
 
-glabel seg2_f3d_00EC98 # 0x0200EC98
-.word 0xF5100000, 0x07010040
-.word 0xE6000000, 0x00000000
-.word 0xF3000000, 0x070FF200
-.word 0xF5100800, 0x00010040
-.word 0xF2000000, 0x0003C03C
-.word 0xB8000000, 0x00000000
+glabel seg2_dl_0200EC60 # 0x0200EC60 - 0x0200EC98
+gsDPPipeSync
+gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_CYCLETYPE, 2, 0x00200000
+gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_TEXTPERSP, 1, 0x00000000
+gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_ALPHACOMPARE, 2, 0x00000001
+gsDPSetBlendColor 255, 255, 255, 255
+gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_RENDERMODE, 29, 0x005041C8
+gsSPEndDisplayList
 
-glabel seg2_f3d_00ECC8 # 0x0200ECC8
-.word 0xE7000000, 0x00000000
-.word 0xBA001301, 0x00080000
-.word 0xB900031D, 0x00552078
-.word 0xB9000002, 0x00000000
-.word 0xBA001402, 0x00000000
-.word 0xBB000000, 0xFFFFFFFF
-.word 0xB8000000, 0x00000000
+glabel seg2_dl_0200EC98 # 0x0200EC98 - 0x0200ECC8
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 4, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 4, G_TX_NOLOD
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x0FF, 0x200
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 4, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 4, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 4, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, 60, 60
+gsSPEndDisplayList
 
-glabel seg2_f3d_00ED00 # 0x0200ED00
-.word 0xE7000000, 0x00000000
-.word 0xBA001301, 0x00000000
-.word 0xFC129A25, 0xFF37FFFF
-.word 0xFB000000, 0xFFFFFFFF
-.word 0xB900031D, 0x005041C8
-.word 0xBA000C02, 0x00000000
-.word 0xB8000000, 0x00000000
+glabel seg2_dl_0200ECC8 # 0x0200ECC8 - 0x0200ED00
+gsDPPipeSync
+gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_TEXTPERSP, 1, 0x00080000
+gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_RENDERMODE, 29, 0x00552078
+gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_ALPHACOMPARE, 2, 0x00000000
+gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_CYCLETYPE, 2, 0x00000000
+gsSPTexture -1, -1, 0, 0, 0
+gsSPEndDisplayList
 
-glabel seg2_f3d_00ED38 # 0x0200ED38
-.word 0xF5100000, 0x07010040
-.word 0xE6000000, 0x00000000
-.word 0xF3000000, 0x070FF200
-.word 0xF5100800, 0x00010040
-.word 0xF2000000, 0x0003C03C
-.word 0xB8000000, 0x00000000
+glabel seg2_dl_0200ED00 # 0x0200ED00 - 0x0200ED38
+gsDPPipeSync
+gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_TEXTPERSP, 1, 0x00000000
+gsDPSetCombineMode G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_ENVIRONMENT, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_ENVIRONMENT, G_ACMUX_0, G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_ENVIRONMENT, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_ENVIRONMENT, G_ACMUX_0
+gsDPSetEnvColor 255, 255, 255, 255
+gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_RENDERMODE, 29, 0x005041C8
+gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_TEXTFILT, 2, 0x00000000
+gsSPEndDisplayList
 
-glabel seg2_f3d_00ED68 # 0x0200ED68
-.word 0xE7000000, 0x00000000
-.word 0xBA001301, 0x00080000
-.word 0xB900031D, 0x00552078
-.word 0xFCFFFFFF, 0xFFFE793C
-.word 0xFB000000, 0xFFFFFFFF
-.word 0xBA000C02, 0x00002000
-.word 0xBB000000, 0xFFFFFFFF
-.word 0xB8000000, 0x00000000
+glabel seg2_dl_0200ED38 # 0x0200ED38 - 0x0200ED68
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 4, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 4, G_TX_NOLOD
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x0FF, 0x200
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 4, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 4, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 4, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, 60, 60
+gsSPEndDisplayList
 
-seg2_vertex_0EDA8:
-vertex    0,  -80,    0,    0,    0, 0xFF, 0xFF, 0xFF, 0xFF
-vertex  130,  -80,    0,    0,    0, 0xFF, 0xFF, 0xFF, 0xFF
-vertex  130,    0,    0,    0,    0, 0xFF, 0xFF, 0xFF, 0xFF
-vertex    0,    0,    0,    0,    0, 0xFF, 0xFF, 0xFF, 0xFF
+glabel seg2_dl_0200ED68 # 0x0200ED68 - 0x0200EDA8
+gsDPPipeSync
+gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_TEXTPERSP, 1, 0x00080000
+gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_RENDERMODE, 29, 0x00552078
+gsDPSetCombineMode G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsDPSetEnvColor 255, 255, 255, 255
+gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_TEXTFILT, 2, 0x00002000
+gsSPTexture -1, -1, 0, 0, 0
+gsSPEndDisplayList
 
-glabel seg2_f3d_00EDE8 # 0x0200EDE8
-.word 0xE7000000, 0x00000000
-.word 0xB6000000, 0x00020000
-.word 0xFC42CA85, 0xFF97FFFF
-.word 0xB900031D, 0x00504240
-.word 0x04300040, seg2_vertex_0EDA8
-.word 0xBF000000, 0x00000A14
-.word 0xBF000000, 0x0000141E
-.word 0xB8000000, 0x00000000
+seg2_vertex_0200EDA8: # 0x0200EDA8 - 0x0200EDE8
+vertex      0,    -80,      0,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
+vertex    130,    -80,      0,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
+vertex    130,      0,      0,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
+vertex      0,      0,      0,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
 
-seg2_vertex_0EE28:
-vertex    0,    0,    0,    0, 1024, 0xFF, 0xFF, 0xFF, 0xFF
-vertex    8,    0,    0,  512, 1024, 0xFF, 0xFF, 0xFF, 0xFF
-vertex    8,   16,    0,  512,    0, 0xFF, 0xFF, 0xFF, 0xFF
-vertex    0,   16,    0,    0,    0, 0xFF, 0xFF, 0xFF, 0xFF
+glabel seg2_dl_0200EDE8 # 0x0200EDE8 - 0x0200EE28
+gsDPPipeSync
+gsSPClearGeometryMode G_LIGHTING
+gsDPSetCombineMode G_CCMUX_SHADE, G_CCMUX_0, G_CCMUX_ENVIRONMENT, G_CCMUX_0, G_ACMUX_SHADE, G_ACMUX_0, G_ACMUX_ENVIRONMENT, G_ACMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_CCMUX_ENVIRONMENT, G_CCMUX_0, G_ACMUX_SHADE, G_ACMUX_0, G_ACMUX_ENVIRONMENT, G_ACMUX_0
+gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_RENDERMODE, 29, 0x00504240
+gsSPVertex seg2_vertex_0200EDA8, 4, 0
+gsSP1Triangle  0,  1,  2, 0x0
+gsSP1Triangle  0,  2,  3, 0x0
+gsSPEndDisplayList
 
-glabel seg2_f3d_00EE68 # 0x0200EE68
-.word 0xE7000000, 0x00000000
-.word 0xB6000000, 0x00020000
-.word 0xFC129A25, 0xFF37FFFF
-.word 0xFB000000, 0xFFFFFFFF
-.word 0xB900031D, 0x00504240
-.word 0xBA000C02, 0x00000000
-.word 0xBB000001, 0x80008000
-.word 0xB8000000, 0x00000000
+seg2_vertex_0200EE28: # 0x0200EE28 - 0x0200EE68
+vertex      0,      0,      0,      0,   1024,  0xFF, 0xFF, 0xFF, 0xFF
+vertex      8,      0,      0,    512,   1024,  0xFF, 0xFF, 0xFF, 0xFF
+vertex      8,     16,      0,    512,      0,  0xFF, 0xFF, 0xFF, 0xFF
+vertex      0,     16,      0,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
 
-glabel seg2_f3d_00EEA8 # 0x0200EEA8
-.word 0xF5680000, 0x07090230
-.word 0xE6000000, 0x00000000
-.word 0xF3000000, 0x0707F800
-.word 0xF5680200, 0x00090230
-.word 0xF2000000, 0x0001C03C
-.word 0x04300040, seg2_vertex_0EE28
-.word 0xBF000000, 0x00000A14
-.word 0xBF000000, 0x0000141E
-.word 0xB8000000, 0x00000000
+glabel seg2_dl_0200EE68 # 0x0200EE68 - 0x0200EEA8
+gsDPPipeSync
+gsSPClearGeometryMode G_LIGHTING
+gsDPSetCombineMode G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_ENVIRONMENT, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_ENVIRONMENT, G_ACMUX_0, G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_ENVIRONMENT, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_ENVIRONMENT, G_ACMUX_0
+gsDPSetEnvColor 255, 255, 255, 255
+gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_RENDERMODE, 29, 0x00504240
+gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_TEXTFILT, 2, 0x00000000
+gsSPTexture -32768, -32768, 0, 0, 1
+gsSPEndDisplayList
 
-glabel seg2_f3d_00EEF0 # 0x0200EEF0
-.word 0xE7000000, 0x00000000
-.word 0xBB000000, 0xFFFFFFFF
-.word 0xFCFFFFFF, 0xFFFE793C
-.word 0xFB000000, 0xFFFFFFFF
-.word 0xB7000000, 0x00020200
-.word 0xB900031D, 0x00552078
-.word 0xBA000C02, 0x00002000
-.word 0xB8000000, 0x00000000
+glabel seg2_dl_0200EEA8 # 0x0200EEA8 - 0x0200EEF0
+gsDPSetTile G_IM_FMT_IA, G_IM_SIZ_8b, 0, 0, G_TX_LOADTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 4, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 3, G_TX_NOLOD
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x07F, 0x800
+gsDPSetTile G_IM_FMT_IA, G_IM_SIZ_8b, 1, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 4, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 3, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, 28, 60
+gsSPVertex seg2_vertex_0200EE28, 4, 0
+gsSP1Triangle  0,  1,  2, 0x0
+gsSP1Triangle  0,  2,  3, 0x0
+gsSPEndDisplayList
 
-seg2_vertex_0EF30:
-vertex    0,    0,    0,    0,    0, 0xFF, 0xFF, 0xFF, 0xFF
-vertex    8,    8,    0,    0,    0, 0xFF, 0xFF, 0xFF, 0xFF
-vertex    0,   16,    0,    0,    0, 0xFF, 0xFF, 0xFF, 0xFF
+glabel seg2_dl_0200EEF0 # 0x0200EEF0 - 0x0200EF30
+gsDPPipeSync
+gsSPTexture -1, -1, 0, 0, 0
+gsDPSetCombineMode G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsDPSetEnvColor 255, 255, 255, 255
+gsSPSetGeometryMode 0x00020200
+gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_RENDERMODE, 29, 0x00552078
+gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_TEXTFILT, 2, 0x00002000
+gsSPEndDisplayList
 
-glabel seg2_f3d_00EF60 # 0x0200EF60
-.word 0xB6000000, 0x00020000
-.word 0xFC42CA85, 0xFF97FFFF
-.word 0xB900031D, 0x00504240
-.word 0xBA000C02, 0x00000000
-.word 0x04200030, seg2_vertex_0EF30
-.word 0xBF000000, 0x00000A14
-.word 0xB7000000, 0x00020000
-.word 0xB900031D, 0x00552078
-.word 0xFCFFFFFF, 0xFFFE793C
-.word 0xB8000000, 0x00000000
+seg2_vertex_0200EF30: # 0x0200EF30 - 0x0200EF60
+vertex      0,      0,      0,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
+vertex      8,      8,      0,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
+vertex      0,     16,      0,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
 
-seg2_vertex_0EFB0:
-vertex  -32,  -32,    0,    0, 1024, 0xFF, 0xFF, 0xFF, 0xFF
-vertex   32,  -32,    0, 1024, 1024, 0xFF, 0xFF, 0xFF, 0xFF
-vertex   32,   32,    0, 1024,    0, 0xFF, 0xFF, 0xFF, 0xFF
-vertex  -32,   32,    0,    0,    0, 0xFF, 0xFF, 0xFF, 0xFF
+glabel seg2_dl_0200EF60 # 0x0200EF60 - 0x0200EFB0
+gsSPClearGeometryMode G_LIGHTING
+gsDPSetCombineMode G_CCMUX_SHADE, G_CCMUX_0, G_CCMUX_ENVIRONMENT, G_CCMUX_0, G_ACMUX_SHADE, G_ACMUX_0, G_ACMUX_ENVIRONMENT, G_ACMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_CCMUX_ENVIRONMENT, G_CCMUX_0, G_ACMUX_SHADE, G_ACMUX_0, G_ACMUX_ENVIRONMENT, G_ACMUX_0
+gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_RENDERMODE, 29, 0x00504240
+gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_TEXTFILT, 2, 0x00000000
+gsSPVertex seg2_vertex_0200EF30, 3, 0
+gsSP1Triangle  0,  1,  2, 0x0
+gsSPSetGeometryMode G_LIGHTING
+gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_RENDERMODE, 29, 0x00552078
+gsDPSetCombineMode G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsSPEndDisplayList
 
-glabel seg2_f3d_00EFF0 # 0x0200EFF0
-.word 0xE7000000, 0x00000000
-.word 0xFCFFFFFF, 0xFFFCF279
-.word 0xB6000000, 0x00020000
-.word 0xF5100000, 0x07000000
-.word 0xBB000001, 0x80008000
-.word 0xE8000000, 0x00000000
-.word 0xF5100800, 0x00090240
-.word 0xF2000000, 0x0003C03C
-.word 0xB8000000, 0x00000000
+seg2_vertex_0200EFB0: # 0x0200EFB0 - 0x0200EFF0
+vertex    -32,    -32,      0,      0,   1024,  0xFF, 0xFF, 0xFF, 0xFF
+vertex     32,    -32,      0,   1024,   1024,  0xFF, 0xFF, 0xFF, 0xFF
+vertex     32,     32,      0,   1024,      0,  0xFF, 0xFF, 0xFF, 0xFF
+vertex    -32,     32,      0,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
 
-glabel seg2_f3d_00F038 # 0x0200F038
-.word 0x04300040, seg2_vertex_0EFB0
-.word 0xBF000000, 0x00000A14
-.word 0xBF000000, 0x0000141E
-.word 0xBB000000, 0x80008000
-.word 0xE7000000, 0x00000000
-.word 0xFCFFFFFF, 0xFFFE793C
-.word 0xB7000000, 0x00020000
-.word 0xB8000000, 0x00000000
+glabel seg2_dl_0200EFF0 # 0x0200EFF0 - 0x0200F038
+gsDPPipeSync
+gsDPSetCombineMode G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_TEXEL0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_TEXEL0
+gsSPClearGeometryMode G_LIGHTING
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
+gsSPTexture -32768, -32768, 0, 0, 1
+gsDPTileSync
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 4, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 4, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 4, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, 60, 60
+gsSPEndDisplayList
 
-glabel seg2_f3d_00F078 # 0x0200F078
-.word 0x06000000, seg2_f3d_00EFF0
-.word 0xFD100000, seg2_texture_000000
-.word 0xE6000000, 0x00000000
-.word 0xF3000000, 0x070FF200
-.word 0x06000000, seg2_f3d_00F038
-.word 0xB8000000, 0x00000000
+glabel seg2_dl_0200F038 # 0x0200F038 - 0x0200F078
+gsSPVertex seg2_vertex_0200EFB0, 4, 0
+gsSP1Triangle  0,  1,  2, 0x0
+gsSP1Triangle  0,  2,  3, 0x0
+gsSPTexture -32768, -32768, 0, 0, 0
+gsDPPipeSync
+gsDPSetCombineMode G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsSPSetGeometryMode G_LIGHTING
+gsSPEndDisplayList
 
-glabel seg2_f3d_00F0A8 # 0x0200F0A8
-.word 0x06000000, seg2_f3d_00EFF0
-.word 0xFD100000, seg2_texture_000200
-.word 0xE6000000, 0x00000000
-.word 0xF3000000, 0x070FF200
-.word 0x06000000, seg2_f3d_00F038
-.word 0xB8000000, 0x00000000
+glabel seg2_dl_0200F078 # 0x0200F078 - 0x0200F0A8
+gsSPDisplayList seg2_dl_0200EFF0
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, seg2_texture_02000000
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x0FF, 0x200
+gsSPDisplayList seg2_dl_0200F038
+gsSPEndDisplayList
 
-glabel seg2_f3d_00F0D8 # 0x0200F0D8
-.word 0x06000000, seg2_f3d_00EFF0
-.word 0xFD100000, seg2_texture_000400
-.word 0xE6000000, 0x00000000
-.word 0xF3000000, 0x070FF200
-.word 0x06000000, seg2_f3d_00F038
-.word 0xB8000000, 0x00000000
+glabel seg2_dl_0200F0A8 # 0x0200F0A8 - 0x0200F0D8
+gsSPDisplayList seg2_dl_0200EFF0
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, seg2_texture_02000200
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x0FF, 0x200
+gsSPDisplayList seg2_dl_0200F038
+gsSPEndDisplayList
 
-glabel seg2_f3d_00F108 # 0x0200F108
-.word 0x06000000, seg2_f3d_00EFF0
-.word 0xFD100000, seg2_texture_000600
-.word 0xE6000000, 0x00000000
-.word 0xF3000000, 0x070FF200
-.word 0x06000000, seg2_f3d_00F038
-.word 0xB8000000, 0x00000000
+glabel seg2_dl_0200F0D8 # 0x0200F0D8 - 0x0200F108
+gsSPDisplayList seg2_dl_0200EFF0
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, seg2_texture_02000400
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x0FF, 0x200
+gsSPDisplayList seg2_dl_0200F038
+gsSPEndDisplayList
 
-glabel seg2_f3d_00F138 # 0x0200F138
-.word 0x06000000, seg2_f3d_00EFF0
-.word 0xFD100000, seg2_texture_000800
-.word 0xE6000000, 0x00000000
-.word 0xF3000000, 0x070FF200
-.word 0x06000000, seg2_f3d_00F038
-.word 0xB8000000, 0x00000000
+glabel seg2_dl_0200F108 # 0x0200F108 - 0x0200F138
+gsSPDisplayList seg2_dl_0200EFF0
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, seg2_texture_02000600
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x0FF, 0x200
+gsSPDisplayList seg2_dl_0200F038
+gsSPEndDisplayList
 
-glabel seg2_f3d_00F168 # 0x0200F168
-.word 0x06000000, seg2_f3d_00EFF0
-.word 0xFD100000, seg2_texture_000A00
-.word 0xE6000000, 0x00000000
-.word 0xF3000000, 0x070FF200
-.word 0x06000000, seg2_f3d_00F038
-.word 0xB8000000, 0x00000000
+glabel seg2_dl_0200F138 # 0x0200F138 - 0x0200F168
+gsSPDisplayList seg2_dl_0200EFF0
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, seg2_texture_02000800
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x0FF, 0x200
+gsSPDisplayList seg2_dl_0200F038
+gsSPEndDisplayList
 
-glabel seg2_f3d_00F198 # 0x0200F198
-.word 0x06000000, seg2_f3d_00EFF0
-.word 0xFD100000, seg2_texture_000C00
-.word 0xE6000000, 0x00000000
-.word 0xF3000000, 0x070FF200
-.word 0x06000000, seg2_f3d_00F038
-.word 0xB8000000, 0x00000000
+glabel seg2_dl_0200F168 # 0x0200F168 - 0x0200F198
+gsSPDisplayList seg2_dl_0200EFF0
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, seg2_texture_02000A00
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x0FF, 0x200
+gsSPDisplayList seg2_dl_0200F038
+gsSPEndDisplayList
 
-glabel seg2_f3d_00F1C8 # 0x0200F1C8
-.word 0x06000000, seg2_f3d_00EFF0
-.word 0xFD100000, seg2_texture_000E00
-.word 0xE6000000, 0x00000000
-.word 0xF3000000, 0x070FF200
-.word 0x06000000, seg2_f3d_00F038
-.word 0xB8000000, 0x00000000
+glabel seg2_dl_0200F198 # 0x0200F198 - 0x0200F1C8
+gsSPDisplayList seg2_dl_0200EFF0
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, seg2_texture_02000C00
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x0FF, 0x200
+gsSPDisplayList seg2_dl_0200F038
+gsSPEndDisplayList
 
-glabel seg2_f3d_00F1F8 # 0x0200F1F8
-.word 0x06000000, seg2_f3d_00EFF0
-.word 0xFD100000, seg2_texture_001000
-.word 0xE6000000, 0x00000000
-.word 0xF3000000, 0x070FF200
-.word 0x06000000, seg2_f3d_00F038
-.word 0xB8000000, 0x00000000
+glabel seg2_dl_0200F1C8 # 0x0200F1C8 - 0x0200F1F8
+gsSPDisplayList seg2_dl_0200EFF0
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, seg2_texture_02000E00
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x0FF, 0x200
+gsSPDisplayList seg2_dl_0200F038
+gsSPEndDisplayList
 
-glabel seg2_f3d_00F228 # 0x0200F228
-.word 0x06000000, seg2_f3d_00EFF0
-.word 0xFD100000, seg2_texture_001200
-.word 0xE6000000, 0x00000000
-.word 0xF3000000, 0x070FF200
-.word 0x06000000, seg2_f3d_00F038
-.word 0xB8000000, 0x00000000
+glabel seg2_dl_0200F1F8 # 0x0200F1F8 - 0x0200F228
+gsSPDisplayList seg2_dl_0200EFF0
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, seg2_texture_02001000
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x0FF, 0x200
+gsSPDisplayList seg2_dl_0200F038
+gsSPEndDisplayList
 
-seg2_texture_00F258:
+glabel seg2_dl_0200F228 # 0x0200F228 - 0x0200F258
+gsSPDisplayList seg2_dl_0200EFF0
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, seg2_texture_02001200
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x0FF, 0x200
+gsSPDisplayList seg2_dl_0200F038
+gsSPEndDisplayList
+
+seg2_texture_0200F258:
 .incbin "build/bin/segment2/segment2.0F258.ia8"
-seg2_texture_00F358:
+
+seg2_texture_0200F358:
 .incbin "build/bin/segment2/segment2.0F358.ia8"
-seg2_texture_00F458:
+
+seg2_texture_0200F458:
 .incbin "build/bin/segment2/segment2.0F458.ia8"
-seg2_texture_00FC58:
+
+seg2_texture_0200FC58:
 .incbin "build/bin/segment2/segment2.0FC58.ia8"
-seg2_texture_010458:
+
+seg2_texture_02010458:
 .incbin "build/bin/segment2/segment2.10458.ia8"
-seg2_texture_011458:
+
+seg2_texture_02011458:
 .incbin "build/bin/segment2/segment2.11458.ia8"
-seg2_texture_011C58:
+
+seg2_texture_02011C58:
 .incbin "build/bin/segment2/segment2.11C58.rgba16"
-seg2_texture_012458:
+
+seg2_texture_02012458:
 .incbin "build/bin/segment2/segment2.12458.rgba16"
-seg2_texture_012C58:
+
+seg2_texture_02012C58:
 .incbin "build/bin/segment2/segment2.12C58.rgba16"
-seg2_texture_013458:
+
+seg2_texture_02013458:
 .incbin "build/bin/segment2/segment2.13458.ia16"
-seg2_texture_013C58:
+
+seg2_texture_02013C58:
 .incbin "build/bin/segment2/segment2.13C58.rgba16"
 
 # 14458-178CF: TODO
@@ -3876,8 +4132,7 @@ seg2_todo_14458:
 .byte 0xFF, 0xFF, 0xFF, 0x00, 0xFF, 0xFF, 0xFF, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-# 172D0-178BF: matrices, F3D, vertices
-seg2_matrix_014470:
+seg2_matrix_02014470: # 0x02014470 - 0x020144B0
 .hword     1,     0,     0,     0
 .hword     0,     1,     0,     0
 .hword     0,     0,     1,     0
@@ -3887,7 +4142,7 @@ seg2_matrix_014470:
 .hword     0,     0,     0,     0
 .hword     0,     0,     0,     0
 
-seg2_matrix_0144B0:
+seg2_matrix_020144B0: # 0x020144B0 - 0x020144F0
 .hword     0,     0,     0,     0
 .hword     0,     0,     0,     0
 .hword     0,     0,    -1,     0
@@ -3897,229 +4152,230 @@ seg2_matrix_0144B0:
 .hword     0,     0,     0,     0
 .hword     0,     0,     0,     0
 
-glabel seg2_f3d_0144F0 # 0x020144F0
-.word 0xBF000000, 0x00000A14
-.word 0xBF000000, 0x0000141E
-.word 0xB8000000, 0x00000000
+glabel seg2_dl_020144F0 # 0x020144F0 - 0x02014508
+gsSP1Triangle  0,  1,  2, 0x0
+gsSP1Triangle  0,  2,  3, 0x0
+gsSPEndDisplayList
 
-glabel seg2_f3d_014508 # 0x02014508
-.word 0xBF000000, 0x0028323C
-.word 0xBF000000, 0x00283C46
-.word 0xB8000000, 0x00000000
+glabel seg2_dl_02014508 # 0x02014508 - 0x02014520
+gsSP1Triangle  4,  5,  6, 0x0
+gsSP1Triangle  4,  6,  7, 0x0
+gsSPEndDisplayList
 
-glabel seg2_f3d_014520 # 0x02014520
-.word 0xE7000000, 0x00000000
-.word 0xB6000000, 0x00022000
-.word 0xFC121824, 0xFF33FFFF
-.word 0xBB000001, 0xFFFFFFFF
-.word 0xB8000000, 0x00000000
+glabel seg2_dl_02014520 # 0x02014520 - 0x02014548
+gsDPPipeSync
+gsSPClearGeometryMode 0x00022000
+gsDPSetCombineMode G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_SHADE, G_ACMUX_0, G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_SHADE, G_ACMUX_0
+gsSPTexture -1, -1, 0, 0, 1
+gsSPEndDisplayList
 
-glabel seg2_f3d_014548 # 0x02014548
-.word 0x06000000, seg2_f3d_014520
-.word 0xFD700000, seg2_texture_00F258
-.word 0xF5700000, 0x07050140
-.word 0xE6000000, 0x00000000
-.word 0xF3000000, 0x0707F400
-.word 0xE7000000, 0x00000000
-.word 0xF5680400, 0x00050140
-.word 0xF2000000, 0x0003C03C
-.word 0xB8000000, 0x00000000
+glabel seg2_dl_02014548 # 0x02014548 - 0x02014590
+gsSPDisplayList seg2_dl_02014520
+gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_16b, 1, seg2_texture_0200F258
+gsDPSetTile G_IM_FMT_IA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_MIRROR, 4, G_TX_NOLOD, G_TX_WRAP | G_TX_MIRROR, 4, G_TX_NOLOD
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x07F, 0x400
+gsDPPipeSync
+gsDPSetTile G_IM_FMT_IA, G_IM_SIZ_8b, 2, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_MIRROR, 4, G_TX_NOLOD, G_TX_WRAP | G_TX_MIRROR, 4, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, 60, 60
+gsSPEndDisplayList
 
-glabel seg2_f3d_014590 # 0x02014590
-.word 0x06000000, seg2_f3d_014520
-.word 0xFD700000, seg2_texture_00F358
-.word 0xF5700000, 0x07050140
-.word 0xE6000000, 0x00000000
-.word 0xF3000000, 0x0707F400
-.word 0xE7000000, 0x00000000
-.word 0xF5680400, 0x00050140
-.word 0xF2000000, 0x0003C03C
-.word 0xB8000000, 0x00000000
+glabel seg2_dl_02014590 # 0x02014590 - 0x020145D8
+gsSPDisplayList seg2_dl_02014520
+gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_16b, 1, seg2_texture_0200F358
+gsDPSetTile G_IM_FMT_IA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_MIRROR, 4, G_TX_NOLOD, G_TX_WRAP | G_TX_MIRROR, 4, G_TX_NOLOD
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x07F, 0x400
+gsDPPipeSync
+gsDPSetTile G_IM_FMT_IA, G_IM_SIZ_8b, 2, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_MIRROR, 4, G_TX_NOLOD, G_TX_WRAP | G_TX_MIRROR, 4, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, 60, 60
+gsSPEndDisplayList
 
-glabel seg2_f3d_0145D8 # 0x020145D8
-.word 0xBF000000, 0x00001E28
-.word 0xBF000000, 0x0000280A
-.word 0xBF000000, 0x000A2814
-.word 0xBF000000, 0x00142832
-.word 0xBF000000, 0x001E3C28
-.word 0xBF000000, 0x00283C46
-.word 0xBF000000, 0x00284650
-.word 0xBF000000, 0x00285032
-.word 0xB8000000, 0x00000000
+glabel seg2_dl_020145D8 # 0x020145D8 - 0x02014620
+gsSP1Triangle  0,  3,  4, 0x0
+gsSP1Triangle  0,  4,  1, 0x0
+gsSP1Triangle  1,  4,  2, 0x0
+gsSP1Triangle  2,  4,  5, 0x0
+gsSP1Triangle  3,  6,  4, 0x0
+gsSP1Triangle  4,  6,  7, 0x0
+gsSP1Triangle  4,  7,  8, 0x0
+gsSP1Triangle  4,  8,  5, 0x0
+gsSPEndDisplayList
 
-glabel seg2_f3d_014620 # 0x02014620
-.word 0xBF000000, 0x0000140A
-.word 0xBF000000, 0x000A141E
-.word 0xB8000000, 0x00000000
+glabel seg2_dl_02014620 # 0x02014620 - 0x02014638
+gsSP1Triangle  0,  2,  1, 0x0
+gsSP1Triangle  1,  2,  3, 0x0
+gsSPEndDisplayList
 
-glabel seg2_f3d_014638 # 0x02014638
-.word 0xE7000000, 0x00000000
-.word 0xBB000000, 0xFFFFFFFF
-.word 0xB7000000, 0x00022000
-.word 0xFCFFFFFF, 0xFFFE793C
-.word 0xB8000000, 0x00000000
+glabel seg2_dl_02014638 # 0x02014638 - 0x02014660
+gsDPPipeSync
+gsSPTexture -1, -1, 0, 0, 0
+gsSPSetGeometryMode 0x00022000
+gsDPSetCombineMode G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsSPEndDisplayList
 
-glabel seg2_f3d_014660 # 0x02014660
-.word 0xE7000000, 0x00000000
-.word 0xB6000000, 0x00020000
-.word 0x01030040, seg2_matrix_014470
-.word 0x01010040, seg2_matrix_0144B0
-.word 0x01020040, seg2_matrix_014470
-.word 0xB4000000, 0x0000FFFF
-.word 0xB8000000, 0x00000000
+glabel seg2_dl_02014660 # 0x02014660 - 0x02014698
+gsDPPipeSync
+gsSPClearGeometryMode G_LIGHTING
+gsSPMatrix seg2_matrix_02014470, 3
+gsSPMatrix seg2_matrix_020144B0, 1
+gsSPMatrix seg2_matrix_02014470, 2
+gsImmp1 G_RDPHALF_1, 0x0000FFFF
+gsSPEndDisplayList
 
-glabel seg2_f3d_014698 # 0x02014698
-.word 0xE7000000, 0x00000000
-.word 0xB7000000, 0x00020000
-.word 0xFCFFFFFF, 0xFFFE793C
-.word 0xB900031D, 0x0F0A4000
-.word 0xB8000000, 0x00000000
+glabel seg2_dl_02014698 # 0x02014698 - 0x020146C0
+gsDPPipeSync
+gsSPSetGeometryMode G_LIGHTING
+gsDPSetCombineMode G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_RENDERMODE, 29, 0x0F0A4000
+gsSPEndDisplayList
 
-glabel seg2_f3d_0146C0 # 0x020146C0
-.word 0xBF000000, 0x0000280A
-.word 0xBF000000, 0x000A2832
-.word 0xBF000000, 0x000A3214
-.word 0xBF000000, 0x0014323C
-.word 0xBF000000, 0x00143C46
-.word 0xBF000000, 0x0014461E
-.word 0xBF000000, 0x001E2800
-.word 0xBF000000, 0x001E4628
-.word 0xB8000000, 0x00000000
+glabel seg2_dl_020146C0 # 0x020146C0 - 0x02014708
+gsSP1Triangle  0,  4,  1, 0x0
+gsSP1Triangle  1,  4,  5, 0x0
+gsSP1Triangle  1,  5,  2, 0x0
+gsSP1Triangle  2,  5,  6, 0x0
+gsSP1Triangle  2,  6,  7, 0x0
+gsSP1Triangle  2,  7,  3, 0x0
+gsSP1Triangle  3,  4,  0, 0x0
+gsSP1Triangle  3,  7,  4, 0x0
+gsSPEndDisplayList
 
-glabel seg2_f3d_014708 # 0x02014708
-.word 0xE7000000, 0x00000000
-.word 0xB6000000, 0x00020000
-.word 0xFC127E24, 0xFFFFF9FC
-.word 0xB4000000, 0x0000FFFF
-.word 0x01030040, seg2_matrix_014470
-.word 0xB8000000, 0x00000000
+glabel seg2_dl_02014708 # 0x02014708 - 0x02014738
+gsDPPipeSync
+gsSPClearGeometryMode G_LIGHTING
+gsDPSetCombineMode G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE, G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsImmp1 G_RDPHALF_1, 0x0000FFFF
+gsSPMatrix seg2_matrix_02014470, 3
+gsSPEndDisplayList
 
-glabel seg2_f3d_014738 # 0x02014738
-.word 0x01020040, seg2_matrix_014470
-.word 0xBB000001, 0xFFFFFFFF
-.word 0xE8000000, 0x00000000
-.word 0xF5101000, 0x00094250
-.word 0xF2000000, 0x0007C07C
-.word 0xB8000000, 0x00000000
+glabel seg2_dl_02014738 # 0x02014738 - 0x02014768
+gsSPMatrix seg2_matrix_02014470, 2
+gsSPTexture -1, -1, 0, 0, 1
+gsDPTileSync
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, 124, 124
+gsSPEndDisplayList
 
-glabel seg2_f3d_014768 # 0x02014768
-.word 0xE7000000, 0x00000000
-.word 0xBB000000, 0xFFFFFFFF
-.word 0xB7000000, 0x00020000
-.word 0xFCFFFFFF, 0xFFFE793C
-.word 0xB8000000, 0x00000000
+glabel seg2_dl_02014768 # 0x02014768 - 0x02014790
+gsDPPipeSync
+gsSPTexture -1, -1, 0, 0, 0
+gsSPSetGeometryMode G_LIGHTING
+gsDPSetCombineMode G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsSPEndDisplayList
 
-glabel seg2_f3d_014790 # 0x02014790
-.word 0xE7000000, 0x00000000
-.word 0xFC121824, 0xFF33FFFF
-.word 0xB6000000, 0x00022000
-.word 0xBB000001, 0xFFFFFFFF
-.word 0xE8000000, 0x00000000
-.word 0xF5101000, 0x00014050
-.word 0xF2000000, 0x0007C07C
-.word 0xB8000000, 0x00000000
+glabel seg2_dl_02014790 # 0x02014790 - 0x020147D0
+gsDPPipeSync
+gsDPSetCombineMode G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_SHADE, G_ACMUX_0, G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_SHADE, G_ACMUX_0
+gsSPClearGeometryMode 0x00022000
+gsSPTexture -1, -1, 0, 0, 1
+gsDPTileSync
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, 124, 124
+gsSPEndDisplayList
 
-glabel seg2_f3d_0147D0 # 0x020147D0
-.word 0xE7000000, 0x00000000
-.word 0xFC121824, 0xFF33FFFF
-.word 0xB6000000, 0x00022000
-.word 0xBB000001, 0xFFFFFFFF
-.word 0xE8000000, 0x00000000
-.word 0xF5701000, 0x00014050
-.word 0xF2000000, 0x0007C07C
-.word 0xB8000000, 0x00000000
+glabel seg2_dl_020147D0 # 0x020147D0 - 0x02014810
+gsDPPipeSync
+gsDPSetCombineMode G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_SHADE, G_ACMUX_0, G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_SHADE, G_ACMUX_0
+gsSPClearGeometryMode 0x00022000
+gsSPTexture -1, -1, 0, 0, 1
+gsDPTileSync
+gsDPSetTile G_IM_FMT_IA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, 124, 124
+gsSPEndDisplayList
 
-glabel seg2_f3d_014810 # 0x02014810
-.word 0xBB000000, 0xFFFFFFFF
-.word 0xE7000000, 0x00000000
-.word 0xB7000000, 0x00022000
-.word 0xFCFFFFFF, 0xFFFE793C
-.word 0xB8000000, 0x00000000
+glabel seg2_dl_02014810 # 0x02014810 - 0x02014838
+gsSPTexture -1, -1, 0, 0, 0
+gsDPPipeSync
+gsSPSetGeometryMode 0x00022000
+gsDPSetCombineMode G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsSPEndDisplayList
 
-seg2_texture_014838:
+seg2_texture_02014838: # 0x02014838 - 0x02014878
 .incbin "build/bin/segment2/segment2.14838.ia8"
 
-glabel seg2_f3d_014878 # 0x02014878
-.word 0xE7000000, 0x00000000
-.word 0xB6000000, 0x00020000
-.word 0xFC121824, 0xFF33FFFF
-.word 0xB900031D, 0x00404240
-.word 0xB4000000, 0x0000FFFF
-.word 0x01030040, seg2_matrix_014470
-.word 0xB8000000, 0x00000000
+glabel seg2_dl_02014878 # 0x02014878 - 0x020148B0
+gsDPPipeSync
+gsSPClearGeometryMode G_LIGHTING
+gsDPSetCombineMode G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_SHADE, G_ACMUX_0, G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_SHADE, G_ACMUX_0
+gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_RENDERMODE, 29, 0x00404240
+gsImmp1 G_RDPHALF_1, 0x0000FFFF
+gsSPMatrix seg2_matrix_02014470, 3
+gsSPEndDisplayList
 
-glabel seg2_f3d_0148B0 # 0x020148B0
-.word 0x01020040, seg2_matrix_014470
-.word 0xE8000000, 0x00000000
-.word 0xF5102000, 0x00094260
-.word 0xF2000000, 0x000FC07C
-.word 0xBB000001, 0xFFFFFFFF
-.word 0xB8000000, 0x00000000
+glabel seg2_dl_020148B0 # 0x020148B0 - 0x020148E0
+gsSPMatrix seg2_matrix_02014470, 2
+gsDPTileSync
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 16, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 6, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, 252, 124
+gsSPTexture -1, -1, 0, 0, 1
+gsSPEndDisplayList
 
-glabel seg2_f3d_0148E0 # 0x020148E0
-.word 0xE7000000, 0x00000000
-.word 0xFC121824, 0xFF33FFFF
-.word 0xE8000000, 0x00000000
-.word 0xF5680200, 0x0008C230
-.word 0xF2000000, 0x0001C01C
-.word 0xFD680000, seg2_texture_014838
-.word 0xE8000000, 0x00000000
-.word 0xF5680000, 0x07000000
-.word 0xE6000000, 0x00000000
-.word 0xF3000000, 0x0703F800
-.word 0xB8000000, 0x00000000
+glabel seg2_dl_020148E0 # 0x020148E0 - 0x02014938
+gsDPPipeSync
+gsDPSetCombineMode G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_SHADE, G_ACMUX_0, G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_SHADE, G_ACMUX_0
+gsDPTileSync
+gsDPSetTile G_IM_FMT_IA, G_IM_SIZ_8b, 1, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 3, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 3, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, 28, 28
+gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_8b, 1, seg2_texture_02014838
+gsDPTileSync
+gsDPSetTile G_IM_FMT_IA, G_IM_SIZ_8b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x03F, 0x800
+gsSPEndDisplayList
 
-glabel seg2_f3d_014938 # 0x02014938
-.word 0xBB000000, 0xFFFFFFFF
-.word 0xE7000000, 0x00000000
-.word 0xFCFFFFFF, 0xFFFE793C
-.word 0xB8000000, 0x00000000
+glabel seg2_dl_02014938 # 0x02014938 - 0x02014958
+gsSPTexture -1, -1, 0, 0, 0
+gsDPPipeSync
+gsDPSetCombineMode G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsSPEndDisplayList
 
-seg2_light_014958:
+seg2_light_02014958: # 0x02014958 - 0x02014960
 .byte 0x50, 0x50, 0x50, 0x00, 0x50, 0x50, 0x50, 0x00
-seg2_light_014960:
-.byte 0xFF, 0xFF, 0xFF, 0x00, 0xFF, 0xFF, 0xFF, 0x00, 0x32, 0x32, 0x32, 0x00
 
-.balign 0x10
-glabel seg2_f3d_014970 # 0x02014970
-.word 0xE7000000, 0x00000000
-.word 0xB7000000, 0x00020200
-.word 0xFC121824, 0xFF33FFFF
-.word 0x03860010, seg2_light_014960
-.word 0x03880010, seg2_light_014958
-.word 0xBB000001, 0xFFFFFFFF
-.word 0xB8000000, 0x00000000
+seg2_light_02014960: # 0x02014960 - 0x02014970
+.byte 0xFF, 0xFF, 0xFF, 0x00, 0xFF, 0xFF, 0xFF, 0x00
+.byte 0x32, 0x32, 0x32, 0x00, 0x00, 0x00, 0x00, 0x00
 
-glabel seg2_f3d_0149A8 # 0x020149A8
-.word 0xBB000000, 0xFFFFFFFF
-.word 0xE7000000, 0x00000000
-.word 0xFCFFFFFF, 0xFFFE793C
-.word 0xB8000000, 0x00000000
+glabel seg2_dl_02014970 # 0x02014970 - 0x020149A8
+gsDPPipeSync
+gsSPSetGeometryMode 0x00020200
+gsDPSetCombineMode G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_SHADE, G_ACMUX_0, G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_SHADE, G_ACMUX_0
+gsSPLight seg2_light_02014960, 1
+gsSPLight seg2_light_02014958, 2
+gsSPTexture -1, -1, 0, 0, 1
+gsSPEndDisplayList
 
-glabel seg2_f3d_0149C8 # 0x020149C8
-.word 0xE7000000, 0x00000000
-.word 0xB7000000, 0x00060000
-.word 0xFCFFFFFF, 0xFFFCF87C
-.word 0x03860010, seg2_light_014960
-.word 0x03880010, seg2_light_014958
-.word 0xBB000001, 0x40004000
-.word 0xB8000000, 0x00000000
+glabel seg2_dl_020149A8 # 0x020149A8 - 0x020149C8
+gsSPTexture -1, -1, 0, 0, 0
+gsDPPipeSync
+gsDPSetCombineMode G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsSPEndDisplayList
 
-glabel seg2_f3d_014A00 # 0x02014A00
-.word 0xBB000000, 0x40004000
-.word 0xE7000000, 0x00000000
-.word 0xB7000000, 0x00020000
-.word 0xB6000000, 0x00040000
-.word 0xFCFFFFFF, 0xFFFE793C
-.word 0xB8000000, 0x00000000
+glabel seg2_dl_020149C8 # 0x020149C8 - 0x02014A00
+gsDPPipeSync
+gsSPSetGeometryMode 0x00060000
+gsDPSetCombineMode G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsSPLight seg2_light_02014960, 1
+gsSPLight seg2_light_02014958, 2
+gsSPTexture 16384, 16384, 0, 0, 1
+gsSPEndDisplayList
 
-glabel seg2_f3d_014A30 # 0x02014A30
-.word 0xBF000000, 0x00000A14
-.word 0xBF000000, 0x001E2832
-.word 0xBF000000, 0x003C4650
-.word 0xBF000000, 0x005A646E
-.word 0xBF000000, 0x0078828C
-.word 0xB8000000, 0x00000000
+glabel seg2_dl_02014A00 # 0x02014A00 - 0x02014A30
+gsSPTexture 16384, 16384, 0, 0, 0
+gsDPPipeSync
+gsSPSetGeometryMode G_LIGHTING
+gsSPClearGeometryMode G_TEXTURE_GEN
+gsDPSetCombineMode G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+gsSPEndDisplayList
+
+glabel seg2_dl_02014A30 # 0x02014A30 - 0x02014A60
+gsSP1Triangle  0,  1,  2, 0x0
+gsSP1Triangle  3,  4,  5, 0x0
+gsSP1Triangle  6,  7,  8, 0x0
+gsSP1Triangle  9, 10, 11, 0x0
+gsSP1Triangle 12, 13, 14, 0x0
+gsSPEndDisplayList
 
 # 14A60-15BAD: count and triangles?
 # 14A60: triangle mesh

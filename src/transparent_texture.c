@@ -172,7 +172,7 @@ Gfx *Geo18_802D28CC(s32 sp30, short *sp34, UNUSED s32 sp38)
         sp24 = sp28;
 
         sp2C[1] = (sp2C[1] & 0xFF) | 0x100;
-        gSPDisplayList(sp24++, seg2_f3d_014660);
+        gSPDisplayList(sp24++, seg2_dl_02014660);
         gSPDisplayList(sp24++, cake_end_dl_07026400);
         gSPEndDisplayList(sp24);
     }

@@ -61,7 +61,7 @@ void render_hud_camera(s32 x, s32 y, u8 texture[])
 {
     gDPPipeSync(gDisplayListHead++);
     gDPSetTextureImage(gDisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, (u32) texture);
-    gSPDisplayList(gDisplayListHead++, &seg2_f3d_00EC98);
+    gSPDisplayList(gDisplayListHead++, &seg2_dl_0200EC98);
     gSPTextureRectangle(gDisplayListHead++, x << 2, y << 2, (x + 15) << 2, (y + 15) << 2, G_TX_RENDERTILE, 0, 0, 0x1000, 0x400);
 }
 
@@ -278,10 +278,10 @@ void render_hud_timer(void)
     print_text_fmt_int(229, 185,  "%0d", timerMins);
     print_text_fmt_int(249, 185, "%02d", timerSecs);
     print_text_fmt_int(283, 185,   "%d", timerFracSecs);
-    gSPDisplayList(gDisplayListHead++, seg2_f3d_00EC60);
+    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EC60);
     render_hud_camera(239, 32, (*hudPrintLUT)[56]);
     render_hud_camera(274, 32, (*hudPrintLUT)[57]);
-    gSPDisplayList(gDisplayListHead++, seg2_f3d_00ECC8);
+    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ECC8);
 }
 
 void set_camera_status(s16 a0)
@@ -302,7 +302,7 @@ void show_camera_status(void)
     if (sCameraHUD.d_F8 == 0)
         return;
     
-    gSPDisplayList(gDisplayListHead++, seg2_f3d_00EC60);
+    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EC60);
     render_hud_camera(x, y, (*cameraLUT)[0]);
 
     switch (sCameraHUD.d_F8 & 0x07)
@@ -328,7 +328,7 @@ void show_camera_status(void)
             break;
     }
 
-    gSPDisplayList(gDisplayListHead++, seg2_f3d_00ECC8);
+    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ECC8);
 }
 
 void render_hud(void)
