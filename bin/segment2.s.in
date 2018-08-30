@@ -4111,19 +4111,19 @@ seg2_texture_02010458:
 seg2_texture_02011458:
 .incbin "build/bin/segment2/segment2.11458.ia8"
 
-seg2_texture_02011C58:
+glabel seg2_texture_02011C58
 .incbin "build/bin/segment2/segment2.11C58.rgba16"
 
-seg2_texture_02012458:
+glabel seg2_texture_02012458
 .incbin "build/bin/segment2/segment2.12458.rgba16"
 
-seg2_texture_02012C58:
+glabel seg2_texture_02012C58
 .incbin "build/bin/segment2/segment2.12C58.rgba16"
 
-seg2_texture_02013458:
+glabel seg2_texture_02013458
 .incbin "build/bin/segment2/segment2.13458.ia16"
 
-seg2_texture_02013C58:
+glabel seg2_texture_02013C58
 .incbin "build/bin/segment2/segment2.13C58.rgba16"
 
 # 14458-178CF: TODO
