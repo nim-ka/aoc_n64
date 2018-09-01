@@ -978,9 +978,13 @@ s32 apply_to_obj_types_in_group(s32 types, void (*fn)(void *), struct ObjGroup* 
     s32 fnAppliedCount;
 
     fnAppliedCount = 0;
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wreturn-type"
     //! should be `return fnAppliedCount`;
     if (group == NULL) 
         return;
+#pragma GCC diagnostic pop
     
     if ((group->unk30 & 1) != 0)
         return fnAppliedCount;

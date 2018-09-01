@@ -3920,7 +3920,8 @@ int StopMario(int a)
     if (a == 1)
         func_8028F834(171);
     if (a == 2)
-        ;
+    {
+    }
     return sp1C;
 }
 
