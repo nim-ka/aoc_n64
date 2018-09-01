@@ -12,7 +12,6 @@
 #include "spawn_object.h"
 #include "surface_collision.h"
 
-extern s16 D_8033BF10[][8];
 extern const char D_80336610[];
 
 // These can be static:
@@ -87,7 +86,7 @@ struct struct8029D924_2 *Geo18_8029D924(s32 sp40, struct struct8029D924 *sp44, U
  
             if (sp30->unk18 == 10)
             {
-                if (D_8033BF10[5][3]) {
+                if (gDebugInfo[DEBUG_PAGE_ENEMYINFO][3]) {
                     sp24 = sp38++;
                     sp24->unk00 = 0xB9000002;
                     sp24->unk04 = 3;

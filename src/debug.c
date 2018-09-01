@@ -9,6 +9,7 @@
 #include "mario.h"
 #include "game.h"
 #include "main.h"
+#include "debug.h"
 
 extern int gDebugInfoFlags; // (1 = mapinfo, 2 = unused but set)
 
@@ -22,16 +23,6 @@ extern int gUnknownWallCount;
 extern s16 gNumFindFloorCalls;
 extern s16 gNumFindCeilCalls;
 extern s16 gNumFindWallCalls;
-
-// these were 2d grids that probably functioned as
-// recording debug information for all debug info
-// systems. however, the only used ones are [4]
-// and [5] (effectinfo and enemyinfo). The first
-// 4 rows are effectively unused, despite being
-// modifyable by the debug control function.
-extern s16 gDebugInfo[][8];
-extern s16 gDebugInfoOverwrite[][8]; // most likely used to manually copy in
-                                     // preset controls, since it is never set
 
 extern s16 D_8035FEE2;
 extern s16 D_8035FEE4;
@@ -85,15 +76,6 @@ static int sDebugInfoDPadMask = 0;
 static int sDebugInfoDPadUpdID = 0;
 static s8 sDebugLvSelectCheckFlag = FALSE;
 
-enum DebugPage {
-    DEBUG_PAGE_OBJECTINFO,       // 0: objectinfo
-    DEBUG_PAGE_CHECKSURFACEINFO, // 1: checkinfo/surfaceinfo
-    DEBUG_PAGE_MAPINFO,          // 2: mapinfo
-    DEBUG_PAGE_STAGEINFO,        // 3: stageinfo
-    DEBUG_PAGE_EFFECTINFO,       // 4: effectinfo
-    DEBUG_PAGE_ENEMYINFO         // 5: enemyinfo
-};
-
 #define DEBUG_PAGE_MIN DEBUG_PAGE_OBJECTINFO
 #define DEBUG_PAGE_MAX DEBUG_PAGE_ENEMYINFO
 
@@ -129,7 +111,7 @@ s64 get_current_clock(void)
     return wtf;
 }
 
-s64 get_clock_difference(UNUSED u64 arg0)
+s64 get_clock_difference(UNUSED s64 arg0)
 {
     u64 wtf = 0;
 
