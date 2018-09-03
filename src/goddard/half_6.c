@@ -9,6 +9,7 @@
 
 #include "../segment4.h"
 
+#include "gd_main.h"
 #include "gd_types.h"
 
 /* This is a file that was incorrectly included in "mario_head_6" when the 
@@ -16,7 +17,6 @@
 
 // TODO: Move these into proper headers once these files have had their types fixed
 /* over2 bss */ extern struct ObjGroup* D_801B9BB8;     // way bigger than usize, so what is it?
-/* over2 bss */ extern u32 D_801B99F8;    // flags of some sort
 /* over2 */ extern struct MyVec3f* func_80178D98(s32);
 /* over2 */ extern void func_8017B028(struct ObjGroup*);
 /* head3 */ extern struct ObjParticle* make_particle(u32, s32, f32, f32, f32);
@@ -57,7 +57,7 @@ void func_80197280(void)
 {
     sGdShapeCount = 0;
     sGdShapeListHead = NULL;
-    D_801B9BB8 = make_group(NULL);
+    D_801B9BB8 = make_group(0);
 }
 
 /* @ 245A90 for 0x24C; orig name: func_801972C0 */
@@ -616,7 +616,7 @@ void get_3DG1_shape(struct ObjShape* shape)
     struct ObjVertex** vtxPtrArr;
     struct ObjMaterial* mtl;
 
-    shape->unk2C = make_group(NULL);
+    shape->unk2C = make_group(0);
     func_8018D420("get_3DG1_shape");
 
     vtxPtrArr = func_8019BC18(72000 * sizeof(struct ObjVertex*));   //288,000 = 72,000 * 4
@@ -813,7 +813,7 @@ struct ObjGroup* group_faces_in_mtl_grp(
     register struct Links* grpLink;
     struct ObjHeader* curLinkedObj;
 
-    newGroup = make_group(NULL);
+    newGroup = make_group(0);
 
     for (grpLink = mtlGroup->link1C; grpLink != NULL; grpLink = grpLink->next)
     {
@@ -919,7 +919,7 @@ void read_ARK_shape(struct ObjShape* shape, char* fileName)
     UNUSED s32 sp30 = 0;
     UNUSED s32 sp2C = 0;
 
-    shape->unk2C = make_group(NULL);
+    shape->unk2C = make_group(0);
     
     sp48.x = 1.0f;
     sp48.y = 0.5f;
@@ -1235,7 +1235,7 @@ void Proc80199FA0(struct ObjAnimator* self)
 void Proc8019A068(struct ObjAnimator* self)
 {
     s32 state = 0;  //TODO: label these states
-    s32 sp0 = D_801B99F8 >> 31;
+    s32 sp0 = D_801B9920.unkD8 >> 31;
 
     switch (self->unk4C)
     {

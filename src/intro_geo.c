@@ -35,10 +35,10 @@ extern Gfx mario_title_texture_table[];
 extern Gfx game_over_texture_table[];
 
 // intro geo bss
-extern s16 gTitleZoomCounter;
-extern s32 gTitleFadeCounter;
-extern int gGameOverFrameCounter;
-extern int gGameOverTableIndex;
+int gGameOverFrameCounter;
+int gGameOverTableIndex;
+s16 gTitleZoomCounter;
+s32 gTitleFadeCounter;
 
 // intro screen background display lists for each of four 80x20 textures
 Gfx *introBackgroundDlRows[] = {title_screen_bg_dl_0A000130, title_screen_bg_dl_0A000148, title_screen_bg_dl_0A000160, title_screen_bg_dl_0A000178};

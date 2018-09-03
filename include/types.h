@@ -86,7 +86,7 @@ struct SPTask
     enum State state;
 };
 
-struct Struct8032C620
+struct VblankHandler
 {
     OSMesgQueue *queue;
     OSMesg msg;

@@ -11,7 +11,6 @@
 // extern ? D_80331D40;
 // extern ? D_802212A0;
 // extern ? D_802211B1;
-// extern ? D_80000004;
 // extern ? D_0A000004;
 // extern ? D_80226D7F;
 // extern ? D_803330E0;

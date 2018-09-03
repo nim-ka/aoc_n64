@@ -36,8 +36,8 @@ OSIoMesg gDmaIoMesg;
 OSMesgQueue gDmaMesgQueue;
 OSMesgQueue gSIEventMesgQueue;
 
-struct Struct8032C620 *D_8032C620 = NULL;
-struct Struct8032C620 *D_8032C624 = NULL;
+struct VblankHandler *gVblankHandler1 = NULL;
+struct VblankHandler *gVblankHandler2 = NULL;
 struct SPTask *gCurrentSPTask = NULL;
 struct SPTask *D_8032C62C = NULL;
 struct SPTask *D_8032C630 = NULL;
@@ -269,10 +269,10 @@ static void handle_vblank(void)
         }
     }
 
-    if (D_8032C620 != NULL)
-        osSendMesg(D_8032C620->queue, D_8032C620->msg, 0);
-    if (D_8032C624 != NULL)
-        osSendMesg(D_8032C624->queue, D_8032C624->msg, 0);
+    if (gVblankHandler1 != NULL)
+        osSendMesg(gVblankHandler1->queue, gVblankHandler1->msg, 0);
+    if (gVblankHandler2 != NULL)
+        osSendMesg(gVblankHandler2->queue, gVblankHandler2->msg, 0);
 }
 
 static void handle_sp_complete(void)
@@ -332,10 +332,10 @@ static void thread3_main(UNUSED void *arg)
     AllocPool();
     load_engine_code_segment();
 
-    create_thread(&gSoundThread, 4, thread4_sound, NULL, D_80203200 + 0x2000, 20);
+    create_thread(&gSoundThread, 4, thread4_sound, NULL, gThread4Stack + 0x2000, 20);
     osStartThread(&gSoundThread);
 
-    create_thread(&gGameLoopThread, 5, thread5_game_loop, NULL, D_80205200 + 0x2000, 10);
+    create_thread(&gGameLoopThread, 5, thread5_game_loop, NULL, gThread5Stack + 0x2000, 10);
     osStartThread(&gGameLoopThread);
 
     while (1)
@@ -365,18 +365,18 @@ static void thread3_main(UNUSED void *arg)
     }
 }
 
-void func_80246B14(int a, struct Struct8032C620 *b, OSMesgQueue *queue, OSMesg *msg)
+void set_vblank_handler(int index, struct VblankHandler *handler, OSMesgQueue *queue, OSMesg *msg)
 {
-    b->queue = queue;
-    b->msg = msg;
+    handler->queue = queue;
+    handler->msg = msg;
 
-    switch (a)
+    switch (index)
     {
     case 1:
-        D_8032C620 = b;
+        gVblankHandler1 = handler;
         break;
     case 2:
-        D_8032C624 = b;
+        gVblankHandler2 = handler;
         break;
     }
 }
@@ -449,7 +449,7 @@ static void thread1_idle(UNUSED void *arg)
     osViSetSpecialFeatures(OS_VI_DITHER_FILTER_ON);
     osViSetSpecialFeatures(OS_VI_GAMMA_OFF);
     osCreatePiManager(OS_PRIORITY_PIMGR, &gPIMesgQueue, gPIMesgBuf, ARRAY_COUNT(gPIMesgBuf));
-    create_thread(&gMainThread, 3, thread3_main, NULL, D_80201200 + 0x2000, 100);
+    create_thread(&gMainThread, 3, thread3_main, NULL, gThread3Stack + 0x2000, 100);
     if (D_8032C650 == 0)
         osStartThread(&gMainThread);
     osSetThreadPri(NULL, 0);
@@ -465,6 +465,6 @@ void Main(void)
 
     osInitialize();
     Dummy802461CC();
-    create_thread(&gIdleThread, 1, thread1_idle, NULL, D_80200A00 + 0x800, 100);
+    create_thread(&gIdleThread, 1, thread1_idle, NULL, gIdleThreadStack + 0x800, 100);
     osStartThread(&gIdleThread);
 }

@@ -12,10 +12,12 @@
  * float literal, which implies that this is its own file
  */
 
-/* D_801B9920 and D_801B9A18 are probably initialized in this file?
- * Same with D_801A8050 and D_801A8058, although those might be declared 
- * in some big common file with the oddly placed and used symbols that follow
+/* D_801A8050 and D_801A8058 might be declared here, or in some big common
+ * file with the oddly placed and used symbols that follow
  */
+
+struct GdMem801B9920 D_801B9920;
+struct GdMem801B9A18 D_801B9A18;
 
 /* @ 225DA0 for 0x110 */
 u32 __main__(void)

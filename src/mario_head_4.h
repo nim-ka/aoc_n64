@@ -4,26 +4,16 @@
 #include "types.h"
 #include "goddard/gd_types.h"
 
-// extern ? D_801B9F38;
 // extern ? D_801A8254;
-// extern ? D_801B9F3C;
-// extern ? D_801B9F28;
-// extern ? D_801B9F2C;
-// extern ? D_801B9F20;
 // extern ? D_801A8250;
-// extern ? D_801B9F40;
 // extern ? D_801A8270;
-// extern ? D_801B9F08;
 // extern ? D_801B5E50;
 // extern ? D_801B5E58;
 // extern ? D_801B5E7C;
 // extern ? D_801B5E9C;
 // extern ? D_801B5EA4;
-// extern ? D_801B9F68;
 // extern ? D_801B5EAC;
-// extern ? D_801B9F48;
 // extern ? D_801B5EB0;
-// extern ? D_801B9F34;
 // extern ? D_801B5EB4;
 // extern ? D_801B5EFC;
 // extern ? D_801B5F04;
@@ -33,7 +23,6 @@
 // extern ? D_801B5F40;
 // extern ? D_801B5F78;
 // extern ? D_801B5F98;
-// extern ? D_801B9F00;
 // extern ? D_801B5FC0;
 // extern ? D_801B5FC4;
 // extern ? D_801B5FEC;
@@ -263,20 +252,17 @@
 // extern ? D_801B7FB8;
 // extern ? D_8018BCB8;
 // extern ? D_801B7FC8;
-// extern ? D_801BA070;
 // extern ? D_801B7FD4;
 // extern ? D_801B7FEC;
 // extern ? D_8019B9CC;
 // extern ? D_801B8038;
 // extern ? D_801B80B0;
 // extern ? D_801B80C8;
-// extern ? D_801BA18C;
 // extern ? D_801B80D8;
 // extern ? D_801B80F0;
 // extern ? D_801B8100;
 // extern ? D_801B8124;
 // extern ? D_801B813C;
-// extern ? D_801BA720;
 
 extern void func_80183910(void);
 extern void func_80183940(void);

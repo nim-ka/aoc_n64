@@ -1,6 +1,7 @@
 #ifndef _LIBULTRA_H
 #define _LIBULTRA_H
 
+#include <ultra64.h>
 #include "types.h"
 
 // extern ? D_80365DA0;
@@ -45,8 +46,6 @@
 // extern ? D_803347F4;
 // extern ? D_803347F0;
 // extern ? D_80365CD0;
-// extern ? D_8000000C;
-// extern ? D_80000008;
 // extern ? D_8000030C;
 // extern ? D_8000031C;
 // extern ? D_80365D20;
@@ -79,7 +78,7 @@
 // extern ? D_80334918;
 // extern ? D_80334990;
 // extern ? D_803349E0;
-// extern ? D_80365F40;
+extern OSThread gInterruptedThread;
 // extern ? D_80334934;
 // extern ? D_80334938;
 // extern ? D_A430000C;

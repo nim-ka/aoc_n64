@@ -3,23 +3,13 @@
 
 #include "types.h"
 
-// extern ? sClickPos;
-// extern ? D_801A7BD4;
-// extern ? sTextColorAlpha;
 // extern ? D_801A7BE4;
-// extern ? sSelectedButtonId;
-// extern ? gMainMenuButtons;
 // extern ? D_801A7BFC;
-// extern ? sFadeOutText;
 // extern ? D_801A7C08;
-// extern ? sSelectedFile;
-// extern ? sSoundMode;
 // extern ? D_801A7C0C;
-// extern ? sCursorPos;
 // extern ? D_801A7C10;
 // extern ? D_070073A0;
 // extern ? D_070073B8;
-// extern ? sTextTransparency;
 // extern ? D_801A7C74;
 // extern ? D_801A7C78;
 // extern ? textNew;
@@ -35,7 +25,6 @@
 // extern ? textMarioD;
 // extern ? D_801A7C98;
 // extern ? textNoSavedDataExists;
-// extern ? sStatusMessageId;
 // extern ? textReturn;
 // extern ? textFileCopy;
 // extern ? textFileDelete;

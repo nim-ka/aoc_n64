@@ -170,7 +170,7 @@ struct Struct80182C84
     struct Struct80182C84_2 *unk18C;
 };
 
-extern struct Struct80181D14 *D_801B9EF0;
+static struct Struct80181D14 *D_801B9EF0;
 
 struct Struct8019BC18 *func_801825FC(struct Struct80181D14_2 *, struct Struct80181D14_2 *);
 extern float func_80194B98(struct MyVec3f *);
@@ -340,8 +340,6 @@ void func_801823A0(struct ObjNet *a)
         break;
     }
 }
-
-extern s32 D_801B9E40;
 
 struct ObjParticle *make_particle(u32 a, int b, float c, float d, float e)
 {
@@ -708,8 +706,6 @@ void Unknown80183898(UNUSED int a, UNUSED int b, UNUSED int c)
 void Unknown801838B4(UNUSED int a, UNUSED int b, UNUSED int c)
 {
 }
-
-extern struct Struct80181D14 *D_801B9E3C;
 
 void func_801838D0(struct Struct80181D14 *a)
 {

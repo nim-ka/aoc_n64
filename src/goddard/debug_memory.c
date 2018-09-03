@@ -5,11 +5,14 @@
 #include "../mario_head_5.h"
 #include "../mario_head_6.h"
 
+// This dummy struct seems to be needed for the bss variables to
+// come in correct order, apparently...
+struct DummyStruct { int dummy; };
+
 /* bss */
-/* static */ extern struct GMemBlock* sFreeBlockListHead;  // D_801B9B10
-/* static */ extern struct GMemBlock* sUsedBlockListHead;  // D_801B9B14 
-/* static */ extern struct GMemBlock* sEmptyBlockListHead; // D_801B9B18 
-//sizeof(sEmptyBlockListHead) = 0x8, so  eof BSS pad?
+static struct GMemBlock* sFreeBlockListHead;
+static struct GMemBlock* sUsedBlockListHead;
+static struct GMemBlock* sEmptyBlockListHead;
 
 /* Forward Declarations */
 void empty_mem_block(struct GMemBlock*);

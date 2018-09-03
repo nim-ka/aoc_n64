@@ -2,8 +2,8 @@
 
 #include "sm64.h"
 
-extern u32 D_801B9B20;
-extern u32 D_801B9B24;
+static u32 D_801B9B20;
+static u32 D_801B9B24;
 
 void func_801780A0()
 {

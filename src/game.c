@@ -19,11 +19,11 @@
 struct Controller gControllers[3];
 OSContStatus gControllerStatuses[4];
 OSContPad gControllerPads[4];
-OSMesgQueue D_80339CA0;
+OSMesgQueue gGameVblankQueue;
 OSMesgQueue D_80339CB8;
 OSMesg D_80339CD0;
 OSMesg D_80339CD4;
-struct Struct8032C620 D_80339CD8;
+struct VblankHandler gGameVblankHandler;
 u32 gFrameBuffers[3];
 u32 D_80339CEC;
 void *D_80339CF0;
@@ -281,7 +281,7 @@ void func_80248934(void)
 
     set_segment_base_addr(0, (void *)0x80000000);
     osCreateMesgQueue(&D_80339CB8, &D_80339CD4, 1);
-    osCreateMesgQueue(&D_80339CA0, &D_80339CD0, 1);
+    osCreateMesgQueue(&gGameVblankQueue, &D_80339CD0, 1);
     D_80339CEC    = VIRTUAL_TO_PHYSICAL(D_80000400);
     gFrameBuffers[0] = VIRTUAL_TO_PHYSICAL(gFrameBuffer0);
     gFrameBuffers[1] = VIRTUAL_TO_PHYSICAL(gFrameBuffer1);
@@ -306,7 +306,7 @@ void thread5_game_loop(UNUSED void *arg)
     init_controllers();
     save_file_load_all();
 
-    func_80246B14(2, &D_80339CD8, &D_80339CA0, (OSMesg)1);
+    set_vblank_handler(2, &gGameVblankHandler, &gGameVblankQueue, (OSMesg)1);
     addr = (struct LevelCommand *) segmented_to_virtual(D_10000000);
     func_80320AE8(2, 0, 0);
     func_80248DD8(save_file_get_sound_mode());

@@ -16,11 +16,11 @@ struct DemoInput
 extern struct Controller gControllers[3];
 extern OSContStatus gControllerStatuses[4];
 extern OSContPad gControllerPads[4];
-extern OSMesgQueue D_80339CA0;
+extern OSMesgQueue gGameVblankQueue;
 extern OSMesgQueue D_80339CB8;
 extern OSMesg D_80339CD0;
 extern OSMesg D_80339CD4;
-extern struct Struct8032C620 D_80339CD8;
+extern struct VblankHandler gGameVblankHandler;
 extern u32 gFrameBuffers[3];
 extern u32 D_80339CEC;
 extern void *D_80339CF0;

@@ -374,6 +374,16 @@ SECTIONS
    END_SEG(goddard)
    BEGIN_NOLOAD(goddard)
    {
+      build/src/intro_geo.o(.bss*);
+      build/src/file_select.o(.bss*);
+      build/src/star_select.o(.bss*);
+      build/src/goddard/gd_main.o(.bss*);
+      build/src/goddard/debug_memory.o(.bss*);
+      build/src/game_over_1.o(.bss*);
+      build/src/goddard/game_over_2.o(.bss*);
+      build/src/goddard/mario_head_1.o(.bss*);
+      build/src/goddard/mario_head_2.o(.bss*);
+      build/src/goddard/mario_head_3.o(.bss*);
       build/data/bss3.o(.bss*);
    }
    END_NOLOAD(goddard)

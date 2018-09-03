@@ -37,7 +37,7 @@ extern Vec3s D_80385FDC;
 
 extern float D_8033B00C;
 
-extern Mat4 D_8033A778[];
+extern Mat4 D_8033A778[32];
 
 extern void *D_8033AF78[];
 

@@ -9,13 +9,19 @@ extern f32 D_801A81C0;
 extern f32 D_801A81C4;
 
 /****** .bss ******/
-extern struct MyVec3f D_801B9DA0;       /* Are these just one GdPlaneF ? */
-extern struct MyVec3f D_801B9DAC;
-extern void* D_801B9DB8;
-extern struct ObjView* D_801B9DBC;
+extern struct GdPlaneF D_801B9DA0;
+extern void *D_801B9DB8;
+extern struct ObjView *D_801B9DBC;
+extern struct DebugCounters D_801B9DC0;
 extern Mat4 D_801B9DC8;
 extern struct MyVec3f D_801B9E08;
 extern struct ObjGroup* D_801B9E14;
+extern struct MyVec3f D_801B9E18;
+extern struct MyVec3f D_801B9E28;
+extern f32 D_801B9E34;
+extern void* D_801B9E38;                /* never read from */
+extern struct Struct80181D14 *D_801B9E3C; /* never read from */
+extern s32 D_801B9E40;                  /* always 0 */
 extern s32 D_801B9E44;
 extern Mat4* D_801B9E48;
 extern struct ObjCamera* D_801B9E4C;    /* cameraHead? */
@@ -31,20 +37,6 @@ extern void* D_801B9E84;
 extern void* D_801B9E88;
 extern struct ObjHeader* D_801B9E8C;    /* head pointer to list of objects? */
 extern struct ObjGroup* D_801B9E90;     /* curGroup? */
-
-/****** Unused but probably original declared here .bss ******/
-//D_801B9DC0 (size=4)
-//D_801B9DC4 (size=4)
-//D_801B9E18 (size=4)
-//D_801B9E1C (size=4)
-//D_801B9E20 (size=8)
-//D_801B9E28 (size=4)
-//D_801B9E2C (size=4)
-//D_801B9E30 (size=4)
-//D_801B9E34 (size=4)
-//D_801B9E38 (size=4)
-//D_801B9E3C (size=4)
-//D_801B9E40 (size=4)
 
 /****** Functions ******/
 extern void func_8017BCB0(void);
@@ -68,7 +60,7 @@ extern struct ObjAnimator* make_animator(void);
 extern struct ObjWeight* make_weight(UNUSED s32, s32, struct ObjVertex*, f32);
 extern struct ObjGroup* make_group_of_type(enum ObjTypeFlag, struct ObjHeader*, struct ObjHeader*);
 extern void sprint_obj_id(char*, struct ObjHeader*);
-extern struct ObjGroup* make_group();   // arg might be struct passed by value?
+extern struct ObjGroup* make_group(int count, ...);
 extern void addto_group(struct ObjGroup*, struct ObjHeader*);
 extern void addto_groupfirst(struct ObjGroup*, struct ObjHeader*);
 extern s32 group_contains_obj(struct ObjGroup*, struct ObjHeader*);

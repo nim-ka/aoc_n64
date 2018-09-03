@@ -71,10 +71,10 @@ extern Gfx main_menu_seg7_dl_0700D108[];
 extern Gfx main_menu_seg7_dl_0700D160[];
 extern u8 seg2_level_name_table[];
 
-extern u8 D_801B98E0[];
 extern u32 gGlobalTimer;
 
-extern struct Object *gMainMenuButtons[];
+struct Object *sMainMenuButtons[32];
+u8 sYesNoColor[2];
 
 static s8 sSelectedButtonId = -1;
 static s8 D_801A7BD4 = 1;
@@ -353,63 +353,63 @@ static void score_menu_create_buttons(struct Object *a)
 {
     if (save_file_exists(0) == TRUE)
     {
-        gMainMenuButtons[MENU_BUTTON_SCORE_FILE_A] = func_8029E2A8(a, 3, beh_menu_growing_button, 711, 311,
+        sMainMenuButtons[MENU_BUTTON_SCORE_FILE_A] = func_8029E2A8(a, 3, beh_menu_growing_button, 711, 311,
             -100, 0, -0x8000, 0);
     }
     else
     {
-        gMainMenuButtons[MENU_BUTTON_SCORE_FILE_A] = func_8029E2A8(a, 9, beh_menu_growing_button, 711, 311,
+        sMainMenuButtons[MENU_BUTTON_SCORE_FILE_A] = func_8029E2A8(a, 9, beh_menu_growing_button, 711, 311,
             -100, 0, -0x8000, 0);
     }
-    gMainMenuButtons[MENU_BUTTON_SCORE_FILE_A]->oMainMenuButtonUnk108 = 0.11111111f;
+    sMainMenuButtons[MENU_BUTTON_SCORE_FILE_A]->oMainMenuButtonUnk108 = 0.11111111f;
 
     if (save_file_exists(1) == TRUE)
     {
-        gMainMenuButtons[MENU_BUTTON_SCORE_FILE_B] = func_8029E2A8(a, 3, beh_menu_growing_button, -166, 311,
+        sMainMenuButtons[MENU_BUTTON_SCORE_FILE_B] = func_8029E2A8(a, 3, beh_menu_growing_button, -166, 311,
             -100, 0, -0x8000, 0);
     }
     else
     {
-        gMainMenuButtons[MENU_BUTTON_SCORE_FILE_B] = func_8029E2A8(a, 9, beh_menu_growing_button, -166, 311,
+        sMainMenuButtons[MENU_BUTTON_SCORE_FILE_B] = func_8029E2A8(a, 9, beh_menu_growing_button, -166, 311,
             -100, 0, -0x8000, 0);
     }
-    gMainMenuButtons[MENU_BUTTON_SCORE_FILE_B]->oMainMenuButtonUnk108 = 0.11111111f;
+    sMainMenuButtons[MENU_BUTTON_SCORE_FILE_B]->oMainMenuButtonUnk108 = 0.11111111f;
 
     if (save_file_exists(2) == TRUE)
     {
-        gMainMenuButtons[MENU_BUTTON_SCORE_FILE_C] = func_8029E2A8(a, 3, beh_menu_growing_button, 711, 0,
+        sMainMenuButtons[MENU_BUTTON_SCORE_FILE_C] = func_8029E2A8(a, 3, beh_menu_growing_button, 711, 0,
             -100, 0, -0x8000, 0);
     }
     else
     {
-        gMainMenuButtons[MENU_BUTTON_SCORE_FILE_C] = func_8029E2A8(a, 9, beh_menu_growing_button, 711, 0,
+        sMainMenuButtons[MENU_BUTTON_SCORE_FILE_C] = func_8029E2A8(a, 9, beh_menu_growing_button, 711, 0,
             -100, 0, -0x8000, 0);
     }
-    gMainMenuButtons[MENU_BUTTON_SCORE_FILE_C]->oMainMenuButtonUnk108 = 0.11111111f;
+    sMainMenuButtons[MENU_BUTTON_SCORE_FILE_C]->oMainMenuButtonUnk108 = 0.11111111f;
 
     if (save_file_exists(3) == TRUE)
     {
-        gMainMenuButtons[MENU_BUTTON_SCORE_FILE_D] = func_8029E2A8(a, 3, beh_menu_growing_button, -166, 0,
+        sMainMenuButtons[MENU_BUTTON_SCORE_FILE_D] = func_8029E2A8(a, 3, beh_menu_growing_button, -166, 0,
             -100, 0, -0x8000, 0);
     }
     else
     {
-        gMainMenuButtons[MENU_BUTTON_SCORE_FILE_D] = func_8029E2A8(a, 9, beh_menu_growing_button, -166, 0,
+        sMainMenuButtons[MENU_BUTTON_SCORE_FILE_D] = func_8029E2A8(a, 9, beh_menu_growing_button, -166, 0,
             -100, 0, -0x8000, 0);
     }
-    gMainMenuButtons[MENU_BUTTON_SCORE_FILE_D]->oMainMenuButtonUnk108 = 0.11111111f;
+    sMainMenuButtons[MENU_BUTTON_SCORE_FILE_D]->oMainMenuButtonUnk108 = 0.11111111f;
 
-    gMainMenuButtons[MENU_BUTTON_SCORE_RETURN] = func_8029E2A8(a, 6, beh_menu_growing_button, 711, -388,
+    sMainMenuButtons[MENU_BUTTON_SCORE_RETURN] = func_8029E2A8(a, 6, beh_menu_growing_button, 711, -388,
         -100, 0, -0x8000, 0);
-    gMainMenuButtons[MENU_BUTTON_SCORE_RETURN]->oMainMenuButtonUnk108 = 0.11111111f;
+    sMainMenuButtons[MENU_BUTTON_SCORE_RETURN]->oMainMenuButtonUnk108 = 0.11111111f;
 
-    gMainMenuButtons[MENU_BUTTON_SCORE_COPY_FILE] = func_8029E2A8(a, 5, beh_menu_growing_button, 0, -388,
+    sMainMenuButtons[MENU_BUTTON_SCORE_COPY_FILE] = func_8029E2A8(a, 5, beh_menu_growing_button, 0, -388,
         -100, 0, -0x8000, 0);
-    gMainMenuButtons[MENU_BUTTON_SCORE_COPY_FILE]->oMainMenuButtonUnk108 = 0.11111111f;
+    sMainMenuButtons[MENU_BUTTON_SCORE_COPY_FILE]->oMainMenuButtonUnk108 = 0.11111111f;
 
-    gMainMenuButtons[MENU_BUTTON_SCORE_ERASE_FILE] = func_8029E2A8(a, 4, beh_menu_growing_button, -711, -388,
+    sMainMenuButtons[MENU_BUTTON_SCORE_ERASE_FILE] = func_8029E2A8(a, 4, beh_menu_growing_button, -711, -388,
         -100, 0, -0x8000, 0);
-    gMainMenuButtons[MENU_BUTTON_SCORE_ERASE_FILE]->oMainMenuButtonUnk108 = 0.11111111f;
+    sMainMenuButtons[MENU_BUTTON_SCORE_ERASE_FILE]->oMainMenuButtonUnk108 = 0.11111111f;
 }
 
 static void score_menu_handle_click(struct Object *a)
@@ -420,8 +420,8 @@ static void score_menu_handle_click(struct Object *a)
 
         for (buttonId = 7; buttonId < 14; buttonId++)
         {
-            s16 buttonX = gMainMenuButtons[buttonId]->oPosX;
-            s16 buttonY = gMainMenuButtons[buttonId]->oPosY;
+            s16 buttonX = sMainMenuButtons[buttonId]->oPosX;
+            s16 buttonY = sMainMenuButtons[buttonId]->oPosY;
 
             if (button_hittest(buttonX, buttonY, 22.0f) == TRUE && D_801A7BFC >= 31)
             {
@@ -430,7 +430,7 @@ static void score_menu_handle_click(struct Object *a)
                  || buttonId == MENU_BUTTON_SCORE_ERASE_FILE)
                 {
                     SetSound(SOUND_MENU_CLICKFILESELECT, D_803320E0);
-                    gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 4;
+                    sMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 4;
                     sSelectedButtonId = buttonId;
                 }
                 else
@@ -440,13 +440,13 @@ static void score_menu_handle_click(struct Object *a)
                         if (save_file_exists(buttonId - 7) == TRUE)
                         {
                             SetSound(SOUND_MENU_CAMERAZOOMIN, D_803320E0);
-                            gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 1;
+                            sMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 1;
                             sSelectedButtonId = buttonId;
                         }
                         else
                         {
                             SetSound(SOUND_MENU_CAMERABUZZ, D_803320E0);
-                            gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 4;
+                            sMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 4;
                             if (D_801A7BFC >= 31)
                             {
                                 sFadeOutText = 1;
@@ -466,63 +466,63 @@ static void copy_menu_create_buttons(struct Object * a)
 {
     if (save_file_exists(0) == TRUE)
     {
-        gMainMenuButtons[MENU_BUTTON_COPY_FILE_A] = func_8029E2A8(a, 3, beh_menu_growing_button, 711, 311,
+        sMainMenuButtons[MENU_BUTTON_COPY_FILE_A] = func_8029E2A8(a, 3, beh_menu_growing_button, 711, 311,
             -100, 0, -0x8000, 0);
     }
     else
     {
-        gMainMenuButtons[MENU_BUTTON_COPY_FILE_A] = func_8029E2A8(a, 9, beh_menu_growing_button, 711, 311,
+        sMainMenuButtons[MENU_BUTTON_COPY_FILE_A] = func_8029E2A8(a, 9, beh_menu_growing_button, 711, 311,
             -100, 0, -0x8000, 0);
     }
-    gMainMenuButtons[MENU_BUTTON_COPY_FILE_A]->oMainMenuButtonUnk108 = 0.11111111f;
+    sMainMenuButtons[MENU_BUTTON_COPY_FILE_A]->oMainMenuButtonUnk108 = 0.11111111f;
 
     if (save_file_exists(1) == TRUE)
     {
-        gMainMenuButtons[MENU_BUTTON_COPY_FILE_B] = func_8029E2A8(a, 3, beh_menu_growing_button, -166, 311,
+        sMainMenuButtons[MENU_BUTTON_COPY_FILE_B] = func_8029E2A8(a, 3, beh_menu_growing_button, -166, 311,
             -100, 0, -0x8000, 0);
     }
     else
     {
-        gMainMenuButtons[MENU_BUTTON_COPY_FILE_B] = func_8029E2A8(a, 9, beh_menu_growing_button, -166, 311,
+        sMainMenuButtons[MENU_BUTTON_COPY_FILE_B] = func_8029E2A8(a, 9, beh_menu_growing_button, -166, 311,
             -100, 0, -0x8000, 0);
     }
-    gMainMenuButtons[MENU_BUTTON_COPY_FILE_B]->oMainMenuButtonUnk108 = 0.11111111f;
+    sMainMenuButtons[MENU_BUTTON_COPY_FILE_B]->oMainMenuButtonUnk108 = 0.11111111f;
 
     if (save_file_exists(2) == TRUE)
     {
-        gMainMenuButtons[MENU_BUTTON_COPY_FILE_C] = func_8029E2A8(a, 3, beh_menu_growing_button, 711, 0,
+        sMainMenuButtons[MENU_BUTTON_COPY_FILE_C] = func_8029E2A8(a, 3, beh_menu_growing_button, 711, 0,
             -100, 0, -0x8000, 0);
     }
     else
     {
-        gMainMenuButtons[MENU_BUTTON_COPY_FILE_C] = func_8029E2A8(a, 9, beh_menu_growing_button, 711, 0,
+        sMainMenuButtons[MENU_BUTTON_COPY_FILE_C] = func_8029E2A8(a, 9, beh_menu_growing_button, 711, 0,
             -100, 0, -0x8000, 0);
     }
-    gMainMenuButtons[MENU_BUTTON_COPY_FILE_C]->oMainMenuButtonUnk108 = 0.11111111f;
+    sMainMenuButtons[MENU_BUTTON_COPY_FILE_C]->oMainMenuButtonUnk108 = 0.11111111f;
 
     if (save_file_exists(3) == TRUE)
     {
-        gMainMenuButtons[MENU_BUTTON_COPY_FILE_D] = func_8029E2A8(a, 3, beh_menu_growing_button, -166, 0,
+        sMainMenuButtons[MENU_BUTTON_COPY_FILE_D] = func_8029E2A8(a, 3, beh_menu_growing_button, -166, 0,
             -100, 0, -0x8000, 0);
     }
     else
     {
-        gMainMenuButtons[MENU_BUTTON_COPY_FILE_D] = func_8029E2A8(a, 9, beh_menu_growing_button, -166, 0,
+        sMainMenuButtons[MENU_BUTTON_COPY_FILE_D] = func_8029E2A8(a, 9, beh_menu_growing_button, -166, 0,
             -100, 0, -0x8000, 0);
     }
-    gMainMenuButtons[MENU_BUTTON_COPY_FILE_D]->oMainMenuButtonUnk108 = 0.11111111f;
+    sMainMenuButtons[MENU_BUTTON_COPY_FILE_D]->oMainMenuButtonUnk108 = 0.11111111f;
 
-    gMainMenuButtons[MENU_BUTTON_COPY_RETURN] = func_8029E2A8(a, 6, beh_menu_growing_button, 711, -388,
+    sMainMenuButtons[MENU_BUTTON_COPY_RETURN] = func_8029E2A8(a, 6, beh_menu_growing_button, 711, -388,
         -100, 0, -0x8000, 0);
-    gMainMenuButtons[MENU_BUTTON_COPY_RETURN]->oMainMenuButtonUnk108 = 0.11111111f;
+    sMainMenuButtons[MENU_BUTTON_COPY_RETURN]->oMainMenuButtonUnk108 = 0.11111111f;
 
-    gMainMenuButtons[MENU_BUTTON_COPY_CHECK_SCORE] = func_8029E2A8(a, 7, beh_menu_growing_button, 0, -388,
+    sMainMenuButtons[MENU_BUTTON_COPY_CHECK_SCORE] = func_8029E2A8(a, 7, beh_menu_growing_button, 0, -388,
         -100, 0, -0x8000, 0);
-    gMainMenuButtons[MENU_BUTTON_COPY_CHECK_SCORE]->oMainMenuButtonUnk108 = 0.11111111f;
+    sMainMenuButtons[MENU_BUTTON_COPY_CHECK_SCORE]->oMainMenuButtonUnk108 = 0.11111111f;
 
-    gMainMenuButtons[MENU_BUTTON_COPY_ERASE_FILE] = func_8029E2A8(a, 4, beh_menu_growing_button, -711, -388,
+    sMainMenuButtons[MENU_BUTTON_COPY_ERASE_FILE] = func_8029E2A8(a, 4, beh_menu_growing_button, -711, -388,
         -100, 0, -0x8000, 0);
-    gMainMenuButtons[MENU_BUTTON_COPY_ERASE_FILE]->oMainMenuButtonUnk108 = 0.11111111f;
+    sMainMenuButtons[MENU_BUTTON_COPY_ERASE_FILE]->oMainMenuButtonUnk108 = 0.11111111f;
 }
 
 static void func_801716E4(struct Object *a, int buttonId)
@@ -535,7 +535,7 @@ static void func_801716E4(struct Object *a, int buttonId)
         if (save_file_exists(buttonId - 14) == TRUE)
         {
             SetSound(SOUND_MENU_CLICKFILESELECT, D_803320E0);
-            gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 5;
+            sMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 5;
             sSelectedFile = buttonId - 14;
             a->oMainMenuButtonUnk10C = 1;
             sFadeOutText = 1;
@@ -544,7 +544,7 @@ static void func_801716E4(struct Object *a, int buttonId)
         else
         {
             SetSound(SOUND_MENU_CAMERABUZZ, D_803320E0);
-            gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 4;
+            sMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 4;
             if (D_801A7BFC >= 21)
             {
                 sFadeOutText = 1;
@@ -553,7 +553,7 @@ static void func_801716E4(struct Object *a, int buttonId)
         }
         break;
     case 1:
-        gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 4;
+        sMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 4;
         if (save_file_exists(buttonId - 14) == FALSE)
         {
             SetSound(SOUND_MENU_STARSOUND, D_803320E0);
@@ -561,15 +561,15 @@ static void func_801716E4(struct Object *a, int buttonId)
             sFadeOutText = 1;
             D_801A7BFC = 0;
             save_file_copy(sSelectedFile, buttonId - 14);
-            gMainMenuButtons[buttonId]->header.gfx.asGraphNode = gLoadedGraphNodes[8];
-            gMainMenuButtons[buttonId - 14]->header.gfx.asGraphNode = gLoadedGraphNodes[8];
+            sMainMenuButtons[buttonId]->header.gfx.asGraphNode = gLoadedGraphNodes[8];
+            sMainMenuButtons[buttonId - 14]->header.gfx.asGraphNode = gLoadedGraphNodes[8];
         }
         else
         {
             if (MENU_BUTTON_COPY_FILE_A + sSelectedFile == buttonId)
             {
                 SetSound(SOUND_MENU_CAMERABUZZ, D_803320E0);
-                gMainMenuButtons[MENU_BUTTON_COPY_FILE_A + sSelectedFile]->oMainMenuButtonUnkF4 = 6;
+                sMainMenuButtons[MENU_BUTTON_COPY_FILE_A + sSelectedFile]->oMainMenuButtonUnkF4 = 6;
                 a->oMainMenuButtonUnk10C = 0;
                 sFadeOutText = 1;
                 return;
@@ -592,8 +592,8 @@ static void copy_menu_handle_click(struct Object *a)
 
         for (buttonId = 14; buttonId < 21; buttonId++)
         {
-            s16 buttonX = gMainMenuButtons[buttonId]->oPosX;
-            s16 buttonY = gMainMenuButtons[buttonId]->oPosY;
+            s16 buttonX = sMainMenuButtons[buttonId]->oPosX;
+            s16 buttonY = sMainMenuButtons[buttonId]->oPosY;
 
             if (button_hittest(buttonX, buttonY, 22.0f) == TRUE)
             {
@@ -604,13 +604,13 @@ static void copy_menu_handle_click(struct Object *a)
                     if (a->oMainMenuButtonUnk10C == 0)
                     {
                         SetSound(SOUND_MENU_CLICKFILESELECT, D_803320E0);
-                        gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 4;
+                        sMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 4;
                         sSelectedButtonId = buttonId;
                     }
                 }
                 else
                 {
-                    if (gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 == 0 && D_801A7BFC >= 31)
+                    if (sMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 == 0 && D_801A7BFC >= 31)
                         func_801716E4(a, buttonId);
                 }
                 D_801A7BD4 = 2;
@@ -620,7 +620,7 @@ static void copy_menu_handle_click(struct Object *a)
         if (a->oMainMenuButtonUnk10C == 2 && D_801A7BFC >= 31)
         {
             a->oMainMenuButtonUnk10C = 0;
-            gMainMenuButtons[MENU_BUTTON_COPY_FILE_A + sSelectedFile]->oMainMenuButtonUnkF4 = 6;
+            sMainMenuButtons[MENU_BUTTON_COPY_FILE_A + sSelectedFile]->oMainMenuButtonUnkF4 = 6;
         }
     }
 }
@@ -629,63 +629,63 @@ static void erase_menu_create_buttons(struct Object *a)
 {
     if (save_file_exists(0) == TRUE)
     {
-        gMainMenuButtons[MENU_BUTTON_ERASE_FILE_A] = func_8029E2A8(a, 3, beh_menu_growing_button, 711, 311,
+        sMainMenuButtons[MENU_BUTTON_ERASE_FILE_A] = func_8029E2A8(a, 3, beh_menu_growing_button, 711, 311,
             -100, 0, -0x8000, 0);
     }
     else
     {
-        gMainMenuButtons[MENU_BUTTON_ERASE_FILE_A] = func_8029E2A8(a, 9, beh_menu_growing_button, 711, 311,
+        sMainMenuButtons[MENU_BUTTON_ERASE_FILE_A] = func_8029E2A8(a, 9, beh_menu_growing_button, 711, 311,
             -100, 0, -0x8000, 0);
     }
-    gMainMenuButtons[MENU_BUTTON_ERASE_FILE_A]->oMainMenuButtonUnk108 = 0.11111111f;
+    sMainMenuButtons[MENU_BUTTON_ERASE_FILE_A]->oMainMenuButtonUnk108 = 0.11111111f;
 
     if (save_file_exists(1) == TRUE)
     {
-        gMainMenuButtons[MENU_BUTTON_ERASE_FILE_B] = func_8029E2A8(a, 3, beh_menu_growing_button, -166, 311,
+        sMainMenuButtons[MENU_BUTTON_ERASE_FILE_B] = func_8029E2A8(a, 3, beh_menu_growing_button, -166, 311,
             -100, 0, -0x8000, 0);
     }
     else
     {
-        gMainMenuButtons[MENU_BUTTON_ERASE_FILE_B] = func_8029E2A8(a, 9, beh_menu_growing_button, -166, 311,
+        sMainMenuButtons[MENU_BUTTON_ERASE_FILE_B] = func_8029E2A8(a, 9, beh_menu_growing_button, -166, 311,
             -100, 0, -0x8000, 0);
     }
-    gMainMenuButtons[MENU_BUTTON_ERASE_FILE_B]->oMainMenuButtonUnk108 = 0.11111111f;
+    sMainMenuButtons[MENU_BUTTON_ERASE_FILE_B]->oMainMenuButtonUnk108 = 0.11111111f;
 
     if (save_file_exists(2) == TRUE)
     {
-        gMainMenuButtons[MENU_BUTTON_ERASE_FILE_C] = func_8029E2A8(a, 3, beh_menu_growing_button, 711, 0,
+        sMainMenuButtons[MENU_BUTTON_ERASE_FILE_C] = func_8029E2A8(a, 3, beh_menu_growing_button, 711, 0,
             -100, 0, -0x8000, 0);
     }
     else
     {
-        gMainMenuButtons[MENU_BUTTON_ERASE_FILE_C] = func_8029E2A8(a, 9, beh_menu_growing_button, 711, 0,
+        sMainMenuButtons[MENU_BUTTON_ERASE_FILE_C] = func_8029E2A8(a, 9, beh_menu_growing_button, 711, 0,
             -100, 0, -0x8000, 0);
     }
-    gMainMenuButtons[MENU_BUTTON_ERASE_FILE_C]->oMainMenuButtonUnk108 = 0.11111111f;
+    sMainMenuButtons[MENU_BUTTON_ERASE_FILE_C]->oMainMenuButtonUnk108 = 0.11111111f;
 
     if (save_file_exists(3) == TRUE)
     {
-        gMainMenuButtons[MENU_BUTTON_ERASE_FILE_D] = func_8029E2A8(a, 3, beh_menu_growing_button, -166, 0,
+        sMainMenuButtons[MENU_BUTTON_ERASE_FILE_D] = func_8029E2A8(a, 3, beh_menu_growing_button, -166, 0,
             -100, 0, -0x8000, 0);
     }
     else
     {
-        gMainMenuButtons[MENU_BUTTON_ERASE_FILE_D] = func_8029E2A8(a, 9, beh_menu_growing_button, -166, 0,
+        sMainMenuButtons[MENU_BUTTON_ERASE_FILE_D] = func_8029E2A8(a, 9, beh_menu_growing_button, -166, 0,
             -100, 0, -0x8000, 0);
     }
-    gMainMenuButtons[MENU_BUTTON_ERASE_FILE_D]->oMainMenuButtonUnk108 = 0.11111111f;
+    sMainMenuButtons[MENU_BUTTON_ERASE_FILE_D]->oMainMenuButtonUnk108 = 0.11111111f;
 
-    gMainMenuButtons[MENU_BUTTON_ERASE_RETURN] = func_8029E2A8(a, 6, beh_menu_growing_button, 711, -388,
+    sMainMenuButtons[MENU_BUTTON_ERASE_RETURN] = func_8029E2A8(a, 6, beh_menu_growing_button, 711, -388,
         -100, 0, -0x8000, 0);
-    gMainMenuButtons[MENU_BUTTON_ERASE_RETURN]->oMainMenuButtonUnk108 = 0.11111111f;
+    sMainMenuButtons[MENU_BUTTON_ERASE_RETURN]->oMainMenuButtonUnk108 = 0.11111111f;
 
-    gMainMenuButtons[MENU_BUTTON_ERASE_CHECK_SCORE] = func_8029E2A8(a, 7, beh_menu_growing_button, 0, -388,
+    sMainMenuButtons[MENU_BUTTON_ERASE_CHECK_SCORE] = func_8029E2A8(a, 7, beh_menu_growing_button, 0, -388,
         -100, 0, -0x8000, 0);
-    gMainMenuButtons[MENU_BUTTON_ERASE_CHECK_SCORE]->oMainMenuButtonUnk108 = 0.11111111f;
+    sMainMenuButtons[MENU_BUTTON_ERASE_CHECK_SCORE]->oMainMenuButtonUnk108 = 0.11111111f;
 
-    gMainMenuButtons[MENU_BUTTON_ERASE_COPY_FILE] = func_8029E2A8(a, 5, beh_menu_growing_button, -711, -388,
+    sMainMenuButtons[MENU_BUTTON_ERASE_COPY_FILE] = func_8029E2A8(a, 5, beh_menu_growing_button, -711, -388,
         -100, 0, -0x8000, 0);
-    gMainMenuButtons[MENU_BUTTON_ERASE_COPY_FILE]->oMainMenuButtonUnk108 = 0.11111111f;
+    sMainMenuButtons[MENU_BUTTON_ERASE_COPY_FILE]->oMainMenuButtonUnk108 = 0.11111111f;
 }
 
 static void func_80171F74(struct Object *a, int buttonId)
@@ -696,7 +696,7 @@ static void func_80171F74(struct Object *a, int buttonId)
         if (save_file_exists(buttonId - MENU_BUTTON_ERASE_FILE_A) == TRUE)
         {
             SetSound(SOUND_MENU_CLICKFILESELECT, D_803320E0);
-            gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 5;
+            sMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 5;
             sSelectedFile = buttonId - MENU_BUTTON_ERASE_FILE_A;
             a->oMainMenuButtonUnk10C = 1;
             sFadeOutText = 1;
@@ -705,7 +705,7 @@ static void func_80171F74(struct Object *a, int buttonId)
         else
         {
             SetSound(SOUND_MENU_CAMERABUZZ, D_803320E0);
-            gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 4;
+            sMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 4;
             if (D_801A7BFC >= 21)
             {
                 sFadeOutText = 1;
@@ -717,7 +717,7 @@ static void func_80171F74(struct Object *a, int buttonId)
         if (MENU_BUTTON_ERASE_FILE_A + sSelectedFile == buttonId)
         {
             SetSound(SOUND_MENU_CLICKFILESELECT, D_803320E0);
-            gMainMenuButtons[MENU_BUTTON_ERASE_FILE_A + sSelectedFile]->oMainMenuButtonUnkF4 = 6;
+            sMainMenuButtons[MENU_BUTTON_ERASE_FILE_A + sSelectedFile]->oMainMenuButtonUnkF4 = 6;
             a->oMainMenuButtonUnk10C = 0;
             sFadeOutText = 1;
         }
@@ -733,8 +733,8 @@ static void erase_menu_handle_click(struct Object *a)
 
         for (buttonId = 21; buttonId < 28; buttonId++)
         {
-            s16 buttonX = gMainMenuButtons[buttonId]->oPosX;
-            s16 buttonY = gMainMenuButtons[buttonId]->oPosY;
+            s16 buttonX = sMainMenuButtons[buttonId]->oPosX;
+            s16 buttonY = sMainMenuButtons[buttonId]->oPosY;
 
             if (button_hittest(buttonX, buttonY, 22.0f) == TRUE)
             {
@@ -745,7 +745,7 @@ static void erase_menu_handle_click(struct Object *a)
                     if (a->oMainMenuButtonUnk10C == 0)
                     {
                         SetSound(SOUND_MENU_CLICKFILESELECT, D_803320E0);
-                        gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 4;
+                        sMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 4;
                         sSelectedButtonId = buttonId;
                     }
                 }
@@ -761,26 +761,26 @@ static void erase_menu_handle_click(struct Object *a)
         if (a->oMainMenuButtonUnk10C == 2 && D_801A7BFC >= 31)
         {
             a->oMainMenuButtonUnk10C = 0;
-            gMainMenuButtons[MENU_BUTTON_ERASE_FILE_A + sSelectedFile]->oMainMenuButtonUnkF4 = 6;
+            sMainMenuButtons[MENU_BUTTON_ERASE_FILE_A + sSelectedFile]->oMainMenuButtonUnkF4 = 6;
         }
     }
 }
 
 static void sound_select_menu_create_buttons(struct Object *a)
 {
-    gMainMenuButtons[MENU_BUTTON_STEREO] = func_8029E2A8(a, 12, beh_menu_growing_button, 533, 0,
+    sMainMenuButtons[MENU_BUTTON_STEREO] = func_8029E2A8(a, 12, beh_menu_growing_button, 533, 0,
         -100, 0, -0x8000, 0);
-    gMainMenuButtons[MENU_BUTTON_STEREO]->oMainMenuButtonUnk108 = 0.11111111f;
+    sMainMenuButtons[MENU_BUTTON_STEREO]->oMainMenuButtonUnk108 = 0.11111111f;
 
-    gMainMenuButtons[MENU_BUTTON_MONO] = func_8029E2A8(a, 12, beh_menu_growing_button, 0, 0,
+    sMainMenuButtons[MENU_BUTTON_MONO] = func_8029E2A8(a, 12, beh_menu_growing_button, 0, 0,
         -100, 0, -0x8000, 0);
-    gMainMenuButtons[MENU_BUTTON_MONO]->oMainMenuButtonUnk108 = 0.11111111f;
+    sMainMenuButtons[MENU_BUTTON_MONO]->oMainMenuButtonUnk108 = 0.11111111f;
 
-    gMainMenuButtons[MENU_BUTTON_HEADSET] = func_8029E2A8(a, 12, beh_menu_growing_button, -533, 0,
+    sMainMenuButtons[MENU_BUTTON_HEADSET] = func_8029E2A8(a, 12, beh_menu_growing_button, -533, 0,
         -100, 0, -0x8000, 0);
-    gMainMenuButtons[MENU_BUTTON_HEADSET]->oMainMenuButtonUnk108 = 0.11111111f;
+    sMainMenuButtons[MENU_BUTTON_HEADSET]->oMainMenuButtonUnk108 = 0.11111111f;
 
-    gMainMenuButtons[29 + sSoundMode]->oMainMenuButtonUnkF4 = 5;
+    sMainMenuButtons[29 + sSoundMode]->oMainMenuButtonUnkF4 = 5;
 }
 
 static void sound_select_menu_handle_click(struct Object *a)
@@ -791,8 +791,8 @@ static void sound_select_menu_handle_click(struct Object *a)
 
         for (buttonId = 29; buttonId < 32; buttonId++)
         {
-            s16 buttonX = gMainMenuButtons[buttonId]->oPosX;
-            s16 buttonY = gMainMenuButtons[buttonId]->oPosY;
+            s16 buttonX = sMainMenuButtons[buttonId]->oPosX;
+            s16 buttonY = sMainMenuButtons[buttonId]->oPosY;
 
             if (button_hittest(buttonX, buttonY, 22.0f) == TRUE)
             {
@@ -803,7 +803,7 @@ static void sound_select_menu_handle_click(struct Object *a)
                     if (a->oMainMenuButtonUnk10C == 0)
                     {
                         SetSound(SOUND_MENU_CLICKFILESELECT, D_803320E0);
-                        gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 4;
+                        sMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 4;
                         sSelectedButtonId = buttonId;
                         sSoundMode = buttonId - 29;
                         save_file_set_sound_mode(sSoundMode);
@@ -826,34 +826,34 @@ static void main_menu_init(s16 buttonId, struct Object *b)
 {
     int sp1C;
 
-    if (b->oMainMenuButtonUnkF4 == 0 && gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 == 2)
+    if (b->oMainMenuButtonUnkF4 == 0 && sMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 == 2)
     {
         SetSound(SOUND_MENU_CAMERAZOOMOUT, D_803320E0);
-        gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 3;
+        sMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 3;
         D_801A7BD4 = 1;
     }
-    if (gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 == 0)
+    if (sMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 == 0)
     {
         sSelectedButtonId = -1;
         if (buttonId == MENU_BUTTON_SCORE)
         {
             for (sp1C = 7; sp1C < 14; sp1C++)
-                hide_object(gMainMenuButtons[sp1C]);
+                hide_object(sMainMenuButtons[sp1C]);
         }
         if (buttonId == MENU_BUTTON_COPY)
         {
             for (sp1C = 14; sp1C < 21; sp1C++)
-                hide_object(gMainMenuButtons[sp1C]);
+                hide_object(sMainMenuButtons[sp1C]);
         }
         if (buttonId == MENU_BUTTON_ERASE)
         {
             for (sp1C = 21; sp1C < 28; sp1C++)
-                hide_object(gMainMenuButtons[sp1C]);
+                hide_object(sMainMenuButtons[sp1C]);
         }
         if (buttonId == MENU_BUTTON_SOUND_MODE)
         {
             for (sp1C = 29; sp1C < 32; sp1C++)
-                hide_object(gMainMenuButtons[sp1C]);
+                hide_object(sMainMenuButtons[sp1C]);
         }
     }
 }
@@ -862,33 +862,33 @@ static void score_menu_init(s16 buttonId, struct Object *b)
 {
     int sp1C;
 
-    if (b->oMainMenuButtonUnkF4 == 0 && gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 == 2)
+    if (b->oMainMenuButtonUnkF4 == 0 && sMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 == 2)
     {
         SetSound(SOUND_MENU_CAMERAZOOMOUT, D_803320E0);
-        gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 3;
+        sMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 3;
         D_801A7BD4 = 1;
     }
-    if (gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 == 0)
+    if (sMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 == 0)
     {
         if (buttonId == MENU_BUTTON_SCORE)
         {
             for (sp1C = 7; sp1C < 14; sp1C++)
-                hide_object(gMainMenuButtons[sp1C]);
+                hide_object(sMainMenuButtons[sp1C]);
         }
         if (buttonId == MENU_BUTTON_COPY)
         {
             for (sp1C = 14; sp1C < 21; sp1C++)
-                hide_object(gMainMenuButtons[sp1C]);
+                hide_object(sMainMenuButtons[sp1C]);
         }
         if (buttonId == MENU_BUTTON_ERASE)
         {
             for (sp1C = 21; sp1C < 28; sp1C++)
-                hide_object(gMainMenuButtons[sp1C]);
+                hide_object(sMainMenuButtons[sp1C]);
         }
         sSelectedButtonId = MENU_BUTTON_SCORE;
         SetSound(SOUND_MENU_CAMERAZOOMIN, D_803320E0);
-        gMainMenuButtons[MENU_BUTTON_SCORE]->oMainMenuButtonUnkF4 = 1;
-        score_menu_create_buttons(gMainMenuButtons[MENU_BUTTON_SCORE]);
+        sMainMenuButtons[MENU_BUTTON_SCORE]->oMainMenuButtonUnkF4 = 1;
+        score_menu_create_buttons(sMainMenuButtons[MENU_BUTTON_SCORE]);
     }
 }
 
@@ -896,33 +896,33 @@ static void copy_menu_init(s16 buttonId, struct Object *b)
 {
     int sp1C;
 
-    if (b->oMainMenuButtonUnkF4 == 0 && gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 == 2)
+    if (b->oMainMenuButtonUnkF4 == 0 && sMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 == 2)
     {
         SetSound(SOUND_MENU_CAMERAZOOMOUT, D_803320E0);
-        gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 3;
+        sMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 3;
         D_801A7BD4 = 1;
     }
-    if (gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 == 0)
+    if (sMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 == 0)
     {
         if (buttonId == MENU_BUTTON_SCORE)
         {
             for (sp1C = 7; sp1C < 14; sp1C++)
-                hide_object(gMainMenuButtons[sp1C]);
+                hide_object(sMainMenuButtons[sp1C]);
         }
         if (buttonId == MENU_BUTTON_COPY)
         {
             for (sp1C = 14; sp1C < 21; sp1C++)
-                hide_object(gMainMenuButtons[sp1C]);
+                hide_object(sMainMenuButtons[sp1C]);
         }
         if (buttonId == MENU_BUTTON_ERASE)
         {
             for (sp1C = 21; sp1C < 28; sp1C++)
-                hide_object(gMainMenuButtons[sp1C]);
+                hide_object(sMainMenuButtons[sp1C]);
         }
         sSelectedButtonId = MENU_BUTTON_COPY;
         SetSound(SOUND_MENU_CAMERAZOOMIN, D_803320E0);
-        gMainMenuButtons[MENU_BUTTON_COPY]->oMainMenuButtonUnkF4 = 1;
-        copy_menu_create_buttons(gMainMenuButtons[MENU_BUTTON_COPY]);
+        sMainMenuButtons[MENU_BUTTON_COPY]->oMainMenuButtonUnkF4 = 1;
+        copy_menu_create_buttons(sMainMenuButtons[MENU_BUTTON_COPY]);
     }
 }
 
@@ -930,33 +930,33 @@ static void erase_menu_init(s16 buttonId, struct Object *b)
 {
     int sp1C;
 
-    if (b->oMainMenuButtonUnkF4 == 0 && gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 == 2)
+    if (b->oMainMenuButtonUnkF4 == 0 && sMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 == 2)
     {
         SetSound(SOUND_MENU_CAMERAZOOMOUT, D_803320E0);
-        gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 3;
+        sMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 3;
         D_801A7BD4 = 1;
     }
-    if (gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 == 0)
+    if (sMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 == 0)
     {
         if (buttonId == MENU_BUTTON_SCORE)
         {
             for (sp1C = 7; sp1C < 14; sp1C++)
-                hide_object(gMainMenuButtons[sp1C]);
+                hide_object(sMainMenuButtons[sp1C]);
         }
         if (buttonId == MENU_BUTTON_COPY)
         {
             for (sp1C = 14; sp1C < 21; sp1C++)
-                hide_object(gMainMenuButtons[sp1C]);
+                hide_object(sMainMenuButtons[sp1C]);
         }
         if (buttonId == MENU_BUTTON_ERASE)
         {
             for (sp1C = 21; sp1C < 28; sp1C++)
-                hide_object(gMainMenuButtons[sp1C]);
+                hide_object(sMainMenuButtons[sp1C]);
         }
         sSelectedButtonId = MENU_BUTTON_ERASE;
         SetSound(SOUND_MENU_CAMERAZOOMIN, D_803320E0);
-        gMainMenuButtons[MENU_BUTTON_ERASE]->oMainMenuButtonUnkF4 = 1;
-        erase_menu_create_buttons(gMainMenuButtons[MENU_BUTTON_ERASE]);
+        sMainMenuButtons[MENU_BUTTON_ERASE]->oMainMenuButtonUnkF4 = 1;
+        erase_menu_create_buttons(sMainMenuButtons[MENU_BUTTON_ERASE]);
     }
 }
 
@@ -964,67 +964,67 @@ void BehGreyButtonInit(void)
 {
     if (save_file_exists(0) == TRUE)
     {
-        gMainMenuButtons[MENU_BUTTON_PLAY_FILE_A] = func_8029E2A8(gCurrentObject, 8, beh_menu_growing_button,
+        sMainMenuButtons[MENU_BUTTON_PLAY_FILE_A] = func_8029E2A8(gCurrentObject, 8, beh_menu_growing_button,
             -6400, 2800, 0, 0, 0, 0);
     }
     else
     {
-        gMainMenuButtons[MENU_BUTTON_PLAY_FILE_A] = func_8029E2A8(gCurrentObject, 10, beh_menu_growing_button,
+        sMainMenuButtons[MENU_BUTTON_PLAY_FILE_A] = func_8029E2A8(gCurrentObject, 10, beh_menu_growing_button,
             -6400, 2800, 0, 0, 0, 0);
     }
-    gMainMenuButtons[MENU_BUTTON_PLAY_FILE_A]->oMainMenuButtonUnk108 = 1.0f;
+    sMainMenuButtons[MENU_BUTTON_PLAY_FILE_A]->oMainMenuButtonUnk108 = 1.0f;
 
     if (save_file_exists(1) == TRUE)
     {
-        gMainMenuButtons[MENU_BUTTON_PLAY_FILE_B] = func_8029E2A8(gCurrentObject, 8, beh_menu_growing_button,
+        sMainMenuButtons[MENU_BUTTON_PLAY_FILE_B] = func_8029E2A8(gCurrentObject, 8, beh_menu_growing_button,
             1500, 2800, 0, 0, 0, 0);
     }
     else
     {
-        gMainMenuButtons[MENU_BUTTON_PLAY_FILE_B] = func_8029E2A8(gCurrentObject, 10, beh_menu_growing_button,
+        sMainMenuButtons[MENU_BUTTON_PLAY_FILE_B] = func_8029E2A8(gCurrentObject, 10, beh_menu_growing_button,
             1500, 2800, 0, 0, 0, 0);
     }
-    gMainMenuButtons[MENU_BUTTON_PLAY_FILE_B]->oMainMenuButtonUnk108 = 1.0f;
+    sMainMenuButtons[MENU_BUTTON_PLAY_FILE_B]->oMainMenuButtonUnk108 = 1.0f;
 
     if (save_file_exists(2) == TRUE)
     {
-        gMainMenuButtons[MENU_BUTTON_PLAY_FILE_C] = func_8029E2A8(gCurrentObject, 8, beh_menu_growing_button,
+        sMainMenuButtons[MENU_BUTTON_PLAY_FILE_C] = func_8029E2A8(gCurrentObject, 8, beh_menu_growing_button,
             -6400, 0, 0, 0, 0, 0);
     }
     else
     {
-        gMainMenuButtons[MENU_BUTTON_PLAY_FILE_C] = func_8029E2A8(gCurrentObject, 10, beh_menu_growing_button,
+        sMainMenuButtons[MENU_BUTTON_PLAY_FILE_C] = func_8029E2A8(gCurrentObject, 10, beh_menu_growing_button,
             -6400, 0, 0, 0, 0, 0);
     }
-    gMainMenuButtons[MENU_BUTTON_PLAY_FILE_C]->oMainMenuButtonUnk108 = 1.0f;
+    sMainMenuButtons[MENU_BUTTON_PLAY_FILE_C]->oMainMenuButtonUnk108 = 1.0f;
 
     if (save_file_exists(3) == TRUE)
     {
-        gMainMenuButtons[MENU_BUTTON_PLAY_FILE_D] = func_8029E2A8(gCurrentObject, 8, beh_menu_growing_button,
+        sMainMenuButtons[MENU_BUTTON_PLAY_FILE_D] = func_8029E2A8(gCurrentObject, 8, beh_menu_growing_button,
             1500, 0, 0, 0, 0, 0);
     }
     else
     {
-        gMainMenuButtons[MENU_BUTTON_PLAY_FILE_D] = func_8029E2A8(gCurrentObject, 10, beh_menu_growing_button,
+        sMainMenuButtons[MENU_BUTTON_PLAY_FILE_D] = func_8029E2A8(gCurrentObject, 10, beh_menu_growing_button,
             1500, 0, 0, 0, 0, 0);
     }
-    gMainMenuButtons[MENU_BUTTON_PLAY_FILE_D]->oMainMenuButtonUnk108 = 1.0f;
+    sMainMenuButtons[MENU_BUTTON_PLAY_FILE_D]->oMainMenuButtonUnk108 = 1.0f;
 
-    gMainMenuButtons[MENU_BUTTON_SCORE] = func_8029E2A8(gCurrentObject, 7, beh_menu_growing_button,
+    sMainMenuButtons[MENU_BUTTON_SCORE] = func_8029E2A8(gCurrentObject, 7, beh_menu_growing_button,
         -6400, -3500, 0, 0, 0, 0);
-    gMainMenuButtons[MENU_BUTTON_SCORE]->oMainMenuButtonUnk108 = 1.0f;
+    sMainMenuButtons[MENU_BUTTON_SCORE]->oMainMenuButtonUnk108 = 1.0f;
 
-    gMainMenuButtons[MENU_BUTTON_COPY] = func_8029E2A8(gCurrentObject, 5, beh_menu_growing_button,
+    sMainMenuButtons[MENU_BUTTON_COPY] = func_8029E2A8(gCurrentObject, 5, beh_menu_growing_button,
         -2134, -3500, 0, 0, 0, 0);
-    gMainMenuButtons[MENU_BUTTON_COPY]->oMainMenuButtonUnk108 = 1.0f;
+    sMainMenuButtons[MENU_BUTTON_COPY]->oMainMenuButtonUnk108 = 1.0f;
 
-    gMainMenuButtons[MENU_BUTTON_ERASE] = func_8029E2A8(gCurrentObject, 4, beh_menu_growing_button,
+    sMainMenuButtons[MENU_BUTTON_ERASE] = func_8029E2A8(gCurrentObject, 4, beh_menu_growing_button,
         2134, -3500, 0, 0, 0, 0);
-    gMainMenuButtons[MENU_BUTTON_ERASE]->oMainMenuButtonUnk108 = 1.0f;
+    sMainMenuButtons[MENU_BUTTON_ERASE]->oMainMenuButtonUnk108 = 1.0f;
 
-    gMainMenuButtons[MENU_BUTTON_SOUND_MODE] = func_8029E2A8(gCurrentObject, 11, beh_menu_growing_button,
+    sMainMenuButtons[MENU_BUTTON_SOUND_MODE] = func_8029E2A8(gCurrentObject, 11, beh_menu_growing_button,
         6400, -3500, 0, 0, 0, 0);
-    gMainMenuButtons[MENU_BUTTON_SOUND_MODE]->oMainMenuButtonUnk108 = 1.0f;
+    sMainMenuButtons[MENU_BUTTON_SOUND_MODE]->oMainMenuButtonUnk108 = 1.0f;
 
     sTextColorAlpha = 0;
 }
@@ -1032,10 +1032,10 @@ void BehGreyButtonInit(void)
 static void main_menu_handle_click(void)
 {
     if (button_hittest(
-        gMainMenuButtons[MENU_BUTTON_SOUND_MODE]->oPosX,
-        gMainMenuButtons[MENU_BUTTON_SOUND_MODE]->oPosY, 200.0f) == TRUE)
+        sMainMenuButtons[MENU_BUTTON_SOUND_MODE]->oPosX,
+        sMainMenuButtons[MENU_BUTTON_SOUND_MODE]->oPosY, 200.0f) == TRUE)
     {
-        gMainMenuButtons[MENU_BUTTON_SOUND_MODE]->oMainMenuButtonUnkF4 = 1;
+        sMainMenuButtons[MENU_BUTTON_SOUND_MODE]->oMainMenuButtonUnkF4 = 1;
         sSelectedButtonId = MENU_BUTTON_SOUND_MODE;
     }
     else
@@ -1044,12 +1044,12 @@ static void main_menu_handle_click(void)
 
         for (buttonId = 0; buttonId < 7; buttonId++)
         {
-            s16 buttonX = gMainMenuButtons[buttonId]->oPosX;
-            s16 buttonY = gMainMenuButtons[buttonId]->oPosY;
+            s16 buttonX = sMainMenuButtons[buttonId]->oPosX;
+            s16 buttonY = sMainMenuButtons[buttonId]->oPosY;
 
             if (button_hittest(buttonX, buttonY, 200.0f) == TRUE)
             {
-                gMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 1;
+                sMainMenuButtons[buttonId]->oMainMenuButtonUnkF4 = 1;
                 sSelectedButtonId = buttonId;
                 break;
             }
@@ -1072,19 +1072,19 @@ static void main_menu_handle_click(void)
         break;
     case 4:
         SetSound(SOUND_MENU_CAMERAZOOMIN, D_803320E0);
-        score_menu_create_buttons(gMainMenuButtons[MENU_BUTTON_SCORE]);
+        score_menu_create_buttons(sMainMenuButtons[MENU_BUTTON_SCORE]);
         break;
     case 5:
         SetSound(SOUND_MENU_CAMERAZOOMIN, D_803320E0);
-        copy_menu_create_buttons(gMainMenuButtons[MENU_BUTTON_COPY]);
+        copy_menu_create_buttons(sMainMenuButtons[MENU_BUTTON_COPY]);
         break;
     case 6:
         SetSound(SOUND_MENU_CAMERAZOOMIN, D_803320E0);
-        erase_menu_create_buttons(gMainMenuButtons[MENU_BUTTON_ERASE]);
+        erase_menu_create_buttons(sMainMenuButtons[MENU_BUTTON_ERASE]);
         break;
     case MENU_BUTTON_SOUND_MODE:
         SetSound(SOUND_MENU_CAMERAZOOMIN, D_803320E0);
-        sound_select_menu_create_buttons(gMainMenuButtons[MENU_BUTTON_SOUND_MODE]);
+        sound_select_menu_create_buttons(sMainMenuButtons[MENU_BUTTON_SOUND_MODE]);
         break;
     }
 }
@@ -1097,47 +1097,47 @@ void BehGreyButtonLoop(void)
         main_menu_handle_click();
         break;
     case MENU_BUTTON_PLAY_FILE_A:
-        func_8017257C(gMainMenuButtons[MENU_BUTTON_PLAY_FILE_A], 1);
+        func_8017257C(sMainMenuButtons[MENU_BUTTON_PLAY_FILE_A], 1);
         break;
     case MENU_BUTTON_PLAY_FILE_B:
-        func_8017257C(gMainMenuButtons[MENU_BUTTON_PLAY_FILE_B], 2);
+        func_8017257C(sMainMenuButtons[MENU_BUTTON_PLAY_FILE_B], 2);
         break;
     case MENU_BUTTON_PLAY_FILE_C:
-        func_8017257C(gMainMenuButtons[MENU_BUTTON_PLAY_FILE_C], 3);
+        func_8017257C(sMainMenuButtons[MENU_BUTTON_PLAY_FILE_C], 3);
         break;
     case MENU_BUTTON_PLAY_FILE_D:
-        func_8017257C(gMainMenuButtons[MENU_BUTTON_PLAY_FILE_D], 4);
+        func_8017257C(sMainMenuButtons[MENU_BUTTON_PLAY_FILE_D], 4);
         break;
     case MENU_BUTTON_SCORE:
-        score_menu_handle_click(gMainMenuButtons[MENU_BUTTON_SCORE]);
+        score_menu_handle_click(sMainMenuButtons[MENU_BUTTON_SCORE]);
         break;
     case MENU_BUTTON_COPY:
-        copy_menu_handle_click(gMainMenuButtons[MENU_BUTTON_COPY]);
+        copy_menu_handle_click(sMainMenuButtons[MENU_BUTTON_COPY]);
         break;
     case MENU_BUTTON_ERASE:
-        erase_menu_handle_click(gMainMenuButtons[MENU_BUTTON_ERASE]);
+        erase_menu_handle_click(sMainMenuButtons[MENU_BUTTON_ERASE]);
         break;
 
     case MENU_BUTTON_SCORE_FILE_A:
-        func_80170C14(gMainMenuButtons[MENU_BUTTON_SCORE_FILE_A], MENU_BUTTON_SCORE);
+        func_80170C14(sMainMenuButtons[MENU_BUTTON_SCORE_FILE_A], MENU_BUTTON_SCORE);
         break;
     case MENU_BUTTON_SCORE_FILE_B:
-        func_80170C14(gMainMenuButtons[MENU_BUTTON_SCORE_FILE_B], MENU_BUTTON_SCORE);
+        func_80170C14(sMainMenuButtons[MENU_BUTTON_SCORE_FILE_B], MENU_BUTTON_SCORE);
         break;
     case MENU_BUTTON_SCORE_FILE_C:
-        func_80170C14(gMainMenuButtons[MENU_BUTTON_SCORE_FILE_C], MENU_BUTTON_SCORE);
+        func_80170C14(sMainMenuButtons[MENU_BUTTON_SCORE_FILE_C], MENU_BUTTON_SCORE);
         break;
     case MENU_BUTTON_SCORE_FILE_D:
-        func_80170C14(gMainMenuButtons[MENU_BUTTON_SCORE_FILE_D], MENU_BUTTON_SCORE);
+        func_80170C14(sMainMenuButtons[MENU_BUTTON_SCORE_FILE_D], MENU_BUTTON_SCORE);
         break;
     case MENU_BUTTON_SCORE_RETURN:
-        main_menu_init(MENU_BUTTON_SCORE, gMainMenuButtons[MENU_BUTTON_SCORE_RETURN]);
+        main_menu_init(MENU_BUTTON_SCORE, sMainMenuButtons[MENU_BUTTON_SCORE_RETURN]);
         break;
     case MENU_BUTTON_SCORE_COPY_FILE:
-        copy_menu_init(MENU_BUTTON_SCORE, gMainMenuButtons[MENU_BUTTON_SCORE_COPY_FILE]);
+        copy_menu_init(MENU_BUTTON_SCORE, sMainMenuButtons[MENU_BUTTON_SCORE_COPY_FILE]);
         break;
     case MENU_BUTTON_SCORE_ERASE_FILE:
-        erase_menu_init(MENU_BUTTON_SCORE, gMainMenuButtons[MENU_BUTTON_SCORE_ERASE_FILE]);
+        erase_menu_init(MENU_BUTTON_SCORE, sMainMenuButtons[MENU_BUTTON_SCORE_ERASE_FILE]);
         break;
 
     case MENU_BUTTON_COPY_FILE_A:
@@ -1149,13 +1149,13 @@ void BehGreyButtonLoop(void)
     case MENU_BUTTON_COPY_FILE_D:
         break;
     case MENU_BUTTON_COPY_RETURN:
-        main_menu_init(MENU_BUTTON_COPY, gMainMenuButtons[MENU_BUTTON_COPY_RETURN]);
+        main_menu_init(MENU_BUTTON_COPY, sMainMenuButtons[MENU_BUTTON_COPY_RETURN]);
         break;
     case MENU_BUTTON_COPY_CHECK_SCORE:
-        score_menu_init(MENU_BUTTON_COPY, gMainMenuButtons[MENU_BUTTON_COPY_CHECK_SCORE]);
+        score_menu_init(MENU_BUTTON_COPY, sMainMenuButtons[MENU_BUTTON_COPY_CHECK_SCORE]);
         break;
     case MENU_BUTTON_COPY_ERASE_FILE:
-        erase_menu_init(MENU_BUTTON_COPY, gMainMenuButtons[MENU_BUTTON_COPY_ERASE_FILE]);
+        erase_menu_init(MENU_BUTTON_COPY, sMainMenuButtons[MENU_BUTTON_COPY_ERASE_FILE]);
         break;
 
     case MENU_BUTTON_ERASE_FILE_A:
@@ -1167,26 +1167,26 @@ void BehGreyButtonLoop(void)
     case MENU_BUTTON_ERASE_FILE_D:
         break;
     case MENU_BUTTON_ERASE_RETURN:
-        main_menu_init(MENU_BUTTON_ERASE, gMainMenuButtons[MENU_BUTTON_ERASE_RETURN]);
+        main_menu_init(MENU_BUTTON_ERASE, sMainMenuButtons[MENU_BUTTON_ERASE_RETURN]);
         break;
     case MENU_BUTTON_ERASE_CHECK_SCORE:
-        score_menu_init(MENU_BUTTON_ERASE, gMainMenuButtons[MENU_BUTTON_ERASE_CHECK_SCORE]);
+        score_menu_init(MENU_BUTTON_ERASE, sMainMenuButtons[MENU_BUTTON_ERASE_CHECK_SCORE]);
         break;
     case MENU_BUTTON_ERASE_COPY_FILE:
-        copy_menu_init(MENU_BUTTON_ERASE, gMainMenuButtons[MENU_BUTTON_ERASE_COPY_FILE]);
+        copy_menu_init(MENU_BUTTON_ERASE, sMainMenuButtons[MENU_BUTTON_ERASE_COPY_FILE]);
         break;
 
     case MENU_BUTTON_SOUND_MODE:
-        sound_select_menu_handle_click(gMainMenuButtons[MENU_BUTTON_SOUND_MODE]);
+        sound_select_menu_handle_click(sMainMenuButtons[MENU_BUTTON_SOUND_MODE]);
         break;
     case MENU_BUTTON_STEREO:
-        main_menu_init(MENU_BUTTON_SOUND_MODE, gMainMenuButtons[MENU_BUTTON_STEREO]);
+        main_menu_init(MENU_BUTTON_SOUND_MODE, sMainMenuButtons[MENU_BUTTON_STEREO]);
         break;
     case MENU_BUTTON_MONO:
-        main_menu_init(MENU_BUTTON_SOUND_MODE, gMainMenuButtons[MENU_BUTTON_MONO]);
+        main_menu_init(MENU_BUTTON_SOUND_MODE, sMainMenuButtons[MENU_BUTTON_MONO]);
         break;
     case MENU_BUTTON_HEADSET:
-        main_menu_init(MENU_BUTTON_SOUND_MODE, gMainMenuButtons[MENU_BUTTON_HEADSET]);
+        main_menu_init(MENU_BUTTON_SOUND_MODE, sMainMenuButtons[MENU_BUTTON_HEADSET]);
         break;
     }
 
@@ -1427,7 +1427,7 @@ static void copy_menu_print_message(s8 messageId)
 
 static void copy_menu_update_message(void)
 {
-    switch (gMainMenuButtons[MENU_BUTTON_COPY]->oMainMenuButtonUnk10C)
+    switch (sMainMenuButtons[MENU_BUTTON_COPY]->oMainMenuButtonUnk10C)
     {
     case 0:
         if (D_801A7BFC == 20)
@@ -1500,20 +1500,20 @@ static void erase_yes_no_prompt(s16 x, s16 y)
 
     if (sp2C < 0xA4 && sp2C >= 0x91 && sp2A < 0xD2 && sp2A >= 0xBF)
     {
-        D_801B98E0[0] = sins(sp2E) * 50.0f + 205.0f;
-        D_801B98E0[1] = 150;
+        sYesNoColor[0] = sins(sp2E) * 50.0f + 205.0f;
+        sYesNoColor[1] = 150;
         D_801A7C04 = 1;
     }
     else if (sp2C < 0xDA && sp2C >= 0xBD && sp2A < 0xD2 && sp2A >= 0xBF)
     {
-        D_801B98E0[0] = 150;
-        D_801B98E0[1] = sins(sp2E) * 50.0f + 205.0f;
+        sYesNoColor[0] = 150;
+        sYesNoColor[1] = sins(sp2E) * 50.0f + 205.0f;
         D_801A7C04 = 2;
     }
     else
     {
-        D_801B98E0[0] = 150;
-        D_801B98E0[1] = 150;
+        sYesNoColor[0] = 150;
+        sYesNoColor[1] = 150;
         D_801A7C04 = 0;
     }
     if (D_801A7BE4 == 2)
@@ -1521,28 +1521,28 @@ static void erase_yes_no_prompt(s16 x, s16 y)
         if (D_801A7C04 == 1)
         {
             SetSound(SOUND_MARIO_WAAAOOOW, D_803320E0);
-            gMainMenuButtons[MENU_BUTTON_ERASE]->oMainMenuButtonUnk10C = 2;
+            sMainMenuButtons[MENU_BUTTON_ERASE]->oMainMenuButtonUnk10C = 2;
             sFadeOutText = 1;
             D_801A7BFC = 0;
             save_file_erase(sSelectedFile);
-            gMainMenuButtons[MENU_BUTTON_ERASE_FILE_A + sSelectedFile]->header.gfx.asGraphNode = gLoadedGraphNodes[10];
-            gMainMenuButtons[sSelectedFile]->header.gfx.asGraphNode = gLoadedGraphNodes[10];
+            sMainMenuButtons[MENU_BUTTON_ERASE_FILE_A + sSelectedFile]->header.gfx.asGraphNode = gLoadedGraphNodes[10];
+            sMainMenuButtons[sSelectedFile]->header.gfx.asGraphNode = gLoadedGraphNodes[10];
             D_801A7C04 = 0;
         }
         else if (D_801A7C04 == 2)
         {
             SetSound(SOUND_MENU_CLICKFILESELECT, D_803320E0);
-            gMainMenuButtons[MENU_BUTTON_ERASE_FILE_A + sSelectedFile]->oMainMenuButtonUnkF4 = 6;
-            gMainMenuButtons[MENU_BUTTON_ERASE]->oMainMenuButtonUnk10C = 0;
+            sMainMenuButtons[MENU_BUTTON_ERASE_FILE_A + sSelectedFile]->oMainMenuButtonUnkF4 = 6;
+            sMainMenuButtons[MENU_BUTTON_ERASE]->oMainMenuButtonUnk10C = 0;
             sFadeOutText = 1;
             D_801A7BFC = 0;
             D_801A7C04 = 0;
         }
     }
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
-    gDPSetEnvColor(gDisplayListHead++, D_801B98E0[0], D_801B98E0[0], D_801B98E0[0], sTextColorAlpha);
+    gDPSetEnvColor(gDisplayListHead++, sYesNoColor[0], sYesNoColor[0], sYesNoColor[0], sTextColorAlpha);
     PrintGenericText(x + 56, y, textYes);
-    gDPSetEnvColor(gDisplayListHead++, D_801B98E0[1], D_801B98E0[1], D_801B98E0[1], sTextColorAlpha);
+    gDPSetEnvColor(gDisplayListHead++, sYesNoColor[1], sYesNoColor[1], sYesNoColor[1], sTextColorAlpha);
     PrintGenericText(x + 98, y, textNo);
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
 }
@@ -1579,7 +1579,7 @@ static void erase_menu_print_message(s8 messageId)
 
 static void erase_menu_update_message(void)
 {
-    switch (gMainMenuButtons[MENU_BUTTON_ERASE]->oMainMenuButtonUnk10C)
+    switch (sMainMenuButtons[MENU_BUTTON_ERASE]->oMainMenuButtonUnk10C)
     {
     case 0:
         if (D_801A7BFC == 20 && sStatusMessageId == 2)

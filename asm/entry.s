@@ -25,10 +25,10 @@ glabel EntryPoint
 /* 00101C 8024601C 1520FFFC */  bnez  $t1, .L80246010
 /* 001020 80246020 21080008 */   addi  $t0, $t0, 8
 /* 001024 80246024 3C0A8024 */  lui   $t2, %hi(Main) # $t2, 0x8024
-/* 001028 80246028 3C1D8020 */  lui   $sp, %hi(D_80200A00) # $sp, 0x8020
+/* 001028 80246028 3C1D8020 */  lui   $sp, %hi(gIdleThreadStack) # $sp, 0x8020
 /* 00102C 8024602C 254A6DC4 */  addiu $t2, %lo(Main) # addiu $t2, $t2, 0x6dc4
 /* 001030 80246030 01400008 */  jr    $t2
-/* 001034 80246034 27BD0A00 */   addiu $sp, %lo(D_80200A00) # addiu $sp, $sp, 0xa00
+/* 001034 80246034 27BD0A00 */   addiu $sp, %lo(gIdleThreadStack) # addiu $sp, $sp, 0xa00
 /* 001038 80246038 00000000 */  nop   
 /* 00103C 8024603C 00000000 */  nop   
 /* 001040 80246040 00000000 */  nop   

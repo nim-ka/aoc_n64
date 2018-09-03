@@ -1477,53 +1477,53 @@ glabel osInitialize
 /* 0DD94C 8032294C 3C088032 */  lui   $t0, %hi(__osExceptionPreamble) # $t0, 0x8032
 /* 0DD950 80322950 250866C0 */  addiu $t0, %lo(__osExceptionPreamble) # addiu $t0, $t0, 0x66c0
 /* 0DD954 80322954 8D010000 */  lw    $at, ($t0)
-/* 0DD958 80322958 3C198000 */  lui   $t9, %hi(D_8000000C) # $t9, 0x8000
+/* 0DD958 80322958 3C198000 */  lui   $t9, (0x80000000 >> 16) # $t9, 0x8000
 /* 0DD95C 8032295C 3C0D8032 */  lui   $t5, %hi(__osExceptionPreamble) # $t5, 0x8032
 /* 0DD960 80322960 AF210000 */  sw    $at, ($t9)
 /* 0DD964 80322964 8D0B0004 */  lw    $t3, 4($t0)
 /* 0DD968 80322968 25AD66C0 */  addiu $t5, %lo(__osExceptionPreamble) # addiu $t5, $t5, 0x66c0
-/* 0DD96C 8032296C 3C0C8000 */  lui   $t4, %hi(D_8000000C) # $t4, 0x8000
-/* 0DD970 80322970 AF2B0004 */  sw    $t3, %lo(D_80000004)($t9)
+/* 0DD96C 8032296C 3C0C8000 */  lui   $t4, (0x80000080 >> 16) # $t4, 0x8000
+/* 0DD970 80322970 AF2B0004 */  sw    $t3, 4($t9)
 /* 0DD974 80322974 8D010008 */  lw    $at, 8($t0)
 /* 0DD978 80322978 358C0080 */  ori   $t4, (0x80000080 & 0xFFFF) # ori $t4, $t4, 0x80
 /* 0DD97C 8032297C 3C098032 */  lui   $t1, %hi(__osExceptionPreamble) # $t1, 0x8032
-/* 0DD980 80322980 AF210008 */  sw    $at, %lo(D_80000008)($t9)
+/* 0DD980 80322980 AF210008 */  sw    $at, 8($t9)
 /* 0DD984 80322984 8D0B000C */  lw    $t3, 0xc($t0)
 /* 0DD988 80322988 252966C0 */  addiu $t1, %lo(__osExceptionPreamble) # addiu $t1, $t1, 0x66c0
-/* 0DD98C 8032298C 3C0A8000 */  lui   $t2, %hi(D_8000000C) # $t2, 0x8000
-/* 0DD990 80322990 AF2B000C */  sw    $t3, %lo(D_8000000C)($t9)
+/* 0DD98C 8032298C 3C0A8000 */  lui   $t2, (0x80000100 >> 16) # $t2, 0x8000
+/* 0DD990 80322990 AF2B000C */  sw    $t3, 0xc($t9)
 /* 0DD994 80322994 8DA10000 */  lw    $at, ($t5)
 /* 0DD998 80322998 354A0100 */  ori   $t2, (0x80000100 & 0xFFFF) # ori $t2, $t2, 0x100
 /* 0DD99C 8032299C 3C0E8032 */  lui   $t6, %hi(__osExceptionPreamble) # $t6, 0x8032
 /* 0DD9A0 803229A0 AD810000 */  sw    $at, ($t4)
 /* 0DD9A4 803229A4 8DB80004 */  lw    $t8, 4($t5)
 /* 0DD9A8 803229A8 25CE66C0 */  addiu $t6, %lo(__osExceptionPreamble) # addiu $t6, $t6, 0x66c0
-/* 0DD9AC 803229AC 3C0F8000 */  lui   $t7, %hi(D_8000000C) # $t7, 0x8000
-/* 0DD9B0 803229B0 AD980004 */  sw    $t8, %lo(D_80000004)($t4)
+/* 0DD9AC 803229AC 3C0F8000 */  lui   $t7, (0x80000180 >> 16) # $t7, 0x8000
+/* 0DD9B0 803229B0 AD980004 */  sw    $t8, 4($t4)
 /* 0DD9B4 803229B4 8DA10008 */  lw    $at, 8($t5)
 /* 0DD9B8 803229B8 35EF0180 */  ori   $t7, (0x80000180 & 0xFFFF) # ori $t7, $t7, 0x180
 /* 0DD9BC 803229BC 3C048000 */  lui   $a0, 0x8000
-/* 0DD9C0 803229C0 AD810008 */  sw    $at, %lo(D_80000008)($t4)
+/* 0DD9C0 803229C0 AD810008 */  sw    $at, 8($t4)
 /* 0DD9C4 803229C4 8DB8000C */  lw    $t8, 0xc($t5)
 /* 0DD9C8 803229C8 24050190 */  li    $a1, 400
-/* 0DD9CC 803229CC AD98000C */  sw    $t8, %lo(D_8000000C)($t4)
+/* 0DD9CC 803229CC AD98000C */  sw    $t8, 0xc($t4)
 /* 0DD9D0 803229D0 8D210000 */  lw    $at, ($t1)
 /* 0DD9D4 803229D4 AD410000 */  sw    $at, ($t2)
 /* 0DD9D8 803229D8 8D2B0004 */  lw    $t3, 4($t1)
-/* 0DD9DC 803229DC AD4B0004 */  sw    $t3, %lo(D_80000004)($t2)
+/* 0DD9DC 803229DC AD4B0004 */  sw    $t3, 4($t2)
 /* 0DD9E0 803229E0 8D210008 */  lw    $at, 8($t1)
-/* 0DD9E4 803229E4 AD410008 */  sw    $at, %lo(D_80000008)($t2)
+/* 0DD9E4 803229E4 AD410008 */  sw    $at, 8($t2)
 /* 0DD9E8 803229E8 8D2B000C */  lw    $t3, 0xc($t1)
-/* 0DD9EC 803229EC AD4B000C */  sw    $t3, %lo(D_8000000C)($t2)
+/* 0DD9EC 803229EC AD4B000C */  sw    $t3, 0xc($t2)
 /* 0DD9F0 803229F0 8DC10000 */  lw    $at, ($t6)
 /* 0DD9F4 803229F4 ADE10000 */  sw    $at, ($t7)
 /* 0DD9F8 803229F8 8DD80004 */  lw    $t8, 4($t6)
-/* 0DD9FC 803229FC ADF80004 */  sw    $t8, %lo(D_80000004)($t7)
+/* 0DD9FC 803229FC ADF80004 */  sw    $t8, 4($t7)
 /* 0DDA00 80322A00 8DC10008 */  lw    $at, 8($t6)
-/* 0DDA04 80322A04 ADE10008 */  sw    $at, %lo(D_80000008)($t7)
+/* 0DDA04 80322A04 ADE10008 */  sw    $at, 8($t7)
 /* 0DDA08 80322A08 8DD8000C */  lw    $t8, 0xc($t6)
 /* 0DDA0C 80322A0C 0C0C937C */  jal   osWritebackDCache
-/* 0DDA10 80322A10 ADF8000C */   sw    $t8, %lo(D_8000000C)($t7)
+/* 0DDA10 80322A10 ADF8000C */   sw    $t8, 0xc($t7)
 /* 0DDA14 80322A14 3C048000 */  lui   $a0, 0x8000
 /* 0DDA18 80322A18 0C0C8DB8 */  jal   osInvalICache
 /* 0DDA1C 80322A1C 24050190 */   li    $a1, 400
@@ -5843,8 +5843,8 @@ glabel __osExceptionPreamble
 /* 0E16C8 803266C8 03400008 */  jr    $k0
 /* 0E16CC 803266CC 00000000 */   nop   
 glabel __osException
-/* 0E16D0 803266D0 3C1A8036 */  lui   $k0, %hi(D_80365F40) # $k0, 0x8036
-/* 0E16D4 803266D4 275A5F40 */  addiu $k0, %lo(D_80365F40) # addiu $k0, $k0, 0x5f40
+/* 0E16D0 803266D0 3C1A8036 */  lui   $k0, %hi(gInterruptedThread) # $k0, 0x8036
+/* 0E16D4 803266D4 275A5F40 */  addiu $k0, %lo(gInterruptedThread) # addiu $k0, $k0, 0x5f40
 /* 0E16D8 803266D8 FF410020 */  sd    $at, 0x20($k0)
 /* 0E16DC 803266DC 401B6000 */  mfc0  $k1, $12
 /* 0E16E0 803266E0 AF5B0118 */  sw    $k1, 0x118($k0)
@@ -9585,9 +9585,9 @@ glabel process_command_memory
 
 glabel process_command_register
 /* 0E4B8C 80329B8C 27BDFFE8 */  addiu $sp, $sp, -0x18
-/* 0E4B90 80329B90 3C048036 */  lui   $a0, %hi(D_80365F40) # $a0, 0x8036
+/* 0E4B90 80329B90 3C048036 */  lui   $a0, %hi(gInterruptedThread) # $a0, 0x8036
 /* 0E4B94 80329B94 AFBF0014 */  sw    $ra, 0x14($sp)
-/* 0E4B98 80329B98 24845F40 */  addiu $a0, %lo(D_80365F40) # addiu $a0, $a0, 0x5f40
+/* 0E4B98 80329B98 24845F40 */  addiu $a0, %lo(gInterruptedThread) # addiu $a0, $a0, 0x5f40
 /* 0E4B9C 80329B9C 24840020 */  addiu $a0, $a0, 0x20
 /* 0E4BA0 80329BA0 0C0CA69A */  jal   send
 /* 0E4BA4 80329BA4 24050190 */   li    $a1, 400

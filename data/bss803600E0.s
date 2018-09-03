@@ -126,6 +126,6 @@ glabel D_80365E3C
     .space 0x4
 glabel D_80365E40
     .space 0x100
-glabel D_80365F40
+glabel gInterruptedThread
     .space 0x1B0
 glabel gBss1End

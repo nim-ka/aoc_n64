@@ -15,5 +15,5 @@ glabel gSoundMesgQueue
     .space 0x18
 glabel gSoundMesgBuf
     .space 0x8
-glabel D_80339DF0
+glabel gSoundVblankHandler
     .space 0x10

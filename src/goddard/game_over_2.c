@@ -1,6 +1,7 @@
 #include <ultra64.h>
 
 #include "sm64.h"
+#include "gd_main.h"
 #include "game_over_2.h"
 #include "mario_head_1.h"
 #include "../mario_head_4.h"
@@ -149,6 +150,37 @@ struct Struct80178900
     s32 unk1C8;
 };
 
+static u8 sUnused[0x88];
+struct Struct801781DC_2 *D_801B9BB8;  // assumed type
+
+static u8 sUnused0[0x40];
+static s32 D_801B9C00;
+static s32 D_801B9C04;
+static s16 D_801B9C08[100];
+static s32 D_801B9CD0;
+static float D_801B9CD4;
+static struct Struct8017B514 *D_801B9CD8;
+
+static struct {
+    // This needs to be within a struct, otherwise unk4 would become 8-byte
+    // aligned. The struct might be larger, it's hard to say.
+    u8 filler0[4];
+    struct UnknownGameOverStruct9 *unk4;
+} D_801B9CE0;
+
+static s32 D_801B9CE8;
+static s32 D_801B9CEC;
+static s32 D_801B9CF0;
+static s32 D_801B9CF4;
+static struct Struct801B9CF8 *D_801B9CF8;
+static struct MyVec3f D_801B9D00;
+static struct MyVec3f D_801B9D10;
+static struct MyVec3f D_801B9D20[8];
+static s32 D_801B9D80;
+static struct MyVec3f D_801B9D88;
+
+extern void *D_801A80F4;
+
 void func_80178140(void)
 {
     func_801A033C(2);
@@ -164,8 +196,6 @@ void func_80178140(void)
 }
 
 void func_80179B64(struct ObjGroup*);
-
-extern struct Struct801781DC_2 *D_801B9BB8;  // assumed type
 
 void Unknown801781DC(struct Struct801781DC *a)
 {
@@ -205,11 +235,6 @@ void Unknown801781DC(struct Struct801781DC *a)
         s0 = s0->unk4;
     }
 }
-
-extern s32 D_801B9CF0;
-extern void *D_801A80F4;
-extern s32 D_801B9C04;
-extern s32 D_801B9D80;
 
 extern void func_8019EF14(struct UnknownGameOverStruct1 *);
 extern void func_8017AD98(struct UnknownGameOverStruct2 *, struct MyVec3f *);
@@ -317,7 +342,6 @@ void func_8017880C(struct UnknownGameOverStruct2 *a, int b,
 
 extern Vec3f D_801A80E8;
 extern struct UnknownGameOverStruct2 *D_801A82E4;
-extern s32 D_801B9C00;
 extern s32 D_801A81A0;
 
 void Proc80178900(struct Struct80178900 *a)
@@ -375,12 +399,7 @@ struct Struct801B9CF8
     u8 unk74[1]; // unknown type
 };
 
-extern struct Struct801B9CF8 *D_801B9CF8;
-extern float D_801B9D00;
-extern float D_801B9D10;
-
-extern void func_801A0478(int, struct ObjCamera *, void *, void *, void *,
-    void *);
+extern void func_801A0478(int, struct ObjCamera *, void *, void *, void *, void *);
 
 void draw_material(struct UnknownGameOverStruct3 *a)
 {
@@ -532,7 +551,6 @@ void Unknown80178ECC(float a, float b, float c, float d, float e, float f)
 }
 
 extern u8 D_801B5514[];  // unknown type
-extern s32 D_801B9CEC;
 extern s32 D_801A805C;
 
 void draw_face(struct UnknownGameOverStruct4 *a)
@@ -821,38 +839,39 @@ void func_80179B64(struct ObjGroup* group)
     );
 }
 
-struct Struct80179B9C_2
+struct UnknownGameOverStruct9_2
 {
     u8 filler0[0x12];
     u16 unk12;
 };
 
-struct Struct80179B9C
+struct UnknownGameOverStruct9
 {
-    u8 filler0[0x28];
+    u8 filler0[0x24];
+    struct ObjCamera *unk24;
     void *unk28;
     void *unk2C;
-    struct Struct80179B9C_2 *unk30;
+    struct UnknownGameOverStruct9_2 *unk30;
     s32 unk34;
     s32 unk38;
     u8 filler3C[0x54-0x3C];
-    float unk54;
-    float unk58;
-    u8 filler5C[4];
-    float unk60;
-    float unk64;
-    float unk68;
+    struct MyVec3f unk54;
+    struct MyVec3f unk60;
+    u8 filler6C[4];
+    s32 unk70;
+    u8 filler74[0x98-0x74];
+    void (*unk98)(struct UnknownGameOverStruct9 *);
 };
 
-void func_80179B9C(struct MyVec3f *a, struct ObjCamera *b, struct Struct80179B9C *c)
+void func_80179B9C(struct MyVec3f *a, struct ObjCamera *b, struct UnknownGameOverStruct9 *c)
 {
     func_80196430(a, b->unkE8);
     if (a->z > -256.0f)
         return;
     a->x *= 256.0 / -a->z;
     a->y *= 256.0 / a->z;
-    a->x += c->unk54 / 2.0f;
-    a->y += c->unk58 / 2.0f;
+    a->x += c->unk54.x / 2.0f;
+    a->y += c->unk54.y / 2.0f;
 }
 
 struct Struct80179CC8
@@ -862,12 +881,6 @@ struct Struct80179CC8
     s16 unk10;
     u16 unk12;
 };
-
-extern struct Struct80179B9C *D_801B9CE4;
-extern s32 D_801B99F0;
-extern s32 D_801B99F4;
-extern float D_801B9D88;
-extern float D_801B9D8C;
 
 void Unknown80179CC8(struct Struct80179CC8 *a)
 {
@@ -886,22 +899,21 @@ void Unknown80179CC8(struct Struct80179CC8 *a)
     sp3C.x = (*sp28)[3][0];
     sp3C.y = (*sp28)[3][1];
     sp3C.z = (*sp28)[3][2];
-    func_80179B9C(&sp3C, D_801A80F8, D_801B9CE4);
-    if (ABS(D_801B99F0 - sp3C.x) < 20.0f)
+    func_80179B9C(&sp3C, D_801A80F8, D_801B9CE0.unk4);
+    if (ABS(D_801B9920.unkD0 - sp3C.x) < 20.0f)
     {
-        if (ABS(D_801B99F4 - sp3C.y) < 20.0f)
+        if (ABS(D_801B9920.unkD4 - sp3C.y) < 20.0f)
         {
             func_801A5A04(2);
             func_801A5A04(sp2C->unkC);
             func_801A5A04(sp2C->unk10);
-            D_801B9D88 = sp3C.x;
-            D_801B9D8C = sp3C.y;
+            D_801B9D88.x = sp3C.x;
+            D_801B9D88.y = sp3C.y;
         }
     }
 }
 
 extern s32 D_801A8100;
-extern s32 D_801B9CE8;
 
 extern void func_8017A8A0(struct Struct80179ACC *a);
 extern void Proc8017A91C(struct Struct80179ACC *a);
@@ -916,16 +928,16 @@ void drawscene(int a, void *b, struct ObjGroup* group)
     D_801B9CE8 = 0;
     restart_timer("draw1");
     func_801A17B0(5);
-    if (D_801B9CE4->unk38 == 1)
+    if (D_801B9CE0.unk4->unk38 == 1)
     {
-        func_801A3C8C(D_801B9CE4->unk68, D_801B9CE4->unk54 / D_801B9CE4->unk58,
-            D_801B9CE4->unk60, D_801B9CE4->unk64);
+        func_801A3C8C(D_801B9CE0.unk4->unk60.z, D_801B9CE0.unk4->unk54.x / D_801B9CE0.unk4->unk54.y,
+            D_801B9CE0.unk4->unk60.x, D_801B9CE0.unk4->unk60.y);
     }
     else
     {
-        func_801A3AF0(-D_801B9CE4->unk54 / 2.0, D_801B9CE4->unk54 / 2.0,
-            -D_801B9CE4->unk58 / 2.0, D_801B9CE4->unk58 / 2.0,
-            D_801B9CE4->unk60, D_801B9CE4->unk64);
+        func_801A3AF0(-D_801B9CE0.unk4->unk54.x / 2.0, D_801B9CE0.unk4->unk54.x / 2.0,
+            -D_801B9CE0.unk4->unk54.y / 2.0, D_801B9CE0.unk4->unk54.y / 2.0,
+            D_801B9CE0.unk4->unk60.x, D_801B9CE0.unk4->unk60.y);
     }
 
     if (group != NULL)
@@ -947,8 +959,8 @@ void drawscene(int a, void *b, struct ObjGroup* group)
     func_801A17B0(6);
     func_8019F02C();
     D_801B9C00 = a;
-    if ((D_801B9D80 = D_801B9CE4->unk34 & 0x200000) != 0)
-        D_801B9CE4->unk34 &= 0xFFDFFFFF;
+    if ((D_801B9D80 = D_801B9CE0.unk4->unk34 & 0x200000) != 0)
+        D_801B9CE0.unk4->unk34 &= 0xFFDFFFFF;
     D_801B9D80 = 1;
     apply_to_obj_types_in_group(OBJ_TYPE_LIGHTS, Proc8017A91C, D_801B9BB8);
     func_8018CEEC("draw1");
@@ -1211,13 +1223,6 @@ struct Struct8017A980
     struct MyVec3f unk80;
 };
 
-extern float D_801B9D20[][3];
-extern float D_801B9D10;
-extern float D_801B9D14;
-extern float D_801B9D18;
-extern float D_801B9D08;
-extern float D_801B9D04;
-
 void Proc8017A980(struct Struct8017A980 *a)
 {
     float sp24;
@@ -1227,21 +1232,21 @@ void Proc8017A980(struct Struct8017A980 *a)
     a->unk5C = a->unk50 * a->unk30;
     a->unk60 = a->unk54 * a->unk30;
     a->unk64 = a->unk58 * a->unk30;
-    D_801B9D20[a->unk1C][0] = a->unk74 - D_801B9D10;
-    D_801B9D20[a->unk1C][1] = a->unk78 - D_801B9D14;
-    D_801B9D20[a->unk1C][2] = a->unk7C - D_801B9D18;
-    func_80194BF4(D_801B9D20[a->unk1C]);
+    D_801B9D20[a->unk1C].x = a->unk74 - D_801B9D10.x;
+    D_801B9D20[a->unk1C].y = a->unk78 - D_801B9D10.y;
+    D_801B9D20[a->unk1C].z = a->unk7C - D_801B9D10.z;
+    func_80194BF4(&D_801B9D20[a->unk1C]);
     if (a->unk2C & 0x20)
     {
-        D_801B9D00 = D_801B9D20[a->unk1C][0];
-        D_801B9D04 = D_801B9D20[a->unk1C][1];
-        D_801B9D08 = D_801B9D20[a->unk1C][2];
+        D_801B9D00.x = D_801B9D20[a->unk1C].x;
+        D_801B9D00.y = D_801B9D20[a->unk1C].y;
+        D_801B9D00.z = D_801B9D20[a->unk1C].z;
         D_801B9CF8 = (struct Struct801B9CF8 *)a;  // FIXME: find the correct type
     }
     sp24 = a->unk30;
     if (a->unk2C & 2)
     {
-        sp20 = -func_80194DB8(D_801B9D20[a->unk1C], &a->unk80);
+        sp20 = -func_80194DB8(&D_801B9D20[a->unk1C], &a->unk80);
         sp1C = 1.0 - a->unk38 / 90.0;
         if (sp20 > sp1C)
         {
@@ -1259,7 +1264,7 @@ void Proc8017A980(struct Struct8017A980 *a)
     }
     func_801A0324(a->unk1C);
     gd_setproperty(13, a->unk50 * sp24, a->unk54 * sp24, a->unk58 * sp24);
-    gd_setproperty(15, D_801B9D20[a->unk1C][0], D_801B9D20[a->unk1C][1], D_801B9D20[a->unk1C][2]);
+    gd_setproperty(15, D_801B9D20[a->unk1C].x, D_801B9D20[a->unk1C].y, D_801B9D20[a->unk1C].z);
     gd_setproperty(11, 2.0f, 0.0f, 0.0f);
 }
 
@@ -1267,9 +1272,9 @@ void func_8017AD98(struct UnknownGameOverStruct2 *a, struct MyVec3f *b)
 {
     restart_timer("updateshaders");
     func_8019E874();
-    D_801B9D10 = b->x;
-    D_801B9D14 = b->y;
-    D_801B9D18 = b->z;
+    D_801B9D10.x = b->x;
+    D_801B9D10.y = b->y;
+    D_801B9D10.z = b->z;
     D_801B9CF8 = NULL;
     if (D_801B9BB8 != NULL)
         apply_to_obj_types_in_group(OBJ_TYPE_LIGHTS, Proc8017A980, D_801B9BB8);
@@ -1577,10 +1582,6 @@ struct Struct8017B514
     u16 unk12;
 };
 
-extern s32 D_801B9CD0;
-extern float D_801B9CD4;
-extern struct Struct8017B514 *D_801B9CD8;
-
 void Unknown8017B514(struct Struct8017B514 *a)
 {
     struct Struct8017B514 *sp2C = a;
@@ -1610,25 +1611,6 @@ void Unknown8017B5F0(struct ObjCamera *a)
         return;
     D_801A80F8 = a;
 }
-
-struct UnknownGameOverStruct9
-{
-    u8 filler0[0x24];
-    struct ObjCamera *unk24;
-    void *unk28;
-    u8 filler2C[0x34-0x2C];
-    u32 unk34;
-    u8 filler38[0x70-0x38];
-    s32 unk70;
-    u8 filler74[0x98-0x74];
-    void (*unk98)(struct UnknownGameOverStruct9 *);
-};
-
-extern s32 D_801B9CF4;
-extern s16 D_801B9C08[];
-extern u32 D_801B99F8;
-extern s32 D_801B99D8;
-extern s32 D_801B99DC;
 
 void UpdateView(struct UnknownGameOverStruct9 *a)
 {
@@ -1674,22 +1656,21 @@ void UpdateView(struct UnknownGameOverStruct9 *a)
         imout();
         return;
     }
-    // FIXME: find correct types
-    D_801B9CE4 = (void *)a;
+    D_801B9CE0.unk4 = a;
     func_801A48F0(a);
     a->unk70 = gd_startdisplist(8);
-    func_801A2448(D_801B9CE4);
+    func_801A2448(D_801B9CE0.unk4);
     gd_shading(9);
     if (a->unk34 & 0x6000)
         func_801A2310();
     if (a->unk28 != NULL)
     {
-        if (D_801B99F8 >> 31 != 0)
+        if (D_801B9920.unkD8 >> 31 != 0)
         {
-            if (gd_getproperty(3, 0) != 0 && (D_801B99F8 * 8) >> 31 != 0)
+            if (gd_getproperty(3, 0) != 0 && (D_801B9920.unkD8 * 8) >> 31 != 0)
             {
                 func_801A59D4(D_801B9C08, 100);
-                drawscene(27, D_801B9CE4->unk28, NULL);
+                drawscene(27, D_801B9CE0.unk4->unk28, NULL);
                 sp138 = func_801A5A4C(D_801B9C08);
                 D_801B9CD0 = 0;
                 D_801B9CD8 = NULL;
@@ -1727,7 +1708,7 @@ void UpdateView(struct UnknownGameOverStruct9 *a)
                             for (sp130 = 0; sp130 < sp134 - 1; sp130++)
                             {
                                 D_801B9CD0 = D_801B9C08[sp12C++];
-                                apply_to_obj_types_in_group(sp128, Unknown8017B514, D_801B9CE4->unk28);
+                                apply_to_obj_types_in_group(sp128, Unknown8017B514, D_801B9CE0.unk4->unk28);
                             }
                         }
                     }
@@ -1737,23 +1718,23 @@ void UpdateView(struct UnknownGameOverStruct9 *a)
                     D_801B9CD8->unk12 |= 4;
                     D_801B9CD8->unk12 |= 0x10;
                     // FIXME: find correct types
-                    D_801B9CE4->unk30 = (void *)D_801B9CD8;
-                    D_801B99D8 = D_801B99F0 = D_801B9D88;
-                    D_801B99DC = D_801B99F4 = D_801B9D8C;
+                    D_801B9CE0.unk4->unk30 = (void *)D_801B9CD8;
+                    D_801B9920.unkB8 = D_801B9920.unkD0 = D_801B9D88.x;
+                    D_801B9920.unkBC = D_801B9920.unkD4 = D_801B9D88.y;
                 }
             }
-            func_80180974(D_801B9CE4->unk28);
+            func_80180974(D_801B9CE0.unk4->unk28);
         }
         else
         {
-            if (D_801B9CE4->unk30 != NULL)
+            if (D_801B9CE0.unk4->unk30 != NULL)
             {
-                D_801B9CE4->unk30->unk12 &= ~4;
-                D_801B9CE4->unk30->unk12 &= ~0x10;
-                D_801B9CE4->unk30 = NULL;
+                D_801B9CE0.unk4->unk30->unk12 &= ~4;
+                D_801B9CE0.unk4->unk30->unk12 &= ~0x10;
+                D_801B9CE0.unk4->unk30 = NULL;
             }
         }
-        drawscene(26, D_801B9CE4->unk28, D_801B9CE4->unk2C);
+        drawscene(26, D_801B9CE0.unk4->unk28, D_801B9CE0.unk4->unk2C);
     }
     func_801A34E0();
     func_8019EA6C();

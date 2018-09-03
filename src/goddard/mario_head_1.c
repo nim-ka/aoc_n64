@@ -1,4 +1,5 @@
 #include <ultra64.h>
+#include "stdarg.h"
 
 #include "sm64.h"
 #include "../libultra.h"
@@ -32,16 +33,46 @@ struct AnimDataType9 {
 
 /* game_over_2 */ extern struct ObjCamera* D_801A80F8;  //why is the size of this 8, not 4?
 
+/* Exported globals */
+struct GdPlaneF D_801B9DA0;
+void *D_801B9DB8;
+struct ObjView *D_801B9DBC;
+struct DebugCounters D_801B9DC0;
+Mat4 D_801B9DC8;
+struct MyVec3f D_801B9E08;
+struct ObjGroup *D_801B9E14;
+struct MyVec3f D_801B9E18;
+struct MyVec3f D_801B9E28;
+f32 D_801B9E34;
+void *D_801B9E38;
+struct Struct80181D14 *D_801B9E3C;
+s32 D_801B9E40;
+s32 D_801B9E44;
+Mat4 *D_801B9E48;
+struct ObjCamera *D_801B9E4C;
+void *D_801B9E50;
+struct ObjGroup *D_801B9E54;
+s32 D_801B9E58;
+s32 D_801B9E5C;
+s32 D_801B9E60;
+s32 D_801B9E64;
+struct Unk801B9E68 D_801B9E68;
+void *D_801B9E80;
+void *D_801B9E84;
+void *D_801B9E88;
+struct ObjHeader *D_801B9E8C;
+struct ObjGroup *D_801B9E90;
+
 /* @ 22A480 for 0x70 */
 void func_8017BCB0(void)
 {   /* Initialize Plane? */
-    D_801B9DA0.x = 10000000.0f;
-    D_801B9DA0.y = 10000000.0f;
-    D_801B9DA0.z = 10000000.0f;
+    D_801B9DA0.vec0.x = 10000000.0f;
+    D_801B9DA0.vec0.y = 10000000.0f;
+    D_801B9DA0.vec0.z = 10000000.0f;
 
-    D_801B9DAC.x = -10000000.0f;
-    D_801B9DAC.y = -10000000.0f;
-    D_801B9DAC.z = -10000000.0f;
+    D_801B9DA0.vec1.x = -10000000.0f;
+    D_801B9DA0.vec1.y = -10000000.0f;
+    D_801B9DA0.vec1.z = -10000000.0f;
 }
 
 //TODO: fix first argument's type once type of func_80186B44 is known
@@ -54,35 +85,35 @@ void func_8017BD20(void* a0)
     func_80186B44(a0);
     func_80188A3C(&sp1c);
 
-    if (sp1c.x < D_801B9DA0.x)
-        D_801B9DA0.x = sp1c.x;
+    if (sp1c.x < D_801B9DA0.vec0.x)
+        D_801B9DA0.vec0.x = sp1c.x;
     
-    if (sp1c.y < D_801B9DA0.y)
-        D_801B9DA0.y = sp1c.y;
+    if (sp1c.y < D_801B9DA0.vec0.y)
+        D_801B9DA0.vec0.y = sp1c.y;
     
-    if (sp1c.z < D_801B9DA0.z)
-        D_801B9DA0.z = sp1c.z;
+    if (sp1c.z < D_801B9DA0.vec0.z)
+        D_801B9DA0.vec0.z = sp1c.z;
     
-    if (sp1c.x > D_801B9DAC.x)
-        D_801B9DAC.x = sp1c.x;
+    if (sp1c.x > D_801B9DA0.vec1.x)
+        D_801B9DA0.vec1.x = sp1c.x;
     
-    if (sp1c.y > D_801B9DAC.y)
-        D_801B9DAC.y = sp1c.y;
+    if (sp1c.y > D_801B9DA0.vec1.y)
+        D_801B9DA0.vec1.y = sp1c.y;
     
-    if (sp1c.z > D_801B9DAC.z)
-        D_801B9DAC.z = sp1c.z;
+    if (sp1c.z > D_801B9DA0.vec1.z)
+        D_801B9DA0.vec1.z = sp1c.z;
 }
 
 /* @ 22A630 for 0x70 */
 void func_8017BE60(struct GdPlaneF* a0)
 {
-    a0->vec0.x = D_801B9DA0.x;
-    a0->vec0.y = D_801B9DA0.y;
-    a0->vec0.z = D_801B9DA0.z;
+    a0->vec0.x = D_801B9DA0.vec0.x;
+    a0->vec0.y = D_801B9DA0.vec0.y;
+    a0->vec0.z = D_801B9DA0.vec0.z;
 
-    a0->vec1.x = D_801B9DAC.x;
-    a0->vec1.y = D_801B9DAC.y;
-    a0->vec1.z = D_801B9DAC.z;
+    a0->vec1.x = D_801B9DA0.vec1.x;
+    a0->vec1.y = D_801B9DA0.vec1.y;
+    a0->vec1.z = D_801B9DA0.vec1.z;
 }
 
 /* @ 22A6A0 for 0x24 */
@@ -410,12 +441,12 @@ void reset_plane(struct ObjPlane* plane)
     for (i = 0; i < sp4C->vtxCount; i++)
       func_8017BD20(sp4C->vertices[i]);      
 
-    plane->plane28.vec0.x = D_801B9DA0.x;
-    plane->plane28.vec0.y = D_801B9DA0.y;
-    plane->plane28.vec0.z = D_801B9DA0.z;
-    plane->plane28.vec1.x = D_801B9DAC.x;
-    plane->plane28.vec1.y = D_801B9DAC.y;
-    plane->plane28.vec1.z = D_801B9DAC.z;
+    plane->plane28.vec0.x = D_801B9DA0.vec0.x;
+    plane->plane28.vec0.y = D_801B9DA0.vec0.y;
+    plane->plane28.vec0.z = D_801B9DA0.vec0.z;
+    plane->plane28.vec1.x = D_801B9DA0.vec1.x;
+    plane->plane28.vec1.y = D_801B9DA0.vec1.y;
+    plane->plane28.vec1.z = D_801B9DA0.vec1.z;
 
     if (plane->plane28.vec1.x - plane->plane28.vec0.x < 100.0f)
     {
@@ -545,7 +576,7 @@ struct ObjView* make_view(s32 a0, s32 a1, s32 a2, s32 a3, s32 sp38, s32 sp3C, s3
     struct ObjView* newView = (struct ObjView*) make_object(OBJ_TYPE_VIEWS);
 
     if (D_801B9E90 == NULL)
-        D_801B9E90 = make_group(NULL);
+        D_801B9E90 = make_group(0);
     
     addto_group(D_801B9E90, &newView->header);
 
@@ -618,7 +649,7 @@ struct ObjGroup* make_group_of_type(enum ObjTypeFlag type, struct ObjHeader* fro
     struct ObjGroup* newGroup;
     struct ObjHeader* curObj;
 
-    newGroup = make_group(NULL);
+    newGroup = make_group(0);
     curObj = fromObj;
 
     while (curObj != NULL)
@@ -676,10 +707,10 @@ void sprint_obj_id(char* str, struct ObjHeader* obj)
 const char* sUnusedGroupFmtStr = "Made group no.%d\n";
 
 /* @ 22C094 for 0x210 */
-struct ObjGroup* make_group(struct GroupInfo info)
+struct ObjGroup* make_group(int count, ...)
 {
-    struct ObjGroup** sp64;
-    s32 count;
+    va_list args;
+    s32 i;
     UNUSED u32 sp5C;
     struct ObjHeader* sp58;
     UNUSED u32 sp54;
@@ -705,18 +736,16 @@ struct ObjGroup* make_group(struct GroupInfo info)
         oldGroupListHead->prev = newGroup;
     }
 
-    if (info.count == 0)
+    if (count == 0)
         return newGroup;
 
-    // set base pointer to ptr1 in the GroupInfo struct.
-    sp64 = &info.ptr1;
+    va_start(args, count);
     curLink = NULL;
 
-    // iterate through the GroupInfo's pointers.
-    for (count = 0; count < info.count; count++)
+    for (i = 0; i < count; i++)
     {
         // get the next pointer in the struct.
-        nextPtr = *( (sp64 = ((struct ObjGroup**) (( ((u32) sp64) + 3) & ~3) + 1)) - 1);
+        nextPtr = va_arg(args, struct ObjGroup*);
 
         if (nextPtr == NULL) // one of our pointers was NULL. raise an error.
             myPrintf("make_group() NULL group ptr");
@@ -735,6 +764,7 @@ struct ObjGroup* make_group(struct GroupInfo info)
         curLink = curLink->next;
     }
 
+    va_end(args);
     return newGroup;
 }
 

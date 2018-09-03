@@ -19,8 +19,8 @@ extern OSMesg D_80339BEC;
 extern OSMesgQueue gDmaMesgQueue;
 extern OSMesgQueue gSIEventMesgQueue;
 
-extern struct Struct8032C620 *D_8032C620;
-extern struct Struct8032C620 *D_8032C624;
+extern struct VblankHandler *gVblankHandler1;
+extern struct VblankHandler *gVblankHandler2;
 extern struct SPTask *gCurrentSPTask;
 extern struct SPTask *D_8032C62C;
 extern struct SPTask *D_8032C630;
@@ -35,12 +35,12 @@ extern s8 D_8032C650;
 extern s8 gShowProfiler;
 extern s8 gShowDebugText;
 
-extern u8 D_80200A00[];
-extern u8 D_80203200[];
-extern u8 D_80205200[];
-extern u8 D_80201200[];
+extern u8 gIdleThreadStack[];
+extern u8 gThread4Stack[];
+extern u8 gThread5Stack[];
+extern u8 gThread3Stack[];
 
-extern void func_80246B14(int a, struct Struct8032C620 *b, OSMesgQueue *queue, OSMesg *msg);
+extern void set_vblank_handler(int a, struct VblankHandler *b, OSMesgQueue *queue, OSMesg *msg);
 extern void func_80246BB4(OSMesg *msg);
 extern void SendDisplayList(struct SPTask *a);
 extern void Main(void);

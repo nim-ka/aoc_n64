@@ -13,7 +13,7 @@
 #include "sound_init.h"
 
 
-extern struct Struct8032C620 D_80339DF0;
+extern struct VblankHandler gSoundVblankHandler;
 
 u8 D_8032C6C0 = 0;
 u8 D_8032C6C4 = 0;
@@ -250,7 +250,7 @@ void thread4_sound(UNUSED void *arg)
     func_803202A0();
     vec3f_copy(D_80339DC0, D_80385FD0);
     osCreateMesgQueue(&gSoundMesgQueue, gSoundMesgBuf, ARRAY_COUNT(gSoundMesgBuf));
-    func_80246B14(1, &D_80339DF0, &gSoundMesgQueue, (OSMesg)512);
+    set_vblank_handler(1, &gSoundVblankHandler, &gSoundMesgQueue, (OSMesg)512);
     
     while (1)
     {

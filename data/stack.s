@@ -12,32 +12,18 @@ glabel D_801FF200
 .else
     .space 0x1800
 .endif
-glabel D_80200A00
+glabel gIdleThreadStack
     .space 0x800
-glabel D_80201200
+glabel gThread3Stack
     .space 0x2000
-glabel D_80203200
+glabel gThread4Stack
     .space 0x2000
-glabel D_80205200
+glabel gThread5Stack
     .space 0x2000
 glabel D_80207200
-    .space 0x890
-glabel D_80207A90
-    .space 0x8
-glabel D_80207A98
-    .space 0x4
-glabel D_80207A9C
-    .space 0x64
+    .space 0x900
 glabel gSaveBuffer
-    .space 0x8
-glabel D_80207B08
-    .space 0x4
-glabel D_80207B0C
-    .space 0x19
-glabel D_80207B25
-    .space 0x19B
-glabel D_80207CC0
-    .space 0x40
+    .space 0x200
 glabel D_80207D00
     .space 0x400
 glabel D_80208100

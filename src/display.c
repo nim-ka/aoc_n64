@@ -209,8 +209,8 @@ void func_80247D84(void)
     }
 
     osWritebackDCacheAll();
-    osRecvMesg(&D_80339CA0, &D_80339BEC, 1);
-    osRecvMesg(&D_80339CA0, &D_80339BEC, 1);
+    osRecvMesg(&gGameVblankQueue, &D_80339BEC, 1);
+    osRecvMesg(&gGameVblankQueue, &D_80339BEC, 1);
 }
 
 // FIXME: find the correct types for these pointers to avoid unnecessary casting
@@ -251,10 +251,10 @@ void func_80248060(void)
     }
     SendDisplayList((struct SPTask *)((u8 *)D_80339D04 + 51200));
     profiler_log_thread5_time(AFTER_DISPLAY_LISTS);
-    osRecvMesg(&D_80339CA0, &D_80339BEC, 1);
+    osRecvMesg(&gGameVblankQueue, &D_80339BEC, 1);
     osViSwapBuffer((void *)PHYSICAL_TO_VIRTUAL(gFrameBuffers[sCurrFBNum]));
     profiler_log_thread5_time(THREAD5_END);
-    osRecvMesg(&D_80339CA0, &D_80339BEC, 1);
+    osRecvMesg(&gGameVblankQueue, &D_80339BEC, 1);
     if (++sCurrFBNum == 3)
         sCurrFBNum = 0;
     if (++D_8032C69C == 3)

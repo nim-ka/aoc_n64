@@ -7,11 +7,13 @@
 
 #include "gd_types.h"
 
-/* bss */ extern struct ObjWeight* sSkinNetCurWeight;
-/* bss */ extern Mat4 D_801B9EA8;               // static; TODO: rename to sHead2Mtx?
-/* bss */ extern struct ObjJoint* D_801B9EE8;   // static
-/* bss */ extern s32 sTargetWeightID;
-/* bss */ extern struct ObjNet* gGdSkinNet;
+/* bss */
+struct ObjWeight* sSkinNetCurWeight;
+static Mat4 D_801B9EA8;               // TODO: rename to sHead2Mtx?
+static struct ObjJoint* D_801B9EE8;
+
+extern s32 sTargetWeightID;
+extern struct ObjNet* gGdSkinNet;
 
 /* @ 22FDB0 for 0x180 */
 void Unknown801815E0(Mat4* mtx)

@@ -4,16 +4,12 @@
 #include "types.h"
 #include "goddard/gd_types.h"
 
-// extern ? D_801B9EF0;
-// extern ? D_801B9E40;
 // extern ? D_801B5DB0;
 // extern ? D_801B5DD4;
 // extern ? D_801B5DE0;
 // extern ? D_801B5DEC;
 // extern ? D_801B5DF4;
 // extern ? D_801B5DFC;
-// extern ? D_801B9E3C;
-// extern ? D_801B9F30;
 
 // extern ? func_80181C00(?);
 // extern ? Unknown80181D14(?);

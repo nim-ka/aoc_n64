@@ -15,7 +15,13 @@
 #include "segment7.h"
 #include "star_select.h"
 
-/*static*/ extern struct Object *sStarSelectIcons[];
+static struct Object *sStarSelectIcons[8];
+static s8 D_801B9910;
+
+// Number of obtained stars, excluding the coin star.
+static u8 sObtainedStars;
+static s8 sVisibleStars;
+static u8 D_801B9913;
 
 extern u8 beh_star_in_act_selector[];
 
@@ -60,47 +66,47 @@ void func_80176934(u8 stars)
 
 void BehActSelectorInit(void)
 {
-    s16 sp5E = 0;
+    s16 i = 0;
     int sp34[10];
     u8 stars = save_file_get_star_flags(gCurrSaveFileNum - 1, gCurrCourseNum -1);
 
-    D_801B9912 = 0;
-    while (sp5E != D_801B9911)
+    sVisibleStars = 0;
+    while (i != sObtainedStars)
     {
-        if (stars & (1 << D_801B9912))
+        if (stars & (1 << sVisibleStars))
         {
-            sp34[D_801B9912] = 122;
-            sp5E++;
+            sp34[sVisibleStars] = 122;
+            i++;
         }
         else
         {
-            sp34[D_801B9912] = 121;
+            sp34[sVisibleStars] = 121;
             if (D_801B9913 == 0)
             {
-                D_801B9913 = D_801B9912 + 1;
-                D_801A8014 = D_801B9912;
+                D_801B9913 = sVisibleStars + 1;
+                D_801A8014 = sVisibleStars;
             }
         }
-        D_801B9912++;
+        sVisibleStars++;
     }
 
-    if (D_801B9912 == D_801B9911 && D_801B9912 != 6)
+    if (sVisibleStars == sObtainedStars && sVisibleStars != 6)
     {
-        sp34[D_801B9912] = 121;
-        D_801B9913 = D_801B9912 + 1;
-        D_801A8014 = D_801B9912;
-        D_801B9912++;
+        sp34[sVisibleStars] = 121;
+        D_801B9913 = sVisibleStars + 1;
+        D_801A8014 = sVisibleStars;
+        sVisibleStars++;
     }
 
-    if (D_801B9911 == 6)
-        D_801B9913 = D_801B9912;
-    if (D_801B9911 == 0)
+    if (sObtainedStars == 6)
+        D_801B9913 = sVisibleStars;
+    if (sObtainedStars == 0)
         D_801B9913 = 1;
 
-    for (sp5E = 0; sp5E < D_801B9912; sp5E++)
+    for (i = 0; i < sVisibleStars; i++)
     {
-        sStarSelectIcons[sp5E] = func_8029E230(gCurrentObject, 0, sp34[sp5E], beh_star_in_act_selector, 0x4B + D_801B9912 * -75 + sp5E * 152, 248, -300, 0, 0, 0);
-        sStarSelectIcons[sp5E]->oStarSelectIconUnk108 = 1.0f;
+        sStarSelectIcons[i] = func_8029E230(gCurrentObject, 0, sp34[i], beh_star_in_act_selector, 75 + sVisibleStars * -75 + i * 152, 248, -300, 0, 0, 0);
+        sStarSelectIcons[i]->oStarSelectIconUnk108 = 1.0f;
     }
 
     func_80176934(stars);
@@ -112,12 +118,12 @@ void BehActSelectorLoop(void)
     u8 sp1E;
     u8 stars = save_file_get_star_flags(gCurrSaveFileNum - 1, gCurrCourseNum -1);
 
-    if (D_801B9911 != 6)
+    if (sObtainedStars != 6)
     {
         sSelectedStar = 0;
-        func_802D7924(2, &D_801A8014, 0, D_801B9911);
+        func_802D7924(2, &D_801A8014, 0, sObtainedStars);
         sp1E = D_801A8014;
-        for (i = 0; i < D_801B9912; i++)
+        for (i = 0; i < sVisibleStars; i++)
         {
             if ((stars & (1 << i)) || i + 1 == D_801B9913)
             {
@@ -132,11 +138,11 @@ void BehActSelectorLoop(void)
     }
     else
     {
-        func_802D7924(2, &D_801A8014, 0, D_801B9912 - 1);
+        func_802D7924(2, &D_801A8014, 0, sVisibleStars - 1);
         sSelectedStar = D_801A8014;
     }
 
-    for (i = 0; i < D_801B9912; i++)
+    for (i = 0; i < sVisibleStars; i++)
     {
         if (sSelectedStar == i)
             sStarSelectIcons[i]->oStarSelectIconUnkF4 = 1;
@@ -201,17 +207,17 @@ void func_80177004(void)
     gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D108);
     gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, 255);
 
-    if (D_801B9912 != 0)
+    if (sVisibleStars != 0)
     {
         sp4C = (u32) segmented_to_virtual((void *) (sp50[(gCurrCourseNum - 1) * 6 + sSelectedStar]));
         sp48 = func_802D7B3C(158, sp4C, 8.0f);
         PrintRegularText(sp48, 81, sp4C);
     }
 
-    for (sp47 = 1; sp47 <= D_801B9912; sp47++)
+    for (sp47 = 1; sp47 <= sVisibleStars; sp47++)
     {
         sp5C[0] = sp47;
-        PrintRegularText(sp47 * 34 - D_801B9912 * 17 + 0x8B, 38, sp5C);
+        PrintRegularText(sp47 * 34 - sVisibleStars * 17 + 0x8B, 38, sp5C);
     }
 
     gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D160);
@@ -230,12 +236,12 @@ void LevelProc_80177560(UNUSED int a, UNUSED int b)
 
     D_801B9910 = 0;
     D_801B9913 = 0;
-    D_801B9912 = 0;
+    sVisibleStars = 0;
     D_801A8018 = 0;
-    D_801B9911 = save_file_get_course_star_count(gCurrSaveFileNum - 1, gCurrCourseNum - 1);
+    sObtainedStars = save_file_get_course_star_count(gCurrSaveFileNum - 1, gCurrCourseNum - 1);
 
     if (stars & 0x40)
-        D_801B9911--;
+        sObtainedStars--;
 }
 
 int LevelProc_80177610(UNUSED int a, UNUSED int b)
