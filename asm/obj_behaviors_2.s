@@ -23951,9 +23951,9 @@ glabel func_8030DBF8
 /* 0C8C7C 8030DC7C 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
 /* 0C8C80 8030DC80 24080001 */  li    $t0, 1
 /* 0C8C84 8030DC84 ADC8014C */  sw    $t0, 0x14c($t6)
-/* 0C8C88 8030DC88 3C040703 */  lui   $a0, %hi(D_07028274) # $a0, 0x703
+/* 0C8C88 8030DC88 3C040703 */  lui   $a0, %hi(ssl_seg7_collision_07028274) # $a0, 0x703
 /* 0C8C8C 8030DC8C 0C09DE68 */  jal   segmented_to_virtual
-/* 0C8C90 8030DC90 24848274 */   addiu $a0, %lo(D_07028274) # addiu $a0, $a0, -0x7d8c
+/* 0C8C90 8030DC90 24848274 */   addiu $a0, %lo(ssl_seg7_collision_07028274) # addiu $a0, $a0, -0x7d8c
 /* 0C8C94 8030DC94 3C098036 */  lui   $t1, %hi(gCurrentObject) # $t1, 0x8036
 /* 0C8C98 8030DC98 8D29FDF0 */  lw    $t1, %lo(gCurrentObject)($t1)
 /* 0C8C9C 8030DC9C 10000031 */  b     .L8030DD64
@@ -24016,17 +24016,17 @@ glabel func_8030DBF8
 /* 0C8D74 8030DD74 8D8D0144 */  lw    $t5, 0x144($t4)
 /* 0C8D78 8030DD78 05A10008 */  bgez  $t5, .L8030DD9C
 /* 0C8D7C 8030DD7C 00000000 */   nop   
-/* 0C8D80 8030DD80 3C040703 */  lui   $a0, %hi(D_070284B0) # $a0, 0x703
+/* 0C8D80 8030DD80 3C040703 */  lui   $a0, %hi(ssl_seg7_collision_070284B0) # $a0, 0x703
 /* 0C8D84 8030DD84 0C09DE68 */  jal   segmented_to_virtual
-/* 0C8D88 8030DD88 248484B0 */   addiu $a0, %lo(D_070284B0) # addiu $a0, $a0, -0x7b50
+/* 0C8D88 8030DD88 248484B0 */   addiu $a0, %lo(ssl_seg7_collision_070284B0) # addiu $a0, $a0, -0x7b50
 /* 0C8D8C 8030DD8C 3C188036 */  lui   $t8, %hi(gCurrentObject) # $t8, 0x8036
 /* 0C8D90 8030DD90 8F18FDF0 */  lw    $t8, %lo(gCurrentObject)($t8)
 /* 0C8D94 8030DD94 10000007 */  b     .L8030DDB4
 /* 0C8D98 8030DD98 AF020218 */   sw    $v0, 0x218($t8)
 .L8030DD9C:
-/* 0C8D9C 8030DD9C 3C040703 */  lui   $a0, %hi(D_07028370) # $a0, 0x703
+/* 0C8D9C 8030DD9C 3C040703 */  lui   $a0, %hi(ssl_seg7_collision_07028370) # $a0, 0x703
 /* 0C8DA0 8030DDA0 0C09DE68 */  jal   segmented_to_virtual
-/* 0C8DA4 8030DDA4 24848370 */   addiu $a0, %lo(D_07028370) # addiu $a0, $a0, -0x7c90
+/* 0C8DA4 8030DDA4 24848370 */   addiu $a0, %lo(ssl_seg7_collision_07028370) # addiu $a0, $a0, -0x7c90
 /* 0C8DA8 8030DDA8 3C198036 */  lui   $t9, %hi(gCurrentObject) # $t9, 0x8036
 /* 0C8DAC 8030DDAC 8F39FDF0 */  lw    $t9, %lo(gCurrentObject)($t9)
 /* 0C8DB0 8030DDB0 AF220218 */  sw    $v0, 0x218($t9)
@@ -24225,9 +24225,9 @@ glabel func_8030E018
 /* 0C9068 8030E068 8D8CFDF0 */  lw    $t4, %lo(gCurrentObject)($t4)
 /* 0C906C 8030E06C 240B003C */  li    $t3, 60
 /* 0C9070 8030E070 AD8B0100 */  sw    $t3, 0x100($t4)
-/* 0C9074 8030E074 3C040703 */  lui   $a0, %hi(D_070282F8) # $a0, 0x703
+/* 0C9074 8030E074 3C040703 */  lui   $a0, %hi(ssl_seg7_collision_070282F8) # $a0, 0x703
 /* 0C9078 8030E078 0C09DE68 */  jal   segmented_to_virtual
-/* 0C907C 8030E07C 248482F8 */   addiu $a0, %lo(D_070282F8) # addiu $a0, $a0, -0x7d08
+/* 0C907C 8030E07C 248482F8 */   addiu $a0, %lo(ssl_seg7_collision_070282F8) # addiu $a0, $a0, -0x7d08
 /* 0C9080 8030E080 3C0D8036 */  lui   $t5, %hi(gCurrentObject) # $t5, 0x8036
 /* 0C9084 8030E084 8DADFDF0 */  lw    $t5, %lo(gCurrentObject)($t5)
 /* 0C9088 8030E088 ADA20218 */  sw    $v0, 0x218($t5)
@@ -24427,9 +24427,9 @@ glabel func_8030E340
 /* 0C9350 8030E350 24050001 */   li    $a1, 1
 /* 0C9354 8030E354 10400026 */  beqz  $v0, .L8030E3F0
 /* 0C9358 8030E358 00000000 */   nop   
-/* 0C935C 8030E35C 3C040703 */  lui   $a0, %hi(D_07028274) # $a0, 0x703
+/* 0C935C 8030E35C 3C040703 */  lui   $a0, %hi(ssl_seg7_collision_07028274) # $a0, 0x703
 /* 0C9360 8030E360 0C09DE68 */  jal   segmented_to_virtual
-/* 0C9364 8030E364 24848274 */   addiu $a0, %lo(D_07028274) # addiu $a0, $a0, -0x7d8c
+/* 0C9364 8030E364 24848274 */   addiu $a0, %lo(ssl_seg7_collision_07028274) # addiu $a0, $a0, -0x7d8c
 /* 0C9368 8030E368 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 0C936C 8030E36C 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
 /* 0C9370 8030E370 ADC20218 */  sw    $v0, 0x218($t6)
@@ -24485,9 +24485,9 @@ glabel func_8030E408
 /* 0C9424 8030E424 8DEFFDF0 */  lw    $t7, %lo(gCurrentObject)($t7)
 /* 0C9428 8030E428 240E000D */  li    $t6, 13
 /* 0C942C 8030E42C ADEE014C */  sw    $t6, 0x14c($t7)
-/* 0C9430 8030E430 3C040703 */  lui   $a0, %hi(D_07028274) # $a0, 0x703
+/* 0C9430 8030E430 3C040703 */  lui   $a0, %hi(ssl_seg7_collision_07028274) # $a0, 0x703
 /* 0C9434 8030E434 0C09DE68 */  jal   segmented_to_virtual
-/* 0C9438 8030E438 24848274 */   addiu $a0, %lo(D_07028274) # addiu $a0, $a0, -0x7d8c
+/* 0C9438 8030E438 24848274 */   addiu $a0, %lo(ssl_seg7_collision_07028274) # addiu $a0, $a0, -0x7d8c
 /* 0C943C 8030E43C 3C188036 */  lui   $t8, %hi(gCurrentObject) # $t8, 0x8036
 /* 0C9440 8030E440 8F18FDF0 */  lw    $t8, %lo(gCurrentObject)($t8)
 /* 0C9444 8030E444 AF020218 */  sw    $v0, 0x218($t8)

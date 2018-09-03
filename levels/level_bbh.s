@@ -98,7 +98,7 @@ glabel level_bbh_entry
         warp_node /*id*/ 0x0A, /*destLevel1*/ 0x04, /*destArea*/ 0x01, /*destNode*/ 0x0A, /*destLevel2*/ 0x00
         warp_node /*id*/ 0xF0, /*destLevel1*/ 0x1A, /*destArea*/ 0x01, /*destNode*/ 0x0A, /*destLevel2*/ 0x00
         warp_node /*id*/ 0xF1, /*destLevel1*/ 0x1A, /*destArea*/ 0x01, /*destNode*/ 0x0B, /*destLevel2*/ 0x00
-        terrain /*terrainData*/ bbh_seg7_collision
+        terrain /*terrainData*/ bbh_seg7_collision_level
         cmd39 /*unk4*/ bbh_seg7_macro_objs
         rooms /*surfaceRooms*/ bbh_seg7_rooms
         cmd30 /*unk2*/ 0x00, /*unk3*/ 0x62

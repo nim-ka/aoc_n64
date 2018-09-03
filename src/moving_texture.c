@@ -17,28 +17,28 @@ extern s16 castle_grounds_seg7_arr_07010E98[];
 extern u8 D_07004018[];
 extern u8 D_07001000[];
 extern u8 D_07015F90[];
-extern s16 D_07028760[];
-extern Gfx D_070286A0[];
-extern Gfx D_07028718[];
-extern Gfx D_070287B8[];
-extern s16 D_070287F0[];
-extern Gfx D_070285F0[];
-extern Gfx D_07028660[];
-extern s16 D_07028844[];
-extern Gfx D_07028888[];
-extern s16 D_07015AF0[];
-extern Gfx D_07015BA8[];
-extern s16 D_07015B1C[];
-extern s16 D_07015B48[];
-extern Gfx D_07015BC0[];
+extern s16 ssl_seg7_arr_07028760[];
+extern Gfx ssl_seg7_dl_070286A0[];
+extern Gfx ssl_seg7_dl_07028718[];
+extern Gfx ssl_seg7_dl_070287B8[];
+extern s16 ssl_seg7_arr_070287F0[];
+extern Gfx ssl_seg7_dl_070285F0[];
+extern Gfx ssl_seg7_dl_07028660[];
+extern s16 ssl_seg7_arr_07028844[];
+extern Gfx ssl_seg7_dl_07028888[];
+extern s16 bitfs_seg7_arr_07015AF0[];
+extern Gfx bitfs_seg7_dl_07015BA8[];
+extern s16 bitfs_seg7_arr_07015B1C[];
+extern s16 bitfs_seg7_arr_07015B48[];
+extern Gfx bitfs_seg7_dl_07015BC0[];
 extern s16 D_0702874C[];
 extern Gfx D_070287A8[];
-extern s16 D_07028820[];
-extern Gfx D_070288C8[];
-extern s16 D_0700BED0[];
-extern Gfx D_0700BE10[];
-extern Gfx D_0700BE88[];
-extern Gfx D_0700BF60[];
+extern s16 lll_seg7_arr_07028820[];
+extern Gfx lll_seg7_dl_070288C8[];
+extern s16 cotmc_seg7_arr_0700BED0[];
+extern Gfx cotmc_seg7_dl_0700BE10[];
+extern Gfx cotmc_seg7_dl_0700BE88[];
+extern Gfx cotmc_seg7_dl_0700BF60[];
 extern s16 D_07017134[];
 extern Gfx D_07017260[];
 extern s16 D_070171A0[];
@@ -47,26 +47,26 @@ extern Gfx D_07017288[];
 extern s16 D_070171E0[];
 extern s16 D_0701720C[];
 extern Gfx D_070172A0[];
-extern s16 D_070127F0[];
-extern Gfx D_070127E0[];
-extern Gfx D_070127E8[];
-extern Gfx D_070128B8[];
-extern s16 D_07012900[];
-extern Gfx D_07012A08[];
-extern s16 D_07012A50[];
-extern Gfx D_07012B48[];
+extern s16 ssl_seg7_arr_070127F0[];
+extern Gfx ssl_seg7_dl_070127E0[];
+extern Gfx ssl_seg7_dl_070127E8[];
+extern Gfx ssl_seg7_dl_070128B8[];
+extern s16 ssl_seg7_arr_07012900[];
+extern Gfx ssl_seg7_dl_07012A08[];
+extern s16 ssl_seg7_arr_07012A50[];
+extern Gfx ssl_seg7_dl_07012B48[];
 extern s16 D_07016840[];
 extern Gfx D_07016790[];
 extern Gfx D_07016808[];
 extern Gfx D_070169C8[];
 extern s16 D_07016904[];
-extern s16 D_07004930[];
-extern Gfx D_07004818[];
-extern Gfx D_07004860[];
-extern Gfx D_07004A38[];
-extern s16 D_070049B4[];
-extern Gfx D_07004880[];
-extern Gfx D_070048F8[];
+extern s16 ssl_seg7_arr_07004930[];
+extern Gfx ssl_seg7_dl_07004818[];
+extern Gfx ssl_seg7_dl_07004860[];
+extern Gfx ssl_seg7_dl_07004A38[];
+extern s16 ssl_seg7_arr_070049B4[];
+extern Gfx ssl_seg7_dl_07004880[];
+extern Gfx ssl_seg7_dl_070048F8[];
 
 struct Struct802D0DD4
 {
@@ -93,16 +93,16 @@ u8 *D_8032FFE4[] = {seg2_texture_02011C58, seg2_texture_02013458, seg2_texture_0
 
 struct Struct802D0DD4 D_80330004[] =
 {
-    {0x00000801, 0x00000006, 0x00000008, D_07028760, D_070286A0,       D_07028718,       D_070287B8, 0xff, 0xff, 0xff, 0xff, 0x00000007},
-    {0x00000802, 0x00000006, 0x00000008, D_070287F0, D_070285F0,       D_07028660,       D_070287B8, 0xff, 0xff, 0xff, 0xff, 0x00000003},
-    {0x00000803, 0x00000006, 0x00000006, D_07028844, D_070286A0,       D_07028718,       D_07028888, 0xff, 0xff, 0xff, 0xff, 0x00000007},
+    {0x00000801, 0x00000006, 0x00000008, ssl_seg7_arr_07028760, ssl_seg7_dl_070286A0, ssl_seg7_dl_07028718, ssl_seg7_dl_070287B8, 0xff, 0xff, 0xff, 0xff, 0x00000007},
+    {0x00000802, 0x00000006, 0x00000008, ssl_seg7_arr_070287F0, ssl_seg7_dl_070285F0, ssl_seg7_dl_07028660, ssl_seg7_dl_070287B8, 0xff, 0xff, 0xff, 0xff, 0x00000003},
+    {0x00000803, 0x00000006, 0x00000006, ssl_seg7_arr_07028844, ssl_seg7_dl_070286A0, ssl_seg7_dl_07028718, ssl_seg7_dl_07028888, 0xff, 0xff, 0xff, 0xff, 0x00000007},
     {0x00001601, 0x00000000, 0x0000000f, castle_grounds_seg7_arr_07010E98, seg2_dl_02014790, seg2_dl_02014810, castle_grounds_seg7_dl_07010F30, 0xff, 0xff, 0xff, 0xb4, 0x00000007},
-    {0x00001901, 0x00000004, 0x00000004, D_07015AF0, seg2_dl_02014790, seg2_dl_02014810, D_07015BA8, 0xff, 0xff, 0xff, 0xff, 0x00000001},
-    {0x00001902, 0x00000004, 0x00000004, D_07015B1C, seg2_dl_02014790, seg2_dl_02014810, D_07015BA8, 0xff, 0xff, 0xff, 0xb4, 0x00000005},
-    {0x00001903, 0x00000004, 0x00000009, D_07015B48, seg2_dl_02014790, seg2_dl_02014810, D_07015BC0, 0xff, 0xff, 0xff, 0xb4, 0x00000005},
+    {0x00001901, 0x00000004, 0x00000004, bitfs_seg7_arr_07015AF0, seg2_dl_02014790, seg2_dl_02014810, bitfs_seg7_dl_07015BA8, 0xff, 0xff, 0xff, 0xff, 0x00000001},
+    {0x00001902, 0x00000004, 0x00000004, bitfs_seg7_arr_07015B1C, seg2_dl_02014790, seg2_dl_02014810, bitfs_seg7_dl_07015BA8, 0xff, 0xff, 0xff, 0xb4, 0x00000005},
+    {0x00001903, 0x00000004, 0x00000009, bitfs_seg7_arr_07015B48, seg2_dl_02014790, seg2_dl_02014810, bitfs_seg7_dl_07015BC0, 0xff, 0xff, 0xff, 0xb4, 0x00000005},
     {0x00002201, 0x00000004, 0x00000009, D_0702874C, seg2_dl_02014790, seg2_dl_02014810, D_070287A8, 0xff, 0xff, 0xff, 0xc8, 0x00000005},
-    {0x00002202, 0x00000004, 0x00000010, D_07028820, seg2_dl_02014790, seg2_dl_02014810, D_070288C8, 0xff, 0xff, 0xff, 0xb4, 0x00000007},
-    {0x00002801, 0x00000000, 0x0000000e, D_0700BED0, D_0700BE10,       D_0700BE88,       D_0700BF60, 0xff, 0xff, 0xff, 0xb4, 0x00000007},
+    {0x00002202, 0x00000004, 0x00000010, lll_seg7_arr_07028820, seg2_dl_02014790, seg2_dl_02014810, lll_seg7_dl_070288C8, 0xff, 0xff, 0xff, 0xb4, 0x00000007},
+    {0x00002801, 0x00000000, 0x0000000e, cotmc_seg7_arr_0700BED0, cotmc_seg7_dl_0700BE10, cotmc_seg7_dl_0700BE88, cotmc_seg7_dl_0700BF60, 0xff, 0xff, 0xff, 0xb4, 0x00000007},
     {0x00003601, 0x00000000, 0x00000006, D_07017134, seg2_dl_02014790, seg2_dl_02014810, D_07017260, 0xff, 0xff, 0xff, 0xb4, 0x00000005},
     {0x00003602, 0x00000000, 0x00000006, D_070171A0, seg2_dl_02014790, seg2_dl_02014810, D_07017260, 0xff, 0xff, 0xff, 0xb4, 0x00000005},
     {0x00003603, 0x00000000, 0x00000004, D_07017174, seg2_dl_02014790, seg2_dl_02014810, D_07017288, 0xff, 0xff, 0xff, 0xb4, 0x00000007},
@@ -113,9 +113,9 @@ struct Struct802D0DD4 D_80330004[] =
 
 struct Struct802D0DD4 D_80330244[] =
 {
-    {0x00000801, 0x00000005, 0x0000000C, D_070127F0, D_070127E0, D_070127E8, D_070128B8, 0xff, 0xff, 0xff, 0xff, 0x00000001},
-    {0x00000802, 0x00000005, 0x00000010, D_07012900, D_070127E0, D_070127E8, D_07012A08, 0xff, 0xff, 0xff, 0xff, 0x00000001}, 
-    {0x00000803, 0x00000005, 0x0000000F, D_07012A50, D_070127E0, D_070127E8, D_07012B48, 0xff, 0xff, 0xff, 0xff, 0x00000001}, 
+    {0x00000801, 0x00000005, 0x0000000C, ssl_seg7_arr_070127F0, ssl_seg7_dl_070127E0, ssl_seg7_dl_070127E8, ssl_seg7_dl_070128B8, 0xff, 0xff, 0xff, 0xff, 0x00000001},
+    {0x00000802, 0x00000005, 0x00000010, ssl_seg7_arr_07012900, ssl_seg7_dl_070127E0, ssl_seg7_dl_070127E8, ssl_seg7_dl_07012A08, 0xff, 0xff, 0xff, 0xff, 0x00000001}, 
+    {0x00000803, 0x00000005, 0x0000000F, ssl_seg7_arr_07012A50, ssl_seg7_dl_070127E0, ssl_seg7_dl_070127E8, ssl_seg7_dl_07012B48, 0xff, 0xff, 0xff, 0xff, 0x00000001}, 
     {0x00001400, 0x00000007, 0x0000000C, D_07016840, D_07016790, D_07016808, D_070169C8, 0xff, 0xff, 0xff, 0xff, 0x00000001}, 
     {0x00001401, 0x00000007, 0x0000000C, D_07016904, D_07016790, D_07016808, D_070169C8, 0xff, 0xff, 0xff, 0xff, 0x00000001}, 
     {0x00000000, 0x00000000, 0x00000000, NULL,       NULL,       NULL,       NULL,       0x00, 0x00, 0x00, 0x00, 0x00000000},
@@ -123,8 +123,8 @@ struct Struct802D0DD4 D_80330244[] =
 
 struct Struct802D0DD4 D_8033031C[] =
 {
-    {0x00000801, 0x00000005, 0x00000008, D_07004930, D_07004818, D_07004860, D_07004A38, 0xff, 0xff, 0xff, 0xff, 0x00000001}, 
-    {0x00000802, 0x00000006, 0x00000008, D_070049B4, D_07004880, D_070048F8, D_07004A38, 0xff, 0xff, 0xff, 0xff, 0x00000001}, 
+    {0x00000801, 0x00000005, 0x00000008, ssl_seg7_arr_07004930, ssl_seg7_dl_07004818, ssl_seg7_dl_07004860, ssl_seg7_dl_07004A38, 0xff, 0xff, 0xff, 0xff, 0x00000001}, 
+    {0x00000802, 0x00000006, 0x00000008, ssl_seg7_arr_070049B4, ssl_seg7_dl_07004880, ssl_seg7_dl_070048F8, ssl_seg7_dl_07004A38, 0xff, 0xff, 0xff, 0xff, 0x00000001}, 
     {0x00000000, 0x00000000, 0x00000000, NULL,       NULL,       NULL,       NULL,       0x00, 0x00, 0x00, 0x00, 0x00000000},
 };
 
@@ -326,13 +326,13 @@ Gfx *func_802D00D0(s16 a, s16 b, void *c)
     return NULL;
 }
 
-extern u8 D_07026E24[];
-extern u8 D_07026E34[];
+extern u8 bbh_seg7_moving_texture_07026E24[];
+extern u8 bbh_seg7_moving_texture_07026E34[];
 extern u8 ccm_seg7_moving_texture[];
 extern u8 D_070790F0[];
 extern u8 D_07079100[];
-extern u8 D_0702B900[];
-extern u8 D_0702B950[];
+extern u8 hmc_seg7_moving_texture_0702B900[];
+extern u8 hmc_seg7_moving_texture_0702B950[];
 extern u8 D_07012778[];
 extern u8 D_070127C8[];
 extern u8 D_0700FA70[];
@@ -344,9 +344,9 @@ extern u8 jrb_seg7_moving_texture_0701139C[];
 extern u8 D_0700E31C[];
 extern u8 D_0700E39C[];
 extern u8 castle_grounds_seg7_moving_texture[];
-extern u8 D_07028810[];
-extern u8 D_0700FCB4[];
-extern u8 D_0700FD00[];
+extern u8 lll_seg7_moving_texture_07028810[];
+extern u8 ddd_seg7_moving_texture_0700FCB4[];
+extern u8 ddd_seg7_moving_texture_0700FD00[];
 extern u8 wf_seg7_moving_texture[];
 extern u8 D_07006E6C[];
 extern u8 D_07017124[];
@@ -355,13 +355,13 @@ void *func_802D01A4(u32 a)
 {
     switch (a)
     {
-    case 1024: return D_07026E24;
-    case 1025: return D_07026E34;
+    case 1024: return bbh_seg7_moving_texture_07026E24;
+    case 1025: return bbh_seg7_moving_texture_07026E34;
     case 1281: return ccm_seg7_moving_texture;
     case 1536: return D_070790F0;
     case 1554: return D_07079100;
-    case 1793: return D_0702B900;
-    case 1794: return D_0702B950;
+    case 1793: return hmc_seg7_moving_texture_0702B900;
+    case 1794: return hmc_seg7_moving_texture_0702B950;
     case 2049: return D_07012778;
     case 2129: return D_070127C8;
     case 4097: return D_0700FA70;
@@ -373,9 +373,9 @@ void *func_802D01A4(u32 a)
     case 4865: return D_0700E31C;
     case 4866: return D_0700E39C;
     case 5633: return castle_grounds_seg7_moving_texture;
-    case 8706: return D_07028810;
-    case 8961: return D_0700FCB4;
-    case 8962: return D_0700FD00;
+    case 8706: return lll_seg7_moving_texture_07028810;
+    case 8961: return ddd_seg7_moving_texture_0700FCB4;
+    case 8962: return ddd_seg7_moving_texture_0700FD00;
     case 9217: return wf_seg7_moving_texture;
     case 9729: return D_07006E6C;
     case 13825: return D_07017124;
@@ -731,8 +731,8 @@ Gfx *Geo18_802D2108(int a, struct Struct802D2108 *b, UNUSED int c)
         
         switch (sp28->unk18)
         {
-        case 2049: sp2C = segmented_to_virtual(D_07004930); break;
-        case 2050: sp2C = segmented_to_virtual(D_070049B4); break;
+        case 2049: sp2C = segmented_to_virtual(ssl_seg7_arr_07004930); break;
+        case 2050: sp2C = segmented_to_virtual(ssl_seg7_arr_070049B4); break;
         case 5120: sp2C = segmented_to_virtual(D_07016840); break;
         case 5121: sp2C = segmented_to_virtual(D_07016904); break;
         }

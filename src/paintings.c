@@ -32,6 +32,25 @@ extern u8 seg2_dl_02014A00[];
 extern u8 seg2_triangle_mesh[];
 extern u8 seg2_mesh_order[];
 
+extern struct Struct802D1F94 hmc_seg7_pool_data[];
+
+extern struct Struct802D1F94 D_07023620[];
+extern struct Struct802D1F94 D_07023698[];
+extern struct Struct802D1F94 D_07023710[];
+extern struct Struct802D1F94 D_07023788[];
+extern struct Struct802D1F94 D_07023800[];
+extern struct Struct802D1F94 D_07023878[];
+extern struct Struct802D1F94 D_070238F0[];
+extern struct Struct802D1F94 D_07023968[];
+extern struct Struct802D1F94 D_070239E0[];
+extern struct Struct802D1F94 D_07023A58[];
+extern struct Struct802D1F94 D_07023AD0[];
+extern struct Struct802D1F94 D_07023B48[];
+extern struct Struct802D1F94 D_07023BC0[];
+extern struct Struct802D1F94 D_07023C38[];
+
+extern struct Struct802D1F94 D_07012F00[];
+
 extern struct Struct802D1F94 *D_8035FFA8;
 extern u16 gAreaUpdateCounter;
 
@@ -44,36 +63,34 @@ extern s16 (*D_8035FFA0)[5];
 extern float (*D_8035FFA4)[3];
 extern u8 D_8035FFAC;
 
-// FIXME: convert these to pointers
-
 struct Struct802D1F94 *D_803303A0[] =
 {
-    (void *)0x0702551c,
+    hmc_seg7_pool_data,
     NULL,
 };
 
 struct Struct802D1F94 *D_803303A8[] =
 {
-    (void *)0x07023620,
-    (void *)0x07023698,
-    (void *)0x07023710,
-    (void *)0x07023788,
-    (void *)0x07023800,
-    (void *)0x07023878,
-    (void *)0x070238f0,
-    (void *)0x07023968,
-    (void *)0x070239e0,
-    (void *)0x07023a58,
-    (void *)0x07023ad0,
-    (void *)0x07023b48,
-    (void *)0x07023bc0,
-    (void *)0x07023c38,
+    D_07023620,
+    D_07023698,
+    D_07023710,
+    D_07023788,
+    D_07023800,
+    D_07023878,
+    D_070238F0,
+    D_07023968,
+    D_070239E0,
+    D_07023A58,
+    D_07023AD0,
+    D_07023B48,
+    D_07023BC0,
+    D_07023C38,
     NULL,
 };
 
 struct Struct802D1F94 *D_803303E4[] =
 {
-    (void *)0x07012f00,
+    D_07012F00,
     NULL,
 };
 

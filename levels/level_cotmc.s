@@ -42,7 +42,7 @@ glabel level_cotmc_entry
         warp_node /*id*/ 0xF3, /*destLevel1*/ 0x10, /*destArea*/ 0x01, /*destNode*/ 0x14, /*destLevel2*/ 0x00
         jump_link /*target*/ script_func_local_2
         jump_link /*target*/ script_func_local_1
-        terrain /*terrainData*/ cotmc_seg7_collision
+        terrain /*terrainData*/ cotmc_seg7_collision_level
         cmd39 /*unk4*/ cotmc_seg7_macro_objs
         cmd30 /*unk2*/ 0x00, /*unk3*/ 0x82
         set_music /*unk2*/ 0x0004, /*seq*/ 0x000C

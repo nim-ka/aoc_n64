@@ -94,7 +94,7 @@ glabel level_hmc_entry
         jump_link /*target*/ script_func_local_2
         jump_link /*target*/ script_func_local_3
         jump_link /*target*/ script_func_local_4
-        terrain /*terrainData*/ hmc_seg7_collision
+        terrain /*terrainData*/ hmc_seg7_collision_level
         cmd39 /*unk4*/ hmc_seg7_macro_objs
         rooms /*surfaceRooms*/ hmc_seg7_rooms
         set_music /*unk2*/ 0x0004, /*seq*/ 0x000C

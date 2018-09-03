@@ -120,7 +120,8 @@ glabel D_803318F0
 	.word bitdw_seg7_collision_0700F70C
 	.incbin "bin/sm64.j.0EADAC.bin", 0x1B48, 0x8
 	.word bob_seg7_collision_bridge
-	.incbin "bin/sm64.j.0EADAC.bin", 0x1B54, 0x10
+   .word bitfs_seg7_collision_07015928
+	.incbin "bin/sm64.j.0EADAC.bin", 0x1B58, 0xC
 
 glabel D_80331910
 	.incbin "bin/sm64.j.0EADAC.bin", 0x1B64, 0x4
@@ -227,7 +228,10 @@ glabel D_80331A14
 	.incbin "bin/sm64.j.0EADAC.bin", 0x1C68, 0x10
 
 glabel D_80331A24
-	.incbin "bin/sm64.j.0EADAC.bin", 0x1C78, 0x1C
+	.incbin "bin/sm64.j.0EADAC.bin", 0x1C78, 0x8
+   .word bitfs_seg7_collision_07015714
+   .word bitfs_seg7_collision_07015768
+	.incbin "bin/sm64.j.0EADAC.bin", 0x1C88, 0xC
 	.word bitdw_seg7_collision_0700F688
 
 glabel D_80331A44
@@ -255,7 +259,9 @@ glabel D_80331ACC
 	.incbin "bin/sm64.j.0EADAC.bin", 0x1D20, 0x8
 
 glabel D_80331AD4
-	.incbin "bin/sm64.j.0EADAC.bin", 0x1D28, 0xC
+	.incbin "bin/sm64.j.0EADAC.bin", 0x1D28, 0x4
+   .word bitfs_seg7_collision_070157E0 
+   .word bitfs_seg7_collision_07015124
 
 glabel D_80331AE0
 	.incbin "bin/sm64.j.0EADAC.bin", 0x1D34, 0x10
