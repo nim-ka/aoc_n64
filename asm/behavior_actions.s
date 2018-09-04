@@ -13775,8 +13775,8 @@ glabel func_802B1138
 /* 06C138 802B1138 27BDFFE0 */  addiu $sp, $sp, -0x20
 /* 06C13C 802B113C AFBF0014 */  sw    $ra, 0x14($sp)
 /* 06C140 802B1140 3C048036 */  lui   $a0, %hi(gCurrentObject) # $a0, 0x8036
-/* 06C144 802B1144 3C050702 */  lui   $a1, %hi(D_07018528) # $a1, 0x702
-/* 06C148 802B1148 24A58528 */  addiu $a1, %lo(D_07018528) # addiu $a1, $a1, -0x7ad8
+/* 06C144 802B1144 3C050702 */  lui   $a1, %hi(wdw_seg7_collision_07018528) # $a1, 0x702
+/* 06C148 802B1148 24A58528 */  addiu $a1, %lo(wdw_seg7_collision_07018528) # addiu $a1, $a1, -0x7ad8
 /* 06C14C 802B114C 0C0A8F53 */  jal   func_802A3D4C
 /* 06C150 802B1150 8C84FDF0 */   lw    $a0, %lo(gCurrentObject)($a0)
 /* 06C154 802B1154 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036

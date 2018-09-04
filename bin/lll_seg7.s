@@ -11152,13 +11152,15 @@ gsSP1Triangle  4,  7,  5, 0x0
 gsSP1Triangle  5,  7,  8, 0x0
 gsSPEndDisplayList
 
-glabel lll_seg7_moving_texture_data_070287F0
+lll_seg7_moving_texture_data_070287F0:
 .hword     1,     0,     8,     5, -3071, -3071, -3071,  3072
 .hword  3072,  3072,  3072, -3071,     1,   200,     4,     0
+
 glabel lll_seg7_moving_texture_07028810
-.hword    10, 0
+.hword 10, 0
 .word lll_seg7_moving_texture_data_070287F0
-.hword -1, 0, 0, 0
+.hword -1, 0
+.word 0x0
 
 glabel lll_seg7_arr_07028820 # 0x07028820 - 0x070288C8
 .hword    50,   655,   -86, -2934,     0,     0,   527,   256

@@ -6267,7 +6267,7 @@ glabel bob_seg7_metal_ball_path1 # 0x070115C4
 .hword -1
 
 .balign 4
-glabel bob_seg7_koopa_path # 0x070116A0
+glabel bob_seg7_trajectory_koopa # 0x070116A0
 .hword  0, -2220,   204,  5520
 .hword  1, -2020,   204,  5820
 .hword  2,   760,   765,  5680

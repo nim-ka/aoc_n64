@@ -16160,20 +16160,20 @@ hmc_seg7_moving_texture_data_0702B8E0: # 0x0702B8E0
 glabel hmc_seg7_moving_texture_0702B900
 .hword  0, 0
 .word hmc_seg7_moving_texture_data_0702B8E0
-.hword -1
-.hword  0
-
-.balign 0x10
+.hword -1, 0
+.word 0x0
 
 hmc_seg7_moving_texture_data_0702B910: # 0x0702B910
-.hword 1, 0, 15, 3, 1690, -6348, 1690, 819
-.hword 6298, 819, 6298, -6348, 1, 120, 1, 0
+.hword     1,     0,    15,     3,  1690, -6348,  1690,   819
+.hword  6298,   819,  6298, -6348,     1,   120,     1,     0
 hmc_seg7_moving_texture_data_0702B930: # 0x0702B930
-.hword 1, 0, 8, 3, 1690, -6348, 1690, 819
-.hword 6298, 819, 6298, -6348, 0, 180, 1, 0
+.hword     1,     0,     8,     3,  1690, -6348,  1690,   819
+.hword  6298,   819,  6298, -6348,     0,   180,     1,     0
+
 glabel hmc_seg7_moving_texture_0702B950
 .hword 50, 0
 .word hmc_seg7_moving_texture_data_0702B910
 .hword 51, 0
 .word hmc_seg7_moving_texture_data_0702B930
-.hword -1, 0, 0, 0
+.hword -1, 0
+.word 0x0

@@ -39,14 +39,14 @@ extern s16 cotmc_seg7_arr_0700BED0[];
 extern Gfx cotmc_seg7_dl_0700BE10[];
 extern Gfx cotmc_seg7_dl_0700BE88[];
 extern Gfx cotmc_seg7_dl_0700BF60[];
-extern s16 D_07017134[];
-extern Gfx D_07017260[];
-extern s16 D_070171A0[];
-extern s16 D_07017174[];
-extern Gfx D_07017288[];
-extern s16 D_070171E0[];
-extern s16 D_0701720C[];
-extern Gfx D_070172A0[];
+extern s16 ttm_seg7_arr_07017134[];
+extern Gfx ttm_seg7_dl_07017260[];
+extern s16 ttm_seg7_arr_070171A0[];
+extern s16 ttm_seg7_arr_07017174[];
+extern Gfx ttm_seg7_dl_07017288[];
+extern s16 ttm_seg7_arr_070171E0[];
+extern s16 ttm_seg7_arr_0701720C[];
+extern Gfx ttm_seg7_dl_070172A0[];
 extern s16 ssl_seg7_arr_070127F0[];
 extern Gfx ssl_seg7_dl_070127E0[];
 extern Gfx ssl_seg7_dl_070127E8[];
@@ -103,11 +103,11 @@ struct Struct802D0DD4 D_80330004[] =
     {0x00002201, 0x00000004, 0x00000009, D_0702874C, seg2_dl_02014790, seg2_dl_02014810, D_070287A8, 0xff, 0xff, 0xff, 0xc8, 0x00000005},
     {0x00002202, 0x00000004, 0x00000010, lll_seg7_arr_07028820, seg2_dl_02014790, seg2_dl_02014810, lll_seg7_dl_070288C8, 0xff, 0xff, 0xff, 0xb4, 0x00000007},
     {0x00002801, 0x00000000, 0x0000000e, cotmc_seg7_arr_0700BED0, cotmc_seg7_dl_0700BE10, cotmc_seg7_dl_0700BE88, cotmc_seg7_dl_0700BF60, 0xff, 0xff, 0xff, 0xb4, 0x00000007},
-    {0x00003601, 0x00000000, 0x00000006, D_07017134, seg2_dl_02014790, seg2_dl_02014810, D_07017260, 0xff, 0xff, 0xff, 0xb4, 0x00000005},
-    {0x00003602, 0x00000000, 0x00000006, D_070171A0, seg2_dl_02014790, seg2_dl_02014810, D_07017260, 0xff, 0xff, 0xff, 0xb4, 0x00000005},
-    {0x00003603, 0x00000000, 0x00000004, D_07017174, seg2_dl_02014790, seg2_dl_02014810, D_07017288, 0xff, 0xff, 0xff, 0xb4, 0x00000007},
-    {0x00003604, 0x00000000, 0x00000004, D_070171E0, seg2_dl_02014790, seg2_dl_02014810, D_07017288, 0xff, 0xff, 0xff, 0xb4, 0x00000007},
-    {0x00003605, 0x00000000, 0x00000008, D_0701720C, seg2_dl_02014790, seg2_dl_02014810, D_070172A0, 0xff, 0xff, 0xff, 0xb4, 0x00000007},
+    {0x00003601, 0x00000000, 0x00000006, ttm_seg7_arr_07017134, seg2_dl_02014790, seg2_dl_02014810, ttm_seg7_dl_07017260, 0xff, 0xff, 0xff, 0xb4, 0x00000005},
+    {0x00003602, 0x00000000, 0x00000006, ttm_seg7_arr_070171A0, seg2_dl_02014790, seg2_dl_02014810, ttm_seg7_dl_07017260, 0xff, 0xff, 0xff, 0xb4, 0x00000005},
+    {0x00003603, 0x00000000, 0x00000004, ttm_seg7_arr_07017174, seg2_dl_02014790, seg2_dl_02014810, ttm_seg7_dl_07017288, 0xff, 0xff, 0xff, 0xb4, 0x00000007},
+    {0x00003604, 0x00000000, 0x00000004, ttm_seg7_arr_070171E0, seg2_dl_02014790, seg2_dl_02014810, ttm_seg7_dl_07017288, 0xff, 0xff, 0xff, 0xb4, 0x00000007},
+    {0x00003605, 0x00000000, 0x00000008, ttm_seg7_arr_0701720C, seg2_dl_02014790, seg2_dl_02014810, ttm_seg7_dl_070172A0, 0xff, 0xff, 0xff, 0xb4, 0x00000007},
     {0x00000000, 0x00000000, 0x00000000, NULL,       NULL,             NULL,             NULL,       0x00, 0x00, 0x00, 0x00, 0x00000000},
 };
 
@@ -335,14 +335,14 @@ extern u8 hmc_seg7_moving_texture_0702B900[];
 extern u8 hmc_seg7_moving_texture_0702B950[];
 extern u8 D_07012778[];
 extern u8 D_070127C8[];
-extern u8 D_0700FA70[];
-extern u8 D_07018748[];
-extern u8 D_07018778[];
+extern u8 sl_seg7_moving_texture_0700FA70[];
+extern u8 wdw_seg7_moving_texture_07018748[];
+extern u8 wdw_seg7_moving_texture_07018778[];
 extern u8 jrb_seg7_moving_texture_0700D2CC[];
 extern u8 jrb_seg7_moving_texture_0700D304[];
 extern u8 jrb_seg7_moving_texture_0701139C[];
-extern u8 D_0700E31C[];
-extern u8 D_0700E39C[];
+extern u8 thi_seg7_moving_texture_0700E31C[];
+extern u8 thi_seg7_moving_texture_0700E39C[];
 extern u8 castle_grounds_seg7_moving_texture[];
 extern u8 lll_seg7_moving_texture_07028810[];
 extern u8 ddd_seg7_moving_texture_0700FCB4[];
@@ -364,14 +364,14 @@ void *func_802D01A4(u32 a)
     case 1794: return hmc_seg7_moving_texture_0702B950;
     case 2049: return D_07012778;
     case 2129: return D_070127C8;
-    case 4097: return D_0700FA70;
-    case 4353: return D_07018748;
-    case 4354: return D_07018778;
+    case 4097: return sl_seg7_moving_texture_0700FA70;
+    case 4353: return wdw_seg7_moving_texture_07018748;
+    case 4354: return wdw_seg7_moving_texture_07018778;
     case 4609: return jrb_seg7_moving_texture_0700D2CC;
     case 4613: return jrb_seg7_moving_texture_0700D304;
     case 4610: return jrb_seg7_moving_texture_0701139C;
-    case 4865: return D_0700E31C;
-    case 4866: return D_0700E39C;
+    case 4865: return thi_seg7_moving_texture_0700E31C;
+    case 4866: return thi_seg7_moving_texture_0700E39C;
     case 5633: return castle_grounds_seg7_moving_texture;
     case 8706: return lll_seg7_moving_texture_07028810;
     case 8961: return ddd_seg7_moving_texture_0700FCB4;

@@ -5002,11 +5002,12 @@ jrb_seg7_moving_texture_data_0700D2AC: # 0x0700D2AC - 0x0700D2CC
 .hword  5969,  -669,  5969, -4253,     1,   180,     2,     0
 
 glabel jrb_seg7_moving_texture_0700D2CC # 0x0700D2CC
-.hword 0, 0
+.hword  0, 0
 .word jrb_seg7_moving_texture_data_0700D28C
-.hword 1, 0
+.hword  1, 0
 .word jrb_seg7_moving_texture_data_0700D2AC
-.hword -1, 0, 0, 0
+.hword -1, 0
+.word 0x0
 
 jrb_seg7_moving_texture_data_0700D2E4: # 0x0700D2E4
 .hword     1,     0,    20,    10, -7818, -1125, -7818,  7814
@@ -5015,7 +5016,8 @@ jrb_seg7_moving_texture_data_0700D2E4: # 0x0700D2E4
 glabel jrb_seg7_moving_texture_0700D304 # 0x0700D304
 .hword 51, 0 
 .word jrb_seg7_moving_texture_data_0700D2E4
-.hword -1, 0, 0, 0
+.hword -1, 0
+.word 0x0
 
 .balign 8
 
@@ -6798,8 +6800,9 @@ glabel jrb_seg7_area_2_macro_objs # 0x07011370 - 0x0701137C
 jrb_seg7_moving_texture_data_0701137C: # 0x0701137C
 .hword     1,     0,    20,     6, -4095, -4095, -4095,  4096
 .hword  4096,  4096,  4096, -4095,     1,   180,     2,     0
-glabel jrb_seg7_moving_texture_0701139C # 0x0701139C
-.hword 0, 0
-.word jrb_seg7_moving_texture_data_0701137C
-.hword -1, 0, 0, 0
 
+glabel jrb_seg7_moving_texture_0701139C # 0x0701139C
+.hword  0, 0
+.word jrb_seg7_moving_texture_data_0701137C
+.hword -1, 0
+.word 0x0

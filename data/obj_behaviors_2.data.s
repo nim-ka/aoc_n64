@@ -20,10 +20,12 @@ glabel D_80331752
 	.incbin "bin/sm64.j.0EADAC.bin", 0x19A6, 0x2
 
 glabel D_80331754
-   .word bob_seg7_koopa_path
+   .word bob_seg7_trajectory_koopa
 
 glabel D_80331758
-	.incbin "bin/sm64.j.0EADAC.bin", 0x19AC, 0x18
+	.incbin "bin/sm64.j.0EADAC.bin", 0x19AC, 0xC
+   .word thi_seg7_trajectory_koopa
+	.incbin "bin/sm64.j.0EADAC.bin", 0x19BC, 0x8
 
 glabel D_80331770
 	.incbin "bin/sm64.j.0EADAC.bin", 0x19C4, 0x10

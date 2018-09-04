@@ -49,7 +49,7 @@ extern struct Struct802D1F94 D_07023B48[];
 extern struct Struct802D1F94 D_07023BC0[];
 extern struct Struct802D1F94 D_07023C38[];
 
-extern struct Struct802D1F94 D_07012F00[];
+extern struct Struct802D1F94 ttm_seg7_wall_data[];
 
 extern struct Struct802D1F94 *D_8035FFA8;
 extern u16 gAreaUpdateCounter;
@@ -90,7 +90,7 @@ struct Struct802D1F94 *D_803303A8[] =
 
 struct Struct802D1F94 *D_803303E4[] =
 {
-    D_07012F00,
+    ttm_seg7_wall_data,
     NULL,
 };
 

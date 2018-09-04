@@ -405,7 +405,7 @@ glabel beh_pole_grabbing # 0144
 glabel beh_thi_top_trap # 0174
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
-    collision_data 0x0700E228
+    collision_data thi_seg7_collision_top_trap
     begin_loop
         callnative BehThiTopTrapLoop
     end_loop
@@ -746,7 +746,7 @@ glabel beh_exit_podium_warp # 0720
     obj_set_int VAR_2A, 0x2000
     unknown_1E
     obj_set_float VAR_43, 0x1F40
-    collision_data 0x0703013C
+    collision_data ttm_seg7_collision_podium_warp
     obj_set_int VAR_05, 0
     set_hitbox 0x0032, 0x0032
     begin_loop
@@ -1258,7 +1258,7 @@ glabel beh_little_cage # 0F48
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x09
     unknown_2D
-    collision_data 0x07013790
+    collision_data ttm_seg7_collision_little_cage
     unknown_1C 0x0000007A, beh_little_cage2
     unknown_1C 0x00000000, beh_unused_0F14
     obj_set_float VAR_43, 0x4E20
@@ -1652,7 +1652,7 @@ glabel beh_ccm_touched_star_spawn # 15C0
 glabel beh_pound_explodes # 15E4
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
-    collision_data 0x0700EFC0
+    collision_data sl_seg7_collision_pound_explodes
     unknown_2D
     begin_loop
         callnative BehPoundExplodesLoop
@@ -2328,7 +2328,7 @@ glabel beh_fish_group2 # 2178
 glabel beh_wdw_express_elevator # 2194
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x41
-    collision_data 0x070185AC
+    collision_data wdw_seg7_collision_express_elevator_platform
     unknown_2D
     begin_loop
         callnative BehWdwExpressElevatorLoop
@@ -2338,7 +2338,7 @@ glabel beh_wdw_express_elevator # 2194
 glabel beh_wdw_express_elevator_platform # 21C0
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x41
-    collision_data 0x070185AC
+    collision_data wdw_seg7_collision_express_elevator_platform
     unknown_2D
     begin_loop
         callnative load_object_collision_model
@@ -4195,7 +4195,7 @@ glabel beh_checkpoint # 3EFC
 glabel beh_pitoune_2 # 3F20
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
-    collision_data 0x07013678
+    collision_data ttm_seg7_collision_pitoune_2
     unknown_2D
     obj_set_float VAR_43, 0x07D0
     callnative BehPitoune2Init
@@ -4367,7 +4367,7 @@ glabel beh_breakable_box2 # 41F8
 glabel beh_sliding_snow_mound # 4224
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
-    collision_data 0x0700EF6C
+    collision_data sl_seg7_collision_sliding_snow_mound
     unknown_2D
     begin_loop
         callnative BehSlidingSnowMoundLoop
@@ -4383,7 +4383,7 @@ glabel beh_snow_mound_spawn # 4250
 glabel beh_square_floating_platform # 4264
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x09
-    collision_data 0x070183C0
+    collision_data wdw_seg7_collision_square_floating_platform
     obj_set_float VAR_1D, 0x0040
     unknown_2D
     begin_loop
@@ -4394,7 +4394,7 @@ glabel beh_square_floating_platform # 4264
 glabel beh_rect_floating_platform # 4294
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x09
-    collision_data 0x07018630
+    collision_data wdw_seg7_collision_rect_floating_platform
     obj_set_float VAR_1D, 0x0040
     unknown_2D
     begin_loop
@@ -4416,7 +4416,7 @@ glabel beh_jrb_floating_platform # 42C4
 glabel beh_arrow_lift # 42F4
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
-    collision_data 0x07018444
+    collision_data wdw_seg7_collision_arrow_lift
     obj_set_int_rand_rshift VAR_1E, 0x0001, 0x0020
     unknown_2D
     begin_loop

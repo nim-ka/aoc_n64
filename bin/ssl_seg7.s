@@ -4653,14 +4653,14 @@ ssl_seg7_moving_texture_data_07012758: # 0x07012758 - 0x07012778
 .hword -4223, -4607, -4223, -7167,     1,   150,     0,     0
 
 glabel ssl_seg7_moving_texture_07012778 # 0x07012778
-.hword 0, 0
+.hword  0, 0
 .word ssl_seg7_moving_texture_data_07012758
-.hword -1, 0, 0, 0
+.hword -1, 0
+.word 0x0
 
 ssl_seg7_moving_texture_data_07012788: # 0x07012788 - 0x070127A8
 .hword     1,     0,    40,     2,  1024, -7065,  1024,  -716
 .hword  7578,  -716,  7578, -7065,     1,   150,     0,     0
-
 ssl_seg7_moving_texture_data_070127A8: # 0x070127A8 - 0x070127C8
 .hword     1,     0,    40,     2, -3993, -7065, -3993, -4197
 .hword  1024, -4197,  1024, -7065,     1,   150,     0,     0 
@@ -4670,7 +4670,8 @@ glabel ssl_seg7_moving_texture_070127C8 # 0x070127C8 - 0x070127E0
 .word ssl_seg7_moving_texture_data_07012788
 .hword 52, 0
 .word ssl_seg7_moving_texture_data_070127A8
-.hword -1, 0, 0, 0
+.hword -1, 0
+.word 0x0
 
 glabel ssl_seg7_dl_070127E0 # 0x070127E0
 gsSPBranchList ssl_seg7_dl_07004818

@@ -76,7 +76,7 @@ extern struct GraphNode **gLoadedGraphNodes;
 // extern ? D_8032F430;
 // extern ? D_8032F440;
 // extern ? D_8032F450;
-// extern ? D_07018528;
+// extern ? wdw_seg7_collision_07018528;
 // extern ? TableHeaveHoActions;
 // extern ? D_8032F498;
 // extern ? TableJumpingBoxActions;

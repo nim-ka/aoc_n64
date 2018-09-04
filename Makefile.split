@@ -23,7 +23,6 @@ BINARY_SEGMENTS := \
    flower_textures \
    hoot_thwomp_bullet_heave \
    inside_castle_seg7 \
-   jrb_seg7 \
    klepto_eyerock_pokey \
    koopa_log_piranha_whomp_chomp \
    lakitu_toad_mips_boo \
@@ -34,17 +33,12 @@ BINARY_SEGMENTS := \
    rr_seg7 \
    sea_creatures \
    skeeter_fish_treasurechest \
-   sl_seg7 \
    spindrift_penguin_snowman \
    ssl_skybox \
-   thi_seg7 \
    ttc_seg7 \
-   ttm_seg7 \
    water_skybox \
-   wdw_seg7 \
    wdw_skybox \
-   wmotr_seg7 \
-   totwc_seg7
+   wmotr_seg7
 
 # obtain a list of segments from the *.s and *.s.in files in bin directory
 SEGMENTS := $(notdir $(basename $(wildcard bin/*.s) $(basename $(wildcard bin/*.s.in))))
@@ -82,10 +76,15 @@ LLL_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/ll
 LLL_TEXTURES_FILES           := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/lll_textures/*.png)))
 PSS_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/pss_seg7/*.png)))
 RR_TEXTURES_FILES            := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/rr_textures/*.png)))
+SL_SEG7_FILES                := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/sl_seg7/*.png)))
 SSL_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/ssl_seg7/*.png)))
+THI_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/thi_seg7/*.png)))
 TTC_TEXTURES_FILES           := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/ttc_textures/*.png)))
+TOTWC_SEG7_FILES             := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/totwc_seg7/*.png)))
+TTM_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/ttm_seg7/*.png)))
 TTM_TEXTURES_FILES           := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/ttm_textures/*.png)))
 VCUTM_SEG7_FILES             := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/vcutm_seg7/*.png)))
+WDW_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/wdw_seg7/*.png)))
 WF_SEG7_FILES                := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/wf_seg7/*.png)))
 WF_TEXTURES_FILES            := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/wf_textures/*.png)))
 
@@ -117,10 +116,15 @@ $(BUILD_DIR)/bin/lll_seg7.o: $(addprefix $(BUILD_DIR)/bin/lll_seg7/,$(LLL_SEG7_F
 $(BUILD_DIR)/bin/lll_textures.o: $(addprefix $(BUILD_DIR)/bin/lll_textures/,$(LLL_TEXTURES_FILES))
 $(BUILD_DIR)/bin/pss_seg7.o: $(addprefix $(BUILD_DIR)/bin/pss_seg7/,$(PSS_SEG7_FILES))
 $(BUILD_DIR)/bin/rr_textures.o: $(addprefix $(BUILD_DIR)/bin/rr_textures/,$(RR_TEXTURES_FILES))
+$(BUILD_DIR)/bin/sl_seg7.o: $(addprefix $(BUILD_DIR)/bin/sl_seg7/,$(SL_SEG7_FILES))
 $(BUILD_DIR)/bin/ssl_seg7.o: $(addprefix $(BUILD_DIR)/bin/ssl_seg7/,$(SSL_SEG7_FILES))
+$(BUILD_DIR)/bin/thi_seg7.o: $(addprefix $(BUILD_DIR)/bin/thi_seg7/,$(THI_SEG7_FILES))
 $(BUILD_DIR)/bin/ttc_textures.o: $(addprefix $(BUILD_DIR)/bin/ttc_textures/,$(TTC_TEXTURES_FILES))
+$(BUILD_DIR)/bin/totwc_seg7.o: $(addprefix $(BUILD_DIR)/bin/totwc_seg7/,$(TOTWC_SEG7_FILES))
+$(BUILD_DIR)/bin/ttm_seg7.o: $(addprefix $(BUILD_DIR)/bin/ttm_seg7/,$(TTM_SEG7_FILES))
 $(BUILD_DIR)/bin/ttm_textures.o: $(addprefix $(BUILD_DIR)/bin/ttm_textures/,$(TTM_TEXTURES_FILES))
 $(BUILD_DIR)/bin/vcutm_seg7.o: $(addprefix $(BUILD_DIR)/bin/vcutm_seg7/,$(VCUTM_SEG7_FILES))
+$(BUILD_DIR)/bin/wdw_seg7.o: $(addprefix $(BUILD_DIR)/bin/wdw_seg7/,$(WDW_SEG7_FILES))
 $(BUILD_DIR)/bin/wf_seg7.o: $(addprefix $(BUILD_DIR)/bin/wf_seg7/,$(WF_SEG7_FILES))
 $(BUILD_DIR)/bin/wf_textures.o: $(addprefix $(BUILD_DIR)/bin/wf_textures/,$(WF_TEXTURES_FILES))
 
@@ -144,8 +148,13 @@ $(BUILD_DIR)/bin/jrb_seg7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/lll_seg7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/pss_seg7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/sa_seg7.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/sl_seg7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/ssl_seg7.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/thi_seg7.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/totwc_seg7.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/ttm_seg7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/vcutm_seg7.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/wdw_seg7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/wf_seg7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/bbh_textures.elf: SEGMENT_ADDRESS := 0x09000000
 $(BUILD_DIR)/bin/bob_textures.elf: SEGMENT_ADDRESS := 0x09000000
