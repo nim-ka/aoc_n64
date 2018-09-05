@@ -28,10 +28,10 @@ u32 gFrameBuffers[3];
 u32 D_80339CEC;
 void *D_80339CF0;
 void *D_80339CF4;
-struct SPTask *D_80339CF8;
+struct SPTask *gGfxSPTask;
 Gfx *gDisplayListHead;
 u8 *gGfxPoolEnd;
-Gfx *D_80339D04;
+struct GfxPool *gGfxPool;
 u8 gControllerBits;
 s8 gEepromProbe;
 
@@ -275,7 +275,7 @@ void init_controllers(void)
     }
 }
 
-void func_80248934(void)
+void setup_game_memory(void)
 {
     UNUSED u8 pad[8];
 
@@ -302,7 +302,7 @@ void thread5_game_loop(UNUSED void *arg)
 {
     struct LevelCommand *addr;
 
-    func_80248934();
+    setup_game_memory();
     init_controllers();
     save_file_load_all();
 
@@ -331,7 +331,7 @@ void thread5_game_loop(UNUSED void *arg)
         func_80247FAC();
         read_controller_inputs();
         addr = level_script_execute(addr);
-        func_80248060();
+        display_and_vsync();
 
         // when debug info is enabled, print the "BUF %d" information.
         if(gShowDebugText)

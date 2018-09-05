@@ -8,6 +8,8 @@
 #define M_HVQTASK  6
 #define M_HVQMTASK 7
 
+#define OS_YIELD_DATA_SIZE  0x900
+#define OS_YIELD_AUDIO_SIZE 0x400
 
 /* Types */
 
@@ -51,7 +53,8 @@ typedef u32 OSYieldResult;
 
 void osSpTaskLoad(OSTask *task);
 s32 osSpTaskStartGo(OSTask *task);
-s32 osSpTaskStart(OSTask *task);s32 osSpTaskYield(void);
-OSYieldResult osSpTaskYieled(OSTask *task);
+s32 osSpTaskStart(OSTask *task);
+s32 osSpTaskYield(void);
+OSYieldResult osSpTaskYielded(OSTask *task);
 
 #endif

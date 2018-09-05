@@ -251,8 +251,8 @@ static void dma_read(u8 *dest, u8 *srcStart, u8 *srcEnd)
     {
         u32 copySize = (size >= 0x1000) ? 0x1000 : size;
 
-        osPiStartDma(&gDmaIoMesg, 0, 0, (u32)srcStart, dest, copySize, &gDmaMesgQueue);
-        osRecvMesg(&gDmaMesgQueue, &D_80339BEC, 1);
+        osPiStartDma(&gDmaIoMesg, OS_MESG_PRI_NORMAL, OS_READ, (u32)srcStart, dest, copySize, &gDmaMesgQueue);
+        osRecvMesg(&gDmaMesgQueue, &D_80339BEC, OS_MESG_BLOCK);
 
         dest += copySize;
         srcStart += copySize;

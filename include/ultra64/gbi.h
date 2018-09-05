@@ -542,13 +542,13 @@ typedef union
                  | _SHIFTL((yl),    0, 12);                              \
 }                                                                        \
 {                                                                        \
-    Gfx *_g = gDisplayListHead++;                                        \
+    Gfx *_g = (Gfx *)(pkt);                                              \
     _g->words.w0 = _SHIFTL(0xB3, 24,  8);                                \
     _g->words.w1 = _SHIFTL((s),  16, 16)                                 \
                  | _SHIFTL((t),   0, 16);                                \
 }                                                                        \
 {                                                                        \
-    Gfx *_g = gDisplayListHead++;                                        \
+    Gfx *_g = (Gfx *)(pkt);                                              \
     _g->words.w0 = _SHIFTL(0xB2,   24,  8);                              \
     _g->words.w1 = _SHIFTL((dsdx), 16, 16)                               \
                  | _SHIFTL((dtdy),  0, 16);                              \

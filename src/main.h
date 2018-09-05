@@ -8,7 +8,7 @@ extern OSThread gGameLoopThread;
 extern OSThread gSoundThread;
 extern OSMesgQueue gPIMesgQueue;
 extern OSMesgQueue gIntrMesgQueue;
-extern OSMesgQueue gUnknownMesgQueue;
+extern OSMesgQueue gSPTaskMesgQueue;
 extern OSMesg gDmaMesgBuf[1];
 extern OSMesg gPIMesgBuf[32];
 extern OSMesg gSIEventMesgBuf[1];
@@ -21,13 +21,13 @@ extern OSMesgQueue gSIEventMesgQueue;
 
 extern struct VblankHandler *gVblankHandler1;
 extern struct VblankHandler *gVblankHandler2;
-extern struct SPTask *gCurrentSPTask;
+extern struct SPTask *gActiveSPTask;
 extern struct SPTask *D_8032C62C;
 extern struct SPTask *D_8032C630;
 extern OSMesg D_8032C634;
 extern OSMesg D_8032C638;
 extern s8 D_8032C63C;
-extern u32 D_8032C640;
+extern u32 sNumVblanks;
 extern s8 gResetTimer;
 extern s8 D_8032C648;
 extern s8 gDebugLevelSelect;
@@ -41,7 +41,7 @@ extern u8 gThread5Stack[];
 extern u8 gThread3Stack[];
 
 extern void set_vblank_handler(int a, struct VblankHandler *b, OSMesgQueue *queue, OSMesg *msg);
-extern void func_80246BB4(OSMesg *msg);
+extern void dispatch_audio_sptask(OSMesg *msg);
 extern void SendDisplayList(struct SPTask *a);
 extern void Main(void);
 

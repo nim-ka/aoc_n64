@@ -18,6 +18,8 @@
 #define OS_EVENT_THREADSTATUS 13
 #define OS_EVENT_PRENMI       14
 
+#define OS_MESG_NOBLOCK 0
+#define OS_MESG_BLOCK   1
 
 /* Types */
 
@@ -35,15 +37,14 @@ typedef struct OSMesgQueue_s
     OSMesg *msg;
 } OSMesgQueue;
 
-
 /* Functions */
 
-void osCreateMesgQueue(OSMesgQueue *, OSMesg *, s32);
-s32 osSendMesg(OSMesgQueue *, OSMesg, s32);
-s32 osJamMesg(OSMesgQueue *, OSMesg, s32);
-s32 osRecvMesg(OSMesgQueue *, OSMesg *, s32);
-void osSetEventMesg(OSEvent, OSMesgQueue *, OSMesg);
+void osCreateMesgQueue(OSMesgQueue *mq, OSMesg *msgBuf, s32 count);
+s32 osSendMesg(OSMesgQueue *mq, OSMesg msg, s32 flag);
+s32 osJamMesg(OSMesgQueue *mq, OSMesg msg, s32 flag);
+s32 osRecvMesg(OSMesgQueue *mq, OSMesg *msg, s32 flag);
+void osSetEventMesg(OSEvent e, OSMesgQueue *mq, OSMesg msg);
 void osViSetEvent(OSMesgQueue *mq, OSMesg msg, u32 retraceCount);
-s32 osContStartReadData(OSMesgQueue *);
+s32 osContStartReadData(OSMesgQueue *mq);
 
 #endif

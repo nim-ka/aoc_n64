@@ -11,11 +11,11 @@
 #include "game.h"
 
 // Message IDs
-#define MESG_SP_COMPLETE 100
-#define MESG_DP_COMPLETE 101
-#define MESG_VI_VBLANK   102
-#define MESG_UNKNOWN_103 103
-#define MESG_NMI_REQUEST 104
+#define MESG_SP_COMPLETE      100
+#define MESG_DP_COMPLETE      101
+#define MESG_VI_VBLANK        102
+#define MESG_START_GFX_SPTASK 103
+#define MESG_NMI_REQUEST      104
 
 OSThread D_80339210;  // unused?
 OSThread gIdleThread;
@@ -24,7 +24,7 @@ OSThread gGameLoopThread;
 OSThread gSoundThread;
 OSMesgQueue gPIMesgQueue;
 OSMesgQueue gIntrMesgQueue;
-OSMesgQueue gUnknownMesgQueue;
+OSMesgQueue gSPTaskMesgQueue;
 OSMesg gDmaMesgBuf[1];
 OSMesg gPIMesgBuf[32];
 OSMesg gSIEventMesgBuf[1];
@@ -38,13 +38,13 @@ OSMesgQueue gSIEventMesgQueue;
 
 struct VblankHandler *gVblankHandler1 = NULL;
 struct VblankHandler *gVblankHandler2 = NULL;
-struct SPTask *gCurrentSPTask = NULL;
-struct SPTask *D_8032C62C = NULL;
-struct SPTask *D_8032C630 = NULL;
-OSMesg D_8032C634 = NULL;
-OSMesg D_8032C638 = NULL;
-s8 D_8032C63C = 1;
-u32 D_8032C640 = 0;
+struct SPTask *gActiveSPTask = NULL;
+struct SPTask *sCurrentAudioSPTask = NULL;
+struct SPTask *sCurrentDisplaySPTask = NULL;
+struct SPTask *sNextAudioSPTask = NULL;
+struct SPTask *sNextDisplaySPTask = NULL;
+s8 sAudioEnabled = 1;
+u32 sNumVblanks = 0;
 s8 gResetTimer = 0;
 s8 D_8032C648 = 0;
 s8 gDebugLevelSelect = 0;
@@ -118,7 +118,7 @@ static void setup_mesg_queues(void)
     osCreateMesgQueue(&gSIEventMesgQueue, gSIEventMesgBuf, ARRAY_COUNT(gSIEventMesgBuf));
     osSetEventMesg(OS_EVENT_SI, &gSIEventMesgQueue, NULL);
 
-    osCreateMesgQueue(&gUnknownMesgQueue, gUnknownMesgBuf, ARRAY_COUNT(gUnknownMesgBuf));
+    osCreateMesgQueue(&gSPTaskMesgQueue, gUnknownMesgBuf, ARRAY_COUNT(gUnknownMesgBuf));
     osCreateMesgQueue(&gIntrMesgQueue, gIntrMesgBuf, ARRAY_COUNT(gIntrMesgBuf));
     osViSetEvent(&gIntrMesgQueue, (OSMesg)MESG_VI_VBLANK, 1);
 
@@ -165,75 +165,74 @@ void handle_nmi_request(void)
     func_802491FC(90);
 }
 
-static void func_802463EC(void)
+static void receive_new_tasks(void)
 {
-    OSMesg msg;
+    struct SPTask *spTask;
 
-    while (osRecvMesg(&gUnknownMesgQueue, &msg, 0) != -1)
+    while (osRecvMesg(&gSPTaskMesgQueue, (OSMesg *)&spTask, OS_MESG_NOBLOCK) != -1)
     {
-        // FIXME: What type is this? I think it might be OSTask.
-        ((u32 *)msg)[18] = 0;
-        switch (*(u32 *)msg)
+        spTask->state = SPTASK_STATE_NOT_STARTED;
+        switch (spTask->task.t.type)
         {
         case 2:
-            D_8032C634 = msg;
+            sNextAudioSPTask = spTask;
             break;
         case 1:
-            D_8032C638 = msg;
+            sNextDisplaySPTask = spTask;
             break;
         }
     }
 
-    if (D_8032C62C == NULL && D_8032C634 != NULL)
+    if (sCurrentAudioSPTask == NULL && sNextAudioSPTask != NULL)
     {
-        D_8032C62C = D_8032C634;
-        D_8032C634 = NULL;
+        sCurrentAudioSPTask = sNextAudioSPTask;
+        sNextAudioSPTask = NULL;
     }
 
-    if (D_8032C630 == NULL && D_8032C638 != NULL)
+    if (sCurrentDisplaySPTask == NULL && sNextDisplaySPTask != NULL)
     {
-        D_8032C630 = D_8032C638;
-        D_8032C638 = NULL;
+        sCurrentDisplaySPTask = sNextDisplaySPTask;
+        sNextDisplaySPTask = NULL;
     }
 }
 
-static void func_8024651C(int a)
+static void start_sptask(int taskType)
 {
     UNUSED int pad;  // needed to pad the stack
 
-    if (a == 2)
-        gCurrentSPTask = D_8032C62C;
+    if (taskType == M_AUDTASK)
+        gActiveSPTask = sCurrentAudioSPTask;
     else
-        gCurrentSPTask = D_8032C630;
+        gActiveSPTask = sCurrentDisplaySPTask;
 
-    osSpTaskLoad(&gCurrentSPTask->task);
-    osSpTaskStartGo(&gCurrentSPTask->task);
-    gCurrentSPTask->state = STATE_1;
+    osSpTaskLoad(&gActiveSPTask->task);
+    osSpTaskStartGo(&gActiveSPTask->task);
+    gActiveSPTask->state = SPTASK_STATE_RUNNING;
 }
 
-static void func_8024659C(void)
+static void interrupt_gfx_sptask(void)
 {
-    if (gCurrentSPTask->task.t.type == M_GFXTASK)
+    if (gActiveSPTask->task.t.type == M_GFXTASK)
     {
-        gCurrentSPTask->state = STATE_2;
+        gActiveSPTask->state = SPTASK_STATE_INTERRUPTED;
         osSpTaskYield();
     }
 }
 
-static void KickTask(void)
+static void start_gfx_sptask(void)
 {
-    if (gCurrentSPTask == NULL && D_8032C630 != NULL && D_8032C630->state == STATE_0)
+    if (gActiveSPTask == NULL && sCurrentDisplaySPTask != NULL && sCurrentDisplaySPTask->state == SPTASK_STATE_NOT_STARTED)
     {
         profiler_log_gfx_time(TASKS_QUEUED);
-        func_8024651C(1);
+        start_sptask(M_GFXTASK);
     }
 }
 
-static void SendSPTaskDone(void)
+static void pretend_audio_sptask_done(void)
 {
-    gCurrentSPTask = D_8032C62C;
-    gCurrentSPTask->state = STATE_1;
-    osSendMesg(&gIntrMesgQueue, (OSMesg)MESG_SP_COMPLETE, 0);
+    gActiveSPTask = sCurrentAudioSPTask;
+    gActiveSPTask->state = SPTASK_STATE_RUNNING;
+    osSendMesg(&gIntrMesgQueue, (OSMesg)MESG_SP_COMPLETE, OS_MESG_NOBLOCK);
 }
 
 static void handle_vblank(void)
@@ -241,77 +240,96 @@ static void handle_vblank(void)
     UNUSED int pad;  // needed to pad the stack
 
     Dummy802461EC();
-    D_8032C640++;
+    sNumVblanks++;
     if (gResetTimer > 0)
         gResetTimer++;
-    func_802463EC();
-    if (D_8032C62C != NULL)
+
+    receive_new_tasks();
+
+    // First try to kick off an audio task. If the gfx task is currently
+    // running, we need to asychronously interrupt it -- handle_sp_complete
+    // will pick up on what we're doing and start the audio task for us.
+    // If there is already an audio task running, there is nothing to do.
+    // If there is no audio task available, try a gfx task instead.
+    if (sCurrentAudioSPTask != NULL)
     {
-        if (gCurrentSPTask != NULL)
+        if (gActiveSPTask != NULL)
         {
-            func_8024659C();
+            interrupt_gfx_sptask();
         }
         else
         {
             profiler_log_vblank_time();
-            if (D_8032C63C != 0)
-                func_8024651C(2);
+            if (sAudioEnabled != 0)
+                start_sptask(M_AUDTASK);
             else
-                SendSPTaskDone();
+                pretend_audio_sptask_done();
         }
     }
     else
     {
-        if (gCurrentSPTask == NULL && D_8032C630 != NULL && D_8032C630->state != STATE_3)
+        if (gActiveSPTask == NULL && sCurrentDisplaySPTask != NULL && sCurrentDisplaySPTask->state != SPTASK_STATE_FINISHED)
         {
             profiler_log_gfx_time(TASKS_QUEUED);
-            func_8024651C(1);
+            start_sptask(M_GFXTASK);
         }
     }
 
+    // Notify the game loop about the vblank.
     if (gVblankHandler1 != NULL)
-        osSendMesg(gVblankHandler1->queue, gVblankHandler1->msg, 0);
+        osSendMesg(gVblankHandler1->queue, gVblankHandler1->msg, OS_MESG_NOBLOCK);
     if (gVblankHandler2 != NULL)
-        osSendMesg(gVblankHandler2->queue, gVblankHandler2->msg, 0);
+        osSendMesg(gVblankHandler2->queue, gVblankHandler2->msg, OS_MESG_NOBLOCK);
 }
 
 static void handle_sp_complete(void)
 {
-    struct SPTask *curSPTask = gCurrentSPTask;
+    struct SPTask *curSPTask = gActiveSPTask;
 
-    gCurrentSPTask = NULL;
+    gActiveSPTask = NULL;
 
-    if (curSPTask->state == STATE_2)
+    if (curSPTask->state == SPTASK_STATE_INTERRUPTED)
     {
-        if (osSpTaskYielded(curSPTask) == 0)
+        // handle_vblank tried to start an audio task while there was already a
+        // gfx task running, so it had to interrupt the gfx task. That interruption
+        // just finished.
+        if (osSpTaskYielded(&curSPTask->task) == 0)
         {
-            curSPTask->state = STATE_3;
+            // The gfx task completed before we had time to interrupt it.
+            // Mark it finished, just like below.
+            curSPTask->state = SPTASK_STATE_FINISHED;
             profiler_log_gfx_time(RSP_COMPLETE);
         }
+
+        // Start the audio task, as expected by handle_vblank.
         profiler_log_vblank_time();
-        if (D_8032C63C != 0)
-            func_8024651C(2);
+        if (sAudioEnabled != 0)
+            start_sptask(M_AUDTASK);
         else
-            SendSPTaskDone();
+            pretend_audio_sptask_done();
     }
     else
     {
-        curSPTask->state = STATE_3;
+        curSPTask->state = SPTASK_STATE_FINISHED;
         if (curSPTask->task.t.type == M_AUDTASK)
         {
+            // After audio tasks come gfx tasks.
             profiler_log_vblank_time();
-            if (D_8032C630 != NULL && D_8032C630->state != STATE_3)
+            if (sCurrentDisplaySPTask != NULL && sCurrentDisplaySPTask->state != SPTASK_STATE_FINISHED)
             {
-                if (D_8032C630->state != STATE_2)
+                if (sCurrentDisplaySPTask->state != SPTASK_STATE_INTERRUPTED)
                     profiler_log_gfx_time(TASKS_QUEUED);
-                func_8024651C(1);
+                start_sptask(M_GFXTASK);
             }
-            D_8032C62C = NULL;
+            sCurrentAudioSPTask = NULL;
             if (curSPTask->msgqueue != NULL)
-                osSendMesg(curSPTask->msgqueue, curSPTask->msg, 0);
+                osSendMesg(curSPTask->msgqueue, curSPTask->msg, OS_MESG_NOBLOCK);
         }
         else
         {
+            // The SP process is done, but there is still a Display Processor notification
+            // that needs to arrive before we can consider the task completely finished and
+            // null out sCurrentDisplaySPTask. That happens in handle_dp_complete.
             profiler_log_gfx_time(RSP_COMPLETE);
         }
     }
@@ -319,11 +337,12 @@ static void handle_sp_complete(void)
 
 static void handle_dp_complete(void)
 {
-    if (D_8032C630->msgqueue != NULL)
-        osSendMesg(D_8032C630->msgqueue, D_8032C630->msg, 0);
+    // Gfx SP task is completely done.
+    if (sCurrentDisplaySPTask->msgqueue != NULL)
+        osSendMesg(sCurrentDisplaySPTask->msgqueue, sCurrentDisplaySPTask->msg, OS_MESG_NOBLOCK);
     profiler_log_gfx_time(RDP_COMPLETE);
-    D_8032C630->state = STATE_4;
-    D_8032C630 = NULL;
+    sCurrentDisplaySPTask->state = SPTASK_STATE_FINISHED_DP;
+    sCurrentDisplaySPTask = NULL;
 }
 
 static void thread3_main(UNUSED void *arg)
@@ -342,7 +361,7 @@ static void thread3_main(UNUSED void *arg)
     {
         OSMesg msg;
 
-        osRecvMesg(&gIntrMesgQueue, &msg, 1);
+        osRecvMesg(&gIntrMesgQueue, &msg, OS_MESG_BLOCK);
         switch ((u32)msg)
         {
         case MESG_VI_VBLANK:
@@ -354,8 +373,8 @@ static void thread3_main(UNUSED void *arg)
         case MESG_DP_COMPLETE:
             handle_dp_complete();
             break;
-        case MESG_UNKNOWN_103:
-            KickTask();
+        case MESG_START_GFX_SPTASK:
+            start_gfx_sptask();
             break;
         case MESG_NMI_REQUEST:
             handle_nmi_request();
@@ -384,46 +403,46 @@ void set_vblank_handler(int index, struct VblankHandler *handler, OSMesgQueue *q
 static void SendMessage(OSMesg *msg)
 {
     osWritebackDCacheAll();
-    osSendMesg(&gUnknownMesgQueue, msg, 0);
+    osSendMesg(&gSPTaskMesgQueue, msg, OS_MESG_NOBLOCK);
 }
 
-void func_80246BB4(OSMesg *msg)
+void dispatch_audio_sptask(OSMesg *msg)
 {
-    if (D_8032C63C != 0 && msg != NULL)
+    if (sAudioEnabled != 0 && msg != NULL)
     {
         osWritebackDCacheAll();
-        osSendMesg(&gUnknownMesgQueue, msg, 0);
+        osSendMesg(&gSPTaskMesgQueue, msg, OS_MESG_NOBLOCK);
     }
 }
 
-void SendDisplayList(struct SPTask *a)
+void SendDisplayList(struct SPTask *spTask)
 {
-    if (a != NULL)
+    if (spTask != NULL)
     {
         osWritebackDCacheAll();
-        a->state = STATE_0;
-        if (D_8032C630 == NULL)
+        spTask->state = SPTASK_STATE_NOT_STARTED;
+        if (sCurrentDisplaySPTask == NULL)
         {
-            D_8032C630 = a;
-            D_8032C638 = NULL;
-            osSendMesg(&gIntrMesgQueue, (OSMesg)MESG_UNKNOWN_103, 0);
+            sCurrentDisplaySPTask = spTask;
+            sNextDisplaySPTask = NULL;
+            osSendMesg(&gIntrMesgQueue, (OSMesg)MESG_START_GFX_SPTASK, OS_MESG_NOBLOCK);
         }
         else
         {
-            D_8032C638 = (OSMesg)a;
+            sNextDisplaySPTask = spTask;
         }
     }
 }
 
-static void Unknown80246C9C(void)
+static void turn_on_audio(void)
 {
-    D_8032C63C = 1;
+    sAudioEnabled = 1;
 }
 
-static void Unknown80246CB8(void)
+static void turn_off_audio(void)
 {
-    D_8032C63C = 0;
-    while (D_8032C62C != NULL)
+    sAudioEnabled = 0;
+    while (sCurrentAudioSPTask != NULL)
         ;
 }
 

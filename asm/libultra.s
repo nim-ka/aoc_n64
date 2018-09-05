@@ -6469,9 +6469,9 @@ glabel osVirtualToPhysical
 
 /* 0E1FAC 80326FAC 00000000 */  nop   
 glabel __osSpSetStatus
-/* 0E1FB0 80326FB0 3C0EA404 */  lui   $t6, 0xa404
+/* 0E1FB0 80326FB0 3C0EA404 */  lui   $t6, %hi(D_A4040010)
 /* 0E1FB4 80326FB4 03E00008 */  jr    $ra
-/* 0E1FB8 80326FB8 ADC40010 */   sw    $a0, 0x10($t6)
+/* 0E1FB8 80326FB8 ADC40010 */   sw    $a0, %lo(D_A4040010)($t6)
 
 /* 0E1FBC 80326FBC 00000000 */  nop   
 glabel __osSpSetPc
@@ -10129,8 +10129,8 @@ glabel __osAtomicDec
 /* 0E5318 8032A318 00000000 */  nop   
 /* 0E531C 8032A31C 00000000 */  nop   
 
-glabel D_8032A320
+glabel rspbootTextStart
     .incbin "bin/sm64.j.0E5320.rsp.boot.bin"
 
-glabel D_8032A3F0
+glabel rspbootTextEnd
     .incbin "bin/sm64.j.0E53F0.rsp.graphics.bin"

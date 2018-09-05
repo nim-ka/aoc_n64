@@ -394,12 +394,12 @@ glabel func_8031D924
 /* 0D8B8C 8031DB8C 25296D9C */  addiu $t1, %lo(D_80226D9C) # addiu $t1, $t1, 0x6d9c
 /* 0D8B90 8031DB90 8D380000 */  lw    $t8, ($t1)
 /* 0D8B94 8031DB94 3C068022 */  lui   $a2, %hi(D_80226D88) # $a2, 0x8022
-/* 0D8B98 8031DB98 3C058033 */  lui   $a1, %hi(D_8032A320) # $a1, 0x8033
-/* 0D8B9C 8031DB9C 3C0D8033 */  lui   $t5, %hi(D_8032A3F0) # $t5, 0x8033
-/* 0D8BA0 8031DBA0 24A5A320 */  addiu $a1, %lo(D_8032A320) # addiu $a1, $a1, -0x5ce0
+/* 0D8B98 8031DB98 3C058033 */  lui   $a1, %hi(rspbootTextStart) # $a1, 0x8033
+/* 0D8B9C 8031DB9C 3C0D8033 */  lui   $t5, %hi(rspbootTextEnd) # $t5, 0x8033
+/* 0D8BA0 8031DBA0 24A5A320 */  addiu $a1, %lo(rspbootTextStart) # addiu $a1, $a1, -0x5ce0
 /* 0D8BA4 8031DBA4 3C078034 */  lui   $a3, %hi(D_80338F50) # $a3, 0x8034
 /* 0D8BA8 8031DBA8 240C0002 */  li    $t4, 2
-/* 0D8BAC 8031DBAC 25ADA3F0 */  addiu $t5, %lo(D_8032A3F0) # addiu $t5, $t5, -0x5c10
+/* 0D8BAC 8031DBAC 25ADA3F0 */  addiu $t5, %lo(rspbootTextEnd) # addiu $t5, $t5, -0x5c10
 /* 0D8BB0 8031DBB0 00007812 */  mflo  $t7
 /* 0D8BB4 8031DBB4 AC8F0000 */  sw    $t7, ($a0)
 /* 0D8BB8 8031DBB8 8CC66D88 */  lw    $a2, %lo(D_80226D88)($a2)

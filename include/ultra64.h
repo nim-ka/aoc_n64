@@ -14,6 +14,7 @@
 #include <ultra64/os_cont.h>
 #include <ultra64/tlb.h>
 #include <ultra64/sptask.h>
+#include <ultra64/ucode.h>
 #include <ultra64/cache.h>
 #include <ultra64/vi.h>
 #include <ultra64/pi.h>

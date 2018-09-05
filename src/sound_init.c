@@ -264,7 +264,7 @@ void thread4_sound(UNUSED void *arg)
             profiler_log_thread4_time();
             sp18 = func_8031D924();
             if (sp18 != NULL)
-                func_80246BB4(sp18);
+                dispatch_audio_sptask(sp18);
             profiler_log_thread4_time();
         }
     }

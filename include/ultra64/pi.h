@@ -65,6 +65,14 @@ typedef struct
 } OSIoMesg;
 
 
+/* Definitions */
+
+#define OS_READ   0  // device -> RDRAM
+#define OS_WRITE  1  // device <- RDRAM
+
+#define OS_MESG_PRI_NORMAL  0
+#define OS_MESG_PRI_HIGH    1
+
 /* Functions */
 
 s32 osPiStartDma(OSIoMesg *mb, s32 priority, s32 direction,

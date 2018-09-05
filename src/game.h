@@ -25,10 +25,10 @@ extern u32 gFrameBuffers[3];
 extern u32 D_80339CEC;
 extern void *D_80339CF0;
 extern void *D_80339CF4;
-extern struct SPTask *D_80339CF8;
+extern struct SPTask *gGfxSPTask;
 extern Gfx *gDisplayListHead;
 extern u8 *gGfxPoolEnd;
-extern Gfx *D_80339D04;
+extern struct GfxPool *gGfxPool;
 extern u8 gControllerBits;
 extern s8 gEepromProbe;
 
@@ -40,8 +40,8 @@ extern struct DemoInput *gCurrDemoInput;
 extern u16 gDemoInputListID;
 extern struct DemoInput gRecordedDemoInput;
 
-// extern ? init_controllers(?);
-// extern ? func_80248934(?);
+extern void init_controllers(void);
+extern void setup_game_memory(void);
 extern void thread5_game_loop(void *);
 extern u16 func_802495B0(u32);
 

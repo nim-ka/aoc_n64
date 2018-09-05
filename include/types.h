@@ -70,12 +70,12 @@ typedef s16 Vec4s[4];
 
 typedef f32 Mat4[4][4];
 
-enum State {
-    STATE_0,
-    STATE_1,
-    STATE_2,
-    STATE_3,
-    STATE_4
+enum SpTaskState {
+    SPTASK_STATE_NOT_STARTED,
+    SPTASK_STATE_RUNNING,
+    SPTASK_STATE_INTERRUPTED,
+    SPTASK_STATE_FINISHED,
+    SPTASK_STATE_FINISHED_DP
 };
 
 struct SPTask
@@ -83,7 +83,7 @@ struct SPTask
     OSTask task;
     OSMesgQueue *msgqueue;
     OSMesg msg;
-    enum State state;
+    enum SpTaskState state;
 };
 
 struct VblankHandler

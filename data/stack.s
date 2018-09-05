@@ -20,22 +20,18 @@ glabel gThread4Stack
     .space 0x2000
 glabel gThread5Stack
     .space 0x2000
-glabel D_80207200
+glabel gGfxSPTaskYieldBuffer
     .space 0x900
 glabel gSaveBuffer
     .space 0x200
-glabel D_80207D00
+glabel gGfxSPTaskStack
     .space 0x400
-glabel D_80208100
-    .space 0x19098
-glabel D_80221198
-    .space 0x8
+glabel gGfxPools
+    .space 0x190a0
 glabel D_802211A0
     .space 0x10
 glabel D_802211B0
-    .space 0x1
-glabel D_802211B1
-    .space 0xEF
+    .space 0xF0
 glabel D_802212A0
     .space 0x2
 glabel D_802212A2
@@ -222,5 +218,5 @@ glabel D_80226EB8
     .space 0x8
 glabel D_80226EC0
     .space 0x140
-glabel D_80227000
+glabel gGfxSPTaskOutputBuffer
     .space 0x1F000

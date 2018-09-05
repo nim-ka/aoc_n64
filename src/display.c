@@ -13,9 +13,6 @@ u32 gGlobalTimer = 0;
 static u16 sCurrFBNum = 0;
 u16 D_8032C69C = 0;
 
-extern u8 D_8032A320[];
-extern u8 D_8032A3F0[];
-
 void myRdpInit(void)
 {
     gDPPipeSync(gDisplayListHead++);
@@ -135,28 +132,28 @@ void func_8024798C(Vp *viewport)
     gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, spE, spC, spA, sp8);
 }
 
-void CreateTaskStructure(void)
+static void CreateTaskStructure(void)
 {
-    int sp4 = (gDisplayListHead - D_80339D04);
+    int entries = gDisplayListHead - gGfxPool->buffer;
 
-    D_80339CF8->msgqueue = &D_80339CB8;
-    D_80339CF8->msg = (OSMesg *)2;
-    D_80339CF8->task.t.type = 1;
-    D_80339CF8->task.t.ucode_boot = (u64 *)D_8032A320;
-    D_80339CF8->task.t.ucode_boot_size = D_8032A3F0 - D_8032A320;
-    D_80339CF8->task.t.flags = 0;
-    D_80339CF8->task.t.ucode = (u64 *)D_8032A3F0;
-    D_80339CF8->task.t.ucode_data = (u64 *)D_80338750;
-    D_80339CF8->task.t.ucode_size = 4096;
-    D_80339CF8->task.t.ucode_data_size = 2048;
-    D_80339CF8->task.t.dram_stack = (u64 *)D_80207D00;
-    D_80339CF8->task.t.dram_stack_size = 1024;
-    D_80339CF8->task.t.output_buff = (u64 *)D_80227000;
-    D_80339CF8->task.t.output_buff_size = (u64 *)(D_80227000 + 0x1F000);
-    D_80339CF8->task.t.data_ptr = (u64 *)D_80339D04;
-    D_80339CF8->task.t.data_size = sp4 * 8;
-    D_80339CF8->task.t.yield_data_ptr = (u64 *)D_80207200;
-    D_80339CF8->task.t.yield_data_size = 2304;
+    gGfxSPTask->msgqueue = &D_80339CB8;
+    gGfxSPTask->msg = (OSMesg *)2;
+    gGfxSPTask->task.t.type = M_GFXTASK;
+    gGfxSPTask->task.t.ucode_boot = rspbootTextStart;
+    gGfxSPTask->task.t.ucode_boot_size = ((u32)rspbootTextEnd - (u32)rspbootTextStart);
+    gGfxSPTask->task.t.flags = 0;
+    gGfxSPTask->task.t.ucode = rspbootTextEnd;
+    gGfxSPTask->task.t.ucode_data = (u64 *)D_80338750;
+    gGfxSPTask->task.t.ucode_size = SP_UCODE_SIZE;
+    gGfxSPTask->task.t.ucode_data_size = SP_UCODE_DATA_SIZE;
+    gGfxSPTask->task.t.dram_stack = (u64 *)gGfxSPTaskStack;
+    gGfxSPTask->task.t.dram_stack_size = SP_DRAM_STACK_SIZE8;
+    gGfxSPTask->task.t.output_buff = (u64 *)gGfxSPTaskOutputBuffer;
+    gGfxSPTask->task.t.output_buff_size = (u64 *)(gGfxSPTaskOutputBuffer + 0x1F000);
+    gGfxSPTask->task.t.data_ptr = (u64 *)&gGfxPool->buffer;
+    gGfxSPTask->task.t.data_size = entries * sizeof(Gfx);
+    gGfxSPTask->task.t.yield_data_ptr = (u64 *)gGfxSPTaskYieldBuffer;
+    gGfxSPTask->task.t.yield_data_size = OS_YIELD_DATA_SIZE;
 }
 
 void func_80247C9C(void)
@@ -209,23 +206,21 @@ void func_80247D84(void)
     }
 
     osWritebackDCacheAll();
-    osRecvMesg(&gGameVblankQueue, &D_80339BEC, 1);
-    osRecvMesg(&gGameVblankQueue, &D_80339BEC, 1);
+    osRecvMesg(&gGameVblankQueue, &D_80339BEC, OS_MESG_BLOCK);
+    osRecvMesg(&gGameVblankQueue, &D_80339BEC, OS_MESG_BLOCK);
 }
-
-// FIXME: find the correct types for these pointers to avoid unnecessary casting
 
 void func_80247ED8(void)
 {
-    D_80339D04 = D_80208100;
-    set_segment_base_addr(1, D_80339D04);
-    D_80339CF8 = (struct SPTask *)((u8 *)D_80339D04 + 51200);
-    gDisplayListHead = D_80339D04;
-    gGfxPoolEnd = (u8 *)D_80339D04 + 51200;
+    gGfxPool = &gGfxPools[0];
+    set_segment_base_addr(1, gGfxPool->buffer);
+    gGfxSPTask = &gGfxPool->spTask;
+    gDisplayListHead = gGfxPool->buffer;
+    gGfxPoolEnd = (u8 *)(gGfxPool->buffer + GFX_POOL_SIZE);
     func_80247C9C();
     ClearFrameBuffer(0);
     CleanupDisplayList();
-    SendDisplayList((struct SPTask *)((u8 *)D_80339D04 + 51200));
+    SendDisplayList(&gGfxPool->spTask);
 
     D_8032C69C++;
     gGlobalTimer++;
@@ -233,28 +228,28 @@ void func_80247ED8(void)
 
 void func_80247FAC(void)
 {
-    D_80339D04 = (Gfx *)((u8 *)D_80208100 + (gGlobalTimer % 2) * 51280);
-    set_segment_base_addr(1, D_80339D04);
-    D_80339CF8 = (struct SPTask *)((u8 *)D_80339D04 + 51200);
-    gDisplayListHead = D_80339D04;
-    gGfxPoolEnd = (u8 *)D_80339D04 + 51200;
+    gGfxPool = &gGfxPools[gGlobalTimer % 2];
+    set_segment_base_addr(1, gGfxPool->buffer);
+    gGfxSPTask = &gGfxPool->spTask;
+    gDisplayListHead = gGfxPool->buffer;
+    gGfxPoolEnd = (u8 *)(gGfxPool->buffer + GFX_POOL_SIZE);
 }
 
-void func_80248060(void)
+void display_and_vsync(void)
 {
     profiler_log_thread5_time(BEFORE_DISPLAY_LISTS);
-    osRecvMesg(&D_80339CB8, &D_80339BEC, 1);
+    osRecvMesg(&D_80339CB8, &D_80339BEC, OS_MESG_BLOCK);
     if (D_8032C6A0 != NULL)
     {
         D_8032C6A0();
         D_8032C6A0 = NULL;
     }
-    SendDisplayList((struct SPTask *)((u8 *)D_80339D04 + 51200));
+    SendDisplayList(&gGfxPool->spTask);
     profiler_log_thread5_time(AFTER_DISPLAY_LISTS);
-    osRecvMesg(&gGameVblankQueue, &D_80339BEC, 1);
+    osRecvMesg(&gGameVblankQueue, &D_80339BEC, OS_MESG_BLOCK);
     osViSwapBuffer((void *)PHYSICAL_TO_VIRTUAL(gFrameBuffers[sCurrFBNum]));
     profiler_log_thread5_time(THREAD5_END);
-    osRecvMesg(&gGameVblankQueue, &D_80339BEC, 1);
+    osRecvMesg(&gGameVblankQueue, &D_80339BEC, OS_MESG_BLOCK);
     if (++sCurrFBNum == 3)
         sCurrFBNum = 0;
     if (++D_8032C69C == 3)
