@@ -1872,8 +1872,8 @@ glabel .L8019C918
 .L8019C93C:
 /* 24B10C 8019C93C 3C06801C */  lui   $a2, %hi(D_801BB0C0) # $a2, 0x801c
 /* 24B110 8019C940 8CC6B0C0 */  lw    $a2, %lo(D_801BB0C0)($a2)
-/* 24B114 8019C944 3C058018 */  lui   $a1, %hi(UpdateView) # $a1, 0x8018
-/* 24B118 8019C948 24A5B624 */  addiu $a1, %lo(UpdateView) # addiu $a1, $a1, -0x49dc
+/* 24B114 8019C944 3C058018 */  lui   $a1, %hi(update_view) # $a1, 0x8018
+/* 24B118 8019C948 24A5B624 */  addiu $a1, %lo(update_view) # addiu $a1, $a1, -0x49dc
 /* 24B11C 8019C94C 0C05F8F8 */  jal   apply_to_obj_types_in_group
 /* 24B120 8019C950 24044000 */   li    $a0, 16384
 /* 24B124 8019C954 3C04801C */  lui   $a0, %hi(D_801B9048) # $a0, 0x801c
@@ -1982,8 +1982,8 @@ glabel .L8019CAB8
 .L8019CADC:
 /* 24B2AC 8019CADC 3C06801C */  lui   $a2, %hi(D_801BB0D0) # $a2, 0x801c
 /* 24B2B0 8019CAE0 8CC6B0D0 */  lw    $a2, %lo(D_801BB0D0)($a2)
-/* 24B2B4 8019CAE4 3C058018 */  lui   $a1, %hi(UpdateView) # $a1, 0x8018
-/* 24B2B8 8019CAE8 24A5B624 */  addiu $a1, %lo(UpdateView) # addiu $a1, $a1, -0x49dc
+/* 24B2B4 8019CAE4 3C058018 */  lui   $a1, %hi(update_view) # $a1, 0x8018
+/* 24B2B8 8019CAE8 24A5B624 */  addiu $a1, %lo(update_view) # addiu $a1, $a1, -0x49dc
 /* 24B2BC 8019CAEC 0C05F8F8 */  jal   apply_to_obj_types_in_group
 /* 24B2C0 8019CAF0 24044000 */   li    $a0, 16384
 /* 24B2C4 8019CAF4 3C04801C */  lui   $a0, %hi(D_801B90B0) # $a0, 0x801c
@@ -2029,7 +2029,7 @@ glabel .L8019CB3C
 /* 24B360 8019CB90 248490C8 */   addiu $a0, %lo(D_801B90C8) # addiu $a0, $a0, -0x6f38
 .L8019CB94:
 /* 24B364 8019CB94 8FA40034 */  lw    $a0, 0x34($sp)
-/* 24B368 8019CB98 0C05EA28 */  jal   func_8017A8A0
+/* 24B368 8019CB98 0C05EA28 */  jal   apply_obj_draw_fn
 /* 24B36C 8019CB9C 00000000 */   nop   
 /* 24B370 8019CBA0 0C067A9B */  jal   func_8019EA6C
 /* 24B374 8019CBA4 00000000 */   nop   
@@ -11232,7 +11232,7 @@ glabel func_801A5168
 /* 253950 801A5180 00000000 */  nop   
 /* 253954 801A5184 AFAF0018 */  sw    $t7, 0x18($sp)
 /* 253958 801A5188 8FA40020 */  lw    $a0, 0x20($sp)
-/* 25395C 801A518C 0C05ED89 */  jal   UpdateView
+/* 25395C 801A518C 0C05ED89 */  jal   update_view
 /* 253960 801A5190 00000000 */   nop   
 /* 253964 801A5194 8FB80018 */  lw    $t8, 0x18($sp)
 /* 253968 801A5198 00000000 */  nop   

@@ -67,10 +67,22 @@ glabel D_801A8104
 glabel D_801A8118
    .word D_801A8070
    .word D_801A80B8
-   .incbin "bin/sm64.j.255EC0.bin", 0xA30, 0x80
+
+# Unreferenced 4x4 Matrix? @ 801A8120
+    .float 1.0, 0.0, 0.0, 0.0
+    .float 0.0, 0.0, 0.0, 0.0
+    .float 0.0, 0.0, 1.0, 0.0
+    .float 0.0, 0.0, 0.0, 1.0
+
+# Another Unreferenced 4x4 Matrix? @ 801A8160
+    .float 1.0, 0.0, 0.0, 0.0
+    .float 0.0, 1.0, 0.0, 0.0
+    .float 0.0, 0.0, 1.0, 0.0
+    .float 0.0, 0.0, 0.0, 1.0
 
 glabel D_801A81A0
-   .incbin "bin/sm64.j.255EC0.bin", 0xAB0, 0x20
+   .word 1, 0, 0, 0
+   .word 0, 0, 0, 0 
 
 #press start head 1
 glabel D_801A81C0

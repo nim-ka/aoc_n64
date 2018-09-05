@@ -211,7 +211,7 @@ extern void func_80193B10(void);
 extern void func_8019415C(Mat4*, struct MyVec3f*);
 extern void func_80194220(Mat4*, struct MyVec3f*);
 extern void func_801942E4(Mat4*, struct MyVec3f*);
-extern void func_80194358(void *, void *, float);
+extern void func_80194358(Mat4*, struct MyVec3f*, float);
 extern f32 func_80194728(f32, f32);     /* min(f1, +/-f2)? */
 extern void func_80194770(struct MyVec3f*, f32);
 extern void func_80194880(f32, f32*, f32*);

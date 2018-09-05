@@ -3,12 +3,14 @@
 
 #include "sm64.h"
 #include "../libultra.h"
+#include "data801A8050.h"
 #include "gd_main.h"
 #include "../game_over_1.h"
 #include "game_over_2.h"
 #include "mario_head_1.h"
-#include "../mario_head_3.h"
+#include "mario_head_3.h"
 #include "../mario_head_4.h"
+#include "old_obj_fn.h"
 #include "../mario_head_5.h"
 #include "half_6.h"
 #include "../mario_head_6.h"
@@ -31,8 +33,6 @@ struct AnimDataType9 {
     /* 0x40 */ struct MyVec3f vec40;
 };
 
-/* game_over_2 */ extern struct ObjCamera* D_801A80F8;  //why is the size of this 8, not 4?
-
 /* Exported globals */
 struct GdPlaneF D_801B9DA0;
 void *D_801B9DB8;
@@ -45,7 +45,7 @@ struct MyVec3f D_801B9E18;
 struct MyVec3f D_801B9E28;
 f32 D_801B9E34;
 void *D_801B9E38;
-struct Struct80181D14 *D_801B9E3C;
+struct ObjParticle *D_801B9E3C;
 s32 D_801B9E40;
 s32 D_801B9E44;
 Mat4 *D_801B9E48;
@@ -117,7 +117,7 @@ void func_8017BE60(struct GdPlaneF* a0)
 }
 
 /* @ 22A6A0 for 0x24 */
-void func_8017BED0(UNUSED s32 a0, UNUSED s32 a1)
+void func_8017BED0(UNUSED struct ObjGroup *a0, UNUSED struct ObjHeader *a1)
 {
     UNUSED u8 sp00[8];
     /* Debug stub? */
@@ -165,90 +165,92 @@ struct ObjHeader* make_object(enum ObjTypeFlag objType)
     const char* objNameStr;
     u8 * newObjBytes;
     s32 objAlignment = 0x10;
+    // to erase the object types of the various draw function pointers
+    typedef void (*DrawFn)(void*);
 
     func_8018D420("make_object");   //goddard_debug_log()?
     switch (objType)
     {
         case OBJ_TYPE_JOINTS:
             objSize = 0x22C;
-            objDrawFn = &Proc8017A6A4;
+            objDrawFn = (DrawFn) &Proc8017A6A4;
             break;
         case OBJ_TYPE_BONES:
             objSize = 0x124;
-            objDrawFn = &Proc8017A550;
+            objDrawFn = (DrawFn) &Proc8017A550;
             break;
         case OBJ_TYPE_GROUPS:
             objSize = 0x78;
-            objDrawFn = &Draw_group;
+            objDrawFn = (DrawFn) &draw_group;
             break;
         case OBJ_TYPE_PARTICLES:
             objSize = 0xC0;
-            objDrawFn = &Proc8017A30C;
+            objDrawFn = (DrawFn) &Proc8017A30C;
             break;
         case OBJ_TYPE_SHAPES:
             objSize = 0x9C;
-            objDrawFn = &Proc8017A204;
+            objDrawFn = (DrawFn) &nop_obj_draw;
             break;
         case OBJ_TYPE_UNK200000:
             objSize = 0x38;
-            objDrawFn = &Proc8017A204;
+            objDrawFn = (DrawFn) &nop_obj_draw;
             break;
         case OBJ_TYPE_NETS:
             objSize = 0x220;
-            objDrawFn = &Proc80179628;
+            objDrawFn = (DrawFn) &Proc80179628;
             break;
         case OBJ_TYPE_PLANES:
             objSize = 0x44;
-            objDrawFn = &Proc8017A818;
+            objDrawFn = (DrawFn) &Proc8017A818;
             break;
         case OBJ_TYPE_VERTICES:
             objSize = 0x48;
-            objDrawFn = &Proc8017A204;
+            objDrawFn = (DrawFn) &nop_obj_draw;
             break;
         case OBJ_TYPE_CAMERAS:
             objSize = 0x190;
-            objDrawFn = &Draw_Camera;
+            objDrawFn = (DrawFn) &draw_camera;
             break;
         case OBJ_TYPE_FACES:
             objSize = 0x4C;
-            objDrawFn = &draw_face;
+            objDrawFn = (DrawFn) &draw_face;
             objAlignment = 1;
             break;
         case OBJ_TYPE_MATERIALS:
             objSize = 0x60;
-            objDrawFn = &draw_material;
+            objDrawFn = (DrawFn) &draw_material;
             break;
         case OBJ_TYPE_LIGHTS:
             objSize = 0xA0;
-            objDrawFn = &Proc80178900;
+            objDrawFn = (DrawFn) &Proc80178900;
             break;
         case OBJ_TYPE_WEIGHTS:
             objSize = 0x40;
-            objDrawFn = &Proc8017A204;
+            objDrawFn = (DrawFn) &nop_obj_draw;
             break;
         case OBJ_TYPE_GADGETS:
             objSize = 0x60;
-            objDrawFn = &Proc8017976C;
+            objDrawFn = (DrawFn) &Proc8017976C;
             break;
         case OBJ_TYPE_VIEWS:
             objSize = 0xA0;
-            objDrawFn = &Proc8017A204;
+            objDrawFn = (DrawFn) &nop_obj_draw;
             break;
         case OBJ_TYPE_LABELS:
             objSize = 0x34;
-            objDrawFn = &Proc80179350;
+            objDrawFn = (DrawFn) &Proc80179350;
             break;
         case OBJ_TYPE_ANIMATORS:
             objSize = 0x58;
-            objDrawFn = &Proc8017A204;
+            objDrawFn = (DrawFn) &nop_obj_draw;
             break;
         case OBJ_TYPE_VALPTRS:
             objSize = 0x24;
-            objDrawFn = &Proc8017A204;
+            objDrawFn = (DrawFn) &nop_obj_draw;
             break;
         case OBJ_TYPE_ZONES:
             objSize = 0x38;
-            objDrawFn = &Proc8017A204;
+            objDrawFn = (DrawFn) &nop_obj_draw;
             break;
         default:
             myPrint1("make_object() : Unkown object!");
@@ -288,8 +290,7 @@ struct ObjHeader* make_object(enum ObjTypeFlag objType)
 }
 
 /* @ 22AEA0 for 0xD0; orig name: Unknown8017C6D0 */
-/* maybe this should be "attach_zone"? Unreferenced anyways... */
-void make_zone(s32 a0, struct GdPlaneF* a1, s32 a2)
+void make_zone(struct ObjGroup *a0, struct GdPlaneF *a1, struct ObjGroup *a2)
 {
     struct ObjZone* newZone = (struct ObjZone*) make_object(OBJ_TYPE_ZONES);
 
@@ -305,7 +306,7 @@ void make_zone(s32 a0, struct GdPlaneF* a1, s32 a2)
 }
 
 /* @ 22AF70 for 0x60 */
-struct ObjUnk200000* Unknown8017C7A0(s32 a0, s32 a1)
+struct ObjUnk200000* Unknown8017C7A0(struct ObjVertex *a0, struct ObjFace *a1)
 {
     struct ObjUnk200000* sp1C = (struct ObjUnk200000*) make_object(OBJ_TYPE_UNK200000);
 
@@ -366,14 +367,14 @@ void* make_link_2(void* linkHead, struct ObjHeader* object)
 }
 
 /* @ 22B154 for 0x88; orig name: func8017C984 */
-struct ObjValPtrs* make_valptrs(void* a0, void* a1, void* a2, void* a3)
+struct ObjValPtrs* make_valptrs(void* a0, s32 a1, s32 a2, s32 a3)
 {
     struct ObjValPtrs* sp1C = (struct ObjValPtrs*) make_object(OBJ_TYPE_VALPTRS);
 
-    sp1C->unk14 = a0;
+    sp1C->obj = a0;
     sp1C->unk20 = a1;
-    sp1C->unk18 = a3;
-    sp1C->unk1C = a2;
+    sp1C->offset = a3;
+    sp1C->datatype = a2;
 
     return sp1C;
 }
@@ -712,13 +713,13 @@ struct ObjGroup* make_group(int count, ...)
     va_list args;
     s32 i;
     UNUSED u32 sp5C;
-    struct ObjHeader* sp58;
+    struct ObjHeader* curObj;
     UNUSED u32 sp54;
     UNUSED u32 sp50;
     UNUSED u32 sp4C;
     struct ObjGroup* newGroup;
     struct ObjGroup* oldGroupListHead;
-    struct ObjGroup* nextPtr;
+    struct ObjHeader* vargObj;
     char idStrBuf[0x20];
     struct Links* curLink;
 
@@ -745,22 +746,22 @@ struct ObjGroup* make_group(int count, ...)
     for (i = 0; i < count; i++)
     {
         // get the next pointer in the struct.
-        nextPtr = va_arg(args, struct ObjGroup*);
+        vargObj = va_arg(args, struct ObjHeader*);
 
-        if (nextPtr == NULL) // one of our pointers was NULL. raise an error.
+        if (vargObj == NULL) // one of our pointers was NULL. raise an error.
             myPrintf("make_group() NULL group ptr");
 
-        sp58 = &nextPtr->header;
-        newGroup->groupObjTypes |= sp58->type;
-        addto_group(newGroup, &nextPtr->header);
-
+        curObj = vargObj;
+        newGroup->groupObjTypes |= curObj->type;
+        addto_group(newGroup, vargObj);
     }
+    va_end(argp);
 
     curLink = newGroup->link1C;
     while (curLink != NULL)
     {
-        sp58 = curLink->obj;
-        sprint_obj_id(idStrBuf, sp58);
+        curObj = curLink->obj;
+        sprint_obj_id(idStrBuf, curObj);
         curLink = curLink->next;
     }
 

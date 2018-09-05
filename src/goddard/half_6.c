@@ -1,7 +1,10 @@
 #include <ultra64.h>
 
 #include "sm64.h"
+#include "data801A8050.h"
+#include "game_over_2.h"
 #include "mario_head_1.h"
+#include "mario_head_3.h"
 #include "../mario_head_4.h"
 #include "../mario_head_5.h"
 #include "half_6.h"
@@ -14,21 +17,6 @@
 
 /* This is a file that was incorrectly included in "mario_head_6" when the 
 ** initial file spliting happened. */
-
-// TODO: Move these into proper headers once these files have had their types fixed
-/* over2 bss */ extern struct ObjGroup* D_801B9BB8;     // way bigger than usize, so what is it?
-/* over2 */ extern struct MyVec3f* func_80178D98(s32);
-/* over2 */ extern void func_8017B028(struct ObjGroup*);
-/* head3 */ extern struct ObjParticle* make_particle(u32, s32, f32, f32, f32);
-
-/* ##! Part of whatever file produces rodata_801A8050.s */
-/* bss gdData? */ extern f64 D_801A8668;
-/* gdData? */ extern struct ObjGroup* D_801A82E0; //returned by load_dynlist
-/* gdData? */ extern void* D_801A82E8;  // same type as what load_dynlist returns
-/* gdData? */ extern void* D_801A82EC;  //probably a pointer
-/* gdData? */ extern void* D_801A82F0;  // same type as what load_dynlist returns
-/* gdData? */ extern struct ObjShape* D_801A82E4;   // shape storage? or generic obj storage?
-
 
 /* ########## Static BSS ########## */
 /* bss static */ extern u32 sGdShapeCount;
@@ -204,7 +192,7 @@ void add_3_vtx_to_face(
 }
 
 /* @ 24600C for 0x198 */
-struct ObjShape* make_shape(void* a0, char* name)
+struct ObjShape* make_shape(s32 a0, char* name)
 {
     struct ObjShape* newShape;
     struct ObjShape* curShapeHead;
@@ -233,8 +221,8 @@ struct ObjShape* make_shape(void* a0, char* name)
 
     newShape->vtxCount = 0;
     newShape->faceCount = 0;
-    newShape->unk48 = 0;
-    newShape->unk4C = 0;
+    newShape->unk48[0] = 0;
+    newShape->unk48[1] = 0;
     newShape->unk3C = 0;
     newShape->faceGroup = NULL; /* whoops, NULL-ed twice */
 
@@ -242,9 +230,9 @@ struct ObjShape* make_shape(void* a0, char* name)
 
     newShape->vtxGroup = NULL;
     newShape->faceGroup = NULL;
-    newShape->unk2C = NULL;
+    newShape->mtlGroup = NULL;
     newShape->unk30 = 0;
-    newShape->unk50 = 0;
+    newShape->unk48[2] = 0;
 
     return newShape;
 }
@@ -524,7 +512,8 @@ void func_8019834C(struct ObjShape* shape, f32 x, f32 y, f32 z)
 }
 
 /* @ 246BA4 for 0x70 */
-void Unknown801983D4(struct ObjUnk200000* a0, f32 x, f32 y, f32 z)
+//! Guessing on the type of a0
+void Unknown801983D4(struct ObjShape* a0, f32 x, f32 y, f32 z)
 {
     D_801BACC8.x = x;
     D_801BACC8.y = y;
@@ -533,7 +522,7 @@ void Unknown801983D4(struct ObjUnk200000* a0, f32 x, f32 y, f32 z)
     apply_to_obj_types_in_group(
         OBJ_TYPE_ALL,
         Unknown801982B8,
-        a0->unk20
+        a0->vtxGroup
     );
 }
 
@@ -616,7 +605,7 @@ void get_3DG1_shape(struct ObjShape* shape)
     struct ObjVertex** vtxPtrArr;
     struct ObjMaterial* mtl;
 
-    shape->unk2C = make_group(0);
+    shape->mtlGroup = make_group(0);
     func_8018D420("get_3DG1_shape");
 
     vtxPtrArr = func_8019BC18(72000 * sizeof(struct ObjVertex*));   //288,000 = 72,000 * 4
@@ -659,7 +648,7 @@ void get_3DG1_shape(struct ObjShape* shape)
         if (!getint(&totalFacePoints))
             myPrintf("Missing number of points in face");
         
-        mtl = find_or_add_new_mtl(shape->unk2C, 0, tempNormal.x, tempNormal.y, tempNormal.z);
+        mtl = find_or_add_new_mtl(shape->mtlGroup, 0, tempNormal.x, tempNormal.y, tempNormal.z);
         newFace = make_face_with_material(mtl);
 
         if (faceHead == NULL)
@@ -919,7 +908,7 @@ void read_ARK_shape(struct ObjShape* shape, char* fileName)
     UNUSED s32 sp30 = 0;
     UNUSED s32 sp2C = 0;
 
-    shape->unk2C = make_group(0);
+    shape->mtlGroup = make_group(0);
     
     sp48.x = 1.0f;
     sp48.y = 0.5f;
@@ -945,7 +934,7 @@ void read_ARK_shape(struct ObjShape* shape, char* fileName)
         sp48.y = faceInfo.data.v[1];
         sp48.z = faceInfo.data.v[2];
 
-        sp34 = find_or_add_new_mtl(shape->unk2C, 0, sp48.x, sp48.y, sp48.z);
+        sp34 = find_or_add_new_mtl(shape->mtlGroup, 0, sp48.x, sp48.y, sp48.z);
 
         func_801A5998(&faceInfo.bytes[0xC]);
         
@@ -1002,7 +991,7 @@ void read_ARK_shape(struct ObjShape* shape, char* fileName)
     }
 
     shape->vtxGroup = make_group_of_type(OBJ_TYPE_VERTICES, (struct ObjHeader*) sp38, NULL);
-    shape->faceGroup = group_faces_in_mtl_grp(shape->unk2C, (struct ObjHeader*) sp40, NULL);
+    shape->faceGroup = group_faces_in_mtl_grp(shape->mtlGroup, (struct ObjHeader*) sp40, NULL);
     func_8018E368(sGdShapeFile);
 }
 
@@ -1087,7 +1076,7 @@ struct ObjShape* make_grid_shape(enum ObjTypeFlag gridType, s32 a1, s32 a2, s32 
     mtl2->unk28 = 0x40;
 
     mtlGroup = make_group(2, mtl1, mtl2);
-    gridShape = make_shape(NULL, "grid");
+    gridShape = make_shape(0, "grid");
     gridShape->faceCount = 0;
     gridShape->vtxCount = 0;
 
@@ -1162,9 +1151,9 @@ struct ObjShape* make_grid_shape(enum ObjTypeFlag gridType, s32 a1, s32 a2, s32 
 
     parOrVtxGrp = make_group_of_type(gridType, (struct ObjHeader*) objBuf[0][0], NULL);
     gridShape->vtxGroup = parOrVtxGrp;
-    gridShape->unk2C = mtlGroup;
+    gridShape->mtlGroup = mtlGroup;
 
-    gridShape->faceGroup = group_faces_in_mtl_grp(gridShape->unk2C, (struct ObjHeader*) sp40, NULL);
+    gridShape->faceGroup = group_faces_in_mtl_grp(gridShape->mtlGroup, (struct ObjHeader*) sp40, NULL);
 
     return gridShape;
 }
@@ -1444,7 +1433,7 @@ void load_shapes2(void)
     func_8018D420("load_shapes2()");
     func_80183970();
     func_80197280();
-    sCubeShape = make_shape(NULL, "cube");
+    sCubeShape = make_shape(0, "cube");
     D_801A82E4 = (struct ObjShape*) load_dynlist(*&D_04000650);
     func_8019834C(D_801A82E4, 200.0f, 200.0f, 200.0f);
 

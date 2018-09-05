@@ -248,21 +248,6 @@
 // extern ? D_801B7CDC;
 // extern ? D_801B7D00;
 // extern ? D_801B7D34;
-// extern ? D_801B7FA0;
-// extern ? D_801B7FB8;
-// extern ? D_8018BCB8;
-// extern ? D_801B7FC8;
-// extern ? D_801B7FD4;
-// extern ? D_801B7FEC;
-// extern ? D_8019B9CC;
-// extern ? D_801B8038;
-// extern ? D_801B80B0;
-// extern ? D_801B80C8;
-// extern ? D_801B80D8;
-// extern ? D_801B80F0;
-// extern ? D_801B8100;
-// extern ? D_801B8124;
-// extern ? D_801B813C;
 
 extern void func_80183910(void);
 extern void func_80183940(void);
@@ -357,18 +342,6 @@ extern Mat4* dGetMatrixPtr(void);
 extern Mat4* dGetIMatrixPtr(void);
 extern float func_8018B57C();
 // extern ? dSetSkinWeight(?);
-extern void get_objvalue();
-// extern ? Unknown8018B7A8(?);
-// extern ? Proc8018B83C(?);
-// extern ? Unknown8018B898(?);
-// extern ? Unknown8018B900(?);
-// extern ? make_label(?);
-// extern ? make_gadget(?);
-// extern ? set_objvalue(?);
-// extern ? Unknown8018BD54(?);
-// extern ? D_8018BCB8(?);
-// extern ? adjust_gadget(?);
-extern void Unknown8018BFB4(struct ObjGadget*);
-extern void func_8018C170(struct ObjGroup*);
+
 
 #endif /* _MARIO_HEAD_4_H_ */

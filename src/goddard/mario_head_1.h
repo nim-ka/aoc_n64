@@ -4,10 +4,6 @@
 #include "types.h"
 #include "gd_types.h"
 
-/****** RW .rodata? (Probably data) ******/
-extern f32 D_801A81C0;
-extern f32 D_801A81C4;
-
 /****** .bss ******/
 extern struct GdPlaneF D_801B9DA0;
 extern void *D_801B9DB8;
@@ -20,7 +16,7 @@ extern struct MyVec3f D_801B9E18;
 extern struct MyVec3f D_801B9E28;
 extern f32 D_801B9E34;
 extern void* D_801B9E38;                /* never read from */
-extern struct Struct80181D14 *D_801B9E3C; /* never read from */
+extern struct ObjParticle *D_801B9E3C;  /* never read from */
 extern s32 D_801B9E40;                  /* always 0 */
 extern s32 D_801B9E44;
 extern Mat4* D_801B9E48;
@@ -42,14 +38,14 @@ extern struct ObjGroup* D_801B9E90;     /* curGroup? */
 extern void func_8017BCB0(void);
 extern void func_8017BD20(void*);
 extern void func_8017BE60(struct GdPlaneF*);
-extern void func_8017BED0();
+extern void func_8017BED0(struct ObjGroup *, struct ObjHeader *);
 extern const char* get_obj_name_str(enum ObjTypeFlag);
 extern struct ObjHeader* make_object(enum ObjTypeFlag);
-extern void make_zone(s32, struct GdPlaneF*, s32);
-extern struct ObjUnk200000* Unknown8017C7A0(s32, s32);
+extern void make_zone(struct ObjGroup *, struct GdPlaneF *, struct ObjGroup *);
+extern struct ObjUnk200000* Unknown8017C7A0(struct ObjVertex *, struct ObjFace *);
 extern struct Links* make_link_to_obj(struct Links*, struct ObjHeader*);
 extern void* make_link_2();   //struct Links* make_link_2(struct Links*, struct ObjHeader*)
-extern struct ObjValPtrs* make_valptrs(void*, void*, void*, void*);
+extern struct ObjValPtrs* make_valptrs(void *, s32, s32, s32);
 extern void reset_plane(struct ObjPlane*);
 extern struct ObjPlane* make_plane(void*, struct ObjFace*);
 extern struct ObjCamera* make_camera(s32, struct ObjHeader*);

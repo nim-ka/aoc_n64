@@ -87,12 +87,19 @@ struct ObjGroup {
 
 struct ObjBone {
     /* 0x000 */ struct ObjHeader header;
-    /* 0x014 */ u8  pad14[0x20-0x14];
+    /* 0x014 */ struct MyVec3f unk14;   // from dead code in Proc8017A550
     /* 0x020 */ struct ObjBone* prev;   //maybe, based on make_bone
     /* 0x024 */ struct ObjBone* next;   //maybe, based on make_bone 
-    /* 0x028 */ u8  pad28[0x70-0x28];
+    /* 0x028 */ struct MyVec3f unk28;   // from dead code in Proc8017A550
+    /* 0x034 */ u8  pad34[0x70-0x34];
     /* 0x070 */ Mat4 unk70;
-    /* 0x0B0 */ u8  padB0[0x108-0xb0];
+    /* 0x0B0 */ u8  padB0[0xf0-0xb0];
+    /* 0x0F0 */ struct ObjShape* unkF0; // from dead code in Proc8017A550
+    /* 0x0F4 */ u8  padF4[4];
+    /* 0x0F8 */ f32 unkF8;              // from dead code in Proc8017A550
+    /* 0x0FC */ u8  padFC[4];
+    /* 0x100 */ s32 unk100;             // from dead code in Proc8017A550
+    /* 0x104 */ u8  pad104[4];
     /* 0x108 */ s32 id;
     /* 0x10C */ struct ObjGroup* unk10C;
     /* 0x110 */ u8  pad110[0x14];
@@ -100,7 +107,9 @@ struct ObjBone {
 
 struct ObjJoint {
     /* 0x000 */ struct ObjHeader header;
-    /* 0x014 */ u8  pad14[0x2c-0x14];
+    /* 0x014 */ u8  pad14[0x20-0x14];
+    /* 0x020 */ struct ObjShape* unk20;
+    /* 0x024 */ u8  pad24[0x2C-0x24];
     /* 0x02C */ void (*fn2C)(struct ObjJoint*);
     /* 0x030 */ u8  pad30[0x74-0x30];
     /* 0x074 */ struct MyVec3f unk74;
@@ -116,7 +125,8 @@ struct ObjJoint {
     /* 0x1B4 */ s32 id;
     /* 0x1B8 */ u8  pad1B8[0xC];
     /* 0x1C4 */ struct ObjGroup* unk1C4;
-    /* 0x1C8 */ u8  pad1C8[0x1d0-0x1c8];
+    /* 0x1C8 */ s32 unk1C8;
+    /* 0x1CC */ u8  pad1CC[4];
     /* 0x1D0 */ struct ObjAnimator* unk1D0;
     /* 0x1D4 */ u8  pad1D4[0x1f4-0x1d4];
     /* 0x1F4 */ struct ObjGroup* unk1F4;   //Group of ObjWeights, only?
@@ -127,27 +137,35 @@ struct ObjJoint {
 struct ObjParticle {
     /* 0x00 */ struct ObjHeader header;
     /* 0x14 */ u8 pad14[0x1C-0x14];
-    /* 0x1C */ void* unk1C;
-    /* 0x20 */ f32 unk20;
+    /* 0x1C */ struct ObjShape* unk1C;     // looks like a shape...
+    /* 0x20 */ f32 unk20;   //vec?
     /* 0x24 */ f32 unk24;
-    /* 0x28 */ f32 unk28;
-    /* 0x2C */ u8 pad2C[0x38-0x2C];
-    /* 0x38 */ f32 unk38;
-    /* 0x3C */ f32 unk3C;
-    /* 0x40 */ f32 unk40;
-    /* 0x44 */ f32 unk44; //vec?
-    /* 0x48 */ f32 unk48; //vec?
+    /* 0x28 */ f32 unk28;   //vec?
+    /* 0x2C */ u8 pad2C[0x30-0x2C];
+    /* 0x30 */ f32 unk30;
+    /* 0x34 */ u8 pad34[0x38-0x34];
+    /* 0x38 */ struct MyVec3f unk38;
+    /* 0x44 */ f32 unk44; //not vec?
+    /* 0x48 */ f32 unk48; //not vec?
     /* 0x4C */ u8 pad4C[0x50-0x4C];
     /* 0x50 */ s32 id;
     /* 0x54 */ u32 unk54;
     /* 0x58 */ s32 unk58;
     /* 0x5C */ s32 unk5C;
-    /* 0x60 */ s32 unk60;
-    /* 0x64 */ s32 unk64;
-    /* 0x68 */ u8 pad68[0xB0-0x68];
-    /* 0xB0 */ s32 unkB0;
-    /* 0xB4 */ u8 padB4[0xBC-0xB4];
-    /* 0xBC */ struct ObjCamera* unkBC; //maybe?
+    /* 0x60 */ s32 unk60;   //flag?
+    /* 0x64 */ s32 unk64;   //flag?
+    /* 0x68 */ u8 pad68[0x6C-0x68];
+    /* 0x6C */ struct ObjGroup* unk6C;   // group of other Particles ?
+    /* 0x70 */ u8 pad70[4];
+    /* 0x74 */ s32 unk74;
+    /* 0x78 */ u8 unk78[4];
+    /* 0x7C */ struct ObjAnimator* unk7C;   // guessing on type; doesn't seem to be used in final code
+    /* 0x80 */ struct ObjLight* unk80;  // could be a Net or Light; not seen as non-null in running code
+    /* 0x84 */ u8 pad84[0xB0-0x84];
+    /* 0xB0 */ s32 unkB0;   //state?
+    /* 0xB4 */ struct ObjGroup* unkB4;  // unused group of particles
+    /* 0xB8 */ u8 padB8[4];
+    /* 0xBC */ struct ObjCamera* unkBC; //maybe? looks like can be a Light or Camera
 }; /* sizeof = 0xC0 */
 
 struct ObjShape {
@@ -157,17 +175,15 @@ struct ObjShape {
     /* 0x1C */ struct ObjGroup* faceGroup;  /* face group; based on get_3DG1_shape */
     /* 0x20 */ struct ObjGroup* vtxGroup;  /* vtx group; based on get_3DG1_shape */
     /* 0x24 */ u8  pad24[0x2c-0x24];
-    /* 0x2C */ struct ObjGroup* unk2C;  /* what does this group do? materials? */
+    /* 0x2C */ struct ObjGroup* mtlGroup;  /* what does this group do? materials? */
     /* 0x30 */ s32 unk30;
     /* 0x34 */ s32 faceCount;   /* face count? based on get_3DG1_shape */
     /* 0x38 */ s32 vtxCount;   /* vtx count? based on get_3DG1_shape */
     /* 0x3C */ s32 unk3C;
     /* 0x40 */ u32 id;
-    /* 0x44 */ void* unk44; //group?
-    /* 0x48 */ s32 unk48;
-    /* 0x4C */ s32 unk4C;
-    /* 0x50 */ s32 unk50;
-    /* 0x54 */ u8  pad54[0x58-0x54];
+    /* 0x44 */ s32 unk44; //group?, no a flag!?
+    /* 0x48 */ s32 unk48[3];
+    /* 0x54 */ u8  pad54[0x58-0x54]; // part of above array??
     /* 0x58 */ f32 unk58;
     /* 0x5C */ char name[0x9c-0x5c];
 }; /* sizeof = 0x9C */
@@ -176,8 +192,9 @@ struct ObjNet {
     /* 0x000 */ struct ObjHeader header;
     /* 0x014 */ u8  pad14[0x38-0x14];
     /* 0x038 */ u32 unk38;      // some sort of id? from Unknown8019359C
-    /* 0x03C */ s32 unk3C;
-    /* 0x040 */ u8  pad40[0xBC-0x40];
+    /* 0x03C */ s32 unk3C;      // state flags?
+    /* 0x040 */ s32 unk40;
+    /* 0x044 */ u8  pad44[0xBC-0x44];
     /* 0x0BC */ struct GdPlaneF unkBC;
     /* 0x0D4 */ u8  padD4[0xe8-0xd4];
     /* 0x0E8 */ Mat4 matE8;
@@ -187,8 +204,8 @@ struct ObjNet {
     /* 0x1AC */ u8  pad1ac[0x1c0-0x1ac];
     /* 0x1C0 */ struct ObjGroup *unk1C0;
     /* 0x1C4 */ struct ObjGroup *skinGrp;    // SkinGroup (from reset_weight) 
-    /* 0x1C8 */ struct ObjGroup *unk1C8;    // based on make_net call in func_8019A378
-    /* 0x1CC */ struct ObjGroup *unk1CC;
+    /* 0x1C8 */ struct ObjGroup *unk1C8;    // based on make_net call in func_8019A378; Particle group (only type 1?)
+    /* 0x1CC */ struct ObjGroup *unk1CC;    // plane group (only type 1?)
     /* 0x1D0 */ u8  pad1d0[0x1ec-0x1d0];
     /* 0x1EC */ s32 netType;    // from Unknown8019359C
     /* 0x1F0 */ u8  pad1f0[0x220-0x1f0];
@@ -232,9 +249,9 @@ struct ObjFace {
     /* 0x20 */ u8  pad20[0x24-0x20];
     /* 0x24 */ struct MyVec3f vec24;    //normal?
     /* 0x30 */ s32 vtxCount;
-    /* 0x34 */ struct ObjVertex* vertices[4];
+    /* 0x34 */ struct ObjVertex* vertices[4];   // these can also be s32 indices? which are then replaced by `find_thisface_verts`
     /* 0x44 */ s32 unk44; // initialize to -1
-    /* 0x48 */ struct ObjMaterial* unk48; // initialize to 0 (NULL?)
+    /* 0x48 */ struct ObjMaterial* unk48; // initialize to NULL
 }; /* sizeof = 0x4C */
 
 struct ObjCamera {
@@ -264,7 +281,7 @@ struct ObjCamera {
     /* 0x178 */ f32 unk178;
     /* 0x17C */ f32 unk17C;
     /* 0x180 */ struct MyVec3f unk180;
-    /* 0x18C */ void *unk18C;
+    /* 0x18C */ struct ObjView* unk18C;
 }; /* sizeof = 0x190 */
 
 struct ObjMaterial {
@@ -291,7 +308,21 @@ struct ObjWeight {
 
 struct ObjGadget {
     /* 0x00 */ struct ObjHeader header;
-    /* 0x14 */ u8  pad14[0x60-0x14];
+    /* 0x14 */ f32 unk14;
+    /* 0x18 */ f32 unk18;
+    /* 0x1C */ u8 pad1C[4];
+    /* 0x20 */ s32 unk20;
+    /* 0x24 */ u8 pad24[4];
+    /* 0x28 */ f32 unk28;
+    /* 0x2C */ u8 pad2C[0x38-0x2c];
+    /* 0x38 */ f32 unk38;
+    /* 0x3C */ f32 unk3C;
+    /* 0x40 */ f32 unk40;
+    /* 0x44 */ f32 unk44;
+    /* 0x48 */ f32 unk48;
+    /* 0x4C */ void *unk4C;
+    /* 0x50 */ u8 pad50[0x5c-0x50];
+    /* 0x5C */ s32 unk5C;
 }; /* sizeof = 0x60 */
 
 struct ObjView {
@@ -299,11 +330,11 @@ struct ObjView {
     /* 0x14 */ u8  pad14[0x8];
     /* 0x1C */ s32 unk1C;
     /* 0x20 */ s32 unk20;
-    /* 0x24 */ void* unk24;     //whatever's UnkGameOverStruct7
-    /* 0x28 */ struct ObjGroup* unk28;
+    /* 0x24 */ struct ObjCamera* unk24;
+    /* 0x28 */ struct ObjGroup* unk28;     // camera group?
     /* 0x2C */ struct ObjGroup* unk2C;
-    /* 0x30 */ u8  pad30[0x4];
-    /* 0x34 */ s32 unk34;
+    /* 0x30 */ struct ObjJoint* unk30;    // seems to be an ObjJoint?
+    /* 0x34 */ s32 unk34;   // state flags?
     /* 0x38 */ s32 unk38;
     /* 0x3C */ f32 unk3C;
     /* 0x40 */ f32 unk40;
@@ -311,18 +342,29 @@ struct ObjView {
     /* 0x48 */ f32 unk48;
     /* 0x4C */ f32 unk4C;
     /* 0x50 */ u8  pad50[0x4];
-    /* 0x54 */ f32 unk54;
+    /* 0x54 */ f32 unk54;       // is this a vec3f?
     /* 0x58 */ f32 unk58;
     /* 0x5C */ u8  pad5C[0x4];
     /* 0x60 */ struct MyVec3f unk60;
     /* 0x6C */ s32 unk6C;
-    /* 0x70 */ u8  pad70[0x8];
+    /* 0x70 */ s32 unk70;   // gd_startdisplist id?
+    /* 0x74 */ u8  pad74[4];
     /* 0x78 */ s32 unk78;
     /* 0x7C */ struct MyVec3f unk7C;
     /* 0x88 */ u8  pad88[0x10];
-    /* 0x98 */ s32 unk98;
+    /* 0x98 */ void (*unk98)(struct ObjView *);   // Never non-null in game...?
     /* 0x9C */ s32 unk9C;
 }; /* sizeof = 0xA0 */
+
+struct ObjLabel {
+    /* 0x00 */ struct ObjHeader header;
+    /* 0x14 */ struct MyVec3f vec14;
+    /* 0x20 */ char *fmtstr;
+    /* 0x24 */ s32 unk24;
+    /* 0x28 */ struct ObjValPtrs *valptr;
+    /* 0x2C */ void (*valfn)(void *, u64);  //void (*SomeFunc)(union SomeUnion *, union SomeUnion);
+    /* 0x30 */ s32 unk30;       // state or type?
+}; /* sizeof = 0x34 */
 
 struct ObjAnimator {
     /* 0x00 */ struct ObjHeader header;
@@ -359,10 +401,10 @@ struct SubAnim3 {
 
 struct ObjValPtrs {
     /* 0x00 */ struct ObjHeader header;
-    /* 0x14 */ void* unk14;
-    /* 0x18 */ void* unk18;
-    /* 0x1C */ void* unk1C;
-    /* 0x20 */ void* unk20;
+    /* 0x14 */ struct ObjHeader *obj;   // maybe just a void *?
+    /* 0x18 */ s32 offset;
+    /* 0x1C */ s32 datatype;    // 1 = int; 2 = f32
+    /* 0x20 */ s32 unk20;       // obj type ptr enum?
 }; /* sizeof = 0x24 */
 
 struct ObjLight {
@@ -370,39 +412,38 @@ struct ObjLight {
     /* 0x14 */ u8  pad0[0x8];
     /* 0x1C */ s32 unk1C;
     /* 0x20 */ char name[8];
-    /* 0x28 */ u8  pad1[0x4];
+    /* 0x28 */ u8  pad28[4];
     /* 0x2C */ s32 unk2C;
     /* 0x30 */ f32 unk30;
-    /* 0x34 */ u8  pad34[0x3c-0x34];
+    /* 0x34 */ u8  pad34[4];
+    /* 0x38 */ f32 unk38;
     /* 0x3C */ s32 unk3C;
     /* 0x40 */ s32 unk40;
     /* 0x44 */ u8  pad3[0x8];
     /* 0x4C */ s32 unk4C;
     /* 0x50 */ struct MyVec3f unk50;    // 0x50 to 0x90 -> Matrix?
-    /* 0x5C */ u8  pad5C[0x68-0x5C];
+    /* 0x5C */ struct MyVec3f unk5C;
     /* 0x68 */ struct MyVec3f unk68;
     /* 0x74 */ struct MyVec3f unk74;
     /* 0x80 */ struct MyVec3f unk80;
     /* 0x8C */ struct MyVec3f unk8C;
     /* 0x98 */ s32 unk98;
-    /* 0x9C */ u8  pad9C[0xa0-0x9c];
+    /* 0x9C */ struct ObjShape* unk9C;
 }; /* sizeof = 0xA0 */
 
 struct ObjZone {
     /* 0x00 */ struct ObjHeader header;
     /* 0x14 */ struct GdPlaneF unk14;
-    /* 0x2C */ s32 unk2C;
-    /* 0x30 */ s32 unk30;
+    /* 0x2C */ struct ObjGroup *unk2C;   // plane group?
+    /* 0x30 */ struct ObjGroup *unk30;   // guess based on Unknown801781DC; might have to change later
     /* 0x34 */ u8  pad[4];
 }; /* sizeof = 0x38*/
 
 struct ObjUnk200000 {
     /* 0x00 */ struct ObjHeader header;
-    /* 0x14 */ u8  pad14[0x20-0x14];
-    /* 0x20 */ struct ObjGroup* unk20;
-    /* 0x24 */ u8  pad24[0x30-0x24];
-    /* 0x30 */ s32 unk30;
-    /* 0x34 */ s32 unk34;
+    /* 0x14 */ u8  pad14[0x30-0x14];
+    /* 0x30 */ struct ObjVertex *unk30; //not sure; guessing for Unknown801781DC; 30 and 34 could switch with ObjZone
+    /* 0x34 */ struct ObjFace *unk34;   //not sure; guessing for Unknown801781DC
 }; /* sizeof = 0x38*/
 
 struct DebugCounters {
