@@ -35,7 +35,7 @@ struct AnimDataType9 {
 
 /* Exported globals */
 struct GdPlaneF D_801B9DA0;
-void *D_801B9DB8;
+struct ObjCamera *D_801B9DB8;
 struct ObjView *D_801B9DBC;
 struct DebugCounters D_801B9DC0;
 Mat4 D_801B9DC8;
@@ -1952,7 +1952,7 @@ void func_801813B0(void)
 
     if (D_801A8050 != 0)
     {
-        func_8018C170(D_801B9E14);
+        reset_gadgets_in_grp(D_801B9E14);
         func_80181378(D_801B9E14);
         func_80183570(D_801B9E14);
         move_animators(D_801B9E14);
@@ -1983,7 +1983,7 @@ void func_801814F4(struct ObjGroup* group)
     func_80193848(group);
     apply_to_obj_types_in_group(
         OBJ_TYPE_GADGETS,
-        (void (*)(void*)) &Unknown8018BFB4,
+        (void (*)(void*)) &reset_gadget,
         group
     );
 }

@@ -79,9 +79,9 @@ struct ObjGroup {
     /* 0x20 */ struct Links* link20;
     /* 0x24 */ s32 groupObjTypes;   // OR'd collection of type flags for all objects in this group?
     /* 0x28 */ s32 objCount;
-    /* 0x2C */ u8  pad2C[0x4];
+    /* 0x2C */ s32 debugPrint;
     /* 0x30 */ s32 unk30;
-    /* 0x34 */ u8  pad34[0x40];
+    /* 0x34 */ char name[0x40]; // possibly, old code only
     /* 0x74 */ s32 id;
 }; /* sizeof = 0x78 */
 
@@ -306,21 +306,30 @@ struct ObjWeight {
     /* 0x3C */ struct ObjVertex* unk3C;
 }; /* sizeof = 0x40 */
 
+/* This union is used in ObjGadget for a variable typed field.
+** The type can be found by checking group unk4C */
+union ObjVarVal {
+    s32 i;
+    f32 f;
+    u64 l;
+};
+
 struct ObjGadget {
     /* 0x00 */ struct ObjHeader header;
     /* 0x14 */ f32 unk14;
     /* 0x18 */ f32 unk18;
     /* 0x1C */ u8 pad1C[4];
     /* 0x20 */ s32 unk20;
-    /* 0x24 */ u8 pad24[4];
+    /* 0x24 */ s32 unk24;
     /* 0x28 */ f32 unk28;
-    /* 0x2C */ u8 pad2C[0x38-0x2c];
-    /* 0x38 */ f32 unk38;
-    /* 0x3C */ f32 unk3C;
+    /* 0x2C */ u8 pad2C[4];
+    /* 0x30 */ union ObjVarVal varval; //retype and rename varval30
+    /* 0x38 */ f32 unk38;   //range left?
+    /* 0x3C */ f32 unk3C;   //range right?
     /* 0x40 */ f32 unk40;
     /* 0x44 */ f32 unk44;
     /* 0x48 */ f32 unk48;
-    /* 0x4C */ void *unk4C;
+    /* 0x4C */ struct ObjGroup *unk4C; //group->link->obj = valptr for var30 ?
     /* 0x50 */ u8 pad50[0x5c-0x50];
     /* 0x5C */ s32 unk5C;
 }; /* sizeof = 0x60 */
@@ -362,7 +371,7 @@ struct ObjLabel {
     /* 0x20 */ char *fmtstr;
     /* 0x24 */ s32 unk24;
     /* 0x28 */ struct ObjValPtrs *valptr;
-    /* 0x2C */ void (*valfn)(void *, u64);  //void (*SomeFunc)(union SomeUnion *, union SomeUnion);
+    /* 0x2C */ void (*valfn)(union ObjVarVal *, union ObjVarVal);
     /* 0x30 */ s32 unk30;       // state or type?
 }; /* sizeof = 0x34 */
 
@@ -399,11 +408,16 @@ struct SubAnim3 {
     void* data; // probably multiple of these structs, based on the data packet
 };
 
+enum ValPtrType {
+    OBJ_VALUE_INT   = 1,
+    OBJ_VALUE_FLOAT = 2
+};
+
 struct ObjValPtrs {
     /* 0x00 */ struct ObjHeader header;
     /* 0x14 */ struct ObjHeader *obj;   // maybe just a void *?
     /* 0x18 */ s32 offset;
-    /* 0x1C */ s32 datatype;    // 1 = int; 2 = f32
+    /* 0x1C */ enum ValPtrType datatype;
     /* 0x20 */ s32 unk20;       // obj type ptr enum?
 }; /* sizeof = 0x24 */
 

@@ -2286,7 +2286,7 @@ labels:
    - [0x8018B9D8, "Unknown8018B9D8"]
    - [0x8018BA40, "Unknown8018BA40"]
    - [0x8018BC9C, "set_objvalue"]
-   - [0x8018BD54, "Unknown8018BD54"]
+   - [0x8018BD54, "set_static_gdgt_value"]
    - [0x8018BE40, "adjust_gadget"]
    - [0x8018C0F4, "Unknown8018C0F4"]
    - [0x8018C550, "Unknown8018C550"]

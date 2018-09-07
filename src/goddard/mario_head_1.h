@@ -6,7 +6,7 @@
 
 /****** .bss ******/
 extern struct GdPlaneF D_801B9DA0;
-extern void *D_801B9DB8;
+extern struct ObjCamera *D_801B9DB8;
 extern struct ObjView *D_801B9DBC;
 extern struct DebugCounters D_801B9DC0;
 extern Mat4 D_801B9DC8;

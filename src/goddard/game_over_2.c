@@ -445,14 +445,7 @@ void Unknown801792F0(struct ObjHeader* a)
     func_801A48D8(sp28);
 }
 
-union SomeUnion
-{
-    float f;
-    s32 i;
-    u64 l;
-};
-
-typedef void (*SomeFunc)(union SomeUnion *, union SomeUnion);
+typedef void (*SomeFunc)(union ObjVarVal *, union ObjVarVal);
 
 /* 227B20 -> 227DF8 */
 void Proc80179350(struct ObjLabel *label)
@@ -461,7 +454,7 @@ void Proc80179350(struct ObjLabel *label)
     char strbuf[0x100];
     UNUSED u8 unused[16];
     struct ObjValPtrs *valptr;
-    union SomeUnion sp28;
+    union ObjVarVal sp28;
     SomeFunc valfn = (SomeFunc)label->valfn;
 
     if ((valptr = label->valptr) != NULL)
@@ -477,14 +470,14 @@ void Proc80179350(struct ObjLabel *label)
         }
         switch (valptr->datatype)
         {
-        case 2:
-            get_objvalue(&sp28, 2, valptr->obj, valptr->offset);
+        case OBJ_VALUE_FLOAT:
+            get_objvalue(&sp28, OBJ_VALUE_FLOAT, valptr->obj, valptr->offset);
             if (valfn != NULL)
                 valfn(&sp28, sp28);
             sprintf(strbuf, label->fmtstr, sp28.f);
             break;
-        case 1:
-            get_objvalue(&sp28, 1, valptr->obj, valptr->offset);
+        case OBJ_VALUE_INT:
+            get_objvalue(&sp28, OBJ_VALUE_INT, valptr->obj, valptr->offset);
             if (valfn != NULL)
                 valfn(&sp28, sp28);
             sprintf(strbuf, label->fmtstr, sp28.i);

@@ -133,7 +133,7 @@ extern void func_8018DC98(char *, char *);  /* gd_strcpy? */
 // extern ? Unknown8018DCDC(?);
 // extern ? func_8018DD5C(?);
 // extern ? func_8018DDD8(?);
-// extern ? func_8018DE2C(?);
+extern char *func_8018DE2C(char *, char *); /* gd_strcat ?? */
 extern s32 func_8018DEB0(char*, char*); /* gd_strcmp? */ 
 extern s32 func_8018DF58(char*, char*); // gd_strstr?
 extern s32 func_8018DFE8(struct GdFile*);  /* get GdFile->unk0C bit 3 (->0c & 0x4); file end reached? */

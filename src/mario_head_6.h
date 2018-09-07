@@ -226,9 +226,8 @@
 extern f64 func_8019B35C(f64);
 // extern ? Unknown8019B3D4(?);
 extern int printf(const char *format, ...);
-// extern ? D_8019B9CC(?);
-// extern ? Unknown8019B9EC(?);
-extern void func_8019BA04(void*);    /* free_mem_block call, so gd_free? */
+extern void func_8019B9CC(void *);  // TUI stuff?
+extern void func_8019BA04(void *);  /* free_mem_block call, so gd_free? */
 extern void* gd_allocblock(u32);
 extern void* gd_malloc(u32, u8);    /* gd_malloc(size, alignment? */
 extern void *func_8019BC18(int);    /* {return gd_malloc(a0, 240);} */
@@ -332,10 +331,10 @@ extern void func_801A3AF0(float, float, float, float, float, float);
 extern void func_801A3C8C(float, float, float, float);
 extern s32 func_801A3E5C(); /* 6 arguments */
 extern void _InitControllers(void);
-// extern ? Proc801A43DC(?);
-// extern ? func_801A43F0(?);
-// extern ? Proc801A4410(?);
-// extern ? Proc801A4424(?);
+extern void Proc801A43DC(struct ObjHeader *); //apply to OBJ_TYPE_VIEWS
+extern void *func_801A43F0(char *, ...);   // TUI code..? query_user? doesn't actually return anything... maybe it returned a "menu *"?
+extern void Proc801A4410(void *);  // function looks like it got various controller/input attributes..?
+extern void Proc801A4424(void *);  // TUI stuff?
 extern void func_801A4438(float, float, float);
 // extern ? gd_gentexture(?);
 // extern ? Unknown801A45E4(?);
