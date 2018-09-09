@@ -33,7 +33,7 @@ TEXTURE_DIR := textures
 
 # Directories containing source files
 SRC_DIRS := src src/libultra src/goddard
-ASM_DIRS := asm data geo levels sound demos anims
+ASM_DIRS := asm data geo levels sound demos anims text
 BIN_DIRS := bin
 
 MIPSISET := -mips2
@@ -122,7 +122,7 @@ ifeq ($(COMPARE),1)
 endif
 
 clean:
-	$(RM) -r $(BUILD_DIR) src/text_strings.h bin/segment2.s
+	$(RM) -r $(BUILD_DIR) src/text_strings.h text/us/*.s text/jp/*.s
 
 test: $(ROM)
 	$(EMULATOR) $(EMU_FLAGS) $<
@@ -133,8 +133,10 @@ load: $(ROM)
 src/text_strings.h: src/text_strings.h.in
 	$(TEXTCONV) charmap.txt $< $@
 
-bin/segment2.s: bin/segment2.s.in
+text/%.s: text/%.s.in
 	$(TEXTCONV) charmap.txt $< $@
+
+bin/segment2.s: text/$(VERSION)/debug.s text/$(VERSION)/dialog.s text/$(VERSION)/level.s text/$(VERSION)/star.s
 
 $(MIO0_DIR)/%.mio0: bin/%.bin
 	$(MIO0TOOL) $< $@
@@ -157,6 +159,9 @@ $(BUILD_DIR)/bin/%.ia16: textures/%.ia16.png
 
 $(BUILD_DIR)/bin/%.ia8: textures/%.ia8.png
 	$(N64GRAPHICS) -i $@ -g $< -f ia8
+
+$(BUILD_DIR)/bin/%.ia4: textures/%.ia4.png
+	$(N64GRAPHICS) -i $@ -g $< -f ia4
 
 $(BUILD_DIR)/bin/%.ia1: textures/%.ia1.png
 	$(N64GRAPHICS) -i $@ -g $< -f ia1

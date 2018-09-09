@@ -13,9 +13,10 @@
 
 struct CharmapEntry
 {
-    uint32_t unicode;
+    uint32_t unicode[3];
+    int length; // length of the unicode array. TODO: use dynamic memory allocation
     int bytesCount;
-    uint8_t bytes[2];
+    uint8_t bytes[2]; // bytes to convert unicode array to, (e.g. 'A' = 0x0A)
 };
 
 static struct HashTable *charmap;
@@ -154,6 +155,7 @@ static void read_charmap(const char *filename)
         line = skip_whitespace(line);
         if (line[0] != 0 && line[0] != '#')  // ignore empty lines and comments
         {
+            int len = 0;
             /* Read Character */
 
             // opening quote
@@ -161,30 +163,41 @@ static void read_charmap(const char *filename)
                 parse_error(filename, lineNum, "expected '");
             line++;
 
-            if (*line == '\\')
+            // perform analysis of charmap entry, we are in the quote
+            while(1)
             {
-                line++;
-                entry.unicode = get_escape_char(*line);
-                if (entry.unicode == 0)
-                    parse_error(filename, lineNum, "unknown escape sequence \\%c", *line);
-                line++;
+                if(*line == '\'')
+                {
+                    line++;
+                    break;
+                }
+                else if(len == ARRAY_COUNT(entry.unicode))
+                {
+                    // TODO: Use dynamic memory allocation so this is unnecessary.
+                    parse_error(filename, lineNum, "string limit exceeded");
+                }
+                else if (*line == '\\')
+                {
+                    line++; // advance to get the character being escaped
+                    entry.unicode[len] = get_escape_char(*line);
+                    if (entry.unicode[len] == 0)
+                        parse_error(filename, lineNum, "unknown escape sequence \\%c", *line);
+                    line++; // increment again to get past the escape sequence.
+                }
+                else
+                {
+                    line = utf8_decode(line, &entry.unicode[len]);
+                    if (line == NULL)
+                        parse_error(filename, lineNum, "invalid UTF8");
+                }
+                len++;
             }
-            else
-            {
-                line = utf8_decode(line, &entry.unicode);
-                if (line == NULL)
-                    parse_error(filename, lineNum, "invalid UTF8");
-            }
-
-            // closing quote
-            if (*line != '\'')
-                parse_error(filename, lineNum, "expected ' after character");
-            line++;
+            entry.length = len;
 
             // equals sign
             line = skip_whitespace(line);
             if (*line != '=')
-                parse_error(filename, lineNum, "expected = after character");
+                parse_error(filename, lineNum, "expected = after character \\%c", *line);
             line++;
 
             entry.bytesCount = 0;
@@ -265,29 +278,58 @@ static char *convert_string(char *pos, FILE *fout, const char *inputFileName, ch
         while (*pos != '"')
         {
             struct CharmapEntry input;
+            struct CharmapEntry *last_valid_entry = NULL;
             struct CharmapEntry *entry;
-            int i;
+            int i, c;
+            int length = 0;
+            char* last_valid_pos = NULL;
 
-            if (*pos == 0)
-                parse_error(inputFileName, count_line_num(start, pos), "EOF in string literal");
-            if (*pos == '\\')
+            // safely erase the unicode area before use
+            memset(input.unicode, 0, sizeof (input.unicode));
+            input.length = 0;
+
+            // Find a charmap entry of longest length possible starting from this position
+            while (*pos != '"')
             {
-                pos++;
-                input.unicode = get_escape_char(*pos);
-                if (input.unicode == 0)
-                    parse_error(inputFileName, count_line_num(start, pos), "unknown escape sequence \\%c", *pos);
-                pos++;
-            }
-            else
-            {
-                pos = utf8_decode(pos, &input.unicode);
-                if (pos == NULL)
-                    parse_error(inputFileName, count_line_num(start, pos), "invalid unicode encountered in file");
+                if (length == ARRAY_COUNT(entry->unicode))
+                {
+                    // Stop searching after length 3; we only support strings of lengths up
+                    // to that right now.
+                    break;
+                }
+
+                if (*pos == 0)
+                    parse_error(inputFileName, count_line_num(start, pos), "EOF in string literal");
+                if (*pos == '\\')
+                {
+                    pos++;
+                    c = get_escape_char(*pos);
+                    if (c == 0)
+                        parse_error(inputFileName, count_line_num(start, pos), "unknown escape sequence \\%c", *pos);
+                    input.unicode[length] = c;
+                    pos++;
+                }
+                else
+                {
+                    pos = utf8_decode(pos, &input.unicode[length]);
+                    if (pos == NULL)
+                        parse_error(inputFileName, count_line_num(start, pos), "invalid unicode encountered in file");
+                }
+                length++;
+                input.length = length;
+
+                entry = hashtable_query(charmap, &input);
+                if (entry != NULL)
+                {
+                    last_valid_entry = entry;
+                    last_valid_pos = pos;
+                }
             }
 
-            entry = hashtable_query(charmap, &input);
+            entry = last_valid_entry;
+            pos = last_valid_pos;
             if (entry == NULL)
-                parse_error(inputFileName, count_line_num(start, pos), "no charmap entry for U+%X", input.unicode);
+                parse_error(inputFileName, count_line_num(start, pos), "no charmap entry for U+%X", input.unicode[0]);
             for (i = 0; i < entry->bytesCount; i++)
                 fprintf(fout, "0x%02X,", entry->bytes[i]);
         }
@@ -386,12 +428,23 @@ static void convert_file(const char *infilename, const char *outfilename)
 
 static unsigned int charmap_hash(const void *value)
 {
-    return ((struct CharmapEntry *)value)->unicode & 0xFF;
+    const struct CharmapEntry* entry = value;
+    unsigned int ret = 0;
+    for (int i = 0; i < entry->length; i++)
+        ret = ret * 17 + entry->unicode[i];
+    return ret;
 }
 
 static int charmap_cmp(const void *a, const void *b)
 {
-    return ((struct CharmapEntry *)a)->unicode == ((struct CharmapEntry *)b)->unicode;
+    const struct CharmapEntry *ea = a;
+    const struct CharmapEntry *eb = b;
+    if (ea->length != eb->length)
+        return 0;
+    for(int i = 0; i < ea->length; i++)
+        if(ea->unicode[i] != eb->unicode[i])
+            return 0;
+    return 1;
 }
 
 static void usage(const char *execName)

@@ -57,7 +57,8 @@ build/*
 *.swp
 *.mio0
 src/text_strings.h
-bin/segment2.s
+text/us/*.s
+text/jp/*.s
 
 # datadump
 tools/ddump/*

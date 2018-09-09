@@ -60,6 +60,7 @@ char *utf8_decode(char *str, uint32_t *codep)
 {
     uint32_t state = UTF8_ACCEPT;
 
+    *codep = 0;
     while (*str != 0)
     {
         int result = decode(&state, codep, (unsigned char)*str);

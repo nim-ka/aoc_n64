@@ -1,6 +1,7 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
 
 #include "hashtable.h"
 
@@ -53,7 +54,7 @@ void hashtable_free(struct HashTable *ht)
 
 void hashtable_insert(struct HashTable *ht, const void *value)
 {
-    unsigned int key = ht->func(value);
+    unsigned int key = ht->func(value) % ht->size;
     struct HashNode *node = malloc(sizeof(*node) + ht->elemSize);
 
     node->next = NULL;
@@ -75,7 +76,7 @@ void hashtable_insert(struct HashTable *ht, const void *value)
 
 void *hashtable_query(struct HashTable *ht, const void *value)
 {
-    unsigned int key = ht->func(value);
+    unsigned int key = ht->func(value) % ht->size;
     struct HashNode *node = ht->table[key];
 
     while (node != NULL)
