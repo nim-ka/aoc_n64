@@ -63,7 +63,7 @@ struct SaveBuffer
 u8 D_8032CE20 = 0;
 u8 D_8032CE24 = 0;
 s8 D_8032CE28 = 0;
-s8 D_8032CE2C = 0;
+u8 D_8032CE2C = 0;
 
 // TODO: This should be defined in this file.
 extern struct SaveBuffer gSaveBuffer;

@@ -1305,7 +1305,7 @@ static int update_text_fade(void)
 
 static void draw_file_button_label(s8 file, s16 x, s16 y)
 {
-    char buffer[4];  // unknown length
+    u8 buffer[4];  // unknown length
     s8 sp1B = 0;
     s16 starCount;
 

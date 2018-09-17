@@ -4,7 +4,7 @@
 #include "types.h"
 
 // from main menu segment 7
-// extern u32 mm7_table_00CD08[];
+extern u32 main_menu_seg7_table_0700CD08[];
 extern u8 main_menu_seg7_dl_0700D108[];
 extern u8 main_menu_seg7_dl_0700D160[];
 extern u8 main_menu_seg7_dl_0700F228[];

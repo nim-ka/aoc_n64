@@ -3,6 +3,13 @@
 
 #include "types.h"
 
+#define DLG_MARK_NONE       0
+#define DLG_MARK_DAKUTEN    1
+#define DLG_MARK_HANDAKUTEN 2
+
+#define MENU_MTX_PUSH 1
+#define MENU_MTX_NOPUSH 2
+
 // extern ? D_0700ABD0;
 // extern ? D_80330438;
 // extern ? D_8033043C;
@@ -43,7 +50,7 @@
 // extern ? D_80330544;
 // extern ? D_80330548;
 // extern ? D_80360088;
-extern u8 D_80330534;
+extern s8 D_80330534;
 // extern ? D_8033054C;
 // extern ? D_80330558;
 // extern ? D_80330568;
@@ -94,69 +101,80 @@ extern s8 D_803305CC;
 // extern ? D_0B006D38;
 // extern ? D_80330698;
 
-// extern ? func_802D6440(?);
-extern void func_802D6590(int, float, float, float);
-// extern ? func_802D6694(?);
-// extern ? func_802D67A0(?);
+struct Struct802D8980
+{
+    u8 filler00[4];
+    s8 unk04;
+    u8 filler5[1];
+    s16 unk06;
+    s16 unk08;
+    u8 filler0A[2];
+    void *unk0C;
+};
+
+extern void func_802D6440(void);
+extern void func_802D6590(s8 pushOp, f32 x, f32 y, f32 z);
+extern void func_802D6694(s8 pushOp, f32 a, f32 x, f32 y, f32 z);
+extern void func_802D67A0(s8 pushOp, f32 x, f32 y, f32 z);
 extern void func_802D68A4(void);
-// extern ? func_802D69A0(?);
-// extern ? func_802D6AFC(?);
-extern void PrintGenericText();
-extern void PutString();
-extern void PrintRegularText();
-// extern ? PutMiniString(?);
-extern void func_802D7924();
-extern int func_802D7B3C(int, int, float);
-extern void ShowCoins();
-// extern ? ShowStars(?);
-extern void Int2Str();
-extern s32 func_802D7F74(void);
-extern void func_802D7F90(u32);
-// extern ? func_802D7FCC(?);
-// extern ? CreateTextBox(?);
-// extern ? func_802D8050(?);
+extern u8* func_802D69A0(u16* in, s16 width, s16 height);
+extern void func_802D6AFC(u8 c);
+extern void PrintGenericText(s16 x, s16 y, const u8 *str);
+extern void PutString(s8 font, s16 x, s16 y, const u8 *str);
+extern void PrintRegularText(s16 x, s16 y, const u8 *str);
+extern void PutMiniString(s16 x, s16 y, const u8 *str);
+extern void func_802D7924(s8 sp23, s8 *sp24, s8 sp2b, s8 sp2f);
+extern s16 func_802D7B3C(s16 a0, u8 *str, f32 sp18);
+extern void ShowCoins(s32 useCourseCoinScore, s8 sp27, s8 sp2b, s16 x, s16 y);
+extern void ShowStars(s8 sp2b, s8 sp2f, s16 x, s16 y);
+extern void Int2Str(s32 num, u8 *dst);
+extern s16 func_802D7F74(void);
+extern void func_802D7F90(s16 a0);
+extern void func_802D7FCC(s16 a0, s32 a1);
+extern void CreateTextBox(s16 a0);
+extern void func_802D8050(s16 a0);
 extern void func_802D8098(void);
-// extern ? func_802D8134(?);
-// extern ? func_802D8450(?);
-// extern ? func_802D8690(?);
-// extern ? func_802D875C(?);
-// extern ? func_802D8830(?);
-// extern ? func_802D8954(?);
-// extern ? func_802D8980(?);
-// extern ? func_802D8ED4(?);
-// extern ? func_802D9030(?);
-// extern ? func_802D91C0(?);
-// extern ? func_802D93E0(?);
-extern void func_802D9A14(s32);
-// extern ? func_802D9A48(?);
-// extern ? func_802D9A60(?);
-// extern ? func_802D9AE8(?);
-// extern ? func_802D9B68(?);
-// extern ? func_802D9C38(?);
-// extern ? func_802D9CE8(?);
+extern void func_802D8134(struct Struct802D8980 *sp40, s8 sp47);
+extern void func_802D8450(s8 a0, s8 a1);
+extern void func_802D8690(s8 sp23, s8 sp27, s8 *sp28, s8 *sp2c, s16 *sp30);
+extern void func_802D875C(s8 *sp20, s16 *sp24);
+extern void func_802D8830(s8 *sp20, s16 *sp24);
+extern u32 func_802D8954(s16 a0);
+extern void func_802D8980(s8 sp63, struct Struct802D8980 *sp64);
+extern void func_802D8ED4(void);
+extern void func_802D9030(s8 sp3b);
+extern void func_802D91C0(s16 sp4a);
+extern void func_802D93E0(void);
+extern void func_802D9A14(s16);
+extern void func_802D9A48(void);
+extern void func_802D9A60(void);
+extern void func_802D9AE8(void);
+extern void func_802D9C38(s16 x, s16 y, char *str);
+extern void func_802D9CE8(s16 a0, s16 a1, s16 a2, s16 a3);
 extern void func_802D9D5C(void);
-// extern ? func_802D9F58(?);
+extern void func_802D9D5C(void);
+extern void func_802D9F58(void);
 extern void RenderHudCannonReticle(void);
 extern void func_802DA4DC(void);
-// extern ? func_802DA4F4(?);
-// extern ? ShadeScreen(?);
-// extern ? PrintAnimatedRedCoin(?);
-// extern ? func_802DA874(?);
-// extern ? func_802DA8EC(?);
-// extern ? PauseScreenCameraMenu(?);
-// extern ? PauseScreen2(?);
-// extern ? PauseCastleMenuBox(?);
-// extern ? func_802DB540(?);
-// extern ? PauseScreen1(?);
-// extern ? func_802DB698(?);
-// extern ? func_802DB840(?);
-// extern ? func_802DBBB0(?);
-// extern ? func_802DBE2C(?);
-// extern ? func_802DC050(?);
-// extern ? func_802DC2B4(?);
-// extern ? func_802DC330(?);
-// extern ? Save(?);
-// extern ? func_802DCBD4(?);
-extern int func_802DCD98();
+extern void func_802DA4F4(void);
+extern void ShadeScreen(void);
+extern void PrintAnimatedRedCoin(s16 sp4a, s16 sp4e);
+extern void func_802DA874(void);
+extern void func_802DA8EC(void);
+extern void PauseScreenCameraMenu(s16 sp72, s16 sp76, s8 *sp78, s16 sp7e);
+extern void PauseScreen2(s16 sp62, s16 sp66, s8 *sp68, s16 sp6e);
+extern void PauseCastleMenuBox(s16 sp42, s16 sp46);
+extern void func_802DB540(void);
+extern void PauseScreen1(void);
+extern void func_802DB698(s16 sp4a, s16 sp4e, s16 sp52, s16 sp56);
+extern void func_802DB840(s16 sp52, s16 sp56);
+extern s16 func_802DBBB0(void);
+extern void func_802DBE2C(s8 sp43);
+extern void func_802DC050(s16 sp32, s16 sp36);
+extern void func_802DC2B4(s32 sp18, u8 sp1f);
+extern void func_802DC330(void);
+extern void Save(s16 sp62, s16 sp66, s8 *sp68, s16 sp6e);
+extern s16 func_802DCBD4(void);
+extern s16 func_802DCD98(void);
 
 #endif /* _INGAME_MENU_H */

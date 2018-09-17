@@ -33,4 +33,43 @@
 #define TEXT_MARIO_A_JUST_ERASED _("マリオAをけしました")
 #define TEXT_4DASHES _("----")
 
+// ending cutscene subtitles
+#define TEXT_MARIO_EXCLAMATION _("マリオ!!")
+#define TEXT_POWER_STARS_RESTORED _("おしろにスタ-が もどったのね")
+#define TEXT_THANKS_TO_YOU _("みんな あなたのおかげだわ!")
+#define TEXT_THANK_YOU_MARIO _("ありがとう マリオ")
+#define TEXT_SOMETHING_SPECIAL _("なにか おれいをしなくちゃ・・")
+#define TEXT_COME_ON_EVERYBODY _("さあ みんな")
+#define TEXT_LETS_HAVE_CAKE _("おいしいケ-キを やきましょう")
+#define TEXT_FOR_MARIO _("マリオの ために・・・")
+#define TEXT_MARIO_QUESTION _("マリオ?")
+
+// pause menu
+#define TEXT_STAR _("*")
+#define TEXT_UNFILLED_STAR _("#")
+#define TEXT_COIN_X _("$[x]")
+#define TEXT_STAR_X _("*[x]")
+#define TEXT_COURSE _("コ-ス")
+#define TEXT_MY_SCORE _("マイスコア")
+#define TEXT_LAKITU_MARIO _("ジュゲム+マリオ")
+#define TEXT_LAKITU_STOP _("ジュゲム+ストップ")
+#define TEXT_NORMAL_UPCLOSE _("(おすすめ)(リアル)")
+#define TEXT_NORMAL_FIXED _("(おすすめ)(とまる)")
+#define TEXT_CONTINUE _("つづけて マリオする?")
+#define TEXT_EXIT_COURSE _("コ-スからでる?")
+#define TEXT_CAMERA_ANGLE_R _("Rボタンのカメラきりかえ")
+#define TEXT_PAUSE_ENG _("PAUSE")
+
+// course complete menu
+#define TEXT_UNK33 0x33,0xFF
+#define TEXT_UNK32 0x32,0xFF
+#define TEXT_UNK35 0x35,0xFF
+#define TEXT_HISCORE_ENG _("HISCORE")
+#define TEXT_CONGRATULATIONS_ENG _("CONGRATULATIONS")
+#define TEXT_CATCH _("キャッチ!")
+#define TEXT_CLEAR _("クリア!")
+#define TEXT_SAVE_AND_CONTINUE _("セ-ブしてつづける?")
+#define TEXT_SAVE_AND_QUIT _("セ-ブしておわる?")
+#define TEXT_CONTINUE_WITHOUT_SAVING _("セ-ブしないでつづける?")
+
 #endif

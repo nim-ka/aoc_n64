@@ -173,6 +173,9 @@ typedef union
 #define G_MV_MATRIX_3 0x9A
 #define G_MV_MATRIX_4 0x9C
 
+#define G_SET_OTHER_MODE_L 0xB9
+#define G_SET_OTHER_MODE_H 0xBA
+
 #ifndef MAX
 #define MAX(a, b)               ((a) > (b) ? (a) : (b))
 #endif
@@ -367,6 +370,15 @@ typedef union
     Gfx *_g = (Gfx *) (pkt); \
     _g->words.w0 = 0xB9000201; \
     _g->words.w1 = type; \
+}
+
+#define gSPSetOtherMode(pkt, cmd, shift, length, data) \
+{                                                      \
+    Gfx *_g = (Gfx *) (pkt);                           \
+    _g->words.w0 = _SHIFTL((cmd),        24, 8)        \
+                 | _SHIFTL((shift),       8, 8)        \
+                 | _SHIFTL(((length)-1),  0, 8);       \
+    _g->words.w1 = (data);                             \
 }
 
 #define gDPSetRenderMode(pkt, mode1, mode2) \

@@ -446,7 +446,7 @@ extern void func_8028B2D0(void);
 // extern ? func_8028B338(?);
 // extern ? func_8028B36C(?);
 extern int func_8028B3DC(struct Struct80280550 *a, float b);
-// extern ? StopMario(?);
+extern int StopMario(int);
 extern void func_8028B7A4(struct Struct80280550 *);
 // extern ? func_8028BA38(?);
 // extern ? func_8028BB3C(?);

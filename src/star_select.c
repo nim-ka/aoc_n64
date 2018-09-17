@@ -153,7 +153,7 @@ void BehActSelectorLoop(void)
 
 void ShowSomeNum(void)
 {
-    char buffer[4];
+    u8 buffer[4];
 
     func_802D6590(1, 158.0f, 81.0f, 0.0f);
 
@@ -176,9 +176,9 @@ void func_80177004(void)
     unsigned char sp60[] = {TEXT_MYSCORE};
     unsigned char sp5C[] = {TEXT_0};
     u32 *sp58 = (u32 *)segmented_to_virtual(seg2_level_name_table);
-    u32 sp54 = (u32) segmented_to_virtual((void *) sp58[gCurrCourseNum - 1]);
+    u8 *sp54 = (u8 *) segmented_to_virtual((void *) sp58[gCurrCourseNum - 1]);
     u32 *sp50 = (u32 *)segmented_to_virtual(seg2_act_name_table);
-    u32 sp4C;
+    u8 *sp4C;
     s16 sp4A;
     s16 sp48;
     s8 sp47;
@@ -209,7 +209,7 @@ void func_80177004(void)
 
     if (sVisibleStars != 0)
     {
-        sp4C = (u32) segmented_to_virtual((void *) (sp50[(gCurrCourseNum - 1) * 6 + sSelectedStar]));
+        sp4C = (u8 *) segmented_to_virtual((void *) (sp50[(gCurrCourseNum - 1) * 6 + sSelectedStar]));
         sp48 = func_802D7B3C(158, sp4C, 8.0f);
         PrintRegularText(sp48, 81, sp4C);
     }
