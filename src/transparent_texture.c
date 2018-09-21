@@ -13,10 +13,10 @@
 #include "transparent_texture.h"
 
 extern Gfx D_0702A880[];
-extern s32 D_07019248;
-extern Gfx D_070192F0[];
-extern Gfx D_07019360[];
-extern Gfx D_070193C8[];
+extern s16 rr_seg7_transparent_texture_data_07019248[];
+extern Gfx rr_seg7_dl_070192F0[];
+extern Gfx rr_seg7_dl_07019360[];
+extern Gfx rr_seg7_dl_070193C8[];
 extern Gfx cake_end_dl_07026400[];
 
 s16 D_80330390 = 0x01, D_80330394 = 0, D_80330398 = 0;
@@ -104,7 +104,7 @@ void *Geo18_802D2520(s32 sp80, short *sp84, UNUSED s32 sp88)
     Vtx *verts;
     short *sp68 = sp84;
 
-    Gfx *sp64 = (Gfx *)segmented_to_virtual(&D_07019248);
+    s16 *sp64 = (s16 *)segmented_to_virtual(&rr_seg7_transparent_texture_data_07019248);
     Gfx *sp60 = NULL, *sp5C = NULL;
     struct Object *sp58;
     
@@ -125,22 +125,22 @@ void *Geo18_802D2520(s32 sp80, short *sp84, UNUSED s32 sp88)
             sp7C = n / 3;
             sp7A = n % 3;
 
-            x = ((s16 *)(u32) sp64 + (n << 2))[0];
+            x = sp64[n*4 + 0];
             y = round_float(sins(D_80330398 + (sp7C << 0x0C) + (sp7A << 0x0E)) * 20.0);
             
-            z = ((s16 *)(u32) sp64 + (n << 2))[1];
-            tx = ((s16 *)(u32) sp64 + (n << 2))[2];
-            ty = ((s16 *)(u32) sp64 + (n << 2))[3];
+            z = sp64[n*4 + 1];
+            tx = sp64[n*4 + 2];
+            ty = sp64[n*4 + 3];
 
             make_vertex(verts, n, x, y, z, tx, ty, 0, 127, 0, 255);
         }
 
-        gSPDisplayList(sp5C++, D_070192F0);
+        gSPDisplayList(sp5C++, rr_seg7_dl_070192F0);
         gSPVertex(sp5C++, verts, 12, 0);
-        gSPDisplayList(sp5C++, D_07019360);
+        gSPDisplayList(sp5C++, rr_seg7_dl_07019360);
         gSPVertex(sp5C++, verts + 9, 12, 0);
-        gSPDisplayList(sp5C++, D_07019360);
-        gSPDisplayList(sp5C++, D_070193C8);
+        gSPDisplayList(sp5C++, rr_seg7_dl_07019360);
+        gSPDisplayList(sp5C++, rr_seg7_dl_070193C8);
         gSPEndDisplayList(sp5C);
 
         sp58 = (struct Object *) D_8032CFA0;

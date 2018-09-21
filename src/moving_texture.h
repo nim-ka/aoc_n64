@@ -23,8 +23,6 @@
 // extern ? D_8033031C;
 // extern ? D_07004930;
 // extern ? D_070049B4;
-// extern ? D_07016840;
-// extern ? D_07016904;
 
 // extern ? Geo18_802D0080(?);
 // extern ? Geo18_802D01E0(?);

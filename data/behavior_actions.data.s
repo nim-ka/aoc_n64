@@ -405,25 +405,190 @@ glabel TableBowserActions
 
 # Unknown region 0EA5B8-0EA71C [164]
 glabel D_8032F5B8
-    .incbin "bin/sm64.j.0EA5B8.bin", 0x0, 0xD8
+.short 0x0000
+.byte  0x00
+.byte  0x00
+.word  0x00000000
+
+.short 0x0000
+.byte  0x00
+.byte  0x00
+.word  0x00000000
+
+.short 0x0000
+.byte  0x00
+.byte  0x00
+.word  0x00000000
+
+.short 0x0000
+.byte  0x00
+.byte  0x00
+.word  0x00000000
+
+.short 0x0000
+.byte  0x00
+.byte  0x00
+.word  0x00000000
+
+.short 0x0000
+.byte  0x00
+.byte  0x00
+.word  0x00000000
+
+.short 0x0000
+.byte  0x00
+.byte  0x00
+.word  0x00000000
+
+.short 0x0000
+.byte  0x00
+.byte  0x00
+.word  0x00000000
+
+.short 0x0001
+.byte  0x00
+.byte  0xff
+.word  0x50030081
+
+.short 0x0001
+.byte  0x00
+.byte  0xff
+.word  0x90040081
+
+.short 0x0001
+.byte  0x00
+.byte  0xff
+.word  0x90040081
+
+.short 0x0000
+.byte  0x00
+.byte  0x00
+.word  0x00000000
+
+.short 0x0000
+.byte  0x00
+.byte  0x00
+.word  0x00000000
+
+.short 0x0001
+.byte  0x14
+.byte  0x28
+.word  0x50030081
+
+.short 0x0001
+.byte  0x14
+.byte  0xff
+.word  0x50030081
+
+.short 0x0001
+.byte  0x14
+.byte  0x28
+.word  0x50030081
+
+.short 0x0001
+.byte  0x00
+.byte  0xff
+.word  0x50050081
+
+.short 0x0001
+.byte  0x00
+.byte  0xff
+.word  0x50060081
+
+.short 0x0001
+.byte  0x08
+.byte  0xff
+.word  0x50030081
+
+.short 0x0001
+.byte  0x08
+.byte  0x11
+.word  0x50030081
+
+.short 0x0001
+.byte  0x08
+.byte  0xf6
+.word  0x50030081
+
+.short 0x0000
+.byte  0x00
+.byte  0x00
+.word  0x00000000
+
+.short 0x0001
+.byte  0x05
+.byte  0xff
+.word  0x50558081
+
+.short 0x0000
+.byte  0x00
+.byte  0x00
+.word  0x00000000
+
+.short 0x0000
+.byte  0x00
+.byte  0x00
+.word  0x00000000
+
+.short 0x0001
+.byte  0x00
+.byte  0xff
+.word  0x50050081
+
+.short 0x0001
+.byte  0x00
+.byte  0xff
+.word  0x90040081
 
 glabel D_8032F690
-    .incbin "bin/sm64.j.0EA5B8.bin", 0xD8, 0x4
+.byte 0x00, 0x00, 0x01, 0x00
 
 glabel D_8032F694
-    .incbin "bin/sm64.j.0EA5B8.bin", 0xDC, 0x4
+.byte 0x01, 0x01, 0x03, 0x00
 
 glabel D_8032F698
-    .incbin "bin/sm64.j.0EA5B8.bin", 0xE0, 0x4
+.word  0x00000000
+.hword 0, 0, 0
 
-glabel D_8032F69C
-    .incbin "bin/sm64.j.0EA5B8.bin", 0xE4, 0x2
+.balign 4
+.word  bowser_3_seg7_collision_07004B94
+.hword  -800, -1000, -20992
 
-glabel D_8032F69E
-    .incbin "bin/sm64.j.0EA5B8.bin", 0xE6, 0x2
+.balign 4
+.word bowser_3_seg7_collision_07004C18
+.hword -1158,   390, -18432
 
-glabel D_8032F6A0
-    .incbin "bin/sm64.j.0EA5B8.bin", 0xE8, 0x7C
+.balign 4
+.word bowser_3_seg7_collision_07004C9C
+.hword -1158,   390, -7680
+
+.balign 4
+.word bowser_3_seg7_collision_07004D20
+.hword     0,  1240, -6144
+
+.balign 4
+.word bowser_3_seg7_collision_07004DA4
+.hword     0,  1240,  6144
+
+.balign 4
+.word bowser_3_seg7_collision_07004E28
+.hword  1158,   390,  7680
+
+.balign 4
+.word bowser_3_seg7_collision_07004EAC
+.hword  1158,   390, 18432
+
+.balign 4
+.word bowser_3_seg7_collision_07004F30
+.hword   800, -1000, 20992
+
+.balign 4
+.word bowser_3_seg7_collision_07004FB4
+.hword   800, -1000, -31744
+
+.balign 4
+.word bowser_3_seg7_collision_07005038
+.hword  -800, -1000, 31744
 
 glabel TableFallingBowserPlatformActions
 .word ActionFallingBowserPlatform0

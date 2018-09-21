@@ -21054,13 +21054,13 @@ glabel ActionFallingBowserPlatform2
 /* 0727A0 802B77A0 3C188034 */  lui   $t8, %hi(gDebugInfo) # $t8, 0x8034
 /* 0727A4 802B77A4 2718BF10 */  addiu $t8, %lo(gDebugInfo) # addiu $t8, $t8, -0x40f0
 /* 0727A8 802B77A8 8D2A0144 */  lw    $t2, 0x144($t1)
-/* 0727AC 802B77AC 3C0C8033 */  lui   $t4, %hi(D_8032F6A0)
+/* 0727AC 802B77AC 3C0C8033 */  lui   $t4, %hi(D_8032F698 + 8)
 /* 0727B0 802B77B0 87190042 */  lh    $t9, 0x42($t8)
 /* 0727B4 802B77B4 000A5880 */  sll   $t3, $t2, 2
 /* 0727B8 802B77B8 016A5823 */  subu  $t3, $t3, $t2
 /* 0727BC 802B77BC 000B5880 */  sll   $t3, $t3, 2
 /* 0727C0 802B77C0 018B6021 */  addu  $t4, $t4, $t3
-/* 0727C4 802B77C4 858CF6A0 */  lh    $t4, %lo(D_8032F6A0)($t4)
+/* 0727C4 802B77C4 858CF6A0 */  lh    $t4, %lo(D_8032F698 + 8)($t4)
 /* 0727C8 802B77C8 00194200 */  sll   $t0, $t9, 8
 /* 0727CC 802B77CC 010C6821 */  addu  $t5, $t0, $t4
 /* 0727D0 802B77D0 A7AD0022 */  sh    $t5, 0x22($sp)
@@ -21091,7 +21091,7 @@ glabel ActionFallingBowserPlatform2
 /* 072830 802B7830 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 072834 802B7834 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
 /* 072838 802B7838 87AB0022 */  lh    $t3, 0x22($sp)
-/* 07283C 802B783C 3C098033 */  lui   $t1, %hi(D_8032F69C)
+/* 07283C 802B783C 3C098033 */  lui   $t1, %hi(D_8032F698 + 4)
 /* 072840 802B7840 8DD80144 */  lw    $t8, 0x144($t6)
 /* 072844 802B7844 256814B0 */  addiu $t0, $t3, 0x14b0
 /* 072848 802B7848 310CFFFF */  andi  $t4, $t0, 0xffff
@@ -21100,7 +21100,7 @@ glabel ActionFallingBowserPlatform2
 /* 072854 802B7854 0019C880 */  sll   $t9, $t9, 2
 /* 072858 802B7858 01394821 */  addu  $t1, $t1, $t9
 /* 07285C 802B785C 000C6903 */  sra   $t5, $t4, 4
-/* 072860 802B7860 8529F69C */  lh    $t1, %lo(D_8032F69C)($t1)
+/* 072860 802B7860 8529F69C */  lh    $t1, %lo(D_8032F698 + 4)($t1)
 /* 072864 802B7864 000D7880 */  sll   $t7, $t5, 2
 /* 072868 802B7868 3C018038 */  lui    $at, %hi(gSineTable)
 /* 07286C 802B786C 002F0821 */  addu  $at, $at, $t7
@@ -21114,7 +21114,7 @@ glabel ActionFallingBowserPlatform2
 /* 07288C 802B788C 3C0F8036 */  lui   $t7, %hi(gCurrentObject) # $t7, 0x8036
 /* 072890 802B7890 8DEFFDF0 */  lw    $t7, %lo(gCurrentObject)($t7)
 /* 072894 802B7894 87AA0022 */  lh    $t2, 0x22($sp)
-/* 072898 802B7898 3C098033 */  lui   $t1, %hi(D_8032F69E)
+/* 072898 802B7898 3C098033 */  lui   $t1, %hi(D_8032F698 + 6)
 /* 07289C 802B789C 8DF80144 */  lw    $t8, 0x144($t7)
 /* 0728A0 802B78A0 254B14B0 */  addiu $t3, $t2, 0x14b0
 /* 0728A4 802B78A4 3168FFFF */  andi  $t0, $t3, 0xffff
@@ -21123,7 +21123,7 @@ glabel ActionFallingBowserPlatform2
 /* 0728B0 802B78B0 0019C880 */  sll   $t9, $t9, 2
 /* 0728B4 802B78B4 01394821 */  addu  $t1, $t1, $t9
 /* 0728B8 802B78B8 00086103 */  sra   $t4, $t0, 4
-/* 0728BC 802B78BC 8529F69E */  lh    $t1, %lo(D_8032F69E)($t1)
+/* 0728BC 802B78BC 8529F69E */  lh    $t1, %lo(D_8032F698 + 6)($t1)
 /* 0728C0 802B78C0 000C6880 */  sll   $t5, $t4, 2
 /* 0728C4 802B78C4 3C018038 */  lui    $at, %hi(gCosineTable)
 /* 0728C8 802B78C8 002D0821 */  addu  $at, $at, $t5
@@ -21146,7 +21146,7 @@ glabel ActionFallingBowserPlatform2
 /* 07290C 802B790C 3C188036 */  lui   $t8, %hi(gCurrentObject) # $t8, 0x8036
 /* 072910 802B7910 8F18FDF0 */  lw    $t8, %lo(gCurrentObject)($t8)
 /* 072914 802B7914 87AA0022 */  lh    $t2, 0x22($sp)
-/* 072918 802B7918 3C0F8033 */  lui   $t7, %hi(D_8032F69C)
+/* 072918 802B7918 3C0F8033 */  lui   $t7, %hi(D_8032F698 + 4)
 /* 07291C 802B791C 8F190144 */  lw    $t9, 0x144($t8)
 /* 072920 802B7920 254BEB50 */  addiu $t3, $t2, -0x14b0
 /* 072924 802B7924 3168FFFF */  andi  $t0, $t3, 0xffff
@@ -21155,7 +21155,7 @@ glabel ActionFallingBowserPlatform2
 /* 072930 802B7930 00094880 */  sll   $t1, $t1, 2
 /* 072934 802B7934 01E97821 */  addu  $t7, $t7, $t1
 /* 072938 802B7938 00086103 */  sra   $t4, $t0, 4
-/* 07293C 802B793C 85EFF69C */  lh    $t7, %lo(D_8032F69C)($t7)
+/* 07293C 802B793C 85EFF69C */  lh    $t7, %lo(D_8032F698 + 4)($t7)
 /* 072940 802B7940 000C6880 */  sll   $t5, $t4, 2
 /* 072944 802B7944 3C018038 */  lui    $at, %hi(gSineTable)
 /* 072948 802B7948 002D0821 */  addu  $at, $at, $t5
@@ -21169,7 +21169,7 @@ glabel ActionFallingBowserPlatform2
 /* 072968 802B7968 3C0D8036 */  lui   $t5, %hi(gCurrentObject) # $t5, 0x8036
 /* 07296C 802B796C 8DADFDF0 */  lw    $t5, %lo(gCurrentObject)($t5)
 /* 072970 802B7970 87AE0022 */  lh    $t6, 0x22($sp)
-/* 072974 802B7974 3C0F8033 */  lui   $t7, %hi(D_8032F69E)
+/* 072974 802B7974 3C0F8033 */  lui   $t7, %hi(D_8032F698 + 6)
 /* 072978 802B7978 8DB90144 */  lw    $t9, 0x144($t5)
 /* 07297C 802B797C 25CAEB50 */  addiu $t2, $t6, -0x14b0
 /* 072980 802B7980 314BFFFF */  andi  $t3, $t2, 0xffff
@@ -21178,7 +21178,7 @@ glabel ActionFallingBowserPlatform2
 /* 07298C 802B798C 00094880 */  sll   $t1, $t1, 2
 /* 072990 802B7990 01E97821 */  addu  $t7, $t7, $t1
 /* 072994 802B7994 000B4103 */  sra   $t0, $t3, 4
-/* 072998 802B7998 85EFF69E */  lh    $t7, %lo(D_8032F69E)($t7)
+/* 072998 802B7998 85EFF69E */  lh    $t7, %lo(D_8032F698 + 6)($t7)
 /* 07299C 802B799C 00086080 */  sll   $t4, $t0, 2
 /* 0729A0 802B79A0 3C018038 */  lui    $at, %hi(gCosineTable)
 /* 0729A4 802B79A4 002C0821 */  addu  $at, $at, $t4

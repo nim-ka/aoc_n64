@@ -1106,7 +1106,7 @@ glabel beh_another_elavator # 0CC8
 glabel beh_rr_elevator_platform # 0CFC
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x41
-    collision_data 0x070296CC
+    collision_data rr_seg7_collision_elevator_platform
     unknown_2D
     callnative BehElevatorInit
     begin_loop
@@ -1344,7 +1344,7 @@ glabel beh_beta_moving_flames # 10B8
 glabel beh_rr_rotating_platform_with_fire # 10D8
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x49
-    collision_data 0x07029308
+    collision_data rr_seg7_collision_rotating_platform_with_fire
     obj_set_float VAR_43, 0x05DC
     unknown_2D
     begin_loop
@@ -4912,7 +4912,7 @@ glabel beh_rotating_clock_platform # 4BD0
 
 glabel beh_clock_pendulum # 4C04
     begin OBJ_LIST_SURFACE
-    collision_data 0x0701508C
+    collision_data ttc_seg7_collision_clock_pendulum
     obj_or_int VAR_01, 0x2041
     obj_set_float VAR_43, 0x05DC
     callnative BehClockPendulumInit
@@ -4936,7 +4936,7 @@ glabel beh_clock_metal_platform # 4C3C
 
 glabel beh_sliding_platform # 4C74
     begin OBJ_LIST_SURFACE
-    collision_data 0x0701550C
+    collision_data ttc_seg7_collision_sliding_surface
     obj_or_int VAR_01, 0x41
     unknown_2D
     obj_set_float VAR_43, 0x0226
@@ -4969,7 +4969,7 @@ glabel beh_pushable_clock_box # 4CD8
 
 glabel beh_clock_platform # 4D08
     begin OBJ_LIST_SURFACE
-    collision_data 0x0701585C
+    collision_data ttc_seg7_collision_clock_platform
     obj_or_int VAR_01, 0x41
     unknown_2D
     obj_set_float VAR_43, 0x0190
@@ -4982,7 +4982,7 @@ glabel beh_clock_platform # 4D08
 
 glabel beh_clock_main_rotation # 4D44
     begin OBJ_LIST_SURFACE
-    collision_data 0x070158E0
+    collision_data ttc_seg7_collision_clock_main_rotation
     obj_or_int VAR_01, 0x01
     obj_set_float VAR_43, 0x0708
     callnative BehClockMainRotationInit
@@ -4992,7 +4992,7 @@ glabel beh_clock_main_rotation # 4D44
 
 glabel beh_rotating_clock_platform2 # 4D70
     begin OBJ_LIST_SURFACE
-    collision_data 0x070159D0
+    collision_data ttc_seg7_collision_rotating_clock_platform2
     obj_or_int VAR_01, 0x01
     obj_set_float VAR_43, 0x01C2
     begin_loop
@@ -5385,7 +5385,7 @@ glabel beh_water_wave_type # 5480
 
 glabel beh_pendulum_movement # 5498
     begin OBJ_LIST_SURFACE
-    collision_data 0x07029154
+    collision_data rr_seg7_collision_pendulum
     obj_or_int VAR_01, 0x01
     obj_set_float VAR_43, 0x07D0
     callnative BehPendulumMovementInit
@@ -5403,7 +5403,7 @@ glabel beh_donut_platform_group # 54CC
 
 glabel beh_donut_platform # 54E4
     begin OBJ_LIST_SURFACE
-    collision_data 0x070297D4
+    collision_data rr_seg7_collision_donut_platform
     obj_or_int VAR_01, 0x41
     unknown_2D
     begin_loop

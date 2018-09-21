@@ -57,7 +57,7 @@ glabel level_ttc_entry
         warp_node /*id*/ 0xF1, /*destLevel1*/ 0x06, /*destArea*/ 0x02, /*destNode*/ 0x67, /*destLevel2*/ 0x00
         jump_link /*target*/ script_func_local_1
         jump_link /*target*/ script_func_local_2
-        terrain /*terrainData*/ ttc_seg7_collision
+        terrain /*terrainData*/ ttc_seg7_collision_level
         cmd39 /*unk4*/ ttc_seg7_macro_objs
         set_music /*unk2*/ 0x0001, /*seq*/ 0x0009
         terrain_type /*terrainType*/ 0x0001

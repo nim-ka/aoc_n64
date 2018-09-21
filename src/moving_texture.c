@@ -55,11 +55,11 @@ extern s16 ssl_seg7_arr_07012900[];
 extern Gfx ssl_seg7_dl_07012A08[];
 extern s16 ssl_seg7_arr_07012A50[];
 extern Gfx ssl_seg7_dl_07012B48[];
-extern s16 D_07016840[];
-extern Gfx D_07016790[];
-extern Gfx D_07016808[];
-extern Gfx D_070169C8[];
-extern s16 D_07016904[];
+extern s16 ttc_seg7_arr_07016840[];
+extern Gfx ttc_seg7_dl_07016790[];
+extern Gfx ttc_seg7_dl_07016808[];
+extern Gfx ttc_seg7_dl_070169C8[];
+extern s16 ttc_seg7_arr_07016904[];
 extern s16 ssl_seg7_arr_07004930[];
 extern Gfx ssl_seg7_dl_07004818[];
 extern Gfx ssl_seg7_dl_07004860[];
@@ -116,8 +116,8 @@ struct Struct802D0DD4 D_80330244[] =
     {0x00000801, 0x00000005, 0x0000000C, ssl_seg7_arr_070127F0, ssl_seg7_dl_070127E0, ssl_seg7_dl_070127E8, ssl_seg7_dl_070128B8, 0xff, 0xff, 0xff, 0xff, 0x00000001},
     {0x00000802, 0x00000005, 0x00000010, ssl_seg7_arr_07012900, ssl_seg7_dl_070127E0, ssl_seg7_dl_070127E8, ssl_seg7_dl_07012A08, 0xff, 0xff, 0xff, 0xff, 0x00000001}, 
     {0x00000803, 0x00000005, 0x0000000F, ssl_seg7_arr_07012A50, ssl_seg7_dl_070127E0, ssl_seg7_dl_070127E8, ssl_seg7_dl_07012B48, 0xff, 0xff, 0xff, 0xff, 0x00000001}, 
-    {0x00001400, 0x00000007, 0x0000000C, D_07016840, D_07016790, D_07016808, D_070169C8, 0xff, 0xff, 0xff, 0xff, 0x00000001}, 
-    {0x00001401, 0x00000007, 0x0000000C, D_07016904, D_07016790, D_07016808, D_070169C8, 0xff, 0xff, 0xff, 0xff, 0x00000001}, 
+    {0x00001400, 0x00000007, 0x0000000C, ttc_seg7_arr_07016840, ttc_seg7_dl_07016790, ttc_seg7_dl_07016808, ttc_seg7_dl_070169C8, 0xff, 0xff, 0xff, 0xff, 0x00000001}, 
+    {0x00001401, 0x00000007, 0x0000000C, ttc_seg7_arr_07016904, ttc_seg7_dl_07016790, ttc_seg7_dl_07016808, ttc_seg7_dl_070169C8, 0xff, 0xff, 0xff, 0xff, 0x00000001}, 
     {0x00000000, 0x00000000, 0x00000000, NULL,       NULL,       NULL,       NULL,       0x00, 0x00, 0x00, 0x00, 0x00000000},
 };
 
@@ -733,8 +733,8 @@ Gfx *Geo18_802D2108(int a, struct Struct802D2108 *b, UNUSED int c)
         {
         case 2049: sp2C = segmented_to_virtual(ssl_seg7_arr_07004930); break;
         case 2050: sp2C = segmented_to_virtual(ssl_seg7_arr_070049B4); break;
-        case 5120: sp2C = segmented_to_virtual(D_07016840); break;
-        case 5121: sp2C = segmented_to_virtual(D_07016904); break;
+        case 5120: sp2C = segmented_to_virtual(ttc_seg7_arr_07016840); break;
+        case 5121: sp2C = segmented_to_virtual(ttc_seg7_arr_07016904); break;
         }
         func_802D0850(sp2C, 7);
     }

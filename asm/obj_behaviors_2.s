@@ -15140,15 +15140,15 @@ glabel BehClockMetalPlatformInit
 /* 0C0E94 80305E94 3C088036 */  lui   $t0, %hi(gCurrentObject) # $t0, 0x8036
 /* 0C0E98 80305E98 8D08FDF0 */  lw    $t0, %lo(gCurrentObject)($t0)
 /* 0C0E9C 80305E9C AD020218 */  sw    $v0, 0x218($t0)
-/* 0C0EA0 80305EA0 3C040701 */  lui   $a0, %hi(D_07016840) # $a0, 0x701
+/* 0C0EA0 80305EA0 3C040701 */  lui   $a0, %hi(ttc_seg7_arr_07016840) # $a0, 0x701
 /* 0C0EA4 80305EA4 0C09DE68 */  jal   segmented_to_virtual
-/* 0C0EA8 80305EA8 24846840 */   addiu $a0, %lo(D_07016840) # addiu $a0, $a0, 0x6840
+/* 0C0EA8 80305EA8 24846840 */   addiu $a0, %lo(ttc_seg7_arr_07016840) # addiu $a0, $a0, 0x6840
 /* 0C0EAC 80305EAC 3C098036 */  lui   $t1, %hi(gCurrentObject) # $t1, 0x8036
 /* 0C0EB0 80305EB0 8D29FDF0 */  lw    $t1, %lo(gCurrentObject)($t1)
 /* 0C0EB4 80305EB4 AD2200F4 */  sw    $v0, 0xf4($t1)
-/* 0C0EB8 80305EB8 3C040701 */  lui   $a0, %hi(D_07016904) # $a0, 0x701
+/* 0C0EB8 80305EB8 3C040701 */  lui   $a0, %hi(ttc_seg7_arr_07016904) # $a0, 0x701
 /* 0C0EBC 80305EBC 0C09DE68 */  jal   segmented_to_virtual
-/* 0C0EC0 80305EC0 24846904 */   addiu $a0, %lo(D_07016904) # addiu $a0, $a0, 0x6904
+/* 0C0EC0 80305EC0 24846904 */   addiu $a0, %lo(ttc_seg7_arr_07016904) # addiu $a0, $a0, 0x6904
 /* 0C0EC4 80305EC4 3C0A8036 */  lui   $t2, %hi(gCurrentObject) # $t2, 0x8036
 /* 0C0EC8 80305EC8 8D4AFDF0 */  lw    $t2, %lo(gCurrentObject)($t2)
 /* 0C0ECC 80305ECC AD4200F8 */  sw    $v0, 0xf8($t2)
