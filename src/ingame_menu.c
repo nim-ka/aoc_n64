@@ -54,6 +54,12 @@ u8 D_80330438 = 0;
 u8 D_8033043C = 0;
 s32 D_80330440 = 0;
 
+#ifdef VERSION_JP
+#define MAX_STRING_WIDTH 16
+#else
+#define MAX_STRING_WIDTH 18
+#endif
+
 // dl_add_new_identity_matrix?
 void func_802D6440(void)
 {
@@ -215,7 +221,34 @@ void func_802D6AFC(u8 c)
 #endif
 }
 
-// func_802D76C8_u is located here, TODO: More US differences, i'm not good enough to add these
+extern u8 D_U_80331370[256]; // length table (US only) TODO: Make into definition
+
+#ifdef VERSION_US
+enum MutliStringIDs {
+    STRING_THE,
+    STRING_YOU
+};
+
+/*
+ * Place the multi-text string according to the ID passed. (US only)
+ * 0: 'the'
+ * 1: 'you'
+ */
+void put_multi_text_string(s8 multiTextID) // US: 802D76C8
+{
+    s8 i;
+    u8 textLengths[10] = {
+        7,7,7,7,7, // 'the'
+        7,7,7,7,7  // 'you'
+    };
+
+    for (i = 0; i < textLengths[multiTextID * 5]; i++)
+    {
+        func_802D6AFC(textLengths[5 * multiTextID + 1 + i]);
+        func_802D6590(2, (f32)(D_U_80331370[textLengths[5 * multiTextID + 1 + i]]), 0.0f, 0.0f);
+    }
+};
+#endif
 
 void PrintGenericText(s16 x, s16 y, const u8 *str)
 {
@@ -238,7 +271,7 @@ void PrintGenericText(s16 x, s16 y, const u8 *str)
             break;
         case 0xFE: // newline
             gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
-            func_802D6590(MENU_MTX_PUSH, x, y - (lineNum * 18), 0.0f);
+            func_802D6590(MENU_MTX_PUSH, x, y - (lineNum * MAX_STRING_WIDTH), 0.0f);
             lineNum++;
             break;
         case 0x6E: // handakuten mark
@@ -246,8 +279,23 @@ void PrintGenericText(s16 x, s16 y, const u8 *str)
             func_802D6AFC(0xF1);
             gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
             break;
+#ifdef VERSION_US
+        case 0xD0: // '/'
+            func_802D6590(MENU_MTX_NOPUSH, (f32)(D_U_80331370[0x9E] * 2), 0.0f, 0.0f);
+            break;
+        case 0xD1: // 'the'
+            put_multi_text_string(STRING_THE);
+            break;
+        case 0xD2: // 'you'
+            put_multi_text_string(STRING_YOU);
+            break;
+#endif
         case 0x9E: // space
+#ifdef VERSION_JP
             func_802D6590(MENU_MTX_NOPUSH, 5.0f, 0.0f, 0.0f);
+#else
+            func_802D6590(MENU_MTX_NOPUSH, (f32)(D_U_80331370[0x9E]), 0.0f, 0.0f);
+#endif
             break;
             break; // ? needed to match
         default:
@@ -261,10 +309,15 @@ void PrintGenericText(s16 x, s16 y, const u8 *str)
                 mark = DLG_MARK_NONE;
             }
 
+#ifdef VERSION_JP
             func_802D6590(MENU_MTX_NOPUSH, 10.0f, 0.0f, 0.0f);
+#else
+            func_802D6590(MENU_MTX_NOPUSH, (f32)(D_U_80331370[str[strPos]]), 0.0f, 0.0f);
+            break; // what an odd difference. US added a useless break here.
+#endif
         }
 
-        strPos++; 
+        strPos++;
     }
 
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);

@@ -51,7 +51,7 @@ struct struct8029D924_2 *Geo18_8029D924(s32 sp40, struct struct8029D924 *sp44, U
     struct struct8029D924 *sp30;
     UNUSED struct struct8029D924 *sp2C;
     s32 sp28;
-    struct struct8029D924_2 *sp24, *sp20, *sp1C, *sp18;
+    UNUSED struct struct8029D924_2 *sp24, *sp20, *sp1C, *sp18; // sp24 is unused in non-JP versions.
 
     sp3C = NULL;
 
@@ -83,7 +83,8 @@ struct struct8029D924_2 *Geo18_8029D924(s32 sp40, struct struct8029D924 *sp44, U
                 sp30->unk02 = 0x500 | (sp30->unk02 & 0xFF);
             
             sp34->oAnimState = 1;
- 
+
+#ifdef VERSION_JP
             if (sp30->unk18 == 10)
             {
                 if (gDebugInfo[DEBUG_PAGE_ENEMYINFO][3]) {
@@ -99,6 +100,22 @@ struct struct8029D924_2 *Geo18_8029D924(s32 sp40, struct struct8029D924 *sp44, U
                     sp20->unk04 = 3;
                 } 
             }
+#else // gDebugInfo accesses were removed in all non-JP versions.
+            if(sp28 == 0 && segmented_to_virtual(beh_bowser) == sp34->behavior)
+            {
+                sp34->oAnimState = 2;
+            }
+            // the debug info check was removed in US. so we need to
+            // perform the only necessary check instead of the debuginfo
+            // one.
+            if (sp30->unk18 != 10) {
+                if (sp34->active & 0x80) {
+                    sp20 = sp38++;
+                    sp20->unk00 = 0xB9000002;
+                    sp20->unk04 = 3;
+                }
+            }
+#endif
         }
 
         sp1C = sp38++;
@@ -484,3 +501,5 @@ struct Object *func_8029E5A4(struct Object *sp20, UNUSED u32 sp24, u32 sp28, voi
 
     return sp1C;
 }
+
+// this file needs to be finished for more US progress due to SpawnObj not aligning to 0x10 in US.
