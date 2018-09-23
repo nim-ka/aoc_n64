@@ -55,9 +55,9 @@ u8 D_8033043C = 0;
 s32 D_80330440 = 0;
 
 #ifdef VERSION_JP
-#define MAX_STRING_WIDTH 16
-#else
 #define MAX_STRING_WIDTH 18
+#else
+#define MAX_STRING_WIDTH 16
 #endif
 
 // dl_add_new_identity_matrix?
