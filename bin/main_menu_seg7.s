@@ -454,6 +454,8 @@ glabel main_menu_seg7_table_0700ABD0 # 0x0700ABD0
 .word main_menu_seg7_texture_070093D0, main_menu_seg7_texture_070095D0, main_menu_seg7_texture_070097D0, main_menu_seg7_texture_070099D0
 .word main_menu_seg7_texture_07009BD0, main_menu_seg7_texture_07009DD0, main_menu_seg7_texture_07009FD0, main_menu_seg7_texture_0700A1D0
 .word main_menu_seg7_texture_0700A3D0, main_menu_seg7_texture_0700A5D0, main_menu_seg7_texture_0700A7D0, main_menu_seg7_texture_0700A9D0
+
+.ifdef VERSION_JP
 .word 0x00000000, 0x00000000
 
 main_menu_seg7_texture_0700AC48: # 0x0700AC48
@@ -718,8 +720,154 @@ main_menu_seg7_texture_0700CC88: # 0x0700CC88
 .incbin "build/bin/main_menu_seg7/main_menu_seg7.0CC88.ia8"
 main_menu_seg7_texture_0700CCC8: # 0x0700CCC8
 .incbin "build/bin/main_menu_seg7/main_menu_seg7.0CCC8.ia8"
+.else
+texture_0700AC40: # 0x0700AC40
+.incbin "build/bin/main_menu_seg7/main_menu_seg7_us.0AC40.ia8"
+
+texture_0700AC80: # 0x0700AC80
+.incbin "build/bin/main_menu_seg7/main_menu_seg7_us.0AC80.ia8"
+
+texture_0700ACC0: # 0x0700ACC0
+.incbin "build/bin/main_menu_seg7/main_menu_seg7_us.0ACC0.ia8"
+
+texture_0700AD00: # 0x0700AD00
+.incbin "build/bin/main_menu_seg7/main_menu_seg7_us.0AD00.ia8"
+
+texture_0700AD40: # 0x0700AD40
+.incbin "build/bin/main_menu_seg7/main_menu_seg7_us.0AD40.ia8"
+
+texture_0700AD80: # 0x0700AD80
+.incbin "build/bin/main_menu_seg7/main_menu_seg7_us.0AD80.ia8"
+
+texture_0700ADC0: # 0x0700ADC0
+.incbin "build/bin/main_menu_seg7/main_menu_seg7_us.0ADC0.ia8"
+
+texture_0700AE00: # 0x0700AE00
+.incbin "build/bin/main_menu_seg7/main_menu_seg7_us.0AE00.ia8"
+
+texture_0700AE40: # 0x0700AE40
+.incbin "build/bin/main_menu_seg7/main_menu_seg7_us.0AE40.ia8"
+
+texture_0700AE80: # 0x0700AE80
+.incbin "build/bin/main_menu_seg7/main_menu_seg7_us.0AE80.ia8"
+
+texture_0700AEC0: # 0x0700AEC0
+.incbin "build/bin/main_menu_seg7/main_menu_seg7_us.0AEC0.ia8"
+
+texture_0700AF00: # 0x0700AF00
+.incbin "build/bin/main_menu_seg7/main_menu_seg7_us.0AF00.ia8"
+
+texture_0700AF40: # 0x0700AF40
+.incbin "build/bin/main_menu_seg7/main_menu_seg7_us.0AF40.ia8"
+
+texture_0700AF80: # 0x0700AF80
+.incbin "build/bin/main_menu_seg7/main_menu_seg7_us.0AF80.ia8"
+
+texture_0700AFC0: # 0x0700AFC0
+.incbin "build/bin/main_menu_seg7/main_menu_seg7_us.0AFC0.ia8"
+
+texture_0700B000: # 0x0700B000
+.incbin "build/bin/main_menu_seg7/main_menu_seg7_us.0B000.ia8"
+
+texture_0700B040: # 0x0700B040
+.incbin "build/bin/main_menu_seg7/main_menu_seg7_us.0B040.ia8"
+
+texture_0700B080: # 0x0700B080
+.incbin "build/bin/main_menu_seg7/main_menu_seg7_us.0B080.ia8"
+
+texture_0700B0C0: # 0x0700B0C0
+.incbin "build/bin/main_menu_seg7/main_menu_seg7_us.0B0C0.ia8"
+
+texture_0700B100: # 0x0700B100
+.incbin "build/bin/main_menu_seg7/main_menu_seg7_us.0B100.ia8"
+
+texture_0700B140: # 0x0700B140
+.incbin "build/bin/main_menu_seg7/main_menu_seg7_us.0B140.ia8"
+
+texture_0700B180: # 0x0700B180
+.incbin "build/bin/main_menu_seg7/main_menu_seg7_us.0B180.ia8"
+
+texture_0700B1C0: # 0x0700B1C0
+.incbin "build/bin/main_menu_seg7/main_menu_seg7_us.0B1C0.ia8"
+
+texture_0700B200: # 0x0700B200
+.incbin "build/bin/main_menu_seg7/main_menu_seg7_us.0B200.ia8"
+
+texture_0700B240: # 0x0700B240
+.incbin "build/bin/main_menu_seg7/main_menu_seg7_us.0B240.ia8"
+
+texture_0700B280: # 0x0700B280
+.incbin "build/bin/main_menu_seg7/main_menu_seg7_us.0B280.ia8"
+
+texture_0700B2C0: # 0x0700B2C0
+.incbin "build/bin/main_menu_seg7/main_menu_seg7_us.0B2C0.ia8"
+
+texture_0700B300: # 0x0700B300
+.incbin "build/bin/main_menu_seg7/main_menu_seg7_us.0B300.ia8"
+
+texture_0700B340: # 0x0700B340
+.incbin "build/bin/main_menu_seg7/main_menu_seg7_us.0B340.ia8"
+
+texture_0700B380: # 0x0700B380
+.incbin "build/bin/main_menu_seg7/main_menu_seg7_us.0B380.ia8"
+
+texture_0700B3C0: # 0x0700B3C0
+.incbin "build/bin/main_menu_seg7/main_menu_seg7_us.0B3C0.ia8"
+
+texture_0700B400: # 0x0700B400
+.incbin "build/bin/main_menu_seg7/main_menu_seg7_us.0B400.ia8"
+
+texture_0700B440: # 0x0700B440
+.incbin "build/bin/main_menu_seg7/main_menu_seg7_us.0B440.ia8"
+
+texture_0700B480: # 0x0700B480
+.incbin "build/bin/main_menu_seg7/main_menu_seg7_us.0B480.ia8"
+
+texture_0700B4C0: # 0x0700B4C0
+.incbin "build/bin/main_menu_seg7/main_menu_seg7_us.0B4C0.ia8"
+
+texture_0700B500: # 0x0700B500
+.incbin "build/bin/main_menu_seg7/main_menu_seg7_us.0B500.ia8"
+
+texture_0700B540: # 0x0700B540
+.incbin "build/bin/main_menu_seg7/main_menu_seg7_us.0B540.ia8"
+
+texture_0700B580: # 0x0700B580
+.incbin "build/bin/main_menu_seg7/main_menu_seg7_us.0B580.ia8"
+
+texture_0700B5C0: # 0x0700B5C0
+.incbin "build/bin/main_menu_seg7/main_menu_seg7_us.0B5C0.ia8"
+
+texture_0700B600: # 0x0700B600
+.incbin "build/bin/main_menu_seg7/main_menu_seg7_us.0B600.ia8"
+
+texture_0700B640: # 0x0700B640
+.incbin "build/bin/main_menu_seg7/main_menu_seg7_us.0B640.ia8"
+
+texture_0700B680: # 0x0700B680
+.incbin "build/bin/main_menu_seg7/main_menu_seg7_us.0B680.ia8"
+
+texture_0700B6C0: # 0x0700B6C0
+.incbin "build/bin/main_menu_seg7/main_menu_seg7_us.0B6C0.ia8"
+
+texture_0700B700: # 0x0700B700
+.incbin "build/bin/main_menu_seg7/main_menu_seg7_us.0B700.ia8"
+
+texture_0700B740: # 0x0700B740
+.incbin "build/bin/main_menu_seg7/main_menu_seg7_us.0B740.ia8"
+
+texture_0700B780: # 0x0700B780
+.incbin "build/bin/main_menu_seg7/main_menu_seg7_us.0B780.ia8"
+
+texture_0700B7C0: # 0x0700B7C0
+.incbin "build/bin/main_menu_seg7/main_menu_seg7_us.0B7C0.ia8"
+
+texture_0700B800: # 0x0700B800
+.incbin "build/bin/main_menu_seg7/main_menu_seg7_us.0B800.ia8"
+.endif
 
 glabel main_menu_seg7_table_0700CD08 # 0x0700CD08
+.ifdef VERSION_JP
 .word main_menu_seg7_texture_0700AC48, main_menu_seg7_texture_0700AC88, main_menu_seg7_texture_0700ACC8, main_menu_seg7_texture_0700AD08
 .word main_menu_seg7_texture_0700AD48, main_menu_seg7_texture_0700AD88, main_menu_seg7_texture_0700ADC8, main_menu_seg7_texture_0700AE08
 .word main_menu_seg7_texture_0700AE48, main_menu_seg7_texture_0700AE88, main_menu_seg7_texture_0700CB08, main_menu_seg7_texture_0700CB48
@@ -784,6 +932,72 @@ glabel main_menu_seg7_table_0700CD08 # 0x0700CD08
 .word 0x00000000,         0x00000000,         0x00000000,         0x00000000
 .word 0x00000000,         main_menu_seg7_texture_0700CC08, main_menu_seg7_texture_0700CC48, main_menu_seg7_texture_0700CC88
 .word 0x00000000,         0x00000000,         0x00000000,         0x00000000
+.else
+.word texture_0700AC40, texture_0700AC80, texture_0700ACC0, texture_0700AD00
+.word texture_0700AD40, texture_0700AD80, texture_0700ADC0, texture_0700AE00
+.word texture_0700AE40, texture_0700AE80, texture_0700AEC0, texture_0700AF00
+.word texture_0700AF40, texture_0700AF80, texture_0700AFC0, texture_0700B000
+.word texture_0700B040, texture_0700B080, texture_0700B0C0, texture_0700B100
+.word texture_0700B140, texture_0700B180, texture_0700B1C0, texture_0700B200
+.word texture_0700B240, texture_0700B280, texture_0700B2C0, texture_0700B300
+.word texture_0700B340, texture_0700B380, texture_0700B3C0, texture_0700B400
+.word texture_0700B440, texture_0700B480, texture_0700B4C0, texture_0700B500
+.word       0x00000000,       0x00000000,       0x00000000,       0x00000000
+.word       0x00000000,       0x00000000,       0x00000000,       0x00000000
+.word       0x00000000,       0x00000000,       0x00000000,       0x00000000
+.word       0x00000000,       0x00000000,       0x00000000,       0x00000000
+.word       0x00000000,       0x00000000,       0x00000000,       0x00000000
+.word       0x00000000,       0x00000000,       0x00000000,       0x00000000
+.word       0x00000000,       0x00000000, texture_0700B680, texture_0700B7C0
+.word texture_0700B740, texture_0700B780,       0x00000000,       0x00000000
+.word       0x00000000,       0x00000000,       0x00000000,       0x00000000
+.word       0x00000000,       0x00000000,       0x00000000,       0x00000000
+.word       0x00000000,       0x00000000,       0x00000000,       0x00000000
+.word       0x00000000,       0x00000000,       0x00000000,       0x00000000
+.word       0x00000000,       0x00000000,       0x00000000,       0x00000000
+.word       0x00000000,       0x00000000,       0x00000000,       0x00000000
+.word       0x00000000,       0x00000000,       0x00000000,       0x00000000
+.word       0x00000000,       0x00000000,       0x00000000,       0x00000000
+.word       0x00000000,       0x00000000,       0x00000000,       0x00000000
+.word       0x00000000,       0x00000000,       0x00000000,       0x00000000
+.word       0x00000000,       0x00000000,       0x00000000, texture_0700B640
+.word       0x00000000,       0x00000000,       0x00000000,       0x00000000
+.word       0x00000000,       0x00000000,       0x00000000,       0x00000000
+.word       0x00000000,       0x00000000,       0x00000000,       0x00000000
+.word       0x00000000,       0x00000000,       0x00000000,       0x00000000
+.word       0x00000000,       0x00000000,       0x00000000,       0x00000000
+.word       0x00000000,       0x00000000,       0x00000000,       0x00000000
+.word       0x00000000,       0x00000000,       0x00000000,       0x00000000
+.word       0x00000000,       0x00000000,       0x00000000,       0x00000000
+.word       0x00000000,       0x00000000,       0x00000000,       0x00000000
+.word       0x00000000,       0x00000000,       0x00000000,       0x00000000
+.word       0x00000000,       0x00000000,       0x00000000,       0x00000000
+.word       0x00000000,       0x00000000,       0x00000000, texture_0700B600
+.word       0x00000000,       0x00000000,       0x00000000,       0x00000000
+.word       0x00000000,       0x00000000,       0x00000000,       0x00000000
+.word       0x00000000,       0x00000000,       0x00000000,       0x00000000
+.word       0x00000000,       0x00000000,       0x00000000,       0x00000000
+.word       0x00000000,       0x00000000,       0x00000000,       0x00000000
+.word       0x00000000,       0x00000000,       0x00000000,       0x00000000
+.word       0x00000000,       0x00000000,       0x00000000,       0x00000000
+.word       0x00000000,       0x00000000,       0x00000000,       0x00000000
+.word       0x00000000,       0x00000000,       0x00000000,       0x00000000
+.word       0x00000000,       0x00000000,       0x00000000,       0x00000000
+.word       0x00000000,       0x00000000,       0x00000000,       0x00000000
+.word       0x00000000,       0x00000000,       0x00000000,       0x00000000
+.word       0x00000000,       0x00000000,       0x00000000,       0x00000000
+.word       0x00000000,       0x00000000,       0x00000000,       0x00000000
+.word       0x00000000,       0x00000000,       0x00000000,       0x00000000
+.word       0x00000000,       0x00000000,       0x00000000,       0x00000000
+.word       0x00000000,       0x00000000,       0x00000000,       0x00000000
+.word       0x00000000, texture_0700B800,       0x00000000,       0x00000000
+.word       0x00000000,       0x00000000,       0x00000000,       0x00000000
+.word       0x00000000,       0x00000000,       0x00000000,       0x00000000
+.word       0x00000000,       0x00000000, texture_0700B6C0,       0x00000000
+.word texture_0700B700,       0x00000000,       0x00000000,       0x00000000
+.word       0x00000000, texture_0700B540, texture_0700B5C0, texture_0700B580
+.word       0x00000000,       0x00000000,       0x00000000,       0x00000000
+.endif
 
 glabel main_menu_seg7_dl_0700D108 # 0x0700D108 - 0x0700D160
 gsDPPipeSync
