@@ -12,6 +12,11 @@ make'''
         sh 'make VERSION=jp'
       }
     }
+    stage('Clean Build') {
+      steps {
+        sh 'make clean'
+      }
+    }
     stage('Build U Source') {
       steps {
         sh 'make VERSION=us || :'
