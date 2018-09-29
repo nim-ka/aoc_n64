@@ -149,6 +149,7 @@ $(O_FILES): | $(BUILD_DIR)
 
 $(BUILD_DIR)/src/star_select.o: src/text_strings.h
 $(BUILD_DIR)/src/file_select.o: src/text_strings.h
+$(BUILD_DIR)/src/ingame_menu.o: src/text_strings.h
 
 # texture generation
 $(BUILD_DIR)/bin/%.rgba16: textures/%.rgba16.png
