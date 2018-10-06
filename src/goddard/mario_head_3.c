@@ -6,7 +6,7 @@
 #include "mario_head_1.h"
 #include "mario_head_2.h"
 #include "mario_head_3.h"
-#include "../mario_head_4.h"
+#include "mario_head_4.h"
 #include "../mario_head_5.h"
 #include "../mario_head_6.h"
 
@@ -107,7 +107,7 @@ void func_80181EB0(struct Connection *cxn)
     struct ObjParticle *sp0 = cxn->unk20.ptc;
 
     sp34.x = 0.0f;
-    sp34.y = sp4->unk24 - sp0->unk24;
+    sp34.y = sp4->unk20.y - sp0->unk20.y;
     sp34.z = 0.0f;
     sp34.y *= 0.01;
     sp4->unk38.x -= sp34.x;
@@ -118,15 +118,15 @@ void func_80181EB0(struct Connection *cxn)
     sp0->unk38.z += sp34.z;
     if (!(sp4->unk54 & 2))
     {
-        sp4->unk20 -= sp34.x;
-        sp4->unk24 -= sp34.y;
-        sp4->unk28 -= sp34.z;
+        sp4->unk20.x -= sp34.x;
+        sp4->unk20.y -= sp34.y;
+        sp4->unk20.z -= sp34.z;
     }
     if (!(sp0->unk54 & 2))
     {
-        sp0->unk20 += sp34.x;
-        sp0->unk24 += sp34.y;
-        sp0->unk28 += sp34.z;
+        sp0->unk20.x += sp34.x;
+        sp0->unk20.y += sp34.y;
+        sp0->unk20.z += sp34.z;
     }
 }
 
@@ -147,10 +147,10 @@ void func_80182088(struct Connection *cxn)
     }
     sp1C = cxn->unk1C.ptc;
     sp18 = cxn->unk20.ptc;
-    sp4C.x = sp1C->unk20 - sp18->unk20;
-    sp4C.y = sp1C->unk24 - sp18->unk24;
-    sp4C.z = sp1C->unk28 - sp18->unk28;
-    sp20 = func_80194B98(&sp4C);
+    sp4C.x = sp1C->unk20.x - sp18->unk20.x;
+    sp4C.y = sp1C->unk20.y - sp18->unk20.y;
+    sp4C.z = sp1C->unk20.z - sp18->unk20.z;
+    sp20 = rss_vec3f(&sp4C);
     sp24 = sp20 - cxn->unk24;
     sp4C.x /= sp20;
     sp4C.y /= sp20;
@@ -166,15 +166,15 @@ void func_80182088(struct Connection *cxn)
     sp18->unk38.z += sp4C.z;
     if (!(sp1C->unk54 & 2))
     {
-        sp1C->unk20 -= sp4C.x;
-        sp1C->unk24 -= sp4C.y;
-        sp1C->unk28 -= sp4C.z;
+        sp1C->unk20.x -= sp4C.x;
+        sp1C->unk20.y -= sp4C.y;
+        sp1C->unk20.z -= sp4C.z;
     }
     if (!(sp18->unk54 & 2))
     {
-        sp18->unk20 += sp4C.x;
-        sp18->unk24 += sp4C.y;
-        sp18->unk28 += sp4C.z;
+        sp18->unk20.x += sp4C.x;
+        sp18->unk20.y += sp4C.y;
+        sp18->unk20.z += sp4C.z;
     }
 }
 
@@ -215,14 +215,14 @@ void func_801823A0(struct ObjNet *net)
 }
 
 /* 230CC0 -> 230DCC */
-struct ObjParticle *make_particle(u32 a, s32 b, f32 c, f32 d, f32 e)
+struct ObjParticle *make_particle(u32 a, s32 b, f32 x, f32 y, f32 z)
 {
     struct ObjParticle *sp2C = (struct ObjParticle *)make_object(OBJ_TYPE_PARTICLES);
     UNUSED u8 unused[8];
 
-    sp2C->unk20 = c;
-    sp2C->unk24 = d;
-    sp2C->unk28 = e;
+    sp2C->unk20.x = x;
+    sp2C->unk20.y = y;
+    sp2C->unk20.z = z;
     sp2C->unk38.x = sp2C->unk38.y = sp2C->unk38.z = 0.0f;
     sp2C->unk58 = b;
     sp2C->unk54 = a | 8;
@@ -244,15 +244,15 @@ struct Connection *func_801825FC(struct ObjVertex *vtx1, struct ObjVertex *vtx2)
         myPrint1("Cant allocate connection memory!");
     sp34->unk1C.vtx = vtx1;
     sp34->unk20.vtx = vtx2;
-    func_80183910();
-    func_80186B44(vtx1);
-    func_80188A3C(&sp28);
-    func_80186B44(vtx2);
-    func_80188A3C(&sp1C);
+    push_dynobj_stash();
+    set_cur_dynobj(vtx1);
+    d_get_world_pos(&sp28);
+    set_cur_dynobj(vtx2);
+    d_get_world_pos(&sp1C);
     sp28.x -= sp1C.x;
     sp28.y -= sp1C.y;
     sp28.z -= sp1C.z;
-    sp34->unk24 = func_80194B98(&sp28);
+    sp34->unk24 = rss_vec3f(&sp28);
     //! Duplicate conditional. Possibly should've checked `vtx2`; 
     //! Also, this shouldn't be called with particle types...
     if (vtx1->header.type == OBJ_TYPE_PARTICLES && vtx1->header.type == OBJ_TYPE_PARTICLES)
@@ -261,7 +261,7 @@ struct Connection *func_801825FC(struct ObjVertex *vtx1, struct ObjVertex *vtx2)
              (((struct ObjParticle*) vtx2)->unk54 & 4) )
             sp34->unk28 |= 1;
     }
-    func_80183940();
+    pop_dynobj_stash();
     return sp34;
 }
 
@@ -276,9 +276,9 @@ int func_80182778(struct ObjParticle *ptc)
         {
             if (D_801A81D4[sp4] == ptc->unk7C->unk28)
             {
-                ptc->unk20 = D_801A81D4[sp4 + 1] * 10.0f;
-                ptc->unk24 = D_801A81D4[sp4 + 2] * 10.0f;
-                ptc->unk28 = D_801A81D4[sp4 + 3] * 10.0f;
+                ptc->unk20.x = D_801A81D4[sp4 + 1] * 10.0f;
+                ptc->unk20.y = D_801A81D4[sp4 + 2] * 10.0f;
+                ptc->unk20.z = D_801A81D4[sp4 + 3] * 10.0f;
                 return TRUE;
             }
             sp4 += 4;
@@ -290,9 +290,9 @@ int func_80182778(struct ObjParticle *ptc)
         {
             if (D_801A8238[sp4] == ptc->unk7C->unk28)
             {
-                ptc->unk20 = D_801A8238[sp4 + 1] * 10.0f;
-                ptc->unk24 = D_801A8238[sp4 + 2] * 10.0f;
-                ptc->unk28 = D_801A8238[sp4 + 3] * 10.0f;
+                ptc->unk20.x = D_801A8238[sp4 + 1] * 10.0f;
+                ptc->unk20.y = D_801A8238[sp4 + 2] * 10.0f;
+                ptc->unk20.z = D_801A8238[sp4 + 3] * 10.0f;
                 return TRUE;
             }
             sp4 += 4;
@@ -316,16 +316,16 @@ void func_80182A08(struct ObjParticle *ptc, struct MyVec3f *b)
             sp20 = (struct ObjParticle *)link->obj;
             if (sp20->unk5C <= 0)
             {
-                sp20->unk20 = ptc->unk20;
-                sp20->unk24 = ptc->unk24;
-                sp20->unk28 = ptc->unk28;
+                sp20->unk20.x = ptc->unk20.x;
+                sp20->unk20.y = ptc->unk20.y;
+                sp20->unk20.z = ptc->unk20.z;
                 sp20->unk5C = 12.0f - func_8018D560() * 5.0f;
                 do
                 {
                     sp20->unk38.x = func_8018D560() * 50.0 - 25.0;
                     sp20->unk38.y = func_8018D560() * 50.0 - 25.0;
                     sp20->unk38.z = func_8018D560() * 50.0 - 25.0;
-                } while (func_80194B98(&sp20->unk38) > 30.0);
+                } while (rss_vec3f(&sp20->unk38) > 30.0);
                 sp20->unk38.x += b->x;
                 sp20->unk38.y += b->y;
                 sp20->unk38.z += b->z;
@@ -367,16 +367,16 @@ void Unknown80182C84(struct ObjParticle *ptc)
     }
     if (ptc->unkBC != NULL)
     {
-        func_80186B44(ptc->unkBC);
+        set_cur_dynobj(ptc->unkBC);
         if (ptc->unk60 == 3)
         {
             if (ptc->unk64 == 3)
             {
-                sp4C = ptc->unkBC;
+                sp4C = (struct ObjCamera *)ptc->unkBC;
                 // Camera->unk18C = ObjView here
                 if (sp4C->unk18C->unk30 != NULL)
                 {
-                    func_80186B44(sp4C->unk18C->unk30);
+                    set_cur_dynobj(sp4C->unk18C->unk30);
                     ptc->unk54 |= 0x20;
                     ;  // needed to match
                 }
@@ -387,15 +387,15 @@ void Unknown80182C84(struct ObjParticle *ptc)
                 }
             }
         }
-        func_80188A3C(&sp64);
-        ptc->unk20 = sp64.x;
-        ptc->unk24 = sp64.y;
-        ptc->unk28 = sp64.z;
+        d_get_world_pos(&sp64);
+        ptc->unk20.x = sp64.x;
+        ptc->unk20.y = sp64.y;
+        ptc->unk20.z = sp64.z;
     }
     sp7C = -0.4f;
-    ptc->unk20 += ptc->unk38.x;
-    ptc->unk24 += ptc->unk38.y;
-    ptc->unk28 += ptc->unk38.z;
+    ptc->unk20.x += ptc->unk38.x;
+    ptc->unk20.y += ptc->unk38.y;
+    ptc->unk20.z += ptc->unk38.z;
     if (ptc->unk54 & 1)
         ptc->unk38.y += sp7C;
     func_801838D0(ptc);
@@ -413,7 +413,7 @@ void Unknown80182C84(struct ObjParticle *ptc)
                 ptc->unk6C = make_group(0);
                 for (sp58 = 0; sp58 < 50; sp58++)
                 {
-                    sp60 = make_particle(1, -1, ptc->unk20, ptc->unk24, ptc->unk28);
+                    sp60 = make_particle(1, -1, ptc->unk20.x, ptc->unk20.y, ptc->unk20.z);
                     sp60->unk1C = ptc->unk1C;
                     addto_group(ptc->unk6C, &sp60->header);
                     sp60->unk54 &= ~8;
@@ -424,7 +424,7 @@ void Unknown80182C84(struct ObjParticle *ptc)
                 ptc->unk6C = make_group(0);
                 for (sp58 = 0; sp58 < 30; sp58++)
                 {
-                    sp60 = make_particle(1, -1, ptc->unk20, ptc->unk24, ptc->unk28);
+                    sp60 = make_particle(1, -1, ptc->unk20.x, ptc->unk20.y, ptc->unk20.z);
                     sp60->unk1C = (void*) ptc->unk1C;
                     addto_group(ptc->unk6C, &sp60->header);
                     sp60->unk54 &= ~8;
@@ -451,25 +451,25 @@ void Unknown80182C84(struct ObjParticle *ptc)
                 if (ptc->unk80 != NULL)
                 {
                     ptc->unk80->unk3C |= 1;
-                    ptc->unk80->unk74.x = ptc->unk20;
-                    ptc->unk80->unk74.y = ptc->unk24;
-                    ptc->unk80->unk74.z = ptc->unk28;
+                    ptc->unk80->unk74.x = ptc->unk20.x;
+                    ptc->unk80->unk74.y = ptc->unk20.y;
+                    ptc->unk80->unk74.z = ptc->unk20.z;
                 }
                 link = ptc->unk6C->link1C;
                 while (link != NULL)
                 {
                     struct ObjParticle *sp2C = (struct ObjParticle *)link->obj;
 
-                    sp2C->unk20 = ptc->unk20;
-                    sp2C->unk24 = ptc->unk24;
-                    sp2C->unk28 = ptc->unk28;
+                    sp2C->unk20.x = ptc->unk20.x;
+                    sp2C->unk20.y = ptc->unk20.y;
+                    sp2C->unk20.z = ptc->unk20.z;
                     sp2C->unk5C = 20;
                     do
                     {
                         sp2C->unk38.x = func_8018D560() * 64.0 - 32.0;
                         sp2C->unk38.y = func_8018D560() * 64.0 - 32.0;
                         sp2C->unk38.z = func_8018D560() * 64.0 - 32.0;
-                    } while (func_80194B98(&sp2C->unk38) > 32.0);
+                    } while (rss_vec3f(&sp2C->unk38) > 32.0);
                     sp2C->unk30 = func_8018D560() * 180.0f;
                     sp2C->header.unk12 &= ~2;
                     sp2C->unk54 |= 8;
@@ -524,18 +524,18 @@ void Unknown801835C8(struct ObjParticle *ptc)
         // FIXME: types
         struct ObjParticle *sp48 = (struct ObjParticle *)link->obj;
 
-        sp54.x = sp48->unk20 - ptc->unk20;
-        sp54.y = sp48->unk24 - ptc->unk24;
-        sp54.z = sp48->unk28 - ptc->unk28;
+        sp54.x = sp48->unk20.x - ptc->unk20.x;
+        sp54.y = sp48->unk20.y - ptc->unk20.y;
+        sp54.z = sp48->unk20.z - ptc->unk20.z;
         sp50 = 150.0f - (ABS(sp54.x) + ABS(sp54.y) + ABS(sp54.z));
         printf(",%f ", sp50);
         sp50 *= 0.00000005;
-        ptc->unk20 += sp50 * sp54.x;
-        ptc->unk24 += sp50 * sp54.y;
-        ptc->unk28 += sp50 * sp54.z;
-        sp48->unk20 -= sp50 * sp54.x;
-        sp48->unk24 -= sp50 * sp54.y;
-        sp48->unk28 -= sp50 * sp54.z;
+        ptc->unk20.x += sp50 * sp54.x;
+        ptc->unk20.y += sp50 * sp54.y;
+        ptc->unk20.z += sp50 * sp54.z;
+        sp48->unk20.x -= sp50 * sp54.x;
+        sp48->unk20.y -= sp50 * sp54.y;
+        sp48->unk20.z -= sp50 * sp54.z;
         link = link->next;
     }
     printf("\n");
@@ -561,7 +561,7 @@ void Unknown801838B4(UNUSED int a, UNUSED int b, UNUSED int c)
 void func_801838D0(struct ObjParticle *ptc)
 {
     D_801B9E3C = ptc;
-    if (ptc->unk24 < -15.0f)
+    if (ptc->unk20.y < -15.0f)
     {
     }
 }

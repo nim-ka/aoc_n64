@@ -107,26 +107,27 @@ glabel D_801A8238
    .word  15,  0,  22,  0
    .word  0, 0
 
-glabel D_801A8250
+glabel gGdDynObjList # @ 801A8250
    .word 0
 
-glabel D_801A8254
+glabel gDynListCurObj # @ 801A8254
    .word 0
 
-glabel D_801A8258
-   .word 0
-   .word 0
-   .word 0
-   .word 0
-   .word 0
-   .word 0
+glabel gGdNullPlaneF # @ 801A8258
+   .float 0.0
+   .float 0.0
+   .float 0.0
+   .float 0.0
+   .float 0.0
+   .float 0.0
 
-glabel D_801A8270
+glabel gGdDynObjIdIsInt # @ 801A8270
+   .word 0
+    # End of file pad?
    .word 0
    .word 0
    .word 0
-   .word 0
-
+# Start of new file?
 glabel D_801A8280
    .word 0
 

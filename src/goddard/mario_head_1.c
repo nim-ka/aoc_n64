@@ -9,7 +9,7 @@
 #include "game_over_2.h"
 #include "mario_head_1.h"
 #include "mario_head_3.h"
-#include "../mario_head_4.h"
+#include "mario_head_4.h"
 #include "old_obj_fn.h"
 #include "../mario_head_5.h"
 #include "half_6.h"
@@ -75,15 +75,15 @@ void func_8017BCB0(void)
     D_801B9DA0.vec1.z = -10000000.0f;
 }
 
-//TODO: fix first argument's type once type of func_80186B44 is known
+//TODO: fix first argument's type once type of set_cur_dynobj is known
 // Should be an ObjVertex* 
 /* @ 22A4F0 for 0x140 */
 void func_8017BD20(void* a0)
 {
     struct MyVec3f sp1c;
 
-    func_80186B44(a0);
-    func_80188A3C(&sp1c);
+    set_cur_dynobj(a0);
+    d_get_world_pos(&sp1c);
 
     if (sp1c.x < D_801B9DA0.vec0.x)
         D_801B9DA0.vec0.x = sp1c.x;
@@ -503,8 +503,8 @@ struct ObjCamera* make_camera(s32 a0, struct ObjHeader* a1)
 
     newCam->unk2C = a0 | 0x10;
     newCam->unk30 = a1;
-    func_80196280(&newCam->unk64);
-    func_80196280(&newCam->unkA8);
+    set_identity_mat4(&newCam->unk64);
+    set_identity_mat4(&newCam->unkA8);
 
     newCam->unk180.x = 1.0f;
     newCam->unk180.y = 0.1f;
@@ -572,7 +572,7 @@ struct ObjLight* make_light(s32 a0, char* name, s32 a2)
 }
 
 /* @ 22BA78 for 0x294; orig name: func_8017D2A8*/
-struct ObjView* make_view(s32 a0, s32 a1, s32 a2, s32 a3, s32 sp38, s32 sp3C, s32 sp40, struct ObjGroup* sp44)
+struct ObjView* make_view(char *a0, s32 a1, s32 a2, s32 a3, s32 sp38, s32 sp3C, s32 sp40, struct ObjGroup* sp44)
 {
     struct ObjView* newView = (struct ObjView*) make_object(OBJ_TYPE_VIEWS);
 
@@ -594,11 +594,11 @@ struct ObjView* make_view(s32 a0, s32 a1, s32 a2, s32 a3, s32 sp38, s32 sp3C, s3
     newView->unk60.y = 5000.0f;
     newView->unk60.z = 45.0f;
 
-    newView->unk3C = (f32) a3;
-    newView->unk40 = (f32) sp38;
+    newView->unk3C.x = (f32) a3;
+    newView->unk3C.y = (f32) sp38;
 
-    newView->unk54 = (f32) sp3C;
-    newView->unk58 = (f32) sp40;
+    newView->unk54.x = (f32) sp3C;
+    newView->unk54.y = (f32) sp40;
 
     newView->unk48 = 1.0f;
     newView->unk4C = 1.0f;
@@ -1153,7 +1153,7 @@ void func_8017E9EC(struct ObjJoint* a0)
     sp5C.z = a0->unkA4.z;
 
     func_80194BF4(&sp5C);
-    sp18 = func_80194B98(&a0->unkA4);
+    sp18 = rss_vec3f(&a0->unkA4);
     func_801961F4(&sp1C, &sp5C, -sp18);
     func_80196614(&D_801B9DC8, &sp1C, &D_801B9DC8);
 }
@@ -1176,13 +1176,13 @@ s32 Unknown8017EB24(struct ObjHeader* a0, struct ObjHeader* a1)
     struct GdPlaneF* sp30;
     struct GdPlaneF sp18;
 
-    func_80186B44(a0);
-    func_80188A3C(&sp44);
-    sp34 = func_8018AD9C();
+    set_cur_dynobj(a0);
+    d_get_world_pos(&sp44);
+    sp34 = d_get_plane();
 
-    func_80186B44(a1);
-    func_80188A3C(&sp38);
-    sp30 = func_8018AD9C();
+    set_cur_dynobj(a1);
+    d_get_world_pos(&sp38);
+    sp30 = d_get_plane();
 
     sp18.vec0.x = sp34->vec0.x + sp30->vec0.x;
     sp18.vec0.y = sp34->vec0.y + sp30->vec0.y;
@@ -1209,8 +1209,8 @@ s32 Unknown8017ED00(struct ObjHeader* a0, struct GdPlaneF* a1)
 {
     struct MyVec3f sp1C;
 
-    func_80186B44(a0);
-    func_80188A3C(&sp1C);
+    set_cur_dynobj(a0);
+    d_get_world_pos(&sp1C);
     
     if (sp1C.x >= a1->vec0.x)
     if (sp1C.x <= a1->vec1.x)
@@ -1279,34 +1279,34 @@ s32 func_8017F054(struct ObjHeader* a0, struct ObjHeader* a1)
 
     if (a1 != NULL)
     {
-        func_80186B44(a1);
-        sp50 = dGetMatrixPtr();
-        sp44 = (Mat4*) dGetRMatrixPtr();
+        set_cur_dynobj(a1);
+        sp50 = d_get_matrix_ptr();
+        sp44 = (Mat4*) d_get_rot_mtx_ptr();
         
-        func_80186B44(a0);
-        sp4C = dGetIMatrixPtr();
-        sp40 = (Mat4*) dGetRMatrixPtr();
+        set_cur_dynobj(a0);
+        sp4C = d_get_idn_mtx_ptr();
+        sp40 = (Mat4*) d_get_rot_mtx_ptr();
 
-        func_80187EF0(&sp1C);
-        sp48 = dGetMatrixPtr();
+        d_get_scale(&sp1C);
+        sp48 = d_get_matrix_ptr();
 
         func_80196614(sp4C, sp50, sp48);
         func_80196614(sp4C, sp44, sp40);
         func_8019415C(sp40, &sp1C);
     } else {
-        func_80186B44(a0);
-        sp48 = dGetMatrixPtr();
-        sp4C = dGetIMatrixPtr();
-        sp44 = (Mat4*) dGetRMatrixPtr();
+        set_cur_dynobj(a0);
+        sp48 = d_get_matrix_ptr();
+        sp4C = d_get_idn_mtx_ptr();
+        sp44 = (Mat4*) d_get_rot_mtx_ptr();
 
-        func_80187EF0(&sp1C);
-        func_80196280(*sp48);
-        func_80196360(sp4C, sp44);
+        d_get_scale(&sp1C);
+        set_identity_mat4(*sp48);
+        mat4_cpy(sp4C, sp44);
         func_8019415C(sp44, &sp1C);
     }
 
-    func_80186B44(a0);
-    curGroup = func_80187D38();
+    set_cur_dynobj(a0);
+    curGroup = d_get_att_objgroup();
 
     if (curGroup != NULL)
     {
@@ -1341,30 +1341,30 @@ s32 UnknownRecursive8017F210(struct ObjHeader* a0, struct ObjHeader* a1)
 
     if (a1 != NULL)
     {
-        func_80186B44(a1);
-        sp60 = dGetMatrixPtr();
-        sp54 = (Mat4*) dGetRMatrixPtr();
+        set_cur_dynobj(a1);
+        sp60 = d_get_matrix_ptr();
+        sp54 = (Mat4*) d_get_rot_mtx_ptr();
 
-        func_80186B44(a0);
-        sp5C = dGetIMatrixPtr();
-        sp50 = (Mat4*) dGetRMatrixPtr();
+        set_cur_dynobj(a0);
+        sp5C = d_get_idn_mtx_ptr();
+        sp50 = (Mat4*) d_get_rot_mtx_ptr();
 
-        func_80187EF0(&sp2C);
+        d_get_scale(&sp2C);
         func_80196614(sp5C, sp54, sp50);
         func_8019415C(sp50, &sp2C);
     } else {
-        func_80186B44(a0);
-        sp58 = dGetMatrixPtr();
-        sp5C = dGetIMatrixPtr();
-        sp54 = (Mat4*) dGetRMatrixPtr();
+        set_cur_dynobj(a0);
+        sp58 = d_get_matrix_ptr();
+        sp5C = d_get_idn_mtx_ptr();
+        sp54 = (Mat4*) d_get_rot_mtx_ptr();
         
-        func_80187EF0(&sp2C);
-        func_80196360(sp5C, sp54);
+        d_get_scale(&sp2C);
+        mat4_cpy(sp5C, sp54);
         func_8019415C(sp54, &sp2C);
     }
 
-    func_80186B44(a0);
-    sp68 = func_80187D38();
+    set_cur_dynobj(a0);
+    sp68 = d_get_att_objgroup();
 
     if (sp68 != NULL)
     {
@@ -1397,7 +1397,7 @@ void func_8017F424(struct GdTriangleF* a0, struct GdTriangleF* a1, f32 a2)
     Mat4 sp40;
     struct GdTriangleF sp1C; 
 
-    func_80196280(sp40);
+    set_identity_mat4(sp40);
 
     if (a2 != 0.0f)
     {        
@@ -1412,11 +1412,11 @@ void func_8017F424(struct GdTriangleF* a0, struct GdTriangleF* a1, f32 a2)
         func_80194220(&sp40, &sp1C.vec1);
         func_801942E4(&sp40, &sp1C.vec2);
     } else {    //L8017F568
-        dSetScale(a0->vec0.x, a0->vec0.y, a0->vec0.z);
+        d_set_scale(a0->vec0.x, a0->vec0.y, a0->vec0.z);
         func_80194220(&sp40, &a0->vec1);
         func_801942E4(&sp40, &a0->vec2);
     } //L8017F5A4
-    dSetIMatrix(&sp40);
+    d_set_idn_mtx(&sp40);
 }
 
 /* @ 22DD94 for 0x1060; orig name: Unknown8017F5C4 */
@@ -1454,12 +1454,12 @@ void move_animator(struct ObjAnimator* animObj)
     if (animObj->unk14 == NULL)
         return;
 
-    animData = animObj->unk18->unk1C->unk08;
+    animData = (struct SubAnim3*) animObj->animdata->link1C->obj;
 
     if (animObj->unk44 != NULL)
     {
-        animObj->unk28 = animObj->unk44->unk28 / animObj->unk44->unk24;
-        animData += animObj->unk44->unk20;   //...why offset this pointer like this...
+        animObj->unk28 = ((struct ObjAnimator *)animObj->unk44)->unk28 / ((struct ObjAnimator *)animObj->unk44)->unk24;
+        animData += ((struct ObjAnimator *)animObj->unk44)->unk20;   //...why offset this pointer like this...
     }
 
     if (animData->type == 0)
@@ -1487,23 +1487,23 @@ void move_animator(struct ObjAnimator* animObj)
     while (link != NULL)
     {
         linkedObj = link->obj;
-        func_80186B44(linkedObj);
+        set_cur_dynobj(linkedObj);
         switch (animData->type)
         {
             case 1:     // data = Mat4* (f32[4][4])
                 mtxArr = (Mat4*) animData->data;
                 /* This needs be be un-dereferenced pointer addition to make the registers match */
-                dSetIMatrix(mtxArr + (s32)animObj->unk28);
+                d_set_idn_mtx(mtxArr + (s32)animObj->unk28);
                 break;
             case 6:     // data = s16(*)[3] or MyVec3h[]...
                 vec3hArr = (s16(*)[3]) animData->data;
 
-                func_80187EF0(&tri1.vec0);
+                d_get_scale(&tri1.vec0);
                 tri2.vec0.x = tri1.vec0.x;
                 tri2.vec0.y = tri1.vec0.y;
                 tri2.vec0.z = tri1.vec0.z;
 
-                func_80187340(&tri1.vec2);
+                d_get_init_pos(&tri1.vec2);
                 tri2.vec2.x = tri1.vec2.x;
                 tri2.vec2.y = tri1.vec2.y;
                 tri2.vec2.z = tri1.vec2.z;
@@ -1521,12 +1521,12 @@ void move_animator(struct ObjAnimator* animObj)
             case 7:     // data = s16(*)[3] or MyVec3h[]...
                 vec3hArr = (s16(*)[3]) animData->data;
 
-                func_80187EF0(&tri1.vec0);
+                d_get_scale(&tri1.vec0);
                 tri2.vec0.x = tri1.vec0.x;
                 tri2.vec0.y = tri1.vec0.y;
                 tri2.vec0.z = tri1.vec0.z;
 
-                func_801874C8(&tri1.vec1);
+                d_get_init_rot(&tri1.vec1);
                 tri2.vec1.x = tri1.vec1.x;
                 tri2.vec1.y = tri1.vec1.y;
                 tri2.vec1.z = tri1.vec1.z;
@@ -1544,7 +1544,7 @@ void move_animator(struct ObjAnimator* animObj)
             case 8:     // data = s16(*)[6] or GdPlaneH[]...
                 planeHArr =(s16(*)[6]) animData->data;
 
-                func_80187EF0(&tri1.vec0);
+                d_get_scale(&tri1.vec0);
                 tri2.vec0.x = tri1.vec0.x;
                 tri2.vec0.y = tri1.vec0.y;
                 tri2.vec0.z = tri1.vec0.z;
@@ -1624,16 +1624,16 @@ void move_animator(struct ObjAnimator* animObj)
                 break;
             case 9:     // AnimDataType9[]
                 sp28 = &((struct AnimDataType9*) animData->data)[sp38];
-                dSetIMatrix(&sp28->mat00);
-                dSetScale(sp28->vec40.x, sp28->vec40.y, sp28->vec40.z);
+                d_set_idn_mtx(&sp28->mat00);
+                d_set_scale(sp28->vec40.x, sp28->vec40.y, sp28->vec40.z);
                 break;
             case 4:     // GdTriangleF* 
                 triPtr = (struct GdTriangleF*) animData->data;
-                func_80196280(localMtx);
+                set_identity_mat4(localMtx);
                 func_8019415C(&localMtx, &triPtr->vec0);
                 func_80194220(&localMtx, &triPtr->vec1);
                 func_801942E4(&localMtx, &triPtr->vec2);
-                dSetIMatrix(&localMtx);
+                d_set_idn_mtx(&localMtx);
                 break;
             case 5:
                 if (stubObj1 == NULL)
@@ -1678,7 +1678,7 @@ void Unknown80180624(struct ObjHeader* inputObj)
     if (D_801A80F8 == NULL)
         return;
 
-    sp28 = func_80194B98(&D_801A80F8->unk40);
+    sp28 = rss_vec3f(&D_801A80F8->unk40);
     sp28 /= 1000.0f;
 
     spD0.x = ((f32) (memState->unkD0 - memState->unkB8)) * sp28;
@@ -1769,9 +1769,9 @@ void Unknown801809B0(struct ObjCamera* a0)
 
     if ((spEC = a0->unk30) != NULL)
     {
-        func_80186B44(spEC);
-        func_80188A3C(&spE0);
-        func_8018AE70(&sp70);
+        set_cur_dynobj(spEC);
+        d_get_world_pos(&spE0);
+        d_get_matrix(&sp70);
 
         spC8.x = sp70[2][0] - a0->unk58;
         spC8.z = sp70[2][2] - a0->unk60;
@@ -1791,10 +1791,10 @@ void Unknown801809B0(struct ObjCamera* a0)
         a0->unkA8[1][1] = 1.0f;
         a0->unkA8[1][2] = 0.0f;
 
-        func_80196280(&a0->unkA8);
+        set_identity_mat4(&a0->unkA8);
     }
     else
-        func_80196280(&a0->unkA8);
+        set_identity_mat4(&a0->unkA8);
     
     sp2C = &a0->unk64;
     if ((a0->unk2C & 0x4) != 0)
@@ -1847,7 +1847,7 @@ void Unknown801809B0(struct ObjCamera* a0)
         a0->unk40.z += (a0->unk4C.z - a0->unk40.z) * a0->unk17C;
     }
     else
-        func_80196280(sp2C);
+        set_identity_mat4(sp2C);
     
     spD4.x = a0->unk40.x;
     spD4.y = a0->unk40.y;
@@ -1919,7 +1919,7 @@ void Unknown8018100C(struct ObjLight* light)
     D_801A81C0 += 1.0;  //! 1.0f
     D_801A81C4 += 0.6;  //! 0.6f
 
-    func_80196280(&mtx);
+    set_identity_mat4(&mtx);
     func_80194A54(&mtx, 1, light->unk68.y);
     func_80194A54(&mtx, 0, light->unk68.x);
     func_80194A54(&mtx, 2, light->unk68.z);

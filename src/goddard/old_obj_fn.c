@@ -7,7 +7,7 @@
 #include "gd_types.h"
 
 #include "mario_head_1.h"
-#include "../mario_head_4.h"
+#include "mario_head_4.h"
 #include "../mario_head_5.h"
 #include "../mario_head_6.h"
 
@@ -38,13 +38,13 @@ void Unknown8018B7A8(void *a0)
 {
     struct MyVec3f sp1C;
 
-    func_80186B44(a0);
-    func_80187340(&sp1C);
+    set_cur_dynobj(a0);
+    d_get_init_pos(&sp1C);
 
     sp1C.x += sStaticVec.x;
     sp1C.y += sStaticVec.y;
     sp1C.z += sStaticVec.z;
-    dSetWorldPos(sp1C.x, sp1C.y, sp1C.z);
+    d_set_world_pos(sp1C.x, sp1C.y, sp1C.z);
 }
 
 /* 23A00C -> 23A068 */
@@ -127,9 +127,9 @@ struct ObjGadget *make_gadget(UNUSED s32 a0, s32 a1)
     gdgt->unk20 = a1;
     gdgt->unk5C = 0;
     gdgt->unk28 = 1.0f;
-    gdgt->unk40 = 100.0f;
-    gdgt->unk44 = 10.0f;
-    gdgt->unk48 = 10.0f;
+    gdgt->unk40.x = 100.0f;
+    gdgt->unk40.y = 10.0f;
+    gdgt->unk40.z = 10.0f;
 
     return gdgt;
 }

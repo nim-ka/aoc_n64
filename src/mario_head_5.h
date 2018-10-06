@@ -132,7 +132,7 @@ extern f64 func_8018D808(char*, UNUSED u32*);   /* return (f64) gd_atoi(char*); 
 extern void func_8018DC98(char *, char *);  /* gd_strcpy? */
 // extern ? Unknown8018DCDC(?);
 // extern ? func_8018DD5C(?);
-// extern ? func_8018DDD8(?);
+extern u32 func_8018DDD8(char *);   /* gd_strlen ? */
 extern char *func_8018DE2C(char *, char *); /* gd_strcat ?? */
 extern s32 func_8018DEB0(char*, char*); /* gd_strcmp? */ 
 extern s32 func_8018DF58(char*, char*); // gd_strstr?
@@ -148,17 +148,17 @@ extern s32 func_8018E3D8(char*, u32, struct GdFile*);   /* gd_read_file? gd_fget
 extern void Proc8018EBE8(struct ObjJoint*);
 // extern ? Unknown8018EE5C(?);
 // extern ? func_8018EF78(?);
-// extern ? make_joint(?);
+extern struct ObjJoint *make_joint(s32, f32, f32, f32);
 extern struct ObjJoint* func_8018F248(void*, s32, f32, f32, f32);
 // extern ? func_8018F328(?);
 // extern ? Unknown8018F4CC(?);
 // extern ? func_8018F520(?);
 // extern ? func_8018F89C(?);
 // extern ? Unknown8018FA68(?);
-// extern ? func_8018FAC8(?);
+extern s32 func_8018FAC8(struct ObjJoint *, s32, struct ObjVertex *, f32);
 // extern ? func_8018FB58(?);
-// extern ? func_8018FCA4(?);
-// extern ? make_bone(?);
+extern void add_joint2bone(struct ObjBone *, struct ObjJoint *);
+extern struct ObjJoint *make_bone(s32, struct ObjHeader *, struct ObjHeader *, s32);
 // extern ? Unknown8018FF14(?);
 // extern ? Unknown8018FF28(?);
 // extern ? Unknown8018FF88(?);
@@ -206,7 +206,7 @@ extern void func_801936C4(struct ObjGroup*);
 extern void func_80193848(struct ObjGroup*);
 // extern ? Unknown801938BC(?);
 extern void func_80193B10(void);
-// extern ? func_80193B30(?);
+// extern ? gd_sqrt_f(?);
 // extern ? func_80193B68(?);
 extern void func_8019415C(Mat4*, struct MyVec3f*);
 extern void func_80194220(Mat4*, struct MyVec3f*);
@@ -217,8 +217,8 @@ extern void func_80194770(struct MyVec3f*, f32);
 extern void func_80194880(f32, f32*, f32*);
 // extern ? Unknown8019498C(?);
 extern void func_80194A54(Mat4*, s32, f32);
-extern f32 func_80194B98(struct MyVec3f*);
-extern s32 func_80194BF4();     //s32 func_80194BF4(struct MyVec3f*)
+extern f32 rss_vec3f(struct MyVec3f*);  // sqrt of sum of squares of vec<x,y,z>
+extern s32 func_80194BF4();     //s32 func_80194BF4(struct MyVec3f*); into_unit_vec ?
 extern void func_80194D14(struct MyVec3f*, struct MyVec3f*, struct MyVec3f*);
 extern float func_80194DB8(); //extern float func_80194DB8(struct MyVec3f *, struct MyVec3f *);
 // extern ? Unknown80194DFC(?);
@@ -235,8 +235,8 @@ extern void func_80194E7C(Mat4*, Mat4*);
 // extern ? func_80195FD4(?);
 extern void func_8018C30C(const char*); /* some sort of print function */
 extern void func_801961F4(Mat4*, struct MyVec3f*, f32);
-extern void func_80196280(void *);      //Mat4*; something sort of matrix4x4_init?
-extern void func_80196360(Mat4*, Mat4*);
+extern void set_identity_mat4(void *);      //Mat4*; something sort of matrix4x4_init?
+extern void mat4_cpy(Mat4*, Mat4*);
 extern void func_80196430(struct MyVec3f *, void *);    // (struct MyVec3f*, Mat4*)
 extern void func_80196540(struct MyVec3f*, Mat4*);
 extern void func_80196614(Mat4*, Mat4*, Mat4*);

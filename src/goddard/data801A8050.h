@@ -24,13 +24,17 @@ extern Vec3f D_801A80E8;
 extern struct ObjCamera *D_801A80F8;
 extern struct MyVec3f *D_801A80F4;
 extern s32 D_801A8100;
-extern struct MyVec3f *D_801A8104[];
-extern struct MyVec3f *D_801A8118[];
+extern struct MyVec3f *D_801A8104[];    // "GdColour" pointers
+extern struct MyVec3f *D_801A8118[];    // "GdColour" pointers (white, black)
 extern s32 D_801A81A0;
 extern f32 D_801A81C0;
 extern f32 D_801A81C4;
 extern s32 D_801A81D4[25];
 extern s32 D_801A8238[6];
+extern struct DynObjInfo *gGdDynObjList; // @ 801A8250; info for all loaded/made dynobjs
+extern struct ObjHeader *gDynListCurObj; // @ 801A8254
+extern struct GdPlaneF gGdNullPlaneF;    // @ 801A8258
+extern s32 gGdDynObjIdIsInt;             // @ 801A8270; str (0) or int (1) for Dyn Obj ID
 extern struct ObjGroup* D_801A82E0; //returned by load_dynlist
 extern struct ObjShape *D_801A82E4;
 extern void* D_801A82E8;  // same type as what load_dynlist returns

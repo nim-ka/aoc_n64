@@ -223,15 +223,15 @@
 // extern ? nextVpList(?);
 // extern ? func_8019B2DC(?);
 // extern ? func_8019B31C(?);
-extern f64 func_8019B35C(f64);
+extern f64 func_8019B35C(f64);  //"sqrt_d_limited" (return 0.0 below 1e-7)
 // extern ? Unknown8019B3D4(?);
 extern int printf(const char *format, ...);
 extern void func_8019B9CC(void *);  // TUI stuff?
 extern void func_8019BA04(void *);  /* free_mem_block call, so gd_free? */
 extern void* gd_allocblock(u32);
 extern void* gd_malloc(u32, u8);    /* gd_malloc(size, alignment? */
-extern void *func_8019BC18(int);    /* {return gd_malloc(a0, 240);} */
-// extern ? func_8019BC50(?);
+extern void *func_8019BC18(int);    /* {return gd_malloc(a0, 240);} gd_alloc_perm */
+extern void *func_8019BC50(u32);   /* gd_temp_alloc */
 // extern ? Unknown8019BC88(?);
 // extern ? Unknown8019BCD4(?);
 extern void func_8019BD0C(s32, s32);
@@ -329,7 +329,7 @@ extern int gd_getproperty();
 extern void gd_setproperty(int, float, float, float);
 extern void func_801A3AF0(float, float, float, float, float, float);
 extern void func_801A3C8C(float, float, float, float);
-extern s32 func_801A3E5C(); /* 6 arguments */
+extern s32 func_801A3E5C(); /* 6 arguments, maybe (s32, struct ObjView *, s32, s32, s32, s32) */
 extern void _InitControllers(void);
 extern void Proc801A43DC(struct ObjHeader *); //apply to OBJ_TYPE_VIEWS
 extern void *func_801A43F0(char *, ...);   // TUI code..? query_user? doesn't actually return anything... maybe it returned a "menu *"?

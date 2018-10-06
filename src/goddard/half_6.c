@@ -5,7 +5,7 @@
 #include "game_over_2.h"
 #include "mario_head_1.h"
 #include "mario_head_3.h"
-#include "../mario_head_4.h"
+#include "mario_head_4.h"
 #include "../mario_head_5.h"
 #include "half_6.h"
 #include "../mario_head_6.h"
@@ -468,15 +468,15 @@ void Unknown801981F0(struct ObjHeader* obj)
     if (obj->type == OBJ_TYPE_GROUPS)
         return;
     
-    func_80186B44(obj);
-    func_80187B40(&vec);
+    set_cur_dynobj(obj);
+    d_get_rel_pos(&vec);
 
     vec.x *= D_801BACB8.x; 
     vec.y *= D_801BACB8.y; 
     vec.z *= D_801BACB8.z;
 
-    dSetRelPos(vec.x, vec.y, vec.z);
-    dSetInitPos(vec.x, vec.y, vec.z);
+    d_set_rel_pos(vec.x, vec.y, vec.z);
+    d_set_init_pos(vec.x, vec.y, vec.z);
 }
 
 /* @ 246A88 for 0x94 */
@@ -484,14 +484,14 @@ void Unknown801982B8(struct ObjHeader* obj)
 {
     struct MyVec3f sp1C;
 
-    func_80186B44(obj);
-    func_80187B40(&sp1C);
+    set_cur_dynobj(obj);
+    d_get_rel_pos(&sp1C);
 
     sp1C.x += D_801BACC8.x;
     sp1C.y += D_801BACC8.y;
     sp1C.z += D_801BACC8.z;
 
-    dSetRelPos(sp1C.x, sp1C.y, sp1C.z);
+    d_set_rel_pos(sp1C.x, sp1C.y, sp1C.z);
 }
 
 /* @ 246B1C for 0x88 */
@@ -855,8 +855,8 @@ struct ObjMaterial* find_or_add_new_mtl(struct ObjGroup* group, UNUSED s32 a1, f
     }
 
     newMtl = make_material(0, NULL, 1);
-    func_80186B44(newMtl);
-    func_8018ABC0(x, y, z);
+    set_cur_dynobj(newMtl);
+    d_set_diffuse(x, y, z);
     addto_group(group, (struct ObjHeader*) newMtl);
 
     return newMtl;
@@ -1066,13 +1066,13 @@ struct ObjShape* make_grid_shape(enum ObjTypeFlag gridType, s32 a1, s32 a2, s32 
     sp2C = (struct MyVec3f*) func_80178D98(a2);
 
     mtl1 = make_material(0, NULL, 1);
-    func_80186B44((struct ObjHeader*) mtl1);
-    func_8018ABC0(sp30->x, sp30->y, sp30->z);
+    set_cur_dynobj((struct ObjHeader*) mtl1);
+    d_set_diffuse(sp30->x, sp30->y, sp30->z);
     mtl1->unk28 = 0x40;
 
     mtl2 = make_material(0, NULL, 2);
-    func_80186B44((struct ObjHeader*) mtl2);
-    func_8018ABC0(sp2C->x, sp2C->y, sp2C->z);
+    set_cur_dynobj((struct ObjHeader*) mtl2);
+    d_set_diffuse(sp2C->x, sp2C->y, sp2C->z);
     mtl2->unk28 = 0x40;
 
     mtlGroup = make_group(2, mtl1, mtl2);
@@ -1301,7 +1301,7 @@ s32 func_8019A378(void (*aniFn)(struct ObjAnimator*))
     UNUSED u8 pad40[0x48-0x40];
     struct ObjGroup* sp3C;
     struct ObjHeader* sp38;     //object list head before making a bunch of joints
-    struct ObjHeader* sp34;     //dUseObj returned
+    struct ObjHeader* sp34;     //d_use_obj returned
     struct ObjJoint* sp30;      // created joint pointer
     struct ObjCamera* sp2C;     //dNewCamera
     struct ObjAnimator* sp28;   //dNewAnim
@@ -1309,20 +1309,20 @@ s32 func_8019A378(void (*aniFn)(struct ObjAnimator*))
     
 
     func_8018C30C("mario face");
-    func_8018421C("l");
+    d_copystr_to_idbuf("l");
 
-    func_80186D1C(1);
-    sp28 = (struct ObjAnimator*) dMakeobj(14, 1001);
+    dynid_is_int(TRUE);
+    sp28 = (struct ObjAnimator*) d_makeobj(D_ANIMATOR, AsDynId(1001));
     sp28->fn48 = aniFn;
-    func_80186D1C(0);
+    dynid_is_int(FALSE);
     //FIXME: make segment address work once seg4 is disassembled 
     D_801A82E0 = load_dynlist(&*D_04004F90);
     func_8018C458("mario face");
 
-    sp2C = (struct ObjCamera*) dMakeobj(4, 0);
-    dSetRelPos(0.0f, 200.0f, 2000.0f);
-    dSetWorldPos(0.0f, 200.0f, 2000.0f);
-    func_80189C68(4);
+    sp2C = (struct ObjCamera*) d_makeobj(D_CAMERA, NULL);
+    d_set_rel_pos(0.0f, 200.0f, 2000.0f);
+    d_set_world_pos(0.0f, 200.0f, 2000.0f);
+    d_set_flags(4);
     sp2C->unk34.x = 0.0f;
     sp2C->unk34.y = 200.0f;
     sp2C->unk34.z = 0.0f;
@@ -1330,80 +1330,80 @@ s32 func_8019A378(void (*aniFn)(struct ObjAnimator*))
     addto_group(D_801A82E0, &sp2C->header);
     addto_group(D_801A82E0, &sp28->header);
 
-    func_8018421C(NULL);
+    d_copystr_to_idbuf(NULL);
     sp24 = make_particle(0, 1, 0.0f, 0.0f, 0.0f);
     sp24->unk60 = 3;
     sp24->unk64 = 3;
-    sp24->unkBC = sp2C;
+    sp24->unkBC = &sp2C->header;
     sp24->unk1C = D_801A82F0;
     addto_group(D_801B9BB8, &sp24->header);
 
     sp24 = make_particle(0, 1, 0.0f, 0.0f, 0.0f);
     sp24->unk60 = 3;
     sp24->unk64 = 2;
-    sp24->unkBC = (struct ObjCamera*) dUseObj("N228l");
+    sp24->unkBC = (struct ObjHeader *)d_use_obj("N228l"); //probably a camera
     sp24->unk1C = D_801A82F0;
     addto_group(D_801B9BB8, &sp24->header);
 
     sp24 = make_particle(0, 2, 0.0f, 0.0f, 0.0f);
     sp24->unk60 = 3;
     sp24->unk64 = 2;
-    sp24->unkBC = (struct ObjCamera*)  dUseObj("N231l");
+    sp24->unkBC = (struct ObjHeader *)d_use_obj("N231l"); //probably a camera
     sp24->unk1C = D_801A82EC;
     addto_group(D_801B9BB8, &sp24->header);
 
-    sp3C = (struct ObjGroup*) dUseObj("N1000l");
+    sp3C = (struct ObjGroup*) d_use_obj("N1000l");
     func_8017B028(sp3C);
     sp38 = D_801B9E8C;
 
     sp30 = func_8018F248(D_801A82E8, 0, -500.0f, 0.0f, -150.0f);
-    sp34 = dUseObj("N167l");
+    sp34 = d_use_obj("N167l");
     sp30->unk1F8 = make_group(1, sp34);
 
     sp30 = func_8018F248(D_801A82E8, 0, 500.0f, 0.0f, -150.0f);
-    sp34 = dUseObj("N176l");
+    sp34 = d_use_obj("N176l");
     sp30->unk1F8 = make_group(1, sp34);
 
     sp30 = func_8018F248(D_801A82E8, 0, 0.0f, 700.0f, 300.0f);
-    sp34 = dUseObj("N131l");
+    sp34 = d_use_obj("N131l");
     sp30->unk1F8 = make_group(1, sp34);
 
-    sp34 = dUseObj("N206l");
+    sp34 = d_use_obj("N206l");
     addto_group(sp30->unk1F8, sp34);
 
-    sp34 = dUseObj("N215l");
+    sp34 = d_use_obj("N215l");
     addto_group(sp30->unk1F8, sp34);
 
-    sp34 = dUseObj("N31l");
+    sp34 = d_use_obj("N31l");
     addto_group(sp30->unk1F8, sp34);
 
-    sp34 = dUseObj("N65l");
+    sp34 = d_use_obj("N65l");
     addto_group(sp30->unk1F8, sp34);
 
     sp30 = func_8018F248(D_801A82E8, 0, 0.0f, 0.0f, 600.0f);
-    sp34 = dUseObj("N185l");
+    sp34 = d_use_obj("N185l");
     sp30->unk1F8 = make_group(1, sp34);
 
     sp30 = func_8018F248(D_801A82E8, 0, 0.0f, -300.0f, 300.0f);
-    sp34 = dUseObj("N194l");
+    sp34 = d_use_obj("N194l");
     sp30->unk1F8 = make_group(1, sp34);
 
     sp30 = func_8018F248(D_801A82E8, 0, 250.0f, -150.0f, 300.0f);
-    sp34 = dUseObj("N158l");
+    sp34 = d_use_obj("N158l");
     sp30->unk1F8 = make_group(1, sp34);
 
-    sp34 = dUseObj("N15l");
+    sp34 = d_use_obj("N15l");
     addto_group(sp30->unk1F8, sp34);
 
     sp30 = func_8018F248(D_801A82E8, 0, -250.0f, -150.0f, 300.0f);
-    sp34 = dUseObj("N149l");
+    sp34 = d_use_obj("N149l");
     sp30->unk1F8 = make_group(1, sp34);
 
-    sp34 = dUseObj("N6l");
+    sp34 = d_use_obj("N6l");
     addto_group(sp30->unk1F8, sp34);
 
     sp30 = func_8018F248(D_801A82E8, 0, 100.0f, 200.0f, 400.0f);
-    sp34 = dUseObj("N112l");
+    sp34 = d_use_obj("N112l");
     sp30->unk1F8 = make_group(1, sp34);
 
     sp30->fn2C = &Proc8018EBE8;
@@ -1411,7 +1411,7 @@ s32 func_8019A378(void (*aniFn)(struct ObjAnimator*))
     sp30->header.unk12 &= ~8;
 
     sp30 = func_8018F248(D_801A82E8, 0, -100.0f, 200.0f, 400.0f);
-    sp34 = dUseObj("N96l");
+    sp34 = d_use_obj("N96l");
     sp30->unk1F8 = make_group(1, sp34);
 
     sp30->fn2C = &Proc8018EBE8;
@@ -1431,7 +1431,7 @@ s32 func_8019A378(void (*aniFn)(struct ObjAnimator*))
 void load_shapes2(void)
 {
     func_8018D420("load_shapes2()");
-    func_80183970();
+    reset_dynlist();
     func_80197280();
     sCubeShape = make_shape(0, "cube");
     D_801A82E4 = (struct ObjShape*) load_dynlist(*&D_04000650);

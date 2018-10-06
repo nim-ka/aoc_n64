@@ -51,7 +51,7 @@ extern struct ObjPlane* make_plane(void*, struct ObjFace*);
 extern struct ObjCamera* make_camera(s32, struct ObjHeader*);
 extern struct ObjMaterial* make_material(UNUSED s32, char*, s32);
 extern struct ObjLight* make_light(s32, char*, s32);
-extern struct ObjView* make_view(s32, s32, s32, s32, s32, s32, s32, struct ObjGroup*);
+extern struct ObjView* make_view(char *, s32, s32, s32, s32, s32, s32, struct ObjGroup*);
 extern struct ObjAnimator* make_animator(void);
 extern struct ObjWeight* make_weight(UNUSED s32, s32, struct ObjVertex*, f32);
 extern struct ObjGroup* make_group_of_type(enum ObjTypeFlag, struct ObjHeader*, struct ObjHeader*);

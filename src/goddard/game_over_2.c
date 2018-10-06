@@ -6,7 +6,7 @@
 #include "gd_main.h"
 #include "game_over_2.h"
 #include "mario_head_1.h"
-#include "../mario_head_4.h"
+#include "mario_head_4.h"
 #include "old_obj_fn.h"
 #include "../mario_head_5.h"
 #include "half_6.h"
@@ -220,7 +220,7 @@ void Proc80178900(struct ObjLight *self)
     D_801A80E8[2] = self->unk5C.z;
     if (self->unk2C & 2)
     {
-        func_80196280(&sp54);
+        set_identity_mat4(&sp54);
         sp94.x = -self->unk80.x;
         sp94.y = -self->unk80.y;
         sp94.z = -self->unk80.z;
@@ -439,8 +439,8 @@ void Unknown801792F0(struct ObjHeader* a)
     struct MyVec3f sp1C;
 
     sprint_obj_id(sp28, a);
-    func_80186B44(a);
-    func_80188A3C(&sp1C);
+    set_cur_dynobj(a);
+    d_get_world_pos(&sp1C);
     func_801A4438(sp1C.x, sp1C.y, sp1C.z);
     func_801A48D8(sp28);
 }
@@ -461,8 +461,8 @@ void Proc80179350(struct ObjLabel *label)
     {
         if (valptr->unk20 == 0x40000)
         {
-            func_80186B44(valptr->obj);
-            func_80188A3C(&sp144);
+            set_cur_dynobj(valptr->obj);
+            d_get_world_pos(&sp144);
         }
         else
         {
@@ -536,15 +536,15 @@ void Proc8017976C(struct ObjGadget *gdgt)
     if (gdgt->unk5C != 0)
         sp24 = gdgt->unk5C;
 
-    func_80179228(sp24, gdgt->unk14, gdgt->unk18,
-        gdgt->unk14 + gdgt->unk28 * gdgt->unk40, 
-        gdgt->unk18 + gdgt->unk44);
+    func_80179228(sp24, gdgt->unk14.x, gdgt->unk14.y,
+        gdgt->unk14.x + gdgt->unk28 * gdgt->unk40.x, 
+        gdgt->unk14.y + gdgt->unk40.y);
     
     if (gdgt->header.unk12 & 0x10)
     {
-        func_8017928C(8, gdgt->unk14, gdgt->unk18,
-            gdgt->unk14 + gdgt->unk28 * gdgt->unk40, 
-            gdgt->unk18 + gdgt->unk44);
+        func_8017928C(8, gdgt->unk14.x, gdgt->unk14.y,
+            gdgt->unk14.x + gdgt->unk28 * gdgt->unk40.x, 
+            gdgt->unk14.y + gdgt->unk40.y);
     }
     gdgt->header.unk12 &= ~0x10;
 }
@@ -559,10 +559,10 @@ void draw_camera(struct ObjCamera *a)
     sp44.x = 0.0f;
     sp44.y = 0.0f;
     sp44.z = 0.0f;
-    if (a->unk30 != 0)
+    if (a->unk30 != NULL)
     {
-        func_80186B44(a->unk30);
-        func_80188A3C(&sp44);
+        set_cur_dynobj(a->unk30);
+        d_get_world_pos(&sp44);
         sp44.x += a->unk34.x;
         sp44.y += a->unk34.y;
         sp44.z += a->unk34.z;
@@ -628,8 +628,8 @@ void func_80179B9C(struct MyVec3f *a, struct ObjCamera *b, struct ObjView *c)
         return;
     a->x *= 256.0 / -a->z;
     a->y *= 256.0 / a->z;
-    a->x += c->unk54 / 2.0f;
-    a->y += c->unk58 / 2.0f;
+    a->x += c->unk54.x / 2.0f;
+    a->y += c->unk54.y / 2.0f;
 }
 
 /* 228498 -> 2286A0 */
@@ -645,8 +645,8 @@ void Unknown80179CC8(struct ObjHeader *a)
     obj = a;
     if (!(obj->unk12 & 8))
         return;
-    func_80186B44(obj);
-    mtx = dGetRMatrixPtr();
+    set_cur_dynobj(obj);
+    mtx = d_get_rot_mtx_ptr();
     sp3C.x = (*mtx)[3][0];
     sp3C.y = (*mtx)[3][1];
     sp3C.z = (*mtx)[3][2];
@@ -677,13 +677,13 @@ void drawscene(int a, struct ObjGroup *groupB, struct ObjGroup* groupC)
     func_801A17B0(5);
     if (D_801B9CE0.view->unk38 == 1)
     {
-        func_801A3C8C(D_801B9CE0.view->unk60.z, D_801B9CE0.view->unk54 / D_801B9CE0.view->unk58,
+        func_801A3C8C(D_801B9CE0.view->unk60.z, D_801B9CE0.view->unk54.x / D_801B9CE0.view->unk54.y,
             D_801B9CE0.view->unk60.x, D_801B9CE0.view->unk60.y);
     }
     else
     {
-        func_801A3AF0(-D_801B9CE0.view->unk54 / 2.0, D_801B9CE0.view->unk54 / 2.0,
-            -D_801B9CE0.view->unk58 / 2.0, D_801B9CE0.view->unk58 / 2.0,
+        func_801A3AF0(-D_801B9CE0.view->unk54.x / 2.0, D_801B9CE0.view->unk54.x / 2.0,
+            -D_801B9CE0.view->unk54.y / 2.0, D_801B9CE0.view->unk54.y / 2.0,
             D_801B9CE0.view->unk60.x, D_801B9CE0.view->unk60.y);
     }
 
@@ -788,7 +788,7 @@ void Proc8017A30C(struct ObjHeader *self)
     {
         ptc->unk1C->unk48[2] = ptc->unk5C;
         draw_shape_2d(ptc->unk1C, 2, 1.0f, 1.0f, 1.0f,
-            ptc->unk20, ptc->unk24, ptc->unk28,
+            ptc->unk20.x, ptc->unk20.y, ptc->unk20.z,
             0.0f, 0.0f, 0.0f,
             0.0f, 0.0f, 0.0f,
             -1, 0);
@@ -1162,7 +1162,7 @@ void Unknown8017B514(struct ObjJoint *a)
         if (joint->header.number == D_801B9CD0)
         {
             if (D_801A80F8 != NULL)
-                sp1C = func_8018B57C(D_801A80F8, joint);
+                sp1C = d_calc_world_dist_btwn(D_801A80F8, joint);
             else
                 sp1C = 0.0f;
             if (sp1C < D_801B9CD4)
