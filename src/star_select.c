@@ -155,7 +155,7 @@ void ShowSomeNum(void)
 {
     u8 buffer[4];
 
-    func_802D6590(1, 158.0f, 81.0f, 0.0f);
+    dl_add_new_translation_matrix(1, 158.0f, 81.0f, 0.0f);
 
     gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700F228);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
@@ -179,11 +179,11 @@ void func_80177004(void)
     u8 *sp54 = (u8 *) segmented_to_virtual((void *) sp58[gCurrCourseNum - 1]);
     u32 *sp50 = (u32 *)segmented_to_virtual(seg2_act_name_table);
     u8 *sp4C;
-    s16 sp4A;
-    s16 sp48;
+    s16 x;
+    s16 x2;
     s8 sp47;
 
-    func_802D68A4();
+    dl_add_new_ortho_matrix();
 
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED00);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
@@ -197,8 +197,9 @@ void func_80177004(void)
     if (save_file_get_course_coin_score(gCurrSaveFileNum - 1, gCurrCourseNum - 1) != 0)
         PrintGenericText(102, 118, sp60);
 
-    sp4A = func_802D7B3C(160, sp54 + 3, 10.0f);
-    PrintGenericText(sp4A, 33, sp54 + 3);
+	// add 3 to skip the number and spacing to get to the actual string to center.
+    x = get_str_x_pos_from_center(160, sp54 + 3, 10.0f);
+    PrintGenericText(x, 33, sp54 + 3);
 
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
 
@@ -210,8 +211,8 @@ void func_80177004(void)
     if (sVisibleStars != 0)
     {
         sp4C = (u8 *) segmented_to_virtual((void *) (sp50[(gCurrCourseNum - 1) * 6 + sSelectedStar]));
-        sp48 = func_802D7B3C(158, sp4C, 8.0f);
-        PrintRegularText(sp48, 81, sp4C);
+        x2 = get_str_x_pos_from_center(158, sp4C, 8.0f);
+        PrintRegularText(x2, 81, sp4C);
     }
 
     for (sp47 = 1; sp47 <= sVisibleStars; sp47++)

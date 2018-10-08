@@ -2016,7 +2016,7 @@ glabel func_802DECB8
 /* 099CC8 802DECC8 AFA60030 */  sw    $a2, 0x30($sp)
 /* 099CCC 802DECCC AFA70034 */  sw    $a3, 0x34($sp)
 /* 099CD0 802DECD0 AFB00018 */  sw    $s0, 0x18($sp)
-/* 099CD4 802DECD4 0C0B5FDD */  jal   func_802D7F74
+/* 099CD4 802DECD4 0C0B5FDD */  jal   get_dialog_id
 /* 099CD8 802DECD8 00000000 */   nop   
 /* 099CDC 802DECDC 2401FFFF */  li    $at, -1
 /* 099CE0 802DECE0 10410003 */  beq   $v0, $at, .L802DECF0

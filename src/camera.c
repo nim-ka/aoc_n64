@@ -1533,7 +1533,7 @@ int func_80283548(struct Struct80280550 *a)
             sp50 += sp50;
         if ((sp44 & 1) && sp48 != 0)
             sp50 = 0;
-        if (sp50 != 0 && func_802D7F74() == -1)
+        if (sp50 != 0 && get_dialog_id() == -1)
             func_80289184(&sp6E, sp6C, sp50);
     }
     if (sp48 == 0 && !(D_8033B4DA & 0x200))

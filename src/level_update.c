@@ -159,7 +159,7 @@ u16 level_control_timer(u32 timerOp)
 
 static u32 pressed_paused(void)
 {
-    u32 val4 = func_802D7F74() >= 0;
+    u32 val4 = get_dialog_id() >= 0;
     u32 intangible = (gMarioState->action & ACT_FLAG_INTANGIBLE) != 0;
 
     if (!intangible && !val4 && !D_8033A740 && sDelayedWarpOp == WARP_OP_NONE &&

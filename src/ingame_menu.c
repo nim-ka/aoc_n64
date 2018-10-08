@@ -28,11 +28,11 @@ extern u8 main_menu_seg7_table_0700ABD0[];
 extern Gfx castle_grounds_seg7_dl_0700EA58[];
 
 extern u16 D_80360080;
-extern s8 D_80360082;
+extern s8 gLastDialogLineNum;
 extern s32 D_80360084;
 extern u16 D_80360088;
-extern s16 D_8036008A;
-extern s16 D_8036008C;
+extern s16 gCutsceneMsgXOffset;
+extern s16 gCutsceneMsgYOffset;
 extern s8 D_8036008E;
 
 extern u8 D_8032CE20;
@@ -40,13 +40,28 @@ extern u8 D_8032CE24;
 
 extern int func_8028803C(int);
 
-s8 D_80330410 = 0;
-f32 D_80330414 = 90.0f;
-f32 D_80330418 = 19.0f;
+enum DiagBoxState {
+    DIAG_STATE_OPENING,
+    DIAG_STATE_WAITBUTTON,
+    DIAG_STATE_SCROLLING,
+    DIAG_STATE_CLOSING
+};
+
+enum DiagBoxType {
+    DIAG_TYPE_ROTATE, // used in NPCs and level messages
+    DIAG_TYPE_ZOOM    // used in signposts and wall signs and etc
+};
+
+#define DEFAULT_DIAGBOX_ANGLE      90.0f
+#define DEFAULT_DIAGBOX_SCALE      19.0f
+
+s8 gDiagBoxState          = DIAG_STATE_OPENING;
+f32 gDiagBoxOpenTimer     = DEFAULT_DIAGBOX_ANGLE;
+f32 gDiagBoxScale         = DEFAULT_DIAGBOX_SCALE;
 s16 D_8033041C = 0;
-s8 D_80330420 = 0;
-s16 D_80330424 = -1;
-s16 D_80330428 = 0;
+s8 gDiagBoxType           = DIAG_TYPE_ROTATE;
+s16 gDialogID             = -1;
+s16 gLastDialogPageStrPos = 0;
 s16 D_8033042C = 0;
 s8 D_80330430 = 1;
 s8 D_80330434 = 0;
@@ -92,8 +107,7 @@ void func_802D6440(void)
     gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(matrix), G_MTX_LOAD | G_MTX_PROJECTION);
 }
 
-// dl_add_new_translation_matrix
-void func_802D6590(s8 pushOp, f32 x, f32 y, f32 z)
+void dl_add_new_translation_matrix(s8 pushOp, f32 x, f32 y, f32 z)
 {
     Mtx *matrix = (Mtx *) alloc_display_list(sizeof(Mtx));
 
@@ -109,8 +123,7 @@ void func_802D6590(s8 pushOp, f32 x, f32 y, f32 z)
         gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(matrix), G_MTX_NOPUSH);
 }
 
-// dl_add_new_rotation_matrix
-void func_802D6694(s8 pushOp, f32 a, f32 x, f32 y, f32 z)
+void dl_add_new_rotation_matrix(s8 pushOp, f32 a, f32 x, f32 y, f32 z)
 {
     Mtx *matrix = (Mtx *) alloc_display_list(sizeof(Mtx));
 
@@ -126,8 +139,7 @@ void func_802D6694(s8 pushOp, f32 a, f32 x, f32 y, f32 z)
         gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(matrix), G_MTX_NOPUSH);
 }
 
-// dl_add_new_scale_matrix
-void func_802D67A0(s8 pushOp, f32 x, f32 y, f32 z)
+void dl_add_new_scale_matrix(s8 pushOp, f32 x, f32 y, f32 z)
 {
     Mtx *matrix = (Mtx *) alloc_display_list(sizeof(Mtx));
 
@@ -143,8 +155,7 @@ void func_802D67A0(s8 pushOp, f32 x, f32 y, f32 z)
         gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(matrix), G_MTX_NOPUSH);
 }
 
-// dl_add_new_ortho_matrix
-void func_802D68A4(void)
+void dl_add_new_ortho_matrix(void)
 {
     Mtx *matrix = (Mtx *) alloc_display_list(sizeof(Mtx));
 
@@ -245,7 +256,7 @@ void put_multi_text_string(s8 multiTextID) // US: 802D76C8
     for (i = 0; i < textLengths[multiTextID * 5]; i++)
     {
         func_802D6AFC(textLengths[5 * multiTextID + 1 + i]);
-        func_802D6590(2, (f32)(D_U_80331370[textLengths[5 * multiTextID + 1 + i]]), 0.0f, 0.0f);
+        dl_add_new_translation_matrix(2, (f32)(D_U_80331370[textLengths[5 * multiTextID + 1 + i]]), 0.0f, 0.0f);
     }
 };
 #endif
@@ -257,7 +268,7 @@ void PrintGenericText(s16 x, s16 y, const u8 *str)
     u8 lineNum = 1;
 
     // create_new_translation_matrix
-    func_802D6590(MENU_MTX_PUSH, x, y, 0.0f);
+    dl_add_new_translation_matrix(MENU_MTX_PUSH, x, y, 0.0f);
 
     while(str[strPos] != 0xFF)
     {
@@ -271,17 +282,17 @@ void PrintGenericText(s16 x, s16 y, const u8 *str)
             break;
         case 0xFE: // newline
             gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
-            func_802D6590(MENU_MTX_PUSH, x, y - (lineNum * MAX_STRING_WIDTH), 0.0f);
+            dl_add_new_translation_matrix(MENU_MTX_PUSH, x, y - (lineNum * MAX_STRING_WIDTH), 0.0f);
             lineNum++;
             break;
         case 0x6E: // handakuten mark
-            func_802D6590(MENU_MTX_PUSH, -2.0f, -5.0f, 0.0f);
+            dl_add_new_translation_matrix(MENU_MTX_PUSH, -2.0f, -5.0f, 0.0f);
             func_802D6AFC(0xF1);
             gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
             break;
 #ifdef VERSION_US
         case 0xD0: // '/'
-            func_802D6590(MENU_MTX_NOPUSH, (f32)(D_U_80331370[0x9E] * 2), 0.0f, 0.0f);
+            dl_add_new_translation_matrix(MENU_MTX_NOPUSH, (f32)(D_U_80331370[0x9E] * 2), 0.0f, 0.0f);
             break;
         case 0xD1: // 'the'
             put_multi_text_string(STRING_THE);
@@ -292,9 +303,9 @@ void PrintGenericText(s16 x, s16 y, const u8 *str)
 #endif
         case 0x9E: // space
 #ifdef VERSION_JP
-            func_802D6590(MENU_MTX_NOPUSH, 5.0f, 0.0f, 0.0f);
+            dl_add_new_translation_matrix(MENU_MTX_NOPUSH, 5.0f, 0.0f, 0.0f);
 #else
-            func_802D6590(MENU_MTX_NOPUSH, (f32)(D_U_80331370[0x9E]), 0.0f, 0.0f);
+            dl_add_new_translation_matrix(MENU_MTX_NOPUSH, (f32)(D_U_80331370[0x9E]), 0.0f, 0.0f);
 #endif
             break;
             break; // ? needed to match
@@ -303,16 +314,16 @@ void PrintGenericText(s16 x, s16 y, const u8 *str)
 
             if(mark != DLG_MARK_NONE)
             {
-                func_802D6590(MENU_MTX_PUSH, 5.0f, 5.0f, 0.0f);
+                dl_add_new_translation_matrix(MENU_MTX_PUSH, 5.0f, 5.0f, 0.0f);
                 func_802D6AFC(mark + 0xEF);
                 gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
                 mark = DLG_MARK_NONE;
             }
 
 #ifdef VERSION_JP
-            func_802D6590(MENU_MTX_NOPUSH, 10.0f, 0.0f, 0.0f);
+            dl_add_new_translation_matrix(MENU_MTX_NOPUSH, 10.0f, 0.0f, 0.0f);
 #else
-            func_802D6590(MENU_MTX_NOPUSH, (f32)(D_U_80331370[str[strPos]]), 0.0f, 0.0f);
+            dl_add_new_translation_matrix(MENU_MTX_NOPUSH, (f32)(D_U_80331370[str[strPos]]), 0.0f, 0.0f);
             break; // what an odd difference. US added a useless break here.
 #endif
         }
@@ -323,11 +334,12 @@ void PrintGenericText(s16 x, s16 y, const u8 *str)
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
 }
 
+// put_hud_menu_string
 void PutString(s8 font, s16 x, s16 y, const u8 *str)
 {
     s32 strPos = 0;
-    void **fontLUT1 = segmented_to_virtual(main_menu_seg7_table_0700ABD0);
-    void **fontLUT2 = segmented_to_virtual(seg2_hud_lut);
+    void **fontLUT1 = segmented_to_virtual(main_menu_seg7_table_0700ABD0); // japanese color font
+    void **fontLUT2 = segmented_to_virtual(seg2_hud_lut);                  // 0-9 A-Z Alphanumeric Font
     s32 curX = x;
     s32 curY = y;
 
@@ -500,10 +512,8 @@ void func_802D7924(s8 sp23, s8 *sp24, s8 sp2b, s8 sp2f)
     }
 }
 
-s16 func_802D7B3C(s16 a0, u8 *str, f32 sp18)
+s16 get_str_x_pos_from_center(s16 centerPos, u8 *str, f32 scale)
 {
-    // calculate center?
-
     s16 strPos = 0;
     f32 charsWidth = 0.0f;
     f32 spacesWidth = 0.0f;
@@ -518,7 +528,9 @@ s16 func_802D7B3C(s16 a0, u8 *str, f32 sp18)
         strPos++;
     }
 
-    return (f32)a0 - (sp18 * (charsWidth / 2.0)) - ((sp18 / 2.0) * (spacesWidth / 2.0));
+    // return the x position of where the string starts as half the string's
+    // length from the position of the provided center.
+    return (f32)centerPos - (scale * (charsWidth / 2.0)) - ((scale / 2.0) * (spacesWidth / 2.0));
 }
 
 u8 D_80330444[] = {TEXT_UNK33};
@@ -591,95 +603,96 @@ void Int2Str(s32 num, u8 *dst)
     dst[pos] = 0xFF;
 }
 
-s16 func_802D7F74(void)
+s16 get_dialog_id(void)
 {
-    return D_80330424;
+    return gDialogID;
 }
 
 void func_802D7F90(s16 a0)
 {
-    if(D_80330424 == -1)
+    if(gDialogID == -1)
     {
-        D_80330424 = a0;
-        D_80330420 = 0;
+        gDialogID = a0;
+        gDiagBoxType = DIAG_TYPE_ROTATE;
     }
 }
 
 void func_802D7FCC(s16 a0, s32 a1)
 {
-    if(D_80330424 == -1)
+    if(gDialogID == -1)
     {
-        D_80330424 = a0;
+        gDialogID = a0;
         D_80360084 = a1;
-        D_80330420 = 0;
+        gDiagBoxType = DIAG_TYPE_ROTATE;
     }
 }
 
 void CreateTextBox(s16 a0)
 {
-    if(D_80330424 == -1)
+    if(gDialogID == -1)
     {
-        D_80330424 = a0;
-        D_80330420 = 1;
+        gDialogID = a0;
+        gDiagBoxType = DIAG_TYPE_ZOOM;
     }
 }
 
 void func_802D8050(s16 a0)
 {
-    if(D_80330424 == -1)
+    if(gDialogID == -1)
     {
-        D_80330424 = a0;
-        D_80330420 = 0;
+        gDialogID = a0;
+        gDiagBoxType = DIAG_TYPE_ROTATE;
         D_80330434 = 1;
     }
 }
 
+// reset_dialog_state?
 void func_802D8098(void)
 {
     level_set_transition(0, 0);
 
-    if(D_80330420 == 1)
+    if(gDiagBoxType == DIAG_TYPE_ZOOM)
         StopMario(2);
 
-    D_80330418 = 19.0f;
-    D_80330414 = 90.0f;
-    D_80330410 = 0;
-    D_80330424 = -1;
+    gDiagBoxScale = 19.0f;
+    gDiagBoxOpenTimer = 90.0f;
+    gDiagBoxState = DIAG_STATE_OPENING;
+    gDialogID = -1;
     D_8033042C = 0;
     D_80330434 = 0;
-    D_80330428 = 0;
+    gLastDialogPageStrPos = 0;
     D_80330440 = 0;
 }
 
-void func_802D8134(struct Struct802D8980 *sp40, s8 sp47)
+void func_802D8134(struct DialogEntry *diagEntry, s8 sp47)
 {
     UNUSED s32 unused;
 
-    func_802D6590(2, sp40->unk06, sp40->unk08, 0);
+    dl_add_new_translation_matrix(2, diagEntry->leftOffset, diagEntry->width, 0);
 
-    switch(D_80330420)
+    switch(gDiagBoxType)
     {
-    case 0:
-        if(D_80330410 == 0 || D_80330410 == 3)
+    case DIAG_TYPE_ROTATE:
+        if(gDiagBoxState == DIAG_STATE_OPENING || gDiagBoxState == DIAG_STATE_CLOSING)
         {
-            func_802D67A0(2, 1.0 / D_80330418, 1.0 / D_80330418, 1.0f);
-            func_802D6694(2, D_80330414 * 4.0f, 0, 0, 1.0f);
+            dl_add_new_scale_matrix(2, 1.0 / gDiagBoxScale, 1.0 / gDiagBoxScale, 1.0f);
+            dl_add_new_rotation_matrix(2, gDiagBoxOpenTimer * 4.0f, 0, 0, 1.0f); // convert the speed into angle
         }
         gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, 0x96);
         break;
-    case 1:
-        if(D_80330410 == 0 || D_80330410 == 3)
+    case DIAG_TYPE_ZOOM:
+        if(gDiagBoxState == DIAG_STATE_OPENING || gDiagBoxState == DIAG_STATE_CLOSING)
         {                
-            func_802D6590(2, 65.0 - (65.0 / D_80330418),
-                (40.0 / D_80330418) - 40.0, 0);
-            func_802D67A0(2, 1.0 / D_80330418, 1.0 / D_80330418, 1.0f);
+            dl_add_new_translation_matrix(2, 65.0 - (65.0 / gDiagBoxScale),
+                (40.0 / gDiagBoxScale) - 40.0, 0);
+            dl_add_new_scale_matrix(2, 1.0 / gDiagBoxScale, 1.0 / gDiagBoxScale, 1.0f);
         }
         gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 0x96);
         break;
     }
 
-    func_802D6590(1, -5.0f, 2.0, 0);
-    func_802D67A0(2, 1.1f, ((f32)sp47 / 4.0f) + 0.1, 1.0f);
+    dl_add_new_translation_matrix(1, -5.0f, 2.0, 0);
+    dl_add_new_scale_matrix(2, 1.1f, ((f32)sp47 / 4.0f) + 0.1, 1.0f);
 
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200EDE8);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
@@ -710,28 +723,28 @@ void func_802D8450(s8 a0, s8 a1)
     }
     else
     {
-        switch(D_80330420)
+        switch(gDiagBoxType)
         {
-        case 0:
+        case DIAG_TYPE_ROTATE:
             break;
-        case 1:
+        case DIAG_TYPE_ZOOM:
             gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, 255);
             break;
         }
     }
 }
 
-void func_802D8690(s8 sp23, s8 sp27, s8 *sp28, s8 *sp2c, s16 *sp30)
+void func_802D8690(s8 lineNum, s8 sp27, s8 *sp28, s8 *sp2c, s16 *sp30)
 {
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
 
-    if(sp23 == sp27)
+    if(lineNum == sp27)
     {
         sp28[0] = 1;
         return;
     }
 
-    func_802D6590(1, 5.0f, 2 - (sp23 * 20), 0);
+    dl_add_new_translation_matrix(1, 5.0f, 2 - (lineNum * 20), 0);
     sp30[0] = 0;
     sp2c[0] = 1;
 }
@@ -739,9 +752,9 @@ void func_802D8690(s8 sp23, s8 sp27, s8 *sp28, s8 *sp2c, s16 *sp30)
 void func_802D875C(s8 *sp20, s16 *sp24)
 {
     if(sp24[0] != 0)
-        func_802D6590(2, sp20[0] * 10, 0, 0);
+        dl_add_new_translation_matrix(2, sp20[0] * 10, 0, 0);
 
-    func_802D6590(1, -2.0f, -5.0f, 0);
+    dl_add_new_translation_matrix(1, -2.0f, -5.0f, 0);
     func_802D6AFC(0xF1);
 
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
@@ -757,7 +770,7 @@ void func_802D8830(s8 *sp20, s16 *sp24)
 
     if(sp1f != 0)
     {
-        func_802D6590(2, sp20[0] * 10, 0, 0);
+        dl_add_new_translation_matrix(2, sp20[0] * 10, 0, 0);
         func_802D6AFC(sp1f);
     }
     else
@@ -765,7 +778,7 @@ void func_802D8830(s8 *sp20, s16 *sp24)
         sp20[0]++;
     }
 
-    func_802D6590(2, sp20[0] * 10, 0, 0);
+    dl_add_new_translation_matrix(2, sp20[0] * 10, 0, 0);
     func_802D6AFC(sp1e);
 
     sp24[0]++;
@@ -780,109 +793,109 @@ u32 func_802D8954(s16 a0)
     return a0;
 }
 
-void func_802D8980(s8 sp63, struct Struct802D8980 *sp64)
+void func_802D8980(s8 sp63, struct DialogEntry *diagEntry)
 {
     UNUSED s32 u0, u1;
 
-    u8 sp57;
+    u8 strChar;
 
-    u8 *sp50 = (u8 *) segmented_to_virtual(sp64->unk0C);
-    s8 sp4f = 1;
+    u8 *str = (u8 *)segmented_to_virtual(diagEntry->str);
+    s8 lineNum = 1;
 
-    s8 sp4e;
+    s8 totalLines;
 
     s8 sp4d = 0;
     s8 sp4c = 0;
     s8 sp4b = 1;
-    s8 sp4a = sp64->unk04;
+    s8 linesPerBox = diagEntry->linesPerBox;
 
-    s16 sp48;
-    s16 sp46;
+    s16 strIdx;
+    s16 linePos;
 
-    sp46 = 0;
+    linePos = 0;
 
-    if(D_80330410 == 2)
-        sp4e = (sp4a * 2) + 1;
+    if(gDiagBoxState == DIAG_STATE_SCROLLING)
+        totalLines = (linesPerBox * 2) + 1; // if scrolling, consider the number of lines for both the current page and the page being scrolled to.
     else
-        sp4e = sp4a + 1;
+        totalLines = linesPerBox + 1;
 
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
-    sp48 = D_8033042C;
+    strIdx = D_8033042C;
 
-    if(D_80330410 == 2)
-        func_802D6590(2, 0, (f32)D_8033041C, 0);
+    if(gDiagBoxState == DIAG_STATE_SCROLLING)
+        dl_add_new_translation_matrix(2, 0, (f32)D_8033041C, 0);
 
-    func_802D6590(1, 5.0f, 2 - sp4f * 20, 0);
+    dl_add_new_translation_matrix(1, 5.0f, 2 - lineNum * 20, 0);
 
     while(sp4d == 0)
     {
-        func_802D8450(sp63, sp4f);
-        sp57 = sp50[sp48];
+        func_802D8450(sp63, lineNum);
+        strChar = str[strIdx];
 
-        switch(sp57)
+        switch(strChar)
         {
-        case 0xFF:
+        case 0xFF: // terminator
             sp4d = 2;
             gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
             break;
-        case 0xFE:
-            sp4f++;
-            func_802D8690(sp4f, sp4e, &sp4d, &sp4b, &sp46);
+        case 0xFE: // newline
+            lineNum++;
+            func_802D8690(lineNum, totalLines, &sp4d, &sp4b, &linePos);
             break;
-        case 0xF0:
+        case 0xF0: // kana with dakuten
             sp4c = 1;
             break;
-        case 0xF1:
+        case 0xF1: // kana with handakuten
             sp4c = 2;
             break;
         case 0x9E: // [space] L802D8BC4
-            if(sp46 != 0)
+            if(linePos != 0)
                 sp4b++;
 
-            sp46++;
+            linePos++;
             break;
         case 0x6E: // handakuten
-            func_802D875C(&sp4b, &sp46);
+            func_802D875C(&sp4b, &linePos);
             break;
-        case 0xE0:
-            func_802D8830(&sp4b, &sp46);
+        case 0xE0: // number of stars [%]
+            func_802D8830(&sp4b, &linePos);
             break;
-        default:
-            if(sp46 != 0)
-                func_802D6590(2, sp4b * 10, 0, 0);
+        default:   // any other character
+            if(linePos != 0)
+                dl_add_new_translation_matrix(2, sp4b * 10, 0, 0);
 
-            func_802D6AFC(sp57);
+            func_802D6AFC(strChar);
             sp4b = 1;
-            sp46++;
+            linePos++;
 
             if(sp4c != 0)
             {
-                func_802D6590(1, 5.0f, 7.0f, 0);
+                dl_add_new_translation_matrix(1, 5.0f, 7.0f, 0);
                 func_802D6AFC(sp4c + 0xEF);
                 gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
                 sp4c = 0;
             }
         }
 
-        if(sp46 == 12)
+        if(linePos == 12)
         {
-            if(sp50[sp48+1] == 0x6E) // handakuten
+            if(str[strIdx+1] == 0x6E) // handakuten
             {
-                func_802D875C(&sp4b, &sp46);
-                sp48++;
+                func_802D875C(&sp4b, &linePos);
+                strIdx++;
             }
 
-            if(sp50[sp48+1] == 0x6F) // comma
+            if(str[strIdx+1] == 0x6F) // comma
             {
-                func_802D6590(2, sp4b * 10, 0, 0);
+                dl_add_new_translation_matrix(2, sp4b * 10, 0, 0);
                 func_802D6AFC(0x6F);
-                sp48++;
+                strIdx++;
             }
 
-            if(sp50[sp48+1] == 0xFE) // newline
-                sp48++;
+            if(str[strIdx+1] == 0xFE) // newline
+                strIdx++;
 
-            if(sp50[sp48+1] == 0xFF) // terminator
+            if(str[strIdx+1] == 0xFF) // terminator
             {
                 sp4d = 2;
                 gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
@@ -890,35 +903,35 @@ void func_802D8980(s8 sp63, struct Struct802D8980 *sp64)
             }
             else
             {
-                sp4f++;
-                func_802D8690(sp4f, sp4e, &sp4d, &sp4b, &sp46);
+                lineNum++;
+                func_802D8690(lineNum, totalLines, &sp4d, &sp4b, &linePos);
             }
         }
 
-        sp48++;
+        strIdx++;
     }
 
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
 
-    if(D_80330410 == 1)
+    if(gDiagBoxState == DIAG_STATE_WAITBUTTON)
     {
         if(sp4d == 2)
-            D_80330428 = -1;
+            gLastDialogPageStrPos = -1;
         else
-            D_80330428 = sp48;
+            gLastDialogPageStrPos = strIdx;
     }
 
-    D_80360082 = sp4f;
+    gLastDialogLineNum = lineNum;
 }
 
 void func_802D8ED4(void)
 {
-    if(D_80330410 == 1)
+    if(gDiagBoxState == DIAG_STATE_WAITBUTTON)
         func_802D7924(2, &D_80330430, 1, 2);
 
-    func_802D6590(2, (D_80330430 * 50) - 25, 1 - (D_80360082 * 20), 0);
+    dl_add_new_translation_matrix(2, (D_80330430 * 50) - 25, 1 - (gLastDialogLineNum * 20), 0);
 
-    if(D_80330420 == 0)
+    if(gDiagBoxType == DIAG_TYPE_ROTATE)
     {
         gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
     }
@@ -937,11 +950,11 @@ void func_802D9030(s8 sp3b)
     if(sp34 & 0x08)
         return;
 
-    func_802D6590(1, 123.0f, (sp3b * -20) + 2, 0);
-    func_802D67A0(2, 0.8f, 0.8f, 1.0f);
-    func_802D6694(2, -90.0f, 0, 0, 1.0f);
+    dl_add_new_translation_matrix(1, 123.0f, (sp3b * -20) + 2, 0);
+    dl_add_new_scale_matrix(2, 0.8f, 0.8f, 1.0f);
+    dl_add_new_rotation_matrix(2, -DEFAULT_DIAGBOX_ANGLE, 0, 0, 1.0f);
 
-    if(D_80330420 == 0)
+    if(gDiagBoxType == DIAG_TYPE_ROTATE)
     {
         gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
     }
@@ -1003,145 +1016,156 @@ void func_802D91C0(s16 sp4a)
 
 s16 D_8033047C = -1;
 
-u8 D_80330480[] = {TEXT_MARIO_EXCLAMATION};
-u8 D_80330488[] = {TEXT_POWER_STARS_RESTORED};
-u8 D_8033049C[] = {TEXT_THANKS_TO_YOU};
-u8 D_803304B0[] = {TEXT_THANK_YOU_MARIO};
-u8 D_803304BC[] = {TEXT_SOMETHING_SPECIAL};
-u8 D_803304CC[] = {TEXT_COME_ON_EVERYBODY};
-u8 D_803304D4[] = {TEXT_LETS_HAVE_CAKE};
-u8 D_803304E4[] = {TEXT_FOR_MARIO};
-u8 D_803304F0[] = {TEXT_MARIO_QUESTION};
+u8 gEndCutsceneStr0[] = {TEXT_MARIO_EXCLAMATION};
+u8 gEndCutsceneStr1[] = {TEXT_POWER_STARS_RESTORED};
+u8 gEndCutsceneStr2[] = {TEXT_THANKS_TO_YOU};
+u8 gEndCutsceneStr3[] = {TEXT_THANK_YOU_MARIO};
+u8 gEndCutsceneStr4[] = {TEXT_SOMETHING_SPECIAL};
+u8 gEndCutsceneStr5[] = {TEXT_COME_ON_EVERYBODY};
+u8 gEndCutsceneStr6[] = {TEXT_LETS_HAVE_CAKE};
+u8 gEndCutsceneStr7[] = {TEXT_FOR_MARIO};
+u8 gEndCutsceneStr8[] = {TEXT_MARIO_QUESTION};
 
-u8 *D_803304F8[] = {
-    D_80330480,
-    D_80330488,
-    D_8033049C,
-    D_803304B0,
-    D_803304BC,
-    D_803304CC,
-    D_803304D4,
-    D_803304E4,
-    D_803304F0,
+u8 *gEndCutsceneStrings[] = {
+    gEndCutsceneStr0,
+    gEndCutsceneStr1,
+    gEndCutsceneStr2,
+    gEndCutsceneStr3,
+    gEndCutsceneStr4,
+    gEndCutsceneStr5,
+    gEndCutsceneStr6,
+    gEndCutsceneStr7,
+    // this [8] string is actually unused. in the
+    // cutscene handler, the developers do not
+    // set the 8th one, but use the first string
+    // again at the very end, so Peach ends up
+    // saying "Mario!" twice. It is likely that
+    // she was originally meant to say "Mario?" at
+    // the end but the developers changed their
+    // mind, possibly because the line recorded
+    // sounded more like an exclamation than a
+    // question.
+    gEndCutsceneStr8,
     NULL
 };
 
-u16 D_80330520 = 0;
-s16 D_80330524 = -1;
-s16 D_80330528 = -1;
-s16 D_8033052C = 0;
+u16 gCutsceneMsgFade = 0;
+s16 gCutsceneMsgIndex = -1;
+s16 gCutsceneMsgDuration = -1;
+s16 gCutsceneMsgTimer = 0;
 s8 D_80330530 = 1;
 s8 D_80330534 = 1;
 
 void func_802D93E0(void)
 {
-    void **sp34 = segmented_to_virtual(seg2_dialog_table);
-    struct Struct802D8980 *sp30 = segmented_to_virtual(sp34[D_80330424]);
+    void **diagTable = segmented_to_virtual(seg2_dialog_table);
+    struct DialogEntry *diagEntry = segmented_to_virtual(diagTable[gDialogID]);
 
-    if(segmented_to_virtual(NULL) == sp30)
+    // if the dialog entry is invalid, set the ID to -1.
+    if(segmented_to_virtual(NULL) == diagEntry)
     {
-        D_80330424 = -1;
+        gDialogID = -1;
         return;
     }
 
-    switch(D_80330410)
+    switch(gDiagBoxState)
     {
-    case 0:
-        if(D_80330414 == 90.0f)
+    case DIAG_STATE_OPENING:
+        if(gDiagBoxOpenTimer == DEFAULT_DIAGBOX_ANGLE)
         {
-            func_80320A68(D_80330424);
+            func_80320A68(gDialogID);
             SetSound(0x70040081, D_803320E0);
         }
 
-        if(D_80330420 == 0)
+        if(gDiagBoxType == DIAG_TYPE_ROTATE)
         {
-            D_80330414 -= 7.5;
-            D_80330418 -= 1.5;
+            gDiagBoxOpenTimer -= 7.5;
+            gDiagBoxScale -= 1.5;
         }
         else
         {
-            D_80330414 -= 10.0;
-            D_80330418 -= 2.0;
+            gDiagBoxOpenTimer -= 10.0;
+            gDiagBoxScale -= 2.0;
         }
 
-        if(D_80330414 == 0.0f)
+        if(gDiagBoxOpenTimer == 0.0f)
         {
-            D_80330410 = 1;
+            gDiagBoxState = DIAG_STATE_WAITBUTTON;
             D_80330430 = 1;
         }
         break;
-    case 1:
-        D_80330414 = 0.0f;
+    case DIAG_STATE_WAITBUTTON:
+        gDiagBoxOpenTimer = 0.0f;
 
-        if((gPlayer3Controller->buttonPressed & 0x8000) ||
-           (gPlayer3Controller->buttonPressed & 0x4000))
+        if((gPlayer3Controller->buttonPressed & A_BUTTON) ||
+           (gPlayer3Controller->buttonPressed & B_BUTTON))
         {
-            if(D_80330428 == -1)
+            if(gLastDialogPageStrPos == -1)
             {
-                func_802D91C0(D_80330424);
-                D_80330410 = 3;
+                func_802D91C0(gDialogID);
+                gDiagBoxState = DIAG_STATE_CLOSING;
             }
             else
             {
-                D_80330410 = 2;
+                gDiagBoxState = DIAG_STATE_SCROLLING;
                 SetSound(0x70130081, D_803320E0);
             }
         }
         break;
-    case 2:
-        D_8033041C += sp30->unk04 * 2;
+    case DIAG_STATE_SCROLLING:
+        D_8033041C += diagEntry->linesPerBox * 2;
 
-        if(D_8033041C >= sp30->unk04 * 20)
+        if(D_8033041C >= diagEntry->linesPerBox * 20)
         {
-            D_8033042C = D_80330428;
-            D_80330410 = 1;
+            D_8033042C = gLastDialogPageStrPos;
+            gDiagBoxState = DIAG_STATE_WAITBUTTON;
             D_8033041C = 0;
         }
         break;
-    case 3:
-        if(D_80330414 == 20.0f)
+    case DIAG_STATE_CLOSING:
+        if(gDiagBoxOpenTimer == 20.0f)
         {
             level_set_transition(0, 0);
             SetSound(0x70050081, D_803320E0);
             
-            if(D_80330420 == 1)
+            if(gDiagBoxType == DIAG_TYPE_ZOOM)
                 StopMario(2);
 
             D_80330440 = D_80330430;
         }
 
-        D_80330414 = D_80330414 + 10.0f;
-        D_80330418 = D_80330418 + 2.0f;
+        gDiagBoxOpenTimer = gDiagBoxOpenTimer + 10.0f;
+        gDiagBoxScale     = gDiagBoxScale + 2.0f;
 
-        if(D_80330414 == 90.0f)
+        if(gDiagBoxOpenTimer == DEFAULT_DIAGBOX_ANGLE)
         {
-            D_80330410 = 0;
-            D_80330424 = -1;
+            gDiagBoxState = DIAG_STATE_OPENING;
+            gDialogID = -1;
             D_8033042C = 0;
             D_80330434 = 0;
-            D_80330428 = 0;
+            gLastDialogPageStrPos = 0;
             D_80330440 = 0;
         }
         break;
     }
 
-    func_802D8134(sp30, sp30->unk04);
+    func_802D8134(diagEntry, diagEntry->linesPerBox);
 
     gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE,
-        func_802D8954(sp30->unk06),
-        func_802D8954(240 - sp30->unk08),
-        func_802D8954(130 + sp30->unk06),
-        func_802D8954(240 + ((sp30->unk04*80)/4) - sp30->unk08));
+        func_802D8954(diagEntry->leftOffset),
+        func_802D8954(240 - diagEntry->width),
+        func_802D8954(130 + diagEntry->leftOffset),
+        func_802D8954(240 + ((diagEntry->linesPerBox*80)/4) - diagEntry->width));
 
-    func_802D8980(0, sp30);
+    func_802D8980(0, diagEntry);
 
-    if(D_80330428 == -1 && D_80330434 == 1)
+    if(gLastDialogPageStrPos == -1 && D_80330434 == 1)
         func_802D8ED4();
 
     gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 2, 2, 316, 236);
 
-    if(D_80330428 != -1 && D_80330410 == 1)
-        func_802D9030(sp30->unk04);
+    if(gLastDialogPageStrPos != -1 && gDiagBoxState == DIAG_STATE_WAITBUTTON)
+        func_802D9030(diagEntry->linesPerBox);
 }
 
 void func_802D9A14(s16 a0)
@@ -1150,29 +1174,28 @@ void func_802D9A14(s16 a0)
         D_8033047C = a0;
 }
 
-void func_802D9A48(void)
+void reset_cutscene_msg_fade(void)
 {
-    D_80330520 = 0;
+    gCutsceneMsgFade = 0;
 }
 
 void func_802D9A60(void)
 {
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED00);
-    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80330520);
+    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gCutsceneMsgFade);
 }
 
 void func_802D9AE8(void)
 {
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED68);
 
-    if(D_80330520 < 250)
-        D_80330520 += 25;
+    if(gCutsceneMsgFade < 250)
+        gCutsceneMsgFade += 25;
     else
-        D_80330520 = 255;
+        gCutsceneMsgFade = 255;
 }
 
-// ascii_to_credits_char
-u8 func_802D9B68(u8 c)
+u8 ascii_to_credits_char(u8 c)
 {
     if(c >= 'A' && c <= 'Z')
         return (c - 0x37);
@@ -1189,7 +1212,7 @@ u8 func_802D9B68(u8 c)
     return 0x9E;
 }
 
-void func_802D9C38(s16 x, s16 y, char *str)
+void print_credits_str(s16 x, s16 y, char *str)
 {
     s32 pos = 0;
     u8 c = str[pos];
@@ -1197,7 +1220,7 @@ void func_802D9C38(s16 x, s16 y, char *str)
 
     while(c != 0)
     {
-        creditStr[pos++] = func_802D9B68(c);
+        creditStr[pos++] = ascii_to_credits_char(c);
         c = str[pos];
     }
 
@@ -1206,116 +1229,138 @@ void func_802D9C38(s16 x, s16 y, char *str)
     PutMiniString(x, y, creditStr);
 }
 
-void func_802D9CE8(s16 a0, s16 a1, s16 a2, s16 a3)
+void set_cutscene_message(s16 xOffset, s16 yOffset, s16 msgIndex, s16 msgDuration)
 {
-    if(D_80330524 == -1)
+    // is message done printing?
+    if(gCutsceneMsgIndex == -1)
     {
-        D_80330524 = a2;
-        D_80330528 = a3;
-        D_8033052C = 0;
-        D_8036008A = a0;
-        D_8036008C = a1;
-        D_80330520 = 0;
+        gCutsceneMsgIndex = msgIndex;
+        gCutsceneMsgDuration = msgDuration;
+        gCutsceneMsgTimer = 0;
+        gCutsceneMsgXOffset = xOffset;
+        gCutsceneMsgYOffset = yOffset;
+        gCutsceneMsgFade = 0;
     }
 }
 
-void func_802D9D5C(void)
+void do_cutscene_handler(void)
 {
-    s16 sp26;
+    s16 x;
 
-    if(D_80330524 == -1)
+    // is a cutscene playing? do not perform this
+    // handler's actions if so.
+    if(gCutsceneMsgIndex == -1)
         return;
 
-    func_802D68A4();
+    dl_add_new_ortho_matrix();
 
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
-    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80330520);
+    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gCutsceneMsgFade);
 
-    sp26 = func_802D7B3C(D_8036008A, D_803304F8[D_80330524], 10.0f);
+    // get the x coordinate of where the cutscene string starts.
+    x = get_str_x_pos_from_center(gCutsceneMsgXOffset, gEndCutsceneStrings[gCutsceneMsgIndex], 10.0f);
 
-    PrintGenericText(sp26, 240 - D_8036008C, D_803304F8[D_80330524]);
+    PrintGenericText(x, 240 - gCutsceneMsgYOffset, gEndCutsceneStrings[gCutsceneMsgIndex]);
 
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
 
-    if(D_8033052C < 5)
-        D_80330520 += 50;
+    // if the timing variable is less than 5, increment
+    // the fade until we are at full opacity.
+    if(gCutsceneMsgTimer < 5)
+        gCutsceneMsgFade += 50;
 
-    if(D_80330528 + 5 < D_8033052C)
-        D_80330520 -= 50;
+    // if the cutscene frame length + the fade-in counter is
+    // less than the timer, it means we have exceeded the 
+    // time that the message is supposed to remain on 
+    // screen. if (message_duration = 50) and (msg_timer = 55)
+    // then after the first 5 frames, the message will remain
+    // on screen for another 50 frames until it starts fading.
+    if(gCutsceneMsgDuration + 5 < gCutsceneMsgTimer)
+        gCutsceneMsgFade -= 50;
 
-    if(D_80330528 + 10 < D_8033052C)
+    // like the first check, it takes 5 frames to fade out, so
+    // perform a + 10 to account for the earlier check (10-5=5).
+    if(gCutsceneMsgDuration + 10 < gCutsceneMsgTimer)
     {
-        D_80330524 = -1;
-        D_80330520 = 0;
-        D_8033052C = 0;
+        gCutsceneMsgIndex = -1;
+        gCutsceneMsgFade = 0;
+        gCutsceneMsgTimer = 0;
         return;
     }
 
-    D_8033052C++;
+    gCutsceneMsgTimer++;
 }
 
-void func_802D9F58(void)
+// "Dear Mario" message handler
+void print_peach_letter_message(void)
 {
-    void **sp3c = segmented_to_virtual(seg2_dialog_table);
-    struct Struct802D8980 *sp38 = segmented_to_virtual(sp3c[D_80330424]);
+    void **diagTable = segmented_to_virtual(seg2_dialog_table);
+    struct DialogEntry *diagEntry = segmented_to_virtual(diagTable[gDialogID]);
 
-    u8 *sp34 = segmented_to_virtual(sp38->unk0C);
+    u8 *str = segmented_to_virtual(diagEntry->str);
 
-    func_802D6590(1, 97.0f, 118.0f, 0);
+    dl_add_new_translation_matrix(1, 97.0f, 118.0f, 0);
 
-    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80330520);
+    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gCutsceneMsgFade);
     gSPDisplayList(gDisplayListHead++, castle_grounds_seg7_dl_0700EA58);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
-    gDPSetEnvColor(gDisplayListHead++, 20, 20, 20, D_80330520);
+    gDPSetEnvColor(gDisplayListHead++, 20, 20, 20, gCutsceneMsgFade);
 
-    PrintGenericText(53, 136, sp34);
+    PrintGenericText(53, 136, str);
 
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
 
-    if(D_8033052C == 0)
-        D_80330520 = 0;
+    // at the start/end of message, reset the fade.
+    if(gCutsceneMsgTimer == 0)
+        gCutsceneMsgFade = 0;
 
-    if(D_8033052C < 20)
-        D_80330520 += 10;
+    // we're less than 20 increments, so increase the fade.
+    if(gCutsceneMsgTimer < 20)
+        gCutsceneMsgFade += 10;
 
-    if(D_8033052C >= 0xAB)
-        D_80330520 -= 10;
+    // we're after 0xAB increments, so decrease the fade.
+    if(gCutsceneMsgTimer >= 0xAB)
+        gCutsceneMsgFade -= 10;
 
-    if(D_8033052C >= 0xBF)
+    // 20 increments after the start of the decrease, we're
+    // back where we are, so reset everything at the end.
+    if(gCutsceneMsgTimer >= 0xBF)
     {
-        D_80330524 = -1;
-        D_80330520 = 0;
-        D_80330424 = -1;
-        D_8033052C = 0;
-        return;
+        gCutsceneMsgIndex = -1;
+        gCutsceneMsgFade = 0; //! this is uselessly reset since
+                              //  the next execution will just
+                              //  set it to 0 again.
+        gDialogID = -1;
+        gCutsceneMsgTimer = 0;
+        return; // return to avoid incrementing the timer
     }
 
-    D_8033052C++;
+    gCutsceneMsgTimer++;
 }
 
 void RenderHudCannonReticle(void)
 {
-    func_802D6590(1, 160.0f, 120.0f, 0);
+    dl_add_new_translation_matrix(1, 160.0f, 120.0f, 0);
 
     gDPSetEnvColor(gDisplayListHead++, 50, 50, 50, 180);
-    func_802D6590(1, -20.0f, -8.0f, 0);
+    dl_add_new_translation_matrix(1, -20.0f, -8.0f, 0);
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200EF60);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
 
-    func_802D6590(1, 20.0f, 8.0f, 0);
-    func_802D6694(2, 180.0f, 0, 0, 1.0f);
+    dl_add_new_translation_matrix(1, 20.0f, 8.0f, 0);
+    dl_add_new_rotation_matrix(2, 180.0f, 0, 0, 1.0f);
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200EF60);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
 
-    func_802D6590(1, 8.0f, -20.0f, 0);
-    func_802D6694(2, 90.0f, 0, 0, 1.0f);
+    dl_add_new_translation_matrix(1, 8.0f, -20.0f, 0);
+    dl_add_new_rotation_matrix(2, DEFAULT_DIAGBOX_ANGLE, 0, 0, 1.0f);
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200EF60);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
 
-    func_802D6590(1, -8.0f, 20.0f, 0);
-    func_802D6694(2, -90.0f, 0, 0, 1.0f);
+    dl_add_new_translation_matrix(1, -8.0f, 20.0f, 0);
+    dl_add_new_rotation_matrix(2, -DEFAULT_DIAGBOX_ANGLE, 0, 0, 1.0f);
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200EF60);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
 
@@ -1337,8 +1382,8 @@ void func_802DA4F4(void)
 
 void ShadeScreen(void)
 {
-    func_802D6590(1, 0, 240.0f, 0);
-    func_802D67A0(2, 2.6f, 3.4f, 1.0f);
+    dl_add_new_translation_matrix(1, 0, 240.0f, 0);
+    dl_add_new_scale_matrix(2, 2.6f, 3.4f, 1.0f);
     gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, 110);
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200EDE8);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
@@ -1348,8 +1393,8 @@ void PrintAnimatedRedCoin(s16 sp4a, s16 sp4e)
 {
     s32 timer = gGlobalTimer;
 
-    func_802D6590(1, sp4a, sp4e, 0);
-    func_802D67A0(2, 0.2f, 0.2f, 1.0f);
+    dl_add_new_translation_matrix(1, sp4a, sp4e, 0);
+    dl_add_new_scale_matrix(2, 0.2f, 0.2f, 1.0f);
     gSPSetOtherMode(gDisplayListHead++, G_SET_OTHER_MODE_L, 3, 0x1E, 0x0F0A7008);
 
     switch(timer & 6)
@@ -1461,7 +1506,7 @@ void PauseScreenCameraMenu(s16 sp72, s16 sp76, s8 *sp78, s16 sp7e)
     PrintGenericText(sp72+116, sp76-13, sp3c);
 
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
-    func_802D6590(1, ((sp78[0] - 1) * sp7e) + sp72, sp76, 0);
+    dl_add_new_translation_matrix(1, ((sp78[0] - 1) * sp7e) + sp72, sp76, 0);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200EF60);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
@@ -1492,7 +1537,7 @@ void PauseScreen2(s16 sp62, s16 sp66, s8 *sp68, s16 sp6e)
         PrintGenericText(sp62+10, sp66-33, sp34);
         gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
 
-        func_802D6590(1, sp62, (sp66 - ((sp68[0] - 1) * sp6e)) - 4, 0);
+        dl_add_new_translation_matrix(1, sp62, (sp66 - ((sp68[0] - 1) * sp6e)) - 4, 0);
 
         gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
         gSPDisplayList(gDisplayListHead++, seg2_dl_0200EF60);
@@ -1507,20 +1552,20 @@ void PauseScreen2(s16 sp62, s16 sp66, s8 *sp68, s16 sp6e)
 
 void PauseCastleMenuBox(s16 sp42, s16 sp46)
 {
-    func_802D6590(1, sp42-78, sp46-32, 0);
-    func_802D67A0(2, 1.2f, 0.8f, 1.0f);
+    dl_add_new_translation_matrix(1, sp42-78, sp46-32, 0);
+    dl_add_new_scale_matrix(2, 1.2f, 0.8f, 1.0f);
     gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, 105);
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200EDE8);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
 
-    func_802D6590(1, sp42+6, sp46-28, 0);
-    func_802D6694(2, 90.0f, 0, 0, 1.0f);
+    dl_add_new_translation_matrix(1, sp42+6, sp46-28, 0);
+    dl_add_new_rotation_matrix(2, DEFAULT_DIAGBOX_ANGLE, 0, 0, 1.0f);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200EF60);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
     
-    func_802D6590(1, sp42-9, sp46-101, 0);
-    func_802D6694(2, 270.0f, 0, 0, 1.0f);
+    dl_add_new_translation_matrix(1, sp42-9, sp46-101, 0);
+    dl_add_new_rotation_matrix(2, 270.0f, 0, 0, 1.0f);
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200EF60);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
 }
@@ -1546,7 +1591,7 @@ void func_802DB540(void)
 
 void PauseScreen1(void)
 {
-    u8 sp28[] = {TEXT_PAUSE_ENG}; //D_803305AC;
+    u8 sp28[] = {TEXT_PAUSE_ENG};
 
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED00);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
@@ -1673,9 +1718,9 @@ s16 func_802DBBB0(void)
 {
     s16 sp26;
 
-    switch(D_80330410)
+    switch(gDiagBoxState)
     {
-    case 0:
+    case DIAG_STATE_OPENING:
         D_80330430 = 1;
         D_80360088 = 0;
         level_set_transition(-1, 0);
@@ -1684,15 +1729,15 @@ s16 func_802DBBB0(void)
         if(gCurrCourseNum > 0 && gCurrCourseNum < 26)
         {
             func_802DA4F4();
-            D_80330410 = 1;
+            gDiagBoxState = DIAG_STATE_WAITBUTTON;
         }
         else
         {
             func_802DB540();
-            D_80330410 = 2;
+            gDiagBoxState = DIAG_STATE_SCROLLING;
         }
         break;
-    case 1:
+    case DIAG_STATE_WAITBUTTON:
         ShadeScreen();
         func_802DA8EC();
         func_802DA874();
@@ -1705,7 +1750,7 @@ s16 func_802DBBB0(void)
         {
             level_set_transition(0, 0);
             SetSound(0x7003FF81, D_803320E0);
-            D_80330410 = 0;
+            gDiagBoxState = DIAG_STATE_OPENING;
             D_8033047C = -1;
 
             if(D_80330430 == 2)
@@ -1720,7 +1765,7 @@ s16 func_802DBBB0(void)
             return sp26;
         }
         break;
-    case 2:
+    case DIAG_STATE_SCROLLING:
         ShadeScreen();
         PauseScreen1();
         PauseCastleMenuBox(160, 143);
@@ -1732,7 +1777,7 @@ s16 func_802DBBB0(void)
             level_set_transition(0, 0);
             SetSound(0x7003FF81, D_803320E0);
             D_8033047C = -1;
-            D_80330410 = 0;
+            gDiagBoxState = DIAG_STATE_OPENING;
 
             return 1;
         }
@@ -1911,7 +1956,7 @@ void Save(s16 sp62, s16 sp66, s8 *sp68, s16 sp6e)
 
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
 
-    func_802D6590(1, sp62, sp66 - ((sp68[0] - 1) * sp6e), 0);
+    dl_add_new_translation_matrix(1, sp62, sp66 - ((sp68[0] - 1) * sp6e), 0);
 
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200EF60);
@@ -1923,19 +1968,19 @@ s16 func_802DCBD4(void)
 {
     s16 sp26;
 
-    switch(D_80330410)
+    switch(gDiagBoxState)
     {
-    case 0:
+    case DIAG_STATE_OPENING:
         func_802DC330();
         if(D_803305C4 > 100 && D_803305C0 == 1)
         {
-            D_80330410 = 1;
+            gDiagBoxState = DIAG_STATE_WAITBUTTON;
             level_set_transition(-1, 0);
             D_80360088 = 0;
             D_80330430 = 1;
         }
         break;
-    case 1:
+    case DIAG_STATE_WAITBUTTON:
         ShadeScreen();
         func_802DC330();
         Save(100, 86, &D_80330430, 20);
@@ -1946,7 +1991,7 @@ s16 func_802DCBD4(void)
         {
             level_set_transition(0, 0);
             SetSound(0x701EFF81, D_803320E0);
-            D_80330410 = 0;
+            gDiagBoxState = DIAG_STATE_OPENING;
             D_8033047C = -1;
             sp26 = D_80330430;
             D_803305C4 = 0;
@@ -1973,7 +2018,7 @@ s16 func_802DCD98()
 {
     s16 sp26 = 0;
 
-    func_802D68A4();
+    dl_add_new_ortho_matrix();
 
     if(D_8033047C != -1)
     {
@@ -1995,11 +2040,14 @@ s16 func_802DCD98()
 
         D_80360080 = (s16)D_80360080 + 0x1000;
     }
-    else if(D_80330424 != -1)
+    else if(gDialogID != -1)
     {
-        if(D_80330424 == 20)
+        // is the "Dear Mario, please come
+        // to the castle" message?
+        if(gDialogID == 20)
         {
-            func_802D9F58();
+            print_peach_letter_message(); // the peach message needs to be
+                                          // repositioned seperately
             return sp26;
         }
 

@@ -6763,7 +6763,7 @@ glabel CutSceneEnterBowserPlatform1
 /* 04E244 80293244 00003025 */  move  $a2, $zero
 /* 04E248 80293248 0C0A66F7 */  jal   func_80299BDC
 /* 04E24C 8029324C 00003825 */   move  $a3, $zero
-/* 04E250 80293250 0C0B5FDD */  jal   func_802D7F74
+/* 04E250 80293250 0C0B5FDD */  jal   get_dialog_id
 /* 04E254 80293254 00000000 */   nop   
 /* 04E258 80293258 2401FFFF */  li    $at, -1
 /* 04E25C 8029325C 14410004 */  bne   $v0, $at, .L80293270
@@ -9559,7 +9559,7 @@ glabel CutSceneDialog0
 /* 050884 80295884 3C018033 */  lui   $at, %hi(D_8032CFFC) # $at, 0x8033
 /* 050888 80295888 A039CFFC */  sb    $t9, %lo(D_8032CFFC)($at)
 .L8029588C:
-/* 05088C 8029588C 0C0B5FDD */  jal   func_802D7F74
+/* 05088C 8029588C 0C0B5FDD */  jal   get_dialog_id
 /* 050890 80295890 00000000 */   nop   
 /* 050894 80295894 2401FFFF */  li    $at, -1
 /* 050898 80295898 1441001D */  bne   $v0, $at, .L80295910
@@ -9749,7 +9749,7 @@ glabel CutSceneReadMessage0
 /* 050B34 80295B34 10000036 */  b     .L80295C10
 /* 050B38 80295B38 00000000 */   nop   
 .L80295B3C:
-/* 050B3C 80295B3C 0C0B5FDD */  jal   func_802D7F74
+/* 050B3C 80295B3C 0C0B5FDD */  jal   get_dialog_id
 /* 050B40 80295B40 00000000 */   nop   
 /* 050B44 80295B44 2401FFFF */  li    $at, -1
 /* 050B48 80295B48 10410008 */  beq   $v0, $at, .L80295B6C
@@ -9772,7 +9772,7 @@ glabel CutSceneReadMessage0
 /* 050B84 80295B84 25450004 */  addiu $a1, $t2, 4
 /* 050B88 80295B88 0C0A1496 */  jal   CameraChange06
 /* 050B8C 80295B8C 25460010 */   addiu $a2, $t2, 0x10
-/* 050B90 80295B90 0C0B5FDD */  jal   func_802D7F74
+/* 050B90 80295B90 0C0B5FDD */  jal   get_dialog_id
 /* 050B94 80295B94 00000000 */   nop   
 /* 050B98 80295B98 2401FFFF */  li    $at, -1
 /* 050B9C 80295B9C 1441001C */  bne   $v0, $at, .L80295C10
@@ -10800,7 +10800,7 @@ glabel CutSceneCapSwitchPress
 /* 051A28 80296A28 256BB6F0 */  addiu $t3, %lo(D_8033B6F0) # addiu $t3, $t3, -0x4910
 /* 051A2C 80296A2C A56A00AC */  sh    $t2, 0xac($t3)
 .L80296A30:
-/* 051A30 80296A30 0C0B5FDD */  jal   func_802D7F74
+/* 051A30 80296A30 0C0B5FDD */  jal   get_dialog_id
 /* 051A34 80296A34 00000000 */   nop   
 /* 051A38 80296A38 2401FFFF */  li    $at, -1
 /* 051A3C 80296A3C 1441001A */  bne   $v0, $at, .L80296AA8
@@ -11193,7 +11193,7 @@ glabel CutSceneIntroPeach4
 /* 051F6C 80296F6C 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 051F70 80296F70 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 051F74 80296F74 AFA40018 */  sw    $a0, 0x18($sp)
-/* 051F78 80296F78 0C0B5FDD */  jal   func_802D7F74
+/* 051F78 80296F78 0C0B5FDD */  jal   get_dialog_id
 /* 051F7C 80296F7C 00000000 */   nop   
 /* 051F80 80296F80 2401FFFF */  li    $at, -1
 /* 051F84 80296F84 14410017 */  bne   $v0, $at, .L80296FE4
@@ -11542,7 +11542,7 @@ glabel CutSceneIntroPeach0
 /* 0523E0 802973E0 29C10079 */  slti  $at, $t6, 0x79
 /* 0523E4 802973E4 14200009 */  bnez  $at, .L8029740C
 /* 0523E8 802973E8 00000000 */   nop   
-/* 0523EC 802973EC 0C0B5FDD */  jal   func_802D7F74
+/* 0523EC 802973EC 0C0B5FDD */  jal   get_dialog_id
 /* 0523F0 802973F0 00000000 */   nop   
 /* 0523F4 802973F4 2401FFFF */  li    $at, -1
 /* 0523F8 802973F8 14410004 */  bne   $v0, $at, .L8029740C
@@ -15378,7 +15378,7 @@ glabel BehBeginningPeachLoop
 /* 055AD8 8029AAD8 29E10065 */  slti  $at, $t7, 0x65
 /* 055ADC 8029AADC 1420000B */  bnez  $at, .L8029AB0C
 /* 055AE0 8029AAE0 00000000 */   nop   
-/* 055AE4 8029AAE4 0C0B5FDD */  jal   func_802D7F74
+/* 055AE4 8029AAE4 0C0B5FDD */  jal   get_dialog_id
 /* 055AE8 8029AAE8 00000000 */   nop   
 /* 055AEC 8029AAEC 2401FFFF */  li    $at, -1
 /* 055AF0 8029AAF0 14410006 */  bne   $v0, $at, .L8029AB0C

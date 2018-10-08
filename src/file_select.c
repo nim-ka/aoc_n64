@@ -1254,7 +1254,7 @@ static void handle_controller_input(void)
 static void func_80173A40(void)
 {
     handle_controller_input();
-    func_802D6590(1, sCursorPos[0] + 160.0f - 5.0, sCursorPos[1] + 120.0f - 25.0, 0.0f);
+    dl_add_new_translation_matrix(1, sCursorPos[0] + 160.0f - 5.0, sCursorPos[1] + 120.0f - 25.0, 0.0f);
     if (D_801A7BE4 == 0)
         gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_070073A0);
     if (D_801A7BE4 != 0)
@@ -1783,7 +1783,7 @@ static void draw_current_menu(void)
     UNUSED int unused1;
     UNUSED int unused2;
 
-    func_802D68A4();
+    dl_add_new_ortho_matrix();
     switch (sSelectedButtonId)
     {
     case MENU_BUTTON_NONE:

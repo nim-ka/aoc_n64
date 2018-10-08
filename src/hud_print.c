@@ -343,7 +343,7 @@ void render_hud(void)
         D_803600D0 = 8;
         sPowerMeterHUD.d_EC = 0;
     } else {
-        func_802D68A4();
+        dl_add_new_ortho_matrix();
 
         if (gCurrentArea != NULL && gCurrentArea->unk24->unk0 == 10)
             RenderHudCannonReticle();
