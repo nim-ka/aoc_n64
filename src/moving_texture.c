@@ -14,9 +14,9 @@
 
 extern Gfx castle_grounds_seg7_dl_07010F30[];
 extern s16 castle_grounds_seg7_arr_07010E98[];
-extern u8 D_07004018[];
-extern u8 D_07001000[];
-extern u8 D_07015F90[];
+extern u8 ssl_seg7_texture_07004018[];
+extern u8 ssl_seg7_texture_07001000[];
+extern u8 ttc_seg7_texture_07015F90[];
 extern s16 ssl_seg7_arr_07028760[];
 extern Gfx ssl_seg7_dl_070286A0[];
 extern Gfx ssl_seg7_dl_07028718[];
@@ -31,8 +31,8 @@ extern Gfx bitfs_seg7_dl_07015BA8[];
 extern s16 bitfs_seg7_arr_07015B1C[];
 extern s16 bitfs_seg7_arr_07015B48[];
 extern Gfx bitfs_seg7_dl_07015BC0[];
-extern s16 D_0702874C[];
-extern Gfx D_070287A8[];
+extern s16 lll_seg7_arr_0702874C[];
+extern Gfx lll_seg7_dl_070287A8[];
 extern s16 lll_seg7_arr_07028820[];
 extern Gfx lll_seg7_dl_070288C8[];
 extern s16 cotmc_seg7_arr_0700BED0[];
@@ -89,7 +89,17 @@ s16 D_8032FFD4 = 0;
 s8 D_8032FFD8 = 0;
 float D_8032FFDC = 0.0f;
 s32 D_8032FFE0 = 0;
-u8 *D_8032FFE4[] = {seg2_texture_02011C58, seg2_texture_02013458, seg2_texture_02012458, seg2_texture_02012C58, seg2_texture_02013C58, D_07004018, D_07001000, D_07015F90};
+u8 *D_8032FFE4[] =
+{
+    seg2_texture_02011C58,
+    seg2_texture_02013458,
+    seg2_texture_02012458,
+    seg2_texture_02012C58,
+    seg2_texture_02013C58,
+    ssl_seg7_texture_07004018,
+    ssl_seg7_texture_07001000,
+    ttc_seg7_texture_07015F90
+};
 
 struct Struct802D0DD4 D_80330004[] =
 {
@@ -100,7 +110,7 @@ struct Struct802D0DD4 D_80330004[] =
     {0x00001901, 0x00000004, 0x00000004, bitfs_seg7_arr_07015AF0, seg2_dl_02014790, seg2_dl_02014810, bitfs_seg7_dl_07015BA8, 0xff, 0xff, 0xff, 0xff, 0x00000001},
     {0x00001902, 0x00000004, 0x00000004, bitfs_seg7_arr_07015B1C, seg2_dl_02014790, seg2_dl_02014810, bitfs_seg7_dl_07015BA8, 0xff, 0xff, 0xff, 0xb4, 0x00000005},
     {0x00001903, 0x00000004, 0x00000009, bitfs_seg7_arr_07015B48, seg2_dl_02014790, seg2_dl_02014810, bitfs_seg7_dl_07015BC0, 0xff, 0xff, 0xff, 0xb4, 0x00000005},
-    {0x00002201, 0x00000004, 0x00000009, D_0702874C, seg2_dl_02014790, seg2_dl_02014810, D_070287A8, 0xff, 0xff, 0xff, 0xc8, 0x00000005},
+    {0x00002201, 0x00000004, 0x00000009, lll_seg7_arr_0702874C, seg2_dl_02014790, seg2_dl_02014810, lll_seg7_dl_070287A8, 0xff, 0xff, 0xff, 0xc8, 0x00000005},
     {0x00002202, 0x00000004, 0x00000010, lll_seg7_arr_07028820, seg2_dl_02014790, seg2_dl_02014810, lll_seg7_dl_070288C8, 0xff, 0xff, 0xff, 0xb4, 0x00000007},
     {0x00002801, 0x00000000, 0x0000000e, cotmc_seg7_arr_0700BED0, cotmc_seg7_dl_0700BE10, cotmc_seg7_dl_0700BE88, cotmc_seg7_dl_0700BF60, 0xff, 0xff, 0xff, 0xb4, 0x00000007},
     {0x00003601, 0x00000000, 0x00000006, ttm_seg7_arr_07017134, seg2_dl_02014790, seg2_dl_02014810, ttm_seg7_dl_07017260, 0xff, 0xff, 0xff, 0xb4, 0x00000005},
@@ -329,12 +339,12 @@ Gfx *func_802D00D0(s16 a, s16 b, void *c)
 extern u8 bbh_seg7_moving_texture_07026E24[];
 extern u8 bbh_seg7_moving_texture_07026E34[];
 extern u8 ccm_seg7_moving_texture[];
-extern u8 D_070790F0[];
-extern u8 D_07079100[];
+extern u8 inside_castle_seg7_moving_texture_070790F0[];
+extern u8 inside_castle_seg7_moving_texture_07079100[];
 extern u8 hmc_seg7_moving_texture_0702B900[];
 extern u8 hmc_seg7_moving_texture_0702B950[];
-extern u8 D_07012778[];
-extern u8 D_070127C8[];
+extern u8 ssl_seg7_moving_texture_07012778[];
+extern u8 ssl_seg7_moving_texture_070127C8[];
 extern u8 sl_seg7_moving_texture_0700FA70[];
 extern u8 wdw_seg7_moving_texture_07018748[];
 extern u8 wdw_seg7_moving_texture_07018778[];
@@ -348,8 +358,8 @@ extern u8 lll_seg7_moving_texture_07028810[];
 extern u8 ddd_seg7_moving_texture_0700FCB4[];
 extern u8 ddd_seg7_moving_texture_0700FD00[];
 extern u8 wf_seg7_moving_texture[];
-extern u8 D_07006E6C[];
-extern u8 D_07017124[];
+extern u8 castle_courtyard_seg7_moving_texture_07006E6C[];
+extern u8 ttm_seg7_moving_texture_07017124[];
 
 void *func_802D01A4(u32 a)
 {
@@ -358,12 +368,12 @@ void *func_802D01A4(u32 a)
     case 1024: return bbh_seg7_moving_texture_07026E24;
     case 1025: return bbh_seg7_moving_texture_07026E34;
     case 1281: return ccm_seg7_moving_texture;
-    case 1536: return D_070790F0;
-    case 1554: return D_07079100;
+    case 1536: return inside_castle_seg7_moving_texture_070790F0;
+    case 1554: return inside_castle_seg7_moving_texture_07079100;
     case 1793: return hmc_seg7_moving_texture_0702B900;
     case 1794: return hmc_seg7_moving_texture_0702B950;
-    case 2049: return D_07012778;
-    case 2129: return D_070127C8;
+    case 2049: return ssl_seg7_moving_texture_07012778;
+    case 2129: return ssl_seg7_moving_texture_070127C8;
     case 4097: return sl_seg7_moving_texture_0700FA70;
     case 4353: return wdw_seg7_moving_texture_07018748;
     case 4354: return wdw_seg7_moving_texture_07018778;
@@ -377,8 +387,8 @@ void *func_802D01A4(u32 a)
     case 8961: return ddd_seg7_moving_texture_0700FCB4;
     case 8962: return ddd_seg7_moving_texture_0700FD00;
     case 9217: return wf_seg7_moving_texture;
-    case 9729: return D_07006E6C;
-    case 13825: return D_07017124;
+    case 9729: return castle_courtyard_seg7_moving_texture_07006E6C;
+    case 13825: return ttm_seg7_moving_texture_07017124;
     default: return NULL;
     }
 }

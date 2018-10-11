@@ -323,7 +323,7 @@ glabel behavior_data
 glabel beh_star_door # 0000
     begin OBJ_LIST_SURFACE
     obj_set_int VAR_2A, 4
-    collision_data 0x07078E14
+    collision_data inside_castle_seg7_collision_star_door
     obj_set_int VAR_42, 32
     obj_or_int VAR_01, 0xC1
     set_hitbox 80, 100
@@ -1990,7 +1990,7 @@ glabel beh_invisible_objects_under_bridge # 1BF4
 glabel beh_water_level_pillar # 1C04
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
-    collision_data 0x07078E80
+    collision_data inside_castle_seg7_collision_water_level_pillar
     callnative BehWaterLevelPillarInit
     begin_loop
         callnative BehWaterLevelPillarLoop
@@ -2874,7 +2874,7 @@ glabel beh_castle_floor_trap # 2A44
 glabel beh_floor_trap_in_castle # 2A64
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x09
-    collision_data 0x07078DE4
+    collision_data inside_castle_seg7_collision_floor_trap
     begin_loop
         callnative BehFloorTrapInCastleLoop
         callnative load_object_collision_model

@@ -22,7 +22,7 @@ ssl_seg7_texture_07000000: # 0x07000000 - 0x07000800
 ssl_seg7_texture_07000800: # 0x07000800 - 0x07001000
 .incbin "build/bin/ssl_seg7/ssl_seg7.00800.ia16"
 
-ssl_seg7_texture_07001000: # 0x07001000 - 0x07001800
+glabel ssl_seg7_texture_07001000 # 0x07001000 - 0x07001800
 .incbin "build/bin/ssl_seg7/ssl_seg7.01000.rgba16"
 
 ssl_seg7_texture_07001800: # 0x07001800 - 0x07002000
@@ -44,7 +44,7 @@ ssl_seg7_light_07004008: # 0x07004008 - 0x07004018
 .byte 0xFF, 0xFF, 0xFF, 0x00, 0xFF, 0xFF, 0xFF, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-ssl_seg7_texture_07004018: # 0x07004018 - 0x07004818
+glabel ssl_seg7_texture_07004018 # 0x07004018 - 0x07004818
 .incbin "build/bin/ssl_seg7/ssl_seg7.04018.rgba16"
 
 glabel ssl_seg7_dl_07004818 # 0x07004818 - 0x07004860

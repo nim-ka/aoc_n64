@@ -32,26 +32,26 @@ extern u8 seg2_dl_02014A00[];
 extern u8 seg2_triangle_mesh[];
 extern u8 seg2_mesh_order[];
 
-extern struct Struct802D1F94 hmc_seg7_pool_data[];
+extern struct PaintingData hmc_seg7_painting_struct[];
 
-extern struct Struct802D1F94 D_07023620[];
-extern struct Struct802D1F94 D_07023698[];
-extern struct Struct802D1F94 D_07023710[];
-extern struct Struct802D1F94 D_07023788[];
-extern struct Struct802D1F94 D_07023800[];
-extern struct Struct802D1F94 D_07023878[];
-extern struct Struct802D1F94 D_070238F0[];
-extern struct Struct802D1F94 D_07023968[];
-extern struct Struct802D1F94 D_070239E0[];
-extern struct Struct802D1F94 D_07023A58[];
-extern struct Struct802D1F94 D_07023AD0[];
-extern struct Struct802D1F94 D_07023B48[];
-extern struct Struct802D1F94 D_07023BC0[];
-extern struct Struct802D1F94 D_07023C38[];
+extern struct PaintingData inside_castle_seg7_painting_struct_07023620[];
+extern struct PaintingData inside_castle_seg7_painting_struct_07023698[];
+extern struct PaintingData inside_castle_seg7_painting_struct_07023710[];
+extern struct PaintingData inside_castle_seg7_painting_struct_07023788[];
+extern struct PaintingData inside_castle_seg7_painting_struct_07023800[];
+extern struct PaintingData inside_castle_seg7_painting_struct_07023878[];
+extern struct PaintingData inside_castle_seg7_painting_struct_070238F0[];
+extern struct PaintingData inside_castle_seg7_painting_struct_07023968[];
+extern struct PaintingData inside_castle_seg7_painting_struct_070239E0[];
+extern struct PaintingData inside_castle_seg7_painting_struct_07023A58[];
+extern struct PaintingData inside_castle_seg7_painting_struct_07023AD0[];
+extern struct PaintingData inside_castle_seg7_painting_struct_07023B48[];
+extern struct PaintingData inside_castle_seg7_painting_struct_07023BC0[];
+extern struct PaintingData inside_castle_seg7_painting_struct_07023C38[];
 
-extern struct Struct802D1F94 ttm_seg7_wall_data[];
+extern struct PaintingData ttm_seg7_painting_struct[];
 
-extern struct Struct802D1F94 *D_8035FFA8;
+extern struct PaintingData *D_8035FFA8;
 extern u16 gAreaUpdateCounter;
 
 extern float D_8035FF94;
@@ -63,42 +63,42 @@ extern s16 (*D_8035FFA0)[5];
 extern float (*D_8035FFA4)[3];
 extern u8 D_8035FFAC;
 
-struct Struct802D1F94 *D_803303A0[] =
+struct PaintingData *hmcPaintings[] =
 {
-    hmc_seg7_pool_data,
+    hmc_seg7_painting_struct,
     NULL,
 };
 
-struct Struct802D1F94 *D_803303A8[] =
+struct PaintingData *insideCastlePaintings[] =
 {
-    D_07023620,
-    D_07023698,
-    D_07023710,
-    D_07023788,
-    D_07023800,
-    D_07023878,
-    D_070238F0,
-    D_07023968,
-    D_070239E0,
-    D_07023A58,
-    D_07023AD0,
-    D_07023B48,
-    D_07023BC0,
-    D_07023C38,
+    inside_castle_seg7_painting_struct_07023620,
+    inside_castle_seg7_painting_struct_07023698,
+    inside_castle_seg7_painting_struct_07023710,
+    inside_castle_seg7_painting_struct_07023788,
+    inside_castle_seg7_painting_struct_07023800,
+    inside_castle_seg7_painting_struct_07023878,
+    inside_castle_seg7_painting_struct_070238F0,
+    inside_castle_seg7_painting_struct_07023968,
+    inside_castle_seg7_painting_struct_070239E0,
+    inside_castle_seg7_painting_struct_07023A58,
+    inside_castle_seg7_painting_struct_07023AD0,
+    inside_castle_seg7_painting_struct_07023B48,
+    inside_castle_seg7_painting_struct_07023BC0,
+    inside_castle_seg7_painting_struct_07023C38,
     NULL,
 };
 
-struct Struct802D1F94 *D_803303E4[] =
+struct PaintingData *ttmPaintings[] =
 {
-    ttm_seg7_wall_data,
+    ttm_seg7_painting_struct,
     NULL,
 };
 
-struct Struct802D1F94 **D_803303EC[] =
+struct PaintingData **D_803303EC[] =
 {
-    D_803303A0,
-    D_803303A8,
-    D_803303E4,
+    hmcPaintings,
+    insideCastlePaintings,
+    ttmPaintings,
 };
 
 s16 D_803303F8 = 1;
@@ -120,7 +120,7 @@ void func_802D1EE0(s16 *a, void **b)
     }
 }
 
-float func_802D1F94(struct Struct802D1F94 *a)
+float func_802D1F94(struct PaintingData *a)
 {
     //! unnecessary use of double constants
     float sp4 = D_8035FF98 - a->unk14 + 50.0;
@@ -132,7 +132,7 @@ float func_802D1F94(struct Struct802D1F94 *a)
     return sp4;
 }
 
-float func_802D2028(struct Struct802D1F94 *a)
+float func_802D2028(struct PaintingData *a)
 {
     float sp4 = a->unk18 - D_8035FF9C;
 
@@ -143,7 +143,7 @@ float func_802D2028(struct Struct802D1F94 *a)
     return sp4;
 }
 
-float func_802D20A4(struct Struct802D1F94 *a, s8 b)
+float func_802D20A4(struct PaintingData *a, s8 b)
 {
     switch (b)
     {
@@ -159,7 +159,7 @@ float func_802D20A4(struct Struct802D1F94 *a, s8 b)
     }
 }
 
-float func_802D2160(struct Struct802D1F94 *a)
+float func_802D2160(struct PaintingData *a)
 {
     float spC = a->unk74 / 4.0;
     float sp8 = a->unk74 / 2.0;
@@ -179,7 +179,7 @@ float func_802D2160(struct Struct802D1F94 *a)
         return sp4;
 }
 
-float func_802D22A0(struct Struct802D1F94 *a)
+float func_802D22A0(struct PaintingData *a)
 {
     float sp4 = D_8035FF94 - a->unk10;
 
@@ -190,7 +190,7 @@ float func_802D22A0(struct Struct802D1F94 *a)
     return sp4;
 }
 
-float func_802D231C(struct Struct802D1F94 *a, s8 b)
+float func_802D231C(struct PaintingData *a, s8 b)
 {
     switch (b)
     {
@@ -206,7 +206,7 @@ float func_802D231C(struct Struct802D1F94 *a, s8 b)
     }
 }
 
-void func_802D23D8(s8 a, struct Struct802D1F94 *b, void **c, s8 d, s8 e, s8 f)
+void func_802D23D8(s8 a, struct PaintingData *b, void **c, s8 d, s8 e, s8 f)
 {
     func_802D1EE0((s16 *)b, c);
     switch (a)
@@ -233,7 +233,7 @@ void func_802D23D8(s8 a, struct Struct802D1F94 *b, void **c, s8 d, s8 e, s8 f)
     D_8035FFA8 = b;
 }
 
-void func_802D251C(struct Struct802D1F94 *a, void **b)
+void func_802D251C(struct PaintingData *a, void **b)
 {
     if (a->unk6 & 0x20)
         func_802D23D8(1, a, b, 30, 60, 100);
@@ -249,7 +249,7 @@ void func_802D251C(struct Struct802D1F94 *a, void **b)
         func_802D23D8(2, a, b, 30, 60, 100);
 }
 
-void func_802D26BC(struct Struct802D1F94 *a, void **b)
+void func_802D26BC(struct PaintingData *a, void **b)
 {
     if (a->unk6 & 0x04)
         func_802D23D8(2, a, b, 30, 60, 100);
@@ -259,7 +259,7 @@ void func_802D26BC(struct Struct802D1F94 *a, void **b)
         func_802D23D8(2, a, b, 30, 60, 100);
 }
 
-void func_802D279C(struct Struct802D1F94 *a, void **b)
+void func_802D279C(struct PaintingData *a, void **b)
 {
     if (a->unk6 & 0x20)
         func_802D23D8(1, a, b, 50, 80, 100);
@@ -275,7 +275,7 @@ void func_802D279C(struct Struct802D1F94 *a, void **b)
         func_802D23D8(2, a, b, 30, 60, 100);
 }
 
-void func_802D293C(struct Struct802D1F94 *a, void **b)
+void func_802D293C(struct PaintingData *a, void **b)
 {
     if (a->unk6 & 0x04)
         func_802D23D8(2, a, b, 30, 60, -56);
@@ -285,7 +285,7 @@ void func_802D293C(struct Struct802D1F94 *a, void **b)
         func_802D23D8(2, a, b, 30, 60, -56);
 }
 
-void func_802D2A1C(struct Struct802D1F94 *a, void **b)
+void func_802D2A1C(struct PaintingData *a, void **b)
 {
     if (a->unk6 & 0x20)
         func_802D23D8(1, a, b, 40, 70, 100);
@@ -304,7 +304,7 @@ void func_802D2A1C(struct Struct802D1F94 *a, void **b)
     }
 }
 
-void func_802D2BCC(struct Struct802D1F94 *a, void **b)
+void func_802D2BCC(struct PaintingData *a, void **b)
 {
     if (a->unk70 != 0)
     {
@@ -317,7 +317,7 @@ void func_802D2BCC(struct Struct802D1F94 *a, void **b)
     }
 }
 
-void func_802D2CBC(struct Struct802D1F94 *a, void **b)
+void func_802D2CBC(struct PaintingData *a, void **b)
 {
     if (a->unk6 & 0x20)
         func_802D23D8(1, a, b, 50, 80, 100);
@@ -333,7 +333,7 @@ void func_802D2CBC(struct Struct802D1F94 *a, void **b)
         func_802D23D8(2, a, b, 40, 70, 100);
 }
 
-void func_802D2E5C(struct Struct802D1F94 *a, void **b)
+void func_802D2E5C(struct PaintingData *a, void **b)
 {
     if (a->unk70 != 0)
     {
@@ -346,7 +346,7 @@ void func_802D2E5C(struct Struct802D1F94 *a, void **b)
     }
 }
 
-void func_802D2F4C(struct Struct802D1F94 *a)
+void func_802D2F4C(struct PaintingData *a)
 {
     s16 sp6 = a->unk0;
     s8 sp5 = 0;
@@ -379,7 +379,7 @@ void func_802D2F4C(struct Struct802D1F94 *a)
     a->unk70 = (a->unk6E ^ a->unk6F) & a->unk6F;
 }
 
-void func_802D310C(struct Struct802D1F94 *a)
+void func_802D310C(struct PaintingData *a)
 {
     if (D_803303F8 != D_803303FC)
     {
@@ -408,7 +408,7 @@ void func_802D310C(struct Struct802D1F94 *a)
     }
 }
 
-int func_802D320C(struct Struct802D1F94 *a, float b, float c)
+int func_802D320C(struct PaintingData *a, float b, float c)
 {
     float sp3C = a->unk1C;
     float sp38 = a->unk34;
@@ -435,7 +435,7 @@ int func_802D320C(struct Struct802D1F94 *a, float b, float c)
     }
 }
 
-int func_802D338C(struct Struct802D1F94 *a, s16 b, s16 c, s16 d)
+int func_802D338C(struct PaintingData *a, s16 b, s16 c, s16 d)
 {
     s16 sp1E = 0;
 
@@ -444,7 +444,7 @@ int func_802D338C(struct Struct802D1F94 *a, s16 b, s16 c, s16 d)
     return sp1E;
 }
 
-void Print1(struct Struct802D1F94 *a, s16 *b, s16 c)
+void Print1(struct PaintingData *a, s16 *b, s16 c)
 {
     s16 sp1E;
 
@@ -547,7 +547,7 @@ void func_802D39DC(s16 *a, s16 b)
     }
 }
 
-void *func_802D3CF0(int a, s16 b, s16 c, s16 *d, s16 e, s16 f, u8 g)
+void *func_802D3CF0(u8 *img, s16 b, s16 c, s16 *d, s16 e, s16 f, u8 g)
 {
     s16 sp9E;
     s16 sp9C;
@@ -568,7 +568,7 @@ void *func_802D3CF0(int a, s16 b, s16 c, s16 *d, s16 e, s16 f, u8 g)
     {
     }
 
-    gDPSetTextureImage(sp7C++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, a);
+    gDPSetTextureImage(sp7C++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, img);
     gDPTileSync(sp7C++);
     gDPSetTile(sp7C++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, 7, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD);
     gDPLoadSync(sp7C++);
@@ -617,7 +617,7 @@ void *func_802D3CF0(int a, s16 b, s16 c, s16 *d, s16 e, s16 f, u8 g)
     return sp80;
 }
 
-Gfx *func_802D43FC(struct Struct802D1F94 *a)
+Gfx *func_802D43FC(struct PaintingData *a)
 {
     float sp4C = a->unk74 / 614.0;
     void *sp48 = alloc_display_list(64);
@@ -645,18 +645,18 @@ Gfx *func_802D43FC(struct Struct802D1F94 *a)
     return sp38;
 }
 
-Gfx *func_802D45FC(struct Struct802D1F94 *a)
+Gfx *func_802D45FC(struct PaintingData *a)
 {
     s16 sp66;
     s16 sp64;
     s16 sp62;
     s16 *sp5C;
-    s16 sp5A = a->unk2;
-    s16 sp58 = a->unk64;
-    s16 sp56 = a->unk66;
-    void **sp50 = segmented_to_virtual(a->unk5C);
-    int *sp4C = segmented_to_virtual(a->unk60);
-    void *sp48 = alloc_display_list(sp5A * 8 + 48);
+    s16 faceCount = a->faceCount;
+    s16 tWidth = a->textureWidth;
+    s16 tHeight = a->textureHeight;
+    s16 **meshArray = segmented_to_virtual(a->meshData);
+    u8 **tArray = segmented_to_virtual(a->textureArray);
+    void *sp48 = alloc_display_list(faceCount * 8 + 48);
     Gfx *sp44 = sp48;
 
     if (sp48 == NULL)
@@ -664,14 +664,14 @@ Gfx *func_802D45FC(struct Struct802D1F94 *a)
 
     gSPDisplayList(sp44++, func_802D43FC(a));
     gSPDisplayList(sp44++, seg2_dl_02014970);
-    gSPDisplayList(sp44++, a->unk68);
+    gSPDisplayList(sp44++, a->displayList68);
 
-    for (sp62 = 0; sp62 < sp5A; sp62++)
+    for (sp62 = 0; sp62 < faceCount; sp62++)
     {
-        sp5C = segmented_to_virtual(sp50[sp62]);
+        sp5C = segmented_to_virtual(meshArray[sp62]);
         sp66 = sp5C[0];
         sp64 = sp5C[sp66 * 3 + 1];
-        gSPDisplayList(sp44++, func_802D3CF0(sp4C[sp62], sp58, sp56, sp5C, sp66, sp64, a->unk6D));
+        gSPDisplayList(sp44++, func_802D3CF0(tArray[sp62], tWidth, tHeight, sp5C, sp66, sp64, a->unk6D));
     }
     func_802D310C(a);
     gSPPopMatrix(sp44++, G_MTX_MODELVIEW);
@@ -680,15 +680,15 @@ Gfx *func_802D45FC(struct Struct802D1F94 *a)
     return sp48;
 }
 
-Gfx *func_802D4874(struct Struct802D1F94 *a)
+Gfx *func_802D4874(struct PaintingData *a)
 {
     s16 sp5E;
     s16 sp5C;
     s16 *sp58;
-    s16 sp56 = a->unk64;
-    s16 sp54 = a->unk66;
-    void **sp50 = segmented_to_virtual(a->unk5C);
-    int *sp4C = segmented_to_virtual(a->unk60);
+    s16 tWidth = a->textureWidth;
+    s16 tHeight = a->textureHeight;
+    s16 **meshArray = segmented_to_virtual(a->meshData);
+    u8 **tArray = segmented_to_virtual(a->textureArray);
     Gfx *sp48 = alloc_display_list(56);
     Gfx *sp44 = sp48;
 
@@ -696,11 +696,11 @@ Gfx *func_802D4874(struct Struct802D1F94 *a)
         return sp48;
     gSPDisplayList(sp44++, func_802D43FC(a));
     gSPDisplayList(sp44++, seg2_dl_020149C8);
-    gSPDisplayList(sp44++, a->unk68);
-    sp58 = segmented_to_virtual(sp50[0]);
+    gSPDisplayList(sp44++, a->displayList68);
+    sp58 = segmented_to_virtual(meshArray[0]);
     sp5E = sp58[0];
     sp5C = sp58[sp5E * 3 + 1];
-    gSPDisplayList(sp44++, func_802D3CF0(sp4C[0], sp56, sp54, sp58, sp5E, sp5C, a->unk6D));
+    gSPDisplayList(sp44++, func_802D3CF0(tArray[0], tWidth, tHeight, sp58, sp5E, sp5C, a->unk6D));
     func_802D310C(a);
     gSPPopMatrix(sp44++, G_MTX_MODELVIEW);
     gSPDisplayList(sp44++, seg2_dl_02014A00);
@@ -708,7 +708,7 @@ Gfx *func_802D4874(struct Struct802D1F94 *a)
     return sp48;
 }
 
-Gfx *func_802D4A8C(struct Struct802D1F94 *a)
+Gfx *func_802D4A8C(struct PaintingData *a)
 {
     s16 *sp34 = segmented_to_virtual(seg2_triangle_mesh);
     s16 *sp30 = segmented_to_virtual(seg2_mesh_order);
@@ -733,7 +733,7 @@ Gfx *func_802D4A8C(struct Struct802D1F94 *a)
     return sp28;
 }
 
-Gfx *func_802D4BAC(struct Struct802D1F94 *a)
+Gfx *func_802D4BAC(struct PaintingData *a)
 {
     Gfx *sp2C = alloc_display_list(32);
     Gfx *sp28 = sp2C;
@@ -741,13 +741,13 @@ Gfx *func_802D4BAC(struct Struct802D1F94 *a)
     if (sp2C == NULL)
         return sp2C;
     gSPDisplayList(sp28++, func_802D43FC(a));
-    gSPDisplayList(sp28++, a->unk58);
+    gSPDisplayList(sp28++, a->displayList58);
     gSPPopMatrix(sp28++, G_MTX_MODELVIEW);
     gSPEndDisplayList(sp28);
     return sp2C;
 }
 
-void func_802D4C98(struct Struct802D1F94 *a)
+void func_802D4C98(struct PaintingData *a)
 {
     a->unk4 = 0;
     a->unk5 = 0;
@@ -758,7 +758,7 @@ void func_802D4C98(struct Struct802D1F94 *a)
     D_8035FFA8 = NULL;
 }
 
-void func_802D4CC8(struct Struct802D1F94 *a, float b, float c, float d)
+void func_802D4CC8(struct PaintingData *a, float b, float c, float d)
 {
     u32 sp24 = save_file_get_star_flags(gCurrSaveFileNum - 1, 8);
     u32 sp20 = save_file_get_flags();
@@ -795,7 +795,7 @@ struct Struct802D4E04
     u32 unk18;
 };
 
-void func_802D4E04(struct Struct802D4E04 *a, struct Struct802D1F94 *b)
+void func_802D4E04(struct Struct802D4E04 *a, struct PaintingData *b)
 {
     switch (b->unk6D)
     {
@@ -808,7 +808,7 @@ void func_802D4E04(struct Struct802D4E04 *a, struct Struct802D1F94 *b)
     }
 }
 
-Gfx *func_802D4E5C(struct Struct802D1F94 *a)
+Gfx *func_802D4E5C(struct PaintingData *a)
 {
     switch (a->unk7)
     {
@@ -821,7 +821,7 @@ Gfx *func_802D4E5C(struct Struct802D1F94 *a)
     }
 }
 
-void func_802D4EC8(struct Struct802D1F94 *a, void **b)
+void func_802D4EC8(struct PaintingData *a, void **b)
 {
     if (a->unk6C == 10)
     {
@@ -849,7 +849,7 @@ void func_802D4EC8(struct Struct802D1F94 *a, void **b)
     }
 }
 
-void func_802D4FC0(struct Struct802D1F94 *a, void **b)
+void func_802D4FC0(struct PaintingData *a, void **b)
 {
     if (a->unk6C == 10)
     {
@@ -883,8 +883,8 @@ Gfx *Geo18_802D5B98(int a, struct Struct802D4E04 *b, UNUSED int c)
     int sp28 = (sp2C->unk18 >> 8) & 0xFF;
     int sp24 = sp2C->unk18 & 0xFF;
     Gfx *sp20 = NULL;
-    struct Struct802D1F94 **sp1C = D_803303EC[sp28];
-    struct Struct802D1F94 *sp18 = segmented_to_virtual(sp1C[sp24]);
+    struct PaintingData **sp1C = D_803303EC[sp28];
+    struct PaintingData *sp18 = segmented_to_virtual(sp1C[sp24]);
 
     if (a != 1)
     {

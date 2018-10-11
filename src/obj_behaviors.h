@@ -44,7 +44,7 @@ extern s32 D_80331584;
 extern s32 D_80331594;
 extern s32 D_803315A4;
 extern u8 bob_seg7_metal_ball_path0[];
-extern u8 D_070170A0[];
+extern u8 ttm_seg7_trajectory_070170A0[];
 extern u8 bob_seg7_metal_ball_path1[];
 extern u8 D_803315B4[];
 extern u8 D_80331608[];
@@ -58,7 +58,6 @@ extern u8 D_80331608[];
 // extern ? D_803316A8;
 // extern ? D_803316FC;
 // extern ? D_8033170C;
-// extern ? D_07079068;
 // extern ? D_8033171C;
 
 void func_802E2F40(void);

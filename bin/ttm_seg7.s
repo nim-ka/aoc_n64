@@ -5308,13 +5308,13 @@ gsDPPipeSync
 gsDPSetCombineMode G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPEndDisplayList
 
-glabel ttm_seg7_dl_07012430 # 0x07012430 - 0x07012450
+ttm_seg7_painting_dl_07012430: # 0x07012430 - 0x07012450
 gsDPTileSync
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 16, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 6, G_TX_NOLOD
 gsDPSetTileSize 0, 0, 0, 252, 124
 gsSPEndDisplayList
 
-ttm_seg7_wall_points_07012450: # 0x07012450 - 0x07012650
+ttm_seg7_painting_points_07012450: # 0x07012450 - 0x07012650
 .hword 85
 .hword   49, 2016,  889
 .hword   53, 2016,  685
@@ -5402,7 +5402,7 @@ ttm_seg7_wall_points_07012450: # 0x07012450 - 0x07012650
 .hword  150,  649,    0
 .hword  153,  -32,    0
 
-ttm_seg7_wall_triangles_07012650: # 0x07012650 - 0x0701296A
+ttm_seg7_painting_triangles_07012650: # 0x07012650 - 0x0701296A
 .hword 132
 .hword 13,  8,  5
 .hword  0,  1,  2
@@ -5539,7 +5539,7 @@ ttm_seg7_wall_triangles_07012650: # 0x07012650 - 0x0701296A
 
 .balign 4
 
-ttm_seg7_points_0701296C: # 0x0701296C - 0x07012B6C
+ttm_seg7_painting_points_0701296C: # 0x0701296C - 0x07012B6C
 .hword 85
 .hword    0, 2016,   72
 .hword    1, 2016,    0
@@ -5629,7 +5629,7 @@ ttm_seg7_points_0701296C: # 0x0701296C - 0x07012B6C
 
 .balign 4
 
-ttm_seg7_triangles_07012B6C: # 0x07012B6C - 0x07012E84
+ttm_seg7_painting_triangles_07012B6C: # 0x07012B6C - 0x07012E84
 .hword 132
 .hword 10,  7, 13
 .hword  0,  1,  2
@@ -5766,10 +5766,14 @@ ttm_seg7_triangles_07012B6C: # 0x07012B6C - 0x07012E84
 
 .balign 4
 
-ttm_seg7_wall_data_07012E88: # 0x07012E88
-.word ttm_seg7_wall_points_07012450, ttm_seg7_points_0701296C, 0x0, 0x0
+ttm_seg7_painting_data_07012E88: # 0x07012E88
+.word ttm_seg7_painting_points_07012450
+.word ttm_seg7_painting_points_0701296C
+.word 0x0
 
-glabel ttm_seg7_dl_07012E98 # 0x07012E98 - 0x07012EF8
+.balign 8
+
+ttm_seg7_painting_dl_07012E98: # 0x07012E98 - 0x07012EF8
 gsSPDisplayList ttm_seg7_dl_070123B8
 gsSPVertex ttm_seg7_vertex_07012308, 8, 0
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, ttm_seg7_texture_07004000
@@ -5783,10 +5787,10 @@ gsSPDisplayList ttm_seg7_dl_070123A0
 gsSPDisplayList ttm_seg7_dl_07012410
 gsSPEndDisplayList
 
-ttm_seg7_todo_07012EF8: # 0x07012EF8 - 0x07012F78
+ttm_seg7_painting_textures_07012EF8: # 0x07012EF8 - 0x07012F78
 .word ttm_seg7_texture_07004000, ttm_seg7_texture_07003000
 
-glabel ttm_seg7_wall_data # 0x07012F00 (Struct802D1F94)
+glabel ttm_seg7_painting_struct # 0x07012F00 (PaintingData)
 .hword 0x0000
 .byte 0x02
 .byte 0x00
@@ -5799,9 +5803,11 @@ glabel ttm_seg7_wall_data # 0x07012F00 (Struct802D1F94)
 .float    1.0, 0.9608, 0.9524,   0.0
 .float   0.24,   0.14,    0.0,  40.0
 .float   30.0,    0.0,    0.0,   0.0
-.word ttm_seg7_dl_07012E98, ttm_seg7_wall_data_07012E88, ttm_seg7_todo_07012EF8
+.word ttm_seg7_painting_dl_07012E98
+.word ttm_seg7_painting_data_07012E88
+.word ttm_seg7_painting_textures_07012EF8
 .hword 64, 32
-.word ttm_seg7_dl_07012430
+.word ttm_seg7_painting_dl_07012430
 .byte 0x0A, 0xFF, 0x00, 0x00, 0x00
 .byte 0x00, 0x00, 0x00
 .float 460.8

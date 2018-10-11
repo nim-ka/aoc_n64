@@ -12,7 +12,7 @@
 #include "memory.h"
 #include "transparent_texture.h"
 
-extern Gfx D_0702A880[];
+extern Gfx inside_castle_seg7_dl_0702A880[];
 extern s16 rr_seg7_transparent_texture_data_07019248[];
 extern Gfx rr_seg7_dl_070192F0[];
 extern Gfx rr_seg7_dl_07019360[];
@@ -71,7 +71,7 @@ struct StructGeo802D2360 *Geo18_802D2360(s32 sp30, short *sp34, UNUSED s32 sp38)
             sp28 = sp34;
             sp28[1] = (sp28[1] & 0xFF) | 0x500;
             
-            gSPDisplayList(dlist++, D_0702A880);
+            gSPDisplayList(dlist++, inside_castle_seg7_dl_0702A880);
             gSPEndDisplayList(dlist);
         }
     }

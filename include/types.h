@@ -17,10 +17,10 @@ struct Controller
   /*0x18*/ OSContPad *controllerData;
 };
 
-struct Struct802D1F94
+struct PaintingData
 {
     s16 unk0;
-    s8 unk2;
+    s8 faceCount;
     s8 unk3;
     s8 unk4;
     s8 unk5;
@@ -46,12 +46,12 @@ struct Struct802D1F94
     float unk4C;
     float unk50;
     float unk54;
-    void *unk58;
-    void *unk5C;
-    void *unk60;
-    s16 unk64;
-    s16 unk66;
-    void *unk68;
+    Gfx *displayList58;
+    u16 **meshData;
+    u8 **textureArray;
+    s16 textureWidth;
+    s16 textureHeight;
+    Gfx *displayList68;
     s8 unk6C;
     u8 unk6D;
     s8 unk6E;

@@ -12494,7 +12494,7 @@ glabel lll_seg7_trajectory_07028660 # 0x07028660 - 0x0702874C
 .hword -1
 .hword  0
 
-glabel lll_seg7_dl_0702874C # 0x0702874C - 0x070287A8
+glabel lll_seg7_arr_0702874C # 0x0702874C - 0x070287A8
 .hword    1,  8191,     0,  8192,     0,     0,     0,     0
 .hword 8192,     0,     2, -8191,     0,  8192,     0,     4
 .hword 8191,     0,     0,     2,     0,     0,     0,     0

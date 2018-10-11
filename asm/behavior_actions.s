@@ -23116,17 +23116,17 @@ glabel BehDddWarpLoop
 /* 07454C 802B954C 31CF0002 */  andi  $t7, $t6, 2
 /* 074550 802B9550 11E00008 */  beqz  $t7, .L802B9574
 /* 074554 802B9554 00000000 */   nop   
-/* 074558 802B9558 3C040707 */  lui   $a0, %hi(D_0707768C) # $a0, 0x707
+/* 074558 802B9558 3C040707 */  lui   $a0, %hi(inside_castle_seg7_collision_ddd_warp_2) # $a0, 0x707
 /* 07455C 802B955C 0C09DE68 */  jal   segmented_to_virtual
-/* 074560 802B9560 2484768C */   addiu $a0, %lo(D_0707768C) # addiu $a0, $a0, 0x768c
+/* 074560 802B9560 2484768C */   addiu $a0, %lo(inside_castle_seg7_collision_ddd_warp_2) # addiu $a0, $a0, 0x768c
 /* 074564 802B9564 3C188036 */  lui   $t8, %hi(gCurrentObject) # $t8, 0x8036
 /* 074568 802B9568 8F18FDF0 */  lw    $t8, %lo(gCurrentObject)($t8)
 /* 07456C 802B956C 10000007 */  b     .L802B958C
 /* 074570 802B9570 AF020218 */   sw    $v0, 0x218($t8)
 .L802B9574:
-/* 074574 802B9574 3C040707 */  lui   $a0, %hi(D_070775B4) # $a0, 0x707
+/* 074574 802B9574 3C040707 */  lui   $a0, %hi(inside_castle_seg7_collision_ddd_warp) # $a0, 0x707
 /* 074578 802B9578 0C09DE68 */  jal   segmented_to_virtual
-/* 07457C 802B957C 248475B4 */   addiu $a0, %lo(D_070775B4) # addiu $a0, $a0, 0x75b4
+/* 07457C 802B957C 248475B4 */   addiu $a0, %lo(inside_castle_seg7_collision_ddd_warp) # addiu $a0, $a0, 0x75b4
 /* 074580 802B9580 3C198036 */  lui   $t9, %hi(gCurrentObject) # $t9, 0x8036
 /* 074584 802B9584 8F39FDF0 */  lw    $t9, %lo(gCurrentObject)($t9)
 /* 074588 802B9588 AF220218 */  sw    $v0, 0x218($t9)

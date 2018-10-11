@@ -98,8 +98,6 @@ extern struct GraphNode **gLoadedGraphNodes;
 // extern ? D_8032F728;
 // extern ? D_8032F754;
 // extern ? D_8035FFAC;
-// extern ? D_0707768C;
-// extern ? D_070775B4;
 extern s32 gWaterLevels[20];
 // extern ? D_8035FEE8;
 // extern ? D_8032F77C;

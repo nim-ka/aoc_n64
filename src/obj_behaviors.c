@@ -3595,7 +3595,7 @@ void func_802EDA6C(void)
             break;
             
         case BBALL_BP_STYPE_TTM:
-            o->oBowlingBallUnkFC = segmented_to_virtual(D_070170A0);
+            o->oBowlingBallUnkFC = segmented_to_virtual(ttm_seg7_trajectory_070170A0);
             break;
             
         case BBALL_BP_STYPE_BOB_LOWER:

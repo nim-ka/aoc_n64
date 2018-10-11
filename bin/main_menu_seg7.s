@@ -381,10 +381,12 @@ gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_RENDERMODE, 29, 0x00552078
 gsDPSetCombineMode G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPEndDisplayList
 
-glabel main_menu_seg7_dl_070073A0 # 0x070073A0 - 0x070073D0
+glabel main_menu_seg7_dl_070073A0 # 0x070073A0 - 0x070073B8
 gsDPPipeSync
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, main_menu_seg7_texture_07006328
 gsSPBranchList main_menu_seg7_dl_07007328
+
+glabel main_menu_seg7_dl_070073B8 # 0x070073B8 - 0x070073D0
 gsDPPipeSync
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, main_menu_seg7_texture_07006B28
 gsSPBranchList main_menu_seg7_dl_07007328

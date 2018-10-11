@@ -12228,9 +12228,9 @@ glabel L802EDAA4
 /* 0A8ABC 802EDABC 1000001F */  b     .L802EDB3C
 /* 0A8AC0 802EDAC0 00000000 */   nop   
 glabel L802EDAC4
-/* 0A8AC4 802EDAC4 3C040701 */  lui   $a0, %hi(D_070170A0) # $a0, 0x701
+/* 0A8AC4 802EDAC4 3C040701 */  lui   $a0, %hi(ttm_seg7_trajectory_070170A0) # $a0, 0x701
 /* 0A8AC8 802EDAC8 0C09DE68 */  jal   segmented_to_virtual
-/* 0A8ACC 802EDACC 248470A0 */   addiu $a0, %lo(D_070170A0) # addiu $a0, $a0, 0x70a0
+/* 0A8ACC 802EDACC 248470A0 */   addiu $a0, %lo(ttm_seg7_trajectory_070170A0) # addiu $a0, $a0, 0x70a0
 /* 0A8AD0 802EDAD0 3C198036 */  lui   $t9, %hi(gCurrentObject) # $t9, 0x8036
 /* 0A8AD4 802EDAD4 8F39FDF0 */  lw    $t9, %lo(gCurrentObject)($t9)
 /* 0A8AD8 802EDAD8 AF2200FC */  sw    $v0, 0xfc($t9)
@@ -23082,9 +23082,9 @@ glabel func_802F7528
 /* 0B2538 802F7538 3C018033 */  lui   $at, %hi(D_80337754)
 /* 0B253C 802F753C C4247754 */  lwc1  $f4, %lo(D_80337754)($at)
 /* 0B2540 802F7540 E7A40030 */  swc1  $f4, 0x30($sp)
-/* 0B2544 802F7544 3C040708 */  lui   $a0, %hi(D_07079068) # $a0, 0x708
+/* 0B2544 802F7544 3C040708 */  lui   $a0, %hi(inside_castle_seg7_trajectory_mips) # $a0, 0x708
 /* 0B2548 802F7548 0C09DE68 */  jal   segmented_to_virtual
-/* 0B254C 802F754C 24849068 */   addiu $a0, %lo(D_07079068) # addiu $a0, $a0, -0x6f98
+/* 0B254C 802F754C 24849068 */   addiu $a0, %lo(inside_castle_seg7_trajectory_mips) # addiu $a0, $a0, -0x6f98
 /* 0B2550 802F7550 AFA20028 */  sw    $v0, 0x28($sp)
 /* 0B2554 802F7554 A3A0003F */  sb    $zero, 0x3f($sp)
 .L802F7558:
@@ -23226,9 +23226,9 @@ glabel func_802F7750
 /* 0B2750 802F7750 27BDFFD8 */  addiu $sp, $sp, -0x28
 /* 0B2754 802F7754 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 0B2758 802F7758 A7A00026 */  sh    $zero, 0x26($sp)
-/* 0B275C 802F775C 3C040708 */  lui   $a0, %hi(D_07079068) # $a0, 0x708
+/* 0B275C 802F775C 3C040708 */  lui   $a0, %hi(inside_castle_seg7_trajectory_mips) # $a0, 0x708
 /* 0B2760 802F7760 0C09DE68 */  jal   segmented_to_virtual
-/* 0B2764 802F7764 24849068 */   addiu $a0, %lo(D_07079068) # addiu $a0, $a0, -0x6f98
+/* 0B2764 802F7764 24849068 */   addiu $a0, %lo(inside_castle_seg7_trajectory_mips) # addiu $a0, $a0, -0x6f98
 /* 0B2768 802F7768 AFA2001C */  sw    $v0, 0x1c($sp)
 /* 0B276C 802F776C 3C0F8036 */  lui   $t7, %hi(gCurrentObject) # $t7, 0x8036
 /* 0B2770 802F7770 8DEFFDF0 */  lw    $t7, %lo(gCurrentObject)($t7)

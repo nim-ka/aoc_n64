@@ -10,7 +10,6 @@
 #define MENU_MTX_PUSH 1
 #define MENU_MTX_NOPUSH 2
 
-// extern ? D_0700ABD0;
 // extern ? D_80330438;
 // extern ? D_8033043C;
 // extern ? D_80330444;

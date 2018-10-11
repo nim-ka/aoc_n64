@@ -248,9 +248,9 @@ glabel level_castle_entry
         object /*unk2*/ 0x1F, /*unk3*/ 0xDD, /*pos*/ 596, -306, -2637, /*angle*/ 0, 152, 0, /*behArg*/ 0x87000000, /*beh*/ beh_toad_message
         jump_link /*target*/ script_func_local_1
         warp_node /*id*/ 0xF1, /*destLevel1*/ 0x10, /*destArea*/ 0x01, /*destNode*/ 0x03, /*destLevel2*/ 0x00
-        terrain /*terrainData*/ castle_seg7_area_1_collision
-        rooms /*surfaceRooms*/ castle_seg7_area_1_rooms
-        cmd39 /*unk4*/ castle_seg7_area_1_macro_objs
+        terrain /*terrainData*/ inside_castle_seg7_area_1_collision
+        rooms /*surfaceRooms*/ inside_castle_seg7_area_1_rooms
+        cmd39 /*unk4*/ inside_castle_seg7_area_1_macro_objs
         set_music /*unk2*/ 0x0001, /*seq*/ 0x0004
         terrain_type /*terrainType*/ 0x0001
     end_area
@@ -265,9 +265,9 @@ glabel level_castle_entry
         object /*unk2*/ 0x1F, /*unk3*/ 0xDD, /*pos*/ 837, 1203, 3020, /*angle*/ 0, 180, 0, /*behArg*/ 0x89000000, /*beh*/ beh_toad_message
         jump_link /*target*/ script_func_local_2
         warp_node /*id*/ 0xF1, /*destLevel1*/ 0x10, /*destArea*/ 0x01, /*destNode*/ 0x03, /*destLevel2*/ 0x00
-        terrain /*terrainData*/ castle_seg7_area_2_collision
-        rooms /*surfaceRooms*/ castle_seg7_area_2_rooms
-        cmd39 /*unk4*/ castle_seg7_area_2_macro_objs
+        terrain /*terrainData*/ inside_castle_seg7_area_2_collision
+        rooms /*surfaceRooms*/ inside_castle_seg7_area_2_rooms
+        cmd39 /*unk4*/ inside_castle_seg7_area_2_macro_objs
         instant_warp /*index*/ 0, /*destArea*/ 2, /*displace*/ 0, -205, 410
         set_music /*unk2*/ 0x0001, /*seq*/ 0x0004
         terrain_type /*terrainType*/ 0x0001
@@ -283,9 +283,9 @@ glabel level_castle_entry
         jump_link /*target*/ script_func_local_3
         jump_link /*target*/ script_func_local_4
         warp_node /*id*/ 0xF1, /*destLevel1*/ 0x10, /*destArea*/ 0x01, /*destNode*/ 0x03, /*destLevel2*/ 0x00
-        terrain /*terrainData*/ castle_seg7_area_3_collision
-        rooms /*surfaceRooms*/ castle_seg7_area_3_rooms
-        cmd39 /*unk4*/ castle_seg7_area_3_macro_objs
+        terrain /*terrainData*/ inside_castle_seg7_area_3_collision
+        rooms /*surfaceRooms*/ inside_castle_seg7_area_3_rooms
+        cmd39 /*unk4*/ inside_castle_seg7_area_3_macro_objs
         set_music /*unk2*/ 0x0001, /*seq*/ 0x0004
         terrain_type /*terrainType*/ 0x0001
     end_area

@@ -62,7 +62,7 @@ enum
 };
 
 extern Gfx main_menu_seg7_dl_070073A0[];
-extern Gfx D_070073B8[];
+extern Gfx main_menu_seg7_dl_070073B8[];
 extern Gfx seg2_dl_0200ED00[];
 extern Gfx seg2_dl_0200ED68[];
 extern Gfx seg2_dl_0200EE68[];
@@ -1258,7 +1258,7 @@ static void func_80173A40(void)
     if (D_801A7BE4 == 0)
         gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_070073A0);
     if (D_801A7BE4 != 0)
-        gSPDisplayList(gDisplayListHead++, D_070073B8);
+        gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_070073B8);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
     if (D_801A7BE4 != 0)
     {
