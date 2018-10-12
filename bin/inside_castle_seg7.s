@@ -92,10 +92,18 @@ inside_castle_seg7_texture_0700F800: # 0x0700F800 - 0x07010800
 .incbin "build/bin/inside_castle_seg7/inside_castle_seg7.0F800.rgba16"
 
 inside_castle_seg7_texture_07010800: # 0x07010800 - 0x07011800
+.ifdef VERSION_JP
 .incbin "build/bin/inside_castle_seg7/inside_castle_seg7.10800.rgba16"
+.else
+.incbin "build/bin/inside_castle_seg7/inside_castle_seg7_us.10800.rgba16"
+.endif
 
-inside_castle_seg7_texture_07011800: # 0x07011800 - 0x07012800
+inside_castle_seg7_texture_07011800: # 0x07011800 - 0x0701200
+.ifdef VERSION_JP
 .incbin "build/bin/inside_castle_seg7/inside_castle_seg7.11800.rgba16"
+.else
+.incbin "build/bin/inside_castle_seg7/inside_castle_seg7_us.11800.rgba16"
+.endif
 
 inside_castle_seg7_texture_07012800: # 0x07012800 - 0x07013800
 .incbin "build/bin/inside_castle_seg7/inside_castle_seg7.12800.rgba16"
@@ -6097,6 +6105,7 @@ inside_castle_seg7_light_0702FDE0: # 0x0702FDE0 - 0x0702FDF0
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 inside_castle_seg7_vertex_0702FDF0: # 0x0702FDF0 - 0x0702FE70
+.ifdef VERSION_JP
 vertex   1422,    614,  -2869,   1774,    990,  0x00, 0x7F, 0x00, 0xFF
 vertex   2038,    614,  -2616,  -1294,   -274,  0x00, 0x7F, 0x00, 0xFF
 vertex   1784,    614,  -2869,      0,    990,  0x00, 0x7F, 0x00, 0xFF
@@ -6105,8 +6114,19 @@ vertex   1422,    614,  -2001,   1774,  -3346,  0x00, 0x7F, 0x00, 0xFF
 vertex   2038,    614,  -2254,  -1294,  -2082,  0x00, 0x7F, 0x00, 0xFF
 vertex   1784,    614,  -2001,      0,  -3346,  0x00, 0x7F, 0x00, 0xFF
 vertex   1169,    614,  -2616,   3040,   -274,  0x00, 0x7F, 0x00, 0xFF
+.else
+vertex   1422,    614,  -2869,   1774,    990,  0x00, 0x7F, 0x00, 0xFF
+vertex   1169,    614,  -2616,   3040,   -274,  0x00, 0x7F, 0x00, 0xFF
+vertex   1169,    614,  -2254,   3040,  -2082,  0x00, 0x7F, 0x00, 0xFF
+vertex   2038,    614,  -2254,  -1294,  -2082,  0x00, 0x7F, 0x00, 0xFF
+vertex   2038,    614,  -2616,  -1294,   -274,  0x00, 0x7F, 0x00, 0xFF
+vertex   1784,    614,  -2001,      0,  -3346,  0x00, 0x7F, 0x00, 0xFF
+vertex   1422,    614,  -2001,   1774,  -3346,  0x00, 0x7F, 0x00, 0xFF
+vertex   1784,    614,  -2869,      0,    990,  0x00, 0x7F, 0x00, 0xFF
+.endif
 
 inside_castle_seg7_vertex_0702FE70: # 0x0702FE70 - 0x0702FF70
+.ifdef VERSION_JP
 vertex   1857,    768,  -2073,   6834,   2794,  0x00, 0x7F, 0x00, 0xFF
 vertex   2110,    768,  -2037,   9362,   3156,  0x00, 0x7F, 0x00, 0xFF
 vertex   1965,    768,  -2182,   7918,   1710,  0x00, 0x7F, 0x00, 0xFF
@@ -6123,8 +6143,26 @@ vertex    553,    614,  -1638,      0,   -288,  0x00, 0x7F, 0x00, 0xFF
 vertex   1422,    614,  -2001,   4312,   1498,  0x00, 0x7F, 0x00, 0xFF
 vertex   1169,    614,  -2254,   4312,   -288,  0x00, 0x7F, 0x00, 0xFF
 vertex    807,    614,  -1385,      0,   1498,  0x00, 0x7F, 0x00, 0xFF
+.else
+vertex    590,    614,  -1530,   -286,    224,  0x00, 0x7F, 0x00, 0xFF
+vertex    734,    614,  -1457,      0,    990,  0x00, 0x7F, 0x00, 0xFF
+vertex    626,    614,  -1566,      0,    224,  0x00, 0x7F, 0x00, 0xFF
+vertex   1857,    768,  -2073,   6834,   2794,  0x00, 0x7F, 0x00, 0xFF
+vertex   2110,    768,  -2037,   9362,   3156,  0x00, 0x7F, 0x00, 0xFF
+vertex   1965,    768,  -2182,   7918,   1710,  0x00, 0x7F, 0x00, 0xFF
+vertex   2002,    768,  -1928,   8278,   4240,  0x00, 0x7F, 0x00, 0xFF
+vertex   1350,    768,  -2797,   1774,  -4430,  0x00, 0x7F, 0x00, 0xFF
+vertex   1096,    768,  -2833,   -752,  -4792,  0x00, 0x7F, 0x00, 0xFF
+vertex   1241,    768,  -2688,    690,  -3346,  0x00, 0x7F, 0x00, 0xFF
+vertex   1205,    768,  -2942,    330,  -5876,  0x00, 0x7F, 0x00, 0xFF
+vertex    553,    614,  -1638,      0,   -288,  0x00, 0x7F, 0x00, 0xFF
+vertex   1422,    614,  -2001,   4312,   1498,  0x00, 0x7F, 0x00, 0xFF
+vertex   1169,    614,  -2254,   4312,   -288,  0x00, 0x7F, 0x00, 0xFF
+vertex    807,    614,  -1385,      0,   1498,  0x00, 0x7F, 0x00, 0xFF
+.endif
 
 inside_castle_seg7_vertex_0702FF70: # 0x0702FF70 - 0x0702FFF0
+.ifdef VERSION_JP
 vertex    590,    614,  -1530,   -286,    224,  0x00, 0x7F, 0x00, 0xFF
 vertex    698,    614,  -1421,   -286,    990,  0x00, 0x7F, 0x00, 0xFF
 vertex    734,    614,  -1457,      0,    990,  0x00, 0x7F, 0x00, 0xFF
@@ -6133,6 +6171,15 @@ vertex   1965,    768,  -2688,   7918,  -3346,  0x00, 0x7F, 0x00, 0xFF
 vertex   2001,    768,  -2942,   8278,  -5876,  0x00, 0x7F, 0x00, 0xFF
 vertex   1857,    768,  -2797,   6834,  -4430,  0x00, 0x7F, 0x00, 0xFF
 vertex   2110,    768,  -2833,   9362,  -4792,  0x00, 0x7F, 0x00, 0xFF
+.else
+vertex   1965,    768,  -2688,   7918,  -3346,  0x00, 0x7F, 0x00, 0xFF
+vertex   2001,    768,  -2942,   8278,  -5876,  0x00, 0x7F, 0x00, 0xFF
+vertex   1857,    768,  -2797,   6834,  -4430,  0x00, 0x7F, 0x00, 0xFF
+vertex    590,    614,  -1530,   -286,    224,  0x00, 0x7F, 0x00, 0xFF
+vertex    698,    614,  -1421,   -286,    990,  0x00, 0x7F, 0x00, 0xFF
+vertex    734,    614,  -1457,      0,    990,  0x00, 0x7F, 0x00, 0xFF
+vertex   2110,    768,  -2833,   9362,  -4792,  0x00, 0x7F, 0x00, 0xFF
+.endif
 
 inside_castle_seg7_vertex_0702FFF0: # 0x0702FFF0 - 0x070300E0
 vertex   1446,   1126,  -2169,  10018,      0,  0x00, 0x81, 0x00, 0xFF
@@ -6185,6 +6232,7 @@ vertex   2038,    922,  -2254,  -1562,  -2076,  0xA7, 0x00, 0xA6, 0xFF
 vertex   2038,    614,  -2254,  -1562,    990,  0xA7, 0x00, 0xA6, 0xFF
 
 inside_castle_seg7_vertex_070302B0: # 0x070302B0 - 0x070303B0
+.ifdef VERSION_JP
 vertex   1965,    768,  -2182,   5588,    990,  0xA7, 0x00, 0x59, 0xFF
 vertex   2110,    768,  -2037,   7632,    990,  0xA7, 0x00, 0x59, 0xFF
 vertex   2110,    922,  -2037,   7632,   -544,  0xA7, 0x00, 0x59, 0xFF
@@ -6201,8 +6249,27 @@ vertex   1881,   1024,  -2194,      0,  -3098,  0xB6, 0xBA, 0xB5, 0xFF
 vertex   1845,   1024,  -2157,    478,  -3098,  0xB6, 0xBA, 0xB5, 0xFF
 vertex   1857,    922,  -2073,    990,  -2076,  0xB6, 0xBA, 0xB5, 0xFF
 vertex   1784,    922,  -2001,   2012,  -2076,  0xB6, 0xBA, 0xB5, 0xFF
+.else
+vertex   1965,    768,  -2182,      0,    990,  0xA7, 0x00, 0x59, 0xFF
+vertex   2110,    922,  -2037,   2012,   -542,  0xA7, 0x00, 0x59, 0xFF
+vertex   1965,    922,  -2182,      0,   -542,  0xA7, 0x00, 0x59, 0xFF
+vertex   1784,    614,  -2001,   2012,    990,  0xA7, 0x00, 0xA6, 0xFF
+vertex   1784,    922,  -2001,   2012,  -2076,  0xA7, 0x00, 0xA6, 0xFF
+vertex   1857,    922,  -2073,    990,  -2076,  0xA7, 0x00, 0xA6, 0xFF
+vertex   1857,    768,  -2073,    990,   -544,  0xA7, 0x00, 0xA6, 0xFF
+vertex   2038,    922,  -2254,  -1562,  -2076,  0xB6, 0xBA, 0xB6, 0xFF
+vertex   1881,   1024,  -2194,      0,  -3098,  0xB6, 0xBA, 0xB6, 0xFF
+vertex   1833,   1229,  -2339,   -716,  -5142,  0xB6, 0xBA, 0xB6, 0xFF
+vertex   2038,    922,  -2254,  -1562,  -2076,  0xB6, 0xBA, 0xB5, 0xFF
+vertex   1965,    922,  -2182,   -540,  -2076,  0xB6, 0xBA, 0xB5, 0xFF
+vertex   1881,   1024,  -2194,      0,  -3098,  0xB6, 0xBA, 0xB5, 0xFF
+vertex   1845,   1024,  -2157,    478,  -3098,  0xB6, 0xBA, 0xB5, 0xFF
+vertex   1857,    922,  -2073,    990,  -2076,  0xB6, 0xBA, 0xB5, 0xFF
+vertex   1784,    922,  -2001,   2012,  -2076,  0xB6, 0xBA, 0xB5, 0xFF
+.endif
 
 inside_castle_seg7_vertex_070303B0: # 0x070303B0 - 0x07030490
+.ifdef VERSION_JP
 vertex   1965,    768,  -2182,   5588,    990,  0xA7, 0x00, 0x59, 0xFF
 vertex   2110,    922,  -2037,   7632,   -544,  0xA7, 0x00, 0x59, 0xFF
 vertex   1965,    922,  -2182,   5588,   -544,  0xA7, 0x00, 0x59, 0xFF
@@ -6217,8 +6284,25 @@ vertex   1845,   1024,  -2157,   4908,  -1566,  0x50, 0xC8, 0xB0, 0xFF
 vertex   2038,   1024,  -1964,   7632,  -1566,  0x50, 0xC8, 0xB0, 0xFF
 vertex   2002,    922,  -1928,   7632,   -544,  0x50, 0xC8, 0xB0, 0xFF
 vertex   1857,    922,  -2073,   5588,   -544,  0x50, 0xC8, 0xB0, 0xFF
+.else
+vertex   1965,    768,  -2182,      0,    990,  0xA7, 0x00, 0x59, 0xFF
+vertex   2110,    768,  -2037,   2012,    990,  0xA7, 0x00, 0x59, 0xFF
+vertex   2110,    922,  -2037,   2012,   -542,  0xA7, 0x00, 0x59, 0xFF
+vertex   1965,    922,  -2182,   5588,   -544,  0xB0, 0xC8, 0x50, 0xFF
+vertex   2110,    922,  -2037,   7632,   -544,  0xB0, 0xC8, 0x50, 0xFF
+vertex   2074,   1024,  -2001,   7632,  -1566,  0xB0, 0xC8, 0x50, 0xFF
+vertex   1857,    922,  -2073,      0,   -544,  0x59, 0x00, 0xA7, 0xFF
+vertex   2002,    768,  -1928,   2012,    990,  0x59, 0x00, 0xA7, 0xFF
+vertex   1857,    768,  -2073,      0,    990,  0x59, 0x00, 0xA7, 0xFF
+vertex   2002,    922,  -1928,   2012,   -542,  0x59, 0x00, 0xA7, 0xFF
+vertex   1845,   1024,  -2157,   4908,  -1566,  0x50, 0xC8, 0xB0, 0xFF
+vertex   2038,   1024,  -1964,   7632,  -1566,  0x50, 0xC8, 0xB0, 0xFF
+vertex   2002,    922,  -1928,   7632,   -544,  0x50, 0xC8, 0xB0, 0xFF
+vertex   1857,    922,  -2073,   5588,   -544,  0x50, 0xC8, 0xB0, 0xFF
+.endif
 
 inside_castle_seg7_vertex_07030490: # 0x07030490 - 0x07030590
+.ifdef VERSION_JP
 vertex   1881,   1024,  -2194,   7292,    480,  0x00, 0x81, 0x00, 0xFF
 vertex   2074,   1024,  -2001,  10018,    480,  0x00, 0x81, 0x00, 0xFF
 vertex   2038,   1024,  -1964,  10018,      0,  0x00, 0x81, 0x00, 0xFF
@@ -6235,8 +6319,27 @@ vertex   1362,   1024,  -2713,      0,  -3098,  0x4B, 0xBA, 0x49, 0xFF
 vertex   1507,   1229,  -2665,   -716,  -5142,  0x4A, 0xBA, 0x4A, 0xFF
 vertex   1362,   1024,  -2713,      0,  -3098,  0x4A, 0xBA, 0x4A, 0xFF
 vertex   1422,    922,  -2869,  -1564,  -2076,  0x4A, 0xBA, 0x4A, 0xFF
+.else
+vertex   1881,   1024,  -2194,   7292,    480,  0x00, 0x81, 0x00, 0xFF
+vertex   2074,   1024,  -2001,  10018,    480,  0x00, 0x81, 0x00, 0xFF
+vertex   2038,   1024,  -1964,  10018,      0,  0x00, 0x81, 0x00, 0xFF
+vertex   1845,   1024,  -2157,   7292,      0,  0x00, 0x81, 0x00, 0xFF
+vertex   1507,   1229,  -2665,   -716,  -5142,  0x4B, 0xBA, 0x4A, 0xFF
+vertex   1374,   1229,  -2531,   1166,  -5142,  0x4B, 0xBA, 0x4A, 0xFF
+vertex   1326,   1024,  -2676,    478,  -3098,  0x4B, 0xBA, 0x4A, 0xFF
+vertex   1965,    922,  -2182,   5588,   -544,  0xB0, 0xC8, 0x50, 0xFF
+vertex   2074,   1024,  -2001,   7632,  -1566,  0xB0, 0xC8, 0x50, 0xFF
+vertex   1881,   1024,  -2194,   4908,  -1566,  0xB0, 0xC8, 0x50, 0xFF
+vertex   1881,   1024,  -2194,      0,  -3098,  0xB5, 0xBA, 0xB7, 0xFF
+vertex   1845,   1024,  -2157,    478,  -3098,  0xB5, 0xBA, 0xB7, 0xFF
+vertex   1699,   1229,  -2205,   1166,  -5142,  0xB5, 0xBA, 0xB7, 0xFF
+vertex   1881,   1024,  -2194,      0,  -3098,  0xB6, 0xBA, 0xB6, 0xFF
+vertex   1699,   1229,  -2205,   1166,  -5142,  0xB6, 0xBA, 0xB6, 0xFF
+vertex   1833,   1229,  -2339,   -716,  -5142,  0xB6, 0xBA, 0xB6, 0xFF
+.endif
 
 inside_castle_seg7_vertex_07030590: # 0x07030590 - 0x07030670
+.ifdef VERSION_JP
 vertex   1507,   1229,  -2665,   -716,  -5142,  0x4B, 0xBA, 0x4A, 0xFF
 vertex   1374,   1229,  -2531,   1166,  -5142,  0x4B, 0xBA, 0x4A, 0xFF
 vertex   1326,   1024,  -2676,    478,  -3098,  0x4B, 0xBA, 0x4A, 0xFF
@@ -6251,8 +6354,26 @@ vertex   1169,    922,  -2616,   2012,  -2076,  0x4A, 0xBA, 0x4A, 0xFF
 vertex   1241,    922,  -2688,    990,  -2076,  0x4A, 0xBA, 0x4A, 0xFF
 vertex   1326,   1024,  -2676,    478,  -3098,  0x4A, 0xBA, 0x4A, 0xFF
 vertex   1374,   1229,  -2531,   1166,  -5142,  0x4A, 0xBA, 0x4A, 0xFF
+.else
+vertex   1845,   1024,  -2157,    478,  -3098,  0xB6, 0xBA, 0xB5, 0xFF
+vertex   1784,    922,  -2001,   2012,  -2076,  0xB6, 0xBA, 0xB5, 0xFF
+vertex   1699,   1229,  -2205,   1166,  -5142,  0xB6, 0xBA, 0xB5, 0xFF
+vertex   1507,   1229,  -2665,   -716,  -5142,  0x4A, 0xBA, 0x4A, 0xFF
+vertex   1362,   1024,  -2713,      0,  -3098,  0x4A, 0xBA, 0x4A, 0xFF
+vertex   1422,    922,  -2869,  -1564,  -2076,  0x4A, 0xBA, 0x4A, 0xFF
+vertex   1507,   1229,  -2665,   -716,  -5142,  0x4B, 0xBA, 0x49, 0xFF
+vertex   1326,   1024,  -2676,    478,  -3098,  0x4B, 0xBA, 0x49, 0xFF
+vertex   1362,   1024,  -2713,      0,  -3098,  0x4B, 0xBA, 0x49, 0xFF
+vertex   1422,    614,  -2869,  -1564,    990,  0x59, 0x00, 0x59, 0xFF
+vertex   1350,    768,  -2797,   -542,   -542,  0x59, 0x00, 0x59, 0xFF
+vertex   1241,    768,  -2688,    990,   -542,  0x59, 0x00, 0x59, 0xFF
+vertex   1350,    922,  -2797,   -542,  -2076,  0x4A, 0xBA, 0x4A, 0xFF
+vertex   1422,    922,  -2869,  -1564,  -2076,  0x59, 0x00, 0x59, 0xFF
+vertex   1350,    922,  -2797,   -542,  -2076,  0x59, 0x00, 0x59, 0xFF
+.endif
 
 inside_castle_seg7_vertex_07030670: # 0x07030670 - 0x07030760
+.ifdef VERSION_JP
 vertex   1326,   1024,  -2676,      0,      0,  0x00, 0x81, 0x00, 0xFF
 vertex   1169,   1024,  -2906,  -2756,    478,  0x00, 0x81, 0x00, 0xFF
 vertex   1362,   1024,  -2713,      0,    478,  0x00, 0x81, 0x00, 0xFF
@@ -6268,8 +6389,25 @@ vertex   1205,    922,  -2942,  -5140,   -544,  0xA7, 0x00, 0x59, 0xFF
 vertex   1205,    768,  -2942,  -5140,    990,  0xA7, 0x00, 0x59, 0xFF
 vertex   1350,    768,  -2797,  -3096,    990,  0xA7, 0x00, 0x59, 0xFF
 vertex   1133,   1024,  -2869,  -2756,      0,  0x00, 0x81, 0x00, 0xFF
+.else
+vertex   1169,    922,  -2616,   2012,  -2076,  0x4A, 0xBA, 0x4A, 0xFF
+vertex   1241,    922,  -2688,    990,  -2076,  0x4A, 0xBA, 0x4A, 0xFF
+vertex   1326,   1024,  -2676,    478,  -3098,  0x4A, 0xBA, 0x4A, 0xFF
+vertex   1374,   1229,  -2531,   1166,  -5142,  0x4A, 0xBA, 0x4A, 0xFF
+vertex   1241,    768,  -2688,    990,   -542,  0x59, 0x00, 0x59, 0xFF
+vertex   1241,    922,  -2688,    990,  -2076,  0x59, 0x00, 0x59, 0xFF
+vertex   1169,    922,  -2616,   2012,  -2076,  0x59, 0x00, 0x59, 0xFF
+vertex   1362,   1024,  -2713,  -2414,  -1566,  0xB0, 0xC8, 0x50, 0xFF
+vertex   1169,   1024,  -2906,  -5140,  -1566,  0xB0, 0xC8, 0x50, 0xFF
+vertex   1205,    922,  -2942,  -5140,   -544,  0xB0, 0xC8, 0x50, 0xFF
+vertex   1350,    922,  -2797,  -3096,   -544,  0xB0, 0xC8, 0x50, 0xFF
+vertex   1241,    922,  -2688,  -3096,   -542,  0x50, 0xC7, 0xB0, 0xFF
+vertex   1133,   1024,  -2869,  -5140,  -1564,  0x50, 0xC7, 0xB0, 0xFF
+vertex   1326,   1024,  -2676,  -2414,  -1566,  0x50, 0xC7, 0xB0, 0xFF
+.endif
 
 inside_castle_seg7_vertex_07030760: # 0x07030760 - 0x07030860
+.ifdef VERSION_JP
 vertex   1784,    922,  -2001,  -1052,  -1054,  0x00, 0x00, 0x81, 0xFF
 vertex   1422,    614,  -2001,   2560,   2010,  0x00, 0x00, 0x81, 0xFF
 vertex   1422,    922,  -2001,   2560,  -1054,  0x00, 0x00, 0x81, 0xFF
@@ -6286,8 +6424,25 @@ vertex   1169,    922,  -2616,   2012,  -2076,  0x59, 0x00, 0x59, 0xFF
 vertex   1169,    614,  -2616,   2012,    990,  0x59, 0x00, 0x59, 0xFF
 vertex   1422,    614,  -2869,  -1564,    990,  0x59, 0x00, 0x59, 0xFF
 vertex   1350,    768,  -2797,   -542,   -542,  0x59, 0x00, 0x59, 0xFF
+.else
+vertex   1350,    922,  -2797,  -3096,   -544,  0xA7, 0x00, 0x59, 0xFF
+vertex   1205,    922,  -2942,  -5140,   -544,  0xA7, 0x00, 0x59, 0xFF
+vertex   1205,    768,  -2942,  -5140,    990,  0xA7, 0x00, 0x59, 0xFF
+vertex   1350,    768,  -2797,  -3096,    990,  0xA7, 0x00, 0x59, 0xFF
+vertex   1326,   1024,  -2676,      0,      0,  0x00, 0x81, 0x00, 0xFF
+vertex   1133,   1024,  -2869,  -2756,      0,  0x00, 0x81, 0x00, 0xFF
+vertex   1169,   1024,  -2906,  -2756,    478,  0x00, 0x81, 0x00, 0xFF
+vertex   1362,   1024,  -2713,      0,    478,  0x00, 0x81, 0x00, 0xFF
+vertex   1241,    768,  -2688,  -3096,    990,  0x59, 0x00, 0xA7, 0xFF
+vertex   1096,    922,  -2833,  -5140,   -542,  0x59, 0x00, 0xA7, 0xFF
+vertex   1241,    922,  -2688,  -3096,   -542,  0x59, 0x00, 0xA7, 0xFF
+vertex   1241,    922,  -2688,  -3096,   -542,  0x50, 0xC7, 0xB0, 0xFF
+vertex   1096,    922,  -2833,  -5140,   -542,  0x50, 0xC7, 0xB0, 0xFF
+vertex   1133,   1024,  -2869,  -5140,  -1564,  0x50, 0xC7, 0xB0, 0xFF
+.endif
 
 inside_castle_seg7_vertex_07030860: # 0x07030860 - 0x07030940
+.ifdef VERSION_JP
 vertex   1784,    922,  -2001,  -1052,  -1054,  0x00, 0x00, 0x81, 0xFF
 vertex   1784,    614,  -2001,  -1052,   2010,  0x00, 0x00, 0x81, 0xFF
 vertex   1422,    614,  -2001,   2560,   2010,  0x00, 0x00, 0x81, 0xFF
@@ -6302,8 +6457,26 @@ vertex   1169,    922,  -2254,  -1052,  -1054,  0x7F, 0x00, 0x00, 0xFF
 vertex   1169,    614,  -2254,  -1052,   2010,  0x7F, 0x00, 0x00, 0xFF
 vertex   1169,    614,  -2616,   2560,   2010,  0x7F, 0x00, 0x00, 0xFF
 vertex   1169,    922,  -2616,   2560,  -1054,  0x7F, 0x00, 0x00, 0xFF
+.else
+vertex   2038,    922,  -2616,   2560,  -1054,  0x81, 0x00, 0x00, 0xFF
+vertex   2038,    614,  -2616,   2560,   2010,  0x81, 0x00, 0x00, 0xFF
+vertex   2038,    614,  -2254,  -1052,   2010,  0x81, 0x00, 0x00, 0xFF
+vertex   1241,    768,  -2688,  -3096,    990,  0x59, 0x00, 0xA7, 0xFF
+vertex   1096,    768,  -2833,  -5140,    990,  0x59, 0x00, 0xA7, 0xFF
+vertex   1096,    922,  -2833,  -5140,   -542,  0x59, 0x00, 0xA7, 0xFF
+vertex   1241,    768,  -2688,    990,   -542,  0x59, 0x00, 0x59, 0xFF
+vertex   1169,    614,  -2616,   2012,    990,  0x59, 0x00, 0x59, 0xFF
+vertex   1422,    614,  -2869,  -1564,    990,  0x59, 0x00, 0x59, 0xFF
+vertex   1169,    922,  -2616,   2012,  -2076,  0x59, 0x00, 0x59, 0xFF
+vertex   1784,    922,  -2001,  -1052,  -1054,  0x00, 0x00, 0x81, 0xFF
+vertex   1784,    614,  -2001,  -1052,   2010,  0x00, 0x00, 0x81, 0xFF
+vertex   1422,    614,  -2001,   2560,   2010,  0x00, 0x00, 0x81, 0xFF
+vertex   1422,    922,  -2001,   2560,  -1054,  0x00, 0x00, 0x81, 0xFF
+vertex   2038,    922,  -2254,  -1052,  -1054,  0x81, 0x00, 0x00, 0xFF
+.endif
 
-inside_castle_seg7_vertex_07030940: # 0x07030940 - 0x07030A40
+glabel inside_castle_seg7_vertex_07030940 # 0x07030940 - 0x07030A40
+.ifdef VERSION_JP
 vertex    807,    922,  -1385,  -1052,  -1054,  0x5A, 0xFE, 0xA7, 0xFF
 vertex    734,    870,  -1457,      0,   -544,  0x5A, 0xFE, 0xA7, 0xFF
 vertex    626,    870,  -1566,   1502,   -544,  0x5A, 0xFE, 0xA7, 0xFF
@@ -6320,8 +6493,25 @@ vertex    553,    922,  -1638,   2524,  -1054,  0x5A, 0x00, 0xA7, 0xFF
 vertex    626,   1126,  -1566,   1500,  -3098,  0x5A, 0x00, 0xA7, 0xFF
 vertex    734,   1126,  -1457,      0,  -3098,  0x5A, 0x00, 0xA7, 0xFF
 vertex    553,    614,  -1638,   2524,   2010,  0x59, 0x00, 0xA6, 0xFF
+.else
+vertex   1169,    922,  -2254,  -1052,  -1054,  0x7F, 0x00, 0x00, 0xFF
+vertex   1169,    614,  -2616,   2560,   2010,  0x7F, 0x00, 0x00, 0xFF
+vertex   1169,    922,  -2616,   2560,  -1054,  0x7F, 0x00, 0x00, 0xFF
+vertex   1169,    614,  -2254,  -1052,   2010,  0x7F, 0x00, 0x00, 0xFF
+vertex    807,    922,  -1385,  -1052,  -1054,  0x5A, 0xFE, 0xA7, 0xFF
+vertex    734,    870,  -1457,      0,   -544,  0x5A, 0xFE, 0xA7, 0xFF
+vertex    626,    870,  -1566,   1502,   -544,  0x5A, 0xFE, 0xA7, 0xFF
+vertex    626,    870,  -1566,   1502,   -544,  0x59, 0x00, 0xA6, 0xFF
+vertex    626,    614,  -1566,   1502,   2010,  0x59, 0x00, 0xA6, 0xFF
+vertex    553,    922,  -1638,   2524,  -1054,  0x59, 0x00, 0xA6, 0xFF
+vertex    626,    870,  -1566,   1502,   -544,  0x59, 0x01, 0xA7, 0xFF
+vertex    553,    922,  -1638,   2524,  -1054,  0x59, 0x01, 0xA7, 0xFF
+vertex    807,    922,  -1385,  -1052,  -1054,  0x59, 0x01, 0xA7, 0xFF
+vertex    553,    614,  -1638,   2524,   2010,  0x59, 0x00, 0xA6, 0xFF
+.endif
 
 inside_castle_seg7_vertex_07030A40: # 0x07030A40 - 0x07030B30
+.ifdef VERSION_JP
 vertex    807,    922,  -1385,  -1052,  -1054,  0x59, 0x00, 0xA6, 0xFF
 vertex    807,    614,  -1385,  -1052,   2010,  0x59, 0x00, 0xA6, 0xFF
 vertex    734,    614,  -1457,      0,   2010,  0x59, 0x00, 0xA6, 0xFF
@@ -6337,8 +6527,27 @@ vertex   2038,    922,  -2254,  -1052,  -1054,  0x97, 0xBA, 0x00, 0xFF
 vertex   1833,   1229,  -2339,   -206,  -4120,  0x97, 0xBA, 0x00, 0xFF
 vertex   2038,    922,  -2616,   2560,  -1054,  0x97, 0xBA, 0x00, 0xFF
 vertex   1833,   1229,  -2531,   1712,  -4120,  0x97, 0xBA, 0x00, 0xFF
+.else
+vertex    553,    922,  -1638,   2524,  -1054,  0x5A, 0x00, 0xA7, 0xFF
+vertex    626,   1126,  -1566,   1500,  -3098,  0x5A, 0x00, 0xA7, 0xFF
+vertex    734,   1126,  -1457,      0,  -3098,  0x5A, 0x00, 0xA7, 0xFF
+vertex    553,    922,  -1638,   2524,  -1054,  0x59, 0x00, 0xA7, 0xFF
+vertex    734,   1126,  -1457,      0,  -3098,  0x59, 0x00, 0xA7, 0xFF
+vertex    807,    922,  -1385,  -1052,  -1054,  0x59, 0x00, 0xA7, 0xFF
+vertex    807,    922,  -1385,  -1052,  -1054,  0x59, 0x00, 0xA6, 0xFF
+vertex    734,    614,  -1457,      0,   2010,  0x59, 0x00, 0xA6, 0xFF
+vertex    734,    870,  -1457,      0,   -544,  0x59, 0x00, 0xA6, 0xFF
+vertex    807,    614,  -1385,  -1052,   2010,  0x59, 0x00, 0xA6, 0xFF
+vertex   1422,    922,  -2001,   2560,  -1054,  0x00, 0xBA, 0x97, 0xFF
+vertex   1507,   1229,  -2205,   1712,  -4120,  0x00, 0xBA, 0x97, 0xFF
+vertex   1699,   1229,  -2205,   -206,  -4120,  0x00, 0xBA, 0x97, 0xFF
+vertex   1422,    922,  -2869,   2560,  -1054,  0x00, 0x00, 0x7F, 0xFF
+vertex   1784,    614,  -2869,  -1052,   2010,  0x00, 0x00, 0x7F, 0xFF
+vertex   1784,    922,  -2869,  -1052,  -1054,  0x00, 0x00, 0x7F, 0xFF
+.endif
 
 inside_castle_seg7_vertex_07030B30: # 0x07030B30 - 0x07030C20
+.ifdef VERSION_JP
 vertex   1422,    922,  -2001,   2560,  -1054,  0x00, 0xBA, 0x97, 0xFF
 vertex   1507,   1229,  -2205,   1712,  -4120,  0x00, 0xBA, 0x97, 0xFF
 vertex   1699,   1229,  -2205,   -206,  -4120,  0x00, 0xBA, 0x97, 0xFF
@@ -6354,8 +6563,27 @@ vertex    698,    870,  -1421,      0,      0,  0x00, 0x81, 0x00, 0xFF
 vertex    590,    870,  -1530,      0,    990,  0x00, 0x81, 0x00, 0xFF
 vertex    626,    870,  -1566,    990,    990,  0x00, 0x81, 0x00, 0xFF
 vertex    734,    870,  -1457,    990,      0,  0x00, 0x81, 0x00, 0xFF
+.else
+vertex   1784,    922,  -2869,  -1052,  -1054,  0x00, 0xBA, 0x69, 0xFF
+vertex   1507,   1229,  -2665,   1712,  -4120,  0x00, 0xBA, 0x69, 0xFF
+vertex   1422,    922,  -2869,   2560,  -1054,  0x00, 0xBA, 0x69, 0xFF
+vertex   1422,    922,  -2869,   2560,  -1054,  0x00, 0x00, 0x7F, 0xFF
+vertex   1422,    614,  -2869,   2560,   2010,  0x00, 0x00, 0x7F, 0xFF
+vertex   1784,    614,  -2869,  -1052,   2010,  0x00, 0x00, 0x7F, 0xFF
+vertex   1784,    922,  -2869,  -4118,  -2076,  0x00, 0xBA, 0x69, 0xFF
+vertex   1699,   1229,  -2665,  -2074,  -5142,  0x00, 0xBA, 0x69, 0xFF
+vertex   1507,   1229,  -2665,   -716,  -5142,  0x00, 0xBA, 0x69, 0xFF
+vertex   2038,    922,  -2254,  -1052,  -1054,  0x97, 0xBA, 0x00, 0xFF
+vertex   1833,   1229,  -2339,   -206,  -4120,  0x97, 0xBA, 0x00, 0xFF
+vertex   2038,    922,  -2616,   2560,  -1054,  0x97, 0xBA, 0x00, 0xFF
+vertex   1833,   1229,  -2531,   1712,  -4120,  0x97, 0xBA, 0x00, 0xFF
+vertex    734,    614,  -1457,      0,   2010,  0xA7, 0x00, 0xA7, 0xFF
+vertex    698,    870,  -1421,   -542,   -544,  0xA7, 0x00, 0xA7, 0xFF
+vertex    734,    870,  -1457,      0,   -544,  0xA7, 0x00, 0xA7, 0xFF
+.endif
 
 inside_castle_seg7_vertex_07030C20: # 0x07030C20 - 0x07030D20
+.ifdef VERSION_JP
 vertex    734,    614,  -1457,      0,   2010,  0xA7, 0x00, 0xA7, 0xFF
 vertex    698,    870,  -1421,   -542,   -544,  0xA7, 0x00, 0xA7, 0xFF
 vertex    734,    870,  -1457,      0,   -544,  0xA7, 0x00, 0xA7, 0xFF
@@ -6372,8 +6600,25 @@ vertex   1881,   1024,  -2676,    480,  -2076,  0xB6, 0xBA, 0x4B, 0xFF
 vertex   1881,   1024,  -2676,    480,  -2076,  0xB6, 0xBA, 0x4A, 0xFF
 vertex   2038,    922,  -2616,  -1052,  -1054,  0xB6, 0xBA, 0x4A, 0xFF
 vertex   1833,   1229,  -2531,   -206,  -4120,  0xB6, 0xBA, 0x4A, 0xFF
+.else
+vertex   1422,    922,  -2001,   2560,  -1054,  0x00, 0xBA, 0x97, 0xFF
+vertex   1699,   1229,  -2205,   -206,  -4120,  0x00, 0xBA, 0x97, 0xFF
+vertex   1784,    922,  -2001,  -1052,  -1054,  0x00, 0xBA, 0x97, 0xFF
+vertex   1169,    922,  -2616,   2560,  -1054,  0x69, 0xBA, 0x00, 0xFF
+vertex   1374,   1229,  -2531,   1712,  -4120,  0x69, 0xBA, 0x00, 0xFF
+vertex   1169,    922,  -2254,  -1052,  -1054,  0x69, 0xBA, 0x00, 0xFF
+vertex   1374,   1229,  -2339,   -206,  -4120,  0x69, 0xBA, 0x00, 0xFF
+vertex    698,    870,  -1421,      0,      0,  0x00, 0x81, 0x00, 0xFF
+vertex    626,    870,  -1566,    990,    990,  0x00, 0x81, 0x00, 0xFF
+vertex    734,    870,  -1457,    990,      0,  0x00, 0x81, 0x00, 0xFF
+vertex    590,    870,  -1530,      0,    990,  0x00, 0x81, 0x00, 0xFF
+vertex    734,    614,  -1457,      0,   2010,  0xA7, 0x00, 0xA7, 0xFF
+vertex    698,    614,  -1421,   -542,   2010,  0xA7, 0x00, 0xA7, 0xFF
+vertex    698,    870,  -1421,   -542,   -544,  0xA7, 0x00, 0xA7, 0xFF
+.endif
 
 inside_castle_seg7_vertex_07030D20: # 0x07030D20 - 0x07030E20
+.ifdef VERSION_JP
 vertex   1881,   1024,  -2676,    480,  -2076,  0xB5, 0xBA, 0x49, 0xFF
 vertex   1699,   1229,  -2665,   1676,  -4120,  0xB5, 0xBA, 0x49, 0xFF
 vertex   1845,   1024,  -2713,    990,  -2076,  0xB5, 0xBA, 0x49, 0xFF
@@ -6390,8 +6635,25 @@ vertex   1857,    768,  -2797,   1502,    480,  0xA6, 0x00, 0x59, 0xFF
 vertex   1857,    768,  -2797,   1502,    480,  0xA7, 0x00, 0x5A, 0xFF
 vertex   1857,    922,  -2797,   1502,  -1054,  0xA7, 0x00, 0x5A, 0xFF
 vertex   1784,    922,  -2869,   2524,  -1054,  0xA7, 0x00, 0x5A, 0xFF
+.else
+vertex    590,    614,  -1530,   -542,   2010,  0x59, 0x00, 0x59, 0xFF
+vertex    626,    614,  -1566,      0,   2010,  0x59, 0x00, 0x59, 0xFF
+vertex    626,    870,  -1566,      0,   -542,  0x59, 0x00, 0x59, 0xFF
+vertex    590,    870,  -1530,   -542,   -544,  0x59, 0x00, 0x59, 0xFF
+vertex   1965,    922,  -2688,      0,  -1054,  0xB6, 0xBA, 0x4B, 0xFF
+vertex   2038,    922,  -2616,  -1052,  -1054,  0xB6, 0xBA, 0x4B, 0xFF
+vertex   1881,   1024,  -2676,    480,  -2076,  0xB6, 0xBA, 0x4B, 0xFF
+vertex   1881,   1024,  -2676,    480,  -2076,  0xB6, 0xBA, 0x4A, 0xFF
+vertex   2038,    922,  -2616,  -1052,  -1054,  0xB6, 0xBA, 0x4A, 0xFF
+vertex   1833,   1229,  -2531,   -206,  -4120,  0xB6, 0xBA, 0x4A, 0xFF
+vertex   1881,   1024,  -2676,    480,  -2076,  0xB5, 0xBA, 0x49, 0xFF
+vertex   1699,   1229,  -2665,   1676,  -4120,  0xB5, 0xBA, 0x49, 0xFF
+vertex   1845,   1024,  -2713,    990,  -2076,  0xB5, 0xBA, 0x49, 0xFF
+vertex   1699,   1229,  -2665,   1676,  -4120,  0xB6, 0xBA, 0x4A, 0xFF
+.endif
 
 inside_castle_seg7_vertex_07030E20: # 0x07030E20 - 0x07030F10
+.ifdef VERSION_JP
 vertex   2038,    614,  -2616,  -1052,   2010,  0xA7, 0x00, 0x5A, 0xFF
 vertex   2038,    922,  -2616,  -1052,  -1054,  0xA7, 0x00, 0x5A, 0xFF
 vertex   1965,    922,  -2688,      0,  -1054,  0xA7, 0x00, 0x5A, 0xFF
@@ -6407,8 +6669,25 @@ vertex   1857,    922,  -2797,  -1052,   -544,  0x5A, 0x00, 0x59, 0xFF
 vertex   1857,    922,  -2797,  -1052,   -544,  0x50, 0xC8, 0x50, 0xFF
 vertex   2001,    922,  -2942,    990,   -544,  0x50, 0xC8, 0x50, 0xFF
 vertex   1845,   1024,  -2713,  -1734,  -1566,  0x50, 0xC8, 0x50, 0xFF
+.else
+vertex   1784,    922,  -2869,   2524,  -1054,  0xB6, 0xBA, 0x4B, 0xFF
+vertex   1845,   1024,  -2713,    990,  -2076,  0xB6, 0xBA, 0x4B, 0xFF
+vertex   1699,   1229,  -2665,   1676,  -4120,  0xB6, 0xBA, 0x4B, 0xFF
+vertex   1857,    922,  -2797,   1502,  -1054,  0xB6, 0xBA, 0x4B, 0xFF
+vertex   2038,    614,  -2616,  -1052,   2010,  0xA6, 0x00, 0x59, 0xFF
+vertex   1965,    768,  -2688,      0,    480,  0xA6, 0x00, 0x59, 0xFF
+vertex   1857,    768,  -2797,   1502,    480,  0xA6, 0x00, 0x59, 0xFF
+vertex   1857,    768,  -2797,   1502,    480,  0xA7, 0x00, 0x5A, 0xFF
+vertex   1857,    922,  -2797,   1502,  -1054,  0xA7, 0x00, 0x5A, 0xFF
+vertex   1784,    922,  -2869,   2524,  -1054,  0xA7, 0x00, 0x5A, 0xFF
+vertex   1784,    614,  -2869,   2524,   2010,  0xA7, 0x00, 0x5A, 0xFF
+vertex   1857,    768,  -2797,   1502,    480,  0xA7, 0x00, 0x59, 0xFF
+vertex   1784,    614,  -2869,   2524,   2010,  0xA7, 0x00, 0x59, 0xFF
+vertex   2038,    614,  -2616,  -1052,   2010,  0xA7, 0x00, 0x59, 0xFF
+.endif
 
 inside_castle_seg7_vertex_07030F10: # 0x07030F10 - 0x07030FF0
+.ifdef VERSION_JP
 vertex   2001,    922,  -2942,    990,   -544,  0x50, 0xC7, 0x50, 0xFF
 vertex   2038,   1024,  -2906,    990,  -1566,  0x50, 0xC7, 0x50, 0xFF
 vertex   1845,   1024,  -2713,  -1734,  -1566,  0x50, 0xC7, 0x50, 0xFF
@@ -6423,8 +6702,25 @@ vertex   1881,   1024,  -2676,  -1734,  -1566,  0xB0, 0xC8, 0xB0, 0xFF
 vertex   2074,   1024,  -2869,    990,  -1566,  0xB0, 0xC8, 0xB0, 0xFF
 vertex   1965,    922,  -2688,  -1052,   -544,  0xB0, 0xC8, 0xB0, 0xFF
 vertex   2110,    922,  -2833,    990,   -544,  0xB0, 0xC8, 0xB0, 0xFF
+.else
+vertex   2038,    614,  -2616,  -1052,   2010,  0xA7, 0x00, 0x5A, 0xFF
+vertex   2038,    922,  -2616,  -1052,  -1054,  0xA7, 0x00, 0x5A, 0xFF
+vertex   1965,    922,  -2688,      0,  -1054,  0xA7, 0x00, 0x5A, 0xFF
+vertex   1965,    768,  -2688,      0,    480,  0xA7, 0x00, 0x5A, 0xFF
+vertex   1857,    768,  -2797,  -1052,    990,  0x5A, 0x00, 0x59, 0xFF
+vertex   2001,    922,  -2942,    990,   -544,  0x5A, 0x00, 0x59, 0xFF
+vertex   1857,    922,  -2797,  -1052,   -544,  0x5A, 0x00, 0x59, 0xFF
+vertex   1857,    922,  -2797,  -1052,   -544,  0x50, 0xC8, 0x50, 0xFF
+vertex   2001,    922,  -2942,    990,   -544,  0x50, 0xC8, 0x50, 0xFF
+vertex   1845,   1024,  -2713,  -1734,  -1566,  0x50, 0xC8, 0x50, 0xFF
+vertex   2001,    922,  -2942,    990,   -544,  0x50, 0xC7, 0x50, 0xFF
+vertex   2038,   1024,  -2906,    990,  -1566,  0x50, 0xC7, 0x50, 0xFF
+vertex   1845,   1024,  -2713,  -1734,  -1566,  0x50, 0xC7, 0x50, 0xFF
+vertex   2001,    768,  -2942,    990,    990,  0x5A, 0x00, 0x59, 0xFF
+.endif
 
 inside_castle_seg7_vertex_07030FF0: # 0x07030FF0 - 0x07031070
+.ifdef VERSION_JP
 vertex   1965,    922,  -2688,  -1052,   -544,  0xA7, 0x00, 0xA7, 0xFF
 vertex   2110,    768,  -2833,    990,    990,  0xA7, 0x00, 0xA7, 0xFF
 vertex   1965,    768,  -2688,  -1052,    990,  0xA7, 0x00, 0xA7, 0xFF
@@ -6433,8 +6729,27 @@ vertex   1833,   1229,  -2665,  -2074,  -1302,  0x00, 0x81, 0x00, 0xFF
 vertex   1833,   1229,  -2205,  -2074,    990,  0x00, 0x81, 0x00, 0xFF
 vertex   1374,   1229,  -2205,   2508,    990,  0x00, 0x81, 0x00, 0xFF
 vertex   1374,   1229,  -2665,   2508,  -1302,  0x00, 0x81, 0x00, 0xFF
+.else
+vertex   2038,   1024,  -2906,   3204,    990,  0x00, 0x81, 0x00, 0xFF
+vertex   2074,   1024,  -2869,   3204,    480,  0x00, 0x81, 0x00, 0xFF
+vertex   1881,   1024,  -2676,    480,    478,  0x00, 0x81, 0x00, 0xFF
+vertex   1845,   1024,  -2713,    480,    990,  0x00, 0x81, 0x00, 0xFF
+vertex   1881,   1024,  -2676,  -1734,  -1566,  0xB0, 0xC8, 0xB0, 0xFF
+vertex   2074,   1024,  -2869,    990,  -1566,  0xB0, 0xC8, 0xB0, 0xFF
+vertex   1965,    922,  -2688,  -1052,   -544,  0xB0, 0xC8, 0xB0, 0xFF
+vertex   2110,    922,  -2833,    990,   -544,  0xB0, 0xC8, 0xB0, 0xFF
+vertex   1965,    922,  -2688,  -1052,   -544,  0xA7, 0x00, 0xA7, 0xFF
+vertex   2110,    768,  -2833,    990,    990,  0xA7, 0x00, 0xA7, 0xFF
+vertex   1965,    768,  -2688,  -1052,    990,  0xA7, 0x00, 0xA7, 0xFF
+vertex   2110,    922,  -2833,    990,   -544,  0xA7, 0x00, 0xA7, 0xFF
+vertex   1833,   1229,  -2665,  -2074,  -1302,  0x00, 0x81, 0x00, 0xFF
+vertex   1833,   1229,  -2205,  -2074,    990,  0x00, 0x81, 0x00, 0xFF
+vertex   1374,   1229,  -2205,   2508,    990,  0x00, 0x81, 0x00, 0xFF
+vertex   1374,   1229,  -2665,   2508,  -1302,  0x00, 0x81, 0x00, 0xFF
+.endif
 
 inside_castle_seg7_dl_07031070: # 0x07031070 - 0x070310D8
+.ifdef VERSION_JP
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, inside_castle_textures_09004000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
@@ -6448,8 +6763,24 @@ gsSP1Triangle  0,  6,  5, 0x0
 gsSP1Triangle  0,  7,  3, 0x0
 gsSP1Triangle  0,  4,  6, 0x0
 gsSPEndDisplayList
+.else
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, inside_castle_textures_09004000
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
+gsSPLight inside_castle_seg7_light_0702FDE0, 1
+gsSPLight inside_castle_seg7_light_0702FDD8, 2
+gsSPVertex inside_castle_seg7_vertex_0702FDF0, 8, 0
+gsSP1Triangle  0,  1,  2, 0x0
+gsSP1Triangle  0,  3,  4, 0x0
+gsSP1Triangle  0,  5,  3, 0x0
+gsSP1Triangle  0,  2,  6, 0x0
+gsSP1Triangle  0,  4,  7, 0x0
+gsSP1Triangle  0,  6,  5, 0x0
+gsSPEndDisplayList
+.endif
 
 inside_castle_seg7_dl_070310D8: # 0x070310D8 - 0x07031168
+.ifdef VERSION_JP
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, inside_castle_textures_09005000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
@@ -6468,8 +6799,27 @@ gsSP1Triangle  0,  2,  3, 0x0
 gsSP1Triangle  4,  5,  6, 0x0
 gsSP1Triangle  4,  7,  5, 0x0
 gsSPEndDisplayList
+.else
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, inside_castle_textures_09005000
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
+gsSPVertex inside_castle_seg7_vertex_0702FE70, 15, 0
+gsSP1Triangle  0,  1,  2, 0x0
+gsSP1Triangle  3,  4,  5, 0x0
+gsSP1Triangle  3,  6,  4, 0x0
+gsSP1Triangle  7,  8,  9, 0x0
+gsSP1Triangle  7, 10,  8, 0x0
+gsSP1Triangle 11, 12, 13, 0x0
+gsSP1Triangle 11, 14, 12, 0x0
+gsSPVertex inside_castle_seg7_vertex_0702FF70, 7, 0
+gsSP1Triangle  0,  1,  2, 0x0
+gsSP1Triangle  3,  4,  5, 0x0
+gsSP1Triangle  0,  6,  1, 0x0
+gsSPEndDisplayList
+.endif
 
-inside_castle_seg7_dl_07031168: # 0x07031168 - 0x07031588
+glabel inside_castle_seg7_dl_07031168 # 0x07031168 - 0x07031588
+.ifdef VERSION_JP
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, inside_castle_textures_09003000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
@@ -6602,6 +6952,142 @@ gsSP1Triangle  0,  3,  1, 0x0
 gsSP1Triangle  4,  5,  6, 0x0
 gsSP1Triangle  4,  6,  7, 0x0
 gsSPEndDisplayList
+.else
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, inside_castle_textures_09003000
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
+gsSPVertex inside_castle_seg7_vertex_0702FFF0, 15, 0
+gsSP1Triangle  0,  1,  2, 0x0
+gsSP1Triangle  3,  4,  5, 0x0
+gsSP1Triangle  6,  7,  8, 0x0
+gsSP1Triangle  6,  8,  9, 0x0
+gsSP1Triangle  3, 10,  4, 0x0
+gsSP1Triangle 11, 12, 13, 0x0
+gsSP1Triangle 11, 13, 14, 0x0
+gsSPVertex inside_castle_seg7_vertex_070300E0, 15, 0
+gsSP1Triangle  0,  1,  2, 0x0
+gsSP1Triangle  3,  4,  5, 0x0
+gsSP1Triangle  6,  7,  8, 0x0
+gsSP1Triangle  9, 10, 11, 0x0
+gsSP1Triangle 12, 13, 14, 0x0
+gsSPVertex inside_castle_seg7_vertex_070301D0, 14, 0
+gsSP1Triangle  0,  1,  2, 0x0
+gsSP1Triangle  1,  3,  2, 0x0
+gsSP1Triangle  4,  5,  6, 0x0
+gsSP1Triangle  7,  8,  9, 0x0
+gsSP1Triangle 10, 11, 12, 0x0
+gsSP1Triangle 10, 12, 13, 0x0
+gsSPVertex inside_castle_seg7_vertex_070302B0, 16, 0
+gsSP1Triangle  0,  1,  2, 0x0
+gsSP1Triangle  3,  4,  5, 0x0
+gsSP1Triangle  3,  5,  6, 0x0
+gsSP1Triangle  7,  8,  9, 0x0
+gsSP1Triangle 10, 11, 12, 0x0
+gsSP1Triangle 13, 14, 15, 0x0
+gsSPVertex inside_castle_seg7_vertex_070303B0, 14, 0
+gsSP1Triangle  0,  1,  2, 0x0
+gsSP1Triangle  3,  4,  5, 0x0
+gsSP1Triangle  6,  7,  8, 0x0
+gsSP1Triangle  6,  9,  7, 0x0
+gsSP1Triangle 10, 11, 12, 0x0
+gsSP1Triangle 10, 12, 13, 0x0
+gsSPVertex inside_castle_seg7_vertex_07030490, 16, 0
+gsSP1Triangle  0,  1,  2, 0x0
+gsSP1Triangle  0,  2,  3, 0x0
+gsSP1Triangle  4,  5,  6, 0x0
+gsSP1Triangle  7,  8,  9, 0x0
+gsSP1Triangle 10, 11, 12, 0x0
+gsSP1Triangle 13, 14, 15, 0x0
+gsSPVertex inside_castle_seg7_vertex_07030590, 15, 0
+gsSP1Triangle  0,  1,  2, 0x0
+gsSP1Triangle  3,  4,  5, 0x0
+gsSP1Triangle  6,  7,  8, 0x0
+gsSP1Triangle  9, 10, 11, 0x0
+gsSP1Triangle  4, 12,  5, 0x0
+gsSP1Triangle  9, 13, 14, 0x0
+gsSP1Triangle  9, 14, 10, 0x0
+gsSPVertex inside_castle_seg7_vertex_07030670, 14, 0
+gsSP1Triangle  0,  1,  2, 0x0
+gsSP1Triangle  3,  0,  2, 0x0
+gsSP1Triangle  4,  5,  6, 0x0
+gsSP1Triangle  7,  8,  9, 0x0
+gsSP1Triangle  7,  9, 10, 0x0
+gsSP1Triangle 11, 12, 13, 0x0
+gsSPVertex inside_castle_seg7_vertex_07030760, 14, 0
+gsSP1Triangle  0,  1,  2, 0x0
+gsSP1Triangle  0,  2,  3, 0x0
+gsSP1Triangle  4,  5,  6, 0x0
+gsSP1Triangle  4,  6,  7, 0x0
+gsSP1Triangle  8,  9, 10, 0x0
+gsSP1Triangle 11, 12, 13, 0x0
+gsSPVertex inside_castle_seg7_vertex_07030860, 15, 0
+gsSP1Triangle  0,  1,  2, 0x0
+gsSP1Triangle  3,  4,  5, 0x0
+gsSP1Triangle  6,  7,  8, 0x0
+gsSP1Triangle  6,  9,  7, 0x0
+gsSP1Triangle 10, 11, 12, 0x0
+gsSP1Triangle 10, 12, 13, 0x0
+gsSP1Triangle  0,  2, 14, 0x0
+gsSPVertex inside_castle_seg7_vertex_07030940, 14, 0
+gsSP1Triangle  0,  1,  2, 0x0
+gsSP1Triangle  0,  3,  1, 0x0
+gsSP1Triangle  4,  5,  6, 0x0
+gsSP1Triangle  7,  8,  9, 0x0
+gsSP1Triangle 10, 11, 12, 0x0
+gsSP1Triangle  8, 13,  9, 0x0
+gsSPVertex inside_castle_seg7_vertex_07030A40, 16, 0
+gsSP1Triangle  0,  1,  2, 0x0
+gsSP1Triangle  3,  4,  5, 0x0
+gsSP1Triangle  6,  7,  8, 0x0
+gsSP1Triangle  6,  9,  7, 0x0
+gsSP1Triangle 10, 11, 12, 0x0
+gsSP1Triangle 13, 14, 15, 0x0
+gsSPVertex inside_castle_seg7_vertex_07030B30, 16, 0
+gsSP1Triangle  0,  1,  2, 0x0
+gsSP1Triangle  3,  4,  5, 0x0
+gsSP1Triangle  6,  7,  8, 0x0
+gsSP1Triangle  9, 10, 11, 0x0
+gsSP1Triangle 10, 12, 11, 0x0
+gsSP1Triangle 13, 14, 15, 0x0
+gsSPVertex inside_castle_seg7_vertex_07030C20, 14, 0
+gsSP1Triangle  0,  1,  2, 0x0
+gsSP1Triangle  3,  4,  5, 0x0
+gsSP1Triangle  4,  6,  5, 0x0
+gsSP1Triangle  7,  8,  9, 0x0
+gsSP1Triangle  7, 10,  8, 0x0
+gsSP1Triangle 11, 12, 13, 0x0
+gsSPVertex inside_castle_seg7_vertex_07030D20, 14, 0
+gsSP1Triangle  0,  1,  2, 0x0
+gsSP1Triangle  0,  2,  3, 0x0
+gsSP1Triangle  4,  5,  6, 0x0
+gsSP1Triangle  7,  8,  9, 0x0
+gsSP1Triangle 10, 11, 12, 0x0
+gsSP1Triangle  7,  9, 13, 0x0
+gsSPVertex inside_castle_seg7_vertex_07030E20, 14, 0
+gsSP1Triangle  0,  1,  2, 0x0
+gsSP1Triangle  0,  3,  1, 0x0
+gsSP1Triangle  4,  5,  6, 0x0
+gsSP1Triangle  7,  8,  9, 0x0
+gsSP1Triangle  7,  9, 10, 0x0
+gsSP1Triangle 11, 12, 13, 0x0
+gsSPVertex inside_castle_seg7_vertex_07030F10, 14, 0
+gsSP1Triangle  0,  1,  2, 0x0
+gsSP1Triangle  0,  2,  3, 0x0
+gsSP1Triangle  4,  5,  6, 0x0
+gsSP1Triangle  7,  8,  9, 0x0
+gsSP1Triangle 10, 11, 12, 0x0
+gsSP1Triangle  4, 13,  5, 0x0
+gsSPVertex inside_castle_seg7_vertex_07030FF0, 16, 0
+gsSP1Triangle  0,  1,  2, 0x0
+gsSP1Triangle  0,  2,  3, 0x0
+gsSP1Triangle  4,  5,  6, 0x0
+gsSP1Triangle  5,  7,  6, 0x0
+gsSP1Triangle  8,  9, 10, 0x0
+gsSP1Triangle  8, 11,  9, 0x0
+gsSP1Triangle 12, 13, 14, 0x0
+gsSP1Triangle 12, 14, 15, 0x0
+gsSPEndDisplayList
+.endif
 
 glabel inside_castle_seg7_dl_07031588 # 0x07031588 - 0x07031608
 gsDPPipeSync
