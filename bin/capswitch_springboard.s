@@ -336,8 +336,6 @@ capswitch_springboard_seg5_light_05001BB8: # 0x05001BB8
 
 capswitch_springboard_seg5_light_05001BC0: # 0x05001BC0
 .byte 0xFF, 0xFF, 0xFF, 0x00, 0xFF, 0xFF, 0xFF, 0x00
-
-capswitch_springboard_seg5_light_05001BC8: # 0x05001BC8
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 capswitch_springboard_seg5_light_05001BD0: # 0x05001BD0
@@ -576,7 +574,7 @@ gsSPLight capswitch_springboard_seg5_light_05001C30, 2
 gsSPDisplayList capswitch_springboard_seg5_dl_05003280
 gsSPEndDisplayList
 
-capswitch_springboard_collision_050033D0:
+glabel capswitch_springboard_collision_050033D0
 # collision vertices
 .hword 0x0040, 0x0008
 .hword   292,     0,   254

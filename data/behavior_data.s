@@ -428,7 +428,7 @@ glabel beh_cap_switch_collision_child # 01AC
 glabel beh_activate_cap_switch # 01CC
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x09
-    collision_data 0x050033D0
+    collision_data capswitch_springboard_collision_050033D0
     begin_loop
         callnative BehActivateCapSwitchLoop
         callnative load_object_collision_model
