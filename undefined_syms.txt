@@ -94,17 +94,6 @@ D_B0000014 = 0xB0000014;
 D_C0000008 = 0xC0000008;
 D_C000000C = 0xC000000C;
 
-/* display list symbols */
-springboard_checkerboard_seg5_dl_050016B8 = 0x050016B8;
-springboard_spring_seg5_dl_05001800 = 0x05001800;
-springboard_checkerboard_seg5_dl_05001900 = 0x05001900;
-cap_switch_seg5_dl_05002E00 = 0x05002E00;
-cap_switch_seg5_dl_05003350 = 0x05003350;
-cap_switch_seg5_dl_05003370 = 0x05003370;
-cap_switch_seg5_dl_05003390 = 0x05003390;
-cap_switch_seg5_dl_050033B0 = 0x050033B0;
-cap_switch_base_seg5_dl_05003120 = 0x05003120;
-
 /* intro symbols */
 debug_seg7_dl_07000858 = 0x07000858;
 debug_seg7_dl_07001100 = 0x07001100;

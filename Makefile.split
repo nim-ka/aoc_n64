@@ -10,7 +10,6 @@ BINARY_SEGMENTS := \
    bowser_flames_bomb \
    bubba_wiggler_lakitu \
    bully_blargg \
-   capswitch_springboard \
    ccm_skybox \
    chillychief_moneybag \
    cloud_floor_skybox \
@@ -43,6 +42,7 @@ MIO0_OBJ_FILES := $(MIO0_FILES:.mio0=.mio0.o)
 # assumes naming convention "texture.<encoding>.png" generates "texture.<encoding>"
 SEGMENT2_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/segment2/*.png)))
 CAKE_END_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/cake_end/*.png)))
+CAPSWITCH_SPRINGBOARD_FILES  := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/capswitch_springboard/*.png)))
 TITLE_SCREEN_BG_FILES        := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/title_screen_bg/*.png)))
 INTRO_SEG7_FILES             := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/intro_seg7/*.png)))
 MAIN_MENU_SEG7_FILES         := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/main_menu_seg7/*.png)))
@@ -89,6 +89,7 @@ WMOTR_SEG7_FILES             := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/wm
 
 $(BUILD_DIR)/bin/segment2.o: $(addprefix $(BUILD_DIR)/bin/segment2/,$(SEGMENT2_FILES))
 $(BUILD_DIR)/bin/cake_end.o: $(addprefix $(BUILD_DIR)/bin/cake_end/,$(CAKE_END_FILES))
+$(BUILD_DIR)/bin/capswitch_springboard.o: $(addprefix $(BUILD_DIR)/bin/capswitch_springboard/,$(CAPSWITCH_SPRINGBOARD_FILES))
 $(BUILD_DIR)/bin/title_screen_bg.o: $(addprefix $(BUILD_DIR)/bin/title_screen_bg/,$(TITLE_SCREEN_BG_FILES))
 $(BUILD_DIR)/bin/intro_seg7.o: $(addprefix $(BUILD_DIR)/bin/intro_seg7/,$(INTRO_SEG7_FILES))
 $(BUILD_DIR)/bin/main_menu_seg7.o: $(addprefix $(BUILD_DIR)/bin/main_menu_seg7/,$(MAIN_MENU_SEG7_FILES))
@@ -135,6 +136,7 @@ $(BUILD_DIR)/bin/wmotr_seg7.o: $(addprefix $(BUILD_DIR)/bin/wmotr_seg7/,$(WMOTR_
 
 $(BUILD_DIR)/bin/segment2.elf: SEGMENT_ADDRESS := 0x02000000
 $(BUILD_DIR)/bin/cake_end.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/capswitch_springboard.elf: SEGMENT_ADDRESS := 0x05000000
 $(BUILD_DIR)/bin/cotmc_seg7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/title_screen_bg.elf: SEGMENT_ADDRESS := 0x0A000000
 $(BUILD_DIR)/bin/intro_seg7.elf: SEGMENT_ADDRESS := 0x07000000
