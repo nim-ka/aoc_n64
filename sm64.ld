@@ -410,11 +410,8 @@ SECTIONS
       build/levels/level_intro.o(.seg07);
    }
    END_SEG(level_intro_segment_7)
-   BEGIN_SEG(mio0_c, __romPos)
-   {
-      build/data/level_misc.o(.mio0_c);
-   }
-   END_SEG(mio0_c)
+   MIO0_SEG(debug_level_select, 0x07000000)
+   MIO0_SEG(title_screen_bg, 0x0A000000)
 
    /* 271B20-2A42A0 [32780] */
    BEGIN_SEG(text271B20, __romPos)

@@ -94,18 +94,6 @@ D_B0000014 = 0xB0000014;
 D_C0000008 = 0xC0000008;
 D_C000000C = 0xC000000C;
 
-/* intro symbols */
-debug_seg7_dl_07000858 = 0x07000858;
-debug_seg7_dl_07001100 = 0x07001100;
-debug_seg7_dl_07001BA0 = 0x07001BA0;
-debug_seg7_dl_070025F0 = 0x070025F0;
-debug_seg7_dl_07003258 = 0x07003258;
-debug_seg7_dl_07003DB8 = 0x07003DB8;
-debug_seg7_dl_070048C8 = 0x070048C8;
-debug_seg7_dl_07005558 = 0x07005558;
-debug_seg7_dl_070059F8 = 0x070059F8;
-debug_seg7_dl_070063B0 = 0x070063B0;
-
 /* amp, chuckya, shyguy, gooma, boxes */
 blue_coin_switch_seg8_dl_08000E08 = 0x08000E08;
 amp_seg8_dl_08002BA0 = 0x08002BA0;

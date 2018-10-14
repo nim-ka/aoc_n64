@@ -35,7 +35,7 @@ glabel level_intro_entry_2
     fixed_load /*loadAddr*/ _goddardSegmentStart, /*romStart*/ _goddardSegmentRomStart, /*romEnd*/ _goddardSegmentRomEnd
     cmd19 /*unk2*/ 0x0002
     load_raw /*seg*/ 0x13, /*romStart*/ _behaviorSegmentRomStart, /*romEnd*/ _behaviorSegmentRomEnd
-    cmd1A /*seg*/ 0x0A, /*romStart*/ title_screen_bg, /*romEnd*/ title_screen_bg_end
+    cmd1A /*seg*/ 0x0A, /*romStart*/ _title_screen_bg_mio0SegmentRomStart, /*romEnd*/ _title_screen_bg_mio0SegmentRomEnd
     alloc_level_pool
 
     area /*index*/ 1, /*geo*/ 0x1400035C
@@ -59,7 +59,7 @@ glabel level_intro_entry_3
     fixed_load /*loadAddr*/ _goddardSegmentStart, /*romStart*/ _goddardSegmentRomStart, /*romEnd*/ _goddardSegmentRomEnd
     cmd19 /*unk2*/ 0x0003
     load_raw /*seg*/ 0x13, /*romStart*/ _behaviorSegmentRomStart, /*romEnd*/ _behaviorSegmentRomEnd
-    cmd1A /*seg*/ 0x0A, /*romStart*/ title_screen_bg, /*romEnd*/ title_screen_bg_end
+    cmd1A /*seg*/ 0x0A, /*romStart*/ _title_screen_bg_mio0SegmentRomStart, /*romEnd*/ _title_screen_bg_mio0SegmentRomEnd
     alloc_level_pool
 
     area /*index*/ 1, /*geo*/ 0x140003B8
@@ -80,8 +80,8 @@ glabel level_intro_entry_3
 glabel level_intro_entry_4
     init_level
     load_raw /*seg*/ 0x13, /*romStart*/ _behaviorSegmentRomStart, /*romEnd*/ _behaviorSegmentRomEnd
-    cmd1A /*seg*/ 0x0A, /*romStart*/ title_screen_bg, /*romEnd*/ title_screen_bg_end
-    load_mio0 /*seg*/ 0x07, /*romStart*/ debug_level_select, /*romEnd*/ debug_level_select_end
+    cmd1A /*seg*/ 0x0A, /*romStart*/ _title_screen_bg_mio0SegmentRomStart, /*romEnd*/ _title_screen_bg_mio0SegmentRomEnd
+    load_mio0 /*seg*/ 0x07, /*romStart*/ _debug_level_select_mio0SegmentRomStart, /*romEnd*/ _debug_level_select_mio0SegmentRomEnd
     fixed_load /*loadAddr*/ _goddardSegmentStart, /*romStart*/ _goddardSegmentRomStart, /*romEnd*/ _goddardSegmentRomEnd
     alloc_level_pool
 
