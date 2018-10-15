@@ -10,13 +10,18 @@
 
 #define OBJECT_FIELD_U32(index) rawData.asU32[index]
 #define OBJECT_FIELD_S32(index) rawData.asS32[index]
+#define OBJECT_FIELD_S16(index, subIndex) rawData.asS16[index][subIndex]
 #define OBJECT_FIELD_F32(index) rawData.asF32[index]
 #define OBJECT_FIELD_ANIMS(index) rawData.asAnims[index]
+#define OBJECT_FIELD_SURFACE(index) rawData.asSurface[index]
 #define OBJECT_FIELD_VPTR(index) rawData.asVoidPtr[index]
 
 
 /* Common fields */
+#define /*0x088*/ oUnk88 OBJECT_FIELD_S32(0x00)
 #define /*0x08C*/ oFlags OBJECT_FIELD_U32(0x01)
+#define /*0x090*/ oUnk90 OBJECT_FIELD_S16(0x02, 0)
+#define /*0x092*/ oUnk92 OBJECT_FIELD_S16(0x02, 1)
 #define /*0x09C*/ oCollectable OBJECT_FIELD_S32(0x05)
 #define /*0x0A0*/ oPosX OBJECT_FIELD_F32(0x06)
 #define /*0x0A4*/ oPosY OBJECT_FIELD_F32(0x07)
@@ -25,6 +30,8 @@
 #define /*0x0B0*/ oVelY OBJECT_FIELD_F32(0x0A)
 #define /*0x0B4*/ oVelZ OBJECT_FIELD_F32(0x0B)
 #define /*0x0B8*/ oForwardVel OBJECT_FIELD_F32(0x0C)
+#define /*0x0BC*/ oUnkBC OBJECT_FIELD_F32(0x0D)
+#define /*0x0C0*/ oUnkC0 OBJECT_FIELD_F32(0x0E)
 #define /*0x0C4*/ oAnglePitch OBJECT_FIELD_S32(0x0F)
 #define /*0x0C8*/ oAngleYaw OBJECT_FIELD_S32(0x10)
 #define /*0x0CC*/ oAngleRoll OBJECT_FIELD_S32(0x11)
@@ -70,15 +77,27 @@
 #define /*0x18C*/ oPrevAction OBJECT_FIELD_S32(0x41)
 #define /*0x190*/ oUnk190 OBJECT_FIELD_U32(0x42)
 #define /*0x194*/ oCollisionDistance OBJECT_FIELD_F32(0x43)
-#define /*0x198*/ oUnk198 OBJECT_FIELD_U32(0x44)
+#define /*0x198*/ oUnk198 OBJECT_FIELD_S32(0x44)
 #define /*0x19C*/ oDrawingDistance OBJECT_FIELD_F32(0x45)
-#define /*0x1A0*/ oUnk1A0 OBJECT_FIELD_U32(0x46)
+#define /*0x1A0*/ oUnk1A0 OBJECT_FIELD_S32(0x46)
 #define /*0x1A8*/ oUnk1A8 OBJECT_FIELD_U32(0x48)
+#define /*0x1AC*/ oUnk1AC OBJECT_FIELD_VPTR(0x49)
+#define /*0x1B0*/ oUnk1B0 OBJECT_FIELD_S32(0x4A)
+#define /*0x1B4*/ oUnk1B4 OBJECT_FIELD_U32(0x4B)
+#define /*0x1B8*/ oUnk1B8 OBJECT_FIELD_S16(0x4C, 0)
+#define /*0x1BA*/ oUnk1BA OBJECT_FIELD_S16(0x4C, 1)
+#define /*0x1C0*/ oUnk1C0 OBJECT_FIELD_SURFACE(0x4E)
 
 /* All uses of these should be removed as soon as object type is known */
+#define /*0x0F4*/ oUnknownUnkF4_S32 OBJECT_FIELD_S32(0x1B)
+#define /*0x0FC*/ oUnknownUnkFC_VPtr OBJECT_FIELD_VPTR(0x1D)
+#define /*0x100*/ oUnknownUnk100_VPtr OBJECT_FIELD_VPTR(0x1E)
+#define /*0x104*/ oUnknownUnk104_S32 OBJECT_FIELD_S32(0x1F)
+#define /*0x108*/ oUnknownUnk108_S32 OBJECT_FIELD_S32(0x20)
 #define /*0x108*/ oUnknownUnk108_F32 OBJECT_FIELD_F32(0x20)
-#define /*0x108*/ oUnknownUnk10C_F32 OBJECT_FIELD_F32(0x21)
-#define /*0x108*/ oUnknownUnk110_F32 OBJECT_FIELD_F32(0x22)
+#define /*0x10C*/ oUnknownUnk10C_S32 OBJECT_FIELD_S32(0x21)
+#define /*0x10C*/ oUnknownUnk10C_F32 OBJECT_FIELD_F32(0x21)
+#define /*0x110*/ oUnknownUnk110_F32 OBJECT_FIELD_F32(0x22)
 
 /* Mario */
 #define /*0x0F4*/ oMarioParticleFlags OBJECT_FIELD_S32(0x1B)

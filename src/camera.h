@@ -545,7 +545,7 @@ extern int func_8028F2F0();
 extern void func_8028F834(int);
 // extern ? Unknown8028F860(?);
 extern s16 func_8028F8E0(s32 arg0, struct Object* obj, s16 arg2);
-// extern ? func_8028F9A4(?);
+extern s32 func_8028F9A4(s32, struct Object*);
 extern s16 func_8028F9E8(s32, struct Object*);
 // extern ? func_8028FA74(?);
 // extern ? func_8028FABC(?);

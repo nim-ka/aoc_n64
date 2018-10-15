@@ -19,12 +19,11 @@ s32 D_8038BE90;
 SpatialPartitionCell gStaticSurfacePartition[16][16];
 SpatialPartitionCell gDynamicSurfacePartition[16][16];
 
-static struct SurfaceNode *sSurfaceNodePool;
-static struct Surface *sSurfacePool;
-static s16 sSurfacePoolSize;
+struct SurfaceNode *sSurfaceNodePool;
+struct Surface *sSurfacePool;
+s16 sSurfacePoolSize;
 
-static u8 unused8038EEA8[0x30];
-
+u8 unused8038EEA8[0x30];
 
 static struct SurfaceNode *alloc_surface_node(void)
 {

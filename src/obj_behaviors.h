@@ -2,6 +2,7 @@
 #define _OBJ_BEHAVIORS_H
 
 #include "types.h"
+#include "object_helpers2.h"
 
 struct Struct802E2F58
 {
@@ -32,17 +33,17 @@ extern struct Surface *D_803600E0;
 extern s16 D_80331504;
 extern s8 D_8033150C;
 extern s8 D_80331510;
-extern s32 D_80331514; /* most likely some sort of struct or array */
-extern s32 D_80331524;
-extern s32 D_80331534;
-extern s32 D_80331544;
+extern struct Struct802A2CFC D_80331514;
+extern struct Struct802A2CFC D_80331524;
+extern struct Struct802A2CFC D_80331534;
+extern struct Struct802A2CFC D_80331544;
 extern s16 D_803600B0[10];
-extern s32 D_80331554;
-extern s32 D_80331564;
-extern s32 D_80331574;
-extern s32 D_80331584;
-extern s32 D_80331594;
-extern s32 D_803315A4;
+extern struct Struct802A2CFC D_80331554;
+extern struct Struct802A2CFC D_80331564;
+extern struct Struct802A2CFC D_80331574;
+extern struct Struct802A2CFC D_80331584;
+extern struct Struct802A2CFC D_80331594;
+extern struct Struct802A2CFC D_803315A4;
 extern u8 bob_seg7_metal_ball_path0[];
 extern u8 ttm_seg7_trajectory_070170A0[];
 extern u8 bob_seg7_metal_ball_path1[];

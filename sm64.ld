@@ -95,7 +95,6 @@ SECTIONS
       build/asm/camera.o(.text);
       build/src/object_list_processor.o(.text);
       build/src/object_helpers.o(.text);
-      build/asm/object_helpers.o(.text);
       build/asm/behavior_actions.o(.text);
       build/src/platform_displacement.o(.text);
       build/src/object_collision.o(.text);
@@ -155,7 +154,7 @@ SECTIONS
       build/src/camera.o(.data*);
       build/data/camera.data.o(.data*);
       build/src/object_list_processor.o(.data*);
-      build/data/object_helpers.data.o(.data*);
+      build/src/object_helpers.o(.data*);
       build/data/behavior_actions.data.o(.data*);
       build/src/platform_displacement.o(.data*);
       build/src/spawn_sound.o(.data*);
@@ -197,7 +196,7 @@ SECTIONS
       build/src/camera.o(.rodata*);
       build/data/camera.rodata.o(.rodata*);
       build/src/object_list_processor.o(.rodata*);
-      build/data/object_helpers.rodata.o(.rodata*);
+      build/src/object_helpers.o(.rodata*);
       build/data/behavior_actions.rodata.o(.rodata*);
       build/src/object_collision.o(.rodata*);
       build/src/spawn_object.o(.rodata*);

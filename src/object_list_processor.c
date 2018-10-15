@@ -20,6 +20,7 @@
 #include "spawn_object.h"
 #include "surface_collision.h"
 #include "surface_load.h"
+#include "object_list_processor.h"
 
 #if VERSION_US
 extern void func_u_802C8F28(void);
@@ -39,8 +40,6 @@ u32 gTimeStopState;
 struct Object gObjectPool[OBJECT_ARRAY_SIZE];
 struct Object D_8035FB18;
 struct ObjectNode *gObjectLists;
-
-extern s8 D_8035FE68[][2];
 
 extern struct ObjectNode D_8033B870;
 

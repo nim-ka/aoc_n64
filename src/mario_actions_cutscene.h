@@ -38,7 +38,7 @@ extern void func_80256CA8(void);
 // extern ? func_802571D8(?);
 // extern ? func_80257270(?);
 // extern ? func_802572D0(?);
-// extern ? func_80257330(?);
+extern s32 func_80257330(void);
 extern s32 func_802573C8(s32 arg0);
 // extern ? func_802574D0(?);
 // extern ? func_80257708(?);

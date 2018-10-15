@@ -22,6 +22,7 @@
 #include "audio_interface_2.h"
 #include "behavior_actions.h"
 #include "spawn_object.h"
+#include "spawn_sound.h"
 
 #define o gCurrentObject
 
@@ -33,8 +34,6 @@
 
 //FIXME: Unclear what files these functions belong to so I declared them here
 extern void PlaySound(u32);
-extern void PlaySound2(u32);
-extern void create_sound_spawner(s32);
 
 void func_802E2F40(void)
 {

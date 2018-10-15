@@ -1,13 +1,14 @@
 #include <ultra64.h>
 
 #include "sm64.h"
+#include "platform_displacement.h"
 #include "math_util.h"
 #include "object_helpers.h"
+#include "object_helpers2.h"
 #include "mario.h"
 #include "behavior_script.h"
 #include "level_update.h"
 #include "surface_collision.h"
-#include "platform_displacement.h"
 #include "object_list_processor.h"
 
 u16 D_8032FEC0 = 0;

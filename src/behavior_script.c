@@ -6,6 +6,7 @@
 #include "graph_node.h"
 #include "surface_collision.h"
 #include "object_helpers.h"
+#include "object_helpers2.h"
 #include "mario.h"
 #include "display.h"
 #include "obj_behaviors_2.h"
@@ -886,7 +887,7 @@ void cur_object_exec_behavior(void)
     if (flagsLo & OBJ_FLAG_0001)
         func_80383D68(gCurrentObject);
 
-    if (gCurrentObject->oUnk1A0 != 0xFFFFFFFF)
+    if (gCurrentObject->oUnk1A0 != -1)
     {
         func_802A3A68();
     }

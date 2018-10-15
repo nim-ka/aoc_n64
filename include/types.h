@@ -169,8 +169,10 @@ struct Object
         // Object fields. See object_fields.h.
         u32 asU32[0x50];
         s32 asS32[0x50];
+        s16 asS16[0x50][2];
         f32 asF32[0x50];
         u32 *asAnims[0x50];
+        struct Surface *asSurface[0x50];
         void *asVoidPtr[0x50];
     } rawData;
     /*0x1C8*/ u32 unk1C8;
@@ -188,7 +190,7 @@ struct Object
     /*0x210*/ u32 unk210;
     /*0x214*/ struct Object *platform;
     /*0x218*/ void *collisionData;
-    /*0x21C*/ float unk21C[4][4];
+    /*0x21C*/ Mat4 unk21C;
     /*0x25C*/ void *unk25C;
 };
 
@@ -324,10 +326,11 @@ struct MarioAnimation
 
 struct Struct8033B1B0
 {
-    s32 unk0;
-    Vec3f unk4;
-    u8 filler10[6];
-    Vec3s unk16;
+    /*0x00*/ s32 unk0;
+    /*0x04*/ Vec3f unk4;
+    /*0x10*/ u8 filler10[6];
+    /*0x16*/ Vec3s unk16;
+    /*0x1C*/ Vec3s unk1C;
 };
 
 // used in goddard code

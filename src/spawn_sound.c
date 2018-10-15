@@ -4,6 +4,7 @@
 #include "behavior_script.h"
 #include "object_helpers.h"
 #include "audio_interface_2.h"
+#include "spawn_sound.h"
 
 extern void *beh_sound_spawner;
 
@@ -19,8 +20,6 @@ struct SoundState
     s8 animFrame2;
     s32 soundMagic;
 };
-
-void PlaySound2(s32 soundMagic);
 
 /*
  * execute an object's current sound state with a provided array

@@ -11,6 +11,8 @@ extern struct Object gObjectPool[];
 extern struct Object D_8035FB18;
 extern struct ObjectNode *gObjectLists;
 
+extern s8 D_8035FE68[][2];
+
 void nop_change_course(void);
 void BehMarioLoop2(void);
 void func_8029C6D8(struct Object *, u8);

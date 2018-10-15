@@ -15,6 +15,7 @@
 #include "math_util.h"
 #include "memory.h"
 #include "object_helpers.h"
+#include "object_helpers2.h"
 #include "mario_head_6.h"
 //#include "rendering.h"
 #include "rendering_graph_node.h"

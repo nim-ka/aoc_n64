@@ -1,6 +1,7 @@
 #include <ultra64.h>
 
 #include "sm64.h"
+#include "level_update.h"
 #include "audio_interface_2.h"
 #include "game.h"
 #include "main.h"
@@ -15,7 +16,6 @@
 #include "ingame_menu.h"
 #include "obj_behaviors.h"
 #include "display.h"
-#include "level_update.h"
 
 #define PLAY_MODE_NORMAL        0
 #define PLAY_MODE_PAUSED        2

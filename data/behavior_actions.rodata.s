@@ -2,16 +2,6 @@
 
 .section .rodata
 
-glabel jtbl_80336694
-	.word L802A420C
-	.word L802A4268
-	.word L802A4298
-	.word L802A42EC
-	.word L802A4370
-
-	# padding
-	.word 0, 0
-
 glabel D_803366B0
 	.incbin "bin/rodata.bin", 0x1C40, 0x4
 
