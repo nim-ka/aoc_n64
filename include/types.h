@@ -102,8 +102,10 @@ struct UnknownStruct5 {
     /*0x04*/ s16 unk04;
     /*0x06*/ s16 unk06;
     /*0x08*/ s16 unk08;
+    /*0x0A*/ s16 unk0A;
     /*0x0C*/ void *unk0C;
     /*0x10*/ void *unk10;
+    /*0x14*/ u32 terminator; // seems to always be 0 when ending a struct
 };
 
 struct GraphNode

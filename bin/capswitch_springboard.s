@@ -599,6 +599,7 @@ glabel capswitch_springboard_collision_050033D0
 .hword     5,     0,     7
 .hword 0x0041
 .hword 0x0042
+glabel capswitch_springboard_collision_05003448
 # collision vertices
 .hword 0x0040, 0x0008
 .hword   292,     0,   254

@@ -502,38 +502,6 @@ chain_chomp_seg6_dl_06024B00 = 0x06024B00;
 chain_chomp_seg6_dl_06024D60 = 0x06024D60;
 chain_chomp_seg6_dl_06024FC0 = 0x06024FC0;
 
-/* Lakitu Toad MIPS Boo */
-lakitu_seg6_dl_06003E30 = 0x06003E30;
-lakitu_seg6_dl_06004680 = 0x06004680;
-lakitu_seg6_dl_060047E8 = 0x060047E8;
-lakitu_seg6_dl_060049E0 = 0x060049E0;
-lakitu_seg6_dl_06004C60 = 0x06004C60;
-lakitu_seg6_dl_06004C88 = 0x06004C88;
-lakitu_seg6_dl_06005360 = 0x06005360;
-lakitu_seg6_dl_06005598 = 0x06005598;
-lakitu_seg6_dl_060055E8 = 0x060055E8;
-lakitu_seg6_dl_06005610 = 0x06005610;
-toad_seg6_dl_06007710 = 0x06007710;
-toad_seg6_dl_06007A48 = 0x06007A48;
-toad_seg6_dl_06007EB0 = 0x06007EB0;
-toad_seg6_dl_060081F8 = 0x060081F8;
-toad_seg6_dl_06008520 = 0x06008520;
-toad_seg6_dl_06008890 = 0x06008890;
-toad_seg6_dl_06008BD8 = 0x06008BD8;
-mips_seg6_dl_060107B8 = 0x060107B8;
-mips_seg6_dl_06010C40 = 0x06010C40;
-mips_seg6_dl_06010E60 = 0x06010E60;
-mips_seg6_dl_060110B0 = 0x060110B0;
-mips_seg6_dl_06011310 = 0x06011310;
-mips_seg6_dl_06011520 = 0x06011520;
-mips_seg6_dl_06011780 = 0x06011780;
-mips_seg6_dl_06011990 = 0x06011990;
-mips_seg6_dl_06011BB0 = 0x06011BB0;
-mips_seg6_dl_06011DB0 = 0x06011DB0;
-mips_seg6_dl_06011ED8 = 0x06011ED8;
-mips_seg6_dl_06011FC0 = 0x06011FC0;
-boo_castle_seg6_dl_06017CE0 = 0x06017CE0;
-
 /* Mario */
 mario_seg4_dl_0400CC98 = 0x0400CC98;
 mario_seg4_dl_0400CCC8 = 0x0400CCC8;

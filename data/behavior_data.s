@@ -420,7 +420,7 @@ glabel beh_thi_tiny_top # 0194
 glabel beh_cap_switch_collision_child # 01AC
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x09
-    collision_data 0x05003448
+    collision_data capswitch_springboard_collision_05003448
     begin_loop
         callnative load_object_collision_model
     end_loop
@@ -1210,7 +1210,7 @@ glabel beh_wind # 0E70
 glabel beh_end_toad # 0E88
     begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
-    obj_set_int32 VAR_26, 0x0600FB58
+    obj_set_int32 VAR_26, lakitu_toad_seg6_unklists_0600FB58
     unknown_28 0x00
     begin_loop
         callnative BehEndToadLoop
@@ -3175,7 +3175,7 @@ glabel beh_mario # 2EA0
 glabel beh_toad_message # 2ED8
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x4049
-    obj_set_int32 VAR_26, 0x0600FB58
+    obj_set_int32 VAR_26, lakitu_toad_seg6_unklists_0600FB58
     unknown_28 0x06
     interact_type 0x00800000
     set_hitbox 0x0050, 0x0064
@@ -4536,7 +4536,7 @@ glabel beh_treasure_chest_top # 44C0
 glabel beh_mips # 44DC
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x0409
-    obj_set_int32 VAR_26, 0x06015634
+    obj_set_int32 VAR_26, lakitu_toad_seg6_unklists_06015634
     obj_set_int VAR_2A, 0x02
     unknown_1E
     set_hitbox 0x0032, 0x004B
@@ -4753,7 +4753,7 @@ glabel beh_evil_lakitu # 48F8
 glabel beh_lakitu # 4934
     begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x2041
-    obj_set_int32 VAR_26, 0x060058F8
+    obj_set_int32 VAR_26, lakitu_toad_seg6_unklists_060058F8
     unknown_28 0x00
     callnative BehCommonInit
     callnative BehLakituInit
@@ -5462,7 +5462,7 @@ glabel beh_bubba # 55BC
 glabel beh_beginning_lakitu # 55F0
     begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
-    obj_set_int32 VAR_26, 0x060058F8
+    obj_set_int32 VAR_26, lakitu_toad_seg6_unklists_060058F8
     unknown_28 0x00
     obj_set_float VAR_3D, 0x0000
     begin_loop
