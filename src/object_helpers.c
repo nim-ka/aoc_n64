@@ -20,6 +20,7 @@
 #include "geo_layout.h"
 #include "ingame_menu.h"
 #include "game.h"
+#include "obj_behaviors.h"
 
 #include "object_helpers.h"
 #include "object_helpers2.h"
@@ -1682,7 +1683,12 @@ void func_802A1978() {
     if (sp1C != NULL) {
         if (sp1C->type == 1) {
             gCurrentObject->oMoveFlags |= 0x0800;
-        } 
+        }
+#ifdef VERSION_US
+        else if (sp1C->type == 10) {
+            gCurrentObject->oMoveFlags |= 0x4000;
+        }
+#endif
         gCurrentObject->oUnk1B8 = sp1C->type;
         gCurrentObject->oUnk1BA = sp1C->room;
     }
@@ -2462,6 +2468,18 @@ s32 func_802A41B8(s32 sp20, s32 sp24, s32 sp28, UNUSED s32 sp2C) {
     UNUSED s32 sp18 = 1;
 
     switch (gCurrentObject->oUnk92) {
+#ifdef VERSION_US
+        case 0:
+            if (func_80257330() || gMarioState->action == ACT_UNKNOWN_106) {
+                gTimeStopState |= 2;
+                gCurrentObject->active |= 0x20;
+                gCurrentObject->oUnk92++;
+            }
+            else
+                break;
+            // fallthrough to case 1
+
+#else
         case 0:
             if (gMarioState->health >= 0x0100) {
                 gTimeStopState |= 2;
@@ -2470,11 +2488,12 @@ s32 func_802A41B8(s32 sp20, s32 sp24, s32 sp28, UNUSED s32 sp2C) {
             }
             break;
 
+#endif
         case 1:
             if (func_802573C8(sp20) == 2)
                 gCurrentObject->oUnk92++;
             break;
-            
+
         case 2:
             if (sp24 & 0x04)
                 func_802D8050(sp28);
@@ -2520,6 +2539,17 @@ s32 CreateMessageBox(s32 sp30, s32 sp34, s32 sp38, s32 sp3C) {
     s32 sp28 = 1;
 
     switch (gCurrentObject->oUnk92) {
+#ifdef VERSION_US
+        case 0:
+            if (func_80257330() || gMarioState->action == ACT_UNKNOWN_106) {
+                gTimeStopState |= 2;
+                gCurrentObject->active |= 0x20;
+                gCurrentObject->oUnk92++;
+                gCurrentObject->oUnk90 = 0;
+            }
+            else
+                break;
+#else
         case 0:
             if (gMarioState->health >= 0x0100) {
                 gTimeStopState |= 2;
@@ -2528,6 +2558,8 @@ s32 CreateMessageBox(s32 sp30, s32 sp34, s32 sp38, s32 sp3C) {
                 gCurrentObject->oUnk90 = 0;
             }
             break;
+
+#endif
         case 1:
             if (sp34 & 0x01) {
                 sp28 = func_8029DE70(func_8029DF18(gCurrentObject, gMarioObject), 0x800);
@@ -2733,4 +2765,11 @@ void func_802A4D4C(void) {
     }
 }
 
-// this file needs to be finished for more US progress due to SpawnObj not aligning to 0x10 in US.
+#ifdef VERSION_US
+void func_u_802A5588(float f12, float f14, float a2, float a3) {
+    float sp1C = gCurrentObject->oPosY;
+    gCurrentObject->oPosY += a3 + gDebugInfo[5][0];
+    CreateStar(f12, f14, a2);
+    gCurrentObject->oPosY = sp1C;
+}
+#endif
