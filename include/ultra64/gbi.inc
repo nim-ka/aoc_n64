@@ -144,6 +144,12 @@
    .byte \flag, \v0*10, \v1*10, \v2*10
 .endm
 
+/* C0: G_NOOP */
+.set G_NOOP, 0xC0
+.macro gsDPNoOp
+   f3d_noparam G_NOOP
+.endm
+
 /* E6: G_RDPLOADSYNC */
 .set G_RDPLOADSYNC, 0xE6
 .macro gsDPLoadSync
