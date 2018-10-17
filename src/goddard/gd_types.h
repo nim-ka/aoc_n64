@@ -435,11 +435,31 @@ struct ObjAnimator {
     /* 0x50 */ s32 unk50;
     /* 0x54 */ s32 unk54;
 }; /* sizeof = 0x58 */
-/* This struct is pointed to by Links in the animdata ObjGroup */
-struct SubAnim3 {
-    s32 unk00;  // cmd? count? -1 == end?
-    s32 type;   // types are "sort of" listed in "move_animator"
-    void* data; // probably multiple of these structs, based on the data packet
+
+/* Animation Data Types */
+enum GdAnimations {
+    GD_ANIM_EMPTY     = 0,  // Listed types are how the data are arranged in memory; maybe not be exact type
+    GD_ANIM_MATRIX    = 1,  // f32[4][4]
+    GD_ANIM_TRI_F_2   = 2,  // f32[3][3]
+    GD_ANIM_9H        = 3,  // s16[9]
+    GD_ANIM_TRI_F_4   = 4,  // f32[3][3]
+    GD_ANIM_STUB      = 5,  
+    GD_ANIM_3H_SCALED = 6,  // s16[3]
+    GD_ANIM_3H        = 7,  // s16[3]
+    GD_ANIM_6H_SCALED = 8,  // s16[6]
+    GD_ANIM_MTX_VEC   = 9,  // {f32 mtx[4][4]; f32 vec[3];}
+    GD_ANIM_CAMERA    = 11  // s16[6]
+};
+/* This struct is pointed to by the `obj` field in Links struct in the `animdata` ObjGroup */
+struct AnimDataInfo {
+    s32 count;  // count or -1 for end of array of AnimDataInfo structures
+    enum GdAnimations type;  // types are used in "move_animator"
+    void* data; // points to an array of `type` data
+};
+/* GD_ANIM_MTX_VEC (9) type */
+struct AnimMtxVec {
+    /* 0x00 */ Mat4 matrix;
+    /* 0x40 */ struct MyVec3f vec;  // seems to be a scale vec
 };
 
 enum ValPtrType {

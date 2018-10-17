@@ -28,11 +28,6 @@ struct Unk8017F3CC {
     /*0x20*/ struct MyVec3f unk20;
 };
 
-struct AnimDataType9 {
-    /* 0x00 */ Mat4 mat00;
-    /* 0x40 */ struct MyVec3f vec40;
-};
-
 /* Exported globals */
 struct GdPlaneF D_801B9DA0;
 struct ObjCamera *D_801B9DB8;
@@ -1424,7 +1419,7 @@ void func_8017F424(struct GdTriangleF* a0, struct GdTriangleF* a1, f32 a2)
 #pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 void move_animator(struct ObjAnimator* animObj)
 {
-    struct SubAnim3* animData;  // array?
+    struct AnimDataInfo* animData;  // array?
     Mat4* mtxArr;
     Mat4 localMtx;
     struct GdTriangleF* triPtr;  // Used as GdTriangleF[] or GdTriangleF* 
@@ -1444,7 +1439,7 @@ void move_animator(struct ObjAnimator* animObj)
     s32 sp34;
     f32 sp30;
     f32 scale = 0.1f;
-    struct AnimDataType9* sp28;
+    struct AnimMtxVec* sp28;
     register struct Links* link;
     struct ObjHeader* linkedObj;
 
@@ -1454,7 +1449,7 @@ void move_animator(struct ObjAnimator* animObj)
     if (animObj->unk14 == NULL)
         return;
 
-    animData = (struct SubAnim3*) animObj->animdata->link1C->obj;
+    animData = (struct AnimDataInfo*) animObj->animdata->link1C->obj;
 
     if (animObj->unk44 != NULL)
     {
@@ -1469,16 +1464,16 @@ void move_animator(struct ObjAnimator* animObj)
     unusedVec.y = 1.0f;
     unusedVec.z = 1.0f;
 
-    if (animObj->unk28 > (f32) animData->unk00)
+    if (animObj->unk28 > (f32) animData->count)
         animObj->unk28 = 1.0f;
     else if (animObj->unk28 < 0.0f)
-        animObj->unk28 = (f32) animData->unk00;
+        animObj->unk28 = (f32) animData->count;
 
     sp38 = animObj->unk28;
     sp30 = animObj->unk28 - (f32) sp38;
     sp34 = sp38 + 1;
 
-    if (sp34 > animData->unk00)   
+    if (sp34 > animData->count)   
         sp34 = 1;
 
     sp38--;
@@ -1490,12 +1485,12 @@ void move_animator(struct ObjAnimator* animObj)
         set_cur_dynobj(linkedObj);
         switch (animData->type)
         {
-            case 1:     // data = Mat4* (f32[4][4])
+            case GD_ANIM_MATRIX:     // data = Mat4* (f32[4][4])
                 mtxArr = (Mat4*) animData->data;
                 /* This needs be be un-dereferenced pointer addition to make the registers match */
                 d_set_idn_mtx(mtxArr + (s32)animObj->unk28);
                 break;
-            case 6:     // data = s16(*)[3] or MyVec3h[]...
+            case GD_ANIM_3H_SCALED:     // data = s16(*)[3] or MyVec3h[]...
                 vec3hArr = (s16(*)[3]) animData->data;
 
                 d_get_scale(&tri1.vec0);
@@ -1518,7 +1513,7 @@ void move_animator(struct ObjAnimator* animObj)
 
                 func_8017F424(&tri1, &tri2, sp30);
                 break;
-            case 7:     // data = s16(*)[3] or MyVec3h[]...
+            case GD_ANIM_3H:     // data = s16(*)[3] or MyVec3h[]...
                 vec3hArr = (s16(*)[3]) animData->data;
 
                 d_get_scale(&tri1.vec0);
@@ -1541,7 +1536,7 @@ void move_animator(struct ObjAnimator* animObj)
 
                 func_8017F424(&tri1, &tri2, sp30);
                 break;
-            case 8:     // data = s16(*)[6] or GdPlaneH[]...
+            case GD_ANIM_6H_SCALED:     // data = s16(*)[6] or GdPlaneH[]...
                 planeHArr =(s16(*)[6]) animData->data;
 
                 d_get_scale(&tri1.vec0);
@@ -1567,7 +1562,7 @@ void move_animator(struct ObjAnimator* animObj)
 
                 func_8017F424(&tri1, &tri2, sp30);
                 break;
-            case 3:     // data = s16(*)[9] or GdTriangleFH[]...
+            case GD_ANIM_9H:     // data = s16(*)[9] or GdTriangleFH[]...
                 triHArr = (s16(*)[9]) animData->data;
 
                 tri1.vec0.x = (f32) triHArr[sp38][0] * scale;
@@ -1596,7 +1591,7 @@ void move_animator(struct ObjAnimator* animObj)
 
                 func_8017F424(&tri1, &tri2, sp30);
                 break;
-            case 11:    // s16(*)[6]?
+            case GD_ANIM_CAMERA:    // s16(*)[6]?
                 if (linkedObj->type == OBJ_TYPE_CAMERAS)
                 {
                     camPlaneHArr = animData->data;
@@ -1618,16 +1613,16 @@ void move_animator(struct ObjAnimator* animObj)
                     ((struct ObjCamera*)linkedObj)->unk34.z = tri2.vec2.z;
                 }
                 break;
-            case 2:     // GdTriangleF[]
+            case GD_ANIM_TRI_F_2:     // GdTriangleF[]
                 triPtr = (struct GdTriangleF*) animData->data;
                 func_8017F424(&triPtr[sp38], &triPtr[sp34], sp30);
                 break;
-            case 9:     // AnimDataType9[]
-                sp28 = &((struct AnimDataType9*) animData->data)[sp38];
-                d_set_idn_mtx(&sp28->mat00);
-                d_set_scale(sp28->vec40.x, sp28->vec40.y, sp28->vec40.z);
+            case GD_ANIM_MTX_VEC:     // AnimMtxVec[]
+                sp28 = &((struct AnimMtxVec*) animData->data)[sp38];
+                d_set_idn_mtx(&sp28->matrix);
+                d_set_scale(sp28->vec.x, sp28->vec.y, sp28->vec.z);
                 break;
-            case 4:     // GdTriangleF* 
+            case GD_ANIM_TRI_F_4:     // GdTriangleF* 
                 triPtr = (struct GdTriangleF*) animData->data;
                 set_identity_mat4(localMtx);
                 func_8019415C(&localMtx, &triPtr->vec0);
@@ -1635,7 +1630,7 @@ void move_animator(struct ObjAnimator* animObj)
                 func_801942E4(&localMtx, &triPtr->vec2);
                 d_set_idn_mtx(&localMtx);
                 break;
-            case 5:
+            case GD_ANIM_STUB:
                 if (stubObj1 == NULL)
                     stubObj1 = linkedObj;
                 else 

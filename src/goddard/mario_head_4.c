@@ -55,9 +55,9 @@ static char sDynNetIdBuf[0x20];                // @ 801B9F48
 static char sBackBuf[0x100];                   // @ 801B9F68
 
 // necessary foreward declarations
-void func_8018454C(s32, DynId);
-void func_80184600(DynId);
-void func_8018466C(s32, DynId);
+void d_add_net_with_subgroup(s32, DynId);
+void d_end_net_subgroup(DynId);
+void d_attach_net_to_joint(s32, DynId);
 void d_addto_group(DynId);
 void d_link_with(DynId);
 void d_link_with_ptr(void *);
@@ -135,11 +135,11 @@ struct ObjHeader *proc_dynlist(struct DynList *dylist)
             case 15:
                 d_makeobj(Dyn2AsInt(dylist), Dyn1AsID(dylist)); break;
             case 46:
-                func_8018454C(Dyn2AsInt(dylist), Dyn1AsID(dylist)); break;
+                d_add_net_with_subgroup(Dyn2AsInt(dylist), Dyn1AsID(dylist)); break;
             case 48:
-                func_80184600(Dyn1AsID(dylist)); break;
+                d_end_net_subgroup(Dyn1AsID(dylist)); break;
             case 47:
-                func_8018466C(Dyn2AsInt(dylist), Dyn1AsID(dylist)); break;
+                d_attach_net_to_joint(Dyn2AsInt(dylist), Dyn1AsID(dylist)); break;
             case 16:
                 d_start_group(Dyn1AsID(dylist)); break;
             case 17:
@@ -147,7 +147,7 @@ struct ObjHeader *proc_dynlist(struct DynList *dylist)
             case 18:
                 d_addto_group(Dyn1AsID(dylist)); break;
             case 30:
-                d_use_obj(Dyn1AsStr(dylist)); break;
+                d_use_obj(Dyn1AsID(dylist)); break;
             case 28:
                 d_link_with(Dyn1AsID(dylist)); break;
             case 50:
@@ -331,8 +331,8 @@ void Unknown801844F0(void)
     gGdDynObjList = NULL;
 }
 
-/* 232D1C -> 232DD0 */
-void func_8018454C(UNUSED s32 a0, DynId id)
+/* 232D1C -> 232DD0; orig name: func_8018454C */
+void d_add_net_with_subgroup(UNUSED s32 a0, DynId id)
 {
     /* This makes a ObjNet */
     d_makeobj(D_NET, id);
@@ -347,8 +347,8 @@ void func_8018454C(UNUSED s32 a0, DynId id)
     sSecondaryInfoStash = sDynListCurInfo;
 }
 
-/* 232DD0 -> 232E3C */
-void func_80184600(DynId id)
+/* 232DD0 -> 232E3C; orig name: func_80184600 */
+void d_end_net_subgroup(DynId id)
 {
     d_use_obj(id);
     cpy_idbuf_to_backbuf();
@@ -360,7 +360,7 @@ void func_80184600(DynId id)
 }
 
 /* 232E3C -> 232EB8 */
-void func_8018466C(UNUSED s32 a0, DynId id)
+void d_attach_net_to_joint(UNUSED s32 a0, DynId id)
 {
     UNUSED struct DynObjInfo *sp24 = sDynListCurInfo;
     UNUSED u32 pad[2];
@@ -368,7 +368,7 @@ void func_8018466C(UNUSED s32 a0, DynId id)
     d_makeobj(D_JOINT, id);
     d_set_type(3);
     d_set_shapeptrptr(NULL);
-    d_attach_to(13, sSecondaryInfoStash->obj);
+    d_attach_to(0xD, sSecondaryInfoStash->obj);
     sSecondaryInfoStash = sDynListCurInfo;
 }
 
@@ -487,7 +487,7 @@ struct ObjHeader *d_makeobj(enum DObjTypes type, DynId id)
             dobj = &make_group(0)->header;
             dgroup = (struct ObjGroup *)dobj;
             break;
-        case D_UNK:
+        case D_DIFF_GRP:
             d_makeobj(D_GROUP, id);
             ((struct ObjGroup *)gDynListCurObj)->unk30 = 1;
             //! bad goddard. set the return of the d_makeobj call to `dobj` and return that. 
@@ -687,30 +687,25 @@ void copy_bytes(u8 *src, u8 *dst, s32 num)
     while ( num-- ) { *dst++ = *src++; }
 }
 
-struct AnimDataType3{
-    Mat4 matrix;
-    struct MyVec3f vec;
-};
-
 /* 233AEC -> 2340A8; orig name: func_8018531C */
 // TODO: create types for all animation datas...?
 void alloc_animdata(struct ObjAnimator *a0)
 {
     UNUSED u32 pad5C;
     // probably should be MyVec3f[3], not triangle...
-    struct GdTriangleF tri;          //+58; temp float for converting half to f32?
-    s16 (*halfarr)[9];               //+54; AnimDataType3 current in array?
-    struct SubAnim3 *curAnimSrc;     //+50; source animation data...
-    struct SubAnim3 *animDst;        //+4c; destination anim data II
-    struct SubAnim3 *animDataArr;    //+48; start of allocated anim data memory
-    struct ObjGroup *animgrp;        //+44
-    s32 datasize;                    //+40; anim data allocation size?
-    s32 dataIdx;                     //+3C; byte count?
-    s32 animCnt;                     //+38; count of animdata?
-    s32 i;                           //+34
-    void *allocSpace;                //+30; allocated animdata space
+    struct GdTriangleF tri;           //+58; temp float for converting half to f32?
+    s16 (*halfarr)[9];                //+54; data to convert into a AnimMtxVec
+    struct AnimDataInfo *curAnimSrc;  //+50; source animation data...
+    struct AnimDataInfo *animDst;     //+4c; destination anim data II
+    struct AnimDataInfo *animDataArr; //+48; start of allocated anim data memory
+    struct ObjGroup *animgrp;         //+44
+    s32 datasize;                     //+40; anim data allocation size?
+    s32 dataIdx;                      //+3C; byte count?
+    s32 animCnt;                      //+38; count of animdata "info" structs
+    s32 i;                            //+34
+    void *allocSpace;                 //+30; allocated animdata space
     f32 sp2C = 0.1f;
-    struct AnimDataType3 *curT3ptr; //+28; moving type3 data?
+    struct AnimMtxVec *curMtxVec;     //+28
     UNUSED u32 pad20;
 
     func_8018C30C("animdata");
@@ -718,15 +713,15 @@ void alloc_animdata(struct ObjAnimator *a0)
     if ((animgrp = a0->animdata) == NULL)
         myPrintf("no anim group");
     
-    if ((curAnimSrc = (struct SubAnim3 *)animgrp->link1C->obj) == NULL)
+    if ((curAnimSrc = (struct AnimDataInfo *)animgrp->link1C->obj) == NULL)
         myPrintf("no animation data");
 
-    // count number of animation datas?
+    // count number of array-ed animation data structs
     animDst = curAnimSrc;
     animCnt = 0;
-    while (animDst++->unk00 >= 0) { animCnt++; }
+    while (animDst++->count >= 0) { animCnt++; }
     
-    animDst = func_8019BC18(animCnt * sizeof(struct SubAnim3));   //gd_alloc_perm
+    animDst = func_8019BC18(animCnt * sizeof(struct AnimDataInfo));   //gd_alloc_perm
     if ((animDataArr = animDst) == NULL)
         myPrintf("cant allocate animation data");
 
@@ -736,29 +731,30 @@ void alloc_animdata(struct ObjAnimator *a0)
         if (curAnimSrc->type != 0)
         {
             switch (curAnimSrc->type) 
-            {   //TODO: replace labels with define; values with sizeof?
-                case 11: datasize = 12; break;
-                case 6:  datasize = 6;  break;
-                case 7:  datasize = 6;  break;
-                case 8:  datasize = 12; break;
-                case 2:  datasize = 36; break;
-                case 3:  datasize = 76; break;
-                case 1:  datasize = 64; break;
+            {
+                case GD_ANIM_CAMERA    : datasize = sizeof(s16[6]); break;
+                case GD_ANIM_3H_SCALED : datasize = sizeof(s16[3]); break;
+                case GD_ANIM_3H        : datasize = sizeof(s16[3]); break;
+                case GD_ANIM_6H_SCALED : datasize = sizeof(s16[6]); break;
+                case GD_ANIM_TRI_F_2   : datasize = sizeof(f32[3][3]); break;
+                /* This function will convert the s16[9] array into a struct AnimMtxVec */
+                case GD_ANIM_9H        : datasize = sizeof(struct AnimMtxVec); break;
+                case GD_ANIM_MATRIX    : datasize = sizeof(Mat4); break;
                 default:
                     myPrintf("unknown anim type for allocation");
                 break;
             }
             
-            allocSpace = func_8019BC18(curAnimSrc->unk00 * datasize);  //gd_alloc_perm
+            allocSpace = func_8019BC18(curAnimSrc->count * datasize);  //gd_alloc_perm
             if (allocSpace == NULL)
                 myPrintf("cant allocate animation data");
             
-            if (curAnimSrc->type == 3)
+            if (curAnimSrc->type == GD_ANIM_9H)
             {
-                for (dataIdx = 0; dataIdx < curAnimSrc->unk00; dataIdx++)
+                for (dataIdx = 0; dataIdx < curAnimSrc->count; dataIdx++)
                 {   
                     halfarr = &((s16 (*)[9])curAnimSrc->data)[dataIdx];
-                    curT3ptr = &((struct AnimDataType3 *)allocSpace)[dataIdx];
+                    curMtxVec = &((struct AnimMtxVec *)allocSpace)[dataIdx];
 
                     tri.vec0.x = (f32) (*halfarr)[0] * sp2C;
                     tri.vec0.y = (f32) (*halfarr)[1] * sp2C;
@@ -770,23 +766,23 @@ void alloc_animdata(struct ObjAnimator *a0)
                     tri.vec2.y = (f32) (*halfarr)[7];
                     tri.vec2.z = (f32) (*halfarr)[8];
 
-                    set_identity_mat4(&curT3ptr->matrix);
-                    func_80194220(&curT3ptr->matrix, &tri.vec1);
-                    func_801942E4(&curT3ptr->matrix, &tri.vec2);
+                    set_identity_mat4(&curMtxVec->matrix);
+                    func_80194220(&curMtxVec->matrix, &tri.vec1);
+                    func_801942E4(&curMtxVec->matrix, &tri.vec2);
 
-                    ((struct AnimDataType3 *)allocSpace)[dataIdx].vec.x = tri.vec0.x;
-                    ((struct AnimDataType3 *)allocSpace)[dataIdx].vec.y = tri.vec0.y;
-                    ((struct AnimDataType3 *)allocSpace)[dataIdx].vec.z = tri.vec0.z;
+                    ((struct AnimMtxVec *)allocSpace)[dataIdx].vec.x = tri.vec0.x;
+                    ((struct AnimMtxVec *)allocSpace)[dataIdx].vec.y = tri.vec0.y;
+                    ((struct AnimMtxVec *)allocSpace)[dataIdx].vec.z = tri.vec0.z;
    
                 }
-                curAnimSrc->type = 9;
+                curAnimSrc->type = GD_ANIM_MTX_VEC;
             } else {
-                copy_bytes(curAnimSrc->data, allocSpace, curAnimSrc->unk00 * datasize);
+                copy_bytes(curAnimSrc->data, allocSpace, curAnimSrc->count * datasize);
             } 
         } 
         
         animDst[i].type = curAnimSrc->type;
-        animDst[i].unk00 = curAnimSrc->unk00;
+        animDst[i].count = curAnimSrc->count;
         animDst[i].data = allocSpace;
 
         curAnimSrc++; //next anim data struct

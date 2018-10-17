@@ -1,0 +1,76 @@
+#include <ultra64.h>
+
+#include "sm64.h"
+#include "macros.h"
+#include "dynlists.h"
+#include "../mario_head_4.h"
+// maybe move types into the dynlists.h file?
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmissing-braces"
+#pragma GCC diagnostic ignored "-Wmissing-field-initializers"
+#pragma GCC diagnostic ignored "-Wint-conversion"
+struct DynList dynlist_04000650[62] = {
+    StartList(),
+    StartGroup("spotvg"),
+    MakeVertex(0.0, 0.0, 0.0),
+    MakeVertex(1.0, -1.0, 1.0),
+    SetParamF(1, 0.0),
+    MakeVertex(1.0, 1.0, 1.0),
+    SetParamF(1, 0.0),
+    MakeVertex(-1.0, 1.0, 1.0),
+    SetParamF(1, 0.0),
+    MakeVertex(-1.0, -1.0, 1.0),
+    SetParamF(1, 0.0),
+    MakeVertex(0.0, 0.0, 0.0),
+    EndGroup("spotvg"),
+    StartGroup("spotpg"),
+    MakeDynObj(D_FACE, NULL),
+    SetMaterial(NULL, 0),
+    SetParamPtr(PARM_PTR_OBJ_VTX, 2),
+    SetParamPtr(PARM_PTR_OBJ_VTX, 3),
+    SetParamPtr(PARM_PTR_OBJ_VTX, 5),
+    MakeDynObj(D_FACE, NULL),
+    SetMaterial(NULL, 0),
+    SetParamPtr(PARM_PTR_OBJ_VTX, 3),
+    SetParamPtr(PARM_PTR_OBJ_VTX, 4),
+    SetParamPtr(PARM_PTR_OBJ_VTX, 5),
+    MakeDynObj(D_FACE, NULL),
+    SetMaterial(NULL, 0),
+    SetParamPtr(PARM_PTR_OBJ_VTX, 4),
+    SetParamPtr(PARM_PTR_OBJ_VTX, 1),
+    SetParamPtr(PARM_PTR_OBJ_VTX, 5),
+    MakeDynObj(D_FACE, NULL),
+    SetMaterial(NULL, 0),
+    SetParamPtr(PARM_PTR_OBJ_VTX, 1),
+    SetParamPtr(PARM_PTR_OBJ_VTX, 2),
+    SetParamPtr(PARM_PTR_OBJ_VTX, 5),
+    MakeDynObj(D_FACE, NULL),
+    SetMaterial(NULL, 0),
+    SetParamPtr(PARM_PTR_OBJ_VTX, 0),
+    SetParamPtr(PARM_PTR_OBJ_VTX, 3),
+    SetParamPtr(PARM_PTR_OBJ_VTX, 2),
+    MakeDynObj(D_FACE, NULL),
+    SetMaterial(NULL, 0),
+    SetParamPtr(PARM_PTR_OBJ_VTX, 0),
+    SetParamPtr(PARM_PTR_OBJ_VTX, 4),
+    SetParamPtr(PARM_PTR_OBJ_VTX, 3),
+    MakeDynObj(D_FACE, NULL),
+    SetMaterial(NULL, 0),
+    SetParamPtr(PARM_PTR_OBJ_VTX, 0),
+    SetParamPtr(PARM_PTR_OBJ_VTX, 1),
+    SetParamPtr(PARM_PTR_OBJ_VTX, 4),
+    MakeDynObj(D_FACE, NULL),
+    SetMaterial(NULL, 0),
+    SetParamPtr(PARM_PTR_OBJ_VTX, 0),
+    SetParamPtr(PARM_PTR_OBJ_VTX, 2),
+    SetParamPtr(PARM_PTR_OBJ_VTX, 1),
+    EndGroup("spotpg"),
+    UseObj("spotpg"),
+    MapVertices("spotvg"),
+    MakeDynObj(D_SHAPE, "spot_sh"),
+    SetNodeGroup("spotvg"),
+    SetPlaneGroup("spotpg"),
+    SetParamF(1, 0.1),
+    StopList(),
+};
+#pragma GCC diagnostic pop

@@ -413,11 +413,25 @@ SECTIONS
    MIO0_SEG(title_screen_bg, 0x0A000000)
 
    /* 271B20-2A42A0 [32780] */
-   BEGIN_SEG(text271B20, __romPos)
+   BEGIN_SEG(gd_dynlists, 0x04000000)
    {
-      build/data/unknown_271B20.o(.text);
+      build/src/goddard/dynlists/04000000.o(.data);
+      build/src/goddard/dynlists/04000650.o(.data);
+      build/src/goddard/dynlists/04000C20.o(.data);
+      build/src/goddard/dynlists/04003610.o(.data);
+      build/src/goddard/dynlists/040042E0.o(.data);
+      build/src/goddard/dynlists/04004F90.o(.data);
+      build/src/goddard/dynlists/anim_0C6DC.o(.data);
+      build/src/goddard/dynlists/anim_0DE1C.o(.data);
+      build/src/goddard/dynlists/anim_0F55C.o(.data);
+      build/src/goddard/dynlists/anim_10C9C.o(.data);
+      build/src/goddard/dynlists/anim_123DC.o(.data);
+      build/src/goddard/dynlists/anim_13738.o(.data);
+      build/src/goddard/dynlists/anim_22768.o(.data);
+      build/src/goddard/dynlists/04000000.o(.rodata);
+      build/src/goddard/dynlists/04000650.o(.rodata);
    }
-   END_SEG(text271B20)
+   END_SEG(gd_dynlists)
 
    gMainLevels = __romPos;
 

@@ -34,15 +34,15 @@ enum DObjTypes {
     D_LABEL         = 12,
     D_VIEW          = 13,
     D_ANIMATOR      = 14,
-    D_UNK           = 15,
+    D_DIFF_GRP      = 15,
     D_PARTICLE      = 16,
     D_LIGHT         = 17,
     D_GROUP         = 18
 };
 // dynlist entries
 union DynUnion {
-    char *str;
     void *ptr;
+    char *str;
     s32 word;
 };
 

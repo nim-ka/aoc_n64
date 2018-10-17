@@ -360,16 +360,20 @@ glabel D_801B88C8
 	.incbin "bin/sm64.j.255EC0.bin", 0x111D8, 0x8
 
 # These final four addresses are only referenced in another file
-glabel D_801B88D0
-	.incbin "bin/sm64.j.255EC0.bin", 0x111E0, 0x8
+glabel gStr_simpleg_1 # D_801B88D0
+	.asciiz "simpleg"
+	.balign 4, 0
 
-glabel D_801B88D8
-	.incbin "bin/sm64.j.255EC0.bin", 0x111E8, 0x8
+glabel gStr_simple	# D_801B88D8
+	.asciiz "simple"
+	.balign 4, 0
 
-glabel D_801B88E0
-	.incbin "bin/sm64.j.255EC0.bin", 0x111F0, 0x8
+glabel gStr_simpleg_2	# D_801B88E0
+	.asciiz "simpleg"
+	.balign 4, 0
 
-glabel D_801B88E8
-	.incbin "bin/sm64.j.255EC0.bin", 0x111F8, 0x8
+glabel gStr_simpleg_3	# D_801B88E8
+	.asciiz "simpleg"
+	.balign 4, 0
 
 # 801B88F0

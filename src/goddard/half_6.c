@@ -9,9 +9,7 @@
 #include "../mario_head_5.h"
 #include "half_6.h"
 #include "../mario_head_6.h"
-
-#include "../segment4.h"
-
+#include "dynlists/dynlists.h"
 #include "gd_main.h"
 #include "gd_types.h"
 
@@ -1316,7 +1314,7 @@ s32 func_8019A378(void (*aniFn)(struct ObjAnimator*))
     sp28->fn48 = aniFn;
     dynid_is_int(FALSE);
     //FIXME: make segment address work once seg4 is disassembled 
-    D_801A82E0 = load_dynlist(&*D_04004F90);
+    D_801A82E0 = load_dynlist(dynlist_04004F90);
     func_8018C458("mario face");
 
     sp2C = (struct ObjCamera*) d_makeobj(D_CAMERA, NULL);
@@ -1434,10 +1432,10 @@ void load_shapes2(void)
     reset_dynlist();
     func_80197280();
     sCubeShape = make_shape(0, "cube");
-    D_801A82E4 = (struct ObjShape*) load_dynlist(*&D_04000650);
+    D_801A82E4 = (struct ObjShape*) load_dynlist(dynlist_04000650);
     func_8019834C(D_801A82E4, 200.0f, 200.0f, 200.0f);
 
-    D_801A82E8 = (struct ObjShape*) load_dynlist(*&D_04000000);
+    D_801A82E8 = (struct ObjShape*) load_dynlist(dynlist_04000000);
     func_8019834C(D_801A82E8, 30.0f, 30.0f, 30.0f);
     sCubeShapeGroup = make_group_of_type(OBJ_TYPE_SHAPES, &sCubeShape->header, NULL);
     func_8017B028(sCubeShapeGroup);

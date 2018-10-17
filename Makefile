@@ -32,7 +32,7 @@ MIO0_DIR := $(BUILD_DIR)/mio0
 TEXTURE_DIR := textures
 
 # Directories containing source files
-SRC_DIRS := src src/libultra src/goddard
+SRC_DIRS := src src/libultra src/goddard src/goddard/dynlists
 ASM_DIRS := asm data geo levels sound demos anims text
 BIN_DIRS := bin
 

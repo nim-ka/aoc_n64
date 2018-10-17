@@ -379,6 +379,6 @@ extern void func_801A5B58(float, float);
 // extern ? Unknown801A6E30(?);
 // extern ? Unknown801A6E44(?);
 // extern ? func_801A6E58(?);
-extern void* load_dynlist(u8*); // guessing on return type... might be ObjGroup*
+extern void* load_dynlist(void *); // guessing on return type... might be ObjGroup*
 
 #endif /* _MARIO_HEAD_6_H_ */

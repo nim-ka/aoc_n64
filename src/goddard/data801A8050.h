@@ -41,10 +41,10 @@ extern void* D_801A82E8;  // same type as what load_dynlist returns
 extern void* D_801A82EC;  //probably a pointer
 extern void* D_801A82F0;  // same type as what load_dynlist returns
 
+extern struct ObjShape *D_801A82F4;
+extern struct ObjShape *D_801A82F8;
 
 extern f64 D_801A8668;
 extern s32 D_801A86B0;
-
-
 
 #endif /* _GD_DATA_801A8050_H_ */

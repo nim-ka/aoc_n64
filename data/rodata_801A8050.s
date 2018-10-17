@@ -1,5 +1,6 @@
 .include "macros.inc"
 .include "ultra64/gbi.inc"
+.include "dynlist.inc"
 
 .section .rodata
 
@@ -179,10 +180,10 @@ glabel D_801A82EC
 glabel D_801A82F0
    .word 0
 
-glabel D_801A82F4
+glabel D_801A82F4 # struct ObjShape *
    .word 0
 
-glabel D_801A82F8
+glabel D_801A82F8 # struct ObjShape *
    .word 0
 
 glabel D_801A82FC
@@ -196,26 +197,47 @@ glabel D_801A835C
    .word D_801A835C
 
    .incbin "bin/sm64.j.255EC0.bin", 0xC9C, 0x18
-glabel D_801A83A4
-   .incbin "bin/sm64.j.255EC0.bin", 0xCB4, 0x9C
-   .word D_801B88D0
-   .incbin "bin/sm64.j.255EC0.bin", 0xD54, 0x14
-   .word D_801B88D8
-   .incbin "bin/sm64.j.255EC0.bin", 0xD6C, 0x2C
-   .word D_801A83A4
-   .incbin "bin/sm64.j.255EC0.bin", 0xD9C, 0x14
-   .word D_801B88E0
-   .incbin "bin/sm64.j.255EC0.bin", 0xDB4, 0x14
-   .word D_801B88E8
-   .incbin "bin/sm64.j.255EC0.bin", 0xDCC, 0x28
-glabel D_801A84E4
-   .incbin "bin/sm64.j.255EC0.bin", 0xDF4, 0x64
-   .word D_801A84E4
-   .incbin "bin/sm64.j.255EC0.bin", 0xE5C, 0x74
-   .word D_801A84E4
-   .incbin "bin/sm64.j.255EC0.bin", 0xED4, 0x5C
-   .word D_801A84E4
-   .incbin "bin/sm64.j.255EC0.bin", 0xF34, 0x44
+glabel D_801A83A4   # struct ObjShape *
+    .word 0
+# 801A83A8
+   .incbin "bin/sm64.j.255EC0.bin", 0xCB8, 0x7C
+
+# Is this in C, due to the non-aliasing of "simpleg" string pointers?
+dynlist_801A8424: # 256BF4
+    StartList
+    StartGroup gStr_simpleg_1
+    MakeDynObj D_NET, gStr_simple
+    SetType 3
+    SetShapePtrPtr D_801A83A4
+    EndGroup gStr_simpleg_2
+    UseObj gStr_simpleg_3
+    StopList
+
+dynlist_801A84E4: # 256CB4
+    StartList
+    SetFlag 0x1800
+    StopList
+
+dynlist_801A85B3: # 256CFC
+    StartList
+    JumpToList dynlist_801A84E4
+    SetFlag 0x400
+    SetFriction 0.04, 0.01, 0.01
+    StopList
+
+dynlist_801A85A4: # @ 256D74
+    StartList
+    JumpToList dynlist_801A84E4
+    SetFriction 0.04, 0.01, 0.01
+    StopList
+
+dynlist_801A8604: # @ 256DD4
+    StartList
+    JumpToList dynlist_801A84E4
+    SetFriction 0.005, 0.005, 0.005
+    StopList
+# padding
+   .word 0
 
 glabel D_801A8668
    .word 0
@@ -323,9 +345,9 @@ glabel D_801A8700
    .word 0
 
 glabel D_801A8704
-   .word  3, 0x04000000
-   .word  3, 0x04000650
-   .word  3, 0x04004F90
+   .word  3, dynlist_04000000
+   .word  3, dynlist_04000650
+   .word  3, dynlist_04004F90
    .word -1, 0x00000000
 
 .balign 8
