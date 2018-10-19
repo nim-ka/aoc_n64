@@ -7,7 +7,8 @@
 #include "mario_head_2.h"
 #include "mario_head_3.h"
 #include "mario_head_4.h"
-#include "../mario_head_5.h"
+#include "profiler_utils.h"
+#include "matrix_fns.h"
 #include "../mario_head_6.h"
 
 // static types

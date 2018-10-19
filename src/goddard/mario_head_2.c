@@ -3,7 +3,8 @@
 #include "sm64.h"
 #include "mario_head_1.h"
 #include "mario_head_2.h"
-#include "../mario_head_5.h"
+#include "profiler_utils.h"
+#include "matrix_fns.h"
 
 #include "gd_types.h"
 

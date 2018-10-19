@@ -2,7 +2,7 @@
 
 #include "sm64.h"
 #include "debug_memory.h"
-#include "../mario_head_5.h"
+#include "profiler_utils.h"
 #include "../mario_head_6.h"
 
 // This dummy struct seems to be needed for the bss variables to
