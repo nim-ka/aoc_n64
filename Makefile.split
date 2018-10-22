@@ -22,7 +22,6 @@ BINARY_SEGMENTS := \
    mario_water_sparkles \
    mole_monkey_fwoosh \
    mri_swoop_snufit_dorrie_scuttlebug \
-   peach_toadstool_yoshi_birds \
    sea_creatures \
    skeeter_fish_treasurechest \
    spindrift_penguin_snowman \
@@ -69,6 +68,7 @@ JRB_TEXTURES_FILES           := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/jr
 LAKITU_TOAD_FILES            := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/lakitu_toad_mips_boo/*.png)))
 LLL_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/lll_seg7/*.png)))
 LLL_TEXTURES_FILES           := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/lll_textures/*.png)))
+PEACH_TOADSTOOL_FILES        := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/peach_toadstool_yoshi_birds/*.png)))
 PSS_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/pss_seg7/*.png)))
 RR_SEG7_FILES                := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/rr_seg7/*.png)))
 RR_TEXTURES_FILES            := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/rr_textures/*.png)))
@@ -117,6 +117,7 @@ $(BUILD_DIR)/bin/jrb_textures.o: $(addprefix $(BUILD_DIR)/bin/jrb_textures/,$(JR
 $(BUILD_DIR)/bin/lakitu_toad_mips_boo.o: $(addprefix $(BUILD_DIR)/bin/lakitu_toad_mips_boo/,$(LAKITU_TOAD_FILES))
 $(BUILD_DIR)/bin/lll_seg7.o: $(addprefix $(BUILD_DIR)/bin/lll_seg7/,$(LLL_SEG7_FILES))
 $(BUILD_DIR)/bin/lll_textures.o: $(addprefix $(BUILD_DIR)/bin/lll_textures/,$(LLL_TEXTURES_FILES))
+$(BUILD_DIR)/bin/peach_toadstool_yoshi_birds.o: $(addprefix $(BUILD_DIR)/bin/peach_toadstool_yoshi_birds/,$(PEACH_TOADSTOOL_FILES))
 $(BUILD_DIR)/bin/pss_seg7.o: $(addprefix $(BUILD_DIR)/bin/pss_seg7/,$(PSS_SEG7_FILES))
 $(BUILD_DIR)/bin/rr_seg7.o: $(addprefix $(BUILD_DIR)/bin/rr_seg7/,$(RR_SEG7_FILES))
 $(BUILD_DIR)/bin/rr_textures.o: $(addprefix $(BUILD_DIR)/bin/rr_textures/,$(RR_TEXTURES_FILES))
@@ -159,6 +160,7 @@ $(BUILD_DIR)/bin/inside_castle_seg7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/jrb_seg7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/lakitu_toad_mips_boo.elf: SEGMENT_ADDRESS := 0x06000000
 $(BUILD_DIR)/bin/lll_seg7.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/peach_toadstool_yoshi_birds.elf: SEGMENT_ADDRESS := 0x05000000
 $(BUILD_DIR)/bin/pss_seg7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/rr_seg7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/sa_seg7.elf: SEGMENT_ADDRESS := 0x07000000

@@ -3,39 +3,42 @@
 .include "macros.inc"
 .include "ultra64/gbi.inc"
 
-lakitu_toad_seg6_texture_06000000: # 0x06000000
-.incbin "build/bin/lakitu_toad_mips_boo/lakitu_toad.00000.rgba16"
+# Lakitu
 
-lakitu_toad_seg6_texture_06000800: # 0x06000800
-.incbin "build/bin/lakitu_toad_mips_boo/lakitu_toad.00800.rgba16"
+.balign 8
+lakitu_seg6_texture_06000000: # 0x06000000
+.incbin "build/bin/lakitu_toad_mips_boo/lakitu.00000.rgba16"
 
-lakitu_toad_seg6_texture_06001800: # 0x06001800
-.incbin "build/bin/lakitu_toad_mips_boo/lakitu_toad.01800.rgba16"
+lakitu_seg6_texture_06000800: # 0x06000800
+.incbin "build/bin/lakitu_toad_mips_boo/lakitu.00800.rgba16"
 
-lakitu_toad_seg6_texture_06002800: # 0x06002800
-.incbin "build/bin/lakitu_toad_mips_boo/lakitu_toad.02800.rgba16"
+lakitu_seg6_texture_06001800: # 0x06001800
+.incbin "build/bin/lakitu_toad_mips_boo/lakitu.01800.rgba16"
 
-lakitu_toad_seg6_texture_06003000: # 0x06003000
-.incbin "build/bin/lakitu_toad_mips_boo/lakitu_toad.03000.rgba16"
+lakitu_seg6_texture_06002800: # 0x06002800
+.incbin "build/bin/lakitu_toad_mips_boo/lakitu.02800.rgba16"
 
-lakitu_toad_seg6_texture_06003800: # 0x06003800
-.incbin "build/bin/lakitu_toad_mips_boo/lakitu_toad.03800.rgba16"
+lakitu_seg6_texture_06003000: # 0x06003000
+.incbin "build/bin/lakitu_toad_mips_boo/lakitu.03000.rgba16"
 
-lakitu_toad_seg6_light_06003A00: # 0x06003A00
+lakitu_seg6_texture_06003800: # 0x06003800
+.incbin "build/bin/lakitu_toad_mips_boo/lakitu.03800.rgba16"
+
+lakitu_seg6_light_06003A00: # 0x06003A00
 .byte 0x7F, 0x7F, 0x7F, 0x00, 0x7F, 0x7F, 0x7F, 0x00
 
-lakitu_toad_seg6_light_06003A08: # 0x06003A08
+lakitu_seg6_light_06003A08: # 0x06003A08
 .byte 0xFF, 0xFF, 0xFF, 0x00, 0xFF, 0xFF, 0xFF, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-lakitu_toad_seg6_light_06003A18: # 0x06003A18
+lakitu_seg6_light_06003A18: # 0x06003A18
 .byte 0x79, 0x55, 0x00, 0x00, 0x79, 0x55, 0x00, 0x00
 
-lakitu_toad_seg6_light_06003A20: # 0x06003A20
+lakitu_seg6_light_06003A20: # 0x06003A20
 .byte 0xF2, 0xAB, 0x00, 0x00, 0xF2, 0xAB, 0x00, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-lakitu_toad_seg6_vertex_06003A30: # 0x06003A30
+lakitu_seg6_vertex_06003A30: # 0x06003A30
 vertex     91,    -25,     86,    240,    464,  0x3E, 0xD0, 0x63, 0xFF
 vertex    132,    -17,     43,     34,    468,  0x71, 0xCE, 0x1A, 0xFF
 vertex    137,     35,     43,      0,    980,  0x64, 0x33, 0x39, 0xFF
@@ -53,7 +56,7 @@ vertex      2,    -35,     86,    684,    470,  0xEA, 0xBB, 0x67, 0xFF
 vertex     84,     28,     99,    242,    984,  0x1F, 0x28, 0x74, 0xFF
 vertex     -2,     15,     99,    684,    990,  0xC1, 0x34, 0x60, 0xFF
 
-lakitu_toad_seg6_vertex_06003B30: # 0x06003B30
+lakitu_seg6_vertex_06003B30: # 0x06003B30
 vertex     -2,     15,     99,    684,    990,  0xC1, 0x34, 0x60, 0xFF
 vertex    -56,      7,     43,    958,    992,  0x87, 0x10, 0x21, 0xFF
 vertex    -33,    -40,     43,    884,    484,  0xA3, 0xBB, 0x31, 0xFF
@@ -65,7 +68,7 @@ vertex     22,    -84,    -28,    612,    -10,  0xEB, 0x8F, 0xCB, 0xFF
 vertex      2,    -35,    -81,    684,    480,  0xD1, 0xBF, 0x9F, 0xFF
 vertex     -2,     15,    -96,    684,    990,  0xD6, 0x33, 0x94, 0xFF
 
-lakitu_toad_seg6_vertex_06003BD0: # 0x06003BD0
+lakitu_seg6_vertex_06003BD0: # 0x06003BD0
 vertex      0,     51,      0,      0,      0,  0xCF, 0x75, 0x00, 0xFF
 vertex     68,     61,     35,      0,      0,  0x09, 0x7B, 0x1A, 0xFF
 vertex     68,     61,    -33,      0,      0,  0x01, 0x7A, 0xE0, 0xFF
@@ -78,13 +81,13 @@ vertex     84,     28,     99,      0,      0,  0x1F, 0x28, 0x74, 0xFF
 vertex    -56,      7,     43,      0,      0,  0x87, 0x10, 0x21, 0xFF
 vertex    137,     35,     43,      0,      0,  0x64, 0x33, 0x39, 0xFF
 
-glabel lakitu_toad_seg6_dl_06003C80 # 0x06003C80 - 0x06003DB0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, lakitu_toad_seg6_texture_06002800
+glabel lakitu_seg6_dl_06003C80 # 0x06003C80 - 0x06003DB0
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, lakitu_seg6_texture_06002800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
-gsSPLight lakitu_toad_seg6_light_06003A08, 1
-gsSPLight lakitu_toad_seg6_light_06003A00, 2
-gsSPVertex lakitu_toad_seg6_vertex_06003A30, 16, 0
+gsSPLight lakitu_seg6_light_06003A08, 1
+gsSPLight lakitu_seg6_light_06003A00, 2
+gsSPVertex lakitu_seg6_vertex_06003A30, 16, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  4,  5, 0x0
 gsSP1Triangle  4,  6,  7, 0x0
@@ -105,7 +108,7 @@ gsSP1Triangle 13, 12,  0, 0x0
 gsSP1Triangle 14, 13,  0, 0x0
 gsSP1Triangle  0,  2, 14, 0x0
 gsSP1Triangle 14, 15, 13, 0x0
-gsSPVertex lakitu_toad_seg6_vertex_06003B30, 10, 0
+gsSPVertex lakitu_seg6_vertex_06003B30, 10, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  0,  2,  3, 0x0
 gsSP1Triangle  3,  2,  4, 0x0
@@ -118,10 +121,10 @@ gsSP1Triangle  8,  5,  6, 0x0
 gsSP1Triangle  8,  6,  9, 0x0
 gsSPEndDisplayList
 
-glabel lakitu_toad_seg6_dl_06003DB0 # 0x06003DB0 - 0x06003E30
-gsSPLight lakitu_toad_seg6_light_06003A20, 1
-gsSPLight lakitu_toad_seg6_light_06003A18, 2
-gsSPVertex lakitu_toad_seg6_vertex_06003BD0, 11, 0
+glabel lakitu_seg6_dl_06003DB0 # 0x06003DB0 - 0x06003E30
+gsSPLight lakitu_seg6_light_06003A20, 1
+gsSPLight lakitu_seg6_light_06003A18, 2
+gsSPVertex lakitu_seg6_vertex_06003BD0, 11, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  2,  3,  4, 0x0
 gsSP1Triangle  1,  5,  2, 0x0
@@ -144,21 +147,21 @@ gsSPTexture -1, -1, 0, 0, 1
 gsDPTileSync
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD
 gsDPSetTileSize 0, 0, 0, 124, 124
-gsSPDisplayList lakitu_toad_seg6_dl_06003C80
+gsSPDisplayList lakitu_seg6_dl_06003C80
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
 gsDPSetCombineMode G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
-gsSPDisplayList lakitu_toad_seg6_dl_06003DB0
+gsSPDisplayList lakitu_seg6_dl_06003DB0
 gsSPEndDisplayList
 
-lakitu_toad_seg6_light_06003E98: # 0x06003E98
+lakitu_seg6_light_06003E98: # 0x06003E98
 .byte 0x7F, 0x7F, 0x7F, 0x00, 0x7F, 0x7F, 0x7F, 0x00
 
-lakitu_toad_seg6_light_06003EA0: # 0x06003EA0
+lakitu_seg6_light_06003EA0: # 0x06003EA0
 .byte 0xFF, 0xFF, 0xFF, 0x00, 0xFF, 0xFF, 0xFF, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-lakitu_toad_seg6_vertex_06003EB0: # 0x06003EB0
+lakitu_seg6_vertex_06003EB0: # 0x06003EB0
 vertex      2,     -6,     83,  -1072,    916,  0xCB, 0x25, 0x6C, 0xFF
 vertex    -49,    -11,     35,   -556,    874,  0x92, 0x2E, 0x2B, 0xFF
 vertex      1,    -57,     76,  -1062,    410,  0xD5, 0xE6, 0x74, 0xFF
@@ -176,7 +179,7 @@ vertex    101,   -142,     35,  -2058,   -434,  0x26, 0x99, 0x3D, 0xFF
 vertex      2,     -6,    -82,  -1072,    916,  0xCF, 0x36, 0x99, 0xFF
 vertex      1,    -57,    -75,  -1062,    410,  0xD6, 0xE6, 0x8C, 0xFF
 
-lakitu_toad_seg6_vertex_06003FB0: # 0x06003FB0
+lakitu_seg6_vertex_06003FB0: # 0x06003FB0
 vertex      1,    -57,    -75,  -1062,    410,  0xD6, 0xE6, 0x8C, 0xFF
 vertex     98,    -35,    -80,  -2034,    626,  0x43, 0xD5, 0x9E, 0xFF
 vertex     97,   -100,    -72,  -2022,    -18,  0x1B, 0xCD, 0x90, 0xFF
@@ -193,7 +196,7 @@ vertex    161,     16,      0,    480,    568,  0x70, 0x3A, 0x00, 0xFF
 vertex    154,    -30,     28,    746,    166,  0x6D, 0xC7, 0x1E, 0xFF
 vertex    154,    -30,    -27,    210,    164,  0x6E, 0xCF, 0xDC, 0xFF
 
-lakitu_toad_seg6_vertex_060040A0: # 0x060040A0
+lakitu_seg6_vertex_060040A0: # 0x060040A0
 vertex    105,     51,     40,    864,    924,  0x15, 0x7C, 0x0F, 0xFF
 vertex    148,     21,     46,    920,    620,  0x67, 0x30, 0x36, 0xFF
 vertex    161,     16,      0,    480,    568,  0x70, 0x3A, 0x00, 0xFF
@@ -211,7 +214,7 @@ vertex    104,     34,     90,  -2094,   1332,  0x12, 0x57, 0x5A, 0xFF
 vertex    161,     16,      0,  -2654,   1148,  0x70, 0x3A, 0x00, 0xFF
 vertex    148,     21,     46,  -2528,   1194,  0x67, 0x30, 0x36, 0xFF
 
-lakitu_toad_seg6_vertex_060041A0: # 0x060041A0
+lakitu_seg6_vertex_060041A0: # 0x060041A0
 vertex      2,     -6,    -82,  -1072,    916,  0xCF, 0x36, 0x99, 0xFF
 vertex    104,     34,    -89,  -2094,   1332,  0x1D, 0x53, 0xA5, 0xFF
 vertex    103,    -17,   -100,  -2084,    810,  0x33, 0xD1, 0x97, 0xFF
@@ -228,7 +231,7 @@ vertex    135,    -98,     39,  -2404,     -2,  0x70, 0xD8, 0x2B, 0xFF
 vertex    138,    -47,     11,  -2428,    508,  0x6F, 0xCE, 0x20, 0xFF
 vertex    103,    -17,    101,  -2084,    810,  0x33, 0xD1, 0x69, 0xFF
 
-lakitu_toad_seg6_vertex_06004290: # 0x06004290
+lakitu_seg6_vertex_06004290: # 0x06004290
 vertex    103,    -17,    101,  -2084,    810,  0x33, 0xD1, 0x69, 0xFF
 vertex    104,     34,     90,  -2094,   1332,  0x12, 0x57, 0x5A, 0xFF
 vertex      2,     -6,     83,  -1072,    916,  0xCB, 0x25, 0x6C, 0xFF
@@ -246,7 +249,7 @@ vertex     97,   -100,    -72,  -2022,    -18,  0x1B, 0xCD, 0x90, 0xFF
 vertex      9,     27,     51,  -1138,   1254,  0xCE, 0x6D, 0x28, 0xFF
 vertex      0,   -140,    -31,  -1046,   -414,  0xD1, 0x9A, 0xC6, 0xFF
 
-lakitu_toad_seg6_vertex_06004390: # 0x06004390
+lakitu_seg6_vertex_06004390: # 0x06004390
 vertex    101,   -142,    -34,  -2058,   -434,  0x34, 0x92, 0xDE, 0xFF
 vertex      0,   -140,     32,  -1046,   -414,  0xC5, 0x94, 0x1D, 0xFF
 vertex      0,   -140,    -31,  -1046,   -414,  0xD1, 0x9A, 0xC6, 0xFF
@@ -256,13 +259,13 @@ vertex    154,    -30,     28,    724,    182,  0x6D, 0xC7, 0x1E, 0xFF
 vertex    138,    -47,     11,    570,    -84,  0x6F, 0xCE, 0x20, 0xFF
 vertex    154,    -30,    -27,    196,    176,  0x6E, 0xCF, 0xDC, 0xFF
 
-glabel lakitu_toad_seg6_dl_06004410 # 0x06004410 - 0x06004680
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, lakitu_toad_seg6_texture_06003000
+glabel lakitu_seg6_dl_06004410 # 0x06004410 - 0x06004680
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, lakitu_seg6_texture_06003000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
-gsSPLight lakitu_toad_seg6_light_06003EA0, 1
-gsSPLight lakitu_toad_seg6_light_06003E98, 2
-gsSPVertex lakitu_toad_seg6_vertex_06003EB0, 16, 0
+gsSPLight lakitu_seg6_light_06003EA0, 1
+gsSPLight lakitu_seg6_light_06003E98, 2
+gsSPVertex lakitu_seg6_vertex_06003EB0, 16, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  1,  4, 0x0
 gsSP1Triangle  3,  5,  1, 0x0
@@ -282,7 +285,7 @@ gsSP1Triangle  9,  8, 13, 0x0
 gsSP1Triangle 14,  5,  3, 0x0
 gsSP1Triangle  5, 15,  6, 0x0
 gsSP1Triangle  5, 14, 15, 0x0
-gsSPVertex lakitu_toad_seg6_vertex_06003FB0, 15, 0
+gsSPVertex lakitu_seg6_vertex_06003FB0, 15, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  0,  2,  3, 0x0
 gsSP1Triangle  0,  4,  5, 0x0
@@ -293,7 +296,7 @@ gsSP1Triangle 10,  6, 11, 0x0
 gsSP1Triangle 11,  6,  3, 0x0
 gsSP1Triangle  2, 11,  3, 0x0
 gsSP1Triangle 12, 13, 14, 0x0
-gsSPVertex lakitu_toad_seg6_vertex_060040A0, 16, 0
+gsSPVertex lakitu_seg6_vertex_060040A0, 16, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  4,  2, 0x0
 gsSP1Triangle  2,  1,  5, 0x0
@@ -305,7 +308,7 @@ gsSP1Triangle  7, 12,  8, 0x0
 gsSP1Triangle 13,  8, 12, 0x0
 gsSP1Triangle  9,  8, 14, 0x0
 gsSP1Triangle 15,  8, 13, 0x0
-gsSPVertex lakitu_toad_seg6_vertex_060041A0, 15, 0
+gsSPVertex lakitu_seg6_vertex_060041A0, 15, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  2,  4, 0x0
 gsSP1Triangle  5,  6,  2, 0x0
@@ -315,7 +318,7 @@ gsSP1Triangle  7,  8,  9, 0x0
 gsSP1Triangle 10, 11, 12, 0x0
 gsSP1Triangle 10, 12, 13, 0x0
 gsSP1Triangle 14, 10, 13, 0x0
-gsSPVertex lakitu_toad_seg6_vertex_06004290, 16, 0
+gsSPVertex lakitu_seg6_vertex_06004290, 16, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  4,  0, 0x0
 gsSP1Triangle  1,  0,  5, 0x0
@@ -329,7 +332,7 @@ gsSP1Triangle 10, 13, 11, 0x0
 gsSP1Triangle  3, 10, 12, 0x0
 gsSP1Triangle  1, 14,  2, 0x0
 gsSP1Triangle 13,  9, 15, 0x0
-gsSPVertex lakitu_toad_seg6_vertex_06004390, 8, 0
+gsSPVertex lakitu_seg6_vertex_06004390, 8, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  0,  3,  1, 0x0
 gsSP1Triangle  4,  5,  6, 0x0
@@ -344,20 +347,20 @@ gsSPTexture -1, -1, 0, 0, 1
 gsDPTileSync
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
 gsDPSetTileSize 0, 0, 0, 124, 124
-gsSPDisplayList lakitu_toad_seg6_dl_06004410
+gsSPDisplayList lakitu_seg6_dl_06004410
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
 gsDPSetCombineMode G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPEndDisplayList
 
-lakitu_toad_seg6_light_060046E0: # 0x060046E0
+lakitu_seg6_light_060046E0: # 0x060046E0
 .byte 0x79, 0x55, 0x00, 0x00, 0x79, 0x55, 0x00, 0x00
 
-lakitu_toad_seg6_light_060046E8: # 0x060046E8
+lakitu_seg6_light_060046E8: # 0x060046E8
 .byte 0xF2, 0xAB, 0x00, 0x00, 0xF2, 0xAB, 0x00, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-lakitu_toad_seg6_vertex_060046F8: # 0x060046F8
+lakitu_seg6_vertex_060046F8: # 0x060046F8
 vertex     99,     30,     33,      0,      0,  0x06, 0x5E, 0x54, 0xFF
 vertex    102,      0,     33,      0,      0,  0x21, 0xD1, 0x70, 0xFF
 vertex    140,     20,      2,      0,      0,  0x73, 0xFB, 0x35, 0xFF
@@ -375,9 +378,9 @@ vertex     25,     28,      2,      0,      0,  0xCE, 0x74, 0x00, 0xFF
 vertex    119,     45,      0,      0,      0,  0x35, 0x72, 0xF9, 0xFF
 
 glabel lakitu_seg6_dl_060047E8 # 0x060047E8 - 0x060048D8
-gsSPLight lakitu_toad_seg6_light_060046E8, 1
-gsSPLight lakitu_toad_seg6_light_060046E0, 2
-gsSPVertex lakitu_toad_seg6_vertex_060046F8, 15, 0
+gsSPLight lakitu_seg6_light_060046E8, 1
+gsSPLight lakitu_seg6_light_060046E0, 2
+gsSPVertex lakitu_seg6_vertex_060046F8, 15, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  4,  5, 0x0
 gsSP1Triangle  4,  6,  7, 0x0
@@ -406,14 +409,14 @@ gsSP1Triangle 10, 13, 11, 0x0
 gsSP1Triangle 12, 13, 10, 0x0
 gsSPEndDisplayList
 
-lakitu_toad_seg6_light_060048D8: # 0x060048D8
+lakitu_seg6_light_060048D8: # 0x060048D8
 .byte 0x79, 0x55, 0x00, 0x00, 0x79, 0x55, 0x00, 0x00
 
-lakitu_toad_seg6_light_060048E0: # 0x060048E0
+lakitu_seg6_light_060048E0: # 0x060048E0
 .byte 0xF2, 0xAB, 0x00, 0x00, 0xF2, 0xAB, 0x00, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-lakitu_toad_seg6_vertex_060048F0: # 0x060048F0
+lakitu_seg6_vertex_060048F0: # 0x060048F0
 vertex     30,     -5,    -22,      0,      0,  0xE3, 0xB1, 0xA2, 0xFF
 vertex     -5,      0,      0,      0,      0,  0x83, 0xEE, 0x00, 0xFF
 vertex     28,     15,    -22,      0,      0,  0xD1, 0x29, 0x92, 0xFF
@@ -431,9 +434,9 @@ vertex    119,     45,      2,      0,      0,  0x35, 0x72, 0x07, 0xFF
 vertex     25,     28,      0,      0,      0,  0xCE, 0x74, 0x00, 0xFF
 
 glabel lakitu_seg6_dl_060049E0 # 0x060049E0 - 0x06004AD0
-gsSPLight lakitu_toad_seg6_light_060048E0, 1
-gsSPLight lakitu_toad_seg6_light_060048D8, 2
-gsSPVertex lakitu_toad_seg6_vertex_060048F0, 15, 0
+gsSPLight lakitu_seg6_light_060048E0, 1
+gsSPLight lakitu_seg6_light_060048D8, 2
+gsSPVertex lakitu_seg6_vertex_060048F0, 15, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  4,  5, 0x0
 gsSP1Triangle  6,  3,  5, 0x0
@@ -462,14 +465,14 @@ gsSP1Triangle  5, 14,  6, 0x0
 gsSP1Triangle  5, 12, 14, 0x0
 gsSPEndDisplayList
 
-lakitu_toad_seg6_light_06004AD0: # 0x06004AD0
+lakitu_seg6_light_06004AD0: # 0x06004AD0
 .byte 0x7F, 0x7F, 0x7F, 0x00, 0x7F, 0x7F, 0x7F, 0x00
 
-lakitu_toad_seg6_light_06004AD8: # 0x06004AD8
+lakitu_seg6_light_06004AD8: # 0x06004AD8
 .byte 0xFF, 0xFF, 0xFF, 0x00, 0xFF, 0xFF, 0xFF, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-lakitu_toad_seg6_vertex_06004AE8: # 0x06004AE8
+lakitu_seg6_vertex_06004AE8: # 0x06004AE8
 vertex    150,    -30,      0,    992,    994,  0x7E, 0xF5, 0x09, 0xFF
 vertex    136,   -116,     82,   2012,      0,  0x7E, 0xF5, 0x09, 0xFF
 vertex    142,   -116,      0,    992,    -26,  0x7E, 0xF5, 0x09, 0xFF
@@ -483,17 +486,17 @@ vertex    150,    -30,      0,    992,    994,  0x7E, 0xF3, 0x07, 0xFF
 vertex    145,    -30,     82,   2012,    990,  0x7E, 0xF3, 0x07, 0xFF
 vertex    136,   -116,     82,   2012,      0,  0x7E, 0xF3, 0x07, 0xFF
 
-glabel lakitu_toad_seg6_dl_06004BA8 # 0x06004BA8 - 0x06004BE8
-gsSPLight lakitu_toad_seg6_light_06004AD8, 1
-gsSPLight lakitu_toad_seg6_light_06004AD0, 2
-gsSPVertex lakitu_toad_seg6_vertex_06004AE8, 12, 0
+glabel lakitu_seg6_dl_06004BA8 # 0x06004BA8 - 0x06004BE8
+gsSPLight lakitu_seg6_light_06004AD8, 1
+gsSPLight lakitu_seg6_light_06004AD0, 2
+gsSPVertex lakitu_seg6_vertex_06004AE8, 12, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  4,  5, 0x0
 gsSP1Triangle  6,  7,  8, 0x0
 gsSP1Triangle  9, 10, 11, 0x0
 gsSPEndDisplayList
 
-glabel lakitu_toad_seg6_dl_06004BE8 # 0x06004BE8 - 0x06004C30
+glabel lakitu_seg6_dl_06004BE8 # 0x06004BE8 - 0x06004C30
 gsDPPipeSync
 gsDPSetCombineMode G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_SHADE, G_ACMUX_0, G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_SHADE, G_ACMUX_0
 gsSPClearGeometryMode G_SHADING_SMOOTH
@@ -504,8 +507,8 @@ gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 16, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | 
 gsDPSetTileSize 0, 0, 0, 252, 124
 gsSPEndDisplayList
 
-glabel lakitu_toad_seg6_dl_06004C30 # 0x06004C30 - 0x06004C60
-gsSPDisplayList lakitu_toad_seg6_dl_06004BA8
+glabel lakitu_seg6_dl_06004C30 # 0x06004C30 - 0x06004C60
+gsSPDisplayList lakitu_seg6_dl_06004BA8
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
 gsDPSetCombineMode G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
@@ -513,54 +516,54 @@ gsSPSetGeometryMode G_SHADING_SMOOTH
 gsSPEndDisplayList
 
 glabel lakitu_seg6_dl_06004C60 # 0x06004C60 - 0x06004C88
-gsSPDisplayList lakitu_toad_seg6_dl_06004BE8
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, lakitu_toad_seg6_texture_06000800
+gsSPDisplayList lakitu_seg6_dl_06004BE8
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, lakitu_seg6_texture_06000800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
-gsSPBranchList lakitu_toad_seg6_dl_06004C30
+gsSPBranchList lakitu_seg6_dl_06004C30
 
 glabel lakitu_seg6_dl_06004C88 # 0x06004C88 - 0x06004CB0
-gsSPDisplayList lakitu_toad_seg6_dl_06004BE8
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, lakitu_toad_seg6_texture_06001800
+gsSPDisplayList lakitu_seg6_dl_06004BE8
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, lakitu_seg6_texture_06001800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
-gsSPBranchList lakitu_toad_seg6_dl_06004C30
+gsSPBranchList lakitu_seg6_dl_06004C30
 
-lakitu_toad_seg6_light_06004CB0: # 0x06004CB0
+lakitu_seg6_light_06004CB0: # 0x06004CB0
 .byte 0x7F, 0x7F, 0x7F, 0x00, 0x7F, 0x7F, 0x7F, 0x00
 
-lakitu_toad_seg6_light_06004CB8: # 0x06004CB8
+lakitu_seg6_light_06004CB8: # 0x06004CB8
 .byte 0xFF, 0xFF, 0xFF, 0x00, 0xFF, 0xFF, 0xFF, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-lakitu_toad_seg6_light_06004CC8: # 0x06004CC8
+lakitu_seg6_light_06004CC8: # 0x06004CC8
 .byte 0x0C, 0x0C, 0x0C, 0x00, 0x0C, 0x0C, 0x0C, 0x00
 
-lakitu_toad_seg6_light_06004CD0: # 0x06004CD0
+lakitu_seg6_light_06004CD0: # 0x06004CD0
 .byte 0x19, 0x19, 0x19, 0x00, 0x19, 0x19, 0x19, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-lakitu_toad_seg6_light_06004CE0: # 0x06004CE0
+lakitu_seg6_light_06004CE0: # 0x06004CE0
 .byte 0x19, 0x22, 0x20, 0x00, 0x19, 0x22, 0x20, 0x00
 
-lakitu_toad_seg6_light_06004CE8: # 0x06004CE8
+lakitu_seg6_light_06004CE8: # 0x06004CE8
 .byte 0x32, 0x44, 0x40, 0x00, 0x32, 0x44, 0x40, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-lakitu_toad_seg6_light_06004CF8: # 0x06004CF8
+lakitu_seg6_light_06004CF8: # 0x06004CF8
 .byte 0x18, 0x18, 0x18, 0x00, 0x18, 0x18, 0x18, 0x00
 
-lakitu_toad_seg6_light_06004D00: # 0x06004D00
+lakitu_seg6_light_06004D00: # 0x06004D00
 .byte 0x30, 0x30, 0x30, 0x00, 0x30, 0x30, 0x30, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-lakitu_toad_seg6_vertex_06004D10: # 0x06004D10
+lakitu_seg6_vertex_06004D10: # 0x06004D10
 vertex     79,   -113,    -34,      0,    480,  0x00, 0x81, 0x00, 0xFF
 vertex      7,   -113,     37,    480,      0,  0x00, 0x81, 0x00, 0xFF
 vertex      7,   -113,    -34,      0,      0,  0x00, 0x81, 0x00, 0xFF
 vertex     79,   -113,     37,    480,    480,  0x00, 0x81, 0x00, 0xFF
 
-lakitu_toad_seg6_vertex_06004D50: # 0x06004D50
+lakitu_seg6_vertex_06004D50: # 0x06004D50
 vertex     20,    -58,    -21,      0,      0,  0x00, 0x39, 0x8F, 0xFF
 vertex     66,    -58,    -21,      0,      0,  0x00, 0x39, 0x8F, 0xFF
 vertex     43,   -113,    -49,      0,      0,  0x00, 0x39, 0x8F, 0xFF
@@ -577,7 +580,7 @@ vertex     79,   -113,    -34,      0,      0,  0x2E, 0x25, 0x90, 0xFF
 vertex     43,   -113,    -49,      0,      0,  0x2E, 0x25, 0x90, 0xFF
 vertex     66,    -58,    -21,      0,      0,  0x2E, 0x25, 0x90, 0xFF
 
-lakitu_toad_seg6_vertex_06004E40: # 0x06004E40
+lakitu_seg6_vertex_06004E40: # 0x06004E40
 vertex     66,    -58,    -21,      0,      0,  0x71, 0x39, 0x00, 0xFF
 vertex     66,    -58,     24,      0,      0,  0x71, 0x39, 0x00, 0xFF
 vertex     94,   -113,      1,      0,      0,  0x71, 0x39, 0x00, 0xFF
@@ -594,7 +597,7 @@ vertex     66,    -58,     24,      0,      0,  0x00, 0x39, 0x71, 0xFF
 vertex     20,    -58,     24,      0,      0,  0x00, 0x39, 0x71, 0xFF
 vertex     43,   -113,     52,      0,      0,  0x00, 0x39, 0x71, 0xFF
 
-lakitu_toad_seg6_vertex_06004F30: # 0x06004F30
+lakitu_seg6_vertex_06004F30: # 0x06004F30
 vertex     43,   -113,     52,      0,      0,  0xD2, 0x25, 0x70, 0xFF
 vertex     20,    -58,     24,      0,      0,  0xD2, 0x25, 0x70, 0xFF
 vertex      7,   -113,     37,      0,      0,  0xD2, 0x25, 0x70, 0xFF
@@ -602,7 +605,7 @@ vertex     -7,   -113,      1,      0,      0,  0x8F, 0x25, 0x2C, 0xFF
 vertex      7,   -113,     37,      0,      0,  0x8F, 0x25, 0x2C, 0xFF
 vertex     20,    -58,     24,      0,      0,  0x8F, 0x25, 0x2C, 0xFF
 
-lakitu_toad_seg6_vertex_06004F90: # 0x06004F90
+lakitu_seg6_vertex_06004F90: # 0x06004F90
 vertex     -4,     46,    -40,      0,      0,  0x81, 0x00, 0x00, 0xFF
 vertex     -4,    -58,     43,      0,      0,  0x81, 0x00, 0x00, 0xFF
 vertex     -4,     46,     43,      0,      0,  0x81, 0x00, 0x00, 0xFF
@@ -618,7 +621,7 @@ vertex    100,    -58,     43,      0,      0,  0x00, 0x00, 0x7F, 0xFF
 vertex     -4,     46,     43,      0,      0,  0x00, 0x00, 0x7F, 0xFF
 vertex     -4,    -58,     43,      0,      0,  0x00, 0x00, 0x7F, 0xFF
 
-lakitu_toad_seg6_vertex_06005070: # 0x06005070
+lakitu_seg6_vertex_06005070: # 0x06005070
 vertex    100,    -58,    -40,      0,      0,  0x00, 0x81, 0x00, 0xFF
 vertex    100,    -58,     43,      0,      0,  0x00, 0x81, 0x00, 0xFF
 vertex     -4,    -58,     43,      0,      0,  0x00, 0x81, 0x00, 0xFF
@@ -634,7 +637,7 @@ vertex    100,    -58,    -40,      0,      0,  0x7F, 0x00, 0x00, 0xFF
 vertex    100,     46,    -40,      0,      0,  0x7F, 0x00, 0x00, 0xFF
 vertex    100,    -58,     43,      0,      0,  0x7F, 0x00, 0x00, 0xFF
 
-lakitu_toad_seg6_vertex_06005150: # 0x06005150
+lakitu_seg6_vertex_06005150: # 0x06005150
 vertex      7,   -113,    -34,      0,      0,  0x00, 0x81, 0x00, 0xFF
 vertex      7,   -113,     37,      0,      0,  0x00, 0x81, 0x00, 0xFF
 vertex     -7,   -113,      1,      0,      0,  0x00, 0x81, 0x00, 0xFF
@@ -644,54 +647,54 @@ vertex     94,   -113,      1,      0,      0,  0x00, 0x81, 0x00, 0xFF
 vertex     79,   -113,     37,      0,      0,  0x00, 0x81, 0x00, 0xFF
 vertex     43,   -113,     52,      0,      0,  0x00, 0x81, 0x00, 0xFF
 
-glabel lakitu_toad_seg6_dl_060051D0 # 0x060051D0 - 0x06005218
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, lakitu_toad_seg6_texture_06003800
+glabel lakitu_seg6_dl_060051D0 # 0x060051D0 - 0x06005218
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, lakitu_seg6_texture_06003800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x0FF, 0x200
-gsSPLight lakitu_toad_seg6_light_06004CB8, 1
-gsSPLight lakitu_toad_seg6_light_06004CB0, 2
-gsSPVertex lakitu_toad_seg6_vertex_06004D10, 4, 0
+gsSPLight lakitu_seg6_light_06004CB8, 1
+gsSPLight lakitu_seg6_light_06004CB0, 2
+gsSPVertex lakitu_seg6_vertex_06004D10, 4, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  0,  3,  1, 0x0
 gsSPEndDisplayList
 
-glabel lakitu_toad_seg6_dl_06005218 # 0x06005218 - 0x06005360
-gsSPLight lakitu_toad_seg6_light_06004CD0, 1
-gsSPLight lakitu_toad_seg6_light_06004CC8, 2
-gsSPVertex lakitu_toad_seg6_vertex_06004D50, 15, 0
+glabel lakitu_seg6_dl_06005218 # 0x06005218 - 0x06005360
+gsSPLight lakitu_seg6_light_06004CD0, 1
+gsSPLight lakitu_seg6_light_06004CC8, 2
+gsSPVertex lakitu_seg6_vertex_06004D50, 15, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  4,  5, 0x0
 gsSP1Triangle  6,  7,  8, 0x0
 gsSP1Triangle  9, 10, 11, 0x0
 gsSP1Triangle 12, 13, 14, 0x0
-gsSPVertex lakitu_toad_seg6_vertex_06004E40, 15, 0
+gsSPVertex lakitu_seg6_vertex_06004E40, 15, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  4,  5, 0x0
 gsSP1Triangle  6,  7,  8, 0x0
 gsSP1Triangle  9, 10, 11, 0x0
 gsSP1Triangle 12, 13, 14, 0x0
-gsSPVertex lakitu_toad_seg6_vertex_06004F30, 6, 0
+gsSPVertex lakitu_seg6_vertex_06004F30, 6, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  4,  5, 0x0
-gsSPLight lakitu_toad_seg6_light_06004CE8, 1
-gsSPLight lakitu_toad_seg6_light_06004CE0, 2
-gsSPVertex lakitu_toad_seg6_vertex_06004F90, 14, 0
+gsSPLight lakitu_seg6_light_06004CE8, 1
+gsSPLight lakitu_seg6_light_06004CE0, 2
+gsSPVertex lakitu_seg6_vertex_06004F90, 14, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  4,  5, 0x0
 gsSP1Triangle  3,  5,  6, 0x0
 gsSP1Triangle  0,  7,  1, 0x0
 gsSP1Triangle  8,  9, 10, 0x0
 gsSP1Triangle 11, 12, 13, 0x0
-gsSPVertex lakitu_toad_seg6_vertex_06005070, 14, 0
+gsSPVertex lakitu_seg6_vertex_06005070, 14, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  0,  2,  3, 0x0
 gsSP1Triangle  4,  5,  6, 0x0
 gsSP1Triangle  7,  8,  9, 0x0
 gsSP1Triangle 10, 11, 12, 0x0
 gsSP1Triangle 10, 13, 11, 0x0
-gsSPLight lakitu_toad_seg6_light_06004D00, 1
-gsSPLight lakitu_toad_seg6_light_06004CF8, 2
-gsSPVertex lakitu_toad_seg6_vertex_06005150, 8, 0
+gsSPLight lakitu_seg6_light_06004D00, 1
+gsSPLight lakitu_seg6_light_06004CF8, 2
+gsSPVertex lakitu_seg6_vertex_06005150, 8, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  0,  3,  4, 0x0
 gsSP1Triangle  4,  5,  6, 0x0
@@ -707,43 +710,49 @@ gsSPTexture -1, -1, 0, 0, 1
 gsDPTileSync
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 4, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 4, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 4, G_TX_NOLOD
 gsDPSetTileSize 0, 0, 0, 60, 60
-gsSPDisplayList lakitu_toad_seg6_dl_060051D0
+gsSPDisplayList lakitu_seg6_dl_060051D0
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
 gsDPSetCombineMode G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
-gsSPDisplayList lakitu_toad_seg6_dl_06005218
+gsSPDisplayList lakitu_seg6_dl_06005218
 gsSPSetGeometryMode G_SHADING_SMOOTH
 gsSPEndDisplayList
 
-# unreferenced bytes? maybe a light?
+# unreferenced light?
 .byte 0x33, 0x1F, 0x0C, 0x00, 0x33, 0x1F, 0x0C, 0x00
 .byte 0xCC, 0x7F, 0x33, 0x00, 0xCC, 0x7F, 0x33, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-lakitu_toad_seg6_light_060053F0: # 0x060053F0
+lakitu_seg6_light_060053F0: # 0x060053F0
 .byte 0x29, 0x13, 0x06, 0x00, 0x29, 0x13, 0x06, 0x00
 
-lakitu_toad_seg6_light_060053F8: # 0x060053F8
+lakitu_seg6_light_060053F8: # 0x060053F8
 .byte 0xA5, 0x4F, 0x1B, 0x00, 0xA5, 0x4F, 0x1B, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
+
+# unreferenced light?
 .byte 0x06, 0x06, 0x06, 0x00, 0x06, 0x06, 0x06, 0x00
 .byte 0x19, 0x19, 0x19, 0x00, 0x19, 0x19, 0x19, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
+
+# unreferenced light?
 .byte 0x2C, 0x2C, 0x2C, 0x00, 0x2C, 0x2C, 0x2C, 0x00
 .byte 0xB2, 0xB2, 0xB2, 0x00, 0xB2, 0xB2, 0xB2, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-lakitu_toad_seg6_light_06005438: # 0x06005438
+lakitu_seg6_light_06005438: # 0x06005438
 .byte 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 
-lakitu_toad_seg6_light_06005440: # 0x06005440
+lakitu_seg6_light_06005440: # 0x06005440
 .byte 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
+
+# unreferenced light?
 .byte 0x0D, 0x2C, 0x0B, 0x00, 0x0D, 0x2C, 0x0B, 0x00
 .byte 0x34, 0xB2, 0x2C, 0x00, 0x34, 0xB2, 0x2C, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-lakitu_toad_seg6_vertex_06005468: # 0x06005468
+lakitu_seg6_vertex_06005468: # 0x06005468
 vertex    103,     40,     28,      0,      0,  0xB1, 0x5E, 0x1C, 0x00
 vertex    115,     46,     39,      0,      0,  0xB1, 0x5E, 0x1C, 0x00
 vertex    111,     46,     30,      0,      0,  0xB1, 0x5E, 0x1C, 0x00
@@ -758,20 +767,20 @@ vertex    115,     51,     23,      0,      0,  0x64, 0x49, 0x18, 0xFF
 vertex    115,     46,     39,      0,      0,  0x64, 0x49, 0x18, 0xFF
 vertex    345,   -234,    -54,      0,      0,  0x64, 0x49, 0x18, 0xFF
 
-lakitu_toad_seg6_vertex_06005538: # 0x06005538
+lakitu_seg6_vertex_06005538: # 0x06005538
 vertex    189,      1,      1,      0,      0,  0xFF, 0x7F, 0x00, 0x00
 vertex    189,      1,     -2,      0,      0,  0xFF, 0x7F, 0x00, 0x00
 vertex     -3,      0,      0,      0,      0,  0xFF, 0x7F, 0x00, 0x00
 
-lakitu_toad_seg6_vertex_06005568: # 0x06005568
+lakitu_seg6_vertex_06005568: # 0x06005568
 vertex     -3,      0,      0,      0,      0,  0x01, 0x81, 0x00, 0x00
 vertex    189,      2,     -2,      0,      0,  0x01, 0x81, 0x00, 0x00
 vertex    189,      2,      1,      0,      0,  0x01, 0x81, 0x00, 0x00
 
 glabel lakitu_seg6_dl_06005598 # 0x06005598 - 0x060055E8
-gsSPLight lakitu_toad_seg6_light_060053F8, 1
-gsSPLight lakitu_toad_seg6_light_060053F0, 2
-gsSPVertex lakitu_toad_seg6_vertex_06005468, 13, 0
+gsSPLight lakitu_seg6_light_060053F8, 1
+gsSPLight lakitu_seg6_light_060053F0, 2
+gsSPVertex lakitu_seg6_vertex_06005468, 13, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  4,  5, 0x0
 gsSP1Triangle  6,  0,  2, 0x0
@@ -781,21 +790,20 @@ gsSP1Triangle 10, 11, 12, 0x0
 gsSPEndDisplayList
 
 glabel lakitu_seg6_dl_060055E8 # 0x060055E8 - 0x06005610
-gsSPLight lakitu_toad_seg6_light_06005440, 1
-gsSPLight lakitu_toad_seg6_light_06005438, 2
-gsSPVertex lakitu_toad_seg6_vertex_06005538, 3, 0
+gsSPLight lakitu_seg6_light_06005440, 1
+gsSPLight lakitu_seg6_light_06005438, 2
+gsSPVertex lakitu_seg6_vertex_06005538, 3, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSPEndDisplayList
 
 glabel lakitu_seg6_dl_06005610 # 0x06005610 - 0x06005638
-gsSPLight lakitu_toad_seg6_light_06005440, 1
-gsSPLight lakitu_toad_seg6_light_06005438, 2
-gsSPVertex lakitu_toad_seg6_vertex_06005568, 3, 0
+gsSPLight lakitu_seg6_light_06005440, 1
+gsSPLight lakitu_seg6_light_06005438, 2
+gsSPVertex lakitu_seg6_vertex_06005568, 3, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSPEndDisplayList
 
-# seems to be halfword lists. TODO: identify these.
-lakitu_toad_seg6_unk_06005638: # 0x06005638
+lakitu_seg6_animvalue_06005638: # 0x06005638
 .hword 0x0000, 0x0097, 0xFFC2, 0x3FFF, 0xFC86, 0x1413, 0x89B5, 0x019A
 .hword 0xF031, 0x88AD, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000
 .hword 0x0000, 0x0001, 0x0002, 0x0002, 0x0003, 0x0004, 0x0004, 0x0004
@@ -830,7 +838,7 @@ lakitu_toad_seg6_unk_06005638: # 0x06005638
 .hword 0x28D4, 0x28AC, 0x287F, 0x284F, 0x281F, 0x27EF, 0x27C2, 0x2799
 .hword 0x2776, 0x275A, 0x2749, 0x2743, 0x5C65, 0x0000
 
-lakitu_toad_seg6_unk_06005844: # 0x06005844
+lakitu_seg6_animindex_06005844: # 0x06005844
 .hword 0x0001, 0x0000, 0x0001, 0x0001, 0x0001, 0x0002, 0x0001, 0x0000
 .hword 0x0001, 0x0003, 0x0001, 0x0000, 0x0001, 0x0000, 0x0001, 0x0000
 .hword 0x0001, 0x0104, 0x0001, 0x00E4, 0x0001, 0x00E5, 0x001E, 0x00E6
@@ -842,37 +850,39 @@ lakitu_toad_seg6_unk_06005844: # 0x06005844
 .hword 0x001E, 0x0046, 0x0001, 0x0000, 0x001E, 0x0064, 0x001E, 0x0082
 .hword 0x0001, 0x0007, 0x0001, 0x0008, 0x0001, 0x0009
 
-lakitu_toad_seg6_unklist_060058E0: # 0x060058E0
+lakitu_seg6_anim_060058E0: # 0x060058E0
 .hword 0
 .hword 0
 .hword 0
 .hword 0
 .hword 0x1E
 .hword 0xC
-.word lakitu_toad_seg6_unk_06005638
-.word lakitu_toad_seg6_unk_06005844
+.word lakitu_seg6_animvalue_06005638
+.word lakitu_seg6_animindex_06005844
 .word 0
 
-glabel lakitu_toad_seg6_unklists_060058F8 # 0x060058F8
-.word lakitu_toad_seg6_unklist_060058E0
+glabel lakitu_seg6_anims_060058F8 # 0x060058F8
+.word lakitu_seg6_anim_060058E0
 .word 0
 .word 0
 
-.word 0 # align?
-lakitu_toad_seg6_light_06005908: # 0x06005908
+# Toad
+
+.balign 8
+toad_seg6_light_06005908: # 0x06005908
 .byte 0x7F, 0x7F, 0x7F, 0x00, 0x7F, 0x7F, 0x7F, 0x00
 
-lakitu_toad_seg6_light_06005910: # 0x06005910
+toad_seg6_light_06005910: # 0x06005910
 .byte 0xFF, 0xFF, 0xFF, 0x00, 0xFF, 0xFF, 0xFF, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-lakitu_toad_seg6_texture_06005920: # 0x06005920
-.incbin "build/bin/lakitu_toad_mips_boo/lakitu_toad.05920.rgba16"
+toad_seg6_texture_06005920: # 0x06005920
+.incbin "build/bin/lakitu_toad_mips_boo/toad.05920.rgba16"
 
-lakitu_toad_seg6_texture_06006120: # 0x06006120
-.incbin "build/bin/lakitu_toad_mips_boo/lakitu_toad.06120.rgba16"
+toad_seg6_texture_06006120: # 0x06006120
+.incbin "build/bin/lakitu_toad_mips_boo/toad.06120.rgba16"
 
-lakitu_toad_seg6_vertex_06006920: # 0x06006920
+toad_seg6_vertex_06006920: # 0x06006920
 vertex    -43,   -102,    106,     36,    848,  0xBA, 0xCC, 0x5B, 0xFF
 vertex    -56,    -68,    103,   -108,    448,  0xA9, 0xFB, 0x5B, 0xFF
 vertex    -77,    -96,     50,   -314,    702,  0x94, 0xC1, 0x13, 0xFF
@@ -889,7 +899,7 @@ vertex    -56,    -20,    101,   -118,     16,  0xB5, 0x11, 0x64, 0xFF
 vertex     57,    -20,    101,   1052,      4,  0x4A, 0x11, 0x65, 0xFF
 vertex      0,      4,    113,    460,   -208,  0x00, 0x2B, 0x77, 0xFF
 
-lakitu_toad_seg6_vertex_06006A10: # 0x06006A10
+toad_seg6_vertex_06006A10: # 0x06006A10
 vertex      0,   -143,      8,   -546,    672,  0xF8, 0x85, 0xE4, 0xFF
 vertex    -29,   -135,     34,   -802,    592,  0xC8, 0x8F, 0xFD, 0xFF
 vertex    -56,   -113,      7,   -560,    370,  0xAB, 0xAE, 0xD4, 0xFF
@@ -907,7 +917,7 @@ vertex      0,   -135,     97,  -1412,    574,  0x00, 0x8D, 0x34, 0xFF
 vertex    -86,    -52,     32,   -858,   -260,  0x84, 0xEA, 0x06, 0xFF
 vertex    -61,    -80,    -18,   -338,     40,  0xB0, 0xC1, 0xB5, 0xFF
 
-lakitu_toad_seg6_vertex_06006B10: # 0x06006B10
+toad_seg6_vertex_06006B10: # 0x06006B10
 vertex      0,   -143,      8,   -546,    672,  0xF8, 0x85, 0xE4, 0xFF
 vertex    -56,   -113,      7,   -560,    370,  0xAB, 0xAE, 0xD4, 0xFF
 vertex      0,   -124,    -23,   -254,    492,  0x02, 0xA1, 0xAD, 0xFF
@@ -921,7 +931,7 @@ vertex     62,    -80,    -18,   -338,     40,  0x62, 0xC9, 0xC8, 0xFF
 vertex     78,    -96,     50,   -998,    182,  0x72, 0xCC, 0x0E, 0xFF
 vertex     87,    -52,     32,   -858,   -260,  0x7C, 0xF2, 0x16, 0xFF
 
-lakitu_toad_seg6_vertex_06006BD0: # 0x06006BD0
+toad_seg6_vertex_06006BD0: # 0x06006BD0
 vertex     34,    -28,     97,    -26,    942,  0x12, 0x9F, 0x4E, 0xFF
 vertex    142,    -44,     36,   1040,   1000,  0x45, 0xA0, 0x2C, 0xFF
 vertex     71,     13,    144,     98,    396,  0x28, 0xBB, 0x62, 0xFF
@@ -938,7 +948,7 @@ vertex   -175,     48,    -12,   -402,    498,  0x88, 0x21, 0xED, 0xFF
 vertex    -70,    149,     72,    194,     88,  0xD3, 0x75, 0x12, 0xFF
 vertex   -141,     91,    -35,   -264,    168,  0xAD, 0x52, 0xD1, 0xFF
 
-lakitu_toad_seg6_vertex_06006CC0: # 0x06006CC0
+toad_seg6_vertex_06006CC0: # 0x06006CC0
 vertex    -78,    122,    -51,    490,    500,  0xD3, 0x65, 0xC3, 0xFF
 vertex    -38,    154,      8,   1016,    282,  0xE4, 0x79, 0xE8, 0xFF
 vertex      0,    133,    -57,    506,    -88,  0x00, 0x70, 0xC5, 0xFF
@@ -956,7 +966,7 @@ vertex    -70,     13,    145,    200,   1082,  0xE6, 0xC0, 0x69, 0xFF
 vertex   -141,     91,    -35,    472,   1082,  0xAD, 0x52, 0xD1, 0xFF
 vertex    -70,     34,   -143,   -446,    512,  0xDA, 0x31, 0x92, 0xFF
 
-lakitu_toad_seg6_vertex_06006DC0: # 0x06006DC0
+toad_seg6_vertex_06006DC0: # 0x06006DC0
 vertex   -141,     91,    -35,    472,   1082,  0xAD, 0x52, 0xD1, 0xFF
 vertex    -70,    149,     72,   1420,    692,  0xD3, 0x75, 0x12, 0xFF
 vertex    -38,    154,      8,   1016,    282,  0xE4, 0x79, 0xE8, 0xFF
@@ -974,7 +984,7 @@ vertex     89,     71,    148,    -76,    968,  0x3E, 0x0D, 0x6D, 0xFF
 vertex    176,      0,     13,   1032,    922,  0x78, 0xDD, 0x10, 0xFF
 vertex    176,     47,    -12,   1026,    610,  0x79, 0x22, 0xF0, 0xFF
 
-lakitu_toad_seg6_vertex_06006EC0: # 0x06006EC0
+toad_seg6_vertex_06006EC0: # 0x06006EC0
 vertex   -141,    -44,     37,   -168,    914,  0xBA, 0xA7, 0x37, 0xFF
 vertex    -70,     13,    145,   1136,    958,  0xE6, 0xC0, 0x69, 0xFF
 vertex    -87,     71,    148,   1280,    464,  0xC5, 0x10, 0x6F, 0xFF
@@ -991,7 +1001,7 @@ vertex     34,    -88,     -5,    458,   1758,  0x0A, 0x86, 0x20, 0xFF
 vertex    142,     91,    -36,    908,    228,  0x54, 0x55, 0xD7, 0xFF
 vertex     71,    149,     72,     18,    266,  0x26, 0x77, 0x15, 0xFF
 
-lakitu_toad_seg6_vertex_06006FB0: # 0x06006FB0
+toad_seg6_vertex_06006FB0: # 0x06006FB0
 vertex    -88,    -72,   -121,   -182,    430,  0xC2, 0xAE, 0xB7, 0xFF
 vertex   -175,     48,    -12,   1388,    114,  0x88, 0x21, 0xED, 0xFF
 vertex    -88,    -23,   -147,   -130,    -66,  0xC6, 0xF2, 0x91, 0xFF
@@ -1009,7 +1019,7 @@ vertex     79,    122,    -52,    -82,    342,  0x2C, 0x6B, 0xCF, 0xFF
 vertex     39,     90,   -112,    670,    514,  0x1C, 0x58, 0xAA, 0xFF
 vertex      0,    133,    -57,    430,   -262,  0x00, 0x70, 0xC5, 0xFF
 
-lakitu_toad_seg6_vertex_060070B0: # 0x060070B0
+toad_seg6_vertex_060070B0: # 0x060070B0
 vertex     71,     34,   -144,    848,   1202,  0x2D, 0x32, 0x95, 0xFF
 vertex    -38,     90,   -112,   1178,    -54,  0xF0, 0x54, 0xA3, 0xFF
 vertex     39,     90,   -112,    670,    514,  0x1C, 0x58, 0xAA, 0xFF
@@ -1027,14 +1037,14 @@ vertex    -88,    -23,   -147,   1048,    572,  0xC6, 0xF2, 0x91, 0xFF
 vertex     88,    -72,   -121,    -72,    958,  0x3A, 0xAD, 0xB5, 0xFF
 vertex    -88,    -72,   -121,   1066,    922,  0xC2, 0xAE, 0xB7, 0xFF
 
-lakitu_toad_seg6_vertex_060071B0: # 0x060071B0
+toad_seg6_vertex_060071B0: # 0x060071B0
 vertex    176,      0,     13,   -180,    454,  0x78, 0xDD, 0x10, 0xFF
 vertex     88,    -24,   -147,   1236,     52,  0x3D, 0xF2, 0x93, 0xFF
 vertex    176,     47,    -12,   -182,      6,  0x79, 0x22, 0xF0, 0xFF
 vertex     88,    -72,   -121,   1238,    498,  0x3A, 0xAD, 0xB5, 0xFF
 vertex    142,    -44,     36,    -38,    932,  0x45, 0xA0, 0x2C, 0xFF
 
-lakitu_toad_seg6_vertex_06007200: # 0x06007200
+toad_seg6_vertex_06007200: # 0x06007200
 vertex    176,     47,    -12,      0,      0,  0x79, 0x22, 0xF0, 0xFF
 vertex     71,     34,   -144,      0,      0,  0x2D, 0x32, 0x95, 0xFF
 vertex    142,     91,    -36,      0,      0,  0x54, 0x55, 0xD7, 0xFF
@@ -1052,13 +1062,13 @@ vertex     88,    -72,   -121,      0,      0,  0x3A, 0xAD, 0xB5, 0xFF
 vertex    -70,   -102,    -71,      0,      0,  0xD7, 0x88, 0x00, 0xFF
 vertex     88,    -24,   -147,      0,      0,  0x3D, 0xF2, 0x93, 0xFF
 
-glabel lakitu_toad_seg6_dl_06007300 # 0x06007300 - 0x06007498
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, lakitu_toad_seg6_texture_06005920
+glabel toad_seg6_dl_06007300 # 0x06007300 - 0x06007498
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, toad_seg6_texture_06005920
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
-gsSPLight lakitu_toad_seg6_light_06005910, 1
-gsSPLight lakitu_toad_seg6_light_06005908, 2
-gsSPVertex lakitu_toad_seg6_vertex_06006920, 15, 0
+gsSPLight toad_seg6_light_06005910, 1
+gsSPLight toad_seg6_light_06005908, 2
+gsSPVertex toad_seg6_vertex_06006920, 15, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  0,  4, 0x0
 gsSP1Triangle  2,  4,  0, 0x0
@@ -1077,7 +1087,7 @@ gsSP1Triangle  8, 12,  1, 0x0
 gsSP1Triangle 13, 14,  8, 0x0
 gsSP1Triangle  9, 13,  8, 0x0
 gsSP1Triangle 12,  8, 14, 0x0
-gsSPVertex lakitu_toad_seg6_vertex_06006A10, 16, 0
+gsSPVertex toad_seg6_vertex_06006A10, 16, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  4,  5, 0x0
 gsSP1Triangle  5,  6,  3, 0x0
@@ -1089,7 +1099,7 @@ gsSP1Triangle  1, 12,  2, 0x0
 gsSP1Triangle 13,  1,  0, 0x0
 gsSP1Triangle  2, 12, 14, 0x0
 gsSP1Triangle  2, 14, 15, 0x0
-gsSPVertex lakitu_toad_seg6_vertex_06006B10, 12, 0
+gsSPVertex toad_seg6_vertex_06006B10, 12, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  2,  1,  3, 0x0
 gsSP1Triangle  4,  0,  5, 0x0
@@ -1105,11 +1115,11 @@ gsSP1Triangle 10,  8,  9, 0x0
 gsSP1Triangle 10,  9, 11, 0x0
 gsSPEndDisplayList
 
-glabel lakitu_toad_seg6_dl_06007498 # 0x06007498 - 0x060076C0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, lakitu_toad_seg6_texture_06006120
+glabel toad_seg6_dl_06007498 # 0x06007498 - 0x060076C0
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, toad_seg6_texture_06006120
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
-gsSPVertex lakitu_toad_seg6_vertex_06006BD0, 15, 0
+gsSPVertex toad_seg6_vertex_06006BD0, 15, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  0,  2, 0x0
 gsSP1Triangle  2,  1,  4, 0x0
@@ -1120,7 +1130,7 @@ gsSP1Triangle  7,  8,  9, 0x0
 gsSP1Triangle  8, 10,  9, 0x0
 gsSP1Triangle  8, 11, 10, 0x0
 gsSP1Triangle 12, 13, 14, 0x0
-gsSPVertex lakitu_toad_seg6_vertex_06006CC0, 16, 0
+gsSPVertex toad_seg6_vertex_06006CC0, 16, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  4,  5, 0x0
 gsSP1Triangle  3,  5,  6, 0x0
@@ -1131,7 +1141,7 @@ gsSP1Triangle 11, 12, 10, 0x0
 gsSP1Triangle 13, 12, 11, 0x0
 gsSP1Triangle 14,  1,  0, 0x0
 gsSP1Triangle 15, 14,  0, 0x0
-gsSPVertex lakitu_toad_seg6_vertex_06006DC0, 16, 0
+gsSPVertex toad_seg6_vertex_06006DC0, 16, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  4,  5, 0x0
 gsSP1Triangle  6,  7,  8, 0x0
@@ -1140,7 +1150,7 @@ gsSP1Triangle  9, 10,  7, 0x0
 gsSP1Triangle 11, 10,  9, 0x0
 gsSP1Triangle 12,  4,  3, 0x0
 gsSP1Triangle 13, 14, 15, 0x0
-gsSPVertex lakitu_toad_seg6_vertex_06006EC0, 15, 0
+gsSPVertex toad_seg6_vertex_06006EC0, 15, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  4,  5, 0x0
 gsSP1Triangle  3,  5,  6, 0x0
@@ -1150,7 +1160,7 @@ gsSP1Triangle  9, 10, 11, 0x0
 gsSP1Triangle 12,  7,  8, 0x0
 gsSP1Triangle 11, 10, 13, 0x0
 gsSP1Triangle 11, 13, 14, 0x0
-gsSPVertex lakitu_toad_seg6_vertex_06006FB0, 16, 0
+gsSPVertex toad_seg6_vertex_06006FB0, 16, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  0,  3,  1, 0x0
 gsSP1Triangle  4,  3,  0, 0x0
@@ -1159,7 +1169,7 @@ gsSP1Triangle  6,  7,  8, 0x0
 gsSP1Triangle  9, 10, 11, 0x0
 gsSP1Triangle  9, 11, 12, 0x0
 gsSP1Triangle 13, 14, 15, 0x0
-gsSPVertex lakitu_toad_seg6_vertex_060070B0, 16, 0
+gsSPVertex toad_seg6_vertex_060070B0, 16, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  0,  2, 0x0
 gsSP1Triangle  3,  2,  4, 0x0
@@ -1170,14 +1180,14 @@ gsSP1Triangle 11, 10, 12, 0x0
 gsSP1Triangle  9, 13, 10, 0x0
 gsSP1Triangle 14, 13,  9, 0x0
 gsSP1Triangle 14, 15, 13, 0x0
-gsSPVertex lakitu_toad_seg6_vertex_060071B0, 5, 0
+gsSPVertex toad_seg6_vertex_060071B0, 5, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  0,  3,  1, 0x0
 gsSP1Triangle  4,  3,  0, 0x0
 gsSPEndDisplayList
 
-glabel lakitu_toad_seg6_dl_060076C0 # 0x060076C0 - 0x06007710
-gsSPVertex lakitu_toad_seg6_vertex_06007200, 16, 0
+glabel toad_seg6_dl_060076C0 # 0x060076C0 - 0x06007710
+gsSPVertex toad_seg6_vertex_06007200, 16, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  4,  5, 0x0
 gsSP1Triangle  4,  6,  5, 0x0
@@ -1196,17 +1206,17 @@ gsSPTexture -1, -1, 0, 0, 1
 gsDPTileSync
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
 gsDPSetTileSize 0, 0, 0, 124, 124
-gsSPDisplayList lakitu_toad_seg6_dl_06007300
-gsSPDisplayList lakitu_toad_seg6_dl_06007498
+gsSPDisplayList toad_seg6_dl_06007300
+gsSPDisplayList toad_seg6_dl_06007498
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
 gsDPSetCombineMode G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
-gsSPDisplayList lakitu_toad_seg6_dl_060076C0
+gsSPDisplayList toad_seg6_dl_060076C0
 gsDPPipeSync
 gsSPEndDisplayList
 
 .ifdef VERSION_US
-glabel lakitu_toad_seg6_us_dl_06007788 # 0x06007788 - 0x06007808
+glabel toad_seg6_us_dl_06007788 # 0x06007788 - 0x06007808
 gsDPPipeSync
 gsDPSetCombineMode G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT, G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
@@ -1215,24 +1225,24 @@ gsSPTexture -1, -1, 0, 0, 1
 gsDPTileSync
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
 gsDPSetTileSize 0, 0, 0, 124, 124
-gsSPDisplayList lakitu_toad_seg6_dl_06007300
-gsSPDisplayList lakitu_toad_seg6_dl_06007498
+gsSPDisplayList toad_seg6_dl_06007300
+gsSPDisplayList toad_seg6_dl_06007498
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
 gsDPSetCombineMode G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
-gsSPDisplayList lakitu_toad_seg6_dl_060076C0
+gsSPDisplayList toad_seg6_dl_060076C0
 gsDPPipeSync
 gsSPEndDisplayList
 .endif
 
-lakitu_toad_seg6_light_06007788: # 0x06007788
+toad_seg6_light_06007788: # 0x06007788
 .byte 0x21, 0x13, 0x5A, 0x00, 0x21, 0x13, 0x5A, 0x00
 
-lakitu_toad_seg6_light_06007790: # 0x06007790
+toad_seg6_light_06007790: # 0x06007790
 .byte 0x42, 0x27, 0xB5, 0x00, 0x42, 0x27, 0xB5, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-lakitu_toad_seg6_vertex_060077A0: # 0x060077A0
+toad_seg6_vertex_060077A0: # 0x060077A0
 vertex    -80,    -27,    -24,      0,      0,  0x90, 0x28, 0xD5, 0xFF
 vertex    -61,     26,     28,      0,      0,  0x9C, 0x3A, 0x32, 0xFF
 vertex    -61,     26,    -27,      0,      0,  0x93, 0x37, 0xDF, 0xFF
@@ -1250,7 +1260,7 @@ vertex     40,    -18,     65,      0,      0,  0x4F, 0x32, 0x55, 0xFF
 vertex    -80,    -23,     30,      0,      0,  0x93, 0x2C, 0x2F, 0xFF
 vertex    -30,     26,    -60,      0,      0,  0xCF, 0x2B, 0x94, 0xFF
 
-lakitu_toad_seg6_vertex_060078A0: # 0x060078A0
+toad_seg6_vertex_060078A0: # 0x060078A0
 vertex    -35,     60,     20,      0,      0,  0xA1, 0x4B, 0x23, 0xFF
 vertex    -61,     26,    -27,      0,      0,  0x93, 0x37, 0xDF, 0xFF
 vertex    -61,     26,     28,      0,      0,  0x9C, 0x3A, 0x32, 0xFF
@@ -1264,10 +1274,10 @@ vertex     31,     26,    -60,      0,      0,  0x26, 0x35, 0x94, 0xFF
 vertex    -80,    -23,     30,      0,      0,  0x93, 0x2C, 0x2F, 0xFF
 vertex    -80,    -27,    -24,      0,      0,  0x90, 0x28, 0xD5, 0xFF
 
-glabel lakitu_toad_seg6_dl_06007960 # 0x06007960 - 0x06007A48
-gsSPLight lakitu_toad_seg6_light_06007790, 1
-gsSPLight lakitu_toad_seg6_light_06007788, 2
-gsSPVertex lakitu_toad_seg6_vertex_060077A0, 16, 0
+glabel toad_seg6_dl_06007960 # 0x06007960 - 0x06007A48
+gsSPLight toad_seg6_light_06007790, 1
+gsSPLight toad_seg6_light_06007788, 2
+gsSPVertex toad_seg6_vertex_060077A0, 16, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  4,  5, 0x0
 gsSP1Triangle  4,  6,  7, 0x0
@@ -1282,7 +1292,7 @@ gsSP1Triangle 12,  5,  8, 0x0
 gsSP1Triangle 10,  9, 13, 0x0
 gsSP1Triangle  0, 14,  1, 0x0
 gsSP1Triangle 15,  0,  2, 0x0
-gsSPVertex lakitu_toad_seg6_vertex_060078A0, 12, 0
+gsSPVertex toad_seg6_vertex_060078A0, 12, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  2,  3,  0, 0x0
 gsSP1Triangle  4,  3,  2, 0x0
@@ -1299,35 +1309,35 @@ glabel toad_seg6_dl_06007A48 # 0x06007A48 - 0x06007A80
 gsDPPipeSync
 gsDPSetCombineMode G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsSPClearGeometryMode G_CULL_BACK
-gsSPDisplayList lakitu_toad_seg6_dl_06007960
+gsSPDisplayList toad_seg6_dl_06007960
 gsDPPipeSync
 gsSPSetGeometryMode G_CULL_BACK
 gsSPEndDisplayList
 
 .ifdef VERSION_US
-glabel lakitu_toad_seg6_us_dl_06007B00 # 0x06007B00 - 0x06007B28
+glabel toad_seg6_us_dl_06007B00 # 0x06007B00 - 0x06007B28
 gsDPPipeSync
 gsDPSetCombineMode G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
-gsSPDisplayList lakitu_toad_seg6_dl_06007960
+gsSPDisplayList toad_seg6_dl_06007960
 gsDPPipeSync
 gsSPEndDisplayList
 .endif
 
-lakitu_toad_seg6_light_06007A80: # 0x06007A80
+toad_seg6_light_06007A80: # 0x06007A80
 .byte 0x7F, 0x7F, 0x7F, 0x00, 0x7F, 0x7F, 0x7F, 0x00
 
-lakitu_toad_seg6_light_06007A88: # 0x06007A88
+toad_seg6_light_06007A88: # 0x06007A88
 .byte 0xFF, 0xFF, 0xFF, 0x00, 0xFF, 0xFF, 0xFF, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-lakitu_toad_seg6_light_06007A98: # 0x06007A98
+toad_seg6_light_06007A98: # 0x06007A98
 .byte 0x7F, 0x6A, 0x50, 0x00, 0x7F, 0x6A, 0x50, 0x00
 
-lakitu_toad_seg6_light_06007AA0: # 0x06007AA0
+toad_seg6_light_06007AA0: # 0x06007AA0
 .byte 0xFE, 0xD5, 0xA1, 0x00, 0xFE, 0xD5, 0xA1, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-lakitu_toad_seg6_vertex_06007AB0: # 0x06007AB0
+toad_seg6_vertex_06007AB0: # 0x06007AB0
 vertex     44,    -69,    -33,      0,      0,  0x21, 0x90, 0xD1, 0xFF
 vertex    -34,    -45,    -60,      0,      0,  0xDB, 0xD0, 0x91, 0xFF
 vertex     35,    -45,    -60,      0,      0,  0x2E, 0xF5, 0x8B, 0xFF
@@ -1343,7 +1353,7 @@ vertex    -34,    -33,     61,      0,      0,  0xCF, 0x04, 0x74, 0xFF
 vertex    -28,      9,    -51,      0,      0,  0xD6, 0x25, 0x8F, 0xFF
 vertex     29,      9,    -51,      0,      0,  0x21, 0x2D, 0x8F, 0xFF
 
-lakitu_toad_seg6_vertex_06007B90: # 0x06007B90
+toad_seg6_vertex_06007B90: # 0x06007B90
 vertex    -70,    -38,    -29,      0,      0,  0x8D, 0xFE, 0xCC, 0xFF
 vertex    -56,      9,     22,      0,      0,  0x96, 0x35, 0x2C, 0xFF
 vertex    -56,      9,    -26,      0,      0,  0x98, 0x3C, 0xDA, 0xFF
@@ -1357,7 +1367,7 @@ vertex    -70,    -33,     25,      0,      0,  0x8C, 0xE2, 0x29, 0xFF
 vertex     29,      9,     49,      0,      0,  0x2B, 0x33, 0x6B, 0xFF
 vertex    -28,      9,    -51,      0,      0,  0xD6, 0x25, 0x8F, 0xFF
 
-lakitu_toad_seg6_vertex_06007C50: # 0x06007C50
+toad_seg6_vertex_06007C50: # 0x06007C50
 vertex     29,      9,     49,      0,      0,  0x2B, 0x33, 0x6B, 0xFF
 vertex     57,      9,     22,      0,      0,  0x67, 0x41, 0x23, 0xFF
 vertex     21,     55,     14,      0,      0,  0x22, 0x6D, 0x36, 0xFF
@@ -1371,10 +1381,10 @@ vertex    -28,      9,    -51,      0,      0,  0xD6, 0x25, 0x8F, 0xFF
 vertex    -56,      9,     22,      0,      0,  0x96, 0x35, 0x2C, 0xFF
 vertex    -56,      9,    -26,      0,      0,  0x98, 0x3C, 0xDA, 0xFF
 
-glabel lakitu_toad_seg6_dl_06007D10 # 0x06007D10 - 0x06007EB0
-gsSPLight lakitu_toad_seg6_light_06007A88, 1
-gsSPLight lakitu_toad_seg6_light_06007A80, 2
-gsSPVertex lakitu_toad_seg6_vertex_06007AB0, 14, 0
+glabel toad_seg6_dl_06007D10 # 0x06007D10 - 0x06007EB0
+gsSPLight toad_seg6_light_06007A88, 1
+gsSPLight toad_seg6_light_06007A80, 2
+gsSPVertex toad_seg6_vertex_06007AB0, 14, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  4,  5, 0x0
 gsSP1Triangle  3,  5,  6, 0x0
@@ -1392,7 +1402,7 @@ gsSP1Triangle  2,  1, 12, 0x0
 gsSP1Triangle  2,  8,  0, 0x0
 gsSP1Triangle  2, 13,  9, 0x0
 gsSP1Triangle  2,  9,  8, 0x0
-gsSPVertex lakitu_toad_seg6_vertex_06007B90, 12, 0
+gsSPVertex toad_seg6_vertex_06007B90, 12, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  4,  5, 0x0
 gsSP1Triangle  3,  5,  6, 0x0
@@ -1406,9 +1416,9 @@ gsSP1Triangle  0,  9,  1, 0x0
 gsSP1Triangle 11,  6,  0, 0x0
 gsSP1Triangle 11,  0,  2, 0x0
 gsSP1Triangle  0,  6,  5, 0x0
-gsSPLight lakitu_toad_seg6_light_06007AA0, 1
-gsSPLight lakitu_toad_seg6_light_06007A98, 2
-gsSPVertex lakitu_toad_seg6_vertex_06007C50, 12, 0
+gsSPLight toad_seg6_light_06007AA0, 1
+gsSPLight toad_seg6_light_06007A98, 2
+gsSPVertex toad_seg6_vertex_06007C50, 12, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  2,  3,  0, 0x0
 gsSP1Triangle  4,  2,  1, 0x0
@@ -1428,18 +1438,18 @@ gsSPEndDisplayList
 glabel toad_seg6_dl_06007EB0 # 0x06007EB0 - 0x06007ED8
 gsDPPipeSync
 gsDPSetCombineMode G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
-gsSPDisplayList lakitu_toad_seg6_dl_06007D10
+gsSPDisplayList toad_seg6_dl_06007D10
 gsDPPipeSync
 gsSPEndDisplayList
 
-lakitu_toad_seg6_light_06007ED8: # 0x06007ED8
+toad_seg6_light_06007ED8: # 0x06007ED8
 .byte 0x7F, 0x6A, 0x50, 0x00, 0x7F, 0x6A, 0x50, 0x00
 
-lakitu_toad_seg6_light_06007EE0: # 0x06007EE0
+toad_seg6_light_06007EE0: # 0x06007EE0
 .byte 0xFE, 0xD5, 0xA1, 0x00, 0xFE, 0xD5, 0xA1, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-lakitu_toad_seg6_vertex_06007EF0: # 0x06007EF0
+toad_seg6_vertex_06007EF0: # 0x06007EF0
 vertex      7,     14,    -12,      0,      0,  0x4B, 0x1F, 0x9F, 0xFF
 vertex     -1,     14,    -12,      0,      0,  0xCF, 0x36, 0x99, 0xFF
 vertex     11,     34,      0,      0,      0,  0x24, 0x79, 0xFC, 0xFF
@@ -1457,7 +1467,7 @@ vertex    -17,    -43,     28,      0,      0,  0xCD, 0xF9, 0x73, 0xFF
 vertex     12,    -76,      3,      0,      0,  0x42, 0xA7, 0x3B, 0xFF
 vertex     12,    -76,     -9,      0,      0,  0x50, 0xA6, 0xDB, 0xFF
 
-lakitu_toad_seg6_vertex_06007FF0: # 0x06007FF0
+toad_seg6_vertex_06007FF0: # 0x06007FF0
 vertex      4,    -57,     18,      0,      0,  0x62, 0xD9, 0x45, 0xFF
 vertex    -17,    -43,     28,      0,      0,  0xCD, 0xF9, 0x73, 0xFF
 vertex    -15,    -73,      8,      0,      0,  0xD4, 0x97, 0x37, 0xFF
@@ -1472,10 +1482,10 @@ vertex    -11,     14,      0,      0,      0,  0x97, 0x46, 0x0D, 0xFF
 vertex     -1,     14,     13,      0,      0,  0xD2, 0x3F, 0x63, 0xFF
 vertex     -1,     14,    -12,      0,      0,  0xCF, 0x36, 0x99, 0xFF
 
-glabel lakitu_toad_seg6_dl_060080C0 # 0x060080C0 - 0x060081F8
-gsSPLight lakitu_toad_seg6_light_06007EE0, 1
-gsSPLight lakitu_toad_seg6_light_06007ED8, 2
-gsSPVertex lakitu_toad_seg6_vertex_06007EF0, 16, 0
+glabel toad_seg6_dl_060080C0 # 0x060080C0 - 0x060081F8
+gsSPLight toad_seg6_light_06007EE0, 1
+gsSPLight toad_seg6_light_06007ED8, 2
+gsSPVertex toad_seg6_vertex_06007EF0, 16, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  1,  0,  3, 0x0
 gsSP1Triangle  0,  2,  4, 0x0
@@ -1496,7 +1506,7 @@ gsSP1Triangle  7, 13,  8, 0x0
 gsSP1Triangle  7,  6, 13, 0x0
 gsSP1Triangle 10, 14, 15, 0x0
 gsSP1Triangle 10, 15, 11, 0x0
-gsSPVertex lakitu_toad_seg6_vertex_06007FF0, 13, 0
+gsSPVertex toad_seg6_vertex_06007FF0, 13, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  0,  3,  1, 0x0
 gsSP1Triangle  2,  4,  0, 0x0
@@ -1516,18 +1526,18 @@ gsSPEndDisplayList
 glabel toad_seg6_dl_060081F8 # 0x060081F8 - 0x06008220
 gsDPPipeSync
 gsDPSetCombineMode G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
-gsSPDisplayList lakitu_toad_seg6_dl_060080C0
+gsSPDisplayList toad_seg6_dl_060080C0
 gsDPPipeSync
 gsSPEndDisplayList
 
-lakitu_toad_seg6_light_06008220: # 0x06008220
+toad_seg6_light_06008220: # 0x06008220
 .byte 0x7F, 0x6A, 0x50, 0x00, 0x7F, 0x6A, 0x50, 0x00
 
-lakitu_toad_seg6_light_06008228: # 0x06008228
+toad_seg6_light_06008228: # 0x06008228
 .byte 0xFE, 0xD5, 0xA1, 0x00, 0xFE, 0xD5, 0xA1, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-lakitu_toad_seg6_vertex_06008238: # 0x06008238
+toad_seg6_vertex_06008238: # 0x06008238
 vertex     11,    -43,      3,      0,      0,  0x7D, 0xF5, 0xF5, 0xFF
 vertex      3,    -43,    -27,      0,      0,  0x40, 0xFA, 0x93, 0xFF
 vertex      7,     15,    -12,      0,      0,  0x4D, 0x1F, 0xA1, 0xFF
@@ -1545,7 +1555,7 @@ vertex    -15,    -73,     13,      0,      0,  0xCC, 0x9B, 0x37, 0xFF
 vertex     12,    -76,     10,      0,      0,  0x3E, 0xA2, 0x3A, 0xFF
 vertex     12,    -76,     -2,      0,      0,  0x52, 0xA9, 0xDA, 0xFF
 
-lakitu_toad_seg6_vertex_06008338: # 0x06008338
+toad_seg6_vertex_06008338: # 0x06008338
 vertex    -15,    -73,     -7,      0,      0,  0xCF, 0xA0, 0xBE, 0xFF
 vertex    -17,    -43,    -27,      0,      0,  0xD1, 0xE4, 0x8E, 0xFF
 vertex      4,    -57,    -17,      0,      0,  0x53, 0xC9, 0xB2, 0xFF
@@ -1558,10 +1568,10 @@ vertex    -17,    -43,     28,      0,      0,  0xCA, 0x05, 0x72, 0xFF
 vertex     -1,     15,    -12,      0,      0,  0xCF, 0x37, 0x99, 0xFF
 vertex    -11,     15,      0,      0,      0,  0x98, 0x46, 0x0D, 0xFF
 
-glabel lakitu_toad_seg6_dl_060083E8 # 0x060083E8 - 0x06008520
-gsSPLight lakitu_toad_seg6_light_06008228, 1
-gsSPLight lakitu_toad_seg6_light_06008220, 2
-gsSPVertex lakitu_toad_seg6_vertex_06008238, 16, 0
+glabel toad_seg6_dl_060083E8 # 0x060083E8 - 0x06008520
+gsSPLight toad_seg6_light_06008228, 1
+gsSPLight toad_seg6_light_06008220, 2
+gsSPVertex toad_seg6_vertex_06008238, 16, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  4,  0, 0x0
 gsSP1Triangle  5,  1,  0, 0x0
@@ -1584,7 +1594,7 @@ gsSP1Triangle  6, 12, 13, 0x0
 gsSP1Triangle  6, 14, 15, 0x0
 gsSP1Triangle  6, 15,  5, 0x0
 gsSP1Triangle 13, 14,  6, 0x0
-gsSPVertex lakitu_toad_seg6_vertex_06008338, 11, 0
+gsSPVertex toad_seg6_vertex_06008338, 11, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  1,  3,  2, 0x0
 gsSP1Triangle  2,  4,  0, 0x0
@@ -1602,7 +1612,7 @@ gsSPEndDisplayList
 glabel toad_seg6_dl_06008520 # 0x06008520 - 0x06008560
 gsDPPipeSync
 gsDPSetCombineMode G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
-gsSPDisplayList lakitu_toad_seg6_dl_060083E8
+gsSPDisplayList toad_seg6_dl_060083E8
 gsDPPipeSync
 gsDPSetCombineMode G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_ALPHACOMPARE, 2, 0x00000000
@@ -1611,10 +1621,10 @@ gsSPEndDisplayList
 
 # US: 8608
 .ifdef VERSION_US
-glabel lakitu_toad_seg6_us_dl_06008608 # 0x06008608 - 0x06008650
+glabel toad_seg6_us_dl_06008608 # 0x06008608 - 0x06008650
 gsDPPipeSync
 gsDPSetCombineMode G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
-gsSPDisplayList lakitu_toad_seg6_dl_060083E8
+gsSPDisplayList toad_seg6_dl_060083E8
 gsDPPipeSync
 gsDPSetCombineMode G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_ALPHACOMPARE, 2, 0x00000000
@@ -1623,14 +1633,14 @@ gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_RENDERMODE, 29, 0x004049D8
 gsSPEndDisplayList
 .endif
 
-lakitu_toad_seg6_light_06008560: # 0x06008560
+toad_seg6_light_06008560: # 0x06008560
 .byte 0x34, 0x20, 0x0D, 0x00, 0x34, 0x20, 0x0D, 0x00
 
-lakitu_toad_seg6_light_06008568: # 0x06008568
+toad_seg6_light_06008568: # 0x06008568
 .byte 0x68, 0x40, 0x1B, 0x00, 0x68, 0x40, 0x1B, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-lakitu_toad_seg6_vertex_06008578: # 0x06008578
+toad_seg6_vertex_06008578: # 0x06008578
 vertex    -17,     17,    -45,      0,      0,  0xCE, 0x3B, 0x9D, 0xFF
 vertex     18,     17,    -45,      0,      0,  0x28, 0x51, 0xA8, 0xFF
 vertex     23,    -15,    -51,      0,      0,  0x1E, 0x98, 0xBF, 0xFF
@@ -1648,7 +1658,7 @@ vertex    -13,      7,     47,      0,      0,  0xDA, 0x51, 0x59, 0xFF
 vertex     14,      7,     47,      0,      0,  0x34, 0x3B, 0x63, 0xFF
 vertex     27,     11,     26,      0,      0,  0x5F, 0x45, 0x2E, 0xFF
 
-lakitu_toad_seg6_vertex_06008678: # 0x06008678
+toad_seg6_vertex_06008678: # 0x06008678
 vertex    -13,      7,     47,      0,      0,  0xDA, 0x51, 0x59, 0xFF
 vertex     14,      7,     47,      0,      0,  0x34, 0x3B, 0x63, 0xFF
 vertex     14,     21,     26,      0,      0,  0x18, 0x6F, 0x37, 0xFF
@@ -1663,10 +1673,10 @@ vertex     36,     17,    -20,      0,      0,  0x6F, 0x39, 0xEA, 0xFF
 vertex     18,     17,    -45,      0,      0,  0x28, 0x51, 0xA8, 0xFF
 vertex    -17,     17,    -45,      0,      0,  0xCE, 0x3B, 0x9D, 0xFF
 
-glabel lakitu_toad_seg6_dl_06008748 # 0x06008748 - 0x06008890
-gsSPLight lakitu_toad_seg6_light_06008568, 1
-gsSPLight lakitu_toad_seg6_light_06008560, 2
-gsSPVertex lakitu_toad_seg6_vertex_06008578, 16, 0
+glabel toad_seg6_dl_06008748 # 0x06008748 - 0x06008890
+gsSPLight toad_seg6_light_06008568, 1
+gsSPLight toad_seg6_light_06008560, 2
+gsSPVertex toad_seg6_vertex_06008578, 16, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  0,  2,  3, 0x0
 gsSP1Triangle  2,  4,  5, 0x0
@@ -1688,7 +1698,7 @@ gsSP1Triangle 14,  9,  6, 0x0
 gsSP1Triangle 14, 13,  9, 0x0
 gsSP1Triangle  5, 14,  6, 0x0
 gsSP1Triangle 10, 15,  5, 0x0
-gsSPVertex lakitu_toad_seg6_vertex_06008678, 13, 0
+gsSPVertex toad_seg6_vertex_06008678, 13, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  0,  2,  3, 0x0
 gsSP1Triangle  3,  4,  0, 0x0
@@ -1709,18 +1719,18 @@ gsSPEndDisplayList
 glabel toad_seg6_dl_06008890 # 0x06008890 - 0x060088B8
 gsDPPipeSync
 gsDPSetCombineMode G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
-gsSPDisplayList lakitu_toad_seg6_dl_06008748
+gsSPDisplayList toad_seg6_dl_06008748
 gsDPPipeSync
 gsSPEndDisplayList
 
-lakitu_toad_seg6_light_060088B8: # 0x060088B8
+toad_seg6_light_060088B8: # 0x060088B8
 .byte 0x34, 0x20, 0x0D, 0x00, 0x34, 0x20, 0x0D, 0x00
 
-lakitu_toad_seg6_light_060088C0: # 0x060088C0
+toad_seg6_light_060088C0: # 0x060088C0
 .byte 0x68, 0x40, 0x1B, 0x00, 0x68, 0x40, 0x1B, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-lakitu_toad_seg6_vertex_060088D0: # 0x060088D0
+toad_seg6_vertex_060088D0: # 0x060088D0
 vertex    -22,    -15,     52,      0,      0,  0xE2, 0x98, 0x41, 0xFF
 vertex    -17,     17,     46,      0,      0,  0xD8, 0x51, 0x58, 0xFF
 vertex    -35,     17,     21,      0,      0,  0x91, 0x39, 0x16, 0xFF
@@ -1738,7 +1748,7 @@ vertex    -13,      7,    -46,      0,      0,  0xCC, 0x3B, 0x9D, 0xFF
 vertex     14,      7,    -46,      0,      0,  0x26, 0x51, 0xA7, 0xFF
 vertex    -26,     11,    -25,      0,      0,  0xA1, 0x45, 0xD2, 0xFF
 
-lakitu_toad_seg6_vertex_060089D0: # 0x060089D0
+toad_seg6_vertex_060089D0: # 0x060089D0
 vertex    -13,     21,    -25,      0,      0,  0xE8, 0x6F, 0xC9, 0xFF
 vertex    -17,     35,     17,      0,      0,  0xC9, 0x72, 0x03, 0xFF
 vertex     18,     35,     17,      0,      0,  0x20, 0x7A, 0x0D, 0xFF
@@ -1752,10 +1762,10 @@ vertex    -35,     17,     21,      0,      0,  0x91, 0x39, 0x16, 0xFF
 vertex     18,     17,     46,      0,      0,  0x32, 0x3B, 0x63, 0xFF
 vertex    -17,     17,     46,      0,      0,  0xD8, 0x51, 0x58, 0xFF
 
-glabel lakitu_toad_seg6_dl_06008A90 # 0x06008A90 - 0x06008BD8
-gsSPLight lakitu_toad_seg6_light_060088C0, 1
-gsSPLight lakitu_toad_seg6_light_060088B8, 2
-gsSPVertex lakitu_toad_seg6_vertex_060088D0, 16, 0
+glabel toad_seg6_dl_06008A90 # 0x06008A90 - 0x06008BD8
+gsSPLight toad_seg6_light_060088C0, 1
+gsSPLight toad_seg6_light_060088B8, 2
+gsSPVertex toad_seg6_vertex_060088D0, 16, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  0,  3,  4, 0x0
 gsSP1Triangle  0,  4,  1, 0x0
@@ -1778,7 +1788,7 @@ gsSP1Triangle 10, 14, 11, 0x0
 gsSP1Triangle 13,  7,  6, 0x0
 gsSP1Triangle 13,  6, 15, 0x0
 gsSP1Triangle  6,  2, 15, 0x0
-gsSPVertex lakitu_toad_seg6_vertex_060089D0, 12, 0
+gsSPVertex toad_seg6_vertex_060089D0, 12, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  0,  2,  3, 0x0
 gsSP1Triangle  1,  0,  4, 0x0
@@ -1798,11 +1808,11 @@ gsSPEndDisplayList
 glabel toad_seg6_dl_06008BD8 # 0x06008BD8 - 0x06008C00
 gsDPPipeSync
 gsDPSetCombineMode G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
-gsSPDisplayList lakitu_toad_seg6_dl_06008A90
+gsSPDisplayList toad_seg6_dl_06008A90
 gsDPPipeSync
 gsSPEndDisplayList
 
-lakitu_toad_seg6_unk_06008C00: # 0x06008C00
+toad_seg6_animvalue_06008C00: # 0x06008C00
 .hword 0x0000, 0x003B, 0x003B, 0x003B, 0x003B, 0x003B, 0x003B, 0x003B
 .hword 0x003B, 0x003B, 0x0050, 0x005D, 0x0062, 0x0062, 0x0062, 0x0060
 .hword 0x0059, 0x004E, 0x003B, 0x003B, 0x003B, 0x003B, 0x003B, 0x003B
@@ -1844,7 +1854,7 @@ lakitu_toad_seg6_unk_06008C00: # 0x06008C00
 .hword 0x3DBC, 0x3D71, 0x3E04, 0x3F1E, 0x4067, 0x4184, 0x421D, 0x4234
 .hword 0x4215, 0x41CE, 0x4170, 0x410A, 0x40AD, 0x4068, 0x404B, 0x0000
 
-lakitu_toad_seg6_unk_06008E80: # 0x06008E80
+toad_seg6_animindex_06008E80: # 0x06008E80
 .hword 0x0001, 0x0000, 0x001A, 0x0001, 0x0001, 0x001B, 0x0001, 0x0000
 .hword 0x0001, 0x001C, 0x0001, 0x0000, 0x0001, 0x0124, 0x0001, 0x0000
 .hword 0x001A, 0x0125, 0x0001, 0x0000, 0x0001, 0x0000, 0x001A, 0x010A
@@ -1862,18 +1872,18 @@ lakitu_toad_seg6_unk_06008E80: # 0x06008E80
 .hword 0x0001, 0x0100, 0x001A, 0x00AE, 0x001A, 0x00C8, 0x001A, 0x00E2
 .hword 0x0001, 0x0029, 0x0001, 0x002A, 0x0001, 0x002B
 
-lakitu_toad_seg6_unklist_06008F7C: # 0x06008F7C
+toad_seg6_anim_06008F7C: # 0x06008F7C
 .hword 0
 .hword 0
 .hword 0xA
 .hword 0
 .hword 0x1A
 .hword 0x14
-.word lakitu_toad_seg6_unk_06008C00
-.word lakitu_toad_seg6_unk_06008E80
+.word toad_seg6_animvalue_06008C00
+.word toad_seg6_animindex_06008E80
 .word 0
 
-lakitu_toad_seg6_unk_06008F94: # 0x06008F94
+toad_seg6_animvalue_06008F94: # 0x06008F94
 .hword 0x0000, 0x003B, 0x003B, 0x003B, 0x003B, 0x003B, 0x003B, 0x003B
 .hword 0x003B, 0x003B, 0x0050, 0x005D, 0x0062, 0x0062, 0x0062, 0x0060
 .hword 0x0059, 0x004E, 0x003B, 0x003B, 0x003B, 0x003B, 0x003B, 0x003B
@@ -1915,7 +1925,7 @@ lakitu_toad_seg6_unk_06008F94: # 0x06008F94
 .hword 0x3DBC, 0x3D71, 0x3E04, 0x3F1E, 0x4067, 0x4184, 0x421D, 0x4234
 .hword 0x4215, 0x41CE, 0x4170, 0x410A, 0x40AD, 0x4068, 0x404B, 0x0000
 
-lakitu_toad_seg6_unk_06009214: # 0x06009214
+toad_seg6_animindex_06009214: # 0x06009214
 .hword 0x0001, 0x0000, 0x001A, 0x0001, 0x0001, 0x001B, 0x0001, 0x0000
 .hword 0x0001, 0x001C, 0x0001, 0x0000, 0x0001, 0x0124, 0x0001, 0x0000
 .hword 0x001A, 0x0125, 0x0001, 0x0000, 0x0001, 0x0000, 0x001A, 0x010A
@@ -1933,18 +1943,18 @@ lakitu_toad_seg6_unk_06009214: # 0x06009214
 .hword 0x0001, 0x0100, 0x001A, 0x00AE, 0x001A, 0x00C8, 0x001A, 0x00E2
 .hword 0x0001, 0x0029, 0x0001, 0x002A, 0x0001, 0x002B
 
-lakitu_toad_seg6_unklist_06009310: # 0x06009310
+toad_seg6_anim_06009310: # 0x06009310
 .hword 0
 .hword 0
 .hword 0
 .hword 0
 .hword 0x1A
 .hword 0x14
-.word lakitu_toad_seg6_unk_06008F94
-.word lakitu_toad_seg6_unk_06009214
+.word toad_seg6_animvalue_06008F94
+.word toad_seg6_animindex_06009214
 .word 0
 
-lakitu_toad_seg6_unk_06009328: # 0x06009328
+toad_seg6_animvalue_06009328: # 0x06009328
 .hword 0x0000, 0x003B, 0xFFF8, 0x3FFF, 0xE004, 0xC001, 0xE001, 0xDFFD
 .hword 0x3FFF, 0x1FFF, 0x1FFF, 0xC001, 0x1FFF, 0xDFFD, 0x3FFF, 0x1FFF
 .hword 0x2003, 0xC001, 0x1FFF, 0x0000, 0xFFFF, 0xFFFC, 0xFFF7, 0xFFF0
@@ -2039,7 +2049,7 @@ lakitu_toad_seg6_unk_06009328: # 0x06009328
 .hword 0x40C0, 0x40B3, 0x40A6, 0x409A, 0x408E, 0x4083, 0x4078, 0x406F
 .hword 0x4066, 0x405F, 0x4058, 0x4053, 0x404F, 0x404C
 
-lakitu_toad_seg6_unk_060098F4: # 0x060098F4
+toad_seg6_animindex_060098F4: # 0x060098F4
 .hword 0x0001, 0x0000, 0x0001, 0x0001, 0x0001, 0x0002, 0x0001, 0x0000
 .hword 0x0001, 0x0003, 0x0001, 0x0000, 0x0001, 0x02AA, 0x0001, 0x0000
 .hword 0x003B, 0x02AB, 0x003B, 0x01F9, 0x003B, 0x0234, 0x003B, 0x026F
@@ -2057,18 +2067,18 @@ lakitu_toad_seg6_unk_060098F4: # 0x060098F4
 .hword 0x0001, 0x01EF, 0x003B, 0x013A, 0x003B, 0x0175, 0x003B, 0x01B0
 .hword 0x0001, 0x0010, 0x0001, 0x0011, 0x0001, 0x0012
 
-lakitu_toad_seg6_unklist_060099F0: # 0x060099F0
+toad_seg6_anim_060099F0: # 0x060099F0
 .hword 0
 .hword 0
 .hword 0
 .hword 0
 .hword 0x3B
 .hword 0x14
-.word lakitu_toad_seg6_unk_06009328
-.word lakitu_toad_seg6_unk_060098F4
+.word toad_seg6_animvalue_06009328
+.word toad_seg6_animindex_060098F4
 .word 0
 
-lakitu_toad_seg6_unk_06009A08: # 0x06009A08
+toad_seg6_animvalue_06009A08: # 0x06009A08
 .hword 0x0000, 0x003B, 0xFFF8, 0x3FFF, 0xE004, 0xC001, 0xE001, 0xDFFD
 .hword 0x3FFF, 0x1FFF, 0x1FFF, 0xC001, 0x1FFF, 0xDFFD, 0x3FFF, 0x1FFF
 .hword 0x2003, 0xC001, 0x1FFF, 0x0000, 0xFFFF, 0xFFFC, 0xFFF7, 0xFFF0
@@ -2163,7 +2173,7 @@ lakitu_toad_seg6_unk_06009A08: # 0x06009A08
 .hword 0x4062, 0x4055, 0x404B, 0x4043, 0x403E, 0x403C, 0x403B, 0x403B
 .hword 0x403D, 0x403F, 0x4042, 0x4045, 0x4048, 0x404A
 
-lakitu_toad_seg6_unk_06009FD4: # 0x06009FD4
+toad_seg6_animindex_06009FD4: # 0x06009FD4
 .hword 0x0001, 0x0000, 0x0001, 0x0001, 0x0001, 0x0002, 0x0001, 0x0000
 .hword 0x0001, 0x0003, 0x0001, 0x0000, 0x0001, 0x02AA, 0x0001, 0x0000
 .hword 0x003B, 0x02AB, 0x003B, 0x01F9, 0x003B, 0x0234, 0x003B, 0x026F
@@ -2181,18 +2191,18 @@ lakitu_toad_seg6_unk_06009FD4: # 0x06009FD4
 .hword 0x0001, 0x01EF, 0x003B, 0x013A, 0x003B, 0x0175, 0x003B, 0x01B0
 .hword 0x0001, 0x0010, 0x0001, 0x0011, 0x0001, 0x0012
 
-lakitu_toad_seg6_unklist_0600A0D0: # 0x0600A0D0
+toad_seg6_anim_0600A0D0: # 0x0600A0D0
 .hword 0
 .hword 0
 .hword 0
 .hword 0
 .hword 0x3B
 .hword 0x14
-.word lakitu_toad_seg6_unk_06009A08
-.word lakitu_toad_seg6_unk_06009FD4
+.word toad_seg6_animvalue_06009A08
+.word toad_seg6_animindex_06009FD4
 .word 0
 
-lakitu_toad_seg6_unk_0600A0E8: # 0x0600A0E8
+toad_seg6_animvalue_0600A0E8: # 0x0600A0E8
 .hword 0x0000, 0x003B, 0x003B, 0x003B, 0x003B, 0x003B, 0x003B, 0x003B
 .hword 0x003B, 0x003B, 0x003B, 0x003B, 0x003B, 0x003B, 0x003B, 0x003C
 .hword 0x003C, 0x003C, 0x003C, 0x003C, 0x003D, 0x003D, 0x0053, 0x0067
@@ -2523,7 +2533,7 @@ lakitu_toad_seg6_unk_0600A0E8: # 0x0600A0E8
 .hword 0x3642, 0x3642, 0x3643, 0x3643, 0x3643, 0x3644, 0x3644, 0x3645
 .hword 0x3645, 0x3646, 0x3646, 0x0000
 
-lakitu_toad_seg6_unk_0600B570: # 0x0600B570
+toad_seg6_animindex_0600B570: # 0x0600B570
 .hword 0x0001, 0x0000, 0x0064, 0x0001, 0x0064, 0x0065, 0x0001, 0x0000
 .hword 0x0001, 0x00C9, 0x0001, 0x0000, 0x0064, 0x0917, 0x0064, 0x097B
 .hword 0x0064, 0x09DF, 0x0064, 0x07EB, 0x0064, 0x084F, 0x0064, 0x08B3
@@ -2541,18 +2551,18 @@ lakitu_toad_seg6_unk_0600B570: # 0x0600B570
 .hword 0x0001, 0x07E1, 0x0064, 0x045D, 0x0064, 0x04C1, 0x0064, 0x0525
 .hword 0x0001, 0x00D6, 0x0001, 0x00D7, 0x0001, 0x00D8
 
-lakitu_toad_seg6_unklist_0600B66C: # 0x0600B66C
+toad_seg6_anim_0600B66C: # 0x0600B66C
 .hword 1
 .hword 0
 .hword 0
 .hword 0
 .hword 0x64
 .hword 0x14
-.word lakitu_toad_seg6_unk_0600A0E8
-.word lakitu_toad_seg6_unk_0600B570
+.word toad_seg6_animvalue_0600A0E8
+.word toad_seg6_animindex_0600B570
 .word 0
 
-lakitu_toad_seg6_unk_0600B684: # 0x0600B684
+toad_seg6_animvalue_0600B684: # 0x0600B684
 .hword 0x0000, 0x0050, 0x005B, 0x0062, 0x0061, 0x005B, 0x0054, 0x004C
 .hword 0x0045, 0x0042, 0x0046, 0x004E, 0x0056, 0x005A, 0x0056, 0x004D
 .hword 0x0044, 0x0041, 0x0046, 0x0050, 0x005B, 0x0062, 0x0061, 0x005B
@@ -2922,7 +2932,7 @@ lakitu_toad_seg6_unk_0600B684: # 0x0600B684
 .hword 0x3642, 0x3642, 0x3642, 0x3642, 0x3642, 0x3642, 0x3642, 0x3642
 .hword 0x3642, 0x3642, 0x3642, 0x0000
 
-lakitu_toad_seg6_unk_0600CD7C: # 0x0600CD7C
+toad_seg6_animindex_0600CD7C: # 0x0600CD7C
 .hword 0x0001, 0x0000, 0x0070, 0x0001, 0x0070, 0x0071, 0x0001, 0x0000
 .hword 0x0001, 0x00E1, 0x0001, 0x0000, 0x0070, 0x0A2B, 0x0070, 0x0A9B
 .hword 0x0070, 0x0B0B, 0x0070, 0x08DB, 0x0070, 0x094B, 0x0070, 0x09BB
@@ -2940,18 +2950,18 @@ lakitu_toad_seg6_unk_0600CD7C: # 0x0600CD7C
 .hword 0x0001, 0x08D1, 0x0070, 0x04E1, 0x0070, 0x0551, 0x0070, 0x05C1
 .hword 0x0001, 0x00EE, 0x0001, 0x00EF, 0x0001, 0x00F0
 
-lakitu_toad_seg6_unklist_0600CE78: # 0x0600CE78
+toad_seg6_anim_0600CE78: # 0x0600CE78
 .hword 1
 .hword 0
 .hword 0
 .hword 0
 .hword 0x70
 .hword 0x14
-.word lakitu_toad_seg6_unk_0600B684
-.word lakitu_toad_seg6_unk_0600CD7C
+.word toad_seg6_animvalue_0600B684
+.word toad_seg6_animindex_0600CD7C
 .word 0
 
-lakitu_toad_seg6_unk_0600CE90: # 0x0600CE90
+toad_seg6_animvalue_0600CE90: # 0x0600CE90
 .hword 0x0000, 0x003B, 0x003B, 0x003B, 0x003B, 0x003B, 0x003B, 0x003B
 .hword 0x003B, 0x003B, 0x003B, 0x003B, 0x003B, 0x003B, 0x003B, 0x003B
 .hword 0x003B, 0x003B, 0x003B, 0x003B, 0x003B, 0x003B, 0x003C, 0x003C
@@ -3282,7 +3292,7 @@ lakitu_toad_seg6_unk_0600CE90: # 0x0600CE90
 .hword 0x4082, 0x406E, 0x4058, 0x4027, 0x3FC9, 0x3F4A, 0x3EB4, 0x3E12
 .hword 0x3D6E, 0x3CD4, 0x3C4E, 0x0000
 
-lakitu_toad_seg6_unk_0600E318: # 0x0600E318
+toad_seg6_animindex_0600E318: # 0x0600E318
 .hword 0x0001, 0x0000, 0x0064, 0x0001, 0x0064, 0x0065, 0x0001, 0x0000
 .hword 0x0001, 0x00C9, 0x0001, 0x0000, 0x0064, 0x0917, 0x0064, 0x097B
 .hword 0x0064, 0x09DF, 0x0064, 0x07EB, 0x0064, 0x084F, 0x0064, 0x08B3
@@ -3300,18 +3310,18 @@ lakitu_toad_seg6_unk_0600E318: # 0x0600E318
 .hword 0x0001, 0x07E1, 0x0064, 0x045D, 0x0064, 0x04C1, 0x0064, 0x0525
 .hword 0x0001, 0x00D6, 0x0001, 0x00D7, 0x0001, 0x00D8
 
-lakitu_toad_seg6_unklist_0600E414: # 0x0600E414
+toad_seg6_anim_0600E414: # 0x0600E414
 .hword 1
 .hword 0
 .hword 0
 .hword 0
 .hword 0x64
 .hword 0x14
-.word lakitu_toad_seg6_unk_0600CE90
-.word lakitu_toad_seg6_unk_0600E318
+.word toad_seg6_animvalue_0600CE90
+.word toad_seg6_animindex_0600E318
 .word 0
 
-lakitu_toad_seg6_unk_0600E42C: # 0x0600E42C
+toad_seg6_animvalue_0600E42C: # 0x0600E42C
 .hword 0x0000, 0x003E, 0x0046, 0x004F, 0x0058, 0x005F, 0x0062, 0x005D
 .hword 0x0052, 0x0046, 0x0040, 0x0045, 0x0050, 0x005A, 0x005F, 0x005A
 .hword 0x0050, 0x0045, 0x0040, 0x0042, 0x0048, 0x0050, 0x0059, 0x005F
@@ -3667,7 +3677,7 @@ lakitu_toad_seg6_unk_0600E42C: # 0x0600E42C
 .hword 0x39D6, 0x39D6, 0x39D6, 0x39D6, 0x39D6, 0x39D6, 0x39D6, 0x39D6
 .hword 0x39D6, 0x39D6, 0x39D6, 0x0000
 
-lakitu_toad_seg6_unk_0600FA44: # 0x0600FA44
+toad_seg6_animindex_0600FA44: # 0x0600FA44
 .hword 0x0001, 0x0000, 0x0070, 0x0001, 0x0070, 0x0071, 0x0001, 0x0000
 .hword 0x0001, 0x00E1, 0x0001, 0x0000, 0x0070, 0x09BB, 0x0070, 0x0A2B
 .hword 0x0070, 0x0A9B, 0x0070, 0x086B, 0x0070, 0x08DB, 0x0070, 0x094B
@@ -3685,47 +3695,50 @@ lakitu_toad_seg6_unk_0600FA44: # 0x0600FA44
 .hword 0x0001, 0x0861, 0x0070, 0x0471, 0x0070, 0x04E1, 0x0070, 0x0551
 .hword 0x0001, 0x00EE, 0x0001, 0x00EF, 0x0001, 0x00F0
 
-lakitu_toad_seg6_unklist_0600FB40: # 0x0600FB40
+toad_seg6_anim_0600FB40: # 0x0600FB40
 .hword 1
 .hword 0
 .hword 0
 .hword 0
 .hword 0x70
 .hword 0x14
-.word lakitu_toad_seg6_unk_0600E42C
-.word lakitu_toad_seg6_unk_0600FA44
+.word toad_seg6_animvalue_0600E42C
+.word toad_seg6_animindex_0600FA44
 .word 0
 
-glabel lakitu_toad_seg6_unklists_0600FB58 # 0x0600FB58
-.word lakitu_toad_seg6_unklist_0600B66C
-.word lakitu_toad_seg6_unklist_0600CE78
-.word lakitu_toad_seg6_unklist_0600E414
-.word lakitu_toad_seg6_unklist_0600FB40
-.word lakitu_toad_seg6_unklist_060099F0
-.word lakitu_toad_seg6_unklist_0600A0D0
-.word lakitu_toad_seg6_unklist_06008F7C
-.word lakitu_toad_seg6_unklist_06009310
+glabel toad_seg6_anims_0600FB58 # 0x0600FB58
+.word toad_seg6_anim_0600B66C
+.word toad_seg6_anim_0600CE78
+.word toad_seg6_anim_0600E414
+.word toad_seg6_anim_0600FB40
+.word toad_seg6_anim_060099F0
+.word toad_seg6_anim_0600A0D0
+.word toad_seg6_anim_06008F7C
+.word toad_seg6_anim_06009310
 .word 0
 .word 1
 
-lakitu_toad_seg6_texture_0600FB80: # 0x0600FB80
-.incbin "build/bin/lakitu_toad_mips_boo/lakitu_toad.0FB80.rgba16"
+# Mips
 
-lakitu_toad_seg6_light_06010380: # 0x06010380
+.balign 8
+mips_seg6_texture_0600FB80: # 0x0600FB80
+.incbin "build/bin/lakitu_toad_mips_boo/mips.0FB80.rgba16"
+
+mips_seg6_light_06010380: # 0x06010380
 .byte 0x66, 0x66, 0x66, 0x00, 0x66, 0x66, 0x66, 0x00
 
-lakitu_toad_seg6_light_06010388: # 0x06010388
+mips_seg6_light_06010388: # 0x06010388
 .byte 0xFF, 0xFF, 0xFF, 0x00, 0xFF, 0xFF, 0xFF, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-lakitu_toad_seg6_light_06010398: # 0x06010398
+mips_seg6_light_06010398: # 0x06010398
 .byte 0x0F, 0x0D, 0x04, 0x00, 0x0F, 0x0D, 0x04, 0x00
 
-lakitu_toad_seg6_light_060103A0: # 0x060103A0
+mips_seg6_light_060103A0: # 0x060103A0
 .byte 0x27, 0x21, 0x0B, 0x00, 0x27, 0x21, 0x0B, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-lakitu_toad_seg6_vertex_060103B0: # 0x060103B0
+mips_seg6_vertex_060103B0: # 0x060103B0
 vertex     60,     25,    -62,   -146,  -1034,  0x1D, 0x21, 0x8A, 0xFF
 vertex    102,     15,    -32,    144,  -1598,  0x65, 0x0D, 0xB5, 0xFF
 vertex     46,    -61,    -46,      8,   -848,  0x23, 0x9A, 0xBF, 0xFF
@@ -3743,7 +3756,7 @@ vertex     16,     44,     47,    902,   -454,  0xD0, 0x5D, 0x47, 0xFF
 vertex     16,     44,    -45,     14,   -454,  0xD1, 0x5C, 0xB8, 0xFF
 vertex      9,     60,      0,    458,   -352,  0xA2, 0x54, 0x00, 0xFF
 
-lakitu_toad_seg6_vertex_060104B0: # 0x060104B0
+mips_seg6_vertex_060104B0: # 0x060104B0
 vertex    115,     13,      0,    468,      0,  0x74, 0x31, 0x00, 0xFF
 vertex     64,     56,    -13,    308,    632,  0x45, 0x59, 0xC6, 0xFF
 vertex     64,     56,     15,    632,    632,  0x44, 0x5A, 0x38, 0xFF
@@ -3758,25 +3771,25 @@ vertex     60,     25,     64,   1176,    468,  0x1C, 0x21, 0x77, 0xFF
 vertex      2,      8,    -66,   -272,    800,  0xAF, 0x18, 0xA3, 0xFF
 vertex      2,      8,     67,   1212,    800,  0xAE, 0x16, 0x5D, 0xFF
 
-lakitu_toad_seg6_vertex_06010580: # 0x06010580
+mips_seg6_vertex_06010580: # 0x06010580
 vertex     45,     77,      0,      0,      0,  0xFB, 0x7E, 0xFE, 0xFF
 vertex     64,     56,     15,      0,      0,  0x44, 0x5A, 0x38, 0xFF
 vertex     64,     76,      0,      0,      0,  0x56, 0x5D, 0xFD, 0xFF
 vertex     64,     56,    -13,      0,      0,  0x45, 0x59, 0xC6, 0xFF
 
-lakitu_toad_seg6_vertex_060105C0: # 0x060105C0
+mips_seg6_vertex_060105C0: # 0x060105C0
 vertex     -9,     52,     -5,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
 vertex     11,     50,    -12,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
 vertex     11,     50,     13,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
 vertex     -9,     52,      6,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
 
-glabel lakitu_toad_seg6_dl_06010600 # 0x06010600 - 0x06010748
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, lakitu_toad_seg6_texture_0600FB80
+glabel mips_seg6_dl_06010600 # 0x06010600 - 0x06010748
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mips_seg6_texture_0600FB80
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
-gsSPLight lakitu_toad_seg6_light_06010388, 1
-gsSPLight lakitu_toad_seg6_light_06010380, 2
-gsSPVertex lakitu_toad_seg6_vertex_060103B0, 16, 0
+gsSPLight mips_seg6_light_06010388, 1
+gsSPLight mips_seg6_light_06010380, 2
+gsSPVertex mips_seg6_vertex_060103B0, 16, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  0,  2, 0x0
 gsSP1Triangle  2,  1,  4, 0x0
@@ -3797,7 +3810,7 @@ gsSP1Triangle  8,  9, 13, 0x0
 gsSP1Triangle 14, 10,  8, 0x0
 gsSP1Triangle  8, 15, 14, 0x0
 gsSP1Triangle 13, 15,  8, 0x0
-gsSPVertex lakitu_toad_seg6_vertex_060104B0, 13, 0
+gsSPVertex mips_seg6_vertex_060104B0, 13, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  1,  0, 0x0
 gsSP1Triangle  2,  4,  0, 0x0
@@ -3813,16 +3826,16 @@ gsSP1Triangle  9, 12, 10, 0x0
 gsSP1Triangle  6,  8,  9, 0x0
 gsSPEndDisplayList
 
-glabel lakitu_toad_seg6_dl_06010748 # 0x06010748 - 0x060107B8
-gsSPLight lakitu_toad_seg6_light_060103A0, 1
-gsSPLight lakitu_toad_seg6_light_06010398, 2
-gsSPVertex lakitu_toad_seg6_vertex_06010580, 4, 0
+glabel mips_seg6_dl_06010748 # 0x06010748 - 0x060107B8
+gsSPLight mips_seg6_light_060103A0, 1
+gsSPLight mips_seg6_light_06010398, 2
+gsSPVertex mips_seg6_vertex_06010580, 4, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  0,  2, 0x0
 gsSP1Triangle  3,  2,  1, 0x0
-gsSPLight lakitu_toad_seg6_light_06010388, 1
-gsSPLight lakitu_toad_seg6_light_06010380, 2
-gsSPVertex lakitu_toad_seg6_vertex_060105C0, 4, 0
+gsSPLight mips_seg6_light_06010388, 1
+gsSPLight mips_seg6_light_06010380, 2
+gsSPVertex mips_seg6_vertex_060105C0, 4, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  0,  2,  3, 0x0
 gsSP1Triangle  3,  2,  0, 0x0
@@ -3837,21 +3850,21 @@ gsSPTexture -1, -1, 0, 0, 1
 gsDPTileSync
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
 gsDPSetTileSize 0, 0, 0, 124, 124
-gsSPDisplayList lakitu_toad_seg6_dl_06010600
+gsSPDisplayList mips_seg6_dl_06010600
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
 gsDPSetCombineMode G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
-gsSPDisplayList lakitu_toad_seg6_dl_06010748
+gsSPDisplayList mips_seg6_dl_06010748
 gsSPEndDisplayList
 
-lakitu_toad_seg6_light_06010820: # 0x06010820
+mips_seg6_light_06010820: # 0x06010820
 .byte 0x66, 0x66, 0x66, 0x00, 0x66, 0x66, 0x66, 0x00
 
-lakitu_toad_seg6_light_06010828: # 0x06010828
+mips_seg6_light_06010828: # 0x06010828
 .byte 0xFF, 0xFF, 0xFF, 0x00, 0xFF, 0xFF, 0xFF, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-lakitu_toad_seg6_vertex_06010838: # 0x06010838
+mips_seg6_vertex_06010838: # 0x06010838
 vertex    -23,    -21,    -59,  -1764,    666,  0xDE, 0xD3, 0x8F, 0xFF
 vertex    -48,    -27,    -16,  -2202,    640,  0x94, 0x0A, 0xBF, 0xFF
 vertex    -16,     41,    -55,  -1306,   -124,  0xE5, 0x4B, 0x9E, 0xFF
@@ -3868,7 +3881,7 @@ vertex     12,    -27,     49,  -1206,    880,  0x38, 0xB6, 0x55, 0xFF
 vertex     17,     16,     52,   -886,    330,  0x39, 0x1E, 0x6C, 0xFF
 vertex     65,     12,     15,   -142,    578,  0x6A, 0x1C, 0x3F, 0xFF
 
-lakitu_toad_seg6_vertex_06010928: # 0x06010928
+mips_seg6_vertex_06010928: # 0x06010928
 vertex     12,    -27,     49,  -1206,    880,  0x38, 0xB6, 0x55, 0xFF
 vertex     33,    -39,      0,   -928,   1112,  0x38, 0x8F, 0x00, 0xFF
 vertex     64,    -13,      0,   -292,    902,  0x6B, 0xBD, 0x00, 0xFF
@@ -3885,7 +3898,7 @@ vertex    -16,     41,    -55,  -1306,   -124,  0xE5, 0x4B, 0x9E, 0xFF
 vertex     12,    -27,    -48,  -1206,    882,  0x38, 0xB8, 0xA9, 0xFF
 vertex    -15,     60,      0,  -1198,   -360,  0xFB, 0x7E, 0x00, 0xFF
 
-lakitu_toad_seg6_vertex_06010A18: # 0x06010A18
+mips_seg6_vertex_06010A18: # 0x06010A18
 vertex    -34,    -55,      0,  -2112,   1046,  0x22, 0x86, 0x00, 0xFF
 vertex    -53,    -82,      0,  -2566,   1322,  0x1F, 0x86, 0xFF, 0xFF
 vertex    -75,    -36,    -40,  -2688,    648,  0xDE, 0x30, 0x90, 0xFF
@@ -3895,13 +3908,13 @@ vertex     31,     35,     19,   -564,    142,  0x42, 0x67, 0x1F, 0xFF
 vertex     31,     34,    -18,   -570,    156,  0x40, 0x66, 0xDA, 0xFF
 vertex    -82,    -71,      0,  -2974,   1062,  0x9E, 0xB1, 0xFF, 0xFF
 
-glabel lakitu_toad_seg6_dl_06010A98 # 0x06010A98 - 0x06010C40
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, lakitu_toad_seg6_texture_0600FB80
+glabel mips_seg6_dl_06010A98 # 0x06010A98 - 0x06010C40
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mips_seg6_texture_0600FB80
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
-gsSPLight lakitu_toad_seg6_light_06010828, 1
-gsSPLight lakitu_toad_seg6_light_06010820, 2
-gsSPVertex lakitu_toad_seg6_vertex_06010838, 15, 0
+gsSPLight mips_seg6_light_06010828, 1
+gsSPLight mips_seg6_light_06010820, 2
+gsSPVertex mips_seg6_vertex_06010838, 15, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  1,  3,  4, 0x0
 gsSP1Triangle  0,  5,  1, 0x0
@@ -3921,7 +3934,7 @@ gsSP1Triangle  8,  9, 13, 0x0
 gsSP1Triangle  9, 12, 13, 0x0
 gsSP1Triangle 11,  2,  4, 0x0
 gsSP1Triangle 12, 14, 13, 0x0
-gsSPVertex lakitu_toad_seg6_vertex_06010928, 15, 0
+gsSPVertex mips_seg6_vertex_06010928, 15, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  1,  0, 0x0
 gsSP1Triangle  0,  2,  4, 0x0
@@ -3941,7 +3954,7 @@ gsSP1Triangle  5,  4, 10, 0x0
 gsSP1Triangle 10,  4,  2, 0x0
 gsSP1Triangle  5, 14,  7, 0x0
 gsSP1Triangle 12, 14,  9, 0x0
-gsSPVertex lakitu_toad_seg6_vertex_06010A18, 8, 0
+gsSPVertex mips_seg6_vertex_06010A18, 8, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  1,  0, 0x0
 gsSP1Triangle  4,  5,  6, 0x0
@@ -3958,27 +3971,27 @@ gsSPTexture -1, -1, 0, 0, 1
 gsDPTileSync
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
 gsDPSetTileSize 0, 0, 0, 124, 124
-gsSPDisplayList lakitu_toad_seg6_dl_06010A98
+gsSPDisplayList mips_seg6_dl_06010A98
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
 gsDPSetCombineMode G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPEndDisplayList
 
-lakitu_toad_seg6_light_06010CA0: # 0x06010CA0
+mips_seg6_light_06010CA0: # 0x06010CA0
 .byte 0x3C, 0x3C, 0x00, 0x00, 0x3C, 0x3C, 0x00, 0x00
 
-lakitu_toad_seg6_light_06010CA8: # 0x06010CA8
+mips_seg6_light_06010CA8: # 0x06010CA8
 .byte 0x96, 0x96, 0x00, 0x00, 0x96, 0x96, 0x00, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-lakitu_toad_seg6_light_06010CB8: # 0x06010CB8
+mips_seg6_light_06010CB8: # 0x06010CB8
 .byte 0x66, 0x66, 0x66, 0x00, 0x66, 0x66, 0x66, 0x00
 
-lakitu_toad_seg6_light_06010CC0: # 0x06010CC0
+mips_seg6_light_06010CC0: # 0x06010CC0
 .byte 0xFF, 0xFF, 0xFF, 0x00, 0xFF, 0xFF, 0xFF, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-lakitu_toad_seg6_vertex_06010CD0: # 0x06010CD0
+mips_seg6_vertex_06010CD0: # 0x06010CD0
 vertex      0,      0,    -26,  -1052,    990,  0xC7, 0x5D, 0xC1, 0xFF
 vertex     76,      0,     41,   -290,    990,  0x18, 0x42, 0x69, 0xFF
 vertex     76,      0,    -39,   -290,    990,  0x1C, 0x12, 0x86, 0xFF
@@ -3986,7 +3999,7 @@ vertex    103,      1,      1,    -24,   1000,  0x7E, 0x0B, 0x00, 0xFF
 vertex      0,      0,     28,  -1052,    990,  0xB3, 0x3C, 0x51, 0xFF
 vertex    -19,     -8,      0,  -1254,    902,  0x84, 0x19, 0xFF, 0xFF
 
-lakitu_toad_seg6_vertex_06010D30: # 0x06010D30
+mips_seg6_vertex_06010D30: # 0x06010D30
 vertex    -11,    -30,      0,  -1168,    680,  0xBC, 0x96, 0xFE, 0xFF
 vertex      0,      0,    -26,  -1052,    990,  0xC7, 0x5D, 0xC1, 0xFF
 vertex     76,      0,    -39,   -290,    990,  0x1C, 0x12, 0x86, 0xFF
@@ -3996,20 +4009,20 @@ vertex     76,      0,     41,   -290,    990,  0x18, 0x42, 0x69, 0xFF
 vertex      0,      0,     28,  -1052,    990,  0xB3, 0x3C, 0x51, 0xFF
 vertex    103,      1,      1,    -24,   1000,  0x7E, 0x0B, 0x00, 0xFF
 
-glabel lakitu_toad_seg6_dl_06010DB0 # 0x06010DB0 - 0x06010E60
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, lakitu_toad_seg6_texture_0600FB80
+glabel mips_seg6_dl_06010DB0 # 0x06010DB0 - 0x06010E60
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mips_seg6_texture_0600FB80
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
-gsSPLight lakitu_toad_seg6_light_06010CA8, 1
-gsSPLight lakitu_toad_seg6_light_06010CA0, 2
-gsSPVertex lakitu_toad_seg6_vertex_06010CD0, 6, 0
+gsSPLight mips_seg6_light_06010CA8, 1
+gsSPLight mips_seg6_light_06010CA0, 2
+gsSPVertex mips_seg6_vertex_06010CD0, 6, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  1,  3,  2, 0x0
 gsSP1Triangle  0,  4,  1, 0x0
 gsSP1Triangle  4,  0,  5, 0x0
-gsSPLight lakitu_toad_seg6_light_06010CC0, 1
-gsSPLight lakitu_toad_seg6_light_06010CB8, 2
-gsSPVertex lakitu_toad_seg6_vertex_06010D30, 8, 0
+gsSPLight mips_seg6_light_06010CC0, 1
+gsSPLight mips_seg6_light_06010CB8, 2
+gsSPVertex mips_seg6_vertex_06010D30, 8, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  1,  0,  3, 0x0
 gsSP1Triangle  0,  2,  4, 0x0
@@ -4028,46 +4041,46 @@ gsSPTexture -1, -1, 0, 0, 1
 gsDPTileSync
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
 gsDPSetTileSize 0, 0, 0, 124, 124
-gsSPDisplayList lakitu_toad_seg6_dl_06010DB0
+gsSPDisplayList mips_seg6_dl_06010DB0
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
 gsDPSetCombineMode G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPEndDisplayList
 
-lakitu_toad_seg6_light_06010EC0: # 0x06010EC0
+mips_seg6_light_06010EC0: # 0x06010EC0
 .byte 0x3C, 0x3C, 0x00, 0x00, 0x3C, 0x3C, 0x00, 0x00
 
-lakitu_toad_seg6_light_06010EC8: # 0x06010EC8
+mips_seg6_light_06010EC8: # 0x06010EC8
 .byte 0x96, 0x96, 0x00, 0x00, 0x96, 0x96, 0x00, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-lakitu_toad_seg6_light_06010ED8: # 0x06010ED8
+mips_seg6_light_06010ED8: # 0x06010ED8
 .byte 0x35, 0x38, 0x00, 0x00, 0x35, 0x38, 0x00, 0x00
 
-lakitu_toad_seg6_light_06010EE0: # 0x06010EE0
+mips_seg6_light_06010EE0: # 0x06010EE0
 .byte 0x85, 0x8E, 0x00, 0x00, 0x85, 0x8E, 0x00, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-lakitu_toad_seg6_light_06010EF0: # 0x06010EF0
+mips_seg6_light_06010EF0: # 0x06010EF0
 .byte 0x66, 0x66, 0x66, 0x00, 0x66, 0x66, 0x66, 0x00
 
-lakitu_toad_seg6_light_06010EF8: # 0x06010EF8
+mips_seg6_light_06010EF8: # 0x06010EF8
 .byte 0xFF, 0xFF, 0xFF, 0x00, 0xFF, 0xFF, 0xFF, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-lakitu_toad_seg6_vertex_06010F08: # 0x06010F08
+mips_seg6_vertex_06010F08: # 0x06010F08
 vertex      1,      0,    -13,    -52,   2012,  0xBE, 0x5F, 0xCF, 0xFF
 vertex      1,      0,     15,    -52,   2012,  0xA0, 0x2F, 0x43, 0xFF
 vertex     80,      0,     28,    702,   2122,  0x35, 0x2D, 0x69, 0xFF
 vertex     80,      0,    -26,    702,   2122,  0x39, 0x02, 0x8F, 0xFF
 vertex     94,    -14,      1,    848,   1676,  0x7D, 0xEB, 0x00, 0xFF
 
-lakitu_toad_seg6_vertex_06010F58: # 0x06010F58
+mips_seg6_vertex_06010F58: # 0x06010F58
 vertex     -2,    -19,      0,    -72,   1382,  0xBC, 0x96, 0xFE, 0xFF
 vertex      1,      0,     15,    -52,   2012,  0xA0, 0x2F, 0x43, 0xFF
 vertex      1,      0,    -13,    -52,   2012,  0xBE, 0x5F, 0xCF, 0xFF
 
-lakitu_toad_seg6_vertex_06010F88: # 0x06010F88
+mips_seg6_vertex_06010F88: # 0x06010F88
 vertex     -2,    -19,      0,    -72,   1382,  0xBC, 0x96, 0xFE, 0xFF
 vertex     80,      0,    -26,    702,   2122,  0x39, 0x02, 0x8F, 0xFF
 vertex     79,    -32,      0,    714,   1108,  0x33, 0x8D, 0xFF, 0xFF
@@ -4076,23 +4089,23 @@ vertex     94,    -14,      1,    848,   1676,  0x7D, 0xEB, 0x00, 0xFF
 vertex      1,      0,    -13,    -52,   2012,  0xBE, 0x5F, 0xCF, 0xFF
 vertex      1,      0,     15,    -52,   2012,  0xA0, 0x2F, 0x43, 0xFF
 
-glabel lakitu_toad_seg6_dl_06010FF8 # 0x06010FF8 - 0x060110B0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, lakitu_toad_seg6_texture_0600FB80
+glabel mips_seg6_dl_06010FF8 # 0x06010FF8 - 0x060110B0
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mips_seg6_texture_0600FB80
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
-gsSPLight lakitu_toad_seg6_light_06010EC8, 1
-gsSPLight lakitu_toad_seg6_light_06010EC0, 2
-gsSPVertex lakitu_toad_seg6_vertex_06010F08, 5, 0
+gsSPLight mips_seg6_light_06010EC8, 1
+gsSPLight mips_seg6_light_06010EC0, 2
+gsSPVertex mips_seg6_vertex_06010F08, 5, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  0,  2,  3, 0x0
 gsSP1Triangle  3,  2,  4, 0x0
-gsSPLight lakitu_toad_seg6_light_06010EE0, 1
-gsSPLight lakitu_toad_seg6_light_06010ED8, 2
-gsSPVertex lakitu_toad_seg6_vertex_06010F58, 3, 0
+gsSPLight mips_seg6_light_06010EE0, 1
+gsSPLight mips_seg6_light_06010ED8, 2
+gsSPVertex mips_seg6_vertex_06010F58, 3, 0
 gsSP1Triangle  0,  1,  2, 0x0
-gsSPLight lakitu_toad_seg6_light_06010EF8, 1
-gsSPLight lakitu_toad_seg6_light_06010EF0, 2
-gsSPVertex lakitu_toad_seg6_vertex_06010F88, 7, 0
+gsSPLight mips_seg6_light_06010EF8, 1
+gsSPLight mips_seg6_light_06010EF0, 2
+gsSPVertex mips_seg6_vertex_06010F88, 7, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  0,  2,  3, 0x0
 gsSP1Triangle  3,  2,  4, 0x0
@@ -4109,27 +4122,27 @@ gsSPTexture -1, -1, 0, 0, 1
 gsDPTileSync
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
 gsDPSetTileSize 0, 0, 0, 124, 124
-gsSPDisplayList lakitu_toad_seg6_dl_06010FF8
+gsSPDisplayList mips_seg6_dl_06010FF8
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
 gsDPSetCombineMode G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPEndDisplayList
 
-lakitu_toad_seg6_light_06011110: # 0x06011110
+mips_seg6_light_06011110: # 0x06011110
 .byte 0x3C, 0x3C, 0x00, 0x00, 0x3C, 0x3C, 0x00, 0x00
 
-lakitu_toad_seg6_light_06011118: # 0x06011118
+mips_seg6_light_06011118: # 0x06011118
 .byte 0x96, 0x96, 0x00, 0x00, 0x96, 0x96, 0x00, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-lakitu_toad_seg6_light_06011128: # 0x06011128
+mips_seg6_light_06011128: # 0x06011128
 .byte 0x66, 0x66, 0x66, 0x00, 0x66, 0x66, 0x66, 0x00
 
-lakitu_toad_seg6_light_06011130: # 0x06011130
+mips_seg6_light_06011130: # 0x06011130
 .byte 0xFF, 0xFF, 0xFF, 0x00, 0xFF, 0xFF, 0xFF, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-lakitu_toad_seg6_vertex_06011140: # 0x06011140
+mips_seg6_vertex_06011140: # 0x06011140
 vertex     87,      0,     55,    732,   2272,  0x2D, 0x46, 0x5F, 0xFF
 vertex    126,      0,      1,   1082,   2254,  0x7C, 0xE7, 0x00, 0xFF
 vertex     87,      0,    -52,    732,   2272,  0x1E, 0x66, 0xBC, 0xFF
@@ -4137,7 +4150,7 @@ vertex      0,      0,     41,    -58,   2302,  0xBD, 0x3F, 0x56, 0xFF
 vertex      0,      0,    -35,    -58,   2302,  0xB8, 0x17, 0x9B, 0xFF
 vertex    -19,    -20,     -3,   -238,   1860,  0x83, 0xF0, 0xFB, 0xFF
 
-lakitu_toad_seg6_vertex_060111A0: # 0x060111A0
+mips_seg6_vertex_060111A0: # 0x060111A0
 vertex    -19,    -20,     -3,   -238,   1860,  0x83, 0xF0, 0xFB, 0xFF
 vertex      0,    -38,     28,    -54,   1464,  0xCC, 0x97, 0x2E, 0xFF
 vertex      0,      0,     41,    -58,   2302,  0xBD, 0x3F, 0x56, 0xFF
@@ -4149,20 +4162,20 @@ vertex     87,      0,     55,    732,   2272,  0x2D, 0x46, 0x5F, 0xFF
 vertex     87,      0,    -52,    732,   2272,  0x1E, 0x66, 0xBC, 0xFF
 vertex    126,      0,      1,   1082,   2254,  0x7C, 0xE7, 0x00, 0xFF
 
-glabel lakitu_toad_seg6_dl_06011240 # 0x06011240 - 0x06011310
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, lakitu_toad_seg6_texture_0600FB80
+glabel mips_seg6_dl_06011240 # 0x06011240 - 0x06011310
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mips_seg6_texture_0600FB80
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
-gsSPLight lakitu_toad_seg6_light_06011118, 1
-gsSPLight lakitu_toad_seg6_light_06011110, 2
-gsSPVertex lakitu_toad_seg6_vertex_06011140, 6, 0
+gsSPLight mips_seg6_light_06011118, 1
+gsSPLight mips_seg6_light_06011110, 2
+gsSPVertex mips_seg6_vertex_06011140, 6, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  2,  3,  0, 0x0
 gsSP1Triangle  2,  4,  3, 0x0
 gsSP1Triangle  3,  4,  5, 0x0
-gsSPLight lakitu_toad_seg6_light_06011130, 1
-gsSPLight lakitu_toad_seg6_light_06011128, 2
-gsSPVertex lakitu_toad_seg6_vertex_060111A0, 10, 0
+gsSPLight mips_seg6_light_06011130, 1
+gsSPLight mips_seg6_light_06011128, 2
+gsSPVertex mips_seg6_vertex_060111A0, 10, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  1,  0, 0x0
 gsSP1Triangle  0,  4,  3, 0x0
@@ -4185,34 +4198,34 @@ gsSPTexture -1, -1, 0, 0, 1
 gsDPTileSync
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
 gsDPSetTileSize 0, 0, 0, 124, 124
-gsSPDisplayList lakitu_toad_seg6_dl_06011240
+gsSPDisplayList mips_seg6_dl_06011240
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
 gsDPSetCombineMode G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPEndDisplayList
 
-lakitu_toad_seg6_light_06011370: # 0x06011370
+mips_seg6_light_06011370: # 0x06011370
 .byte 0x3C, 0x3C, 0x00, 0x00, 0x3C, 0x3C, 0x00, 0x00
 
-lakitu_toad_seg6_light_06011378: # 0x06011378
+mips_seg6_light_06011378: # 0x06011378
 .byte 0x96, 0x96, 0x00, 0x00, 0x96, 0x96, 0x00, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-lakitu_toad_seg6_light_06011388: # 0x06011388
+mips_seg6_light_06011388: # 0x06011388
 .byte 0x66, 0x66, 0x66, 0x00, 0x66, 0x66, 0x66, 0x00
 
-lakitu_toad_seg6_light_06011390: # 0x06011390
+mips_seg6_light_06011390: # 0x06011390
 .byte 0xFF, 0xFF, 0xFF, 0x00, 0xFF, 0xFF, 0xFF, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-lakitu_toad_seg6_vertex_060113A0: # 0x060113A0
+mips_seg6_vertex_060113A0: # 0x060113A0
 vertex     54,      0,    -35,   -112,    464,  0x5E, 0xF7, 0xAC, 0xFF
 vertex     54,      0,     41,   -112,    464,  0x68, 0x18, 0x43, 0xFF
 vertex     49,    -37,      3,   -288,     54,  0x40, 0x93, 0x00, 0xFF
 vertex     -2,     52,    -19,   -756,   1148,  0xE0, 0x50, 0xA4, 0xFF
 vertex     -2,     52,     24,   -756,   1148,  0xB6, 0x2A, 0x5E, 0xFF
 
-lakitu_toad_seg6_vertex_060113F0: # 0x060113F0
+mips_seg6_vertex_060113F0: # 0x060113F0
 vertex     -2,     52,     24,   -756,   1148,  0xB6, 0x2A, 0x5E, 0xFF
 vertex     -2,     52,    -19,   -756,   1148,  0xE0, 0x50, 0xA4, 0xFF
 vertex    -14,     13,      2,  -1032,    740,  0x86, 0xDF, 0x00, 0xFF
@@ -4222,19 +4235,19 @@ vertex     54,      0,    -35,   -112,    464,  0x5E, 0xF7, 0xAC, 0xFF
 vertex     49,    -37,      3,   -288,     54,  0x40, 0x93, 0x00, 0xFF
 vertex     54,      0,     41,   -112,    464,  0x68, 0x18, 0x43, 0xFF
 
-glabel lakitu_toad_seg6_dl_06011470 # 0x06011470 - 0x06011520
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, lakitu_toad_seg6_texture_0600FB80
+glabel mips_seg6_dl_06011470 # 0x06011470 - 0x06011520
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mips_seg6_texture_0600FB80
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
-gsSPLight lakitu_toad_seg6_light_06011378, 1
-gsSPLight lakitu_toad_seg6_light_06011370, 2
-gsSPVertex lakitu_toad_seg6_vertex_060113A0, 5, 0
+gsSPLight mips_seg6_light_06011378, 1
+gsSPLight mips_seg6_light_06011370, 2
+gsSPVertex mips_seg6_vertex_060113A0, 5, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  1,  0,  3, 0x0
 gsSP1Triangle  3,  4,  1, 0x0
-gsSPLight lakitu_toad_seg6_light_06011390, 1
-gsSPLight lakitu_toad_seg6_light_06011388, 2
-gsSPVertex lakitu_toad_seg6_vertex_060113F0, 8, 0
+gsSPLight mips_seg6_light_06011390, 1
+gsSPLight mips_seg6_light_06011388, 2
+gsSPVertex mips_seg6_vertex_060113F0, 8, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  2,  3,  4, 0x0
 gsSP1Triangle  3,  2,  1, 0x0
@@ -4254,27 +4267,27 @@ gsSPTexture -1, -1, 0, 0, 1
 gsDPTileSync
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
 gsDPSetTileSize 0, 0, 0, 124, 124
-gsSPDisplayList lakitu_toad_seg6_dl_06011470
+gsSPDisplayList mips_seg6_dl_06011470
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
 gsDPSetCombineMode G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPEndDisplayList
 
-lakitu_toad_seg6_light_06011580: # 0x06011580
+mips_seg6_light_06011580: # 0x06011580
 .byte 0x3C, 0x3C, 0x00, 0x00, 0x3C, 0x3C, 0x00, 0x00
 
-lakitu_toad_seg6_light_06011588: # 0x06011588
+mips_seg6_light_06011588: # 0x06011588
 .byte 0x96, 0x96, 0x00, 0x00, 0x96, 0x96, 0x00, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-lakitu_toad_seg6_light_06011598: # 0x06011598
+mips_seg6_light_06011598: # 0x06011598
 .byte 0x66, 0x66, 0x66, 0x00, 0x66, 0x66, 0x66, 0x00
 
-lakitu_toad_seg6_light_060115A0: # 0x060115A0
+mips_seg6_light_060115A0: # 0x060115A0
 .byte 0xFF, 0xFF, 0xFF, 0x00, 0xFF, 0xFF, 0xFF, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-lakitu_toad_seg6_vertex_060115B0: # 0x060115B0
+mips_seg6_vertex_060115B0: # 0x060115B0
 vertex     87,      0,    -54,   1972,    878,  0x2D, 0x46, 0xA1, 0xFF
 vertex      0,      0,    -40,   3460,    788,  0xBD, 0x3F, 0xAA, 0xFF
 vertex     87,      0,     53,   1972,    878,  0x1E, 0x66, 0x44, 0xFF
@@ -4282,7 +4295,7 @@ vertex      0,      0,     36,   3460,    788,  0xB8, 0x17, 0x65, 0xFF
 vertex    -19,    -20,      4,   3784,    484,  0x83, 0xF0, 0x05, 0xFF
 vertex    126,      0,      0,   1316,    914,  0x7C, 0xE7, 0x00, 0xFF
 
-lakitu_toad_seg6_vertex_06011610: # 0x06011610
+mips_seg6_vertex_06011610: # 0x06011610
 vertex      0,      0,    -40,   3460,    788,  0xBD, 0x3F, 0xAA, 0xFF
 vertex     87,      0,    -54,   1972,    878,  0x2D, 0x46, 0xA1, 0xFF
 vertex     89,    -42,    -20,   1906,    290,  0x2B, 0xA1, 0xB9, 0xFF
@@ -4294,20 +4307,20 @@ vertex      0,      0,     36,   3460,    788,  0xB8, 0x17, 0x65, 0xFF
 vertex     87,      0,     53,   1972,    878,  0x1E, 0x66, 0x44, 0xFF
 vertex    126,      0,      0,   1316,    914,  0x7C, 0xE7, 0x00, 0xFF
 
-glabel lakitu_toad_seg6_dl_060116B0 # 0x060116B0 - 0x06011780
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, lakitu_toad_seg6_texture_0600FB80
+glabel mips_seg6_dl_060116B0 # 0x060116B0 - 0x06011780
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mips_seg6_texture_0600FB80
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
-gsSPLight lakitu_toad_seg6_light_06011588, 1
-gsSPLight lakitu_toad_seg6_light_06011580, 2
-gsSPVertex lakitu_toad_seg6_vertex_060115B0, 6, 0
+gsSPLight mips_seg6_light_06011588, 1
+gsSPLight mips_seg6_light_06011580, 2
+gsSPVertex mips_seg6_vertex_060115B0, 6, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  1,  3,  2, 0x0
 gsSP1Triangle  4,  3,  1, 0x0
 gsSP1Triangle  2,  5,  0, 0x0
-gsSPLight lakitu_toad_seg6_light_060115A0, 1
-gsSPLight lakitu_toad_seg6_light_06011598, 2
-gsSPVertex lakitu_toad_seg6_vertex_06011610, 10, 0
+gsSPLight mips_seg6_light_060115A0, 1
+gsSPLight mips_seg6_light_06011598, 2
+gsSPVertex mips_seg6_vertex_06011610, 10, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  0,  3,  4, 0x0
 gsSP1Triangle  2,  3,  0, 0x0
@@ -4330,34 +4343,34 @@ gsSPTexture -1, -1, 0, 0, 1
 gsDPTileSync
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
 gsDPSetTileSize 0, 0, 0, 124, 124
-gsSPDisplayList lakitu_toad_seg6_dl_060116B0
+gsSPDisplayList mips_seg6_dl_060116B0
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
 gsDPSetCombineMode G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPEndDisplayList
 
-lakitu_toad_seg6_light_060117E0: # 0x060117E0
+mips_seg6_light_060117E0: # 0x060117E0
 .byte 0x3C, 0x3C, 0x00, 0x00, 0x3C, 0x3C, 0x00, 0x00
 
-lakitu_toad_seg6_light_060117E8: # 0x060117E8
+mips_seg6_light_060117E8: # 0x060117E8
 .byte 0x96, 0x96, 0x00, 0x00, 0x96, 0x96, 0x00, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-lakitu_toad_seg6_light_060117F8: # 0x060117F8
+mips_seg6_light_060117F8: # 0x060117F8
 .byte 0x66, 0x66, 0x66, 0x00, 0x66, 0x66, 0x66, 0x00
 
-lakitu_toad_seg6_light_06011800: # 0x06011800
+mips_seg6_light_06011800: # 0x06011800
 .byte 0xFF, 0xFF, 0xFF, 0x00, 0xFF, 0xFF, 0xFF, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-lakitu_toad_seg6_vertex_06011810: # 0x06011810
+mips_seg6_vertex_06011810: # 0x06011810
 vertex     49,    -37,     -2,   -516,    -60,  0x40, 0x93, 0x00, 0xFF
 vertex     54,      0,    -40,   -564,   -446,  0x68, 0x18, 0xBD, 0xFF
 vertex     54,      0,     36,   -564,    330,  0x5E, 0xF7, 0x54, 0xFF
 vertex     -2,     52,     20,      2,    164,  0xE0, 0x50, 0x5C, 0xFF
 vertex     -2,     52,    -23,      2,   -268,  0xB6, 0x2A, 0xA2, 0xFF
 
-lakitu_toad_seg6_vertex_06011860: # 0x06011860
+mips_seg6_vertex_06011860: # 0x06011860
 vertex    -14,     13,     -1,    120,    -56,  0x86, 0xDF, 0x00, 0xFF
 vertex     -2,     52,     20,      2,    164,  0xE0, 0x50, 0x5C, 0xFF
 vertex     -2,     52,    -23,      2,   -268,  0xB6, 0x2A, 0xA2, 0xFF
@@ -4367,19 +4380,19 @@ vertex     27,    -28,     23,   -302,    200,  0xCA, 0xAA, 0x4B, 0xFF
 vertex     27,    -28,    -27,   -302,   -312,  0xC8, 0xAA, 0xB6, 0xFF
 vertex     54,      0,    -40,   -564,   -446,  0x68, 0x18, 0xBD, 0xFF
 
-glabel lakitu_toad_seg6_dl_060118E0 # 0x060118E0 - 0x06011990
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, lakitu_toad_seg6_texture_0600FB80
+glabel mips_seg6_dl_060118E0 # 0x060118E0 - 0x06011990
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mips_seg6_texture_0600FB80
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
-gsSPLight lakitu_toad_seg6_light_060117E8, 1
-gsSPLight lakitu_toad_seg6_light_060117E0, 2
-gsSPVertex lakitu_toad_seg6_vertex_06011810, 5, 0
+gsSPLight mips_seg6_light_060117E8, 1
+gsSPLight mips_seg6_light_060117E0, 2
+gsSPVertex mips_seg6_vertex_06011810, 5, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  2,  1, 0x0
 gsSP1Triangle  1,  4,  3, 0x0
-gsSPLight lakitu_toad_seg6_light_06011800, 1
-gsSPLight lakitu_toad_seg6_light_060117F8, 2
-gsSPVertex lakitu_toad_seg6_vertex_06011860, 8, 0
+gsSPLight mips_seg6_light_06011800, 1
+gsSPLight mips_seg6_light_060117F8, 2
+gsSPVertex mips_seg6_vertex_06011860, 8, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  4,  5, 0x0
 gsSP1Triangle  5,  6,  3, 0x0
@@ -4399,27 +4412,27 @@ gsSPTexture -1, -1, 0, 0, 1
 gsDPTileSync
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
 gsDPSetTileSize 0, 0, 0, 124, 124
-gsSPDisplayList lakitu_toad_seg6_dl_060118E0
+gsSPDisplayList mips_seg6_dl_060118E0
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
 gsDPSetCombineMode G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPEndDisplayList
 
-lakitu_toad_seg6_light_060119F0: # 0x060119F0
+mips_seg6_light_060119F0: # 0x060119F0
 .byte 0x3C, 0x3C, 0x00, 0x00, 0x3C, 0x3C, 0x00, 0x00
 
-lakitu_toad_seg6_light_060119F8: # 0x060119F8
+mips_seg6_light_060119F8: # 0x060119F8
 .byte 0x96, 0x96, 0x00, 0x00, 0x96, 0x96, 0x00, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-lakitu_toad_seg6_light_06011A08: # 0x06011A08
+mips_seg6_light_06011A08: # 0x06011A08
 .byte 0x66, 0x66, 0x66, 0x00, 0x66, 0x66, 0x66, 0x00
 
-lakitu_toad_seg6_light_06011A10: # 0x06011A10
+mips_seg6_light_06011A10: # 0x06011A10
 .byte 0xFF, 0xFF, 0xFF, 0x00, 0xFF, 0xFF, 0xFF, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-lakitu_toad_seg6_vertex_06011A20: # 0x06011A20
+mips_seg6_vertex_06011A20: # 0x06011A20
 vertex     76,      0,     40,   -628,    934,  0x1C, 0x11, 0x7A, 0xFF
 vertex     76,      0,    -40,   -628,    934,  0x18, 0x42, 0x97, 0xFF
 vertex      0,      0,     27,  -1998,    894,  0xC6, 0x5D, 0x3F, 0xFF
@@ -4427,7 +4440,7 @@ vertex    103,      1,      0,   -142,    966,  0x7E, 0x0B, 0x00, 0xFF
 vertex      0,      0,    -27,  -1998,    894,  0xB5, 0x3C, 0xAF, 0xFF
 vertex    -19,     -8,      0,  -2378,    732,  0x84, 0x19, 0x00, 0xFF
 
-lakitu_toad_seg6_vertex_06011A80: # 0x06011A80
+mips_seg6_vertex_06011A80: # 0x06011A80
 vertex    -19,     -8,      0,  -2378,    732,  0x84, 0x19, 0x00, 0xFF
 vertex    -11,    -30,      0,  -2264,    358,  0xBC, 0x95, 0x00, 0xFF
 vertex      0,      0,     27,  -1998,    894,  0xC6, 0x5D, 0x3F, 0xFF
@@ -4437,20 +4450,20 @@ vertex     76,      0,     40,   -628,    934,  0x1C, 0x11, 0x7A, 0xFF
 vertex     76,      0,    -40,   -628,    934,  0x18, 0x42, 0x97, 0xFF
 vertex    103,      1,      0,   -142,    966,  0x7E, 0x0B, 0x00, 0xFF
 
-glabel lakitu_toad_seg6_dl_06011B00 # 0x06011B00 - 0x06011BB0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, lakitu_toad_seg6_texture_0600FB80
+glabel mips_seg6_dl_06011B00 # 0x06011B00 - 0x06011BB0
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mips_seg6_texture_0600FB80
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
-gsSPLight lakitu_toad_seg6_light_060119F8, 1
-gsSPLight lakitu_toad_seg6_light_060119F0, 2
-gsSPVertex lakitu_toad_seg6_vertex_06011A20, 6, 0
+gsSPLight mips_seg6_light_060119F8, 1
+gsSPLight mips_seg6_light_060119F0, 2
+gsSPVertex mips_seg6_vertex_06011A20, 6, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  0,  3,  1, 0x0
 gsSP1Triangle  1,  4,  2, 0x0
 gsSP1Triangle  5,  2,  4, 0x0
-gsSPLight lakitu_toad_seg6_light_06011A10, 1
-gsSPLight lakitu_toad_seg6_light_06011A08, 2
-gsSPVertex lakitu_toad_seg6_vertex_06011A80, 8, 0
+gsSPLight mips_seg6_light_06011A10, 1
+gsSPLight mips_seg6_light_06011A08, 2
+gsSPVertex mips_seg6_vertex_06011A80, 8, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  0,  3,  1, 0x0
 gsSP1Triangle  4,  5,  1, 0x0
@@ -4469,27 +4482,27 @@ gsSPTexture -1, -1, 0, 0, 1
 gsDPTileSync
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
 gsDPSetTileSize 0, 0, 0, 124, 124
-gsSPDisplayList lakitu_toad_seg6_dl_06011B00
+gsSPDisplayList mips_seg6_dl_06011B00
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
 gsDPSetCombineMode G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPEndDisplayList
 
-lakitu_toad_seg6_light_06011C10: # 0x06011C10
+mips_seg6_light_06011C10: # 0x06011C10
 .byte 0x3C, 0x3C, 0x00, 0x00, 0x3C, 0x3C, 0x00, 0x00
 
-lakitu_toad_seg6_light_06011C18: # 0x06011C18
+mips_seg6_light_06011C18: # 0x06011C18
 .byte 0x96, 0x96, 0x00, 0x00, 0x96, 0x96, 0x00, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-lakitu_toad_seg6_light_06011C28: # 0x06011C28
+mips_seg6_light_06011C28: # 0x06011C28
 .byte 0x66, 0x66, 0x66, 0x00, 0x66, 0x66, 0x66, 0x00
 
-lakitu_toad_seg6_light_06011C30: # 0x06011C30
+mips_seg6_light_06011C30: # 0x06011C30
 .byte 0xFF, 0xFF, 0xFF, 0x00, 0xFF, 0xFF, 0xFF, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-lakitu_toad_seg6_vertex_06011C40: # 0x06011C40
+mips_seg6_vertex_06011C40: # 0x06011C40
 vertex     94,    -14,      0,    -84,    658,  0x7D, 0xEB, 0x00, 0xFF
 vertex     80,      0,    -27,   -338,    952,  0x35, 0x2F, 0x97, 0xFF
 vertex     80,      0,     27,   -338,    952,  0x39, 0xFF, 0x71, 0xFF
@@ -4497,7 +4510,7 @@ vertex      1,      0,     14,  -1644,    926,  0xBD, 0x5F, 0x30, 0xFF
 vertex      1,      0,    -14,  -1644,    926,  0xA2, 0x31, 0xBC, 0xFF
 vertex     -2,    -19,      0,  -1674,    522,  0xBC, 0x96, 0x00, 0xFF
 
-lakitu_toad_seg6_vertex_06011CA0: # 0x06011CA0
+mips_seg6_vertex_06011CA0: # 0x06011CA0
 vertex     94,    -14,      0,    -84,    658,  0x7D, 0xEB, 0x00, 0xFF
 vertex     79,    -32,      0,   -312,    302,  0x33, 0x8D, 0x00, 0xFF
 vertex     80,      0,    -27,   -338,    952,  0x35, 0x2F, 0x97, 0xFF
@@ -4506,20 +4519,20 @@ vertex      1,      0,     14,  -1644,    926,  0xBD, 0x5F, 0x30, 0xFF
 vertex     -2,    -19,      0,  -1674,    522,  0xBC, 0x96, 0x00, 0xFF
 vertex      1,      0,    -14,  -1644,    926,  0xA2, 0x31, 0xBC, 0xFF
 
-glabel lakitu_toad_seg6_dl_06011D10 # 0x06011D10 - 0x06011DB0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, lakitu_toad_seg6_texture_0600FB80
+glabel mips_seg6_dl_06011D10 # 0x06011D10 - 0x06011DB0
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mips_seg6_texture_0600FB80
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
-gsSPLight lakitu_toad_seg6_light_06011C18, 1
-gsSPLight lakitu_toad_seg6_light_06011C10, 2
-gsSPVertex lakitu_toad_seg6_vertex_06011C40, 6, 0
+gsSPLight mips_seg6_light_06011C18, 1
+gsSPLight mips_seg6_light_06011C10, 2
+gsSPVertex mips_seg6_vertex_06011C40, 6, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  2,  1,  3, 0x0
 gsSP1Triangle  1,  4,  3, 0x0
 gsSP1Triangle  3,  4,  5, 0x0
-gsSPLight lakitu_toad_seg6_light_06011C30, 1
-gsSPLight lakitu_toad_seg6_light_06011C28, 2
-gsSPVertex lakitu_toad_seg6_vertex_06011CA0, 7, 0
+gsSPLight mips_seg6_light_06011C30, 1
+gsSPLight mips_seg6_light_06011C28, 2
+gsSPVertex mips_seg6_vertex_06011CA0, 7, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  0,  3,  1, 0x0
 gsSP1Triangle  3,  4,  5, 0x0
@@ -4536,20 +4549,20 @@ gsSPTexture -1, -1, 0, 0, 1
 gsDPTileSync
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
 gsDPSetTileSize 0, 0, 0, 124, 124
-gsSPDisplayList lakitu_toad_seg6_dl_06011D10
+gsSPDisplayList mips_seg6_dl_06011D10
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
 gsDPSetCombineMode G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPEndDisplayList
 
-lakitu_toad_seg6_light_06011E10: # 0x06011E10
+mips_seg6_light_06011E10: # 0x06011E10
 .byte 0x34, 0x2C, 0x0F, 0x00, 0x34, 0x2C, 0x0F, 0x00
 
-lakitu_toad_seg6_light_06011E18: # 0x06011E18
+mips_seg6_light_06011E18: # 0x06011E18
 .byte 0x82, 0x6E, 0x26, 0x00, 0x82, 0x6E, 0x26, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-lakitu_toad_seg6_vertex_06011E28: # 0x06011E28
+mips_seg6_vertex_06011E28: # 0x06011E28
 vertex     51,    -16,    -11,      0,      0,  0xF1, 0xB5, 0x9B, 0xFF
 vertex     51,    -16,     13,      0,      0,  0xF2, 0x93, 0x3E, 0xFF
 vertex      0,    -12,     -6,      0,      0,  0xF2, 0xB5, 0x9C, 0xFF
@@ -4557,10 +4570,10 @@ vertex      0,    -12,      8,      0,      0,  0xF2, 0xEB, 0x7C, 0xFF
 vertex     53,     21,      0,      0,      0,  0xE6, 0x7C, 0xFC, 0xFF
 vertex      0,     10,      0,      0,      0,  0xE7, 0x7C, 0xFB, 0xFF
 
-glabel lakitu_toad_seg6_dl_06011E88 # 0x06011E88 - 0x06011ED8
-gsSPLight lakitu_toad_seg6_light_06011E18, 1
-gsSPLight lakitu_toad_seg6_light_06011E10, 2
-gsSPVertex lakitu_toad_seg6_vertex_06011E28, 6, 0
+glabel mips_seg6_dl_06011E88 # 0x06011E88 - 0x06011ED8
+gsSPLight mips_seg6_light_06011E18, 1
+gsSPLight mips_seg6_light_06011E10, 2
+gsSPVertex mips_seg6_vertex_06011E28, 6, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  1,  3,  2, 0x0
 gsSP1Triangle  4,  0,  2, 0x0
@@ -4571,18 +4584,18 @@ gsSPEndDisplayList
 
 glabel mips_seg6_dl_06011ED8 # 0x06011ED8 - 0x06011EF8
 gsDPPipeSync
-gsSPDisplayList lakitu_toad_seg6_dl_06011E88
+gsSPDisplayList mips_seg6_dl_06011E88
 gsDPPipeSync
 gsSPEndDisplayList
 
-lakitu_toad_seg6_light_06011EF8: # 0x06011EF8
+mips_seg6_light_06011EF8: # 0x06011EF8
 .byte 0x34, 0x2C, 0x0F, 0x00, 0x34, 0x2C, 0x0F, 0x00
 
-lakitu_toad_seg6_light_06011F00: # 0x06011F00
+mips_seg6_light_06011F00: # 0x06011F00
 .byte 0x82, 0x6E, 0x26, 0x00, 0x82, 0x6E, 0x26, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-lakitu_toad_seg6_vertex_06011F10: # 0x06011F10
+mips_seg6_vertex_06011F10: # 0x06011F10
 vertex      0,    -12,     -7,      0,      0,  0xF3, 0xE8, 0x85, 0xFF
 vertex      0,     10,      0,      0,      0,  0xE7, 0x7C, 0x00, 0xFF
 vertex     53,     21,      0,      0,      0,  0xE6, 0x7C, 0x00, 0xFF
@@ -4590,10 +4603,10 @@ vertex     51,    -16,    -12,      0,      0,  0xF2, 0x93, 0xC3, 0xFF
 vertex      0,    -12,      7,      0,      0,  0xF1, 0xB6, 0x65, 0xFF
 vertex     51,    -16,     12,      0,      0,  0xF1, 0xB7, 0x66, 0xFF
 
-glabel lakitu_toad_seg6_dl_06011F70 # 0x06011F70 - 0x06011FC0
-gsSPLight lakitu_toad_seg6_light_06011F00, 1
-gsSPLight lakitu_toad_seg6_light_06011EF8, 2
-gsSPVertex lakitu_toad_seg6_vertex_06011F10, 6, 0
+glabel mips_seg6_dl_06011F70 # 0x06011F70 - 0x06011FC0
+gsSPLight mips_seg6_light_06011F00, 1
+gsSPLight mips_seg6_light_06011EF8, 2
+gsSPVertex mips_seg6_vertex_06011F10, 6, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  0,  2,  3, 0x0
 gsSP1Triangle  4,  5,  2, 0x0
@@ -4604,11 +4617,11 @@ gsSPEndDisplayList
 
 glabel mips_seg6_dl_06011FC0 # 0x06011FC0 - 0x06011FE0
 gsDPPipeSync
-gsSPDisplayList lakitu_toad_seg6_dl_06011F70
+gsSPDisplayList mips_seg6_dl_06011F70
 gsDPPipeSync
 gsSPEndDisplayList
 
-lakitu_toad_seg6_unk_06011FE0: # 0x06011FE0
+mips_seg6_animvalue_06011FE0: # 0x06011FE0
 .hword 0x0000, 0x0052, 0x0051, 0x004F, 0x004A, 0x0044, 0x003B, 0x002F
 .hword 0x0047, 0x0052, 0x0056, 0x0056, 0x0059, 0x005D, 0x005B, 0x004F
 .hword 0x0030, 0x003E, 0x0046, 0x004B, 0x004D, 0x004D, 0x004C, 0x0047
@@ -4891,7 +4904,7 @@ lakitu_toad_seg6_unk_06011FE0: # 0x06011FE0
 .hword 0x967D, 0x8F29, 0x86D0, 0x7DB8, 0x742F, 0x6A79, 0x60E0, 0x57AA
 .hword 0x4F21, 0x478C, 0x4134, 0x3D99, 0x3D26, 0x3E80, 0x404D, 0x4134
 
-lakitu_toad_seg6_unk_06013170: # 0x06013170
+mips_seg6_animindex_06013170: # 0x06013170
 .hword 0x0001, 0x0000, 0x0050, 0x0001, 0x0050, 0x0051, 0x0001, 0x0000
 .hword 0x0001, 0x00A1, 0x0001, 0x0000, 0x0001, 0x0000, 0x0001, 0x0000
 .hword 0x0050, 0x0878, 0x0050, 0x0788, 0x0050, 0x07D8, 0x0050, 0x0828
@@ -4907,18 +4920,18 @@ lakitu_toad_seg6_unk_06013170: # 0x06013170
 .hword 0x0050, 0x05A4, 0x0050, 0x05F4, 0x0050, 0x0644, 0x0001, 0x0552
 .hword 0x0001, 0x0553, 0x0050, 0x0554
 
-lakitu_toad_seg6_unklist_06013248: # 0x06013248
+mips_seg6_anim_06013248: # 0x06013248
 .hword 0
 .hword 0
 .hword 0
 .hword 0
 .hword 0x50
 .hword 0x11
-.word lakitu_toad_seg6_unk_06011FE0
-.word lakitu_toad_seg6_unk_06013170
+.word mips_seg6_animvalue_06011FE0
+.word mips_seg6_animindex_06013170
 .word 0
 
-lakitu_toad_seg6_unk_06013260: # 0x06013260
+mips_seg6_animvalue_06013260: # 0x06013260
 .hword 0x0000, 0x0006, 0xFFFA, 0x3FFF, 0x40A9, 0x40B8, 0x40E2, 0x4124
 .hword 0x4177, 0x41D9, 0x4243, 0x42B2, 0x4321, 0x438C, 0x43ED, 0x4441
 .hword 0x4482, 0x44AD, 0x44BC, 0x44AE, 0x4489, 0x444F, 0x4405, 0x43AD
@@ -4975,7 +4988,7 @@ lakitu_toad_seg6_unk_06013260: # 0x06013260
 .hword 0x4D3C, 0x4CF5, 0x4CAC, 0x4C64, 0x4C21, 0x4BE3, 0x4BAF, 0x4B87
 .hword 0x4B6D, 0x4B63
 
-lakitu_toad_seg6_unk_060135C4: # 0x060135C4
+mips_seg6_animindex_060135C4: # 0x060135C4
 .hword 0x0001, 0x0000, 0x0001, 0x0001, 0x0001, 0x0002, 0x0001, 0x0000
 .hword 0x0001, 0x0003, 0x0001, 0x0000, 0x0001, 0x0000, 0x0001, 0x0000
 .hword 0x001E, 0x0194, 0x0001, 0x0000, 0x0001, 0x0000, 0x001E, 0x0176
@@ -4991,18 +5004,18 @@ lakitu_toad_seg6_unk_060135C4: # 0x060135C4
 .hword 0x0001, 0x0000, 0x0001, 0x0000, 0x001E, 0x0153, 0x0001, 0x0133
 .hword 0x0001, 0x0134, 0x001E, 0x0135
 
-lakitu_toad_seg6_unklist_0601369C: # 0x0601369C
+mips_seg6_anim_0601369C: # 0x0601369C
 .hword 0
 .hword 0
 .hword 0
 .hword 0
 .hword 0x1E
 .hword 0x11
-.word lakitu_toad_seg6_unk_06013260
-.word lakitu_toad_seg6_unk_060135C4
+.word mips_seg6_animvalue_06013260
+.word mips_seg6_animindex_060135C4
 .word 0
 
-lakitu_toad_seg6_unk_060136B4: # 0x060136B4
+mips_seg6_animvalue_060136B4: # 0x060136B4
 .hword 0x0000, 0x006C, 0x0090, 0x00D4, 0x00FF, 0x0103, 0x00FB, 0x00EB
 .hword 0x00D8, 0x00C6, 0x00AF, 0x0092, 0x0078, 0xFFFE, 0x3FFF, 0x0A79
 .hword 0xFD4D, 0xF19F, 0xF80C, 0x032E, 0x0FD0, 0x1ABA, 0x20B4, 0x1FFC
@@ -5043,7 +5056,7 @@ lakitu_toad_seg6_unk_060136B4: # 0x060136B4
 .hword 0xF245, 0x6A5A, 0x6049, 0x53F2, 0x5CB3, 0x5C3F, 0x5A3F, 0x5867
 .hword 0x586A, 0x5B3A, 0x5FC1, 0x64AB, 0x68A5, 0x0000
 
-lakitu_toad_seg6_unk_06013920: # 0x06013920
+mips_seg6_animindex_06013920: # 0x06013920
 .hword 0x0001, 0x0000, 0x000C, 0x0001, 0x0001, 0x000D, 0x0001, 0x0000
 .hword 0x0001, 0x000E, 0x0001, 0x0000, 0x0001, 0x0000, 0x0001, 0x0000
 .hword 0x000C, 0x0129, 0x0001, 0x0000, 0x0001, 0x0000, 0x000C, 0x011D
@@ -5059,18 +5072,18 @@ lakitu_toad_seg6_unk_06013920: # 0x06013920
 .hword 0x000C, 0x00D1, 0x000C, 0x00DD, 0x000C, 0x00E9, 0x0001, 0x00C3
 .hword 0x0001, 0x00C4, 0x000C, 0x00C5
 
-lakitu_toad_seg6_unklist_060139F8: # 0x060139F8
+mips_seg6_anim_060139F8: # 0x060139F8
 .hword 0
 .hword 0
 .hword 0
 .hword 0
 .hword 0xC
 .hword 0x11
-.word lakitu_toad_seg6_unk_060136B4
-.word lakitu_toad_seg6_unk_06013920
+.word mips_seg6_animvalue_060136B4
+.word mips_seg6_animindex_06013920
 .word 0
 
-lakitu_toad_seg6_unk_06013A10: # 0x06013A10
+mips_seg6_animvalue_06013A10: # 0x06013A10
 .hword 0x0000, 0x0072, 0x0072, 0x0072, 0x0072, 0x0072, 0x0072, 0x0072
 .hword 0x0072, 0x0072, 0x0072, 0x0072, 0x0072, 0x0072, 0x0072, 0x0072
 .hword 0x0072, 0x0072, 0x0072, 0x0072, 0x0072, 0x0072, 0x0072, 0x0072
@@ -5339,7 +5352,7 @@ lakitu_toad_seg6_unk_06013A10: # 0x06013A10
 .hword 0x57E5, 0x553A, 0x529C, 0x5012, 0x4DA2, 0x4B55, 0x4931, 0x473F
 .hword 0x4585, 0x440B, 0x42D8, 0x41F3, 0x4165, 0x4134
 
-lakitu_toad_seg6_unk_06014ABC: # 0x06014ABC
+mips_seg6_animindex_06014ABC: # 0x06014ABC
 .hword 0x0001, 0x0000, 0x0055, 0x0001, 0x0055, 0x0056, 0x0001, 0x0000
 .hword 0x0001, 0x00AB, 0x0001, 0x0000, 0x0001, 0x0000, 0x0001, 0x0000
 .hword 0x0055, 0x0801, 0x0055, 0x0702, 0x0055, 0x0757, 0x0055, 0x07AC
@@ -5355,18 +5368,18 @@ lakitu_toad_seg6_unk_06014ABC: # 0x06014ABC
 .hword 0x0055, 0x0500, 0x0055, 0x0555, 0x0055, 0x05AA, 0x0001, 0x04FD
 .hword 0x0001, 0x04FE, 0x0001, 0x04FF
 
-lakitu_toad_seg6_unklist_06014B94: # 0x06014B94
+mips_seg6_anim_06014B94: # 0x06014B94
 .hword 0
 .hword 0
 .hword 0
 .hword 0
 .hword 0x55
 .hword 0x11
-.word lakitu_toad_seg6_unk_06013A10
-.word lakitu_toad_seg6_unk_06014ABC
+.word mips_seg6_animvalue_06013A10
+.word mips_seg6_animindex_06014ABC
 .word 0
 
-lakitu_toad_seg6_unk_06014BAC: # 0x06014BAC
+mips_seg6_animvalue_06014BAC: # 0x06014BAC
 .hword 0x0000, 0x0067, 0x0004, 0x16E1, 0x16DE, 0x16D6, 0x16C8, 0x16B7
 .hword 0x16A2, 0x168B, 0x1672, 0x1658, 0x163E, 0x1624, 0x160C, 0x15F5
 .hword 0x15E2, 0x15D1, 0x15C6, 0x15BF, 0x15BE, 0x15C3, 0x15D0, 0x15E5
@@ -5522,7 +5535,7 @@ lakitu_toad_seg6_unk_06014BAC: # 0x06014BAC
 .hword 0xF7C0, 0xF815, 0xF861, 0xF8A3, 0xF8DB, 0xF908, 0xF929, 0xF93E
 .hword 0xF945, 0x3FFF, 0xF913, 0x3FFF
 
-lakitu_toad_seg6_unk_06015544: # 0x06015544
+mips_seg6_animindex_06015544: # 0x06015544
 .hword 0x0001, 0x0000, 0x0001, 0x0001, 0x0001, 0x0002, 0x0001, 0x0000
 .hword 0x0001, 0x0000, 0x0001, 0x0000, 0x0001, 0x04C9, 0x0001, 0x04CA
 .hword 0x0001, 0x04CB, 0x006E, 0x037F, 0x006E, 0x03ED, 0x006E, 0x045B
@@ -5538,42 +5551,45 @@ lakitu_toad_seg6_unk_06015544: # 0x06015544
 .hword 0x0001, 0x0379, 0x0001, 0x037A, 0x0001, 0x037B, 0x0001, 0x0000
 .hword 0x0001, 0x0000, 0x0001, 0x0378
 
-lakitu_toad_seg6_unklist_0601561C: # 0x0601561C
+mips_seg6_anim_0601561C: # 0x0601561C
 .hword 0
 .hword 0
 .hword 0
 .hword 0
 .hword 0x6E
 .hword 0x11
-.word lakitu_toad_seg6_unk_06014BAC
-.word lakitu_toad_seg6_unk_06015544
+.word mips_seg6_animvalue_06014BAC
+.word mips_seg6_animindex_06015544
 .word 0
 
-glabel lakitu_toad_seg6_unklists_06015634 # 0x06015634
-.word lakitu_toad_seg6_unklist_06014B94
-.word lakitu_toad_seg6_unklist_060139F8
-.word lakitu_toad_seg6_unklist_06013248
-.word lakitu_toad_seg6_unklist_0601561C
-.word lakitu_toad_seg6_unklist_0601369C
+glabel mips_seg6_anims_06015634 # 0x06015634
+.word mips_seg6_anim_06014B94
+.word mips_seg6_anim_060139F8
+.word mips_seg6_anim_06013248
+.word mips_seg6_anim_0601561C
+.word mips_seg6_anim_0601369C
 .word 0
 .word 0
 .word 0
 .word 2
 
-lakitu_toad_seg6_light_06015658: # 0x06015658
+# Boo
+
+.balign 8
+boo_seg6_light_06015658: # 0x06015658
 .byte 0x97, 0x9A, 0xFF, 0x00, 0x97, 0x9A, 0xFF, 0x00
 
-lakitu_toad_seg6_light_06015660: # 0x06015660
+boo_seg6_light_06015660: # 0x06015660
 .byte 0xFF, 0xFF, 0xFF, 0x00, 0xFF, 0xFF, 0xFF, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-lakitu_toad_seg6_texture_06015670: # 0x06015670
-.incbin "build/bin/lakitu_toad_mips_boo/lakitu_toad.15670.rgba16"
+boo_seg6_texture_06015670: # 0x06015670
+.incbin "build/bin/lakitu_toad_mips_boo/boo.15670.rgba16"
 
-lakitu_toad_seg6_texture_06016670: # 0x06016670
-.incbin "build/bin/lakitu_toad_mips_boo/lakitu_toad.16670.rgba16"
+boo_seg6_texture_06016670: # 0x06016670
+.incbin "build/bin/lakitu_toad_mips_boo/boo.16670.rgba16"
 
-lakitu_toad_seg6_vertex_06016E70: # 0x06016E70
+boo_seg6_vertex_06016E70: # 0x06016E70
 vertex      0,   -117,    131,    458,    990,  0x00, 0x9D, 0x4E, 0x9E
 vertex     87,    -78,    123,   1096,    684,  0x53, 0xC9, 0x4E, 0x9E
 vertex      0,    -47,    171,    458,    168,  0x00, 0xE9, 0x7C, 0x9E
@@ -5587,7 +5603,7 @@ vertex    -86,    -78,    123,   -176,    684,  0xAD, 0xC9, 0x4E, 0x9E
 vertex      0,    -47,    171,    458,    168,  0x00, 0xE9, 0x7C, 0x9E
 vertex   -107,     20,    118,   -328,   -172,  0xA9, 0x14, 0x59, 0x9E
 
-lakitu_toad_seg6_vertex_06016F30: # 0x06016F30
+boo_seg6_vertex_06016F30: # 0x06016F30
 vertex   -107,     20,    118,   -656,    538,  0xA9, 0x14, 0x59, 0x9E
 vertex      0,     60,    166,    988,    148,  0x00, 0x26, 0x79, 0x9E
 vertex    -57,    128,    108,     76,   -690,  0xD3, 0x60, 0x45, 0x9E
@@ -5601,7 +5617,7 @@ vertex    108,     20,    118,   2660,    540,  0x57, 0x14, 0x5A, 0x9E
 vertex     58,    128,    108,   1852,   -688,  0x35, 0x58, 0x49, 0x9E
 vertex      0,     60,    166,    988,    148,  0x00, 0x26, 0x79, 0x9E
 
-lakitu_toad_seg6_vertex_06016FF0: # 0x06016FF0
+boo_seg6_vertex_06016FF0: # 0x06016FF0
 vertex   -135,    -70,     23,      0,      0,  0xB2, 0xAA, 0x33, 0x9E
 vertex   -127,    -69,    -89,      0,      0,  0x9C, 0xC6, 0xCE, 0x9E
 vertex    -72,   -138,     30,      0,      0,  0xCF, 0x8C, 0x0A, 0x9E
@@ -5618,7 +5634,7 @@ vertex    -72,   -138,     30,      0,      0,  0xCF, 0x8C, 0x0A, 0x9E
 vertex     60,   -126,    -86,      0,      0,  0x20, 0x8B, 0xDB, 0x9E
 vertex     73,   -138,     30,      0,      0,  0x39, 0x90, 0x0E, 0x9E
 
-lakitu_toad_seg6_vertex_060170E0: # 0x060170E0
+boo_seg6_vertex_060170E0: # 0x060170E0
 vertex    -86,    -78,    123,      0,      0,  0xAD, 0xC9, 0x4E, 0x9E
 vertex    -72,   -138,     30,      0,      0,  0xCF, 0x8C, 0x0A, 0x9E
 vertex      0,   -117,    131,      0,      0,  0x00, 0x9D, 0x4E, 0x9E
@@ -5635,7 +5651,7 @@ vertex     60,   -126,    -86,      0,      0,  0x20, 0x8B, 0xDB, 0x9E
 vertex    128,    -69,    -89,      0,      0,  0x64, 0xC6, 0xCE, 0x9E
 vertex     73,   -138,     30,      0,      0,  0x39, 0x90, 0x0E, 0x9E
 
-lakitu_toad_seg6_vertex_060171D0: # 0x060171D0
+boo_seg6_vertex_060171D0: # 0x060171D0
 vertex    136,    -70,     23,      0,      0,  0x4E, 0xAA, 0x33, 0x9E
 vertex     73,   -138,     30,      0,      0,  0x39, 0x90, 0x0E, 0x9E
 vertex    128,    -69,    -89,      0,      0,  0x64, 0xC6, 0xCE, 0x9E
@@ -5652,7 +5668,7 @@ vertex    -43,    162,     15,      0,      0,  0xDF, 0x7A, 0xF8, 0x9E
 vertex     44,    162,     15,      0,      0,  0x21, 0x7A, 0x09, 0x9E
 vertex     42,    130,    -88,      0,      0,  0x25, 0x6A, 0xC7, 0x9E
 
-lakitu_toad_seg6_vertex_060172C0: # 0x060172C0
+boo_seg6_vertex_060172C0: # 0x060172C0
 vertex    125,     99,     15,      0,      0,  0x65, 0x4C, 0x08, 0x9E
 vertex     44,    162,     15,      0,      0,  0x21, 0x7A, 0x09, 0x9E
 vertex     58,    128,    108,      0,      0,  0x35, 0x58, 0x49, 0x9E
@@ -5669,7 +5685,7 @@ vertex      0,     62,   -162,      0,      0,  0x00, 0x5A, 0xA8, 0x9E
 vertex     42,    130,    -88,      0,      0,  0x25, 0x6A, 0xC7, 0x9E
 vertex    122,     59,    -94,      0,      0,  0x5F, 0x2E, 0xBB, 0x9E
 
-lakitu_toad_seg6_vertex_060173B0: # 0x060173B0
+boo_seg6_vertex_060173B0: # 0x060173B0
 vertex    -41,    130,    -88,      0,      0,  0xD4, 0x65, 0xC3, 0x9E
 vertex    -43,    162,     15,      0,      0,  0xDF, 0x7A, 0xF8, 0x9E
 vertex     42,    130,    -88,      0,      0,  0x25, 0x6A, 0xC7, 0x9E
@@ -5686,7 +5702,7 @@ vertex   -199,    -60,     25,      0,      0,  0xA2, 0xBF, 0x36, 0x9E
 vertex   -127,    -69,    -89,      0,      0,  0x9C, 0xC6, 0xCE, 0x9E
 vertex   -135,    -70,     23,      0,      0,  0xB2, 0xAA, 0x33, 0x9E
 
-lakitu_toad_seg6_vertex_060174A0: # 0x060174A0
+boo_seg6_vertex_060174A0: # 0x060174A0
 vertex   -107,     20,    118,      0,      0,  0xA9, 0x14, 0x59, 0x9E
 vertex    -57,    128,    108,      0,      0,  0xD3, 0x60, 0x45, 0x9E
 vertex   -124,     99,     15,      0,      0,  0x9B, 0x4C, 0x08, 0x9E
@@ -5703,7 +5719,7 @@ vertex   -199,    -60,     25,      0,      0,  0xA2, 0xBF, 0x36, 0x9E
 vertex   -155,      6,     33,      0,      0,  0x87, 0x0F, 0x22, 0x9E
 vertex   -127,    -69,    -89,      0,      0,  0x9C, 0xC6, 0xCE, 0x9E
 
-lakitu_toad_seg6_vertex_06017590: # 0x06017590
+boo_seg6_vertex_06017590: # 0x06017590
 vertex   -199,    -60,     25,      0,      0,  0xA2, 0xBF, 0x36, 0x9E
 vertex   -135,    -70,     23,      0,      0,  0xB2, 0xAA, 0x33, 0x9E
 vertex   -155,      6,     33,      0,      0,  0x87, 0x0F, 0x22, 0x9E
@@ -5720,7 +5736,7 @@ vertex    200,    -60,     25,      0,      0,  0x5E, 0xBF, 0x36, 0x9E
 vertex    156,      6,     33,      0,      0,  0x79, 0x0F, 0x22, 0x9E
 vertex    136,    -70,     23,      0,      0,  0x4E, 0xAA, 0x33, 0x9E
 
-lakitu_toad_seg6_vertex_06017680: # 0x06017680
+boo_seg6_vertex_06017680: # 0x06017680
 vertex    156,      6,     33,      0,      0,  0x79, 0x0F, 0x22, 0x9E
 vertex    128,    -69,    -89,      0,      0,  0x64, 0xC6, 0xCE, 0x9E
 vertex    122,     59,    -94,      0,      0,  0x5F, 0x2E, 0xBB, 0x9E
@@ -5737,7 +5753,7 @@ vertex    128,    -69,    -89,      0,      0,  0x64, 0xC6, 0xCE, 0x9E
 vertex     46,    -82,   -160,      0,      0,  0x2E, 0xBA, 0xA2, 0x9E
 vertex    122,     59,    -94,      0,      0,  0x5F, 0x2E, 0xBB, 0x9E
 
-lakitu_toad_seg6_vertex_06017770: # 0x06017770
+boo_seg6_vertex_06017770: # 0x06017770
 vertex      0,     62,   -162,      0,      0,  0x00, 0x5A, 0xA8, 0x9E
 vertex    122,     59,    -94,      0,      0,  0x5F, 0x2E, 0xBB, 0x9E
 vertex      0,     24,   -213,      0,      0,  0x00, 0x22, 0x86, 0x9E
@@ -5754,7 +5770,7 @@ vertex      0,     24,   -213,      0,      0,  0x00, 0x22, 0x86, 0x9E
 vertex     46,    -82,   -160,      0,      0,  0x2E, 0xBA, 0xA2, 0x9E
 vertex    -45,    -82,   -160,      0,      0,  0xC9, 0xC5, 0x9F, 0x9E
 
-lakitu_toad_seg6_vertex_06017860: # 0x06017860
+boo_seg6_vertex_06017860: # 0x06017860
 vertex    -45,    -82,   -160,      0,      0,  0xC9, 0xC5, 0x9F, 0x9E
 vertex     46,    -82,   -160,      0,      0,  0x2E, 0xBA, 0xA2, 0x9E
 vertex    -59,   -126,    -86,      0,      0,  0xE1, 0x90, 0xD0, 0x9E
@@ -5771,7 +5787,7 @@ vertex    -41,    130,    -88,      0,      0,  0xD4, 0x65, 0xC3, 0x9E
 vertex   -121,     59,    -94,      0,      0,  0xA1, 0x2E, 0xBB, 0x9E
 vertex   -124,     99,     15,      0,      0,  0x9B, 0x4C, 0x08, 0x9E
 
-lakitu_toad_seg6_vertex_06017950: # 0x06017950
+boo_seg6_vertex_06017950: # 0x06017950
 vertex    -57,    128,    108,      0,      0,  0xD3, 0x60, 0x45, 0x9E
 vertex      0,     60,    166,      0,      0,  0x00, 0x26, 0x79, 0x9E
 vertex     58,    128,    108,      0,      0,  0x35, 0x58, 0x49, 0x9E
@@ -5785,96 +5801,96 @@ vertex    108,     20,    118,      0,      0,  0x57, 0x14, 0x5A, 0x9E
 vertex     87,    -78,    123,      0,      0,  0x53, 0xC9, 0x4E, 0x9E
 vertex    156,      6,     33,      0,      0,  0x79, 0x0F, 0x22, 0x9E
 
-glabel lakitu_toad_seg6_dl_06017A10 # 0x06017A10 - 0x06017A78
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, lakitu_toad_seg6_texture_06016670
+glabel boo_seg6_dl_06017A10 # 0x06017A10 - 0x06017A78
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, boo_seg6_texture_06016670
 gsDPTileSync
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
-gsSPLight lakitu_toad_seg6_light_06015660, 1
-gsSPLight lakitu_toad_seg6_light_06015658, 2
-gsSPVertex lakitu_toad_seg6_vertex_06016E70, 12, 0
+gsSPLight boo_seg6_light_06015660, 1
+gsSPLight boo_seg6_light_06015658, 2
+gsSPVertex boo_seg6_vertex_06016E70, 12, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  4,  5, 0x0
 gsSP1Triangle  6,  7,  8, 0x0
 gsSP1Triangle  9, 10, 11, 0x0
 gsSPEndDisplayList
 
-glabel lakitu_toad_seg6_dl_06017A78 # 0x06017A78 - 0x06017AD0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, lakitu_toad_seg6_texture_06015670
+glabel boo_seg6_dl_06017A78 # 0x06017A78 - 0x06017AD0
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, boo_seg6_texture_06015670
 gsDPTileSync
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
-gsSPVertex lakitu_toad_seg6_vertex_06016F30, 12, 0
+gsSPVertex boo_seg6_vertex_06016F30, 12, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  4,  5, 0x0
 gsSP1Triangle  6,  7,  8, 0x0
 gsSP1Triangle  9, 10, 11, 0x0
 gsSPEndDisplayList
 
-glabel lakitu_toad_seg6_dl_06017AD0 # 0x06017AD0 - 0x06017CE0
-gsSPVertex lakitu_toad_seg6_vertex_06016FF0, 15, 0
+glabel boo_seg6_dl_06017AD0 # 0x06017AD0 - 0x06017CE0
+gsSPVertex boo_seg6_vertex_06016FF0, 15, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  4,  5, 0x0
 gsSP1Triangle  6,  7,  8, 0x0
 gsSP1Triangle  9, 10, 11, 0x0
 gsSP1Triangle 12, 13, 14, 0x0
-gsSPVertex lakitu_toad_seg6_vertex_060170E0, 15, 0
+gsSPVertex boo_seg6_vertex_060170E0, 15, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  4,  5, 0x0
 gsSP1Triangle  6,  7,  8, 0x0
 gsSP1Triangle  9, 10, 11, 0x0
 gsSP1Triangle 12, 13, 14, 0x0
-gsSPVertex lakitu_toad_seg6_vertex_060171D0, 15, 0
+gsSPVertex boo_seg6_vertex_060171D0, 15, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  4,  5, 0x0
 gsSP1Triangle  6,  7,  8, 0x0
 gsSP1Triangle  9, 10, 11, 0x0
 gsSP1Triangle 12, 13, 14, 0x0
-gsSPVertex lakitu_toad_seg6_vertex_060172C0, 15, 0
+gsSPVertex boo_seg6_vertex_060172C0, 15, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  4,  5, 0x0
 gsSP1Triangle  6,  7,  8, 0x0
 gsSP1Triangle  9, 10, 11, 0x0
 gsSP1Triangle 12, 13, 14, 0x0
-gsSPVertex lakitu_toad_seg6_vertex_060173B0, 15, 0
+gsSPVertex boo_seg6_vertex_060173B0, 15, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  4,  5, 0x0
 gsSP1Triangle  6,  7,  8, 0x0
 gsSP1Triangle  9, 10, 11, 0x0
 gsSP1Triangle 12, 13, 14, 0x0
-gsSPVertex lakitu_toad_seg6_vertex_060174A0, 15, 0
+gsSPVertex boo_seg6_vertex_060174A0, 15, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  4,  5, 0x0
 gsSP1Triangle  6,  7,  8, 0x0
 gsSP1Triangle  9, 10, 11, 0x0
 gsSP1Triangle 12, 13, 14, 0x0
-gsSPVertex lakitu_toad_seg6_vertex_06017590, 15, 0
+gsSPVertex boo_seg6_vertex_06017590, 15, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  4,  5, 0x0
 gsSP1Triangle  6,  7,  8, 0x0
 gsSP1Triangle  9, 10, 11, 0x0
 gsSP1Triangle 12, 13, 14, 0x0
-gsSPVertex lakitu_toad_seg6_vertex_06017680, 15, 0
+gsSPVertex boo_seg6_vertex_06017680, 15, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  4,  5, 0x0
 gsSP1Triangle  6,  7,  8, 0x0
 gsSP1Triangle  9, 10, 11, 0x0
 gsSP1Triangle 12, 13, 14, 0x0
-gsSPVertex lakitu_toad_seg6_vertex_06017770, 15, 0
+gsSPVertex boo_seg6_vertex_06017770, 15, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  4,  5, 0x0
 gsSP1Triangle  6,  7,  8, 0x0
 gsSP1Triangle  9, 10, 11, 0x0
 gsSP1Triangle 12, 13, 14, 0x0
-gsSPVertex lakitu_toad_seg6_vertex_06017860, 15, 0
+gsSPVertex boo_seg6_vertex_06017860, 15, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  4,  5, 0x0
 gsSP1Triangle  6,  7,  8, 0x0
 gsSP1Triangle  9, 10, 11, 0x0
 gsSP1Triangle 12, 13, 14, 0x0
-gsSPVertex lakitu_toad_seg6_vertex_06017950, 12, 0
+gsSPVertex boo_seg6_vertex_06017950, 12, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  4,  5, 0x0
 gsSP1Triangle  6,  7,  8, 0x0
@@ -5889,15 +5905,15 @@ gsSPTexture -1, -1, 0, 0, 1
 gsDPTileSync
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
 gsDPSetTileSize 0, 0, 0, 124, 124
-gsSPDisplayList lakitu_toad_seg6_dl_06017A10
+gsSPDisplayList boo_seg6_dl_06017A10
 gsDPTileSync
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 16, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 6, G_TX_NOLOD
 gsDPSetTileSize 0, 0, 0, 252, 124
-gsSPDisplayList lakitu_toad_seg6_dl_06017A78
+gsSPDisplayList boo_seg6_dl_06017A78
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
 gsDPSetCombineMode G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
-gsSPDisplayList lakitu_toad_seg6_dl_06017AD0
+gsSPDisplayList boo_seg6_dl_06017AD0
 gsDPPipeSync
 gsDPSetCombineMode G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsDPSetEnvColor 255, 255, 255, 255

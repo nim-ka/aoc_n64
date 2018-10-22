@@ -3,20 +3,22 @@
 .include "macros.inc"
 .include "ultra64/gbi.inc"
 
-capswitch_springboard_seg5_light_05000000: # 0x05000000
+# Springboard
+
+springboard_seg5_light_05000000: # 0x05000000
 .byte 0x3F, 0x3F, 0x3F, 0x00, 0x3F, 0x3F, 0x3F, 0x00
 
-capswitch_springboard_seg5_light_05000008: # 0x05000008
+springboard_seg5_light_05000008: # 0x05000008
 .byte 0xFF, 0xFF, 0xFF, 0x00, 0xFF, 0xFF, 0xFF, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-capswitch_springboard_seg5_texture_05000018: # 0x05000018
-.incbin "build/bin/capswitch_springboard/capswitch_springboard.00018.rgba16"
+springboard_seg5_texture_05000018: # 0x05000018
+.incbin "build/bin/capswitch_springboard/springboard.00018.rgba16"
 
-capswitch_springboard_seg5_texture_05000818: # 0x05000818
-.incbin "build/bin/capswitch_springboard/capswitch_springboard.00818.rgba16"
+springboard_seg5_texture_05000818: # 0x05000818
+.incbin "build/bin/capswitch_springboard/springboard.00818.rgba16"
 
-capswitch_springboard_seg5_vertex_05001018: # 0x05001018
+springboard_seg5_vertex_05001018: # 0x05001018
 vertex    205,      0,      0,   2524,    478,  0x00, 0x7F, 0x00, 0xFF
 vertex    102,      0,   -176,   1502,  -1292,  0x00, 0x7F, 0x00, 0xFF
 vertex   -101,      0,   -176,   -542,  -1292,  0x00, 0x7F, 0x00, 0xFF
@@ -34,7 +36,7 @@ vertex    102,    -19,    177,   1502,   2248,  0x00, 0x81, 0x00, 0xFF
 vertex    205,    -19,      0,   2524,    478,  0x00, 0x81, 0x00, 0xFF
 vertex    205,    -19,      0,   2524,    478,  0x6D, 0x00, 0xC0, 0xFF
 
-capswitch_springboard_seg5_vertex_05001118: # 0x05001118
+springboard_seg5_vertex_05001118: # 0x05001118
 vertex   -101,      0,   -176,   -542,  -1292,  0x93, 0x00, 0xC0, 0xFF
 vertex   -101,    -19,   -176,   -542,  -1292,  0x93, 0x00, 0xC0, 0xFF
 vertex   -204,    -19,      0,  -1564,    478,  0x93, 0x00, 0xC0, 0xFF
@@ -51,7 +53,7 @@ vertex   -204,    -19,      0,  -1564,    478,  0x93, 0x00, 0x3F, 0xFF
 vertex   -101,    -19,    177,   -542,   2248,  0x93, 0x00, 0x3F, 0xFF
 vertex   -101,      0,    177,   -542,   2248,  0x93, 0x00, 0x3F, 0xFF
 
-capswitch_springboard_seg5_vertex_05001208: # 0x05001208
+springboard_seg5_vertex_05001208: # 0x05001208
 vertex   -101,      0,    177,   -542,   2248,  0x00, 0x00, 0x7F, 0xFF
 vertex   -101,    -19,    177,   -542,   2248,  0x00, 0x00, 0x7F, 0xFF
 vertex    102,    -19,    177,   1502,   2248,  0x00, 0x00, 0x7F, 0xFF
@@ -64,7 +66,7 @@ vertex    102,    -19,    177,   1502,   2248,  0x6D, 0x00, 0x3F, 0xFF
 vertex    205,    -19,      0,   2524,    478,  0x6D, 0x00, 0x3F, 0xFF
 vertex    205,      0,      0,   2524,    478,  0x6D, 0x00, 0x3F, 0xFF
 
-capswitch_springboard_seg5_vertex_050012B8: # 0x050012B8
+springboard_seg5_vertex_050012B8: # 0x050012B8
 vertex    -76,    -55,   -132,      0,    990,  0x93, 0x00, 0xC1, 0xFF
 vertex   -153,     56,      0,    990,      0,  0x93, 0x00, 0xC1, 0xFF
 vertex    -76,     56,   -132,      0,      0,  0x93, 0x00, 0xC1, 0xFF
@@ -81,7 +83,7 @@ vertex     77,     56,    133,      0,      0,  0x6D, 0x00, 0x3F, 0xFF
 vertex     77,    -55,    133,      0,    990,  0x6D, 0x00, 0x3F, 0xFF
 vertex    154,    -55,      0,    990,    990,  0x6D, 0x00, 0x3F, 0xFF
 
-capswitch_springboard_seg5_vertex_050013A8: # 0x050013A8
+springboard_seg5_vertex_050013A8: # 0x050013A8
 vertex     77,     56,   -132,    990,      0,  0x6D, 0x00, 0xC1, 0xFF
 vertex    154,    -55,      0,      0,    990,  0x6D, 0x00, 0xC1, 0xFF
 vertex     77,    -55,   -132,    990,    990,  0x6D, 0x00, 0xC1, 0xFF
@@ -94,7 +96,7 @@ vertex     77,    -55,   -132,      0,    990,  0x00, 0x00, 0x81, 0xFF
 vertex    -76,    -55,   -132,    990,    990,  0x00, 0x00, 0x81, 0xFF
 vertex    154,     56,      0,      0,      0,  0x6D, 0x00, 0xC1, 0xFF
 
-capswitch_springboard_seg5_vertex_05001458: # 0x05001458
+springboard_seg5_vertex_05001458: # 0x05001458
 vertex    102,     20,   -176,   1502,  -1292,  0x00, 0x00, 0x81, 0xFF
 vertex    102,      0,   -176,   1502,  -1292,  0x00, 0x00, 0x81, 0xFF
 vertex   -101,      0,   -176,   -542,  -1292,  0x00, 0x00, 0x81, 0xFF
@@ -112,7 +114,7 @@ vertex   -101,     20,   -176,   -542,  -1292,  0x93, 0x00, 0xC0, 0xFF
 vertex   -101,      0,   -176,   -542,  -1292,  0x93, 0x00, 0xC0, 0xFF
 vertex   -204,      0,      0,  -1564,    480,  0x93, 0x00, 0xC0, 0xFF
 
-capswitch_springboard_seg5_vertex_05001558: # 0x05001558
+springboard_seg5_vertex_05001558: # 0x05001558
 vertex   -101,     20,   -176,   -542,  -1292,  0x93, 0x00, 0xC0, 0xFF
 vertex   -204,      0,      0,  -1564,    480,  0x93, 0x00, 0xC0, 0xFF
 vertex   -204,     20,      0,  -1564,    480,  0x93, 0x00, 0xC0, 0xFF
@@ -130,7 +132,7 @@ vertex   -204,     20,      0,  -1564,    480,  0x93, 0x00, 0x3F, 0xFF
 vertex   -204,      0,      0,  -1564,    480,  0x93, 0x00, 0x3F, 0xFF
 vertex   -101,      0,    177,   -542,   2248,  0x93, 0x00, 0x3F, 0xFF
 
-capswitch_springboard_seg5_vertex_05001658: # 0x05001658
+springboard_seg5_vertex_05001658: # 0x05001658
 vertex   -204,     20,      0,  -1564,    480,  0x93, 0x00, 0x3F, 0xFF
 vertex   -101,      0,    177,   -542,   2248,  0x93, 0x00, 0x3F, 0xFF
 vertex   -101,     20,    177,   -542,   2248,  0x93, 0x00, 0x3F, 0xFF
@@ -147,12 +149,12 @@ gsSPTexture -1, -1, 0, 0, 1
 gsDPTileSync
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD
 gsDPSetTileSize 0, 0, 0, 124, 124
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, capswitch_springboard_seg5_texture_05000018
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, springboard_seg5_texture_05000018
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
-gsSPLight capswitch_springboard_seg5_light_05000008, 1
-gsSPLight capswitch_springboard_seg5_light_05000000, 2
-gsSPVertex capswitch_springboard_seg5_vertex_05001018, 16, 0
+gsSPLight springboard_seg5_light_05000008, 1
+gsSPLight springboard_seg5_light_05000000, 2
+gsSPVertex springboard_seg5_vertex_05001018, 16, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  4,  5, 0x0
 gsSP1Triangle  6,  7,  8, 0x0
@@ -161,7 +163,7 @@ gsSP1Triangle 10, 11, 12, 0x0
 gsSP1Triangle 13, 10, 12, 0x0
 gsSP1Triangle 13, 12, 14, 0x0
 gsSP1Triangle  3, 15,  4, 0x0
-gsSPVertex capswitch_springboard_seg5_vertex_05001118, 15, 0
+gsSPVertex springboard_seg5_vertex_05001118, 15, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  4,  5, 0x0
 gsSP1Triangle  4,  6,  5, 0x0
@@ -169,7 +171,7 @@ gsSP1Triangle  0,  2,  7, 0x0
 gsSP1Triangle  8,  9, 10, 0x0
 gsSP1Triangle 11, 12, 13, 0x0
 gsSP1Triangle 11, 13, 14, 0x0
-gsSPVertex capswitch_springboard_seg5_vertex_05001208, 11, 0
+gsSPVertex springboard_seg5_vertex_05001208, 11, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  4,  5, 0x0
 gsSP1Triangle  0,  2,  6, 0x0
@@ -190,12 +192,12 @@ gsSPTexture -1, -1, 0, 0, 1
 gsDPTileSync
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD
 gsDPSetTileSize 0, 0, 0, 124, 124
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, capswitch_springboard_seg5_texture_05000818
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, springboard_seg5_texture_05000818
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
-gsSPLight capswitch_springboard_seg5_light_05000008, 1
-gsSPLight capswitch_springboard_seg5_light_05000000, 2
-gsSPVertex capswitch_springboard_seg5_vertex_050012B8, 15, 0
+gsSPLight springboard_seg5_light_05000008, 1
+gsSPLight springboard_seg5_light_05000000, 2
+gsSPVertex springboard_seg5_vertex_050012B8, 15, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  4,  5, 0x0
 gsSP1Triangle  3,  5,  6, 0x0
@@ -203,7 +205,7 @@ gsSP1Triangle  7,  8,  9, 0x0
 gsSP1Triangle  7,  9, 10, 0x0
 gsSP1Triangle 11, 12, 13, 0x0
 gsSP1Triangle 11, 13, 14, 0x0
-gsSPVertex capswitch_springboard_seg5_vertex_050013A8, 11, 0
+gsSPVertex springboard_seg5_vertex_050013A8, 11, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  4,  5, 0x0
 gsSP1Triangle  6,  7,  8, 0x0
@@ -224,12 +226,12 @@ gsSPTexture -1, -1, 0, 0, 1
 gsDPTileSync
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD
 gsDPSetTileSize 0, 0, 0, 124, 124
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, capswitch_springboard_seg5_texture_05000018
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, springboard_seg5_texture_05000018
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
-gsSPLight capswitch_springboard_seg5_light_05000008, 1
-gsSPLight capswitch_springboard_seg5_light_05000000, 2
-gsSPVertex capswitch_springboard_seg5_vertex_05001458, 16, 0
+gsSPLight springboard_seg5_light_05000008, 1
+gsSPLight springboard_seg5_light_05000000, 2
+gsSPVertex springboard_seg5_vertex_05001458, 16, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  0,  2,  3, 0x0
 gsSP1Triangle  4,  5,  6, 0x0
@@ -238,14 +240,14 @@ gsSP1Triangle  8,  9, 10, 0x0
 gsSP1Triangle  5, 11,  7, 0x0
 gsSP1Triangle  8, 12,  9, 0x0
 gsSP1Triangle 13, 14, 15, 0x0
-gsSPVertex capswitch_springboard_seg5_vertex_05001558, 16, 0
+gsSPVertex springboard_seg5_vertex_05001558, 16, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  4,  5, 0x0
 gsSP1Triangle  6,  7,  8, 0x0
 gsSP1Triangle  3,  9,  4, 0x0
 gsSP1Triangle 10, 11, 12, 0x0
 gsSP1Triangle 13, 14, 15, 0x0
-gsSPVertex capswitch_springboard_seg5_vertex_05001658, 6, 0
+gsSPVertex springboard_seg5_vertex_05001658, 6, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  4,  5, 0x0
 gsSPTexture -1, -1, 0, 0, 0
@@ -254,7 +256,7 @@ gsDPSetCombineMode G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_
 gsSPSetGeometryMode G_SHADING_SMOOTH
 gsSPEndDisplayList
 
-glabel capswitch_springboard_collision_05001A28 # 0x05001A28 - 0x05001B48
+glabel springboard_collision_05001A28 # 0x05001A28 - 0x05001B48
 # collision vertices
 .hword 0x0040, 0x000C
 .hword   205,     0,     0
@@ -327,59 +329,63 @@ glabel capswitch_springboard_collision_05001A28 # 0x05001A28 - 0x05001B48
 .hword     9,    11,    10
 .hword 0x0041
 .hword 0x0042
+.hword 0x0000
 
-# unknown data [0x1BA8] (balign?)
-.byte 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+.word 0
+.word 0
 
-capswitch_springboard_seg5_light_05001BB8: # 0x05001BB8
+# Capswitch
+
+.balign 8
+capswitch_seg5_light_05001BB8: # 0x05001BB8
 .byte 0x3F, 0x3F, 0x3F, 0x00, 0x3F, 0x3F, 0x3F, 0x00
 
-capswitch_springboard_seg5_light_05001BC0: # 0x05001BC0
+capswitch_seg5_light_05001BC0: # 0x05001BC0
 .byte 0xFF, 0xFF, 0xFF, 0x00, 0xFF, 0xFF, 0xFF, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-capswitch_springboard_seg5_light_05001BD0: # 0x05001BD0
+capswitch_seg5_light_05001BD0: # 0x05001BD0
 .byte 0x3F, 0x3F, 0x3F, 0x00, 0x3F, 0x3F, 0x3F, 0x00
 
-capswitch_springboard_seg5_light_05001BD8: # 0x05001BD8
+capswitch_seg5_light_05001BD8: # 0x05001BD8
 .byte 0xFF, 0xFF, 0xFF, 0x00, 0xFF, 0xFF, 0xFF, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-capswitch_springboard_seg5_light_05001BE8: # 0x05001BE8
+capswitch_seg5_light_05001BE8: # 0x05001BE8
 .byte 0x3F, 0x00, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00
 
-capswitch_springboard_seg5_light_05001BF0: # 0x05001BF0
+capswitch_seg5_light_05001BF0: # 0x05001BF0
 .byte 0xFF, 0x00, 0x00, 0x00, 0xFF, 0x00, 0x00, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-capswitch_springboard_seg5_light_05001C00: # 0x05001C00
+capswitch_seg5_light_05001C00: # 0x05001C00
 .byte 0x01, 0x2A, 0x09, 0x00, 0x01, 0x2A, 0x09, 0x00
 
-capswitch_springboard_seg5_light_05001C08: # 0x05001C08
+capswitch_seg5_light_05001C08: # 0x05001C08
 .byte 0x07, 0xA9, 0x25, 0x00, 0x07, 0xA9, 0x25, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-capswitch_springboard_seg5_light_05001C18: # 0x05001C18
+capswitch_seg5_light_05001C18: # 0x05001C18
 .byte 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00, 0x3F, 0x00
 
-capswitch_springboard_seg5_light_05001C20: # 0x05001C20
+capswitch_seg5_light_05001C20: # 0x05001C20
 .byte 0x00, 0x00, 0xFF, 0x00, 0x00, 0x00, 0xFF, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-capswitch_springboard_seg5_light_05001C30: # 0x05001C30
+capswitch_seg5_light_05001C30: # 0x05001C30
 .byte 0x3F, 0x25, 0x02, 0x00, 0x3F, 0x25, 0x02, 0x00
 
-capswitch_springboard_seg5_light_05001C38: # 0x05001C38
+capswitch_seg5_light_05001C38: # 0x05001C38
 .byte 0xFF, 0x96, 0x08, 0x00, 0xFF, 0x96, 0x08, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-capswitch_springboard_seg5_texture_05001C48: # 0x05001C48
-.incbin "build/bin/capswitch_springboard/capswitch_springboard.01C48.ia16"
+capswitch_seg5_texture_05001C48: # 0x05001C48
+.incbin "build/bin/capswitch_springboard/capswitch.01C48.ia16"
 
-capswitch_springboard_seg5_texture_05002C48: # 0x05002C48
-.incbin "build/bin/capswitch_springboard/capswitch_springboard.02C48.rgba16"
+capswitch_seg5_texture_05002C48: # 0x05002C48
+.incbin "build/bin/capswitch_springboard/capswitch.02C48.rgba16"
 
-capswitch_springboard_seg5_vertex_05002CC8: # 0x05002CC8
+capswitch_seg5_vertex_05002CC8: # 0x05002CC8
 vertex   -118,    262,   -203,   -130,    364,  0x00, 0x36, 0x8E, 0xFF
 vertex    130,      0,   -224,   1144,   2144,  0x00, 0x0A, 0x82, 0xFF
 vertex   -129,      0,   -224,   -184,   2144,  0x00, 0x0A, 0x82, 0xFF
@@ -393,13 +399,13 @@ vertex   -108,    352,    109,    -74,   -252,  0x00, 0x5C, 0x57, 0xFF
 vertex    130,      0,    225,   1144,   2144,  0x00, 0x0A, 0x7E, 0xFF
 vertex    109,    352,    109,   1034,   -252,  0x00, 0x5C, 0x57, 0xFF
 
-glabel capswitch_springboard_seg5_dl_05002D88 # 0x05002D88 - 0x05002E00
-gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_16b, 1, capswitch_springboard_seg5_texture_05001C48
+glabel capswitch_seg5_dl_05002D88 # 0x05002D88 - 0x05002E00
+gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_16b, 1, capswitch_seg5_texture_05001C48
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
-gsSPLight capswitch_springboard_seg5_light_05001BC0, 1
-gsSPLight capswitch_springboard_seg5_light_05001BB8, 2
-gsSPVertex capswitch_springboard_seg5_vertex_05002CC8, 12, 0
+gsSPLight capswitch_seg5_light_05001BC0, 1
+gsSPLight capswitch_seg5_light_05001BB8, 2
+gsSPVertex capswitch_seg5_vertex_05002CC8, 12, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  1,  0,  3, 0x0
 gsSP1Triangle  4,  3,  0, 0x0
@@ -410,7 +416,7 @@ gsSP1Triangle  7,  6, 10, 0x0
 gsSP1Triangle 11,  9,  7, 0x0
 gsSPEndDisplayList
 
-glabel cap_switch_seg5_dl_05002E00 # 0x05002E00 - 0x05002E60
+glabel capswitch_seg5_dl_05002E00 # 0x05002E00 - 0x05002E60
 gsDPPipeSync
 gsDPSetCombineMode G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_SHADE, G_ACMUX_0, G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_SHADE, G_ACMUX_0
 gsDPSetTile G_IM_FMT_IA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
@@ -418,13 +424,13 @@ gsSPTexture -1, -1, 0, 0, 1
 gsDPTileSync
 gsDPSetTile G_IM_FMT_IA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 6, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
 gsDPSetTileSize 0, 0, 0, 124, 252
-gsSPDisplayList capswitch_springboard_seg5_dl_05002D88
+gsSPDisplayList capswitch_seg5_dl_05002D88
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
 gsDPSetCombineMode G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPEndDisplayList
 
-capswitch_springboard_seg5_vertex_05002E60: # 0x05002E60
+capswitch_seg5_vertex_05002E60: # 0x05002E60
 vertex    147,      0,   -253,      0,    499,  0x29, 0x00, 0x88, 0xFF
 vertex   -146,      0,   -253,      0,   -436,  0xAD, 0x00, 0xA1, 0xFF
 vertex   -146,    137,   -253,    407,   -436,  0xD3, 0x48, 0xA3, 0xFF
@@ -442,7 +448,7 @@ vertex   -292,    137,      0,    407,   -904,  0x98, 0x48, 0xF9, 0xFF
 vertex   -110,    170,    193,    510,   -323,  0xDD, 0x72, 0x29, 0xFF
 vertex   -221,    170,      0,    510,   -678,  0xCB, 0x72, 0xF6, 0xFF
 
-capswitch_springboard_seg5_vertex_05002F60: # 0x05002F60
+capswitch_seg5_vertex_05002F60: # 0x05002F60
 vertex   -146,      0,   -253,      0,   -436,  0xAD, 0x00, 0xA1, 0xFF
 vertex   -292,      0,      0,      0,   -904,  0x84, 0x00, 0x17, 0xFF
 vertex   -292,    137,      0,    407,   -904,  0x98, 0x48, 0xF9, 0xFF
@@ -456,13 +462,13 @@ vertex    111,    170,    193,    510,    386,  0x11, 0x72, 0x33, 0xFF
 vertex   -110,    170,    193,    510,   -323,  0xDD, 0x72, 0x29, 0xFF
 vertex   -146,      0,    254,      0,   -436,  0xD7, 0x00, 0x77, 0xFF
 
-glabel capswitch_springboard_seg5_dl_05003020 # 0x05003020 - 0x05003120
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, capswitch_springboard_seg5_texture_05002C48
+glabel capswitch_seg5_dl_05003020 # 0x05003020 - 0x05003120
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, capswitch_seg5_texture_05002C48
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x03F, 0x200
-gsSPLight capswitch_springboard_seg5_light_05001BD8, 1
-gsSPLight capswitch_springboard_seg5_light_05001BD0, 2
-gsSPVertex capswitch_springboard_seg5_vertex_05002E60, 16, 0
+gsSPLight capswitch_seg5_light_05001BD8, 1
+gsSPLight capswitch_seg5_light_05001BD0, 2
+gsSPVertex capswitch_seg5_vertex_05002E60, 16, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  4,  5, 0x0
 gsSP1Triangle  4,  6,  5, 0x0
@@ -478,7 +484,7 @@ gsSP1Triangle  7,  0,  8, 0x0
 gsSP1Triangle  0,  2,  8, 0x0
 gsSP1Triangle 13, 14, 15, 0x0
 gsSP1Triangle  1, 13,  2, 0x0
-gsSPVertex capswitch_springboard_seg5_vertex_05002F60, 12, 0
+gsSPVertex capswitch_seg5_vertex_05002F60, 12, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  4,  5, 0x0
 gsSP1Triangle  4,  6,  5, 0x0
@@ -498,13 +504,13 @@ gsSPTexture -1, -1, 0, 0, 1
 gsDPTileSync
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 4, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 2, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 4, G_TX_NOLOD
 gsDPSetTileSize 0, 0, 0, 60, 12
-gsSPDisplayList capswitch_springboard_seg5_dl_05003020
+gsSPDisplayList capswitch_seg5_dl_05003020
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
 gsDPSetCombineMode G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPEndDisplayList
 
-capswitch_springboard_seg5_vertex_05003180: #0x05003180
+capswitch_seg5_vertex_05003180: #0x05003180
 vertex   -118,    262,   -203,      0,      0,  0xD9, 0x37, 0x95, 0xFF
 vertex    130,      0,   -224,      0,      0,  0x29, 0x0B, 0x89, 0xFF
 vertex   -129,      0,   -224,      0,      0,  0xAE, 0x0A, 0xA0, 0xFF
@@ -522,8 +528,8 @@ vertex    119,    262,    204,      0,      0,  0x27, 0x37, 0x6B, 0xFF
 vertex    109,    352,    109,      0,      0,  0x25, 0x75, 0x20, 0xFF
 vertex    130,      0,    225,      0,      0,  0x52, 0x0A, 0x5F, 0xFF
 
-glabel capswitch_springboard_seg5_dl_05003280 # 0x05003280 - 0x05003350
-gsSPVertex capswitch_springboard_seg5_vertex_05003180, 16, 0
+glabel capswitch_seg5_dl_05003280 # 0x05003280 - 0x05003350
+gsSPVertex capswitch_seg5_vertex_05003180, 16, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  1,  3,  4, 0x0
 gsSP1Triangle  1,  0,  3, 0x0
@@ -550,31 +556,31 @@ gsSP1Triangle  8, 15,  4, 0x0
 gsSP1Triangle  7, 14,  8, 0x0
 gsSPEndDisplayList
 
-glabel cap_switch_seg5_dl_05003350 # 0x05003350 - 0x05003370
-gsSPLight capswitch_springboard_seg5_light_05001BF0, 1
-gsSPLight capswitch_springboard_seg5_light_05001BE8, 2
-gsSPDisplayList capswitch_springboard_seg5_dl_05003280
+glabel capswitch_seg5_dl_05003350 # 0x05003350 - 0x05003370
+gsSPLight capswitch_seg5_light_05001BF0, 1
+gsSPLight capswitch_seg5_light_05001BE8, 2
+gsSPDisplayList capswitch_seg5_dl_05003280
 gsSPEndDisplayList
 
-glabel cap_switch_seg5_dl_05003370 # 0x05003370 - 0x05003390
-gsSPLight capswitch_springboard_seg5_light_05001C08, 1
-gsSPLight capswitch_springboard_seg5_light_05001C00, 2
-gsSPDisplayList capswitch_springboard_seg5_dl_05003280
+glabel capswitch_seg5_dl_05003370 # 0x05003370 - 0x05003390
+gsSPLight capswitch_seg5_light_05001C08, 1
+gsSPLight capswitch_seg5_light_05001C00, 2
+gsSPDisplayList capswitch_seg5_dl_05003280
 gsSPEndDisplayList
 
-glabel cap_switch_seg5_dl_05003390 # 0x05003390 - 0x050033B0
-gsSPLight capswitch_springboard_seg5_light_05001C20, 1
-gsSPLight capswitch_springboard_seg5_light_05001C18, 2
-gsSPDisplayList capswitch_springboard_seg5_dl_05003280
+glabel capswitch_seg5_dl_05003390 # 0x05003390 - 0x050033B0
+gsSPLight capswitch_seg5_light_05001C20, 1
+gsSPLight capswitch_seg5_light_05001C18, 2
+gsSPDisplayList capswitch_seg5_dl_05003280
 gsSPEndDisplayList
 
-glabel cap_switch_seg5_dl_050033B0 # 0x050033B0 - 0x050033D0
-gsSPLight capswitch_springboard_seg5_light_05001C38, 1
-gsSPLight capswitch_springboard_seg5_light_05001C30, 2
-gsSPDisplayList capswitch_springboard_seg5_dl_05003280
+glabel capswitch_seg5_dl_050033B0 # 0x050033B0 - 0x050033D0
+gsSPLight capswitch_seg5_light_05001C38, 1
+gsSPLight capswitch_seg5_light_05001C30, 2
+gsSPDisplayList capswitch_seg5_dl_05003280
 gsSPEndDisplayList
 
-glabel capswitch_springboard_collision_050033D0
+glabel capswitch_collision_050033D0
 # collision vertices
 .hword 0x0040, 0x0008
 .hword   292,     0,   254
@@ -599,7 +605,7 @@ glabel capswitch_springboard_collision_050033D0
 .hword     5,     0,     7
 .hword 0x0041
 .hword 0x0042
-glabel capswitch_springboard_collision_05003448
+glabel capswitch_collision_05003448
 # collision vertices
 .hword 0x0040, 0x0008
 .hword   292,     0,   254

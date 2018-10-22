@@ -322,7 +322,7 @@ glabel script_func_global_8
     return
 
 glabel script_func_global_9
-    cmd21 /*unk2*/ 0x4054, /*unk4*/ cap_switch_seg5_dl_05002E00
+    cmd21 /*unk2*/ 0x4054, /*unk4*/ capswitch_seg5_dl_05002E00
     cmd22 /*unk2*/ 0x0055, /*unk4*/ cap_switch_geo
     cmd21 /*unk2*/ 0x1056, /*unk4*/ cap_switch_base_seg5_dl_05003120
     return

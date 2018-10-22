@@ -433,24 +433,24 @@ void func_8027C4C0(struct GraphNodeDisplayListTranslated *a)
 
 void func_8027C988(struct GraphNodeObject_sub *a, int b)
 {
-    struct UnknownStruct5 *sp1C = a->curAnim;
+    struct Animation *sp1C = a->curAnim;
 
     if (b != 0)
         a->animFrame = func_8037C844(a, &a->animFrameAccelAssist);
     a->animTimer = gAreaUpdateCounter;
-    if (sp1C->unk00 & 8)
+    if (sp1C->flags & ANIM_FLAG_3)
         D_8033B008 = 2;
-    else if (sp1C->unk00 & 0x10)
+    else if (sp1C->flags & ANIM_FLAG_4)
         D_8033B008 = 3;
-    else if (sp1C->unk00 & 0x40)
+    else if (sp1C->flags & ANIM_FLAG_6)
         D_8033B008 = 4;
     else
         D_8033B008 = 1;
     //L8027CA50
     D_8033B00A = a->animFrame;
-    D_8033B009 = (sp1C->unk00 & 0x20) == 0;
-    D_8033B010 = segmented_to_virtual(sp1C->unk10);
-    D_8033B014 = segmented_to_virtual(sp1C->unk0C);
+    D_8033B009 = (sp1C->flags & ANIM_FLAG_5) == 0;
+    D_8033B010 = segmented_to_virtual(sp1C->index);
+    D_8033B014 = segmented_to_virtual(sp1C->values);
 
     if (sp1C->unk02 == 0)
         D_8033B00C = 1.0f;

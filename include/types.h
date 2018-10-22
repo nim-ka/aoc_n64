@@ -95,17 +95,25 @@ struct VblankHandler
 // NOTE: Since ObjectNode is the first member of Object, it is difficult to determine
 // whether some of these pointers point to ObjectNode or Object.
 
-// Animation?
-struct UnknownStruct5 {
-    /*0x00*/ s16 unk00; // flags
+#define ANIM_FLAG_NOLOOP (1 << 0) // 0x01
+#define ANIM_FLAG_1      (1 << 1) // 0x02
+#define ANIM_FLAG_2      (1 << 2) // 0x04
+#define ANIM_FLAG_3      (1 << 3) // 0x08
+#define ANIM_FLAG_4      (1 << 4) // 0x10
+#define ANIM_FLAG_5      (1 << 5) // 0x20
+#define ANIM_FLAG_6      (1 << 6) // 0x40
+#define ANIM_FLAG_7      (1 << 7) // 0x80
+
+struct Animation {
+    /*0x00*/ s16 flags;
     /*0x02*/ s16 unk02;
     /*0x04*/ s16 unk04;
     /*0x06*/ s16 unk06;
     /*0x08*/ s16 unk08;
     /*0x0A*/ s16 unk0A;
-    /*0x0C*/ void *unk0C;
-    /*0x10*/ void *unk10;
-    /*0x14*/ u32 terminator; // seems to always be 0 when ending a struct
+    /*0x0C*/ void *values;
+    /*0x10*/ void *index;
+    /*0x14*/ u32 length; // only used with Mario animations to determine how much to load. 0 otherwise.
 };
 
 struct GraphNode
@@ -123,7 +131,7 @@ struct GraphNodeObject_sub
 {
     /*0x00 0x38*/ s16 animID;
     /*0x02 0x3A*/ s16 animYTrans;
-    /*0x04 0x3C*/ struct UnknownStruct5 *curAnim;
+    /*0x04 0x3C*/ struct Animation *curAnim;
     /*0x08 0x40*/ s16 animFrame;
     /*0x0A 0x42*/ u16 animTimer;
     /*0x0C 0x44*/ s32 animFrameAccelAssist;

@@ -688,12 +688,12 @@ void func_8037C51C(struct GraphNodeObject *graphNode, struct SpawnInfo *sp1c)
 void func_8037C658(struct GraphNodeObject *graphNode, void *sp34)
 {
     void *sp2c = segmented_to_virtual(sp34);
-    struct UnknownStruct5 *sp28 = segmented_to_virtual((void*)*(s32*)sp2c);
+    struct Animation *sp28 = segmented_to_virtual((void*)*(s32*)sp2c);
 
     if(graphNode->unk38.curAnim != sp28)
     {
         graphNode->unk38.curAnim = sp28;
-        graphNode->unk38.animFrame = (sp28->unk04) + ((sp28->unk00 & 0x0002) ? 1 : -1);
+        graphNode->unk38.animFrame = (sp28->unk04) + ((sp28->flags & ANIM_FLAG_1) ? 1 : -1);
         graphNode->unk38.animAccel = 0;
         graphNode->unk38.animYTrans = 0;
     }
@@ -702,13 +702,13 @@ void func_8037C658(struct GraphNodeObject *graphNode, void *sp34)
 void func_8037C708(struct GraphNodeObject *graphNode, void *sp34, u32 sp38)
 {
     void **sp2c = segmented_to_virtual(sp34);
-    struct UnknownStruct5 *sp28 = segmented_to_virtual(sp2c[0]);
+    struct Animation *sp28 = segmented_to_virtual(sp2c[0]);
 
     if(graphNode->unk38.curAnim != sp28)
     {
         graphNode->unk38.curAnim = sp28;
         graphNode->unk38.animYTrans = 0;
-        graphNode->unk38.animFrameAccelAssist = (sp28->unk04 << 16) + ((sp28->unk00 & 0x0002) ? sp38 : -sp38);
+        graphNode->unk38.animFrameAccelAssist = (sp28->unk04 << 16) + ((sp28->flags & ANIM_FLAG_1) ? sp38 : -sp38);
         graphNode->unk38.animFrame = graphNode->unk38.animFrameAccelAssist >> 16;
     }
 
@@ -736,11 +736,11 @@ s32 func_8037C7D8(s32 a0, u16 **a1)
 s16 func_8037C844(struct GraphNodeObject_sub *a0, s32* a1)
 {
     s32 sp04;
-    struct UnknownStruct5 *sp00;
+    struct Animation *sp00;
     
     sp00 = a0->curAnim;
 
-    if(a0->animTimer == gAreaUpdateCounter || sp00->unk00 & 0x0004)
+    if(a0->animTimer == gAreaUpdateCounter || sp00->flags & ANIM_FLAG_2)
     {
         if(a1 != NULL)
         {
@@ -750,7 +750,7 @@ s16 func_8037C844(struct GraphNodeObject_sub *a0, s32* a1)
         return a0->animFrame;
     }
 
-    if(sp00->unk00 & 0x0002)
+    if(sp00->flags & ANIM_FLAG_1)
     {
         if(a0->animAccel)
         {
@@ -763,7 +763,7 @@ s16 func_8037C844(struct GraphNodeObject_sub *a0, s32* a1)
 
         if(*(s16*)&sp04 < sp00->unk06)
         {
-            if(sp00->unk00 & 0x0001)
+            if(sp00->flags & ANIM_FLAG_NOLOOP)
             {
                 *(s16 *)&sp04 = sp00->unk06;
             }
@@ -786,7 +786,7 @@ s16 func_8037C844(struct GraphNodeObject_sub *a0, s32* a1)
 
         if(*(s16 *)&sp04 >= sp00->unk08)
         {
-            if(sp00->unk00 & 0x0001)
+            if(sp00->flags & ANIM_FLAG_NOLOOP)
             {
                 *(s16 *) &sp04 = sp00->unk08 - 1;
             }
@@ -807,15 +807,15 @@ s16 func_8037C844(struct GraphNodeObject_sub *a0, s32* a1)
 
 void Unknown8037C9E8(struct GraphNodeObject *sp28, Vec3f sp2c)
 {
-    struct UnknownStruct5 *sp24 = sp28->unk38.curAnim;
+    struct Animation *sp24 = sp28->unk38.curAnim;
     u16 *sp20;
     s16 *sp1c;
     s16 sp1a;
     
     if(sp24 != NULL)
     {
-        sp20 = segmented_to_virtual(sp24->unk10);
-        sp1c = segmented_to_virtual(sp24->unk0C);
+        sp20 = segmented_to_virtual(sp24->index);
+        sp1c = segmented_to_virtual(sp24->values);
 
         sp1a = sp28->unk38.animFrame;
 

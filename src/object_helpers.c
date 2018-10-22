@@ -973,7 +973,7 @@ void func_8029F728() {
 }
 
 s32 func_8029F788() {
-    u32 spC = (s32) gCurrentObject->header.gfx.unk38.curAnim->unk00;
+    u32 spC = (s32) gCurrentObject->header.gfx.unk38.curAnim->flags;
     s32 sp8 = gCurrentObject->header.gfx.unk38.animFrame;
     s32 sp4 = gCurrentObject->header.gfx.unk38.curAnim->unk08 - 2;
     s32 sp0 = 0;

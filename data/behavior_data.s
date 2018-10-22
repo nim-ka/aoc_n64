@@ -420,7 +420,7 @@ glabel beh_thi_tiny_top # 0194
 glabel beh_cap_switch_collision_child # 01AC
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x09
-    collision_data capswitch_springboard_collision_05003448
+    collision_data capswitch_collision_05003448
     begin_loop
         callnative load_object_collision_model
     end_loop
@@ -428,7 +428,7 @@ glabel beh_cap_switch_collision_child # 01AC
 glabel beh_activate_cap_switch # 01CC
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x09
-    collision_data capswitch_springboard_collision_050033D0
+    collision_data capswitch_collision_050033D0
     begin_loop
         callnative BehActivateCapSwitchLoop
         callnative load_object_collision_model
@@ -1210,7 +1210,7 @@ glabel beh_wind # 0E70
 glabel beh_end_toad # 0E88
     begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
-    obj_set_int32 VAR_26, lakitu_toad_seg6_unklists_0600FB58
+    obj_set_int32 VAR_26, toad_seg6_anims_0600FB58
     unknown_28 0x00
     begin_loop
         callnative BehEndToadLoop
@@ -1219,7 +1219,7 @@ glabel beh_end_toad # 0E88
 glabel beh_end_peach # 0EAC
     begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
-    obj_set_int32 VAR_26, 0x0501C41C
+    obj_set_int32 VAR_26, peach_seg5_anims_0501C41C
     unknown_28 0x00
     begin_loop
         callnative BehEndPeachLoop
@@ -3175,7 +3175,7 @@ glabel beh_mario # 2EA0
 glabel beh_toad_message # 2ED8
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x4049
-    obj_set_int32 VAR_26, lakitu_toad_seg6_unklists_0600FB58
+    obj_set_int32 VAR_26, toad_seg6_anims_0600FB58
     unknown_28 0x06
     interact_type 0x00800000
     set_hitbox 0x0050, 0x0064
@@ -4536,7 +4536,7 @@ glabel beh_treasure_chest_top # 44C0
 glabel beh_mips # 44DC
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x0409
-    obj_set_int32 VAR_26, lakitu_toad_seg6_unklists_06015634
+    obj_set_int32 VAR_26, mips_seg6_anims_06015634
     obj_set_int VAR_2A, 0x02
     unknown_1E
     set_hitbox 0x0032, 0x004B
@@ -4549,7 +4549,7 @@ glabel beh_mips # 44DC
 glabel beh_yoshi # 4518
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2009
-    obj_set_int32 VAR_26, 0x05024100
+    obj_set_int32 VAR_26, yoshi_seg5_anims_05024100
     interact_type 0x00800000
     unknown_1E
     set_hitbox 0x00A0, 0x0096
@@ -4753,7 +4753,7 @@ glabel beh_evil_lakitu # 48F8
 glabel beh_lakitu # 4934
     begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x2041
-    obj_set_int32 VAR_26, lakitu_toad_seg6_unklists_060058F8
+    obj_set_int32 VAR_26, lakitu_seg6_anims_060058F8
     unknown_28 0x00
     callnative BehCommonInit
     callnative BehLakituInit
@@ -5304,7 +5304,7 @@ glabel beh_klepto # 52F0
 glabel beh_multiple_birds_flying # 5334
     begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x2049
-    obj_set_int32 VAR_26, 0x050009E8
+    obj_set_int32 VAR_26, birds_seg5_anims_050009E8
     unknown_28 0x00
     unhide
     scale 70
@@ -5462,7 +5462,7 @@ glabel beh_bubba # 55BC
 glabel beh_beginning_lakitu # 55F0
     begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
-    obj_set_int32 VAR_26, lakitu_toad_seg6_unklists_060058F8
+    obj_set_int32 VAR_26, lakitu_seg6_anims_060058F8
     unknown_28 0x00
     obj_set_float VAR_3D, 0x0000
     begin_loop
@@ -5472,7 +5472,7 @@ glabel beh_beginning_lakitu # 55F0
 glabel beh_beginning_peach # 5618
     begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
-    obj_set_int32 VAR_26, 0x0501C41C
+    obj_set_int32 VAR_26, peach_seg5_anims_0501C41C
     unknown_28 0x00
     begin_loop
         callnative BehBeginningPeachLoop
@@ -5481,7 +5481,7 @@ glabel beh_beginning_peach # 5618
 glabel beh_end_birds_1 # 563C
     begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x11
-    obj_set_int32 VAR_26, 0x050009E8
+    obj_set_int32 VAR_26, birds_seg5_anims_050009E8
     unknown_28 0x00
     begin_loop
         callnative BehEndBirds1Loop
@@ -5490,7 +5490,7 @@ glabel beh_end_birds_1 # 563C
 glabel beh_end_birds_2 # 5660
     begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x11
-    obj_set_int32 VAR_26, 0x050009E8
+    obj_set_int32 VAR_26, birds_seg5_anims_050009E8
     unknown_28 0x00
     begin_loop
         callnative BehEndBirds2Loop
