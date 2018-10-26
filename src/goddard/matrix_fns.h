@@ -31,7 +31,6 @@ extern void func_80194E7C(Mat4*, Mat4*);
 // extern ? func_80195C78(?);
 // extern ? Unknown80195D98(?);
 // extern ? func_80195FD4(?);
-extern void func_8018C30C(const char*); /* some sort of print function */
 extern void func_801961F4(Mat4*, struct MyVec3f*, f32);
 extern void set_identity_mat4(void *);      //Mat4*; something sort of matrix4x4_init?
 extern void mat4_cpy(Mat4*, Mat4*);

@@ -1093,7 +1093,7 @@ glabel func_80194A54
 /* 2432F8 80194B28 00000000 */   nop   
 .L80194B2C:
 /* 2432FC 80194B2C 3C04801C */  lui    $a0, %hi(D_801B87E0) 
-/* 243300 80194B30 0C063456 */  jal   myPrintf
+/* 243300 80194B30 0C063456 */  jal   fatal_printf
 /* 243304 80194B34 248487E0 */   addiu $a0, %lo(D_801B87E0) # addiu $a0, $a0, -0x7820
 .L80194B38:
 /* 243308 80194B38 C7AA0078 */  lwc1  $f10, 0x78($sp)
@@ -1364,7 +1364,7 @@ glabel func_80194E7C
 /* 2436C8 80194EF8 45000004 */  bc1f  .L80194F0C
 /* 2436CC 80194EFC 00000000 */   nop   
 /* 2436D0 80194F00 3C04801C */  lui   $a0, %hi(D_801B8800) # $a0, 0x801c
-/* 2436D4 80194F04 0C06342E */  jal   myPrint1
+/* 2436D4 80194F04 0C06342E */  jal   fatal_print
 /* 2436D8 80194F08 24848800 */   addiu $a0, %lo(D_801B8800) # addiu $a0, $a0, -0x7800
 .L80194F0C:
 /* 2436DC 80194F0C AFA0002C */  sw    $zero, 0x2c($sp)

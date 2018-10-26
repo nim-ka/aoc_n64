@@ -25,7 +25,7 @@ u32 __main__(void)
     UNUSED u32 pad1C;
 
     printf("%x, %x\n", (u32) &D_801A8058, (u32) &D_801A8050);
-    func_8018D420("main");
+    add_to_stacktrace("main");
     gd_init();
 
     D_801B9920.unk88 = 0.46799f;
@@ -35,16 +35,16 @@ u32 __main__(void)
     D_801B9920.unk54 = 0;
     D_801B9920.unkF0 = &D_801B9A18;
 
-    func_8018D420("main - make_scene");
+    add_to_stacktrace("main - make_scene");
     //TODO: rename to "make_scene"?; called function does nothing, so the note could be about all of these functions
     func_8017E20C();
     imout();
     
     _InitControllers();
-    func_8018C674();
+    print_all_memtrackers();
 
     start_timer("dlgen");
-    func_8018CF48("dlgen");
+    stop_timer("dlgen");
     mem_stats();
 
     while (TRUE)

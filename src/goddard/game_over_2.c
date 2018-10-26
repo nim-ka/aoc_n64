@@ -146,7 +146,7 @@ void draw_shape(struct ObjShape *shape, int b, float c, float d,
         if (D_801A80F4 != NULL)
             func_801A086C(-1, D_801A80F4, 64);
         else
-            myPrint1("Draw_shape(): Bad colour");
+            fatal_print("Draw_shape(): Bad colour");
     }
     else
     {
@@ -173,7 +173,7 @@ void draw_shape(struct ObjShape *shape, int b, float c, float d,
         func_8019F258(c, d, e);
     func_8017A218(shape);
     D_801B9C04 = 0;
-    func_8018CEEC("drawshape");
+    split_timer("drawshape");
 }
 
 /* 226FDC -> 2270D0; orig name: func_8017880C */
@@ -202,7 +202,7 @@ void draw_shape_2d(struct ObjShape *shape, int b,
         func_8019F19C(sp1C.x, sp1C.y, sp1C.z);
     }
     func_8017A218(shape);
-    func_8018CEEC("drawshape2d");
+    split_timer("drawshape2d");
 }
 
 /* 2270D0 -> 2272EC */
@@ -259,7 +259,7 @@ void draw_material(struct ObjMaterial *mtl)
             }
             else
             {
-                myPrintf("draw_material() no active camera for phong");
+                fatal_printf("draw_material() no active camera for phong");
             }
         }
         else
@@ -296,7 +296,7 @@ void Unknown80178CAC(struct ObjFace *face)
             return;
         }
         if (vtx->unk44 == 0x3F800000)  // maybe a float (1.0f)?
-            myPrintf("bad2 %x,%d,%d,%d\n", (u32) vtx, vtx->unk3C, vtx->unk38, vtx->header.type);
+            fatal_printf("bad2 %x,%d,%d,%d\n", (u32) vtx, vtx->unk3C, vtx->unk38, vtx->header.type);
     }
 }
 
@@ -374,7 +374,7 @@ void draw_face(struct ObjFace *self)
     int sp1C;
     struct ObjHeader* sp18;
 
-    func_8018D420("draw_face");
+    add_to_stacktrace("draw_face");
     sp1C = 0;
     if (D_801B9C04 == 0 && self->unk44 >= 0)
     {
@@ -485,9 +485,9 @@ void Proc80179350(struct ObjLabel *label)
             break;
         default:
             if (label->fmtstr != NULL)
-                func_8018DC98(strbuf, label->fmtstr);
+                gd_strcpy(strbuf, label->fmtstr);
             else
-                func_8018DC98(strbuf, "NONAME");
+                gd_strcpy(strbuf, "NONAME");
             break;
         }
     }
@@ -495,9 +495,9 @@ void Proc80179350(struct ObjLabel *label)
     {
         sp144.x = sp144.y = sp144.z = 0.0f;
         if (label->fmtstr != NULL)
-            func_8018DC98(strbuf, label->fmtstr);
+            gd_strcpy(strbuf, label->fmtstr);
         else
-            func_8018DC98(strbuf, "NONAME");
+            gd_strcpy(strbuf, "NONAME");
     }
     sp144.x += label->vec14.x;
     sp144.y += label->vec14.y;
@@ -671,7 +671,7 @@ void drawscene(int a, struct ObjGroup *groupB, struct ObjGroup* groupC)
     UNUSED u8 unused[16];
 
     restart_timer("drawscene");
-    func_8018D420("draw_scene()");
+    add_to_stacktrace("draw_scene()");
     D_801A8100 = 0;
     D_801B9CE8 = 0;
     restart_timer("draw1");
@@ -711,9 +711,9 @@ void drawscene(int a, struct ObjGroup *groupB, struct ObjGroup* groupC)
         D_801B9CE0.view->unk34 &= ~0x200000;
     D_801B9D80 = 1;
     apply_to_obj_types_in_group(OBJ_TYPE_LIGHTS, Proc8017A91C, D_801B9BB8);
-    func_8018CEEC("draw1");
+    split_timer("draw1");
     restart_timer("drawobj");
-    func_8018D420("process_group");
+    add_to_stacktrace("process_group");
     if (D_801B9C00 == 27)
         apply_to_obj_types_in_group(OBJ_TYPE_ALL, Unknown80179CC8, groupB);
     else
@@ -723,13 +723,13 @@ void drawscene(int a, struct ObjGroup *groupB, struct ObjGroup* groupC)
             groupB
         );
     imout();
-    func_8018CEEC("drawobj");
+    split_timer("drawobj");
     gd_setproperty(11, 0.0f, 0.0f, 0.0f);
     apply_to_obj_types_in_group(OBJ_TYPE_LABELS, apply_obj_draw_fn, groupB);
     gd_setproperty(11, 1.0f, 0.0f, 0.0f);
     func_8019F098();
     imout();
-    func_8018CEEC("drawscene");
+    split_timer("drawscene");
     return;
 }
 
@@ -858,7 +858,7 @@ void Proc8017A6A4(struct ObjHeader *a)
 void draw_group(struct ObjGroup *grp)
 {
     if (grp == NULL)
-        myPrint1("Draw_Group: Bad group definition!");
+        fatal_print("Draw_Group: Bad group definition!");
     apply_to_obj_types_in_group(OBJ_TYPE_ALL, apply_obj_draw_fn, grp);
 }
 
@@ -883,7 +883,7 @@ void Proc8017A818(struct ObjHeader *self)
 void apply_obj_draw_fn(struct ObjHeader *obj)
 {
     if (obj == NULL)
-        myPrint1("Bad object!");
+        fatal_print("Bad object!");
     if (obj->unk12 & 2)
         return;
     obj->objDrawFn(obj);
@@ -959,7 +959,7 @@ void update_shaders(struct ObjShape *shape, struct MyVec3f *b)
     if (shape->mtlGroup != NULL)
         apply_to_obj_types_in_group(OBJ_TYPE_MATERIALS, apply_obj_draw_fn, shape->mtlGroup);
     func_8019E894();
-    func_8018CEEC("updateshaders");
+    split_timer("updateshaders");
 }
 
 /* 229658 -> 2296AC */
@@ -1108,7 +1108,7 @@ void find_thisface_verts(struct ObjFace *face, struct ObjGroup *grp)
             link = link->next;
         }
         if (link == NULL)
-            myPrintf("find_thisface_verts(): Vertex not found");
+            fatal_printf("find_thisface_verts(): Vertex not found");
         face->vertices[i] = (struct ObjVertex*) link->obj;
     }
     calc_face_normal(face);
@@ -1122,7 +1122,7 @@ void map_vertices(struct ObjGroup *facegrp, struct ObjGroup *vtxgrp)
     register struct Links *vtxLink;
     struct ObjVertex *vtx;
 
-    func_8018D420("map_vertices");
+    add_to_stacktrace("map_vertices");
 
     faceLink = facegrp->link1C;
     while (faceLink != NULL)
@@ -1201,7 +1201,7 @@ void update_view(struct ObjView *view)
         view->unk34 &= ~0x100000;
         return;
     }
-    func_8018D420("UpdateView()");
+    add_to_stacktrace("UpdateView()");
     if (view->unk98 != NULL)
         view->unk98(view);
     if (!(view->unk34 & 0x100000))
@@ -1216,10 +1216,10 @@ void update_view(struct ObjView *view)
     }
     if (view->unk34 & 0x40000)
     {
-        func_8018CEEC("dlgen");
+        split_timer("dlgen");
         restart_timer("dynamics");
         func_8018145C(view);
-        func_8018CEEC("dynamics");
+        split_timer("dynamics");
         restart_timer("dlgen");
         D_801A80F8 = view->unk24;
     }
@@ -1250,7 +1250,7 @@ void update_view(struct ObjView *view)
                 D_801B9CD4 = 10000000.0f;
                 if (sp138 < 0)
                 {
-                    myPrintf("UpdateView(): Pick buffer too small");
+                    fatal_printf("UpdateView(): Pick buffer too small");
                 }
                 else if (sp138 > 0)
                 {
@@ -1263,16 +1263,16 @@ void update_view(struct ObjView *view)
                             switch ((sp128 = D_801B9C08[sp12C++]))
                             {
                             case 4:
-                                func_8018DC98(sp28, "J");
+                                gd_strcpy(sp28, "J");
                                 break;
                             case 32:
-                                func_8018DC98(sp28, "N");
+                                gd_strcpy(sp28, "N");
                                 break;
                             case 8:
-                                func_8018DC98(sp28, "P");
+                                gd_strcpy(sp28, "P");
                                 break;
                             default:
-                                func_8018DC98(sp28, "?");
+                                gd_strcpy(sp28, "?");
                                 break;
                             }
                         }

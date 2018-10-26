@@ -64,7 +64,7 @@ void calc_face_normal(struct ObjFace* face)
     f32 sp18;
 
     sp18 = 1000.0f;
-    func_8018D420("calc_facenormal");
+    add_to_stacktrace("calc_facenormal");
 
     if (face->vtxCount > 2)
     {
@@ -131,7 +131,7 @@ struct ObjFace* make_face_1(f32 x, f32 y, f32 z)
 {
     struct ObjFace* newFace;
 
-    func_8018D420("make_face");
+    add_to_stacktrace("make_face");
     newFace = (struct ObjFace*) make_object(OBJ_TYPE_FACES);
 
     newFace->vec14.x = x;
@@ -202,9 +202,9 @@ struct ObjShape* make_shape(s32 a0, char* name)
     newShape = (struct ObjShape*) make_object(OBJ_TYPE_SHAPES);
 
     if (name != NULL)
-        func_8018DC98(newShape->name, name);
+        gd_strcpy(newShape->name, name);
     else
-        func_8018DC98(newShape->name, "NoName");
+        gd_strcpy(newShape->name, "NoName");
 
     sGdShapeCount++;
 
@@ -265,7 +265,7 @@ s8 load_next_line_into_buf(void)
 {
     sGdLineBufCsr = 0;
 
-    if (func_8018DFE8(sGdShapeFile) != 0)
+    if (gd_feof(sGdShapeFile) != 0)
         sGdLineBuf[sGdLineBufCsr] = '\0';
     else
         func_8018E3D8(sGdLineBuf, 0xFF, sGdShapeFile);
@@ -338,7 +338,7 @@ s32 is_next_buf_word(char* a0)
 
     wordBuf[bufLength] = '\0';
 
-    return !func_8018DEB0(a0, wordBuf);
+    return !gd_str_not_equal(a0, wordBuf);
 }
 
 /* @ 246520 for 0x198; orig name: func_80197D50 */
@@ -350,10 +350,10 @@ s32 getfloat(f32* floatPtr)
     u32 sp34;
     f64 parsedDouble;
 
-    func_8018D420("getfloat");
+    add_to_stacktrace("getfloat");
 
     if (is_line_end(get_current_buf_char()))
-        myPrintf("getfloat(): Unexpected EOL");
+        fatal_printf("getfloat(): Unexpected EOL");
 
     while (is_white_space(get_current_buf_char()))
         get_and_advance_buf();
@@ -373,7 +373,7 @@ s32 getfloat(f32* floatPtr)
 
     charBuf[bufCsr] = '\0';
 
-    parsedDouble = func_8018D808(charBuf, &sp34);
+    parsedDouble = gd_lazy_atof(charBuf, &sp34);
     *floatPtr = (f32) parsedDouble;
 
     imout();
@@ -387,10 +387,10 @@ s32 getint(s32* intPtr)
     u32 bufCsr;
     char curChar;
 
-    func_8018D420("getint");
+    add_to_stacktrace("getint");
 
     if (is_line_end(get_current_buf_char()))
-        myPrintf("getint(): Unexpected EOL");
+        fatal_printf("getint(): Unexpected EOL");
 
     while (is_white_space(get_current_buf_char()))
         get_and_advance_buf();
@@ -405,7 +405,7 @@ s32 getint(s32* intPtr)
     }
 
     charBuf[bufCsr] = '\0';
-    *intPtr = func_8018D6A8(charBuf);
+    *intPtr = gd_atoi(charBuf);
 
     imout();
     return !!bufCsr;
@@ -607,7 +607,7 @@ void get_3DG1_shape(struct ObjShape* shape)
     struct ObjMaterial* mtl;
 
     shape->mtlGroup = make_group(0);
-    func_8018D420("get_3DG1_shape");
+    add_to_stacktrace("get_3DG1_shape");
 
     vtxPtrArr = func_8019BC18(72000 * sizeof(struct ObjVertex*));   //288,000 = 72,000 * 4
     facePtrArr = func_8019BC18(76000 * sizeof(struct ObjFace*));    //304,000 = 76,000 * 4
@@ -618,7 +618,7 @@ void get_3DG1_shape(struct ObjShape* shape)
 
     load_next_line_into_buf();
     if (!getint(&totalVtx))
-        myPrintf("Missing number of points");
+        fatal_printf("Missing number of points");
 
     load_next_line_into_buf();
     while (scan_to_next_non_whitespace())
@@ -635,7 +635,7 @@ void get_3DG1_shape(struct ObjShape* shape)
         vtxCount++;
 
         if (vtxCount >= 4000)
-            myPrintf("Too many vertices in shape data");
+            fatal_printf("Too many vertices in shape data");
 
         shape->vtxCount++;
         clear_buf_to_cr();
@@ -647,7 +647,7 @@ void get_3DG1_shape(struct ObjShape* shape)
     while (scan_to_next_non_whitespace())
     {
         if (!getint(&totalFacePoints))
-            myPrintf("Missing number of points in face");
+            fatal_printf("Missing number of points in face");
         
         mtl = find_or_add_new_mtl(shape->mtlGroup, 0, tempNormal.x, tempNormal.y, tempNormal.z);
         newFace = make_face_with_material(mtl);
@@ -658,7 +658,7 @@ void get_3DG1_shape(struct ObjShape* shape)
         facePtrArr[faceCount] = newFace;
         faceCount++;
         if (faceCount >= 4000)
-            myPrintf("Too many faces in shape data");
+            fatal_printf("Too many faces in shape data");
 
         curFaceVtx = 0;
         while (get_current_buf_char() != '\0')
@@ -666,7 +666,7 @@ void get_3DG1_shape(struct ObjShape* shape)
             getint(&faceVtxID);
 
             if (curFaceVtx > 3)
-                myPrintf("Too many points in a face(%d)", curFaceVtx);
+                fatal_printf("Too many points in a face(%d)", curFaceVtx);
 
             newFace->vertices[curFaceVtx] = vtxPtrArr[faceVtxID];
             curFaceVtx++;
@@ -678,7 +678,7 @@ void get_3DG1_shape(struct ObjShape* shape)
         newFace->vtxCount = curFaceVtx;
 
         if (newFace->vtxCount > 3)
-            myPrintf("Too many points in a face(%d)", newFace->vtxCount);
+            fatal_printf("Too many points in a face(%d)", newFace->vtxCount);
 
         calc_face_normal(newFace);
 
@@ -734,7 +734,7 @@ void get_OBJ_shape(struct ObjShape* shape)
                 vtxCount++;
 
                 if (vtxCount >= 4000)
-                    myPrintf("Too many vertices in shape data");
+                    fatal_printf("Too many vertices in shape data");
                 
                 shape->vtxCount++;
                 break;
@@ -745,7 +745,7 @@ void get_OBJ_shape(struct ObjShape* shape)
                 faceCount++;
 
                 if (faceCount >= 4000)
-                    myPrintf("Too many faces in shape data");
+                    fatal_printf("Too many faces in shape data");
 
                 curFaceVtx = 0;
                 while (get_current_buf_char() != '\0')
@@ -753,7 +753,7 @@ void get_OBJ_shape(struct ObjShape* shape)
                     getint(&faceVtxIndex);
 
                     if (curFaceVtx > 3)
-                        myPrintf("Too many points in a face(%d)", curFaceVtx);
+                        fatal_printf("Too many points in a face(%d)", curFaceVtx);
 
                     /* .obj vertex list is 1-indexed */
                     newFace->vertices[curFaceVtx] = vtxArr[faceVtxIndex - 1]; 
@@ -771,7 +771,7 @@ void get_OBJ_shape(struct ObjShape* shape)
                 newFace->vtxCount = curFaceVtx;
 
                 if (newFace->vtxCount > 3)
-                    myPrintf("Too many points in a face(%d)", newFace->vtxCount);
+                    fatal_printf("Too many points in a face(%d)", newFace->vtxCount);
 
                 calc_face_normal(newFace);
 
@@ -918,15 +918,15 @@ void read_ARK_shape(struct ObjShape* shape, char* fileName)
     sGdShapeFile = gd_fopen(fileName, "rb");
 
     if (sGdShapeFile == NULL)
-        myPrintf("Cant load shape '%s'", fileName);
+        fatal_printf("Cant load shape '%s'", fileName);
 
-    func_8018E23C(fileInfo.bytes, 0x48, 1, sGdShapeFile);
+    gd_fread(fileInfo.bytes, 0x48, 1, sGdShapeFile);
     func_801A5998(&fileInfo.bytes[0x40]);   //face count?
     func_801A5998(&fileInfo.bytes[0x44]);
 
     while (fileInfo.data.word40-- > 0)
     {
-        func_8018E23C(faceInfo.bytes, 0x10, 1, sGdShapeFile);
+        gd_fread(faceInfo.bytes, 0x10, 1, sGdShapeFile);
         func_801A59C0(&faceInfo.bytes[0x0]);
         func_801A59C0(&faceInfo.bytes[0x4]);
         func_801A59C0(&faceInfo.bytes[0x8]);
@@ -942,7 +942,7 @@ void read_ARK_shape(struct ObjShape* shape, char* fileName)
         while (faceInfo.data.faceCount-- > 0)
         {
             shape->faceCount++;
-            func_8018E23C(face.bytes, 0x10, 1, sGdShapeFile);
+            gd_fread(face.bytes, 0x10, 1, sGdShapeFile);
             func_801A59C0(&face.bytes[0x4]); // read word as float?
             func_801A59C0(&face.bytes[0x8]);
             func_801A59C0(&face.bytes[0xC]);
@@ -958,7 +958,7 @@ void read_ARK_shape(struct ObjShape* shape, char* fileName)
             {
                 while (face.data.vtxCount-- > 0)
                 {
-                    func_8018E23C(vtx.bytes, 0x18, 1, sGdShapeFile);
+                    gd_fread(vtx.bytes, 0x18, 1, sGdShapeFile);
                 }
                 continue;
             }
@@ -966,7 +966,7 @@ void read_ARK_shape(struct ObjShape* shape, char* fileName)
             while (face.data.vtxCount-- > 0)
             {
                 shape->vtxCount++;
-                func_8018E23C(vtx.bytes, 0x18, 1, sGdShapeFile);
+                gd_fread(vtx.bytes, 0x18, 1, sGdShapeFile);
                 func_801A59C0(&vtx.bytes[0x00]);
                 func_801A59C0(&vtx.bytes[0x04]);
                 func_801A59C0(&vtx.bytes[0x08]);
@@ -978,7 +978,7 @@ void read_ARK_shape(struct ObjShape* shape, char* fileName)
                 sp3C = gd_make_vertex(vtx.data.v[0], vtx.data.v[1], vtx.data.v[2]);
                 
                 if (sp44->vtxCount > 3)
-                    myPrintf("Too many points in a face(%d)", sp44->vtxCount);
+                    fatal_printf("Too many points in a face(%d)", sp44->vtxCount);
 
                 sp44->vertices[sp44->vtxCount] = sp3C;
                 sp44->vtxCount++;
@@ -993,7 +993,7 @@ void read_ARK_shape(struct ObjShape* shape, char* fileName)
 
     shape->vtxGroup = make_group_of_type(OBJ_TYPE_VERTICES, (struct ObjHeader*) sp38, NULL);
     shape->faceGroup = group_faces_in_mtl_grp(shape->mtlGroup, (struct ObjHeader*) sp40, NULL);
-    func_8018E368(sGdShapeFile);
+    gd_fclose(sGdShapeFile);
 }
 
 static const char* sUnusedLoadingSt = "Loading %s...\n";
@@ -1001,19 +1001,19 @@ static const char* sUnusedLoadingSt = "Loading %s...\n";
 /* @ 247E30 for 0x148; orig name: Unknown80199660 */
 struct GdFile* get_shape_from_file(struct ObjShape* shape, char* fileName)
 {
-    func_8018C30C(fileName);
+    start_memtracker(fileName);
     shape->unk3C = 0;
     shape->faceCount = 0;
     shape->vtxCount = 0;
 
-    if (func_8018DF58(fileName, ".ark"))
+    if (gd_str_contains(fileName, ".ark"))
     {
         read_ARK_shape(shape, fileName);
     } else {
         sGdShapeFile = gd_fopen(fileName, "r");
 
         if (sGdShapeFile == NULL)
-            myPrintf("Cant open shape '%s'", fileName);
+            fatal_printf("Cant open shape '%s'", fileName);
 
         sGdLineBufCsr = 0;
         sGdLineBuf[sGdLineBufCsr] = '\0';
@@ -1024,10 +1024,10 @@ struct GdFile* get_shape_from_file(struct ObjShape* shape, char* fileName)
         else
             get_OBJ_shape(shape);
 
-        func_8018E368(sGdShapeFile);
+        gd_fclose(sGdShapeFile);
     }
 
-    func_8018C458(fileName);
+    stop_memtracker(fileName);
 
     return sGdShapeFile;
 }
@@ -1183,7 +1183,7 @@ struct ObjNet* make_netfromshape(struct ObjShape* shape)
     struct ObjNet* newNet;
 
     if (shape == NULL)
-        myPrintf("make_netfromshape(): null shape ptr");
+        fatal_printf("make_netfromshape(): null shape ptr");
 
     D_801BAC78 = NULL;
     apply_to_obj_types_in_group(
@@ -1309,7 +1309,7 @@ s32 func_8019A378(void (*aniFn)(struct ObjAnimator*))
     struct ObjParticle* sp24;   //particle (?)
     
 
-    func_8018C30C("mario face");
+    start_memtracker("mario face");
     d_copystr_to_idbuf("l");
 
     dynid_is_int(TRUE);
@@ -1318,7 +1318,7 @@ s32 func_8019A378(void (*aniFn)(struct ObjAnimator*))
     dynid_is_int(FALSE);
     //FIXME: make segment address work once seg4 is disassembled 
     D_801A82E0 = load_dynlist(dynlist_04004F90);
-    func_8018C458("mario face");
+    stop_memtracker("mario face");
 
     sp2C = (struct ObjCamera*) d_makeobj(D_CAMERA, NULL);
     d_set_rel_pos(0.0f, 200.0f, 2000.0f);
@@ -1431,7 +1431,7 @@ s32 func_8019A378(void (*aniFn)(struct ObjAnimator*))
 /* @ 249288 for 0xe0 */
 void load_shapes2(void)
 {
-    func_8018D420("load_shapes2()");
+    add_to_stacktrace("load_shapes2()");
     reset_dynlist();
     func_80197280();
     sCubeShape = make_shape(0, "cube");

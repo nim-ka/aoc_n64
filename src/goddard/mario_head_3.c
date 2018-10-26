@@ -242,7 +242,7 @@ struct Connection *func_801825FC(struct ObjVertex *vtx1, struct ObjVertex *vtx2)
     struct MyVec3f sp1C;
 
     if (sp34 == NULL)
-        myPrint1("Cant allocate connection memory!");
+        fatal_print("Cant allocate connection memory!");
     sp34->unk1C.vtx = vtx1;
     sp34->unk20.vtx = vtx2;
     push_dynobj_stash();
@@ -507,7 +507,7 @@ void func_80183570(struct ObjGroup *group)
     start_timer("particles");
     gGdSkinNet = NULL;
     apply_to_obj_types_in_group(OBJ_TYPE_PARTICLES, Unknown80182C84, group);
-    func_8018CF48("particles");
+    stop_timer("particles");
 }
 
 #define ABS(x) ((x) < 0.0f ? -(x) : (x))

@@ -4,55 +4,84 @@
 #include <types.h>
 #include "gd_types.h"
 
-// extern ? func_8018C1B0(?);
-// extern ? func_8018C264(?);
-// extern ? func_8018C30C(?);
-// extern ? Unknown8018C410(?);
-extern void func_8018C458(const char*); /* printing function? */
-// extern ? func_8018C5C4(?);
-// extern ? func_8018C650(?);
-extern void func_8018C674(void);
-// extern ? func_8018C72C(?);
-// extern ? func_8018C7E0(?);
-// extern ? func_8018C7F8(?);
-// extern ? func_8018C814(?);
-// extern ? func_8018C948(?);
-// extern ? func_8018C9F4(?);
-// extern ? func_8018CAB4(?);
-// extern ? get_timernum(?);
-// extern ? func_8018CB80(?);
-// extern ? Unknown8018CC5C(?);
-// extern ? Unknown8018CCCC(?);
+// structs
+struct MemTracker {
+    /* 0x00 */ const char *name;
+    /* 0x04 */ f32 begin;   // in bytes?
+    /* 0x08 */ f32 end;
+    /* 0x0C */ f32 total;
+};
+
+struct GdTimer {
+    /* 0x00 */ s32 start;   // in cycles
+    /* 0x04 */ s32 end;     // in cycles
+    /* 0x08 */ s32 total;   // in cycles
+    /* 0x0C */ f32 unk0C;
+    /* 0x10 */ f32 scaledTotal;  // total / D_801A8694 (1.0f) Unused function modified value
+    /* 0x14 */ f32 prevScaledTotal;
+    /* 0x18 */ const char *name;
+    /* 0x1C */ s32 unk1C;
+    /* 0x20 */ s32 resetCount;
+}; // sizeof = 0x24
+
+union PrintVal {
+    f32 f;
+    s32 i;
+    s64 pad;
+};
+
+/* based on fields set in gd_fopen; func_8019BC18(84) for size */
+struct GdFile {
+    /* 0x00 */ u8  pad00[4];
+    /* 0x04 */ u32 pos;
+    /* 0x08 */ s8 *stream;
+    /* Known Flags for +0xC field:
+    ** 1 : write mode
+    ** 2 : binary mode
+    ** 4 : eof */
+    /* 0x0C */ u32 flags;   
+    /* 0x10 */ u8  pad10[0x50-0x10];
+    /* 0x50 */ u32 size;
+}; /* sizeof() = 0x54 */
+
+// bss
+extern u8 *gGdStreamBuffer;
+
+// functions
+extern struct MemTracker *start_memtracker(const char *);
+extern u32 stop_memtracker(const char *);
+extern void remove_all_memtrackers(void);
+extern struct MemTracker *get_memtracker_by_id(s32);
+extern void print_all_memtrackers(void);
+extern void print_all_timers(void);
+extern void deactivate_timing(void);
+extern void activate_timing(void);
+extern void remove_all_timers(void);
+extern struct GdTimer *get_timer(const char *);
+extern struct GdTimer *get_timernum(s32);
 extern void start_timer(const char *);
 extern void restart_timer(const char *);
-extern void func_8018CEEC(const char *);
-extern void func_8018CF48(const char *);
-// extern ? func_8018D020(?);
-// extern ? Unknown8018D1A8(?);
-extern void myPrint1(const char *);
-// extern ? func_8018D0E8(?);
-extern void myPrintf(const char *, ...);
-extern void func_8018D420(const char *);
+extern void split_timer(const char *);
+extern void stop_timer(const char *);
+extern f32 get_scaled_timer_total(const char *);
+extern void fatal_print(const char *);
+extern void fatal_printf(const char *, ...);
+extern void add_to_stacktrace(const char *);
 extern void imout(void);
-extern float func_8018D560(void);
-extern s32 func_8018D6A8(char*); /* s32 gd_atoi(char*) */
-extern f64 func_8018D808(char*, UNUSED u32*);   /* return (f64) gd_atoi(char*); lol */
-// extern ? func_8018D848(?);
-// extern ? func_8018D8A8(?);
-// extern ? func_8018D9A4(?);
-// extern ? func_8018D9F8(?);
-extern void func_8018DC98(char *, char *);  /* gd_strcpy? */
-// extern ? Unknown8018DCDC(?);
-// extern ? func_8018DD5C(?);
-extern u32 func_8018DDD8(char *);   /* gd_strlen ? */
-extern char *func_8018DE2C(char *, char *); /* gd_strcat ?? */
-extern s32 func_8018DEB0(char*, char*); /* gd_strcmp? */ 
-extern s32 func_8018DF58(char*, char*); // gd_strstr?
-extern s32 func_8018DFE8(struct GdFile*);  /* get GdFile->unk0C bit 3 (->0c & 0x4); file end reached? */
-// extern ? func_8018E00C(?);
-extern struct GdFile* gd_fopen(char*, char*);
-extern s32 func_8018E23C(s8*, s32, s32, struct GdFile*); /* read_into(buf*, number, size, fd*)? */
-extern void func_8018E368(struct GdFile*); /* gd_fclose? */
-// extern ? func_8018E384(?);
+extern f32 func_8018D560(void);
+extern s32 gd_atoi(const char*);
+extern f64 gd_lazy_atof(const char*, UNUSED u32*);
+extern char *sprint_val_withspecifiers(char *, union PrintVal, char *);
+extern void gd_strcpy(char *, const char *);
+extern char *gd_strdup(const char *);
+extern u32 gd_strlen(const char *);
+extern char *gd_strcat(char *, const char *);
+extern s32 gd_str_not_equal(const char *, const char *);
+extern s32 gd_str_contains(const char *, const char *);
+extern s32 gd_feof(struct GdFile*);
+extern struct GdFile* gd_fopen(const char *, const char *);
+extern s32 gd_fread(s8*, s32, s32, struct GdFile*);
+extern void gd_fclose(struct GdFile*);
+extern u32 gd_get_file_size(struct GdFile *);
 
 #endif /* _GD_PROFILERS_H_ */

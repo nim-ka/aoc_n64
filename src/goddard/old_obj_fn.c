@@ -29,7 +29,7 @@ void get_objvalue(union ObjVarVal *dst, enum ValPtrType type, void *base, s32 of
     {
         case OBJ_VALUE_INT:   dst->i = objAddr->i; break;
         case OBJ_VALUE_FLOAT: dst->f = objAddr->f; break;
-        default: myPrintf("%s: Undefined ValueType", "get_objvalue");
+        default: fatal_printf("%s: Undefined ValueType", "get_objvalue");
     }
 }
 
@@ -71,7 +71,7 @@ void cat_grp_name_to_buf(struct ObjGroup *group)
     if (group->debugPrint == 1)
     {
         sprintf(buf, "| %s %%x%d", group->name, (u32) group);
-        func_8018DE2C(sMenuStrBuf, buf); //gd_strcat?
+        gd_strcat(sMenuStrBuf, buf); //gd_strcat?
     }
 }
 
@@ -82,7 +82,7 @@ void *Unknown8018B900(struct ObjGroup *grp)
     void *defaultSettingMenu;
     void *controlerMenu;
 
-    func_8018DC98(sMenuStrBuf, "Default Settings %t %F");    //gd_strcpy?
+    gd_strcpy(sMenuStrBuf, "Default Settings %t %F");    //gd_strcpy?
     apply_to_obj_types_in_group(
         OBJ_TYPE_GROUPS,
         &cat_grp_name_to_buf,
@@ -95,7 +95,7 @@ void *Unknown8018B900(struct ObjGroup *grp)
         defaultSettingMenu,
         controlerMenu,
         &Proc801A4424,
-        &func_8019B9CC
+        &gd_exit
     );
 
     return mainMenu;
@@ -142,7 +142,7 @@ void set_objvalue(union ObjVarVal *src, enum ValPtrType type, void *base, s32 of
     {
         case OBJ_VALUE_INT:   dst->i = src->i; break;
         case OBJ_VALUE_FLOAT: dst->f = src->f; break;
-        default: myPrintf("%s: Undefined ValueType","set_objvalue");
+        default: fatal_printf("%s: Undefined ValueType","set_objvalue");
     }
 }
 
@@ -203,7 +203,7 @@ void adjust_gadget(struct ObjGadget *gdgt, s32 a1, s32 a2)
                 gdgt->varval.i = ((s32) (gdgt->unk28 * sp2C)) + gdgt->unk38;
                 break;
             default:
-                myPrintf("%s: Undefined ValueType","adjust_gadget");
+                fatal_printf("%s: Undefined ValueType","adjust_gadget");
         }
     } 
 
@@ -218,7 +218,7 @@ void reset_gadget(struct ObjGadget *gdgt)
     struct ObjValPtrs *vp;
 
     if (gdgt->unk3C - gdgt->unk38 == 0.0f)
-        myPrintf("gadget has zero range (%f -> %f)\n", (f64) gdgt->unk38, (f64) gdgt->unk3C);
+        fatal_printf("gadget has zero range (%f -> %f)\n", (f64) gdgt->unk38, (f64) gdgt->unk3C);
 
     sp34 = (f32) (1.0 / (gdgt->unk3C - gdgt->unk38));
 
@@ -237,7 +237,7 @@ void reset_gadget(struct ObjGadget *gdgt)
                 gdgt->unk28 = (gdgt->varval.i - gdgt->unk38) * sp34;
                 break;
             default:
-                myPrintf("%s: Undefined ValueType","reset_gadget");
+                fatal_printf("%s: Undefined ValueType","reset_gadget");
         }
     }
 }

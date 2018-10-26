@@ -3,40 +3,6 @@
 
 .section .bss
 
-glabel D_801BA190
-    .space 0x8
-glabel D_801BA198
-    .space 0x100
-glabel D_801BA298
-    .space 0x8
-glabel D_801BA2A0
-    .space 0x8
-glabel D_801BA2A8
-    .space 0x4
-glabel D_801BA2AC
-    .space 0x4
-glabel D_801BA2B0
-    .space 0x4
-glabel D_801BA2B4
-    .space 0x4
-glabel D_801BA2B8
-    .space 0x4
-glabel D_801BA2BC
-    .space 0x4
-glabel D_801BA2C0
-    .space 0x460
-glabel D_801BA720
-    .space 0x4
-glabel D_801BA724
-    .space 0x4
-glabel D_801BA728
-    .space 0x4
-glabel D_801BA72C
-    .space 0x1F0
-glabel D_801BA91C
-    .space 0x4
-glabel D_801BA920
-    .space 0x40
 glabel sTargetWeightID
     .space 0x4
 glabel D_801BA964

@@ -132,27 +132,28 @@ glabel gGdDynObjIdIsInt # @ 801A8270
    .word 0
    .word 0
 # Start of new file?
-glabel D_801A8280
+glabel gNumRoutinesInStack
    .word 0
 
 glabel D_801A8284
    .word 2, 1, 3, 4, 5, 8, 9
 
-glabel D_801A82A0
+glabel gNumActiveMemTrackers # @ 801A82A0
    .word 0
 
-glabel D_801A82A4
+glabel gGdPrimarySeed
    .word 0x12345678
 
-glabel D_801A82A8
+glabel gGdSecondarySeed
    .word 0x58374895
 
-glabel D_801A82AC
+glabel gGdHexNumerals
    .ascii "0123456789ABCDEF"
    .balign 0x10
 
-glabel D_801A82C0
+glabel gGdPadNumPrint
    .word 0
+# pad to next file
    .word 0
    .word 0
    .word 0

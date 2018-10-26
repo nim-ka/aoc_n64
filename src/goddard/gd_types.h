@@ -14,16 +14,6 @@ struct GdTriangleF {
     struct MyVec3f vec2;
 };
 
-/* based on fields set in gd_fopen; func_8019BC18(84) for size */
-struct GdFile {
-    /* 0x00 */ u8  pad00[4];
-    /* 0x04 */ u32 unk04;
-    /* 0x08 */ u32 unk08;
-    /* 0x0C */ u32 unk0C;   /* some sort of bit field */
-    /* 0x10 */ u8  pad10[0x50-0x10];
-    /* 0x50 */ u32 unk50;
-}; /* sizeof() = 0x54 */
-
 /* Goddard Code Object Structs */
 /* Object Type Flags */
 enum ObjTypeFlag {

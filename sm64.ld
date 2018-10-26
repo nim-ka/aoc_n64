@@ -348,7 +348,7 @@ SECTIONS
       build/src/goddard/mario_head_3.o(.text);
       build/src/goddard/mario_head_4.o(.text);
       build/src/goddard/old_obj_fn.o(.text);
-      build/asm/profiler_utils.o(.text);
+      build/src/goddard/profiler_utils.o(.text);
       build/asm/joint_fns.o(.text);
       build/asm/skin_fns.o(.text);
       build/asm/matrix_fns.o(.text);
@@ -371,7 +371,7 @@ SECTIONS
       build/src/goddard/mario_head_3.o(.rodata*);
       build/src/goddard/mario_head_4.o(.rodata*);
       build/src/goddard/old_obj_fn.o(.rodata*);
-      build/data/profiler_utils.rodata.o(.rodata*);
+      build/src/goddard/profiler_utils.o(.rodata*);
       build/data/joint_fns.rodata.o(.rodata*);
       build/data/skin_fns.rodata.o(.rodata*);
       build/data/matrix_fns.rodata.o(.rodata*);
@@ -394,6 +394,7 @@ SECTIONS
       build/src/goddard/mario_head_3.o(.bss*);
       build/src/goddard/mario_head_4.o(.bss*);
       build/src/goddard/old_obj_fn.o(.bss*);
+      build/src/goddard/profiler_utils.o(.bss*);
       build/data/bss3.o(.bss*);
    }
    END_NOLOAD(goddard)

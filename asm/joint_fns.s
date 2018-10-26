@@ -42,7 +42,7 @@ glabel func_8018E3D8
 /* 23CBC0 8018E3F0 8FA70030 */  lw    $a3, 0x30($sp)
 /* 23CBC4 8018E3F4 27A40027 */  addiu $a0, $sp, 0x27
 /* 23CBC8 8018E3F8 24050001 */  li    $a1, 1
-/* 23CBCC 8018E3FC 0C06388F */  jal   func_8018E23C
+/* 23CBCC 8018E3FC 0C06388F */  jal   gd_fread
 /* 23CBD0 8018E400 24060001 */   li    $a2, 1
 /* 23CBD4 8018E404 2401FFFF */  li    $at, -1
 /* 23CBD8 8018E408 14410003 */  bne   $v0, $at, .L8018E418
@@ -90,7 +90,7 @@ glabel func_8018E3D8
 /* 23CC6C 8018E49C 8FA70030 */  lw    $a3, 0x30($sp)
 /* 23CC70 8018E4A0 27A40027 */  addiu $a0, $sp, 0x27
 /* 23CC74 8018E4A4 24050001 */  li    $a1, 1
-/* 23CC78 8018E4A8 0C06388F */  jal   func_8018E23C
+/* 23CC78 8018E4A8 0C06388F */  jal   gd_fread
 /* 23CC7C 8018E4AC 24060001 */   li    $a2, 1
 /* 23CC80 8018E4B0 2401FFFF */  li    $at, -1
 /* 23CC84 8018E4B4 14410003 */  bne   $v0, $at, .L8018E4C4
@@ -1719,7 +1719,7 @@ glabel add_joint2bone   # func_8018FCA4
 /* 23E494 8018FCC4 11E10004 */  beq   $t7, $at, .L8018FCD8
 /* 23E498 8018FCC8 00000000 */   nop   
 /* 23E49C 8018FCCC 3C04801C */  lui   $a0, %hi(D_801B8420) # $a0, 0x801c
-/* 23E4A0 8018FCD0 0C063456 */  jal   myPrintf
+/* 23E4A0 8018FCD0 0C063456 */  jal   fatal_printf
 /* 23E4A4 8018FCD4 24848420 */   addiu $a0, %lo(D_801B8420) # addiu $a0, $a0, -0x7be0
 .L8018FCD8:
 /* 23E4A8 8018FCD8 8FB80018 */  lw    $t8, 0x18($sp)
@@ -2354,7 +2354,7 @@ glabel func_80190574
 /* 23EDB4 801905E4 11C00004 */  beqz  $t6, .L801905F8
 /* 23EDB8 801905E8 00000000 */   nop   
 /* 23EDBC 801905EC 3C04801C */  lui   $a0, %hi(D_801B8464) # $a0, 0x801c
-/* 23EDC0 801905F0 0C06342E */  jal   myPrint1
+/* 23EDC0 801905F0 0C06342E */  jal   fatal_print
 /* 23EDC4 801905F4 24848464 */   addiu $a0, %lo(D_801B8464) # addiu $a0, $a0, -0x7b9c
 .L801905F8:
 /* 23EDC8 801905F8 8FAF0280 */  lw    $t7, 0x280($sp)

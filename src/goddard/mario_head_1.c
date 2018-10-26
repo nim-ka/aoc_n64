@@ -166,7 +166,7 @@ struct ObjHeader* make_object(enum ObjTypeFlag objType)
     // to erase the object types of the various draw function pointers
     typedef void (*DrawFn)(void*);
 
-    func_8018D420("make_object");   //goddard_debug_log()?
+    add_to_stacktrace("make_object");   //goddard_debug_log()?
     switch (objType)
     {
         case OBJ_TYPE_JOINTS:
@@ -251,18 +251,18 @@ struct ObjHeader* make_object(enum ObjTypeFlag objType)
             objDrawFn = (DrawFn) &nop_obj_draw;
             break;
         default:
-            myPrint1("make_object() : Unkown object!");
+            fatal_print("make_object() : Unkown object!");
     }
 
     objNameStr = get_obj_name_str(objType);
-    func_8018C30C(objNameStr);
+    start_memtracker(objNameStr);
     
     newObj = gd_malloc(objSize, objAlignment);
     //! As the function doesn't exit early from this check, it could NULL dereference below 
     if (newObj == NULL)
-        myPrintf("Cant allocate object '%s' memory!", objNameStr);
+        fatal_printf("Cant allocate object '%s' memory!", objNameStr);
     
-    func_8018C458(objNameStr);
+    stop_memtracker(objNameStr);
 
     newObjBytes = (u8*) newObj;
     for (i = 0; i < objSize; i++)
@@ -319,14 +319,14 @@ struct Links* make_link_to_obj(struct Links* head, struct ObjHeader* a1)
 {   
     struct Links* newLink;
 
-    func_8018C30C("links");
+    start_memtracker("links");
 
     newLink = func_8019BC18(0x0C);
     //! Doesn't return early from NULL pointer. Dereferences later in function
     if (newLink == NULL)
-        myPrint1("Cant allocate link memory!");
+        fatal_print("Cant allocate link memory!");
     
-    func_8018C458("links");
+    stop_memtracker("links");
 
     if (head != NULL)
         head->next = newLink;
@@ -347,7 +347,7 @@ void* make_link_2(void* linkHead, struct ObjHeader* object)
     newLink = func_8019BC18(0x0C);
     //! Doesn't return early from NULL pointer. Dereferences later in function
     if (newLink == NULL)
-        myPrint1("Cant allocate link memory!");
+        fatal_print("Cant allocate link memory!");
     
     if (linkHead != NULL)
         ((struct Links*)linkHead)->next = newLink;
@@ -359,7 +359,7 @@ void* make_link_2(void* linkHead, struct ObjHeader* object)
     #pragma GCC diagnostic push
     #pragma GCC diagnostic ignored "-Wpointer-to-int-cast"
     if ( ((int) (newLink)) == 0x3F800000)
-        myPrintf("bad3\n");
+        fatal_printf("bad3\n");
     #pragma GCC diagnostic pop
     return newLink;
 }
@@ -390,7 +390,7 @@ void reset_plane(struct ObjPlane* plane)
     s32 sp30;
     register f32 sp28;
 
-    func_8018D420("reset_plane");
+    add_to_stacktrace("reset_plane");
 
     sp4C = plane->unk40;
     calc_face_normal(sp4C);
@@ -534,9 +534,9 @@ struct ObjMaterial* make_material(UNUSED s32 a0, char* name, s32 a2)
     newMtl = (struct ObjMaterial*) make_object(OBJ_TYPE_MATERIALS);
 
     if (name != NULL)
-        func_8018DC98(newMtl->name, name);
+        gd_strcpy(newMtl->name, name);
     else
-        func_8018DC98(newMtl->name, "NoName");
+        gd_strcpy(newMtl->name, "NoName");
 
     newMtl->unk1C = a2;
     newMtl->unk5C = 0;
@@ -553,9 +553,9 @@ struct ObjLight* make_light(s32 a0, char* name, s32 a2)
     newLight = (struct ObjLight*) make_object(OBJ_TYPE_LIGHTS);
 
     if (name != NULL)
-        func_8018DC98(newLight->name, name);
+        gd_strcpy(newLight->name, name);
     else
-        func_8018DC98(newLight->name, "NoName");
+        gd_strcpy(newLight->name, "NoName");
 
     newLight->unk1C = a2;
     newLight->unk30 = 1.0f;
@@ -747,7 +747,7 @@ struct ObjGroup* make_group(int count, ...)
         vargObj = va_arg(args, struct ObjHeader*);
 
         if (vargObj == NULL) // one of our pointers was NULL. raise an error.
-            myPrintf("make_group() NULL group ptr");
+            fatal_printf("make_group() NULL group ptr");
 
         curObj = vargObj;
         newGroup->groupObjTypes |= curObj->type;
@@ -778,7 +778,7 @@ void addto_group(struct ObjGroup* group, struct ObjHeader* obj)
     char strbuf[0x20];
     UNUSED u8 pad[0x8];
 
-    func_8018D420("addto_group");
+    add_to_stacktrace("addto_group");
 
     if (group->link1C == NULL)
     {
@@ -807,7 +807,7 @@ void addto_groupfirst(struct ObjGroup* group, struct ObjHeader* obj)
 {
     struct Links* newLink;
 
-    func_8018D420("addto_groupfirst");
+    add_to_stacktrace("addto_groupfirst");
 
     if (group->link1C == NULL)
     {
@@ -1644,11 +1644,11 @@ void move_animator(struct ObjAnimator* animObj)
                         func_8017F404(animObj->unk28, stubObj1, stubObj2);
                     }
                     else
-                        myPrintf("Too many objects to morph");
+                        fatal_printf("Too many objects to morph");
                 }
                 break;
             default:
-                myPrintf("move_animator(): Unkown animation data type");
+                fatal_printf("move_animator(): Unkown animation data type");
         }
         link = link->next;
     }
@@ -1731,7 +1731,7 @@ void move_animators(struct ObjGroup* group)
         (void (*)(void*)) &move_animator,
         group
     );
-    func_8018CEEC("move_animators");    //End timer? Print Timer?
+    split_timer("move_animators");    //End timer? Print Timer?
 }
 
 /* @ 22F144 for 0x3C */
@@ -1965,7 +1965,7 @@ void func_801813B0(void)
 /* @ 22FC2C for 0x98 */
 void func_8018145C(struct ObjView* a0)
 {
-    func_8018D420("movement");
+    add_to_stacktrace("movement");
     D_801B9DB8 = a0->unk24;
     D_801B9DBC = a0;
     if ((D_801B9E14 = a0->unk28) != NULL)

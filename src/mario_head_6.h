@@ -212,9 +212,9 @@
 // extern ? D_801B96C8;
 // extern ? D_801B96D0;
 
-// extern ? func_8019AF20(?);
-// extern ? func_8019AF40(?);
-// extern ? func_8019AF70(?);
+extern u32 func_8019AF20(void);
+extern s32 func_8019AF40(void);
+extern f32 func_8019AF70(void);
 // extern ? dumpDispList(?);
 // extern ? nextDisplayList(?);
 // extern ? nextLightList(?);
@@ -226,7 +226,7 @@
 extern f64 func_8019B35C(f64);  //"sqrt_d_limited" (return 0.0 below 1e-7)
 // extern ? Unknown8019B3D4(?);
 extern int printf(const char *format, ...);
-extern void func_8019B9CC(void *);  // TUI stuff?
+extern void gd_exit(s32);     // TUI stuff? a fatal or exit function?
 extern void func_8019BA04(void *);  /* free_mem_block call, so gd_free? */
 extern void* gd_allocblock(u32);
 extern void* gd_malloc(u32, u8);    /* gd_malloc(size, alignment? */
@@ -357,7 +357,7 @@ extern void func_801A520C(void);
 extern void gd_init(void);
 // extern ? Unknown801A5910(?);
 extern void func_801A5998(s8*);    /* convert LE bytes to BE word? */ 
-// extern ? func_801A59AC(?);
+extern void func_801A59AC(void *);
 extern void func_801A59C0(s8*);    /* convert LE bytes to BE float? */ 
 extern void func_801A59D4(void *, int);
 extern void func_801A5A04(int);

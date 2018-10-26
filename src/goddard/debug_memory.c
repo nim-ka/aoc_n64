@@ -82,7 +82,7 @@ struct GMemBlock* make_mem_block(u32 blockType, u8 permFlag)
         sEmptyBlockListHead = (struct GMemBlock*) gd_allocblock(sizeof(struct GMemBlock));
         //! missing early return
         if (sEmptyBlockListHead == NULL)
-            myPrintf("MakeMemBlock() unable to allocate");
+            fatal_printf("MakeMemBlock() unable to allocate");
 
         sEmptyBlockListHead->next = NULL;
         sEmptyBlockListHead->prev = NULL;
@@ -107,7 +107,7 @@ struct GMemBlock* make_mem_block(u32 blockType, u8 permFlag)
             sUsedBlockListHead = newMemBlock;
             break;
         default:
-            myPrintf("unkown memblock type");
+            fatal_printf("unkown memblock type");
     }
     newMemBlock->prev = NULL;
     newMemBlock->blockType = (u8) blockType;
@@ -135,7 +135,7 @@ u32 free_mem_block(void* data)
         }
     }
 
-    myPrintf("Free() Not a valid memory block");
+    fatal_printf("Free() Not a valid memory block");
     return 0;
 }
 
