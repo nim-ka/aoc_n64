@@ -2219,7 +2219,7 @@ glabel beh_tox_box # 1F90
 glabel beh_piranha_plant_2 # 1FBC
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2049
-    obj_set_int32 VAR_26, 0x0601C31C
+    obj_set_int32 VAR_26, piranha_plant_seg6_anims_0601C31C
     unknown_28 0x00
     interact_type 0x00000008
     set_hitbox 0x0064, 0x00C8
@@ -2957,8 +2957,8 @@ glabel beh_small_whomp # 2BB4
     obj_set_int VAR_44, 5
 .Lbeh_whomp_2BD4: # 2BBC
     obj_or_int VAR_01, 0x2049
-    obj_set_int32 VAR_26, 0x06020A04
-    collision_data 0x06020A0C
+    obj_set_int32 VAR_26, whomp_seg6_anims_06020A04
+    collision_data whomp_seg6_collision_06020A0C
     unknown_28 0x00
     unknown_30 0x0000, 0xFE70, 0xFFCE, 0x0000, 0x0000, 0x00C8, 0x0000, 0x0000
     unknown_2D
@@ -4565,7 +4565,7 @@ glabel beh_koopa # 4560
     begin OBJ_LIST_PUSHABLE
     obj_or_int VAR_01, 0x2041
     unknown_1E
-    obj_set_int32 VAR_26, 0x06011364
+    obj_set_int32 VAR_26, koopa_seg6_anims_06011364
     unknown_28 0x09
     unknown_2D
     unknown_30 0x0032, 0xFE70, 0x0000, 0x0000, 0x03E8, 0x00C8, 0x0000, 0x0000
@@ -4592,7 +4592,7 @@ glabel beh_koopa_flag # 45D8
     obj_set_int VAR_05, 0
     obj_or_int VAR_01, 0x01
     unknown_1E
-    obj_set_int32 VAR_26, 0x06001028
+    obj_set_int32 VAR_26, koopa_flag_seg6_anims_06001028
     unknown_28 0x00
     begin_loop
         callnative BehClimbDetectLoop
@@ -4668,7 +4668,7 @@ glabel beh_chain_chomp # 476C
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x20C9
     unknown_1E
-    obj_set_int32 VAR_26, 0x06025178
+    obj_set_int32 VAR_26, chain_chomp_seg6_anims_06025178
     unknown_28 0x00
     unknown_30 0x0000, 0xFE70, 0xFFCE, 0x0000, 0x03E8, 0x00C8, 0x0000, 0x0000
     unhide
@@ -4693,7 +4693,7 @@ glabel beh_chain_chomp_chains # 47C4
 
 glabel beh_poundable # 47FC
     begin OBJ_LIST_SURFACE
-    collision_data 0x06002490
+    collision_data poundable_pole_collision_06002490
     obj_or_int VAR_01, 0x2041
     unknown_30 0x0000, 0xFE70, 0xFFCE, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
     obj_set_int VAR_44, 5
@@ -5193,7 +5193,7 @@ glabel beh_piranha_plant # 5100
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2049
     unknown_1E
-    obj_set_int32 VAR_26, 0x0601C31C
+    obj_set_int32 VAR_26, piranha_plant_seg6_anims_0601C31C
     unknown_28 0x00
     unknown_2D
     unhide

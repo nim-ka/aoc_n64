@@ -18,7 +18,6 @@ BINARY_SEGMENTS := \
    flower_textures \
    hoot_thwomp_bullet_heave \
    klepto_eyerock_pokey \
-   koopa_log_piranha_whomp_chomp \
    mario_water_sparkles \
    mole_monkey_fwoosh \
    mri_swoop_snufit_dorrie_scuttlebug \
@@ -65,6 +64,7 @@ INSIDE_CASTLE_SEG7_FILES     := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/in
 INSIDE_CASTLE_TEXTURES_FILES := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/inside_castle_textures/*.png)))
 JRB_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/jrb_seg7/*.png)))
 JRB_TEXTURES_FILES           := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/jrb_textures/*.png)))
+KOOPA_LOG_FILES              := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/koopa_log_piranha_whomp_chomp/*.png)))
 LAKITU_TOAD_FILES            := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/lakitu_toad_mips_boo/*.png)))
 LLL_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/lll_seg7/*.png)))
 LLL_TEXTURES_FILES           := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/lll_textures/*.png)))
@@ -114,6 +114,7 @@ $(BUILD_DIR)/bin/inside_castle_seg7.o: $(addprefix $(BUILD_DIR)/bin/inside_castl
 $(BUILD_DIR)/bin/inside_castle_textures.o: $(addprefix $(BUILD_DIR)/bin/inside_castle_textures/,$(INSIDE_CASTLE_TEXTURES_FILES))
 $(BUILD_DIR)/bin/jrb_seg7.o: $(addprefix $(BUILD_DIR)/bin/jrb_seg7/,$(JRB_SEG7_FILES))
 $(BUILD_DIR)/bin/jrb_textures.o: $(addprefix $(BUILD_DIR)/bin/jrb_textures/,$(JRB_TEXTURES_FILES))
+$(BUILD_DIR)/bin/koopa_log_piranha_whomp_chomp.o: $(addprefix $(BUILD_DIR)/bin/koopa_log_piranha_whomp_chomp/,$(KOOPA_LOG_FILES))
 $(BUILD_DIR)/bin/lakitu_toad_mips_boo.o: $(addprefix $(BUILD_DIR)/bin/lakitu_toad_mips_boo/,$(LAKITU_TOAD_FILES))
 $(BUILD_DIR)/bin/lll_seg7.o: $(addprefix $(BUILD_DIR)/bin/lll_seg7/,$(LLL_SEG7_FILES))
 $(BUILD_DIR)/bin/lll_textures.o: $(addprefix $(BUILD_DIR)/bin/lll_textures/,$(LLL_TEXTURES_FILES))
@@ -158,6 +159,7 @@ $(BUILD_DIR)/bin/debug_level_select.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/hmc_seg7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/inside_castle_seg7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/jrb_seg7.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/koopa_log_piranha_whomp_chomp.elf: SEGMENT_ADDRESS := 0x06000000
 $(BUILD_DIR)/bin/lakitu_toad_mips_boo.elf: SEGMENT_ADDRESS := 0x06000000
 $(BUILD_DIR)/bin/lll_seg7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/peach_toadstool_yoshi_birds.elf: SEGMENT_ADDRESS := 0x05000000
