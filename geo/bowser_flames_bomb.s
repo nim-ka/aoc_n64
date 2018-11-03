@@ -8,20 +8,20 @@ glabel bowser_flames_geo # 0x0D000000
    geo_open_node
       geo_switch_case 14, GeoSwitchCase8029DB48
       geo_open_node
-         geo_display_list 0x05, bowser_flames_seg6_dl_0601C108
-         geo_display_list 0x05, bowser_flames_seg6_dl_0601C1A8
-         geo_display_list 0x05, bowser_flames_seg6_dl_0601C248
-         geo_display_list 0x05, bowser_flames_seg6_dl_0601C2E8
-         geo_display_list 0x05, bowser_flames_seg6_dl_0601C388
-         geo_display_list 0x05, bowser_flames_seg6_dl_0601C428
-         geo_display_list 0x05, bowser_flames_seg6_dl_0601C4C8
-         geo_display_list 0x05, bowser_flames_seg6_dl_0601C568
-         geo_display_list 0x05, bowser_flames_seg6_dl_0601C608
-         geo_display_list 0x05, bowser_flames_seg6_dl_0601C6A8
-         geo_display_list 0x05, bowser_flames_seg6_dl_0601C748
-         geo_display_list 0x05, bowser_flames_seg6_dl_0601C7E8
-         geo_display_list 0x05, bowser_flames_seg6_dl_0601C888
-         geo_display_list 0x05, bowser_flames_seg6_dl_0601C928
+         geo_display_list 0x05, flame_seg6_dl_0601C108
+         geo_display_list 0x05, flame_seg6_dl_0601C1A8
+         geo_display_list 0x05, flame_seg6_dl_0601C248
+         geo_display_list 0x05, flame_seg6_dl_0601C2E8
+         geo_display_list 0x05, flame_seg6_dl_0601C388
+         geo_display_list 0x05, flame_seg6_dl_0601C428
+         geo_display_list 0x05, flame_seg6_dl_0601C4C8
+         geo_display_list 0x05, flame_seg6_dl_0601C568
+         geo_display_list 0x05, flame_seg6_dl_0601C608
+         geo_display_list 0x05, flame_seg6_dl_0601C6A8
+         geo_display_list 0x05, flame_seg6_dl_0601C748
+         geo_display_list 0x05, flame_seg6_dl_0601C7E8
+         geo_display_list 0x05, flame_seg6_dl_0601C888
+         geo_display_list 0x05, flame_seg6_dl_0601C928
       geo_close_node
    geo_close_node
    geo_end
@@ -30,7 +30,7 @@ glabel invisible_bowser_accessory_geo # 0x0D000090
    geo_start_distance 10000
    geo_open_node
       geo_asm 20, Geo18_8029D924
-      geo_display_list 0x06, invisible_bowser_accessory_seg6_dl_0601EAC0
+      geo_display_list 0x06, impact_ring_seg6_dl_0601EAC0
    geo_close_node
    geo_end
 
@@ -39,7 +39,7 @@ glabel bowser_1_yellow_sphere_geo # 0x0D0000B0
    geo_open_node
       geo_billboard
       geo_open_node
-         geo_display_list 0x04, bowser_1_yellow_sphere_seg6_dl_0601F3C0
+         geo_display_list 0x04, yellow_sphere_seg6_dl_0601F3C0
       geo_close_node
    geo_close_node
    geo_end
@@ -460,11 +460,11 @@ glabel bowser_clouds_geo # 0x0D000BB8 / 0BFC
       geo_asm 0, Geo18_8029D924
       geo_switch_case 5, GeoSwitchCase8029DB48
       geo_open_node
-         geo_display_list 0x05, bowser_clouds_seg6_dl_06062B38
-         geo_display_list 0x05, bowser_clouds_seg6_dl_06062BD8
-         geo_display_list 0x05, bowser_clouds_seg6_dl_06062C78
-         geo_display_list 0x05, bowser_clouds_seg6_dl_06062D18
-         geo_display_list 0x05, bowser_clouds_seg6_dl_06062BD8
+         geo_display_list 0x05, smoke_seg6_dl_06062B38
+         geo_display_list 0x05, smoke_seg6_dl_06062BD8
+         geo_display_list 0x05, smoke_seg6_dl_06062C78
+         geo_display_list 0x05, smoke_seg6_dl_06062D18
+         geo_display_list 0x05, smoke_seg6_dl_06062BD8
       geo_close_node
    geo_close_node
    geo_end

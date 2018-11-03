@@ -16348,9 +16348,9 @@ glabel BehBowserFlameSpawnLoop
 /* 06E5A0 802B35A0 002D0821 */  addu  $at, $at, $t5
 /* 06E5A4 802B35A4 C4266000 */  lwc1  $f6, %lo(gSineTable)($at)
 /* 06E5A8 802B35A8 E7A60020 */  swc1  $f6, 0x20($sp)
-/* 06E5AC 802B35AC 3C040605 */  lui   $a0, %hi(D_060576FC) # $a0, 0x605
+/* 06E5AC 802B35AC 3C040605 */  lui   $a0, %hi(bowser_seg6_unkmoveshorts_060576FC) # $a0, 0x605
 /* 06E5B0 802B35B0 0C09DE68 */  jal   segmented_to_virtual
-/* 06E5B4 802B35B4 248476FC */   addiu $a0, %lo(D_060576FC) # addiu $a0, $a0, 0x76fc
+/* 06E5B4 802B35B4 248476FC */   addiu $a0, %lo(bowser_seg6_unkmoveshorts_060576FC) # addiu $a0, $a0, 0x76fc
 /* 06E5B8 802B35B8 AFA2001C */  sw    $v0, 0x1c($sp)
 /* 06E5BC 802B35BC 8FAE0034 */  lw    $t6, 0x34($sp)
 /* 06E5C0 802B35C0 24010006 */  li    $at, 6

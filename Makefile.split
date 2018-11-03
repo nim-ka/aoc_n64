@@ -7,7 +7,6 @@ BINARY_SEGMENTS := \
    bits_skybox \
    bobombs_bubble \
    boo_bookend_chair_piano \
-   bowser_flames_bomb \
    bubba_wiggler_lakitu \
    bully_blargg \
    ccm_skybox \
@@ -46,6 +45,7 @@ BITDW_SEG7_FILES             := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bi
 BOWSER_1_SEG7_FILES          := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bowser_1_seg7/*.png)))
 BOWSER_2_SEG7_FILES          := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bowser_2_seg7/*.png)))
 BOWSER_3_SEG7_FILES          := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bowser_3_seg7/*.png)))
+BOWSER_FLAMES_FILES          := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bowser_flames_bomb/*.png)))
 BOB_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bob_seg7/*.png)))
 BBH_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bbh_seg7/*.png)))
 BBH_TEXTURES_FILES           := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bbh_textures/*.png)))
@@ -96,6 +96,7 @@ $(BUILD_DIR)/bin/bitdw_seg7.o: $(addprefix $(BUILD_DIR)/bin/bitdw_seg7/,$(BITDW_
 $(BUILD_DIR)/bin/bowser_1_seg7.o: $(addprefix $(BUILD_DIR)/bin/bowser_1_seg7/,$(BOWSER_1_SEG7_FILES))
 $(BUILD_DIR)/bin/bowser_2_seg7.o: $(addprefix $(BUILD_DIR)/bin/bowser_2_seg7/,$(BOWSER_2_SEG7_FILES))
 $(BUILD_DIR)/bin/bowser_3_seg7.o: $(addprefix $(BUILD_DIR)/bin/bowser_3_seg7/,$(BOWSER_3_SEG7_FILES))
+$(BUILD_DIR)/bin/bowser_flames_bomb.o: $(addprefix $(BUILD_DIR)/bin/bowser_flames_bomb/,$(BOWSER_FLAMES_FILES))
 $(BUILD_DIR)/bin/bob_seg7.o: $(addprefix $(BUILD_DIR)/bin/bob_seg7/,$(BOB_SEG7_FILES))
 $(BUILD_DIR)/bin/bbh_seg7.o: $(addprefix $(BUILD_DIR)/bin/bbh_seg7/,$(BBH_SEG7_FILES))
 $(BUILD_DIR)/bin/bbh_textures.o: $(addprefix $(BUILD_DIR)/bin/bbh_textures/,$(BBH_TEXTURES_FILES))
@@ -150,6 +151,7 @@ $(BUILD_DIR)/bin/bits_seg7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/bowser_1_seg7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/bowser_2_seg7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/bowser_3_seg7.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/bowser_flames_bomb.elf: SEGMENT_ADDRESS := 0x06000000
 $(BUILD_DIR)/bin/bob_seg7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/castle_courtyard_seg7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/castle_grounds_seg7.elf: SEGMENT_ADDRESS := 0x07000000

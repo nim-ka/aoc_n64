@@ -1794,7 +1794,7 @@ glabel beh_bowser # 1850
     set_hitbox 0x0190, 0x0190
     unknown_1E
     unknown_2D
-    obj_set_int32 VAR_26, 0x06057690
+    obj_set_int32 VAR_26, bowser_seg6_anims_06057690
     unknown_1C 0x00000000, beh_bowser_body_anchor
     unknown_1C 0x00000065, beh_bowser_flame_spawn
     unknown_2C 0x00000000, beh_bowser_tail_anchor
