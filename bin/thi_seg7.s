@@ -19,10 +19,10 @@
 .equ wf_textures_0900B800, 0x0900B800
 
 thi_seg7_texture_07000000: # 0x07000000 - 0x07000002
-.incbin "build/bin/thi_seg7/thi_seg7.00000.rgba16"
+.incbin "bin/thi_seg7/thi_seg7.00000.rgba16"
 
 thi_seg7_texture_07000800: # 0x07000800 - 0x07000802
-.incbin "build/bin/thi_seg7/thi_seg7.00800.rgba16"
+.incbin "bin/thi_seg7/thi_seg7.00800.rgba16"
 
 thi_seg7_light_07001000: # 0x07001000 - 0x07001008
 .byte 0x7F, 0x7F, 0x7F, 0x00, 0x7F, 0x7F, 0x7F, 0x00

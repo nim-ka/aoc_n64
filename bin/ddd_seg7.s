@@ -13,19 +13,19 @@
 .equ jrb_textures_0900B800, 0x0900B800
 
 ddd_seg7_texture_07000000: # 0x07000000 - 0x07001000
-.incbin "build/bin/ddd_seg7/ddd_seg7.00000.rgba16"
+.incbin "bin/ddd_seg7/ddd_seg7.00000.rgba16"
 
 ddd_seg7_texture_07001000: # 0x07001000 - 0x07001800
-.incbin "build/bin/ddd_seg7/ddd_seg7.01000.rgba16"
+.incbin "bin/ddd_seg7/ddd_seg7.01000.rgba16"
 
 ddd_seg7_texture_07001800: # 0x07001800 - 0x07002000
-.incbin "build/bin/ddd_seg7/ddd_seg7.01800.rgba16"
+.incbin "bin/ddd_seg7/ddd_seg7.01800.rgba16"
 
 ddd_seg7_texture_07002000: # 0x07002000 - 0x07003000
-.incbin "build/bin/ddd_seg7/ddd_seg7.02000.rgba16"
+.incbin "bin/ddd_seg7/ddd_seg7.02000.rgba16"
 
 ddd_seg7_texture_07003000: # 0x07003000 - 0x07003800
-.incbin "build/bin/ddd_seg7/ddd_seg7.03000.rgba16"
+.incbin "bin/ddd_seg7/ddd_seg7.03000.rgba16"
 
 ddd_seg7_light_07003800: # 0x07003800 - 0x07003808
 .byte 0x3F, 0x3F, 0x3F, 0x00, 0x3F, 0x3F, 0x3F, 0x00

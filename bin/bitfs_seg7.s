@@ -15,13 +15,13 @@
 .equ rr_textures_09007800, 0x09007800
 
 bitfs_seg7_texture_07000000: # 0x07000000 - 0x07001000
-.incbin "build/bin/bitfs_seg7/bitfs_seg7.00000.rgba16"
+.incbin "bin/bitfs_seg7/bitfs_seg7.00000.rgba16"
 
 bitfs_seg7_texture_07001000: # 0x07001000 - 0x07001800
-.incbin "build/bin/bitfs_seg7/bitfs_seg7.01000.rgba16"
+.incbin "bin/bitfs_seg7/bitfs_seg7.01000.rgba16"
 
 bitfs_seg7_texture_07001800: # 0x07001800 - 0x07002000
-.incbin "build/bin/bitfs_seg7/bitfs_seg7.01800.rgba16"
+.incbin "bin/bitfs_seg7/bitfs_seg7.01800.rgba16"
 
 bitfs_seg7_vertex_07002000: # 0x07002000 - 0x070020C0
 vertex   1280,    348,   -293,    990,      0,  0xFF, 0xFF, 0xFF, 0xFF

@@ -7,22 +7,22 @@
 
 .balign 8
 lakitu_seg6_texture_06000000: # 0x06000000
-.incbin "build/bin/lakitu_toad_mips_boo/lakitu.00000.rgba16"
+.incbin "bin/lakitu_toad_mips_boo/lakitu.00000.rgba16"
 
 lakitu_seg6_texture_06000800: # 0x06000800
-.incbin "build/bin/lakitu_toad_mips_boo/lakitu.00800.rgba16"
+.incbin "bin/lakitu_toad_mips_boo/lakitu.00800.rgba16"
 
 lakitu_seg6_texture_06001800: # 0x06001800
-.incbin "build/bin/lakitu_toad_mips_boo/lakitu.01800.rgba16"
+.incbin "bin/lakitu_toad_mips_boo/lakitu.01800.rgba16"
 
 lakitu_seg6_texture_06002800: # 0x06002800
-.incbin "build/bin/lakitu_toad_mips_boo/lakitu.02800.rgba16"
+.incbin "bin/lakitu_toad_mips_boo/lakitu.02800.rgba16"
 
 lakitu_seg6_texture_06003000: # 0x06003000
-.incbin "build/bin/lakitu_toad_mips_boo/lakitu.03000.rgba16"
+.incbin "bin/lakitu_toad_mips_boo/lakitu.03000.rgba16"
 
 lakitu_seg6_texture_06003800: # 0x06003800
-.incbin "build/bin/lakitu_toad_mips_boo/lakitu.03800.rgba16"
+.incbin "bin/lakitu_toad_mips_boo/lakitu.03800.rgba16"
 
 lakitu_seg6_light_06003A00: # 0x06003A00
 .byte 0x7F, 0x7F, 0x7F, 0x00, 0x7F, 0x7F, 0x7F, 0x00
@@ -877,10 +877,10 @@ toad_seg6_light_06005910: # 0x06005910
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 toad_seg6_texture_06005920: # 0x06005920
-.incbin "build/bin/lakitu_toad_mips_boo/toad.05920.rgba16"
+.incbin "bin/lakitu_toad_mips_boo/toad.05920.rgba16"
 
 toad_seg6_texture_06006120: # 0x06006120
-.incbin "build/bin/lakitu_toad_mips_boo/toad.06120.rgba16"
+.incbin "bin/lakitu_toad_mips_boo/toad.06120.rgba16"
 
 toad_seg6_vertex_06006920: # 0x06006920
 vertex    -43,   -102,    106,     36,    848,  0xBA, 0xCC, 0x5B, 0xFF
@@ -3722,7 +3722,7 @@ glabel toad_seg6_anims_0600FB58 # 0x0600FB58
 
 .balign 8
 mips_seg6_texture_0600FB80: # 0x0600FB80
-.incbin "build/bin/lakitu_toad_mips_boo/mips.0FB80.rgba16"
+.incbin "bin/lakitu_toad_mips_boo/mips.0FB80.rgba16"
 
 mips_seg6_light_06010380: # 0x06010380
 .byte 0x66, 0x66, 0x66, 0x00, 0x66, 0x66, 0x66, 0x00
@@ -5584,10 +5584,10 @@ boo_seg6_light_06015660: # 0x06015660
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 boo_seg6_texture_06015670: # 0x06015670
-.incbin "build/bin/lakitu_toad_mips_boo/boo.15670.rgba16"
+.incbin "bin/lakitu_toad_mips_boo/boo.15670.rgba16"
 
 boo_seg6_texture_06016670: # 0x06016670
-.incbin "build/bin/lakitu_toad_mips_boo/boo.16670.rgba16"
+.incbin "bin/lakitu_toad_mips_boo/boo.16670.rgba16"
 
 boo_seg6_vertex_06016E70: # 0x06016E70
 vertex      0,   -117,    131,    458,    990,  0x00, 0x9D, 0x4E, 0x9E

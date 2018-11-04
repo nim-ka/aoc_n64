@@ -23,25 +23,25 @@
 .equ bbh_textures_0900B800, 0x0900B800
 
 bbh_seg7_texture_07000000: # 0x07000000 - 0x07001000
-.incbin "build/bin/bbh_seg7/bbh_seg7.00000.rgba16"
+.incbin "bin/bbh_seg7/bbh_seg7.00000.rgba16"
 
 bbh_seg7_texture_07001000: # 0x07001000 - 0x07001800
-.incbin "build/bin/bbh_seg7/bbh_seg7.01000.rgba16"
+.incbin "bin/bbh_seg7/bbh_seg7.01000.rgba16"
 
 bbh_seg7_texture_07001800: # 0x07001800 - 0x07002000
-.incbin "build/bin/bbh_seg7/bbh_seg7.01800.rgba16"
+.incbin "bin/bbh_seg7/bbh_seg7.01800.rgba16"
 
 bbh_seg7_texture_07002000: # 0x07002000 - 0x07003000
-.incbin "build/bin/bbh_seg7/bbh_seg7.02000.rgba16"
+.incbin "bin/bbh_seg7/bbh_seg7.02000.rgba16"
 
 bbh_seg7_texture_07003000: # 0x07003000 - 0x07003400
-.incbin "build/bin/bbh_seg7/bbh_seg7.03000.rgba16"
+.incbin "bin/bbh_seg7/bbh_seg7.03000.rgba16"
 
 bbh_seg7_texture_07003400: # 0x07003400 - 0x07004400
-.incbin "build/bin/bbh_seg7/bbh_seg7.03400.rgba16"
+.incbin "bin/bbh_seg7/bbh_seg7.03400.rgba16"
 
 bbh_seg7_texture_07004400: # 0x07004400 - 0x07004800
-.incbin "build/bin/bbh_seg7/bbh_seg7.04400.rgba16"
+.incbin "bin/bbh_seg7/bbh_seg7.04400.rgba16"
 
 bbh_seg7_light_07004800: # 0x07004800 - 0x07004808
 .byte 0x20, 0x20, 0x20, 0x00, 0x20, 0x20, 0x20, 0x00

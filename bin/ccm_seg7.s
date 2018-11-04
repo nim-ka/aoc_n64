@@ -23,40 +23,40 @@
 .equ ccm_textures_09009800, 0x09009800
 
 ccm_seg7_texture_07000000: # 0x07000000 - 0x07000800
-.incbin "build/bin/ccm_seg7/ccm_seg7.00000.rgba16"
+.incbin "bin/ccm_seg7/ccm_seg7.00000.rgba16"
 
 ccm_seg7_texture_07000800: # 0x07000800 - 0x07000900
-.incbin "build/bin/ccm_seg7/ccm_seg7.00800.rgba16"
+.incbin "bin/ccm_seg7/ccm_seg7.00800.rgba16"
 
 ccm_seg7_texture_07000900: # 0x07000900 - 0x07001100
-.incbin "build/bin/ccm_seg7/ccm_seg7.00900.rgba16"
+.incbin "bin/ccm_seg7/ccm_seg7.00900.rgba16"
 
 ccm_seg7_texture_07001100: # 0x07001100 - 0x07001900
-.incbin "build/bin/ccm_seg7/ccm_seg7.01100.rgba16"
+.incbin "bin/ccm_seg7/ccm_seg7.01100.rgba16"
 
 ccm_seg7_texture_07001900: # 0x07001900 - 0x07002100
-.incbin "build/bin/ccm_seg7/ccm_seg7.01900.rgba16"
+.incbin "bin/ccm_seg7/ccm_seg7.01900.rgba16"
 
 ccm_seg7_texture_07002100: # 0x07002100 - 0x07002900
-.incbin "build/bin/ccm_seg7/ccm_seg7.02100.rgba16"
+.incbin "bin/ccm_seg7/ccm_seg7.02100.rgba16"
 
 ccm_seg7_texture_07002900: # 0x07002900 - 0x07003100
-.incbin "build/bin/ccm_seg7/ccm_seg7.02900.rgba16"
+.incbin "bin/ccm_seg7/ccm_seg7.02900.rgba16"
 
 ccm_seg7_texture_07003100: # 0x07003100 - 0x07003900
-.incbin "build/bin/ccm_seg7/ccm_seg7.03100.rgba16"
+.incbin "bin/ccm_seg7/ccm_seg7.03100.rgba16"
 
 ccm_seg7_texture_07003900: # 0x07003900 - 0x07003B00
-.incbin "build/bin/ccm_seg7/ccm_seg7.03900.ia16"
+.incbin "bin/ccm_seg7/ccm_seg7.03900.ia16"
 
 ccm_seg7_texture_07003B00: # 0x07003B00 - 0x07004300
-.incbin "build/bin/ccm_seg7/ccm_seg7.03B00.ia16"
+.incbin "bin/ccm_seg7/ccm_seg7.03B00.ia16"
 
 ccm_seg7_texture_07004300: # 0x07004300 - 0x07004B00
-.incbin "build/bin/ccm_seg7/ccm_seg7.04300.rgba16"
+.incbin "bin/ccm_seg7/ccm_seg7.04300.rgba16"
 
 ccm_seg7_texture_07004B00: # 0x07004B00 - 0x07005300
-.incbin "build/bin/ccm_seg7/ccm_seg7.04B00.rgba16"
+.incbin "bin/ccm_seg7/ccm_seg7.04B00.rgba16"
 
 ccm_seg7_light_07005300: # 0x07005300 - 0x07005308
 .byte 0x7F, 0x7F, 0x7F, 0x00, 0x7F, 0x7F, 0x7F, 0x00
@@ -4781,7 +4781,7 @@ ccm_seg7_light_07011948: # 0x07011948 - 0x07011958
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 ccm_seg7_texture_07011958: # 0x07011958 - 0x07012158
-.incbin "build/bin/ccm_seg7/ccm_seg7.11958.rgba16"
+.incbin "bin/ccm_seg7/ccm_seg7.11958.rgba16"
 
 ccm_seg7_vertex_07012158: # 0x07012158 - 0x07012258
 vertex      0,    -62,    195,    990,   1396,  0x00, 0xD9, 0x78, 0xFF

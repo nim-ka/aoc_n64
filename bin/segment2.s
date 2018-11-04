@@ -4,1053 +4,1053 @@
 .include "ultra64/gbi.inc"
 
 seg2_texture_02000000:
-.incbin "build/bin/segment2/segment2.00000.rgba16"
+.incbin "bin/segment2/segment2.00000.rgba16"
 
 seg2_texture_02000200:
-.incbin "build/bin/segment2/segment2.00200.rgba16"
+.incbin "bin/segment2/segment2.00200.rgba16"
 
 seg2_texture_02000400:
-.incbin "build/bin/segment2/segment2.00400.rgba16"
+.incbin "bin/segment2/segment2.00400.rgba16"
 
 seg2_texture_02000600:
-.incbin "build/bin/segment2/segment2.00600.rgba16"
+.incbin "bin/segment2/segment2.00600.rgba16"
 
 seg2_texture_02000800:
-.incbin "build/bin/segment2/segment2.00800.rgba16"
+.incbin "bin/segment2/segment2.00800.rgba16"
 
 seg2_texture_02000A00:
-.incbin "build/bin/segment2/segment2.00A00.rgba16"
+.incbin "bin/segment2/segment2.00A00.rgba16"
 
 seg2_texture_02000C00:
-.incbin "build/bin/segment2/segment2.00C00.rgba16"
+.incbin "bin/segment2/segment2.00C00.rgba16"
 
 seg2_texture_02000E00:
-.incbin "build/bin/segment2/segment2.00E00.rgba16"
+.incbin "bin/segment2/segment2.00E00.rgba16"
 
 seg2_texture_02001000:
-.incbin "build/bin/segment2/segment2.01000.rgba16"
+.incbin "bin/segment2/segment2.01000.rgba16"
 
 seg2_texture_02001200:
-.incbin "build/bin/segment2/segment2.01200.rgba16"
+.incbin "bin/segment2/segment2.01200.rgba16"
 
 seg2_texture_02001400:
-.incbin "build/bin/segment2/segment2.01400.rgba16"
+.incbin "bin/segment2/segment2.01400.rgba16"
 
 seg2_texture_02001600:
-.incbin "build/bin/segment2/segment2.01600.rgba16"
+.incbin "bin/segment2/segment2.01600.rgba16"
 
 seg2_texture_02001800:
-.incbin "build/bin/segment2/segment2.01800.rgba16"
+.incbin "bin/segment2/segment2.01800.rgba16"
 
 seg2_texture_02001A00:
-.incbin "build/bin/segment2/segment2.01A00.rgba16"
+.incbin "bin/segment2/segment2.01A00.rgba16"
 
 seg2_texture_02001C00:
-.incbin "build/bin/segment2/segment2.01C00.rgba16"
+.incbin "bin/segment2/segment2.01C00.rgba16"
 
 seg2_texture_02001E00:
-.incbin "build/bin/segment2/segment2.01E00.rgba16"
+.incbin "bin/segment2/segment2.01E00.rgba16"
 
 seg2_texture_02002000:
-.incbin "build/bin/segment2/segment2.02000.rgba16"
+.incbin "bin/segment2/segment2.02000.rgba16"
 
 seg2_texture_02002200:
-.incbin "build/bin/segment2/segment2.02200.rgba16"
+.incbin "bin/segment2/segment2.02200.rgba16"
 
 seg2_texture_02002400:
-.incbin "build/bin/segment2/segment2.02400.rgba16"
+.incbin "bin/segment2/segment2.02400.rgba16"
 
 .ifdef VERSION_JP
 seg2_texture_02002600:
-.incbin "build/bin/segment2/segment2.02600.rgba16"
+.incbin "bin/segment2/segment2.02600.rgba16"
 .endif
 
 seg2_texture_02002800:
-.incbin "build/bin/segment2/segment2.02800.rgba16"
+.incbin "bin/segment2/segment2.02800.rgba16"
 
 seg2_texture_02002A00:
-.incbin "build/bin/segment2/segment2.02A00.rgba16"
+.incbin "bin/segment2/segment2.02A00.rgba16"
 
 seg2_texture_02002C00:
-.incbin "build/bin/segment2/segment2.02C00.rgba16"
+.incbin "bin/segment2/segment2.02C00.rgba16"
 
 seg2_texture_02002E00:
-.incbin "build/bin/segment2/segment2.02E00.rgba16"
+.incbin "bin/segment2/segment2.02E00.rgba16"
 
 seg2_texture_02003000:
-.incbin "build/bin/segment2/segment2.03000.rgba16"
+.incbin "bin/segment2/segment2.03000.rgba16"
 
 seg2_texture_02003200:
-.incbin "build/bin/segment2/segment2.03200.rgba16"
+.incbin "bin/segment2/segment2.03200.rgba16"
 
 .ifdef VERSION_JP
 seg2_texture_02003400:
-.incbin "build/bin/segment2/segment2.03400.rgba16"
+.incbin "bin/segment2/segment2.03400.rgba16"
 .endif
 
 seg2_texture_02003600:
-.incbin "build/bin/segment2/segment2.03600.rgba16"
+.incbin "bin/segment2/segment2.03600.rgba16"
 
 seg2_texture_02003800:
-.incbin "build/bin/segment2/segment2.03800.rgba16"
+.incbin "bin/segment2/segment2.03800.rgba16"
 
 seg2_texture_02003A00:
-.incbin "build/bin/segment2/segment2.03A00.rgba16"
+.incbin "bin/segment2/segment2.03A00.rgba16"
 
 seg2_texture_02003C00:
-.incbin "build/bin/segment2/segment2.03C00.rgba16"
+.incbin "bin/segment2/segment2.03C00.rgba16"
 
 .ifdef VERSION_JP
 seg2_texture_02003E00:
-.incbin "build/bin/segment2/segment2.03E00.rgba16"
+.incbin "bin/segment2/segment2.03E00.rgba16"
 .endif
 
 seg2_texture_02004000:
-.incbin "build/bin/segment2/segment2.04000.rgba16"
+.incbin "bin/segment2/segment2.04000.rgba16"
 
 .ifdef VERSION_JP
 seg2_texture_02004200:
-.incbin "build/bin/segment2/segment2.04200.rgba16"
+.incbin "bin/segment2/segment2.04200.rgba16"
 .endif
 
 seg2_texture_02004400:
-.incbin "build/bin/segment2/segment2.04400.rgba16"
+.incbin "bin/segment2/segment2.04400.rgba16"
 
 .ifdef VERSION_JP
 seg2_texture_02004600:
-.incbin "build/bin/segment2/segment2.04600.rgba16"
+.incbin "bin/segment2/segment2.04600.rgba16"
 .endif
 
 seg2_texture_02004800:
-.incbin "build/bin/segment2/segment2.04800.rgba16"
+.incbin "bin/segment2/segment2.04800.rgba16"
 
 seg2_texture_02004A00:
-.incbin "build/bin/segment2/segment2.04A00.rgba16"
+.incbin "bin/segment2/segment2.04A00.rgba16"
 
 .ifdef VERSION_JP
 seg2_texture_02004C00:
-.incbin "build/bin/segment2/segment2.04C00.rgba16" # JP !
+.incbin "bin/segment2/segment2.04C00.rgba16" # JP !
 .endif
 
 .ifdef VERSION_JP
 seg2_texture_02004E00:
-.incbin "build/bin/segment2/segment2.04E00.rgba16" # JP !!
+.incbin "bin/segment2/segment2.04E00.rgba16" # JP !!
 .endif
 
 .ifdef VERSION_JP
 seg2_texture_02005000:
-.incbin "build/bin/segment2/segment2.05000.rgba16" # JP ?
+.incbin "bin/segment2/segment2.05000.rgba16" # JP ?
 .endif
 
 .ifdef VERSION_JP
 seg2_texture_02005200:
-.incbin "build/bin/segment2/segment2.05200.rgba16" # JP &
+.incbin "bin/segment2/segment2.05200.rgba16" # JP &
 .endif
 
 .ifdef VERSION_JP
 seg2_texture_02005400:
-.incbin "build/bin/segment2/segment2.05400.rgba16" # JP %
+.incbin "bin/segment2/segment2.05400.rgba16" # JP %
 .endif
 
 seg2_texture_02005600:
-.incbin "build/bin/segment2/segment2.05600.rgba16"
+.incbin "bin/segment2/segment2.05600.rgba16"
 
 seg2_texture_02005800:
-.incbin "build/bin/segment2/segment2.05800.rgba16"
+.incbin "bin/segment2/segment2.05800.rgba16"
 
 seg2_texture_02005A00:
-.incbin "build/bin/segment2/segment2.05A00.rgba16"
+.incbin "bin/segment2/segment2.05A00.rgba16"
 
 seg2_texture_02005C00:
-.incbin "build/bin/segment2/segment2.05C00.rgba16"
+.incbin "bin/segment2/segment2.05C00.rgba16"
 
 .ifdef VERSION_JP
 seg2_texture_02005E00:
-.incbin "build/bin/segment2/segment2.05E00.rgba16"
+.incbin "bin/segment2/segment2.05E00.rgba16"
 .endif
 
 .ifdef VERSION_JP
 seg2_texture_02006000:
-.incbin "build/bin/segment2/segment2.06000.rgba16"
+.incbin "bin/segment2/segment2.06000.rgba16"
 .endif
 
 seg2_texture_02006200:
-.incbin "build/bin/segment2/segment2.06200.rgba16"
+.incbin "bin/segment2/segment2.06200.rgba16"
 
 seg2_texture_02006280:
-.incbin "build/bin/segment2/segment2.06280.rgba16"
+.incbin "bin/segment2/segment2.06280.rgba16"
 
 seg2_texture_02006300:
-.incbin "build/bin/segment2/segment2.06300.rgba16"
+.incbin "bin/segment2/segment2.06300.rgba16"
 
 seg2_texture_02006380:
-.incbin "build/bin/segment2/segment2.06380.rgba16"
+.incbin "bin/segment2/segment2.06380.rgba16"
 
 seg2_texture_02006400:
-.incbin "build/bin/segment2/segment2.06400.rgba16"
+.incbin "bin/segment2/segment2.06400.rgba16"
 
 seg2_texture_02006480:
-.incbin "build/bin/segment2/segment2.06480.rgba16"
+.incbin "bin/segment2/segment2.06480.rgba16"
 
 seg2_texture_02006500:
-.incbin "build/bin/segment2/segment2.06500.rgba16"
+.incbin "bin/segment2/segment2.06500.rgba16"
 
 seg2_texture_02006580:
-.incbin "build/bin/segment2/segment2.06580.rgba16"
+.incbin "bin/segment2/segment2.06580.rgba16"
 
 seg2_texture_02006600:
-.incbin "build/bin/segment2/segment2.06600.rgba16"
+.incbin "bin/segment2/segment2.06600.rgba16"
 
 seg2_texture_02006680:
-.incbin "build/bin/segment2/segment2.06680.rgba16"
+.incbin "bin/segment2/segment2.06680.rgba16"
 
 seg2_texture_02006700:
-.incbin "build/bin/segment2/segment2.06700.rgba16"
+.incbin "bin/segment2/segment2.06700.rgba16"
 
 seg2_texture_02006780:
-.incbin "build/bin/segment2/segment2.06780.rgba16"
+.incbin "bin/segment2/segment2.06780.rgba16"
 
 seg2_texture_02006800:
-.incbin "build/bin/segment2/segment2.06800.rgba16"
+.incbin "bin/segment2/segment2.06800.rgba16"
 
 seg2_texture_02006880:
-.incbin "build/bin/segment2/segment2.06880.rgba16"
+.incbin "bin/segment2/segment2.06880.rgba16"
 
 seg2_texture_02006900:
-.incbin "build/bin/segment2/segment2.06900.rgba16"
+.incbin "bin/segment2/segment2.06900.rgba16"
 
 seg2_texture_02006980:
-.incbin "build/bin/segment2/segment2.06980.rgba16"
+.incbin "bin/segment2/segment2.06980.rgba16"
 
 seg2_texture_02006A00:
-.incbin "build/bin/segment2/segment2.06A00.rgba16"
+.incbin "bin/segment2/segment2.06A00.rgba16"
 
 seg2_texture_02006A80:
-.incbin "build/bin/segment2/segment2.06A80.rgba16"
+.incbin "bin/segment2/segment2.06A80.rgba16"
 
 seg2_texture_02006B00:
-.incbin "build/bin/segment2/segment2.06B00.rgba16"
+.incbin "bin/segment2/segment2.06B00.rgba16"
 
 seg2_texture_02006B80:
-.incbin "build/bin/segment2/segment2.06B80.rgba16"
+.incbin "bin/segment2/segment2.06B80.rgba16"
 
 seg2_texture_02006C00:
-.incbin "build/bin/segment2/segment2.06C00.rgba16"
+.incbin "bin/segment2/segment2.06C00.rgba16"
 
 seg2_texture_02006C80:
-.incbin "build/bin/segment2/segment2.06C80.rgba16"
+.incbin "bin/segment2/segment2.06C80.rgba16"
 
 seg2_texture_02006D00:
-.incbin "build/bin/segment2/segment2.06D00.rgba16"
+.incbin "bin/segment2/segment2.06D00.rgba16"
 
 seg2_texture_02006D80:
-.incbin "build/bin/segment2/segment2.06D80.rgba16"
+.incbin "bin/segment2/segment2.06D80.rgba16"
 
 seg2_texture_02006E00:
-.incbin "build/bin/segment2/segment2.06E00.rgba16"
+.incbin "bin/segment2/segment2.06E00.rgba16"
 
 seg2_texture_02006E80:
-.incbin "build/bin/segment2/segment2.06E80.rgba16"
+.incbin "bin/segment2/segment2.06E80.rgba16"
 
 seg2_texture_02006F00:
-.incbin "build/bin/segment2/segment2.06F00.rgba16"
+.incbin "bin/segment2/segment2.06F00.rgba16"
 
 seg2_texture_02006F80:
-.incbin "build/bin/segment2/segment2.06F80.rgba16"
+.incbin "bin/segment2/segment2.06F80.rgba16"
 
 seg2_texture_02007000:
-.incbin "build/bin/segment2/segment2.07000.rgba16"
+.incbin "bin/segment2/segment2.07000.rgba16"
 
 seg2_texture_02007080:
-.incbin "build/bin/segment2/segment2.07080.rgba16"
+.incbin "bin/segment2/segment2.07080.rgba16"
 
 .ifdef VERSION_JP # JP Small Font
 seg2_texture_02007100:
-    .incbin "build/bin/segment2/segment2.07100.ia1"
+    .incbin "bin/segment2/segment2.07100.ia1"
     
 seg2_texture_02007110:
-    .incbin "build/bin/segment2/segment2.07110.ia1"
+    .incbin "bin/segment2/segment2.07110.ia1"
     
 seg2_texture_02007120:
-    .incbin "build/bin/segment2/segment2.07120.ia1"
+    .incbin "bin/segment2/segment2.07120.ia1"
     
 seg2_texture_02007130:
-    .incbin "build/bin/segment2/segment2.07130.ia1"
+    .incbin "bin/segment2/segment2.07130.ia1"
     
 seg2_texture_02007140:
-    .incbin "build/bin/segment2/segment2.07140.ia1"
+    .incbin "bin/segment2/segment2.07140.ia1"
     
 seg2_texture_02007150:
-    .incbin "build/bin/segment2/segment2.07150.ia1"
+    .incbin "bin/segment2/segment2.07150.ia1"
     
 seg2_texture_02007160:
-    .incbin "build/bin/segment2/segment2.07160.ia1"
+    .incbin "bin/segment2/segment2.07160.ia1"
     
 seg2_texture_02007170:
-    .incbin "build/bin/segment2/segment2.07170.ia1"
+    .incbin "bin/segment2/segment2.07170.ia1"
     
 seg2_texture_02007180:
-    .incbin "build/bin/segment2/segment2.07180.ia1"
+    .incbin "bin/segment2/segment2.07180.ia1"
     
 seg2_texture_02007190:
-    .incbin "build/bin/segment2/segment2.07190.ia1"
+    .incbin "bin/segment2/segment2.07190.ia1"
     
 seg2_texture_020071A0:
-    .incbin "build/bin/segment2/segment2.071A0.ia1"
+    .incbin "bin/segment2/segment2.071A0.ia1"
     
 seg2_texture_020071B0:
-    .incbin "build/bin/segment2/segment2.071B0.ia1"
+    .incbin "bin/segment2/segment2.071B0.ia1"
     
 seg2_texture_020071C0:
-    .incbin "build/bin/segment2/segment2.071C0.ia1"
+    .incbin "bin/segment2/segment2.071C0.ia1"
     
 seg2_texture_020071D0:
-    .incbin "build/bin/segment2/segment2.071D0.ia1"
+    .incbin "bin/segment2/segment2.071D0.ia1"
     
 seg2_texture_020071E0:
-    .incbin "build/bin/segment2/segment2.071E0.ia1"
+    .incbin "bin/segment2/segment2.071E0.ia1"
     
 seg2_texture_020071F0:
-    .incbin "build/bin/segment2/segment2.071F0.ia1"
+    .incbin "bin/segment2/segment2.071F0.ia1"
     
 seg2_texture_02007200:
-    .incbin "build/bin/segment2/segment2.07200.ia1"
+    .incbin "bin/segment2/segment2.07200.ia1"
     
 seg2_texture_02007210:
-    .incbin "build/bin/segment2/segment2.07210.ia1"
+    .incbin "bin/segment2/segment2.07210.ia1"
     
 seg2_texture_02007220:
-    .incbin "build/bin/segment2/segment2.07220.ia1"
+    .incbin "bin/segment2/segment2.07220.ia1"
     
 seg2_texture_02007230:
-    .incbin "build/bin/segment2/segment2.07230.ia1"
+    .incbin "bin/segment2/segment2.07230.ia1"
     
 seg2_texture_02007240:
-    .incbin "build/bin/segment2/segment2.07240.ia1"
+    .incbin "bin/segment2/segment2.07240.ia1"
     
 seg2_texture_02007250:
-    .incbin "build/bin/segment2/segment2.07250.ia1"
+    .incbin "bin/segment2/segment2.07250.ia1"
     
 seg2_texture_02007260:
-    .incbin "build/bin/segment2/segment2.07260.ia1"
+    .incbin "bin/segment2/segment2.07260.ia1"
     
 seg2_texture_02007270:
-    .incbin "build/bin/segment2/segment2.07270.ia1"
+    .incbin "bin/segment2/segment2.07270.ia1"
     
 seg2_texture_02007280:
-    .incbin "build/bin/segment2/segment2.07280.ia1"
+    .incbin "bin/segment2/segment2.07280.ia1"
     
 seg2_texture_02007290:
-    .incbin "build/bin/segment2/segment2.07290.ia1"
+    .incbin "bin/segment2/segment2.07290.ia1"
     
 seg2_texture_020072A0:
-    .incbin "build/bin/segment2/segment2.072A0.ia1"
+    .incbin "bin/segment2/segment2.072A0.ia1"
     
 seg2_texture_020072B0:
-    .incbin "build/bin/segment2/segment2.072B0.ia1"
+    .incbin "bin/segment2/segment2.072B0.ia1"
     
 seg2_texture_020072C0:
-    .incbin "build/bin/segment2/segment2.072C0.ia1"
+    .incbin "bin/segment2/segment2.072C0.ia1"
     
 seg2_texture_020072D0:
-    .incbin "build/bin/segment2/segment2.072D0.ia1"
+    .incbin "bin/segment2/segment2.072D0.ia1"
     
 seg2_texture_020072E0:
-    .incbin "build/bin/segment2/segment2.072E0.ia1"
+    .incbin "bin/segment2/segment2.072E0.ia1"
     
 seg2_texture_020072F0:
-    .incbin "build/bin/segment2/segment2.072F0.ia1"
+    .incbin "bin/segment2/segment2.072F0.ia1"
     
 seg2_texture_02007300:
-    .incbin "build/bin/segment2/segment2.07300.ia1"
+    .incbin "bin/segment2/segment2.07300.ia1"
     
 seg2_texture_02007310:
-    .incbin "build/bin/segment2/segment2.07310.ia1"
+    .incbin "bin/segment2/segment2.07310.ia1"
     
 seg2_texture_02007320:
-    .incbin "build/bin/segment2/segment2.07320.ia1"
+    .incbin "bin/segment2/segment2.07320.ia1"
     
 seg2_texture_02007330:
-    .incbin "build/bin/segment2/segment2.07330.ia1"
+    .incbin "bin/segment2/segment2.07330.ia1"
     
 seg2_texture_02007340:
-    .incbin "build/bin/segment2/segment2.07340.ia1"
+    .incbin "bin/segment2/segment2.07340.ia1"
     
 seg2_texture_02007350:
-    .incbin "build/bin/segment2/segment2.07350.ia1"
+    .incbin "bin/segment2/segment2.07350.ia1"
     
 seg2_texture_02007360:
-    .incbin "build/bin/segment2/segment2.07360.ia1"
+    .incbin "bin/segment2/segment2.07360.ia1"
     
 seg2_texture_02007370:
-    .incbin "build/bin/segment2/segment2.07370.ia1"
+    .incbin "bin/segment2/segment2.07370.ia1"
     
 seg2_texture_02007380:
-    .incbin "build/bin/segment2/segment2.07380.ia1"
+    .incbin "bin/segment2/segment2.07380.ia1"
     
 seg2_texture_02007390:
-    .incbin "build/bin/segment2/segment2.07390.ia1"
+    .incbin "bin/segment2/segment2.07390.ia1"
     
 seg2_texture_020073A0:
-    .incbin "build/bin/segment2/segment2.073A0.ia1"
+    .incbin "bin/segment2/segment2.073A0.ia1"
     
 seg2_texture_020073B0:
-    .incbin "build/bin/segment2/segment2.073B0.ia1"
+    .incbin "bin/segment2/segment2.073B0.ia1"
     
 seg2_texture_020073C0:
-    .incbin "build/bin/segment2/segment2.073C0.ia1"
+    .incbin "bin/segment2/segment2.073C0.ia1"
     
 seg2_texture_020073D0:
-    .incbin "build/bin/segment2/segment2.073D0.ia1"
+    .incbin "bin/segment2/segment2.073D0.ia1"
     
 seg2_texture_020073E0:
-    .incbin "build/bin/segment2/segment2.073E0.ia1"
+    .incbin "bin/segment2/segment2.073E0.ia1"
     
 seg2_texture_020073F0:
-    .incbin "build/bin/segment2/segment2.073F0.ia1"
+    .incbin "bin/segment2/segment2.073F0.ia1"
     
 seg2_texture_02007400:
-    .incbin "build/bin/segment2/segment2.07400.ia1"
+    .incbin "bin/segment2/segment2.07400.ia1"
     
 seg2_texture_02007410:
-    .incbin "build/bin/segment2/segment2.07410.ia1"
+    .incbin "bin/segment2/segment2.07410.ia1"
     
 seg2_texture_02007420:
-    .incbin "build/bin/segment2/segment2.07420.ia1"
+    .incbin "bin/segment2/segment2.07420.ia1"
     
 seg2_texture_02007430:
-    .incbin "build/bin/segment2/segment2.07430.ia1"
+    .incbin "bin/segment2/segment2.07430.ia1"
     
 seg2_texture_02007440:
-    .incbin "build/bin/segment2/segment2.07440.ia1"
+    .incbin "bin/segment2/segment2.07440.ia1"
     
 seg2_texture_02007450:
-    .incbin "build/bin/segment2/segment2.07450.ia1"
+    .incbin "bin/segment2/segment2.07450.ia1"
     
 seg2_texture_02007460:
-    .incbin "build/bin/segment2/segment2.07460.ia1"
+    .incbin "bin/segment2/segment2.07460.ia1"
     
 seg2_texture_02007470:
-    .incbin "build/bin/segment2/segment2.07470.ia1"
+    .incbin "bin/segment2/segment2.07470.ia1"
     
 seg2_texture_02007480:
-    .incbin "build/bin/segment2/segment2.07480.ia1"
+    .incbin "bin/segment2/segment2.07480.ia1"
     
 seg2_texture_02007490:
-    .incbin "build/bin/segment2/segment2.07490.ia1"
+    .incbin "bin/segment2/segment2.07490.ia1"
     
 seg2_texture_020074A0:
-    .incbin "build/bin/segment2/segment2.074A0.ia1"
+    .incbin "bin/segment2/segment2.074A0.ia1"
     
 seg2_texture_020074B0:
-    .incbin "build/bin/segment2/segment2.074B0.ia1"
+    .incbin "bin/segment2/segment2.074B0.ia1"
     
 seg2_texture_020074C0:
-    .incbin "build/bin/segment2/segment2.074C0.ia1"
+    .incbin "bin/segment2/segment2.074C0.ia1"
     
 seg2_texture_020074D0:
-    .incbin "build/bin/segment2/segment2.074D0.ia1"
+    .incbin "bin/segment2/segment2.074D0.ia1"
     
 seg2_texture_020074E0:
-    .incbin "build/bin/segment2/segment2.074E0.ia1"
+    .incbin "bin/segment2/segment2.074E0.ia1"
     
 seg2_texture_020074F0:
-    .incbin "build/bin/segment2/segment2.074F0.ia1"
+    .incbin "bin/segment2/segment2.074F0.ia1"
     
 seg2_texture_02007500:
-    .incbin "build/bin/segment2/segment2.07500.ia1"
+    .incbin "bin/segment2/segment2.07500.ia1"
     
 seg2_texture_02007510:
-    .incbin "build/bin/segment2/segment2.07510.ia1"
+    .incbin "bin/segment2/segment2.07510.ia1"
     
 seg2_texture_02007520:
-    .incbin "build/bin/segment2/segment2.07520.ia1"
+    .incbin "bin/segment2/segment2.07520.ia1"
     
 seg2_texture_02007530:
-    .incbin "build/bin/segment2/segment2.07530.ia1"
+    .incbin "bin/segment2/segment2.07530.ia1"
     
 seg2_texture_02007540:
-    .incbin "build/bin/segment2/segment2.07540.ia1"
+    .incbin "bin/segment2/segment2.07540.ia1"
     
 seg2_texture_02007550:
-    .incbin "build/bin/segment2/segment2.07550.ia1"
+    .incbin "bin/segment2/segment2.07550.ia1"
     
 seg2_texture_02007560:
-    .incbin "build/bin/segment2/segment2.07560.ia1"
+    .incbin "bin/segment2/segment2.07560.ia1"
     
 seg2_texture_02007570:
-    .incbin "build/bin/segment2/segment2.07570.ia1"
+    .incbin "bin/segment2/segment2.07570.ia1"
     
 seg2_texture_02007580:
-    .incbin "build/bin/segment2/segment2.07580.ia1"
+    .incbin "bin/segment2/segment2.07580.ia1"
     
 seg2_texture_02007590:
-    .incbin "build/bin/segment2/segment2.07590.ia1"
+    .incbin "bin/segment2/segment2.07590.ia1"
     
 seg2_texture_020075A0:
-    .incbin "build/bin/segment2/segment2.075A0.ia1"
+    .incbin "bin/segment2/segment2.075A0.ia1"
     
 seg2_texture_020075B0:
-    .incbin "build/bin/segment2/segment2.075B0.ia1"
+    .incbin "bin/segment2/segment2.075B0.ia1"
     
 seg2_texture_020075C0:
-    .incbin "build/bin/segment2/segment2.075C0.ia1"
+    .incbin "bin/segment2/segment2.075C0.ia1"
     
 seg2_texture_020075D0:
-    .incbin "build/bin/segment2/segment2.075D0.ia1"
+    .incbin "bin/segment2/segment2.075D0.ia1"
     
 seg2_texture_020075E0:
-    .incbin "build/bin/segment2/segment2.075E0.ia1"
+    .incbin "bin/segment2/segment2.075E0.ia1"
     
 seg2_texture_020075F0:
-    .incbin "build/bin/segment2/segment2.075F0.ia1"
+    .incbin "bin/segment2/segment2.075F0.ia1"
     
 seg2_texture_02007600:
-    .incbin "build/bin/segment2/segment2.07600.ia1"
+    .incbin "bin/segment2/segment2.07600.ia1"
     
 seg2_texture_02007610:
-    .incbin "build/bin/segment2/segment2.07610.ia1"
+    .incbin "bin/segment2/segment2.07610.ia1"
     
 seg2_texture_02007620:
-    .incbin "build/bin/segment2/segment2.07620.ia1"
+    .incbin "bin/segment2/segment2.07620.ia1"
     
 seg2_texture_02007630:
-    .incbin "build/bin/segment2/segment2.07630.ia1"
+    .incbin "bin/segment2/segment2.07630.ia1"
     
 seg2_texture_02007640:
-    .incbin "build/bin/segment2/segment2.07640.ia1"
+    .incbin "bin/segment2/segment2.07640.ia1"
     
 seg2_texture_02007650:
-    .incbin "build/bin/segment2/segment2.07650.ia1"
+    .incbin "bin/segment2/segment2.07650.ia1"
     
 seg2_texture_02007660:
-    .incbin "build/bin/segment2/segment2.07660.ia1"
+    .incbin "bin/segment2/segment2.07660.ia1"
     
 seg2_texture_02007670:
-    .incbin "build/bin/segment2/segment2.07670.ia1"
+    .incbin "bin/segment2/segment2.07670.ia1"
     
 seg2_texture_02007680:
-    .incbin "build/bin/segment2/segment2.07680.ia1"
+    .incbin "bin/segment2/segment2.07680.ia1"
     
 seg2_texture_02007690:
-    .incbin "build/bin/segment2/segment2.07690.ia1"
+    .incbin "bin/segment2/segment2.07690.ia1"
     
 seg2_texture_020076A0:
-    .incbin "build/bin/segment2/segment2.076A0.ia1"
+    .incbin "bin/segment2/segment2.076A0.ia1"
     
 seg2_texture_020076B0:
-    .incbin "build/bin/segment2/segment2.076B0.ia1"
+    .incbin "bin/segment2/segment2.076B0.ia1"
     
 seg2_texture_020076C0:
-    .incbin "build/bin/segment2/segment2.076C0.ia1"
+    .incbin "bin/segment2/segment2.076C0.ia1"
     
 seg2_texture_020076D0:
-    .incbin "build/bin/segment2/segment2.076D0.ia1"
+    .incbin "bin/segment2/segment2.076D0.ia1"
     
 seg2_texture_020076E0:
-    .incbin "build/bin/segment2/segment2.076E0.ia1"
+    .incbin "bin/segment2/segment2.076E0.ia1"
     
 seg2_texture_020076F0:
-    .incbin "build/bin/segment2/segment2.076F0.ia1"
+    .incbin "bin/segment2/segment2.076F0.ia1"
     
 seg2_texture_02007700:
-    .incbin "build/bin/segment2/segment2.07700.ia1"
+    .incbin "bin/segment2/segment2.07700.ia1"
     
 seg2_texture_02007710:
-    .incbin "build/bin/segment2/segment2.07710.ia1"
+    .incbin "bin/segment2/segment2.07710.ia1"
     
 seg2_texture_02007720:
-    .incbin "build/bin/segment2/segment2.07720.ia1"
+    .incbin "bin/segment2/segment2.07720.ia1"
     
 seg2_texture_02007730:
-    .incbin "build/bin/segment2/segment2.07730.ia1"
+    .incbin "bin/segment2/segment2.07730.ia1"
     
 seg2_texture_02007740:
-    .incbin "build/bin/segment2/segment2.07740.ia1"
+    .incbin "bin/segment2/segment2.07740.ia1"
     
 seg2_texture_02007750:
-    .incbin "build/bin/segment2/segment2.07750.ia1"
+    .incbin "bin/segment2/segment2.07750.ia1"
     
 seg2_texture_02007760:
-    .incbin "build/bin/segment2/segment2.07760.ia1"
+    .incbin "bin/segment2/segment2.07760.ia1"
     
 seg2_texture_02007770:
-    .incbin "build/bin/segment2/segment2.07770.ia1"
+    .incbin "bin/segment2/segment2.07770.ia1"
     
 seg2_texture_02007780:
-    .incbin "build/bin/segment2/segment2.07780.ia1"
+    .incbin "bin/segment2/segment2.07780.ia1"
     
 seg2_texture_02007790:
-    .incbin "build/bin/segment2/segment2.07790.ia1"
+    .incbin "bin/segment2/segment2.07790.ia1"
     
 seg2_texture_020077A0:
-    .incbin "build/bin/segment2/segment2.077A0.ia1"
+    .incbin "bin/segment2/segment2.077A0.ia1"
     
 seg2_texture_020077B0:
-    .incbin "build/bin/segment2/segment2.077B0.ia1"
+    .incbin "bin/segment2/segment2.077B0.ia1"
     
 seg2_texture_020077C0:
-    .incbin "build/bin/segment2/segment2.077C0.ia1"
+    .incbin "bin/segment2/segment2.077C0.ia1"
     
 seg2_texture_020077D0:
-    .incbin "build/bin/segment2/segment2.077D0.ia1"
+    .incbin "bin/segment2/segment2.077D0.ia1"
     
 seg2_texture_020077E0:
-    .incbin "build/bin/segment2/segment2.077E0.ia1"
+    .incbin "bin/segment2/segment2.077E0.ia1"
     
 seg2_texture_020077F0:
-    .incbin "build/bin/segment2/segment2.077F0.ia1"
+    .incbin "bin/segment2/segment2.077F0.ia1"
     
 seg2_texture_02007800:
-    .incbin "build/bin/segment2/segment2.07800.ia1"
+    .incbin "bin/segment2/segment2.07800.ia1"
     
 seg2_texture_02007810:
-    .incbin "build/bin/segment2/segment2.07810.ia1"
+    .incbin "bin/segment2/segment2.07810.ia1"
     
 seg2_texture_02007820:
-    .incbin "build/bin/segment2/segment2.07820.ia1"
+    .incbin "bin/segment2/segment2.07820.ia1"
     
 seg2_texture_02007830:
-    .incbin "build/bin/segment2/segment2.07830.ia1"
+    .incbin "bin/segment2/segment2.07830.ia1"
     
 seg2_texture_02007840:
-    .incbin "build/bin/segment2/segment2.07840.ia1"
+    .incbin "bin/segment2/segment2.07840.ia1"
     
 seg2_texture_02007850:
-    .incbin "build/bin/segment2/segment2.07850.ia1"
+    .incbin "bin/segment2/segment2.07850.ia1"
     
 seg2_texture_02007860:
-    .incbin "build/bin/segment2/segment2.07860.ia1"
+    .incbin "bin/segment2/segment2.07860.ia1"
     
 seg2_texture_02007870:
-    .incbin "build/bin/segment2/segment2.07870.ia1"
+    .incbin "bin/segment2/segment2.07870.ia1"
     
 seg2_texture_02007880:
-    .incbin "build/bin/segment2/segment2.07880.ia1"
+    .incbin "bin/segment2/segment2.07880.ia1"
     
 seg2_texture_02007890:
-    .incbin "build/bin/segment2/segment2.07890.ia1"
+    .incbin "bin/segment2/segment2.07890.ia1"
     
 seg2_texture_020078A0:
-    .incbin "build/bin/segment2/segment2.078A0.ia1"
+    .incbin "bin/segment2/segment2.078A0.ia1"
     
 seg2_texture_020078B0:
-    .incbin "build/bin/segment2/segment2.078B0.ia1"
+    .incbin "bin/segment2/segment2.078B0.ia1"
     
 seg2_texture_020078C0:
-    .incbin "build/bin/segment2/segment2.078C0.ia1"
+    .incbin "bin/segment2/segment2.078C0.ia1"
     
 seg2_texture_020078D0:
-    .incbin "build/bin/segment2/segment2.078D0.ia1"
+    .incbin "bin/segment2/segment2.078D0.ia1"
     
 seg2_texture_020078E0:
-    .incbin "build/bin/segment2/segment2.078E0.ia1"
+    .incbin "bin/segment2/segment2.078E0.ia1"
     
 seg2_texture_020078F0:
-    .incbin "build/bin/segment2/segment2.078F0.ia1"
+    .incbin "bin/segment2/segment2.078F0.ia1"
     
 seg2_texture_02007900:
-    .incbin "build/bin/segment2/segment2.07900.ia1"
+    .incbin "bin/segment2/segment2.07900.ia1"
     
 seg2_texture_02007910:
-    .incbin "build/bin/segment2/segment2.07910.ia1"
+    .incbin "bin/segment2/segment2.07910.ia1"
     
 seg2_texture_02007920:
-    .incbin "build/bin/segment2/segment2.07920.ia1"
+    .incbin "bin/segment2/segment2.07920.ia1"
     
 seg2_texture_02007930:
-    .incbin "build/bin/segment2/segment2.07930.ia1"
+    .incbin "bin/segment2/segment2.07930.ia1"
     
 seg2_texture_02007940:
-    .incbin "build/bin/segment2/segment2.07940.ia1"
+    .incbin "bin/segment2/segment2.07940.ia1"
     
 seg2_texture_02007950:
-    .incbin "build/bin/segment2/segment2.07950.ia1"
+    .incbin "bin/segment2/segment2.07950.ia1"
     
 seg2_texture_02007960:
-    .incbin "build/bin/segment2/segment2.07960.ia1"
+    .incbin "bin/segment2/segment2.07960.ia1"
     
 seg2_texture_02007970:
-    .incbin "build/bin/segment2/segment2.07970.ia1"
+    .incbin "bin/segment2/segment2.07970.ia1"
     
 seg2_texture_02007980:
-    .incbin "build/bin/segment2/segment2.07980.ia1"
+    .incbin "bin/segment2/segment2.07980.ia1"
     
 seg2_texture_02007990:
-    .incbin "build/bin/segment2/segment2.07990.ia1"
+    .incbin "bin/segment2/segment2.07990.ia1"
     
 seg2_texture_020079A0:
-    .incbin "build/bin/segment2/segment2.079A0.ia1"
+    .incbin "bin/segment2/segment2.079A0.ia1"
     
 seg2_texture_020079B0:
-    .incbin "build/bin/segment2/segment2.079B0.ia1"
+    .incbin "bin/segment2/segment2.079B0.ia1"
     
 seg2_texture_020079C0:
-    .incbin "build/bin/segment2/segment2.079C0.ia1"
+    .incbin "bin/segment2/segment2.079C0.ia1"
     
 seg2_texture_020079D0:
-    .incbin "build/bin/segment2/segment2.079D0.ia1"
+    .incbin "bin/segment2/segment2.079D0.ia1"
     
 seg2_texture_020079E0:
-    .incbin "build/bin/segment2/segment2.079E0.ia1"
+    .incbin "bin/segment2/segment2.079E0.ia1"
     
 seg2_texture_020079F0:
-    .incbin "build/bin/segment2/segment2.079F0.ia1"
+    .incbin "bin/segment2/segment2.079F0.ia1"
     
 seg2_texture_02007A00:
-    .incbin "build/bin/segment2/segment2.07A00.ia1"
+    .incbin "bin/segment2/segment2.07A00.ia1"
     
 seg2_texture_02007A10:
-    .incbin "build/bin/segment2/segment2.07A10.ia1"
+    .incbin "bin/segment2/segment2.07A10.ia1"
     
 seg2_texture_02007A20:
-    .incbin "build/bin/segment2/segment2.07A20.ia1"
+    .incbin "bin/segment2/segment2.07A20.ia1"
     
 seg2_texture_02007A30:
-    .incbin "build/bin/segment2/segment2.07A30.ia1"
+    .incbin "bin/segment2/segment2.07A30.ia1"
     
 seg2_texture_02007A40:
-    .incbin "build/bin/segment2/segment2.07A40.ia1"
+    .incbin "bin/segment2/segment2.07A40.ia1"
     
 seg2_texture_02007A50:
-    .incbin "build/bin/segment2/segment2.07A50.ia1"
+    .incbin "bin/segment2/segment2.07A50.ia1"
     
 seg2_texture_02007A60:
-    .incbin "build/bin/segment2/segment2.07A60.ia1"
+    .incbin "bin/segment2/segment2.07A60.ia1"
     
 seg2_texture_02007A70:
-    .incbin "build/bin/segment2/segment2.07A70.ia1"
+    .incbin "bin/segment2/segment2.07A70.ia1"
     
 seg2_texture_02007A80:
-    .incbin "build/bin/segment2/segment2.07A80.ia1"
+    .incbin "bin/segment2/segment2.07A80.ia1"
     
 seg2_texture_02007A90:
-    .incbin "build/bin/segment2/segment2.07A90.ia1"
+    .incbin "bin/segment2/segment2.07A90.ia1"
     
 seg2_texture_02007AA0:
-    .incbin "build/bin/segment2/segment2.07AA0.ia1"
+    .incbin "bin/segment2/segment2.07AA0.ia1"
     
 seg2_texture_02007AB0:
-    .incbin "build/bin/segment2/segment2.07AB0.ia1"
+    .incbin "bin/segment2/segment2.07AB0.ia1"
     
 seg2_texture_02007AC0:
-    .incbin "build/bin/segment2/segment2.07AC0.ia1"
+    .incbin "bin/segment2/segment2.07AC0.ia1"
     
 seg2_texture_02007AD0:
-    .incbin "build/bin/segment2/segment2.07AD0.ia1"
+    .incbin "bin/segment2/segment2.07AD0.ia1"
     
 seg2_texture_02007AE0:
-    .incbin "build/bin/segment2/segment2.07AE0.ia1"
+    .incbin "bin/segment2/segment2.07AE0.ia1"
     
 seg2_texture_02007AF0:
-    .incbin "build/bin/segment2/segment2.07AF0.ia1"
+    .incbin "bin/segment2/segment2.07AF0.ia1"
     
 seg2_texture_02007B00:
-    .incbin "build/bin/segment2/segment2.07B00.ia1"
+    .incbin "bin/segment2/segment2.07B00.ia1"
     
 seg2_texture_02007B10:
-    .incbin "build/bin/segment2/segment2.07B10.ia1"
+    .incbin "bin/segment2/segment2.07B10.ia1"
     
 seg2_texture_02007B20:
-    .incbin "build/bin/segment2/segment2.07B20.ia1"
+    .incbin "bin/segment2/segment2.07B20.ia1"
     
 seg2_texture_02007B30:
-    .incbin "build/bin/segment2/segment2.07B30.ia1"
+    .incbin "bin/segment2/segment2.07B30.ia1"
     
 seg2_texture_02007B40:
-    .incbin "build/bin/segment2/segment2.07B40.ia1"
+    .incbin "bin/segment2/segment2.07B40.ia1"
 .else # US Small Font, copied from hack64 segment 2 US
 FontTexture_05900:
-    .incbin "build/bin/segment2/font_graphics.05900.ia4"
+    .incbin "bin/segment2/font_graphics.05900.ia4"
 
 FontTexture_05940:
-    .incbin "build/bin/segment2/font_graphics.05940.ia4"
+    .incbin "bin/segment2/font_graphics.05940.ia4"
 
 FontTexture_05980:
-    .incbin "build/bin/segment2/font_graphics.05980.ia4"
+    .incbin "bin/segment2/font_graphics.05980.ia4"
 
 FontTexture_059C0:
-    .incbin "build/bin/segment2/font_graphics.059C0.ia4"
+    .incbin "bin/segment2/font_graphics.059C0.ia4"
 
 FontTexture_05A00:
-    .incbin "build/bin/segment2/font_graphics.05A00.ia4"
+    .incbin "bin/segment2/font_graphics.05A00.ia4"
 
 FontTexture_05A40:
-    .incbin "build/bin/segment2/font_graphics.05A40.ia4"
+    .incbin "bin/segment2/font_graphics.05A40.ia4"
 
 FontTexture_05A80:
-    .incbin "build/bin/segment2/font_graphics.05A80.ia4"
+    .incbin "bin/segment2/font_graphics.05A80.ia4"
 
 FontTexture_05AC0:
-    .incbin "build/bin/segment2/font_graphics.05AC0.ia4"
+    .incbin "bin/segment2/font_graphics.05AC0.ia4"
 
 FontTexture_05B00:
-    .incbin "build/bin/segment2/font_graphics.05B00.ia4"
+    .incbin "bin/segment2/font_graphics.05B00.ia4"
 
 FontTexture_05B40:
-    .incbin "build/bin/segment2/font_graphics.05B40.ia4"
+    .incbin "bin/segment2/font_graphics.05B40.ia4"
 
 FontTexture_05B80:
-    .incbin "build/bin/segment2/font_graphics.05B80.ia4"
+    .incbin "bin/segment2/font_graphics.05B80.ia4"
 
 FontTexture_05BC0:
-    .incbin "build/bin/segment2/font_graphics.05BC0.ia4"
+    .incbin "bin/segment2/font_graphics.05BC0.ia4"
 
 FontTexture_05C00:
-    .incbin "build/bin/segment2/font_graphics.05C00.ia4"
+    .incbin "bin/segment2/font_graphics.05C00.ia4"
 
 FontTexture_05C40:
-    .incbin "build/bin/segment2/font_graphics.05C40.ia4"
+    .incbin "bin/segment2/font_graphics.05C40.ia4"
 
 FontTexture_05C80:
-    .incbin "build/bin/segment2/font_graphics.05C80.ia4"
+    .incbin "bin/segment2/font_graphics.05C80.ia4"
 
 FontTexture_05CC0:
-    .incbin "build/bin/segment2/font_graphics.05CC0.ia4"
+    .incbin "bin/segment2/font_graphics.05CC0.ia4"
 
 FontTexture_05D00:
-    .incbin "build/bin/segment2/font_graphics.05D00.ia4"
+    .incbin "bin/segment2/font_graphics.05D00.ia4"
 
 FontTexture_05D40:
-    .incbin "build/bin/segment2/font_graphics.05D40.ia4"
+    .incbin "bin/segment2/font_graphics.05D40.ia4"
 
 FontTexture_05D80:
-    .incbin "build/bin/segment2/font_graphics.05D80.ia4"
+    .incbin "bin/segment2/font_graphics.05D80.ia4"
 
 FontTexture_05DC0:
-    .incbin "build/bin/segment2/font_graphics.05DC0.ia4"
+    .incbin "bin/segment2/font_graphics.05DC0.ia4"
 
 FontTexture_05E00:
-    .incbin "build/bin/segment2/font_graphics.05E00.ia4"
+    .incbin "bin/segment2/font_graphics.05E00.ia4"
 
 FontTexture_05E40:
-    .incbin "build/bin/segment2/font_graphics.05E40.ia4"
+    .incbin "bin/segment2/font_graphics.05E40.ia4"
 
 FontTexture_05E80:
-    .incbin "build/bin/segment2/font_graphics.05E80.ia4"
+    .incbin "bin/segment2/font_graphics.05E80.ia4"
 
 FontTexture_05EC0:
-    .incbin "build/bin/segment2/font_graphics.05EC0.ia4"
+    .incbin "bin/segment2/font_graphics.05EC0.ia4"
 
 FontTexture_05F00:
-    .incbin "build/bin/segment2/font_graphics.05F00.ia4"
+    .incbin "bin/segment2/font_graphics.05F00.ia4"
 
 FontTexture_05F40:
-    .incbin "build/bin/segment2/font_graphics.05F40.ia4"
+    .incbin "bin/segment2/font_graphics.05F40.ia4"
 
 FontTexture_05F80:
-    .incbin "build/bin/segment2/font_graphics.05F80.ia4"
+    .incbin "bin/segment2/font_graphics.05F80.ia4"
 
 FontTexture_05FC0:
-    .incbin "build/bin/segment2/font_graphics.05FC0.ia4"
+    .incbin "bin/segment2/font_graphics.05FC0.ia4"
 
 FontTexture_06000:
-    .incbin "build/bin/segment2/font_graphics.06000.ia4"
+    .incbin "bin/segment2/font_graphics.06000.ia4"
 
 FontTexture_06040:
-    .incbin "build/bin/segment2/font_graphics.06040.ia4"
+    .incbin "bin/segment2/font_graphics.06040.ia4"
 
 FontTexture_06080:
-    .incbin "build/bin/segment2/font_graphics.06080.ia4"
+    .incbin "bin/segment2/font_graphics.06080.ia4"
 
 FontTexture_060C0:
-    .incbin "build/bin/segment2/font_graphics.060C0.ia4"
+    .incbin "bin/segment2/font_graphics.060C0.ia4"
 
 FontTexture_06100:
-    .incbin "build/bin/segment2/font_graphics.06100.ia4"
+    .incbin "bin/segment2/font_graphics.06100.ia4"
 
 FontTexture_06140:
-    .incbin "build/bin/segment2/font_graphics.06140.ia4"
+    .incbin "bin/segment2/font_graphics.06140.ia4"
 
 FontTexture_06180:
-    .incbin "build/bin/segment2/font_graphics.06180.ia4"
+    .incbin "bin/segment2/font_graphics.06180.ia4"
 
 FontTexture_061C0:
-    .incbin "build/bin/segment2/font_graphics.061C0.ia4"
+    .incbin "bin/segment2/font_graphics.061C0.ia4"
 
 FontTexture_06200:
-    .incbin "build/bin/segment2/font_graphics.06200.ia4"
+    .incbin "bin/segment2/font_graphics.06200.ia4"
 
 FontTexture_06240:
-    .incbin "build/bin/segment2/font_graphics.06240.ia4"
+    .incbin "bin/segment2/font_graphics.06240.ia4"
 
 FontTexture_06280:
-    .incbin "build/bin/segment2/font_graphics.06280.ia4"
+    .incbin "bin/segment2/font_graphics.06280.ia4"
 
 FontTexture_062C0:
-    .incbin "build/bin/segment2/font_graphics.062C0.ia4"
+    .incbin "bin/segment2/font_graphics.062C0.ia4"
 
 FontTexture_06300:
-    .incbin "build/bin/segment2/font_graphics.06300.ia4"
+    .incbin "bin/segment2/font_graphics.06300.ia4"
 
 FontTexture_06340:
-    .incbin "build/bin/segment2/font_graphics.06340.ia4"
+    .incbin "bin/segment2/font_graphics.06340.ia4"
 
 FontTexture_06380:
-    .incbin "build/bin/segment2/font_graphics.06380.ia4"
+    .incbin "bin/segment2/font_graphics.06380.ia4"
 
 FontTexture_063C0:
-    .incbin "build/bin/segment2/font_graphics.063C0.ia4"
+    .incbin "bin/segment2/font_graphics.063C0.ia4"
 
 FontTexture_06400:
-    .incbin "build/bin/segment2/font_graphics.06400.ia4"
+    .incbin "bin/segment2/font_graphics.06400.ia4"
 
 FontTexture_06440:
-    .incbin "build/bin/segment2/font_graphics.06440.ia4"
+    .incbin "bin/segment2/font_graphics.06440.ia4"
 
 FontTexture_06480:
-    .incbin "build/bin/segment2/font_graphics.06480.ia4"
+    .incbin "bin/segment2/font_graphics.06480.ia4"
 
 FontTexture_064C0:
-    .incbin "build/bin/segment2/font_graphics.064C0.ia4"
+    .incbin "bin/segment2/font_graphics.064C0.ia4"
 
 FontTexture_06500:
-    .incbin "build/bin/segment2/font_graphics.06500.ia4"
+    .incbin "bin/segment2/font_graphics.06500.ia4"
 
 FontTexture_06540:
-    .incbin "build/bin/segment2/font_graphics.06540.ia4"
+    .incbin "bin/segment2/font_graphics.06540.ia4"
 
 FontTexture_06580:
-    .incbin "build/bin/segment2/font_graphics.06580.ia4"
+    .incbin "bin/segment2/font_graphics.06580.ia4"
 
 FontTexture_065C0:
-    .incbin "build/bin/segment2/font_graphics.065C0.ia4"
+    .incbin "bin/segment2/font_graphics.065C0.ia4"
 
 FontTexture_06600:
-    .incbin "build/bin/segment2/font_graphics.06600.ia4"
+    .incbin "bin/segment2/font_graphics.06600.ia4"
 
 FontTexture_06640:
-    .incbin "build/bin/segment2/font_graphics.06640.ia4"
+    .incbin "bin/segment2/font_graphics.06640.ia4"
 
 FontTexture_06680:
-    .incbin "build/bin/segment2/font_graphics.06680.ia4"
+    .incbin "bin/segment2/font_graphics.06680.ia4"
 
 FontTexture_066C0:
-    .incbin "build/bin/segment2/font_graphics.066C0.ia4"
+    .incbin "bin/segment2/font_graphics.066C0.ia4"
 
 FontTexture_06700:
-    .incbin "build/bin/segment2/font_graphics.06700.ia4"
+    .incbin "bin/segment2/font_graphics.06700.ia4"
 
 FontTexture_06740:
-    .incbin "build/bin/segment2/font_graphics.06740.ia4"
+    .incbin "bin/segment2/font_graphics.06740.ia4"
 
 FontTexture_06780:
-    .incbin "build/bin/segment2/font_graphics.06780.ia4"
+    .incbin "bin/segment2/font_graphics.06780.ia4"
 
 FontTexture_067C0:
-    .incbin "build/bin/segment2/font_graphics.067C0.ia4"
+    .incbin "bin/segment2/font_graphics.067C0.ia4"
 
 FontTexture_06800:
-    .incbin "build/bin/segment2/font_graphics.06800.ia4"
+    .incbin "bin/segment2/font_graphics.06800.ia4"
 
 FontTexture_06840:
-    .incbin "build/bin/segment2/font_graphics.06840.ia4"
+    .incbin "bin/segment2/font_graphics.06840.ia4"
 
 FontTexture_06880:
-    .incbin "build/bin/segment2/font_graphics.06880.ia4"
+    .incbin "bin/segment2/font_graphics.06880.ia4"
 
 FontTexture_068C0:
-    .incbin "build/bin/segment2/font_graphics.068C0.ia4"
+    .incbin "bin/segment2/font_graphics.068C0.ia4"
 
 FontTexture_06900:
-    .incbin "build/bin/segment2/font_graphics.06900.ia4"
+    .incbin "bin/segment2/font_graphics.06900.ia4"
 
 FontTexture_06940:
-    .incbin "build/bin/segment2/font_graphics.06940.ia4"
+    .incbin "bin/segment2/font_graphics.06940.ia4"
 
 FontTexture_06980:
-    .incbin "build/bin/segment2/font_graphics.06980.ia4"
+    .incbin "bin/segment2/font_graphics.06980.ia4"
 
 FontTexture_069C0:
-    .incbin "build/bin/segment2/font_graphics.069C0.ia4"
+    .incbin "bin/segment2/font_graphics.069C0.ia4"
 
 FontTexture_06A00:
-    .incbin "build/bin/segment2/font_graphics.06A00.ia4"
+    .incbin "bin/segment2/font_graphics.06A00.ia4"
 
 FontTexture_06A40:
-    .incbin "build/bin/segment2/font_graphics.06A40.ia4"
+    .incbin "bin/segment2/font_graphics.06A40.ia4"
 
 FontTexture_06A80:
-    .incbin "build/bin/segment2/font_graphics.06A80.ia4"
+    .incbin "bin/segment2/font_graphics.06A80.ia4"
 
 FontTexture_06AC0:
-    .incbin "build/bin/segment2/font_graphics.06AC0.ia4"
+    .incbin "bin/segment2/font_graphics.06AC0.ia4"
 
 FontTexture_06B00:
-    .incbin "build/bin/segment2/font_graphics.06B00.ia4"
+    .incbin "bin/segment2/font_graphics.06B00.ia4"
 
 FontTexture_06B40:
-    .incbin "build/bin/segment2/font_graphics.06B40.ia4"
+    .incbin "bin/segment2/font_graphics.06B40.ia4"
 
 FontTexture_06B80:
-    .incbin "build/bin/segment2/font_graphics.06B80.ia4"
+    .incbin "bin/segment2/font_graphics.06B80.ia4"
 
 FontTexture_06BC0:
-    .incbin "build/bin/segment2/font_graphics.06BC0.ia4"
+    .incbin "bin/segment2/font_graphics.06BC0.ia4"
 
 FontTexture_06C00:
-    .incbin "build/bin/segment2/font_graphics.06C00.ia4"
+    .incbin "bin/segment2/font_graphics.06C00.ia4"
 
 FontTexture_06C40:
-    .incbin "build/bin/segment2/font_graphics.06C40.ia4"
+    .incbin "bin/segment2/font_graphics.06C40.ia4"
 
 FontTexture_06C80:
-    .incbin "build/bin/segment2/font_graphics.06C80.ia4"
+    .incbin "bin/segment2/font_graphics.06C80.ia4"
 
 FontTexture_06CC0:
-    .incbin "build/bin/segment2/font_graphics.06CC0.ia4"
+    .incbin "bin/segment2/font_graphics.06CC0.ia4"
 
 FontTexture_06D00:
-    .incbin "build/bin/segment2/font_graphics.06D00.ia4"
+    .incbin "bin/segment2/font_graphics.06D00.ia4"
 
 FontTexture_06D40:
-    .incbin "build/bin/segment2/font_graphics.06D40.ia4"
+    .incbin "bin/segment2/font_graphics.06D40.ia4"
 
 FontTexture_06D80:
-    .incbin "build/bin/segment2/font_graphics.06D80.ia4"
+    .incbin "bin/segment2/font_graphics.06D80.ia4"
 
 FontTexture_06DC0:
-    .incbin "build/bin/segment2/font_graphics.06DC0.ia4"
+    .incbin "bin/segment2/font_graphics.06DC0.ia4"
 
 FontTexture_06E00:
-    .incbin "build/bin/segment2/font_graphics.06E00.ia4"
+    .incbin "bin/segment2/font_graphics.06E00.ia4"
 
 FontTexture_06E40:
-    .incbin "build/bin/segment2/font_graphics.06E40.ia4"
+    .incbin "bin/segment2/font_graphics.06E40.ia4"
 
 FontTexture_06E80:
-    .incbin "build/bin/segment2/font_graphics.06E80.ia4"
+    .incbin "bin/segment2/font_graphics.06E80.ia4"
 
 FontTexture_06EC0:
-    .incbin "build/bin/segment2/font_graphics.06EC0.ia4"
+    .incbin "bin/segment2/font_graphics.06EC0.ia4"
 
 FontTexture_06F00:
-    .incbin "build/bin/segment2/font_graphics.06F00.ia4"
+    .incbin "bin/segment2/font_graphics.06F00.ia4"
 
 FontTexture_06F40:
-    .incbin "build/bin/segment2/font_graphics.06F40.ia4"
+    .incbin "bin/segment2/font_graphics.06F40.ia4"
 
 FontTexture_06F80:
-    .incbin "build/bin/segment2/font_graphics.06F80.ia4"
+    .incbin "bin/segment2/font_graphics.06F80.ia4"
 
 FontTexture_06FC0:
-    .incbin "build/bin/segment2/font_graphics.06FC0.ia4"
+    .incbin "bin/segment2/font_graphics.06FC0.ia4"
 .endif
 
 seg2_texture_02007B50:
-.incbin "build/bin/segment2/segment2.07B50.rgba16"
+.incbin "bin/segment2/segment2.07B50.rgba16"
 
 seg2_texture_02007D50:
-.incbin "build/bin/segment2/segment2.07D50.rgba16"
+.incbin "bin/segment2/segment2.07D50.rgba16"
 
 seg2_texture_02007F50:
-.incbin "build/bin/segment2/segment2.07F50.rgba16"
+.incbin "bin/segment2/segment2.07F50.rgba16"
 
 seg2_texture_02008150:
-.incbin "build/bin/segment2/segment2.08150.rgba16"
+.incbin "bin/segment2/segment2.08150.rgba16"
 
 seg2_texture_020081D0:
-.incbin "build/bin/segment2/segment2.081D0.rgba16"
+.incbin "bin/segment2/segment2.081D0.rgba16"
 
 # HUD print table 0x02008250-0x02008337
 glabel seg2_hud_lut
@@ -1517,37 +1517,37 @@ gsSPDisplayList seg2_dl_0200F038
 gsSPEndDisplayList
 
 seg2_texture_0200F258:
-.incbin "build/bin/segment2/segment2.0F258.ia8"
+.incbin "bin/segment2/segment2.0F258.ia8"
 
 seg2_texture_0200F358:
-.incbin "build/bin/segment2/segment2.0F358.ia8"
+.incbin "bin/segment2/segment2.0F358.ia8"
 
 seg2_texture_0200F458:
-.incbin "build/bin/segment2/segment2.0F458.ia8"
+.incbin "bin/segment2/segment2.0F458.ia8"
 
 seg2_texture_0200FC58:
-.incbin "build/bin/segment2/segment2.0FC58.ia8"
+.incbin "bin/segment2/segment2.0FC58.ia8"
 
 seg2_texture_02010458:
-.incbin "build/bin/segment2/segment2.10458.ia8"
+.incbin "bin/segment2/segment2.10458.ia8"
 
 seg2_texture_02011458:
-.incbin "build/bin/segment2/segment2.11458.ia8"
+.incbin "bin/segment2/segment2.11458.ia8"
 
 glabel seg2_texture_02011C58
-.incbin "build/bin/segment2/segment2.11C58.rgba16"
+.incbin "bin/segment2/segment2.11C58.rgba16"
 
 glabel seg2_texture_02012458
-.incbin "build/bin/segment2/segment2.12458.rgba16"
+.incbin "bin/segment2/segment2.12458.rgba16"
 
 glabel seg2_texture_02012C58
-.incbin "build/bin/segment2/segment2.12C58.rgba16"
+.incbin "bin/segment2/segment2.12C58.rgba16"
 
 glabel seg2_texture_02013458
-.incbin "build/bin/segment2/segment2.13458.ia16"
+.incbin "bin/segment2/segment2.13458.ia16"
 
 glabel seg2_texture_02013C58
-.incbin "build/bin/segment2/segment2.13C58.rgba16"
+.incbin "bin/segment2/segment2.13C58.rgba16"
 
 # 14458-178CF: TODO
 seg2_todo_14458:
@@ -1715,7 +1715,7 @@ gsDPSetCombineMode G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_
 gsSPEndDisplayList
 
 seg2_texture_02014838: # 0x02014838 - 0x02014878
-.incbin "build/bin/segment2/segment2.14838.ia8"
+.incbin "bin/segment2/segment2.14838.ia8"
 
 glabel seg2_dl_02014878 # 0x02014878 - 0x020148B0
 gsDPPipeSync

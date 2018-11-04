@@ -19,19 +19,19 @@
 .equ bob_textures_0900B000, 0x0900B000
 
 bob_seg7_texture_07000000: # 0x07000000 - 0x07000800
-.incbin "build/bin/bob_seg7/bob_seg7.00000.rgba16"
+.incbin "bin/bob_seg7/bob_seg7.00000.rgba16"
 
 bob_seg7_texture_07000800: # 0x07000800 - 0x07001000
-.incbin "build/bin/bob_seg7/bob_seg7.00800.rgba16"
+.incbin "bin/bob_seg7/bob_seg7.00800.rgba16"
 
 bob_seg7_texture_07001000: # 0x07001000 - 0x07001800
-.incbin "build/bin/bob_seg7/bob_seg7.01000.rgba16"
+.incbin "bin/bob_seg7/bob_seg7.01000.rgba16"
 
 bob_seg7_texture_07001800: # 0x07001800 - 0x07002000
-.incbin "build/bin/bob_seg7/bob_seg7.01800.rgba16"
+.incbin "bin/bob_seg7/bob_seg7.01800.rgba16"
 
 bob_seg7_texture_07002000: # 0x07002000 - 0x07002800
-.incbin "build/bin/bob_seg7/bob_seg7.02000.rgba16"
+.incbin "bin/bob_seg7/bob_seg7.02000.rgba16"
 
 bob_seg7_light_07002800: # 0x07002800 - 0x07002808
 .byte 0x66, 0x66, 0x66, 0x00, 0x66, 0x66, 0x66, 0x00

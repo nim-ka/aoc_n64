@@ -23,7 +23,8 @@ endif
 ################ Target Executable and Sources ###############
 
 # BUILD_DIR is location where all build artifacts are placed
-BUILD_DIR := build
+BUILD_DIR_BASE := build
+BUILD_DIR := $(BUILD_DIR_BASE)/$(VERSION)
 
 ROM := $(BUILD_DIR)/$(TARGET).z64
 ELF := $(BUILD_DIR)/$(TARGET).elf
@@ -68,7 +69,7 @@ OBJCOPY   := $(CROSS)objcopy
 # Check code syntax with host compiler
 CC_CHECK := gcc -fsyntax-only -fsigned-char -I include -std=gnu90 -Wall -Wextra -Wno-format-security $(VERSION_CFLAGS)
 
-ASFLAGS := -march=vr4300 -mabi=32 -I include $(VERSION_ASFLAGS)
+ASFLAGS := -march=vr4300 -mabi=32 -I include -I $(BUILD_DIR) $(VERSION_ASFLAGS)
 CFLAGS := -Wab,-r4300_mul -non_shared -G 0 -Xcpluscomm -Xfullwarn -g -signed -I include $(VERSION_CFLAGS)
 OBJCOPYFLAGS := --pad-to=0x800000 --gap-fill=0xFF
 SYMBOL_LINKING_FLAGS := $(addprefix -R ,$(SEG_FILES))
@@ -122,7 +123,7 @@ ifeq ($(COMPARE),1)
 endif
 
 clean:
-	$(RM) -r $(BUILD_DIR) src/text_strings.h text/us/*.s text/jp/*.s
+	$(RM) -r $(BUILD_DIR_BASE) src/text_strings.h text/us/*.s text/jp/*.s
 
 test: $(ROM)
 	$(EMULATOR) $(EMU_FLAGS) $<
@@ -145,7 +146,7 @@ $(MIO0_DIR)/%.mio0: bin/%.bin
 	$(MIO0TOOL) $< $@
 
 $(BUILD_DIR):
-	mkdir $(BUILD_DIR) $(addprefix $(BUILD_DIR)/,$(SRC_DIRS) $(ASM_DIRS) $(BIN_DIRS) $(TEXTURE_DIRS)) $(MIO0_DIR)
+	mkdir -p $(BUILD_DIR) $(addprefix $(BUILD_DIR)/,$(SRC_DIRS) $(ASM_DIRS) $(BIN_DIRS) $(TEXTURE_DIRS)) $(MIO0_DIR)
 
 # Make sure build directory exists before compiling objects
 $(O_FILES): | $(BUILD_DIR)
@@ -202,7 +203,7 @@ $(BUILD_DIR)/%.o: %.s $(MIO0_FILES)
 	$(AS) $(ASFLAGS) -MD $(BUILD_DIR)/$*.d -o $@ $<
 
 $(BUILD_DIR)/$(LD_SCRIPT): $(LD_SCRIPT)
-	$(CPP) $(VERSION_CFLAGS) $< > $@
+	$(CPP) $(VERSION_CFLAGS) -DBUILD_DIR=$(BUILD_DIR) $< > $@
 
 $(ELF): $(O_FILES) $(MIO0_OBJ_FILES) $(SEG_FILES) $(BUILD_DIR)/$(LD_SCRIPT) undefined_syms.txt
 	$(LD) $(LDFLAGS) -o $@ $(O_FILES) $(LIBS)

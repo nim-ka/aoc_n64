@@ -17,25 +17,25 @@
 .equ bob_textures_0900A800, 0x0900A800
 
 ssl_seg7_texture_07000000: # 0x07000000 - 0x07000800
-.incbin "build/bin/ssl_seg7/ssl_seg7.00000.rgba16"
+.incbin "bin/ssl_seg7/ssl_seg7.00000.rgba16"
 
 ssl_seg7_texture_07000800: # 0x07000800 - 0x07001000
-.incbin "build/bin/ssl_seg7/ssl_seg7.00800.ia16"
+.incbin "bin/ssl_seg7/ssl_seg7.00800.ia16"
 
 glabel ssl_seg7_texture_07001000 # 0x07001000 - 0x07001800
-.incbin "build/bin/ssl_seg7/ssl_seg7.01000.rgba16"
+.incbin "bin/ssl_seg7/ssl_seg7.01000.rgba16"
 
 ssl_seg7_texture_07001800: # 0x07001800 - 0x07002000
-.incbin "build/bin/ssl_seg7/ssl_seg7.01800.rgba16"
+.incbin "bin/ssl_seg7/ssl_seg7.01800.rgba16"
 
 ssl_seg7_texture_07002000: # 0x07002000 - 0x07002800
-.incbin "build/bin/ssl_seg7/ssl_seg7.02000.rgba16"
+.incbin "bin/ssl_seg7/ssl_seg7.02000.rgba16"
 
 ssl_seg7_texture_07002800: # 0x07002800 - 0x07003800
-.incbin "build/bin/ssl_seg7/ssl_seg7.02800.rgba16"
+.incbin "bin/ssl_seg7/ssl_seg7.02800.rgba16"
 
 ssl_seg7_texture_07003800: # 0x07003800 - 0x07004000
-.incbin "build/bin/ssl_seg7/ssl_seg7.03800.rgba16"
+.incbin "bin/ssl_seg7/ssl_seg7.03800.rgba16"
 
 ssl_seg7_light_07004000: # 0x07004000 - 0x07004008
 .byte 0x3F, 0x3F, 0x3F, 0x00, 0x3F, 0x3F, 0x3F, 0x00
@@ -45,7 +45,7 @@ ssl_seg7_light_07004008: # 0x07004008 - 0x07004018
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 glabel ssl_seg7_texture_07004018 # 0x07004018 - 0x07004818
-.incbin "build/bin/ssl_seg7/ssl_seg7.04018.rgba16"
+.incbin "bin/ssl_seg7/ssl_seg7.04018.rgba16"
 
 glabel ssl_seg7_dl_07004818 # 0x07004818 - 0x07004860
 gsDPPipeSync
@@ -2778,16 +2778,16 @@ ssl_seg7_light_0700BF98: # 0x0700BF98 - 0x0700BFA8
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 ssl_seg7_texture_0700BFA8: # 0x0700BFA8 - 0x0700C7A8
-.incbin "build/bin/ssl_seg7/ssl_seg7.0BFA8.rgba16"
+.incbin "bin/ssl_seg7/ssl_seg7.0BFA8.rgba16"
 
 ssl_seg7_texture_0700C7A8: # 0x0700C7A8 - 0x0700D7A8
-.incbin "build/bin/ssl_seg7/ssl_seg7.0C7A8.rgba16"
+.incbin "bin/ssl_seg7/ssl_seg7.0C7A8.rgba16"
 
 ssl_seg7_texture_0700D7A8: # 0x0700D7A8 - 0x0700E7A8
-.incbin "build/bin/ssl_seg7/ssl_seg7.0D7A8.rgba16"
+.incbin "bin/ssl_seg7/ssl_seg7.0D7A8.rgba16"
 
 ssl_seg7_texture_0700E7A8: # 0x0700E7A8 - 0x0700F7A8
-.incbin "build/bin/ssl_seg7/ssl_seg7.0E7A8.rgba16"
+.incbin "bin/ssl_seg7/ssl_seg7.0E7A8.rgba16"
 
 ssl_seg7_vertex_0700F7A8: # 0x0700F7A8 - 0x0700F898
 vertex   -153,   -255,   -153,      0,    990,  0x00, 0x00, 0x7F, 0xFF

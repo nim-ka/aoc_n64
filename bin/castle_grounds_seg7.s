@@ -25,13 +25,13 @@
 .equ castle_grounds_textures_0900BC00, 0x0900BC00
 
 castle_grounds_seg7_texture_07000000: # 0x07000000 - 0x07001000
-.incbin "build/bin/castle_grounds_seg7/castle_grounds_seg7.00000.rgba16"
+.incbin "bin/castle_grounds_seg7/castle_grounds_seg7.00000.rgba16"
 
 castle_grounds_seg7_texture_07001000: # 0x07001000 - 0x07002000
-.incbin "build/bin/castle_grounds_seg7/castle_grounds_seg7.01000.rgba16"
+.incbin "bin/castle_grounds_seg7/castle_grounds_seg7.01000.rgba16"
 
 castle_grounds_seg7_texture_07002000: # 0x07002000 - 0x07003000
-.incbin "build/bin/castle_grounds_seg7/castle_grounds_seg7.02000.rgba16"
+.incbin "bin/castle_grounds_seg7/castle_grounds_seg7.02000.rgba16"
 
 castle_grounds_seg7_vertex_07003000: # 0x07003000 - 0x070030F0
 vertex   3784,  -1330,    590,      0,    906,  0x70, 0x70, 0x8A, 0xFF
@@ -3689,10 +3689,10 @@ vertex     72,    -81,      0,    990,   2012,  0xFF, 0xFF, 0xFF, 0xFF
 vertex      0,     82,      0,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
 
 castle_grounds_seg7_texture_0700C9E8: # 0x0700C9E8 - 0x0700D9E8
-.incbin "build/bin/castle_grounds_seg7/castle_grounds_seg7.0C9E8.rgba16"
+.incbin "bin/castle_grounds_seg7/castle_grounds_seg7.0C9E8.rgba16"
 
 castle_grounds_seg7_texture_0700D9E8: # 0x0700D9E8 - 0x0700E9E8
-.incbin "build/bin/castle_grounds_seg7/castle_grounds_seg7.0D9E8.rgba16"
+.incbin "bin/castle_grounds_seg7/castle_grounds_seg7.0D9E8.rgba16"
 
 castle_grounds_seg7_dl_0700E9E8: # 0x0700E9E8 - 0x0700EA20
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, castle_grounds_seg7_texture_0700C9E8
@@ -3734,7 +3734,7 @@ gsSPEndDisplayList
 
 .ifdef VERSION_US
 castle_grounds_seg7_us_texture_0700EAE8:
-.incbin "build/bin/castle_grounds_seg7/castle_grounds_seg7_peach.0EAE8.ia8"
+.incbin "bin/castle_grounds_seg7/castle_grounds_seg7_peach.0EAE8.ia8"
 
 glabel castle_grounds_seg7_us_dl_0700F2E8 # 0x0700F2E8
 gsDPPipeSync

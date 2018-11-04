@@ -23,10 +23,10 @@
 .equ ttc_textures_09008400, 0x09008400
 
 ttc_seg7_texture_07000000: # 0x07000000 - 0x07000800
-.incbin "build/bin/ttc_seg7/ttc_seg7.00000.rgba16"
+.incbin "bin/ttc_seg7/ttc_seg7.00000.rgba16"
 
 ttc_seg7_texture_07000800: # 0x07000800 - 0x07001000
-.incbin "build/bin/ttc_seg7/ttc_seg7.00800.rgba16"
+.incbin "bin/ttc_seg7/ttc_seg7.00800.rgba16"
 
 ttc_seg7_light_07001000: # 0x07001000 - 0x07001008
 .byte 0x3F, 0x3F, 0x3F, 0x00, 0x3F, 0x3F, 0x3F, 0x00
@@ -8987,7 +8987,7 @@ ttc_seg7_light_07015F80: # 0x07015F80 - 0x07015F90
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 glabel ttc_seg7_texture_07015F90 # 0x07015F90 - 0x07016790
-.incbin "build/bin/ttc_seg7/ttc_seg7.15F90.rgba16"
+.incbin "bin/ttc_seg7/ttc_seg7.15F90.rgba16"
 
 glabel ttc_seg7_dl_07016790 # 0x07016790 - 0x07016808
 gsDPPipeSync

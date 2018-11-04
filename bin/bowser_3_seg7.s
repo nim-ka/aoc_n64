@@ -4,13 +4,13 @@
 .include "ultra64/gbi.inc"
 
 bowser_3_seg7_texture_07000000: # 0x07000000 - 0x07000800
-.incbin "build/bin/bowser_3_seg7/bowser_3_seg7.00000.rgba16"
+.incbin "bin/bowser_3_seg7/bowser_3_seg7.00000.rgba16"
 
 bowser_3_seg7_texture_07000800: # 0x07000800 - 0x07001000
-.incbin "build/bin/bowser_3_seg7/bowser_3_seg7.00800.rgba16"
+.incbin "bin/bowser_3_seg7/bowser_3_seg7.00800.rgba16"
 
 bowser_3_seg7_texture_07001000: # 0x07001000 - 0x07002000
-.incbin "build/bin/bowser_3_seg7/bowser_3_seg7.01000.rgba16"
+.incbin "bin/bowser_3_seg7/bowser_3_seg7.01000.rgba16"
 
 bowser_3_seg7_light_07002000: # 0x07002000 - 0x07002008
 .byte 0x22, 0x22, 0x22, 0x00, 0x22, 0x22, 0x22, 0x00

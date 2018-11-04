@@ -10,7 +10,7 @@
 .equ lll_textures_09009800, 0x09009800
 
 bowser_2_seg7_texture_07000000: # 0x07000000 - 0x07000800
-.incbin "build/bin/bowser_2_seg7/bowser_2_seg7.00000.rgba16"
+.incbin "bin/bowser_2_seg7/bowser_2_seg7.00000.rgba16"
 
 bowser_2_seg7_vertex_07000800: # 0x07000800 - 0x07000900
 vertex   1176,    784,  -2837,   6612,    678,  0xFF, 0xFF, 0xFF, 0xFF

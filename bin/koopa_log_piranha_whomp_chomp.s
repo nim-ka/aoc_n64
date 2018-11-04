@@ -28,7 +28,7 @@ koopa_flag_seg6_light_06000038: # 0x06000038
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 koopa_flag_seg6_texture_06000048: # 0x06000048
-.incbin "build/bin/koopa_log_piranha_whomp_chomp/koopa_flag.00048.rgba16"
+.incbin "bin/koopa_log_piranha_whomp_chomp/koopa_flag.00048.rgba16"
 
 koopa_flag_seg6_light_06000848: # 0x06000848
 .byte 0x37, 0x27, 0x07, 0x00, 0x37, 0x27, 0x07, 0x00
@@ -299,10 +299,10 @@ poundable_pole_seg6_light_06001040: # 0x06001040
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 poundable_pole_seg6_texture_06001050: # 0x06001050
-.incbin "build/bin/koopa_log_piranha_whomp_chomp/pound_pole.01050.rgba16"
+.incbin "bin/koopa_log_piranha_whomp_chomp/pound_pole.01050.rgba16"
 
 poundable_pole_seg6_texture_06001850: # 0x06001850
-.incbin "build/bin/koopa_log_piranha_whomp_chomp/pound_pole.01850.rgba16"
+.incbin "bin/koopa_log_piranha_whomp_chomp/pound_pole.01850.rgba16"
 
 poundable_pole_seg6_vertex_06002050: # 0x06002050
 vertex    -38,    410,    -94,     78,     78,  0xDF, 0x5C, 0xB0, 0xFF
@@ -525,28 +525,28 @@ koopa_seg6_light_06002638: # 0x06002638
 #     the rest of its body. This is evident because once the mistake is corrected
 #     it turns back to being white like the other polygons.
 koopa_seg6_texture_06002648: # 0x06002648
-.incbin "build/bin/koopa_log_piranha_whomp_chomp/big_koopa.02648.rgba16"
+.incbin "bin/koopa_log_piranha_whomp_chomp/big_koopa.02648.rgba16"
 
 koopa_seg6_texture_06002E48: # 0x06002E48
-.incbin "build/bin/koopa_log_piranha_whomp_chomp/big_koopa.02E48.rgba16"
+.incbin "bin/koopa_log_piranha_whomp_chomp/big_koopa.02E48.rgba16"
 
 koopa_seg6_texture_06003648: # 0x06003648
-.incbin "build/bin/koopa_log_piranha_whomp_chomp/big_koopa.03648.rgba16"
+.incbin "bin/koopa_log_piranha_whomp_chomp/big_koopa.03648.rgba16"
 
 koopa_seg6_texture_06003E48: # 0x06003E48
-.incbin "build/bin/koopa_log_piranha_whomp_chomp/big_koopa.03E48.rgba16"
+.incbin "bin/koopa_log_piranha_whomp_chomp/big_koopa.03E48.rgba16"
 
 koopa_seg6_texture_06004648: # 0x06004648
-.incbin "build/bin/koopa_log_piranha_whomp_chomp/big_koopa.04648.rgba16"
+.incbin "bin/koopa_log_piranha_whomp_chomp/big_koopa.04648.rgba16"
 
 koopa_seg6_texture_06004E48: # 0x06004E48
-.incbin "build/bin/koopa_log_piranha_whomp_chomp/big_koopa.04E48.rgba16"
+.incbin "bin/koopa_log_piranha_whomp_chomp/big_koopa.04E48.rgba16"
 
 koopa_seg6_texture_06005648: # 0x06005648
-.incbin "build/bin/koopa_log_piranha_whomp_chomp/big_koopa.05648.rgba16"
+.incbin "bin/koopa_log_piranha_whomp_chomp/big_koopa.05648.rgba16"
 
 koopa_seg6_texture_06005E48: # 0x06005E48
-.incbin "build/bin/koopa_log_piranha_whomp_chomp/big_koopa.05E48.rgba16"
+.incbin "bin/koopa_log_piranha_whomp_chomp/big_koopa.05E48.rgba16"
 
 koopa_seg6_light_06006E48: # 0x06006E48
 .byte 0x7F, 0x7F, 0x7F, 0x00, 0x7F, 0x7F, 0x7F, 0x00
@@ -4130,22 +4130,22 @@ piranha_plant_seg6_light_060113E8: # 0x060113E8
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 piranha_plant_seg6_texture_060113F8: # 0x060113F8
-.incbin "build/bin/koopa_log_piranha_whomp_chomp/piranha_plant.113F8.rgba16"
+.incbin "bin/koopa_log_piranha_whomp_chomp/piranha_plant.113F8.rgba16"
 
 piranha_plant_seg6_texture_060123F8: # 0x060123F8
-.incbin "build/bin/koopa_log_piranha_whomp_chomp/piranha_plant.123F8.rgba16"
+.incbin "bin/koopa_log_piranha_whomp_chomp/piranha_plant.123F8.rgba16"
 
 piranha_plant_seg6_texture_06012BF8: # 0x06012BF8
-.incbin "build/bin/koopa_log_piranha_whomp_chomp/piranha_plant.12BF8.rgba16"
+.incbin "bin/koopa_log_piranha_whomp_chomp/piranha_plant.12BF8.rgba16"
 
 piranha_plant_seg6_texture_060133F8: # 0x060133F8
-.incbin "build/bin/koopa_log_piranha_whomp_chomp/piranha_plant.133F8.rgba16"
+.incbin "bin/koopa_log_piranha_whomp_chomp/piranha_plant.133F8.rgba16"
 
 piranha_plant_seg6_texture_06013BF8: # 0x06013BF8
-.incbin "build/bin/koopa_log_piranha_whomp_chomp/piranha_plant.13BF8.rgba16"
+.incbin "bin/koopa_log_piranha_whomp_chomp/piranha_plant.13BF8.rgba16"
 
 piranha_plant_seg6_texture_060143F8: # 0x060143F8
-.incbin "build/bin/koopa_log_piranha_whomp_chomp/piranha_plant.143F8.rgba16"
+.incbin "bin/koopa_log_piranha_whomp_chomp/piranha_plant.143F8.rgba16"
 
 piranha_plant_seg6_vertex_060153F8: # 0x060153F8
 vertex      0,      1,   -223,      0,   2012,  0x00, 0x7F, 0x00, 0xFF
@@ -6377,16 +6377,16 @@ glabel piranha_plant_seg6_anims_0601C31C # 0x0601C31C
 .balign 8
 
 whomp_seg6_texture_0601C360: # 0x0601C360
-.incbin "build/bin/koopa_log_piranha_whomp_chomp/whomp.1C360.rgba16"
+.incbin "bin/koopa_log_piranha_whomp_chomp/whomp.1C360.rgba16"
 
 whomp_seg6_texture_0601D360: # 0x0601D360
-.incbin "build/bin/koopa_log_piranha_whomp_chomp/whomp.1D360.rgba16"
+.incbin "bin/koopa_log_piranha_whomp_chomp/whomp.1D360.rgba16"
 
 whomp_seg6_texture_0601E360: # 0x0601D360
-.incbin "build/bin/koopa_log_piranha_whomp_chomp/whomp.1E360.rgba16"
+.incbin "bin/koopa_log_piranha_whomp_chomp/whomp.1E360.rgba16"
 
 whomp_seg6_texture_0601EB60: # 0x0601EB60
-.incbin "build/bin/koopa_log_piranha_whomp_chomp/whomp.1EB60.rgba16"
+.incbin "bin/koopa_log_piranha_whomp_chomp/whomp.1EB60.rgba16"
 
 whomp_seg6_light_0601F360: # 0x0601F360
 .byte 0x4C, 0x4C, 0x4C, 0x00, 0x4C, 0x4C, 0x4C, 0x00
@@ -7045,7 +7045,7 @@ vertex    -26,     26,      0,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
 
 .word 0, 0 # align but balign wont here?
 chain_ball_seg6_texture_06020AE8: # 0x06020AE8
-.incbin "build/bin/koopa_log_piranha_whomp_chomp/chain_ball.20AE8.rgba16"
+.incbin "bin/koopa_log_piranha_whomp_chomp/chain_ball.20AE8.rgba16"
 
 glabel chain_ball_seg6_dl_060212E8 # 0x060212E8 - 0x06021380
 gsDPPipeSync
@@ -7098,19 +7098,19 @@ chain_chomp_seg6_light_060213C0: # 0x060213C0
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 chain_chomp_seg6_texture_060213D0: # 0x060213D0
-.incbin "build/bin/koopa_log_piranha_whomp_chomp/chain_chomp.213D0.rgba16"
+.incbin "bin/koopa_log_piranha_whomp_chomp/chain_chomp.213D0.rgba16"
 
 chain_chomp_seg6_texture_06021BD0: # 0x06021BD0
-.incbin "build/bin/koopa_log_piranha_whomp_chomp/chain_chomp.21BD0.rgba16"
+.incbin "bin/koopa_log_piranha_whomp_chomp/chain_chomp.21BD0.rgba16"
 
 chain_chomp_seg6_texture_060223D0: # 0x060223D0
-.incbin "build/bin/koopa_log_piranha_whomp_chomp/chain_chomp.223D0.rgba16"
+.incbin "bin/koopa_log_piranha_whomp_chomp/chain_chomp.223D0.rgba16"
 
 chain_chomp_seg6_texture_06022BD0: # 0x06022BD0
-.incbin "build/bin/koopa_log_piranha_whomp_chomp/chain_chomp.22BD0.rgba16"
+.incbin "bin/koopa_log_piranha_whomp_chomp/chain_chomp.22BD0.rgba16"
 
 chain_chomp_seg6_texture_060233D0: # 0x060233D0
-.incbin "build/bin/koopa_log_piranha_whomp_chomp/chain_chomp.233D0.rgba16"
+.incbin "bin/koopa_log_piranha_whomp_chomp/chain_chomp.233D0.rgba16"
 
 chain_chomp_seg6_vertex_06023BD0: # 0x06023BD0
 vertex      0,      0,    582,    990,    380,  0xB2, 0xB2, 0xB2, 0xFF

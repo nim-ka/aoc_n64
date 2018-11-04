@@ -23,135 +23,135 @@
 .equ inside_castle_textures_0900B800, 0x0900B800
 
 inside_castle_seg7_texture_07000000: # 0x07000000 - 0x07000800
-.incbin "build/bin/inside_castle_seg7/inside_castle_seg7.00000.ia16"
+.incbin "bin/inside_castle_seg7/inside_castle_seg7.00000.ia16"
 
 inside_castle_seg7_texture_07000800: # 0x07000800 - 0x07001000
-.incbin "build/bin/inside_castle_seg7/inside_castle_seg7.00800.rgba16"
+.incbin "bin/inside_castle_seg7/inside_castle_seg7.00800.rgba16"
 
 inside_castle_seg7_texture_07001000: # 0x07001000 - 0x07002000
-.incbin "build/bin/inside_castle_seg7/inside_castle_seg7.01000.ia16"
+.incbin "bin/inside_castle_seg7/inside_castle_seg7.01000.ia16"
 
 inside_castle_seg7_texture_07002000: # 0x07002000 - 0x07003000
-.incbin "build/bin/inside_castle_seg7/inside_castle_seg7.02000.rgba16"
+.incbin "bin/inside_castle_seg7/inside_castle_seg7.02000.rgba16"
 
 inside_castle_seg7_texture_07003000: # 0x07003000 - 0x07003800
-.incbin "build/bin/inside_castle_seg7/inside_castle_seg7.03000.rgba16"
+.incbin "bin/inside_castle_seg7/inside_castle_seg7.03000.rgba16"
 
 inside_castle_seg7_texture_07003800: # 0x07003800 - 0x07004800
-.incbin "build/bin/inside_castle_seg7/inside_castle_seg7.03800.rgba16"
+.incbin "bin/inside_castle_seg7/inside_castle_seg7.03800.rgba16"
 
 inside_castle_seg7_texture_07004800: # 0x07004800 - 0x07005800
-.incbin "build/bin/inside_castle_seg7/inside_castle_seg7.04800.rgba16"
+.incbin "bin/inside_castle_seg7/inside_castle_seg7.04800.rgba16"
 
 inside_castle_seg7_texture_07005800: # 0x07005800 - 0x07006000
-.incbin "build/bin/inside_castle_seg7/inside_castle_seg7.05800.rgba16"
+.incbin "bin/inside_castle_seg7/inside_castle_seg7.05800.rgba16"
 
 inside_castle_seg7_texture_07006000: # 0x07006000 - 0x07006800
-.incbin "build/bin/inside_castle_seg7/inside_castle_seg7.06000.rgba16"
+.incbin "bin/inside_castle_seg7/inside_castle_seg7.06000.rgba16"
 
 inside_castle_seg7_texture_07006800: # 0x07006800 - 0x07007000
-.incbin "build/bin/inside_castle_seg7/inside_castle_seg7.06800.rgba16"
+.incbin "bin/inside_castle_seg7/inside_castle_seg7.06800.rgba16"
 
 inside_castle_seg7_texture_07007000: # 0x07007000 - 0x07007800
-.incbin "build/bin/inside_castle_seg7/inside_castle_seg7.07000.rgba16"
+.incbin "bin/inside_castle_seg7/inside_castle_seg7.07000.rgba16"
 
 inside_castle_seg7_texture_07007800: # 0x07007800 - 0x07008000
-.incbin "build/bin/inside_castle_seg7/inside_castle_seg7.07800.rgba16"
+.incbin "bin/inside_castle_seg7/inside_castle_seg7.07800.rgba16"
 
 inside_castle_seg7_texture_07008000: # 0x07008000 - 0x07008800
-.incbin "build/bin/inside_castle_seg7/inside_castle_seg7.08000.rgba16"
+.incbin "bin/inside_castle_seg7/inside_castle_seg7.08000.rgba16"
 
 inside_castle_seg7_texture_07008800: # 0x07008800 - 0x07009000
-.incbin "build/bin/inside_castle_seg7/inside_castle_seg7.08800.rgba16"
+.incbin "bin/inside_castle_seg7/inside_castle_seg7.08800.rgba16"
 
 inside_castle_seg7_texture_07009000: # 0x07009000 - 0x07009800
-.incbin "build/bin/inside_castle_seg7/inside_castle_seg7.09000.rgba16"
+.incbin "bin/inside_castle_seg7/inside_castle_seg7.09000.rgba16"
 
 inside_castle_seg7_texture_07009800: # 0x07009800 - 0x0700A000
-.incbin "build/bin/inside_castle_seg7/inside_castle_seg7.09800.rgba16"
+.incbin "bin/inside_castle_seg7/inside_castle_seg7.09800.rgba16"
 
 inside_castle_seg7_texture_0700A000: # 0x0700A000 - 0x0700A800
-.incbin "build/bin/inside_castle_seg7/inside_castle_seg7.0A000.ia16"
+.incbin "bin/inside_castle_seg7/inside_castle_seg7.0A000.ia16"
 
 inside_castle_seg7_texture_0700A800: # 0x0700A800 - 0x0700B800
-.incbin "build/bin/inside_castle_seg7/inside_castle_seg7.0A800.rgba16"
+.incbin "bin/inside_castle_seg7/inside_castle_seg7.0A800.rgba16"
 
 inside_castle_seg7_texture_0700B800: # 0x0700B800 - 0x0700C800
-.incbin "build/bin/inside_castle_seg7/inside_castle_seg7.0B800.rgba16"
+.incbin "bin/inside_castle_seg7/inside_castle_seg7.0B800.rgba16"
 
 inside_castle_seg7_texture_0700C800: # 0x0700C800 - 0x0700D800
-.incbin "build/bin/inside_castle_seg7/inside_castle_seg7.0C800.rgba16"
+.incbin "bin/inside_castle_seg7/inside_castle_seg7.0C800.rgba16"
 
 inside_castle_seg7_texture_0700D800: # 0x0700D800 - 0x0700E800
-.incbin "build/bin/inside_castle_seg7/inside_castle_seg7.0D800.rgba16"
+.incbin "bin/inside_castle_seg7/inside_castle_seg7.0D800.rgba16"
 
 inside_castle_seg7_texture_0700E800: # 0x0700E800 - 0x0700F800
-.incbin "build/bin/inside_castle_seg7/inside_castle_seg7.0E800.rgba16"
+.incbin "bin/inside_castle_seg7/inside_castle_seg7.0E800.rgba16"
 
 inside_castle_seg7_texture_0700F800: # 0x0700F800 - 0x07010800
-.incbin "build/bin/inside_castle_seg7/inside_castle_seg7.0F800.rgba16"
+.incbin "bin/inside_castle_seg7/inside_castle_seg7.0F800.rgba16"
 
 inside_castle_seg7_texture_07010800: # 0x07010800 - 0x07011800
 .ifdef VERSION_JP
-.incbin "build/bin/inside_castle_seg7/inside_castle_seg7.10800.rgba16"
+.incbin "bin/inside_castle_seg7/inside_castle_seg7.10800.rgba16"
 .else
-.incbin "build/bin/inside_castle_seg7/inside_castle_seg7_us.10800.rgba16"
+.incbin "bin/inside_castle_seg7/inside_castle_seg7_us.10800.rgba16"
 .endif
 
 inside_castle_seg7_texture_07011800: # 0x07011800 - 0x0701200
 .ifdef VERSION_JP
-.incbin "build/bin/inside_castle_seg7/inside_castle_seg7.11800.rgba16"
+.incbin "bin/inside_castle_seg7/inside_castle_seg7.11800.rgba16"
 .else
-.incbin "build/bin/inside_castle_seg7/inside_castle_seg7_us.11800.rgba16"
+.incbin "bin/inside_castle_seg7/inside_castle_seg7_us.11800.rgba16"
 .endif
 
 inside_castle_seg7_texture_07012800: # 0x07012800 - 0x07013800
-.incbin "build/bin/inside_castle_seg7/inside_castle_seg7.12800.rgba16"
+.incbin "bin/inside_castle_seg7/inside_castle_seg7.12800.rgba16"
 
 inside_castle_seg7_texture_07013800: # 0x07013800 - 0x07014800
-.incbin "build/bin/inside_castle_seg7/inside_castle_seg7.13800.rgba16"
+.incbin "bin/inside_castle_seg7/inside_castle_seg7.13800.rgba16"
 
 inside_castle_seg7_texture_07014800: # 0x07014800 - 0x07015800
-.incbin "build/bin/inside_castle_seg7/inside_castle_seg7.14800.rgba16"
+.incbin "bin/inside_castle_seg7/inside_castle_seg7.14800.rgba16"
 
 inside_castle_seg7_texture_07015800: # 0x07015800 - 0x07016800
-.incbin "build/bin/inside_castle_seg7/inside_castle_seg7.15800.rgba16"
+.incbin "bin/inside_castle_seg7/inside_castle_seg7.15800.rgba16"
 
 inside_castle_seg7_texture_07016800: # 0x07016800 - 0x07017000
-.incbin "build/bin/inside_castle_seg7/inside_castle_seg7.16800.rgba16"
+.incbin "bin/inside_castle_seg7/inside_castle_seg7.16800.rgba16"
 
 inside_castle_seg7_texture_07017000: # 0x07017000 - 0x07017800
-.incbin "build/bin/inside_castle_seg7/inside_castle_seg7.17000.rgba16"
+.incbin "bin/inside_castle_seg7/inside_castle_seg7.17000.rgba16"
 
 inside_castle_seg7_texture_07017800: # 0x07017800 - 0x07018800
-.incbin "build/bin/inside_castle_seg7/inside_castle_seg7.17800.rgba16"
+.incbin "bin/inside_castle_seg7/inside_castle_seg7.17800.rgba16"
 
 inside_castle_seg7_texture_07018800: # 0x07018800 - 0x07019800
-.incbin "build/bin/inside_castle_seg7/inside_castle_seg7.18800.rgba16"
+.incbin "bin/inside_castle_seg7/inside_castle_seg7.18800.rgba16"
 
 inside_castle_seg7_texture_07019800: # 0x07019800 - 0x0701A800
-.incbin "build/bin/inside_castle_seg7/inside_castle_seg7.19800.rgba16"
+.incbin "bin/inside_castle_seg7/inside_castle_seg7.19800.rgba16"
 
 inside_castle_seg7_texture_0701A800: # 0x0701A800 - 0x0701B800
-.incbin "build/bin/inside_castle_seg7/inside_castle_seg7.1A800.rgba16"
+.incbin "bin/inside_castle_seg7/inside_castle_seg7.1A800.rgba16"
 
 inside_castle_seg7_texture_0701B800: # 0x0701B800 - 0x0701C800
-.incbin "build/bin/inside_castle_seg7/inside_castle_seg7.1B800.rgba16"
+.incbin "bin/inside_castle_seg7/inside_castle_seg7.1B800.rgba16"
 
 inside_castle_seg7_texture_0701C800: # 0x0701C800 - 0x0701D800
-.incbin "build/bin/inside_castle_seg7/inside_castle_seg7.1C800.rgba16"
+.incbin "bin/inside_castle_seg7/inside_castle_seg7.1C800.rgba16"
 
 inside_castle_seg7_texture_0701D800: # 0x0701D800 - 0x0701E800
-.incbin "build/bin/inside_castle_seg7/inside_castle_seg7.1D800.rgba16"
+.incbin "bin/inside_castle_seg7/inside_castle_seg7.1D800.rgba16"
 
 inside_castle_seg7_texture_0701E800: # 0x0701E800 - 0x0701F800
-.incbin "build/bin/inside_castle_seg7/inside_castle_seg7.1E800.rgba16"
+.incbin "bin/inside_castle_seg7/inside_castle_seg7.1E800.rgba16"
 
 inside_castle_seg7_texture_0701F800: # 0x0701F800 - 0x07020800
-.incbin "build/bin/inside_castle_seg7/inside_castle_seg7.1F800.rgba16"
+.incbin "bin/inside_castle_seg7/inside_castle_seg7.1F800.rgba16"
 
 inside_castle_seg7_texture_07020800: # 0x07020800 - 0x07021800
-.incbin "build/bin/inside_castle_seg7/inside_castle_seg7.20800.rgba16"
+.incbin "bin/inside_castle_seg7/inside_castle_seg7.20800.rgba16"
 
 inside_castle_seg7_light_07021800: # 0x07021800 - 0x07021808
 .byte 0x50, 0x50, 0x50, 0x00, 0x50, 0x50, 0x50, 0x00

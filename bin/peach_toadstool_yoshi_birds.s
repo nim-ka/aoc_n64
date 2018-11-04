@@ -303,34 +303,34 @@ peach_seg5_light_05000A18: # 0x05000A18
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 peach_seg5_texture_05000A28: # 0x05000A28
-.incbin "build/bin/peach_toadstool_yoshi_birds/peach.00A28.rgba16"
+.incbin "bin/peach_toadstool_yoshi_birds/peach.00A28.rgba16"
 
 peach_seg5_texture_05001228: # 0x05001228
-.incbin "build/bin/peach_toadstool_yoshi_birds/peach.01228.rgba16"
+.incbin "bin/peach_toadstool_yoshi_birds/peach.01228.rgba16"
 
 peach_seg5_texture_05001A28: # 0x05001A28
-.incbin "build/bin/peach_toadstool_yoshi_birds/peach.01A28.rgba16"
+.incbin "bin/peach_toadstool_yoshi_birds/peach.01A28.rgba16"
 
 peach_seg5_texture_05002228: # 0x05002228
-.incbin "build/bin/peach_toadstool_yoshi_birds/peach.02228.rgba16"
+.incbin "bin/peach_toadstool_yoshi_birds/peach.02228.rgba16"
 
 peach_seg5_texture_05002A28: # 0x05002A28
-.incbin "build/bin/peach_toadstool_yoshi_birds/peach.02A28.rgba16"
+.incbin "bin/peach_toadstool_yoshi_birds/peach.02A28.rgba16"
 
 peach_seg5_texture_05002C28: # 0x05002C28
-.incbin "build/bin/peach_toadstool_yoshi_birds/peach.02C28.rgba16"
+.incbin "bin/peach_toadstool_yoshi_birds/peach.02C28.rgba16"
 
 peach_seg5_texture_05002E28: # 0x05002E28
-.incbin "build/bin/peach_toadstool_yoshi_birds/peach.02E28.rgba16"
+.incbin "bin/peach_toadstool_yoshi_birds/peach.02E28.rgba16"
 
 peach_seg5_texture_05003628: # 0x05003628
-.incbin "build/bin/peach_toadstool_yoshi_birds/peach.03628.rgba16"
+.incbin "bin/peach_toadstool_yoshi_birds/peach.03628.rgba16"
 
 peach_seg5_texture_05003E28: # 0x05003E28
-.incbin "build/bin/peach_toadstool_yoshi_birds/peach.03E28.rgba16"
+.incbin "bin/peach_toadstool_yoshi_birds/peach.03E28.rgba16"
 
 peach_seg5_texture_05004028: # 0x05004028
-.incbin "build/bin/peach_toadstool_yoshi_birds/peach.04028.rgba16"
+.incbin "bin/peach_toadstool_yoshi_birds/peach.04028.rgba16"
 
 peach_seg5_vertex_05004828: # 0x05004828
 vertex    205,     -4,    -48,    265,   1338,  0x7A, 0xF9, 0xE1, 0xFF
@@ -7550,13 +7550,13 @@ yoshi_seg5_light_0501C490: # 0x0501C490
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 yoshi_seg5_texture_0501C4A0: # 0x0501C4A0
-.incbin "build/bin/peach_toadstool_yoshi_birds/yoshi.1C4A0.rgba16"
+.incbin "bin/peach_toadstool_yoshi_birds/yoshi.1C4A0.rgba16"
 
 yoshi_seg5_texture_0501C6A0: # 0x0501C6A0
-.incbin "build/bin/peach_toadstool_yoshi_birds/yoshi.1C6A0.rgba16"
+.incbin "bin/peach_toadstool_yoshi_birds/yoshi.1C6A0.rgba16"
 
 yoshi_seg5_texture_0501C8A0: # 0x0501C8A0
-.incbin "build/bin/peach_toadstool_yoshi_birds/yoshi.1C8A0.rgba16"
+.incbin "bin/peach_toadstool_yoshi_birds/yoshi.1C8A0.rgba16"
 
 yoshi_seg5_vertex_0501CAA0: # 0x0501CAA0
 vertex    174,    273,   -134,   1177,    698,  0x29, 0x20, 0x8D, 0xFF

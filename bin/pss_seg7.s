@@ -12,13 +12,13 @@
 .equ ttm_textures_0900C000, 0x0900C000
 
 pss_seg7_texture_07000000: # 0x07000000 - 0x07000002
-.incbin "build/bin/pss_seg7/pss_seg7.00000.rgba16"
+.incbin "bin/pss_seg7/pss_seg7.00000.rgba16"
 
 pss_seg7_texture_07000800: # 0x07000800 - 0x07000802
-.incbin "build/bin/pss_seg7/pss_seg7.00800.ia16"
+.incbin "bin/pss_seg7/pss_seg7.00800.ia16"
 
 pss_seg7_texture_07001000: # 0x07001000 - 0x07001002
-.incbin "build/bin/pss_seg7/pss_seg7.01000.rgba16"
+.incbin "bin/pss_seg7/pss_seg7.01000.rgba16"
 
 pss_seg7_light_07001800: # 0x07001800 - 0x07001808
 .byte 0x23, 0x23, 0x23, 0x00, 0x23, 0x23, 0x23, 0x00

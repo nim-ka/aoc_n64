@@ -30,103 +30,103 @@
 .equ lll_textures_0900B800, 0x0900B800
 
 lll_seg7_texture_07000000: # 0x07000000 - 0x07000800
-.incbin "build/bin/lll_seg7/lll_seg7.00000.rgba16"
+.incbin "bin/lll_seg7/lll_seg7.00000.rgba16"
 
 lll_seg7_texture_07000800: # 0x07000800 - 0x07001000
-.incbin "build/bin/lll_seg7/lll_seg7.00800.rgba16"
+.incbin "bin/lll_seg7/lll_seg7.00800.rgba16"
 
 lll_seg7_texture_07001000: # 0x07001000 - 0x07001800
-.incbin "build/bin/lll_seg7/lll_seg7.01000.rgba16"
+.incbin "bin/lll_seg7/lll_seg7.01000.rgba16"
 
 lll_seg7_texture_07001800: # 0x07001800 - 0x07002000
-.incbin "build/bin/lll_seg7/lll_seg7.01800.rgba16"
+.incbin "bin/lll_seg7/lll_seg7.01800.rgba16"
 
 lll_seg7_texture_07002000: # 0x07002000 - 0x07002800
-.incbin "build/bin/lll_seg7/lll_seg7.02000.rgba16"
+.incbin "bin/lll_seg7/lll_seg7.02000.rgba16"
 
 lll_seg7_texture_07002800: # 0x07002800 - 0x07003000
-.incbin "build/bin/lll_seg7/lll_seg7.02800.rgba16"
+.incbin "bin/lll_seg7/lll_seg7.02800.rgba16"
 
 lll_seg7_texture_07003000: # 0x07003000 - 0x07003800
-.incbin "build/bin/lll_seg7/lll_seg7.03000.rgba16"
+.incbin "bin/lll_seg7/lll_seg7.03000.rgba16"
 
 lll_seg7_texture_07003800: # 0x07003800 - 0x07004000
-.incbin "build/bin/lll_seg7/lll_seg7.03800.rgba16"
+.incbin "bin/lll_seg7/lll_seg7.03800.rgba16"
 
 lll_seg7_texture_07004000: # 0x07004000 - 0x07004800
-.incbin "build/bin/lll_seg7/lll_seg7.04000.rgba16"
+.incbin "bin/lll_seg7/lll_seg7.04000.rgba16"
 
 lll_seg7_texture_07004800: # 0x07004800 - 0x07005000
-.incbin "build/bin/lll_seg7/lll_seg7.04800.rgba16"
+.incbin "bin/lll_seg7/lll_seg7.04800.rgba16"
 
 lll_seg7_texture_07005000: # 0x07005000 - 0x07005800
-.incbin "build/bin/lll_seg7/lll_seg7.05000.rgba16"
+.incbin "bin/lll_seg7/lll_seg7.05000.rgba16"
 
 lll_seg7_texture_07005800: # 0x07005800 - 0x07006000
-.incbin "build/bin/lll_seg7/lll_seg7.05800.rgba16"
+.incbin "bin/lll_seg7/lll_seg7.05800.rgba16"
 
 lll_seg7_texture_07006000: # 0x07006000 - 0x07006800
-.incbin "build/bin/lll_seg7/lll_seg7.06000.rgba16"
+.incbin "bin/lll_seg7/lll_seg7.06000.rgba16"
 
 lll_seg7_texture_07006800: # 0x07006800 - 0x07007000
-.incbin "build/bin/lll_seg7/lll_seg7.06800.rgba16"
+.incbin "bin/lll_seg7/lll_seg7.06800.rgba16"
 
 lll_seg7_texture_07007000: # 0x07007000 - 0x07007800
-.incbin "build/bin/lll_seg7/lll_seg7.07000.rgba16"
+.incbin "bin/lll_seg7/lll_seg7.07000.rgba16"
 
 lll_seg7_texture_07007800: # 0x07007800 - 0x07008000
-.incbin "build/bin/lll_seg7/lll_seg7.07800.rgba16"
+.incbin "bin/lll_seg7/lll_seg7.07800.rgba16"
 
 lll_seg7_texture_07008000: # 0x07008000 - 0x07008800
-.incbin "build/bin/lll_seg7/lll_seg7.08000.rgba16"
+.incbin "bin/lll_seg7/lll_seg7.08000.rgba16"
 
 lll_seg7_texture_07008800: # 0x07008800 - 0x07009000
-.incbin "build/bin/lll_seg7/lll_seg7.08800.rgba16"
+.incbin "bin/lll_seg7/lll_seg7.08800.rgba16"
 
 lll_seg7_texture_07009000: # 0x07009000 - 0x07009800
-.incbin "build/bin/lll_seg7/lll_seg7.09000.rgba16"
+.incbin "bin/lll_seg7/lll_seg7.09000.rgba16"
 
 lll_seg7_texture_07009800: # 0x07009800 - 0x0700A000
-.incbin "build/bin/lll_seg7/lll_seg7.09800.rgba16"
+.incbin "bin/lll_seg7/lll_seg7.09800.rgba16"
 
 lll_seg7_texture_0700A000: # 0x0700A000 - 0x0700A800
-.incbin "build/bin/lll_seg7/lll_seg7.0A000.rgba16"
+.incbin "bin/lll_seg7/lll_seg7.0A000.rgba16"
 
 lll_seg7_texture_0700A800: # 0x0700A800 - 0x0700B000
-.incbin "build/bin/lll_seg7/lll_seg7.0A800.rgba16"
+.incbin "bin/lll_seg7/lll_seg7.0A800.rgba16"
 
 lll_seg7_texture_0700B000: # 0x0700B000 - 0x0700B800
-.incbin "build/bin/lll_seg7/lll_seg7.0B000.rgba16"
+.incbin "bin/lll_seg7/lll_seg7.0B000.rgba16"
 
 lll_seg7_texture_0700B800: # 0x0700B800 - 0x0700C000
-.incbin "build/bin/lll_seg7/lll_seg7.0B800.rgba16"
+.incbin "bin/lll_seg7/lll_seg7.0B800.rgba16"
 
 lll_seg7_texture_0700C000: # 0x0700C000 - 0x0700C800
-.incbin "build/bin/lll_seg7/lll_seg7.0C000.rgba16"
+.incbin "bin/lll_seg7/lll_seg7.0C000.rgba16"
 
 lll_seg7_texture_0700C800: # 0x0700C800 - 0x0700D000
-.incbin "build/bin/lll_seg7/lll_seg7.0C800.rgba16"
+.incbin "bin/lll_seg7/lll_seg7.0C800.rgba16"
 
 lll_seg7_texture_0700D000: # 0x0700D000 - 0x0700D200
-.incbin "build/bin/lll_seg7/lll_seg7.0D000.rgba16"
+.incbin "bin/lll_seg7/lll_seg7.0D000.rgba16"
 
 lll_seg7_texture_0700D200: # 0x0700D200 - 0x0700D400
-.incbin "build/bin/lll_seg7/lll_seg7.0D200.ia16"
+.incbin "bin/lll_seg7/lll_seg7.0D200.ia16"
 
 lll_seg7_texture_0700D400: # 0x0700D400 - 0x0700DC00
-.incbin "build/bin/lll_seg7/lll_seg7.0D400.rgba16"
+.incbin "bin/lll_seg7/lll_seg7.0D400.rgba16"
 
 lll_seg7_texture_0700DC00: # 0x0700DC00 - 0x0700E400
-.incbin "build/bin/lll_seg7/lll_seg7.0DC00.rgba16"
+.incbin "bin/lll_seg7/lll_seg7.0DC00.rgba16"
 
 lll_seg7_texture_0700E400: # 0x0700E400 - 0x0700EC00
-.incbin "build/bin/lll_seg7/lll_seg7.0E400.rgba16"
+.incbin "bin/lll_seg7/lll_seg7.0E400.rgba16"
 
 lll_seg7_texture_0700EC00: # 0x0700EC00 - 0x0700F400
-.incbin "build/bin/lll_seg7/lll_seg7.0EC00.rgba16"
+.incbin "bin/lll_seg7/lll_seg7.0EC00.rgba16"
 
 lll_seg7_texture_0700F400: # 0x0700F400 - 0x0700FC00
-.incbin "build/bin/lll_seg7/lll_seg7.0F400.rgba16"
+.incbin "bin/lll_seg7/lll_seg7.0F400.rgba16"
 
 lll_seg7_light_0700FC00: # 0x0700FC00 - 0x0700FC08
 .byte 0x3F, 0x3F, 0x3F, 0x00, 0x3F, 0x3F, 0x3F, 0x00

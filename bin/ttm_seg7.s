@@ -23,28 +23,28 @@
 .equ ttm_textures_0900B800, 0x0900B800
 
 ttm_seg7_texture_07000000: # 0x07000000 - 0x07001000
-.incbin "build/bin/ttm_seg7/ttm_seg7.00000.ia16"
+.incbin "bin/ttm_seg7/ttm_seg7.00000.ia16"
 
 ttm_seg7_texture_07000800: # 0x07000800 - 0x07001800
-.incbin "build/bin/ttm_seg7/ttm_seg7.00800.rgba16"
+.incbin "bin/ttm_seg7/ttm_seg7.00800.rgba16"
 
 ttm_seg7_texture_07001000: # 0x07001000 - 0x07002000
-.incbin "build/bin/ttm_seg7/ttm_seg7.01000.rgba16"
+.incbin "bin/ttm_seg7/ttm_seg7.01000.rgba16"
 
 ttm_seg7_texture_07001800: # 0x07001800 - 0x07002800
-.incbin "build/bin/ttm_seg7/ttm_seg7.01800.rgba16"
+.incbin "bin/ttm_seg7/ttm_seg7.01800.rgba16"
 
 ttm_seg7_texture_07002000: # 0x07002000 - 0x07003000
-.incbin "build/bin/ttm_seg7/ttm_seg7.02000.rgba16"
+.incbin "bin/ttm_seg7/ttm_seg7.02000.rgba16"
 
 ttm_seg7_texture_07002800: # 0x07002800 - 0x07003800
-.incbin "build/bin/ttm_seg7/ttm_seg7.02800.rgba16"
+.incbin "bin/ttm_seg7/ttm_seg7.02800.rgba16"
 
 ttm_seg7_texture_07003000: # 0x07003000 - 0x07004000
-.incbin "build/bin/ttm_seg7/ttm_seg7.03000.rgba16"
+.incbin "bin/ttm_seg7/ttm_seg7.03000.rgba16"
 
 ttm_seg7_texture_07004000: # 0x07004000 - 0x07005000
-.incbin "build/bin/ttm_seg7/ttm_seg7.04000.rgba16"
+.incbin "bin/ttm_seg7/ttm_seg7.04000.rgba16"
 
 ttm_seg7_light_07005000: # 0x07005000 - 0x07005008
 .byte 0x7F, 0x7F, 0x7F, 0x00, 0x7F, 0x7F, 0x7F, 0x00
@@ -15778,7 +15778,7 @@ ttm_seg7_light_0702AD20: # 0x0702AD20 - 0x0702AD30
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 ttm_seg7_texture_0702AD30: # 0x0702AD30 - 0x0702B530
-.incbin "build/bin/ttm_seg7/ttm_seg7.2AD30.rgba16"
+.incbin "bin/ttm_seg7/ttm_seg7.2AD30.rgba16"
 
 ttm_seg7_vertex_0702B530: # 0x0702B530 - 0x0702B570
 vertex    102,     10,    102,   4568,  -7698,  0x00, 0x7F, 0x00, 0xFF

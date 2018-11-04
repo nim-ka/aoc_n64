@@ -19,16 +19,16 @@
 .equ rr_textures_09008000, 0x09008000
 
 bitdw_seg7_texture_07000000: # 0x07000000 - 0x07000002
-.incbin "build/bin/bitdw_seg7/bitdw_seg7.00000.rgba16"
+.incbin "bin/bitdw_seg7/bitdw_seg7.00000.rgba16"
 
 bitdw_seg7_texture_07000800: # 0x07000800 - 0x07000802
-.incbin "build/bin/bitdw_seg7/bitdw_seg7.00800.rgba16"
+.incbin "bin/bitdw_seg7/bitdw_seg7.00800.rgba16"
 
 bitdw_seg7_texture_07001000: # 0x07001000 - 0x07001002
-.incbin "build/bin/bitdw_seg7/bitdw_seg7.01000.rgba16"
+.incbin "bin/bitdw_seg7/bitdw_seg7.01000.rgba16"
 
 bitdw_seg7_texture_07001800: # 0x07001800 - 0x07001802
-.incbin "build/bin/bitdw_seg7/bitdw_seg7.01800.rgba16"
+.incbin "bin/bitdw_seg7/bitdw_seg7.01800.rgba16"
 
 bitdw_seg7_vertex_07002000: # 0x07002000 - 0x07002080
 vertex   2516,  -2357,   2962,    990,      0,  0xFF, 0xFF, 0xFF, 0xFF

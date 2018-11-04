@@ -11,16 +11,16 @@
 .equ castle_grounds_textures_0900B000, 0x0900B000
 
 vcutm_seg7_texture_07000000: # 0x07000000 - 0x07000800
-.incbin "build/bin/vcutm_seg7/vcutm_seg7.00000.rgba16"
+.incbin "bin/vcutm_seg7/vcutm_seg7.00000.rgba16"
 
 vcutm_seg7_texture_07000800: # 0x07000800 - 0x07001800
-.incbin "build/bin/vcutm_seg7/vcutm_seg7.00800.rgba16"
+.incbin "bin/vcutm_seg7/vcutm_seg7.00800.rgba16"
 
 vcutm_seg7_texture_07001800: # 0x07001800 - 0x07002800
-.incbin "build/bin/vcutm_seg7/vcutm_seg7.01800.rgba16"
+.incbin "bin/vcutm_seg7/vcutm_seg7.01800.rgba16"
 
 vcutm_seg7_texture_07002800: # 0x07002800 - 0x07003000
-.incbin "build/bin/vcutm_seg7/vcutm_seg7.02800.rgba16"
+.incbin "bin/vcutm_seg7/vcutm_seg7.02800.rgba16"
 
 vcutm_seg7_light_07003000: # 0x07003000 - 0x07003008
 .byte 0x3F, 0x3F, 0x3F, 0x00, 0x3F, 0x3F, 0x3F, 0x00

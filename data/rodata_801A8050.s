@@ -357,45 +357,45 @@ glabel D_801A8704
 gsSPEndDisplayList
 
 glabel textureHandOpen # 0x801A8730
-   .incbin "build/bin/intro_raw/hand_open.rgba16"
+   .incbin "bin/intro_raw/hand_open.rgba16"
 
 #! stray EndDisplayList
 gsSPEndDisplayList
 
 glabel textureHandClosed # 0x801A8F38
-   .incbin "build/bin/intro_raw/hand_closed.rgba16"
+   .incbin "bin/intro_raw/hand_closed.rgba16"
 texture_red_star_0:
-   .incbin "build/bin/intro_raw/red_star_0.rgba16"
+   .incbin "bin/intro_raw/red_star_0.rgba16"
 texture_red_star_1:
-   .incbin "build/bin/intro_raw/red_star_1.rgba16"
+   .incbin "bin/intro_raw/red_star_1.rgba16"
 texture_red_star_2:
-   .incbin "build/bin/intro_raw/red_star_2.rgba16"
+   .incbin "bin/intro_raw/red_star_2.rgba16"
 texture_red_star_3:
-   .incbin "build/bin/intro_raw/red_star_3.rgba16"
+   .incbin "bin/intro_raw/red_star_3.rgba16"
 texture_red_star_4:
-   .incbin "build/bin/intro_raw/red_star_4.rgba16"
+   .incbin "bin/intro_raw/red_star_4.rgba16"
 texture_red_star_5:
-   .incbin "build/bin/intro_raw/red_star_5.rgba16"
+   .incbin "bin/intro_raw/red_star_5.rgba16"
 texture_red_star_6:
-   .incbin "build/bin/intro_raw/red_star_6.rgba16"
+   .incbin "bin/intro_raw/red_star_6.rgba16"
 texture_red_star_7:
-   .incbin "build/bin/intro_raw/red_star_7.rgba16"
+   .incbin "bin/intro_raw/red_star_7.rgba16"
 texture_white_star_0:
-   .incbin "build/bin/intro_raw/white_star_0.rgba16"
+   .incbin "bin/intro_raw/white_star_0.rgba16"
 texture_white_star_1:
-   .incbin "build/bin/intro_raw/white_star_1.rgba16"
+   .incbin "bin/intro_raw/white_star_1.rgba16"
 texture_white_star_2:
-   .incbin "build/bin/intro_raw/white_star_2.rgba16"
+   .incbin "bin/intro_raw/white_star_2.rgba16"
 texture_white_star_3:
-   .incbin "build/bin/intro_raw/white_star_3.rgba16"
+   .incbin "bin/intro_raw/white_star_3.rgba16"
 texture_white_star_4:
-   .incbin "build/bin/intro_raw/white_star_4.rgba16"
+   .incbin "bin/intro_raw/white_star_4.rgba16"
 texture_white_star_5:
-   .incbin "build/bin/intro_raw/white_star_5.rgba16"
+   .incbin "bin/intro_raw/white_star_5.rgba16"
 texture_white_star_6:
-   .incbin "build/bin/intro_raw/white_star_6.rgba16"
+   .incbin "bin/intro_raw/white_star_6.rgba16"
 texture_white_star_7:
-   .incbin "build/bin/intro_raw/white_star_7.rgba16"
+   .incbin "bin/intro_raw/white_star_7.rgba16"
 
 star_vertex_801B1738:
    vertex    -64,      0,      0,      0,    992,  0x00, 0x00, 0x7F, 0x00
@@ -544,17 +544,17 @@ glabel whiteStarDlArray # 0x801B19F8
    .word white_star_dl_801B19A0
 
 texture_sparkle_0:
-   .incbin "build/bin/intro_raw/sparkle_0.rgba16"
+   .incbin "bin/intro_raw/sparkle_0.rgba16"
 texture_sparkle_1:
-   .incbin "build/bin/intro_raw/sparkle_1.rgba16"
+   .incbin "bin/intro_raw/sparkle_1.rgba16"
 texture_sparkle_2:
-   .incbin "build/bin/intro_raw/sparkle_2.rgba16"
+   .incbin "bin/intro_raw/sparkle_2.rgba16"
 texture_sparkle_3:
-   .incbin "build/bin/intro_raw/sparkle_3.rgba16"
+   .incbin "bin/intro_raw/sparkle_3.rgba16"
 texture_sparkle_4:
-   .incbin "build/bin/intro_raw/sparkle_4.rgba16"
+   .incbin "bin/intro_raw/sparkle_4.rgba16"
 texture_sparkle_5: #! no references to this texture 0x801B4238
-   .incbin "build/bin/intro_raw/sparkle_5.rgba16"
+   .incbin "bin/intro_raw/sparkle_5.rgba16"
 
 sparkle_vertex_801B4A38:
    vertex    -32,      0,      0,      0,   1984,  0x00, 0x00, 0x7F, 0x00
@@ -692,7 +692,7 @@ glabel whiteSparkleDlArray # 0x801B4CC8
 gsSPEndDisplayList
 
 texture_mario_face_shine: # 0x801B4D00
-   .incbin "build/bin/intro_raw/mario_face_shine.ia8"
+   .incbin "bin/intro_raw/mario_face_shine.ia8"
 
 glabel marioHeadDl801B5100
 gsSPSetGeometryMode G_TEXTURE_GEN

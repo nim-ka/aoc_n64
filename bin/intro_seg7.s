@@ -2302,10 +2302,10 @@ vertex    733,    462,   -217,      0,      0,  0xA8, 0x95, 0x37, 0xFF
 vertex    733,    512,   -246,      0,      0,  0xA8, 0x95, 0x37, 0xFF
 
 intro_seg7_texture_07007EA0: # 0x07007EA0 - 0x07007EA2
-.incbin "build/bin/intro_seg7/intro_seg7.07EA0.rgba16"
+.incbin "bin/intro_seg7/intro_seg7.07EA0.rgba16"
 
 intro_seg7_texture_070086A0: # 0x070086A0 - 0x070086A2
-.incbin "build/bin/intro_seg7/intro_seg7.086A0.rgba16"
+.incbin "bin/intro_seg7/intro_seg7.086A0.rgba16"
 
 intro_seg7_dl_07008EA0: # 0x07008EA0 - 0x07009E38
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, intro_seg7_texture_070086A0
@@ -3528,10 +3528,10 @@ vertex    284,    196,     -1,    544,      0,  0xFF, 0xFF, 0xFF, 0xFF
 vertex    268,    196,     -1,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
 
 intro_seg7_texture_0700B4A0: # 0x0700B4A0 - 0x0700B4A2
-.incbin "build/bin/intro_seg7/intro_seg7.0B4A0.rgba16"
+.incbin "bin/intro_seg7/intro_seg7.0B4A0.rgba16"
 
 intro_seg7_texture_0700C4A0: # 0x0700C4A0 - 0x0700D4A0
-.incbin "build/bin/intro_seg7/intro_seg7.0C4A0.rgba16"
+.incbin "bin/intro_seg7/intro_seg7.0C4A0.rgba16"
 
 glabel intro_seg7_dl_0700C6A0 # 0x0700C6A0 - 0x0700C790
 gsDPPipeSync

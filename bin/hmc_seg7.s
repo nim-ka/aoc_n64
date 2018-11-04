@@ -23,25 +23,25 @@
 .equ hmc_textures_0900C000, 0x0900C000
 
 hmc_seg7_texture_07000000: # 0x07000000 - 0x07001000
-.incbin "build/bin/hmc_seg7/hmc_seg7.00000.rgba16"
+.incbin "bin/hmc_seg7/hmc_seg7.00000.rgba16"
 
 hmc_seg7_texture_07001000: # 0x07001000 - 0x07002000
-.incbin "build/bin/hmc_seg7/hmc_seg7.01000.rgba16"
+.incbin "bin/hmc_seg7/hmc_seg7.01000.rgba16"
 
 hmc_seg7_texture_07002000: # 0x07002000 - 0x07003000
-.incbin "build/bin/hmc_seg7/hmc_seg7.02000.rgba16"
+.incbin "bin/hmc_seg7/hmc_seg7.02000.rgba16"
 
 hmc_seg7_texture_07003000: # 0x07003000 - 0x07003800
-.incbin "build/bin/hmc_seg7/hmc_seg7.03000.rgba16"
+.incbin "bin/hmc_seg7/hmc_seg7.03000.rgba16"
 
 hmc_seg7_texture_07003800: # 0x07003800 - 0x07004000
-.incbin "build/bin/hmc_seg7/hmc_seg7.03800.rgba16"
+.incbin "bin/hmc_seg7/hmc_seg7.03800.rgba16"
 
 hmc_seg7_texture_07004000: # 0x07004000 - 0x07004800
-.incbin "build/bin/hmc_seg7/hmc_seg7.04000.rgba16"
+.incbin "bin/hmc_seg7/hmc_seg7.04000.rgba16"
 
 hmc_seg7_texture_07004800: # 0x07004800 - 0x07005800
-.incbin "build/bin/hmc_seg7/hmc_seg7.04800.rgba16"
+.incbin "bin/hmc_seg7/hmc_seg7.04800.rgba16"
 
 hmc_seg7_light_07005800: # 0x07005800 - 0x07005808
 .byte 0x48, 0x48, 0x48, 0x00, 0x48, 0x48, 0x48, 0x00
@@ -11957,7 +11957,7 @@ hmc_seg7_painting_data_07024CD4: # 0x07024CD4
 .word 0, 0
 
 hmc_seg7_texture_07024CE0: # 0x07024CE0 - 0x070254E0
-.incbin "build/bin/hmc_seg7/hmc_seg7.24CE0.rgba16"
+.incbin "bin/hmc_seg7/hmc_seg7.24CE0.rgba16"
 
 hmc_seg7_painting_dl_070254E0: # 0x070254E0 - 0x07025518
 gsDPPipeSync

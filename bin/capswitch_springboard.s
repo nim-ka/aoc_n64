@@ -13,10 +13,10 @@ springboard_seg5_light_05000008: # 0x05000008
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 springboard_seg5_texture_05000018: # 0x05000018
-.incbin "build/bin/capswitch_springboard/springboard.00018.rgba16"
+.incbin "bin/capswitch_springboard/springboard.00018.rgba16"
 
 springboard_seg5_texture_05000818: # 0x05000818
-.incbin "build/bin/capswitch_springboard/springboard.00818.rgba16"
+.incbin "bin/capswitch_springboard/springboard.00818.rgba16"
 
 springboard_seg5_vertex_05001018: # 0x05001018
 vertex    205,      0,      0,   2524,    478,  0x00, 0x7F, 0x00, 0xFF
@@ -380,10 +380,10 @@ capswitch_seg5_light_05001C38: # 0x05001C38
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 capswitch_seg5_texture_05001C48: # 0x05001C48
-.incbin "build/bin/capswitch_springboard/capswitch.01C48.ia16"
+.incbin "bin/capswitch_springboard/capswitch.01C48.ia16"
 
 capswitch_seg5_texture_05002C48: # 0x05002C48
-.incbin "build/bin/capswitch_springboard/capswitch.02C48.rgba16"
+.incbin "bin/capswitch_springboard/capswitch.02C48.rgba16"
 
 capswitch_seg5_vertex_05002CC8: # 0x05002CC8
 vertex   -118,    262,   -203,   -130,    364,  0x00, 0x36, 0x8E, 0xFF

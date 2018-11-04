@@ -20,13 +20,13 @@
 .equ rr_textures_09008000, 0x09008000
 
 rr_seg7_texture_07000000: # 0x07000000 - 0x07000800
-.incbin "build/bin/rr_seg7/rr_seg7.00000.rgba16"
+.incbin "bin/rr_seg7/rr_seg7.00000.rgba16"
 
 rr_seg7_texture_07000800: # 0x07000800 - 0x07001800
-.incbin "build/bin/rr_seg7/rr_seg7.00800.rgba16"
+.incbin "bin/rr_seg7/rr_seg7.00800.rgba16"
 
 rr_seg7_texture_07001800: # 0x07001800 - 0x07002000
-.incbin "build/bin/rr_seg7/rr_seg7.01800.rgba16"
+.incbin "bin/rr_seg7/rr_seg7.01800.rgba16"
 
 rr_seg7_vertex_07002000: # 0x07002000 - 0x07002100
 vertex  -4786,   -975,   4124,    990,      0,  0xFF, 0xFF, 0xFF, 0xFF

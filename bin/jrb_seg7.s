@@ -18,16 +18,16 @@
 .equ jrb_textures_0900B800, 0x0900B800
 
 jrb_seg7_texture_07000000: # 0x07000000 - 0x07000800
-.incbin "build/bin/jrb_seg7/jrb_seg7.00000.rgba16"
+.incbin "bin/jrb_seg7/jrb_seg7.00000.rgba16"
 
 jrb_seg7_texture_07000800: # 0x07000800 - 0x07001800
-.incbin "build/bin/jrb_seg7/jrb_seg7.00800.rgba16"
+.incbin "bin/jrb_seg7/jrb_seg7.00800.rgba16"
 
 jrb_seg7_texture_07001800: # 0x07001800 - 0x07002000
-.incbin "build/bin/jrb_seg7/jrb_seg7.01800.rgba16"
+.incbin "bin/jrb_seg7/jrb_seg7.01800.rgba16"
 
 jrb_seg7_texture_07002000: # 0x07002000 - 0x07002800
-.incbin "build/bin/jrb_seg7/jrb_seg7.02000.rgba16"
+.incbin "bin/jrb_seg7/jrb_seg7.02000.rgba16"
 
 jrb_seg7_vertex_07002800: # 0x07002800 - 0x070028F0
 vertex   2813,   1536,   5598,  -2074,      0,  0xFF, 0xFF, 0xFF, 0xFF

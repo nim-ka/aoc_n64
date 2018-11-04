@@ -10,19 +10,19 @@
 .equ hmc_textures_09007800, 0x09007800
 
 cotmc_seg7_texture_07000000: # 0x07000000 - 0x07001000
-.incbin "build/bin/cotmc_seg7/cotmc_seg7.00000.rgba16"
+.incbin "bin/cotmc_seg7/cotmc_seg7.00000.rgba16"
 
 cotmc_seg7_texture_07001000: # 0x07001000 - 0x07001800
-.incbin "build/bin/cotmc_seg7/cotmc_seg7.01000.rgba16"
+.incbin "bin/cotmc_seg7/cotmc_seg7.01000.rgba16"
 
 cotmc_seg7_texture_07001800: # 0x07001800 - 0x07002000
-.incbin "build/bin/cotmc_seg7/cotmc_seg7.01800.rgba16"
+.incbin "bin/cotmc_seg7/cotmc_seg7.01800.rgba16"
 
 cotmc_seg7_texture_07002000: # 0x07002000 - 0x07002800
-.incbin "build/bin/cotmc_seg7/cotmc_seg7.02000.rgba16"
+.incbin "bin/cotmc_seg7/cotmc_seg7.02000.rgba16"
 
 cotmc_seg7_texture_07002800: # 0x07002800 - 0x07003000
-.incbin "build/bin/cotmc_seg7/cotmc_seg7.02800.rgba16"
+.incbin "bin/cotmc_seg7/cotmc_seg7.02800.rgba16"
 
 cotmc_seg7_light_07003000: # 0x07003000 - 0x07003008
 .byte 0x4B, 0x78, 0x70, 0x00, 0x4B, 0x78, 0x70, 0x00

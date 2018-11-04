@@ -8,16 +8,16 @@
 .equ rr_textures_09005800, 0x09005800
 
 totwc_seg7_texture_07000000: # 0x07000000 - 0x07001000
-.incbin "build/bin/totwc_seg7/totwc_seg7.00000.rgba16"
+.incbin "bin/totwc_seg7/totwc_seg7.00000.rgba16"
 
 totwc_seg7_texture_07001000: # 0x07001000 - 0x07001800
-.incbin "build/bin/totwc_seg7/totwc_seg7.01000.rgba16"
+.incbin "bin/totwc_seg7/totwc_seg7.01000.rgba16"
 
 totwc_seg7_texture_07001800: # 0x07001800 - 0x07002000
-.incbin "build/bin/totwc_seg7/totwc_seg7.01800.rgba16"
+.incbin "bin/totwc_seg7/totwc_seg7.01800.rgba16"
 
 totwc_seg7_texture_07002000: # 0x07002000 - 0x07002800
-.incbin "build/bin/totwc_seg7/totwc_seg7.02000.ia16"
+.incbin "bin/totwc_seg7/totwc_seg7.02000.ia16"
 
 totwc_seg7_vertex_07002800: # 0x07002800 - 0x07002900
 vertex   3686,  -5119,   3686,    990,    990,  0xFE, 0xFF, 0xCB, 0xFF

@@ -9,46 +9,46 @@
 
 .balign 8
 flame_seg6_texture_06000000: # 0x06000000
-.incbin "build/bin/bowser_flames_bomb/flame.00000.rgba16"
+.incbin "bin/bowser_flames_bomb/flame.00000.rgba16"
 
 flame_seg6_texture_06002000: # 0x06002000
-.incbin "build/bin/bowser_flames_bomb/flame.02000.rgba16"
+.incbin "bin/bowser_flames_bomb/flame.02000.rgba16"
 
 flame_seg6_texture_06004000: # 0x06004000
-.incbin "build/bin/bowser_flames_bomb/flame.04000.rgba16"
+.incbin "bin/bowser_flames_bomb/flame.04000.rgba16"
 
 flame_seg6_texture_06006000: # 0x06006000
-.incbin "build/bin/bowser_flames_bomb/flame.06000.rgba16"
+.incbin "bin/bowser_flames_bomb/flame.06000.rgba16"
 
 flame_seg6_texture_06008000: # 0x06008000
-.incbin "build/bin/bowser_flames_bomb/flame.08000.rgba16"
+.incbin "bin/bowser_flames_bomb/flame.08000.rgba16"
 
 flame_seg6_texture_0600A000: # 0x0600A000
-.incbin "build/bin/bowser_flames_bomb/flame.0A000.rgba16"
+.incbin "bin/bowser_flames_bomb/flame.0A000.rgba16"
 
 flame_seg6_texture_0600C000: # 0x0600C000
-.incbin "build/bin/bowser_flames_bomb/flame.0C000.rgba16"
+.incbin "bin/bowser_flames_bomb/flame.0C000.rgba16"
 
 flame_seg6_texture_0600E000: # 0x0600E000
-.incbin "build/bin/bowser_flames_bomb/flame.0E000.rgba16"
+.incbin "bin/bowser_flames_bomb/flame.0E000.rgba16"
 
 flame_seg6_texture_06010000: # 0x06010000
-.incbin "build/bin/bowser_flames_bomb/flame.10000.rgba16"
+.incbin "bin/bowser_flames_bomb/flame.10000.rgba16"
 
 flame_seg6_texture_06012000: # 0x06012000
-.incbin "build/bin/bowser_flames_bomb/flame.12000.rgba16"
+.incbin "bin/bowser_flames_bomb/flame.12000.rgba16"
 
 flame_seg6_texture_06014000: # 0x06014000
-.incbin "build/bin/bowser_flames_bomb/flame.14000.rgba16"
+.incbin "bin/bowser_flames_bomb/flame.14000.rgba16"
 
 flame_seg6_texture_06016000: # 0x06016000
-.incbin "build/bin/bowser_flames_bomb/flame.16000.rgba16"
+.incbin "bin/bowser_flames_bomb/flame.16000.rgba16"
 
 flame_seg6_texture_06018000: # 0x06018000
-.incbin "build/bin/bowser_flames_bomb/flame.18000.rgba16"
+.incbin "bin/bowser_flames_bomb/flame.18000.rgba16"
 
 flame_seg6_texture_0601A000: # 0x0601A000
-.incbin "build/bin/bowser_flames_bomb/flame.1A000.rgba16"
+.incbin "bin/bowser_flames_bomb/flame.1A000.rgba16"
 
 flame_seg6_vertex_0601C000: # 0x0601C000
 vertex   -150,    150,      0,      0,    992,  0xFF, 0xFF, 0xFF, 0xFF
@@ -412,10 +412,10 @@ vertex      5,      0,      5,    992,   2016,  0xFF, 0xFF, 0xFF, 0xFF
 vertex      0,      0,     -5,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
 
 impact_ring_seg6_texture_0601CA50: # 0x0601CA50
-.incbin "build/bin/bowser_flames_bomb/impact_ring.1CA50.ia16"
+.incbin "bin/bowser_flames_bomb/impact_ring.1CA50.ia16"
 
 impact_ring_seg6_texture_0601DA50: # 0x0601DA50
-.incbin "build/bin/bowser_flames_bomb/impact_ring.1DA50.ia16"
+.incbin "bin/bowser_flames_bomb/impact_ring.1DA50.ia16"
 
 glabel impact_ring_seg6_dl_0601EA50 # 0x0601EA50 - 0x0601EA88
 gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_16b, 1, impact_ring_seg6_texture_0601CA50
@@ -466,7 +466,7 @@ vertex     77,     77,      0,    992,      0,  0xFF, 0xFF, 0xFF, 0xFF
 vertex    -76,     77,      0,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
 
 yellow_sphere_seg6_texture_0601EB88: # 0x0601EB88
-.incbin "build/bin/bowser_flames_bomb/yellow_sphere.1EB88.rgba16"
+.incbin "bin/bowser_flames_bomb/yellow_sphere.1EB88.rgba16"
 
 glabel yellow_sphere_seg6_dl_0601F388 # 0x0601F388 - 0x0601F3C0
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, yellow_sphere_seg6_texture_0601EB88
@@ -500,93 +500,93 @@ gsSPEndDisplayList
 
 .balign 8
 bowser_seg6_texture_0601F438: # 0x0601F438
-.incbin "build/bin/bowser_flames_bomb/bowser.1F438.rgba16"
+.incbin "bin/bowser_flames_bomb/bowser.1F438.rgba16"
 
 bowser_seg6_texture_0601FC38: # 0x0601FC38
-.incbin "build/bin/bowser_flames_bomb/bowser.1FC38.rgba16"
+.incbin "bin/bowser_flames_bomb/bowser.1FC38.rgba16"
 
 bowser_seg6_texture_06020C38: # 0x06020C38
-.incbin "build/bin/bowser_flames_bomb/bowser.20C38.rgba16"
+.incbin "bin/bowser_flames_bomb/bowser.20C38.rgba16"
 
 bowser_seg6_texture_06021438: # 0x06021438
-.incbin "build/bin/bowser_flames_bomb/bowser.21438.rgba16"
+.incbin "bin/bowser_flames_bomb/bowser.21438.rgba16"
 
 bowser_seg6_texture_06022438: # 0x06022438
-.incbin "build/bin/bowser_flames_bomb/bowser.22438.rgba16"
+.incbin "bin/bowser_flames_bomb/bowser.22438.rgba16"
 
 bowser_seg6_texture_06022C38: # 0x06022C38
-.incbin "build/bin/bowser_flames_bomb/bowser.22C38.rgba16"
+.incbin "bin/bowser_flames_bomb/bowser.22C38.rgba16"
 
 bowser_seg6_texture_06023C38: # 0x06023C38
-.incbin "build/bin/bowser_flames_bomb/bowser.23C38.rgba16"
+.incbin "bin/bowser_flames_bomb/bowser.23C38.rgba16"
 
 bowser_seg6_texture_06024438: # 0x06024438
-.incbin "build/bin/bowser_flames_bomb/bowser.24438.rgba16"
+.incbin "bin/bowser_flames_bomb/bowser.24438.rgba16"
 
 bowser_seg6_texture_06025438: # 0x06025438
-.incbin "build/bin/bowser_flames_bomb/bowser.25438.rgba16"
+.incbin "bin/bowser_flames_bomb/bowser.25438.rgba16"
 
 bowser_seg6_texture_06025C38: # 0x06025C38
-.incbin "build/bin/bowser_flames_bomb/bowser.25C38.rgba16"
+.incbin "bin/bowser_flames_bomb/bowser.25C38.rgba16"
 
 # unreferenced
 bowser_seg6_texture_06026438: # 0x06026438
-.incbin "build/bin/bowser_flames_bomb/bowser.26438.rgba16"
+.incbin "bin/bowser_flames_bomb/bowser.26438.rgba16"
 
 # unreferenced (stubbed texture? possibly original texture for mouth)
 bowser_seg6_texture_06027438: # 0x06027438
-.incbin "build/bin/bowser_flames_bomb/bowser.27438.rgba16"
+.incbin "bin/bowser_flames_bomb/bowser.27438.rgba16"
 
 bowser_seg6_texture_06028438: # 0x06028438
-.incbin "build/bin/bowser_flames_bomb/bowser.28438.rgba16"
+.incbin "bin/bowser_flames_bomb/bowser.28438.rgba16"
 
 bowser_seg6_texture_06028C38: # 0x06028C38
-.incbin "build/bin/bowser_flames_bomb/bowser.28C38.rgba16"
+.incbin "bin/bowser_flames_bomb/bowser.28C38.rgba16"
 
 bowser_seg6_texture_06029C38: # 0x06029C38
-.incbin "build/bin/bowser_flames_bomb/bowser.29C38.rgba16"
+.incbin "bin/bowser_flames_bomb/bowser.29C38.rgba16"
 
 bowser_seg6_texture_0602AC38: # 0x0602AC38
-.incbin "build/bin/bowser_flames_bomb/bowser.2AC38.rgba16"
+.incbin "bin/bowser_flames_bomb/bowser.2AC38.rgba16"
 
 bowser_seg6_texture_0602BC38: # 0x0602BC38
-.incbin "build/bin/bowser_flames_bomb/bowser.2BC38.rgba16"
+.incbin "bin/bowser_flames_bomb/bowser.2BC38.rgba16"
 
 bowser_seg6_texture_0602CC38: # 0x0602CC38
-.incbin "build/bin/bowser_flames_bomb/bowser.2CC38.rgba16"
+.incbin "bin/bowser_flames_bomb/bowser.2CC38.rgba16"
 
 bowser_seg6_texture_0602DC38: # 0x0602DC38
-.incbin "build/bin/bowser_flames_bomb/bowser.2DC38.rgba16"
+.incbin "bin/bowser_flames_bomb/bowser.2DC38.rgba16"
 
 bowser_seg6_texture_0602EC38: # 0x0602EC38
-.incbin "build/bin/bowser_flames_bomb/bowser.2EC38.rgba16"
+.incbin "bin/bowser_flames_bomb/bowser.2EC38.rgba16"
 
 bowser_seg6_texture_0602FC38: # 0x0602FC38
-.incbin "build/bin/bowser_flames_bomb/bowser.2FC38.rgba16"
+.incbin "bin/bowser_flames_bomb/bowser.2FC38.rgba16"
 
 bowser_seg6_texture_06030C38: # 0x06030C38
-.incbin "build/bin/bowser_flames_bomb/bowser.30C38.rgba16"
+.incbin "bin/bowser_flames_bomb/bowser.30C38.rgba16"
 
 bowser_seg6_texture_06031C38: # 0x06031C38
-.incbin "build/bin/bowser_flames_bomb/bowser.31C38.rgba16"
+.incbin "bin/bowser_flames_bomb/bowser.31C38.rgba16"
 
 bowser_seg6_texture_06032C38: # 0x06032C38
-.incbin "build/bin/bowser_flames_bomb/bowser.32C38.rgba16"
+.incbin "bin/bowser_flames_bomb/bowser.32C38.rgba16"
 
 bowser_seg6_texture_06033C38: # 0x06033C38
-.incbin "build/bin/bowser_flames_bomb/bowser.33C38.rgba16"
+.incbin "bin/bowser_flames_bomb/bowser.33C38.rgba16"
 
 bowser_seg6_texture_06034C38: # 0x06034C38
-.incbin "build/bin/bowser_flames_bomb/bowser.34C38.rgba16"
+.incbin "bin/bowser_flames_bomb/bowser.34C38.rgba16"
 
 bowser_seg6_texture_06035C38: # 0x06035C38
-.incbin "build/bin/bowser_flames_bomb/bowser.35C38.rgba16"
+.incbin "bin/bowser_flames_bomb/bowser.35C38.rgba16"
 
 bowser_seg6_texture_06036C38: # 0x06036C38
-.incbin "build/bin/bowser_flames_bomb/bowser.36C38.rgba16"
+.incbin "bin/bowser_flames_bomb/bowser.36C38.rgba16"
 
 bowser_seg6_texture_06037C38: # 0x06037C38
-.incbin "build/bin/bowser_flames_bomb/bowser.37C38.rgba16"
+.incbin "bin/bowser_flames_bomb/bowser.37C38.rgba16"
 
 bowser_seg6_light_06038C38: # 0x06038C38
 .byte 0x3F, 0x3F, 0x3F, 0x00, 0x3F, 0x3F, 0x3F, 0x00
@@ -10272,13 +10272,13 @@ bomb_seg6_light_06057AB0: # 0x06057AB0
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 bomb_seg6_texture_06057AC0: # 0x06057AC0
-.incbin "build/bin/bowser_flames_bomb/bomb.57AC0.rgba16"
+.incbin "bin/bowser_flames_bomb/bomb.57AC0.rgba16"
 
 bomb_seg6_texture_06058AC0: # 0x06058AC0
-.incbin "build/bin/bowser_flames_bomb/bomb.58AC0.rgba16"
+.incbin "bin/bowser_flames_bomb/bomb.58AC0.rgba16"
 
 bomb_seg6_texture_06059AC0: # 0x06059AC0
-.incbin "build/bin/bowser_flames_bomb/bomb.59AC0.rgba16"
+.incbin "bin/bowser_flames_bomb/bomb.59AC0.rgba16"
 
 bomb_seg6_vertex_0605A2C0: # 0x0605A2C0
 vertex      0,    120,      0,    992,      0,  0xFF, 0xFF, 0xFF, 0xFF
@@ -10469,16 +10469,16 @@ gsSPEndDisplayList
 
 .balign 8
 smoke_seg6_texture_0605AA28: # 0x0605AA28
-.incbin "build/bin/bowser_flames_bomb/smoke.5AA28.ia16"
+.incbin "bin/bowser_flames_bomb/smoke.5AA28.ia16"
 
 smoke_seg6_texture_0605CA28: # 0x0605CA28
-.incbin "build/bin/bowser_flames_bomb/smoke.5CA28.ia16"
+.incbin "bin/bowser_flames_bomb/smoke.5CA28.ia16"
 
 smoke_seg6_texture_0605EA28: # 0x0605EA28
-.incbin "build/bin/bowser_flames_bomb/smoke.5EA28.ia16"
+.incbin "bin/bowser_flames_bomb/smoke.5EA28.ia16"
 
 smoke_seg6_texture_06060A28: # 0x06060A28
-.incbin "build/bin/bowser_flames_bomb/smoke.60A28.ia16"
+.incbin "bin/bowser_flames_bomb/smoke.60A28.ia16"
 
 smoke_seg6_vertex_06062A28: # 0x06062A28
 vertex   -150,    150,      0,      0,    992,  0x28, 0x19, 0x14, 0xFF

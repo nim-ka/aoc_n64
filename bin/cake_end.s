@@ -4,148 +4,148 @@
 .include "ultra64/gbi.inc"
 
 cake_end_texture_07000000: # 0x07000000 - 0x07000C80
-.incbin "build/bin/cake_end/cake_end.00000.rgba16"
+.incbin "bin/cake_end/cake_end.00000.rgba16"
 
 cake_end_texture_07000C80: # 0x07000C80 - 0x07001900
-.incbin "build/bin/cake_end/cake_end.00C80.rgba16"
+.incbin "bin/cake_end/cake_end.00C80.rgba16"
 
 cake_end_texture_07001900: # 0x07001900 - 0x07002580
-.incbin "build/bin/cake_end/cake_end.01900.rgba16"
+.incbin "bin/cake_end/cake_end.01900.rgba16"
 
 cake_end_texture_07002580: # 0x07002580 - 0x07003200
-.incbin "build/bin/cake_end/cake_end.02580.rgba16"
+.incbin "bin/cake_end/cake_end.02580.rgba16"
 
 cake_end_texture_07003200: # 0x07003200 - 0x07003E80
-.incbin "build/bin/cake_end/cake_end.03200.rgba16"
+.incbin "bin/cake_end/cake_end.03200.rgba16"
 
 cake_end_texture_07003E80: # 0x07003E80 - 0x07004B00
-.incbin "build/bin/cake_end/cake_end.03E80.rgba16"
+.incbin "bin/cake_end/cake_end.03E80.rgba16"
 
 cake_end_texture_07004B00: # 0x07004B00 - 0x07005780
-.incbin "build/bin/cake_end/cake_end.04B00.rgba16"
+.incbin "bin/cake_end/cake_end.04B00.rgba16"
 
 cake_end_texture_07005780: # 0x07005780 - 0x07006400
-.incbin "build/bin/cake_end/cake_end.05780.rgba16"
+.incbin "bin/cake_end/cake_end.05780.rgba16"
 
 cake_end_texture_07006400: # 0x07006400 - 0x07007080
-.incbin "build/bin/cake_end/cake_end.06400.rgba16"
+.incbin "bin/cake_end/cake_end.06400.rgba16"
 
 cake_end_texture_07007080: # 0x07007080 - 0x07007D00
-.incbin "build/bin/cake_end/cake_end.07080.rgba16"
+.incbin "bin/cake_end/cake_end.07080.rgba16"
 
 cake_end_texture_07007D00: # 0x07007D00 - 0x07008980
-.incbin "build/bin/cake_end/cake_end.07D00.rgba16"
+.incbin "bin/cake_end/cake_end.07D00.rgba16"
 
 cake_end_texture_07008980: # 0x07008980 - 0x07009600
-.incbin "build/bin/cake_end/cake_end.08980.rgba16"
+.incbin "bin/cake_end/cake_end.08980.rgba16"
 
 cake_end_texture_07009600: # 0x07009600 - 0x0700A280
-.incbin "build/bin/cake_end/cake_end.09600.rgba16"
+.incbin "bin/cake_end/cake_end.09600.rgba16"
 
 cake_end_texture_0700A280: # 0x0700A280 - 0x0700AF00
-.incbin "build/bin/cake_end/cake_end.0A280.rgba16"
+.incbin "bin/cake_end/cake_end.0A280.rgba16"
 
 cake_end_texture_0700AF00: # 0x0700AF00 - 0x0700BB80
-.incbin "build/bin/cake_end/cake_end.0AF00.rgba16"
+.incbin "bin/cake_end/cake_end.0AF00.rgba16"
 
 cake_end_texture_0700BB80: # 0x0700BB80 - 0x0700C800
-.incbin "build/bin/cake_end/cake_end.0BB80.rgba16"
+.incbin "bin/cake_end/cake_end.0BB80.rgba16"
 
 cake_end_texture_0700C800: # 0x0700C800 - 0x0700D480
-.incbin "build/bin/cake_end/cake_end.0C800.rgba16"
+.incbin "bin/cake_end/cake_end.0C800.rgba16"
 
 cake_end_texture_0700D480: # 0x0700D480 - 0x0700E100
-.incbin "build/bin/cake_end/cake_end.0D480.rgba16"
+.incbin "bin/cake_end/cake_end.0D480.rgba16"
 
 cake_end_texture_0700E100: # 0x0700E100 - 0x0700ED80
-.incbin "build/bin/cake_end/cake_end.0E100.rgba16"
+.incbin "bin/cake_end/cake_end.0E100.rgba16"
 
 cake_end_texture_0700ED80: # 0x0700ED80 - 0x0700FA00
-.incbin "build/bin/cake_end/cake_end.0ED80.rgba16"
+.incbin "bin/cake_end/cake_end.0ED80.rgba16"
 
 cake_end_texture_0700FA00: # 0x0700FA00 - 0x07010680
-.incbin "build/bin/cake_end/cake_end.0FA00.rgba16"
+.incbin "bin/cake_end/cake_end.0FA00.rgba16"
 
 cake_end_texture_07010680: # 0x07010680 - 0x07011300
-.incbin "build/bin/cake_end/cake_end.10680.rgba16"
+.incbin "bin/cake_end/cake_end.10680.rgba16"
 
 cake_end_texture_07011300: # 0x07011300 - 0x07011F80
-.incbin "build/bin/cake_end/cake_end.11300.rgba16"
+.incbin "bin/cake_end/cake_end.11300.rgba16"
 
 cake_end_texture_07011F80: # 0x07011F80 - 0x07012C00
-.incbin "build/bin/cake_end/cake_end.11F80.rgba16"
+.incbin "bin/cake_end/cake_end.11F80.rgba16"
 
 cake_end_texture_07012C00: # 0x07012C00 - 0x07013880
-.incbin "build/bin/cake_end/cake_end.12C00.rgba16"
+.incbin "bin/cake_end/cake_end.12C00.rgba16"
 
 cake_end_texture_07013880: # 0x07013880 - 0x07014500
-.incbin "build/bin/cake_end/cake_end.13880.rgba16"
+.incbin "bin/cake_end/cake_end.13880.rgba16"
 
 cake_end_texture_07014500: # 0x07014500 - 0x07015180
-.incbin "build/bin/cake_end/cake_end.14500.rgba16"
+.incbin "bin/cake_end/cake_end.14500.rgba16"
 
 cake_end_texture_07015180: # 0x07015180 - 0x07015E00
-.incbin "build/bin/cake_end/cake_end.15180.rgba16"
+.incbin "bin/cake_end/cake_end.15180.rgba16"
 
 cake_end_texture_07015E00: # 0x07015E00 - 0x07016A80
-.incbin "build/bin/cake_end/cake_end.15E00.rgba16"
+.incbin "bin/cake_end/cake_end.15E00.rgba16"
 
 cake_end_texture_07016A80: # 0x07016A80 - 0x07017700
-.incbin "build/bin/cake_end/cake_end.16A80.rgba16"
+.incbin "bin/cake_end/cake_end.16A80.rgba16"
 
 cake_end_texture_07017700: # 0x07017700 - 0x07018380
-.incbin "build/bin/cake_end/cake_end.17700.rgba16"
+.incbin "bin/cake_end/cake_end.17700.rgba16"
 
 cake_end_texture_07018380: # 0x07018380 - 0x07019000
-.incbin "build/bin/cake_end/cake_end.18380.rgba16"
+.incbin "bin/cake_end/cake_end.18380.rgba16"
 
 cake_end_texture_07019000: # 0x07019000 - 0x07019C80
-.incbin "build/bin/cake_end/cake_end.19000.rgba16"
+.incbin "bin/cake_end/cake_end.19000.rgba16"
 
 cake_end_texture_07019C80: # 0x07019C80 - 0x0701A900
-.incbin "build/bin/cake_end/cake_end.19C80.rgba16"
+.incbin "bin/cake_end/cake_end.19C80.rgba16"
 
 cake_end_texture_0701A900: # 0x0701A900 - 0x0701B580
-.incbin "build/bin/cake_end/cake_end.1A900.rgba16"
+.incbin "bin/cake_end/cake_end.1A900.rgba16"
 
 cake_end_texture_0701B580: # 0x0701B580 - 0x0701C200
-.incbin "build/bin/cake_end/cake_end.1B580.rgba16"
+.incbin "bin/cake_end/cake_end.1B580.rgba16"
 
 cake_end_texture_0701C200: # 0x0701C200 - 0x0701CE80
-.incbin "build/bin/cake_end/cake_end.1C200.rgba16"
+.incbin "bin/cake_end/cake_end.1C200.rgba16"
 
 cake_end_texture_0701CE80: # 0x0701CE80 - 0x0701DB00
-.incbin "build/bin/cake_end/cake_end.1CE80.rgba16"
+.incbin "bin/cake_end/cake_end.1CE80.rgba16"
 
 cake_end_texture_0701DB00: # 0x0701DB00 - 0x0701E780
-.incbin "build/bin/cake_end/cake_end.1DB00.rgba16"
+.incbin "bin/cake_end/cake_end.1DB00.rgba16"
 
 cake_end_texture_0701E780: # 0x0701E780 - 0x0701F400
-.incbin "build/bin/cake_end/cake_end.1E780.rgba16"
+.incbin "bin/cake_end/cake_end.1E780.rgba16"
 
 cake_end_texture_0701F400: # 0x0701F400 - 0x07020080
-.incbin "build/bin/cake_end/cake_end.1F400.rgba16"
+.incbin "bin/cake_end/cake_end.1F400.rgba16"
 
 cake_end_texture_07020080: # 0x07020080 - 0x07020D00
-.incbin "build/bin/cake_end/cake_end.20080.rgba16"
+.incbin "bin/cake_end/cake_end.20080.rgba16"
 
 cake_end_texture_07020D00: # 0x07020D00 - 0x07021980
-.incbin "build/bin/cake_end/cake_end.20D00.rgba16"
+.incbin "bin/cake_end/cake_end.20D00.rgba16"
 
 cake_end_texture_07021980: # 0x07021980 - 0x07022600
-.incbin "build/bin/cake_end/cake_end.21980.rgba16"
+.incbin "bin/cake_end/cake_end.21980.rgba16"
 
 cake_end_texture_07022600: # 0x07022600 - 0x07023280
-.incbin "build/bin/cake_end/cake_end.22600.rgba16"
+.incbin "bin/cake_end/cake_end.22600.rgba16"
 
 cake_end_texture_07023280: # 0x07023280 - 0x07023F00
-.incbin "build/bin/cake_end/cake_end.23280.rgba16"
+.incbin "bin/cake_end/cake_end.23280.rgba16"
 
 cake_end_texture_07023F00: # 0x07023F00 - 0x07024B80
-.incbin "build/bin/cake_end/cake_end.23F00.rgba16"
+.incbin "bin/cake_end/cake_end.23F00.rgba16"
 
 cake_end_texture_07024B80: # 0x07024B80 - 0x07025800
-.incbin "build/bin/cake_end/cake_end.24B80.rgba16"
+.incbin "bin/cake_end/cake_end.24B80.rgba16"
 
 cake_end_vertex_07025800: # 0x07025800 - 0x07025840
 vertex      0,    220,     -1,      0,    608,  0xFF, 0xFF, 0xFF, 0xFF
