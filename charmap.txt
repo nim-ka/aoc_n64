@@ -177,8 +177,11 @@
 'ォ' = 0xD8
 '[%]' = 0xE0
 '(' = 0xE1
+'{' = 0xE1
 ')(' = 0xE2
 ')' = 0xE3
+# these two are a hack because US depends on the non combined character. TODO: Better way to handle this?
+'}' = 0xE3
 '+' = 0xE4
 '&' = 0xE5
 ':' = 0xE6

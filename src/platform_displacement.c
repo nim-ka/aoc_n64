@@ -182,3 +182,13 @@ void apply_mario_platform_displacement(void)
     if (!(gTimeStopState & TIME_STOP_ACTIVE) && gMarioObject != NULL && platform != NULL)
         apply_platform_displacement(1, platform);
 }
+
+#ifdef VERSION_US
+/**
+ * Set mario's platform to NULL.
+ */
+void func_u_802C8F28(void)
+{
+    gMarioPlatform = NULL;
+}
+#endif

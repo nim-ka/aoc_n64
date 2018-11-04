@@ -50,7 +50,11 @@ seq_table seq_22
 .endif
 music_sequence_table_end:
 
+.ifdef VERSION_JP
 .word 0, 0, 0
+.else
+.word 0
+.endif
 
 .macro sequence name
 \name:

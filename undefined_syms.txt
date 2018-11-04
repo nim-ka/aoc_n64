@@ -1,6 +1,8 @@
 /* FIXME: This overlaps with gDmaIoMesg, which should be 0x18 bytes in size. */
 D_80339BEC = gDmaIoMesg + 0x14;
 
+D_U_80000300 = 0x80000300;
+
 D_B0000010 = 0x00000010;
 D_03009AC8 = 0x03009AC8;
 D_0301C2B0 = 0x0301C2B0;
@@ -727,15 +729,3 @@ mr_blizzard_seg5_dl_0500C760 = 0x0500C760;
 mr_blizzard_seg5_dl_0500CAA8 = 0x0500CAA8;
 mr_blizzard_seg5_dl_0500CBF8 = 0x0500CBF8;
 mr_blizzard_seg5_dl_0500CCE8 = 0x0500CCE8;
-
-/* US ROM Symbols */
-D_U_80000300 = 0x80000300;
-D_U_8033BACA = 0x8033BACA;
-func_u_80321D5C = 0x80321D5C;
-func_u_803219AC = 0x803219AC;
-func_u_80320EC4 = 0x80320EC4;
-func_u_80320E3C = 0x80320E3C;
-func_u_802C8F28 = 0x802C8F28;
-BehPlayMusicTrackWhenTouchedLoop = 0x802C5FDC;
-D_U_80331370 = 0x80331370;
-D_U_803314A4 = 0x803314A4;

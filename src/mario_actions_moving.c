@@ -1440,16 +1440,13 @@ static void common_slide_action(
     case GROUND_STEP_HIT_WALL:
         if (!func_802519A8(m))
         {
-#ifdef VERSION_US
-            if (m->forwardVel > 16.0f)
-            {
-                m->particleFlags |= PARTICLE_1;
-                slide_bonk(m, ACT_GROUND_BONK, endAction);
-            }
-#else
+#ifdef VERSION_JP
             m->particleFlags |= PARTICLE_1;
-            slide_bonk(m, ACT_GROUND_BONK, endAction);
+#else
+            if (m->forwardVel > 16.0f)
+                m->particleFlags |= PARTICLE_1;
 #endif
+            slide_bonk(m, ACT_GROUND_BONK, endAction);
         }
         else if (m->wall != NULL)
         {
@@ -1660,7 +1657,11 @@ static s32 common_ground_knockback_action(
     if (arg4 > 0)
         func_80250F50(m, SOUND_MARIO_ATTACKED, MARIO_UNKNOWN_17);
     else
+#ifdef VERSION_JP
         func_80250F50(m, SOUND_MARIO_OOOF, MARIO_UNKNOWN_17);
+#else
+        func_80250F50(m, SOUND_MARIO_OOOF2, MARIO_UNKNOWN_17);
+#endif
 
     if (m->forwardVel > 32.0f) m->forwardVel = 32.0f;
     if (m->forwardVel < -32.0f) m->forwardVel = -32.0f;

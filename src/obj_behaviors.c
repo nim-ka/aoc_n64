@@ -2525,7 +2525,11 @@ void BullyStep(void)
 void BullySpawnCoin(void)
 {
     struct Object *coin = SpawnObj(o, 116, beh_moving_yellow_coin);
+#ifdef VERSION_JP
     PlaySound2(0x30300081);
+#else
+    PlaySound2(0x38300081);
+#endif
     coin->oForwardVel = 10.0f;
     coin->oVelY = 100.0f;
     coin->oPosY = o->oPosY + 310.0f;
@@ -2791,7 +2795,11 @@ void CheckWaterRingCollection(f32 avgScale, struct Object* ringManager)
                 if (ringSpawner->oWaterRingSpawnerRingsCollected < 6)
                 {
                     SpawnOrangeNumber(ringSpawner->oWaterRingSpawnerRingsCollected, 0, -40, 0);
+#ifdef VERSION_JP
                     SetSound(0x701EFF81, D_803320E0);
+#else
+                    SetSound(0x70302081 + ((ringSpawner->oUnk1AF - 1) << 16), D_803320E0);
+#endif
                 }
                 
                 ringManager->oWaterRingMgrLastRingCollected = o->oWaterRingIndex;
@@ -3023,10 +3031,29 @@ void BehCelebrationStarInit(void)
     o->oHomeZ = gMarioObject->header.gfx.pos[2];
     o->oAngleYaw = gMarioObject->header.gfx.angle[1] + 0x8000;
     o->oCelebStarDiameterOfRotation = 100;
-    o->header.gfx.asGraphNode = gLoadedGraphNodes[122];
+#ifdef VERSION_JP
+	o->header.gfx.asGraphNode = gLoadedGraphNodes[122];
     ScaleObject(0.4f);
     o->oFaceAnglePitch = 0;
     o->oFaceAngleRoll = 0;
+#else
+    if (gCurrLevelNum == LEVEL_BOWSER_1 || gCurrLevelNum == LEVEL_BOWSER_2)
+    {
+        o->header.gfx.asGraphNode = gLoadedGraphNodes[204];
+        o->oFaceAnglePitch = 0;
+        o->oFaceAngleRoll = 49152;
+        ScaleObject(0.1f);
+        o->oUnknownUnkF4_S32 = 1;
+    }
+    else
+    {
+        o->header.gfx.asGraphNode = gLoadedGraphNodes[122];
+        o->oFaceAnglePitch = 0;
+        o->oFaceAngleRoll = 0;
+        ScaleObject(0.4f);
+        o->oUnknownUnkF4_S32 = 0;
+    }
+#endif
 }
 
 void CelebrationStarSpinAroundMarioLoop(void)
@@ -3048,9 +3075,21 @@ void CelebrationStarSpinAroundMarioLoop(void)
 
 void CelebrationStarFaceCameraLoop(void)
 {
+
     if (o->oTimer < 10)
     {
+#ifdef VERSION_JP
         ScaleObject((f32)o->oTimer / 10.0);
+#else // mario dab fix
+        if(o->oUnknownUnkF4_S32 == 0)
+        {
+            ScaleObject((f32)o->oTimer / 10.0);
+        }
+        else
+        {
+            ScaleObject((f32)o->oTimer / 30.0);
+        }
+#endif
         o->oFaceAngleYaw += 0x1000;
     }
     else
@@ -3483,6 +3522,9 @@ void MoneybagReturnHomeLoop(void)
     if (IsPointCloseToObject(o, o->oHomeX, o->oHomeY, o->oHomeZ, 100))
     {
         SpawnObj(o, 116, beh_fake_moneybag_coin);
+#ifdef VERSION_US
+        PlaySound2(0x30762081);
+#endif
         SetObjAnimation(0);
         o->oAction = MONEYBAG_ACT_DISAPPEAR;
         o->oMoneybagJumpState = MONEYBAG_JUMP_LANDING;
@@ -3560,6 +3602,9 @@ void BehFakeMoneybagCoinLoop(void)
             if (IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, 400))
             {
                 SpawnObj(o, 102, beh_moneybag);
+#ifdef VERSION_US
+                PlaySound2(0x30762081);
+#endif
                 o->oAction = FAKE_MONEYBAG_COIN_ACT_TRANSFORM;
             }
             break;
@@ -3705,12 +3750,21 @@ void BehBowlingBallLoop(void)
     SetObjectVisibility(o, 4000);
 }
 
+#ifdef VERSION_US // hack to keep the ROM OK, not an actual diff
+extern float D_803374B8;
+extern float D_803374BC;
+#endif
+
 void BehGenericBowlingBallSpawnerInit(void)
 {
     switch (o->oBehParam)
     {
         case BBALL_BP_STYPE_BOB_UPPER:
+#ifdef VERSION_JP
             o->oBBallSpwnrMaxSpawnDist = 7000.0f;
+#else
+			o->oBBallSpwnrMaxSpawnDist = D_803374B8;
+#endif
             o->oBBallSpwnrSpawnOdds = 2.0f;
             break;
             
@@ -3720,7 +3774,11 @@ void BehGenericBowlingBallSpawnerInit(void)
             break;
             
         case BBALL_BP_STYPE_BOB_LOWER:
+#ifdef VERSION_JP
             o->oBBallSpwnrMaxSpawnDist = 6000.0f;
+#else
+			o->oBBallSpwnrMaxSpawnDist = D_803374BC;
+#endif
             o->oBBallSpwnrSpawnOdds = 2.0f;
             break;
     }
@@ -3880,4 +3938,19 @@ void BehRRCruiserWingLoop(void)
         o->oFaceAngleYaw = o->oRRCruiserWingUnkF4 - sins(o->oTimer * 0x400) * 8192.0f;
         o->oFaceAnglePitch = o->oRRCruiserWingUnkF8 + coss(o->oTimer * 0x400) * 2048.0f;
     }
+#ifndef VERSION_JP
+    if (o->oTimer == 64)
+    {
+        PlaySound2(0x30750081);
+        o->oTimer = 0;
+    }
+#endif
 }
+
+/*
+glabel D_803374C0
+    .incbin "bin/rodata.bin", 0x2A50, 0x4
+
+glabel D_803374C4
+    .incbin "bin/rodata.bin", 0x2A54, 0x4
+	*/

@@ -16135,7 +16135,7 @@ glabel hmc_seg7_collision_controllable_platform_sub # 0x0702B7F4 - 0x0702B86C
 .hword 0x0041
 .hword 0x0042
 
-hmc_seg7_arr_702B86C: # 0x0702B86C - 0x0702B8E0
+glabel hmc_seg7_arr_702B86C # 0x0702B86C - 0x0702B8E0
 .hword  0,  1272,  2000,  5120
 .hword  1,  1272,  2000,  3500
 .hword  2,  1800,  2100,  3000

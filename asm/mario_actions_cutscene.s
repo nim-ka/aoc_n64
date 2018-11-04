@@ -3401,8 +3401,13 @@ glabel func_802599B8
 /* 014A04 80259A04 1040000E */  beqz  $v0, .L80259A40
 /* 014A08 80259A08 00000000 */   nop   
 /* 014A0C 80259A0C 8FA80028 */  lw    $t0, 0x28($sp)
+.ifdef VERSION_JP
 /* 014A10 80259A10 3C04240B */  lui   $a0, (0x240B8081 >> 16) # lui $a0, 0x240b
 /* 014A14 80259A14 34848081 */  ori   $a0, (0x240B8081 & 0xFFFF) # ori $a0, $a0, 0x8081
+.else
+/* 014A10 80259A10 3C04240B */  lui   $a0, (0x240BD081 >> 16) # lui $a0, 0x240b
+/* 014A14 80259A14 34848081 */  ori   $a0, (0x240BD081 & 0xFFFF) # ori $a0, $a0, 0x8081
+.endif
 /* 014A18 80259A18 8D050088 */  lw    $a1, 0x88($t0)
 /* 014A1C 80259A1C 0C0C771E */  jal   SetSound
 /* 014A20 80259A20 24A50054 */   addiu $a1, $a1, 0x54
@@ -3441,8 +3446,13 @@ glabel func_80259A70
 /* 014A94 80259A94 1040000E */  beqz  $v0, .L80259AD0
 /* 014A98 80259A98 00000000 */   nop   
 /* 014A9C 80259A9C 8FAE0018 */  lw    $t6, 0x18($sp)
+.ifdef VERSION_JP
 /* 014AA0 80259AA0 3C04240B */  lui   $a0, (0x240B8081 >> 16) # lui $a0, 0x240b
 /* 014AA4 80259AA4 34848081 */  ori   $a0, (0x240B8081 & 0xFFFF) # ori $a0, $a0, 0x8081
+.else
+/* 014AA0 80259AA0 3C04240B */  lui   $a0, (0x240BD081 >> 16) # lui $a0, 0x240b
+/* 014AA4 80259AA4 34848081 */  ori   $a0, (0x240BD081 & 0xFFFF) # ori $a0, $a0, 0x8081
+.endif
 /* 014AA8 80259AA8 8DC50088 */  lw    $a1, 0x88($t6)
 /* 014AAC 80259AAC 0C0C771E */  jal   SetSound
 /* 014AB0 80259AB0 24A50054 */   addiu $a1, $a1, 0x54
@@ -3480,8 +3490,13 @@ glabel func_80259AFC
 /* 014B20 80259B20 1040000E */  beqz  $v0, .L80259B5C
 /* 014B24 80259B24 00000000 */   nop   
 /* 014B28 80259B28 8FAE0018 */  lw    $t6, 0x18($sp)
+.ifdef VERSION_JP
 /* 014B2C 80259B2C 3C04240B */  lui   $a0, (0x240B8081 >> 16) # lui $a0, 0x240b
 /* 014B30 80259B30 34848081 */  ori   $a0, (0x240B8081 & 0xFFFF) # ori $a0, $a0, 0x8081
+.else
+/* 014B2C 80259B2C 3C04240B */  lui   $a0, (0x240BD081 >> 16) # lui $a0, 0x240b
+/* 014B30 80259B30 34848081 */  ori   $a0, (0x240BD081 & 0xFFFF) # ori $a0, $a0, 0x8081
+.endif
 /* 014B34 80259B34 8DC50088 */  lw    $a1, 0x88($t6)
 /* 014B38 80259B38 0C0C771E */  jal   SetSound
 /* 014B3C 80259B3C 24A50054 */   addiu $a1, $a1, 0x54
@@ -6894,7 +6909,7 @@ glabel func_8025C8B0
 .L8025C9F8:
 .ifdef VERSION_US
 /* 017D24 8025CD24 00002025 */  move  $a0, $zero
-/* 017D28 8025CD28 0C0C83B1 */  jal   func_u_80320EC4
+/* 017D28 8025CD28 0C0C83B1 */  jal   func_80320040
 /* 017D2C 8025CD2C 2405003C */   li    $a1, 60
 .endif
 /* 0179F8 8025C9F8 0C0924A8 */  jal   func_802492A0

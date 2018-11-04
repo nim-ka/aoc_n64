@@ -94,7 +94,11 @@ glabel peach_geo_000254 # 0x0C000254
    geo_open_node
       geo_dl_translated 0x05, 0, 0, 0
       geo_open_node
+.ifdef VERSION_JP
          geo_dl_translated 0x05, 0, 0, 0, peach_seg5_dl_05007230
+.else
+         geo_dl_translated 0x05, 0, 0, 0, peach_seg5_us_dl_05007288
+.endif
          geo_open_node
             geo_dl_translated 0x05, 78, 0, 0, peach_seg5_dl_05006A18
             geo_open_node
@@ -144,7 +148,11 @@ glabel peach_geo_000254 # 0x0C000254
             geo_dl_translated 0x05, 78, 0, 0, peach_seg5_dl_050060E0
             geo_dl_translated 0x05, -23, -1, 0
             geo_open_node
+.ifdef VERSION_JP
                geo_dl_translated 0x05, 0, 0, 0, peach_seg5_dl_0500A0A8
+.else
+               geo_dl_translated 0x05, 0, 0, 0, peach_seg5_us_dl_0500A188
+.endif
             geo_close_node
          geo_close_node
       geo_close_node

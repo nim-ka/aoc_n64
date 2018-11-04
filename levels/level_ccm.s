@@ -33,7 +33,7 @@ script_func_local_4:
     object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -6500, -5836, -6400, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_finish_line_check
     object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -6393, -716, 7503, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_shortcut_check
 .ifdef VERSION_US
-    object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -4943, -1321, 667, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_plays_music_track_when_touched
+    object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -4943, 1321, 667, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_plays_music_track_when_touched
 .endif
     return
 

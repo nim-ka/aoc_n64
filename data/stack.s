@@ -112,6 +112,11 @@ glabel D_802245D8
     .space 0x70
 glabel D_80224648
     .space 0x1790
+.ifdef VERSION_US
+glabel D_U_802259D8
+	# TODO: Identify me
+	.space 0x200
+.endif
 glabel D_80225DD8
     .space 0xC0
 glabel D_80225E98
@@ -218,5 +223,9 @@ glabel D_80226EB8
     .space 0x8
 glabel D_80226EC0
     .space 0x140
+.ifdef VERSION_US
+glabel D_U_80226E00
+	.space 0x200
+.endif
 glabel gGfxSPTaskOutputBuffer
     .space 0x1F000

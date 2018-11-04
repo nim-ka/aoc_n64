@@ -119,17 +119,15 @@ SECTIONS
       build/asm/audio_dac.o(.text);
       build/asm/audio_dma.o(.text);
       build/asm/audio_playback.o(.text);
+      build/asm/audio_playback_2.o(.text);
       build/asm/audio_interface_1.o(.text);
       build/asm/audio_interface_2.o(.text);
 #if VERSION_US
-      . += 0xD90;
+      . += 0x40;
 #endif
       build/asm/libultra.o(.text);
       /* data */
       build/data/data_8032B3F0.o(.data*);
-#if VERSION_US
-      . += 0x10;
-#endif
       build/src/main.o(.data*);
       build/src/display.o(.data*);
       build/src/game.o(.data*);
@@ -221,9 +219,6 @@ SECTIONS
    END_SEG(main)
    BEGIN_NOLOAD(main)
    {
-#if VERSION_US
-      . += 0x430;
-#endif
       build/src/main.o(.bss*);
       build/src/game.o(.bss*);
       build/data/bss1.o(.bss*);

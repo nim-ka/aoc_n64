@@ -142,7 +142,11 @@ extern void func_802D8690(s8 sp23, s8 sp27, s8 *sp28, s8 *sp2c, s16 *sp30);
 extern void func_802D875C(s8 *sp20, s16 *sp24);
 extern void func_802D8830(s8 *sp20, s16 *sp24);
 extern u32 func_802D8954(s16 a0);
-extern void func_802D8980(s8 sp63, struct DialogEntry *sp64);
+#ifdef VERSION_JP
+extern void func_802D8980(s8 sp63, struct DialogEntry *diagEntry);
+#else
+extern void func_802D8980(s8 sp5B, struct DialogEntry *diagEntry, s8 sp63);	
+#endif
 extern void func_802D8ED4(void);
 extern void func_802D9030(s8 sp3b);
 extern void func_802D91C0(s16 sp4a);

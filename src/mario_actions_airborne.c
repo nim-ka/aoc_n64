@@ -138,7 +138,11 @@ static s32 check_fall_damage_or_get_stuck(struct MarioState *m, u32 hardFallActi
 {
     if (should_get_stuck_in_ground(m))
     {
+#ifdef VERSION_JP
         SetSound(SOUND_MARIO_OOOF, &m->marioObj->header.gfx.unk54);
+#else
+        SetSound(SOUND_MARIO_OOOF2, &m->marioObj->header.gfx.unk54);
+#endif
         m->particleFlags |= 0x00010000;
         drop_and_set_mario_action(m, ACT_FEET_STUCK_IN_GROUND, 0);
         return TRUE;
@@ -748,7 +752,11 @@ static s32 act_dive(struct MarioState *m)
     case AIR_STEP_LANDED:
         if (should_get_stuck_in_ground(m) && m->faceAngle[0] == -0x2AAA)
         {
+#ifdef VERSION_JP
             SetSound(SOUND_MARIO_OOOF, &m->marioObj->header.gfx.unk54);
+#else
+            SetSound(SOUND_MARIO_OOOF2, &m->marioObj->header.gfx.unk54);
+#endif
             m->particleFlags |= 0x00010000;
             drop_and_set_mario_action(m, ACT_HEAD_STUCK_IN_GROUND, 0);
         }
@@ -950,7 +958,11 @@ static s32 act_ground_pound(struct MarioState *m)
         {
             if (should_get_stuck_in_ground(m))
             {
+#ifdef VERSION_JP
                 SetSound(SOUND_MARIO_OOOF, &m->marioObj->header.gfx.unk54);
+#else
+                SetSound(SOUND_MARIO_OOOF2, &m->marioObj->header.gfx.unk54);
+#endif
                 m->particleFlags |= 0x00010000;
                 set_mario_action(m, ACT_BUTT_STUCK_IN_GROUND, 0);
             }

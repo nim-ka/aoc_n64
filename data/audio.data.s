@@ -11,7 +11,13 @@ glabel D_80331D44
 	.word 0
 
 glabel D_80331D48
-	.incbin "bin/sm64.j.0EADAC.bin", 0x1F9C, 0xAC
+	.incbin "bin/sm64.j.0EADAC.bin", 0x1F9C, 0x25
+.ifdef VERSION_JP
+	.byte 0x03
+.else
+	.byte 0x01
+.endif
+	.incbin "bin/sm64.j.0EADAC.bin", 0x1FC2, 0x86
 
 glabel D_80331DF4
 	.incbin "bin/sm64.j.0EADAC.bin", 0x2048, 0x3C
@@ -97,7 +103,13 @@ glabel D_80331FB0
 	.incbin "bin/sm64.j.0EADAC.bin", 0x2204, 0x78
 
 glabel D_80332028
-	.incbin "bin/sm64.j.0EADAC.bin", 0x227C, 0x50
+	.incbin "bin/sm64.j.0EADAC.bin", 0x227C, 0x38
+.ifdef VERSION_JP
+	.word 0x46504E20, 0x61A84E20, 0x4E2061A8, 0x61A84E20
+.else
+	.word 0x46504E20, 0xEA604E20, 0x4E20EA60, 0xEA604E20
+.endif
+	.incbin "bin/sm64.j.0EADAC.bin", 0x22C4, 0x8
 
 glabel D_80332078
 	.incbin "bin/sm64.j.0EADAC.bin", 0x22CC, 0x24
@@ -125,7 +137,11 @@ glabel D_803320C8
 	.incbin "bin/sm64.j.0EADAC.bin", 0x231C, 0xC
 
 glabel D_803320D4
+.ifdef VERSION_JP
 	.incbin "bin/sm64.j.0EADAC.bin", 0x2328, 0xC
+.else
+	.word 0x70304080, 0x20802040, 0x80800000
+.endif
 
 glabel D_803320E0
 	.incbin "bin/sm64.j.0EADAC.bin", 0x2334, 0x18
@@ -163,6 +179,11 @@ glabel D_80332124
 glabel D_80332128
 	.word 0
 
+.ifdef VERSION_US
+glabel D_U_8033323C
+	.word 0
+.endif
+
 glabel D_8033212C
 	.incbin "bin/sm64.j.0EADAC.bin", 0x2380, 0x40
 
@@ -170,10 +191,18 @@ glabel D_8033216C
 	.incbin "bin/sm64.j.0EADAC.bin", 0x23C0, 0x10
 
 glabel D_8033217C
+.ifdef VERSION_JP
 	.incbin "bin/sm64.j.0EADAC.bin", 0x23D0, 0x14
+.else
+	.incbin "bin/sm64.j.0EADAC.bin", 0x23D0, 0x10 # for some reason US doesnt include the extra word at the end.
+.endif
 
 glabel D_80332190
+.ifdef VERSION_JP
 	.incbin "bin/sm64.j.0EADAC.bin", 0x23E4, 0x2F8
+.else
+	.incbin "bin/sm64.u.0EE2A0.bin", 0x0, 0x2F8
+.endif
 
 glabel D_80332488
 	.incbin "bin/sm64.j.0EADAC.bin", 0x26DC, 0x1FC
@@ -275,4 +304,8 @@ glabel D_80333EF4
 	.incbin "bin/sm64.j.0EADAC.bin", 0x4148, 0xC
 
 glabel D_80333F00
+.ifdef VERSION_JP
 	.incbin "bin/sm64.j.0EADAC.bin", 0x4154, 0x8C0
+.else
+	.incbin "bin/sm64.u.0F0010.bin", 0x0, 0x8C0
+.endif

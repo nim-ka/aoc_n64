@@ -3736,7 +3736,7 @@ gsSPEndDisplayList
 castle_grounds_seg7_us_texture_0700EAE8:
 .incbin "build/bin/castle_grounds_seg7/castle_grounds_seg7_peach.0EAE8.ia8"
 
-castle_grounds_seg7_us_dl_0700F2E8:
+glabel castle_grounds_seg7_us_dl_0700F2E8 # 0x0700F2E8
 gsDPPipeSync
 gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_TEXTPERSP, 1, 0x00000000
 gsDPSetCombineMode G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_ENVIRONMENT, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_ENVIRONMENT, G_ACMUX_0, G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_ENVIRONMENT, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_ENVIRONMENT, G_ACMUX_0

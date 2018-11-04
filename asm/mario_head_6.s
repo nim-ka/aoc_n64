@@ -13418,7 +13418,6 @@ glabel load_dynlist # original name = func_801A6F34
 /* 25597C 801A71AC 8FB00020 */  lw    $s0, 0x20($sp)
 /* 255980 801A71B0 03E00008 */  jr    $ra
 /* 255984 801A71B4 27BD0050 */   addiu $sp, $sp, 0x50
-
 /* 255988 801A71B8 AFA40000 */  sw    $a0, ($sp)
 /* 25598C 801A71BC 10000001 */  b     .L801A71C4
 /* 255990 801A71C0 00000000 */   nop   

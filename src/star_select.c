@@ -173,7 +173,11 @@ void ShowSomeNum(void)
 
 void func_80177004(void)
 {
+#ifdef VERSION_JP
     unsigned char sp60[] = {TEXT_MYSCORE};
+#else
+	unsigned char sp60[] = {TEXT_MYSCORE2}; // TODO: fix me
+#endif
     unsigned char sp5C[] = {TEXT_0};
     u32 *sp58 = (u32 *)segmented_to_virtual(seg2_level_name_table);
     u8 *sp54 = (u8 *) segmented_to_virtual((void *) sp58[gCurrCourseNum - 1]);
@@ -211,7 +215,11 @@ void func_80177004(void)
     if (sVisibleStars != 0)
     {
         sp4C = (u8 *) segmented_to_virtual((void *) (sp50[(gCurrCourseNum - 1) * 6 + sSelectedStar]));
+#ifdef VERSION_JP
         x2 = get_str_x_pos_from_center(158, sp4C, 8.0f);
+#else
+        x2 = get_str_x_pos_from_center(163, sp4C, 8.0f);
+#endif
         PrintRegularText(x2, 81, sp4C);
     }
 
@@ -245,6 +253,12 @@ void LevelProc_80177560(UNUSED int a, UNUSED int b)
         sObtainedStars--;
 }
 
+#ifdef VERSION_JP
+#define STAR_SELECT_SOUND SOUND_MENU_STARSOUND
+#else
+#define STAR_SELECT_SOUND SOUND_MENU_STARSOUNDLETSAGO
+#endif
+
 int LevelProc_80177610(UNUSED int a, UNUSED int b)
 {
     if (D_801A8018 >= 11)
@@ -253,7 +267,7 @@ int LevelProc_80177610(UNUSED int a, UNUSED int b)
          || (gPlayer3Controller->buttonPressed & START_BUTTON)
          || (gPlayer3Controller->buttonPressed & B_BUTTON))
         {
-            SetSound(SOUND_MENU_STARSOUND, D_803320E0);
+            SetSound(STAR_SELECT_SOUND, D_803320E0);
             if (D_801B9913 > sSelectedStar)
                 D_801B9910 = sSelectedStar + 1;
             else
@@ -265,3 +279,5 @@ int LevelProc_80177610(UNUSED int a, UNUSED int b)
     D_801A8018++;
     return D_801B9910;
 }
+
+#undef STAR_SELECT_SOUND

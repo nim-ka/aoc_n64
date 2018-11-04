@@ -387,8 +387,10 @@ glabel D_80337A30
 glabel D_80337A34
 	.incbin "bin/rodata.bin", 0x2FC4, 0x4
 
+.ifdef VERSION_JP
 glabel D_80337A38
 	.incbin "bin/rodata.bin", 0x2FC8, 0x4
+.endif
 
 glabel D_80337A3C
 	.incbin "bin/rodata.bin", 0x2FCC, 0x4

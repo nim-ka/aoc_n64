@@ -11,6 +11,7 @@
 #define OBJECT_FIELD_U32(index) rawData.asU32[index]
 #define OBJECT_FIELD_S32(index) rawData.asS32[index]
 #define OBJECT_FIELD_S16(index, subIndex) rawData.asS16[index][subIndex]
+#define OBJECT_FIELD_U8(index, subIndex) rawData.asU8[index][subIndex]
 #define OBJECT_FIELD_F32(index) rawData.asF32[index]
 #define OBJECT_FIELD_ANIMS(index) rawData.asAnims[index]
 #define OBJECT_FIELD_SURFACE(index) rawData.asSurface[index]
@@ -214,6 +215,7 @@
 
 /* Water Ring Spawner (Jet Stream Ring Spawner and Manta Ray) */
 #define /*0x1AC*/ oWaterRingSpawnerRingsCollected OBJECT_FIELD_S32(0x49)
+#define /*0x1AF*/ oUnk1AF OBJECT_FIELD_U8(0x49, 3)
 
 /* Water Ring Manager (Jet Stream Ring Spawner and Manta Ray Ring Manager) */
 #define /*0x0F4*/ oWaterRingMgrNextRingIndex OBJECT_FIELD_S32(0x1B)

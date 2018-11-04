@@ -4,8 +4,16 @@
 .section .rodata
 
 #obj behaviors
+
+.ifdef VERSION_US # these arent actually US exclusive, but it's part of a hack to keep the US ROM OK while it was being differed via scripts, otherwise, this object is in the wrong spot.
+glabel D_803374B8
+    .incbin "bin/rodata.bin", 0x2A48, 0x4 # 45 DA C0 00 (7000.0f)
+
+glabel D_803374BC
+    .incbin "bin/rodata.bin", 0x2A4C, 0x4 # 45 BB 80 00 (6000.0f)
+.endif
 glabel D_803374C0
-    .incbin "bin/rodata.bin", 0x2A50, 0x4
+    .incbin "bin/rodata.bin", 0x2A50, 0x4 # C0 A3 D7 0A
 
 glabel D_803374C4
     .incbin "bin/rodata.bin", 0x2A54, 0x4
@@ -341,4 +349,7 @@ glabel jtbl_80337790
     .word L802F8654
     .word L802F8644
 
-    .word 0
+	.word 0
+	.ifdef VERSION_US
+	.word 0, 0
+	.endif

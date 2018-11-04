@@ -781,10 +781,18 @@ glabel TableCheepCheepActions
 
 # Unknown region 0EAC30-0EACC0 [90]
 glabel D_8032FC30
+.ifdef VERSION_JP
 	.incbin "bin/sm64.j.0EAC30.bin", 0x0, 0x10
+.else
+	.incbin "bin/sm64.u.0EBB90.bin", 0x0, 0x10
+.endif
 
 glabel D_8032FC40
+.ifdef VERSION_JP
 	.incbin "bin/sm64.j.0EAC30.bin", 0x10, 0x80
+.else
+	.incbin "bin/sm64.u.0EBB90.bin", 0x10, 0x80
+.endif
 
 glabel TableExclamationBoxActions
 .word ActionExclamationBox0
@@ -860,6 +868,7 @@ glabel TableWhompActions
 .word ActionWhomp9
 
 # Unknown region 0EADAC-0EFA50 [4CA4]
+.ifdef VERSION_JP
 glabel D_8032FDAC
 	.incbin "bin/sm64.j.0EADAC.bin", 0x0, 0x24
 
@@ -880,4 +889,26 @@ glabel D_8032FE4C
 
 glabel D_8032FE54
 	.incbin "bin/sm64.j.0EADAC.bin", 0xA8, 0x6C
+.else
+glabel D_8032FDAC
+	.incbin "bin/sm64.u.0EBD0C.bin", 0x0, 0x24
+
+glabel D_8032FDD0
+	.incbin "bin/sm64.u.0EBD0C.bin", 0x24, 0x24
+
+glabel D_8032FDF4
+	.incbin "bin/sm64.u.0EBD0C.bin", 0x48, 0x24
+
+glabel D_8032FE18
+	.incbin "bin/sm64.u.0EBD0C.bin", 0x6C, 0x24
+
+glabel D_8032FE3C
+	.incbin "bin/sm64.u.0EBD0C.bin", 0x90, 0x10
+
+glabel D_8032FE4C
+	.incbin "bin/sm64.u.0EBD0C.bin", 0xA0, 0x8
+
+glabel D_8032FE54
+	.incbin "bin/sm64.u.0EBD0C.bin", 0xA8, 0x6C
+.endif
 

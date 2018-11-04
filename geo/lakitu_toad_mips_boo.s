@@ -106,9 +106,17 @@ glabel toad_geo_00027C # 0x0D00027C
          geo_open_node
             geo_dl_translated 0x05, 83, 0, 0
             geo_open_node
+.ifdef VERSION_JP
                geo_dl_translated 0x05, 126, -37, 0, toad_seg6_dl_06007710
+.else
+               geo_dl_translated 0x05, 126, -37, 0, toad_seg6_us_dl_06007788
+.endif
             geo_close_node
+.ifdef VERSION_JP
             geo_dl_translated 0x05, 25, 8, 0, toad_seg6_dl_06007A48
+.else
+            geo_dl_translated 0x05, 25, 8, 0, toad_seg6_us_dl_06007B00
+.endif
             geo_dl_translated 0x05, 34, 8, 0, toad_seg6_dl_06007EB0
             geo_dl_translated 0x05, 4, 7, 38
             geo_open_node
@@ -141,7 +149,11 @@ glabel toad_geo_00027C # 0x0D00027C
             geo_open_node
                geo_dl_translated 0x05, 0, 0, 0
                geo_open_node
+.ifdef VERSION_JP
                   geo_dl_translated 0x05, 17, 0, -4, toad_seg6_dl_06008520
+.else
+                  geo_dl_translated 0x05, 17, 0, -4, toad_seg6_us_dl_06008608
+.endif
                geo_close_node
             geo_close_node
          geo_close_node

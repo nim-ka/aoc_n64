@@ -222,19 +222,31 @@ void render_hud_hp(void)
     sPowerMeterHUD.d_EC += 1;
 }
 
+#ifdef VERSION_JP
+#define HUD_TOP_Y 210
+#else
+#define HUD_TOP_Y 209
+#endif
+
 void render_hud_mario_lives(void)
 {
-    print_text(22, 210, ",");   // 'Mario Head' glyph
-    print_text(38, 210, "*");   // 'X' glyph
-    print_text_fmt_int(54, 210, "%d", gDisplayedLives);
+    print_text(22, HUD_TOP_Y, ",");   // 'Mario Head' glyph
+    print_text(38, HUD_TOP_Y, "*");   // 'X' glyph
+    print_text_fmt_int(54, HUD_TOP_Y, "%d", gDisplayedLives);
 }
 
 void render_hud_coins(void)
 {
-    print_text(168, 210, "+");  // 'Coin' glyph
-    print_text(184, 210, "*");  // 'X' glyph
-    print_text_fmt_int(198, 210, "%d", gDisplayedCoins);
+    print_text(168, HUD_TOP_Y, "+");  // 'Coin' glyph
+    print_text(184, HUD_TOP_Y, "*");  // 'X' glyph
+    print_text_fmt_int(198, HUD_TOP_Y, "%d", gDisplayedCoins);
 }
+
+#ifdef VERSION_JP
+#define HUD_STARS_X 247
+#else
+#define HUD_STARS_X 242
+#endif
 
 void render_hud_stars(void)
 {
@@ -242,13 +254,13 @@ void render_hud_stars(void)
 
     if (D_803305CC == 1 && gGlobalTimer & 0x00000008)
         return;
-    
+
     if (gDisplayedStars < 100)
         showX = 1;
-    
-    print_text(247, 210, "-");                  // 'Star' glyph
-    if (showX == 1) print_text(263, 210, "*");  // 'X' glyph
-    print_text_fmt_int(((showX * 14) + 263), 210, "%d", gDisplayedStars);
+
+    print_text(HUD_STARS_X, HUD_TOP_Y, "-");                  // 'Star' glyph
+    if (showX == 1) print_text((HUD_STARS_X + 16), HUD_TOP_Y, "*");  // 'X' glyph
+    print_text_fmt_int(((showX * 14) + (HUD_STARS_X + 16)), HUD_TOP_Y, "%d", gDisplayedStars);
 }
 
 void func_802E29D4()

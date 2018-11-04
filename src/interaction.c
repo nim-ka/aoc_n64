@@ -1714,12 +1714,24 @@ static u32 func_8024FC94(struct MarioState *m, u32 arg)
     return FALSE;
 }
 
+#ifdef VERSION_JP
+#define READ_MASK (INPUT_B_PRESSED)
+#else
+#define READ_MASK (INPUT_B_PRESSED | INPUT_A_PRESSED)
+#endif
+
+#ifdef VERSION_JP
+#define SIGN_RANGE 0x38E3
+#else
+#define SIGN_RANGE 0x4000
+#endif
+
 static u32 func_8024FD2C(struct MarioState *m, struct Object *o)
 {
-    if ((m->input & INPUT_B_PRESSED) && func_8024FC94(m, 0) && object_facing_mario(m, o, 0x38E3))
+    if ((m->input & READ_MASK) && func_8024FC94(m, 0) && object_facing_mario(m, o, SIGN_RANGE))
     {
         s16 facingDYaw = (s16) (o->oAngleYaw + 0x8000) - m->faceAngle[1];
-        if (facingDYaw >= -0x38E3 && facingDYaw <= 0x38E3)
+        if (facingDYaw >= -SIGN_RANGE && facingDYaw <= SIGN_RANGE)
         {
             f32 targetX = o->oPosX + 105.0f * sins(o->oAngleYaw);
             f32 targetZ = o->oPosZ + 105.0f * coss(o->oAngleYaw);
@@ -1739,7 +1751,7 @@ static u32 func_8024FD2C(struct MarioState *m, struct Object *o)
 
 static u32 func_8024FEC0(struct MarioState *m, struct Object *o)
 {
-    if ((m->input & INPUT_B_PRESSED) && func_8024FC94(m, 1))
+    if ((m->input & READ_MASK) && func_8024FC94(m, 1))
     {
         s16 facingDYaw = mario_angle_to_object(m, o) - m->faceAngle[1];
         if (facingDYaw >= -0x4000 && facingDYaw <= 0x4000)

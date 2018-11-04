@@ -136,7 +136,10 @@ src/text_strings.h: src/text_strings.h.in
 text/%.s: text/%.s.in
 	$(TEXTCONV) charmap.txt $< $@
 
+build/bin/segment2.o: bin/segment2.s
+
 bin/segment2.s: text/$(VERSION)/debug.s text/$(VERSION)/dialog.s text/$(VERSION)/level.s text/$(VERSION)/star.s
+	touch bin/segment2.s
 
 $(MIO0_DIR)/%.mio0: bin/%.bin
 	$(MIO0TOOL) $< $@

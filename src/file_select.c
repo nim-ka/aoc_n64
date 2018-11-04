@@ -73,6 +73,9 @@ extern u8 seg2_level_name_table[];
 
 extern u32 gGlobalTimer;
 
+#ifdef VERSION_US
+s16 D_U_801B99F0;
+#endif
 struct Object *sMainMenuButtons[32];
 u8 sYesNoColor[2];
 
@@ -111,13 +114,25 @@ static unsigned char textMarioD[] = {TEXT_MARIO_D};
 static unsigned char textNew[] = {TEXT_NEW};
 static unsigned char D_801A7C74[] = {0x35, 0xff};
 static unsigned char D_801A7C78[] = {0x32, 0xff};
+#ifdef VERSION_JP
 static unsigned char D_801A7C7C[] = {0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0xff};
+#else
+static unsigned char D_801A7C7C[] = {TEXT_SELECT_FILE};	
+#endif
 static unsigned char textScore[] = {TEXT_SCORE};
 static unsigned char textCopy[] = {TEXT_COPY};
 static unsigned char textErase[] = {TEXT_ERASE};
+#ifdef VERSION_JP
 static unsigned char D_801A7C98[] = {0x15, 0x16, 0x12, 0x09, 0x13, 0x08, 0x14, 0x0d, 0x17, 0xff};
+#else
+static unsigned char D_801A7C98[] = {TEXT_CHECK_FILE};	
+#endif
 static unsigned char textNoSavedDataExists[] = {TEXT_NO_SAVED_DATA_EXISTS};
+#ifdef VERSION_JP
 static unsigned char D_801A7CB8[] = {0x00, 0x01, 0x02, 0x03, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0xff};
+#else
+static unsigned char D_801A7CB8[] = {TEXT_COPY_FILE};	
+#endif
 static unsigned char textCopyItToWhere[] = {TEXT_COPY_IT_TO_WHERE};
 static unsigned char textNoSavedDataExists2[] = {TEXT_NO_SAVED_DATA_EXISTS};
 static unsigned char textCopyFinished[] = {TEXT_COPYING_COMPLETED};
@@ -1056,19 +1071,25 @@ static void main_menu_handle_click(void)
         }
     }
 
+#ifdef VERSION_JP
+#define FILE_SELECT_SOUND SOUND_MENU_STARSOUND
+#else
+#define FILE_SELECT_SOUND SOUND_MENU_STARSOUNDOKEYDOKEY
+#endif
+
     switch (sSelectedButtonId)
     {
     case MENU_BUTTON_PLAY_FILE_A:
-        SetSound(SOUND_MENU_STARSOUND, D_803320E0);
+        SetSound(FILE_SELECT_SOUND, D_803320E0);
         break;
     case MENU_BUTTON_PLAY_FILE_B:
-        SetSound(SOUND_MENU_STARSOUND, D_803320E0);
+        SetSound(FILE_SELECT_SOUND, D_803320E0);
         break;
     case MENU_BUTTON_PLAY_FILE_C:
-        SetSound(SOUND_MENU_STARSOUND, D_803320E0);
+        SetSound(FILE_SELECT_SOUND, D_803320E0);
         break;
     case MENU_BUTTON_PLAY_FILE_D:
-        SetSound(SOUND_MENU_STARSOUND, D_803320E0);
+        SetSound(FILE_SELECT_SOUND, D_803320E0);
         break;
     case 4:
         SetSound(SOUND_MENU_CAMERAZOOMIN, D_803320E0);
@@ -1087,6 +1108,8 @@ static void main_menu_handle_click(void)
         sound_select_menu_create_buttons(sMainMenuButtons[MENU_BUTTON_SOUND_MODE]);
         break;
     }
+
+#undef FILE_SELECT_SOUND
 }
 
 void BehGreyButtonLoop(void)
@@ -1331,7 +1354,11 @@ static void draw_main_menu(void)
 {
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED00);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextColorAlpha);
+#ifdef VERSION_JP
     PutString(1, 96, 35, D_801A7C7C);
+#else
+    PutString(2, 93, 35, D_801A7C7C);
+#endif
     draw_file_button_label(0, 92, 78);
     draw_file_button_label(1, 209, 78);
     draw_file_button_label(2, 92, 118);
@@ -1339,10 +1366,18 @@ static void draw_main_menu(void)
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED68);
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextColorAlpha);
+#ifdef VERSION_JP
     PrintGenericText(50, 39, textScore);
     PrintGenericText(115, 39, textCopy);
     PrintGenericText(180, 39, textErase);
     PrintGenericText(235, 39, textSoundModes[sSoundMode]);
+#else
+    PrintGenericText(52, 39, textScore);
+    PrintGenericText(117, 39, textCopy);
+    PrintGenericText(177, 39, textErase);
+	D_U_801B99F0 = get_str_x_pos_from_center(254, textSoundModes[sSoundMode], 10.0f);
+    PrintGenericText(D_U_801B99F0, 39, textSoundModes[sSoundMode]);
+#endif
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
     gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D108);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextColorAlpha);
@@ -1357,12 +1392,21 @@ static void print_file_score_message(s8 a)
 {
     switch (a)
     {
+#ifdef VERSION_JP
     case 0:
         PutString1(1, 90, 35, D_801A7C98);
         break;
     case 1:
         PutString2(90, 190, textNoSavedDataExists);
         break;
+#else
+    case 0:
+        PutString1(2, 95, 35, D_801A7C98);
+        break;
+    case 1:
+        PutString2(99, 190, textNoSavedDataExists);
+        break;	
+#endif
     }
 }
 
@@ -1387,9 +1431,15 @@ static void draw_score_menu(void)
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED68);
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextColorAlpha);
+#ifdef VERSION_JP
     PrintGenericText(45, 35, textReturn);
     PrintGenericText(128, 35, textFileCopy);
     PrintGenericText(228, 35, textFileDelete);
+#else
+    PrintGenericText(44, 35, textReturn);
+    PrintGenericText(135, 35, textFileCopy);
+    PrintGenericText(231, 35, textFileDelete);
+#endif
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
     gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D108);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextColorAlpha);
@@ -1404,6 +1454,7 @@ static void copy_menu_print_message(s8 messageId)
 {
     switch (messageId)
     {
+#ifdef VERSION_JP
     case 0:
         if (sAllFilesExist == TRUE)
             PutString2(90, 190, textNoFileToCopyFrom);
@@ -1422,6 +1473,26 @@ static void copy_menu_print_message(s8 messageId)
     case 4:
         PutString2(90, 190, textSavedDataExists);
         break;
+#else
+    case 0:
+        if (sAllFilesExist == TRUE)
+            PutString2(119, 190, textNoFileToCopyFrom);
+        else
+            PutString1(2, 104, 35, D_801A7CB8);
+        break;
+    case 1:
+        PutString2(109, 190, textCopyItToWhere);
+        break;
+    case 2:
+        PutString2(101, 190, textNoSavedDataExists2);
+        break;
+    case 3:
+        PutString2(110, 190, textCopyFinished);
+        break;
+    case 4:
+        PutString2(110, 190, textSavedDataExists);
+        break;
+#endif
     }
 }
 
@@ -1479,9 +1550,15 @@ static void draw_copy_menu(void)
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED68);
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextColorAlpha);
+#ifdef VERSION_JP
     PrintGenericText(45, 35, textReturn);
     PrintGenericText(133, 35, textViewScore);
     PrintGenericText(220, 35, textFileDelete);
+#else
+    PrintGenericText(44, 35, textReturn);
+    PrintGenericText(128, 35, textViewScore);
+    PrintGenericText(230, 35, textFileDelete);	
+#endif
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
     gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D108);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextColorAlpha);
@@ -1492,13 +1569,25 @@ static void draw_copy_menu(void)
     gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D160);
 }
 
+#ifdef VERSION_JP
+#define TIMER_VAR1 0xA4
+#define TIMER_VAR2 0x91
+#else
+#define TIMER_VAR1 0xA9
+#define TIMER_VAR2 0x8C
+#endif
+
 static void erase_yes_no_prompt(s16 x, s16 y)
 {
     s16 sp2E = gGlobalTimer << 12;
+#ifdef VERSION_JP
     s16 sp2C = sCursorPos[0] + 160.0f;
+#else
+	s16 sp2C = sCursorPos[0] + (x + 0x46);
+#endif
     s16 sp2A = sCursorPos[1] + 120.0f;
 
-    if (sp2C < 0xA4 && sp2C >= 0x91 && sp2A < 0xD2 && sp2A >= 0xBF)
+    if (sp2C < TIMER_VAR1 && sp2C >= TIMER_VAR2 && sp2A < 0xD2 && sp2A >= 0xBF)
     {
         sYesNoColor[0] = sins(sp2E) * 50.0f + 205.0f;
         sYesNoColor[1] = 150;
@@ -1547,9 +1636,16 @@ static void erase_yes_no_prompt(s16 x, s16 y)
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
 }
 
+#undef TIMER_VAR1
+#undef TIMER_VAR2
+
 static void erase_menu_print_message(s8 messageId)
 {
+#ifdef VERSION_JP
     unsigned char sp58[] = {0x00, 0x01, 0x02, 0x03, 0x0E, 0x0C, 0xFF};
+#else
+	unsigned char sp58[] = {TEXT_ERASEFILE};
+#endif
     unsigned char textSure[] = {TEXT_SURE};
     unsigned char textNoSavedDataExists[] = {TEXT_NO_SAVED_DATA_EXISTS};
     unsigned char textMarioAJustErased[] = {TEXT_MARIO_A_JUST_ERASED};
@@ -1557,6 +1653,7 @@ static void erase_menu_print_message(s8 messageId)
 
     switch (messageId)
     {
+#ifdef VERSION_JP
     case 0:
         PutString1(1, 96, 35, sp58);
         break;
@@ -1575,6 +1672,26 @@ static void erase_menu_print_message(s8 messageId)
         PutString2(90, 190, textSavedDataExists);
         break;
     }
+#else
+    case 0:
+        PutString1(2, 98, 35, sp58);
+        break;
+    case 1:
+        PutString2(90, 190, textSure);
+        erase_yes_no_prompt(90, 190);
+        break;
+    case 2:
+        PutString2(100, 190, textNoSavedDataExists);
+        break;
+    case 3:
+        textMarioAJustErased[6] = sSelectedFile + 10;
+        PutString2(100, 190, textMarioAJustErased);
+        break;
+    case 4:
+        PutString2(100, 190, textSavedDataExists);
+        break;
+    }
+#endif
 }
 
 static void erase_menu_update_message(void)
@@ -1629,9 +1746,15 @@ static void draw_erase_menu(void)
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED68);
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextColorAlpha);
+#ifdef VERSION_JP
     PrintGenericText(45, 35, textReturn);
     PrintGenericText(133, 35, textViewScore);
     PrintGenericText(223, 35, textFileCopy);
+#else
+    PrintGenericText(44, 35, textReturn);
+    PrintGenericText(127, 35, textViewScore);
+    PrintGenericText(233, 35, textFileCopy);
+#endif
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
     gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D108);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextColorAlpha);
@@ -1645,11 +1768,20 @@ static void draw_erase_menu(void)
 static void draw_sound_mode_menu(void)
 {
     int mode;
+#ifdef VERSION_JP
     unsigned char sp38[] = {0x18, 0x19, 0x1A, 0x1B, 0x04, 0x05, 0x06, 0x07, 0xFF};
+#else
+	s16 sp42;
+    unsigned char sp38[] = {TEXT_SOUND_SELECT};
+#endif
 
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED00);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextColorAlpha);
+#ifdef VERSION_JP
     PutString(1, 96, 35, sp38);
+#else
+	PutString(2, 88, 35, sp38);
+#endif
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED68);
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
     for (mode = 0; mode < 3; mode++)
@@ -1662,7 +1794,12 @@ static void draw_sound_mode_menu(void)
         {
             gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, sTextColorAlpha);
         }
-        PrintGenericText(mode * 74 + 67, 87, textSoundModes[mode]);
+#ifdef VERSION_JP
+		PrintGenericText(mode * 74 + 67, 87, textSoundModes[mode]);
+#else
+		sp42 = get_str_x_pos_from_center(mode * 74 + 87, textSoundModes[mode], 10.0f);
+        PrintGenericText(sp42, 87, textSoundModes[mode]);
+#endif
     }
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
 }
@@ -1684,6 +1821,7 @@ static void print_course_coin_score(s8 file, s16 course, s16 x, s16 y)
     u8 stars = save_file_get_star_flags(file, course);
     unsigned char sp48[] = {0xF9, 0xFB, 0xFF};
     unsigned char sp44[] = {0xFA, 0xFF};
+#ifdef VERSION_JP
     unsigned char fileNames[][5] = {
         {TEXT_4DASHES},
         {TEXT_MARIO_A},
@@ -1691,6 +1829,15 @@ static void print_course_coin_score(s8 file, s16 course, s16 x, s16 y)
         {TEXT_MARIO_C},
         {TEXT_MARIO_D}
     };
+#else
+	unsigned char fileNames[][8] = {
+        {TEXT_4DASHES}, // huh?
+        {0x40, 0x41, 0x0A, 0xFF},
+        {0x40, 0x41, 0x0B, 0xFF},
+        {0x40, 0x41, 0x0C, 0xFF},
+        {0x40, 0x41, 0x0D, 0xFF},
+    };
+#endif
 
     if (D_801A7C10 == 0)
     {
@@ -1702,10 +1849,17 @@ static void print_course_coin_score(s8 file, s16 course, s16 x, s16 y)
     }
     else
     {
+#ifdef VERSION_JP
         PrintRegularText(x, y, sp48);
-        Int2Str((u16)save_file_get_max_coin_score(course) & 0xFFFF, buffer);
-        PrintRegularText(x + 16, y, buffer);
-        PrintRegularText(x + 45, y, fileNames[(save_file_get_max_coin_score(course) >> 16) & 0xFFFF]);
+		Int2Str((u16)save_file_get_max_coin_score(course) & 0xFFFF, buffer);
+		PrintRegularText(x + 16, y, buffer);
+		PrintRegularText(x + 45, y, fileNames[(save_file_get_max_coin_score(course) >> 16) & 0xFFFF]);
+#else
+		PrintRegularText(x + 18, y, sp48);
+		Int2Str((u16)save_file_get_max_coin_score(course) & 0xFFFF, buffer);
+		PrintRegularText(x + 34, y, buffer);
+		PrintRegularText(x + 60, y, fileNames[(save_file_get_max_coin_score(course) >> 16) & 0xFFFF]);
+#endif
     }
 }
 
@@ -1726,17 +1880,31 @@ static void print_course_star_score(s8 file, s16 course, s16 x, s16 y)
 
 static void draw_file_scores_menu(s8 file)
 {
+#ifdef VERSION_JP
     unsigned char sp54[] = {0x0F, 0x10, 0x11, 0xFF};
-    unsigned char sp50[] = {TEXT_0};
+	unsigned char sp50[] = {TEXT_0};
     void **levelNameTable = segmented_to_virtual(seg2_level_name_table);
     unsigned char textHiScore[] = {TEXT_HISCORE};
     unsigned char textMyScore[] = {TEXT_MYSCORE};
+#else
+    unsigned char sp54[] = {TEXT_MARIO};
+    unsigned char textHiScore[] = {TEXT_HISCORE};
+    unsigned char textMyScore[] = {TEXT_MYSCORE};
+    unsigned char sp50[] = {TEXT_0};
+    void **levelNameTable = segmented_to_virtual(seg2_level_name_table);
+#endif
+    
 
     sp50[0] = file + 10;
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED00);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextColorAlpha);
+#ifdef VERSION_JP
     PutString(1, 28, 15, sp54);
     PutString(2, 86, 15, sp50);
+#else
+    PutString(2, 25, 15, sp54);
+    PutString(2, 95, 15, sp50);
+#endif
     draw_file_button_label(file, 124, 15);
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED68);
     gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D108);
@@ -1744,36 +1912,71 @@ static void draw_file_scores_menu(s8 file)
 
     //! for loops exist for a reason
 
-#define PRINT_COURSE_SCORES(course) \
-    PrintRegularText(23, 35 + 12 * course, segmented_to_virtual(levelNameTable[course])); \
+#ifdef VERSION_JP
+#define PRINT_COURSE_SCORES(course, pad) \
+    PrintRegularText(23 + (pad * 3), 35 + 12 * course, segmented_to_virtual(levelNameTable[course])); \
     print_course_star_score(file, course, 152, 35 + 12 * course); \
     print_course_coin_score(file, course, 213, 35 + 12 * course);
+#else
+#define PRINT_COURSE_SCORES(course, pad) \
+    PrintRegularText(23 + (pad * 3), 35 + 12 * course, segmented_to_virtual(levelNameTable[course])); \
+    print_course_star_score(file, course, 171, 35 + 12 * course); \
+    print_course_coin_score(file, course, 213, 35 + 12 * course);	
+#endif
 
-    PRINT_COURSE_SCORES(0)
-    PRINT_COURSE_SCORES(1)
-    PRINT_COURSE_SCORES(2)
-    PRINT_COURSE_SCORES(3)
-    PRINT_COURSE_SCORES(4)
-    PRINT_COURSE_SCORES(5)
-    PRINT_COURSE_SCORES(6)
-    PRINT_COURSE_SCORES(7)
-    PRINT_COURSE_SCORES(8)
-    PRINT_COURSE_SCORES(9)
-    PRINT_COURSE_SCORES(10)
-    PRINT_COURSE_SCORES(11)
-    PRINT_COURSE_SCORES(12)
-    PRINT_COURSE_SCORES(13)
-    PRINT_COURSE_SCORES(14)
+#ifdef VERSION_JP
+    PRINT_COURSE_SCORES(0, 0)
+    PRINT_COURSE_SCORES(1, 0)
+    PRINT_COURSE_SCORES(2, 0)
+    PRINT_COURSE_SCORES(3, 0)
+    PRINT_COURSE_SCORES(4, 0)
+    PRINT_COURSE_SCORES(5, 0)
+    PRINT_COURSE_SCORES(6, 0)
+    PRINT_COURSE_SCORES(7, 0)
+    PRINT_COURSE_SCORES(8, 0)
+    PRINT_COURSE_SCORES(9, 0)
+    PRINT_COURSE_SCORES(10, 0)
+    PRINT_COURSE_SCORES(11, 0)
+    PRINT_COURSE_SCORES(12, 0)
+    PRINT_COURSE_SCORES(13, 0)
+    PRINT_COURSE_SCORES(14, 0)
+#else
+    PRINT_COURSE_SCORES(0, 1)
+    PRINT_COURSE_SCORES(1, 1)
+    PRINT_COURSE_SCORES(2, 1)
+    PRINT_COURSE_SCORES(3, 1)
+    PRINT_COURSE_SCORES(4, 1)
+    PRINT_COURSE_SCORES(5, 1)
+    PRINT_COURSE_SCORES(6, 1)
+    PRINT_COURSE_SCORES(7, 1)
+    PRINT_COURSE_SCORES(8, 1)
+    PRINT_COURSE_SCORES(9, 0)
+    PRINT_COURSE_SCORES(10, 0)
+    PRINT_COURSE_SCORES(11, 0)
+    PRINT_COURSE_SCORES(12, 0)
+    PRINT_COURSE_SCORES(13, 0)
+    PRINT_COURSE_SCORES(14, 0)
+#endif
+
 
 #undef PRINT_COURSE_SCORES
 
     // castle secret stars
+#ifdef VERSION_JP
     PrintRegularText(23, 215, segmented_to_virtual(levelNameTable[25]));
     func_801759F0(file, 152, 215);
     if (D_801A7C10 == 0)
         PrintRegularText(237, 24, textMyScore);
     else
         PrintRegularText(237, 24, textHiScore);
+#else
+    PrintRegularText(29, 215, segmented_to_virtual(levelNameTable[25]));
+    func_801759F0(file, 171, 215);
+    if (D_801A7C10 == 0)
+        PrintRegularText(238, 24, textMyScore);
+    else
+        PrintRegularText(231, 24, textHiScore);
+#endif
 
     gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D160);
 }

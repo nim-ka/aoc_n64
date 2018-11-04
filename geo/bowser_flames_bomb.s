@@ -153,7 +153,11 @@ glabel bowser_geo_0000D8 # 0x0D0000D8
 glabel bowser_geo_000424 # 0x0D000424
    geo_shadow SHADOW_CIRCLE_UNK0, 0x9B, 400
    geo_open_node
+.ifdef VERSION_JP
       geo_dl_translated 0x05, 0, 0, 0, bowser_seg6_dl_06040210
+.else
+      geo_dl_translated 0x05, 0, 0, 0, bowser_seg6_dl_06040358
+.endif
       geo_open_node
          geo_dl_translated 0x05, -89, -2, -18
          geo_open_node
@@ -239,7 +243,11 @@ glabel bowser_geo_000424 # 0x0D000424
                   geo_open_node
                      geo_dl_translated 0x05, 0, 0, 0, bowser_seg6_dl_0603A4E8
                   geo_close_node
+.ifdef VERSION_JP
                   geo_dl_translated 0x05, 0, 0, 0, bowser_seg6_dl_0603B8D0
+.else
+                  geo_dl_translated 0x05, 0, 0, 0, bowser_seg6_dl_0603B948
+.endif
                geo_close_node
             geo_close_node
          geo_close_node
@@ -259,7 +267,11 @@ glabel bowser_geo_000424 # 0x0D000424
 glabel bowser_geo_000770 # 0x0D000770
    geo_node_start
    geo_open_node
+.ifdef VERSION_JP
       geo_dl_translated 0x05, 0, 0, 0, bowser_seg6_dl_06040210
+.else
+      geo_dl_translated 0x05, 0, 0, 0, bowser_seg6_dl_06040358
+.endif
       geo_open_node
          geo_dl_translated 0x05, -89, -2, -18
          geo_open_node
@@ -345,7 +357,11 @@ glabel bowser_geo_000770 # 0x0D000770
                   geo_open_node
                      geo_dl_translated 0x05, 0, 0, 0, bowser_seg6_dl_0603A4E8
                   geo_close_node
+.ifdef VERSION_JP
                   geo_dl_translated 0x05, 0, 0, 0, bowser_seg6_dl_0603B8D0
+.else
+                  geo_dl_translated 0x05, 0, 0, 0, bowser_seg6_dl_0603B948
+.endif
                geo_close_node
             geo_close_node
          geo_close_node
@@ -469,5 +485,8 @@ glabel bowser_clouds_geo # 0x0D000BB8 / 0BFC
    geo_close_node
    geo_end
 
+# US aligns with only 1 extra word.
+.ifdef VERSION_JP
 .word 0x0
+.endif
 .word 0x0

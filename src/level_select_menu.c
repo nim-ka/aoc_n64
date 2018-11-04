@@ -11,6 +11,7 @@
 #include "level_update.h"
 #include "sound_init.h"
 #include "print.h"
+#include "display.h"
 
 #define PRESS_START_DEMO_TIMER 800
 
@@ -82,6 +83,10 @@ static char gLevelSelect_StageNamesText[64][16] = {
 };
 
 static u16 gDemoCountdown = 0;
+#ifdef VERSION_US
+static s16 D_U_801A7C34 = 1;
+static s16 D_U_801A7C38 = 1;
+#endif
 
 // run the demo timer on the PRESS START screen.
 // this function will return a non-0 timer once
@@ -186,22 +191,49 @@ s16 level_select_input_loop(void)
 
 int func_8016F3CC(void)
 {
-    int sp1C = 0;
+	int sp1C = 0;
 
-    print_intro_text();
+#ifdef VERSION_US
+    if(D_U_801A7C34 == 1)
+    {
+        if(gGlobalTimer < 0x81)
+        {
+            SetSound(0x2432FF81, D_803320E0);
+        }
+        else
+        {
+            SetSound(0x2433FFA1, D_803320E0);
+        }
+        D_U_801A7C34 = 0;
+    }
+#endif
+	print_intro_text();
 
     if(gPlayer1Controller->buttonPressed & START_BUTTON)
     {
+#ifdef VERSION_JP
         SetSound(SOUND_MENU_STARSOUND, D_803320E0);
         sp1C = 100 + gDebugLevelSelect;
+#else
+        SetSound(SOUND_MENU_STARSOUND, D_803320E0);
+        sp1C = 100 + gDebugLevelSelect;
+		D_U_801A7C34 = 1;
+#endif
     }
     return run_press_start_demo_timer(sp1C);
 }
 
-// why is there a copy pasted function?
 int func_8016F444(void)
 {
     int sp1C = 0;
+
+#ifdef VERSION_US
+    if(D_U_801A7C38 == 1)
+    {
+        SetSound(0x2431FF81, D_803320E0);
+		D_U_801A7C38 = 0;
+    }
+#endif
 
     print_intro_text();
 
@@ -209,6 +241,9 @@ int func_8016F444(void)
     {
         SetSound(SOUND_MENU_STARSOUND, D_803320E0);
         sp1C = 100 + gDebugLevelSelect;
+#ifdef VERSION_US
+        D_U_801A7C38 = 1;
+#endif
     }
     return run_press_start_demo_timer(sp1C);
 }

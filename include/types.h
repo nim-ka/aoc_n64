@@ -178,6 +178,7 @@ struct Object
         u32 asU32[0x50];
         s32 asS32[0x50];
         s16 asS16[0x50][2];
+        u8 asU8[0x50][4];
         f32 asF32[0x50];
         u32 *asAnims[0x50];
         struct Surface *asSurface[0x50];

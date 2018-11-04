@@ -466,7 +466,11 @@ glabel D_80336B18
 	.incbin "bin/rodata.bin", 0x20A8, 0x4
 
 glabel D_80336B1C
+.ifdef VERSION_JP
 	.incbin "bin/rodata.bin", 0x20AC, 0x4
+.else
+	.word 0x4545F000
+.endif
 
 glabel D_80336B20
 	.incbin "bin/rodata.bin", 0x20B0, 0x4
