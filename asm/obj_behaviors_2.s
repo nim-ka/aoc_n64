@@ -19795,9 +19795,9 @@ glabel func_80309DB8
 /* 0C4E18 80309E18 3C045037 */  lui   $a0, (0x50376081 >> 16) # lui $a0, 0x5037
 /* 0C4E1C 80309E1C 0C0B25C0 */  jal   PlaySound2
 /* 0C4E20 80309E20 34846081 */   ori   $a0, (0x50376081 & 0xFFFF) # ori $a0, $a0, 0x6081
-/* 0C4E24 80309E24 3C040601 */  lui   $a0, %hi(D_0600FBB8) # $a0, 0x601
+/* 0C4E24 80309E24 3C040601 */  lui   $a0, %hi(dorrie_seg6_collision_0600FBB8) # $a0, 0x601
 /* 0C4E28 80309E28 0C09DE68 */  jal   segmented_to_virtual
-/* 0C4E2C 80309E2C 2484FBB8 */   addiu $a0, %lo(D_0600FBB8) # addiu $a0, $a0, -0x448
+/* 0C4E2C 80309E2C 2484FBB8 */   addiu $a0, %lo(dorrie_seg6_collision_0600FBB8) # addiu $a0, $a0, -0x448
 /* 0C4E30 80309E30 3C0A8036 */  lui   $t2, %hi(gCurrentObject) # $t2, 0x8036
 /* 0C4E34 80309E34 8D4AFDF0 */  lw    $t2, %lo(gCurrentObject)($t2)
 /* 0C4E38 80309E38 AD420218 */  sw    $v0, 0x218($t2)
@@ -20093,9 +20093,9 @@ glabel func_8030A00C
 glabel func_8030A120
 /* 0C5120 8030A120 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 0C5124 8030A124 AFBF0014 */  sw    $ra, 0x14($sp)
-/* 0C5128 8030A128 3C040601 */  lui   $a0, %hi(D_0600F644) # $a0, 0x601
+/* 0C5128 8030A128 3C040601 */  lui   $a0, %hi(dorrie_seg6_collision_0600F644) # $a0, 0x601
 /* 0C512C 8030A12C 0C09DE68 */  jal   segmented_to_virtual
-/* 0C5130 8030A130 2484F644 */   addiu $a0, %lo(D_0600F644) # addiu $a0, $a0, -0x9bc
+/* 0C5130 8030A130 2484F644 */   addiu $a0, %lo(dorrie_seg6_collision_0600F644) # addiu $a0, $a0, -0x9bc
 /* 0C5134 8030A134 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 0C5138 8030A138 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
 /* 0C513C 8030A13C ADC20218 */  sw    $v0, 0x218($t6)

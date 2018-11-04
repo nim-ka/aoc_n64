@@ -39,8 +39,8 @@ glabel level_bitdw_entry
     cmd1A     /*seg*/ 0x09, /*romStart*/ _rr_textures_mio0SegmentRomStart, /*romEnd*/ _rr_textures_mio0SegmentRomEnd
     load_mio0 /*seg*/ 0x05, /*romStart*/ _bubba_wiggler_lakitu_mio0SegmentRomStart, /*romEnd*/ _bubba_wiggler_lakitu_mio0SegmentRomEnd
     load_raw  /*seg*/ 0x0C, /*romStart*/ _bubba_wiggler_lakitu_geoSegmentRomStart,  /*romEnd*/ _bubba_wiggler_lakitu_geoSegmentRomEnd
-    load_mio0 /*seg*/ 0x06, /*romStart*/ _mri_swoop_snufit_dorrie_scuttlebug_mio0SegmentRomStart, /*romEnd*/ _mri_swoop_snufit_dorrie_scuttlebug_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0D, /*romStart*/ _mri_swoop_snufit_dorrie_scuttlebug_geoSegmentRomStart,  /*romEnd*/ _mri_swoop_snufit_dorrie_scuttlebug_geoSegmentRomEnd
+    load_mio0 /*seg*/ 0x06, /*romStart*/ _mr_i_swoop_snufit_dorrie_scuttlebug_mio0SegmentRomStart, /*romEnd*/ _mr_i_swoop_snufit_dorrie_scuttlebug_mio0SegmentRomEnd
+    load_raw  /*seg*/ 0x0D, /*romStart*/ _mr_i_swoop_snufit_dorrie_scuttlebug_geoSegmentRomStart,  /*romEnd*/ _mr_i_swoop_snufit_dorrie_scuttlebug_geoSegmentRomEnd
     load_mio0 /*seg*/ 0x08, /*romStart*/ _amp_chuckya_shyguy_goomba_boxes_mio0SegmentRomStart, /*romEnd*/ _amp_chuckya_shyguy_goomba_boxes_mio0SegmentRomEnd
     load_raw  /*seg*/ 0x0F, /*romStart*/ _amp_chuckya_shyguy_goomba_boxes_geoSegmentRomStart,  /*romEnd*/ _amp_chuckya_shyguy_goomba_boxes_geoSegmentRomEnd
     alloc_level_pool

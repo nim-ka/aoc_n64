@@ -63,8 +63,8 @@ glabel level_hmc_entry
     cmd1A     /*seg*/ 0x09, /*romStart*/ _hmc_textures_mio0SegmentRomStart, /*romEnd*/ _hmc_textures_mio0SegmentRomEnd
     load_mio0 /*seg*/ 0x05, /*romStart*/ _mole_monkey_fwoosh_mio0SegmentRomStart, /*romEnd*/ _mole_monkey_fwoosh_mio0SegmentRomEnd
     load_raw  /*seg*/ 0x0C, /*romStart*/ _mole_monkey_fwoosh_geoSegmentRomStart, /*romEnd*/ _mole_monkey_fwoosh_geoSegmentRomEnd
-    load_mio0 /*seg*/ 0x06, /*romStart*/ _mri_swoop_snufit_dorrie_scuttlebug_mio0SegmentRomStart, /*romEnd*/ _mri_swoop_snufit_dorrie_scuttlebug_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0D, /*romStart*/ _mri_swoop_snufit_dorrie_scuttlebug_geoSegmentRomStart, /*romEnd*/ _mri_swoop_snufit_dorrie_scuttlebug_geoSegmentRomEnd
+    load_mio0 /*seg*/ 0x06, /*romStart*/ _mr_i_swoop_snufit_dorrie_scuttlebug_mio0SegmentRomStart, /*romEnd*/ _mr_i_swoop_snufit_dorrie_scuttlebug_mio0SegmentRomEnd
+    load_raw  /*seg*/ 0x0D, /*romStart*/ _mr_i_swoop_snufit_dorrie_scuttlebug_geoSegmentRomStart, /*romEnd*/ _mr_i_swoop_snufit_dorrie_scuttlebug_geoSegmentRomEnd
     load_mio0 /*seg*/ 0x08, /*romStart*/ _amp_chuckya_shyguy_goomba_boxes_mio0SegmentRomStart, /*romEnd*/ _amp_chuckya_shyguy_goomba_boxes_mio0SegmentRomEnd
     load_raw  /*seg*/ 0x0F, /*romStart*/ _amp_chuckya_shyguy_goomba_boxes_geoSegmentRomStart,  /*romEnd*/ _amp_chuckya_shyguy_goomba_boxes_geoSegmentRomEnd
     alloc_level_pool

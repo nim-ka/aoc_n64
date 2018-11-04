@@ -400,8 +400,8 @@ glabel script_func_global_17
 glabel script_func_global_18
     cmd22 /*unk2*/ 0x0064, /*unk4*/ swoop_geo
     cmd22 /*unk2*/ 0x0065, /*unk4*/ scuttlebug_geo
-    cmd22 /*unk2*/ 0x0066, /*unk4*/ mri_iris_geo
-    cmd22 /*unk2*/ 0x0067, /*unk4*/ mri_geo
+    cmd22 /*unk2*/ 0x0066, /*unk4*/ mr_i_iris_geo
+    cmd22 /*unk2*/ 0x0067, /*unk4*/ mr_i_geo
     cmd22 /*unk2*/ 0x0068, /*unk4*/ dorrie_geo
     cmd22 /*unk2*/ 0x00CE, /*unk4*/ snufit_geo
     return

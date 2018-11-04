@@ -314,7 +314,7 @@ SECTIONS
    STANDARD_OBJECTS(koopa_log_piranha_whomp_chomp, 0x06000000, 0x0D000000)
    STANDARD_OBJECTS(lakitu_toad_mips_boo, 0x06000000, 0x0D000000)
    STANDARD_OBJECTS(chillychief_moneybag, 0x06000000, 0x0D000000)
-   STANDARD_OBJECTS(mri_swoop_snufit_dorrie_scuttlebug, 0x06000000, 0x0D000000)
+   STANDARD_OBJECTS(mr_i_swoop_snufit_dorrie_scuttlebug, 0x06000000, 0x0D000000)
 
    STANDARD_OBJECTS(amp_chuckya_shyguy_goomba_boxes, 0x08000000, 0x0F000000)
 

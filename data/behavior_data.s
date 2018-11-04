@@ -2931,7 +2931,7 @@ glabel beh_some_gfx # 2AFC
 glabel beh_scuttlebug # 2B44
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x49
-    obj_set_int32 VAR_26, 0x06015064
+    obj_set_int32 VAR_26, scuttlebug_seg6_anims_06015064
     unknown_28 0x00
     unknown_30 0x0050, 0xFE70, 0xFFCE, 0x0000, 0x0000, 0x00C8, 0x0000, 0x0000
     unknown_2D
@@ -4620,7 +4620,7 @@ glabel beh_pokey_head # 4648
 glabel beh_bat # 4678
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2049
-    obj_set_int32 VAR_26, 0x060070D0
+    obj_set_int32 VAR_26, swoop_seg6_anims_060070D0
     unknown_2D
     unknown_30 0x0032, 0x0000, 0xFFCE, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000
     callnative BehCommonInit
@@ -5110,9 +5110,9 @@ glabel beh_unagi_subobject # 4F58
 
 glabel beh_dorrie # 4F70
     begin OBJ_LIST_SURFACE
-    collision_data 0x0600F644
+    collision_data dorrie_seg6_collision_0600F644
     obj_or_int VAR_01, 0x2049
-    obj_set_int32 VAR_26, 0x0600F638
+    obj_set_int32 VAR_26, dorrie_seg6_anims_0600F638
     unknown_2D
     obj_set_float VAR_43, 0x7530
     obj_add_float VAR_06, 2000
