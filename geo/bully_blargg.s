@@ -80,7 +80,7 @@ glabel bully_boss_geo # 0x0C000120
                geo_open_node
                   geo_billboard
                   geo_open_node
-                     geo_display_list 0x04, bully_boss_seg5_dl_05003EA8
+                     geo_display_list 0x04, bully_seg5_dl_05003EA8
                   geo_close_node
                geo_close_node
                geo_dl_translated 0x01, 0, 0, 0, bully_seg5_dl_05000398

@@ -392,8 +392,8 @@ glabel script_func_global_16
     return
 
 glabel script_func_global_17
-    cmd22 /*unk2*/ 0x0064, /*unk4*/ chilly_chief_geo
-    cmd22 /*unk2*/ 0x0065, /*unk4*/ chilly_bully_seg6_dl_06003874
+    cmd22 /*unk2*/ 0x0064, /*unk4*/ chilly_chief_seg6_geo
+    cmd22 /*unk2*/ 0x0065, /*unk4*/ chilly_chief_seg6_geo2
     cmd22 /*unk2*/ 0x0066, /*unk4*/ moneybag_geo
     return
 

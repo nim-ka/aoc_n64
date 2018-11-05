@@ -219,25 +219,6 @@ spiny_seg5_dl_05016670 = 0x05016670;
 spiny_seg5_dl_05016738 = 0x05016738;
 spiny_seg5_dl_05016A48 = 0x05016A48;
 
-/* Bully Blargg */
-bully_seg5_dl_05000398 = 0x05000398;
-bully_seg5_dl_05003708 = 0x05003708;
-bully_seg5_dl_050037A0 = 0x050037A0;
-bully_seg5_dl_05003D40 = 0x05003D40;
-bully_boss_seg5_dl_05003EA8 = 0x05003EA8;
-bully_seg5_dl_05003FC8 = 0x05003FC8;
-blargg_seg5_dl_050058D0 = 0x050058D0;
-blargg_seg5_dl_05005A60 = 0x05005A60;
-blargg_seg5_dl_05005D00 = 0x05005D00;
-
-/* Chillychief Moneybag */
-chilly_chief_geo = 0x06003754;
-chilly_bully_seg6_dl_06003874 = 0x06003874;
-moneybag_seg6_dl_06005688 = 0x06005688;
-moneybag_seg6_dl_06005750 = 0x06005750;
-moneybag_seg6_dl_06005980 = 0x06005980;
-moneybag_seg6_dl_060059F0 = 0x060059F0;
-
 /* Coins Doors Trees */
 mist_seg3_dl_03000880 = 0x03000880;
 white_puff_seg3_dl_03000920 = 0x03000920;

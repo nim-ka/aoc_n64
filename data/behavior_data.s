@@ -3631,7 +3631,7 @@ glabel beh_bobomb_cork_box_respawner # 35F4
 glabel beh_small_bully # 360C
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x09
-    obj_set_int32 VAR_26, 0x0500470C
+    obj_set_int32 VAR_26, bully_seg5_anims_0500470C
     unknown_1E
     unknown_2D
     callnative BehSmallBullyInit
@@ -3643,7 +3643,7 @@ glabel beh_small_bully # 360C
 glabel beh_big_bully # 3640
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x09
-    obj_set_int32 VAR_26, 0x0500470C
+    obj_set_int32 VAR_26, bully_seg5_anims_0500470C
     unknown_1E
     unknown_2D
     callnative BehBigBullyInit
@@ -3655,7 +3655,7 @@ glabel beh_big_bully # 3640
 glabel beh_big_bully_with_minions # 3674
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x09
-    obj_set_int32 VAR_26, 0x0500470C
+    obj_set_int32 VAR_26, bully_seg5_anims_0500470C
     unknown_2D
     callnative BehBigBullyInit
     callnative BehBigBullyWithMinionsInit
@@ -3666,7 +3666,7 @@ glabel beh_big_bully_with_minions # 3674
 glabel beh_small_chill_bully # 36A8
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x09
-    obj_set_int32 VAR_26, 0x06003994
+    obj_set_int32 VAR_26, chilly_chief_seg6_anims_06003994
     unknown_1E
     unknown_2D
     obj_set_int VAR_1B, 0x0010
@@ -3679,7 +3679,7 @@ glabel beh_small_chill_bully # 36A8
 glabel beh_big_chill_bully # 36E0
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x09
-    obj_set_int32 VAR_26, 0x06003994
+    obj_set_int32 VAR_26, chilly_chief_seg6_anims_06003994
     unknown_1E
     unknown_2D
     obj_set_int VAR_1B, 0x0010
@@ -3838,7 +3838,7 @@ glabel beh_wf_sliding_brick_platform # 3950
 glabel beh_moneybag # 3980
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2009
-    obj_set_int32 VAR_26, 0x06005E5C
+    obj_set_int32 VAR_26, moneybag_seg6_anims_06005E5C
     unknown_1E
     unknown_2D
     obj_set_int VAR_05, -1

@@ -8,9 +8,7 @@ BINARY_SEGMENTS := \
    bobombs_bubble \
    boo_bookend_chair_piano \
    bubba_wiggler_lakitu \
-   bully_blargg \
    ccm_skybox \
-   chillychief_moneybag \
    cloud_floor_skybox \
    clouds_skybox \
    coins_pipe_doors_maps_trees \
@@ -51,10 +49,12 @@ BBH_TEXTURES_FILES           := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bb
 BITFS_SEG7_FILES             := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bitfs_seg7/*.png)))
 BITS_SEG7_FILES              := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bits_seg7/*.png)))
 BOB_TEXTURES_FILES           := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bob_textures/*.png)))
+BULLY_BLARGG_FILES           := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bully_blargg/*.png)))
 CASTLE_GROUNDS_SEG7_FILES    := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/castle_grounds_seg7/*.png)))
 CASTLE_GROUNDS_TEXTURES_FILES := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/castle_grounds_textures/*.png)))
 CCM_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/ccm_seg7/*.png)))
 CCM_TEXTURES_FILES           := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/ccm_textures/*.png)))
+CHILLYCHIEF_FILES            := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/chillychief_moneybag/*.png)))
 DDD_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/ddd_seg7/*.png)))
 COTMC_SEG7_FILES             := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/cotmc_seg7/*.png)))
 HMC_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/hmc_seg7/*.png)))
@@ -103,10 +103,12 @@ $(BUILD_DIR)/bin/bbh_textures.o: $(addprefix $(BUILD_DIR)/bin/bbh_textures/,$(BB
 $(BUILD_DIR)/bin/bitfs_seg7.o: $(addprefix $(BUILD_DIR)/bin/bitfs_seg7/,$(BITFS_SEG7_FILES))
 $(BUILD_DIR)/bin/bits_seg7.o: $(addprefix $(BUILD_DIR)/bin/bits_seg7/,$(BITS_SEG7_FILES))
 $(BUILD_DIR)/bin/bob_textures.o: $(addprefix $(BUILD_DIR)/bin/bob_textures/,$(BOB_TEXTURES_FILES))
+$(BUILD_DIR)/bin/bully_blargg.o: $(addprefix $(BUILD_DIR)/bin/bully_blargg/,$(BULLY_BLARGG_FILES))
 $(BUILD_DIR)/bin/castle_grounds_seg7.o: $(addprefix $(BUILD_DIR)/bin/castle_grounds_seg7/,$(CASTLE_GROUNDS_SEG7_FILES))
 $(BUILD_DIR)/bin/castle_grounds_textures.o: $(addprefix $(BUILD_DIR)/bin/castle_grounds_textures/,$(CASTLE_GROUNDS_TEXTURES_FILES))
 $(BUILD_DIR)/bin/ccm_seg7.o: $(addprefix $(BUILD_DIR)/bin/ccm_seg7/,$(CCM_SEG7_FILES))
 $(BUILD_DIR)/bin/ccm_textures.o: $(addprefix $(BUILD_DIR)/bin/ccm_textures/,$(CCM_TEXTURES_FILES))
+$(BUILD_DIR)/bin/chillychief_moneybag.o: $(addprefix $(BUILD_DIR)/bin/chillychief_moneybag/,$(CHILLYCHIEF_FILES))
 $(BUILD_DIR)/bin/ddd_seg7.o: $(addprefix $(BUILD_DIR)/bin/ddd_seg7/,$(DDD_SEG7_FILES))
 $(BUILD_DIR)/bin/cotmc_seg7.o: $(addprefix $(BUILD_DIR)/bin/cotmc_seg7/,$(COTMC_SEG7_FILES))
 $(BUILD_DIR)/bin/hmc_seg7.o: $(addprefix $(BUILD_DIR)/bin/hmc_seg7/,$(HMC_SEG7_FILES))
@@ -154,9 +156,11 @@ $(BUILD_DIR)/bin/bowser_2_seg7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/bowser_3_seg7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/bowser_flames_bomb.elf: SEGMENT_ADDRESS := 0x06000000
 $(BUILD_DIR)/bin/bob_seg7.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/bully_blargg.elf: SEGMENT_ADDRESS := 0x05000000
 $(BUILD_DIR)/bin/castle_courtyard_seg7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/castle_grounds_seg7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/ccm_seg7.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/chillychief_moneybag.elf: SEGMENT_ADDRESS := 0x06000000
 $(BUILD_DIR)/bin/ddd_seg7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/debug_level_select.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/hmc_seg7.elf: SEGMENT_ADDRESS := 0x07000000
