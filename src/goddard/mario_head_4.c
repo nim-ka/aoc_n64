@@ -1319,9 +1319,9 @@ void d_set_velocity(struct MyVec3f *vel)
     switch (gDynListCurObj->type)
     {
         case OBJ_TYPE_JOINTS:
-            ((struct ObjJoint *)dynobj)->unk74.y = vel->x;
-            ((struct ObjJoint *)dynobj)->unk74.z = vel->y;
-            ((struct ObjJoint *)dynobj)->unk80.x = vel->z;
+            ((struct ObjJoint *)dynobj)->unk78.x = vel->x;
+            ((struct ObjJoint *)dynobj)->unk78.y = vel->y;
+            ((struct ObjJoint *)dynobj)->unk78.z = vel->z;
             break;
         case OBJ_TYPE_NETS:
             ((struct ObjNet *)dynobj)->unk50.x = vel->x;
@@ -1348,9 +1348,9 @@ void d_get_velocity(struct MyVec3f *dst)
     switch (gDynListCurObj->type)
     {
         case OBJ_TYPE_JOINTS:
-            dst->x = ((struct ObjJoint *)dynobj)->unk74.y;
-            dst->y = ((struct ObjJoint *)dynobj)->unk74.z;
-            dst->z = ((struct ObjJoint *)dynobj)->unk80.x;
+            dst->x = ((struct ObjJoint *)dynobj)->unk78.x;
+            dst->y = ((struct ObjJoint *)dynobj)->unk78.y;
+            dst->z = ((struct ObjJoint *)dynobj)->unk78.z;
             break;
         case OBJ_TYPE_NETS:
             dst->x = ((struct ObjNet *)dynobj)->unk50.x;
@@ -1432,9 +1432,9 @@ void d_get_init_rot(struct MyVec3f *dst)
     switch (gDynListCurObj->type)
     {
         case OBJ_TYPE_JOINTS:
-            dst->x = ((struct ObjJoint *)dynobj)->unk6C;
-            dst->y = ((struct ObjJoint *)dynobj)->unk70;
-            dst->z = ((struct ObjJoint *)dynobj)->unk74.x;
+            dst->x = ((struct ObjJoint *)dynobj)->unk6C.x;
+            dst->y = ((struct ObjJoint *)dynobj)->unk6C.y;
+            dst->z = ((struct ObjJoint *)dynobj)->unk6C.z;
             break;
         case OBJ_TYPE_NETS:
             dst->x = ((struct ObjNet *)dynobj)->unk68.x;
@@ -1649,9 +1649,9 @@ void d_get_scale(struct MyVec3f *dst)
     switch (gDynListCurObj->type)
     {
         case OBJ_TYPE_JOINTS:
-            dst->x = ((struct ObjJoint *)dynobj)->unk9C;
-            dst->y = ((struct ObjJoint *)dynobj)->unkA0;
-            dst->z = ((struct ObjJoint *)dynobj)->unkA4.x;
+            dst->x = ((struct ObjJoint *)dynobj)->unk9C.x;
+            dst->y = ((struct ObjJoint *)dynobj)->unk9C.y;
+            dst->z = ((struct ObjJoint *)dynobj)->unk9C.z;
             break;
         case OBJ_TYPE_NETS:
             dst->x = ((struct ObjNet *)dynobj)->unk1AC.x;
@@ -2020,9 +2020,9 @@ void d_set_scale(f32 x, f32 y, f32 z)
     switch (gDynListCurObj->type)
     {
         case OBJ_TYPE_JOINTS:
-            ((struct ObjJoint *)initDynobj)->unk9C = x;
-            ((struct ObjJoint *)initDynobj)->unkA0 = y;
-            ((struct ObjJoint *)initDynobj)->unkA4.x = z;
+            ((struct ObjJoint *)initDynobj)->unk9C.x = x;
+            ((struct ObjJoint *)initDynobj)->unk9C.y = y;
+            ((struct ObjJoint *)initDynobj)->unk9C.z = z;
             break;
         case OBJ_TYPE_NETS:
             ((struct ObjNet *)initDynobj)->unk1AC.x = x;
@@ -2070,9 +2070,9 @@ void d_set_rotation(f32 x, f32 y, f32 z)
     switch (gDynListCurObj->type)
     {
         case OBJ_TYPE_JOINTS:
-            ((struct ObjJoint *)dynobj)->unk6C = x;
-            ((struct ObjJoint *)dynobj)->unk70 = y;
-            ((struct ObjJoint *)dynobj)->unk74.x = z;
+            ((struct ObjJoint *)dynobj)->unk6C.x = x;
+            ((struct ObjJoint *)dynobj)->unk6C.y = y;
+            ((struct ObjJoint *)dynobj)->unk6C.z = z;
             break;
         case OBJ_TYPE_NETS:
             ((struct ObjNet *)dynobj)->unk68.x = x;
@@ -2909,7 +2909,7 @@ Mat4 *d_get_matrix_ptr(void)
             return &((struct ObjCamera *)gDynListCurObj)->unk64;
             break;
         case OBJ_TYPE_BONES:
-            return &((struct ObjBone *)gDynListCurObj)->unk70;
+            return &((struct ObjBone *)gDynListCurObj)->mat70;
             break;
         case OBJ_TYPE_JOINTS:
             return &((struct ObjJoint *)gDynListCurObj)->matE8;
@@ -2979,7 +2979,7 @@ void d_set_skin_weight(s32 a0, f32 a1)
     switch (gDynListCurObj->type)
     {
         case OBJ_TYPE_JOINTS:
-            func_8018FAC8((struct ObjJoint *)gDynListCurObj, a0, NULL, a1 / 100.0); //! 100.0f
+            set_skin_weight((struct ObjJoint *)gDynListCurObj, a0, NULL, a1 / 100.0); //! 100.0f
             break;
         default:
             fatal_printf("%s: Object '%s'(%x) does not support this function.",

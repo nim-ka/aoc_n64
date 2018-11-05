@@ -157,15 +157,18 @@ glabel gGdPadNumPrint
    .word 0
    .word 0
    .word 0
-
+   
+# joint_fns.c
 glabel D_801A82D0
    .word 0
 
-glabel D_801A82D4
+glabel gGdTempBone
    .word 0
+# pad
    .word 0
    .word 0
 
+# half_6.c
 glabel D_801A82E0
    .word 0
 

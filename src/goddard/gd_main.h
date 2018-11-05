@@ -56,10 +56,6 @@ struct GdMem801B9A18 {
     /* 0x3C */ u8  pad3C[0xF8-0x3C];
 }; /* sizeof >= 0xF8 */
 
-/****** rodata ******/ 
-/* common gd file? */ extern s32 D_801A8050;
-/* common gd file? */ extern s32 D_801A8058;
-
 /****** bss ******/ 
 extern struct GdMem801B9920 D_801B9920;
 extern struct GdMem801B9A18 D_801B9A18;

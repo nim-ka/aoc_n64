@@ -81,54 +81,59 @@ struct ObjBone {
     /* 0x020 */ struct ObjBone* prev;   //maybe, based on make_bone
     /* 0x024 */ struct ObjBone* next;   //maybe, based on make_bone 
     /* 0x028 */ struct MyVec3f unk28;   // from dead code in Proc8017A550
-    /* 0x034 */ u8  pad34[0x70-0x34];
-    /* 0x070 */ Mat4 unk70;
-    /* 0x0B0 */ u8  padB0[0xf0-0xb0];
+    /* 0x034 */ u8  pad34[0x40-0x34];
+    /* 0x040 */ struct MyVec3f unk40;
+    /* 0x04C */ u8  pad4C[0x58-0x4C];
+    /* 0x058 */ struct MyVec3f unk58;
+    /* 0x064 */ struct MyVec3f unk64;
+    /* 0x070 */ Mat4 mat70;
+    /* 0x0B0 */ Mat4 matB0;
     /* 0x0F0 */ struct ObjShape* unkF0; // from dead code in Proc8017A550
-    /* 0x0F4 */ u8  padF4[4];
+    /* 0x0F4 */ f32 unkF4;
     /* 0x0F8 */ f32 unkF8;              // from dead code in Proc8017A550
-    /* 0x0FC */ u8  padFC[4];
+    /* 0x0FC */ f32 unkFC;
     /* 0x100 */ s32 unk100;             // from dead code in Proc8017A550
     /* 0x104 */ s32 unk104;             // "flags"
     /* 0x108 */ s32 id;
-    /* 0x10C */ struct ObjGroup* unk10C;
+    /* 0x10C */ struct ObjGroup* unk10C; // group of joints?
     /* 0x110 */ f32 unk110;     // "spring"
-    /* 0x114 */ u8  pad110[0x124-0x114];
+    /* 0x114 */ f32 unk114;
+    /* 0x118 */ f32 unk118;
+    /* 0x11C */ u8  pad11C[0x124-0x11C];
 }; /* sizeof = 0x124 */
 
 struct ObjJoint {
     /* 0x000 */ struct ObjHeader header;
     /* 0x014 */ struct MyVec3f unk14;    //position? based on d_set_initpos
     /* 0x020 */ struct ObjShape* unk20;
-    /* 0x024 */ u8  pad24[0x2C-0x24];
+    /* 0x024 */ struct ObjJoint *prevjoint; // prev joint? linked joint?
+    /* 0x028 */ struct ObjJoint *nextjoint;
     /* 0x02C */ void (*fn2C)(struct ObjJoint*);
-    /* 0x030 */ u8  pad30[0x3C-0x30];   // huge array of vecs? another matrix?
+    /* 0x030 */ struct MyVec3f unk30;   // huge array of vecs? another matrix?
     /* 0x03C */ struct MyVec3f unk3C;   // relative position?
-    /* 0x048 */ u8  pad48[0x54-0x48];
+    /* 0x048 */ struct MyVec3f unk48;
     /* 0x054 */ struct MyVec3f unk54;   // attached offset (with +200 as well)
     /* 0x060 */ u8  pad60[0x6C-0x60];
-    /* 0x06C */ f32 unk6C;  //start of initial rotation vec? have to figure out what these vecs really are..
-    /* 0x070 */ f32 unk70;
-    /* 0x074 */ struct MyVec3f unk74;
-    /* 0x080 */ struct MyVec3f unk80;
-    /* 0x08C */ u8  pad8C[0x9c-0x8c];
-    /* 0x09C */ f32 unk9C;  //start of scale vec?
-    /* 0x0A0 */ f32 unkA0;
-    /* 0x0A4 */ struct MyVec3f unkA4;   // possible, only in func_8017E9EC
-    /* 0x0B0 */ struct MyVec3f unkB0;
-    /* 0x0BC */ u8  padBC[4];
+    /* 0x06C */ struct MyVec3f unk6C;   // initial rotation vec
+    /* 0x078 */ struct MyVec3f unk78;
+    /* 0x084 */ struct MyVec3f unk84;
+    /* 0x090 */ struct MyVec3f unk90;
+    /* 0x09C */ struct MyVec3f unk9C;   // scale vec?
+    /* 0x0A8 */ struct MyVec3f unkA8;
+    /* 0x0B4 */ struct MyVec3f unkB4;
     /* 0x0C0 */ struct MyVec3f unkC0;   // "shape offset"
-    /* 0x0CC */ u8  padCC[0xdc-0xcc];
+    /* 0x0CC */ struct MyVec3f unkCC;
+    /* 0x0D8 */ u8  padD8[4];
     /* 0x0DC */ struct MyVec3f unkDC;   // "friction"
     /* 0x0E8 */ Mat4 matE8;     //matrix4x4
     /* 0x128 */ Mat4 mat128;    // "rot matrix"
     /* 0x168 */ Mat4 mat168;    // "id matrix"
-    /* 0x1A8 */ u8  pad1a8[0x1b4-0x1a8];
+    /* 0x1A8 */ struct MyVec3f unk1A8;
     /* 0x1B4 */ s32 id;
     /* 0x1B8 */ u8  pad1B8[4];
     /* 0x1BC */ s32 unk1BC;     // "flags"
-    /* 0x1C0 */ u8  pad1C0[4];
-    /* 0x1C4 */ struct ObjGroup* unk1C4;
+    /* 0x1C0 */ s32 unk1C0;
+    /* 0x1C4 */ struct ObjGroup* unk1C4;    // bone group?
     /* 0x1C8 */ s32 unk1C8;     // "colour"
     /* 0x1CC */ s32 unk1CC;     // "type"
     /* 0x1D0 */ struct ObjAnimator* unk1D0;
@@ -138,7 +143,8 @@ struct ObjJoint {
     /* 0x1FC */ s32 unk1FC;                 //d_attach_to arg 0; "AttFlag"
     /* 0x200 */ struct MyVec3f unk200;      //attached offset?
     /* 0x20C */ struct ObjHeader *unk20C;   //attached object?
-    /* 0x210 */ u8  pad210[0x22c-0x210];
+    /* 0x210 */ u8  pad210[0x228-0x210];
+    /* 0x228 */ f32 unk228;
 }; /* sizeof = 0x22C */
 
 struct ObjParticle {
@@ -219,7 +225,9 @@ struct ObjNet {
     /* 0x050 */ struct MyVec3f unk50;   //velocity? from unused fn
     /* 0x05C */ u8  pad5C[0x68-0x5C];
     /* 0x068 */ struct MyVec3f unk68;   //initial rotation?
-    /* 0x074 */ u8  pad74[0xA4-0x74];
+    /* 0x074 */ struct MyVec3f unk74;
+    /* 0x080 */ struct MyVec3f unk80;
+    /* 0x08C */ u8  pad8c[0xA4-0x8c];
     /* 0x0A4 */ struct MyVec3f unkA4;   //torque? from unused fn
     /* 0x0B0 */ struct MyVec3f unkB0;   // "CofG" center of gravity?
     /* 0x0BC */ struct GdPlaneF unkBC;
@@ -240,7 +248,8 @@ struct ObjNet {
     /* 0x1E4 */ s32 unk1E4;                 // d_attach_to arg 0; "AttFlag"
     /* 0x1E8 */ struct ObjHeader *unk1E8;   // attached obj?
     /* 0x1EC */ s32 netType;    // from Unknown8019359C
-    /* 0x1F0 */ u8  pad1f0[0x210-0x1f0];
+    /* 0x1F0 */ s32 unk1F0;
+    /* 0x1F4 */ u8  pad1f4[0x210-0x1f4];
     /* 0x210 */ s32 unk210;     // "control type"
     /* 0x214 */ u8  pad214[0x220-0x214];
 }; /* sizeof = 0x220 */
@@ -503,10 +512,5 @@ struct ObjUnk200000 {
     /* 0x30 */ struct ObjVertex *unk30; //not sure; guessing for Unknown801781DC; 30 and 34 could switch with ObjZone
     /* 0x34 */ struct ObjFace *unk34;   //not sure; guessing for Unknown801781DC
 }; /* sizeof = 0x38*/
-
-struct DebugCounters {
-    u32 ctr0;
-    u32 ctr1;
-};
 
 #endif /* _GD_TYPES_H */

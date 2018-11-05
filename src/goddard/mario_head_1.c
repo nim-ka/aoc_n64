@@ -35,7 +35,7 @@ struct Unk8017F3CC {
 struct GdPlaneF D_801B9DA0;
 struct ObjCamera *D_801B9DB8;
 struct ObjView *D_801B9DBC;
-struct DebugCounters D_801B9DC0;
+struct DebugCounters gGdCounter; // @ D_801B9DC0
 Mat4 D_801B9DC8;
 struct MyVec3f D_801B9E08;
 struct ObjGroup *D_801B9E14;
@@ -56,8 +56,8 @@ s32 D_801B9E60;
 s32 D_801B9E64;
 struct Unk801B9E68 D_801B9E68;
 void *D_801B9E80;
-void *D_801B9E84;
-void *D_801B9E88;
+struct ObjJoint *gGdJointList;   // @ 801B9E84
+struct ObjBone *gGdBoneList;     // @ 801B9E88
 struct ObjHeader *D_801B9E8C;
 struct ObjGroup *D_801B9E90;
 
@@ -948,7 +948,7 @@ void gd_loadtexture(struct ObjHeader* obj)
     switch (obj->type)
     {
         case OBJ_TYPE_JOINTS:
-            func_80191604(localObjPtr);
+            func_80191604((struct ObjJoint *)localObjPtr);
             break;
         case OBJ_TYPE_NETS:
             func_801920C4(localObjPtr);
@@ -1045,7 +1045,7 @@ s32 apply_to_obj_types_in_group(s32 types, void (*fn)(void *), struct ObjGroup* 
 }
 
 /* @ 22CD54 for 0x2B4 */
-void func_8017E584(struct ObjJoint* a0, struct MyVec3f* a1, struct MyVec3f* a2)
+void func_8017E584(struct ObjNet* a0, struct MyVec3f* a1, struct MyVec3f* a2)
 {
     struct MyVec3f sp94;
     struct MyVec3f sp88;
@@ -1102,7 +1102,7 @@ void func_8017E584(struct ObjJoint* a0, struct MyVec3f* a1, struct MyVec3f* a2)
 }
 
 /* @ 22D008 for 0x1B4 */
-void func_8017E838(struct ObjJoint* a0, struct MyVec3f* a1, struct MyVec3f* a2)
+void func_8017E838(struct ObjNet* a0, struct MyVec3f* a1, struct MyVec3f* a2)
 {
     UNUSED u32 sp84;
     UNUSED u32 sp80;
@@ -1139,8 +1139,7 @@ void func_8017E838(struct ObjJoint* a0, struct MyVec3f* a1, struct MyVec3f* a2)
 }
 
 /* @ 22D1BC for 0xA8 */
-/* Note: a0 might not be ObjJoint*; have to decomp more files to see */
-void func_8017E9EC(struct ObjJoint* a0)
+void func_8017E9EC(struct ObjNet* a0)
 {
     struct MyVec3f sp5C;
     Mat4 sp1C;
@@ -1731,14 +1730,14 @@ void move_animators(struct ObjGroup* group)
         (void (*)(void*)) &move_animator,
         group
     );
-    split_timer("move_animators");    //End timer? Print Timer?
+    split_timer("move_animators");
 }
 
 /* @ 22F144 for 0x3C */
 void func_80180974(struct ObjGroup* group)
 {
     apply_to_obj_types_in_group(
-        0x00FFFFFF,     // All Object types
+        OBJ_TYPE_ALL,
         (void (*)(void*)) &Unknown80180624,
         group
     );
@@ -1998,13 +1997,13 @@ void null_obj_lists(void)
 
     D_801B9E4C = NULL;
     D_801B9E50 = NULL;
-    D_801B9E88 = NULL;
-    D_801B9E84 = NULL;
+    gGdBoneList = NULL;
+    gGdJointList = NULL;
     D_801B9E54 = NULL;
     D_801B9E80 = NULL;
     D_801B9E8C = NULL;
     D_801B9E90 = NULL;
 
     func_80193B10();
-    func_80191EE8();
+    reset_joint_counts();
 }

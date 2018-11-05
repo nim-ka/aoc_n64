@@ -4,6 +4,9 @@
 #include <types.h>
 #include "gd_types.h"
 
+// bss
+extern struct ObjNet* gGdSkinNet;   // @ 801BAAF0
+
 // extern ? func_80191F10(?);
 extern void func_801920C4(struct ObjHeader*);   // maybe a ObjNet
 // extern ? Unknown80192294(?);

@@ -4,11 +4,17 @@
 #include "types.h"
 #include "gd_types.h"
 
-/****** .bss ******/
+// structs
+struct DebugCounters {
+    u32 ctr0;
+    u32 ctr1;
+};
+
+// bss
 extern struct GdPlaneF D_801B9DA0;
 extern struct ObjCamera *D_801B9DB8;
 extern struct ObjView *D_801B9DBC;
-extern struct DebugCounters D_801B9DC0;
+extern struct DebugCounters gGdCounter;
 extern Mat4 D_801B9DC8;
 extern struct MyVec3f D_801B9E08;
 extern struct ObjGroup* D_801B9E14;
@@ -29,12 +35,12 @@ extern s32 D_801B9E60;                  /* PlaneCount? */
 extern s32 D_801B9E64;                  /* cameraCount? */
 extern struct Unk801B9E68 D_801B9E68;   /* count in first member? */
 extern void* D_801B9E80;
-extern void* D_801B9E84;
-extern void* D_801B9E88;
+extern struct ObjJoint* gGdJointList;
+extern struct ObjBone* gGdBoneList;
 extern struct ObjHeader* D_801B9E8C;    /* head pointer to list of objects? */
 extern struct ObjGroup* D_801B9E90;     /* curGroup? */
 
-/****** Functions ******/
+// functions
 extern void func_8017BCB0(void);
 extern void func_8017BD20(void*);
 extern void func_8017BE60(struct GdPlaneF*);
@@ -67,9 +73,9 @@ extern void gd_loadtexture(struct ObjHeader*);
 extern void func_8017E2B8(void);
 extern struct ObjHeader* UnknownRecursive8017E2F0(struct ObjHeader*, enum ObjTypeFlag);
 extern s32 apply_to_obj_types_in_group();   //s32 apply_to_obj_types_in_group(s32, void (*)(void *), struct ObjGroup*)
-extern void func_8017E584(struct ObjJoint*, struct MyVec3f*, struct MyVec3f*);
-extern void func_8017E838(struct ObjJoint*, struct MyVec3f*, struct MyVec3f*);
-extern void func_8017E9EC(struct ObjJoint*);
+extern void func_8017E584(struct ObjNet*, struct MyVec3f*, struct MyVec3f*);
+extern void func_8017E838(struct ObjNet*, struct MyVec3f*, struct MyVec3f*);
+extern void func_8017E9EC(struct ObjNet*);
 extern s32 Unknown8017EA94(struct MyVec3f*, Mat4);
 extern s32 Unknown8017EB24(struct ObjHeader*, struct ObjHeader*);
 extern s32 Unknown8017ED00(struct ObjHeader*, struct GdPlaneF*);
@@ -77,20 +83,19 @@ extern s32 Unknown8017EDCC(struct MyVec3f*, struct GdPlaneF*);
 extern s32 Unknown8017EE5C(struct GdPlaneF*, struct GdPlaneF*);
 extern s32 func_8017F054(struct ObjHeader*, struct ObjHeader*);
 extern s32 UnknownRecursive8017F210(struct ObjHeader*, struct ObjHeader*);
-//extern void Unknown8017F3CC(struct Unk8017F3CC*);
 extern void func_8017F404(f32, struct ObjHeader*, struct ObjHeader*);
 extern void func_8017F424(struct GdTriangleF*, struct GdTriangleF*, f32);
 extern void move_animator(struct ObjAnimator*);
 extern void Unknown80180624(struct ObjHeader*);
-extern void move_animators(struct ObjGroup* group);
-extern void func_80180974();    //void func_80180974(struct ObjGroup*)
+extern void move_animators(struct ObjGroup *);
+extern void func_80180974(struct ObjGroup *);
 extern void Unknown801809B0(struct ObjCamera*);
 extern void func_80180FD4(struct ObjGroup*);
 extern void Unknown8018100C(struct ObjLight*);
 extern void func_80181378(struct ObjGroup*);
 extern void func_80181378(struct ObjGroup*);
-extern void func_8018145C();    //void func_8018145C(struct ObjView*)
-extern void func_801814F4(struct ObjGroup*);    /* applies a function to ObjGadgets in group */
+extern void func_8018145C(struct ObjView *);
+extern void func_801814F4(struct ObjGroup *);
 extern void null_obj_lists(void);
 
 #endif /* _MARIO_HEAD_1_H_ */

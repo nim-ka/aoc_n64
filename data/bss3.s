@@ -3,61 +3,16 @@
 
 .section .bss
 
-glabel sTargetWeightID
-    .space 0x4
-glabel D_801BA964
-    .space 0x4
-glabel D_801BA968
-    .space 0x4
-glabel D_801BA96C
-    .space 0x4
-glabel D_801BA970
-    .space 0x4
-glabel D_801BA974
-    .space 0x4
-glabel D_801BA978
-    .space 0x4
-glabel D_801BA97C
-    .space 0x4
-glabel D_801BA980
-    .space 0x8
-glabel D_801BA988
-    .space 0x28
-glabel D_801BA9B0
-    .space 0x4
-glabel D_801BA9B4
-    .space 0x4
-glabel D_801BA9B8
-    .space 0x70
-glabel D_801BAA28
-    .space 0x8
-glabel D_801BAA30
-    .space 0x28
-glabel D_801BAA58
-    .space 0x4
-glabel D_801BAA5C
-    .space 0x4
-glabel D_801BAA60
-    .space 0x70
-glabel D_801BAAD0
-    .space 0x4
-glabel D_801BAAD4
-    .space 0x4
-glabel D_801BAAD8
-    .space 0x8
-glabel D_801BAAE0
-    .space 0x4
-glabel D_801BAAE4
-    .space 0x4
-glabel D_801BAAE8
-    .space 0x8
+# start of skin_fs bss
 glabel gGdSkinNet
     .space 0x4
 glabel D_801BAAF4
     .space 0x4
 glabel D_801BAAF8
     .space 0x34
-glabel sCubeShapeGroup
+
+# start of half_6 bss
+glabel sCubeShapeGroup # 801BAB2C
     .space 0x10
 glabel sCubeShape
     .space 0xC
@@ -105,6 +60,8 @@ glabel D_801BAD34
     .space 0x4
 glabel D_801BAD38
     .space 0x128
+
+# head_6
 glabel D_801BAE60
     .space 0x10
 glabel D_801BAE70

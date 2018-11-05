@@ -4,6 +4,8 @@
 #include "mario_head_1.h"
 #include "mario_head_2.h"
 #include "profiler_utils.h"
+#include "joint_fns.h"
+#include "skin_fns.h"
 #include "matrix_fns.h"
 
 #include "gd_types.h"
@@ -12,9 +14,6 @@
 struct ObjWeight* sSkinNetCurWeight;
 static Mat4 D_801B9EA8;               // TODO: rename to sHead2Mtx?
 static struct ObjJoint* D_801B9EE8;
-
-extern s32 sTargetWeightID;
-extern struct ObjNet* gGdSkinNet;
 
 /* @ 22FDB0 for 0x180 */
 void Unknown801815E0(Mat4* mtx)

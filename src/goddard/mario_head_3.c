@@ -4,10 +4,10 @@
 #include "data801A8050.h"
 #include "game_over_2.h"
 #include "mario_head_1.h"
-#include "mario_head_2.h"
 #include "mario_head_3.h"
 #include "mario_head_4.h"
 #include "profiler_utils.h"
+#include "skin_fns.h"
 #include "matrix_fns.h"
 #include "../mario_head_6.h"
 

@@ -472,7 +472,7 @@ void fatal_printf(const char *fmt, ...)
 /* 23BBF0 -> 23BC80; orig name: func_8018D420 */
 void add_to_stacktrace(const char *routine)
 {
-    //! Please check if you've past the end of an array before you write to it
+    //! Please check array bounds before writing to it
     sRoutineNames[gNumRoutinesInStack++] = routine;
     sRoutineNames[gNumRoutinesInStack] = NULL;
 
@@ -512,7 +512,7 @@ f32 func_8018D560(void)
     unsigned int i;
     f32 val;
 
-    for (i = 0; i < sizeof(u32); i++)
+    for (i = 0; i < 4; i++)
     {
         if (gGdPrimarySeed & 0x80000000)
         {
@@ -901,4 +901,32 @@ void gd_fclose(UNUSED struct GdFile *f)
 u32 gd_get_file_size(struct GdFile *f)
 {
     return f->size;
+}
+
+/* 23CB70 -> 23CBA8; orig name: func_8018E3A0 */
+s32 is_newline(char c)
+{
+    return c == '\r' || c == '\n';
+}
+
+/* 23CBA8 -> 23CCF0; orig name: func_8018E3D8 */
+s32 gd_fread_line(char *buf, u32 size, struct GdFile *f)
+{
+    signed char c;
+    u32 pos = 0;
+    UNUSED u32 pad1c;
+
+    do { if (gd_fread(&c, 1, 1, f) == -1) { break; } } 
+    while (is_newline(c)); 
+
+    while (!is_newline(c))
+    {
+        if (c == -1) { break; }
+        if (pos > size) { break; }
+        buf[pos++] = c;
+        if (gd_fread(&c, 1, 1, f) == -1) { break; }
+    }
+    buf[pos++] = '\0';
+
+    return pos;
 }

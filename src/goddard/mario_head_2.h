@@ -4,14 +4,10 @@
 #include "types.h"
 #include "gd_types.h"
 
-/****** .bss ******/
-extern struct ObjNet* gGdSkinNet;   // gGdSkinNet
-
 /****** Static .bss ******/
 // struct ObjWeight* sSkinNetCurWeight; // D_801B9EA0
 // Mat4 D_801B9EA8;
 // struct ObjJoint* D_801B9EE8;
-// s32 sTargetWeightID; // D_801BA960
 
 /****** Possibly Declared Here But Not Used .bss ******/
 // extern ? D_801B5D50;

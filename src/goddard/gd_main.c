@@ -1,6 +1,7 @@
 #include <ultra64.h>
 
 #include "sm64.h"
+#include "data801A8050.h"
 #include "gd_main.h"
 #include "debug_memory.h"
 #include "mario_head_1.h"
@@ -12,10 +13,7 @@
  * float literal, which implies that this is its own file
  */
 
-/* D_801A8050 and D_801A8058 might be declared here, or in some big common
- * file with the oddly placed and used symbols that follow
- */
-
+// bss
 struct GdMem801B9920 D_801B9920;
 struct GdMem801B9A18 D_801B9A18;
 

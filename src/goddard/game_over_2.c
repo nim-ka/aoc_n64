@@ -827,7 +827,7 @@ void Proc8017A550(struct ObjHeader *self)
             bone->unk14.x, bone->unk14.y, bone->unk14.z,
             0.0f, 0.0f, 0.0f,
             bone->unk28.x, bone->unk28.y, bone->unk28.z,
-            sp5C, &bone->unk70);
+            sp5C, &bone->mat70);
     }
 }
 

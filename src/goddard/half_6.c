@@ -20,22 +20,22 @@
 ** initial file spliting happened. */
 
 /* ########## Static BSS ########## */
-/* bss static */ extern u32 sGdShapeCount;
-/* bss static */ extern struct ObjShape* sGdShapeListHead;
-/* bas static */ extern char sGdLineBuf[];      //char sGdLineBuf[0xFF + 1]; string buffer
-/* bss static */ extern s32 sGdLineBufCsr;      //string buffer cursor
-/* bss static */ extern struct GdFile* sGdShapeFile;  /* static file descriptor returned by gd_fopen */
+/* bss static */ extern struct ObjGroup* sCubeShapeGroup; // @ 801BAB2C
+/* bss static */ extern struct ObjShape* sCubeShape; // @ 801BAB3C
+/* bas static */ extern char sGdLineBuf[]; // @ 801BAB48; char sGdLineBuf[0xFF + 1]; string buffer
+/* bss static */ extern s32 sGdLineBufCsr; // @ 801BAC48; string buffer cursor
+/* bss static */ extern struct GdFile* sGdShapeFile;  // @ 801BAC4C; static file descriptor returned by gd_fopen
+/* bss static */ extern struct ObjShape* sGdShapeListHead; // @ 801BAC50
+/* bss static */ extern u32 sGdShapeCount; // @ 801BAC54
 /* bss static */ extern struct MyVec3f D_801BAC60;
-/* bss static */ extern struct MyVec3f D_801BACB8;
-/* bss static */ extern struct MyVec3f D_801BACC8;
-/* bss static */ extern struct MyVec3f D_801BAD30;  //printed with "c="
-/* bss static */ extern struct ObjFace* D_801BAC9C;
-/* bss static */ extern struct ObjFace* D_801BACA0;
 /* bss static */ extern struct ObjPlane* D_801BAC74;
 /* bss static */ extern struct ObjPlane* D_801BAC78;   // sShapeNetHead? sizeof = 0x24, so what is this?
+/* bss static */ extern struct ObjFace* D_801BAC9C;
+/* bss static */ extern struct ObjFace* D_801BACA0; // sizeof = 0x18??
+/* bss static */ extern struct MyVec3f D_801BACB8;
+/* bss static */ extern struct MyVec3f D_801BACC8;
 /* bss static */ extern struct ObjGroup* D_801BAD08;    // group of planes from make_netfromshape; 0x28 size...
-/* bss static */ extern struct ObjGroup* sCubeShapeGroup;
-/* bss static */ extern struct ObjShape* sCubeShape;
+/* bss static */ extern struct MyVec3f D_801BAD30;  //printed with "c="
 
 /* ########## Forward Declarations ########## */
 struct ObjMaterial* find_or_add_new_mtl(struct ObjGroup*, s32, f32, f32, f32);
@@ -268,7 +268,7 @@ s8 load_next_line_into_buf(void)
     if (gd_feof(sGdShapeFile) != 0)
         sGdLineBuf[sGdLineBufCsr] = '\0';
     else
-        func_8018E3D8(sGdLineBuf, 0xFF, sGdShapeFile);
+        gd_fread_line(sGdLineBuf, 0xFF, sGdShapeFile);
 
     return get_current_buf_char();
 }
@@ -1357,15 +1357,15 @@ s32 func_8019A378(void (*aniFn)(struct ObjAnimator*))
     func_8017B028(sp3C);
     sp38 = D_801B9E8C;
 
-    sp30 = func_8018F248(D_801A82E8, 0, -500.0f, 0.0f, -150.0f);
+    sp30 = make_joint_withshape(D_801A82E8, 0, -500.0f, 0.0f, -150.0f);
     sp34 = d_use_obj("N167l");
     sp30->unk1F8 = make_group(1, sp34);
 
-    sp30 = func_8018F248(D_801A82E8, 0, 500.0f, 0.0f, -150.0f);
+    sp30 = make_joint_withshape(D_801A82E8, 0, 500.0f, 0.0f, -150.0f);
     sp34 = d_use_obj("N176l");
     sp30->unk1F8 = make_group(1, sp34);
 
-    sp30 = func_8018F248(D_801A82E8, 0, 0.0f, 700.0f, 300.0f);
+    sp30 = make_joint_withshape(D_801A82E8, 0, 0.0f, 700.0f, 300.0f);
     sp34 = d_use_obj("N131l");
     sp30->unk1F8 = make_group(1, sp34);
 
@@ -1381,29 +1381,29 @@ s32 func_8019A378(void (*aniFn)(struct ObjAnimator*))
     sp34 = d_use_obj("N65l");
     addto_group(sp30->unk1F8, sp34);
 
-    sp30 = func_8018F248(D_801A82E8, 0, 0.0f, 0.0f, 600.0f);
+    sp30 = make_joint_withshape(D_801A82E8, 0, 0.0f, 0.0f, 600.0f);
     sp34 = d_use_obj("N185l");
     sp30->unk1F8 = make_group(1, sp34);
 
-    sp30 = func_8018F248(D_801A82E8, 0, 0.0f, -300.0f, 300.0f);
+    sp30 = make_joint_withshape(D_801A82E8, 0, 0.0f, -300.0f, 300.0f);
     sp34 = d_use_obj("N194l");
     sp30->unk1F8 = make_group(1, sp34);
 
-    sp30 = func_8018F248(D_801A82E8, 0, 250.0f, -150.0f, 300.0f);
+    sp30 = make_joint_withshape(D_801A82E8, 0, 250.0f, -150.0f, 300.0f);
     sp34 = d_use_obj("N158l");
     sp30->unk1F8 = make_group(1, sp34);
 
     sp34 = d_use_obj("N15l");
     addto_group(sp30->unk1F8, sp34);
 
-    sp30 = func_8018F248(D_801A82E8, 0, -250.0f, -150.0f, 300.0f);
+    sp30 = make_joint_withshape(D_801A82E8, 0, -250.0f, -150.0f, 300.0f);
     sp34 = d_use_obj("N149l");
     sp30->unk1F8 = make_group(1, sp34);
 
     sp34 = d_use_obj("N6l");
     addto_group(sp30->unk1F8, sp34);
 
-    sp30 = func_8018F248(D_801A82E8, 0, 100.0f, 200.0f, 400.0f);
+    sp30 = make_joint_withshape(D_801A82E8, 0, 100.0f, 200.0f, 400.0f);
     sp34 = d_use_obj("N112l");
     sp30->unk1F8 = make_group(1, sp34);
 
@@ -1411,7 +1411,7 @@ s32 func_8019A378(void (*aniFn)(struct ObjAnimator*))
     sp30->unk1D0 = sp28;
     sp30->header.unk12 &= ~8;
 
-    sp30 = func_8018F248(D_801A82E8, 0, -100.0f, 200.0f, 400.0f);
+    sp30 = make_joint_withshape(D_801A82E8, 0, -100.0f, 200.0f, 400.0f);
     sp34 = d_use_obj("N96l");
     sp30->unk1F8 = make_group(1, sp34);
 
