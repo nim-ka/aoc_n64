@@ -86,7 +86,7 @@ glabel mr_blizzard_hidden_geo # 0x0C00021C
          geo_open_node
             geo_billboard
             geo_open_node
-               geo_display_list 0x04, mr_blizzard_seg5_dl_0500C620
+               geo_display_list 0x04, snowman_seg5_dl_0500C620
             geo_close_node
          geo_close_node
          geo_open_node
@@ -94,11 +94,11 @@ glabel mr_blizzard_hidden_geo # 0x0C00021C
             geo_open_node
                geo_billboard
                geo_open_node
-                  geo_display_list 0x04, mr_blizzard_seg5_dl_0500CBF8
+                  geo_display_list 0x04, snowman_seg5_dl_0500CBF8
                geo_close_node
             geo_close_node
-            geo_dl_translated 0x04, 356, 0, 0, mr_blizzard_seg5_dl_0500CCE8
-            geo_dl_translated 0x04, 356, 0, 0, mr_blizzard_seg5_dl_0500C760
+            geo_dl_translated 0x04, 356, 0, 0, snowman_seg5_dl_0500CCE8
+            geo_dl_translated 0x04, 356, 0, 0, snowman_seg5_dl_0500C760
             geo_switch_case 2, GeoSwitchCase8029DB48
             geo_open_node
                geo_node_start
@@ -112,9 +112,9 @@ glabel mr_blizzard_hidden_geo # 0x0C00021C
             geo_close_node
             geo_dl_translated 0x01, 89, 0, -229
             geo_open_node
-               geo_dl_translated 0x01, 0, 0, 0, mr_blizzard_seg5_dl_0500C500
+               geo_dl_translated 0x01, 0, 0, 0, snowman_seg5_dl_0500C500
                geo_open_node
-                  geo_dl_translated 0x01, 68, 0, 0, mr_blizzard_seg5_dl_0500CAA8
+                  geo_dl_translated 0x01, 68, 0, 0, snowman_seg5_dl_0500CAA8
                   geo_asm 0, Geo18_8029D890
                geo_close_node
             geo_close_node

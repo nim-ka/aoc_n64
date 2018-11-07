@@ -146,41 +146,6 @@ koopa_shell_seg8_dl_080273C8 = 0x080273C8;
 koopa_shell_seg8_dl_08027420 = 0x08027420;
 koopa_shell_seg8_dl_08028B78 = 0x08028B78;
 
-/* Bobombs */
-king_bobomb_seg5_dl_0500A4F0 = 0x0500A4F0;
-king_bobomb_seg5_dl_0500A5D8 = 0x0500A5D8;
-king_bobomb_seg5_dl_0500A6C0 = 0x0500A6C0;
-king_bobomb_seg5_dl_0500A7A8 = 0x0500A7A8;
-king_bobomb_seg5_dl_0500A890 = 0x0500A890;
-king_bobomb_seg5_dl_0500A978 = 0x0500A978;
-king_bobomb_seg5_dl_0500AD08 = 0x0500AD08;
-king_bobomb_seg5_dl_0500B068 = 0x0500B068;
-king_bobomb_seg5_dl_0500B188 = 0x0500B188;
-king_bobomb_seg5_dl_0500B2D0 = 0x0500B2D0;
-king_bobomb_seg5_dl_0500B418 = 0x0500B418;
-king_bobomb_seg5_dl_0500B6C0 = 0x0500B6C0;
-water_bubble_seg5_dl_05011000 = 0x05011000;
-
-/* Boo Bookend Chair Piano */
-bookend_part_seg5_dl_05001978 = 0x05001978;
-bookend_part_seg5_dl_05001B20 = 0x05001B20;
-bookend_part_seg5_dl_05001D68 = 0x05001D68;
-bookend_part_seg5_dl_05001F98 = 0x05001F98;
-bookend_part_seg5_dl_05002140 = 0x05002140;
-bookend_part_seg5_dl_050022E0 = 0x050022E0;
-book_enemy_seg5_dl_05002FB0 = 0x05002FB0;
-haunted_chair_seg5_dl_05004EE8 = 0x05004EE8;
-haunted_chair_seg5_dl_05005190 = 0x05005190;
-haunted_chair_seg5_dl_05005408 = 0x05005408;
-haunted_chair_seg5_dl_05005680 = 0x05005680;
-small_key_seg5_dl_05006A68 = 0x05006A68;
-mad_piano_seg5_dl_05008CB0 = 0x05008CB0;
-mad_piano_seg5_dl_050098E8 = 0x050098E8;
-boo_seg5_dl_0500C1B0 = 0x0500C1B0;
-haunted_cage_seg5_dl_0500F7D8 = 0x0500F7D8;
-haunted_cage_seg5_dl_0500FC28 = 0x0500FC28;
-haunted_cage_seg5_dl_05010100 = 0x05010100;
-
 /* Bubba Lakitu Wiggler */
 bubba_seg5_dl_05004E80 = 0x05004E80;
 bubba_seg5_dl_05005978 = 0x05005978;
@@ -644,29 +609,3 @@ chirp_chirp_seg6_dl_06011FA0 = 0x06011FA0;
 manta_ring_seg6_dl_06013AC0 = 0x06013AC0;
 treasure_chest_bottom_seg6_dl_06016F90 = 0x06016F90;
 treasure_chest_lid_seg6_dl_060178C0 = 0x060178C0;
-
-/* Spindrift Penguin Snowman */
-spindrift_seg5_dl_050002A0 = 0x050002A0;
-spindrift_seg5_dl_05000328 = 0x05000328;
-spindrift_seg5_dl_05002748 = 0x05002748;
-spindrift_seg5_dl_05002830 = 0x05002830;
-spindrift_seg5_dl_05002900 = 0x05002900;
-spindrift_seg5_dl_05002A20 = 0x05002A20;
-spindrift_seg5_dl_05002B30 = 0x05002B30;
-spindrift_seg5_dl_05002D08 = 0x05002D08;
-penguin_seg5_dl_05006428 = 0x05006428;
-penguin_seg5_dl_05006458 = 0x05006458;
-penguin_seg5_dl_05006488 = 0x05006488;
-penguin_seg5_dl_050064B8 = 0x050064B8;
-penguin_seg5_dl_050064E8 = 0x050064E8;
-penguin_seg5_dl_05007198 = 0x05007198;
-penguin_seg5_dl_050071E8 = 0x050071E8;
-penguin_seg5_dl_05007238 = 0x05007238;
-penguin_seg5_dl_050072C8 = 0x050072C8;
-penguin_seg5_dl_05007540 = 0x05007540;
-mr_blizzard_seg5_dl_0500C500 = 0x0500C500;
-mr_blizzard_seg5_dl_0500C620 = 0x0500C620;
-mr_blizzard_seg5_dl_0500C760 = 0x0500C760;
-mr_blizzard_seg5_dl_0500CAA8 = 0x0500CAA8;
-mr_blizzard_seg5_dl_0500CBF8 = 0x0500CBF8;
-mr_blizzard_seg5_dl_0500CCE8 = 0x0500CCE8;

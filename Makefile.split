@@ -5,8 +5,6 @@ BINARY_SEGMENTS := \
    bidw_skybox \
    bitfs_skybox \
    bits_skybox \
-   bobombs_bubble \
-   boo_bookend_chair_piano \
    bubba_wiggler_lakitu \
    ccm_skybox \
    cloud_floor_skybox \
@@ -19,7 +17,6 @@ BINARY_SEGMENTS := \
    mole_monkey_fwoosh \
    sea_creatures \
    skeeter_fish_treasurechest \
-   spindrift_penguin_snowman \
    ssl_skybox \
    water_skybox \
    wdw_skybox
@@ -33,6 +30,8 @@ MIO0_OBJ_FILES := $(MIO0_FILES:.mio0=.mio0.o)
 
 # assumes naming convention "texture.<encoding>.png" generates "texture.<encoding>"
 SEGMENT2_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/segment2/*.png)))
+BOBOMBS_BUBBLE_FILES         := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bobombs_bubble/*.png)))
+BOO_BOOKEND_FILES            := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/boo_bookend_chair_piano/*.png)))
 CAKE_END_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/cake_end/*.png)))
 CAPSWITCH_SPRINGBOARD_FILES  := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/capswitch_springboard/*.png)))
 TITLE_SCREEN_BG_FILES        := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/title_screen_bg/*.png)))
@@ -73,6 +72,7 @@ PSS_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/ps
 RR_SEG7_FILES                := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/rr_seg7/*.png)))
 RR_TEXTURES_FILES            := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/rr_textures/*.png)))
 SL_SEG7_FILES                := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/sl_seg7/*.png)))
+SPINDRIFT_PENGUIN_FILES      := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/spindrift_penguin_snowman/*.png)))
 SSL_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/ssl_seg7/*.png)))
 THI_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/thi_seg7/*.png)))
 TTC_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/ttc_seg7/*.png)))
@@ -87,6 +87,8 @@ WF_TEXTURES_FILES            := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/wf
 WMOTR_SEG7_FILES             := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/wmotr_seg7/*.png)))
 
 $(BUILD_DIR)/bin/segment2.o: $(addprefix $(BUILD_DIR)/bin/segment2/,$(SEGMENT2_FILES))
+$(BUILD_DIR)/bin/bobombs_bubble.o: $(addprefix $(BUILD_DIR)/bin/bobombs_bubble/,$(BOBOMBS_BUBBLE_FILES))
+$(BUILD_DIR)/bin/boo_bookend_chair_piano.o: $(addprefix $(BUILD_DIR)/bin/boo_bookend_chair_piano/,$(BOO_BOOKEND_FILES))
 $(BUILD_DIR)/bin/cake_end.o: $(addprefix $(BUILD_DIR)/bin/cake_end/,$(CAKE_END_FILES))
 $(BUILD_DIR)/bin/capswitch_springboard.o: $(addprefix $(BUILD_DIR)/bin/capswitch_springboard/,$(CAPSWITCH_SPRINGBOARD_FILES))
 $(BUILD_DIR)/bin/title_screen_bg.o: $(addprefix $(BUILD_DIR)/bin/title_screen_bg/,$(TITLE_SCREEN_BG_FILES))
@@ -127,6 +129,7 @@ $(BUILD_DIR)/bin/pss_seg7.o: $(addprefix $(BUILD_DIR)/bin/pss_seg7/,$(PSS_SEG7_F
 $(BUILD_DIR)/bin/rr_seg7.o: $(addprefix $(BUILD_DIR)/bin/rr_seg7/,$(RR_SEG7_FILES))
 $(BUILD_DIR)/bin/rr_textures.o: $(addprefix $(BUILD_DIR)/bin/rr_textures/,$(RR_TEXTURES_FILES))
 $(BUILD_DIR)/bin/sl_seg7.o: $(addprefix $(BUILD_DIR)/bin/sl_seg7/,$(SL_SEG7_FILES))
+$(BUILD_DIR)/bin/spindrift_penguin_snowman.o: $(addprefix $(BUILD_DIR)/bin/spindrift_penguin_snowman/,$(SPINDRIFT_PENGUIN_FILES))
 $(BUILD_DIR)/bin/ssl_seg7.o: $(addprefix $(BUILD_DIR)/bin/ssl_seg7/,$(SSL_SEG7_FILES))
 $(BUILD_DIR)/bin/thi_seg7.o: $(addprefix $(BUILD_DIR)/bin/thi_seg7/,$(THI_SEG7_FILES))
 $(BUILD_DIR)/bin/ttc_seg7.o: $(addprefix $(BUILD_DIR)/bin/ttc_seg7/,$(TTC_SEG7_FILES))
@@ -141,6 +144,8 @@ $(BUILD_DIR)/bin/wf_textures.o: $(addprefix $(BUILD_DIR)/bin/wf_textures/,$(WF_T
 $(BUILD_DIR)/bin/wmotr_seg7.o: $(addprefix $(BUILD_DIR)/bin/wmotr_seg7/,$(WMOTR_SEG7_FILES))
 
 $(BUILD_DIR)/bin/segment2.elf: SEGMENT_ADDRESS := 0x02000000
+$(BUILD_DIR)/bin/bobombs_bubble.elf: SEGMENT_ADDRESS := 0x05000000
+$(BUILD_DIR)/bin/boo_bookend_chair_piano.elf: SEGMENT_ADDRESS := 0x05000000
 $(BUILD_DIR)/bin/cake_end.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/capswitch_springboard.elf: SEGMENT_ADDRESS := 0x05000000
 $(BUILD_DIR)/bin/cotmc_seg7.elf: SEGMENT_ADDRESS := 0x07000000
@@ -175,6 +180,7 @@ $(BUILD_DIR)/bin/pss_seg7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/rr_seg7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/sa_seg7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/sl_seg7.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/spindrift_penguin_snowman.elf: SEGMENT_ADDRESS := 0x05000000
 $(BUILD_DIR)/bin/ssl_seg7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/thi_seg7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/ttc_seg7.elf: SEGMENT_ADDRESS := 0x07000000

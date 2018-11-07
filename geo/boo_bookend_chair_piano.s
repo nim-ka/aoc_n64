@@ -12,18 +12,18 @@ glabel bookend_part_geo # 0x0C000000
          geo_open_node
             geo_dl_translated 0x01, 0, 0, 0
             geo_open_node
-               geo_dl_translated 0x01, 0, 0, 0, bookend_part_seg5_dl_05001F98
-               geo_dl_translated 0x01, 0, 0, 0, bookend_part_seg5_dl_05001B20
-               geo_dl_translated 0x01, 0, 0, 0, bookend_part_seg5_dl_05002140
+               geo_dl_translated 0x01, 0, 0, 0, bookend_seg5_dl_05001F98
+               geo_dl_translated 0x01, 0, 0, 0, bookend_seg5_dl_05001B20
+               geo_dl_translated 0x01, 0, 0, 0, bookend_seg5_dl_05002140
             geo_close_node
          geo_close_node
          geo_dl_translated 0x01, 0, 0, 0
          geo_open_node
             geo_dl_translated 0x01, 0, 0, 0
             geo_open_node
-               geo_dl_translated 0x01, 0, 0, 0, bookend_part_seg5_dl_05001D68
-               geo_dl_translated 0x01, 0, 0, 0, bookend_part_seg5_dl_05001978
-               geo_dl_translated 0x01, 0, 0, 0, bookend_part_seg5_dl_050022E0
+               geo_dl_translated 0x01, 0, 0, 0, bookend_seg5_dl_05001D68
+               geo_dl_translated 0x01, 0, 0, 0, bookend_seg5_dl_05001978
+               geo_dl_translated 0x01, 0, 0, 0, bookend_seg5_dl_050022E0
             geo_close_node
          geo_close_node
       geo_close_node
@@ -34,7 +34,7 @@ geo_end
 glabel book_enemy_geo # 0x0C0000C0
    geo_start_distance 300
    geo_open_node
-      geo_display_list 0x01, book_enemy_seg5_dl_05002FB0
+      geo_display_list 0x01, book_seg5_dl_05002FB0
    geo_close_node
    geo_end
 
@@ -45,19 +45,19 @@ glabel haunted_chair_geo # 0x0C0000D8
       geo_open_node
          geo_dl_translated 0x01, 0, 0, 0
          geo_open_node
-            geo_dl_translated 0x01, 0, 0, 0, haunted_chair_seg5_dl_05005190
+            geo_dl_translated 0x01, 0, 0, 0, chair_seg5_dl_05005190
             geo_open_node
                geo_dl_translated 0x01, -7, -9, 0
                geo_open_node
-                  geo_dl_translated 0x01, 0, 0, 0, haunted_chair_seg5_dl_05005680
+                  geo_dl_translated 0x01, 0, 0, 0, chair_seg5_dl_05005680
                geo_close_node
                geo_dl_translated 0x01, 156, -9, 0
                geo_open_node
-                  geo_dl_translated 0x01, 0, 0, 0, haunted_chair_seg5_dl_05005408
+                  geo_dl_translated 0x01, 0, 0, 0, chair_seg5_dl_05005408
                geo_close_node
                geo_dl_translated 0x01, -3, 17, 0
                geo_open_node
-                  geo_dl_translated 0x01, 0, 0, 0, haunted_chair_seg5_dl_05004EE8
+                  geo_dl_translated 0x01, 0, 0, 0, chair_seg5_dl_05004EE8
                geo_close_node
             geo_close_node
          geo_close_node

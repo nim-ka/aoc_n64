@@ -437,7 +437,7 @@ glabel beh_activate_cap_switch # 01CC
 glabel beh_king_bobomb # 01F4
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x20C9
-    obj_set_int32 VAR_26, 0x0500FE30
+    obj_set_int32 VAR_26, bobomb_seg5_anims_0500FE30
     obj_set_int VAR_2A, 0x02
     set_hitbox 0x0064, 0x0064
     unknown_30 0x001E, 0xFE70, 0xFFCE, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
@@ -1459,7 +1459,7 @@ glabel beh_multiple_coins # 1298
 glabel beh_spindrift # 12B4
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x49
-    obj_set_int32 VAR_26, 0x05002D68
+    obj_set_int32 VAR_26, spindrift_seg5_anims_05002D68
     unknown_28 0x00
     unknown_30 0x001E, 0xFE70, 0x0000, 0x0000, 0x0000, 0x00C8, 0x0000, 0x0000
     unknown_2D
@@ -2265,7 +2265,7 @@ glabel beh_bowser_puzzle # 2068
 glabel beh_tuxies_mother # 2088
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2049
-    obj_set_int32 VAR_26, 0x05008B74
+    obj_set_int32 VAR_26, penguin_seg5_anims_05008B74
     unknown_28 0x03
     unknown_30 0x001E, 0xFE70, 0xFFCE, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000
     unknown_2D
@@ -2288,7 +2288,7 @@ glabel beh_small_penguin # 20E8
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2449
     unknown_1E
-    obj_set_int32 VAR_26, 0x05008B74
+    obj_set_int32 VAR_26, penguin_seg5_anims_05008B74
     unknown_28 0x00
     unknown_30 0x001E, 0xFE70, 0xFFCE, 0x0000, 0x0000, 0x00C8, 0x0000, 0x0000
     obj_set_int VAR_2A, 0x02
@@ -3142,8 +3142,8 @@ glabel beh_snowman_wind_blowing # 2E18
 glabel beh_walking_penguin # 2E34
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x2049
-    collision_data 0x05008B88
-    obj_set_int32 VAR_26, 0x05008B74
+    collision_data penguin_seg5_collision_05008B88
+    obj_set_int32 VAR_26, penguin_seg5_anims_05008B74
     unknown_28 0x00
     unknown_30 0x0000, 0xFE70, 0xFFCE, 0x0000, 0x0000, 0x00C8, 0x0000, 0x0000
     scale 600
@@ -5004,7 +5004,7 @@ glabel beh_mr_blizzard # 4D9C
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2049
     unknown_1E
-    obj_set_int32 VAR_26, 0x0500D118
+    obj_set_int32 VAR_26, snowman_seg5_anims_0500D118
     unknown_28 0x00
     unknown_2D
     unknown_30 0x001E, 0xFE70, 0x0000, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
@@ -5126,7 +5126,7 @@ glabel beh_haunted_chair # 4FB4
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2041
     unknown_1E
-    obj_set_int32 VAR_26, 0x05005784
+    obj_set_int32 VAR_26, chair_seg5_anims_05005784
     unknown_28 0x00
     unknown_30 0x0028, 0x0000, 0xFFCE, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
     unknown_2D
@@ -5140,7 +5140,7 @@ glabel beh_mad_piano # 5004
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2041
     unknown_1E
-    obj_set_int32 VAR_26, 0x05009B14
+    obj_set_int32 VAR_26, mad_piano_seg5_anims_05009B14
     unknown_30 0x0028, 0x0000, 0xFFCE, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
     unknown_2D
     obj_add_int VAR_10, 0x4000
@@ -5152,7 +5152,7 @@ glabel beh_mad_piano # 5004
 glabel beh_flying_bookend # 504C
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2049
-    obj_set_int32 VAR_26, 0x05002540
+    obj_set_int32 VAR_26, bookend_seg5_anims_05002540
     unknown_28 0x00
     unknown_30 0x003C, 0x0000, 0xFFCE, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
     obj_set_int VAR_19, 0
@@ -5315,7 +5315,7 @@ glabel beh_multiple_birds_flying # 5334
 glabel beh_racing_penguin # 5360
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x20C9
-    obj_set_int32 VAR_26, 0x05008B74
+    obj_set_int32 VAR_26, penguin_seg5_anims_05008B74
     unknown_28 0x03
     unknown_30 0x012C, 0xFCE0, 0xFFFB, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000
     scale 400
