@@ -10,6 +10,9 @@
 #define MENU_MTX_PUSH 1
 #define MENU_MTX_NOPUSH 2
 
+#define MENU_SCROLL_VERTICAL 1
+#define MENU_SCROLL_HORIZONTAL 2
+
 // extern ? D_80330438;
 // extern ? D_8033043C;
 // extern ? D_80330444;
@@ -125,7 +128,7 @@ extern void PrintGenericText(s16 x, s16 y, const u8 *str);
 extern void PutString(s8 font, s16 x, s16 y, const u8 *str);
 extern void PrintRegularText(s16 x, s16 y, const u8 *str);
 extern void PutMiniString(s16 x, s16 y, const u8 *str);
-extern void func_802D7924(s8 sp23, s8 *sp24, s8 sp2b, s8 sp2f);
+extern void handleMenuScrolling(s8 scrollDirection, s8 *currentIndex, s8 minIndex, s8 maxIndex);
 extern s16 get_str_x_pos_from_center(s16 centerPos, u8 *str, f32 scale);
 extern void ShowCoins(s32 useCourseCoinScore, s8 sp27, s8 sp2b, s16 x, s16 y);
 extern void ShowStars(s8 sp2b, s8 sp2f, s16 x, s16 y);
@@ -145,7 +148,7 @@ extern u32 func_802D8954(s16 a0);
 #ifdef VERSION_JP
 extern void func_802D8980(s8 sp63, struct DialogEntry *diagEntry);
 #else
-extern void func_802D8980(s8 sp5B, struct DialogEntry *diagEntry, s8 sp63);	
+extern void func_802D8980(s8 sp5B, struct DialogEntry *diagEntry, s8 sp63);    
 #endif
 extern void func_802D8ED4(void);
 extern void func_802D9030(s8 sp3b);

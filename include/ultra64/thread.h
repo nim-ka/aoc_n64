@@ -11,10 +11,10 @@
 #define OS_PRIORITY_APPMAX   127
 #define OS_PRIORITY_IDLE       0
 
-#define OS_STATE_STOPPED	1
-#define OS_STATE_RUNNABLE	2
-#define OS_STATE_RUNNING	4
-#define OS_STATE_WAITING	8
+#define OS_STATE_STOPPED    1
+#define OS_STATE_RUNNABLE    2
+#define OS_STATE_RUNNING    4
+#define OS_STATE_WAITING    8
 
 /* Types */
 

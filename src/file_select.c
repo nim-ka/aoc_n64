@@ -117,7 +117,7 @@ static unsigned char D_801A7C78[] = {0x32, 0xff};
 #ifdef VERSION_JP
 static unsigned char D_801A7C7C[] = {0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0xff};
 #else
-static unsigned char D_801A7C7C[] = {TEXT_SELECT_FILE};	
+static unsigned char D_801A7C7C[] = {TEXT_SELECT_FILE};    
 #endif
 static unsigned char textScore[] = {TEXT_SCORE};
 static unsigned char textCopy[] = {TEXT_COPY};
@@ -125,13 +125,13 @@ static unsigned char textErase[] = {TEXT_ERASE};
 #ifdef VERSION_JP
 static unsigned char D_801A7C98[] = {0x15, 0x16, 0x12, 0x09, 0x13, 0x08, 0x14, 0x0d, 0x17, 0xff};
 #else
-static unsigned char D_801A7C98[] = {TEXT_CHECK_FILE};	
+static unsigned char D_801A7C98[] = {TEXT_CHECK_FILE};    
 #endif
 static unsigned char textNoSavedDataExists[] = {TEXT_NO_SAVED_DATA_EXISTS};
 #ifdef VERSION_JP
 static unsigned char D_801A7CB8[] = {0x00, 0x01, 0x02, 0x03, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0xff};
 #else
-static unsigned char D_801A7CB8[] = {TEXT_COPY_FILE};	
+static unsigned char D_801A7CB8[] = {TEXT_COPY_FILE};    
 #endif
 static unsigned char textCopyItToWhere[] = {TEXT_COPY_IT_TO_WHERE};
 static unsigned char textNoSavedDataExists2[] = {TEXT_NO_SAVED_DATA_EXISTS};
@@ -1375,7 +1375,7 @@ static void draw_main_menu(void)
     PrintGenericText(52, 39, textScore);
     PrintGenericText(117, 39, textCopy);
     PrintGenericText(177, 39, textErase);
-	D_U_801B99F0 = get_str_x_pos_from_center(254, textSoundModes[sSoundMode], 10.0f);
+    D_U_801B99F0 = get_str_x_pos_from_center(254, textSoundModes[sSoundMode], 10.0f);
     PrintGenericText(D_U_801B99F0, 39, textSoundModes[sSoundMode]);
 #endif
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
@@ -1405,7 +1405,7 @@ static void print_file_score_message(s8 a)
         break;
     case 1:
         PutString2(99, 190, textNoSavedDataExists);
-        break;	
+        break;    
 #endif
     }
 }
@@ -1557,7 +1557,7 @@ static void draw_copy_menu(void)
 #else
     PrintGenericText(44, 35, textReturn);
     PrintGenericText(128, 35, textViewScore);
-    PrintGenericText(230, 35, textFileDelete);	
+    PrintGenericText(230, 35, textFileDelete);    
 #endif
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
     gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D108);
@@ -1583,7 +1583,7 @@ static void erase_yes_no_prompt(s16 x, s16 y)
 #ifdef VERSION_JP
     s16 sp2C = sCursorPos[0] + 160.0f;
 #else
-	s16 sp2C = sCursorPos[0] + (x + 0x46);
+    s16 sp2C = sCursorPos[0] + (x + 0x46);
 #endif
     s16 sp2A = sCursorPos[1] + 120.0f;
 
@@ -1644,7 +1644,7 @@ static void erase_menu_print_message(s8 messageId)
 #ifdef VERSION_JP
     unsigned char sp58[] = {0x00, 0x01, 0x02, 0x03, 0x0E, 0x0C, 0xFF};
 #else
-	unsigned char sp58[] = {TEXT_ERASEFILE};
+    unsigned char sp58[] = {TEXT_ERASEFILE};
 #endif
     unsigned char textSure[] = {TEXT_SURE};
     unsigned char textNoSavedDataExists[] = {TEXT_NO_SAVED_DATA_EXISTS};
@@ -1771,7 +1771,7 @@ static void draw_sound_mode_menu(void)
 #ifdef VERSION_JP
     unsigned char sp38[] = {0x18, 0x19, 0x1A, 0x1B, 0x04, 0x05, 0x06, 0x07, 0xFF};
 #else
-	s16 sp42;
+    s16 sp42;
     unsigned char sp38[] = {TEXT_SOUND_SELECT};
 #endif
 
@@ -1780,7 +1780,7 @@ static void draw_sound_mode_menu(void)
 #ifdef VERSION_JP
     PutString(1, 96, 35, sp38);
 #else
-	PutString(2, 88, 35, sp38);
+    PutString(2, 88, 35, sp38);
 #endif
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED68);
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
@@ -1795,9 +1795,9 @@ static void draw_sound_mode_menu(void)
             gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, sTextColorAlpha);
         }
 #ifdef VERSION_JP
-		PrintGenericText(mode * 74 + 67, 87, textSoundModes[mode]);
+        PrintGenericText(mode * 74 + 67, 87, textSoundModes[mode]);
 #else
-		sp42 = get_str_x_pos_from_center(mode * 74 + 87, textSoundModes[mode], 10.0f);
+        sp42 = get_str_x_pos_from_center(mode * 74 + 87, textSoundModes[mode], 10.0f);
         PrintGenericText(sp42, 87, textSoundModes[mode]);
 #endif
     }
@@ -1830,7 +1830,7 @@ static void print_course_coin_score(s8 file, s16 course, s16 x, s16 y)
         {TEXT_MARIO_D}
     };
 #else
-	unsigned char fileNames[][8] = {
+    unsigned char fileNames[][8] = {
         {TEXT_4DASHES}, // huh?
         {0x40, 0x41, 0x0A, 0xFF},
         {0x40, 0x41, 0x0B, 0xFF},
@@ -1851,14 +1851,14 @@ static void print_course_coin_score(s8 file, s16 course, s16 x, s16 y)
     {
 #ifdef VERSION_JP
         PrintRegularText(x, y, sp48);
-		Int2Str((u16)save_file_get_max_coin_score(course) & 0xFFFF, buffer);
-		PrintRegularText(x + 16, y, buffer);
-		PrintRegularText(x + 45, y, fileNames[(save_file_get_max_coin_score(course) >> 16) & 0xFFFF]);
+        Int2Str((u16)save_file_get_max_coin_score(course) & 0xFFFF, buffer);
+        PrintRegularText(x + 16, y, buffer);
+        PrintRegularText(x + 45, y, fileNames[(save_file_get_max_coin_score(course) >> 16) & 0xFFFF]);
 #else
-		PrintRegularText(x + 18, y, sp48);
-		Int2Str((u16)save_file_get_max_coin_score(course) & 0xFFFF, buffer);
-		PrintRegularText(x + 34, y, buffer);
-		PrintRegularText(x + 60, y, fileNames[(save_file_get_max_coin_score(course) >> 16) & 0xFFFF]);
+        PrintRegularText(x + 18, y, sp48);
+        Int2Str((u16)save_file_get_max_coin_score(course) & 0xFFFF, buffer);
+        PrintRegularText(x + 34, y, buffer);
+        PrintRegularText(x + 60, y, fileNames[(save_file_get_max_coin_score(course) >> 16) & 0xFFFF]);
 #endif
     }
 }
@@ -1882,7 +1882,7 @@ static void draw_file_scores_menu(s8 file)
 {
 #ifdef VERSION_JP
     unsigned char sp54[] = {0x0F, 0x10, 0x11, 0xFF};
-	unsigned char sp50[] = {TEXT_0};
+    unsigned char sp50[] = {TEXT_0};
     void **levelNameTable = segmented_to_virtual(seg2_level_name_table);
     unsigned char textHiScore[] = {TEXT_HISCORE};
     unsigned char textMyScore[] = {TEXT_MYSCORE};
@@ -1921,7 +1921,7 @@ static void draw_file_scores_menu(s8 file)
 #define PRINT_COURSE_SCORES(course, pad) \
     PrintRegularText(23 + (pad * 3), 35 + 12 * course, segmented_to_virtual(levelNameTable[course])); \
     print_course_star_score(file, course, 171, 35 + 12 * course); \
-    print_course_coin_score(file, course, 213, 35 + 12 * course);	
+    print_course_coin_score(file, course, 213, 35 + 12 * course);    
 #endif
 
 #ifdef VERSION_JP

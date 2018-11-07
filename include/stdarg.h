@@ -12,9 +12,9 @@ typedef char *va_list;
 
 #define __va_stack_arg(list,mode)                                 \
 (                                                                 \
-	((list)=(char *)_VA_ALIGN(list, _ALIGNOF(mode))+              \
-		_VA_ALIGN(sizeof(mode),4)),                               \
- 	(((char *)list) - (_VA_ALIGN(sizeof(mode),4) - sizeof(mode))) \
+    ((list)=(char *)_VA_ALIGN(list, _ALIGNOF(mode))+              \
+        _VA_ALIGN(sizeof(mode),4)),                               \
+     (((char *)list) - (_VA_ALIGN(sizeof(mode),4) - sizeof(mode))) \
 )
 
 #define __va_double_arg(list,mode)                                                \
@@ -29,9 +29,9 @@ typedef char *va_list;
 /* Should have a `classof` macro/intrinsic to check for '_FP' (1), 
 ** not just the size (which will match long..) */
 #define va_arg(list,mode) ((mode*)(                   \
-	(( _ALIGNOF(mode)==sizeof(double))                \
-				   ? __va_double_arg(list,mode)       \
-	 			   : __va_stack_arg(list,mode))))[-1]
+    (( _ALIGNOF(mode)==sizeof(double))                \
+                   ? __va_double_arg(list,mode)       \
+                    : __va_stack_arg(list,mode))))[-1]
 
 #define va_end(__list)
 

@@ -95,7 +95,7 @@ struct struct8029D924_2 *Geo18_8029D924(s32 sp40, struct struct8029D924 *sp44, U
 #ifdef VERSION_JP
     UNUSED struct struct8029D924_2 *sp24; // sp24 is unused in non-JP versions.
 #endif
-	struct struct8029D924_2 *sp20, *sp1C, *sp18;
+    struct struct8029D924_2 *sp20, *sp1C, *sp18;
 
     sp3C = NULL;
 
@@ -1705,7 +1705,7 @@ void func_802A1A2C(s16 sp1A) {
 #ifdef VERSION_JP
     gCurrentObject->oMoveFlags &= ~0x0800;
 #else
-	gCurrentObject->oMoveFlags &= ~0x4800;
+    gCurrentObject->oMoveFlags &= ~0x4800;
 #endif
     if (gCurrentObject->active & 0x0A) {
         func_802A1978();

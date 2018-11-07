@@ -8,7 +8,7 @@ struct Struct80333F00
     u8 filler0[0xA0];
     OSViMode viMode;
 #if VERSION_US
-	u8 filler[0x410];
+    u8 filler[0x410];
     OSViMode unk500;
 #endif
 };

@@ -3032,7 +3032,7 @@ void BehCelebrationStarInit(void)
     o->oAngleYaw = gMarioObject->header.gfx.angle[1] + 0x8000;
     o->oCelebStarDiameterOfRotation = 100;
 #ifdef VERSION_JP
-	o->header.gfx.asGraphNode = gLoadedGraphNodes[122];
+    o->header.gfx.asGraphNode = gLoadedGraphNodes[122];
     ScaleObject(0.4f);
     o->oFaceAnglePitch = 0;
     o->oFaceAngleRoll = 0;
@@ -3763,7 +3763,7 @@ void BehGenericBowlingBallSpawnerInit(void)
 #ifdef VERSION_JP
             o->oBBallSpwnrMaxSpawnDist = 7000.0f;
 #else
-			o->oBBallSpwnrMaxSpawnDist = D_803374B8;
+            o->oBBallSpwnrMaxSpawnDist = D_803374B8;
 #endif
             o->oBBallSpwnrSpawnOdds = 2.0f;
             break;
@@ -3777,7 +3777,7 @@ void BehGenericBowlingBallSpawnerInit(void)
 #ifdef VERSION_JP
             o->oBBallSpwnrMaxSpawnDist = 6000.0f;
 #else
-			o->oBBallSpwnrMaxSpawnDist = D_803374BC;
+            o->oBBallSpwnrMaxSpawnDist = D_803374BC;
 #endif
             o->oBBallSpwnrSpawnOdds = 2.0f;
             break;
@@ -3953,4 +3953,4 @@ glabel D_803374C0
 
 glabel D_803374C4
     .incbin "bin/rodata.bin", 0x2A54, 0x4
-	*/
+    */

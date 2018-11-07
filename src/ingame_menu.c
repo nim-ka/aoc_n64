@@ -512,11 +512,11 @@ void PutMiniString(s16 x, s16 y, const u8 *str)
     }
 }
 
-void func_802D7924(s8 sp23, s8 *sp24, s8 sp2b, s8 sp2f)
+void handleMenuScrolling(s8 scrollDirection, s8 *currentIndex, s8 minIndex, s8 maxIndex)
 {
     u8 sp1f = 0;
 
-    if(sp23 == 1)
+    if (scrollDirection == MENU_SCROLL_VERTICAL)
     {
         if(gPlayer3Controller->rawStickY > 60)
             sp1f++;
@@ -524,7 +524,7 @@ void func_802D7924(s8 sp23, s8 *sp24, s8 sp2b, s8 sp2f)
         if(gPlayer3Controller->rawStickY < -60)
             sp1f += 2;
     }
-    else if(sp23 == 2)
+    else if (scrollDirection == MENU_SCROLL_HORIZONTAL)
     {
         if(gPlayer3Controller->rawStickX > 60)
             sp1f += 2;
@@ -533,29 +533,29 @@ void func_802D7924(s8 sp23, s8 *sp24, s8 sp2b, s8 sp2f)
             sp1f++;
     }
 
-    if(((sp1f ^ D_80330438) & sp1f) == 2)
+    if (((sp1f ^ D_80330438) & sp1f) == 2)
     {
-        if(sp24[0] == sp2f)
+        if(currentIndex[0] == maxIndex) //! Probably originally a >=, but later replaced with an == and an else statement.
         {
-            sp24[0] = sp2f; // wut
+            currentIndex[0] = maxIndex; // Leftover from the >=
         }
         else
         {
             SetSound(0x7000F881, D_803320E0);
-            sp24[0]++;
+            currentIndex[0]++;
         }
     }
 
     if(((sp1f ^ D_80330438) & sp1f) == 1)
     {
-        if(sp24[0] == sp2b)
+        if(currentIndex[0] == minIndex) // Same applies to here
         {
             // empty
         }
         else
         {
             SetSound(0x7000F881, D_803320E0);
-            sp24[0]--;
+            currentIndex[0]--;
         }
     }
 
@@ -1161,7 +1161,7 @@ void func_802D8980(s8 sp5B, struct DialogEntry *diagEntry, s8 sp63)
                     linePos++;
                 }                
         }
-		strIdx++;
+        strIdx++;
     }
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
     if(gDiagBoxState == 1)
@@ -1179,7 +1179,7 @@ void func_802D8ED4(void)
 {
 #ifdef VERSION_JP
     if(gDiagBoxState == DIAG_STATE_WAITBUTTON)
-        func_802D7924(2, &D_80330430, 1, 2);
+        handleMenuScrolling(MENU_SCROLL_HORIZONTAL, &D_80330430, 1, 2);
 
     dl_add_new_translation_matrix(2, (D_80330430 * 50) - 25, 1 - (gLastDialogLineNum * 20), 0);
 
@@ -1195,7 +1195,7 @@ void func_802D8ED4(void)
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200EF60);
 #else
     if(gDiagBoxState == DIAG_STATE_WAITBUTTON)
-        func_802D7924(2, &D_80330430, 1, 2);
+        handleMenuScrolling(MENU_SCROLL_HORIZONTAL, &D_80330430, 1, 2);
 
     dl_add_new_translation_matrix(2, (D_80330430 * 56) - 47, 2 - (gLastDialogLineNum * 16), 0);
 
@@ -2030,7 +2030,7 @@ void PauseScreenCameraMenu(s16 sp72, s16 sp76, s8 *sp78, s16 sp7e)
     u8 sp48[] = {TEXT_NORMAL_UPCLOSE}; //D_80330568;
     u8 sp3c[] = {TEXT_NORMAL_FIXED}; //D_80330574;
 
-    func_802D7924(2, sp78, 1, 2);
+    handleMenuScrolling(MENU_SCROLL_HORIZONTAL, sp78, 1, 2);
 
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
@@ -2057,7 +2057,7 @@ void PauseScreenCameraMenu(s16 sp72, s16 sp76, s8 *sp78, s16 sp7e)
     u8 sp48[] = {TEXT_NORMAL_UPCLOSE}; //D_80330568;
     u8 sp3c[] = {TEXT_NORMAL_FIXED}; //D_80330574;
 
-    func_802D7924(2, sp78, 1, 2);
+    handleMenuScrolling(MENU_SCROLL_HORIZONTAL, sp78, 1, 2);
 
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
@@ -2088,7 +2088,7 @@ void PauseScreen2(s16 sp62, s16 sp66, s8 *sp68, s16 sp6e)
     u8 sp44[] = {TEXT_EXIT_COURSE}; //D_80330590;
     u8 sp34[] = {TEXT_CAMERA_ANGLE_R}; //D_8033059C;
 
-    func_802D7924(1, sp68, 1, 3);
+    handleMenuScrolling(MENU_SCROLL_VERTICAL, sp68, 1, 3);
 
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
@@ -2117,7 +2117,7 @@ void PauseScreen2(s16 sp62, s16 sp66, s8 *sp68, s16 sp6e)
     u8 sp44[] = {TEXT_EXIT_COURSE}; //D_80330590;
     u8 sp34[] = {TEXT_CAMERA_ANGLE_R}; //D_8033059C;
 
-    func_802D7924(1, sp68, 1, 3);
+    handleMenuScrolling(MENU_SCROLL_VERTICAL, sp68, 1, 3);
 
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
@@ -2253,7 +2253,7 @@ void func_802DB840(s16 sp52, s16 sp56)
     u8 sp3c[8];
     s16 sp3a = D_80330430;
 
-    func_802D7924(1, &D_80330430, -1, 16);
+    handleMenuScrolling(MENU_SCROLL_VERTICAL, &D_80330430, -1, 16);
 
     if(D_80330430 == 16)
         D_80330430 = 0;
@@ -2621,7 +2621,7 @@ void Save(s16 sp62, s16 sp66, s8 *sp68, s16 sp6e)
     u8 sp44[] = {TEXT_SAVE_AND_QUIT}; //D_80330618;
     u8 sp34[] = {TEXT_CONTINUE_WITHOUT_SAVING}; //D_80330624;
 
-    func_802D7924(1, sp68, 1, 3);
+    handleMenuScrolling(MENU_SCROLL_VERTICAL, sp68, 1, 3);
 
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);

@@ -191,7 +191,7 @@ s16 level_select_input_loop(void)
 
 int func_8016F3CC(void)
 {
-	int sp1C = 0;
+    int sp1C = 0;
 
 #ifdef VERSION_US
     if(D_U_801A7C34 == 1)
@@ -207,7 +207,7 @@ int func_8016F3CC(void)
         D_U_801A7C34 = 0;
     }
 #endif
-	print_intro_text();
+    print_intro_text();
 
     if(gPlayer1Controller->buttonPressed & START_BUTTON)
     {
@@ -217,7 +217,7 @@ int func_8016F3CC(void)
 #else
         SetSound(SOUND_MENU_STARSOUND, D_803320E0);
         sp1C = 100 + gDebugLevelSelect;
-		D_U_801A7C34 = 1;
+        D_U_801A7C34 = 1;
 #endif
     }
     return run_press_start_demo_timer(sp1C);
@@ -231,7 +231,7 @@ int func_8016F444(void)
     if(D_U_801A7C38 == 1)
     {
         SetSound(0x2431FF81, D_803320E0);
-		D_U_801A7C38 = 0;
+        D_U_801A7C38 = 0;
     }
 #endif
 

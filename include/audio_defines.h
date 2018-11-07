@@ -157,7 +157,7 @@
 /* not verified */ #define SOUND_MARIO_EEUH             SOUND_ARG_LOAD(2, 4, 0x09, (SOUND_BITFLAG_PRIORITY), 8)
 /* not verified */ #define SOUND_MARIO_ATTACKED         SOUND_ARG_LOAD(2, 4, 0x0A, (SOUND_BITFLAG_ALLFLAGS), 8)
 /* not verified */ #define SOUND_MARIO_OOOF             SOUND_ARG_LOAD(2, 4, 0x0B, (SOUND_BITFLAG_PRIORITY), 8)
-/* not verified */ #define SOUND_MARIO_OOOF2            SOUND_ARG_LOAD(2, 4, 0x0B, (SOUND_BITFLAG_PRIORITY | SOUND_BITFLAG_UNK6 | SOUND_BITFLAG_UNK4), 8)	
+/* not verified */ #define SOUND_MARIO_OOOF2            SOUND_ARG_LOAD(2, 4, 0x0B, (SOUND_BITFLAG_PRIORITY | SOUND_BITFLAG_UNK6 | SOUND_BITFLAG_UNK4), 8)    
 /* not verified */ #define SOUND_MARIO_HEREWEGO         SOUND_ARG_LOAD(2, 4, 0x0C, (SOUND_BITFLAG_PRIORITY), 8)
 /* not verified */ #define SOUND_MARIO_YAWNING          0x240D
 /* not verified */ #define SOUND_MARIO_SNORING1         0x240E
@@ -263,7 +263,7 @@
 #ifdef VERSION_JP
 /* not verified */ #define SOUND_UNKNOWN_UNK3828        SOUND_ARG_LOAD(3, 8, 0x28, (SOUND_BITFLAG_NOFLAGS), 8)
 #else
-/* not verified */ #define SOUND_UNKNOWN_UNK3828        SOUND_ARG_LOAD(3, 9, 0x28, (SOUND_BITFLAG_NOFLAGS), 8)	
+/* not verified */ #define SOUND_UNKNOWN_UNK3828        SOUND_ARG_LOAD(3, 9, 0x28, (SOUND_BITFLAG_NOFLAGS), 8)    
 #endif
 /* not verified */ #define SOUND_GENERAL_EXITPAINTING2  0x3029
 /* not verified */ #define SOUND_GENERAL_EXITPAINTING3  0x302A

@@ -16,144 +16,147 @@
 #include "star_select.h"
 
 static struct Object *sStarSelectIcons[8];
-static s8 D_801B9910;
+static s8 sCurrentMission; // The mission the course is loaded as, affects whether some objects spawn.
 
-// Number of obtained stars, excluding the coin star.
-static u8 sObtainedStars;
-static s8 sVisibleStars;
-static u8 D_801B9913;
+static u8 sObtainedStars; // Number of obtained stars, excluding the coin star.
+static s8 sVisibleStars; // Total number of stars that appear in the act selector menu
+static u8 sDefaultSelectedAct; // Act selected when the menu is first opened.
 
 extern u8 beh_star_in_act_selector[];
 
-static s8 sSelectedStar = 0;
-static s8 D_801A8014 = 0;
-static s32 D_801A8018 = 0;
+static s8 sSelectedAct = 0;
+static s8 sSelectedStarIndex = 0;
+static s32 sActSelectorMenuTimer = 0; // Delays the time until you can select an act.
 
 void BehStarActSelectorLoop(void)
 {
-    switch (gCurrentObject->oStarSelectorUnkF4)
+    switch (gCurrentObject->oStarSelectorType)
     {
-    case 0:
+    case STAR_SELECTOR_NOT_SELECTED:
         gCurrentObject->oStarSelectorSize -= 0.1;
         if (gCurrentObject->oStarSelectorSize < 1.0)
             gCurrentObject->oStarSelectorSize = 1.0;
         gCurrentObject->oFaceAngleYaw = 0;
         break;
-    case 1:
+    case STAR_SELECTOR_SELECTED:
         gCurrentObject->oStarSelectorSize += 0.1;
         if (gCurrentObject->oStarSelectorSize > 1.3)
             gCurrentObject->oStarSelectorSize = 1.3;
         gCurrentObject->oFaceAngleYaw += 0x800;
         break;
-    case 2:
+    case STAR_SELECTOR_100_COINS:
         gCurrentObject->oFaceAngleYaw += 0x800;
         break;
     }
 
     ScaleObject(gCurrentObject->oStarSelectorSize);
-    gCurrentObject->oStarSelectorUnkF8++;
+    gCurrentObject->oStarSelectorTimer++; // unused timer field? only ever referenced here to my knowledge.
 }
 
-void func_80176934(u8 stars)
+void Show100CoinStar(u8 stars)
 {
     if (stars & (1 << 6))
     {
+        // If the 100 coin star has been collected, create a new star selector next to the coin score.
         sStarSelectIcons[6] = func_8029E230(gCurrentObject, 0, 122, beh_star_in_act_selector, 370, 24, -300, 0, 0, 0);
-        sStarSelectIcons[6]->oStarSelectIconUnk108 = 0.8;
-        sStarSelectIcons[6]->oStarSelectIconUnkF4 = 2;
+        sStarSelectIcons[6]->oStarSelectorSize = 0.8;
+        sStarSelectIcons[6]->oStarSelectorType = STAR_SELECTOR_100_COINS;
     }
 }
 
 void BehActSelectorInit(void)
 {
     s16 i = 0;
-    int sp34[10];
+    int selectorModelIDs[10]; // 121 = transparent star, 122 = normal star
     u8 stars = save_file_get_star_flags(gCurrSaveFileNum - 1, gCurrCourseNum -1);
 
     sVisibleStars = 0;
     while (i != sObtainedStars)
     {
-        if (stars & (1 << sVisibleStars))
+        if (stars & (1 << sVisibleStars)) // Star has been collected
         {
-            sp34[sVisibleStars] = 122;
+            selectorModelIDs[sVisibleStars] = 122;
             i++;
         }
-        else
+        else // Star has not been collected
         {
-            sp34[sVisibleStars] = 121;
-            if (D_801B9913 == 0)
+            selectorModelIDs[sVisibleStars] = 121;
+            if (sDefaultSelectedAct == 0) // If this is the first star that has not been collected, set the default selection to this star.
             {
-                D_801B9913 = sVisibleStars + 1;
-                D_801A8014 = sVisibleStars;
+                sDefaultSelectedAct = sVisibleStars + 1;
+                sSelectedStarIndex = sVisibleStars;
             }
         }
         sVisibleStars++;
     }
 
-    if (sVisibleStars == sObtainedStars && sVisibleStars != 6)
+    if (sVisibleStars == sObtainedStars && sVisibleStars != 6) // If the stars have been collected in order so far, show the next star.
     {
-        sp34[sVisibleStars] = 121;
-        D_801B9913 = sVisibleStars + 1;
-        D_801A8014 = sVisibleStars;
+        selectorModelIDs[sVisibleStars] = 121;
+        sDefaultSelectedAct = sVisibleStars + 1;
+        sSelectedStarIndex = sVisibleStars;
         sVisibleStars++;
     }
 
-    if (sObtainedStars == 6)
-        D_801B9913 = sVisibleStars;
-    if (sObtainedStars == 0)
-        D_801B9913 = 1;
+    if (sObtainedStars == 6) // If all stars have been collected, set the default selection to the last star.
+        sDefaultSelectedAct = sVisibleStars;
+    if (sObtainedStars == 0) //! Useless, since sDefaultSelectedAct has already been set in this scenario by the code that shows the next uncollected star.
+        sDefaultSelectedAct = 1;
 
-    for (i = 0; i < sVisibleStars; i++)
+    for (i = 0; i < sVisibleStars; i++) // Spawn star selector objects
     {
-        sStarSelectIcons[i] = func_8029E230(gCurrentObject, 0, sp34[i], beh_star_in_act_selector, 75 + sVisibleStars * -75 + i * 152, 248, -300, 0, 0, 0);
-        sStarSelectIcons[i]->oStarSelectIconUnk108 = 1.0f;
+        sStarSelectIcons[i] = func_8029E230(gCurrentObject, 0, selectorModelIDs[i], beh_star_in_act_selector, 75 + sVisibleStars * -75 + i * 152, 248, -300, 0, 0, 0);
+        sStarSelectIcons[i]->oStarSelectorSize = 1.0f;
     }
 
-    func_80176934(stars);
+    Show100CoinStar(stars);
 }
 
 void BehActSelectorLoop(void)
 {
     s8 i;
-    u8 sp1E;
+    u8 starIndexCounter;
     u8 stars = save_file_get_star_flags(gCurrSaveFileNum - 1, gCurrCourseNum -1);
 
     if (sObtainedStars != 6)
     {
-        sSelectedStar = 0;
-        func_802D7924(2, &D_801A8014, 0, sObtainedStars);
-        sp1E = D_801A8014;
+        // Sometimes, stars are not selectable even if they appear on the screen.
+        // This code filters selectable and non-selectable stars.
+        sSelectedAct = 0;
+        handleMenuScrolling(MENU_SCROLL_HORIZONTAL, &sSelectedStarIndex, 0, sObtainedStars);
+        starIndexCounter = sSelectedStarIndex;
         for (i = 0; i < sVisibleStars; i++)
         {
-            if ((stars & (1 << i)) || i + 1 == D_801B9913)
+            if ((stars & (1 << i)) || i + 1 == sDefaultSelectedAct) // Can the star be selected (is it either already completed or the first non-completed mission)
             {
-                if (sp1E == 0)
+                if (starIndexCounter == 0) // We have reached the sSelectedStarIndex-th selectable star.
                 {
-                    sSelectedStar = i;
+                    sSelectedAct = i;
                     break;
                 }
-                sp1E--;
+                starIndexCounter--;
             }
         }
     }
     else
     {
-        func_802D7924(2, &D_801A8014, 0, sVisibleStars - 1);
-        sSelectedStar = D_801A8014;
+        // If all stars are collected then they are all selectable.
+        handleMenuScrolling(MENU_SCROLL_HORIZONTAL, &sSelectedStarIndex, 0, sVisibleStars - 1);
+        sSelectedAct = sSelectedStarIndex;
     }
-
+    
     for (i = 0; i < sVisibleStars; i++)
     {
-        if (sSelectedStar == i)
-            sStarSelectIcons[i]->oStarSelectIconUnkF4 = 1;
+        if (sSelectedAct == i)
+            sStarSelectIcons[i]->oStarSelectorType = STAR_SELECTOR_SELECTED;
         else
-            sStarSelectIcons[i]->oStarSelectIconUnkF4 = 0;
+            sStarSelectIcons[i]->oStarSelectorType = STAR_SELECTOR_NOT_SELECTED;
     }
 }
 
-void ShowSomeNum(void)
+static void ShowCourseNumber(void)
 {
-    u8 buffer[4];
+    u8 courseNum[4];
 
     dl_add_new_translation_matrix(1, 158.0f, 81.0f, 0.0f);
 
@@ -162,33 +165,34 @@ void ShowSomeNum(void)
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED00);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
 
-    Int2Str(gCurrCourseNum, buffer);
+    Int2Str(gCurrCourseNum, courseNum);
     if (gCurrCourseNum < 10)
-        PutString(2, 152, 158, buffer);
+        PutString(2, 152, 158, courseNum);
     else
-        PutString(2, 143, 158, buffer);
+        PutString(2, 143, 158, courseNum);
 
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED68);
 }
 
-void func_80177004(void)
+static void ShowActSelectorMenu(void)
 {
 #ifdef VERSION_JP
-    unsigned char sp60[] = {TEXT_MYSCORE};
+    unsigned char myScore[] = {TEXT_MYSCORE};
 #else
-	unsigned char sp60[] = {TEXT_MYSCORE2}; // TODO: fix me
+    unsigned char myScore[] = {TEXT_MYSCORE2}; // TODO: fix me
 #endif
-    unsigned char sp5C[] = {TEXT_0};
-    u32 *sp58 = (u32 *)segmented_to_virtual(seg2_level_name_table);
-    u8 *sp54 = (u8 *) segmented_to_virtual((void *) sp58[gCurrCourseNum - 1]);
-    u32 *sp50 = (u32 *)segmented_to_virtual(seg2_act_name_table);
-    u8 *sp4C;
+    unsigned char starNumbers[] = {TEXT_0};
+    u32 *levelNameTbl = (u32 *)segmented_to_virtual(seg2_level_name_table);
+    u8 *currLevelName = (u8 *) segmented_to_virtual((void *) levelNameTbl[gCurrCourseNum - 1]);
+    u32 *actNameTbl = (u32 *)segmented_to_virtual(seg2_act_name_table);
+    u8 *selectedActName;
     s16 x;
     s16 x2;
-    s8 sp47;
+    s8 i;
 
     dl_add_new_ortho_matrix();
 
+    // Display the coin highscore.
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED00);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
 
@@ -198,35 +202,39 @@ void func_80177004(void)
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
     gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, 255);
 
+    // Display the "MY SCORE" text
     if (save_file_get_course_coin_score(gCurrSaveFileNum - 1, gCurrCourseNum - 1) != 0)
-        PrintGenericText(102, 118, sp60);
+        PrintGenericText(102, 118, myScore);
 
-	// add 3 to skip the number and spacing to get to the actual string to center.
-    x = get_str_x_pos_from_center(160, sp54 + 3, 10.0f);
-    PrintGenericText(x, 33, sp54 + 3);
+    // Display the level name; add 3 to skip the number and spacing to get to the actual string to center.
+    x = get_str_x_pos_from_center(160, currLevelName + 3, 10.0f);
+    PrintGenericText(x, 33, currLevelName + 3);
 
+    // Display the course number.
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
-
-    ShowSomeNum();
+    
+    ShowCourseNumber();
 
     gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D108);
     gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, 255);
-
+    
+    // Display the name of the selected act.
     if (sVisibleStars != 0)
     {
-        sp4C = (u8 *) segmented_to_virtual((void *) (sp50[(gCurrCourseNum - 1) * 6 + sSelectedStar]));
+        selectedActName = (u8 *) segmented_to_virtual((void *) (actNameTbl[(gCurrCourseNum - 1) * 6 + sSelectedAct]));
 #ifdef VERSION_JP
-        x2 = get_str_x_pos_from_center(158, sp4C, 8.0f);
+        x2 = get_str_x_pos_from_center(158, selectedActName, 8.0f);
 #else
-        x2 = get_str_x_pos_from_center(163, sp4C, 8.0f);
+        x2 = get_str_x_pos_from_center(163, selectedActName, 8.0f);
 #endif
-        PrintRegularText(x2, 81, sp4C);
+        PrintRegularText(x2, 81, selectedActName);
     }
 
-    for (sp47 = 1; sp47 <= sVisibleStars; sp47++)
+    // Display the numbers above each star.
+    for (i = 1; i <= sVisibleStars; i++)
     {
-        sp5C[0] = sp47;
-        PrintRegularText(sp47 * 34 - sVisibleStars * 17 + 0x8B, 38, sp5C);
+        starNumbers[0] = i;
+        PrintRegularText(i * 34 - sVisibleStars * 17 + 0x8B, 38, starNumbers);
     }
 
     gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D160);
@@ -235,7 +243,7 @@ void func_80177004(void)
 int Geo18_80177518(s16 a, UNUSED int b)
 {
     if (a == 1)
-        func_80177004();
+        ShowActSelectorMenu();
     return 0;
 }
 
@@ -243,41 +251,38 @@ void LevelProc_80177560(UNUSED int a, UNUSED int b)
 {
     u8 stars = save_file_get_star_flags(gCurrSaveFileNum - 1, gCurrCourseNum - 1);
 
-    D_801B9910 = 0;
-    D_801B9913 = 0;
+    sCurrentMission = 0;
+    sDefaultSelectedAct = 0;
     sVisibleStars = 0;
-    D_801A8018 = 0;
+    sActSelectorMenuTimer = 0;
     sObtainedStars = save_file_get_course_star_count(gCurrSaveFileNum - 1, gCurrCourseNum - 1);
 
-    if (stars & 0x40)
+    // Don't count 100 coin star
+    if (stars & (1 << 6))
         sObtainedStars--;
 }
 
-#ifdef VERSION_JP
-#define STAR_SELECT_SOUND SOUND_MENU_STARSOUND
-#else
-#define STAR_SELECT_SOUND SOUND_MENU_STARSOUNDLETSAGO
-#endif
-
 int LevelProc_80177610(UNUSED int a, UNUSED int b)
 {
-    if (D_801A8018 >= 11)
+    if (sActSelectorMenuTimer >= 11)
     {
         if ((gPlayer3Controller->buttonPressed & A_BUTTON)
          || (gPlayer3Controller->buttonPressed & START_BUTTON)
          || (gPlayer3Controller->buttonPressed & B_BUTTON))
         {
-            SetSound(STAR_SELECT_SOUND, D_803320E0);
-            if (D_801B9913 > sSelectedStar)
-                D_801B9910 = sSelectedStar + 1;
+#ifdef VERSION_JP
+            SetSound(SOUND_MENU_STARSOUND, D_803320E0);
+#else
+            SetSound(SOUND_MENU_STARSOUNDLETSAGO, D_803320E0);
+#endif
+            if (sDefaultSelectedAct > sSelectedAct)
+                sCurrentMission = sSelectedAct + 1;
             else
-                D_801B9910 = D_801B9913;
-            D_80330534 = sSelectedStar + 1;
+                sCurrentMission = sDefaultSelectedAct;
+            D_80330534 = sSelectedAct + 1;
         }
     }
     area_update_objects();
-    D_801A8018++;
-    return D_801B9910;
+    sActSelectorMenuTimer++;
+    return sCurrentMission;
 }
-
-#undef STAR_SELECT_SOUND

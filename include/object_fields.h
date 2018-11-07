@@ -119,13 +119,9 @@
 #define /*0x110*/ oMarioWalkingPitch OBJECT_FIELD_S32(0x22)
 
 /* Star selector */
-#define /*0x0F4*/ oStarSelectorUnkF4 OBJECT_FIELD_S32(0x1B)
-#define /*0x0F8*/ oStarSelectorUnkF8 OBJECT_FIELD_S32(0x1C)
+#define /*0x0F4*/ oStarSelectorType OBJECT_FIELD_S32(0x1B)
+#define /*0x0F8*/ oStarSelectorTimer OBJECT_FIELD_S32(0x1C)
 #define /*0x108*/ oStarSelectorSize OBJECT_FIELD_F32(0x20)
-
-/* Star select icon */
-#define /*0x0F4*/ oStarSelectIconUnkF4 OBJECT_FIELD_S32(0x1B)
-#define /*0x108*/ oStarSelectIconUnk108 OBJECT_FIELD_F32(0x20)
 
 /* Sound effect */
 #define /*0x0F4*/ oSoundEffectUnkF4 OBJECT_FIELD_S32(0x1B)
