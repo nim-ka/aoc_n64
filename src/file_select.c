@@ -1,7 +1,7 @@
 #include <ultra64.h>
 
 #include "sm64.h"
-#include "audio_interface_2.h"
+#include "audio/interface_2.h"
 #include "behavior_data.h"
 #include "behavior_script.h"
 #include "game.h"

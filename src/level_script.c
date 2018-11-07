@@ -1,7 +1,7 @@
 #include <ultra64.h>
 
 #include "sm64.h"
-#include "audio_interface_2.h"
+#include "audio/interface_2.h"
 #include "display.h"
 #include "game.h"
 #include "geo_layout.h"

@@ -8,7 +8,7 @@
 #include "object_helpers.h"
 #include "behavior_script.h"
 #include "surface_collision.h"
-#include "audio_interface_2.h"
+#include "audio/interface_2.h"
 #include "level_update.h"
 #include "spawn_object.h"
 #include "object_list_processor.h"

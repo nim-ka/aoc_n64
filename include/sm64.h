@@ -463,6 +463,11 @@ extern void func_u_803219AC();
 #define UNUSED
 #endif
 
+// Ignore GLOBAL_ASM blocks when syntax-checking with GCC
+#ifdef __GNUC__
+#define GLOBAL_ASM(...)
+#endif
+
 // convert a virtual address to physical.
 #define VIRTUAL_TO_PHYSICAL(addr)    ((u32)(addr) & 0x1FFFFFFF)
 // convert a physical address to virtual.

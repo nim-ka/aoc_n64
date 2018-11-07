@@ -3,7 +3,7 @@
 #include "sm64.h"
 #include "behavior_script.h"
 #include "object_helpers.h"
-#include "audio_interface_2.h"
+#include "audio/interface_2.h"
 #include "print.h"
 #include "surface_collision.h"
 #include "mario.h"

@@ -5,7 +5,7 @@
 #include "types.h"
 #include "mario_step.h"
 #include "mario.h"
-#include "audio_interface_2.h"
+#include "audio/interface_2.h"
 #include "interaction.h"
 #include "audio_defines.h"
 #include "math_util.h"

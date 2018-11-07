@@ -14,7 +14,7 @@
 #include "obj_behaviors.h"
 #include "object_helpers.h"
 #include "behavior_actions.h"
-#include "audio_interface_2.h"
+#include "audio/interface_2.h"
 #include "interaction.h"
 #include "behavior_data.h"
 

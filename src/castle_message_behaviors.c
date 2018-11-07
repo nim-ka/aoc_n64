@@ -2,7 +2,7 @@
 
 #include "sm64.h"
 #include "area.h"
-#include "audio_interface_2.h"
+#include "audio/interface_2.h"
 #include "camera.h"
 #include "castle_message_behaviors.h"
 #include "behavior_actions.h"

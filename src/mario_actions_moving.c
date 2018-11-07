@@ -2,7 +2,7 @@
 
 #include "sm64.h"
 #include "mario.h"
-#include "audio_interface_2.h"
+#include "audio/interface_2.h"
 #include "math_util.h"
 #include "surface_collision.h"
 #include "mario_step.h"

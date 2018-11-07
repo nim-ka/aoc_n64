@@ -5,7 +5,7 @@
 * make
 * git
 * binutils-mips-linux-gnu (>= 2.27)
-* python2 or 3 (later than 2.6 or 3 is required) [just install "python" if you're not sure]
+* python3
 * build-essential
 * pkg-config
 * zlib1g-dev

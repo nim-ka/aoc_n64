@@ -10,7 +10,7 @@
 #include "display.h"
 #include "camera.h"
 #include "save_file.h"
-#include "audio_interface_2.h"
+#include "audio/interface_2.h"
 #include "graph_node.h"
 
 static void play_flip_sounds(struct MarioState *m, s16 frame1, s16 frame2, s16 frame3)

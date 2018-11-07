@@ -33,11 +33,12 @@ MIO0_DIR := $(BUILD_DIR)/mio0
 TEXTURE_DIR := textures
 
 # Directories containing source files
-SRC_DIRS := src src/libultra src/goddard src/goddard/dynlists
+SRC_DIRS := src src/libultra src/goddard src/goddard/dynlists src/audio
 ASM_DIRS := asm data geo levels sound demos anims text
 BIN_DIRS := bin
 
 MIPSISET := -mips2
+OPT_FLAGS := -g
 
 # Source code files
 C_FILES := $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.c))
@@ -70,7 +71,7 @@ OBJCOPY   := $(CROSS)objcopy
 CC_CHECK := gcc -fsyntax-only -fsigned-char -I include -std=gnu90 -Wall -Wextra -Wno-format-security $(VERSION_CFLAGS)
 
 ASFLAGS := -march=vr4300 -mabi=32 -I include -I $(BUILD_DIR) $(VERSION_ASFLAGS)
-CFLAGS := -Wab,-r4300_mul -non_shared -G 0 -Xcpluscomm -Xfullwarn -g -signed -I include $(VERSION_CFLAGS)
+CFLAGS = -Wab,-r4300_mul -non_shared -G 0 -Xcpluscomm -Xfullwarn $(OPT_FLAGS) -signed -I include $(VERSION_CFLAGS) $(MIPSISET)
 OBJCOPYFLAGS := --pad-to=0x800000 --gap-fill=0xFF
 SYMBOL_LINKING_FLAGS := $(addprefix -R ,$(SEG_FILES))
 LDFLAGS := -T undefined_syms.txt -T $(BUILD_DIR)/$(LD_SCRIPT) -Map $(BUILD_DIR)/sm64.map --no-check-sections $(SYMBOL_LINKING_FLAGS)
@@ -194,10 +195,12 @@ $(MIO0_DIR)/%.mio0.s: $(MIO0_DIR)/%.mio0
 # Source code
 
 $(BUILD_DIR)/src/goddard/%.o: MIPSISET := -mips1
+$(BUILD_DIR)/src/audio/%.o: CC := python3 tools/asm_processor/build.py $(CC) -- $(AS) $(ASFLAGS) --
+$(BUILD_DIR)/src/audio/%.o: OPT_FLAGS := -O2 -framepointer
 
 $(BUILD_DIR)/%.o: %.c
 	@$(CC_CHECK) -MMD -MT $@ -MF $(BUILD_DIR)/$*.d $<
-	$(CC) -c $(CFLAGS) $(MIPSISET) -o $@ $<
+	$(CC) -c $(CFLAGS) -o $@ $<
 
 $(BUILD_DIR)/%.o: %.s $(MIO0_FILES)
 	$(AS) $(ASFLAGS) -MD $(BUILD_DIR)/$*.d -o $@ $<

@@ -3,7 +3,7 @@
 #include "sm64.h"
 #include "behavior_script.h"
 #include "object_helpers.h"
-#include "audio_interface_2.h"
+#include "audio/interface_2.h"
 #include "spawn_sound.h"
 
 extern void *beh_sound_spawner;

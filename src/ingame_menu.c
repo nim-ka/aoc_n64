@@ -3,7 +3,7 @@
 #include "sm64.h"
 #include "memory.h"
 #include "types.h"
-#include "audio_interface_2.h"
+#include "audio/interface_2.h"
 #include "game.h"
 #include "save_file.h"
 #include "level_update.h"

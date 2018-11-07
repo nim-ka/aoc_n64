@@ -9,7 +9,7 @@
 #include "behavior_script.h"
 #include "ingame_menu.h"
 #include "text_strings.h"
-#include "audio_interface_2.h"
+#include "audio/interface_2.h"
 #include "level_update.h"
 #include "segment2.h"
 #include "segment7.h"

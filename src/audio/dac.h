@@ -15,7 +15,7 @@
 // extern ? D_80226D7F;
 // extern ? D_803330E0;
 // extern ? D_80332F5C;
-// extern ? D_802218D0;
+extern u8 D_802218D0[];
 // extern ? D_80221910;
 // extern ? D_80221A10;
 // extern ? D_80225EA8;
@@ -32,7 +32,7 @@
 // extern ? D_8022132C;
 // extern ? D_802214FC;
 // extern ? D_802216CC;
-// extern ? D_80221328;
+extern u8 D_80221328[]; // unknown type
 // extern ? D_802214F8;
 // extern ? D_802216C8;
 // extern ? D_802214C0;
@@ -42,12 +42,12 @@
 // extern ? D_8022168C;
 // extern ? D_8022185C;
 // extern ? D_80226D80;
-// extern ? D_80333EF4;
+extern volatile s32 D_80333EF4;
 // extern ? D_80226D84;
 // extern ? D_80225EE8;
 // extern ? D_80226E40;
 // extern ? D_80226E4C;
-// extern ? D_80226B38;
+extern u32 D_80226B38;
 // extern ? D_80226D64;
 // extern ? D_80226D74;
 // extern ? D_802212A3;
@@ -77,7 +77,7 @@
 // extern ? func_8031625C(?);
 // extern ? func_80316318(?);
 // extern ? func_803163DC(?);
-// extern ? func_8031680C(?);
+extern s32 func_8031680C(void *arg0, s32 arg1, s32 arg2);
 // extern ? func_803168CC(?);
 // extern ? func_803168F4(?);
 // extern ? func_80316928(?);

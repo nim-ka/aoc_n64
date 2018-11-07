@@ -19,7 +19,7 @@
 #include "area.h"
 #include "castle_message_behaviors.h"
 #include "level_update.h"
-#include "audio_interface_2.h"
+#include "audio/interface_2.h"
 #include "behavior_actions.h"
 #include "spawn_object.h"
 #include "spawn_sound.h"
