@@ -836,7 +836,7 @@ static u32 interact_star_or_key(struct MarioState *m, UNUSED u32 interactType, s
         m->interactObj = o;
         m->usedObj = o;
 
-        starIndex = (o->oUnk188 >> 24) & 0x1F;
+        starIndex = (o->oBehParamCopy >> 24) & 0x1F;
         save_file_collect_star_or_key(m->numCoins, starIndex);
 
         m->numStars = save_file_get_total_star_count(
@@ -932,7 +932,7 @@ static u32 interact_warp_door(struct MarioState *m, UNUSED u32 interactType, str
 {
     u32 doorAction = 0;
     u32 saveFlags = save_file_get_flags();
-    s16 warpDoorId = o->oUnk188 >> 24;
+    s16 warpDoorId = o->oBehParamCopy >> 24;
     u32 actionArg;
 
     if (m->action == ACT_WALKING || m->action == ACT_DECELERATING)
@@ -990,7 +990,7 @@ static u32 interact_warp_door(struct MarioState *m, UNUSED u32 interactType, str
 u32 get_door_save_file_flag(struct Object *door)
 {
     u32 saveFileFlag = 0;
-    s16 requiredNumStars = door->oUnk188 >> 24;
+    s16 requiredNumStars = door->oBehParamCopy >> 24;
     
     s16 isCcmDoor = door->oPosX < 0.0f;
     s16 isPssDoor = door->oPosY > 500.0f;
@@ -1029,7 +1029,7 @@ u32 get_door_save_file_flag(struct Object *door)
 
 static u32 interact_door(struct MarioState *m, UNUSED u32 interactType, struct Object *o)
 {
-    s16 requiredNumStars = o->oUnk188 >> 24;
+    s16 requiredNumStars = o->oBehParamCopy >> 24;
     s16 numStars = save_file_get_total_star_count(
         gCurrSaveFileNum - 1, COURSE_MIN - 1, COURSE_MAX - 1);
 
@@ -1896,7 +1896,7 @@ static void pss_end_slide(struct MarioState *m)
         u16 slideTime = level_control_timer(TIMER_CONTROL_STOP);
         if (slideTime < 630)
         {
-            m->marioObj->oUnk188 = 0x01000000;
+            m->marioObj->oBehParamCopy = 0x01000000;
             CreateStar(-6358.0f, -4300.0f, 4700.0f);
         }
         sPssSlideStarted = FALSE;

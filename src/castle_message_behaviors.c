@@ -128,69 +128,69 @@ Gfx *Geo18_802764B0(int a, struct GraphNode *b, Mat4 *c)
     return sp24;
 }
 
-void func_80275FCC(void)
+void BehToadMessageFaded(void)
 {
     if (gCurrentObject->oDistanceToMario > 700.0f)
-        gCurrentObject->oToadMessageUnk10C = 0;
-    if (gCurrentObject->oToadMessageUnk10C == 0 && gCurrentObject->oDistanceToMario < 600.0f)
-        gCurrentObject->oToadMessageUnk110 = 2;
+        gCurrentObject->oToadMessageRecentlyTalked = 0;
+    if (gCurrentObject->oToadMessageRecentlyTalked == 0 && gCurrentObject->oDistanceToMario < 600.0f)
+        gCurrentObject->oToadMessageState = TOAD_MESSAGE_OPACIFYING;
 }
 
-void func_8027604C(void)
+void BehToadMessageOpaque(void)
 {
     if (gCurrentObject->oDistanceToMario > 700.0f)
     {
-        gCurrentObject->oToadMessageUnk110 = 3;
+        gCurrentObject->oToadMessageState = TOAD_MESSAGE_FADING;
     }
     else
     {
-        if (gCurrentObject->oToadMessageUnk10C == 0)
+        if (gCurrentObject->oToadMessageRecentlyTalked == 0)
         {
-            gCurrentObject->oUnk190 = 0x4000;
-            if (gCurrentObject->oInteractStatus & 0x8000)
+            gCurrentObject->oUnk190 = (1 << 14);
+            if (gCurrentObject->oInteractStatus & (1 << 15))
             {
                 gCurrentObject->oInteractStatus = 0;
-                gCurrentObject->oToadMessageUnk110 = 4;
+                gCurrentObject->oToadMessageState = TOAD_MESSAGE_TALKING;
                 func_8032132C();
             }
         }
     }
 }
 
-void func_80276104(void)
+void BehToadMessageTalking(void)
 {
-    if (CreateMessageBox(3, 1, 162, gCurrentObject->oToadMessageUnk108) != 0)
+    if (CreateMessageBox(3, 1, 162, gCurrentObject->oToadMessageDialogNum) != 0)
     {
-        gCurrentObject->oToadMessageUnk10C = 1;
-        gCurrentObject->oToadMessageUnk110 = 3;
-        switch (gCurrentObject->oToadMessageUnk108)
+        gCurrentObject->oToadMessageRecentlyTalked = 1;
+        gCurrentObject->oToadMessageState = TOAD_MESSAGE_FADING;
+        switch (gCurrentObject->oToadMessageDialogNum)
         {
-        case 82:
-            gCurrentObject->oToadMessageUnk108 = 154;
+        case TOAD_STAR_1_DIALOG:
+            gCurrentObject->oToadMessageDialogNum = TOAD_STAR_1_DIALOG_AFTER;
             func_802AACE4(0);
             break;
-        case 76:
-            gCurrentObject->oToadMessageUnk108 = 155;
+        case TOAD_STAR_2_DIALOG:
+            gCurrentObject->oToadMessageDialogNum = TOAD_STAR_2_DIALOG_AFTER;
             func_802AACE4(1);
             break;
-        case 83:
-            gCurrentObject->oToadMessageUnk108 = 156;
+        case TOAD_STAR_3_DIALOG:
+            gCurrentObject->oToadMessageDialogNum = TOAD_STAR_3_DIALOG_AFTER;
             func_802AACE4(2);
             break;
         }
     }
 }
 
-void func_80276208(void)
+void BehToadMessageOpacifying(void)
 {
     if ((gCurrentObject->oOpacity += 6) == 255)
-        gCurrentObject->oToadMessageUnk110 = 1;
+        gCurrentObject->oToadMessageState = TOAD_MESSAGE_OPAQUE;
 }
 
-void func_80276254(void)
+void BehToadMessageFading(void)
 {
     if ((gCurrentObject->oOpacity -= 6) == 81)
-        gCurrentObject->oToadMessageUnk110 = 0;
+        gCurrentObject->oToadMessageState = TOAD_MESSAGE_FADED;
 }
 
 void BehToadMessageLoop(void)
@@ -198,22 +198,22 @@ void BehToadMessageLoop(void)
     if (gCurrentObject->header.gfx.node.flags & 1)
     {
         gCurrentObject->oUnk190 = 0;
-        switch (gCurrentObject->oToadMessageUnk110)
+        switch (gCurrentObject->oToadMessageState)
         {
-        case 0:
-            func_80275FCC();
+        case TOAD_MESSAGE_FADED:
+            BehToadMessageFaded();
             break;
-        case 1:
-            func_8027604C();
+        case TOAD_MESSAGE_OPAQUE:
+            BehToadMessageOpaque();
             break;
-        case 2:
-            func_80276208();
+        case TOAD_MESSAGE_OPACIFYING:
+            BehToadMessageOpacifying();
             break;
-        case 3:
-            func_80276254();
+        case TOAD_MESSAGE_FADING:
+            BehToadMessageFading();
             break;
-        case 4:
-            func_80276104();
+        case TOAD_MESSAGE_TALKING:
+            BehToadMessageTalking();
             break;
         }
     }
@@ -221,34 +221,34 @@ void BehToadMessageLoop(void)
 
 void BehToadMessageInit(void)
 {
-    int sp34 = save_file_get_flags();
-    int sp30 = save_file_get_total_star_count(gCurrSaveFileNum - 1, 0, 24);
-    int sp2C = (gCurrentObject->oUnk188 >> 24) & 0xFF;
-    int sp28 = TRUE;
+    int saveFlags = save_file_get_flags();
+    int starCount = save_file_get_total_star_count(gCurrSaveFileNum - 1, 0, 24);
+    int dialogNum = (gCurrentObject->oBehParamCopy >> 24) & 0xFF;
+    int enoughStars = TRUE;
 
-    switch (sp2C)
+    switch (dialogNum)
     {
-    case 82:
-        sp28 = (sp30 >= 12);
-        if (sp34 & 0x1000000)
-            sp2C = 154;
+    case TOAD_STAR_1_DIALOG:
+        enoughStars = (starCount >= TOAD_STAR_1_REQUIREMENT);
+        if (saveFlags & (1 << 24))
+            dialogNum = TOAD_STAR_1_DIALOG_AFTER;
         break;
-    case 76:
-        sp28 = (sp30 >= 25);
-        if (sp34 & 0x2000000)
-            sp2C = 155;
+    case TOAD_STAR_2_DIALOG:
+        enoughStars = (starCount >= TOAD_STAR_2_REQUIREMENT);
+        if (saveFlags & (1 << 25))
+            dialogNum = TOAD_STAR_2_DIALOG_AFTER;
         break;
-    case 83:
-        sp28 = (sp30 >= 35);
-        if (sp34 & 0x4000000)
-            sp2C = 156;
+    case TOAD_STAR_3_DIALOG:
+        enoughStars = (starCount >= TOAD_STAR_3_REQUIREMENT);
+        if (saveFlags & (1 << 26))
+            dialogNum = TOAD_STAR_3_DIALOG_AFTER;
         break;
     }
-    if (sp28)
+    if (enoughStars)
     {
-        gCurrentObject->oToadMessageUnk108 = sp2C;
-        gCurrentObject->oToadMessageUnk10C = 0;
-        gCurrentObject->oToadMessageUnk110 = 0;
+        gCurrentObject->oToadMessageDialogNum = dialogNum;
+        gCurrentObject->oToadMessageRecentlyTalked = 0;
+        gCurrentObject->oToadMessageState = TOAD_MESSAGE_FADED;
         gCurrentObject->oOpacity = 81;
     }
     else

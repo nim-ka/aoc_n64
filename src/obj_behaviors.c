@@ -995,10 +995,10 @@ void BehBobombInit(void)
 
 void func_802E5B7C(void)
 {
-    if (((o->oUnk188 >> 8) & 0x1) == 0)
+    if (((o->oBehParamCopy >> 8) & 0x1) == 0)
     {
         ObjSpawnYellowCoins(o, 1);
-        o->oUnk188 = 0x100;
+        o->oBehParamCopy = 0x100;
         func_8029C6D8(o, 1);
     }
 }
@@ -2338,7 +2338,7 @@ void BehBobombCorkBoxRespawnerLoop(void)
     if (!IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, o->oBBCBRespawnerMinSpawnDist))
     {
         sp1c = SpawnObj(o, o->oBreakableBoxBackupUnkF4, o->oBBCBRespawnerBehaviorToSpawn);
-        sp1c->oUnk188 = o->oUnk188;
+        sp1c->oBehParamCopy = o->oBehParamCopy;
         o->active = 0;
     }
 }
@@ -2350,7 +2350,7 @@ void BehBobombCorkBoxRespawnerLoop(void)
 void RespawnBobombOrCorkbox(s32 arg0, void *behToSpawn, s32 minSpawnDist)
 {
     struct Object *respawner = func_8029E230(o, 0, 0, beh_bobomb_cork_box_respawner, o->oHomeX, o->oHomeY, o->oHomeZ, 0, 0, 0);
-    respawner->oUnk188 = o->oUnk188;
+    respawner->oBehParamCopy = o->oBehParamCopy;
     respawner->oBreakableBoxBackupUnkF4 = arg0;
     respawner->oBBCBRespawnerMinSpawnDist = minSpawnDist;
     respawner->oBBCBRespawnerBehaviorToSpawn = behToSpawn;

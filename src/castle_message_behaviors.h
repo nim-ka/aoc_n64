@@ -3,6 +3,27 @@
 
 #include "types.h"
 
+#define TOAD_STAR_1_REQUIREMENT 12
+#define TOAD_STAR_2_REQUIREMENT 25
+#define TOAD_STAR_3_REQUIREMENT 35
+
+#define TOAD_STAR_1_DIALOG 82
+#define TOAD_STAR_2_DIALOG 76
+#define TOAD_STAR_3_DIALOG 83
+
+#define TOAD_STAR_1_DIALOG_AFTER 154
+#define TOAD_STAR_2_DIALOG_AFTER 155
+#define TOAD_STAR_3_DIALOG_AFTER 156
+
+
+enum ToadMessageStates {
+    TOAD_MESSAGE_FADED,
+    TOAD_MESSAGE_OPAQUE,
+    TOAD_MESSAGE_OPACIFYING,
+    TOAD_MESSAGE_FADING,
+    TOAD_MESSAGE_TALKING
+};
+
 struct Struct8033B328
 {
     Vec3f unk0[6];
@@ -46,11 +67,11 @@ extern struct Struct8033B328 D_8033B328;
 // extern ? Geo18_802761D0(?);
 // extern ? Geo19_802763D4(?);
 // extern ? Geo18_802764B0(?);
-// extern ? func_80275FCC(?);
-// extern ? func_8027604C(?);
-// extern ? func_80276104(?);
-// extern ? func_80276208(?);
-// extern ? func_80276254(?);
+// extern ? BehToadMessageFaded(?);
+// extern ? BehToadMessageOpaque(?);
+// extern ? BehToadMessageTalking(?);
+// extern ? BehToadMessageOpacifying(?);
+// extern ? BehToadMessageFading(?);
 // extern ? BehToadMessageLoop(?);
 // extern ? BehToadMessageInit(?);
 // extern ? func_802764F0(?);

@@ -74,7 +74,7 @@
 #define /*0x17C*/ oOpacity OBJECT_FIELD_S32(0x3D)
 #define /*0x180*/ oUnk180 OBJECT_FIELD_S32(0x3E)
 #define /*0x184*/ oUnk184 OBJECT_FIELD_U32(0x3F)
-#define /*0x188*/ oUnk188 OBJECT_FIELD_S32(0x40)
+#define /*0x188*/ oBehParamCopy OBJECT_FIELD_S32(0x40)
 #define /*0x18C*/ oPrevAction OBJECT_FIELD_S32(0x41)
 #define /*0x190*/ oUnk190 OBJECT_FIELD_U32(0x42)
 #define /*0x194*/ oCollisionDistance OBJECT_FIELD_F32(0x43)
@@ -136,9 +136,9 @@
 #define /*0x10C*/ oMainMenuButtonUnk10C OBJECT_FIELD_S32(0x21)
 
 /* Toad message */
-#define /*0x108*/ oToadMessageUnk108 OBJECT_FIELD_U32(0x20)
-#define /*0x10C*/ oToadMessageUnk10C OBJECT_FIELD_S32(0x21)
-#define /*0x110*/ oToadMessageUnk110 OBJECT_FIELD_S32(0x22)
+#define /*0x108*/ oToadMessageDialogNum OBJECT_FIELD_U32(0x20)
+#define /*0x10C*/ oToadMessageRecentlyTalked OBJECT_FIELD_S32(0x21)
+#define /*0x110*/ oToadMessageState OBJECT_FIELD_S32(0x22)
 
 /* Sealed door star */
 #define /*0x108*/ oSealedDoorStarUnk108 OBJECT_FIELD_U32(0x20)

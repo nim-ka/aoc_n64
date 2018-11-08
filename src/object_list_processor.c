@@ -309,7 +309,7 @@ void spawn_objects_from_info(UNUSED s32 unusedArg, struct SpawnInfo *spawnInfo)
         {
             object = create_object(script);
  
-            object->oUnk188 = spawnInfo->behaviorArg;
+            object->oBehParamCopy = spawnInfo->behaviorArg;
             object->oBehParam = ((spawnInfo->behaviorArg) >> 16) & 0xff;
             object->behavior = script;
             object->unk1C8 = 0;

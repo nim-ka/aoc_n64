@@ -593,7 +593,7 @@ struct Object* spawn_obj_adv(s16 sp22, s16 sp26, s16 sp2A, s16 sp2E, struct Obje
     func_8029E140(sp1C, sp26, sp2A, sp2E);
     func_8029E7A4(sp1C);
     sp1C->oBehParam = sp22;
-    sp1C->oUnk188 = (sp22 & 0xFF) << 16;
+    sp1C->oBehParamCopy = (sp22 & 0xFF) << 16;
 
     return sp1C;
 }
@@ -2234,7 +2234,7 @@ s32 func_802A3688(void (*sp20[])(void)) {
 struct Object *func_802A36D8(s32 sp20, s32 sp24) {
     struct Object *sp1C = SpawnObj(gCurrentObject, 122, beh_unused_080C);
     sp1C->oUnk1B0 = sp24;
-    sp1C->oUnk188 = gCurrentObject->oUnk188;
+    sp1C->oBehParamCopy = gCurrentObject->oBehParamCopy;
     sp1C->oBehParam = sp20;
 
     return sp1C;
@@ -2690,7 +2690,7 @@ s32 func_802A49D4(void) {
 }
 
 void func_802A4A50(struct Object *dstObj, struct Object *srcObj) {
-    dstObj->oUnk188 = srcObj->oUnk188;
+    dstObj->oBehParamCopy = srcObj->oBehParamCopy;
     dstObj->oBehParam = srcObj->oBehParam;
 }
 
