@@ -348,6 +348,7 @@ SECTIONS
       BUILD_DIR/src/goddard/skin_fns.o(.text);
       BUILD_DIR/asm/matrix_fns.o(.text);
       BUILD_DIR/src/goddard/half_6.o(.text);
+      BUILD_DIR/src/goddard/mario_head_6.o(.text);
       BUILD_DIR/asm/mario_head_6.o(.text);
       /* data, rodata, per file */
       BUILD_DIR/src/level_select_menu.o(.data*);
