@@ -3514,7 +3514,7 @@ glabel func_80196614
 /* 245754 80196F84 03E00008 */  jr    $ra
 /* 245758 80196F88 00000000 */   nop   
 
-glabel func_80196F8C
+glabel gd_print_vec # func_80196F8C
 /* 24575C 80196F8C 27BDFFF8 */  addiu $sp, $sp, -8
 /* 245760 80196F90 AFA40008 */  sw    $a0, 8($sp)
 /* 245764 80196F94 AFA5000C */  sw    $a1, 0xc($sp)
@@ -3524,7 +3524,7 @@ glabel func_80196F8C
 /* 245770 80196FA0 03E00008 */  jr    $ra
 /* 245774 80196FA4 27BD0008 */   addiu $sp, $sp, 8
 
-glabel func_80196FA8
+glabel gd_print_plane # func_80196FA8
 /* 245778 80196FA8 27BDFFF8 */  addiu $sp, $sp, -8
 /* 24577C 80196FAC AFA40008 */  sw    $a0, 8($sp)
 /* 245780 80196FB0 AFA5000C */  sw    $a1, 0xc($sp)
@@ -3534,7 +3534,7 @@ glabel func_80196FA8
 /* 24578C 80196FBC 03E00008 */  jr    $ra
 /* 245790 80196FC0 27BD0008 */   addiu $sp, $sp, 8
 
-glabel func_80196FC4
+glabel gd_print_mtx #func_80196FC4
 /* 245794 80196FC4 27BDFFE0 */  addiu $sp, $sp, -0x20
 /* 245798 80196FC8 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 24579C 80196FCC AFA40020 */  sw    $a0, 0x20($sp)

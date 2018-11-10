@@ -1058,7 +1058,7 @@ void func_80191604(struct ObjJoint *j)
 /* 23FFF4 -> 2400C4 */
 void Unknown80191824(struct ObjJoint *j)
 {
-    UNUSED s32 sp14;
+    UNUSED struct ObjNet *sp14;
     UNUSED u32 pad00[4];
 
     sp14 = gGdSkinNet->unk1F0;

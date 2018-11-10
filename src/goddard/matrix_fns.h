@@ -37,9 +37,9 @@ extern void mat4_cpy(Mat4*, Mat4*);
 extern void func_80196430(struct MyVec3f *, void *);    // (struct MyVec3f*, Mat4*)
 extern void func_80196540(struct MyVec3f*, Mat4*);
 extern void func_80196614(Mat4*, Mat4*, Mat4*);
-extern void func_80196F8C(char*, struct MyVec3f*);
-// extern ? func_80196FA8(?);
-// extern ? func_80196FC4(?);
+extern void gd_print_vec(const char *, struct MyVec3f *);
+extern void gd_print_plane(const char *, struct GdPlaneF *);
+extern void gd_print_mtx(const char *, Mat4 *);
 // extern ? Unknown80197068(?);
 // extern ? Unknown801970F0(?);
 

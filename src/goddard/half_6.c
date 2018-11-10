@@ -16,28 +16,37 @@
 #include "gd_main.h"
 #include "gd_types.h"
 
-/* This is a file that was incorrectly included in "mario_head_6" when the 
-** initial file spliting happened. */
 
-/* ########## Static BSS ########## */
-/* bss static */ extern struct ObjGroup* sCubeShapeGroup; // @ 801BAB2C
-/* bss static */ extern struct ObjShape* sCubeShape; // @ 801BAB3C
-/* bas static */ extern char sGdLineBuf[]; // @ 801BAB48; char sGdLineBuf[0xFF + 1]; string buffer
-/* bss static */ extern s32 sGdLineBufCsr; // @ 801BAC48; string buffer cursor
-/* bss static */ extern struct GdFile* sGdShapeFile;  // @ 801BAC4C; static file descriptor returned by gd_fopen
-/* bss static */ extern struct ObjShape* sGdShapeListHead; // @ 801BAC50
-/* bss static */ extern u32 sGdShapeCount; // @ 801BAC54
-/* bss static */ extern struct MyVec3f D_801BAC60;
-/* bss static */ extern struct ObjPlane* D_801BAC74;
-/* bss static */ extern struct ObjPlane* D_801BAC78;   // sShapeNetHead? sizeof = 0x24, so what is this?
-/* bss static */ extern struct ObjFace* D_801BAC9C;
-/* bss static */ extern struct ObjFace* D_801BACA0; // sizeof = 0x18??
-/* bss static */ extern struct MyVec3f D_801BACB8;
-/* bss static */ extern struct MyVec3f D_801BACC8;
-/* bss static */ extern struct ObjGroup* D_801BAD08;    // group of planes from make_netfromshape; 0x28 size...
-/* bss static */ extern struct MyVec3f D_801BAD30;  //printed with "c="
+// bss
+static u8 sUnrefSpaceB00[0x2C];            // @ 801BAB00
+static struct ObjGroup * sCubeShapeGroup;  // @ 801BAB2C
+static u8 sUnrefSpaceB30[0xC];             // @ 801BAB30
+static struct ObjShape * sCubeShape;       // @ 801BAB3C
+static u8 sUnrefSpaceB40[0x8];             // @ 801BAB40
+static char sGdLineBuf[0x100];             // @ 801BAB48
+static s32 sGdLineBufCsr;                  // @ 801BAC48
+static struct GdFile * sGdShapeFile;       // @ 801BAC4C
+static struct ObjShape * sGdShapeListHead; // @ 801BAC50
+static u32 sGdShapeCount;                  // @ 801BAC54
+static u8 sUnrefSpaceC58[0x8];             // @ 801BAC58
+static struct MyVec3f D_801BAC60;
+static u32 sUnrefSpaceC6C;                 // @ 801BAC6C
+static u32 sUnrefSpaceC70;                 // @ 801BAC70
+static struct ObjPlane * D_801BAC74;
+static struct ObjPlane * D_801BAC78;       // sShapeNetHead?
+static u8 sUnrefSpaceC80[0x1C];            // @ 801BAC80
+static struct ObjFace * D_801BAC9C;
+static struct ObjFace * D_801BACA0;
+static u8 sUnrefSpaceCA8[0x10];            // @ 801BACA8
+static struct MyVec3f D_801BACB8;
+static struct MyVec3f D_801BACC8;
+static u8 sUnrefSpaceCD8[0x30];            // @ 801BACD8
+static struct ObjGroup * D_801BAD08;       // group of planes from make_netfromshape
+static u8 sUnrefSpaceD10[0x20];            // @ 801BAD10
+static struct MyVec3f D_801BAD30;          //printed with "c="
+static u8 sUnrefSpaceD40[0x120];           // @ 801BAD40
 
-/* ########## Forward Declarations ########## */
+// Forward Declarations
 struct ObjMaterial* find_or_add_new_mtl(struct ObjGroup*, s32, f32, f32, f32);
 
 /* @ 245A50 for 0x40 */
@@ -116,7 +125,7 @@ struct ObjVertex* gd_make_vertex(f32 x, f32 y, f32 z)
     vtx->vec14.z = z;
 
     vtx->unk3C = 1.0f;
-    vtx->unk44 = 0;
+    vtx->unk44 = NULL;
     vtx->unk40 = 1.0f;
 
     vtx->vec2C.x = 0.0f;
@@ -578,7 +587,7 @@ void Unknown801985E8(struct ObjShape* shape)
     D_801BAD30.y = (f32) ((sp18.vec0.y + sp18.vec1.y) / 2.0);   //! 2.0f
     D_801BAD30.z = (f32) ((sp18.vec0.z + sp18.vec1.z) / 2.0);   //! 2.0f
 
-    func_80196F8C("c=", &D_801BAD30);
+    gd_print_vec("c=", &D_801BAD30);
 
     apply_to_obj_types_in_group(
         OBJ_TYPE_VERTICES,

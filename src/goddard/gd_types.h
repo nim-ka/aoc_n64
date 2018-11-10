@@ -185,7 +185,8 @@ struct ObjShape {
     /* 0x18 */ struct ObjShape* nextShape;
     /* 0x1C */ struct ObjGroup* faceGroup;  /* face group; based on get_3DG1_shape */
     /* 0x20 */ struct ObjGroup* vtxGroup;  /* vtx group; based on get_3DG1_shape */
-    /* 0x24 */ u8  pad24[0x2c-0x24];
+    /* 0x24 */ struct ObjGroup* unk24; /* group for type 2 shapenets only ? */
+    /* 0x28 */ u8 pad28[4];
     /* 0x2C */ struct ObjGroup* mtlGroup;  /* what does this group do? materials? */
     /* 0x30 */ s32 unk30;
     /* 0x34 */ s32 faceCount;   /* face count? based on get_3DG1_shape */
@@ -214,54 +215,52 @@ struct GdVtxData {
 
 struct ObjNet {
     /* 0x000 */ struct ObjHeader header;
-    /* 0x014 */ struct MyVec3f unk14;   // position? d_set_initpos + d_set_world_pos
+    /* 0x014 */ struct MyVec3f unk14;   // position? d_set_initpos + d_set_world_pos; print_net says world
     /* 0x020 */ struct MyVec3f unk20;   // position? d_set_initpos? attached offset? dynamic? scratch?
     /* 0x02C */ u8  pad2c[0x34-0x2C];
     /* 0x034 */ s32 unk34;       // "dflags"?
-    /* 0x038 */ u32 unk38;      // some sort of id? from Unknown8019359C
+    /* 0x038 */ u32 unk38;      // some sort of id? from move_net
     /* 0x03C */ s32 unk3C;      // state flags?
     /* 0x040 */ s32 unk40;      // "colour"
-    /* 0x044 */ u8  pad44[0x50-0x44];
-    /* 0x050 */ struct MyVec3f unk50;   //velocity? from unused fn
-    /* 0x05C */ u8  pad5C[0x68-0x5C];
+    /* 0x044 */ struct MyVec3f unk44;   // "force"
+    /* 0x050 */ struct MyVec3f unk50;   // velocity
+    /* 0x05C */ struct MyVec3f unk5C;   // rotation
     /* 0x068 */ struct MyVec3f unk68;   //initial rotation?
-    /* 0x074 */ struct MyVec3f unk74;
-    /* 0x080 */ struct MyVec3f unk80;
-    /* 0x08C */ u8  pad8c[0xA4-0x8c];
-    /* 0x0A4 */ struct MyVec3f unkA4;   //torque? from unused fn
+    /* 0x074 */ struct MyVec3f unk74;   // "collDisp"
+    /* 0x080 */ struct MyVec3f unk80;   // "collTorque"
+    /* 0x08C */ struct MyVec3f unk8C;   // "CollTorqueL"
+    /* 0x098 */ struct MyVec3f unk98;   // "CollTorqueD"
+    /* 0x0A4 */ struct MyVec3f unkA4;   // torque
     /* 0x0B0 */ struct MyVec3f unkB0;   // "CofG" center of gravity?
-    /* 0x0BC */ struct GdPlaneF unkBC;
-    /* 0x0D4 */ u8  padD4[0xe8-0xd4];
+    /* 0x0BC */ struct GdPlaneF unkBC;  // bounding box
+    /* 0x0D4 */ struct MyVec3f unkD4;   // "CollDispOff"
+    /* 0x0E0 */ f32 unkE0;              // "CollMaxD"
+    /* 0x0E4 */ f32 unkE4;              // "MaxRadius"
     /* 0x0E8 */ Mat4 matE8;
     /* 0x128 */ Mat4 mat128;
-    /* 0x168 */ Mat4 mat168;    // "rotation matrix"
-    /* 0x1A8 */ struct ObjHeader *unk1A8;   // variable pointer based on netType...?
-    /* 0x1AC */ struct MyVec3f unk1AC;      // scale?
-    /* 0x1B8 */ u8  pad1B8[0x1c0-0x1b8];
+    /* 0x168 */ Mat4 mat168;             // "rotation matrix"
+    /* 0x1A8 */ struct ObjShape *unk1A8; // "ShapePtr"
+    /* 0x1AC */ struct MyVec3f unk1AC;   // scale
+    /* 0x1B8 */ f32 unk1B8;              // "Mass"
+    /* 0x1BC */ s32 unk1BC;              // "NumModes"
     /* 0x1C0 */ struct ObjGroup *unk1C0;
-    /* 0x1C4 */ struct ObjGroup *skinGrp;    // SkinGroup (from reset_weight) 
-    /* 0x1C8 */ struct ObjGroup *unk1C8;    // based on make_net call in func_8019A378; Particle group (only type 1?)
+    /* 0x1C4 */ struct ObjGroup *skinGrp;   // SkinGroup (from reset_weight) (joints and bones)
+    /* 0x1C8 */ struct ObjGroup *unk1C8;    // "node group"
     /* 0x1CC */ struct ObjGroup *unk1CC;    // plane group (only type 1?)
-    /* 0x1D0 */ struct ObjGroup *unk1D0;    // node group? with 1c8 too...
-    /* 0x1D4 */ struct ObjGroup *unk1D4;    //attach group?
+    /* 0x1D0 */ struct ObjGroup *unk1D0;    // vertex group
+    /* 0x1D4 */ struct ObjGroup *unk1D4;    // attach group?
     /* 0x1D8 */ struct MyVec3f unk1D8;      // attached offset
     /* 0x1E4 */ s32 unk1E4;                 // d_attach_to arg 0; "AttFlag"
     /* 0x1E8 */ struct ObjHeader *unk1E8;   // attached obj?
-    /* 0x1EC */ s32 netType;    // from Unknown8019359C
-    /* 0x1F0 */ s32 unk1F0;
-    /* 0x1F4 */ u8  pad1f4[0x210-0x1f4];
+    /* 0x1EC */ s32 netType;    // from move_net
+    /* 0x1F0 */ struct ObjNet *unk1F0;  // or joint. guess from Unknown80192AD0
+    /* 0x1F4 */ struct MyVec3f unk1F4;
+    /* 0x200 */ struct MyVec3f unk200;
+    /* 0x20C */ struct ObjGroup *unk20C;
     /* 0x210 */ s32 unk210;     // "control type"
-    /* 0x214 */ u8  pad214[0x220-0x214];
+    /* 0x214 */ u8  pad214[0x21C-0x214];
+    /* 0x21C */ s32 unk21C;
 }; /* sizeof = 0x220 */
-/* Net Types (+0x1ec) -> (ptr type at 0x1a8): (from Unknown8019359C)
-    1: shape -> ObjShape (info from: make_netfromshape "make_netfromshape")
-    2: skin -> move_skin
-    3: joint? -> ObjJoint (info from: func_8019A378->make_net call)
-    4: bone -> ObjBone (info from: func_80192C5C)
-    5: ?
-    6: ?
-    7: ?
-*/
 
 struct ObjPlane {
     /* 0x00 */ struct ObjHeader header;
@@ -283,8 +282,24 @@ struct ObjVertex {
     /* 0x3A */ u8  pad3A[2];
     /* 0x3C */ f32 unk3C;
     /* 0x40 */ f32 unk40;
-    /* 0x44 */ s32 unk44;
+    /* 0x44 */ struct VtxLink *unk44;
 }; /* sizeof = 0x48 */
+
+struct VtxLink {
+    struct VtxLink *prev;
+    struct VtxLink *next;
+    struct VtxLinkData *data;
+};
+
+struct VtxLinkData {
+    s16 unk00[6]; 
+    // s16 vec[3]; ?
+    // s16 norm[3]; ?
+    u8 unkC; // sub struct?
+    u8 unkD;
+    u8 unkE;
+    u8 unkF;
+};
 
 struct ObjFace {
     /* 0x00 */ struct ObjHeader header;

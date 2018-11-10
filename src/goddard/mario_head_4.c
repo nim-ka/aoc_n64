@@ -1120,7 +1120,7 @@ void d_set_shapeptrptr(struct ObjShape **shpPtrptr)
             ((struct ObjJoint *)gDynListCurObj)->unk1C8 = 0;
             break;
         case OBJ_TYPE_NETS:
-            ((struct ObjNet *)gDynListCurObj)->unk1A8 = &(*shpPtrptr)->header;
+            ((struct ObjNet *)gDynListCurObj)->unk1A8 = *shpPtrptr;
             break;
         case OBJ_TYPE_BONES:
             ((struct ObjBone *)gDynListCurObj)->unkF0 = *shpPtrptr;
@@ -1160,7 +1160,7 @@ void d_set_shapeptr(DynId id)
             ((struct ObjJoint *)gDynListCurObj)->unk1C8 = 0;
             break;
         case OBJ_TYPE_NETS:
-            ((struct ObjNet *)gDynListCurObj)->unk1A8 = info->obj;
+            ((struct ObjNet *)gDynListCurObj)->unk1A8 = (struct ObjShape *)info->obj;
             break;
         case OBJ_TYPE_BONES:
             ((struct ObjBone *)gDynListCurObj)->unkF0 = (struct ObjShape *)info->obj;

@@ -3,64 +3,6 @@
 
 .section .bss
 
-# start of skin_fs bss
-glabel gGdSkinNet
-    .space 0x4
-glabel D_801BAAF4
-    .space 0x4
-glabel D_801BAAF8
-    .space 0x34
-
-# start of half_6 bss
-glabel sCubeShapeGroup # 801BAB2C
-    .space 0x10
-glabel sCubeShape
-    .space 0xC
-glabel sGdLineBuf # D_801BAB48; char[0xFF + 1]
-    .space 0x100
-glabel sGdLineBufCsr # D_801BAC48
-    .space 0x4
-glabel sGdShapeFile # D_801BAC4C
-    .space 0x4
-glabel sGdShapeListHead
-    .space 0x4
-glabel sGdShapeCount
-    .space 0xC
-glabel D_801BAC60 #MyVec3f
-    .space 0x4
-glabel D_801BAC64
-    .space 0x4
-glabel D_801BAC68
-    .space 0xC
-glabel D_801BAC74
-    .space 0x4
-glabel D_801BAC78
-    .space 0x24
-glabel D_801BAC9C
-    .space 0x4
-glabel D_801BACA0
-    .space 0x18
-glabel D_801BACB8
-    .space 0x4
-glabel D_801BACBC
-    .space 0x4
-glabel D_801BACC0
-    .space 0x8
-glabel D_801BACC8
-    .space 0x4
-glabel D_801BACCC
-    .space 0x4
-glabel D_801BACD0
-    .space 0x38
-glabel D_801BAD08
-    .space 0x28
-glabel D_801BAD30
-    .space 0x4
-glabel D_801BAD34
-    .space 0x4
-glabel D_801BAD38
-    .space 0x128
-
 # head_6
 glabel D_801BAE60
     .space 0x10

@@ -290,7 +290,7 @@ extern void func_8019F258(float, float, float);
 extern void func_8019F2C4(float, int);
 extern void func_8019F318(struct ObjCamera *a, float, float, float, float, float, float, float);
 extern void func_8019F9D8(int);
-extern int func_8019FA60(float, float, float, float);
+extern void *func_8019FA60(float, float, float, float);
 extern void func_8019FEF0(void);
 extern void func_8019FF54(float, float, float, float, float, float, float, float, float);
 extern void func_801A0038(void);

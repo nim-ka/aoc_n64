@@ -5251,6 +5251,74 @@ glabel func_8019F9D8
 /* 24E228 8019FA58 03E00008 */  jr    $ra
 /* 24E22C 8019FA5C 00000000 */   nop   
 
+#//Quick Decomp of func_8019FA60
+#
+#struct GdDisplayList {
+#    s32 count;
+#    s32 unk;
+#    struct VtxLinkData *data;
+#    s32 count;
+#    s32 unk;
+#    struct MtxData *data;
+#    s32 count;
+#    s32 unk;
+#    struct LightData *data;
+#    s32 count;
+#    s32 unk;
+#    struct GfxData *data;
+#}
+#s16 * D_801BB0A0; // list of second part of vtx data? s16 [2]?
+#s8 * D_801BB180;  // char buffer ?
+#
+#s32 D_801BB0BC; 
+#s32 D_801BB0CC;
+#s32 D_801BB0C4; // VtxData Count? Len?
+#s32 D_801BB0B4; // VtxData s16 offset?
+#struct VtxLink *D_801BAF30; // error links?
+#struct VtxLink *D_801A86FC;
+#
+#struct VtxLinkData * func_8019FA60(f32 a0, f32 a1, f32 a2, f32 a3) //sp20
+#{
+#    struct VtxLinkData *data; // 1c
+#    int i; // 18
+#
+#    data = NULL;
+#
+#    for (i = D_801BB0CC; i < D_801BB0CC + D_801BB0BC; i++ )
+#    { //L8019FAA0
+#        if (D_801A86FC->data[i].unk00[0] == (s16) a0 && 
+#            D_801A86FC->data[i].unk00[1] == (s16) a1 &&
+#            D_801A86FC->data[i].unk00[2] == (s16) a2 && )
+#        {
+#            D_801BAF30[D_801BB0C4].unk00[D_801BB0B4++] = i;
+#            return NULL;
+#        }
+#        //L8019FBCC
+#    }
+#    //L8019FBF4
+#    D_801BB0BC++;
+#    D_801BAF30[D_801BB0C4].unk00[D_801BB0B4++] = (s16) D_801A86FC->count; //!WTF
+#    //8019FC50
+#    D_801A86FC->data[D_801A86FC->count].unk00[0] = a0;
+#    D_801A86FC->data[D_801A86FC->count].unk00[1] = a1;
+#    D_801A86FC->data[D_801A86FC->count].unk00[2] = a2;
+#    // 8019FD10
+#    D_801A86FC->data[D_801A86FC->count].unk00[3] = 0;
+#    // 8019FD24
+#    D_801A86FC->data[D_801A86FC->count].unk00[4] = D_801BB0A0[0];
+#    D_801A86FC->data[D_801A86FC->count].unk00[5] = D_801BB0A0[1];
+#    // 8019FD74
+#    D_801A86FC->data[D_801A86FC->count].unkC = D_801BB180[0];
+#    D_801A86FC->data[D_801A86FC->count].unkD = D_801BB180[1];
+#    D_801A86FC->data[D_801A86FC->count].unkE = D_801BB180[2];
+#    // 8019FDEC
+#    D_801A86FC->data[D_801A86FC->count].unkF = (u8) a3;
+#
+#    data = &D_801A86FC->data[D_801A86FC->count];
+#
+#    return data;
+#}
+
 glabel func_8019FA60
 /* 24E230 8019FA60 27BDFFE0 */  addiu $sp, $sp, -0x20
 /* 24E234 8019FA64 AFBF0014 */  sw    $ra, 0x14($sp)
@@ -13452,7 +13520,7 @@ glabel func_801A71CC
 /* 2559F4 801A7224 8FA500B8 */  lw    $a1, 0xb8($sp)
 /* 2559F8 801A7228 3C04801C */  lui    $a0, %hi(D_801B9694) 
 /* 2559FC 801A722C 24849694 */  addiu $a0, %lo(D_801B9694) # addiu $a0, $a0, -0x696c
-/* 255A00 801A7230 0C065BEA */  jal   func_80196FA8
+/* 255A00 801A7230 0C065BEA */  jal   gd_print_plane
 /* 255A04 801A7234 24A500BC */   addiu $a1, $a1, 0xbc
 /* 255A08 801A7238 8FB900B8 */  lw    $t9, 0xb8($sp)
 /* 255A0C 801A723C 44803000 */  mtc1  $zero, $f6
@@ -13750,7 +13818,7 @@ glabel func_801A71CC
 /* 255E4C 801A767C 8FA50044 */  lw    $a1, 0x44($sp)
 /* 255E50 801A7680 3C04801C */  lui   $a0, %hi(D_801B96C8) # $a0, 0x801c
 /* 255E54 801A7684 248496C8 */  addiu $a0, %lo(D_801B96C8) # addiu $a0, $a0, -0x6938
-/* 255E58 801A7688 0C065BEA */  jal   func_80196FA8
+/* 255E58 801A7688 0C065BEA */  jal   gd_print_plane
 /* 255E5C 801A768C 24A50028 */   addiu $a1, $a1, 0x28
 /* 255E60 801A7690 3C04801C */  lui   $a0, %hi(D_801B96D0) # $a0, 0x801c
 /* 255E64 801A7694 0C063456 */  jal   fatal_printf

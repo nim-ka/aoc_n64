@@ -17,7 +17,7 @@ struct GdMem801B9920 { // D_801B9920
     /* 0x20 */ s32 unk20;
     /* 0x24 */ s32 unk24;
     /* 0x28 */ void* unk28;     // null-checked ptr; symbol not deref-ed in extant code?
-    /* 0x2C */ void* unk2C;     // null-checked ptr; symbol not deref-ed in extant code?
+    /* 0x2C */ void* unk2C;     // some sort of old texture ptr?; symbol not deref-ed in extant code?
     /* 0x30 */ void* unk30;     // null-checked ptr; symbol not deref-ed in extant code?
     /* 0x34 */ u8  pad34[0x38-0x34];
     /* 0x38 */ void* unk38;

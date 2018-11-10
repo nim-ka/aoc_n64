@@ -48,15 +48,15 @@ void Unknown801815E0(Mat4* mtx)
 /* @ 22FF30 for 0xDC */
 /* called with ObjNext->unk1A8 (variable obj ptr?) ->unk20 or ->unk24 ptr*/
 // TODO: figure out the proper object type for a0
-void func_80181760(struct ObjUnkFromNet1A8* a0)
+void func_80181760(struct ObjGroup *a0)
 {
     register f32 sp1C;
-    register struct ObjUnkSub* subStruct;
+    register struct Links* link;
     Mat4* mtx;
     
-    for (subStruct = a0->ptr1C; subStruct != NULL; subStruct = subStruct->next)
+    for (link = a0->link1C; link != NULL; link = link->next)
     {
-        mtx = subStruct->mat08;
+        mtx = (Mat4 *)link->obj;
 
         if ((sp1C = (*mtx)[3][3]) != 0.0f)
         {
@@ -75,7 +75,7 @@ void move_skin(struct ObjNet* net)
     UNUSED u8 pad1C[8];
 
     if (net->unk1A8 != NULL)
-        func_80181760(((struct ObjUnkFromNet1A8*)net->unk1A8)->unk24);
+        func_80181760(net->unk1A8->unk24);
 }
 
 /* @ 230064 for 0x13C*/

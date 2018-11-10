@@ -42,7 +42,7 @@ struct ObjGroup *D_801B9E14;
 struct MyVec3f D_801B9E18;
 struct MyVec3f D_801B9E28;
 f32 D_801B9E34;
-void *D_801B9E38;
+Mat4 *D_801B9E38;
 struct ObjParticle *D_801B9E3C;
 s32 D_801B9E40;
 s32 D_801B9E44;
@@ -339,22 +339,21 @@ struct Links* make_link_to_obj(struct Links* head, struct ObjHeader* a1)
 }
 
 /* @ 22B090 for 0xC4; orig name; func_8017C8C0*/
-//TODO: correct call in game_over_2.c to fix the type of first argument
-void* make_link_2(void* linkHead, struct ObjHeader* object)
+struct VtxLink * make_vtx_link(struct VtxLink * prevlink, struct VtxLinkData * data)
 {
-    struct Links* newLink;
+    struct VtxLink * newLink;
 
-    newLink = func_8019BC18(0x0C);
+    newLink = func_8019BC18(sizeof(struct VtxLink));
     //! Doesn't return early from NULL pointer. Dereferences later in function
     if (newLink == NULL)
         fatal_print("Cant allocate link memory!");
     
-    if (linkHead != NULL)
-        ((struct Links*)linkHead)->next = newLink;
+    if (prevlink != NULL)
+        prevlink->next = newLink;
 
-    newLink->prev = linkHead;
+    newLink->prev = prevlink;
     newLink->next = NULL;
-    newLink->obj = object;
+    newLink->data = data;
     // WTF?
     #pragma GCC diagnostic push
     #pragma GCC diagnostic ignored "-Wpointer-to-int-cast"
@@ -941,7 +940,7 @@ s32 func_8017E20C(void)
 }
 
 /* @ 22CA00 for 0x88 */
-void gd_loadtexture(struct ObjHeader* obj)
+void gd_loadtexture(struct ObjHeader *obj)
 {
     struct ObjHeader* localObjPtr = obj;
 
@@ -951,7 +950,7 @@ void gd_loadtexture(struct ObjHeader* obj)
             func_80191604((struct ObjJoint *)localObjPtr);
             break;
         case OBJ_TYPE_NETS:
-            func_801920C4(localObjPtr);
+            reset_net((struct ObjNet *)localObjPtr);
             break;
         default: ;
     }
@@ -1955,7 +1954,7 @@ void func_801813B0(void)
         move_animators(D_801B9E14);
         
         for (i = 0; i <= 0; i++)
-            func_801936C4(D_801B9E14);
+            move_nets(D_801B9E14);
         
         func_80180FD4(D_801B9E14);
     }
@@ -2004,6 +2003,6 @@ void null_obj_lists(void)
     D_801B9E8C = NULL;
     D_801B9E90 = NULL;
 
-    func_80193B10();
+    reset_net_count();
     reset_joint_counts();
 }

@@ -295,7 +295,7 @@ void Unknown80178CAC(struct ObjFace *face)
             printf("bad1\n");
             return;
         }
-        if (vtx->unk44 == 0x3F800000)  // maybe a float (1.0f)?
+        if ((int) vtx->unk44 == 0x3F800000)  // maybe a float (1.0f)?
             fatal_printf("bad2 %x,%d,%d,%d\n", (u32) vtx, vtx->unk3C, vtx->unk38, vtx->header.type);
     }
 }
@@ -372,7 +372,7 @@ void draw_face(struct ObjFace *self)
     UNUSED u8 unused[12];
     int sp20;
     int sp1C;
-    struct ObjHeader* sp18;
+    void *sp18;
 
     add_to_stacktrace("draw_face");
     sp1C = 0;
@@ -410,10 +410,10 @@ void draw_face(struct ObjFace *self)
         // This code doesn't seems to be called in game, so...
         if (sp1C != 0)
             func_801A5B58(((struct BetaVtx *)vtx)->unk44, ((struct BetaVtx *)vtx)->unk48);
-        sp18 = (struct ObjHeader *)func_8019FA60(sp30, sp34, sp38, vtx->unk40);
-        // WTF???
+        sp18 = func_8019FA60(sp30, sp34, sp38, vtx->unk40);
+        
         if (sp18 != NULL)
-            *(int *)&vtx->unk44 = (int)make_link_2(*(void **)&vtx->unk44, sp18);
+            vtx->unk44 = make_vtx_link(vtx->unk44, sp18);
     }
     func_8019FEF0();
     imout();
