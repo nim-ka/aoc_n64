@@ -3237,28 +3237,28 @@ glabel beh_random_animated_texture # 2F80
 glabel beh_yellow_background_in_menu # 2FA0
     begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x01
-    callnative BehYellowBackgroundMenuInit
+    callnative beh_yellow_background_menu_init
     begin_loop
         obj_set_int VAR_05, 0
-        callnative BehYellowBackgroundMenuLoop
+        callnative beh_yellow_background_menu_loop
     end_loop
 
-glabel beh_menu_growing_button # 2FC4
+glabel beh_menu_button # 2FC4
     begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x01
-    callnative BehMenuGrowingButtonInit
+    callnative beh_menu_button_init
     begin_loop
         obj_set_int VAR_05, 0
-        callnative BehMenuGrowingButtonLoop
+        callnative beh_menu_button_loop
     end_loop
 
-glabel beh_gray_button # 2FE8
+glabel beh_menu_button_manager # 2FE8
     begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x0821
-    callnative BehGreyButtonInit
+    callnative beh_menu_button_manager_init
     begin_loop
         obj_set_int VAR_05, 0
-        callnative BehGreyButtonLoop
+        callnative beh_menu_button_manager_loop
     end_loop
 
 glabel beh_star_in_act_selector # 300C

@@ -223,7 +223,7 @@ void BehToadMessageInit(void)
 {
     int saveFlags = save_file_get_flags();
     int starCount = save_file_get_total_star_count(gCurrSaveFileNum - 1, 0, 24);
-    int dialogNum = (gCurrentObject->oBehParamCopy >> 24) & 0xFF;
+    int dialogNum = (gCurrentObject->oBehParams >> 24) & 0xFF;
     int enoughStars = TRUE;
 
     switch (dialogNum)

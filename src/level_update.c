@@ -741,13 +741,13 @@ s16 level_trigger_warp(struct MarioState *m, s32 warpOp)
 
         case WARP_OP_UNKNOWN_02: // bbh enter
             sDelayedWarpTimer = 30;
-            sSourceWarpNodeId = (m->usedObj->oBehParamCopy & 0x00FF0000) >> 16;
+            sSourceWarpNodeId = (m->usedObj->oBehParams & 0x00FF0000) >> 16;
             func_8027ABF0(0x01, 0x1E, 0xFF, 0xFF, 0xFF);
             break;
 
         case WARP_OP_TELEPORT:
             sDelayedWarpTimer = 20;
-            sSourceWarpNodeId = (m->usedObj->oBehParamCopy & 0x00FF0000) >> 16;
+            sSourceWarpNodeId = (m->usedObj->oBehParams & 0x00FF0000) >> 16;
             val04 = !func_8024A48C(sSourceWarpNodeId);
             func_8027ABF0(0x01, 0x14, 0xFF, 0xFF, 0xFF);
             break;
@@ -755,14 +755,14 @@ s16 level_trigger_warp(struct MarioState *m, s32 warpOp)
         case WARP_OP_WARP_DOOR:
             sDelayedWarpTimer = 20;
             sDelayedWarpArg = m->actionArg;
-            sSourceWarpNodeId = (m->usedObj->oBehParamCopy & 0x00FF0000) >> 16;
+            sSourceWarpNodeId = (m->usedObj->oBehParams & 0x00FF0000) >> 16;
             val04 = !func_8024A48C(sSourceWarpNodeId);
             func_8027ABF0(0x0B, 0x14, 0x00, 0x00, 0x00);
             break;
 
         case WARP_OP_WARP_OBJECT:
             sDelayedWarpTimer = 20;
-            sSourceWarpNodeId = (m->usedObj->oBehParamCopy & 0x00FF0000) >> 16;
+            sSourceWarpNodeId = (m->usedObj->oBehParams & 0x00FF0000) >> 16;
             val04 = !func_8024A48C(sSourceWarpNodeId);
             func_8027ABF0(0x09, 0x14, 0x00, 0x00, 0x00);
             break;

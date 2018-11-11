@@ -1354,7 +1354,7 @@ void func_802D91C0(s16 sp4a)
 
 s16 D_8033047C = -1;
 
-u8 gEndCutsceneStr0[] = {TEXT_MARIO_EXCLAMATION};
+u8 gEndCutsceneStr0[] = {TEXT_FILE_MARIO_EXCLAMATION};
 u8 gEndCutsceneStr1[] = {TEXT_POWER_STARS_RESTORED};
 u8 gEndCutsceneStr2[] = {TEXT_THANKS_TO_YOU};
 u8 gEndCutsceneStr3[] = {TEXT_THANK_YOU_MARIO};
@@ -1362,7 +1362,7 @@ u8 gEndCutsceneStr4[] = {TEXT_SOMETHING_SPECIAL};
 u8 gEndCutsceneStr5[] = {TEXT_COME_ON_EVERYBODY};
 u8 gEndCutsceneStr6[] = {TEXT_LETS_HAVE_CAKE};
 u8 gEndCutsceneStr7[] = {TEXT_FOR_MARIO};
-u8 gEndCutsceneStr8[] = {TEXT_MARIO_QUESTION};
+u8 gEndCutsceneStr8[] = {TEXT_FILE_MARIO_QUESTION};
 
 u8 *gEndCutsceneStrings[] = {
     gEndCutsceneStr0,
@@ -2185,7 +2185,7 @@ void func_802DB540(void)
 
 void PauseScreen1(void)
 {
-    u8 sp28[] = {TEXT_PAUSE_ENG};
+    u8 sp28[] = {TEXT_PAUSE};
 
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED00);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
@@ -2391,7 +2391,7 @@ s16 func_802DBBB0(void)
 void func_802DBE2C(s8 sp43)
 {
     u8 sp38[] = {TEXT_HISCORE_ENG}; //D_803305D0;
-    u8 sp28[] = {TEXT_CONGRATULATIONS_ENG}; //D_803305D8;
+    u8 sp28[] = {TEXT_CONGRATULATIONS}; //D_803305D8;
 
     u8 sp27 = (gSineTable[D_80360080 >> 4] * 50.0f) + 200.0f;
 

@@ -163,7 +163,7 @@ static s32 Behavior29(void)
     
     CopyObjParams(object, gCurrentObject);
     
-    object->oBehParam = behParam;
+    object->oBehParams2ndByte = behParam;
     
     gBehCommand += 3;
     return BEH_CONTINUE;

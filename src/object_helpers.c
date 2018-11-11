@@ -233,9 +233,9 @@ s32 GeoSwitchCaseBlinking(s32 sp28, struct GraphNodeObject *sp2C) {
 void func_8029D558(Mat4 a0, struct Object *a1) {
     f32 spC, sp8, sp4;
 
-    spC = a1->oUnk138;
-    sp8 = a1->oUnk13C;
-    sp4 = a1->oUnk140;
+    spC = a1->oParentRelX;
+    sp8 = a1->oParentRelY;
+    sp4 = a1->oParentRelZ;
 
     a1->oPosX = spC * a0[0][0] + sp8 * a0[1][0] + sp4 * a0[2][0] + a0[3][0];
     a1->oPosY = spC * a0[0][1] + sp8 * a0[1][1] + sp4 * a0[2][1] + a0[3][1];
@@ -457,9 +457,9 @@ s16 UnknownMove(struct Object *sp40, struct Object *sp44, s16 sp4A, s16 sp4E) {
 
 
 void func_8029E140(struct Object *a0, s16 a1, s16 a2, s16 a3) {
-    a0->oUnk138 = a1;
-    a0->oUnk13C = a2;
-    a0->oUnk140 = a3;
+    a0->oParentRelX = a1;
+    a0->oParentRelY = a2;
+    a0->oParentRelZ = a3;
 }
 
 void func_8029E198(struct Object *a0, s16 a1, s16 a2, s16 a3) {
@@ -592,8 +592,8 @@ struct Object* spawn_obj_adv(s16 sp22, s16 sp26, s16 sp2A, s16 sp2E, struct Obje
     CopyObjParams(sp1C, sp30);
     func_8029E140(sp1C, sp26, sp2A, sp2E);
     func_8029E7A4(sp1C);
-    sp1C->oBehParam = sp22;
-    sp1C->oBehParamCopy = (sp22 & 0xFF) << 16;
+    sp1C->oBehParams2ndByte = sp22;
+    sp1C->oBehParams = (sp22 & 0xFF) << 16;
 
     return sp1C;
 }
@@ -2031,7 +2031,7 @@ void func_802A2B04(struct Struct802A2B04 *sp28) {
     for (sp20 = 0; sp18 > sp20; sp20++) {
         sp1C = RandomFloat() * (sp28->unk10 * 0.1f) + sp28->unkC * 0.1f;
         sp24 = SpawnObj(gCurrentObject, sp28->unk2, beh_white_puff_explosion);
-        sp24->oBehParam = sp28->unk0;
+        sp24->oBehParams2ndByte = sp28->unk0;
         sp24->oAngleYaw = RandomU16();
         sp24->oGravity = sp28->unk8;
         sp24->oUnk12C = sp28->unk9;
@@ -2234,8 +2234,8 @@ s32 func_802A3688(void (*sp20[])(void)) {
 struct Object *func_802A36D8(s32 sp20, s32 sp24) {
     struct Object *sp1C = SpawnObj(gCurrentObject, 122, beh_unused_080C);
     sp1C->oUnk1B0 = sp24;
-    sp1C->oBehParamCopy = gCurrentObject->oBehParamCopy;
-    sp1C->oBehParam = sp20;
+    sp1C->oBehParams = gCurrentObject->oBehParams;
+    sp1C->oBehParams2ndByte = sp20;
 
     return sp1C;
 }
@@ -2690,8 +2690,8 @@ s32 func_802A49D4(void) {
 }
 
 void func_802A4A50(struct Object *dstObj, struct Object *srcObj) {
-    dstObj->oBehParamCopy = srcObj->oBehParamCopy;
-    dstObj->oBehParam = srcObj->oBehParam;
+    dstObj->oBehParams = srcObj->oBehParams;
+    dstObj->oBehParams2ndByte = srcObj->oBehParams2ndByte;
 }
 
 void func_802A4A70(s32 sp18, s32 sp1C) {

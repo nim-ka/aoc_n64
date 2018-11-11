@@ -995,10 +995,10 @@ void BehBobombInit(void)
 
 void func_802E5B7C(void)
 {
-    if (((o->oBehParamCopy >> 8) & 0x1) == 0)
+    if (((o->oBehParams >> 8) & 0x1) == 0)
     {
         ObjSpawnYellowCoins(o, 1);
-        o->oBehParamCopy = 0x100;
+        o->oBehParams = 0x100;
         func_8029C6D8(o, 1);
     }
 }
@@ -1146,7 +1146,7 @@ void StationaryBobombFreeLoop(void)
 
 void BobombFreeLoop(void)
 {
-    if (o->oBehParam == BOBOMB_BP_STYPE_GENERIC) GenericBobombFreeLoop();
+    if (o->oBehParams2ndByte == BOBOMB_BP_STYPE_GENERIC) GenericBobombFreeLoop();
     else StationaryBobombFreeLoop();
 }
 
@@ -1346,7 +1346,7 @@ void BobombBuddyTalkLoop(void)
         switch (o->oBobombBuddyRole)
         {
             case BOBOMB_BUDDY_ROLE_ADVICE:
-                if (func_8028F8E0(162, o, o->oBehParam) != BOBOMB_BUDDY_BP_STYPE_GENERIC)
+                if (func_8028F8E0(162, o, o->oBehParams2ndByte) != BOBOMB_BUDDY_BP_STYPE_GENERIC)
                 {
                     func_802573C8(0);
 
@@ -1413,7 +1413,7 @@ void BehCannonTrapDoorInit(void)
     if (save_file_is_cannon_unlocked() == 1)
     {
         cannonTrapDoor = SpawnObj(o, 128, beh_cannon_base);
-        cannonTrapDoor->oBehParam = o->oBehParam;
+        cannonTrapDoor->oBehParams2ndByte = o->oBehParams2ndByte;
         cannonTrapDoor->oPosX = o->oHomeX;
         cannonTrapDoor->oPosY = o->oHomeY;
         cannonTrapDoor->oPosZ = o->oHomeZ;
@@ -1702,7 +1702,7 @@ void BehAmpInit(void)
     o->oHomeZ = o->oPosZ;
     o->oAnimState = 1;
     
-    switch (o->oBehParam)
+    switch (o->oBehParams2ndByte)
     {
         case AMP_BP_ROT_RADIUS_200:
             o->oAmpRadiusOfRotation = 200.0f;
@@ -1761,7 +1761,7 @@ void BehAmpLoop(void)
     switch (o->oAction)
     {
         case AMP_ACT_IDLE:
-            if (o->oBehParam == AMP_BP_ROT_RADIUS_0) FixedAmpIdleLoop();
+            if (o->oBehParams2ndByte == AMP_BP_ROT_RADIUS_0) FixedAmpIdleLoop();
             else AmpIdleLoop();
             break;
 
@@ -2338,7 +2338,7 @@ void BehBobombCorkBoxRespawnerLoop(void)
     if (!IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, o->oBBCBRespawnerMinSpawnDist))
     {
         sp1c = SpawnObj(o, o->oBreakableBoxBackupUnkF4, o->oBBCBRespawnerBehaviorToSpawn);
-        sp1c->oBehParamCopy = o->oBehParamCopy;
+        sp1c->oBehParams = o->oBehParams;
         o->active = 0;
     }
 }
@@ -2350,7 +2350,7 @@ void BehBobombCorkBoxRespawnerLoop(void)
 void RespawnBobombOrCorkbox(s32 arg0, void *behToSpawn, s32 minSpawnDist)
 {
     struct Object *respawner = func_8029E230(o, 0, 0, beh_bobomb_cork_box_respawner, o->oHomeX, o->oHomeY, o->oHomeZ, 0, 0, 0);
-    respawner->oBehParamCopy = o->oBehParamCopy;
+    respawner->oBehParams = o->oBehParams;
     respawner->oBreakableBoxBackupUnkF4 = arg0;
     respawner->oBBCBRespawnerMinSpawnDist = minSpawnDist;
     respawner->oBBCBRespawnerBehaviorToSpawn = behToSpawn;
@@ -2362,7 +2362,7 @@ void BehSmallBullyInit(void)
     
     o->oHomeX = o->oPosX;
     o->oHomeZ = o->oPosZ;
-    o->oBehParam = BULLY_BP_SIZE_SMALL;
+    o->oBehParams2ndByte = BULLY_BP_SIZE_SMALL;
     o->oGravity = 4.0;
     o->oFriction = 0.91;
     o->oBuoyancy = 1.3;
@@ -2377,7 +2377,7 @@ void BehBigBullyInit(void)
     o->oHomeX = o->oPosX;
     o->oHomeY = o->oPosY;
     o->oHomeZ = o->oPosZ;
-    o->oBehParam = BULLY_BP_SIZE_BIG;
+    o->oBehParams2ndByte = BULLY_BP_SIZE_BIG;
     o->oGravity = 5.0;
     o->oFriction = 0.93;
     o->oBuoyancy = 1.3;
@@ -2389,7 +2389,7 @@ void BullyCheckMarioCollision(void)
 {
     if (o->oInteractStatus & 0x8000) /* bit 15 */
     {
-        if (o->oBehParam == BULLY_BP_SIZE_SMALL) PlaySound2(0x901C0081);
+        if (o->oBehParams2ndByte == BULLY_BP_SIZE_SMALL) PlaySound2(0x901C0081);
         else PlaySound2(0x90570081);
         
         o->oInteractStatus &= ~0x8000; /* bit 15 */
@@ -2411,7 +2411,7 @@ void BullyChaseMarioLoop(void)
         o->oForwardVel = 3.0;
         UnknownMove(o, gMarioObject, 16, 4096);
     }
-    else if (o->oBehParam == BULLY_BP_SIZE_SMALL)
+    else if (o->oBehParams2ndByte == BULLY_BP_SIZE_SMALL)
     {
         o->oForwardVel = 20.0;
         if (o->oTimer >= 31) o->oTimer = 0;
@@ -2492,7 +2492,7 @@ void PlayBullyStompingSound(void)
         case BULLY_ACT_PATROL:
             if (sp26 == 0 || sp26 == 12)
             {
-                if (o->oBehParam == BULLY_BP_SIZE_SMALL) PlaySound2(0x501B3081);
+                if (o->oBehParams2ndByte == BULLY_BP_SIZE_SMALL) PlaySound2(0x501B3081);
                 else PlaySound2(0x50366081);
             }
             break;
@@ -2501,7 +2501,7 @@ void PlayBullyStompingSound(void)
         case BULLY_ACT_BACK_UP:
             if (sp26 == 0 || sp26 == 5)
             {
-                if (o->oBehParam == BULLY_BP_SIZE_SMALL) PlaySound2(0x501B3081);
+                if (o->oBehParams2ndByte == BULLY_BP_SIZE_SMALL) PlaySound2(0x501B3081);
                 else PlaySound2(0x50366081);
             }
             break;
@@ -2540,7 +2540,7 @@ void BullyLavaDeath(void)
 {
     if (ObjLavaDeath() == 1)
     {
-        if (o->oBehParam == BULLY_BP_SIZE_SMALL)
+        if (o->oBehParams2ndByte == BULLY_BP_SIZE_SMALL)
         {
             if (o->oBullySubtype == BULLY_STYPE_MINION)
                 o->parentObj->oBullyKBTimerAndMinionKOCounter++;
@@ -2622,7 +2622,7 @@ void BigBullySpawnMinion(s32 arg0, s32 arg1, s32 arg2, s16 arg3)
 {
     struct Object *bully = func_8029E230(o, 0, 86, beh_small_bully, arg0, arg1, arg2, 0, arg3, 00);
     bully->oBullySubtype = BULLY_STYPE_MINION;
-    bully->oBehParam = BULLY_BP_SIZE_SMALL;
+    bully->oBehParams2ndByte = BULLY_BP_SIZE_SMALL;
 }
 
 void BehBigBullyWithMinionsInit(void)
@@ -3325,7 +3325,7 @@ void BehWFSlidingBrickPlatformInit(void)
     o->oPosX += 2.0f;
     o->oHomeX = o->oPosX;
     
-    switch (o->oBehParam)
+    switch (o->oBehParams2ndByte)
     {
         case WF_SLID_BRICK_PTFM_BP_MOV_VEL_10:
             o->oWFSlidBrickPtfmMovVel = 10.0f;
@@ -3632,7 +3632,7 @@ void func_802EDA14(void)
 
 void func_802EDA6C(void)
 {
-    switch (o->oBehParam)
+    switch (o->oBehParams2ndByte)
     {
         case BBALL_BP_STYPE_BOB_UPPER:
             o->oBowlingBallUnkFC = segmented_to_virtual(bob_seg7_metal_ball_path0);
@@ -3704,7 +3704,7 @@ void BehBowlingBallInitializeLoop(void)
     //! oBowlingBallInitYaw is never explicitly initialized, so it is 0.
     o->oAngleYaw = o->oBowlingBallInitYaw;
     
-    switch (o->oBehParam)
+    switch (o->oBehParams2ndByte)
     {
         case BBALL_BP_STYPE_BOB_UPPER:
             o->oForwardVel = 20.0f;
@@ -3744,7 +3744,7 @@ void BehBowlingBallLoop(void)
             break;
     }
     
-    if (o->oBehParam != 4)
+    if (o->oBehParams2ndByte != 4)
         func_8027F440(4, o->oPosX, o->oPosY, o->oPosZ);
     
     SetObjectVisibility(o, 4000);
@@ -3757,7 +3757,7 @@ extern float D_803374BC;
 
 void BehGenericBowlingBallSpawnerInit(void)
 {
-    switch (o->oBehParam)
+    switch (o->oBehParams2ndByte)
     {
         case BBALL_BP_STYPE_BOB_UPPER:
 #ifdef VERSION_JP
@@ -3802,7 +3802,7 @@ void BehGenericBowlingBallSpawnerLoop(void)
             if  ((s32)(RandomFloat() * o->oBBallSpwnrSpawnOdds) == 0)
             {
                 bowlingBall = SpawnObj(o, 180, beh_bowling_ball);
-                bowlingBall->oBehParam = o->oBehParam;
+                bowlingBall->oBehParams2ndByte = o->oBehParams2ndByte;
             }
         }
     }
@@ -3826,7 +3826,7 @@ void BehTHIBowlingBallSpawnerLoop(void)
             if  ((s32)(RandomFloat() * 1.5) == 0)
             {
                 bowlingBall = SpawnObj(o, 180, beh_bowling_ball);
-                bowlingBall->oBehParam = o->oBehParam;
+                bowlingBall->oBehParams2ndByte = o->oBehParams2ndByte;
             }
         }
     }
@@ -3928,7 +3928,7 @@ void BehRRCruiserWingInit(void)
 
 void BehRRCruiserWingLoop(void)
 {
-    if (o->oBehParam == 0)
+    if (o->oBehParams2ndByte == 0)
     {
         o->oFaceAngleYaw = o->oRRCruiserWingUnkF4 + sins(o->oTimer * 0x400) * 8192.0f;
         o->oFaceAnglePitch = o->oRRCruiserWingUnkF8 + coss(o->oTimer * 0x400) * 2048.0f;

@@ -269,7 +269,7 @@ void func_802E1224(u32 a0, u32 (*a1)[], s16 a2, s16 a3, s16 a4, s16 a5, s16 a6)
     if (a1 != NULL)
     {
         struct Object *sp3C = func_8029E230(&D_8035FB18, 0, a0, a1, a2, a3, a4, 0, func_802E1190(a5), 0);
-        sp3C->oBehParamCopy = ((u32) a6) << 16;        
+        sp3C->oBehParams = ((u32) a6) << 16;
     }
 }
 
@@ -278,7 +278,7 @@ void func_802E12CC(u32 a0, u8 (*a1)[], s16 a2, s16 a3, s16 a4, s16 a5, s16 a6)
     if (a1 != NULL)
     {
         struct Object *sp3C = func_8029E230(&D_8035FB18, 0, a0, a1, a2, a3, a4, 0, func_802E1190(a5), 0);
-        sp3C->oBehParamCopy = ((u32) a6) << 24;        
+        sp3C->oBehParams = ((u32) a6) << 24;
     }
 }
 
@@ -302,7 +302,7 @@ void Unknown802E142C(u32 (*a0)[], s16 a1[])
     sp3C = func_8029E230(&D_8035FB18, 0, sp3A, a0, a1[1], a1[2], a1[3], 0, func_802E1190(a1[0]), 0);
 
     sp3C->oUnk1A8 = a1[4];
-    sp3C->oBehParamCopy = (a1[4] & 0xFF) >> 16;    // good C
+    sp3C->oBehParams = (a1[4] & 0xFF) >> 16;
 }
 
 void func_802E1504(s16 a0, s16* a1)
@@ -344,8 +344,8 @@ void func_802E1504(s16 a0, s16* a1)
             sp48 = func_8029E230(&D_8035FB18, 0, sp40.unk6, sp40.beh, sp4C[1], sp4C[2], sp4C[3], 0, func_802E1190(sp4C[0]), 0);
 
             sp48->oUnk1A8   = sp4C[4];
-            sp48->oBehParamCopy   = ((sp4C[4] & 0x00FF) << 16) + (sp4C[4] & 0xFF00);
-            sp48->oBehParam = sp4C[4] & 0x00FF;
+            sp48->oBehParams   = ((sp4C[4] & 0x00FF) << 16) + (sp4C[4] & 0xFF00);
+            sp48->oBehParams2ndByte = sp4C[4] & 0x00FF;
             sp48->unk1F6   = 2;
             sp48->unk25C   = a1 - 1;
             sp48->parentObj    = sp48;

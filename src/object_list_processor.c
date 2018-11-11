@@ -309,8 +309,11 @@ void spawn_objects_from_info(UNUSED s32 unusedArg, struct SpawnInfo *spawnInfo)
         {
             object = create_object(script);
  
-            object->oBehParamCopy = spawnInfo->behaviorArg;
-            object->oBehParam = ((spawnInfo->behaviorArg) >> 16) & 0xff;
+            // Behavior parameters are actually four separate bytes, but are stored as an int. This makes accessing individual params
+            // quite awkward. Params 3 and 4 are almost never used.
+            object->oBehParams = spawnInfo->behaviorArg;
+            // The second byte of the behavior parameters is copied over to a special field.
+            object->oBehParams2ndByte = ((spawnInfo->behaviorArg) >> 16) & 0xff;
             object->behavior = script;
             object->unk1C8 = 0;
             object->unk1F6 = 1;

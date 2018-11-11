@@ -314,8 +314,8 @@ extern u32 beh_warps_90[];                           // 0x13002F70
 extern u32 beh_warps_94[];                           // 0x13002F74
 extern u32 beh_random_animated_texture[];            // 0x13002F80
 extern u32 beh_yellow_background_in_menu[];          // 0x13002FA0
-extern u32 beh_menu_growing_button[];                // 0x13002FC4
-extern u32 beh_gray_button[];                        // 0x13002FE8
+extern u32 beh_menu_button[];                        // 0x13002FC4
+extern u32 beh_menu_button_manager[];                // 0x13002FE8
 extern u32 beh_star_in_act_selector[];               // 0x1300300C
 extern u32 beh_act_selector[];                       // 0x13003028
 extern u32 beh_moving_yellow_coin[];                 // 0x13003048

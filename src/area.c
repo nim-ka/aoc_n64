@@ -178,7 +178,7 @@ struct ObjectWarpNode *area_get_warp_node(u8 id)
 
 static struct ObjectWarpNode *func_8027A478(struct Object *o)
 {
-    u8 sp1F = (o->oBehParamCopy & 0x00FF0000) >> 16;
+    u8 sp1F = (o->oBehParams & 0x00FF0000) >> 16;
 
     return area_get_warp_node(sp1F);
 }

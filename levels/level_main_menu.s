@@ -26,7 +26,7 @@ glabel level_main_menu_entry_1
     cmd22 /*unk2*/ 0x000C, /*unk4*/ main_menu_geo_000358
 
     area /*index*/ 1, /*geo*/ main_menu_geo_000380
-        object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 0, 0, -19000, /*angle*/ 0, 0, 0, /*behArg*/ 0x04000000, /*beh*/ beh_gray_button
+        object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 0, 0, -19000, /*angle*/ 0, 0, 0, /*behArg*/ 0x04000000, /*beh*/ beh_menu_button_manager
         object /*unk2*/ 0x1F, /*unk3*/ 0x06, /*pos*/ 0, 0, -19000, /*angle*/ 0, 0, 0, /*behArg*/ 0x04000000, /*beh*/ beh_yellow_background_in_menu
         terrain /*terrainData*/ main_menu_seg7_collision
     end_area

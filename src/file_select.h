@@ -3,15 +3,74 @@
 
 #include "types.h"
 
-// extern ? D_801A7BE4;
-// extern ? D_801A7BFC;
+#define MENU_LAYER_MAIN 1
+#define MENU_LAYER_SUBMENU 2
+
+enum MainMenuButtonStates {
+    MENU_BUTTON_STATE_DEFAULT,
+    MENU_BUTTON_STATE_GROWING,
+    MENU_BUTTON_STATE_FULLSCREEN,
+    MENU_BUTTON_STATE_SHRINKING,
+    MENU_BUTTON_STATE_ZOOM_IN_OUT,
+    MENU_BUTTON_STATE_ZOOM_IN,
+    MENU_BUTTON_STATE_ZOOM_OUT
+};
+
+enum MenuButtonTypes {
+    MENU_BUTTON_NONE = -1,  // no button selected (on main menu screen)
+
+    // Main Menu (SELECT FILE)
+    MENU_BUTTON_PLAY_FILE_A,
+    MENU_BUTTON_PLAY_FILE_B,
+    MENU_BUTTON_PLAY_FILE_C,
+    MENU_BUTTON_PLAY_FILE_D,
+    MENU_BUTTON_SCORE,
+    MENU_BUTTON_COPY,
+    MENU_BUTTON_ERASE,
+
+    // Score Menu (CHECK FILE)
+    MENU_BUTTON_SCORE_FILE_A,
+    MENU_BUTTON_SCORE_FILE_B,
+    MENU_BUTTON_SCORE_FILE_C,
+    MENU_BUTTON_SCORE_FILE_D,
+    MENU_BUTTON_SCORE_RETURN,
+    MENU_BUTTON_SCORE_COPY_FILE,
+    MENU_BUTTON_SCORE_ERASE_FILE,
+
+    // Copy Menu (COPY FILE)
+    MENU_BUTTON_COPY_FILE_A,
+    MENU_BUTTON_COPY_FILE_B,
+    MENU_BUTTON_COPY_FILE_C,
+    MENU_BUTTON_COPY_FILE_D,
+    MENU_BUTTON_COPY_RETURN,
+    MENU_BUTTON_COPY_CHECK_SCORE,
+    MENU_BUTTON_COPY_ERASE_FILE,
+
+    // Erase Menu (ERASE FILE)
+    MENU_BUTTON_ERASE_FILE_A,
+    MENU_BUTTON_ERASE_FILE_B,
+    MENU_BUTTON_ERASE_FILE_C,
+    MENU_BUTTON_ERASE_FILE_D,
+    MENU_BUTTON_ERASE_RETURN,
+    MENU_BUTTON_ERASE_CHECK_SCORE,
+    MENU_BUTTON_ERASE_COPY_FILE,
+
+    // Sound Mode Menu (SOUND SELECT)
+    MENU_BUTTON_SOUND_MODE,
+    MENU_BUTTON_STEREO,
+    MENU_BUTTON_MONO,
+    MENU_BUTTON_HEADSET
+};
+
+// extern ? sCursorClickingTimer;
+// extern ? sMainMenuTimer;
 // extern ? D_801A7C08;
 // extern ? D_801A7C0C;
-// extern ? D_801A7C10;
+// extern ? sScoreFileCoinScoreMode;
 // extern ? D_801A7C74;
-// extern ? D_801A7C78;
+// extern ? xIcon;
 // extern ? textNew;
-// extern ? D_801A7C7C;
+// extern ? textSelectFile;
 // extern ? textScore;
 // extern ? textCopy;
 // extern ? textErase;
@@ -20,13 +79,13 @@
 // extern ? textMarioB;
 // extern ? textMarioC;
 // extern ? textMarioD;
-// extern ? D_801A7C98;
+// extern ? textCheckFile;
 // extern ? textNoSavedDataExists;
 // extern ? textReturn;
-// extern ? textFileCopy;
-// extern ? textFileDelete;
+// extern ? textCopyFileButton;
+// extern ? textEraseFileButton;
 // extern ? textNoFileToCopyFrom;
-// extern ? D_801A7CB8;
+// extern ? textCopyFile;
 // extern ? textCopyItToWhere;
 // extern ? textNoSavedDataExists2;
 // extern ? textCopyFinished;
@@ -52,59 +111,59 @@
 // extern ? D_801A7DA0;
 // extern ? D_801A7DA8;
 
-// extern ? BehYellowBackgroundMenuInit(?);
-// extern ? BehYellowBackgroundMenuLoop(?);
-// extern ? button_hittest(?);
-// extern ? func_801703E8(?);
-// extern ? func_8017053C(?);
-// extern ? func_80170670(?);
-// extern ? func_80170798(?);
-// extern ? func_801708CC(?);
-// extern ? func_801709AC(?);
-// extern ? func_801709FC(?);
-// extern ? BehMenuGrowingButtonInit(?);
-// extern ? BehMenuGrowingButtonLoop(?);
-// extern ? func_80170C14(?);
+// extern ? beh_yellow_background_menu_init(?);
+// extern ? beh_yellow_background_menu_loop(?);
+// extern ? button_clicked_test(?);
+// extern ? beh_menu_button_growing_from_main_menu(?);
+// extern ? beh_menu_button_shrinking_to_main_menu(?);
+// extern ? beh_menu_button_growing_from_submenu(?);
+// extern ? beh_menu_button_shrinking_to_submenu(?);
+// extern ? beh_menu_button_zoom_in_out(?);
+// extern ? beh_menu_button_zoom_in(?);
+// extern ? beh_menu_button_zoom_out(?);
+// extern ? beh_menu_button_init(?);
+// extern ? beh_menu_button_loop(?);
+// extern ? score_menu_file_exiting(?);
 // extern ? score_menu_create_buttons(?);
-// extern ? score_menu_handle_click(?);
+// extern ? score_menu_check_clicked_buttons(?);
 // extern ? copy_menu_create_buttons(?);
-// extern ? func_801716E4(?);
-// extern ? copy_menu_handle_click(?);
+// extern ? copy_menu_copy_file(?);
+// extern ? copy_menu_check_clicked_buttons(?);
 // extern ? erase_menu_create_buttons(?);
-// extern ? func_80171F74(?);
-// extern ? erase_menu_handle_click(?);
-// extern ? sound_select_menu_create_buttons(?);
-// extern ? sound_select_menu_handle_click(?);
-// extern ? func_8017257C(?);
-// extern ? main_menu_init(?);
-// extern ? score_menu_init(?);
-// extern ? copy_menu_init(?);
-// extern ? erase_menu_init(?);
-// extern ? BehGreyButtonInit(?);
-// extern ? main_menu_handle_click(?);
-// extern ? BehGreyButtonLoop(?);
+// extern ? erase_menu_erase_file(?);
+// extern ? erase_menu_check_clicked_buttons(?);
+// extern ? sound_mode_menu_create_buttons(?);
+// extern ? sound_mode_menu_check_clicked_buttons(?);
+// extern ? main_menu_file_selected(?);
+// extern ? return_to_main_menu(?);
+// extern ? score_menu_init_from_submenu(?);
+// extern ? copy_menu_init_from_submenu(?);
+// extern ? erase_menu_init_from_submenu(?);
+// extern ? beh_menu_button_manager_init(?);
+// extern ? main_menu_check_clicked_buttons(?);
+// extern ? beh_menu_button_manager_loop(?);
 // extern ? handle_button_presses(?);
 // extern ? handle_controller_input(?);
-// extern ? func_80173A40(?);
-// extern ? PutString1(?);
-// extern ? PutString2(?);
+// extern ? draw_cursor(?);
+// extern ? menu_print_title_text(?);
+// extern ? menu_print_generic_text(?);
 // extern ? update_text_fade(?);
-// extern ? draw_file_button_label(?);
+// extern ? display_file_star_count(?);
 // extern ? draw_main_menu(?);
-// extern ? print_file_score_message(?);
+// extern ? score_menu_display_message(?);
 // extern ? draw_score_menu(?);
-// extern ? copy_menu_print_message(?);
+// extern ? copy_menu_display_message(?);
 // extern ? copy_menu_update_message(?);
 // extern ? draw_copy_menu(?);
-// extern ? erase_yes_no_prompt(?);
-// extern ? erase_menu_print_message(?);
+// extern ? erase_menu_yes_no_prompt(?);
+// extern ? erase_menu_display_message(?);
 // extern ? erase_menu_update_message(?);
 // extern ? draw_erase_menu(?);
 // extern ? draw_sound_mode_menu(?);
-// extern ? func_801759F0(?);
-// extern ? print_course_coin_score(?);
-// extern ? print_course_star_score(?);
-// extern ? draw_file_scores_menu(?);
+// extern ? score_file_print_castle_secret_stars(?);
+// extern ? score_file_print_course_coin_score(?);
+// extern ? score_file_print_course_star_score(?);
+// extern ? draw_file_scores(?);
 // extern ? draw_current_menu(?);
 // extern ? Geo18_80176688(?);
 // extern ? LevelProc_801766DC(?);
