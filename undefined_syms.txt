@@ -555,28 +555,6 @@ ukiki_seg5_dl_0500D078 = 0x0500D078;
 ukiki_seg5_dl_0500D108 = 0x0500D108;
 fwoosh_seg5_dl_05016040 = 0x05016040;
 
-/* Sea Creatures */
-clam_shell_seg5_dl_050012B8 = 0x050012B8;
-clam_shell_seg5_dl_05001568 = 0x05001568;
-manta_seg5_geo_05008D14 = 0x05008D14;
-sushi_seg5_dl_05009DD0 = 0x05009DD0;
-sushi_seg5_dl_0500A008 = 0x0500A008;
-sushi_seg5_dl_0500A160 = 0x0500A160;
-sushi_seg5_dl_0500A768 = 0x0500A768;
-sushi_seg5_dl_0500A8A8 = 0x0500A8A8;
-sushi_seg5_dl_0500A990 = 0x0500A990;
-unagi_seg5_dl_0500CDD0 = 0x0500CDD0;
-unagi_seg5_dl_0500D050 = 0x0500D050;
-unagi_seg5_dl_0500D268 = 0x0500D268;
-unagi_seg5_dl_0500D468 = 0x0500D468;
-unagi_seg5_dl_0500D668 = 0x0500D668;
-unagi_seg5_dl_0500D828 = 0x0500D828;
-unagi_seg5_dl_0500DD08 = 0x0500DD08;
-unagi_seg5_dl_0500DEB8 = 0x0500DEB8;
-unagi_seg5_dl_0500E088 = 0x0500E088;
-unagi_seg5_dl_0500E258 = 0x0500E258;
-underwater_tweester_seg5_dl_05013CB8 = 0x05013CB8;
-
 /* Skeeter Fish Treasurechest */
 skeeter_seg6_dl_06000A08 = 0x06000A08;
 skeeter_seg6_dl_06000AF0 = 0x06000AF0;

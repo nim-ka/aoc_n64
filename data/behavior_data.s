@@ -2430,7 +2430,7 @@ glabel beh_bowsers_sub # 2308
 glabel beh_sushi_shark # 2338
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x49
-    obj_set_int32 VAR_26, 0x0500AE54
+    obj_set_int32 VAR_26, sushi_seg5_anims_0500AE54
     unknown_2C 0x00000000, beh_sushi_shark_collision_child
     unknown_2B 0x0064, 0x0032, 0x0032
     interact_type 0x00000008
@@ -4437,7 +4437,7 @@ glabel beh_orange_number # 4328
 glabel beh_manta_ray # 4350
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x11
-    obj_set_int32 VAR_26, 0x05008EB4
+    obj_set_int32 VAR_26, manta_seg5_anims_05008EB4
     unknown_28 0x00
     callnative BehMantaRayInit
     begin_loop
@@ -5091,7 +5091,7 @@ glabel beh_cannon_barrel_bubbles # 4F08
 glabel beh_unagi # 4F20
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2049
-    obj_set_int32 VAR_26, 0x05012824
+    obj_set_int32 VAR_26, unagi_seg5_anims_05012824
     unknown_28 0x06
     unknown_2D
     scale 300
@@ -5360,7 +5360,7 @@ glabel beh_clam_shell # 5420
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2049
     unknown_1E
-    obj_set_int32 VAR_26, 0x05001744
+    obj_set_int32 VAR_26, clam_shell_seg5_anims_05001744
     obj_set_float VAR_15, 0x000A
     begin_loop
         callnative BehClamShellLoop

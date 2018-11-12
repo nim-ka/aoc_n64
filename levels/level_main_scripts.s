@@ -294,7 +294,7 @@ glabel script_func_global_5
     cmd22 /*unk2*/ 0x0054, /*unk4*/ manta_seg5_geo_05008D14
     cmd22 /*unk2*/ 0x0055, /*unk4*/ unagi_geo
     cmd22 /*unk2*/ 0x0056, /*unk4*/ sushi_geo
-    cmd21 /*unk2*/ 0x5057, /*unk4*/ underwater_tweester_seg5_dl_05013CB8
+    cmd21 /*unk2*/ 0x5057, /*unk4*/ tweester_seg5_dl_05013CB8
     cmd22 /*unk2*/ 0x0058, /*unk4*/ clam_shell_geo
     return
 

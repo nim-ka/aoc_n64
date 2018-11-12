@@ -15,7 +15,6 @@ BINARY_SEGMENTS := \
    klepto_eyerock_pokey \
    mario_water_sparkles \
    mole_monkey_fwoosh \
-   sea_creatures \
    skeeter_fish_treasurechest \
    ssl_skybox \
    water_skybox \
@@ -71,6 +70,7 @@ PEACH_TOADSTOOL_FILES        := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/pe
 PSS_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/pss_seg7/*.png)))
 RR_SEG7_FILES                := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/rr_seg7/*.png)))
 RR_TEXTURES_FILES            := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/rr_textures/*.png)))
+SEA_CREATURES_FILES          := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/sea_creatures/*.png)))
 SL_SEG7_FILES                := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/sl_seg7/*.png)))
 SPINDRIFT_PENGUIN_FILES      := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/spindrift_penguin_snowman/*.png)))
 SSL_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/ssl_seg7/*.png)))
@@ -128,6 +128,7 @@ $(BUILD_DIR)/bin/peach_toadstool_yoshi_birds.o: $(addprefix $(BUILD_DIR)/bin/pea
 $(BUILD_DIR)/bin/pss_seg7.o: $(addprefix $(BUILD_DIR)/bin/pss_seg7/,$(PSS_SEG7_FILES))
 $(BUILD_DIR)/bin/rr_seg7.o: $(addprefix $(BUILD_DIR)/bin/rr_seg7/,$(RR_SEG7_FILES))
 $(BUILD_DIR)/bin/rr_textures.o: $(addprefix $(BUILD_DIR)/bin/rr_textures/,$(RR_TEXTURES_FILES))
+$(BUILD_DIR)/bin/sea_creatures.o: $(addprefix $(BUILD_DIR)/bin/sea_creatures/,$(SEA_CREATURES_FILES))
 $(BUILD_DIR)/bin/sl_seg7.o: $(addprefix $(BUILD_DIR)/bin/sl_seg7/,$(SL_SEG7_FILES))
 $(BUILD_DIR)/bin/spindrift_penguin_snowman.o: $(addprefix $(BUILD_DIR)/bin/spindrift_penguin_snowman/,$(SPINDRIFT_PENGUIN_FILES))
 $(BUILD_DIR)/bin/ssl_seg7.o: $(addprefix $(BUILD_DIR)/bin/ssl_seg7/,$(SSL_SEG7_FILES))
@@ -179,6 +180,7 @@ $(BUILD_DIR)/bin/peach_toadstool_yoshi_birds.elf: SEGMENT_ADDRESS := 0x05000000
 $(BUILD_DIR)/bin/pss_seg7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/rr_seg7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/sa_seg7.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/sea_creatures.elf: SEGMENT_ADDRESS := 0x05000000
 $(BUILD_DIR)/bin/sl_seg7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/spindrift_penguin_snowman.elf: SEGMENT_ADDRESS := 0x05000000
 $(BUILD_DIR)/bin/ssl_seg7.elf: SEGMENT_ADDRESS := 0x07000000
