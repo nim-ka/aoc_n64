@@ -4375,12 +4375,12 @@ glabel unagi_seg5_anims_05012824 # 0x05012824
 .word 0
 .word 3 # Bin ID
 
-# Tweester (Whirlpool)
+# Whirlpool
 
-tweester_seg5_texture_05012848: # 0x05012848
-.incbin "bin/sea_creatures/tweester.12848.ia16"
+whirlpool_seg5_texture_05012848: # 0x05012848
+.incbin "bin/sea_creatures/whirlpool.12848.ia16"
 
-tweester_seg5_vertex_05013848: # 0x05013848
+whirlpool_seg5_vertex_05013848: # 0x05013848
 vertex     93,    129,    161,    650,   1708,  0xFF, 0xFF, 0xFF, 0xFF
 vertex      0,    129,    185,    480,   1708,  0xFF, 0xFF, 0xFF, 0xFF
 vertex      0,      0,      0,    564,   2012,  0xFF, 0xFF, 0xFF, 0xFF
@@ -4396,7 +4396,7 @@ vertex    185,    129,      0,    990,   1708,  0xFF, 0xFF, 0xFF, 0xFF
 vertex      0,      0,      0,    904,   2012,  0xFF, 0xFF, 0xFF, 0xFF
 vertex    379,    802,      0,    990,    128,  0xFF, 0xFF, 0xFF, 0xFF
 
-tweester_seg5_vertex_05013928: # 0x05013928
+whirlpool_seg5_vertex_05013928: # 0x05013928
 vertex    -92,    129,   -160,   1672,   1708,  0xFF, 0xFF, 0xFF, 0xFF
 vertex   -188,    802,   -327,   1672,    128,  0xFF, 0xFF, 0xFF, 0xFF
 vertex      0,    802,   -378,   1502,    128,  0xFF, 0xFF, 0xFF, 0xFF
@@ -4414,7 +4414,7 @@ vertex    -92,    129,    161,    308,   1708,  0xFF, 0xFF, 0xFF, 0xFF
 vertex   -160,    129,     93,    138,   1708,  0xFF, 0xFF, 0xFF, 0xFF
 vertex      0,      0,      0,    224,   2012,  0xFF, 0xFF, 0xFF, 0xFF
 
-tweester_seg5_vertex_05013A28: # 0x05013A28
+whirlpool_seg5_vertex_05013A28: # 0x05013A28
 vertex    -92,    129,   -160,   1672,   1708,  0xFF, 0xFF, 0xFF, 0xFF
 vertex      0,    129,   -184,   1502,   1708,  0xFF, 0xFF, 0xFF, 0xFF
 vertex      0,      0,      0,   1586,   2012,  0xFF, 0xFF, 0xFF, 0xFF
@@ -4430,18 +4430,18 @@ vertex   -184,    129,      0,      0,   1708,  0xFF, 0xFF, 0xFF, 0xFF
 vertex      0,      0,      0,     54,   2012,  0xFF, 0xFF, 0xFF, 0xFF
 vertex   -378,    802,      0,      0,    128,  0xFF, 0xFF, 0xFF, 0xFF
 
-tweester_seg5_vertex_05013B08: # 0x05013B08
+whirlpool_seg5_vertex_05013B08: # 0x05013B08
 vertex    -92,    129,    161,    308,   1708,  0xFF, 0xFF, 0xFF, 0xFF
 vertex   -188,    802,    328,    308,    128,  0xFF, 0xFF, 0xFF, 0xFF
 vertex   -327,    802,    189,    138,    128,  0xFF, 0xFF, 0xFF, 0xFF
 vertex   -160,    129,     93,    138,   1708,  0xFF, 0xFF, 0xFF, 0xFF
 vertex   -378,    802,      0,      0,    128,  0xFF, 0xFF, 0xFF, 0xFF
 
-glabel tweester_seg5_dl_05013B58 # 0x05013B58 - 0x05013CB8
-gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_16b, 1, tweester_seg5_texture_05012848
+glabel whirlpool_seg5_dl_05013B58 # 0x05013B58 - 0x05013CB8
+gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_16b, 1, whirlpool_seg5_texture_05012848
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
-gsSPVertex tweester_seg5_vertex_05013848, 14, 0
+gsSPVertex whirlpool_seg5_vertex_05013848, 14, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  0,  4, 0x0
 gsSP1Triangle  0,  5,  6, 0x0
@@ -4454,7 +4454,7 @@ gsSP1Triangle  1,  8, 10, 0x0
 gsSP1Triangle 11,  3, 12, 0x0
 gsSP1Triangle 11, 13,  3, 0x0
 gsSP1Triangle 13,  7,  3, 0x0
-gsSPVertex tweester_seg5_vertex_05013928, 16, 0
+gsSPVertex whirlpool_seg5_vertex_05013928, 16, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  4,  5, 0x0
 gsSP1Triangle  3,  6,  4, 0x0
@@ -4467,7 +4467,7 @@ gsSP1Triangle  2, 10,  8, 0x0
 gsSP1Triangle 11,  2,  8, 0x0
 gsSP1Triangle  0,  2, 11, 0x0
 gsSP1Triangle 13, 14, 15, 0x0
-gsSPVertex tweester_seg5_vertex_05013A28, 14, 0
+gsSPVertex whirlpool_seg5_vertex_05013A28, 14, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  0,  4, 0x0
 gsSP1Triangle  3,  5,  0, 0x0
@@ -4477,13 +4477,13 @@ gsSP1Triangle  9,  6,  3, 0x0
 gsSP1Triangle  7,  9,  3, 0x0
 gsSP1Triangle 10, 11, 12, 0x0
 gsSP1Triangle 10, 13, 11, 0x0
-gsSPVertex tweester_seg5_vertex_05013B08, 5, 0
+gsSPVertex whirlpool_seg5_vertex_05013B08, 5, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  0,  2,  3, 0x0
 gsSP1Triangle  3,  2,  4, 0x0
 gsSPEndDisplayList
 
-glabel tweester_seg5_dl_05013CB8 # 0x05013CB8 - 0x05013D28
+glabel whirlpool_seg5_dl_05013CB8 # 0x05013CB8 - 0x05013D28
 gsDPPipeSync
 gsDPSetCombineMode G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_SHADE, G_ACMUX_0, G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_SHADE, G_ACMUX_0
 gsSPClearGeometryMode 0x00022000
@@ -4492,7 +4492,7 @@ gsSPTexture -1, -1, 0, 0, 1
 gsDPTileSync
 gsDPSetTile G_IM_FMT_IA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD
 gsDPSetTileSize 0, 0, 0, 124, 252
-gsSPDisplayList tweester_seg5_dl_05013B58
+gsSPDisplayList whirlpool_seg5_dl_05013B58
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
 gsDPSetCombineMode G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE

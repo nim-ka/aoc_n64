@@ -82,7 +82,7 @@ static struct Struct803306D0 D_803306D0[] =
     { &beh_collectable_coin,             0x0074, 0x0000 }, { &beh_collectable_coin,            0x0074, 0x0000 }, 
     { &beh_collectable_coin,             0x0074, 0x0000 }, { &beh_collectable_coin,            0x0074, 0x0000 }, 
     { &beh_collectable_coin,             0x0074, 0x0000 }, { &beh_static_object,               0x0057, 0x0000 }, 
-    { &beh_tweester,                     0x0056, 0x0000 }, { &beh_pokey,                       0x0000, 0x0000 }, 
+    { &beh_tornado,                      0x0056, 0x0000 }, { &beh_pokey,                       0x0000, 0x0000 }, 
     { &beh_pokey,                        0x0000, 0x0000 }, { &beh_tox_box,                     0x00C7, 0x0000 }, 
     { &beh_collectable_coin,             0x0074, 0x0000 }, { &beh_collectable_coin,            0x0074, 0x0000 }, 
     { &beh_collectable_coin,             0x0074, 0x0000 }, { &beh_collectable_coin,            0x0074, 0x0000 }, 

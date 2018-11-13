@@ -2615,7 +2615,7 @@ glabel beh_initialize_water_level_trigger # 2620
         callnative BehInitWaterLevelTriggerLoop
     end_loop
 
-glabel beh_tweester_sand_particle # 2634
+glabel beh_tornado_sand_particle # 2634
     begin OBJ_LIST_UNIMPORTANT
     obj_or_int VAR_01, 0x03
     billboard
@@ -2623,7 +2623,7 @@ glabel beh_tweester_sand_particle # 2634
         callnative BehTweesterSandParticleLoop
     end_loop
 
-glabel beh_tweester # 2650
+glabel beh_tornado # 2650
     begin OBJ_LIST_POLELIKE
     obj_or_int VAR_01, 0x20C1
     unknown_30 0x001E, 0xFE70, 0x0000, 0x0000, 0x0000, 0x00C8, 0x0000, 0x0000
@@ -5280,7 +5280,7 @@ glabel beh_eyerok_boss # 5294
 glabel beh_eyerok_hand # 52B0
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x2041
-    obj_set_int32 VAR_26, 0x050116E4
+    obj_set_int32 VAR_26, eyerok_seg5_anims_050116E4
     unknown_28 0x06
     unknown_30 0x0096, 0x0000, 0x0000, 0x0000, 0x03E8, 0x00C8, 0x0000, 0x0000
     unknown_2D
@@ -5292,7 +5292,7 @@ glabel beh_eyerok_hand # 52B0
 glabel beh_klepto # 52F0
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x20C9
-    obj_set_int32 VAR_26, 0x05008CFC
+    obj_set_int32 VAR_26, klepto_seg5_anims_05008CFC
     unknown_28 0x00
     unknown_30 0x0064, 0x0000, 0xFFEC, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
     unknown_2D

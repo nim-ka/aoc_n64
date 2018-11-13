@@ -294,17 +294,17 @@ glabel script_func_global_5
     cmd22 /*unk2*/ 0x0054, /*unk4*/ manta_seg5_geo_05008D14
     cmd22 /*unk2*/ 0x0055, /*unk4*/ unagi_geo
     cmd22 /*unk2*/ 0x0056, /*unk4*/ sushi_geo
-    cmd21 /*unk2*/ 0x5057, /*unk4*/ tweester_seg5_dl_05013CB8
+    cmd21 /*unk2*/ 0x5057, /*unk4*/ whirlpool_seg5_dl_05013CB8
     cmd22 /*unk2*/ 0x0058, /*unk4*/ clam_shell_geo
     return
 
 glabel script_func_global_6
     cmd22 /*unk2*/ 0x0054, /*unk4*/ pokey_head_geo
     cmd22 /*unk2*/ 0x0055, /*unk4*/ pokey_body_part_geo
-    cmd22 /*unk2*/ 0x0056, /*unk4*/ tweester_seg5_geo_05014630
+    cmd22 /*unk2*/ 0x0056, /*unk4*/ tornado_seg5_geo_05014630
     cmd22 /*unk2*/ 0x0057, /*unk4*/ klepto_geo
-    cmd22 /*unk2*/ 0x0058, /*unk4*/ eyerock_geo
-    cmd22 /*unk2*/ 0x0059, /*unk4*/ eyerock2_geo
+    cmd22 /*unk2*/ 0x0058, /*unk4*/ eyerok_geo
+    cmd22 /*unk2*/ 0x0059, /*unk4*/ eyerok2_geo
     return
 
 glabel script_func_global_7

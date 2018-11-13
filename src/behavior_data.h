@@ -243,8 +243,8 @@ extern u32 beh_bob_hmc_cage_door[];                  // 0x130025C0
 extern u32 beh_openable_grill[];                     // 0x130025E0
 extern u32 beh_water_level_trigger[];                // 0x130025F8
 extern u32 beh_initialize_water_level_trigger[];     // 0x13002620
-extern u32 beh_tweester_sand_particle[];             // 0x13002634
-extern u32 beh_tweester[];                           // 0x13002650
+extern u32 beh_tornado_sand_particle[];              // 0x13002634
+extern u32 beh_tornado[];                            // 0x13002650
 extern u32 beh_spawn_big_boo[];                      // 0x13002684
 extern u32 beh_animated_texture[];                   // 0x1300269C
 extern u32 beh_boo_in_castle[];                      // 0x130026D4

@@ -319,41 +319,6 @@ heave_ho_seg5_dl_050127F8 = 0x050127F8;
 heave_ho_seg5_dl_05014560 = 0x05014560;
 heave_ho_seg5_dl_05014D80 = 0x05014D80;
 
-/* Klepto Eyerock Pokey */
-klepto_seg5_dl_05003BD0 = 0x05003BD0;
-klepto_seg5_dl_05003D80 = 0x05003D80;
-klepto_seg5_dl_05003F20 = 0x05003F20;
-klepto_seg5_dl_05004118 = 0x05004118;
-klepto_seg5_dl_050041E8 = 0x050041E8;
-klepto_seg5_dl_05004330 = 0x05004330;
-klepto_seg5_dl_05004438 = 0x05004438;
-klepto_seg5_dl_050047C8 = 0x050047C8;
-klepto_seg5_dl_05004B58 = 0x05004B58;
-klepto_seg5_dl_05004C28 = 0x05004C28;
-klepto_seg5_dl_05004D38 = 0x05004D38;
-klepto_seg5_dl_05004E48 = 0x05004E48;
-klepto_seg5_dl_05004F58 = 0x05004F58;
-klepto_seg5_dl_05005068 = 0x05005068;
-klepto_seg5_dl_05005178 = 0x05005178;
-eyerock_seg5_dl_0500B748 = 0x0500B748;
-eyerock_seg5_dl_0500B9C0 = 0x0500B9C0;
-eyerock_seg5_dl_0500BC88 = 0x0500BC88;
-eyerock_seg5_dl_0500BF00 = 0x0500BF00;
-eyerock_seg5_dl_0500C100 = 0x0500C100;
-eyerock_seg5_dl_0500C378 = 0x0500C378;
-eyerock_seg5_dl_0500C640 = 0x0500C640;
-eyerock_seg5_dl_0500C908 = 0x0500C908;
-eyerock_seg5_dl_0500C9B8 = 0x0500C9B8;
-eyerock_seg5_dl_0500CA50 = 0x0500CA50;
-eyerock_seg5_dl_0500CAE8 = 0x0500CAE8;
-eyerock_seg5_dl_0500CB80 = 0x0500CB80;
-eyerock_seg5_dl_0500CC18 = 0x0500CC18;
-eyerock_seg5_dl_0500CC30 = 0x0500CC30;
-pokey_head_seg5_dl_050127D8 = 0x050127D8;
-pokey_head_seg5_dl_05012808 = 0x05012808;
-pokey_body_part_seg5_dl_050130B0 = 0x050130B0;
-tweester_seg5_geo_05014630 = 0x05014630;
-
 /* Mario */
 mario_seg4_dl_0400CC98 = 0x0400CC98;
 mario_seg4_dl_0400CCC8 = 0x0400CCC8;

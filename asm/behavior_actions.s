@@ -34471,8 +34471,8 @@ glabel ActionTweester1
 /* 07D7C0 802C27C0 0C0B08C7 */  jal   func_802C231C
 /* 07D7C4 802C27C4 00000000 */   nop   
 /* 07D7C8 802C27C8 3C048036 */  lui   $a0, %hi(gCurrentObject) # $a0, 0x8036
-/* 07D7CC 802C27CC 3C061300 */  lui   $a2, %hi(beh_tweester_sand_particle) # $a2, 0x1300
-/* 07D7D0 802C27D0 24C62634 */  addiu $a2, %lo(beh_tweester_sand_particle) # addiu $a2, $a2, 0x2634
+/* 07D7CC 802C27CC 3C061300 */  lui   $a2, %hi(beh_tornado_sand_particle) # $a2, 0x1300
+/* 07D7D0 802C27D0 24C62634 */  addiu $a2, %lo(beh_tornado_sand_particle) # addiu $a2, $a2, 0x2634
 /* 07D7D4 802C27D4 8C84FDF0 */  lw    $a0, %lo(gCurrentObject)($a0)
 /* 07D7D8 802C27D8 0C0A7994 */  jal   SpawnObj
 /* 07D7DC 802C27DC 2405009F */   li    $a1, 159

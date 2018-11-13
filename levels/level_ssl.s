@@ -16,9 +16,9 @@ script_func_local_2:
     object /*unk2*/ 0x1F, /*unk3*/ 0xC7, /*pos*/ -1284, 0, -5895, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_tox_box
     object /*unk2*/ 0x1F, /*unk3*/ 0xC7, /*pos*/ 1283, 0, -4865, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ beh_tox_box
     object /*unk2*/ 0x1F, /*unk3*/ 0xC7, /*pos*/ 4873, 0, -3335, /*angle*/ 0, 0, 0, /*behArg*/ 0x00020000, /*beh*/ beh_tox_box
-    object /*unk2*/ 0x1F, /*unk3*/ 0x56, /*pos*/ -3600, -200, 2940, /*angle*/ 0, 0, 0, /*behArg*/ 0x00120000, /*beh*/ beh_tweester
-    object /*unk2*/ 0x38, /*unk3*/ 0x56, /*pos*/ 1017, -200, 3832, /*angle*/ 0, 0, 0, /*behArg*/ 0x00190000, /*beh*/ beh_tweester
-    object /*unk2*/ 0x38, /*unk3*/ 0x56, /*pos*/ 3066, -200, 400, /*angle*/ 0, 0, 0, /*behArg*/ 0x00190000, /*beh*/ beh_tweester
+    object /*unk2*/ 0x1F, /*unk3*/ 0x56, /*pos*/ -3600, -200, 2940, /*angle*/ 0, 0, 0, /*behArg*/ 0x00120000, /*beh*/ beh_tornado
+    object /*unk2*/ 0x38, /*unk3*/ 0x56, /*pos*/ 1017, -200, 3832, /*angle*/ 0, 0, 0, /*behArg*/ 0x00190000, /*beh*/ beh_tornado
+    object /*unk2*/ 0x38, /*unk3*/ 0x56, /*pos*/ 3066, -200, 400, /*angle*/ 0, 0, 0, /*behArg*/ 0x00190000, /*beh*/ beh_tornado
     object /*unk2*/ 0x01, /*unk3*/ 0x57, /*pos*/ 2200, 1174, -2820, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ beh_klepto
     object /*unk2*/ 0x3E, /*unk3*/ 0x57, /*pos*/ -5963, 573, -4784, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_klepto
     return
@@ -59,8 +59,8 @@ glabel level_ssl_entry
     load_mio0 /*seg*/ 0x07, /*romStart*/ _level_ssl_segment_7SegmentRomStart, /*romEnd*/ _level_ssl_segment_7SegmentRomEnd
     load_mio0 /*seg*/ 0x0A, /*romStart*/ _ssl_skybox_mio0SegmentRomStart, /*romEnd*/ _ssl_skybox_mio0SegmentRomEnd
     cmd1A     /*seg*/ 0x09, /*romStart*/ _bob_textures_mio0SegmentRomStart, /*romEnd*/ _bob_textures_mio0SegmentRomEnd
-    load_mio0 /*seg*/ 0x05, /*romStart*/ _klepto_eyerock_pokey_mio0SegmentRomStart, /*romEnd*/ _klepto_eyerock_pokey_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0C, /*romStart*/ _klepto_eyerock_pokey_geoSegmentRomStart,  /*romEnd*/ _klepto_eyerock_pokey_geoSegmentRomEnd
+    load_mio0 /*seg*/ 0x05, /*romStart*/ _klepto_eyerok_pokey_mio0SegmentRomStart, /*romEnd*/ _klepto_eyerok_pokey_mio0SegmentRomEnd
+    load_raw  /*seg*/ 0x0C, /*romStart*/ _klepto_eyerok_pokey_geoSegmentRomStart,  /*romEnd*/ _klepto_eyerok_pokey_geoSegmentRomEnd
     load_mio0 /*seg*/ 0x08, /*romStart*/ _amp_chuckya_shyguy_goomba_boxes_mio0SegmentRomStart, /*romEnd*/ _amp_chuckya_shyguy_goomba_boxes_mio0SegmentRomEnd
     load_raw  /*seg*/ 0x0F, /*romStart*/ _amp_chuckya_shyguy_goomba_boxes_geoSegmentRomStart,  /*romEnd*/ _amp_chuckya_shyguy_goomba_boxes_geoSegmentRomEnd
     alloc_level_pool
