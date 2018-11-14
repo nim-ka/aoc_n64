@@ -1016,7 +1016,7 @@ glabel beh_grindel # 0B58
 
 glabel beh_thwomp_2 # 0B8C
     begin OBJ_LIST_SURFACE
-    collision_data 0x0500B92C
+    collision_data thwomp_seg5_collision_0500B92C
     obj_or_int VAR_01, 0x49
     unknown_1E
     obj_add_float VAR_07, 1
@@ -1030,7 +1030,7 @@ glabel beh_thwomp_2 # 0B8C
 
 glabel beh_thwomp # 0BC8
     begin OBJ_LIST_SURFACE
-    collision_data 0x0500B7D0
+    collision_data thwomp_seg5_collision_0500B7D0
     obj_or_int VAR_01, 0x49
     unknown_1E
     obj_add_float VAR_07, 1
@@ -1619,7 +1619,7 @@ glabel beh_pushable # 1518
 glabel beh_heave_ho # 1548
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2449
-    obj_set_int32 VAR_26, 0x0501534C
+    obj_set_int32 VAR_26, heave_ho_seg5_anims_0501534C
     unknown_28 0x00
     unknown_30 0x00C8, 0xFE70, 0xFFCE, 0x03E8, 0x03E8, 0x0258, 0x0000, 0x0000
     unknown_2C 0x00000000, beh_heave_ho_throw_mario
@@ -3492,7 +3492,7 @@ glabel beh_butterfly # 339C
 glabel beh_hoot # 33CC
     begin OBJ_LIST_POLELIKE
     obj_or_int VAR_01, 0x09
-    obj_set_int32 VAR_26, 0x05005768
+    obj_set_int32 VAR_26, hoot_seg5_anims_05005768
     obj_set_int VAR_2A, 0x01
     set_hitbox 0x004B, 0x004B
     callnative BehHootInit

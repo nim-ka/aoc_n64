@@ -11,7 +11,6 @@ BINARY_SEGMENTS := \
    clouds_skybox \
    coins_pipe_doors_maps_trees \
    flower_textures \
-   hoot_thwomp_bullet_heave \
    mario_water_sparkles \
    mole_monkey_fwoosh \
    skeeter_fish_treasurechest \
@@ -56,6 +55,7 @@ DDD_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/dd
 COTMC_SEG7_FILES             := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/cotmc_seg7/*.png)))
 HMC_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/hmc_seg7/*.png)))
 HMC_TEXTURES_FILES           := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/hmc_textures/*.png)))
+HOOT_THWOMP_FILES            := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/hoot_thwomp_bullet_heave/*.png)))
 INSIDE_CASTLE_SEG7_FILES     := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/inside_castle_seg7/*.png)))
 INSIDE_CASTLE_TEXTURES_FILES := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/inside_castle_textures/*.png)))
 JRB_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/jrb_seg7/*.png)))
@@ -115,6 +115,7 @@ $(BUILD_DIR)/bin/ddd_seg7.o: $(addprefix $(BUILD_DIR)/bin/ddd_seg7/,$(DDD_SEG7_F
 $(BUILD_DIR)/bin/cotmc_seg7.o: $(addprefix $(BUILD_DIR)/bin/cotmc_seg7/,$(COTMC_SEG7_FILES))
 $(BUILD_DIR)/bin/hmc_seg7.o: $(addprefix $(BUILD_DIR)/bin/hmc_seg7/,$(HMC_SEG7_FILES))
 $(BUILD_DIR)/bin/hmc_textures.o: $(addprefix $(BUILD_DIR)/bin/hmc_textures/,$(HMC_TEXTURES_FILES))
+$(BUILD_DIR)/bin/hoot_thwomp_bullet_heave.o: $(addprefix $(BUILD_DIR)/bin/hoot_thwomp_bullet_heave/,$(HOOT_THWOMP_FILES))
 $(BUILD_DIR)/bin/inside_castle_seg7.o: $(addprefix $(BUILD_DIR)/bin/inside_castle_seg7/,$(INSIDE_CASTLE_SEG7_FILES))
 $(BUILD_DIR)/bin/inside_castle_textures.o: $(addprefix $(BUILD_DIR)/bin/inside_castle_textures/,$(INSIDE_CASTLE_TEXTURES_FILES))
 $(BUILD_DIR)/bin/jrb_seg7.o: $(addprefix $(BUILD_DIR)/bin/jrb_seg7/,$(JRB_SEG7_FILES))
@@ -171,6 +172,7 @@ $(BUILD_DIR)/bin/chillychief_moneybag.elf: SEGMENT_ADDRESS := 0x06000000
 $(BUILD_DIR)/bin/ddd_seg7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/debug_level_select.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/hmc_seg7.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/hoot_thwomp_bullet_heave.elf: SEGMENT_ADDRESS := 0x05000000
 $(BUILD_DIR)/bin/inside_castle_seg7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/jrb_seg7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/klepto_eyerok_pokey.elf: SEGMENT_ADDRESS := 0x05000000

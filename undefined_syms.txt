@@ -284,41 +284,6 @@ snow_tree_seg3_dl_03032088 = 0x03032088;
 spiky_tree2_seg3_dl_03032170 = 0x03032170;
 palm_tree_seg3_dl_03033258 = 0x03033258;
 
-/* Hoot Thwomp Bullet Bill Heave */
-yellow_sphere_seg5_dl_050008C8 = 0x050008C8;
-hoot_seg5_dl_05001DF0 = 0x05001DF0;
-hoot_seg5_dl_05002F10 = 0x05002F10;
-hoot_seg5_dl_05003038 = 0x05003038;
-hoot_seg5_dl_05003160 = 0x05003160;
-hoot_seg5_dl_05003288 = 0x05003288;
-hoot_seg5_dl_050033B0 = 0x050033B0;
-hoot_seg5_dl_050034D8 = 0x050034D8;
-hoot_seg5_dl_05003600 = 0x05003600;
-hoot_seg5_dl_05003728 = 0x05003728;
-hoot_seg5_dl_05004928 = 0x05004928;
-hoot_seg5_dl_05004A98 = 0x05004A98;
-hoot_seg5_dl_05004B38 = 0x05004B38;
-hoot_seg5_dl_05004CA8 = 0x05004CA8;
-hoot_seg5_dl_05004D48 = 0x05004D48;
-yoshi_egg_seg5_dl_05009820 = 0x05009820;
-yoshi_egg_seg5_dl_05009838 = 0x05009838;
-yoshi_egg_seg5_dl_05009850 = 0x05009850;
-yoshi_egg_seg5_dl_05009868 = 0x05009868;
-yoshi_egg_seg5_dl_05009880 = 0x05009880;
-yoshi_egg_seg5_dl_05009898 = 0x05009898;
-yoshi_egg_seg5_dl_050098B0 = 0x050098B0;
-yoshi_egg_seg5_dl_050098C8 = 0x050098C8;
-thwomp_seg5_dl_0500B750 = 0x0500B750;
-bullet_bill_seg5_dl_0500E8A8 = 0x0500E8A8;
-heave_ho_seg5_dl_05011EC0 = 0x05011EC0;
-heave_ho_seg5_dl_05012148 = 0x05012148;
-heave_ho_seg5_dl_050123A8 = 0x050123A8;
-heave_ho_seg5_dl_050125F8 = 0x050125F8;
-heave_ho_seg5_dl_050126E8 = 0x050126E8;
-heave_ho_seg5_dl_050127F8 = 0x050127F8;
-heave_ho_seg5_dl_05014560 = 0x05014560;
-heave_ho_seg5_dl_05014D80 = 0x05014D80;
-
 /* Mario */
 mario_seg4_dl_0400CC98 = 0x0400CC98;
 mario_seg4_dl_0400CCC8 = 0x0400CCC8;
