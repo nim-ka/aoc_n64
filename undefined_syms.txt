@@ -454,37 +454,6 @@ sparkles_animation_seg4_dl_04035330 = 0x04035330;
 sparkles_animation_seg4_dl_04035348 = 0x04035348;
 sparkles_animation_seg4_dl_04035360 = 0x04035360;
 
-/* Mole Monkey Fwoosh */
-monty_mole_hole_seg5_dl_05000840 = 0x05000840;
-monty_mole_seg5_dl_050032A0 = 0x050032A0;
-monty_mole_seg5_dl_05003518 = 0x05003518;
-monty_mole_seg5_dl_05003820 = 0x05003820;
-monty_mole_seg5_dl_050039D0 = 0x050039D0;
-monty_mole_seg5_dl_05003C48 = 0x05003C48;
-monty_mole_seg5_dl_05003F50 = 0x05003F50;
-monty_mole_seg5_dl_050044B0 = 0x050044B0;
-monty_mole_seg5_dl_05004C00 = 0x05004C00;
-monty_mole_seg5_dl_05004D30 = 0x05004D30;
-ukiki_seg5_dl_0500B2E8 = 0x0500B2E8;
-ukiki_seg5_dl_0500B310 = 0x0500B310;
-ukiki_seg5_dl_0500B820 = 0x0500B820;
-ukiki_seg5_dl_0500B988 = 0x0500B988;
-ukiki_seg5_dl_0500BB28 = 0x0500BB28;
-ukiki_seg5_dl_0500BC78 = 0x0500BC78;
-ukiki_seg5_dl_0500BE38 = 0x0500BE38;
-ukiki_seg5_dl_0500BFF8 = 0x0500BFF8;
-ukiki_seg5_dl_0500C1B8 = 0x0500C1B8;
-ukiki_seg5_dl_0500C368 = 0x0500C368;
-ukiki_seg5_dl_0500C528 = 0x0500C528;
-ukiki_seg5_dl_0500C6E8 = 0x0500C6E8;
-ukiki_seg5_dl_0500C898 = 0x0500C898;
-ukiki_seg5_dl_0500CA48 = 0x0500CA48;
-ukiki_seg5_dl_0500CF68 = 0x0500CF68;
-ukiki_seg5_dl_0500CFF0 = 0x0500CFF0;
-ukiki_seg5_dl_0500D078 = 0x0500D078;
-ukiki_seg5_dl_0500D108 = 0x0500D108;
-fwoosh_seg5_dl_05016040 = 0x05016040;
-
 /* Skeeter Fish Treasurechest */
 skeeter_seg6_dl_06000A08 = 0x06000A08;
 skeeter_seg6_dl_06000AF0 = 0x06000AF0;

@@ -12,7 +12,6 @@ BINARY_SEGMENTS := \
    coins_pipe_doors_maps_trees \
    flower_textures \
    mario_water_sparkles \
-   mole_monkey_fwoosh \
    skeeter_fish_treasurechest \
    ssl_skybox \
    water_skybox \
@@ -60,11 +59,12 @@ INSIDE_CASTLE_SEG7_FILES     := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/in
 INSIDE_CASTLE_TEXTURES_FILES := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/inside_castle_textures/*.png)))
 JRB_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/jrb_seg7/*.png)))
 JRB_TEXTURES_FILES           := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/jrb_textures/*.png)))
-KLEPTO_EYEROK_FILES         := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/klepto_eyerok_pokey/*.png)))
+KLEPTO_EYEROK_FILES          := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/klepto_eyerok_pokey/*.png)))
 KOOPA_LOG_FILES              := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/koopa_log_piranha_whomp_chomp/*.png)))
 LAKITU_TOAD_FILES            := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/lakitu_toad_mips_boo/*.png)))
 LLL_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/lll_seg7/*.png)))
 LLL_TEXTURES_FILES           := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/lll_textures/*.png)))
+MOLE_UKIKI_FILES             := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/mole_ukiki_fwoosh/*.png)))
 MR_I_SWOOP_FILES             := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/mr_i_swoop_snufit_dorrie_scuttlebug/*.png)))
 PEACH_TOADSTOOL_FILES        := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/peach_toadstool_yoshi_birds/*.png)))
 PSS_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/pss_seg7/*.png)))
@@ -125,6 +125,7 @@ $(BUILD_DIR)/bin/koopa_log_piranha_whomp_chomp.o: $(addprefix $(BUILD_DIR)/bin/k
 $(BUILD_DIR)/bin/lakitu_toad_mips_boo.o: $(addprefix $(BUILD_DIR)/bin/lakitu_toad_mips_boo/,$(LAKITU_TOAD_FILES))
 $(BUILD_DIR)/bin/lll_seg7.o: $(addprefix $(BUILD_DIR)/bin/lll_seg7/,$(LLL_SEG7_FILES))
 $(BUILD_DIR)/bin/lll_textures.o: $(addprefix $(BUILD_DIR)/bin/lll_textures/,$(LLL_TEXTURES_FILES))
+$(BUILD_DIR)/bin/mole_ukiki_fwoosh.o: $(addprefix $(BUILD_DIR)/bin/mole_ukiki_fwoosh/,$(MOLE_UKIKI_FILES))
 $(BUILD_DIR)/bin/mr_i_swoop_snufit_dorrie_scuttlebug.o: $(addprefix $(BUILD_DIR)/bin/mr_i_swoop_snufit_dorrie_scuttlebug/,$(MR_I_SWOOP_FILES))
 $(BUILD_DIR)/bin/peach_toadstool_yoshi_birds.o: $(addprefix $(BUILD_DIR)/bin/peach_toadstool_yoshi_birds/,$(PEACH_TOADSTOOL_FILES))
 $(BUILD_DIR)/bin/pss_seg7.o: $(addprefix $(BUILD_DIR)/bin/pss_seg7/,$(PSS_SEG7_FILES))
@@ -179,6 +180,7 @@ $(BUILD_DIR)/bin/klepto_eyerok_pokey.elf: SEGMENT_ADDRESS := 0x05000000
 $(BUILD_DIR)/bin/koopa_log_piranha_whomp_chomp.elf: SEGMENT_ADDRESS := 0x06000000
 $(BUILD_DIR)/bin/lakitu_toad_mips_boo.elf: SEGMENT_ADDRESS := 0x06000000
 $(BUILD_DIR)/bin/lll_seg7.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/mole_ukiki_fwoosh.elf: SEGMENT_ADDRESS := 0x05000000
 $(BUILD_DIR)/bin/mr_i_swoop_snufit_dorrie_scuttlebug.elf: SEGMENT_ADDRESS := 0x06000000
 $(BUILD_DIR)/bin/peach_toadstool_yoshi_birds.elf: SEGMENT_ADDRESS := 0x05000000
 $(BUILD_DIR)/bin/pss_seg7.elf: SEGMENT_ADDRESS := 0x07000000

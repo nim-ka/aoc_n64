@@ -2038,7 +2038,7 @@ glabel beh_ukiki_open_cage # 1CB0
     set_hitbox 0x0028, 0x0028
     obj_set_int VAR_05, 0
     unknown_1E
-    obj_set_int32 VAR_26, 0x05015784
+    obj_set_int32 VAR_26, ukiki_seg5_anims_05015784
     unknown_28 0x00
     unknown_30 0x001E, 0xFE70, 0xFFCE, 0x0000, 0x0000, 0x00C8, 0x0000, 0x0000
     unknown_2D
@@ -4793,7 +4793,7 @@ glabel beh_monty_mole # 49E0
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2049
     unknown_1E
-    obj_set_int32 VAR_26, 0x05007248
+    obj_set_int32 VAR_26, monty_mole_seg5_anims_05007248
     unknown_28 0x03
     unknown_30 0x001E, 0x0000, 0xFFCE, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
     unhide
