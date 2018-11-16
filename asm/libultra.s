@@ -10269,4 +10269,4 @@ glabel rspbootTextStart
     .incbin "bin/sm64.j.0E5320.rsp.boot.bin"
 
 glabel rspbootTextEnd
-    .incbin "bin/sm64.j.0E53F0.rsp.graphics.bin"
+    .incbin "bin/gspFast3D.fifo.bin"
