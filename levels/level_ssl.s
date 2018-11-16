@@ -19,8 +19,8 @@ script_func_local_2:
     object /*unk2*/ 0x1F, /*unk3*/ 0x56, /*pos*/ -3600, -200, 2940, /*angle*/ 0, 0, 0, /*behArg*/ 0x00120000, /*beh*/ beh_tornado
     object /*unk2*/ 0x38, /*unk3*/ 0x56, /*pos*/ 1017, -200, 3832, /*angle*/ 0, 0, 0, /*behArg*/ 0x00190000, /*beh*/ beh_tornado
     object /*unk2*/ 0x38, /*unk3*/ 0x56, /*pos*/ 3066, -200, 400, /*angle*/ 0, 0, 0, /*behArg*/ 0x00190000, /*beh*/ beh_tornado
-    object /*unk2*/ 0x01, /*unk3*/ 0x57, /*pos*/ 2200, 1174, -2820, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ beh_klepto
-    object /*unk2*/ 0x3E, /*unk3*/ 0x57, /*pos*/ -5963, 573, -4784, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_klepto
+    object /*unk2*/ 0x01, /*unk3*/ 0x57, /*pos*/ 2200, 1174, -2820, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ bKlepto
+    object /*unk2*/ 0x3E, /*unk3*/ 0x57, /*pos*/ -5963, 573, -4784, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ bKlepto
     return
 
 script_func_local_3:
@@ -32,8 +32,8 @@ script_func_local_4:
     object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 2867, 640, 2867, /*angle*/ 0, 0, 0, /*behArg*/ 0x004D0000, /*beh*/ beh_pole_grabbing
     object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 0, 3200, 1331, /*angle*/ 0, 0, 0, /*behArg*/ 0x005C0000, /*beh*/ beh_pole_grabbing
     object /*unk2*/ 0x1F, /*unk3*/ 0x36, /*pos*/ 3297, 0, 95, /*angle*/ 0, 0, 0, /*behArg*/ 0x001C0000, /*beh*/ beh_grindel
-    object /*unk2*/ 0x1F, /*unk3*/ 0x36, /*pos*/ -870, 3840, 105, /*angle*/ 0, 180, 0, /*behArg*/ 0x00000000, /*beh*/ beh_grindel2
-    object /*unk2*/ 0x1F, /*unk3*/ 0x36, /*pos*/ -3362, 0, -1385, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_grindel2
+    object /*unk2*/ 0x1F, /*unk3*/ 0x36, /*pos*/ -870, 3840, 105, /*angle*/ 0, 180, 0, /*behArg*/ 0x00000000, /*beh*/ bHorizontalGrindel
+    object /*unk2*/ 0x1F, /*unk3*/ 0x36, /*pos*/ -3362, 0, -1385, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ bHorizontalGrindel
     object /*unk2*/ 0x1F, /*unk3*/ 0x37, /*pos*/ -2458, 2109, -1430, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_spindel
     object /*unk2*/ 0x1F, /*unk3*/ 0x38, /*pos*/ 858, 1927, -2307, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_moving_up_and_down
     object /*unk2*/ 0x1F, /*unk3*/ 0x38, /*pos*/ 730, 1927, -2307, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ beh_moving_up_and_down

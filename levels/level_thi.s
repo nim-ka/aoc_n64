@@ -17,19 +17,19 @@ script_func_local_2:
 
 script_func_local_3:
     object /*unk2*/ 0x3F, /*unk3*/ 0x00, /*pos*/ -1800, 800, -1500, /*angle*/ 0, 0, 0, /*behArg*/ 0x04000000, /*beh*/ beh_hidden_red_coin_star
-    object /*unk2*/ 0x1F, /*unk3*/ 0x57, /*pos*/ 17, 1843, -62, /*angle*/ 0, 0, 0, /*behArg*/ 0x05000000, /*beh*/ beh_wiggler
+    object /*unk2*/ 0x1F, /*unk3*/ 0x57, /*pos*/ 17, 1843, -62, /*angle*/ 0, 0, 0, /*behArg*/ 0x05000000, /*beh*/ bWiggler
     return
 
 script_func_local_4:
-    object /*unk2*/ 0x04, /*unk3*/ 0x68, /*pos*/ -1900, -511, 2400, /*angle*/ 0, -30, 0, /*behArg*/ 0x02030000, /*beh*/ beh_koopa
-    object /*unk2*/ 0x04, /*unk3*/ 0x00, /*pos*/ 7400, -1537, -6300, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_waving_koopa_flag
-    object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -6556, -2969, 6565, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ beh_goombas_group
-    object /*unk2*/ 0x1F, /*unk3*/ 0xC0, /*pos*/ 6517, -2559, 4327, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ beh_goomba_walk
-    object /*unk2*/ 0x1F, /*unk3*/ 0x64, /*pos*/ -6336, -2047, -3861, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ beh_piranha_plant
-    object /*unk2*/ 0x1F, /*unk3*/ 0x64, /*pos*/ -5740, -2047, -6578, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ beh_piranha_plant
-    object /*unk2*/ 0x1F, /*unk3*/ 0x64, /*pos*/ -6481, -2047, -5998, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ beh_piranha_plant
-    object /*unk2*/ 0x1F, /*unk3*/ 0x64, /*pos*/ -5577, -2047, -4961, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ beh_piranha_plant
-    object /*unk2*/ 0x1F, /*unk3*/ 0x64, /*pos*/ -6865, -2047, -4568, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ beh_piranha_plant
+    object /*unk2*/ 0x04, /*unk3*/ 0x68, /*pos*/ -1900, -511, 2400, /*angle*/ 0, -30, 0, /*behArg*/ 0x02030000, /*beh*/ bKoopa
+    object /*unk2*/ 0x04, /*unk3*/ 0x00, /*pos*/ 7400, -1537, -6300, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ bKoopaRaceEndpoint
+    object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -6556, -2969, 6565, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ bGoombaTripletSpawner
+    object /*unk2*/ 0x1F, /*unk3*/ 0xC0, /*pos*/ 6517, -2559, 4327, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ bGoomba
+    object /*unk2*/ 0x1F, /*unk3*/ 0x64, /*pos*/ -6336, -2047, -3861, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ bFirePiranhaPlant
+    object /*unk2*/ 0x1F, /*unk3*/ 0x64, /*pos*/ -5740, -2047, -6578, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ bFirePiranhaPlant
+    object /*unk2*/ 0x1F, /*unk3*/ 0x64, /*pos*/ -6481, -2047, -5998, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ bFirePiranhaPlant
+    object /*unk2*/ 0x1F, /*unk3*/ 0x64, /*pos*/ -5577, -2047, -4961, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ bFirePiranhaPlant
+    object /*unk2*/ 0x1F, /*unk3*/ 0x64, /*pos*/ -6865, -2047, -4568, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ bFirePiranhaPlant
     object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -4413, 204, -2140, /*angle*/ 0, 0, 0, /*behArg*/ 0x00030000, /*beh*/ beh_thi_bowling_ball_spawner
     object /*unk2*/ 0x1F, /*unk3*/ 0x59, /*pos*/ -6241, -3300, -716, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_bubba
     object /*unk2*/ 0x1F, /*unk3*/ 0x59, /*pos*/ 1624, -3300, 8142, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_bubba

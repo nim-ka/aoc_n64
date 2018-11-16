@@ -45,7 +45,7 @@ script_func_local_3:
     object /*unk2*/ 0x3E, /*unk3*/ 0x00, /*pos*/ -1100, -2372, 1100, /*angle*/ 0, 135, 0, /*behArg*/ 0x01000000, /*beh*/ beh_spawn_big_boo
     object /*unk2*/ 0x3F, /*unk3*/ 0x54, /*pos*/ 1030, 1922, 2546, /*angle*/ 0, -90, 0, /*behArg*/ 0x04000000, /*beh*/ beh_patrolling_boo
     object /*unk2*/ 0x3F, /*unk3*/ 0x54, /*pos*/ 581, 1850, -206, /*angle*/ 0, -90, 0, /*behArg*/ 0x00000000, /*beh*/ beh_boo_3
-    object /*unk2*/ 0x1F, /*unk3*/ 0x57, /*pos*/ -1300, 0, 2310, /*angle*/ 0, 243, 0, /*behArg*/ 0x00000000, /*beh*/ beh_mad_piano
+    object /*unk2*/ 0x1F, /*unk3*/ 0x57, /*pos*/ -1300, 0, 2310, /*angle*/ 0, 243, 0, /*behArg*/ 0x00000000, /*beh*/ bMadPiano
     object /*unk2*/ 0x1F, /*unk3*/ 0x56, /*pos*/ -1530, 0, 2200, /*angle*/ 0, 66, 0, /*behArg*/ 0x00000000, /*beh*/ beh_haunted_chair
     object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -1330, 890, 200, /*angle*/ 0, 90, 0, /*behArg*/ 0x00000000, /*beh*/ beh_bookend_spawn
     object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -818, 890, -200, /*angle*/ 0, 270, 0, /*behArg*/ 0x00000000, /*beh*/ beh_bookend_spawn

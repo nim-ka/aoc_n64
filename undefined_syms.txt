@@ -109,6 +109,7 @@ chuckya_seg8_dl_0800ABE8 = 0x0800ABE8;
 purple_switch_seg8_dl_0800C718 = 0x0800C718;
 checkerboard_platform_seg8_dl_0800D680 = 0x0800D680;
 heart_seg8_dl_0800DFE0 = 0x0800DFE0;
+D_0800D710 = 0x0800D710;
 shyguy_seg8_dl_08010840 = 0x08010840;
 shyguy_seg8_dl_08010968 = 0x08010968;
 shyguy_seg8_dl_08010B80 = 0x08010B80;

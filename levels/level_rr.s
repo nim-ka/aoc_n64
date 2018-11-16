@@ -11,10 +11,10 @@
 script_func_local_1:
     object /*unk2*/ 0x1F, /*unk3*/ 0x36, /*pos*/ -3400, -2038, 6564, /*angle*/ 0, 0, 0, /*behArg*/ 0x02560000, /*beh*/ beh_sliding_platform2
     object /*unk2*/ 0x1F, /*unk3*/ 0x36, /*pos*/ -2684, -1423, -36, /*angle*/ 0, 0, 0, /*behArg*/ 0x02590000, /*beh*/ beh_sliding_platform2
-    object /*unk2*/ 0x1F, /*unk3*/ 0x37, /*pos*/ 4571, -1782, 2036, /*angle*/ 0, 180, 0, /*behArg*/ 0x00000000, /*beh*/ beh_platform_on_tracks
-    object /*unk2*/ 0x1F, /*unk3*/ 0x37, /*pos*/ 580, -963, -3659, /*angle*/ 0, 180, 0, /*behArg*/ 0x00010000, /*beh*/ beh_platform_on_tracks
-    object /*unk2*/ 0x1F, /*unk3*/ 0x37, /*pos*/ 1567, 880, -184, /*angle*/ 0, 180, 0, /*behArg*/ 0x00070000, /*beh*/ beh_platform_on_tracks
-    object /*unk2*/ 0x1F, /*unk3*/ 0x37, /*pos*/ 646, 880, -184, /*angle*/ 0, 0, 0, /*behArg*/ 0x00080000, /*beh*/ beh_platform_on_tracks
+    object /*unk2*/ 0x1F, /*unk3*/ 0x37, /*pos*/ 4571, -1782, 2036, /*angle*/ 0, 180, 0, /*behArg*/ 0x00000000, /*beh*/ bPlatformOnTrack
+    object /*unk2*/ 0x1F, /*unk3*/ 0x37, /*pos*/ 580, -963, -3659, /*angle*/ 0, 180, 0, /*behArg*/ 0x00010000, /*beh*/ bPlatformOnTrack
+    object /*unk2*/ 0x1F, /*unk3*/ 0x37, /*pos*/ 1567, 880, -184, /*angle*/ 0, 180, 0, /*behArg*/ 0x00070000, /*beh*/ bPlatformOnTrack
+    object /*unk2*/ 0x1F, /*unk3*/ 0x37, /*pos*/ 646, 880, -184, /*angle*/ 0, 0, 0, /*behArg*/ 0x00080000, /*beh*/ bPlatformOnTrack
     object /*unk2*/ 0x1F, /*unk3*/ 0x38, /*pos*/ 644, -1321, -1301, /*angle*/ 0, 180, 0, /*behArg*/ 0x03010000, /*beh*/ beh_octagonal_platform_rotating
     object /*unk2*/ 0x1F, /*unk3*/ 0x38, /*pos*/ 1797, -1321, -56, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ beh_octagonal_platform_rotating
     object /*unk2*/ 0x1F, /*unk3*/ 0x38, /*pos*/ 663, -1321, 1179, /*angle*/ 0, 180, 0, /*behArg*/ 0x03010000, /*beh*/ beh_octagonal_platform_rotating
@@ -26,11 +26,11 @@ script_func_local_1:
     object /*unk2*/ 0x1F, /*unk3*/ 0x3B, /*pos*/ 2856, 2410, -2855, /*angle*/ 45, 180, 180, /*behArg*/ 0x00010000, /*beh*/ beh_rr_cruiser_wing
     object /*unk2*/ 0x1F, /*unk3*/ 0x3B, /*pos*/ 4101, 2435, -1813, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_rr_cruiser_wing
     object /*unk2*/ 0x1F, /*unk3*/ 0x3B, /*pos*/ 2859, 2411, -1834, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_rr_cruiser_wing
-    object /*unk2*/ 0x1F, /*unk3*/ 0x3C, /*pos*/ -6013, -2857, 6564, /*angle*/ 0, 270, 0, /*behArg*/ 0x00050000, /*beh*/ beh_solid_moving
-    object /*unk2*/ 0x1F, /*unk3*/ 0x3C, /*pos*/ 614, -3574, 6564, /*angle*/ 0, 270, 0, /*behArg*/ 0x00050000, /*beh*/ beh_solid_moving
-    object /*unk2*/ 0x1F, /*unk3*/ 0x3E, /*pos*/ -3557, -809, 4619, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_pendulum_movement
-    object /*unk2*/ 0x1F, /*unk3*/ 0x3E, /*pos*/ -2213, -2582, 6257, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_pendulum_movement
-    object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 0, 0, 0, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_donut_platform_group
+    object /*unk2*/ 0x1F, /*unk3*/ 0x3C, /*pos*/ -6013, -2857, 6564, /*angle*/ 0, 270, 0, /*behArg*/ 0x00050000, /*beh*/ bSeesawPlatform
+    object /*unk2*/ 0x1F, /*unk3*/ 0x3C, /*pos*/ 614, -3574, 6564, /*angle*/ 0, 270, 0, /*behArg*/ 0x00050000, /*beh*/ bSeesawPlatform
+    object /*unk2*/ 0x1F, /*unk3*/ 0x3E, /*pos*/ -3557, -809, 4619, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ bSwingPlatform
+    object /*unk2*/ 0x1F, /*unk3*/ 0x3E, /*pos*/ -2213, -2582, 6257, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ bSwingPlatform
+    object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 0, 0, 0, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ bDonutPlatformSpawner
     object /*unk2*/ 0x1F, /*unk3*/ 0x40, /*pos*/ -2684, 1546, -36, /*angle*/ 0, 0, 0, /*behArg*/ 0x00050000, /*beh*/ beh_rr_elevator_platform
     object /*unk2*/ 0x1F, /*unk3*/ 0x41, /*pos*/ 5862, -1347, 6564, /*angle*/ 0, 0, 0, /*behArg*/ 0x00020000, /*beh*/ beh_floor_switch_press_animation
     object /*unk2*/ 0x1F, /*unk3*/ 0xCF, /*pos*/ 4428, -1936, 6564, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_purple_switch_staircase

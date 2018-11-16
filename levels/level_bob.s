@@ -9,8 +9,8 @@
 .section .level, "a"
 
 script_func_local_1:
-    object /*unk2*/ 0x1F, /*unk3*/ 0x36, /*pos*/ 1456, 768, 446, /*angle*/ 0, 326, 0, /*behArg*/ 0x00000000, /*beh*/ beh_chain_chomp_freed_explosion
-    object /*unk2*/ 0x1F, /*unk3*/ 0x37, /*pos*/ -2303, 717, 1024, /*angle*/ 0, 45, 0, /*behArg*/ 0x00030000, /*beh*/ beh_solid_moving
+    object /*unk2*/ 0x1F, /*unk3*/ 0x36, /*pos*/ 1456, 768, 446, /*angle*/ 0, 326, 0, /*behArg*/ 0x00000000, /*beh*/ bChainChompFreedExplosion
+    object /*unk2*/ 0x1F, /*unk3*/ 0x37, /*pos*/ -2303, 717, 1024, /*angle*/ 0, 45, 0, /*behArg*/ 0x00030000, /*beh*/ bSeesawPlatform
     object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -2050, 0, -3069, /*angle*/ 0, 25, 0, /*behArg*/ 0x00000000, /*beh*/ beh_openable_grill
     object /*unk2*/ 0x1F, /*unk3*/ 0xCF, /*pos*/ -2283, 0, -3682, /*angle*/ 0, 27, 0, /*behArg*/ 0x00000000, /*beh*/ beh_floor_switch_grills
     object /*unk2*/ 0x1F, /*unk3*/ 0xCA, /*pos*/ 1612, 300, 4611, /*angle*/ 0, 0, 0, /*behArg*/ 0x00280000, /*beh*/ beh_checkerboard_elevator_group
@@ -30,13 +30,13 @@ script_func_local_2:
     object /*unk2*/ 0x3E, /*unk3*/ 0xC3, /*pos*/ -6250, 0, 6680, /*angle*/ 0, 0, 0, /*behArg*/ 0x00030000, /*beh*/ beh_bobomb_buddy_advice_role
     object /*unk2*/ 0x01, /*unk3*/ 0x80, /*pos*/ -5694, 128, 5600, /*angle*/ 0, 135, 0, /*behArg*/ 0x00010000, /*beh*/ beh_cannon
     object /*unk2*/ 0x3E, /*unk3*/ 0xC9, /*pos*/ -5694, 128, 5600, /*angle*/ 0, 180, 0, /*behArg*/ 0x00000000, /*beh*/ beh_cannon_trap_door
-    object /*unk2*/ 0x02, /*unk3*/ 0x00, /*pos*/ 3304, 4242, -4603, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_waving_koopa_flag
-    object /*unk2*/ 0x3C, /*unk3*/ 0x68, /*pos*/ 3400, 770, 6500, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ beh_koopa
+    object /*unk2*/ 0x02, /*unk3*/ 0x00, /*pos*/ 3304, 4242, -4603, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ bKoopaRaceEndpoint
+    object /*unk2*/ 0x3C, /*unk3*/ 0x68, /*pos*/ 3400, 770, 6500, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ bKoopa
     return
 
 script_func_local_3:
     object /*unk2*/ 0x01, /*unk3*/ 0x56, /*pos*/ 1636, 4242, -5567, /*angle*/ 0, -147, 0, /*behArg*/ 0x00000000, /*beh*/ beh_king_bobomb
-    object /*unk2*/ 0x02, /*unk3*/ 0x68, /*pos*/ -4004, 0, 5221, /*angle*/ 0, 0, 0, /*behArg*/ 0x01020000, /*beh*/ beh_koopa
+    object /*unk2*/ 0x02, /*unk3*/ 0x68, /*pos*/ -4004, 0, 5221, /*angle*/ 0, 0, 0, /*behArg*/ 0x01020000, /*beh*/ bKoopa
     object /*unk2*/ 0x3F, /*unk3*/ 0x00, /*pos*/ -6000, 1000, 2400, /*angle*/ 0, 0, 0, /*behArg*/ 0x03000000, /*beh*/ beh_hidden_red_coin_star
     object /*unk2*/ 0x3F, /*unk3*/ 0x00, /*pos*/ -6600, 1000, 1250, /*angle*/ 0, 0, 0, /*behArg*/ 0x04040000, /*beh*/ beh_hidden_star
     object /*unk2*/ 0x3F, /*unk3*/ 0x7A, /*pos*/ 1550, 1200, 300, /*angle*/ 0, 0, 0, /*behArg*/ 0x05000000, /*beh*/ beh_collect_star

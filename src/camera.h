@@ -109,7 +109,7 @@ extern s16 D_8035FE10;
 // extern ? D_8033B6EC;
 // extern ? D_8033B6EA;
 // extern ? D_8033B85C;
-// extern ? D_8033B858;
+extern u32 D_8033B858;
 // extern ? D_8032CFC8;
 // extern ? D_8032CFCC;
 // extern ? D_8033B316;

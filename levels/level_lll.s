@@ -87,8 +87,8 @@ script_func_local_6:
     object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -2472, 2350, -1605, /*angle*/ 0, 60, 0, /*behArg*/ 0x00020000, /*beh*/ beh_flamethrower
     object /*unk2*/ 0x1F, /*unk3*/ 0x53, /*pos*/ -485, 1203, 2933, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_falling_when_mario_is_near
     object /*unk2*/ 0x1F, /*unk3*/ 0x3A, /*pos*/ 417, 2150, 583, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_rotating_cw_with_fire_bars
-    object /*unk2*/ 0x1F, /*unk3*/ 0xCA, /*pos*/ -764, 0, 1664, /*angle*/ 0, 180, 0, /*behArg*/ 0x08A50000, /*beh*/ beh_platform_on_tracks
-    object /*unk2*/ 0x1F, /*unk3*/ 0xCA, /*pos*/ 184, 980, -1366, /*angle*/ 0, 180, 0, /*behArg*/ 0x08A60000, /*beh*/ beh_platform_on_tracks
+    object /*unk2*/ 0x1F, /*unk3*/ 0xCA, /*pos*/ -764, 0, 1664, /*angle*/ 0, 180, 0, /*behArg*/ 0x08A50000, /*beh*/ bPlatformOnTrack
+    object /*unk2*/ 0x1F, /*unk3*/ 0xCA, /*pos*/ 184, 980, -1366, /*angle*/ 0, 180, 0, /*behArg*/ 0x08A60000, /*beh*/ bPlatformOnTrack
     object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -26, 103, -2649, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_volcano_sound_loop
     return
 

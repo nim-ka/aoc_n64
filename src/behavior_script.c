@@ -629,7 +629,7 @@ static s32 beh_cmd_begin(void)
 {
     if (CheckObjBehavior(beh_haunted_chair))
         BehCommonInit();
-    if (CheckObjBehavior(beh_mad_piano))
+    if (CheckObjBehavior(bMadPiano))
         BehCommonInit();
     if (CheckObjBehavior(beh_message_panel))
         gCurrentObject->oCollisionDistance = 150.0f;

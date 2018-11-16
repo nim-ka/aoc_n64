@@ -159,7 +159,8 @@ struct GraphNodeObject
 struct ObjectNode
 {
     struct GraphNodeObject gfx;
-    struct ObjectNode *next, *prev;
+    struct ObjectNode *next;
+    struct ObjectNode *prev;
 };
 
 struct Object
@@ -180,7 +181,12 @@ struct Object
         s16 asS16[0x50][2];
         u8 asU8[0x50][4];
         f32 asF32[0x50];
+        void *asVoidP[0x50];
+        s16 *asS16P[0x50];
+        s32 *asS32P[0x50];
         u32 *asAnims[0x50];
+        struct ChainSegment *asChainSegment[0x50];
+        struct Object *asObject[0x50];
         struct Surface *asSurface[0x50];
         void *asVoidPtr[0x50];
     } rawData;
@@ -201,6 +207,19 @@ struct Object
     /*0x218*/ void *collisionData;
     /*0x21C*/ Mat4 unk21C;
     /*0x25C*/ void *unk25C;
+};
+
+struct ObjectHitbox
+{
+    /*0x00*/ u32 interactType;
+    /*0x04*/ u8 downOffset;
+    /*0x05*/ s8 unk05;
+    /*0x06*/ s8 unk06;
+    /*0x07*/ s8 unk07;
+    /*0x08*/ s16 radius;
+    /*0x0A*/ s16 height;
+    /*0x0C*/ s16 unk0C;
+    /*0x0E*/ s16 unk0E;
 };
 
 struct Surface

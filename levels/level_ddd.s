@@ -26,15 +26,15 @@ script_func_local_2:
 script_func_local_3:
     object /*unk2*/ 0x1F, /*unk3*/ 0x36, /*pos*/ 0, 0, 0, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_bowser_sub_door
     object /*unk2*/ 0x1F, /*unk3*/ 0x37, /*pos*/ 0, 0, 0, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_bowsers_sub
-    object /*unk2*/ 0x1F, /*unk3*/ 0x38, /*pos*/ 5120, 1005, 3584, /*angle*/ 0, 180, 0, /*behArg*/ 0x001E0000, /*beh*/ beh_ddd_yellow_poles
-    object /*unk2*/ 0x1F, /*unk3*/ 0x38, /*pos*/ 5605, 1005, 3380, /*angle*/ 0, 270, 0, /*behArg*/ 0x00150000, /*beh*/ beh_ddd_yellow_poles
-    object /*unk2*/ 0x1F, /*unk3*/ 0x38, /*pos*/ 1800, 1005, 1275, /*angle*/ 0, 0, 0, /*behArg*/ 0x000B0000, /*beh*/ beh_ddd_yellow_poles
-    object /*unk2*/ 0x1F, /*unk3*/ 0x38, /*pos*/ 4000, 1005, 1075, /*angle*/ 0, 180, 0, /*behArg*/ 0x000B0000, /*beh*/ beh_ddd_yellow_poles
-    object /*unk2*/ 0x1F, /*unk3*/ 0x38, /*pos*/ 1830, 1005, 520, /*angle*/ 0, 270, 0, /*behArg*/ 0x00140000, /*beh*/ beh_ddd_yellow_poles
-    object /*unk2*/ 0x1F, /*unk3*/ 0x38, /*pos*/ 4000, 1005, 1275, /*angle*/ 0, 0, 0, /*behArg*/ 0x000B0000, /*beh*/ beh_ddd_yellow_poles
-    object /*unk2*/ 0x1F, /*unk3*/ 0x38, /*pos*/ 5760, 1005, 360, /*angle*/ 0, 270, 0, /*behArg*/ 0x00170000, /*beh*/ beh_ddd_yellow_poles
-    object /*unk2*/ 0x1F, /*unk3*/ 0x38, /*pos*/ 3310, 1005, -1945, /*angle*/ 0, 0, 0, /*behArg*/ 0x00170000, /*beh*/ beh_ddd_yellow_poles
-    object /*unk2*/ 0x1F, /*unk3*/ 0x38, /*pos*/ 3550, 1005, -2250, /*angle*/ 0, 0, 0, /*behArg*/ 0x000D0000, /*beh*/ beh_ddd_yellow_poles
+    object /*unk2*/ 0x1F, /*unk3*/ 0x38, /*pos*/ 5120, 1005, 3584, /*angle*/ 0, 180, 0, /*behArg*/ 0x001E0000, /*beh*/ bDDDPole
+    object /*unk2*/ 0x1F, /*unk3*/ 0x38, /*pos*/ 5605, 1005, 3380, /*angle*/ 0, 270, 0, /*behArg*/ 0x00150000, /*beh*/ bDDDPole
+    object /*unk2*/ 0x1F, /*unk3*/ 0x38, /*pos*/ 1800, 1005, 1275, /*angle*/ 0, 0, 0, /*behArg*/ 0x000B0000, /*beh*/ bDDDPole
+    object /*unk2*/ 0x1F, /*unk3*/ 0x38, /*pos*/ 4000, 1005, 1075, /*angle*/ 0, 180, 0, /*behArg*/ 0x000B0000, /*beh*/ bDDDPole
+    object /*unk2*/ 0x1F, /*unk3*/ 0x38, /*pos*/ 1830, 1005, 520, /*angle*/ 0, 270, 0, /*behArg*/ 0x00140000, /*beh*/ bDDDPole
+    object /*unk2*/ 0x1F, /*unk3*/ 0x38, /*pos*/ 4000, 1005, 1275, /*angle*/ 0, 0, 0, /*behArg*/ 0x000B0000, /*beh*/ bDDDPole
+    object /*unk2*/ 0x1F, /*unk3*/ 0x38, /*pos*/ 5760, 1005, 360, /*angle*/ 0, 270, 0, /*behArg*/ 0x00170000, /*beh*/ bDDDPole
+    object /*unk2*/ 0x1F, /*unk3*/ 0x38, /*pos*/ 3310, 1005, -1945, /*angle*/ 0, 0, 0, /*behArg*/ 0x00170000, /*beh*/ bDDDPole
+    object /*unk2*/ 0x1F, /*unk3*/ 0x38, /*pos*/ 3550, 1005, -2250, /*angle*/ 0, 0, 0, /*behArg*/ 0x000D0000, /*beh*/ bDDDPole
     return
 
 script_func_local_4:

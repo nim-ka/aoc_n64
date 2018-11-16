@@ -4,9 +4,9 @@
 
 glabel D_803600E0
     .space 0x10
-glabel D_803600F0
+glabel sNumActiveFirePiranhaPlants
     .space 0x4
-glabel D_803600F4
+glabel sNumKilledFirePiranhaPlants
     .space 0x4
 glabel D_803600F8
     .space 0x4
@@ -24,7 +24,7 @@ glabel D_80360110
     .space 0x4
 glabel D_80360114
     .space 0x4
-glabel D_80360118
+glabel sMasterTreadmill
     .space 0x8
 glabel D_80360120
     .space 0x8

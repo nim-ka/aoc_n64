@@ -16874,8 +16874,8 @@ glabel BehHiddenRedCoinStarInit
 /* 0ACC48 802F1C48 11C10007 */  beq   $t6, $at, .L802F1C68
 /* 0ACC4C 802F1C4C 00000000 */   nop   
 /* 0ACC50 802F1C50 3C048036 */  lui   $a0, %hi(gCurrentObject) # $a0, 0x8036
-/* 0ACC54 802F1C54 3C061300 */  lui   $a2, %hi(beh_shadow_star_for_red_star) # $a2, 0x1300
-/* 0ACC58 802F1C58 24C6554C */  addiu $a2, %lo(beh_shadow_star_for_red_star) # addiu $a2, $a2, 0x554c
+/* 0ACC54 802F1C54 3C061300 */  lui   $a2, %hi(bRedCoinStarMarker) # $a2, 0x1300
+/* 0ACC58 802F1C58 24C6554C */  addiu $a2, %lo(bRedCoinStarMarker) # addiu $a2, $a2, 0x554c
 /* 0ACC5C 802F1C5C 8C84FDF0 */  lw    $a0, %lo(gCurrentObject)($a0)
 /* 0ACC60 802F1C60 0C0A7994 */  jal   SpawnObj
 /* 0ACC64 802F1C64 24050079 */   li    $a1, 121

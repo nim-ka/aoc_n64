@@ -32,9 +32,6 @@
 #define OBJ_COL_FLAG_NO_Y_VEL (1 << 3)
 #define OBJ_COL_FLAGS_LANDED (OBJ_COL_FLAG_GROUNDED | OBJ_COL_FLAG_NO_Y_VEL)
 
-//FIXME: Unclear what files these functions belong to so I declared them here
-extern void PlaySound(u32);
-
 void func_802E2F40(void)
 {
     D_80331508 = 0;

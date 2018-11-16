@@ -1306,7 +1306,7 @@ glabel ActionMrI1
 /* 061050 802A6050 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 061054 802A6054 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
 /* 061058 802A6058 87A5001E */  lh    $a1, 0x1e($sp)
-/* 06105C 802A605C 0C0A828B */  jal   func_802A0A2C
+/* 06105C 802A605C 0C0A828B */  jal   abs_angle_diff
 /* 061060 802A6060 8DC400C8 */   lw    $a0, 0xc8($t6)
 /* 061064 802A6064 A7A2001C */  sh    $v0, 0x1c($sp)
 /* 061068 802A6068 3C0F8036 */  lui   $t7, %hi(gCurrentObject) # $t7, 0x8036
@@ -1314,7 +1314,7 @@ glabel ActionMrI1
 /* 061070 802A6070 8F18FDE8 */  lw    $t8, %lo(gMarioObject)($t8)
 /* 061074 802A6074 8DEFFDF0 */  lw    $t7, %lo(gCurrentObject)($t7)
 /* 061078 802A6078 8F0500D4 */  lw    $a1, 0xd4($t8)
-/* 06107C 802A607C 0C0A828B */  jal   func_802A0A2C
+/* 06107C 802A607C 0C0A828B */  jal   abs_angle_diff
 /* 061080 802A6080 8DE400C8 */   lw    $a0, 0xc8($t7)
 /* 061084 802A6084 A7A2001A */  sh    $v0, 0x1a($sp)
 /* 061088 802A6088 3C198036 */  lui   $t9, %hi(gCurrentObject) # $t9, 0x8036
@@ -1472,7 +1472,7 @@ glabel ActionMrI0
 /* 0612B8 802A62B8 8D4B0154 */  lw    $t3, 0x154($t2)
 /* 0612BC 802A62BC 15600003 */  bnez  $t3, .L802A62CC
 /* 0612C0 802A62C0 00000000 */   nop   
-/* 0612C4 802A62C4 0C0A8434 */  jal   func_802A10D0
+/* 0612C4 802A62C4 0C0A8434 */  jal   obj_set_pos_to_home
 /* 0612C8 802A62C8 00000000 */   nop   
 .L802A62CC:
 /* 0612CC 802A62CC 3C0C8036 */  lui   $t4, %hi(gCurrentObject) # $t4, 0x8036
@@ -1517,7 +1517,7 @@ glabel ActionMrI0
 /* 061B1C 802A6B1C 8F280154 */  lw    $t0, 0x154($t9)
 /* 061B20 802A6B20 15000003 */  bnez  $t0, .L802A6B30
 /* 061B24 802A6B24 00000000 */   nop   
-/* 061B28 802A6B28 0C0A8613 */  jal   func_802A10D0
+/* 061B28 802A6B28 0C0A8613 */  jal   obj_set_pos_to_home
 /* 061B2C 802A6B2C 00000000 */   nop   
 .L802A6B30:
 /* 061B30 802A6B30 3C098036 */  lui   $t1, %hi(gCurrentObject) # $t1, 0x8036
@@ -2060,7 +2060,7 @@ glabel ActionKingBobomb0
 /* 061A30 802A6A30 AC38CFD0 */  sw    $t8, %lo(D_8032CFD0)($at)
 /* 061A34 802A6A34 0C0A7B4E */  jal   func_8029ED38
 /* 061A38 802A6A38 24040005 */   li    $a0, 5
-/* 061A3C 802A6A3C 0C0A8434 */  jal   func_802A10D0
+/* 061A3C 802A6A3C 0C0A8434 */  jal   obj_set_pos_to_home
 /* 061A40 802A6A40 00000000 */   nop   
 /* 061A44 802A6A44 3C088036 */  lui   $t0, %hi(gCurrentObject) # $t0, 0x8036
 /* 061A48 802A6A48 8D08FDF0 */  lw    $t0, %lo(gCurrentObject)($t0)
@@ -2137,7 +2137,7 @@ glabel ActionKingBobomb0
 /* 0622BC 802A72BC AC28DF30 */  sw    $t0, %lo(D_8032CFD0)($at)
 /* 0622C0 802A72C0 0C0A7D2D */  jal   func_8029ED38
 /* 0622C4 802A72C4 24040005 */   li    $a0, 5
-/* 0622C8 802A72C8 0C0A8613 */  jal   func_802A10D0
+/* 0622C8 802A72C8 0C0A8613 */  jal   obj_set_pos_to_home
 /* 0622CC 802A72CC 00000000 */   nop   
 /* 0622D0 802A72D0 3C0A8036 */  lui   $t2, %hi(gCurrentObject) # $t2, 0x8036
 /* 0622D4 802A72D4 8D4A1160 */  lw    $t2, %lo(gCurrentObject)($t2)
@@ -2927,7 +2927,7 @@ glabel L802A74D8
 /* 062504 802A7504 AD2800F8 */  sw    $t0, 0xf8($t1)
 /* 062508 802A7508 0C0A92BB */  jal   func_802A4AEC
 /* 06250C 802A750C 24040008 */   li    $a0, 8
-/* 062510 802A7510 0C0A87E8 */  jal   func_802A1FA0
+/* 062510 802A7510 0C0A87E8 */  jal   obj_angle_to_home
 /* 062514 802A7514 00000000 */   nop   
 /* 062518 802A7518 3C0A8036 */  lui   $t2, %hi(gCurrentObject) # $t2, 0x8036
 /* 06251C 802A751C 8D4AFDF0 */  lw    $t2, %lo(gCurrentObject)($t2)
@@ -4755,7 +4755,7 @@ glabel Unknown802A8EC8
 /* 063F0C 802A8F0C 00000000 */  nop   
 /* 063F10 802A8F10 45000015 */  bc1f  .L802A8F68
 /* 063F14 802A8F14 00000000 */   nop   
-/* 063F18 802A8F18 0C0A83AE */  jal   func_802A0EB8
+/* 063F18 802A8F18 0C0A83AE */  jal   obj_lateral_dist_to_home
 /* 063F1C 802A8F1C 00000000 */   nop   
 /* 063F20 802A8F20 3C014348 */  li    $at, 0x43480000 # 200.000000
 /* 063F24 802A8F24 44813000 */  mtc1  $at, $f6
@@ -4769,7 +4769,7 @@ glabel Unknown802A8EC8
 .L802A8F44:
 /* 063F44 802A8F44 24180001 */  li    $t8, 1
 /* 063F48 802A8F48 AFB8001C */  sw    $t8, 0x1c($sp)
-/* 063F4C 802A8F4C 0C0A87E8 */  jal   func_802A1FA0
+/* 063F4C 802A8F4C 0C0A87E8 */  jal   obj_angle_to_home
 /* 063F50 802A8F50 00000000 */   nop   
 /* 063F54 802A8F54 3C198036 */  lui   $t9, %hi(gCurrentObject) # $t9, 0x8036
 /* 063F58 802A8F58 8F39FDF0 */  lw    $t9, %lo(gCurrentObject)($t9)
@@ -4970,7 +4970,7 @@ glabel ActionChuckya0
 /* 06420C 802A920C 10200007 */  beqz  $at, .L802A922C
 /* 064210 802A9210 00000000 */   nop   
 /* 064214 802A9214 8D8400C8 */  lw    $a0, 0xc8($t4)
-/* 064218 802A9218 0C0A828B */  jal   func_802A0A2C
+/* 064218 802A9218 0C0A828B */  jal   abs_angle_diff
 /* 06421C 802A921C 8D850160 */   lw    $a1, 0x160($t4)
 /* 064220 802A9220 28411000 */  slti  $at, $v0, 0x1000
 /* 064224 802A9224 10200005 */  beqz  $at, .L802A923C
@@ -5001,7 +5001,7 @@ glabel ActionChuckya0
 /* 064274 802A9274 3C088036 */  lui   $t0, %hi(gCurrentObject) # $t0, 0x8036
 /* 064278 802A9278 8D08FDF0 */  lw    $t0, %lo(gCurrentObject)($t0)
 /* 06427C 802A927C 8D0400C8 */  lw    $a0, 0xc8($t0)
-/* 064280 802A9280 0C0A828B */  jal   func_802A0A2C
+/* 064280 802A9280 0C0A828B */  jal   abs_angle_diff
 /* 064284 802A9284 8D050160 */   lw    $a1, 0x160($t0)
 /* 064288 802A9288 28414001 */  slti  $at, $v0, 0x4001
 /* 06428C 802A928C 14200005 */  bnez  $at, .L802A92A4
@@ -5047,7 +5047,7 @@ glabel ActionChuckya0
 /* 06431C 802A931C 1000002C */  b     .L802A93D0
 /* 064320 802A9320 00000000 */   nop   
 .L802A9324:
-/* 064324 802A9324 0C0A83AE */  jal   func_802A0EB8
+/* 064324 802A9324 0C0A83AE */  jal   obj_lateral_dist_to_home
 /* 064328 802A9328 00000000 */   nop   
 /* 06432C 802A932C 3C0143FA */  li    $at, 0x43FA0000 # 500.000000
 /* 064330 802A9330 44815000 */  mtc1  $at, $f10
@@ -5068,7 +5068,7 @@ glabel ActionChuckya0
 /* 064368 802A9368 3C064080 */  lui   $a2, 0x4080
 /* 06436C 802A936C 0C0AA414 */  jal   func_802A9050
 /* 064370 802A9370 248400B8 */   addiu $a0, $a0, 0xb8
-/* 064374 802A9374 0C0A87E8 */  jal   func_802A1FA0
+/* 064374 802A9374 0C0A87E8 */  jal   obj_angle_to_home
 /* 064378 802A9378 00000000 */   nop   
 /* 06437C 802A937C 3C198036 */  lui   $t9, %hi(gCurrentObject) # $t9, 0x8036
 /* 064380 802A9380 8F39FDF0 */  lw    $t9, %lo(gCurrentObject)($t9)
@@ -5550,7 +5550,7 @@ glabel func_802A9A0C
 /* 064A3C 802A9A3C 8DEFFDE8 */  lw    $t7, %lo(gMarioObject)($t7)
 /* 064A40 802A9A40 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
 /* 064A44 802A9A44 8DE500C8 */  lw    $a1, 0xc8($t7)
-/* 064A48 802A9A48 0C0A828B */  jal   func_802A0A2C
+/* 064A48 802A9A48 0C0A828B */  jal   abs_angle_diff
 /* 064A4C 802A9A4C 8DC400C8 */   lw    $a0, 0xc8($t6)
 /* 064A50 802A9A50 28416001 */  slti  $at, $v0, 0x6001
 /* 064A54 802A9A54 14200037 */  bnez  $at, .L802A9B34
@@ -6661,7 +6661,7 @@ glabel BehUnused080CLoop
 /* 0659E4 802AA9E4 0C0AAA39 */  jal   func_802AA8E4
 /* 0659E8 802AA9E8 00000000 */   nop   
 .L802AA9EC:
-/* 0659EC 802AA9EC 0C0A87E8 */  jal   func_802A1FA0
+/* 0659EC 802AA9EC 0C0A87E8 */  jal   obj_angle_to_home
 /* 0659F0 802AA9F0 00000000 */   nop   
 /* 0659F4 802AA9F4 3C0F8036 */  lui   $t7, %hi(gCurrentObject) # $t7, 0x8036
 /* 0659F8 802AA9F8 8DEFFDF0 */  lw    $t7, %lo(gCurrentObject)($t7)
@@ -11997,7 +11997,7 @@ glabel BehSpindriftLoop
 /* 06A524 802AF524 00000000 */  nop   
 /* 06A528 802AF528 45000007 */  bc1f  .L802AF548
 /* 06A52C 802AF52C 00000000 */   nop   
-/* 06A530 802AF530 0C0A87E8 */  jal   func_802A1FA0
+/* 06A530 802AF530 0C0A87E8 */  jal   obj_angle_to_home
 /* 06A534 802AF534 00000000 */   nop   
 /* 06A538 802AF538 3C088036 */  lui   $t0, %hi(gCurrentObject) # $t0, 0x8036
 /* 06A53C 802AF53C 8D08FDF0 */  lw    $t0, %lo(gCurrentObject)($t0)
@@ -13715,7 +13715,7 @@ glabel BehPushableLoop
 /* 06BDC8 802B0DC8 3C088036 */  lui   $t0, %hi(gMarioObject) # $t0, 0x8036
 /* 06BDCC 802B0DCC 8D08FDE8 */  lw    $t0, %lo(gMarioObject)($t0)
 /* 06BDD0 802B0DD0 87A4001C */  lh    $a0, 0x1c($sp)
-/* 06BDD4 802B0DD4 0C0A828B */  jal   func_802A0A2C
+/* 06BDD4 802B0DD4 0C0A828B */  jal   abs_angle_diff
 /* 06BDD8 802B0DD8 8D0500C8 */   lw    $a1, 0xc8($t0)
 /* 06BDDC 802B0DDC 28414001 */  slti  $at, $v0, 0x4001
 /* 06BDE0 802B0DE0 1420001C */  bnez  $at, .L802B0E54
@@ -14295,7 +14295,7 @@ glabel ActionHeaveHo2
 /* 06C5EC 802B15EC 00000000 */  nop   
 /* 06C5F0 802B15F0 45000006 */  bc1f  .L802B160C
 /* 06C5F4 802B15F4 00000000 */   nop   
-/* 06C5F8 802B15F8 0C0A87E8 */  jal   func_802A1FA0
+/* 06C5F8 802B15F8 0C0A87E8 */  jal   obj_angle_to_home
 /* 06C5FC 802B15FC 00000000 */   nop   
 /* 06C600 802B1600 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 06C604 802B1604 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
@@ -14441,7 +14441,7 @@ glabel ActionHeaveHo0
 /* 06C800 802B1800 27BDFFD8 */  addiu $sp, $sp, -0x28
 /* 06C804 802B1804 AFBF001C */  sw    $ra, 0x1c($sp)
 /* 06C808 802B1808 F7B40010 */  sdc1  $f20, 0x10($sp)
-/* 06C80C 802B180C 0C0A8434 */  jal   func_802A10D0
+/* 06C80C 802B180C 0C0A8434 */  jal   obj_set_pos_to_home
 /* 06C810 802B1810 00000000 */   nop   
 /* 06C814 802B1814 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 06C818 802B1818 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
@@ -16118,7 +16118,7 @@ glabel ActionBulletBill0
 /* 06DFDC 802B2FDC 3C098036 */  lui   $t1, %hi(gCurrentObject) # $t1, 0x8036
 /* 06DFE0 802B2FE0 8D29FDF0 */  lw    $t1, %lo(gCurrentObject)($t1)
 /* 06DFE4 802B2FE4 AD2000EC */  sw    $zero, 0xec($t1)
-/* 06DFE8 802B2FE8 0C0A8434 */  jal   func_802A10D0
+/* 06DFE8 802B2FE8 0C0A8434 */  jal   obj_set_pos_to_home
 /* 06DFEC 802B2FEC 00000000 */   nop   
 /* 06DFF0 802B2FF0 3C0B8036 */  lui   $t3, %hi(gCurrentObject) # $t3, 0x8036
 /* 06DFF4 802B2FF4 8D6BFDF0 */  lw    $t3, %lo(gCurrentObject)($t3)
@@ -16138,7 +16138,7 @@ glabel ActionBulletBill1
 /* 06E020 802B3020 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 06E024 802B3024 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
 /* 06E028 802B3028 8DC40160 */  lw    $a0, 0x160($t6)
-/* 06E02C 802B302C 0C0A828B */  jal   func_802A0A2C
+/* 06E02C 802B302C 0C0A828B */  jal   abs_angle_diff
 /* 06E030 802B3030 8DC500C8 */   lw    $a1, 0xc8($t6)
 /* 06E034 802B3034 A7A2001E */  sh    $v0, 0x1e($sp)
 /* 06E038 802B3038 87AF001E */  lh    $t7, 0x1e($sp)
@@ -17760,7 +17760,7 @@ glabel ActionBowser14
 /* 06F36C 802B436C 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 06F370 802B4370 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
 /* 06F374 802B4374 8DC400C8 */  lw    $a0, 0xc8($t6)
-/* 06F378 802B4378 0C0A828B */  jal   func_802A0A2C
+/* 06F378 802B4378 0C0A828B */  jal   abs_angle_diff
 /* 06F37C 802B437C 8DC50160 */   lw    $a1, 0x160($t6)
 /* 06F380 802B4380 A7A20018 */  sh    $v0, 0x18($sp)
 /* 06F384 802B4384 3C0F8036 */  lui   $t7, %hi(gCurrentObject) # $t7, 0x8036
@@ -17971,7 +17971,7 @@ glabel ActionBowser16
 /* 06F668 802B4668 3C188036 */  lui   $t8, %hi(gCurrentObject) # $t8, 0x8036
 /* 06F66C 802B466C 8F18FDF0 */  lw    $t8, %lo(gCurrentObject)($t8)
 /* 06F670 802B4670 8F0400C8 */  lw    $a0, 0xc8($t8)
-/* 06F674 802B4674 0C0A828B */  jal   func_802A0A2C
+/* 06F674 802B4674 0C0A828B */  jal   abs_angle_diff
 /* 06F678 802B4678 8F050160 */   lw    $a1, 0x160($t8)
 /* 06F67C 802B467C 28414001 */  slti  $at, $v0, 0x4001
 /* 06F680 802B4680 14200015 */  bnez  $at, .L802B46D8
@@ -18820,7 +18820,7 @@ glabel ActionBowser9
 /* 070090 802B5090 240600B4 */  li    $a2, 180
 /* 070094 802B5094 3C0740E0 */  lui   $a3, 0x40e0
 /* 070098 802B5098 E7B20014 */  swc1  $f18, 0x14($sp)
-/* 07009C 802B509C 0C0C2F0C */  jal   func_8030BC30
+/* 07009C 802B509C 0C0C2F0C */  jal   obj_spit_fire
 /* 0700A0 802B50A0 E7A40018 */   swc1  $f4, 0x18($sp)
 .L802B50A4:
 /* 0700A4 802B50A4 0C0A7DE2 */  jal   func_8029F788
@@ -19033,7 +19033,7 @@ glabel ActionBowser7
 /* 070380 802B5380 3C0B8036 */  lui   $t3, %hi(gCurrentObject) # $t3, 0x8036
 /* 070384 802B5384 8D6BFDF0 */  lw    $t3, %lo(gCurrentObject)($t3)
 /* 070388 802B5388 8D640160 */  lw    $a0, 0x160($t3)
-/* 07038C 802B538C 0C0A828B */  jal   func_802A0A2C
+/* 07038C 802B538C 0C0A828B */  jal   abs_angle_diff
 /* 070390 802B5390 8D6500C8 */   lw    $a1, 0xc8($t3)
 /* 070394 802B5394 28412001 */  slti  $at, $v0, 0x2001
 /* 070398 802B5398 14200005 */  bnez  $at, .L802B53B0
@@ -20096,7 +20096,7 @@ glabel func_802B5E7C
 /* 070EC4 802B5EC4 3C0F8036 */  lui   $t7, %hi(gMarioObject) # $t7, 0x8036
 /* 070EC8 802B5EC8 8DEFFDE8 */  lw    $t7, %lo(gMarioObject)($t7)
 /* 070ECC 802B5ECC 8DC50160 */  lw    $a1, 0x160($t6)
-/* 070ED0 802B5ED0 0C0A828B */  jal   func_802A0A2C
+/* 070ED0 802B5ED0 0C0A828B */  jal   abs_angle_diff
 /* 070ED4 802B5ED4 8DE400C8 */   lw    $a0, 0xc8($t7)
 /* 070ED8 802B5ED8 28416001 */  slti  $at, $v0, 0x6001
 /* 070EDC 802B5EDC 14200003 */  bnez  $at, .L802B5EEC
@@ -21081,13 +21081,13 @@ glabel BehBowserLoop
 /* 071CB8 802B6CB8 3C088036 */  lui   $t0, %hi(gCurrentObject) # $t0, 0x8036
 /* 071CBC 802B6CBC 8D08FDF0 */  lw    $t0, %lo(gCurrentObject)($t0)
 /* 071CC0 802B6CC0 8D0400C8 */  lw    $a0, 0xc8($t0)
-/* 071CC4 802B6CC4 0C0A828B */  jal   func_802A0A2C
+/* 071CC4 802B6CC4 0C0A828B */  jal   abs_angle_diff
 /* 071CC8 802B6CC8 8D050160 */   lw    $a1, 0x160($t0)
 /* 071CCC 802B6CCC A7A20026 */  sh    $v0, 0x26($sp)
 /* 071CD0 802B6CD0 3C098036 */  lui   $t1, %hi(gCurrentObject) # $t1, 0x8036
 /* 071CD4 802B6CD4 8D29FDF0 */  lw    $t1, %lo(gCurrentObject)($t1)
 /* 071CD8 802B6CD8 8D2400C8 */  lw    $a0, 0xc8($t1)
-/* 071CDC 802B6CDC 0C0A828B */  jal   func_802A0A2C
+/* 071CDC 802B6CDC 0C0A828B */  jal   abs_angle_diff
 /* 071CE0 802B6CE0 85250112 */   lh    $a1, 0x112($t1)
 /* 071CE4 802B6CE4 A7A20024 */  sh    $v0, 0x24($sp)
 /* 071CE8 802B6CE8 3C0A8036 */  lui   $t2, %hi(gCurrentObject) # $t2, 0x8036
@@ -21369,7 +21369,7 @@ glabel func_802B70C8
 /* 0720D4 802B70D4 AFA50024 */  sw    $a1, 0x24($sp)
 /* 0720D8 802B70D8 8FAE0020 */  lw    $t6, 0x20($sp)
 /* 0720DC 802B70DC 8DC400C8 */  lw    $a0, 0xc8($t6)
-/* 0720E0 802B70E0 0C0A828B */  jal   func_802A0A2C
+/* 0720E0 802B70E0 0C0A828B */  jal   abs_angle_diff
 /* 0720E4 802B70E4 8DC50160 */   lw    $a1, 0x160($t6)
 /* 0720E8 802B70E8 A7A2001A */  sh    $v0, 0x1a($sp)
 /* 0720EC 802B70EC 8FAF0024 */  lw    $t7, 0x24($sp)
@@ -24531,18 +24531,18 @@ glabel BehRotatingClockArmLoop
 /* 074DB0 802B9DB0 10200005 */  beqz  $at, .L802B9DC8
 /* 074DB4 802B9DB4 00000000 */   nop   
 /* 074DB8 802B9DB8 240C0003 */  li    $t4, 3
-/* 074DBC 802B9DBC 3C018036 */  lui   $at, %hi(gStageParam) # $at, 0x8036
+/* 074DBC 802B9DBC 3C018036 */  lui   $at, %hi(gTTCSpeedSetting) # $at, 0x8036
 /* 074DC0 802B9DC0 1000001D */  b     .L802B9E38
-/* 074DC4 802B9DC4 A42CFEE8 */   sh    $t4, %lo(gStageParam)($at)
+/* 074DC4 802B9DC4 A42CFEE8 */   sh    $t4, %lo(gTTCSpeedSetting)($at)
 .L802B9DC8:
 /* 074DC8 802B9DC8 97AD001A */  lhu   $t5, 0x1a($sp)
 /* 074DCC 802B9DCC 29A16AA4 */  slti  $at, $t5, 0x6aa4
 /* 074DD0 802B9DD0 10200005 */  beqz  $at, .L802B9DE8
 /* 074DD4 802B9DD4 00000000 */   nop   
 /* 074DD8 802B9DD8 240F0001 */  li    $t7, 1
-/* 074DDC 802B9DDC 3C018036 */  lui   $at, %hi(gStageParam) # $at, 0x8036
+/* 074DDC 802B9DDC 3C018036 */  lui   $at, %hi(gTTCSpeedSetting) # $at, 0x8036
 /* 074DE0 802B9DE0 10000015 */  b     .L802B9E38
-/* 074DE4 802B9DE4 A42FFEE8 */   sh    $t7, %lo(gStageParam)($at)
+/* 074DE4 802B9DE4 A42FFEE8 */   sh    $t7, %lo(gTTCSpeedSetting)($at)
 .L802B9DE8:
 /* 074DE8 802B9DE8 97B8001A */  lhu   $t8, 0x1a($sp)
 /* 074DEC 802B9DEC 3401954C */  li    $at, 38220
@@ -24550,22 +24550,22 @@ glabel BehRotatingClockArmLoop
 /* 074DF4 802B9DF4 10200005 */  beqz  $at, .L802B9E0C
 /* 074DF8 802B9DF8 00000000 */   nop   
 /* 074DFC 802B9DFC 240E0002 */  li    $t6, 2
-/* 074E00 802B9E00 3C018036 */  lui   $at, %hi(gStageParam) # $at, 0x8036
+/* 074E00 802B9E00 3C018036 */  lui   $at, %hi(gTTCSpeedSetting) # $at, 0x8036
 /* 074E04 802B9E04 1000000C */  b     .L802B9E38
-/* 074E08 802B9E08 A42EFEE8 */   sh    $t6, %lo(gStageParam)($at)
+/* 074E08 802B9E08 A42EFEE8 */   sh    $t6, %lo(gTTCSpeedSetting)($at)
 .L802B9E0C:
 /* 074E0C 802B9E0C 97B9001A */  lhu   $t9, 0x1a($sp)
 /* 074E10 802B9E10 3401F546 */  li    $at, 62790
 /* 074E14 802B9E14 0321082A */  slt   $at, $t9, $at
 /* 074E18 802B9E18 10200004 */  beqz  $at, .L802B9E2C
 /* 074E1C 802B9E1C 00000000 */   nop   
-/* 074E20 802B9E20 3C018036 */  lui   $at, %hi(gStageParam) # $at, 0x8036
+/* 074E20 802B9E20 3C018036 */  lui   $at, %hi(gTTCSpeedSetting) # $at, 0x8036
 /* 074E24 802B9E24 10000004 */  b     .L802B9E38
-/* 074E28 802B9E28 A420FEE8 */   sh    $zero, %lo(gStageParam)($at)
+/* 074E28 802B9E28 A420FEE8 */   sh    $zero, %lo(gTTCSpeedSetting)($at)
 .L802B9E2C:
 /* 074E2C 802B9E2C 24080003 */  li    $t0, 3
-/* 074E30 802B9E30 3C018036 */  lui   $at, %hi(gStageParam) # $at, 0x8036
-/* 074E34 802B9E34 A428FEE8 */  sh    $t0, %lo(gStageParam)($at)
+/* 074E30 802B9E30 3C018036 */  lui   $at, %hi(gTTCSpeedSetting) # $at, 0x8036
+/* 074E34 802B9E34 A428FEE8 */  sh    $t0, %lo(gTTCSpeedSetting)($at)
 .L802B9E38:
 /* 074E38 802B9E38 3C098036 */  lui   $t1, %hi(gCurrentObject) # $t1, 0x8036
 /* 074E3C 802B9E3C 8D29FDF0 */  lw    $t1, %lo(gCurrentObject)($t1)
@@ -24900,7 +24900,7 @@ glabel ActionUkikiOpenCage0
 /* 0752D8 802BA2D8 3C088036 */  lui   $t0, %hi(gCurrentObject) # $t0, 0x8036
 /* 0752DC 802BA2DC 8D08FDF0 */  lw    $t0, %lo(gCurrentObject)($t0)
 /* 0752E0 802BA2E0 8D040160 */  lw    $a0, 0x160($t0)
-/* 0752E4 802BA2E4 0C0A828B */  jal   func_802A0A2C
+/* 0752E4 802BA2E4 0C0A828B */  jal   abs_angle_diff
 /* 0752E8 802BA2E8 8D0500C8 */   lw    $a1, 0xc8($t0)
 /* 0752EC 802BA2EC 28411001 */  slti  $at, $v0, 0x1001
 /* 0752F0 802BA2F0 14200005 */  bnez  $at, .L802BA308
@@ -25045,7 +25045,7 @@ glabel ActionUkikiOpenCage7
 /* 0754EC 802BA4EC AFBF0014 */  sw    $ra, 0x14($sp)
 /* 0754F0 802BA4F0 0C0A7B4E */  jal   func_8029ED38
 /* 0754F4 802BA4F4 00002025 */   move  $a0, $zero
-/* 0754F8 802BA4F8 0C0A87E8 */  jal   func_802A1FA0
+/* 0754F8 802BA4F8 0C0A87E8 */  jal   obj_angle_to_home
 /* 0754FC 802BA4FC 00000000 */   nop   
 /* 075500 802BA500 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 075504 802BA504 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
@@ -30496,7 +30496,7 @@ glabel ActionSmallPenguin0
 /* 079F14 802BEF14 00000000 */   nop   
 /* 079F18 802BEF18 10400003 */  beqz  $v0, .L802BEF28
 /* 079F1C 802BEF1C 00000000 */   nop   
-/* 079F20 802BEF20 0C0A8434 */  jal   func_802A10D0
+/* 079F20 802BEF20 0C0A8434 */  jal   obj_set_pos_to_home
 /* 079F24 802BEF24 00000000 */   nop   
 .L802BEF28:
 /* 079F28 802BEF28 10000001 */  b     .L802BEF30
@@ -32046,7 +32046,7 @@ glabel ActionCheepCheep1
 /* 07B4F0 802C04F0 00000000 */  nop   
 /* 07B4F4 802C04F4 45000006 */  bc1f  .L802C0510
 /* 07B4F8 802C04F8 00000000 */   nop   
-/* 07B4FC 802C04FC 0C0A87E8 */  jal   func_802A1FA0
+/* 07B4FC 802C04FC 0C0A87E8 */  jal   obj_angle_to_home
 /* 07B500 802C0500 00000000 */   nop   
 /* 07B504 802C0504 3C0D8036 */  lui   $t5, %hi(gCurrentObject) # $t5, 0x8036
 /* 07B508 802C0508 8DADFDF0 */  lw    $t5, %lo(gCurrentObject)($t5)
@@ -32234,7 +32234,7 @@ glabel ActionCheepCheep2
 /* 07B7A0 802C07A0 00000000 */  nop   
 /* 07B7A4 802C07A4 45000006 */  bc1f  .L802C07C0
 /* 07B7A8 802C07A8 00000000 */   nop   
-/* 07B7AC 802C07AC 0C0A87E8 */  jal   func_802A1FA0
+/* 07B7AC 802C07AC 0C0A87E8 */  jal   obj_angle_to_home
 /* 07B7B0 802C07B0 00000000 */   nop   
 /* 07B7B4 802C07B4 3C098036 */  lui   $t1, %hi(gCurrentObject) # $t1, 0x8036
 /* 07B7B8 802C07B8 8D29FDF0 */  lw    $t1, %lo(gCurrentObject)($t1)
@@ -34286,7 +34286,7 @@ glabel ActionTweester0
 /* 07D508 802C2508 00000000 */   nop   
 /* 07D50C 802C250C 0C0A7F96 */  jal   func_8029FE58
 /* 07D510 802C2510 00000000 */   nop   
-/* 07D514 802C2514 0C0A8434 */  jal   func_802A10D0
+/* 07D514 802C2514 0C0A8434 */  jal   obj_set_pos_to_home
 /* 07D518 802C2518 00000000 */   nop   
 /* 07D51C 802C251C 44806000 */  mtc1  $zero, $f12
 /* 07D520 802C2520 0C0A7B2D */  jal   ScaleObject
@@ -34361,7 +34361,7 @@ glabel ActionTweester1
 /* 07D61C 802C261C 00000000 */  nop   
 /* 07D620 802C2620 468021A0 */  cvt.s.w $f6, $f4
 /* 07D624 802C2624 E7A6001C */  swc1  $f6, 0x1c($sp)
-/* 07D628 802C2628 0C0A87E8 */  jal   func_802A1FA0
+/* 07D628 802C2628 0C0A87E8 */  jal   obj_angle_to_home
 /* 07D62C 802C262C 00000000 */   nop   
 /* 07D630 802C2630 3C198036 */  lui   $t9, %hi(gCurrentObject) # $t9, 0x8036
 /* 07D634 802C2634 8F39FDF0 */  lw    $t9, %lo(gCurrentObject)($t9)
@@ -34423,7 +34423,7 @@ glabel ActionTweester1
 /* 07D70C 802C270C 24050200 */  li    $a1, 512
 /* 07D710 802C2710 0C0A779C */  jal   func_8029DE70
 /* 07D714 802C2714 8D0401BC */   lw    $a0, 0x1bc($t0)
-/* 07D718 802C2718 0C0A83AE */  jal   func_802A0EB8
+/* 07D718 802C2718 0C0A83AE */  jal   obj_lateral_dist_to_home
 /* 07D71C 802C271C 00000000 */   nop   
 /* 07D720 802C2720 3C014348 */  li    $at, 0x43480000 # 200.000000
 /* 07D724 802C2724 44819000 */  mtc1  $at, $f18
@@ -35065,7 +35065,7 @@ glabel func_802C3008
 /* 07E010 802C3010 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 07E014 802C3014 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
 /* 07E018 802C3018 8DC40160 */  lw    $a0, 0x160($t6)
-/* 07E01C 802C301C 0C0A828B */  jal   func_802A0A2C
+/* 07E01C 802C301C 0C0A828B */  jal   abs_angle_diff
 /* 07E020 802C3020 8DC500C8 */   lw    $a1, 0xc8($t6)
 /* 07E024 802C3024 A7A20026 */  sh    $v0, 0x26($sp)
 /* 07E028 802C3028 3C0F8036 */  lui   $t7, %hi(gCurrentObject) # $t7, 0x8036
@@ -35073,7 +35073,7 @@ glabel func_802C3008
 /* 07E030 802C3030 8F18FDE8 */  lw    $t8, %lo(gMarioObject)($t8)
 /* 07E034 802C3034 8DEFFDF0 */  lw    $t7, %lo(gCurrentObject)($t7)
 /* 07E038 802C3038 8F0500D4 */  lw    $a1, 0xd4($t8)
-/* 07E03C 802C303C 0C0A828B */  jal   func_802A0A2C
+/* 07E03C 802C303C 0C0A828B */  jal   abs_angle_diff
 /* 07E040 802C3040 8DE400C8 */   lw    $a0, 0xc8($t7)
 /* 07E044 802C3044 A7A20024 */  sh    $v0, 0x24($sp)
 /* 07E048 802C3048 24191568 */  li    $t9, 5480
@@ -35667,7 +35667,7 @@ glabel func_802C3830
 /* 07E878 802C3878 00000000 */  nop   
 /* 07E87C 802C387C 45000005 */  bc1f  .L802C3894
 /* 07E880 802C3880 00000000 */   nop   
-/* 07E884 802C3884 0C0A87E8 */  jal   func_802A1FA0
+/* 07E884 802C3884 0C0A87E8 */  jal   obj_angle_to_home
 /* 07E888 802C3888 00000000 */   nop   
 /* 07E88C 802C388C 10000005 */  b     .L802C38A4
 /* 07E890 802C3890 A7A2001A */   sh    $v0, 0x1a($sp)
@@ -35794,7 +35794,7 @@ glabel ActionBoo0
 /* 07EA50 802C3A50 2409000A */  li    $t1, 10
 /* 07EA54 802C3A54 AD4901A0 */  sw    $t1, 0x1a0($t2)
 .L802C3A58:
-/* 07EA58 802C3A58 0C0A8434 */  jal   func_802A10D0
+/* 07EA58 802C3A58 0C0A8434 */  jal   obj_set_pos_to_home
 /* 07EA5C 802C3A5C 00000000 */   nop   
 /* 07EA60 802C3A60 3C0B8036 */  lui   $t3, %hi(gCurrentObject) # $t3, 0x8036
 /* 07EA64 802C3A64 8D6BFDF0 */  lw    $t3, %lo(gCurrentObject)($t3)
@@ -36153,7 +36153,7 @@ glabel ActionBooGivingStar0
 /* 07EF4C 802C3F4C 8D4AFDF0 */  lw    $t2, %lo(gCurrentObject)($t2)
 /* 07EF50 802C3F50 24090001 */  li    $t1, 1
 /* 07EF54 802C3F54 AD49014C */  sw    $t1, 0x14c($t2)
-/* 07EF58 802C3F58 0C0A8434 */  jal   func_802A10D0
+/* 07EF58 802C3F58 0C0A8434 */  jal   obj_set_pos_to_home
 /* 07EF5C 802C3F5C 00000000 */   nop   
 /* 07EF60 802C3F60 3C0B8036 */  lui   $t3, %hi(gCurrentObject) # $t3, 0x8036
 /* 07EF64 802C3F64 8D6BFDF0 */  lw    $t3, %lo(gCurrentObject)($t3)
@@ -36188,7 +36188,7 @@ glabel ActionBooGivingStar0
 /* 07F93C 802C493C 8DAD1160 */  lw    $t5, %lo(gCurrentObject)($t5)
 /* 07F940 802C4940 240C0001 */  li    $t4, 1
 /* 07F944 802C4944 ADAC014C */  sw    $t4, 0x14c($t5)
-/* 07F948 802C4948 0C0A8613 */  jal   func_802A10D0
+/* 07F948 802C4948 0C0A8613 */  jal   obj_set_pos_to_home
 /* 07F94C 802C494C 00000000 */   nop   
 /* 07F950 802C4950 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 07F954 802C4954 8DCE1160 */  lw    $t6, %lo(gCurrentObject)($t6)
@@ -37089,7 +37089,7 @@ glabel BehBooInCastleLoop
 /* 07FBAC 802C4BAC 8F39FDF0 */  lw    $t9, %lo(gCurrentObject)($t9)
 /* 07FBB0 802C4BB0 C4326BEC */  lwc1  $f18, %lo(D_80336BEC)($at)
 /* 07FBB4 802C4BB4 E732016C */  swc1  $f18, 0x16c($t9)
-/* 07FBB8 802C4BB8 0C0A87E8 */  jal   func_802A1FA0
+/* 07FBB8 802C4BB8 0C0A87E8 */  jal   obj_angle_to_home
 /* 07FBBC 802C4BBC 00000000 */   nop   
 /* 07FBC0 802C4BC0 A7A2001E */  sh    $v0, 0x1e($sp)
 /* 07FBC4 802C4BC4 3C088036 */  lui   $t0, %hi(gCurrentObject) # $t0, 0x8036
@@ -37133,7 +37133,7 @@ glabel BehBooInCastleLoop
 /* 07FC50 802C4C50 44804000 */  mtc1  $zero, $f8
 /* 07FC54 802C4C54 00000000 */  nop   
 /* 07FC58 802C4C58 E52800B0 */  swc1  $f8, 0xb0($t1)
-/* 07FC5C 802C4C5C 0C0A87E8 */  jal   func_802A1FA0
+/* 07FC5C 802C4C5C 0C0A87E8 */  jal   obj_angle_to_home
 /* 07FC60 802C4C60 00000000 */   nop   
 /* 07FC64 802C4C64 A7A2001E */  sh    $v0, 0x1e($sp)
 /* 07FC68 802C4C68 87A4001E */  lh    $a0, 0x1e($sp)
@@ -38438,7 +38438,7 @@ glabel L802C5C1C
 /* 080C4C 802C5C4C 00000000 */  nop   
 /* 080C50 802C5C50 45000007 */  bc1f  .L802C5C70
 /* 080C54 802C5C54 00000000 */   nop   
-/* 080C58 802C5C58 0C0A87E8 */  jal   func_802A1FA0
+/* 080C58 802C5C58 0C0A87E8 */  jal   obj_angle_to_home
 /* 080C5C 802C5C5C 00000000 */   nop   
 /* 080C60 802C5C60 3C188036 */  lui   $t8, %hi(gCurrentObject) # $t8, 0x8036
 /* 080C64 802C5C64 8F18FDF0 */  lw    $t8, %lo(gCurrentObject)($t8)
@@ -38464,7 +38464,7 @@ glabel L802C5C1C
 /* 080CB0 802C5CB0 3C0B8036 */  lui   $t3, %hi(gCurrentObject) # $t3, 0x8036
 /* 080CB4 802C5CB4 8D6BFDF0 */  lw    $t3, %lo(gCurrentObject)($t3)
 /* 080CB8 802C5CB8 8D640160 */  lw    $a0, 0x160($t3)
-/* 080CBC 802C5CBC 0C0A828B */  jal   func_802A0A2C
+/* 080CBC 802C5CBC 0C0A828B */  jal   abs_angle_diff
 /* 080CC0 802C5CC0 8D6500C8 */   lw    $a1, 0xc8($t3)
 /* 080CC4 802C5CC4 28410800 */  slti  $at, $v0, 0x800
 /* 080CC8 802C5CC8 1020000E */  beqz  $at, .L802C5D04
@@ -38877,7 +38877,7 @@ glabel ActionWhomp0
 /* 0812A0 802C62A0 00002025 */  move  $a0, $zero
 /* 0812A4 802C62A4 0C0A7B66 */  jal   func_8029ED98
 /* 0812A8 802C62A8 3C053F80 */   lui   $a1, 0x3f80
-/* 0812AC 802C62AC 0C0A8434 */  jal   func_802A10D0
+/* 0812AC 802C62AC 0C0A8434 */  jal   obj_set_pos_to_home
 /* 0812B0 802C62B0 00000000 */   nop   
 /* 0812B4 802C62B4 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 0812B8 802C62B8 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
@@ -38918,7 +38918,7 @@ glabel ActionWhomp0
 /* 081344 802C6344 10000007 */  b     .L802C6364
 /* 081348 802C6348 00000000 */   nop   
 .L802C634C:
-/* 08134C 802C634C 0C0A8434 */  jal   func_802A10D0
+/* 08134C 802C634C 0C0A8434 */  jal   obj_set_pos_to_home
 /* 081350 802C6350 00000000 */   nop   
 /* 081354 802C6354 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 081358 802C6358 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
@@ -39038,10 +39038,10 @@ glabel ActionWhomp1
 /* 0814E4 802C64E4 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 0814E8 802C64E8 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
 /* 0814EC 802C64EC 8DC40160 */  lw    $a0, 0x160($t6)
-/* 0814F0 802C64F0 0C0A828B */  jal   func_802A0A2C
+/* 0814F0 802C64F0 0C0A828B */  jal   abs_angle_diff
 /* 0814F4 802C64F4 8DC500C8 */   lw    $a1, 0xc8($t6)
 /* 0814F8 802C64F8 A7A20026 */  sh    $v0, 0x26($sp)
-/* 0814FC 802C64FC 0C0A83AE */  jal   func_802A0EB8
+/* 0814FC 802C64FC 0C0A83AE */  jal   obj_lateral_dist_to_home
 /* 081500 802C6500 00000000 */   nop   
 /* 081504 802C6504 E7A00020 */  swc1  $f0, 0x20($sp)
 /* 081508 802C6508 3C0F8033 */  lui   $t7, %hi(gCurrLevelNum) # $t7, 0x8033
@@ -39153,7 +39153,7 @@ glabel ActionWhomp2
 /* 081690 802C6690 3C088036 */  lui   $t0, %hi(gCurrentObject) # $t0, 0x8036
 /* 081694 802C6694 8D08FDF0 */  lw    $t0, %lo(gCurrentObject)($t0)
 /* 081698 802C6698 8D040160 */  lw    $a0, 0x160($t0)
-/* 08169C 802C669C 0C0A828B */  jal   func_802A0A2C
+/* 08169C 802C669C 0C0A828B */  jal   abs_angle_diff
 /* 0816A0 802C66A0 8D0500C8 */   lw    $a1, 0xc8($t0)
 /* 0816A4 802C66A4 A7A2001E */  sh    $v0, 0x1e($sp)
 /* 0816A8 802C66A8 87A9001E */  lh    $t1, 0x1e($sp)

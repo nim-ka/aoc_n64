@@ -18,9 +18,9 @@ script_func_local_1:
     object /*unk2*/ 0x1F, /*unk3*/ 0x3D, /*pos*/ -1748, -1330, -1094, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_four_rotating_platforms
     object /*unk2*/ 0x1F, /*unk3*/ 0x3D, /*pos*/ 2275, 5628, -1315, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_four_rotating_platforms
     object /*unk2*/ 0x1F, /*unk3*/ 0x3D, /*pos*/ 3114, 4701, -1320, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_four_rotating_platforms
-    object /*unk2*/ 0x1F, /*unk3*/ 0x3E, /*pos*/ 2793, 2325, -904, /*angle*/ 0, 0, 0, /*behArg*/ 0x00610000, /*beh*/ beh_climbable_cage
-    object /*unk2*/ 0x1F, /*unk3*/ 0x3F, /*pos*/ 27, -1555, -713, /*angle*/ 0, 90, 0, /*behArg*/ 0x00010000, /*beh*/ beh_solid_moving
-    object /*unk2*/ 0x1F, /*unk3*/ 0x40, /*pos*/ -306, -4300, 0, /*angle*/ 0, 0, 0, /*behArg*/ 0x00020000, /*beh*/ beh_solid_moving
+    object /*unk2*/ 0x1F, /*unk3*/ 0x3E, /*pos*/ 2793, 2325, -904, /*angle*/ 0, 0, 0, /*behArg*/ 0x00610000, /*beh*/ bActivatedBackAndForthPlatform
+    object /*unk2*/ 0x1F, /*unk3*/ 0x3F, /*pos*/ 27, -1555, -713, /*angle*/ 0, 90, 0, /*behArg*/ 0x00010000, /*beh*/ bSeesawPlatform
+    object /*unk2*/ 0x1F, /*unk3*/ 0x40, /*pos*/ -306, -4300, 0, /*angle*/ 0, 0, 0, /*behArg*/ 0x00020000, /*beh*/ bSeesawPlatform
     object /*unk2*/ 0x1F, /*unk3*/ 0x41, /*pos*/ 1769, -234, -899, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_floor_switch_press_animation
     object /*unk2*/ 0x1F, /*unk3*/ 0xCF, /*pos*/ -279, -234, -900, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_purple_switch_staircase
     object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -6460, 2039, -905, /*angle*/ 0, 0, 0, /*behArg*/ 0x00CF0000, /*beh*/ beh_pole_grabbing

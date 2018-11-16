@@ -4561,7 +4561,7 @@ glabel beh_yoshi # 4518
         callnative BehYoshiLoop
     end_loop
 
-glabel beh_koopa # 4560
+glabel bKoopa # 4560
     begin OBJ_LIST_PUSHABLE
     obj_or_int VAR_01, 0x2041
     unknown_1E
@@ -4571,21 +4571,21 @@ glabel beh_koopa # 4560
     unknown_30 0x0032, 0xFE70, 0x0000, 0x0000, 0x03E8, 0x00C8, 0x0000, 0x0000
     scale 150
     obj_set_float VAR_1B, 1
-    callnative BehKoopaInit
+    callnative bhv_koopa_init
     begin_loop
-        callnative BehKoopaLoop
+        callnative bhv_koopa_update
     end_loop
 
-glabel beh_waving_koopa_flag # 45B0
+glabel bKoopaRaceEndpoint # 45B0
     begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x41
     unknown_1E
-    unknown_29 0x0000, 0x0000006A, beh_koopa_flag
+    unknown_29 0x0000, 0x0000006A, bKoopaFlag
     begin_loop
-        callnative BehWavingKoopaFlagLoop
+        callnative bhv_koopa_race_endpoint_update
     end_loop
 
-glabel beh_koopa_flag # 45D8
+glabel bKoopaFlag # 45D8
     begin OBJ_LIST_POLELIKE
     interact_type 0x00000040
     set_hitbox 0x0050, 0x02BC
@@ -4598,26 +4598,26 @@ glabel beh_koopa_flag # 45D8
         callnative BehClimbDetectLoop
     end_loop
 
-glabel beh_pokey # 4614
+glabel bPokey # 4614
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2041
     unknown_1E
     unknown_2D
     unknown_30 0x003C, 0xFE70, 0x0000, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
     begin_loop
-        callnative BehPokeyLoop
+        callnative bhv_pokey_update
     end_loop
 
-glabel beh_pokey_head # 4648
+glabel bPokeyBodyPart # 4648
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2041
     unknown_30 0x003C, 0xFE70, 0x0000, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
     billboard
     begin_loop
-        callnative BehPokeyHeadLoop
+        callnative bhv_pokey_body_part_update
     end_loop
 
-glabel beh_bat # 4678
+glabel bSwoop # 4678
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2049
     obj_set_int32 VAR_26, swoop_seg6_anims_060070D0
@@ -4626,10 +4626,10 @@ glabel beh_bat # 4678
     callnative BehCommonInit
     scale 0
     begin_loop
-        callnative BehBatLoop
+        callnative bhv_swoop_update
     end_loop
 
-glabel beh_fly_guy # 46BC
+glabel bFlyGuy # 46BC
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2041
     obj_set_int32 VAR_26, 0x08011A64
@@ -4641,30 +4641,30 @@ glabel beh_fly_guy # 46BC
     obj_set_float VAR_15, 30
     scale 150
     begin_loop
-        callnative BehFlyGuyLoop
+        callnative bhv_fly_guy_update
     end_loop
 
-glabel beh_goomba_walk # 470C
+glabel bGoomba # 470C
     begin OBJ_LIST_PUSHABLE
     obj_or_int VAR_01, 0x2049
     unknown_1E
     obj_set_int32 VAR_26, 0x0801DA4C
     unknown_2D
     unknown_30 0x0028, 0xFE70, 0xFFCE, 0x03E8, 0x03E8, 0x0000, 0x0000, 0x0000
-    callnative BehGoombaWalkInit
+    callnative bhv_goomba_init
     begin_loop
-        callnative BehGoombaWalkLoop
+        callnative bhv_goomba_update
     end_loop
 
-glabel beh_goombas_group # 4750
+glabel bGoombaTripletSpawner # 4750
     begin OBJ_LIST_PUSHABLE
     obj_or_int VAR_01, 0x41
     unknown_1E
     begin_loop
-        callnative BehGoombasGroupLoop
+        callnative bhv_goomba_triplet_spawner_update
     end_loop
 
-glabel beh_chain_chomp # 476C
+glabel bChainChomp # 476C
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x20C9
     unknown_1E
@@ -4675,12 +4675,12 @@ glabel beh_chain_chomp # 476C
     unknown_2D
     obj_set_float VAR_15, 0x00F0
     scale 200
-    unknown_29 0x0000, 0x0000006B, beh_poundable
+    unknown_29 0x0000, 0x0000006B, bWoodenPost
     begin_loop
-        callnative BehChainChompLoop
+        callnative bhv_chain_chomp_update
     end_loop
 
-glabel beh_chain_chomp_chains # 47C4
+glabel bChainChompChainPart # 47C4
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x01
     billboard
@@ -4688,10 +4688,10 @@ glabel beh_chain_chomp_chains # 47C4
     obj_set_float VAR_15, 0x0028
     scale 200
     begin_loop
-        callnative BehChainChompChainsLoop
+        callnative bhv_chain_chomp_chain_part_update
     end_loop
 
-glabel beh_poundable # 47FC
+glabel bWoodenPost # 47FC
     begin OBJ_LIST_SURFACE
     collision_data poundable_pole_collision_06002490
     obj_or_int VAR_01, 0x2041
@@ -4701,21 +4701,21 @@ glabel beh_poundable # 47FC
     unknown_2D
     scale 50
     begin_loop
-        callnative BehPoundableLoop
+        callnative bhv_wooden_post_update
         callnative load_object_collision_model
     end_loop
 
-glabel beh_chain_chomp_freed_explosion # 4848
+glabel bChainChompFreedExplosion # 4848
     begin OBJ_LIST_SURFACE
     collision_data bob_seg7_collision_chain_chomp_gate
     obj_or_int VAR_01, 0x41
-    callnative BehChainChompFreedExplosionInit
+    callnative bhv_chain_chomp_freed_explosion_init
     begin_loop
-        callnative BehChainChompFreedExplosionLoop
+        callnative bhv_chain_chomp_freed_explosion_update
         callnative load_object_collision_model
     end_loop
 
-glabel beh_wiggler # 4878
+glabel bWiggler # 4878
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2041
     unknown_1E
@@ -4726,17 +4726,17 @@ glabel beh_wiggler # 4878
     scale 400
     obj_set_float VAR_1B, 0x1388
     begin_loop
-        callnative BehWigglerLoop
+        callnative bhv_wiggler_update
     end_loop
 
-glabel beh_wiggler_body_parts # 48C0
+glabel bWigglerBodyPart # 48C0
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x01
     obj_set_int32 VAR_26, wiggler_seg5_anims_0500C874
     unknown_30 0x0000, 0xFE70, 0x0000, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
     scale 400
     begin_loop
-        callnative BehWigglerBodyPartsLoop
+        callnative bhv_wiggler_body_part_update
     end_loop
 
 glabel beh_evil_lakitu # 48F8
@@ -4779,14 +4779,14 @@ glabel beh_fwoosh_face # 498C
         callnative BehFwooshFaceLoop
     end_loop
 
-glabel beh_spiny # 49A8
+glabel bSpiny # 49A8
     begin OBJ_LIST_PUSHABLE
     obj_or_int VAR_01, 0x2049
     obj_set_int32 VAR_26, spiny_seg5_anims_05016EAC
     unknown_28 0x00
     unknown_30 0x0028, 0xFE70, 0xFFCE, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
     begin_loop
-        callnative BehSpinyLoop
+        callnative bhv_spiny_update
     end_loop
 
 glabel beh_monty_mole # 49E0
@@ -4826,14 +4826,14 @@ glabel beh_monty_mole_rock # 4A58
         callnative BehMontyMoleRockLoop
     end_loop
 
-glabel beh_platform_on_tracks # 4A90
+glabel bPlatformOnTrack # 4A90
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x2041
     unknown_30 0x0032, 0xFF9C, 0xFFCE, 0x0064, 0x03E8, 0x00C8, 0x0000, 0x0000
     callnative BehCommonInit
-    callnative BehPlatformOnTracksInit
+    callnative bhv_platform_on_track_init
     begin_loop
-        callnative BehPlatformOnTracksLoop
+        callnative bhv_platform_on_track_update
         callnative load_object_collision_model
     end_loop
 
@@ -4847,12 +4847,12 @@ glabel beh_metal_balls_for_elevators # 4AD4
         callnative BehMetalBallsForElevatorsLoop
     end_loop
 
-glabel beh_solid_moving # 4AFC
+glabel bSeesawPlatform # 4AFC
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x2049
-    callnative BehSolidMovingInit
+    callnative bhv_seesaw_platform_init
     begin_loop
-        callnative BehSolidMovingLoop
+        callnative bhv_seesaw_platform_update
         callnative load_object_collision_model
     end_loop
 
@@ -4874,133 +4874,133 @@ glabel beh_ferris_wheel_platform # 4B4C
         callnative load_object_collision_model
     end_loop
 
-glabel beh_water_bubble_drop # 4B6C
+glabel bWaterBombSpawner # 4B6C
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x41
     unknown_1E
     begin_loop
-        callnative BehWaterBubbleDropLoop
+        callnative bhv_water_bomb_spawner_update
     end_loop
 
-glabel beh_water_bomb # 4B88
+glabel bWaterBomb # 4B88
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2001
     unknown_30 0x0078, 0xFE70, 0x0000, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
     begin_loop
-        callnative BehWaterBombLoop
+        callnative bhv_water_bomb_update
     end_loop
 
-glabel beh_water_bomb_shadow # 4BB4
+glabel bWaterBombShadow # 4BB4
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x01
     scale 150
     begin_loop
-        callnative BehWaterBombShadowLoop
+        callnative bhv_water_bomb_shadow_update
     end_loop
 
-glabel beh_rotating_clock_platform # 4BD0
+glabel bTTCRotatingSolid # 4BD0
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x41
     unknown_2D
     obj_set_float VAR_43, 0x01C2
-    callnative BehRotatingClockPlatformInit
+    callnative bhv_ttc_rotating_solid_init
     obj_set_int VAR_1B, 1
     begin_loop
-        callnative BehRotatingClockPlatformLoop
+        callnative bhv_ttc_rotating_solid_update
         callnative load_object_collision_model
     end_loop
 
-glabel beh_clock_pendulum # 4C04
+glabel bTTCPendulum # 4C04
     begin OBJ_LIST_SURFACE
     collision_data ttc_seg7_collision_clock_pendulum
     obj_or_int VAR_01, 0x2041
     obj_set_float VAR_43, 0x05DC
-    callnative BehClockPendulumInit
+    callnative bhv_ttc_pendulum_init
     obj_set_float VAR_1B, 1
     begin_loop
-        callnative BehClockPendulumLoop
+        callnative bhv_ttc_pendulum_update
         callnative load_object_collision_model
     end_loop
 
-glabel beh_clock_metal_platform # 4C3C
+glabel bTTCTreadmill # 4C3C
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x41
     obj_set_float VAR_43, 0x02EE
-    callnative BehClockMetalPlatformInit
+    callnative bhv_ttc_treadmill_init
     delay 1
     begin_loop
-        callnative BehClockMetalPlatformLoop
+        callnative bhv_ttc_treadmill_update
         callnative PreMoveObj
         callnative load_object_collision_model
     end_loop
 
-glabel beh_sliding_platform # 4C74
+glabel bTTCMovingBar # 4C74
     begin OBJ_LIST_SURFACE
     collision_data ttc_seg7_collision_sliding_surface
     obj_or_int VAR_01, 0x41
     unknown_2D
     obj_set_float VAR_43, 0x0226
-    callnative BehSlidingPlatformInit
+    callnative bhv_ttc_moving_bar_init
     begin_loop
-        callnative BehSlidingPlatformLoop
+        callnative bhv_ttc_moving_bar_update
         callnative load_object_collision_model
     end_loop
 
-glabel beh_rotating_gear_platform # 4CAC
+glabel bTTCCog # 4CAC
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x41
     obj_set_float VAR_43, 0x0190
-    callnative BehRotatingGearPlatformInit
+    callnative bhv_ttc_cog_init
     begin_loop
-        callnative BehRotationGearPlatformLoop
+        callnative bhv_ttc_cog_update
         callnative load_object_collision_model
     end_loop
 
-glabel beh_pushable_clock_box # 4CD8
+glabel bTTCPitBlock # 4CD8
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x41
     unknown_2D
     obj_set_float VAR_43, 0x015E
-    callnative BehPushableClockBoxInit
+    callnative bhv_ttc_pit_block_init
     begin_loop
-        callnative BehPushableClockBoxLoop
+        callnative bhv_ttc_pit_block_update
         callnative load_object_collision_model
     end_loop
 
-glabel beh_clock_platform # 4D08
+glabel bTTCElevator # 4D08
     begin OBJ_LIST_SURFACE
     collision_data ttc_seg7_collision_clock_platform
     obj_or_int VAR_01, 0x41
     unknown_2D
     obj_set_float VAR_43, 0x0190
-    callnative BehClockPlatformInit
+    callnative bhv_ttc_elevator_init
     obj_set_float VAR_1B, 1
     begin_loop
-        callnative BehClockPlatformLoop
+        callnative bhv_ttc_elevator_update
         callnative load_object_collision_model
     end_loop
 
-glabel beh_clock_main_rotation # 4D44
+glabel bTTC2DRotator # 4D44
     begin OBJ_LIST_SURFACE
     collision_data ttc_seg7_collision_clock_main_rotation
     obj_or_int VAR_01, 0x01
     obj_set_float VAR_43, 0x0708
-    callnative BehClockMainRotationInit
+    callnative bhv_ttc_2d_rotator_init
     begin_loop
-        callnative BehClockMainRotationLoop
+        callnative bhv_ttc_2d_rotator_update
     end_loop
 
-glabel beh_rotating_clock_platform2 # 4D70
+glabel bTTCSpinner # 4D70
     begin OBJ_LIST_SURFACE
     collision_data ttc_seg7_collision_rotating_clock_platform2
     obj_or_int VAR_01, 0x01
     obj_set_float VAR_43, 0x01C2
     begin_loop
-        callnative BehRotatingClockPlatform2Loop
+        callnative bhv_ttc_spinner_update
         callnative load_object_collision_model
     end_loop
 
-glabel beh_mr_blizzard # 4D9C
+glabel bMrBlizzard # 4D9C
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2049
     unknown_1E
@@ -5008,13 +5008,13 @@ glabel beh_mr_blizzard # 4D9C
     unknown_28 0x00
     unknown_2D
     unknown_30 0x001E, 0xFE70, 0x0000, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
-    callnative BehMrBlizzardInit
+    callnative bhv_mr_blizzard_init
     obj_set_float VAR_1B, 1
     begin_loop
-        callnative BehMrBlizzardLoop
+        callnative bhv_mr_blizzard_update
     end_loop
 
-glabel beh_snowman_snowball # 4DE8
+glabel bMrBlizzardSnowball # 4DE8
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x41
     billboard
@@ -5025,7 +5025,7 @@ glabel beh_snowman_snowball # 4DE8
     obj_set_float VAR_0A, -1
     obj_set_float VAR_15, 10
     begin_loop
-        callnative BehSnowmanSnowballLoop
+        callnative bhv_mr_blizzard_snowball
     end_loop
 
 glabel beh_sliding_platform2 # 4E2C
@@ -5057,21 +5057,21 @@ glabel beh_floor_switch_press_animation # 4E80
         callnative load_object_collision_model
     end_loop
 
-glabel beh_climbable_cage # 4EAC
+glabel bActivatedBackAndForthPlatform # 4EAC
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x41
     unknown_2D
-    callnative BehClimbableCageInit
+    callnative bhv_activated_back_and_forth_platform_init
     begin_loop
-        callnative BehClimbableCageLoop
+        callnative bhv_activated_back_and_forth_platform_update
         callnative load_object_collision_model
     end_loop
 
-glabel beh_recover_life # 4ED8
+glabel bSpinningHeart # 4ED8
     begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x2041
     begin_loop
-        callnative BehRecoverLifeLoop
+        callnative bhv_spinning_heart_update
     end_loop
 
 glabel beh_cannon # 4EF0
@@ -5108,7 +5108,7 @@ glabel beh_unagi_subobject # 4F58
         callnative BehUnagiSubobjectLoop
     end_loop
 
-glabel beh_dorrie # 4F70
+glabel bDorrie # 4F70
     begin OBJ_LIST_SURFACE
     collision_data dorrie_seg6_collision_0600F644
     obj_or_int VAR_01, 0x2049
@@ -5118,7 +5118,7 @@ glabel beh_dorrie # 4F70
     obj_add_float VAR_06, 2000
     callnative BehCommonInit
     begin_loop
-        callnative BehDorrieLoop
+        callnative bhv_dorrie_update
         callnative load_object_collision_model
     end_loop
 
@@ -5136,7 +5136,7 @@ glabel beh_haunted_chair # 4FB4
         callnative BehHauntedChairLoop
     end_loop
 
-glabel beh_mad_piano # 5004
+glabel bMadPiano # 5004
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2041
     unknown_1E
@@ -5146,7 +5146,7 @@ glabel beh_mad_piano # 5004
     obj_add_int VAR_10, 0x4000
     callnative BehCommonInit
     begin_loop
-        callnative BehMadPianoLoop
+        callnative bhv_mad_piano_update
     end_loop
 
 glabel beh_flying_bookend # 504C
@@ -5189,7 +5189,7 @@ glabel beh_book_switch # 50D4
         callnative BehBookSwitchLoop
     end_loop
 
-glabel beh_piranha_plant # 5100
+glabel bFirePiranhaPlant # 5100
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2049
     unknown_1E
@@ -5197,9 +5197,9 @@ glabel beh_piranha_plant # 5100
     unknown_28 0x00
     unknown_2D
     unhide
-    callnative BehPiranhaPlantInit
+    callnative bhv_fire_piranha_plant_init
     begin_loop
-        callnative BehPiranhaPlantLoop
+        callnative bhv_fire_piranha_plant_update
     end_loop
 
 glabel beh_small_piranha_flame # 5138
@@ -5212,13 +5212,13 @@ glabel beh_small_piranha_flame # 5138
         obj_add_int VAR_1A, 1
     end_loop
 
-glabel beh_fire_spewer # 516C
+glabel bFireSpitter # 516C
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2041
     billboard
     scale 40
     begin_loop
-        callnative BehFireSpewerLoop
+        callnative bhv_fire_spitter_update
     end_loop
 
 glabel beh_flyguy_flame # 518C
@@ -5254,7 +5254,7 @@ glabel beh_snufit_balls # 51FC
         callnative BehSnufitBallsLoop
     end_loop
 
-glabel beh_grindel2 # 523C
+glabel bHorizontalGrindel # 523C
     begin OBJ_LIST_SURFACE
     collision_data ssl_seg7_collision_grindel
     obj_or_int VAR_01, 0x01
@@ -5262,10 +5262,10 @@ glabel beh_grindel2 # 523C
     unknown_2D
     unknown_30 0x0028, 0xFE70, 0x0000, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
     scale 90
-    callnative BehGrindel2Init
+    callnative bhv_horizontal_grindel_init
     begin_loop
         callnative MoveRelated
-        callnative BehGrindel2Loop
+        callnative bhv_horizontal_grindel_update
         callnative load_object_collision_model
     end_loop
 
@@ -5289,19 +5289,19 @@ glabel beh_eyerok_hand # 52B0
         callnative BehEyerokHandLoop
     end_loop
 
-glabel beh_klepto # 52F0
+glabel bKlepto # 52F0
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x20C9
     obj_set_int32 VAR_26, klepto_seg5_anims_05008CFC
     unknown_28 0x00
     unknown_30 0x0064, 0x0000, 0xFFEC, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
     unknown_2D
-    callnative BehKleptoInit
+    callnative bhv_klepto_init
     begin_loop
-        callnative BehKleptoLoop
+        callnative bhv_klepto_update
     end_loop
 
-glabel beh_multiple_birds_flying # 5334
+glabel bBird # 5334
     begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x2049
     obj_set_int32 VAR_26, birds_seg5_anims_050009E8
@@ -5309,33 +5309,33 @@ glabel beh_multiple_birds_flying # 5334
     unhide
     scale 70
     begin_loop
-        callnative BehMultipleBirdsFlyingLoop
+        callnative bhv_bird_update
     end_loop
 
-glabel beh_racing_penguin # 5360
+glabel bRacingPenguin # 5360
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x20C9
     obj_set_int32 VAR_26, penguin_seg5_anims_05008B74
     unknown_28 0x03
     unknown_30 0x012C, 0xFCE0, 0xFFFB, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000
     scale 400
-    callnative BehRacingPenguinInit
+    callnative bhv_racing_penguin_init
     begin_loop
-        callnative BehRacingPenguinLoop
+        callnative bhv_racing_penguin_update
     end_loop
 
-glabel beh_finish_line_check # 53A4
+glabel bPenguinRaceFinishLine # 53A4
     begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0xC1
     begin_loop
-        callnative BehFinishLineCheckLoop
+        callnative bhv_penguin_race_finish_line_update
     end_loop
 
-glabel beh_shortcut_check # 53BC
+glabel bPenguinRaceShortcutCheck # 53BC
     begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x41
     begin_loop
-        callnative BehShortcutCheckLoop
+        callnative bhv_penguin_race_shortcut_check_update
     end_loop
 
 glabel beh_haunted_room_check # 53D4
@@ -5366,77 +5366,77 @@ glabel beh_clam_shell # 5420
         callnative BehClamShellLoop
     end_loop
 
-glabel beh_skeeter # 5448
+glabel bSkeeter # 5448
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2049
     obj_set_int32 VAR_26, 0x06007DE0
     unknown_2D
     unknown_30 0x00B4, 0xFE70, 0xFFCE, 0x03E8, 0x03E8, 0x04B0, 0x0000, 0x0000
     begin_loop
-        callnative BehSkeeterLoop
+        callnative bhv_skeeter_update
     end_loop
 
-glabel beh_water_wave_type # 5480
+glabel bSkeeterWave # 5480
     begin OBJ_LIST_UNIMPORTANT
     obj_or_int VAR_01, 0x01
     begin_loop
-        callnative BehWaterWaveTypeLoop
+        callnative bhv_skeeter_wave_update
     end_loop
 
-glabel beh_pendulum_movement # 5498
+glabel bSwingPlatform # 5498
     begin OBJ_LIST_SURFACE
     collision_data rr_seg7_collision_pendulum
     obj_or_int VAR_01, 0x01
     obj_set_float VAR_43, 0x07D0
-    callnative BehPendulumMovementInit
+    callnative bhv_swing_platform_init
     begin_loop
-        callnative BehPendulumMovementLoop
+        callnative bhv_swing_platform_update
         callnative load_object_collision_model
     end_loop
 
-glabel beh_donut_platform_group # 54CC
+glabel bDonutPlatformSpawner # 54CC
     begin OBJ_LIST_SPAWNER
     obj_or_int VAR_01, 0x01
     begin_loop
-        callnative BehDonutPlatformGroupLoop
+        callnative bhv_donut_platform_spawner_update
     end_loop
 
-glabel beh_donut_platform # 54E4
+glabel bDonutPlatform # 54E4
     begin OBJ_LIST_SURFACE
     collision_data rr_seg7_collision_donut_platform
     obj_or_int VAR_01, 0x41
     unknown_2D
     begin_loop
-        callnative BehDonutPlatformLoop
+        callnative bhv_donut_platform_update
     end_loop
 
-glabel beh_ddd_yellow_poles # 5508
+glabel bDDDPole # 5508
     begin OBJ_LIST_POLELIKE
     interact_type 0x00000040
     set_hitbox 0x0050, 0x0320
     obj_set_int VAR_05, 0
     obj_or_int VAR_01, 0x01
     unknown_2D
-    callnative BehDddYellowPolesInit
+    callnative bhv_ddd_pole_init
     obj_set_float VAR_1B, 10
     begin_loop
-        callnative BehDddYellowPolesLoop
+        callnative bhv_ddd_pole_update
         callnative BehClimbDetectLoop
     end_loop
 
-glabel beh_shadow_star_for_red_star # 554C
+glabel bRedCoinStarMarker # 554C
     begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
     unknown_1E
     scale 150
     obj_set_int VAR_12, 0x4000
     obj_add_float VAR_07, 60
-    callnative BehShadowStarForRedStarInit
+    callnative bhv_red_coin_star_marker_init
     begin_loop
         obj_add_int VAR_13, 0x100
     end_loop
 
-glabel beh_three_butterflies # 5578
+glabel bTripletButterfly # 5578
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2049
     obj_set_int32 VAR_26, 0x030056B0
@@ -5446,7 +5446,7 @@ glabel beh_three_butterflies # 5578
     unknown_30 0x0000, 0x0000, 0x0000, 0x0000, 0x03E8, 0x00C8, 0x0000, 0x0000
     obj_set_float VAR_1B, 1
     begin_loop
-        callnative BehThreeButterfliesLoop
+        callnative bhv_triplet_butterfly_update
     end_loop
 
 glabel beh_bubba # 55BC

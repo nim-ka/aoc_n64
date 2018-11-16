@@ -50,9 +50,9 @@ script_func_local_2:
     object /*unk2*/ 0x1F, /*unk3*/ 0x8E, /*pos*/ -5686, -787, -4733, /*angle*/ 0, 0, 0, /*behArg*/ 0x00070000, /*beh*/ beh_water_mist2
     object /*unk2*/ 0x1F, /*unk3*/ 0x8E, /*pos*/ -5845, -787, -4710, /*angle*/ 0, 0, 0, /*behArg*/ 0x00080000, /*beh*/ beh_water_mist2
     object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 5223, -975, 1667, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_fish_2
-    object /*unk2*/ 0x1F, /*unk3*/ 0x54, /*pos*/ -5069, 850, 3221, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ beh_multiple_birds_flying
-    object /*unk2*/ 0x1F, /*unk3*/ 0x54, /*pos*/ -4711, 742, 433, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ beh_multiple_birds_flying
-    object /*unk2*/ 0x1F, /*unk3*/ 0x54, /*pos*/ 5774, 913, -1114, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ beh_multiple_birds_flying
+    object /*unk2*/ 0x1F, /*unk3*/ 0x54, /*pos*/ -5069, 850, 3221, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ bBird
+    object /*unk2*/ 0x1F, /*unk3*/ 0x54, /*pos*/ -4711, 742, 433, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ bBird
+    object /*unk2*/ 0x1F, /*unk3*/ 0x54, /*pos*/ 5774, 913, -1114, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ bBird
     object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -1328, 260, 4664, /*angle*/ 0, 180, 0, /*behArg*/ 0x00280000, /*beh*/ beh_intro_scene
     object /*unk2*/ 0x1F, /*unk3*/ 0x38, /*pos*/ 0, 0, 0, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_hidden_at_120_stars
     object /*unk2*/ 0x1F, /*unk3*/ 0x66, /*pos*/ 11, 803, -3015, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ beh_lakitu

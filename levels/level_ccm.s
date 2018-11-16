@@ -9,14 +9,14 @@
 .section .level, "a"
 
 script_func_local_1:
-    object /*unk2*/ 0x1F, /*unk3*/ 0x36, /*pos*/ 531, -4430, 6426, /*angle*/ 0, 0, 0, /*behArg*/ 0x07120000, /*beh*/ beh_platform_on_tracks
+    object /*unk2*/ 0x1F, /*unk3*/ 0x36, /*pos*/ 531, -4430, 6426, /*angle*/ 0, 0, 0, /*behArg*/ 0x07120000, /*beh*/ bPlatformOnTrack
     return
 
 script_func_local_2:
     object /*unk2*/ 0x1F, /*unk3*/ 0x57, /*pos*/ 2650, -3735, 3970, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ beh_small_penguin
     object /*unk2*/ 0x1F, /*unk3*/ 0x57, /*pos*/ -555, 3470, -1000, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_small_penguin
-    object /*unk2*/ 0x1F, /*unk3*/ 0x56, /*pos*/ -2376, -1589, 4256, /*angle*/ 0, 252, 0, /*behArg*/ 0x00010000, /*beh*/ beh_mr_blizzard
-    object /*unk2*/ 0x1F, /*unk3*/ 0x56, /*pos*/ -394, -1589, 4878, /*angle*/ 0, 74, 0, /*behArg*/ 0x00010000, /*beh*/ beh_mr_blizzard
+    object /*unk2*/ 0x1F, /*unk3*/ 0x56, /*pos*/ -2376, -1589, 4256, /*angle*/ 0, 252, 0, /*behArg*/ 0x00010000, /*beh*/ bMrBlizzard
+    object /*unk2*/ 0x1F, /*unk3*/ 0x56, /*pos*/ -394, -1589, 4878, /*angle*/ 0, 74, 0, /*behArg*/ 0x00010000, /*beh*/ bMrBlizzard
     object /*unk2*/ 0x10, /*unk3*/ 0xD2, /*pos*/ 2560, 2662, -1122, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_snowmans_bottom
     return
 
@@ -29,9 +29,9 @@ script_func_local_3:
     return
 
 script_func_local_4:
-    object /*unk2*/ 0x3E, /*unk3*/ 0x57, /*pos*/ -4952, 6656, -6075, /*angle*/ 0, 270, 0, /*behArg*/ 0x02000000, /*beh*/ beh_racing_penguin
-    object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -6500, -5836, -6400, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_finish_line_check
-    object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -6393, -716, 7503, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_shortcut_check
+    object /*unk2*/ 0x3E, /*unk3*/ 0x57, /*pos*/ -4952, 6656, -6075, /*angle*/ 0, 270, 0, /*behArg*/ 0x02000000, /*beh*/ bRacingPenguin
+    object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -6500, -5836, -6400, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ bPenguinRaceFinishLine
+    object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -6393, -716, 7503, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ bPenguinRaceShortcutCheck
 .ifdef VERSION_US
     object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -4943, 1321, 667, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_plays_music_track_when_touched
 .endif

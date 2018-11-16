@@ -9,8 +9,8 @@
 .section .level, "a"
 
 script_func_local_1:
-    object /*unk2*/ 0x1F, /*unk3*/ 0x36, /*pos*/ 154, -1919, -6256, /*angle*/ 0, 270, 0, /*behArg*/ 0x00070000, /*beh*/ beh_solid_moving
-    object /*unk2*/ 0x1F, /*unk3*/ 0x36, /*pos*/ -2047, -3378, -2047, /*angle*/ 0, 0, 0, /*behArg*/ 0x00070000, /*beh*/ beh_solid_moving
+    object /*unk2*/ 0x1F, /*unk3*/ 0x36, /*pos*/ 154, -1919, -6256, /*angle*/ 0, 270, 0, /*behArg*/ 0x00070000, /*beh*/ bSeesawPlatform
+    object /*unk2*/ 0x1F, /*unk3*/ 0x36, /*pos*/ -2047, -3378, -2047, /*angle*/ 0, 0, 0, /*behArg*/ 0x00070000, /*beh*/ bSeesawPlatform
     object /*unk2*/ 0x1F, /*unk3*/ 0x37, /*pos*/ 3251, -1082, -6256, /*angle*/ 0, 270, 0, /*behArg*/ 0x014B0000, /*beh*/ beh_checkerboard_elevator_group
     object /*unk2*/ 0x1F, /*unk3*/ 0x37, /*pos*/ 2355, -1901, -6256, /*angle*/ 0, 270, 0, /*behArg*/ 0x014B0000, /*beh*/ beh_checkerboard_elevator_group
     object /*unk2*/ 0x1F, /*unk3*/ 0x37, /*pos*/ 1459, -1594, -6256, /*angle*/ 0, 90, 0, /*behArg*/ 0x014B0000, /*beh*/ beh_checkerboard_elevator_group

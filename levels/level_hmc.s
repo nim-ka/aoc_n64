@@ -38,11 +38,11 @@ script_func_local_2:
     object /*unk2*/ 0x1F, /*unk3*/ 0x38, /*pos*/ -3533, 1741, -7040, /*angle*/ 0, 0, 0, /*behArg*/ 0x00030000, /*beh*/ beh_hmc_elevator_platform
     object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 614, -4690, 2330, /*angle*/ 0, 270, 0, /*behArg*/ 0x00010000, /*beh*/ beh_openable_grill
     object /*unk2*/ 0x1F, /*unk3*/ 0xCF, /*pos*/ -307, -4997, 2483, /*angle*/ 0, 270, 0, /*behArg*/ 0x00000000, /*beh*/ beh_floor_switch_grills
-    object /*unk2*/ 0x1F, /*unk3*/ 0xCA, /*pos*/ 1270, 2000, 4000, /*angle*/ 0, 270, 0, /*behArg*/ 0x09A40000, /*beh*/ beh_platform_on_tracks
+    object /*unk2*/ 0x1F, /*unk3*/ 0xCA, /*pos*/ 1270, 2000, 4000, /*angle*/ 0, 270, 0, /*behArg*/ 0x09A40000, /*beh*/ bPlatformOnTrack
     return
 
 script_func_local_3:
-    object /*unk2*/ 0x1F, /*unk3*/ 0x68, /*pos*/ -3533, -4969, 3558, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_dorrie
+    object /*unk2*/ 0x1F, /*unk3*/ 0x68, /*pos*/ -3533, -4969, 3558, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ bDorrie
     object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -6093, 3075, -7807, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_big_boulder_generator
     object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -500, 1600, 3500, /*angle*/ 0, 0, 0, /*behArg*/ 0x00040000, /*beh*/ beh_flamethrower
     object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -500, 1600, 3800, /*angle*/ 0, 0, 0, /*behArg*/ 0x00040000, /*beh*/ beh_flamethrower

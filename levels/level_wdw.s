@@ -35,8 +35,8 @@ script_func_local_1:
     object /*unk2*/ 0x1F, /*unk3*/ 0x3B, /*pos*/ -767, 1152, 128, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_rect_floating_platform
     object /*unk2*/ 0x1F, /*unk3*/ 0x3B, /*pos*/ -767, 2304, -2687, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_rect_floating_platform
     object /*unk2*/ 0x1F, /*unk3*/ 0x3C, /*pos*/ 734, 3840, 84, /*angle*/ 0, 0, 0, /*behArg*/ 0x46010000, /*beh*/ beh_rotating_platform
-    object /*unk2*/ 0x1F, /*unk3*/ 0x69, /*pos*/ 2956, 288, -468, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_skeeter
-    object /*unk2*/ 0x1F, /*unk3*/ 0x69, /*pos*/ 184, 384, 621, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_skeeter
+    object /*unk2*/ 0x1F, /*unk3*/ 0x69, /*pos*/ 2956, 288, -468, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ bSkeeter
+    object /*unk2*/ 0x1F, /*unk3*/ 0x69, /*pos*/ 184, 384, 621, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ bSkeeter
     return
 
 script_func_local_2:

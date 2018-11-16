@@ -30,11 +30,6 @@ struct Waypoint {
     Vec3s pos;
 };
 
-struct Struct802A272C {
-    Vec3f vecF;
-    Vec3s vecS;
-};
-
 s8 D_8032F0A0[] = { 0xF8, 0x08, 0xFC, 0x04};
 s16 D_8032F0A4[] = { 0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80 };
 s8 D_8032F0B4[] = { 0x04, 0x06, 0x07, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
@@ -79,11 +74,6 @@ struct struct8029D924 {
 struct struct8029D924_2 {
     /*0x00*/ s32 unk00;
     /*0x04*/ s32 unk04;
-};
-
-struct struct802A1230 {
-    /*0x00*/ s16 unk00;
-    /*0x02*/ s16 unk02;
 };
 
 struct struct8029D924_2 *Geo18_8029D924(s32 sp40, struct struct8029D924 *sp44, UNUSED s32 sp48) {
@@ -960,13 +950,13 @@ void func_8029F684(f32 f12, f32 f14) {
     }
 }
 
-void func_8029F6F0() {
+void func_8029F6F0(void) {
     if (gCurrentObject->header.gfx.unk38.animFrame >= 0) {
         gCurrentObject->header.gfx.unk38.animFrame--;
     }
 }
 
-void func_8029F728() {
+void func_8029F728(void) {
     s32 sp4 = gCurrentObject->header.gfx.unk38.animFrame;
     s32 sp0 = gCurrentObject->header.gfx.unk38.curAnim->unk08 - 2;
 
@@ -975,7 +965,7 @@ void func_8029F728() {
     }
 }
 
-s32 func_8029F788() {
+s32 func_8029F788(void) {
     u32 spC = (s32) gCurrentObject->header.gfx.unk38.curAnim->flags;
     s32 sp8 = gCurrentObject->header.gfx.unk38.animFrame;
     s32 sp4 = gCurrentObject->header.gfx.unk38.curAnim->unk08 - 2;
@@ -1368,7 +1358,7 @@ void Unknown802A09C0(f32 sp20, f32 sp24) {
     }
 }
 
-s16 func_802A0A2C(s16 a0, s16 a1) {
+s16 abs_angle_diff(s16 a0, s16 a1) {
     s16 sp6 = a1 - a0;
     if (sp6 == -32768) {
         sp6 = -32767;
@@ -1461,7 +1451,7 @@ f32 func_802A0E30(void) {
     return sp24;
 }
 
-f32 func_802A0EB8() {
+f32 obj_lateral_dist_to_home() {
     f32 sp24;
     f32 sp20 = gCurrentObject->oHomeX - gCurrentObject->oPosX;
     f32 sp1C = gCurrentObject->oHomeZ - gCurrentObject->oPosZ;
@@ -1503,14 +1493,14 @@ s32 Unknown802A0FF8(f32 f12, f32 f14, f32 sp8, f32 spC) {
     return 0;
 }
 
-void func_802A10D0(void) {
+void obj_set_pos_to_home(void) {
     gCurrentObject->oPosX = gCurrentObject->oHomeX;
     gCurrentObject->oPosY = gCurrentObject->oHomeY;
     gCurrentObject->oPosZ = gCurrentObject->oHomeZ;
 }
 
 void func_802A1110(void) {
-    func_802A10D0();
+    obj_set_pos_to_home();
 
     gCurrentObject->oForwardVel = 0;
     gCurrentObject->oVelY = 0;
@@ -1535,8 +1525,8 @@ void Unknown802A11E4(UNUSED s32 sp0, UNUSED s32 sp4, f32 sp8) {
     }
 }
 
-void func_802A1230(struct struct802A1230 *a0) {
-    a0->unk02 |= 0x04;
+void func_802A1230(struct Object *a0) {
+    a0->header.gfx.node.flags |= 0x04;
 }
 
 void func_802A124C(f32 f12, f32 f14) {
@@ -1669,7 +1659,7 @@ s32 func_802A17C0(void) {
             gCurrentObject->oPosZ = sp20.z;
             sp48 = sp20.walls[sp20.numWalls - 1];
             gCurrentObject->oUnk1B4 = atan2s(sp48->normal[2], sp48->normal[0]);
-            if (func_802A0A2C(gCurrentObject->oUnk1B4, gCurrentObject->oAngleYaw) > 0x4000)
+            if (abs_angle_diff(gCurrentObject->oUnk1B4, gCurrentObject->oAngleYaw) > 0x4000)
                 return 1;
             else 
                 return 0;
@@ -1803,7 +1793,7 @@ void Unknown802A1ECC(struct Object *a0, struct Object *a1, f32 sp18, f32 sp1C, f
     a0->oPosZ = a1->oPosZ + sp4;
 }
 
-s16 func_802A1FA0(void) {
+s16 obj_angle_to_home(void) {
     s16 sp26;
     f32 sp20 = gCurrentObject->oHomeX - gCurrentObject->oPosX;
     f32 sp1C = gCurrentObject->oHomeZ - gCurrentObject->oPosZ;
@@ -1948,14 +1938,14 @@ s32 func_802A24B4(UNUSED s32 sp48) {
     return 0;
 }
 
-void func_802A272C(struct Struct802A272C *a0) {
-    a0->vecF[0] = 0.0f;
-    a0->vecF[1] = 0.0f;
-    a0->vecF[2] = 0.0f;
+void func_802A272C(struct ChainSegment *a0) {
+    a0->posX = 0.0f;
+    a0->posY = 0.0f;
+    a0->posZ = 0.0f;
 
-    a0->vecS[0] = 0;
-    a0->vecS[1] = 0;
-    a0->vecS[2] = 0;
+    a0->pitch = 0;
+    a0->yaw = 0;
+    a0->roll = 0;
 }
 
 f32 func_802A276C(f32 sp18) {
@@ -1988,7 +1978,7 @@ void func_802A297C(struct Object *a0) {
     a0->oVelZ = a0->unk21C[0][2] * spC + a0->unk21C[1][2] * sp8 + a0->unk21C[2][2] * sp4;
 }
 
-void func_802A2A38() {
+void func_802A2A38(void) {
     func_802A2188(gCurrentObject, 44, 15);
     func_802A297C(gCurrentObject);
     gCurrentObject->oPosX += gCurrentObject->oVelX;
@@ -2000,21 +1990,6 @@ s16 func_802A2AC0(void) {
     s16 sp6 = gCurrentObject->oUnk1B4 - ((s16)gCurrentObject->oAngleYaw - (s16)gCurrentObject->oUnk1B4) + 32768;
     return sp6;
 }
-
-struct Struct802A2B04 {
-    s8 unk0;
-    s8 unk1;
-    u8 unk2;
-    s8 unk3;
-    s8 unk4;
-    s8 unk5;
-    s8 unk6;
-    s8 unk7;
-    s8 unk8;
-    s8 unk9;
-    f32 unkC;
-    f32 unk10;
-};
 
 void func_802A2B04(struct Struct802A2B04 *sp28) {
     struct Object *sp24;
@@ -2042,21 +2017,21 @@ void func_802A2B04(struct Struct802A2B04 *sp28) {
     }
 }
 
-void func_802A2CFC(struct Object *sp18, struct Struct802A2CFC *sp1C) {
+void func_802A2CFC(struct Object *sp18, struct ObjectHitbox *sp1C) {
     if ((sp18->oFlags & 0x40000000) == 0) {
         sp18->oFlags |= 0x40000000;
-        sp18->oInteractType = sp1C->unk0;
-        sp18->oUnk180 = sp1C->unk5;
-        sp18->oUnk184 = sp1C->unk6;
-        sp18->oUnk198 = sp1C->unk7;
+        sp18->oInteractType = sp1C->interactType;
+        sp18->oUnk180 = sp1C->unk05;
+        sp18->oUnk184 = sp1C->unk06;
+        sp18->oUnk198 = sp1C->unk07;
         func_8029FE58();
     }
 
-    sp18->hitboxRadius = sp18->header.gfx.scale[0] * sp1C->unk8;
-    sp18->hitboxHeight = sp18->header.gfx.scale[1] * sp1C->unkA;
-    sp18->unk200 = sp18->header.gfx.scale[0] * sp1C->unkC;
-    sp18->unk204 = sp18->header.gfx.scale[1] * sp1C->unkE;
-    sp18->unk208 = sp18->header.gfx.scale[1] * sp1C->unk4;
+    sp18->hitboxRadius = sp18->header.gfx.scale[0] * sp1C->radius;
+    sp18->hitboxHeight = sp18->header.gfx.scale[1] * sp1C->height;
+    sp18->unk200 = sp18->header.gfx.scale[0] * sp1C->unk0C;
+    sp18->unk204 = sp18->header.gfx.scale[1] * sp1C->unk0E;
+    sp18->unk208 = sp18->header.gfx.scale[1] * sp1C->downOffset;
 }   
 
 s32 func_802A2E5C(s32 a0) {
@@ -2334,7 +2309,7 @@ void func_802A3A68(void) {
     }
 }
 
-s32 func_802A3BB8(struct Struct802A2CFC *sp20, s32 sp24, s32 sp28) {
+s32 func_802A3BB8(struct ObjectHitbox *sp20, s32 sp24, s32 sp28) {
     s32 sp1C = 0;
 
     func_802A2CFC(gCurrentObject, sp20);
@@ -2457,9 +2432,8 @@ s32 func_802A3FF8(f32 sp20, f32 sp24, UNUSED s32 sp28) {
     return 0;
 }
 
-void func_802A4114(f32 sp18, f32 sp1C) {
-    func_802A3FF8(sp18, sp1C, 0x1000);
-    return;
+s32 func_802A4114(f32 sp18, f32 sp1C) {
+    return func_802A3FF8(sp18, sp1C, 0x1000);
 }
 
 void func_802A4154(s32 sp18, s32 sp1C) {

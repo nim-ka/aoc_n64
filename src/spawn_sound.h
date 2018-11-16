@@ -4,6 +4,7 @@
 #include "types.h"
 
 void create_sound_spawner(s32);
+void PlaySound(s32 soundMagic);
 void PlaySound2(s32 soundMagic);
 
 #endif 

@@ -9,7 +9,7 @@
 .section .level, "a"
 
 script_func_local_1:
-    object /*unk2*/ 0x1F, /*unk3*/ 0x36, /*pos*/ -5733, -3071, 0, /*angle*/ 0, 0, 0, /*behArg*/ 0x07330000, /*beh*/ beh_platform_on_tracks
+    object /*unk2*/ 0x1F, /*unk3*/ 0x36, /*pos*/ -5733, -3071, 0, /*angle*/ 0, 0, 0, /*behArg*/ 0x07330000, /*beh*/ bPlatformOnTrack
     object /*unk2*/ 0x1F, /*unk3*/ 0x37, /*pos*/ -1945, -3225, -715, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_tilting_inverted_pyramid
     object /*unk2*/ 0x1F, /*unk3*/ 0x37, /*pos*/ -2866, -3225, -715, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_tilting_inverted_pyramid
     object /*unk2*/ 0x1F, /*unk3*/ 0x38, /*pos*/ -1381, 3487, 96, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_bifs_sinking_platforms
@@ -19,10 +19,10 @@ script_func_local_1:
     object /*unk2*/ 0x1F, /*unk3*/ 0x3A, /*pos*/ 1843, 3584, 96, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ beh_bifs_sinking_cage_platform
     object /*unk2*/ 0x1F, /*unk3*/ 0x3A, /*pos*/ 614, 3584, 96, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ beh_bifs_sinking_cage_platform
     object /*unk2*/ 0x1F, /*unk3*/ 0x3A, /*pos*/ 3072, 3584, 96, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ beh_bifs_sinking_cage_platform
-    object /*unk2*/ 0x1F, /*unk3*/ 0x3B, /*pos*/ 2867, -1279, 307, /*angle*/ 0, 0, 0, /*behArg*/ 0x029F0000, /*beh*/ beh_climbable_cage
+    object /*unk2*/ 0x1F, /*unk3*/ 0x3B, /*pos*/ 2867, -1279, 307, /*angle*/ 0, 0, 0, /*behArg*/ 0x029F0000, /*beh*/ bActivatedBackAndForthPlatform
     object /*unk2*/ 0x1F, /*unk3*/ 0x3C, /*pos*/ -5836, 410, 300, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_squishable_platform
-    object /*unk2*/ 0x1F, /*unk3*/ 0x3D, /*pos*/ 4454, -2226, 266, /*angle*/ 0, 0, 0, /*behArg*/ 0x00040000, /*beh*/ beh_solid_moving
-    object /*unk2*/ 0x1F, /*unk3*/ 0x3D, /*pos*/ 5786, -2380, 266, /*angle*/ 0, 0, 0, /*behArg*/ 0x00040000, /*beh*/ beh_solid_moving
+    object /*unk2*/ 0x1F, /*unk3*/ 0x3D, /*pos*/ 4454, -2226, 266, /*angle*/ 0, 0, 0, /*behArg*/ 0x00040000, /*beh*/ bSeesawPlatform
+    object /*unk2*/ 0x1F, /*unk3*/ 0x3D, /*pos*/ 5786, -2380, 266, /*angle*/ 0, 0, 0, /*behArg*/ 0x00040000, /*beh*/ bSeesawPlatform
     object /*unk2*/ 0x1F, /*unk3*/ 0x3E, /*pos*/ -3890, 102, 617, /*angle*/ 0, 90, 0, /*behArg*/ 0x010C0000, /*beh*/ beh_sliding_platform2
     object /*unk2*/ 0x1F, /*unk3*/ 0x3E, /*pos*/ -3276, 102, 2, /*angle*/ 0, 270, 0, /*behArg*/ 0x010C0000, /*beh*/ beh_sliding_platform2
     object /*unk2*/ 0x1F, /*unk3*/ 0x3F, /*pos*/ 2103, 198, 312, /*angle*/ 0, 0, 0, /*behArg*/ 0x019F0000, /*beh*/ beh_sliding_platform2

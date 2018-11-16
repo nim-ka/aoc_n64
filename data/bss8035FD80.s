@@ -44,7 +44,7 @@ glabel D_8035FEE4
     .space 0x2
 glabel D_8035FEE6
     .space 0x2
-glabel gStageParam
+glabel gTTCSpeedSetting
     .space 0x2
 glabel D_8035FEEA
     .space 0x2

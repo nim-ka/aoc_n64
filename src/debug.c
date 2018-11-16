@@ -26,7 +26,7 @@ extern s16 gNumFindWallCalls;
 
 extern s16 D_8035FEE2;
 extern s16 D_8035FEE4;
-extern s16 gStageParam;
+extern s16 gTTCSpeedSetting;
 
 extern s16 gDebugPrintState1[]; // prints top-down?
 extern s16 gDebugPrintState2[]; // prints bottom-up?
@@ -245,7 +245,7 @@ static void print_surfaceinfo(void)
 static void print_stageinfo(void)
 {
     print_debug_top_down_normal("stageinfo", 0);
-    print_debug_top_down_normal("stage param %d", gStageParam);
+    print_debug_top_down_normal("stage param %d", gTTCSpeedSetting);
 }
 
 /*
