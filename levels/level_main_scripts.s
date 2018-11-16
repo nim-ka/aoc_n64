@@ -348,7 +348,7 @@ glabel script_func_global_12
     cmd22 /*unk2*/ 0x0055, /*unk4*/ spiny_egg_geo
     cmd22 /*unk2*/ 0x0056, /*unk4*/ spiny_geo
     cmd22 /*unk2*/ 0x0057, /*unk4*/ wiggler_geo
-    cmd22 /*unk2*/ 0x0058, /*unk4*/ 0x0500C778
+    cmd22 /*unk2*/ 0x0058, /*unk4*/ wiggler2_geo
     cmd22 /*unk2*/ 0x0059, /*unk4*/ bubba_geo
     return
 

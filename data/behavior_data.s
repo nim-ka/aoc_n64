@@ -4719,7 +4719,7 @@ glabel beh_wiggler # 4878
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2041
     unknown_1E
-    obj_set_int32 VAR_26, 0x0500EC8C
+    obj_set_int32 VAR_26, wiggler_seg5_anims_0500EC8C
     unknown_2D
     unknown_30 0x003C, 0xFE70, 0x0000, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
     unhide
@@ -4732,7 +4732,7 @@ glabel beh_wiggler # 4878
 glabel beh_wiggler_body_parts # 48C0
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x01
-    obj_set_int32 VAR_26, 0x0500C874
+    obj_set_int32 VAR_26, wiggler_seg5_anims_0500C874
     unknown_30 0x0000, 0xFE70, 0x0000, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
     scale 400
     begin_loop
@@ -4742,7 +4742,7 @@ glabel beh_wiggler_body_parts # 48C0
 glabel beh_evil_lakitu # 48F8
     begin OBJ_LIST_PUSHABLE
     obj_or_int VAR_01, 0x2041
-    obj_set_int32 VAR_26, 0x050144D4
+    obj_set_int32 VAR_26, lakitu_enemy_seg5_anims_050144D4
     unknown_28 0x00
     unknown_2D
     unknown_30 0x0028, 0x0000, 0xFFCE, 0x0000, 0x0000, 0x00C8, 0x0000, 0x0000
@@ -4782,7 +4782,7 @@ glabel beh_fwoosh_face # 498C
 glabel beh_spiny # 49A8
     begin OBJ_LIST_PUSHABLE
     obj_or_int VAR_01, 0x2049
-    obj_set_int32 VAR_26, 0x05016EAC
+    obj_set_int32 VAR_26, spiny_seg5_anims_05016EAC
     unknown_28 0x00
     unknown_30 0x0028, 0xFE70, 0xFFCE, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
     begin_loop

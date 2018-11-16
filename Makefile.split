@@ -5,7 +5,6 @@ BINARY_SEGMENTS := \
    bidw_skybox \
    bitfs_skybox \
    bits_skybox \
-   bubba_wiggler_lakitu \
    ccm_skybox \
    cloud_floor_skybox \
    clouds_skybox \
@@ -44,6 +43,7 @@ BBH_TEXTURES_FILES           := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bb
 BITFS_SEG7_FILES             := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bitfs_seg7/*.png)))
 BITS_SEG7_FILES              := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bits_seg7/*.png)))
 BOB_TEXTURES_FILES           := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bob_textures/*.png)))
+BUBBA_WIGGLER_FILES          := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bubba_wiggler_lakitu/*.png)))
 BULLY_BLARGG_FILES           := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bully_blargg/*.png)))
 CASTLE_GROUNDS_SEG7_FILES    := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/castle_grounds_seg7/*.png)))
 CASTLE_GROUNDS_TEXTURES_FILES := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/castle_grounds_textures/*.png)))
@@ -105,6 +105,7 @@ $(BUILD_DIR)/bin/bbh_textures.o: $(addprefix $(BUILD_DIR)/bin/bbh_textures/,$(BB
 $(BUILD_DIR)/bin/bitfs_seg7.o: $(addprefix $(BUILD_DIR)/bin/bitfs_seg7/,$(BITFS_SEG7_FILES))
 $(BUILD_DIR)/bin/bits_seg7.o: $(addprefix $(BUILD_DIR)/bin/bits_seg7/,$(BITS_SEG7_FILES))
 $(BUILD_DIR)/bin/bob_textures.o: $(addprefix $(BUILD_DIR)/bin/bob_textures/,$(BOB_TEXTURES_FILES))
+$(BUILD_DIR)/bin/bubba_wiggler_lakitu.o: $(addprefix $(BUILD_DIR)/bin/bubba_wiggler_lakitu/,$(BUBBA_WIGGLER_FILES))
 $(BUILD_DIR)/bin/bully_blargg.o: $(addprefix $(BUILD_DIR)/bin/bully_blargg/,$(BULLY_BLARGG_FILES))
 $(BUILD_DIR)/bin/castle_grounds_seg7.o: $(addprefix $(BUILD_DIR)/bin/castle_grounds_seg7/,$(CASTLE_GROUNDS_SEG7_FILES))
 $(BUILD_DIR)/bin/castle_grounds_textures.o: $(addprefix $(BUILD_DIR)/bin/castle_grounds_textures/,$(CASTLE_GROUNDS_TEXTURES_FILES))
@@ -165,6 +166,7 @@ $(BUILD_DIR)/bin/bowser_2_seg7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/bowser_3_seg7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/bowser_flames_bomb.elf: SEGMENT_ADDRESS := 0x06000000
 $(BUILD_DIR)/bin/bob_seg7.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/bubba_wiggler_lakitu.elf: SEGMENT_ADDRESS := 0x05000000
 $(BUILD_DIR)/bin/bully_blargg.elf: SEGMENT_ADDRESS := 0x05000000
 $(BUILD_DIR)/bin/castle_courtyard_seg7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/castle_grounds_seg7.elf: SEGMENT_ADDRESS := 0x07000000

@@ -8925,8 +8925,8 @@ glabel func_8030041C
 /* 0BB5A0 803005A0 8FAC002C */  lw    $t4, 0x2c($sp)
 /* 0BB5A4 803005A4 11800011 */  beqz  $t4, .L803005EC
 /* 0BB5A8 803005A8 00000000 */   nop   
-/* 0BB5AC 803005AC 3C050501 */  lui   $a1, %hi(D_0500C874) # $a1, 0x501
-/* 0BB5B0 803005B0 24A5C874 */  addiu $a1, %lo(D_0500C874) # addiu $a1, $a1, -0x378c
+/* 0BB5AC 803005AC 3C050501 */  lui   $a1, %hi(wiggler_seg5_anims_0500C874) # $a1, 0x501
+/* 0BB5B0 803005B0 24A5C874 */  addiu $a1, %lo(wiggler_seg5_anims_0500C874) # addiu $a1, $a1, -0x378c
 /* 0BB5B4 803005B4 8FA4002C */  lw    $a0, 0x2c($sp)
 /* 0BB5B8 803005B8 0C0A7B88 */  jal   func_8029EE20
 /* 0BB5BC 803005BC 00003025 */   move  $a2, $zero
@@ -10161,8 +10161,8 @@ glabel func_803016FC
 /* 0BC774 80301774 0C0A7F51 */  jal   SetModel
 /* 0BC778 80301778 24040056 */   li    $a0, 86
 /* 0BC77C 8030177C 3C048036 */  lui   $a0, %hi(gCurrentObject) # $a0, 0x8036
-/* 0BC780 80301780 3C050501 */  lui   $a1, %hi(D_05016EAC) # $a1, 0x501
-/* 0BC784 80301784 24A56EAC */  addiu $a1, %lo(D_05016EAC) # addiu $a1, $a1, 0x6eac
+/* 0BC780 80301780 3C050501 */  lui   $a1, %hi(spiny_seg5_anims_05016EAC) # $a1, 0x501
+/* 0BC784 80301784 24A56EAC */  addiu $a1, %lo(spiny_seg5_anims_05016EAC) # addiu $a1, $a1, 0x6eac
 /* 0BC788 80301788 8C84FDF0 */  lw    $a0, %lo(gCurrentObject)($a0)
 /* 0BC78C 8030178C 0C0A7B88 */  jal   func_8029EE20
 /* 0BC790 80301790 00003025 */   move  $a2, $zero
@@ -10522,8 +10522,8 @@ glabel func_80301BD4
 /* 0BCC94 80301C94 8FAF001C */  lw    $t7, 0x1c($sp)
 /* 0BCC98 80301C98 240E0001 */  li    $t6, 1
 /* 0BCC9C 80301C9C ADEE014C */  sw    $t6, 0x14c($t7)
-/* 0BCCA0 80301CA0 3C050501 */  lui   $a1, %hi(D_050157E4) # $a1, 0x501
-/* 0BCCA4 80301CA4 24A557E4 */  addiu $a1, %lo(D_050157E4) # addiu $a1, $a1, 0x57e4
+/* 0BCCA0 80301CA0 3C050501 */  lui   $a1, %hi(spiny_egg_seg5_anims_050157E4) # $a1, 0x501
+/* 0BCCA4 80301CA4 24A557E4 */  addiu $a1, %lo(spiny_egg_seg5_anims_050157E4) # addiu $a1, $a1, 0x57e4
 /* 0BCCA8 80301CA8 8FA4001C */  lw    $a0, 0x1c($sp)
 /* 0BCCAC 80301CAC 0C0A7B88 */  jal   func_8029EE20
 /* 0BCCB0 80301CB0 00003025 */   move  $a2, $zero
