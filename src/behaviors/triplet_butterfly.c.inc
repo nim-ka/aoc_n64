@@ -31,10 +31,10 @@ static void triplet_butterfly_act_init(void)
         o->oAction = TRIPLET_BUTTERFLY_ACT_WANDER;
         
         o->oTripletButterflyBaseYaw = o->oBehParams2ndByte * (0x10000 / 3);
-        o->oAngleYaw = (s32)(o->oTripletButterflyBaseYaw + random_linear_offset(0, 0x5555));
+        o->oMoveAngleYaw = (s32)(o->oTripletButterflyBaseYaw + random_linear_offset(0, 0x5555));
         o->oTripletButterflySpeed = random_linear_offset(15, 15);
         
-        func_8029EF18();
+        obj_unhide();
     }
 }
 
@@ -79,7 +79,7 @@ static void triplet_butterfly_act_wander(void)
         }
 
         func_802F95B0(o->oTripletButterflyTargetPitch, 400);
-        func_8029DE70(o->oTripletButterflyTargetYaw, random_linear_offset(400, 800));
+        obj_rotate_yaw_toward(o->oTripletButterflyTargetYaw, random_linear_offset(400, 800));
     }
 }
 
@@ -91,7 +91,7 @@ static void triplet_butterfly_act_activate(void)
         {
             func_8029E880(0, 0, -40, 0, 1.5f, o, 0x96, beh_white_puff_smoke2);
             o->oTripletButterflyModel = sTripletButterflyActivationData[o->oTripletButterflyType].model;
-            SetModel(o->oTripletButterflyModel);
+            obj_set_model(o->oTripletButterflyModel);
             func_802A1230(o);
             o->oTripletButterflyScale = 0.0f;
             o->oHomeY = o->oPosY;
@@ -106,7 +106,7 @@ static void triplet_butterfly_act_activate(void)
             else
             {
                 o->oAction = TRIPLET_BUTTERFLY_ACT_EXPLODE;
-                o->oUnk128 = 100.0f;
+                o->oWallHitboxRadius = 100.0f;
             }
         }
 
@@ -150,14 +150,14 @@ static void triplet_butterfly_act_explode(void)
         }
 
         approach_f32_2(&o->oTripletButterflySpeed, 20.0f, 1.0f);
-        func_8029DE70(o->oAngleToMario, 800);
+        obj_rotate_yaw_toward(o->oAngleToMario, 800);
         func_802F9414(-100.0f, 800);
     }
 }
 
 void bhv_triplet_butterfly_update(void)
 {
-    MoveRelated();
+    obj_update_floor_and_walls();
 
     switch (o->oAction)
     {
@@ -167,7 +167,7 @@ void bhv_triplet_butterfly_update(void)
     case TRIPLET_BUTTERFLY_ACT_EXPLODE:  triplet_butterfly_act_explode();  break;
     }
 
-    ScaleObject(o->oTripletButterflyScale);
+    obj_scale(o->oTripletButterflyScale);
     func_802F9148(o->oTripletButterflySpeed);
-    MoveObj(78);
+    obj_move_standard(78);
 }

@@ -2,20 +2,20 @@
 void bhv_fire_piranha_plant_init(void)
 {
     o->oFirePiranhaPlantNeutralScale = D_80331B5C[(u16)(o->oBehParams >> 16)];
-    func_802A2CFC(o, &sFirePiranhaPlantHitbox);
+    set_object_hitbox(o, &sFirePiranhaPlantHitbox);
 
     if ((u16)(o->oBehParams >> 16) != 0)
     {
         o->oFlags |= 0x00004000;
-        o->oUnk184 = 1;
+        o->oHealth = 1;
 
         if (o->oBehParams & 0x0000FF00)
         {
-            o->oUnk198 = 0;
+            o->oNumLootCoins = 0;
         }
         else
         {
-            o->oUnk198 = 2;
+            o->oNumLootCoins = 2;
         }
     }
 
@@ -27,7 +27,7 @@ static void fire_piranha_plant_act_hide(void)
 {
     if (o->oFirePiranhaPlantDeathSpinTimer != 0)
     {
-        o->oAngleYaw += (s32)o->oFirePiranhaPlantDeathSpinVel;
+        o->oMoveAngleYaw += (s32)o->oFirePiranhaPlantDeathSpinVel;
         approach_f32_2(&o->oFirePiranhaPlantDeathSpinVel, 0.0f, 200.0f);
 
         if (func_8029F788())
@@ -43,13 +43,13 @@ static void fire_piranha_plant_act_hide(void)
         0.0f,
         0.04f * o->oFirePiranhaPlantNeutralScale))
     {
-        func_8029FE38();
+        obj_become_intangible();
         if (o->oFirePiranhaPlantActive)
         {
             sNumActiveFirePiranhaPlants -= 1;
             o->oFirePiranhaPlantActive = FALSE;
 
-            if ((u16)(o->oBehParams >> 16) != 0 && o->oUnk184 == 0)
+            if ((u16)(o->oBehParams >> 16) != 0 && o->oHealth == 0)
             {
                 if (++sNumKilledFirePiranhaPlants == 5)
                 {
@@ -68,14 +68,14 @@ static void fire_piranha_plant_act_hide(void)
 
             o->oFirePiranhaPlantActive = TRUE;
             sNumActiveFirePiranhaPlants += 1;
-            
-            func_8029EF18();
+
+            obj_unhide();
             o->oAction = FIRE_PIRANHA_PLANT_ACT_GROW;
-            o->oAngleYaw = o->oAngleToMario;
+            o->oMoveAngleYaw = o->oAngleToMario;
         }
         else
         {
-            UnHideObject();
+            obj_hide();
         }
     }
 
@@ -99,13 +99,13 @@ static void fire_piranha_plant_act_grow(void)
         }
         else if (o->oTimer < 50)
         {
-            func_8029DE70(o->oAngleToMario, 0x400);
+            obj_rotate_yaw_toward(o->oAngleToMario, 0x400);
         }
         else
         { // TODO: Check if we can put these conditionals on same line
             if (func_802F8680())
             {
-                if (check_anim_frame(56))
+                if (obj_check_anim_frame(56))
                 {
                     PlaySound2(0x50558081);
                     obj_spit_fire(
@@ -123,13 +123,13 @@ static void fire_piranha_plant_act_grow(void)
     }
     else if (o->oFirePiranhaPlantScale > o->oFirePiranhaPlantNeutralScale / 2.0f)
     {
-        func_8029FE58();
+        obj_become_tangible();
     }
 }
 
 void bhv_fire_piranha_plant_update(void)
 {
-    ScaleObject(o->oFirePiranhaPlantScale);
+    obj_scale(o->oFirePiranhaPlantScale);
 
     switch (o->oAction)
     {
@@ -139,7 +139,7 @@ void bhv_fire_piranha_plant_update(void)
 
     if (func_802FA888(&sFirePiranhaPlantHitbox, o->oAction))
     {
-        if (--o->oUnk184 < 0)
+        if (--o->oHealth < 0)
         {
             if (o->oFirePiranhaPlantActive)
             {
@@ -155,6 +155,6 @@ void bhv_fire_piranha_plant_update(void)
         o->oFirePiranhaPlantDeathSpinTimer = 10;
         o->oFirePiranhaPlantDeathSpinVel = 8000.0f;
 
-        func_8029FE38();
+        obj_become_intangible();
     }
 }

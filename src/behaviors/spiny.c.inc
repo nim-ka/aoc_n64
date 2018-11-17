@@ -18,7 +18,7 @@ static void spiny_act_walk(void)
 {
     if (spiny_check_active())
     {
-        MoveRelated();
+        obj_update_floor_and_walls();
         o->oGraphYOffset = -17.0f;
         func_8029ED38(0);
 
@@ -29,7 +29,7 @@ static void spiny_act_walk(void)
                 if (forward_vel_approach(0.0f, 1.0f))
                 {
                     o->oFlags |= 0x00000008;
-                    o->oAngleYaw = o->oFaceAngleYaw;
+                    o->oMoveAngleYaw = o->oFaceAngleYaw;
                 }
             }
             else
@@ -51,21 +51,21 @@ static void spiny_act_walk(void)
                     }
                     else
                     {
-                        o->oSpinyTargetYaw = o->oAngleYaw + (s16)RandomSign() * 0x2000;
+                        o->oSpinyTargetYaw = o->oMoveAngleYaw + (s16)RandomSign() * 0x2000;
                         o->oSpinyTimeUntilTurn = random_linear_offset(100, 100);
                     }
                 }
 
-                func_8029DE70(o->oSpinyTargetYaw, 0x80);
+                obj_rotate_yaw_toward(o->oSpinyTargetYaw, 0x80);
             }
 
         }
         else if (o->oMoveFlags & 0x00000200)
         {
-            o->oAngleYaw = func_802A2AC0();
+            o->oMoveAngleYaw = obj_reflect_move_angle_off_wall();
         }
 
-        MoveObj(-78);
+        obj_move_standard(-78);
         if (func_802FA468(&D_80331844, 3, D_80331854))
         {
             o->oAction = SPINY_ACT_WALK;
@@ -93,9 +93,9 @@ static void spiny_act_held_by_lakitu(void)
     if (o->parentObj->prevObj == NULL)
     {
         o->oAction = SPINY_ACT_THROWN_BY_LAKITU;
-        o->oAngleYaw = o->parentObj->oFaceAngleYaw;
+        o->oMoveAngleYaw = o->parentObj->oFaceAngleYaw;
         o->oForwardVel =
-            o->parentObj->oForwardVel * coss(o->oAngleYaw - o->parentObj->oAngleYaw) + 10.0f;
+            o->parentObj->oForwardVel * coss(o->oMoveAngleYaw - o->parentObj->oMoveAngleYaw) + 10.0f;
         o->oVelY = 30.0f;
         o->oMoveFlags = 0;
     }
@@ -105,7 +105,7 @@ static void spiny_act_thrown_by_lakitu(void)
 {
     if (spiny_check_active())
     {
-        MoveRelated();
+        obj_update_floor_and_walls();
         o->oGraphYOffset = 15.0f;
 
         o->oFaceAnglePitch -= 0x2000;
@@ -114,7 +114,7 @@ static void spiny_act_thrown_by_lakitu(void)
         if (o->oMoveFlags & 0x00000001)
         {
             PlaySound2(0x50591081);
-            SetModel(0x56);
+            obj_set_model(0x56);
             func_8029EE20(o, spiny_seg5_anims_05016EAC, 0);
             o->oGraphYOffset = -17.0f;
             o->oFaceAnglePitch = 0;
@@ -122,10 +122,10 @@ static void spiny_act_thrown_by_lakitu(void)
         }
         else if (o->oMoveFlags & 0x00000200)
         {
-            o->oAngleYaw = func_802A2AC0();
+            o->oMoveAngleYaw = obj_reflect_move_angle_off_wall();
         }
 
-        MoveObj(-78);
+        obj_move_standard(-78);
         if (func_802FA888(&D_80331844, o->oAction))
         {
             if (o->parentObj != o)

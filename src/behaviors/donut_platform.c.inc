@@ -61,7 +61,7 @@ void bhv_donut_platform_update(void)
         {
             if (gMarioObject->platform == o)
             {
-                func_802A1160(4.0f);
+                obj_shake_y(4.0f);
                 if (o->oTimer > 15)
                 {
                     o->oGravity = -0.1f;
@@ -75,8 +75,8 @@ void bhv_donut_platform_update(void)
         }
         else
         {
-            MoveRelated();
-            MoveObj(78);
+            obj_update_floor_and_walls();
+            obj_move_standard(78);
         }
 
         load_object_collision_model();

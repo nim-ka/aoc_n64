@@ -87,7 +87,7 @@ s8 D_80330430 = 1;
 s8 D_80330434 = 0;
 u8 D_80330438 = 0;
 u8 D_8033043C = 0;
-s32 D_80330440 = 0;
+s32 gDialogueResponse = 0;
 
 #ifdef VERSION_JP
 #define MAX_STRING_WIDTH 18
@@ -751,7 +751,7 @@ void func_802D8098(void)
     D_8033042C = 0;
     D_80330434 = 0;
     gLastDialogPageStrPos = 0;
-    D_80330440 = 0;
+    gDialogueResponse = 0;
 }
 
 void func_802D8134(struct DialogEntry *diagEntry, s8 sp47)
@@ -1470,7 +1470,7 @@ void func_802D93E0(void)
             if(gDiagBoxType == DIAG_TYPE_ZOOM)
                 StopMario(2);
 
-            D_80330440 = D_80330430;
+            gDialogueResponse = D_80330430;
         }
 
         gDiagBoxOpenTimer = gDiagBoxOpenTimer + 10.0f;
@@ -1483,7 +1483,7 @@ void func_802D93E0(void)
             D_8033042C = 0;
             D_80330434 = 0;
             gLastDialogPageStrPos = 0;
-            D_80330440 = 0;
+            gDialogueResponse = 0;
         }
         break;
     }
@@ -1583,7 +1583,7 @@ void func_802D93E0(void)
             if(gDiagBoxType == DIAG_TYPE_ZOOM)
                 StopMario(2);
 
-            D_80330440 = D_80330430;
+            gDialogueResponse = D_80330430;
         }
 
         gDiagBoxOpenTimer = gDiagBoxOpenTimer + 10.0f;
@@ -1596,7 +1596,7 @@ void func_802D93E0(void)
             D_8033042C = 0;
             D_80330434 = 0;
             gLastDialogPageStrPos = 0;
-            D_80330440 = 0;
+            gDialogueResponse = 0;
         }
         sp2F = 1;
         break;

@@ -44,11 +44,11 @@ void exec_anim_sound_state(struct SoundState *soundStates)
             // in the sound state information, -1 (0xFF) is for empty
             // animFrame entries. These checks skips them.
             if((animFrame = soundStates[stateIdx].animFrame1) >= 0)
-                if(check_anim_frame(animFrame))
+                if(obj_check_anim_frame(animFrame))
                     PlaySound2(soundStates[stateIdx].soundMagic);
 
             if((animFrame = soundStates[stateIdx].animFrame2) >= 0)
-                if(check_anim_frame(animFrame))
+                if(obj_check_anim_frame(animFrame))
                     PlaySound2(soundStates[stateIdx].soundMagic);
         }
         break;

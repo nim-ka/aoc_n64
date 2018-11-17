@@ -10,20 +10,58 @@
 #define HELD_THROWN 2
 #define HELD_DROPPED 3
 
+/* oDialogueState */
+#define DIALOGUE_UNK1_ENABLE_TIME_STOP 0
+#define DIALOGUE_UNK1_INTERRUPT_MARIO_ACTION 1
+#define DIALOGUE_UNK1_BEGIN_DIALOGUE 2
+#define DIALOGUE_UNK1_AWAIT_DIALOGUE 3
+#define DIALOGUE_UNK1_DISABLE_TIME_STOP 4
+
+#define DIALOGUE_UNK1_FLAG_1 (1 << 1) // 0x02
+#define DIALOGUE_UNK1_FLAG_2 (1 << 2) // 0x04
+#define DIALOGUE_UNK1_FLAG_4 (1 << 4) // 0x10
+
+#define DIALOGUE_UNK2_ENABLE_TIME_STOP 0
+#define DIALOGUE_UNK2_TURN_AND_INTERRUPT_MARIO_ACTION 1
+#define DIALOGUE_UNK2_AWAIT_DIALOGUE 2
+#define DIALOGUE_UNK2_END_DIALOGUE 3
+
+#define DIALOGUE_UNK2_FLAG_0 (1 << 0) // 0x01
+#define DIALOGUE_UNK2_FLAG_4 (1 << 4) // 0x10
+
 /* oAction */
 #define OBJ_ACT_LAVA_DEATH 100
 #define OBJ_ACT_DEATH_PLANE_DEATH 101
+#define OBJ_ACT_SQUISHED 102
 
 /* oMoveFlags */
-#define OBJ_MOV_0       (1 << 0) // 0x0001
-#define OBJ_MOV_GROUND  (1 << 1) // 0x0002
-#define OBJ_MOV_2       (1 << 2) // 0x0004
-#define OBJ_MOV_3       (1 << 3) // 0x0008
-#define OBJ_MOV_4       (1 << 4) // 0x0010
-#define OBJ_MOV_5       (1 << 5) // 0x0020
-#define OBJ_MOV_6       (1 << 6) // 0x0040
-#define OBJ_MOV_7       (1 << 7) // 0x0080
-#define OBJ_MOV_8       (1 << 8) // 0x0100
+#define OBJ_MOVE_LANDED                (1 <<  0) // 0x0001
+#define OBJ_MOVE_ON_GROUND             (1 <<  1) // 0x0002  // mutually exclusive to OBJ_MOVE_LANDED
+#define OBJ_MOVE_LEFT_GROUND           (1 <<  2) // 0x0004
+#define OBJ_MOVE_ENTERED_WATER         (1 <<  3) // 0x0008
+#define OBJ_MOVE_AT_WATER_SURFACE      (1 <<  4) // 0x0010
+#define OBJ_MOVE_UNDERWATER_OFF_GROUND (1 <<  5) // 0x0020
+#define OBJ_MOVE_UNDERWATER_ON_GROUND  (1 <<  6) // 0x0040
+#define OBJ_MOVE_IN_AIR                (1 <<  7) // 0x0080
+#define OBJ_MOVE_8                     (1 <<  8) // 0x0100
+#define OBJ_MOVE_HIT_WALL              (1 <<  9) // 0x0200
+#define OBJ_MOVE_HIT_EDGE              (1 << 10) // 0x0400
+#define OBJ_MOVE_ABOVE_LAVA            (1 << 11) // 0x0800
+#define OBJ_MOVE_12                    (1 << 12) // 0x1000
+#define OBJ_MOVE_13                    (1 << 13) // 0x2000
+#ifndef VERSION_JP
+#define OBJ_MOVE_ABOVE_DEATH_BARRIER   (1 << 14) // 0x4000
+#endif
+
+#define OBJ_MOVE_MASK_ON_GROUND (OBJ_MOVE_LANDED | OBJ_MOVE_ON_GROUND)
+#define OBJ_MOVE_MASK_33 0x33
+#define OBJ_MOVE_MASK_IN_WATER (\
+    OBJ_MOVE_ENTERED_WATER |\
+    OBJ_MOVE_AT_WATER_SURFACE |\
+    OBJ_MOVE_UNDERWATER_OFF_GROUND |\
+    OBJ_MOVE_UNDERWATER_ON_GROUND)
+#define OBJ_MOVE_MASK_HIT_WALL_OR_IN_WATER \
+    (OBJ_MOVE_HIT_WALL | OBJ_MOVE_MASK_IN_WATER)
 
 /* Bob-omb */
     /* oBehParams2ndByte */
@@ -215,7 +253,7 @@
     #define KOOPA_UNSHELLED_ACT_UNKNOWN_3 3
     #define KOOPA_SHELLED_ACT_STOPPED 0
     #define KOOPA_SHELLED_ACT_WALKING 1
-    #define KOOPA_SHELLED_ACT_RUNNING 2
+    #define KOOPA_SHELLED_ACT_RUNNING_FROM_MARIO 2
     #define KOOPA_SHELLED_ACT_LYING 3
     #define KOOPA_SHELLED_ACT_UNK4 4
     #define KOOPA_THE_QUICK_ACT_WAIT_BEFORE_RACE 0
@@ -232,7 +270,7 @@
     #define KOOPA_BP_KOOPA_THE_QUICK_BASE 2
     #define KOOPA_BP_KOOPA_THE_QUICK_BOB 2
     #define KOOPA_BP_KOOPA_THE_QUICK_THI 3
-    #define KOOPA_BF_SMALL 4
+    #define KOOPA_BP_TINY 4
 
 /* Pokey */
     /* oAction */
@@ -278,7 +316,7 @@
     #define CHAIN_CHOMP_ACT_MOVE 1
     #define CHAIN_CHOMP_ACT_UNLOAD_CHAIN 2
 
-    /* oUnk150 */
+    /* oSubAction */
     #define CHAIN_CHOMP_PHASE_TURNING 0
     #define CHAIN_CHOMP_PHASE_LUNGING 1
 

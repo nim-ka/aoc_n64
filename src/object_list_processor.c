@@ -99,9 +99,9 @@ static void copy_mario_state_to_object(void)
     gCurrentObject->oPosY = gMarioStates[i].pos[1];
     gCurrentObject->oPosZ = gMarioStates[i].pos[2];
 
-    gCurrentObject->oAnglePitch = gCurrentObject->header.gfx.angle[0];
-    gCurrentObject->oAngleYaw = gCurrentObject->header.gfx.angle[1];
-    gCurrentObject->oAngleRoll = gCurrentObject->header.gfx.angle[2];
+    gCurrentObject->oMoveAnglePitch = gCurrentObject->header.gfx.angle[0];
+    gCurrentObject->oMoveAngleYaw = gCurrentObject->header.gfx.angle[1];
+    gCurrentObject->oMoveAngleRoll = gCurrentObject->header.gfx.angle[2];
 
     gCurrentObject->oFaceAnglePitch = gCurrentObject->header.gfx.angle[0];
     gCurrentObject->oFaceAngleYaw = gCurrentObject->header.gfx.angle[1];
@@ -119,7 +119,7 @@ static void spawn_particle(u32 flags, s16 seg, void *script)
         struct Object *particle;
         gCurrentObject->oUnkE0 |= flags;
         particle = func_8029E5A4(gCurrentObject, 0, seg, script);
-        CopyObjParams(particle, gCurrentObject);
+        copy_object_pos_and_angle(particle, gCurrentObject);
     }
 }
 
@@ -184,7 +184,7 @@ static s32 update_objects_during_time_stop(struct ObjectNode *listHead, struct O
                 unfrozen = TRUE;
             }
 
-            if (gCurrentObject->active & 0x30)
+            if (gCurrentObject->activeFlags & 0x30)
                 unfrozen = TRUE;
         }
 
@@ -228,7 +228,7 @@ static s32 func_8029C618(struct ObjectNode *objList)
         
         obj = obj->next;
 
-        if ((gCurrentObject->active & 0x01) != 1)
+        if ((gCurrentObject->activeFlags & 0x01) != 1)
         {
             if ((gCurrentObject->oFlags & 0x4000) == 0)
                 func_8029C6D8(gCurrentObject, 0xFF);
@@ -335,9 +335,9 @@ void spawn_objects_from_info(UNUSED s32 unusedArg, struct SpawnInfo *spawnInfo)
             object->oFaceAngleYaw = spawnInfo->startAngle[1];
             object->oFaceAngleRoll = spawnInfo->startAngle[2];
             
-            object->oAnglePitch = spawnInfo->startAngle[0];
-            object->oAngleYaw = spawnInfo->startAngle[1];
-            object->oAngleRoll = spawnInfo->startAngle[2];
+            object->oMoveAnglePitch = spawnInfo->startAngle[0];
+            object->oMoveAngleYaw = spawnInfo->startAngle[1];
+            object->oMoveAngleRoll = spawnInfo->startAngle[2];
 
         }
         
@@ -356,7 +356,7 @@ void func_8029CA60(void)
     D_8035FEE6 = 0;
     gTimeStopState = 0;
     gMarioObject = NULL;
-    D_8035FEE0 = 0;
+    gMarioCurrentRoom = 0;
 
     for (i = 0; i < 60; i++)
     {
@@ -372,7 +372,7 @@ void func_8029CA60(void)
 
     for (i = 0; i < OBJECT_ARRAY_SIZE; i++)
     {
-        gObjectPool[i].active = 0;
+        gObjectPool[i].activeFlags = 0;
         func_8037C3D0(&gObjectPool[i].header.gfx);
     }
 
@@ -441,8 +441,8 @@ void update_objects(UNUSED s32 sp108)
 
     gTimeStopState &= ~TIME_STOP_UNKNOWN_5;
 
-    D_8035FEEE = 0;
-    D_8035FEF0 = 0;
+    gNumRoomedObjectsInMarioRoom = 0;
+    gNumRoomedObjectsNotInMarioRoom = 0;
     D_8035FE10 = 0;
 
     reset_debug_objectinfo();

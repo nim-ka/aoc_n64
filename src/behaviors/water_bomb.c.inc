@@ -7,7 +7,7 @@ void bhv_water_bomb_spawner_update(void)
     f32 waterBombDistToMario;
 
     spawnerRadius = 50 * (u16)(o->oBehParams >> 16) + 200.0f;
-    distToMario = DistanceFromObject(o, gMarioObject);
+    distToMario = lateral_dist_between_objects(o, gMarioObject);
     
     if (o->oWaterBombSpawnerBombActive == FALSE &&
         distToMario < spawnerRadius &&
@@ -25,8 +25,8 @@ void bhv_water_bomb_spawner_update(void)
                 waterBombDistToMario = 28.0f * gMarioStates[0].forwardVel + 100.0f;
                 waterBomb->oAction = WATER_BOMB_ACT_INIT;
                 
-                waterBomb->oPosX = gMarioObject->oPosX + waterBombDistToMario * sins(gMarioObject->oAngleYaw);
-                waterBomb->oPosZ = gMarioObject->oPosZ + waterBombDistToMario * coss(gMarioObject->oAngleYaw);
+                waterBomb->oPosX = gMarioObject->oPosX + waterBombDistToMario * sins(gMarioObject->oMoveAngleYaw);
+                waterBomb->oPosZ = gMarioObject->oPosZ + waterBombDistToMario * coss(gMarioObject->oMoveAngleYaw);
                 
                 SpawnObj(waterBomb, 0x55, bWaterBombShadow);
                 
@@ -57,9 +57,9 @@ static void water_bomb_act_drop(void)
 {
     f32 stretch;
 
-    func_802A2CFC(o, &D_80331928);
+    set_object_hitbox(o, &D_80331928);
 
-    if ((o->oInteractStatus & 0x00008000) || (o->oMoveFlags & 0x00000008))
+    if ((o->oInteractStatus & INT_STATUS_INTERACTED) || (o->oMoveFlags & 0x00000008))
     {
         create_sound_spawner(0x5029A081);
         func_8027F440(1, o->oPosX, o->oPosY, o->oPosZ);
@@ -81,7 +81,7 @@ static void water_bomb_act_drop(void)
             }
 
             func_8027F440(1, o->oPosX, o->oPosY, o->oPosZ);
-            o->oAngleYaw = o->oAngleToMario;
+            o->oMoveAngleYaw = o->oAngleToMario;
             o->oForwardVel = 10.0f;
             o->oWaterBombUnkFC = -40.0f;
         }
@@ -113,7 +113,7 @@ static void water_bomb_act_drop(void)
     }
     o->header.gfx.scale[0] = o->header.gfx.scale[2] = 1.0f - stretch;
 
-    MoveObj(78);
+    obj_move_standard(78);
 }
 
 static void water_bomb_act_deactivate(void)
@@ -159,7 +159,7 @@ void bhv_water_bomb_update(void)
     else
     {
         o->oGraphYOffset = 40.0f * o->header.gfx.scale[1];
-        MoveRelated();
+        obj_update_floor_and_walls();
 
         switch (o->oAction)
         {
@@ -186,8 +186,8 @@ void bhv_water_bomb_shadow_update(void)
             val04 = 500.0f;
         }
 
-        CopyObjPosition(o, o->parentObj);
+        copy_object_pos(o, o->parentObj);
         o->oPosY = o->parentObj->oFloorHeight + val04;
-        CopyObjScaling(o, o->parentObj);
+        copy_object_scale(o, o->parentObj);
     }
 }

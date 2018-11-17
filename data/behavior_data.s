@@ -344,7 +344,7 @@ glabel beh_mr_i # 0054
     unknown_1C 0x00000066, beh_mr_i_body
     geo_layout 0x0067
     billboard
-    callnative BehCommonInit
+    callnative bhv_init_room
     begin_loop
         callnative BehMrILoop
     end_loop
@@ -352,7 +352,7 @@ glabel beh_mr_i # 0054
 glabel beh_mr_i_body # 008C
     begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x01
-    callnative BehCommonInit
+    callnative bhv_init_room
     begin_loop
         callnative BehMrIBodyLoop
     end_loop
@@ -366,7 +366,7 @@ glabel beh_mr_i_particle # 00AC
     obj_set_int VAR_3E, 1
     obj_set_int VAR_2A, 8
     unknown_30 0x001E, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000
-    callnative BehCommonInit
+    callnative bhv_init_room
     begin_loop
         callnative BehMrIParticleLoop
     end_loop
@@ -833,7 +833,7 @@ glabel beh_coin_inside_boo # 0888
     obj_or_int VAR_01, 0x0081
     unknown_30 0x001E, 0xFE70, 0xFFBA, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
     billboard
-    callnative BehCommonInit
+    callnative bhv_init_room
     begin_loop
         callnative BehCoinInsideBooLoop
         obj_add_int VAR_1A, 1
@@ -1086,7 +1086,7 @@ glabel beh_burning # 0C84
     interact_type 0x00040000
     unknown_2B 0x0032, 0x0019, 0x0019
     obj_set_int VAR_05, 0
-    callnative BehCommonInit
+    callnative bhv_init_room
     begin_loop
         obj_set_int VAR_2B, 0
         unknown_34 VAR_1A, 0x0002
@@ -1120,7 +1120,7 @@ glabel beh_hmc_elevator_platform # 0D30
     collision_data hmc_seg7_collision_elevator
     unknown_2D
     callnative BehElevatorInit
-    callnative BehCommonInit
+    callnative bhv_init_room
     begin_loop
         callnative BehElevatorLoop
         callnative load_object_collision_model
@@ -1150,8 +1150,8 @@ glabel beh_break_box_triangle # 0DB4
     begin OBJ_LIST_UNIMPORTANT
     obj_or_int VAR_01, 0x01
     begin_repeat 18
-        callnative BehBreakBoxTriangleLoop
-        callnative MoveObj2
+        callnative obj_rotate_face_angle_using_vel
+        callnative obj_move_xz_using_fvel_and_gravity
     end_repeat
     deactivate
 
@@ -1368,7 +1368,7 @@ glabel beh_flamethrower_flame # 1124
     billboard
     unknown_2D
     obj_set_int VAR_05, 0
-    callnative BehCommonInit
+    callnative bhv_init_room
     begin_loop
         callnative BehFlamethrowerFlameLoop
         obj_add_int VAR_1A, 1
@@ -1598,7 +1598,7 @@ glabel beh_breakable_box # 14E0
     obj_or_int VAR_01, 0x01
     collision_data 0x08012D70
     obj_set_float VAR_43, 0x01F4
-    callnative BehCommonInit
+    callnative bhv_init_room
     begin_loop
         callnative BehBreakableBoxLoop
         callnative load_object_collision_model
@@ -1836,7 +1836,7 @@ glabel beh_tilting_bowser_lava_platform # 1920
     obj_set_int VAR_13, 0x0000
     unknown_2D
     begin_loop
-        callnative BehBreakBoxTriangleLoop
+        callnative obj_rotate_face_angle_using_vel
         callnative load_object_collision_model
     end_loop
 
@@ -2024,7 +2024,7 @@ glabel beh_rotating_small_clock_arm # 1C8C
     obj_set_int VAR_25, 0xFFE0
 .L13001C94: # 1C94
     obj_or_int VAR_01, 0x01
-    callnative BehCommonInit
+    callnative bhv_init_room
     begin_loop
         callnative BehRotatingClockArmLoop
     end_loop
@@ -2553,7 +2553,7 @@ glabel beh_white_puff_smoke2 # 2528
     obj_set_int VAR_1A, -1
     begin_repeat 7
         callnative BehWhitePuff2Loop
-        callnative MoveObj2
+        callnative obj_move_xz_using_fvel_and_gravity
         obj_add_int VAR_1A, 1
     end_repeat
     deactivate
@@ -2657,7 +2657,7 @@ glabel beh_boo_in_castle # 26D4
     unknown_2D
     obj_set_float VAR_15, 0x003C
     unknown_30 0x001E, 0x0000, 0xFFCE, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
-    callnative BehCommonInit
+    callnative bhv_init_room
     begin_loop
         callnative BehBooInCastleLoop
     end_loop
@@ -2672,7 +2672,7 @@ glabel beh_boo_with_cage # 2710
     obj_set_float VAR_15, 0x003C
     unknown_30 0x001E, 0x0000, 0xFFCE, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
     callnative BehBooWithCageInit
-    callnative BehCommonInit
+    callnative bhv_init_room
     begin_loop
         callnative BehBooWithCageLoop
     end_loop
@@ -2693,7 +2693,7 @@ glabel beh_boo_giving_star # 2790
     obj_or_int VAR_01, 0x2049
     unknown_2D
     unknown_30 0x001E, 0x0000, 0xFFCE, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
-    callnative BehCommonInit
+    callnative bhv_init_room
     callnative BehBooInit
     begin_loop
         callnative BehBooGivingStarLoop
@@ -2723,7 +2723,7 @@ glabel beh_boo_2 # 2804
     set_hitbox 0x008C, 0x0050
     unknown_2E 0x0028, 0x003C
     obj_set_float VAR_15, 30
-    callnative BehCommonInit
+    callnative bhv_init_room
     unknown_1C 0x00000074, beh_coin_inside_boo
     unknown_30 0x001E, 0x0000, 0xFFCE, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
     callnative BehBooInit
@@ -2935,7 +2935,7 @@ glabel beh_scuttlebug # 2B44
     unknown_28 0x00
     unknown_30 0x0050, 0xFE70, 0xFFCE, 0x0000, 0x0000, 0x00C8, 0x0000, 0x0000
     unknown_2D
-    callnative BehCommonInit
+    callnative bhv_init_room
     begin_loop
         callnative BehScuttlebugLoop
     end_loop
@@ -3180,7 +3180,7 @@ glabel beh_toad_message # 2ED8
     interact_type 0x00800000
     set_hitbox 0x0050, 0x0064
     obj_set_int VAR_05, 0
-    callnative BehCommonInit
+    callnative bhv_init_room
     callnative BehToadMessageInit
     begin_loop
         callnative BehToadMessageLoop
@@ -4132,7 +4132,7 @@ glabel beh_vanish_cap # 3DFC
 glabel beh_collect_star # 3E1C
     begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x01
-    callnative BehCommonInit
+    callnative bhv_init_room
     callnative BehCollectStarInit
     begin_loop
         callnative BehCollectStarLoop
@@ -4161,7 +4161,7 @@ glabel beh_red_coin # 3E8C
     billboard
     obj_set_int VAR_05, 0
     obj_set_int VAR_1A, -1
-    callnative BehCommonInit
+    callnative bhv_init_room
     callnative BehRedCoinInit
     begin_loop
         callnative BehRedCoinLoop
@@ -4623,7 +4623,7 @@ glabel bSwoop # 4678
     obj_set_int32 VAR_26, swoop_seg6_anims_060070D0
     unknown_2D
     unknown_30 0x0032, 0x0000, 0xFFCE, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000
-    callnative BehCommonInit
+    callnative bhv_init_room
     scale 0
     begin_loop
         callnative bhv_swoop_update
@@ -4636,7 +4636,7 @@ glabel bFlyGuy # 46BC
     unknown_28 0x00
     unknown_2D
     unknown_30 0x0032, 0x0000, 0x0000, 0x0000, 0x03E8, 0x0258, 0x0000, 0x0000
-    callnative BehCommonInit
+    callnative bhv_init_room
     obj_set_int VAR_42, 0x0080
     obj_set_float VAR_15, 30
     scale 150
@@ -4755,7 +4755,7 @@ glabel beh_lakitu # 4934
     obj_or_int VAR_01, 0x2041
     obj_set_int32 VAR_26, lakitu_seg6_anims_060058F8
     unknown_28 0x00
-    callnative BehCommonInit
+    callnative bhv_init_room
     callnative BehLakituInit
     begin_loop
         callnative BehLakituLoop
@@ -4830,7 +4830,7 @@ glabel bPlatformOnTrack # 4A90
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x2041
     unknown_30 0x0032, 0xFF9C, 0xFFCE, 0x0064, 0x03E8, 0x00C8, 0x0000, 0x0000
-    callnative BehCommonInit
+    callnative bhv_init_room
     callnative bhv_platform_on_track_init
     begin_loop
         callnative bhv_platform_on_track_update
@@ -4841,7 +4841,7 @@ glabel beh_metal_balls_for_elevators # 4AD4
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
     billboard
-    callnative BehCommonInit
+    callnative bhv_init_room
     scale 15
     begin_loop
         callnative BehMetalBallsForElevatorsLoop
@@ -4930,7 +4930,7 @@ glabel bTTCTreadmill # 4C3C
     delay 1
     begin_loop
         callnative bhv_ttc_treadmill_update
-        callnative PreMoveObj
+        callnative obj_compute_vel_xz
         callnative load_object_collision_model
     end_loop
 
@@ -5116,7 +5116,7 @@ glabel bDorrie # 4F70
     unknown_2D
     obj_set_float VAR_43, 0x7530
     obj_add_float VAR_06, 2000
-    callnative BehCommonInit
+    callnative bhv_init_room
     begin_loop
         callnative bhv_dorrie_update
         callnative load_object_collision_model
@@ -5130,7 +5130,7 @@ glabel beh_haunted_chair # 4FB4
     unknown_28 0x00
     unknown_30 0x0028, 0x0000, 0xFFCE, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
     unknown_2D
-    callnative BehCommonInit
+    callnative bhv_init_room
     callnative BehHauntedChairInit
     begin_loop
         callnative BehHauntedChairLoop
@@ -5144,7 +5144,7 @@ glabel bMadPiano # 5004
     unknown_30 0x0028, 0x0000, 0xFFCE, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
     unknown_2D
     obj_add_int VAR_10, 0x4000
-    callnative BehCommonInit
+    callnative bhv_init_room
     begin_loop
         callnative bhv_mad_piano_update
     end_loop
@@ -5157,7 +5157,7 @@ glabel beh_flying_bookend # 504C
     unknown_30 0x003C, 0x0000, 0xFFCE, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
     obj_set_int VAR_19, 0
     scale 70
-    callnative BehCommonInit
+    callnative bhv_init_room
     begin_loop
         callnative BehFlyingBookendLoop
     end_loop
@@ -5165,7 +5165,7 @@ glabel beh_flying_bookend # 504C
 glabel beh_bookend_spawn # 5094
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2041
-    callnative BehCommonInit
+    callnative bhv_init_room
     begin_loop
         callnative BehBookendSpawnLoop
     end_loop
@@ -5173,7 +5173,7 @@ glabel beh_bookend_spawn # 5094
 glabel beh_bookshelf_thing # 50B4
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2041
-    callnative BehCommonInit
+    callnative bhv_init_room
     begin_loop
         callnative BehBookshelfThingLoop
     end_loop
@@ -5184,7 +5184,7 @@ glabel beh_book_switch # 50D4
     unknown_2D
     obj_set_float VAR_15, 30
     obj_add_int VAR_10, 0x4000
-    callnative BehCommonInit
+    callnative bhv_init_room
     begin_loop
         callnative BehBookSwitchLoop
     end_loop
@@ -5236,7 +5236,7 @@ glabel beh_snufit # 51C0
     obj_or_int VAR_01, 0x2049
     unknown_2D
     unknown_30 0x001E, 0x0000, 0xFFCE, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000
-    callnative BehCommonInit
+    callnative bhv_init_room
     begin_loop
         obj_set_int VAR_1B, 0
         callnative BehSnufitLoop
@@ -5247,7 +5247,7 @@ glabel beh_snufit_balls # 51FC
     obj_or_int VAR_01, 0x41
     billboard
     unknown_30 0x000A, 0x0000, 0xFFCE, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
-    callnative BehCommonInit
+    callnative bhv_init_room
     obj_set_float VAR_15, 0x000A
     scale 10
     begin_loop
@@ -5264,7 +5264,7 @@ glabel bHorizontalGrindel # 523C
     scale 90
     callnative bhv_horizontal_grindel_init
     begin_loop
-        callnative MoveRelated
+        callnative obj_update_floor_and_walls
         callnative bhv_horizontal_grindel_update
         callnative load_object_collision_model
     end_loop
@@ -5341,7 +5341,7 @@ glabel bPenguinRaceShortcutCheck # 53BC
 glabel beh_haunted_room_check # 53D4
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x41
-    callnative BehCommonInit
+    callnative bhv_init_room
     begin_loop
         callnative BehHauntedRoomCheckLoop
     end_loop
@@ -5351,7 +5351,7 @@ glabel beh_haunted_room_check_subobject # 53F4
     collision_data bbh_seg7_collision_coffin
     obj_or_int VAR_01, 0x41
     unknown_2D
-    callnative BehCommonInit
+    callnative bhv_init_room
     begin_loop
         callnative BehHauntedRoomCheckSubobjectLoop
     end_loop

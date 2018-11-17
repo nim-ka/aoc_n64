@@ -19,11 +19,11 @@ static void bird_act_init(void)
         }
 
         o->oAction = BIRD_ACT_FLY;
-        o->oAnglePitch = 5000 - (s32)(4000.0f * RandomFloat());
-        o->oAngleYaw = RandomU16();
+        o->oMoveAnglePitch = 5000 - (s32)(4000.0f * RandomFloat());
+        o->oMoveAngleYaw = RandomU16();
         o->oBirdSpeed = 40.0f;
 
-        func_8029EF18();
+        obj_unhide();
     }
 }
 
@@ -47,19 +47,19 @@ static void bird_act_fly(void)
         }
         else
         {
-            distance = DistanceFromObject(o, o->parentObj);
+            distance = lateral_dist_between_objects(o, o->parentObj);
             o->oBirdPitch = atan2s(distance, o->oPosY - o->parentObj->oPosY);
-            o->oBirdYaw = func_8029DF18(o, o->parentObj);
+            o->oBirdYaw = angle_to_object(o, o->parentObj);
 
-            o->oBirdSpeed = 0.04f * objects_calc_distance(o, o->parentObj) + 20.0f;
+            o->oBirdSpeed = 0.04f * dist_between_objects(o, o->parentObj) + 20.0f;
         }
 
         func_802F95B0(o->oBirdPitch, 140);
-        func_8029DE70(o->oBirdYaw, 800);
+        obj_rotate_yaw_toward(o->oBirdYaw, 800);
         func_802F9850(o->oBirdYaw, 0x3000, 600);
     }
 
-    MoveObj2();
+    obj_move_xz_using_fvel_and_gravity();
 }
 
 void bhv_bird_update(void)

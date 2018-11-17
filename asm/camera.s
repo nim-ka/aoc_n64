@@ -9155,7 +9155,7 @@ glabel CutSceneDialog80295418
 /* 050A60 80295A60 AFA40020 */  sw    $a0, 0x20($sp)
 /* 050A64 80295A64 0C0A42E9 */  jal   func_80290564
 /* 050A68 80295A68 8FA40020 */   lw    $a0, 0x20($sp)
-/* 050A6C 80295A6C 0C0A91D4 */  jal   func_802A3FA8
+/* 050A6C 80295A6C 0C0A91D4 */  jal   set_time_stop_flag
 /* 050A70 80295A70 24040006 */   li    $a0, 6
 /* 050A74 80295A74 8FAE0020 */  lw    $t6, 0x20($sp)
 /* 050A78 80295A78 2401000B */  li    $at, 11
@@ -9264,7 +9264,7 @@ glabel CutSceneDialog80295418
 /* 050420 80295420 AFA40020 */  sw    $a0, 0x20($sp)
 /* 050424 80295424 0C0A4159 */  jal   func_80290564
 /* 050428 80295428 8FA40020 */   lw    $a0, 0x20($sp)
-/* 05042C 8029542C 0C0A8FEA */  jal   func_802A3FA8
+/* 05042C 8029542C 0C0A8FEA */  jal   set_time_stop_flag
 /* 050430 80295430 24040006 */   li    $a0, 6
 /* 050434 80295434 0C0A4089 */  jal   func_80290224
 /* 050438 80295438 8FA40020 */   lw    $a0, 0x20($sp)
@@ -9550,12 +9550,12 @@ glabel CutSceneDialog0
 /* 050860 80295860 3C018034 */  lui   $at, %hi(D_8033B4DA) # $at, 0x8034
 /* 050864 80295864 35CF0001 */  ori   $t7, $t6, 1
 /* 050868 80295868 A42FB4DA */  sh    $t7, %lo(D_8033B4DA)($at)
-/* 05086C 8029586C 3C188033 */  lui   $t8, %hi(D_80330440) # $t8, 0x8033
-/* 050870 80295870 8F180440 */  lw    $t8, %lo(D_80330440)($t8)
+/* 05086C 8029586C 3C188033 */  lui   $t8, %hi(gDialogueResponse) # $t8, 0x8033
+/* 050870 80295870 8F180440 */  lw    $t8, %lo(gDialogueResponse)($t8)
 /* 050874 80295874 13000005 */  beqz  $t8, .L8029588C
 /* 050878 80295878 00000000 */   nop   
-/* 05087C 8029587C 3C198033 */  lui   $t9, %hi(D_80330440) # $t9, 0x8033
-/* 050880 80295880 8F390440 */  lw    $t9, %lo(D_80330440)($t9)
+/* 05087C 8029587C 3C198033 */  lui   $t9, %hi(gDialogueResponse) # $t9, 0x8033
+/* 050880 80295880 8F390440 */  lw    $t9, %lo(gDialogueResponse)($t9)
 /* 050884 80295884 3C018033 */  lui   $at, %hi(D_8032CFFC) # $at, 0x8033
 /* 050888 80295888 A039CFFC */  sb    $t9, %lo(D_8032CFFC)($at)
 .L8029588C:
@@ -9626,7 +9626,7 @@ glabel CutSceneDialog2
 /* 05096C 8029596C A42FB4DA */  sh    $t7, %lo(D_8033B4DA)($at)
 /* 050970 80295970 8FB80018 */  lw    $t8, 0x18($sp)
 /* 050974 80295974 A3000030 */  sb    $zero, 0x30($t8)
-/* 050978 80295978 0C0A8FF3 */  jal   func_802A3FCC
+/* 050978 80295978 0C0A8FF3 */  jal   clear_time_stop_flag
 /* 05097C 8029597C 24040006 */   li    $a0, 6
 /* 050980 80295980 10000001 */  b     .L80295988
 /* 050984 80295984 00000000 */   nop   
@@ -9759,7 +9759,7 @@ glabel CutSceneReadMessage0
 /* 050B58 80295B58 8728001C */  lh    $t0, 0x1c($t9)
 /* 050B5C 80295B5C 25090001 */  addiu $t1, $t0, 1
 /* 050B60 80295B60 A729001C */  sh    $t1, 0x1c($t9)
-/* 050B64 80295B64 0C0A8FEA */  jal   func_802A3FA8
+/* 050B64 80295B64 0C0A8FEA */  jal   set_time_stop_flag
 /* 050B68 80295B68 24040006 */   li    $a0, 6
 .L80295B6C:
 /* 050B6C 80295B6C 10000028 */  b     .L80295C10
@@ -9790,7 +9790,7 @@ glabel CutSceneReadMessage0
 /* 050BCC 80295BCC 3C018034 */  lui   $at, %hi(D_8033B4DA) # $at, 0x8034
 /* 050BD0 80295BD0 358D4000 */  ori   $t5, $t4, 0x4000
 /* 050BD4 80295BD4 A42DB4DA */  sh    $t5, %lo(D_8033B4DA)($at)
-/* 050BD8 80295BD8 0C0A8FF3 */  jal   func_802A3FCC
+/* 050BD8 80295BD8 0C0A8FF3 */  jal   clear_time_stop_flag
 /* 050BDC 80295BDC 24040006 */   li    $a0, 6
 /* 050BE0 80295BE0 3C0E8034 */  lui   $t6, %hi(D_8033B6F0) # $t6, 0x8034
 /* 050BE4 80295BE4 25CEB6F0 */  addiu $t6, %lo(D_8033B6F0) # addiu $t6, $t6, -0x4910
@@ -10790,12 +10790,12 @@ glabel CutSceneCapSwitchPress
 /* 051A00 80296A00 24840004 */  addiu $a0, $a0, 4
 /* 051A04 80296A04 0C0DE9A7 */  jal   vec3f_get_dist_and_angle
 /* 051A08 80296A08 24A50010 */   addiu $a1, $a1, 0x10
-/* 051A0C 80296A0C 3C098033 */  lui   $t1, %hi(D_80330440) # $t1, 0x8033
-/* 051A10 80296A10 8D290440 */  lw    $t1, %lo(D_80330440)($t1)
+/* 051A0C 80296A0C 3C098033 */  lui   $t1, %hi(gDialogueResponse) # $t1, 0x8033
+/* 051A10 80296A10 8D290440 */  lw    $t1, %lo(gDialogueResponse)($t1)
 /* 051A14 80296A14 11200006 */  beqz  $t1, .L80296A30
 /* 051A18 80296A18 00000000 */   nop   
-/* 051A1C 80296A1C 3C0A8033 */  lui   $t2, %hi(D_80330440) # $t2, 0x8033
-/* 051A20 80296A20 8D4A0440 */  lw    $t2, %lo(D_80330440)($t2)
+/* 051A1C 80296A1C 3C0A8033 */  lui   $t2, %hi(gDialogueResponse) # $t2, 0x8033
+/* 051A20 80296A20 8D4A0440 */  lw    $t2, %lo(gDialogueResponse)($t2)
 /* 051A24 80296A24 3C0B8034 */  lui   $t3, %hi(D_8033B6F0) # $t3, 0x8034
 /* 051A28 80296A28 256BB6F0 */  addiu $t3, %lo(D_8033B6F0) # addiu $t3, $t3, -0x4910
 /* 051A2C 80296A2C A56A00AC */  sh    $t2, 0xac($t3)
@@ -15594,7 +15594,7 @@ glabel BehBeginningLakituLoop
 /* 055DEC 8029ADEC 10000216 */  b     .L8029B648
 /* 055DF0 8029ADF0 00000000 */   nop   
 .L8029ADF4:
-/* 055DF4 8029ADF4 0C0A7BBC */  jal   func_8029EEF0
+/* 055DF4 8029ADF4 0C0A7BBC */  jal   obj_disable_rendering
 /* 055DF8 8029ADF8 00000000 */   nop   
 /* 055DFC 8029ADFC 3C0F8036 */  lui    $t7, %hi(gCurrentObject) 
 /* 055E00 8029AE00 8DEFFDF0 */  lw    $t7, %lo(gCurrentObject)($t7)
@@ -15646,7 +15646,7 @@ glabel BehBeginningLakituLoop
 /* 055EB0 8029AEB0 100001E5 */  b     .L8029B648
 /* 055EB4 8029AEB4 00000000 */   nop   
 .L8029AEB8:
-/* 055EB8 8029AEB8 0C0A7BA9 */  jal   HideObject
+/* 055EB8 8029AEB8 0C0A7BA9 */  jal   obj_enable_rendering
 /* 055EBC 8029AEBC 00000000 */   nop   
 /* 055EC0 8029AEC0 3C088034 */  lui   $t0, %hi(D_8033B6EC) # $t0, 0x8034
 /* 055EC4 8029AEC4 8508B6EC */  lh    $t0, %lo(D_8033B6EC)($t0)
@@ -15998,7 +15998,7 @@ glabel BehBeginningLakituLoop
 /* 056370 8029B370 100000B5 */  b     .L8029B648
 /* 056374 8029B374 00000000 */   nop   
 .L8029B378:
-/* 056378 8029B378 0C0A7BA9 */  jal   HideObject
+/* 056378 8029B378 0C0A7BA9 */  jal   obj_enable_rendering
 /* 05637C 8029B37C 00000000 */   nop   
 /* 056380 8029B380 27A40064 */  addiu $a0, $sp, 0x64
 /* 056384 8029B384 3C05C2C8 */  lui   $a1, 0xc2c8
@@ -16391,7 +16391,7 @@ glabel BehEndBirds1Loop
 /* 0566A0 8029B6A0 00000000 */   nop   
 .L8029B6A4:
 /* 0566A4 8029B6A4 3C018033 */  lui   $at, %hi(D_803365CC)
-/* 0566A8 8029B6A8 0C0A7B2D */  jal   ScaleObject
+/* 0566A8 8029B6A8 0C0A7B2D */  jal   obj_scale
 /* 0566AC 8029B6AC C42C65CC */   lwc1  $f12, %lo(D_803365CC)($at)
 /* 0566B0 8029B6B0 3C018033 */  lui   $at, %hi(D_803365D0)
 /* 0566B4 8029B6B4 3C0F8036 */  lui   $t7, %hi(gCurrentObject) # $t7, 0x8036
@@ -16507,7 +16507,7 @@ glabel BehEndBirds2Loop
 /* 05684C 8029B84C 00000000 */   nop   
 .L8029B850:
 /* 056850 8029B850 3C018033 */  lui   $at, %hi(D_803365DC)
-/* 056854 8029B854 0C0A7B2D */  jal   ScaleObject
+/* 056854 8029B854 0C0A7B2D */  jal   obj_scale
 /* 056858 8029B858 C42C65DC */   lwc1  $f12, %lo(D_803365DC)($at)
 /* 05685C 8029B85C 3C188036 */  lui   $t8, %hi(gCurrentObject) # $t8, 0x8036
 /* 056860 8029B860 8F18FDF0 */  lw    $t8, %lo(gCurrentObject)($t8)

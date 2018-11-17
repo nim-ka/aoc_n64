@@ -22,6 +22,7 @@
 #include "save_file.h"
 #include "sound_init.h"
 #include "skybox.h"
+#include "interaction.h"
 
 struct Struct802761D0
 {
@@ -147,7 +148,7 @@ void BehToadMessageOpaque(void)
         if (gCurrentObject->oToadMessageRecentlyTalked == 0)
         {
             gCurrentObject->oUnk190 = (1 << 14);
-            if (gCurrentObject->oInteractStatus & (1 << 15))
+            if (gCurrentObject->oInteractStatus & INT_STATUS_INTERACTED)
             {
                 gCurrentObject->oInteractStatus = 0;
                 gCurrentObject->oToadMessageState = TOAD_MESSAGE_TALKING;
@@ -159,7 +160,7 @@ void BehToadMessageOpaque(void)
 
 void BehToadMessageTalking(void)
 {
-    if (CreateMessageBox(3, 1, 162, gCurrentObject->oToadMessageDialogNum) != 0)
+    if (obj_update_dialogue_unk2(3, 1, 162, gCurrentObject->oToadMessageDialogNum) != 0)
     {
         gCurrentObject->oToadMessageRecentlyTalked = 1;
         gCurrentObject->oToadMessageState = TOAD_MESSAGE_FADING;
@@ -274,14 +275,14 @@ void BehSealedDoorStarInit(void)
     gCurrentObject->oPosX += 30.0f * sins(gMarioState->faceAngle[1] - 0x4000);
     gCurrentObject->oPosY += 160.0f;
     gCurrentObject->oPosZ += 30.0f * coss(gMarioState->faceAngle[1] - 0x4000);
-    gCurrentObject->oAngleYaw = 0x7800;
-    func_8029EC88(gCurrentObject, 0.5f);
+    gCurrentObject->oMoveAngleYaw = 0x7800;
+    scale_object(gCurrentObject, 0.5f);
 }
 
 void BehSealedDoorStarLoop(void)
 {
     UNUSED u8 unused1[4];
-    s16 sp2A = gCurrentObject->oAngleYaw;
+    s16 sp2A = gCurrentObject->oMoveAngleYaw;
     UNUSED u8 unused2[4];
 
     if (gCurrentObject->oSealedDoorStarUnk110 < 0x2400)
@@ -290,8 +291,8 @@ void BehSealedDoorStarLoop(void)
     {
     case 0:
         gCurrentObject->oPosY += 3.4f;
-        gCurrentObject->oAngleYaw += gCurrentObject->oSealedDoorStarUnk110;
-        func_8029EC88(gCurrentObject, gCurrentObject->oSealedDoorStarUnk10C / 50.0f + 0.5f);
+        gCurrentObject->oMoveAngleYaw += gCurrentObject->oSealedDoorStarUnk110;
+        scale_object(gCurrentObject, gCurrentObject->oSealedDoorStarUnk10C / 50.0f + 0.5f);
         if (++gCurrentObject->oSealedDoorStarUnk10C == 30)
         {
             gCurrentObject->oSealedDoorStarUnk10C = 0;
@@ -299,11 +300,11 @@ void BehSealedDoorStarLoop(void)
         }
         break;
     case 1:
-        gCurrentObject->oAngleYaw += gCurrentObject->oSealedDoorStarUnk110;
+        gCurrentObject->oMoveAngleYaw += gCurrentObject->oSealedDoorStarUnk110;
         if (++gCurrentObject->oSealedDoorStarUnk10C == 30)
         {
             SetSound(SOUND_MENU_STARSOUND, &gCurrentObject->header.gfx.unk54);
-            UnHideObject();
+            obj_hide();
             gCurrentObject->oSealedDoorStarUnk10C = 0;
             gCurrentObject->oSealedDoorStarUnk108++;
         }
@@ -322,7 +323,7 @@ void BehSealedDoorStarLoop(void)
             DeactivateObject(gCurrentObject);
         break;
     }
-    if (sp2A > (s16)gCurrentObject->oAngleYaw)
+    if (sp2A > (s16)gCurrentObject->oMoveAngleYaw)
         SetSound(SOUND_GENERAL_SHORTSTAR, &gCurrentObject->header.gfx.unk54);
 }
 

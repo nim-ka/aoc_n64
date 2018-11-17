@@ -971,7 +971,7 @@ static s32 act_hold_walking(struct MarioState *m)
     if (m->heldObj->behavior == segmented_to_virtual(beh_jumping_box))
         return set_mario_action(m, ACT_CRAZY_BOX_BOUNCE, 0);
 
-    if (m->marioObj->oInteractStatus & 0x00000008)
+    if (m->marioObj->oInteractStatus & INT_STATUS_MARIO_DROP_OBJECT)
         return drop_and_set_mario_action(m, ACT_WALKING, 0);
 
     if (should_begin_sliding(m))
@@ -1215,7 +1215,7 @@ static s32 act_hold_decelerating(struct MarioState *m)
     s32 val0C;
     s16 slopeClass = mario_get_floor_class(m);
 
-    if (m->marioObj->oInteractStatus & 0x00000008)
+    if (m->marioObj->oInteractStatus & INT_STATUS_MARIO_DROP_OBJECT)
         return drop_and_set_mario_action(m, ACT_WALKING, 0);
 
     if (should_begin_sliding(m))
@@ -1499,7 +1499,7 @@ static s32 act_hold_butt_slide(struct MarioState *m)
 {
     s32 cancel;
 
-    if (m->marioObj->oInteractStatus & 0x00000008)
+    if (m->marioObj->oInteractStatus & INT_STATUS_MARIO_DROP_OBJECT)
         return drop_and_set_mario_action(m, ACT_BUTT_SLIDE, 0);
 
     cancel = common_slide_action_with_jump(
@@ -1606,7 +1606,7 @@ static s32 act_hold_stomach_slide(struct MarioState *m)
 {
     s32 cancel;
 
-    if (m->marioObj->oInteractStatus & 0x00000008)
+    if (m->marioObj->oInteractStatus & INT_STATUS_MARIO_DROP_OBJECT)
         return drop_and_set_mario_action(m, ACT_STOMACH_SLIDE, 0);
 
     cancel = stomach_slide_action(m, ACT_DIVE_PICKING_UP, ACT_HOLD_FREEFALL, 0x0089);
@@ -1872,7 +1872,7 @@ static s32 act_side_flip_land(struct MarioState *m)
 
 static s32 act_hold_jump_land(struct MarioState *m)
 {
-    if (m->marioObj->oInteractStatus & 0x00000008)
+    if (m->marioObj->oInteractStatus & INT_STATUS_MARIO_DROP_OBJECT)
         return drop_and_set_mario_action(m, ACT_JUMP_LAND_STOP, 0);
 
     if (common_landing_cancels(m, &sHoldJumpLandAction, func_80252E74))
@@ -1884,7 +1884,7 @@ static s32 act_hold_jump_land(struct MarioState *m)
 
 static s32 act_hold_freefall_land(struct MarioState *m)
 {
-    if (m->marioObj->oInteractStatus & 0x00000008)
+    if (m->marioObj->oInteractStatus & INT_STATUS_MARIO_DROP_OBJECT)
         return drop_and_set_mario_action(m, ACT_FREEFALL_LAND_STOP, 0);
 
     if (common_landing_cancels(m, &sHoldFreefallLandAction, func_80252E74))

@@ -259,7 +259,7 @@ struct ObjNet {
     /* 0x20C */ struct ObjGroup *unk20C;
     /* 0x210 */ s32 unk210;     // "control type"
     /* 0x214 */ u8  pad214[0x21C-0x214];
-    /* 0x21C */ s32 unk21C;
+    /* 0x21C */ s32 transform;
 }; /* sizeof = 0x220 */
 
 struct ObjPlane {

@@ -17,8 +17,8 @@ void bhv_chain_chomp_chain_part_update(void)
     }
     else if (o->parentObj->oChainChompUnk1AC != 0)
     {
-        MoveRelated();
-        MoveObj(78);
+        obj_update_floor_and_walls();
+        obj_move_standard(78);
     }
 }
 
@@ -35,7 +35,7 @@ static void chain_chomp_act_uninitialized(void)
             o->oChainChompSegments = segments;
             for (i = 0; i < 5; i++)
             {
-                func_802A272C(&segments[i]);
+                chain_segment_init(&segments[i]);
             }
 
             obj_set_pos_to_home();
@@ -48,7 +48,7 @@ static void chain_chomp_act_uninitialized(void)
                 }
 
                 o->oAction = CHAIN_CHOMP_ACT_MOVE;
-                func_8029EF18();
+                obj_unhide();
             }
         }
     }
@@ -133,18 +133,18 @@ static void chain_chomp_phase_turning(void)
 
     if (o->oMoveFlags & 0x00000003)
     {
-        func_8029DE70(o->oAngleToMario, 0x400);
-        if (abs_angle_diff(o->oAngleToMario, o->oAngleYaw) < 0x800)
+        obj_rotate_yaw_toward(o->oAngleToMario, 0x400);
+        if (abs_angle_diff(o->oAngleToMario, o->oMoveAngleYaw) < 0x800)
         {
             if (o->oTimer > 30)
             {
-                if (check_anim_frame(0))
+                if (obj_check_anim_frame(0))
                 {
                     func_8029F6F0();
                     if (o->oTimer > 40)
                     {
                         PlaySound2(0x303A0081);
-                        o->oUnk150 = CHAIN_CHOMP_PHASE_LUNGING;
+                        o->oSubAction = CHAIN_CHOMP_PHASE_LUNGING;
                         o->oChainChompUnkF8 = 180.0f;
                         o->oForwardVel = 140.0f;
                         o->oVelY = 20.0f;
@@ -171,7 +171,7 @@ static void chain_chomp_phase_turning(void)
     }
     else
     {
-        func_8029DE70(o->oAngleToMario, 400);
+        obj_rotate_yaw_toward(o->oAngleToMario, 400);
         o->oTimer = 0;
     }
 }
@@ -200,7 +200,7 @@ static void chain_chomp_phase_lunging(void)
     }
     else
     {
-        func_8029DE70(
+        obj_rotate_yaw_toward(
             atan2s(o->oChainChompSegments[0].posZ, o->oChainChompSegments[0].posX),
             0x1000);
 
@@ -210,7 +210,7 @@ static void chain_chomp_phase_lunging(void)
         }
         else
         {
-            o->oUnk150 = CHAIN_CHOMP_PHASE_TURNING;
+            o->oSubAction = CHAIN_CHOMP_PHASE_TURNING;
         }
 
         o->oChainChompUnkFC = o->oChainChompUnk104;
@@ -246,12 +246,12 @@ static void func_802FF4EC(void)
     {
         if (o->oChainChompUnk110 == 0)
         {
-            if (func_8029DE70(o->oAngleToMario, 0x320))
+            if (obj_rotate_yaw_toward(o->oAngleToMario, 0x320))
             {
                 if (o->oTimer > 60)
                 {
                     o->oChainChompUnk110 += 1;
-                    o->oUnk128 = 200.0f;
+                    o->oWallHitboxRadius = 200.0f;
                 }
             }
             else
@@ -264,7 +264,7 @@ static void func_802FF4EC(void)
             if (++o->oChainChompUnk110 <= 5)
             {
                 PlaySound2(0x30390081);
-                o->oAngleYaw = o->oAngleToMario + RandomSign() * 0x2000;
+                o->oMoveAngleYaw = o->oAngleToMario + RandomSign() * 0x2000;
                 o->oForwardVel = 30.0f;
                 o->oVelY = 50.0f;
             }
@@ -273,7 +273,7 @@ static void func_802FF4EC(void)
                 o->oChainChompUnk1AC = 3;
                 o->oHomeX = 1450.0f;
                 o->oHomeZ = 562.0f;
-                o->oAngleYaw = obj_angle_to_home();
+                o->oMoveAngleYaw = obj_angle_to_home();
                 o->oForwardVel = obj_lateral_dist_to_home() / 8.0f;
                 o->oVelY = 50.0f;
             }
@@ -288,7 +288,7 @@ static void func_802FF6C8(void)
         if (o->oMoveFlags & 0x00000200)
         {
             o->oChainChompUnk1B0 = 1;
-            o->oAngleYaw = func_802A2AC0();
+            o->oMoveAngleYaw = obj_reflect_move_angle_off_wall();
             o->oForwardVel *= 0.4f;
         }
     }
@@ -299,7 +299,7 @@ static void func_802FF6C8(void)
             o->oChainChompUnk1AC = 4;
             o->oHomeX = 3288.0f;
             o->oHomeZ = -1770.0f;
-            o->oAngleYaw = obj_angle_to_home();
+            o->oMoveAngleYaw = obj_angle_to_home();
             o->oForwardVel = obj_lateral_dist_to_home() / 50.0f;
             o->oVelY = 120.0f;
         }
@@ -337,12 +337,12 @@ static void chain_chomp_act_move(void)
     }
     else
     {
-        MoveRelated();
+        obj_update_floor_and_walls();
 
         switch (o->oChainChompUnk1AC)
         {
         case 0:
-            switch (o->oUnk150)
+            switch (o->oSubAction)
             {
             case CHAIN_CHOMP_PHASE_TURNING: chain_chomp_phase_turning(); break;
             case CHAIN_CHOMP_PHASE_LUNGING: chain_chomp_phase_lunging(); break;
@@ -355,7 +355,7 @@ static void chain_chomp_act_move(void)
         case 5: func_802FF83C(); break;
         }
 
-        MoveObj(78);
+        obj_move_standard(78);
 
         o->oChainChompSegments[0].posX = o->oPosX - o->parentObj->oPosX;
         o->oChainChompSegments[0].posY = o->oPosY - o->parentObj->oPosY;
@@ -403,7 +403,7 @@ static void chain_chomp_act_move(void)
 
         if (func_802FA888(&D_803317F0, o->oAction))
         {
-            o->oUnk150 = CHAIN_CHOMP_PHASE_LUNGING;
+            o->oSubAction = CHAIN_CHOMP_PHASE_LUNGING;
             o->oChainChompUnkF8 = 180.0f;
             o->oForwardVel = 0.0f;
             o->oVelY = 300.0f;
@@ -415,7 +415,7 @@ static void chain_chomp_act_move(void)
 
 static void chain_chomp_act_unload_chain(void)
 {
-    UnHideObject();
+    obj_hide();
     mem_pool_free(D_8035FE0C, o->oChainChompSegments);
 
     o->oAction = CHAIN_CHOMP_ACT_UNINITIALIZED;
@@ -440,7 +440,7 @@ void bhv_wooden_post_update(void)
 {
     if (!o->oWoodenPostMarioPounding)
     {
-        if ((o->oWoodenPostMarioPounding = IsMarioGroundPounding()))
+        if ((o->oWoodenPostMarioPounding = obj_is_mario_ground_pounding_platform()))
         {
             PlaySound2(0x3065C081);
             o->oWoodenPostSpeedY = -70.0f;
@@ -448,7 +448,7 @@ void bhv_wooden_post_update(void)
     }
     else if (approach_f32_2(&o->oWoodenPostSpeedY, 0.0f, 25.0f))
     {
-        o->oWoodenPostMarioPounding = IsMarioGroundPounding();
+        o->oWoodenPostMarioPounding = obj_is_mario_ground_pounding_platform();
     }
     else if ((o->oWoodenPostOffsetY += o->oWoodenPostSpeedY) < -190.0f)
     {
@@ -474,9 +474,9 @@ void bhv_wooden_post_update(void)
         else
         {
             o->oWoodenPostTotalMarioAngle += (s16)(o->oAngleToMario - o->oWoodenPostPrevAngleToMario);
-            if (func_802A2ECC(o->oWoodenPostTotalMarioAngle) > 0x30000 && o->oTimer < 200)
+            if (absi(o->oWoodenPostTotalMarioAngle) > 0x30000 && o->oTimer < 200)
             {
-                func_802A1410(o, 5, 20.0f);
+                spawn_object_loot_yellow_coins(o, 5, 20.0f);
                 func_8029C6D8(o, 1);
             }
         }
@@ -487,7 +487,7 @@ void bhv_wooden_post_update(void)
 
 void bhv_chain_chomp_freed_explosion_init(void)
 {
-    o->parentObj = func_8029F1E0(bChainChomp);
+    o->parentObj = obj_nearest_object_with_behavior(bChainChomp);
 }
 
 void bhv_chain_chomp_freed_explosion_update(void)

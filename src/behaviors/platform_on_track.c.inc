@@ -21,7 +21,7 @@ void bhv_platform_on_track_init(void)
 {
     s16 val06;
 
-    if (!(o->active & 0x00000008))
+    if (!(o->activeFlags & 0x00000008))
     {
         val06 = (u16)(o->oBehParams >> 16) & 0xF;
         o->oPlatformOnTrackUnk1B0 = ((u16)(o->oBehParams >> 16) & 0x0070) >> 4;
@@ -31,7 +31,7 @@ void bhv_platform_on_track_init(void)
         o->oPlatformOnTrackUnkFC = segmented_to_virtual(D_803318CC[val06]);
         o->oPlatformOnTrackUnk1AE = val06 - 4;
 
-        o->oBehParams2ndByte = o->oAngleYaw;
+        o->oBehParams2ndByte = o->oMoveAngleYaw;
         if (o->oPlatformOnTrackUnk1B0 == 2)
         {
             o->header.gfx.scale[1] = 2.0f;
@@ -78,7 +78,7 @@ static void func_803042F8(void)
     }
     else
     {
-        if (o->active & 0x00000008)
+        if (o->activeFlags & 0x00000008)
         {
             func_80303F78();
         }
@@ -151,12 +151,12 @@ static void func_80304390(void)
         }
 
         func_802F8978(0, o->oPosX, o->oPosY, o->oPosZ);
-        o->oAnglePitch = o->oPlatformOnTrackPitch;
-        o->oAngleYaw = o->oPlatformOnTrackYaw;
+        o->oMoveAnglePitch = o->oPlatformOnTrackPitch;
+        o->oMoveAngleYaw = o->oPlatformOnTrackYaw;
         
         if (!((u16)(o->oBehParams >> 16) & 0x0400))
         {
-            sp1C = o->oAngleYaw + 0x4000;
+            sp1C = o->oMoveAngleYaw + 0x4000;
             sp1A = abs_angle_diff(sp1C, o->oFaceAngleYaw) / 20;
             sp1E = o->oFaceAngleYaw;
 
@@ -167,11 +167,11 @@ static void func_80304390(void)
 
         if (((u16)(o->oBehParams >> 16) & 0x0800))
         {
-            sp18 = abs_angle_diff(o->oAnglePitch, o->oFaceAngleRoll) / 20;
+            sp18 = abs_angle_diff(o->oMoveAnglePitch, o->oFaceAngleRoll) / 20;
             sp1E = o->oFaceAngleRoll;
 
             func_802F91AC(&sp18, 100, 500);
-            face_roll_approach(o->oAnglePitch, sp18);
+            face_roll_approach(o->oMoveAnglePitch, sp18);
             o->oAngleVelRoll = (s16)o->oFaceAngleRoll - sp1E;
         }
     }
@@ -197,7 +197,7 @@ static void func_80304788(void)
 
 static void func_803047C0(void)
 {
-    func_802A1E0C();
+    obj_move_using_vel_and_gravity();
     if (gMarioObject->platform != o)
     {
         func_80303FA8();
@@ -220,7 +220,7 @@ static void func_80304820(void)
 
     if (gMarioObject->platform == o)
     {
-        val04 = o->oForwardVel * sins(o->oAngleYaw) * -50.0f +
+        val04 = o->oForwardVel * sins(o->oMoveAngleYaw) * -50.0f +
             (s32)(o->oDistanceToMario * sins(o->oAngleToMario - o->oFaceAngleYaw) * -4.0f);
     }
 

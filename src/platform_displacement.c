@@ -38,7 +38,7 @@ void update_mario_platform(void)
     marioZ = gMarioObject->oPosZ;
     floorHeight = find_floor(marioX, marioY, marioZ, &floor);
 
-    if (func_802A2E8C(marioY - floorHeight) < 4.0f)
+    if (absf(marioY - floorHeight) < 4.0f)
         awayFromFloor = 0;
     else
         awayFromFloor = 1;
@@ -145,14 +145,14 @@ void apply_platform_displacement(u32 isMario, struct Object *platform)
         rotation[2] = platform->oFaceAngleRoll - platform->oAngleVelRoll;
 
         mtxf_rotate_zxy_and_translate(displaceMatrix, currentObjectOffset, rotation);
-        func_8029EAF8(displaceMatrix, relativeOffset, currentObjectOffset);
+        linear_mtxf_transpose_mul_vec3f(displaceMatrix, relativeOffset, currentObjectOffset);
 
         rotation[0] = platform->oFaceAnglePitch;
         rotation[1] = platform->oFaceAngleYaw;
         rotation[2] = platform->oFaceAngleRoll;
 
         mtxf_rotate_zxy_and_translate(displaceMatrix, currentObjectOffset, rotation);
-        func_8029EA84(displaceMatrix, newObjectOffset, relativeOffset);
+        linear_mtxf_mul_vec3f(displaceMatrix, newObjectOffset, relativeOffset);
 
         x = platformPosX + newObjectOffset[0];
         y = platformPosY + newObjectOffset[1];

@@ -138,7 +138,7 @@ void UnknownRecursive802C8FF8(struct Object *a)
 
 void unload_obj(struct Object *obj)
 {
-    obj->active = 0;
+    obj->activeFlags = 0;
     obj->prevObj = 0;
     obj->header.gfx.throwMatrix = NULL;
     func_803206F8(&obj->header.gfx.unk54);
@@ -160,7 +160,7 @@ struct Object *try_init_object(struct ObjectNode *objList)
     // in order to finish allocating the object.
     if (obj == NULL)
     {
-        unloadObj = get_next_unimportant_obj(); // try to get the pointer to the next unimportant obj.
+        unloadObj = find_unimportant_object(); // try to get the pointer to the next unimportant obj.
 
         // if the retrieved slot is NULL, it is because the object list is
         // completely exhausted with important objects. This behavior if left
@@ -184,7 +184,7 @@ struct Object *try_init_object(struct ObjectNode *objList)
 
     // we have gotten a good pointer to an object. initialize the
     // object contents below.
-    obj->active = 257;
+    obj->activeFlags = 257;
     obj->parentObj = obj;
     obj->prevObj = NULL;
     obj->collidedObjInteractTypes = 0;
@@ -204,19 +204,19 @@ struct Object *try_init_object(struct ObjectNode *objList)
     obj->unk210 = 0;
     obj->platform = NULL;
     obj->collisionData = NULL;
-    obj->oCollectable = -1;
+    obj->oIntangibleTimer = -1;
     obj->oUnk180 = 0;
-    obj->oUnk184 = 2048;
+    obj->oHealth = 2048;
     obj->oCollisionDistance = 1000.0f;
     if (gCurrLevelNum == 14)
         obj->oDrawingDistance = 2000.0f;
     else
         obj->oDrawingDistance = 4000.0f;
-    mtxf_identity(obj->unk21C);
+    mtxf_identity(obj->transform);
     obj->unk1F6 = 0;
     obj->unk25C = 0;
     obj->oDistanceToMario = 19000.0f;
-    obj->oUnk1A0 = -1;
+    obj->oRoom = -1;
 
     obj->header.gfx.node.flags &= ~0x10;
     obj->header.gfx.pos[0] = -10000.0f;
@@ -235,7 +235,7 @@ void put_obj_on_floor(struct Object *obj)
     if (obj->oFloorHeight + 2.0f > obj->oPosY && obj->oPosY > obj->oFloorHeight - 10.0f)
     {
         obj->oPosY = obj->oFloorHeight;
-        obj->oMoveFlags |= OBJ_MOV_GROUND;
+        obj->oMoveFlags |= OBJ_MOVE_ON_GROUND;
     }
 }
 
@@ -256,7 +256,7 @@ struct Object *create_object(u32 *behScript)
     obj->behScript = behScript;
     obj->behavior = behavior;
     if (listIndex == OBJ_LIST_UNIMPORTANT)
-        obj->active |= 0x10;
+        obj->activeFlags |= 0x10;
     switch (listIndex)
     {
     // these types of objects should spawn on the ground, so where they are created,
@@ -274,5 +274,5 @@ struct Object *create_object(u32 *behScript)
 
 void hide_object(struct Object *obj)
 {
-    obj->active = 0;
+    obj->activeFlags = 0;
 }

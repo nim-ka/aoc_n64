@@ -10,7 +10,7 @@ void bhv_wiggler_body_part_update(void)
     struct ChainSegment *segment = &o->parentObj->oWigglerSegments[o->oBehParams2ndByte];
     f32 posOffset;
 
-    ScaleObject(o->parentObj->header.gfx.scale[0]);
+    obj_scale(o->parentObj->header.gfx.scale[0]);
 
     o->oFaceAnglePitch = segment->pitch;
     o->oFaceAngleYaw = segment->yaw;
@@ -29,7 +29,7 @@ void bhv_wiggler_body_part_update(void)
     if (o->oPosY < o->parentObj->oWigglerUnkF4)
     {
         o->oPosY += -30.0f;
-        func_8029FE88();
+        obj_update_floor_height();
         if (o->oFloorHeight > o->oPosY)
         {
             o->oPosY = o->oFloorHeight;
@@ -46,7 +46,7 @@ void bhv_wiggler_body_part_update(void)
 
     if (o->parentObj->oAction == WIGGLER_ACT_SHRINK)
     {
-        func_8029FE38();
+        obj_become_intangible();
     }
     else
     {
@@ -66,7 +66,7 @@ static void wiggler_init_segments(void)
         o->oWigglerSegments = segments;
         for (i = 0; i < 4; i++)
         {
-            func_802A272C(&segments[i]);
+            chain_segment_init(&segments[i]);
 
             segments[i].posX = o->oPosX;
             segments[i].posY = o->oPosY;
@@ -89,7 +89,7 @@ static void wiggler_init_segments(void)
         }
 
         o->oAction = WIGGLER_ACT_WALK;
-        func_8029EF18();
+        obj_unhide();
     }
 }
 
@@ -150,14 +150,14 @@ static void wiggler_act_walk(void)
 
         // If Mario is positioned below the wiggler, assume he entered through
         // lower cave entrance, so don't display text.
-        if (gMarioObject->oPosY < o->oPosY || CreateMessageBox(2, 0, 0xA2, 0x96))
+        if (gMarioObject->oPosY < o->oPosY || obj_update_dialogue_unk2(2, 0, 0xA2, 0x96))
         {
             o->oWigglerUnk1AE = 2;
         }
     }
     else
     {
-        forward_vel_approach(sWigglerSpeeds[o->oUnk184 - 1], 1.0f);
+        forward_vel_approach(sWigglerSpeeds[o->oHealth - 1], 1.0f);
         
         if (o->oWigglerWalkStraightTimer != 0)
         {
@@ -180,7 +180,7 @@ static void wiggler_act_walk(void)
             }
             else
             {
-                if (o->oUnk184 < 4)
+                if (o->oHealth < 4)
                 {
                     o->oWigglerTargetYaw = o->oAngleToMario;
                 }
@@ -190,15 +190,15 @@ static void wiggler_act_walk(void)
                 }
                 else
                 {
-                    o->oWigglerTargetYaw = o->oAngleYaw + 0x4000 * (s16)RandomSign();
+                    o->oWigglerTargetYaw = o->oMoveAngleYaw + 0x4000 * (s16)RandomSign();
                     o->oWigglerTimeUntilRandomTurn = random_linear_offset(30, 50);
                 }
             }
         }
 
         yawTurnSpeed = (s16)(30.0f * o->oForwardVel);
-        func_8029DE70(o->oWigglerTargetYaw, yawTurnSpeed);
-        face_yaw_approach(o->oAngleYaw, 2 * yawTurnSpeed);
+        obj_rotate_yaw_toward(o->oWigglerTargetYaw, yawTurnSpeed);
+        face_yaw_approach(o->oMoveAngleYaw, 2 * yawTurnSpeed);
 
         face_pitch_approach(0, 800);
         
@@ -236,19 +236,19 @@ static void wiggler_act_jumped_on(void)
     {
         if (o->oTimer > 30)
         {
-            if (CreateMessageBox(2, 0, 0xA2, textbox[o->oUnk184 - 2]) != 0)
+            if (obj_update_dialogue_unk2(2, 0, 0xA2, textbox[o->oHealth - 2]) != 0)
             {
-                if (--o->oUnk184 == 1)
+                if (--o->oHealth == 1)
                 {
                     o->oAction = WIGGLER_ACT_SHRINK;
-                    func_8029FE38();
+                    obj_become_intangible();
                 }
                 else
                 {
                     o->oAction = WIGGLER_ACT_WALK;
-                    o->oAngleYaw = o->oFaceAngleYaw;
+                    o->oMoveAngleYaw = o->oFaceAngleYaw;
                     
-                    if (o->oUnk184 == 2)
+                    if (o->oHealth == 2)
                     {
                         PlaySound2(0x502F6081);
                         o->oForwardVel = 10.0f;
@@ -280,7 +280,7 @@ static void wiggler_act_knockback(void)
     if (forward_vel_approach(0.0f, 1.0f) && o->oFaceAnglePitch == 0)
     {
         o->oAction = WIGGLER_ACT_WALK;
-        o->oAngleYaw = o->oFaceAngleYaw;
+        o->oMoveAngleYaw = o->oFaceAngleYaw;
     }
 
     func_802FA888(&sWigglerHitbox, o->oAction);
@@ -301,7 +301,7 @@ static void wiggler_act_shrink(void)
             o->oAction = WIGGLER_ACT_FALL_THROUGH_FLOOR;
         }
 
-        ScaleObject(o->header.gfx.scale[0]);
+        obj_scale(o->header.gfx.scale[0]);
     }
 }
 
@@ -323,7 +323,7 @@ static void wiggler_act_fall_through_floor(void)
             o->oFaceAnglePitch = func_802F86C0();
         }
 
-        MoveObj2();
+        obj_move_xz_using_fvel_and_gravity();
     }
 }
 
@@ -354,14 +354,14 @@ void bhv_wiggler_update(void)
             func_8029ED98(0, o->oWigglerUnkFC);
             if (o->oWigglerUnkFC != 0.0f)
             {
-                func_802F9378(0, 13, o->oUnk184 >= 4 ? 0x50712081 : 0x505C4081);
+                func_802F9378(0, 13, o->oHealth >= 4 ? 0x50712081 : 0x505C4081);
             }
             else
             {
                 func_8029F6F0();
             }
 
-            MoveRelated();
+            obj_update_floor_and_walls();
             switch (o->oAction)
             {
             case WIGGLER_ACT_WALK:               wiggler_act_walk();               break;
@@ -371,7 +371,7 @@ void bhv_wiggler_update(void)
             case WIGGLER_ACT_FALL_THROUGH_FLOOR: wiggler_act_fall_through_floor(); break;
             }
 
-            MoveObj(-78);
+            obj_move_standard(-78);
         }
 
         o->oWigglerSegments[0].posX = o->oPosX;

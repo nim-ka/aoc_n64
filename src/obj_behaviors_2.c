@@ -105,6 +105,12 @@ extern u8 bitfs_seg7_collision_070157E0[];
 extern u8 bitfs_seg7_collision_07015124[];
 extern u32 spiny_seg5_anims_05016EAC[];
 
+extern s16 D_8035FEEA;
+
+extern f32 D_803600F8;
+extern f32 D_803600FC;
+extern f32 D_80360100;
+
 #define TTC_SPEED_SLOW    0
 #define TTC_SPEED_FAST    1
 #define TTC_SPEED_RANDOM  2
@@ -114,238 +120,9 @@ extern u32 spiny_seg5_anims_05016EAC[];
 #define o gCurrentObject
 
 
+void koopa_attacked(s32 attackType);
 void wiggler_jumped_on(void);
 void goomba_soft_attacked(void);
-
-
-struct KoopaTheQuickData
-{
-    /*0x00*/ s16 initText;
-    /*0x02*/ s16 unk02;
-    /*0x04*/ void *unk04;
-    /*0x08*/ Vec3s starPos;
-};
-
-struct GoombaProperties
-{
-    f32 baseSpeed;
-    s32 unk04;
-    s16 drawDistance;
-    s8 unk0A;
-};
-
-struct Struct80331910
-{
-    void *unk00;
-    void *unk04;
-    s16 unk08;
-};
-
-struct TTCPitBlockProps
-{
-    s16 speed;
-    s16 waitTime;
-};
-
-struct Struct80331A54
-{
-    void *unk00;
-    s16 unk04;
-};
-
-struct Struct80331B30
-{
-    s16 unk00;
-    s16 unk02;
-};
-
-struct RacingPenguinData
-{
-    s16 text;
-    f32 radius;
-    f32 height;
-};
-
-struct Struct80331C00
-{
-    s16 unk00;
-    s16 unk02;
-};
-
-struct Struct80331C38
-{
-    s16 unk00;
-    s16 unk02;
-};
-
-struct Struct80331C48
-{
-    s16 unk00;
-    s16 unk02;
-    s16 unk04;
-};
-
-struct TripletButterflyActivationData
-{
-    s32 model;
-    void *behavior;
-    f32 scale;
-};
-
-struct Struct80331874
-{
-    s8 unk01;
-    s8 unk03;
-    s8 unk04;
-    s8 unk05;
-    s8 unk06;
-    s8 unk0C;
-    u8 filler00[0x14-0x00];
-};
-
-
-extern s16 D_8035FEEA;
-
-extern f32 D_803600F8;
-extern f32 D_803600FC;
-extern f32 D_80360100;
-
-
-struct ObjectHitbox D_80331730 =
-{
-    INTERACT_KOOPA,
-    0,
-    0,
-    0,
-    -1,
-    60,
-    40,
-    40,
-    30,
-};
-
-u8 D_80331740[] = { 2, 2, 3, 3, 2, 2 };
-u8 D_80331748[] = { 4, 4, 4, 4, 4, 4 };
-
-static struct KoopaTheQuickData sKoopaTheQuickData[] =
-{
-    { 5, 7, bob_seg7_trajectory_koopa, {3030, 4500, 60936} },
-    { 9, 31, thi_seg7_trajectory_koopa, {7100, 64236, 59536} }
-};
-
-struct ObjectHitbox D_80331770 =
-{
-    INTERACT_BOUNCE_TOP,
-    10,
-    2,
-    0,
-    0,
-    40,
-    20,
-    20,
-    20,
-};
-
-u8 D_80331780[] = { 2, 2, 3, 3, 2, 2 };
-
-struct ObjectHitbox D_80331788 =
-{
-    INTERACT_HIT_FROM_BELOW,
-    0,
-    1,
-    0,
-    1,
-    100,
-    80,
-    70,
-    70,
-};
-
-struct ObjectHitbox sFlyGuyHitbox =
-{
-    INTERACT_BOUNCE_TOP,
-    0,
-    2,
-    0,
-    2,
-    70,
-    60,
-    40,
-    50,
-};
-
-s16 D_803317A8[] = { 0x1000, 0xE000, 0x2000 };
-
-struct ObjectHitbox sGoombaHitbox =
-{
-    INTERACT_BOUNCE_TOP,
-    0,
-    1,
-    0,
-    1,
-    72,
-    50,
-    42,
-    40,
-};
-
-struct GoombaProperties sGoombaProperties[] =
-{
-    { 1.5f, 0x5060B081, 4000, 1 },
-    { 3.5f, 0x5061B081, 4000, 2 },
-    { 0.5f, 0x5060B081, 1500, 0 },
-};
-
-u8 sGoombaAttackHandlers[][6] =
-{
-    { 2, 2, 3, 3, 2, 2 },
-    { 7, 7, 3, 8, 7, 7 },
-};
-
-struct ObjectHitbox D_803317F0 =
-{
-    INTERACT_MR_BLIZZARD,
-    0,
-    3,
-    1,
-    0,
-    80,
-    160,
-    80,
-    160,
-};
-
-struct ObjectHitbox sWigglerBodyPartHitbox =
-{
-    INTERACT_BOUNCE_TOP,
-    0,
-    3,
-    99,
-    0,
-    20,
-    20,
-    20,
-    10,
-};
-
-struct ObjectHitbox sWigglerHitbox =
-{
-    INTERACT_BOUNCE_TOP,
-    0,
-    3,
-    4,
-    0,
-    60,
-    50,
-    30,
-    40,
-};
-
-u8 D_80331820[] = { 2, 2, 6, 6, 2, 2 };
-
-f32 sWigglerSpeeds[] = { 2.0f, 40.0f, 30.0f, 16.0f };
-
-// FILE: wiggler
 
 
 
@@ -364,25 +141,25 @@ s16 func_802F86C0(void)
 
 s32 func_802F870C(s16 arg0)
 {
-    s32 val04 = CreateMessageBox(0x02, 0x11, 0xA3, arg0);
+    s32 val04 = obj_update_dialogue_unk2(0x02, 0x11, 0xA3, arg0);
     if (val04 == 2)
     {
         func_802573C8(0);
-        func_802A4CC0();
+        disable_time_stop_including_mario();
     }
     return val04;
 }
 
 void func_802F8770(f32 arg0)
 {
-    o->oPosX = o->oHomeX + arg0 * coss(o->oAngleYaw);
-    o->oPosZ = o->oHomeZ + arg0 * sins(o->oAngleYaw);
+    o->oPosX = o->oHomeX + arg0 * coss(o->oMoveAngleYaw);
+    o->oPosZ = o->oHomeZ + arg0 * sins(o->oMoveAngleYaw);
 }
 
 s32 func_802F87E0(f32 arg0, s16 arg1)
 {
     if (o->oDistanceToMario < arg0 &&
-        abs_angle_diff(o->oAngleYaw, o->oAngleToMario) < arg1)
+        abs_angle_diff(o->oMoveAngleYaw, o->oAngleToMario) < arg1)
     {
         return TRUE;
     }
@@ -575,8 +352,8 @@ void func_802F8D78(f32 arg0, f32 arg1)
 void func_802F90A8(s16 arg0, s16 arg1)
 {
     if (o->oMoveFlags & 0x00000200)
-        arg0 = func_802A2AC0();
-    func_8029DE70(arg0, arg1);
+        arg0 = obj_reflect_move_angle_off_wall();
+    obj_rotate_yaw_toward(arg0, arg1);
 }
 
 s16 func_802F9100(f32 arg0)
@@ -586,8 +363,8 @@ s16 func_802F9100(f32 arg0)
 
 void func_802F9148(f32 arg0)
 {
-    o->oForwardVel = arg0 * coss(o->oAnglePitch);
-    o->oVelY = arg0 * -sins(o->oAnglePitch);
+    o->oForwardVel = arg0 * coss(o->oMoveAnglePitch);
+    o->oVelY = arg0 * -sins(o->oMoveAnglePitch);
 }
 
 s32 func_802F91AC(s16 *arg0, s16 arg1, s16 arg2)
@@ -641,7 +418,7 @@ s32 func_802F92B0(s32 arg0)
 s32 func_802F92EC(s32 arg0, s32 arg1)
 {
     func_8029ED38(arg0);
-    return check_anim_frame(arg1);
+    return obj_check_anim_frame(arg1);
 }
 
 s32 func_802F932C(s32 arg0)
@@ -654,16 +431,18 @@ s32 func_802F932C(s32 arg0)
     return FALSE;
 }
 
-s32 func_802F9378(s8 arg0, s8 arg1, u32 arg2)
+s32 func_802F9378(s8 arg0, s8 arg1, u32 sound)
 {
     s32 val04;
 
     if ((val04 = o->header.gfx.unk38.animAccel / 0x10000) <= 0)
+    {
         val04 = 1;
+    }
 
     if (func_8029F8D4(arg0, val04) || func_8029F8D4(arg1, val04))
     {
-        PlaySound2(arg2);
+        PlaySound2(sound);
         return TRUE;
     }
 
@@ -708,9 +487,9 @@ s32 y_vel_approach(f32 target, f32 delta)
 
 s32 func_802F95B0(s16 target, s16 delta)
 {
-    o->oAnglePitch = approach_target_angle(o->oAnglePitch, target, delta);
+    o->oMoveAnglePitch = approach_s16_symmetric(o->oMoveAnglePitch, target, delta);
 
-    if ((s16)o->oAnglePitch == target)
+    if ((s16)o->oMoveAnglePitch == target)
         return TRUE;
     
     return FALSE;
@@ -719,7 +498,7 @@ s32 func_802F95B0(s16 target, s16 delta)
 s32 face_pitch_approach(s16 targetPitch, s16 deltaPitch)
 {
     o->oFaceAnglePitch =
-        approach_target_angle(o->oFaceAnglePitch, targetPitch, deltaPitch);
+        approach_s16_symmetric(o->oFaceAnglePitch, targetPitch, deltaPitch);
 
     if ((s16)o->oFaceAnglePitch == targetPitch)
         return TRUE;
@@ -730,7 +509,7 @@ s32 face_pitch_approach(s16 targetPitch, s16 deltaPitch)
 s32 face_yaw_approach(s16 targetYaw, s16 deltaYaw)
 {
     o->oFaceAngleYaw =
-        approach_target_angle(o->oFaceAngleYaw, targetYaw, deltaYaw);
+        approach_s16_symmetric(o->oFaceAngleYaw, targetYaw, deltaYaw);
 
     if ((s16)o->oFaceAngleYaw == targetYaw)
         return TRUE;
@@ -741,7 +520,7 @@ s32 face_yaw_approach(s16 targetYaw, s16 deltaYaw)
 s32 face_roll_approach(s16 targetRoll, s16 deltaRoll)
 {
     o->oFaceAngleRoll =
-        approach_target_angle(o->oFaceAngleRoll, targetRoll, deltaRoll);
+        approach_s16_symmetric(o->oFaceAngleRoll, targetRoll, deltaRoll);
 
     if ((s16)o->oFaceAngleRoll == targetRoll)
         return TRUE;
@@ -754,18 +533,18 @@ s32 func_802F9780(s16 *arg0, s32 *arg1, s16 arg2, f32 arg3, s16 arg4, s16 arg5, 
     s16 val06;
     s16 val04 = (s16)(*arg1);
 
-    *arg0 = approach_target_angle(*arg0, (arg2 - val04) * arg3, arg4);
-    val06 = func_802A2ECC(*arg0);
+    *arg0 = approach_s16_symmetric(*arg0, (arg2 - val04) * arg3, arg4);
+    val06 = absi(*arg0);
 
     func_802F91AC(&val06, arg5, arg6);
-    *arg1 = approach_target_angle(*arg1, arg2, val06);
+    *arg1 = approach_s16_symmetric(*arg1, arg2, val06);
 
     return (s16)(*arg1) == arg2;
 }
 
 void func_802F9850(s16 arg0, s16 arg1, s16 arg2)
 {
-    s16 val06 = o->oAngleYaw - arg0;
+    s16 val06 = o->oMoveAngleYaw - arg0;
     func_802F91AC(&val06, -arg1, arg1);
     face_roll_approach(val06, arg2);
 }
@@ -782,7 +561,7 @@ s16 random_mod_offset(s16 base, s16 step, s16 mod)
 
 s16 random_fixed_turn(s16 delta)
 {
-    return o->oAngleYaw + (s16)RandomSign() * delta;
+    return o->oMoveAngleYaw + (s16)RandomSign() * delta;
 }
 
 /**
@@ -892,9 +671,9 @@ s32 resolve_obj_collisions(s32 *arg0)
             otherObject->oPosX = newCenterX + otherRadius * coss(angle);
             otherObject->oPosZ = newCenterZ + otherRadius * sins(angle);
             
-            if (arg0 != NULL && abs_angle_diff(o->oAngleYaw, angle) < 0x4000)
+            if (arg0 != NULL && abs_angle_diff(o->oMoveAngleYaw, angle) < 0x4000)
             {
-                *arg0 = (s16)(angle - o->oAngleYaw + angle + 0x8000);
+                *arg0 = (s16)(angle - o->oMoveAngleYaw + angle + 0x8000);
                 return TRUE;
             }
         }
@@ -907,11 +686,11 @@ s32 func_802F9F6C(s32 *arg0)
 {
     if (o->oMoveFlags & 0x00000200)
     {
-        *arg0 = func_802A2AC0();
+        *arg0 = obj_reflect_move_angle_off_wall();
     }
     else if (o->oMoveFlags & 0x00000400)
     {
-        *arg0 = (s16)(o->oAngleYaw + 0x8000);
+        *arg0 = (s16)(o->oMoveAngleYaw + 0x8000);
     }
     else if (!resolve_obj_collisions(arg0))
     {
@@ -925,7 +704,7 @@ s32 resolve_collisions_and_turn(s16 targetYaw, s16 deltaYaw)
 {
     resolve_obj_collisions(NULL);
     
-    if (func_8029DE70(targetYaw, deltaYaw))
+    if (obj_rotate_yaw_toward(targetYaw, deltaYaw))
         return FALSE;
     else
         return TRUE;
@@ -933,26 +712,35 @@ s32 resolve_collisions_and_turn(s16 targetYaw, s16 deltaYaw)
 
 void func_802FA078(void)
 {
-    if (o->oUnk184 <= 0)
+    if (o->oHealth <= 0)
     {
-        if (o->oUnk1C4 == 0)
-            func_802A3034(0x502C8081);
-        else if (o->oUnk1C4 > 0)
-            func_802A3034(o->oUnk1C4);
-        else
-            func_802A3004();
-
-        if (o->oUnk198 < 0)
-            SpawnObj(o, 0x0076, beh_mr_i_blue_coin);
-        else
-            func_802A1410(o, o->oUnk198, 20.0f);
-
-        func_802A1410(o, o->oUnk198, 20.0f);
-
-        if (o->oUnk184 < 0)
+        if (o->oDeathSound == 0)
         {
-            UnHideObject();
-            func_8029FE38();
+            func_802A3034(0x502C8081);
+        }
+        else if (o->oDeathSound > 0)
+        {
+            func_802A3034(o->oDeathSound);
+        }
+        else
+        {
+            func_802A3004();
+        }
+
+        if (o->oNumLootCoins < 0)
+        {
+            SpawnObj(o, 0x0076, beh_mr_i_blue_coin);
+        }
+        else
+        {
+            spawn_object_loot_yellow_coins(o, o->oNumLootCoins, 20.0f);
+        }
+        spawn_object_loot_yellow_coins(o, o->oNumLootCoins, 20.0f);
+
+        if (o->oHealth < 0)
+        {
+            obj_hide();
+            obj_become_intangible();
         }
         else
         {
@@ -963,7 +751,7 @@ void func_802FA078(void)
 
 void Unknown802FA1A4(void)
 {
-    o->oUnk184 = 0;
+    o->oHealth = 0;
     func_802FA078();
 }
 
@@ -986,13 +774,13 @@ void func_802FA1D8(s32 arg0)
     }
 
     o->oFlags &= ~0x00000008;
-    o->oAngleYaw = func_8029DF18(gMarioObject, o);
+    o->oMoveAngleYaw = angle_to_object(gMarioObject, o);
 }
 
 void func_802FA2F0(void)
 {
     PlaySound2(0x50308081);
-    o->oAction = 102;
+    o->oAction = OBJ_ACT_SQUISHED;
 }
 
 s32 func_802FA32C(void)
@@ -1009,7 +797,7 @@ s32 func_802FA32C(void)
     {
         if (o->oMoveFlags & 0x00000008)
         {
-            if (o->oUnk128 < 200.0f)
+            if (o->oWallHitboxRadius < 200.0f)
                 PlaySound2(0x50324081);
             else
                 PlaySound2(0x5029A081);
@@ -1021,65 +809,65 @@ s32 func_802FA32C(void)
     return TRUE;
 }
 
-s32 func_802FA468(struct ObjectHitbox *hitbox, s32 arg1, u8 *attackHandlers)
+s32 func_802FA468(struct ObjectHitbox *hitbox, s32 attackedMarioAction, u8 *attackHandlers)
 {
     s32 attackType;
 
-    func_802A2CFC(o, hitbox);
+    set_object_hitbox(o, hitbox);
 
     if (func_802FA32C())
     {
         return 1;
     }
-    else if (o->oInteractStatus & 0x00008000)
+    else if (o->oInteractStatus & INT_STATUS_INTERACTED)
     {
-        if (o->oInteractStatus & 0x00002000)
+        if (o->oInteractStatus & INT_STATUS_ATTACKED_MARIO)
         {
-            if (o->oAction != arg1)
+            if (o->oAction != attackedMarioAction)
             {
-                o->oAction = arg1;
+                o->oAction = attackedMarioAction;
                 o->oTimer = 0;
             }
         }
         else
         {
-            attackType = o->oInteractStatus & 0x000000FF;
+            attackType = o->oInteractStatus & INT_STATUS_ATTACK_MASK;
 
             switch (attackHandlers[attackType - 1])
             {
-            case 0:
+            case ATTACK_HANDLER_NOP:
                 break;
 
-            case 1:
+            case ATTACK_HANDLER_UNK1:
                 func_802FA078();
                 break;
 
-            case 2:
+            case ATTACK_HANDLER_UNK2:
                 func_802FA1D8(attackType);
                 break;
 
-            case 3:
+            case ATTACK_HANDLER_UNK3:
                 func_802FA2F0();
                 break;
 
-            case 4:
-                func_802FB364(attackType);
+            case ATTACK_HANDLER_UNK4:
+                koopa_attacked(attackType);
                 break;
 
-            case 5:
+            case ATTACK_HANDLER_UNK5:
                 obj_set_speed_to_zero();
                 break;
 
-            case 6:
+            case ATTACK_HANDLER_UNK6:
                 wiggler_jumped_on();
                 break;
 
-            case 7:
+            case ATTACK_HANDLER_UNK7:
                 goomba_soft_attacked();
                 break;
 
-            case 8:
-                o->oUnk198 = -1;
+            case ATTACK_HANDLER_UNK8:
+                o->oNumLootCoins = -1;
                 func_802FA2F0();
                 break;
             }
@@ -1095,7 +883,7 @@ s32 func_802FA468(struct ObjectHitbox *hitbox, s32 arg1, u8 *attackHandlers)
 
 void func_802FA638(UNUSED f32 arg0)
 {
-    MoveRelated();
+    obj_update_floor_and_walls();
 
     if (o->header.gfx.unk38.curAnim != NULL)
     {
@@ -1107,19 +895,21 @@ void func_802FA638(UNUSED f32 arg0)
         func_802FA078();
     }
 
-    MoveObj(-78);
+    obj_move_standard(-78);
 }
 
 void func_802FA6C8(f32 arg0)
 {
-    f32 val04 = arg0 * 0.3f;
+    f32 targetScaleY = arg0 * 0.3f;
 
-    MoveRelated();
+    obj_update_floor_and_walls();
     
     if (o->header.gfx.unk38.curAnim != NULL)
+    {
         func_8029F728();
+    }
 
-    if (approach_f32_2(&o->header.gfx.scale[1], val04, arg0 * 0.14f))
+    if (approach_f32_2(&o->header.gfx.scale[1], targetScaleY, arg0 * 0.14f))
     {
         o->header.gfx.scale[0] = o->header.gfx.scale[2] =
             arg0 * 2.0f - o->header.gfx.scale[1];
@@ -1129,7 +919,7 @@ void func_802FA6C8(f32 arg0)
     }
 
     o->oForwardVel = 0.0f;
-    MoveObj(-78);
+    obj_move_standard(-78);
 }
 
 s32 func_802FA7CC(f32 arg0)
@@ -1140,42 +930,42 @@ s32 func_802FA7CC(f32 arg0)
     }
     else
     {
-        func_8029FE38();
+        obj_become_intangible();
 
         switch (o->oAction)
         {
-        case 100:
-        case 101: func_802FA638(arg0); break;
-        case 102: func_802FA6C8(arg0); break;
+        case OBJ_ACT_LAVA_DEATH:
+        case OBJ_ACT_DEATH_PLANE_DEATH: func_802FA638(arg0); break;
+        case OBJ_ACT_SQUISHED: func_802FA6C8(arg0); break;
         }
 
         return 0;
     }
 }
 
-s32 func_802FA888(struct ObjectHitbox *arg0, s32 arg1)
+s32 func_802FA888(struct ObjectHitbox *hitbox, s32 attackedMarioAction)
 {
     s32 attackType;
 
-    func_802A2CFC(o, arg0);
+    set_object_hitbox(o, hitbox);
 
     if (func_802FA32C())
     {
         return 1;
     }
-    else if (o->oInteractStatus & 0x00008000)
+    else if (o->oInteractStatus & INT_STATUS_INTERACTED)
     {
-        if (o->oInteractStatus & 0x00002000)
+        if (o->oInteractStatus & INT_STATUS_ATTACKED_MARIO)
         {
-            if (o->oAction != arg1)
+            if (o->oAction != attackedMarioAction)
             {
-                o->oAction = arg1;
+                o->oAction = attackedMarioAction;
                 o->oTimer = 0;
             }
         }
         else
         {
-            attackType = o->oInteractStatus & 0x000000FF;
+            attackType = o->oInteractStatus & INT_STATUS_ATTACK_MASK;
             func_802FA078();
             o->oInteractStatus = 0;
             return attackType;
@@ -1188,7 +978,7 @@ s32 func_802FA888(struct ObjectHitbox *arg0, s32 arg1)
 
 s32 func_802FA990(s32 arg0)
 {
-    MoveRelated();
+    obj_update_floor_and_walls();
     func_8029F728();
 
     if (o->oTimer > 30)
@@ -1197,7 +987,7 @@ s32 func_802FA990(s32 arg0)
         return TRUE;
     }
 
-    MoveObj(-78);
+    obj_move_standard(-78);
     return FALSE;
 }
 
@@ -1234,6 +1024,202 @@ void treat_far_home_as_mario(f32 threshold)
 
 // TODO: Finish
 #include "behaviors/koopa.c.inc"
+
+
+// DATA BEGIN
+
+struct GoombaProperties
+{
+    f32 baseSpeed;
+    s32 unk04;
+    s16 drawDistance;
+    s8 unk0A;
+};
+
+struct Struct80331910
+{
+    void *unk00;
+    void *unk04;
+    s16 unk08;
+};
+
+struct TTCPitBlockProps
+{
+    s16 speed;
+    s16 waitTime;
+};
+
+struct Struct80331A54
+{
+    void *unk00;
+    s16 unk04;
+};
+
+struct Struct80331B30
+{
+    s16 unk00;
+    s16 unk02;
+};
+
+struct RacingPenguinData
+{
+    s16 text;
+    f32 radius;
+    f32 height;
+};
+
+struct Struct80331C00
+{
+    s16 unk00;
+    s16 unk02;
+};
+
+struct Struct80331C38
+{
+    s16 unk00;
+    s16 unk02;
+};
+
+struct Struct80331C48
+{
+    s16 unk00;
+    s16 unk02;
+    s16 unk04;
+};
+
+struct TripletButterflyActivationData
+{
+    s32 model;
+    void *behavior;
+    f32 scale;
+};
+
+struct Struct80331874
+{
+    s8 unk01;
+    s8 unk03;
+    s8 unk04;
+    s8 unk05;
+    s8 unk06;
+    s8 unk0C;
+    u8 filler00[0x14-0x00];
+};
+
+struct ObjectHitbox D_80331770 =
+{
+    INTERACT_BOUNCE_TOP,
+    10,
+    2,
+    0,
+    0,
+    40,
+    20,
+    20,
+    20,
+};
+
+u8 D_80331780[] = { 2, 2, 3, 3, 2, 2 };
+
+struct ObjectHitbox D_80331788 =
+{
+    INTERACT_HIT_FROM_BELOW,
+    0,
+    1,
+    0,
+    1,
+    100,
+    80,
+    70,
+    70,
+};
+
+struct ObjectHitbox sFlyGuyHitbox =
+{
+    INTERACT_BOUNCE_TOP,
+    0,
+    2,
+    0,
+    2,
+    70,
+    60,
+    40,
+    50,
+};
+
+s16 D_803317A8[] = { 0x1000, 0xE000, 0x2000 };
+
+struct ObjectHitbox sGoombaHitbox =
+{
+    INTERACT_BOUNCE_TOP,
+    0,
+    1,
+    0,
+    1,
+    72,
+    50,
+    42,
+    40,
+};
+
+struct GoombaProperties sGoombaProperties[] =
+{
+    { 1.5f, 0x5060B081, 4000, 1 },
+    { 3.5f, 0x5061B081, 4000, 2 },
+    { 0.5f, 0x5060B081, 1500, 0 },
+};
+
+u8 sGoombaAttackHandlers[][6] =
+{
+    { 2, 2, 3, 3, 2, 2 },
+    { 7, 7, 3, 8, 7, 7 },
+};
+
+struct ObjectHitbox D_803317F0 =
+{
+    INTERACT_MR_BLIZZARD,
+    0,
+    3,
+    1,
+    0,
+    80,
+    160,
+    80,
+    160,
+};
+
+struct ObjectHitbox sWigglerBodyPartHitbox =
+{
+    INTERACT_BOUNCE_TOP,
+    0,
+    3,
+    99,
+    0,
+    20,
+    20,
+    20,
+    10,
+};
+
+struct ObjectHitbox sWigglerHitbox =
+{
+    INTERACT_BOUNCE_TOP,
+    0,
+    3,
+    4,
+    0,
+    60,
+    50,
+    30,
+    40,
+};
+
+u8 D_80331820[] = { 2, 2, 6, 6, 2, 2 };
+
+f32 sWigglerSpeeds[] = { 2.0f, 40.0f, 30.0f, 16.0f };
+
+// DATA END
+
+
 // TODO: Finish
 #include "behaviors/pokey.c.inc"
 #include "behaviors/swoop.c.inc"
@@ -1890,7 +1876,7 @@ void func_80301908(void)
     if (o->oDistanceToMario < 2000.0f)
     {
         func_8029E880(1, 0, 0, 0, 2.0f, o, 0x8E, beh_fwoosh_blowing_wind);
-        func_8029EF18();
+        obj_unhide();
         o->oAction = 1;
     }
 }
@@ -1949,7 +1935,7 @@ void func_80301A70(void)
 
     val0A = (s16)(val04 * 2.0f);
     func_802F91AC(&val0A, 200, 4000);
-    func_8029DE70(o->oAngleToMario, val0A);
+    obj_rotate_yaw_toward(o->oAngleToMario, val0A);
 }
 
 void func_80301BD4(void)
@@ -1973,7 +1959,7 @@ void func_80301BD4(void)
             val04->oAction = SPINY_ACT_HELD_BY_LAKITU;
             func_8029EE20(val04, spiny_egg_seg5_anims_050157E4, 0);
             o->oEvilLakituNumSpinies += 1;
-            o->oUnk150 = 1;
+            o->oSubAction = 1;
             o->oEvilLakituUnkFC = 30;
         }
     }
@@ -1991,7 +1977,7 @@ void func_80301D00(void)
         (o->oDistanceToMario < 500.0f &&
             abs_angle_diff(o->oAngleToMario, o->oFaceAngleYaw) < 0x2000))
     {
-        o->oUnk150 = 2;
+        o->oSubAction = 2;
         o->oEvilLakituUnk100 = 20;
     }
 }
@@ -2006,7 +1992,7 @@ void func_80301DD4(void)
 
     if (func_8029F788())
     {
-        o->oUnk150 = 0;
+        o->oSubAction = 0;
         o->oEvilLakituUnkFC = random_linear_offset(100, 100);
     }
 }
@@ -2014,24 +2000,24 @@ void func_80301DD4(void)
 void func_80301E54(void)
 {
     PlaySound(0x60028001);
-    MoveRelated();
+    obj_update_floor_and_walls();
 
     func_80301A70();
     if (o->oMoveFlags & 0x00000200)
     {
-        o->oAngleYaw = func_802A2AC0();
+        o->oMoveAngleYaw = obj_reflect_move_angle_off_wall();
     }
 
     update_blinking(&o->oEvilLakituBlinkTimer, 20, 40, 4);
 
-    switch (o->oUnk150)
+    switch (o->oSubAction)
     {
     case 0: func_80301BD4(); break;
     case 1: func_80301D00(); break;
     case 2: func_80301DD4(); break;
     }
 
-    MoveObj(78);
+    obj_move_standard(78);
     if (func_802FA888(&D_8033185C, o->oAction))
     {
         o->prevObj = NULL;
@@ -2066,7 +2052,7 @@ void func_80301FF8(void)
     if (o->oBehParams2ndByte == 0)
     {
         spawn_obj_adv(5, 0, 0, 0, o, 0x57, beh_fwoosh_face);
-        ScaleObject(3.0f);
+        obj_scale(3.0f);
 
         o->oFwooshSpawnerUnkF4 = o->oPosX;
         o->oFwooshSpawnerUnkF8 = o->oPosY;
@@ -2079,7 +2065,7 @@ void func_80302104(void)
 {
     if (o->oDistanceToMario < 2000.0f)
     {
-        func_8029EF18();
+        obj_unhide();
         o->oAction = 0;
     }
 }
@@ -2133,7 +2119,7 @@ void func_8030215C(void)
             o->oFwooshSpawnerUnkF8 = o->oHomeY;
         }
 
-        ScaleObject(o->header.gfx.scale[0]);
+        obj_scale(o->header.gfx.scale[0]);
     }
 }
 
@@ -2146,7 +2132,7 @@ void func_803023E8(void)
 
     if (o->parentObj != o)
     {
-        if (o->parentObj->active == 0)
+        if (o->parentObj->activeFlags == 0)
         {
             o->oAction = 2;
         }
@@ -2155,7 +2141,7 @@ void func_803023E8(void)
             o->oFwooshSpawnerUnkF4 = o->parentObj->oPosX;
             o->oFwooshSpawnerUnkF8 = o->parentObj->oPosY;
             o->oPosZ = o->parentObj->oPosZ;
-            o->oAngleYaw = o->parentObj->oFaceAngleYaw;
+            o->oMoveAngleYaw = o->parentObj->oFaceAngleYaw;
         }
     }
     else
@@ -2188,7 +2174,7 @@ void func_80302584(void)
     else
     {
         o->oAction = 3;
-        UnHideObject();
+        obj_hide();
         obj_set_pos_to_home();
     }
 }
@@ -2222,7 +2208,7 @@ void BehFwooshFaceLoop(void)
         val0A = o->parentObj->oFaceAngleYaw + 0x3333 * o->oBehParams2ndByte;
         val08 = 0x800 * gGlobalTimer + 0x4000 * o->oBehParams2ndByte;
 
-        ScaleObject(val0C);
+        obj_scale(val0C);
 
         if (o->oBehParams2ndByte == 5 && val0C > 2.0f)
         {
@@ -2278,7 +2264,7 @@ void func_80302A58(void)
         o->oPosY = 2400.0f;
         o->oPosZ = -2400.0f;
 
-        o->oAnglePitch = 0x4000;
+        o->oMoveAnglePitch = 0x4000;
         o->oNiceLakituUnkF8 = 60.0f;
         o->oNiceLakituUnkFC = 1000.0f;
 
@@ -2314,14 +2300,14 @@ void func_80302B64(void)
         {
             if (o->oDistanceToMario > 5000.0f)
             {
-                val06 = o->oAnglePitch;
+                val06 = o->oMoveAnglePitch;
                 val04 = o->oAngleToMario;
             }
             else
             {
                 val02 = 0x4000 -
                     atan2s(o->oNiceLakituUnkFC, o->oDistanceToMario - o->oNiceLakituUnkFC);
-                if ((s16)(o->oAngleYaw - o->oAngleToMario) < 0)
+                if ((s16)(o->oMoveAngleYaw - o->oAngleToMario) < 0)
                 {
                     val02 = -val02;
                 }
@@ -2349,25 +2335,25 @@ void func_80302B64(void)
                 }
             }
         }
-        else if (CreateMessageBox(2, 1, 0xA2, 0x22) != 0)
+        else if (obj_update_dialogue_unk2(2, 1, 0xA2, 0x22) != 0)
         {
             o->oNiceLakituUnk100 = 1;
         }
     }
 
-    o->oNiceLakituUnk1AC = approach_target_angle(o->oNiceLakituUnk1AC, 2000, 400);
+    o->oNiceLakituUnk1AC = approach_s16_symmetric(o->oNiceLakituUnk1AC, 2000, 400);
     func_802F95B0(val06, o->oNiceLakituUnk1AC);
-    o->oNiceLakituUnk1AE = approach_target_angle(o->oNiceLakituUnk1AE, 2000, 100);
-    func_8029DE70(val04, o->oNiceLakituUnk1AE);
+    o->oNiceLakituUnk1AE = approach_s16_symmetric(o->oNiceLakituUnk1AE, 2000, 100);
+    obj_rotate_yaw_toward(val04, o->oNiceLakituUnk1AE);
     func_802F9148(o->oNiceLakituUnkF8);
-    MoveObj2();
+    obj_move_xz_using_fvel_and_gravity();
 }
 
 void BehLakituLoop(void)
 {
     f32 val0C;
 
-    if (!(o->active & 0x00000008))
+    if (!(o->activeFlags & 0x00000008))
     {
         update_blinking(&o->oNiceLakituBlinkTimer, 20, 40, 4);
         if (o->oBehParams2ndByte != 0)
@@ -2383,11 +2369,11 @@ void BehLakituLoop(void)
             val0C = (f32)0x875C3D / 0x800 - D_8033B328[3];
             if (D_8033B328[3] < 1700.0f || val0C < 0.0f)
             {
-                UnHideObject();
+                obj_hide();
             }
             else
             {
-                func_8029EF18();
+                obj_unhide();
 
                 o->oPosX = D_8033B328[3];
                 o->oPosY = D_8033B328[4];
@@ -2415,12 +2401,12 @@ struct Object *func_803030BC(void *arg0)
     val0C = segmented_to_virtual(arg0);
     val04 = NULL;
 
-    val00 = &gObjectLists[func_8029F198(val0C)];
+    val00 = &gObjectLists[get_object_list_from_behavior(val0C)];
     
     val08 = (struct Object *)val00->next;
     while (val08 != (struct Object *)val00)
     {
-        if (val08->behavior == val0C && val08->active != 0)
+        if (val08->behavior == val0C && val08->activeFlags != 0)
         {
             val08->parentObj = val04;
             val04 = val08;
@@ -2534,7 +2520,7 @@ void func_803033F8(void)
         o->oPosZ = o->oMontyMoleUnkF4->oPosZ;
 
         o->oFaceAnglePitch = 0;
-        o->oAngleYaw = o->oMontyMoleUnkF4->oAngleToMario;
+        o->oMoveAngleYaw = o->oMontyMoleUnkF4->oAngleToMario;
 
         if (o->oDistanceToMario > 500.0f || val0C > 100.0f || RandomSign() < 0)
         {
@@ -2551,8 +2537,8 @@ void func_803033F8(void)
             func_80303390(0, 20);
         }
 
-        func_8029EF18();
-        func_8029FE58();
+        obj_unhide();
+        obj_become_tangible();
     }
 }
 
@@ -2578,7 +2564,7 @@ void func_803036C8(void)
     if (func_802F92B0(2))
     {
         if (o->oBehParams2ndByte != 0 &&
-            abs_angle_diff(o->oAngleToMario, o->oAngleYaw) < 0x4000 &&
+            abs_angle_diff(o->oAngleToMario, o->oMoveAngleYaw) < 0x4000 &&
             (val04 = SpawnObj(o, 0xA1, beh_monty_mole_rock)) != NULL)
         {
             o->prevObj = val04;
@@ -2633,7 +2619,7 @@ void func_80303930(void)
     o->oMontyMoleUnkF4->oMontyMoleHoleUnkF4 = 30;
     o->oAction = 0;
     o->oVelY = 0.0f;
-    func_8029FE38();
+    obj_become_intangible();
 }
 
 void func_8030398C(void)
@@ -2641,7 +2627,7 @@ void func_8030398C(void)
     func_8029ED38(1);
     if (o->oMoveFlags & 0x00000003)
     {
-        UnHideObject();
+        obj_hide();
         func_80303930();
     }
     else
@@ -2675,8 +2661,8 @@ void BehMontyMoleLoop(void)
     f32 val04;
     f32 val00;
 
-    o->oUnk1C4 = 0x50244081;
-    MoveRelated();
+    o->oDeathSound = 0x50244081;
+    obj_update_floor_and_walls();
 
     o->oMontyMoleUnkF8 = o->oPosY - o->oFloorHeight;
 
@@ -2723,7 +2709,7 @@ void BehMontyMoleLoop(void)
         o->prevObj = NULL;
     }
 
-    MoveObj(78);
+    obj_move_standard(78);
 }
 
 void func_80303D44(void)
@@ -2743,7 +2729,7 @@ void func_80303D44(void)
         }
 
         o->oAction = 1;
-        o->oAngleYaw = (s32)(o->parentObj->oAngleYaw + 500 - val04 * 0.1f);
+        o->oMoveAngleYaw = (s32)(o->parentObj->oMoveAngleYaw + 500 - val04 * 0.1f);
 
         o->oForwardVel = 40.0f;
         o->oVelY = val04 * 0.08f + 8.0f;
@@ -2754,13 +2740,13 @@ void func_80303D44(void)
 
 void func_80303E90(void)
 {
-    MoveRelated();
+    obj_update_floor_and_walls();
     if (o->oMoveFlags & 0x0000000B)
     {
         func_802A2B04(&D_803318A8);
         DeactivateObject(o);
     }
-    MoveObj(78);
+    obj_move_standard(78);
 }
 
 void BehMontyMoleRockLoop(void)
@@ -2803,9 +2789,9 @@ void BehFerrisWheelPlatformLoop(void)
     sp1A = o->parentObj->oFaceAngleRoll + o->oBehParams2ndByte * 0x4000;
     sp1C = 400.0f * coss(sp1A);
     
-    o->oPosX = o->parentObj->oPosX + sp1C * sins(o->parentObj->oAngleYaw) + 300.0f * coss(o->parentObj->oAngleYaw);
+    o->oPosX = o->parentObj->oPosX + sp1C * sins(o->parentObj->oMoveAngleYaw) + 300.0f * coss(o->parentObj->oMoveAngleYaw);
     o->oPosY = o->parentObj->oPosY + 400.0f * sins(sp1A);
-    o->oPosZ = o->parentObj->oPosZ + sp1C * coss(o->parentObj->oAngleYaw) + 300.0f * sins(o->parentObj->oAngleYaw);
+    o->oPosZ = o->parentObj->oPosZ + sp1C * coss(o->parentObj->oMoveAngleYaw) + 300.0f * sins(o->parentObj->oMoveAngleYaw);
 
     func_802F8854(1);
 }
@@ -2836,7 +2822,7 @@ void BehSlidingPlatform2Init(void)
         o->oBackAndForthPlatformUnk100 = 15.0f;
         if ((u16)(o->oBehParams >> 16) & 0x0040)
         {
-            o->oAngleYaw += 0x8000;
+            o->oMoveAngleYaw += 0x8000;
         }
     }
     else
@@ -2892,7 +2878,7 @@ void BehOctagonalPlatformRotatingLoop(void)
 
 void BehFloorSwitchPressAnimationInit(void)
 {
-    o->parentObj = func_8029F1E0(beh_purple_switch_staircase);
+    o->parentObj = obj_nearest_object_with_behavior(beh_purple_switch_staircase);
 }
 
 void BehFloorSwitchPressAnimationLoop(void)
@@ -2949,7 +2935,7 @@ void BehFloorSwitchPressAnimationLoop(void)
     o->collisionData =
         segmented_to_virtual(D_80331A54[o->oBehParams2ndByte][o->oFloorSwitchPressAnimationUnkF8 / 2].unk00);
 
-    SetModel(D_80331A54[o->oBehParams2ndByte][o->oFloorSwitchPressAnimationUnkF8 / 2].unk04);
+    obj_set_model(D_80331A54[o->oBehParams2ndByte][o->oFloorSwitchPressAnimationUnkF8 / 2].unk04);
 }
 
 #include "behaviors/activated_bf_plat.c.inc"
@@ -2965,9 +2951,9 @@ void BehCannonBarrelBubblesLoop(void)
     }
     else
     {
-        o->oAngleYaw = o->parentObj->oFaceAngleYaw;
-        o->oAnglePitch = o->parentObj->oAnglePitch + 0x4000;
-        o->oFaceAnglePitch = o->parentObj->oAnglePitch;
+        o->oMoveAngleYaw = o->parentObj->oFaceAngleYaw;
+        o->oMoveAnglePitch = o->parentObj->oMoveAnglePitch + 0x4000;
+        o->oFaceAnglePitch = o->parentObj->oMoveAnglePitch;
 
         if ((o->oCannonBarrelBubblesUnkF4 += o->oForwardVel) > 0.0f)
         {
@@ -2977,7 +2963,7 @@ void BehCannonBarrelBubblesLoop(void)
         else
         {
             o->oCannonBarrelBubblesUnkF4 = 0.0f;
-            CopyObjPosition(o, o->parentObj);
+            copy_object_pos(o, o->parentObj);
 
             // check this
             if (o->parentObj->oCannonUnkF4 != 0)
@@ -3009,10 +2995,10 @@ void func_80308DF0(void)
     if (o->oDistanceToMario < 2000.0f)
     {
         SpawnObj(o, 0x7F, beh_cannon_barrel_bubbles);
-        func_8029EF18();
+        obj_unhide();
 
         o->oAction = 1;
-        o->oAnglePitch = o->oCannonUnkFC = 0x1C00;
+        o->oMoveAnglePitch = o->oCannonUnkFC = 0x1C00;
     }
 }
 
@@ -3044,7 +3030,7 @@ void func_80308E84(void)
                     PlaySound2(0x50254081);
                     o->oCannonUnkF4 = 70;
                     o->oCannonUnkFC = 0x1000 + 0x400 * (RandomU16() & 0x3);
-                    o->oCannonUnk100 = -0x2000 + o->oAngleYaw + 0x1000 * (RandomU16() % 5);
+                    o->oCannonUnk100 = -0x2000 + o->oMoveAngleYaw + 0x1000 * (RandomU16() % 5);
                     o->oCannonUnkF8 = 60;
                 }
             }
@@ -3054,13 +3040,13 @@ void func_80308E84(void)
 
 void func_80309004(void)
 {
-    UnHideObject();
+    obj_hide();
     o->oAction = 0;
 }
 
 void BehCannonLoop(void)
 {
-    func_802A3164(220.0f, 300.0f);
+    obj_push_mario_away_from_cylinder(220.0f, 300.0f);
 
     switch (o->oAction)
     {
@@ -3090,7 +3076,7 @@ void BehUnagiInit(void)
         o->oAction = 3;
         o->oAnimState = 1;
 
-        o->oUnagiUnk1B0 = o->oAngleYaw;
+        o->oUnagiUnk1B0 = o->oMoveAngleYaw;
     }
 
     o->oUnagiUnk100 = o->oUnagiUnkFC;
@@ -3098,7 +3084,7 @@ void BehUnagiInit(void)
 
 void func_803091C4(void)
 {
-    if (o->oDistanceToMario > 4500.0f && o->oUnk150 != 0)
+    if (o->oDistanceToMario > 4500.0f && o->oSubAction != 0)
     {
         o->oAction = 1;
         o->oPosX = o->oUnagiUnkFC[1];
@@ -3107,7 +3093,7 @@ void func_803091C4(void)
     }
     else if (o->oUnagiUnk1AC < 700.0f)
     {
-        o->oUnk150 = 1;
+        o->oSubAction = 1;
     }
 }
 
@@ -3115,7 +3101,7 @@ void func_803092AC(s32 arg0)
 {
     if (o->oSoundStateID == 3)
     {
-        if (check_anim_frame(30))
+        if (obj_check_anim_frame(30))
         {
             o->oForwardVel = 40.0f;
         }
@@ -3135,20 +3121,20 @@ void func_803092AC(s32 arg0)
         }
     }
 
-    if (check_anim_frame(6))
+    if (obj_check_anim_frame(6))
     {
         PlaySound2(0x30090081);
     }
 
-    if (func_802A24B4(0) == -1)
+    if (obj_follow_path(0) == -1)
     {
         o->oAction = arg0;
     }
 
-    o->oAnglePitch = o->oFaceAnglePitch =
-        approach_target_angle(o->oAnglePitch, o->oUnagiUnk108, 50);
+    o->oMoveAnglePitch = o->oFaceAnglePitch =
+        approach_s16_symmetric(o->oMoveAnglePitch, o->oUnagiUnk108, 50);
 
-    func_8029DE70(o->oUnagiUnk10C, 120);
+    obj_rotate_yaw_toward(o->oUnagiUnk10C, 120);
     func_802F9850(o->oUnagiUnk10C, 0x2000, 100);
 
     forward_vel_approach(10.0f, 0.2f);
@@ -3162,8 +3148,8 @@ void func_80309430(void)
 
     obj_set_pos_to_home();
 
-    o->oAnglePitch = o->oFaceAnglePitch = 0;
-    o->oAngleYaw = o->oFaceAngleYaw = o->oUnagiUnk1B0;
+    o->oMoveAnglePitch = o->oFaceAnglePitch = 0;
+    o->oMoveAngleYaw = o->oFaceAngleYaw = o->oUnagiUnk1B0;
     o->oFaceAngleRoll = 0;
 
     o->oForwardVel = o->oVelX = o->oVelZ = o->oUnagiUnkF8 = 0.0f;
@@ -3235,8 +3221,8 @@ void func_80309530(void)
         }
     }
 
-    o->oPosX = o->oHomeX + o->oUnagiUnkF4 * sins(o->oAngleYaw);
-    o->oPosZ = o->oHomeZ + o->oUnagiUnkF4 * coss(o->oAngleYaw);
+    o->oPosX = o->oHomeX + o->oUnagiUnkF4 * sins(o->oMoveAngleYaw);
+    o->oPosZ = o->oHomeZ + o->oUnagiUnkF4 * coss(o->oMoveAngleYaw);
 }
 
 void BehUnagiLoop(void)
@@ -3316,7 +3302,7 @@ void BehHauntedChairInit(void)
     struct Object *val04;
     f32 val00;
 
-    val04 = func_8029F270(bMadPiano, &val00);
+    val04 = obj_find_nearest_object_with_behavior(bMadPiano, &val00);
     if (val04 != NULL && val00 < 300.0f)
     {
         o->parentObj = val04;
@@ -3336,9 +3322,9 @@ void func_8030A5D8(void)
     {
         if (o->oHauntedChairUnk104 == 0)
         {
-            if (DistanceFromObject(o, o->parentObj) < 250.0f)
+            if (lateral_dist_between_objects(o, o->parentObj) < 250.0f)
             {
-                val0E = func_8029DF18(o, o->parentObj) - o->oFaceAngleYaw + 0x2000;
+                val0E = angle_to_object(o, o->parentObj) - o->oFaceAngleYaw + 0x2000;
                 if (val0E & 0x4000)
                 {
                     o->oHauntedChairUnk100 = &o->oFaceAngleRoll;
@@ -3420,12 +3406,12 @@ void func_8030A5D8(void)
         }
     }
 
-    func_802A3164(80.0f, 120.0f);
+    obj_push_mario_away_from_cylinder(80.0f, 120.0f);
 }
 
 void func_8030A968(void)
 {
-    MoveRelated();
+    obj_update_floor_and_walls();
 
     if (o->oTimer < 70)
     {
@@ -3449,8 +3435,8 @@ void func_8030A968(void)
             if (--o->oHauntedChairUnkF4 == 0)
             {
                 PlaySound2(0x305D0081);
-                o->oAnglePitch = func_802F9414(120.0f, 0);
-                o->oAngleYaw = o->oAngleToMario;
+                o->oMoveAnglePitch = func_802F9414(120.0f, 0);
+                o->oMoveAngleYaw = o->oAngleToMario;
                 func_802F9148(50.0f);
             }
             else if (o->oHauntedChairUnkF4 > 20)
@@ -3469,12 +3455,12 @@ void func_8030A968(void)
     }
 
     func_802FA888(&D_80331B00, o->oAction);
-    MoveObj(78);
+    obj_move_standard(78);
 }
 
 void BehHauntedChairLoop(void)
 {
-    if (!(o->active & 0x0008))
+    if (!(o->activeFlags & 0x0008))
     {
         switch (o->oAction)
         {
@@ -3495,7 +3481,7 @@ void func_8030AF6C(void)
         o->oAction = 1;
         o->oBookendUnkF4 = o->oFaceAnglePitch + 0x7FFF;
         o->oBookendUnkF8 = o->oFaceAngleRoll - 0x7FFF;
-        SetModel(0x58);
+        obj_set_model(0x58);
     }
 }
 
@@ -3526,19 +3512,19 @@ void func_8030AFF0(void)
         }
     }
 
-    MoveObj2();
+    obj_move_xz_using_fvel_and_gravity();
 }
 
 void func_8030B110(void)
 {
     func_8029ED38(1);
-    MoveRelated();
+    obj_update_floor_and_walls();
 
     if (o->oForwardVel == 0.0f)
     {
         func_802F9414(120.0f, 1000);
-        o->oFaceAnglePitch = o->oAnglePitch + 0x7FFF;
-        func_8029DE70(o->oAngleToMario, 1000);
+        o->oFaceAnglePitch = o->oMoveAnglePitch + 0x7FFF;
+        obj_rotate_yaw_toward(o->oAngleToMario, 1000);
 
         if (o->oTimer > 30)
         {
@@ -3546,13 +3532,13 @@ void func_8030B110(void)
         }
     }
 
-    MoveObj(78);
+    obj_move_standard(78);
 }
 
 void func_8030B1C8(void)
 {
     o->oUnk180 = 1;
-    o->oUnk198 = 0;
+    o->oNumLootCoins = 0;
 
     if (o->oTimer >= 4)
     {
@@ -3561,15 +3547,15 @@ void func_8030B1C8(void)
     }
 
     forward_vel_approach(50.0f, 2.0f);
-    MoveObj2();
+    obj_move_xz_using_fvel_and_gravity();
 }
 
 void BehFlyingBookendLoop(void)
 {
-    if (!(o->active & 0x0008))
+    if (!(o->activeFlags & 0x0008))
     {
-        o->oUnk1C4 = 0x50155081;
-        ScaleObject(o->header.gfx.scale[0]);
+        o->oDeathSound = 0x50155081;
+        obj_scale(o->header.gfx.scale[0]);
 
         switch (o->oAction)
         {
@@ -3582,7 +3568,7 @@ void BehFlyingBookendLoop(void)
         func_802FA888(&D_80331B20, -1);
         if (o->oAction == -1 || (o->oMoveFlags & 0x00000203))
         {
-            o->oUnk198 = 0;
+            o->oNumLootCoins = 0;
             func_802FA078();
         }
 
@@ -3594,7 +3580,7 @@ void BehBookendSpawnLoop(void)
 {
     struct Object *sp1C;
 
-    if (!(o->active & 0x0008))
+    if (!(o->activeFlags & 0x0008))
     {
         if (o->oTimer > 40 && func_802F87E0(600.0f, 0x2000))
         {
@@ -3613,7 +3599,7 @@ void func_8030B464(void)
 {
     s32 val04;
 
-    if (!(o->active & 0x0008))
+    if (!(o->activeFlags & 0x0008))
     {
         for (val04 = 0; val04 < 3; val04++)
         {
@@ -3642,7 +3628,7 @@ void func_8030B50C(void)
 
 void func_8030B5A4(void)
 {
-    if (!(o->active & 0x0008))
+    if (!(o->activeFlags & 0x0008))
     {
         if (o->oBookSwitchManagerUnkF4 < 0)
         {
@@ -3661,7 +3647,7 @@ void func_8030B5A4(void)
             {
                 if (o->oTimer > 100)
                 {
-                    o->parentObj = func_8029F1E0(beh_tumbling_bookshelf);
+                    o->parentObj = obj_nearest_object_with_behavior(beh_tumbling_bookshelf);
                     o->parentObj->oAction = 1;
                     o->oPosX = o->parentObj->oPosX;
                     o->oAction = 3;
@@ -3741,11 +3727,11 @@ void BehBookSwitchLoop(void)
         {
             if (o->oDistanceToMario < 100.0f)
             {
-                func_8029FE58();
+                obj_become_tangible();
             }
             else
             {
-                func_8029FE38();
+                obj_become_intangible();
             }
 
             o->oAction = 1;
@@ -3771,7 +3757,7 @@ void BehBookSwitchLoop(void)
         }
         else
         {
-            func_8029FE38();
+            obj_become_intangible();
             if (approach_f32_2(&o->oBookSwitchUnkF4, 0.0f, 20.0f))
             {
                 if (o->oAction != 0)
@@ -3819,7 +3805,7 @@ void BehBookSwitchLoop(void)
 
         o->oPosX += o->parentObj->oForwardVel;
         o->oPosZ = o->oHomeZ - o->oBookSwitchUnkF4;
-        func_802A3164(70.0f, 70.0f);
+        obj_push_mario_away_from_cylinder(70.0f, 70.0f);
     }
 }
 
@@ -3833,7 +3819,7 @@ void obj_spit_fire(s16 arg0, s16 arg1, s16 arg2, f32 arg3, s32 arg4, f32 arg5, f
         sp2C->oSmallPiranhaFlameUnkF4 = arg5;
         sp2C->oSmallPiranhaFlameUnkF8 = arg6;
         sp2C->oSmallPiranhaFlameUnkFC = arg4;
-        sp2C->oAnglePitch = arg7;
+        sp2C->oMoveAnglePitch = arg7;
     }
 }
 
@@ -3861,14 +3847,14 @@ void BehSmallPiranhaFlameLoop(void)
     }
     else
     {
-        MoveRelated();
+        obj_update_floor_and_walls();
         if (approach_f32_2(&o->oSmallPiranhaFlameUnkF4, o->oSmallPiranhaFlameUnkF8, 0.6f))
         {
-            func_8029DE70(o->oAngleToMario, 0x200);
+            obj_rotate_yaw_toward(o->oAngleToMario, 0x200);
         }
 
         func_802F9148(o->oSmallPiranhaFlameUnkF4);
-        MoveObj(-78);
+        obj_move_standard(-78);
         func_8029E73C(o, o->oSmallPiranhaFlameUnkFC, beh_small_piranha_flame, 0.4f * o->header.gfx.scale[0]);
 
         if (o->oTimer > o->oSmallPiranhaFlameUnk100)
@@ -3892,14 +3878,14 @@ void BehSmallPiranhaFlameLoop(void)
 
 void BehFlyGuyFlameLoop(void)
 {
-    MoveObj2();
+    obj_move_xz_using_fvel_and_gravity();
 
     if (approach_f32_2(&o->header.gfx.scale[0], 0.0f, 0.6f))
     {
         DeactivateObject(o);
     }
 
-    ScaleObject(o->header.gfx.scale[0]);
+    obj_scale(o->header.gfx.scale[0]);
 }
 
 s32 Geo18_8030D93C(s32 arg0, struct GraphNode *arg1, UNUSED void *arg2)
@@ -3943,8 +3929,8 @@ void func_8030C914(void)
     sp1C = (s32)(o->oDistanceToMario / 10.0f);
     if (o->oTimer > sp1C && o->oDistanceToMario < 800.0f)
     {
-        o->oSnufitUnk104 = approach_target_angle(o->oSnufitUnk104, 0, 1500);
-        o->oSnufitUnk108 = approach_target_angle(o->oSnufitUnk108, 600, 15);
+        o->oSnufitUnk104 = approach_s16_symmetric(o->oSnufitUnk104, 0, 1500);
+        o->oSnufitUnk108 = approach_s16_symmetric(o->oSnufitUnk108, 600, 15);
 
         if ((s16)o->oSnufitUnk104 == 0 && o->oSnufitUnk108 == 600)
         {
@@ -3960,8 +3946,8 @@ void func_8030C914(void)
 
 void func_8030CA38(void)
 {
-    o->oSnufitUnk104 = approach_target_angle(o->oSnufitUnk104, -0x8000, 3000);
-    o->oSnufitUnk108 = approach_target_angle(o->oSnufitUnk108, 0xA7, 20);
+    o->oSnufitUnk104 = approach_s16_symmetric(o->oSnufitUnk104, -0x8000, 3000);
+    o->oSnufitUnk108 = approach_s16_symmetric(o->oSnufitUnk108, 0xA7, 20);
 
     if ((u16)o->oSnufitUnk104 == 0x8000 && o->oSnufitUnk108 == 0xA7)
     {
@@ -3979,31 +3965,31 @@ void func_8030CA38(void)
 
 void BehSnufitLoop(void)
 {
-    if (!(o->active & 0x0008))
+    if (!(o->activeFlags & 0x0008))
     {
-        o->oUnk1C4 = 0x5072C081;
+        o->oDeathSound = 0x5072C081;
         if (o->oDistanceToMario < 800.0f)
         {
             func_802F9414(120.0f, 2000);
 
-            if ((s16)o->oAnglePitch > 0x2000)
+            if ((s16)o->oMoveAnglePitch > 0x2000)
             {
-                o->oAnglePitch = 0x2000;
+                o->oMoveAnglePitch = 0x2000;
             }
-            else if ((s16)o->oAnglePitch < -0x2000)
+            else if ((s16)o->oMoveAnglePitch < -0x2000)
             {
-                o->oAnglePitch = -0x2000;
+                o->oMoveAnglePitch = -0x2000;
             }
 
-            func_8029DE70(o->oAngleToMario, 2000);
+            obj_rotate_yaw_toward(o->oAngleToMario, 2000);
         }
         else
         {
             func_802F95B0(0, 0x200);
-            o->oAngleYaw += 200;
+            o->oMoveAngleYaw += 200;
         }
 
-        o->oFaceAnglePitch = o->oAnglePitch;
+        o->oFaceAnglePitch = o->oMoveAnglePitch;
 
         switch (o->oAction)
         {
@@ -4029,43 +4015,43 @@ void BehSnufitLoop(void)
             o->oSnufitUnkF8 = 1.0f;
         }
 
-        ScaleObject(o->oSnufitUnkF8);
+        obj_scale(o->oSnufitUnkF8);
         func_802FA888(&D_80331B74, o->oAction);
     }
 }
 
 void BehSnufitBallsLoop(void)
 {
-    if ((o->active & 0x0008) || (o->oTimer != 0 && o->oDistanceToMario > 1500.0f))
+    if ((o->activeFlags & 0x0008) || (o->oTimer != 0 && o->oDistanceToMario > 1500.0f))
     {
         DeactivateObject(o);
     }
 
     if (o->oGravity == 0.0f)
     {
-        MoveRelated();
+        obj_update_floor_and_walls();
 
         func_802F9148(40.0f);
         if (func_802FA888(&D_80331B84, 1))
         {
-            o->oAngleYaw += 0x8000;
+            o->oMoveAngleYaw += 0x8000;
             o->oForwardVel *= 0.05f;
             o->oVelY = 30.0f;
             o->oGravity = -4.0f;
 
-            func_8029FE38();
+            obj_become_intangible();
         }
         else if (o->oAction == 1 || (o->oMoveFlags & 0x00000203))
         {
-            o->oUnk1C4 = -1;
+            o->oDeathSound = -1;
             func_802FA078();
         }
 
-        MoveObj(78);
+        obj_move_standard(78);
     }
     else
     {
-        MoveObj2();
+        obj_move_xz_using_fvel_and_gravity();
     }
 }
 
@@ -4083,7 +4069,7 @@ void BehHauntedRoomCheckLoop(void)
 
     if (o->oAction == 0)
     {
-        if (!(o->active & 0x0008))
+        if (!(o->activeFlags & 0x0008))
         {
             for (val08 = 0; val08 < 6; val08++)
             {
@@ -4102,7 +4088,7 @@ void BehHauntedRoomCheckLoop(void)
             o->oAction += 1;
         }
     }
-    else if (o->active & 0x0008)
+    else if (o->activeFlags & 0x0008)
     {
         o->oAction = 0;
     }
@@ -4121,13 +4107,13 @@ void func_80311264(void)
     {
         if (o->oFaceAnglePitch != 0)
         {
-            o->oAngleVelPitch = approach_target_angle(o->oAngleVelPitch, -2000, 200);
+            o->oAngleVelPitch = approach_s16_symmetric(o->oAngleVelPitch, -2000, 200);
 
             if (face_pitch_approach(0, -o->oAngleVelPitch))
             {
                 PlaySound2(0x315B0081);
                 func_802F8854(0);
-                o->oAngleYaw = o->oFaceAngleYaw - 0x4000;
+                o->oMoveAngleYaw = o->oFaceAngleYaw - 0x4000;
 
                 func_802F8770(200.0f);
                 func_802ADA94();
@@ -4150,7 +4136,7 @@ void func_80311264(void)
             if (o->oTimer > 60 && (o->oDistanceToMario > 100.0f || gMarioState->action == ACT_SQUISHED))
             {
                 if (gMarioObject->oPosY - o->oPosY < 200.0f &&
-                    func_802A2E8C(val04) < 140.0f)
+                    absf(val04) < 140.0f)
                 {
                     if (val00 < 150.0f && val00 > -450.0f)
                     {
@@ -4169,7 +4155,7 @@ void func_80311520(void)
 {
     if (o->oFaceAnglePitch != 0x4000)
     {
-        o->oAngleVelPitch = approach_target_angle(o->oAngleVelPitch, 1000, 200);
+        o->oAngleVelPitch = approach_s16_symmetric(o->oAngleVelPitch, 1000, 200);
         face_pitch_approach(0x4000, o->oAngleVelPitch);
     }
     else
@@ -4218,7 +4204,7 @@ void func_803116F8(void)
     {
         PlaySound2(0x30274081);
         func_802ADA94();
-        func_8029FE58();
+        obj_become_tangible();
 
         o->oClamUnkF4 = 10;
         o->oTimer = 0;
@@ -4231,7 +4217,7 @@ void func_803116F8(void)
     else if (o->oClamUnkF4 != 0)
     {
         o->oClamUnkF4 -= 1;
-        func_802A1160(3.0f);
+        obj_shake_y(3.0f);
     }
 }
 
@@ -4255,9 +4241,9 @@ void func_803117F4(void)
             spawn_obj_adv(0, val04, 30, val02, o, 0xA8, beh_bubble_maybe);
         }
     }
-    else if (check_anim_frame(30))
+    else if (obj_check_anim_frame(30))
     {
-        func_8029FE38();
+        obj_become_intangible();
     }
 }
 
@@ -4295,7 +4281,7 @@ void func_80312F8C(void)
 
     if (o->oBubbaUnkFC != 0)
     {
-        if (abs_angle_diff(o->oAngleYaw, o->oBubbaUnk1AE) < 800)
+        if (abs_angle_diff(o->oMoveAngleYaw, o->oBubbaUnk1AE) < 800)
         {
             o->oBubbaUnkFC = 0;
         }
@@ -4310,7 +4296,7 @@ void func_80312F8C(void)
 
         if ((o->oBubbaUnkFC = o->oMoveFlags & 0x00000200) != 0)
         {
-            o->oBubbaUnk1AE = func_802A2AC0();
+            o->oBubbaUnk1AE = obj_reflect_move_angle_off_wall();
         }
         else if (o->oTimer > 30 && o->oDistanceToMario < 2000.0f)
         {
@@ -4353,7 +4339,7 @@ void func_80313170(void)
         {
             val06 = 10000 - (s16)(20.0f * (find_water_level(o->oPosX, o->oPosZ) - o->oPosY));
             o->oBubbaUnk1AC -= val06;
-            o->oAnglePitch = o->oBubbaUnk1AC;
+            o->oMoveAnglePitch = o->oBubbaUnk1AC;
             o->oBubbaUnkF4 = 40.0f;
             func_802F9148(o->oBubbaUnkF4);
             o->oAnimState = 0;;
@@ -4363,7 +4349,7 @@ void func_80313170(void)
             o->oBubbaUnk1AE = o->oAngleToMario;
             o->oBubbaUnk1AC = o->oBubbaUnk104;
 
-            func_8029DE70(o->oBubbaUnk1AE, 400);
+            obj_rotate_yaw_toward(o->oBubbaUnk1AE, 400);
             func_802F95B0(o->oBubbaUnk1AC, 400);
         }
     }
@@ -4372,7 +4358,7 @@ void func_80313170(void)
         if (abs_angle_diff(gMarioObject->oFaceAngleYaw, o->oAngleToMario) < 0x3000)
         {
             val04 = 0x4000 - atan2s(800.0f, o->oDistanceToMario - 800.0f);
-            if ((s16)(o->oAngleYaw - o->oAngleToMario) < 0)
+            if ((s16)(o->oMoveAngleYaw - o->oAngleToMario) < 0)
             {
                 val04 = -val04;
             }
@@ -4387,7 +4373,7 @@ void func_80313170(void)
         o->oBubbaUnk1AC = o->oBubbaUnk104;
 
         if (func_802F87E0(500.0f, 3000) &&
-            abs_angle_diff(o->oBubbaUnk1AC, o->oAnglePitch) < 3000)
+            abs_angle_diff(o->oBubbaUnk1AC, o->oMoveAnglePitch) < 3000)
         {
             o->oBubbaUnk100 = 30;
             o->oBubbaUnkF4 = 0;
@@ -4409,8 +4395,8 @@ void BehBubbaLoop(void)
     o->oUnk190 &= ~0x00002000;
     o->oBubbaUnk104 = func_802F9414(120.0f, 0);
 
-    if (abs_angle_diff(o->oAngleToMario, o->oAngleYaw) < 0x1000 &&
-        abs_angle_diff(o->oBubbaUnk104 + 0x800, o->oAnglePitch) < 0x2000)
+    if (abs_angle_diff(o->oAngleToMario, o->oMoveAngleYaw) < 0x1000 &&
+        abs_angle_diff(o->oBubbaUnk104 + 0x800, o->oMoveAnglePitch) < 0x2000)
     {
         if (o->oAnimState != 0 && o->oDistanceToMario < 250.0f)
         {
@@ -4424,7 +4410,7 @@ void BehBubbaLoop(void)
         o->unk200 = 150.0f;
     }
 
-    MoveRelated();
+    obj_update_floor_and_walls();
 
     switch (o->oAction)
     {
@@ -4439,7 +4425,7 @@ void BehBubbaLoop(void)
             sp38 = SpawnObj(o, 0xA7, beh_water_splash);
             if (sp38 != NULL)
             {
-                func_8029EC88(sp38, 3.0f);
+                scale_object(sp38, 3.0f);
             }
 
             o->oBubbaUnk108 = o->oVelY;
@@ -4456,22 +4442,22 @@ void BehBubbaLoop(void)
             }
         }
 
-        func_802F9780(&o->oBubbaUnk1B0, &o->oAnglePitch, o->oBubbaUnk1AC, 0.05f, 10, 50, 2000);
-        func_802F9780(&o->oBubbaUnk1B2, &o->oAngleYaw, o->oBubbaUnk1AE, 0.05f, 10, 50, 2000);
+        func_802F9780(&o->oBubbaUnk1B0, &o->oMoveAnglePitch, o->oBubbaUnk1AC, 0.05f, 10, 50, 2000);
+        func_802F9780(&o->oBubbaUnk1B2, &o->oMoveAngleYaw, o->oBubbaUnk1AE, 0.05f, 10, 50, 2000);
         func_802F9148(o->oBubbaUnkF4);
     }
     else
     {
         o->oBubbaUnkF4 = sqrtf(o->oForwardVel * o->oForwardVel + o->oVelY * o->oVelY);
-        o->oAnglePitch = func_802F86C0();
-        face_pitch_approach(o->oAnglePitch, 400);
+        o->oMoveAnglePitch = func_802F86C0();
+        face_pitch_approach(o->oMoveAnglePitch, 400);
         o->oBubbaUnk1B0 = 0;
     }
 
-    face_pitch_approach(o->oAnglePitch, 400);
+    face_pitch_approach(o->oMoveAnglePitch, 400);
     func_802FA888(&D_80331D2C, o->oAction);
 
-    MoveObj(78);
+    obj_move_standard(78);
 
     o->oFloorHeight += 150.0f;
     if (o->oPosY < o->oFloorHeight)

@@ -13,7 +13,7 @@ static void fire_spitter_act_spit_fire(void)
 {
     s32 scaleStatus;
 
-    o->oAngleYaw = o->oAngleToMario;
+    o->oMoveAngleYaw = o->oAngleToMario;
 
     // Increase scale by 0.05, 0.04, ..., -0.03. Then wait ~8 frames, then
     // starting moving scale by 0.05 each frame toward 0.1. The first time
@@ -35,9 +35,9 @@ static void fire_spitter_act_spit_fire(void)
 
 void bhv_fire_spitter_update(void)
 {
-    ScaleObject(o->header.gfx.scale[0]);
+    obj_scale(o->header.gfx.scale[0]);
     o->oGraphYOffset = 40.0f;
-    MoveRelated();
+    obj_update_floor_and_walls();
 
     switch (o->oAction)
     {
@@ -45,5 +45,5 @@ void bhv_fire_spitter_update(void)
     case FIRE_SPITTER_ACT_SPIT_FIRE: fire_spitter_act_spit_fire(); break;
     }
 
-    MoveObj(78);
+    obj_move_standard(78);
 }

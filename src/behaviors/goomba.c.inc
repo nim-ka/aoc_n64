@@ -47,9 +47,9 @@ void bhv_goomba_init(void)
     o->oGoombaSize = o->oBehParams2ndByte & GOOMBA_BP_SIZE_MASK;
 
     o->oGoombaBaseSpeed = sGoombaProperties[o->oGoombaSize].baseSpeed;
-    o->oUnk1C4 = sGoombaProperties[o->oGoombaSize].unk04;
+    o->oDeathSound = sGoombaProperties[o->oGoombaSize].unk04;
 
-    func_802A2CFC(o, &sGoombaHitbox);
+    set_object_hitbox(o, &sGoombaHitbox);
 
     o->oDrawingDistance = sGoombaProperties[o->oGoombaSize].drawDistance;
     o->oUnk180 = sGoombaProperties[o->oGoombaSize].unk0A;
@@ -135,7 +135,7 @@ static void goomba_act_walk(void)
             }
         }
 
-        func_8029DE70(o->oGoombaTargetYaw, 0x200);
+        obj_rotate_yaw_toward(o->oGoombaTargetYaw, 0x200);
     }
 }
 
@@ -144,7 +144,7 @@ static void goomba_act_soft_attacked(void)
     if (o->oGoombaSize == GOOMBA_SIZE_TINY)
     {
         mark_goomba_as_dead();
-        o->oUnk198 = 0;
+        o->oNumLootCoins = 0;
         func_802FA078();
     }
     else
@@ -171,7 +171,7 @@ static void goomba_act_jump(void)
     }
     else
     {
-        func_8029DE70(o->oGoombaTargetYaw, 0x800);
+        obj_rotate_yaw_toward(o->oGoombaTargetYaw, 0x800);
     }
 }
 
@@ -194,9 +194,9 @@ void bhv_goomba_update(void)
             }
         }
 
-        ScaleObject(o->oGoombaBaseSpeed);
+        obj_scale(o->oGoombaBaseSpeed);
         update_blinking(&o->oGoombaBlinkTimer, 30, 50, 5);
-        MoveRelated();
+        obj_update_floor_and_walls();
 
         if ((val04 = o->oForwardVel / o->oGoombaBaseSpeed * 0.4f) < 1.0f)
         {
@@ -217,7 +217,7 @@ void bhv_goomba_update(void)
             mark_goomba_as_dead();
         }
 
-        MoveObj(-78);
+        obj_move_standard(-78);
     }
     else
     {

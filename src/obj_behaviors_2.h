@@ -3,10 +3,20 @@
 
 #include "types.h"
 
-// extern ? D_80331730;
-// extern ? D_80331748;
-// extern ? D_80331740;
-// extern ? sKoopaTheQuickData;
+#define ATTACK_HANDLER_NOP 0
+#define ATTACK_HANDLER_UNK1 1
+#define ATTACK_HANDLER_UNK2 2
+#define ATTACK_HANDLER_UNK3 3
+#define ATTACK_HANDLER_UNK4 4
+#define ATTACK_HANDLER_UNK5 5
+#define ATTACK_HANDLER_UNK6 6
+#define ATTACK_HANDLER_UNK7 7
+#define ATTACK_HANDLER_UNK8 8
+
+// extern ? sKoopaHitbox;
+// extern ? sKoopaShelledAttackHandlers;
+// extern ? sKoopaUnshelledAttackHandlers;
+// extern ? sKoopaTheQuickProperties;
 // extern ? D_80331770;
 // extern ? D_80331780;
 // extern ? D_80331788;
@@ -127,17 +137,17 @@
 // extern ? func_802FA990(?);
 // extern ? treat_far_home_as_mario(?);
 // extern ? bhv_koopa_init(?);
-// extern ? func_802FACAC(?);
+// extern ? koopa_play_footstep_sound(?);
 // extern ? func_802FAD24(?);
 // extern ? func_802FADA0(?);
-// extern ? func_802FAE1C(?);
-// extern ? func_802FAEA8(?);
-// extern ? func_802FAF2C(?);
+// extern ? koopa_walk_accelerate(?);
+// extern ? koopa_walk_straight(?);
+// extern ? koopa_walk_decelerate(?);
 // extern ? func_802FAF8C(?);
 // extern ? func_802FB0BC(?);
-// extern ? func_802FB1D8(?);
+// extern ? koopa_lying_slide_on_ground(?);
 // extern ? func_802FB288(?);
-extern void func_802FB364(s32);
+extern void koopa_attacked(s32);
 // extern ? func_802FB460(?);
 // extern ? func_802FB5C0(?);
 // extern ? func_802FB864(?);

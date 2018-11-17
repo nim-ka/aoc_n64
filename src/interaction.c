@@ -167,7 +167,7 @@ static u32 object_facing_mario(struct MarioState *m, struct Object *o, s16 angle
     f32 dz = m->pos[2] - o->oPosZ;
 
     s16 angleToMario = atan2s(dz, dx);
-    s16 dAngle = angleToMario - o->oAngleYaw;
+    s16 dAngle = angleToMario - o->oMoveAngleYaw;
 
     if (-angleRange <= dAngle && dAngle <= angleRange)
         return TRUE;
@@ -251,31 +251,31 @@ static u32 determine_interaction(struct MarioState *m, struct Object *o)
     return interaction;
 }
 
-static u32 func_8024C37C(struct Object *o, s32 interaction)
+static u32 attack_object(struct Object *o, s32 interaction)
 {
-    u32 result = 0;
+    u32 attackType = 0;
     
     switch (interaction)
     {
-    case INT_GROUND_POUND_OR_TWIRL: result = 4; break;
-    case INT_PUNCH:                 result = 1; break;
+    case INT_GROUND_POUND_OR_TWIRL: attackType = ATTACK_GROUND_POUND_OR_TWIRL; break;
+    case INT_PUNCH:                 attackType = ATTACK_PUNCH;                 break;
     case INT_KICK:
-    case INT_TRIP:                  result = 2; break;
+    case INT_TRIP:                  attackType = ATTACK_KICK_OR_TRIP;          break;
     case INT_SLIDE_KICK:
-    case INT_FAST_ATTACK_OR_SHELL:  result = 5; break;
-    case INT_HIT_FROM_ABOVE:        result = 3; break;
-    case INT_HIT_FROM_BELOW:        result = 6; break;
+    case INT_FAST_ATTACK_OR_SHELL:  attackType = ATTACK_FAST_ATTACK;           break;
+    case INT_HIT_FROM_ABOVE:        attackType = ATTACK_FROM_ABOVE;            break;
+    case INT_HIT_FROM_BELOW:        attackType = ATTACK_FROM_BELOW;            break;
     }
 
-    o->oInteractStatus = result + 0xC000;
-    return result;
+    o->oInteractStatus = attackType + (INT_STATUS_INTERACTED | INT_STATUS_WAS_ATTACKED);
+    return attackType;
 }
 
 void mario_stop_riding_object(struct MarioState *m)
 {
     if (m->riddenObj != NULL)
     {
-        m->riddenObj->oInteractStatus = 0x00400000;
+        m->riddenObj->oInteractStatus = INT_STATUS_STOP_RIDING;
         func_8024931C();
         m->riddenObj = NULL;
     }
@@ -286,7 +286,7 @@ void mario_grab_used_object(struct MarioState *m)
     if (m->heldObj == NULL)
     {
         m->heldObj = m->usedObj;
-        func_8029DA34(m->heldObj, beh_carry_something3);
+        set_object_held_state(m->heldObj, beh_carry_something3);
     }
 }
 
@@ -297,13 +297,13 @@ void mario_drop_held_object(struct MarioState *m)
         if (m->heldObj->behavior == segmented_to_virtual(beh_koopa_shell_underwater))
             func_8024931C();
 
-        func_8029DA34(m->heldObj, beh_carry_something4);
+        set_object_held_state(m->heldObj, beh_carry_something4);
 
         m->heldObj->oPosX = m->unk98->unk18[0];
         m->heldObj->oPosY = m->pos[1];
         m->heldObj->oPosZ = m->unk98->unk18[2];
 
-        m->heldObj->oAngleYaw = m->faceAngle[1];
+        m->heldObj->oMoveAngleYaw = m->faceAngle[1];
 
         m->heldObj = NULL;
     }
@@ -316,13 +316,13 @@ void mario_throw_held_object(struct MarioState *m)
         if (m->heldObj->behavior == segmented_to_virtual(beh_koopa_shell_underwater))
             func_8024931C();
 
-        func_8029DA34(m->heldObj, beh_carry_something5);
+        set_object_held_state(m->heldObj, beh_carry_something5);
 
         m->heldObj->oPosX = m->unk98->unk18[0] + 32.0f * sins(m->faceAngle[1]);
         m->heldObj->oPosY = m->unk98->unk18[1];
         m->heldObj->oPosZ = m->unk98->unk18[2] + 32.0f * coss(m->faceAngle[1]);
 
-        m->heldObj->oAngleYaw = m->faceAngle[1];
+        m->heldObj->oMoveAngleYaw = m->faceAngle[1];
 
         m->heldObj = NULL;
     }
@@ -359,10 +359,10 @@ void mario_blow_off_cap(struct MarioState *m, f32 capSpeed)
 
         capObject->oPosY += (m->action & ACT_FLAG_SHORT_HITBOX) ? 120.0f : 180.0f;
         capObject->oForwardVel = capSpeed;
-        capObject->oAngleYaw = (s16) (m->faceAngle[1] + 0x400);
+        capObject->oMoveAngleYaw = (s16) (m->faceAngle[1] + 0x400);
 
         if (m->forwardVel < 0.0f)
-            capObject->oAngleYaw = (s16) (capObject->oAngleYaw + 0x8000);
+            capObject->oMoveAngleYaw = (s16) (capObject->oMoveAngleYaw + 0x8000);
     }
 }
 
@@ -433,10 +433,10 @@ u32 mario_check_object_grab(struct MarioState *m)
 
         if (script == beh_bowser)
         {
-            s16 facingDYaw = m->faceAngle[1] - m->interactObj->oAngleYaw;
+            s16 facingDYaw = m->faceAngle[1] - m->interactObj->oMoveAngleYaw;
             if (facingDYaw >= -0x5555 && facingDYaw <= 0x5555)
             {
-                m->faceAngle[1] = m->interactObj->oAngleYaw;
+                m->faceAngle[1] = m->interactObj->oMoveAngleYaw;
                 m->usedObj = m->interactObj;
                 result = set_mario_action(m, ACT_PICKING_UP_BOWSER, 0);
             }
@@ -496,7 +496,7 @@ static u32 bully_knock_back_mario(struct MarioState *mario)
         bully->oPosX,
         bully->oPosZ,
         bully->oForwardVel,
-        bully->oAngleYaw,
+        bully->oMoveAngleYaw,
         marioToBullyRatio,
         bully->hitboxRadius + 2.0f);
 
@@ -509,7 +509,7 @@ static u32 bully_knock_back_mario(struct MarioState *mario)
     newBullyYaw = atan2s(bullyData.velZ, bullyData.velX);
 
     marioDYaw = newMarioYaw - mario->faceAngle[1];
-    bullyDYaw = newBullyYaw - bully->oAngleYaw;
+    bullyDYaw = newBullyYaw - bully->oMoveAngleYaw;
 
     mario->faceAngle[1] = newMarioYaw;
     mario->forwardVel =
@@ -517,7 +517,7 @@ static u32 bully_knock_back_mario(struct MarioState *mario)
     mario->pos[0] = marioData.posX;
     mario->pos[2] = marioData.posZ;
 
-    bully->oAngleYaw = newBullyYaw;
+    bully->oMoveAngleYaw = newBullyYaw;
     bully->oForwardVel =
         sqrtf(bullyData.velX * bullyData.velX + bullyData.velZ * bullyData.velZ);
     bully->oPosX = bullyData.posX;
@@ -713,7 +713,7 @@ static u32 func_8024D664(struct MarioState *m, struct Object *o)
     f32 dx = o->oPosX - m->pos[0];
     f32 dz = o->oPosZ - m->pos[2];
 
-    s16 dYaw = o->oAngleYaw - atan2s(dz, dx);
+    s16 dYaw = o->oMoveAngleYaw - atan2s(dz, dx);
 
     return (dYaw >= -0x4000 && dYaw <= 0x4000) ? 0x00000001 : 0x00000002;
 }
@@ -748,7 +748,7 @@ static u32 take_damage_and_knock_back(struct MarioState *m, struct Object *o)
 
     if (!sInvulnerable && !(m->flags & MARIO_VANISH_CAP) && !(o->oUnk190 & 0x00000002))
     {
-        o->oInteractStatus = 0x0000A000;
+        o->oInteractStatus = INT_STATUS_INTERACTED | INT_STATUS_ATTACKED_MARIO;
         m->interactObj = o;
 
         damage = take_damage_from_interact_object(m);
@@ -781,7 +781,7 @@ static u32 interact_coin(struct MarioState *m, UNUSED u32 interactType, struct O
     m->numCoins += o->oUnk180;
     m->healCounter += 4 * o->oUnk180;
 
-    o->oInteractStatus = 0x00008000;
+    o->oInteractStatus = INT_STATUS_INTERACTED;
 
     if (gCurrCourseNum >= 1 && gCurrCourseNum <= 15 &&
         m->numCoins - o->oUnk180 < 100 && m->numCoins >= 100)
@@ -795,7 +795,7 @@ static u32 interact_coin(struct MarioState *m, UNUSED u32 interactType, struct O
 static u32 interact_water_ring(struct MarioState *m, UNUSED u32 interactType, struct Object *o)
 {
     m->healCounter += 4 * o->oUnk180;
-    o->oInteractStatus = 0x00008000;
+    o->oInteractStatus = INT_STATUS_INTERACTED;
     return FALSE;
 }
 
@@ -832,7 +832,7 @@ static u32 interact_star_or_key(struct MarioState *m, UNUSED u32 interactType, s
 
         SpawnObj(o, 0, beh_star_key_collection_puff_spawner);
 
-        o->oInteractStatus = 0x00008000;
+        o->oInteractStatus = INT_STATUS_INTERACTED;
         m->interactObj = o;
         m->usedObj = o;
 
@@ -869,7 +869,7 @@ static u32 interact_bbh_entrance(struct MarioState *m, UNUSED u32 interactType, 
     {
         mario_stop_riding_and_holding(m);
 
-        o->oInteractStatus = 0x00008000;
+        o->oInteractStatus = INT_STATUS_INTERACTED;
         m->interactObj = o;
         m->usedObj = o;
 
@@ -910,7 +910,7 @@ static u32 interact_warp(struct MarioState *m, UNUSED u32 interactType, struct O
     {
         if (m->action != ACT_EMERGE_FROM_PIPE)
         {
-            o->oInteractStatus = 0x00008000;
+            o->oInteractStatus = INT_STATUS_INTERACTED;
             m->interactObj = o;
             m->usedObj = o;
 
@@ -1093,7 +1093,7 @@ static u32 interact_cannon_base(struct MarioState *m, UNUSED u32 interactType, s
     if (m->action != ACT_IN_CANNON)
     {
         mario_stop_riding_and_holding(m);
-        o->oInteractStatus = 0x00008000;
+        o->oInteractStatus = INT_STATUS_INTERACTED;
         m->interactObj = o;
         m->usedObj = o;
         return set_mario_action(m, ACT_IN_CANNON, 0);
@@ -1123,7 +1123,7 @@ static u32 interact_tornado(struct MarioState *m, UNUSED u32 interactType, struc
         mario_set_forward_vel(m, 0.0f);
         func_80251F74(m);
 
-        o->oInteractStatus = 0x00008000;
+        o->oInteractStatus = INT_STATUS_INTERACTED;
         m->interactObj = o;
         m->usedObj = o;
 
@@ -1144,7 +1144,7 @@ static u32 interact_whirlpool(struct MarioState *m, UNUSED u32 interactType, str
     if (m->action != ACT_CAUGHT_IN_WHIRLPOOL)
     {
         mario_stop_riding_and_holding(m);
-        o->oInteractStatus = 0x00008000;
+        o->oInteractStatus = INT_STATUS_INTERACTED;
         m->interactObj = o;
         m->usedObj = o;
 
@@ -1166,11 +1166,11 @@ static u32 interact_wind(struct MarioState *m, UNUSED u32 interactType, struct O
     if (m->action != ACT_GETTING_BLOWN)
     {
         mario_stop_riding_and_holding(m);
-        o->oInteractStatus = 0x00008000;
+        o->oInteractStatus = INT_STATUS_INTERACTED;
         m->interactObj = o;
         m->usedObj = o;
 
-        m->faceAngle[1] = o->oAngleYaw + 0x8000;
+        m->faceAngle[1] = o->oMoveAngleYaw + 0x8000;
         m->unkC4 = 0.4f;
         m->forwardVel = -24.0f;
         m->vel[1] = 12.0f;
@@ -1192,7 +1192,7 @@ static u32 interact_flame(struct MarioState *m, UNUSED u32 interactType, struct 
         !(m->flags & MARIO_VANISH_CAP) &&
         !(o->oUnk190 & 0x00000002))
     {
-        o->oInteractStatus = 0x00008000;
+        o->oInteractStatus = INT_STATUS_INTERACTED;
         m->interactObj = o;
 
         if ((m->action & (ACT_FLAG_SWIMMING | ACT_FLAG_METAL_WATER)) ||
@@ -1222,12 +1222,12 @@ static u32 interact_snufit_bullet(struct MarioState *m, UNUSED u32 interactType,
     {
         if (m->flags & MARIO_METAL_CAP)
         {
-            o->oInteractStatus = 0x0000C000;
+            o->oInteractStatus = INT_STATUS_INTERACTED | INT_STATUS_WAS_ATTACKED;
             SetSound(SOUND_ACTION_UNKNOWN458, &m->marioObj->header.gfx.unk54);
         }
         else
         {
-            o->oInteractStatus = 0x0000A000;
+            o->oInteractStatus = INT_STATUS_INTERACTED | INT_STATUS_ATTACKED_MARIO;
             m->interactObj = o;
             take_damage_from_interact_object(m);
 
@@ -1248,7 +1248,7 @@ static u32 interact_clam_or_bubba(struct MarioState *m, UNUSED u32 interactType,
 {
     if (o->oUnk190 & 0x00002000)
     {
-        o->oInteractStatus = 0x00008000;
+        o->oInteractStatus = INT_STATUS_INTERACTED;
         m->interactObj = o;
         return set_mario_action(m, ACT_EATEN_BY_BUBBA, 0);
     }
@@ -1280,17 +1280,17 @@ static u32 interact_bully(struct MarioState *m, UNUSED u32 interactType, struct 
         push_mario_out_of_object(m, o, 5.0f);
 
         m->forwardVel = -16.0f;
-        o->oAngleYaw = m->faceAngle[1];
+        o->oMoveAngleYaw = m->faceAngle[1];
         o->oForwardVel = 3392.0f / o->hitboxRadius;
 
-        func_8024C37C(o, interaction);
+        attack_object(o, interaction);
         bounce_back_from_attack(m, interaction);
         return TRUE;
     }
 
     else if (!sInvulnerable && !(m->flags & MARIO_VANISH_CAP) && !(o->oUnk190 & 0x00000002))
     {
-        o->oInteractStatus = 0x00008000;
+        o->oInteractStatus = INT_STATUS_INTERACTED;
         m->invincTimer = 2;
 
         func_80251F74(m);
@@ -1311,7 +1311,7 @@ static u32 interact_shock(struct MarioState *m, UNUSED u32 interactType, struct 
     {
         u32 actionArg = (m->action & (ACT_FLAG_AIR | ACT_FLAG_ON_POLE | ACT_FLAG_HANGING)) == 0;
 
-        o->oInteractStatus = 0x0000A000;
+        o->oInteractStatus = INT_STATUS_INTERACTED | INT_STATUS_ATTACKED_MARIO;
         m->interactObj = o;
 
         take_damage_from_interact_object(m);
@@ -1363,7 +1363,7 @@ static u32 interact_hit_from_below(struct MarioState *m, UNUSED u32 interactType
 
     if (interaction & INT_ANY_ATTACK)
     {
-        func_8024C37C(o, interaction);
+        attack_object(o, interaction);
         bounce_back_from_attack(m, interaction);
 
         if (interaction & INT_HIT_FROM_BELOW)
@@ -1406,7 +1406,7 @@ static u32 interact_bounce_top(struct MarioState *m, UNUSED u32 interactType, st
 
     if (interaction & INT_ATTACK_NOT_FROM_BELOW)
     {
-        func_8024C37C(o, interaction);
+        attack_object(o, interaction);
         bounce_back_from_attack(m, interaction);
 
         if (interaction & INT_HIT_FROM_ABOVE)
@@ -1442,7 +1442,7 @@ static u32 interact_unknown_08(struct MarioState *m, UNUSED u32 interactType, st
 
     if (interaction & INT_PUNCH)
     {
-        o->oInteractStatus = 0x0000C001;
+        o->oInteractStatus = INT_STATUS_INTERACTED | INT_STATUS_WAS_ATTACKED | ATTACK_PUNCH;
         bounce_back_from_attack(m, interaction);
     }
     else if (take_damage_and_knock_back(m, o))
@@ -1471,7 +1471,7 @@ static u32 interact_breakable(struct MarioState *m, UNUSED u32 interactType, str
     
     if (interaction & INT_ATTACK_MASK_UNKNOWN_8F)
     {
-        func_8024C37C(o, interaction);
+        attack_object(o, interaction);
         bounce_back_from_attack(m, interaction);
 
         m->interactObj = o;
@@ -1507,7 +1507,7 @@ static u32 interact_koopa_shell(struct MarioState *m, UNUSED u32 interactType, s
             m->usedObj = o;
             m->riddenObj = o;
 
-            func_8024C37C(o, interaction);
+            attack_object(o, interaction);
             func_80251F74(m);
             func_802492E0();
             mario_drop_held_object(m);
@@ -1532,9 +1532,9 @@ static u32 check_object_grab_mario(struct MarioState *m, UNUSED u32 interactType
         if (object_facing_mario(m, o, 0x2AAA))
         {
             mario_stop_riding_and_holding(m);
-            o->oInteractStatus = 0x00008800;
+            o->oInteractStatus = INT_STATUS_INTERACTED | INT_STATUS_GRABBED_MARIO;
 
-            m->faceAngle[1] = o->oAngleYaw;
+            m->faceAngle[1] = o->oMoveAngleYaw;
             m->interactObj = o;
             m->usedObj = o;
 
@@ -1591,7 +1591,7 @@ static u32 interact_hoot(struct MarioState *m, UNUSED u32 interactType, struct O
         (gGlobalTimer - m->usedObj->oHootMarioReleaseTime > 30))
     {
         mario_stop_riding_and_holding(m);
-        o->oInteractStatus = 0x00000001;
+        o->oInteractStatus = INT_STATUS_HOOT_GRABBED_BY_MARIO;
         m->interactObj = o;
         m->usedObj = o;
 
@@ -1611,7 +1611,7 @@ static u32 interact_cap(struct MarioState *m, UNUSED u32 interactType, struct Ob
     if (m->action != ACT_GETTING_BLOWN && capFlag != 0)
     {
         m->interactObj = o;
-        o->oInteractStatus = 0x00008000;
+        o->oInteractStatus = INT_STATUS_INTERACTED;
 
         m->flags &= ~MARIO_CAP_ON_HEAD & ~MARIO_CAP_IN_HAND;
         m->flags |= capFlag;
@@ -1668,7 +1668,7 @@ static u32 interact_grabbable(struct MarioState *m, u32 interactType, struct Obj
         u32 interaction = determine_interaction(m, o);
         if (interaction & (INT_KICK | INT_TRIP))
         {
-            func_8024C37C(o, interaction);
+            attack_object(o, interaction);
             bounce_back_from_attack(m, interaction);
             return FALSE;
         }
@@ -1730,11 +1730,11 @@ static u32 func_8024FD2C(struct MarioState *m, struct Object *o)
 {
     if ((m->input & READ_MASK) && func_8024FC94(m, 0) && object_facing_mario(m, o, SIGN_RANGE))
     {
-        s16 facingDYaw = (s16) (o->oAngleYaw + 0x8000) - m->faceAngle[1];
+        s16 facingDYaw = (s16) (o->oMoveAngleYaw + 0x8000) - m->faceAngle[1];
         if (facingDYaw >= -SIGN_RANGE && facingDYaw <= SIGN_RANGE)
         {
-            f32 targetX = o->oPosX + 105.0f * sins(o->oAngleYaw);
-            f32 targetZ = o->oPosZ + 105.0f * coss(o->oAngleYaw);
+            f32 targetX = o->oPosX + 105.0f * sins(o->oMoveAngleYaw);
+            f32 targetZ = o->oPosZ + 105.0f * coss(o->oMoveAngleYaw);
 
             m->marioObj->oMarioReadingSignDYaw = facingDYaw;
             m->marioObj->oMarioReadingSignDPosX = targetX - m->pos[0];
@@ -1756,7 +1756,7 @@ static u32 func_8024FEC0(struct MarioState *m, struct Object *o)
         s16 facingDYaw = mario_angle_to_object(m, o) - m->faceAngle[1];
         if (facingDYaw >= -0x4000 && facingDYaw <= 0x4000)
         {
-            o->oInteractStatus = 0x00008000;
+            o->oInteractStatus = INT_STATUS_INTERACTED;
 
             m->interactObj = o;
             m->usedObj = o;
@@ -1831,7 +1831,7 @@ void mario_process_interactions(struct MarioState *m)
 
                 m->collidedObjInteractTypes &= ~interactType;
 
-                if (!(object->oInteractStatus & 0x00008000))
+                if (!(object->oInteractStatus & INT_STATUS_INTERACTED))
                 {
                     if (sInteractionHandlers[i].handler(m, interactType, object))
                         break;

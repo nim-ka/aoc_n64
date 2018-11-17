@@ -161,7 +161,7 @@ struct ObjNet *make_net(UNUSED s32 a0, struct ObjShape *shapedata, struct ObjGro
     net->unk1D0 = a4;
     net->netType = 0;
     net->unk210 = 0;
-    net->unk21C = 0;
+    net->transform = 0;
     net->unk3C = 1;
     net->unk40 = 0;
     net->skinGrp = NULL;

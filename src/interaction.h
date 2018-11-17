@@ -36,6 +36,31 @@
 #define INTERACT_IGLOO_BARRIER  /* 0x40000000 */ (1 << 30)
 #define INTERACT_UNKNOWN_31     /* 0x80000000 */ (1 << 31)
 
+
+#define ATTACK_PUNCH                 1
+#define ATTACK_KICK_OR_TRIP          2
+#define ATTACK_FROM_ABOVE            3
+#define ATTACK_GROUND_POUND_OR_TWIRL 4
+#define ATTACK_FAST_ATTACK           5
+#define ATTACK_FROM_BELOW            6
+
+#define INT_STATUS_ATTACK_MASK 0x000000FF
+
+#define INT_STATUS_HOOT_GRABBED_BY_MARIO (1 <<  0) /* 0x00000001 */
+#define INT_STATUS_UNK0                  (1 <<  0) /* 0x00000001 */
+#define INT_STATUS_MARIO_UNK1            (1 <<  1) /* 0x00000002 */
+#define INT_STATUS_MARIO_UNK2            (1 <<  2) /* 0x00000004 */
+#define INT_STATUS_MARIO_DROP_OBJECT     (1 <<  3) /* 0x00000008 */
+#define INT_STATUS_MARIO_UNK6            (1 <<  6) /* 0x00000040 */
+#define INT_STATUS_MARIO_UNK7            (1 <<  7) /* 0x00000080 */
+#define INT_STATUS_GRABBED_MARIO         (1 << 11) /* 0x00000800 */
+#define INT_STATUS_ATTACKED_MARIO        (1 << 13) /* 0x00002000 */
+#define INT_STATUS_WAS_ATTACKED          (1 << 14) /* 0x00004000 */
+#define INT_STATUS_INTERACTED            (1 << 15) /* 0x00008000 */
+#define INT_STATUS_STOP_RIDING           (1 << 22) /* 0x00400000 */
+#define INT_STATUS_TOUCHED_BOB_OMB       (1 << 23) /* 0x00800000 */
+
+
 struct BullyCollisionData {
   /*0x00*/ f32 conversionRatio;
   /*0x04*/ f32 radius;

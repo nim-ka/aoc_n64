@@ -509,7 +509,7 @@ static void transform_object_vertices(s16 **data, s16 *vertexData)
     Mat4 m;
     UNUSED s16 unused;
 
-    objectTransform = &gCurrentObject->unk21C;
+    objectTransform = &gCurrentObject->transform;
 
     numVertices = *(*data);
     (*data)++;
@@ -519,10 +519,11 @@ static void transform_object_vertices(s16 **data, s16 *vertexData)
     if (gCurrentObject->header.gfx.throwMatrix == NULL)
     {
         gCurrentObject->header.gfx.throwMatrix = objectTransform;
-        func_802A2188(gCurrentObject, 0x06, 0x12);
+        build_object_transform_from_pos_and_angle(
+            gCurrentObject, O_POS_INDEX, O_FACE_ANGLE_INDEX);
     }
 
-    func_8029D62C(gCurrentObject, m, *objectTransform);
+    apply_object_scale_to_matrix(gCurrentObject, m, *objectTransform);
 
     while (numVertices--)
     {
@@ -598,13 +599,13 @@ void load_object_collision_model(void)
     f32 tangibleDist = gCurrentObject->oCollisionDistance;
 
     if (gCurrentObject->oDistanceToMario == 19000.0f)
-        marioDist = objects_calc_distance(gCurrentObject, gMarioObject);
+        marioDist = dist_between_objects(gCurrentObject, gMarioObject);
 
     if (gCurrentObject->oCollisionDistance > 4000.0f)
         gCurrentObject->oDrawingDistance = gCurrentObject->oCollisionDistance;
 
     if (!(gTimeStopState & TIME_STOP_ACTIVE) && marioDist < tangibleDist &&
-        !(gCurrentObject->active & 0x0008))
+        !(gCurrentObject->activeFlags & 0x0008))
     {
         collisionData++;
         transform_object_vertices(&collisionData, vertexData);

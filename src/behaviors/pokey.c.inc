@@ -12,7 +12,7 @@ void bhv_pokey_body_part_update(void)
         }
         else
         {
-            MoveRelated();
+            obj_update_floor_and_walls();
             update_blinking(&o->oPokeyBodyPartBlinkTimer, 30, 60, 4);
 
             if (o->oBehParams2ndByte > 1 &&
@@ -32,7 +32,7 @@ void bhv_pokey_body_part_update(void)
                 o->oBehParams2ndByte + 1 == o->parentObj->oPokeyNumBodyParts)
             {
                 approach_f32_2(&o->parentObj->oPokeyUnkFC, 1.0f, 0.1f);
-                ScaleObject(o->parentObj->oPokeyUnkFC * 3.0f);
+                obj_scale(o->parentObj->oPokeyUnkFC * 3.0f);
             }
             
             offsetAngle = o->oBehParams2ndByte * 0x4000 + gGlobalTimer * 0x800;
@@ -52,11 +52,11 @@ void bhv_pokey_body_part_update(void)
             
             if (o->oBehParams2ndByte == 0)
             {
-                o->oUnk198 = 1;
+                o->oNumLootCoins = 1;
             }
             else
             {
-                o->oUnk198 = 0;
+                o->oNumLootCoins = 0;
             }
             
             if (func_802FA468(&D_80331770, o->oAction, D_80331780))
@@ -65,7 +65,7 @@ void bhv_pokey_body_part_update(void)
                 if (o->oBehParams2ndByte == 0)
                 {
                     o->parentObj->oPokeyUnk100 = 1;
-                    o->oUnk198 = -1;
+                    o->oNumLootCoins = -1;
                 }
 
                 o->parentObj->oPokeyUnkF4 =
@@ -74,7 +74,7 @@ void bhv_pokey_body_part_update(void)
             }
             else if (o->parentObj->oPokeyUnk100 != 0)
             {
-                func_8029FE38();
+                obj_become_intangible();
 
                 if (--o->oPokeyBodyPartUnkF8 < 0)
                 {
@@ -87,7 +87,7 @@ void bhv_pokey_body_part_update(void)
                 o->oPokeyBodyPartUnkF8 = (o->oBehParams2ndByte << 2) + 20;
             }
 
-            MoveObj(-78);
+            obj_move_standard(-78);
         }
     }
     else
@@ -113,7 +113,7 @@ static void pokey_act_uninitialized(void)
             bodyPart = spawn_obj_adv(i, 0, -i * 120 + 480, 0, o, partModel, bPokeyBodyPart);
             if (bodyPart != NULL)
             {
-                func_8029EC88(bodyPart, 3.0f);
+                scale_object(bodyPart, 3.0f);
             }
 
             partModel = 0x55;
@@ -143,7 +143,7 @@ static void pokey_act_wander(void)
     else
     {
         treat_far_home_as_mario(1000.0f);
-        MoveRelated();
+        obj_update_floor_and_walls();
 
         if (o->oPokeyUnk100 != 0)
         {
@@ -166,7 +166,7 @@ static void pokey_act_wander(void)
                         o->oPokeyNumBodyParts += 1;
                         o->oPokeyUnkFC = 0.0f;
 
-                        func_8029EC88(bodyPart, 0.0f);
+                        scale_object(bodyPart, 0.0f);
                     }
                     
                     o->oTimer = 0;
@@ -208,19 +208,19 @@ static void pokey_act_wander(void)
                         else if (targetAngleOffset > 0x4000)
                             targetAngleOffset = 0x4000;
 
-                        if ((s16)(o->oAngleToMario - o->oAngleYaw) > 0)
+                        if ((s16)(o->oAngleToMario - o->oMoveAngleYaw) > 0)
                             targetAngleOffset = -targetAngleOffset;
 
                         o->oPokeyTargetYaw = o->oAngleToMario + targetAngleOffset;
                     }
                 }
 
-                func_8029DE70(o->oPokeyTargetYaw, 0x200);
+                obj_rotate_yaw_toward(o->oPokeyTargetYaw, 0x200);
             }
 
         }
         
-        MoveObj(-78);
+        obj_move_standard(-78);
     }
 }
 
@@ -232,7 +232,7 @@ static void func_802FD2CC(void)
 
 void bhv_pokey_update(void)
 {
-    o->oUnk1C4 = 0x5063C081;
+    o->oDeathSound = 0x5063C081;
 
     switch (o->oAction)
     {

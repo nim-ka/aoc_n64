@@ -169,7 +169,7 @@ struct Object
     /*0x068*/ struct Object *parentObj;
     /*0x06C*/ struct Object *prevObj;
     /*0x070*/ u32 collidedObjInteractTypes;
-    /*0x074*/ s16 active;
+    /*0x074*/ s16 activeFlags;
     /*0x076*/ s16 numCollidedObjs;
     /*0x078*/ struct Object *collidedObjs[4];
     /*0x088*/
@@ -185,6 +185,7 @@ struct Object
         s16 *asS16P[0x50];
         s32 *asS32P[0x50];
         u32 *asAnims[0x50];
+        struct Waypoint *asWaypoint[0x50];
         struct ChainSegment *asChainSegment[0x50];
         struct Object *asObject[0x50];
         struct Surface *asSurface[0x50];
@@ -205,7 +206,7 @@ struct Object
     /*0x210*/ u32 unk210;
     /*0x214*/ struct Object *platform;
     /*0x218*/ void *collisionData;
-    /*0x21C*/ Mat4 unk21C;
+    /*0x21C*/ Mat4 transform;
     /*0x25C*/ void *unk25C;
 };
 
@@ -214,12 +215,18 @@ struct ObjectHitbox
     /*0x00*/ u32 interactType;
     /*0x04*/ u8 downOffset;
     /*0x05*/ s8 unk05;
-    /*0x06*/ s8 unk06;
-    /*0x07*/ s8 unk07;
+    /*0x06*/ s8 health;
+    /*0x07*/ s8 numLootCoins;
     /*0x08*/ s16 radius;
     /*0x0A*/ s16 height;
     /*0x0C*/ s16 unk0C;
     /*0x0E*/ s16 unk0E;
+};
+
+struct Waypoint
+{
+    s16 flags;
+    Vec3s pos;
 };
 
 struct Surface

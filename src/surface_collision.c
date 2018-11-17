@@ -106,7 +106,7 @@ static s32 find_wall_collisions_from_list(
 
             if (surf->type == SURFACE_007B)
             {
-                if (gCurrentObject != NULL && (gCurrentObject->active & 0x0040))
+                if (gCurrentObject != NULL && (gCurrentObject->activeFlags & 0x0040))
                     continue;
 
                 if (gCurrentObject != NULL && gCurrentObject == gMarioObject &&

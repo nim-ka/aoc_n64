@@ -91,7 +91,7 @@ void beh_yellow_background_menu_init(void)
 
 void beh_yellow_background_menu_loop(void)
 {
-    ScaleObject(9.0f);
+    obj_scale(9.0f);
 }
 
 // Test if a button was clicked
@@ -293,7 +293,7 @@ void beh_menu_button_loop(void)
         sCursorClickingTimer = 4;
         break;
     }
-    ScaleObject(gCurrentObject->oMenuButtonScale);
+    obj_scale(gCurrentObject->oMenuButtonScale);
 }
 
 static void score_menu_file_exiting(struct Object *scoreFileButton, s8 scoreButtonId)

@@ -562,7 +562,7 @@ static s32 act_freefall(struct MarioState *m)
 
 static s32 act_hold_jump(struct MarioState *m)
 {
-    if (m->marioObj->oInteractStatus & 0x00000008)
+    if (m->marioObj->oInteractStatus & INT_STATUS_MARIO_DROP_OBJECT)
         return drop_and_set_mario_action(m, ACT_FREEFALL, 0);
 
     if ((m->input & INPUT_B_PRESSED) && !(m->heldObj->oUnk190 & 0x00000010))
@@ -584,7 +584,7 @@ static s32 act_hold_freefall(struct MarioState *m)
     else
         animation = 0x0044;
 
-    if (m->marioObj->oInteractStatus & 0x00000008)
+    if (m->marioObj->oInteractStatus & INT_STATUS_MARIO_DROP_OBJECT)
         return drop_and_set_mario_action(m, ACT_FREEFALL, 0);
 
     if ((m->input & INPUT_B_PRESSED) && !(m->heldObj->oUnk190 & 0x00000010))
@@ -854,7 +854,7 @@ static s32 act_water_jump(struct MarioState *m)
 
 static s32 act_hold_water_jump(struct MarioState *m)
 {
-    if (m->marioObj->oInteractStatus & 0x00000008)
+    if (m->marioObj->oInteractStatus & INT_STATUS_MARIO_DROP_OBJECT)
         return drop_and_set_mario_action(m, ACT_FREEFALL, 0);
 
     if (m->forwardVel < 15.0f)
@@ -1080,7 +1080,7 @@ static s32 act_crazy_box_bounce(struct MarioState *m)
         }
         else
         {
-            m->heldObj->oInteractStatus = 0x00400000;
+            m->heldObj->oInteractStatus = INT_STATUS_STOP_RIDING;
             m->heldObj = NULL;
             set_mario_action(m, ACT_STOMACH_SLIDE, 0);
         }
@@ -1493,7 +1493,7 @@ static s32 act_butt_slide_air(struct MarioState *m)
 
 static s32 act_hold_butt_slide_air(struct MarioState *m)
 {
-    if (m->marioObj->oInteractStatus & 0x00000008)
+    if (m->marioObj->oInteractStatus & INT_STATUS_MARIO_DROP_OBJECT)
         return drop_and_set_mario_action(m, ACT_HOLD_FREEFALL, 1);
 
     if (++(m->actionTimer) > 30 && m->pos[1] - m->floorHeight > 500.0f)
@@ -1859,7 +1859,7 @@ static s32 act_flying(struct MarioState *m)
 
 static s32 act_riding_hoot(struct MarioState *m)
 {
-    if (!(m->input & INPUT_A_DOWN) || (m->marioObj->oInteractStatus & 0x00000080))
+    if (!(m->input & INPUT_A_DOWN) || (m->marioObj->oInteractStatus & INT_STATUS_MARIO_UNK7))
     {
         m->usedObj->oInteractStatus = 0;
         m->usedObj->oHootMarioReleaseTime = gGlobalTimer;
@@ -1872,7 +1872,7 @@ static s32 act_riding_hoot(struct MarioState *m)
     m->pos[1] = m->usedObj->oPosY - 92.5f;
     m->pos[2] = m->usedObj->oPosZ;
 
-    m->faceAngle[1] = 0x4000 - m->usedObj->oAngleYaw;
+    m->faceAngle[1] = 0x4000 - m->usedObj->oMoveAngleYaw;
 
     if (m->actionState == 0)
     {

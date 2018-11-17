@@ -3,7 +3,7 @@ void bhv_racing_penguin_init(void)
 {
     if (gMarioState->numStars == 120)
     {
-        ScaleObject(8.0f);
+        obj_scale(8.0f);
         o->header.gfx.scale[1] = 5.0f;
         o->oBehParams2ndByte = 1;
     }
@@ -13,7 +13,7 @@ static void racing_penguin_act_wait_for_mario(void)
 {
     if (o->oTimer > o->oRacingPenguinInitTextCooldown &&
         o->oPosY - gMarioObject->oPosY <= 0.0f &&
-        func_802A4114(400.0f, 400.0f))
+        obj_is_mario_in_cylinder_and_ready_to_speak(400.0f, 400.0f))
     {
         o->oAction = RACING_PENGUIN_ACT_SHOW_INIT_TEXT;
     }
@@ -27,14 +27,14 @@ static void racing_penguin_act_show_init_text(void)
     response = func_802F870C(sRacingPenguinData[o->oBehParams2ndByte].text);
     if (response == 1)
     {
-        child = func_8029F1E0(bPenguinRaceFinishLine);
+        child = obj_nearest_object_with_behavior(bPenguinRaceFinishLine);
         child->parentObj = o;
 
-        child = func_8029F1E0(bPenguinRaceShortcutCheck);
+        child = obj_nearest_object_with_behavior(bPenguinRaceShortcutCheck);
         child->parentObj = o;
 
-        o->oRacingPenguinUnkFC = o->oRacingPenguinUnk100 = segmented_to_virtual(ccm_seg7_trajectory_penguin_race);
-        o->oRacingPenguinUnk104 = 0;
+        o->oPathedStartWaypoint = o->oPathedPrevWaypoint = segmented_to_virtual(ccm_seg7_trajectory_penguin_race);
+        o->oPathedPrevWaypointFlags = 0;
 
         o->oAction = RACING_PENGUIN_ACT_PREPARE_FOR_RACE;
         o->oVelY = 60.0f;;
@@ -54,7 +54,7 @@ static void racing_penguin_act_prepare_for_race(void)
         o->oForwardVel = 20.0f;
     }
 
-    func_8029DE70(0x4000, 2500);
+    obj_rotate_yaw_toward(0x4000, 2500);
 }
 
 static void racing_penguin_act_race(void)
@@ -62,7 +62,7 @@ static void racing_penguin_act_race(void)
     f32 targetSpeed;
     f32 minSpeed;
 
-    if (func_802A24B4(0) == -1)
+    if (obj_follow_path(0) == PATH_REACHED_END)
     {
         o->oRacingPenguinReachedBottom = TRUE;
         o->oAction = RACING_PENGUIN_ACT_FINISH_RACE;
@@ -74,9 +74,9 @@ static void racing_penguin_act_race(void)
 
         PlaySound(0x60050001);
 
-        if (targetSpeed < 100.0f || (o->oRacingPenguinUnk104 & 0xFF) >= 35)
+        if (targetSpeed < 100.0f || (o->oPathedPrevWaypointFlags & WAYPOINT_MASK_00FF) >= 35)
         {
-            if ((o->oRacingPenguinUnk104 & 0xFF) >= 35)
+            if ((o->oPathedPrevWaypointFlags & WAYPOINT_MASK_00FF) >= 35)
             {
                 minSpeed = 60.0f;
             }
@@ -93,7 +93,7 @@ static void racing_penguin_act_race(void)
         forward_vel_approach(targetSpeed, 0.4f);
 
         func_8029ED38(1);
-        func_8029DE70(o->oRacingPenguinUnk10C, (s32)(15.0f * o->oForwardVel));
+        obj_rotate_yaw_toward(o->oPathedTargetYaw, (s32)(15.0f * o->oForwardVel));
 
         if (func_8029F828() && (o->oMoveFlags & 0x00000003))
         {
@@ -101,7 +101,7 @@ static void racing_penguin_act_race(void)
         }
     }
 
-    if (func_8029F998())
+    if (mario_is_in_air_action())
     {
         if (o->oTimer > 60)
         {
@@ -137,12 +137,12 @@ static void racing_penguin_act_show_final_text(void)
 
     if (o->oRacingPenguinFinalTextbox == 0)
     {
-        if (func_8029DE70(0, 200))
+        if (obj_rotate_yaw_toward(0, 200))
         {
             func_8029ED38(3);
             o->oForwardVel = 0.0f;
 
-            if (func_802A4114(400.0f, 400.0f))
+            if (obj_is_mario_in_cylinder_and_ready_to_speak(400.0f, 400.0f))
             {
                 if (o->oRacingPenguinMarioWon)
                 {
@@ -175,7 +175,7 @@ static void racing_penguin_act_show_final_text(void)
     }
     else if (o->oRacingPenguinFinalTextbox > 0)
     {
-        if ((textResult = CreateMessageBox(2, 1, 0xA2, o->oRacingPenguinFinalTextbox)) != 0)
+        if ((textResult = obj_update_dialogue_unk2(2, 1, 0xA2, o->oRacingPenguinFinalTextbox)) != 0)
         {
             o->oRacingPenguinFinalTextbox = -1;
             o->oTimer = 0;
@@ -186,7 +186,7 @@ static void racing_penguin_act_show_final_text(void)
 #ifdef VERSION_JP
         CreateStar(-7339.0f, -5700.0f, -6774.0f);
 #else
-        func_u_802A5588(-7339.0f, -5700.0f, -6774.0f, 200.0f);
+        obj_spawn_star_at_y_offset(-7339.0f, -5700.0f, -6774.0f, 200.0f);
 #endif
         o->oRacingPenguinMarioWon = FALSE;
     }
@@ -194,7 +194,7 @@ static void racing_penguin_act_show_final_text(void)
 
 void bhv_racing_penguin_update(void)
 {
-    MoveRelated();
+    obj_update_floor_and_walls();
 
     switch (o->oAction)
     {
@@ -206,9 +206,11 @@ void bhv_racing_penguin_update(void)
     case RACING_PENGUIN_ACT_SHOW_FINAL_TEXT:  racing_penguin_act_show_final_text();  break;
     }
 
-    MoveObj(78);
-    func_802A4780();
-    func_802A3164(sRacingPenguinData[o->oBehParams2ndByte].radius, sRacingPenguinData[o->oBehParams2ndByte].height);
+    obj_move_standard(78);
+    obj_align_gfx_with_floor();
+    obj_push_mario_away_from_cylinder(
+        sRacingPenguinData[o->oBehParams2ndByte].radius,
+        sRacingPenguinData[o->oBehParams2ndByte].height);
 }
 
 void bhv_penguin_race_finish_line_update(void)

@@ -63,7 +63,7 @@ extern u8 D_80331608[];
 
 void func_802E2F40(void);
 struct Struct802E2F58 *func_802E2F58(s32 arg0, struct Object *arg1, UNUSED s32 arg2); /* unused */
-f32 absf(f32 f);
+f32 absf_2(f32 f);
 void TurnObjAwayFromSurface(f32 objVelX, f32 objVelZ, f32 nX, UNUSED f32 nY, f32 nZ, f32 *objYawX, f32 *objYawZ);
 s32 ObjFindWall(f32 objNewX, f32 objY, f32 objNewZ, f32 objVelX, f32 objVelZ);
 s32 TurnObjAwayFromAwkwardFloor(struct Surface *objFloor, f32 floorY, f32 objVelX, f32 objVelZ);

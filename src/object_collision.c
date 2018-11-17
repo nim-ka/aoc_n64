@@ -95,19 +95,19 @@ void func_802C88A8(struct Object *a)
     {
         sp4->numCollidedObjs = 0;
         sp4->collidedObjInteractTypes = 0;
-        if (sp4->oCollectable > 0)
-            sp4->oCollectable--;
+        if (sp4->oIntangibleTimer > 0)
+            sp4->oIntangibleTimer--;
         sp4 = (struct Object *)sp4->header.next;
     }
 }
 
 void func_802C8918(struct Object *a, struct Object *b, struct Object *c)
 {
-    if (a->oCollectable == 0)
+    if (a->oIntangibleTimer == 0)
     {
         while (b != c)
         {
-            if (b->oCollectable == 0)
+            if (b->oIntangibleTimer == 0)
             {
                 if (func_802C8504(a, b) && b->unk200 != 0.0f)
                     func_802C870C(a, b);
@@ -160,7 +160,7 @@ void func_802C8B50(void)
 
     while (sp18 != sp1C)
     {
-        if (sp18->oDistanceToMario < 2000.0f && !(sp18->active & 0x200))
+        if (sp18->oDistanceToMario < 2000.0f && !(sp18->activeFlags & 0x200))
         {
             func_802C8918(sp18, (struct Object *)sp18->header.next, sp1C);
             func_802C8918(sp18, (struct Object *) gObjectLists[OBJ_LIST_GENACTOR].next, 

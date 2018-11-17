@@ -13,14 +13,14 @@ void bhv_seesaw_platform_update(void)
     UNUSED s32 startPitch = o->oFaceAnglePitch;
     o->oFaceAnglePitch += (s32)o->oSeesawPlatformPitchVel;
 
-    if (func_802A2E8C(o->oSeesawPlatformPitchVel) > 10.0f)
+    if (absf(o->oSeesawPlatformPitchVel) > 10.0f)
     {
         PlaySound(0x400B0001);
     }
 
     if (gMarioObject->platform == o)
     {
-        f32 rotation = o->oDistanceToMario * coss(o->oAngleToMario - o->oAngleYaw);
+        f32 rotation = o->oDistanceToMario * coss(o->oAngleToMario - o->oMoveAngleYaw);
         UNUSED s32 unused;
 
         if (o->oSeesawPlatformPitchVel * rotation < 0)

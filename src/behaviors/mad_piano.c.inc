@@ -10,7 +10,7 @@ static void mad_piano_act_wait(void)
             if (gMarioStates[0].forwardVel > 10.0f)
             {
                 o->oAction = MAD_PIANO_ACT_ATTACK;
-                func_8029FE58();
+                obj_become_tangible();
             }
         }
     }
@@ -19,12 +19,12 @@ static void mad_piano_act_wait(void)
         o->oTimer = 0;
     }
 
-    func_802A3164(280.0f, 150.0f);
+    obj_push_mario_away_from_cylinder(280.0f, 150.0f);
 }
 
 static void mad_piano_act_attack(void)
 {
-    MoveRelated();
+    obj_update_floor_and_walls();
     func_8029ED38(1);
     func_802F9378(0, 0, 0x52564081);
     
@@ -37,7 +37,7 @@ static void mad_piano_act_attack(void)
     {
         o->oAction = MAD_PIANO_ACT_WAIT;
         o->oForwardVel = 0.0f;
-        func_8029FE38();
+        obj_become_intangible();
     }
     else
     {
@@ -52,19 +52,19 @@ static void mad_piano_act_attack(void)
             o->oPosZ = o->oHomeZ + dz * distToHome;
         }
 
-        func_8029DE70(o->oAngleToMario, 400);
+        obj_rotate_yaw_toward(o->oAngleToMario, 400);
         o->oForwardVel = 5.0f;
     }
 
     func_802FA888(&sMadPianoHitbox, o->oAction);
-    MoveObj(78);
+    obj_move_standard(78);
 }
 
 void bhv_mad_piano_update(void)
 {
-    if (!(o->active & 0x0008))
+    if (!(o->activeFlags & 0x0008))
     {
-        o->oFaceAngleYaw = o->oAngleYaw - 0x4000;
+        o->oFaceAngleYaw = o->oMoveAngleYaw - 0x4000;
 
         switch (o->oAction)
         {

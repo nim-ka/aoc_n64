@@ -71,7 +71,7 @@ struct Struct802E2F58 *func_802E2F58(s32 arg0, struct Object *arg1, UNUSED s32 a
     return sp34;
 }
 
-f32 absf(f32 f)
+f32 absf_2(f32 f)
 {
     if (f < 0) f *= -1.0f;
     return f;
@@ -123,7 +123,7 @@ s32 ObjFindWall(f32 objNewX, f32 objY, f32 objNewZ, f32 objVelX, f32 objVelZ)
         objVelXCopy = objVelX;
         objVelZCopy = objVelZ;
         TurnObjAwayFromSurface(objVelXCopy, objVelZCopy, wall_nX, wall_nY, wall_nZ, &objYawX, &objYawZ);
-        o->oAngleYaw = atan2s(objYawZ, objYawX);
+        o->oMoveAngleYaw = atan2s(objYawZ, objYawX);
         return 0;
     }
 
@@ -144,7 +144,7 @@ s32 TurnObjAwayFromAwkwardFloor(struct Surface* objFloor, f32 floorY, f32 objVel
     if (objFloor == NULL)
     {
         //! TRUNC overflow exception after 36 minutes
-        o->oAngleYaw += 32767.999200000002; /* ¯\_(ツ)_/¯ */
+        o->oMoveAngleYaw += 32767.999200000002; /* ¯\_(ツ)_/¯ */
         return 0;
     }
 
@@ -157,7 +157,7 @@ s32 TurnObjAwayFromAwkwardFloor(struct Surface* objFloor, f32 floorY, f32 objVel
         objVelXCopy = objVelX;
         objVelZCopy = objVelZ;
         TurnObjAwayFromSurface(objVelXCopy, objVelZCopy, floor_nX, floor_nY, floor_nZ, &objYawX, &objYawZ);
-        o->oAngleYaw = atan2s(objYawZ, objYawX);
+        o->oMoveAngleYaw = atan2s(objYawZ, objYawX);
         return 0;
     }
 
@@ -237,7 +237,7 @@ void CalcNewObjVelAndPosY(struct Surface* objFloor, f32 objFloorY, f32 objVelX, 
         if (objVelX < 0.000001 && objVelX > -0.000001) objVelX = 0;
         if (objVelZ < 0.000001 && objVelZ > -0.000001) objVelZ = 0;
         
-        if (objVelX != 0 || objVelZ != 0) o->oAngleYaw = atan2s(objVelZ, objVelX);
+        if (objVelX != 0 || objVelZ != 0) o->oMoveAngleYaw = atan2s(objVelZ, objVelX);
         
         CalcObjFriction(&objFriction, floor_nY);
         o->oForwardVel = sqrtf(objVelX * objVelX + objVelZ * objVelZ) * objFriction;
@@ -289,7 +289,7 @@ void CalcNewObjVelAndPosYUnderwater(struct Surface* objFloor, f32 floorY, f32 ob
     
     if ((f64)o->oVelY < 0.000001 && (f64)o->oVelY > -0.000001) o->oVelY = 0;
     
-    if (objVelX != 0 || objVelZ != 0) o->oAngleYaw = atan2s(objVelZ, objVelX);
+    if (objVelX != 0 || objVelZ != 0) o->oMoveAngleYaw = atan2s(objVelZ, objVelX);
     o->oForwardVel = sqrtf(objVelX * objVelX + objVelZ * objVelZ) * 0.8;
     o->oVelY *= 0.8;
 }
@@ -299,8 +299,8 @@ void CalcNewObjVelAndPosYUnderwater(struct Surface* objFloor, f32 floorY, f32 ob
 
 void ObjUpdatePosVelXZ(void)
 {
-    f32 xVel = o->oForwardVel * sins(o->oAngleYaw);
-    f32 zVel = o->oForwardVel * coss(o->oAngleYaw);
+    f32 xVel = o->oForwardVel * sins(o->oMoveAngleYaw);
+    f32 zVel = o->oForwardVel * coss(o->oMoveAngleYaw);
 
     o->oPosX += xVel;
     o->oPosZ += zVel;
@@ -338,8 +338,8 @@ s16 ObjectStep(void)
     f32 objZ = o->oPosZ;
     f32 floorY;
     f32 waterY = -10000.0;
-    f32 objVelX = o->oForwardVel * sins(o->oAngleYaw);
-    f32 objVelZ = o->oForwardVel * coss(o->oAngleYaw);
+    f32 objVelX = o->oForwardVel * sins(o->oMoveAngleYaw);
+    f32 objVelZ = o->oForwardVel * coss(o->oMoveAngleYaw);
     s16 collisionFlags = 0;
     
     if (ObjFindWall(objX + objVelX, objY, objZ + objVelZ, objVelX, objVelZ) == 0) collisionFlags += OBJ_COL_FLAG_HIT_WALL;
@@ -381,8 +381,8 @@ s16 func_802E4204(void)
 
 void func_802E4250(struct Object* obj)
 {
-    o->oVelX = obj->oForwardVel * sins(obj->oAngleYaw);
-    o->oVelZ = obj->oForwardVel * coss(obj->oAngleYaw);
+    o->oVelX = obj->oForwardVel * sins(obj->oMoveAngleYaw);
+    o->oVelZ = obj->oForwardVel * coss(obj->oMoveAngleYaw);
 
     obj->oPosX += o->oVelX;
     obj->oPosY += obj->oVelY;
@@ -453,7 +453,7 @@ s32 ObjLeaveIfMarioIsNearHome(struct Object* obj, f32 homeX, f32 y, f32 homeZ, s
     if (IsPointCloseToMario(homeX, y, homeZ, dist) == 1) return 1;
     else
     {
-        obj->oAngleYaw = approach_target_angle(obj->oAngleYaw, angleAwayFromHome, 320);
+        obj->oMoveAngleYaw = approach_s16_symmetric(obj->oMoveAngleYaw, angleAwayFromHome, 320);
     }
 
     return 0;
@@ -478,7 +478,7 @@ void ObjDisplaceHome(struct Object* obj, f32 homeX, UNUSED f32 homeY, f32 homeZ,
     homeDistX = obj->oHomeX - obj->oPosX;
     homeDistZ = obj->oHomeZ - obj->oPosZ;
     angleToNewHome = atan2s(homeDistZ, homeDistX);
-    obj->oAngleYaw = approach_target_angle(obj->oAngleYaw, angleToNewHome, 320);
+    obj->oMoveAngleYaw = approach_s16_symmetric(obj->oMoveAngleYaw, angleToNewHome, 320);
 }
 
 s32 func_802E46C0(u32 arg0, u32 arg1, s16 arg2)
@@ -532,7 +532,7 @@ void ObjSpawnYellowCoins(struct Object *obj, s32 nCoins)
         coin = SpawnObj(obj, 0x74, beh_moving_yellow_coin);
         coin->oForwardVel = RandomFloat() * 20.0f;
         coin->oVelY = RandomFloat() * 40.0f + 20.0f;
-        coin->oAngleYaw = RandomU16();
+        coin->oMoveAngleYaw = RandomU16();
     }
 }
 
@@ -546,7 +546,7 @@ s32 ObjFlickerAndDisappear(struct Object *obj, s16 arg1)
     }
     else
     {
-        obj->active = 0;
+        obj->activeFlags = 0;
         return 1;
     }
 
@@ -557,17 +557,17 @@ s8 func_802E49A4(s16 arg0)
 {
     s16 sp6;
 
-    if (D_8035FEE0 == 0)
+    if (gMarioCurrentRoom == 0)
     {
         if (arg0 == D_80331504) return 1;
         else return 0;
     }
     else
     {
-        if (arg0 == D_8035FEE0) sp6 = 1;
+        if (arg0 == gMarioCurrentRoom) sp6 = 1;
         else sp6 = 0;
         
-        D_80331504 = D_8035FEE0;
+        D_80331504 = gMarioCurrentRoom;
     }
     
     return sp6;
@@ -586,7 +586,7 @@ s16 func_802E4A38(s32 *arg0, s16 arg1, f32 arg2, s32 arg3)
     (
            (IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, (s32)arg2) == 1
         &&  func_802E46C0(o->oFaceAngleYaw, gMarioObject->header.gfx.angle[1] + 0x8000, 0x1000) == 1
-        &&  func_802E46C0(o->oAngleYaw, o->oAngleToMario, 0x1000) == 1)
+        &&  func_802E46C0(o->oMoveAngleYaw, o->oAngleToMario, 0x1000) == 1)
     ||
            (*arg0 == 1)
     )
@@ -631,7 +631,7 @@ s32 ObjLavaDeath(void)
     
     if (o->oTimer >= 31) 
     {
-        o->active = 0;
+        o->activeFlags = 0;
         return 1;
     }
     else o->oPosY -= 10.0f;
@@ -716,7 +716,7 @@ void MovingCoinFlickerLoop(void)
 void CoinCollected(void)
 {
     SpawnObj(o, 149, beh_golden_coin_sparkles);
-    o->active = 0;
+    o->activeFlags = 0;
 }
 
 void BehMovingYellowCoinInit(void)
@@ -725,7 +725,7 @@ void BehMovingYellowCoinInit(void)
     o->oFriction = 1.0f;
     o->oBuoyancy = 1.5f;
     
-    func_802A2CFC(o, &D_80331514);
+    set_object_hitbox(o, &D_80331514);
 }
 
 void BehMovingYellowCoinLoop(void)
@@ -736,8 +736,8 @@ void BehMovingYellowCoinLoop(void)
         case MOV_YCOIN_ACT_IDLE:
             CoinStep(&collisionFlags);
             
-            if (o->oTimer < 10) func_8029FE38();
-            else func_8029FE58();
+            if (o->oTimer < 10) obj_become_intangible();
+            else obj_become_tangible();
             
             if (o->oTimer >= 301) o->oAction = 1;
             break;
@@ -747,11 +747,11 @@ void BehMovingYellowCoinLoop(void)
             break;
             
         case MOV_YCOIN_ACT_LAVA_DEATH:
-            o->active = 0;
+            o->activeFlags = 0;
             break;
             
         case MOV_YCOIN_ACT_DEATH_PLANE_DEATH:
-            o->active = 0;
+            o->activeFlags = 0;
             break;
     }
 
@@ -768,7 +768,7 @@ void BehMovingBlueCoinInit(void)
     o->oFriction = 1.0f;
     o->oBuoyancy = 1.5f;
     
-    func_802A2CFC(o, &D_80331524);
+    set_object_hitbox(o, &D_80331524);
 }
 
 void BehMovingBlueCoinLoop(void)
@@ -810,7 +810,7 @@ void BehBlueCoinSlidingJumpingInit(void)
     o->oFriction = 0.98;
     o->oBuoyancy = 1.5;
     
-    func_802A2CFC(o, &D_80331524);
+    set_object_hitbox(o, &D_80331524);
 }
 
 void func_802E540C(void)
@@ -818,7 +818,7 @@ void func_802E540C(void)
     s16 collisionFlags;
     
     o->oForwardVel = 15.0;
-    o->oAngleYaw = o->oAngleToMario + 0x8000;
+    o->oMoveAngleYaw = o->oAngleToMario + 0x8000;
     
     if (CoinStep(&collisionFlags) != 0) o->oVelY += 18.0f;
     if ((collisionFlags & 0x2) != 0) o->oAction = 3; /* bit 1 */
@@ -873,11 +873,11 @@ void BehBlueCoinSlidingLoop(void)
             break;
             
         case 100:
-            o->active = 0;
+            o->activeFlags = 0;
             break;
             
         case 101:
-            o->active = 0;
+            o->activeFlags = 0;
             break;
     }
 
@@ -897,7 +897,7 @@ void BehBlueCoinJumpingLoop(void)
         case 0:
             if (o->oTimer == 0)
             {
-                func_8029FE38();
+                obj_become_intangible();
                 o->oVelY = 50.0;
             }
             
@@ -905,7 +905,7 @@ void BehBlueCoinJumpingLoop(void)
             
             if (o->oTimer == 15)
             {
-                func_8029FE58();
+                obj_become_tangible();
                 o->oAction = 1;
             }
             break;
@@ -1003,7 +1003,7 @@ void func_802E5B7C(void)
 void BobombExplodeLoop(void)
 {
     struct Object *explosion;
-    if (o->oTimer < 5) ScaleObject(1.0 + (f32)o->oTimer / 5.0);
+    if (o->oTimer < 5) obj_scale(1.0 + (f32)o->oTimer / 5.0);
     else
     {
         explosion = SpawnObj(o, 205, beh_explosion);
@@ -1011,18 +1011,18 @@ void BobombExplodeLoop(void)
         
         func_802E5B7C();
         RespawnBobombOrCorkbox(0xBC, beh_bobomb, 3000);
-        o->active = 0;
+        o->activeFlags = 0;
     }
 }
 
 void CheckBobombInteractions(void)
 {
-    func_802A2CFC(o, &D_80331534);
+    set_object_hitbox(o, &D_80331534);
     if ((o->oInteractStatus & 0x8000) != 0) /* bit 15 */
     {
         if ((o->oInteractStatus & 0x2) != 0) /* bit 1 */
         {
-            o->oAngleYaw = gMarioObject->header.gfx.angle[1];
+            o->oMoveAngleYaw = gMarioObject->header.gfx.angle[1];
             o->oForwardVel = 25.0;
             o->oVelY = 30.0;
             o->oAction = BOBOMB_ACT_LAUNCHED;
@@ -1034,7 +1034,7 @@ void CheckBobombInteractions(void)
         o->oInteractStatus = 0;
     }
 
-    if (func_802A4964(o) == 1) o->oAction = BOBOMB_ACT_EXPLODE;
+    if (attack_collided_non_mario_object(o) == 1) o->oAction = BOBOMB_ACT_EXPLODE;
 }
 
 void BobombPatrolLoop(void)
@@ -1048,7 +1048,7 @@ void BobombPatrolLoop(void)
 
     collisionFlags = ObjectStep();
     if ((ObjLeaveIfMarioIsNearHome(o, o->oHomeX, o->oHomeY, o->oHomeZ, 400) == 1)
-    &&  (func_802E46C0(o->oAngleYaw, o->oAngleToMario, 0x2000) == 1))
+    &&  (func_802E46C0(o->oMoveAngleYaw, o->oAngleToMario, 0x2000) == 1))
     {
         o->oBobombFuseLit = 1;
         o->oAction = BOBOMB_ACT_CHASE_MARIO;
@@ -1104,7 +1104,7 @@ void GenericBobombFreeLoop(void)
             break;
             
         case BOBOMB_ACT_DEATH_PLANE_DEATH:
-            o->active = 0;
+            o->activeFlags = 0;
             RespawnBobombOrCorkbox(188, beh_bobomb, 3000);
             break;
     }
@@ -1131,7 +1131,7 @@ void StationaryBobombFreeLoop(void)
             break;
             
         case BOBOMB_ACT_DEATH_PLANE_DEATH:
-            o->active = 0;
+            o->activeFlags = 0;
             RespawnBobombOrCorkbox(188, beh_bobomb, 3000);
             break;
     }
@@ -1151,7 +1151,7 @@ void BobombHeldLoop(void)
 {
     o->header.gfx.node.flags |= 0x10; /* bit 4 */
     SetObjAnimation(1);
-    func_8029EF64(gMarioObject, 0, 60.0f, 100.0);
+    obj_set_pos_relative(gMarioObject, 0, 60.0f, 100.0);
 
     o->oBobombFuseLit = 1;
     if (o->oBobombFuseTimer >= 151)
@@ -1167,7 +1167,7 @@ void BobombHeldLoop(void)
 
 void BobombDroppedLoop(void)
 {
-    func_8029FCF8();
+    obj_get_dropped();
 
     o->header.gfx.node.flags &= ~0x10; /* bit 4 = 0 */
     SetObjAnimation(0);
@@ -1178,7 +1178,7 @@ void BobombDroppedLoop(void)
 
 void BobombThrownLoop(void)
 {
-    func_8029F0A4();
+    obj_enable_rendering_2();
 
     o->header.gfx.node.flags &= ~0x10; /* bit 4 = 0 */
     o->oHeldState = 0;
@@ -1259,7 +1259,7 @@ void BehBobombFuseSmokeInit(void)
     o->oPosX += (s32)(RandomFloat() * 80.0f) - 40;
     o->oPosY += (s32)(RandomFloat() * 80.0f) + 60;
     o->oPosZ += (s32)(RandomFloat() * 80.0f) - 40;
-    ScaleObject(1.2f);
+    obj_scale(1.2f);
 }
 
 void BehBobombBuddyInit(void)
@@ -1285,7 +1285,7 @@ void BobombBuddyIdleLoop(void)
     if ((sp1a == 5) || (sp1a == 16)) PlaySound2(0x50270081);
 
     if (o->oDistanceToMario < 1000.0f)
-        o->oAngleYaw = approach_target_angle(o->oAngleYaw, o->oAngleToMario, 0x140);
+        o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, o->oAngleToMario, 0x140);
 
     if (o->oInteractStatus == 0x8000) o->oAction = BOBOMB_BUDDY_ACT_TURN_TO_TALK;
 }
@@ -1305,14 +1305,14 @@ void BobombBuddyCannonLoop(s16 arg0, s16 arg1)
             if (sp2a != 0)
             {
                 save_file_set_cannon_unlocked();
-                sp2c = func_8029F1E0(beh_cannon_trap_door);
+                sp2c = obj_nearest_object_with_behavior(beh_cannon_trap_door);
                 if (sp2c != 0) o->oBobombBuddyCannonStatus = BOBOMB_BUDDY_CANNON_OPENING;
                 else o->oBobombBuddyCannonStatus = BOBOMB_BUDDY_CANNON_STOP_TALKING;
             }
             break;
             
         case BOBOMB_BUDDY_CANNON_OPENING:
-            sp2c = func_8029F1E0(beh_cannon_trap_door);
+            sp2c = obj_nearest_object_with_behavior(beh_cannon_trap_door);
             sp28 = func_8028F9E8(150, sp2c);
             if (sp28 == -1) o->oBobombBuddyCannonStatus = BOBOMB_BUDDY_CANNON_OPENED;
             break;
@@ -1325,7 +1325,7 @@ void BobombBuddyCannonLoop(s16 arg0, s16 arg1)
         case BOBOMB_BUDDY_CANNON_STOP_TALKING:
             func_802573C8(0);
             
-            o->active &= ~0x20; /* bit 5 */
+            o->activeFlags &= ~0x20; /* bit 5 */
             o->oBobombBuddyHasTalkedToMario = BOBOMB_BUDDY_HAS_TALKED;
             o->oInteractStatus = 0;
             o->oAction = BOBOMB_BUDDY_ACT_IDLE;
@@ -1338,7 +1338,7 @@ void BobombBuddyTalkLoop(void)
 {
     if (func_802573C8(1) == 2)
     {
-        o->active |= 0x20; /* bit 5 */
+        o->activeFlags |= 0x20; /* bit 5 */
 
         switch (o->oBobombBuddyRole)
         {
@@ -1347,7 +1347,7 @@ void BobombBuddyTalkLoop(void)
                 {
                     func_802573C8(0);
 
-                    o->active &= ~0x20; /* bit 5 */
+                    o->activeFlags &= ~0x20; /* bit 5 */
                     o->oBobombBuddyHasTalkedToMario = BOBOMB_BUDDY_HAS_TALKED;
                     o->oInteractStatus = 0;
                     o->oAction = BOBOMB_BUDDY_ACT_IDLE;
@@ -1367,8 +1367,8 @@ void BobombBuddyTurnToTalkLoop(void)
     s16 sp1e = o->header.gfx.unk38.animFrame;
     if ((sp1e == 5) || (sp1e == 16)) PlaySound2(0x50270081);
     
-    o->oAngleYaw = approach_target_angle(o->oAngleYaw, o->oAngleToMario, 0x1000);
-    if ((s16)o->oAngleYaw == (s16)o->oAngleToMario)
+    o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, o->oAngleToMario, 0x1000);
+    if ((s16)o->oMoveAngleYaw == (s16)o->oAngleToMario)
         o->oAction = BOBOMB_BUDDY_ACT_TALK;
     
     PlaySound2(0x045BFF81);
@@ -1416,7 +1416,7 @@ void BehCannonTrapDoorInit(void)
         cannonTrapDoor->oPosZ = o->oHomeZ;
 
         o->oAction = CANNON_TRAP_DOOR_ACT_OPEN;
-        o->active = 0;
+        o->activeFlags = 0;
     }
 }
 
@@ -1479,7 +1479,7 @@ void BehWhirlpoolInit(void)
 
 void func_802E70A8(void)
 {
-    func_802A2CFC(o, &D_80331544);
+    set_object_hitbox(o, &D_80331544);
 }
 
 void func_802E70DC(void)
@@ -1550,13 +1550,13 @@ void BehAmpHomingInit(void)
     o->oBuoyancy = 1.0;
     o->oAmpHomingAvgY = o->oHomeY;
 
-    ScaleObject(0.1f);
+    obj_scale(0.1f);
     o->header.gfx.node.flags |= 0x10; /* bit 4 */
 }
 
 void CheckAmpAttack(void)
 {
-    func_802A2CFC(o, &D_80331554);
+    set_object_hitbox(o, &D_80331554);
     if (o->oInteractStatus & 0x8000) /* bit 15 */
     {
         if (o->oInteractStatus & 0x8000) /* bit 15 */
@@ -1571,15 +1571,15 @@ void AmpHomingAppearLoop(void)
     f32 sp24 = D_8033B328.unk0[3][0] - o->oPosX;
     f32 sp20 = D_8033B328.unk0[3][2] - o->oPosZ;
     s16 targetYaw = atan2s(sp20, sp24);
-    o->oAngleYaw = approach_target_angle(o->oAngleYaw, targetYaw, 0x1000);
+    o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, targetYaw, 0x1000);
     
     if (o->oTimer < 30)
-        ScaleObject(0.1 + 0.9 * (f32)(o->oTimer / 30.0f));
+        obj_scale(0.1 + 0.9 * (f32)(o->oTimer / 30.0f));
     else o->oAnimState = 1;
     
     if (o->oTimer >= 91)
     {
-        ScaleObject(1.0f);
+        obj_scale(1.0f);
         o->oAction = AMP_HOMING_ACT_CHASE;
         o->oAmpHomingYPhase = 0;
     }
@@ -1587,8 +1587,8 @@ void AmpHomingAppearLoop(void)
 
 void AmpHomingChaseLoop(void)
 {
-    if ((o->oAngleToMario - 0x400 < o->oAngleYaw)
-    &&  (o->oAngleYaw < o->oAngleToMario + 0x400))
+    if ((o->oAngleToMario - 0x400 < o->oMoveAngleYaw)
+    &&  (o->oMoveAngleYaw < o->oAngleToMario + 0x400))
     {
         o->oAmpHomingLockedOn = 1;
         o->oTimer = 0;
@@ -1646,13 +1646,13 @@ void AmpAttackCooldownLoop(void)
     o->header.gfx.unk38.animFrame += 2;
     o->oForwardVel = 0;
 
-    func_8029FE38();
+    obj_become_intangible();
 
     if (o->oTimer >= 31) o->oAnimState = 0;
     if (o->oTimer >= 91)
     {
         o->oAnimState = 1;
-        func_8029FE58();
+        obj_become_tangible();
         o->oAction = AMP_HOMING_ACT_CHASE;
     }
 }
@@ -1717,7 +1717,7 @@ void BehAmpInit(void)
             break;
     }
     
-    o->oAngleYaw = RandomU16();
+    o->oMoveAngleYaw = RandomU16();
     o->oAction = 2;
 }
 
@@ -1729,7 +1729,7 @@ void FixedAmpIdleLoop(void)
     s16 vAngleToMario = atan2s(sqrtf(xToMario * xToMario + zToMario * zToMario), -yToMario);
 
     UnknownMove(o, gMarioObject, 19, 0x1000);
-    o->oFaceAnglePitch = approach_target_angle(o->oFaceAnglePitch, vAngleToMario, 0x1000);
+    o->oFaceAnglePitch = approach_s16_symmetric(o->oFaceAnglePitch, vAngleToMario, 0x1000);
 
     o->oPosY = o->oHomeY + coss(o->oAmpYPhase * 0x458) * 20.0f;
 
@@ -1740,11 +1740,11 @@ void FixedAmpIdleLoop(void)
 
 void AmpIdleLoop(void)
 {
-    o->oPosX = o->oHomeX + sins(o->oAngleYaw) * o->oAmpRadiusOfRotation;
-    o->oPosZ = o->oHomeZ + coss(o->oAngleYaw) * o->oAmpRadiusOfRotation;
+    o->oPosX = o->oHomeX + sins(o->oMoveAngleYaw) * o->oAmpRadiusOfRotation;
+    o->oPosZ = o->oHomeZ + coss(o->oMoveAngleYaw) * o->oAmpRadiusOfRotation;
     o->oPosY = o->oHomeY + coss(o->oAmpYPhase * 0x8B0) * 30.0f;
-    o->oAngleYaw += 0x400;
-    o->oFaceAngleYaw = o->oAngleYaw + 0x4000;
+    o->oMoveAngleYaw += 0x400;
+    o->oFaceAngleYaw = o->oMoveAngleYaw + 0x4000;
     
     CheckAmpAttack();
     
@@ -1784,8 +1784,8 @@ void BehButterflyInit(void)
 void ButterflyStep(s32 speed)
 {
     f32 *sp24;
-    s16 yaw = o->oAngleYaw;
-    s16 pitch = o->oAnglePitch;
+    s16 yaw = o->oMoveAngleYaw;
+    s16 pitch = o->oMoveAnglePitch;
     s16 yPhase = o->oButterflyYPhase;
     f32 floorY;
     
@@ -1828,7 +1828,7 @@ void ButterflyRestingLoop(void)
         SetObjAnimation(0);
 
         o->oAction = BUTTERFLY_ACT_FOLLOW_MARIO;
-        o->oAngleYaw = gMarioObject->header.gfx.angle[1];
+        o->oMoveAngleYaw = gMarioObject->header.gfx.angle[1];
     }
 }
 
@@ -1850,8 +1850,8 @@ void ButterflyReturnHomeLoop(void)
     s16 hAngleToHome = atan2s(homeDistZ, homeDistX);
     s16 vAngleToHome = atan2s(sqrtf(homeDistX * homeDistX + homeDistZ * homeDistZ), -homeDistY);
     
-    o->oAngleYaw = approach_target_angle(o->oAngleYaw, hAngleToHome, 0x800);
-    o->oAnglePitch = approach_target_angle(o->oAnglePitch, vAngleToHome, 0x50);
+    o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, hAngleToHome, 0x800);
+    o->oMoveAnglePitch = approach_s16_symmetric(o->oMoveAnglePitch, vAngleToHome, 0x50);
     
     ButterflyStep(7);
     
@@ -1895,7 +1895,7 @@ void BehHootInit(void)
     o->oHomeZ = o->oPosZ + 300.0f;
     o->header.gfx.node.flags |= 0x10; /* bit 4 */
 
-    func_8029FE38();
+    obj_become_intangible();
 }
 
 //sp28 = arg0
@@ -1903,9 +1903,9 @@ void BehHootInit(void)
 
 f32 HootFindNextFloor(f32 **arg0, f32 arg1)
 {
-    f32 sp24 = arg1 * sins(o->oAngleYaw) + o->oPosX;
+    f32 sp24 = arg1 * sins(o->oMoveAngleYaw) + o->oPosX;
     UNUSED f32 sp20 = o->oPosY;
-    f32 sp1c = arg1 * coss(o->oAngleYaw) + o->oPosZ;
+    f32 sp1c = arg1 * coss(o->oMoveAngleYaw) + o->oPosZ;
     f32 floorY = func_803814B8(sp24, 10000.0f, sp1c, arg0);
     
     return floorY;
@@ -1917,14 +1917,14 @@ void HootFloorBounce(void)
     f32 floorY;
     
     floorY = HootFindNextFloor(&sp1c, 375.0f);
-    if (floorY + 75.0f > o->oPosY) o->oAnglePitch -= 3640.8888;
+    if (floorY + 75.0f > o->oPosY) o->oMoveAnglePitch -= 3640.8888;
     
     floorY = HootFindNextFloor(&sp1c, 200.0f);
-    if (floorY + 125.0f > o->oPosY) o->oAnglePitch -= 7281.7776;
+    if (floorY + 125.0f > o->oPosY) o->oMoveAnglePitch -= 7281.7776;
     
     floorY = HootFindNextFloor(&sp1c, 0);
     if (floorY + 125.0f > o->oPosY) o->oPosY = floorY + 125.0f;
-    if ((f64)o->oAnglePitch < -21845.3328) o->oAnglePitch = -21845;
+    if ((f64)o->oMoveAnglePitch < -21845.3328) o->oMoveAnglePitch = -21845;
 }
 
 //sp30 = fastOscY
@@ -1933,8 +1933,8 @@ void HootFloorBounce(void)
 void HootFreeStep(s16 fastOscY, s32 speed)
 {
     f32 *sp2c;
-    s16 yaw = o->oAngleYaw;
-    s16 pitch = o->oAnglePitch;
+    s16 yaw = o->oMoveAngleYaw;
+    s16 pitch = o->oMoveAnglePitch;
     s16 sp26 = o->header.gfx.unk38.animFrame;
     f32 xPrev = o->oPosX;
     f32 zPrev = o->oPosZ;
@@ -1966,11 +1966,11 @@ void PlayerSetHootYaw(void)
 {
     s16 stickX = gPlayer3Controller->rawStickX;
     s16 stickY = gPlayer3Controller->rawStickY;
-    UNUSED s16 pitch = o->oAnglePitch;
+    UNUSED s16 pitch = o->oMoveAnglePitch;
     if (stickX < 10 && stickX >= -9) stickX = 0;
     if (stickY < 10 && stickY >= -9) stickY = 0;
     
-    o->oAngleYaw -= 5 * stickX;
+    o->oMoveAngleYaw -= 5 * stickX;
 }
 
 //sp28 = speed
@@ -1979,8 +1979,8 @@ void PlayerSetHootYaw(void)
 
 void HootCarryStep(s32 speed, UNUSED f32 xPrev, UNUSED f32 zPrev)
 {
-    s16 yaw = o->oAngleYaw;
-    s16 pitch = o->oAnglePitch;
+    s16 yaw = o->oMoveAngleYaw;
+    s16 pitch = o->oMoveAnglePitch;
     s16 sp22 = o->header.gfx.unk38.animFrame;
     f32 hSpeed;
     
@@ -2029,8 +2029,8 @@ void HootSurfaceCollision(f32 xPrev, UNUSED f32 yPrev, f32 zPrev)
     }
     
     
-    if (absf(o->oPosX) > 8000.0f) o->oPosX = xPrev;
-    if (absf(o->oPosZ) > 8000.0f) o->oPosZ = zPrev;
+    if (absf_2(o->oPosX) > 8000.0f) o->oPosX = xPrev;
+    if (absf_2(o->oPosZ) > 8000.0f) o->oPosZ = zPrev;
     if (floorY + 125.0f > o->oPosY) o->oPosY = floorY + 125.0f;
 }
 
@@ -2043,8 +2043,8 @@ void HootAscentLoop(f32 xPrev, f32 zPrev)
     f32 negZ = 0 - o->oPosZ;
     s16 angleToOrigin = atan2s(negZ, negX);
     
-    o->oAngleYaw = approach_target_angle(o->oAngleYaw, angleToOrigin, 0x500);
-    o->oAnglePitch = 0xCE38;
+    o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, angleToOrigin, 0x500);
+    o->oMoveAnglePitch = 0xCE38;
     
     if (o->oTimer >= 29)
     {
@@ -2072,15 +2072,15 @@ void HootActionLoop(void)
         case HOOT_ACT_CARRY:
             PlayerSetHootYaw();
             
-            o->oAnglePitch = 0x71C;
+            o->oMoveAnglePitch = 0x71C;
             
             if (o->oPosY < 2700.0f)
             {
-                func_802A3FA8(10);
+                set_time_stop_flag(10);
                 
                 if (func_8028F8E0(162, o, 45))
                 {
-                    func_802A3FCC(10);
+                    clear_time_stop_flag(10);
                     
                     o->oAction = HOOT_ACT_TIRED;
                 }
@@ -2092,7 +2092,7 @@ void HootActionLoop(void)
         case HOOT_ACT_TIRED:
             PlayerSetHootYaw();
             
-            o->oAnglePitch = 0;
+            o->oMoveAnglePitch = 0;
             
             HootCarryStep(20, xPrev, zPrev);
             
@@ -2111,8 +2111,8 @@ void HootTurnToHome(void)
     s16 hAngleToHome = atan2s(homeDistZ, homeDistX);
     s16 vAngleToHome = atan2s(sqrtf(homeDistX * homeDistX + homeDistZ * homeDistZ), -homeDistY);
     
-    o->oAngleYaw = approach_target_angle(o->oAngleYaw, hAngleToHome, 0x140);
-    o->oAnglePitch = approach_target_angle(o->oAnglePitch, vAngleToHome, 0x140);
+    o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, hAngleToHome, 0x140);
+    o->oMoveAnglePitch = approach_s16_symmetric(o->oMoveAnglePitch, vAngleToHome, 0x140);
 }
 
 void HootAwakeLoop(void)
@@ -2157,7 +2157,7 @@ void BehHootLoop(void)
             {
                 func_802573C8(0);
                 
-                func_8029FE58();
+                obj_become_tangible();
                 
                 o->oHootAvailability = HOOT_AVAIL_READY_TO_FLY;
             }
@@ -2178,9 +2178,9 @@ void BehBetaGreenShellInit(void)
 
 void BetaGreenShellDropped(void)
 {
-    HideObject();
+    obj_enable_rendering();
     
-    func_8029FCF8();
+    obj_get_dropped();
     
     o->oHeldState = HELD_FREE;
     o->oForwardVel = 0;
@@ -2189,9 +2189,9 @@ void BetaGreenShellDropped(void)
 
 void BetaGreenShellThrown(void)
 {
-    func_8029F0A4();
+    obj_enable_rendering_2();
     
-    HideObject();
+    obj_enable_rendering();
     
     o->oHeldState = HELD_FREE;
     o->oFlags &= ~0x8; /* bit 3 */
@@ -2208,7 +2208,7 @@ void BehBetaGreenShellLoop(void)
             break;
             
         case HELD_HELD:
-            func_8029EEF0();
+            obj_disable_rendering();
             break;
             
         case HELD_THROWN:
@@ -2244,7 +2244,7 @@ void BehObjectBubbleLoop(void)
             bubbleRipples->oPosZ = o->oPosZ;
         }
         
-        o->active = 0;
+        o->activeFlags = 0;
     }
 }
 
@@ -2256,7 +2256,7 @@ void BehObjectWaterWaveInit(void)
 void BehObjectWaterWaveLoop(void)
 {
     s32 globalTimer = gGlobalTimer;
-    if ((globalTimer % 16) == 0) o->active = 0;
+    if ((globalTimer % 16) == 0) o->activeFlags = 0;
 }
 
 void BehExplosionInit(void)
@@ -2280,24 +2280,24 @@ void BehExplosionLoop(void)
         }
         else SpawnObj(o, 150, beh_bobomb_bully_death_smoke);
         
-        o->active = 0;
+        o->activeFlags = 0;
     }
     
     o->oOpacity -= 14;
     
-    ScaleObject((f32)o->oTimer / 9.0f + 1.0);
+    obj_scale((f32)o->oTimer / 9.0f + 1.0);
 }
 
 void BehBobombBullyDeathSmokeInit(void)
 {
     o->oPosY -= 300.0f;
     
-    ScaleObject(10.0f);
+    obj_scale(10.0f);
 }
 
 void BehBobombExplosionBubbleInit(void)
 {
-    ScaleXYZ(o, 2.0f, 2.0f, 1.0f);
+    scale_object_xyz(o, 2.0f, 2.0f, 1.0f);
     
     o->oBobombExpBubGfxExpRateX = (s32)(RandomFloat() * 2048.0f) + 0x800;
     o->oBobombExpBubGfxExpRateY = (s32)(RandomFloat() * 2048.0f) + 0x800;
@@ -2317,12 +2317,12 @@ void BehBobombExplosionBubbleLoop(void)
     
     if (o->oPosY > waterY)
     {
-        o->active = 0;
+        o->activeFlags = 0;
         o->oPosY += 5.0f;
         SpawnObj(o, 165, beh_water_surface_white_wave_2);
     }
     
-    if (o->oTimer >= 61) o->active = 0;
+    if (o->oTimer >= 61) o->activeFlags = 0;
     
     o->oPosY += o->oVelY;
     o->oTimer++;
@@ -2336,7 +2336,7 @@ void BehBobombCorkBoxRespawnerLoop(void)
     {
         sp1c = SpawnObj(o, o->oBreakableBoxBackupUnkF4, o->oBBCBRespawnerBehaviorToSpawn);
         sp1c->oBehParams = o->oBehParams;
-        o->active = 0;
+        o->activeFlags = 0;
     }
 }
 
@@ -2364,7 +2364,7 @@ void BehSmallBullyInit(void)
     o->oFriction = 0.91;
     o->oBuoyancy = 1.3;
     
-    func_802A2CFC(o, &D_80331564);
+    set_object_hitbox(o, &D_80331564);
 }
 
 void BehBigBullyInit(void)
@@ -2379,7 +2379,7 @@ void BehBigBullyInit(void)
     o->oFriction = 0.93;
     o->oBuoyancy = 1.3;
     
-    func_802A2CFC(o, &D_80331574);
+    set_object_hitbox(o, &D_80331574);
 }
 
 void BullyCheckMarioCollision(void)
@@ -2393,7 +2393,7 @@ void BullyCheckMarioCollision(void)
         o->oAction = BULLY_ACT_KNOCKBACK;
         o->oFlags &= ~0x8; /* bit 3 */
         SetObjAnimation(3);
-        o->oBullyMarioCollisionAngle = o->oAngleYaw;
+        o->oBullyMarioCollisionAngle = o->oMoveAngleYaw;
     }
 }
 
@@ -2433,7 +2433,7 @@ void BullyKnockbackLoop(void)
         o->oForwardVel = 1.0;
         o->oBullyKBTimerAndMinionKOCounter++;
         o->oFlags |= 0x8; /* bit 3 */
-        o->oAngleYaw = o->oFaceAngleYaw;
+        o->oMoveAngleYaw = o->oFaceAngleYaw;
         UnknownMove(o, gMarioObject, 16, 1280);
     }
     else o->header.gfx.unk38.animFrame = 0;
@@ -2451,7 +2451,7 @@ void BullyBackUpLoop(void)
     if (o->oTimer == 0)
     {
         o->oFlags &= ~0x8; /* bit 3 */
-        o->oAngleYaw += 0x8000;
+        o->oMoveAngleYaw += 0x8000;
     }
     
     o->oForwardVel = 5.0;
@@ -2465,7 +2465,7 @@ void BullyBackUpLoop(void)
     
     if (o->oTimer == 15)
     {
-        o->oAngleYaw = o->oFaceAngleYaw;
+        o->oMoveAngleYaw = o->oFaceAngleYaw;
         o->oFlags |= 0x8; /* bit 3 */
         o->oAction = BULLY_ACT_PATROL;
     }
@@ -2530,7 +2530,7 @@ void BullySpawnCoin(void)
     coin->oForwardVel = 10.0f;
     coin->oVelY = 100.0f;
     coin->oPosY = o->oPosY + 310.0f;
-    coin->oAngleYaw = (f32)(o->oBullyMarioCollisionAngle + 0x8000) + RandomFloat() * 1024.0f;
+    coin->oMoveAngleYaw = (f32)(o->oBullyMarioCollisionAngle + 0x8000) + RandomFloat() * 1024.0f;
 }
 
 void BullyLavaDeath(void)
@@ -2603,7 +2603,7 @@ void BehBullyLoop(void)
             break;
             
         case BULLY_ACT_DEATH_PLANE_DEATH:
-            o->active = 0;
+            o->activeFlags = 0;
             break;
     }
     
@@ -2630,7 +2630,7 @@ void BehBigBullyWithMinionsInit(void)
     
     o->header.gfx.node.flags |= 0x10; /* bit 4 */
     
-    func_8029FE38();
+    obj_become_intangible();
     
     o->oAction = BULLY_ACT_INACTIVE;
 }
@@ -2710,7 +2710,7 @@ void BehBigBullyWithMinionsLoop(void)
             }
             
             o->header.gfx.node.flags &= ~0x10; /* bit 4 */
-            func_8029FE58();
+            obj_become_tangible();
             break;
             
         case BULLY_ACT_LAVA_DEATH:
@@ -2718,7 +2718,7 @@ void BehBigBullyWithMinionsLoop(void)
             break;
             
         case BULLY_ACT_DEATH_PLANE_DEATH:
-            o->active = 0;
+            o->activeFlags = 0;
             break;
     }
 }
@@ -2824,7 +2824,7 @@ void WaterRingCollectedLoop(void)
 {
     f32 avgScale = (f32)o->oTimer * 0.2 + o->oWaterRingAvgScale;
     
-    if (o->oTimer >= 21) o->active = 0;
+    if (o->oTimer >= 21) o->activeFlags = 0;
     
     o->oOpacity -= 10;
     if (o->oOpacity < 0) o->oOpacity = 0;
@@ -2844,7 +2844,7 @@ void JetStreamWaterRingNotCollectedLoop(void)
     if (o->oTimer >= 226)
     {
         o->oOpacity -= 2;
-        if (o->oOpacity < 3) o->active = 0;
+        if (o->oOpacity < 3) o->activeFlags = 0;
     }
     
     CheckWaterRingCollection(avgScale, ringManager);
@@ -2944,7 +2944,7 @@ void MantaRayWaterRingNotCollectedLoop(void)
     if (o->oTimer >= 151)
     {
         o->oOpacity -= 2;
-        if (o->oOpacity < 3) o->active = 0;
+        if (o->oOpacity < 3) o->activeFlags = 0;
     }
     
     CheckWaterRingCollection(avgScale, ringManager);
@@ -2973,11 +2973,11 @@ void BehMantaRayWaterRingLoop(void)
 
 void BehBowserMineLoop(void)
 {
-    if (func_802A0CA8(o, gMarioObject) == 1)
+    if (are_objects_collided(o, gMarioObject) == 1)
     {
         o->oInteractStatus &= ~0x8000; /* bit 15 */
         SpawnObj(o, 205, beh_explosion);
-        o->active = 0;
+        o->activeFlags = 0;
     }
     
     if (o->oInteractStatus & 0x200000) /* bit 21 */
@@ -2985,7 +2985,7 @@ void BehBowserMineLoop(void)
         SpawnObj(o, 103, beh_bowser_mine_explosion);
         create_sound_spawner(0x312F0081);
         func_8027F440(3, o->oPosX, o->oPosY, o->oPosZ);
-        o->active = 0;
+        o->activeFlags = 0;
     }
     
     SetObjectVisibility(o, 7000);
@@ -2995,7 +2995,7 @@ void BehBowserMineExplosionLoop(void)
 {
     struct Object *mineSmoke;
     
-    ScaleObject((f32)o->oTimer / 14.0f * 9.0 + 1.0);
+    obj_scale((f32)o->oTimer / 14.0f * 9.0 + 1.0);
     if ((o->oTimer % 4 == 0) && (o->oTimer < 20))
     {
         mineSmoke = SpawnObj(o, 102, beh_bowser_mine_smoke);
@@ -3005,12 +3005,12 @@ void BehBowserMineExplosionLoop(void)
     }
     
     if (o->oTimer % 2 == 0) o->oAnimState++;
-    if (o->oTimer == 28) o->active = 0;
+    if (o->oTimer == 28) o->activeFlags = 0;
 }
 
 void BehBowserMineSmokeLoop(void)
 {
-    ScaleObject((f32)o->oTimer / 14.0f * 9.0 + 1.0);
+    obj_scale((f32)o->oTimer / 14.0f * 9.0 + 1.0);
     if (o->oTimer % 2 == 0) o->oAnimState++;
     
     o->oOpacity -= 10;
@@ -3018,7 +3018,7 @@ void BehBowserMineSmokeLoop(void)
     
     o->oPosY += o->oVelY;
     
-    if (o->oTimer == 28) o->active = 0;
+    if (o->oTimer == 28) o->activeFlags = 0;
 }
 
 void BehCelebrationStarInit(void)
@@ -3026,11 +3026,11 @@ void BehCelebrationStarInit(void)
     o->oHomeX = gMarioObject->header.gfx.pos[0];
     o->oPosY = gMarioObject->header.gfx.pos[1] + 30.0f;
     o->oHomeZ = gMarioObject->header.gfx.pos[2];
-    o->oAngleYaw = gMarioObject->header.gfx.angle[1] + 0x8000;
+    o->oMoveAngleYaw = gMarioObject->header.gfx.angle[1] + 0x8000;
     o->oCelebStarDiameterOfRotation = 100;
 #ifdef VERSION_JP
     o->header.gfx.asGraphNode = gLoadedGraphNodes[122];
-    ScaleObject(0.4f);
+    obj_scale(0.4f);
     o->oFaceAnglePitch = 0;
     o->oFaceAngleRoll = 0;
 #else
@@ -3039,7 +3039,7 @@ void BehCelebrationStarInit(void)
         o->header.gfx.asGraphNode = gLoadedGraphNodes[204];
         o->oFaceAnglePitch = 0;
         o->oFaceAngleRoll = 49152;
-        ScaleObject(0.1f);
+        obj_scale(0.1f);
         o->oUnknownUnkF4_S32 = 1;
     }
     else
@@ -3047,7 +3047,7 @@ void BehCelebrationStarInit(void)
         o->header.gfx.asGraphNode = gLoadedGraphNodes[122];
         o->oFaceAnglePitch = 0;
         o->oFaceAngleRoll = 0;
-        ScaleObject(0.4f);
+        obj_scale(0.4f);
         o->oUnknownUnkF4_S32 = 0;
     }
 #endif
@@ -3055,11 +3055,11 @@ void BehCelebrationStarInit(void)
 
 void CelebrationStarSpinAroundMarioLoop(void)
 {
-    o->oPosX = o->oHomeX + sins(o->oAngleYaw) * (f32)(o->oCelebStarDiameterOfRotation / 2);
-    o->oPosZ = o->oHomeZ + coss(o->oAngleYaw) * (f32)(o->oCelebStarDiameterOfRotation / 2);
+    o->oPosX = o->oHomeX + sins(o->oMoveAngleYaw) * (f32)(o->oCelebStarDiameterOfRotation / 2);
+    o->oPosZ = o->oHomeZ + coss(o->oMoveAngleYaw) * (f32)(o->oCelebStarDiameterOfRotation / 2);
     o->oPosY += 5.0f;
     o->oFaceAngleYaw += 0x1000;
-    o->oAngleYaw += 0x2000;
+    o->oMoveAngleYaw += 0x2000;
     
     if (o-> oTimer == 40) o->oAction = CELEB_STAR_ACT_FACE_CAMERA;
     if (o-> oTimer < 35)
@@ -3076,15 +3076,15 @@ void CelebrationStarFaceCameraLoop(void)
     if (o->oTimer < 10)
     {
 #ifdef VERSION_JP
-        ScaleObject((f32)o->oTimer / 10.0);
+        obj_scale((f32)o->oTimer / 10.0);
 #else // mario dab fix
         if(o->oUnknownUnkF4_S32 == 0)
         {
-            ScaleObject((f32)o->oTimer / 10.0);
+            obj_scale((f32)o->oTimer / 10.0);
         }
         else
         {
-            ScaleObject((f32)o->oTimer / 30.0);
+            obj_scale((f32)o->oTimer / 30.0);
         }
 #endif
         o->oFaceAngleYaw += 0x1000;
@@ -3094,7 +3094,7 @@ void CelebrationStarFaceCameraLoop(void)
         o->oFaceAngleYaw = gMarioObject->header.gfx.angle[1];
     }
     
-    if (o->oTimer == 59) o->active = 0;
+    if (o->oTimer == 59) o->activeFlags = 0;
 }
 
 void BehCelebrationStarLoop(void)
@@ -3115,13 +3115,13 @@ void BehCelebrationStarSparkleLoop(void)
 {
     o->oPosY -= 15.0f;
     
-    if (o->oTimer == 12) o->active = 0;
+    if (o->oTimer == 12) o->activeFlags = 0;
 }
 
 void BehStarKeyCollectionPuffSpawnerLoop(void)
 {
     func_802AA618(0, 10, 30.0f);
-    o->active = 0;
+    o->activeFlags = 0;
 }
 
 void BehLLLDrawbridgeSpawnerLoop(void)
@@ -3129,16 +3129,16 @@ void BehLLLDrawbridgeSpawnerLoop(void)
     struct Object *drawbridge1, *drawbridge2;
     
     drawbridge1 = SpawnObj(o, 56, beh_lll_drawbridge);
-    drawbridge1->oAngleYaw = o->oAngleYaw;
-    drawbridge1->oPosX += coss(o->oAngleYaw) * 640.0f;
-    drawbridge1->oPosZ += sins(o->oAngleYaw) * 640.0f;
+    drawbridge1->oMoveAngleYaw = o->oMoveAngleYaw;
+    drawbridge1->oPosX += coss(o->oMoveAngleYaw) * 640.0f;
+    drawbridge1->oPosZ += sins(o->oMoveAngleYaw) * 640.0f;
     
     drawbridge2 = SpawnObj(o, 56, beh_lll_drawbridge);
-    drawbridge2->oAngleYaw = o->oAngleYaw + 0x8000;
-    drawbridge2->oPosX += coss(o->oAngleYaw) * -640.0f;
-    drawbridge2->oPosZ += sins(o->oAngleYaw) * -640.0f;
+    drawbridge2->oMoveAngleYaw = o->oMoveAngleYaw + 0x8000;
+    drawbridge2->oPosX += coss(o->oMoveAngleYaw) * -640.0f;
+    drawbridge2->oPosZ += sins(o->oMoveAngleYaw) * -640.0f;
     
-    o->active = 0;
+    o->activeFlags = 0;
 }
 
 void BehLLLDrawbridgeLoop(void)
@@ -3228,7 +3228,7 @@ void BehSmallBompLoop(void)
             {
                 o->oAction = BOMP_ACT_RETRACT;
                 o->oForwardVel = 10.0f;
-                o->oAngleYaw -= 0x8000;
+                o->oMoveAngleYaw -= 0x8000;
                 PlaySound2(0x50130081);
             }
             break;
@@ -3244,7 +3244,7 @@ void BehSmallBompLoop(void)
             {
                 o->oAction = BOMP_ACT_POKE_OUT;
                 o->oForwardVel = 25.0f;
-                o->oAngleYaw -= 0x8000;
+                o->oMoveAngleYaw -= 0x8000;
             }
             break;
     }
@@ -3252,7 +3252,7 @@ void BehSmallBompLoop(void)
 
 void BehLargeBompInit(void)
 {
-    o->oAngleYaw += 0x4000;
+    o->oMoveAngleYaw += 0x4000;
     o->oTimer = RandomFloat() * 100.0f;
 }
 
@@ -3294,7 +3294,7 @@ void BehLargeBompLoop(void)
             {
                 o->oAction = BOMP_ACT_RETRACT;
                 o->oForwardVel = 10.0f;
-                o->oAngleYaw -= 0x8000;
+                o->oMoveAngleYaw -= 0x8000;
                 PlaySound2(0x50130081);
             }
             break;
@@ -3310,7 +3310,7 @@ void BehLargeBompLoop(void)
             {
                 o->oAction = BOMP_ACT_POKE_OUT;
                 o->oForwardVel = 25.0f;
-                o->oAngleYaw -= 0x8000;
+                o->oMoveAngleYaw -= 0x8000;
             }
             break;
     }
@@ -3363,7 +3363,7 @@ void BehWFSlidingBrickPlatformLoop(void)
             {
                 o->oAction = WF_SLID_BRICK_PTFM_ACT_RETRACT;
                 o->oForwardVel = o->oWFSlidBrickPtfmMovVel;
-                o->oAngleYaw -= 0x8000;
+                o->oMoveAngleYaw -= 0x8000;
             }
             break;
             
@@ -3378,7 +3378,7 @@ void BehWFSlidingBrickPlatformLoop(void)
             {
                 o->oAction = WF_SLID_BRICK_PTFM_ACT_EXTEND;
                 o->oForwardVel = o->oWFSlidBrickPtfmMovVel;
-                o->oAngleYaw -= 0x8000;
+                o->oMoveAngleYaw -= 0x8000;
             }
             break;
     }
@@ -3395,13 +3395,13 @@ void BehMoneybagInit(void)
 
 void MoneybagCheckMarioCollision(void)
 {
-    func_802A2CFC(o, &D_80331584);
+    set_object_hitbox(o, &D_80331584);
     
     if (o->oInteractStatus & 0x8000) /* bit 15 */
     {
         if (o->oInteractStatus & 0x2000) /* bit 13 */
         {
-            o->oAngleYaw = o->oAngleToMario + 0x8000;
+            o->oMoveAngleYaw = o->oAngleToMario + 0x8000;
             o->oVelY = 30.0f;
         }
         
@@ -3506,7 +3506,7 @@ void MoneybagReturnHomeLoop(void)
     f32 sp28 = o->oHomeX - o->oPosX;
     f32 sp24 = o->oHomeZ - o->oPosZ;
     s16 sp22 = atan2s(sp24, sp28);
-    o->oAngleYaw = approach_target_angle(o->oAngleYaw, sp22, 0x800);
+    o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, sp22, 0x800);
     
     collisionFlags = ObjectStep();
     if (((collisionFlags & OBJ_COL_FLAGS_LANDED) == OBJ_COL_FLAGS_LANDED)
@@ -3540,7 +3540,7 @@ void MoneybagDisappearLoop(void)
     if (o->oOpacity < 0)
     {
         o->oOpacity = 0;
-        o->active = 0;
+        o->activeFlags = 0;
     }
 }
 
@@ -3551,7 +3551,7 @@ void MoneybagDeathLoop(void)
         ObjSpawnYellowCoins(o, 5);
         create_sound_spawner(0x30713081);
         func_802A3004();
-        o->active = 0;
+        o->activeFlags = 0;
     }
 }
 
@@ -3565,14 +3565,14 @@ void BehMoneybagLoop(void)
             if (o->oOpacity >= 256)
             {
                 o->oOpacity = 255;
-                o->parentObj->active = 0;
+                o->parentObj->activeFlags = 0;
                 o->oAction = MONEYBAG_ACT_MOVE_AROUND;
             }
             break;
             
         case MONEYBAG_ACT_MOVE_AROUND:
             MoneybagMoveAroundLoop();
-            if (o->oTimer >= 31) func_8029FE58();
+            if (o->oTimer >= 31) obj_become_tangible();
             break;
             
         case MONEYBAG_ACT_RETURN_HOME:
@@ -3591,7 +3591,7 @@ void BehMoneybagLoop(void)
 
 void BehFakeMoneybagCoinLoop(void)
 {
-    func_802A2CFC(o, &D_80331594);
+    set_object_hitbox(o, &D_80331594);
     
     switch (o->oAction)
     {
@@ -3622,7 +3622,7 @@ void BehBowlingBallInit(void)
 
 void func_802EDA14(void)
 {
-    func_802A2CFC(o, &D_803315A4);
+    set_object_hitbox(o, &D_803315A4);
     
     if (o->oInteractStatus & 0x8000) o->oInteractStatus = 0;
 }
@@ -3662,11 +3662,11 @@ void BehBowlingBallRollLoop(void)
     collisionFlags = ObjectStep();
     
     //! Uninitialzed parameter, but the parameter is unused in the called function
-    sp18 = func_802A24B4(sp18);
+    sp18 = obj_follow_path(sp18);
     
     //! oBowlingBallInitYaw is never explicitly initialized, so it is 0.
     o->oBowlingBallTargetYaw = o->oBowlingBallInitYaw;
-    o->oAngleYaw = approach_target_angle(o->oAngleYaw, o->oBowlingBallTargetYaw, 0x400);
+    o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, o->oBowlingBallTargetYaw, 0x400);
     if (o->oForwardVel > 70.0)
     {
         o->oForwardVel = 70.0;
@@ -3682,7 +3682,7 @@ void BehBowlingBallRollLoop(void)
             func_802AA618(0, 0, 92.0f);
         }
         
-        o->active = 0;
+        o->activeFlags = 0;
     }
     
     if ((collisionFlags & OBJ_COL_FLAG_GROUNDED) && (o->oVelY > 5.0f))
@@ -3696,10 +3696,10 @@ void BehBowlingBallInitializeLoop(void)
     func_802EDA6C();
     
     //! Uninitialzed parameter, but the parameter is unused in the called function
-    sp1c = func_802A24B4(sp1c);
+    sp1c = obj_follow_path(sp1c);
     
     //! oBowlingBallInitYaw is never explicitly initialized, so it is 0.
-    o->oAngleYaw = o->oBowlingBallInitYaw;
+    o->oMoveAngleYaw = o->oBowlingBallInitYaw;
     
     switch (o->oBehParams2ndByte)
     {
@@ -3721,7 +3721,7 @@ void BehBowlingBallInitializeLoop(void)
             
         case BBALL_BP_STYPE_THI_SMALL:
             o->oForwardVel = 10.0f;
-            ScaleObject(0.3f);
+            obj_scale(0.3f);
             o->oGraphYOffset = 39.0f;
             break;
     }
@@ -3860,7 +3860,7 @@ void BehFreeBowlingBallInit(void)
     o->oHomeY = o->oPosY;
     o->oHomeZ = o->oPosZ;
     o->oForwardVel = 0;
-    o->oAngleYaw = 0;
+    o->oMoveAngleYaw = 0;
 }
 
 void BehFreeBowlingBallRollLoop(void)
@@ -3881,7 +3881,7 @@ void BehFreeBowlingBallRollLoop(void)
     if (!IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, 6000))
     {
         o->header.gfx.node.flags |= 0x10; /* bit 4 */
-        func_8029FE38();
+        obj_become_intangible();
         
         o->oPosX = o->oHomeX;
         o->oPosY = o->oHomeY;
@@ -3902,7 +3902,7 @@ void BehFreeBowlingBallLoop(void)
             {
                 o->oAction = FREE_BBALL_ACT_ROLL;
                 o->header.gfx.node.flags &= ~0x10; /* bit 4 */
-                func_8029FE58();
+                obj_become_tangible();
             }
             break;
             

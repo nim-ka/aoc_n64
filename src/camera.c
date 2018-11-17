@@ -2720,9 +2720,9 @@ void func_80287868(struct Object *a, Vec3f b)
 // unreferenced
 void Unknown80287890(Vec3s a, struct Object *b)
 {
-    a[0] = b->oAnglePitch;
-    a[1] = b->oAngleYaw;
-    a[2] = b->oAngleRoll;
+    a[0] = b->oMoveAnglePitch;
+    a[1] = b->oMoveAngleYaw;
+    a[2] = b->oMoveAngleRoll;
 }
 
 extern float D_80336160;

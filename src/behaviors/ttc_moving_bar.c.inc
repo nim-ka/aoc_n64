@@ -7,7 +7,7 @@ void bhv_ttc_moving_bar_init(void)
     }
 
     o->oTTCMovingBarStoppedTimer = 10 * o->oBehParams2ndByte;
-    o->oAngleYaw = 0x4000 - o->oAngleYaw;
+    o->oMoveAngleYaw = 0x4000 - o->oMoveAngleYaw;
 }
 
 static void ttc_moving_bar_act_wait(void)

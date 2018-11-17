@@ -1,8 +1,8 @@
 
 void bhv_spinning_heart_update(void)
 {
-    func_802A2CFC(o, &D_80331AE0);
-    if (func_802A0CA8(o, gMarioObject))
+    set_object_hitbox(o, &D_80331AE0);
+    if (are_objects_collided(o, gMarioObject))
     {
         if (o->oSpinningHeartPlayedSound == 0)
         {

@@ -1,7 +1,7 @@
 
 void bhv_horizontal_grindel_init(void)
 {
-    o->oHorizontalGrindelTargetYaw = o->oAngleYaw;
+    o->oHorizontalGrindelTargetYaw = o->oMoveAngleYaw;
 }
 
 void bhv_horizontal_grindel_update(void)
@@ -19,7 +19,7 @@ void bhv_horizontal_grindel_update(void)
             o->oTimer = 0;
         }
 
-        if (func_8029DE70(o->oHorizontalGrindelTargetYaw, 0x400))
+        if (obj_rotate_yaw_toward(o->oHorizontalGrindelTargetYaw, 0x400))
         {
             if (o->oTimer > 60)
             {
@@ -52,6 +52,6 @@ void bhv_horizontal_grindel_update(void)
         }
     }
 
-    o->oFaceAngleYaw = o->oAngleYaw + 0x4000;
-    MoveObj(78);
+    o->oFaceAngleYaw = o->oMoveAngleYaw + 0x4000;
+    obj_move_standard(78);
 }

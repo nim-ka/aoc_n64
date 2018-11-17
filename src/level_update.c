@@ -329,7 +329,7 @@ static void init_mario_after_warp(void)
         gPlayerSpawnInfos[0].startPos[2] = (s16) spawnNode->object->oPosZ;
 
         gPlayerSpawnInfos[0].startAngle[0] = 0;
-        gPlayerSpawnInfos[0].startAngle[1] = spawnNode->object->oAngleYaw;
+        gPlayerSpawnInfos[0].startAngle[1] = spawnNode->object->oMoveAngleYaw;
         gPlayerSpawnInfos[0].startAngle[2] = 0;
 
         if (marioSpawnType == MARIO_SPAWN_UNKNOWN_01)

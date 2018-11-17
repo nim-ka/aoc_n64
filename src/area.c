@@ -192,7 +192,7 @@ static void func_8027A4C4(void)
     {
         struct Object *sp1C = sp20;
 
-        if (sp1C->active && get_mario_spawn_type(sp1C) != 0)
+        if (sp1C->activeFlags && get_mario_spawn_type(sp1C) != 0)
         {
             sp24 = func_8027A478(sp1C);
             if (sp24 != NULL)

@@ -12,6 +12,7 @@
 #include "sound_init.h"
 #include "save_file.h"
 #include "surface_collision.h"
+#include "interaction.h"
 
 
 #define POLE_NONE          0
@@ -114,7 +115,7 @@ static s32 set_pole_position(struct MarioState *m, f32 offsetY)
     }
 
     vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
-    vec3s_set(m->marioObj->header.gfx.angle, m->usedObj->oAnglePitch, m->faceAngle[1], m->usedObj->oAngleRoll);
+    vec3s_set(m->marioObj->header.gfx.angle, m->usedObj->oMoveAnglePitch, m->faceAngle[1], m->usedObj->oMoveAngleRoll);
 
     return result;
 }
@@ -558,7 +559,7 @@ static s32 act_ledge_grab(struct MarioState *m)
 
     if (m->input & INPUT_UNKNOWN_10)
     {
-        if (m->marioObj->oInteractStatus & 0x00000002)
+        if (m->marioObj->oInteractStatus & INT_STATUS_MARIO_UNK1)
             m->hurtCounter += (m->flags & MARIO_CAP_ON_HEAD) ? 12 : 18;
         return let_go_of_ledge(m);
     }
@@ -644,11 +645,11 @@ static s32 act_ledge_climb_fast(struct MarioState *m)
 
 static s32 act_grabbed(struct MarioState *m)
 {
-    if (m->marioObj->oInteractStatus & 0x00000004)
+    if (m->marioObj->oInteractStatus & INT_STATUS_MARIO_UNK2)
     {
-        s32 thrown = (m->marioObj->oInteractStatus & 0x00000040) == 0;
+        s32 thrown = (m->marioObj->oInteractStatus & INT_STATUS_MARIO_UNK6) == 0;
         
-        m->faceAngle[1] = m->usedObj->oAngleYaw;
+        m->faceAngle[1] = m->usedObj->oMoveAngleYaw;
         vec3f_copy(m->pos, m->marioObj->header.gfx.pos);
 
         return set_mario_action(
@@ -669,7 +670,7 @@ static s32 act_in_cannon(struct MarioState *m)
     {
     case 0:
         m->marioObj->header.gfx.node.flags &= ~0x0001;
-        m->usedObj->oInteractStatus = 0x00008000;
+        m->usedObj->oInteractStatus = INT_STATUS_INTERACTED;
 
         m->unk94->unk1E = 1;
         m->unk94->unk20 = m->usedObj;
@@ -688,10 +689,10 @@ static s32 act_in_cannon(struct MarioState *m)
     case 1:
         if (m->usedObj->oAction == 1)
         {
-            m->faceAngle[0] = m->usedObj->oAnglePitch;
-            m->faceAngle[1] = m->usedObj->oAngleYaw;
+            m->faceAngle[0] = m->usedObj->oMoveAnglePitch;
+            m->faceAngle[1] = m->usedObj->oMoveAngleYaw;
 
-            marioObj->oMarioCannonObjectYaw = m->usedObj->oAngleYaw;
+            marioObj->oMarioCannonObjectYaw = m->usedObj->oMoveAngleYaw;
             marioObj->oMarioCannonInputYaw = 0;
             
             m->actionState = 2;

@@ -6,7 +6,7 @@ static void swoop_act_idle(void)
     if (approach_f32_2(&o->header.gfx.scale[0], 1.0f, 0.05f) &&
         o->oDistanceToMario < 1500.0f)
     {
-        if (func_8029DE70(o->oAngleToMario, 0x320))
+        if (obj_rotate_yaw_toward(o->oAngleToMario, 0x320))
         {
             PlaySound2(0x90490081);
             o->oAction = SWOOP_ACT_MOVE;
@@ -34,7 +34,7 @@ static void swoop_act_move(void)
             o->oVelY = -10.0f;
         }
     }
-    else if (func_802A37A0())
+    else if (obj_mario_far_away())
     {
         o->oAction = SWOOP_ACT_IDLE;
         obj_set_pos_to_home();
@@ -64,7 +64,7 @@ static void swoop_act_move(void)
         }
         else if (o->oMoveFlags & 0x00000200)
         {
-            o->oSwoopTargetYaw = func_802A2AC0();
+            o->oSwoopTargetYaw = obj_reflect_move_angle_off_wall();
             o->oSwoopTimeUntilTurn = 30;
         }
 
@@ -74,7 +74,7 @@ static void swoop_act_move(void)
         }
 
         func_802F95B0(o->oSwoopTargetPitch, 140);
-        func_8029DE70(
+        obj_rotate_yaw_toward(
             o->oSwoopTargetYaw + (s32)(3000.0f * coss(4000 * gGlobalTimer)),
             1200);
 
@@ -86,11 +86,11 @@ static void swoop_act_move(void)
 
 void bhv_swoop_update(void)
 {
-    if (!(o->active & 0x0008))
+    if (!(o->activeFlags & 0x0008))
     {
-        o->oUnk1C4 = 0x5062B081;
+        o->oDeathSound = 0x5062B081;
 
-        MoveRelated();
+        obj_update_floor_and_walls();
 
         switch (o->oAction)
         {
@@ -98,8 +98,8 @@ void bhv_swoop_update(void)
         case SWOOP_ACT_MOVE: swoop_act_move(); break;
         }
 
-        ScaleObject(o->header.gfx.scale[0]);
-        MoveObj(78);
+        obj_scale(o->header.gfx.scale[0]);
+        obj_move_standard(78);
         func_802FA888(&D_80331788, o->oAction);
     }
 }

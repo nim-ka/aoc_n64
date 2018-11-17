@@ -203,7 +203,7 @@ static void print_mapinfo(void)
     int area;
     int angY;
 
-    angY = gCurrentObject->oAngleYaw / 182.044000;
+    angY = gCurrentObject->oMoveAngleYaw / 182.044000;
     area  = ((int)gCurrentObject->oPosX + 0x2000) / 1024
           + ((int)gCurrentObject->oPosZ + 0x2000) / 1024 * 16;
 
@@ -558,23 +558,23 @@ void try_do_mario_debug_object_spawn(void)
 // TODO: figure out what this is
 static void Unknown802CA8B4(void)
 {
-    if(gCurrentObject->oMoveFlags & OBJ_MOV_0)
+    if(gCurrentObject->oMoveFlags & OBJ_MOVE_LANDED)
         print_debug_top_down_objectinfo("BOUND   %x", gCurrentObject->oMoveFlags);
-    if(gCurrentObject->oMoveFlags & OBJ_MOV_GROUND)
+    if(gCurrentObject->oMoveFlags & OBJ_MOVE_ON_GROUND)
         print_debug_top_down_objectinfo("TOUCH   %x", gCurrentObject->oMoveFlags);
-    if(gCurrentObject->oMoveFlags & OBJ_MOV_2)
+    if(gCurrentObject->oMoveFlags & OBJ_MOVE_LEFT_GROUND)
         print_debug_top_down_objectinfo("TAKEOFF %x", gCurrentObject->oMoveFlags);
-    if(gCurrentObject->oMoveFlags & OBJ_MOV_3)
+    if(gCurrentObject->oMoveFlags & OBJ_MOVE_ENTERED_WATER)
         print_debug_top_down_objectinfo("DIVE    %x", gCurrentObject->oMoveFlags);
-    if(gCurrentObject->oMoveFlags & OBJ_MOV_4)
+    if(gCurrentObject->oMoveFlags & OBJ_MOVE_AT_WATER_SURFACE)
         print_debug_top_down_objectinfo("S WATER %x", gCurrentObject->oMoveFlags);
-    if(gCurrentObject->oMoveFlags & OBJ_MOV_5)
+    if(gCurrentObject->oMoveFlags & OBJ_MOVE_UNDERWATER_OFF_GROUND)
         print_debug_top_down_objectinfo("U WATER %x", gCurrentObject->oMoveFlags);
-    if(gCurrentObject->oMoveFlags & OBJ_MOV_6)
+    if(gCurrentObject->oMoveFlags & OBJ_MOVE_UNDERWATER_ON_GROUND)
         print_debug_top_down_objectinfo("B WATER %x", gCurrentObject->oMoveFlags);
-    if(gCurrentObject->oMoveFlags & OBJ_MOV_7)
+    if(gCurrentObject->oMoveFlags & OBJ_MOVE_IN_AIR)
         print_debug_top_down_objectinfo("SKY     %x", gCurrentObject->oMoveFlags);
-    if(gCurrentObject->oMoveFlags & OBJ_MOV_8)
+    if(gCurrentObject->oMoveFlags & OBJ_MOVE_8)
         print_debug_top_down_objectinfo("OUT SCOPE %x", gCurrentObject->oMoveFlags);
 }
 

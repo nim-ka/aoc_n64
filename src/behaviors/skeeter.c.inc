@@ -29,7 +29,7 @@ static void skeeter_act_idle(void)
         {
             skeeter_spawn_waves();
             if (o->oTimer > 60 &&
-                func_802F9780(&o->oSkeeterUnk1AC, &o->oAngleYaw, o->oSkeeterTargetAngle, 0.02f, 5, 50, 200))
+                func_802F9780(&o->oSkeeterUnk1AC, &o->oMoveAngleYaw, o->oSkeeterTargetAngle, 0.02f, 5, 50, 200))
             {
                 if (o->oSkeeterWaitTime != 0)
                 {
@@ -60,14 +60,14 @@ static void skeeter_act_lunge(void)
 
         if (o->oMoveFlags & 0x00000200)
         {
-            o->oAngleYaw = func_802A2AC0();
+            o->oMoveAngleYaw = obj_reflect_move_angle_off_wall();
             o->oForwardVel *= 0.3f;
             o->oFlags &= ~0x00000008;
         }
 
         if (forward_vel_approach(0.0f, 0.8f) && func_8029F828())
         {
-            o->oAngleYaw = o->oFaceAngleYaw;
+            o->oMoveAngleYaw = o->oFaceAngleYaw;
 
             if (o->oDistanceToMario >= 25000.0f)
             {
@@ -144,16 +144,16 @@ static void skeeter_act_walk(void)
             }
         }
 
-        func_8029DE70(o->oSkeeterTargetAngle, 0x400);
+        obj_rotate_yaw_toward(o->oSkeeterTargetAngle, 0x400);
     }
 }
 
 void bhv_skeeter_update(void)
 {
-    o->oUnk1C4 = 0x5072C081;
+    o->oDeathSound = 0x5072C081;
     treat_far_home_as_mario(1000.0f);
 
-    MoveRelated();
+    obj_update_floor_and_walls();
 
     switch (o->oAction)
     {
@@ -163,7 +163,7 @@ void bhv_skeeter_update(void)
     }
 
     func_802FA888(&D_80331C28, o->oAction);
-    MoveObj(-78);
+    obj_move_standard(-78);
 }
 
 void bhv_skeeter_wave_update(void)
@@ -173,6 +173,6 @@ void bhv_skeeter_wave_update(void)
         DeactivateObject(o);
     }
 
-    ScaleObject(o->header.gfx.scale[0]);
+    obj_scale(o->header.gfx.scale[0]);
     o->oAnimState = gGlobalTimer / 6;
 }

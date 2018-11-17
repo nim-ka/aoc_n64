@@ -98,7 +98,7 @@ static void Unknown80383E44(void) // ?
 
 static s32 beh_cmd_unhide(void)
 {
-    UnHideObject();
+    obj_hide();
     gBehCommand++;
     return BEH_CONTINUE;
 }
@@ -132,7 +132,7 @@ static s32 Behavior1C(void)
     
     struct Object *object = func_8029E5A4(gCurrentObject, 0, arg0, arg1);
     
-    CopyObjParams(object, gCurrentObject);
+    copy_object_pos_and_angle(object, gCurrentObject);
     
     gBehCommand += 3;
     return BEH_CONTINUE;
@@ -145,7 +145,7 @@ static s32 Behavior2C(void)
     
     struct Object *object = func_8029E5A4(gCurrentObject, 0, arg0, arg1);
     
-    CopyObjParams(object, gCurrentObject);
+    copy_object_pos_and_angle(object, gCurrentObject);
     
     gCurrentObject->prevObj = object;
     
@@ -161,7 +161,7 @@ static s32 Behavior29(void)
     
     struct Object *object = func_8029E5A4(gCurrentObject, 0, arg1, arg2);
     
-    CopyObjParams(object, gCurrentObject);
+    copy_object_pos_and_angle(object, gCurrentObject);
     
     object->oBehParams2ndByte = behParam;
     
@@ -171,7 +171,7 @@ static s32 Behavior29(void)
 
 static s32 beh_cmd_deactivate(void)
 {
-    gCurrentObject->active = 0;
+    gCurrentObject->activeFlags = 0;
     return BEH_BREAK;
 }
 
@@ -513,7 +513,7 @@ static s32 Behavior1E(void)
     f32 floor = find_floor_height(x, y + 200.0f, z);
 
     gCurrentObject->oPosY = floor;
-    gCurrentObject->oMoveFlags |= OBJ_MOV_GROUND;
+    gCurrentObject->oMoveFlags |= OBJ_MOVE_ON_GROUND;
 
     gBehCommand++;
     return BEH_CONTINUE;
@@ -627,11 +627,11 @@ static s32 Behavior24(void)
 
 static s32 beh_cmd_begin(void)
 {
-    if (CheckObjBehavior(beh_haunted_chair))
-        BehCommonInit();
-    if (CheckObjBehavior(bMadPiano))
-        BehCommonInit();
-    if (CheckObjBehavior(beh_message_panel))
+    if (obj_has_behavior(beh_haunted_chair))
+        bhv_init_room();
+    if (obj_has_behavior(bMadPiano))
+        bhv_init_room();
+    if (obj_has_behavior(beh_message_panel))
         gCurrentObject->oCollisionDistance = 150.0f;
     gBehCommand++;
     return BEH_CONTINUE;
@@ -691,7 +691,7 @@ static s32 beh_cmd_scale(void)
     UNUSED u8 sp1f = (gBehCommand[0] >> 16) & 0xFF;
     s16 sp1c = gBehCommand[0] & 0xFFFF;
 
-    ScaleObject((f32)sp1c / 100.0f);
+    obj_scale((f32)sp1c / 100.0f);
 
     gBehCommand++;
     return BEH_CONTINUE;
@@ -701,10 +701,10 @@ static s32 Behavior30(void)
 {
     UNUSED f32 sp04, sp00;
 
-    gCurrentObject->oUnk128 = (f32)(s16)(gBehCommand[1] >> 16);
+    gCurrentObject->oWallHitboxRadius = (f32)(s16)(gBehCommand[1] >> 16);
     gCurrentObject->oGravity = (f32)(s16)(gBehCommand[1] & 0xFFFF) / 100.0f;
-    gCurrentObject->oUnk158 = (f32)(s16)(gBehCommand[2] >> 16) / 100.0f;
-    gCurrentObject->oUnk12C = (f32)(s16)(gBehCommand[2] & 0xFFFF) / 100.0f;
+    gCurrentObject->oBounce = (f32)(s16)(gBehCommand[2] >> 16) / 100.0f;
+    gCurrentObject->oDragStrength = (f32)(s16)(gBehCommand[2] & 0xFFFF) / 100.0f;
     gCurrentObject->oFriction = (f32)(s16)(gBehCommand[3] >> 16) / 100.0f;
     gCurrentObject->oBuoyancy = (f32)(s16)(gBehCommand[3] & 0xFFFF) / 100.0f;
 
@@ -826,7 +826,7 @@ void cur_object_exec_behavior(void)
 
     if (flagsLo & OBJ_FLAG_0040)
     {
-        gCurrentObject->oDistanceToMario = objects_calc_distance(gCurrentObject, gMarioObject);
+        gCurrentObject->oDistanceToMario = dist_between_objects(gCurrentObject, gMarioObject);
         distanceFromMario = gCurrentObject->oDistanceToMario;
     }
     else
@@ -835,12 +835,12 @@ void cur_object_exec_behavior(void)
     }
 
     if (flagsLo & OBJ_FLAG_2000)
-        gCurrentObject->oAngleToMario = func_8029DF18(gCurrentObject, gMarioObject);
+        gCurrentObject->oAngleToMario = angle_to_object(gCurrentObject, gMarioObject);
 
     if (gCurrentObject->oAction != gCurrentObject->oPrevAction)
     {
         (void) (gCurrentObject->oTimer = 0,
-        gCurrentObject->oUnk150 = 0,
+        gCurrentObject->oSubAction = 0,
         gCurrentObject->oPrevAction = gCurrentObject->oAction);
     }
 
@@ -860,7 +860,7 @@ void cur_object_exec_behavior(void)
     if (gCurrentObject->oAction != gCurrentObject->oPrevAction) 
     {
         (void) (gCurrentObject->oTimer = 0,
-        gCurrentObject->oUnk150 = 0,
+        gCurrentObject->oSubAction = 0,
         gCurrentObject->oPrevAction = gCurrentObject->oAction);
     }
 
@@ -870,13 +870,13 @@ void cur_object_exec_behavior(void)
         func_8029F170(gCurrentObject);
 
     if (flagsLo & OBJ_FLAG_0008)
-        gCurrentObject->oFaceAngleYaw = gCurrentObject->oAngleYaw;
+        gCurrentObject->oFaceAngleYaw = gCurrentObject->oMoveAngleYaw;
 
     if (flagsLo & OBJ_FLAG_0002)
-        func_802A0A90();    
+        obj_move_xz_using_fvel();    
 
     if (flagsLo & OBJ_FLAG_0004)
-        func_802A0B28();
+        obj_move_y_with_terminal_vel();
 
     if (flagsLo & OBJ_FLAG_0200)
         func_802A22DC(gCurrentObject);
@@ -887,9 +887,9 @@ void cur_object_exec_behavior(void)
     if (flagsLo & OBJ_FLAG_0001)
         func_80383D68(gCurrentObject);
 
-    if (gCurrentObject->oUnk1A0 != -1)
+    if (gCurrentObject->oRoom != -1)
     {
-        func_802A3A68();
+        obj_enable_rendering_if_mario_in_room();
     }
     else if ((flagsLo & OBJ_FLAG_0040) && gCurrentObject->collisionData == NULL)
     {
@@ -898,12 +898,12 @@ void cur_object_exec_behavior(void)
             if (distanceFromMario > gCurrentObject->oDrawingDistance)
             {
                 gCurrentObject->header.gfx.node.flags &= 0xFFFFFFFE;
-                gCurrentObject->active |= 2;
+                gCurrentObject->activeFlags |= 2;
             }
             else if (gCurrentObject->oHeldState == HELD_FREE)
             {
                 gCurrentObject->header.gfx.node.flags |= 1;
-                gCurrentObject->active &= 0xFFFFFFFD;
+                gCurrentObject->activeFlags &= 0xFFFFFFFD;
             }
         }    
     }

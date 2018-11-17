@@ -1,7 +1,7 @@
 
 static void klepto_target_mario(void)
 {
-    o->oKleptoDistanceToTarget = DistanceFromObject(gMarioObject, o);
+    o->oKleptoDistanceToTarget = lateral_dist_between_objects(gMarioObject, o);
     o->oKleptoUnk1B0 = func_802F9414(250.0f, 0);
     o->oKleptoYawToTarget = o->oAngleToMario;
     o->oKleptoUnk1AE = -60;
@@ -23,7 +23,7 @@ static s32 func_8030F158(void)
     }
     else
     {
-        if (check_anim_frame(9))
+        if (obj_check_anim_frame(9))
         {
             PlaySound2(0x300A0081);
         }
@@ -45,7 +45,7 @@ static void func_8030F218(void)
         {
             if (o->oSoundStateID == 0)
             {
-                if (check_anim_frame(9))
+                if (obj_check_anim_frame(9))
                 {
                     PlaySound2(0x300A0081);
                     func_8029ED38(6);
@@ -132,7 +132,7 @@ static void klepto_change_target(void)
         newTarget = RandomU16() % 3;
     }
 
-    o->oKleptoUnkF8 = 400 * func_802A2ECC(newTarget - o->oKleptoTargetNumber);
+    o->oKleptoUnkF8 = 400 * absi(newTarget - o->oKleptoTargetNumber);
     o->oKleptoTargetNumber = newTarget;
 
     o->oHomeX = sKleptoTargetPositions[o->oKleptoTargetNumber][0];
@@ -159,7 +159,7 @@ static void klepto_circle_target(f32 radius, f32 targetSpeed)
     {
         turnAmount = 0x4000 - atan2s(radius, o->oKleptoDistanceToTarget - radius);
         accel = 0.05f;
-        if ((s16)(o->oAngleYaw - o->oKleptoYawToTarget) < 0)
+        if ((s16)(o->oMoveAngleYaw - o->oKleptoYawToTarget) < 0)
         {
             turnAmount = -turnAmount;
         }
@@ -167,7 +167,7 @@ static void klepto_circle_target(f32 radius, f32 targetSpeed)
         o->oKleptoYawToTarget += turnAmount;
         func_8030F218();
 
-        turnAmount = (s16)(abs_angle_diff(o->oKleptoYawToTarget, o->oAngleYaw) * (0.03f * o->oKleptoSpeed));
+        turnAmount = (s16)(abs_angle_diff(o->oKleptoYawToTarget, o->oMoveAngleYaw) * (0.03f * o->oKleptoSpeed));
         func_802F91AC(&turnAmount, 400, 700);
         func_802F90A8(o->oKleptoYawToTarget, turnAmount);
 
@@ -229,7 +229,7 @@ static void klepto_act_turn_toward_mario(void)
     {
         PlaySound2(0x503F4081);
         o->oAction = KLEPTO_ACT_DIVE_AT_MARIO;
-        o->oAngleYaw = o->oFaceAngleYaw;
+        o->oMoveAngleYaw = o->oFaceAngleYaw;
         o->oFlags |= 0x00000008;
 
         func_8029ED38(3);
@@ -244,7 +244,7 @@ static void klepto_act_dive_at_mario(void)
     approach_f32_2(&o->oKleptoSpeed, 60.0f, 10.0f);
     if (o->oSoundStateID == 2)
     {
-        if (check_anim_frame(11))
+        if (obj_check_anim_frame(11))
         {
             PlaySound2(0x300A0081);
         }
@@ -277,14 +277,14 @@ static void klepto_act_dive_at_mario(void)
         o->oKleptoUnk1B0 = -0x3000;
         if (o->oAnimState == KLEPTO_ANIM_STATE_HOLDING_NOTHING)
         {
-            if (o->oUnk150 == 0)
+            if (o->oSubAction == 0)
             {
                 o->oKleptoUnk1B0 = func_802F9414(0.0f, 0);
                 o->oKleptoYawToTarget = o->oAngleToMario;
 
                 if (dy < 160.0f)
                 {
-                    o->oUnk150 += 1;
+                    o->oSubAction += 1;
                 }
             }
 
@@ -303,7 +303,7 @@ static void klepto_act_dive_at_mario(void)
     }
 
     func_802F95B0(o->oKleptoUnk1B0, 600);
-    face_pitch_approach(o->oAnglePitch, 600);
+    face_pitch_approach(o->oMoveAnglePitch, 600);
     func_802F90A8(o->oKleptoYawToTarget, 600);
 }
 
@@ -312,7 +312,7 @@ static void klepto_act_struck_by_mario(void)
     func_8029ED38(1);
 
     face_pitch_approach(0, 800);
-    face_yaw_approach(o->oAngleYaw + 0x8000, 800);
+    face_yaw_approach(o->oMoveAngleYaw + 0x8000, 800);
     face_roll_approach(0, 800);
 
     if (func_8029F788())
@@ -320,7 +320,7 @@ static void klepto_act_struck_by_mario(void)
         o->oAction = KLEPTO_ACT_RETREAT;
         o->oGravity = 0.0f;
 
-        o->oAnglePitch = -func_802F86C0();
+        o->oMoveAnglePitch = -func_802F86C0();
         o->oKleptoSpeed = sqrtf(o->oForwardVel * o->oForwardVel + o->oVelY * o->oVelY);
 
         o->oHomeX = o->oPosX;
@@ -336,18 +336,18 @@ static void klepto_act_retreat(void)
 
     func_802F95B0(o->oKleptoUnk1B0, 1000);
 
-    face_pitch_approach(o->oAnglePitch, 1000);
+    face_pitch_approach(o->oMoveAnglePitch, 1000);
     func_802F90A8(o->oKleptoYawToTarget, 600);
 
-    if (face_yaw_approach(o->oAngleYaw, 1000))
+    if (face_yaw_approach(o->oMoveAngleYaw, 1000))
     {
-        if (abs_angle_diff(o->oFaceAnglePitch, o->oAnglePitch) == 0)
+        if (abs_angle_diff(o->oFaceAnglePitch, o->oMoveAnglePitch) == 0)
         {
             o->oAction = KLEPTO_ACT_RESET_POSITION;
             o->oHomeY = 1500.0f;
             o->oKleptoUnk1AE = -100;
             o->oFlags |= 0x00000008;
-            func_8029FE58();
+            obj_become_tangible();
         }
     }
 }
@@ -391,7 +391,7 @@ void bhv_klepto_update(void)
 {
     UNUSED s32 unused;
 
-    MoveRelated();
+    obj_update_floor_and_walls();
 
     o->oKleptoDistanceToTarget = obj_lateral_dist_to_home();
     o->oKleptoUnk1B0 = func_802F9100(o->oKleptoDistanceToTarget);
@@ -434,21 +434,21 @@ void bhv_klepto_update(void)
             o->oAction = KLEPTO_ACT_STRUCK_BY_MARIO;
             o->oGravity = -2.0f;
 
-            o->oAngleYaw = o->oAngleToMario + 0x8000;
+            o->oMoveAngleYaw = o->oAngleToMario + 0x8000;
             o->oFlags &= ~0x00000008;
-            func_8029FE38();
+            obj_become_intangible();
         }
         else if (gMarioStates[0].action == ACT_SLEEPING ||
             (gMarioStates[0].action & (ACT_FLAG_SHORT_HITBOX | ACT_FLAG_BUTT_OR_STOMACH_SLIDE)))
         {
-            func_8029FE38();
+            obj_become_intangible();
         }
         else
         {
-            func_8029FE58();
+            obj_become_tangible();
         }
     }
 
     func_802F9850(o->oKleptoYawToTarget, 0x3000, 600);
-    MoveObj(78);
+    obj_move_standard(78);
 }

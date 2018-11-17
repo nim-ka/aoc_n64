@@ -36,7 +36,7 @@ glabel D_8035FE68
     .space 0x1
 glabel D_8035FE69
     .space 0x77
-glabel D_8035FEE0
+glabel gMarioCurrentRoom
     .space 0x2
 glabel D_8035FEE2
     .space 0x2
@@ -50,15 +50,15 @@ glabel D_8035FEEA
     .space 0x2
 glabel D_8035FEEC
     .space 0x2
-glabel D_8035FEEE
+glabel gNumRoomedObjectsInMarioRoom
     .space 0x2
-glabel D_8035FEF0
+glabel gNumRoomedObjectsNotInMarioRoom
     .space 0x2
 glabel D_8035FEF2
     .space 0x2
 glabel D_8035FEF4
     .space 0xC
-glabel D_8035FF00
+glabel sGrabReleaseState
     .space 0x10
 glabel D_8035FF10
     .space 0x10

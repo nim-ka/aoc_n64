@@ -49,7 +49,7 @@ void BehStarActSelectorLoop(void)
         break;
     }
 
-    ScaleObject(gCurrentObject->oStarSelectorSize);
+    obj_scale(gCurrentObject->oStarSelectorSize);
     gCurrentObject->oStarSelectorTimer++; // unused timer field? only ever referenced here to my knowledge.
 }
 

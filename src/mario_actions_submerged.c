@@ -365,7 +365,7 @@ static s32 act_hold_water_idle(struct MarioState *m)
     if (m->flags & MARIO_METAL_CAP)
         return set_mario_action(m, ACT_HOLD_METAL_WATER_FALLING, 0);
 
-    if (m->marioObj->oInteractStatus & 0x00000008)
+    if (m->marioObj->oInteractStatus & INT_STATUS_MARIO_DROP_OBJECT)
         return drop_and_set_mario_action(m, ACT_WATER_IDLE, 0);
 
     if (m->input & INPUT_B_PRESSED)
@@ -400,7 +400,7 @@ static s32 act_hold_water_action_end(struct MarioState *m)
     if (m->flags & MARIO_METAL_CAP)
         return set_mario_action(m, ACT_HOLD_METAL_WATER_FALLING, 0);
 
-    if (m->marioObj->oInteractStatus & 0x00000008)
+    if (m->marioObj->oInteractStatus & INT_STATUS_MARIO_DROP_OBJECT)
         return drop_and_set_mario_action(m, ACT_WATER_IDLE, 0);
 
     if (m->input & INPUT_B_PRESSED)
@@ -630,7 +630,7 @@ static s32 act_hold_breaststroke(struct MarioState *m)
     if (m->flags & MARIO_METAL_CAP)
         return set_mario_action(m, ACT_HOLD_METAL_WATER_FALLING, 0);
 
-    if (m->marioObj->oInteractStatus & 0x00000008)
+    if (m->marioObj->oInteractStatus & INT_STATUS_MARIO_DROP_OBJECT)
         return drop_and_set_mario_action(m, ACT_WATER_IDLE, 0);
 
     if (++m->actionTimer == 17)
@@ -677,7 +677,7 @@ static s32 act_hold_swimming_end(struct MarioState *m)
     if (m->flags & MARIO_METAL_CAP)
         return set_mario_action(m, ACT_HOLD_METAL_WATER_FALLING, 0);
 
-    if (m->marioObj->oInteractStatus & 0x00000008)
+    if (m->marioObj->oInteractStatus & INT_STATUS_MARIO_DROP_OBJECT)
         return drop_and_set_mario_action(m, ACT_WATER_IDLE, 0);
 
     if (m->actionTimer >= 15)
@@ -705,7 +705,7 @@ static s32 act_hold_flutter_kick(struct MarioState *m)
     if (m->flags & MARIO_METAL_CAP)
         return set_mario_action(m, ACT_HOLD_METAL_WATER_FALLING, 0);
 
-    if (m->marioObj->oInteractStatus & 0x00000008)
+    if (m->marioObj->oInteractStatus & INT_STATUS_MARIO_DROP_OBJECT)
         return drop_and_set_mario_action(m, ACT_WATER_IDLE, 0);
 
     if (m->input & INPUT_B_PRESSED)
@@ -726,7 +726,7 @@ static s32 act_hold_flutter_kick(struct MarioState *m)
 
 static s32 act_water_shell_swimming(struct MarioState *m)
 {
-    if (m->marioObj->oInteractStatus & 0x00000008)
+    if (m->marioObj->oInteractStatus & INT_STATUS_MARIO_DROP_OBJECT)
         return drop_and_set_mario_action(m, ACT_WATER_IDLE, 0);
 
     if (m->input & INPUT_B_PRESSED)
@@ -734,7 +734,7 @@ static s32 act_water_shell_swimming(struct MarioState *m)
 
     if (m->actionTimer++ == 240)
     {
-        m->heldObj->oInteractStatus = 0x00400000;
+        m->heldObj->oInteractStatus = INT_STATUS_STOP_RIDING;
         m->heldObj = NULL;
         func_8024931C();
         set_mario_action(m, ACT_FLUTTER_KICK, 0);
@@ -1165,7 +1165,7 @@ static s32 act_metal_water_standing(struct MarioState *m)
 
 static s32 act_hold_metal_water_standing(struct MarioState *m)
 {
-    if (m->marioObj->oInteractStatus & 0x00000008)
+    if (m->marioObj->oInteractStatus & INT_STATUS_MARIO_DROP_OBJECT)
         return drop_and_set_mario_action(m, ACT_METAL_WATER_STANDING, 0);
 
     if (!(m->flags & MARIO_METAL_CAP))
@@ -1223,7 +1223,7 @@ static s32 act_hold_metal_water_walking(struct MarioState *m)
 {
     s32 val04;
 
-    if (m->marioObj->oInteractStatus & 0x00000008)
+    if (m->marioObj->oInteractStatus & INT_STATUS_MARIO_DROP_OBJECT)
         return drop_and_set_mario_action(m, ACT_METAL_WATER_WALKING, 0);
 
     if (!(m->flags & MARIO_METAL_CAP))
@@ -1285,7 +1285,7 @@ static s32 act_metal_water_jump(struct MarioState *m)
 
 static s32 act_hold_metal_water_jump(struct MarioState *m)
 {
-    if (m->marioObj->oInteractStatus & 0x00000008)
+    if (m->marioObj->oInteractStatus & INT_STATUS_MARIO_DROP_OBJECT)
         return drop_and_set_mario_action(m, ACT_METAL_WATER_FALLING, 0);
 
     if (!(m->flags & MARIO_METAL_CAP))
@@ -1330,7 +1330,7 @@ static s32 act_metal_water_falling(struct MarioState *m)
 
 static s32 act_hold_metal_water_falling(struct MarioState *m)
 {
-    if (m->marioObj->oInteractStatus & 0x00000008)
+    if (m->marioObj->oInteractStatus & INT_STATUS_MARIO_DROP_OBJECT)
         return drop_and_set_mario_action(m, ACT_METAL_WATER_FALLING, 0);
 
     if (!(m->flags & MARIO_METAL_CAP))
@@ -1371,7 +1371,7 @@ static s32 act_hold_metal_water_jump_land(struct MarioState *m)
 {
     func_80272FA8(m, 1);
 
-    if (m->marioObj->oInteractStatus & 0x00000008)
+    if (m->marioObj->oInteractStatus & INT_STATUS_MARIO_DROP_OBJECT)
         return drop_and_set_mario_action(m, ACT_METAL_WATER_STANDING, 0);
 
     if (!(m->flags & MARIO_METAL_CAP))
@@ -1412,7 +1412,7 @@ static s32 act_hold_metal_water_fall_land(struct MarioState *m)
 {
     func_80272FA8(m, 1);
 
-    if (m->marioObj->oInteractStatus & 0x00000008)
+    if (m->marioObj->oInteractStatus & INT_STATUS_MARIO_DROP_OBJECT)
         return drop_and_set_mario_action(m, ACT_METAL_WATER_STANDING, 0);
 
     if (!(m->flags & MARIO_METAL_CAP))
@@ -1446,7 +1446,7 @@ static s32 check_common_submerged_cancels(struct MarioState *m)
             // shell on land (used for cloning in DDD).
             if (m->action == ACT_WATER_SHELL_SWIMMING && m->heldObj != NULL)
             {
-                m->heldObj->oInteractStatus = 0x00400000;
+                m->heldObj->oInteractStatus = INT_STATUS_STOP_RIDING;
                 m->heldObj = NULL;
                 func_8024931C();
             }

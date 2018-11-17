@@ -15,7 +15,7 @@ void bhv_mr_blizzard_init(void)
     {
         o->oAction = 7;
         o->oMrBlizzardUnk10C = 24.0f;
-        o->oMrBlizzardUnk1AC = o->oAngleYaw;
+        o->oMrBlizzardUnk1AC = o->oMoveAngleYaw;
     }
     else
     {
@@ -39,7 +39,7 @@ static void func_8030702C(void)
         o->oMrBlizzardUnkF8 = spawn_obj_adv(
             0, -70, (s32)(o->oMrBlizzardUnk10C + 153.0f), 0, o, 0xA0, bMrBlizzardSnowball);
     }
-    else if (check_anim_frame(10))
+    else if (obj_check_anim_frame(10))
     {
         o->prevObj = o->oMrBlizzardUnkF8;
     }
@@ -62,16 +62,16 @@ static void func_80307144(void)
     {
         PlaySound2(0x502B0081);
         o->oAction = 2;
-        o->oAngleYaw = o->oAngleToMario;
+        o->oMoveAngleYaw = o->oAngleToMario;
         o->oMrBlizzardUnkFC = 42.0f;
 
         func_80306ED4(8, -10, 15, 20, 10);
-        func_8029EF18();
-        func_8029FE58();
+        obj_unhide();
+        obj_become_tangible();
     }
     else
     {
-        UnHideObject();
+        obj_hide();
     }
 }
 
@@ -105,9 +105,9 @@ static void func_80307370(void)
 
     if (o->oMoveFlags & 0x00000003)
     {
-        func_8029DE70(o->oAngleToMario, 0x600);
+        obj_rotate_yaw_toward(o->oAngleToMario, 0x600);
 
-        val06 = o->oAngleToMario - o->oAngleYaw;
+        val06 = o->oAngleToMario - o->oMoveAngleYaw;
         if (val06 != 0)
         {
             if (val06 < 0)
@@ -142,11 +142,11 @@ static void func_80307370(void)
 
         if (o->oMrBlizzardUnk104 != 0.0f)
         {
-            if (func_802A2ECC(o->oFaceAngleRoll) > 0x3000)
+            if (absi(o->oFaceAngleRoll) > 0x3000)
             {
                 o->oAction = 6;
                 o->prevObj = o->oMrBlizzardUnkF8 = NULL;
-                func_8029FE38();
+                obj_become_intangible();
             }
         }
         else if (o->oDistanceToMario > 1500.0f)
@@ -156,7 +156,7 @@ static void func_80307370(void)
             o->prevObj = o->oMrBlizzardUnkF8 = NULL;
         }
         else if (o->oTimer > 60 &&
-            abs_angle_diff(o->oAngleToMario, o->oAngleYaw) < 0x800)
+            abs_angle_diff(o->oAngleToMario, o->oMoveAngleYaw) < 0x800)
         {
             o->oAction = 4;
         }
@@ -179,7 +179,7 @@ static void func_80307650(void)
                 val04 = spawn_obj_adv(0, 5, 105, 0, o, 0x88, beh_normal_cap);
                 if (val04 != NULL)
                 {
-                    val04->oAngleYaw = o->oFaceAngleYaw +
+                    val04->oMoveAngleYaw = o->oFaceAngleYaw +
                         (o->oFaceAngleRoll < 0 ? 0x4000 : -0x4000);
                     val04->oForwardVel = 10.0f;
                 }
@@ -218,7 +218,7 @@ static void func_80307650(void)
                 o->oMrBlizzardUnkF4 = 0.0f;
                 if (!(o->oBehParams & 0x0000FF00))
                 {
-                    func_802A1410(o, o->oUnk198, 20.0f);
+                    spawn_object_loot_yellow_coins(o, o->oNumLootCoins, 20.0f);
                     func_8029C6D8(o, 1);
                 }
             }
@@ -273,7 +273,7 @@ static void func_80307AD4(void)
 {
     if (o->oMrBlizzardUnk100 != 0)
     {
-        func_8029DE70(o->oMrBlizzardUnk1AC, 3400);
+        obj_rotate_yaw_toward(o->oMrBlizzardUnk1AC, 3400);
 
         if (--o->oMrBlizzardUnk100 == 0)
         {
@@ -313,7 +313,7 @@ static void func_80307AD4(void)
 
 void bhv_mr_blizzard_update(void)
 {
-    MoveRelated();
+    obj_update_floor_and_walls();
 
     switch (o->oAction)
     {
@@ -329,17 +329,17 @@ void bhv_mr_blizzard_update(void)
 
     o->oFaceAngleRoll = o->oMrBlizzardUnk104;
     o->oGraphYOffset = o->oMrBlizzardUnk10C +
-        func_802A2E8C(20.0f * sins(o->oFaceAngleRoll)) -
+        absf(20.0f * sins(o->oFaceAngleRoll)) -
         40.0f * (1.0f - o->oMrBlizzardUnkF4);
 
-    ScaleObject(o->oMrBlizzardUnkF4);
-    MoveObj(78);
+    obj_scale(o->oMrBlizzardUnkF4);
+    obj_move_standard(78);
     func_802FA888(&D_803319F0, o->oAction);
 }
 
 static void func_80307E24(void)
 {
-    MoveObj2();
+    obj_move_xz_using_fvel_and_gravity();
     if (o->parentObj->prevObj == o)
     {
         o->oAction = 1;
@@ -362,7 +362,7 @@ static void func_80307EB0(void)
                 val04 = 800.0f;
             }
 
-            o->oAngleYaw = (s32)(o->parentObj->oAngleYaw + 4000 - val04 * 4.0f);
+            o->oMoveAngleYaw = (s32)(o->parentObj->oMoveAngleYaw + 4000 - val04 * 4.0f);
             o->oForwardVel = 40.0f;
             o->oVelY = -20.0f + val04 * 0.075f;
         }
@@ -374,7 +374,7 @@ static void func_80307EB0(void)
 
 static void func_80307FD4(void)
 {
-    MoveRelated();
+    obj_update_floor_and_walls();
     func_802FA888(&D_80331A14, -1);
 
     if (o->oAction == -1 || o->oMoveFlags & 0x0000000B)
@@ -384,7 +384,7 @@ static void func_80307FD4(void)
         DeactivateObject(o);
     }
 
-    MoveObj(78);
+    obj_move_standard(78);
 }
 
 void bhv_mr_blizzard_snowball(void)

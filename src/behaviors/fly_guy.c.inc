@@ -9,7 +9,7 @@ static void fly_guy_act_idle(void)
         {
             // Turn toward home or Mario
             face_yaw_approach(o->oAngleToMario, 0x300);
-            if (func_8029DE70(o->oAngleToMario, 0x300))
+            if (obj_rotate_yaw_toward(o->oAngleToMario, 0x300))
             {
                 o->oAction = FLY_GUY_ACT_APPROACH_MARIO;
             }
@@ -23,7 +23,7 @@ static void fly_guy_act_idle(void)
             }
             else
             {
-                o->oFlyGuyUnkFC = o->oAngleYaw + D_803317A8[o->oFlyGuyIdleTimer];
+                o->oFlyGuyUnkFC = o->oMoveAngleYaw + D_803317A8[o->oFlyGuyIdleTimer];
                 o->oFlyGuyIdleTimer += 1;
             }
         }
@@ -39,7 +39,7 @@ static void fly_guy_act_approach_mario(void)
 
         // Turn toward home or Mario
         face_yaw_approach(o->oAngleToMario, 0x400);
-        func_8029DE70(o->oAngleToMario, 0x200);
+        obj_rotate_yaw_toward(o->oAngleToMario, 0x200);
 
         if (abs_angle_diff(o->oAngleToMario, o->oFaceAngleYaw) < 0x2000)
         {
@@ -74,7 +74,7 @@ static void fly_guy_act_lunge(void)
     {
         o->oVelY += o->oFlyGuyLungeYAccel;
 
-        func_8029DE70(o->oFaceAngleYaw, 0x800);
+        obj_rotate_yaw_toward(o->oFaceAngleYaw, 0x800);
         face_pitch_approach(o->oFlyGuyLungeTargetPitch, 0x400);
 
         // Range [-0x1000, 0x2000]
@@ -86,8 +86,8 @@ static void fly_guy_act_lunge(void)
         face_pitch_approach(0, 0x100);
         face_roll_approach(o->oFlyGuyTargetRoll, 300);
 
-        o->oAngleYaw -= o->oFaceAngleRoll / 4;
-        face_yaw_approach(o->oAngleYaw, 0x800);
+        o->oMoveAngleYaw -= o->oFaceAngleRoll / 4;
+        face_yaw_approach(o->oMoveAngleYaw, 0x800);
 
         if (o->oPosY < gMarioObject->oPosY + 200.0f)
         {
@@ -114,7 +114,7 @@ static void fly_guy_act_shoot_fire(void)
 
     if (face_yaw_approach(o->oAngleToMario, 0x800))
     {
-        o->oAngleYaw = o->oFaceAngleYaw;
+        o->oMoveAngleYaw = o->oFaceAngleYaw;
 
         // Increase scale by 0.06, 0.05, ..., -0.03. Then wait ~8 frames, then
         // starting moving scale by 0.05 each frame toward 1.1. The first time
@@ -149,17 +149,17 @@ static void fly_guy_act_shoot_fire(void)
 
 void bhv_fly_guy_update(void)
 {
-    if (!(o->active & 0x0008))
+    if (!(o->activeFlags & 0x0008))
     {
-        o->oUnk1C4 = 0x5063B081;
-        ScaleObject(o->header.gfx.scale[0]);
+        o->oDeathSound = 0x5063B081;
+        obj_scale(o->header.gfx.scale[0]);
 
         treat_far_home_as_mario(2000.0f);
         
-        MoveRelated();
+        obj_update_floor_and_walls();
         if (o->oMoveFlags & 0x00000200)
         {
-            o->oAngleYaw = func_802A2AC0();
+            o->oMoveAngleYaw = obj_reflect_move_angle_off_wall();
         }
         else if (o->oMoveFlags & 0x00000078)
         {
@@ -177,7 +177,7 @@ void bhv_fly_guy_update(void)
         case FLY_GUY_ACT_SHOOT_FIRE:     fly_guy_act_shoot_fire();     break;
         }
 
-        MoveObj(78);
+        obj_move_standard(78);
         func_802FA888(&sFlyGuyHitbox, o->oAction);
     }
 }
