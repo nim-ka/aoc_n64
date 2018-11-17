@@ -2358,7 +2358,7 @@ glabel beh_chirp_chirp # 21E4
 glabel beh_cheep_cheep # 220C
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2049
-    obj_set_int32 VAR_26, 0x06012354
+    obj_set_int32 VAR_26, cheep_cheep_seg6_anims_06012354
     unknown_28 0x00
     unknown_2B 0x0014, 0x000A, 0x000A
     interact_type 0x00000008
@@ -3330,7 +3330,7 @@ glabel beh_blue_coin_jumping # 30E4
 glabel beh_seaweed # 3114
     begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x01
-    obj_set_int32 VAR_26, 0x0600A4D4
+    obj_set_int32 VAR_26, seaweed_seg6_anims_0600A4D4
     unknown_28 0x00
     callnative BehSeaweedInit
     begin_loop
@@ -3699,7 +3699,7 @@ glabel beh_jet_stream_ring_spawner # 3718
 glabel beh_jet_stream_water_ring # 3730
     begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x01
-    obj_set_int32 VAR_26, 0x06013F7C
+    obj_set_int32 VAR_26, water_ring_seg6_anims_06013F7C
     unknown_2B 0x004B, 0x0014, 0x0014
     interact_type 0x00010000
     obj_set_int VAR_3E, 2
@@ -3713,7 +3713,7 @@ glabel beh_jet_stream_water_ring # 3730
 glabel beh_manta_ray_water_ring # 3778
     begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x01
-    obj_set_int32 VAR_26, 0x06013F7C
+    obj_set_int32 VAR_26, water_ring_seg6_anims_06013F7C
     unknown_2B 0x004B, 0x0014, 0x0014
     interact_type 0x00010000
     obj_set_int VAR_3E, 2
@@ -5369,7 +5369,7 @@ glabel beh_clam_shell # 5420
 glabel bSkeeter # 5448
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2049
-    obj_set_int32 VAR_26, 0x06007DE0
+    obj_set_int32 VAR_26, skeeter_seg6_anims_06007DE0
     unknown_2D
     unknown_30 0x00B4, 0xFE70, 0xFFCE, 0x03E8, 0x03E8, 0x04B0, 0x0000, 0x0000
     begin_loop

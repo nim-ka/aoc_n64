@@ -30839,8 +30839,8 @@ glabel ActionFish0
 /* 07A3C8 802BF3C8 3C018033 */  lui   $at, %hi(D_80336B30)
 /* 07A3CC 802BF3CC C4286B30 */  lwc1  $f8, %lo(D_80336B30)($at)
 /* 07A3D0 802BF3D0 E7A80030 */  swc1  $f8, 0x30($sp)
-/* 07A3D4 802BF3D4 3C0D0601 */  lui   $t5, %hi(D_0600E264) # $t5, 0x601
-/* 07A3D8 802BF3D8 25ADE264 */  addiu $t5, %lo(D_0600E264) # addiu $t5, $t5, -0x1d9c
+/* 07A3D4 802BF3D4 3C0D0601 */  lui   $t5, %hi(fish3_seg6_anims_0600E264) # $t5, 0x601
+/* 07A3D8 802BF3D8 25ADE264 */  addiu $t5, %lo(fish3_seg6_anims_0600E264) # addiu $t5, $t5, -0x1d9c
 /* 07A3DC 802BF3DC AFAD002C */  sw    $t5, 0x2c($sp)
 /* 07A3E0 802BF3E0 1000000D */  b     .L802BF418
 /* 07A3E4 802BF3E4 00000000 */   nop   
@@ -30852,8 +30852,8 @@ glabel ActionFish0
 /* 07A3F8 802BF3F8 3C018033 */  lui   $at, %hi(D_80336B34)
 /* 07A3FC 802BF3FC C42A6B34 */  lwc1  $f10, %lo(D_80336B34)($at)
 /* 07A400 802BF400 E7AA0030 */  swc1  $f10, 0x30($sp)
-/* 07A404 802BF404 3C180601 */  lui   $t8, %hi(D_0600E264) # $t8, 0x601
-/* 07A408 802BF408 2718E264 */  addiu $t8, %lo(D_0600E264) # addiu $t8, $t8, -0x1d9c
+/* 07A404 802BF404 3C180601 */  lui   $t8, %hi(fish3_seg6_anims_0600E264) # $t8, 0x601
+/* 07A408 802BF408 2718E264 */  addiu $t8, %lo(fish3_seg6_anims_0600E264) # addiu $t8, $t8, -0x1d9c
 /* 07A40C 802BF40C AFB8002C */  sw    $t8, 0x2c($sp)
 /* 07A410 802BF410 10000001 */  b     .L802BF418
 /* 07A414 802BF414 00000000 */   nop   

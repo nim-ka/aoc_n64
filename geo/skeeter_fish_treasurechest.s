@@ -147,34 +147,34 @@ glabel fish3_geo # 0x0D000324
    geo_close_node
    geo_end
 
-glabel chirp_chirp_geo # 0x0D00038C
+glabel cheep_cheep_geo # 0x0D00038C
    geo_scale 0x00, 16384
    geo_open_node
       geo_dl_translated 0x01, -13, 0, 0
       geo_open_node
-         geo_dl_translated 0x01, 0, 0, 0, chirp_chirp_seg6_dl_06011B28
+         geo_dl_translated 0x01, 0, 0, 0, cheep_cheep_seg6_dl_06011B28
          geo_open_node
-            geo_dl_translated 0x01, 135, 0, 0, chirp_chirp_seg6_dl_06011CF0
+            geo_dl_translated 0x01, 135, 0, 0, cheep_cheep_seg6_dl_06011CF0
             geo_dl_translated 0x01, -33, -86, -35
             geo_open_node
-               geo_dl_translated 0x01, 0, 0, 0, chirp_chirp_seg6_dl_06011E48
+               geo_dl_translated 0x01, 0, 0, 0, cheep_cheep_seg6_dl_06011E48
             geo_close_node
             geo_dl_translated 0x01, -34, 71, -36
             geo_open_node
-               geo_dl_translated 0x01, 0, 0, 0, chirp_chirp_seg6_dl_06011FA0
+               geo_dl_translated 0x01, 0, 0, 0, cheep_cheep_seg6_dl_06011FA0
             geo_close_node
          geo_close_node
       geo_close_node
    geo_close_node
    geo_end
 
-glabel manta_ring_geo # 0x0D000414
+glabel water_ring_geo # 0x0D000414
    geo_scale 0x00, 32768
    geo_open_node
       geo_dl_translated 0x01, 0, 0, 0
       geo_open_node
          geo_asm 0, Geo18_8029D924
-         geo_dl_translated 0x05, 0, 0, 0, manta_ring_seg6_dl_06013AC0
+         geo_dl_translated 0x05, 0, 0, 0, water_ring_seg6_dl_06013AC0
       geo_close_node
    geo_close_node
    geo_end
@@ -182,13 +182,13 @@ glabel manta_ring_geo # 0x0D000414
 glabel treasure_chest_bottom_geo # 0x0D000450
    geo_node_start
    geo_open_node
-      geo_display_list 0x01, treasure_chest_bottom_seg6_dl_06016F90
+      geo_display_list 0x01, treasure_chest_seg6_dl_06016F90
    geo_close_node
    geo_end
 
 glabel treasure_chest_lid_geo # 0x0D000468
    geo_node_start
    geo_open_node
-      geo_display_list 0x01, treasure_chest_lid_seg6_dl_060178C0
+      geo_display_list 0x01, treasure_chest_seg6_dl_060178C0
    geo_close_node
    geo_end

@@ -363,11 +363,11 @@ glabel script_func_global_13
     return
 
 glabel script_func_global_14
-    cmd22 /*unk2*/ 0x0064, /*unk4*/ chirp_chirp_geo
+    cmd22 /*unk2*/ 0x0064, /*unk4*/ cheep_cheep_geo
     cmd22 /*unk2*/ 0x0065, /*unk4*/ treasure_chest_bottom_geo
     cmd22 /*unk2*/ 0x0066, /*unk4*/ treasure_chest_lid_geo
     cmd22 /*unk2*/ 0x0067, /*unk4*/ fish3_geo
-    cmd22 /*unk2*/ 0x0068, /*unk4*/ manta_ring_geo
+    cmd22 /*unk2*/ 0x0068, /*unk4*/ water_ring_geo
     cmd22 /*unk2*/ 0x00B3, /*unk4*/ water_mine_geo
     cmd22 /*unk2*/ 0x00C1, /*unk4*/ seaweed_geo
     cmd22 /*unk2*/ 0x0069, /*unk4*/ skeeter_geo
