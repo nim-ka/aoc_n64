@@ -225,26 +225,26 @@ glabel heart_geo # 0x0F0004FC
    geo_close_node
    geo_end
 
-glabel shyguy_geo # 0x0F000518
+glabel flyguy_geo # 0x0F000518
    geo_shadow SHADOW_CIRCLE_UNK1, 0x96, 100
    geo_open_node
       geo_scale 0x00, 16384
       geo_open_node
          geo_dl_translated 0x01, 0, 0, 0
          geo_open_node
-            geo_dl_translated 0x01, 0, 0, 0, shyguy_seg8_dl_08011710
+            geo_dl_translated 0x01, 0, 0, 0, flyguy_seg8_dl_08011710
             geo_open_node
                geo_dl_translated 0x01, -45, -20, -55
                geo_open_node
-                  geo_dl_translated 0x01, 0, 0, 0, shyguy_seg8_dl_08010840
+                  geo_dl_translated 0x01, 0, 0, 0, flyguy_seg8_dl_08010840
                geo_close_node
                geo_dl_translated 0x01, -45, -20, 55
                geo_open_node
-                  geo_dl_translated 0x01, 0, 0, 0, shyguy_seg8_dl_08010968
+                  geo_dl_translated 0x01, 0, 0, 0, flyguy_seg8_dl_08010968
                geo_close_node
                geo_dl_translated 0x01, 250, 0, 0
                geo_open_node
-                  geo_dl_translated 0x05, 0, 0, 0, shyguy_seg8_dl_08010B80
+                  geo_dl_translated 0x05, 0, 0, 0, flyguy_seg8_dl_08010B80
                   geo_dl_translated 0x01, 0, 0, 0
                geo_close_node
             geo_close_node
@@ -260,7 +260,7 @@ glabel breakable_box_geo # 0x0F0005D2
       geo_open_node
          geo_switch_case 2, GeoSwitchCase8029DB48
          geo_open_node
-            geo_display_list 0x01, breakable_box_face_seg8_dl_08012D20
+            geo_display_list 0x01, breakable_box_seg8_dl_08012D20
             geo_display_list 0x01, breakable_box_seg8_dl_08012D48
          geo_close_node
       geo_close_node
@@ -272,7 +272,7 @@ glabel breakable_box2_geo # 0x0F000610
    geo_open_node
       geo_switch_case 2, GeoSwitchCase8029DB48
       geo_open_node
-         geo_display_list 0x01, breakable_box_face_seg8_dl_08012D20
+         geo_display_list 0x01, breakable_box_seg8_dl_08012D20
          geo_display_list 0x01, breakable_box_seg8_dl_08012D48
       geo_close_node
    geo_close_node
@@ -283,7 +283,7 @@ glabel bowling_ball_geo # 0x0F000640
    geo_open_node
       geo_scale 0x00, 170393
       geo_open_node
-         geo_display_list 0x04, black_ball_seg8_dl_08022D08
+         geo_display_list 0x04, bobomb_seg8_dl_08022D08
       geo_close_node
    geo_close_node
    geo_end
@@ -293,7 +293,7 @@ glabel bowling_ball2_geo # 0x0F00066C
    geo_open_node
       geo_scale 0x00, 170393
       geo_open_node
-         geo_display_list 0x04, black_ball_seg8_dl_08022D08
+         geo_display_list 0x04, bobomb_seg8_dl_08022D08
       geo_close_node
    geo_close_node
    geo_end
@@ -361,7 +361,7 @@ glabel black_bobomb_geo # 0x0F0007B8
                geo_open_node
                   geo_billboard
                   geo_open_node
-                     geo_display_list 0x04, black_ball_seg8_dl_08022D08
+                     geo_display_list 0x04, bobomb_seg8_dl_08022D08
                   geo_close_node
                geo_close_node
                geo_dl_translated 0x01, 0, 57, -60
@@ -409,7 +409,7 @@ glabel pink_bobomb_geo # 0x0F0008F4
                geo_open_node
                   geo_billboard
                   geo_open_node
-                     geo_display_list 0x04, pink_ball_seg8_dl_08022D78
+                     geo_display_list 0x04, bobomb_seg8_dl_08022D78
                   geo_close_node
                geo_close_node
                geo_dl_translated 0x01, 0, 57, -60
@@ -461,10 +461,10 @@ glabel exclamation_box_outline_geo # 0x0F000A5A
       geo_open_node
          geo_switch_case 4, GeoSwitchCase8029DB48
          geo_open_node
-            geo_display_list 0x05, exclamation_box_seg8_dl_08024F88
-            geo_display_list 0x05, exclamation_box_seg8_dl_08024FA8
-            geo_display_list 0x05, exclamation_box_seg8_dl_08024FC8
-            geo_display_list 0x05, exclamation_box_seg8_dl_08024FE8
+            geo_display_list 0x05, exclamation_box_outline_seg8_dl_08024F88
+            geo_display_list 0x05, exclamation_box_outline_seg8_dl_08024FA8
+            geo_display_list 0x05, exclamation_box_outline_seg8_dl_08024FC8
+            geo_display_list 0x05, exclamation_box_outline_seg8_dl_08024FE8
          geo_close_node
          geo_display_list 0x04, exclamation_box_outline_seg8_dl_080259F8
       geo_close_node

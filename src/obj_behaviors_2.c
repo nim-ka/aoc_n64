@@ -45,7 +45,7 @@ extern u8 bob_seg7_trajectory_koopa[];
 extern u8 thi_seg7_trajectory_koopa[];
 extern u8 rr_seg7_collision_07029038[];
 extern u8 ccm_seg7_collision_070163F8[];
-extern u8 D_0800D710[];
+extern u8 checkerboard_platform_seg8_collision_0800D710[];
 extern u8 bitfs_seg7_collision_070157E0[];
 extern u8 rr_seg7_trajectory_0702EC3C[];
 extern u8 rr_seg7_trajectory_0702ECC0[];
@@ -1325,7 +1325,7 @@ void *sPlatformOnTrackCollisionModels[] =
 {
     rr_seg7_collision_07029038,
     ccm_seg7_collision_070163F8,
-    D_0800D710,
+    checkerboard_platform_seg8_collision_0800D710,
     bitfs_seg7_collision_070157E0,
 };
 

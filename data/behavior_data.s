@@ -625,7 +625,7 @@ glabel beh_cannon_base_unused # 0500
 glabel beh_chuckya # 0528
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x0449
-    obj_set_int32 VAR_26, 0x0800C070
+    obj_set_int32 VAR_26, chuckya_seg8_anims_0800C070
     unknown_28 0x05
     obj_set_int VAR_2A, 0x02
     set_hitbox 0x0096, 0x0064
@@ -3347,7 +3347,7 @@ glabel beh_seaweed_bundle # 3138
 glabel beh_bobomb # 3154
     begin OBJ_LIST_DESTRUCTIVE
     obj_or_int VAR_01, 0x6449
-    obj_set_int32 VAR_26, 0x0802396C
+    obj_set_int32 VAR_26, bobomb_seg8_anims_0802396C
     unknown_1E
     unknown_28 0x00
     obj_set_int VAR_05, 0
@@ -3372,7 +3372,7 @@ glabel beh_bobomb_fuse_smoke # 318C
 glabel beh_bobomb_buddy_advice_role # 31BC
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2449
-    obj_set_int32 VAR_26, 0x0802396C
+    obj_set_int32 VAR_26, bobomb_seg8_anims_0802396C
     interact_type 0x00800000
     unknown_1E
     set_hitbox 0x0064, 0x003C
@@ -3388,7 +3388,7 @@ glabel beh_bobomb_buddy_advice_role # 31BC
 glabel beh_bobomb_buddy_cannon_role # 3208
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x6449
-    obj_set_int32 VAR_26, 0x0802396C
+    obj_set_int32 VAR_26, bobomb_seg8_anims_0802396C
     interact_type 0x00800000
     unknown_1E
     set_hitbox 0x0064, 0x003C
@@ -3457,7 +3457,7 @@ glabel beh_sign_on_wall # 3304
 glabel beh_amp_homing # 3334
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x204B
-    obj_set_int32 VAR_26, 0x08004034
+    obj_set_int32 VAR_26, amp_seg8_anims_08004034
     unknown_28 0x00
     obj_set_float VAR_15, 0x0028
     obj_set_int VAR_05, 0
@@ -3469,7 +3469,7 @@ glabel beh_amp_homing # 3334
 glabel beh_amp # 3368
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2043
-    obj_set_int32 VAR_26, 0x08004034
+    obj_set_int32 VAR_26, amp_seg8_anims_08004034
     unknown_28 0x00
     obj_set_float VAR_15, 0x0028
     obj_set_int VAR_05, 0
@@ -4632,7 +4632,7 @@ glabel bSwoop # 4678
 glabel bFlyGuy # 46BC
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2041
-    obj_set_int32 VAR_26, 0x08011A64
+    obj_set_int32 VAR_26, flyguy_seg8_anims_08011A64
     unknown_28 0x00
     unknown_2D
     unknown_30 0x0032, 0x0000, 0x0000, 0x0000, 0x03E8, 0x0258, 0x0000, 0x0000
@@ -4648,7 +4648,7 @@ glabel bGoomba # 470C
     begin OBJ_LIST_PUSHABLE
     obj_or_int VAR_01, 0x2049
     unknown_1E
-    obj_set_int32 VAR_26, 0x0801DA4C
+    obj_set_int32 VAR_26, goomba_seg8_anims_0801DA4C
     unknown_2D
     unknown_30 0x0028, 0xFE70, 0xFFCE, 0x03E8, 0x03E8, 0x0000, 0x0000, 0x0000
     callnative bhv_goomba_init

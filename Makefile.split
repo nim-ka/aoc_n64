@@ -1,6 +1,5 @@
 # segments currently in binary form. should be removed as they are decomposed into resources
 BINARY_SEGMENTS := \
-   amp_chuckya_shyguy_goomba_boxes \
    bbh_skybox \
    bidw_skybox \
    bitfs_skybox \
@@ -24,6 +23,7 @@ MIO0_OBJ_FILES := $(MIO0_FILES:.mio0=.mio0.o)
 
 # assumes naming convention "texture.<encoding>.png" generates "texture.<encoding>"
 SEGMENT2_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/segment2/*.png)))
+AMP_CHUCKYA_FILES            := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/amp_chuckya_flyguy_goomba_boxes/*.png)))
 BOBOMBS_BUBBLE_FILES         := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bobombs_bubble/*.png)))
 BOO_BOOKEND_FILES            := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/boo_bookend_chair_piano/*.png)))
 CAKE_END_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/cake_end/*.png)))
@@ -87,6 +87,7 @@ WF_TEXTURES_FILES            := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/wf
 WMOTR_SEG7_FILES             := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/wmotr_seg7/*.png)))
 
 $(BUILD_DIR)/bin/segment2.o: $(addprefix $(BUILD_DIR)/bin/segment2/,$(SEGMENT2_FILES))
+$(BUILD_DIR)/bin/amp_chuckya_flyguy_goomba_boxes.o: $(addprefix $(BUILD_DIR)/bin/amp_chuckya_flyguy_goomba_boxes/,$(AMP_CHUCKYA_FILES))
 $(BUILD_DIR)/bin/bobombs_bubble.o: $(addprefix $(BUILD_DIR)/bin/bobombs_bubble/,$(BOBOMBS_BUBBLE_FILES))
 $(BUILD_DIR)/bin/boo_bookend_chair_piano.o: $(addprefix $(BUILD_DIR)/bin/boo_bookend_chair_piano/,$(BOO_BOOKEND_FILES))
 $(BUILD_DIR)/bin/cake_end.o: $(addprefix $(BUILD_DIR)/bin/cake_end/,$(CAKE_END_FILES))
@@ -150,6 +151,7 @@ $(BUILD_DIR)/bin/wf_textures.o: $(addprefix $(BUILD_DIR)/bin/wf_textures/,$(WF_T
 $(BUILD_DIR)/bin/wmotr_seg7.o: $(addprefix $(BUILD_DIR)/bin/wmotr_seg7/,$(WMOTR_SEG7_FILES))
 
 $(BUILD_DIR)/bin/segment2.elf: SEGMENT_ADDRESS := 0x02000000
+$(BUILD_DIR)/bin/amp_chuckya_flyguy_goomba_boxes.elf: SEGMENT_ADDRESS := 0x08000000
 $(BUILD_DIR)/bin/bobombs_bubble.elf: SEGMENT_ADDRESS := 0x05000000
 $(BUILD_DIR)/bin/boo_bookend_chair_piano.elf: SEGMENT_ADDRESS := 0x05000000
 $(BUILD_DIR)/bin/cake_end.elf: SEGMENT_ADDRESS := 0x07000000

@@ -316,7 +316,7 @@ SECTIONS
    STANDARD_OBJECTS(chillychief_moneybag, 0x06000000, 0x0D000000)
    STANDARD_OBJECTS(mr_i_swoop_snufit_dorrie_scuttlebug, 0x06000000, 0x0D000000)
 
-   STANDARD_OBJECTS(amp_chuckya_shyguy_goomba_boxes, 0x08000000, 0x0F000000)
+   STANDARD_OBJECTS(amp_chuckya_flyguy_goomba_boxes, 0x08000000, 0x0F000000)
 
    STANDARD_OBJECTS(coins_pipe_doors_maps_trees, 0x03000000, 0x16000000)
 

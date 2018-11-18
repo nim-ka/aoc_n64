@@ -253,18 +253,18 @@ glabel script_func_global_1
     cmd22 /*unk2*/ 0x0083, /*unk4*/ exclamation_box_outline_geo
     cmd22 /*unk2*/ 0x0089, /*unk4*/ exclamation_box_geo
     cmd22 /*unk2*/ 0x00C0, /*unk4*/ goomba_geo
-    cmd21 /*unk2*/ 0x4084, /*unk4*/ exclamation_point_seg8_dl_08025F08
+    cmd21 /*unk2*/ 0x4084, /*unk4*/ exclamation_box_outline_seg8_dl_08025F08
     cmd22 /*unk2*/ 0x00BE, /*unk4*/ koopa_shell_geo
     cmd22 /*unk2*/ 0x00D9, /*unk4*/ metal_box_geo
     cmd21 /*unk2*/ 0x10DA, /*unk4*/ metal_box_seg8_dl_08024BB8
     cmd22 /*unk2*/ 0x00BC, /*unk4*/ black_bobomb_geo
     cmd22 /*unk2*/ 0x00C3, /*unk4*/ pink_bobomb_geo
-    cmd21 /*unk2*/ 0x10C9, /*unk4*/ cannon_closed_seg8_dl_080048E0
+    cmd21 /*unk2*/ 0x10C9, /*unk4*/ cannon_lid_seg8_dl_080048E0
     cmd22 /*unk2*/ 0x00B4, /*unk4*/ bowling_ball_geo
     cmd22 /*unk2*/ 0x007F, /*unk4*/ cannon_barrel_geo
     cmd22 /*unk2*/ 0x0080, /*unk4*/ cannon_base_geo
     cmd22 /*unk2*/ 0x0078, /*unk4*/ heart_geo
-    cmd22 /*unk2*/ 0x00DC, /*unk4*/ shyguy_geo
+    cmd22 /*unk2*/ 0x00DC, /*unk4*/ flyguy_geo
     cmd22 /*unk2*/ 0x00DF, /*unk4*/ chuckya_geo
     cmd22 /*unk2*/ 0x00E1, /*unk4*/ bowling_ball2_geo
     return
