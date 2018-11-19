@@ -11,7 +11,7 @@ static void triplet_butterfly_act_init(void)
         {
             for (i = 1; i <= 2; i++)
             {
-                spawn_obj_adv(i, 0, 0, 0, o, 0xBB, bTripletButterfly);
+                spawn_object_relative(i, 0, 0, 0, o, 0xBB, bTripletButterfly);
             }
 
             o->oTripletButterflySelectedButterfly = RandomU16() % 3;
@@ -89,7 +89,7 @@ static void triplet_butterfly_act_activate(void)
     {
         if (o->oTripletButterflyModel == 0)
         {
-            func_8029E880(0, 0, -40, 0, 1.5f, o, 0x96, beh_white_puff_smoke2);
+            spawn_object_relative_with_scale(0, 0, -40, 0, 1.5f, o, 0x96, beh_white_puff_smoke2);
             o->oTripletButterflyModel = sTripletButterflyActivationData[o->oTripletButterflyType].model;
             obj_set_model(o->oTripletButterflyModel);
             func_802A1230(o);
@@ -100,7 +100,7 @@ static void triplet_butterfly_act_activate(void)
         {
             if (o->oTripletButterflyType != TRIPLET_BUTTERFLY_TYPE_EXPLODES)
             {
-                SpawnObj(o, o->oTripletButterflyModel, sTripletButterflyActivationData[o->oTripletButterflyType].behavior);
+                spawn_object(o, o->oTripletButterflyModel, sTripletButterflyActivationData[o->oTripletButterflyType].behavior);
                 DeactivateObject(o);
             }
             else
@@ -128,7 +128,7 @@ static void triplet_butterfly_act_explode(void)
     if (o->oAction == -1 || (o->oMoveFlags & 0x00000200) || o->oTimer >= 158)
     {
         o->oPosY += o->oGraphYOffset;
-        SpawnObj(o, 0xCD, beh_explosion);
+        spawn_object(o, 0xCD, beh_explosion);
         DeactivateObject(o);
     }
     else

@@ -97,7 +97,7 @@ void init_free_obj_list(void)
     int objLimit = OBJECT_ARRAY_SIZE;
     struct Object *obj = &gObjectPool[0];
 
-    D_8035FD80.next = (struct ObjectNode *)obj;
+    gFreeObjectList.next = (struct ObjectNode *)obj;
 
     for (i = 0; i < objLimit - 1; i++)
     {
@@ -146,13 +146,13 @@ void unload_obj(struct Object *obj)
     func_8037C044(&D_8038BD88, (struct GraphNode *) obj);
     obj->header.gfx.node.flags &= ~4;
     obj->header.gfx.node.flags &= ~1;
-    func_802C8EA4(&D_8035FD80, &obj->header);
+    func_802C8EA4(&gFreeObjectList, &obj->header);
 }
 
 struct Object *try_init_object(struct ObjectNode *objList)
 {
     int i;
-    struct Object *obj = try_get_next_obj(objList, &D_8035FD80);
+    struct Object *obj = try_get_next_obj(objList, &gFreeObjectList);
     struct Object *unloadObj;
 
     // The object list is full if the newly created pointer is NULL.
@@ -175,7 +175,7 @@ struct Object *try_init_object(struct ObjectNode *objList)
         {
             // unload the unimportant object and load the new object in.
             unload_obj(unloadObj);
-            obj = try_get_next_obj(objList, &D_8035FD80);
+            obj = try_get_next_obj(objList, &gFreeObjectList);
             if (gCurrentObject == obj) // hmm...
             {
             }
@@ -184,7 +184,7 @@ struct Object *try_init_object(struct ObjectNode *objList)
 
     // we have gotten a good pointer to an object. initialize the
     // object contents below.
-    obj->activeFlags = 257;
+    obj->activeFlags = ACTIVE_FLAG_UNK0 | ACTIVE_FLAG_UNK8;
     obj->parentObj = obj;
     obj->prevObj = NULL;
     obj->collidedObjInteractTypes = 0;
@@ -198,14 +198,14 @@ struct Object *try_init_object(struct ObjectNode *objList)
     obj->unk1F4 = 0;
     obj->hitboxRadius = 50.0f;
     obj->hitboxHeight = 100.0f;
-    obj->unk200 = 0.0f;
-    obj->unk204 = 0.0f;
-    obj->unk208 = 0.0f;
+    obj->hurtboxRadius = 0.0f;
+    obj->hurtboxHeight = 0.0f;
+    obj->hitboxDownOffset = 0.0f;
     obj->unk210 = 0;
     obj->platform = NULL;
     obj->collisionData = NULL;
     obj->oIntangibleTimer = -1;
-    obj->oUnk180 = 0;
+    obj->oDamageOrCoinValue = 0;
     obj->oHealth = 2048;
     obj->oCollisionDistance = 1000.0f;
     if (gCurrLevelNum == 14)
@@ -244,7 +244,7 @@ struct Object *create_object(u32 *behScript)
     int listIndex;
     struct Object *obj;
     struct ObjectNode *objList;
-    u32 *behavior = behScript;
+    u32 *behavior = (u32 *)behScript;
 
     if ((*behScript >> 24) == 0)
         listIndex = (*behScript >> 16) & 0xFFFF;
@@ -256,7 +256,7 @@ struct Object *create_object(u32 *behScript)
     obj->behScript = behScript;
     obj->behavior = behavior;
     if (listIndex == OBJ_LIST_UNIMPORTANT)
-        obj->activeFlags |= 0x10;
+        obj->activeFlags |= ACTIVE_FLAG_UNIMPORTANT;
     switch (listIndex)
     {
     // these types of objects should spawn on the ground, so where they are created,
@@ -264,6 +264,10 @@ struct Object *create_object(u32 *behScript)
     case OBJ_LIST_GENACTOR:
     case OBJ_LIST_PUSHABLE:
     case OBJ_LIST_POLELIKE:
+        //! At this point the object's position is the origin. So this will
+        //  place the object at the floor beneath the origin. Typically this
+        //  doesn't matter since the caller of this function sets oPosX/Y/Z
+        //  themselves.
         put_obj_on_floor(obj);
         break;
     default:

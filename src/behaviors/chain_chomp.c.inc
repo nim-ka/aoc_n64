@@ -40,11 +40,11 @@ static void chain_chomp_act_uninitialized(void)
 
             obj_set_pos_to_home();
 
-            if ((o->parentObj = SpawnObj(o, 0, bChainChompChainPart)) != NULL)
+            if ((o->parentObj = spawn_object(o, 0, bChainChompChainPart)) != NULL)
             {
                 for (i = 1; i < 5; i++)
                 {
-                    spawn_obj_adv(i, 0, 0, 0, o, 0x65, bChainChompChainPart);
+                    spawn_object_relative(i, 0, 0, 0, o, 0x65, bChainChompChainPart);
                 }
 
                 o->oAction = CHAIN_CHOMP_ACT_MOVE;

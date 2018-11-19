@@ -3,7 +3,7 @@
 
 #include "types.h"
 
-extern struct ObjectNode D_8035FD80;
+extern struct ObjectNode gFreeObjectList;
 
 // extern ? Unknown802C8CF0(?);
 // extern ? Unknown802C8D60(?);

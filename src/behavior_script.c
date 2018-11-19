@@ -130,7 +130,7 @@ static s32 Behavior1C(void)
     u32 arg0 = gBehCommand[1];
     void *arg1 = (void *) gBehCommand[2];
     
-    struct Object *object = func_8029E5A4(gCurrentObject, 0, arg0, arg1);
+    struct Object *object = spawn_object_at_origin(gCurrentObject, 0, arg0, arg1);
     
     copy_object_pos_and_angle(object, gCurrentObject);
     
@@ -143,7 +143,7 @@ static s32 Behavior2C(void)
     u32 arg0 = gBehCommand[1];
     void *arg1 = (void *) gBehCommand[2];
     
-    struct Object *object = func_8029E5A4(gCurrentObject, 0, arg0, arg1);
+    struct Object *object = spawn_object_at_origin(gCurrentObject, 0, arg0, arg1);
     
     copy_object_pos_and_angle(object, gCurrentObject);
     
@@ -159,7 +159,7 @@ static s32 Behavior29(void)
     u32 arg1 = gBehCommand[1];
     void *arg2 = (void *) gBehCommand[2];
     
-    struct Object *object = func_8029E5A4(gCurrentObject, 0, arg1, arg2);
+    struct Object *object = spawn_object_at_origin(gCurrentObject, 0, arg1, arg2);
     
     copy_object_pos_and_angle(object, gCurrentObject);
     
@@ -593,8 +593,8 @@ static s32 Behavior2E(void)
     s16 arg0 = gBehCommand[1] >> 16;
     s16 arg1 = gBehCommand[1] & 0xFFFF;
 
-    gCurrentObject->unk200 = arg0;
-    gCurrentObject->unk204 = arg1;
+    gCurrentObject->hurtboxRadius = arg0;
+    gCurrentObject->hurtboxHeight = arg1;
 
     gBehCommand += 2;
     return BEH_CONTINUE;
@@ -608,7 +608,7 @@ static s32 Behavior2B(void)
 
     gCurrentObject->hitboxRadius = colSphereX;
     gCurrentObject->hitboxHeight = colSphereY;
-    gCurrentObject->unk208 = unknown;
+    gCurrentObject->hitboxDownOffset = unknown;
 
     gBehCommand += 3;
     return BEH_CONTINUE;
@@ -824,7 +824,7 @@ void cur_object_exec_behavior(void)
     BehCommandProc behCmdFunc;
     s32 behProcResult;
 
-    if (flagsLo & OBJ_FLAG_0040)
+    if (flagsLo & OBJ_FLAG_COMPUTE_DIST_TO_MARIO)
     {
         gCurrentObject->oDistanceToMario = dist_between_objects(gCurrentObject, gMarioObject);
         distanceFromMario = gCurrentObject->oDistanceToMario;
@@ -834,7 +834,7 @@ void cur_object_exec_behavior(void)
         distanceFromMario = 0.0f;
     }
 
-    if (flagsLo & OBJ_FLAG_2000)
+    if (flagsLo & OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO)
         gCurrentObject->oAngleToMario = angle_to_object(gCurrentObject, gMarioObject);
 
     if (gCurrentObject->oAction != gCurrentObject->oPrevAction)
@@ -869,42 +869,43 @@ void cur_object_exec_behavior(void)
     if (flagsLo & OBJ_FLAG_0010)
         func_8029F170(gCurrentObject);
 
-    if (flagsLo & OBJ_FLAG_0008)
+    if (flagsLo & OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW)
         gCurrentObject->oFaceAngleYaw = gCurrentObject->oMoveAngleYaw;
 
-    if (flagsLo & OBJ_FLAG_0002)
-        obj_move_xz_using_fvel();    
+    if (flagsLo & OBJ_FLAG_MOVE_XZ_USING_FVEL)
+        obj_move_xz_using_fvel();
 
-    if (flagsLo & OBJ_FLAG_0004)
+    if (flagsLo & OBJ_FLAG_MOVE_Y_WITH_TERMINAL_VEL)
         obj_move_y_with_terminal_vel();
 
-    if (flagsLo & OBJ_FLAG_0200)
-        func_802A22DC(gCurrentObject);
+    if (flagsLo & OBJ_FLAG_TRANSFORM_RELATIVE_TO_PARENT)
+        build_object_transform_relative_to_parent(gCurrentObject);
 
     if (flagsLo & OBJ_FLAG_0800)
         func_802A2270(gCurrentObject);
 
-    if (flagsLo & OBJ_FLAG_0001)
+    if (flagsLo & OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
         func_80383D68(gCurrentObject);
 
     if (gCurrentObject->oRoom != -1)
     {
         obj_enable_rendering_if_mario_in_room();
     }
-    else if ((flagsLo & OBJ_FLAG_0040) && gCurrentObject->collisionData == NULL)
+    else if ((flagsLo & OBJ_FLAG_COMPUTE_DIST_TO_MARIO) &&
+        gCurrentObject->collisionData == NULL)
     {
-        if ((flagsLo & OBJ_FLAG_0080) == 0)
+        if (!(flagsLo & OBJ_FLAG_ACTIVE_FROM_AFAR))
         {
             if (distanceFromMario > gCurrentObject->oDrawingDistance)
             {
-                gCurrentObject->header.gfx.node.flags &= 0xFFFFFFFE;
-                gCurrentObject->activeFlags |= 2;
+                gCurrentObject->header.gfx.node.flags &= ~GRAPH_RENDER_01;
+                gCurrentObject->activeFlags |= ACTIVE_FLAG_FAR_AWAY;
             }
             else if (gCurrentObject->oHeldState == HELD_FREE)
             {
-                gCurrentObject->header.gfx.node.flags |= 1;
-                gCurrentObject->activeFlags &= 0xFFFFFFFD;
+                gCurrentObject->header.gfx.node.flags |= GRAPH_RENDER_01;
+                gCurrentObject->activeFlags &= ~ACTIVE_FLAG_FAR_AWAY;
             }
-        }    
+        }
     }
 }

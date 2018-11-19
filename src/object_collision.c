@@ -24,8 +24,8 @@ struct Object *Unknown802C8460(struct Object *a)
 
 int func_802C8504(struct Object *a, struct Object *b)
 {
-    float sp3C = a->oPosY - a->unk208;
-    float sp38 = b->oPosY - b->unk208;
+    float sp3C = a->oPosY - a->hitboxDownOffset;
+    float sp38 = b->oPosY - b->hitboxDownOffset;
     float dx = a->oPosX - b->oPosX;
     UNUSED float sp30 = sp3C - sp38;
     float dz = a->oPosZ - b->oPosZ;
@@ -59,12 +59,12 @@ int func_802C8504(struct Object *a, struct Object *b)
 
 int func_802C870C(struct Object *a, struct Object *b)
 {
-    float sp3C = a->oPosY - a->unk208;
-    float sp38 = b->oPosY - b->unk208;
+    float sp3C = a->oPosY - a->hitboxDownOffset;
+    float sp38 = b->oPosY - b->hitboxDownOffset;
     float sp34 = a->oPosX - b->oPosX;
     UNUSED float sp30 = sp3C - sp38;
     float sp2C = a->oPosZ - b->oPosZ;
-    float sp28 = a->unk200 + b->unk200;
+    float sp28 = a->hurtboxRadius + b->hurtboxRadius;
     float sp24 = sqrtf(sp34 * sp34 + sp2C * sp2C);
 
     if (a == gMarioObject)
@@ -73,7 +73,7 @@ int func_802C870C(struct Object *a, struct Object *b)
     if (sp28 > sp24)
     {
         float sp20 = a->hitboxHeight + sp3C;
-        float sp1C = b->unk204 + sp38;
+        float sp1C = b->hurtboxHeight + sp38;
 
         if (sp3C > sp1C)
             return 0;
@@ -109,7 +109,7 @@ void func_802C8918(struct Object *a, struct Object *b, struct Object *c)
         {
             if (b->oIntangibleTimer == 0)
             {
-                if (func_802C8504(a, b) && b->unk200 != 0.0f)
+                if (func_802C8504(a, b) && b->hurtboxRadius != 0.0f)
                     func_802C870C(a, b);
             }
             b = (struct Object *)b->header.next;
@@ -160,7 +160,7 @@ void func_802C8B50(void)
 
     while (sp18 != sp1C)
     {
-        if (sp18->oDistanceToMario < 2000.0f && !(sp18->activeFlags & 0x200))
+        if (sp18->oDistanceToMario < 2000.0f && !(sp18->activeFlags & ACTIVE_FLAG_UNK9))
         {
             func_802C8918(sp18, (struct Object *)sp18->header.next, sp1C);
             func_802C8918(sp18, (struct Object *) gObjectLists[OBJ_LIST_GENACTOR].next, 

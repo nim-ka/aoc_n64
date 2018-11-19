@@ -1,4 +1,77 @@
 
+/**
+ * Behavior for bGoomba and bGoombaTripletSpawner,
+ * Goombas can either be spawned individually, or spawned by a triplet spawner.
+ * The triplet spawner comes before its spawned goombas in processing order.
+ */
+
+
+/**
+ * Hitbox for goomba.
+ */
+static struct ObjectHitbox sGoombaHitbox =
+{
+    /* interactType:      */ INTERACT_BOUNCE_TOP,
+    /* downOffset:        */ 0,
+    /* damageOrCoinValue: */ 1,
+    /* health:            */ 0,
+    /* numLootCoins:      */ 1,
+    /* radius:            */ 72,
+    /* height:            */ 50,
+    /* hurtboxRadius:     */ 42,
+    /* hurtboxHeight:     */ 40,
+};
+
+/**
+ * Properties that vary based on goomba size.
+ */
+struct GoombaProperties
+{
+    f32 baseSpeed;
+    u32 deathSound;
+    s16 drawDistance;
+    s8 damage;
+};
+
+/**
+ * Properties for regular, huge, and tiny goombas.
+ */
+static struct GoombaProperties sGoombaProperties[] =
+{
+    { 1.5f, SOUND_OBJECT_ENEMYDEATHHIGH, 4000, 1 },
+    { 3.5f, SOUND_OBJECT_ENEMYDEATHLOW, 4000, 2 },
+    { 0.5f, SOUND_OBJECT_ENEMYDEATHHIGH, 1500, 0 },
+};
+
+/**
+ * Attack handlers for goombas.
+ */
+static u8 sGoombaAttackHandlers[][6] =
+{
+    // regular and tiny
+    {
+        /* ATTACK_PUNCH:                 */ ATTACK_HANDLER_UNK2,
+        /* ATTACK_KICK_OR_TRIP:          */ ATTACK_HANDLER_UNK2,
+        /* ATTACK_FROM_ABOVE:            */ ATTACK_HANDLER_UNK3,
+        /* ATTACK_GROUND_POUND_OR_TWIRL: */ ATTACK_HANDLER_UNK3,
+        /* ATTACK_FAST_ATTACK:           */ ATTACK_HANDLER_UNK2,
+        /* ATTACK_FROM_BELOW:            */ ATTACK_HANDLER_UNK2,
+    },
+    // huge
+    {
+        /* ATTACK_PUNCH:                 */ ATTACK_HANDLER_UNK7,
+        /* ATTACK_KICK_OR_TRIP:          */ ATTACK_HANDLER_UNK7,
+        /* ATTACK_FROM_ABOVE:            */ ATTACK_HANDLER_UNK3,
+        /* ATTACK_GROUND_POUND_OR_TWIRL: */ ATTACK_HANDLER_UNK8,
+        /* ATTACK_FAST_ATTACK:           */ ATTACK_HANDLER_UNK7,
+        /* ATTACK_FROM_BELOW:            */ ATTACK_HANDLER_UNK7,
+    },
+};
+
+
+/**
+ * Update function for goomba triplet spawner.
+ */
 void bhv_goomba_triplet_spawner_update(void)
 {
     UNUSED s32 unused1;
@@ -9,14 +82,18 @@ void bhv_goomba_triplet_spawner_update(void)
     s16 dx;
     s16 dz;
 
+    // If mario is close enough and the goombas aren't currently loaded, then
+    // spawn them
     if (o->oAction == GOOMBA_TRIPLET_SPAWNER_ACT_UNLOADED)
     {
         if (o->oDistanceToMario < 3000.0f)
         {
+            // The spawner is capable of spawning more than 3 goombas, but this
+            // is not used in the game
             dAngle = 0x10000 / (((o->oBehParams2ndByte & GOOMBA_TRIPLET_SPAWNER_BP_EXTRA_GOOMBAS_MASK) >> 2) + 3);
 
-            goombaFlag = 0x100;
-            for (angle = 0; angle < 0xFFFF; angle += dAngle, goombaFlag *= 2)
+            goombaFlag = 1 << 8;
+            for (angle = 0; angle < 0xFFFF; angle += dAngle, goombaFlag <<= 1)
             {
                 // Only spawn goombas which haven't been killed yet
                 if (!(o->oBehParams & goombaFlag))
@@ -24,11 +101,11 @@ void bhv_goomba_triplet_spawner_update(void)
                     dx = 500.0f * coss(angle);
                     dz = 500.0f * sins(angle);
 
-                    spawn_obj_adv(
+                    spawn_object_relative(
                         (o->oBehParams2ndByte & GOOMBA_TRIPLET_SPAWNER_BP_SIZE_MASK) | (goombaFlag >> 6),
                         dx, 0, dz,
                         o,
-                        0xC0,
+                        MODEL_GOOMBA,
                         bGoomba);
                 }
             }
@@ -38,53 +115,71 @@ void bhv_goomba_triplet_spawner_update(void)
     }
     else if (o->oDistanceToMario > 4000.0f)
     {
+        // If mario is too far away, enter the unloaded action. The goombas
+        // will detect this and unload themselves
         o->oAction = GOOMBA_TRIPLET_SPAWNER_ACT_UNLOADED;
     }
 }
 
+/**
+ * Initialization function for goomba.
+ */
 void bhv_goomba_init(void)
 {
     o->oGoombaSize = o->oBehParams2ndByte & GOOMBA_BP_SIZE_MASK;
 
     o->oGoombaBaseSpeed = sGoombaProperties[o->oGoombaSize].baseSpeed;
-    o->oDeathSound = sGoombaProperties[o->oGoombaSize].unk04;
+    o->oDeathSound = sGoombaProperties[o->oGoombaSize].deathSound;
 
     set_object_hitbox(o, &sGoombaHitbox);
 
     o->oDrawingDistance = sGoombaProperties[o->oGoombaSize].drawDistance;
-    o->oUnk180 = sGoombaProperties[o->oGoombaSize].unk0A;
+    o->oDamageOrCoinValue = sGoombaProperties[o->oGoombaSize].damage;
 
     o->oGravity = -8.0f / 3.0f * o->oGoombaBaseSpeed;
 }
 
+/**
+ * Enter the jump action and set initial y velocity.
+ */
 static void goomba_begin_jump(void)
 {
-    PlaySound2(0x502F0081);
+    PlaySound2(SOUND_OBJECT_GOOMBAALERT);
     o->oAction = GOOMBA_ACT_JUMP;
     o->oForwardVel = 0.0f;
     o->oVelY = 50.0f / 3.0f * o->oGoombaBaseSpeed;
 }
 
+/**
+ * If spawned by a triplet spawner, mark the flag in the spawner to indicate that
+ * this goomba died. This prevents it from spawning again when mario leaves and
+ * comes back.
+ */
 static void mark_goomba_as_dead(void)
 {
     if (o->parentObj != o)
     {
         func_8029C6D8(o->parentObj, (o->oBehParams2ndByte & GOOMBA_BP_TRIPLET_FLAG_MASK) >> 2);
-        
+
         o->parentObj->oBehParams = o->parentObj->oBehParams |
             (o->oBehParams2ndByte & GOOMBA_BP_TRIPLET_FLAG_MASK) << 6;
     }
 }
 
+/**
+ * Walk around randomly occasionally jumping. If mario comes within range,
+ * chase him.
+ */
 static void goomba_act_walk(void)
 {
     treat_far_home_as_mario(1000.0f);
 
     forward_vel_approach(o->oGoombaRelativeSpeed * o->oGoombaBaseSpeed, 0.4f);
-    
+
+    // If walking fast enough, play footstep sounds
     if (o->oGoombaRelativeSpeed > 4.0f / 3.0f)
     {
-        func_802F9378(2, 17, 0x50200081);
+        func_802F9378(2, 17, SOUND_OBJECT_GOOMBAWALK);
     }
 
     if (o->oGoombaTurning)
@@ -104,6 +199,9 @@ static void goomba_act_walk(void)
         {
             if (o->oDistanceToMario < 500.0f)
             {
+                // If close to mario, begin chasing him. If not already chasing
+                // him, jump first
+
                 if (o->oGoombaRelativeSpeed <= 2.0f)
                 {
                     goomba_begin_jump();
@@ -114,6 +212,9 @@ static void goomba_act_walk(void)
             }
             else
             {
+                // If mario is far away, walk at a normal pace, turning randomly
+                // and occasionally jumping
+
                 o->oGoombaRelativeSpeed = 4.0f / 3.0f;
                 if (o->oGoombaWalkTimer != 0)
                 {
@@ -121,7 +222,7 @@ static void goomba_act_walk(void)
                 }
                 else
                 {
-                    if (RandomU16() & 0x00000003)
+                    if (RandomU16() & 3)
                     {
                         o->oGoombaTargetYaw = random_fixed_turn(0x2000);
                         o->oGoombaWalkTimer = random_linear_offset(100, 100);
@@ -139,7 +240,11 @@ static void goomba_act_walk(void)
     }
 }
 
-static void goomba_act_soft_attacked(void)
+/**
+ * This action occurs when either the goomba attacks mario normally, or mario
+ * attacks a huge goomba with an attack that doesn't kill it.
+ */
+static void goomba_act_attacked_mario(void)
 {
     if (o->oGoombaSize == GOOMBA_SIZE_TINY)
     {
@@ -149,23 +254,29 @@ static void goomba_act_soft_attacked(void)
     }
     else
     {
+        //! This can happen even when the goomba is already in the air. It's
+        //  hard to chain these in practice
         goomba_begin_jump();
         o->oGoombaTargetYaw = o->oAngleToMario;
         o->oGoombaTurning = FALSE;
     }
 }
 
+/**
+ * Move until landing, and rotate toward target yaw.
+ */
 static void goomba_act_jump(void)
 {
     resolve_obj_collisions(NULL);
 
-    //! If the goomba is deactivated the frame it enters the jump action, then
-    // it will keep its velY, but it will still be counted as being on the ground.
-    // Next frame, the jump action will think it has already ended because it is
-    // still on the ground.
-    // This puts the goomba back in the walk action, but the positive velY will
-    // make it hop into the air. We can then trigger another jump.
-    if (o->oMoveFlags & 0x00000003)
+    //! If we move outside the goomba's drawing radius the frame it enters the
+    //  jump action, then it will keep its velY, but it will still be counted
+    //  as being on the ground.
+    //  Next frame, the jump action will think it has already ended because it is
+    //  still on the ground.
+    //  This puts the goomba back in the walk action, but the positive velY will
+    //  make it hop into the air. We can then trigger another jump.
+    if (o->oMoveFlags & OBJ_MOVE_MASK_ON_GROUND)
     {
         o->oAction = GOOMBA_ACT_WALK;
     }
@@ -175,20 +286,33 @@ static void goomba_act_jump(void)
     }
 }
 
-void goomba_soft_attacked(void)
+/**
+ * Attack handler for when mario attacks a huge goomba with an attack that
+ * doesn't kill it.
+ * From the goomba's perspective, this is the same as the goomba attacking
+ * mario.
+ */
+void huge_goomba_weakly_attacked(void)
 {
-    o->oAction = GOOMBA_ACT_SOFT_ATTACKED;
+    o->oAction = GOOMBA_ACT_ATTACKED_MARIO;
 }
 
+/**
+ * Update function for goomba.
+ */
 void bhv_goomba_update(void)
 {
-    f32 val04;
+    //PARTIAL_UPDATE
+
+    f32 animSpeed;
 
     if (func_802FA7CC(o->oGoombaBaseSpeed))
     {
+        // If this goomba has a spawner and mario moved away from the spawner,
+        // unload
         if (o->parentObj != o)
         {
-            if (o->parentObj->oAction == GOOMBA_ACT_WALK)
+            if (o->parentObj->oAction == GOOMBA_TRIPLET_SPAWNER_ACT_UNLOADED)
             {
                 DeactivateObject(o);
             }
@@ -198,21 +322,21 @@ void bhv_goomba_update(void)
         update_blinking(&o->oGoombaBlinkTimer, 30, 50, 5);
         obj_update_floor_and_walls();
 
-        if ((val04 = o->oForwardVel / o->oGoombaBaseSpeed * 0.4f) < 1.0f)
+        if ((animSpeed = o->oForwardVel / o->oGoombaBaseSpeed * 0.4f) < 1.0f)
         {
-            val04 = 1.0f;
+            animSpeed = 1.0f;
         }
-
-        func_8029ED98(0, val04);
+        func_8029ED98(0, animSpeed);
 
         switch (o->oAction)
         {
-        case GOOMBA_ACT_WALK:          goomba_act_walk();          break;
-        case GOOMBA_ACT_SOFT_ATTACKED: goomba_act_soft_attacked(); break;
-        case GOOMBA_ACT_JUMP:          goomba_act_jump();          break;
+        case GOOMBA_ACT_WALK:           goomba_act_walk();           break;
+        case GOOMBA_ACT_ATTACKED_MARIO: goomba_act_attacked_mario(); break;
+        case GOOMBA_ACT_JUMP:           goomba_act_jump();           break;
         }
 
-        if (func_802FA468(&sGoombaHitbox, 1, sGoombaAttackHandlers[o->oGoombaSize & 1]) != 0)
+        if (func_802FA468(
+            &sGoombaHitbox, GOOMBA_ACT_ATTACKED_MARIO, sGoombaAttackHandlers[o->oGoombaSize & 1]))
         {
             mark_goomba_as_dead();
         }

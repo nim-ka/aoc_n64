@@ -199,9 +199,9 @@ struct Object
     /*0x1F6*/ s16 unk1F6;
     /*0x1F8*/ f32 hitboxRadius;
     /*0x1FC*/ f32 hitboxHeight;
-    /*0x200*/ f32 unk200;
-    /*0x204*/ f32 unk204;
-    /*0x208*/ f32 unk208;
+    /*0x200*/ f32 hurtboxRadius;
+    /*0x204*/ f32 hurtboxHeight;
+    /*0x208*/ f32 hitboxDownOffset;
     /*0x20C*/ void *behavior;
     /*0x210*/ u32 unk210;
     /*0x214*/ struct Object *platform;
@@ -214,13 +214,13 @@ struct ObjectHitbox
 {
     /*0x00*/ u32 interactType;
     /*0x04*/ u8 downOffset;
-    /*0x05*/ s8 unk05;
+    /*0x05*/ s8 damageOrCoinValue;
     /*0x06*/ s8 health;
     /*0x07*/ s8 numLootCoins;
     /*0x08*/ s16 radius;
     /*0x0A*/ s16 height;
-    /*0x0C*/ s16 unk0C;
-    /*0x0E*/ s16 unk0E;
+    /*0x0C*/ s16 hurtboxRadius;
+    /*0x0E*/ s16 hurtboxHeight;
 };
 
 struct Waypoint

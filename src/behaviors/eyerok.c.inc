@@ -15,7 +15,7 @@ static void eyerok_spawn_hand(s16 side, s32 model, void *behavior)
 {
     struct Object *hand;
 
-    hand = func_8029E880(side, -500 * side, 0, 300, 1.5f, o, model, behavior);
+    hand = spawn_object_relative_with_scale(side, -500 * side, 0, 300, 1.5f, o, model, behavior);
     if (hand != NULL)
     {
         hand->oFaceAngleYaw -= 0x4000 * side;

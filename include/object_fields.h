@@ -41,13 +41,19 @@
 #define /*0x0BC*/ oUnkBC OBJECT_FIELD_F32(0x0D)
 #define /*0x0C0*/ oUnkC0 OBJECT_FIELD_F32(0x0E)
 #define /*0x0C4*/ O_MOVE_ANGLE_INDEX 0x0F
-#define /*0x0C4*/ oMoveAnglePitch OBJECT_FIELD_S32(O_MOVE_ANGLE_INDEX + 0)
-#define /*0x0C8*/ oMoveAngleYaw OBJECT_FIELD_S32(O_MOVE_ANGLE_INDEX + 1)
-#define /*0x0CC*/ oMoveAngleRoll OBJECT_FIELD_S32(O_MOVE_ANGLE_INDEX + 2)
+#define /*0x0C4*/ O_MOVE_ANGLE_PITCH_INDEX (O_MOVE_ANGLE_INDEX + 0)
+#define /*0x0C4*/ O_MOVE_ANGLE_YAW_INDEX (O_MOVE_ANGLE_INDEX + 1)
+#define /*0x0C4*/ O_MOVE_ANGLE_ROLL_INDEX (O_MOVE_ANGLE_INDEX + 2)
+#define /*0x0C4*/ oMoveAnglePitch OBJECT_FIELD_S32(O_MOVE_ANGLE_PITCH_INDEX)
+#define /*0x0C8*/ oMoveAngleYaw OBJECT_FIELD_S32(O_MOVE_ANGLE_YAW_INDEX)
+#define /*0x0CC*/ oMoveAngleRoll OBJECT_FIELD_S32(O_MOVE_ANGLE_ROLL_INDEX)
 #define /*0x0D0*/ O_FACE_ANGLE_INDEX 0x12
-#define /*0x0D0*/ oFaceAnglePitch OBJECT_FIELD_S32(O_FACE_ANGLE_INDEX + 0)
-#define /*0x0D4*/ oFaceAngleYaw OBJECT_FIELD_S32(O_FACE_ANGLE_INDEX + 1)
-#define /*0x0D8*/ oFaceAngleRoll OBJECT_FIELD_S32(O_FACE_ANGLE_INDEX + 2)
+#define /*0x0C4*/ O_FACE_ANGLE_PITCH_INDEX (O_FACE_ANGLE_INDEX + 0)
+#define /*0x0C4*/ O_FACE_ANGLE_YAW_INDEX (O_FACE_ANGLE_INDEX + 1)
+#define /*0x0C4*/ O_FACE_ANGLE_ROLL_INDEX (O_FACE_ANGLE_INDEX + 2)
+#define /*0x0D0*/ oFaceAnglePitch OBJECT_FIELD_S32(O_FACE_ANGLE_PITCH_INDEX)
+#define /*0x0D4*/ oFaceAngleYaw OBJECT_FIELD_S32(O_FACE_ANGLE_YAW_INDEX)
+#define /*0x0D8*/ oFaceAngleRoll OBJECT_FIELD_S32(O_FACE_ANGLE_ROLL_INDEX)
 #define /*0x0DC*/ oGraphYOffset OBJECT_FIELD_F32(0x15)
 #define /*0x0E0*/ oUnkE0 OBJECT_FIELD_U32(0x16)
 #define /*0x0E4*/ oGravity OBJECT_FIELD_F32(0x17)
@@ -64,10 +70,10 @@
 #define /*0x12C*/ oDragStrength OBJECT_FIELD_F32(0x29)
 #define /*0x130*/ oInteractType OBJECT_FIELD_U32(0x2A)
 #define /*0x134*/ oInteractStatus OBJECT_FIELD_U32(0x2B)
-#define /*0x138*/ O_PARENT_REL_INDEX 0x2C
-#define /*0x138*/ oParentRelX OBJECT_FIELD_F32(O_PARENT_REL_INDEX + 0)
-#define /*0x13C*/ oParentRelY OBJECT_FIELD_F32(O_PARENT_REL_INDEX + 1)
-#define /*0x140*/ oParentRelZ OBJECT_FIELD_F32(O_PARENT_REL_INDEX + 2)
+#define /*0x138*/ O_PARENT_RELATIVE_POS_INDEX 0x2C
+#define /*0x138*/ oParentRelativePosX OBJECT_FIELD_F32(O_PARENT_RELATIVE_POS_INDEX + 0)
+#define /*0x13C*/ oParentRelativePosY OBJECT_FIELD_F32(O_PARENT_RELATIVE_POS_INDEX + 1)
+#define /*0x140*/ oParentRelativePosZ OBJECT_FIELD_F32(O_PARENT_RELATIVE_POS_INDEX + 2)
 #define /*0x144*/ oBehParams2ndByte OBJECT_FIELD_S32(0x2F)
 #define /*0x14C*/ oAction OBJECT_FIELD_S32(0x31)
 #define /*0x150*/ oSubAction OBJECT_FIELD_U32(0x32)
@@ -82,7 +88,7 @@
 #define /*0x174*/ oBuoyancy OBJECT_FIELD_F32(0x3B)
 #define /*0x178*/ oSoundStateID OBJECT_FIELD_S32(0x3C)
 #define /*0x17C*/ oOpacity OBJECT_FIELD_S32(0x3D)
-#define /*0x180*/ oUnk180 OBJECT_FIELD_S32(0x3E)
+#define /*0x180*/ oDamageOrCoinValue OBJECT_FIELD_S32(0x3E)
 #define /*0x184*/ oHealth OBJECT_FIELD_S32(0x3F)
 #define /*0x188*/ oBehParams OBJECT_FIELD_S32(0x40)
 #define /*0x18C*/ oPrevAction OBJECT_FIELD_S32(0x41)
@@ -260,12 +266,11 @@
 #define /*0x0F8*/ oRRCruiserWingUnkF8 OBJECT_FIELD_S32(0x1C)
 
 /* Koopa */
-#define /*0x0F4*/ oKoopaUnkF4 OBJECT_FIELD_F32(0x1B)
+#define /*0x0F4*/ oKoopaAgility OBJECT_FIELD_F32(0x1B)
 #define /*0x0F8*/ oKoopaMovementType OBJECT_FIELD_S32(0x1C)
 #define /*0x0FC*/ oKoopaTargetYaw OBJECT_FIELD_S32(0x1D)
-#define /*0x100*/ oKoopaUnk100 OBJECT_FIELD_S32(0x1E)
+#define /*0x100*/ oKoopaUnshelledTimeUntilTurn OBJECT_FIELD_S32(0x1E)
 #define /*0x104*/ oKoopaTurning OBJECT_FIELD_S32(0x1F)
-#define /*0x104*/ oKoopaUnk104_2 OBJECT_FIELD_S32(0x1F)
 #define /*0x108*/ oKoopaDistanceToMario OBJECT_FIELD_F32(0x20)
 #define /*0x10C*/ oKoopaAngleToMario OBJECT_FIELD_S32(0x21)
 #define /*0x110*/ oKoopaBlinkTimer OBJECT_FIELD_S32(0x22)
@@ -275,34 +280,35 @@
 // 0x1D-0x21 for koopa the quick reserved for pathing
 
 /* Koopa race endpoint */
-#define /*0x0F4*/ oKoopaRaceEndpointUnkF4 OBJECT_FIELD_S32(0x1B)
-#define /*0x0F8*/ oKoopaRaceEndpointUnkF8 OBJECT_FIELD_S32(0x1C)
-#define /*0x0FC*/ oKoopaRaceEndpointUnkFC OBJECT_FIELD_S32(0x1D)
-#define /*0x104*/ oKoopaRaceEndpointUnk104 OBJECT_FIELD_S32(0x1F)
+#define /*0x0F4*/ oKoopaRaceEndpointRaceBegun OBJECT_FIELD_S32(0x1B)
+#define /*0x0F8*/ oKoopaRaceEndpointKoopaFinished OBJECT_FIELD_S32(0x1C)
+#define /*0x0FC*/ oKoopaRaceEndpointRaceStatus OBJECT_FIELD_S32(0x1D)
+#define /*0x100*/ oKoopaRaceEndpointUnk100 OBJECT_FIELD_S32(0x1E)
+#define /*0x104*/ oKoopaRaceEndpointRaceEnded OBJECT_FIELD_S32(0x1F)
 
 /* Pokey body part */
-#define /*0x0F8*/ oPokeyBodyPartUnkF8 OBJECT_FIELD_S32(0x1C)
+#define /*0x0F8*/ oPokeyBodyPartDeathDelayAfterHeadKilled OBJECT_FIELD_S32(0x1C)
 #define /*0x110*/ oPokeyBodyPartBlinkTimer OBJECT_FIELD_S32(0x22)
 
 /* Pokey */
-#define /*0x0F4*/ oPokeyUnkF4 OBJECT_FIELD_U32(0x1B)
-#define /*0x0F8*/ oPokeyNumBodyParts OBJECT_FIELD_S32(0x1C)
-#define /*0x0FC*/ oPokeyUnkFC OBJECT_FIELD_F32(0x1D)
-#define /*0x100*/ oPokeyUnk100 OBJECT_FIELD_S32(0x1E)
+#define /*0x0F4*/ oPokeyAliveBodyPartFlags OBJECT_FIELD_U32(0x1B)
+#define /*0x0F8*/ oPokeyNumAliveBodyParts OBJECT_FIELD_S32(0x1C)
+#define /*0x0FC*/ oPokeyBottomBodyPartSize OBJECT_FIELD_F32(0x1D)
+#define /*0x100*/ oPokeyHeadWasKilled OBJECT_FIELD_S32(0x1E)
 #define /*0x104*/ oPokeyTargetYaw OBJECT_FIELD_S32(0x1F)
 #define /*0x108*/ oPokeyChangeTargetTimer OBJECT_FIELD_S32(0x20)
 #define /*0x10C*/ oPokeyTurning OBJECT_FIELD_S32(0x21)
 
 /* Swoop */
-#define /*0x0F4*/ oSwoopTimeUntilTurn OBJECT_FIELD_S32(0x1B)
+#define /*0x0F4*/ oSwoopBonkCountdown OBJECT_FIELD_S32(0x1B)
 #define /*0x0F8*/ oSwoopTargetPitch OBJECT_FIELD_S32(0x1C)
 #define /*0x0FC*/ oSwoopTargetYaw OBJECT_FIELD_S32(0x1D)
 
 /* Fly guy */
 #define /*0x0F4*/ oFlyGuyIdleTimer OBJECT_FIELD_S32(0x1B)
 #define /*0x0F8*/ oFlyGuyOscTimer OBJECT_FIELD_S32(0x1C)
-#define /*0x0FC*/ oFlyGuyUnkFC OBJECT_FIELD_S32(0x1D)
-#define /*0x100*/ oFlyGuyLungeYAccel OBJECT_FIELD_F32(0x1E)
+#define /*0x0FC*/ oFlyGuyUnusedJitter OBJECT_FIELD_S32(0x1D)
+#define /*0x100*/ oFlyGuyLungeYDecel OBJECT_FIELD_F32(0x1E)
 #define /*0x104*/ oFlyGuyLungeTargetPitch OBJECT_FIELD_S32(0x1F)
 #define /*0x108*/ oFlyGuyTargetRoll OBJECT_FIELD_S32(0x20)
 #define /*0x10C*/ oFlyGuyScaleVel OBJECT_FIELD_F32(0x21)

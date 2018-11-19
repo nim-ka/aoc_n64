@@ -4,6 +4,38 @@
 // This file contains macros that provide descriptive names for
 // field-specific and object-specific constants, e.g. actions.
 
+/* activeFlags */
+#define ACTIVE_FLAG_UNK0                   (1 <<  0) // 0x0001
+#define ACTIVE_FLAG_FAR_AWAY               (1 <<  1) // 0x0002
+#define ACTIVE_FLAG_UNK2                   (1 <<  2) // 0x0004
+#define ACTIVE_FLAG_IN_DIFFERENT_ROOM      (1 <<  3) // 0x0008
+#define ACTIVE_FLAG_UNIMPORTANT            (1 <<  4) // 0x0010
+#define ACTIVE_FLAG_INITIATED_TIME_STOP    (1 <<  5) // 0x0020
+#define ACTIVE_FLAG_MOVE_THROUGH_GRATE     (1 <<  6) // 0x0040
+#define ACTIVE_FLAG_UNK7                   (1 <<  7) // 0x0080
+#define ACTIVE_FLAG_UNK8                   (1 <<  8) // 0x0100
+#define ACTIVE_FLAG_UNK9                   (1 <<  9) // 0x0200
+#define ACTIVE_FLAG_UNK10                  (1 << 10) // 0x0400
+
+/* oFlags */
+#define OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE         (1 <<  0) // 0x00000001
+#define OBJ_FLAG_MOVE_XZ_USING_FVEL               (1 <<  1) // 0x00000002
+#define OBJ_FLAG_MOVE_Y_WITH_TERMINAL_VEL         (1 <<  2) // 0x00000004
+#define OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW         (1 <<  3) // 0x00000008
+#define OBJ_FLAG_0010                             (1 <<  4) // 0x00000010
+#define OBJ_FLAG_0020                             (1 <<  5) // 0x00000020
+#define OBJ_FLAG_COMPUTE_DIST_TO_MARIO            (1 <<  6) // 0x00000040
+#define OBJ_FLAG_ACTIVE_FROM_AFAR                 (1 <<  7) // 0x00000080
+#define OBJ_FLAG_0100                             (1 <<  8) // 0x00000100
+#define OBJ_FLAG_TRANSFORM_RELATIVE_TO_PARENT     (1 <<  9) // 0x00000200
+#define OBJ_FLAG_HOLDABLE                         (1 << 10) // 0x00000400
+#define OBJ_FLAG_0800                             (1 << 11) // 0x00000800
+#define OBJ_FLAG_1000                             (1 << 12) // 0x00001000
+#define OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO           (1 << 13) // 0x00002000
+#define OBJ_FLAG_4000                             (1 << 14) // 0x00004000
+#define OBJ_FLAG_8000                             (1 << 15) // 0x00008000
+#define OBJ_FLAG_30                               (1 << 30) // 0x40000000
+
 /* oHeldState */
 #define HELD_FREE 0
 #define HELD_HELD 1
@@ -27,7 +59,7 @@
 #define DIALOGUE_UNK2_END_DIALOGUE 3
 
 #define DIALOGUE_UNK2_FLAG_0 (1 << 0) // 0x01
-#define DIALOGUE_UNK2_FLAG_4 (1 << 4) // 0x10
+#define DIALOGUE_UNK2_LEAVE_TIME_STOP_ENABLED (1 << 4) // 0x10
 
 /* oAction */
 #define OBJ_ACT_LAVA_DEATH 100
@@ -250,33 +282,48 @@
     #define KOOPA_UNSHELLED_ACT_RUNNING 0
     #define KOOPA_UNSHELLED_ACT_DIVING 1
     #define KOOPA_UNSHELLED_ACT_LYING 2
-    #define KOOPA_UNSHELLED_ACT_UNKNOWN_3 3
+    #define KOOPA_UNSHELLED_ACT_UNUSED3 3
+
     #define KOOPA_SHELLED_ACT_STOPPED 0
-    #define KOOPA_SHELLED_ACT_WALKING 1
-    #define KOOPA_SHELLED_ACT_RUNNING_FROM_MARIO 2
+    #define KOOPA_SHELLED_ACT_WALK 1
+    #define KOOPA_SHELLED_ACT_RUN_FROM_MARIO 2
     #define KOOPA_SHELLED_ACT_LYING 3
-    #define KOOPA_SHELLED_ACT_UNK4 4
+    #define KOOPA_SHELLED_ACT_DIE 4
+
     #define KOOPA_THE_QUICK_ACT_WAIT_BEFORE_RACE 0
-    #define KOOPA_THE_QUICK_ACT_UNK1 1
-    #define KOOPA_THE_QUICK_ACT_UNK2 2
-    #define KOOPA_THE_QUICK_ACT_UNK3 3
-    #define KOOPA_THE_QUICK_ACT_UNK4 4
-    #define KOOPA_THE_QUICK_ACT_UNK5 5
-    #define KOOPA_THE_QUICK_ACT_UNK6 6
+    #define KOOPA_THE_QUICK_ACT_UNUSED1 1
+    #define KOOPA_THE_QUICK_ACT_SHOW_INIT_TEXT 2
+    #define KOOPA_THE_QUICK_ACT_RACE 3
+    #define KOOPA_THE_QUICK_ACT_DECELERATE 4
+    #define KOOPA_THE_QUICK_ACT_STOP 5
+    #define KOOPA_THE_QUICK_ACT_AFTER_RACE 6
+
+    /* oSubAction */
+    #define KOOPA_SHELLED_SUB_ACT_START_WALK 0
+    #define KOOPA_SHELLED_SUB_ACT_WALK 1
+    #define KOOPA_SHELLED_SUB_ACT_STOP_WALK 2
+
+    #define KOOPA_THE_QUICK_SUB_ACT_START_RUN 0
+    #define KOOPA_THE_QUICK_SUB_ACT_RUN 1
+    #define KOOPA_THE_QUICK_SUB_ACT_JUMP 2
+
+    /* oKoopaTheQuickRaceIndex */
+    #define KOOPA_THE_QUICK_BOB_INDEX 0
+    #define KOOPA_THE_QUICK_THI_INDEX 1
 
     /* oBehParams2ndByte */
     #define KOOPA_BP_UNSHELLED 0
     #define KOOPA_BP_NORMAL 1
     #define KOOPA_BP_KOOPA_THE_QUICK_BASE 2
-    #define KOOPA_BP_KOOPA_THE_QUICK_BOB 2
-    #define KOOPA_BP_KOOPA_THE_QUICK_THI 3
+    #define KOOPA_BP_KOOPA_THE_QUICK_BOB (KOOPA_BP_KOOPA_THE_QUICK_BASE + KOOPA_THE_QUICK_BOB_INDEX)
+    #define KOOPA_BP_KOOPA_THE_QUICK_THI (KOOPA_BP_KOOPA_THE_QUICK_BASE + KOOPA_THE_QUICK_THI_INDEX)
     #define KOOPA_BP_TINY 4
 
 /* Pokey */
     /* oAction */
     #define POKEY_ACT_UNINITIALIZED 0
     #define POKEY_ACT_WANDER 1
-    #define POKEY_ACT_UNK2 2
+    #define POKEY_ACT_UNLOAD_PARTS 2
 
 /* Swoop */
     /* oAction */
@@ -307,7 +354,7 @@
     #define GOOMBA_BP_TRIPLET_FLAG_MASK 0x000000FC
     /* oAction */
     #define GOOMBA_ACT_WALK 0
-    #define GOOMBA_ACT_SOFT_ATTACKED 1
+    #define GOOMBA_ACT_ATTACKED_MARIO 1
     #define GOOMBA_ACT_JUMP 2
 
 /* Chain chomp */

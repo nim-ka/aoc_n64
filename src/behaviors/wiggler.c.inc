@@ -80,7 +80,7 @@ static void wiggler_init_segments(void)
 
         for (i = 1; i < 4; i++)
         {
-            bodyPart = spawn_obj_adv(i, 0, 0, 0, o, 0x58, bWigglerBodyPart);
+            bodyPart = spawn_object_relative(i, 0, 0, 0, o, 0x58, bWigglerBodyPart);
             if (bodyPart != NULL)
             {
                 func_8029EE20(bodyPart, wiggler_seg5_anims_0500C874, 0);

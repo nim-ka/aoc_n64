@@ -118,7 +118,7 @@ static void spawn_particle(u32 flags, s16 seg, void *script)
     {
         struct Object *particle;
         gCurrentObject->oUnkE0 |= flags;
-        particle = func_8029E5A4(gCurrentObject, 0, seg, script);
+        particle = spawn_object_at_origin(gCurrentObject, 0, seg, script);
         copy_object_pos_and_angle(particle, gCurrentObject);
     }
 }
@@ -184,7 +184,7 @@ static s32 update_objects_during_time_stop(struct ObjectNode *listHead, struct O
                 unfrozen = TRUE;
             }
 
-            if (gCurrentObject->activeFlags & 0x30)
+            if (gCurrentObject->activeFlags & (ACTIVE_FLAG_UNIMPORTANT | ACTIVE_FLAG_INITIATED_TIME_STOP))
                 unfrozen = TRUE;
         }
 
@@ -228,9 +228,9 @@ static s32 func_8029C618(struct ObjectNode *objList)
         
         obj = obj->next;
 
-        if ((gCurrentObject->activeFlags & 0x01) != 1)
+        if ((gCurrentObject->activeFlags & ACTIVE_FLAG_UNK0) != 1)
         {
-            if ((gCurrentObject->oFlags & 0x4000) == 0)
+            if (!(gCurrentObject->oFlags & OBJ_FLAG_4000))
                 func_8029C6D8(gCurrentObject, 0xFF);
 
             unload_obj(gCurrentObject);

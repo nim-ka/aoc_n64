@@ -86,9 +86,9 @@ static void spiny_act_held_by_lakitu(void)
     o->oGraphYOffset = 15.0f;
     func_8029ED38(0);
 
-    o->oParentRelX = -50.0f;
-    o->oParentRelY = 35.0f;
-    o->oParentRelZ = -100.0f;
+    o->oParentRelativePosX = -50.0f;
+    o->oParentRelativePosY = 35.0f;
+    o->oParentRelativePosZ = -100.0f;
 
     if (o->parentObj->prevObj == NULL)
     {

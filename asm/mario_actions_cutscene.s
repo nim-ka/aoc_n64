@@ -568,7 +568,7 @@ glabel func_802571D8
 /* 0121F0 802571F0 8FAE0020 */  lw    $t6, 0x20($sp)
 /* 0121F4 802571F4 8FA50024 */  lw    $a1, 0x24($sp)
 /* 0121F8 802571F8 8FA60028 */  lw    $a2, 0x28($sp)
-/* 0121FC 802571FC 0C0A7994 */  jal   SpawnObj
+/* 0121FC 802571FC 0C0A7994 */  jal   spawn_object
 /* 012200 80257200 8DC40088 */   lw    $a0, 0x88($t6)
 /* 012204 80257204 AFA2001C */  sw    $v0, 0x1c($sp)
 /* 012208 80257208 8FAF0020 */  lw    $t7, 0x20($sp)
@@ -1521,7 +1521,7 @@ glabel func_80257F0C
 /* 012F78 80257F78 3C061300 */  lui   $a2, %hi(beh_celebration_star) # $a2, 0x1300
 /* 012F7C 80257F7C 24C63848 */  addiu $a2, %lo(beh_celebration_star) # addiu $a2, $a2, 0x3848
 /* 012F80 80257F80 2405007A */  li    $a1, 122
-/* 012F84 80257F84 0C0A7994 */  jal   SpawnObj
+/* 012F84 80257F84 0C0A7994 */  jal   spawn_object
 /* 012F88 80257F88 8D440088 */   lw    $a0, 0x88($t2)
 /* 012F8C 80257F8C 0C092352 */  jal   func_80248D48
 /* 012F90 80257F90 00000000 */   nop   
@@ -2418,7 +2418,7 @@ glabel func_80258B34
 /* 013C10 80258C10 3C061300 */  lui   $a2, %hi(beh_sealed_door_star) # $a2, 0x1300
 /* 013C14 80258C14 24C62F20 */  addiu $a2, %lo(beh_sealed_door_star) # addiu $a2, $a2, 0x2f20
 /* 013C18 80258C18 2405007A */  li    $a1, 122
-/* 013C1C 80258C1C 0C0A7994 */  jal   SpawnObj
+/* 013C1C 80258C1C 0C0A7994 */  jal   spawn_object
 /* 013C20 80258C20 8D840088 */   lw    $a0, 0x88($t4)
 /* 013C24 80258C24 8FAD0028 */  lw    $t5, 0x28($sp)
 /* 013C28 80258C28 95AB0018 */  lhu   $t3, 0x18($t5)

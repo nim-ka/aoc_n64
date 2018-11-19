@@ -5,7 +5,7 @@ static void skeeter_spawn_waves(void)
 
     for (i = 0; i < 4; i++)
     {
-        func_8029E880(0, D_80331C38[i].unk00, 0, D_80331C38[i].unk02, 0.8f, o, 0xA6, bSkeeterWave);
+        spawn_object_relative_with_scale(0, D_80331C38[i].unk00, 0, D_80331C38[i].unk02, 0.8f, o, 0xA6, bSkeeterWave);
     }
 }
 

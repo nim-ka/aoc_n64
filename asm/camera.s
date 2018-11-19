@@ -15620,7 +15620,7 @@ glabel BehBeginningLakituLoop
 /* 055E50 8029AE50 00003025 */  move  $a2, $zero
 /* 055E54 8029AE54 00003825 */  move  $a3, $zero
 /* 055E58 8029AE58 AFB90014 */  sw    $t9, 0x14($sp)
-/* 055E5C 8029AE5C 0C0A7A20 */  jal   func_8029E880
+/* 055E5C 8029AE5C 0C0A7A20 */  jal   spawn_object_relative_with_scale
 /* 055E60 8029AE60 E7A80010 */   swc1  $f8, 0x10($sp)
 /* 055E64 8029AE64 3C0A8036 */  lui   $t2, %hi(gCurrentObject) # $t2, 0x8036
 /* 055E68 8029AE68 8D4AFDF0 */  lw    $t2, %lo(gCurrentObject)($t2)
@@ -16589,7 +16589,7 @@ glabel func_8029B964
 /* 056978 8029B978 AFA7002C */  sw    $a3, 0x2c($sp)
 /* 05697C 8029B97C 8FA40020 */  lw    $a0, 0x20($sp)
 /* 056980 8029B980 8FA50040 */  lw    $a1, 0x40($sp)
-/* 056984 8029B984 0C0A7994 */  jal   SpawnObj
+/* 056984 8029B984 0C0A7994 */  jal   spawn_object
 /* 056988 8029B988 8FA60044 */   lw    $a2, 0x44($sp)
 /* 05698C 8029B98C AFA2001C */  sw    $v0, 0x1c($sp)
 /* 056990 8029B990 0C0E0F2D */  jal   RandomFloat
@@ -16724,7 +16724,7 @@ glabel L8029BB7C
 /* 056B80 8029BB80 3C061300 */  lui   $a2, %hi(beh_beginning_lakitu) # $a2, 0x1300
 /* 056B84 8029BB84 24C655F0 */  addiu $a2, %lo(beh_beginning_lakitu) # addiu $a2, $a2, 0x55f0
 /* 056B88 8029BB88 8C84FDF0 */  lw    $a0, %lo(gCurrentObject)($a0)
-/* 056B8C 8029BB8C 0C0A7994 */  jal   SpawnObj
+/* 056B8C 8029BB8C 0C0A7994 */  jal   spawn_object
 /* 056B90 8029BB90 24050066 */   li    $a1, 102
 /* 056B94 8029BB94 AFA20034 */  sw    $v0, 0x34($sp)
 /* 056B98 8029BB98 1000010A */  b     .L8029BFC4
@@ -16734,7 +16734,7 @@ glabel L8029BBA0
 /* 056BA4 8029BBA4 3C061300 */  lui   $a2, %hi(beh_beginning_peach) # $a2, 0x1300
 /* 056BA8 8029BBA8 24C65618 */  addiu $a2, %lo(beh_beginning_peach) # addiu $a2, $a2, 0x5618
 /* 056BAC 8029BBAC 8C84FDF0 */  lw    $a0, %lo(gCurrentObject)($a0)
-/* 056BB0 8029BBB0 0C0A7994 */  jal   SpawnObj
+/* 056BB0 8029BBB0 0C0A7994 */  jal   spawn_object
 /* 056BB4 8029BBB4 240500DE */   li    $a1, 222
 /* 056BB8 8029BBB8 AFA20034 */  sw    $v0, 0x34($sp)
 /* 056BBC 8029BBBC 10000101 */  b     .L8029BFC4

@@ -7,7 +7,7 @@ void bhv_ddd_pole_init(void)
     }
     else
     {
-        o->unk208 = 100.0f;
+        o->hitboxDownOffset = 100.0f;
         o->oDDDPoleMaxOffset = 100.0f * o->oBehParams2ndByte;
     }
 }

@@ -604,8 +604,9 @@ void load_object_collision_model(void)
     if (gCurrentObject->oCollisionDistance > 4000.0f)
         gCurrentObject->oDrawingDistance = gCurrentObject->oCollisionDistance;
 
-    if (!(gTimeStopState & TIME_STOP_ACTIVE) && marioDist < tangibleDist &&
-        !(gCurrentObject->activeFlags & 0x0008))
+    if (!(gTimeStopState & TIME_STOP_ACTIVE) &&
+        marioDist < tangibleDist &&
+        !(gCurrentObject->activeFlags & ACTIVE_FLAG_IN_DIFFERENT_ROOM))
     {
         collisionData++;
         transform_object_vertices(&collisionData, vertexData);

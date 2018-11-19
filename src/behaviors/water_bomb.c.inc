@@ -19,7 +19,7 @@ void bhv_water_bomb_spawner_update(void)
         }
         else
         {
-            waterBomb = spawn_obj_adv(0, 0, 2000, 0x0, o, 0x54, bWaterBomb);
+            waterBomb = spawn_object_relative(0, 0, 2000, 0x0, o, 0x54, bWaterBomb);
             if (waterBomb != NULL)
             {
                 waterBombDistToMario = 28.0f * gMarioStates[0].forwardVel + 100.0f;
@@ -28,7 +28,7 @@ void bhv_water_bomb_spawner_update(void)
                 waterBomb->oPosX = gMarioObject->oPosX + waterBombDistToMario * sins(gMarioObject->oMoveAngleYaw);
                 waterBomb->oPosZ = gMarioObject->oPosZ + waterBombDistToMario * coss(gMarioObject->oMoveAngleYaw);
                 
-                SpawnObj(waterBomb, 0x55, bWaterBombShadow);
+                spawn_object(waterBomb, 0x55, bWaterBombShadow);
                 
                 o->oWaterBombSpawnerBombActive = TRUE;
                 o->oWaterBombSpawnerTimeToSpawn = random_linear_offset(0, 50);

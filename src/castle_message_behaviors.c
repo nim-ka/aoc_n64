@@ -260,7 +260,7 @@ void BehToadMessageInit(void)
 
 void func_802764F0(s16 a)
 {
-    struct Object *sp1C = SpawnObj(gCurrentObject, 0, beh_powerup_sparkles2);
+    struct Object *sp1C = spawn_object(gCurrentObject, 0, beh_powerup_sparkles2);
 
     sp1C->oPosX += 100.0f * sins((gCurrentObject->oSealedDoorStarUnk10C * 0x2800) + a);
     sp1C->oPosZ += 100.0f * coss((gCurrentObject->oSealedDoorStarUnk10C * 0x2800) + a);

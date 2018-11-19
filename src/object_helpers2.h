@@ -74,7 +74,7 @@ void func_802A3C98(f32 sp18, s32 sp1C);
 void set_time_stop_flag(s32);
 void clear_time_stop_flag(s32);
 // extern ? func_802A3FF8(?);
-extern s32 obj_is_mario_in_cylinder_and_ready_to_speak(f32 sp18, f32 sp1C);
+extern s32 obj_is_mario_in_range_and_ready_to_speak(f32 sp18, f32 sp1C);
 // extern ? obj_end_dialogue(?);
 // extern ? obj_update_dialogue_unk1(?);
 extern int obj_update_dialogue_unk2();

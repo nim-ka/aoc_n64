@@ -20,7 +20,7 @@ void bhv_donut_platform_spawner_update(void)
             // dist > 1000 and dist < 2000
             if (marioSqDist > 1000000.0f && marioSqDist < 4000000.0f)
             {
-                if (spawn_obj_adv(
+                if (spawn_object_relative(
                     i,
                     sDonutPlatformPositions[i][0],
                     sDonutPlatformPositions[i][1],

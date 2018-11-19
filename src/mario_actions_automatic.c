@@ -93,9 +93,9 @@ static s32 set_pole_position(struct MarioState *m, f32 offsetY)
         set_mario_action(m, ACT_IDLE, 0);
         result = POLE_TOUCHED_FLOOR;
     }
-    else if (marioObj->oMarioPolePos < -m->usedObj->unk208)
+    else if (marioObj->oMarioPolePos < -m->usedObj->hitboxDownOffset)
     {
-        m->pos[1] = m->usedObj->oPosY - m->usedObj->unk208;
+        m->pos[1] = m->usedObj->oPosY - m->usedObj->hitboxDownOffset;
         set_mario_action(m, ACT_FREEFALL, 0);
         result = POLE_FELL_OFF;
     }

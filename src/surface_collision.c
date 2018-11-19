@@ -106,8 +106,11 @@ static s32 find_wall_collisions_from_list(
 
             if (surf->type == SURFACE_007B)
             {
-                if (gCurrentObject != NULL && (gCurrentObject->activeFlags & 0x0040))
+                if (gCurrentObject != NULL &&
+                    (gCurrentObject->activeFlags & ACTIVE_FLAG_MOVE_THROUGH_GRATE))
+                {
                     continue;
+                }
 
                 if (gCurrentObject != NULL && gCurrentObject == gMarioObject &&
                     (gMarioState->flags & MARIO_VANISH_CAP))

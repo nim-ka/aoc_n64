@@ -315,11 +315,11 @@ void ObjSplash(s32 waterY, s32 objY)
     u32 globalTimer = gGlobalTimer;
     if ((f32)(waterY + 30) > o->oPosY && o->oPosY > (f32)(waterY - 30))
     {
-        SpawnObj(o, 0xA6, beh_object_water_wave);
+        spawn_object(o, 0xA6, beh_object_water_wave);
         if (o->oVelY < -20.0f) PlaySound2(0x50324081);
     }
     
-    if ((objY + 50) < waterY && (globalTimer & 0x1F) == 0) SpawnObj(o, 0xA4, beh_object_bubble); /* 0x1F is bits 4-0 */
+    if ((objY + 50) < waterY && (globalTimer & 0x1F) == 0) spawn_object(o, 0xA4, beh_object_bubble); /* 0x1F is bits 4-0 */
 }
 
 //sp3c = objX
@@ -529,7 +529,7 @@ void ObjSpawnYellowCoins(struct Object *obj, s32 nCoins)
 
     for(count = 0; count < (s8)nCoins; count++)
     {
-        coin = SpawnObj(obj, 0x74, beh_moving_yellow_coin);
+        coin = spawn_object(obj, 0x74, beh_moving_yellow_coin);
         coin->oForwardVel = RandomFloat() * 20.0f;
         coin->oVelY = RandomFloat() * 40.0f + 20.0f;
         coin->oMoveAngleYaw = RandomU16();
@@ -639,7 +639,7 @@ s32 ObjLavaDeath(void)
     if ((o->oTimer % 8) == 0)
     {
         PlaySound2(0x5118A081);
-        deathSmoke = SpawnObj(o, 0x96, beh_bobomb_bully_death_smoke);
+        deathSmoke = spawn_object(o, 0x96, beh_bobomb_bully_death_smoke);
         deathSmoke->oPosX += RandomFloat() * 20.0f;
         deathSmoke->oPosY += RandomFloat() * 20.0f;
         deathSmoke->oPosZ += RandomFloat() * 20.0f;
@@ -660,7 +660,7 @@ void SpawnOrangeNumber(s8 arg0, s16 arg1, s16 arg2, s16 arg3)
     
     if (arg0 >= 10) return;
 
-    orangeNumber = spawn_obj_adv(arg0, arg1, arg2, arg3, o, 219, beh_orange_number);
+    orangeNumber = spawn_object_relative(arg0, arg1, arg2, arg3, o, 219, beh_orange_number);
     orangeNumber->oPosY += 25.0f;
 }
 
@@ -715,7 +715,7 @@ void MovingCoinFlickerLoop(void)
 
 void CoinCollected(void)
 {
-    SpawnObj(o, 149, beh_golden_coin_sparkles);
+    spawn_object(o, 149, beh_golden_coin_sparkles);
     o->activeFlags = 0;
 }
 
@@ -945,7 +945,7 @@ void BehSeaweedBundleInit(void)
 {
     struct Object *seaweed;
 
-    seaweed = SpawnObj(o, 193, beh_seaweed);
+    seaweed = spawn_object(o, 193, beh_seaweed);
     seaweed->oFaceAngleYaw = 14523;
     seaweed->oFaceAnglePitch = 5500;
     seaweed->oFaceAngleRoll = 9600;
@@ -954,7 +954,7 @@ void BehSeaweedBundleInit(void)
     seaweed->header.gfx.scale[2] = 1.0;
     //!gfx.animFrame uninitialized
 
-    seaweed = SpawnObj(o, 193, beh_seaweed);
+    seaweed = spawn_object(o, 193, beh_seaweed);
     seaweed->oFaceAngleYaw = 41800;
     seaweed->oFaceAnglePitch = 6102;
     seaweed->oFaceAngleRoll = 0;
@@ -963,7 +963,7 @@ void BehSeaweedBundleInit(void)
     seaweed->header.gfx.scale[2] = 0.8;
     seaweed->header.gfx.unk38.animFrame = RandomFloat() * 80.0f;
 
-    seaweed = SpawnObj(o, 193, beh_seaweed);
+    seaweed = spawn_object(o, 193, beh_seaweed);
     seaweed->oFaceAngleYaw = 40500;
     seaweed->oFaceAnglePitch = 8700;
     seaweed->oFaceAngleRoll = 4100;
@@ -972,7 +972,7 @@ void BehSeaweedBundleInit(void)
     seaweed->header.gfx.scale[2] = 0.8;
     seaweed->header.gfx.unk38.animFrame = RandomFloat() * 80.0f;
 
-    seaweed = SpawnObj(o, 193, beh_seaweed);
+    seaweed = spawn_object(o, 193, beh_seaweed);
     seaweed->oFaceAngleYaw = 57236;
     seaweed->oFaceAnglePitch = 9500;
     seaweed->oFaceAngleRoll = 0;
@@ -1006,7 +1006,7 @@ void BobombExplodeLoop(void)
     if (o->oTimer < 5) obj_scale(1.0 + (f32)o->oTimer / 5.0);
     else
     {
-        explosion = SpawnObj(o, 205, beh_explosion);
+        explosion = spawn_object(o, 205, beh_explosion);
         explosion->oGraphYOffset += 100.0f;
         
         func_802E5B7C();
@@ -1068,7 +1068,7 @@ void BobombChaseMarioLoop(void)
 
     if (sp1a == 5 || sp1a == 16) PlaySound2(0x50270081);
 
-    UnknownMove(o, gMarioObject, 16, 0x800);
+    obj_turn_toward_object(o, gMarioObject, 16, 0x800);
     ObjCheckFloorDeath(collisionFlags, D_803600E0);
 }
 
@@ -1245,7 +1245,7 @@ void BehBobombLoop(void)
             else dustPeriodMinus1 = 7;
         
             if ((dustPeriodMinus1 & o->oBobombFuseTimer) == 0) /* oBobombFuseTimer % 2 or oBobombFuseTimer % 8 */
-                SpawnObj(o, 150, beh_bobomb_fuse_smoke);
+                spawn_object(o, 150, beh_bobomb_fuse_smoke);
                 
             PlaySound(0x60086001);
             
@@ -1409,7 +1409,7 @@ void BehCannonTrapDoorInit(void)
 
     if (save_file_is_cannon_unlocked() == 1)
     {
-        cannonTrapDoor = SpawnObj(o, 128, beh_cannon_base);
+        cannonTrapDoor = spawn_object(o, 128, beh_cannon_base);
         cannonTrapDoor->oBehParams2ndByte = o->oBehParams2ndByte;
         cannonTrapDoor->oPosX = o->oHomeX;
         cannonTrapDoor->oPosY = o->oHomeY;
@@ -1608,7 +1608,7 @@ void AmpHomingChaseLoop(void)
     {
         o->oForwardVel = 10.0f;
 
-        UnknownMove(o, gMarioObject, 16, 0x400);
+        obj_turn_toward_object(o, gMarioObject, 16, 0x400);
 
         if (o->oAmpHomingAvgY < gMarioObject->header.gfx.pos[1] + 250.0f)
             o->oAmpHomingAvgY += 10.0f;
@@ -1728,7 +1728,7 @@ void FixedAmpIdleLoop(void)
     f32 zToMario = gMarioObject->header.gfx.pos[2] - o->oPosZ;
     s16 vAngleToMario = atan2s(sqrtf(xToMario * xToMario + zToMario * zToMario), -yToMario);
 
-    UnknownMove(o, gMarioObject, 19, 0x1000);
+    obj_turn_toward_object(o, gMarioObject, 19, 0x1000);
     o->oFaceAnglePitch = approach_s16_symmetric(o->oFaceAnglePitch, vAngleToMario, 0x1000);
 
     o->oPosY = o->oHomeY + coss(o->oAmpYPhase * 0x458) * 20.0f;
@@ -1812,12 +1812,12 @@ void CalculateButterflyAngle(void)
 {
     gMarioObject->oPosX += 5 * o->oButterflyYPhase / 4;
     gMarioObject->oPosZ += 5 * o->oButterflyYPhase / 4;
-    UnknownMove(o, gMarioObject, 16, 0x300);
+    obj_turn_toward_object(o, gMarioObject, 16, 0x300);
     gMarioObject->oPosX -= 5 * o->oButterflyYPhase / 4;
     gMarioObject->oPosZ -= 5 * o->oButterflyYPhase / 4;
 
     gMarioObject->oPosY += (5 * o->oButterflyYPhase + 0x100) / 4;
-    UnknownMove(o, gMarioObject, 15, 0x500);
+    obj_turn_toward_object(o, gMarioObject, 15, 0x500);
     gMarioObject->oPosY -= (5 * o->oButterflyYPhase + 0x100) / 4;
 }
 
@@ -2236,9 +2236,9 @@ void BehObjectBubbleLoop(void)
     
     if (bubbleY > waterY)
     {
-        if (D_8035FD80.next)
+        if (gFreeObjectList.next)
         {
-            bubbleRipples = func_8029E5A4(o, 0, 165, beh_object_bubble_ripples);
+            bubbleRipples = spawn_object_at_origin(o, 0, 165, beh_object_bubble_ripples);
             bubbleRipples->oPosX = o->oPosX;
             bubbleRipples->oPosY = bubbleY + 5.0f;
             bubbleRipples->oPosZ = o->oPosZ;
@@ -2276,9 +2276,9 @@ void BehExplosionLoop(void)
         if (find_water_level(o->oPosX, o->oPosZ) > o->oPosY)
         {
             for (i = 0; i < 40; i++)
-                SpawnObj(o, 164, beh_bobomb_explosion_bubble);
+                spawn_object(o, 164, beh_bobomb_explosion_bubble);
         }
-        else SpawnObj(o, 150, beh_bobomb_bully_death_smoke);
+        else spawn_object(o, 150, beh_bobomb_bully_death_smoke);
         
         o->activeFlags = 0;
     }
@@ -2319,7 +2319,7 @@ void BehBobombExplosionBubbleLoop(void)
     {
         o->activeFlags = 0;
         o->oPosY += 5.0f;
-        SpawnObj(o, 165, beh_water_surface_white_wave_2);
+        spawn_object(o, 165, beh_water_surface_white_wave_2);
     }
     
     if (o->oTimer >= 61) o->activeFlags = 0;
@@ -2334,7 +2334,7 @@ void BehBobombCorkBoxRespawnerLoop(void)
     
     if (!IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, o->oBBCBRespawnerMinSpawnDist))
     {
-        sp1c = SpawnObj(o, o->oBreakableBoxBackupUnkF4, o->oBBCBRespawnerBehaviorToSpawn);
+        sp1c = spawn_object(o, o->oBreakableBoxBackupUnkF4, o->oBBCBRespawnerBehaviorToSpawn);
         sp1c->oBehParams = o->oBehParams;
         o->activeFlags = 0;
     }
@@ -2406,7 +2406,7 @@ void BullyChaseMarioLoop(void)
     if (o->oTimer < 10)
     {
         o->oForwardVel = 3.0;
-        UnknownMove(o, gMarioObject, 16, 4096);
+        obj_turn_toward_object(o, gMarioObject, 16, 4096);
     }
     else if (o->oBehParams2ndByte == BULLY_BP_SIZE_SMALL)
     {
@@ -2434,7 +2434,7 @@ void BullyKnockbackLoop(void)
         o->oBullyKBTimerAndMinionKOCounter++;
         o->oFlags |= 0x8; /* bit 3 */
         o->oMoveAngleYaw = o->oFaceAngleYaw;
-        UnknownMove(o, gMarioObject, 16, 1280);
+        obj_turn_toward_object(o, gMarioObject, 16, 1280);
     }
     else o->header.gfx.unk38.animFrame = 0;
     
@@ -2521,7 +2521,7 @@ void BullyStep(void)
 
 void BullySpawnCoin(void)
 {
-    struct Object *coin = SpawnObj(o, 116, beh_moving_yellow_coin);
+    struct Object *coin = spawn_object(o, 116, beh_moving_yellow_coin);
 #ifdef VERSION_JP
     PlaySound2(0x30300081);
 #else
@@ -2876,7 +2876,7 @@ void BehJetStreamWaterRingLoop(void)
 
 void Unknown802EB8A4(void)
 {
-    struct Object *ringManager = SpawnObj(o, 0, beh_manta_ray_ring_manager);
+    struct Object *ringManager = spawn_object(o, 0, beh_manta_ray_ring_manager);
     o->parentObj = ringManager;
 }
 
@@ -2898,7 +2898,7 @@ void JetStreamRingSpawnerActiveLoop(void)
     ||  (o->oTimer == 200)
     ||  (o->oTimer == 250))
     {
-        waterRing = SpawnObj(o, 104, beh_jet_stream_water_ring);
+        waterRing = spawn_object(o, 104, beh_jet_stream_water_ring);
         waterRing->oWaterRingIndex = currentObj->oWaterRingMgrNextRingIndex;
         currentObj->oWaterRingMgrNextRingIndex++;
         if (currentObj->oWaterRingMgrNextRingIndex >= 10001) currentObj->oWaterRingMgrNextRingIndex = 0;
@@ -2976,13 +2976,13 @@ void BehBowserMineLoop(void)
     if (are_objects_collided(o, gMarioObject) == 1)
     {
         o->oInteractStatus &= ~0x8000; /* bit 15 */
-        SpawnObj(o, 205, beh_explosion);
+        spawn_object(o, 205, beh_explosion);
         o->activeFlags = 0;
     }
     
     if (o->oInteractStatus & 0x200000) /* bit 21 */
     {
-        SpawnObj(o, 103, beh_bowser_mine_explosion);
+        spawn_object(o, 103, beh_bowser_mine_explosion);
         create_sound_spawner(0x312F0081);
         func_8027F440(3, o->oPosX, o->oPosY, o->oPosZ);
         o->activeFlags = 0;
@@ -2998,7 +2998,7 @@ void BehBowserMineExplosionLoop(void)
     obj_scale((f32)o->oTimer / 14.0f * 9.0 + 1.0);
     if ((o->oTimer % 4 == 0) && (o->oTimer < 20))
     {
-        mineSmoke = SpawnObj(o, 102, beh_bowser_mine_smoke);
+        mineSmoke = spawn_object(o, 102, beh_bowser_mine_smoke);
         mineSmoke->oPosX += RandomFloat() * 600.0f - 400.0f;
         mineSmoke->oPosZ += RandomFloat() * 600.0f - 400.0f;
         mineSmoke->oVelY += RandomFloat() * 10.0f;
@@ -3064,7 +3064,7 @@ void CelebrationStarSpinAroundMarioLoop(void)
     if (o-> oTimer == 40) o->oAction = CELEB_STAR_ACT_FACE_CAMERA;
     if (o-> oTimer < 35)
     {
-        SpawnObj(o, 149, beh_celebration_star_sparkle);
+        spawn_object(o, 149, beh_celebration_star_sparkle);
         o->oCelebStarDiameterOfRotation++;
     }
     else o->oCelebStarDiameterOfRotation -= 20;
@@ -3128,12 +3128,12 @@ void BehLLLDrawbridgeSpawnerLoop(void)
 {
     struct Object *drawbridge1, *drawbridge2;
     
-    drawbridge1 = SpawnObj(o, 56, beh_lll_drawbridge);
+    drawbridge1 = spawn_object(o, 56, beh_lll_drawbridge);
     drawbridge1->oMoveAngleYaw = o->oMoveAngleYaw;
     drawbridge1->oPosX += coss(o->oMoveAngleYaw) * 640.0f;
     drawbridge1->oPosZ += sins(o->oMoveAngleYaw) * 640.0f;
     
-    drawbridge2 = SpawnObj(o, 56, beh_lll_drawbridge);
+    drawbridge2 = spawn_object(o, 56, beh_lll_drawbridge);
     drawbridge2->oMoveAngleYaw = o->oMoveAngleYaw + 0x8000;
     drawbridge2->oPosX += coss(o->oMoveAngleYaw) * -640.0f;
     drawbridge2->oPosZ += sins(o->oMoveAngleYaw) * -640.0f;
@@ -3518,7 +3518,7 @@ void MoneybagReturnHomeLoop(void)
     
     if (IsPointCloseToObject(o, o->oHomeX, o->oHomeY, o->oHomeZ, 100))
     {
-        SpawnObj(o, 116, beh_fake_moneybag_coin);
+        spawn_object(o, 116, beh_fake_moneybag_coin);
 #ifdef VERSION_US
         PlaySound2(0x30762081);
 #endif
@@ -3598,7 +3598,7 @@ void BehFakeMoneybagCoinLoop(void)
         case FAKE_MONEYBAG_COIN_ACT_IDLE:
             if (IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, 400))
             {
-                SpawnObj(o, 102, beh_moneybag);
+                spawn_object(o, 102, beh_moneybag);
 #ifdef VERSION_US
                 PlaySound2(0x30762081);
 #endif
@@ -3798,7 +3798,7 @@ void BehGenericBowlingBallSpawnerLoop(void)
         {
             if  ((s32)(RandomFloat() * o->oBBallSpwnrSpawnOdds) == 0)
             {
-                bowlingBall = SpawnObj(o, 180, beh_bowling_ball);
+                bowlingBall = spawn_object(o, 180, beh_bowling_ball);
                 bowlingBall->oBehParams2ndByte = o->oBehParams2ndByte;
             }
         }
@@ -3822,7 +3822,7 @@ void BehTHIBowlingBallSpawnerLoop(void)
         {
             if  ((s32)(RandomFloat() * 1.5) == 0)
             {
-                bowlingBall = SpawnObj(o, 180, beh_bowling_ball);
+                bowlingBall = spawn_object(o, 180, beh_bowling_ball);
                 bowlingBall->oBehParams2ndByte = o->oBehParams2ndByte;
             }
         }

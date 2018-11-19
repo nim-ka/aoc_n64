@@ -2,7 +2,7 @@
 
 .section .bss
 
-glabel D_8035FD80
+glabel gFreeObjectList
     .space 0x68
 glabel gMarioObject
     .space 0x4
@@ -46,7 +46,7 @@ glabel D_8035FEE6
     .space 0x2
 glabel gTTCSpeedSetting
     .space 0x2
-glabel D_8035FEEA
+glabel gMarioShotFromCannon
     .space 0x2
 glabel D_8035FEEC
     .space 0x2

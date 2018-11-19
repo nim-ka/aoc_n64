@@ -1,4 +1,31 @@
 
+/**
+ * Behavior for bSwoop.
+ * Has a native room.
+ */
+
+
+/**
+ * Hitbox for swoop.
+ */
+static struct ObjectHitbox sSwoopHitbox =
+{
+    /* interactType:      */ INTERACT_HIT_FROM_BELOW,
+    /* downOffset:        */ 0,
+    /* damageOrCoinValue: */ 1,
+    /* health:            */ 0,
+    /* numLootCoins:      */ 1,
+    /* radius:            */ 100,
+    /* height:            */ 80,
+    /* hurtboxRadius:     */ 70,
+    /* hurtboxHeight:     */ 70,
+};
+
+
+/**
+ * If necessary, grow to full size. Wait for mario to enter range, then turn
+ * toward him and enter the move action.
+ */
 static void swoop_act_idle(void)
 {
     func_8029ED38(1);
@@ -8,7 +35,7 @@ static void swoop_act_idle(void)
     {
         if (obj_rotate_yaw_toward(o->oAngleToMario, 0x320))
         {
-            PlaySound2(0x90490081);
+            PlaySound2(SOUND_CH9_UNK49);
             o->oAction = SWOOP_ACT_MOVE;
             o->oVelY = -12.0f;
         }
@@ -17,18 +44,22 @@ static void swoop_act_idle(void)
     o->oFaceAngleRoll = 0x8000;
 }
 
+/**
+ * Swoop downward toward mario. Stop moving downward and speed up after reaching
+ * him. Return to home once mario is far away.
+ */
 static void swoop_act_move(void)
 {
     func_8029ED98(0, 2.0f);
-
     if (func_8029F788())
     {
-        PlaySound2(0x50310081);
+        PlaySound2(SOUND_OBJECT_UNKNOWN6);
     }
 
     if (o->oForwardVel == 0.0f)
     {
-        if (face_roll_approach(0, 2500))
+        // If we haven't started moving yet, begin swooping
+        if (face_roll_approach(0, 0x9C4))
         {
             o->oForwardVel = 10.0f;
             o->oVelY = -10.0f;
@@ -36,6 +67,7 @@ static void swoop_act_move(void)
     }
     else if (obj_mario_far_away())
     {
+        // If mario far away, reset
         o->oAction = SWOOP_ACT_IDLE;
         obj_set_pos_to_home();
         o->header.gfx.scale[0] = o->oForwardVel = o->oVelY = 0.0f;
@@ -43,12 +75,14 @@ static void swoop_act_move(void)
     }
     else
     {
-        if (o->oSwoopTimeUntilTurn != 0)
+        if (o->oSwoopBonkCountdown != 0)
         {
-            o->oSwoopTimeUntilTurn -= 1;
+            o->oSwoopBonkCountdown -= 1;
         }
         else if (o->oVelY != 0.0f)
         {
+            // If we're not done swooping, turn toward mario. When between
+            // 0 and 200 units above mario, increase speed and stop swooping
             o->oSwoopTargetYaw = o->oAngleToMario;
             if (o->oPosY < gMarioObject->oPosY + 200.0f)
             {
@@ -62,33 +96,41 @@ static void swoop_act_move(void)
                 y_vel_approach(-10.0f, 0.5f);
             }
         }
-        else if (o->oMoveFlags & 0x00000200)
+        else if (o->oMoveFlags & OBJ_MOVE_HIT_WALL)
         {
+            // Bounce off walls and get stunned for a second
             o->oSwoopTargetYaw = obj_reflect_move_angle_off_wall();
-            o->oSwoopTimeUntilTurn = 30;
+            o->oSwoopBonkCountdown = 30;
         }
 
+        // Tilt upward when moving approaching mario
         if ((o->oSwoopTargetPitch = func_802F86C0()) == 0)
         {
-            o->oSwoopTargetPitch += o->oForwardVel * 500.0f;
+            o->oSwoopTargetPitch += o->oForwardVel * 0x1F4;
         }
+        func_802F95B0(o->oSwoopTargetPitch, 0x8C);
 
-        func_802F95B0(o->oSwoopTargetPitch, 140);
+        // Jitter yaw a bit
         obj_rotate_yaw_toward(
-            o->oSwoopTargetYaw + (s32)(3000.0f * coss(4000 * gGlobalTimer)),
-            1200);
+            o->oSwoopTargetYaw + (s32)(0xBB8 * coss(0xFA0 * gGlobalTimer)),
+            0x4B0);
+        func_802F9850(o->oSwoopTargetYaw, 0x3000, 0x1F4);
 
-        func_802F9850(o->oSwoopTargetYaw, 0x3000, 500);
-
-        o->oFaceAngleRoll += (s32)(1000.0f * coss(20000 * gGlobalTimer));
+        // Jitter roll a bit
+        o->oFaceAngleRoll += (s32)(0x3E8 * coss(0x4E20 * gGlobalTimer));
     }
 }
 
+/**
+ * Update function for swoop.
+ */
 void bhv_swoop_update(void)
 {
-    if (!(o->activeFlags & 0x0008))
+    // No partial update (only appears in roomed levels)
+
+    if (!(o->activeFlags & ACTIVE_FLAG_IN_DIFFERENT_ROOM))
     {
-        o->oDeathSound = 0x5062B081;
+        o->oDeathSound = SOUND_OBJECT_BATDEATH;
 
         obj_update_floor_and_walls();
 
@@ -100,6 +142,7 @@ void bhv_swoop_update(void)
 
         obj_scale(o->header.gfx.scale[0]);
         obj_move_standard(78);
-        func_802FA888(&D_80331788, o->oAction);
+
+        func_802FA888(&sSwoopHitbox, o->oAction);
     }
 }

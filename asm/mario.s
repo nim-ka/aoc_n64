@@ -5163,7 +5163,7 @@ glabel func_802548BC
 /* 00FC4C 80254C4C 3C061300 */  lui   $a2, %hi(beh_normal_cap) # $a2, 0x1300
 /* 00FC50 80254C50 24C63DD8 */  addiu $a2, %lo(beh_normal_cap) # addiu $a2, $a2, 0x3dd8
 /* 00FC54 80254C54 24050088 */  li    $a1, 136
-/* 00FC58 80254C58 0C0A7994 */  jal   SpawnObj
+/* 00FC58 80254C58 0C0A7994 */  jal   spawn_object
 /* 00FC5C 80254C5C 8F240088 */   lw    $a0, 0x88($t9)
 /* 00FC60 80254C60 AFA2001C */  sw    $v0, 0x1c($sp)
 /* 00FC64 80254C64 27A80020 */  addiu $t0, $sp, 0x20

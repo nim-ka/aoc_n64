@@ -121,15 +121,15 @@ static void beh_menu_button_growing_from_main_menu(struct Object *button)
         button->oFaceAnglePitch += 0x800;
     if (button->oMenuButtonTimer >= 8 && button->oMenuButtonTimer < 16)
         button->oFaceAnglePitch -= 0x800;
-    button->oParentRelX -= button->oMenuButtonOrigPosX / 16.0;
-    button->oParentRelY -= button->oMenuButtonOrigPosY / 16.0;
+    button->oParentRelativePosX -= button->oMenuButtonOrigPosX / 16.0;
+    button->oParentRelativePosY -= button->oMenuButtonOrigPosY / 16.0;
     if (button->oPosZ < button->oMenuButtonOrigPosZ + 17800.0)
-        button->oParentRelZ += 1112.5;
+        button->oParentRelativePosZ += 1112.5;
     button->oMenuButtonTimer++;
     if (button->oMenuButtonTimer == 16)
     {
-        button->oParentRelX = 0.0f;
-        button->oParentRelY = 0.0f;
+        button->oParentRelativePosX = 0.0f;
+        button->oParentRelativePosY = 0.0f;
         button->oMenuButtonState = MENU_BUTTON_STATE_FULLSCREEN;
         button->oMenuButtonTimer = 0;
     }
@@ -143,15 +143,15 @@ static void beh_menu_button_shrinking_to_main_menu(struct Object *button)
         button->oFaceAnglePitch -= 0x800;
     if (button->oMenuButtonTimer >= 8 && button->oMenuButtonTimer < 16)
         button->oFaceAnglePitch += 0x800;
-    button->oParentRelX += button->oMenuButtonOrigPosX / 16.0;
-    button->oParentRelY += button->oMenuButtonOrigPosY / 16.0;
+    button->oParentRelativePosX += button->oMenuButtonOrigPosX / 16.0;
+    button->oParentRelativePosY += button->oMenuButtonOrigPosY / 16.0;
     if (button->oPosZ > button->oMenuButtonOrigPosZ)
-        button->oParentRelZ -= 1112.5;
+        button->oParentRelativePosZ -= 1112.5;
     button->oMenuButtonTimer++;
     if (button->oMenuButtonTimer == 16)
     {
-        button->oParentRelX = button->oMenuButtonOrigPosX;
-        button->oParentRelY = button->oMenuButtonOrigPosY;
+        button->oParentRelativePosX = button->oMenuButtonOrigPosX;
+        button->oParentRelativePosY = button->oMenuButtonOrigPosY;
         button->oMenuButtonState = MENU_BUTTON_STATE_DEFAULT;
         button->oMenuButtonTimer = 0;
     }
@@ -165,14 +165,14 @@ static void beh_menu_button_growing_from_submenu(struct Object *button)
         button->oFaceAnglePitch += 0x800;
     if (button->oMenuButtonTimer >= 8 && button->oMenuButtonTimer < 16)
         button->oFaceAnglePitch -= 0x800;
-    button->oParentRelX -= button->oMenuButtonOrigPosX / 16.0;
-    button->oParentRelY -= button->oMenuButtonOrigPosY / 16.0;
-    button->oParentRelZ -= 116.25;
+    button->oParentRelativePosX -= button->oMenuButtonOrigPosX / 16.0;
+    button->oParentRelativePosY -= button->oMenuButtonOrigPosY / 16.0;
+    button->oParentRelativePosZ -= 116.25;
     button->oMenuButtonTimer++;
     if (button->oMenuButtonTimer == 16)
     {
-        button->oParentRelX = 0.0f;
-        button->oParentRelY = 0.0f;
+        button->oParentRelativePosX = 0.0f;
+        button->oParentRelativePosY = 0.0f;
         button->oMenuButtonState = MENU_BUTTON_STATE_FULLSCREEN;
         button->oMenuButtonTimer = 0;
     }
@@ -186,15 +186,15 @@ static void beh_menu_button_shrinking_to_submenu(struct Object *button)
         button->oFaceAnglePitch -= 0x800;
     if (button->oMenuButtonTimer >= 8 && button->oMenuButtonTimer < 16)
         button->oFaceAnglePitch += 0x800;
-    button->oParentRelX += button->oMenuButtonOrigPosX / 16.0;
-    button->oParentRelY += button->oMenuButtonOrigPosY / 16.0;
+    button->oParentRelativePosX += button->oMenuButtonOrigPosX / 16.0;
+    button->oParentRelativePosY += button->oMenuButtonOrigPosY / 16.0;
     if (button->oPosZ > button->oMenuButtonOrigPosZ)
-        button->oParentRelZ += 116.25;
+        button->oParentRelativePosZ += 116.25;
     button->oMenuButtonTimer++;
     if (button->oMenuButtonTimer == 16)
     {
-        button->oParentRelX = button->oMenuButtonOrigPosX;
-        button->oParentRelY = button->oMenuButtonOrigPosY;
+        button->oParentRelativePosX = button->oMenuButtonOrigPosX;
+        button->oParentRelativePosY = button->oMenuButtonOrigPosY;
         button->oMenuButtonState = MENU_BUTTON_STATE_DEFAULT;
         button->oMenuButtonTimer = 0;
     }
@@ -206,16 +206,16 @@ static void beh_menu_button_zoom_in_out(struct Object *button)
     if (sCurrentMenuLevel == MENU_LAYER_MAIN)
     {
         if (button->oMenuButtonTimer < 4)
-            button->oParentRelZ -= 20.0f;
+            button->oParentRelativePosZ -= 20.0f;
         if (button->oMenuButtonTimer >= 4)
-            button->oParentRelZ += 20.0f;
+            button->oParentRelativePosZ += 20.0f;
     }
     else
     {
         if (button->oMenuButtonTimer < 4)
-            button->oParentRelZ += 20.0f;
+            button->oParentRelativePosZ += 20.0f;
         if (button->oMenuButtonTimer >= 4)
-            button->oParentRelZ -= 20.0f;
+            button->oParentRelativePosZ -= 20.0f;
     }
     button->oMenuButtonTimer++;
     if (button->oMenuButtonTimer == 8)
@@ -251,8 +251,8 @@ static void beh_menu_button_zoom_out(struct Object *button)
 
 void beh_menu_button_init(void)
 {
-    gCurrentObject->oMenuButtonOrigPosX = gCurrentObject->oParentRelX;
-    gCurrentObject->oMenuButtonOrigPosY = gCurrentObject->oParentRelY;
+    gCurrentObject->oMenuButtonOrigPosX = gCurrentObject->oParentRelativePosX;
+    gCurrentObject->oMenuButtonOrigPosY = gCurrentObject->oParentRelativePosY;
 }
 
 void beh_menu_button_loop(void)

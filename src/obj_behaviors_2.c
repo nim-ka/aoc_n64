@@ -105,7 +105,7 @@ extern u8 bitfs_seg7_collision_070157E0[];
 extern u8 bitfs_seg7_collision_07015124[];
 extern u32 spiny_seg5_anims_05016EAC[];
 
-extern s16 D_8035FEEA;
+extern s16 gMarioShotFromCannon;
 
 extern f32 D_803600F8;
 extern f32 D_803600FC;
@@ -120,9 +120,9 @@ extern f32 D_80360100;
 #define o gCurrentObject
 
 
-void koopa_attacked(s32 attackType);
+void shelled_koopa_attack_handler(s32 attackType);
 void wiggler_jumped_on(void);
-void goomba_soft_attacked(void);
+void huge_goomba_weakly_attacked(void);
 
 
 
@@ -139,15 +139,28 @@ s16 func_802F86C0(void)
     return -atan2s(o->oForwardVel, o->oVelY);
 }
 
-s32 func_802F870C(s16 arg0)
+/**
+ * Show dialogue proposing a race.
+ * If the player accepts the race, then leave time stop enabled and mario in the
+ * text action so that the racing object can wait before starting the race.
+ * If the player declines the race, then disable time stop and allow mario to
+ * move again.
+ */
+s32 obj_update_race_proposition_dialogue(s16 arg0)
 {
-    s32 val04 = obj_update_dialogue_unk2(0x02, 0x11, 0xA3, arg0);
-    if (val04 == 2)
+    s32 dialogueResponse = obj_update_dialogue_unk2(
+        2,
+        DIALOGUE_UNK2_FLAG_0 | DIALOGUE_UNK2_LEAVE_TIME_STOP_ENABLED,
+        0xA3,
+        arg0);
+
+    if (dialogueResponse == 2)
     {
         func_802573C8(0);
         disable_time_stop_including_mario();
     }
-    return val04;
+
+    return dialogueResponse;
 }
 
 void func_802F8770(f32 arg0)
@@ -255,7 +268,7 @@ void func_802F8978(s32 arg0, f32 arg1, f32 arg2, f32 arg3)
 
         if (arg0 != 0)
         {
-            trackBall = spawn_obj_adv(
+            trackBall = spawn_object_relative(
                 o->oUnk88 + arg0,
                 0, 0, 0,
                 o,
@@ -454,7 +467,7 @@ s16 func_802F9414(f32 arg0, s16 arg1)
     s16 val06;
 
     o->oPosY -= arg0;
-    val06 = UnknownMove(o, gMarioObject, 15, arg1);
+    val06 = obj_turn_toward_object(o, gMarioObject, 15, arg1);
     o->oPosY += arg0;
 
     return val06;
@@ -729,7 +742,7 @@ void func_802FA078(void)
 
         if (o->oNumLootCoins < 0)
         {
-            SpawnObj(o, 0x0076, beh_mr_i_blue_coin);
+            spawn_object(o, 0x0076, beh_mr_i_blue_coin);
         }
         else
         {
@@ -851,7 +864,7 @@ s32 func_802FA468(struct ObjectHitbox *hitbox, s32 attackedMarioAction, u8 *atta
                 break;
 
             case ATTACK_HANDLER_UNK4:
-                koopa_attacked(attackType);
+                shelled_koopa_attack_handler(attackType);
                 break;
 
             case ATTACK_HANDLER_UNK5:
@@ -863,7 +876,7 @@ s32 func_802FA468(struct ObjectHitbox *hitbox, s32 attackedMarioAction, u8 *atta
                 break;
 
             case ATTACK_HANDLER_UNK7:
-                goomba_soft_attacked();
+                huge_goomba_weakly_attacked();
                 break;
 
             case ATTACK_HANDLER_UNK8:
@@ -926,7 +939,7 @@ s32 func_802FA7CC(f32 arg0)
 {
     if (o->oAction < 100)
     {
-        return 1;
+        return TRUE;
     }
     else
     {
@@ -939,7 +952,7 @@ s32 func_802FA7CC(f32 arg0)
         case OBJ_ACT_SQUISHED: func_802FA6C8(arg0); break;
         }
 
-        return 0;
+        return FALSE;
     }
 }
 
@@ -1022,19 +1035,15 @@ void treat_far_home_as_mario(f32 threshold)
     }
 }
 
-// TODO: Finish
 #include "behaviors/koopa.c.inc"
+#include "behaviors/pokey.c.inc"
+#include "behaviors/swoop.c.inc"
+#include "behaviors/fly_guy.c.inc"
+#include "behaviors/goomba.c.inc"
+// Finished included files up to here
 
 
 // DATA BEGIN
-
-struct GoombaProperties
-{
-    f32 baseSpeed;
-    s32 unk04;
-    s16 drawDistance;
-    s8 unk0A;
-};
 
 struct Struct80331910
 {
@@ -1105,74 +1114,6 @@ struct Struct80331874
     u8 filler00[0x14-0x00];
 };
 
-struct ObjectHitbox D_80331770 =
-{
-    INTERACT_BOUNCE_TOP,
-    10,
-    2,
-    0,
-    0,
-    40,
-    20,
-    20,
-    20,
-};
-
-u8 D_80331780[] = { 2, 2, 3, 3, 2, 2 };
-
-struct ObjectHitbox D_80331788 =
-{
-    INTERACT_HIT_FROM_BELOW,
-    0,
-    1,
-    0,
-    1,
-    100,
-    80,
-    70,
-    70,
-};
-
-struct ObjectHitbox sFlyGuyHitbox =
-{
-    INTERACT_BOUNCE_TOP,
-    0,
-    2,
-    0,
-    2,
-    70,
-    60,
-    40,
-    50,
-};
-
-s16 D_803317A8[] = { 0x1000, 0xE000, 0x2000 };
-
-struct ObjectHitbox sGoombaHitbox =
-{
-    INTERACT_BOUNCE_TOP,
-    0,
-    1,
-    0,
-    1,
-    72,
-    50,
-    42,
-    40,
-};
-
-struct GoombaProperties sGoombaProperties[] =
-{
-    { 1.5f, 0x5060B081, 4000, 1 },
-    { 3.5f, 0x5061B081, 4000, 2 },
-    { 0.5f, 0x5060B081, 1500, 0 },
-};
-
-u8 sGoombaAttackHandlers[][6] =
-{
-    { 2, 2, 3, 3, 2, 2 },
-    { 7, 7, 3, 8, 7, 7 },
-};
 
 struct ObjectHitbox D_803317F0 =
 {
@@ -1220,11 +1161,7 @@ f32 sWigglerSpeeds[] = { 2.0f, 40.0f, 30.0f, 16.0f };
 // DATA END
 
 
-// TODO: Finish
-#include "behaviors/pokey.c.inc"
-#include "behaviors/swoop.c.inc"
-#include "behaviors/fly_guy.c.inc"
-#include "behaviors/goomba.c.inc"
+
 // TODO: Finish
 #include "behaviors/chain_chomp.c.inc"
 // TODO: Finish
@@ -1875,7 +1812,7 @@ void func_80301908(void)
 {
     if (o->oDistanceToMario < 2000.0f)
     {
-        func_8029E880(1, 0, 0, 0, 2.0f, o, 0x8E, beh_fwoosh_blowing_wind);
+        spawn_object_relative_with_scale(1, 0, 0, 0, 2.0f, o, 0x8E, beh_fwoosh_blowing_wind);
         obj_unhide();
         o->oAction = 1;
     }
@@ -1952,7 +1889,7 @@ void func_80301BD4(void)
         o->oDistanceToMario < 800.0f &&
         abs_angle_diff(o->oAngleToMario, o->oFaceAngleYaw) < 0x4000)
     {
-        val04 = SpawnObj(o, 0x55, bSpiny);
+        val04 = spawn_object(o, 0x55, bSpiny);
         if (val04 != NULL)
         {
             o->prevObj = val04;
@@ -2042,7 +1979,7 @@ void func_80301FF8(void)
 
     for (val00 = 0; val00 < 5; val00++)
     {
-        val04 = spawn_obj_adv(val00, 0, 0, 0, o, 0x8E, beh_fwoosh_face);
+        val04 = spawn_object_relative(val00, 0, 0, 0, o, 0x8E, beh_fwoosh_face);
         if (val04 != NULL)
         {
             func_802A1230(val04);
@@ -2051,7 +1988,7 @@ void func_80301FF8(void)
 
     if (o->oBehParams2ndByte == 0)
     {
-        spawn_obj_adv(5, 0, 0, 0, o, 0x57, beh_fwoosh_face);
+        spawn_object_relative(5, 0, 0, 0, o, 0x57, beh_fwoosh_face);
         obj_scale(3.0f);
 
         o->oFwooshSpawnerUnkF4 = o->oPosX;
@@ -2236,7 +2173,7 @@ void BehLakituInit(void)
     }
     else
     {
-        func_8029E880(1, 0, 0, 0, 2.0f, o, 0x8E, beh_fwoosh_blowing_wind);
+        spawn_object_relative_with_scale(1, 0, 0, 0, 2.0f, o, 0x8E, beh_fwoosh_blowing_wind);
     }
 }
 
@@ -2268,7 +2205,7 @@ void func_80302A58(void)
         o->oNiceLakituUnkF8 = 60.0f;
         o->oNiceLakituUnkFC = 1000.0f;
 
-        func_8029E880(1, 0, 0, 0, 2.0f, o, 0x8E, beh_fwoosh_blowing_wind);
+        spawn_object_relative_with_scale(1, 0, 0, 0, 2.0f, o, 0x8E, beh_fwoosh_blowing_wind);
     }
 }
 
@@ -2565,7 +2502,7 @@ void func_803036C8(void)
     {
         if (o->oBehParams2ndByte != 0 &&
             abs_angle_diff(o->oAngleToMario, o->oMoveAngleYaw) < 0x4000 &&
-            (val04 = SpawnObj(o, 0xA1, beh_monty_mole_rock)) != NULL)
+            (val04 = spawn_object(o, 0xA1, beh_monty_mole_rock)) != NULL)
         {
             o->prevObj = val04;
             o->oAction = 4;
@@ -2692,7 +2629,7 @@ void BehMontyMoleLoop(void)
                 if (D_80360108 == 7)
                 {
                     func_80321228();
-                    SpawnObj(o, 0xD4, beh_1up_walking);
+                    spawn_object(o, 0xD4, beh_1up_walking);
                 }
             }
             else
@@ -2716,9 +2653,9 @@ void func_80303D44(void)
 {
     f32 val04;
 
-    o->oParentRelX = 80.0f;
-    o->oParentRelY = -50.0f;
-    o->oParentRelZ = 0.0f;
+    o->oParentRelativePosX = 80.0f;
+    o->oParentRelativePosY = -50.0f;
+    o->oParentRelativePosZ = 0.0f;
 
     if (o->parentObj->prevObj == NULL)
     {
@@ -2772,7 +2709,7 @@ void BehFourRotatingPlatformsInit(void)
 
     for (val00 = 0; val00 < 4; val00++)
     {
-        val04 = spawn_obj_adv(val00, 0, 0, 0, o, D_80331910[o->oBehParams2ndByte].unk08, beh_ferris_wheel_platform);
+        val04 = spawn_object_relative(val00, 0, 0, 0, o, D_80331910[o->oBehParams2ndByte].unk08, beh_ferris_wheel_platform);
         if (val04 != NULL)
         {
             val04->collisionData = segmented_to_virtual(D_80331910[o->oBehParams2ndByte].unk04);
@@ -2972,7 +2909,7 @@ void BehCannonBarrelBubblesLoop(void)
                 {
                     o->oForwardVel = 35.0f;
 
-                    val04 = SpawnObj(o, 0x54, bWaterBomb);
+                    val04 = spawn_object(o, 0x54, bWaterBomb);
                     if (val04 != NULL)
                     {
                         val04->oForwardVel = -100.0f;
@@ -2994,7 +2931,7 @@ void func_80308DF0(void)
 {
     if (o->oDistanceToMario < 2000.0f)
     {
-        SpawnObj(o, 0x7F, beh_cannon_barrel_bubbles);
+        spawn_object(o, 0x7F, beh_cannon_barrel_bubbles);
         obj_unhide();
 
         o->oAction = 1;
@@ -3236,7 +3173,7 @@ void BehUnagiLoop(void)
         {
             for (val04 = -4; val04 < 4; val04++)
             {
-                spawn_obj_adv(val04, 0, 0, 0, o, 0, beh_unagi_subobject);
+                spawn_object_relative(val04, 0, 0, 0, o, 0, beh_unagi_subobject);
             }
             o->oUnagiUnk1B2 = 1;
         }
@@ -3537,7 +3474,7 @@ void func_8030B110(void)
 
 void func_8030B1C8(void)
 {
-    o->oUnk180 = 1;
+    o->oDamageOrCoinValue = 1;
     o->oNumLootCoins = 0;
 
     if (o->oTimer >= 4)
@@ -3584,7 +3521,7 @@ void BehBookendSpawnLoop(void)
     {
         if (o->oTimer > 40 && func_802F87E0(600.0f, 0x2000))
         {
-            sp1C = SpawnObj(o, 0x59, beh_flying_bookend);
+            sp1C = spawn_object(o, 0x59, beh_flying_bookend);
             if (sp1C != NULL)
             {
                 sp1C->oAction = 3;
@@ -3603,7 +3540,7 @@ void func_8030B464(void)
     {
         for (val04 = 0; val04 < 3; val04++)
         {
-            spawn_obj_adv(val04, D_80331B30[val04].unk00, D_80331B30[val04].unk02, 0, o, 0x59, beh_book_switch);
+            spawn_object_relative(val04, D_80331B30[val04].unk00, D_80331B30[val04].unk02, 0, o, 0x59, beh_book_switch);
         }
 
         o->oAction = 1;
@@ -3809,17 +3746,30 @@ void BehBookSwitchLoop(void)
     }
 }
 
-void obj_spit_fire(s16 arg0, s16 arg1, s16 arg2, f32 arg3, s32 arg4, f32 arg5, f32 arg6, s16 arg7)
+void obj_spit_fire(
+    s16 relativePosX, s16 relativePosY, s16 relativePosZ,
+    f32 scale,
+    s32 model,
+    f32 startSpeed,
+    f32 endSpeed,
+    s16 movePitch)
 {
     struct Object *sp2C;
 
-    sp2C = func_8029E880(1, arg0, arg1, arg2, arg3, o, arg4, beh_small_piranha_flame);
+    sp2C = spawn_object_relative_with_scale(
+        1,
+        relativePosX, relativePosY, relativePosZ,
+        scale,
+        o,
+        model,
+        beh_small_piranha_flame);
+
     if (sp2C != NULL)
     {
-        sp2C->oSmallPiranhaFlameUnkF4 = arg5;
-        sp2C->oSmallPiranhaFlameUnkF8 = arg6;
-        sp2C->oSmallPiranhaFlameUnkFC = arg4;
-        sp2C->oMoveAnglePitch = arg7;
+        sp2C->oSmallPiranhaFlameUnkF4 = startSpeed;
+        sp2C->oSmallPiranhaFlameUnkF8 = endSpeed;
+        sp2C->oSmallPiranhaFlameUnkFC = model;
+        sp2C->oMoveAnglePitch = movePitch;
     }
 }
 
@@ -3855,11 +3805,11 @@ void BehSmallPiranhaFlameLoop(void)
 
         func_802F9148(o->oSmallPiranhaFlameUnkF4);
         obj_move_standard(-78);
-        func_8029E73C(o, o->oSmallPiranhaFlameUnkFC, beh_small_piranha_flame, 0.4f * o->header.gfx.scale[0]);
+        spawn_object_with_scale(o, o->oSmallPiranhaFlameUnkFC, beh_small_piranha_flame, 0.4f * o->header.gfx.scale[0]);
 
         if (o->oTimer > o->oSmallPiranhaFlameUnk100)
         {
-            func_8029E880(1, 0, o->oGraphYOffset, 0, o->header.gfx.scale[0], o, o->oSmallPiranhaFlameUnkFC, beh_flyguy_flame);
+            spawn_object_relative_with_scale(1, 0, o->oGraphYOffset, 0, o->header.gfx.scale[0], o, o->oSmallPiranhaFlameUnkFC, beh_flyguy_flame);
             o->oSmallPiranhaFlameUnk100 = random_linear_offset(8, 15);
             o->oTimer = 0;
         }
@@ -3957,7 +3907,7 @@ void func_8030CA38(void)
     {
         o->oSnufitUnk10C += 1;
         PlaySound2(0x504D0081);
-        spawn_obj_adv(0, 0, -20, 40, o, 0xB4, beh_snufit_balls);
+        spawn_object_relative(0, 0, -20, 40, o, 0xB4, beh_snufit_balls);
         o->oSnufitUnkF4 = -30;
         o->oTimer = 0;
     }
@@ -4075,7 +4025,7 @@ void BehHauntedRoomCheckLoop(void)
             {
                 val06 = D_80331C00[val08].unk02;
 
-                val0C = spawn_obj_adv(val08 & 0x00000001, D_80331C00[val08].unk00, 0, val06, o, 60, beh_haunted_room_check_subobject);
+                val0C = spawn_object_relative(val08 & 0x00000001, D_80331C00[val08].unk00, 0, val06, o, 60, beh_haunted_room_check_subobject);
                 if (val0C != NULL)
                 {
                     if (val06 > 0)
@@ -4238,7 +4188,7 @@ void func_803117F4(void)
             val04 = (s16)(100.0f * sins(val06));
             val02 = (s16)(100.0f * coss(val06));
 
-            spawn_obj_adv(0, val04, 30, val02, o, 0xA8, beh_bubble_maybe);
+            spawn_object_relative(0, val04, 30, val02, o, 0xA8, beh_bubble_maybe);
         }
     }
     else if (obj_check_anim_frame(30))
@@ -4403,11 +4353,11 @@ void BehBubbaLoop(void)
             o->oUnk190 |= 0x00002000;
         }
 
-        o->unk200 = 100.0f;
+        o->hurtboxRadius = 100.0f;
     }
     else
     {
-        o->unk200 = 150.0f;
+        o->hurtboxRadius = 150.0f;
     }
 
     obj_update_floor_and_walls();
@@ -4422,7 +4372,7 @@ void BehBubbaLoop(void)
     {
         if (o->oMoveFlags & 0x00000008)
         {
-            sp38 = SpawnObj(o, 0xA7, beh_water_splash);
+            sp38 = spawn_object(o, 0xA7, beh_water_splash);
             if (sp38 != NULL)
             {
                 scale_object(sp38, 3.0f);
@@ -4438,7 +4388,7 @@ void BehBubbaLoop(void)
             {
                 sp36 = RandomU16();
                 o->oBubbaUnk10C -= 1.0f;
-                spawn_obj_adv(0, 150.0f * coss(sp36), 0x64, 150.0f * sins(sp36), o, 0xA4, beh_small_particle_snow);
+                spawn_object_relative(0, 150.0f * coss(sp36), 0x64, 150.0f * sins(sp36), o, 0xA4, beh_small_particle_snow);
             }
         }
 

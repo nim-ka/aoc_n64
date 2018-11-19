@@ -13,7 +13,7 @@ static void racing_penguin_act_wait_for_mario(void)
 {
     if (o->oTimer > o->oRacingPenguinInitTextCooldown &&
         o->oPosY - gMarioObject->oPosY <= 0.0f &&
-        obj_is_mario_in_cylinder_and_ready_to_speak(400.0f, 400.0f))
+        obj_is_mario_in_range_and_ready_to_speak(400.0f, 400.0f))
     {
         o->oAction = RACING_PENGUIN_ACT_SHOW_INIT_TEXT;
     }
@@ -24,7 +24,7 @@ static void racing_penguin_act_show_init_text(void)
     s32 response;
     struct Object *child;
 
-    response = func_802F870C(sRacingPenguinData[o->oBehParams2ndByte].text);
+    response = obj_update_race_proposition_dialogue(sRacingPenguinData[o->oBehParams2ndByte].text);
     if (response == 1)
     {
         child = obj_nearest_object_with_behavior(bPenguinRaceFinishLine);
@@ -97,7 +97,7 @@ static void racing_penguin_act_race(void)
 
         if (func_8029F828() && (o->oMoveFlags & 0x00000003))
         {
-            func_8029E880(0, 0, -100, 0, 4.0f, o, 150, beh_white_puff_smoke2);
+            spawn_object_relative_with_scale(0, 0, -100, 0, 4.0f, o, 150, beh_white_puff_smoke2);
         }
     }
 
@@ -142,7 +142,7 @@ static void racing_penguin_act_show_final_text(void)
             func_8029ED38(3);
             o->oForwardVel = 0.0f;
 
-            if (obj_is_mario_in_cylinder_and_ready_to_speak(400.0f, 400.0f))
+            if (obj_is_mario_in_range_and_ready_to_speak(400.0f, 400.0f))
             {
                 if (o->oRacingPenguinMarioWon)
                 {

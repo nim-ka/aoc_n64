@@ -300,7 +300,7 @@
 /* not verified */ #define SOUND_GENERAL_SHAKECOFFIN    0x304A
 /* not verified */ #define SOUND_GENERAL_PYRAMIDTOP     0x304B
 /* not verified */ #define SOUND_GENERAL_EXPLOSION8     0x304C
-/* not verified */ #define SOUND_GENERAL_RACEGUNSHOT    0x304D
+/* not verified */ #define SOUND_GENERAL_RACEGUNSHOT    SOUND_ARG_LOAD(3, SOUND_PL_BITFLAG_UNK0, 0x4D, SOUND_BITFLAG_UNK6, 8)
 /* not verified */ #define SOUND_GENERAL_STARDOOROPEN   0x304E
 /* not verified */ #define SOUND_GENERAL_STARDOORCLOSE  0x304F
 /* not verified */ #define SOUND_GENERAL_BIRDCHIRP1     0x3050
@@ -415,7 +415,7 @@
 /* not verified */ #define SOUND_OBJECT_UNKNOWN3             0x501D
 /* not verified */ #define SOUND_OBJECT_UNKNOWN4             0x501E
 /* not verified */ #define SOUND_OBJECT_BABYPENGUINTRICK     0x501F
-/* not verified */ #define SOUND_OBJECT_GOOMBAWALK           0x5020
+/* not verified */ #define SOUND_OBJECT_GOOMBAWALK           SOUND_ARG_LOAD(5, 0, 0x20, SOUND_BITFLAG_NOFLAGS, 8)
 /* not verified */ #define SOUND_OBJECT_MONKEY1              0x5021
 /* not verified */ #define SOUND_OBJECT_MONTYMOLEATTACK      0x5022
 /* not verified */ #define SOUND_OBJECT_UNKNOWN5             0x5023
@@ -430,9 +430,9 @@
 /* not verified */ #define SOUND_OBJECT_FLAMEVANISHING       0x502C
 /* not verified */ #define SOUND_OBJECT_BIGPENGUIN           0x502D
 /* not verified */ #define SOUND_OBJECT_WATERBOMBBOUNCING    0x502E
-/* not verified */ #define SOUND_OBJECT_GOOMBAALERT          0x502F
+/* not verified */ #define SOUND_OBJECT_GOOMBAALERT          SOUND_ARG_LOAD(5, 0, 0x2F, SOUND_BITFLAG_NOFLAGS, 8)
 /* not verified */ #define SOUND_OBJECT_GOOMBASTOMPED        0x5030
-/* not verified */ #define SOUND_OBJECT_UNKNOWN6             0x5031
+/* not verified */ #define SOUND_OBJECT_UNKNOWN6             SOUND_ARG_LOAD(5, 0, 0x31, SOUND_BITFLAG_NOFLAGS, 8)
 /* not verified */ #define SOUND_OBJECT_DIVINGINTOWATER      0x5032
 /* not verified */ #define SOUND_OBJECT_PIRANHAPLANTSHRINK   0x5033
 /* not verified */ #define SOUND_OBJECT_YOSHIWALK            0x5034
@@ -481,10 +481,12 @@
 /* not verified */ #define SOUND_OBJECT_HEAVEHOTOSSED        0x505D
 /* not verified */ #define SOUND_OBJECT_WIGGLERDEATH         0x505E
 /* not verified */ #define SOUND_OBJECT_BOWSERINTROLAUGH     0x505F
-/* not verified */ #define SOUND_OBJECT_ENEMYDEATHHIGH       0x5060
-/* not verified */ #define SOUND_OBJECT_ENEMYDEATHLOW        0x5061
-/* not verified */ #define SOUND_OBJECT_BATDEATH             0x5062
+/* not verified */ #define SOUND_OBJECT_ENEMYDEATHHIGH       SOUND_ARG_LOAD(5, 0, 0x60, SOUND_BITFLAG_UNK4 | SOUND_BITFLAG_UNK5 | SOUND_BITFLAG_PRIORITY, 8)
+/* not verified */ #define SOUND_OBJECT_ENEMYDEATHLOW        SOUND_ARG_LOAD(5, 0, 0x61, SOUND_BITFLAG_UNK4 | SOUND_BITFLAG_UNK5 | SOUND_BITFLAG_PRIORITY, 8)
+/* not verified */ #define SOUND_OBJECT_BATDEATH             SOUND_ARG_LOAD(5, 0, 0x62, SOUND_BITFLAG_UNK4 | SOUND_BITFLAG_UNK5 | SOUND_BITFLAG_PRIORITY, 8)
 /* not verified */ #define SOUND_OBJECT_KOOPADEATH           SOUND_ARG_LOAD(5, 0, 0x63, SOUND_BITFLAG_UNK4 | SOUND_BITFLAG_UNK5 | SOUND_BITFLAG_PRIORITY, 8)
+/* not verified */ #define SOUND_OBJECT_FLYGUYDEATH          SOUND_ARG_LOAD(5, 0, 0x63, SOUND_BITFLAG_UNK4 | SOUND_BITFLAG_UNK5 | SOUND_BITFLAG_PRIORITY, 8)
+/* not verified */ #define SOUND_OBJECT_POKEYDEATH           SOUND_ARG_LOAD(5, 0, 0x63, SOUND_BITFLAG_UNK6 | SOUND_BITFLAG_PRIORITY, 8)
 /* not verified */ #define SOUND_OBJECT_WATERBOMBBOUNCING2   0x5064
 /* not verified */ #define SOUND_OBJECT_EXPLODE              0x5065
 /* not verified */ #define SOUND_OBJECT_TELEPORT             0x5066
@@ -567,6 +569,7 @@
 
 /* Channel 9 Sound Effects */
 // not yet documented
+/* not verified */ #define SOUND_CH9_UNK49      SOUND_ARG_LOAD(9, 0, 0x49, SOUND_BITFLAG_NOFLAGS, 8)
 /* not verified */ #define SOUND_CH9_UNK52      SOUND_ARG_LOAD(9, 0, 0x52, (SOUND_BITFLAG_UNK6), 0)
 
 #endif /* _AUDIODEFINES_H */

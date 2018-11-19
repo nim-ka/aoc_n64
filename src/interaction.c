@@ -355,7 +355,7 @@ void mario_blow_off_cap(struct MarioState *m, f32 capSpeed)
 
         m->flags &= ~(MARIO_UNKNOWN_00 | MARIO_CAP_ON_HEAD);
 
-        capObject = SpawnObj(m->marioObj, 136, beh_normal_cap);
+        capObject = spawn_object(m->marioObj, 136, beh_normal_cap);
 
         capObject->oPosY += (m->action & ACT_FLAG_SHORT_HITBOX) ? 120.0f : 180.0f;
         capObject->oForwardVel = capSpeed;
@@ -609,9 +609,9 @@ static u32 determine_knockback_action(struct MarioState *m, UNUSED s32 arg)
 
     if (remainingHealth < 0x100)
         strengthIndex = 2;
-    else if (m->interactObj->oUnk180 >= 4)
+    else if (m->interactObj->oDamageOrCoinValue >= 4)
         strengthIndex = 2;
-    else if (m->interactObj->oUnk180 >= 2)
+    else if (m->interactObj->oDamageOrCoinValue >= 2)
         strengthIndex = 1;
 
     m->faceAngle[1] = angleToObject;
@@ -721,7 +721,7 @@ static u32 func_8024D664(struct MarioState *m, struct Object *o)
 static u32 take_damage_from_interact_object(struct MarioState *m)
 {
     s32 val4;
-    s32 damage = m->interactObj->oUnk180;
+    s32 damage = m->interactObj->oDamageOrCoinValue;
 
     if (damage >= 4)
         val4 = 5;
@@ -756,11 +756,11 @@ static u32 take_damage_and_knock_back(struct MarioState *m, struct Object *o)
         if (o->oUnk190 & 0x00000008)
             m->forwardVel = 40.0f;
 
-        if (o->oUnk180 > 0)
+        if (o->oDamageOrCoinValue > 0)
             SetSound(SOUND_MARIO_ATTACKED, &m->marioObj->header.gfx.unk54);
 
         func_80251F74(m);
-        return drop_and_set_mario_action(m, determine_knockback_action(m, o->oUnk180), damage);
+        return drop_and_set_mario_action(m, determine_knockback_action(m, o->oDamageOrCoinValue), damage);
     }
 
     return FALSE;
@@ -778,13 +778,13 @@ static void reset_mario_pitch(struct MarioState *m)
 
 static u32 interact_coin(struct MarioState *m, UNUSED u32 interactType, struct Object *o)
 {
-    m->numCoins += o->oUnk180;
-    m->healCounter += 4 * o->oUnk180;
+    m->numCoins += o->oDamageOrCoinValue;
+    m->healCounter += 4 * o->oDamageOrCoinValue;
 
     o->oInteractStatus = INT_STATUS_INTERACTED;
 
     if (gCurrCourseNum >= 1 && gCurrCourseNum <= 15 &&
-        m->numCoins - o->oUnk180 < 100 && m->numCoins >= 100)
+        m->numCoins - o->oDamageOrCoinValue < 100 && m->numCoins >= 100)
     {
         func_802AACE4(6);
     }
@@ -794,7 +794,7 @@ static u32 interact_coin(struct MarioState *m, UNUSED u32 interactType, struct O
 
 static u32 interact_water_ring(struct MarioState *m, UNUSED u32 interactType, struct Object *o)
 {
-    m->healCounter += 4 * o->oUnk180;
+    m->healCounter += 4 * o->oDamageOrCoinValue;
     o->oInteractStatus = INT_STATUS_INTERACTED;
     return FALSE;
 }
@@ -830,7 +830,7 @@ static u32 interact_star_or_key(struct MarioState *m, UNUSED u32 interactType, s
         if (m->action & ACT_FLAG_AIR)
             starGrabAction = ACT_FALL_AFTER_STAR_GRAB;
 
-        SpawnObj(o, 0, beh_star_key_collection_puff_spawner);
+        spawn_object(o, 0, beh_star_key_collection_puff_spawner);
 
         o->oInteractStatus = INT_STATUS_INTERACTED;
         m->interactObj = o;
@@ -1234,7 +1234,7 @@ static u32 interact_snufit_bullet(struct MarioState *m, UNUSED u32 interactType,
             SetSound(SOUND_MARIO_ATTACKED, &m->marioObj->header.gfx.unk54);
             func_80251F74(m);
 
-            return drop_and_set_mario_action(m, determine_knockback_action(m, o->oUnk180), o->oUnk180);
+            return drop_and_set_mario_action(m, determine_knockback_action(m, o->oDamageOrCoinValue), o->oDamageOrCoinValue);
         }
     }
 

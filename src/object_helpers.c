@@ -147,7 +147,7 @@ struct struct8029D924_2 *Geo18_8029D924(s32 sp40, struct struct8029D924 *sp44, U
             }
             else
             {
-                if (sp34->activeFlags & 0x80)
+                if (sp34->activeFlags & ACTIVE_FLAG_UNK7)
                 {
                     sp20 = sp38++;
                     sp20->unk00 = 0xB9000002;
@@ -164,7 +164,7 @@ struct struct8029D924_2 *Geo18_8029D924(s32 sp40, struct struct8029D924 *sp44, U
             // one.
             if (sp30->unk18 != 10)
             {
-                if (sp34->activeFlags & 0x80)
+                if (sp34->activeFlags & ACTIVE_FLAG_UNK7)
                 {
                     sp20 = sp38++;
                     sp20->unk00 = 0xB9000002;
@@ -260,9 +260,9 @@ void func_8029D558(Mat4 a0, struct Object *a1)
 {
     f32 spC, sp8, sp4;
 
-    spC = a1->oParentRelX;
-    sp8 = a1->oParentRelY;
-    sp4 = a1->oParentRelZ;
+    spC = a1->oParentRelativePosX;
+    sp8 = a1->oParentRelativePosY;
+    sp4 = a1->oParentRelativePosZ;
 
     a1->oPosX = spC * a0[0][0] + sp8 * a0[1][0] + sp4 * a0[2][0] + a0[3][0];
     a1->oPosY = spC * a0[0][1] + sp8 * a0[1][1] + sp4 * a0[2][1] + a0[3][1];
@@ -326,7 +326,7 @@ void set_object_held_state(struct Object *obj, void *heldBehavior)
 {
     obj->parentObj = o;
 
-    if (obj->oFlags & 0x400)
+    if (obj->oFlags & OBJ_FLAG_HOLDABLE)
     {
         if (heldBehavior == beh_carry_something3)
         {
@@ -495,52 +495,47 @@ s16 angle_to_object(struct Object *obj1, struct Object *obj2)
     return angle;
 }
 
-s16 UnknownMove(struct Object *sp40, struct Object *sp44, s16 sp4A, s16 sp4E)
+s16 obj_turn_toward_object(struct Object *obj, struct Object *target, s16 angleIndex, s16 turnAmount)
 {
+    f32 a, b, c, d;
+    UNUSED s32 unused;
+    s16 targetAngle, startAngle;
 
-    f32 sp3C, sp38, sp34, sp30;
-    UNUSED s32 sp2C;
-    s16 sp2A, sp28;
-
-    switch (sp4A)
+    switch (angleIndex)
     {
-        case 15:
-        case 18:
-            sp3C = sp44->oPosX - sp40->oPosX;
-            sp34 = sp44->oPosZ - sp40->oPosZ;
+    case O_MOVE_ANGLE_PITCH_INDEX:
+    case O_FACE_ANGLE_PITCH_INDEX:
+        a = target->oPosX - obj->oPosX;
+        c = target->oPosZ - obj->oPosZ;
+        a = sqrtf(a*a + c*c);
 
-            sp3C = sqrtf(sp3C * sp3C + sp34 * sp34);
+        b = -obj->oPosY;
+        d = -target->oPosY;
 
-            sp38 = -sp40->oPosY;
-            sp30 = -sp44->oPosY;
+        targetAngle = atan2s(a, d - b);
+        break;
 
-            sp2A = atan2s(sp3C, sp30 - sp38);
-            break;
+    case O_MOVE_ANGLE_YAW_INDEX:
+    case O_FACE_ANGLE_YAW_INDEX:
+        a = obj->oPosZ;
+        c = target->oPosZ;
+        b = obj->oPosX;
+        d = target->oPosX;
 
-        case 16:
-        case 19:
-            sp3C = sp40->oPosZ;
-            sp34 = sp44->oPosZ;
-            sp38 = sp40->oPosX;
-            sp30 = sp44->oPosX;
-
-            sp2A = atan2s(sp34 - sp3C, sp30 - sp38);
-            break;
+        targetAngle = atan2s(c - a, d - b);
+        break;
     }
 
-    sp28 = o->rawData.asU32[sp4A];
-
-    o->rawData.asU32[sp4A] = approach_s16_symmetric(sp28, sp2A, sp4E);
-
-    return sp2A;
+    startAngle = o->rawData.asU32[angleIndex];
+    o->rawData.asU32[angleIndex] = approach_s16_symmetric(startAngle, targetAngle, turnAmount);
+    return targetAngle;
 }
 
-
-void func_8029E140(struct Object *a0, s16 a1, s16 a2, s16 a3)
+void set_object_parent_relative_pos(struct Object *obj, s16 relX, s16 relY, s16 relZ)
 {
-    a0->oParentRelX = a1;
-    a0->oParentRelY = a2;
-    a0->oParentRelZ = a3;
+    obj->oParentRelativePosX = relX;
+    obj->oParentRelativePosY = relY;
+    obj->oParentRelativePosZ = relZ;
 }
 
 void set_object_pos(struct Object *obj, s16 x, s16 y, s16 z)
@@ -563,7 +558,7 @@ void set_object_angle(struct Object *a0, s16 pitch, s16 yaw, s16 roll)
 
 struct Object *func_8029E230(struct Object *sp20, s16 sp26, u32 sp28, void *sp2C, s16 sp32, s16 sp36, s16 sp3A, s16 sp3E, s16 sp42, s16 sp46)
 {
-    struct Object *sp1C = func_8029E5A4(sp20, sp26, sp28, sp2C);
+    struct Object *sp1C = spawn_object_at_origin(sp20, sp26, sp28, sp2C);
     set_object_pos(sp1C, sp32, sp36, sp3A);
     set_object_angle(sp1C, sp3E, sp42, sp46);
 
@@ -572,9 +567,9 @@ struct Object *func_8029E230(struct Object *sp20, s16 sp26, u32 sp28, void *sp2C
 
 struct Object *func_8029E2A8(struct Object *sp20, u32 sp24, void *sp28, s16 sp2E, s16 sp32, s16 sp36, s16 sp3A, s16 sp3E, UNUSED s16 sp42)
 {
-    struct Object *sp1C = func_8029E5A4(sp20, 0, sp24, sp28);
-    sp1C->oFlags |= 0x200;
-    func_8029E140(sp1C, sp2E, sp32, sp36);
+    struct Object *sp1C = spawn_object_at_origin(sp20, 0, sp24, sp28);
+    sp1C->oFlags |= OBJ_FLAG_TRANSFORM_RELATIVE_TO_PARENT;
+    set_object_parent_relative_pos(sp1C, sp2E, sp32, sp36);
     set_object_angle(sp1C, sp3A, sp3E, sp36);
 
     return sp1C;
@@ -582,15 +577,15 @@ struct Object *func_8029E2A8(struct Object *sp20, u32 sp24, void *sp28, s16 sp2E
 
 struct Object *Unknown8029E330(struct Object *sp20, s32 sp24, void *sp28)
 {
-    struct Object *sp1C = SpawnObj(sp20, sp24, sp28);
-    sp1C->oFlags |= 0x820;
+    struct Object *sp1C = spawn_object(sp20, sp24, sp28);
+    sp1C->oFlags |= OBJ_FLAG_0020 | OBJ_FLAG_0800;
     return sp1C;
 }
 
 struct Object *func_8029E388(struct Object *sp20, struct struct8029E388 *sp24)
 {
     f32 sp1C;
-    struct Object *sp18 = SpawnObj(sp20, sp24->unk02, sp24->unk04);
+    struct Object *sp18 = spawn_object(sp20, sp24->unk02, sp24->unk04);
 
     if (sp24->unk00 & 0x02)
     {
@@ -630,43 +625,59 @@ struct Object *func_8029E388(struct Object *sp20, struct struct8029E388 *sp24)
     return sp18;
 }
 
-struct Object *func_8029E5A4(struct Object *sp20, UNUSED u32 sp24, u32 sp28, void *sp2C)
+struct Object *spawn_object_at_origin(
+    struct Object *parent,
+    UNUSED u32 unusedArg,
+    u32 model,
+    void *behavior)
 {
-    struct Object *sp1C;
-    struct Object *sp18;
+    struct Object *obj;
+    u32 *behaviorAddr;
 
-    sp18 = segmented_to_virtual(sp2C);
-    sp1C = create_object((u32 *)sp18);
+    behaviorAddr = (u32 *)segmented_to_virtual(behavior);
+    obj = create_object(behaviorAddr);
 
-    sp1C->parentObj = sp20;
-    sp1C->header.gfx.unk18 = sp20->header.gfx.unk18;
-    sp1C->header.gfx.unk19 = sp20->header.gfx.unk18;
+    obj->parentObj = parent;
+    obj->header.gfx.unk18 = parent->header.gfx.unk18;
+    obj->header.gfx.unk19 = parent->header.gfx.unk18;
 
-    func_8037C448((struct GraphNodeObject *) &sp1C->header.gfx, gLoadedGraphNodes[sp28], D_80385FD0, D_80385FDC);
+    func_8037C448(
+        (struct GraphNodeObject *)&obj->header.gfx,
+        gLoadedGraphNodes[model],
+        D_80385FD0,
+        D_80385FDC);
 
-    return sp1C;
+    return obj;
 }
 
-struct Object *SpawnObj(struct Object *sp20, s32 sp24, void *sp28)
+struct Object *spawn_object(
+    struct Object *parent,
+    s32 model,
+    void *behavior)
 {
-    struct Object *sp1C;
+    struct Object *obj;
 
-    sp1C = func_8029E5A4(sp20, 0, sp24, sp28);
-    copy_object_pos_and_angle(sp1C, sp20);
+    obj = spawn_object_at_origin(parent, 0, model, behavior);
+    copy_object_pos_and_angle(obj, parent);
 
-    return sp1C;
+    return obj;
 }
 
-struct Object *func_8029E6A8(s16 sp22, f32 sp24, void *sp28, s32 sp2C, void *sp30)
+struct Object *try_to_spawn_object(
+    s16 offsetY,
+    f32 scale,
+    void *parent,
+    s32 model,
+    void *behavior)
 {
-    struct Object *sp1C;
+    struct Object *obj;
 
-    if (D_8035FD80.next != NULL)
+    if (gFreeObjectList.next != NULL)
     {
-        sp1C = SpawnObj(sp28, sp2C, sp30);
-        sp1C->oPosY = sp1C->oPosY + sp22;
-        scale_object(sp1C, sp24);
-        return sp1C;
+        obj = spawn_object(parent, model, behavior);
+        obj->oPosY += offsetY;
+        scale_object(obj, scale);
+        return obj;
     }
     else
     {
@@ -674,45 +685,65 @@ struct Object *func_8029E6A8(s16 sp22, f32 sp24, void *sp28, s32 sp2C, void *sp3
     }
 }
 
-struct Object *func_8029E73C(struct Object *sp20, s32 sp24, void *sp28, f32 sp2C)
+struct Object *spawn_object_with_scale(
+    struct Object *parent,
+    s32 model,
+    void *behavior,
+    f32 scale)
 {
-    struct Object *sp1C;
+    struct Object *obj;
 
-    sp1C = func_8029E5A4(sp20, 0, sp24, sp28);
-    copy_object_pos_and_angle(sp1C, sp20);
-    scale_object(sp1C, sp2C);
+    obj = spawn_object_at_origin(parent, 0, model, behavior);
+    copy_object_pos_and_angle(obj, parent);
+    scale_object(obj, scale);
 
-    return sp1C;
+    return obj;
 }
 
-void func_8029E7A4(struct Object *obj)
+static void build_relative_object_transform(struct Object *obj)
 {
-    build_object_transform_from_pos_and_angle(obj, O_PARENT_REL_INDEX, O_FACE_ANGLE_INDEX);
-    translate_object_local(obj, O_POS_INDEX, O_PARENT_REL_INDEX);
+    build_object_transform_from_pos_and_angle(obj, O_PARENT_RELATIVE_POS_INDEX, O_FACE_ANGLE_INDEX);
+    translate_object_local(obj, O_POS_INDEX, O_PARENT_RELATIVE_POS_INDEX);
 }
 
-struct Object* spawn_obj_adv(s16 sp22, s16 sp26, s16 sp2A, s16 sp2E, struct Object *sp30, s32 sp34, void *sp38)
+struct Object* spawn_object_relative(
+    s16 behaviorParam,
+    s16 relativePosX, s16 relativePosY, s16 relativePosZ,
+    struct Object *parent,
+    s32 model,
+    void *behavior)
 {
-    struct Object *sp1C;
+    struct Object *obj = spawn_object_at_origin(parent, 0, model, behavior);
 
-    sp1C = func_8029E5A4(sp30, 0, sp34, sp38);
-    copy_object_pos_and_angle(sp1C, sp30);
-    func_8029E140(sp1C, sp26, sp2A, sp2E);
-    func_8029E7A4(sp1C);
-    sp1C->oBehParams2ndByte = sp22;
-    sp1C->oBehParams = (sp22 & 0xFF) << 16;
+    copy_object_pos_and_angle(obj, parent);
+    set_object_parent_relative_pos(obj, relativePosX, relativePosY, relativePosZ);
+    build_relative_object_transform(obj);
 
-    return sp1C;
+    obj->oBehParams2ndByte = behaviorParam;
+    obj->oBehParams = (behaviorParam & 0xFF) << 16;
+
+    return obj;
 }
 
-struct Object *func_8029E880(s16 sp32, s16 sp36, s16 sp3A, s16 sp3E, f32 sp40, struct Object *sp44, s32 sp48, void *sp4C)
+struct Object *spawn_object_relative_with_scale(
+    s16 behaviorParam,
+    s16 relativePosX, s16 relativePosY, s16 relativePosZ,
+    f32 scale,
+    struct Object *parent,
+    s32 model,
+    void *behavior)
 {
-    struct Object *sp2C;
+    struct Object *obj;
 
-    sp2C = spawn_obj_adv(sp32, sp36, sp3A, sp3E, sp44, sp48, sp4C);
-    scale_object(sp2C, sp40);
+    obj = spawn_object_relative(
+        behaviorParam,
+        relativePosX, relativePosY, relativePosZ,
+        parent,
+        model,
+        behavior);
+    scale_object(obj, scale);
 
-    return sp2C;
+    return obj;
 }
 
 void obj_move_using_vel(void)
@@ -1011,7 +1042,7 @@ struct Object *obj_find_nearest_object_with_behavior(void *behavior, f32 *dist)
     {
         if (obj->behavior == behaviorAddr)
         {
-            if (obj->activeFlags && obj != o)
+            if (obj->activeFlags != 0 && obj != o)
             {
                 f32 objDist = dist_between_objects(o, obj);
                 if (objDist < minDist)
@@ -1091,7 +1122,7 @@ struct Object *obj_find_nearby_held_actor(void *behavior, f32 maxDist)
     {
         if (obj->behavior == behaviorAddr)
         {
-            if (obj->activeFlags)
+            if (obj->activeFlags != 0)
             {
                 // This includes the dropped and thrown states. By combining
                 // instant release, this allows us to activate mama penguin
@@ -1600,7 +1631,7 @@ static f32 obj_move_y_and_get_water_level(f32 gravity, f32 buoyancy)
     }
 
     o->oPosY += o->oVelY;
-    if (o->activeFlags & 0x0400)
+    if (o->activeFlags & ACTIVE_FLAG_UNK10)
     {
         waterLevel = -11000.0f;
     }
@@ -1949,8 +1980,8 @@ void obj_set_hitbox_radius_and_height(f32 radius, f32 height)
 
 void func_802A1274(f32 f12, f32 f14)
 {
-    o->unk200 = f12;
-    o->unk204 = f14;
+    o->hurtboxRadius = f12;
+    o->hurtboxHeight = f14;
 }
 
 static void spawn_object_loot_coins(
@@ -1976,7 +2007,7 @@ static void spawn_object_loot_coins(
 
         obj->oNumLootCoins--;
 
-        coin = SpawnObj(obj, sp3E, coinBehavior);
+        coin = spawn_object(obj, sp3E, coinBehavior);
         translate_object_xz_random(coin, posJitter);
         coin->oPosY = spawnHeight;
         coin->oUnknownUnk110_F32 = sp30;
@@ -2003,7 +2034,7 @@ void obj_spawn_loot_coin_at_mario_pos(void)
 
     o->oNumLootCoins--;
 
-    coin = SpawnObj(o, 116, beh_single_coin_gets_spawned);
+    coin = spawn_object(o, 116, beh_single_coin_gets_spawned);
     coin->oVelY = 30.0f;
 
     copy_object_pos(coin, gMarioObject);
@@ -2157,7 +2188,7 @@ static void obj_update_floor_and_resolve_wall_collisions(s16 steepSlopeDegrees)
     o->oMoveFlags &= ~(OBJ_MOVE_ABOVE_LAVA | OBJ_MOVE_ABOVE_DEATH_BARRIER);
 #endif
 
-    if (o->activeFlags & 0x0A)
+    if (o->activeFlags & (ACTIVE_FLAG_FAR_AWAY | ACTIVE_FLAG_IN_DIFFERENT_ROOM))
     {
         obj_update_floor();
         o->oMoveFlags &= ~OBJ_MOVE_MASK_HIT_WALL_OR_IN_WATER;
@@ -2205,7 +2236,13 @@ void obj_move_standard(s16 steepSlopeAngleDegrees)
     s32 careAboutEdgesAndSteepSlopes = FALSE;
     s32 negativeSpeed = FALSE;
 
-    if ((o->activeFlags & 0x0A) == 0)
+    //! Because some objects allow these active flags to be set but don't
+    //  avoid updating when they are, we end up with "partial" updates, where
+    //  an object's internal state will be updated, but it doesn't move.
+    //  This allows numerous glitches and is typically referred to as
+    //  deactivation (though this term has a different meaning in the code).
+    //  Objects that do this will be marked with //PARTIAL_UPDATE.
+    if (!(o->activeFlags & (ACTIVE_FLAG_FAR_AWAY | ACTIVE_FLAG_IN_DIFFERENT_ROOM)))
     {
         if (steepSlopeAngleDegrees < 0)
         {
@@ -2342,7 +2379,7 @@ void build_object_transform_from_pos_and_angle(
 
 void func_802A2270(struct Object *obj)
 {
-    if (obj->oFlags & 0x20)
+    if (obj->oFlags & OBJ_FLAG_0020)
     {
         build_object_transform_from_pos_and_angle(obj, O_POS_INDEX, O_FACE_ANGLE_INDEX);
         apply_scale_to_object_transform(obj);
@@ -2355,12 +2392,12 @@ void func_802A2270(struct Object *obj)
     obj_scale(1.0f);
 }
 
-void func_802A22DC(struct Object *obj)
+void build_object_transform_relative_to_parent(struct Object *obj)
 {
     struct Object *parent = obj->parentObj;
 
     build_object_transform_from_pos_and_angle(
-        obj, O_PARENT_REL_INDEX, O_FACE_ANGLE_INDEX);
+        obj, O_PARENT_RELATIVE_POS_INDEX, O_FACE_ANGLE_INDEX);
     apply_scale_to_object_transform(obj);
     mtxf_mul(obj->transform, obj->transform, parent->transform);
 
@@ -2377,8 +2414,8 @@ void func_802A22DC(struct Object *obj)
 
 void Unknown802A2380(struct Object *a0)
 {
-    a0->oFlags &= ~0x200;
-    a0->oFlags |= 0x800;
+    a0->oFlags &= ~OBJ_FLAG_TRANSFORM_RELATIVE_TO_PARENT;
+    a0->oFlags |= OBJ_FLAG_0800;
 
     a0->transform[3][0] = a0->oPosX;
     a0->transform[3][1] = a0->oPosY;
@@ -2513,7 +2550,7 @@ static void func_802A297C(struct Object *a0)
 
 void func_802A2A38(void)
 {
-    build_object_transform_from_pos_and_angle(o, O_PARENT_REL_INDEX, O_MOVE_ANGLE_INDEX);
+    build_object_transform_from_pos_and_angle(o, O_PARENT_RELATIVE_POS_INDEX, O_MOVE_ANGLE_INDEX);
     func_802A297C(o);
     o->oPosX += o->oVelX;
     o->oPosY += o->oVelY;
@@ -2545,7 +2582,7 @@ void func_802A2B04(struct Struct802A2B04 *sp28)
     for (sp20 = 0; sp18 > sp20; sp20++)
     {
         sp1C = RandomFloat() * (sp28->unk10 * 0.1f) + sp28->unkC * 0.1f;
-        sp24 = SpawnObj(o, sp28->unk2, beh_white_puff_explosion);
+        sp24 = spawn_object(o, sp28->unk2, beh_white_puff_explosion);
         sp24->oBehParams2ndByte = sp28->unk0;
         sp24->oMoveAngleYaw = RandomU16();
         sp24->oGravity = sp28->unk8;
@@ -2559,12 +2596,12 @@ void func_802A2B04(struct Struct802A2B04 *sp28)
 
 void set_object_hitbox(struct Object *obj, struct ObjectHitbox *hitbox)
 {
-    if (!(obj->oFlags & 0x40000000))
+    if (!(obj->oFlags & OBJ_FLAG_30))
     {
-        obj->oFlags |= 0x40000000;
+        obj->oFlags |= OBJ_FLAG_30;
 
         obj->oInteractType = hitbox->interactType;
-        obj->oUnk180 = hitbox->unk05;
+        obj->oDamageOrCoinValue = hitbox->damageOrCoinValue;
         obj->oHealth = hitbox->health;
         obj->oNumLootCoins = hitbox->numLootCoins;
 
@@ -2573,9 +2610,9 @@ void set_object_hitbox(struct Object *obj, struct ObjectHitbox *hitbox)
 
     obj->hitboxRadius = obj->header.gfx.scale[0] * hitbox->radius;
     obj->hitboxHeight = obj->header.gfx.scale[1] * hitbox->height;
-    obj->unk200 = obj->header.gfx.scale[0] * hitbox->unk0C;
-    obj->unk204 = obj->header.gfx.scale[1] * hitbox->unk0E;
-    obj->unk208 = obj->header.gfx.scale[1] * hitbox->downOffset;
+    obj->hurtboxRadius = obj->header.gfx.scale[0] * hitbox->hurtboxRadius;
+    obj->hurtboxHeight = obj->header.gfx.scale[1] * hitbox->hurtboxHeight;
+    obj->hitboxDownOffset = obj->header.gfx.scale[1] * hitbox->downOffset;
 }
 
 s32 signum_positive(s32 x)
@@ -2821,7 +2858,7 @@ s32 obj_call_action_function(void (*actionFunctions[])(void))
 
 static struct Object *func_802A36D8(s32 sp20, s32 sp24)
 {
-    struct Object *sp1C = SpawnObj(o, 122, beh_unused_080C);
+    struct Object *sp1C = spawn_object(o, 122, beh_unused_080C);
     sp1C->oUnk1B0 = sp24;
     sp1C->oBehParams = o->oBehParams;
     sp1C->oBehParams2ndByte = sp20;
@@ -2950,13 +2987,13 @@ void obj_enable_rendering_if_mario_in_room(void)
         if (marioInRoom)
         {
             obj_enable_rendering();
-            o->activeFlags &= ~0x08;
+            o->activeFlags &= ~ACTIVE_FLAG_IN_DIFFERENT_ROOM;
             gNumRoomedObjectsInMarioRoom++;
         }
         else
         {
             obj_disable_rendering();
-            o->activeFlags |= 0x08;
+            o->activeFlags |= ACTIVE_FLAG_IN_DIFFERENT_ROOM;
             gNumRoomedObjectsNotInMarioRoom++;
         }
     }
@@ -3120,7 +3157,7 @@ s32 func_802A3FF8(f32 radius, f32 height, UNUSED s32 unused)
     return FALSE;
 }
 
-s32 obj_is_mario_in_cylinder_and_ready_to_speak(f32 radius, f32 height)
+s32 obj_is_mario_in_range_and_ready_to_speak(f32 radius, f32 height)
 {
     return func_802A3FF8(radius, height, 0x1000);
 }
@@ -3144,89 +3181,89 @@ s32 obj_update_dialogue_unk1(s32 arg0, s32 dialogueFlags, s32 dialogID, UNUSED s
     switch (o->oDialogueState)
     {
 #ifdef VERSION_JP
-        case DIALOGUE_UNK1_ENABLE_TIME_STOP:
-            //! We enable time stop even if mario is not ready to speak. This
-            //  allows us to move during time stop as long as mario never enters
-            //  an action that can be interrupted with text.
-            if (gMarioState->health >= 0x100)
-            {
-                gTimeStopState |= TIME_STOP_ENABLED;
-                o->activeFlags |= 0x20;
-                o->oDialogueState++;
-            }
-            break;
+    case DIALOGUE_UNK1_ENABLE_TIME_STOP:
+        //! We enable time stop even if mario is not ready to speak. This
+        //  allows us to move during time stop as long as mario never enters
+        //  an action that can be interrupted with text.
+        if (gMarioState->health >= 0x100)
+        {
+            gTimeStopState |= TIME_STOP_ENABLED;
+            o->activeFlags |= ACTIVE_FLAG_INITIATED_TIME_STOP;
+            o->oDialogueState++;
+        }
+        break;
 #else
-        case DIALOGUE_UNK1_ENABLE_TIME_STOP:
-            // Patched :(
-            // Wait for mario to be ready to speak, and then enable time stop
-            if (mario_ready_to_speak() || gMarioState->action == ACT_UNKNOWN_106)
-            {
-                gTimeStopState |= TIME_STOP_ENABLED;
-                o->activeFlags |= 0x20;
-                o->oDialogueState++;
-            }
-            else
-            {
-                break;
-            }
-            // Fall through so that mario's action is interrupted immediately
-            // after time is stopped
+    case DIALOGUE_UNK1_ENABLE_TIME_STOP:
+        // Patched :(
+        // Wait for mario to be ready to speak, and then enable time stop
+        if (mario_ready_to_speak() || gMarioState->action == ACT_UNKNOWN_106)
+        {
+            gTimeStopState |= TIME_STOP_ENABLED;
+            o->activeFlags |= ACTIVE_FLAG_INITIATED_TIME_STOP;
+            o->oDialogueState++;
+        }
+        else
+        {
+            break;
+        }
+        // Fall through so that mario's action is interrupted immediately
+        // after time is stopped
 #endif
 
-        case DIALOGUE_UNK1_INTERRUPT_MARIO_ACTION:
-            if (func_802573C8(arg0) == 2)
-            {
-                o->oDialogueState++;
-            }
-            break;
-
-        case DIALOGUE_UNK1_BEGIN_DIALOGUE:
-            if (dialogueFlags & DIALOGUE_UNK1_FLAG_2)
-            {
-                func_802D8050(dialogID);
-            }
-            else if (dialogueFlags & DIALOGUE_UNK1_FLAG_1)
-            {
-                func_802D7F90(dialogID);
-            }
+    case DIALOGUE_UNK1_INTERRUPT_MARIO_ACTION:
+        if (func_802573C8(arg0) == 2)
+        {
             o->oDialogueState++;
-            break;
+        }
+        break;
 
-        case DIALOGUE_UNK1_AWAIT_DIALOGUE:
-            if (dialogueFlags & DIALOGUE_UNK1_FLAG_2)
+    case DIALOGUE_UNK1_BEGIN_DIALOGUE:
+        if (dialogueFlags & DIALOGUE_UNK1_FLAG_2)
+        {
+            func_802D8050(dialogID);
+        }
+        else if (dialogueFlags & DIALOGUE_UNK1_FLAG_1)
+        {
+            func_802D7F90(dialogID);
+        }
+        o->oDialogueState++;
+        break;
+
+    case DIALOGUE_UNK1_AWAIT_DIALOGUE:
+        if (dialogueFlags & DIALOGUE_UNK1_FLAG_2)
+        {
+            if (gDialogueResponse != 0)
             {
-                if (gDialogueResponse != 0)
-                {
-                    obj_end_dialogue(dialogueFlags, gDialogueResponse);
-                }
+                obj_end_dialogue(dialogueFlags, gDialogueResponse);
             }
-            else if (dialogueFlags & DIALOGUE_UNK1_FLAG_1)
-            {
-                if (get_dialog_id() == -1)
-                {
-                    obj_end_dialogue(dialogueFlags, 3);
-                }
-            }
-            else
+        }
+        else if (dialogueFlags & DIALOGUE_UNK1_FLAG_1)
+        {
+            if (get_dialog_id() == -1)
             {
                 obj_end_dialogue(dialogueFlags, 3);
             }
-            break;
+        }
+        else
+        {
+            obj_end_dialogue(dialogueFlags, 3);
+        }
+        break;
 
-        case DIALOGUE_UNK1_DISABLE_TIME_STOP:
-            if (gMarioState->action != ACT_UNKNOWN_106 ||
-                (dialogueFlags & DIALOGUE_UNK1_FLAG_4))
-            {
-                gTimeStopState &= ~TIME_STOP_ENABLED;
-                o->activeFlags &= ~0x20;
-                dialogueResponse = o->oDialogueResponse;
-                o->oDialogueState = DIALOGUE_UNK1_ENABLE_TIME_STOP;
-            }
-            break;
-
-        default:
+    case DIALOGUE_UNK1_DISABLE_TIME_STOP:
+        if (gMarioState->action != ACT_UNKNOWN_106 ||
+            (dialogueFlags & DIALOGUE_UNK1_FLAG_4))
+        {
+            gTimeStopState &= ~TIME_STOP_ENABLED;
+            o->activeFlags &= ~ACTIVE_FLAG_INITIATED_TIME_STOP;
+            dialogueResponse = o->oDialogueResponse;
             o->oDialogueState = DIALOGUE_UNK1_ENABLE_TIME_STOP;
-            break;
+        }
+        break;
+
+    default:
+        o->oDialogueState = DIALOGUE_UNK1_ENABLE_TIME_STOP;
+        break;
     }
 
     return dialogueResponse;
@@ -3240,92 +3277,92 @@ s32 obj_update_dialogue_unk2(s32 arg0, s32 dialogueFlags, s32 dialogueID, s32 ar
     switch (o->oDialogueState)
     {
 #ifdef VERSION_JP
-        case DIALOGUE_UNK2_ENABLE_TIME_STOP:
-            //! We enable time stop even if mario is not ready to speak. This
-            //  allows us to move during time stop as long as mario never enters
-            //  an action that can be interrupted with text.
-            if (gMarioState->health >= 0x0100)
-            {
-                gTimeStopState |= TIME_STOP_ENABLED;
-                o->activeFlags |= 0x20;
-                o->oDialogueState++;
-                o->oDialogueResponse = 0;
-            }
-            break;
+    case DIALOGUE_UNK2_ENABLE_TIME_STOP:
+        //! We enable time stop even if mario is not ready to speak. This
+        //  allows us to move during time stop as long as mario never enters
+        //  an action that can be interrupted with text.
+        if (gMarioState->health >= 0x0100)
+        {
+            gTimeStopState |= TIME_STOP_ENABLED;
+            o->activeFlags |= ACTIVE_FLAG_INITIATED_TIME_STOP;
+            o->oDialogueState++;
+            o->oDialogueResponse = 0;
+        }
+        break;
 #else
-        case DIALOGUE_UNK2_ENABLE_TIME_STOP:
-            // Wait for mario to be ready to speak, and then enable time stop
-            if (mario_ready_to_speak() || gMarioState->action == ACT_UNKNOWN_106)
-            {
-                gTimeStopState |= TIME_STOP_ENABLED;
-                o->activeFlags |= 0x20;
-                o->oDialogueState++;
-                o->oDialogueResponse = 0;
-            }
-            else
-            {
-                break;
-            }
-            // Fall through so that mario's action is interrupted immediately
-            // after time is stopped
+    case DIALOGUE_UNK2_ENABLE_TIME_STOP:
+        // Wait for mario to be ready to speak, and then enable time stop
+        if (mario_ready_to_speak() || gMarioState->action == ACT_UNKNOWN_106)
+        {
+            gTimeStopState |= TIME_STOP_ENABLED;
+            o->activeFlags |= ACTIVE_FLAG_INITIATED_TIME_STOP;
+            o->oDialogueState++;
+            o->oDialogueResponse = 0;
+        }
+        else
+        {
+            break;
+        }
+        // Fall through so that mario's action is interrupted immediately
+        // after time is stopped
 #endif
 
-        case DIALOGUE_UNK2_TURN_AND_INTERRUPT_MARIO_ACTION:
-            if (dialogueFlags & DIALOGUE_UNK2_FLAG_0)
+    case DIALOGUE_UNK2_TURN_AND_INTERRUPT_MARIO_ACTION:
+        if (dialogueFlags & DIALOGUE_UNK2_FLAG_0)
+        {
+            doneTurning = obj_rotate_yaw_toward(angle_to_object(o, gMarioObject), 0x800);
+            if (o->oDialogueResponse >= 0x21)
             {
-                doneTurning = obj_rotate_yaw_toward(angle_to_object(o, gMarioObject), 0x800);
-                if (o->oDialogueResponse >= 0x21)
-                {
-                    doneTurning = TRUE;
-                }
+                doneTurning = TRUE;
             }
+        }
 
-            if (func_802573C8(arg0) == 2 && doneTurning)
+        if (func_802573C8(arg0) == 2 && doneTurning)
+        {
+            o->oDialogueResponse = 0;
+            o->oDialogueState++;
+        }
+        else
+        {
+            o->oDialogueResponse++;
+        }
+        break;
+
+    case DIALOGUE_UNK2_AWAIT_DIALOGUE:
+        if (dialogueID == 0xA1)
+        {
+            if ((o->oDialogueResponse = func_8028F9A4(dialogueID, o)) != 0)
             {
-                o->oDialogueResponse = 0;
                 o->oDialogueState++;
             }
-            else
+        }
+        else
+        {
+            if ((o->oDialogueResponse = func_8028F8E0(dialogueID, o, arg3)) != 0)
             {
-                o->oDialogueResponse++;
+                o->oDialogueState++;
             }
-            break;
+        }
+        break;
 
-        case DIALOGUE_UNK2_AWAIT_DIALOGUE:
-            if (dialogueID == 0xA1)
-            {
-                if ((o->oDialogueResponse = func_8028F9A4(dialogueID, o)) != 0)
-                {
-                    o->oDialogueState++;
-                }
-            }
-            else
-            {
-                if ((o->oDialogueResponse = func_8028F8E0(dialogueID, o, arg3)) != 0)
-                {
-                    o->oDialogueState++;
-                }
-            }
-            break;
-
-        case DIALOGUE_UNK2_END_DIALOGUE:
-            if (dialogueFlags & DIALOGUE_UNK2_FLAG_4)
-            {
-                dialogueResponse = o->oDialogueResponse;
-                o->oDialogueState = DIALOGUE_UNK2_ENABLE_TIME_STOP;
-            }
-            else if (gMarioState->action != ACT_UNKNOWN_106)
-            {
-                gTimeStopState &= ~TIME_STOP_ENABLED;
-                o->activeFlags &= ~0x20;
-                dialogueResponse = o->oDialogueResponse;
-                o->oDialogueState = DIALOGUE_UNK2_ENABLE_TIME_STOP;
-            }
-            else
-            {
-                func_802573C8(0);
-            }
-            break;
+    case DIALOGUE_UNK2_END_DIALOGUE:
+        if (dialogueFlags & DIALOGUE_UNK2_LEAVE_TIME_STOP_ENABLED)
+        {
+            dialogueResponse = o->oDialogueResponse;
+            o->oDialogueState = DIALOGUE_UNK2_ENABLE_TIME_STOP;
+        }
+        else if (gMarioState->action != ACT_UNKNOWN_106)
+        {
+            gTimeStopState &= ~TIME_STOP_ENABLED;
+            o->activeFlags &= ~ACTIVE_FLAG_INITIATED_TIME_STOP;
+            dialogueResponse = o->oDialogueResponse;
+            o->oDialogueState = DIALOGUE_UNK2_ENABLE_TIME_STOP;
+        }
+        else
+        {
+            func_802573C8(0);
+        }
+        break;
     }
 
     return dialogueResponse;
@@ -3499,13 +3536,13 @@ void obj_unused_play_footstep_sound(s32 animFrame1, s32 animFrame2, s32 sound)
 void enable_time_stop_including_mario(void)
 {
     gTimeStopState |= TIME_STOP_ENABLED | TIME_STOP_MARIO_AND_DOORS;
-    o->activeFlags |= 0x20;
+    o->activeFlags |= ACTIVE_FLAG_INITIATED_TIME_STOP;
 }
 
 void disable_time_stop_including_mario(void)
 {
     gTimeStopState &= ~(TIME_STOP_ENABLED | TIME_STOP_MARIO_AND_DOORS);
-    o->activeFlags &= ~0x20;
+    o->activeFlags &= ~ACTIVE_FLAG_INITIATED_TIME_STOP;
 }
 
 s32 obj_check_interacted(void)
@@ -3525,7 +3562,7 @@ void obj_spawn_loot_blue_coin(void)
 {
     if (o->oNumLootCoins >= 5)
     {
-        SpawnObj(o, 118, beh_mr_i_blue_coin);
+        spawn_object(o, 118, beh_mr_i_blue_coin);
         o->oNumLootCoins -= 5;
     }
 }
