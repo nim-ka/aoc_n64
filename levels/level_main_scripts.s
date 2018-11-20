@@ -25,7 +25,7 @@ glabel level_main_scripts_entry
     cmd21 /*unk2*/ 0x40A4, /*unk4*/ snowball_seg4_dl_04032A18
     cmd22 /*unk2*/ 0x0090, /*unk4*/ red_flame_geo
     cmd22 /*unk2*/ 0x0091, /*unk4*/ blue_flame_geo
-    cmd22 /*unk2*/ 0x0094, /*unk4*/ dirt2_geo
+    cmd22 /*unk2*/ 0x0094, /*unk4*/ burn_smoke_geo
     cmd22 /*unk2*/ 0x00A2, /*unk4*/ leaves_geo
     cmd22 /*unk2*/ 0x00AA, /*unk4*/ purple_marble_geo
     cmd22 /*unk2*/ 0x00B9, /*unk4*/ fish_geo
@@ -33,7 +33,7 @@ glabel level_main_scripts_entry
     cmd22 /*unk2*/ 0x008F, /*unk4*/ sparkles_animation_geo
     cmd21 /*unk2*/ 0x409F, /*unk4*/ sand_seg3_dl_0302BCD0 
     cmd22 /*unk2*/ 0x00BB, /*unk4*/ butterfly_geo
-    cmd22 /*unk2*/ 0x009C, /*unk4*/ dirt2_geo
+    cmd22 /*unk2*/ 0x009C, /*unk4*/ burn_smoke_geo
     cmd21 /*unk2*/ 0x40A1, /*unk4*/ pebble_seg3_dl_0301CB00
     cmd22 /*unk2*/ 0x008E, /*unk4*/ mist_geo
     cmd22 /*unk2*/ 0x00E0, /*unk4*/ white_puff_geo
