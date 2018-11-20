@@ -4,10 +4,10 @@
 #include "types.h"
 
 /* Segment 3 */
-extern u8* D_030293E0[];    // array of pointers to textures?
-extern Gfx* D_03029480;     //u8 []?
-extern Gfx* D_03029570;     //u8 []?
-extern Gfx* D_030295A0;     //u8 []?
+extern u8 *power_meter_seg3_health_icons_030293E0[];
+extern Gfx* power_meter_seg3_dl_03029480;     //u8 []?
+extern Gfx* power_meter_seg3_dl_03029570;     //u8 []?
+extern Gfx* power_meter_seg3_dl_030295A0;     //u8 []?
 
 /* Functions */
 extern void render_hud_camera(s32, s32, u8[]);

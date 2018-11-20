@@ -66,14 +66,14 @@ glabel ukiki_geo # 0x0C000110
                   geo_open_node
                      geo_dl_translated 0x01, 0, 0, 0, ukiki_seg5_dl_0500B2E8
                      geo_open_node
-                        geo_translate_rotate 1, 100, 0, 0, -90, -90, 0, marios_cap_seg3_dl_03022F48
+                        geo_translate_rotate 1, 100, 0, 0, -90, -90, 0, mario_cap_seg3_dl_03022F48
                      geo_close_node
                   geo_close_node
                   geo_node_start
                   geo_open_node
                      geo_dl_translated 0x01, 0, 0, 0, ukiki_seg5_dl_0500B310
                      geo_open_node
-                        geo_translate_rotate 1, 100, 0, 0, -90, -90, 0, marios_cap_seg3_dl_03022F48
+                        geo_translate_rotate 1, 100, 0, 0, -90, -90, 0, mario_cap_seg3_dl_03022F48
                      geo_close_node
                   geo_close_node
                geo_close_node

@@ -15,7 +15,7 @@ glabel white_puff_geo # 0x16000020
    geo_node_start
    geo_open_node
       geo_asm 0, Geo18_8029D924
-      geo_display_list 0x05, white_puff_seg3_dl_03000920
+      geo_display_list 0x05, mist_seg3_dl_03000920
    geo_close_node
    geo_end
 
@@ -67,14 +67,14 @@ glabel yellow_coin_geo # 0x1600013C
    geo_open_node
       geo_switch_case 8, GeoSwitchCase8029DB48
       geo_open_node
-         geo_display_list 0x04, yellow_coin_seg3_dl_03007800
-         geo_display_list 0x04, yellow_coin_seg3_dl_03007800
-         geo_display_list 0x04, yellow_coin_seg3_dl_03007828
-         geo_display_list 0x04, yellow_coin_seg3_dl_03007828
-         geo_display_list 0x04, yellow_coin_seg3_dl_03007850
-         geo_display_list 0x04, yellow_coin_seg3_dl_03007850
-         geo_display_list 0x04, yellow_coin_seg3_dl_03007878
-         geo_display_list 0x04, yellow_coin_seg3_dl_03007878
+         geo_display_list 0x04, coin_seg3_dl_03007800
+         geo_display_list 0x04, coin_seg3_dl_03007800
+         geo_display_list 0x04, coin_seg3_dl_03007828
+         geo_display_list 0x04, coin_seg3_dl_03007828
+         geo_display_list 0x04, coin_seg3_dl_03007850
+         geo_display_list 0x04, coin_seg3_dl_03007850
+         geo_display_list 0x04, coin_seg3_dl_03007878
+         geo_display_list 0x04, coin_seg3_dl_03007878
       geo_close_node
    geo_close_node
    geo_end
@@ -84,14 +84,14 @@ glabel yellow_coin_no_shadow_geo # 0x160001A0
    geo_open_node
       geo_switch_case 8, GeoSwitchCase8029DB48
       geo_open_node
-         geo_display_list 0x04, yellow_coin_seg3_dl_03007800
-         geo_display_list 0x04, yellow_coin_seg3_dl_03007800
-         geo_display_list 0x04, yellow_coin_seg3_dl_03007828
-         geo_display_list 0x04, yellow_coin_seg3_dl_03007828
-         geo_display_list 0x04, yellow_coin_seg3_dl_03007850
-         geo_display_list 0x04, yellow_coin_seg3_dl_03007850
-         geo_display_list 0x04, yellow_coin_seg3_dl_03007878
-         geo_display_list 0x04, yellow_coin_seg3_dl_03007878
+         geo_display_list 0x04, coin_seg3_dl_03007800
+         geo_display_list 0x04, coin_seg3_dl_03007800
+         geo_display_list 0x04, coin_seg3_dl_03007828
+         geo_display_list 0x04, coin_seg3_dl_03007828
+         geo_display_list 0x04, coin_seg3_dl_03007850
+         geo_display_list 0x04, coin_seg3_dl_03007850
+         geo_display_list 0x04, coin_seg3_dl_03007878
+         geo_display_list 0x04, coin_seg3_dl_03007878
       geo_close_node
    geo_close_node
    geo_end
@@ -101,14 +101,14 @@ glabel blue_coin_geo # 0x16000200
    geo_open_node
       geo_switch_case 8, GeoSwitchCase8029DB48
       geo_open_node
-         geo_display_list 0x04, blue_coin_seg3_dl_030078A0
-         geo_display_list 0x04, blue_coin_seg3_dl_030078A0
-         geo_display_list 0x04, blue_coin_seg3_dl_030078C8
-         geo_display_list 0x04, blue_coin_seg3_dl_030078C8
-         geo_display_list 0x04, blue_coin_seg3_dl_030078F0
-         geo_display_list 0x04, blue_coin_seg3_dl_030078F0
-         geo_display_list 0x04, blue_coin_seg3_dl_03007918
-         geo_display_list 0x04, blue_coin_seg3_dl_03007918
+         geo_display_list 0x04, coin_seg3_dl_030078A0
+         geo_display_list 0x04, coin_seg3_dl_030078A0
+         geo_display_list 0x04, coin_seg3_dl_030078C8
+         geo_display_list 0x04, coin_seg3_dl_030078C8
+         geo_display_list 0x04, coin_seg3_dl_030078F0
+         geo_display_list 0x04, coin_seg3_dl_030078F0
+         geo_display_list 0x04, coin_seg3_dl_03007918
+         geo_display_list 0x04, coin_seg3_dl_03007918
       geo_close_node
    geo_close_node
    geo_end
@@ -118,14 +118,14 @@ glabel blue_coin_no_shadow_geo # 0x16000264
    geo_open_node
       geo_switch_case 8, GeoSwitchCase8029DB48
       geo_open_node
-         geo_display_list 0x04, blue_coin_seg3_dl_030078A0
-         geo_display_list 0x04, blue_coin_seg3_dl_030078A0
-         geo_display_list 0x04, blue_coin_seg3_dl_030078C8
-         geo_display_list 0x04, blue_coin_seg3_dl_030078C8
-         geo_display_list 0x04, blue_coin_seg3_dl_030078F0
-         geo_display_list 0x04, blue_coin_seg3_dl_030078F0
-         geo_display_list 0x04, blue_coin_seg3_dl_03007918
-         geo_display_list 0x04, blue_coin_seg3_dl_03007918
+         geo_display_list 0x04, coin_seg3_dl_030078A0
+         geo_display_list 0x04, coin_seg3_dl_030078A0
+         geo_display_list 0x04, coin_seg3_dl_030078C8
+         geo_display_list 0x04, coin_seg3_dl_030078C8
+         geo_display_list 0x04, coin_seg3_dl_030078F0
+         geo_display_list 0x04, coin_seg3_dl_030078F0
+         geo_display_list 0x04, coin_seg3_dl_03007918
+         geo_display_list 0x04, coin_seg3_dl_03007918
       geo_close_node
    geo_close_node
    geo_end
@@ -135,14 +135,14 @@ glabel red_coin_geo # 0x160002C4
    geo_open_node
       geo_switch_case 8, GeoSwitchCase8029DB48
       geo_open_node
-         geo_display_list 0x04, red_coin_seg3_dl_03007940
-         geo_display_list 0x04, red_coin_seg3_dl_03007940
-         geo_display_list 0x04, red_coin_seg3_dl_03007968
-         geo_display_list 0x04, red_coin_seg3_dl_03007968
-         geo_display_list 0x04, red_coin_seg3_dl_03007990
-         geo_display_list 0x04, red_coin_seg3_dl_03007990
-         geo_display_list 0x04, red_coin_seg3_dl_030079B8
-         geo_display_list 0x04, red_coin_seg3_dl_030079B8
+         geo_display_list 0x04, coin_seg3_dl_03007940
+         geo_display_list 0x04, coin_seg3_dl_03007940
+         geo_display_list 0x04, coin_seg3_dl_03007968
+         geo_display_list 0x04, coin_seg3_dl_03007968
+         geo_display_list 0x04, coin_seg3_dl_03007990
+         geo_display_list 0x04, coin_seg3_dl_03007990
+         geo_display_list 0x04, coin_seg3_dl_030079B8
+         geo_display_list 0x04, coin_seg3_dl_030079B8
       geo_close_node
    geo_close_node
    geo_end
@@ -152,14 +152,14 @@ glabel red_coin_no_shadow_geo # 0x16000328
    geo_open_node
       geo_switch_case 8, GeoSwitchCase8029DB48
       geo_open_node
-         geo_display_list 0x04, red_coin_seg3_dl_03007940
-         geo_display_list 0x04, red_coin_seg3_dl_03007940
-         geo_display_list 0x04, red_coin_seg3_dl_03007968
-         geo_display_list 0x04, red_coin_seg3_dl_03007968
-         geo_display_list 0x04, red_coin_seg3_dl_03007990
-         geo_display_list 0x04, red_coin_seg3_dl_03007990
-         geo_display_list 0x04, red_coin_seg3_dl_030079B8
-         geo_display_list 0x04, red_coin_seg3_dl_030079B8
+         geo_display_list 0x04, coin_seg3_dl_03007940
+         geo_display_list 0x04, coin_seg3_dl_03007940
+         geo_display_list 0x04, coin_seg3_dl_03007968
+         geo_display_list 0x04, coin_seg3_dl_03007968
+         geo_display_list 0x04, coin_seg3_dl_03007990
+         geo_display_list 0x04, coin_seg3_dl_03007990
+         geo_display_list 0x04, coin_seg3_dl_030079B8
+         geo_display_list 0x04, coin_seg3_dl_030079B8
       geo_close_node
    geo_close_node
    geo_end
@@ -182,11 +182,11 @@ glabel castle_door_geo # 0x160003A8
             geo_open_node
                geo_render_range -2048, 3500
                geo_open_node
-                  geo_dl_translated 0x01, 0, 0, 0, castle_door_seg3_dl_03013E28
+                  geo_dl_translated 0x01, 0, 0, 0, door_seg3_dl_03013E28
                geo_close_node
                geo_render_range 3500, 32767
                geo_open_node
-                  geo_dl_translated 0x01, 0, 0, 0, castle_door_seg3_dl_03014100
+                  geo_dl_translated 0x01, 0, 0, 0, door_seg3_dl_03014100
                geo_close_node
             geo_close_node
             geo_dl_translated 0x01, 0, 0, 0
@@ -207,11 +207,11 @@ glabel cabin_door_geo # 0x1600043C
             geo_open_node
                geo_render_range -2048, 3500
                geo_open_node
-                  geo_dl_translated 0x01, 0, 0, 0, cabin_door_seg3_dl_03013EA8
+                  geo_dl_translated 0x01, 0, 0, 0, door_seg3_dl_03013EA8
                geo_close_node
                geo_render_range 3500, 32767
                geo_open_node
-                  geo_dl_translated 0x01, 0, 0, 0, cabin_door_seg3_dl_03014128
+                  geo_dl_translated 0x01, 0, 0, 0, door_seg3_dl_03014128
                geo_close_node
             geo_close_node
             geo_dl_translated 0x01, 0, 0, 0
@@ -232,11 +232,11 @@ glabel wooden_door_geo # 0x160004D0
             geo_open_node
                geo_render_range -2048, 3500
                geo_open_node
-                  geo_dl_translated 0x01, 0, 0, 0, wooden_door_seg3_dl_03014A80
+                  geo_dl_translated 0x01, 0, 0, 0, door_seg3_dl_03014A80
                geo_close_node
                geo_render_range 3500, 32767
                geo_open_node
-                  geo_dl_translated 0x01, 0, 0, 0, wooden_door_seg3_dl_03014F98
+                  geo_dl_translated 0x01, 0, 0, 0, door_seg3_dl_03014F98
                geo_close_node
             geo_close_node
             geo_dl_translated 0x01, 0, 0, 0
@@ -257,11 +257,11 @@ glabel wooden_door2_geo # 0x16000564
             geo_open_node
                geo_render_range -2048, 3500
                geo_open_node
-                  geo_dl_translated 0x01, 0, 0, 0, wooden_door2_seg3_dl_03014B30
+                  geo_dl_translated 0x01, 0, 0, 0, door_seg3_dl_03014B30
                geo_close_node
                geo_render_range 3500, 32767
                geo_open_node
-                  geo_dl_translated 0x01, 0, 0, 0, wooden_door2_seg3_dl_03015008
+                  geo_dl_translated 0x01, 0, 0, 0, door_seg3_dl_03015008
                geo_close_node
             geo_close_node
             geo_dl_translated 0x01, 0, 0, 0
@@ -282,11 +282,11 @@ glabel metal_door_geo # 0x160005F8
             geo_open_node
                geo_render_range -2048, 3500
                geo_open_node
-                  geo_dl_translated 0x01, 0, 0, 0, metal_door_seg3_dl_03014BE0
+                  geo_dl_translated 0x01, 0, 0, 0, door_seg3_dl_03014BE0
                geo_close_node
                geo_render_range 3500, 32767
                geo_open_node
-                  geo_dl_translated 0x01, 0, 0, 0, metal_door_seg3_dl_03015078
+                  geo_dl_translated 0x01, 0, 0, 0, door_seg3_dl_03015078
                geo_close_node
             geo_close_node
             geo_dl_translated 0x01, 0, 0, 0
@@ -307,11 +307,11 @@ glabel hazy_maze_door_geo # 0x1600068C
             geo_open_node
                geo_render_range -2048, 3500
                geo_open_node
-                  geo_dl_translated 0x01, 0, 0, 0, hazy_maze_door_seg3_dl_03014C90
+                  geo_dl_translated 0x01, 0, 0, 0, door_seg3_dl_03014C90
                geo_close_node
                geo_render_range 3500, 32767
                geo_open_node
-                  geo_dl_translated 0x01, 0, 0, 0, hazy_maze_door_seg3_dl_030150E8
+                  geo_dl_translated 0x01, 0, 0, 0, door_seg3_dl_030150E8
                geo_close_node
             geo_close_node
             geo_dl_translated 0x01, 0, 0, 0
@@ -332,11 +332,11 @@ glabel haunted_door_geo # 0x16000720
             geo_open_node
                geo_render_range -2048, 3500
                geo_open_node
-                  geo_dl_translated 0x01, 0, 0, 0, haunted_door_seg3_dl_03014D40
+                  geo_dl_translated 0x01, 0, 0, 0, door_seg3_dl_03014D40
                geo_close_node
                geo_render_range 3500, 32767
                geo_open_node
-                  geo_dl_translated 0x01, 0, 0, 0, haunted_door_seg3_dl_03015158
+                  geo_dl_translated 0x01, 0, 0, 0, door_seg3_dl_03015158
                geo_close_node
             geo_close_node
             geo_dl_translated 0x01, 0, 0, 0
@@ -357,16 +357,16 @@ glabel castle_door_0_star_geo # 0x160007B4
             geo_open_node
                geo_render_range -2048, 1000
                geo_open_node
-                  geo_dl_translated 0x01, 0, 0, 0, castle_door_seg3_dl_03013E28
+                  geo_dl_translated 0x01, 0, 0, 0, door_seg3_dl_03013E28
                   geo_open_node
-                     geo_display_list 0x05, castle_door_seg3_dl_03014250
+                     geo_display_list 0x05, door_seg3_dl_03014250
                   geo_close_node
                geo_close_node
                geo_render_range 1000, 32767
                geo_open_node
-                  geo_dl_translated 0x01, 0, 0, 0, castle_door_seg3_dl_03013E28
+                  geo_dl_translated 0x01, 0, 0, 0, door_seg3_dl_03013E28
                   geo_open_node
-                     geo_display_list 0x06, castle_door_seg3_dl_03014280
+                     geo_display_list 0x06, door_seg3_dl_03014280
                   geo_close_node
                geo_close_node
             geo_close_node
@@ -388,16 +388,16 @@ glabel castle_door_1_star_geo # 0x16000868
             geo_open_node
                geo_render_range -2048, 1000
                geo_open_node
-                  geo_dl_translated 0x01, 0, 0, 0, castle_door_seg3_dl_03013E28
+                  geo_dl_translated 0x01, 0, 0, 0, door_seg3_dl_03013E28
                   geo_open_node
-                     geo_display_list 0x05, castle_door_seg3_dl_030142B0
+                     geo_display_list 0x05, door_seg3_dl_030142B0
                   geo_close_node
                geo_close_node
                geo_render_range 1000, 32767
                geo_open_node
-                  geo_dl_translated 0x01, 0, 0, 0, castle_door_seg3_dl_03013E28
+                  geo_dl_translated 0x01, 0, 0, 0, door_seg3_dl_03013E28
                   geo_open_node
-                     geo_display_list 0x06, castle_door_seg3_dl_030142E0
+                     geo_display_list 0x06, door_seg3_dl_030142E0
                   geo_close_node
                geo_close_node
             geo_close_node
@@ -419,16 +419,16 @@ glabel castle_door_3_stars_geo # 0x1600091C
             geo_open_node
                geo_render_range -2048, 1000
                geo_open_node
-                  geo_dl_translated 0x01, 0, 0, 0, castle_door_seg3_dl_03013E28
+                  geo_dl_translated 0x01, 0, 0, 0, door_seg3_dl_03013E28
                   geo_open_node
-                     geo_display_list 0x05, castle_door_seg3_dl_03014310
+                     geo_display_list 0x05, door_seg3_dl_03014310
                   geo_close_node
                geo_close_node
                geo_render_range 1000, 32767
                geo_open_node
-                  geo_dl_translated 0x01, 0, 0, 0, castle_door_seg3_dl_03013E28
+                  geo_dl_translated 0x01, 0, 0, 0, door_seg3_dl_03013E28
                   geo_open_node
-                     geo_display_list 0x06, castle_door_seg3_dl_03014340
+                     geo_display_list 0x06, door_seg3_dl_03014340
                   geo_close_node
                geo_close_node
             geo_close_node
@@ -450,16 +450,16 @@ glabel locked_castle_door_geo # 0x160009D0
             geo_open_node
                geo_render_range -2048, 1000
                geo_open_node
-                  geo_dl_translated 0x01, 0, 0, 0, castle_door_seg3_dl_03013E28
+                  geo_dl_translated 0x01, 0, 0, 0, door_seg3_dl_03013E28
                   geo_open_node
-                     geo_display_list 0x01, castle_door_seg3_dl_03014540
+                     geo_display_list 0x01, door_seg3_dl_03014540
                   geo_close_node
                geo_close_node
                geo_render_range 1000, 32767
                geo_open_node
-                  geo_dl_translated 0x01, 0, 0, 0, castle_door_seg3_dl_03013E28
+                  geo_dl_translated 0x01, 0, 0, 0, door_seg3_dl_03013E28
                   geo_open_node
-                     geo_display_list 0x02, castle_door_seg3_dl_03014528
+                     geo_display_list 0x02, door_seg3_dl_03014528
                   geo_close_node
                geo_close_node
             geo_close_node
@@ -511,14 +511,14 @@ glabel red_flame_geo # 0x16000B2C
    geo_open_node
       geo_switch_case 8, GeoSwitchCase8029DB48
       geo_open_node
-         geo_display_list 0x05, red_flame_seg3_dl_0301B3B0
-         geo_display_list 0x05, red_flame_seg3_dl_0301B3C8
-         geo_display_list 0x05, red_flame_seg3_dl_0301B3E0
-         geo_display_list 0x05, red_flame_seg3_dl_0301B3F8
-         geo_display_list 0x05, red_flame_seg3_dl_0301B410
-         geo_display_list 0x05, red_flame_seg3_dl_0301B428
-         geo_display_list 0x05, red_flame_seg3_dl_0301B440
-         geo_display_list 0x05, red_flame_seg3_dl_0301B458
+         geo_display_list 0x05, flame_seg3_dl_0301B3B0
+         geo_display_list 0x05, flame_seg3_dl_0301B3C8
+         geo_display_list 0x05, flame_seg3_dl_0301B3E0
+         geo_display_list 0x05, flame_seg3_dl_0301B3F8
+         geo_display_list 0x05, flame_seg3_dl_0301B410
+         geo_display_list 0x05, flame_seg3_dl_0301B428
+         geo_display_list 0x05, flame_seg3_dl_0301B440
+         geo_display_list 0x05, flame_seg3_dl_0301B458
       geo_close_node
    geo_close_node
    geo_end
@@ -528,14 +528,14 @@ glabel blue_flame_geo # 0x16000B8C
    geo_open_node
       geo_switch_case 8, GeoSwitchCase8029DB48
       geo_open_node
-         geo_display_list 0x05, blue_flame_seg3_dl_0301B500
-         geo_display_list 0x05, blue_flame_seg3_dl_0301B518
-         geo_display_list 0x05, blue_flame_seg3_dl_0301B530
-         geo_display_list 0x05, blue_flame_seg3_dl_0301B548
-         geo_display_list 0x05, blue_flame_seg3_dl_0301B560
-         geo_display_list 0x05, blue_flame_seg3_dl_0301B578
-         geo_display_list 0x05, blue_flame_seg3_dl_0301B590
-         geo_display_list 0x05, blue_flame_seg3_dl_0301B5A8
+         geo_display_list 0x05, flame_seg3_dl_0301B500
+         geo_display_list 0x05, flame_seg3_dl_0301B518
+         geo_display_list 0x05, flame_seg3_dl_0301B530
+         geo_display_list 0x05, flame_seg3_dl_0301B548
+         geo_display_list 0x05, flame_seg3_dl_0301B560
+         geo_display_list 0x05, flame_seg3_dl_0301B578
+         geo_display_list 0x05, flame_seg3_dl_0301B590
+         geo_display_list 0x05, flame_seg3_dl_0301B5A8
       geo_close_node
    geo_close_node
    geo_end
@@ -584,8 +584,8 @@ glabel marios_cap_geo # 0x16000CA4
          geo_asm 10, Geo18_8029D924
          geo_switch_case 2, GeoSwitchCase8029DB48
          geo_open_node
-            geo_display_list 0x01, marios_cap_seg3_dl_03022F48
-            geo_display_list 0x05, marios_cap_seg3_dl_03022F48
+            geo_display_list 0x01, mario_cap_seg3_dl_03022F48
+            geo_display_list 0x05, mario_cap_seg3_dl_03022F48
          geo_close_node
       geo_close_node
    geo_close_node
@@ -599,8 +599,8 @@ glabel marios_metal_cap_geo # 0x16000CF0
          geo_asm 10, Geo18_8029D924
          geo_switch_case 2, GeoSwitchCase8029DB48
          geo_open_node
-            geo_display_list 0x01, marios_metal_cap_seg3_dl_03022FF8
-            geo_display_list 0x05, marios_metal_cap_seg3_dl_03022FF8
+            geo_display_list 0x01, mario_cap_seg3_dl_03022FF8
+            geo_display_list 0x05, mario_cap_seg3_dl_03022FF8
          geo_close_node
       geo_close_node
    geo_close_node
@@ -616,12 +616,12 @@ glabel marios_wing_cap_geo # 0x16000D3C
          geo_open_node
             geo_node_start
             geo_open_node
-               geo_display_list 0x01, marios_cap_seg3_dl_03022F48
-               geo_display_list 0x04, marios_wing_cap_seg3_dl_030230B0
+               geo_display_list 0x01, mario_cap_seg3_dl_03022F48
+               geo_display_list 0x04, mario_cap_seg3_dl_030230B0
             geo_close_node
             geo_node_start
             geo_open_node
-               geo_display_list 0x05, marios_wing_cap_seg3_dl_03023160
+               geo_display_list 0x05, mario_cap_seg3_dl_03023160
             geo_close_node
          geo_close_node
       geo_close_node
@@ -638,12 +638,12 @@ glabel marios_winged_metal_cap_geo # 0x16000DA8
          geo_open_node
             geo_node_start
             geo_open_node
-               geo_display_list 0x01, marios_metal_cap_seg3_dl_03022FF8
-               geo_display_list 0x04, marios_winged_metal_cap_seg3_dl_03023108
+               geo_display_list 0x01, mario_cap_seg3_dl_03022FF8
+               geo_display_list 0x04, mario_cap_seg3_dl_03023108
             geo_close_node
             geo_node_start
             geo_open_node
-               geo_display_list 0x05, marios_winged_metal_cap_seg3_dl_03023298
+               geo_display_list 0x05, mario_cap_seg3_dl_03023298
             geo_close_node
          geo_close_node
       geo_close_node
@@ -692,26 +692,27 @@ glabel dirt_animation_geo # 0x16000ED4
    geo_open_node
       geo_switch_case 6, GeoSwitchCase8029DB48
       geo_open_node
-         geo_display_list 0x01, dirt_animation_seg3_dl_0302C378
-         geo_display_list 0x01, dirt_animation_seg3_dl_0302C3B0
-         geo_display_list 0x01, dirt_animation_seg3_dl_0302C3E8
-         geo_display_list 0x04, dirt_animation_seg3_dl_0302C028
-         geo_display_list 0x01, dirt_animation_seg3_dl_0302C420
-         geo_display_list 0x01, dirt_animation_seg3_dl_0302C458
+         geo_display_list 0x01, dirt_seg3_dl_0302C378
+         geo_display_list 0x01, dirt_seg3_dl_0302C3B0
+         geo_display_list 0x01, dirt_seg3_dl_0302C3E8
+         geo_display_list 0x04, dirt_seg3_dl_0302C028
+         geo_display_list 0x01, dirt_seg3_dl_0302C420
+         geo_display_list 0x01, dirt_seg3_dl_0302C458
       geo_close_node
    geo_close_node
    geo_end
 
+# This is probably wrongly named according to the Bin IDs...
 glabel cartoon_star_geo # 0x16000F24
    geo_start_distance 300
    geo_open_node
       geo_switch_case 5, GeoSwitchCase8029DB48
       geo_open_node
-         geo_display_list 0x01, cartoon_star_seg3_dl_0302C298
-         geo_display_list 0x01, cartoon_star_seg3_dl_0302C2B8
-         geo_display_list 0x01, cartoon_star_seg3_dl_0302C2D8
-         geo_display_list 0x01, cartoon_star_seg3_dl_0302C2F8
-         geo_display_list 0x01, cartoon_star_seg3_dl_0302C318
+         geo_display_list 0x01, dirt_seg3_dl_0302C298
+         geo_display_list 0x01, dirt_seg3_dl_0302C2B8
+         geo_display_list 0x01, dirt_seg3_dl_0302C2D8
+         geo_display_list 0x01, dirt_seg3_dl_0302C2F8
+         geo_display_list 0x01, dirt_seg3_dl_0302C318
       geo_close_node
    geo_close_node
    geo_end
@@ -747,34 +748,34 @@ glabel wooden_signpost_geo # 0x16000FB4
 glabel bubbly_tree_geo # 0x16000FE8
    geo_start_distance 800
    geo_open_node
-      geo_display_list 0x04, bubbly_tree_seg3_dl_0302FEE8
+      geo_display_list 0x04, tree_seg3_dl_0302FEE8
    geo_close_node
    geo_end
 
 glabel spiky_tree_geo # 0x16001000
    geo_start_distance 800
    geo_open_node
-      geo_display_list 0x04, spiky_tree_seg3_dl_03030FA0
+      geo_display_list 0x04, tree_seg3_dl_03030FA0
    geo_close_node
    geo_end
 
 glabel snow_tree_geo # 0x16001018
    geo_start_distance 800
    geo_open_node
-      geo_display_list 0x04, snow_tree_seg3_dl_03032088
+      geo_display_list 0x04, tree_seg3_dl_03032088
    geo_close_node
    geo_end
 
 glabel spiky_tree1_geo # 0x16001030
    geo_start_distance 800
    geo_open_node
-      geo_display_list 0x04, spiky_tree2_seg3_dl_03032170
+      geo_display_list 0x04, tree_seg3_dl_03032170
    geo_close_node
    geo_end
 
 glabel palm_tree_geo # 0x16001048
    geo_start_distance 800
    geo_open_node
-      geo_display_list 0x04, palm_tree_seg3_dl_03033258
+      geo_display_list 0x04, tree_seg3_dl_03033258
    geo_close_node
    geo_end

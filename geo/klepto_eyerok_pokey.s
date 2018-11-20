@@ -36,7 +36,7 @@ glabel klepto_geo # 0x0C000000
                               geo_scale 0x00, 16384
                               geo_open_node
                                  geo_asm 0, Geo18_802A45E4
-                                 geo_translate_rotate 1, 0, 100, 0, 180, 270, 0, marios_cap_seg3_dl_03022F48
+                                 geo_translate_rotate 1, 0, 100, 0, 180, 270, 0, mario_cap_seg3_dl_03022F48
                               geo_close_node
                            geo_close_node
                            geo_node_start

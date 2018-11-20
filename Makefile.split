@@ -7,7 +7,6 @@ BINARY_SEGMENTS := \
    ccm_skybox \
    cloud_floor_skybox \
    clouds_skybox \
-   coins_pipe_doors_maps_trees \
    flower_textures \
    mario_water_sparkles \
    ssl_skybox \
@@ -28,6 +27,7 @@ BOBOMBS_BUBBLE_FILES         := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bo
 BOO_BOOKEND_FILES            := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/boo_bookend_chair_piano/*.png)))
 CAKE_END_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/cake_end/*.png)))
 CAPSWITCH_SPRINGBOARD_FILES  := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/capswitch_springboard/*.png)))
+COINS_PIPE_FILES             := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/coins_pipe_doors_maps_trees/*.png)))
 TITLE_SCREEN_BG_FILES        := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/title_screen_bg/*.png)))
 INTRO_SEG7_FILES             := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/intro_seg7/*.png)))
 MAIN_MENU_SEG7_FILES         := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/main_menu_seg7/*.png)))
@@ -92,6 +92,7 @@ $(BUILD_DIR)/bin/bobombs_bubble.o: $(addprefix $(BUILD_DIR)/bin/bobombs_bubble/,
 $(BUILD_DIR)/bin/boo_bookend_chair_piano.o: $(addprefix $(BUILD_DIR)/bin/boo_bookend_chair_piano/,$(BOO_BOOKEND_FILES))
 $(BUILD_DIR)/bin/cake_end.o: $(addprefix $(BUILD_DIR)/bin/cake_end/,$(CAKE_END_FILES))
 $(BUILD_DIR)/bin/capswitch_springboard.o: $(addprefix $(BUILD_DIR)/bin/capswitch_springboard/,$(CAPSWITCH_SPRINGBOARD_FILES))
+$(BUILD_DIR)/bin/coins_pipe_doors_maps_trees.o: $(addprefix $(BUILD_DIR)/bin/coins_pipe_doors_maps_trees/,$(COINS_PIPE_FILES))
 $(BUILD_DIR)/bin/title_screen_bg.o: $(addprefix $(BUILD_DIR)/bin/title_screen_bg/,$(TITLE_SCREEN_BG_FILES))
 $(BUILD_DIR)/bin/intro_seg7.o: $(addprefix $(BUILD_DIR)/bin/intro_seg7/,$(INTRO_SEG7_FILES))
 $(BUILD_DIR)/bin/main_menu_seg7.o: $(addprefix $(BUILD_DIR)/bin/main_menu_seg7/,$(MAIN_MENU_SEG7_FILES))
@@ -156,6 +157,7 @@ $(BUILD_DIR)/bin/bobombs_bubble.elf: SEGMENT_ADDRESS := 0x05000000
 $(BUILD_DIR)/bin/boo_bookend_chair_piano.elf: SEGMENT_ADDRESS := 0x05000000
 $(BUILD_DIR)/bin/cake_end.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/capswitch_springboard.elf: SEGMENT_ADDRESS := 0x05000000
+$(BUILD_DIR)/bin/coins_pipe_doors_maps_trees.elf: SEGMENT_ADDRESS := 0x03000000
 $(BUILD_DIR)/bin/cotmc_seg7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/title_screen_bg.elf: SEGMENT_ADDRESS := 0x0A000000
 $(BUILD_DIR)/bin/intro_seg7.elf: SEGMENT_ADDRESS := 0x07000000

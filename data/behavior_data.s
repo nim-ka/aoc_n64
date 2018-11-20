@@ -777,7 +777,7 @@ glabel beh_warp_pipe # 07A0
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x09
     obj_set_int VAR_2A, 0x2000
-    collision_data 0x03009AC8
+    collision_data warp_pipe_seg3_collision_03009AC8
     obj_set_float VAR_45, 0x3E80
     obj_set_int VAR_05, 0
     set_hitbox 0x0046, 0x0032
@@ -990,9 +990,9 @@ glabel beh_door # 0B0C
     obj_set_int VAR_2A, 0x04
 .L13000B14: # 0B14
     obj_or_int VAR_01, 0x00C9
-    obj_set_int32 VAR_26, 0x030156C0
+    obj_set_int32 VAR_26, door_seg3_anim_030156C0
     unknown_28 0x00
-    collision_data 0x0301CE78
+    collision_data door_seg3_collision_0301CE78
     set_hitbox 0x0050, 0x0064
     obj_set_int VAR_05, 0
     obj_set_float VAR_43, 0x03E8
@@ -1574,7 +1574,7 @@ glabel beh_floor_switch_hardcoded_model # 1484
     begin OBJ_LIST_SURFACE
 .Lbeh_floor_switch_1488: # 1488
     obj_or_int VAR_01, 0x01
-    collision_data 0x0800C7A8
+    collision_data purple_switch_seg8_collision_0800C7A8
     begin_loop
         callnative BehFloorSwitchLoop
         callnative load_object_collision_model
@@ -1587,7 +1587,7 @@ glabel beh_floor_switch_hidden_objects # 14AC
 glabel beh_hidden_object # 14BC
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
-    collision_data 0x08012D70
+    collision_data breakable_box_seg8_collision_08012D70
     obj_set_float VAR_43, 0x012C
     begin_loop
         callnative BehHiddenObjectLoop
@@ -1596,7 +1596,7 @@ glabel beh_hidden_object # 14BC
 glabel beh_breakable_box # 14E0
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
-    collision_data 0x08012D70
+    collision_data breakable_box_seg8_collision_08012D70
     obj_set_float VAR_43, 0x01F4
     callnative bhv_init_room
     begin_loop
@@ -1608,7 +1608,7 @@ glabel beh_breakable_box # 14E0
 glabel beh_pushable # 1518
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
-    collision_data 0x08024C28
+    collision_data metal_box_seg8_collision_08024C28
     obj_set_float VAR_43, 0x01F4
     unknown_2D
     begin_loop
@@ -1661,7 +1661,7 @@ glabel beh_pound_explodes # 15E4
 glabel beh_beta_trampoline # 1608
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
-    collision_data 0x05001A28
+    collision_data springboard_collision_05001A28
     unknown_2D
     begin_loop
         callnative BehBetaTrampolineLoop
@@ -1935,7 +1935,7 @@ glabel beh_blue_fish # 1B2C
     begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x09
     unknown_2D
-    obj_set_int32 VAR_26, 0x0301C2B0
+    obj_set_int32 VAR_26, fish_seg3_anims_0301C2B0
     unknown_28 0x00
     begin_loop
         callnative BehBlueFishLoop
@@ -1959,7 +1959,7 @@ glabel beh_checkerboard_elevator_group # 1B70
 glabel beh_checkerboard_platform_sub # 1B88
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x41
-    collision_data 0x0800D710
+    collision_data checkerboard_platform_seg8_collision_0800D710
     callnative BehCheckerboardPlatformInit
     unknown_2D
     begin_loop
@@ -1968,7 +1968,7 @@ glabel beh_checkerboard_platform_sub # 1B88
 
 glabel beh_door_key1 # 1BB4
     begin OBJ_LIST_DEFAULT
-    obj_set_int32 VAR_26, 0x030172D0
+    obj_set_int32 VAR_26, bowser_key_seg3_anims_030172D0
     obj_or_int VAR_01, 0x01
     begin_loop
         callnative BehDoorKey1Loop
@@ -1976,7 +1976,7 @@ glabel beh_door_key1 # 1BB4
 
 glabel beh_door_key2 # 1BD4
     begin OBJ_LIST_DEFAULT
-    obj_set_int32 VAR_26, 0x030172D0
+    obj_set_int32 VAR_26, bowser_key_seg3_anims_030172D0
     obj_or_int VAR_01, 0x01
     begin_loop
         callnative BehDoorKey2Loop
@@ -2237,7 +2237,7 @@ glabel beh_piranha_plant_2 # 1FBC
 glabel beh_lll_hexagonal_mesh # 2018
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
-    collision_data 0x0301CECC
+    collision_data lll_hexagonal_mesh_seg3_collision_0301CECC
     begin_loop
         callnative load_object_collision_model
     end_loop
@@ -2372,7 +2372,7 @@ glabel beh_cheep_cheep # 220C
 glabel beh_exclamation_box # 2250
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x09
-    collision_data 0x08025F78
+    collision_data exclamation_box_outline_seg8_collision_08025F78
     obj_or_int VAR_01, 0x01
     obj_set_float VAR_43, 0x012C
     unknown_2D
@@ -2453,7 +2453,7 @@ glabel beh_sushi_shark_collision_child # 2388
 glabel beh_jrb_sliding_box # 23A4
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
-    collision_data 0x0700C8A8
+    collision_data jrb_seg7_collision_floating_box
     unknown_2D
     begin_loop
         callnative BehJrbSlidingBox
@@ -2565,7 +2565,7 @@ glabel beh_purple_switch_hidden_boxes # 2558
 glabel beh_blue_coin_switch # 2568
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
-    collision_data 0x08000E98
+    collision_data blue_coin_switch_seg8_collision_08000E98
     begin_loop
         callnative BehBlueCoinSwitchLoop
     end_loop
@@ -2827,7 +2827,7 @@ glabel beh_bait_coin # 299C
 glabel beh_static_checkered_platform # 29CC
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
-    collision_data 0x0800D710
+    collision_data checkerboard_platform_seg8_collision_0800D710
     unknown_2D
     begin_loop
         callnative BehStaticCheckeredPlatformLoop
@@ -3404,7 +3404,7 @@ glabel beh_bobomb_buddy_cannon_role # 3208
 glabel beh_cannon_trap_door # 3254
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x4001
-    collision_data 0x08004950
+    collision_data cannon_lid_seg8_collision_08004950
     unknown_2D
     callnative BehCannonTrapDoorInit
     begin_loop
@@ -3430,7 +3430,7 @@ glabel beh_jet_stream # 32A8
 glabel beh_message_panel # 32C0
     begin OBJ_LIST_SURFACE
     obj_or_int VAR_01, 0x01
-    collision_data 0x0302DD80
+    collision_data wooden_signpost_seg3_collision_0302DD80
     interact_type 0x00800000
     obj_set_int VAR_42, 0x1000
     unknown_1E
@@ -3481,7 +3481,7 @@ glabel beh_amp # 3368
 glabel beh_butterfly # 339C
     begin OBJ_LIST_DEFAULT
     obj_or_int VAR_01, 0x09
-    obj_set_int32 VAR_26, 0x030056B0
+    obj_set_int32 VAR_26, butterfly_seg3_anims_030056B0
     unknown_1E
     obj_set_float VAR_15, 0x0005
     callnative BehButterflyInit
@@ -5439,7 +5439,7 @@ glabel bRedCoinStarMarker # 554C
 glabel bTripletButterfly # 5578
     begin OBJ_LIST_GENACTOR
     obj_or_int VAR_01, 0x2049
-    obj_set_int32 VAR_26, 0x030056B0
+    obj_set_int32 VAR_26, butterfly_seg3_anims_030056B0
     unknown_28 0x00
     unhide
     unknown_2D

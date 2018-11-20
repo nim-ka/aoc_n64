@@ -53,6 +53,8 @@
     INT_TRIP |\
     INT_HIT_FROM_BELOW)
 
+extern u8 warp_pipe_seg3_collision_03009AC8[];
+
 extern u8 sDelayInvincTimer;
 extern s16 sInvulnerable;
 
@@ -915,7 +917,7 @@ static u32 interact_warp(struct MarioState *m, UNUSED u32 interactType, struct O
             m->usedObj = o;
 
             SetSound(
-                o->collisionData == segmented_to_virtual(D_03009AC8)
+                o->collisionData == segmented_to_virtual(warp_pipe_seg3_collision_03009AC8)
                     ? SOUND_MENU_ENTERPIPE
                     : SOUND_MENU_MARIOHOLE,
                 &m->marioObj->header.gfx.unk54);

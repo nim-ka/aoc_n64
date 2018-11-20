@@ -30813,8 +30813,8 @@ glabel ActionFish0
 /* 07A368 802BF368 3C018033 */  lui   $at, %hi(D_80336B28)
 /* 07A36C 802BF36C C4246B28 */  lwc1  $f4, %lo(D_80336B28)($at)
 /* 07A370 802BF370 E7A40030 */  swc1  $f4, 0x30($sp)
-/* 07A374 802BF374 3C190302 */  lui   $t9, %hi(D_0301C2B0) # $t9, 0x302
-/* 07A378 802BF378 2739C2B0 */  addiu $t9, %lo(D_0301C2B0) # addiu $t9, $t9, -0x3d50
+/* 07A374 802BF374 3C190302 */  lui   $t9, %hi(fish_seg3_anims_0301C2B0) # $t9, 0x302
+/* 07A378 802BF378 2739C2B0 */  addiu $t9, %lo(fish_seg3_anims_0301C2B0) # addiu $t9, $t9, -0x3d50
 /* 07A37C 802BF37C AFB9002C */  sw    $t9, 0x2c($sp)
 /* 07A380 802BF380 10000025 */  b     .L802BF418
 /* 07A384 802BF384 00000000 */   nop   
@@ -30826,8 +30826,8 @@ glabel ActionFish0
 /* 07A398 802BF398 3C018033 */  lui   $at, %hi(D_80336B2C)
 /* 07A39C 802BF39C C4266B2C */  lwc1  $f6, %lo(D_80336B2C)($at)
 /* 07A3A0 802BF3A0 E7A60030 */  swc1  $f6, 0x30($sp)
-/* 07A3A4 802BF3A4 3C0A0302 */  lui   $t2, %hi(D_0301C2B0) # $t2, 0x302
-/* 07A3A8 802BF3A8 254AC2B0 */  addiu $t2, %lo(D_0301C2B0) # addiu $t2, $t2, -0x3d50
+/* 07A3A4 802BF3A4 3C0A0302 */  lui   $t2, %hi(fish_seg3_anims_0301C2B0) # $t2, 0x302
+/* 07A3A8 802BF3A8 254AC2B0 */  addiu $t2, %lo(fish_seg3_anims_0301C2B0) # addiu $t2, $t2, -0x3d50
 /* 07A3AC 802BF3AC AFAA002C */  sw    $t2, 0x2c($sp)
 /* 07A3B0 802BF3B0 10000019 */  b     .L802BF418
 /* 07A3B4 802BF3B4 00000000 */   nop   
@@ -40062,8 +40062,8 @@ glabel BehSurfaceWaveShrinkingInit
 /* 082350 802C7350 0C0A78E2 */  jal   func_8029E388
 /* 082354 802C7354 8C84FDF0 */   lw    $a0, %lo(gCurrentObject)($a0)
 /* 082358 802C7358 AFA2001C */  sw    $v0, 0x1c($sp)
-/* 08235C 802C735C 3C050302 */  lui   $a1, %hi(D_0301C2B0) # $a1, 0x302
-/* 082360 802C7360 24A5C2B0 */  addiu $a1, %lo(D_0301C2B0) # addiu $a1, $a1, -0x3d50
+/* 08235C 802C735C 3C050302 */  lui   $a1, %hi(fish_seg3_anims_0301C2B0) # $a1, 0x302
+/* 082360 802C7360 24A5C2B0 */  addiu $a1, %lo(fish_seg3_anims_0301C2B0) # addiu $a1, $a1, -0x3d50
 /* 082364 802C7364 8FA4001C */  lw    $a0, 0x1c($sp)
 /* 082368 802C7368 0C0A7B88 */  jal   func_8029EE20
 /* 08236C 802C736C 00003025 */   move  $a2, $zero

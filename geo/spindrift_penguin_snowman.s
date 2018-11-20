@@ -106,7 +106,7 @@ glabel mr_blizzard_hidden_geo # 0x0C00021C
                geo_open_node
                   geo_scale 0x00, 65536
                   geo_open_node
-                     geo_translate_rotate 1, 490, 14, 43, 305, 0, 248, marios_cap_seg3_dl_03022F48
+                     geo_translate_rotate 1, 490, 14, 43, 305, 0, 248, mario_cap_seg3_dl_03022F48
                   geo_close_node
                geo_close_node
             geo_close_node

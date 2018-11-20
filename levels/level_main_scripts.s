@@ -31,10 +31,10 @@ glabel level_main_scripts_entry
     cmd22 /*unk2*/ 0x00B9, /*unk4*/ fish_geo
     cmd22 /*unk2*/ 0x00BA, /*unk4*/ fish2_geo
     cmd22 /*unk2*/ 0x008F, /*unk4*/ sparkles_animation_geo
-    cmd21 /*unk2*/ 0x409F, /*unk4*/ coins_TODO_seg3_dl_0302BCD0 
+    cmd21 /*unk2*/ 0x409F, /*unk4*/ sand_seg3_dl_0302BCD0 
     cmd22 /*unk2*/ 0x00BB, /*unk4*/ butterfly_geo
     cmd22 /*unk2*/ 0x009C, /*unk4*/ dirt2_geo
-    cmd21 /*unk2*/ 0x40A1, /*unk4*/ coins_TODO_seg3_dl_0301CB00
+    cmd21 /*unk2*/ 0x40A1, /*unk4*/ pebble_seg3_dl_0301CB00
     cmd22 /*unk2*/ 0x008E, /*unk4*/ mist_geo
     cmd22 /*unk2*/ 0x00E0, /*unk4*/ white_puff_geo
     cmd21 /*unk2*/ 0x409E, /*unk4*/ snow_ball_seg3_dl_0302C8A0

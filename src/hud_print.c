@@ -82,7 +82,7 @@ void func_802E21A4(s16 numHealthWedges)
 {
     u8* (*sp34)[];
 
-    sp34 = segmented_to_virtual(&D_030293E0);
+    sp34 = segmented_to_virtual(&power_meter_seg3_health_icons_030293E0);
     
     gDPPipeSync(gDisplayListHead++);
     gDPSetTextureImage(gDisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, (*sp34)[numHealthWedges - 1]);
@@ -104,13 +104,13 @@ void func_802E2304(s16 numHealthWedges)
     guTranslate(sp2C, (f32) sPowerMeterHUD.x, (f32) sPowerMeterHUD.y, 0);
 
     gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(sp2C++), (G_MTX_MODELVIEW|G_MTX_MUL|G_MTX_PUSH));
-    gSPDisplayList(gDisplayListHead++, &D_03029480);
+    gSPDisplayList(gDisplayListHead++, &power_meter_seg3_dl_03029480);
 
     if (numHealthWedges != 0)
     {
-        gSPDisplayList(gDisplayListHead++, &D_03029570);
+        gSPDisplayList(gDisplayListHead++, &power_meter_seg3_dl_03029570);
         func_802E21A4(numHealthWedges);
-        gSPDisplayList(gDisplayListHead++, &D_030295A0);
+        gSPDisplayList(gDisplayListHead++, &power_meter_seg3_dl_030295A0);
     }
 
     gSPPopMatrix(gDisplayListHead++, 0);

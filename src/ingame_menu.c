@@ -19,10 +19,10 @@ extern s32 gGlobalTimer;
 extern s16 gCurrCourseNum;
 extern s16 gCurrSaveFileNum;
 
-extern Gfx red_coin_seg3_dl_03007940[];
-extern Gfx red_coin_seg3_dl_03007968[];
-extern Gfx red_coin_seg3_dl_03007990[];
-extern Gfx red_coin_seg3_dl_030079B8[];
+extern Gfx coin_seg3_dl_03007940[];
+extern Gfx coin_seg3_dl_03007968[];
+extern Gfx coin_seg3_dl_03007990[];
+extern Gfx coin_seg3_dl_030079B8[];
 
 extern u8 main_menu_seg7_table_0700ABD0[];
 extern Gfx castle_grounds_seg7_dl_0700EA58[];
@@ -1871,16 +1871,16 @@ void PrintAnimatedRedCoin(s16 sp4a, s16 sp4e)
     switch(timer & 6)
     {
         case 0:
-            gSPDisplayList(gDisplayListHead++, red_coin_seg3_dl_03007940);
+            gSPDisplayList(gDisplayListHead++, coin_seg3_dl_03007940);
             break;
         case 2:
-            gSPDisplayList(gDisplayListHead++, red_coin_seg3_dl_03007968);
+            gSPDisplayList(gDisplayListHead++, coin_seg3_dl_03007968);
             break;
         case 4:
-            gSPDisplayList(gDisplayListHead++, red_coin_seg3_dl_03007990);
+            gSPDisplayList(gDisplayListHead++, coin_seg3_dl_03007990);
             break;
         case 6:
-            gSPDisplayList(gDisplayListHead++, red_coin_seg3_dl_030079B8);
+            gSPDisplayList(gDisplayListHead++, coin_seg3_dl_030079B8);
             break;
     }
 

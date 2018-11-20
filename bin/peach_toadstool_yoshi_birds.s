@@ -282,10 +282,11 @@ birds_seg5_anim_050009D0: # 0x050009D0
 glabel birds_seg5_anims_050009E8 # 0x050009E8
 .word birds_seg5_anim_050008D0
 .word birds_seg5_anim_050009D0
+
 .word 0
+.word 0 # Bin ID
 
 # Peach
-
 
 .balign 8
 peach_seg5_light_050009F8: # 0x050009F8
@@ -7524,7 +7525,7 @@ glabel peach_seg5_anims_0501C41C # 0x0501C41C
 .word 0
 
 .word 0
-.word 1
+.word 1 # Bin ID
 
 # Yoshi
 
@@ -10161,4 +10162,4 @@ glabel yoshi_seg5_anims_05024100 # 0x05024100
 .word 0
 
 .word 0
-.word 2
+.word 2 # Bin ID
