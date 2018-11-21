@@ -34,7 +34,7 @@ glabel level_sl_entry
     init_level
     load_mio0 /*seg*/ 0x07, /*romStart*/ _level_sl_segment_7SegmentRomStart, /*romEnd*/ _level_sl_segment_7SegmentRomEnd
     cmd1A     /*seg*/ 0x09, /*romStart*/ _ccm_textures_mio0SegmentRomStart, /*romEnd*/ _ccm_textures_mio0SegmentRomEnd
-    load_mio0 /*seg*/ 0x0B, /*romStart*/ _flower_textures_mio0SegmentRomStart, /*romEnd*/ _flower_textures_mio0SegmentRomEnd
+    load_mio0 /*seg*/ 0x0B, /*romStart*/ _flower_bubbles_textures_mio0SegmentRomStart, /*romEnd*/ _flower_bubbles_textures_mio0SegmentRomEnd
     load_mio0 /*seg*/ 0x0A, /*romStart*/ _ccm_skybox_mio0SegmentRomStart, /*romEnd*/ _ccm_skybox_mio0SegmentRomEnd
     load_mio0 /*seg*/ 0x05, /*romStart*/ _spindrift_penguin_snowman_mio0SegmentRomStart, /*romEnd*/ _spindrift_penguin_snowman_mio0SegmentRomEnd
     load_raw  /*seg*/ 0x0C, /*romStart*/ _spindrift_penguin_snowman_geoSegmentRomStart,  /*romEnd*/ _spindrift_penguin_snowman_geoSegmentRomEnd

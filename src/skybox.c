@@ -26,13 +26,37 @@ struct Struct8032FFC8
     u8 filler3[1];
 };
 
+struct SkyboxList
+{
+    struct Gfx *ptr[50];
+};
+
+extern struct SkyboxList water_skybox_ptrlist_0A020000;
+extern struct SkyboxList bitfs_skybox_ptrlist_0A018800;
+extern struct SkyboxList wdw_skybox_ptrlist_0A020000;
+extern struct SkyboxList cloud_floor_skybox_ptrlist_0A020000;
+extern struct SkyboxList ccm_skybox_ptrlist_0A020000;
+extern struct SkyboxList ssl_skybox_ptrlist_0A020000;
+extern struct SkyboxList bbh_skybox_ptrlist_0A014800;
+extern struct SkyboxList bidw_skybox_ptrlist_0A020000;
+extern struct SkyboxList clouds_skybox_ptrlist_0A014800;
+extern struct SkyboxList bits_skybox_ptrlist_0A020000;
+
 // TODO: These should be defined here
 extern struct Struct8035FF50 D_8035FF50[];
-u32 D_8032FFA0[10] = 
+
+struct SkyboxList *gSkyboxLists[10] = 
 { 
-    0x0A020000, 0x0A018800, 0x0A020000, 0x0A020000, 
-    0x0A020000, 0x0A020000, 0x0A014800, 0x0A020000,
-    0x0A014800, 0x0A020000,
+    &water_skybox_ptrlist_0A020000,       // water_skybox
+    &bitfs_skybox_ptrlist_0A018800,       // bitfs_skybox
+    &wdw_skybox_ptrlist_0A020000,         // wdw_skybox
+    &cloud_floor_skybox_ptrlist_0A020000, // cloud_floor_skybox
+    &ccm_skybox_ptrlist_0A020000,         // ccm_skybox
+    &ssl_skybox_ptrlist_0A020000,         // ssl_skybox
+    &bbh_skybox_ptrlist_0A014800,         // bbh_skybox
+    &bidw_skybox_ptrlist_0A020000,        // bidw_skybox
+    &clouds_skybox_ptrlist_0A014800,      // clouds_skybox
+    &bits_skybox_ptrlist_0A020000,        // bits_skybox
 };
 u8 gSkyboxColors[][3] = 
 {
@@ -119,11 +143,6 @@ Vtx *make_skybox_rect(int a, s8 b)
     return verts;
 }
 
-struct Hack802CEF4C
-{
-    u32 arr[1];  // unknown length
-};
-
 void func_802CEF4C(Gfx **dlist, s8 b, s8 c, s8 d)
 {
     int sp54;
@@ -134,7 +153,7 @@ void func_802CEF4C(Gfx **dlist, s8 b, s8 c, s8 d)
         for (sp50 = 0; sp50 < 3; sp50++)
         {
             int sp4C = D_8035FF50[c].unkC + sp54 * 10 + sp50;
-            u32 sp48 = ((struct Hack802CEF4C *)segmented_to_virtual((void *)D_8032FFA0[b]))->arr[sp4C];
+            struct Gfx *sp48 = ((struct SkyboxList *)segmented_to_virtual((void *)gSkyboxLists[b]))->ptr[sp4C];
             Vtx *vertices = make_skybox_rect(sp4C, d);
 
             // Why is the width 1 here?

@@ -22,7 +22,7 @@ glabel level_sa_entry
     load_mio0 /*seg*/ 0x07, /*romStart*/ _level_sa_segment_7SegmentRomStart, /*romEnd*/ _level_sa_segment_7SegmentRomEnd
     cmd1A     /*seg*/ 0x09, /*romStart*/ _inside_castle_textures_mio0SegmentRomStart, /*romEnd*/ _inside_castle_textures_mio0SegmentRomEnd
     load_mio0 /*seg*/ 0x0A, /*romStart*/ _cloud_floor_skybox_mio0SegmentRomStart, /*romEnd*/ _cloud_floor_skybox_mio0SegmentRomEnd
-    load_mio0 /*seg*/ 0x0B, /*romStart*/ _flower_textures_mio0SegmentRomStart, /*romEnd*/ _flower_textures_mio0SegmentRomEnd
+    load_mio0 /*seg*/ 0x0B, /*romStart*/ _flower_bubbles_textures_mio0SegmentRomStart, /*romEnd*/ _flower_bubbles_textures_mio0SegmentRomEnd
     load_mio0 /*seg*/ 0x05, /*romStart*/ _sea_creatures_mio0SegmentRomStart, /*romEnd*/ _sea_creatures_mio0SegmentRomEnd
     load_raw  /*seg*/ 0x0C, /*romStart*/ _sea_creatures_geoSegmentRomStart,  /*romEnd*/ _sea_creatures_geoSegmentRomEnd
     load_mio0 /*seg*/ 0x06, /*romStart*/ _skeeter_fish_treasurechest_mio0SegmentRomStart, /*romEnd*/ _skeeter_fish_treasurechest_mio0SegmentRomEnd

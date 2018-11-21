@@ -20,7 +20,7 @@ glabel level_bowser_2_entry
     init_level
     load_mio0 /*seg*/ 0x0A, /*romStart*/ _bitfs_skybox_mio0SegmentRomStart, /*romEnd*/ _bitfs_skybox_mio0SegmentRomEnd
     cmd1A     /*seg*/ 0x09, /*romStart*/ _lll_textures_mio0SegmentRomStart, /*romEnd*/ _lll_textures_mio0SegmentRomEnd
-    load_mio0 /*seg*/ 0x0B, /*romStart*/ _flower_textures_mio0SegmentRomStart, /*romEnd*/ _flower_textures_mio0SegmentRomEnd
+    load_mio0 /*seg*/ 0x0B, /*romStart*/ _flower_bubbles_textures_mio0SegmentRomStart, /*romEnd*/ _flower_bubbles_textures_mio0SegmentRomEnd
     load_mio0 /*seg*/ 0x07, /*romStart*/ _level_bowser_2_segment_7SegmentRomStart, /*romEnd*/ _level_bowser_2_segment_7SegmentRomEnd
     load_mio0 /*seg*/ 0x06, /*romStart*/ _bowser_flames_bomb_mio0SegmentRomStart, /*romEnd*/ _bowser_flames_bomb_mio0SegmentRomEnd
     load_raw  /*seg*/ 0x0D, /*romStart*/ _bowser_flames_bomb_geoSegmentRomStart, /*romEnd*/ _bowser_flames_bomb_geoSegmentRomEnd

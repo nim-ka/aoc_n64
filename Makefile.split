@@ -1,17 +1,3 @@
-# segments currently in binary form. should be removed as they are decomposed into resources
-BINARY_SEGMENTS := \
-   bbh_skybox \
-   bidw_skybox \
-   bitfs_skybox \
-   bits_skybox \
-   ccm_skybox \
-   cloud_floor_skybox \
-   clouds_skybox \
-   flower_textures \
-   ssl_skybox \
-   water_skybox \
-   wdw_skybox
-
 # obtain a list of segments from the *.s and *.s.in files in bin directory
 SEGMENTS := $(notdir $(basename $(wildcard bin/*.s) $(basename $(wildcard bin/*.s.in))))
 TEXTURE_DIRS := $(addprefix bin/,$(SEGMENTS)) bin/intro_raw
@@ -50,6 +36,7 @@ CCM_TEXTURES_FILES           := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/cc
 CHILLYCHIEF_FILES            := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/chillychief_moneybag/*.png)))
 DDD_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/ddd_seg7/*.png)))
 COTMC_SEG7_FILES             := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/cotmc_seg7/*.png)))
+FLOWER_TEXTURES_FILES        := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/flower_bubbles_textures/*.png)))
 HMC_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/hmc_seg7/*.png)))
 HMC_TEXTURES_FILES           := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/hmc_textures/*.png)))
 HOOT_THWOMP_FILES            := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/hoot_thwomp_bullet_heave/*.png)))
@@ -86,6 +73,18 @@ WF_SEG7_FILES                := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/wf
 WF_TEXTURES_FILES            := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/wf_textures/*.png)))
 WMOTR_SEG7_FILES             := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/wmotr_seg7/*.png)))
 
+# Skybox Files
+BBH_SKYBOX_FILES             := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bbh_skybox/*.png)))
+BIDW_SKYBOX_FILES            := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bidw_skybox/*.png)))
+BITFS_SKYBOX_FILES           := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bitfs_skybox/*.png)))
+BITS_SKYBOX_FILES            := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bits_skybox/*.png)))
+CCM_SKYBOX_FILES             := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/ccm_skybox/*.png)))
+CLOUD_FLOOR_SKYBOX_FILES     := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/cloud_floor_skybox/*.png)))
+CLOUDS_SKYBOX_FILES          := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/clouds_skybox/*.png)))
+SSL_SKYBOX_FILES             := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/ssl_skybox/*.png)))
+WATER_SKYBOX_FILES           := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/water_skybox/*.png)))
+WDW_SKYBOX_FILES             := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/wdw_skybox/*.png)))
+
 $(BUILD_DIR)/bin/segment2.o: $(addprefix $(BUILD_DIR)/bin/segment2/,$(SEGMENT2_FILES))
 $(BUILD_DIR)/bin/amp_chuckya_flyguy_goomba_boxes.o: $(addprefix $(BUILD_DIR)/bin/amp_chuckya_flyguy_goomba_boxes/,$(AMP_CHUCKYA_FILES))
 $(BUILD_DIR)/bin/bobombs_bubble.o: $(addprefix $(BUILD_DIR)/bin/bobombs_bubble/,$(BOBOMBS_BUBBLE_FILES))
@@ -116,6 +115,7 @@ $(BUILD_DIR)/bin/ccm_textures.o: $(addprefix $(BUILD_DIR)/bin/ccm_textures/,$(CC
 $(BUILD_DIR)/bin/chillychief_moneybag.o: $(addprefix $(BUILD_DIR)/bin/chillychief_moneybag/,$(CHILLYCHIEF_FILES))
 $(BUILD_DIR)/bin/ddd_seg7.o: $(addprefix $(BUILD_DIR)/bin/ddd_seg7/,$(DDD_SEG7_FILES))
 $(BUILD_DIR)/bin/cotmc_seg7.o: $(addprefix $(BUILD_DIR)/bin/cotmc_seg7/,$(COTMC_SEG7_FILES))
+$(BUILD_DIR)/bin/flower_bubbles_textures.o: $(addprefix $(BUILD_DIR)/bin/flower_bubbles_textures/,$(FLOWER_TEXTURES_FILES))
 $(BUILD_DIR)/bin/hmc_seg7.o: $(addprefix $(BUILD_DIR)/bin/hmc_seg7/,$(HMC_SEG7_FILES))
 $(BUILD_DIR)/bin/hmc_textures.o: $(addprefix $(BUILD_DIR)/bin/hmc_textures/,$(HMC_TEXTURES_FILES))
 $(BUILD_DIR)/bin/hoot_thwomp_bullet_heave.o: $(addprefix $(BUILD_DIR)/bin/hoot_thwomp_bullet_heave/,$(HOOT_THWOMP_FILES))
@@ -152,6 +152,18 @@ $(BUILD_DIR)/bin/wf_seg7.o: $(addprefix $(BUILD_DIR)/bin/wf_seg7/,$(WF_SEG7_FILE
 $(BUILD_DIR)/bin/wf_textures.o: $(addprefix $(BUILD_DIR)/bin/wf_textures/,$(WF_TEXTURES_FILES))
 $(BUILD_DIR)/bin/wmotr_seg7.o: $(addprefix $(BUILD_DIR)/bin/wmotr_seg7/,$(WMOTR_SEG7_FILES))
 
+# Skybox Files
+$(BUILD_DIR)/bin/bbh_skybox.o: $(addprefix $(BUILD_DIR)/bin/bbh_skybox/,$(BBH_SKYBOX_FILES))
+$(BUILD_DIR)/bin/bidw_skybox.o: $(addprefix $(BUILD_DIR)/bin/bidw_skybox/,$(BIDW_SKYBOX_FILES))
+$(BUILD_DIR)/bin/bitfs_skybox.o: $(addprefix $(BUILD_DIR)/bin/bitfs_skybox/,$(BITFS_SKYBOX_FILES))
+$(BUILD_DIR)/bin/bits_skybox.o: $(addprefix $(BUILD_DIR)/bin/bits_skybox/,$(BITS_SKYBOX_FILES))
+$(BUILD_DIR)/bin/ccm_skybox.o: $(addprefix $(BUILD_DIR)/bin/ccm_skybox/,$(CCM_SKYBOX_FILES))
+$(BUILD_DIR)/bin/cloud_floor_skybox.o: $(addprefix $(BUILD_DIR)/bin/cloud_floor_skybox/,$(CLOUD_FLOOR_SKYBOX_FILES))
+$(BUILD_DIR)/bin/clouds_skybox.o: $(addprefix $(BUILD_DIR)/bin/clouds_skybox/,$(CLOUDS_SKYBOX_FILES))
+$(BUILD_DIR)/bin/ssl_skybox.o: $(addprefix $(BUILD_DIR)/bin/ssl_skybox/,$(SSL_SKYBOX_FILES))
+$(BUILD_DIR)/bin/water_skybox.o: $(addprefix $(BUILD_DIR)/bin/water_skybox/,$(WATER_SKYBOX_FILES))
+$(BUILD_DIR)/bin/wdw_skybox.o: $(addprefix $(BUILD_DIR)/bin/wdw_skybox/,$(WDW_SKYBOX_FILES))
+
 $(BUILD_DIR)/bin/segment2.elf: SEGMENT_ADDRESS := 0x02000000
 $(BUILD_DIR)/bin/amp_chuckya_flyguy_goomba_boxes.elf: SEGMENT_ADDRESS := 0x08000000
 $(BUILD_DIR)/bin/bobombs_bubble.elf: SEGMENT_ADDRESS := 0x05000000
@@ -180,6 +192,7 @@ $(BUILD_DIR)/bin/ccm_seg7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/chillychief_moneybag.elf: SEGMENT_ADDRESS := 0x06000000
 $(BUILD_DIR)/bin/ddd_seg7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/debug_level_select.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/flower_bubbles_textures.elf: SEGMENT_ADDRESS := 0x0B000000
 $(BUILD_DIR)/bin/hmc_seg7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/hoot_thwomp_bullet_heave.elf: SEGMENT_ADDRESS := 0x05000000
 $(BUILD_DIR)/bin/inside_castle_seg7.elf: SEGMENT_ADDRESS := 0x07000000
@@ -220,6 +233,18 @@ $(BUILD_DIR)/bin/rr_textures.elf: SEGMENT_ADDRESS := 0x09000000
 $(BUILD_DIR)/bin/ttc_textures.elf: SEGMENT_ADDRESS := 0x09000000
 $(BUILD_DIR)/bin/ttm_textures.elf: SEGMENT_ADDRESS := 0x09000000
 $(BUILD_DIR)/bin/wf_textures.elf: SEGMENT_ADDRESS := 0x09000000
+
+# Skybox Files
+$(BUILD_DIR)/bin/bbh_skybox.elf: SEGMENT_ADDRESS := 0x0A000000
+$(BUILD_DIR)/bin/bidw_skybox.elf: SEGMENT_ADDRESS := 0x0A000000
+$(BUILD_DIR)/bin/bitfs_skybox.elf: SEGMENT_ADDRESS := 0x0A000000
+$(BUILD_DIR)/bin/bits_skybox.elf: SEGMENT_ADDRESS := 0x0A000000
+$(BUILD_DIR)/bin/ccm_skybox.elf: SEGMENT_ADDRESS := 0x0A000000
+$(BUILD_DIR)/bin/cloud_floor_skybox.elf: SEGMENT_ADDRESS := 0x0A000000
+$(BUILD_DIR)/bin/clouds_skybox.elf: SEGMENT_ADDRESS := 0x0A000000
+$(BUILD_DIR)/bin/ssl_skybox.elf: SEGMENT_ADDRESS := 0x0A000000
+$(BUILD_DIR)/bin/water_skybox.elf: SEGMENT_ADDRESS := 0x0A000000
+$(BUILD_DIR)/bin/wdw_skybox.elf: SEGMENT_ADDRESS := 0x0A000000
 
 # intro_raw textures are not compressed
 INTRO_RAW_FILES              := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/intro_raw/*.png)))

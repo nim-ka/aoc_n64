@@ -482,7 +482,7 @@ SECTIONS
    MIO0_SEG(wf_textures, 0x09000000)
    MIO0_SEG(castle_grounds_textures, 0x09000000)
    MIO0_SEG(inside_castle_textures, 0x09000000)
-   MIO0_SEG(flower_textures, 0x0B000000)
+   MIO0_SEG(flower_bubbles_textures, 0x0B000000)
 
    STANDARD_LEVEL(level_bbh)
    STANDARD_LEVEL(level_ccm)
