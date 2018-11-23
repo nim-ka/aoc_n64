@@ -163,9 +163,9 @@
 #define /*0x110*/ oToadMessageState OBJECT_FIELD_S32(0x22)
 
 /* Sealed door star */
-#define /*0x108*/ oSealedDoorStarUnk108 OBJECT_FIELD_U32(0x20)
-#define /*0x10C*/ oSealedDoorStarUnk10C OBJECT_FIELD_S32(0x21)
-#define /*0x10C*/ oSealedDoorStarUnk110 OBJECT_FIELD_S32(0x22)
+#define /*0x108*/ oUnlockDoorStarState OBJECT_FIELD_U32(0x20)
+#define /*0x10C*/ oUnlockDoorStarTimer OBJECT_FIELD_S32(0x21)
+#define /*0x10C*/ oUnlockDoorStarYawVel OBJECT_FIELD_S32(0x22)
 
 /* Bob-omb */
 #define /*0x0F4*/ oBobombBlinkTimer OBJECT_FIELD_S32(0x1B)

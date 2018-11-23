@@ -24,12 +24,10 @@
 #include "skybox.h"
 #include "interaction.h"
 
-struct Struct802761D0
-{
-    u16 unk0;
-    s16 unk2;
-    u8 filler4[0x18-0x4];
-};
+static s8 D_8032CDF0[7] = {0x01, 0x02, 0x01, 0x00, 0x01, 0x02, 0x01};
+static s8 D_8032CDF8[] = {0x0a, 0x0c, 0x10, 0x18, 0x0a, 0x0a, 0x0a, 0x0e, 0x14, 0x1e, 0x0a, 0x0a, 0x0a, 0x10, 0x14, 0x1a, 0x1a, 0x14, 0x00, 0x00};
+static s16 D_8032CE0C = 0;
+
 
 Gfx *Geo18_802761D0(int a, struct GraphNode *b, float c[4][4])
 {
@@ -76,19 +74,6 @@ Gfx *Geo18_802761D0(int a, struct GraphNode *b, float c[4][4])
     return sp38;
 }
 
-struct Struct802763D4
-{
-    u8 filler0[0x18];
-    s32 unk18;
-    s32 unk1C;
-};
-
-struct Struct802763D4_Unknown
-{
-    u8 filler0[0x1C];
-    float unk1C;
-};
-
 Gfx *Geo19_802763D4(int a, struct GraphNode *b, UNUSED Mat4 *c)
 {
     Gfx *sp3C = NULL;
@@ -129,7 +114,7 @@ Gfx *Geo18_802764B0(int a, struct GraphNode *b, Mat4 *c)
     return sp24;
 }
 
-void BehToadMessageFaded(void)
+static void beh_toad_message_faded(void)
 {
     if (gCurrentObject->oDistanceToMario > 700.0f)
         gCurrentObject->oToadMessageRecentlyTalked = 0;
@@ -137,7 +122,7 @@ void BehToadMessageFaded(void)
         gCurrentObject->oToadMessageState = TOAD_MESSAGE_OPACIFYING;
 }
 
-void BehToadMessageOpaque(void)
+static void beh_toad_message_opaque(void)
 {
     if (gCurrentObject->oDistanceToMario > 700.0f)
     {
@@ -158,7 +143,7 @@ void BehToadMessageOpaque(void)
     }
 }
 
-void BehToadMessageTalking(void)
+static void beh_toad_message_talking(void)
 {
     if (obj_update_dialogue_unk2(3, 1, 162, gCurrentObject->oToadMessageDialogNum) != 0)
     {
@@ -182,19 +167,19 @@ void BehToadMessageTalking(void)
     }
 }
 
-void BehToadMessageOpacifying(void)
+static void beh_toad_message_opacifying(void)
 {
     if ((gCurrentObject->oOpacity += 6) == 255)
         gCurrentObject->oToadMessageState = TOAD_MESSAGE_OPAQUE;
 }
 
-void BehToadMessageFading(void)
+static void beh_toad_message_fading(void)
 {
     if ((gCurrentObject->oOpacity -= 6) == 81)
         gCurrentObject->oToadMessageState = TOAD_MESSAGE_FADED;
 }
 
-void BehToadMessageLoop(void)
+void beh_toad_message_loop(void)
 {
     if (gCurrentObject->header.gfx.node.flags & 1)
     {
@@ -202,25 +187,25 @@ void BehToadMessageLoop(void)
         switch (gCurrentObject->oToadMessageState)
         {
         case TOAD_MESSAGE_FADED:
-            BehToadMessageFaded();
+            beh_toad_message_faded();
             break;
         case TOAD_MESSAGE_OPAQUE:
-            BehToadMessageOpaque();
+            beh_toad_message_opaque();
             break;
         case TOAD_MESSAGE_OPACIFYING:
-            BehToadMessageOpacifying();
+            beh_toad_message_opacifying();
             break;
         case TOAD_MESSAGE_FADING:
-            BehToadMessageFading();
+            beh_toad_message_fading();
             break;
         case TOAD_MESSAGE_TALKING:
-            BehToadMessageTalking();
+            beh_toad_message_talking();
             break;
         }
     }
 }
 
-void BehToadMessageInit(void)
+void beh_toad_message_init(void)
 {
     int saveFlags = save_file_get_flags();
     int starCount = save_file_get_total_star_count(gCurrSaveFileNum - 1, 0, 24);
@@ -258,20 +243,21 @@ void BehToadMessageInit(void)
     }
 }
 
-void func_802764F0(s16 a)
+static void beh_unlock_door_star_spawn_particle(s16 angleOffset)
 {
-    struct Object *sp1C = spawn_object(gCurrentObject, 0, beh_powerup_sparkles2);
+    struct Object *sparkleParticle = spawn_object(gCurrentObject, 0, beh_powerup_sparkles2);
 
-    sp1C->oPosX += 100.0f * sins((gCurrentObject->oSealedDoorStarUnk10C * 0x2800) + a);
-    sp1C->oPosZ += 100.0f * coss((gCurrentObject->oSealedDoorStarUnk10C * 0x2800) + a);
-    sp1C->oPosY -= gCurrentObject->oSealedDoorStarUnk10C * 10.0f;
+    sparkleParticle->oPosX += 100.0f * sins((gCurrentObject->oUnlockDoorStarTimer * 0x2800) + angleOffset);
+    sparkleParticle->oPosZ += 100.0f * coss((gCurrentObject->oUnlockDoorStarTimer * 0x2800) + angleOffset);
+    // Particles are spawned lower each frame
+    sparkleParticle->oPosY -= gCurrentObject->oUnlockDoorStarTimer * 10.0f;
 }
 
-void BehSealedDoorStarInit(void)
+void beh_unlock_door_star_init(void)
 {
-    gCurrentObject->oSealedDoorStarUnk108 = 0;
-    gCurrentObject->oSealedDoorStarUnk10C = 0;
-    gCurrentObject->oSealedDoorStarUnk110 = 4096;
+    gCurrentObject->oUnlockDoorStarState = UNLOCK_DOOR_STAR_RISING;
+    gCurrentObject->oUnlockDoorStarTimer = 0;
+    gCurrentObject->oUnlockDoorStarYawVel = 0x1000;
     gCurrentObject->oPosX += 30.0f * sins(gMarioState->faceAngle[1] - 0x4000);
     gCurrentObject->oPosY += 160.0f;
     gCurrentObject->oPosZ += 30.0f * coss(gMarioState->faceAngle[1] - 0x4000);
@@ -279,63 +265,59 @@ void BehSealedDoorStarInit(void)
     scale_object(gCurrentObject, 0.5f);
 }
 
-void BehSealedDoorStarLoop(void)
+void beh_unlock_door_star_loop(void)
 {
     UNUSED u8 unused1[4];
-    s16 sp2A = gCurrentObject->oMoveAngleYaw;
+    s16 prevYaw = gCurrentObject->oMoveAngleYaw;
     UNUSED u8 unused2[4];
 
-    if (gCurrentObject->oSealedDoorStarUnk110 < 0x2400)
-        gCurrentObject->oSealedDoorStarUnk110 += 0x60;
-    switch (gCurrentObject->oSealedDoorStarUnk108)
+    // Speed up the star every frame
+    if (gCurrentObject->oUnlockDoorStarYawVel < 0x2400)
+        gCurrentObject->oUnlockDoorStarYawVel += 0x60;
+    switch (gCurrentObject->oUnlockDoorStarState)
     {
-    case 0:
-        gCurrentObject->oPosY += 3.4f;
-        gCurrentObject->oMoveAngleYaw += gCurrentObject->oSealedDoorStarUnk110;
-        scale_object(gCurrentObject, gCurrentObject->oSealedDoorStarUnk10C / 50.0f + 0.5f);
-        if (++gCurrentObject->oSealedDoorStarUnk10C == 30)
+    case UNLOCK_DOOR_STAR_RISING:
+        gCurrentObject->oPosY += 3.4f; // Raise the star up in the air
+        gCurrentObject->oMoveAngleYaw += gCurrentObject->oUnlockDoorStarYawVel; // Apply yaw velocity
+        scale_object(gCurrentObject, gCurrentObject->oUnlockDoorStarTimer / 50.0f + 0.5f); // Scale the star to be bigger
+        if (++gCurrentObject->oUnlockDoorStarTimer == 30)
         {
-            gCurrentObject->oSealedDoorStarUnk10C = 0;
-            gCurrentObject->oSealedDoorStarUnk108++;
+            gCurrentObject->oUnlockDoorStarTimer = 0;
+            gCurrentObject->oUnlockDoorStarState++; // Sets state to UNLOCK_DOOR_STAR_WAITING
         }
         break;
-    case 1:
-        gCurrentObject->oMoveAngleYaw += gCurrentObject->oSealedDoorStarUnk110;
-        if (++gCurrentObject->oSealedDoorStarUnk10C == 30)
+    case UNLOCK_DOOR_STAR_WAITING:
+        gCurrentObject->oMoveAngleYaw += gCurrentObject->oUnlockDoorStarYawVel; // Apply yaw velocity
+        if (++gCurrentObject->oUnlockDoorStarTimer == 30)
         {
-            SetSound(SOUND_MENU_STARSOUND, &gCurrentObject->header.gfx.unk54);
-            obj_hide();
-            gCurrentObject->oSealedDoorStarUnk10C = 0;
-            gCurrentObject->oSealedDoorStarUnk108++;
+            SetSound(SOUND_MENU_STARSOUND, &gCurrentObject->header.gfx.unk54); // Play final sound
+            obj_hide(); // Hide the object
+            gCurrentObject->oUnlockDoorStarTimer = 0;
+            gCurrentObject->oUnlockDoorStarState++; // Sets state to UNLOCK_DOOR_STAR_SPAWNING_PARTICLES
         }
         break;
-    case 2:
-        func_802764F0(0);
-        func_802764F0(-0x8000);
-        if (gCurrentObject->oSealedDoorStarUnk10C++ == 20)
+    case UNLOCK_DOOR_STAR_SPAWNING_PARTICLES:
+        // Spawn two particles, opposite sides of the star.
+        beh_unlock_door_star_spawn_particle(0);
+        beh_unlock_door_star_spawn_particle(0x8000);
+        if (gCurrentObject->oUnlockDoorStarTimer++ == 20)
         {
-            gCurrentObject->oSealedDoorStarUnk10C = 0;
-            gCurrentObject->oSealedDoorStarUnk108++;
+            gCurrentObject->oUnlockDoorStarTimer = 0;
+            gCurrentObject->oUnlockDoorStarState++; // Sets state to UNLOCK_DOOR_STAR_DONE
         }
         break;
-    case 3:
-        if (gCurrentObject->oSealedDoorStarUnk10C++ == 50)
+    case UNLOCK_DOOR_STAR_DONE: // The object stays loaded for an additional 50 frames so that the sound doesn't immediately stop.
+        if (gCurrentObject->oUnlockDoorStarTimer++ == 50)
             DeactivateObject(gCurrentObject);
         break;
     }
-    if (sp2A > (s16)gCurrentObject->oMoveAngleYaw)
-        SetSound(SOUND_GENERAL_SHORTSTAR, &gCurrentObject->header.gfx.unk54);
+    // Checks if the angle has cycled back to 0.
+    // This means that the code will execute when the star completes a full revolution.
+    if (prevYaw > (s16)gCurrentObject->oMoveAngleYaw)
+        SetSound(SOUND_GENERAL_SHORTSTAR, &gCurrentObject->header.gfx.unk54); // Play a sound every time the star spins once
 }
 
-struct Struct802769E0
-{
-    u8 filler0[2];
-    s16 unk2;
-    u8 filler4[0x18-0x4];
-    s32 unk18;
-};
-
-Gfx *func_802769E0(struct Struct802769E0 *a, s16 b)
+static Gfx *func_802769E0(struct Struct802769E0 *a, s16 b)
 {
     Gfx *sp2C;
     Gfx *sp28 = NULL;
@@ -358,23 +340,6 @@ Gfx *func_802769E0(struct Struct802769E0 *a, s16 b)
     return sp28;
 }
 
-struct Struct8033A040
-{
-    u32 unk0;
-    s8 unk4;
-    s8 unk5;
-    s8 unk6;
-    s8 unk7;
-    s16 unk8;
-    u8 fillerA[1];
-    u8 unkB;
-    Vec3s unkC;
-    Vec3s unk12;
-    u8 filler18[0x28-0x18];
-};
-
-extern struct Struct8033A040 D_8033A040[];
-
 Gfx *Geo18_802770A4(int a, struct GraphNode *b, UNUSED Mat4 *c)
 {
     UNUSED u8 unused1[4];
@@ -392,15 +357,6 @@ Gfx *Geo18_802770A4(int a, struct GraphNode *b, UNUSED Mat4 *c)
     return sp28;
 }
 
-struct Struct80277150
-{
-    struct GraphNode node;
-    u8 filler14[0x4];
-    float unk18;
-    s16 unk1C;
-    s16 unk1E;
-};
-
 Gfx *GeoSwitchCase80277150(int a, struct GraphNode *b, UNUSED Mat4 *c)
 {
     struct Struct80277150 *sp4 = (struct Struct80277150 *)b;
@@ -410,8 +366,6 @@ Gfx *GeoSwitchCase80277150(int a, struct GraphNode *b, UNUSED Mat4 *c)
         sp4->unk1E = ((sp0->unk0 & 0x200) == 0);
     return NULL;
 }
-
-s8 D_8032CDF0[7] = {0x01, 0x02, 0x01, 0x00, 0x01, 0x02, 0x01};
 
 Gfx *GeoSwitchCase802771BC(int a, struct GraphNode *b, UNUSED Mat4 *c)
 {
@@ -437,22 +391,6 @@ Gfx *GeoSwitchCase802771BC(int a, struct GraphNode *b, UNUSED Mat4 *c)
     return NULL;
 }
 
-struct Struct80277294
-{
-    struct GraphNode node;
-    u8 filler14[0x4];
-    s32 unk18;
-};
-
-struct Struct80277294_2
-{
-    struct GraphNode node;
-    u8 filler14[4];
-    s16 unk18;
-    s16 unk1A;
-    s16 unk1C;
-};
-
 Gfx *Geo18_80277294(int a, struct GraphNode *b, UNUSED Mat4 *c)
 {
     struct Struct80277294 *sp24 = (struct Struct80277294 *)b;
@@ -471,20 +409,6 @@ Gfx *Geo18_80277294(int a, struct GraphNode *b, UNUSED Mat4 *c)
     }
     return NULL;
 }
-
-struct Struct802773A4
-{
-    struct GraphNode node;
-    u8 filler14[0x4];
-    s32 unk18;
-};
-
-struct Struct802773A4_2
-{
-    struct GraphNode node;
-    u8 filler14[0x4];
-    Vec3s unk18;
-};
 
 Gfx *Geo18_802773A4(int a, struct GraphNode *b, UNUSED Mat4 *c)
 {
@@ -538,16 +462,6 @@ Gfx *GeoSwitchCase802774F4(int a, struct GraphNode *b, UNUSED Mat4 *c)
     }
     return NULL;
 }
-
-struct Struct802775CC
-{
-    struct GraphNode node;
-    u8 filler14[4];
-    s32 unk18;
-};
-
-s8 D_8032CDF8[] = {0x0a, 0x0c, 0x10, 0x18, 0x0a, 0x0a, 0x0a, 0x0e, 0x14, 0x1e, 0x0a, 0x0a, 0x0a, 0x10, 0x14, 0x1a, 0x1a, 0x14, 0x00, 0x00};
-s16 D_8032CE0C = 0;
 
 Gfx *Geo18_802775CC(int a, struct GraphNode *b, UNUSED Mat4 *c)
 {
@@ -605,20 +519,6 @@ Gfx *GeoSwitchCase80277740(int a, struct GraphNode *b, UNUSED Mat4 *c)
     return NULL;
 }
 
-struct Struct80277824
-{
-    struct GraphNode node;
-    u8 filler14[4];
-    u32 unk18;
-};
-
-struct Struct80277824_2
-{
-    struct GraphNode node;
-    u8 filler14[4];
-    s16 unk18;
-};
-
 Gfx *Geo18_80277824(int a, struct GraphNode *b, UNUSED Mat4 *c)
 {
     s16 spE;
@@ -639,15 +539,6 @@ Gfx *Geo18_80277824(int a, struct GraphNode *b, UNUSED Mat4 *c)
     }
     return NULL;
 }
-
-struct Struct8027795C
-{
-    struct GraphNode node;
-    u8 filler14[4];
-    s32 unk18;
-    struct Object *unk1C;
-    Vec3s unk20;
-};
 
 Gfx *Geo1C_8027795C(int a, struct GraphNode *b, Mat4 *c)
 {
@@ -684,8 +575,6 @@ Gfx *Geo1C_8027795C(int a, struct GraphNode *b, Mat4 *c)
     }
     return NULL;
 }
-
-extern struct GraphNodeObject D_80339FE0;
 
 Gfx *Geo18_80277B14(int a, struct GraphNode *b, UNUSED Mat4 *c)
 {
@@ -733,13 +622,6 @@ Gfx *Geo18_80277B14(int a, struct GraphNode *b, UNUSED Mat4 *c)
     }
     return NULL;
 }
-
-struct Struct80277D6C
-{
-    struct GraphNode node;
-    u8 filler14[4];
-    s32 unk18;
-};
 
 Gfx *Geo18_80277D6C(int a, struct GraphNode *b, UNUSED Mat4 *c)
 {

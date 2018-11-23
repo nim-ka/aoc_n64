@@ -3181,17 +3181,17 @@ glabel beh_toad_message # 2ED8
     set_hitbox 0x0050, 0x0064
     obj_set_int VAR_05, 0
     callnative bhv_init_room
-    callnative BehToadMessageInit
+    callnative beh_toad_message_init
     begin_loop
-        callnative BehToadMessageLoop
+        callnative beh_toad_message_loop
     end_loop
 
-glabel beh_sealed_door_star # 2F20
+glabel beh_unlock_door_star # 2F20
     begin OBJ_LIST_LEVEL
     obj_or_int VAR_01, 0x09
-    callnative BehSealedDoorStarInit
+    callnative beh_unlock_door_star_init
     begin_loop
-        callnative BehSealedDoorStarLoop
+        callnative beh_unlock_door_star_loop
     end_loop
 
 glabel beh_warps_60 # 2F40

@@ -24,6 +24,132 @@ enum ToadMessageStates {
     TOAD_MESSAGE_TALKING
 };
 
+enum UnlockDoorStarStates {
+    UNLOCK_DOOR_STAR_RISING,
+    UNLOCK_DOOR_STAR_WAITING,
+    UNLOCK_DOOR_STAR_SPAWNING_PARTICLES,
+    UNLOCK_DOOR_STAR_DONE
+};
+
+struct Struct802761D0
+{
+    u16 unk0;
+    s16 unk2;
+    u8 filler4[0x18-0x4];
+};
+
+struct Struct802763D4
+{
+    u8 filler0[0x18];
+    s32 unk18;
+    s32 unk1C;
+};
+
+struct Struct802763D4_Unknown
+{
+    u8 filler0[0x1C];
+    float unk1C;
+};
+
+struct Struct802769E0
+{
+    u8 filler0[2];
+    s16 unk2;
+    u8 filler4[0x18-0x4];
+    s32 unk18;
+};
+
+struct Struct80277150
+{
+    struct GraphNode node;
+    u8 filler14[0x4];
+    float unk18;
+    s16 unk1C;
+    s16 unk1E;
+};
+
+struct Struct80277294
+{
+    struct GraphNode node;
+    u8 filler14[0x4];
+    s32 unk18;
+};
+
+struct Struct80277294_2
+{
+    struct GraphNode node;
+    u8 filler14[4];
+    s16 unk18;
+    s16 unk1A;
+    s16 unk1C;
+};
+
+struct Struct802773A4
+{
+    struct GraphNode node;
+    u8 filler14[0x4];
+    s32 unk18;
+};
+
+struct Struct802773A4_2
+{
+    struct GraphNode node;
+    u8 filler14[0x4];
+    Vec3s unk18;
+};
+
+struct Struct802775CC
+{
+    struct GraphNode node;
+    u8 filler14[4];
+    s32 unk18;
+};
+
+struct Struct80277824
+{
+    struct GraphNode node;
+    u8 filler14[4];
+    u32 unk18;
+};
+
+struct Struct80277824_2
+{
+    struct GraphNode node;
+    u8 filler14[4];
+    s16 unk18;
+};
+
+struct Struct8027795C
+{
+    struct GraphNode node;
+    u8 filler14[4];
+    s32 unk18;
+    struct Object *unk1C;
+    Vec3s unk20;
+};
+
+struct Struct80277D6C
+{
+    struct GraphNode node;
+    u8 filler14[4];
+    s32 unk18;
+};
+
+struct Struct8033A040
+{
+    u32 unk0;
+    s8 unk4;
+    s8 unk5;
+    s8 unk6;
+    s8 unk7;
+    s16 unk8;
+    u8 fillerA[1];
+    u8 unkB;
+    Vec3s unkC;
+    Vec3s unk12;
+    u8 filler18[0x28-0x18];
+};
+
 struct Struct8033B328
 {
     Vec3f unk0[6];
@@ -56,40 +182,29 @@ struct Struct8033B328
     float unkB0;
 };
 
+extern struct Struct8033A040 D_8033A040[];
 extern struct Struct8033B328 D_8033B328;
-// extern ? D_8032CE0C;
-// extern ? D_80385FE4;
-// extern ? D_80339FE0;
-// extern ? D_80339FF4;
-// extern ? D_80339FF8;
-// extern ? D_8033A040;
+extern struct GraphNodeObject D_80339FE0;
 
-// extern ? Geo18_802761D0(?);
-// extern ? Geo19_802763D4(?);
-// extern ? Geo18_802764B0(?);
-// extern ? BehToadMessageFaded(?);
-// extern ? BehToadMessageOpaque(?);
-// extern ? BehToadMessageTalking(?);
-// extern ? BehToadMessageOpacifying(?);
-// extern ? BehToadMessageFading(?);
-// extern ? BehToadMessageLoop(?);
-// extern ? BehToadMessageInit(?);
-// extern ? func_802764F0(?);
-// extern ? BehSealedDoorStarInit(?);
-// extern ? BehSealedDoorStarLoop(?);
-// extern ? func_802769E0(?);
-// extern ? Geo18_802770A4(?);
-// extern ? GeoSwitchCase80277150(?);
-// extern ? GeoSwitchCase802771BC(?);
-// extern ? Geo18_80277294(?);
-// extern ? Geo18_802773A4(?);
-// extern ? GeoSwitchCase802774F4(?);
-// extern ? Geo18_802775CC(?);
-// extern ? GeoSwitchCase802776D8(?);
-// extern ? GeoSwitchCase80277740(?);
-// extern ? Geo18_80277824(?);
-// extern ? Geo1C_8027795C(?);
-// extern ? Geo18_80277B14(?);
-// extern ? Geo18_80277D6C(?);
+extern Gfx *Geo18_802761D0(int a, struct GraphNode *b, float c[4][4]);
+extern Gfx *Geo19_802763D4(int a, struct GraphNode *b, UNUSED Mat4 *c);
+extern Gfx *Geo18_802764B0(int a, struct GraphNode *b, Mat4 *c);
+extern void beh_toad_message_loop(void);
+extern void beh_toad_message_init(void);
+extern void beh_unlock_door_star_init(void);
+extern void beh_unlock_door_star_loop(void);
+extern Gfx *Geo18_802770A4(int a, struct GraphNode *b, UNUSED Mat4 *c);
+extern Gfx *GeoSwitchCase80277150(int a, struct GraphNode *b, UNUSED Mat4 *c);
+extern Gfx *GeoSwitchCase802771BC(int a, struct GraphNode *b, UNUSED Mat4 *c);
+extern Gfx *Geo18_80277294(int a, struct GraphNode *b, UNUSED Mat4 *c);
+extern Gfx *Geo18_802773A4(int a, struct GraphNode *b, UNUSED Mat4 *c);
+extern Gfx *GeoSwitchCase802774F4(int a, struct GraphNode *b, UNUSED Mat4 *c);
+extern Gfx *Geo18_802775CC(int a, struct GraphNode *b, UNUSED Mat4 *c);
+extern Gfx *GeoSwitchCase802776D8(int a, struct GraphNode *b, UNUSED Mat4 *c);
+extern Gfx *GeoSwitchCase80277740(int a, struct GraphNode *b, UNUSED Mat4 *c);
+extern Gfx *Geo18_80277824(int a, struct GraphNode *b, UNUSED Mat4 *c);
+extern Gfx *Geo1C_8027795C(int a, struct GraphNode *b, Mat4 *c);
+extern Gfx *Geo18_80277B14(int a, struct GraphNode *b, UNUSED Mat4 *c);
+extern Gfx *Geo18_80277D6C(int a, struct GraphNode *b, UNUSED Mat4 *c);
 
 #endif /* _CASTLE_MESSAGE_BEHAVIOR_H */

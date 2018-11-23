@@ -2415,8 +2415,8 @@ glabel func_80258B34
 /* 013C04 80258C04 1040000B */  beqz  $v0, .L80258C34
 /* 013C08 80258C08 00000000 */   nop   
 /* 013C0C 80258C0C 8FAC0028 */  lw    $t4, 0x28($sp)
-/* 013C10 80258C10 3C061300 */  lui   $a2, %hi(beh_sealed_door_star) # $a2, 0x1300
-/* 013C14 80258C14 24C62F20 */  addiu $a2, %lo(beh_sealed_door_star) # addiu $a2, $a2, 0x2f20
+/* 013C10 80258C10 3C061300 */  lui   $a2, %hi(beh_unlock_door_star) # $a2, 0x1300
+/* 013C14 80258C14 24C62F20 */  addiu $a2, %lo(beh_unlock_door_star) # addiu $a2, $a2, 0x2f20
 /* 013C18 80258C18 2405007A */  li    $a1, 122
 /* 013C1C 80258C1C 0C0A7994 */  jal   spawn_object
 /* 013C20 80258C20 8D840088 */   lw    $a0, 0x88($t4)
