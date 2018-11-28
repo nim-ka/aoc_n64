@@ -16,7 +16,7 @@ void bhv_ttc_2d_rotator_update(void)
         o->oTTC2DRotatorRandomDirTimer -= 1;
     }
 
-    if (o->oTTC2DRotatorTimeUntilIncrement != 0 && face_yaw_approach(o->oTTC2DRotatorTargetYaw, 200))
+    if (o->oTTC2DRotatorTimeUntilIncrement != 0 && obj_face_yaw_approach(o->oTTC2DRotatorTargetYaw, 200))
     {
         if (o->oTimer > o->oTTC2DRotatorTimeUntilIncrement)
         {

@@ -28,7 +28,7 @@ static void fire_piranha_plant_act_hide(void)
     if (o->oFirePiranhaPlantDeathSpinTimer != 0)
     {
         o->oMoveAngleYaw += (s32)o->oFirePiranhaPlantDeathSpinVel;
-        approach_f32_2(&o->oFirePiranhaPlantDeathSpinVel, 0.0f, 200.0f);
+        approach_f32_ptr(&o->oFirePiranhaPlantDeathSpinVel, 0.0f, 200.0f);
 
         if (func_8029F788())
         {
@@ -38,7 +38,7 @@ static void fire_piranha_plant_act_hide(void)
             }
         }
     }
-    else if (approach_f32_2(
+    else if (approach_f32_ptr(
         &o->oFirePiranhaPlantScale,
         0.0f,
         0.04f * o->oFirePiranhaPlantNeutralScale))
@@ -56,7 +56,7 @@ static void fire_piranha_plant_act_hide(void)
                     CreateStar(-6300.0f, -1850.0f, -6300.0f);
                 }
 
-                func_802FA078();
+                obj_die_if_health_non_positive();
                 func_8029C6D8(o, 1);
             }
         }
@@ -86,7 +86,7 @@ static void fire_piranha_plant_act_grow(void)
 {
     func_802F927C(4);
 
-    if (approach_f32_2(
+    if (approach_f32_ptr(
         &o->oFirePiranhaPlantScale,
         o->oFirePiranhaPlantNeutralScale,
         0.04f * o->oFirePiranhaPlantNeutralScale))
@@ -103,7 +103,7 @@ static void fire_piranha_plant_act_grow(void)
         }
         else
         { // TODO: Check if we can put these conditionals on same line
-            if (func_802F8680())
+            if (obj_is_rendering_enabled())
             {
                 if (obj_check_anim_frame(56))
                 {
@@ -137,7 +137,7 @@ void bhv_fire_piranha_plant_update(void)
     case FIRE_PIRANHA_PLANT_ACT_GROW: fire_piranha_plant_act_grow(); break;
     }
 
-    if (func_802FA888(&sFirePiranhaPlantHitbox, o->oAction))
+    if (obj_check_mario_attacks(&sFirePiranhaPlantHitbox, o->oAction))
     {
         if (--o->oHealth < 0)
         {

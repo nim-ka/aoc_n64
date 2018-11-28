@@ -16,7 +16,7 @@ void bhv_ttc_pit_block_update(void)
     {
         obj_move_xz_using_fvel_and_gravity();
 
-        if (cap_f32(&o->oPosY, o->oHomeY, o->oTTCPitBlockPeakY))
+        if (clamp_f32(&o->oPosY, o->oHomeY, o->oTTCPitBlockPeakY))
         {
             o->oTTCPitBlockDir = o->oTTCPitBlockDir ^ 0x1;
 

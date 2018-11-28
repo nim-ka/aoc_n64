@@ -25,7 +25,7 @@ void bhv_ttc_rotating_solid_update(void)
             targetRoll = (s32)((f32)o->oTTCRotatingSolidPhase / o->oTTCRotatingSolidNumSides * 0x10000);
             startRoll = o->oFaceAngleRoll;
 
-            face_roll_approach(targetRoll, 1200);
+            obj_face_roll_approach(targetRoll, 1200);
 
             o->oAngleVelRoll = o->oFaceAngleRoll - startRoll;
             if (o->oAngleVelRoll == 0)

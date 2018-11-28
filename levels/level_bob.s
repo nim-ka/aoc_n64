@@ -9,7 +9,7 @@
 .section .level, "a"
 
 script_func_local_1:
-    object /*unk2*/ 0x1F, /*unk3*/ 0x36, /*pos*/ 1456, 768, 446, /*angle*/ 0, 326, 0, /*behArg*/ 0x00000000, /*beh*/ bChainChompFreedExplosion
+    object /*unk2*/ 0x1F, /*unk3*/ 0x36, /*pos*/ 1456, 768, 446, /*angle*/ 0, 326, 0, /*behArg*/ 0x00000000, /*beh*/ bChainChompGate
     object /*unk2*/ 0x1F, /*unk3*/ 0x37, /*pos*/ -2303, 717, 1024, /*angle*/ 0, 45, 0, /*behArg*/ 0x00030000, /*beh*/ bSeesawPlatform
     object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -2050, 0, -3069, /*angle*/ 0, 25, 0, /*behArg*/ 0x00000000, /*beh*/ beh_openable_grill
     object /*unk2*/ 0x1F, /*unk3*/ 0xCF, /*pos*/ -2283, 0, -3682, /*angle*/ 0, 27, 0, /*behArg*/ 0x00000000, /*beh*/ beh_floor_switch_grills

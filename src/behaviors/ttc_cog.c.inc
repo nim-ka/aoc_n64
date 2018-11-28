@@ -15,7 +15,7 @@ void bhv_ttc_cog_update(void)
         break;
 
     case TTC_SPEED_RANDOM:
-        if (approach_f32_2(&o->oTTCCogSpeed, o->oTTCCogTargetSpeed, 50.0f))
+        if (approach_f32_ptr(&o->oTTCCogSpeed, o->oTTCCogTargetSpeed, 50.0f))
         {
             o->oTTCCogTargetSpeed = 200.0f * (RandomU16() % 7) * RandomSign();
         }

@@ -56,7 +56,7 @@ static void mad_piano_act_attack(void)
         o->oForwardVel = 5.0f;
     }
 
-    func_802FA888(&sMadPianoHitbox, o->oAction);
+    obj_check_mario_attacks(&sMadPianoHitbox, o->oAction);
     obj_move_standard(78);
 }
 

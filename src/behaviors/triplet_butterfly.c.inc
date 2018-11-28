@@ -42,11 +42,11 @@ static void triplet_butterfly_act_wander(void)
 {
     if (o->oDistanceToMario > 1500.0f)
     {
-        DeactivateObject(o);
+        mark_object_for_deletion(o);
     }
     else
     {
-        approach_f32_2(&o->oTripletButterflySpeed, 8.0f, 0.5f);
+        approach_f32_ptr(&o->oTripletButterflySpeed, 8.0f, 0.5f);
         if (o->oTimer < 60)
         {
             o->oTripletButterflyTargetYaw = obj_angle_to_home();
@@ -78,7 +78,7 @@ static void triplet_butterfly_act_wander(void)
             o->oTripletButterflyTargetPitch = 0x2000;
         }
 
-        func_802F95B0(o->oTripletButterflyTargetPitch, 400);
+        obj_move_pitch_approach(o->oTripletButterflyTargetPitch, 400);
         obj_rotate_yaw_toward(o->oTripletButterflyTargetYaw, random_linear_offset(400, 800));
     }
 }
@@ -101,7 +101,7 @@ static void triplet_butterfly_act_activate(void)
             if (o->oTripletButterflyType != TRIPLET_BUTTERFLY_TYPE_EXPLODES)
             {
                 spawn_object(o, o->oTripletButterflyModel, sTripletButterflyActivationData[o->oTripletButterflyType].behavior);
-                DeactivateObject(o);
+                mark_object_for_deletion(o);
             }
             else
             {
@@ -123,13 +123,13 @@ static void triplet_butterfly_act_explode(void)
 {
     f32 scaleIncrease;
 
-    func_802FA888(&sTripletButterflyExplodeHitbox, -1);
+    obj_check_mario_attacks(&sTripletButterflyExplodeHitbox, -1);
 
     if (o->oAction == -1 || (o->oMoveFlags & 0x00000200) || o->oTimer >= 158)
     {
         o->oPosY += o->oGraphYOffset;
         spawn_object(o, 0xCD, beh_explosion);
-        DeactivateObject(o);
+        mark_object_for_deletion(o);
     }
     else
     {
@@ -149,9 +149,9 @@ static void triplet_butterfly_act_explode(void)
             o->oTripletButterflyScale += scaleIncrease;
         }
 
-        approach_f32_2(&o->oTripletButterflySpeed, 20.0f, 1.0f);
+        approach_f32_ptr(&o->oTripletButterflySpeed, 20.0f, 1.0f);
         obj_rotate_yaw_toward(o->oAngleToMario, 800);
-        func_802F9414(-100.0f, 800);
+        obj_turn_pitch_toward_mario(-100.0f, 800);
     }
 }
 
@@ -168,6 +168,6 @@ void bhv_triplet_butterfly_update(void)
     }
 
     obj_scale(o->oTripletButterflyScale);
-    func_802F9148(o->oTripletButterflySpeed);
+    obj_compute_vel_from_pitch(o->oTripletButterflySpeed);
     obj_move_standard(78);
 }

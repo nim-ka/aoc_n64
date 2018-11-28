@@ -29,7 +29,7 @@ static void skeeter_act_idle(void)
         {
             skeeter_spawn_waves();
             if (o->oTimer > 60 &&
-                func_802F9780(&o->oSkeeterUnk1AC, &o->oMoveAngleYaw, o->oSkeeterTargetAngle, 0.02f, 5, 50, 200))
+                obj_smooth_turn(&o->oSkeeterUnk1AC, &o->oMoveAngleYaw, o->oSkeeterTargetAngle, 0.02f, 5, 50, 200))
             {
                 if (o->oSkeeterWaitTime != 0)
                 {
@@ -65,7 +65,7 @@ static void skeeter_act_lunge(void)
             o->oFlags &= ~0x00000008;
         }
 
-        if (forward_vel_approach(0.0f, 0.8f) && func_8029F828())
+        if (obj_forward_vel_approach(0.0f, 0.8f) && func_8029F828())
         {
             o->oMoveAngleYaw = o->oFaceAngleYaw;
 
@@ -75,7 +75,7 @@ static void skeeter_act_lunge(void)
             }
             else
             {
-                o->oSkeeterTargetAngle = random_fixed_turn(RandomU16() % 0x2000);
+                o->oSkeeterTargetAngle = obj_random_fixed_turn(RandomU16() % 0x2000);
             }
 
             o->oAction = SKEETER_ACT_IDLE;
@@ -95,7 +95,7 @@ static void skeeter_act_walk(void)
     }
     else
     {
-        forward_vel_approach(o->oSkeeterUnkFC, 0.4f);
+        obj_forward_vel_approach(o->oSkeeterUnkFC, 0.4f);
         sp24 = 0.12f * o->oForwardVel;
 
         func_8029ED98(2, sp24);
@@ -103,7 +103,7 @@ static void skeeter_act_walk(void)
 
         if (o->oSkeeterUnkF8 != 0)
         {
-            o->oSkeeterUnkF8 = resolve_collisions_and_turn(o->oSkeeterTargetAngle, 0x400);
+            o->oSkeeterUnkF8 = obj_resolve_collisions_and_turn(o->oSkeeterTargetAngle, 0x400);
         }
         else
         {
@@ -113,7 +113,7 @@ static void skeeter_act_walk(void)
                 o->oSkeeterWaitTime = random_linear_offset(20, 30);
             }
 
-            if ((o->oSkeeterUnkF8 = func_802F9F6C(&o->oSkeeterTargetAngle)) == 0)
+            if ((o->oSkeeterUnkF8 = obj_bounce_off_walls_edges_objects(&o->oSkeeterTargetAngle)) == 0)
             {
                 if (o->oDistanceToMario < 500.0f)
                 {
@@ -131,7 +131,7 @@ static void skeeter_act_walk(void)
                     {
                         if (RandomU16() & 0x0003)
                         {
-                            o->oSkeeterTargetAngle = random_fixed_turn(0x2000);
+                            o->oSkeeterTargetAngle = obj_random_fixed_turn(0x2000);
                             o->oSkeeterWaitTime = random_linear_offset(100, 100);
                         }
                         else
@@ -162,15 +162,15 @@ void bhv_skeeter_update(void)
     case SKEETER_ACT_WALK:  skeeter_act_walk();  break;
     }
 
-    func_802FA888(&D_80331C28, o->oAction);
+    obj_check_mario_attacks(&D_80331C28, o->oAction);
     obj_move_standard(-78);
 }
 
 void bhv_skeeter_wave_update(void)
 {
-    if (approach_f32_2(&o->header.gfx.scale[0], 0.0f, 0.3f))
+    if (approach_f32_ptr(&o->header.gfx.scale[0], 0.0f, 0.3f))
     {
-        DeactivateObject(o);
+        mark_object_for_deletion(o);
     }
 
     obj_scale(o->header.gfx.scale[0]);

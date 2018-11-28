@@ -27,7 +27,7 @@ static struct ObjectHitbox sGoombaHitbox =
  */
 struct GoombaProperties
 {
-    f32 baseSpeed;
+    f32 scale;
     u32 deathSound;
     s16 drawDistance;
     s8 damage;
@@ -50,21 +50,21 @@ static u8 sGoombaAttackHandlers[][6] =
 {
     // regular and tiny
     {
-        /* ATTACK_PUNCH:                 */ ATTACK_HANDLER_UNK2,
-        /* ATTACK_KICK_OR_TRIP:          */ ATTACK_HANDLER_UNK2,
-        /* ATTACK_FROM_ABOVE:            */ ATTACK_HANDLER_UNK3,
-        /* ATTACK_GROUND_POUND_OR_TWIRL: */ ATTACK_HANDLER_UNK3,
-        /* ATTACK_FAST_ATTACK:           */ ATTACK_HANDLER_UNK2,
-        /* ATTACK_FROM_BELOW:            */ ATTACK_HANDLER_UNK2,
+        /* ATTACK_PUNCH:                 */ ATTACK_HANDLER_KNOCKBACK,
+        /* ATTACK_KICK_OR_TRIP:          */ ATTACK_HANDLER_KNOCKBACK,
+        /* ATTACK_FROM_ABOVE:            */ ATTACK_HANDLER_SQUISHED,
+        /* ATTACK_GROUND_POUND_OR_TWIRL: */ ATTACK_HANDLER_SQUISHED,
+        /* ATTACK_FAST_ATTACK:           */ ATTACK_HANDLER_KNOCKBACK,
+        /* ATTACK_FROM_BELOW:            */ ATTACK_HANDLER_KNOCKBACK,
     },
     // huge
     {
-        /* ATTACK_PUNCH:                 */ ATTACK_HANDLER_UNK7,
-        /* ATTACK_KICK_OR_TRIP:          */ ATTACK_HANDLER_UNK7,
-        /* ATTACK_FROM_ABOVE:            */ ATTACK_HANDLER_UNK3,
-        /* ATTACK_GROUND_POUND_OR_TWIRL: */ ATTACK_HANDLER_UNK8,
-        /* ATTACK_FAST_ATTACK:           */ ATTACK_HANDLER_UNK7,
-        /* ATTACK_FROM_BELOW:            */ ATTACK_HANDLER_UNK7,
+        /* ATTACK_PUNCH:                 */ ATTACK_HANDLER_SPECIAL_HUGE_GOOMBA_WEAKLY_ATTACKED,
+        /* ATTACK_KICK_OR_TRIP:          */ ATTACK_HANDLER_SPECIAL_HUGE_GOOMBA_WEAKLY_ATTACKED,
+        /* ATTACK_FROM_ABOVE:            */ ATTACK_HANDLER_SQUISHED,
+        /* ATTACK_GROUND_POUND_OR_TWIRL: */ ATTACK_HANDLER_SQUISHED_WITH_BLUE_COIN,
+        /* ATTACK_FAST_ATTACK:           */ ATTACK_HANDLER_SPECIAL_HUGE_GOOMBA_WEAKLY_ATTACKED,
+        /* ATTACK_FROM_BELOW:            */ ATTACK_HANDLER_SPECIAL_HUGE_GOOMBA_WEAKLY_ATTACKED,
     },
 };
 
@@ -128,7 +128,7 @@ void bhv_goomba_init(void)
 {
     o->oGoombaSize = o->oBehParams2ndByte & GOOMBA_BP_SIZE_MASK;
 
-    o->oGoombaBaseSpeed = sGoombaProperties[o->oGoombaSize].baseSpeed;
+    o->oGoombaScale = sGoombaProperties[o->oGoombaSize].scale;
     o->oDeathSound = sGoombaProperties[o->oGoombaSize].deathSound;
 
     set_object_hitbox(o, &sGoombaHitbox);
@@ -136,7 +136,7 @@ void bhv_goomba_init(void)
     o->oDrawingDistance = sGoombaProperties[o->oGoombaSize].drawDistance;
     o->oDamageOrCoinValue = sGoombaProperties[o->oGoombaSize].damage;
 
-    o->oGravity = -8.0f / 3.0f * o->oGoombaBaseSpeed;
+    o->oGravity = -8.0f / 3.0f * o->oGoombaScale;
 }
 
 /**
@@ -147,7 +147,7 @@ static void goomba_begin_jump(void)
     PlaySound2(SOUND_OBJECT_GOOMBAALERT);
     o->oAction = GOOMBA_ACT_JUMP;
     o->oForwardVel = 0.0f;
-    o->oVelY = 50.0f / 3.0f * o->oGoombaBaseSpeed;
+    o->oVelY = 50.0f / 3.0f * o->oGoombaScale;
 }
 
 /**
@@ -174,7 +174,7 @@ static void goomba_act_walk(void)
 {
     treat_far_home_as_mario(1000.0f);
 
-    forward_vel_approach(o->oGoombaRelativeSpeed * o->oGoombaBaseSpeed, 0.4f);
+    obj_forward_vel_approach(o->oGoombaRelativeSpeed * o->oGoombaScale, 0.4f);
 
     // If walking fast enough, play footstep sounds
     if (o->oGoombaRelativeSpeed > 4.0f / 3.0f)
@@ -182,9 +182,16 @@ static void goomba_act_walk(void)
         func_802F9378(2, 17, SOUND_OBJECT_GOOMBAWALK);
     }
 
-    if (o->oGoombaTurning)
+    //! By strategically hitting a wall, steep slope, or another goomba, we can
+    //  prevent the goomba from turning back toward home for a while (goomba
+    //  chase extension)
+    //! It seems theoretically possible to get 2-3 goombas to repeatedly touch
+    //  each other and move arbitrarily far from their home, but it's
+    //  extremely precise and chaotic in practice, so probably can't be performed
+    //  for nontrivial distances
+    if (o->oGoombaTurningAwayFromWall)
     {
-        o->oGoombaTurning = resolve_collisions_and_turn(o->oGoombaTargetYaw, 0x200);
+        o->oGoombaTurningAwayFromWall = obj_resolve_collisions_and_turn(o->oGoombaTargetYaw, 0x200);
     }
     else
     {
@@ -195,7 +202,7 @@ static void goomba_act_walk(void)
             o->oGoombaWalkTimer = random_linear_offset(20, 30);
         }
 
-        if (!(o->oGoombaTurning = func_802F9F6C(&o->oGoombaTargetYaw)))
+        if (!(o->oGoombaTurningAwayFromWall = obj_bounce_off_walls_edges_objects(&o->oGoombaTargetYaw)))
         {
             if (o->oDistanceToMario < 500.0f)
             {
@@ -224,13 +231,13 @@ static void goomba_act_walk(void)
                 {
                     if (RandomU16() & 3)
                     {
-                        o->oGoombaTargetYaw = random_fixed_turn(0x2000);
+                        o->oGoombaTargetYaw = obj_random_fixed_turn(0x2000);
                         o->oGoombaWalkTimer = random_linear_offset(100, 100);
                     }
                     else
                     {
                         goomba_begin_jump();
-                        o->oGoombaTargetYaw = random_fixed_turn(0x6000);
+                        o->oGoombaTargetYaw = obj_random_fixed_turn(0x6000);
                     }
                 }
             }
@@ -250,7 +257,7 @@ static void goomba_act_attacked_mario(void)
     {
         mark_goomba_as_dead();
         o->oNumLootCoins = 0;
-        func_802FA078();
+        obj_die_if_health_non_positive();
     }
     else
     {
@@ -258,7 +265,7 @@ static void goomba_act_attacked_mario(void)
         //  hard to chain these in practice
         goomba_begin_jump();
         o->oGoombaTargetYaw = o->oAngleToMario;
-        o->oGoombaTurning = FALSE;
+        o->oGoombaTurningAwayFromWall = FALSE;
     }
 }
 
@@ -267,7 +274,7 @@ static void goomba_act_attacked_mario(void)
  */
 static void goomba_act_jump(void)
 {
-    resolve_obj_collisions(NULL);
+    obj_resolve_object_collisions(NULL);
 
     //! If we move outside the goomba's drawing radius the frame it enters the
     //  jump action, then it will keep its velY, but it will still be counted
@@ -306,7 +313,7 @@ void bhv_goomba_update(void)
 
     f32 animSpeed;
 
-    if (func_802FA7CC(o->oGoombaBaseSpeed))
+    if (obj_update_standard_actions(o->oGoombaScale))
     {
         // If this goomba has a spawner and mario moved away from the spawner,
         // unload
@@ -314,15 +321,15 @@ void bhv_goomba_update(void)
         {
             if (o->parentObj->oAction == GOOMBA_TRIPLET_SPAWNER_ACT_UNLOADED)
             {
-                DeactivateObject(o);
+                mark_object_for_deletion(o);
             }
         }
 
-        obj_scale(o->oGoombaBaseSpeed);
-        update_blinking(&o->oGoombaBlinkTimer, 30, 50, 5);
+        obj_scale(o->oGoombaScale);
+        obj_update_blinking(&o->oGoombaBlinkTimer, 30, 50, 5);
         obj_update_floor_and_walls();
 
-        if ((animSpeed = o->oForwardVel / o->oGoombaBaseSpeed * 0.4f) < 1.0f)
+        if ((animSpeed = o->oForwardVel / o->oGoombaScale * 0.4f) < 1.0f)
         {
             animSpeed = 1.0f;
         }
@@ -335,7 +342,7 @@ void bhv_goomba_update(void)
         case GOOMBA_ACT_JUMP:           goomba_act_jump();           break;
         }
 
-        if (func_802FA468(
+        if (obj_handle_mario_attacks(
             &sGoombaHitbox, GOOMBA_ACT_ATTACKED_MARIO, sGoombaAttackHandlers[o->oGoombaSize & 1]))
         {
             mark_goomba_as_dead();

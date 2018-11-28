@@ -114,7 +114,7 @@ static void ttc_moving_bar_act_retract(void)
 void bhv_ttc_moving_bar_update(void)
 {
     o->oTTCMovingBarStartOffset = o->oTTCMovingBarOffset;
-    func_802F8854(0);
+    obj_perform_position_op(0);
     o->oTTCMovingBarOffset += o->oTTCMovingBarSpeed;
 
     switch (o->oAction)
@@ -125,6 +125,6 @@ void bhv_ttc_moving_bar_update(void)
     case TTC_MOVING_BAR_ACT_RETRACT:   ttc_moving_bar_act_retract();   break;
     }
 
-    func_802F8770(o->oTTCMovingBarOffset);
-    func_802F8854(1);
+    obj_set_dist_from_home(o->oTTCMovingBarOffset);
+    obj_perform_position_op(1);
 }

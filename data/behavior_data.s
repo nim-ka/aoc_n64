@@ -4705,13 +4705,13 @@ glabel bWoodenPost # 47FC
         callnative load_object_collision_model
     end_loop
 
-glabel bChainChompFreedExplosion # 4848
+glabel bChainChompGate # 4848
     begin OBJ_LIST_SURFACE
     collision_data bob_seg7_collision_chain_chomp_gate
     obj_or_int VAR_01, 0x41
-    callnative bhv_chain_chomp_freed_explosion_init
+    callnative bhv_chain_chomp_gate_init
     begin_loop
-        callnative bhv_chain_chomp_freed_explosion_update
+        callnative bhv_chain_chomp_gate_update
         callnative load_object_collision_model
     end_loop
 
@@ -4724,7 +4724,7 @@ glabel bWiggler # 4878
     unknown_30 0x003C, 0xFE70, 0x0000, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
     unhide
     scale 400
-    obj_set_float VAR_1B, 0x1388
+    obj_set_float VAR_1B, 5000
     begin_loop
         callnative bhv_wiggler_update
     end_loop
@@ -4739,7 +4739,7 @@ glabel bWigglerBodyPart # 48C0
         callnative bhv_wiggler_body_part_update
     end_loop
 
-glabel beh_evil_lakitu # 48F8
+glabel bEvilLakitu # 48F8
     begin OBJ_LIST_PUSHABLE
     obj_or_int VAR_01, 0x2041
     obj_set_int32 VAR_26, lakitu_enemy_seg5_anims_050144D4
@@ -4747,7 +4747,7 @@ glabel beh_evil_lakitu # 48F8
     unknown_2D
     unknown_30 0x0028, 0x0000, 0xFFCE, 0x0000, 0x0000, 0x00C8, 0x0000, 0x0000
     begin_loop
-        callnative BehEvilLakituLoop
+        callnative bhv_evil_lakitu_update
     end_loop
 
 glabel beh_lakitu # 4934

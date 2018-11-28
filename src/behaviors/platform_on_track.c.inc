@@ -132,14 +132,14 @@ static void func_80304390(void)
         {
             if (o->oPlatformOnTrackUnk1AC == 0)
             {
-                forward_vel_approach(10.0, 0.1f);
+                obj_forward_vel_approach(10.0, 0.1f);
             }
             else
             {
                 o->oForwardVel = 10.0f;
             }
 
-            if (approach_f32_2(&o->oPlatformOnTrackUnkF4, 300.0f, o->oForwardVel))
+            if (approach_f32_ptr(&o->oPlatformOnTrackUnkF4, 300.0f, o->oForwardVel))
             {
                 o->oPlatformOnTrackUnkF4 -= 300.0f;
                 o->oHomeX = o->oPosX;
@@ -160,8 +160,8 @@ static void func_80304390(void)
             sp1A = abs_angle_diff(sp1C, o->oFaceAngleYaw) / 20;
             sp1E = o->oFaceAngleYaw;
 
-            func_802F91AC(&sp1A, 100, 500);
-            face_yaw_approach(sp1C, sp1A);
+            clamp_s16(&sp1A, 100, 500);
+            obj_face_yaw_approach(sp1C, sp1A);
             o->oAngleVelYaw = (s16)o->oFaceAngleYaw - sp1E;
         }
 
@@ -170,8 +170,8 @@ static void func_80304390(void)
             sp18 = abs_angle_diff(o->oMoveAnglePitch, o->oFaceAngleRoll) / 20;
             sp1E = o->oFaceAngleRoll;
 
-            func_802F91AC(&sp18, 100, 500);
-            face_roll_approach(o->oMoveAnglePitch, sp18);
+            clamp_s16(&sp18, 100, 500);
+            obj_face_roll_approach(o->oMoveAnglePitch, sp18);
             o->oAngleVelRoll = (s16)o->oFaceAngleRoll - sp1E;
         }
     }
@@ -224,8 +224,8 @@ static void func_80304820(void)
             (s32)(o->oDistanceToMario * sins(o->oAngleToMario - o->oFaceAngleYaw) * -4.0f);
     }
 
-    func_802F9B68(&o->oFaceAngleRoll, &o->oPlatformOnTrackUnkF8, val04, 5.0f, 6.0f, 1.5f);
-    cap_f32(&o->oPlatformOnTrackUnkF8, -100.0f, 100.0f);
+    oscillate_toward(&o->oFaceAngleRoll, &o->oPlatformOnTrackUnkF8, val04, 5.0f, 6.0f, 1.5f);
+    clamp_f32(&o->oPlatformOnTrackUnkF8, -100.0f, 100.0f);
 }
 
 void bhv_platform_on_track_update(void)
@@ -251,7 +251,7 @@ void bhv_platform_on_track_update(void)
             o->oPlatformOnTrackUnk1B2 = 1;
         }
 
-        approach_f32_2(&o->oPlatformOnTrackUnk110, 0.0f, 0.5f);
+        approach_f32_ptr(&o->oPlatformOnTrackUnk110, 0.0f, 0.5f);
         o->oPosY += o->oPlatformOnTrackUnk110;
     }
 }
@@ -261,6 +261,6 @@ void BehMetalBallsForElevatorsLoop(void)
     s16 relativeIndex = (s16)o->oBehParams2ndByte - (s16)o->parentObj->oUnk88 - 1;
     if (relativeIndex <= 0 || relativeIndex >= 6)
     {
-        DeactivateObject(o);
+        mark_object_for_deletion(o);
     }
 }

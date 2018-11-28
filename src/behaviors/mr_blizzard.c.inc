@@ -126,11 +126,11 @@ static void func_80307370(void)
             val00 = o->oMrBlizzardUnk104;
             if (o->oMrBlizzardUnk104 < 0.0f)
             {
-                approach_f32_2(&o->oMrBlizzardUnk108, 1000.0f, 80.0f);
+                approach_f32_ptr(&o->oMrBlizzardUnk108, 1000.0f, 80.0f);
             }
             else
             {
-                approach_f32_2(&o->oMrBlizzardUnk108, -1000.0f, 80.0f);
+                approach_f32_ptr(&o->oMrBlizzardUnk108, -1000.0f, 80.0f);
             }
 
             o->oMrBlizzardUnk104 += o->oMrBlizzardUnk108;
@@ -167,7 +167,7 @@ static void func_80307650(void)
 {
     struct Object *val04;
 
-    if (cap_f32(&o->oMrBlizzardUnk104, -0x4000, 0x4000))
+    if (clamp_f32(&o->oMrBlizzardUnk104, -0x4000, 0x4000))
     {
         if (o->oMrBlizzardUnk108 != 0.0f)
         {
@@ -262,7 +262,7 @@ static void func_80307A0C(void)
         o->oMrBlizzardUnk108 -= 150.0f;
     }
 
-    if (approach_f32_2(&o->oMrBlizzardUnk10C, -200.0f, 4.0f))
+    if (approach_f32_ptr(&o->oMrBlizzardUnk10C, -200.0f, 4.0f))
     {
         o->oAction = 0;
         func_8029ED38(1);
@@ -334,7 +334,7 @@ void bhv_mr_blizzard_update(void)
 
     obj_scale(o->oMrBlizzardUnkF4);
     obj_move_standard(78);
-    func_802FA888(&D_803319F0, o->oAction);
+    obj_check_mario_attacks(&D_803319F0, o->oAction);
 }
 
 static void func_80307E24(void)
@@ -375,13 +375,13 @@ static void func_80307EB0(void)
 static void func_80307FD4(void)
 {
     obj_update_floor_and_walls();
-    func_802FA888(&D_80331A14, -1);
+    obj_check_mario_attacks(&D_80331A14, -1);
 
     if (o->oAction == -1 || o->oMoveFlags & 0x0000000B)
     {
         func_80306ED4(6, 0, 5, 10, 3);
         create_sound_spawner(0x303C0081);
-        DeactivateObject(o);
+        mark_object_for_deletion(o);
     }
 
     obj_move_standard(78);

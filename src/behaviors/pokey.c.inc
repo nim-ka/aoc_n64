@@ -29,12 +29,12 @@ static struct ObjectHitbox sPokeyBodyPartHitbox =
  */
 static u8 sPokeyBodyPartAttackHandlers[] =
 {
-    /* ATTACK_PUNCH:                 */ ATTACK_HANDLER_UNK2,
-    /* ATTACK_KICK_OR_TRIP:          */ ATTACK_HANDLER_UNK2,
-    /* ATTACK_FROM_ABOVE:            */ ATTACK_HANDLER_UNK3,
-    /* ATTACK_GROUND_POUND_OR_TWIRL: */ ATTACK_HANDLER_UNK3,
-    /* ATTACK_FAST_ATTACK:           */ ATTACK_HANDLER_UNK2,
-    /* ATTACK_FROM_BELOW:            */ ATTACK_HANDLER_UNK2,
+    /* ATTACK_PUNCH:                 */ ATTACK_HANDLER_KNOCKBACK,
+    /* ATTACK_KICK_OR_TRIP:          */ ATTACK_HANDLER_KNOCKBACK,
+    /* ATTACK_FROM_ABOVE:            */ ATTACK_HANDLER_SQUISHED,
+    /* ATTACK_GROUND_POUND_OR_TWIRL: */ ATTACK_HANDLER_SQUISHED,
+    /* ATTACK_FAST_ATTACK:           */ ATTACK_HANDLER_KNOCKBACK,
+    /* ATTACK_FROM_BELOW:            */ ATTACK_HANDLER_KNOCKBACK,
 };
 
 
@@ -50,16 +50,16 @@ void bhv_pokey_body_part_update(void)
     s16 offsetAngle;
     f32 baseHeight;
 
-    if (func_802FA7CC(3.0f))
+    if (obj_update_standard_actions(3.0f))
     {
         if (o->parentObj->oAction == POKEY_ACT_UNLOAD_PARTS)
         {
-            DeactivateObject(o);
+            mark_object_for_deletion(o);
         }
         else
         {
             obj_update_floor_and_walls();
-            update_blinking(&o->oPokeyBodyPartBlinkTimer, 30, 60, 4);
+            obj_update_blinking(&o->oPokeyBodyPartBlinkTimer, 30, 60, 4);
 
             // If the body part above us is dead, then decrease body part index
             // by one, since new parts are spawned from the bottom.
@@ -88,7 +88,7 @@ void bhv_pokey_body_part_update(void)
             else if (o->parentObj->oPokeyBottomBodyPartSize < 1.0f &&
                 o->oBehParams2ndByte + 1 == o->parentObj->oPokeyNumAliveBodyParts)
             {
-                approach_f32_2(&o->parentObj->oPokeyBottomBodyPartSize, 1.0f, 0.1f);
+                approach_f32_ptr(&o->parentObj->oPokeyBottomBodyPartSize, 1.0f, 0.1f);
                 obj_scale(o->parentObj->oPokeyBottomBodyPartSize * 3.0f);
             }
 
@@ -123,7 +123,8 @@ void bhv_pokey_body_part_update(void)
             // If the body part was attacked, then die. If the head was killed,
             // then die after a delay.
 
-            if (func_802FA468(&sPokeyBodyPartHitbox, o->oAction, sPokeyBodyPartAttackHandlers))
+            if (obj_handle_mario_attacks(
+                &sPokeyBodyPartHitbox, o->oAction, sPokeyBodyPartAttackHandlers))
             {
                 o->parentObj->oPokeyNumAliveBodyParts -= 1;
                 if (o->oBehParams2ndByte == 0)
@@ -144,7 +145,7 @@ void bhv_pokey_body_part_update(void)
                 if (--o->oPokeyBodyPartDeathDelayAfterHeadKilled < 0)
                 {
                     o->parentObj->oPokeyNumAliveBodyParts -= 1;
-                    func_802FA078();
+                    obj_die_if_health_non_positive();
                 }
             }
             else
@@ -219,7 +220,7 @@ static void pokey_act_wander(void)
 
     if (o->oPokeyNumAliveBodyParts == 0)
     {
-        DeactivateObject(o);
+        mark_object_for_deletion(o);
     }
     else if (o->oDistanceToMario > 2500.0f)
     {
@@ -273,9 +274,9 @@ static void pokey_act_wander(void)
                 o->oTimer = 0;
             }
 
-            if (o->oPokeyTurning)
+            if (o->oPokeyTurningAwayFromWall)
             {
-                o->oPokeyTurning = resolve_collisions_and_turn(o->oPokeyTargetYaw, 0x200);
+                o->oPokeyTurningAwayFromWall = obj_resolve_collisions_and_turn(o->oPokeyTargetYaw, 0x200);
             }
             else
             {
@@ -285,7 +286,7 @@ static void pokey_act_wander(void)
                     o->oPokeyTargetYaw = o->oAngleToMario;
                 }
 
-                if (!(o->oPokeyTurning = func_802F9F6C(&o->oPokeyTargetYaw)))
+                if (!(o->oPokeyTurningAwayFromWall = obj_bounce_off_walls_edges_objects(&o->oPokeyTargetYaw)))
                 {
                     if (o->oPokeyChangeTargetTimer != 0)
                     {
@@ -293,7 +294,7 @@ static void pokey_act_wander(void)
                     }
                     else if (o->oDistanceToMario > 2000.0f)
                     {
-                        o->oPokeyTargetYaw = random_fixed_turn(0x2000);
+                        o->oPokeyTargetYaw = obj_random_fixed_turn(0x2000);
                         o->oPokeyChangeTargetTimer = random_linear_offset(30, 50);
                     }
                     else

@@ -33,13 +33,13 @@ static s16 sFlyGuyJitterAmounts[] = { 0x1000, -0x2000, 0x2000 };
 static void fly_guy_act_idle(void)
 {
     o->oForwardVel = 0.0f;
-    if (approach_f32_2(&o->header.gfx.scale[0], 1.5f, 0.02f))
+    if (approach_f32_ptr(&o->header.gfx.scale[0], 1.5f, 0.02f))
     {
         // If we are >2000 units from home or Mario is <2000 units from us
         if (o->oDistanceToMario >= 25000.0f || o->oDistanceToMario < 2000.0f)
         {
             // Turn toward home or Mario
-            face_yaw_approach(o->oAngleToMario, 0x300);
+            obj_face_yaw_approach(o->oAngleToMario, 0x300);
             if (obj_rotate_yaw_toward(o->oAngleToMario, 0x300))
             {
                 o->oAction = FLY_GUY_ACT_APPROACH_MARIO;
@@ -72,10 +72,10 @@ static void fly_guy_act_approach_mario(void)
     // If we are >2000 units from home or Mario is <2000 units from us
     if (o->oDistanceToMario >= 25000.0f || o->oDistanceToMario < 2000.0f)
     {
-        forward_vel_approach(10.0f, 0.5f);
+        obj_forward_vel_approach(10.0f, 0.5f);
 
         // Turn toward home or Mario
-        face_yaw_approach(o->oAngleToMario, 0x400);
+        obj_face_yaw_approach(o->oAngleToMario, 0x400);
         obj_rotate_yaw_toward(o->oAngleToMario, 0x200);
 
         // If facing toward mario and we are either near mario laterally or
@@ -93,7 +93,7 @@ static void fly_guy_act_approach_mario(void)
                 else
                 {
                     o->oAction = FLY_GUY_ACT_LUNGE;
-                    o->oFlyGuyLungeTargetPitch = func_802F9414(-200.0f, 0);
+                    o->oFlyGuyLungeTargetPitch = obj_turn_pitch_toward_mario(-200.0f, 0);
 
                     o->oForwardVel = 25.0f * coss(o->oFlyGuyLungeTargetPitch);
                     o->oVelY = 25.0f * -sins(o->oFlyGuyLungeTargetPitch);
@@ -102,7 +102,7 @@ static void fly_guy_act_approach_mario(void)
             }
         }
     }
-    else if (forward_vel_approach(0.0f, 0.2f))
+    else if (obj_forward_vel_approach(0.0f, 0.2f))
     {
         o->oAction = FLY_GUY_ACT_IDLE;
     }
@@ -121,7 +121,7 @@ static void fly_guy_act_lunge(void)
         o->oVelY += o->oFlyGuyLungeYDecel;
 
         obj_rotate_yaw_toward(o->oFaceAngleYaw, 0x800);
-        face_pitch_approach(o->oFlyGuyLungeTargetPitch, 0x400);
+        obj_face_pitch_approach(o->oFlyGuyLungeTargetPitch, 0x400);
 
         // Range [-0x1000, 0x2000]
         o->oFlyGuyTargetRoll = 0x1000 * (s16)(RandomFloat() * 3.0f) - 0x1000;
@@ -131,19 +131,19 @@ static void fly_guy_act_lunge(void)
     {
         // Twirl back upward
 
-        face_pitch_approach(0, 0x100);
-        face_roll_approach(o->oFlyGuyTargetRoll, 0x12C);
+        obj_face_pitch_approach(0, 0x100);
+        obj_face_roll_approach(o->oFlyGuyTargetRoll, 0x12C);
 
         // Twirl in a spiral with curvature proportional to oFaceAngleRoll
         o->oMoveAngleYaw -= o->oFaceAngleRoll / 4;
-        face_yaw_approach(o->oMoveAngleYaw, 0x800);
+        obj_face_yaw_approach(o->oMoveAngleYaw, 0x800);
 
         // Continue moving upward until at least 200 units above mario
         if (o->oPosY < gMarioObject->oPosY + 200.0f)
         {
-            y_vel_approach(20.0f, 0.5f);
+            obj_y_vel_approach(20.0f, 0.5f);
         }
-        else if (y_vel_approach(0.0f, 0.5f))
+        else if (obj_y_vel_approach(0.0f, 0.5f))
         {
             // Wait until roll is zero
             if (o->oFaceAngleRoll == 0)
@@ -165,14 +165,14 @@ static void fly_guy_act_shoot_fire(void)
 
     o->oForwardVel = 0.0f;
 
-    if (face_yaw_approach(o->oAngleToMario, 0x800))
+    if (obj_face_yaw_approach(o->oAngleToMario, 0x800))
     {
         o->oMoveAngleYaw = o->oFaceAngleYaw;
 
         // Increase scale by 0.06, 0.05, ..., -0.03. Then wait ~8 frames, then
         // starting moving scale by 0.05 each frame toward 1.1. The first time
         // it becomes below 1.2 during this latter portion, shoot fire.
-        scaleStatus = grow_then_shrink(&o->oFlyGuyScaleVel, 1.2f, 1.1f);
+        scaleStatus = obj_grow_then_shrink(&o->oFlyGuyScaleVel, 1.2f, 1.1f);
         if (scaleStatus != 0)
         {
             if (scaleStatus < 0)
@@ -183,9 +183,9 @@ static void fly_guy_act_shoot_fire(void)
             else
             {
                 // We have reached below scale 1.2 in the shrinking portion
-                s16 fireMovePitch = func_802F9414(0.0f, 0);
-                PlaySound2(0x50558081);
-                func_802F91AC(&fireMovePitch, 0x800, 0x3000);
+                s16 fireMovePitch = obj_turn_pitch_toward_mario(0.0f, 0);
+                PlaySound2(SOUND_OBJECT_FLAMEBLOWN);
+                clamp_s16(&fireMovePitch, 0x800, 0x3000);
 
                 obj_spit_fire(
                     /*relativePos*/ 0, 38, 20,
@@ -199,7 +199,7 @@ static void fly_guy_act_shoot_fire(void)
     }
     else
     {
-        //! By triggering this repeatedly, we can keep grow_then_shrink
+        //! By triggering this repeatedly, we can keep obj_grow_then_shrink
         // in the "grow" phase. But because oFlyGuyScaleVel continues decreasing
         // past -0.03, the fly guy shrinks more than he is supposed to. We can
         // arbitrarily decrease the fly guy's scale in this way.
@@ -244,6 +244,6 @@ void bhv_fly_guy_update(void)
         }
 
         obj_move_standard(78);
-        func_802FA888(&sFlyGuyHitbox, o->oAction);
+        obj_check_mario_attacks(&sFlyGuyHitbox, o->oAction);
     }
 }

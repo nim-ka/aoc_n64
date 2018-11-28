@@ -8,11 +8,11 @@ glabel sNumActiveFirePiranhaPlants
     .space 0x4
 glabel sNumKilledFirePiranhaPlants
     .space 0x4
-glabel D_803600F8
+glabel sObjSavedPosX
     .space 0x4
-glabel D_803600FC
+glabel sObjSavedPosY
     .space 0x4
-glabel D_80360100
+glabel sObjSavedPosZ
     .space 0x4
 glabel D_80360104
     .space 0x4

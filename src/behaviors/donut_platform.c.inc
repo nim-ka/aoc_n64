@@ -47,7 +47,7 @@ void bhv_donut_platform_update(void)
 
         if (o->oDistanceToMario > 2500.0f)
         {
-            DeactivateObject(o);
+            mark_object_for_deletion(o);
         }
         else
         {

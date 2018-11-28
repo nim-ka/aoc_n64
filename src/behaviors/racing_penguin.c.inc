@@ -81,16 +81,16 @@ static void racing_penguin_act_race(void)
                 minSpeed = 60.0f;
             }
 
-            approach_f32_2(&o->oRacingPenguinWeightedNewTargetSpeed, -500.0f, 100.0f);
+            approach_f32_ptr(&o->oRacingPenguinWeightedNewTargetSpeed, -500.0f, 100.0f);
         }
         else
         {
-            approach_f32_2(&o->oRacingPenguinWeightedNewTargetSpeed, 1000.0f, 30.0f);
+            approach_f32_ptr(&o->oRacingPenguinWeightedNewTargetSpeed, 1000.0f, 30.0f);
         }
 
         targetSpeed = 0.1f * (o->oRacingPenguinWeightedNewTargetSpeed + targetSpeed);
-        cap_f32(&targetSpeed, minSpeed, 150.0f);
-        forward_vel_approach(targetSpeed, 0.4f);
+        clamp_f32(&targetSpeed, minSpeed, 150.0f);
+        obj_forward_vel_approach(targetSpeed, 0.4f);
 
         func_8029ED38(1);
         obj_rotate_yaw_toward(o->oPathedTargetYaw, (s32)(15.0f * o->oForwardVel));

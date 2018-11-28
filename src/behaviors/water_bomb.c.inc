@@ -100,7 +100,7 @@ static void water_bomb_act_drop(void)
     }
     else
     {
-        approach_f32_2(&o->oWaterBombVerticalStretch, 0.0f, 0.008f);
+        approach_f32_ptr(&o->oWaterBombVerticalStretch, 0.0f, 0.008f);
         o->oWaterBombOnGround = FALSE;
     }
 
@@ -120,14 +120,14 @@ static void water_bomb_act_deactivate(void)
 {
     func_803051C4(25, 60, 10);
     o->parentObj->oWaterBombSpawnerBombActive = FALSE;
-    DeactivateObject(o);
+    mark_object_for_deletion(o);
 }
 
 static void func_803055F4(void)
 {
     if (o->oTimer > 100)
     {
-        DeactivateObject(o);
+        mark_object_for_deletion(o);
     }
     else
     {
@@ -176,7 +176,7 @@ void bhv_water_bomb_shadow_update(void)
 
     if (o->parentObj->oAction == WATER_BOMB_ACT_DEACTIVATE)
     {
-        DeactivateObject(o);
+        mark_object_for_deletion(o);
     }
     else
     {

@@ -143,10 +143,10 @@
 
 // bitdw, rr, thi
 #define MODEL_COMMON12_54                 0x54        // lakitu_enemy_geo
-#define MODEL_COMMON12_55                 0x55        // spiny_egg_geo
-#define MODEL_COMMON12_56                 0x56        // spiny_geo
+#define MODEL_SPINY_BALL                  0x55        // spiny_egg_geo
+#define MODEL_SPINY                       0x56        // spiny_geo
 #define MODEL_COMMON12_57                 0x57        // wiggler_geo
-#define MODEL_COMMON12_58                 0x58        // wiggler2_geo
+#define MODEL_WIGGLER_BODY_PART           0x58        // wiggler2_geo
 #define MODEL_COMMON12_59                 0x59        // bubba_geo
 
 // bowser 1, bowser 2, bowser 3
@@ -173,7 +173,7 @@
 #define MODEL_COMMON15_67                 0x67        // whomp_geo
 #define MODEL_KOOPA_WITH_SHELL            0x68        // koopa2_geo
 #define MODEL_KOOPA_WITHOUT_SHELL         0xBF        // koopa_geo
-#define MODEL_COMMON15_65                 0x65        // metallic_ball_geo
+#define MODEL_METAL_BALL                  0x65        // metallic_ball_geo
 #define MODEL_COMMON15_66                 0x66        // chain_chomp
 #define MODEL_COMMON15_6A                 0x6A        // koopa_flag_geo
 #define MODEL_COMMON15_6B                 0x6B        // poundable_wooden_log

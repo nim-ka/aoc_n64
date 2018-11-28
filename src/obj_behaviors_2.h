@@ -4,14 +4,14 @@
 #include "types.h"
 
 #define ATTACK_HANDLER_NOP 0
-#define ATTACK_HANDLER_UNK1 1
-#define ATTACK_HANDLER_UNK2 2
-#define ATTACK_HANDLER_UNK3 3
-#define ATTACK_HANDLER_UNK4 4
-#define ATTACK_HANDLER_UNK5 5
-#define ATTACK_HANDLER_UNK6 6
-#define ATTACK_HANDLER_UNK7 7
-#define ATTACK_HANDLER_UNK8 8
+#define ATTACK_HANDLER_DIE_IF_HEALTH_NON_POSITIVE 1
+#define ATTACK_HANDLER_KNOCKBACK 2
+#define ATTACK_HANDLER_SQUISHED 3
+#define ATTACK_HANDLER_SPECIAL_KOOPA_LOSE_SHELL 4
+#define ATTACK_HANDLER_SET_SPEED_TO_ZERO 5
+#define ATTACK_HANDLER_SPECIAL_WIGGLER_JUMPED_ON 6
+#define ATTACK_HANDLER_SPECIAL_HUGE_GOOMBA_WEAKLY_ATTACKED 7
+#define ATTACK_HANDLER_SQUISHED_WITH_BLUE_COIN 8
 
 // extern ? sKoopaHitbox;
 // extern ? sKoopaShelledAttackHandlers;
@@ -23,17 +23,17 @@
 // extern ? sFlyGuyHitbox;
 // extern ? sGoombaHitbox;
 // extern ? sGoombaAttackHandlers;
-// extern ? D_803317F0;
+// extern ? sChainChompHitbox;
 // extern ? sWigglerBodyPartHitbox;
 // extern ? wiggler_seg5_anims_0500C874;
 // extern ? sWigglerHitbox;
-// extern ? D_80331820;
+// extern ? sWigglerAttackHandlers;
 // extern ? D_80331838;
-// extern ? D_80331844;
-// extern ? D_80331854;
+// extern ? sSpinyHitbox;
+// extern ? sSpinyWalkAttackHandlers;
 // extern ? spiny_seg5_anims_05016EAC;
 // extern ? spiny_egg_seg5_anims_050157E4;
-// extern ? D_8033185C;
+// extern ? sEvilLakituHitbox;
 // extern ? D_80360104;
 // extern ? D_80360108;
 // extern ? D_80331877;
@@ -87,54 +87,54 @@
 // extern ? sTripletButterflyExplodeHitbox;
 // extern ? D_80331D2C;
 
-// extern ? func_802F8680(?);
-// extern ? func_802F86C0(?);
+// extern ? obj_is_rendering_enabled(?);
+// extern ? obj_get_pitch_from_vel(?);
 // extern ? obj_update_race_proposition_dialogue(?);
-// extern ? func_802F8770(?);
-// extern ? func_802F87E0(?);
-// extern ? func_802F8854(?);
+// extern ? obj_set_dist_from_home(?);
+// extern ? obj_is_near_to_and_facing_mario(?);
+// extern ? obj_perform_position_op(?);
 // extern ? func_802F8978(?);
 // extern ? func_802F8D78(?);
-// extern ? func_802F90A8(?);
-// extern ? func_802F9100(?);
-// extern ? func_802F9148(?);
-// extern ? func_802F91AC(?);
-// extern ? cap_f32(?);
+// extern ? obj_rotate_yaw_and_bounce_off_walls(?);
+// extern ? obj_get_pitch_to_home(?);
+// extern ? obj_compute_vel_from_pitch(?);
+// extern ? clamp_s16(?);
+// extern ? clamp_f32(?);
 // extern ? func_802F927C(?);
 // extern ? func_802F92B0(?);
 // extern ? func_802F92EC(?);
 // extern ? func_802F932C(?);
 // extern ? func_802F9378(?);
-// extern ? func_802F9414(?);
+// extern ? obj_turn_pitch_toward_mario(?);
 // extern ? func_802F9494(?);
-// extern ? forward_vel_approach(?);
-// extern ? y_vel_approach(?);
-// extern ? func_802F95B0(?);
-// extern ? face_pitch_approach(?);
-// extern ? face_yaw_approach(?);
-// extern ? face_roll_approach(?);
-// extern ? func_802F9780(?);
-// extern ? func_802F9850(?);
+// extern ? obj_forward_vel_approach(?);
+// extern ? obj_y_vel_approach(?);
+// extern ? obj_move_pitch_approach(?);
+// extern ? obj_face_pitch_approach(?);
+// extern ? obj_face_yaw_approach(?);
+// extern ? obj_face_roll_approach(?);
+// extern ? obj_smooth_turn(?);
+// extern ? obj_roll_to_match_yaw_turn(?);
 // extern ? random_linear_offset(?);
 // extern ? random_mod_offset(?);
-// extern ? random_fixed_turn(?);
-// extern ? grow_then_shrink(?);
-// extern ? func_802F9B68(?);
-// extern ? update_blinking(?);
-// extern ? resolve_obj_collisions(?);
-// extern ? func_802F9F6C(?);
+// extern ? obj_random_fixed_turn(?);
+// extern ? obj_grow_then_shrink(?);
+// extern ? oscillate_toward(?);
+// extern ? obj_update_blinking(?);
+// extern ? obj_resolve_object_collisions(?);
+// extern ? obj_bounce_off_walls_edges_objects(?);
 // extern ? func_802FA01C(?);
-// extern ? func_802FA078(?);
-// extern ? Unknown802FA1A4(?);
-// extern ? func_802FA1D8(?);
-// extern ? func_802FA2F0(?);
-// extern ? func_802FA32C(?);
-// extern ? func_802FA468(?);
-// extern ? func_802FA638(?);
-// extern ? func_802FA6C8(?);
-// extern ? func_802FA7CC(?);
-// extern ? func_802FA888(?);
-// extern ? func_802FA990(?);
+// extern ? obj_die_if_health_non_positive(?);
+// extern ? obj_unused_die(?);
+// extern ? obj_set_knockback_action(?);
+// extern ? obj_set_squished_action(?);
+// extern ? obj_die_if_above_lava_and_health_non_positive(?);
+// extern ? obj_handle_mario_attacks(?);
+// extern ? obj_act_knockback(?);
+// extern ? obj_act_squished(?);
+// extern ? obj_update_standard_actions(?);
+// extern ? obj_check_mario_attacks(?);
+// extern ? obj_move_for_one_second(?);
 // extern ? treat_far_home_as_mario(?);
 // extern ? bhv_koopa_init(?);
 // extern ? koopa_play_footstep_sound(?);
@@ -188,21 +188,21 @@ extern void shelled_koopa_attack_handler(s32);
 // extern ? bhv_goomba_update(?);
 // extern ? bhv_chain_chomp_chain_part_update(?);
 // extern ? chain_chomp_act_uninitialized(?);
-// extern ? func_802FECFC(?);
-// extern ? func_802FEFEC(?);
-// extern ? chain_chomp_phase_turning(?);
-// extern ? chain_chomp_phase_lunging(?);
-// extern ? func_802FF440(?);
-// extern ? func_802FF4EC(?);
-// extern ? func_802FF6C8(?);
-// extern ? func_802FF7F8(?);
-// extern ? func_802FF83C(?);
+// extern ? chain_chomp_update_chain_segments(?);
+// extern ? chain_chomp_restore_normal_chain_lengths(?);
+// extern ? chain_chomp_sub_act_turning(?);
+// extern ? chain_chomp_sub_act_lunging(?);
+// extern ? chain_chomp_released_trigger_cutscene(?);
+// extern ? chain_chomp_released_lunge_around(?);
+// extern ? chain_chomp_released_break_gate(?);
+// extern ? chain_chomp_released_jump_away(?);
+// extern ? chain_chomp_released_end_cutscene(?);
 // extern ? chain_chomp_act_move(?);
 // extern ? chain_chomp_act_unload_chain(?);
 // extern ? bhv_chain_chomp_update(?);
 // extern ? bhv_wooden_post_update(?);
-// extern ? bhv_chain_chomp_freed_explosion_init(?);
-// extern ? bhv_chain_chomp_freed_explosion_update(?);
+// extern ? bhv_chain_chomp_gate_init(?);
+// extern ? bhv_chain_chomp_gate_update(?);
 // extern ? bhv_wiggler_body_part_update(?);
 // extern ? func_8030041C(?);
 // extern ? func_80300630(?);
@@ -211,21 +211,21 @@ extern void shelled_koopa_attack_handler(s32);
 // extern ? func_80300DD4(?);
 // extern ? func_80300EC0(?);
 // extern ? func_80300F74(?);
-// extern void wiggler_jumped_on(void);
+// extern void wiggler_jumped_on_attack_handler(void);
 // extern ? bhv_wiggler_update(?);
 // extern ? spiny_check_active(?);
 // extern ? spiny_act_walk(?);
 // extern ? spiny_act_held_by_lakitu(?);
 // extern ? spiny_act_thrown_by_lakitu(?);
 // extern ? bhv_spiny_update(?);
-// extern ? func_80301908(?);
-// extern ? func_803019A4(?);
-// extern ? func_80301A70(?);
-// extern ? func_80301BD4(?);
-// extern ? func_80301D00(?);
-// extern ? func_80301DD4(?);
-// extern ? func_80301E54(?);
-// extern ? BehEvilLakituLoop(?);
+// extern ? evil_lakitu_act_uninitialized(?);
+// extern ? evil_lakitu_update_vel_y(?);
+// extern ? evil_lakitu_update_speed_and_angle(?);
+// extern ? evil_lakitu_sub_act_no_spiny(?);
+// extern ? evil_lakitu_sub_act_hold_spiny(?);
+// extern ? evil_lakitu_sub_act_throw_spiny(?);
+// extern ? evil_lakitu_act_main(?);
+// extern ? bhv_evil_lakitu_update(?);
 // extern ? func_80301FF8(?);
 // extern ? func_80302104(?);
 // extern ? func_8030215C(?);

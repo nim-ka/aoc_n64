@@ -5,7 +5,7 @@
 // field-specific and object-specific constants, e.g. actions.
 
 /* activeFlags */
-#define ACTIVE_FLAG_UNK0                   (1 <<  0) // 0x0001
+#define ACTIVE_FLAG_ACTIVE                 (1 <<  0) // 0x0001
 #define ACTIVE_FLAG_FAR_AWAY               (1 <<  1) // 0x0002
 #define ACTIVE_FLAG_UNK2                   (1 <<  2) // 0x0004
 #define ACTIVE_FLAG_IN_DIFFERENT_ROOM      (1 <<  3) // 0x0008
@@ -16,6 +16,8 @@
 #define ACTIVE_FLAG_UNK8                   (1 <<  8) // 0x0100
 #define ACTIVE_FLAG_UNK9                   (1 <<  9) // 0x0200
 #define ACTIVE_FLAG_UNK10                  (1 << 10) // 0x0400
+
+#define ACTIVE_FLAGS_INACTIVE 0
 
 /* oFlags */
 #define OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE         (1 <<  0) // 0x00000001
@@ -61,11 +63,6 @@
 #define DIALOGUE_UNK2_FLAG_0 (1 << 0) // 0x01
 #define DIALOGUE_UNK2_LEAVE_TIME_STOP_ENABLED (1 << 4) // 0x10
 
-/* oAction */
-#define OBJ_ACT_LAVA_DEATH 100
-#define OBJ_ACT_DEATH_PLANE_DEATH 101
-#define OBJ_ACT_SQUISHED 102
-
 /* oMoveFlags */
 #define OBJ_MOVE_LANDED                (1 <<  0) // 0x0001
 #define OBJ_MOVE_ON_GROUND             (1 <<  1) // 0x0002  // mutually exclusive to OBJ_MOVE_LANDED
@@ -94,6 +91,14 @@
     OBJ_MOVE_UNDERWATER_ON_GROUND)
 #define OBJ_MOVE_MASK_HIT_WALL_OR_IN_WATER \
     (OBJ_MOVE_HIT_WALL | OBJ_MOVE_MASK_IN_WATER)
+
+/* oAction */
+#define OBJ_ACT_LAVA_DEATH 100
+#define OBJ_ACT_DEATH_PLANE_DEATH 101
+
+#define OBJ_ACT_HORIZONTAL_KNOCKBACK 100
+#define OBJ_ACT_VERTICAL_KNOCKBACK 101
+#define OBJ_ACT_SQUISHED 102
 
 /* Bob-omb */
     /* oBehParams2ndByte */
@@ -364,8 +369,24 @@
     #define CHAIN_CHOMP_ACT_UNLOAD_CHAIN 2
 
     /* oSubAction */
-    #define CHAIN_CHOMP_PHASE_TURNING 0
-    #define CHAIN_CHOMP_PHASE_LUNGING 1
+    #define CHAIN_CHOMP_SUB_ACT_TURNING 0
+    #define CHAIN_CHOMP_SUB_ACT_LUNGING 1
+
+    /* oChainChompReleaseStatus */
+    #define CHAIN_CHOMP_NOT_RELEASED 0
+    #define CHAIN_CHOMP_RELEASED_TRIGGER_CUTSCENE 1
+    #define CHAIN_CHOMP_RELEASED_LUNGE_AROUND 2
+    #define CHAIN_CHOMP_RELEASED_BREAK_GATE 3
+    #define CHAIN_CHOMP_RELEASED_JUMP_AWAY 4
+    #define CHAIN_CHOMP_RELEASED_END_CUTSCENE 5
+
+/* Chain chomp chain part */
+    /* oBehParams2ndByte */
+    #define CHAIN_CHOMP_CHAIN_PART_BP_PIVOT 0
+
+/* Wooden post */
+    /* oBehParams */
+    #define WOODEN_POST_BP_NO_COINS_MASK 0x0000FF00
 
 /* Wiggler */
     /* oAction */
@@ -376,12 +397,27 @@
     #define WIGGLER_ACT_SHRINK 4
     #define WIGGLER_ACT_FALL_THROUGH_FLOOR 5
 
+    /* oWigglerTextStatus */
+    #define WIGGLER_TEXT_STATUS_AWAIT_DIALOGUE 0
+    #define WIGGLER_TEXT_STATUS_SHOWING_DIALOGUE 1
+    #define WIGGLER_TEXT_STATUS_COMPLETED_DIALOGUE 2
+
 /* Spiny */
     /* oAction */
     #define SPINY_ACT_WALK 0
     #define SPINY_ACT_HELD_BY_LAKITU 1
     #define SPINY_ACT_THROWN_BY_LAKITU 2
-    #define SPINY_ACT_UNK3 3
+    #define SPINY_ACT_ATTACKED_MARIO 3
+
+/* Evil lakitu */
+    /* oAction */
+    #define EVIL_LAKITU_ACT_UNINITIALIZED 0
+    #define EVIL_LAKITU_ACT_MAIN 1
+
+    /* oSubAction */
+    #define EVIL_LAKITU_SUB_ACT_NO_SPINY 0
+    #define EVIL_LAKITU_SUB_ACT_HOLD_SPINY 1
+    #define EVIL_LAKITU_SUB_ACT_THROW_SPINY 2
 
 /* Platform on tracks */
     /* oAction */

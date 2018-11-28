@@ -184,7 +184,7 @@ struct Object *try_init_object(struct ObjectNode *objList)
 
     // we have gotten a good pointer to an object. initialize the
     // object contents below.
-    obj->activeFlags = ACTIVE_FLAG_UNK0 | ACTIVE_FLAG_UNK8;
+    obj->activeFlags = ACTIVE_FLAG_ACTIVE | ACTIVE_FLAG_UNK8;
     obj->parentObj = obj;
     obj->prevObj = NULL;
     obj->collidedObjInteractTypes = 0;

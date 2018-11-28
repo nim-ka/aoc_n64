@@ -23,7 +23,7 @@ void bhv_ttc_treadmill_update(void)
         {
             if (o->oTimer > o->oTTCTotalTimeUntilSwitch)
             {
-                if (approach_f32_2(&o->oTTCTreadmillSpeed, 0.0f, 10.0f))
+                if (approach_f32_ptr(&o->oTTCTreadmillSpeed, 0.0f, 10.0f))
                 {
                     o->oTTCTotalTimeUntilSwitch = random_mod_offset(10, 20, 7);
                     o->oTTCTreadmillTargetSpeed = RandomSign() * 50.0f;
@@ -32,7 +32,7 @@ void bhv_ttc_treadmill_update(void)
             }
             else if (o->oTimer > 5)
             {
-                approach_f32_2(&o->oTTCTreadmillSpeed, o->oTTCTreadmillTargetSpeed, 10.0f);
+                approach_f32_ptr(&o->oTTCTreadmillSpeed, o->oTTCTreadmillTargetSpeed, 10.0f);
             }
 
             *o->oTTCTreadmillUnkF4 = *o->oTTCTreadmillUnkF8 = o->oTTCTreadmillSpeed;

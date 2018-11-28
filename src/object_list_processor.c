@@ -228,7 +228,7 @@ static s32 func_8029C618(struct ObjectNode *objList)
         
         obj = obj->next;
 
-        if ((gCurrentObject->activeFlags & ACTIVE_FLAG_UNK0) != 1)
+        if ((gCurrentObject->activeFlags & ACTIVE_FLAG_ACTIVE) != ACTIVE_FLAG_ACTIVE)
         {
             if (!(gCurrentObject->oFlags & OBJ_FLAG_4000))
                 func_8029C6D8(gCurrentObject, 0xFF);

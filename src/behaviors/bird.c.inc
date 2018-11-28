@@ -32,10 +32,10 @@ static void bird_act_fly(void)
     UNUSED s32 unused;
     f32 distance;
 
-    func_802F9148(o->oBirdSpeed);
+    obj_compute_vel_from_pitch(o->oBirdSpeed);
     if (o->parentObj->oPosY > 8000.0f)
     {
-        DeactivateObject(o);
+        mark_object_for_deletion(o);
     }
     else
     {
@@ -54,9 +54,9 @@ static void bird_act_fly(void)
             o->oBirdSpeed = 0.04f * dist_between_objects(o, o->parentObj) + 20.0f;
         }
 
-        func_802F95B0(o->oBirdPitch, 140);
+        obj_move_pitch_approach(o->oBirdPitch, 140);
         obj_rotate_yaw_toward(o->oBirdYaw, 800);
-        func_802F9850(o->oBirdYaw, 0x3000, 600);
+        obj_roll_to_match_yaw_turn(o->oBirdYaw, 0x3000, 600);
     }
 
     obj_move_xz_using_fvel_and_gravity();

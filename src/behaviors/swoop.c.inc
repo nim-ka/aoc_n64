@@ -30,7 +30,7 @@ static void swoop_act_idle(void)
 {
     func_8029ED38(1);
 
-    if (approach_f32_2(&o->header.gfx.scale[0], 1.0f, 0.05f) &&
+    if (approach_f32_ptr(&o->header.gfx.scale[0], 1.0f, 0.05f) &&
         o->oDistanceToMario < 1500.0f)
     {
         if (obj_rotate_yaw_toward(o->oAngleToMario, 0x320))
@@ -59,7 +59,7 @@ static void swoop_act_move(void)
     if (o->oForwardVel == 0.0f)
     {
         // If we haven't started moving yet, begin swooping
-        if (face_roll_approach(0, 0x9C4))
+        if (obj_face_roll_approach(0, 0x9C4))
         {
             o->oForwardVel = 10.0f;
             o->oVelY = -10.0f;
@@ -86,14 +86,14 @@ static void swoop_act_move(void)
             o->oSwoopTargetYaw = o->oAngleToMario;
             if (o->oPosY < gMarioObject->oPosY + 200.0f)
             {
-                if (y_vel_approach(0.0f, 0.5f))
+                if (obj_y_vel_approach(0.0f, 0.5f))
                 {
                     o->oForwardVel *= 2.0f;
                 }
             }
             else
             {
-                y_vel_approach(-10.0f, 0.5f);
+                obj_y_vel_approach(-10.0f, 0.5f);
             }
         }
         else if (o->oMoveFlags & OBJ_MOVE_HIT_WALL)
@@ -103,18 +103,18 @@ static void swoop_act_move(void)
             o->oSwoopBonkCountdown = 30;
         }
 
-        // Tilt upward when moving approaching mario
-        if ((o->oSwoopTargetPitch = func_802F86C0()) == 0)
+        // Tilt upward when approaching mario
+        if ((o->oSwoopTargetPitch = obj_get_pitch_from_vel()) == 0)
         {
             o->oSwoopTargetPitch += o->oForwardVel * 0x1F4;
         }
-        func_802F95B0(o->oSwoopTargetPitch, 0x8C);
+        obj_move_pitch_approach(o->oSwoopTargetPitch, 0x8C);
 
         // Jitter yaw a bit
         obj_rotate_yaw_toward(
             o->oSwoopTargetYaw + (s32)(0xBB8 * coss(0xFA0 * gGlobalTimer)),
             0x4B0);
-        func_802F9850(o->oSwoopTargetYaw, 0x3000, 0x1F4);
+        obj_roll_to_match_yaw_turn(o->oSwoopTargetYaw, 0x3000, 0x1F4);
 
         // Jitter roll a bit
         o->oFaceAngleRoll += (s32)(0x3E8 * coss(0x4E20 * gGlobalTimer));
@@ -143,6 +143,6 @@ void bhv_swoop_update(void)
         obj_scale(o->header.gfx.scale[0]);
         obj_move_standard(78);
 
-        func_802FA888(&sSwoopHitbox, o->oAction);
+        obj_check_mario_attacks(&sSwoopHitbox, o->oAction);
     }
 }

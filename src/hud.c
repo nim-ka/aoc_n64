@@ -67,7 +67,7 @@ static struct Struct803306D0 D_803306D0[] =
     { &beh_collectable_coin,             0x0074, 0x0000 }, { &beh_collectable_coin,            0x0074, 0x0000 }, 
     { &beh_collectable_coin,             0x0074, 0x0000 }, { &beh_collectable_coin,            0x0074, 0x0000 }, 
     { &bWoodenPost,                      0x006B, 0x0000 }, { &bWaterBombSpawner,               0x0000, 0x0000 }, 
-    { &beh_evil_lakitu,                  0x0054, 0x0000 }, { &bKoopa,                          0x0068, 0x0002 }, 
+    { &bEvilLakitu,                  0x0054, 0x0000 }, { &bKoopa,                          0x0068, 0x0002 }, 
     { &bKoopaRaceEndpoint,               0x0000, 0x0000 }, { &beh_bobomb,                      0x00BC, 0x0000 }, 
     { &beh_cannon,                       0x0080, 0x0000 }, { &beh_bobomb_buddy_cannon_role,    0x00C3, 0x0000 }, 
     { &beh_cannon,                       0x0080, 0x0000 }, { &beh_bobomb,                      0x00BC, 0x0001 }, 

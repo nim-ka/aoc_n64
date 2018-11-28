@@ -5196,7 +5196,7 @@ glabel func_8025B1B0
 /* 01623C 8025B23C 45000006 */  bc1f  .L8025B258
 /* 016240 8025B240 00000000 */   nop   
 /* 016244 8025B244 3C048034 */  lui   $a0, %hi(D_80339F30) # $a0, 0x8034
-/* 016248 8025B248 0C0A7F7B */  jal   DeactivateObject
+/* 016248 8025B248 0C0A7F7B */  jal   mark_object_for_deletion
 /* 01624C 8025B24C 8C849F30 */   lw    $a0, %lo(D_80339F30)($a0)
 /* 016250 8025B250 0C096BA0 */  jal   func_8025AE80
 /* 016254 8025B254 8FA40028 */   lw    $a0, 0x28($sp)
@@ -6141,7 +6141,7 @@ glabel func_8025BF1C
 /* 016FBC 8025BFBC 15A10057 */  bne   $t5, $at, .L8025C11C
 /* 016FC0 8025BFC0 00000000 */   nop   
 /* 016FC4 8025BFC4 3C048034 */  lui   $a0, %hi(D_80339F40) # $a0, 0x8034
-/* 016FC8 8025BFC8 0C0A7F7B */  jal   DeactivateObject
+/* 016FC8 8025BFC8 0C0A7F7B */  jal   mark_object_for_deletion
 /* 016FCC 8025BFCC 8C849F40 */   lw    $a0, %lo(D_80339F40)($a0)
 /* 016FD0 8025BFD0 3C048036 */  lui   $a0, %hi(gCurrentObject) # $a0, 0x8036
 /* 016FD4 8025BFD4 3C071300 */  lui   $a3, %hi(beh_end_peach) # $a3, 0x1300

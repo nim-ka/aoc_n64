@@ -366,7 +366,7 @@ f32 dist_between_objects(struct Object *obj1, struct Object *obj2) {
     return sqrtf(dx*dx + dy*dy + dz*dz);
 }
 
-void obj_forward_vel_approach_upward(f32 target, f32 increment)
+void obj_obj_forward_vel_approach_upward(f32 target, f32 increment)
 {
     if (o->oForwardVel >= target)
     {
@@ -1042,7 +1042,7 @@ struct Object *obj_find_nearest_object_with_behavior(void *behavior, f32 *dist)
     {
         if (obj->behavior == behaviorAddr)
         {
-            if (obj->activeFlags != 0 && obj != o)
+            if (obj->activeFlags != ACTIVE_FLAGS_INACTIVE && obj != o)
             {
                 f32 objDist = dist_between_objects(o, obj);
                 if (objDist < minDist)
@@ -1122,7 +1122,7 @@ struct Object *obj_find_nearby_held_actor(void *behavior, f32 maxDist)
     {
         if (obj->behavior == behaviorAddr)
         {
-            if (obj->activeFlags != 0)
+            if (obj->activeFlags != ACTIVE_FLAGS_INACTIVE)
             {
                 // This includes the dropped and thrown states. By combining
                 // instant release, this allows us to activate mama penguin
@@ -1397,9 +1397,13 @@ s32 obj_clear_interact_status_flag(s32 flag)
     return FALSE;
 }
 
-void DeactivateObject(struct Object *a0)
+void mark_object_for_deletion(struct Object *obj)
 {
-    a0->activeFlags = 0;
+    //! This clears all activeFlags. Since some of these flags disable behavior,
+    //  setting it to 0 could potentially enable unexpected behavior. After an
+    //  object is marked for deletion, it still updates on that frame (I think),
+    //  so this is worth looking into.
+    obj->activeFlags = ACTIVE_FLAGS_INACTIVE;
 }
 
 void func_8029FE00(void)
@@ -2737,7 +2741,7 @@ void BehDustSmokeLoop(void)
 
     if (o->oUnknownUnkF4_S32 == 10)
     {
-        DeactivateObject(o);
+        mark_object_for_deletion(o);
     }
 
     o->oUnknownUnkF4_S32++;
@@ -3017,7 +3021,7 @@ s32 obj_set_hitbox_and_die_if_attacked(
         {
             func_802A3004();
             spawn_object_loot_yellow_coins(o, o->oNumLootCoins, 20.0f);
-            DeactivateObject(o);
+            mark_object_for_deletion(o);
             create_sound_spawner(deathSound);
         }
         else
@@ -3035,7 +3039,7 @@ void func_802A3C98(f32 sp18, s32 sp1C)
 {
     func_802AA618(0, 0, sp18);
     func_802AD82C(30, 138, 3.0f, 4);
-    DeactivateObject(o);
+    mark_object_for_deletion(o);
 
     if (sp1C == 1)
     {

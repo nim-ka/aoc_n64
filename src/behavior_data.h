@@ -460,10 +460,10 @@ extern u32 bGoombaTripletSpawner[];                  // 0x13004750
 extern u32 bChainChomp[];                            // 0x1300476C
 extern u32 bChainChompChainPart[];                   // 0x130047C4
 extern u32 bWoodenPost[];                            // 0x130047FC
-extern u32 bChainChompFreedExplosion[];              // 0x13004848
+extern u32 bChainChompGate[];                        // 0x13004848
 extern u32 bWiggler[];                               // 0x13004878
 extern u32 bWigglerBodyPart[];                       // 0x130048C0
-extern u32 beh_evil_lakitu[];                        // 0x130048F8
+extern u32 bEvilLakitu[];                            // 0x130048F8
 extern u32 beh_lakitu[];                             // 0x13004934
 extern u32 beh_fwoosh_blowing_wind[];                // 0x13004968
 extern u32 beh_fwoosh_face[];                        // 0x1300498C

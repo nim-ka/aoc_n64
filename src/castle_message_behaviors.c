@@ -239,7 +239,7 @@ void beh_toad_message_init(void)
     }
     else
     {
-        DeactivateObject(gCurrentObject);
+        mark_object_for_deletion(gCurrentObject);
     }
 }
 
@@ -308,7 +308,7 @@ void beh_unlock_door_star_loop(void)
         break;
     case UNLOCK_DOOR_STAR_DONE: // The object stays loaded for an additional 50 frames so that the sound doesn't immediately stop.
         if (gCurrentObject->oUnlockDoorStarTimer++ == 50)
-            DeactivateObject(gCurrentObject);
+            mark_object_for_deletion(gCurrentObject);
         break;
     }
     // Checks if the angle has cycled back to 0.

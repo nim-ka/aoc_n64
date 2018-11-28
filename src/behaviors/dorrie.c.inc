@@ -56,7 +56,7 @@ static void dorrie_act_move(void)
             targetSpeed = 5;
         }
 
-        forward_vel_approach(targetSpeed, 0.5f);
+        obj_forward_vel_approach(targetSpeed, 0.5f);
         o->oDorrieYawVel = approach_s16_symmetric(o->oDorrieYawVel, (s16)(targetYaw - o->oMoveAngleYaw) / 50, 5);
         o->oMoveAngleYaw += o->oDorrieYawVel;
     }
@@ -154,7 +154,7 @@ void bhv_dorrie_update(void)
     {
         o->oDorrieForwardDistToMario = o->oDistanceToMario * coss(o->oAngleToMario - o->oMoveAngleYaw);
         
-        func_802F8854(0);
+        obj_perform_position_op(0);
         obj_move_xz_using_fvel_and_gravity();
 
         o->oDorrieAngleToHome = obj_angle_to_home();
@@ -163,7 +163,7 @@ void bhv_dorrie_update(void)
         // Shift dorrie's bounds to account for her neck
         boundsShift = 440.0f * coss(o->oDorrieNeckAngle) * coss(o->oMoveAngleYaw - o->oDorrieAngleToHome);
 
-        if (cap_f32(&o->oDorrieDistToHome, 1650.0f + boundsShift, 2300.0f + boundsShift))
+        if (clamp_f32(&o->oDorrieDistToHome, 1650.0f + boundsShift, 2300.0f + boundsShift))
         {
             o->oPosX = o->oHomeX - o->oDorrieDistToHome * sins(o->oDorrieAngleToHome);
             o->oPosZ = o->oHomeZ - o->oDorrieDistToHome * coss(o->oDorrieAngleToHome);
@@ -192,7 +192,7 @@ void bhv_dorrie_update(void)
         }
 
         o->oDorrieOffsetY += o->oDorrieVelY;
-        approach_f32_2(&o->oDorrieVelY, 3.0f, 1.0f);
+        approach_f32_ptr(&o->oDorrieVelY, 3.0f, 1.0f);
         if (o->oDorrieVelY > 0.0f && o->oDorrieOffsetY > maxOffsetY)
         {
             o->oDorrieOffsetY = maxOffsetY;
@@ -207,6 +207,6 @@ void bhv_dorrie_update(void)
         case DORRIE_ACT_RAISE_HEAD: dorrie_act_raise_head(); break;
         }
 
-        func_802F8854(1);
+        obj_perform_position_op(1);
     }
 }

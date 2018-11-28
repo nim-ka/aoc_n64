@@ -49,7 +49,7 @@ void bhv_activated_back_and_forth_platform_update(void)
         {
             o->oActivatedBackAndForthPlatformOffset += o->oActivatedBackAndForthPlatformVel;
 
-            if (cap_f32(&o->oActivatedBackAndForthPlatformOffset, 0.0f, o->oActivatedBackAndForthPlatformMaxOffset) ||
+            if (clamp_f32(&o->oActivatedBackAndForthPlatformOffset, 0.0f, o->oActivatedBackAndForthPlatformMaxOffset) ||
                 (o->oActivatedBackAndForthPlatformVel > 0.0f &&
                 o->oDistanceToMario > 3000.0f))
             {
@@ -76,7 +76,7 @@ void bhv_activated_back_and_forth_platform_update(void)
         o->oActivatedBackAndForthPlatformCountdown = 20;
     }
 
-    func_802F8854(0);
+    obj_perform_position_op(0);
     
     if (o->oActivatedBackAndForthPlatformVertical != 0)
     {
@@ -85,9 +85,9 @@ void bhv_activated_back_and_forth_platform_update(void)
     else
     {
         o->oPosY += o->oVelY;
-        cap_f32(&o->oPosY, o->oHomeY - 20.0f, o->oHomeY);
-        func_802F8770(-o->oActivatedBackAndForthPlatformOffset);
+        clamp_f32(&o->oPosY, o->oHomeY - 20.0f, o->oHomeY);
+        obj_set_dist_from_home(-o->oActivatedBackAndForthPlatformOffset);
     }
  
-    func_802F8854(1);
+    obj_perform_position_op(1);
 }

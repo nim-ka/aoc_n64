@@ -270,7 +270,7 @@
 #define /*0x0F8*/ oKoopaMovementType OBJECT_FIELD_S32(0x1C)
 #define /*0x0FC*/ oKoopaTargetYaw OBJECT_FIELD_S32(0x1D)
 #define /*0x100*/ oKoopaUnshelledTimeUntilTurn OBJECT_FIELD_S32(0x1E)
-#define /*0x104*/ oKoopaTurning OBJECT_FIELD_S32(0x1F)
+#define /*0x104*/ oKoopaTurningAwayFromWall OBJECT_FIELD_S32(0x1F)
 #define /*0x108*/ oKoopaDistanceToMario OBJECT_FIELD_F32(0x20)
 #define /*0x10C*/ oKoopaAngleToMario OBJECT_FIELD_S32(0x21)
 #define /*0x110*/ oKoopaBlinkTimer OBJECT_FIELD_S32(0x22)
@@ -297,7 +297,7 @@
 #define /*0x100*/ oPokeyHeadWasKilled OBJECT_FIELD_S32(0x1E)
 #define /*0x104*/ oPokeyTargetYaw OBJECT_FIELD_S32(0x1F)
 #define /*0x108*/ oPokeyChangeTargetTimer OBJECT_FIELD_S32(0x20)
-#define /*0x10C*/ oPokeyTurning OBJECT_FIELD_S32(0x21)
+#define /*0x10C*/ oPokeyTurningAwayFromWall OBJECT_FIELD_S32(0x21)
 
 /* Swoop */
 #define /*0x0F4*/ oSwoopBonkCountdown OBJECT_FIELD_S32(0x1B)
@@ -315,24 +315,24 @@
 
 /* Goomba */
 #define /*0x0F4*/ oGoombaSize OBJECT_FIELD_S32(0x1B)
-#define /*0x0F8*/ oGoombaBaseSpeed OBJECT_FIELD_F32(0x1C)
+#define /*0x0F8*/ oGoombaScale OBJECT_FIELD_F32(0x1C)
 #define /*0x0FC*/ oGoombaWalkTimer OBJECT_FIELD_S32(0x1D)
 #define /*0x100*/ oGoombaTargetYaw OBJECT_FIELD_S32(0x1E)
 #define /*0x104*/ oGoombaBlinkTimer OBJECT_FIELD_S32(0x1F)
-#define /*0x108*/ oGoombaTurning OBJECT_FIELD_S32(0x20)
+#define /*0x108*/ oGoombaTurningAwayFromWall OBJECT_FIELD_S32(0x20)
 #define /*0x10C*/ oGoombaRelativeSpeed OBJECT_FIELD_F32(0x21)
 
 /* Chain chomp */
 #define /*0x0F4*/ oChainChompSegments OBJECT_FIELD_CHAIN_SEGMENT(0x1B)
-#define /*0x0F8*/ oChainChompUnkF8 OBJECT_FIELD_F32(0x1C)
-#define /*0x0FC*/ oChainChompUnkFC OBJECT_FIELD_F32(0x1D)
-#define /*0x100*/ oChainChompUnk100 OBJECT_FIELD_F32(0x1E)
+#define /*0x0F8*/ oChainChompMaxDistFromPivotPerChainPart OBJECT_FIELD_F32(0x1C)
+#define /*0x0FC*/ oChainChompMaxDistBetweenChainParts OBJECT_FIELD_F32(0x1D)
+#define /*0x100*/ oChainChompDistToPivot OBJECT_FIELD_F32(0x1E)
 #define /*0x104*/ oChainChompUnk104 OBJECT_FIELD_F32(0x1F)
-#define /*0x108*/ oChainChompUnk108 OBJECT_FIELD_S32(0x20)
+#define /*0x108*/ oChainChompRestrictedByChain OBJECT_FIELD_S32(0x20)
 #define /*0x10C*/ oChainChompTargetPitch OBJECT_FIELD_S32(0x21)
-#define /*0x110*/ oChainChompUnk110 OBJECT_FIELD_S32(0x22)
-#define /*0x1AC*/ oChainChompUnk1AC OBJECT_FIELD_S32(0x49)
-#define /*0x1B0*/ oChainChompUnk1B0 OBJECT_FIELD_S32(0x4A)
+#define /*0x110*/ oChainChompNumLunges OBJECT_FIELD_S32(0x22)
+#define /*0x1AC*/ oChainChompReleaseStatus OBJECT_FIELD_S32(0x49)
+#define /*0x1B0*/ oChainChompHitGate OBJECT_FIELD_S32(0x4A)
 
 /* Wooden post */
 #define /*0x0F4*/ oWoodenPostTotalMarioAngle OBJECT_FIELD_S32(0x1B)
@@ -342,26 +342,26 @@
 #define /*0x104*/ oWoodenPostOffsetY OBJECT_FIELD_F32(0x1F)
 
 /* Wiggler */
-#define /*0x0F4*/ oWigglerUnkF4 OBJECT_FIELD_F32(0x1B)
+#define /*0x0F4*/ oWigglerFallThroughFloorsHeight OBJECT_FIELD_F32(0x1B)
 #define /*0x0F8*/ oWigglerSegments OBJECT_FIELD_CHAIN_SEGMENT(0x1C)
-#define /*0x0FC*/ oWigglerUnkFC OBJECT_FIELD_F32(0x1D)
+#define /*0x0FC*/ oWigglerWalkAnimSpeed OBJECT_FIELD_F32(0x1D)
 #define /*0x104*/ oWigglerSquishSpeed OBJECT_FIELD_F32(0x1F)
 #define /*0x108*/ oWigglerTimeUntilRandomTurn OBJECT_FIELD_S32(0x20)
 #define /*0x10C*/ oWigglerTargetYaw OBJECT_FIELD_S32(0x21)
-#define /*0x110*/ oWigglerWalkStraightTimer OBJECT_FIELD_S32(0x22)
+#define /*0x110*/ oWigglerWalkAwayFromWallTimer OBJECT_FIELD_S32(0x22)
 #define /*0x1AC*/ oWigglerUnk1AC OBJECT_FIELD_S16(0x49, 0)
-#define /*0x1AE*/ oWigglerUnk1AE OBJECT_FIELD_S16(0x49, + 1)
+#define /*0x1AE*/ oWigglerTextStatus OBJECT_FIELD_S16(0x49, + 1)
 
 /* Spiny */
 #define /*0x0F4*/ oSpinyTimeUntilTurn OBJECT_FIELD_S32(0x1B)
 #define /*0x0F8*/ oSpinyTargetYaw OBJECT_FIELD_S32(0x1C)
-#define /*0x100*/ oSpinyTurning OBJECT_FIELD_S32(0x1E)
+#define /*0x100*/ oSpinyTurningAwayFromWall OBJECT_FIELD_S32(0x1E)
 
 /* Evil lakitu */
 #define /*0x0F4*/ oEvilLakituNumSpinies OBJECT_FIELD_S32(0x1B)
 #define /*0x0F8*/ oEvilLakituBlinkTimer OBJECT_FIELD_S32(0x1C)
-#define /*0x0FC*/ oEvilLakituUnkFC OBJECT_FIELD_S32(0x1D)
-#define /*0x100*/ oEvilLakituUnk100 OBJECT_FIELD_S32(0x1E)
+#define /*0x0FC*/ oEvilLakituSpinyCooldown OBJECT_FIELD_S32(0x1D)
+#define /*0x100*/ oEvilLakituFaceForwardCountdown OBJECT_FIELD_S32(0x1E)
 
 /* Fwoosh spawner */
 #define /*0x0F4*/ oFwooshSpawnerUnkF4 OBJECT_FIELD_F32(0x1B)

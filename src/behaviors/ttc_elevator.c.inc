@@ -29,7 +29,7 @@ void bhv_ttc_elevator_update(void)
 
     obj_move_xz_using_fvel_and_gravity();
 
-    if (cap_f32(&o->oPosY, o->oHomeY, o->oTTCElevatorPeakY))
+    if (clamp_f32(&o->oPosY, o->oHomeY, o->oTTCElevatorPeakY))
     {
         o->oTTCElevatorDir = -o->oTTCElevatorDir;
     }

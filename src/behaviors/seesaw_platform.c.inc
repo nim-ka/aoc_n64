@@ -33,10 +33,10 @@ void bhv_seesaw_platform_update(void)
         }
 
         o->oSeesawPlatformPitchVel += rotation;
-        cap_f32(&o->oSeesawPlatformPitchVel, -50.0f, 50.0f);
+        clamp_f32(&o->oSeesawPlatformPitchVel, -50.0f, 50.0f);
     }
     else
     {
-        func_802F9B68(&o->oFaceAnglePitch, &o->oSeesawPlatformPitchVel, 0.0f, 6.0f, 3.0f, 3.0f);
+        oscillate_toward(&o->oFaceAnglePitch, &o->oSeesawPlatformPitchVel, 0.0f, 6.0f, 3.0f, 3.0f);
     }
 }
