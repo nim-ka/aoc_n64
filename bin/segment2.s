@@ -1242,10 +1242,10 @@ glabel seg2_hud_camera_lut
 
 .macro textdata name
 .ifdef VERSION_JP
-.include "text/jp/\name\().s"
+.include "build/jp/text/\name\().s"
 .endif
 .ifdef VERSION_US
-.include "text/us/\name\().s"
+.include "build/us/text/\name\().s"
 .endif
 .endm
 

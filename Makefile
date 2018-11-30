@@ -68,10 +68,10 @@ OBJDUMP   := $(CROSS)objdump
 OBJCOPY   := $(CROSS)objcopy
 
 # Check code syntax with host compiler
-CC_CHECK := gcc -fsyntax-only -fsigned-char -I include -std=gnu90 -Wall -Wextra -Wno-format-security $(VERSION_CFLAGS)
+CC_CHECK := gcc -fsyntax-only -fsigned-char -I include -I $(BUILD_DIR)/include -std=gnu90 -Wall -Wextra -Wno-format-security $(VERSION_CFLAGS)
 
 ASFLAGS := -march=vr4300 -mabi=32 -I include -I $(BUILD_DIR) $(VERSION_ASFLAGS)
-CFLAGS = -Wab,-r4300_mul -non_shared -G 0 -Xcpluscomm -Xfullwarn $(OPT_FLAGS) -signed -I include $(VERSION_CFLAGS) $(MIPSISET)
+CFLAGS = -Wab,-r4300_mul -non_shared -G 0 -Xcpluscomm -Xfullwarn $(OPT_FLAGS) -signed -I include -I $(BUILD_DIR)/include $(VERSION_CFLAGS) $(MIPSISET)
 OBJCOPYFLAGS := --pad-to=0x800000 --gap-fill=0xFF
 SYMBOL_LINKING_FLAGS := $(addprefix -R ,$(SEG_FILES))
 LDFLAGS := -T undefined_syms.txt -T $(BUILD_DIR)/$(LD_SCRIPT) -Map $(BUILD_DIR)/sm64.map --no-check-sections $(SYMBOL_LINKING_FLAGS)
@@ -124,7 +124,7 @@ ifeq ($(COMPARE),1)
 endif
 
 clean:
-	$(RM) -r $(BUILD_DIR_BASE) src/text_strings.h text/us/*.s text/jp/*.s
+	$(RM) -r $(BUILD_DIR_BASE)
 
 test: $(ROM)
 	$(EMULATOR) $(EMU_FLAGS) $<
@@ -132,29 +132,29 @@ test: $(ROM)
 load: $(ROM)
 	$(LOADER) $(LOADER_FLAGS) $<
 
-src/text_strings.h: src/text_strings.h.in
+$(BUILD_DIR)/include/text_strings.h: include/text_strings.h.in $(BUILD_DIR)
 	$(TEXTCONV) charmap.txt $< $@
 
-text/%.s: text/%.s.in
+$(BUILD_DIR)/text/%.s: text/$(VERSION)/%.s.in $(BUILD_DIR)
 	$(TEXTCONV) charmap.txt $< $@
 
 build/bin/segment2.o: bin/segment2.s
 
-bin/segment2.s: text/$(VERSION)/debug.s text/$(VERSION)/dialog.s text/$(VERSION)/level.s text/$(VERSION)/star.s
+bin/segment2.s: $(BUILD_DIR)/text/debug.s $(BUILD_DIR)/text/dialog.s $(BUILD_DIR)/text/level.s $(BUILD_DIR)/text/star.s
 	touch bin/segment2.s
 
 $(MIO0_DIR)/%.mio0: bin/%.bin
 	$(MIO0TOOL) $< $@
 
 $(BUILD_DIR):
-	mkdir -p $(BUILD_DIR) $(addprefix $(BUILD_DIR)/,$(SRC_DIRS) $(ASM_DIRS) $(BIN_DIRS) $(TEXTURE_DIRS)) $(MIO0_DIR)
+	mkdir -p $(BUILD_DIR) $(addprefix $(BUILD_DIR)/,$(SRC_DIRS) $(ASM_DIRS) $(BIN_DIRS) $(TEXTURE_DIRS) include text) $(MIO0_DIR)
 
 # Make sure build directory exists before compiling objects
 $(O_FILES): | $(BUILD_DIR)
 
-$(BUILD_DIR)/src/star_select.o: src/text_strings.h
-$(BUILD_DIR)/src/file_select.o: src/text_strings.h
-$(BUILD_DIR)/src/ingame_menu.o: src/text_strings.h
+$(BUILD_DIR)/src/star_select.o: $(BUILD_DIR)/include/text_strings.h
+$(BUILD_DIR)/src/file_select.o: $(BUILD_DIR)/include/text_strings.h
+$(BUILD_DIR)/src/ingame_menu.o: $(BUILD_DIR)/include/text_strings.h
 
 # texture generation
 $(BUILD_DIR)/bin/%.rgba16: textures/%.rgba16.png
