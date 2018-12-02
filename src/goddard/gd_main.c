@@ -6,7 +6,7 @@
 #include "debug_memory.h"
 #include "mario_head_1.h"
 #include "profiler_utils.h"
-#include "../mario_head_6.h"
+#include "mario_head_6.h"
 
 /* This file was spilt out of debug_memory.asm based on rodata.
  * The rodata for functions after this "__main__" function have string literals following 

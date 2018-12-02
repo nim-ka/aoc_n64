@@ -1,7 +1,7 @@
 #include <ultra64.h>
 
 #include "sm64.h"
-#include "../mario_head_6.h"
+#include "mario_head_6.h"
 #include "profiler_utils.h"
 #include "../libultra.h"
 

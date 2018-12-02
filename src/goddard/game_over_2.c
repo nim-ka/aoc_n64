@@ -11,7 +11,7 @@
 #include "profiler_utils.h"
 #include "matrix_fns.h"
 #include "half_6.h"
-#include "../mario_head_6.h"
+#include "mario_head_6.h"
 
 /* forward declarations */
 void func_80179B64(struct ObjGroup *);
@@ -83,8 +83,8 @@ void Unknown801781DC(struct ObjZone *a)
         sp3C.y = sp28->unk74.y;
         sp3C.z = sp28->unk74.z;
         sp38 = (struct ObjUnk200000 *) sp20;
-        sp34 = func_80194DB8(&sp38->unk34->vec24, &sp38->unk30->vec20);
-        sp30 = func_80194DB8(&sp38->unk34->vec24, &sp3C);
+        sp34 = dot_product_vec3f(&sp38->unk34->vec24, &sp38->unk30->vec20);
+        sp30 = dot_product_vec3f(&sp38->unk34->vec24, &sp3C);
         sp3C.x -= sp38->unk34->vec24.x * (sp30 - sp34);
         sp3C.y -= sp38->unk34->vec24.y * (sp30 - sp34);
         sp3C.z -= sp38->unk34->vec24.z * (sp30 - sp34);
@@ -198,7 +198,7 @@ void draw_shape_2d(struct ObjShape *shape, int b,
         sp1C.y = g;
         sp1C.z = h;
         if (D_801A80F8 != NULL)
-            func_80196430(&sp1C, D_801A80F8->unkE8);
+            func_80196430(&sp1C, &D_801A80F8->unkE8);
         func_8019F19C(sp1C.x, sp1C.y, sp1C.z);
     }
     func_8017A218(shape);
@@ -624,7 +624,7 @@ void func_80179B64(struct ObjGroup* group)
 /* 22836C -> 228498 */
 void func_80179B9C(struct MyVec3f *a, struct ObjCamera *b, struct ObjView *c)
 {
-    func_80196430(a, b->unkE8);
+    func_80196430(a, &b->unkE8);
     if (a->z > -256.0f)
         return;
     a->x *= 256.0 / -a->z;
@@ -912,7 +912,7 @@ void Proc8017A980(struct ObjLight *light)
     D_801B9D20[light->unk1C].x = light->unk74.x - D_801B9D10.x;
     D_801B9D20[light->unk1C].y = light->unk74.y - D_801B9D10.y;
     D_801B9D20[light->unk1C].z = light->unk74.z - D_801B9D10.z;
-    func_80194BF4(&D_801B9D20[light->unk1C]);
+    into_unit_vec3f(&D_801B9D20[light->unk1C]);
     if (light->unk2C & 0x20)
     {
         D_801B9D00.x = D_801B9D20[light->unk1C].x;
@@ -923,7 +923,7 @@ void Proc8017A980(struct ObjLight *light)
     sp24 = light->unk30;
     if (light->unk2C & 2)
     {
-        sp20 = -func_80194DB8(&D_801B9D20[light->unk1C], &light->unk80);
+        sp20 = -dot_product_vec3f(&D_801B9D20[light->unk1C], &light->unk80);
         sp1C = 1.0 - light->unk38 / 90.0;
         if (sp20 > sp1C)
         {

@@ -2,7 +2,7 @@
 #define _MARIO_HEAD_6_H_
 
 #include "types.h"
-#include "goddard/gd_types.h"
+#include "gd_types.h"
 
 // extern ? D_801A86FC;
 // extern ? D_801B8CA0;
@@ -221,9 +221,9 @@ extern f32 func_8019AF70(void);
 // extern ? nextMtxList(?);
 // extern ? nextVtxList(?);
 // extern ? nextVpList(?);
-// extern ? func_8019B2DC(?);
-// extern ? func_8019B31C(?);
-extern f64 func_8019B35C(f64);  //"sqrt_d_limited" (return 0.0 below 1e-7)
+extern f64 gd_sin_d(f64);
+extern f64 gd_cos_d(f64);
+extern f64 gd_sqrt_d(f64);  //"sqrt_d_limited" (return 0.0 below 1e-7)
 // extern ? Unknown8019B3D4(?);
 extern int printf(const char *format, ...);
 extern void gd_exit(s32);     // TUI stuff? a fatal or exit function?

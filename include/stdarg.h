@@ -1,6 +1,8 @@
 #ifndef _STDARG_H_
 #define _STDARG_H_
 
+#include <stddef.h>
+
 typedef char *va_list;
 
 #define _VA_FP_SAVE_AREA 0x10

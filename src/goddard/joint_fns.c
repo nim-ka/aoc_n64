@@ -14,7 +14,7 @@
 #include "profiler_utils.h"
 #include "skin_fns.h"
 #include "matrix_fns.h"
-#include "../mario_head_6.h"
+#include "mario_head_6.h"
 
 #define ABS(val) (((val) < 0 ? (-(val)) : (val)))
 
@@ -147,9 +147,9 @@ void Proc8018EBE8(struct ObjJoint *self)
     sp50.x *= 2.0;  //!2.0f
     sp50.y *= 2.0;  //!2.0f
     sp50.z *= 2.0;  //!2.0f
-    if (rss_vec3f(&sp50) > 30.0f)
+    if (magnitude_vec3f(&sp50) > 30.0f)
     {
-        func_80194BF4(&sp50);
+        into_unit_vec3f(&sp50);
         sp50.x *= 30.0f;
         sp50.y *= 30.0f;
         sp50.z *= 30.0f;
@@ -296,7 +296,7 @@ void func_8018F328(struct ObjBone *b)
     b->unk58.y = sp20->unk14.y - sp24->unk14.y;
     b->unk58.z = sp20->unk14.z - sp24->unk14.z;
 
-    func_80194BF4(&b->unk58);
+    into_unit_vec3f(&b->unk58);
     func_80194358(&b->matB0, &b->unk58, 0); //! 0.0f
 }
 
@@ -359,15 +359,15 @@ void func_8018F520(struct ObjBone *b)
     sp90.y *= sp68;
     sp90.z *= sp68;
 
-    func_80194D14(&sp90, &sp6C, &sp78);
+    cross_product_vec3f(&sp90, &sp6C, &sp78);
     sp84.x = sp78.x;
     sp84.y = sp78.y;
     sp84.z = sp78.z;
 
-    func_80194BF4(&sp84);
-    sp64 = rss_vec3f(&sp78);
+    into_unit_vec3f(&sp84);
+    sp64 = magnitude_vec3f(&sp78);
     func_801961F4(&mtx, &sp84, sp64);
-    func_80196614(&b->mat70, &mtx, &b->mat70);
+    multiply_mat4(&b->mat70, &mtx, &b->mat70);
     D_801BA968.x = b->mat70[2][0];
     D_801BA968.y = b->mat70[2][1];
     D_801BA968.z = b->mat70[2][2];
@@ -400,8 +400,8 @@ void func_8018F89C(struct ObjBone *b)
     b->unk14.y = (spAC->unk14.y + spA8->unk14.y) / 2.0; //! 2.0f;
     b->unk14.z = (spAC->unk14.z + spA8->unk14.z) / 2.0; //! 2.0f;
 
-    func_80196614(&b->matB0, &gGdSkinNet->mat128, &mtx);
-    mat4_cpy(&mtx, &b->mat70);
+    multiply_mat4(&b->matB0, &gGdSkinNet->mat128, &mtx);
+    cpy_mat4(&mtx, &b->mat70);
 
     D_801BA968.x = -b->mat70[2][0];
     D_801BA968.y = -b->mat70[2][1];
@@ -457,7 +457,7 @@ void func_8018FB58(struct ObjBone *b)
     vec.y = j1->unk14.y - j2->unk14.y;
     vec.z = j1->unk14.z - j2->unk14.z;
 
-    b->unkF8 = func_8019B35C((vec.x * vec.x) + (vec.y * vec.y) + (vec.z * vec.z));
+    b->unkF8 = gd_sqrt_d((vec.x * vec.x) + (vec.y * vec.y) + (vec.z * vec.z));
     b->unkF4 = b->unkF8;
     b->unkFC = b->unkF8;
     func_8018F328(b);
@@ -607,14 +607,14 @@ void func_80190168(struct ObjBone *b, UNUSED struct ObjJoint *a1, UNUSED struct 
 
     if (b->unk104 & 0x8)
     {
-        sp58 = rss_vec3f(&sp7C);
+        sp58 = magnitude_vec3f(&sp7C);
         if (sp58 == 0.0f) { sp58 = 1.0f; }
         sp60 = (b->unkF8 / sp58) * b->unk110;
     }
 
     if (b->unk104 & 0x4)
     {
-        if (sp60 > (sp58 = rss_vec3f(&sp7C)))
+        if (sp60 > (sp58 = magnitude_vec3f(&sp7C)))
         {
             sp5C = b->unk110;
             a3->x *= sp5C;
@@ -629,7 +629,7 @@ void func_80190168(struct ObjBone *b, UNUSED struct ObjJoint *a1, UNUSED struct 
 
     if (b->unk104 & 0x2)
     {
-        if (sp60 < (sp58 = rss_vec3f(&sp7C)))
+        if (sp60 < (sp58 = magnitude_vec3f(&sp7C)))
         {
             sp5C = b->unk110;
             a3->x *= sp5C;
@@ -846,7 +846,7 @@ void func_80190B54(struct ObjJoint *a0, struct ObjJoint *a1, struct MyVec3f *a2)
         sp8C.x = spA4.x;
         sp8C.y = spA4.y;
         sp8C.z = spA4.z;
-        func_80194BF4(&sp8C);
+        into_unit_vec3f(&sp8C);
 
         sp7C = a1->unk228;
 
@@ -863,11 +863,11 @@ void func_80190B54(struct ObjJoint *a0, struct ObjJoint *a1, struct MyVec3f *a2)
         spA4.y *= sp78;
         spA4.z *= sp78;
 
-        func_80194D14(&spA4, &D_801BAAD0, &sp80);
-        sp78 = rss_vec3f(&sp80);
-        func_80194BF4(&sp80);
+        cross_product_vec3f(&spA4, &D_801BAAD0, &sp80);
+        sp78 = magnitude_vec3f(&sp80);
+        into_unit_vec3f(&sp80);
         func_801961F4(&sp38, &sp80, sp78);
-        func_80196614(&a0->matE8, &sp38, &a0->matE8);
+        multiply_mat4(&a0->matE8, &sp38, &a0->matE8);
 
     } else { 
         D_801BAAE0.x = a2->x;
@@ -945,7 +945,7 @@ f32 func_80190F3C(struct ObjJoint *a0, f32 a1, f32 a2, f32 a3)
     sp24.y -= a0->unk3C.y;
     sp24.z -= a0->unk3C.z;
 
-    return rss_vec3f(&sp24);
+    return magnitude_vec3f(&sp24);
 }
 
 /* 23F978 -> 23F9F0 */
@@ -1002,7 +1002,7 @@ void Unknown801913F0(struct ObjJoint *j)
     j->unk30.y = j->unk14.y;
     j->unk30.z = j->unk14.z;
 
-    mat4_cpy(&gGdSkinNet->mat128, &j->matE8);
+    cpy_mat4(&gGdSkinNet->mat128, &j->matE8);
 }
 
 /* 23FCC8 -> 23FCDC */
@@ -1049,7 +1049,7 @@ void func_80191604(struct ObjJoint *j)
     func_8019415C(&j->mat168, (struct MyVec3f *)&j->unk9C);
     func_80194220(&j->mat168, (struct MyVec3f *)&j->unk6C);
     func_801942E4(&j->mat168, &j->unk200);
-    mat4_cpy(&j->mat168, &j->matE8);
+    cpy_mat4(&j->mat168, &j->matE8);
 
     set_identity_mat4(&j->mat128);
     func_801942E4(&j->mat128, &j->unk54);
@@ -1114,7 +1114,7 @@ void Unknown80191A1C(struct ObjBone *a0)
     struct MyVec3f sp18;
 
     if (gGdTempBone == NULL) { gGdTempBone = a0;}
-    sp3C = func_80194DB8(&gGdTempBone->unk40, &a0->unk40);
+    sp3C = dot_product_vec3f(&gGdTempBone->unk40, &a0->unk40);
     a0->unk118 = sp3C;
 
     if ((sp3C -= sp38) < 0.0f)
@@ -1129,7 +1129,7 @@ void Unknown80191A1C(struct ObjBone *a0)
         sp24.x -= sp18.x;
         sp24.y -= sp18.y;
         sp24.z -= sp18.z;
-        func_80194BF4(&sp24);
+        into_unit_vec3f(&sp24);
 
         sp3C = -sp3C * 50.0; //! 50.0f
         if (!(((struct ObjJoint *)argjoint)->unk1BC & 0x1))

@@ -11,7 +11,7 @@
 #include "skin_fns.h"
 #include "matrix_fns.h"
 #include "half_6.h"
-#include "../mario_head_6.h"
+#include "mario_head_6.h"
 #include "dynlists/dynlists.h"
 #include "gd_main.h"
 #include "gd_types.h"
@@ -99,7 +99,7 @@ void calc_face_normal(struct ObjFace* face)
         //245C44
         sp2C.z = (((sp44.x - sp50.x) * (sp38.y - sp44.y)) - ((sp44.y - sp50.y) * (sp38.x - sp44.x))) * sp18;
         //245C84
-        func_80194BF4(&sp2C);
+        into_unit_vec3f(&sp2C);
         face->vec24.x = sp2C.x;
         face->vec24.y = sp2C.y;
         face->vec24.z = sp2C.z;
@@ -549,7 +549,7 @@ void Unknown80198444(struct ObjVertex* vtx)
         
     if (distance != 0.0)
     {
-        distance = func_8019B35C(distance); //sqrtd?
+        distance = gd_sqrt_d(distance); //sqrtd?
 
         if (distance > D_801A8668) 
             D_801A8668 = distance;

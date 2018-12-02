@@ -346,7 +346,7 @@ SECTIONS
       BUILD_DIR/src/goddard/profiler_utils.o(.text);
       BUILD_DIR/src/goddard/joint_fns.o(.text);
       BUILD_DIR/src/goddard/skin_fns.o(.text);
-      BUILD_DIR/asm/matrix_fns.o(.text);
+      BUILD_DIR/src/goddard/matrix_fns.o(.text);
       BUILD_DIR/src/goddard/half_6.o(.text);
       BUILD_DIR/src/goddard/mario_head_6.o(.text);
       BUILD_DIR/asm/mario_head_6.o(.text);
@@ -370,7 +370,7 @@ SECTIONS
       BUILD_DIR/src/goddard/profiler_utils.o(.rodata*);
       BUILD_DIR/src/goddard/joint_fns.o(.rodata*);
       BUILD_DIR/src/goddard/skin_fns.o(.rodata*);
-      BUILD_DIR/data/matrix_fns.rodata.o(.rodata*);
+      BUILD_DIR/src/goddard/matrix_fns.o(.rodata*);
       BUILD_DIR/data/dynlist_str.rodata.o(.rodata*);
       BUILD_DIR/src/goddard/half_6.o(.rodata*);
       BUILD_DIR/data/mario_head_6.rodata.o(.rodata*);

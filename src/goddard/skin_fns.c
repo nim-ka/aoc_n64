@@ -11,7 +11,7 @@
 #include "profiler_utils.h"
 #include "joint_fns.h"
 #include "matrix_fns.h"
-#include "../mario_head_6.h"
+#include "mario_head_6.h"
 
 // bss
 struct ObjNet* gGdSkinNet; // @ 801BAAF0
@@ -79,7 +79,7 @@ void reset_net(struct ObjNet *net)
     set_identity_mat4(&net->matE8);
     func_80194220(&net->matE8, &net->unk68); // set rot mtx to initial rotation?
     func_801942E4(&net->matE8, &net->unk14); // set to initial position?
-    mat4_cpy(&net->matE8, &net->mat128);
+    cpy_mat4(&net->matE8, &net->mat128);
 
     if ((grp = net->unk1C8) != NULL)
     {
@@ -316,7 +316,7 @@ void func_80192CCC(struct ObjNet *net)
         sp24.y = net->mat128[0][1];
         sp24.z = net->mat128[0][2];
         func_801961F4(&sp38, &sp24, 4.0f);
-        func_80196614(&sp38, &D_801B9DC8, &D_801B9DC8);
+        multiply_mat4(&sp38, &D_801B9DC8, &D_801B9DC8);
         net->unkA4.x = net->unkA4.y = net->unkA4.z = 0.0f;
     }
 
@@ -326,7 +326,7 @@ void func_80192CCC(struct ObjNet *net)
         sp24.y = net->mat128[0][1];
         sp24.z = net->mat128[0][2];
         func_801961F4(&sp38, &sp24, -4.0f);
-        func_80196614(&sp38, &D_801B9DC8, &D_801B9DC8);
+        multiply_mat4(&sp38, &D_801B9DC8, &D_801B9DC8);
         net->unkA4.x = net->unkA4.y = net->unkA4.z = 0.0f;
     }
 
@@ -360,7 +360,7 @@ void func_80192CCC(struct ObjNet *net)
     }
 
     func_801926A4(net);
-    func_80196614(&net->mat128, &D_801B9DC8, &net->mat128);
+    multiply_mat4(&net->mat128, &D_801B9DC8, &net->mat128);
     if (group != NULL)
     {
         apply_to_obj_types_in_group(

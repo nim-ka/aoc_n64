@@ -6,7 +6,7 @@
 #include "gd_types.h"
 
 #include "profiler_utils.h"
-#include "../mario_head_6.h"
+#include "mario_head_6.h"
 #include "data801A8050.h"
 
 #define ARRAY_SIZE(arr) ((int)(sizeof(arr) / sizeof((arr)[0])))

@@ -3,7 +3,7 @@
 #include "sm64.h"
 #include "debug_memory.h"
 #include "profiler_utils.h"
-#include "../mario_head_6.h"
+#include "mario_head_6.h"
 
 // This dummy struct seems to be needed for the bss variables to
 // come in correct order, apparently...

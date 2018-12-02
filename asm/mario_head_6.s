@@ -49,7 +49,7 @@ glabel nextVpList
 /* 249AA4 8019B2D4 03E00008 */  jr    $ra
 /* 249AA8 8019B2D8 27BD0028 */   addiu $sp, $sp, 0x28
 
-glabel func_8019B2DC
+glabel gd_sin_d # func_8019B2DC
 /* 249AAC 8019B2DC 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 249AB0 8019B2E0 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 249AB4 8019B2E4 E7AD0018 */  swc1  $f13, 0x18($sp)
@@ -68,7 +68,7 @@ glabel func_8019B2DC
 /* 249AE4 8019B314 03E00008 */  jr    $ra
 /* 249AE8 8019B318 00000000 */   nop   
 
-glabel func_8019B31C
+glabel gd_cos_d # func_8019B31C
 /* 249AEC 8019B31C 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 249AF0 8019B320 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 249AF4 8019B324 E7AD0018 */  swc1  $f13, 0x18($sp)
@@ -87,7 +87,7 @@ glabel func_8019B31C
 /* 249B24 8019B354 03E00008 */  jr    $ra
 /* 249B28 8019B358 00000000 */   nop   
 
-glabel func_8019B35C
+glabel gd_sqrt_d #func_8019B35C
 /* 249B2C 8019B35C 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 249B30 8019B360 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 249B34 8019B364 E7AD0018 */  swc1  $f13, 0x18($sp)
@@ -4519,7 +4519,7 @@ glabel func_8019F2C4
 /* 24DAB4 8019F2E4 46002187 */  neg.s $f6, $f4
 /* 24DAB8 8019F2E8 44063000 */  mfc1  $a2, $f6
 /* 24DABC 8019F2EC 27A40018 */  addiu $a0, $sp, 0x18
-/* 24DAC0 8019F2F0 0C065295 */  jal   func_80194A54
+/* 24DAC0 8019F2F0 0C065295 */  jal   absrot_mat4
 /* 24DAC4 8019F2F4 24A5FF88 */   addiu $a1, $a1, -0x78
 /* 24DAC8 8019F2F8 0C067B9B */  jal   func_8019EE6C
 /* 24DACC 8019F2FC 27A40018 */   addiu $a0, $sp, 0x18
@@ -4551,11 +4551,11 @@ glabel func_8019F318
 /* 24DB28 8019F358 46205420 */  cvt.s.d $f16, $f10
 /* 24DB2C 8019F35C E7B0007C */  swc1  $f16, 0x7c($sp)
 /* 24DB30 8019F360 C7B2007C */  lwc1  $f18, 0x7c($sp)
-/* 24DB34 8019F364 0C066CB7 */  jal   func_8019B2DC
+/* 24DB34 8019F364 0C066CB7 */  jal   gd_sin_d
 /* 24DB38 8019F368 46009321 */   cvt.d.s $f12, $f18
 /* 24DB3C 8019F36C C7A4007C */  lwc1  $f4, 0x7c($sp)
 /* 24DB40 8019F370 46200586 */  mov.d $f22, $f0
-/* 24DB44 8019F374 0C066CC7 */  jal   func_8019B31C
+/* 24DB44 8019F374 0C066CC7 */  jal   gd_cos_d
 /* 24DB48 8019F378 46002321 */   cvt.d.s $f12, $f4
 /* 24DB4C 8019F37C 8FA40060 */  lw    $a0, 0x60($sp)
 /* 24DB50 8019F380 C7A60070 */  lwc1  $f6, 0x70($sp)

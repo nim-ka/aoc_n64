@@ -23,7 +23,7 @@ void Unknown801815E0(Mat4* mtx)
     scratchVec.x = (*mtx)[0][0];
     scratchVec.y = (*mtx)[0][1];
     scratchVec.z = (*mtx)[0][2];
-    func_80194BF4(&scratchVec);
+    into_unit_vec3f(&scratchVec);
     (*mtx)[0][0] = scratchVec.x;
     (*mtx)[0][1] = scratchVec.y;
     (*mtx)[0][2] = scratchVec.z;
@@ -31,7 +31,7 @@ void Unknown801815E0(Mat4* mtx)
     scratchVec.x = (*mtx)[1][0];
     scratchVec.y = (*mtx)[1][1];
     scratchVec.z = (*mtx)[1][2];
-    func_80194BF4(&scratchVec);
+    into_unit_vec3f(&scratchVec);
     (*mtx)[1][0] = scratchVec.x;
     (*mtx)[1][1] = scratchVec.y;
     (*mtx)[1][2] = scratchVec.z;
@@ -39,7 +39,7 @@ void Unknown801815E0(Mat4* mtx)
     scratchVec.x = (*mtx)[2][0];
     scratchVec.y = (*mtx)[2][1];
     scratchVec.z = (*mtx)[2][2];
-    func_80194BF4(&scratchVec);
+    into_unit_vec3f(&scratchVec);
     (*mtx)[2][0] = scratchVec.x;
     (*mtx)[2][1] = scratchVec.y;
     (*mtx)[2][2] = scratchVec.z;
@@ -167,7 +167,7 @@ void Unknown80181B88(struct ObjJoint* joint)
 {
     struct ObjGroup* group;
 
-    func_80194E7C(&joint->matE8, &D_801B9EA8);
+    inverse_mat4(&joint->matE8, &D_801B9EA8);
     D_801B9EE8 = joint;
     if ((group = joint->unk1F4) != NULL)
         apply_to_obj_types_in_group(

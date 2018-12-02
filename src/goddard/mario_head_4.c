@@ -16,7 +16,7 @@
 #include "skin_fns.h"
 #include "matrix_fns.h"
 #include "half_6.h"
-#include "../mario_head_6.h"
+#include "mario_head_6.h"
 
 /* change name to: process_dynlist.c */
 
@@ -878,12 +878,12 @@ void chk_shapegen(struct ObjShape *a0)
                 vtxbuf[i]->vec2C.x = vtxbuf[i]->vec20.x;
                 vtxbuf[i]->vec2C.y = vtxbuf[i]->vec20.y;
                 vtxbuf[i]->vec2C.z = vtxbuf[i]->vec20.z;
-                func_80194BF4(&vtxbuf[i]->vec2C);
+                into_unit_vec3f(&vtxbuf[i]->vec2C);
             }
         } else { 
             for (i = 0; i < vtxdata->count; i++)
             { 
-                func_80194BF4(&vtxbuf[i]->vec2C);
+                into_unit_vec3f(&vtxbuf[i]->vec2C);
             }
         }
         
@@ -1869,7 +1869,7 @@ void d_set_normal(f32 x, f32 y, f32 z)
     normal.x = x;
     normal.y = y;
     normal.z = z;
-    func_80194BF4(&normal);
+    into_unit_vec3f(&normal);
 
     switch (gDynListCurObj->type)
     {
@@ -2766,14 +2766,14 @@ void d_get_matrix(Mat4 *dst)
     switch (gDynListCurObj->type)
     {
         case OBJ_TYPE_NETS:
-            mat4_cpy(&((struct ObjNet *)dynobj)->mat128, dst);
+            cpy_mat4(&((struct ObjNet *)dynobj)->mat128, dst);
             break;
             break;  //! lol
         case OBJ_TYPE_JOINTS:
-            mat4_cpy(&((struct ObjJoint *)dynobj)->matE8, dst);
+            cpy_mat4(&((struct ObjJoint *)dynobj)->matE8, dst);
             break;
         case OBJ_TYPE_CAMERAS:
-            mat4_cpy(&((struct ObjCamera *)dynobj)->unkE8, dst);
+            cpy_mat4(&((struct ObjCamera *)dynobj)->unkE8, dst);
             break;
         case OBJ_TYPE_PARTICLES:
             set_identity_mat4(dst);
@@ -2800,14 +2800,14 @@ void d_set_matrix(Mat4 *src)
     switch (gDynListCurObj->type)
     {
         case OBJ_TYPE_NETS:
-            mat4_cpy(src, &((struct ObjNet *)gDynListCurObj)->mat128);
-            mat4_cpy(src, &((struct ObjNet *)gDynListCurObj)->mat128);    //! lol
+            cpy_mat4(src, &((struct ObjNet *)gDynListCurObj)->mat128);
+            cpy_mat4(src, &((struct ObjNet *)gDynListCurObj)->mat128);    //! lol
             break;
         case OBJ_TYPE_JOINTS:
-            mat4_cpy(src, &((struct ObjJoint *)gDynListCurObj)->matE8);
+            cpy_mat4(src, &((struct ObjJoint *)gDynListCurObj)->matE8);
             break;
         case OBJ_TYPE_CAMERAS:
-            mat4_cpy(src, &((struct ObjCamera *)gDynListCurObj)->unk64);
+            cpy_mat4(src, &((struct ObjCamera *)gDynListCurObj)->unk64);
             break;
         default:
             fatal_printf("%s: Object '%s'(%x) does not support this function.",
@@ -2827,10 +2827,10 @@ void d_set_rot_mtx(Mat4 *src)
     switch (gDynListCurObj->type)
     {
         case OBJ_TYPE_JOINTS:
-            mat4_cpy(src, &((struct ObjJoint *)gDynListCurObj)->mat128);
+            cpy_mat4(src, &((struct ObjJoint *)gDynListCurObj)->mat128);
             break;
         case OBJ_TYPE_NETS:
-            mat4_cpy(src, &((struct ObjJoint *)gDynListCurObj)->mat168);
+            cpy_mat4(src, &((struct ObjJoint *)gDynListCurObj)->mat168);
             break;
         default:
             fatal_printf("%s: Object '%s'(%x) does not support this function.",
@@ -2875,10 +2875,10 @@ void d_set_idn_mtx(Mat4 *src)
     switch (gDynListCurObj->type)
     {
         case OBJ_TYPE_NETS:
-            mat4_cpy(src, &((struct ObjNet *)dynobj)->matE8);
+            cpy_mat4(src, &((struct ObjNet *)dynobj)->matE8);
             break;
         case OBJ_TYPE_JOINTS:
-            mat4_cpy(src, &((struct ObjNet *)dynobj)->mat168);
+            cpy_mat4(src, &((struct ObjNet *)dynobj)->mat168);
             break;
         case OBJ_TYPE_LIGHTS:
             ((struct ObjLight *)dynobj)->unk74.x = (*src)[3][0];
@@ -2967,7 +2967,7 @@ f32 d_calc_world_dist_btwn(struct ObjHeader *obj1, struct ObjHeader *obj2)
     posdiff.y = obj2pos.y - obj1pos.y;
     posdiff.z = obj2pos.z - obj1pos.z;
 
-    return rss_vec3f(&posdiff);
+    return magnitude_vec3f(&posdiff);
 }
 
 /* 239DE8 -> 239EC0 */
