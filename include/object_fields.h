@@ -38,6 +38,7 @@
 #define /*0x0B0*/ oVelY OBJECT_FIELD_F32(0x0A)
 #define /*0x0B4*/ oVelZ OBJECT_FIELD_F32(0x0B)
 #define /*0x0B8*/ oForwardVel OBJECT_FIELD_F32(0x0C)
+#define /*0x0B8*/ oForwardVel2 OBJECT_FIELD_S32(0x0C)
 #define /*0x0BC*/ oUnkBC OBJECT_FIELD_F32(0x0D)
 #define /*0x0C0*/ oUnkC0 OBJECT_FIELD_F32(0x0E)
 #define /*0x0C4*/ O_MOVE_ANGLE_INDEX 0x0F
@@ -246,10 +247,10 @@
 #define /*0x100*/ oSmallBompInitX OBJECT_FIELD_F32(0x1E)
 
 /* WF Sliding Brick Platform */
-#define /*0x0F4*/ oWFSlidBrickPtfmMovVel OBJECT_FIELD_F32(0x1B) 
+#define /*0x0F4*/ oWFSlidBrickPtfmMovVel OBJECT_FIELD_F32(0x1B)
 
 /* Moneybag */
-#define /*0x0F4*/ oMoneybagJumpState OBJECT_FIELD_S32(0x1B) 
+#define /*0x0F4*/ oMoneybagJumpState OBJECT_FIELD_S32(0x1B)
 
 /* Bowling Ball */
 #define /*0x0F4*/ oBowlingBallTargetYaw OBJECT_FIELD_S32(0x1B)

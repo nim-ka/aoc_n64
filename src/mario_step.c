@@ -31,7 +31,7 @@ f32 zero_80254E20(void)
     return 0.0f;
 }
 
-void nop_80254E3C(UNUSED u32 x)
+void nop_80254E3C(UNUSED struct MarioState *x)
 {
 }
 
@@ -688,7 +688,7 @@ u32 perform_air_step(struct MarioState *m, u32 stepArg)
         m->peakHeight = m->pos[1];
 
     m->unk14 = func_8025167C(m);
-    
+
     if (m->action != ACT_FLYING)
         apply_gravity(m);
     apply_vertical_wind(m);

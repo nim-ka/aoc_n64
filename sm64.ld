@@ -75,7 +75,7 @@ SECTIONS
       BUILD_DIR/src/sound_init.o(.text);
       BUILD_DIR/src/level_update.o(.text);
       BUILD_DIR/src/interaction.o(.text);
-      BUILD_DIR/asm/mario.o(.text);
+      BUILD_DIR/src/mario.o(.text);
       BUILD_DIR/src/mario_step.o(.text);
       BUILD_DIR/asm/mario_actions_cutscene.o(.text);
       BUILD_DIR/src/mario_actions_automatic.o(.text);
@@ -134,7 +134,7 @@ SECTIONS
       BUILD_DIR/src/sound_init.o(.data*);
       BUILD_DIR/src/level_update.o(.data*);
       BUILD_DIR/src/interaction.o(.data*);
-      BUILD_DIR/data/mario.data.o(.data*);
+      BUILD_DIR/src/mario.o(.data*);
       BUILD_DIR/src/mario_step.o(.data*);
       BUILD_DIR/data/mario_actions_cutscene.data.o(.data*);
       BUILD_DIR/src/mario_actions_moving.o(.data*);
@@ -179,7 +179,7 @@ SECTIONS
       BUILD_DIR/src/sound_init.o(.rodata*);
       BUILD_DIR/src/level_update.o(.rodata*);
       BUILD_DIR/src/interaction.o(.rodata*);
-      BUILD_DIR/data/mario.rodata.o(.rodata*);
+      BUILD_DIR/src/mario.o(.rodata*);
       BUILD_DIR/src/mario_step.o(.rodata*);
       BUILD_DIR/data/mario_actions_cutscene.rodata.o(.rodata*);
       BUILD_DIR/src/mario_actions_automatic.o(.rodata*);

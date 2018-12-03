@@ -166,7 +166,7 @@ extern float sqrtf(float);
 // extern ? __ull_rshift(?);
 // extern ? __ull_rem(?);
 // extern ? __ull_div(?);
-// extern ? __ll_lshift(?);
+// extern s64 __ll_lshift(s64, s64);
 // extern ? __ll_rem(?);
 // extern ? __ll_div(?);
 // extern ? __ll_mul(?);
@@ -295,4 +295,4 @@ extern void guTranslate(Mtx*, float, float, float);
 // extern ? __osGetCause(?);
 // extern ? __osAtomicDec(?);
 
-#endif /* _LIBULTRA_H */ 
+#endif /* _LIBULTRA_H */

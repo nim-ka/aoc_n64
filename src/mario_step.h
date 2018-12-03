@@ -6,7 +6,7 @@
 extern struct Surface gWaterSurfacePseudoFloor;
 
 extern f32 zero_80254E20(void);
-extern void nop_80254E3C(u32 x);
+extern void nop_80254E3C(struct MarioState *);
 extern void nop_80254E50(void);
 
 extern void mario_bonk_reflection(struct MarioState *, u32);

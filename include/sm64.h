@@ -458,9 +458,9 @@ extern void func_u_803219AC();
 #define PHYSICAL_TO_VIRTUAL(addr)    ((u32)(addr) | 0x80000000)
 
 /*
- this input mask is unused by the controller, 
- but END_DEMO is used internally to signal 
- the demo to end. These two buttons cannot 
+ this input mask is unused by the controller,
+ but END_DEMO is used internally to signal
+ the demo to end. These two buttons cannot
  be pressed normally by a controller.
 */
 #define END_DEMO       DUMMY_1

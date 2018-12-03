@@ -46,6 +46,6 @@
 // extern ? func_80263100(?);
 // extern ? func_802631DC(?);
 // extern ? func_80263378(?);
-// extern ? func_8026348C(?);
+extern s32 func_8026348C(struct MarioState *);
 
 #endif /* _MARIO_ACTIONS_STATIONARY */

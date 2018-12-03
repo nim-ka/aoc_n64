@@ -150,7 +150,7 @@ extern void func_802ADA94(void);
 // extern ? Unknown802ADAF4(?);
 // extern ? func_802ADBBC(?);
 // extern ? BehGroundSnowInit(?);
-// extern ? func_802ADC20(?);
+extern void func_802ADC20(s32, s32);
 // extern ? BehWindLoop(?);
 // extern ? BehPiranhaParticlesSpawnLoop(?);
 // extern ? BehLittleCage2Loop(?);

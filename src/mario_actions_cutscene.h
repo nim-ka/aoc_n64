@@ -120,6 +120,6 @@ extern s32 func_802573C8(s32 arg0);
 // extern ? func_8025CE54(?);
 // extern ? func_8025D170(?);
 // extern ? func_8025D38C(?);
-// extern ? func_8025D418(?);
+extern s32 func_8025D418(struct MarioState *);
 
 #endif /* _MARIO_ACTIONS_CUTSCENE */

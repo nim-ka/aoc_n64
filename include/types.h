@@ -263,7 +263,7 @@ struct UnknownStruct4
     /*0x05*/ u8 unk05;
     /*0x06*/ u8 unk06;
     /*0x07*/ u8 unk07;
-    /*0x08*/ u16 unk08;
+    /*0x08*/ s16 unk08;
     /*0x0A*/ s8 unk0A;
     /*0x0B*/ u8 unk0B;
     /*0x0C*/ s16 unk0C;
@@ -273,6 +273,20 @@ struct UnknownStruct4
     /*0x14*/ u16 unk14;
     /*0x16*/ u16 unk16;
     /*0x18*/ Vec3f unk18;
+};
+
+struct MarioAnimDmaRelatedThing
+{
+    u32 unk0;
+    u32 unk4;
+};
+
+struct MarioAnimation
+{
+    struct MarioAnimDmaRelatedThing *animDmaTable;
+    u32 currentDma;
+    struct Animation *targetAnim;
+    u8 padding[4];
 };
 
 struct MarioState
@@ -315,12 +329,12 @@ struct MarioState
     /*0x80*/ struct Object *usedObj;
     /*0x84*/ struct Object *riddenObj;
     /*0x88*/ struct Object *marioObj;
-    /*0x8C*/ u32 level;
+    /*0x8C*/ struct SpawnInfo *spawnInfo;
     /*0x90*/ struct Area *area;
     /*0x94*/ struct UnknownStruct6 *unk94;
     /*0x98*/ struct UnknownStruct4 *unk98;
     /*0x9C*/ struct Controller *controller;
-    /*0xA0*/ u32 animation;
+    /*0xA0*/ struct MarioAnimation *animation;
     /*0xA4*/ u32 collidedObjInteractTypes;
     /*0xA8*/ s16 numCoins;
     /*0xAA*/ s16 numStars;
@@ -343,20 +357,6 @@ struct StructGeo802D2360
 {
     s32 unk0;
     s32 *unk4;
-};
-
-struct MarioAnimDmaRelatedThing
-{
-    u32 unk0;
-    u32 unk4;
-};
-
-struct MarioAnimation
-{
-    struct MarioAnimDmaRelatedThing *animDmaTable;
-    u32 currentDma;
-    void *targetAnim;
-    u8 padding[4];
 };
 
 struct Struct8033B1B0
