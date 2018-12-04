@@ -4,21 +4,18 @@
 #define BEH_BREAK    1
 #define BEH_CONTINUE 0 
 
-#define BEH_OBJ_OFFSET_PUBLIC 0x88
+#define cur_object_get_int(offset) gCurrentObject->OBJECT_FIELD_S32(offset)
+#define cur_object_get_float(offset) gCurrentObject->OBJECT_FIELD_F32(offset)
 
-#define _object_offset(object, offset) ((u8*)object + BEH_OBJ_OFFSET_PUBLIC + (offset)*sizeof(u32))
+#define cur_object_add_float(offset, value) gCurrentObject->OBJECT_FIELD_F32(offset) += (f32)(value)
+#define cur_object_set_float(offset, value) gCurrentObject->OBJECT_FIELD_F32(offset) = (f32)(value)
+#define cur_object_add_int(offset, value) gCurrentObject->OBJECT_FIELD_S32(offset) += (s32)(value)
+#define cur_object_set_int(offset, value) gCurrentObject->OBJECT_FIELD_S32(offset) = (s32)(value)
+#define cur_object_or_int(offset, value)  gCurrentObject->OBJECT_FIELD_S32(offset) |= (s32)(value)
+#define cur_object_and_int(offset, value) gCurrentObject->OBJECT_FIELD_S32(offset) &= (s32)(value)
 
-#define cur_object_get_f32(offset) (*(f32*)_object_offset(gCurrentObject, offset))
-#define cur_object_get_s32(offset) (*(s32*)_object_offset(gCurrentObject, offset))
+#define object_and_int(object, offset, value) object->OBJECT_FIELD_S32(offset) &= (s32)(value)
 
-#define cur_object_set_f32(offset, value) *(f32*)_object_offset(gCurrentObject, offset) = (f32)(value)
-#define cur_object_add_f32(offset, value) *(f32*)_object_offset(gCurrentObject, offset) += (f32)(value)
-#define cur_object_set_s32(offset, value) *(s32*)_object_offset(gCurrentObject, offset) = (s32)(value)
-#define cur_object_add_s32(offset, value) *(s32*)_object_offset(gCurrentObject, offset) += (s32)(value)
-#define cur_object_and_s32(offset, value) *(s32*)_object_offset(gCurrentObject, offset) &= (s32)(value)
-#define cur_object_or_s32(offset, value)  *(s32*)_object_offset(gCurrentObject, offset) |= (s32)(value)
-
-#define object_and_s32(object, offset, value) *(s32*)_object_offset(object, offset) &= (s32)(value)
 extern struct Object *gCurrentObject;
 
 u16 RandomU16(void);

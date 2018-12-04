@@ -224,7 +224,7 @@ static s32 beh_cmd_delay(void)
 static s32 beh_cmd_delay_var(void)
 {
     u8 objectOffset = (gBehCommand[0] >> 16) & 0xFF;
-    s32 arg0 = cur_object_get_s32(objectOffset);
+    s32 arg0 = cur_object_get_int(objectOffset);
 
     if (gCurrentObject->unk1F4 < (arg0 - 1))
     {
@@ -344,7 +344,7 @@ static s32 beh_cmd_obj_set_float(void)
     u8 objectOffset = (gBehCommand[0] >> 16) & 0xFF;
     f32 value = (s16)(gBehCommand[0] & 0xFFFF);
 
-    cur_object_set_f32(objectOffset, value);
+    cur_object_set_float(objectOffset, value);
 
     gBehCommand++;
     return BEH_CONTINUE;
@@ -355,7 +355,7 @@ static s32 beh_cmd_obj_set_int(void)
     u8 objectOffset = (gBehCommand[0] >> 16) & 0xFF;
     s16 value = gBehCommand[0] & 0xFFFF;
 
-    cur_object_set_s32(objectOffset, value);
+    cur_object_set_int(objectOffset, value);
 
     gBehCommand++;
     return BEH_CONTINUE;
@@ -367,7 +367,7 @@ static s32 Behavior36(void)
     u8 objectOffset = (gBehCommand[0] >> 16) & 0xFF;
     u32 value = (s16)(gBehCommand[1] & 0xFFFF);
 
-    cur_object_set_s32(objectOffset, value);
+    cur_object_set_int(objectOffset, value);
 
     gBehCommand += 2;
     return BEH_CONTINUE;
@@ -379,7 +379,7 @@ static s32 beh_cmd_obj_set_float_rand(void)
     f32 min = (s16)(gBehCommand[0] & 0xFFFF);
     f32 max = (s16)(gBehCommand[1] >> 16);
 
-    cur_object_set_f32(objectOffset, (max * RandomFloat()) + min);
+    cur_object_set_float(objectOffset, (max * RandomFloat()) + min);
 
     gBehCommand += 2;
     return BEH_CONTINUE;
@@ -391,7 +391,7 @@ static s32 beh_cmd_obj_set_int_rand(void)
     s32 min = (s16)(gBehCommand[0] & 0xFFFF);
     s32 max = (s16)(gBehCommand[1] >> 16);
 
-    cur_object_set_s32(objectOffset, (s32)(max * RandomFloat()) + min);
+    cur_object_set_int(objectOffset, (s32)(max * RandomFloat()) + min);
 
     gBehCommand += 2;
     return BEH_CONTINUE;
@@ -403,7 +403,7 @@ static s32 beh_cmd_obj_set_int_rand_rshift(void)
     s32 min = (s16)(gBehCommand[0] & 0xFFFF);
     s32 rshift = (s16)(gBehCommand[1] >> 16);
 
-    cur_object_set_s32(objectOffset, (RandomU16() >> rshift) + min);
+    cur_object_set_int(objectOffset, (RandomU16() >> rshift) + min);
 
     gBehCommand += 2;
     return BEH_CONTINUE;
@@ -415,8 +415,8 @@ static s32 beh_cmd_obj_add_float_rand(void)
     f32 min = (s16)(gBehCommand[0] & 0xFFFF);
     f32 max = (s16)(gBehCommand[1] >> 16);
 
-    cur_object_set_f32(objectOffset,
-        (cur_object_get_f32(objectOffset) + min) + (max * RandomFloat()));
+    cur_object_set_float(objectOffset,
+        (cur_object_get_float(objectOffset) + min) + (max * RandomFloat()));
 
     gBehCommand += 2;
     return BEH_CONTINUE;
@@ -430,8 +430,8 @@ static s32 beh_cmd_obj_add_int_rand_rshift(void)
     s32 rshift = (s16)(gBehCommand[1] >> 16);
     s32 rnd = RandomU16();
 
-    cur_object_set_s32(objectOffset,
-        (cur_object_get_s32(objectOffset) + min) + (rnd >> rshift));
+    cur_object_set_int(objectOffset,
+        (cur_object_get_int(objectOffset) + min) + (rnd >> rshift));
 
     gBehCommand += 2;
     return BEH_CONTINUE;
@@ -442,7 +442,7 @@ static s32 beh_cmd_obj_add_float(void)
     u8 objectOffset = (gBehCommand[0] >> 16) & 0xFF;
     f32 value = (s16)(gBehCommand[0] & 0xFFFF);
     
-    cur_object_add_f32(objectOffset, value);
+    cur_object_add_float(objectOffset, value);
     
     gBehCommand++;
     return BEH_CONTINUE;
@@ -453,7 +453,7 @@ static s32 beh_cmd_obj_add_int(void)
     u8 objectOffset = (gBehCommand[0] >> 16) & 0xFF;
     s16 value = gBehCommand[0] & 0xFFFF;
 
-    cur_object_add_s32(objectOffset, value);
+    cur_object_add_int(objectOffset, value);
 
     gBehCommand++;
     return BEH_CONTINUE;
@@ -465,20 +465,20 @@ static s32 beh_cmd_obj_or_int(void)
     s32 value = (s16)(gBehCommand[0] & 0xFFFF);
 
     value &= 0xFFFF;
-    cur_object_or_s32(objectOffset, value);
+    cur_object_or_int(objectOffset, value);
     
     gBehCommand++;
     return BEH_CONTINUE;
 }
 
 // unused
-static s32 beh_cmd_obj_bic_int(void)
+static s32 beh_cmd_obj_bit_clear_int(void)
 {
     u8 objectOffset = (gBehCommand[0] >> 16) & 0xFF;
     s32 value = (s16)(gBehCommand[0] & 0xFFFF);
 
     value = (value & 0xFFFF) ^ 0xFFFF;
-    cur_object_and_s32(objectOffset, value);
+    cur_object_and_int(objectOffset, value);
 
     gBehCommand++;
     return BEH_CONTINUE;
@@ -488,7 +488,7 @@ static s32 beh_cmd_obj_set_int32(void)
 {
     u8 objectOffset = (gBehCommand[0] >> 16) & 0xFF;
 
-    cur_object_set_s32(objectOffset, gBehCommand[1]);
+    cur_object_set_int(objectOffset, gBehCommand[1]);
 
     gBehCommand += 2;
     return BEH_CONTINUE;
@@ -555,8 +555,8 @@ static s32 beh_cmd_obj_sum_float(void)
     u32 objectOffsetSrc1 = (u8)((gBehCommand[0] >> 8) & 0xFF);
     u32 objectOffsetSrc2 = (u8)((gBehCommand[0]) & 0xFF);
 
-    cur_object_set_f32(objectOffsetDst,
-        cur_object_get_f32(objectOffsetSrc1) + cur_object_get_f32(objectOffsetSrc2));
+    cur_object_set_float(objectOffsetDst,
+        cur_object_get_float(objectOffsetSrc1) + cur_object_get_float(objectOffsetSrc2));
 
     gBehCommand++;
     return BEH_CONTINUE;
@@ -569,8 +569,8 @@ static s32 beh_cmd_obj_sum_int(void)
     u32 objectOffsetSrc1 = (u8)((gBehCommand[0] >> 8) & 0xFF);
     u32 objectOffsetSrc2 = (u8)((gBehCommand[0]) & 0xFF);
 
-    cur_object_set_s32(objectOffsetDst,
-        cur_object_get_s32(objectOffsetSrc1) + cur_object_get_s32(objectOffsetSrc2));
+    cur_object_set_int(objectOffsetDst,
+        cur_object_get_int(objectOffsetSrc1) + cur_object_get_int(objectOffsetSrc2));
 
     gBehCommand++;
     return BEH_CONTINUE;
@@ -649,7 +649,7 @@ static void Unknown8038556C(s32 lastIndex)
         table[i + 1] = (s16)(gBehCommand[i + 1] & 0xFFFF);
     }
 
-    cur_object_set_s32(objectOffset, table[(s32)(lastIndex * RandomFloat())]);
+    cur_object_set_int(objectOffset, table[(s32)(lastIndex * RandomFloat())]);
 }
 
 static s32 beh_cmd_collision_data(void)
@@ -716,14 +716,14 @@ static s32 Behavior30(void)
     return BEH_CONTINUE;
 }
 
-static s32 beh_cmd_obj_bic_int32(void)
+static s32 beh_cmd_obj_bit_clear_int32(void)
 {
     u8 objectOffset = (gBehCommand[0] >> 16) & 0xFF;
     s32 flags = gBehCommand[1];
 
     flags = flags ^ 0xFFFFFFFF;
 
-    object_and_s32(gCurrentObject->parentObj, objectOffset, flags);
+    object_and_int(gCurrentObject->parentObj, objectOffset, flags);
 
     gBehCommand += 2;
     return BEH_CONTINUE;
@@ -743,7 +743,7 @@ static s32 Behavior34(void)
     s16 arg1 = (gBehCommand[0] & 0xFFFF);
 
     if ((gGlobalTimer % arg1) == 0)
-        cur_object_add_s32(objectOffset, 1);
+        cur_object_add_int(objectOffset, 1);
 
     gBehCommand++;
     return BEH_CONTINUE;
@@ -775,7 +775,7 @@ static BehCommandProc BehaviorJumpTable[] =
     beh_cmd_obj_add_int,
     beh_cmd_obj_set_int,
     beh_cmd_obj_or_int,
-    beh_cmd_obj_bic_int,
+    beh_cmd_obj_bit_clear_int,
     beh_cmd_obj_set_int_rand_rshift,
     beh_cmd_obj_set_float_rand,
     beh_cmd_obj_set_int_rand,
@@ -808,7 +808,7 @@ static BehCommandProc BehaviorJumpTable[] =
     Behavior30,
     Behavior31,
     beh_cmd_scale,
-    beh_cmd_obj_bic_int32,
+    beh_cmd_obj_bit_clear_int32,
     Behavior34,
     Behavior35,
     Behavior36,
