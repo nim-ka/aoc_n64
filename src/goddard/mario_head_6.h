@@ -4,6 +4,9 @@
 #include "types.h"
 #include "gd_types.h"
 
+// data
+extern s32 D_801A86B0;
+
 // extern ? D_801A86FC;
 // extern ? D_801B8CA0;
 // extern ? D_801B8CA4;
@@ -303,7 +306,7 @@ extern void func_801A033C(int);
 extern int func_801A0354(int);
 extern void func_801A0448();
 extern void func_801A0478(int, struct ObjCamera *, struct MyVec3f *, struct MyVec3f *, struct MyVec3f *, struct MyVec3f *);
-extern void func_801A086C(s32, struct MyVec3f *, s32);
+extern void func_801A086C(s32, struct GdColour *, s32);
 extern void func_801A15E8(struct MyVec3f *);
 extern void func_801A16C4(struct MyVec3f *);
 extern void func_801A17B0(int);

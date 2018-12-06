@@ -447,6 +447,16 @@ extern void func_u_803219AC();
 #define UNUSED
 #endif
 
+#ifdef __GNUC__
+#define UNREF_STR(str)                                \
+_Pragma ("GCC diagnostic push")                       \
+_Pragma ("GCC diagnostic ignored \"-Wunused-value\"") \
+(str);                                                \
+_Pragma ("GCC diagnostic pop")
+#else
+#define UNREF_STR(str) (str)
+#endif
+
 // Ignore GLOBAL_ASM blocks when syntax-checking with GCC
 #ifdef __GNUC__
 #define GLOBAL_ASM(...)

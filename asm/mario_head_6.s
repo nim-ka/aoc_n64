@@ -11121,8 +11121,8 @@ glabel func_801A520C
 /* 253A1C 801A524C 3C04801C */  lui   $a0, %hi(D_801B9410) # $a0, 0x801c
 /* 253A20 801A5250 0C063358 */  jal   start_timer
 /* 253A24 801A5254 24849410 */   addiu $a0, %lo(D_801B9410) # addiu $a0, $a0, -0x6bf0
-/* 253A28 801A5258 3C06801C */  lui   $a2, %hi(D_801B9E90) # $a2, 0x801c
-/* 253A2C 801A525C 8CC69E90 */  lw    $a2, %lo(D_801B9E90)($a2)
+/* 253A28 801A5258 3C06801C */  lui   $a2, %hi(gGdViewsGroup) # $a2, 0x801c
+/* 253A2C 801A525C 8CC69E90 */  lw    $a2, %lo(gGdViewsGroup)($a2)
 /* 253A30 801A5260 3C05801A */  lui   $a1, %hi(func_801A5168) # $a1, 0x801a
 /* 253A34 801A5264 24A55168 */  addiu $a1, %lo(func_801A5168) # addiu $a1, $a1, 0x5168
 /* 253A38 801A5268 0C05F8F8 */  jal   apply_to_obj_types_in_group
@@ -11138,8 +11138,8 @@ glabel func_801A520C
 /* 253A60 801A5290 00000000 */  nop   
 /* 253A64 801A5294 15C00007 */  bnez  $t6, .L801A52B4
 /* 253A68 801A5298 00000000 */   nop   
-/* 253A6C 801A529C 3C06801C */  lui   $a2, %hi(D_801B9E90) # $a2, 0x801c
-/* 253A70 801A52A0 8CC69E90 */  lw    $a2, %lo(D_801B9E90)($a2)
+/* 253A6C 801A529C 3C06801C */  lui   $a2, %hi(gGdViewsGroup) # $a2, 0x801c
+/* 253A70 801A52A0 8CC69E90 */  lw    $a2, %lo(gGdViewsGroup)($a2)
 /* 253A74 801A52A4 3C05801A */  lui   $a1, %hi(Proc801A5110) # $a1, 0x801a
 /* 253A78 801A52A8 24A55110 */  addiu $a1, %lo(Proc801A5110) # addiu $a1, $a1, 0x5110
 /* 253A7C 801A52AC 0C05F8F8 */  jal   apply_to_obj_types_in_group

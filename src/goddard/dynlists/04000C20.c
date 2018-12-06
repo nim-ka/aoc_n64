@@ -352,10 +352,6 @@ static u16 faceData[FACE_NUM][4] = {
 static struct GdFaceData faceInfo = { FACE_NUM, 0x1, faceData };
 
 /* @ 040031F0 */
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wmissing-braces"
-#pragma GCC diagnostic ignored "-Wmissing-field-initializers"
-#pragma GCC diagnostic ignored "-Wint-conversion"
 struct DynList dynlist_040031F0[44] = {
     StartList(),
     MakeDynObj(D_DIFF_GRP, 0xDE),
@@ -402,4 +398,3 @@ struct DynList dynlist_040031F0[44] = {
     SetMaterialGroup(0xE0),
     StopList(),
 };
-#pragma GCC diagnostic pop

@@ -4,9 +4,8 @@
 #include "gd_types.h"
 
 #include "joint_fns.h"
-#include "data801A8050.h"
 #include "gd_main.h"
-#include "../game_over_1.h"
+#include "game_over_1.h"
 #include "game_over_2.h"
 #include "mario_head_1.h"
 #include "mario_head_2.h"
@@ -17,6 +16,10 @@
 #include "mario_head_6.h"
 
 #define ABS(val) (((val) < 0 ? (-(val)) : (val)))
+
+// data
+static s32 D_801A82D0 = 0;
+static struct ObjBone *gGdTempBone = NULL; // @ 801A82D4
 
 // bss
 s32 sTargetWeightID; // @ 801BA960
@@ -513,10 +516,9 @@ struct ObjBone *make_bone(s32 a0, struct ObjJoint *j1, struct ObjJoint *j2, UNUS
         add_joint2bone(b, j2);
     }
 
+    UNREF_STR("Made bone %d\n");
     return b;
 }
-
-static const char *sUnusedStr1 = "Made bone %d\n";
 
 /* 23E6E4 -> 23E6F8; not called */
 void Unknown8018FF14(UNUSED u32 a0)
@@ -764,19 +766,19 @@ void func_80190574(s32 a0, struct ObjJoint *a1, struct ObjJoint *a2, f32 x, f32 
             sp26C = sp270;
         } while (sp220);
     }
-}
 
-static const char * sUnusedStr2 = "\n";
-static const char * sUnusedStr3 = "NIDmask: %d /  ";
-static const char * sUnusedStr4 = "branch %d from j%d-j%d(%d): ";
-static const char * sUnusedStr5 = "branch %d from j%d(%d): ";
-static const char * sUnusedStr6 = "Exit";
-static const char * sUnusedStr7 = " %d(%d)";
-static const char * sUnusedStr8 = "R ";
-static const char * sUnusedStr9 = "\n";
-static const char * sUnusedStrA = "\n\n";
-static const char * sUnusedStrB = "Num return joints (pass 1): %d\n";
-static const char * sUnusedStrC = "Num return joints (pass 2): %d\n";
+    UNREF_STR("\n");
+    UNREF_STR("NIDmask: %d /  ");
+    UNREF_STR("branch %d from j%d-j%d(%d): ");
+    UNREF_STR("branch %d from j%d(%d): ");
+    UNREF_STR("Exit");
+    UNREF_STR(" %d(%d)");
+    UNREF_STR("R ");
+    UNREF_STR("\n");
+    UNREF_STR("\n\n");
+    UNREF_STR("Num return joints (pass 1): %d\n");
+    UNREF_STR("Num return joints (pass 2): %d\n");
+}
 
 /* 23F184 -> 23F1F0 */ 
 void func_801909B4(void)

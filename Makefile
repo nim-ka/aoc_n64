@@ -132,10 +132,10 @@ test: $(ROM)
 load: $(ROM)
 	$(LOADER) $(LOADER_FLAGS) $<
 
-$(BUILD_DIR)/include/text_strings.h: include/text_strings.h.in $(BUILD_DIR)
+$(BUILD_DIR)/include/text_strings.h: include/text_strings.h.in | $(BUILD_DIR)
 	$(TEXTCONV) charmap.txt $< $@
 
-$(BUILD_DIR)/text/%.s: text/$(VERSION)/%.s.in $(BUILD_DIR)
+$(BUILD_DIR)/text/%.s: text/$(VERSION)/%.s.in | $(BUILD_DIR)
 	$(TEXTCONV) charmap.txt $< $@
 
 build/bin/segment2.o: bin/segment2.s

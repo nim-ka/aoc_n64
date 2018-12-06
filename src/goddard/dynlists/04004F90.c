@@ -5,13 +5,9 @@
 #include "dynlists.h"
 #include "animdata.h"
 #include "../mario_head_4.h"
-#include "../data801A8050.h"
+#include "../half_6.h"
 
 /* @ 04004F90 */
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wmissing-braces"
-#pragma GCC diagnostic ignored "-Wmissing-field-initializers"
-#pragma GCC diagnostic ignored "-Wint-conversion"
 struct DynList dynlist_04004F90[1026] = {
     StartList(),
     UseIntId(TRUE),
@@ -1040,5 +1036,3 @@ struct DynList dynlist_04004F90[1026] = {
     UseIntId(FALSE),
     StopList(),
 };
-
-#pragma GCC diagnostic pop

@@ -1,7 +1,10 @@
 #include <ultra64.h>
 
 #include "sm64.h"
-#include "data801A8050.h"
+#include "gd_types.h"
+
+#include "half_6.h"
+#include "gd_main.h"
 #include "game_over_2.h"
 #include "mario_head_1.h"
 #include "mario_head_3.h"
@@ -10,12 +13,76 @@
 #include "joint_fns.h"
 #include "skin_fns.h"
 #include "matrix_fns.h"
-#include "half_6.h"
 #include "mario_head_6.h"
-#include "dynlists/dynlists.h"
-#include "gd_main.h"
-#include "gd_types.h"
 
+#include "dynlists/dynlists.h"
+#include "dynlists/macros.h"
+
+// types
+struct UnkData {
+    struct GdTriangleF tri;
+    s32 a, b;
+    struct UnkData *self;
+};
+
+// data
+struct ObjGroup *D_801A82E0 = NULL; // returned by load_dynlist
+struct ObjShape *D_801A82E4 = NULL;
+static struct ObjShape *D_801A82E8 = NULL; // returned by load_dynlist
+struct ObjShape *D_801A82EC = NULL; 
+struct ObjShape *D_801A82F0 = NULL; // returned by load_dynlist
+struct ObjShape *D_801A82F4 = NULL; // used in dynlist 4F90
+struct ObjShape *D_801A82F8 = NULL; // used in dynlist 4F90
+static struct UnkData sUnref801A82FC = {
+    {{1.0, 1.0, 1.0,}, {0.0, 0.0, 0.0}, {0.0, 0.0, 0.0}},
+    1, 4, &sUnref801A82FC
+};
+static struct UnkData sUnref801A832C = {
+    {{1.0, 1.0, 1.0,}, {0.0, 0.0, 0.0}, {0.0, 0.0, 0.0}},
+    1, 4, &sUnref801A832C
+};
+static struct UnkData sUnref801A835C = {
+    {{1.0, 1.0, 1.0,}, {0.0, 0.0, 0.0}, {0.0, 0.0, 0.0}},
+    1, 4, &sUnref801A835C
+};
+static s32 sUnref801A838C[6] = {0};
+struct ObjShape *D_801A83A4 = NULL;
+static s32 sUnref801A83A8[31] = {0};
+static struct DynList sSimpleDylist[8] = {
+    StartList(),
+    StartGroup("simpleg"),
+    MakeDynObj(D_NET, "simple"),
+    SetType(3),
+    SetShapePtrPtr(&D_801A83A4),
+    EndGroup("simpleg"),
+    UseObj("simpleg"),
+    StopList(),
+};
+static struct DynList sDynlist801A84E4[3] = {
+    StartList(),
+    SetFlag(0x1800),
+    StopList(),
+};
+static struct DynList sDynlist801A85B3[5] = {
+    StartList(),
+    JumpToList(sDynlist801A84E4),
+    SetFlag(0x400),
+    SetFriction(0.04, 0.01, 0.01),
+    StopList(),
+};
+static struct DynList sDynlist801A85A4[4] = {
+    StartList(),
+    JumpToList(sDynlist801A84E4),
+    SetFriction(0.04, 0.01, 0.01),
+    StopList(),
+};
+static struct DynList sDynlist801A8604[4] = {
+    StartList(),
+    JumpToList(sDynlist801A84E4),
+    SetFriction(0.005, 0.005, 0.005),
+    StopList(),
+};
+static f64 D_801A8668 = 0.0;
 
 // bss
 static u8 sUnrefSpaceB00[0x2C];            // @ 801BAB00
@@ -43,7 +110,7 @@ static struct MyVec3f D_801BACC8;
 static u8 sUnrefSpaceCD8[0x30];            // @ 801BACD8
 static struct ObjGroup * D_801BAD08;       // group of planes from make_netfromshape
 static u8 sUnrefSpaceD10[0x20];            // @ 801BAD10
-static struct MyVec3f D_801BAD30;          //printed with "c="
+static struct MyVec3f D_801BAD30;          // printed with "c="
 static u8 sUnrefSpaceD40[0x120];           // @ 801BAD40
 
 // Forward Declarations
@@ -202,7 +269,7 @@ void add_3_vtx_to_face(
 }
 
 /* @ 24600C for 0x198 */
-struct ObjShape* make_shape(s32 a0, char* name)
+struct ObjShape* make_shape(s32 a0, const char *name)
 {
     struct ObjShape* newShape;
     struct ObjShape* curShapeHead;
@@ -423,10 +490,8 @@ s32 getint(s32* intPtr)
 /* @ 246838 for 0x14 */
 void Unknown80198068(UNUSED f32 a0)
 {
+    UNREF_STR("max=%f\n");
 }
-
-/* Unreferenced rodata string */
-static const char* sUnusedFmtStr = "max=%f\n";
 
 /* @ 24684C for 0x6C */
 void func_8019807C(struct ObjVertex* vtx)
@@ -453,11 +518,9 @@ void Unknown80198154(f32 x, f32 y, f32 z)
 }
 
 /* @ 246954 for 0x6c */
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 void Unknown80198184(struct ObjShape* shape, f32 x, f32 y, f32 z)
 {
-    struct MyVec3f unusedVec;
+    UNUSED struct MyVec3f unusedVec;
     unusedVec.x = x;
     unusedVec.y = y;
     unusedVec.z = z;
@@ -468,7 +531,6 @@ void Unknown80198184(struct ObjShape* shape, f32 x, f32 y, f32 z)
         shape->vtxGroup
     );
 }
-#pragma GCC diagnostic pop
 
 /* @ 2469C0 for 0xc8 */
 void Unknown801981F0(struct ObjHeader* obj)
@@ -839,7 +901,7 @@ struct ObjGroup* group_faces_in_mtl_grp(
 }
 
 /* @ 247884 for 0x13c; orig name: func_801990B4 */
-struct ObjMaterial* find_or_add_new_mtl(struct ObjGroup* group, UNUSED s32 a1, f32 x, f32 y, f32 z)
+struct ObjMaterial* find_or_add_new_mtl(struct ObjGroup* group, UNUSED s32 a1, f32 r, f32 g, f32 b)
 {
     struct ObjMaterial* newMtl;
     register struct Links* curLink;
@@ -851,11 +913,11 @@ struct ObjMaterial* find_or_add_new_mtl(struct ObjGroup* group, UNUSED s32 a1, f
 
         if (foundMtl->header.type == OBJ_TYPE_MATERIALS)
         {
-            if (foundMtl->vec3C.x == x)
+            if (foundMtl->Kd.r == r)
             {
-                if (foundMtl->vec3C.y == y)
+                if (foundMtl->Kd.g == g)
                 {
-                    if (foundMtl->vec3C.z == z)
+                    if (foundMtl->Kd.b == b)
                     {
                         return foundMtl;
                     }
@@ -866,7 +928,7 @@ struct ObjMaterial* find_or_add_new_mtl(struct ObjGroup* group, UNUSED s32 a1, f
 
     newMtl = make_material(0, NULL, 1);
     set_cur_dynobj(newMtl);
-    d_set_diffuse(x, y, z);
+    d_set_diffuse(r, g, b);
     addto_group(group, (struct ObjHeader*) newMtl);
 
     return newMtl;
@@ -1005,11 +1067,10 @@ void read_ARK_shape(struct ObjShape* shape, char* fileName)
     gd_fclose(sGdShapeFile);
 }
 
-static const char* sUnusedLoadingSt = "Loading %s...\n";
-
 /* @ 247E30 for 0x148; orig name: Unknown80199660 */
 struct GdFile* get_shape_from_file(struct ObjShape* shape, char* fileName)
 {
+    UNREF_STR("Loading %s...\n");
     start_memtracker(fileName);
     shape->unk3C = 0;
     shape->faceCount = 0;
@@ -1041,9 +1102,7 @@ struct GdFile* get_shape_from_file(struct ObjShape* shape, char* fileName)
     return sGdShapeFile;
 }
 
-static const char* sUnusedVtxFmtStr = "Num Vertices=%d\n";
-static const char* sUnusedVFaceFmtStr = "Num Faces=%d\n";
-static const char* sUnusedNewLine = "\n";
+
 
 /* @ 247F78 for 0x69c; orig name: Unknown801997A8 */
 struct ObjShape* make_grid_shape(enum ObjTypeFlag gridType, s32 a1, s32 a2, s32 a3, s32 a4)
@@ -1071,6 +1130,10 @@ struct ObjShape* make_grid_shape(enum ObjTypeFlag gridType, s32 a1, s32 a2, s32 
     struct ObjMaterial* mtl1;   //first made material
     struct ObjMaterial* mtl2;   //second made material
     UNUSED u32 pad20;
+
+    UNREF_STR("Num Vertices=%d\n");
+    UNREF_STR("Num Faces=%d\n");
+    UNREF_STR("\n");
 
     sp30 = (struct MyVec3f*) func_80178D98(a1);
     sp2C = (struct MyVec3f*) func_80178D98(a2);
@@ -1164,11 +1227,10 @@ struct ObjShape* make_grid_shape(enum ObjTypeFlag gridType, s32 a1, s32 a2, s32 
     gridShape->mtlGroup = mtlGroup;
 
     gridShape->faceGroup = group_faces_in_mtl_grp(gridShape->mtlGroup, (struct ObjHeader*) sp40, NULL);
-
+    
+    UNREF_STR("grid: points=%d, faces=%d\n");
     return gridShape;
 }
-
-static const char* sUnusedGridDebugStr = "grid: points=%d, faces=%d\n";
 
 /* @ 248614 for 0x44 */
 void Unknown80199E44(UNUSED s32 a0, struct ObjHeader* a1, struct ObjHeader* a2, UNUSED s32 a3)
@@ -1351,20 +1413,20 @@ s32 func_8019A378(void (*aniFn)(struct ObjAnimator*))
     sp24 = make_particle(0, 1, 0.0f, 0.0f, 0.0f);
     sp24->unk60 = 3;
     sp24->unk64 = 2;
-    sp24->unkBC = (struct ObjHeader *)d_use_obj("N228l"); //probably a camera
+    sp24->unkBC = d_use_obj("N228l"); //probably a camera
     sp24->unk1C = D_801A82F0;
     addto_group(D_801B9BB8, &sp24->header);
 
     sp24 = make_particle(0, 2, 0.0f, 0.0f, 0.0f);
     sp24->unk60 = 3;
     sp24->unk64 = 2;
-    sp24->unkBC = (struct ObjHeader *)d_use_obj("N231l"); //probably a camera
+    sp24->unkBC = d_use_obj("N231l"); //probably a camera
     sp24->unk1C = D_801A82EC;
     addto_group(D_801B9BB8, &sp24->header);
 
     sp3C = (struct ObjGroup*) d_use_obj("N1000l");
     func_8017B028(sp3C);
-    sp38 = D_801B9E8C;
+    sp38 = gGdObjectList;
 
     sp30 = make_joint_withshape(D_801A82E8, 0, -500.0f, 0.0f, -150.0f);
     sp34 = d_use_obj("N167l");
@@ -1460,7 +1522,7 @@ struct ObjGroup* Unknown8019AB98(UNUSED u32 a0)
 {
     struct ObjLight* light1;
     struct ObjLight* light2;
-    struct ObjHeader* oldObjHead = D_801B9E8C;    // obj head node before making lights
+    struct ObjHeader* oldObjHead = gGdObjectList;    // obj head node before making lights
 
     light1 = make_light(0, NULL, 0);
     light1->unk74.x = 100.0f;
@@ -1501,16 +1563,14 @@ struct ObjGroup* Unknown8019AB98(UNUSED u32 a0)
 }
 
 /* @ 249594 for 0x100 */
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 struct ObjGroup* Unknown8019ADC4(UNUSED u32 a0)
 {
-    struct ObjLight* unusedLight;
+    UNUSED struct ObjLight* unusedLight;
     struct ObjLight* newLight;
     struct ObjHeader* oldObjHead;
 
     unusedLight = make_light(0, NULL, 0);
-    oldObjHead = D_801B9E8C;
+    oldObjHead = gGdObjectList;
     newLight = make_light(0, NULL, 0);
 
     newLight->unk74.x = 0.0f;
@@ -1527,19 +1587,15 @@ struct ObjGroup* Unknown8019ADC4(UNUSED u32 a0)
 
     return D_801B9BB8;
 }
-#pragma GCC diagnostic pop
 
 /* @ 249694 for 0x5c */
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 struct ObjGroup* Unknown8019AEC4(UNUSED u32 a0)
 {
     UNUSED u32 sp24;
     UNUSED u32 sp20;
-    struct ObjHeader* sp1C;
+    UNUSED struct ObjHeader* sp1C;
     
-    sp1C = D_801B9E8C;
+    sp1C = gGdObjectList;
     D_801B9BB8 = make_group(0);
     return D_801B9BB8;
 }
-#pragma GCC diagnostic pop

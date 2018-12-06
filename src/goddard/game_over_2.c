@@ -2,7 +2,6 @@
 #include "../libultra.h"
 
 #include "sm64.h"
-#include "data801A8050.h"
 #include "gd_main.h"
 #include "game_over_2.h"
 #include "mario_head_1.h"
@@ -13,13 +12,58 @@
 #include "half_6.h"
 #include "mario_head_6.h"
 
-/* forward declarations */
+// forward declarations
 void func_80179B64(struct ObjGroup *);
 void update_shaders(struct ObjShape *, struct MyVec3f *);
 void func_8017A218(struct ObjShape *);
-void Proc8017A91C(struct ObjLight *a);
+void Proc8017A91C(struct ObjLight *);
 
-/* BSS */
+// types
+union ColourArray { 
+    f32 arr[3]; 
+    struct GdColour colour; 
+};
+
+// data
+static struct GdColour sClrWhite       = { 1.0, 1.0, 1.0 }; // @ 801A8070
+static struct GdColour sClrRed         = { 1.0, 0.0, 0.0 }; // @ 801A807C
+static struct GdColour sClrGreen       = { 0.0, 1.0, 0.0 }; // @ 801A8088
+static struct GdColour sClrBlue        = { 0.0, 0.0, 1.0 }; // @ 801A8094
+static struct GdColour sClrErrDarkBlue = { 0.0, 0.0, 6.0 }; // @ 801A80A0
+static struct GdColour sClrPink        = { 1.0, 0.0, 1.0 }; // @ 801A80AC
+static struct GdColour sClrBlack       = { 0.0, 0.0, 0.0 }; // @ 801A80B8
+static struct GdColour sClrGrey        = { 0.6, 0.6, 0.6 }; // @ 801A80C4
+static struct GdColour sClrDarkGrey    = { 0.4, 0.4, 0.4 }; // @ 801A80D0
+static struct GdColour sClrYellow      = { 1.0, 1.0, 0.0 }; // @ 801A80DC
+
+static union ColourArray sLightColour = {{ 1.0, 1.0, 0.0 }}; // @ 801A80E8
+static struct GdColour *sSelectedColour = &sClrRed;          // @ 801A80F4
+struct ObjCamera *D_801A80F8 = NULL;
+static void *sUnref801A80FC = NULL;
+static s32 D_801A8100 = 0;
+struct GdColour *sColourPalette[5] = { // @ 801A8104
+    &sClrWhite, &sClrYellow, &sClrRed,
+    &sClrBlack, &sClrBlack
+};
+struct GdColour *sWhiteBlack[2] = { //@ 801A8118
+    &sClrWhite, &sClrBlack,
+};
+static Mat4 sUnref801A8120 = {
+    {1.0, 0.0, 0.0, 0.0},
+    {0.0, 0.0, 0.0, 0.0},
+    {0.0, 0.0, 1.0, 0.0},
+    {0.0, 0.0, 0.0, 1.0}
+};
+static Mat4 sUnrefIden801A8160 = {
+    {1.0, 0.0, 0.0, 0.0},
+    {0.0, 1.0, 0.0, 0.0},
+    {0.0, 0.0, 1.0, 0.0},
+    {0.0, 0.0, 0.0, 1.0}
+};
+static s32 D_801A81A0 = 1;
+static s32 sUnref801A81A4[4] = {0,0,0,0}; //min of 4 zeroes needed. 
+
+// bss
 u8 gdUnused801B9B30[0x88];
 struct ObjGroup *D_801B9BB8;  // ObjGroup* of ObjLights
 
@@ -142,16 +186,16 @@ void draw_shape(struct ObjShape *shape, int b, float c, float d,
     if (o != 0)
     {
         D_801B9C04 = 1;
-        D_801A80F4 = (struct MyVec3f *)func_80178D98(o);
-        if (D_801A80F4 != NULL)
-            func_801A086C(-1, D_801A80F4, 64);
+        sSelectedColour = func_80178D98(o);
+        if (sSelectedColour != NULL)
+            func_801A086C(-1, sSelectedColour, 64);
         else
             fatal_print("Draw_shape(): Bad colour");
     }
     else
     {
         D_801B9C04 = 0;
-        D_801A80F4 = NULL;
+        sSelectedColour = NULL;
     }
     if (D_801B9D80 != 0 && shape->mtlGroup != NULL)
     {
@@ -216,9 +260,9 @@ void Proc80178900(struct ObjLight *self)
 
     if (D_801B9C00 == 27)
         return;
-    D_801A80E8[0] = self->unk5C.x;
-    D_801A80E8[1] = self->unk5C.y;
-    D_801A80E8[2] = self->unk5C.z;
+    sLightColour.arr[0] = self->unk5C.x;
+    sLightColour.arr[1] = self->unk5C.y;
+    sLightColour.arr[2] = self->unk5C.z;
     if (self->unk2C & 2)
     {
         set_identity_mat4(&sp54);
@@ -268,9 +312,9 @@ void draw_material(struct ObjMaterial *mtl)
         }
     }
     if (D_801B9C04 == 0)
-        func_801A086C(mtl->unk5C, &mtl->vec3C, sp24);
+        func_801A086C(mtl->unk5C, &mtl->Kd, sp24);
     else
-        func_801A086C(mtl->unk5C, D_801A80F4, 64);
+        func_801A086C(mtl->unk5C, sSelectedColour, 64);
 }
 
 /* 227420 -> 22747C */
@@ -301,45 +345,45 @@ void Unknown80178CAC(struct ObjFace *face)
 }
 
 /* 227568 -> 22769C */
-Vec3f * func_80178D98(int a)  
+struct GdColour *func_80178D98(s32 num)  
 {
-    switch (a + 1)
+    switch (num + 1)
     {
     case 1:
-        return &D_801A80B8;
+        return &sClrBlack;
         break;
     case 2:
-        return &D_801A8070;
+        return &sClrWhite;
         break;
     case 3:
-        return &D_801A807C;
+        return &sClrRed;
         break;
     case 4:
-        return &D_801A8088;
+        return &sClrGreen;
         break;
     case 5:
-        return &D_801A8094;
+        return &sClrBlue;
         break;
     case 6:
-        return &D_801A80C4;
+        return &sClrGrey;
         break;
     case 7:
-        return &D_801A80D0;
+        return &sClrDarkGrey;
         break;
     case 8:
-        return &D_801A80A0;
+        return &sClrErrDarkBlue;
         break;
     case 11:
-        return &D_801A80B8;
+        return &sClrBlack;
         break;
     case 9:
-        return &D_801A80DC;
+        return &sClrYellow;
         break;
     case 10:
-        return &D_801A80AC;
+        return &sClrPink;
         break;
     case 0:
-        return &D_801A80E8;
+        return &sLightColour.colour;
         break;
     default:
         return NULL;
@@ -763,26 +807,26 @@ void Proc8017A30C(struct ObjHeader *self)
 {
     struct ObjParticle *ptc = (struct ObjParticle *)self;
     UNUSED u8 unused1[16];
-    struct MyVec3f *sp60;
-    struct MyVec3f *sp5C;
+    struct GdColour *white; // 60
+    struct GdColour *black; // 5c
     float sp58;
     UNUSED u8 unused2[16];
 
     if (ptc->unk5C > 0)
     {
-        sp60 = D_801A8104[0];
-        sp5C = D_801A8118[1];
+        white = sColourPalette[0];
+        black = sWhiteBlack[1];
         sp58 = ptc->unk5C / 10.0;
-        D_801A80E8[0] = (sp60->x - sp5C->x) * sp58 + sp5C->x;
-        D_801A80E8[1] = (sp60->y - sp5C->y) * sp58 + sp5C->y;
-        D_801A80E8[2] = (sp60->z - sp5C->z) * sp58 + sp5C->z;
+        sLightColour.arr[0] = (white->r - black->r) * sp58 + black->r;
+        sLightColour.arr[1] = (white->g - black->g) * sp58 + black->g;
+        sLightColour.arr[2] = (white->b - black->b) * sp58 + black->b;
         ;  // needed to match
     }
     else
     {
-        D_801A80E8[0] = 0.0f;
-        D_801A80E8[1] = 0.0f;
-        D_801A80E8[2] = 0.0f;
+        sLightColour.arr[0] = 0.0f;
+        sLightColour.arr[1] = 0.0f;
+        sLightColour.arr[2] = 0.0f;
     }
 
     if (ptc->unk5C > 0)

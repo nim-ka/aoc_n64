@@ -14,6 +14,10 @@ struct GdTriangleF {
     struct MyVec3f vec2;
 };
 
+struct GdColour {
+    f32 r, g, b;
+};
+
 /* Goddard Code Object Structs */
 /* Object Type Flags */
 enum ObjTypeFlag {
@@ -352,7 +356,7 @@ struct ObjMaterial {
     /* 0x28 */ s32 unk28;   // type
     /* 0x2C */ u8  pad2C[4];
     /* 0x30 */ struct MyVec3f unk30;    // ambient color (Ka)?
-    /* 0x3C */ struct MyVec3f vec3C;    // normal? diffuse color (Kd)?
+    /* 0x3C */ struct GdColour Kd;      // diffuse color (Kd)?
     /* 0x48 */ u8  pad48[0x58-0x48];
     /* 0x58 */ void *unk58; //set by d_usetexture; never seems to be non-null though.
     /* 0x5C */ s32 unk5C;

@@ -26,19 +26,19 @@ extern struct ObjParticle *D_801B9E3C;  /* never read from */
 extern s32 D_801B9E40;                  /* always 0 */
 extern s32 D_801B9E44;
 extern Mat4* D_801B9E48;
-extern struct ObjCamera* D_801B9E4C;    /* cameraHead? */
+extern struct ObjCamera* gGdCameraList;
 extern void* D_801B9E50;
-extern struct ObjGroup* D_801B9E54;     /* group head? */
-extern s32 D_801B9E58;                  /* obj count? */
-extern s32 D_801B9E5C;                  /* group count? */
-extern s32 D_801B9E60;                  /* PlaneCount? */
-extern s32 D_801B9E64;                  /* cameraCount? */
+extern struct ObjGroup* gGdGroupList;
+extern s32 gGdObjCount;
+extern s32 gGdGroupCount;
+extern s32 gGdPlaneCount;
+extern s32 gGdCameraCount;
 extern struct Unk801B9E68 D_801B9E68;   /* count in first member? */
 extern void* D_801B9E80;
 extern struct ObjJoint* gGdJointList;
 extern struct ObjBone* gGdBoneList;
-extern struct ObjHeader* D_801B9E8C;    /* head pointer to list of objects? */
-extern struct ObjGroup* D_801B9E90;     /* curGroup? */
+extern struct ObjHeader* gGdObjectList;
+extern struct ObjGroup* gGdViewsGroup;
 
 // functions
 extern void func_8017BCB0(void);

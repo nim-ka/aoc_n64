@@ -3,9 +3,10 @@
 
 #include "sm64.h"
 #include "../libultra.h"
-#include "data801A8050.h"
+#include "gd_types.h"
+
 #include "gd_main.h"
-#include "../game_over_1.h"
+#include "game_over_1.h"
 #include "game_over_2.h"
 #include "mario_head_1.h"
 #include "mario_head_3.h"
@@ -18,9 +19,7 @@
 #include "half_6.h"
 #include "mario_head_6.h"
 
-#include "gd_types.h"
-
-/****** Possible Structs ******/
+// structs
 struct Unk801B9E68 {
     /* 0x00 */ s32 count;   
     /* 0x04 */ u8  pad[0x14];
@@ -31,11 +30,15 @@ struct Unk8017F3CC {
     /*0x20*/ struct MyVec3f unk20;
 };
 
-/* Exported globals */
+// data
+f32 D_801A81C0 = 0.0f;
+f32 D_801A81C4 = 0.0f;
+
+// bss
 struct GdPlaneF D_801B9DA0;
 struct ObjCamera *D_801B9DB8;
 struct ObjView *D_801B9DBC;
-struct DebugCounters gGdCounter; // @ D_801B9DC0
+struct DebugCounters gGdCounter; // @ 801B9DC0
 Mat4 D_801B9DC8;
 struct MyVec3f D_801B9E08;
 struct ObjGroup *D_801B9E14;
@@ -47,19 +50,19 @@ struct ObjParticle *D_801B9E3C;
 s32 D_801B9E40;
 s32 D_801B9E44;
 Mat4 *D_801B9E48;
-struct ObjCamera *D_801B9E4C;
+struct ObjCamera *gGdCameraList; // @ 801B9E4C
 void *D_801B9E50;
-struct ObjGroup *D_801B9E54;
-s32 D_801B9E58;
-s32 D_801B9E5C;
-s32 D_801B9E60;
-s32 D_801B9E64;
+struct ObjGroup *gGdGroupList; // @ 801B9E54
+s32 gGdObjCount; // @ 801B9E58
+s32 gGdGroupCount; // @ 801B9E5C
+s32 gGdPlaneCount; // @ 801B9E60
+s32 gGdCameraCount; // @ 801B9E64
 struct Unk801B9E68 D_801B9E68;
 void *D_801B9E80;
 struct ObjJoint *gGdJointList;   // @ 801B9E84
 struct ObjBone *gGdBoneList;     // @ 801B9E88
-struct ObjHeader *D_801B9E8C;
-struct ObjGroup *D_801B9E90;
+struct ObjHeader *gGdObjectList; // @ 801B9E8C
+struct ObjGroup *gGdViewsGroup; // @ 801B9E90
 
 /* @ 22A480 for 0x70 */
 void func_8017BCB0(void)
@@ -166,7 +169,7 @@ struct ObjHeader* make_object(enum ObjTypeFlag objType)
     // to erase the object types of the various draw function pointers
     typedef void (*DrawFn)(void*);
 
-    add_to_stacktrace("make_object");   //goddard_debug_log()?
+    add_to_stacktrace("make_object");
     switch (objType)
     {
         case OBJ_TYPE_JOINTS:
@@ -258,7 +261,7 @@ struct ObjHeader* make_object(enum ObjTypeFlag objType)
     start_memtracker(objNameStr);
     
     newObj = gd_malloc(objSize, objAlignment);
-    //! As the function doesn't exit early from this check, it could NULL dereference below 
+    
     if (newObj == NULL)
         fatal_printf("Cant allocate object '%s' memory!", objNameStr);
     
@@ -268,9 +271,9 @@ struct ObjHeader* make_object(enum ObjTypeFlag objType)
     for (i = 0; i < objSize; i++)
         newObjBytes[i] = 0;
     
-    D_801B9E58++;
-    objListOldHead = D_801B9E8C;
-    D_801B9E8C = newObj;
+    gGdObjCount++;
+    objListOldHead = gGdObjectList;
+    gGdObjectList = newObj;
     
     newObj->prev = NULL;
     if (objListOldHead != NULL)
@@ -278,7 +281,7 @@ struct ObjHeader* make_object(enum ObjTypeFlag objType)
         newObj->next = objListOldHead;
         objListOldHead->prev = newObj;
     }
-    newObj->number    = D_801B9E58;
+    newObj->number    = gGdObjCount;
     newObj->type      = objType;
     newObj->objDrawFn = objDrawFn;
     newObj->unk12     = 0;
@@ -322,7 +325,7 @@ struct Links* make_link_to_obj(struct Links* head, struct ObjHeader* a1)
     start_memtracker("links");
 
     newLink = func_8019BC18(0x0C);
-    //! Doesn't return early from NULL pointer. Dereferences later in function
+
     if (newLink == NULL)
         fatal_print("Cant allocate link memory!");
     
@@ -344,7 +347,7 @@ struct VtxLink * make_vtx_link(struct VtxLink * prevlink, struct VtxLinkData * d
     struct VtxLink * newLink;
 
     newLink = func_8019BC18(sizeof(struct VtxLink));
-    //! Doesn't return early from NULL pointer. Dereferences later in function
+
     if (newLink == NULL)
         fatal_print("Cant allocate link memory!");
     
@@ -469,8 +472,8 @@ struct ObjPlane* make_plane(void* a0, struct ObjFace* a1)
     UNUSED u32 pad1C;
     struct ObjPlane* newPlane = (struct ObjPlane*) make_object(OBJ_TYPE_PLANES);
 
-    D_801B9E60++;
-    newPlane->id = D_801B9E60;
+    gGdPlaneCount++;
+    newPlane->id = gGdPlaneCount;
     newPlane->unk18 = a0;
     newPlane->unk40 = a1;
     reset_plane(newPlane);
@@ -486,11 +489,11 @@ struct ObjCamera* make_camera(s32 a0, struct ObjHeader* a1)
 
     newCam = (struct ObjCamera*) make_object(OBJ_TYPE_CAMERAS);
 
-    D_801B9E64++;
-    newCam->id = D_801B9E64;
+    gGdCameraCount++;
+    newCam->id = gGdCameraCount;
     
-    oldCameraHead = D_801B9E4C;
-    D_801B9E4C = newCam;
+    oldCameraHead = gGdCameraList;
+    gGdCameraList = newCam;
 
     if (oldCameraHead != NULL)
     {
@@ -573,10 +576,10 @@ struct ObjView* make_view(char *a0, s32 a1, s32 a2, s32 a3, s32 sp38, s32 sp3C, 
 {
     struct ObjView* newView = (struct ObjView*) make_object(OBJ_TYPE_VIEWS);
 
-    if (D_801B9E90 == NULL)
-        D_801B9E90 = make_group(0);
+    if (gGdViewsGroup == NULL)
+        gGdViewsGroup = make_group(0);
     
-    addto_group(D_801B9E90, &newView->header);
+    addto_group(gGdViewsGroup, &newView->header);
 
     newView->unk34 = a1 | 0x800 | 0x200000;     /* typeArg | OBJ_TYPE_MATERIALS | OBJ_TYPE_UNK200000 ?*/
     newView->unk20 = D_801B9E68.count++;
@@ -701,9 +704,6 @@ void sprint_obj_id(char* str, struct ObjHeader* obj)
     }
 }
 
-/* Unused rodata string */
-const char* sUnusedGroupFmtStr = "Made group no.%d\n";
-
 /* @ 22C094 for 0x210 */
 struct ObjGroup* make_group(int count, ...)
 {
@@ -721,18 +721,19 @@ struct ObjGroup* make_group(int count, ...)
     struct Links* curLink;
 
     newGroup = (struct ObjGroup*) make_object(OBJ_TYPE_GROUPS);
-    newGroup->id = ++D_801B9E5C;
+    newGroup->id = ++gGdGroupCount;
     newGroup->objCount = 0;
     newGroup->link1C = newGroup->link20 = NULL;
-
-    oldGroupListHead = D_801B9E54;
-    D_801B9E54 = newGroup;
-
+    
+    oldGroupListHead = gGdGroupList;
+    gGdGroupList = newGroup;
     if (oldGroupListHead != NULL)
     {
         newGroup->next = oldGroupListHead;
         oldGroupListHead->prev = newGroup;
     }
+    /* Unused rodata strings */    
+    UNREF_STR("Made group no.%d\n");
 
     if (count == 0)
         return newGroup;
@@ -752,7 +753,10 @@ struct ObjGroup* make_group(int count, ...)
         newGroup->groupObjTypes |= curObj->type;
         addto_group(newGroup, vargObj);
     }
-    va_end(argp);
+    va_end(args);
+
+    /* More unused rodata strings */
+    UNREF_STR("Made group no.%d from: ");
 
     curLink = newGroup->link1C;
     while (curLink != NULL)
@@ -760,16 +764,12 @@ struct ObjGroup* make_group(int count, ...)
         curObj = curLink->obj;
         sprint_obj_id(idStrBuf, curObj);
         curLink = curLink->next;
+        /* More unused rodata strings */
+        UNREF_STR("%s"); UNREF_STR("\n");
     }
 
-    va_end(args);
     return newGroup;
 }
-
-/* More unused rodata strings */
-const char* sUnusedGroupSplitFmtStr1 = "Made group no.%d from: ";
-const char* sUnusedGroupSplitFmtStr2 = "%s";
-const char* sUnusedGroupSplitFmtStr3 = "\n";
 
 /* @ 22C2A4 for 0xEC */
 void addto_group(struct ObjGroup* group, struct ObjHeader* obj)
@@ -792,14 +792,10 @@ void addto_group(struct ObjGroup* group, struct ObjHeader* obj)
     sprint_obj_id(strbuf, obj);
     sprint_obj_id(strbuf, &group->header);
     imout();
-}
 
-/* More unused rodata strings */
-const char* sUnusedAddedToGroupFmtStr1 = "Added ";
-const char* sUnusedAddedToGroupFmtStr2 = "%s";
-const char* sUnusedAddedToGroupFmtStr3 = " to ";
-const char* sUnusedAddedToGroupFmtStr4 = "%s";
-const char* sUnusedAddedToGroupFmtStr5 = "\n";
+    /* unused rodata strings */
+    UNREF_STR("Added "); UNREF_STR("%s"); UNREF_STR(" to "); UNREF_STR("%s"); UNREF_STR("\n");
+}
 
 /* @ 22C390 for 0xFC; orig name: func_8017DBC0 */
 void addto_groupfirst(struct ObjGroup* group, struct ObjHeader* obj)
@@ -863,7 +859,7 @@ void show_details(enum ObjTypeFlag type)
         default:                 printf("Everything?\n"); break;
     }
 
-    curObj = D_801B9E8C;
+    curObj = gGdObjectList;
     while (curObj != NULL)
     {
         curObjType = curObj->type;
@@ -1988,20 +1984,20 @@ void func_801814F4(struct ObjGroup* group)
 void null_obj_lists(void)
 {
     D_801B9E44 = 0;
-    D_801B9E58 = 0;
-    D_801B9E5C = 0;
-    D_801B9E60 = 0;
-    D_801B9E64 = 0;
+    gGdObjCount = 0;
+    gGdGroupCount = 0;
+    gGdPlaneCount = 0;
+    gGdCameraCount = 0;
     D_801B9E68.count = 0;
 
-    D_801B9E4C = NULL;
+    gGdCameraList = NULL;
     D_801B9E50 = NULL;
     gGdBoneList = NULL;
     gGdJointList = NULL;
-    D_801B9E54 = NULL;
+    gGdGroupList = NULL;
     D_801B9E80 = NULL;
-    D_801B9E8C = NULL;
-    D_801B9E90 = NULL;
+    gGdObjectList = NULL;
+    gGdViewsGroup = NULL;
 
     reset_net_count();
     reset_joint_counts();

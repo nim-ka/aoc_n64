@@ -5,10 +5,6 @@
 #include "dynlists.h"
 #include "../mario_head_4.h"
 // maybe move types into the dynlists.h file?
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wmissing-braces"
-#pragma GCC diagnostic ignored "-Wmissing-field-initializers"
-#pragma GCC diagnostic ignored "-Wint-conversion"
 struct DynList dynlist_04000650[62] = {
     StartList(),
     StartGroup("spotvg"),
@@ -73,4 +69,3 @@ struct DynList dynlist_04000650[62] = {
     SetParamF(1, 0.1),
     StopList(),
 };
-#pragma GCC diagnostic pop

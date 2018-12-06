@@ -57,10 +57,6 @@ static struct GdFaceData faces_040039CC = { FACE_NUM, 0x1, facedata_0400373C };
 #undef FACE_NUM
 
 /* @ 040039D8 */
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wmissing-braces"
-#pragma GCC diagnostic ignored "-Wmissing-field-initializers"
-#pragma GCC diagnostic ignored "-Wint-conversion"
 struct DynList dynlist_040039D8[28] = {
     StartList(),
     MakeDynObj(D_DIFF_GRP, 0x71),
@@ -91,7 +87,6 @@ struct DynList dynlist_040039D8[28] = {
     SetMaterialGroup(0x73),
     StopList(),
 };
-#pragma GCC diagnostic pop
 
 #define VTX_NUM 48
 /* @ 04003C78 */
@@ -146,10 +141,6 @@ static struct GdFaceData faces_04004034 = { FACE_NUM, 0x1, facedata_04003DA4 };
 #undef FACE_NUM
 
 /* @ 04004040 */
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wmissing-braces"
-#pragma GCC diagnostic ignored "-Wmissing-field-initializers"
-#pragma GCC diagnostic ignored "-Wint-conversion"
 struct DynList dynlist_04004040[28] = {
     StartList(),
     MakeDynObj(D_DIFF_GRP, 0x61),
@@ -180,4 +171,3 @@ struct DynList dynlist_04004040[28] = {
     SetMaterialGroup(0x63),
     StopList(),
 };
-#pragma GCC diagnostic pop

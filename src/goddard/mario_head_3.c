@@ -1,7 +1,8 @@
 #include <ultra64.h>
 
 #include "sm64.h"
-#include "data801A8050.h"
+#include "gd_types.h"
+
 #include "game_over_2.h"
 #include "mario_head_1.h"
 #include "mario_head_3.h"
@@ -23,6 +24,24 @@ struct Connection {
     VtxPtc unk20;
     float unk24;
     u32 unk28;  //union tag? 0 = vertex; 1 = particle?
+};
+
+// data
+static void *sUnused801A81D0 = NULL;
+static s32 D_801A81D4[25] = {
+/*  ID?    X    Y    Z */
+      9,   3,  12, -14,
+     25,   5,  16, -25,
+     42,   4,  15, -39,
+     55,  -6,  20, -23,
+     70,  -2,  20, -23,
+    135,   0,  16,   0,
+    0 /* Terminator */
+};
+static s32 D_801A8238[5] = {
+/*  ID? X   Y  Z */
+    15, 0, 22, 0,
+    0 /* Terminator */
 };
 
 // static bss

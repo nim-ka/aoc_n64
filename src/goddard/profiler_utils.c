@@ -7,15 +7,30 @@
 
 #include "profiler_utils.h"
 #include "mario_head_6.h"
-#include "data801A8050.h"
 
-#define ARRAY_SIZE(arr) ((int)(sizeof(arr) / sizeof((arr)[0])))
-
-// structs
+// types
 struct UnkBufThing {
     /* 0x00 */ s32 size;
     /* 0x04 */ char name[0x40];
 }; /* sizeof = 0x44 */
+
+// data
+static s32 sNumRoutinesInStack = 0;     // @ 801A8280
+static s32 D_801A8284[7] = {            // TODO: what is this array?
+    2, 1, 3, 4, 5, 8, 9
+};         
+static s32 sNumActiveMemTrackers = 0;   // @ 801A82A0
+static u32 sPrimarySeed = 0x12345678;   // @ 801A82A4
+static u32 sSecondarySeed = 0x58374895; // @ 801A82A8
+static char sHexNumerals[17] = {        // @ 801A82AC
+    '0', '1', '2', '3', 
+    '4', '5', '6', '7', 
+    '8', '9', 'A', 'B', 
+    'C', 'D', 'E', 'F',
+    '\0'
+};
+static s32 sPadNumPrint = 0;            // @ 801A82C0
+
 
 // bss
 u8 *gGdStreamBuffer;                               // @ 801BA190
@@ -31,7 +46,7 @@ struct MemTracker *new_memtracker(const char *name)
     int i;
     struct MemTracker *memtrack = NULL;
 
-    for (i = 0; i < ARRAY_SIZE(sMemTrackers); i++)
+    for (i = 0; i < ARRAY_COUNT(sMemTrackers); i++)
     {
         if (sMemTrackers[i].name == NULL)
         {
@@ -51,7 +66,7 @@ struct MemTracker *get_memtracker(const char *tracker)
 {
     int i;  // sp1C
 
-    for (i = 0; i < ARRAY_SIZE(sMemTrackers); i++)
+    for (i = 0; i < ARRAY_COUNT(sMemTrackers); i++)
     {
         if (sMemTrackers[i].name != NULL)
         {
@@ -82,12 +97,12 @@ struct MemTracker *start_memtracker(const char *name)
     }
 
     tracker->begin = (f32) func_8019AF20();
-    if (gNumActiveMemTrackers >= ARRAY_SIZE(sActiveMemTrackers))
+    if (sNumActiveMemTrackers >= ARRAY_COUNT(sActiveMemTrackers))
     {
         fatal_printf("too many memtracker calls");
     }
 
-    sActiveMemTrackers[gNumActiveMemTrackers++] = tracker;
+    sActiveMemTrackers[sNumActiveMemTrackers++] = tracker;
 
     return tracker;
 }
@@ -95,7 +110,7 @@ struct MemTracker *start_memtracker(const char *name)
 /* @ 23ABE0 -> 23AC28; not called; orig name: Unknown8018C410 */
 void print_most_recent_memtracker(void)
 {
-    printf("%s\n", sActiveMemTrackers[gNumActiveMemTrackers-1]->name);
+    printf("%s\n", sActiveMemTrackers[sNumActiveMemTrackers-1]->name);
 }
 
 /* @ 23AC28 -> 23AD94; orig name: func_8018C458 */
@@ -103,7 +118,7 @@ u32 stop_memtracker(const char *name)
 {
     struct MemTracker *tracker; // sp24
 
-    if (gNumActiveMemTrackers-- < 0)
+    if (sNumActiveMemTrackers-- < 0)
     {
         fatal_printf("bad mem tracker count");
     }
@@ -125,7 +140,7 @@ void remove_all_memtrackers(void)
 {
     int i;
 
-    for (i = 0; i < ARRAY_SIZE(sMemTrackers); i++)
+    for (i = 0; i < ARRAY_COUNT(sMemTrackers); i++)
     {   //L8018C5CC
         sMemTrackers[i].name = NULL;
         sMemTrackers[i].begin = 0.0f;
@@ -145,7 +160,7 @@ void print_all_memtrackers(void)
 {
     int i;
 
-    for (i = 0; i < ARRAY_SIZE(sMemTrackers); i++)
+    for (i = 0; i < ARRAY_COUNT(sMemTrackers); i++)
     {
         if (sMemTrackers[i].name != NULL)
         {
@@ -163,7 +178,7 @@ void print_all_timers(void)
     int i;
 
     printf("\nTimers:\n");
-    for (i = 0; i < ARRAY_SIZE(sTimers); i++)
+    for (i = 0; i < ARRAY_COUNT(sTimers); i++)
     {
         if (sTimers[i].name != NULL)
         {
@@ -193,7 +208,7 @@ void remove_all_timers(void)
 {
     int i;
 
-    for (i = 0; i < ARRAY_SIZE(sTimers); i++)
+    for (i = 0; i < ARRAY_COUNT(sTimers); i++)
     {
         sTimers[i].name = NULL;
         sTimers[i].total = 0;
@@ -212,7 +227,7 @@ struct GdTimer *new_timer(const char *name)
     int i;
     struct GdTimer *timer = NULL;
 
-    for (i = 0; i < ARRAY_SIZE(sTimers); i++)
+    for (i = 0; i < ARRAY_COUNT(sTimers); i++)
     {
         if (sTimers[i].name == NULL)
         {
@@ -230,7 +245,7 @@ struct GdTimer *get_timer(const char *timerName)
 {
     int i;
 
-    for (i = 0; i < ARRAY_SIZE(sTimers); i++)
+    for (i = 0; i < ARRAY_COUNT(sTimers); i++)
     {
         if (sTimers[i].name != NULL)
         {
@@ -261,11 +276,11 @@ struct GdTimer *get_timer_checked(const char *timerName)
 /* 23B2E4 -> 23B350 */
 struct GdTimer *get_timernum(s32 id)
 {
-    if (id >= ARRAY_SIZE(sTimers))
+    if (id >= ARRAY_COUNT(sTimers))
     {
         fatal_printf("get_timernum(): Timer number %d out of range (MAX %d)", 
             id,
-            ARRAY_SIZE(sTimers)
+            ARRAY_COUNT(sTimers)
         );
     }
 
@@ -292,7 +307,7 @@ void split_all_timers(void)
     int i;
     struct GdTimer *timer;
 
-    for (i = 0; i < ARRAY_SIZE(sTimers); i++)
+    for (i = 0; i < ARRAY_COUNT(sTimers); i++)
     {
         timer = get_timernum(i);
         if (timer->name != NULL)
@@ -310,7 +325,7 @@ void start_all_timers(void)
 
     if (!sTimingActive) { return; }
 
-    for (i = 0; i < ARRAY_SIZE(sTimers); i++)
+    for (i = 0; i < ARRAY_COUNT(sTimers); i++)
     {
         timer = get_timernum(i);
 
@@ -422,7 +437,7 @@ void print_stack_trace(void)
 {
     int i;
 
-    for (i = 0; i < gNumRoutinesInStack; i++)
+    for (i = 0; i < sNumRoutinesInStack; i++)
     {
         printf("\tIn: '%s'\n", sRoutineNames[i]);
     }
@@ -473,10 +488,10 @@ void fatal_printf(const char *fmt, ...)
 void add_to_stacktrace(const char *routine)
 {
     //! Please check array bounds before writing to it
-    sRoutineNames[gNumRoutinesInStack++] = routine;
-    sRoutineNames[gNumRoutinesInStack] = NULL;
+    sRoutineNames[sNumRoutinesInStack++] = routine;
+    sRoutineNames[sNumRoutinesInStack] = NULL;
 
-    if (gNumRoutinesInStack >= ARRAY_SIZE(sRoutineNames))
+    if (sNumRoutinesInStack >= ARRAY_COUNT(sRoutineNames))
     {
         fatal_printf("You're in too many routines");
     }
@@ -488,9 +503,9 @@ void imout(void)
 {
     int i;
 
-    if (--gNumRoutinesInStack < 0)
+    if (--sNumRoutinesInStack < 0)
     {
-        for (i = 0; i < ARRAY_SIZE(sRoutineNames); i++)
+        for (i = 0; i < ARRAY_COUNT(sRoutineNames); i++)
         {
             if (sRoutineNames[i] != NULL)
             {
@@ -514,24 +529,24 @@ f32 func_8018D560(void)
 
     for (i = 0; i < 4; i++)
     {
-        if (gGdPrimarySeed & 0x80000000)
+        if (sPrimarySeed & 0x80000000)
         {
-            gGdPrimarySeed = gGdPrimarySeed << 1 | 1;
+            sPrimarySeed = sPrimarySeed << 1 | 1;
         } else {
-            gGdPrimarySeed <<= 1;
+            sPrimarySeed <<= 1;
         } 
     }
-    gGdPrimarySeed += 4;
+    sPrimarySeed += 4;
 
     /* Seed Switch */
-    if ( (gGdPrimarySeed ^= func_8019AF40()) & 1 )
+    if ( (sPrimarySeed ^= func_8019AF40()) & 1 )
     {
-        temp = gGdPrimarySeed;
-        gGdPrimarySeed = gGdSecondarySeed;
-        gGdSecondarySeed = temp;
+        temp = sPrimarySeed;
+        sPrimarySeed = sSecondarySeed;
+        sSecondarySeed = temp;
     }
 
-    val = (gGdPrimarySeed & 0xFFFF) / 65535.0;  //! 65535.0f
+    val = (sPrimarySeed & 0xFFFF) / 65535.0;  //! 65535.0f
 
     return val;
 }
@@ -594,7 +609,7 @@ char *sprint_num_as_hex(char *str, s32 val)
 
     for (shift = 28; shift > -4; shift -= 4)
     {
-        *str++ = gGdHexNumerals[(val >> shift) & 0xF];
+        *str++ = sHexNumerals[(val >> shift) & 0xF];
     }
 
     *str = '\0';
@@ -625,7 +640,7 @@ char *sprint_num(char *str, s32 val, s32 padnum)
     {
         if (padnum <= val)
         {
-            gGdPadNumPrint = TRUE;
+            sPadNumPrint = TRUE;
 
             for (i = 0; i < 9; i++)
             {
@@ -639,7 +654,7 @@ char *sprint_num(char *str, s32 val, s32 padnum)
 
             *str++ = i + '0';
         } else {
-            if (gGdPadNumPrint) { *str++ = '0'; }
+            if (sPadNumPrint) { *str++ = '0'; }
         }
 
         padnum /= 10;
@@ -680,22 +695,22 @@ char *sprint_val_withspecifiers(char *str, union PrintVal val, char *specifiers)
     {
         if (cur == 'd')
         {
-            gGdPadNumPrint = FALSE;
+            sPadNumPrint = FALSE;
             str = sprint_num(str, val.i, 1000000000);
         }
         else if (cur == 'x')
         {
-            gGdPadNumPrint = TRUE;  /* doesn't affect hex printing, though... */
+            sPadNumPrint = TRUE;  /* doesn't affect hex printing, though... */
             str = sprint_num_as_hex(str, val.i);
         }
         else if (cur == 'f')
         {
             intPart = (s32) val.f;
             fracPart = (s32) ((val.f - (f32) intPart) * (f32) int_sci_notation(10, fracPrec));
-            gGdPadNumPrint = FALSE;
+            sPadNumPrint = FALSE;
             str = sprint_num(str, intPart, int_sci_notation(10, intPrec));
             *str++ = '.';
-            gGdPadNumPrint = TRUE;
+            sPadNumPrint = TRUE;
             str = sprint_num(str, fracPart, int_sci_notation(10, fracPrec - 1));
         }
         else if (cur >= '0' && cur <= '9')

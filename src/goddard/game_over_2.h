@@ -3,13 +3,18 @@
 
 #include "gd_types.h"
 
+// data
+extern struct ObjCamera *D_801A80F8;
+
+// bss
 // this is unused, but it's need to be declared before D_801B9BB8
 extern u8 gdUnused801B9B30[0x88];
 extern struct ObjGroup *D_801B9BB8;  // ObjGroup* of ObjLights
 
+// functions
 extern void Proc80178900(struct ObjLight *);
 extern void draw_material(struct ObjMaterial *);
-extern Vec3f *func_80178D98(int);
+extern struct GdColour *func_80178D98(s32);
 extern void draw_face(struct ObjFace *);
 extern void Proc80179350(struct ObjLabel *);
 extern void Proc80179628(struct ObjNet *);

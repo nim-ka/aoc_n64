@@ -336,7 +336,7 @@ SECTIONS
       BUILD_DIR/src/star_select.o(.text);
       BUILD_DIR/src/goddard/gd_main.o(.text);
       BUILD_DIR/src/goddard/debug_memory.o(.text);
-      BUILD_DIR/src/game_over_1.o(.text);
+      BUILD_DIR/src/goddard/game_over_1.o(.text);
       BUILD_DIR/src/goddard/game_over_2.o(.text);
       BUILD_DIR/src/goddard/mario_head_1.o(.text);
       BUILD_DIR/src/goddard/mario_head_2.o(.text);
@@ -358,7 +358,19 @@ SECTIONS
       BUILD_DIR/src/file_select.o(.rodata*);
       BUILD_DIR/src/star_select.o(.data*);
       BUILD_DIR/src/star_select.o(.rodata*);
-      BUILD_DIR/data/rodata_801A8050.o(.rodata*);
+      /* goddard subsystem data */
+      BUILD_DIR/src/goddard/gd_main.o(.data*);
+      BUILD_DIR/src/goddard/game_over_2.o(.data*);
+      BUILD_DIR/src/goddard/mario_head_1.o(.data*);
+      BUILD_DIR/src/goddard/mario_head_3.o(.data*);
+      BUILD_DIR/src/goddard/mario_head_4.o(.data*);
+      BUILD_DIR/src/goddard/profiler_utils.o(.data*);
+      BUILD_DIR/src/goddard/joint_fns.o(.data*);
+      BUILD_DIR/src/goddard/half_6.o(.data*);
+      BUILD_DIR/data/mario_head_6.data.o(.data*);
+      /* goddard texture and DLs */
+      BUILD_DIR/data/goddard_tex_dl.o(.rodata*);
+      /* goddard subsystem rodata */
       BUILD_DIR/src/goddard/gd_main.o(.rodata*);
       BUILD_DIR/src/goddard/debug_memory.o(.rodata*);
       BUILD_DIR/src/goddard/game_over_2.o(.rodata*);
@@ -371,7 +383,6 @@ SECTIONS
       BUILD_DIR/src/goddard/joint_fns.o(.rodata*);
       BUILD_DIR/src/goddard/skin_fns.o(.rodata*);
       BUILD_DIR/src/goddard/matrix_fns.o(.rodata*);
-      BUILD_DIR/data/dynlist_str.rodata.o(.rodata*);
       BUILD_DIR/src/goddard/half_6.o(.rodata*);
       BUILD_DIR/data/mario_head_6.rodata.o(.rodata*);
    }
@@ -383,7 +394,7 @@ SECTIONS
       BUILD_DIR/src/star_select.o(.bss*);
       BUILD_DIR/src/goddard/gd_main.o(.bss*);
       BUILD_DIR/src/goddard/debug_memory.o(.bss*);
-      BUILD_DIR/src/game_over_1.o(.bss*);
+      BUILD_DIR/src/goddard/game_over_1.o(.bss*);
       BUILD_DIR/src/goddard/game_over_2.o(.bss*);
       BUILD_DIR/src/goddard/mario_head_1.o(.bss*);
       BUILD_DIR/src/goddard/mario_head_2.o(.bss*);

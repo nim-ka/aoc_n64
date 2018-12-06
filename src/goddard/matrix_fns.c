@@ -9,7 +9,7 @@
 
 #define ABS(val) (((val) < 0 ? (-(val)) : (val)))
 #define SQ(val) ((val) * (val))
-#define DEG_TO_RAD 57.29577950560105
+#define DEG_PER_RAD 57.29577950560105
 
 /* 242300 -> 242338 */
 f32 gd_sqrt_f(f32 val)
@@ -145,7 +145,7 @@ void func_80194358(Mat4 *mtx, struct MyVec3f *vec, f32 a2)
     f32 sp30; // distance between unit vec.x and unit vec.y 
     f32 sp2C; // cos(a2)
     f32 sp28; // sin(a2)
-    f32 sp24 = 1.0f/DEG_TO_RAD; // rad/degree
+    f32 sp24 = 1.0f/DEG_PER_RAD; // rad/degree
     struct MyVec3f unit; // 18
 
     unit.x = vec->x;
@@ -226,7 +226,7 @@ void func_80194880(f32 a0, f32 *a1, f32 *a2)
     f32 sp30;
     f32 sp2C;
 
-    sp2C = a0 / DEG_TO_RAD; // degree to radians
+    sp2C = a0 / DEG_PER_RAD; // degree to radians
     sp34 = (*a1 * gd_cos_d(sp2C)) - (*a2 * gd_sin_d(sp2C));
     sp30 = (*a1 * gd_sin_d(sp2C)) + (*a2 * gd_cos_d(sp2C));
     *a1 = sp34;
@@ -750,8 +750,8 @@ void func_801961F4(Mat4 *mtx, struct MyVec3f *vec, f32 ang)
     f32 xcmp; // 18
 
     // probably is "(angle * pi / 180) / 2"
-    ycmp = gd_sin_d(ang / (DEG_TO_RAD / 2.0));
-    xcmp = gd_cos_d(ang / (DEG_TO_RAD / 2.0));
+    ycmp = gd_sin_d(ang / (DEG_PER_RAD / 2.0));
+    xcmp = gd_cos_d(ang / (DEG_PER_RAD / 2.0));
     
     func_80195FD4(mtx, vec, ycmp, xcmp);
 }
@@ -829,12 +829,12 @@ void func_80196540(struct MyVec3f *vec, const Mat4 *mtx)
     vec->z = dot.z;
 }
 
-#define MAT4_DOT_PROD(A, B, R, row, col)              \
-{                                                     \
-    R[(row)][(col)]  = (A)[(row)][0] * (B)[0][(col)]; \
-    R[(row)][(col)] += (A)[(row)][1] * (B)[1][(col)]; \
-    R[(row)][(col)] += (A)[(row)][2] * (B)[2][(col)]; \
-    R[(row)][(col)] += (A)[(row)][3] * (B)[3][(col)]; \
+#define MAT4_DOT_PROD(A, B, R, row, col)                \
+{                                                       \
+    (R)[(row)][(col)]  = (A)[(row)][0] * (B)[0][(col)]; \
+    (R)[(row)][(col)] += (A)[(row)][1] * (B)[1][(col)]; \
+    (R)[(row)][(col)] += (A)[(row)][2] * (B)[2][(col)]; \
+    (R)[(row)][(col)] += (A)[(row)][3] * (B)[3][(col)]; \
 }
 
 #define MAT4_MULTIPLY(A, B, R)          \

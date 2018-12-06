@@ -248,4 +248,4 @@ $(BUILD_DIR)/bin/wdw_skybox.elf: SEGMENT_ADDRESS := 0x0A000000
 
 # intro_raw textures are not compressed
 INTRO_RAW_FILES              := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/intro_raw/*.png)))
-$(BUILD_DIR)/data/rodata_801A8050.o: $(addprefix $(BUILD_DIR)/bin/intro_raw/,$(INTRO_RAW_FILES))
+$(BUILD_DIR)/data/goddard_tex_dl.o: $(addprefix $(BUILD_DIR)/bin/intro_raw/,$(INTRO_RAW_FILES))

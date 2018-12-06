@@ -1,7 +1,6 @@
 #include <ultra64.h>
 
 #include "sm64.h"
-#include "data801A8050.h"
 #include "gd_main.h"
 #include "debug_memory.h"
 #include "mario_head_1.h"
@@ -12,6 +11,14 @@
  * The rodata for functions after this "__main__" function have string literals following 
  * float literal, which implies that this is its own file
  */
+
+// data
+s32 D_801A8050 = TRUE;
+static s32 sUnref801A8054 = TRUE;
+f32 D_801A8058 = -600.0f;
+s32 D_801A805C = TRUE;
+static s32 sUnrefScnWidth = 320;
+static s32 sUnrefScnHeight = 240;
 
 // bss
 struct GdMem801B9920 D_801B9920;

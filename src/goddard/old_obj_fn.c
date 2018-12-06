@@ -59,7 +59,7 @@ void Proc8018B83C(void *a0)
     apply_to_obj_types_in_group(
         OBJ_TYPE_VIEWS,
         &Proc801A43DC,
-        D_801B9E90
+        gGdViewsGroup
     );
 }
 
