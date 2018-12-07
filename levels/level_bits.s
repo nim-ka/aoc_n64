@@ -15,9 +15,9 @@ script_func_local_1:
     object /*unk2*/ 0x1F, /*unk3*/ 0x39, /*pos*/ 4139, -1740, -1831, /*angle*/ 0, 0, 0, /*behArg*/ 0x02000000, /*beh*/ beh_octagonal_platform_rotating
     object /*unk2*/ 0x1F, /*unk3*/ 0x39, /*pos*/ -6459, 1732, -904, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_octagonal_platform_rotating
     object /*unk2*/ 0x1F, /*unk3*/ 0x39, /*pos*/ -4770, 1732, -904, /*angle*/ 0, 0, 0, /*behArg*/ 0x02000000, /*beh*/ beh_octagonal_platform_rotating
-    object /*unk2*/ 0x1F, /*unk3*/ 0x3D, /*pos*/ -1748, -1330, -1094, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_four_rotating_platforms
-    object /*unk2*/ 0x1F, /*unk3*/ 0x3D, /*pos*/ 2275, 5628, -1315, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_four_rotating_platforms
-    object /*unk2*/ 0x1F, /*unk3*/ 0x3D, /*pos*/ 3114, 4701, -1320, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_four_rotating_platforms
+    object /*unk2*/ 0x1F, /*unk3*/ 0x3D, /*pos*/ -1748, -1330, -1094, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ bFerrisWheelAxle
+    object /*unk2*/ 0x1F, /*unk3*/ 0x3D, /*pos*/ 2275, 5628, -1315, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ bFerrisWheelAxle
+    object /*unk2*/ 0x1F, /*unk3*/ 0x3D, /*pos*/ 3114, 4701, -1320, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ bFerrisWheelAxle
     object /*unk2*/ 0x1F, /*unk3*/ 0x3E, /*pos*/ 2793, 2325, -904, /*angle*/ 0, 0, 0, /*behArg*/ 0x00610000, /*beh*/ bActivatedBackAndForthPlatform
     object /*unk2*/ 0x1F, /*unk3*/ 0x3F, /*pos*/ 27, -1555, -713, /*angle*/ 0, 90, 0, /*behArg*/ 0x00010000, /*beh*/ bSeesawPlatform
     object /*unk2*/ 0x1F, /*unk3*/ 0x40, /*pos*/ -306, -4300, 0, /*angle*/ 0, 0, 0, /*behArg*/ 0x00020000, /*beh*/ bSeesawPlatform

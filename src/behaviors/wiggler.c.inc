@@ -119,7 +119,7 @@ void bhv_wiggler_body_part_update(void)
     }
     else
     {
-        obj_check_mario_attacks(&sWigglerBodyPartHitbox, o->oAction);
+        obj_check_attacks(&sWigglerBodyPartHitbox, o->oAction);
     }
 }
 
@@ -307,9 +307,9 @@ static void wiggler_act_walk(void)
         // For the first two seconds of walking, stay invulnerable
         if (o->oTimer < 60)
         {
-            obj_check_mario_attacks(&sWigglerHitbox, o->oAction);
+            obj_check_attacks(&sWigglerHitbox, o->oAction);
         }
-        else if (obj_handle_mario_attacks(&sWigglerHitbox, o->oAction, sWigglerAttackHandlers))
+        else if (obj_handle_attacks(&sWigglerHitbox, o->oAction, sWigglerAttackHandlers))
         {
             if (o->oAction != WIGGLER_ACT_JUMPED_ON)
             {
@@ -379,7 +379,7 @@ static void wiggler_act_jumped_on(void)
         o->oTimer = 0;
     }
 
-    obj_check_mario_attacks(&sWigglerHitbox, o->oAction);
+    obj_check_attacks(&sWigglerHitbox, o->oAction);
 }
 
 /**
@@ -402,7 +402,7 @@ static void wiggler_act_knockback(void)
         o->oMoveAngleYaw = o->oFaceAngleYaw;
     }
 
-    obj_check_mario_attacks(&sWigglerHitbox, o->oAction);
+    obj_check_attacks(&sWigglerHitbox, o->oAction);
 }
 
 /**
@@ -449,7 +449,7 @@ static void wiggler_act_fall_through_floor(void)
             o->oFaceAnglePitch = obj_get_pitch_from_vel();
         }
 
-        obj_move_xz_using_fvel_and_gravity();
+        obj_move_using_fvel_and_gravity();
     }
 }
 

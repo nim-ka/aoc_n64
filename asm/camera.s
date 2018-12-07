@@ -15610,8 +15610,8 @@ glabel BehBeginningLakituLoop
 /* 055E28 8029AE28 3C198036 */  lui    $t9, %hi(gCurrentObject) 
 /* 055E2C 8029AE2C 8F39FDF0 */  lw    $t9, %lo(gCurrentObject)($t9)
 /* 055E30 8029AE30 44814000 */  mtc1  $at, $f8
-/* 055E34 8029AE34 3C091300 */  lui   $t1, %hi(beh_fwoosh_blowing_wind) # $t1, 0x1300
-/* 055E38 8029AE38 25294968 */  addiu $t1, %lo(beh_fwoosh_blowing_wind) # addiu $t1, $t1, 0x4968
+/* 055E34 8029AE34 3C091300 */  lui   $t1, %hi(bCloud) # $t1, 0x1300
+/* 055E38 8029AE38 25294968 */  addiu $t1, %lo(bCloud) # addiu $t1, $t1, 0x4968
 /* 055E3C 8029AE3C 2408008E */  li    $t0, 142
 /* 055E40 8029AE40 AFA80018 */  sw    $t0, 0x18($sp)
 /* 055E44 8029AE44 AFA9001C */  sw    $t1, 0x1c($sp)

@@ -166,7 +166,7 @@ void func_80249148(u16 a, u16 b, s16 c)
         else
             func_80321368(a);
         
-        if (D_80339EFE == 0 || b != 4)
+        if (gSaveFileDoesNotExist == 0 || b != 4)
         {
             func_80320AE8(0, b, c);
             D_8032C6C8 = b;

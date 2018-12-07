@@ -146,7 +146,7 @@ s16 gDisplayedHealthWedges;
 s16 gDisplayedKeys;
 s16 gHudDisplayFlags;
 u16 gTimerValueInFrames;
-s8 D_80339EFE;
+s8 gSaveFileDoesNotExist;
 
 
 static void basic_update(s16 *arg);
@@ -1259,7 +1259,7 @@ s32 lvl_init_from_save_file(UNUSED s16 arg0, s32 levelNum)
 {
     sCurrWarpType = WARP_TYPE_NOT_WARPING;
     sDelayedWarpOp = WARP_OP_NONE;
-    D_80339EFE = !save_file_exists(gCurrSaveFileNum - 1);
+    gSaveFileDoesNotExist = !save_file_exists(gCurrSaveFileNum - 1);
 
     gCurrLevelNum = levelNum;
     gCurrCourseNum = COURSE_NONE;

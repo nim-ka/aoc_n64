@@ -137,7 +137,7 @@ void bhv_fire_piranha_plant_update(void)
     case FIRE_PIRANHA_PLANT_ACT_GROW: fire_piranha_plant_act_grow(); break;
     }
 
-    if (obj_check_mario_attacks(&sFirePiranhaPlantHitbox, o->oAction))
+    if (obj_check_attacks(&sFirePiranhaPlantHitbox, o->oAction))
     {
         if (--o->oHealth < 0)
         {

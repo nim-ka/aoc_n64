@@ -1113,12 +1113,12 @@ glabel func_80257838
 /* 012998 80257998 00000000 */   nop   
 /* 01299C 8025799C 0C0A8FE0 */  jal   disable_time_stop
 /* 0129A0 802579A0 00000000 */   nop   
-/* 0129A4 802579A4 3C198034 */  lui   $t9, %hi(D_80339EFE) # $t9, 0x8034
-/* 0129A8 802579A8 83399EFE */  lb    $t9, %lo(D_80339EFE)($t9)
+/* 0129A4 802579A4 3C198034 */  lui   $t9, %hi(gSaveFileDoesNotExist) # $t9, 0x8034
+/* 0129A8 802579A8 83399EFE */  lb    $t9, %lo(gSaveFileDoesNotExist)($t9)
 /* 0129AC 802579AC 13200005 */  beqz  $t9, .L802579C4
 /* 0129B0 802579B0 00000000 */   nop   
-/* 0129B4 802579B4 3C018034 */  lui   $at, %hi(D_80339EFE) # $at, 0x8034
-/* 0129B8 802579B8 A0209EFE */  sb    $zero, %lo(D_80339EFE)($at)
+/* 0129B4 802579B4 3C018034 */  lui   $at, %hi(gSaveFileDoesNotExist) # $at, 0x8034
+/* 0129B8 802579B8 A0209EFE */  sb    $zero, %lo(gSaveFileDoesNotExist)($at)
 /* 0129BC 802579BC 0C0924A8 */  jal   func_802492A0
 /* 0129C0 802579C0 24040004 */   li    $a0, 4
 .L802579C4:
@@ -2814,8 +2814,8 @@ glabel func_80259154
 /* 0141C4 802591C4 8D09014C */  lw    $t1, 0x14c($t0)
 /* 0141C8 802591C8 15200017 */  bnez  $t1, .L80259228
 /* 0141CC 802591CC 00000000 */   nop   
-/* 0141D0 802591D0 3C0A8034 */  lui   $t2, %hi(D_80339EFE) # $t2, 0x8034
-/* 0141D4 802591D4 814A9EFE */  lb    $t2, %lo(D_80339EFE)($t2)
+/* 0141D0 802591D0 3C0A8034 */  lui   $t2, %hi(gSaveFileDoesNotExist) # $t2, 0x8034
+/* 0141D4 802591D4 814A9EFE */  lb    $t2, %lo(gSaveFileDoesNotExist)($t2)
 /* 0141D8 802591D8 24010001 */  li    $at, 1
 /* 0141DC 802591DC 1541000D */  bne   $t2, $at, .L80259214
 /* 0141E0 802591E0 00000000 */   nop   

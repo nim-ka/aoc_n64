@@ -259,7 +259,7 @@ glabel level_castle_entry
         object /*unk2*/ 0x1F, /*unk3*/ 0x37, /*pos*/ -205, 2918, 7222, /*angle*/ 0, 180, 0, /*behArg*/ 0x00000000, /*beh*/ beh_clock_big_arm
         object /*unk2*/ 0x1F, /*unk3*/ 0x38, /*pos*/ -205, 2918, 7222, /*angle*/ 0, 180, 0, /*behArg*/ 0x00000000, /*beh*/ beh_rotating_small_clock_arm
         object /*unk2*/ 0x1F, /*unk3*/ 0x39, /*pos*/ -205, 2611, 7140, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_oscillating_pendulum
-        object /*unk2*/ 0x1F, /*unk3*/ 0x66, /*pos*/ 4231, 1408, 1601, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_lakitu
+        object /*unk2*/ 0x1F, /*unk3*/ 0x66, /*pos*/ 4231, 1408, 1601, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ bCameraLakitu
         object /*unk2*/ 0x1F, /*unk3*/ 0xDD, /*pos*/ -977, 1203, 2569, /*angle*/ 0, 0, 0, /*behArg*/ 0x4C000000, /*beh*/ beh_toad_message
         object /*unk2*/ 0x1F, /*unk3*/ 0xDD, /*pos*/ -1584, 2253, 7157, /*angle*/ 0, 136, 0, /*behArg*/ 0x53000000, /*beh*/ beh_toad_message
         object /*unk2*/ 0x1F, /*unk3*/ 0xDD, /*pos*/ 837, 1203, 3020, /*angle*/ 0, 180, 0, /*behArg*/ 0x89000000, /*beh*/ beh_toad_message

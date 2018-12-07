@@ -143,6 +143,6 @@ void bhv_swoop_update(void)
         obj_scale(o->header.gfx.scale[0]);
         obj_move_standard(78);
 
-        obj_check_mario_attacks(&sSwoopHitbox, o->oAction);
+        obj_check_attacks(&sSwoopHitbox, o->oAction);
     }
 }

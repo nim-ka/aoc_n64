@@ -71,7 +71,7 @@ extern s16 gDisplayedHealthWedges;
 extern s16 gDisplayedKeys;
 extern s16 gHudDisplayFlags;
 extern u16 gTimerValueInFrames;
-extern s8 D_80339EFE;
+extern s8 gSaveFileDoesNotExist;
 
 enum HUDDisplayFlag {
     HUD_DISPLAY_FLAG_LIVES = 0x0001,

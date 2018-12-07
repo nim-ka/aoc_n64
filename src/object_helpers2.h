@@ -6,6 +6,7 @@
 #define WAYPOINT_FLAGS_END -1
 #define WAYPOINT_FLAGS_INITIALIZED 0x8000
 #define WAYPOINT_MASK_00FF 0x00FF
+#define WAYPOINT_FLAGS_PLATFORM_ON_TRACK_PAUSE 3
 
 #define PATH_NONE 0
 #define PATH_REACHED_END -1
@@ -37,7 +38,7 @@ extern void set_object_hitbox(struct Object* obj, struct ObjectHitbox *arg1);
 // extern ? signum_positive(?);
 extern f32 absf(f32);
 extern s32 absi(s32 a0);
-s32 func_802A2EFC(s32 a0, s32 a1);
+s32 obj_wait_then_blink(s32 a0, s32 a1);
 s32 obj_is_mario_ground_pounding_platform(void);
 extern void func_802A3004(void);
 extern void func_802A3034(s32 sp18);
@@ -89,7 +90,7 @@ extern s32 attack_collided_non_mario_object(struct Object *obj);
 // extern ? func_802A4AB0(?);
 // extern ? func_802A4AEC(?);
 // extern ? obj_check_grabbed_mario(?);
-// extern ? player_performed_grab_release_action(?);
+// extern ? player_performed_grab_escape_action(?);
 // extern ? obj_unused_play_footstep_sound(?);
 // extern ? enable_time_stop_including_mario(?);
 extern void disable_time_stop_including_mario(void);

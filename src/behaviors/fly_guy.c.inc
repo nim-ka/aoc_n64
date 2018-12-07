@@ -244,6 +244,6 @@ void bhv_fly_guy_update(void)
         }
 
         obj_move_standard(78);
-        obj_check_mario_attacks(&sFlyGuyHitbox, o->oAction);
+        obj_check_attacks(&sFlyGuyHitbox, o->oAction);
     }
 }

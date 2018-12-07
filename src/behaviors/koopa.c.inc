@@ -320,6 +320,10 @@ void shelled_koopa_attack_handler(s32 attackType)
 
         obj_set_model(MODEL_KOOPA_WITHOUT_SHELL);
         spawn_object(o, MODEL_KOOPA_SHELL, beh_koopa_shell);
+
+        //! Because bob-ombs/corkboxes come after koopa in processing order,
+        //  they can interact with the koopa on the same frame that this
+        //  happens. This causes the koopa to die immediately.
         obj_become_intangible();
     }
     else
@@ -359,13 +363,13 @@ static void koopa_shelled_update(void)
 
     if (o->header.gfx.scale[0] > 0.8f)
     {
-        obj_handle_mario_attacks(
+        obj_handle_attacks(
             &sKoopaHitbox, o->oAction, sKoopaShelledAttackHandlers);
     }
     else
     {
         // If tiny koopa, die after attacking mario.
-        obj_handle_mario_attacks(
+        obj_handle_attacks(
             &sKoopaHitbox, KOOPA_SHELLED_ACT_DIE, sKoopaUnshelledAttackHandlers);
         if (o->oAction == KOOPA_SHELLED_ACT_DIE)
         {
@@ -382,7 +386,7 @@ static void koopa_shelled_update(void)
  * When close enough to the shell and with good angle and speed, enter the dive
  * action.
  */
-static void koopa_unshelled_act_running(void)
+static void koopa_unshelled_act_run(void)
 {
     f32 distToShell = 99999.0f;
     struct Object *shell;
@@ -444,7 +448,7 @@ static void koopa_unshelled_act_running(void)
         abs_angle_diff(o->oKoopaTargetYaw, o->oMoveAngleYaw) < 0xC00)
     {
         o->oMoveAngleYaw = o->oKoopaTargetYaw;
-        o->oAction = KOOPA_UNSHELLED_ACT_DIVING;
+        o->oAction = KOOPA_UNSHELLED_ACT_DIVE;
         o->oForwardVel *= 1.2f;
         o->oVelY = distToShell / 20.0f;
         o->oKoopaCountdown = 20;
@@ -455,7 +459,7 @@ static void koopa_unshelled_act_running(void)
  * Dive and slide along the ground. If close enough to the shell, pick it up,
  * and otherwise enter the running action.
  */
-static void koopa_unshelled_act_diving(void)
+static void koopa_unshelled_act_dive(void)
 {
     struct Object *shell;
     f32 distToShell;
@@ -511,7 +515,7 @@ static void koopa_unshelled_act_diving(void)
     }
     else if (func_802F92B0(6))
     {
-        o->oAction = KOOPA_UNSHELLED_ACT_RUNNING;
+        o->oAction = KOOPA_UNSHELLED_ACT_RUN;
     }
 
 end:
@@ -536,13 +540,13 @@ static void koopa_unshelled_update(void)
 
     switch (o->oAction)
     {
-    case KOOPA_UNSHELLED_ACT_RUNNING: koopa_unshelled_act_running(); break;
-    case KOOPA_UNSHELLED_ACT_DIVING:
-    case KOOPA_UNSHELLED_ACT_LYING:   koopa_unshelled_act_diving(); break;
+    case KOOPA_UNSHELLED_ACT_RUN:     koopa_unshelled_act_run();     break;
+    case KOOPA_UNSHELLED_ACT_DIVE:
+    case KOOPA_UNSHELLED_ACT_LYING:   koopa_unshelled_act_dive();    break;
     case KOOPA_UNSHELLED_ACT_UNUSED3: koopa_unshelled_act_unused3(); break;
     }
 
-    obj_handle_mario_attacks(
+    obj_handle_attacks(
         &sKoopaHitbox, o->oAction, sKoopaUnshelledAttackHandlers);
     obj_move_standard(-78);
 }

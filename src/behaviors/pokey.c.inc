@@ -123,7 +123,7 @@ void bhv_pokey_body_part_update(void)
             // If the body part was attacked, then die. If the head was killed,
             // then die after a delay.
 
-            if (obj_handle_mario_attacks(
+            if (obj_handle_attacks(
                 &sPokeyBodyPartHitbox, o->oAction, sPokeyBodyPartAttackHandlers))
             {
                 o->parentObj->oPokeyNumAliveBodyParts -= 1;

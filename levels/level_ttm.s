@@ -16,18 +16,18 @@ script_func_local_2:
     object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -1639, 1146, -1742, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ beh_ttm_bowling_ball_spawner
     object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 3295, -3692, 2928, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_waterfall_sound_loop
     object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 2004, -1580, 1283, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_waterfall_sound_loop
-    object /*unk2*/ 0x1F, /*unk3*/ 0x54, /*pos*/ -2077, -1023, -1969, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_monty_mole_in_hole
-    object /*unk2*/ 0x1F, /*unk3*/ 0x54, /*pos*/ -2500, -1023, -2157, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_monty_mole_in_hole
-    object /*unk2*/ 0x1F, /*unk3*/ 0x54, /*pos*/ -2048, -1023, -2307, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_monty_mole_in_hole
-    object /*unk2*/ 0x1F, /*unk3*/ 0x54, /*pos*/ -2351, -1023, -2416, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_monty_mole_in_hole
-    object /*unk2*/ 0x1F, /*unk3*/ 0x54, /*pos*/ -2400, -2559, -2185, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_monty_mole_in_hole
-    object /*unk2*/ 0x1F, /*unk3*/ 0x54, /*pos*/ -1435, -2559, -3118, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_monty_mole_in_hole
-    object /*unk2*/ 0x1F, /*unk3*/ 0x54, /*pos*/ -1677, -2559, -3507, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_monty_mole_in_hole
-    object /*unk2*/ 0x1F, /*unk3*/ 0x54, /*pos*/ -1869, -2559, -2704, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_monty_mole_in_hole
-    object /*unk2*/ 0x1F, /*unk3*/ 0x54, /*pos*/ -2525, -2559, -2626, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_monty_mole_in_hole
-    object /*unk2*/ 0x1F, /*unk3*/ 0x55, /*pos*/ 0, 0, 0, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_monty_mole
-    object /*unk2*/ 0x1F, /*unk3*/ 0x55, /*pos*/ 0, 0, 0, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ beh_monty_mole
-    object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 3625, 560, 165, /*angle*/ 0, 330, 0, /*behArg*/ 0x00000000, /*beh*/ beh_fwoosh_blowing_wind
+    object /*unk2*/ 0x1F, /*unk3*/ 0x54, /*pos*/ -2077, -1023, -1969, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ bMontyMoleHole
+    object /*unk2*/ 0x1F, /*unk3*/ 0x54, /*pos*/ -2500, -1023, -2157, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ bMontyMoleHole
+    object /*unk2*/ 0x1F, /*unk3*/ 0x54, /*pos*/ -2048, -1023, -2307, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ bMontyMoleHole
+    object /*unk2*/ 0x1F, /*unk3*/ 0x54, /*pos*/ -2351, -1023, -2416, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ bMontyMoleHole
+    object /*unk2*/ 0x1F, /*unk3*/ 0x54, /*pos*/ -2400, -2559, -2185, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ bMontyMoleHole
+    object /*unk2*/ 0x1F, /*unk3*/ 0x54, /*pos*/ -1435, -2559, -3118, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ bMontyMoleHole
+    object /*unk2*/ 0x1F, /*unk3*/ 0x54, /*pos*/ -1677, -2559, -3507, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ bMontyMoleHole
+    object /*unk2*/ 0x1F, /*unk3*/ 0x54, /*pos*/ -1869, -2559, -2704, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ bMontyMoleHole
+    object /*unk2*/ 0x1F, /*unk3*/ 0x54, /*pos*/ -2525, -2559, -2626, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ bMontyMoleHole
+    object /*unk2*/ 0x1F, /*unk3*/ 0x55, /*pos*/ 0, 0, 0, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ bMontyMole
+    object /*unk2*/ 0x1F, /*unk3*/ 0x55, /*pos*/ 0, 0, 0, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ bMontyMole
+    object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 3625, 560, 165, /*angle*/ 0, 330, 0, /*behArg*/ 0x00000000, /*beh*/ bCloud
     object /*unk2*/ 0x02, /*unk3*/ 0x56, /*pos*/ 729, 2307, 335, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_ukiki
     object /*unk2*/ 0x3F, /*unk3*/ 0x56, /*pos*/ 1992, -1548, 2944, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ beh_ukiki
     return

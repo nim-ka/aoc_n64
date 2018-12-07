@@ -51,7 +51,9 @@ static s32 spiny_check_active(void)
             //  in an object that loads into the lakitu's former slot.
             //  This can be used in practice to corrupt a huge goomba to
             //  behave similar to a regular goomba.
-            o->parentObj->oEvilLakituNumSpinies -= 1;
+            //  It can also be used on a bob-omb respawner to change its model
+            //  to a butterfly or fish.
+            o->parentObj->oEnemyLakituNumSpinies -= 1;
             mark_object_for_deletion(o);
             return FALSE;
         }
@@ -121,7 +123,7 @@ static void spiny_act_walk(void)
 
         obj_move_standard(-78);
 
-        if (obj_handle_mario_attacks(
+        if (obj_handle_attacks(
             &sSpinyHitbox, SPINY_ACT_ATTACKED_MARIO, sSpinyWalkAttackHandlers))
         {
             // When attacked by mario, lessen the knockback
@@ -199,11 +201,11 @@ static void spiny_act_thrown_by_lakitu(void)
 
         obj_move_standard(-78);
 
-        if (obj_check_mario_attacks(&sSpinyHitbox, o->oAction))
+        if (obj_check_attacks(&sSpinyHitbox, o->oAction))
         {
             if (o->parentObj != o)
             {
-                o->parentObj->oEvilLakituNumSpinies -= 1;
+                o->parentObj->oEnemyLakituNumSpinies -= 1;
             }
         }
     }

@@ -155,7 +155,7 @@ void bhv_dorrie_update(void)
         o->oDorrieForwardDistToMario = o->oDistanceToMario * coss(o->oAngleToMario - o->oMoveAngleYaw);
         
         obj_perform_position_op(0);
-        obj_move_xz_using_fvel_and_gravity();
+        obj_move_using_fvel_and_gravity();
 
         o->oDorrieAngleToHome = obj_angle_to_home();
         o->oDorrieDistToHome = obj_lateral_dist_to_home();

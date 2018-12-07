@@ -162,7 +162,7 @@ void bhv_skeeter_update(void)
     case SKEETER_ACT_WALK:  skeeter_act_walk();  break;
     }
 
-    obj_check_mario_attacks(&D_80331C28, o->oAction);
+    obj_check_attacks(&D_80331C28, o->oAction);
     obj_move_standard(-78);
 }
 

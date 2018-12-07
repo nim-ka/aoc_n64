@@ -359,49 +359,50 @@
 #define /*0x100*/ oSpinyTurningAwayFromWall OBJECT_FIELD_S32(0x1E)
 
 /* Evil lakitu */
-#define /*0x0F4*/ oEvilLakituNumSpinies OBJECT_FIELD_S32(0x1B)
-#define /*0x0F8*/ oEvilLakituBlinkTimer OBJECT_FIELD_S32(0x1C)
-#define /*0x0FC*/ oEvilLakituSpinyCooldown OBJECT_FIELD_S32(0x1D)
-#define /*0x100*/ oEvilLakituFaceForwardCountdown OBJECT_FIELD_S32(0x1E)
+#define /*0x0F4*/ oEnemyLakituNumSpinies OBJECT_FIELD_S32(0x1B)
+#define /*0x0F8*/ oEnemyLakituBlinkTimer OBJECT_FIELD_S32(0x1C)
+#define /*0x0FC*/ oEnemyLakituSpinyCooldown OBJECT_FIELD_S32(0x1D)
+#define /*0x100*/ oEnemyLakituFaceForwardCountdown OBJECT_FIELD_S32(0x1E)
 
-/* Fwoosh spawner */
-#define /*0x0F4*/ oFwooshSpawnerUnkF4 OBJECT_FIELD_F32(0x1B)
-#define /*0x0F8*/ oFwooshSpawnerUnkF8 OBJECT_FIELD_F32(0x1C)
-#define /*0x0FC*/ oFwooshSpawnerUnkFC OBJECT_FIELD_S32(0x1D)
-#define /*0x100*/ oFwooshSpawnerUnk100 OBJECT_FIELD_F32(0x1E)
-#define /*0x1AC*/ oFwooshSpawnerUnk1AC OBJECT_FIELD_S16(0x49, 0)
+/* Cloud */
+#define /*0x0F4*/ oCloudCenterX OBJECT_FIELD_F32(0x1B)
+#define /*0x0F8*/ oCloudCenterY OBJECT_FIELD_F32(0x1C)
+#define /*0x0FC*/ oCloudBlowing OBJECT_FIELD_S32(0x1D)
+#define /*0x100*/ oCloudGrowSpeed OBJECT_FIELD_F32(0x1E)
+#define /*0x1AC*/ oCloudFwooshMovementRadius OBJECT_FIELD_S16(0x49, 0)
 
-/* Nice lakitu */
-#define /*0x0F4*/ oNiceLakituBlinkTimer OBJECT_FIELD_S32(0x1B)
-#define /*0x0F8*/ oNiceLakituUnkF8 OBJECT_FIELD_F32(0x1C)
-#define /*0x0FC*/ oNiceLakituUnkFC OBJECT_FIELD_F32(0x1D)
-#define /*0x100*/ oNiceLakituUnk100 OBJECT_FIELD_S32(0x1E)
+/* Camera lakitu */
+#define /*0x0F4*/ oCameraLakituBlinkTimer OBJECT_FIELD_S32(0x1B)
+#define /*0x0F8*/ oCameraLakituSpeed OBJECT_FIELD_F32(0x1C)
+#define /*0x0FC*/ oCameraLakituCircleRadius OBJECT_FIELD_F32(0x1D)
+#define /*0x100*/ oCameraLakituFinishedDialogue OBJECT_FIELD_S32(0x1E)
 #ifndef VERSION_JP
-#define /*0x104*/ oNiceLakituUnk104 OBJECT_FIELD_S32(0x1F)
+#define /*0x104*/ oCameraLakituUnk104 OBJECT_FIELD_S32(0x1F)
 #endif
-#define /*0x1AC*/ oNiceLakituUnk1AC OBJECT_FIELD_S16(0x49, 0)
-#define /*0x1AE*/ oNiceLakituUnk1AE OBJECT_FIELD_S16(0x49, + 1)
+#define /*0x1AC*/ oCameraLakituPitchVel OBJECT_FIELD_S16(0x49, 0)
+#define /*0x1AE*/ oCameraLakituYawVel OBJECT_FIELD_S16(0x49, + 1)
 
 /* Monty mole hole */
-#define /*0x0F4*/ oMontyMoleHoleUnkF4 OBJECT_FIELD_S32(0x1B)
+#define /*0x0F4*/ oMontyMoleHoleCooldown OBJECT_FIELD_S32(0x1B)
 
 /* Monty mole */
-#define /*0x0F4*/ oMontyMoleUnkF4 OBJECT_FIELD_OBJECT(0x1B)
-#define /*0x0F8*/ oMontyMoleUnkF8 OBJECT_FIELD_F32(0x1C)
+#define /*0x0F4*/ oMontyMoleCurrentHole OBJECT_FIELD_OBJECT(0x1B)
+#define /*0x0F8*/ oMontyMoleHeightRelativeToFloor OBJECT_FIELD_F32(0x1C)
 
 /* Platform on tracks */
-#define /*0x0F4*/ oPlatformOnTrackUnkF4 OBJECT_FIELD_F32(0x1B)
-#define /*0x0F8*/ oPlatformOnTrackUnkF8 OBJECT_FIELD_F32(0x1C)
-#define /*0x0FC*/ oPlatformOnTrackUnkFC OBJECT_FIELD_S16P(0x1D)
-#define /*0x100*/ oPlatformOnTrackUnk100 OBJECT_FIELD_S16P(0x1E)
-#define /*0x104*/ oPlatformOnTrackUnk104 OBJECT_FIELD_S32(0x1F)
+#define /*0x088*/ oPlatformOnTrackBaseBallIndex OBJECT_FIELD_S32(0x00)
+#define /*0x0F4*/ oPlatformOnTrackDistMovedSinceLastBall OBJECT_FIELD_F32(0x1B)
+#define /*0x0F8*/ oPlatformOnTrackSkiLiftRollVel OBJECT_FIELD_F32(0x1C)
+#define /*0x0FC*/ oPlatformOnTrackStartWaypoint OBJECT_FIELD_WAYPOINT(0x1D)
+#define /*0x100*/ oPlatformOnTrackPrevWaypoint OBJECT_FIELD_WAYPOINT(0x1E)
+#define /*0x104*/ oPlatformOnTrackPrevWaypointFlags OBJECT_FIELD_S32(0x1F)
 #define /*0x108*/ oPlatformOnTrackPitch OBJECT_FIELD_S32(0x20)
 #define /*0x10C*/ oPlatformOnTrackYaw OBJECT_FIELD_S32(0x21)
-#define /*0x110*/ oPlatformOnTrackUnk110 OBJECT_FIELD_F32(0x22)
-#define /*0x1AC*/ oPlatformOnTrackUnk1AC OBJECT_FIELD_S16(0x49, 0)
-#define /*0x1AE*/ oPlatformOnTrackUnk1AE OBJECT_FIELD_S16(0x49, + 1)
-#define /*0x1B0*/ oPlatformOnTrackUnk1B0 OBJECT_FIELD_S16(0x4A, 0)
-#define /*0x1B2*/ oPlatformOnTrackUnk1B2 OBJECT_FIELD_S16(0x4A, + 1)
+#define /*0x110*/ oPlatformOnTrackOffsetY OBJECT_FIELD_F32(0x22)
+#define /*0x1AC*/ oPlatformOnTrackIsNotSkiLift OBJECT_FIELD_S16(0x49, 0)
+#define /*0x1AE*/ oPlatformOnTrackIsNotHMC OBJECT_FIELD_S16(0x49, + 1)
+#define /*0x1B0*/ oPlatformOnTrackType OBJECT_FIELD_S16(0x4A, 0)
+#define /*0x1B2*/ oPlatformOnTrackWasStoodOn OBJECT_FIELD_S16(0x4A, + 1)
 
 /* Seesaw platform */
 #define /*0x0F4*/ oSeesawPlatformPitchVel OBJECT_FIELD_F32(0x1B)
@@ -412,14 +413,14 @@
 
 /* Water bomb */
 #define /*0x0F8*/ oWaterBombVerticalStretch OBJECT_FIELD_F32(0x1C)
-#define /*0x0FC*/ oWaterBombUnkFC OBJECT_FIELD_F32(0x1D)
+#define /*0x0FC*/ oWaterBombStretchSpeed OBJECT_FIELD_F32(0x1D)
 #define /*0x100*/ oWaterBombOnGround OBJECT_FIELD_S32(0x1E)
 #define /*0x104*/ oWaterBombNumBounces OBJECT_FIELD_F32(0x1F)
 
 /* TTC rotating solid */
-#define /*0x0F4*/ oTTCRotatingSolidPhase OBJECT_FIELD_S32(0x1B)
+#define /*0x0F4*/ oTTCRotatingSolidNumTurns OBJECT_FIELD_S32(0x1B)
 #define /*0x0F8*/ oTTCRotatingSolidNumSides OBJECT_FIELD_S32(0x1C)
-#define /*0x0FC*/ oTTCRotatingSolidTimeUntilRotation OBJECT_FIELD_S32(0x1D)
+#define /*0x0FC*/ oTTCRotatingSolidRotationDelay OBJECT_FIELD_S32(0x1D)
 #define /*0x100*/ oTTCRotatingSolidVelY OBJECT_FIELD_F32(0x1E)
 #define /*0x104*/ oTTCRotatingSolidSoundTimer OBJECT_FIELD_S32(0x1F)
 
@@ -428,7 +429,7 @@
 #define /*0x0F8*/ oTTCPendulumAngle OBJECT_FIELD_F32(0x1C)
 #define /*0x0FC*/ oTTCPendulumAngleVel OBJECT_FIELD_F32(0x1D)
 #define /*0x100*/ oTTCPendulumAngleAccel OBJECT_FIELD_F32(0x1E)
-#define /*0x104*/ oTTCPendulumStoppedTimer OBJECT_FIELD_S32(0x1F)
+#define /*0x104*/ oTTCPendulumDelay OBJECT_FIELD_S32(0x1F)
 #define /*0x108*/ oTTCPendulumSoundTimer OBJECT_FIELD_S32(0x20)
 
 /* TTC treadmill */
@@ -436,10 +437,10 @@
 #define /*0x0F8*/ oTTCTreadmillUnkF8 OBJECT_FIELD_S16P(0x1C)
 #define /*0x0FC*/ oTTCTreadmillSpeed OBJECT_FIELD_F32(0x1D)
 #define /*0x100*/ oTTCTreadmillTargetSpeed OBJECT_FIELD_F32(0x1E)
-#define /*0x104*/ oTTCTotalTimeUntilSwitch OBJECT_FIELD_S32(0x1F)
+#define /*0x104*/ oTTCTreadmillTimeUntilSwitch OBJECT_FIELD_S32(0x1F)
 
 /* TTC moving bar */
-#define /*0x0F4*/ oTTCMovingBarTotalWaitTime OBJECT_FIELD_S32(0x1B)
+#define /*0x0F4*/ oTTCMovingBarDelay OBJECT_FIELD_S32(0x1B)
 #define /*0x0F8*/ oTTCMovingBarStoppedTimer OBJECT_FIELD_S32(0x1C)
 #define /*0x0FC*/ oTTCMovingBarOffset OBJECT_FIELD_F32(0x1D)
 #define /*0x100*/ oTTCMovingBarSpeed OBJECT_FIELD_F32(0x1E)
@@ -448,7 +449,7 @@
 /* TTC cog */
 #define /*0x0F4*/ oTTCCogDir OBJECT_FIELD_F32(0x1B)
 #define /*0x0F8*/ oTTCCogSpeed OBJECT_FIELD_F32(0x1C)
-#define /*0x0FC*/ oTTCCogTargetSpeed OBJECT_FIELD_F32(0x1D)
+#define /*0x0FC*/ oTTCCogTargetVel OBJECT_FIELD_F32(0x1D)
 
 /* TTC pit block */
 #define /*0x0F4*/ oTTCPitBlockPeakY OBJECT_FIELD_F32(0x1B)
@@ -461,7 +462,7 @@
 #define /*0x0FC*/ oTTCElevatorMoveTime OBJECT_FIELD_S32(0x1D)
 
 /* TTC 2D rotator */
-#define /*0x0F4*/ oTTC2DRotatorTimeUntilIncrement OBJECT_FIELD_S32(0x1B)
+#define /*0x0F4*/ oTTC2DRotatorMinTimeUntilNextTurn OBJECT_FIELD_S32(0x1B)
 #define /*0x0F8*/ oTTC2DRotatorTargetYaw OBJECT_FIELD_S32(0x1C)
 #define /*0x0FC*/ oTTC2DRotatorIncrement OBJECT_FIELD_S32(0x1D)
 #define /*0x104*/ oTTC2DRotatorRandomDirTimer OBJECT_FIELD_S32(0x1F)

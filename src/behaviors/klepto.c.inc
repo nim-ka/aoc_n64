@@ -403,7 +403,7 @@ void bhv_klepto_update(void)
     }
     else
     {
-        obj_compute_vel_from_pitch(o->oKleptoSpeed);
+        obj_compute_vel_from_move_pitch(o->oKleptoSpeed);
 
         switch (o->oAction)
         {
@@ -416,7 +416,7 @@ void bhv_klepto_update(void)
         case KLEPTO_ACT_RETREAT:                 klepto_act_retreat();                break;
         }
 
-        if (obj_handle_mario_attacks(&sKleptoHitbox, o->oAction, sKleptoAttackHandlers))
+        if (obj_handle_attacks(&sKleptoHitbox, o->oAction, sKleptoAttackHandlers))
         {
             PlaySound2(0x50406081);
             

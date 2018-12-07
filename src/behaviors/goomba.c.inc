@@ -342,7 +342,7 @@ void bhv_goomba_update(void)
         case GOOMBA_ACT_JUMP:           goomba_act_jump();           break;
         }
 
-        if (obj_handle_mario_attacks(
+        if (obj_handle_attacks(
             &sGoombaHitbox, GOOMBA_ACT_ATTACKED_MARIO, sGoombaAttackHandlers[o->oGoombaSize & 1]))
         {
             mark_goomba_as_dead();

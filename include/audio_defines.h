@@ -280,12 +280,12 @@
 /* not verified */ #define SOUND_GENERAL_BOATTILT2      0x3035
 /* not verified */ #define SOUND_GENERAL_COINDROP       0x3036
 /* not verified */ #define SOUND_GENERAL_UNKNOWN3       0x3037
-/* not verified */ #define SOUND_GENERAL_SWITCH1        0x3038
+/* not verified */ #define SOUND_GENERAL_SWITCH1        SOUND_ARG_LOAD(3, 0, 0x38, SOUND_BITFLAG_NOFLAGS, 8)
 /* not verified */ #define SOUND_GENERAL_CHAINCHOMP1    SOUND_ARG_LOAD(3, 0, 0x39, SOUND_BITFLAG_NOFLAGS, 8)
 /* not verified */ #define SOUND_GENERAL_CHAINCHOMP2    SOUND_ARG_LOAD(3, 0, 0x3A, SOUND_BITFLAG_NOFLAGS, 8)
 /* not verified */ #define SOUND_GENERAL_SWITCH2        0x303B
 /* not verified */ #define SOUND_GENERAL_MOVINGINSAND   0x303C
-/* not verified */ #define SOUND_GENERAL_UNKNOWN4       0x303D
+/* not verified */ #define SOUND_GENERAL_UNKNOWN4       SOUND_ARG_LOAD(3, 0, 0x3D, SOUND_BITFLAG_NOFLAGS, 8)
 /* not verified */ #define SOUND_GENERAL_SWITCH3        0x303E
 /* not verified */ #define SOUND_GENERAL_CAGEOPEN       0x303F
 /* not verified */ #define SOUND_GENERAL_QUIETPOUND1    0x3040
@@ -417,21 +417,21 @@
 /* not verified */ #define SOUND_OBJECT_BABYPENGUINTRICK     0x501F
 /* not verified */ #define SOUND_OBJECT_GOOMBAWALK           SOUND_ARG_LOAD(5, 0, 0x20, SOUND_BITFLAG_NOFLAGS, 8)
 /* not verified */ #define SOUND_OBJECT_MONKEY1              0x5021
-/* not verified */ #define SOUND_OBJECT_MONTYMOLEATTACK      0x5022
+/* not verified */ #define SOUND_OBJECT_MONTYMOLEATTACK      SOUND_ARG_LOAD(5, 0, 0x22, SOUND_BITFLAG_NOFLAGS, 8)
 /* not verified */ #define SOUND_OBJECT_EVILLAKITUTHROW      SOUND_ARG_LOAD(5, 0, 0x22, SOUND_BITFLAG_UNK5, 8)
 /* not verified */ #define SOUND_OBJECT_UNKNOWN5             0x5023
-/* not verified */ #define SOUND_OBJECT_DYINGENEMY1          0x5024
+/* not verified */ #define SOUND_OBJECT_DYINGENEMY1          SOUND_ARG_LOAD(5, 0, 0x24, SOUND_BITFLAG_UNK6, 8)
 /* not verified */ #define SOUND_OBJECT_CANNON4              0x5025
 /* not verified */ #define SOUND_OBJECT_DYINGENEMY2          0x5026
 /* not verified */ #define SOUND_OBJECT_BOBOMBWALK           0x5027
-/* not verified */ #define SOUND_OBJECT_SOMETHINGLANDING     0x5028
+/* not verified */ #define SOUND_OBJECT_SOMETHINGLANDING     SOUND_ARG_LOAD(5, 0, 0x28, SOUND_BITFLAG_PRIORITY, 8)
 /* not verified */ #define SOUND_OBJECT_DIVINGINWATER        SOUND_ARG_LOAD(5, 0, 0x29, SOUND_BITFLAG_UNK5 | SOUND_BITFLAG_PRIORITY, 8)
 /* not verified */ #define SOUND_OBJECT_SNOWSAND1            0x502A
 /* not verified */ #define SOUND_OBJECT_SNOWSAND2            0x502B
 /* not verified */ #define SOUND_OBJECT_FLAMEVANISHING       0x502C
 /* not verified */ #define SOUND_OBJECT_DEFAULTDEATH         SOUND_ARG_LOAD(5, 0, 0x2C, SOUND_BITFLAG_PRIORITY, 8)
 /* not verified */ #define SOUND_OBJECT_BIGPENGUIN           0x502D
-/* not verified */ #define SOUND_OBJECT_WATERBOMBBOUNCING    0x502E
+/* not verified */ #define SOUND_OBJECT_WATERBOMBBOUNCING    SOUND_ARG_LOAD(5, 0, 0x2E, SOUND_BITFLAG_PRIORITY, 8)
 /* not verified */ #define SOUND_OBJECT_GOOMBAALERT          SOUND_ARG_LOAD(5, 0, 0x2F, SOUND_BITFLAG_NOFLAGS, 8)
 /* not verified */ #define SOUND_OBJECT_WIGGLERUNK2F         SOUND_ARG_LOAD(5, 0, 0x2F, SOUND_BITFLAG_UNK5 | SOUND_BITFLAG_UNK6, 8)
 /* not verified */ #define SOUND_OBJECT_STOMPED              SOUND_ARG_LOAD(5, 0, 0x30, SOUND_BITFLAG_PRIORITY, 8)
@@ -568,11 +568,14 @@
 
 /* Channel 8 Sound Effects */
 // not yet documented
+/* not verified */ #define SOUND_CH8_UNK40      SOUND_ARG_LOAD(8, 0, 0x40, (SOUND_BITFLAG_NOFLAGS), 8)
 /* not verified */ #define SOUND_CH8_UNK50      SOUND_ARG_LOAD(8, 0, 0x50, (SOUND_BITFLAG_UNK6), 0)
+/* not verified */ #define SOUND_CH8_UNK59      SOUND_ARG_LOAD(8, 0, 0x59, (SOUND_BITFLAG_NOFLAGS), 8)
 
 /* Channel 9 Sound Effects */
 // not yet documented
 /* not verified */ #define SOUND_CH9_UNK49      SOUND_ARG_LOAD(9, 0, 0x49, SOUND_BITFLAG_NOFLAGS, 8)
 /* not verified */ #define SOUND_CH9_UNK52      SOUND_ARG_LOAD(9, 0, 0x52, (SOUND_BITFLAG_UNK6), 0)
+/* not verified */ #define SOUND_CH9_UNK67      SOUND_ARG_LOAD(9, 0, 0x67, (SOUND_BITFLAG_PRIORITY), 8)
 
 #endif /* _AUDIODEFINES_H */

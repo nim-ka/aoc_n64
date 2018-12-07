@@ -239,7 +239,7 @@ glabel BehPiranhaParticleLoop
 /* 0600E4 802A50E4 8D08FDF0 */  lw    $t0, %lo(gCurrentObject)($t0)
 /* 0600E8 802A50E8 AD0200C8 */  sw    $v0, 0xc8($t0)
 .L802A50EC:
-/* 0600EC 802A50EC 0C0A87A7 */  jal   obj_move_xz_using_fvel_and_gravity
+/* 0600EC 802A50EC 0C0A87A7 */  jal   obj_move_using_fvel_and_gravity
 /* 0600F0 802A50F0 00000000 */   nop   
 /* 0600F4 802A50F4 10000001 */  b     .L802A50FC
 /* 0600F8 802A50F8 00000000 */   nop   
@@ -1718,7 +1718,7 @@ glabel BehThiTinyTopLoop
 /* 06157C 802A657C 258D0001 */  addiu $t5, $t4, 1
 /* 061580 802A6580 AD6D014C */  sw    $t5, 0x14c($t3)
 /* 061584 802A6584 3C048033 */  lui   $a0, %hi(D_8032F134) # $a0, 0x8033
-/* 061588 802A6588 0C0A8AC1 */  jal   func_802A2B04
+/* 061588 802A6588 0C0A8AC1 */  jal   obj_spawn_particles
 /* 06158C 802A658C 2484F134 */   addiu $a0, %lo(D_8032F134) # addiu $a0, $a0, -0xecc
 /* 061590 802A6590 3C063E99 */  lui   $a2, (0x3E99999A >> 16) # lui $a2, 0x3e99
 /* 061594 802A6594 34C6999A */  ori   $a2, (0x3E99999A & 0xFFFF) # ori $a2, $a2, 0x999a
@@ -2396,7 +2396,7 @@ glabel ActionKingBobomb3
 /* 061DC4 802A6DC4 00000000 */   nop   
 /* 061DC8 802A6DC8 0C0A7B4E */  jal   func_8029ED38
 /* 061DCC 802A6DCC 24040001 */   li    $a0, 1
-/* 061DD0 802A6DD0 0C0A92E0 */  jal   player_performed_grab_release_action
+/* 061DD0 802A6DD0 0C0A92E0 */  jal   player_performed_grab_escape_action
 /* 061DD4 802A6DD4 00000000 */   nop   
 /* 061DD8 802A6DD8 3C188036 */  lui   $t8, %hi(gCurrentObject) # $t8, 0x8036
 /* 061DDC 802A6DDC 8F18FDF0 */  lw    $t8, %lo(gCurrentObject)($t8)
@@ -3098,7 +3098,7 @@ glabel func_802A7748
 /* 062774 802A7774 10000003 */  b     .L802A7784
 /* 062778 802A7778 00000000 */   nop   
 .L802A777C:
-/* 06277C 802A777C 0C0A87A7 */  jal   obj_move_xz_using_fvel_and_gravity
+/* 06277C 802A777C 0C0A87A7 */  jal   obj_move_using_fvel_and_gravity
 /* 062780 802A7780 00000000 */   nop   
 .L802A7784:
 /* 062784 802A7784 3C048033 */  lui   $a0, %hi(TableKingBobombActions) # $a0, 0x8033
@@ -3446,7 +3446,7 @@ glabel BehWaterAirBubbleLoop
 /* 062C60 802A7C60 3C098036 */  lui   $t1, %hi(gCurrentObject) # $t1, 0x8036
 /* 062C64 802A7C64 8D29FDF0 */  lw    $t1, %lo(gCurrentObject)($t1)
 /* 062C68 802A7C68 AD2200C8 */  sw    $v0, 0xc8($t1)
-/* 062C6C 802A7C6C 0C0A87A7 */  jal   obj_move_xz_using_fvel_and_gravity
+/* 062C6C 802A7C6C 0C0A87A7 */  jal   obj_move_using_fvel_and_gravity
 /* 062C70 802A7C70 00000000 */   nop   
 .L802A7C74:
 /* 062C74 802A7C74 0C0E0F2D */  jal   RandomFloat
@@ -5196,7 +5196,7 @@ glabel ActionChuckya1
 /* 06453C 802A953C 8DCF0150 */  lw    $t7, 0x150($t6)
 /* 064540 802A9540 15E10049 */  bne   $t7, $at, .L802A9668
 /* 064544 802A9544 00000000 */   nop   
-/* 064548 802A9548 0C0A92E0 */  jal   player_performed_grab_release_action
+/* 064548 802A9548 0C0A92E0 */  jal   player_performed_grab_escape_action
 /* 06454C 802A954C 00000000 */   nop   
 /* 064550 802A9550 3C198036 */  lui   $t9, %hi(gCurrentObject) # $t9, 0x8036
 /* 064554 802A9554 8F39FDF0 */  lw    $t9, %lo(gCurrentObject)($t9)
@@ -6431,7 +6431,7 @@ glabel func_802AA618
 /* 0656AC 802AA6AC A029F271 */  sb    $t1, %lo(D_8032F271)($at)
 .L802AA6B0:
 /* 0656B0 802AA6B0 3C048033 */  lui   $a0, %hi(D_8032F270) # $a0, 0x8033
-/* 0656B4 802AA6B4 0C0A8AC1 */  jal   func_802A2B04
+/* 0656B4 802AA6B4 0C0A8AC1 */  jal   obj_spawn_particles
 /* 0656B8 802AA6B8 2484F270 */   addiu $a0, %lo(D_8032F270) # addiu $a0, $a0, -0xd90
 /* 0656BC 802AA6BC 10000001 */  b     .L802AA6C4
 /* 0656C0 802AA6C0 00000000 */   nop   
@@ -6848,7 +6848,7 @@ glabel BehUnused080CLoop
 /* 065C98 802AAC98 0C0AAA46 */  jal   func_802AA918
 /* 065C9C 802AAC9C 00000000 */   nop   
 .L802AACA0:
-/* 065CA0 802AACA0 0C0A87A7 */  jal   obj_move_xz_using_fvel_and_gravity
+/* 065CA0 802AACA0 0C0A87A7 */  jal   obj_move_using_fvel_and_gravity
 /* 065CA4 802AACA4 00000000 */   nop   
 /* 065CA8 802AACA8 3C0B8036 */  lui   $t3, %hi(gCurrentObject) # $t3, 0x8036
 /* 065CAC 802AACAC 8D6BFDF0 */  lw    $t3, %lo(gCurrentObject)($t3)
@@ -7015,7 +7015,7 @@ glabel BehTempCoingLoop
 /* 065EE8 802AAEE8 25F80001 */  addiu $t8, $t7, 1
 /* 065EEC 802AAEEC ADD800F0 */  sw    $t8, 0xf0($t6)
 /* 065EF0 802AAEF0 240400C8 */  li    $a0, 200
-/* 065EF4 802AAEF4 0C0A8BBF */  jal   func_802A2EFC
+/* 065EF4 802AAEF4 0C0A8BBF */  jal   obj_wait_then_blink
 /* 065EF8 802AAEF8 24050014 */   li    $a1, 20
 /* 065EFC 802AAEFC 10400004 */  beqz  $v0, .L802AAF10
 /* 065F00 802AAF00 00000000 */   nop   
@@ -7214,7 +7214,7 @@ glabel BehCoinLoop
 .L802AB160:
 # JP
 /* 066160 802AB160 24040190 */  li    $a0, 400
-/* 066164 802AB164 0C0A8BBF */  jal   func_802A2EFC
+/* 066164 802AB164 0C0A8BBF */  jal   obj_wait_then_blink
 /* 066168 802AB168 24050014 */   li    $a1, 20
 /* 06616C 802AB16C 10400004 */  beqz  $v0, .L802AB180
 /* 066170 802AB170 00000000 */   nop   
@@ -7718,7 +7718,7 @@ glabel ActionCoinInsideBoo1
 /* 066880 802AB880 AD8B0180 */  sw    $t3, 0x180($t4)
 .L802AB884:
 /* 066884 802AB884 24040190 */  li    $a0, 400
-/* 066888 802AB888 0C0A8BBF */  jal   func_802A2EFC
+/* 066888 802AB888 0C0A8BBF */  jal   obj_wait_then_blink
 /* 06688C 802AB88C 24050014 */   li    $a1, 20
 /* 066890 802AB890 10400004 */  beqz  $v0, .L802AB8A4
 /* 066894 802AB894 00000000 */   nop   
@@ -7923,7 +7923,7 @@ glabel BehPunchTinyTriangleLoop
 /* 066B68 802ABB68 87A9001E */  lh    $t1, 0x1e($sp)
 /* 066B6C 802ABB6C AD4900C8 */  sw    $t1, 0xc8($t2)
 .L802ABB70:
-/* 066B70 802ABB70 0C0A87A7 */  jal   obj_move_xz_using_fvel_and_gravity
+/* 066B70 802ABB70 0C0A87A7 */  jal   obj_move_using_fvel_and_gravity
 /* 066B74 802ABB74 00000000 */   nop   
 /* 066B78 802ABB78 3C0C8036 */  lui   $t4, %hi(gCurrentObject) # $t4, 0x8036
 /* 066B7C 802ABB7C 8D8CFDF0 */  lw    $t4, %lo(gCurrentObject)($t4)
@@ -8063,7 +8063,7 @@ glabel BehWallTinyStarParticleLoop
 /* 066D74 802ABD74 87A9001E */  lh    $t1, 0x1e($sp)
 /* 066D78 802ABD78 AD4900C8 */  sw    $t1, 0xc8($t2)
 .L802ABD7C:
-/* 066D7C 802ABD7C 0C0A87A7 */  jal   obj_move_xz_using_fvel_and_gravity
+/* 066D7C 802ABD7C 0C0A87A7 */  jal   obj_move_using_fvel_and_gravity
 /* 066D80 802ABD80 00000000 */   nop   
 /* 066D84 802ABD84 3C0C8036 */  lui   $t4, %hi(gCurrentObject) # $t4, 0x8036
 /* 066D88 802ABD88 8D8CFDF0 */  lw    $t4, %lo(gCurrentObject)($t4)
@@ -8194,7 +8194,7 @@ glabel BehPoundTinyStarParticleLoop
 /* 066F60 802ABF60 00000000 */  nop   
 /* 066F64 802ABF64 E53200B0 */  swc1  $f18, 0xb0($t1)
 .L802ABF68:
-/* 066F68 802ABF68 0C0A87A7 */  jal   obj_move_xz_using_fvel_and_gravity
+/* 066F68 802ABF68 0C0A87A7 */  jal   obj_move_using_fvel_and_gravity
 /* 066F6C 802ABF6C 00000000 */   nop   
 /* 066F70 802ABF70 3C0B8036 */  lui   $t3, %hi(gCurrentObject) # $t3, 0x8036
 /* 066F74 802ABF74 8D6BFDF0 */  lw    $t3, %lo(gCurrentObject)($t3)
@@ -9113,7 +9113,7 @@ glabel BehTumblingBridgePlatformLoop
 /* 067C38 802ACC38 E54400E4 */  swc1  $f4, 0xe4($t2)
 /* 067C3C 802ACC3C 0C0A8907 */  jal   obj_rotate_face_angle_using_vel
 /* 067C40 802ACC40 00000000 */   nop   
-/* 067C44 802ACC44 0C0A87A7 */  jal   obj_move_xz_using_fvel_and_gravity
+/* 067C44 802ACC44 0C0A87A7 */  jal   obj_move_using_fvel_and_gravity
 /* 067C48 802ACC48 00000000 */   nop   
 /* 067C4C 802ACC4C 3C0B8036 */  lui   $t3, %hi(gCurrentObject) # $t3, 0x8036
 /* 067C50 802ACC50 8D6BFDF0 */  lw    $t3, %lo(gCurrentObject)($t3)
@@ -9914,7 +9914,7 @@ glabel BehWaterMistLoop
 /* 068774 802AD774 0C0A8A39 */  jal   translate_object_xz_random
 /* 068778 802AD778 3C054120 */   lui   $a1, 0x4120
 .L802AD77C:
-/* 06877C 802AD77C 0C0A87A7 */  jal   obj_move_xz_using_fvel_and_gravity
+/* 06877C 802AD77C 0C0A87A7 */  jal   obj_move_using_fvel_and_gravity
 /* 068780 802AD780 00000000 */   nop   
 /* 068784 802AD784 3C098036 */  lui   $t1, %hi(gCurrentObject) # $t1, 0x8036
 /* 068788 802AD788 8D29FDF0 */  lw    $t1, %lo(gCurrentObject)($t1)
@@ -10133,7 +10133,7 @@ glabel func_802ADA94
 /* 068A94 802ADA94 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 068A98 802ADA98 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 068A9C 802ADA9C 3C048033 */  lui   $a0, %hi(D_8032F3CC) # $a0, 0x8033
-/* 068AA0 802ADAA0 0C0A8AC1 */  jal   func_802A2B04
+/* 068AA0 802ADAA0 0C0A8AC1 */  jal   obj_spawn_particles
 /* 068AA4 802ADAA4 2484F3CC */   addiu $a0, %lo(D_8032F3CC) # addiu $a0, $a0, -0xc34
 /* 068AA8 802ADAA8 10000001 */  b     .L802ADAB0
 /* 068AAC 802ADAAC 00000000 */   nop   
@@ -10149,7 +10149,7 @@ glabel BehUnused0E40Init
 /* 068AC8 802ADAC8 0C0AB6EF */  jal   func_802ADBBC
 /* 068ACC 802ADACC 24044000 */   li    $a0, 16384
 /* 068AD0 802ADAD0 3C048033 */  lui   $a0, %hi(D_8032F3E0) # $a0, 0x8033
-/* 068AD4 802ADAD4 0C0A8AC1 */  jal   func_802A2B04
+/* 068AD4 802ADAD4 0C0A8AC1 */  jal   obj_spawn_particles
 /* 068AD8 802ADAD8 2484F3E0 */   addiu $a0, %lo(D_8032F3E0) # addiu $a0, $a0, -0xc20
 /* 068ADC 802ADADC 10000001 */  b     .L802ADAE4
 /* 068AE0 802ADAE0 00000000 */   nop   
@@ -10233,7 +10233,7 @@ glabel BehGroundSnowInit
 /* 068BF4 802ADBF4 0C0AB6EF */  jal   func_802ADBBC
 /* 068BF8 802ADBF8 3C040001 */   lui   $a0, 1
 /* 068BFC 802ADBFC 3C048033 */  lui   $a0, %hi(D_8032F3FC) # $a0, 0x8033
-/* 068C00 802ADC00 0C0A8AC1 */  jal   func_802A2B04
+/* 068C00 802ADC00 0C0A8AC1 */  jal   obj_spawn_particles
 /* 068C04 802ADC04 2484F3FC */   addiu $a0, %lo(D_8032F3FC) # addiu $a0, $a0, -0xc04
 /* 068C08 802ADC08 10000001 */  b     .L802ADC10
 /* 068C0C 802ADC0C 00000000 */   nop   
@@ -10474,7 +10474,7 @@ glabel BehWindLoop
 /* 068F8C 802ADF8C 440B8000 */  mfc1  $t3, $f16
 /* 068F90 802ADF90 00000000 */  nop   
 /* 068F94 802ADF94 ADAB00D4 */  sw    $t3, 0xd4($t5)
-/* 068F98 802ADF98 0C0A87A7 */  jal   obj_move_xz_using_fvel_and_gravity
+/* 068F98 802ADF98 0C0A87A7 */  jal   obj_move_using_fvel_and_gravity
 /* 068F9C 802ADF9C 00000000 */   nop   
 /* 068FA0 802ADFA0 10000001 */  b     .L802ADFA8
 /* 068FA4 802ADFA4 00000000 */   nop   
@@ -11140,7 +11140,7 @@ glabel BehFlamethrowerFlameLoop
 /* 0698EC 802AE8EC 10000003 */  b     .L802AE8FC
 /* 0698F0 802AE8F0 E59200A4 */   swc1  $f18, 0xa4($t4)
 .L802AE8F4:
-/* 0698F4 802AE8F4 0C0A87A7 */  jal   obj_move_xz_using_fvel_and_gravity
+/* 0698F4 802AE8F4 0C0A87A7 */  jal   obj_move_using_fvel_and_gravity
 /* 0698F8 802AE8F8 00000000 */   nop   
 .L802AE8FC:
 /* 0698FC 802AE8FC 3C0D8036 */  lui   $t5, %hi(gCurrentObject) # $t5, 0x8036
@@ -13067,7 +13067,7 @@ glabel L802B044C
 /* 06B478 802B0478 10000001 */  b     .L802B0480
 /* 06B47C 802B047C 00000000 */   nop   
 .L802B0480:
-/* 06B480 802B0480 0C0A87A7 */  jal   obj_move_xz_using_fvel_and_gravity
+/* 06B480 802B0480 0C0A87A7 */  jal   obj_move_using_fvel_and_gravity
 /* 06B484 802B0484 00000000 */   nop   
 /* 06B488 802B0488 0C0E0E73 */  jal   load_object_collision_model
 /* 06B48C 802B048C 00000000 */   nop   
@@ -13115,7 +13115,7 @@ glabel BehPiranhaPlantWakingBubblesLoop
 /* 06B528 802B0528 8D08FDF0 */  lw    $t0, %lo(gCurrentObject)($t0)
 /* 06B52C 802B052C AD0200C8 */  sw    $v0, 0xc8($t0)
 .L802B0530:
-/* 06B530 802B0530 0C0A87A7 */  jal   obj_move_xz_using_fvel_and_gravity
+/* 06B530 802B0530 0C0A87A7 */  jal   obj_move_using_fvel_and_gravity
 /* 06B534 802B0534 00000000 */   nop   
 /* 06B538 802B0538 10000001 */  b     .L802B0540
 /* 06B53C 802B053C 00000000 */   nop   
@@ -13748,7 +13748,7 @@ glabel BehPushableLoop
 /* 06BE4C 802B0E4C 0C0B25AC */  jal   PlaySound
 /* 06BE50 802B0E50 34848001 */   ori   $a0, (0x40178001 & 0xFFFF) # ori $a0, $a0, 0x8001
 .L802B0E54:
-/* 06BE54 802B0E54 0C0A87A7 */  jal   obj_move_xz_using_fvel_and_gravity
+/* 06BE54 802B0E54 0C0A87A7 */  jal   obj_move_using_fvel_and_gravity
 /* 06BE58 802B0E58 00000000 */   nop   
 /* 06BE5C 802B0E5C 10000001 */  b     .L802B0E64
 /* 06BE60 802B0E60 00000000 */   nop   
@@ -13893,7 +13893,7 @@ glabel func_802B0F54
 /* 06C050 802B1050 0C0A7F96 */  jal   obj_become_tangible
 /* 06C054 802B1054 00000000 */   nop   
 /* 06C058 802B1058 24040168 */  li    $a0, 360
-/* 06C05C 802B105C 0C0A8BBF */  jal   func_802A2EFC
+/* 06C05C 802B105C 0C0A8BBF */  jal   obj_wait_then_blink
 /* 06C060 802B1060 24050014 */   li    $a1, 20
 /* 06C064 802B1064 10400004 */  beqz  $v0, .L802B1078
 /* 06C068 802B1068 00000000 */   nop   
@@ -14009,7 +14009,7 @@ glabel func_802B1138
 /* 06C1F8 802B11F8 0C0A7F96 */  jal   obj_become_tangible
 /* 06C1FC 802B11FC 00000000 */   nop   
 /* 06C200 802B1200 24040168 */  li    $a0, 360
-/* 06C204 802B1204 0C0A8BBF */  jal   func_802A2EFC
+/* 06C204 802B1204 0C0A8BBF */  jal   obj_wait_then_blink
 /* 06C208 802B1208 24050014 */   li    $a1, 20
 /* 06C20C 802B120C 10400004 */  beqz  $v0, .L802B1220
 /* 06C210 802B1210 00000000 */   nop   
@@ -15789,7 +15789,7 @@ glabel BehGrandStarLoop
 /* 06DB34 802B2B34 8D8CFDF0 */  lw    $t4, %lo(gCurrentObject)($t4)
 /* 06DB38 802B2B38 AD820108 */  sw    $v0, 0x108($t4)
 .L802B2B3C:
-/* 06DB3C 802B2B3C 0C0A87A7 */  jal   obj_move_xz_using_fvel_and_gravity
+/* 06DB3C 802B2B3C 0C0A87A7 */  jal   obj_move_using_fvel_and_gravity
 /* 06DB40 802B2B40 00000000 */   nop   
 /* 06DB44 802B2B44 3C0D8036 */  lui   $t5, %hi(gCurrentObject) # $t5, 0x8036
 /* 06DB48 802B2B48 8DADFDF0 */  lw    $t5, %lo(gCurrentObject)($t5)
@@ -22007,7 +22007,7 @@ glabel ActionFallingBowserPlatform2
 /* 0729E0 802B79E0 0C0AE3DF */  jal   func_802B8F7C
 /* 0729E4 802B79E4 248400A0 */   addiu $a0, $a0, 0xa0
 .L802B79E8:
-/* 0729E8 802B79E8 0C0A87A7 */  jal   obj_move_xz_using_fvel_and_gravity
+/* 0729E8 802B79E8 0C0A87A7 */  jal   obj_move_using_fvel_and_gravity
 /* 0729EC 802B79EC 00000000 */   nop   
 /* 0729F0 802B79F0 3C188036 */  lui   $t8, %hi(gCurrentObject) # $t8, 0x8036
 /* 0729F4 802B79F4 8F18FDF0 */  lw    $t8, %lo(gCurrentObject)($t8)
@@ -23396,7 +23396,7 @@ glabel BehBlueFishLoop
 /* 073DE0 802B8DE0 46002187 */  neg.s $f6, $f4
 /* 073DE4 802B8DE4 46069202 */  mul.s $f8, $f18, $f6
 /* 073DE8 802B8DE8 E56800B0 */  swc1  $f8, 0xb0($t3)
-/* 073DEC 802B8DEC 0C0A87A7 */  jal   obj_move_xz_using_fvel_and_gravity
+/* 073DEC 802B8DEC 0C0A87A7 */  jal   obj_move_using_fvel_and_gravity
 /* 073DF0 802B8DF0 00000000 */   nop   
 /* 073DF4 802B8DF4 3C088036 */  lui   $t0, %hi(gCurrentObject) # $t0, 0x8036
 /* 073DF8 802B8DF8 8D08FDF0 */  lw    $t0, %lo(gCurrentObject)($t0)
@@ -23897,12 +23897,12 @@ glabel L802B939C
 /* 0744F4 802B94F4 8DC800D0 */  lw    $t0, 0xd0($t6)
 /* 0744F8 802B94F8 01016024 */  and   $t4, $t0, $at
 /* 0744FC 802B94FC ADCC00D0 */  sw    $t4, 0xd0($t6)
-/* 074500 802B9500 0C0A87A7 */  jal   obj_move_xz_using_fvel_and_gravity
+/* 074500 802B9500 0C0A87A7 */  jal   obj_move_using_fvel_and_gravity
 /* 074504 802B9504 00000000 */   nop   
 /* 074508 802B9508 10000003 */  b     .L802B9518
 /* 07450C 802B950C 00000000 */   nop   
 .L802B9510:
-/* 074510 802B9510 0C0A87A7 */  jal   obj_move_xz_using_fvel_and_gravity
+/* 074510 802B9510 0C0A87A7 */  jal   obj_move_using_fvel_and_gravity
 /* 074514 802B9514 00000000 */   nop   
 .L802B9518:
 /* 074518 802B9518 0C0E0E73 */  jal   load_object_collision_model
@@ -26409,7 +26409,7 @@ glabel BehHorizontalMovementLoop
 /* 076814 802BB814 248466F0 */  addiu $a0, %lo(D_803366F0) # addiu $a0, $a0, 0x66f0
 /* 076818 802BB818 0C0B26B6 */  jal   print_debug_top_down_objectinfo
 /* 07681C 802BB81C 8DC500F8 */   lw    $a1, 0xf8($t6)
-/* 076820 802BB820 0C0A87A7 */  jal   obj_move_xz_using_fvel_and_gravity
+/* 076820 802BB820 0C0A87A7 */  jal   obj_move_using_fvel_and_gravity
 /* 076824 802BB824 00000000 */   nop   
 /* 076828 802BB828 3C0F8036 */  lui   $t7, %hi(gCurrentObject) # $t7, 0x8036
 /* 07682C 802BB82C 8DEFFDF0 */  lw    $t7, %lo(gCurrentObject)($t7)
@@ -27794,7 +27794,7 @@ glabel BehKoopaShellFlameLoop
 .L802BCBEC:
 /* 077BEC 802BCBEC 0C0A7FA2 */  jal   obj_update_floor_height
 /* 077BF0 802BCBF0 00000000 */   nop   
-/* 077BF4 802BCBF4 0C0A87A7 */  jal   obj_move_xz_using_fvel_and_gravity
+/* 077BF4 802BCBF4 0C0A87A7 */  jal   obj_move_using_fvel_and_gravity
 /* 077BF8 802BCBF8 00000000 */   nop   
 /* 077BFC 802BCBFC 3C0D8036 */  lui   $t5, %hi(gCurrentObject) # $t5, 0x8036
 /* 077C00 802BCC00 8DADFDF0 */  lw    $t5, %lo(gCurrentObject)($t5)
@@ -31588,7 +31588,7 @@ glabel BehFishGroup2Loop
 /* 07AE88 802BFE88 3C048033 */  lui   $a0, %hi(TableFishGroupActions) # $a0, 0x8033
 /* 07AE8C 802BFE8C 0C0A8DA2 */  jal   obj_call_action_function
 /* 07AE90 802BFE90 2484FC08 */   addiu $a0, %lo(TableFishGroupActions) # addiu $a0, $a0, -0x3f8
-/* 07AE94 802BFE94 0C0A87A7 */  jal   obj_move_xz_using_fvel_and_gravity
+/* 07AE94 802BFE94 0C0A87A7 */  jal   obj_move_using_fvel_and_gravity
 /* 07AE98 802BFE98 00000000 */   nop   
 /* 07AE9C 802BFE9C 3C0C8036 */  lui   $t4, %hi(gCurrentObject) # $t4, 0x8036
 /* 07AEA0 802BFEA0 8D8CFDF0 */  lw    $t4, %lo(gCurrentObject)($t4)
@@ -32303,7 +32303,7 @@ glabel BehCheepCheepLoop
 /* 07B8A0 802C08A0 3C048033 */  lui   $a0, %hi(TableCheepCheepActions) # $a0, 0x8033
 /* 07B8A4 802C08A4 0C0A8DA2 */  jal   obj_call_action_function
 /* 07B8A8 802C08A8 2484FC24 */   addiu $a0, %lo(TableCheepCheepActions) # addiu $a0, $a0, -0x3dc
-/* 07B8AC 802C08AC 0C0A87A7 */  jal   obj_move_xz_using_fvel_and_gravity
+/* 07B8AC 802C08AC 0C0A87A7 */  jal   obj_move_using_fvel_and_gravity
 /* 07B8B0 802C08B0 00000000 */   nop   
 /* 07B8B4 802C08B4 3C098036 */  lui   $t1, %hi(gCurrentObject) # $t1, 0x8036
 /* 07B8B8 802C08B8 8D29FDF0 */  lw    $t1, %lo(gCurrentObject)($t1)
@@ -32540,7 +32540,7 @@ glabel ActionExclamationBox2
 glabel ActionExclamationBox3
 /* 07BBEC 802C0BEC 27BDFFE0 */  addiu $sp, $sp, -0x20
 /* 07BBF0 802C0BF0 AFBF0014 */  sw    $ra, 0x14($sp)
-/* 07BBF4 802C0BF4 0C0A87A7 */  jal   obj_move_xz_using_fvel_and_gravity
+/* 07BBF4 802C0BF4 0C0A87A7 */  jal   obj_move_using_fvel_and_gravity
 /* 07BBF8 802C0BF8 00000000 */   nop   
 /* 07BBFC 802C0BFC 3C0E8036 */  lui   $t6, %hi(gCurrentObject) 
 /* 07BC00 802C0C00 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
@@ -33395,7 +33395,7 @@ glabel BehWhitePuff1Loop
 /* 07C858 802C1858 8D4AFDF0 */  lw    $t2, %lo(gCurrentObject)($t2)
 /* 07C85C 802C185C 24090032 */  li    $t1, 50
 /* 07C860 802C1860 AD49017C */  sw    $t1, 0x17c($t2)
-/* 07C864 802C1864 0C0A87A7 */  jal   obj_move_xz_using_fvel_and_gravity
+/* 07C864 802C1864 0C0A87A7 */  jal   obj_move_using_fvel_and_gravity
 /* 07C868 802C1868 00000000 */   nop   
 /* 07C86C 802C186C 3C0B8036 */  lui   $t3, %hi(gCurrentObject) # $t3, 0x8036
 /* 07C870 802C1870 8D6BFDF0 */  lw    $t3, %lo(gCurrentObject)($t3)
@@ -33517,7 +33517,7 @@ glabel BehHiddenBlueCoinsLoop
 /* 07CA0C 802C1A0C 8C84FDF0 */   lw    $a0, %lo(gCurrentObject)($a0)
 .L802C1A10:
 /* 07CA10 802C1A10 240400C8 */  li    $a0, 200
-/* 07CA14 802C1A14 0C0A8BBF */  jal   func_802A2EFC
+/* 07CA14 802C1A14 0C0A8BBF */  jal   obj_wait_then_blink
 /* 07CA18 802C1A18 24050014 */   li    $a1, 20
 /* 07CA1C 802C1A1C 10400004 */  beqz  $v0, .L802C1A30
 /* 07CA20 802C1A20 00000000 */   nop   
@@ -33632,7 +33632,7 @@ glabel BehBlueCoinSwitchLoop
 .L802C1BB4:
 /* 07CBB4 802C1BB4 0C0E0E73 */  jal   load_object_collision_model
 /* 07CBB8 802C1BB8 00000000 */   nop   
-/* 07CBBC 802C1BBC 0C0A87A7 */  jal   obj_move_xz_using_fvel_and_gravity
+/* 07CBBC 802C1BBC 0C0A87A7 */  jal   obj_move_using_fvel_and_gravity
 /* 07CBC0 802C1BC0 00000000 */   nop   
 .L802C1BC4:
 /* 07CBC4 802C1BC4 10000023 */  b     .L802C1C54
@@ -37141,7 +37141,7 @@ glabel BehBooInCastleLoop
 /* 07FC70 802C4C70 240505A8 */   li    $a1, 1448
 /* 07FC74 802C4C74 0C0B0BAE */  jal   func_802C2EB8
 /* 07FC78 802C4C78 24040001 */   li    $a0, 1
-/* 07FC7C 802C4C7C 0C0A87A7 */  jal   obj_move_xz_using_fvel_and_gravity
+/* 07FC7C 802C4C7C 0C0A87A7 */  jal   obj_move_using_fvel_and_gravity
 /* 07FC80 802C4C80 00000000 */   nop   
 /* 07FC84 802C4C84 10000001 */  b     .L802C4C8C
 /* 07FC88 802C4C88 00000000 */   nop   
@@ -40240,7 +40240,7 @@ glabel BehWhiteWindParticleLoop
 /* 0825EC 802C75EC 240D0064 */  li    $t5, 100
 /* 0825F0 802C75F0 ADCD017C */  sw    $t5, 0x17c($t6)
 .L802C75F4:
-/* 0825F4 802C75F4 0C0A87A7 */  jal   obj_move_xz_using_fvel_and_gravity
+/* 0825F4 802C75F4 0C0A87A7 */  jal   obj_move_using_fvel_and_gravity
 /* 0825F8 802C75F8 00000000 */   nop   
 /* 0825FC 802C75FC 3C0B8036 */  lui   $t3, %hi(gCurrentObject) # $t3, 0x8036
 /* 082600 802C7600 8D6BFDF0 */  lw    $t3, %lo(gCurrentObject)($t3)

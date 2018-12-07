@@ -284,8 +284,8 @@
 
 /* Koopa */
     /* oAction */
-    #define KOOPA_UNSHELLED_ACT_RUNNING 0
-    #define KOOPA_UNSHELLED_ACT_DIVING 1
+    #define KOOPA_UNSHELLED_ACT_RUN 0
+    #define KOOPA_UNSHELLED_ACT_DIVE 1
     #define KOOPA_UNSHELLED_ACT_LYING 2
     #define KOOPA_UNSHELLED_ACT_UNUSED3 3
 
@@ -369,8 +369,8 @@
     #define CHAIN_CHOMP_ACT_UNLOAD_CHAIN 2
 
     /* oSubAction */
-    #define CHAIN_CHOMP_SUB_ACT_TURNING 0
-    #define CHAIN_CHOMP_SUB_ACT_LUNGING 1
+    #define CHAIN_CHOMP_SUB_ACT_TURN 0
+    #define CHAIN_CHOMP_SUB_ACT_LUNGE 1
 
     /* oChainChompReleaseStatus */
     #define CHAIN_CHOMP_NOT_RELEASED 0
@@ -411,28 +411,81 @@
 
 /* Evil lakitu */
     /* oAction */
-    #define EVIL_LAKITU_ACT_UNINITIALIZED 0
-    #define EVIL_LAKITU_ACT_MAIN 1
+    #define ENEMY_LAKITU_ACT_UNINITIALIZED 0
+    #define ENEMY_LAKITU_ACT_MAIN 1
 
     /* oSubAction */
-    #define EVIL_LAKITU_SUB_ACT_NO_SPINY 0
-    #define EVIL_LAKITU_SUB_ACT_HOLD_SPINY 1
-    #define EVIL_LAKITU_SUB_ACT_THROW_SPINY 2
+    #define ENEMY_LAKITU_SUB_ACT_NO_SPINY 0
+    #define ENEMY_LAKITU_SUB_ACT_HOLD_SPINY 1
+    #define ENEMY_LAKITU_SUB_ACT_THROW_SPINY 2
 
-/* Platform on tracks */
+/* Cloud */
     /* oAction */
-    #define PLATFORM_ON_TRACK_ACT_UNK0 0
-    #define PLATFORM_ON_TRACK_ACT_UNK1 1
-    #define PLATFORM_ON_TRACK_ACT_UNK2 2
-    #define PLATFORM_ON_TRACK_ACT_UNK3 3
-    #define PLATFORM_ON_TRACK_ACT_UNK4 4
+    #define CLOUD_ACT_SPAWN_PARTS 0
+    #define CLOUD_ACT_MAIN 1
+    #define CLOUD_ACT_UNLOAD 2
+    #define CLOUD_ACT_FWOOSH_HIDDEN 3
+
+    /* oBehParams2ndByte */
+    #define CLOUD_BP_FWOOSH 0
+    #define CLOUD_BP_LAKITU_CLOUD 1
+
+/* Camera lakitu */
+    /* oAction */
+    #define CAMERA_LAKITU_INTRO_ACT_TRIGGER_CUTSCENE 0
+    #define CAMERA_LAKITU_INTRO_ACT_SPAWN_CLOUD 1
+    #define CAMERA_LAKITU_INTRO_ACT_UNK2 2
+
+    /* oBehParams2ndByte */
+    #define CAMERA_LAKITU_BP_FOLLOW_CAMERA 0
+    #define CAMERA_LAKITU_BP_INTRO 1
+
+/* Monty mole */
+    /* oAction */
+    #define MONTY_MOLE_ACT_SELECT_HOLE 0
+    #define MONTY_MOLE_ACT_RISE_FROM_HOLE 1
+    #define MONTY_MOLE_ACT_SPAWN_ROCK 2
+    #define MONTY_MOLE_ACT_BEGIN_JUMP_INTO_HOLE 3
+    #define MONTY_MOLE_ACT_THROW_ROCK 4
+    #define MONTY_MOLE_ACT_JUMP_INTO_HOLE 5
+    #define MONTY_MOLE_ACT_HIDE 6
+    #define MONTY_MOLE_ACT_JUMP_OUT_OF_HOLE 7
+
+    /* oBehParams2ndByte */
+    #define MONTY_MOLE_BP_NO_ROCK 0
+
+/* Monty mole rock */
+    /* oAction */
+    #define MONTY_MOLE_ROCK_ACT_HELD 0
+    #define MONTY_MOLE_ROCK_ACT_MOVE 1
+
+/* Platform on track */
+    /* oAction */
+    #define PLATFORM_ON_TRACK_ACT_INIT 0
+    #define PLATFORM_ON_TRACK_ACT_WAIT_FOR_MARIO 1
+    #define PLATFORM_ON_TRACK_ACT_MOVE_ALONG_TRACK 2
+    #define PLATFORM_ON_TRACK_ACT_PAUSE_BRIEFLY 3
+    #define PLATFORM_ON_TRACK_ACT_FALL 4
+
+    /* oBehParams >> 16 */
+    #define PLATFORM_ON_TRACK_BP_MASK_PATH 0xF
+    #define PLATFORM_ON_TRACK_BP_MASK_TYPE (0x7 << 4)
+    #define PLATFORM_ON_TRACK_BP_RETURN_TO_START (1 << 8)
+    #define PLATFORM_ON_TRACK_BP_DONT_DISAPPEAR (1 << 9)
+    #define PLATFORM_ON_TRACK_BP_DONT_TURN_YAW (1 << 10)
+    #define PLATFORM_ON_TRACK_BP_DONT_TURN_ROLL (1 << 11)
+
+    #define PLATFORM_ON_TRACK_TYPE_CARPET    0
+    #define PLATFORM_ON_TRACK_TYPE_SKI_LIFT  1
+    #define PLATFORM_ON_TRACK_TYPE_CHECKERED 2
+    #define PLATFORM_ON_TRACK_TYPE_GRATE     3
 
 /* Water bomb */
     /* oAction */
-    #define WATER_BOMB_ACT_UNK0 0
+    #define WATER_BOMB_ACT_SHOT_FROM_CANNON 0
     #define WATER_BOMB_ACT_INIT 1
     #define WATER_BOMB_ACT_DROP 2
-    #define WATER_BOMB_ACT_DEACTIVATE 3
+    #define WATER_BOMB_ACT_EXPLODE 3
 
 /* TTC rotating solid */
     /* oBehParams2ndByte */
@@ -454,6 +507,11 @@
     #define TTC_COG_BP_DIR_MASK 0x00000001
     #define TTC_COG_BP_DIR_CCW (0 << 0) // TODO: Check these
     #define TTC_COG_BP_DIR_CW (1 << 0)
+
+/* TTC 2D Rotator */
+    /* oBehParams2ndByte */
+    #define TTC_2D_ROTATOR_BP_HAND 0
+    #define TTC_2D_ROTATOR_BP_2D_COG 1
 
 /* Dorrie */
     /* oAction */

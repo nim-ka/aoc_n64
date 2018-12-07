@@ -91,8 +91,8 @@
 #define MODEL_BULLY_BOSS                  0x57        // bully_boss_geo
 
 // bob
-#define MODEL_WATER_BUBBLE                0x54        // water_bubble_geo
-#define MODEL_WATER_BUBBLE_SHADOW         0x55        // water_bubble_shadow_geo
+#define MODEL_WATER_BOMB                  0x54        // water_bubble_geo
+#define MODEL_WATER_BOMB_SHADOW           0x55        // water_bubble_shadow_geo
 #define MODEL_KING_BOB_OMB                0x56        // king_bobomb_geo
 
 // ddd, jrb, sa

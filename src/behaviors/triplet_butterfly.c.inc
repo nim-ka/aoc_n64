@@ -123,7 +123,7 @@ static void triplet_butterfly_act_explode(void)
 {
     f32 scaleIncrease;
 
-    obj_check_mario_attacks(&sTripletButterflyExplodeHitbox, -1);
+    obj_check_attacks(&sTripletButterflyExplodeHitbox, -1);
 
     if (o->oAction == -1 || (o->oMoveFlags & 0x00000200) || o->oTimer >= 158)
     {
@@ -168,6 +168,6 @@ void bhv_triplet_butterfly_update(void)
     }
 
     obj_scale(o->oTripletButterflyScale);
-    obj_compute_vel_from_pitch(o->oTripletButterflySpeed);
+    obj_compute_vel_from_move_pitch(o->oTripletButterflySpeed);
     obj_move_standard(78);
 }

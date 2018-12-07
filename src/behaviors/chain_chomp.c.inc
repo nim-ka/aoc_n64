@@ -194,7 +194,7 @@ static void chain_chomp_restore_normal_chain_lengths(void)
 /**
  * Turn toward mario. Wait a bit and then enter the lunging sub-action.
  */
-static void chain_chomp_sub_act_turning(void)
+static void chain_chomp_sub_act_turn(void)
 {
     o->oGravity = -4.0f;
 
@@ -217,7 +217,7 @@ static void chain_chomp_sub_act_turning(void)
                         // the lunging sub-action.
                         PlaySound2(SOUND_GENERAL_CHAINCHOMP2);
 
-                        o->oSubAction = CHAIN_CHOMP_SUB_ACT_LUNGING;
+                        o->oSubAction = CHAIN_CHOMP_SUB_ACT_LUNGE;
                         o->oChainChompMaxDistFromPivotPerChainPart = 900.0f / 5;
 
                         o->oForwardVel = 140.0f;
@@ -250,7 +250,7 @@ static void chain_chomp_sub_act_turning(void)
     }
 }
 
-static void chain_chomp_sub_act_lunging(void)
+static void chain_chomp_sub_act_lunge(void)
 {
     f32 val04;
 
@@ -286,7 +286,7 @@ static void chain_chomp_sub_act_lunging(void)
         }
         else
         {
-            o->oSubAction = CHAIN_CHOMP_SUB_ACT_TURNING;
+            o->oSubAction = CHAIN_CHOMP_SUB_ACT_TURN;
         }
 
         o->oChainChompMaxDistBetweenChainParts = o->oChainChompUnk104;
@@ -450,8 +450,8 @@ static void chain_chomp_act_move(void)
         case CHAIN_CHOMP_NOT_RELEASED:
             switch (o->oSubAction)
             {
-            case CHAIN_CHOMP_SUB_ACT_TURNING: chain_chomp_sub_act_turning(); break;
-            case CHAIN_CHOMP_SUB_ACT_LUNGING: chain_chomp_sub_act_lunging(); break;
+            case CHAIN_CHOMP_SUB_ACT_TURN:  chain_chomp_sub_act_turn();  break;
+            case CHAIN_CHOMP_SUB_ACT_LUNGE: chain_chomp_sub_act_lunge(); break;
             }
             break;
         case CHAIN_CHOMP_RELEASED_TRIGGER_CUTSCENE:
@@ -522,9 +522,9 @@ static void chain_chomp_act_move(void)
         chain_chomp_update_chain_segments();
 
         // Begin a lunge if mario tries to attack
-        if (obj_check_mario_attacks(&sChainChompHitbox, o->oAction))
+        if (obj_check_attacks(&sChainChompHitbox, o->oAction))
         {
-            o->oSubAction = CHAIN_CHOMP_SUB_ACT_LUNGING;
+            o->oSubAction = CHAIN_CHOMP_SUB_ACT_LUNGE;
             o->oChainChompMaxDistFromPivotPerChainPart = 900.0f / 5;
             o->oForwardVel = 0.0f;
             o->oVelY = 300.0f;

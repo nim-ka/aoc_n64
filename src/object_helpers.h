@@ -38,19 +38,21 @@ struct Struct802A272C {
     Vec3s vecS;
 };
 
-struct Struct802A2B04 {
-    s8 unk0;
-    s8 unk1;
-    u8 unk2;
-    s8 unk3;
-    s8 unk4;
-    s8 unk5;
-    s8 unk6;
-    s8 unk7;
-    s8 unk8;
-    s8 unk9;
-    f32 unkC;
-    f32 unk10;
+// TODO: Field names
+struct SpawnParticlesInfo
+{
+    /*0x00*/ s8 behParam;
+    /*0x01*/ s8 count;
+    /*0x02*/ u8 model;
+    /*0x03*/ s8 offsetY;
+    /*0x04*/ s8 forwardVelBase;
+    /*0x05*/ s8 forwardVelRange;
+    /*0x06*/ s8 velYBase;
+    /*0x07*/ s8 velYRange;
+    /*0x08*/ s8 gravity;
+    /*0x09*/ s8 dragStrength;
+    /*0x0C*/ f32 sizeBase;
+    /*0x10*/ f32 sizeRange;
 };
 
 #define TIME_STOP_UNKNOWN_0       (1 << 0)
@@ -319,7 +321,7 @@ extern void obj_update_floor_and_walls(void);
 extern void obj_move_standard(s16);
 // extern ? obj_within_12k_bounds(?);
 void obj_move_using_vel_and_gravity(void);
-void obj_move_xz_using_fvel_and_gravity(void);
+void obj_move_using_fvel_and_gravity(void);
 // extern ? set_object_pos_relative(?);
 s16 obj_angle_to_home(void);
 // extern ? func_802A2008(?);
@@ -339,7 +341,7 @@ extern void translate_object_xyz_random(struct Object *, f32);
 extern void translate_object_xz_random(struct Object *, f32);
 // extern ? func_802A297C(?);
 void func_802A2A38(void);
-void func_802A2B04(struct Struct802A2B04 *sp28);
+void obj_spawn_particles(struct SpawnParticlesInfo *sp28);
 extern s16 obj_reflect_move_angle_off_wall(void);
 
 #endif /* OBJECT_HELPERS_H */

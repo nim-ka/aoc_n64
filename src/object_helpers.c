@@ -2300,15 +2300,15 @@ void obj_move_using_vel_and_gravity(void)
     {
         o->oPosX += o->oVelX;
         o->oPosZ += o->oVelZ;
-        o->oVelY += o->oGravity;
+        o->oVelY += o->oGravity; //! No terminal velocity
         o->oPosY += o->oVelY;
     }
 }
 
-void obj_move_xz_using_fvel_and_gravity(void)
+void obj_move_using_fvel_and_gravity(void)
 {
     obj_compute_vel_xz();
-    obj_move_using_vel_and_gravity();
+    obj_move_using_vel_and_gravity(); //! No terminal velocity
 }
 
 void set_object_pos_relative(
@@ -2566,35 +2566,42 @@ s16 obj_reflect_move_angle_off_wall(void) {
     return angle;
 }
 
-void func_802A2B04(struct Struct802A2B04 *sp28)
+void obj_spawn_particles(struct SpawnParticlesInfo *info)
 {
-    struct Object *sp24;
-    s32 sp20;
-    f32 sp1C;
-    s32 sp18 = sp28->unk1; // TODO: pass in proper struct
+    struct Object *particle;
+    s32 i;
+    f32 scale;
+    s32 numParticles = info->count;
 
-    if (gPostUpdateObjCount >= 0x97 && sp18 >= 0x0b)
+    // If there are a lot of objects already, limit the number of particles
+    if (gPostUpdateObjCount > 150 && numParticles > 10)
     {
-        sp18 = 10;
+        numParticles = 10;
     }
 
-    if (gPostUpdateObjCount >= 0xd3)
+    // We're close to running out of object slots, so don't spawn particles at
+    // all
+    if (gPostUpdateObjCount > 210)
     {
-        sp18 = 0;
+        numParticles = 0;
     }
 
-    for (sp20 = 0; sp18 > sp20; sp20++)
+    for (i = 0; i < numParticles; i++)
     {
-        sp1C = RandomFloat() * (sp28->unk10 * 0.1f) + sp28->unkC * 0.1f;
-        sp24 = spawn_object(o, sp28->unk2, beh_white_puff_explosion);
-        sp24->oBehParams2ndByte = sp28->unk0;
-        sp24->oMoveAngleYaw = RandomU16();
-        sp24->oGravity = sp28->unk8;
-        sp24->oDragStrength = sp28->unk9;
-        sp24->oPosY += sp28->unk3;
-        sp24->oForwardVel = RandomFloat() * sp28->unk5 + sp28->unk4;
-        sp24->oVelY = RandomFloat() * sp28->unk7 + sp28->unk6;
-        scale_object_xyz(sp24, sp1C, sp1C, sp1C);
+        scale = RandomFloat() * (info->sizeRange * 0.1f) + info->sizeBase * 0.1f;
+
+        particle = spawn_object(o, info->model, beh_white_puff_explosion);
+
+        particle->oBehParams2ndByte = info->behParam;
+        particle->oMoveAngleYaw = RandomU16();
+        particle->oGravity = info->gravity;
+        particle->oDragStrength = info->dragStrength;
+
+        particle->oPosY += info->offsetY;
+        particle->oForwardVel = RandomFloat() * info->forwardVelRange + info->forwardVelBase;
+        particle->oVelY = RandomFloat() * info->velYRange + info->velYBase;
+
+        scale_object_xyz(particle, scale, scale, scale);
     }
 }
 
@@ -2655,28 +2662,28 @@ s32 absi(s32 a0)
     }
 }
 
-s32 func_802A2EFC(s32 a0, s32 a1)
+s32 obj_wait_then_blink(s32 timeUntilBlinking, s32 numBlinks)
 {
-    s32 sp4 = 0;
-    s32 sp0;
+    s32 done = FALSE;
+    s32 timeBlinking;
 
-    if (o->oTimer >= a0)
+    if (o->oTimer >= timeUntilBlinking)
     {
-        if ((sp0 = o->oTimer - a0) & 1)
+        if ((timeBlinking = o->oTimer - timeUntilBlinking) % 2 != 0)
         {
-            o->header.gfx.node.flags |= 0x10;
-            if (a1 < sp0 / 2)
+            o->header.gfx.node.flags |= GRAPH_RENDER_10;
+            if (timeBlinking / 2 > numBlinks)
             {
-                sp4 = 1;
+                done = TRUE;
             }
         }
         else
         {
-            o->header.gfx.node.flags &= ~0x10;
+            o->header.gfx.node.flags &= ~GRAPH_RENDER_10;
         }
     }
 
-    return sp4;
+    return done;
 }
 
 s32 obj_is_mario_ground_pounding_platform(void)
@@ -3440,7 +3447,7 @@ s32 attack_collided_non_mario_object(struct Object *obj)
         if (other != gMarioObject)
         {
             other->oInteractStatus |=
-                INT_STATUS_UNK0 |
+                ATTACK_PUNCH |
                 INT_STATUS_WAS_ATTACKED |
                 INT_STATUS_INTERACTED |
                 INT_STATUS_TOUCHED_BOB_OMB;
@@ -3506,9 +3513,9 @@ s32 obj_check_grabbed_mario(void)
     return FALSE;
 }
 
-s32 player_performed_grab_release_action(void)
+s32 player_performed_grab_escape_action(void)
 {
-    s32 result = 0;
+    s32 result = FALSE;
 
     if (gPlayer1Controller->stickMag < 30.0f)
     {

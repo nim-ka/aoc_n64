@@ -55,7 +55,7 @@ script_func_local_2:
     object /*unk2*/ 0x1F, /*unk3*/ 0x54, /*pos*/ 5774, 913, -1114, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ bBird
     object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -1328, 260, 4664, /*angle*/ 0, 180, 0, /*behArg*/ 0x00280000, /*beh*/ beh_intro_scene
     object /*unk2*/ 0x1F, /*unk3*/ 0x38, /*pos*/ 0, 0, 0, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_hidden_at_120_stars
-    object /*unk2*/ 0x1F, /*unk3*/ 0x66, /*pos*/ 11, 803, -3015, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ beh_lakitu
+    object /*unk2*/ 0x1F, /*unk3*/ 0x66, /*pos*/ 11, 803, -3015, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ bCameraLakitu
     return
 
 script_func_local_3:

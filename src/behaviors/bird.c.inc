@@ -32,7 +32,7 @@ static void bird_act_fly(void)
     UNUSED s32 unused;
     f32 distance;
 
-    obj_compute_vel_from_pitch(o->oBirdSpeed);
+    obj_compute_vel_from_move_pitch(o->oBirdSpeed);
     if (o->parentObj->oPosY > 8000.0f)
     {
         mark_object_for_deletion(o);
@@ -59,7 +59,7 @@ static void bird_act_fly(void)
         obj_roll_to_match_yaw_turn(o->oBirdYaw, 0x3000, 600);
     }
 
-    obj_move_xz_using_fvel_and_gravity();
+    obj_move_using_fvel_and_gravity();
 }
 
 void bhv_bird_update(void)

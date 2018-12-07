@@ -1178,7 +1178,7 @@ glabel beh_break_box_triangle # 0DB4
     obj_or_int objFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE
     begin_repeat 18
         callnative obj_rotate_face_angle_using_vel
-        callnative obj_move_xz_using_fvel_and_gravity
+        callnative obj_move_using_fvel_and_gravity
     end_repeat
     deactivate
 
@@ -2580,7 +2580,7 @@ glabel beh_white_puff_smoke2 # 2528
     obj_set_int objAnimState, -1
     begin_repeat 7
         callnative BehWhitePuff2Loop
-        callnative obj_move_xz_using_fvel_and_gravity
+        callnative obj_move_using_fvel_and_gravity
         obj_add_int objAnimState, 1
     end_repeat
     deactivate
@@ -4766,7 +4766,7 @@ glabel bWigglerBodyPart # 48C0
         callnative bhv_wiggler_body_part_update
     end_loop
 
-glabel bEvilLakitu # 48F8
+glabel bEnemyLakitu # 48F8
     begin OBJ_LIST_PUSHABLE
     obj_or_int objFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
     obj_set_int32 objAnimations, lakitu_enemy_seg5_anims_050144D4
@@ -4774,36 +4774,36 @@ glabel bEvilLakitu # 48F8
     unknown_2D
     unknown_30 0x0028, 0x0000, 0xFFCE, 0x0000, 0x0000, 0x00C8, 0x0000, 0x0000
     begin_loop
-        callnative bhv_evil_lakitu_update
+        callnative bhv_enemy_lakitu_update
     end_loop
 
-glabel beh_lakitu # 4934
+glabel bCameraLakitu # 4934
     begin OBJ_LIST_DEFAULT
     obj_or_int objFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
     obj_set_int32 objAnimations, lakitu_seg6_anims_060058F8
     unknown_28 0x00
     callnative bhv_init_room
-    callnative BehLakituInit
+    callnative bhv_camera_lakitu_init
     begin_loop
-        callnative BehLakituLoop
+        callnative bhv_camera_lakitu_update
     end_loop
 
-glabel beh_fwoosh_blowing_wind # 4968
+glabel bCloud # 4968
     begin OBJ_LIST_DEFAULT
     obj_or_int objFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
     billboard
     unknown_2D
     obj_set_int objOpacity, 0x00F0
     begin_loop
-        callnative BehFwooshBlowingWindLoop
+        callnative bhv_cloud_update
     end_loop
 
-glabel beh_fwoosh_face # 498C
+glabel bCloudPart # 498C
     begin OBJ_LIST_DEFAULT
     obj_or_int objFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE
     obj_set_int objOpacity, 0x00F0
     begin_loop
-        callnative BehFwooshFaceLoop
+        callnative bhv_cloud_part_update
     end_loop
 
 glabel bSpiny # 49A8
@@ -4816,7 +4816,7 @@ glabel bSpiny # 49A8
         callnative bhv_spiny_update
     end_loop
 
-glabel beh_monty_mole # 49E0
+glabel bMontyMole # 49E0
     begin OBJ_LIST_GENACTOR
     obj_or_int objFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
     unknown_1E
@@ -4828,21 +4828,21 @@ glabel beh_monty_mole # 49E0
     obj_set_float objGraphYOffset, 0xFFC4
     scale 150
     delay 1
-    callnative BehMontyMoleInit
+    callnative bhv_monty_mole_init
     begin_loop
-        callnative BehMontyMoleLoop
+        callnative bhv_monty_mole_update
     end_loop
 
-glabel beh_monty_mole_in_hole # 4A38
+glabel bMontyMoleHole # 4A38
     begin OBJ_LIST_DEFAULT
     obj_or_int objFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
     unknown_1E
     scale 150
     begin_loop
-        callnative BehMontyMoleInHoleLoop
+        callnative bhv_monty_mole_hole_update
     end_loop
 
-glabel beh_monty_mole_rock # 4A58
+glabel bMontyMoleRock # 4A58
     begin OBJ_LIST_GENACTOR
     obj_or_int objFlags, (OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
     billboard
@@ -4850,7 +4850,7 @@ glabel beh_monty_mole_rock # 4A58
     obj_set_float objGraphYOffset, 0x000A
     scale 200
     begin_loop
-        callnative BehMontyMoleRockLoop
+        callnative bhv_monty_mole_rock_update
     end_loop
 
 glabel bPlatformOnTrack # 4A90
@@ -4864,14 +4864,14 @@ glabel bPlatformOnTrack # 4A90
         callnative load_object_collision_model
     end_loop
 
-glabel beh_metal_balls_for_elevators # 4AD4
+glabel bTrackBall # 4AD4
     begin OBJ_LIST_SURFACE
     obj_or_int objFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE
     billboard
     callnative bhv_init_room
     scale 15
     begin_loop
-        callnative BehMetalBallsForElevatorsLoop
+        callnative bhv_track_ball_update
     end_loop
 
 glabel bSeesawPlatform # 4AFC
@@ -4883,21 +4883,21 @@ glabel bSeesawPlatform # 4AFC
         callnative load_object_collision_model
     end_loop
 
-glabel beh_four_rotating_platforms # 4B24
+glabel bFerrisWheelAxle # 4B24
     begin OBJ_LIST_SURFACE
     obj_or_int objFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE
     obj_add_int objMoveAngleYaw, 0x4000
-    callnative BehFourRotatingPlatformsInit
+    callnative bhv_ferris_wheel_axle_init
     begin_loop
         obj_add_int objFaceAngleRoll, 400
         callnative load_object_collision_model
     end_loop
 
-glabel beh_ferris_wheel_platform # 4B4C
+glabel bFerrisWheelPlatform # 4B4C
     begin OBJ_LIST_SURFACE
     obj_or_int objFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE
     begin_loop
-        callnative BehFerrisWheelPlatformLoop
+        callnative bhv_ferris_wheel_platform_update
         callnative load_object_collision_model
     end_loop
 

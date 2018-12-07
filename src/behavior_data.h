@@ -3,539 +3,539 @@
 
 #include "types.h"
 
-extern u32 beh_star_door[];                          // 0x13000000
-extern u32 beh_mr_i[];                               // 0x13000054
-extern u32 beh_mr_i_body[];                          // 0x1300008C
-extern u32 beh_mr_i_particle[];                      // 0x130000AC
-extern u32 beh_giant_piranha_particle[];             // 0x130000F8
-extern u32 beh_giant_pole[];                         // 0x13000118
-extern u32 beh_pole_grabbing[];                      // 0x13000144
-extern u32 beh_thi_top_trap[];                       // 0x13000174
-extern u32 beh_thi_tiny_top[];                       // 0x13000194
-extern u32 beh_cap_switch_collision_child[];         // 0x130001AC
-extern u32 beh_activate_cap_switch[];                // 0x130001CC
-extern u32 beh_king_bobomb[];                        // 0x130001F4
-extern u32 beh_bobomb_anchor_mario[];                // 0x13000254
-extern u32 beh_beta_chest[];                         // 0x13000278
-extern u32 beh_beta_chest_upper[];                   // 0x1300029C
-extern u32 beh_bubble_mario[];                       // 0x130002B8
-extern u32 beh_bubble_maybe[];                       // 0x130002E4
-extern u32 beh_small_water_wave[];                   // 0x13000338
-extern u32 beh_small_water_wave_398[];               // 0x13000398
-extern u32 beh_water_air_bubble[];                   // 0x130003BC
-extern u32 beh_small_particle[];                     // 0x13000400
-extern u32 beh_water_waves[];                        // 0x13000428
-extern u32 beh_small_particle_snow[];                // 0x13000444
-extern u32 beh_small_particle_bubbles[];             // 0x1300046C
-extern u32 beh_fish_group[];                         // 0x13000494
-extern u32 beh_cannon_base[];                        // 0x130004A8
-extern u32 beh_cannon_barrel[];                      // 0x130004E4
-extern u32 beh_cannon_base_unused[];                 // 0x13000500
-extern u32 beh_chuckya[];                            // 0x13000528
-extern u32 beh_chuckya_anchor_mario[];               // 0x13000584
-extern u32 beh_unused_05A8[];                        // 0x130005A8
-extern u32 beh_rotating_platform[];                  // 0x130005B4
-extern u32 beh_tower[];                              // 0x130005D8
-extern u32 beh_bullet_bill_cannon[];                 // 0x13000600
-extern u32 beh_breakable_wall[];                     // 0x13000624
-extern u32 beh_breakable_wall_2[];                   // 0x13000638
-extern u32 beh_kickable_board[];                     // 0x1300066C
-extern u32 beh_tower_door[];                         // 0x130006A4
-extern u32 beh_rotating_counter_clockwise[];         // 0x130006D8
-extern u32 beh_clocklike_rotation[];                 // 0x130006E0
-extern u32 beh_koopa_shell_underwater[];             // 0x13000708
-extern u32 beh_exit_podium_warp[];                   // 0x13000720
-extern u32 beh_fading_warp[];                        // 0x1300075C
-extern u32 beh_warp[];                               // 0x13000780
-extern u32 beh_warp_pipe[];                          // 0x130007A0
-extern u32 beh_white_puff_explosion[];               // 0x130007DC
-extern u32 beh_spawned_star[];                       // 0x130007F8
-extern u32 beh_unused_080C[];                        // 0x1300080C
-extern u32 beh_mr_i_blue_coin[];                     // 0x13000830
-extern u32 beh_coin_inside_boo[];                    // 0x13000888
-extern u32 beh_coin_formation_spawn[];               // 0x130008D0
-extern u32 beh_coin_formation[];                     // 0x130008EC
-extern u32 beh_one_coin[];                           // 0x1300090C
-extern u32 beh_collectable_coin[];                   // 0x1300091C
-extern u32 beh_temporary_coin[];                     // 0x13000940
-extern u32 beh_three_coins_spawn[];                  // 0x13000964
-extern u32 beh_ten_coins_spawn[];                    // 0x13000984
-extern u32 beh_single_coin_gets_spawned[];           // 0x130009A4
-extern u32 beh_coin_sparkles[];                      // 0x130009E0
-extern u32 beh_golden_coin_sparkles[];               // 0x13000A14
-extern u32 beh_wall_tiny_star_particle[];            // 0x13000A34
-extern u32 beh_wall_tiny_star_particle_spawn[];      // 0x13000A54
-extern u32 beh_pound_tiny_star_particle[];           // 0x13000A78
-extern u32 beh_pound_tiny_star_particle_spawn[];     // 0x13000A98
-extern u32 beh_punch_tiny_triangle[];                // 0x13000ABC
-extern u32 beh_punch_tiny_triangle_spawn[];          // 0x13000AD8
-extern u32 beh_door_warp[];                          // 0x13000AFC
-extern u32 beh_door[];                               // 0x13000B0C
-extern u32 beh_grindel[];                            // 0x13000B58
-extern u32 beh_thwomp_2[];                           // 0x13000B8C
-extern u32 beh_thwomp[];                             // 0x13000BC8
-extern u32 beh_tumbling_bridge_platform[];           // 0x13000C04
-extern u32 beh_wf_tumbling_bridge[];                 // 0x13000C28
-extern u32 beh_bbh_tumbling_platform_group[];        // 0x13000C44
-extern u32 beh_tumbling_platform[];                  // 0x13000C64
-extern u32 beh_burning[];                            // 0x13000C84
-extern u32 beh_another_elavator[];                   // 0x13000CC8
-extern u32 beh_rr_elevator_platform[];               // 0x13000CFC
-extern u32 beh_hmc_elevator_platform[];              // 0x13000D30
-extern u32 beh_water_mist[];                         // 0x13000D6C
-extern u32 beh_water_mist_spawn[];                   // 0x13000D98
-extern u32 beh_break_box_triangle[];                 // 0x13000DB4
-extern u32 beh_water_mist2[];                        // 0x13000DD8
-extern u32 beh_unused_0DFC[];                        // 0x13000DFC
-extern u32 beh_pound_white_puffs[];                  // 0x13000E24
-extern u32 beh_ground_sand[];                        // 0x13000E3C
-extern u32 beh_unused_0E40[];                        // 0x13000E40
-extern u32 beh_ground_snow[];                        // 0x13000E58
-extern u32 beh_wind[];                               // 0x13000E70
-extern u32 beh_end_toad[];                           // 0x13000E88
-extern u32 beh_end_peach[];                          // 0x13000EAC
-extern u32 beh_piranha_particles_spawn[];            // 0x13000ED0
-extern u32 beh_ukiki[];                              // 0x13000F08
-extern u32 beh_unused_0F14[];                        // 0x13000F14
-extern u32 beh_little_cage2[];                       // 0x13000F2C
-extern u32 beh_little_cage[];                        // 0x13000F48
-extern u32 beh_bifs_sinking_platforms[];             // 0x13000F9C
-extern u32 beh_bifs_sinking_cage_platform[];         // 0x13000FC8
-extern u32 beh_ddd_moving_pole[];                    // 0x13001000
-extern u32 beh_tilting_inverted_pyramid[];           // 0x13001030
-extern u32 beh_squishable_platform[];                // 0x13001064
-extern u32 beh_cut_out_object[];                     // 0x13001098
-extern u32 beh_beta_moving_flames_spawn[];           // 0x130010A8
-extern u32 beh_beta_moving_flames[];                 // 0x130010B8
-extern u32 beh_rr_rotating_platform_with_fire[];     // 0x130010D8
-extern u32 beh_flamethrower[];                       // 0x13001108
-extern u32 beh_flamethrower_flame[];                 // 0x13001124
-extern u32 beh_bouncing_fireball[];                  // 0x13001168
-extern u32 beh_bouncing_fireball_flame[];            // 0x13001184
-extern u32 beh_bowser_shock_wave[];                  // 0x130011D0
-extern u32 beh_flame_mario[];                        // 0x130011EC
-extern u32 beh_black_smoke_mario[];                  // 0x13001214
-extern u32 beh_black_smoke_bowser[];                 // 0x13001254
-extern u32 beh_black_smoke_upward[];                 // 0x1300127C
-extern u32 beh_multiple_coins[];                     // 0x13001298
-extern u32 beh_spindrift[];                          // 0x130012B4
-extern u32 beh_tower_platform_group[];               // 0x130012F4
-extern u32 beh_wf_sliding_platform[];                // 0x13001318
-extern u32 beh_wf_elevator_platform[];               // 0x13001340
-extern u32 beh_wf_solid_platform[];                  // 0x13001368
-extern u32 beh_snow_leaf_particle_spawn[];           // 0x13001390
-extern u32 beh_tree_snow[];                          // 0x130013A8
-extern u32 beh_tree_leaf[];                          // 0x130013C4
-extern u32 beh_another_tilting_platform[];           // 0x130013DC
-extern u32 beh_squarish_path_moving[];               // 0x13001408
-extern u32 beh_piranha_plant_bubble[];               // 0x1300142C
-extern u32 beh_piranha_plant_waking_bubbles[];       // 0x13001448
-extern u32 beh_purple_switch_staircase[];            // 0x13001468
-extern u32 beh_floor_switch_grills[];                // 0x13001478
-extern u32 beh_floor_switch_hardcoded_model[];       // 0x13001484
-extern u32 beh_floor_switch_hidden_objects[];        // 0x130014AC
-extern u32 beh_hidden_object[];                      // 0x130014BC
-extern u32 beh_breakable_box[];                      // 0x130014E0
-extern u32 beh_pushable[];                           // 0x13001518
-extern u32 beh_heave_ho[];                           // 0x13001548
-extern u32 beh_heave_ho_throw_mario[];               // 0x130015A4
-extern u32 beh_ccm_touched_star_spawn[];             // 0x130015C0
-extern u32 beh_pound_explodes[];                     // 0x130015E4
-extern u32 beh_beta_trampoline[];                    // 0x13001608
-extern u32 beh_beta_trampoline_spawn[];              // 0x13001634
-extern u32 beh_jumping_box[];                        // 0x13001650
-extern u32 beh_boo_cage[];                           // 0x1300167C
-extern u32 beh_stub[];                               // 0x130016AC
-extern u32 beh_igloo[];                              // 0x130016B8
-extern u32 beh_bowser_key_2[];                       // 0x130016E4
-extern u32 beh_grand_star[];                         // 0x13001714
-extern u32 beh_beta_boo_key_inside[];                // 0x13001744
-extern u32 beh_beta_boo_key_outside[];               // 0x13001778
-extern u32 beh_bullet_bill[];                        // 0x1300179C
-extern u32 beh_white_puff_smoke[];                   // 0x130017F4
-extern u32 beh_unused_1820[];                        // 0x13001820
-extern u32 beh_bowser_tail_anchor[];                 // 0x13001828
-extern u32 beh_bowser[];                             // 0x13001850
-extern u32 beh_bowser_body_anchor[];                 // 0x130018CC
-extern u32 beh_bowser_flame_spawn[];                 // 0x13001904
-extern u32 beh_tilting_bowser_lava_platform[];       // 0x13001920
-extern u32 beh_falling_bowser_platform[];            // 0x13001958
-extern u32 beh_blue_bowser_flame[];                  // 0x13001984
-extern u32 beh_flame_floating_landing[];             // 0x130019C8
-extern u32 beh_blue_flames_group[];                  // 0x13001A0C
-extern u32 beh_flame_bouncing[];                     // 0x13001A30
-extern u32 beh_flame_moving_forward_growing[];       // 0x13001A74
-extern u32 beh_flame_bowser[];                       // 0x13001AA4
-extern u32 beh_flame_large_burning_out[];            // 0x13001AE8
-extern u32 beh_blue_fish[];                          // 0x13001B2C
-extern u32 beh_tank_fish_groups[];                   // 0x13001B54
-extern u32 beh_checkerboard_elevator_group[];        // 0x13001B70
-extern u32 beh_checkerboard_platform_sub[];          // 0x13001B88
-extern u32 beh_door_key1[];                          // 0x13001BB4
-extern u32 beh_door_key2[];                          // 0x13001BD4
-extern u32 beh_invisible_objects_under_bridge[];     // 0x13001BF4
-extern u32 beh_water_level_pillar[];                 // 0x13001C04
-extern u32 beh_ddd_warp[];                           // 0x13001C34
-extern u32 beh_moat_grills[];                        // 0x13001C58
-extern u32 beh_clock_big_arm[];                      // 0x13001C7C
-extern u32 beh_rotating_small_clock_arm[];           // 0x13001C8C
-extern u32 beh_ukiki_open_cage[];                    // 0x13001CB0
-extern u32 beh_stub_1D0C[];                          // 0x13001D0C
-extern u32 beh_lll_rotating_ccw[];                   // 0x13001D14
-extern u32 beh_sinks_when_stepped_on[];              // 0x13001D40
-extern u32 beh_stub_1D70[];                          // 0x13001D70
-extern u32 beh_horizontal_movement[];                // 0x13001D78
-extern u32 beh_snow_ball[];                          // 0x13001DA4
-extern u32 beh_rotating_cw_with_fire_bars[];         // 0x13001DA8
-extern u32 beh_lll_rotating_hex_flame[];             // 0x13001DCC
-extern u32 beh_lll_wood_piece[];                     // 0x13001E04
-extern u32 beh_floating_wood_bridge[];               // 0x13001E30
-extern u32 beh_volcano_flames[];                     // 0x13001E4C
-extern u32 beh_lll_rotating_platform[];              // 0x13001E6C
-extern u32 beh_lll_slow_tilting_movement[];          // 0x13001E94
-extern u32 beh_lll_slow_up_down_movement[];          // 0x13001EC4
-extern u32 beh_tilting_inverted_pyramid2[];          // 0x13001EF8
-extern u32 beh_unused_1F30[];                        // 0x13001F30
-extern u32 beh_koopa_shell[];                        // 0x13001F3C
-extern u32 beh_koopa_shell_flame[];                  // 0x13001F68
-extern u32 beh_tox_box[];                            // 0x13001F90
-extern u32 beh_piranha_plant_2[];                    // 0x13001FBC
-extern u32 beh_lll_hexagonal_mesh[];                 // 0x13002018
-extern u32 beh_bowser_puzzle_piece[];                // 0x13002038
-extern u32 beh_bowser_puzzle[];                      // 0x13002068
-extern u32 beh_tuxies_mother[];                      // 0x13002088
-extern u32 beh_penguin_baby[];                       // 0x130020D8
-extern u32 beh_unused_20E0[];                        // 0x130020E0
-extern u32 beh_small_penguin[];                      // 0x130020E8
-extern u32 beh_fish_2[];                             // 0x1300213C
-extern u32 beh_fish_3[];                             // 0x1300214C
-extern u32 beh_large_fish_group[];                   // 0x1300215C
-extern u32 beh_fish_common[];                        // 0x13002160
-extern u32 beh_fish_group2[];                        // 0x13002178
-extern u32 beh_wdw_express_elevator[];               // 0x13002194
-extern u32 beh_wdw_express_elevator_platform[];      // 0x130021C0
-extern u32 beh_chirp_chirp[];                        // 0x130021E4
-extern u32 beh_cheep_cheep[];                        // 0x1300220C
-extern u32 beh_exclamation_box[];                    // 0x13002250
-extern u32 beh_rotating_exclamation_mark[];          // 0x1300227C
-extern u32 beh_plays_sound[];                        // 0x1300229C
-extern u32 beh_rock_solid[];                         // 0x130022B8
-extern u32 beh_bowser_sub_door[];                    // 0x130022D8
-extern u32 beh_bowsers_sub[];                        // 0x13002308
-extern u32 beh_sushi_shark[];                        // 0x13002338
-extern u32 beh_sushi_shark_collision_child[];        // 0x13002388
-extern u32 beh_jrb_sliding_box[];                    // 0x130023A4
-extern u32 beh_ship_part_3[];                        // 0x130023D0
-extern u32 beh_in_sunken_ship_3[];                   // 0x130023EC
-extern u32 beh_sunken_ship_part[];                   // 0x1300241C
-extern u32 beh_unused_243C[];                        // 0x1300243C
-extern u32 beh_sunken_ship_part_2[];                 // 0x1300244C
-extern u32 beh_in_sunken_ship[];                     // 0x1300246C
-extern u32 beh_in_sunken_ship_2[];                   // 0x13002480
-extern u32 beh_mario_dust_generator[];               // 0x130024AC
-extern u32 beh_white_puff1[];                        // 0x130024DC
-extern u32 beh_white_puff2[];                        // 0x13002500
-extern u32 beh_white_puff_smoke2[];                  // 0x13002528
-extern u32 beh_purple_switch_hidden_boxes[];         // 0x13002558
-extern u32 beh_blue_coin_switch[];                   // 0x13002568
-extern u32 beh_hidden_blue_coin[];                   // 0x13002588
-extern u32 beh_bob_hmc_cage_door[];                  // 0x130025C0
-extern u32 beh_openable_grill[];                     // 0x130025E0
-extern u32 beh_water_level_trigger[];                // 0x130025F8
-extern u32 beh_initialize_water_level_trigger[];     // 0x13002620
-extern u32 beh_tornado_sand_particle[];              // 0x13002634
-extern u32 beh_tornado[];                            // 0x13002650
-extern u32 beh_spawn_big_boo[];                      // 0x13002684
-extern u32 beh_animated_texture[];                   // 0x1300269C
-extern u32 beh_boo_in_castle[];                      // 0x130026D4
-extern u32 beh_boo_with_cage[];                      // 0x13002710
-extern u32 beh_patrolling_boo[];                     // 0x13002768
-extern u32 beh_spawned_boo[];                        // 0x1300277C
-extern u32 beh_boo_giving_star[];                    // 0x13002790
-extern u32 beh_boo_group[];                          // 0x130027D0
-extern u32 beh_boo_3[];                              // 0x130027E4
-extern u32 beh_spawned_boo_2[];                      // 0x130027F4
-extern u32 beh_boo_2[];                              // 0x13002804
-extern u32 beh_hidden_staircase_step[];              // 0x1300286C
-extern u32 beh_boo_boss_spawned_bridge[];            // 0x13002898
-extern u32 beh_bbh_tilt_floor_platforms[];           // 0x130028CC
-extern u32 beh_tumbling_bookshelf[];                 // 0x130028FC
-extern u32 beh_mesh_elevator[];                      // 0x1300292C
-extern u32 beh_rotating_merry_go_round[];            // 0x13002968
-extern u32 beh_inside_cannon[];                      // 0x13002998
-extern u32 beh_bait_coin[];                          // 0x1300299C
-extern u32 beh_static_checkered_platform[];          // 0x130029CC
-extern u32 beh_unused_2A10[];                        // 0x130029F8
-extern u32 beh_star[];                               // 0x13002A08
-extern u32 beh_static_object[];                      // 0x13002A30
-extern u32 beh_unused_2A54[];                        // 0x13002A3C
-extern u32 beh_castle_floor_trap[];                  // 0x13002A44
-extern u32 beh_floor_trap_in_castle[];               // 0x13002A64
-extern u32 beh_tree[];                               // 0x13002A8C
-extern u32 beh_powerup_sparkles1[];                  // 0x13002AB8
-extern u32 beh_powerup_sparkles2[];                  // 0x13002AD8
-extern u32 beh_special_triple_jump_sparkles[];       // 0x13002AF0
-extern u32 beh_some_gfx[];                           // 0x13002AFC
-extern u32 beh_scuttlebug[];                         // 0x13002B44
-extern u32 beh_scuttlebug_spawn[];                   // 0x13002B88
-extern u32 beh_whomp_king_boss[];                    // 0x13002BA0
-extern u32 beh_small_whomp[];                        // 0x13002BB4
-extern u32 beh_water_splash[];                       // 0x13002BFC
-extern u32 beh_water_drops[];                        // 0x13002C48
-extern u32 beh_water_surface_white_wave[];           // 0x13002C64
-extern u32 beh_object_bubble_ripples[];              // 0x13002C8C
-extern u32 beh_surface_waves[];                      // 0x13002CBC
-extern u32 beh_water_surface_white_wave_2[];         // 0x13002D04
-extern u32 beh_waves_generator[];                    // 0x13002D2C
-extern u32 beh_surface_wave_shrinking[];             // 0x13002D58
-extern u32 beh_water_type[];                         // 0x13002D8C
-extern u32 beh_wave_trail_on_surface[];              // 0x13002D9C
-extern u32 beh_tiny_white_wind_particle[];           // 0x13002DE0
-extern u32 beh_wind_particle[];                      // 0x13002DFC
-extern u32 beh_snowman_wind_blowing[];               // 0x13002E18
-extern u32 beh_walking_penguin[];                    // 0x13002E34
-extern u32 beh_yellow_ball[];                        // 0x13002E84
-extern u32 beh_mario[];                              // 0x13002EA0
-extern u32 beh_toad_message[];                       // 0x13002ED8
-extern u32 beh_unlock_door_star[];                   // 0x13002F20
-extern u32 beh_warps_60[];                           // 0x13002F40
-extern u32 beh_warps_64[];                           // 0x13002F44
-extern u32 beh_warps_68[];                           // 0x13002F48
-extern u32 beh_warps_6C[];                           // 0x13002F4C
-extern u32 beh_warps_70[];                           // 0x13002F50
-extern u32 beh_warps_74[];                           // 0x13002F54
-extern u32 beh_warps_78[];                           // 0x13002F58
-extern u32 beh_warps_7C[];                           // 0x13002F5C
-extern u32 beh_warps_80[];                           // 0x13002F60
-extern u32 beh_warps_84[];                           // 0x13002F64
-extern u32 beh_warps_88[];                           // 0x13002F68
-extern u32 beh_warps_8C[];                           // 0x13002F6C
-extern u32 beh_warps_90[];                           // 0x13002F70
-extern u32 beh_warps_94[];                           // 0x13002F74
-extern u32 beh_random_animated_texture[];            // 0x13002F80
-extern u32 beh_yellow_background_in_menu[];          // 0x13002FA0
-extern u32 beh_menu_button[];                        // 0x13002FC4
-extern u32 beh_menu_button_manager[];                // 0x13002FE8
-extern u32 beh_star_in_act_selector[];               // 0x1300300C
-extern u32 beh_act_selector[];                       // 0x13003028
-extern u32 beh_moving_yellow_coin[];                 // 0x13003048
-extern u32 beh_moving_blue_coin[];                   // 0x13003084
-extern u32 beh_blue_coin_sliding[];                  // 0x130030B4
-extern u32 beh_blue_coin_jumping[];                  // 0x130030E4
-extern u32 beh_seaweed[];                            // 0x13003114
-extern u32 beh_seaweed_bundle[];                     // 0x13003138
-extern u32 beh_bobomb[];                             // 0x13003154
-extern u32 beh_bobomb_fuse_smoke[];                  // 0x1300318C
-extern u32 beh_bobomb_buddy_advice_role[];           // 0x130031BC
-extern u32 beh_bobomb_buddy_cannon_role[];           // 0x13003208
-extern u32 beh_cannon_trap_door[];                   // 0x13003254
-extern u32 beh_whirlpool[];                          // 0x13003288
-extern u32 beh_jet_stream[];                         // 0x130032A8
-extern u32 beh_message_panel[];                      // 0x130032C0
-extern u32 beh_sign_on_wall[];                       // 0x13003304
-extern u32 beh_amp_homing[];                         // 0x13003334
-extern u32 beh_amp[];                                // 0x13003368
-extern u32 beh_butterfly[];                          // 0x1300339C
-extern u32 beh_hoot[];                               // 0x130033CC
-extern u32 beh_beta_green_shell[];                   // 0x13003400
-extern u32 beh_carry_something1[];                   // 0x13003434
-extern u32 beh_carry_something2[];                   // 0x1300343C
-extern u32 beh_carry_something3[];                   // 0x13003444
-extern u32 beh_carry_something4[];                   // 0x1300344C
-extern u32 beh_carry_something5[];                   // 0x13003454
-extern u32 beh_carry_something6[];                   // 0x1300345C
-extern u32 beh_object_bubble[];                      // 0x13003464
-extern u32 beh_object_water_wave[];                  // 0x130034A4
-extern u32 beh_explosion[];                          // 0x130034F0
-extern u32 beh_bobomb_bully_death_smoke[];           // 0x13003538
-extern u32 beh_smoke[];                              // 0x13003568
-extern u32 beh_bobomb_explosion_bubble[];            // 0x13003590
-extern u32 beh_bobomb_explosion_bubble_3600[];       // 0x130035E0
-extern u32 beh_bobomb_cork_box_respawner[];          // 0x130035F4
-extern u32 beh_small_bully[];                        // 0x1300360C
-extern u32 beh_big_bully[];                          // 0x13003640
-extern u32 beh_big_bully_with_minions[];             // 0x13003674
-extern u32 beh_small_chill_bully[];                  // 0x130036A8
-extern u32 beh_big_chill_bully[];                    // 0x130036E0
-extern u32 beh_jet_stream_ring_spawner[];            // 0x13003718
-extern u32 beh_jet_stream_water_ring[];              // 0x13003730
-extern u32 beh_manta_ray_water_ring[];               // 0x13003778
-extern u32 beh_manta_ray_ring_manager[];             // 0x130037C0
-extern u32 beh_bowser_mine[];                        // 0x130037CC
-extern u32 beh_bowser_mine_explosion[];              // 0x130037FC
-extern u32 beh_bowser_mine_smoke[];                  // 0x13003820
-extern u32 beh_celebration_star[];                   // 0x13003848
-extern u32 beh_celebration_star_sparkle[];           // 0x13003868
-extern u32 beh_star_key_collection_puff_spawner[];   // 0x13003890
-extern u32 beh_lll_drawbridge_spawner[];             // 0x130038B0
-extern u32 beh_lll_drawbridge[];                     // 0x130038C8
-extern u32 beh_small_bomp[];                         // 0x130038F0
-extern u32 beh_large_bomp[];                         // 0x13003920
-extern u32 beh_wf_sliding_brick_platform[];          // 0x13003950
-extern u32 beh_moneybag[];                           // 0x13003980
-extern u32 beh_fake_moneybag_coin[];                 // 0x130039B4
-extern u32 beh_bob_pit_bowling_ball[];               // 0x130039E8
-extern u32 beh_free_bowling_ball[];                  // 0x13003A10
-extern u32 beh_bowling_ball[];                       // 0x13003A38
-extern u32 beh_ttm_bowling_ball_spawner[];           // 0x13003A60
-extern u32 beh_bob_bowling_ball_spawner[];           // 0x13003A84
-extern u32 beh_thi_bowling_ball_spawner[];           // 0x13003AA8
-extern u32 beh_rr_cruiser_wing[];                    // 0x13003AC0
-extern u32 beh_spindel[];                            // 0x13003AE0
-extern u32 beh_moving_up_and_down[];                 // 0x13003B10
-extern u32 beh_pyramid_elevator[];                   // 0x13003B40
-extern u32 beh_pyramid_elevator_metal_balls[];       // 0x13003B78
-extern u32 beh_pyramid_top[];                        // 0x13003B94
-extern u32 beh_pyramid_top_explosion[];              // 0x13003BCC
-extern u32 beh_collision_box_subbehavior[];          // 0x13003BEC
-extern u32 beh_waterfall_sound_loop[];               // 0x13003C10
-extern u32 beh_volcano_sound_loop[];                 // 0x13003C24
-extern u32 beh_castle_flag_waving[];                 // 0x13003C38
-extern u32 beh_birds_sound_loop[];                   // 0x13003C5C
-extern u32 beh_ambiant_sounds[];                     // 0x13003C70
-extern u32 beh_sand_sound_loop[];                    // 0x13003C84
-extern u32 beh_hidden_at_120_stars[];                // 0x13003C98
-extern u32 beh_snowmans_bottom[];                    // 0x13003CC4
-extern u32 beh_snowmans_head[];                      // 0x13003CEC
-extern u32 beh_snowmans_body_checkpoint[];           // 0x13003D14
-extern u32 beh_big_snowman_whole[];                  // 0x13003D2C
-extern u32 beh_big_boulder[];                        // 0x13003D54
-extern u32 beh_big_boulder_generator[];              // 0x13003D80
-extern u32 beh_wing_cap[];                           // 0x13003D98
-extern u32 beh_metal_cap[];                          // 0x13003DB8
-extern u32 beh_normal_cap[];                         // 0x13003DD8
-extern u32 beh_vanish_cap[];                         // 0x13003DFC
-extern u32 beh_collect_star[];                       // 0x13003E1C
-extern u32 beh_star_spawn_coordinates[];             // 0x13003E44
-extern u32 beh_hidden_red_coin_star[];               // 0x13003E6C
-extern u32 beh_red_coin[];                           // 0x13003E8C
-extern u32 beh_bowser_course_red_coin_star[];        // 0x13003EC4
-extern u32 beh_hidden_star[];                        // 0x13003EDC
-extern u32 beh_checkpoint[];                         // 0x13003EFC
-extern u32 beh_pitoune_2[];                          // 0x13003F20
-extern u32 beh_falling_when_mario_is_near[];         // 0x13003F58
-extern u32 beh_pitoune[];                            // 0x13003F84
-extern u32 beh_1up_walking[];                        // 0x13003FBC
-extern u32 beh_1up_running_away[];                   // 0x13003FF0
-extern u32 beh_1up_sliding[];                        // 0x13004024
-extern u32 beh_1up[];                                // 0x1300405C
-extern u32 beh_1up_jump_on_approach[];               // 0x13004094
-extern u32 beh_1up_hidden[];                         // 0x130040CC
-extern u32 beh_1up_hidden_trigger[];                 // 0x13004104
-extern u32 beh_1up_hidden_tree_pole[];               // 0x13004128
-extern u32 beh_1up_hidden_tree_pole_trigger[];       // 0x13004160
-extern u32 beh_1up_hidden_in_tree[];                 // 0x13004184
-extern u32 beh_controllable_platform[];              // 0x1300419C
-extern u32 beh_controllable_platform_sub[];          // 0x130041D0
-extern u32 beh_breakable_box2[];                     // 0x130041F8
-extern u32 beh_sliding_snow_mound[];                 // 0x13004224
-extern u32 beh_snow_mound_spawn[];                   // 0x13004250
-extern u32 beh_square_floating_platform[];           // 0x13004264
-extern u32 beh_rect_floating_platform[];             // 0x13004294
-extern u32 beh_jrb_floating_platform[];              // 0x130042C4
-extern u32 beh_arrow_lift[];                         // 0x130042F4
-extern u32 beh_orange_number[];                      // 0x13004328
-extern u32 beh_manta_ray[];                          // 0x13004350
-extern u32 beh_falling_pillar[];                     // 0x13004380
-extern u32 beh_some_subojbject_of_falling_pillar[];  // 0x130043A4
-extern u32 beh_pillar_base[];                        // 0x130043C0
-extern u32 beh_jrb_floating_box[];                   // 0x130043E0
-extern u32 beh_oscillating_pendulum[];               // 0x1300440C
-extern u32 beh_treasure_chests_ship[];               // 0x1300442C
-extern u32 beh_treasure_chests_jrb[];                // 0x13004450
-extern u32 beh_treasure_chests[];                    // 0x13004474
-extern u32 beh_treasure_chest_bottom[];              // 0x13004498
-extern u32 beh_treasure_chest_top[];                 // 0x130044C0
-extern u32 beh_mips[];                               // 0x130044DC
-extern u32 beh_yoshi[];                              // 0x13004518
-extern u32 bKoopa[];                                 // 0x13004560
-extern u32 bKoopaRaceEndpoint[];                     // 0x130045B0
-extern u32 bKoopaFlag[];                             // 0x130045D8
-extern u32 bPokey[];                                 // 0x13004614
-extern u32 bPokeyBodyPart[];                         // 0x13004648
-extern u32 bSwoop[];                                 // 0x13004678
-extern u32 bFlyGuy[];                                // 0x130046BC
-extern u32 bGoomba[];                                // 0x1300470C
-extern u32 bGoombaTripletSpawner[];                  // 0x13004750
-extern u32 bChainChomp[];                            // 0x1300476C
-extern u32 bChainChompChainPart[];                   // 0x130047C4
-extern u32 bWoodenPost[];                            // 0x130047FC
-extern u32 bChainChompGate[];                        // 0x13004848
-extern u32 bWiggler[];                               // 0x13004878
-extern u32 bWigglerBodyPart[];                       // 0x130048C0
-extern u32 bEvilLakitu[];                            // 0x130048F8
-extern u32 beh_lakitu[];                             // 0x13004934
-extern u32 beh_fwoosh_blowing_wind[];                // 0x13004968
-extern u32 beh_fwoosh_face[];                        // 0x1300498C
-extern u32 bSpiny[];                                 // 0x130049A8
-extern u32 beh_monty_mole[];                         // 0x130049E0
-extern u32 beh_monty_mole_in_hole[];                 // 0x13004A38
-extern u32 beh_monty_mole_rock[];                    // 0x13004A58
-extern u32 bPlatformOnTrack[];                       // 0x13004A90
-extern u32 beh_metal_balls_for_elevators[];          // 0x13004AD4
-extern u32 bSeesawPlatform[];                        // 0x13004AFC
-extern u32 beh_four_rotating_platforms[];            // 0x13004B24
-extern u32 beh_ferris_wheel_platform[];              // 0x13004B4C
-extern u32 bWaterBombSpawner[];                      // 0x13004B6C
-extern u32 bWaterBomb[];                             // 0x13004B88
-extern u32 bWaterBombShadow[];                       // 0x13004BB4
-extern u32 bTTCRotatingSolid[];                      // 0x13004BD0
-extern u32 bTTCPendulum[];                           // 0x13004C04
-extern u32 bTTCTreadmill[];                          // 0x13004C3C
-extern u32 bTTCMovingBar[];                          // 0x13004C74
-extern u32 bTTCCog[];                                // 0x13004CAC
-extern u32 bTTCPitBlock[];                           // 0x13004CD8
-extern u32 bTTCElevator[];                           // 0x13004D08
-extern u32 bTTC2DRotator[];                          // 0x13004D44
-extern u32 bTTCSpinner[];                            // 0x13004D70
-extern u32 bMrBlizzard[];                            // 0x13004D9C
-extern u32 bMrBlizzardSnowball[];                    // 0x13004DE8
-extern u32 beh_sliding_platform2[];                  // 0x13004E2C
-extern u32 beh_octagonal_platform_rotating[];        // 0x13004E58
-extern u32 beh_floor_switch_press_animation[];       // 0x13004E80
-extern u32 bActivatedBackAndForthPlatform[];         // 0x13004EAC
-extern u32 bSpinningHeart[];                         // 0x13004ED8
-extern u32 beh_cannon[];                             // 0x13004EF0
-extern u32 beh_cannon_barrel_bubbles[];              // 0x13004F08
-extern u32 beh_unagi[];                              // 0x13004F20
-extern u32 beh_unagi_subobject[];                    // 0x13004F58
-extern u32 bDorrie[];                                // 0x13004F70
-extern u32 beh_haunted_chair[];                      // 0x13004FB4
-extern u32 bMadPiano[];                              // 0x13005004
-extern u32 beh_flying_bookend[];                     // 0x1300504C
-extern u32 beh_bookend_spawn[];                      // 0x13005094
-extern u32 beh_bookshelf_thing[];                    // 0x130050B4
-extern u32 beh_book_switch[];                        // 0x130050D4
-extern u32 bFirePiranhaPlant[];                      // 0x13005100
-extern u32 beh_small_piranha_flame[];                // 0x13005138
-extern u32 bFireSpitter[];                           // 0x1300516C
-extern u32 beh_flyguy_flame[];                       // 0x1300518C
-extern u32 beh_snufit[];                             // 0x130051C0
-extern u32 beh_snufit_balls[];                       // 0x130051FC
-extern u32 bHorizontalGrindel[];                     // 0x1300523C
-extern u32 beh_eyerok_boss[];                        // 0x13005294
-extern u32 beh_eyerok_hand[];                        // 0x130052B0
-extern u32 bKlepto[];                                // 0x130052F0
-extern u32 bBird[];                                  // 0x13005334
-extern u32 bRacingPenguin[];                         // 0x13005360
-extern u32 bPenguinRaceFinishLine[];                 // 0x130053A4
-extern u32 bPenguinRaceShortcutCheck[];              // 0x130053BC
-extern u32 beh_haunted_room_check[];                 // 0x130053D4
-extern u32 beh_haunted_room_check_subobject[];       // 0x130053F4
-extern u32 beh_clam_shell[];                         // 0x13005420
-extern u32 bSkeeter[];                               // 0x13005448
-extern u32 bSkeeterWave[];                           // 0x13005480
-extern u32 bSwingPlatform[];                         // 0x13005498
-extern u32 bDonutPlatformSpawner[];                  // 0x130054CC
-extern u32 bDonutPlatform[];                         // 0x130054E4
-extern u32 bDDDPole[];                               // 0x13005508
-extern u32 bRedCoinStarMarker[];                     // 0x1300554C
-extern u32 bTripletButterfly[];                      // 0x13005578
-extern u32 beh_bubba[];                              // 0x130055BC
-extern u32 beh_beginning_lakitu[];                   // 0x130055F0
-extern u32 beh_beginning_peach[];                    // 0x13005618
-extern u32 beh_end_birds_1[];                        // 0x1300563C
-extern u32 beh_end_birds_2[];                        // 0x13005660
-extern u32 beh_intro_scene[];                        // 0x13005684
+extern u32 beh_star_door[];
+extern u32 beh_mr_i[];
+extern u32 beh_mr_i_body[];
+extern u32 beh_mr_i_particle[];
+extern u32 beh_giant_piranha_particle[];
+extern u32 beh_giant_pole[];
+extern u32 beh_pole_grabbing[];
+extern u32 beh_thi_top_trap[];
+extern u32 beh_thi_tiny_top[];
+extern u32 beh_cap_switch_collision_child[];
+extern u32 beh_activate_cap_switch[];
+extern u32 beh_king_bobomb[];
+extern u32 beh_bobomb_anchor_mario[];
+extern u32 beh_beta_chest[];
+extern u32 beh_beta_chest_upper[];
+extern u32 beh_bubble_mario[];
+extern u32 beh_bubble_maybe[];
+extern u32 beh_small_water_wave[];
+extern u32 beh_small_water_wave_398[];
+extern u32 beh_water_air_bubble[];
+extern u32 beh_small_particle[];
+extern u32 beh_water_waves[];
+extern u32 beh_small_particle_snow[];
+extern u32 beh_small_particle_bubbles[];
+extern u32 beh_fish_group[];
+extern u32 beh_cannon_base[];
+extern u32 beh_cannon_barrel[];
+extern u32 beh_cannon_base_unused[];
+extern u32 beh_chuckya[];
+extern u32 beh_chuckya_anchor_mario[];
+extern u32 beh_unused_05A8[];
+extern u32 beh_rotating_platform[];
+extern u32 beh_tower[];
+extern u32 beh_bullet_bill_cannon[];
+extern u32 beh_breakable_wall[];
+extern u32 beh_breakable_wall_2[];
+extern u32 beh_kickable_board[];
+extern u32 beh_tower_door[];
+extern u32 beh_rotating_counter_clockwise[];
+extern u32 beh_clocklike_rotation[];
+extern u32 beh_koopa_shell_underwater[];
+extern u32 beh_exit_podium_warp[];
+extern u32 beh_fading_warp[];
+extern u32 beh_warp[];
+extern u32 beh_warp_pipe[];
+extern u32 beh_white_puff_explosion[];
+extern u32 beh_spawned_star[];
+extern u32 beh_unused_080C[];
+extern u32 beh_mr_i_blue_coin[];
+extern u32 beh_coin_inside_boo[];
+extern u32 beh_coin_formation_spawn[];
+extern u32 beh_coin_formation[];
+extern u32 beh_one_coin[];
+extern u32 beh_collectable_coin[];
+extern u32 beh_temporary_coin[];
+extern u32 beh_three_coins_spawn[];
+extern u32 beh_ten_coins_spawn[];
+extern u32 beh_single_coin_gets_spawned[];
+extern u32 beh_coin_sparkles[];
+extern u32 beh_golden_coin_sparkles[];
+extern u32 beh_wall_tiny_star_particle[];
+extern u32 beh_wall_tiny_star_particle_spawn[];
+extern u32 beh_pound_tiny_star_particle[];
+extern u32 beh_pound_tiny_star_particle_spawn[];
+extern u32 beh_punch_tiny_triangle[];
+extern u32 beh_punch_tiny_triangle_spawn[];
+extern u32 beh_door_warp[];
+extern u32 beh_door[];
+extern u32 beh_grindel[];
+extern u32 beh_thwomp_2[];
+extern u32 beh_thwomp[];
+extern u32 beh_tumbling_bridge_platform[];
+extern u32 beh_wf_tumbling_bridge[];
+extern u32 beh_bbh_tumbling_platform_group[];
+extern u32 beh_tumbling_platform[];
+extern u32 beh_burning[];
+extern u32 beh_another_elavator[];
+extern u32 beh_rr_elevator_platform[];
+extern u32 beh_hmc_elevator_platform[];
+extern u32 beh_water_mist[];
+extern u32 beh_water_mist_spawn[];
+extern u32 beh_break_box_triangle[];
+extern u32 beh_water_mist2[];
+extern u32 beh_unused_0DFC[];
+extern u32 beh_pound_white_puffs[];
+extern u32 beh_ground_sand[];
+extern u32 beh_unused_0E40[];
+extern u32 beh_ground_snow[];
+extern u32 beh_wind[];
+extern u32 beh_end_toad[];
+extern u32 beh_end_peach[];
+extern u32 beh_piranha_particles_spawn[];
+extern u32 beh_ukiki[];
+extern u32 beh_unused_0F14[];
+extern u32 beh_little_cage2[];
+extern u32 beh_little_cage[];
+extern u32 beh_bifs_sinking_platforms[];
+extern u32 beh_bifs_sinking_cage_platform[];
+extern u32 beh_ddd_moving_pole[];
+extern u32 beh_tilting_inverted_pyramid[];
+extern u32 beh_squishable_platform[];
+extern u32 beh_cut_out_object[];
+extern u32 beh_beta_moving_flames_spawn[];
+extern u32 beh_beta_moving_flames[];
+extern u32 beh_rr_rotating_platform_with_fire[];
+extern u32 beh_flamethrower[];
+extern u32 beh_flamethrower_flame[];
+extern u32 beh_bouncing_fireball[];
+extern u32 beh_bouncing_fireball_flame[];
+extern u32 beh_bowser_shock_wave[];
+extern u32 beh_flame_mario[];
+extern u32 beh_black_smoke_mario[];
+extern u32 beh_black_smoke_bowser[];
+extern u32 beh_black_smoke_upward[];
+extern u32 beh_multiple_coins[];
+extern u32 beh_spindrift[];
+extern u32 beh_tower_platform_group[];
+extern u32 beh_wf_sliding_platform[];
+extern u32 beh_wf_elevator_platform[];
+extern u32 beh_wf_solid_platform[];
+extern u32 beh_snow_leaf_particle_spawn[];
+extern u32 beh_tree_snow[];
+extern u32 beh_tree_leaf[];
+extern u32 beh_another_tilting_platform[];
+extern u32 beh_squarish_path_moving[];
+extern u32 beh_piranha_plant_bubble[];
+extern u32 beh_piranha_plant_waking_bubbles[];
+extern u32 beh_purple_switch_staircase[];
+extern u32 beh_floor_switch_grills[];
+extern u32 beh_floor_switch_hardcoded_model[];
+extern u32 beh_floor_switch_hidden_objects[];
+extern u32 beh_hidden_object[];
+extern u32 beh_breakable_box[];
+extern u32 beh_pushable[];
+extern u32 beh_heave_ho[];
+extern u32 beh_heave_ho_throw_mario[];
+extern u32 beh_ccm_touched_star_spawn[];
+extern u32 beh_pound_explodes[];
+extern u32 beh_beta_trampoline[];
+extern u32 beh_beta_trampoline_spawn[];
+extern u32 beh_jumping_box[];
+extern u32 beh_boo_cage[];
+extern u32 beh_stub[];
+extern u32 beh_igloo[];
+extern u32 beh_bowser_key_2[];
+extern u32 beh_grand_star[];
+extern u32 beh_beta_boo_key_inside[];
+extern u32 beh_beta_boo_key_outside[];
+extern u32 beh_bullet_bill[];
+extern u32 beh_white_puff_smoke[];
+extern u32 beh_unused_1820[];
+extern u32 beh_bowser_tail_anchor[];
+extern u32 beh_bowser[];
+extern u32 beh_bowser_body_anchor[];
+extern u32 beh_bowser_flame_spawn[];
+extern u32 beh_tilting_bowser_lava_platform[];
+extern u32 beh_falling_bowser_platform[];
+extern u32 beh_blue_bowser_flame[];
+extern u32 beh_flame_floating_landing[];
+extern u32 beh_blue_flames_group[];
+extern u32 beh_flame_bouncing[];
+extern u32 beh_flame_moving_forward_growing[];
+extern u32 beh_flame_bowser[];
+extern u32 beh_flame_large_burning_out[];
+extern u32 beh_blue_fish[];
+extern u32 beh_tank_fish_groups[];
+extern u32 beh_checkerboard_elevator_group[];
+extern u32 beh_checkerboard_platform_sub[];
+extern u32 beh_door_key1[];
+extern u32 beh_door_key2[];
+extern u32 beh_invisible_objects_under_bridge[];
+extern u32 beh_water_level_pillar[];
+extern u32 beh_ddd_warp[];
+extern u32 beh_moat_grills[];
+extern u32 beh_clock_big_arm[];
+extern u32 beh_rotating_small_clock_arm[];
+extern u32 beh_ukiki_open_cage[];
+extern u32 beh_stub_1D0C[];
+extern u32 beh_lll_rotating_ccw[];
+extern u32 beh_sinks_when_stepped_on[];
+extern u32 beh_stub_1D70[];
+extern u32 beh_horizontal_movement[];
+extern u32 beh_snow_ball[];
+extern u32 beh_rotating_cw_with_fire_bars[];
+extern u32 beh_lll_rotating_hex_flame[];
+extern u32 beh_lll_wood_piece[];
+extern u32 beh_floating_wood_bridge[];
+extern u32 beh_volcano_flames[];
+extern u32 beh_lll_rotating_platform[];
+extern u32 beh_lll_slow_tilting_movement[];
+extern u32 beh_lll_slow_up_down_movement[];
+extern u32 beh_tilting_inverted_pyramid2[];
+extern u32 beh_unused_1F30[];
+extern u32 beh_koopa_shell[];
+extern u32 beh_koopa_shell_flame[];
+extern u32 beh_tox_box[];
+extern u32 beh_piranha_plant_2[];
+extern u32 beh_lll_hexagonal_mesh[];
+extern u32 beh_bowser_puzzle_piece[];
+extern u32 beh_bowser_puzzle[];
+extern u32 beh_tuxies_mother[];
+extern u32 beh_penguin_baby[];
+extern u32 beh_unused_20E0[];
+extern u32 beh_small_penguin[];
+extern u32 beh_fish_2[];
+extern u32 beh_fish_3[];
+extern u32 beh_large_fish_group[];
+extern u32 beh_fish_common[];
+extern u32 beh_fish_group2[];
+extern u32 beh_wdw_express_elevator[];
+extern u32 beh_wdw_express_elevator_platform[];
+extern u32 beh_chirp_chirp[];
+extern u32 beh_cheep_cheep[];
+extern u32 beh_exclamation_box[];
+extern u32 beh_rotating_exclamation_mark[];
+extern u32 beh_plays_sound[];
+extern u32 beh_rock_solid[];
+extern u32 beh_bowser_sub_door[];
+extern u32 beh_bowsers_sub[];
+extern u32 beh_sushi_shark[];
+extern u32 beh_sushi_shark_collision_child[];
+extern u32 beh_jrb_sliding_box[];
+extern u32 beh_ship_part_3[];
+extern u32 beh_in_sunken_ship_3[];
+extern u32 beh_sunken_ship_part[];
+extern u32 beh_unused_243C[];
+extern u32 beh_sunken_ship_part_2[];
+extern u32 beh_in_sunken_ship[];
+extern u32 beh_in_sunken_ship_2[];
+extern u32 beh_mario_dust_generator[];
+extern u32 beh_white_puff1[];
+extern u32 beh_white_puff2[];
+extern u32 beh_white_puff_smoke2[];
+extern u32 beh_purple_switch_hidden_boxes[];
+extern u32 beh_blue_coin_switch[];
+extern u32 beh_hidden_blue_coin[];
+extern u32 beh_bob_hmc_cage_door[];
+extern u32 beh_openable_grill[];
+extern u32 beh_water_level_trigger[];
+extern u32 beh_initialize_water_level_trigger[];
+extern u32 beh_tornado_sand_particle[];
+extern u32 beh_tornado[];
+extern u32 beh_spawn_big_boo[];
+extern u32 beh_animated_texture[];
+extern u32 beh_boo_in_castle[];
+extern u32 beh_boo_with_cage[];
+extern u32 beh_patrolling_boo[];
+extern u32 beh_spawned_boo[];
+extern u32 beh_boo_giving_star[];
+extern u32 beh_boo_group[];
+extern u32 beh_boo_3[];
+extern u32 beh_spawned_boo_2[];
+extern u32 beh_boo_2[];
+extern u32 beh_hidden_staircase_step[];
+extern u32 beh_boo_boss_spawned_bridge[];
+extern u32 beh_bbh_tilt_floor_platforms[];
+extern u32 beh_tumbling_bookshelf[];
+extern u32 beh_mesh_elevator[];
+extern u32 beh_rotating_merry_go_round[];
+extern u32 beh_inside_cannon[];
+extern u32 beh_bait_coin[];
+extern u32 beh_static_checkered_platform[];
+extern u32 beh_unused_2A10[];
+extern u32 beh_star[];
+extern u32 beh_static_object[];
+extern u32 beh_unused_2A54[];
+extern u32 beh_castle_floor_trap[];
+extern u32 beh_floor_trap_in_castle[];
+extern u32 beh_tree[];
+extern u32 beh_powerup_sparkles1[];
+extern u32 beh_powerup_sparkles2[];
+extern u32 beh_special_triple_jump_sparkles[];
+extern u32 beh_some_gfx[];
+extern u32 beh_scuttlebug[];
+extern u32 beh_scuttlebug_spawn[];
+extern u32 beh_whomp_king_boss[];
+extern u32 beh_small_whomp[];
+extern u32 beh_water_splash[];
+extern u32 beh_water_drops[];
+extern u32 beh_water_surface_white_wave[];
+extern u32 beh_object_bubble_ripples[];
+extern u32 beh_surface_waves[];
+extern u32 beh_water_surface_white_wave_2[];
+extern u32 beh_waves_generator[];
+extern u32 beh_surface_wave_shrinking[];
+extern u32 beh_water_type[];
+extern u32 beh_wave_trail_on_surface[];
+extern u32 beh_tiny_white_wind_particle[];
+extern u32 beh_wind_particle[];
+extern u32 beh_snowman_wind_blowing[];
+extern u32 beh_walking_penguin[];
+extern u32 beh_yellow_ball[];
+extern u32 beh_mario[];
+extern u32 beh_toad_message[];
+extern u32 beh_unlock_door_star[];
+extern u32 beh_warps_60[];
+extern u32 beh_warps_64[];
+extern u32 beh_warps_68[];
+extern u32 beh_warps_6C[];
+extern u32 beh_warps_70[];
+extern u32 beh_warps_74[];
+extern u32 beh_warps_78[];
+extern u32 beh_warps_7C[];
+extern u32 beh_warps_80[];
+extern u32 beh_warps_84[];
+extern u32 beh_warps_88[];
+extern u32 beh_warps_8C[];
+extern u32 beh_warps_90[];
+extern u32 beh_warps_94[];
+extern u32 beh_random_animated_texture[];
+extern u32 beh_yellow_background_in_menu[];
+extern u32 beh_menu_button[];
+extern u32 beh_menu_button_manager[];
+extern u32 beh_star_in_act_selector[];
+extern u32 beh_act_selector[];
+extern u32 beh_moving_yellow_coin[];
+extern u32 beh_moving_blue_coin[];
+extern u32 beh_blue_coin_sliding[];
+extern u32 beh_blue_coin_jumping[];
+extern u32 beh_seaweed[];
+extern u32 beh_seaweed_bundle[];
+extern u32 beh_bobomb[];
+extern u32 beh_bobomb_fuse_smoke[];
+extern u32 beh_bobomb_buddy_advice_role[];
+extern u32 beh_bobomb_buddy_cannon_role[];
+extern u32 beh_cannon_trap_door[];
+extern u32 beh_whirlpool[];
+extern u32 beh_jet_stream[];
+extern u32 beh_message_panel[];
+extern u32 beh_sign_on_wall[];
+extern u32 beh_amp_homing[];
+extern u32 beh_amp[];
+extern u32 beh_butterfly[];
+extern u32 beh_hoot[];
+extern u32 beh_beta_green_shell[];
+extern u32 beh_carry_something1[];
+extern u32 beh_carry_something2[];
+extern u32 beh_carry_something3[];
+extern u32 beh_carry_something4[];
+extern u32 beh_carry_something5[];
+extern u32 beh_carry_something6[];
+extern u32 beh_object_bubble[];
+extern u32 beh_object_water_wave[];
+extern u32 beh_explosion[];
+extern u32 beh_bobomb_bully_death_smoke[];
+extern u32 beh_smoke[];
+extern u32 beh_bobomb_explosion_bubble[];
+extern u32 beh_bobomb_explosion_bubble_3600[];
+extern u32 beh_bobomb_cork_box_respawner[];
+extern u32 beh_small_bully[];
+extern u32 beh_big_bully[];
+extern u32 beh_big_bully_with_minions[];
+extern u32 beh_small_chill_bully[];
+extern u32 beh_big_chill_bully[];
+extern u32 beh_jet_stream_ring_spawner[];
+extern u32 beh_jet_stream_water_ring[];
+extern u32 beh_manta_ray_water_ring[];
+extern u32 beh_manta_ray_ring_manager[];
+extern u32 beh_bowser_mine[];
+extern u32 beh_bowser_mine_explosion[];
+extern u32 beh_bowser_mine_smoke[];
+extern u32 beh_celebration_star[];
+extern u32 beh_celebration_star_sparkle[];
+extern u32 beh_star_key_collection_puff_spawner[];
+extern u32 beh_lll_drawbridge_spawner[];
+extern u32 beh_lll_drawbridge[];
+extern u32 beh_small_bomp[];
+extern u32 beh_large_bomp[];
+extern u32 beh_wf_sliding_brick_platform[];
+extern u32 beh_moneybag[];
+extern u32 beh_fake_moneybag_coin[];
+extern u32 beh_bob_pit_bowling_ball[];
+extern u32 beh_free_bowling_ball[];
+extern u32 beh_bowling_ball[];
+extern u32 beh_ttm_bowling_ball_spawner[];
+extern u32 beh_bob_bowling_ball_spawner[];
+extern u32 beh_thi_bowling_ball_spawner[];
+extern u32 beh_rr_cruiser_wing[];
+extern u32 beh_spindel[];
+extern u32 beh_moving_up_and_down[];
+extern u32 beh_pyramid_elevator[];
+extern u32 beh_pyramid_elevator_metal_balls[];
+extern u32 beh_pyramid_top[];
+extern u32 beh_pyramid_top_explosion[];
+extern u32 beh_collision_box_subbehavior[];
+extern u32 beh_waterfall_sound_loop[];
+extern u32 beh_volcano_sound_loop[];
+extern u32 beh_castle_flag_waving[];
+extern u32 beh_birds_sound_loop[];
+extern u32 beh_ambiant_sounds[];
+extern u32 beh_sand_sound_loop[];
+extern u32 beh_hidden_at_120_stars[];
+extern u32 beh_snowmans_bottom[];
+extern u32 beh_snowmans_head[];
+extern u32 beh_snowmans_body_checkpoint[];
+extern u32 beh_big_snowman_whole[];
+extern u32 beh_big_boulder[];
+extern u32 beh_big_boulder_generator[];
+extern u32 beh_wing_cap[];
+extern u32 beh_metal_cap[];
+extern u32 beh_normal_cap[];
+extern u32 beh_vanish_cap[];
+extern u32 beh_collect_star[];
+extern u32 beh_star_spawn_coordinates[];
+extern u32 beh_hidden_red_coin_star[];
+extern u32 beh_red_coin[];
+extern u32 beh_bowser_course_red_coin_star[];
+extern u32 beh_hidden_star[];
+extern u32 beh_checkpoint[];
+extern u32 beh_pitoune_2[];
+extern u32 beh_falling_when_mario_is_near[];
+extern u32 beh_pitoune[];
+extern u32 beh_1up_walking[];
+extern u32 beh_1up_running_away[];
+extern u32 beh_1up_sliding[];
+extern u32 beh_1up[];
+extern u32 beh_1up_jump_on_approach[];
+extern u32 beh_1up_hidden[];
+extern u32 beh_1up_hidden_trigger[];
+extern u32 beh_1up_hidden_tree_pole[];
+extern u32 beh_1up_hidden_tree_pole_trigger[];
+extern u32 beh_1up_hidden_in_tree[];
+extern u32 beh_controllable_platform[];
+extern u32 beh_controllable_platform_sub[];
+extern u32 beh_breakable_box2[];
+extern u32 beh_sliding_snow_mound[];
+extern u32 beh_snow_mound_spawn[];
+extern u32 beh_square_floating_platform[];
+extern u32 beh_rect_floating_platform[];
+extern u32 beh_jrb_floating_platform[];
+extern u32 beh_arrow_lift[];
+extern u32 beh_orange_number[];
+extern u32 beh_manta_ray[];
+extern u32 beh_falling_pillar[];
+extern u32 beh_some_subojbject_of_falling_pillar[];
+extern u32 beh_pillar_base[];
+extern u32 beh_jrb_floating_box[];
+extern u32 beh_oscillating_pendulum[];
+extern u32 beh_treasure_chests_ship[];
+extern u32 beh_treasure_chests_jrb[];
+extern u32 beh_treasure_chests[];
+extern u32 beh_treasure_chest_bottom[];
+extern u32 beh_treasure_chest_top[];
+extern u32 beh_mips[];
+extern u32 beh_yoshi[];
+extern u32 bKoopa[];
+extern u32 bKoopaRaceEndpoint[];
+extern u32 bKoopaFlag[];
+extern u32 bPokey[];
+extern u32 bPokeyBodyPart[];
+extern u32 bSwoop[];
+extern u32 bFlyGuy[];
+extern u32 bGoomba[];
+extern u32 bGoombaTripletSpawner[];
+extern u32 bChainChomp[];
+extern u32 bChainChompChainPart[];
+extern u32 bWoodenPost[];
+extern u32 bChainChompGate[];
+extern u32 bWiggler[];
+extern u32 bWigglerBodyPart[];
+extern u32 bEnemyLakitu[];
+extern u32 bCameraLakitu[];
+extern u32 bCloud[];
+extern u32 bCloudPart[];
+extern u32 bSpiny[];
+extern u32 bMontyMole[];
+extern u32 bMontyMoleHole[];
+extern u32 bMontyMoleRock[];
+extern u32 bPlatformOnTrack[];
+extern u32 bTrackBall[];
+extern u32 bSeesawPlatform[];
+extern u32 bFerrisWheelAxle[];
+extern u32 bFerrisWheelPlatform[];
+extern u32 bWaterBombSpawner[];
+extern u32 bWaterBomb[];
+extern u32 bWaterBombShadow[];
+extern u32 bTTCRotatingSolid[];
+extern u32 bTTCPendulum[];
+extern u32 bTTCTreadmill[];
+extern u32 bTTCMovingBar[];
+extern u32 bTTCCog[];
+extern u32 bTTCPitBlock[];
+extern u32 bTTCElevator[];
+extern u32 bTTC2DRotator[];
+extern u32 bTTCSpinner[];
+extern u32 bMrBlizzard[];
+extern u32 bMrBlizzardSnowball[];
+extern u32 beh_sliding_platform2[];
+extern u32 beh_octagonal_platform_rotating[];
+extern u32 beh_floor_switch_press_animation[];
+extern u32 bActivatedBackAndForthPlatform[];
+extern u32 bSpinningHeart[];
+extern u32 beh_cannon[];
+extern u32 beh_cannon_barrel_bubbles[];
+extern u32 beh_unagi[];
+extern u32 beh_unagi_subobject[];
+extern u32 bDorrie[];
+extern u32 beh_haunted_chair[];
+extern u32 bMadPiano[];
+extern u32 beh_flying_bookend[];
+extern u32 beh_bookend_spawn[];
+extern u32 beh_bookshelf_thing[];
+extern u32 beh_book_switch[];
+extern u32 bFirePiranhaPlant[];
+extern u32 beh_small_piranha_flame[];
+extern u32 bFireSpitter[];
+extern u32 beh_flyguy_flame[];
+extern u32 beh_snufit[];
+extern u32 beh_snufit_balls[];
+extern u32 bHorizontalGrindel[];
+extern u32 beh_eyerok_boss[];
+extern u32 beh_eyerok_hand[];
+extern u32 bKlepto[];
+extern u32 bBird[];
+extern u32 bRacingPenguin[];
+extern u32 bPenguinRaceFinishLine[];
+extern u32 bPenguinRaceShortcutCheck[];
+extern u32 beh_haunted_room_check[];
+extern u32 beh_haunted_room_check_subobject[];
+extern u32 beh_clam_shell[];
+extern u32 bSkeeter[];
+extern u32 bSkeeterWave[];
+extern u32 bSwingPlatform[];
+extern u32 bDonutPlatformSpawner[];
+extern u32 bDonutPlatform[];
+extern u32 bDDDPole[];
+extern u32 bRedCoinStarMarker[];
+extern u32 bTripletButterfly[];
+extern u32 beh_bubba[];
+extern u32 beh_beginning_lakitu[];
+extern u32 beh_beginning_peach[];
+extern u32 beh_end_birds_1[];
+extern u32 beh_end_birds_2[];
+extern u32 beh_intro_scene[];
 
 #endif /* _BEHAVIOR_DATA_H */

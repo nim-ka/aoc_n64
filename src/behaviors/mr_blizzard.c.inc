@@ -1,12 +1,12 @@
 
 static void func_80306ED4(s8 arg0, s8 arg1, s8 arg2, s8 arg3, s8 arg4)
 {
-    D_80331A00.unk1 = arg0;
-    D_80331A00.unk3 = arg1;
-    D_80331A00.unk4 = arg2;
-    D_80331A00.unk6 = arg3;
-    D_80331A00.unkC = arg4;
-    func_802A2B04(&D_80331A00);
+    D_80331A00.count = arg0;
+    D_80331A00.offsetY = arg1;
+    D_80331A00.forwardVelBase = arg2;
+    D_80331A00.velYBase = arg3;
+    D_80331A00.sizeBase = arg4;
+    obj_spawn_particles(&D_80331A00);
 }
 
 void bhv_mr_blizzard_init(void)
@@ -334,12 +334,12 @@ void bhv_mr_blizzard_update(void)
 
     obj_scale(o->oMrBlizzardUnkF4);
     obj_move_standard(78);
-    obj_check_mario_attacks(&D_803319F0, o->oAction);
+    obj_check_attacks(&D_803319F0, o->oAction);
 }
 
 static void func_80307E24(void)
 {
-    obj_move_xz_using_fvel_and_gravity();
+    obj_move_using_fvel_and_gravity();
     if (o->parentObj->prevObj == o)
     {
         o->oAction = 1;
@@ -375,7 +375,7 @@ static void func_80307EB0(void)
 static void func_80307FD4(void)
 {
     obj_update_floor_and_walls();
-    obj_check_mario_attacks(&D_80331A14, -1);
+    obj_check_attacks(&D_80331A14, -1);
 
     if (o->oAction == -1 || o->oMoveFlags & 0x0000000B)
     {

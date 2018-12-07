@@ -1,14 +1,15 @@
 
 /**
- * Behavior for bEvilLakitu.
+ * Behavior for bEnemyLakitu.
  * Lakitu comes before it spawned spinies in processing order.
+ * TODO: bCloud processing oredr
  */
 
 
 /**
  * Hitbox for evil lakitu.
  */
-static struct ObjectHitbox sEvilLakituHitbox =
+static struct ObjectHitbox sEnemyLakituHitbox =
 {
     /* interactType:      */ INTERACT_HIT_FROM_BELOW,
     /* downOffset:        */ 0,
@@ -25,27 +26,27 @@ static struct ObjectHitbox sEvilLakituHitbox =
 /**
  * Wait for mario to approach, then spawn the cloud and become visible.
  */
-static void evil_lakitu_act_uninitialized(void)
+static void enemy_lakitu_act_uninitialized(void)
 {
     if (o->oDistanceToMario < 2000.0f)
     {
         spawn_object_relative_with_scale(
-            1,
+            CLOUD_BP_LAKITU_CLOUD,
             0, 0, 0,
             2.0f,
             o,
             MODEL_MIST,
-            beh_fwoosh_blowing_wind);
+            bCloud);
 
         obj_unhide();
-        o->oAction = EVIL_LAKITU_ACT_MAIN;
+        o->oAction = ENEMY_LAKITU_ACT_MAIN;
     }
 }
 
 /**
  * Accelerate toward mario vertically.
  */
-static void evil_lakitu_update_vel_y(f32 offsetY)
+static void enemy_lakitu_update_vel_y(f32 offsetY)
 {
     // In order to encourage oscillation, pass mario by a small margin before
     // accelerating the opposite direction
@@ -73,7 +74,7 @@ static void evil_lakitu_update_vel_y(f32 offsetY)
  * Control speed based on distance to mario, turn toward mario, and change move
  * angle toward mario.
  */
-static void evil_lakitu_update_speed_and_angle(void)
+static void enemy_lakitu_update_speed_and_angle(void)
 {
     f32 minSpeed;
     s16 turnSpeed;
@@ -93,12 +94,12 @@ static void evil_lakitu_update_speed_and_angle(void)
     clamp_f32(&o->oForwardVel, minSpeed, 40.0f);
 
     // Accelerate toward mario vertically
-    evil_lakitu_update_vel_y(300.0f);
+    enemy_lakitu_update_vel_y(300.0f);
 
     // Turn toward mario except right after throwing a spiny
-    if (o->oEvilLakituFaceForwardCountdown != 0)
+    if (o->oEnemyLakituFaceForwardCountdown != 0)
     {
-        o->oEvilLakituFaceForwardCountdown -= 1;
+        o->oEnemyLakituFaceForwardCountdown -= 1;
     }
     else
     {
@@ -115,15 +116,15 @@ static void evil_lakitu_update_speed_and_angle(void)
  * When close enough to mario and facing roughly toward him, spawn a spiny and
  * hold it, then enter the hold spiny sub-action.
  */
-static void evil_lakitu_sub_act_no_spiny(void)
+static void enemy_lakitu_sub_act_no_spiny(void)
 {
     func_8029ED38(1);
 
-    if (o->oEvilLakituSpinyCooldown != 0)
+    if (o->oEnemyLakituSpinyCooldown != 0)
     {
-        o->oEvilLakituSpinyCooldown -= 1;
+        o->oEnemyLakituSpinyCooldown -= 1;
     }
-    else if (o->oEvilLakituNumSpinies < 3 &&
+    else if (o->oEnemyLakituNumSpinies < 3 &&
         o->oDistanceToMario < 800.0f &&
         abs_angle_diff(o->oAngleToMario, o->oFaceAngleYaw) < 0x4000)
     {
@@ -135,9 +136,9 @@ static void evil_lakitu_sub_act_no_spiny(void)
 
             func_8029EE20(spiny, spiny_egg_seg5_anims_050157E4, 0);
 
-            o->oEvilLakituNumSpinies += 1;
-            o->oSubAction = EVIL_LAKITU_SUB_ACT_HOLD_SPINY;
-            o->oEvilLakituSpinyCooldown = 30;
+            o->oEnemyLakituNumSpinies += 1;
+            o->oSubAction = ENEMY_LAKITU_SUB_ACT_HOLD_SPINY;
+            o->oEnemyLakituSpinyCooldown = 30;
         }
     }
 }
@@ -146,28 +147,28 @@ static void evil_lakitu_sub_act_no_spiny(void)
  * When close to mario and facing toward him or when mario gets far enough away,
  * enter the throw spiny sub-action.
  */
-static void evil_lakitu_sub_act_hold_spiny(void)
+static void enemy_lakitu_sub_act_hold_spiny(void)
 {
     func_802F927C(3);
 
-    if (o->oEvilLakituSpinyCooldown != 0)
+    if (o->oEnemyLakituSpinyCooldown != 0)
     {
-        o->oEvilLakituSpinyCooldown -= 1;
+        o->oEnemyLakituSpinyCooldown -= 1;
     }
     // TODO: Check if anything interesting happens if we bypass this with speed
     else if (o->oDistanceToMario > o->oDrawingDistance - 100.0f ||
         (o->oDistanceToMario < 500.0f &&
             abs_angle_diff(o->oAngleToMario, o->oFaceAngleYaw) < 0x2000))
     {
-        o->oSubAction = EVIL_LAKITU_SUB_ACT_THROW_SPINY;
-        o->oEvilLakituFaceForwardCountdown = 20;
+        o->oSubAction = ENEMY_LAKITU_SUB_ACT_THROW_SPINY;
+        o->oEnemyLakituFaceForwardCountdown = 20;
     }
 }
 
 /**
  * Throw the spiny, then enter the no spiny sub-action.
  */
-static void evil_lakitu_sub_act_throw_spiny(void)
+static void enemy_lakitu_sub_act_throw_spiny(void)
 {
     if (func_802F92EC(2, 2))
     {
@@ -177,39 +178,39 @@ static void evil_lakitu_sub_act_throw_spiny(void)
 
     if (func_8029F788())
     {
-        o->oSubAction = EVIL_LAKITU_SUB_ACT_NO_SPINY;
-        o->oEvilLakituSpinyCooldown = random_linear_offset(100, 100);
+        o->oSubAction = ENEMY_LAKITU_SUB_ACT_NO_SPINY;
+        o->oEnemyLakituSpinyCooldown = random_linear_offset(100, 100);
     }
 }
 
 /**
  * Main update function.
  */
-static void evil_lakitu_act_main(void)
+static void enemy_lakitu_act_main(void)
 {
     PlaySound(SOUND_CH6_UNKNOWN002);
 
     obj_update_floor_and_walls();
 
-    evil_lakitu_update_speed_and_angle();
+    enemy_lakitu_update_speed_and_angle();
     if (o->oMoveFlags & OBJ_MOVE_HIT_WALL)
     {
         o->oMoveAngleYaw = obj_reflect_move_angle_off_wall();
     }
 
-    obj_update_blinking(&o->oEvilLakituBlinkTimer, 20, 40, 4);
+    obj_update_blinking(&o->oEnemyLakituBlinkTimer, 20, 40, 4);
 
     switch (o->oSubAction)
     {
-    case EVIL_LAKITU_SUB_ACT_NO_SPINY:    evil_lakitu_sub_act_no_spiny();    break;
-    case EVIL_LAKITU_SUB_ACT_HOLD_SPINY:  evil_lakitu_sub_act_hold_spiny();  break;
-    case EVIL_LAKITU_SUB_ACT_THROW_SPINY: evil_lakitu_sub_act_throw_spiny(); break;
+    case ENEMY_LAKITU_SUB_ACT_NO_SPINY:    enemy_lakitu_sub_act_no_spiny();    break;
+    case ENEMY_LAKITU_SUB_ACT_HOLD_SPINY:  enemy_lakitu_sub_act_hold_spiny();  break;
+    case ENEMY_LAKITU_SUB_ACT_THROW_SPINY: enemy_lakitu_sub_act_throw_spiny(); break;
     }
 
     obj_move_standard(78);
 
     // Die and drop held spiny when attacked by mario
-    if (obj_check_mario_attacks(&sEvilLakituHitbox, o->oAction))
+    if (obj_check_attacks(&sEnemyLakituHitbox, o->oAction))
     {
         // The spiny uses this as a signal to get thrown
         o->prevObj = NULL;
@@ -217,9 +218,9 @@ static void evil_lakitu_act_main(void)
 }
 
 /**
- * Update function for bEvilLakitu.
+ * Update function for bEnemyLakitu.
  */
-void bhv_evil_lakitu_update(void)
+void bhv_enemy_lakitu_update(void)
 {
     //PARTIAL_UPDATE
 
@@ -227,7 +228,7 @@ void bhv_evil_lakitu_update(void)
 
     switch (o->oAction)
     {
-    case EVIL_LAKITU_ACT_UNINITIALIZED: evil_lakitu_act_uninitialized(); break;
-    case EVIL_LAKITU_ACT_MAIN:          evil_lakitu_act_main();          break;
+    case ENEMY_LAKITU_ACT_UNINITIALIZED: enemy_lakitu_act_uninitialized(); break;
+    case ENEMY_LAKITU_ACT_MAIN:          enemy_lakitu_act_main();          break;
     }
 }

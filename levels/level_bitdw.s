@@ -18,7 +18,7 @@ script_func_local_1:
     object /*unk2*/ 0x1F, /*unk3*/ 0x37, /*pos*/ 1491, 1273, 512, /*angle*/ 0, 90, 0, /*behArg*/ 0x00000000, /*beh*/ bSeesawPlatform
     object /*unk2*/ 0x1F, /*unk3*/ 0x37, /*pos*/ -147, 894, 512, /*angle*/ 0, 90, 0, /*behArg*/ 0x00000000, /*beh*/ bSeesawPlatform
     object /*unk2*/ 0x1F, /*unk3*/ 0x38, /*pos*/ -5728, 819, -2151, /*angle*/ 0, 0, 0, /*behArg*/ 0x03CE0000, /*beh*/ beh_sliding_platform2
-    object /*unk2*/ 0x1F, /*unk3*/ 0x39, /*pos*/ -204, -1924, 3381, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ beh_four_rotating_platforms
+    object /*unk2*/ 0x1F, /*unk3*/ 0x39, /*pos*/ -204, -1924, 3381, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ bFerrisWheelAxle
     object /*unk2*/ 0x1F, /*unk3*/ 0x3F, /*pos*/ 5279, 1740, -6, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ beh_floor_switch_press_animation
     object /*unk2*/ 0x1F, /*unk3*/ 0xCF, /*pos*/ 3922, 1740, -7, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_purple_switch_staircase
     return
