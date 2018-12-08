@@ -14,3 +14,22 @@
     .hword \x, \y, \z, 0, \u, \v
     .byte \r, \g, \b, \a
 .endm
+
+# Actor include
+.macro actor name
+.include "actors/\name\()/actor.s"
+.endm
+
+# Actor geo include
+.macro actorgeo name
+.include "actors/\name\()/geo.s"
+.endm
+
+.macro initbinid
+.set BINID, 0
+.endm
+
+.macro binid
+.dword BINID
+.set BINID, BINID + 1
+.endm

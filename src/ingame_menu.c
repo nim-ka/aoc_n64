@@ -1750,9 +1750,9 @@ extern Gfx castle_grounds_seg7_us_dl_0700F2E8[];
 #endif
 
 #ifdef VERSION_JP
-#define PEACH_MESSAGE_TIMER 171
+#define PEACH_MESSAGE_TIMER 170
 #else
-#define PEACH_MESSAGE_TIMER 251
+#define PEACH_MESSAGE_TIMER 250
 #endif
 
 // "Dear Mario" message handler
@@ -1792,12 +1792,12 @@ void print_peach_letter_message(void)
         gCutsceneMsgFade += 10;
 
     // we're after PEACH_MESSAGE_TIMER increments, so decrease the fade.
-    if(gCutsceneMsgTimer >= PEACH_MESSAGE_TIMER)
+    if(gCutsceneMsgTimer > PEACH_MESSAGE_TIMER)
         gCutsceneMsgFade -= 10;
 
     // 20 increments after the start of the decrease, we're
     // back where we are, so reset everything at the end.
-    if(gCutsceneMsgTimer >= (PEACH_MESSAGE_TIMER + 20))
+    if(gCutsceneMsgTimer > (PEACH_MESSAGE_TIMER + 20))
     {
         gCutsceneMsgIndex = -1;
         gCutsceneMsgFade = 0; //! this is uselessly reset since

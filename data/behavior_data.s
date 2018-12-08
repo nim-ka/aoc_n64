@@ -460,7 +460,7 @@ glabel beh_activate_cap_switch # 01CC
 glabel beh_king_bobomb # 01F4
     begin OBJ_LIST_GENACTOR
     obj_or_int objFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_ACTIVE_FROM_AFAR | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
-    obj_set_int32 objAnimations, bobomb_seg5_anims_0500FE30
+    obj_set_int32 objAnimations, king_bobomb_seg5_anims_0500FE30
     obj_set_int objInteractType, 0x02
     set_hitbox 0x0064, 0x0064
     unknown_30 0x001E, 0xFE70, 0xFFCE, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
@@ -1962,7 +1962,7 @@ glabel beh_blue_fish # 1B2C
     begin OBJ_LIST_DEFAULT
     obj_or_int objFlags, (OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
     unknown_2D
-    obj_set_int32 objAnimations, fish_seg3_anims_0301C2B0
+    obj_set_int32 objAnimations, blue_fish_seg3_anims_0301C2B0
     unknown_28 0x00
     begin_loop
         callnative BehBlueFishLoop
@@ -2382,10 +2382,10 @@ glabel beh_chirp_chirp # 21E4
         callnative BehBirdChirpChirpLoop
     end_loop
 
-glabel beh_cheep_cheep # 220C
+glabel beh_bub # 220C
     begin OBJ_LIST_GENACTOR
     obj_or_int objFlags, (OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
-    obj_set_int32 objAnimations, cheep_cheep_seg6_anims_06012354
+    obj_set_int32 objAnimations, bub_seg6_anims_06012354
     unknown_28 0x00
     unknown_2B 0x0014, 0x000A, 0x000A
     interact_type 0x00000008

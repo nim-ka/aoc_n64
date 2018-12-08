@@ -1,18 +1,41 @@
 # obtain a list of segments from the *.s and *.s.in files in bin directory
 SEGMENTS := $(notdir $(basename $(wildcard bin/*.s) $(basename $(wildcard bin/*.s.in))))
-TEXTURE_DIRS := $(addprefix bin/,$(SEGMENTS)) bin/intro_raw
+ACTORS := $(dir $(wildcard actors/*/))
+TEXTURE_DIRS := $(addprefix bin/,$(SEGMENTS)) $(ACTORS) bin/intro_raw
 
 MIO0_FILES := $(addprefix $(MIO0_DIR)/,$(addsuffix .mio0,$(BINARY_SEGMENTS) $(SEGMENTS)))
 MIO0_OBJ_FILES := $(MIO0_FILES:.mio0=.mio0.o)
 
+# Actor Directories
+KOOPA_DIRS       := koopa_flag poundable_pole koopa piranha_plant whomp chain_ball chain_chomp
+CAPSWITCH_DIRS   := capswitch springboard
+CHILLYCHIEF_DIRS := chillychief moneybag
+BULLY_DIRS       := bully blargg
+SPINDRIFT_DIRS   := spindrift penguin snowman
+KING_BOBOMB_DIRS := king_bobomb water_bubble
+BOO_DIRS         := bookend book chair small_key mad_piano boo haunted_cage
+MR_I_DIRS        := mr_i_eyeball mr_i_iris swoop snufit dorrie scuttlebug
+HOOT_DIRS        := yellow_sphere_small hoot yoshi_egg thwomp bullet_bill heave_ho
+COINS_DIRS       := mist explosion butterfly coin warp_pipe door bowser_key flame blue_fish pebble leaves warp_collision mario_cap power_meter mushroom_1up star sand dirt transparent_star snowball wooden_signpost tree
+BUBBA_DIRS       := bubba wiggler lakitu_enemy spiny_egg spiny
+SKEETER_DIRS     := skeeter seaweed water_mine cyan_fish bub water_ring treasure_chest
+KLEPTO_DIRS      := klepto eyerok pokey tornado
+SEA_DIRS         := clam_shell manta sushi unagi whirlpool
+AMP_DIRS         := blue_coin_switch amp cannon_lid cannon_base cannon_barrel chuckya purple_switch checkerboard_platform heart flyguy breakable_box exclamation_box goomba bobomb metal_box exclamation_box_outline test_platform koopa_shell
+MOLE_DIRS        := monty_mole_hole monty_mole smoke ukiki fwoosh
+LAKITU_DIRS      := lakitu_cameraman toad mips boo_castle
+PEACH_DIRS       := bird peach yoshi
+BOWSER_DIRS      := bowser_flame impact_ring yellow_sphere bowser bomb impact_smoke
+MARIO_DIRS       := mario bubble walk_smoke burn_smoke stomp_smoke water_wave sparkle water_splash snowball2 sparkle_animation
+
 # assumes naming convention "texture.<encoding>.png" generates "texture.<encoding>"
 SEGMENT2_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/segment2/*.png)))
-AMP_CHUCKYA_FILES            := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/amp_chuckya_flyguy_goomba_boxes/*.png)))
-BOBOMBS_BUBBLE_FILES         := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bobombs_bubble/*.png)))
-BOO_BOOKEND_FILES            := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/boo_bookend_chair_piano/*.png)))
+AMP_CHUCKYA_FILES            := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(AMP_DIRS)),$(basename $(wildcard $(dir)/*.png)))
+BOBOMBS_BUBBLE_FILES         := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(KING_BOBOMB_DIRS)),$(basename $(wildcard $(dir)/*.png)))
+BOO_BOOKEND_FILES            := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(BOO_DIRS)),$(basename $(wildcard $(dir)/*.png)))
 CAKE_END_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/cake_end/*.png)))
-CAPSWITCH_SPRINGBOARD_FILES  := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/capswitch_springboard/*.png)))
-COINS_PIPE_FILES             := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/coins_pipe_doors_maps_trees/*.png)))
+CAPSWITCH_SPRINGBOARD_FILES  := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(CAPSWITCH_DIRS)),$(basename $(wildcard $(dir)/*.png)))
+COINS_PIPE_FILES             := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(COINS_DIRS)),$(basename $(wildcard $(dir)/*.png)))
 TITLE_SCREEN_BG_FILES        := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/title_screen_bg/*.png)))
 INTRO_SEG7_FILES             := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/intro_seg7/*.png)))
 MAIN_MENU_SEG7_FILES         := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/main_menu_seg7/*.png)))
@@ -20,46 +43,46 @@ BITDW_SEG7_FILES             := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bi
 BOWSER_1_SEG7_FILES          := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bowser_1_seg7/*.png)))
 BOWSER_2_SEG7_FILES          := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bowser_2_seg7/*.png)))
 BOWSER_3_SEG7_FILES          := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bowser_3_seg7/*.png)))
-BOWSER_FLAMES_FILES          := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bowser_flames_bomb/*.png)))
+BOWSER_FLAMES_FILES          := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(BOWSER_DIRS)),$(basename $(wildcard $(dir)/*.png)))
 BOB_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bob_seg7/*.png)))
 BBH_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bbh_seg7/*.png)))
 BBH_TEXTURES_FILES           := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bbh_textures/*.png)))
 BITFS_SEG7_FILES             := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bitfs_seg7/*.png)))
 BITS_SEG7_FILES              := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bits_seg7/*.png)))
 BOB_TEXTURES_FILES           := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bob_textures/*.png)))
-BUBBA_WIGGLER_FILES          := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bubba_wiggler_lakitu/*.png)))
-BULLY_BLARGG_FILES           := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bully_blargg/*.png)))
+BUBBA_WIGGLER_FILES          := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(BUBBA_DIRS)),$(basename $(wildcard $(dir)/*.png)))
+BULLY_BLARGG_FILES           := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(BULLY_DIRS)),$(basename $(wildcard $(dir)/*.png)))
 CASTLE_GROUNDS_SEG7_FILES    := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/castle_grounds_seg7/*.png)))
 CASTLE_GROUNDS_TEXTURES_FILES := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/castle_grounds_textures/*.png)))
 CCM_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/ccm_seg7/*.png)))
 CCM_TEXTURES_FILES           := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/ccm_textures/*.png)))
-CHILLYCHIEF_FILES            := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/chillychief_moneybag/*.png)))
+CHILLYCHIEF_FILES            := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(CHILLYCHIEF_DIRS)),$(basename $(wildcard $(dir)/*.png)))
 DDD_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/ddd_seg7/*.png)))
 COTMC_SEG7_FILES             := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/cotmc_seg7/*.png)))
 FLOWER_TEXTURES_FILES        := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/flower_bubbles_textures/*.png)))
 HMC_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/hmc_seg7/*.png)))
 HMC_TEXTURES_FILES           := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/hmc_textures/*.png)))
-HOOT_THWOMP_FILES            := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/hoot_thwomp_bullet_heave/*.png)))
+HOOT_THWOMP_FILES            := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(HOOT_DIRS)),$(basename $(wildcard $(dir)/*.png)))
 INSIDE_CASTLE_SEG7_FILES     := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/inside_castle_seg7/*.png)))
 INSIDE_CASTLE_TEXTURES_FILES := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/inside_castle_textures/*.png)))
 JRB_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/jrb_seg7/*.png)))
 JRB_TEXTURES_FILES           := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/jrb_textures/*.png)))
-KLEPTO_EYEROK_FILES          := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/klepto_eyerok_pokey/*.png)))
-KOOPA_LOG_FILES              := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/koopa_log_piranha_whomp_chomp/*.png)))
-LAKITU_TOAD_FILES            := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/lakitu_toad_mips_boo/*.png)))
+KOOPA_LOG_FILES              := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(KOOPA_DIRS)),$(basename $(wildcard $(dir)/*.png)))
+KLEPTO_EYEROK_FILES          := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(KLEPTO_DIRS)),$(basename $(wildcard $(dir)/*.png)))
+LAKITU_TOAD_FILES            := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(LAKITU_DIRS)),$(basename $(wildcard $(dir)/*.png)))
 LLL_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/lll_seg7/*.png)))
 LLL_TEXTURES_FILES           := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/lll_textures/*.png)))
-MARIO_WATER_FILES            := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/mario_water_sparkles/*.png)))
-MOLE_UKIKI_FILES             := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/mole_ukiki_fwoosh/*.png)))
-MR_I_SWOOP_FILES             := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/mr_i_swoop_snufit_dorrie_scuttlebug/*.png)))
-PEACH_TOADSTOOL_FILES        := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/peach_toadstool_yoshi_birds/*.png)))
+MARIO_WATER_FILES            := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(MARIO_DIRS)),$(basename $(wildcard $(dir)/*.png)))
+MOLE_UKIKI_FILES             := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(MOLE_DIRS)),$(basename $(wildcard $(dir)/*.png)))
+MR_I_SWOOP_FILES             := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(MR_I_DIRS)),$(basename $(wildcard $(dir)/*.png)))
+PEACH_TOADSTOOL_FILES        := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(PEACH_DIRS)),$(basename $(wildcard $(dir)/*.png)))
 PSS_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/pss_seg7/*.png)))
 RR_SEG7_FILES                := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/rr_seg7/*.png)))
 RR_TEXTURES_FILES            := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/rr_textures/*.png)))
-SEA_CREATURES_FILES          := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/sea_creatures/*.png)))
-SKEETER_FISH_FILES           := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/skeeter_fish_treasurechest/*.png)))
+SEA_CREATURES_FILES          := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(SEA_DIRS)),$(basename $(wildcard $(dir)/*.png)))
+SKEETER_FISH_FILES           := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(SKEETER_DIRS)),$(basename $(wildcard $(dir)/*.png)))
 SL_SEG7_FILES                := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/sl_seg7/*.png)))
-SPINDRIFT_PENGUIN_FILES      := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/spindrift_penguin_snowman/*.png)))
+SPINDRIFT_PENGUIN_FILES      := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(SPINDRIFT_DIRS)),$(basename $(wildcard $(dir)/*.png)))
 SSL_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/ssl_seg7/*.png)))
 THI_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/thi_seg7/*.png)))
 TTC_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/ttc_seg7/*.png)))
@@ -85,13 +108,31 @@ SSL_SKYBOX_FILES             := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/ss
 WATER_SKYBOX_FILES           := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/water_skybox/*.png)))
 WDW_SKYBOX_FILES             := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/wdw_skybox/*.png)))
 
+# Actor dependencies
+$(BUILD_DIR)/bin/koopa_log_piranha_whomp_chomp.o: $(addprefix $(BUILD_DIR)/,$(KOOPA_LOG_FILES))
+$(BUILD_DIR)/bin/capswitch_springboard.o: $(addprefix $(BUILD_DIR)/,$(CAPSWITCH_SPRINGBOARD_FILES))
+$(BUILD_DIR)/bin/chillychief_moneybag.o: $(addprefix $(BUILD_DIR)/,$(CHILLYCHIEF_FILES))
+$(BUILD_DIR)/bin/bully_blargg.o: $(addprefix $(BUILD_DIR)/,$(BULLY_BLARGG_FILES))
+$(BUILD_DIR)/bin/spindrift_penguin_snowman.o: $(addprefix $(BUILD_DIR)/,$(SPINDRIFT_PENGUIN_FILES))
+$(BUILD_DIR)/bin/bobombs_bubble.o: $(addprefix $(BUILD_DIR)/,$(BOBOMBS_BUBBLE_FILES))
+$(BUILD_DIR)/bin/boo_bookend_chair_piano.o: $(addprefix $(BUILD_DIR)/,$(BOO_BOOKEND_FILES))
+$(BUILD_DIR)/bin/mr_i_swoop_snufit_dorrie_scuttlebug.o: $(addprefix $(BUILD_DIR)/,$(MR_I_SWOOP_FILES))
+$(BUILD_DIR)/bin/hoot_thwomp_bullet_heave.o: $(addprefix $(BUILD_DIR)/,$(HOOT_THWOMP_FILES))
+$(BUILD_DIR)/bin/coins_pipe_doors_maps_trees.o: $(addprefix $(BUILD_DIR)/,$(COINS_PIPE_FILES))
+$(BUILD_DIR)/bin/bubba_wiggler_lakitu.o: $(addprefix $(BUILD_DIR)/,$(BUBBA_WIGGLER_FILES))
+$(BUILD_DIR)/bin/skeeter_fish_treasurechest.o: $(addprefix $(BUILD_DIR)/,$(SKEETER_FISH_FILES))
+$(BUILD_DIR)/bin/klepto_eyerok_pokey.o: $(addprefix $(BUILD_DIR)/,$(KLEPTO_EYEROK_FILES))
+$(BUILD_DIR)/bin/sea_creatures.o: $(addprefix $(BUILD_DIR)/,$(SEA_CREATURES_FILES))
+$(BUILD_DIR)/bin/amp_chuckya_flyguy_goomba_boxes.o: $(addprefix $(BUILD_DIR)/,$(AMP_CHUCKYA_FILES))
+$(BUILD_DIR)/bin/mole_ukiki_fwoosh.o: $(addprefix $(BUILD_DIR)/,$(MOLE_UKIKI_FILES))
+$(BUILD_DIR)/bin/lakitu_toad_mips_boo.o: $(addprefix $(BUILD_DIR)/,$(LAKITU_TOAD_FILES))
+$(BUILD_DIR)/bin/peach_toadstool_yoshi_birds.o: $(addprefix $(BUILD_DIR)/,$(PEACH_TOADSTOOL_FILES))
+$(BUILD_DIR)/bin/bowser_flames_bomb.o: $(addprefix $(BUILD_DIR)/,$(BOWSER_FLAMES_FILES))
+$(BUILD_DIR)/bin/mario_water_sparkles.o: $(addprefix $(BUILD_DIR)/,$(MARIO_WATER_FILES))
+
+# Original Segment Files
 $(BUILD_DIR)/bin/segment2.o: $(addprefix $(BUILD_DIR)/bin/segment2/,$(SEGMENT2_FILES))
-$(BUILD_DIR)/bin/amp_chuckya_flyguy_goomba_boxes.o: $(addprefix $(BUILD_DIR)/bin/amp_chuckya_flyguy_goomba_boxes/,$(AMP_CHUCKYA_FILES))
-$(BUILD_DIR)/bin/bobombs_bubble.o: $(addprefix $(BUILD_DIR)/bin/bobombs_bubble/,$(BOBOMBS_BUBBLE_FILES))
-$(BUILD_DIR)/bin/boo_bookend_chair_piano.o: $(addprefix $(BUILD_DIR)/bin/boo_bookend_chair_piano/,$(BOO_BOOKEND_FILES))
 $(BUILD_DIR)/bin/cake_end.o: $(addprefix $(BUILD_DIR)/bin/cake_end/,$(CAKE_END_FILES))
-$(BUILD_DIR)/bin/capswitch_springboard.o: $(addprefix $(BUILD_DIR)/bin/capswitch_springboard/,$(CAPSWITCH_SPRINGBOARD_FILES))
-$(BUILD_DIR)/bin/coins_pipe_doors_maps_trees.o: $(addprefix $(BUILD_DIR)/bin/coins_pipe_doors_maps_trees/,$(COINS_PIPE_FILES))
 $(BUILD_DIR)/bin/title_screen_bg.o: $(addprefix $(BUILD_DIR)/bin/title_screen_bg/,$(TITLE_SCREEN_BG_FILES))
 $(BUILD_DIR)/bin/intro_seg7.o: $(addprefix $(BUILD_DIR)/bin/intro_seg7/,$(INTRO_SEG7_FILES))
 $(BUILD_DIR)/bin/main_menu_seg7.o: $(addprefix $(BUILD_DIR)/bin/main_menu_seg7/,$(MAIN_MENU_SEG7_FILES))
@@ -99,46 +140,31 @@ $(BUILD_DIR)/bin/bitdw_seg7.o: $(addprefix $(BUILD_DIR)/bin/bitdw_seg7/,$(BITDW_
 $(BUILD_DIR)/bin/bowser_1_seg7.o: $(addprefix $(BUILD_DIR)/bin/bowser_1_seg7/,$(BOWSER_1_SEG7_FILES))
 $(BUILD_DIR)/bin/bowser_2_seg7.o: $(addprefix $(BUILD_DIR)/bin/bowser_2_seg7/,$(BOWSER_2_SEG7_FILES))
 $(BUILD_DIR)/bin/bowser_3_seg7.o: $(addprefix $(BUILD_DIR)/bin/bowser_3_seg7/,$(BOWSER_3_SEG7_FILES))
-$(BUILD_DIR)/bin/bowser_flames_bomb.o: $(addprefix $(BUILD_DIR)/bin/bowser_flames_bomb/,$(BOWSER_FLAMES_FILES))
 $(BUILD_DIR)/bin/bob_seg7.o: $(addprefix $(BUILD_DIR)/bin/bob_seg7/,$(BOB_SEG7_FILES))
 $(BUILD_DIR)/bin/bbh_seg7.o: $(addprefix $(BUILD_DIR)/bin/bbh_seg7/,$(BBH_SEG7_FILES))
 $(BUILD_DIR)/bin/bbh_textures.o: $(addprefix $(BUILD_DIR)/bin/bbh_textures/,$(BBH_TEXTURES_FILES))
 $(BUILD_DIR)/bin/bitfs_seg7.o: $(addprefix $(BUILD_DIR)/bin/bitfs_seg7/,$(BITFS_SEG7_FILES))
 $(BUILD_DIR)/bin/bits_seg7.o: $(addprefix $(BUILD_DIR)/bin/bits_seg7/,$(BITS_SEG7_FILES))
 $(BUILD_DIR)/bin/bob_textures.o: $(addprefix $(BUILD_DIR)/bin/bob_textures/,$(BOB_TEXTURES_FILES))
-$(BUILD_DIR)/bin/bubba_wiggler_lakitu.o: $(addprefix $(BUILD_DIR)/bin/bubba_wiggler_lakitu/,$(BUBBA_WIGGLER_FILES))
-$(BUILD_DIR)/bin/bully_blargg.o: $(addprefix $(BUILD_DIR)/bin/bully_blargg/,$(BULLY_BLARGG_FILES))
 $(BUILD_DIR)/bin/castle_grounds_seg7.o: $(addprefix $(BUILD_DIR)/bin/castle_grounds_seg7/,$(CASTLE_GROUNDS_SEG7_FILES))
 $(BUILD_DIR)/bin/castle_grounds_textures.o: $(addprefix $(BUILD_DIR)/bin/castle_grounds_textures/,$(CASTLE_GROUNDS_TEXTURES_FILES))
 $(BUILD_DIR)/bin/ccm_seg7.o: $(addprefix $(BUILD_DIR)/bin/ccm_seg7/,$(CCM_SEG7_FILES))
 $(BUILD_DIR)/bin/ccm_textures.o: $(addprefix $(BUILD_DIR)/bin/ccm_textures/,$(CCM_TEXTURES_FILES))
-$(BUILD_DIR)/bin/chillychief_moneybag.o: $(addprefix $(BUILD_DIR)/bin/chillychief_moneybag/,$(CHILLYCHIEF_FILES))
 $(BUILD_DIR)/bin/ddd_seg7.o: $(addprefix $(BUILD_DIR)/bin/ddd_seg7/,$(DDD_SEG7_FILES))
 $(BUILD_DIR)/bin/cotmc_seg7.o: $(addprefix $(BUILD_DIR)/bin/cotmc_seg7/,$(COTMC_SEG7_FILES))
 $(BUILD_DIR)/bin/flower_bubbles_textures.o: $(addprefix $(BUILD_DIR)/bin/flower_bubbles_textures/,$(FLOWER_TEXTURES_FILES))
 $(BUILD_DIR)/bin/hmc_seg7.o: $(addprefix $(BUILD_DIR)/bin/hmc_seg7/,$(HMC_SEG7_FILES))
 $(BUILD_DIR)/bin/hmc_textures.o: $(addprefix $(BUILD_DIR)/bin/hmc_textures/,$(HMC_TEXTURES_FILES))
-$(BUILD_DIR)/bin/hoot_thwomp_bullet_heave.o: $(addprefix $(BUILD_DIR)/bin/hoot_thwomp_bullet_heave/,$(HOOT_THWOMP_FILES))
 $(BUILD_DIR)/bin/inside_castle_seg7.o: $(addprefix $(BUILD_DIR)/bin/inside_castle_seg7/,$(INSIDE_CASTLE_SEG7_FILES))
 $(BUILD_DIR)/bin/inside_castle_textures.o: $(addprefix $(BUILD_DIR)/bin/inside_castle_textures/,$(INSIDE_CASTLE_TEXTURES_FILES))
 $(BUILD_DIR)/bin/jrb_seg7.o: $(addprefix $(BUILD_DIR)/bin/jrb_seg7/,$(JRB_SEG7_FILES))
 $(BUILD_DIR)/bin/jrb_textures.o: $(addprefix $(BUILD_DIR)/bin/jrb_textures/,$(JRB_TEXTURES_FILES))
-$(BUILD_DIR)/bin/klepto_eyerok_pokey.o: $(addprefix $(BUILD_DIR)/bin/klepto_eyerok_pokey/,$(KLEPTO_EYEROK_FILES))
-$(BUILD_DIR)/bin/koopa_log_piranha_whomp_chomp.o: $(addprefix $(BUILD_DIR)/bin/koopa_log_piranha_whomp_chomp/,$(KOOPA_LOG_FILES))
-$(BUILD_DIR)/bin/lakitu_toad_mips_boo.o: $(addprefix $(BUILD_DIR)/bin/lakitu_toad_mips_boo/,$(LAKITU_TOAD_FILES))
 $(BUILD_DIR)/bin/lll_seg7.o: $(addprefix $(BUILD_DIR)/bin/lll_seg7/,$(LLL_SEG7_FILES))
 $(BUILD_DIR)/bin/lll_textures.o: $(addprefix $(BUILD_DIR)/bin/lll_textures/,$(LLL_TEXTURES_FILES))
-$(BUILD_DIR)/bin/mario_water_sparkles.o: $(addprefix $(BUILD_DIR)/bin/mario_water_sparkles/,$(MARIO_WATER_FILES))
-$(BUILD_DIR)/bin/mole_ukiki_fwoosh.o: $(addprefix $(BUILD_DIR)/bin/mole_ukiki_fwoosh/,$(MOLE_UKIKI_FILES))
-$(BUILD_DIR)/bin/mr_i_swoop_snufit_dorrie_scuttlebug.o: $(addprefix $(BUILD_DIR)/bin/mr_i_swoop_snufit_dorrie_scuttlebug/,$(MR_I_SWOOP_FILES))
-$(BUILD_DIR)/bin/peach_toadstool_yoshi_birds.o: $(addprefix $(BUILD_DIR)/bin/peach_toadstool_yoshi_birds/,$(PEACH_TOADSTOOL_FILES))
 $(BUILD_DIR)/bin/pss_seg7.o: $(addprefix $(BUILD_DIR)/bin/pss_seg7/,$(PSS_SEG7_FILES))
 $(BUILD_DIR)/bin/rr_seg7.o: $(addprefix $(BUILD_DIR)/bin/rr_seg7/,$(RR_SEG7_FILES))
 $(BUILD_DIR)/bin/rr_textures.o: $(addprefix $(BUILD_DIR)/bin/rr_textures/,$(RR_TEXTURES_FILES))
-$(BUILD_DIR)/bin/sea_creatures.o: $(addprefix $(BUILD_DIR)/bin/sea_creatures/,$(SEA_CREATURES_FILES))
-$(BUILD_DIR)/bin/skeeter_fish_treasurechest.o: $(addprefix $(BUILD_DIR)/bin/skeeter_fish_treasurechest/,$(SKEETER_FISH_FILES))
 $(BUILD_DIR)/bin/sl_seg7.o: $(addprefix $(BUILD_DIR)/bin/sl_seg7/,$(SL_SEG7_FILES))
-$(BUILD_DIR)/bin/spindrift_penguin_snowman.o: $(addprefix $(BUILD_DIR)/bin/spindrift_penguin_snowman/,$(SPINDRIFT_PENGUIN_FILES))
 $(BUILD_DIR)/bin/ssl_seg7.o: $(addprefix $(BUILD_DIR)/bin/ssl_seg7/,$(SSL_SEG7_FILES))
 $(BUILD_DIR)/bin/thi_seg7.o: $(addprefix $(BUILD_DIR)/bin/thi_seg7/,$(THI_SEG7_FILES))
 $(BUILD_DIR)/bin/ttc_seg7.o: $(addprefix $(BUILD_DIR)/bin/ttc_seg7/,$(TTC_SEG7_FILES))
@@ -164,6 +190,7 @@ $(BUILD_DIR)/bin/ssl_skybox.o: $(addprefix $(BUILD_DIR)/bin/ssl_skybox/,$(SSL_SK
 $(BUILD_DIR)/bin/water_skybox.o: $(addprefix $(BUILD_DIR)/bin/water_skybox/,$(WATER_SKYBOX_FILES))
 $(BUILD_DIR)/bin/wdw_skybox.o: $(addprefix $(BUILD_DIR)/bin/wdw_skybox/,$(WDW_SKYBOX_FILES))
 
+# Segment Addresses
 $(BUILD_DIR)/bin/segment2.elf: SEGMENT_ADDRESS := 0x02000000
 $(BUILD_DIR)/bin/amp_chuckya_flyguy_goomba_boxes.elf: SEGMENT_ADDRESS := 0x08000000
 $(BUILD_DIR)/bin/bobombs_bubble.elf: SEGMENT_ADDRESS := 0x05000000

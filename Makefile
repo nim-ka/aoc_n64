@@ -31,6 +31,7 @@ ELF := $(BUILD_DIR)/$(TARGET).elf
 LD_SCRIPT := sm64.ld
 MIO0_DIR := $(BUILD_DIR)/mio0
 TEXTURE_DIR := textures
+ACTOR_DIR := actors
 
 # Directories containing source files
 SRC_DIRS := src src/libultra src/goddard src/goddard/dynlists src/audio
@@ -172,6 +173,23 @@ $(BUILD_DIR)/bin/%.ia4: textures/%.ia4.png
 $(BUILD_DIR)/bin/%.ia1: textures/%.ia1.png
 	$(N64GRAPHICS) -i $@ -g $< -f ia1
 
+# texture generation 2nd method: rgba16s are preferred (and used
+# more often) over the ones listed below due to more colors.
+$(BUILD_DIR)/actors/%.rgba16: actors/%.rgba16.png
+	$(N64GRAPHICS) -i $@ -g $< -f rgba16
+
+$(BUILD_DIR)/actors/%.ia16: actors/%.ia16.png
+	$(N64GRAPHICS) -i $@ -g $< -f ia16
+
+$(BUILD_DIR)/actors/%.ia8: actors/%.ia8.png
+	$(N64GRAPHICS) -i $@ -g $< -f ia8
+
+$(BUILD_DIR)/actors/%.ia4: actors/%.ia4.png
+	$(N64GRAPHICS) -i $@ -g $< -f ia4
+
+$(BUILD_DIR)/actors/%.ia1: actors/%.ia1.png
+	$(N64GRAPHICS) -i $@ -g $< -f ia1
+
 # compressed segment generation
 $(BUILD_DIR)/bin/%.o: bin/%.s
 	$(AS) $(ASFLAGS) --no-pad-sections -o $@ $<
@@ -222,3 +240,5 @@ $(BUILD_DIR)/$(TARGET).objdump: $(ELF)
 .PRECIOUS: $(BUILD_DIR)/mio0/%.mio0 $(BUILD_DIR)/bin/%.elf $(BUILD_DIR)/mio0/%.mio0.s
 
 -include $(DEP_FILES)
+
+print-% : ; $(info $* is a $(flavor $*) variable set to [$($*)]) @true
