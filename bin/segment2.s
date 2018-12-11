@@ -1522,16 +1522,16 @@ seg2_texture_0200F258:
 seg2_texture_0200F358:
 .incbin "bin/segment2/segment2.0F358.ia8"
 
-seg2_texture_0200F458:
+glabel seg2_texture_0200F458
 .incbin "bin/segment2/segment2.0F458.ia8"
 
-seg2_texture_0200FC58:
+glabel seg2_texture_0200FC58
 .incbin "bin/segment2/segment2.0FC58.ia8"
 
-seg2_texture_02010458:
+glabel seg2_texture_02010458
 .incbin "bin/segment2/segment2.10458.ia8"
 
-seg2_texture_02011458:
+glabel seg2_texture_02011458
 .incbin "bin/segment2/segment2.11458.ia8"
 
 glabel seg2_texture_02011C58
