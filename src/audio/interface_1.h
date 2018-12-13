@@ -38,6 +38,6 @@
 // extern ? func_8031CAD4(?);
 // extern ? func_8031D384(?);
 // extern ? func_8031D42C(?);
-// extern ? func_8031D4B8(?);
+extern void func_8031D4B8(void);
 
 #endif /* _AUDIO_INTEFACE_1_H */

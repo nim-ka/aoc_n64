@@ -118,7 +118,7 @@ SECTIONS
       BUILD_DIR/asm/audio_something.o(.text);
       BUILD_DIR/asm/audio_dac.o(.text);
       BUILD_DIR/src/audio/dma.o(.text);
-      BUILD_DIR/asm/audio_playback.o(.text);
+      BUILD_DIR/src/audio/playback.o(.text);
       BUILD_DIR/asm/audio_playback_2.o(.text);
       BUILD_DIR/asm/audio_interface_1.o(.text);
       BUILD_DIR/asm/audio_interface_2.o(.text);
