@@ -229,7 +229,7 @@ u32 print_list_stats(struct GMemBlock* block, s32 printBlockInfo, s32 permanence
         {
             entries++;
             if (printBlockInfo)
-                printf("     %6.2fk (%d bytes)\n", 
+                gd_printf("     %6.2fk (%d bytes)\n", 
                        (f32) block->size / 1024.0,  //! 1024.0f
                        block->size
                     );
@@ -238,7 +238,7 @@ u32 print_list_stats(struct GMemBlock* block, s32 printBlockInfo, s32 permanence
         block = block->next;
     }
     
-    printf("Total %6.2fk (%d bytes) in %d entries\n", 
+    gd_printf("Total %6.2fk (%d bytes) in %d entries\n", 
            (f32) totalSize / 1024.0,    //! 1024.0f
            totalSize, 
            entries
@@ -252,27 +252,27 @@ void mem_stats(void)
 {
     struct GMemBlock* list;
 
-    printf("Perm Used blocks:\n");
+    gd_printf("Perm Used blocks:\n");
     list = sUsedBlockListHead;
     print_list_stats(list, FALSE, 0xF0);
-    printf("\n");
+    gd_printf("\n");
 
-    printf("Perm Free blocks:\n");
+    gd_printf("Perm Free blocks:\n");
     list = sFreeBlockListHead;
     print_list_stats(list, FALSE, 0xF0);
-    printf("\n");
+    gd_printf("\n");
 
-    printf("Temp Used blocks:\n");
+    gd_printf("Temp Used blocks:\n");
     list = sUsedBlockListHead;
     print_list_stats(list, FALSE, 0x0F);
-    printf("\n");
+    gd_printf("\n");
 
-    printf("Temp Free blocks:\n");
+    gd_printf("Temp Free blocks:\n");
     list = sFreeBlockListHead;
     print_list_stats(list, FALSE, 0x0F);
-    printf("\n");
+    gd_printf("\n");
 
-    printf("Empty blocks:\n");
+    gd_printf("Empty blocks:\n");
     list = sEmptyBlockListHead;
     print_list_stats(list, FALSE, 0xFF);
 }

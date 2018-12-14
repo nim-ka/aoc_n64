@@ -537,7 +537,7 @@ void Unknown801835C8(struct ObjParticle *ptc)
     float sp50;
     register struct Links *link;
 
-    printf("p(%d)=", ptc->unkB4->objCount);
+    gd_printf("p(%d)=", ptc->unkB4->objCount);
     link = ptc->unkB4->link1C;
     while (link != NULL)
     {
@@ -548,7 +548,7 @@ void Unknown801835C8(struct ObjParticle *ptc)
         sp54.y = sp48->unk20.y - ptc->unk20.y;
         sp54.z = sp48->unk20.z - ptc->unk20.z;
         sp50 = 150.0f - (ABS(sp54.x) + ABS(sp54.y) + ABS(sp54.z));
-        printf(",%f ", sp50);
+        gd_printf(",%f ", sp50);
         sp50 *= 0.00000005;
         ptc->unk20.x += sp50 * sp54.x;
         ptc->unk20.y += sp50 * sp54.y;
@@ -558,7 +558,7 @@ void Unknown801835C8(struct ObjParticle *ptc)
         sp48->unk20.z -= sp50 * sp54.z;
         link = link->next;
     }
-    printf("\n");
+    gd_printf("\n");
 }
 
 void Unknown80183870(UNUSED int a)

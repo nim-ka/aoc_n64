@@ -4,6 +4,7 @@
 #include "sm64.h"
 #include "gd_types.h"
 #include "bad_declarations.h"
+#include "gd_main.h"
 
 #include "game_over_2.h"
 #include "mario_head_1.h"
@@ -402,7 +403,8 @@ void d_make_netfromshape_ptrptr(struct ObjShape **objptr)
     UNUSED u32 pad;
     struct ObjNet *net = make_netfromshape(*objptr);
 
-    UNREF_STR("dMakeNetFromShapePtrPtr\n");
+    printf("dMakeNetFromShapePtrPtr\n");
+
     add_to_dynobj_list(&net->header, NULL);
 }
 

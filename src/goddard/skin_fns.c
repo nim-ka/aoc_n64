@@ -56,12 +56,13 @@ void func_80191F10(struct ObjNet *net)
     net->unkBC.vec1.z = D_801B9DA0.vec1.z;
 }
 
-static const char *sUnusedStr1 = "reset_net %d\n";
-
 /* 240894 -> 240A64; orig name: func_801920C4 */
 void reset_net(struct ObjNet *net)
 {
     struct ObjGroup *grp; // 24
+
+    // based on move_net strings, unk38 is the likely parameter
+    printf("reset_net %d\n", net->unk38);
 
     net->unk14.x = net->unk20.x;
     net->unk14.y = net->unk20.y;
@@ -604,7 +605,7 @@ void func_80193848(struct ObjGroup *group)
 /* 24208C -> 2422E0; not called; orig name: Unknown801938BC */
 void gd_print_net(struct ObjNet *net)
 {
-    printf("Flags:%x\n", net->unk34);
+    gd_printf("Flags:%x\n", net->unk34);
     gd_print_vec("World:", &net->unk14);
     gd_print_vec("Force:", &net->unk44);
     gd_print_vec("Vel:", &net->unk50);
@@ -617,20 +618,20 @@ void gd_print_net(struct ObjNet *net)
     gd_print_vec("CofG:", &net->unkB0);
     gd_print_plane("BoundBox:", &net->unkBC);
     gd_print_vec("CollDispOff:", &net->unkD4);
-    printf("CollMaxD: %f\n", net->unkE0);
-    printf("MaxRadius: %f\n", net->unkE4);
+    gd_printf("CollMaxD: %f\n", net->unkE0);
+    gd_printf("MaxRadius: %f\n", net->unkE4);
     gd_print_mtx("Matrix:", &net->mat128);
     if (net->unk1A8 != NULL) {
-        printf("ShapePtr: %x (%s)\n", (u32) net->unk1A8, net->unk1A8->name);
+        gd_printf("ShapePtr: %x (%s)\n", (u32) net->unk1A8, net->unk1A8->name);
     } else {
-        printf("ShapePtr: NULL\n");
+        gd_printf("ShapePtr: NULL\n");
     }
     gd_print_vec("Scale:", &net->unk1AC);
-    printf("Mass: %f\n", net->unk1B8);
-    printf("NumModes: %d\n", net->unk1BC);
-    printf("NodeGroup: %x\n", (u32) net->unk1C8);
-    printf("PlaneGroup: %x\n", (u32) net->unk1CC);
-    printf("VertexGroup: %x\n", (u32) net->unk1D0);
+    gd_printf("Mass: %f\n", net->unk1B8);
+    gd_printf("NumModes: %d\n", net->unk1BC);
+    gd_printf("NodeGroup: %x\n", (u32) net->unk1C8);
+    gd_printf("PlaneGroup: %x\n", (u32) net->unk1CC);
+    gd_printf("VertexGroup: %x\n", (u32) net->unk1D0);
 }
 
 /* 2422E0 -> 2422F8; orig name: func_80193B10 */

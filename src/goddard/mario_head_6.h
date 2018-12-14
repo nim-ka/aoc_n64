@@ -228,7 +228,7 @@ extern f64 gd_sin_d(f64);
 extern f64 gd_cos_d(f64);
 extern f64 gd_sqrt_d(f64);  //"sqrt_d_limited" (return 0.0 below 1e-7)
 // extern ? Unknown8019B3D4(?);
-extern int printf(const char *format, ...);
+extern int gd_printf(const char *format, ...);
 extern void gd_exit(s32);     // TUI stuff? a fatal or exit function?
 extern void func_8019BA04(void *);  /* free_mem_block call, so gd_free? */
 extern void* gd_allocblock(u32);

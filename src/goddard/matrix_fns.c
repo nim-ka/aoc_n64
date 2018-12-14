@@ -3,6 +3,7 @@
 #include "sm64.h"
 #include "gd_types.h"
 
+#include "gd_main.h"
 #include "matrix_fns.h"
 #include "profiler_utils.h"
 #include "mario_head_6.h"
@@ -368,13 +369,6 @@ void inverse_mat4(Mat4 *src, Mat4 *dst)
         }
     }
 }
-
-static const char * sMtxFnUnused1 = "%f,%f,%f\n";
-static const char * sMtxFnUnused2 = "\n";
-static const char * sMtxFnUnused3 = "Min X = %f, Max X = %f \n";
-static const char * sMtxFnUnused4 = "Min Y = %f, Max Y = %f \n";
-static const char * sMtxFnUnused5 = "Min Z = %f, Max Z = %f \n";
-static const char * sMtxFnUnused6 = "\n";
  
 /* self */ f32 func_80195844(f32, f32, f32, f32, f32, f32, f32, f32, f32);
 
@@ -873,12 +867,20 @@ void multiply_mat4(const Mat4 *mA, const Mat4 *mB, Mat4 *dst)
 void gd_print_vec(UNUSED const char *prefix, UNUSED const struct MyVec3f *vec)
 {
     UNUSED u8 pad[8];
+
+    printf("%f,%f,%f\n", vec->x, vec->y, vec->z);
+    printf("\n");
 }
 
 /* 245778 -> 245794 */
 void gd_print_plane(UNUSED const char *prefix, UNUSED const struct GdPlaneF *p)
 {
     UNUSED u8 pad[8];
+
+    printf("Min X = %f, Max X = %f \n", p->vec0.x, p->vec1.x);
+    printf("Min Y = %f, Max Y = %f \n", p->vec0.y, p->vec1.y);
+    printf("Min Z = %f, Max Z = %f \n", p->vec0.z, p->vec1.z);
+    printf("\n");
 }
 
 /* 245794 -> 245838 */
@@ -891,9 +893,9 @@ void gd_print_mtx(UNUSED const char *prefix, const Mat4 *mtx)
     {
         for (j = 0; j < 4; j++)
         {
-            printf("%f ", (*mtx)[i][j]);
+            gd_printf("%f ", (*mtx)[i][j]);
         }
-        printf("\n");
+        gd_printf("\n");
     }
 }
 
@@ -902,12 +904,12 @@ void Unknown80197068(const char *prefix, const f32 *f)
 {
     int i; // 1c
 
-    printf(prefix);
+    gd_printf(prefix);
     for (i = 0; i < 4; i++)
     {
-        printf("%f ", f[i]);
+        gd_printf("%f ", f[i]);
     }
-    printf("\n");
+    gd_printf("\n");
 }
 
 /* 2458C0 -> 245A48 */

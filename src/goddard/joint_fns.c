@@ -516,7 +516,7 @@ struct ObjBone *make_bone(s32 a0, struct ObjJoint *j1, struct ObjJoint *j2, UNUS
         add_joint2bone(b, j2);
     }
 
-    UNREF_STR("Made bone %d\n");
+    printf("Made bone %d\n", b->id);
     return b;
 }
 
@@ -543,7 +543,7 @@ void Unknown8018FF88(s32 size)
 
     for (i = 0; i < size - 1; i++)
     {
-        printf("  ");
+        gd_printf("  ");
     }
 }
 
@@ -706,12 +706,19 @@ void func_80190574(s32 a0, struct ObjJoint *a1, struct ObjJoint *a2, f32 x, f32 
         fatal_print("Too many nestings!\n");
     }
 
+    printf("\n");
+    printf("NIDmask: %d /  ", a0);
+
     a2->unk1C0 |= a0;
     sp224 = func_8018FFE8(sp20, sp120, a1, a2);
     func_801903E8(a2, &sp240, x, y, z);
     for (sp234 = 0; sp234 < sp224; sp234++)
     {
-        if (a1 != NULL) {} else {}
+        if (a1 != NULL) {
+            printf("branch %d from j%d-j%d(%d): ", sp234, a2->id, a1->id, sp224);
+        } else {
+            printf("branch %d from j%d(%d): ", sp234, a2->id, sp224);
+        }
 
         sp274 = a2;
         sp26C = sp120[sp234];
@@ -765,19 +772,15 @@ void func_80190574(s32 a0, struct ObjJoint *a1, struct ObjJoint *a2, f32 x, f32 
             sp274 = sp26C;
             sp26C = sp270;
         } while (sp220);
+		printf("Exit");
+        // probably sp274(sp26C) because it would make sense to print
+        // the iterations of both of these loops.
+        printf(" %d(%d)", sp274->id, sp26C->id);
+        printf("R ");
+        printf("\n");
     }
 
-    UNREF_STR("\n");
-    UNREF_STR("NIDmask: %d /  ");
-    UNREF_STR("branch %d from j%d-j%d(%d): ");
-    UNREF_STR("branch %d from j%d(%d): ");
-    UNREF_STR("Exit");
-    UNREF_STR(" %d(%d)");
-    UNREF_STR("R ");
-    UNREF_STR("\n");
-    UNREF_STR("\n\n");
-    UNREF_STR("Num return joints (pass 1): %d\n");
-    UNREF_STR("Num return joints (pass 2): %d\n");
+    printf("\n\n");
 }
 
 /* 23F184 -> 23F1F0 */ 
@@ -932,6 +935,7 @@ f32 func_80190F3C(struct ObjJoint *a0, f32 a1, f32 a2, f32 a3)
         sJointArr2Vecs[i].y = sJointArrVecs[i].y;
         sJointArr2Vecs[i].z = sJointArrVecs[i].z;
     }
+    printf("Num return joints (pass 1): %d\n", i);
     
     sJointArr2Len = sJointArrLen;
     sJointArrLen = 0;
@@ -942,6 +946,7 @@ f32 func_80190F3C(struct ObjJoint *a0, f32 a1, f32 a2, f32 a3)
         curj = sJointArr2[i];
         func_80190574(1, NULL, curj, sJointArr2Vecs[i].x, sJointArr2Vecs[i].y, sJointArr2Vecs[i].z);
     }
+    printf("Num return joints (pass 2): %d\n", i);
     
     sp24.x -= a0->unk3C.x;
     sp24.y -= a0->unk3C.y;

@@ -156,7 +156,7 @@ void reset_weight(struct ObjWeight* weight)
         );
     else 
         fatal_printf("reset_weight(): Skin net has no SkinGroup");
-    
+
     if (weight->unk3C == NULL)
         fatal_printf("reset_weight(): Skin vertex ID %d not found", weight->id);
 }

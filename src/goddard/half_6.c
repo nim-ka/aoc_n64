@@ -490,7 +490,7 @@ s32 getint(s32* intPtr)
 /* @ 246838 for 0x14 */
 void Unknown80198068(UNUSED f32 a0)
 {
-    UNREF_STR("max=%f\n");
+    printf("max=%f\n", a0);
 }
 
 /* @ 24684C for 0x6C */
@@ -1070,7 +1070,7 @@ void read_ARK_shape(struct ObjShape* shape, char* fileName)
 /* @ 247E30 for 0x148; orig name: Unknown80199660 */
 struct GdFile* get_shape_from_file(struct ObjShape* shape, char* fileName)
 {
-    UNREF_STR("Loading %s...\n");
+    printf("Loading %s...\n", fileName);
     start_memtracker(fileName);
     shape->unk3C = 0;
     shape->faceCount = 0;
@@ -1093,6 +1093,10 @@ struct GdFile* get_shape_from_file(struct ObjShape* shape, char* fileName)
             get_3DG1_shape(shape);
         else
             get_OBJ_shape(shape);
+
+        printf("Num Vertices=%d\n", shape->vtxCount);
+        printf("Num Faces=%d\n", shape->faceCount);
+        printf("\n");
 
         gd_fclose(sGdShapeFile);
     }
@@ -1130,10 +1134,6 @@ struct ObjShape* make_grid_shape(enum ObjTypeFlag gridType, s32 a1, s32 a2, s32 
     struct ObjMaterial* mtl1;   //first made material
     struct ObjMaterial* mtl2;   //second made material
     UNUSED u32 pad20;
-
-    UNREF_STR("Num Vertices=%d\n");
-    UNREF_STR("Num Faces=%d\n");
-    UNREF_STR("\n");
 
     sp30 = (struct MyVec3f*) func_80178D98(a1);
     sp2C = (struct MyVec3f*) func_80178D98(a2);
@@ -1227,8 +1227,8 @@ struct ObjShape* make_grid_shape(enum ObjTypeFlag gridType, s32 a1, s32 a2, s32 
     gridShape->mtlGroup = mtlGroup;
 
     gridShape->faceGroup = group_faces_in_mtl_grp(gridShape->mtlGroup, (struct ObjHeader*) sp40, NULL);
-    
-    UNREF_STR("grid: points=%d, faces=%d\n");
+
+    printf("grid: points=%d, faces=%d\n", gridShape->vtxGroup->id, gridShape->faceGroup->id);
     return gridShape;
 }
 

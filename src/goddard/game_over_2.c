@@ -336,7 +336,7 @@ void Unknown80178CAC(struct ObjFace *face)
         vtx = face->vertices[i];
         if ((int)vtx == 39)
         {
-            printf("bad1\n");
+            gd_printf("bad1\n");
             return;
         }
         if ((int) vtx->unk44 == 0x3F800000)  // maybe a float (1.0f)?
@@ -623,12 +623,12 @@ void draw_camera(struct ObjCamera *a)
     if (0)
     {
         //! dead code
-        printf("%f,%f,%f\n", a->unk14.x, a->unk14.y, a->unk14.z);
+        gd_printf("%f,%f,%f\n", a->unk14.x, a->unk14.y, a->unk14.z);
     }
 
     if (ABS(a->unk14.x - sp44.x) + ABS(a->unk14.z - sp44.z) == 0.0f)
     {
-        printf("Draw_Camera(): Zero view distance\n");
+        gd_printf("Draw_Camera(): Zero view distance\n");
         return;
     }
     func_8019F318(a, a->unk14.x, a->unk14.y, a->unk14.z,
@@ -1045,11 +1045,11 @@ int Unknown8017AF48(struct ObjShape *a)
     sp1C = func_8019EA6C();
     shape->unk48[0] = sp20;
     shape->unk48[1] = sp20;
-    if (shape->name[0] != '\0')
-    {   /* ifdef-ed out debug printing code? */
-        if (0)
-        {
-        }
+
+    if (shape->name[0] != '\0') {
+        printf("Generated '%s' (%d) display list ok.(%d)\n", shape->name, sp20, sp1C);
+    } else {
+        printf("Generated 'UNKNOWN' (%d) display list ok.(%d)\n", sp20, sp1C);
     }
     //! no return value
 }
@@ -1062,6 +1062,7 @@ void func_8017B028(struct ObjGroup *grp)
         (void (*)())Unknown8017AF48, 
         grp
     );
+    printf("made %d display lists\n", sp1C);
 }
 
 /* 229834 -> 2298E8 */
@@ -1126,9 +1127,6 @@ void func_8017B118(struct ObjVertex *vtx, struct ObjGroup *facegrp)
     }
 }
 
-static const char sUnusedString1[] = "Generated '%s' (%d) display list ok.(%d)\n";
-static const char sUnusedString2[] = "Generated 'UNKNOWN' (%d) display list ok.(%d)\n";
-static const char sUnusedString3[] = "made %d display lists\n";
 /* 229A6C -> 229BC8 */
 void find_thisface_verts(struct ObjFace *face, struct ObjGroup *grp)
 {

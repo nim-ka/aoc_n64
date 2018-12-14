@@ -724,7 +724,9 @@ struct ObjGroup* make_group(int count, ...)
     newGroup->id = ++gGdGroupCount;
     newGroup->objCount = 0;
     newGroup->link1C = newGroup->link20 = NULL;
-    
+
+    printf("Made group no.%d\n", newGroup->id);
+
     oldGroupListHead = gGdGroupList;
     gGdGroupList = newGroup;
     if (oldGroupListHead != NULL)
@@ -732,8 +734,6 @@ struct ObjGroup* make_group(int count, ...)
         newGroup->next = oldGroupListHead;
         oldGroupListHead->prev = newGroup;
     }
-    /* Unused rodata strings */    
-    UNREF_STR("Made group no.%d\n");
 
     if (count == 0)
         return newGroup;
@@ -755,17 +755,15 @@ struct ObjGroup* make_group(int count, ...)
     }
     va_end(args);
 
-    /* More unused rodata strings */
-    UNREF_STR("Made group no.%d from: ");
-
     curLink = newGroup->link1C;
+    printf("Made group no.%d from: ", newGroup->id);
     while (curLink != NULL)
     {
         curObj = curLink->obj;
         sprint_obj_id(idStrBuf, curObj);
+        printf("%s", idStrBuf);
+        printf("\n");
         curLink = curLink->next;
-        /* More unused rodata strings */
-        UNREF_STR("%s"); UNREF_STR("\n");
     }
 
     return newGroup;
@@ -789,12 +787,14 @@ void addto_group(struct ObjGroup* group, struct ObjHeader* obj)
     group->groupObjTypes |= obj->type;
     group->objCount++;
 
+    printf("Added ");
     sprint_obj_id(strbuf, obj);
+    printf("%s", strbuf);
+    printf(" to ");
     sprint_obj_id(strbuf, &group->header);
+    printf("%s", strbuf);
+    printf("\n");
     imout();
-
-    /* unused rodata strings */
-    UNREF_STR("Added "); UNREF_STR("%s"); UNREF_STR(" to "); UNREF_STR("%s"); UNREF_STR("\n");
 }
 
 /* @ 22C390 for 0xFC; orig name: func_8017DBC0 */
@@ -849,14 +849,14 @@ void show_details(enum ObjTypeFlag type)
     char idStrBuf[0x24];
     s32 curGroupTypes;
 
-    printf("\nDetails about: ");
+    gd_printf("\nDetails about: ");
     switch (type)
     {
-        case OBJ_TYPE_GROUPS:    printf("Groups\n");      break;
-        case OBJ_TYPE_BONES:     printf("Bones\n");       break;
-        case OBJ_TYPE_JOINTS:    printf("Joints\n");      break;
-        case OBJ_TYPE_PARTICLES: printf("Particles\n");   break;
-        default:                 printf("Everything?\n"); break;
+        case OBJ_TYPE_GROUPS:    gd_printf("Groups\n");      break;
+        case OBJ_TYPE_BONES:     gd_printf("Bones\n");       break;
+        case OBJ_TYPE_JOINTS:    gd_printf("Joints\n");      break;
+        case OBJ_TYPE_PARTICLES: gd_printf("Particles\n");   break;
+        default:                 gd_printf("Everything?\n"); break;
     }
 
     curObj = gGdObjectList;
@@ -869,52 +869,52 @@ void show_details(enum ObjTypeFlag type)
             switch (curObjType)
             {
                 case OBJ_TYPE_GROUPS:
-                    printf("Group %s: ", idStrBuf);
+                    gd_printf("Group %s: ", idStrBuf);
                     curGroupTypes = ((struct ObjGroup*) curObj)->groupObjTypes;
 
-                    if (curGroupTypes & OBJ_TYPE_GROUPS)    printf("groups ");
-                    if (curGroupTypes & OBJ_TYPE_BONES)     printf("bones ");
-                    if (curGroupTypes & OBJ_TYPE_JOINTS)    printf("joints ");
-                    if (curGroupTypes & OBJ_TYPE_PARTICLES) printf("particles ");
-                    if (curGroupTypes & OBJ_TYPE_CAMERAS)   printf("cameras ");
-                    if (curGroupTypes & OBJ_TYPE_NETS)      printf("nets ");
-                    if (curGroupTypes & OBJ_TYPE_GADGETS)   printf("gadgets ");
-                    if (curGroupTypes & OBJ_TYPE_LABELS)    printf("labels ");
-                    if (curGroupTypes & OBJ_TYPE_FACES)     printf("face ");
-                    if (curGroupTypes & OBJ_TYPE_VERTICES)  printf("vertex ");
+                    if (curGroupTypes & OBJ_TYPE_GROUPS)    gd_printf("groups ");
+                    if (curGroupTypes & OBJ_TYPE_BONES)     gd_printf("bones ");
+                    if (curGroupTypes & OBJ_TYPE_JOINTS)    gd_printf("joints ");
+                    if (curGroupTypes & OBJ_TYPE_PARTICLES) gd_printf("particles ");
+                    if (curGroupTypes & OBJ_TYPE_CAMERAS)   gd_printf("cameras ");
+                    if (curGroupTypes & OBJ_TYPE_NETS)      gd_printf("nets ");
+                    if (curGroupTypes & OBJ_TYPE_GADGETS)   gd_printf("gadgets ");
+                    if (curGroupTypes & OBJ_TYPE_LABELS)    gd_printf("labels ");
+                    if (curGroupTypes & OBJ_TYPE_FACES)     gd_printf("face ");
+                    if (curGroupTypes & OBJ_TYPE_VERTICES)  gd_printf("vertex ");
 
                     curGroupLink = ((struct ObjGroup*) curObj)->link1C;
                     while (curGroupLink != NULL)
                     {
                         sprint_obj_id(idStrBuf, curGroupLink->obj);
-                        printf("%s", idStrBuf);
+                        gd_printf("%s", idStrBuf);
                         curGroupLink = curGroupLink->next;
                     }
-                    printf("\n");
+                    gd_printf("\n");
                     break;
                 case OBJ_TYPE_BONES:
-                    printf("Bone %s: ", idStrBuf);
+                    gd_printf("Bone %s: ", idStrBuf);
                     curSubGroup = ((struct ObjBone*) curObj)->unk10C;
                     curGroupLink = curSubGroup->link1C;
                     while (curGroupLink != NULL)
                     {
                         sprint_obj_id(idStrBuf, curGroupLink->obj);
-                        printf("%s", idStrBuf);
+                        gd_printf("%s", idStrBuf);
                         curGroupLink = curGroupLink->next;
                     }
-                    printf("\n");
+                    gd_printf("\n");
                     break;
                 case OBJ_TYPE_JOINTS:
-                    printf("Joint %s: ", idStrBuf);
+                    gd_printf("Joint %s: ", idStrBuf);
                     curSubGroup = ((struct ObjJoint*) curObj)->unk1C4;
                     curGroupLink = curSubGroup->link1C;
                     while (curGroupLink != NULL)
                     {
                         sprint_obj_id(idStrBuf, curGroupLink->obj);
-                        printf("%s", idStrBuf);
+                        gd_printf("%s", idStrBuf);
                         curGroupLink = curGroupLink->next;
                     }
-                    printf("\n");
+                    gd_printf("\n");
                     break;
                 default: ;
             }

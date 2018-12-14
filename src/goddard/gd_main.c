@@ -29,7 +29,7 @@ u32 __main__(void)
 {
     UNUSED u32 pad1C;
 
-    printf("%x, %x\n", (u32) &D_801A8058, (u32) &D_801A8050);
+    gd_printf("%x, %x\n", (u32) &D_801A8058, (u32) &D_801A8050);
     add_to_stacktrace("main");
     gd_init();
 

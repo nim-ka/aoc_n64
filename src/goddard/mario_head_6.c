@@ -66,8 +66,8 @@ f32 func_8019AF70(void)
 
 void dumpDispList(void)
 {
-    printf(D_801B8CA0, D_801A86FC->unk40);
-    printf(D_801B8CA4, D_801A86FC->unk0, D_801A86FC->unk4, D_801A86FC->unkC, D_801A86FC->unk10, D_801A86FC->unk18, D_801A86FC->unk1C, D_801A86FC->unk24, D_801A86FC->unk28);
+    gd_printf(D_801B8CA0, D_801A86FC->unk40);
+    gd_printf(D_801B8CA4, D_801A86FC->unk0, D_801A86FC->unk4, D_801A86FC->unkC, D_801A86FC->unk10, D_801A86FC->unk18, D_801A86FC->unk1C, D_801A86FC->unk24, D_801A86FC->unk28);
 }
 
 struct StructTest4* nextDisplayList()

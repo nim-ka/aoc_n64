@@ -110,7 +110,7 @@ struct MemTracker *start_memtracker(const char *name)
 /* @ 23ABE0 -> 23AC28; not called; orig name: Unknown8018C410 */
 void print_most_recent_memtracker(void)
 {
-    printf("%s\n", sActiveMemTrackers[sNumActiveMemTrackers-1]->name);
+    gd_printf("%s\n", sActiveMemTrackers[sNumActiveMemTrackers-1]->name);
 }
 
 /* @ 23AC28 -> 23AD94; orig name: func_8018C458 */
@@ -164,7 +164,7 @@ void print_all_memtrackers(void)
     {
         if (sMemTrackers[i].name != NULL)
         {
-            printf("'%s' = %dk\n", 
+            gd_printf("'%s' = %dk\n", 
                 sMemTrackers[i].name, 
                 (s32) (sMemTrackers[i].total / 1024.0f)
             );
@@ -177,12 +177,12 @@ void print_all_timers(void)
 {
     int i;
 
-    printf("\nTimers:\n");
+    gd_printf("\nTimers:\n");
     for (i = 0; i < ARRAY_COUNT(sTimers); i++)
     {
         if (sTimers[i].name != NULL)
         {
-            printf("'%s' = %f (%d)\n", 
+            gd_printf("'%s' = %f (%d)\n", 
                 sTimers[i].name, 
                 (f64) sTimers[i].scaledTotal,
                 sTimers[i].resetCount
@@ -439,7 +439,7 @@ void print_stack_trace(void)
 
     for (i = 0; i < sNumRoutinesInStack; i++)
     {
-        printf("\tIn: '%s'\n", sRoutineNames[i]);
+        gd_printf("\tIn: '%s'\n", sRoutineNames[i]);
     }
 }
 
@@ -458,29 +458,29 @@ void fatal_printf(const char *fmt, ...)
         case '%':
             switch (cur = *fmt++)
             {
-            case 'd': printf("%d", va_arg(vl, int));    break;
-            case 'f': printf("%f", va_arg(vl, double)); break;
-            case 's': printf("%s", va_arg(vl, char *)); break;
-            case 'c': printf("%c", va_arg(vl, char));   break;
-            case 'x': printf("%x", va_arg(vl, int));    break;
-            default : printf("%c", cur);
+            case 'd': gd_printf("%d", va_arg(vl, int));    break;
+            case 'f': gd_printf("%f", va_arg(vl, double)); break;
+            case 's': gd_printf("%s", va_arg(vl, char *)); break;
+            case 'c': gd_printf("%c", va_arg(vl, char));   break;
+            case 'x': gd_printf("%x", va_arg(vl, int));    break;
+            default : gd_printf("%c", cur);
             }
             break;
         case '\\':
-            printf("\\");
+            gd_printf("\\");
             break;
         case '\n':
-            printf("\n");
+            gd_printf("\n");
             break;
         default:
-            printf("%c", cur);
+            gd_printf("%c", cur);
         }
     }
     va_end(vl);
 
-    printf("\n");
+    gd_printf("\n");
     print_stack_trace();
-    printf("\n");
+    gd_printf("\n");
     gd_exit(-1);
 }
 
@@ -509,7 +509,7 @@ void imout(void)
         {
             if (sRoutineNames[i] != NULL)
             {
-                printf(" - %s\n", sRoutineNames[i]);
+                gd_printf(" - %s\n", sRoutineNames[i]);
             } else { 
                 break; 
             }
