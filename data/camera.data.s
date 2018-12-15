@@ -99,22 +99,22 @@ glabel TableCameraInside
 glabel TableCameraBBH
 .word 0x01000000, CameraBBH00, 0x02E60000, 0x094100C8, 0x00C800C8, 0x00000000
 .word 0x01000000, CameraBBH01, 0x02E50000, 0x072300C8, 0x00C800C8, 0x00000000
-.word 0x01000000, CameraBBH02_0C, 0x00DE0000, 0x05B200C8, 0x00C800C8, 0x00000000
-.word 0x01000000, CameraBBH02_0C, 0x00DE0000, 0x027F00C8, 0x00C800C8, 0x00000000
-.word 0x01000000, CameraBBH02_0C, 0x01B30000, 0x00DE00C8, 0x00C800C8, 0x00000000
-.word 0x01000000, CameraBBH02_0C, 0x064D0000, 0x00DE00C8, 0x00C800C8, 0x00000000
-.word 0x01000000, CameraBBH02_0C, 0x07230000, 0x05B300C8, 0x00C800C8, 0x00000000
-.word 0x01000000, CameraBBH02_0C, 0xFE110333, 0x057F00C8, 0x00C800C8, 0x00000000
-.word 0x01000000, CameraBBH02_0C, 0xFE110333, 0x028000FA, 0x00C800C8, 0x00000000
-.word 0x01000000, CameraBBH02_0C, 0x00B30333, 0x00DE00C8, 0x00C800C8, 0x00000000
-.word 0x01000000, CameraBBH02_0C, 0x064D0333, 0x00DE00C8, 0x00C800C8, 0x00000000
-.word 0x01000000, CameraBBH02_0C, 0x07230333, 0x01E600C8, 0x00C800C8, 0x00000000
-.word 0x01000000, CameraBBH02_0C, 0x07230333, 0x071A00C8, 0x00C800C8, 0x00000000
-.word 0x01000000, CameraBBH0D_OF, 0x09410000, 0x05B300C8, 0x00C800C8, 0x00000000
-.word 0x01000000, CameraBBH0D_OF, 0x0D1A0000, 0x054300C8, 0x00C800C8, 0x00000000
-.word 0x01000000, CameraBBH0D_OF, 0x0B330202, 0x07330200, 0x00660199, 0x00000000
-.word 0x01000000, CameraBBH10_11, 0x0D1A0000, 0x032400C8, 0x00C800C8, 0x00000000
-.word 0x01000000, CameraBBH10_11, 0x064D0000, 0xFEC000C8, 0x00C800C8, 0x00000000
+.word 0x01000000, CameraBBH020C, 0x00DE0000, 0x05B200C8, 0x00C800C8, 0x00000000
+.word 0x01000000, CameraBBH020C, 0x00DE0000, 0x027F00C8, 0x00C800C8, 0x00000000
+.word 0x01000000, CameraBBH020C, 0x01B30000, 0x00DE00C8, 0x00C800C8, 0x00000000
+.word 0x01000000, CameraBBH020C, 0x064D0000, 0x00DE00C8, 0x00C800C8, 0x00000000
+.word 0x01000000, CameraBBH020C, 0x07230000, 0x05B300C8, 0x00C800C8, 0x00000000
+.word 0x01000000, CameraBBH020C, 0xFE110333, 0x057F00C8, 0x00C800C8, 0x00000000
+.word 0x01000000, CameraBBH020C, 0xFE110333, 0x028000FA, 0x00C800C8, 0x00000000
+.word 0x01000000, CameraBBH020C, 0x00B30333, 0x00DE00C8, 0x00C800C8, 0x00000000
+.word 0x01000000, CameraBBH020C, 0x064D0333, 0x00DE00C8, 0x00C800C8, 0x00000000
+.word 0x01000000, CameraBBH020C, 0x07230333, 0x01E600C8, 0x00C800C8, 0x00000000
+.word 0x01000000, CameraBBH020C, 0x07230333, 0x071A00C8, 0x00C800C8, 0x00000000
+.word 0x01000000, CameraBBH0D0F, 0x09410000, 0x05B300C8, 0x00C800C8, 0x00000000
+.word 0x01000000, CameraBBH0D0F, 0x0D1A0000, 0x054300C8, 0x00C800C8, 0x00000000
+.word 0x01000000, CameraBBH0D0F, 0x0B330202, 0x07330200, 0x00660199, 0x00000000
+.word 0x01000000, CameraBBH1011, 0x0D1A0000, 0x032400C8, 0x00C800C8, 0x00000000
+.word 0x01000000, CameraBBH1011, 0x064D0000, 0xFEC000C8, 0x00C800C8, 0x00000000
 .word 0x01000000, CameraBBH12, 0x01B30000, 0xFEC000C8, 0x00C800C8, 0x00000000
 .word 0x01000000, CameraBBH1314, 0xF81B0000, 0x032300C8, 0x00C800C8, 0x00000000
 .word 0x01000000, CameraBBH1314, 0xFEC00000, 0x028000C8, 0x00C800C8, 0x00000000
@@ -142,13 +142,13 @@ glabel TableCameraBBH
 .word 0x01000000, CameraBBH2A, 0x090004CC, 0xFCCD0066, 0x019E02CC, 0x00000000
 .word 0x01000000, CameraBBH2B2C, 0xFBF30333, 0x028000C8, 0x00C800C8, 0x00000000
 .word 0x01000000, CameraBBH2B2C, 0xF84E0400, 0x032300C8, 0x00C800C8, 0x00000000
-.word 0x01000000, CameraBBH02_0C, 0x07230333, 0x071A00C8, 0x00C800C8, 0x00000000
+.word 0x01000000, CameraBBH020C, 0x07230333, 0x071A00C8, 0x00C800C8, 0x00000000
 .word 0x01000000, CameraBBH2E2F, 0x0933FBA8, 0xFF3F04CC, 0x01F4053F, 0x00000000
 .word 0x01000000, CameraBBH2E2F, 0x0933F941, 0x058204CC, 0x01F402C1, 0x00000000
-.word 0x01000000, CameraBBH30_33, 0x0000F667, 0x072300FA, 0x00C800FA, 0x00000000
-.word 0x01000000, CameraBBH30_33, 0x0000F667, 0x094100FA, 0x00C800FA, 0x00000000
-.word 0x01000000, CameraBBH30_33, 0x0000F667, 0x134100FA, 0x00C800FA, 0x00000000
-.word 0x01000000, CameraBBH30_33, 0x0000F667, 0x112300FA, 0x00C800FA, 0x00000000
+.word 0x01000000, CameraBBH3033, 0x0000F667, 0x072300FA, 0x00C800FA, 0x00000000
+.word 0x01000000, CameraBBH3033, 0x0000F667, 0x094100FA, 0x00C800FA, 0x00000000
+.word 0x01000000, CameraBBH3033, 0x0000F667, 0x134100FA, 0x00C800FA, 0x00000000
+.word 0x01000000, CameraBBH3033, 0x0000F667, 0x112300FA, 0x00C800FA, 0x00000000
 .word 0x01000000, CameraBBH34, 0x075FF667, 0x00CC00FA, 0x00C800FA, 0x00000000
 .word 0x01000000, CameraBBH3536, 0x04F8F667, 0x00CC00FA, 0x00C800FA, 0x00000000
 .word 0x01000000, CameraBBH3536, 0xF96FF667, 0x00CC00FA, 0x00C800FA, 0x00000000
@@ -256,193 +256,193 @@ glabel D_8032E4E4
 glabel D_8032E52C
 	.incbin "bin/sm64.j.0E8DF0.bin", 0x73C, 0x48
 
-glabel TableCutScenePeachEnd
-.word CutScenePeachEnd0, 0x00AA0000
-.word CutScenePeachEnd1, 0x00460000
-.word CutScenePeachEnd2, 0x004B0000
-.word CutScenePeachEnd3, 0x01820000
-.word CutScenePeachEnd4, 0x008B0000
-.word CutScenePeachEnd5, 0x024E0000
-.word CutScenePeachEnd6, 0x005F0000
-.word CutScenePeachEnd7, 0x01A90000
-.word CutScenePeachEnd8, 0x00EC0000
-.word CutScenePeachEnd9, 0x00F50000
-.word CutScenePeachEndA, 0x7FFF0000
-.word CutScenePeachEndB, 0x00000000
+glabel TableCutscenePeachEnd
+.word CutscenePeachEnd0, 0x00AA0000
+.word CutscenePeachEnd1, 0x00460000
+.word CutscenePeachEnd2, 0x004B0000
+.word CutscenePeachEnd3, 0x01820000
+.word CutscenePeachEnd4, 0x008B0000
+.word CutscenePeachEnd5, 0x024E0000
+.word CutscenePeachEnd6, 0x005F0000
+.word CutscenePeachEnd7, 0x01A90000
+.word CutscenePeachEnd8, 0x00EC0000
+.word CutscenePeachEnd9, 0x00F50000
+.word CutscenePeachEndA, 0x7FFF0000
+.word CutscenePeachEndB, 0x00000000
 
-glabel TableCutSceneGrandStar
-.word CutSceneGrandStar0, 0x01680000
-.word CutSceneGrandStar1, 0x7FFF0000
+glabel TableCutsceneGrandStar
+.word CutsceneGrandStar0, 0x01680000
+.word CutsceneGrandStar1, 0x7FFF0000
 
-glabel TableCutScene0FTodo
-.word CutScene0FTodo_0, 0x00010000
-.word CutScene0FTodo_1, 0x7FFF0000
+glabel TableCutscene0FTodo
+.word Cutscene0FTodo_0, 0x00010000
+.word Cutscene0FTodo_1, 0x7FFF0000
 
-glabel TableCutSceneDoorWarp
-.word CutSceneDoor0, 0x00010000
-.word CutSceneDoorWarp1, 0x7FFF0000
+glabel TableCutsceneDoorWarp
+.word CutsceneDoor0, 0x00010000
+.word CutsceneDoorWarp1, 0x7FFF0000
 
-glabel TableCutSceneEndWaving
-.word CutSceneEndWaving, 0x7FFF0000
+glabel TableCutsceneEndWaving
+.word CutsceneEndWaving, 0x7FFF0000
 
-glabel TableCutSceneEndCredits
-.word CutSceneCredits, 0x7FFF0000
+glabel TableCutsceneEndCredits
+.word CutsceneCredits, 0x7FFF0000
 
-glabel TableCutSceneDoor00
-.word CutSceneDoor0, 0x00010000
-.word CutSceneDoor1, 0x001E0000
-.word CutSceneDoor2, 0x00010000
-.word CutSceneDoor3, 0x00320000
-.word CutSceneDoor4, 0x00000000
+glabel TableCutsceneDoor00
+.word CutsceneDoor0, 0x00010000
+.word CutsceneDoor1, 0x001E0000
+.word CutsceneDoor2, 0x00010000
+.word CutsceneDoor3, 0x00320000
+.word CutsceneDoor4, 0x00000000
 
-glabel TableCutSceneDoor01
-.word CutSceneDoor0, 0x00010000
-.word CutSceneDoor1, 0x00140000
-.word CutSceneDoor2, 0x00010000
-.word CutSceneDoor3, 0x00320000
-.word CutSceneDoor4, 0x00000000
+glabel TableCutsceneDoor01
+.word CutsceneDoor0, 0x00010000
+.word CutsceneDoor1, 0x00140000
+.word CutsceneDoor2, 0x00010000
+.word CutsceneDoor3, 0x00320000
+.word CutsceneDoor4, 0x00000000
 
-glabel TableCutSceneDoor0A
-.word CutSceneDoor0, 0x00010000
-.word CutSceneDoor1, 0x001E0000
-.word CutSceneDoorAB_2, 0x7FFF0000
+glabel TableCutsceneDoor0A
+.word CutsceneDoor0, 0x00010000
+.word CutsceneDoor1, 0x001E0000
+.word CutsceneDoorAB_2, 0x7FFF0000
 
-glabel TableCutSceneDoor0B
-.word CutSceneDoor0, 0x00010000
-.word CutSceneDoor1, 0x00140000
-.word CutSceneDoorAB_2, 0x7FFF0000
+glabel TableCutsceneDoor0B
+.word CutsceneDoor0, 0x00010000
+.word CutsceneDoor1, 0x00140000
+.word CutsceneDoorAB_2, 0x7FFF0000
 
-glabel TableCutSceneEnterCannon
-.word CutSceneEnterCannon0, 0x00010000
-.word CutSceneEnterCannon1, 0x00790000
-.word CutSceneEnterCannon2, 0x00000000
+glabel TableCutsceneEnterCannon
+.word CutsceneEnterCannon0, 0x00010000
+.word CutsceneEnterCannon1, 0x00790000
+.word CutsceneEnterCannon2, 0x00000000
 
-glabel TableCutSceneStarSpawn
-.word CutSceneStarSpawn0, 0x7FFF0000
-.word CutSceneStarSpawn1, 0x000F0000
-.word CutSceneStarSpawn2, 0x00000000
+glabel TableCutsceneStarSpawn
+.word CutsceneStarSpawn0, 0x7FFF0000
+.word CutsceneStarSpawn1, 0x000F0000
+.word CutsceneStarSpawn2, 0x00000000
 
-glabel TableCutSceneSpecialStarSpawn
-.word CutSceneSpecialStarSpawn0, 0x7FFF0000
-.word CutSceneSpecialStarSpawn1, 0x00000000
+glabel TableCutsceneSpecialStarSpawn
+.word CutsceneSpecialStarSpawn0, 0x7FFF0000
+.word CutsceneSpecialStarSpawn1, 0x00000000
 
-glabel TableCutSceneEnterPainting
-.word CutSceneEnterPainting, 0x7FFF0000
+glabel TableCutsceneEnterPainting
+.word CutsceneEnterPainting, 0x7FFF0000
 
-glabel TableCutSceneExitPaintingDeath
-.word CutSceneExitPainting0, 0x00760000
-.word CutSceneExitPainting1, 0x00000000
+glabel TableCutsceneExitPaintingDeath
+.word CutsceneExitPainting0, 0x00760000
+.word CutsceneExitPainting1, 0x00000000
 
-glabel TableCutSceneExitPaintingSuccess
-.word CutSceneExitPainting0, 0x00B40000
-.word CutSceneExitPainting1, 0x00000000
+glabel TableCutsceneExitPaintingSuccess
+.word CutsceneExitPainting0, 0x00B40000
+.word CutsceneExitPainting1, 0x00000000
 
-glabel TableCutScene11Todo
-.word CutScene11Todo_0, 0x00010000
-.word CutScene11Todo_1, 0x003C0000
-.word CutSceneExitPainting1, 0x00000000
+glabel TableCutscene11Todo
+.word Cutscene11Todo_0, 0x00010000
+.word Cutscene11Todo_1, 0x003C0000
+.word CutsceneExitPainting1, 0x00000000
 
-glabel TableCutSceneIntroPeach
-.word CutSceneIntroPeach0, 0x7FFF0000
-.word CutSceneIntroPeach1, 0x00230000
-.word CutSceneIntroPeach2, 0x03340000
-.word CutSceneIntroPeach3, 0x010E0000
-.word CutSceneIntroPeach4, 0x7FFF0000
+glabel TableCutsceneIntroPeach
+.word CutsceneIntroPeach0, 0x7FFF0000
+.word CutsceneIntroPeach1, 0x00230000
+.word CutsceneIntroPeach2, 0x03340000
+.word CutsceneIntroPeach3, 0x010E0000
+.word CutsceneIntroPeach4, 0x7FFF0000
 
-glabel TableCutScenePrepareCannon
-.word CutScenePrepareCannon0, 0x00AA0000
-.word CutScenePrepareCannon1, 0x00000000
+glabel TableCutscenePrepareCannon
+.word CutscenePrepareCannon0, 0x00AA0000
+.word CutscenePrepareCannon1, 0x00000000
 
-glabel TableCutSceneExitWaterfall
-.word CutSceneExitWaterfall0, 0x00340000
-.word CutSceneFallCommon, 0x00000000
+glabel TableCutsceneExitWaterfall
+.word CutsceneExitWaterfall0, 0x00340000
+.word CutsceneFallCommon, 0x00000000
 
-glabel TableCutSceneFallToCastleGrounds
-.word CutSceneFallToCastleGrounds0, 0x00490000
-.word CutSceneFallCommon, 0x00000000
+glabel TableCutsceneFallToCastleGrounds
+.word CutsceneFallToCastleGrounds0, 0x00490000
+.word CutsceneFallCommon, 0x00000000
 
-glabel TableCutSceneEnterPyramidTop
-.word CutSceneEnterPyramidTop0, 0x005A0000
-.word CutSceneFallCommon, 0x00000000
+glabel TableCutsceneEnterPyramidTop
+.word CutsceneEnterPyramidTop0, 0x005A0000
+.word CutsceneFallCommon, 0x00000000
 
-glabel TableCutScene26Todo
-.word CutScene26Todo_0, 0x7FFF0000
-.word CutScene26Todo_1, 0x00960000
-.word CutScene26Todo_2, 0x00000000
+glabel TableCutscene26Todo
+.word Cutscene26Todo_0, 0x7FFF0000
+.word Cutscene26Todo_1, 0x00960000
+.word Cutscene26Todo_2, 0x00000000
 
-glabel TableCutSceneDeath1
-.word CutSceneDeath1, 0x7FFF0000
+glabel TableCutsceneDeath1
+.word CutsceneDeath1, 0x7FFF0000
 
-glabel TableCutSceneEnterPool
-.word CutSceneEnterPool0, 0x00640000
-.word CutSceneFallCommon, 0x00000000
+glabel TableCutsceneEnterPool
+.word CutsceneEnterPool0, 0x00640000
+.word CutsceneFallCommon, 0x00000000
 
-glabel TableCutSceneDeath2
-.word CutSceneDeath2, 0x7FFF0000
+glabel TableCutsceneDeath2
+.word CutsceneDeath2, 0x7FFF0000
 
-glabel TableCutSceneBBHDeath
-.word CutSceneBBHDeath, 0x7FFF0000
+glabel TableCutsceneBBHDeath
+.word CutsceneBBHDeath, 0x7FFF0000
 
-glabel TableCutSceneQuicksandDeath
-.word CutSceneQuicksandDeath0, 0x7FFF0000
-.word CutSceneQuicksandDeath0, 0x7FFF0000
+glabel TableCutsceneQuicksandDeath
+.word CutsceneQuicksandDeath0, 0x7FFF0000
+.word CutsceneQuicksandDeath0, 0x7FFF0000
 
-glabel TableCutScene1ATodo
-.word CutScene1ATodo, 0x7FFF0000
+glabel TableCutscene1ATodo
+.word Cutscene1ATodo, 0x7FFF0000
 
-glabel TableCutSceneEnterBowserPlatform
-.word CutSceneEnterBowserPlatform0, 0x00B40000
-.word CutSceneEnterBowserPlatform1, 0x7FFF0000
-.word CutSceneEnterBowserPlatform2, 0x00000000
+glabel TableCutsceneEnterBowserPlatform
+.word CutsceneEnterBowserPlatform0, 0x00B40000
+.word CutsceneEnterBowserPlatform1, 0x7FFF0000
+.word CutsceneEnterBowserPlatform2, 0x00000000
 
-glabel TableCutSceneStarDance1
-.word CutSceneStarDance1, 0x7FFF0000
+glabel TableCutsceneStarDance1
+.word CutsceneStarDance1, 0x7FFF0000
 
-glabel TableCutSceneStarDance2
-.word CutSceneStarDance2, 0x7FFF0000
+glabel TableCutsceneStarDance2
+.word CutsceneStarDance2, 0x7FFF0000
 
-glabel TableCutSceneStarDance3
-.word CutSceneStarDance3, 0x7FFF0000
+glabel TableCutsceneStarDance3
+.word CutsceneStarDance3, 0x7FFF0000
 
-glabel TableCutSceneKeyDance
-.word CutSceneKeyDance, 0x7FFF0000
+glabel TableCutsceneKeyDance
+.word CutsceneKeyDance, 0x7FFF0000
 
-glabel TableCutSceneCapSwitchPress
-.word CutSceneCapSwitchPress, 0x7FFF0000
+glabel TableCutsceneCapSwitchPress
+.word CutsceneCapSwitchPress, 0x7FFF0000
 
-glabel TableCutSceneSlidingDoorOpen
-.word CutSceneSlidingDoorsOpen0, 0x00320000
-.word CutSceneSlidingDoubleDoorsOpen1, 0x00000000
+glabel TableCutsceneSlidingDoorOpen
+.word CutsceneSlidingDoorsOpen0, 0x00320000
+.word CutsceneSlidingDoubleDoorsOpen1, 0x00000000
 
-glabel TableCutSceneUnlockKeyDoor
-.word CutSceneUnlockKeyDoor0, 0x00C80000
-.word CutSceneSlidingDoubleDoorsOpen1, 0x00000000
+glabel TableCutsceneUnlockKeyDoor
+.word CutsceneUnlockKeyDoor0, 0x00C80000
+.word CutsceneSlidingDoubleDoorsOpen1, 0x00000000
 
-glabel TableCutSceneExitBowserSuccess
-.word CutSceneExitBowserSuccess0, 0x00BE0000
-.word CutSceneExitNonPainting1, 0x00000000
+glabel TableCutsceneExitBowserSuccess
+.word CutsceneExitBowserSuccess0, 0x00BE0000
+.word CutsceneExitNonPainting1, 0x00000000
 
-glabel TableCutScene1CTodo
-.word CutScene1CTodo_0, 0x00780000
-.word CutSceneExitNonPainting1, 0x00000000
+glabel TableCutscene1CTodo
+.word Cutscene1CTodo_0, 0x00780000
+.word CutsceneExitNonPainting1, 0x00000000
 
-glabel TableCutSceneBBHExitSuccess
-.word CutSceneBBHExitSuccess0, 0x00A30000
-.word CutSceneExitNonPainting1, 0x00000000
+glabel TableCutsceneBBHExitSuccess
+.word CutsceneBBHExitSuccess0, 0x00A30000
+.word CutsceneExitNonPainting1, 0x00000000
 
-glabel TableCutSceneNonPaintingDeath
-.word CutSceneNonPaintingDeath0, 0x00780000
-.word CutSceneExitNonPainting1, 0x00000000
+glabel TableCutsceneNonPaintingDeath
+.word CutsceneNonPaintingDeath0, 0x00780000
+.word CutsceneExitNonPainting1, 0x00000000
 
-glabel TableCutSceneDialog
-.word CutSceneDialog0, 0x7FFF0000
-.word CutSceneDialog1, 0x000C0000
-.word CutSceneDialog2, 0x00000000
+glabel TableCutsceneDialog
+.word CutsceneDialog0, 0x7FFF0000
+.word CutsceneDialog1, 0x000C0000
+.word CutsceneDialog2, 0x00000000
 
-glabel TableCutSceneReadMessage
-.word CutSceneReadMessage0, 0x7FFF0000
-.word CutSceneReadMessage1, 0x000F0000
-.word CutSceneReadMessage2, 0x00000000
+glabel TableCutsceneReadMessage
+.word CutsceneReadMessage0, 0x7FFF0000
+.word CutsceneReadMessage1, 0x000F0000
+.word CutsceneReadMessage2, 0x00000000
 
 # Unknown region 0E98A4-0EA10C [868]
 glabel D_8032E8A4
