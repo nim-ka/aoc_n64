@@ -122,15 +122,7 @@ glabel D_80225DD8
 glabel D_80225E98
     .space 0x10
 glabel D_80225EA8
-    .space 0x4
-glabel D_80225EAC
-    .space 0xC
-glabel D_80225EB8
-    .space 0x10
-glabel D_80225EC8
-    .space 0x10
-glabel D_80225ED8
-    .space 0x10
+    .space 0x40
 glabel D_80225EE8
     .space 0x18
 glabel D_80225F00

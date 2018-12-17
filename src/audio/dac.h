@@ -42,7 +42,7 @@ extern u8 D_802214F8[]; // same type
 // extern ? D_8022185C;
 extern volatile s32 D_80226D84;
 extern u32 D_80226B38;
-// extern ? D_80226D64;
+extern s32 D_80226D64;
 // extern ? D_80226D74;
 // extern ? D_802212A3;
 // extern ? D_80333EE4;

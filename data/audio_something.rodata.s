@@ -2,9 +2,6 @@
 
 .section .rodata
 
-# audio
-	.balign 8
-
 glabel D_80337BB0
 .ifdef VERSION_JP
 	.incbin "bin/rodata.bin", 0x3140, 0x8

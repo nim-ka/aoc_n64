@@ -214,6 +214,8 @@ SECTIONS
       BUILD_DIR/data/obj_behaviors_1.rodata.o(.rodata*);
       BUILD_DIR/src/obj_behaviors_2.o(.rodata*);
       BUILD_DIR/data/audio_something.rodata.o(.rodata*);
+      BUILD_DIR/data/audio_dac.rodata.o(.rodata*);
+      BUILD_DIR/src/audio/playback.o(.rodata*);
       BUILD_DIR/data/audio.rodata.o(.rodata*);
    }
    END_SEG(main)
