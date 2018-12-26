@@ -2545,7 +2545,7 @@ void func_802DC330(void)
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
 #else
     u8 sp78[] = {TEXT_COURSE};//D_803305F4;
-    u8 sp70[] = {TEXT_CATCH};//D_803305F8;
+    UNUSED u8 sp70[] = {TEXT_CATCH};//D_803305F8;
     UNUSED u8 sp68[] = {TEXT_CLEAR};//D_80330600; unused in US
     u8 sp7c[] = {TEXT_UNK35}; //D_803305F0;
 

@@ -612,7 +612,7 @@ s32 func_80278AD4(struct MarioAnimation *a, u32 b)
 
         if (a->currentDma != sp1C)
         {
-            dma_read(a->targetAnim, (void *)sp1C, (void *)(sp1C + sp18));
+            dma_read((void *)a->targetAnim, (void *)sp1C, (void *)(sp1C + sp18));
             a->currentDma = sp1C;
             sp24 = 1;
         }
