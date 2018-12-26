@@ -259,12 +259,12 @@ void thread4_sound(UNUSED void *arg)
         osRecvMesg(&gSoundMesgQueue, &msg, 1);
         if (gResetTimer < 25)
         {
-            OSMesg *sp18;
+            struct SPTask *spTask;
 
             profiler_log_thread4_time();
-            sp18 = func_8031D924();
-            if (sp18 != NULL)
-                dispatch_audio_sptask(sp18);
+            spTask = func_8031D924();
+            if (spTask != NULL)
+                dispatch_audio_sptask(spTask);
             profiler_log_thread4_time();
         }
     }

@@ -11,13 +11,6 @@ struct Unk16
     u8 pad2;
 };
 
-struct Unk80
-{
-    u8 pad1[0x34];
-    s32 unk34;
-    u8 pad2[0x18];
-};
-
 struct Struct_func_80317BE4
 {
     /*0x000*/ u8 pad0 : 4;
@@ -76,6 +69,11 @@ struct Struct_func_8031784C
     struct SubB *subB[1];
 };
 
+struct Struct80332190
+{
+    u8 pad0[0x1C];
+}; // size = 0x1C
+
 // extern ? D_80221198;
 extern u64 D_802211A0[];
 extern OSMesgQueue D_80225EE8;
@@ -103,15 +101,15 @@ extern struct Struct_80226D60 *D_80226D60;
 extern volatile s32 D_80226D80;
 extern s32 D_80226D88;
 extern s32 D_80226D8C;
-extern s32 D_80226D9C;
-extern struct Unk80 D_80226DA0[];
+extern struct SPTask *volatile D_80226D9C;
+extern struct SPTask D_80226DA0[2];
 extern u16 *D_80226E40[3];
-extern u16 D_80226E4C[3];
+extern s16 D_80226E4C[3];
 extern u16 D_80226E52[];
 extern u32 D_80226E58[];
 extern u16 D_80226E98[];
 extern u64 D_80226EC0[]; // unknown type, some sort of end marker
-extern u8 D_80332190[]; // unknown type
+extern struct Struct80332190 D_80332190[]; // unknown type, [27]?
 extern s8 D_80333EE8;
 extern s32 D_80333EF0;
 extern volatile s32 D_80333EF4;
@@ -139,8 +137,8 @@ void *func_80317D1C(s32 arg0, s32 arg1);
 u8 func_80317F04(s32 arg0, s32 *arg1, s32 *arg2);
 void *func_8031804C(s32 arg0, u8 *arg1);
 void func_80318178(u32 arg0, u8 arg1);
-void func_80318280(s32 arg0, s32 arg1, s32 arg2);
-extern void func_803182E0(s32 arg0, s32 arg1, s32 arg2);
+void func_80318280(u32 arg0, s32 arg1, s32 arg2);
+extern void func_803182E0(u32 arg0, s32 arg1, s32 arg2);
 extern void InitAudioSystem(void);
 
 #endif /* _AUDIO_DMA_H */

@@ -1,0 +1,85 @@
+.include "macros.inc"
+
+.section .bss
+
+glabel D_80363830
+    .space 0x80
+glabel D_803638B0
+    .space 0x40
+glabel D_803638F0
+    .space 0x1B0
+glabel D_80363AA0
+    .space 0x1000
+glabel D_80364AA0
+    .space 0x18
+glabel D_80364AB8
+    .space 0x18
+glabel D_80364AD0
+    .space 0x2
+glabel D_80364AD2
+    .space 0x2
+glabel D_80364AD4
+    .space 0x14
+glabel D_80364AE8
+    .space 0x2
+glabel D_80364AEA
+    .space 0x2
+glabel D_80364AEC
+    .space 0x10
+glabel D_80364AFC
+    .space 0x4
+glabel D_80364B00
+    .space 0x1B0
+glabel D_80364CB0
+    .space 0x1000
+glabel D_80365CB0
+    .space 0x18
+glabel D_80365CC8
+    .space 0x8
+glabel D_80365CD0
+    .space 0x10
+glabel D_80365CE0
+    .space 0x3C
+glabel D_80365D1C
+    .space 0x4
+glabel D_80365D20
+    .space 0x1
+glabel D_80365D21
+    .space 0x7
+glabel D_80365D28
+    .space 0x20
+glabel D_80365D48
+    .space 0x18
+glabel D_80365D60
+    .space 0x10
+glabel D_80365D70
+    .space 0x10
+glabel D_80365D80
+    .space 0x20
+glabel D_80365DA0
+    .space 0x4
+glabel D_80365DA4
+    .space 0x4
+glabel D_80365DA8
+    .space 0x4
+glabel D_80365DAC
+    .space 0x4
+glabel D_80365DB0
+    .space 0x10
+glabel D_80365DC0
+    .space 0x8
+glabel D_80365DC8
+    .space 0x18
+glabel D_80365DE0
+    .space 0x8
+glabel D_80365DE8
+    .space 0x18
+glabel D_80365E00
+    .space 0x3C
+glabel D_80365E3C
+    .space 0x4
+glabel D_80365E40
+    .space 0x100
+glabel gInterruptedThread
+    .space 0x1B0
+glabel gBss1End

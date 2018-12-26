@@ -1278,7 +1278,7 @@ void func_80318178(u32 arg0, u8 arg1)
     D_80333EF4 = 0x76557364;
 }
 
-void func_80318280(s32 arg0, s32 arg1, s32 arg2)
+void func_80318280(u32 arg0, s32 arg1, s32 arg2)
 {
     if (arg2 == 0)
     {
@@ -1451,9 +1451,9 @@ void InitAudioSystem(void)
     D_80226D88 = 0;
     D_80226D8C = 0;
     D_80226D7F = 0;
-    D_80226D9C = 0;
-    D_80226DA0[0].unk34 = 0;
-    D_80226DA0[1].unk34 = 0;
+    D_80226D9C = NULL;
+    D_80226DA0[0].data_size = 0;
+    D_80226DA0[1].data_size = 0;
     osCreateMesgQueue(&D_80226500, D_80226518, 1);
     osCreateMesgQueue(&D_80225EE8, D_80225F00, ARRAY_COUNT(D_80225F00));
     D_80226D84 = 0;

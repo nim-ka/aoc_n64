@@ -143,7 +143,7 @@ static void CreateTaskStructure(void)
     gGfxSPTask->task.t.ucode_boot_size = ((u32)rspbootTextEnd - (u32)rspbootTextStart);
     gGfxSPTask->task.t.flags = 0;
     gGfxSPTask->task.t.ucode = rspbootTextEnd;
-    gGfxSPTask->task.t.ucode_data = (u64 *)D_80338750;
+    gGfxSPTask->task.t.ucode_data = D_80338750;
     gGfxSPTask->task.t.ucode_size = SP_UCODE_SIZE;
     gGfxSPTask->task.t.ucode_data_size = SP_UCODE_DATA_SIZE;
     gGfxSPTask->task.t.dram_stack = (u64 *)gGfxSPTaskStack;

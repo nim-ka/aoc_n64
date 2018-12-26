@@ -216,6 +216,7 @@ $(BUILD_DIR)/src/goddard/%.o: MIPSISET := -mips1
 $(BUILD_DIR)/src/audio/%.o: CC := python3 tools/asm_processor/build.py $(CC) -- $(AS) $(ASFLAGS) --
 $(BUILD_DIR)/src/audio/dma.o: OPT_FLAGS := -O2 -framepointer -Wo,-loopunroll,0
 $(BUILD_DIR)/src/audio/playback.o: OPT_FLAGS := -O2 -Wo,-loopunroll,0
+$(BUILD_DIR)/src/audio/interface_2.o: OPT_FLAGS := -O2 -Wo,-loopunroll,0
 
 $(BUILD_DIR)/%.o: %.c
 	@$(CC_CHECK) -MMD -MT $@ -MF $(BUILD_DIR)/$*.d $<

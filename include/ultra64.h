@@ -23,6 +23,7 @@
 #include <ultra64/eeprom.h>
 #include <ultra64/libc.h>
 #include <ultra64/gu.h>
+#include <ultra64/os_ai.h>
 #include <ultra64/libaudio.h>
 
 #endif

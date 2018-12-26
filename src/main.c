@@ -3,12 +3,12 @@
 #include "sm64.h"
 #include "audio/interface_2.h"
 #include "libultra.h"
-#include "main.h"
 #include "game.h"
 #include "memory.h"
 #include "sound_init.h"
 #include "profiler.h"
 #include "game.h"
+#include "main.h"
 
 // Message IDs
 #define MESG_SP_COMPLETE      100
@@ -406,12 +406,12 @@ static void SendMessage(OSMesg *msg)
     osSendMesg(&gSPTaskMesgQueue, msg, OS_MESG_NOBLOCK);
 }
 
-void dispatch_audio_sptask(OSMesg *msg)
+void dispatch_audio_sptask(struct SPTask *spTask)
 {
-    if (sAudioEnabled != 0 && msg != NULL)
+    if (sAudioEnabled != 0 && spTask != NULL)
     {
         osWritebackDCacheAll();
-        osSendMesg(&gSPTaskMesgQueue, msg, OS_MESG_NOBLOCK);
+        osSendMesg(&gSPTaskMesgQueue, (OSMesg) spTask, OS_MESG_NOBLOCK);
     }
 }
 

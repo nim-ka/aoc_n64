@@ -41,7 +41,7 @@ extern u8 gThread5Stack[];
 extern u8 gThread3Stack[];
 
 extern void set_vblank_handler(int a, struct VblankHandler *b, OSMesgQueue *queue, OSMesg *msg);
-extern void dispatch_audio_sptask(OSMesg *msg);
+extern void dispatch_audio_sptask(struct SPTask *spTask);
 extern void SendDisplayList(struct SPTask *a);
 extern void Main(void);
 

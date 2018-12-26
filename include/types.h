@@ -80,11 +80,11 @@ enum SpTaskState {
 
 struct SPTask
 {
-    OSTask task;
-    OSMesgQueue *msgqueue;
-    OSMesg msg;
-    enum SpTaskState state;
-};
+    /*0x00*/ OSTask task;
+    /*0x40*/ OSMesgQueue *msgqueue;
+    /*0x44*/ OSMesg msg;
+    /*0x48*/ enum SpTaskState state;
+}; // size = 0x4C, align = 0x8
 
 struct VblankHandler
 {

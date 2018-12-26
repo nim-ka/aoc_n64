@@ -38,7 +38,7 @@ typedef struct
 
     /*0x38*/ u64 *yield_data_ptr;
     /*0x3C*/ u32 yield_data_size;
-} OSTask_t;
+} OSTask_t; // size = 0x40
 
 typedef union
 {

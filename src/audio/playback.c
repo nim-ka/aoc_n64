@@ -4,6 +4,12 @@
 #include "playback.h"
 #include "dac.h"
 
+#ifdef VERSION_JP
+#define US_FLOAT(x) x
+#else
+#define US_FLOAT(x) x ## f
+#endif
+
 void func_80318870(struct Struct_func_80318870 *arg0)
 {
     if (arg0->unk2C->unk14 == 0)
@@ -130,11 +136,7 @@ void func_80318908(void)
             cap = 3.99992f;
             if (D_80226D64 != 32006)
             {
-#ifdef VERSION_JP
-                f0 *= 32000.0 / (f32) D_80226D64;
-#else
-                f0 *= 32000.0f / (f32) D_80226D64;
-#endif
+                f0 *= US_FLOAT(32000.0) / (f32) D_80226D64;
             }
             f0 = (f0 < cap ? f0 : cap);
             f2 *= 4.3498e-5f;
@@ -236,57 +238,30 @@ void func_80318F04(struct Struct_func_80318870 *arg0, struct SubStruct_func_8031
     u8 lim;
     u8 origUnk5 = arg0->unk5;
 
-#ifdef VERSION_JP
-    if (arg1->unk20 < 1.0)
+    if (arg1->unk20 < US_FLOAT(1.0))
     {
         arg0->unk5 = 64;
-        arg1->unk20 *= 1.0465;
+        arg1->unk20 *= US_FLOAT(1.0465);
         stepSize = 1;
     }
-    else if (arg1->unk20 < 2.0)
+    else if (arg1->unk20 < US_FLOAT(2.0))
     {
         arg0->unk5 = 32;
-        arg1->unk20 *= 0.52325;
+        arg1->unk20 *= US_FLOAT(0.52325);
         stepSize = 2;
     }
-    else if (arg1->unk20 < 4.0)
+    else if (arg1->unk20 < US_FLOAT(4.0))
     {
         arg0->unk5 = 16;
-        arg1->unk20 *= 0.26263;
+        arg1->unk20 *= US_FLOAT(0.26263);
         stepSize = 4;
     }
     else
     {
         arg0->unk5 = 8;
-        arg1->unk20 *= 0.13081;
+        arg1->unk20 *= US_FLOAT(0.13081);
         stepSize = 8;
     }
-#else
-    if (arg1->unk20 < 1.0f)
-    {
-        arg0->unk5 = 64;
-        arg1->unk20 *= 1.0465f;
-        stepSize = 1;
-    }
-    else if (arg1->unk20 < 2.0f)
-    {
-        arg0->unk5 = 32;
-        arg1->unk20 *= 0.52325f;
-        stepSize = 2;
-    }
-    else if (arg1->unk20 < 4.0f)
-    {
-        arg0->unk5 = 16;
-        arg1->unk20 *= 0.26263f;
-        stepSize = 4;
-    }
-    else
-    {
-        arg0->unk5 = 8;
-        arg1->unk20 *= 0.13081f;
-        stepSize = 8;
-    }
-#endif
 
     if (arg0->unk5 == origUnk5 && arg1->unk50->unk18 == arg0->unk6)
     {

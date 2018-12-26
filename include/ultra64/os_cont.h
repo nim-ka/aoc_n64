@@ -31,7 +31,7 @@ typedef struct {
 #define L_CBUTTONS                (1 << 1)  // 0x0002
 #define R_CBUTTONS                (1 << 0)  // 0x0001
 
-s32    osContInit(OSMesgQueue *, u8 *, OSContStatus *);
+s32 osContInit(OSMesgQueue *, u8 *, OSContStatus *);
 void osContGetReadData(OSContPad *);
 
 #endif

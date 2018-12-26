@@ -92,20 +92,8 @@ glabel D_80221A10
     .space 0x1000
 glabel D_80222A10
     .space 0x8
-glabel D_80222A18
-    .space 0x1
-glabel D_80222A19
-    .space 0x1
-glabel D_80222A1A
-    .space 0x16
-glabel D_80222A30
-    .space 0x14
-glabel D_80222A44
-    .space 0x64
-glabel D_80222AA8
-    .space 0x21C
-glabel D_80222CC4
-    .space 0x114
+glabel D_80222A18 # size 0x140 * 3
+    .space 0x3C0
 glabel D_80222DD8
     .space 0x1800
 glabel D_802245D8
@@ -113,7 +101,6 @@ glabel D_802245D8
 glabel D_80224648
     .space 0x1790
 .ifdef VERSION_US
-glabel D_U_802259D8
 	# TODO: Identify me
 	.space 0x200
 .endif

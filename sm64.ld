@@ -121,7 +121,7 @@ SECTIONS
       BUILD_DIR/src/audio/playback.o(.text);
       BUILD_DIR/asm/audio_playback_2.o(.text);
       BUILD_DIR/asm/audio_interface_1.o(.text);
-      BUILD_DIR/asm/audio_interface_2.o(.text);
+      BUILD_DIR/src/audio/interface_2.o(.text);
 #if VERSION_US
       . += 0x40;
 #endif
@@ -171,6 +171,7 @@ SECTIONS
       BUILD_DIR/src/obj_behaviors.o(.data*);
       BUILD_DIR/data/obj_behaviors_1.data.o(.data*);
       BUILD_DIR/src/obj_behaviors_2.o(.data*);
+      BUILD_DIR/src/audio/interface_2.o(.data*);
       BUILD_DIR/data/audio.data.o(.data*);
       BUILD_DIR/data/libultra.data.o(.data*);
       /* rodata */
@@ -217,6 +218,8 @@ SECTIONS
       BUILD_DIR/data/audio_dac.rodata.o(.rodata*);
       BUILD_DIR/src/audio/playback.o(.rodata*);
       BUILD_DIR/data/audio.rodata.o(.rodata*);
+      BUILD_DIR/src/audio/interface_2.o(.rodata*);
+      BUILD_DIR/data/libultra.rodata.o(.rodata*);
    }
    END_SEG(main)
    BEGIN_NOLOAD(main)
@@ -237,6 +240,8 @@ SECTIONS
       BUILD_DIR/data/bss8035FD80.o(.bss*);
       BUILD_DIR/src/hud_print.o(.bss*);
       BUILD_DIR/data/bss803600E0.o(.bss*);
+      BUILD_DIR/src/audio/interface_2.o(.bss*);
+      BUILD_DIR/data/libultra.bss.o(.bss*);
    }
    END_NOLOAD(main)
 

@@ -1195,7 +1195,7 @@ void func_80253E34(struct MarioState *m)
             m->health = 0xFF;
 
         if (((m->action & ACT_GROUP_MASK) == ACT_GROUP_SUBMERGED) && (m->health < 0x300))
-            SetSound(0x1c180001, &D_803320E0);
+            SetSound(0x1c180001, D_803320E0);
     }
 }
 

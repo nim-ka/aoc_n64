@@ -1,10 +1,23 @@
-#ifndef _AUDIO_INTEFACE_1_H
-#define _AUDIO_INTEFACE_1_H
+#ifndef _AUDIO_INTERFACE_1_H
+#define _AUDIO_INTERFACE_1_H
 
 #include "types.h"
 
+struct Struct80225DD8
+{
+    u8 pad0;
+    u8 unk1;
+    u8 unk2;
+    u8 pad1[2];
+    u8 unk5;
+    u8 pad3[0x3a];
+    s32 unk40;
+}; // unknown size
+
+struct Struct80222A18;
+
 // extern ? D_80225E98;
-// extern ? D_80225DD8;
+extern struct Struct80225DD8 D_80225DD8;
 // extern ? D_80332AA4;
 // extern ? D_80332AB4;
 // extern ? D_802245D8;
@@ -23,7 +36,7 @@
 // extern ? func_8031AB84(?);
 // extern ? func_8031ACB0(?);
 // extern ? func_8031AD80(?);
-// extern ? func_8031AE24(?);
+extern void func_8031AE24(struct Struct80222A18* arg0);
 // extern ? func_8031AEF4(?);
 // extern ? func_8031AF34(?);
 // extern ? func_8031AF74(?);
@@ -40,4 +53,4 @@
 // extern ? func_8031D42C(?);
 extern void func_8031D4B8(void);
 
-#endif /* _AUDIO_INTEFACE_1_H */
+#endif /* _AUDIO_INTERFACE_1_H */

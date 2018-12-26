@@ -2600,7 +2600,7 @@ void BehBookSwitchLoop(void)
                 {
                     if (o->parentObj->oBookSwitchManagerUnkF4 == o->oBehParams2ndByte)
                     {
-                        SetSound(0x806AA081, &D_803320E0);
+                        SetSound(0x806AA081, D_803320E0);
                         o->parentObj->oBookSwitchManagerUnkF4 += 1;
                     }
                     else
@@ -2608,7 +2608,7 @@ void BehBookSwitchLoop(void)
                         sp36 = RandomU16() & 0x1;
                         sp34 = gMarioObject->oPosZ + 1.5f * gMarioStates[0].vel[2];
 
-                        SetSound(0x700E0081, &D_803320E0);
+                        SetSound(0x700E0081, D_803320E0);
                         if (sp34 > 0)
                         {
                             sp34 = 0;
