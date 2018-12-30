@@ -106,7 +106,7 @@ static s32 read_eeprom_data(void *buffer, s32 size)
  * The EEPROM address is computed using the offset of the source address from
  * gSaveBuffer.
  * Try at most 4 times, and return 0 on success. On failure, return the status
- * returned from osEepromLongRead.
+ * returned from osEepromLongWrite.
  * Unlike read_eeprom_data, return 1 if EEPROM isn't loaded.
  */
 static s32 write_eeprom_data(void *buffer, s32 size)

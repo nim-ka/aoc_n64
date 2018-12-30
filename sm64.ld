@@ -101,7 +101,7 @@ SECTIONS
       BUILD_DIR/src/spawn_object.o(.text);
       BUILD_DIR/src/spawn_sound.o(.text);
       BUILD_DIR/src/debug.o(.text);
-      BUILD_DIR/asm/screen_transition.o(.text);
+      BUILD_DIR/src/screen_transition.o(.text);
       BUILD_DIR/src/shadow.o(.text);
       BUILD_DIR/src/skybox.o(.text);
       BUILD_DIR/src/moving_texture.o(.text);
@@ -157,7 +157,7 @@ SECTIONS
       BUILD_DIR/src/platform_displacement.o(.data*);
       BUILD_DIR/src/spawn_sound.o(.data*);
       BUILD_DIR/src/debug.o(.data*);
-      BUILD_DIR/data/screen_transition.data.o(.data*);
+      BUILD_DIR/src/screen_transition.o(.data*);
       BUILD_DIR/src/shadow.o(.data*);
       BUILD_DIR/src/skybox.o(.data*);
       BUILD_DIR/src/moving_texture.o(.data*);
@@ -201,7 +201,7 @@ SECTIONS
       BUILD_DIR/src/spawn_object.o(.rodata*);
       BUILD_DIR/src/spawn_sound.o(.rodata*);
       BUILD_DIR/src/debug.o(.rodata*);
-      BUILD_DIR/data/screen_transition.rodata.o(.rodata*);
+      BUILD_DIR/src/screen_transition.o(.rodata*);
       BUILD_DIR/src/shadow.o(.rodata*);
       BUILD_DIR/src/skybox.o(.rodata*);
       BUILD_DIR/src/moving_texture.o(.rodata*);
