@@ -138,8 +138,8 @@ void run_demo_inputs(void)
         */
         if(gControllers[1].controllerData != NULL)
         {
-            gControllers[1].controllerData->rawStickX = 0;
-            gControllers[1].controllerData->rawStickY = 0;
+            gControllers[1].controllerData->stick_x = 0;
+            gControllers[1].controllerData->stick_y = 0;
             gControllers[1].controllerData->button = 0;
         }
 
@@ -147,8 +147,8 @@ void run_demo_inputs(void)
         // set the button to the END_DEMO mask to end the demo.
         if(gCurrDemoInput->timer == 0)
         {
-            gControllers[0].controllerData->rawStickX = 0;
-            gControllers[0].controllerData->rawStickY = 0;
+            gControllers[0].controllerData->stick_x = 0;
+            gControllers[0].controllerData->stick_y = 0;
             gControllers[0].controllerData->button = END_DEMO;
         }
         else
@@ -158,8 +158,8 @@ void run_demo_inputs(void)
             u16 startPushed = gControllers[0].controllerData->button & START_BUTTON;
 
             // perform the demo inputs by assigning the current button mask and the stick inputs.
-            gControllers[0].controllerData->rawStickX = gCurrDemoInput->rawStickX;
-            gControllers[0].controllerData->rawStickY = gCurrDemoInput->rawStickY;
+            gControllers[0].controllerData->stick_x = gCurrDemoInput->rawStickX;
+            gControllers[0].controllerData->stick_y = gCurrDemoInput->rawStickY;
 
             /*
                 to assign the demo input, the button information is stored in 
@@ -207,8 +207,8 @@ void read_controller_inputs(void)
         // with the new button info.
         if(controller->controllerData != NULL)
         {
-            controller->rawStickX     =  controller->controllerData->rawStickX;
-            controller->rawStickY     =  controller->controllerData->rawStickY;
+            controller->rawStickX     =  controller->controllerData->stick_x;
+            controller->rawStickY     =  controller->controllerData->stick_y;
             controller->buttonPressed =  controller->controllerData->button 
                                       & (controller->controllerData->button 
                                       ^  controller->buttonDown);

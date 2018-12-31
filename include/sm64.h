@@ -460,10 +460,10 @@ extern void func_u_803219AC();
 /*
  this input mask is unused by the controller,
  but END_DEMO is used internally to signal
- the demo to end. These two buttons cannot
+ the demo to end. This button cannot
  be pressed normally by a controller.
 */
-#define END_DEMO       DUMMY_1
+#define END_DEMO       (1 << 7)
 
 #define VALID_BUTTONS (A_BUTTON   | B_BUTTON   | Z_TRIG     | START_BUTTON | \
                        U_JPAD     | D_JPAD     | L_JPAD     | R_JPAD       | \

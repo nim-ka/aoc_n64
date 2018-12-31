@@ -1,7 +1,7 @@
 #ifndef _STDARG_H_
 #define _STDARG_H_
 
-#include <stddef.h>
+#include <ultra64.h>
 
 typedef char *va_list;
 

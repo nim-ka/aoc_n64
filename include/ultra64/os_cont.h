@@ -9,8 +9,8 @@ typedef struct {
 
 typedef struct {
  /*0x00*/ u16     button;
- /*0x02*/ s8      rawStickX;        /* -80 <= stick_x <= 80 */
- /*0x03*/ s8      rawStickY;        /* -80 <= stick_y <= 80 */
+ /*0x02*/ s8      stick_x;        /* -80 <= stick_x <= 80 */
+ /*0x03*/ s8      stick_y;        /* -80 <= stick_y <= 80 */
  /*0x04*/ u8      errno;
 } OSContPad;
 

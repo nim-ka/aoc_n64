@@ -1,7 +1,6 @@
 #ifndef _ULTRA64_H_
 #define _ULTRA64_H_
 
-#include <stddef.h>
 #include <math.h>
 
 #include <ultra64/types.h>

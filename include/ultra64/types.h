@@ -1,6 +1,10 @@
 #ifndef _ULTRA64_TYPES_H_
 #define _ULTRA64_TYPES_H_
 
+#ifndef NULL
+#define NULL    (void *)0
+#endif
+
 #define TRUE 1
 #define FALSE 0
 
@@ -25,12 +29,13 @@ typedef volatile s64 vs64;
 typedef float  f32;
 typedef double f64;
 
-
 typedef long int Mtx_t[4][4];
 typedef union
 {
     Mtx_t m;
     long long int forc_structure_alignment;
 } Mtx;
+
+typedef unsigned long size_t;
 
 #endif

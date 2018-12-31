@@ -45,7 +45,7 @@ void func_80248C10(void)
     D_8032C6C0 = 0;
 }
 
-void func_80248C28(int a)
+void func_80248C28(s32 a)
 {
     switch (a)
     {
@@ -59,7 +59,7 @@ void func_80248C28(int a)
     D_8032C6C0 |= a;
 }
 
-void func_80248CB8(int a)
+void func_80248CB8(s32 a)
 {
     switch (a)
     {

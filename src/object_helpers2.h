@@ -78,7 +78,7 @@ void clear_time_stop_flag(s32);
 extern s32 obj_is_mario_in_range_and_ready_to_speak(f32 sp18, f32 sp1C);
 // extern ? obj_end_dialogue(?);
 // extern ? obj_update_dialogue_unk1(?);
-extern int obj_update_dialogue_unk2();
+s32 obj_update_dialogue_unk2(s32 arg0, s32 dialogueFlags, s32 dialogueID, s32 arg3);
 // extern ? obj_has_model(?);
 extern void obj_align_gfx_with_floor(void);
 // extern ? mario_is_within_rectangle(?);

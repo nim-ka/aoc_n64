@@ -175,8 +175,8 @@ typedef union
 #define G_MV_MATRIX_3 0x9A
 #define G_MV_MATRIX_4 0x9C
 
-#define G_SET_OTHER_MODE_L 0xB9
-#define G_SET_OTHER_MODE_H 0xBA
+#define G_SETOTHERMODE_L 0xB9
+#define G_SETOTHERMODE_H 0xBA
 
 #ifndef MAX
 #define MAX(a, b)               ((a) > (b) ? (a) : (b))

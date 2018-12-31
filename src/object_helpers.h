@@ -256,7 +256,7 @@ void func_8029F6F0(void);
 extern void func_8029F728(void);
 extern s32 func_8029F788(void);
 extern s32 func_8029F828(void);
-extern int obj_check_anim_frame(int);
+extern s32 obj_check_anim_frame(s32);
 extern s32 func_8029F8D4(s32, s32);
 // extern ? Unknown8029F930(?);
 s32 mario_is_in_air_action(void);
