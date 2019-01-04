@@ -4,6 +4,7 @@
 
 .section .data
 
+.balign 16
 glabel D_8032B800
 	.incbin "bin/sm64.j.0E6800.rsp.audio.bin"
 
