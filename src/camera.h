@@ -172,7 +172,6 @@ extern s16 D_8033B4D8;
 extern s16 D_8033B4DA;
 extern struct Struct8033B6F0 D_8033B6F0[];
 extern u32 D_8033B858;
-extern s16 D_8035FE10;
 
 
 

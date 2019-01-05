@@ -12,16 +12,6 @@ enum DebugPage {
     DEBUG_PAGE_ENEMYINFO         // 5: enemyinfo
 };
 
-// these were 2d grids that probably functioned as
-// recording debug information for all debug info
-// systems. however, the only used ones are [4]
-// and [5] (effectinfo and enemyinfo). The first
-// 4 rows are effectively unused, despite being
-// modifyable by the debug control function.
-extern s16 gDebugInfo[][8];
-extern s16 gDebugInfoOverwrite[][8]; // most likely used to manually copy in
-                                     // preset controls, since it is never set
-
 extern s64 get_current_clock(void);
 extern s64 get_clock_difference(s64 cycles);
 extern void set_text_array_x_y(s32 xOffset, s32 yOffset);

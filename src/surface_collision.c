@@ -8,6 +8,8 @@
 #include "behavior_script.h"
 #include "surface_collision.h"
 #include "surface_load.h"
+#include "object_list_processor.h"
+#include "room.h"
 
 static f32 D_8038BE30[4];
 static f32 D_8038BE40, D_8038BE44, D_8038BE48;

@@ -11,35 +11,68 @@
 #include "game.h"
 #include "rendering_graph_node.h"
 
-extern s16 D_8033A770;
-extern u16 *D_8033B000;
-extern s16 *D_8033B004;
-extern u8 D_8033B008;
-extern u8 D_8033B009;
-extern s16 D_8033B00A;
-extern u16 *D_8033B010;
-extern s16 *D_8033B014;
-extern struct AllocOnlyPool *D_8033B018;
-extern u8 D_8033AFF8;
-extern u8 D_8033AFF9;
-extern s16 D_8033AFFA;
-extern f32 D_8033AFFC;
+s16 D_8033A770;
+Mat4 D_8033A778[32];
+void *D_8033AF78[32];
+u8 D_8033AFF8;
+u8 D_8033AFF9;
+s16 D_8033AFFA;
+f32 D_8033AFFC;
+u16 *D_8033B000;
+s16 *D_8033B004;
+u8 D_8033B008;
+u8 D_8033B009;
+s16 D_8033B00A;
+float D_8033B00C;
+u16 *D_8033B010;
+s16 *D_8033B014;
+struct AllocOnlyPool *D_8033B018;
 
 struct Struct8032CF10
 {
     u32 unk0[8];
 };
 
-extern struct Struct8032CF10 D_8032CF10[];
-extern struct Struct8032CF10 D_8032CF50[];
+struct Struct8032CF10 D_8032CF10[2] = {
+    {{
+        0x0C084000, 0x00442048,   
+        0x00442048, 0x00442048, 
+        0x00443048, 0x004041C8,
+        0x004041C8, 0x004041C8, 
+    }},
+    {{
+        0x00442230, 0x00442078,
+        0x00442D58, 0x00442478, 
+        0x00443078, 0x004049D8,
+        0x00404DD8, 0x004045D8,
+    }}
+};
+
+struct Struct8032CF10 D_8032CF50[2] = {
+    {{
+        0x03024000, 0x00112048,
+        0x00112048, 0x00112048, 
+        0x00113048, 0x001041C8,
+        0x001041C8, 0x001041C8,
+    }},
+    {{
+        0x00112230, 0x00112078,
+        0x00112D58, 0x00112478, 
+        0x00113078, 0x001049D8,
+        0x00104DD8, 0x001045D8,
+    }}
+};
+
+struct GraphNodeScreenArea *D_8032CF90 = NULL;
+struct GraphNodeToggleZBuffer *D_8032CF94 = NULL;
+struct GraphNodeCamFrustum *D_8032CF98 = NULL;
+struct GraphNode114 *D_8032CF9C = NULL;
+struct GraphNodeObject *D_8032CFA0 = NULL;
+struct GraphNode12E *D_8032CFA4 = NULL;
+u16 gAreaUpdateCounter = 0;
 
 extern Vec3s D_80385FDC;
 
-extern float D_8033B00C;
-
-extern Mat4 D_8033A778[32];
-
-extern void *D_8033AF78[];
 
 void func_8027B110(struct GraphNodeToggleZBuffer *a)
 {

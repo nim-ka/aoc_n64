@@ -4,13 +4,15 @@
 #include "moving_texture.h"
 #include "area.h"
 #include "castle_message_behaviors.h"
-#include "graph_node.h"
+#include "rendering_graph_node.h"
 #include "math_util.h"
 #include "memory.h"
 #include "save_file.h"
 #include "segment2.h"
 #include "surface_collision.h"
 #include "transparent_texture.h"
+#include "rendering_graph_node.h"
+#include "room.h"
 
 extern Gfx castle_grounds_seg7_dl_07010F30[];
 extern s16 castle_grounds_seg7_arr_07010E98[];
@@ -212,7 +214,7 @@ struct Struct802CF9A4
     s16 unk1A;
 };
 
-extern s16 D_8035FF70;
+s16 D_8035FF70;
 
 Gfx *func_802CF9A4(s16 y, struct Struct802CF9A4 *b)
 {

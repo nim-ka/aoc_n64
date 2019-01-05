@@ -2,7 +2,7 @@
 
 #include "sm64.h"
 #include "obj_behaviors.h"
-#include "graph_node.h"
+#include "rendering_graph_node.h"
 #include "memory.h"
 #include "behavior_script.h"
 #include "surface_collision.h"
@@ -23,6 +23,7 @@
 #include "behavior_actions.h"
 #include "spawn_object.h"
 #include "spawn_sound.h"
+#include "room.h"
 #include "ingame_menu_3.h"
 
 #define o gCurrentObject

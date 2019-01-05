@@ -1,4 +1,7 @@
 
+s32 sNumActiveFirePiranhaPlants;
+s32 sNumKilledFirePiranhaPlants;
+
 void bhv_fire_piranha_plant_init(void)
 {
     o->oFirePiranhaPlantNeutralScale = D_80331B5C[(u16)(o->oBehParams >> 16)];

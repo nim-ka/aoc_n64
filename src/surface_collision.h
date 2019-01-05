@@ -12,10 +12,6 @@ struct WallCollisionData
 };
 
 // TODO: Move these to where they belong
-extern s16 gNumFindFloorCalls, gNumFindCeilCalls, gNumFindWallCalls;
-extern s16 gFindFloorIncludeSurface0012;
-extern s32 gNumFindFloorMisses;
-extern s16 *gWaterRegions;
 extern s32 gSurfaceNodesAllocated;
 extern s32 gNumStaticSurfaceNodes;
 extern s32 gNumStaticSurfaces;

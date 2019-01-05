@@ -11,6 +11,7 @@
 #include "area.h"
 #include "memory.h"
 #include "transparent_texture.h"
+#include "rendering_graph_node.h"
 
 extern Gfx inside_castle_seg7_dl_0702A880[];
 extern s16 rr_seg7_transparent_texture_data_07019248[];
@@ -20,6 +21,8 @@ extern Gfx rr_seg7_dl_070193C8[];
 extern Gfx cake_end_dl_07026400[];
 
 s16 D_80330390 = 0x01, D_80330394 = 0, D_80330398 = 0;
+
+s8 D_8035FF80;
 
 extern struct GraphNodeObject *D_8032CFA0;
 extern u16 gAreaUpdateCounter;

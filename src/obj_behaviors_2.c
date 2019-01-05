@@ -20,16 +20,17 @@
 #include "interaction.h"
 #include "save_file.h"
 #include "platform_displacement.h"
-#include "graph_node.h"
+#include "rendering_graph_node.h"
 #include "object_list_processor.h"
 #include "surface_load.h"
 #include "spawn_sound.h"
+#include "transparent_texture.h"
+#include "room.h"
 
 extern u32 wiggler_seg5_anims_0500C874[];
 extern u32 spiny_egg_seg5_anims_050157E4[];
 extern f32 D_8033B328[];
 extern struct ObjectNode *gObjectLists;
-extern s16 gTTCSpeedSetting;
 extern u8 ttc_seg7_arr_07016840[];
 extern u8 ttc_seg7_arr_07016904[];
 extern u8 jrb_seg7_trajectory_unagi_1[];
@@ -105,11 +106,6 @@ extern u8 bitfs_seg7_collision_070157E0[];
 extern u8 bitfs_seg7_collision_07015124[];
 extern u32 spiny_seg5_anims_05016EAC[];
 
-extern s16 gMarioShotFromCannon;
-
-extern f32 sObjSavedPosX;
-extern f32 sObjSavedPosY;
-extern f32 sObjSavedPosZ;
 
 #define TTC_SPEED_SLOW    0
 #define TTC_SPEED_FAST    1
@@ -123,6 +119,9 @@ extern f32 sObjSavedPosZ;
 
 #define o gCurrentObject
 
+f32 sObjSavedPosX;
+f32 sObjSavedPosY;
+f32 sObjSavedPosZ;
 
 void shelled_koopa_attack_handler(s32 attackType);
 void wiggler_jumped_on_attack_handler(void);
@@ -1634,13 +1633,6 @@ struct ObjectHitbox D_80331D2C =
     300,
     200,
 };
-
-
-extern s32 sNumActiveFirePiranhaPlants;
-extern s32 sNumKilledFirePiranhaPlants;
-
-
-
 
 // TODO: Finish
 #include "behaviors/mr_blizzard.c.inc"

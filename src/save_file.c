@@ -59,11 +59,67 @@ struct SaveBuffer
     struct MainMenuSaveData menuData[2];
 };
 
+u8 D_8033A130;
+u8 D_8033A131;
+u8 D_8033A132;
+u8 D_8033A133;
+u8 D_8033A134;
+s8 gMainMenuDataModified;
+s8 gSaveFileModified;
 
 u8 D_8032CE20 = 0;
 u8 D_8032CE24 = 0;
 s8 D_8032CE28 = 0;
 u8 D_8032CE2C = 0;
+u8 D_8032CE30 = 0;
+
+/* level to course num */
+struct Struct8032CE34 D_8032CE34 = {
+    0,
+    0,
+    0,
+    {
+        COURSE_NONE,     // LEVEL_NONE
+        COURSE_NONE,     // LEVEL_UNKNOWN_1
+        COURSE_NONE,     // LEVEL_UNKNOWN_2
+        COURSE_NONE,     // LEVEL_UNKNOWN_3
+        COURSE_BBH,      // LEVEL_BBH
+        COURSE_CCM,      // LEVEL_CCM
+        COURSE_NONE,     // LEVEL_CASTLE
+        COURSE_HMC,      // LEVEL_HMC
+        COURSE_SSL,      // LEVEL_SSL
+        COURSE_BOB,      // LEVEL_BOB
+        COURSE_SL,       // LEVEL_SL
+        COURSE_WDW,      // LEVEL_WDW
+        COURSE_JRB,      // LEVEL_JRB
+        COURSE_THI,      // LEVEL_THI
+        COURSE_TTC,      // LEVEL_TTC
+        COURSE_RR,       // LEVEL_RR
+        COURSE_NONE,     // LEVEL_CASTLE_GROUNDS
+        COURSE_BITDW,    // LEVEL_BITDW
+        COURSE_VCUTM,    // LEVEL_VCUTM
+        COURSE_BITFS,    // LEVEL_BITFS
+        COURSE_SA,       // LEVEL_SA
+        COURSE_BITS,     // LEVEL_BITS
+        COURSE_LLL,      // LEVEL_LLL
+        COURSE_DDD,      // LEVEL_DDD
+        COURSE_WF,       // LEVEL_WF
+        COURSE_CAKE_END, // LEVEL_ENDING
+        COURSE_NONE,     // LEVEL_CASTLE_COURTYARD
+        COURSE_PSS,      // LEVEL_PSS
+        COURSE_COTMC,    // LEVEL_COTMC
+        COURSE_TOTWC,    // LEVEL_TOTWC
+        COURSE_BITDW,    // LEVEL_BOWSER_1
+        COURSE_WMOTR,    // LEVEL_WMOTR
+        COURSE_NONE,     // LEVEL_UNKNOWN_32
+        COURSE_BITFS,    // LEVEL_BOWSER_2
+        COURSE_BITS,     // LEVEL_BOWSER_3
+        COURSE_NONE,     // LEVEL_UNKNOWN_35
+        COURSE_TTM,      // LEVEL_TTM
+        COURSE_NONE,     // LEVEL_UNKNOWN_37
+        COURSE_NONE      // LEVEL_UNKNOWN_38
+    }
+};
 
 // TODO: This should be defined in this file.
 extern struct SaveBuffer gSaveBuffer;
@@ -695,7 +751,7 @@ void func_8027A100(struct WarpNode *a)
 s32 func_8027A168(struct WarpNode *a)
 {
     s16 sp6 = 0;
-    s16 sp4 = D_8032CE37[a->destLevel & 0x7F];
+    s16 sp4 = D_8032CE34.levelToCourseNumTable[a->destLevel & 0x7F];
 
     if (D_8033A131 != 0 && D_8033A75C == sp4 && D_8033A130 == D_8033A758)
     {

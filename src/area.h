@@ -1,6 +1,8 @@
 #ifndef _AREA_H
 #define _AREA_H
 
+#include "types.h"
+
 enum CourseNum
 {
     COURSE_NONE,                       // (0)  Overworld (Castle Grounds, etc)
@@ -174,18 +176,33 @@ struct Area
     /*0x38*/ u16 unk38;
 };
 
-
 extern struct SpawnInfo gPlayerSpawnInfos[];
+extern struct GraphNode *D_8033A160[];
+extern struct Area gAreaData[];
 extern u8 D_8033A740;
-extern struct SpawnInfo *gMarioSpawnInfo;
-
+extern u8 D_8033A740;
+extern u8 D_8033A741;
+extern u8 D_8033A742;
+extern u8 D_8033A743;
+extern s8 D_8033A744;
+extern s8 D_8033A745;
+extern s8 D_8033A746;
+extern s16 D_8033A748;
+extern s16 D_8033A74A;
+extern s16 D_8033A74C;
+extern s16 D_8033A74E;
+extern s16 D_8033A750;
+extern s16 D_8033A752;
+extern s16 D_8033A754;
 extern s16 gCurrCourseNum;
 extern s16 D_8033A758;
 extern s16 gCurrAreaIndex;
 extern s16 D_8033A75C;
 extern s16 D_8033A75E;
+extern s16 D_8033A760;
 
-extern struct Area gAreaData[];
+extern struct SpawnInfo *gMarioSpawnInfo;
+
 extern struct Area *gAreas;
 extern struct Area *gCurrentArea;
 

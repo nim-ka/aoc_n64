@@ -13,72 +13,8 @@
 #define MENU_SCROLL_VERTICAL 1
 #define MENU_SCROLL_HORIZONTAL 2
 
-// extern ? D_80330438;
-// extern ? D_8033043C;
-// extern ? D_80330444;
-// extern ? D_80330448;
-// extern ? D_8033044C;
-// extern ? D_80330450;
-// extern ? D_80330424;
-// extern ? D_80330420;
-// extern ? D_80360084;
-// extern ? D_80330434;
-// extern ? D_80330410;
-// extern ? D_8033042C;
-// extern ? D_80330428;
-// extern ? D_80330430;
-// extern ? D_80360080;
-// extern ? D_8033041C;
-// extern ? D_80360082;
-// extern ? D_80330454;
-// extern ? D_80330460;
-// extern ? D_80330468;
-// extern ? D_80330474;
-// extern ? D_8033047C;
-// extern ? D_80330520;
-// extern ? D_80330524;
-// extern ? D_80330528;
-// extern ? D_8033052C;
-// extern ? D_8036008A;
-// extern ? D_8036008C;
-// extern ? D_8036008E;
-// extern ? D_80330530;
-// extern ? D_03007940;
-// extern ? D_03007968;
-// extern ? D_03007990;
-// extern ? D_030079B8;
-// extern ? D_80330538;
-// extern ? D_8033053C;
-// extern ? D_80330544;
-// extern ? D_80330548;
-// extern ? D_80360088;
 extern s8 D_80330534;
-// extern ? D_8033054C;
-// extern ? D_80330558;
-// extern ? D_80330568;
-// extern ? D_80330574;
-// extern ? D_80330580;
-// extern ? D_80330590;
-// extern ? D_8033059C;
-// extern ? D_803305AC;
-// extern ? D_803305B4;
-// extern ? D_803305B8;
-// extern ? D_803305BC;
-// extern ? D_803305D0;
-// extern ? D_803305D8;
-// extern ? D_803305E8;
-// extern ? D_803305EC;
-// extern ? D_803305C8;
-// extern ? D_803305C0;
-// extern ? D_803305C4;
 extern s8 D_803305CC;
-// extern ? D_803305F0;
-// extern ? D_803305F4;
-// extern ? D_803305F8;
-// extern ? D_80330600;
-// extern ? D_80330608;
-// extern ? D_80330618;
-// extern ? D_80330624;
 
 struct DialogEntry
 {
@@ -93,6 +29,14 @@ enum HudFontType {
     FONT_JAPANESE = 1,
     FONT_ENGLISH
 };
+
+extern u16 D_80360080;
+extern s8 gLastDialogLineNum;
+extern s32 D_80360084;
+extern u16 D_80360088;
+extern s16 gCutsceneMsgXOffset;
+extern s16 gCutsceneMsgYOffset;
+extern s8 D_8036008E;
 
 extern void func_802D6440(void);
 extern void dl_add_new_translation_matrix(s8 pushOp, f32 x, f32 y, f32 z);

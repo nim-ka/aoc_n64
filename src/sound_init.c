@@ -12,8 +12,10 @@
 #include "save_file.h"
 #include "sound_init.h"
 
-
-extern struct VblankHandler gSoundVblankHandler;
+Vec3f D_80339DC0;
+OSMesgQueue gSoundMesgQueue;
+OSMesg gSoundMesgBuf[1];
+struct VblankHandler gSoundVblankHandler;
 
 u8 D_8032C6C0 = 0;
 u8 D_8032C6C4 = 0;

@@ -1,5 +1,6 @@
 #include <ultra64.h>
 
+#include "level_update.h"
 #include "sm64.h"
 #include "level_update.h"
 #include "audio/interface_2.h"
@@ -16,6 +17,7 @@
 #include "ingame_menu.h"
 #include "obj_behaviors.h"
 #include "display.h"
+#include "save_file.h"
 
 #define PLAY_MODE_NORMAL        0
 #define PLAY_MODE_PAUSED        2
@@ -1265,7 +1267,7 @@ s32 lvl_init_from_save_file(UNUSED s16 arg0, s32 levelNum)
     gCurrCourseNum = COURSE_NONE;
     D_8033A75C = 0;
     gCurrCreditsEntry = NULL;
-    D_8032CE34 = 0;
+    D_8032CE34.specialTripleJump = 0;
 
     func_80254CE0();
     func_8027A0E8();
@@ -1282,7 +1284,7 @@ s32 lvl_set_current_level(UNUSED s16 arg0, s32 levelNum)
 
     D_8032C9E0 = 0;
     gCurrLevelNum = levelNum;
-    gCurrCourseNum = D_8032CE37[levelNum];
+    gCurrCourseNum = D_8032CE34.levelToCourseNumTable[levelNum];
 
     if (gCurrDemoInput != NULL ||
         gCurrCreditsEntry != NULL ||

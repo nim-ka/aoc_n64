@@ -6,12 +6,31 @@ struct SpawnInfo;
 
 #define OBJECT_ARRAY_SIZE 240
 
+extern struct ObjectNode D_8033B870[];
+
+extern int gDebugInfoFlags;
+extern int gNumFindFloorMisses;
+extern UNUSED s32 D_8033bef8;
+extern int gUnknownWallCount;
+extern u32 gUpdatedObjectCount;
+extern s16 gNumFindFloorCalls;
+extern s16 gNumFindCeilCalls;
+extern s16 gNumFindWallCalls;
+
+// these were 2d grids that probably functioned as
+// recording debug information for all debug info
+// systems. however, the only used ones are [4]
+// and [5] (effectinfo and enemyinfo). The first
+// 4 rows are effectively unused, despite being
+// modifyable by the debug control function.
+extern s16 gDebugInfo[][8];
+extern s16 gDebugInfoOverwrite[][8]; // most likely used to manually copy in
+                                     // preset controls, since it is never set
+
 extern u32 gTimeStopState;
 extern struct Object gObjectPool[];
 extern struct Object D_8035FB18;
 extern struct ObjectNode *gObjectLists;
-
-extern s8 D_8035FE68[][2];
 
 void nop_change_course(void);
 void BehMarioLoop2(void);

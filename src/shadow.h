@@ -26,10 +26,13 @@
 
 /* Unknown: */
 extern s8 D_8035FF40;
-/* Remnant of a potential second player. */
-extern struct Object *gLuigiObject;
 /* Describes the type of surface onto which a shadow is being drawn. */
 extern s16 gSurfaceTypeBelowShadow;
+extern s8 gShadowAboveWaterOrLava;
+extern s8 D_8035FF45;
+
+/* Remnant of a potential second player. */
+extern struct Object *gLuigiObject;
 
 
 /**

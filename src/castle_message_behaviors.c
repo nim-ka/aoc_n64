@@ -29,6 +29,9 @@ static s8 D_8032CDF8[] = {0x0a, 0x0c, 0x10, 0x18, 0x0a, 0x0a, 0x0a, 0x0e, 0x14, 
 static s16 D_8032CE0C = 0;
 
 
+struct GraphNodeObject D_80339FE0;
+struct Struct8033A040 D_8033A040[2]; 
+
 Gfx *Geo18_802761D0(int a, struct GraphNode *b, float c[4][4])
 {
     Vec3s sp50;

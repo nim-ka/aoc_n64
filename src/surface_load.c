@@ -10,6 +10,7 @@
 #include "surface_load.h"
 #include "mario.h"
 #include "object_list_processor.h"
+#include "room.h"
 
 #include "ingame_menu.h"
 s32 D_8038BE90;

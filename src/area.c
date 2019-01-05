@@ -1,5 +1,6 @@
 #include <ultra64.h>
 
+#include "area.h"
 #include "sm64.h"
 #include "behavior_data.h"
 #include "game.h"
@@ -16,34 +17,32 @@
 #include "area.h"
 #include "rendering_graph_node.h"
 #include "level_update.h"
+#include "geo_layout.h"
 
-extern struct Object *D_8038BD98;
-
-
-extern struct SpawnInfo gPlayerSpawnInfos[1];
-extern struct GraphNode *D_8033A160[0x100];
-extern struct Area gAreaData[8];
-
-extern u8 D_8033A740;
-extern u8 D_8033A741;
-extern u8 D_8033A742;
-extern u8 D_8033A743;
-extern s8 D_8033A744;
-extern s8 D_8033A745;
-extern s8 D_8033A746;
-extern s16 D_8033A748;
-extern s16 D_8033A74A;
-extern s16 D_8033A74C;
-extern s16 D_8033A74E;
-extern s16 D_8033A750;
-extern s16 D_8033A752;
-extern s16 D_8033A754;
-extern s16 gCurrCourseNum;
-extern s16 D_8033A758;
-extern s16 gCurrAreaIndex;
-extern s16 D_8033A75C;
-extern s16 D_8033A75E;
-extern s16 D_8033A760;
+struct SpawnInfo gPlayerSpawnInfos[1];
+struct GraphNode *D_8033A160[0x100];
+struct Area gAreaData[8];
+u8 D_8033A740;
+u8 D_8033A740;
+u8 D_8033A741;
+u8 D_8033A742;
+u8 D_8033A743;
+s8 D_8033A744;
+s8 D_8033A745;
+s8 D_8033A746;
+s16 D_8033A748;
+s16 D_8033A74A;
+s16 D_8033A74C;
+s16 D_8033A74E;
+s16 D_8033A750;
+s16 D_8033A752;
+s16 D_8033A754;
+s16 gCurrCourseNum;
+s16 D_8033A758;
+s16 gCurrAreaIndex;
+s16 D_8033A75C;
+s16 D_8033A75E;
+s16 D_8033A760;
 
 struct SpawnInfo *gMarioSpawnInfo = &gPlayerSpawnInfos[0];
 struct GraphNode **gLoadedGraphNodes = D_8033A160;
@@ -186,7 +185,7 @@ static struct ObjectWarpNode *func_8027A478(struct Object *o)
 static void func_8027A4C4(void)
 {
     struct ObjectWarpNode *sp24;
-    struct Object *sp20 = D_8038BD98;
+    struct Object *sp20 = (struct Object *) D_8038BD88.children;
 
     do
     {
@@ -199,7 +198,7 @@ static void func_8027A4C4(void)
                 sp24->object = sp1C;
         }
     }
-    while ((sp20 = (struct Object *)sp20->header.gfx.node.next) != D_8038BD98);
+    while ((sp20 = (struct Object *)sp20->header.gfx.node.next) != (struct Object *) D_8038BD88.children);
 }
 
 void clear_areas(void)

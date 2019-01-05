@@ -7,6 +7,12 @@
 #include "graph_node.h"
 #include "rendering_graph_node.h"
 #include "area.h"
+#include "geo_layout.h"
+
+Vec3f D_80385FD0 = {0.0f, 0.0f, 0.0f};
+Vec3s D_80385FDC = {0, 0, 0};
+Vec3f D_80385FE4 = {1.0f, 1.0f, 1.0f};
+Vec3s unused80385FF0 = {1, 1, 1};
 
 void init_scene_graph_node_links(struct GraphNode *graphNode, s32 type)
 {

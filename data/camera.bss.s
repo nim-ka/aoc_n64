@@ -2,10 +2,14 @@
 
 .section .bss
 
+# camera_before
+
 glabel D_8033B1B0
     .space 0x24
-glabel D_8033B1D4
+glabel D_8033B1D4 
     .space 0x24
+
+# camera
 glabel D_8033B1F8
     .space 0x10
 glabel D_8033B208
@@ -254,23 +258,3 @@ glabel D_8033B85C
     .space 0x4
 glabel D_8033B860
     .space 0x10
-glabel D_8033B870
-    .space 0x680
-glabel gDebugInfoFlags
-    .space 0x4
-glabel gNumFindFloorMisses
-    .space 0x8
-glabel gUnknownWallCount
-    .space 0x4
-glabel gUpdatedObjectCount
-    .space 0x4
-glabel gNumFindFloorCalls
-    .space 0x2
-glabel gNumFindCeilCalls
-    .space 0x2
-glabel gNumFindWallCalls
-    .space 0x8
-glabel gDebugInfo
-    .space 0x100
-glabel gDebugInfoOverwrite
-    .space 0x100

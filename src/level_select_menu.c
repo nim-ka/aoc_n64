@@ -118,8 +118,8 @@ int run_press_start_demo_timer(int timer)
                 if((++gDemoInputListID) == gDemo.animDmaTable->unk0)
                     gDemoInputListID = 0;
 
-                gCurrDemoInput = gDemoInputList + 1; // add 1 (+4) to the pointer to skip the demoID.
-                timer = (s8)gDemoInputList->timer; // TODO: see if making timer s8 matches
+                gCurrDemoInput = ((struct DemoInput *) gDemo.targetAnim) + 1; // add 1 (+4) to the pointer to skip the demoID.
+                timer = (s8)((struct DemoInput *) gDemo.targetAnim)->timer; // TODO: see if making timer s8 matches
                 gCurrSaveFileNum = 1;
                 D_8033A758 = 1;
             }

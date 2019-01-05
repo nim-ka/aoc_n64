@@ -2,22 +2,21 @@
 #define _SAVE_FILE_H_
 
 #include "types.h"
+#include "area.h"
 
 struct WarpNode;
 
-extern s8 gMainMenuDataModified;
-extern s8 gSaveFileModified;
+struct Struct8032CE34 {
+    u8 specialTripleJump;
+    s8 unused01;
+    s8 unused02;
+    s8 levelToCourseNumTable[LEVEL_MAX + 1];
+};
+
 extern s8 D_8032CE28;
 extern u8 D_8032CE2C;
 extern u8 D_8032CE30;
-extern u8 D_8032CE34;
-extern u8 D_8033A131;
-extern u8 D_8033A130;
-extern u8 D_8033A132;
-extern u8 D_8033A133;
-extern u8 D_8033A134;
-
-extern s8 D_8032CE37[];
+extern struct Struct8032CE34 D_8032CE34;
 
 // game progress flags
 #define SAVE_FLAG_FILE_EXISTS            (1 << 0)

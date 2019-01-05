@@ -22,7 +22,7 @@ extern u8 seg2_dl_0200ECC8[];
 extern u8 seg2_hud_lut[];
 extern u8 seg2_dl_0200EC98[];
 
-extern struct TextLabel *sTextLabels[];
+struct TextLabel *sTextLabels[52];
 
 s16 sTextLabelsCount = 0;
 

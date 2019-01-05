@@ -21,6 +21,7 @@
 #include "surface_collision.h"
 #include "surface_load.h"
 #include "object_list_processor.h"
+#include "room.h"
 
 #if VERSION_US
 extern void func_u_802C8F28(void);
@@ -36,12 +37,25 @@ struct ParticleType
     void *beh;
 };
 
+struct ObjectNode D_8033B870[16];
+
+int gDebugInfoFlags;
+int gNumFindFloorMisses;
+UNUSED s32 D_8033bef8;
+int gUnknownWallCount;
+u32 gUpdatedObjectCount;
+s16 gNumFindFloorCalls;
+s16 gNumFindCeilCalls;
+s16 gNumFindWallCalls;
+s16 gDebugInfo[16][8];
+s16 gDebugInfoOverwrite[16][8];
+
 u32 gTimeStopState;
 struct Object gObjectPool[OBJECT_ARRAY_SIZE];
 struct Object D_8035FB18;
 struct ObjectNode *gObjectLists;
 
-extern struct ObjectNode D_8033B870;
+
 
 static s8 sObjectListUpdateOrder[] = 
 { 
@@ -263,7 +277,7 @@ void func_8029C75C(UNUSED s32 sp28, s32 sp2C)
 {
     struct ObjectNode *sp24, *sp20, *sp1C;
     s32 sp18;
-    gObjectLists = &D_8033B870;
+    gObjectLists = D_8033B870;
     
     for (sp18 = 0; sp18 < 13; sp18++)
     {
@@ -282,7 +296,7 @@ void func_8029C75C(UNUSED s32 sp28, s32 sp2C)
 
 void spawn_objects_from_info(UNUSED s32 unusedArg, struct SpawnInfo *spawnInfo)
 {
-    gObjectLists = &D_8033B870;
+    gObjectLists = D_8033B870;
     gTimeStopState = 0;
 
     D_8035FEF2 = 0;
@@ -366,7 +380,7 @@ void func_8029CA60(void)
 
     debug_unknown_level_select_check();
     init_free_obj_list();
-    clear_object_lists(&D_8033B870);
+    clear_object_lists(D_8033B870);
     func_80385BF0();
     func_8029CA50();
 
@@ -377,7 +391,7 @@ void func_8029CA60(void)
     }
 
     D_8035FE0C = mem_pool_init(0x800, MEMORY_POOL_LEFT);
-    gObjectLists = &D_8033B870;
+    gObjectLists = D_8033B870;
     clear_dynamic_surfaces();
 }
 
@@ -448,7 +462,7 @@ void update_objects(UNUSED s32 sp108)
     reset_debug_objectinfo();
     stub_802CA5D0();
     
-    gObjectLists = &D_8033B870;
+    gObjectLists = D_8033B870;
     
     cycleCounts[1] = get_clock_difference(cycleCounts[0]);
     clear_dynamic_surfaces();

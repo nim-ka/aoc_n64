@@ -45,9 +45,21 @@ GeoLayoutCommandProc GeoLayoutJumpTable[] =
     geo_layout_cmd_20,
 };
 
-u32 unused_8038B894[3] = { 0 };
+struct AllocOnlyPool *gGraphNodePool;
+struct GraphNode *gCurRootGraphNode;
+UNUSED s32 D_8038BCA8;
+struct GraphNode **D_8038BCAC;
+u16 D_8038BCB0;
+u32 gGeoLayoutStack[16];
+struct GraphNode *gCurGraphNodeList[32];
+s16 gCurGraphNodeIndex;
+s16 gGeoLayoutStackIndex;
+UNUSED s16 D_8038BD7C;
+s16 D_8038BD7E;
+u8 *gGeoLayoutCommand;
+struct GraphNode D_8038BD88;
 
-extern struct GraphNode D_8038BD88;
+u32 unused_8038B894[3] = { 0 };
 
 extern Vec3s D_80385FDC;
 extern Vec3f D_80385FE4;

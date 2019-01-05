@@ -5,6 +5,7 @@
 #include "display.h"
 #include "game.h"
 #include "geo_layout.h"
+#include "graph_node.h"
 #include "level_script.h"
 #include "mario.h"
 #include "math_util.h"

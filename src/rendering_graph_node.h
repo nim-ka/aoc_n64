@@ -4,9 +4,13 @@
 #include "graph_node.h"
 
 extern struct GraphNodeScreenArea *D_8032CF90;
+extern struct GraphNodeToggleZBuffer *D_8032CF94;
+extern struct GraphNodeCamFrustum *D_8032CF98;
+extern struct GraphNode114 *D_8032CF9C;
+extern struct GraphNodeObject *D_8032CFA0;
+extern struct GraphNode12E *D_8032CFA4;
+extern u16 gAreaUpdateCounter;
 
-extern s8 gShadowAboveWaterOrLava;
-extern s8 D_8035FF45;
 
 
 extern void func_8027D8F8(struct GraphNode *rootGraphNode);

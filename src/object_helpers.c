@@ -22,6 +22,8 @@
 #include "game.h"
 #include "obj_behaviors.h"
 #include "interaction.h"
+#include "object_list_processor.h"
+#include "room.h"
 
 #include "object_helpers.h"
 #include "object_helpers2.h"
@@ -31,7 +33,7 @@ s16 D_8032F0A4[] = { 0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80 };
 static s8 sLevelsWithRooms[] = { LEVEL_BBH, LEVEL_CASTLE, LEVEL_HMC, -1 };
 
 extern s32 gDialogueResponse;
-extern s32 sGrabReleaseState;
+s32 sGrabReleaseState;
 
 // These can be static:
 extern void func_8029D704(Mat4, Mat4, Mat4);

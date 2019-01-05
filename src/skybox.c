@@ -43,7 +43,7 @@ extern struct SkyboxList clouds_skybox_ptrlist_0A014800;
 extern struct SkyboxList bits_skybox_ptrlist_0A020000;
 
 // TODO: These should be defined here
-extern struct Struct8035FF50 D_8035FF50[];
+struct Struct8035FF50 D_8035FF50[2];
 
 struct SkyboxList *gSkyboxLists[10] = 
 { 

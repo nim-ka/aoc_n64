@@ -29,7 +29,7 @@ static s16 sTTCTreadmillSpeeds[] =
 /**
  * The treadmill that plays sounds and controls the others on random setting.
  */
-extern struct Object *sMasterTreadmill;
+struct Object *sMasterTreadmill;
 
 
 void bhv_ttc_treadmill_init(void)

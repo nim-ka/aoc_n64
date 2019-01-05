@@ -27,13 +27,13 @@ extern Gfx coin_seg3_dl_030079B8[];
 extern u8 main_menu_seg7_table_0700ABD0[];
 extern Gfx castle_grounds_seg7_dl_0700EA58[];
 
-extern u16 D_80360080;
-extern s8 gLastDialogLineNum;
-extern s32 D_80360084;
-extern u16 D_80360088;
-extern s16 gCutsceneMsgXOffset;
-extern s16 gCutsceneMsgYOffset;
-extern s8 D_8036008E;
+u16 D_80360080;
+s8 gLastDialogLineNum;
+s32 D_80360084;
+u16 D_80360088;
+s16 gCutsceneMsgXOffset;
+s16 gCutsceneMsgYOffset;
+s8 D_8036008E;
 
 extern u8 D_8032CE20;
 extern u8 D_8032CE24;

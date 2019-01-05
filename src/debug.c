@@ -10,26 +10,16 @@
 #include "game.h"
 #include "main.h"
 #include "debug.h"
-
-extern int gDebugInfoFlags; // (1 = mapinfo, 2 = unused but set)
+#include "object_list_processor.h"
+#include "room.h"
 
 #define DEBUG_INFO_NOFLAGS      (0 << 0)
 #define DEBUG_INFO_FLAG_DPRINT  (1 << 0)
 #define DEBUG_INFO_FLAG_LSELECT (1 << 1)
 #define DEBUG_INFO_FLAG_ALL     0xFF
 
-extern int gNumFindFloorMisses;
-extern int gUnknownWallCount;
-extern s16 gNumFindFloorCalls;
-extern s16 gNumFindCeilCalls;
-extern s16 gNumFindWallCalls;
-
-extern s16 D_8035FEE2;
-extern s16 D_8035FEE4;
-extern s16 gTTCSpeedSetting;
-
-extern s16 gDebugPrintState1[]; // prints top-down?
-extern s16 gDebugPrintState2[]; // prints bottom-up?
+s16 gDebugPrintState1[6]; // prints top-down?
+s16 gDebugPrintState2[6]; // prints bottom-up?
 
 enum DebugPrintStateInfo {
     DEBUG_PSTATE_DISABLED,

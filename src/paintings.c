@@ -51,17 +51,18 @@ extern struct PaintingData inside_castle_seg7_painting_struct_07023C38[];
 
 extern struct PaintingData ttm_seg7_painting_struct[];
 
-extern struct PaintingData *D_8035FFA8;
 extern u16 gAreaUpdateCounter;
 
-extern float D_8035FF94;
-extern float D_8035FF98;
-extern float D_8035FF9C;
+s16 D_8035FF90;
+float D_8035FF94;
+float D_8035FF98;
+float D_8035FF9C;
+s16 (*D_8035FFA0)[5];
+float (*D_8035FFA4)[3];
+struct PaintingData *D_8035FFA8;
+u8 D_8035FFAC;
+
 extern float D_8032FFDC;
-extern s16 D_8035FF90;
-extern s16 (*D_8035FFA0)[5];
-extern float (*D_8035FFA4)[3];
-extern u8 D_8035FFAC;
 
 struct PaintingData *hmcPaintings[] =
 {

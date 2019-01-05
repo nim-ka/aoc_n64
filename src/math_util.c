@@ -6,9 +6,10 @@
 #include "surface_collision.h"
 
 extern s16 D_8038B000[];
-extern int D_8038BC98;
-extern Vec4s *D_8038BC90;
-extern float D_8038BC94;
+
+Vec4s *D_8038BC90;
+float D_8038BC94;
+int D_8038BC98;
 
 // These functions have bogus return values.
 // Disable the compiler warning.

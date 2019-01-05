@@ -12,6 +12,7 @@
 #include "area.h"
 #include "memory.h"
 #include "save_file.h"
+#include "room.h"
 
 /**
  * Encapsulate information about a shadow at the time of its creation.
@@ -104,6 +105,10 @@ shadowRectangle rectangles[2] = {
     {200.0f, 180.0f, TRUE}
 };
 
+s8 D_8035FF40;
+s16 gSurfaceTypeBelowShadow;
+s8 gShadowAboveWaterOrLava;
+s8 D_8035FF45;
 
 /**
  * Let (oldZ, oldX) be the relative coordinates of a point on a rectangle,

@@ -55,8 +55,8 @@
 
 extern u8 warp_pipe_seg3_collision_03009AC8[];
 
-extern u8 sDelayInvincTimer;
-extern s16 sInvulnerable;
+u8 sDelayInvincTimer;
+s16 sInvulnerable;
 
 static u32 interact_coin(struct MarioState *, u32, struct Object *);
 static u32 interact_water_ring(struct MarioState *, u32, struct Object *);

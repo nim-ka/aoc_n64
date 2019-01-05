@@ -82,20 +82,20 @@ static struct SpawnParticlesInfo sMontyMoleRockBreakParticles =
  * The first hole in the list of monty mole holes. The list is a singly linked
  * list using the parentObj field.
  */
-extern struct Object *sMontyMoleHoleList;
+struct Object *sMontyMoleHoleList;
 
 /**
  * The number of nearby monty moles that have been killed in a row.
  */
-extern s32 sMontyMoleKillStreak;
+s32 sMontyMoleKillStreak;
 
 /**
  * The position of the last killed monty mole, used for determining whether
  * the next killed monty mole is nearby.
  */
-extern f32 sMontyMoleLastKilledPosX;
-extern f32 sMontyMoleLastKilledPosY;
-extern f32 sMontyMoleLastKilledPosZ;
+f32 sMontyMoleLastKilledPosX;
+f32 sMontyMoleLastKilledPosY;
+f32 sMontyMoleLastKilledPosZ;
 
 
 /**

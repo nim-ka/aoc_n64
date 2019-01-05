@@ -1,9 +1,7 @@
 #ifndef _GEO_LAYOUT_H_
 #define _GEO_LAYOUT_H_
 
-#include "graph_node.h"
-
-struct AllocOnlyPool;
+#include "memory.h"
 
 #define GEO_CMD_FLAGS_RESET 0
 #define GEO_CMD_FLAGS_SET   1
@@ -21,23 +19,30 @@ struct AllocOnlyPool;
 #define cur_geo_cmd_u32(offset) \
     (*(u32 *) &gGeoLayoutCommand[offset])
 
-extern struct AllocOnlyPool *D_8038BCA0;
-extern struct GraphNode *D_8038BCA4;
+extern struct AllocOnlyPool *gGraphNodePool;
+extern struct GraphNode *gCurRootGraphNode;
+extern UNUSED s32 D_8038BCA8;
 extern struct GraphNode **D_8038BCAC;
 extern u16 D_8038BCB0;
-extern s16 D_8038BD78;
 extern u32 gGeoLayoutStack[];
-extern struct GraphNode *D_8038BCF8[];
+extern struct GraphNode *gCurGraphNodeList[];
+extern s16 gCurGraphNodeIndex;
 extern s16 gGeoLayoutStackIndex;
+extern UNUSED s16 D_8038BD7C;
 extern s16 D_8038BD7E;
 extern u8 *gGeoLayoutCommand;
+extern struct GraphNode D_8038BD88;
+
+extern struct AllocOnlyPool *D_8038BCA0;
+extern struct GraphNode *D_8038BCA4;
+extern s16 D_8038BD78;
+extern struct GraphNode *D_8038BCF8[];
 
 extern u32 D_8038B8A0;
 extern u16 D_8038B8A4;
 extern u16 D_8038B8A8;
 extern s16 D_8038B8AC;
 
-extern struct AllocOnlyPool *gGraphNodePool;
 
 void geo_layout_cmd_branch_and_link(void);
 void geo_layout_cmd_end(void);

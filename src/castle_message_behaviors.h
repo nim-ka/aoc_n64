@@ -182,9 +182,10 @@ struct Struct8033B328
     float unkB0;
 };
 
-extern struct Struct8033A040 D_8033A040[];
-extern struct Struct8033B328 D_8033B328;
 extern struct GraphNodeObject D_80339FE0;
+extern struct Struct8033A040 D_8033A040[2]; 
+
+extern struct Struct8033B328 D_8033B328;
 
 extern Gfx *Geo18_802761D0(int a, struct GraphNode *b, float c[4][4]);
 extern Gfx *Geo19_802763D4(int a, struct GraphNode *b, UNUSED Mat4 *c);

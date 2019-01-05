@@ -11,6 +11,14 @@
 
 .section .text, "ax"
 
+.ifdef VERSION_US
+.set R_8035FE68, 0x803611D8  # Use D_8035FE68[x][0]
+.set R_8035FE69, 0x803611D9  # Use D_8035FE68[x][1]
+.else
+.set R_8035FE68, 0x8035FE68  # Use D_8035FE68[x][0]
+.set R_8035FE69, 0x8035FE69  # Use D_8035FE68[x][1]
+.endif
+
 glabel func_802A4DB0
 /* 05FDB0 802A4DB0 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 05FDB4 802A4DB4 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
@@ -8632,20 +8640,20 @@ glabel BehDoorInit
 /* 067584 802AC584 00000000 */   nop   
 /* 067588 802AC588 3C0A8036 */  lui   $t2, %hi(gCurrentObject) # $t2, 0x8036
 /* 06758C 802AC58C 8D4AFDF0 */  lw    $t2, %lo(gCurrentObject)($t2)
-/* 067590 802AC590 3C018036 */  lui   $at, %hi(D_8035FE68)
+/* 067590 802AC590 3C018036 */  lui   $at, %hi(R_8035FE68)
 /* 067594 802AC594 8D4F00F8 */  lw    $t7, 0xf8($t2)
 /* 067598 802AC598 8D4C00FC */  lw    $t4, 0xfc($t2)
 /* 06759C 802AC59C 000F6840 */  sll   $t5, $t7, 1
 /* 0675A0 802AC5A0 002D0821 */  addu  $at, $at, $t5
-/* 0675A4 802AC5A4 A02CFE68 */  sb    $t4, %lo(D_8035FE68)($at)
+/* 0675A4 802AC5A4 A02CFE68 */  sb    $t4, %lo(R_8035FE68)($at)
 /* 0675A8 802AC5A8 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 0675AC 802AC5AC 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
-/* 0675B0 802AC5B0 3C018036 */  lui   $at, %hi(D_8035FE69)
+/* 0675B0 802AC5B0 3C018036 */  lui   $at, %hi(R_8035FE69)
 /* 0675B4 802AC5B4 8DD900F8 */  lw    $t9, 0xf8($t6)
 /* 0675B8 802AC5B8 8DD80100 */  lw    $t8, 0x100($t6)
 /* 0675BC 802AC5BC 00194040 */  sll   $t0, $t9, 1
 /* 0675C0 802AC5C0 00280821 */  addu  $at, $at, $t0
-/* 0675C4 802AC5C4 A038FE69 */  sb    $t8, %lo(D_8035FE69)($at)
+/* 0675C4 802AC5C4 A038FE69 */  sb    $t8, %lo(R_8035FE69)($at)
 .L802AC5C8:
 /* 0675C8 802AC5C8 10000001 */  b     .L802AC5D0
 /* 0675CC 802AC5CC 00000000 */   nop   
@@ -8699,10 +8707,10 @@ glabel BehStarDoorLoop2
 /* 067674 802AC674 8529FEE0 */  lh    $t1, %lo(gMarioCurrentRoom)($t1)
 /* 067678 802AC678 3C198036 */  lui   $t9, %hi(gCurrentObject) # $t9, 0x8036
 /* 06767C 802AC67C 8F39FDF0 */  lw    $t9, %lo(gCurrentObject)($t9)
-/* 067680 802AC680 3C0B8036 */  lui   $t3, %hi(D_8035FE68)
+/* 067680 802AC680 3C0B8036 */  lui   $t3, %hi(R_8035FE68)
 /* 067684 802AC684 00095040 */  sll   $t2, $t1, 1
 /* 067688 802AC688 016A5821 */  addu  $t3, $t3, $t2
-/* 06768C 802AC68C 816BFE68 */  lb    $t3, %lo(D_8035FE68)($t3)
+/* 06768C 802AC68C 816BFE68 */  lb    $t3, %lo(R_8035FE68)($t3)
 /* 067690 802AC690 8F2800FC */  lw    $t0, 0xfc($t9)
 /* 067694 802AC694 150B0004 */  bne   $t0, $t3, .L802AC6A8
 /* 067698 802AC698 00000000 */   nop   
@@ -8714,10 +8722,10 @@ glabel BehStarDoorLoop2
 /* 0676AC 802AC6AC 85EFFEE0 */  lh    $t7, %lo(gMarioCurrentRoom)($t7)
 /* 0676B0 802AC6B0 3C0D8036 */  lui   $t5, %hi(gCurrentObject) # $t5, 0x8036
 /* 0676B4 802AC6B4 8DADFDF0 */  lw    $t5, %lo(gCurrentObject)($t5)
-/* 0676B8 802AC6B8 3C198036 */  lui   $t9, %hi(D_8035FE68)
+/* 0676B8 802AC6B8 3C198036 */  lui   $t9, %hi(R_8035FE68)
 /* 0676BC 802AC6BC 000FC040 */  sll   $t8, $t7, 1
 /* 0676C0 802AC6C0 0338C821 */  addu  $t9, $t9, $t8
-/* 0676C4 802AC6C4 8339FE68 */  lb    $t9, %lo(D_8035FE68)($t9)
+/* 0676C4 802AC6C4 8339FE68 */  lb    $t9, %lo(R_8035FE68)($t9)
 /* 0676C8 802AC6C8 8DAE0100 */  lw    $t6, 0x100($t5)
 /* 0676CC 802AC6CC 15D90004 */  bne   $t6, $t9, .L802AC6E0
 /* 0676D0 802AC6D0 00000000 */   nop   
@@ -8729,10 +8737,10 @@ glabel BehStarDoorLoop2
 /* 0676E4 802AC6E4 856BFEE0 */  lh    $t3, %lo(gMarioCurrentRoom)($t3)
 /* 0676E8 802AC6E8 3C0A8036 */  lui   $t2, %hi(gCurrentObject) # $t2, 0x8036
 /* 0676EC 802AC6EC 8D4AFDF0 */  lw    $t2, %lo(gCurrentObject)($t2)
-/* 0676F0 802AC6F0 3C0D8036 */  lui   $t5, %hi(D_8035FE69)
+/* 0676F0 802AC6F0 3C0D8036 */  lui   $t5, %hi(R_8035FE69)
 /* 0676F4 802AC6F4 000B6040 */  sll   $t4, $t3, 1
 /* 0676F8 802AC6F8 01AC6821 */  addu  $t5, $t5, $t4
-/* 0676FC 802AC6FC 81ADFE69 */  lb    $t5, %lo(D_8035FE69)($t5)
+/* 0676FC 802AC6FC 81ADFE69 */  lb    $t5, %lo(R_8035FE69)($t5)
 /* 067700 802AC700 8D4800FC */  lw    $t0, 0xfc($t2)
 /* 067704 802AC704 150D0004 */  bne   $t0, $t5, .L802AC718
 /* 067708 802AC708 00000000 */   nop   
@@ -8744,10 +8752,10 @@ glabel BehStarDoorLoop2
 /* 06771C 802AC71C 8739FEE0 */  lh    $t9, %lo(gMarioCurrentRoom)($t9)
 /* 067720 802AC720 3C188036 */  lui   $t8, %hi(gCurrentObject) # $t8, 0x8036
 /* 067724 802AC724 8F18FDF0 */  lw    $t8, %lo(gCurrentObject)($t8)
-/* 067728 802AC728 3C0A8036 */  lui   $t2, %hi(D_8035FE69)
+/* 067728 802AC728 3C0A8036 */  lui   $t2, %hi(R_8035FE69)
 /* 06772C 802AC72C 00194840 */  sll   $t1, $t9, 1
 /* 067730 802AC730 01495021 */  addu  $t2, $t2, $t1
-/* 067734 802AC734 814AFE69 */  lb    $t2, %lo(D_8035FE69)($t2)
+/* 067734 802AC734 814AFE69 */  lb    $t2, %lo(R_8035FE69)($t2)
 /* 067738 802AC738 8F0E0100 */  lw    $t6, 0x100($t8)
 /* 06773C 802AC73C 15CA0003 */  bne   $t6, $t2, .L802AC74C
 /* 067740 802AC740 00000000 */   nop   

@@ -35,6 +35,10 @@ struct GfxPool *gGfxPool;
 u8 gControllerBits;
 s8 gEepromProbe;
 
+struct MarioAnimation D_80339D10;
+struct MarioAnimation gDemo;
+UNUSED s8 filler80339D30[0x80339DC0-0x80339D30];
+
 void (*D_8032C6A0)(void) = NULL;
 struct Controller *gPlayer1Controller = &gControllers[0];
 struct Controller *gPlayer2Controller = &gControllers[1];

@@ -10,10 +10,12 @@ extern u8 D_8032C6D4;
 extern u16 D_8032C6C8;
 extern u16 D_8032C6CC;
 extern u16 D_8032C6D0;
-extern Vec3f D_80339DC0;
 extern Vec3f D_80385FD0;
+
+extern Vec3f D_80339DC0;
 extern OSMesgQueue gSoundMesgQueue;
 extern OSMesg gSoundMesgBuf[1];
+extern struct VblankHandler gSoundVblankHandler;
 
 extern void func_80248C10(void);
 extern void func_80248CB8(s32);

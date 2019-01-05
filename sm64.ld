@@ -144,10 +144,8 @@ SECTIONS
       BUILD_DIR/src/castle_message_behaviors.o(.data*);
       BUILD_DIR/src/memory.o(.data*);
       BUILD_DIR/src/save_file.o(.data*);
-      BUILD_DIR/data/save_file.data.o(.data*);
       BUILD_DIR/src/area.o(.data*);
       BUILD_DIR/src/rendering_graph_node.o(.data*);
-      BUILD_DIR/data/rendering_graph_node.data.o(.data*);
       BUILD_DIR/src/profiler.o(.data*);
       BUILD_DIR/data/camera_before.data.o(.data*);
       BUILD_DIR/src/camera.o(.data*);
@@ -229,22 +227,38 @@ SECTIONS
    {
       BUILD_DIR/src/main.o(.bss*);
       BUILD_DIR/src/game.o(.bss*);
-      BUILD_DIR/data/bss1.o(.bss*);
+      BUILD_DIR/src/sound_init.o(.bss*);
       BUILD_DIR/src/level_update.o(.bss*);
-      BUILD_DIR/data/bss80339F00.o(.bss*);
+      BUILD_DIR/src/interaction.o(.bss*);
+      BUILD_DIR/src/mario.o(.bss*);
+      BUILD_DIR/data/mario_actions_cutscene.bss.o(.bss*);
       BUILD_DIR/src/mario_actions_moving.o(.bss*);
       BUILD_DIR/src/mario_actions_submerged.o(.bss*);
-      BUILD_DIR/data/bss80339FE0.o(.bss*);
+      BUILD_DIR/src/castle_message_behaviors.o(.bss*);
       BUILD_DIR/src/memory.o(.bss*);
-      BUILD_DIR/data/bss8033A130.o(.bss*);
+      BUILD_DIR/src/save_file.o(.bss*);
+      BUILD_DIR/src/area.o(.bss*);
+      BUILD_DIR/src/rendering_graph_node.o(.bss*);
       BUILD_DIR/src/profiler.o(.bss*);
-      BUILD_DIR/data/bss8033B020.o(.bss*);
+      BUILD_DIR/data/camera.bss.o(.bss*);
       BUILD_DIR/src/object_list_processor.o(.bss*);
       BUILD_DIR/data/bss8035FD80.o(.bss*);
+      BUILD_DIR/src/room.o(.bss*);
+      BUILD_DIR/src/object_helpers.o(.bss*);
+      BUILD_DIR/data/behavior_actions.bss.o(.bss*);
+      BUILD_DIR/src/debug.o(.bss*);
+      BUILD_DIR/src/shadow.o(.bss*);
+      BUILD_DIR/src/skybox.o(.bss*);
+      BUILD_DIR/src/moving_texture.o(.bss*);
+      BUILD_DIR/src/transparent_texture.o(.bss*);
+      BUILD_DIR/src/paintings.o(.bss*);
+      BUILD_DIR/src/print.o(.bss*);
+      BUILD_DIR/src/ingame_menu.o(.bss*);
       BUILD_DIR/src/ingame_menu_2.o(.bss*);
       BUILD_DIR/src/ingame_menu_3.o(.bss*);
       BUILD_DIR/src/hud_print.o(.bss*);
-      BUILD_DIR/data/bss803600E0.o(.bss*);
+      BUILD_DIR/data/obj_behaviors_1.bss.o(.bss*);
+      BUILD_DIR/src/obj_behaviors_2.o(.bss*);
       BUILD_DIR/src/audio/interface_2.o(.bss*);
       BUILD_DIR/data/libultra.bss.o(.bss*);
    }
@@ -260,7 +274,8 @@ SECTIONS
       BUILD_DIR/src/surface_load.o(.text);
       BUILD_DIR/src/behavior_script.o(.text);
       /* data */
-      BUILD_DIR/data/graph_node.data.o(.data*);
+      BUILD_DIR/data/data_80385F90.o(.data*);
+      BUILD_DIR/src/graph_node.o(.data*);
       BUILD_DIR/data/math_util.data.o(.data*);
       BUILD_DIR/src/geo_layout.o(.data*);
       BUILD_DIR/src/level_script.o(.data*);
@@ -274,7 +289,8 @@ SECTIONS
    END_SEG(engine)
    BEGIN_NOLOAD(engine)
    {
-      BUILD_DIR/data/bss2.o(.bss*);
+      BUILD_DIR/src/math_util.o(.bss*);
+      BUILD_DIR/src/geo_layout.o(.bss*);
       BUILD_DIR/src/level_script.o(.bss*);
       BUILD_DIR/src/surface_collision.o(.bss*);
       BUILD_DIR/src/surface_load.o(.bss*);
@@ -417,7 +433,7 @@ SECTIONS
       BUILD_DIR/src/goddard/joint_fns.o(.bss*);
       BUILD_DIR/src/goddard/skin_fns.o(.bss*);
       BUILD_DIR/src/goddard/half_6.o(.bss*);
-      BUILD_DIR/data/bss3.o(.bss*);
+      BUILD_DIR/data/mario_head_6.bss.o(.bss*);
    }
    END_NOLOAD(goddard)
 

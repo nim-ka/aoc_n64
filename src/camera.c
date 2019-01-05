@@ -14,6 +14,7 @@
 #include "mario_actions_cutscene.h"
 #include "camera.h"
 #include "save_file.h"
+#include "room.h"
 
 #define CBUTTON_MASK (U_CBUTTONS | D_CBUTTONS | L_CBUTTONS | R_CBUTTONS)
 

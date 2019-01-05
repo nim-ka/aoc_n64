@@ -63,16 +63,7 @@ struct SpawnParticlesInfo
 #define TIME_STOP_UNKNOWN_5       (1 << 5)
 #define TIME_STOP_ACTIVE          (1 << 6)
 
-extern s16 D_8035FEF2;
-extern s16 D_8035FEF4;
-extern s16 D_8035FEEC;
-extern s16 D_8035FEE6;
-extern s16 gMarioCurrentRoom;
-
 extern struct MemoryPool *D_8035FE0C;
-extern u32 gUpdatedObjectCount;
-extern s16 gNumRoomedObjectsInMarioRoom;
-extern s16 gNumRoomedObjectsNotInMarioRoom;
 extern s16 gPostUpdateObjCount;
 // extern ? D_80336610;
 extern struct GraphNode **gLoadedGraphNodes;
@@ -136,7 +127,6 @@ extern struct GraphNode **gLoadedGraphNodes;
 // extern ? D_8032F728;
 // extern ? D_8032F754;
 // extern ? D_8035FFAC;
-extern s32 gWaterLevels[20];
 // extern ? D_8035FEE8;
 // extern ? D_8032F77C;
 // extern ? TableUkikiOpenCageActions;
