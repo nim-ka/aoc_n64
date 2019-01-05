@@ -109,7 +109,8 @@ SECTIONS
       BUILD_DIR/src/paintings.o(.text);
       BUILD_DIR/src/print.o(.text);
       BUILD_DIR/src/ingame_menu.o(.text);
-      BUILD_DIR/asm/ingame_menu_2.o(.text);
+      BUILD_DIR/src/ingame_menu_2.o(.text);
+      BUILD_DIR/src/ingame_menu_3.o(.text);
       BUILD_DIR/src/hud.o(.text);
       BUILD_DIR/src/hud_print.o(.text);
       BUILD_DIR/src/obj_behaviors.o(.text);
@@ -165,7 +166,8 @@ SECTIONS
       BUILD_DIR/src/paintings.o(.data*);
       BUILD_DIR/src/print.o(.data*);
       BUILD_DIR/src/ingame_menu.o(.data*);
-      BUILD_DIR/data/ingame_menu_2.data.o(.data*);
+      BUILD_DIR/src/ingame_menu_2.o(.data*);
+      BUILD_DIR/src/ingame_menu_3.o(.data*);
       BUILD_DIR/src/hud.o(.data*);
       BUILD_DIR/src/hud_print.o(.data*);
       BUILD_DIR/src/obj_behaviors.o(.data*);
@@ -208,7 +210,8 @@ SECTIONS
       BUILD_DIR/src/paintings.o(.rodata*);
       BUILD_DIR/src/print.o(.rodata*);
       BUILD_DIR/src/ingame_menu.o(.rodata*);
-      BUILD_DIR/data/ingame_menu_2.rodata.o(.rodata*);
+      BUILD_DIR/src/ingame_menu_2.o(.rodata*);
+      BUILD_DIR/src/ingame_menu_3.o(.rodata*);
       BUILD_DIR/src/hud.o(.rodata*);
       BUILD_DIR/src/hud_print.o(.rodata*);
       BUILD_DIR/src/obj_behaviors.o(.rodata*);
@@ -238,6 +241,8 @@ SECTIONS
       BUILD_DIR/data/bss8033B020.o(.bss*);
       BUILD_DIR/src/object_list_processor.o(.bss*);
       BUILD_DIR/data/bss8035FD80.o(.bss*);
+      BUILD_DIR/src/ingame_menu_2.o(.bss*);
+      BUILD_DIR/src/ingame_menu_3.o(.bss*);
       BUILD_DIR/src/hud_print.o(.bss*);
       BUILD_DIR/data/bss803600E0.o(.bss*);
       BUILD_DIR/src/audio/interface_2.o(.bss*);

@@ -23,6 +23,7 @@
 #include "behavior_actions.h"
 #include "spawn_object.h"
 #include "spawn_sound.h"
+#include "ingame_menu_3.h"
 
 #define o gCurrentObject
 

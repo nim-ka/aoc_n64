@@ -10,7 +10,7 @@ extern f32 gCosineTable[];
 #define min(a, b) ((a) <= (b) ? (a) : (b))
 #define max(a, b) ((a) > (b) ? (a) : (b))
 
-#define sqr(x) (x * x)
+#define sqr(x) ((x) * (x))
 
 void *vec3f_copy(Vec3f dest, Vec3f src);
 void *vec3f_set(Vec3f dest, f32 x, f32 y, f32 z);

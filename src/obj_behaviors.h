@@ -37,7 +37,6 @@ extern struct ObjectHitbox D_80331514;
 extern struct ObjectHitbox D_80331524;
 extern struct ObjectHitbox D_80331534;
 extern struct ObjectHitbox D_80331544;
-extern s16 D_803600B0[10];
 extern struct ObjectHitbox D_80331554;
 extern struct ObjectHitbox D_80331564;
 extern struct ObjectHitbox D_80331574;

@@ -114,19 +114,3 @@ glabel gCutsceneMsgYOffset
     .space 0x2
 glabel D_8036008E
     .space 0x2
-glabel D_80360090
-    .space 0x8
-glabel D_80360098
-    .space 0xC
-glabel D_803600A4
-    .space 0x2
-glabel D_803600A6
-    .space 0xA
-glabel D_803600B0
-    .space 0x14
-glabel D_803600C4
-    .space 0x4
-glabel D_803600C8
-    .space 0x4
-glabel D_803600CC
-    .space 0x4

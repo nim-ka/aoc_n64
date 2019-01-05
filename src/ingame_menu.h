@@ -79,29 +79,6 @@ extern s8 D_803305CC;
 // extern ? D_80330608;
 // extern ? D_80330618;
 // extern ? D_80330624;
-// extern ? D_803600A6;
-// extern ? D_803600A4;
-// extern ? D_80360090;
-// extern ? D_80330640;
-// extern ? D_80360098;
-// extern ? D_80330648;
-// extern ? D_80330678;
-// extern ? D_80330680;
-// extern ? D_80330688;
-// extern ? D_80360018;
-// extern ? D_0B006A50;
-// extern ? D_0B006CD8;
-// extern ? D_0B006AB0;
-// extern ? D_803600CC;
-// extern ? D_803600B0;
-// extern ? D_803600C8;
-// extern ? D_0B002008;
-// extern ? D_0B006020;
-// extern ? D_0B006848;
-// extern ? D_803600C4;
-// extern ? D_0B006D68;
-// extern ? D_0B006D38;
-// extern ? D_80330698;
 
 struct DialogEntry
 {

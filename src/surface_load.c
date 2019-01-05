@@ -1,21 +1,18 @@
 #include <ultra64.h>
 
 #include "sm64.h"
-#include "surface_load.h"
+#include "behavior_script.h"
+#include "behavior_data.h"
 #include "memory.h"
 #include "object_helpers.h"
-#include "ingame_menu.h"
 #include "hud.h"
-#include "mario.h"
-#include "behavior_script.h"
 #include "surface_collision.h"
+#include "surface_load.h"
+#include "mario.h"
 #include "object_list_processor.h"
 
-extern u8 beh_ddd_warp[];
-
-
+#include "ingame_menu.h"
 s32 D_8038BE90;
-
 SpatialPartitionCell gStaticSurfacePartition[16][16];
 SpatialPartitionCell gDynamicSurfacePartition[16][16];
 
