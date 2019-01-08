@@ -10,53 +10,53 @@ glabel level_main_scripts_entry
     load_raw  /*seg*/ 0x16, /*romStart*/ _coins_pipe_doors_maps_trees_geoSegmentRomStart, /*romEnd*/ _coins_pipe_doors_maps_trees_geoSegmentRomEnd
     load_raw  /*seg*/ 0x13, /*romStart*/ _behaviorSegmentRomStart, /*romEnd*/ _behaviorSegmentRomEnd
     alloc_level_pool
-    cmd22 /*unk2*/ 0x0001, /*unk4*/ mario_geo
-    cmd22 /*unk2*/ 0x0096, /*unk4*/ smoke_geo
-    cmd22 /*unk2*/ 0x0095, /*unk4*/ sparkles_geo
-    cmd22 /*unk2*/ 0x00A8, /*unk4*/ bubble_geo
-    cmd22 /*unk2*/ 0x00A5, /*unk4*/ spot_on_ground_geo
-    cmd22 /*unk2*/ 0x00A6, /*unk4*/ water_waves2_geo
-    cmd22 /*unk2*/ 0x00A7, /*unk4*/ water_splash_geo
-    cmd22 /*unk2*/ 0x00A3, /*unk4*/ water_waves_geo
-    cmd22 /*unk2*/ 0x0074, /*unk4*/ yellow_coin_geo
-    cmd22 /*unk2*/ 0x007A, /*unk4*/ star_geo
-    cmd22 /*unk2*/ 0x0079, /*unk4*/ transparent_star_geo
-    cmd22 /*unk2*/ 0x007C, /*unk4*/ wooden_signpost_geo
-    cmd21 /*unk2*/ 0x40A4, /*unk4*/ snowball_seg4_dl_04032A18
-    cmd22 /*unk2*/ 0x0090, /*unk4*/ red_flame_geo
-    cmd22 /*unk2*/ 0x0091, /*unk4*/ blue_flame_geo
-    cmd22 /*unk2*/ 0x0094, /*unk4*/ burn_smoke_geo
-    cmd22 /*unk2*/ 0x00A2, /*unk4*/ leaves_geo
-    cmd22 /*unk2*/ 0x00AA, /*unk4*/ purple_marble_geo
-    cmd22 /*unk2*/ 0x00B9, /*unk4*/ fish_geo
-    cmd22 /*unk2*/ 0x00BA, /*unk4*/ fish2_geo
-    cmd22 /*unk2*/ 0x008F, /*unk4*/ sparkles_animation_geo
-    cmd21 /*unk2*/ 0x409F, /*unk4*/ sand_seg3_dl_0302BCD0 
-    cmd22 /*unk2*/ 0x00BB, /*unk4*/ butterfly_geo
-    cmd22 /*unk2*/ 0x009C, /*unk4*/ burn_smoke_geo
-    cmd21 /*unk2*/ 0x40A1, /*unk4*/ pebble_seg3_dl_0301CB00
-    cmd22 /*unk2*/ 0x008E, /*unk4*/ mist_geo
-    cmd22 /*unk2*/ 0x00E0, /*unk4*/ white_puff_geo
-    cmd21 /*unk2*/ 0x409E, /*unk4*/ snow_ball_seg3_dl_0302C8A0
-    cmd22 /*unk2*/ 0x00A0, /*unk4*/ snowman_snow_ball_geo
-    cmd22 /*unk2*/ 0x0075, /*unk4*/ yellow_coin_no_shadow_geo
-    cmd22 /*unk2*/ 0x0076, /*unk4*/ blue_coin_geo
-    cmd22 /*unk2*/ 0x0077, /*unk4*/ blue_coin_no_shadow_geo
-    cmd22 /*unk2*/ 0x0085, /*unk4*/ marios_winged_metal_cap_geo
-    cmd22 /*unk2*/ 0x0086, /*unk4*/ marios_metal_cap_geo
-    cmd22 /*unk2*/ 0x0087, /*unk4*/ marios_wing_cap_geo
-    cmd22 /*unk2*/ 0x0088, /*unk4*/ marios_cap_geo
-    cmd22 /*unk2*/ 0x0088, /*unk4*/ marios_cap_geo
-    cmd22 /*unk2*/ 0x00C8, /*unk4*/ bowser_key_geo
-    cmd22 /*unk2*/ 0x00CC, /*unk4*/ bowser_key2_geo
-    cmd22 /*unk2*/ 0x00CB, /*unk4*/ red_flame_shadow_geo
-    cmd22 /*unk2*/ 0x00D4, /*unk4*/ mushroom_1up_geo
-    cmd22 /*unk2*/ 0x00D7, /*unk4*/ red_coin_geo
-    cmd22 /*unk2*/ 0x00D8, /*unk4*/ red_coin_no_shadow_geo
-    cmd22 /*unk2*/ 0x00DB, /*unk4*/ number_geo
-    cmd22 /*unk2*/ 0x00CD, /*unk4*/ explosion_geo
-    cmd22 /*unk2*/ 0x008A, /*unk4*/ dirt_animation_geo
-    cmd22 /*unk2*/ 0x008B, /*unk4*/ cartoon_star_geo
+    load_model_from_geo /*model*/ MODEL_MARIO,                   /*geo*/ mario_geo
+    load_model_from_geo /*model*/ MODEL_SMOKE,                   /*geo*/ smoke_geo
+    load_model_from_geo /*model*/ MODEL_SPARKLES,                /*geo*/ sparkles_geo
+    load_model_from_geo /*model*/ MODEL_BUBBLE,                  /*geo*/ bubble_geo
+    load_model_from_geo /*model*/ MODEL_SPOT_ON_GROUND,          /*geo*/ spot_on_ground_geo
+    load_model_from_geo /*model*/ MODEL_WATER_WAVES_2,           /*geo*/ water_waves2_geo
+    load_model_from_geo /*model*/ MODEL_WATER_SPLASH,            /*geo*/ water_splash_geo
+    load_model_from_geo /*model*/ MODEL_WATER_WAVES,             /*geo*/ water_waves_geo
+    load_model_from_geo /*model*/ MODEL_YELLOW_COIN,             /*geo*/ yellow_coin_geo
+    load_model_from_geo /*model*/ MODEL_STAR,                    /*geo*/ star_geo
+    load_model_from_geo /*model*/ MODEL_TRANSPARENT_STAR,        /*geo*/ transparent_star_geo
+    load_model_from_geo /*model*/ MODEL_WOODEN_SIGNPOST,         /*geo*/ wooden_signpost_geo
+    load_model_from_dl  /*model*/ MODEL_DL_GLOBAL_A4,            /*dl*/  snowball_seg4_dl_04032A18,  /*unk2*/ 0x40
+    load_model_from_geo /*model*/ MODEL_RED_FLAME,               /*geo*/ red_flame_geo
+    load_model_from_geo /*model*/ MODEL_BLUE_FLAME,              /*geo*/ blue_flame_geo
+    load_model_from_geo /*model*/ MODEL_BURN_SMOKE,              /*geo*/ burn_smoke_geo
+    load_model_from_geo /*model*/ MODEL_LEAVES,                  /*geo*/ leaves_geo
+    load_model_from_geo /*model*/ MODEL_PURPLE_MARBLE,           /*geo*/ purple_marble_geo
+    load_model_from_geo /*model*/ MODEL_FISH,                    /*geo*/ fish_geo
+    load_model_from_geo /*model*/ MODEL_FISH_2,                  /*geo*/ fish2_geo
+    load_model_from_geo /*model*/ MODEL_SPARKLES_ANIMATION,      /*geo*/ sparkles_animation_geo
+    load_model_from_dl  /*model*/ MODEL_DL_GLOBAL_9F,            /*dl*/  sand_seg3_dl_0302BCD0,      /*unk2*/ 0x40
+    load_model_from_geo /*model*/ MODEL_BUTTERFLY,               /*geo*/ butterfly_geo
+    load_model_from_geo /*model*/ MODEL_BURN_SMOKE_COPY,         /*geo*/ burn_smoke_geo
+    load_model_from_dl  /*model*/ MODEL_DL_GLOBAL_A1,            /*dl*/  pebble_seg3_dl_0301CB00,    /*unk2*/ 0x40
+    load_model_from_geo /*model*/ MODEL_MIST,                    /*geo*/ mist_geo
+    load_model_from_geo /*model*/ MODEL_WHITE_PUFF,              /*geo*/ white_puff_geo
+    load_model_from_dl  /*model*/ MODEL_DL_GLOBAL_9E,            /*dl*/  snow_ball_seg3_dl_0302C8A0, /*unk2*/ 0x40
+    load_model_from_geo /*model*/ MODEL_SNOWMAN_SNOW_BALL,       /*geo*/ snowman_snow_ball_geo
+    load_model_from_geo /*model*/ MODEL_YELLOW_COIN_NO_SHADOW,   /*geo*/ yellow_coin_no_shadow_geo
+    load_model_from_geo /*model*/ MODEL_BLUE_COIN,               /*geo*/ blue_coin_geo
+    load_model_from_geo /*model*/ MODEL_BLUE_COIN_NO_SHADOW,     /*geo*/ blue_coin_no_shadow_geo
+    load_model_from_geo /*model*/ MODEL_MARIOS_WINGED_METAL_CAP, /*geo*/ marios_winged_metal_cap_geo
+    load_model_from_geo /*model*/ MODEL_MARIOS_METAL_CAP,        /*geo*/ marios_metal_cap_geo
+    load_model_from_geo /*model*/ MODEL_MARIOS_WING_CAP,         /*geo*/ marios_wing_cap_geo
+    load_model_from_geo /*model*/ MODEL_MARIOS_CAP,              /*geo*/ marios_cap_geo
+    load_model_from_geo /*model*/ MODEL_MARIOS_CAP,              /*geo*/ marios_cap_geo # repeated
+    load_model_from_geo /*model*/ MODEL_BOWSER_KEY,              /*geo*/ bowser_key_geo
+    load_model_from_geo /*model*/ MODEL_BOWSER_KEY_2,            /*geo*/ bowser_key2_geo
+    load_model_from_geo /*model*/ MODEL_RED_FLAME_SHADOW,        /*geo*/ red_flame_shadow_geo
+    load_model_from_geo /*model*/ MODEL_1UP,                     /*geo*/ mushroom_1up_geo
+    load_model_from_geo /*model*/ MODEL_RED_COIN,                /*geo*/ red_coin_geo
+    load_model_from_geo /*model*/ MODEL_RED_COIN_NO_SHADOW,      /*geo*/ red_coin_no_shadow_geo
+    load_model_from_geo /*model*/ MODEL_NUMBER,                  /*geo*/ number_geo
+    load_model_from_geo /*model*/ MODEL_EXPLOSION,               /*geo*/ explosion_geo
+    load_model_from_geo /*model*/ MODEL_DIRT_ANIMATION,          /*geo*/ dirt_animation_geo
+    load_model_from_geo /*model*/ MODEL_CARTOON_STAR,            /*geo*/ cartoon_star_geo
     free_level_pool
     call /*arg*/ 0, /*func*/ lvl_init_from_save_file
     loop_begin
@@ -244,166 +244,166 @@ L36:
     return
 
 glabel script_func_global_1
-    cmd22 /*unk2*/ 0x008C, /*unk4*/ blue_coin_switch_geo
-    cmd22 /*unk2*/ 0x00C2, /*unk4*/ amp_geo
-    cmd22 /*unk2*/ 0x00CF, /*unk4*/ purple_switch_geo
-    cmd22 /*unk2*/ 0x00CA, /*unk4*/ checkerboard_platform_geo
-    cmd22 /*unk2*/ 0x0081, /*unk4*/ breakable_box_geo
-    cmd22 /*unk2*/ 0x0082, /*unk4*/ breakable_box2_geo
-    cmd22 /*unk2*/ 0x0083, /*unk4*/ exclamation_box_outline_geo
-    cmd22 /*unk2*/ 0x0089, /*unk4*/ exclamation_box_geo
-    cmd22 /*unk2*/ 0x00C0, /*unk4*/ goomba_geo
-    cmd21 /*unk2*/ 0x4084, /*unk4*/ exclamation_box_outline_seg8_dl_08025F08
-    cmd22 /*unk2*/ 0x00BE, /*unk4*/ koopa_shell_geo
-    cmd22 /*unk2*/ 0x00D9, /*unk4*/ metal_box_geo
-    cmd21 /*unk2*/ 0x10DA, /*unk4*/ metal_box_seg8_dl_08024BB8
-    cmd22 /*unk2*/ 0x00BC, /*unk4*/ black_bobomb_geo
-    cmd22 /*unk2*/ 0x00C3, /*unk4*/ pink_bobomb_geo
-    cmd21 /*unk2*/ 0x10C9, /*unk4*/ cannon_lid_seg8_dl_080048E0
-    cmd22 /*unk2*/ 0x00B4, /*unk4*/ bowling_ball_geo
-    cmd22 /*unk2*/ 0x007F, /*unk4*/ cannon_barrel_geo
-    cmd22 /*unk2*/ 0x0080, /*unk4*/ cannon_base_geo
-    cmd22 /*unk2*/ 0x0078, /*unk4*/ heart_geo
-    cmd22 /*unk2*/ 0x00DC, /*unk4*/ flyguy_geo
-    cmd22 /*unk2*/ 0x00DF, /*unk4*/ chuckya_geo
-    cmd22 /*unk2*/ 0x00E1, /*unk4*/ bowling_ball2_geo
+    load_model_from_geo /*model*/ MODEL_BLUE_COIN_SWITCH,        /*geo*/ blue_coin_switch_geo
+    load_model_from_geo /*model*/ MODEL_AMP,                     /*geo*/ amp_geo
+    load_model_from_geo /*model*/ MODEL_PURPLE_SWITCH,           /*geo*/ purple_switch_geo
+    load_model_from_geo /*model*/ MODEL_CHECKERBOARD_PLATFORM,   /*geo*/ checkerboard_platform_geo
+    load_model_from_geo /*model*/ MODEL_BREAKABLE_BOX,           /*geo*/ breakable_box_geo
+    load_model_from_geo /*model*/ MODEL_BREAKABLE_BOX_SMALL,     /*geo*/ breakable_box_small_geo
+    load_model_from_geo /*model*/ MODEL_EXCLAMATION_BOX_OUTLINE, /*geo*/ exclamation_box_outline_geo
+    load_model_from_geo /*model*/ MODEL_EXCLAMATION_BOX,         /*geo*/ exclamation_box_geo
+    load_model_from_geo /*model*/ MODEL_GOOMBA,                  /*geo*/ goomba_geo
+    load_model_from_dl  /*model*/ MODEL_DL_COMMON1_84,           /*dl*/  exclamation_box_outline_seg8_dl_08025F08, /*unk2*/ 0x40
+    load_model_from_geo /*model*/ MODEL_KOOPA_SHELL,             /*geo*/ koopa_shell_geo
+    load_model_from_geo /*model*/ MODEL_METAL_BOX,               /*geo*/ metal_box_geo
+    load_model_from_dl  /*model*/ MODEL_DL_COMMON1_DA,           /*dl*/  metal_box_seg8_dl_08024BB8,               /*unk2*/ 0x10
+    load_model_from_geo /*model*/ MODEL_BLACK_BOBOMB,            /*geo*/ black_bobomb_geo
+    load_model_from_geo /*model*/ MODEL_BOBOMB_BUDDY,            /*geo*/ bobomb_buddy_geo
+    load_model_from_dl  /*model*/ MODEL_DL_CANNON_LID,           /*dl*/  cannon_lid_seg8_dl_080048E0,              /*unk2*/ 0x10
+    load_model_from_geo /*model*/ MODEL_BOWLING_BALL,            /*geo*/ bowling_ball_geo
+    load_model_from_geo /*model*/ MODEL_CANNON_BARREL,           /*geo*/ cannon_barrel_geo
+    load_model_from_geo /*model*/ MODEL_CANNON_BASE,             /*geo*/ cannon_base_geo
+    load_model_from_geo /*model*/ MODEL_HEART,                   /*geo*/ heart_geo
+    load_model_from_geo /*model*/ MODEL_FLYGUY,                  /*geo*/ flyguy_geo
+    load_model_from_geo /*model*/ MODEL_CHUCKYA,                 /*geo*/ chuckya_geo
+    load_model_from_geo /*model*/ MODEL_BOWLING_BALL_2,          /*geo*/ bowling_ball2_geo
     return
 
 glabel script_func_global_2
-    cmd22 /*unk2*/ 0x0054, /*unk4*/ bullet_bill_geo
-    cmd22 /*unk2*/ 0x0055, /*unk4*/ yellow_sphere_geo
-    cmd22 /*unk2*/ 0x0056, /*unk4*/ hoot_geo
-    cmd22 /*unk2*/ 0x0057, /*unk4*/ yoshi_egg_geo
-    cmd22 /*unk2*/ 0x0058, /*unk4*/ thwomp_geo
-    cmd22 /*unk2*/ 0x0059, /*unk4*/ heave_ho_geo
+    load_model_from_geo /*model*/ MODEL_BULLET_BILL,             /*geo*/ bullet_bill_geo
+    load_model_from_geo /*model*/ MODEL_YELLOW_SPHERE,           /*geo*/ yellow_sphere_geo
+    load_model_from_geo /*model*/ MODEL_HOOT,                    /*geo*/ hoot_geo
+    load_model_from_geo /*model*/ MODEL_YOSHI_EGG,               /*geo*/ yoshi_egg_geo
+    load_model_from_geo /*model*/ MODEL_THWOMP,                  /*geo*/ thwomp_geo
+    load_model_from_geo /*model*/ MODEL_HEAVE_HO,                /*geo*/ heave_ho_geo
     return
 
 glabel script_func_global_3
-    cmd22 /*unk2*/ 0x0054, /*unk4*/ blargg_geo
-    cmd22 /*unk2*/ 0x0056, /*unk4*/ bully_geo
-    cmd22 /*unk2*/ 0x0057, /*unk4*/ bully_boss_geo
+    load_model_from_geo /*model*/ MODEL_BLARGG,                  /*geo*/ blargg_geo
+    load_model_from_geo /*model*/ MODEL_BULLY,                   /*geo*/ bully_geo
+    load_model_from_geo /*model*/ MODEL_BULLY_BOSS,              /*geo*/ bully_boss_geo
     return
 
 glabel script_func_global_4
-    cmd22 /*unk2*/ 0x0054, /*unk4*/ water_bubble_geo
-    cmd22 /*unk2*/ 0x0055, /*unk4*/ water_bubble_shadow_geo
-    cmd22 /*unk2*/ 0x0056, /*unk4*/ king_bobomb_geo
+    load_model_from_geo /*model*/ MODEL_WATER_BOMB,              /*geo*/ water_bomb_geo
+    load_model_from_geo /*model*/ MODEL_WATER_BOMB_SHADOW,       /*geo*/ water_bomb_shadow_geo
+    load_model_from_geo /*model*/ MODEL_KING_BOBOMB,             /*geo*/ king_bobomb_geo
     return
 
 glabel script_func_global_5
-    cmd22 /*unk2*/ 0x0054, /*unk4*/ manta_seg5_geo_05008D14
-    cmd22 /*unk2*/ 0x0055, /*unk4*/ unagi_geo
-    cmd22 /*unk2*/ 0x0056, /*unk4*/ sushi_geo
-    cmd21 /*unk2*/ 0x5057, /*unk4*/ whirlpool_seg5_dl_05013CB8
-    cmd22 /*unk2*/ 0x0058, /*unk4*/ clam_shell_geo
+    load_model_from_geo /*model*/ MODEL_MANTA_RAY,               /*geo*/ manta_seg5_geo_05008D14
+    load_model_from_geo /*model*/ MODEL_UNAGI,                   /*geo*/ unagi_geo
+    load_model_from_geo /*model*/ MODEL_SUSHI,                   /*geo*/ sushi_geo
+    load_model_from_dl  /*model*/ MODEL_DL_WHIRLPOOL,            /*dl*/  whirlpool_seg5_dl_05013CB8, /*unk2*/ 0x50
+    load_model_from_geo /*model*/ MODEL_CLAM_SHELL,              /*geo*/ clam_shell_geo
     return
 
 glabel script_func_global_6
-    cmd22 /*unk2*/ 0x0054, /*unk4*/ pokey_head_geo
-    cmd22 /*unk2*/ 0x0055, /*unk4*/ pokey_body_part_geo
-    cmd22 /*unk2*/ 0x0056, /*unk4*/ tornado_seg5_geo_05014630
-    cmd22 /*unk2*/ 0x0057, /*unk4*/ klepto_geo
-    cmd22 /*unk2*/ 0x0058, /*unk4*/ eyerok_geo
-    cmd22 /*unk2*/ 0x0059, /*unk4*/ eyerok2_geo
+    load_model_from_geo /*model*/ MODEL_POKEY_HEAD,              /*geo*/ pokey_head_geo
+    load_model_from_geo /*model*/ MODEL_POKEY_BODY_PART,         /*geo*/ pokey_body_part_geo
+    load_model_from_geo /*model*/ MODEL_TORNADO,                 /*geo*/ tornado_seg5_geo_05014630
+    load_model_from_geo /*model*/ MODEL_KLEPTO,                  /*geo*/ klepto_geo
+    load_model_from_geo /*model*/ MODEL_EYEROK,                  /*geo*/ eyerok_geo
+    load_model_from_geo /*model*/ MODEL_EYEROK_2,                /*geo*/ eyerok2_geo
     return
 
 glabel script_func_global_7
-    cmd21 /*unk2*/ 0x6054, /*unk4*/ monty_mole_hole_seg5_dl_05000840
-    cmd22 /*unk2*/ 0x0055, /*unk4*/ monty_mole_geo
-    cmd22 /*unk2*/ 0x0056, /*unk4*/ ukiki_geo
-    cmd22 /*unk2*/ 0x0057, /*unk4*/ fwoosh_geo
+    load_model_from_dl  /*model*/ MODEL_DL_MONTY_MOLE_HOLE,      /*dl*/  monty_mole_hole_seg5_dl_05000840, /*unk2*/ 0x60
+    load_model_from_geo /*model*/ MODEL_MONTY_MOLE,              /*geo*/ monty_mole_geo
+    load_model_from_geo /*model*/ MODEL_UKIKI,                   /*geo*/ ukiki_geo
+    load_model_from_geo /*model*/ MODEL_FWOOSH,                  /*geo*/ fwoosh_geo
     return
 
 glabel script_func_global_8
-    cmd22 /*unk2*/ 0x0054, /*unk4*/ spindrift_geo
-    cmd22 /*unk2*/ 0x0055, /*unk4*/ mr_blizzard_hidden_geo
-    cmd22 /*unk2*/ 0x0056, /*unk4*/ mr_blizzard_geo
-    cmd22 /*unk2*/ 0x0057, /*unk4*/ penguin_geo
+    load_model_from_geo /*model*/ MODEL_SPINDRIFT,               /*geo*/ spindrift_geo
+    load_model_from_geo /*model*/ MODEL_MR_BLIZZARD_HIDDEN,      /*geo*/ mr_blizzard_hidden_geo
+    load_model_from_geo /*model*/ MODEL_MR_BLIZZARD,             /*geo*/ mr_blizzard_geo
+    load_model_from_geo /*model*/ MODEL_PENGUIN,                 /*geo*/ penguin_geo
     return
 
 glabel script_func_global_9
-    cmd21 /*unk2*/ 0x4054, /*unk4*/ capswitch_seg5_dl_05002E00
-    cmd22 /*unk2*/ 0x0055, /*unk4*/ cap_switch_geo
-    cmd21 /*unk2*/ 0x1056, /*unk4*/ cap_switch_base_seg5_dl_05003120
+    load_model_from_dl  /*model*/ MODEL_DL_COMMON9_54,           /*dl*/  capswitch_seg5_dl_05002E00,       /*unk2*/ 0x40
+    load_model_from_geo /*model*/ MODEL_CAP_SWITCH,              /*geo*/ cap_switch_geo
+    load_model_from_dl  /*model*/ MODEL_DL_COMMON9_56,           /*dl*/  cap_switch_base_seg5_dl_05003120, /*unk2*/ 0x10
     return
 
 glabel script_func_global_10
-    cmd22 /*unk2*/ 0x0054, /*unk4*/ boo_geo
-    cmd22 /*unk2*/ 0x0055, /*unk4*/ small_key_geo
-    cmd22 /*unk2*/ 0x0056, /*unk4*/ haunted_chair_geo
-    cmd22 /*unk2*/ 0x0057, /*unk4*/ mad_piano_geo
-    cmd22 /*unk2*/ 0x0058, /*unk4*/ bookend_part_geo
-    cmd22 /*unk2*/ 0x0059, /*unk4*/ book_enemy_geo
-    cmd22 /*unk2*/ 0x005A, /*unk4*/ haunted_cage_geo
+    load_model_from_geo /*model*/ MODEL_BOO,                     /*geo*/ boo_geo
+    load_model_from_geo /*model*/ MODEL_SMALL_KEY,               /*geo*/ small_key_geo
+    load_model_from_geo /*model*/ MODEL_HAUNTED_CHAIR,           /*geo*/ haunted_chair_geo
+    load_model_from_geo /*model*/ MODEL_MAD_PIANO,               /*geo*/ mad_piano_geo
+    load_model_from_geo /*model*/ MODEL_BOOKEND_PART,            /*geo*/ bookend_part_geo
+    load_model_from_geo /*model*/ MODEL_BOOKEND,              /*geo*/ bookend_geo
+    load_model_from_geo /*model*/ MODEL_HAUNTED_CAGE,            /*geo*/ haunted_cage_geo
     return
 
 glabel script_func_global_11
-    cmd22 /*unk2*/ 0x0054, /*unk4*/ birds_geo
-    cmd22 /*unk2*/ 0x00DE, /*unk4*/ peach_geo
-    cmd22 /*unk2*/ 0x0055, /*unk4*/ yoshi_geo
+    load_model_from_geo /*model*/ MODEL_BIRDS,                   /*geo*/ birds_geo
+    load_model_from_geo /*model*/ MODEL_PEACH,                   /*geo*/ peach_geo
+    load_model_from_geo /*model*/ MODEL_YOSHI,                   /*geo*/ yoshi_geo
     return
 
 glabel script_func_global_12
-    cmd22 /*unk2*/ 0x0054, /*unk4*/ lakitu_enemy_geo
-    cmd22 /*unk2*/ 0x0055, /*unk4*/ spiny_egg_geo
-    cmd22 /*unk2*/ 0x0056, /*unk4*/ spiny_geo
-    cmd22 /*unk2*/ 0x0057, /*unk4*/ wiggler_geo
-    cmd22 /*unk2*/ 0x0058, /*unk4*/ wiggler2_geo
-    cmd22 /*unk2*/ 0x0059, /*unk4*/ bubba_geo
+    load_model_from_geo /*model*/ MODEL_ENEMY_LAKITU,            /*geo*/ enemy_lakitu_geo
+    load_model_from_geo /*model*/ MODEL_SPINY_BALL,              /*geo*/ spiny_ball_geo
+    load_model_from_geo /*model*/ MODEL_SPINY,                   /*geo*/ spiny_geo
+    load_model_from_geo /*model*/ MODEL_WIGGLER,                 /*geo*/ wiggler_geo
+    load_model_from_geo /*model*/ MODEL_WIGGLER_BODY_PART,       /*geo*/ wiggler2_geo
+    load_model_from_geo /*model*/ MODEL_BUBBA,                   /*geo*/ bubba_geo
     return
 
 glabel script_func_global_13
-    cmd22 /*unk2*/ 0x0064, /*unk4*/ bowser_geo
-    cmd22 /*unk2*/ 0x0065, /*unk4*/ bowser_bomb_geo
-    cmd22 /*unk2*/ 0x00B3, /*unk4*/ bowser_bomb_geo
-    cmd22 /*unk2*/ 0x0066, /*unk4*/ bowser_impact_smoke_geo
-    cmd22 /*unk2*/ 0x0067, /*unk4*/ bowser_flames_geo
-    cmd22 /*unk2*/ 0x0068, /*unk4*/ invisible_bowser_accessory_geo
-    cmd22 /*unk2*/ 0x0069, /*unk4*/ bowser2_geo
+    load_model_from_geo /*model*/ MODEL_COMMON13_64,             /*geo*/ bowser_geo
+    load_model_from_geo /*model*/ MODEL_COMMON13_65,             /*geo*/ bowser_bomb_geo
+    load_model_from_geo /*model*/ MODEL_BOWSER_BOMB,             /*geo*/ bowser_bomb_geo
+    load_model_from_geo /*model*/ MODEL_COMMON13_66,             /*geo*/ bowser_impact_smoke_geo
+    load_model_from_geo /*model*/ MODEL_COMMON13_67,             /*geo*/ bowser_flames_geo
+    load_model_from_geo /*model*/ MODEL_COMMON13_68,             /*geo*/ invisible_bowser_accessory_geo
+    load_model_from_geo /*model*/ MODEL_COMMON13_69,             /*geo*/ bowser2_geo
     return
 
 glabel script_func_global_14
-    cmd22 /*unk2*/ 0x0064, /*unk4*/ bub_geo
-    cmd22 /*unk2*/ 0x0065, /*unk4*/ treasure_chest_bottom_geo
-    cmd22 /*unk2*/ 0x0066, /*unk4*/ treasure_chest_lid_geo
-    cmd22 /*unk2*/ 0x0067, /*unk4*/ cyan_fish_geo
-    cmd22 /*unk2*/ 0x0068, /*unk4*/ water_ring_geo
-    cmd22 /*unk2*/ 0x00B3, /*unk4*/ water_mine_geo
-    cmd22 /*unk2*/ 0x00C1, /*unk4*/ seaweed_geo
-    cmd22 /*unk2*/ 0x0069, /*unk4*/ skeeter_geo
+    load_model_from_geo /*model*/ MODEL_BUB,                     /*geo*/ bub_geo
+    load_model_from_geo /*model*/ MODEL_TREASURE_CHEST_BASE,     /*geo*/ treasure_chest_base_geo
+    load_model_from_geo /*model*/ MODEL_TREASURE_CHEST_LID,      /*geo*/ treasure_chest_lid_geo
+    load_model_from_geo /*model*/ MODEL_CYAN_FISH,               /*geo*/ cyan_fish_geo
+    load_model_from_geo /*model*/ MODEL_WATER_RING,              /*geo*/ water_ring_geo
+    load_model_from_geo /*model*/ MODEL_WATER_MINE,              /*geo*/ water_mine_geo
+    load_model_from_geo /*model*/ MODEL_SEAWEED,                 /*geo*/ seaweed_geo
+    load_model_from_geo /*model*/ MODEL_SKEETER,                 /*geo*/ skeeter_geo
     return
 
 glabel script_func_global_15
-    cmd22 /*unk2*/ 0x0064, /*unk4*/ piranha_plant_geo
-    cmd22 /*unk2*/ 0x0067, /*unk4*/ whomp_geo
-    cmd22 /*unk2*/ 0x0068, /*unk4*/ koopa2_geo
-    cmd22 /*unk2*/ 0x00BF, /*unk4*/ koopa_geo
-    cmd22 /*unk2*/ 0x0065, /*unk4*/ metallic_ball_geo
-    cmd22 /*unk2*/ 0x0066, /*unk4*/ chain_chomp
-    cmd22 /*unk2*/ 0x006A, /*unk4*/ koopa_flag_geo
-    cmd22 /*unk2*/ 0x006B, /*unk4*/ poundable_wooden_log
+    load_model_from_geo /*model*/ MODEL_PIRANHA_PLANT,           /*geo*/ piranha_plant_geo
+    load_model_from_geo /*model*/ MODEL_WHOMP,                   /*geo*/ whomp_geo
+    load_model_from_geo /*model*/ MODEL_KOOPA_WITH_SHELL,        /*geo*/ koopa_with_shell_geo
+    load_model_from_geo /*model*/ MODEL_KOOPA_WITHOUT_SHELL,     /*geo*/ koopa_without_shell_geo
+    load_model_from_geo /*model*/ MODEL_METALLIC_BALL,           /*geo*/ metallic_ball_geo
+    load_model_from_geo /*model*/ MODEL_CHAIN_CHOMP,             /*geo*/ chain_chomp
+    load_model_from_geo /*model*/ MODEL_KOOPA_FLAG,              /*geo*/ koopa_flag_geo
+    load_model_from_geo /*model*/ MODEL_WOODEN_POST,             /*geo*/ wooden_post_geo
     return
 
 glabel script_func_global_16
-    cmd22 /*unk2*/ 0x0064, /*unk4*/ mips_geo
-    cmd22 /*unk2*/ 0x0065, /*unk4*/ boo_castle_geo
-    cmd22 /*unk2*/ 0x0066, /*unk4*/ lakitu_geo
-    cmd22 /*unk2*/ 0x00DD, /*unk4*/ toad_geo
+    load_model_from_geo /*model*/ MODEL_MIPS,                    /*geo*/ mips_geo
+    load_model_from_geo /*model*/ MODEL_BOO_CASTLE,              /*geo*/ boo_castle_geo
+    load_model_from_geo /*model*/ MODEL_LAKITU,                  /*geo*/ lakitu_geo
+    load_model_from_geo /*model*/ MODEL_TOAD,                    /*geo*/ toad_geo
     return
 
 glabel script_func_global_17
-    cmd22 /*unk2*/ 0x0064, /*unk4*/ chilly_chief_seg6_geo
-    cmd22 /*unk2*/ 0x0065, /*unk4*/ chilly_chief_seg6_geo2
-    cmd22 /*unk2*/ 0x0066, /*unk4*/ moneybag_geo
+    load_model_from_geo /*model*/ MODEL_COMMON17_64,             /*geo*/ chilly_chief_seg6_geo
+    load_model_from_geo /*model*/ MODEL_BIG_CHILL_BULLY,             /*geo*/ chilly_chief_seg6_geo2
+    load_model_from_geo /*model*/ MODEL_MONEYBAG,                /*geo*/ moneybag_geo
     return
 
 glabel script_func_global_18
-    cmd22 /*unk2*/ 0x0064, /*unk4*/ swoop_geo
-    cmd22 /*unk2*/ 0x0065, /*unk4*/ scuttlebug_geo
-    cmd22 /*unk2*/ 0x0066, /*unk4*/ mr_i_iris_geo
-    cmd22 /*unk2*/ 0x0067, /*unk4*/ mr_i_geo
-    cmd22 /*unk2*/ 0x0068, /*unk4*/ dorrie_geo
-    cmd22 /*unk2*/ 0x00CE, /*unk4*/ snufit_geo
+    load_model_from_geo /*model*/ MODEL_SWOOP,                   /*geo*/ swoop_geo
+    load_model_from_geo /*model*/ MODEL_SCUTTLEBUG,              /*geo*/ scuttlebug_geo
+    load_model_from_geo /*model*/ MODEL_MR_I_IRIS,               /*geo*/ mr_i_iris_geo
+    load_model_from_geo /*model*/ MODEL_MR_I,                    /*geo*/ mr_i_geo
+    load_model_from_geo /*model*/ MODEL_DORRIE,                  /*geo*/ dorrie_geo
+    load_model_from_geo /*model*/ MODEL_SNUFIT,                  /*geo*/ snufit_geo
     return
 
 .align 4

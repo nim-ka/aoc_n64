@@ -1,4 +1,4 @@
-glabel lakitu_enemy_geo # 0x0C0001BC
+glabel enemy_lakitu_geo # 0x0C0001BC
    geo_shadow SHADOW_CIRCLE_UNK1, 0x96, 100
    geo_open_node
       geo_scale 0x00, 16384

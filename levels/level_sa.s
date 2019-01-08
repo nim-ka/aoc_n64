@@ -9,12 +9,12 @@
 .section .level, "a"
 
 script_func_local_1:
-    object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 0, -1000, 0, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_large_fish_group
-    object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 0, -1000, 0, /*angle*/ 0, 0, 0, /*behArg*/ 0x00020000, /*beh*/ beh_large_fish_group
+    object /*model*/ MODEL_NONE, /*pos*/ 0, -1000, 0, /*angle*/ 0, 0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_large_fish_group
+    object /*model*/ MODEL_NONE, /*pos*/ 0, -1000, 0, /*angle*/ 0, 0, 0, /*behParam*/ 0x00020000, /*beh*/ beh_large_fish_group
     return
 
 script_func_local_2:
-    object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 0, -4250, 0, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_hidden_red_coin_star
+    object /*model*/ MODEL_NONE, /*pos*/ 0, -4250, 0, /*angle*/ 0, 0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_hidden_red_coin_star
     return
 
 glabel level_sa_entry
@@ -28,19 +28,19 @@ glabel level_sa_entry
     load_mio0 /*seg*/ 0x06, /*romStart*/ _skeeter_fish_treasurechest_mio0SegmentRomStart, /*romEnd*/ _skeeter_fish_treasurechest_mio0SegmentRomEnd
     load_raw  /*seg*/ 0x0D, /*romStart*/ _skeeter_fish_treasurechest_geoSegmentRomStart,  /*romEnd*/ _skeeter_fish_treasurechest_geoSegmentRomEnd
     alloc_level_pool
-    mario /*unk3*/ 0x01, /*behArg*/ 0x00000001, /*beh*/ beh_mario
+    mario /*unk3*/ 0x01, /*behParam*/ 0x00000001, /*beh*/ beh_mario
     jump_link /*target*/ script_func_global_5
     jump_link /*target*/ script_func_global_14
 
     area /*index*/ 1, /*geo*/ sa_geo_000170
-        object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 0, -1535, 0, /*angle*/ 0, 90, 0, /*behArg*/ 0x000A0000, /*beh*/ beh_warps_94
-        warp_node /*id*/ 0x0A, /*destLevel1*/ 0x14, /*destArea*/ 0x01, /*destNode*/ 0x0A, /*destLevel2*/ 0x00
-        warp_node /*id*/ 0xF0, /*destLevel1*/ 0x06, /*destArea*/ 0x01, /*destNode*/ 0x27, /*destLevel2*/ 0x00
-        warp_node /*id*/ 0xF1, /*destLevel1*/ 0x06, /*destArea*/ 0x01, /*destNode*/ 0x28, /*destLevel2*/ 0x00
+        object /*model*/ MODEL_NONE, /*pos*/ 0, -1535, 0, /*angle*/ 0, 90, 0, /*behParam*/ 0x000A0000, /*beh*/ beh_warps_94
+        warp_node /*id*/ 0x0A, /*destLevel*/ 0x14, /*destArea*/ 0x01, /*destNode*/ 0x0A, /*unk6*/ 0x0000
+        warp_node /*id*/ 0xF0, /*destLevel*/ 0x06, /*destArea*/ 0x01, /*destNode*/ 0x27, /*unk6*/ 0x0000
+        warp_node /*id*/ 0xF1, /*destLevel*/ 0x06, /*destArea*/ 0x01, /*destNode*/ 0x28, /*unk6*/ 0x0000
         jump_link /*target*/ script_func_local_1
         jump_link /*target*/ script_func_local_2
         terrain /*terrainData*/ sa_seg7_collision
-        cmd39 /*unk4*/ sa_seg7_macro_objs
+        macro_objects /*objList*/ sa_seg7_macro_objs
         set_music /*unk2*/ 0x0003, /*seq*/ 0x0085
         terrain_type /*terrainType*/ 0x0005
     end_area

@@ -166,6 +166,7 @@ SECTIONS
       BUILD_DIR/src/ingame_menu.o(.data*);
       BUILD_DIR/src/ingame_menu_2.o(.data*);
       BUILD_DIR/src/ingame_menu_3.o(.data*);
+	  BUILD_DIR/data/hud.data.o(.data*);
       BUILD_DIR/src/hud.o(.data*);
       BUILD_DIR/src/hud_print.o(.data*);
       BUILD_DIR/src/obj_behaviors.o(.data*);
@@ -256,6 +257,7 @@ SECTIONS
       BUILD_DIR/src/ingame_menu.o(.bss*);
       BUILD_DIR/src/ingame_menu_2.o(.bss*);
       BUILD_DIR/src/ingame_menu_3.o(.bss*);
+      BUILD_DIR/src/hud.o(.bss*)
       BUILD_DIR/src/hud_print.o(.bss*);
       BUILD_DIR/data/obj_behaviors_1.bss.o(.bss*);
       BUILD_DIR/src/obj_behaviors_2.o(.bss*);

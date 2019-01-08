@@ -2,6 +2,7 @@
 .section .rodata
 .include "macros.inc"
 .include "ultra64/gbi.inc"
+.include "macro_presets.inc"
 
 # TODO: cross-link between segments
 .equ castle_grounds_textures_09000000, 0x09000000
@@ -2911,10 +2912,10 @@ glabel castle_courtyard_seg7_collision # 0x070059A8 - 0x07006E1E
 .balign 4 # 0x07006E1E - 0x07006E20
 
 glabel castle_courtyard_seg7_macro_objs # 0x07006E20 - 0x07006E4A
-.hword 0xA034,  3180,    20,   330,   158
-.hword 0x6034, -3180,    20,   330,   159
-.hword 0x0034,   300,     0, -3600,   102
-.hword 0x0034,  -300,     0, -3600,   160
+macro_object /*preset*/ macro_wooden_signpost, /*yaw*/ 225, /*pos*/  3180,    20,   330, /*behParam*/ 158
+macro_object /*preset*/ macro_wooden_signpost, /*yaw*/ 135, /*pos*/ -3180,    20,   330, /*behParam*/ 159
+macro_object /*preset*/ macro_wooden_signpost, /*yaw*/   0, /*pos*/   300,     0, -3600, /*behParam*/ 102
+macro_object /*preset*/ macro_wooden_signpost, /*yaw*/   0, /*pos*/  -300,     0, -3600, /*behParam*/ 160
 .hword 0x001E
 
 .balign 4

@@ -9,16 +9,16 @@
 .section .level, "a"
 
 script_func_local_1:
-    object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 3996, -2739, 5477, /*angle*/ 0, 0, 0, /*behArg*/ 0x00520000, /*beh*/ beh_pole_grabbing
-    object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -2911, 3564, -3967, /*angle*/ 0, 0, 0, /*behArg*/ 0x00540000, /*beh*/ beh_pole_grabbing
-    object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -3258, 3359, -3946, /*angle*/ 0, 0, 0, /*behArg*/ 0x00690000, /*beh*/ beh_pole_grabbing
-    object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -2639, 3154, -4369, /*angle*/ 0, 0, 0, /*behArg*/ 0x007D0000, /*beh*/ beh_pole_grabbing
-    object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -2980, 4048, -4248, /*angle*/ 0, 0, 0, /*behArg*/ 0x00240000, /*beh*/ beh_pole_grabbing
-    object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -3290, 3636, -4477, /*angle*/ 0, 0, 0, /*behArg*/ 0x004D0000, /*beh*/ beh_pole_grabbing
+    object /*model*/ MODEL_NONE, /*pos*/  3996, -2739,  5477, /*angle*/ 0, 0, 0, /*behParam*/ 0x00520000, /*beh*/ beh_pole_grabbing
+    object /*model*/ MODEL_NONE, /*pos*/ -2911,  3564, -3967, /*angle*/ 0, 0, 0, /*behParam*/ 0x00540000, /*beh*/ beh_pole_grabbing
+    object /*model*/ MODEL_NONE, /*pos*/ -3258,  3359, -3946, /*angle*/ 0, 0, 0, /*behParam*/ 0x00690000, /*beh*/ beh_pole_grabbing
+    object /*model*/ MODEL_NONE, /*pos*/ -2639,  3154, -4369, /*angle*/ 0, 0, 0, /*behParam*/ 0x007D0000, /*beh*/ beh_pole_grabbing
+    object /*model*/ MODEL_NONE, /*pos*/ -2980,  4048, -4248, /*angle*/ 0, 0, 0, /*behParam*/ 0x00240000, /*beh*/ beh_pole_grabbing
+    object /*model*/ MODEL_NONE, /*pos*/ -3290,  3636, -4477, /*angle*/ 0, 0, 0, /*behParam*/ 0x004D0000, /*beh*/ beh_pole_grabbing
     return
 
 script_func_local_2:
-    object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -160, 1950, -470, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_hidden_red_coin_star
+    object /*model*/ MODEL_NONE, /*pos*/ -160, 1950, -470, /*angle*/ 0, 0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_hidden_red_coin_star
     return
 
 glabel level_wmotr_entry
@@ -33,21 +33,21 @@ glabel level_wmotr_entry
     load_mio0 /*seg*/ 0x08, /*romStart*/ _amp_chuckya_flyguy_goomba_boxes_mio0SegmentRomStart, /*romEnd*/ _amp_chuckya_flyguy_goomba_boxes_mio0SegmentRomEnd
     load_raw  /*seg*/ 0x0F, /*romStart*/ _amp_chuckya_flyguy_goomba_boxes_geoSegmentRomStart,  /*romEnd*/ _amp_chuckya_flyguy_goomba_boxes_geoSegmentRomEnd
     alloc_level_pool
-    mario /*unk3*/ 0x01, /*behArg*/ 0x00000001, /*beh*/ beh_mario
+    mario /*unk3*/ 0x01, /*behParam*/ 0x00000001, /*beh*/ beh_mario
     jump_link /*target*/ script_func_global_1
     jump_link /*target*/ script_func_global_3
     jump_link /*target*/ script_func_global_18
 
     area /*index*/ 1, /*geo*/ wmotr_geo_0001F0
-        object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -67, 2669, -16, /*angle*/ 0, 270, 0, /*behArg*/ 0x000A0000, /*beh*/ beh_warps_64
-        warp_node /*id*/ 0x0A, /*destLevel1*/ 0x1F, /*destArea*/ 0x01, /*destNode*/ 0x0A, /*destLevel2*/ 0x00
-        warp_node /*id*/ 0xF0, /*destLevel1*/ 0x06, /*destArea*/ 0x02, /*destNode*/ 0x38, /*destLevel2*/ 0x00
-        warp_node /*id*/ 0xF1, /*destLevel1*/ 0x06, /*destArea*/ 0x02, /*destNode*/ 0x6D, /*destLevel2*/ 0x00
-        warp_node /*id*/ 0xF3, /*destLevel1*/ 0x10, /*destArea*/ 0x01, /*destNode*/ 0x0A, /*destLevel2*/ 0x00
+        object /*model*/ MODEL_NONE, /*pos*/ -67, 2669, -16, /*angle*/ 0, 270, 0, /*behParam*/ 0x000A0000, /*beh*/ beh_warps_64
+        warp_node /*id*/ 0x0A, /*destLevel*/ 0x1F, /*destArea*/ 0x01, /*destNode*/ 0x0A, /*unk6*/ 0x0000
+        warp_node /*id*/ 0xF0, /*destLevel*/ 0x06, /*destArea*/ 0x02, /*destNode*/ 0x38, /*unk6*/ 0x0000
+        warp_node /*id*/ 0xF1, /*destLevel*/ 0x06, /*destArea*/ 0x02, /*destNode*/ 0x6D, /*unk6*/ 0x0000
+        warp_node /*id*/ 0xF3, /*destLevel*/ 0x10, /*destArea*/ 0x01, /*destNode*/ 0x0A, /*unk6*/ 0x0000
         jump_link /*target*/ script_func_local_1
         jump_link /*target*/ script_func_local_2
         terrain /*terrainData*/ wmotr_seg7_collision 
-        cmd39 /*unk4*/ wmotr_seg7_macro_objs
+        macro_objects /*objList*/ wmotr_seg7_macro_objs
         set_music /*unk2*/ 0x0000, /*seq*/ 0x0009
         terrain_type /*terrainType*/ 0x0002
     end_area

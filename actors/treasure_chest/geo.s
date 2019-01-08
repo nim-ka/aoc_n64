@@ -1,4 +1,4 @@
-glabel treasure_chest_bottom_geo # 0x0D000450
+glabel treasure_chest_base_geo # 0x0D000450
    geo_node_start
    geo_open_node
       geo_display_list 0x01, treasure_chest_seg6_dl_06016F90

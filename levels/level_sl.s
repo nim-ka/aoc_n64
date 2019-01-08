@@ -9,25 +9,25 @@
 .section .level, "a"
 
 script_func_local_1:
-    object /*unk2*/ 0x3F, /*unk3*/ 0x7A, /*pos*/ 700, 4500, 690, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_collect_star
-    object /*unk2*/ 0x3F, /*unk3*/ 0x7A, /*pos*/ 4350, 1350, 4350, /*angle*/ 0, 0, 0, /*behArg*/ 0x02000000, /*beh*/ beh_collect_star
-    object /*unk2*/ 0x3F, /*unk3*/ 0x00, /*pos*/ 5000, 1200, 0, /*angle*/ 0, 0, 0, /*behArg*/ 0x04000000, /*beh*/ beh_hidden_red_coin_star
+    object /*model*/ MODEL_STAR, /*pos*/  700, 4500,  690, /*angle*/ 0, 0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_star,                 /*acts*/ ALL_ACTS
+    object /*model*/ MODEL_STAR, /*pos*/ 4350, 1350, 4350, /*angle*/ 0, 0, 0, /*behParam*/ 0x02000000, /*beh*/ beh_star,                 /*acts*/ ALL_ACTS
+    object /*model*/ MODEL_NONE, /*pos*/ 5000, 1200,    0, /*angle*/ 0, 0, 0, /*behParam*/ 0x04000000, /*beh*/ beh_hidden_red_coin_star, /*acts*/ ALL_ACTS
     return
 
 script_func_local_2:
-    object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 977, 1024, 2075, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_snow_mound_spawn
+    object /*model*/ MODEL_NONE, /*pos*/  977, 1024, 2075, /*angle*/ 0, 0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_snow_mound_spawn
     return
 
 script_func_local_3:
-    object /*unk2*/ 0x1F, /*unk3*/ 0x57, /*pos*/ 1715, 3328, 518, /*angle*/ 0, -51, 0, /*behArg*/ 0x00000000, /*beh*/ beh_walking_penguin
-    object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 700, 3428, 700, /*angle*/ 0, 30, 0, /*behArg*/ 0x00000000, /*beh*/ beh_snowman_wind_blowing
-    object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 480, 2300, 1370, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_igloo
-    object /*unk2*/ 0x1F, /*unk3*/ 0x65, /*pos*/ 315, 1331, -4852, /*angle*/ 0, 0, 0, /*behArg*/ 0x01000000, /*beh*/ beh_big_chill_bully
-    object /*unk2*/ 0x1F, /*unk3*/ 0x55, /*pos*/ 2954, 970, 750, /*angle*/ 0, 0, 0, /*behArg*/ 0x00020000, /*beh*/ bMrBlizzard
+    object /*model*/ MODEL_PENGUIN,            /*pos*/ 1715, 3328,   518, /*angle*/ 0, -51, 0, /*behParam*/ 0x00000000, /*beh*/ beh_walking_penguin
+    object /*model*/ MODEL_NONE,               /*pos*/  700, 3428,   700, /*angle*/ 0,  30, 0, /*behParam*/ 0x00000000, /*beh*/ beh_snowman_wind_blowing
+    object /*model*/ MODEL_NONE,               /*pos*/  480, 2300,  1370, /*angle*/ 0,   0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_igloo
+    object /*model*/ MODEL_BIG_CHILL_BULLY,    /*pos*/  315, 1331, -4852, /*angle*/ 0,   0, 0, /*behParam*/ 0x01000000, /*beh*/ beh_big_chill_bully
+    object /*model*/ MODEL_MR_BLIZZARD_HIDDEN, /*pos*/ 2954,  970,   750, /*angle*/ 0,   0, 0, /*behParam*/ 0x00020000, /*beh*/ bMrBlizzard
     return
 
 script_func_local_4:
-    object /*unk2*/ 0x3F, /*unk3*/ 0x7A, /*pos*/ 0, 500, 1000, /*angle*/ 0, 0, 0, /*behArg*/ 0x05000000, /*beh*/ beh_collect_star
+    object /*model*/ MODEL_STAR, /*pos*/ 0, 500, 1000, /*angle*/ 0, 0, 0, /*behParam*/ 0x05000000, /*beh*/ beh_star, /*acts*/ ALL_ACTS
     return
 
 glabel level_sl_entry
@@ -43,47 +43,47 @@ glabel level_sl_entry
     load_mio0 /*seg*/ 0x08, /*romStart*/ _amp_chuckya_flyguy_goomba_boxes_mio0SegmentRomStart, /*romEnd*/ _amp_chuckya_flyguy_goomba_boxes_mio0SegmentRomEnd
     load_raw  /*seg*/ 0x0F, /*romStart*/ _amp_chuckya_flyguy_goomba_boxes_geoSegmentRomStart,  /*romEnd*/ _amp_chuckya_flyguy_goomba_boxes_geoSegmentRomEnd
     alloc_level_pool
-    mario /*unk3*/ 0x01, /*behArg*/ 0x00000001, /*beh*/ beh_mario
+    mario /*unk3*/ 0x01, /*behParam*/ 0x00000001, /*beh*/ beh_mario
     jump_link /*target*/ script_func_global_1
     jump_link /*target*/ script_func_global_8
     jump_link /*target*/ script_func_global_17
-    cmd22 /*unk2*/ 0x0036, /*unk4*/ sl_geo_000390
-    cmd22 /*unk2*/ 0x0037, /*unk4*/ sl_geo_000360
-    cmd22 /*unk2*/ 0x0038, /*unk4*/ sl_geo_000378
-    cmd22 /*unk2*/ 0x0019, /*unk4*/ snow_tree_geo
+    load_model_from_geo /*model*/ MODEL_SL_36, /*geo*/ sl_geo_000390
+    load_model_from_geo /*model*/ MODEL_SL_37, /*geo*/ sl_geo_000360
+    load_model_from_geo /*model*/ MODEL_SL_38, /*geo*/ sl_geo_000378
+    load_model_from_geo /*model*/ MODEL_SL_SNOW_TREE, /*geo*/ snow_tree_geo
 
     area /*index*/ 1, /*geo*/ sl_geo_0003A8
-        object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 5541, 2024, 443, /*angle*/ 0, 270, 0, /*behArg*/ 0x000A0000, /*beh*/ beh_warps_74
-        object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 257, 2150, 1399, /*angle*/ 0, 290, 0, /*behArg*/ 0x000B0000, /*beh*/ beh_warps_60
-        object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 569, 2150, 1336, /*angle*/ 0, 0, 0, /*behArg*/ 0x060C0000, /*beh*/ beh_warp
-        object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 5468, 1056, -5400, /*angle*/ 0, -20, 0, /*behArg*/ 0x000D0000, /*beh*/ beh_fading_warp
-        object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -3698, 1024, -1237, /*angle*/ 0, 6, 0, /*behArg*/ 0x000E0000, /*beh*/ beh_fading_warp
-        warp_node /*id*/ 0x0A, /*destLevel1*/ 0x0A, /*destArea*/ 0x01, /*destNode*/ 0x0A, /*destLevel2*/ 0x00
-        warp_node /*id*/ 0x0B, /*destLevel1*/ 0x0A, /*destArea*/ 0x01, /*destNode*/ 0x0B, /*destLevel2*/ 0x00
-        warp_node /*id*/ 0x0C, /*destLevel1*/ 0x0A, /*destArea*/ 0x02, /*destNode*/ 0x0A, /*destLevel2*/ 0x00
-        warp_node /*id*/ 0x0D, /*destLevel1*/ 0x0A, /*destArea*/ 0x01, /*destNode*/ 0x0E, /*destLevel2*/ 0x00
-        warp_node /*id*/ 0x0E, /*destLevel1*/ 0x0A, /*destArea*/ 0x01, /*destNode*/ 0x0D, /*destLevel2*/ 0x00
+        object /*model*/ MODEL_NONE, /*pos*/  5541, 2024,   443, /*angle*/ 0, 270, 0, /*behParam*/ 0x000A0000, /*beh*/ beh_warps_74
+        object /*model*/ MODEL_NONE, /*pos*/   257, 2150,  1399, /*angle*/ 0, 290, 0, /*behParam*/ 0x000B0000, /*beh*/ beh_warps_60
+        object /*model*/ MODEL_NONE, /*pos*/   569, 2150,  1336, /*angle*/ 0,   0, 0, /*behParam*/ 0x060C0000, /*beh*/ beh_warp
+        object /*model*/ MODEL_NONE, /*pos*/  5468, 1056, -5400, /*angle*/ 0, -20, 0, /*behParam*/ 0x000D0000, /*beh*/ beh_fading_warp
+        object /*model*/ MODEL_NONE, /*pos*/ -3698, 1024, -1237, /*angle*/ 0,   6, 0, /*behParam*/ 0x000E0000, /*beh*/ beh_fading_warp
+        warp_node /*id*/ 0x0A, /*destLevel*/ 0x0A, /*destArea*/ 0x01, /*destNode*/ 0x0A, /*unk6*/ 0x0000
+        warp_node /*id*/ 0x0B, /*destLevel*/ 0x0A, /*destArea*/ 0x01, /*destNode*/ 0x0B, /*unk6*/ 0x0000
+        warp_node /*id*/ 0x0C, /*destLevel*/ 0x0A, /*destArea*/ 0x02, /*destNode*/ 0x0A, /*unk6*/ 0x0000
+        warp_node /*id*/ 0x0D, /*destLevel*/ 0x0A, /*destArea*/ 0x01, /*destNode*/ 0x0E, /*unk6*/ 0x0000
+        warp_node /*id*/ 0x0E, /*destLevel*/ 0x0A, /*destArea*/ 0x01, /*destNode*/ 0x0D, /*unk6*/ 0x0000
         jump_link /*target*/ script_func_local_1
         jump_link /*target*/ script_func_local_2
         jump_link /*target*/ script_func_local_3
-        warp_node /*id*/ 0xF0, /*destLevel1*/ 0x06, /*destArea*/ 0x02, /*destNode*/ 0x36, /*destLevel2*/ 0x00
-        warp_node /*id*/ 0xF1, /*destLevel1*/ 0x06, /*destArea*/ 0x02, /*destNode*/ 0x68, /*destLevel2*/ 0x00
+        warp_node /*id*/ 0xF0, /*destLevel*/ 0x06, /*destArea*/ 0x02, /*destNode*/ 0x36, /*unk6*/ 0x0000
+        warp_node /*id*/ 0xF1, /*destLevel*/ 0x06, /*destArea*/ 0x02, /*destNode*/ 0x68, /*unk6*/ 0x0000
         terrain /*terrainData*/ sl_seg7_area_1_collision
-        cmd39 /*unk4*/ sl_seg7_area_1_macro_objs
+        macro_objects /*objList*/ sl_seg7_area_1_macro_objs
         set_music /*unk2*/ 0x0000, /*seq*/ 0x0008
         terrain_type /*terrainType*/ 0x0002
     end_area
 
     area /*index*/ 2, /*geo*/ sl_geo_000484
-        object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 0, 0, 2867, /*angle*/ 0, 180, 0, /*behArg*/ 0x000A0000, /*beh*/ beh_warps_60
-        object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 0, 0, 3277, /*angle*/ 0, 0, 0, /*behArg*/ 0x140B0000, /*beh*/ beh_warp
-        warp_node /*id*/ 0x0A, /*destLevel1*/ 0x0A, /*destArea*/ 0x02, /*destNode*/ 0x0A, /*destLevel2*/ 0x00
-        warp_node /*id*/ 0x0B, /*destLevel1*/ 0x0A, /*destArea*/ 0x01, /*destNode*/ 0x0B, /*destLevel2*/ 0x00
+        object /*model*/ MODEL_NONE, /*pos*/ 0, 0, 2867, /*angle*/ 0, 180, 0, /*behParam*/ 0x000A0000, /*beh*/ beh_warps_60
+        object /*model*/ MODEL_NONE, /*pos*/ 0, 0, 3277, /*angle*/ 0,   0, 0, /*behParam*/ 0x140B0000, /*beh*/ beh_warp
+        warp_node /*id*/ 0x0A, /*destLevel*/ 0x0A, /*destArea*/ 0x02, /*destNode*/ 0x0A, /*unk6*/ 0x0000
+        warp_node /*id*/ 0x0B, /*destLevel*/ 0x0A, /*destArea*/ 0x01, /*destNode*/ 0x0B, /*unk6*/ 0x0000
         jump_link /*target*/ script_func_local_4
-        warp_node /*id*/ 0xF0, /*destLevel1*/ 0x06, /*destArea*/ 0x02, /*destNode*/ 0x36, /*destLevel2*/ 0x00
-        warp_node /*id*/ 0xF1, /*destLevel1*/ 0x06, /*destArea*/ 0x02, /*destNode*/ 0x68, /*destLevel2*/ 0x00
+        warp_node /*id*/ 0xF0, /*destLevel*/ 0x06, /*destArea*/ 0x02, /*destNode*/ 0x36, /*unk6*/ 0x0000
+        warp_node /*id*/ 0xF1, /*destLevel*/ 0x06, /*destArea*/ 0x02, /*destNode*/ 0x68, /*unk6*/ 0x0000
         terrain /*terrainData*/ sl_seg7_area_2_collision
-        cmd39 /*unk4*/ sl_seg7_area_2_macro_objs
+        macro_objects /*objList*/ sl_seg7_area_2_macro_objs
         set_music /*unk2*/ 0x0004, /*seq*/ 0x000C
         terrain_type /*terrainType*/ 0x0002
     end_area

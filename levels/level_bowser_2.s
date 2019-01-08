@@ -9,11 +9,11 @@
 .section .level, "a"
 
 script_func_local_1:
-    object /*unk2*/ 0x1F, /*unk3*/ 0x36, /*pos*/ 0, 0, 0, /*angle*/ 0, 90, 0, /*behArg*/ 0x00000000, /*beh*/ beh_tilting_bowser_lava_platform
-    object /*unk2*/ 0x1F, /*unk3*/ 0xB3, /*pos*/ 4, 1329, 3598, /*angle*/ 0, 90, 0, /*behArg*/ 0x00000000, /*beh*/ beh_bowser_mine
-    object /*unk2*/ 0x1F, /*unk3*/ 0xB3, /*pos*/ 3584, 1329, 0, /*angle*/ 0, 90, 0, /*behArg*/ 0x00000000, /*beh*/ beh_bowser_mine
-    object /*unk2*/ 0x1F, /*unk3*/ 0xB3, /*pos*/ 0, 1329, -3583, /*angle*/ 0, 90, 0, /*behArg*/ 0x00000000, /*beh*/ beh_bowser_mine
-    object /*unk2*/ 0x1F, /*unk3*/ 0xB3, /*pos*/ -3583, 1329, 0, /*angle*/ 0, 90, 0, /*behArg*/ 0x00000000, /*beh*/ beh_bowser_mine
+    object /*model*/ MODEL_BOWSER_2_TILTING_ARENA, /*pos*/     0,    0,     0, /*angle*/ 0, 90, 0, /*behParam*/ 0x00000000, /*beh*/ beh_tilting_bowser_lava_platform
+    object /*model*/ MODEL_BOWSER_BOMB,            /*pos*/     4, 1329,  3598, /*angle*/ 0, 90, 0, /*behParam*/ 0x00000000, /*beh*/ beh_bowser_bomb
+    object /*model*/ MODEL_BOWSER_BOMB,            /*pos*/  3584, 1329,     0, /*angle*/ 0, 90, 0, /*behParam*/ 0x00000000, /*beh*/ beh_bowser_bomb
+    object /*model*/ MODEL_BOWSER_BOMB,            /*pos*/     0, 1329, -3583, /*angle*/ 0, 90, 0, /*behParam*/ 0x00000000, /*beh*/ beh_bowser_bomb
+    object /*model*/ MODEL_BOWSER_BOMB,            /*pos*/ -3583, 1329,     0, /*angle*/ 0, 90, 0, /*behParam*/ 0x00000000, /*beh*/ beh_bowser_bomb
     return
 
 glabel level_bowser_2_entry
@@ -25,15 +25,15 @@ glabel level_bowser_2_entry
     load_mio0 /*seg*/ 0x06, /*romStart*/ _bowser_flames_bomb_mio0SegmentRomStart, /*romEnd*/ _bowser_flames_bomb_mio0SegmentRomEnd
     load_raw  /*seg*/ 0x0D, /*romStart*/ _bowser_flames_bomb_geoSegmentRomStart, /*romEnd*/ _bowser_flames_bomb_geoSegmentRomEnd
     alloc_level_pool
-    mario /*unk3*/ 0x01, /*behArg*/ 0x00000001, /*beh*/ beh_mario
+    mario /*unk3*/ 0x01, /*behParam*/ 0x00000001, /*beh*/ beh_mario
     jump_link /*target*/ script_func_global_13
-    cmd22 /*unk2*/ 0x0036, /*unk4*/ bowser_2_geo_000170
+    load_model_from_geo /*model*/ MODEL_BOWSER_2_TILTING_ARENA, /*geo*/ bowser_2_geo_000170
 
     area /*index*/ 1, /*geo*/ bowser_2_geo_000188
-        object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 0, 2229, 0, /*angle*/ 0, 180, 0, /*behArg*/ 0x000A0000, /*beh*/ beh_warps_6C
-        warp_node /*id*/ 0x0A, /*destLevel1*/ 0x21, /*destArea*/ 0x01, /*destNode*/ 0x0A, /*destLevel2*/ 0x00
-        warp_node /*id*/ 0xF0, /*destLevel1*/ 0x06, /*destArea*/ 0x03, /*destNode*/ 0x36, /*destLevel2*/ 0x00
-        warp_node /*id*/ 0xF1, /*destLevel1*/ 0x13, /*destArea*/ 0x01, /*destNode*/ 0x0C, /*destLevel2*/ 0x00
+        object /*model*/ MODEL_NONE, /*pos*/ 0, 2229, 0, /*angle*/ 0, 180, 0, /*behParam*/ 0x000A0000, /*beh*/ beh_warps_6C
+        warp_node /*id*/ 0x0A, /*destLevel*/ 0x21, /*destArea*/ 0x01, /*destNode*/ 0x0A, /*unk6*/ 0x0000
+        warp_node /*id*/ 0xF0, /*destLevel*/ 0x06, /*destArea*/ 0x03, /*destNode*/ 0x36, /*unk6*/ 0x0000
+        warp_node /*id*/ 0xF1, /*destLevel*/ 0x13, /*destArea*/ 0x01, /*destNode*/ 0x0C, /*unk6*/ 0x0000
         jump_link /*target*/ script_func_local_1
         terrain /*terrainData*/ bowser_2_seg7_collision_lava
         set_music /*unk2*/ 0x0002, /*seq*/ 0x0007

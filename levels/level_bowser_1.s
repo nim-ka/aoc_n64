@@ -15,15 +15,15 @@ glabel level_bowser_1_entry
     load_mio0 /*seg*/ 0x06, /*romStart*/ _bowser_flames_bomb_mio0SegmentRomStart, /*romEnd*/ _bowser_flames_bomb_mio0SegmentRomEnd
     load_raw  /*seg*/ 0x0D, /*romStart*/ _bowser_flames_bomb_geoSegmentRomStart, /*romEnd*/ _bowser_flames_bomb_geoSegmentRomEnd
     alloc_level_pool
-    mario /*unk3*/ 0x01, /*behArg*/ 0x00000001, /*beh*/ beh_mario
+    mario /*unk3*/ 0x01, /*behParam*/ 0x00000001, /*beh*/ beh_mario
     jump_link /*target*/ script_func_global_13
-    cmd22 /*unk2*/ 0x0003, /*unk4*/ bowser_1_yellow_sphere_geo
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_03, /*geo*/ bowser_1_yellow_sphere_geo
 
     area /*index*/ 1, /*geo*/ bowser_1_geo_0000D0
-        object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 0, 1307, 0, /*angle*/ 0, 180, 0, /*behArg*/ 0x000A0000, /*beh*/ beh_warps_6C
-        warp_node /*id*/ 0x0A, /*destLevel1*/ 0x1E, /*destArea*/ 0x01, /*destNode*/ 0x0A, /*destLevel2*/ 0x00
-        warp_node /*id*/ 0xF0, /*destLevel1*/ 0x06, /*destArea*/ 0x01, /*destNode*/ 0x24, /*destLevel2*/ 0x00
-        warp_node /*id*/ 0xF1, /*destLevel1*/ 0x11, /*destArea*/ 0x01, /*destNode*/ 0x0C, /*destLevel2*/ 0x00
+        object /*model*/ MODEL_NONE, /*pos*/ 0, 1307, 0, /*angle*/ 0, 180, 0, /*behParam*/ 0x000A0000, /*beh*/ beh_warps_6C
+        warp_node /*id*/ 0x0A, /*destLevel*/ 0x1E, /*destArea*/ 0x01, /*destNode*/ 0x0A, /*unk6*/ 0x0000
+        warp_node /*id*/ 0xF0, /*destLevel*/ 0x06, /*destArea*/ 0x01, /*destNode*/ 0x24, /*unk6*/ 0x0000
+        warp_node /*id*/ 0xF1, /*destLevel*/ 0x11, /*destArea*/ 0x01, /*destNode*/ 0x0C, /*unk6*/ 0x0000
         terrain /*terrainData*/ bowser_1_seg7_collision_level
         set_music /*unk2*/ 0x0002, /*seq*/ 0x0007
         terrain_type /*terrainType*/ 0x0001

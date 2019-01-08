@@ -1,4 +1,4 @@
-glabel koopa_geo # 0x0D0000D0
+glabel koopa_without_shell_geo # 0x0D0000D0
    geo_shadow SHADOW_CIRCLE_UNK1, 0x9B, 100
    geo_open_node
       geo_scale 0x00, 16384
@@ -46,7 +46,7 @@ glabel koopa_geo # 0x0D0000D0
    geo_close_node
    geo_end
 
-glabel koopa2_geo # 0x0D000214
+glabel koopa_with_shell_geo # 0x0D000214
    geo_shadow SHADOW_CIRCLE_UNK1, 0x9B, 100
    geo_open_node
       geo_scale 0x00, 16384

@@ -1704,12 +1704,12 @@ void BehOctagonalPlatformRotatingLoop(void)
     o->oFaceAngleYaw += o->oAngleVelYaw;
 }
 
-void BehFloorSwitchPressAnimationInit(void)
+void BehAnimatesOnFloorSwitchPressInit(void)
 {
-    o->parentObj = obj_nearest_object_with_behavior(beh_purple_switch_staircase);
+    o->parentObj = obj_nearest_object_with_behavior(beh_floor_switch_animates_object);
 }
 
-void BehFloorSwitchPressAnimationLoop(void)
+void BehAnimatesOnFloorSwitchPressLoop(void)
 {
     if (o->oFloorSwitchPressAnimationUnk100 != 0)
     {
@@ -1767,7 +1767,7 @@ void BehFloorSwitchPressAnimationLoop(void)
 }
 
 #include "behaviors/activated_bf_plat.c.inc"
-#include "behaviors/spinning_heart.c.inc"
+#include "behaviors/recovery_heart.c.inc"
 
 void BehCannonBarrelBubblesLoop(void)
 {
@@ -1872,7 +1872,7 @@ void func_80309004(void)
     o->oAction = 0;
 }
 
-void BehCannonLoop(void)
+void BehWaterBombCannonLoop(void)
 {
     obj_push_mario_away_from_cylinder(220.0f, 300.0f);
 

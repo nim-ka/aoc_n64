@@ -2,6 +2,7 @@
 .section .rodata
 .include "macros.inc"
 .include "ultra64/gbi.inc"
+.include "macro_presets.inc"
 
 # TODO: cross-link between segments
 .equ ccm_textures_09000800, 0x09000800
@@ -5311,53 +5312,53 @@ glabel sl_seg7_area_1_collision # 0x0700CBD8 - 0x0700ED92
 .balign 4 # 0x0700ED92 - 0x0700ED94
 
 glabel sl_seg7_area_1_macro_objs # 0x0700ED94 - 0x0700EF6C
-.hword 0x4034,  4086,  1024,   400,    86
-.hword 0x0020,  1285,  2210,   385,     0
-.hword 0x0020,  1728,  2560,  -671,     0
-.hword 0x0020,  1371,  2188,  -500,     0
-.hword 0x0020,  1814,  3174,   114,     0
-.hword 0x0020,    28,  3328,  1885,     0
-.hword 0x0020,  -228,  3482,  1742,     0
-.hword 0x0035,  4483,   821,  1168,   128
-.hword 0x00C5, -3452,  1110, -3364,     0
-.hword 0x00C5,  5422,  1065, -1288,     0
-.hword 0x00C5, -6533,  2048, -2444,     0
-.hword 0x0023,  4750,  1061, -5230,     0
-.hword 0x0023,   416,  1050, -4522,     0
-.hword 0x0023, -6560,  2040, -5080,     0
-.hword 0x0023, -6760,  2040, -1360,     0
-.hword 0x0023, -6880,  1857,  1000,     0
-.hword 0x0023, -4211,  1092, -4723,     0
-.hword 0x0023, -6271,  1390,  4764,     0
-.hword 0x0023,  -529,  1050, -5329,     0
-.hword 0x00C4, -3760,  1120,  1240,     0
-.hword 0x00C4,  3840,  1240, -5280,     0
-.hword 0x00C4, -3440,  1400,   -40,     0
-.hword 0x00C4,   400,  1060,  5860,     0
-.hword 0x00C4,   880,  1080,  4860,     0
-.hword 0x00C4,  1400,  1080,  3860,     0
-.hword 0x00C4,  3400,  1660, -2920,     0
-.hword 0x00C4, -3171,  1075, -4765,     0
-.hword 0x00C4, -4241,  1009, -3834,     0
-.hword 0x005E, -5450,  1300,  5900,     0
-.hword 0x0046,  4060,   900, -2940,     0
-.hword 0x00C4, -4096,  1125,  3062,     0
-.hword 0x00C4, -4536,  1125,  3782,     0
-.hword 0x2E25,  -660,  2120,  1340,     0
-.hword 0x001F, -1520,  1040,   940,     0
-.hword 0x001F, -1340,  1280,  1020,     0
-.hword 0x001F, -1180,  1520,  1120,     0
-.hword 0xD034,  -835,  1125, -3856,    61
-.hword 0x8034, -5050,  1020,  6026,    16
-.hword 0x00B9,  2766,  1522, -3633,     0
-.hword 0x6034, -3600,  1024,  -800,   148
-.hword 0x0138,  2440,  1024,  4840,     0
-.hword 0x0138, -2400,  1177, -4200,     0
-.hword 0x006E, -3380,  1360, -4140,     0
-.hword 0x0174, -4700,  1300,  5850,     0
-.hword 0x0020,  2909,  1024,  4245,     0
-.hword 0x0020,  3418,  1024,  3554,     0
-.hword 0x003C,     0,  5420,     0,     0
+macro_object /*preset*/ macro_wooden_signpost,      /*yaw*/  90, /*pos*/  4086,  1024,   400, /*behParam*/ 86
+macro_object /*preset*/ macro_yellow_coin_2,        /*yaw*/   0, /*pos*/  1285,  2210,   385
+macro_object /*preset*/ macro_yellow_coin_2,        /*yaw*/   0, /*pos*/  1728,  2560,  -671
+macro_object /*preset*/ macro_yellow_coin_2,        /*yaw*/   0, /*pos*/  1371,  2188,  -500
+macro_object /*preset*/ macro_yellow_coin_2,        /*yaw*/   0, /*pos*/  1814,  3174,   114
+macro_object /*preset*/ macro_yellow_coin_2,        /*yaw*/   0, /*pos*/    28,  3328,  1885
+macro_object /*preset*/ macro_yellow_coin_2,        /*yaw*/   0, /*pos*/  -228,  3482,  1742
+macro_object /*preset*/ macro_cannon_closed,        /*yaw*/   0, /*pos*/  4483,   821,  1168, /*behParam*/ 0x80
+macro_object /*preset*/ macro_mr_blizzard,          /*yaw*/   0, /*pos*/ -3452,  1110, -3364
+macro_object /*preset*/ macro_mr_blizzard,          /*yaw*/   0, /*pos*/  5422,  1065, -1288
+macro_object /*preset*/ macro_mr_blizzard,          /*yaw*/   0, /*pos*/ -6533,  2048, -2444
+macro_object /*preset*/ macro_red_coin,             /*yaw*/   0, /*pos*/  4750,  1061, -5230
+macro_object /*preset*/ macro_red_coin,             /*yaw*/   0, /*pos*/   416,  1050, -4522
+macro_object /*preset*/ macro_red_coin,             /*yaw*/   0, /*pos*/ -6560,  2040, -5080
+macro_object /*preset*/ macro_red_coin,             /*yaw*/   0, /*pos*/ -6760,  2040, -1360
+macro_object /*preset*/ macro_red_coin,             /*yaw*/   0, /*pos*/ -6880,  1857,  1000
+macro_object /*preset*/ macro_red_coin,             /*yaw*/   0, /*pos*/ -4211,  1092, -4723
+macro_object /*preset*/ macro_red_coin,             /*yaw*/   0, /*pos*/ -6271,  1390,  4764
+macro_object /*preset*/ macro_red_coin,             /*yaw*/   0, /*pos*/  -529,  1050, -5329
+macro_object /*preset*/ macro_spindrift,            /*yaw*/   0, /*pos*/ -3760,  1120,  1240
+macro_object /*preset*/ macro_spindrift,            /*yaw*/   0, /*pos*/  3840,  1240, -5280
+macro_object /*preset*/ macro_spindrift,            /*yaw*/   0, /*pos*/ -3440,  1400,   -40
+macro_object /*preset*/ macro_spindrift,            /*yaw*/   0, /*pos*/   400,  1060,  5860
+macro_object /*preset*/ macro_spindrift,            /*yaw*/   0, /*pos*/   880,  1080,  4860
+macro_object /*preset*/ macro_spindrift,            /*yaw*/   0, /*pos*/  1400,  1080,  3860
+macro_object /*preset*/ macro_spindrift,            /*yaw*/   0, /*pos*/  3400,  1660, -2920
+macro_object /*preset*/ macro_spindrift,            /*yaw*/   0, /*pos*/ -3171,  1075, -4765
+macro_object /*preset*/ macro_spindrift,            /*yaw*/   0, /*pos*/ -4241,  1009, -3834
+macro_object /*preset*/ macro_box_koopa_shell,      /*yaw*/   0, /*pos*/ -5450,  1300,  5900
+macro_object /*preset*/ macro_amp_circling,         /*yaw*/   0, /*pos*/  4060,   900, -2940, /*behParam*/ 0
+macro_object /*preset*/ macro_spindrift,            /*yaw*/   0, /*pos*/ -4096,  1125,  3062
+macro_object /*preset*/ macro_spindrift,            /*yaw*/   0, /*pos*/ -4536,  1125,  3782
+macro_object /*preset*/ macro_coin_line_horizontal, /*yaw*/  65, /*pos*/  -660,  2120,  1340
+macro_object /*preset*/ macro_yellow_coin,          /*yaw*/   0, /*pos*/ -1520,  1040,   940
+macro_object /*preset*/ macro_yellow_coin,          /*yaw*/   0, /*pos*/ -1340,  1280,  1020
+macro_object /*preset*/ macro_yellow_coin,          /*yaw*/   0, /*pos*/ -1180,  1520,  1120
+macro_object /*preset*/ macro_wooden_signpost,      /*yaw*/ 295, /*pos*/  -835,  1125, -3856, /*behParam*/ 61
+macro_object /*preset*/ macro_wooden_signpost,      /*yaw*/ 180, /*pos*/ -5050,  1020,  6026, /*behParam*/ 16
+macro_object /*preset*/ macro_fly_guy,              /*yaw*/   0, /*pos*/  2766,  1522, -3633
+macro_object /*preset*/ macro_wooden_signpost,      /*yaw*/ 135, /*pos*/ -3600,  1024,  -800, /*behParam*/ 148
+macro_object /*preset*/ macro_moneybag,             /*yaw*/   0, /*pos*/  2440,  1024,  4840
+macro_object /*preset*/ macro_moneybag,             /*yaw*/   0, /*pos*/ -2400,  1177, -4200
+macro_object /*preset*/ macro_box_1up_running_away, /*yaw*/   0, /*pos*/ -3380,  1360, -4140
+macro_object /*preset*/ macro_box_star_4,           /*yaw*/   0, /*pos*/ -4700,  1300,  5850
+macro_object /*preset*/ macro_yellow_coin_2,        /*yaw*/   0, /*pos*/  2909,  1024,  4245
+macro_object /*preset*/ macro_yellow_coin_2,        /*yaw*/   0, /*pos*/  3418,  1024,  3554
+macro_object /*preset*/ macro_hidden_1up_in_pole,   /*yaw*/   0, /*pos*/     0,  5420,     0
 .hword 0x001E
 
 glabel sl_seg7_collision_sliding_snow_mound # 0x0700EF6C - 0x0700EFC0
@@ -5815,24 +5816,24 @@ glabel sl_seg7_area_2_collision # 0x0700EFFC - 0x0700F978
 .hword 0x0042
 
 glabel sl_seg7_area_2_macro_objs # 0x0700F978 - 0x0700FA2E
-.hword 0x0020,  1740,     0,   900,     0
-.hword 0x0020,  1440,     0,   900,     0
-.hword 0x0020,  1140,     0,   900,     0
-.hword 0x0044,  1760,     0,   200,     0
-.hword 0x00C4,  1600,    80,  -800,     0
-.hword 0x005D,  1660,   300, -1720,     0
-.hword 0x0060,  -720,   300, -1740,     0
-.hword 0x0036, -1400,     0, -1740,     0
-.hword 0x0044,   -20,     0,   960,     0
-.hword 0x0044,   320,     0, -1220,     0
-.hword 0x00C4,  -860,    40,  2040,     0
-.hword 0x00C4,   800,    60,  2000,     0
-.hword 0x4025,  1500,     0,   500,     0
-.hword 0x4028,  1500,   100,   500,     0
-.hword 0x4028,  1500,   200,   500,     0
-.hword 0x4028,  1500,   300,   500,     0
-.hword 0x004D,  1700,    20,  -100,     0
-.hword 0x006E,  -120,   300, -1740,     0
+macro_object /*preset*/ macro_yellow_coin_2,               /*yaw*/   0, /*pos*/  1740,     0,   900
+macro_object /*preset*/ macro_yellow_coin_2,               /*yaw*/   0, /*pos*/  1440,     0,   900
+macro_object /*preset*/ macro_yellow_coin_2,               /*yaw*/   0, /*pos*/  1140,     0,   900
+macro_object /*preset*/ macro_goomba,                      /*yaw*/   0, /*pos*/  1760,     0,   200
+macro_object /*preset*/ macro_spindrift,                   /*yaw*/   0, /*pos*/  1600,    80,  -800
+macro_object /*preset*/ macro_box_vanish_cap,              /*yaw*/   0, /*pos*/  1660,   300, -1720
+macro_object /*preset*/ macro_box_three_coins,             /*yaw*/   0, /*pos*/  -720,   300, -1740
+macro_object /*preset*/ macro_bobomb_buddy_opens_cannon,   /*yaw*/   0, /*pos*/ -1400,     0, -1740
+macro_object /*preset*/ macro_goomba,                      /*yaw*/   0, /*pos*/   -20,     0,   960
+macro_object /*preset*/ macro_goomba,                      /*yaw*/   0, /*pos*/   320,     0, -1220
+macro_object /*preset*/ macro_spindrift,                   /*yaw*/   0, /*pos*/  -860,    40,  2040
+macro_object /*preset*/ macro_spindrift,                   /*yaw*/   0, /*pos*/   800,    60,  2000
+macro_object /*preset*/ macro_coin_line_horizontal,        /*yaw*/  90, /*pos*/  1500,     0,   500
+macro_object /*preset*/ macro_coin_line_horizontal_flying, /*yaw*/  90, /*pos*/  1500,   100,   500
+macro_object /*preset*/ macro_coin_line_horizontal_flying, /*yaw*/  90, /*pos*/  1500,   200,   500
+macro_object /*preset*/ macro_coin_line_horizontal_flying, /*yaw*/  90, /*pos*/  1500,   300,   500
+macro_object /*preset*/ macro_1up,                         /*yaw*/   0, /*pos*/  1700,    20,  -100
+macro_object /*preset*/ macro_box_1up_running_away,        /*yaw*/   0, /*pos*/  -120,   300, -1740
 .hword 0x001E
 
 .balign 4 # 0x0700FA2E - 0x0700FA30

@@ -1,4 +1,4 @@
-glabel spiny_egg_geo # 0x0C000290
+glabel spiny_ball_geo # 0x0C000290
    geo_shadow SHADOW_CIRCLE_UNK1, 0x96, 100
    geo_open_node
       geo_scale 0x00, 16384

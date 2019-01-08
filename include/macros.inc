@@ -15,6 +15,31 @@
     .byte \r, \g, \b, \a
 .endm
 
+# Beginning of trajectory
+.macro trajectory_init
+    .set TRAJ_ID, 0
+.endm
+
+# Entry in trajectory
+.macro trajectory_pos x, y, z
+    .hword TRAJ_ID, \x, \y, \z
+	.set TRAJ_ID, TRAJ_ID + 1
+.endm
+
+# Skips an ID (used for CCM)
+.macro trajectory_skip
+    .set TRAJ_ID, TRAJ_ID + 1
+.endm
+
+# End of trajectory
+.macro trajectory_end
+    .hword -1
+.endm
+
+.macro macro_object preset, yaw, x, y, z, bparam=0
+    .hword ((\yaw * 0x10 / 45) << 9) | (\preset + 0x1F), \x, \y, \z, \bparam
+.endm
+
 # Actor include
 .macro actor name
 .include "actors/\name\()/actor.s"

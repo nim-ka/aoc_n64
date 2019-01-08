@@ -9,11 +9,11 @@
 .section .level, "a"
 
 script_func_local_1:
-    object /*unk2*/ 0x1F, /*unk3*/ 0x55, /*pos*/ 0, -2047, 10, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_activate_cap_switch
+    object /*model*/ MODEL_CAP_SWITCH, /*pos*/   0, -2047, 10, /*angle*/ 0, 0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_cap_switch
     return
 
 script_func_local_2:
-    object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 800, -1700, 0, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_hidden_red_coin_star
+    object /*model*/ MODEL_NONE,       /*pos*/ 800, -1700,  0, /*angle*/ 0, 0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_hidden_red_coin_star
     return
 
 glabel level_totwc_entry
@@ -26,21 +26,21 @@ glabel level_totwc_entry
     load_mio0 /*seg*/ 0x08, /*romStart*/ _amp_chuckya_flyguy_goomba_boxes_mio0SegmentRomStart, /*romEnd*/ _amp_chuckya_flyguy_goomba_boxes_mio0SegmentRomEnd
     load_raw  /*seg*/ 0x0F, /*romStart*/ _amp_chuckya_flyguy_goomba_boxes_geoSegmentRomStart,  /*romEnd*/ _amp_chuckya_flyguy_goomba_boxes_geoSegmentRomEnd
     alloc_level_pool
-    mario /*unk3*/ 0x01, /*behArg*/ 0x00000001, /*beh*/ beh_mario
+    mario /*unk3*/ 0x01, /*behParam*/ 0x00000001, /*beh*/ beh_mario
     jump_link /*target*/ script_func_global_1
     jump_link /*target*/ script_func_global_9
-    cmd22 /*unk2*/ 0x0003, /*unk4*/ totwc_geo_000160
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_03, /*geo*/ totwc_geo_000160
 
     area /*index*/ 1, /*geo*/ totwc_geo_000188
-        object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ -4095, 2935, 0, /*angle*/ 0, 90, 0, /*behArg*/ 0x000A0000, /*beh*/ beh_warps_78
-        warp_node /*id*/ 0x0A, /*destLevel1*/ 0x1D, /*destArea*/ 0x01, /*destNode*/ 0x0A, /*destLevel2*/ 0x00
-        warp_node /*id*/ 0xF3, /*destLevel1*/ 0x06, /*destArea*/ 0x01, /*destNode*/ 0x20, /*destLevel2*/ 0x00
-        warp_node /*id*/ 0xF0, /*destLevel1*/ 0x06, /*destArea*/ 0x01, /*destNode*/ 0x26, /*destLevel2*/ 0x00
-        warp_node /*id*/ 0xF1, /*destLevel1*/ 0x06, /*destArea*/ 0x01, /*destNode*/ 0x23, /*destLevel2*/ 0x00
+        object /*model*/ MODEL_NONE, /*pos*/ -4095, 2935, 0, /*angle*/ 0, 90, 0, /*behParam*/ 0x000A0000, /*beh*/ beh_warps_78
+        warp_node /*id*/ 0x0A, /*destLevel*/ 0x1D, /*destArea*/ 0x01, /*destNode*/ 0x0A, /*unk6*/ 0x0000
+        warp_node /*id*/ 0xF3, /*destLevel*/ 0x06, /*destArea*/ 0x01, /*destNode*/ 0x20, /*unk6*/ 0x0000
+        warp_node /*id*/ 0xF0, /*destLevel*/ 0x06, /*destArea*/ 0x01, /*destNode*/ 0x26, /*unk6*/ 0x0000
+        warp_node /*id*/ 0xF1, /*destLevel*/ 0x06, /*destArea*/ 0x01, /*destNode*/ 0x23, /*unk6*/ 0x0000
         jump_link /*target*/ script_func_local_2
         jump_link /*target*/ script_func_local_1
         terrain /*terrainData*/ totwc_seg7_collision
-        cmd39 /*unk4*/ totwc_seg7_macro_objs
+        macro_objects /*objList*/ totwc_seg7_macro_objs
         cmd30 /*unk2*/ 0x00, /*unk3*/ 0x83
         set_music /*unk2*/ 0x0000, /*seq*/ 0x0009
         terrain_type /*terrainType*/ 0x0001

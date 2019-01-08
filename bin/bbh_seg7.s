@@ -2,6 +2,7 @@
 .section .rodata
 .include "macros.inc"
 .include "ultra64/gbi.inc"
+.include "macro_presets.inc"
 
 # TODO: cross-link between segments
 .equ bbh_textures_09000000, 0x09000000
@@ -14802,44 +14803,44 @@ glabel bbh_seg7_rooms # 0x0702605C - 0x070268C3
 .balign 4 # 0x070268C3 - 0x070268C4
 
 glabel bbh_seg7_macro_objs # 0x070268C4 - 0x07026A1A
-.hword 0x40DD, -1960,   -20,   340,     0
-.hword 0x0034,  -800,  -204,  2915,    63
-.hword 0x0034,   400,  -204,  3057,    85
-.hword 0xC0DD, -1080,    20,   160,     0
-.hword 0x005D,  1268,  1050,  1860,     0
-.hword 0x0023, -1164,     0,  2325,     0
-.hword 0x0023,  2540,   820,  2174,     0
-.hword 0x0023,  2600,   815,  -380,     0
-.hword 0x0023,  2950,   815, -1250,     0
-.hword 0x0023, -1500,   550,   960,     0
-.hword 0x0023,  -420,   550,    60,     0
-.hword 0x0023,  2856,    50,  2144,     0
-.hword 0x0023,    50,   900, -1400,     0
-.hword 0x0062,   660,  3200,  1160,     0
-.hword 0x0054,   640,  1741,   760,     0
-.hword 0x0055,  1400,  1840,  1100,     0
-.hword 0x0055,  1700,  1840,  1100,     0
-.hword 0x0055,     0,  1840,  1100,     0
-.hword 0x0055,  -400,  1840,  1100,     0
-.hword 0x0034,  2026,  -204,  2966,   102
-.hword 0x0142,   480,    10,  -653,     0
-.hword 0x0144,  -346,  -204, -2813,     0
-.hword 0x0144,  1146,  -203, -2280,     0
-.hword 0x0142, -2369,  -204,  5184,     0
-.hword 0x6034, -1546,  -204,  4813,    86
-.hword 0x0144,  3466,  -204,  5106,     0
-.hword 0x0142,  1640,   840,  -733,     0
-.hword 0x005D, -1960,   300,  -120,     0
-.hword 0x005D,   460,  2140,  -560,     0
-.hword 0x0061,   700,    80, -2800,     0
-.hword 0x2065, -3800,  -204,  4600,     0
-.hword 0x2065, -3659,  -204,  4459,     0
-.hword 0x0076,  -220,  -220,  6140,     0
-.hword 0x004D, -3040,  1120,  5460,     0
+macro_object /*preset*/ macro_haunted_chair,             /*yaw*/  90, /*pos*/ -1960,   -20,   340
+macro_object /*preset*/ macro_wooden_signpost,           /*yaw*/   0, /*pos*/  -800,  -204,  2915, /*behParam*/ 63
+macro_object /*preset*/ macro_wooden_signpost,           /*yaw*/   0, /*pos*/   400,  -204,  3057, /*behParam*/ 85
+macro_object /*preset*/ macro_haunted_chair,             /*yaw*/ 270, /*pos*/ -1080,    20,   160
+macro_object /*preset*/ macro_box_vanish_cap,            /*yaw*/   0, /*pos*/  1268,  1050,  1860
+macro_object /*preset*/ macro_red_coin,                  /*yaw*/   0, /*pos*/ -1164,     0,  2325
+macro_object /*preset*/ macro_red_coin,                  /*yaw*/   0, /*pos*/  2540,   820,  2174
+macro_object /*preset*/ macro_red_coin,                  /*yaw*/   0, /*pos*/  2600,   815,  -380
+macro_object /*preset*/ macro_red_coin,                  /*yaw*/   0, /*pos*/  2950,   815, -1250
+macro_object /*preset*/ macro_red_coin,                  /*yaw*/   0, /*pos*/ -1500,   550,   960
+macro_object /*preset*/ macro_red_coin,                  /*yaw*/   0, /*pos*/  -420,   550,    60
+macro_object /*preset*/ macro_red_coin,                  /*yaw*/   0, /*pos*/  2856,    50,  2144
+macro_object /*preset*/ macro_red_coin,                  /*yaw*/   0, /*pos*/    50,   900, -1400
+macro_object /*preset*/ macro_box_1up,                   /*yaw*/   0, /*pos*/   660,  3200,  1160
+macro_object /*preset*/ macro_blue_coin_switch,          /*yaw*/   0, /*pos*/   640,  1741,   760
+macro_object /*preset*/ macro_hidden_blue_coin,          /*yaw*/   0, /*pos*/  1400,  1840,  1100
+macro_object /*preset*/ macro_hidden_blue_coin,          /*yaw*/   0, /*pos*/  1700,  1840,  1100
+macro_object /*preset*/ macro_hidden_blue_coin,          /*yaw*/   0, /*pos*/     0,  1840,  1100
+macro_object /*preset*/ macro_hidden_blue_coin,          /*yaw*/   0, /*pos*/  -400,  1840,  1100
+macro_object /*preset*/ macro_wooden_signpost,           /*yaw*/   0, /*pos*/  2026,  -204,  2966, /*behParam*/ 102
+macro_object /*preset*/ macro_mr_i,                      /*yaw*/   0, /*pos*/   480,    10,  -653
+macro_object /*preset*/ macro_scuttlebug,                /*yaw*/   0, /*pos*/  -346,  -204, -2813
+macro_object /*preset*/ macro_scuttlebug,                /*yaw*/   0, /*pos*/  1146,  -203, -2280
+macro_object /*preset*/ macro_mr_i,                      /*yaw*/   0, /*pos*/ -2369,  -204,  5184
+macro_object /*preset*/ macro_wooden_signpost,           /*yaw*/ 135, /*pos*/ -1546,  -204,  4813, /*behParam*/ 86
+macro_object /*preset*/ macro_scuttlebug,                /*yaw*/   0, /*pos*/  3466,  -204,  5106
+macro_object /*preset*/ macro_mr_i,                      /*yaw*/   0, /*pos*/  1640,   840,  -733
+macro_object /*preset*/ macro_box_vanish_cap,            /*yaw*/   0, /*pos*/ -1960,   300,  -120
+macro_object /*preset*/ macro_box_vanish_cap,            /*yaw*/   0, /*pos*/   460,  2140,  -560
+macro_object /*preset*/ macro_box_ten_coins,             /*yaw*/   0, /*pos*/   700,    80, -2800
+macro_object /*preset*/ macro_breakable_box_three_coins, /*yaw*/  45, /*pos*/ -3800,  -204,  4600
+macro_object /*preset*/ macro_breakable_box_three_coins, /*yaw*/  45, /*pos*/ -3659,  -204,  4459
+macro_object /*preset*/ macro_jumping_box,               /*yaw*/   0, /*pos*/  -220,  -220,  6140
+macro_object /*preset*/ macro_1up,                       /*yaw*/   0, /*pos*/ -3040,  1120,  5460
 .hword 0x001E
 
-.balign 4 # 0x07026A1A - 0x07026A1C
 
+.balign 4
 glabel bbh_seg7_collision_staircase_step # 0x07026A1C - 0x07026A98
 # collision vertices
 .hword 0x0040, 0x0008

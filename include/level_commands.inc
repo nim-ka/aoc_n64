@@ -1,3 +1,5 @@
+.include "model_ids.inc"
+
 
 .set OP_AND, 0
 .set OP_NAND, 1
@@ -214,16 +216,17 @@
     .hword 0
 .endm
 
-.macro cmd21 unk2, unk4
+.macro load_model_from_dl model, dl, unk2
     .byte 0x21, 0x08
-    .hword \unk2
-    .word \unk4
+    .byte \unk2
+	.byte \model
+    .word \dl
 .endm
 
-.macro cmd22 unk2, unk4
+.macro load_model_from_geo model, geo
     .byte 0x22, 0x08
-    .hword \unk2
-    .word \unk4
+    .hword \model
+    .word \geo
 .endm
 
 .macro cmd23 unk2, unk4, unk8
@@ -233,17 +236,17 @@
     .word \unk8
 .endm
 
-.macro object unk2, unk3, posX, posY, posZ, angleX, angleY, angleZ, behArg, beh
+.macro object model, posX, posY, posZ, angleX, angleY, angleZ, behParam, beh, acts=0x1F
     .byte 0x24, 0x18
-    .byte \unk2
-    .byte \unk3
+    .byte \acts
+    .byte \model
     .hword \posX
     .hword \posY
     .hword \posZ
     .hword \angleX
     .hword \angleY
     .hword \angleZ
-    .word \behArg
+    .word \behParam
     .word \beh
 .endm
 
@@ -255,24 +258,16 @@
     .word \beh
 .endm
 
-.macro warp_node id, destLevel1, destArea, destNode, destLevel2
+.macro warp_node id, destLevel, destArea, destNode, unk6
     .byte 0x26, 0x08
-    .byte \id
-    .byte \destLevel1
-    .byte \destArea
-    .byte \destNode
-    .byte \destLevel2
-    .byte 0
+    .byte \id, \destLevel, \destArea, \destNode
+    .hword \unk6
 .endm
 
-.macro painting_warp_node id, destLevel1, destArea, destNode, destLevel2
+.macro painting_warp_node id, destLevel, destArea, destNode, unk6
     .byte 0x27, 0x08
-    .byte \id
-    .byte \destLevel1
-    .byte \destArea
-    .byte \destNode
-    .byte \destLevel2
-    .byte 0
+    .byte \id, \destLevel, \destArea, \destNode
+    .hword \unk6
 .endm
 
 .macro instant_warp index, destArea, displaceX, displaceY, displaceZ
@@ -384,10 +379,10 @@
     .hword \unk2
 .endm
 
-.macro cmd39 unk4
+.macro macro_objects objList
     .byte 0x39, 0x08
     .hword 0
-    .word \unk4
+    .word \objList
 .endm
 
 .macro cmd3A unk2, unk4, unk6, unk8, unk10

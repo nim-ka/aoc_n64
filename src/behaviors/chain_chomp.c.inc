@@ -91,7 +91,7 @@ static void chain_chomp_act_uninitialized(void)
                         i,
                         0, 0, 0,
                         o,
-                        MODEL_METAL_BALL,
+                        MODEL_METALLIC_BALL,
                         bChainChompChainPart);
                 }
 

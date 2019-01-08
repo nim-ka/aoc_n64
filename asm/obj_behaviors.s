@@ -4206,9 +4206,9 @@ glabel BobombBuddyCannonLoop
 /* 0A1978 802E6978 00000000 */   nop   
 /* 0A197C 802E697C 0C09E778 */  jal   save_file_set_cannon_unlocked
 /* 0A1980 802E6980 00000000 */   nop   
-/* 0A1984 802E6984 3C041300 */  lui   $a0, %hi(beh_cannon_trap_door) # $a0, 0x1300
+/* 0A1984 802E6984 3C041300 */  lui   $a0, %hi(beh_cannon_closed) # $a0, 0x1300
 /* 0A1988 802E6988 0C0A7C78 */  jal   obj_nearest_object_with_behavior
-/* 0A198C 802E698C 24843254 */   addiu $a0, %lo(beh_cannon_trap_door) # addiu $a0, $a0, 0x3254
+/* 0A198C 802E698C 24843254 */   addiu $a0, %lo(beh_cannon_closed) # addiu $a0, $a0, 0x3254
 /* 0A1990 802E6990 AFA2002C */  sw    $v0, 0x2c($sp)
 /* 0A1994 802E6994 8FB8002C */  lw    $t8, 0x2c($sp)
 /* 0A1998 802E6998 13000006 */  beqz  $t8, .L802E69B4
@@ -4227,9 +4227,9 @@ glabel BobombBuddyCannonLoop
 /* 0A19C4 802E69C4 1000003A */  b     .L802E6AB0
 /* 0A19C8 802E69C8 00000000 */   nop   
 .L802E69CC:
-/* 0A19CC 802E69CC 3C041300 */  lui   $a0, %hi(beh_cannon_trap_door) # $a0, 0x1300
+/* 0A19CC 802E69CC 3C041300 */  lui   $a0, %hi(beh_cannon_closed) # $a0, 0x1300
 /* 0A19D0 802E69D0 0C0A7C78 */  jal   obj_nearest_object_with_behavior
-/* 0A19D4 802E69D4 24843254 */   addiu $a0, %lo(beh_cannon_trap_door) # addiu $a0, $a0, 0x3254
+/* 0A19D4 802E69D4 24843254 */   addiu $a0, %lo(beh_cannon_closed) # addiu $a0, $a0, 0x3254
 /* 0A19D8 802E69D8 AFA2002C */  sw    $v0, 0x2c($sp)
 /* 0A19DC 802E69DC 24040096 */  li    $a0, 150
 /* 0A19E0 802E69E0 0C0A3E7A */  jal   func_8028F9E8
@@ -4501,7 +4501,7 @@ glabel BehBobombBuddyLoop
 /* 0A1D7C 802E6D7C 00000000 */   nop   
 
 
-glabel BehCannonTrapDoorInit
+glabel BehCannonClosedInit
 /* 0A1D80 802E6D80 27BDFFE0 */  addiu $sp, $sp, -0x20
 /* 0A1D84 802E6D84 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 0A1D88 802E6D88 0C09E764 */  jal   save_file_is_cannon_unlocked
@@ -4510,8 +4510,8 @@ glabel BehCannonTrapDoorInit
 /* 0A1D94 802E6D94 14410023 */  bne   $v0, $at, .L802E6E24
 /* 0A1D98 802E6D98 00000000 */   nop   
 /* 0A1D9C 802E6D9C 3C048036 */  lui   $a0, %hi(gCurrentObject) # $a0, 0x8036
-/* 0A1DA0 802E6DA0 3C061300 */  lui   $a2, %hi(beh_cannon_base) # $a2, 0x1300
-/* 0A1DA4 802E6DA4 24C604A8 */  addiu $a2, %lo(beh_cannon_base) # addiu $a2, $a2, 0x4a8
+/* 0A1DA0 802E6DA0 3C061300 */  lui   $a2, %hi(beh_cannon) # $a2, 0x1300
+/* 0A1DA4 802E6DA4 24C604A8 */  addiu $a2, %lo(beh_cannon) # addiu $a2, $a2, 0x4a8
 /* 0A1DA8 802E6DA8 8C84FDF0 */  lw    $a0, %lo(gCurrentObject)($a0)
 /* 0A1DAC 802E6DAC 0C0A7994 */  jal   spawn_object
 /* 0A1DB0 802E6DB0 24050080 */   li    $a1, 128
@@ -4596,7 +4596,7 @@ glabel CannonTrapDoorOpeningLoop
 /* 0A1ECC 802E6ECC 8D6C0154 */  lw    $t4, 0x154($t3)
 /* 0A1ED0 802E6ED0 15810005 */  bne   $t4, $at, .L802E6EE8
 /* 0A1ED4 802E6ED4 00000000 */   nop   
-/* 0A1ED8 802E6ED8 0C0B9B60 */  jal   BehCannonTrapDoorInit
+/* 0A1ED8 802E6ED8 0C0B9B60 */  jal   BehCannonClosedInit
 /* 0A1EDC 802E6EDC 00000000 */   nop   
 /* 0A1EE0 802E6EE0 10000014 */  b     .L802E6F34
 /* 0A1EE4 802E6EE4 00000000 */   nop   
@@ -4628,7 +4628,7 @@ glabel CannonTrapDoorOpeningLoop
 /* 0A1F40 802E6F40 00000000 */   nop   
 
 
-glabel BehCannonTrapDoorLoop
+glabel BehCannonClosedLoop
 /* 0A1F44 802E6F44 27BDFFD8 */  addiu $sp, $sp, -0x28
 /* 0A1F48 802E6F48 AFBF001C */  sw    $ra, 0x1c($sp)
 /* 0A1F4C 802E6F4C AFB00018 */  sw    $s0, 0x18($sp)
@@ -10106,7 +10106,7 @@ glabel BehMantaRayWaterRingLoop
 /* 0A6CE8 802EBCE8 00000000 */   nop 
  
 
-glabel BehBowserMineLoop
+glabel BehBowserBombLoop
 /* 0A6CEC 802EBCEC 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 0A6CF0 802EBCF0 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 0A6CF4 802EBCF4 3C048036 */  lui   $a0, %hi(gCurrentObject) # $a0, 0x8036
@@ -10142,8 +10142,8 @@ glabel BehBowserMineLoop
 /* 0A6D68 802EBD68 11400014 */  beqz  $t2, .L802EBDBC
 /* 0A6D6C 802EBD6C 00000000 */   nop   
 /* 0A6D70 802EBD70 3C048036 */  lui   $a0, %hi(gCurrentObject) # $a0, 0x8036
-/* 0A6D74 802EBD74 3C061300 */  lui   $a2, %hi(beh_bowser_mine_explosion) # $a2, 0x1300
-/* 0A6D78 802EBD78 24C637FC */  addiu $a2, %lo(beh_bowser_mine_explosion) # addiu $a2, $a2, 0x37fc
+/* 0A6D74 802EBD74 3C061300 */  lui   $a2, %hi(beh_bowser_bomb_explosion) # $a2, 0x1300
+/* 0A6D78 802EBD78 24C637FC */  addiu $a2, %lo(beh_bowser_bomb_explosion) # addiu $a2, $a2, 0x37fc
 /* 0A6D7C 802EBD7C 8C84FDF0 */  lw    $a0, %lo(gCurrentObject)($a0)
 /* 0A6D80 802EBD80 0C0A7994 */  jal   spawn_object
 /* 0A6D84 802EBD84 24050067 */   li    $a1, 103
@@ -10174,7 +10174,7 @@ glabel BehBowserMineLoop
 /* 0A6DE0 802EBDE0 00000000 */   nop   
 
 
-glabel BehBowserMineExplosionLoop
+glabel BehBowserBombExplosionLoop
 /* 0A6DE4 802EBDE4 27BDFFD8 */  addiu $sp, $sp, -0x28
 /* 0A6DE8 802EBDE8 AFBF001C */  sw    $ra, 0x1c($sp)
 /* 0A6DEC 802EBDEC F7B40010 */  sdc1  $f20, 0x10($sp)
@@ -10207,8 +10207,8 @@ glabel BehBowserMineExplosionLoop
 /* 0A6E58 802EBE58 1020002C */  beqz  $at, .L802EBF0C
 /* 0A6E5C 802EBE5C 00000000 */   nop   
 /* 0A6E60 802EBE60 3C048036 */  lui   $a0, %hi(gCurrentObject) # $a0, 0x8036
-/* 0A6E64 802EBE64 3C061300 */  lui   $a2, %hi(beh_bowser_mine_smoke) # $a2, 0x1300
-/* 0A6E68 802EBE68 24C63820 */  addiu $a2, %lo(beh_bowser_mine_smoke) # addiu $a2, $a2, 0x3820
+/* 0A6E64 802EBE64 3C061300 */  lui   $a2, %hi(beh_bowser_bomb_smoke) # $a2, 0x1300
+/* 0A6E68 802EBE68 24C63820 */  addiu $a2, %lo(beh_bowser_bomb_smoke) # addiu $a2, $a2, 0x3820
 /* 0A6E6C 802EBE6C 8C84FDF0 */  lw    $a0, %lo(gCurrentObject)($a0)
 /* 0A6E70 802EBE70 0C0A7994 */  jal   spawn_object
 /* 0A6E74 802EBE74 24050066 */   li    $a1, 102
@@ -10282,7 +10282,7 @@ glabel BehBowserMineExplosionLoop
 /* 0A6F74 802EBF74 00000000 */   nop   
  
 
-glabel BehBowserMineSmokeLoop
+glabel BehBowserBombSmokeLoop
 /* 0A6F78 802EBF78 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 0A6F7C 802EBF7C AFBF0014 */  sw    $ra, 0x14($sp)
 /* 0A6F80 802EBF80 3C0E8036 */  lui    $t6, %hi(gCurrentObject) 
@@ -11309,7 +11309,7 @@ glabel BehLargeBompLoop
 /* 0A7E00 802ECE00 00000000 */   nop   
 
 
-glabel BehWFSlidingBrickPlatformInit
+glabel BehWFSlidingPlatformInit
 /* 0A7E04 802ECE04 27BDFFD8 */  addiu $sp, $sp, -0x28
 /* 0A7E08 802ECE08 AFBF001C */  sw    $ra, 0x1c($sp)
 /* 0A7E0C 802ECE0C AFB00018 */  sw    $s0, 0x18($sp)
@@ -11392,7 +11392,7 @@ glabel BehWFSlidingBrickPlatformInit
 /* 0A7F2C 802ECF2C 00000000 */   nop   
 
 
-glabel BehWFSlidingBrickPlatformLoop
+glabel BehWFSlidingPlatformLoop
 /* 0A7F30 802ECF30 27BDFFF8 */  addiu $sp, $sp, -8
 /* 0A7F34 802ECF34 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 0A7F38 802ECF38 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
@@ -11912,8 +11912,8 @@ glabel MoneybagReturnHomeLoop
 /* 0A8684 802ED684 10400010 */  beqz  $v0, .L802ED6C8
 /* 0A8688 802ED688 00000000 */   nop   
 /* 0A868C 802ED68C 3C048036 */  lui   $a0, %hi(gCurrentObject) # $a0, 0x8036
-/* 0A8690 802ED690 3C061300 */  lui   $a2, %hi(beh_fake_moneybag_coin) # $a2, 0x1300
-/* 0A8694 802ED694 24C639B4 */  addiu $a2, %lo(beh_fake_moneybag_coin) # addiu $a2, $a2, 0x39b4
+/* 0A8690 802ED690 3C061300 */  lui   $a2, %hi(beh_moneybag_hidden) # $a2, 0x1300
+/* 0A8694 802ED694 24C639B4 */  addiu $a2, %lo(beh_moneybag_hidden) # addiu $a2, $a2, 0x39b4
 /* 0A8698 802ED698 8C84FDF0 */  lw    $a0, %lo(gCurrentObject)($a0)
 /* 0A869C 802ED69C 0C0A7994 */  jal   spawn_object
 /* 0A86A0 802ED6A0 24050074 */   li    $a1, 116
@@ -12091,7 +12091,7 @@ glabel L802ED8C8
 /* 0A88EC 802ED8EC 00000000 */   nop   
 
 
-glabel BehFakeMoneybagCoinLoop
+glabel BehMoneybagHiddenLoop
 /* 0A88F0 802ED8F0 27BDFFD8 */  addiu $sp, $sp, -0x28
 /* 0A88F4 802ED8F4 AFBF001C */  sw    $ra, 0x1c($sp)
 /* 0A88F8 802ED8F8 AFB00018 */  sw    $s0, 0x18($sp)
@@ -13491,7 +13491,7 @@ glabel BehSpindelLoop
 /* 0A9C78 802EEC78 03E00008 */  jr    $ra
 /* 0A9C7C 802EEC7C 00000000 */   nop   
 
-glabel BehMovingUpAndDownInit
+glabel BehSSLMovingPyramidWallInit
 /* 0A9C80 802EEC80 27BDFFF8 */  addiu $sp, $sp, -8
 /* 0A9C84 802EEC84 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 0A9C88 802EEC88 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
@@ -13545,7 +13545,7 @@ glabel BehMovingUpAndDownInit
 /* 0A9D34 802EED34 03E00008 */  jr    $ra
 /* 0A9D38 802EED38 27BD0008 */   addiu $sp, $sp, 8
 
-glabel BehMovingUpAndDownLoop
+glabel BehSSLMovingPyramidWallLoop
 /* 0A9D3C 802EED3C 27BDFFF8 */  addiu $sp, $sp, -8
 /* 0A9D40 802EED40 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 0A9D44 802EED44 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
@@ -16889,8 +16889,8 @@ glabel BehHiddenRedCoinStarInit
 /* 0ACC80 802F1C80 00000000 */   nop   
 /* 0ACC84 802F1C84 3C188036 */  lui   $t8, %hi(gCurrentObject) # $t8, 0x8036
 /* 0ACC88 802F1C88 8F18FDF0 */  lw    $t8, %lo(gCurrentObject)($t8)
-/* 0ACC8C 802F1C8C 3C071300 */  lui   $a3, %hi(beh_collect_star) # $a3, 0x1300
-/* 0ACC90 802F1C90 24E73E1C */  addiu $a3, %lo(beh_collect_star) # addiu $a3, $a3, 0x3e1c
+/* 0ACC8C 802F1C8C 3C071300 */  lui   $a3, %hi(beh_star) # $a3, 0x1300
+/* 0ACC90 802F1C90 24E73E1C */  addiu $a3, %lo(beh_star) # addiu $a3, $a3, 0x3e1c
 /* 0ACC94 802F1C94 C70400A0 */  lwc1  $f4, 0xa0($t8)
 /* 0ACC98 802F1C98 00002825 */  move  $a1, $zero
 /* 0ACC9C 802F1C9C 2406007A */  li    $a2, 122
@@ -17175,17 +17175,17 @@ glabel BehRedCoinLoop
 glabel BehHiddenStarInit
 /* 0ACF9C 802F1F9C 27BDFFC8 */  addiu $sp, $sp, -0x38
 /* 0ACFA0 802F1FA0 AFBF002C */  sw    $ra, 0x2c($sp)
-/* 0ACFA4 802F1FA4 3C041300 */  lui   $a0, %hi(beh_checkpoint) # $a0, 0x1300
+/* 0ACFA4 802F1FA4 3C041300 */  lui   $a0, %hi(beh_hidden_star_trigger) # $a0, 0x1300
 /* 0ACFA8 802F1FA8 0C0A7D18 */  jal   count_objects_with_behavior
-/* 0ACFAC 802F1FAC 24843EFC */   addiu $a0, %lo(beh_checkpoint) # addiu $a0, $a0, 0x3efc
+/* 0ACFAC 802F1FAC 24843EFC */   addiu $a0, %lo(beh_hidden_star_trigger) # addiu $a0, $a0, 0x3efc
 /* 0ACFB0 802F1FB0 A7A20036 */  sh    $v0, 0x36($sp)
 /* 0ACFB4 802F1FB4 87AE0036 */  lh    $t6, 0x36($sp)
 /* 0ACFB8 802F1FB8 15C00023 */  bnez  $t6, .L802F2048
 /* 0ACFBC 802F1FBC 00000000 */   nop   
 /* 0ACFC0 802F1FC0 3C0F8036 */  lui   $t7, %hi(gCurrentObject) # $t7, 0x8036
 /* 0ACFC4 802F1FC4 8DEFFDF0 */  lw    $t7, %lo(gCurrentObject)($t7)
-/* 0ACFC8 802F1FC8 3C071300 */  lui   $a3, %hi(beh_collect_star) # $a3, 0x1300
-/* 0ACFCC 802F1FCC 24E73E1C */  addiu $a3, %lo(beh_collect_star) # addiu $a3, $a3, 0x3e1c
+/* 0ACFC8 802F1FC8 3C071300 */  lui   $a3, %hi(beh_star) # $a3, 0x1300
+/* 0ACFCC 802F1FCC 24E73E1C */  addiu $a3, %lo(beh_star) # addiu $a3, $a3, 0x3e1c
 /* 0ACFD0 802F1FD0 C5E400A0 */  lwc1  $f4, 0xa0($t7)
 /* 0ACFD4 802F1FD4 00002825 */  move  $a1, $zero
 /* 0ACFD8 802F1FD8 2406007A */  li    $a2, 122
@@ -17290,7 +17290,7 @@ glabel BehHiddenStarLoop
 /* 0AD13C 802F213C 03E00008 */  jr    $ra
 /* 0AD140 802F2140 00000000 */   nop   
 
-glabel BehCheckpointLoop
+glabel BehHiddenStarTriggerLoop
 .ifdef VERSION_JP
 /* 0AD144 802F2144 27BDFFE0 */  addiu $sp, $sp, -0x20
 /* 0AD148 802F2148 AFBF0014 */  sw    $ra, 0x14($sp)
@@ -17465,7 +17465,7 @@ glabel BehBowserCourseRedCoinStarLoop
 /* 0AD2D4 802F22D4 03E00008 */  jr    $ra
 /* 0AD2D8 802F22D8 00000000 */   nop   
 
-glabel BehPitoune2Init
+glabel BehTTMRollingLogInit
 /* 0AD2DC 802F22DC 3C018033 */  lui   $at, %hi(D_80337630)
 /* 0AD2E0 802F22E0 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 0AD2E4 802F22E4 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
@@ -17689,7 +17689,7 @@ glabel func_802F238C
 /* 0AD60C 802F260C 03E00008 */  jr    $ra
 /* 0AD610 802F2610 00000000 */   nop   
 
-glabel BehPitouneLoop
+glabel BehRollingLogLoop
 /* 0AD614 802F2614 27BDFFE0 */  addiu $sp, $sp, -0x20
 /* 0AD618 802F2618 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 0AD61C 802F261C 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
@@ -17931,7 +17931,7 @@ glabel func_802F2924
 /* 0AD998 802F2998 03E00008 */  jr    $ra
 /* 0AD99C 802F299C 00000000 */   nop   
 
-glabel BehFallingWhenMarioNearLoop
+glabel BehLLLVolcanoFallingTrap
 /* 0AD9A0 802F29A0 27BDFFD8 */  addiu $sp, $sp, -0x28
 /* 0AD9A4 802F29A4 AFBF001C */  sw    $ra, 0x1c($sp)
 /* 0AD9A8 802F29A8 AFB00018 */  sw    $s0, 0x18($sp)
@@ -18032,7 +18032,7 @@ glabel BehFallingWhenMarioNearLoop
 /* 0ADB00 802F2B00 03E00008 */  jr    $ra
 /* 0ADB04 802F2B04 00000000 */   nop   
 
-glabel BehPitouneInit
+glabel BehLLLRollingLogInit
 /* 0ADB08 802F2B08 3C0145A0 */  lui   $at, 0x45a0
 /* 0ADB0C 802F2B0C 3C0E8036 */  lui    $t6, %hi(gCurrentObject) 
 /* 0ADB10 802F2B10 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
@@ -18985,9 +18985,9 @@ glabel Beh1UpHiddenTriggerLoop
 /* 0AE880 802F3880 24010001 */  li    $at, 1
 /* 0AE884 802F3884 1441000F */  bne   $v0, $at, .L802F38C4
 /* 0AE888 802F3888 00000000 */   nop   
-/* 0AE88C 802F388C 3C041300 */  lui   $a0, %hi(beh_1up_hidden) # $a0, 0x1300
+/* 0AE88C 802F388C 3C041300 */  lui   $a0, %hi(beh_hidden_1up) # $a0, 0x1300
 /* 0AE890 802F3890 0C0A7C78 */  jal   obj_nearest_object_with_behavior
-/* 0AE894 802F3894 248440CC */   addiu $a0, %lo(beh_1up_hidden) # addiu $a0, $a0, 0x40cc
+/* 0AE894 802F3894 248440CC */   addiu $a0, %lo(beh_hidden_1up) # addiu $a0, $a0, 0x40cc
 /* 0AE898 802F3898 AFA2001C */  sw    $v0, 0x1c($sp)
 /* 0AE89C 802F389C 8FAE001C */  lw    $t6, 0x1c($sp)
 /* 0AE8A0 802F38A0 11C00005 */  beqz  $t6, .L802F38B8
@@ -19009,7 +19009,7 @@ glabel Beh1UpHiddenTriggerLoop
 /* 0AE8D4 802F38D4 03E00008 */  jr    $ra
 /* 0AE8D8 802F38D8 00000000 */   nop   
 
-glabel Beh1UpHiddenTreePoleLoop
+glabel Beh1UpHiddenInPoleLoop
 /* 0AE8DC 802F38DC 27BDFFD8 */  addiu $sp, $sp, -0x28
 /* 0AE8E0 802F38E0 AFBF001C */  sw    $ra, 0x1c($sp)
 /* 0AE8E4 802F38E4 AFB00018 */  sw    $s0, 0x18($sp)
@@ -19120,7 +19120,7 @@ glabel Beh1UpHiddenTreePoleLoop
 /* 0AEA68 802F3A68 03E00008 */  jr    $ra
 /* 0AEA6C 802F3A6C 00000000 */   nop   
 
-glabel Beh1UpHiddenTreePoleTriggerLoop
+glabel Beh1UpHiddenInPoleTriggerLoop
 /* 0AEA70 802F3A70 27BDFFE0 */  addiu $sp, $sp, -0x20
 /* 0AEA74 802F3A74 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 0AEA78 802F3A78 3C048036 */  lui   $a0, %hi(gCurrentObject) # $a0, 0x8036
@@ -19131,9 +19131,9 @@ glabel Beh1UpHiddenTreePoleTriggerLoop
 /* 0AEA8C 802F3A8C 24010001 */  li    $at, 1
 /* 0AEA90 802F3A90 1441000F */  bne   $v0, $at, .L802F3AD0
 /* 0AEA94 802F3A94 00000000 */   nop   
-/* 0AEA98 802F3A98 3C041300 */  lui   $a0, %hi(beh_1up_hidden_tree_pole) # $a0, 0x1300
+/* 0AEA98 802F3A98 3C041300 */  lui   $a0, %hi(beh_hidden_1up_in_pole) # $a0, 0x1300
 /* 0AEA9C 802F3A9C 0C0A7C78 */  jal   obj_nearest_object_with_behavior
-/* 0AEAA0 802F3AA0 24844128 */   addiu $a0, %lo(beh_1up_hidden_tree_pole) # addiu $a0, $a0, 0x4128
+/* 0AEAA0 802F3AA0 24844128 */   addiu $a0, %lo(beh_hidden_1up_in_pole) # addiu $a0, $a0, 0x4128
 /* 0AEAA4 802F3AA4 AFA2001C */  sw    $v0, 0x1c($sp)
 /* 0AEAA8 802F3AA8 8FAE001C */  lw    $t6, 0x1c($sp)
 /* 0AEAAC 802F3AAC 11C00005 */  beqz  $t6, .L802F3AC4
@@ -19155,7 +19155,7 @@ glabel Beh1UpHiddenTreePoleTriggerLoop
 /* 0AEAE0 802F3AE0 03E00008 */  jr    $ra
 /* 0AEAE4 802F3AE4 00000000 */   nop   
 
-glabel Beh1UpHiddenInTreeLoop
+glabel Beh1UpHiddenInPoleSpawnerLoop
 /* 0AEAE8 802F3AE8 27BDFFD0 */  addiu $sp, $sp, -0x30
 /* 0AEAEC 802F3AEC AFBF0024 */  sw    $ra, 0x24($sp)
 /* 0AEAF0 802F3AF0 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
@@ -19169,8 +19169,8 @@ glabel Beh1UpHiddenInTreeLoop
 /* 0AEB10 802F3B10 00000000 */   nop   
 /* 0AEB14 802F3B14 3C0F8036 */  lui   $t7, %hi(gCurrentObject) # $t7, 0x8036
 /* 0AEB18 802F3B18 8DEFFDF0 */  lw    $t7, %lo(gCurrentObject)($t7)
-/* 0AEB1C 802F3B1C 3C191300 */  lui   $t9, %hi(beh_1up_hidden_tree_pole) # $t9, 0x1300
-/* 0AEB20 802F3B20 27394128 */  addiu $t9, %lo(beh_1up_hidden_tree_pole) # addiu $t9, $t9, 0x4128
+/* 0AEB1C 802F3B1C 3C191300 */  lui   $t9, %hi(beh_hidden_1up_in_pole) # $t9, 0x1300
+/* 0AEB20 802F3B20 27394128 */  addiu $t9, %lo(beh_hidden_1up_in_pole) # addiu $t9, $t9, 0x4128
 /* 0AEB24 802F3B24 241800D4 */  li    $t8, 212
 /* 0AEB28 802F3B28 AFB80014 */  sw    $t8, 0x14($sp)
 /* 0AEB2C 802F3B2C AFB90018 */  sw    $t9, 0x18($sp)
@@ -19190,8 +19190,8 @@ glabel Beh1UpHiddenInTreeLoop
 /* 0AEB60 802F3B60 01014023 */  subu  $t0, $t0, $at
 /* 0AEB64 802F3B64 000840C0 */  sll   $t0, $t0, 3
 /* 0AEB68 802F3B68 01014021 */  addu  $t0, $t0, $at
-/* 0AEB6C 802F3B6C 3C0A1300 */  lui   $t2, %hi(beh_1up_hidden_tree_pole_trigger) # $t2, 0x1300
-/* 0AEB70 802F3B70 254A4160 */  addiu $t2, %lo(beh_1up_hidden_tree_pole_trigger) # addiu $t2, $t2, 0x4160
+/* 0AEB6C 802F3B6C 3C0A1300 */  lui   $t2, %hi(beh_hidden_1up_in_pole_trigger) # $t2, 0x1300
+/* 0AEB70 802F3B70 254A4160 */  addiu $t2, %lo(beh_hidden_1up_in_pole_trigger) # addiu $t2, $t2, 0x4160
 /* 0AEB74 802F3B74 000840C0 */  sll   $t0, $t0, 3
 /* 0AEB78 802F3B78 01003025 */  move  $a2, $t0
 /* 0AEB7C 802F3B7C AFAA0018 */  sw    $t2, 0x18($sp)
@@ -20344,7 +20344,7 @@ glabel L802F4B48
 /* 0AFC3C 802F4C3C 03E00008 */  jr    $ra
 /* 0AFC40 802F4C40 00000000 */   nop   
 
-glabel BehBreakableBox2Init
+glabel BehBreakableBoxSmallInit
 /* 0AFC44 802F4C44 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 0AFC48 802F4C48 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 0AFC4C 802F4C4C 3C014020 */  lui   $at, 0x4020
@@ -20553,8 +20553,8 @@ glabel func_802F4EB8
 /* 0AFF40 802F4F40 29210385 */  slti  $at, $t1, 0x385
 /* 0AFF44 802F4F44 14200009 */  bnez  $at, .L802F4F6C
 /* 0AFF48 802F4F48 00000000 */   nop   
-/* 0AFF4C 802F4F4C 3C051300 */  lui   $a1, %hi(beh_breakable_box2) # $a1, 0x1300
-/* 0AFF50 802F4F50 24A541F8 */  addiu $a1, %lo(beh_breakable_box2) # addiu $a1, $a1, 0x41f8
+/* 0AFF4C 802F4F4C 3C051300 */  lui   $a1, %hi(beh_breakable_box_small) # $a1, 0x1300
+/* 0AFF50 802F4F50 24A541F8 */  addiu $a1, %lo(beh_breakable_box_small) # addiu $a1, $a1, 0x41f8
 /* 0AFF54 802F4F54 24040082 */  li    $a0, 130
 /* 0AFF58 802F4F58 0C0BA81D */  jal   RespawnBobombOrCorkbox
 /* 0AFF5C 802F4F5C 24060BB8 */   li    $a2, 3000
@@ -20601,8 +20601,8 @@ glabel func_802F4F84
 /* 0AFFE4 802F4FE4 3C0F8036 */  lui   $t7, %hi(gCurrentObject) # $t7, 0x8036
 /* 0AFFE8 802F4FE8 8DEFFDF0 */  lw    $t7, %lo(gCurrentObject)($t7)
 /* 0AFFEC 802F4FEC A5E00074 */  sh    $zero, 0x74($t7)
-/* 0AFFF0 802F4FF0 3C051300 */  lui   $a1, %hi(beh_breakable_box2) # $a1, 0x1300
-/* 0AFFF4 802F4FF4 24A541F8 */  addiu $a1, %lo(beh_breakable_box2) # addiu $a1, $a1, 0x41f8
+/* 0AFFF0 802F4FF0 3C051300 */  lui   $a1, %hi(beh_breakable_box_small) # $a1, 0x1300
+/* 0AFFF4 802F4FF4 24A541F8 */  addiu $a1, %lo(beh_breakable_box_small) # addiu $a1, $a1, 0x41f8
 /* 0AFFF8 802F4FF8 24040082 */  li    $a0, 130
 /* 0AFFFC 802F4FFC 0C0BA81D */  jal   RespawnBobombOrCorkbox
 /* 0B0000 802F5000 24060BB8 */   li    $a2, 3000
@@ -20717,7 +20717,7 @@ glabel func_802F50C0
 /* 0B0190 802F5190 03E00008 */  jr    $ra
 /* 0B0194 802F5194 00000000 */   nop   
 
-glabel BehBreakableBox2Loop
+glabel BehBreakableBoxSmallLoop
 /* 0B0198 802F5198 27BDFFD8 */  addiu $sp, $sp, -0x28
 /* 0B019C 802F519C AFBF001C */  sw    $ra, 0x1c($sp)
 /* 0B01A0 802F51A0 AFB00018 */  sw    $s0, 0x18($sp)

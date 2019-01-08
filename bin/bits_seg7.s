@@ -2,6 +2,7 @@
 .section .rodata
 .include "macros.inc"
 .include "ultra64/gbi.inc"
+.include "macro_presets.inc"
 
 # TODO: cross-link between segments
 .equ rr_textures_09000800, 0x09000800
@@ -10037,65 +10038,65 @@ glabel bits_seg7_collision_level # 0x07016E18 - 0x0701A76A
 .hword 0x76,   349,  6268, -4054,     0
 .hword 0x0042
 
-.balign 4 # 0x0701A76A - 0x0701A76C
 
+.balign 4
 glabel bits_seg7_macro_objs # 0x0701A76C - 0x0701A99E
-.hword 0x001F, -1400, -4000,     0,     0
-.hword 0x001F,  -272, -4000,     0,     0
-.hword 0x001F,   840, -4000,     0,     0
-.hword 0x0046,  4100, -1320, -1800,     1
-.hword 0x0044,  6180, -1791,     0,     0
-.hword 0x0044,  6260, -1453, -1800,     0
-.hword 0x0124,  1920, -1187, -1840,     0
-.hword 0x0025, -5080, -2457,  -800,     0
-.hword 0x004D,  1380, -1740,  -660,     0
-.hword 0x411E, -4180, -1330,  -800,     0
-.hword 0x4042, -3909,  -409, -1199,     0
-.hword 0x001F,   600,  -200,  -900,     0
-.hword 0x001F,   900,    60,  -900,     0
-.hword 0x001F,  1200,   310,  -900,     0
-.hword 0x001F,  1500,   560,  -900,     0
-.hword 0x001F,  1800,   810,  -900,     0
-.hword 0x001F,  2100,  1060,  -900,     0
-.hword 0x004B,  1279,  2639,  -959,     0
-.hword 0x004D, -1399,  2750, -1159,     0
-.hword 0x008E, -2839,  2059,  -959,     0
-.hword 0x008E, -3479,  2059,  -799,     0
-.hword 0x001F, -7200,  2080,  -890,     0
-.hword 0x001F, -6600,  2080,  -180,     0
-.hword 0x001F, -6600,  2080, -1550,     0
-.hword 0x0050, -6600,  2080,  -180,     0
-.hword 0x0050, -7200,  2080,  -890,     0
-.hword 0x0050, -6600,  2080, -1550,     0
-.hword 0x004F, -6640,  2280,  -890,     3
-.hword 0x003F, -5239,  3839,  -999,     0
-.hword 0x008E, -1559,  3800, -1079,     0
-.hword 0x008E, -1079,  3800, -1039,     0
-.hword 0x0025,  1879,  4639, -1559,     0
-.hword 0x004D,  -259,  6059, -3759,     0
-.hword 0x004B,   359,  6099, -3219,     0
-.hword 0x0124,  3680,  2428, -1840,     0
-.hword 0x0046, -6460,  2080,  -900,     2
-.hword 0x0046, -6460,  2280,  -900,     0
-.hword 0x003F,   360,  6040, -2880,     0
-.hword 0x0025,  -302, -2457,  -800,     0
-.hword 0x0023,  1590, -1120, -2055,     0
-.hword 0x0023, -2960, -3360,     0,     0
-.hword 0x0023,  -298, -2600, -1600,     0
-.hword 0x0023,  7618,  4850, -1909,     0
-.hword 0x0023,  -136,  3109,  -909,     0
-.hword 0x0023, -3330,  4050,  -900,     0
-.hword 0x0023, -4830,  2103, -1030,     0
-.hword 0x0023,   348,  5921, -4585,     0
-.hword 0x0066, -2300, -4100,     0,     0
-.hword 0x0074, -4769,  2344,  -904,     0
-.hword 0x0074,   377,  4140, -2042,     0
-.hword 0x004D, -1751, -1246,  -805,     0
-.hword 0x0074, -6712,  -899,  -796,     0
-.hword 0x0025,  7322,  4566, -1922,     0
-.hword 0x0074, -3600, -2433,  -800,     0
-.hword 0x0074, -2656, -2442,  -800,     0
-.hword 0x006E,  4100, -1050, -1800,     0
+macro_object /*preset*/ macro_yellow_coin,            /*yaw*/   0, /*pos*/ -1400, -4000,     0
+macro_object /*preset*/ macro_yellow_coin,            /*yaw*/   0, /*pos*/  -272, -4000,     0
+macro_object /*preset*/ macro_yellow_coin,            /*yaw*/   0, /*pos*/   840, -4000,     0
+macro_object /*preset*/ macro_amp_circling,           /*yaw*/   0, /*pos*/  4100, -1320, -1800, /*behParam*/ 1
+macro_object /*preset*/ macro_goomba,                 /*yaw*/   0, /*pos*/  6180, -1791,     0
+macro_object /*preset*/ macro_goomba,                 /*yaw*/   0, /*pos*/  6260, -1453, -1800
+macro_object /*preset*/ macro_fire_piranha_plant,     /*yaw*/   0, /*pos*/  1920, -1187, -1840
+macro_object /*preset*/ macro_coin_line_horizontal,   /*yaw*/   0, /*pos*/ -5080, -2457,  -800
+macro_object /*preset*/ macro_1up,                    /*yaw*/   0, /*pos*/  1380, -1740,  -660
+macro_object /*preset*/ macro_whomp,                  /*yaw*/  90, /*pos*/ -4180, -1330,  -800
+macro_object /*preset*/ macro_chuckya,                /*yaw*/  90, /*pos*/ -3909,  -409, -1199
+macro_object /*preset*/ macro_yellow_coin,            /*yaw*/   0, /*pos*/   600,  -200,  -900
+macro_object /*preset*/ macro_yellow_coin,            /*yaw*/   0, /*pos*/   900,    60,  -900
+macro_object /*preset*/ macro_yellow_coin,            /*yaw*/   0, /*pos*/  1200,   310,  -900
+macro_object /*preset*/ macro_yellow_coin,            /*yaw*/   0, /*pos*/  1500,   560,  -900
+macro_object /*preset*/ macro_yellow_coin,            /*yaw*/   0, /*pos*/  1800,   810,  -900
+macro_object /*preset*/ macro_yellow_coin,            /*yaw*/   0, /*pos*/  2100,  1060,  -900
+macro_object /*preset*/ macro_recovery_heart,         /*yaw*/   0, /*pos*/  1279,  2639,  -959
+macro_object /*preset*/ macro_1up,                    /*yaw*/   0, /*pos*/ -1399,  2750, -1159
+macro_object /*preset*/ macro_bobomb,                 /*yaw*/   0, /*pos*/ -2839,  2059,  -959
+macro_object /*preset*/ macro_bobomb,                 /*yaw*/   0, /*pos*/ -3479,  2059,  -799
+macro_object /*preset*/ macro_yellow_coin,            /*yaw*/   0, /*pos*/ -7200,  2080,  -890
+macro_object /*preset*/ macro_yellow_coin,            /*yaw*/   0, /*pos*/ -6600,  2080,  -180
+macro_object /*preset*/ macro_yellow_coin,            /*yaw*/   0, /*pos*/ -6600,  2080, -1550
+macro_object /*preset*/ macro_hidden_1up_trigger,     /*yaw*/   0, /*pos*/ -6600,  2080,  -180
+macro_object /*preset*/ macro_hidden_1up_trigger,     /*yaw*/   0, /*pos*/ -7200,  2080,  -890
+macro_object /*preset*/ macro_hidden_1up_trigger,     /*yaw*/   0, /*pos*/ -6600,  2080, -1550
+macro_object /*preset*/ macro_hidden_1up,             /*yaw*/   0, /*pos*/ -6640,  2280,  -890, /*behParam*/ 3
+macro_object /*preset*/ macro_goomba_triplet_spawner, /*yaw*/   0, /*pos*/ -5239,  3839,  -999
+macro_object /*preset*/ macro_bobomb,                 /*yaw*/   0, /*pos*/ -1559,  3800, -1079
+macro_object /*preset*/ macro_bobomb,                 /*yaw*/   0, /*pos*/ -1079,  3800, -1039
+macro_object /*preset*/ macro_coin_line_horizontal,   /*yaw*/   0, /*pos*/  1879,  4639, -1559
+macro_object /*preset*/ macro_1up,                    /*yaw*/   0, /*pos*/  -259,  6059, -3759
+macro_object /*preset*/ macro_recovery_heart,         /*yaw*/   0, /*pos*/   359,  6099, -3219
+macro_object /*preset*/ macro_fire_piranha_plant,     /*yaw*/   0, /*pos*/  3680,  2428, -1840
+macro_object /*preset*/ macro_amp_circling,           /*yaw*/   0, /*pos*/ -6460,  2080,  -900, /*behParam*/ 2
+macro_object /*preset*/ macro_amp_circling,           /*yaw*/   0, /*pos*/ -6460,  2280,  -900, /*behParam*/ 0
+macro_object /*preset*/ macro_goomba_triplet_spawner, /*yaw*/   0, /*pos*/   360,  6040, -2880
+macro_object /*preset*/ macro_coin_line_horizontal,   /*yaw*/   0, /*pos*/  -302, -2457,  -800
+macro_object /*preset*/ macro_red_coin,               /*yaw*/   0, /*pos*/  1590, -1120, -2055
+macro_object /*preset*/ macro_red_coin,               /*yaw*/   0, /*pos*/ -2960, -3360,     0
+macro_object /*preset*/ macro_red_coin,               /*yaw*/   0, /*pos*/  -298, -2600, -1600
+macro_object /*preset*/ macro_red_coin,               /*yaw*/   0, /*pos*/  7618,  4850, -1909
+macro_object /*preset*/ macro_red_coin,               /*yaw*/   0, /*pos*/  -136,  3109,  -909
+macro_object /*preset*/ macro_red_coin,               /*yaw*/   0, /*pos*/ -3330,  4050,  -900
+macro_object /*preset*/ macro_red_coin,               /*yaw*/   0, /*pos*/ -4830,  2103, -1030
+macro_object /*preset*/ macro_red_coin,               /*yaw*/   0, /*pos*/   348,  5921, -4585
+macro_object /*preset*/ macro_pushable_metal_box,     /*yaw*/   0, /*pos*/ -2300, -4100,     0
+macro_object /*preset*/ macro_fire_spitter            /*yaw*/   0, /*pos*/ -4769,  2344,  -904
+macro_object /*preset*/ macro_fire_spitter            /*yaw*/   0, /*pos*/   377,  4140, -2042
+macro_object /*preset*/ macro_1up,                    /*yaw*/   0, /*pos*/ -1751, -1246,  -805
+macro_object /*preset*/ macro_fire_spitter            /*yaw*/   0, /*pos*/ -6712,  -899,  -796
+macro_object /*preset*/ macro_coin_line_horizontal,   /*yaw*/   0, /*pos*/  7322,  4566, -1922
+macro_object /*preset*/ macro_fire_spitter            /*yaw*/   0, /*pos*/ -3600, -2433,  -800
+macro_object /*preset*/ macro_fire_spitter            /*yaw*/   0, /*pos*/ -2656, -2442,  -800
+macro_object /*preset*/ macro_box_1up_running_away    /*yaw*/   0, /*pos*/  4100, -1050, -1800
 .hword 0x001E
 
 .balign 4 # 0x0701A99E - 0x0701A9A0

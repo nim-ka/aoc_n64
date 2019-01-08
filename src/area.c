@@ -63,7 +63,7 @@ s16 gCurrLevelNum = 1;
 static void *D_8032CE9C[] =
 {
     beh_door_warp,
-    beh_collect_star,
+    beh_star,
     beh_exit_podium_warp,
     beh_warp,
     beh_warp_pipe,

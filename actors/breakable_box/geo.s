@@ -12,7 +12,7 @@ glabel breakable_box_geo # 0x0F0005D0
    geo_close_node
    geo_end
 
-glabel breakable_box2_geo # 0x0F000610
+glabel breakable_box_small_geo # 0x0F000610
    geo_start_distance 500
    geo_open_node
       geo_switch_case 2, GeoSwitchCase8029DB48

@@ -2,6 +2,7 @@
 .section .rodata
 .include "macros.inc"
 .include "ultra64/gbi.inc"
+.include "macro_presets.inc"
 
 # TODO: cross-link between segments
 .equ inside_castle_textures_09000000, 0x09000000
@@ -37687,33 +37688,33 @@ glabel inside_castle_seg7_collision_ddd_warp_2 # 0x0707768C - 0x07077764
 .hword 0x0042
 
 glabel inside_castle_seg7_area_1_macro_objs # 0x07077764 - 0x070777DE
-.hword 0x4041,  1178,   614, -2434,    75
-.hword 0xC041, -3185,   205,  -410,    46
-.hword 0xC041, -3185,   205,   -51,    70
-.hword 0x8041,   435,     0, -1137,    69
-.hword 0x2041,  1670,   307, -1144,   147
-.hword 0x8041, -2278,  -410, -3002,    52
-.hword 0x0020,  -618,   388,  -324,     0
-.hword 0x0020, -1430,   388,  -324,     0
-.hword 0x0020,  -724,   388,  -324,     0
-.hword 0x0020, -1324,   388,  -324,     0
-.hword 0x0050,  2005,   800, -1694,     0
-.hword 0x004F,  2036,   800, -1673,     1
+macro_object /*preset*/ macro_sign_on_wall,       /*yaw*/  90, /*pos*/  1178,   614, -2434, /*behParam*/ 75
+macro_object /*preset*/ macro_sign_on_wall,       /*yaw*/ 270, /*pos*/ -3185,   205,  -410, /*behParam*/ 46
+macro_object /*preset*/ macro_sign_on_wall,       /*yaw*/ 270, /*pos*/ -3185,   205,   -51, /*behParam*/ 70
+macro_object /*preset*/ macro_sign_on_wall,       /*yaw*/ 180, /*pos*/   435,     0, -1137, /*behParam*/ 69
+macro_object /*preset*/ macro_sign_on_wall,       /*yaw*/  45, /*pos*/  1670,   307, -1144, /*behParam*/ 147
+macro_object /*preset*/ macro_sign_on_wall,       /*yaw*/ 180, /*pos*/ -2278,  -410, -3002, /*behParam*/ 52
+macro_object /*preset*/ macro_yellow_coin_2,      /*yaw*/   0, /*pos*/  -618,   388,  -324
+macro_object /*preset*/ macro_yellow_coin_2,      /*yaw*/   0, /*pos*/ -1430,   388,  -324
+macro_object /*preset*/ macro_yellow_coin_2,      /*yaw*/   0, /*pos*/  -724,   388,  -324
+macro_object /*preset*/ macro_yellow_coin_2,      /*yaw*/   0, /*pos*/ -1324,   388,  -324
+macro_object /*preset*/ macro_hidden_1up_trigger, /*yaw*/   0, /*pos*/  2005,   800, -1694
+macro_object /*preset*/ macro_hidden_1up,         /*yaw*/   0, /*pos*/  2036,   800, -1673, /*behParam*/ 1
 .hword 0x001E
 
 .balign 4 # 0x070777DE - 0x070777E0
 
 glabel inside_castle_seg7_area_2_macro_objs # 0x070777E0 - 0x070777EC
-.hword 0x4041,   164,  1203,  2278,    19
+macro_object /*preset*/ macro_sign_on_wall,       /*yaw*/  90, /*pos*/   164,  1203,  2278, /*behParam*/ 19
 .hword 0x001E
 
 glabel inside_castle_seg7_area_3_macro_objs # 0x070777EC - 0x0707782A
-.hword 0x0041,  6400, -1178, -1270,    77
-.hword 0x0050,  2130, -2508,  -946,     0
-.hword 0x0050,  2130, -2508,   -92,     0
-.hword 0x0050,  3515, -2508,  -946,     0
-.hword 0x0050,  3515, -2508,   -92,     0
-.hword 0x004F,  2861, -2508,  -515,     4
+macro_object /*preset*/ macro_sign_on_wall,       /*yaw*/   0, /*pos*/  6400, -1178, -1270, /*behParam*/ 77
+macro_object /*preset*/ macro_hidden_1up_trigger, /*yaw*/   0, /*pos*/  2130, -2508,  -946
+macro_object /*preset*/ macro_hidden_1up_trigger, /*yaw*/   0, /*pos*/  2130, -2508,   -92
+macro_object /*preset*/ macro_hidden_1up_trigger, /*yaw*/   0, /*pos*/  3515, -2508,  -946
+macro_object /*preset*/ macro_hidden_1up_trigger, /*yaw*/   0, /*pos*/  3515, -2508,   -92
+macro_object /*preset*/ macro_hidden_1up,         /*yaw*/   0, /*pos*/  2861, -2508,  -515, /*behParam*/ 4
 .hword 0x001E
 
 .balign 4 # 0x0707782A - 0x0707782C
@@ -38485,86 +38486,96 @@ glabel inside_castle_seg7_collision_water_level_pillar # 0x07078E80 - 0x07078EF8
 .hword 0x0042
 
 inside_castle_seg7_trajectory_mips_0: # 0x07078EF8 - 0x07078F2C
-.hword  0, -1831, -1177, -1178
-.hword  1, -1810, -1177,   284
-.hword  2, -2210, -1192,   715
-.hword  3, -3505, -1279,   715
-.hword  4, -3968, -1279,   -31
-.hword  5, -4021, -1381, -1242
-.hword -1
-.hword  0
+trajectory_init
+trajectory_pos /*pos*/ -1831, -1177, -1178
+trajectory_pos /*pos*/ -1810, -1177,   284
+trajectory_pos /*pos*/ -2210, -1192,   715
+trajectory_pos /*pos*/ -3505, -1279,   715
+trajectory_pos /*pos*/ -3968, -1279,   -31
+trajectory_pos /*pos*/ -4021, -1381, -1242
+trajectory_end
 
+.balign 4
 inside_castle_seg7_trajectory_mips_1: # 0x07078F2C - 0x07078F68
-.hword  0, -3674, -1379,  -962
-.hword  1, -3813, -1279,   -41
-.hword  2, -3628, -1279,   755
-.hword  3, -2210, -1192,   715
-.hword  4, -1810, -1177,   284
-.hword  5, -1842, -1177, -1078
-.hword  6, -1604, -1177, -1445
-.hword -1
-.hword  0
+trajectory_init
+trajectory_pos /*pos*/ -3674, -1379,  -962
+trajectory_pos /*pos*/ -3813, -1279,   -41
+trajectory_pos /*pos*/ -3628, -1279,   755
+trajectory_pos /*pos*/ -2210, -1192,   715
+trajectory_pos /*pos*/ -1810, -1177,   284
+trajectory_pos /*pos*/ -1842, -1177, -1078
+trajectory_pos /*pos*/ -1604, -1177, -1445
+trajectory_end
 
+.balign 4
 inside_castle_seg7_trajectory_mips_2: # 0x07078F68 - 0x07078F7C
-.hword  0, -1463, -1210, -2231
-.hword  1, -1515, -1279, -3094
-.hword -1
-.hword  0
+trajectory_init
+trajectory_pos /*pos*/ -1463, -1210, -2231
+trajectory_pos /*pos*/ -1515, -1279, -3094
+trajectory_end
 
+.balign 4
 inside_castle_seg7_trajectory_mips_3: # 0x07078F7C - 0x07078FA8
-.hword  0, -2019, -1279, -3077
-.hword  1, -2559, -1279, -3043
-.hword  2, -2957, -1279, -2747
-.hword  3, -3031, -1262, -1947
-.hword  4, -2846, -1262, -1321
-.hword -1
-.hword  0
+trajectory_init
+trajectory_pos /*pos*/ -2019, -1279, -3077
+trajectory_pos /*pos*/ -2559, -1279, -3043
+trajectory_pos /*pos*/ -2957, -1279, -2747
+trajectory_pos /*pos*/ -3031, -1262, -1947
+trajectory_pos /*pos*/ -2846, -1262, -1321
+trajectory_end
 
+.balign 4
 inside_castle_seg7_trajectory_mips_4: # 0x07078FA8 - 0x07078FD4
-.hword  0, -3005, -1197, -1874
-.hword  1, -2967, -1279, -2582
-.hword  2, -2559, -1279, -3043
-.hword  3, -1984, -1262, -3068
-.hword  4, -1432, -1262, -3038
-.hword -1
-.hword  0
+trajectory_init
+trajectory_pos /*pos*/ -3005, -1197, -1874
+trajectory_pos /*pos*/ -2967, -1279, -2582
+trajectory_pos /*pos*/ -2559, -1279, -3043
+trajectory_pos /*pos*/ -1984, -1262, -3068
+trajectory_pos /*pos*/ -1432, -1262, -3038
+trajectory_end
 
+.balign 4
 inside_castle_seg7_trajectory_mips_5: # 0x07078FD4 - 0x07078FE8
-.hword  0, -1387, -1254, -2541
-.hword  1, -1541, -1177, -1446
-.hword -1
-.hword  0
+trajectory_init
+trajectory_pos /*pos*/ -1387, -1254, -2541
+trajectory_pos /*pos*/ -1541, -1177, -1446
+trajectory_end
 
+.balign 4
 inside_castle_seg7_trajectory_mips_6: # 0x07078FE8 - 0x07079004
-.hword  0,  -894, -1223, -1421
-.hword  1,  -306, -1279, -1601
-.hword  2,  -192, -1279, -2196
-.hword -1
-.hword  0
+trajectory_init
+trajectory_pos /*pos*/  -894, -1223, -1421
+trajectory_pos /*pos*/  -306, -1279, -1601
+trajectory_pos /*pos*/  -192, -1279, -2196
+trajectory_end
 
+.balign 4
 inside_castle_seg7_trajectory_mips_7: # 0x07079004 - 0x07079020
-.hword  0,  -187, -1279, -1662
-.hword  1,  -805, -1238, -1406
-.hword  2, -1549, -1177, -1446
-.hword -1
-.hword  0
+trajectory_init
+trajectory_pos /*pos*/  -187, -1279, -1662
+trajectory_pos /*pos*/  -805, -1238, -1406
+trajectory_pos /*pos*/ -1549, -1177, -1446
+trajectory_end
 
+.balign 4
 inside_castle_seg7_trajectory_mips_8: # 0x07079020 - 0x07079044
-.hword  0, -1092, -1279, -3188
-.hword  1,  -593, -1279, -3175
-.hword  2,  -200, -1279, -2940
-.hword  3,  -216, -1279, -2139
-.hword -1
-.hword  0
+trajectory_init
+trajectory_pos /*pos*/ -1092, -1279, -3188
+trajectory_pos /*pos*/  -593, -1279, -3175
+trajectory_pos /*pos*/  -200, -1279, -2940
+trajectory_pos /*pos*/  -216, -1279, -2139
+trajectory_end
 
+.balign 4
 inside_castle_seg7_trajectory_mips_9: # 0x07079044 - 0x07079068
-.hword  0,  -214, -1279, -2432
-.hword  1,  -160, -1283, -2900
-.hword  2,  -640, -1283, -3220
-.hword  3, -1469, -1279, -3108
-.hword -1
-.hword  0
+trajectory_init
+trajectory_pos /*pos*/  -214, -1279, -2432
+trajectory_pos /*pos*/  -160, -1283, -2900
+trajectory_pos /*pos*/  -640, -1283, -3220
+trajectory_pos /*pos*/ -1469, -1279, -3108
+trajectory_end
 
+.balign 4
 glabel inside_castle_seg7_trajectory_mips # 0x07079068 - 0x07079090
 .word inside_castle_seg7_trajectory_mips_0, inside_castle_seg7_trajectory_mips_1
 .word inside_castle_seg7_trajectory_mips_2, inside_castle_seg7_trajectory_mips_3

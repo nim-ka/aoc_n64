@@ -2,6 +2,7 @@
 .section .rodata
 .include "macros.inc"
 .include "ultra64/gbi.inc"
+.include "macro_presets.inc"
 
 # TODO: cross-link between segments
 .equ castle_grounds_textures_09000800, 0x09000800
@@ -3189,37 +3190,37 @@ glabel vcutm_seg7_collision # 0x07009750 - 0x0700AB0C
 .hword 0x0042
 
 glabel vcutm_seg7_macro_objs # 0x0700AB0C - 0x0700AC44
-.hword 0x0062, -3434,  2951, -3076,     0
-.hword 0x004D, -4711,  1594, -2532,     0
-.hword 0x004D, -5952,  -393, -1141,     0
-.hword 0x005D,  3980,   300, -6220,     0
-.hword 0x0050,  4200,     0, -4940,     0
-.hword 0x0050,  4740,     0, -4940,     0
-.hword 0x0050,  4740,     0, -4400,     0
-.hword 0x004F,  4460,     0, -4700,     3
-.hword 0x0020,  4200,     0, -4940,     0
-.hword 0x0020,  4740,     0, -4940,     0
-.hword 0x0020,  4740,     0, -4400,     0
-.hword 0x0025, -2100, -3276,    20,     0
-.hword 0x0046, -2100, -2800, -3866,     1
-.hword 0x0060, -2145, -2160, -5963,     0
-.hword 0x0023, -5920,  4575, -4618,     0
-.hword 0x0023, -4740,  3581, -3854,     0
-.hword 0x0023, -4727,  -227, -1161,     0
-.hword 0x0023, -3418,  -559,  -836,     0
-.hword 0x0023,  -600, -1400, -6300,     0
-.hword 0x0023,   900, -1400, -6300,     0
-.hword 0x0023,  2750,  -800, -6300,     0
-.hword 0x0023,  4509,     0, -5527,     0
-.hword 0x0074, -1740, -3240,  1580,     0
-.hword 0x0074, -2400, -3240,   600,     0
-.hword 0x0074, -1740, -3240,     0,     0
-.hword 0x0074, -2400, -3240, -1079,     0
-.hword 0x0074, -2920, -3240,   880,     0
-.hword 0x0074, -4000, -3240,  1600,     0
-.hword 0x005D, -6020, -2976,  1240,     0
-.hword 0x0074, -2100, -2840, -3866,     0
-.hword 0x0074, -4600,  5760, -6140,     0
+macro_object /*preset*/ macro_box_1up,              /*yaw*/   0, /*pos*/ -3434,  2951, -3076
+macro_object /*preset*/ macro_1up,                  /*yaw*/   0, /*pos*/ -4711,  1594, -2532
+macro_object /*preset*/ macro_1up,                  /*yaw*/   0, /*pos*/ -5952,  -393, -1141
+macro_object /*preset*/ macro_box_vanish_cap,       /*yaw*/   0, /*pos*/  3980,   300, -6220
+macro_object /*preset*/ macro_hidden_1up_trigger,   /*yaw*/   0, /*pos*/  4200,     0, -4940
+macro_object /*preset*/ macro_hidden_1up_trigger,   /*yaw*/   0, /*pos*/  4740,     0, -4940
+macro_object /*preset*/ macro_hidden_1up_trigger,   /*yaw*/   0, /*pos*/  4740,     0, -4400
+macro_object /*preset*/ macro_hidden_1up,           /*yaw*/   0, /*pos*/  4460,     0, -4700, /*behParam*/ 3
+macro_object /*preset*/ macro_yellow_coin_2,        /*yaw*/   0, /*pos*/  4200,     0, -4940
+macro_object /*preset*/ macro_yellow_coin_2,        /*yaw*/   0, /*pos*/  4740,     0, -4940
+macro_object /*preset*/ macro_yellow_coin_2,        /*yaw*/   0, /*pos*/  4740,     0, -4400
+macro_object /*preset*/ macro_coin_line_horizontal, /*yaw*/   0, /*pos*/ -2100, -3276,    20
+macro_object /*preset*/ macro_amp_circling,         /*yaw*/   0, /*pos*/ -2100, -2800, -3866, /*behParam*/ 1
+macro_object /*preset*/ macro_box_three_coins,      /*yaw*/   0, /*pos*/ -2145, -2160, -5963
+macro_object /*preset*/ macro_red_coin,             /*yaw*/   0, /*pos*/ -5920,  4575, -4618
+macro_object /*preset*/ macro_red_coin,             /*yaw*/   0, /*pos*/ -4740,  3581, -3854
+macro_object /*preset*/ macro_red_coin,             /*yaw*/   0, /*pos*/ -4727,  -227, -1161
+macro_object /*preset*/ macro_red_coin,             /*yaw*/   0, /*pos*/ -3418,  -559,  -836
+macro_object /*preset*/ macro_red_coin,             /*yaw*/   0, /*pos*/  -600, -1400, -6300
+macro_object /*preset*/ macro_red_coin,             /*yaw*/   0, /*pos*/   900, -1400, -6300
+macro_object /*preset*/ macro_red_coin,             /*yaw*/   0, /*pos*/  2750,  -800, -6300
+macro_object /*preset*/ macro_red_coin,             /*yaw*/   0, /*pos*/  4509,     0, -5527
+macro_object /*preset*/ macro_fire_spitter,         /*yaw*/   0, /*pos*/ -1740, -3240,  1580
+macro_object /*preset*/ macro_fire_spitter,         /*yaw*/   0, /*pos*/ -2400, -3240,   600
+macro_object /*preset*/ macro_fire_spitter,         /*yaw*/   0, /*pos*/ -1740, -3240,     0
+macro_object /*preset*/ macro_fire_spitter,         /*yaw*/   0, /*pos*/ -2400, -3240, -1079
+macro_object /*preset*/ macro_fire_spitter,         /*yaw*/   0, /*pos*/ -2920, -3240,   880
+macro_object /*preset*/ macro_fire_spitter,         /*yaw*/   0, /*pos*/ -4000, -3240,  1600
+macro_object /*preset*/ macro_box_vanish_cap,       /*yaw*/   0, /*pos*/ -6020, -2976,  1240
+macro_object /*preset*/ macro_fire_spitter,         /*yaw*/   0, /*pos*/ -2100, -2840, -3866
+macro_object /*preset*/ macro_fire_spitter,         /*yaw*/   0, /*pos*/ -4600,  5760, -6140
 .hword 0x001E
 
 glabel vcutm_seg7_collision_0700AC44 # 0x0700AC44 - 0x0700ACC8

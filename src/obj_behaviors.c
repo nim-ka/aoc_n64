@@ -1307,14 +1307,14 @@ void BobombBuddyCannonLoop(s16 arg0, s16 arg1)
             if (sp2a != 0)
             {
                 save_file_set_cannon_unlocked();
-                sp2c = obj_nearest_object_with_behavior(beh_cannon_trap_door);
+                sp2c = obj_nearest_object_with_behavior(beh_cannon_closed);
                 if (sp2c != 0) o->oBobombBuddyCannonStatus = BOBOMB_BUDDY_CANNON_OPENING;
                 else o->oBobombBuddyCannonStatus = BOBOMB_BUDDY_CANNON_STOP_TALKING;
             }
             break;
             
         case BOBOMB_BUDDY_CANNON_OPENING:
-            sp2c = obj_nearest_object_with_behavior(beh_cannon_trap_door);
+            sp2c = obj_nearest_object_with_behavior(beh_cannon_closed);
             sp28 = func_8028F9E8(150, sp2c);
             if (sp28 == -1) o->oBobombBuddyCannonStatus = BOBOMB_BUDDY_CANNON_OPENED;
             break;
@@ -1405,17 +1405,18 @@ void BehBobombBuddyLoop(void)
     o->oInteractStatus = 0;
 }
 
-void BehCannonTrapDoorInit(void)
+void BehCannonClosedInit(void)
 {
-    struct Object *cannonTrapDoor;
+    struct Object *cannon;
 
     if (save_file_is_cannon_unlocked() == 1)
     {
-        cannonTrapDoor = spawn_object(o, 128, beh_cannon_base);
-        cannonTrapDoor->oBehParams2ndByte = o->oBehParams2ndByte;
-        cannonTrapDoor->oPosX = o->oHomeX;
-        cannonTrapDoor->oPosY = o->oHomeY;
-        cannonTrapDoor->oPosZ = o->oHomeZ;
+		// If the cannon is open, spawn a cannon and despawn the object.
+        cannon = spawn_object(o, 128, beh_cannon);
+        cannon->oBehParams2ndByte = o->oBehParams2ndByte;
+        cannon->oPosX = o->oHomeX;
+        cannon->oPosY = o->oHomeY;
+        cannon->oPosZ = o->oHomeZ;
 
         o->oAction = CANNON_TRAP_DOOR_ACT_OPEN;
         o->activeFlags = 0;
@@ -1436,7 +1437,7 @@ void CannonTrapDoorOpeningLoop(void)
     {
         if (o->oTimer == 80)
         {
-            BehCannonTrapDoorInit();
+            BehCannonClosedInit();
             return;
         }
 
@@ -1446,7 +1447,7 @@ void CannonTrapDoorOpeningLoop(void)
     }
 }
 
-void BehCannonTrapDoorLoop(void)
+void BehCannonClosedLoop(void)
 {
     switch (o->oAction)
     {
@@ -2973,7 +2974,7 @@ void BehMantaRayWaterRingLoop(void)
     }
 }
 
-void BehBowserMineLoop(void)
+void BehBowserBombLoop(void)
 {
     if (are_objects_collided(o, gMarioObject) == 1)
     {
@@ -2984,7 +2985,7 @@ void BehBowserMineLoop(void)
     
     if (o->oInteractStatus & 0x200000) /* bit 21 */
     {
-        spawn_object(o, 103, beh_bowser_mine_explosion);
+        spawn_object(o, 103, beh_bowser_bomb_explosion);
         create_sound_spawner(0x312F0081);
         func_8027F440(3, o->oPosX, o->oPosY, o->oPosZ);
         o->activeFlags = 0;
@@ -2993,14 +2994,14 @@ void BehBowserMineLoop(void)
     SetObjectVisibility(o, 7000);
 }
 
-void BehBowserMineExplosionLoop(void)
+void BehBowserBombExplosionLoop(void)
 {
     struct Object *mineSmoke;
     
     obj_scale((f32)o->oTimer / 14.0f * 9.0 + 1.0);
     if ((o->oTimer % 4 == 0) && (o->oTimer < 20))
     {
-        mineSmoke = spawn_object(o, 102, beh_bowser_mine_smoke);
+        mineSmoke = spawn_object(o, 102, beh_bowser_bomb_smoke);
         mineSmoke->oPosX += RandomFloat() * 600.0f - 400.0f;
         mineSmoke->oPosZ += RandomFloat() * 600.0f - 400.0f;
         mineSmoke->oVelY += RandomFloat() * 10.0f;
@@ -3010,7 +3011,7 @@ void BehBowserMineExplosionLoop(void)
     if (o->oTimer == 28) o->activeFlags = 0;
 }
 
-void BehBowserMineSmokeLoop(void)
+void BehBowserBombSmokeLoop(void)
 {
     obj_scale((f32)o->oTimer / 14.0f * 9.0 + 1.0);
     if (o->oTimer % 2 == 0) o->oAnimState++;
@@ -3318,7 +3319,7 @@ void BehLargeBompLoop(void)
     }
 }
 
-void BehWFSlidingBrickPlatformInit(void)
+void BehWFSlidingPlatformInit(void)
 {
     o->oFaceAngleYaw -= 0x4000;
     o->oPosX += 2.0f;
@@ -3342,7 +3343,7 @@ void BehWFSlidingBrickPlatformInit(void)
     o->oTimer = RandomFloat() * 100.0f;
 }
 
-void BehWFSlidingBrickPlatformLoop(void)
+void BehWFSlidingPlatformLoop(void)
 {
     switch (o->oAction)
     {
@@ -3520,7 +3521,7 @@ void MoneybagReturnHomeLoop(void)
     
     if (IsPointCloseToObject(o, o->oHomeX, o->oHomeY, o->oHomeZ, 100))
     {
-        spawn_object(o, 116, beh_fake_moneybag_coin);
+        spawn_object(o, 116, beh_moneybag_hidden);
 #ifdef VERSION_US
         PlaySound2(0x30762081);
 #endif
@@ -3591,7 +3592,7 @@ void BehMoneybagLoop(void)
     }
 }
 
-void BehFakeMoneybagCoinLoop(void)
+void BehMoneybagHiddenLoop(void)
 {
     set_object_hitbox(o, &D_80331594);
     

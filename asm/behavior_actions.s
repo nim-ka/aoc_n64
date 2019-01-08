@@ -1657,7 +1657,7 @@ glabel BehGiantPoleLoop
 /* 061488 802A6488 03E00008 */  jr    $ra
 /* 06148C 802A648C 00000000 */   nop   
 
-glabel BehThiTopTrapLoop
+glabel BehTHIHugeIslandTopLoop
 /* 061490 802A6490 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 061494 802A6494 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 061498 802A6498 3C0E8036 */  lui   $t6, %hi(D_8035FEE6) # $t6, 0x8036
@@ -1691,7 +1691,7 @@ glabel BehThiTopTrapLoop
 /* 0614F8 802A64F8 03E00008 */  jr    $ra
 /* 0614FC 802A64FC 00000000 */   nop   
 
-glabel BehThiTinyTopLoop
+glabel BehTHITinyIslandTopLoop
 /* 061500 802A6500 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 061504 802A6504 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 061508 802A6508 3C0E8036 */  lui   $t6, %hi(D_8035FEE6) # $t6, 0x8036
@@ -1820,8 +1820,8 @@ glabel ActionActivateCapSwitch0
 /* 0616CC 802A66CC 3C198036 */  lui   $t9, %hi(gCurrentObject) 
 /* 0616D0 802A66D0 8F39FDF0 */  lw    $t9, %lo(gCurrentObject)($t9)
 /* 0616D4 802A66D4 44815000 */  mtc1  $at, $f10
-/* 0616D8 802A66D8 3C091300 */  lui   $t1, %hi(beh_cap_switch_collision_child) # $t1, 0x1300
-/* 0616DC 802A66DC 252901AC */  addiu $t1, %lo(beh_cap_switch_collision_child) # addiu $t1, $t1, 0x1ac
+/* 0616D8 802A66D8 3C091300 */  lui   $t1, %hi(beh_cap_switch_base) # $t1, 0x1300
+/* 0616DC 802A66DC 252901AC */  addiu $t1, %lo(beh_cap_switch_base) # addiu $t1, $t1, 0x1ac
 /* 0616E0 802A66E0 24080056 */  li    $t0, 86
 /* 0616E4 802A66E4 AFA80018 */  sw    $t0, 0x18($sp)
 /* 0616E8 802A66E8 AFA9001C */  sw    $t1, 0x1c($sp)
@@ -1980,7 +1980,7 @@ glabel ActionActivateCapSwitch3
 /* 061904 802A6904 03E00008 */  jr    $ra
 /* 061908 802A6908 00000000 */   nop   
 
-glabel BehActivateCapSwitchLoop
+glabel BehCapSwitchLoop
 /* 06190C 802A690C 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 061910 802A6910 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 061914 802A6914 3C048033 */  lui   $a0, %hi(TableCapSwitchActions) # $a0, 0x8033
@@ -5485,7 +5485,7 @@ glabel BehChuckyaLoop
 /* 06493C 802A993C 03E00008 */  jr    $ra
 /* 064940 802A9940 00000000 */   nop   
 
-glabel BehBreakableWallLoop
+glabel BehWFBreakableWallLoop
 /* 064944 802A9944 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 064948 802A9948 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 06494C 802A994C 3C0E8034 */  lui   $t6, %hi(gMarioStates) # $t6, 0x8034
@@ -5504,9 +5504,9 @@ glabel BehBreakableWallLoop
 /* 064980 802A9980 8C84FDF0 */   lw    $a0, %lo(gCurrentObject)($a0)
 /* 064984 802A9984 10400017 */  beqz  $v0, .L802A99E4
 /* 064988 802A9988 00000000 */   nop   
-/* 06498C 802A998C 3C041300 */  lui   $a0, %hi(beh_breakable_wall) # $a0, 0x1300
+/* 06498C 802A998C 3C041300 */  lui   $a0, %hi(beh_wf_breakable_wall_right) # $a0, 0x1300
 /* 064990 802A9990 0C0A8360 */  jal   obj_has_behavior
-/* 064994 802A9994 24840624 */   addiu $a0, %lo(beh_breakable_wall) # addiu $a0, $a0, 0x624
+/* 064994 802A9994 24840624 */   addiu $a0, %lo(beh_wf_breakable_wall_right) # addiu $a0, $a0, 0x624
 /* 064998 802A9998 10400003 */  beqz  $v0, .L802A99A8
 /* 06499C 802A999C 00000000 */   nop   
 /* 0649A0 802A99A0 0C0C848A */  jal   func_80321228
@@ -5892,7 +5892,7 @@ glabel BehTowerDoorLoop
 /* 064EF8 802A9EF8 03E00008 */  jr    $ra
 /* 064EFC 802A9EFC 00000000 */   nop   
 
-glabel BehClocklikeRotationLoop
+glabel BehWFRotatingWoodenPlatformLoop
 /* 064F00 802A9F00 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 064F04 802A9F04 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 064F08 802A9F08 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
@@ -6944,12 +6944,12 @@ glabel func_802AAD54
 /* 065DD4 802AADD4 03E00008 */  jr    $ra
 /* 065DD8 802AADD8 00000000 */   nop   
 
-glabel BehTempCoinInit
+glabel BehYellowCoinInit
 /* 065DDC 802AADDC 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 065DE0 802AADE0 AFBF0014 */  sw    $ra, 0x14($sp)
-/* 065DE4 802AADE4 3C041300 */  lui   $a0, %hi(beh_collectable_coin) # $a0, 0x1300
+/* 065DE4 802AADE4 3C041300 */  lui   $a0, %hi(beh_yellow_coin) # $a0, 0x1300
 /* 065DE8 802AADE8 0C0A8344 */  jal   obj_set_behavior
-/* 065DEC 802AADEC 2484091C */   addiu $a0, %lo(beh_collectable_coin) # addiu $a0, $a0, 0x91c
+/* 065DEC 802AADEC 2484091C */   addiu $a0, %lo(beh_yellow_coin) # addiu $a0, $a0, 0x91c
 /* 065DF0 802AADF0 3C048036 */  lui   $a0, %hi(gCurrentObject) # $a0, 0x8036
 /* 065DF4 802AADF4 3C058033 */  lui   $a1, %hi(D_8032F294) # $a1, 0x8033
 /* 065DF8 802AADF8 24A5F294 */  addiu $a1, %lo(D_8032F294) # addiu $a1, $a1, -0xd6c
@@ -6996,7 +6996,7 @@ glabel BehTempCoinInit
 /* 065E90 802AAE90 03E00008 */  jr    $ra
 /* 065E94 802AAE94 00000000 */   nop   
 
-glabel BehCollectableCoinLoop
+glabel BehYellowCoinLoop
 /* 065E98 802AAE98 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 065E9C 802AAE9C AFBF0014 */  sw    $ra, 0x14($sp)
 /* 065EA0 802AAEA0 0C0AAB55 */  jal   func_802AAD54
@@ -7014,7 +7014,7 @@ glabel BehCollectableCoinLoop
 /* 065ECC 802AAECC 03E00008 */  jr    $ra
 /* 065ED0 802AAED0 00000000 */   nop   
 
-glabel BehTempCoingLoop
+glabel BehTempCoinLoop
 /* 065ED4 802AAED4 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 065ED8 802AAED8 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 065EDC 802AAEDC 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
@@ -7072,9 +7072,9 @@ glabel BehCoinInit
 /* 065F9C 802AAF9C 3C188036 */  lui   $t8, %hi(gCurrentObject) # $t8, 0x8036
 /* 065FA0 802AAFA0 8F18FDF0 */  lw    $t8, %lo(gCurrentObject)($t8)
 /* 065FA4 802AAFA4 AF0200C8 */  sw    $v0, 0xc8($t8)
-/* 065FA8 802AAFA8 3C041300 */  lui   $a0, %hi(beh_collectable_coin) # $a0, 0x1300
+/* 065FA8 802AAFA8 3C041300 */  lui   $a0, %hi(beh_yellow_coin) # $a0, 0x1300
 /* 065FAC 802AAFAC 0C0A8344 */  jal   obj_set_behavior
-/* 065FB0 802AAFB0 2484091C */   addiu $a0, %lo(beh_collectable_coin) # addiu $a0, $a0, 0x91c
+/* 065FB0 802AAFB0 2484091C */   addiu $a0, %lo(beh_yellow_coin) # addiu $a0, $a0, 0x91c
 /* 065FB4 802AAFB4 3C048036 */  lui   $a0, %hi(gCurrentObject) # $a0, 0x8036
 /* 065FB8 802AAFB8 3C058033 */  lui   $a1, %hi(D_8032F294) # $a1, 0x8033
 /* 065FBC 802AAFBC 24A5F294 */  addiu $a1, %lo(D_8032F294) # addiu $a1, $a1, -0xd6c
@@ -7249,9 +7249,9 @@ glabel BehCoinFormationSpawnLoop
 /* 0661B4 802AB1B4 8DCF0154 */  lw    $t7, 0x154($t6)
 /* 0661B8 802AB1B8 15E00045 */  bnez  $t7, .L802AB2D0
 /* 0661BC 802AB1BC 00000000 */   nop   
-/* 0661C0 802AB1C0 3C041300 */  lui   $a0, %hi(beh_collectable_coin) # $a0, 0x1300
+/* 0661C0 802AB1C0 3C041300 */  lui   $a0, %hi(beh_yellow_coin) # $a0, 0x1300
 /* 0661C4 802AB1C4 0C0A8344 */  jal   obj_set_behavior
-/* 0661C8 802AB1C8 2484091C */   addiu $a0, %lo(beh_collectable_coin) # addiu $a0, $a0, 0x91c
+/* 0661C8 802AB1C8 2484091C */   addiu $a0, %lo(beh_yellow_coin) # addiu $a0, $a0, 0x91c
 /* 0661CC 802AB1CC 3C048036 */  lui   $a0, %hi(gCurrentObject) # $a0, 0x8036
 /* 0661D0 802AB1D0 3C058033 */  lui   $a1, %hi(D_8032F294) # $a1, 0x8033
 /* 0661D4 802AB1D4 24A5F294 */  addiu $a1, %lo(D_8032F294) # addiu $a1, $a1, -0xd6c
@@ -7708,9 +7708,9 @@ glabel ActionCoinInsideBoo1
 /* 06683C 802AB83C 8C84FDF0 */   lw    $a0, %lo(gCurrentObject)($a0)
 /* 066840 802AB840 0C0A7F96 */  jal   obj_become_tangible
 /* 066844 802AB844 00000000 */   nop   
-/* 066848 802AB848 3C041300 */  lui   $a0, %hi(beh_collectable_coin) # $a0, 0x1300
+/* 066848 802AB848 3C041300 */  lui   $a0, %hi(beh_yellow_coin) # $a0, 0x1300
 /* 06684C 802AB84C 0C0A8344 */  jal   obj_set_behavior
-/* 066850 802AB850 2484091C */   addiu $a0, %lo(beh_collectable_coin) # addiu $a0, $a0, 0x91c
+/* 066850 802AB850 2484091C */   addiu $a0, %lo(beh_yellow_coin) # addiu $a0, $a0, 0x91c
 .L802AB854:
 /* 066854 802AB854 0C0A86E8 */  jal   obj_move_standard
 /* 066858 802AB858 2404FFE2 */   li    $a0, -30
@@ -11319,7 +11319,7 @@ glabel BehFlamethrowerLoop
 /* 069B54 802AEB54 03E00008 */  jr    $ra
 /* 069B58 802AEB58 00000000 */   nop   
 
-glabel BehRrRotatingPlatformFireLoop
+glabel BehRRRotatingBridgePlatformLoop
 /* 069B5C 802AEB5C 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 069B60 802AEB60 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 069B64 802AEB64 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
@@ -12082,7 +12082,7 @@ glabel BehSpindriftLoop
 /* 06A640 802AF640 03E00008 */  jr    $ra
 /* 06A644 802AF644 00000000 */   nop   
 
-glabel BehWfSolidPlatformLoop
+glabel BehWFSolidTowerPlatformLoop
 /* 06A648 802AF648 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 06A64C 802AF64C AFBF0014 */  sw    $ra, 0x14($sp)
 /* 06A650 802AF650 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
@@ -12104,7 +12104,7 @@ glabel BehWfSolidPlatformLoop
 /* 06A688 802AF688 03E00008 */  jr    $ra
 /* 06A68C 802AF68C 00000000 */   nop   
 
-glabel BehWfElevatorPlatformLoop
+glabel BehWFElevatorTowerPlatformLoop
 /* 06A690 802AF690 27BDFFD8 */  addiu $sp, $sp, -0x28
 /* 06A694 802AF694 AFBF001C */  sw    $ra, 0x1c($sp)
 /* 06A698 802AF698 AFB00018 */  sw    $s0, 0x18($sp)
@@ -12228,7 +12228,7 @@ glabel BehWfElevatorPlatformLoop
 /* 06A83C 802AF83C 03E00008 */  jr    $ra
 /* 06A840 802AF840 00000000 */   nop   
 
-glabel BehWfSlidingPlatformLoop
+glabel BehWFSlidingTowerPlatformLoop
 /* 06A844 802AF844 27BDFFD8 */  addiu $sp, $sp, -0x28
 /* 06A848 802AF848 AFBF001C */  sw    $ra, 0x1c($sp)
 /* 06A84C 802AF84C AFB00018 */  sw    $s0, 0x18($sp)
@@ -12447,36 +12447,36 @@ glabel func_802AFAFC
 /* 06AB70 802AFB70 44814000 */  mtc1  $at, $f8
 /* 06AB74 802AFB74 00000000 */  nop   
 /* 06AB78 802AFB78 E5680108 */  swc1  $f8, 0x108($t3)
-/* 06AB7C 802AFB7C 3C051300 */  lui   $a1, %hi(beh_wf_solid_platform) # $a1, 0x1300
-/* 06AB80 802AFB80 24A51368 */  addiu $a1, %lo(beh_wf_solid_platform) # addiu $a1, $a1, 0x1368
+/* 06AB7C 802AFB7C 3C051300 */  lui   $a1, %hi(beh_wf_solid_tower_platform) # $a1, 0x1300
+/* 06AB80 802AFB80 24A51368 */  addiu $a1, %lo(beh_wf_solid_tower_platform) # addiu $a1, $a1, 0x1368
 /* 06AB84 802AFB84 0C0ABE69 */  jal   func_802AF9A4
 /* 06AB88 802AFB88 2404002D */   li    $a0, 45
-/* 06AB8C 802AFB8C 3C051300 */  lui   $a1, %hi(beh_wf_sliding_platform) # $a1, 0x1300
-/* 06AB90 802AFB90 24A51318 */  addiu $a1, %lo(beh_wf_sliding_platform) # addiu $a1, $a1, 0x1318
+/* 06AB8C 802AFB8C 3C051300 */  lui   $a1, %hi(beh_wf_sliding_tower_platform) # $a1, 0x1300
+/* 06AB90 802AFB90 24A51318 */  addiu $a1, %lo(beh_wf_sliding_tower_platform) # addiu $a1, $a1, 0x1318
 /* 06AB94 802AFB94 0C0ABE69 */  jal   func_802AF9A4
 /* 06AB98 802AFB98 2404002D */   li    $a0, 45
-/* 06AB9C 802AFB9C 3C051300 */  lui   $a1, %hi(beh_wf_solid_platform) # $a1, 0x1300
-/* 06ABA0 802AFBA0 24A51368 */  addiu $a1, %lo(beh_wf_solid_platform) # addiu $a1, $a1, 0x1368
+/* 06AB9C 802AFB9C 3C051300 */  lui   $a1, %hi(beh_wf_solid_tower_platform) # $a1, 0x1300
+/* 06ABA0 802AFBA0 24A51368 */  addiu $a1, %lo(beh_wf_solid_tower_platform) # addiu $a1, $a1, 0x1368
 /* 06ABA4 802AFBA4 0C0ABE69 */  jal   func_802AF9A4
 /* 06ABA8 802AFBA8 2404002D */   li    $a0, 45
-/* 06ABAC 802AFBAC 3C051300 */  lui   $a1, %hi(beh_wf_sliding_platform) # $a1, 0x1300
-/* 06ABB0 802AFBB0 24A51318 */  addiu $a1, %lo(beh_wf_sliding_platform) # addiu $a1, $a1, 0x1318
+/* 06ABAC 802AFBAC 3C051300 */  lui   $a1, %hi(beh_wf_sliding_tower_platform) # $a1, 0x1300
+/* 06ABB0 802AFBB0 24A51318 */  addiu $a1, %lo(beh_wf_sliding_tower_platform) # addiu $a1, $a1, 0x1318
 /* 06ABB4 802AFBB4 0C0ABE69 */  jal   func_802AF9A4
 /* 06ABB8 802AFBB8 2404002D */   li    $a0, 45
-/* 06ABBC 802AFBBC 3C051300 */  lui   $a1, %hi(beh_wf_solid_platform) # $a1, 0x1300
-/* 06ABC0 802AFBC0 24A51368 */  addiu $a1, %lo(beh_wf_solid_platform) # addiu $a1, $a1, 0x1368
+/* 06ABBC 802AFBBC 3C051300 */  lui   $a1, %hi(beh_wf_solid_tower_platform) # $a1, 0x1300
+/* 06ABC0 802AFBC0 24A51368 */  addiu $a1, %lo(beh_wf_solid_tower_platform) # addiu $a1, $a1, 0x1368
 /* 06ABC4 802AFBC4 0C0ABE69 */  jal   func_802AF9A4
 /* 06ABC8 802AFBC8 2404002D */   li    $a0, 45
-/* 06ABCC 802AFBCC 3C051300 */  lui   $a1, %hi(beh_wf_sliding_platform) # $a1, 0x1300
-/* 06ABD0 802AFBD0 24A51318 */  addiu $a1, %lo(beh_wf_sliding_platform) # addiu $a1, $a1, 0x1318
+/* 06ABCC 802AFBCC 3C051300 */  lui   $a1, %hi(beh_wf_sliding_tower_platform) # $a1, 0x1300
+/* 06ABD0 802AFBD0 24A51318 */  addiu $a1, %lo(beh_wf_sliding_tower_platform) # addiu $a1, $a1, 0x1318
 /* 06ABD4 802AFBD4 0C0ABE69 */  jal   func_802AF9A4
 /* 06ABD8 802AFBD8 2404002D */   li    $a0, 45
-/* 06ABDC 802AFBDC 3C051300 */  lui   $a1, %hi(beh_wf_solid_platform) # $a1, 0x1300
-/* 06ABE0 802AFBE0 24A51368 */  addiu $a1, %lo(beh_wf_solid_platform) # addiu $a1, $a1, 0x1368
+/* 06ABDC 802AFBDC 3C051300 */  lui   $a1, %hi(beh_wf_solid_tower_platform) # $a1, 0x1300
+/* 06ABE0 802AFBE0 24A51368 */  addiu $a1, %lo(beh_wf_solid_tower_platform) # addiu $a1, $a1, 0x1368
 /* 06ABE4 802AFBE4 0C0ABE69 */  jal   func_802AF9A4
 /* 06ABE8 802AFBE8 2404002D */   li    $a0, 45
-/* 06ABEC 802AFBEC 3C051300 */  lui   $a1, %hi(beh_wf_elevator_platform) # $a1, 0x1300
-/* 06ABF0 802AFBF0 24A51340 */  addiu $a1, %lo(beh_wf_elevator_platform) # addiu $a1, $a1, 0x1340
+/* 06ABEC 802AFBEC 3C051300 */  lui   $a1, %hi(beh_wf_elevator_tower_platform) # $a1, 0x1300
+/* 06ABF0 802AFBF0 24A51340 */  addiu $a1, %lo(beh_wf_elevator_tower_platform) # addiu $a1, $a1, 0x1340
 /* 06ABF4 802AFBF4 0C0ABE69 */  jal   func_802AF9A4
 /* 06ABF8 802AFBF8 2404002F */   li    $a0, 47
 /* 06ABFC 802AFBFC 10000001 */  b     .L802AFC04
@@ -19183,8 +19183,8 @@ glabel ActionBowser7
 glabel func_802B5588
 /* 070588 802B5588 27BDFFE0 */  addiu $sp, $sp, -0x20
 /* 07058C 802B558C AFBF0014 */  sw    $ra, 0x14($sp)
-/* 070590 802B5590 3C041300 */  lui   $a0, %hi(beh_bowser_mine) # $a0, 0x1300
-/* 070594 802B5594 248437CC */  addiu $a0, %lo(beh_bowser_mine) # addiu $a0, $a0, 0x37cc
+/* 070590 802B5590 3C041300 */  lui   $a0, %hi(beh_bowser_bomb) # $a0, 0x1300
+/* 070594 802B5594 248437CC */  addiu $a0, %lo(beh_bowser_bomb) # addiu $a0, $a0, 0x37cc
 /* 070598 802B5598 0C0A7C9C */  jal   obj_find_nearest_object_with_behavior
 /* 07059C 802B559C 27A50018 */   addiu $a1, $sp, 0x18
 /* 0705A0 802B55A0 AFA2001C */  sw    $v0, 0x1c($sp)
@@ -22072,8 +22072,8 @@ glabel func_802B7A58
 /* 072AA4 802B7AA4 45000007 */  bc1f  .L802B7AC4
 /* 072AA8 802B7AA8 00000000 */   nop   
 /* 072AAC 802B7AAC 3C048036 */  lui   $a0, %hi(gCurrentObject) # $a0, 0x8036
-/* 072AB0 802B7AB0 3C061300 */  lui   $a2, %hi(beh_temporary_coin) # $a2, 0x1300
-/* 072AB4 802B7AB4 24C60940 */  addiu $a2, %lo(beh_temporary_coin) # addiu $a2, $a2, 0x940
+/* 072AB0 802B7AB0 3C061300 */  lui   $a2, %hi(beh_temporary_yellow_coin) # $a2, 0x1300
+/* 072AB4 802B7AB4 24C60940 */  addiu $a2, %lo(beh_temporary_yellow_coin) # addiu $a2, $a2, 0x940
 /* 072AB8 802B7AB8 8C84FDF0 */  lw    $a0, %lo(gCurrentObject)($a0)
 /* 072ABC 802B7ABC 0C0A7994 */  jal   spawn_object
 /* 072AC0 802B7AC0 24050074 */   li    $a1, 116
@@ -24529,9 +24529,9 @@ glabel BehRotatingClockArmLoop
 /* 074D8C 802B9D8C 15410030 */  bne   $t2, $at, .L802B9E50
 /* 074D90 802B9D90 00000000 */   nop   
 .L802B9D94:
-/* 074D94 802B9D94 3C041300 */  lui   $a0, %hi(beh_clock_big_arm) # $a0, 0x1300
+/* 074D94 802B9D94 3C041300 */  lui   $a0, %hi(beh_clock_minute_hand) # $a0, 0x1300
 /* 074D98 802B9D98 0C0A8360 */  jal   obj_has_behavior
-/* 074D9C 802B9D9C 24841C7C */   addiu $a0, %lo(beh_clock_big_arm) # addiu $a0, $a0, 0x1c7c
+/* 074D9C 802B9D9C 24841C7C */   addiu $a0, %lo(beh_clock_minute_hand) # addiu $a0, $a0, 0x1c7c
 /* 074DA0 802B9DA0 10400025 */  beqz  $v0, .L802B9E38
 /* 074DA4 802B9DA4 00000000 */   nop   
 /* 074DA8 802B9DA8 97AB001A */  lhu   $t3, 0x1a($sp)
@@ -26380,7 +26380,7 @@ glabel func_802BB680
 /* 076790 802BB790 03E00008 */  jr    $ra
 /* 076794 802BB794 00000000 */   nop   
 
-glabel BehHorizontalMovementLoop
+glabel BehLLLMovingOctagonalMeshPlatformLoop
 /* 076798 802BB798 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 07679C 802BB79C AFBF0014 */  sw    $ra, 0x14($sp)
 /* 0767A0 802BB7A0 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
@@ -26465,7 +26465,7 @@ glabel BehHorizontalMovementLoop
 /* 0768CC 802BB8CC 03E00008 */  jr    $ra
 /* 0768D0 802BB8D0 00000000 */   nop   
 
-glabel BehSinkWhenSteppedOnLoop
+glabel BehLLLSinkingRockBlockLoop
 /* 0768D4 802BB8D4 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 0768D8 802BB8D8 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 0768DC 802BB8DC 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
@@ -26744,7 +26744,7 @@ glabel ActionRotatingCwFireBars3
 /* 076CB8 802BBCB8 03E00008 */  jr    $ra
 /* 076CBC 802BBCBC 00000000 */   nop   
 
-glabel BehRotatingCwFireBarsLoop
+glabel BehLLLRotatingBlockFireBarsLoop
 /* 076CC0 802BBCC0 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 076CC4 802BBCC4 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 076CC8 802BBCC8 3C048033 */  lui   $a0, %hi(TableRotatingCwFireBarsActions) # $a0, 0x8033
@@ -26821,7 +26821,7 @@ glabel BehLllWoodPieceLoop
 /* 076DC8 802BBDC8 03E00008 */  jr    $ra
 /* 076DCC 802BBDCC 00000000 */   nop   
 
-glabel BehFloatingWoodBridgeLoop
+glabel BehLLLFloatingWoodBridgeLoop
 /* 076DD0 802BBDD0 27BDFFC0 */  addiu $sp, $sp, -0x40
 /* 076DD4 802BBDD4 AFBF002C */  sw    $ra, 0x2c($sp)
 /* 076DD8 802BBDD8 AFB00028 */  sw    $s0, 0x28($sp)
@@ -27050,7 +27050,7 @@ glabel func_802BBFDC
 /* 077114 802BC114 03E00008 */  jr    $ra
 /* 077118 802BC118 00000000 */   nop   
 
-glabel BehLllRotatingPlatformLoop
+glabel BehLLLRotatingHexagonalRingLoop
 /* 07711C 802BC11C 27BDFFE0 */  addiu $sp, $sp, -0x20
 /* 077120 802BC120 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 077124 802BC124 3C01457A */  lui   $at, 0x457a
@@ -27276,7 +27276,7 @@ glabel func_802BC390
 /* 077448 802BC448 03E00008 */  jr    $ra
 /* 07744C 802BC44C 27BD0008 */   addiu $sp, $sp, 8
 
-glabel BehLllSlowTiltingMovementLoop
+glabel BehLLLSinkingRectangularPlatformLoop
 /* 077450 802BC450 27BDFFE0 */  addiu $sp, $sp, -0x20
 /* 077454 802BC454 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 077458 802BC458 3C018033 */  lui   $at, %hi(D_80336AE4)
@@ -27325,7 +27325,7 @@ glabel BehLllSlowTiltingMovementLoop
 /* 0774F8 802BC4F8 03E00008 */  jr    $ra
 /* 0774FC 802BC4FC 00000000 */   nop   
 
-glabel BehLllSlowUpDownMovementLoop
+glabel BehLLLSinkingSquarePlatformsLoop
 /* 077500 802BC500 27BDFFE0 */  addiu $sp, $sp, -0x20
 /* 077504 802BC504 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 077508 802BC508 3C013F00 */  li    $at, 0x3F000000 # 0.500000
@@ -29227,7 +29227,7 @@ glabel func_802BDD0C
 /* 078D5C 802BDD5C 8F2B0004 */  lw    $t3, 4($t9)
 /* 078D60 802BDD60 46083282 */  mul.s $f10, $f6, $f8
 /* 078D64 802BDD64 3C051300 */  li    $a1, 0x13000000 
-/* 078D68 802BDD68 24A52038 */  addiu $a1, %lo(beh_bowser_puzzle_piece) # addiu $a1, $a1, 0x2038
+/* 078D68 802BDD68 24A52038 */  addiu $a1, %lo(beh_lll_bowser_puzzle_piece) # addiu $a1, $a1, 0x2038
 /* 078D6C 802BDD6C AFAB0014 */  sw    $t3, 0x14($sp)
 /* 078D70 802BDD70 468021A0 */  cvt.s.w $f6, $f4
 /* 078D74 802BDD74 46105483 */  div.s $f18, $f10, $f16
@@ -29256,7 +29256,7 @@ glabel func_802BDD0C
 /* 078DCC 802BDDCC 03E00008 */  jr    $ra
 /* 078DD0 802BDDD0 00000000 */   nop   
 
-glabel BehBowserPuzzleLoop
+glabel BehLLLBowserPuzzleLoop
 /* 078DD4 802BDDD4 27BDFFD0 */  addiu $sp, $sp, -0x30
 /* 078DD8 802BDDD8 AFBF001C */  sw    $ra, 0x1c($sp)
 /* 078DDC 802BDDDC AFB00018 */  sw    $s0, 0x18($sp)
@@ -29598,7 +29598,7 @@ glabel ActionBowserPuzzlePiece6
 /* 079264 802BE264 03E00008 */  jr    $ra
 /* 079268 802BE268 00000000 */   nop   
 
-glabel BehBowserPuzzlePieceLoop
+glabel BehLLLBowserPuzzlePieceLoop
 /* 07926C 802BE26C 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 079270 802BE270 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 079274 802BE274 0C0AF7CB */  jal   func_802BDF2C
@@ -33900,7 +33900,7 @@ glabel BehOpenableGrillLoop
 /* 07CF5C 802C1F5C 03E00008 */  jr    $ra
 /* 07CF60 802C1F60 00000000 */   nop   
 
-glabel BehInitWaterLevelTriggerLoop
+glabel BehInitChangingWaterLevelLoop
 /* 07CF64 802C1F64 3C0E8036 */  lui   $t6, %hi(gCurrentObject) # $t6, 0x8036
 /* 07CF68 802C1F68 8DCEFDF0 */  lw    $t6, %lo(gCurrentObject)($t6)
 /* 07CF6C 802C1F6C 8DCF014C */  lw    $t7, 0x14c($t6)
@@ -33968,7 +33968,7 @@ glabel BehInitWaterLevelTriggerLoop
 /* 07D050 802C2050 03E00008 */  jr    $ra
 /* 07D054 802C2054 00000000 */   nop   
 
-glabel BehWaterLevelTriggerLoop
+glabel BehWaterLevelDiamondLoop
 /* 07D058 802C2058 27BDFFD8 */  addiu $sp, $sp, -0x28
 /* 07D05C 802C205C AFBF001C */  sw    $ra, 0x1c($sp)
 /* 07D060 802C2060 AFB00018 */  sw    $s0, 0x18($sp)

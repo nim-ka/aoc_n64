@@ -266,7 +266,7 @@ glabel castle_door_3_stars_geo # 0x1600091C
 geo_close_node #! more close than open nodes
 geo_end
 
-glabel locked_castle_door_geo # 0x160009D0
+glabel key_door_geo # 0x160009D0
    geo_todo_11 0x00, 78, 0, 0
    geo_open_node
       geo_scale 0x00, 16384

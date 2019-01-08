@@ -469,7 +469,7 @@ void bhv_monty_mole_update(void)
                 if (sMontyMoleKillStreak == 7)
                 {
                     func_80321228();
-                    spawn_object(o, MODEL_MUSHROOM_1UP, beh_1up_walking);
+                    spawn_object(o, MODEL_1UP, beh_1up_walking);
                 }
             }
             else

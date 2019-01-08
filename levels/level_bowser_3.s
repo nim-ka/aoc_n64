@@ -9,21 +9,21 @@
 .section .level, "a"
 
 script_func_local_1:
-    object /*unk2*/ 0x1F, /*unk3*/ 0x36, /*pos*/ 0, 0, 0, /*angle*/ 0, 0, 0, /*behArg*/ 0x00010000, /*beh*/ beh_falling_bowser_platform
-    object /*unk2*/ 0x1F, /*unk3*/ 0x37, /*pos*/ 0, 0, 0, /*angle*/ 0, 0, 0, /*behArg*/ 0x00020000, /*beh*/ beh_falling_bowser_platform
-    object /*unk2*/ 0x1F, /*unk3*/ 0x38, /*pos*/ 0, 0, 0, /*angle*/ 0, 0, 0, /*behArg*/ 0x00030000, /*beh*/ beh_falling_bowser_platform
-    object /*unk2*/ 0x1F, /*unk3*/ 0x39, /*pos*/ 0, 0, 0, /*angle*/ 0, 0, 0, /*behArg*/ 0x00040000, /*beh*/ beh_falling_bowser_platform
-    object /*unk2*/ 0x1F, /*unk3*/ 0x3A, /*pos*/ 0, 0, 0, /*angle*/ 0, 0, 0, /*behArg*/ 0x00050000, /*beh*/ beh_falling_bowser_platform
-    object /*unk2*/ 0x1F, /*unk3*/ 0x3B, /*pos*/ 0, 0, 0, /*angle*/ 0, 0, 0, /*behArg*/ 0x00060000, /*beh*/ beh_falling_bowser_platform
-    object /*unk2*/ 0x1F, /*unk3*/ 0x3C, /*pos*/ 0, 0, 0, /*angle*/ 0, 0, 0, /*behArg*/ 0x00070000, /*beh*/ beh_falling_bowser_platform
-    object /*unk2*/ 0x1F, /*unk3*/ 0x3D, /*pos*/ 0, 0, 0, /*angle*/ 0, 0, 0, /*behArg*/ 0x00080000, /*beh*/ beh_falling_bowser_platform
-    object /*unk2*/ 0x1F, /*unk3*/ 0x3E, /*pos*/ 0, 0, 0, /*angle*/ 0, 0, 0, /*behArg*/ 0x00090000, /*beh*/ beh_falling_bowser_platform
-    object /*unk2*/ 0x1F, /*unk3*/ 0x3F, /*pos*/ 0, 0, 0, /*angle*/ 0, 0, 0, /*behArg*/ 0x000A0000, /*beh*/ beh_falling_bowser_platform
-    object /*unk2*/ 0x1F, /*unk3*/ 0xB3, /*pos*/ -2122, 512, -2912, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_bowser_mine
-    object /*unk2*/ 0x1F, /*unk3*/ 0xB3, /*pos*/ -3362, 512, 1121, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_bowser_mine
-    object /*unk2*/ 0x1F, /*unk3*/ 0xB3, /*pos*/ 0, 512, 3584, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_bowser_mine
-    object /*unk2*/ 0x1F, /*unk3*/ 0xB3, /*pos*/ 3363, 512, 1121, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_bowser_mine
-    object /*unk2*/ 0x1F, /*unk3*/ 0xB3, /*pos*/ 2123, 512, -2912, /*angle*/ 0, 0, 0, /*behArg*/ 0x00000000, /*beh*/ beh_bowser_mine
+    object /*model*/ MODEL_BOWSER_3_FALLING_PLATFORM_1,  /*pos*/     0,   0,     0, /*angle*/ 0, 0, 0, /*behParam*/ 0x00010000, /*beh*/ beh_falling_bowser_platform
+    object /*model*/ MODEL_BOWSER_3_FALLING_PLATFORM_2,  /*pos*/     0,   0,     0, /*angle*/ 0, 0, 0, /*behParam*/ 0x00020000, /*beh*/ beh_falling_bowser_platform
+    object /*model*/ MODEL_BOWSER_3_FALLING_PLATFORM_3,  /*pos*/     0,   0,     0, /*angle*/ 0, 0, 0, /*behParam*/ 0x00030000, /*beh*/ beh_falling_bowser_platform
+    object /*model*/ MODEL_BOWSER_3_FALLING_PLATFORM_4,  /*pos*/     0,   0,     0, /*angle*/ 0, 0, 0, /*behParam*/ 0x00040000, /*beh*/ beh_falling_bowser_platform
+    object /*model*/ MODEL_BOWSER_3_FALLING_PLATFORM_5,  /*pos*/     0,   0,     0, /*angle*/ 0, 0, 0, /*behParam*/ 0x00050000, /*beh*/ beh_falling_bowser_platform
+    object /*model*/ MODEL_BOWSER_3_FALLING_PLATFORM_6,  /*pos*/     0,   0,     0, /*angle*/ 0, 0, 0, /*behParam*/ 0x00060000, /*beh*/ beh_falling_bowser_platform
+    object /*model*/ MODEL_BOWSER_3_FALLING_PLATFORM_7,  /*pos*/     0,   0,     0, /*angle*/ 0, 0, 0, /*behParam*/ 0x00070000, /*beh*/ beh_falling_bowser_platform
+    object /*model*/ MODEL_BOWSER_3_FALLING_PLATFORM_8,  /*pos*/     0,   0,     0, /*angle*/ 0, 0, 0, /*behParam*/ 0x00080000, /*beh*/ beh_falling_bowser_platform
+    object /*model*/ MODEL_BOWSER_3_FALLING_PLATFORM_9,  /*pos*/     0,   0,     0, /*angle*/ 0, 0, 0, /*behParam*/ 0x00090000, /*beh*/ beh_falling_bowser_platform
+    object /*model*/ MODEL_BOWSER_3_FALLING_PLATFORM_10, /*pos*/     0,   0,     0, /*angle*/ 0, 0, 0, /*behParam*/ 0x000A0000, /*beh*/ beh_falling_bowser_platform
+    object /*model*/ MODEL_BOWSER_BOMB,                  /*pos*/ -2122, 512, -2912, /*angle*/ 0, 0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_bowser_bomb
+    object /*model*/ MODEL_BOWSER_BOMB,                  /*pos*/ -3362, 512,  1121, /*angle*/ 0, 0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_bowser_bomb
+    object /*model*/ MODEL_BOWSER_BOMB,                  /*pos*/     0, 512,  3584, /*angle*/ 0, 0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_bowser_bomb
+    object /*model*/ MODEL_BOWSER_BOMB,                  /*pos*/  3363, 512,  1121, /*angle*/ 0, 0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_bowser_bomb
+    object /*model*/ MODEL_BOWSER_BOMB,                  /*pos*/  2123, 512, -2912, /*angle*/ 0, 0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_bowser_bomb
     return
 
 glabel level_bowser_3_entry
@@ -33,25 +33,25 @@ glabel level_bowser_3_entry
     load_raw  /*seg*/ 0x0D, /*romStart*/ _bowser_flames_bomb_geoSegmentRomStart,  /*romEnd*/ _bowser_flames_bomb_geoSegmentRomEnd
     load_mio0 /*seg*/ 0x0A, /*romStart*/ _bits_skybox_mio0SegmentRomStart, /*romEnd*/ _bits_skybox_mio0SegmentRomEnd
     alloc_level_pool
-    mario /*unk3*/ 0x01, /*behArg*/ 0x00000001, /*beh*/ beh_mario
+    mario /*unk3*/ 0x01, /*behParam*/ 0x00000001, /*beh*/ beh_mario
     jump_link /*target*/ script_func_global_13
-    cmd22 /*unk2*/ 0x0036, /*unk4*/ bowser_3_geo_000290
-    cmd22 /*unk2*/ 0x0037, /*unk4*/ bowser_3_geo_0002A8
-    cmd22 /*unk2*/ 0x0038, /*unk4*/ bowser_3_geo_0002C0
-    cmd22 /*unk2*/ 0x0039, /*unk4*/ bowser_3_geo_0002D8
-    cmd22 /*unk2*/ 0x003A, /*unk4*/ bowser_3_geo_0002F0
-    cmd22 /*unk2*/ 0x003B, /*unk4*/ bowser_3_geo_000308
-    cmd22 /*unk2*/ 0x003C, /*unk4*/ bowser_3_geo_000320
-    cmd22 /*unk2*/ 0x003D, /*unk4*/ bowser_3_geo_000338
-    cmd22 /*unk2*/ 0x003E, /*unk4*/ bowser_3_geo_000350
-    cmd22 /*unk2*/ 0x003F, /*unk4*/ bowser_3_geo_000368
-    cmd22 /*unk2*/ 0x0003, /*unk4*/ bowser_3_geo_000380
+    load_model_from_geo /*model*/ MODEL_BOWSER_3_FALLING_PLATFORM_1,  /*geo*/ bowser_3_geo_000290
+    load_model_from_geo /*model*/ MODEL_BOWSER_3_FALLING_PLATFORM_2,  /*geo*/ bowser_3_geo_0002A8
+    load_model_from_geo /*model*/ MODEL_BOWSER_3_FALLING_PLATFORM_3,  /*geo*/ bowser_3_geo_0002C0
+    load_model_from_geo /*model*/ MODEL_BOWSER_3_FALLING_PLATFORM_4,  /*geo*/ bowser_3_geo_0002D8
+    load_model_from_geo /*model*/ MODEL_BOWSER_3_FALLING_PLATFORM_5,  /*geo*/ bowser_3_geo_0002F0
+    load_model_from_geo /*model*/ MODEL_BOWSER_3_FALLING_PLATFORM_6,  /*geo*/ bowser_3_geo_000308
+    load_model_from_geo /*model*/ MODEL_BOWSER_3_FALLING_PLATFORM_7,  /*geo*/ bowser_3_geo_000320
+    load_model_from_geo /*model*/ MODEL_BOWSER_3_FALLING_PLATFORM_8,  /*geo*/ bowser_3_geo_000338
+    load_model_from_geo /*model*/ MODEL_BOWSER_3_FALLING_PLATFORM_9,  /*geo*/ bowser_3_geo_000350
+    load_model_from_geo /*model*/ MODEL_BOWSER_3_FALLING_PLATFORM_10, /*geo*/ bowser_3_geo_000368
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_03,                 /*geo*/ bowser_3_geo_000380
 
     area /*index*/ 1, /*geo*/ bowser_3_geo_000398
-        object /*unk2*/ 0x1F, /*unk3*/ 0x00, /*pos*/ 0, 1307, 0, /*angle*/ 0, 183, 0, /*behArg*/ 0x000A0000, /*beh*/ beh_warps_6C
-        warp_node /*id*/ 0x0A, /*destLevel1*/ 0x22, /*destArea*/ 0x01, /*destNode*/ 0x0A, /*destLevel2*/ 0x00
+        object /*model*/ MODEL_NONE, /*pos*/ 0, 1307, 0, /*angle*/ 0, 183, 0, /*behParam*/ 0x000A0000, /*beh*/ beh_warps_6C
+        warp_node /*id*/ 0x0A, /*destLevel*/ 0x22, /*destArea*/ 0x01, /*destNode*/ 0x0A, /*unk6*/ 0x0000
         jump_link /*target*/ script_func_local_1
-        warp_node /*id*/ 0xF1, /*destLevel1*/ 0x15, /*destArea*/ 0x01, /*destNode*/ 0x0C, /*destLevel2*/ 0x00
+        warp_node /*id*/ 0xF1, /*destLevel*/ 0x15, /*destArea*/ 0x01, /*destNode*/ 0x0C, /*unk6*/ 0x0000
         terrain /*terrainData*/ bowser_3_seg7_collision_level
         set_music /*unk2*/ 0x0002, /*seq*/ 0x0019
         terrain_type /*terrainType*/ 0x0001
