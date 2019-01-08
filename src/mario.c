@@ -1361,7 +1361,7 @@ s32 func_80254604(UNUSED struct Object *arg0)
             switch (gMarioState->action & 0x1c0)
             {
                 case ACT_GROUP_STATIONARY:
-                    sp24 = func_8026348C(gMarioState);
+                    sp24 = mario_execute_stationary_action(gMarioState);
                     break;
                 case ACT_GROUP_MOVING:
                     sp24 = mario_execute_moving_action(gMarioState);
