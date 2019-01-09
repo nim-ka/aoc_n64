@@ -27,10 +27,11 @@ struct UnknownWhirpoolData
 
 */
 
-extern s8 D_80331508;
-extern s8 D_80331500;
 extern struct Surface *D_803600E0;
+
+extern s8 D_80331500;
 extern s16 D_80331504;
+extern s8 D_80331508;
 extern s8 D_8033150C;
 extern s8 D_80331510;
 extern struct ObjectHitbox D_80331514;
@@ -43,11 +44,23 @@ extern struct ObjectHitbox D_80331574;
 extern struct ObjectHitbox D_80331584;
 extern struct ObjectHitbox D_80331594;
 extern struct ObjectHitbox D_803315A4;
+extern s16 D_803315B4[];
+extern s16 D_80331608[];
+extern struct ObjectHitbox D_80331654;
+extern struct ObjectHitbox D_80331664;
+extern struct ObjectHitbox D_80331674;
+extern struct ObjectHitbox D_80331684;
+extern s8 D_80331694;
+extern struct ObjectHitbox D_80331698;
+extern s16 D_803316A8[];
+extern struct ObjectHitbox D_803316EC;
+extern struct ObjectHitbox D_803316FC;
+extern struct ObjectHitbox D_8033170C;
+extern s16 D_8033171C[];
+
 extern u8 bob_seg7_metal_ball_path0[];
 extern u8 ttm_seg7_trajectory_070170A0[];
 extern u8 bob_seg7_metal_ball_path1[];
-extern u8 D_803315B4[];
-extern u8 D_80331608[];
 // extern ? D_80331654;
 // extern ? D_80331664;
 // extern ? D_80331674;
@@ -317,7 +330,7 @@ extern void CreateStar(f32, f32, f32);
 // extern ? BehRedCoinLoop(?);
 // extern ? BehHiddenStarInit(?);
 // extern ? BehHiddenStarLoop(?);
-// extern ? BehCheckpointLoop(?);
+// extern ? BehHiddenStarTriggerLoop(?);
 // extern ? BehBowserCourseRedCoinStarLoop(?);
 // extern ? BehTTMRollingLogInit(?);
 // extern ? func_802F238C(?);
@@ -340,9 +353,9 @@ extern void CreateStar(f32, f32, f32);
 // extern ? Beh1UpJumpOnApproachLoop(?);
 // extern ? Beh1UpHiddenLoop(?);
 // extern ? Beh1UpHiddenTriggerLoop(?);
-// extern ? Beh1UpHiddenTreePoleLoop(?);
-// extern ? Beh1UpHiddenTreePoleTriggerLoop(?);
-// extern ? Beh1UpHiddenInTreeLoop(?);
+// extern ? Beh1UpHiddenInPoleLoop(?);
+// extern ? Beh1UpHiddenInPoleTriggerLoop(?);
+// extern ? Beh1UpHiddenInPoleSpawnerLoop(?);
 // extern ? func_802F3BD8(?);
 // extern ? func_802F3C50(?);
 // extern ? BehControllablePlatformSubLoop(?);

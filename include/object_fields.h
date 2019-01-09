@@ -99,7 +99,9 @@
 #define /*0x19C*/ oDrawingDistance OBJECT_FIELD_F32(0x45)
 #define /*0x1A0*/ oRoom OBJECT_FIELD_S32(0x46)
 #define /*0x1A8*/ oUnk1A8 OBJECT_FIELD_U32(0x48)
-#define /*0x1AC*/ oUnk1AC OBJECT_FIELD_VPTR(0x49)
+#define /*0x1AC*/ oUnk1AC_VPTR OBJECT_FIELD_VPTR(0x49)
+#define /*0x1AC*/ oUnk1AC_S32 OBJECT_FIELD_S32(0x49)
+#define /*0x1AC*/ oUnk1AC_F32 OBJECT_FIELD_F32(0x49)
 #define /*0x1B0*/ oUnk1B0 OBJECT_FIELD_S32(0x4A)
 #define /*0x1B4*/ oWallAngle OBJECT_FIELD_U32(0x4B)
 #define /*0x1B8*/ oFloorType OBJECT_FIELD_S16(0x4C, 0)
@@ -109,11 +111,18 @@
 
 /* All uses of these should be removed as soon as object type is known */
 #define /*0x0F4*/ oUnknownUnkF4_S32 OBJECT_FIELD_S32(0x1B)
+#define /*0x0F4*/ oUnknownUnkF4_F32 OBJECT_FIELD_F32(0x1B)
 #define /*0x0F8*/ oUnknownUnkF8_S32 OBJECT_FIELD_S32(0x1C)
+#define /*0x0F8*/ oUnknownUnkF8_F32 OBJECT_FIELD_F32(0x1C)
 #define /*0x0FC*/ oUnknownUnkFC_S32 OBJECT_FIELD_S32(0x1D)
+#define /*0x0FC*/ oUnknownUnkFC_F32 OBJECT_FIELD_F32(0x1D)
+#define /*0x0FC*/ oUnknownUnkFC_VOIDP OBJECT_FIELD_VOIDP(0x1D)
 #define /*0x100*/ oUnknownUnk100_S32 OBJECT_FIELD_S32(0x1E)
+#define /*0x108*/ oUnknownUnk108_S32 OBJECT_FIELD_S32(0x20)
 #define /*0x108*/ oUnknownUnk108_F32 OBJECT_FIELD_F32(0x20)
+#define /*0x10C*/ oUnknownUnk10C_S32 OBJECT_FIELD_S32(0x21)
 #define /*0x10C*/ oUnknownUnk10C_F32 OBJECT_FIELD_F32(0x21)
+#define /*0x110*/ oUnknownUnk110_S32 OBJECT_FIELD_S32(0x22)
 #define /*0x110*/ oUnknownUnk110_F32 OBJECT_FIELD_F32(0x22)
 
 /* Pathed (see obj_follow_path) */
@@ -685,5 +694,70 @@
 #define /*0x1AE*/ oBubbaUnk1AE OBJECT_FIELD_S16(0x49, + 1)
 #define /*0x1B0*/ oBubbaUnk1B0 OBJECT_FIELD_S16(0x4A, 0)
 #define /*0x1B2*/ oBubbaUnk1B2 OBJECT_FIELD_S16(0x4A, + 1)
+
+/* PyramidTop */
+#define /*0x0F4*/ oPyramidTopUnkF4 OBJECT_FIELD_S32(0x1B)
+
+/* PyramidTopExplosion */
+#define /*0x0F4*/ oPyramidTopExplosionUnkF4 OBJECT_FIELD_F32(0x1B)
+
+/* SnowmansBottom */
+#define /*0x0F4*/ oSnowmansBottomUnkF4 OBJECT_FIELD_F32(0x1B)
+#define /*0x0F8*/ oSnowmansBottomUnkF8 OBJECT_FIELD_S32(0x1C)
+#define /*0x0FC*/ oSnowmansBottomUnkFC OBJECT_FIELD_VOIDP(0x1D)
+#define /*0x10C*/ oSnowmansBottomUnk10C OBJECT_FIELD_S32(0x21)
+
+/* SnowmansHead */
+#define /*0x0F4*/ oSnowmansHeadUnkF4 OBJECT_FIELD_S32(0x1B)
+
+/* StarSpawn */
+#define /*0x0F4*/ oStarSpawnDisFromHome OBJECT_FIELD_F32(0x1B)
+#define /*0x0FC*/ oStarSpawnUnkFC OBJECT_FIELD_F32(0x1D)
+
+/* HiddenRedCoinStar */
+#define /*0x0F4*/ oHiddenRedCoinStarCoinsCollected OBJECT_FIELD_S32(0x1B)
+
+/* HiddenStar */
+#define /*0x0F4*/ oHiddenStarSecretsCollected OBJECT_FIELD_S32(0x1B)
+
+/* BowserCourseRedCoinStar */
+#define /*0x0F4*/ oBowserCourseRedCoinStarCoinsCollected OBJECT_FIELD_S32(0x1B)
+
+/* Pitoune */
+#define /*0x0F4*/ oPitouneUnkF4 OBJECT_FIELD_F32(0x1B)
+#define /*0x0F8*/ oPitouneUnkF8 OBJECT_FIELD_F32(0x1C)
+#define /*0x0FC*/ oPitouneUnkFC OBJECT_FIELD_F32(0x1D)
+
+/* 1UpHidden */
+#define /*0x0F4*/ o1UpHiddenUnkF4 OBJECT_FIELD_S32(0x1B)
+
+/* ControllablePlatform */
+#define /*0x0FC*/ oControllablePlatformUnkFC OBJECT_FIELD_F32(0x1D)
+#define /*0x100*/ oControllablePlatformUnk100 OBJECT_FIELD_S32(0x1E)
+
+/* FloatingPlatform */
+#define /*0x0F4*/ oFloatingPlatformUnkFC OBJECT_FIELD_S32(0x1B)
+
+/* FallingPillar */
+#define /*0x0F4*/ oFallingPillarUnkF4 OBJECT_FIELD_F32(0x1B)
+
+/* TreasureChestJrb */
+#define /*0x0F4*/ oTreasureChestJrbUnkF4 OBJECT_FIELD_S32(0x1B)
+#define /*0x0FC*/ oTreasureChestJrbUnkFC OBJECT_FIELD_S32(0x1D)
+
+/* TreasureChest */
+#define /*0x0F4*/ oTreasureChestUnkF4 OBJECT_FIELD_S32(0x1B)
+#define /*0x0FC*/ oTreasureChestUnkFC OBJECT_FIELD_S32(0x1D)
+
+/* Mips */
+#define /*0x0F4*/ oMipsUnkF4 OBJECT_FIELD_S32(0x1B)
+#define /*0x0F8*/ oMipsUnkF8 OBJECT_FIELD_S32(0x1C)
+#define /*0x0FC*/ oMipsUnkFC OBJECT_FIELD_VOIDP(0x1D)
+#define /*0x10C*/ oMipsUnk10C OBJECT_FIELD_S32(0x21)
+
+/* Yoshi */
+#define /*0x0F4*/ oYoshiUnkF4 OBJECT_FIELD_S32(0x1B)
+#define /*0x0FC*/ oYoshiUnkFC OBJECT_FIELD_S32(0x1D)
+#define /*0x100*/ oYoshiUnk100 OBJECT_FIELD_S32(0x1E)
 
 #endif

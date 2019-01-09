@@ -58,12 +58,28 @@ struct CreditsEntry
     /*0x0C*/ const char **unk0C;
 };
 
-
 extern struct CreditsEntry *gCurrCreditsEntry;
 
 extern struct MarioState gMarioStates[];
 extern struct MarioState *gMarioState;
 
+extern s16 sCurrPlayMode;
+extern u16 D_80339ECA;
+extern s16 sTransitionTimer;
+extern void (*sTransitionUpdate)(s16 *);
+extern u8 unused3[4];
+extern u8 sCurrWarpType;
+extern u8 sDestLevelNum;
+extern u8 sDestAreaIndex;
+extern u8 sDestWarpNodeId;
+extern u32 sWarpArg;
+extern s16 D_80339EE0;
+extern s16 sDelayedWarpOp;
+extern s16 sDelayedWarpTimer;
+extern s16 sSourceWarpNodeId;
+extern s32 sDelayedWarpArg;
+extern u8 unused4[2];
+extern s8 sTimerRunning;
 extern s16 gDisplayedLives;
 extern s16 gDisplayedCoins;
 extern s16 gDisplayedStars;

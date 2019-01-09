@@ -41,50 +41,50 @@
 #define WARP_NODE_CREDITS_MIN 0xF8
 
 #ifdef VERSION_JP
-static const char *credits01[] = { "1GAME DIRECTOR", "SHIGERU MIYAMOTO" };
-static const char *credits02[] = { "2ASSISTANT DIRECTORS", "YOSHIAKI KOIZUMI", "TAKASHI TEZUKA" };
-static const char *credits03[] = { "2SYSTEM PROGRAMMERS", "YASUNARI NISHIDA", "YOSHINORI TANIMOTO" };
-static const char *credits04[] = { "3PROGRAMMERS", "HAJIME YAJIMA", "DAIKI IWAMOTO", "TOSHIO IWAWAKI" };
-static const char *credits05[] = { "1CAMERA PROGRAMMER", "TAKUMI KAWAGOE" };
-static const char *credits06[] = { "1MARIO FACE PROGRAMMER", "GILES GODDARD" };
-static const char *credits07[] = { "2COURSE DIRECTORS", "YOICHI YAMADA", "YASUHISA YAMAMURA" };
-static const char *credits08[] = { "2COURSE DESIGNERS", "KENTA USUI", "NAOKI MORI" };
-static const char *credits09[] = { "3COURSE DESIGNERS", "YOSHIKI HARUHANA", "MAKOTO MIYANAGA", "KATSUHIKO KANNO" };
-static const char *credits10[] = { "1SOUND COMPOSER", "KOJI KONDO" };
-static const char *credits11[] = { "1SOUND EFFECTS", "YOJI INAGAKI" };
-static const char *credits12[] = { "1SOUND PROGRAMMER", "HIDEAKI SHIMIZU" };
-static const char *credits13[] = { "23D ANIMATORS", "YOSHIAKI KOIZUMI", "SATORU TAKIZAWA" };
-static const char *credits14[] = { "1CG DESIGNER", "MASANAO ARIMOTO" };
-static const char *credits15[] = { "3TECHNICAL SUPPORT", "TAKAO SAWANO", "HIROHITO YOSHIMOTO", "HIROTO YADA" };
-static const char *credits16[] = { "1TECHNICAL SUPPORT", "SGI. 64PROJECT STAFF" };
-static const char *credits17[] = { "2PROGRESS MANAGEMENT", "KIMIYOSHI FUKUI", "KEIZO KATO" };
-static const char *credits18[] = { "3SPECIAL THANKS TO", "JYOHO KAIHATUBU", "ALL NINTENDO", "MARIO CLUB STAFF" };
-static const char *credits19[] = { "1PRODUCER", "SHIGERU MIYAMOTO" };
-static const char *credits20[] = { "1EXECUTIVE PRODUCER", "HIROSHI YAMAUCHI" };
+const char *credits01[] = { "1GAME DIRECTOR", "SHIGERU MIYAMOTO" };
+const char *credits02[] = { "2ASSISTANT DIRECTORS", "YOSHIAKI KOIZUMI", "TAKASHI TEZUKA" };
+const char *credits03[] = { "2SYSTEM PROGRAMMERS", "YASUNARI NISHIDA", "YOSHINORI TANIMOTO" };
+const char *credits04[] = { "3PROGRAMMERS", "HAJIME YAJIMA", "DAIKI IWAMOTO", "TOSHIO IWAWAKI" };
+const char *credits05[] = { "1CAMERA PROGRAMMER", "TAKUMI KAWAGOE" };
+const char *credits06[] = { "1MARIO FACE PROGRAMMER", "GILES GODDARD" };
+const char *credits07[] = { "2COURSE DIRECTORS", "YOICHI YAMADA", "YASUHISA YAMAMURA" };
+const char *credits08[] = { "2COURSE DESIGNERS", "KENTA USUI", "NAOKI MORI" };
+const char *credits09[] = { "3COURSE DESIGNERS", "YOSHIKI HARUHANA", "MAKOTO MIYANAGA", "KATSUHIKO KANNO" };
+const char *credits10[] = { "1SOUND COMPOSER", "KOJI KONDO" };
+const char *credits11[] = { "1SOUND EFFECTS", "YOJI INAGAKI" };
+const char *credits12[] = { "1SOUND PROGRAMMER", "HIDEAKI SHIMIZU" };
+const char *credits13[] = { "23D ANIMATORS", "YOSHIAKI KOIZUMI", "SATORU TAKIZAWA" };
+const char *credits14[] = { "1CG DESIGNER", "MASANAO ARIMOTO" };
+const char *credits15[] = { "3TECHNICAL SUPPORT", "TAKAO SAWANO", "HIROHITO YOSHIMOTO", "HIROTO YADA" };
+const char *credits16[] = { "1TECHNICAL SUPPORT", "SGI. 64PROJECT STAFF" };
+const char *credits17[] = { "2PROGRESS MANAGEMENT", "KIMIYOSHI FUKUI", "KEIZO KATO" };
+const char *credits18[] = { "3SPECIAL THANKS TO", "JYOHO KAIHATUBU", "ALL NINTENDO", "MARIO CLUB STAFF" };
+const char *credits19[] = { "1PRODUCER", "SHIGERU MIYAMOTO" };
+const char *credits20[] = { "1EXECUTIVE PRODUCER", "HIROSHI YAMAUCHI" };
 #else
-static const char *credits01[] = { "1GAME DIRECTOR", "SHIGERU MIYAMOTO" };
-static const char *credits02[] = { "2ASSISTANT DIRECTORS", "YOSHIAKI KOIZUMI", "TAKASHI TEZUKA" };
-static const char *credits03[] = { "2SYSTEM PROGRAMMERS", "YASUNARI NISHIDA", "YOSHINORI TANIMOTO" };
-static const char *credits04[] = { "3PROGRAMMERS", "HAJIME YAJIMA", "DAIKI IWAMOTO", "TOSHIO IWAWAKI" };
-static const char *credits05[] = { "4CAMERA PROGRAMMER", "MARIO FACE PROGRAMMER", "TAKUMI KAWAGOE", "GILES GODDARD" }; // US combines camera programmer and mario face programmer
-static const char *credits06[] = { "2COURSE DIRECTORS", "YOICHI YAMADA", "YASUHISA YAMAMURA" };
-static const char *credits07[] = { "2COURSE DESIGNERS", "KENTA USUI", "NAOKI MORI" };
-static const char *credits08[] = { "3COURSE DESIGNERS", "YOSHIKI HARUHANA", "MAKOTO MIYANAGA", "KATSUHIKO KANNO" };
-static const char *credits09[] = { "1SOUND COMPOSER", "KOJI KONDO" };
-static const char *credits10[] = { "4SOUND EFFECTS", "SOUND PROGRAMMER", "YOJI INAGAKI", "HIDEAKI SHIMIZU" }; // as well as sound effects and sound programmer
-static const char *credits11[] = { "23-D ANIMATORS", "YOSHIAKI KOIZUMI", "SATORU TAKIZAWA" };
-static const char *credits12[] = { "1ADDITIONAL GRAPHICS", "MASANAO ARIMOTO" };
-static const char *credits13[] = { "3TECHNICAL SUPPORT", "TAKAO SAWANO", "HIROHITO YOSHIMOTO", "HIROTO YADA" };
-static const char *credits14[] = { "1TECHNICAL SUPPORT", "SGI N64 PROJECT STAFF" };
-static const char *credits15[] = { "2PROGRESS MANAGEMENT", "KIMIYOSHI FUKUI", "KEIZO KATO" };
-static const char *credits16[] = { "5SCREEN TEXT WRITER", "TRANSLATION", "LESLIE SWAN", "MINA AKINO", "HIRO YAMADA" }; // ...in order to make room for these 2 new lines
-static const char *credits17[] = { "4MARIO VOICE", "PEACH VOICE", "CHARLES MARTINET", "LESLIE SWAN" };
-static const char *credits18[] = { "3SPECIAL THANKS TO", "EAD STAFF", "ALL NINTENDO PERSONNEL", "MARIO CLUB STAFF" };
-static const char *credits19[] = { "1PRODUCER", "SHIGERU MIYAMOTO" };
-static const char *credits20[] = { "1EXECUTIVE PRODUCER", "HIROSHI YAMAUCHI" };
+const char *credits01[] = { "1GAME DIRECTOR", "SHIGERU MIYAMOTO" };
+const char *credits02[] = { "2ASSISTANT DIRECTORS", "YOSHIAKI KOIZUMI", "TAKASHI TEZUKA" };
+const char *credits03[] = { "2SYSTEM PROGRAMMERS", "YASUNARI NISHIDA", "YOSHINORI TANIMOTO" };
+const char *credits04[] = { "3PROGRAMMERS", "HAJIME YAJIMA", "DAIKI IWAMOTO", "TOSHIO IWAWAKI" };
+const char *credits05[] = { "4CAMERA PROGRAMMER", "MARIO FACE PROGRAMMER", "TAKUMI KAWAGOE", "GILES GODDARD" }; // US combines camera programmer and mario face programmer
+const char *credits06[] = { "2COURSE DIRECTORS", "YOICHI YAMADA", "YASUHISA YAMAMURA" };
+const char *credits07[] = { "2COURSE DESIGNERS", "KENTA USUI", "NAOKI MORI" };
+const char *credits08[] = { "3COURSE DESIGNERS", "YOSHIKI HARUHANA", "MAKOTO MIYANAGA", "KATSUHIKO KANNO" };
+const char *credits09[] = { "1SOUND COMPOSER", "KOJI KONDO" };
+const char *credits10[] = { "4SOUND EFFECTS", "SOUND PROGRAMMER", "YOJI INAGAKI", "HIDEAKI SHIMIZU" }; // as well as sound effects and sound programmer
+const char *credits11[] = { "23-D ANIMATORS", "YOSHIAKI KOIZUMI", "SATORU TAKIZAWA" };
+const char *credits12[] = { "1ADDITIONAL GRAPHICS", "MASANAO ARIMOTO" };
+const char *credits13[] = { "3TECHNICAL SUPPORT", "TAKAO SAWANO", "HIROHITO YOSHIMOTO", "HIROTO YADA" };
+const char *credits14[] = { "1TECHNICAL SUPPORT", "SGI N64 PROJECT STAFF" };
+const char *credits15[] = { "2PROGRESS MANAGEMENT", "KIMIYOSHI FUKUI", "KEIZO KATO" };
+const char *credits16[] = { "5SCREEN TEXT WRITER", "TRANSLATION", "LESLIE SWAN", "MINA AKINO", "HIRO YAMADA" }; // ...in order to make room for these 2 new lines
+const char *credits17[] = { "4MARIO VOICE", "PEACH VOICE", "CHARLES MARTINET", "LESLIE SWAN" };
+const char *credits18[] = { "3SPECIAL THANKS TO", "EAD STAFF", "ALL NINTENDO PERSONNEL", "MARIO CLUB STAFF" };
+const char *credits19[] = { "1PRODUCER", "SHIGERU MIYAMOTO" };
+const char *credits20[] = { "1EXECUTIVE PRODUCER", "HIROSHI YAMAUCHI" };
 #endif
 
-static struct CreditsEntry sCreditsSequence[] =
+struct CreditsEntry sCreditsSequence[] =
 {
     { LEVEL_CASTLE_GROUNDS, 1,    1, -128, {    0,  8000,     0}, NULL      },
     { LEVEL_BOB,            1,    1,  117, {  713,  3918, -3889}, credits01 },
@@ -114,33 +114,33 @@ static struct CreditsEntry sCreditsSequence[] =
 struct MarioState gMarioStates[1];
 struct MarioState *gMarioState = &gMarioStates[0];
 
-static u8 unused1[4] = {0};
+u8 unused1[4] = {0};
 
-static s8 D_8032C9E0 = 0;
+s8 D_8032C9E0 = 0;
 
-static s16 sCurrPlayMode;
-static u16 D_80339ECA;
+s16 sCurrPlayMode;
+u16 D_80339ECA;
 
-static s16 sTransitionTimer;
-static void (*sTransitionUpdate)(s16 *);
+s16 sTransitionTimer;
+void (*sTransitionUpdate)(s16 *);
 
-static u8 unused3[4];
+u8 unused3[4];
 
-static u8 sCurrWarpType;
-static u8 sDestLevelNum;
-static u8 sDestAreaIndex;
-static u8 sDestWarpNodeId;
-static u32 sWarpArg;
-static s16 D_80339EE0;
+u8 sCurrWarpType;
+u8 sDestLevelNum;
+u8 sDestAreaIndex;
+u8 sDestWarpNodeId;
+u32 sWarpArg;
+s16 D_80339EE0;
 
-static s16 sDelayedWarpOp;
-static s16 sDelayedWarpTimer;
-static s16 sSourceWarpNodeId;
-static s32 sDelayedWarpArg;
+s16 sDelayedWarpOp;
+s16 sDelayedWarpTimer;
+s16 sSourceWarpNodeId;
+s32 sDelayedWarpArg;
 
-static u8 unused4[2];
+u8 unused4[2];
 
-static s8 sTimerRunning;
+s8 sTimerRunning;
 s16 gDisplayedLives;
 s16 gDisplayedCoins;
 s16 gDisplayedStars;

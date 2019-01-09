@@ -2760,16 +2760,16 @@ static void nop_802A3294(void) { }
 
 s32 func_802A32A4(s8 *a0)
 {
-    o->oUnk1AC = a0;
+    o->oUnk1AC_VPTR = a0;
     o->oUnk1B0 = 0;
 
-    return *(s8 *)o->oUnk1AC;
+    return *(s8 *)o->oUnk1AC_VPTR;
 }
 
 s32 func_802A32E0(void)
 {
     s8 spF;
-    s8 *sp8 = o->oUnk1AC;
+    s8 *sp8 = o->oUnk1AC_VPTR;
     s32 sp4 = o->oUnk1B0 + 1;
 
     if (sp8[sp4] != -1)

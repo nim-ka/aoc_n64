@@ -114,7 +114,6 @@ SECTIONS
       BUILD_DIR/src/hud.o(.text);
       BUILD_DIR/src/hud_print.o(.text);
       BUILD_DIR/src/obj_behaviors.o(.text);
-      BUILD_DIR/asm/obj_behaviors.o(.text);
       BUILD_DIR/src/obj_behaviors_2.o(.text);
       BUILD_DIR/asm/audio_something.o(.text);
       BUILD_DIR/asm/audio_dac.o(.text);
@@ -170,7 +169,6 @@ SECTIONS
       BUILD_DIR/src/hud.o(.data*);
       BUILD_DIR/src/hud_print.o(.data*);
       BUILD_DIR/src/obj_behaviors.o(.data*);
-      BUILD_DIR/data/obj_behaviors_1.data.o(.data*);
       BUILD_DIR/src/obj_behaviors_2.o(.data*);
       BUILD_DIR/src/audio/interface_2.o(.data*);
       BUILD_DIR/data/audio.data.o(.data*);
@@ -214,7 +212,6 @@ SECTIONS
       BUILD_DIR/src/hud.o(.rodata*);
       BUILD_DIR/src/hud_print.o(.rodata*);
       BUILD_DIR/src/obj_behaviors.o(.rodata*);
-      BUILD_DIR/data/obj_behaviors_1.rodata.o(.rodata*);
       BUILD_DIR/src/obj_behaviors_2.o(.rodata*);
       BUILD_DIR/data/audio_something.rodata.o(.rodata*);
       BUILD_DIR/data/audio_dac.rodata.o(.rodata*);
@@ -260,7 +257,7 @@ SECTIONS
       BUILD_DIR/src/ingame_menu_3.o(.bss*);
       BUILD_DIR/src/hud.o(.bss*)
       BUILD_DIR/src/hud_print.o(.bss*);
-      BUILD_DIR/data/obj_behaviors_1.bss.o(.bss*);
+      BUILD_DIR/src/obj_behaviors.o(.bss*);
       BUILD_DIR/src/obj_behaviors_2.o(.bss*);
       BUILD_DIR/src/audio/interface_2.o(.bss*);
       BUILD_DIR/data/libultra.bss.o(.bss*);
