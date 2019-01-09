@@ -10264,9 +10264,3 @@ glabel __osAtomicDec
 
 /* 0E5318 8032A318 00000000 */  nop   
 /* 0E531C 8032A31C 00000000 */  nop   
-
-glabel rspbootTextStart
-    .incbin "bin/sm64.j.0E5320.rsp.boot.bin"
-
-glabel rspbootTextEnd
-    .incbin "bin/gspFast3D.fifo.bin"

@@ -35,7 +35,7 @@ ACTOR_DIR := actors
 
 # Directories containing source files
 SRC_DIRS := src src/libultra src/goddard src/goddard/dynlists src/audio
-ASM_DIRS := asm data geo levels sound demos anims text
+ASM_DIRS := asm data geo levels sound demos anims text lib
 BIN_DIRS := bin
 
 MIPSISET := -mips2

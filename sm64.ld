@@ -127,8 +127,8 @@ SECTIONS
       . += 0x40;
 #endif
       BUILD_DIR/asm/libultra.o(.text);
+      BUILD_DIR/lib/rsp.o(.text);
       /* data */
-      BUILD_DIR/data/data_8032B3F0.o(.data*);
       BUILD_DIR/src/main.o(.data*);
       BUILD_DIR/src/display.o(.data*);
       BUILD_DIR/src/game.o(.data*);
@@ -222,6 +222,7 @@ SECTIONS
       BUILD_DIR/data/audio.rodata.o(.rodata*);
       BUILD_DIR/src/audio/interface_2.o(.rodata*);
       BUILD_DIR/data/libultra.rodata.o(.rodata*);
+      BUILD_DIR/lib/rsp.o(.rodata*);
    }
    END_SEG(main)
    BEGIN_NOLOAD(main)

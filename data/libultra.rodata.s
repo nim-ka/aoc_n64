@@ -264,12 +264,3 @@ glabel D_803386C8
 
 glabel D_803386D0
 	.incbin "bin/rodata.bin", 0x3C60, 0x80
-
-glabel D_80338750
-	.incbin "bin/rodata.bin", 0x3CE0, 0x800
-
-glabel D_80338F50
-	.incbin "bin/rodata.bin", 0x44E0, 0x2C0
-
-# TODO: fix naming
-glabel audio_data_end

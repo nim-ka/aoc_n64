@@ -509,12 +509,12 @@ struct SPTask *func_8031D924(void)
     task = &D_80226D9C->task.t;
     task->type = M_AUDTASK;
     task->flags = 0;
-    task->ucode_boot = rspbootTextStart;
-    task->ucode_boot_size = (u32) rspbootTextEnd - (u32) rspbootTextStart;
-    task->ucode = D_8032B800;
+    task->ucode_boot = rspF3DBootStart;
+    task->ucode_boot_size = (u32) rspF3DBootEnd - (u32) rspF3DBootStart;
+    task->ucode = rspF3DAudioStart;
     task->ucode_size = 0x800;
-    task->ucode_data = D_80338F50;
-    task->ucode_data_size = (audio_data_end - D_80338F50) * sizeof(u64);
+    task->ucode_data = rspF3DAudioDataStart;
+    task->ucode_data_size = (rspF3DAudioDataEnd - rspF3DAudioDataStart) * sizeof(u64);
     task->dram_stack = NULL;
     task->dram_stack_size = 0;
     task->output_buff = NULL;
@@ -702,26 +702,26 @@ glabel func_8031D924
 /* 0D8B8C 8031DB8C 25296D9C */  addiu $t1, %lo(D_80226D9C) # addiu $t1, $t1, 0x6d9c
 /* 0D8B90 8031DB90 8D380000 */  lw    $t8, ($t1)
 /* 0D8B94 8031DB94 3C068022 */  lui   $a2, %hi(D_80226D88) # $a2, 0x8022
-/* 0D8B98 8031DB98 3C058033 */  lui   $a1, %hi(rspbootTextStart) # $a1, 0x8033
-/* 0D8B9C 8031DB9C 3C0D8033 */  lui   $t5, %hi(rspbootTextEnd) # $t5, 0x8033
-/* 0D8BA0 8031DBA0 24A5A320 */  addiu $a1, %lo(rspbootTextStart) # addiu $a1, $a1, -0x5ce0
-/* 0D8BA4 8031DBA4 3C078034 */  lui   $a3, %hi(D_80338F50) # $a3, 0x8034
+/* 0D8B98 8031DB98 3C058033 */  lui   $a1, %hi(rspF3DBootStart) # $a1, 0x8033
+/* 0D8B9C 8031DB9C 3C0D8033 */  lui   $t5, %hi(rspF3DBootEnd) # $t5, 0x8033
+/* 0D8BA0 8031DBA0 24A5A320 */  addiu $a1, %lo(rspF3DBootStart) # addiu $a1, $a1, -0x5ce0
+/* 0D8BA4 8031DBA4 3C078034 */  lui   $a3, %hi(rspF3DAudioDataStart) # $a3, 0x8034
 /* 0D8BA8 8031DBA8 240C0002 */  li    $t4, 2
-/* 0D8BAC 8031DBAC 25ADA3F0 */  addiu $t5, %lo(rspbootTextEnd) # addiu $t5, $t5, -0x5c10
+/* 0D8BAC 8031DBAC 25ADA3F0 */  addiu $t5, %lo(rspF3DBootEnd) # addiu $t5, $t5, -0x5c10
 /* 0D8BB0 8031DBB0 00007812 */  mflo  $t7
 /* 0D8BB4 8031DBB4 AC8F0000 */  sw    $t7, ($a0)
 /* 0D8BB8 8031DBB8 8CC66D88 */  lw    $a2, %lo(D_80226D88)($a2)
 /* 0D8BBC 8031DBBC AF000040 */  sw    $zero, 0x40($t8)
 /* 0D8BC0 8031DBC0 8D390000 */  lw    $t9, ($t1)
-/* 0D8BC4 8031DBC4 24E78F50 */  addiu $a3, %lo(D_80338F50) # addiu $a3, $a3, -0x70b0
+/* 0D8BC4 8031DBC4 24E78F50 */  addiu $a3, %lo(rspF3DAudioDataStart) # addiu $a3, $a3, -0x70b0
 /* 0D8BC8 8031DBC8 01A57023 */  subu  $t6, $t5, $a1
 /* 0D8BCC 8031DBCC AF200044 */  sw    $zero, 0x44($t9)
 /* 0D8BD0 8031DBD0 8D230000 */  lw    $v1, ($t1)
-/* 0D8BD4 8031DBD4 3C198034 */  lui   $t9, %hi(audio_data_end) # $t9, 0x8034
-/* 0D8BD8 8031DBD8 3C0F8033 */  lui   $t7, %hi(D_8032B800) # $t7, 0x8033
-/* 0D8BDC 8031DBDC 27399210 */  addiu $t9, %lo(audio_data_end) # addiu $t9, $t9, -0x6df0
+/* 0D8BD4 8031DBD4 3C198034 */  lui   $t9, %hi(rspF3DAudioDataEnd) # $t9, 0x8034
+/* 0D8BD8 8031DBD8 3C0F8033 */  lui   $t7, %hi(rspF3DAudioStart) # $t7, 0x8033
+/* 0D8BDC 8031DBDC 27399210 */  addiu $t9, %lo(rspF3DAudioDataEnd) # addiu $t9, $t9, -0x6df0
 /* 0D8BE0 8031DBE0 AC6C0000 */  sw    $t4, ($v1)
-/* 0D8BE4 8031DBE4 25EFB800 */  addiu $t7, %lo(D_8032B800) # addiu $t7, $t7, -0x4800
+/* 0D8BE4 8031DBE4 25EFB800 */  addiu $t7, %lo(rspF3DAudioStart) # addiu $t7, $t7, -0x4800
 /* 0D8BE8 8031DBE8 24180800 */  li    $t8, 2048
 /* 0D8BEC 8031DBEC 03276023 */  subu  $t4, $t9, $a3
 /* 0D8BF0 8031DBF0 000C68C3 */  sra   $t5, $t4, 3
@@ -929,26 +929,26 @@ glabel func_8031D924
 /* 0D9A20 8031EA20 25296B9C */  addiu $t1, %lo(D_80226D9C) # addiu $t1, $t1, 0x6b9c
 /* 0D9A24 8031EA24 8D380000 */  lw    $t8, ($t1)
 /* 0D9A28 8031EA28 3C068022 */  lui   $a2, %hi(D_80226D88) # $a2, 0x8022
-/* 0D9A2C 8031EA2C 3C058033 */  lui   $a1, %hi(rspbootTextStart) # $a1, 0x8033
-/* 0D9A30 8031EA30 3C0D8033 */  lui   $t5, %hi(rspbootTextEnd) # $t5, 0x8033
-/* 0D9A34 8031EA34 24A5B260 */  addiu $a1, %lo(rspbootTextStart) # addiu $a1, $a1, -0x4da0
-/* 0D9A38 8031EA38 3C078034 */  lui   $a3, %hi(D_80338F50) # $a3, 0x8034
+/* 0D9A2C 8031EA2C 3C058033 */  lui   $a1, %hi(rspF3DBootStart) # $a1, 0x8033
+/* 0D9A30 8031EA30 3C0D8033 */  lui   $t5, %hi(rspF3DBootEnd) # $t5, 0x8033
+/* 0D9A34 8031EA34 24A5B260 */  addiu $a1, %lo(rspF3DBootStart) # addiu $a1, $a1, -0x4da0
+/* 0D9A38 8031EA38 3C078034 */  lui   $a3, %hi(rspF3DAudioDataStart) # $a3, 0x8034
 /* 0D9A3C 8031EA3C 240C0002 */  li    $t4, 2
-/* 0D9A40 8031EA40 25ADB330 */  addiu $t5, %lo(rspbootTextEnd) # addiu $t5, $t5, -0x4cd0
+/* 0D9A40 8031EA40 25ADB330 */  addiu $t5, %lo(rspF3DBootEnd) # addiu $t5, $t5, -0x4cd0
 /* 0D9A44 8031EA44 00007812 */  mflo  $t7
 /* 0D9A48 8031EA48 AC8F0000 */  sw    $t7, ($a0)
 /* 0D9A4C 8031EA4C 8CC66B88 */  lw    $a2, %lo(D_80226D88)($a2)
 /* 0D9A50 8031EA50 AF000040 */  sw    $zero, 0x40($t8)
 /* 0D9A54 8031EA54 8D390000 */  lw    $t9, ($t1)
-/* 0D9A58 8031EA58 24E7A2C0 */  addiu $a3, %lo(D_80338F50) # addiu $a3, $a3, -0x5d40
+/* 0D9A58 8031EA58 24E7A2C0 */  addiu $a3, %lo(rspF3DAudioDataStart) # addiu $a3, $a3, -0x5d40
 /* 0D9A5C 8031EA5C 01A57023 */  subu  $t6, $t5, $a1
 /* 0D9A60 8031EA60 AF200044 */  sw    $zero, 0x44($t9)
 /* 0D9A64 8031EA64 8D230000 */  lw    $v1, ($t1)
-/* 0D9A68 8031EA68 3C198034 */  lui   $t9, %hi(audio_data_end) # $t9, 0x8034
-/* 0D9A6C 8031EA6C 3C0F8033 */  lui   $t7, %hi(D_8032B800) # $t7, 0x8033
-/* 0D9A70 8031EA70 2739A580 */  addiu $t9, %lo(audio_data_end) # addiu $t9, $t9, -0x5a80
+/* 0D9A68 8031EA68 3C198034 */  lui   $t9, %hi(rspF3DAudioDataEnd) # $t9, 0x8034
+/* 0D9A6C 8031EA6C 3C0F8033 */  lui   $t7, %hi(rspF3DAudioStart) # $t7, 0x8033
+/* 0D9A70 8031EA70 2739A580 */  addiu $t9, %lo(rspF3DAudioDataEnd) # addiu $t9, $t9, -0x5a80
 /* 0D9A74 8031EA74 AC6C0000 */  sw    $t4, ($v1)
-/* 0D9A78 8031EA78 25EFC740 */  addiu $t7, %lo(D_8032B800) # addiu $t7, $t7, -0x38c0
+/* 0D9A78 8031EA78 25EFC740 */  addiu $t7, %lo(rspF3DAudioStart) # addiu $t7, $t7, -0x38c0
 /* 0D9A7C 8031EA7C 24180800 */  li    $t8, 2048
 /* 0D9A80 8031EA80 03276023 */  subu  $t4, $t9, $a3
 /* 0D9A84 8031EA84 000C68C3 */  sra   $t5, $t4, 3
