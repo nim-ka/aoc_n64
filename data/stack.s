@@ -26,7 +26,7 @@ glabel gSaveBuffer
     .space 0x200
 glabel gGfxSPTaskStack
     .space 0x400
-glabel gGfxPools
+glabel gGfxPools # 0xc850 * 2
     .space 0x190a0
 glabel D_802211A0
     .space 0x10

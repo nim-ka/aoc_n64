@@ -61,7 +61,7 @@ typedef struct
     /*0x08*/ void *dramAddr;
     /*0x0C*/ u32 devAddr;
     /*0x10*/ u32 size;
-    /*0x14*/ OSPiHandle *piHandle;
+    // Missing OSPiHandle *piHandle from the official definition
 } OSIoMesg;
 
 

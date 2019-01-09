@@ -22,23 +22,45 @@ struct Struct80222A18_2C
     f32 unk1C;
 };
 
-// Same as Struct_func_80318870?
 struct Struct80222A18
 {
-    u8 unk0b80 : 1;
-    u8 unk0b40 : 1;
-    u8 unk0b20 : 1;
-    u8 unk1;
-    u8 unk2;
-    u8 pad1[11];
-    u16 unkE;
-    u8 pad2[0x8];
-    f32 unk18;
-    f32 unk1C;
-    f32 unk20;
-    u8 pad3[0x8];
-    struct Struct80222A18_2C *unk2C[1]; // unknown size
-    u8 pad4[0x110];
+    /*0x000*/ u8 unk0b80 : 1;
+    /*0x000*/ u8 unk0b40 : 1;
+    /*0x000*/ u8 unk0b20 : 1;
+    /*0x000*/ u8 unk0b10 : 1;
+    /*0x000*/ u8 unk0b8 : 1;
+    /*0x001*/ u8 unk1;
+    /*0x002*/ u8 unk2;
+    /*     */ u8 pad0[2];
+    /*0x005*/ u8 unk5;
+    /*0x006*/ u8 unk6;
+    /*0x007*/ u8 unk7;
+    /*0x008*/ u8 unk8;
+    /*0x009*/ u8 unk9;
+    /*     */ u8 pad1[4];
+    /*0x00E*/ u16 unkE;
+    /*     */ u8 pad2[2];
+    /*0x012*/ u16 unk12;
+    /*0x014*/ void *unk14;
+    /*0x018*/ f32 unk18;
+    /*0x01C*/ f32 unk1C;
+    /*0x020*/ f32 unk20;
+    /*     */ u8 pad3[0x8];
+    /*0x02C*/ struct Struct80222A18_2C *unk2C[16];
+    /*0x06C*/ void *unk6C;
+    /*     */ u8 pad4[0x84 - 0x70];
+    /*0x084*/ u8 unk84;
+    /*     */ u8 pad5[0xD0 - 0x85];
+    /*0x0D0*/ OSMesgQueue mesgQueue1;
+    /*0x0E8*/ OSMesg mesg1;
+    /*0x0EC*/ OSIoMesg ioMesg1;
+    /*0x100*/ OSMesgQueue mesgQueue2;
+    /*0x118*/ OSMesg mesg2;
+    /*0x11C*/ OSIoMesg ioMesg2;
+    /*0x130*/ u8 *currentMemAddr;
+    /*0x134*/ void *mem;
+    /*0x138*/ u32 currentDevAddr;
+    /*0x13C*/ s32 size;
 }; // size = 0x140
 
 extern s32 D_80331D40;

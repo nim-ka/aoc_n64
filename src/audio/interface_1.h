@@ -50,7 +50,7 @@ extern void func_8031AE24(struct Struct80222A18* arg0);
 // extern ? func_8031C104(?);
 // extern ? func_8031CAD4(?);
 // extern ? func_8031D384(?);
-// extern ? func_8031D42C(?);
+extern void func_8031D42C(u32 arg0);
 extern void func_8031D4B8(void);
 
 #endif /* _AUDIO_INTERFACE_1_H */

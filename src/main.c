@@ -31,8 +31,7 @@ OSMesg gSIEventMesgBuf[1];
 OSMesg gIntrMesgBuf[16];
 OSMesg gUnknownMesgBuf[16];
 OSIoMesg gDmaIoMesg;
-// FIXME: This overlaps with gDmaIoMesg.
-//OSMesg D_80339BEC;
+OSMesg D_80339BEC;
 OSMesgQueue gDmaMesgQueue;
 OSMesgQueue gSIEventMesgQueue;
 

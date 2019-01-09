@@ -3755,7 +3755,7 @@ void func_8031F96C(u8 arg0)
 {
     u8 i;
 
-    for (i = 0; i < 0x10; i++)
+    for (i = 0; i < 16; i++)
     {
         if (D_80222A18[arg0].unk2C[i] != (void *)&D_80225DD8 && D_80360928[arg0][i].unkC != 0)
         {
