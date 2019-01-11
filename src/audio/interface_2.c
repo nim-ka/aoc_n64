@@ -522,7 +522,7 @@ struct SPTask *func_8031D924(void)
     task->data_ptr = D_80226D90[dataIndex];
     task->data_size = sp40 * 8;
 #ifdef VERSION_JP
-    task->yield_data_ptr = D_801FF200;
+    task->yield_data_ptr = gAudioSPTaskYieldBuffer;
     task->yield_data_size = 0x400;
 #else
     task->yield_data_ptr = NULL;
@@ -741,8 +741,8 @@ glabel func_8031D924
 /* 0D8C28 8031DC28 AC600028 */  sw    $zero, 0x28($v1)
 /* 0D8C2C 8031DC2C AC60002C */  sw    $zero, 0x2c($v1)
 /* 0D8C30 8031DC30 8F186D90 */  lw    $t8, %lo(D_80226D90)($t8)
-/* 0D8C34 8031DC34 3C0D8020 */  lui   $t5, %hi(D_801FF200) # $t5, 0x8020
-/* 0D8C38 8031DC38 25ADF200 */  addiu $t5, %lo(D_801FF200) # addiu $t5, $t5, -0xe00
+/* 0D8C34 8031DC34 3C0D8020 */  lui   $t5, %hi(gAudioSPTaskYieldBuffer) # $t5, 0x8020
+/* 0D8C38 8031DC38 25ADF200 */  addiu $t5, %lo(gAudioSPTaskYieldBuffer) # addiu $t5, $t5, -0xe00
 /* 0D8C3C 8031DC3C AC780030 */  sw    $t8, 0x30($v1)
 /* 0D8C40 8031DC40 8FB90040 */  lw    $t9, 0x40($sp)
 /* 0D8C44 8031DC44 240E0400 */  li    $t6, 1024

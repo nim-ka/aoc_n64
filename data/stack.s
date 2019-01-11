@@ -6,12 +6,13 @@ glabel D_801C1000
     .space 0xD000
 glabel D_801CE000
     .space 0x31200
-glabel D_801FF200
-.ifdef VERSION_US
-    .space 0x1400
-.else
-    .space 0x1800
+.ifdef VERSION_JP
+glabel gAudioSPTaskYieldBuffer
+    .space 0x400
 .endif
+# Probably Thread 2 stack space; its even in the
+# same area. unreferenced.
+    .space 0x1400
 glabel gIdleThreadStack
     .space 0x800
 glabel gThread3Stack

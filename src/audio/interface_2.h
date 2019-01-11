@@ -69,7 +69,9 @@ extern struct Struct80333F00 D_80333F00;
 
 extern struct Struct80222A18 D_80222A18[3];
 
-extern u64 D_801FF200[]; // ucode yield data ptr
+#ifdef VERSION_JP
+extern u64 gAudioSPTaskYieldBuffer[]; // ucode yield data ptr; not used in non-JP
+#endif
 extern u64 D_8032B800[]; // ucode
 extern u64 D_80338750[]; // gfx ucode data
 extern u64 D_80338F50[]; // ucode data
