@@ -1307,7 +1307,7 @@ void InitAudioSystem(void)
     }
 
     lim2 = D_80333EEC / 8;
-    ptr64 = (u64 *) D_801CE000;
+    ptr64 = (u64 *) gAudioHeap;
     for (i = 0; i <= lim2 - 1; i++)
     {
         ptr64[i] = 0;
@@ -1430,8 +1430,8 @@ glabel InitAudioSystem
 /* 0D34E4 803184E4 2484FFFF */  addiu $a0, $a0, -1
 /* 0D34E8 803184E8 0480000C */  bltz  $a0, .L8031851C
 /* 0D34EC 803184EC 27396EC0 */   addiu $t9, %lo(D_80226EC0) # addiu $t9, $t9, 0x6ec0
-/* 0D34F0 803184F0 3C0F801D */  lui   $t7, %hi(D_801CE000)
-/* 0D34F4 803184F4 25E2E000 */  addiu $v0, $t7, %lo(D_801CE000)
+/* 0D34F0 803184F0 3C0F801D */  lui   $t7, %hi(gAudioHeap)
+/* 0D34F4 803184F4 25E2E000 */  addiu $v0, $t7, %lo(gAudioHeap)
 /* 0D34F8 803184F8 0004C0C0 */  sll   $t8, $a0, 3
 /* 0D34FC 803184FC 03021821 */  addu  $v1, $t8, $v0
 .L80318500:

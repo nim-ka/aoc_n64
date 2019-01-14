@@ -56,7 +56,6 @@ build/*
 *.dump
 *.swp
 *.mio0
-src/text_strings.h
 text/us/*.s
 text/jp/*.s
 

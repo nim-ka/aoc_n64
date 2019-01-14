@@ -215,16 +215,16 @@ glabel func_80316108
 /* 0D110C 8031610C 00803025 */  move  $a2, $a0
 /* 0D1110 80316110 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 0D1114 80316114 3C048022 */  lui   $a0, %hi(D_802212B8) # $a0, 0x8022
-/* 0D1118 80316118 3C05801D */  lui   $a1, %hi(D_801CE000) # $a1, 0x801d
-/* 0D111C 8031611C 24A5E000 */  addiu $a1, %lo(D_801CE000) # addiu $a1, $a1, -0x2000
+/* 0D1118 80316118 3C05801D */  lui   $a1, %hi(gAudioHeap) # $a1, 0x801d
+/* 0D111C 8031611C 24A5E000 */  addiu $a1, %lo(gAudioHeap) # addiu $a1, $a1, -0x2000
 /* 0D1120 80316120 248412B8 */  addiu $a0, %lo(D_802212B8) # addiu $a0, $a0, 0x12b8
 /* 0D1124 80316124 0C0C5825 */  jal   func_80316094
 /* 0D1128 80316128 AFA60018 */   sw    $a2, 0x18($sp)
 /* 0D112C 8031612C 8FA70018 */  lw    $a3, 0x18($sp)
 /* 0D1130 80316130 3C0F8033 */  lui   $t7, %hi(D_80333EEC) # $t7, 0x8033
 /* 0D1134 80316134 8DEF3EEC */  lw    $t7, %lo(D_80333EEC)($t7)
-/* 0D1138 80316138 3C0E801D */  lui   $t6, %hi(D_801CE000) # $t6, 0x801d
-/* 0D113C 8031613C 25CEE000 */  addiu $t6, %lo(D_801CE000) # addiu $t6, $t6, -0x2000
+/* 0D1138 80316138 3C0E801D */  lui   $t6, %hi(gAudioHeap) # $t6, 0x801d
+/* 0D113C 8031613C 25CEE000 */  addiu $t6, %lo(gAudioHeap) # addiu $t6, $t6, -0x2000
 /* 0D1140 80316140 3C048022 */  lui   $a0, %hi(D_802212A8) # $a0, 0x8022
 /* 0D1144 80316144 248412A8 */  addiu $a0, %lo(D_802212A8) # addiu $a0, $a0, 0x12a8
 /* 0D1148 80316148 00EE2821 */  addu  $a1, $a3, $t6

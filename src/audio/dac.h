@@ -21,7 +21,7 @@ extern u8 D_80221910[];
 // extern ? D_80222A18;
 // extern ? D_80222DD8;
 extern u8 D_802212B8[]; // sound alloc pool
-extern u8 D_801CE000[];
+extern u8 gAudioHeap[];
 extern s32 D_80333EEC;
 // extern ? D_802212A8;
 extern u8 D_802212C8[]; // sound alloc pool

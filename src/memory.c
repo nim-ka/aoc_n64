@@ -9,7 +9,7 @@
 
 extern u8 _engineSegmentRomStart[];
 extern u8 _engineSegmentRomEnd[];
-extern u8 __segPoolEnd[];
+extern u8 gDecompressionHeap[];
 
 
 // round up to the next multiple
@@ -364,14 +364,14 @@ void *func_80278304(u32 segment, u8 *srcStart, u8 *srcEnd)
     if (compressed != NULL)
     {
         dma_read(compressed, srcStart, srcEnd);
-        decompress(compressed, __segPoolEnd);
-        set_segment_base_addr(segment, __segPoolEnd);
+        decompress(compressed, gDecompressionHeap);
+        set_segment_base_addr(segment, gDecompressionHeap);
         main_pool_free(compressed);
     }
     else
     {
     }
-    return __segPoolEnd;
+    return gDecompressionHeap;
 }
 
 void load_engine_code_segment(void)

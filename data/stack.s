@@ -2,9 +2,11 @@
 
 .section .stack
 
-glabel D_801C1000
+# general stack .data
+
+glabel gDecompressionHeap
     .space 0xD000
-glabel D_801CE000
+glabel gAudioHeap
     .space 0x31200
 .ifdef VERSION_JP
 glabel gAudioSPTaskYieldBuffer
@@ -29,6 +31,9 @@ glabel gGfxSPTaskStack
     .space 0x400
 glabel gGfxPools # 0xc850 * 2
     .space 0x190a0
+
+# audio stack .data
+
 glabel D_802211A0
     .space 0x10
 glabel D_802211B0
