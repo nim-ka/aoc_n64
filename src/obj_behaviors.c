@@ -6907,7 +6907,7 @@ void func_802F7FA4(void) {
     if (o->oInteractStatus == 0x8000) 
         o->oAction = 2;
 
-    if (D_8033B1B0.unk1C[1] == 11 || D_8033B1B0.unk1C[1] == 12) {
+    if (D_8033B1B0->unk1C[1] == 11 || D_8033B1B0->unk1C[1] == 12) {
         o->oAction = 10;
         o->oPosX = -1798.0f;
         o->oPosY = 3174.0f;

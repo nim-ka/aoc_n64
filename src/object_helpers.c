@@ -584,7 +584,7 @@ struct Object *Unknown8029E330(struct Object *sp20, s32 sp24, void *sp28)
     return sp1C;
 }
 
-struct Object *func_8029E388(struct Object *sp20, struct struct8029E388 *sp24)
+struct Object *func_8029E388(struct Object *sp20, struct Struct8029E388 *sp24)
 {
     f32 sp1C;
     struct Object *sp18 = spawn_object(sp20, sp24->unk02, sp24->unk04);
@@ -668,7 +668,7 @@ struct Object *spawn_object(
 struct Object *try_to_spawn_object(
     s16 offsetY,
     f32 scale,
-    void *parent,
+    struct Object *parent,
     s32 model,
     void *behavior)
 {
@@ -1959,9 +1959,9 @@ void obj_shake_y(f32 amount)
     }
 }
 
-void func_802A11B4(UNUSED s32 a0, s32 a1)
+void func_802A11B4(UNUSED struct Object* a0, s32 a1)
 {
-    D_8033B1B0.unk1C[1] = (s16)a1;
+    D_8033B1B0->unk1C[1] = (s16)a1;
     D_8032CFD0 = o;
 }
 
@@ -2884,7 +2884,7 @@ void Unknown802A3750(void)
     func_802A36D8(0, 0);
 }
 
-s16 func_802A377C(s32 a0)
+s32 func_802A377C(s32 a0)
 {
     return D_8032F0A4[a0];
 }

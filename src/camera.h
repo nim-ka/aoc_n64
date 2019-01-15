@@ -140,7 +140,7 @@ extern struct Struct8032E040 D_8032E188;
 extern struct Struct8032E040 D_8032E1D0;
 extern struct Struct8032E040 D_8032E218;
 extern struct Struct8032E040 D_8032E258;
-extern struct Struct8033B1B0 D_8033B1B0;
+extern struct Struct8033B1B0 D_8033B1B0[1];
 extern struct Struct8033B278 D_8033B278;
 extern s16 D_8033B2AC;
 extern s16 D_8033B2AE;
@@ -171,7 +171,7 @@ extern Vec3f D_8033B498[];
 extern s16 D_8033B4D8;
 extern s16 D_8033B4DA;
 extern struct Struct8033B6F0 D_8033B6F0[];
-extern u32 D_8033B858;
+extern s32 D_8033B858;
 
 
 
@@ -395,8 +395,8 @@ extern s16 func_8028F9E8(u8, struct Object *);
 // extern ? func_802901B4(?);
 // extern ? func_80290224(?);
 // extern ? func_802902A8(?);
-// extern ? Unknown802902F8(?);
-// extern ? Unknown80290344(?);
+// extern ? unused_vec3s_to_vec3f(?);
+// extern ? unused_vec3f_to_vec3s(?);
 // extern ? func_80290390(?);
 // extern ? CutsceneEnterSomething8029041C(?);
 // extern ? Unknown80290450(?);

@@ -52,7 +52,7 @@ Gfx *Geo18_802761D0(int a, struct GraphNode *b, float c[4][4])
 
             vec3f_to_vec3s(sp40, D_8032CF9C->unk28);
             vec3f_to_vec3s(sp48, D_8032CF9C->unk1C);
-            vec3f_to_vec3s(sp50, D_8033B1B0.unk4);
+            vec3f_to_vec3s(sp50, D_8033B1B0->unk4);
             sp3C = func_802DECB8(sp28, sp50, sp40, sp48);
             if (sp3C != NULL)
             {
@@ -426,8 +426,8 @@ Gfx *Geo18_802773A4(int a, struct GraphNode *b, UNUSED Mat4 *c)
 
         if (*sp1C == 6)
         {
-            sp20->unk18[0] = D_8033B1B0.unk16[1];
-            sp20->unk18[2] = D_8033B1B0.unk16[0];
+            sp20->unk18[0] = D_8033B1B0->unk16[1];
+            sp20->unk18[2] = D_8033B1B0->unk16[0];
         }
         else if (sp24 & 0x20000000)
         {

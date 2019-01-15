@@ -9,7 +9,7 @@ enum StarSelectorTypes
 };
 
 // extern ? BehStarActSelectorLoop(?);
-// extern ? func_80176934(?);
+// extern ? Show100CoinStar(?);
 // extern ? BehActSelectorInit(?);
 // extern ? BehActSelectorLoop(?);
 // extern ? Geo18_80177518(?);

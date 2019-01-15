@@ -215,6 +215,7 @@ extern u32 beh_fish_group2[];
 extern u32 beh_wdw_express_elevator[];
 extern u32 beh_wdw_express_elevator_platform[];
 extern u32 beh_chirp_chirp[];
+extern u32 beh_bub[];
 extern u32 beh_cheep_cheep[];
 extern u32 beh_exclamation_box[];
 extern u32 beh_rotating_exclamation_mark[];

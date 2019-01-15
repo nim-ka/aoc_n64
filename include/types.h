@@ -190,6 +190,7 @@ struct Object
         struct Object *asObject[0x50];
         struct Surface *asSurface[0x50];
         void *asVoidPtr[0x50];
+        struct Object *asObjPtr[0x50];
     } rawData;
     /*0x1C8*/ u32 unk1C8;
     /*0x1CC*/ u32 *behScript;
@@ -365,15 +366,22 @@ struct Struct8033B1B0
     /*0x04*/ Vec3f unk4;
     /*0x10*/ u8 filler10[6];
     /*0x16*/ Vec3s unk16;
-    /*0x1C*/ Vec3s unk1C;
+    /*0x1C*/ s16 unk1C[2];
+    /*0x20*/ struct Object* unk20;
 };
 
+
 // used in goddard code
+
 struct MyVec3f
 {
+
     float x;
     float y;
+
     float z;
 };
 
+
 #endif
+

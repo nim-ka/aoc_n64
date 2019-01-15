@@ -95,7 +95,7 @@ SECTIONS
       BUILD_DIR/asm/camera.o(.text);
       BUILD_DIR/src/object_list_processor.o(.text);
       BUILD_DIR/src/object_helpers.o(.text);
-      BUILD_DIR/asm/behavior_actions.o(.text);
+      BUILD_DIR/src/behavior_actions.o(.text);
       BUILD_DIR/src/platform_displacement.o(.text);
       BUILD_DIR/src/object_collision.o(.text);
       BUILD_DIR/src/spawn_object.o(.text);
@@ -151,7 +151,7 @@ SECTIONS
       BUILD_DIR/data/camera.data.o(.data*);
       BUILD_DIR/src/object_list_processor.o(.data*);
       BUILD_DIR/src/object_helpers.o(.data*);
-      BUILD_DIR/data/behavior_actions.data.o(.data*);
+      BUILD_DIR/src/behavior_actions.o(.data*);
       BUILD_DIR/src/platform_displacement.o(.data*);
       BUILD_DIR/src/spawn_sound.o(.data*);
       BUILD_DIR/src/debug.o(.data*);
@@ -195,7 +195,7 @@ SECTIONS
       BUILD_DIR/data/camera.rodata.o(.rodata*);
       BUILD_DIR/src/object_list_processor.o(.rodata*);
       BUILD_DIR/src/object_helpers.o(.rodata*);
-      BUILD_DIR/data/behavior_actions.rodata.o(.rodata*);
+      BUILD_DIR/src/behavior_actions.o(.rodata*);
       BUILD_DIR/src/object_collision.o(.rodata*);
       BUILD_DIR/src/spawn_object.o(.rodata*);
       BUILD_DIR/src/spawn_sound.o(.rodata*);

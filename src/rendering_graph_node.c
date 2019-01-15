@@ -592,56 +592,56 @@ int func_8027CF68(struct GraphNodeObject *a, Mat4 b)
     return 1;
 }
 
-void func_8027D14C(struct GraphNodeObject *a)
+void func_8027D14C(struct Object *a)
 {
     Mat4 sp30;
-    int sp2C = (a->node.flags & GRAPH_RENDER_20) != 0;
+    int sp2C = (a->header.gfx.node.flags & GRAPH_RENDER_20) != 0;
 
-    if (a->unk18 == D_8032CF90->unk14)
+    if (a->header.gfx.unk18 == D_8032CF90->unk14)
     {
-        if (a->throwMatrix != NULL)
+        if (a->header.gfx.throwMatrix != NULL)
         {
-            mtxf_mul(D_8033A778[D_8033A770 + 1], (void *)a->throwMatrix, D_8033A778[D_8033A770]);
+            mtxf_mul(D_8033A778[D_8033A770 + 1], (void *)a->header.gfx.throwMatrix, D_8033A778[D_8033A770]);
         }
-        else if (a->node.flags & 4)
+        else if (a->header.gfx.node.flags & 4)
         {
-            func_80379798(D_8033A778[D_8033A770 + 1], D_8033A778[D_8033A770], a->pos, D_8032CF9C->unk38);
+            func_80379798(D_8033A778[D_8033A770 + 1], D_8033A778[D_8033A770], a->header.gfx.pos, D_8032CF9C->unk38);
         }
         else
         {
-            mtxf_rotate_zxy_and_translate(sp30, a->pos, a->angle);
+            mtxf_rotate_zxy_and_translate(sp30, a->header.gfx.pos, a->header.gfx.angle);
             mtxf_mul(D_8033A778[D_8033A770 + 1], sp30, D_8033A778[D_8033A770]);
         }
 
-        func_8037A29C(D_8033A778[D_8033A770 + 1], D_8033A778[D_8033A770 + 1], a->scale);
-        a->throwMatrix = D_8033A778[++D_8033A770];
-        a->unk54 = D_8033A778[D_8033A770][3][0];
-        a->unk58 = D_8033A778[D_8033A770][3][1];
-        a->unk5C = D_8033A778[D_8033A770][3][2];
+        func_8037A29C(D_8033A778[D_8033A770 + 1], D_8033A778[D_8033A770 + 1], a->header.gfx.scale);
+        a->header.gfx.throwMatrix = D_8033A778[++D_8033A770];
+        a->header.gfx.unk54 = D_8033A778[D_8033A770][3][0];
+        a->header.gfx.unk58 = D_8033A778[D_8033A770][3][1];
+        a->header.gfx.unk5C = D_8033A778[D_8033A770][3][2];
         // FIXME: correct types
-        if (a->unk38.curAnim != NULL)
-            func_8027C988(&a->unk38, sp2C);
-        if (func_8027CF68(a, D_8033A778[D_8033A770]))
+        if (a->header.gfx.unk38.curAnim != NULL)
+            func_8027C988(&a->header.gfx.unk38, sp2C);
+        if (func_8027CF68(&a->header.gfx, D_8033A778[D_8033A770]))
         {
             Mtx *sp28 = alloc_display_list(sizeof(*sp28));
 
             mtxf_to_mtx(sp28, D_8033A778[D_8033A770]);
             D_8033AF78[D_8033A770] = sp28;
-            if (a->asGraphNode != NULL)
+            if (a->header.gfx.asGraphNode != NULL)
             {
                 D_8032CFA0 = a;
-                a->asGraphNode->parent = &a->node;
-                func_8027D8F8(a->asGraphNode);
-                a->asGraphNode->parent = NULL;
+                a->header.gfx.asGraphNode->parent = &a->header.gfx.node;
+                func_8027D8F8(a->header.gfx.asGraphNode);
+                a->header.gfx.asGraphNode->parent = NULL;
                 D_8032CFA0 = NULL;
             }
-            if (a->node.children != NULL)
-                func_8027D8F8(a->node.children);
+            if (a->header.gfx.node.children != NULL)
+                func_8027D8F8(a->header.gfx.node.children);
         }
         //L8027D420
         D_8033A770--;
         D_8033B008 = 0;
-        a->throwMatrix = NULL;
+        a->header.gfx.throwMatrix = NULL;
     }
 }
 
@@ -771,7 +771,7 @@ void func_8027D8F8(struct GraphNode *rootGraphNode)
                     func_8027BDAC((struct GraphNode017 *) curGraphNode);
                     break;
                 case GRAPH_NODE_TYPE_OBJECT:
-                    func_8027D14C((struct GraphNodeObject *) curGraphNode);
+                    func_8027D14C((struct Object *) curGraphNode);
                     break;
                 case GRAPH_NODE_TYPE_DISPLAY_LIST_TRANSLATED:
                     func_8027C4C0((struct GraphNodeDisplayListTranslated *) curGraphNode);

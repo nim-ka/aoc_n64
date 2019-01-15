@@ -8,19 +8,6 @@
 
 extern void *beh_sound_spawner;
 
-struct SoundState
-{
-    s16 playSound; // if this is 1, the info below will
-                   // be used to determine the sound behavior
-                   // for the object. if 0, this is skipped.
-    s8 animFrame1; // the sound state provides 2 anim frames for
-                   // when the provided sound can be played.
-                   // these 2 variables probably coorespond to
-                   // left/right foot.
-    s8 animFrame2;
-    s32 soundMagic;
-};
-
 /*
  * execute an object's current sound state with a provided array
  * of sound states. Used for the stepping sounds of various

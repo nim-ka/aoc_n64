@@ -53,7 +53,6 @@ extern u32 D_8033B23C;
 extern s16 D_8033B6EC;
 extern s16 D_8033B6EA;
 extern u32 D_8033B85C;
-extern u32 D_8033B858;
 extern struct Object *D_8032CFC4;
 extern u32 D_8032CFC8;
 extern u32 D_8032CFCC;
@@ -3895,9 +3894,7 @@ int StopMario(int a)
 
     if (a == 1)
         func_8028F834(171);
-    if (a == 2)
-    {
-    }
+    if (a == 2) {}
     return sp1C;
 }
 

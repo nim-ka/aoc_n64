@@ -4,6 +4,21 @@
 #include "types.h"
 #include "memory.h"
 
+struct AllocOnlyPool;
+
+extern struct GraphNodeToggleZBuffer *D_8032CF94;
+extern struct GraphNodeCamFrustum *D_8032CF98;
+extern struct GraphNode114 *D_8032CF9C;
+extern struct GraphNode12E *D_8032CFA4;
+extern u16 gAreaUpdateCounter;
+
+extern struct GraphNode *gCurRootGraphNode;
+extern struct GraphNode *gCurGraphNodeList[];
+
+extern s16 gCurGraphNodeIndex;
+
+extern struct GraphNode D_8038BD88;
+
 extern Vec3f D_80385FD0;
 extern Vec3s D_80385FDC;
 extern Vec3f D_80385FE4;

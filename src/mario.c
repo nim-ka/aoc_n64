@@ -1498,7 +1498,7 @@ void func_80254CE0(void)
     gMarioState->action = 0;
     gMarioState->spawnInfo = &gPlayerSpawnInfos[0];
     // TODO: Unify these structs! :D
-    gMarioState->unk94 = (struct UnknownStruct6 *) &D_8033B1B0;
+    gMarioState->unk94 = (struct UnknownStruct6 *) D_8033B1B0;
     gMarioState->unk98 = (struct UnknownStruct4 *) D_8033A040;
     gMarioState->controller = &gControllers[0];
     gMarioState->animation = &D_80339D10;

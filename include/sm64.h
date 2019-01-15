@@ -24,6 +24,7 @@ extern void func_u_803219AC();
 
 #define ARRAY_COUNT(arr) (s32)(sizeof(arr) / sizeof(arr[0]))
 
+#define SURFACE_0000     0x0000
 #define SURFACE_LAVA     0x0001
 #define SURFACE_0004     0x0004
 #define SURFACE_HANGABLE 0x0005
@@ -34,6 +35,7 @@ extern void func_u_803219AC();
 #define SURFACE_0013     0x0013
 #define SURFACE_0014     0x0014
 #define SURFACE_0015     0x0015
+#define SURFACE_001A     0x001A
 #define SURFACE_001B     0x001B
 #define SURFACE_0020     0x0020
 #define SURFACE_0021     0x0021
@@ -68,6 +70,9 @@ extern void func_u_803219AC();
 #define SURFACE_007A     0x007A
 #define SURFACE_007B     0x007B
 #define SURFACE_00D3     0x00D3
+#define SURFACE_00F4     0x00F4
+#define SURFACE_00F5     0x00F5
+#define SURFACE_00F6     0x00F6
 
 #define SURFACE_CLASS_SLIDE        0x0013
 #define SURFACE_CLASS_SLIPPERY     0x0014

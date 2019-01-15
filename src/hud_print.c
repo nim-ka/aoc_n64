@@ -179,9 +179,7 @@ void func_802E261C(s16 numHealthWedges)
     
     D_803600D0 = numHealthWedges;
 
-    // FIXME: Why doesn't this match?
-    //if (D_8033B1B0.unk0 & 0x2000)
-    if (*(s32 *)&D_8033B1B0 & 0x2000)
+    if (D_8033B1B0->unk0 & 0x2000)
     {
         if (sPowerMeterHUD.animation == POWER_METER_HIDDEN || sPowerMeterHUD.animation == POWER_METER_EMPHASIZED)
         {

@@ -212,7 +212,7 @@ static void ShowActSelectorMenu(void)
 
     // Display the course number.
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
-    
+
     ShowCourseNumber();
 
     gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D108);
