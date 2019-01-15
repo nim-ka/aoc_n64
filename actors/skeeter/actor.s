@@ -1141,19 +1141,19 @@ gsSP1Triangle  6,  9,  7, 0x0
 gsSPEndDisplayList
 
 glabel skeeter_seg6_dl_06004040 # 0x06004040 - 0x06004070
-gsSPClearGeometryMode 0x00022200
+gsSPClearGeometryMode G_LIGHTING | G_CULL_BACK | G_SHADING_SMOOTH
 gsSPVertex skeeter_seg6_vertex_06000FA0, 4, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  0,  2, 0x0
-gsSPSetGeometryMode 0x00022200
+gsSPSetGeometryMode G_LIGHTING | G_CULL_BACK | G_SHADING_SMOOTH
 gsSPEndDisplayList
 
 glabel skeeter_seg6_dl_06004070 # 0x06004070 - 0x060040A0
-gsSPClearGeometryMode 0x00022200
+gsSPClearGeometryMode G_LIGHTING | G_CULL_BACK | G_SHADING_SMOOTH
 gsSPVertex skeeter_seg6_vertex_06000FE0, 4, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  0,  2, 0x0
-gsSPSetGeometryMode 0x00022200
+gsSPSetGeometryMode G_LIGHTING | G_CULL_BACK | G_SHADING_SMOOTH
 gsSPEndDisplayList
 
 glabel skeeter_seg6_dl_060040A0 # 0x060040A0 - 0x060040F0
@@ -1169,19 +1169,19 @@ gsSP1Triangle  6,  9,  7, 0x0
 gsSPEndDisplayList
 
 glabel skeeter_seg6_dl_060040F0 # 0x060040F0 - 0x06004120
-gsSPClearGeometryMode 0x00022200
+gsSPClearGeometryMode G_LIGHTING | G_CULL_BACK | G_SHADING_SMOOTH
 gsSPVertex skeeter_seg6_vertex_060010D0, 4, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  0,  2, 0x0
-gsSPSetGeometryMode 0x00022200
+gsSPSetGeometryMode G_LIGHTING | G_CULL_BACK | G_SHADING_SMOOTH
 gsSPEndDisplayList
 
 glabel skeeter_seg6_dl_06004120 # 0x06004120 - 0x06004150
-gsSPClearGeometryMode 0x00022200
+gsSPClearGeometryMode G_LIGHTING | G_CULL_BACK | G_SHADING_SMOOTH
 gsSPVertex skeeter_seg6_vertex_06001110, 4, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  0,  2, 0x0
-gsSPSetGeometryMode 0x00022200
+gsSPSetGeometryMode G_LIGHTING | G_CULL_BACK | G_SHADING_SMOOTH
 gsSPEndDisplayList
 
 glabel skeeter_seg6_dl_06004150 # 0x06004150 - 0x060041A0
@@ -1197,19 +1197,19 @@ gsSP1Triangle  7, 10,  8, 0x0
 gsSPEndDisplayList
 
 glabel skeeter_seg6_dl_060041A0 # 0x060041A0 - 0x060041D0
-gsSPClearGeometryMode 0x00022200
+gsSPClearGeometryMode G_LIGHTING | G_CULL_BACK | G_SHADING_SMOOTH
 gsSPVertex skeeter_seg6_vertex_06001200, 4, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  0,  2,  3, 0x0
-gsSPSetGeometryMode 0x00022200
+gsSPSetGeometryMode G_LIGHTING | G_CULL_BACK | G_SHADING_SMOOTH
 gsSPEndDisplayList
 
 glabel skeeter_seg6_dl_060041D0 # 0x060041D0 - 0x06004200
-gsSPClearGeometryMode 0x00022200
+gsSPClearGeometryMode G_LIGHTING | G_CULL_BACK | G_SHADING_SMOOTH
 gsSPVertex skeeter_seg6_vertex_06001240, 4, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  0,  2,  3, 0x0
-gsSPSetGeometryMode 0x00022200
+gsSPSetGeometryMode G_LIGHTING | G_CULL_BACK | G_SHADING_SMOOTH
 gsSPEndDisplayList
 
 glabel skeeter_seg6_dl_06004200 # 0x06004200 - 0x060045C8
@@ -1348,19 +1348,19 @@ gsSP1Triangle  7, 10,  8, 0x0
 gsSPEndDisplayList
 
 glabel skeeter_seg6_dl_06004618 # 0x06004618 - 0x06004648
-gsSPClearGeometryMode 0x00022200
+gsSPClearGeometryMode G_LIGHTING | G_CULL_BACK | G_SHADING_SMOOTH
 gsSPVertex skeeter_seg6_vertex_06001B30, 4, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  0,  2,  3, 0x0
-gsSPSetGeometryMode 0x00022200
+gsSPSetGeometryMode G_LIGHTING | G_CULL_BACK | G_SHADING_SMOOTH
 gsSPEndDisplayList
 
 glabel skeeter_seg6_dl_06004648 # 0x06004648 - 0x06004678
-gsSPClearGeometryMode 0x00022200
+gsSPClearGeometryMode G_LIGHTING | G_CULL_BACK | G_SHADING_SMOOTH
 gsSPVertex skeeter_seg6_vertex_06001B70, 4, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  0,  2,  3, 0x0
-gsSPSetGeometryMode 0x00022200
+gsSPSetGeometryMode G_LIGHTING | G_CULL_BACK | G_SHADING_SMOOTH
 gsSPEndDisplayList
 
 glabel skeeter_seg6_dl_06004678 # 0x06004678 - 0x06004A40
@@ -1774,11 +1774,11 @@ gsSP1Triangle 14, 13, 15, 0x0
 gsSPEndDisplayList
 
 glabel skeeter_seg6_dl_06005328 # 0x06005328 - 0x06005358
-gsSPClearGeometryMode 0x00022200
+gsSPClearGeometryMode G_LIGHTING | G_CULL_BACK | G_SHADING_SMOOTH
 gsSPVertex skeeter_seg6_vertex_060037B0, 4, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  0,  2,  3, 0x0
-gsSPSetGeometryMode 0x00022200
+gsSPSetGeometryMode G_LIGHTING | G_CULL_BACK | G_SHADING_SMOOTH
 gsSPEndDisplayList
 
 glabel skeeter_seg6_dl_06005358 # 0x06005358 - 0x06005720

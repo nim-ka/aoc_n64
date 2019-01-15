@@ -133,7 +133,7 @@ gsSPDisplayList dirt_seg3_dl_0302C238
 gsSPEndDisplayList
 
 glabel dirt_seg3_dl_0302C318 # 0x0302C318 - 0x0302C378
-gsSPClearGeometryMode 0x00022000
+gsSPClearGeometryMode G_LIGHTING | G_CULL_BACK
 gsSPVertex dirt_seg3_vertex_0302C198, 10, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  3,  4,  1, 0x0
@@ -143,7 +143,7 @@ gsSP1Triangle  2,  8,  6, 0x0
 gsSP1Triangle  1,  9,  2, 0x0
 gsSP1Triangle  0,  3,  1, 0x0
 gsSP1Triangle  2,  6,  0, 0x0
-gsSPSetGeometryMode 0x00022000
+gsSPSetGeometryMode G_LIGHTING | G_CULL_BACK
 gsSPEndDisplayList
 
 glabel dirt_seg3_dl_0302C378 # 0x0302C378 - 0x0302C3B0
@@ -183,10 +183,10 @@ gsSPSetGeometryMode G_CULL_BACK
 gsSPEndDisplayList
 
 glabel dirt_seg3_dl_0302C458 # 0x0302C458 - 0x0302C480
-gsSPClearGeometryMode 0x00022000
+gsSPClearGeometryMode G_LIGHTING | G_CULL_BACK
 gsSPVertex dirt_seg3_vertex_0302C0C8, 3, 0
 gsSP1Triangle  0,  1,  2, 0x0
-gsSPSetGeometryMode 0x00022000
+gsSPSetGeometryMode G_LIGHTING | G_CULL_BACK
 gsSPEndDisplayList
 
 binid

@@ -11,7 +11,7 @@ leaves_seg3_texture_0301CBE0: # 0x0301CBE0
 
 glabel leaves_seg3_dl_0301CDE0 # 0x0301CDE0 - 0x0301CE70
 gsDPPipeSync
-gsSPClearGeometryMode 0x00022000
+gsSPClearGeometryMode G_LIGHTING | G_CULL_BACK
 gsDPSetCombineMode G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_TEXEL0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_TEXEL0
 gsSPTexture -1, -1, 0, 0, 1
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, leaves_seg3_texture_0301CBE0
@@ -25,7 +25,7 @@ gsSPVertex leaves_seg3_vertex_0301CBA0, 4, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  0,  2,  3, 0x0
 gsSPTexture -1, -1, 0, 0, 0
-gsSPSetGeometryMode 0x00022000
+gsSPSetGeometryMode G_LIGHTING | G_CULL_BACK
 gsDPSetCombineMode G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE, G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPEndDisplayList
 

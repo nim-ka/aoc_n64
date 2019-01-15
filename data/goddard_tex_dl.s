@@ -361,7 +361,7 @@ gsSPEndDisplayList
 
 glabel marioHeadDl801B5170
 gsSPClearGeometryMode 0xFFFFFFFF
-gsSPSetGeometryMode 0x00000204
+gsSPSetGeometryMode G_SHADING_SMOOTH | G_SHADE
 gsSPEndDisplayList
 
 glabel marioHeadDl801B5188
@@ -408,7 +408,7 @@ glabel dl_801B5288 #! no references to display list
 gsDPPipeSync
 gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_RENDERMODE, 29, 0x0F0A4000
 gsSPClearGeometryMode 0xFFFFFFFF
-gsSPSetGeometryMode 0x00000204
+gsSPSetGeometryMode G_SHADING_SMOOTH | G_SHADE
 gsDPPipeSync
 gsSPVertex vertex_801B5228, 3, 0
 gsSP1Triangle  0,  1,  2, 0x0
