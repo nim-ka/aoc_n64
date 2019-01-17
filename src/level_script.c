@@ -333,8 +333,8 @@ static void level_cmd_19(void)
     if (addr != NULL)
     {
         gdm_init(addr, 0xE1000);
-        func_8019C2D8(D_80000400, 0x25800);
-        func_8019C2D8(gFrameBuffer0, 0x70800);
+        gd_add_to_heap(D_80000400, 0x25800);
+        gd_add_to_heap(gFrameBuffer0, 0x70800);
         gdm_setup();
         gdm_maketestdl(CMD_GET(s16, 2));
     }

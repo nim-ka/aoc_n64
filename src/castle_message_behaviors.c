@@ -108,7 +108,7 @@ Gfx *Geo18_802764B0(int a, struct GraphNode *b, Mat4 *c)
     if (a == 1)
     {
         if (gPlayer1Controller->controllerData != NULL && D_8033A740 == 0)
-            func_8019C7F0(gPlayer1Controller->controllerData);
+            gd_copy_p1_contpad(gPlayer1Controller->controllerData);
         sp24 = (Gfx *)PHYSICAL_TO_VIRTUAL(gdm_gettestdl(sp1C->unk18));
         D_8032C6A0 = Proc8019C734;
         sp22 = func_8019C888();

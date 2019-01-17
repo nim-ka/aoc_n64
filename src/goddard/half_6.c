@@ -26,13 +26,13 @@ struct UnkData {
 };
 
 // data
-struct ObjGroup *D_801A82E0 = NULL; // returned by load_dynlist
+struct ObjGroup *gMarioFaceGrp = NULL;     // @ 801A82E0; returned by load_dynlist
 struct ObjShape *D_801A82E4 = NULL;
 static struct ObjShape *D_801A82E8 = NULL; // returned by load_dynlist
-struct ObjShape *D_801A82EC = NULL; 
-struct ObjShape *D_801A82F0 = NULL; // returned by load_dynlist
-struct ObjShape *D_801A82F4 = NULL; // used in dynlist 4F90
-struct ObjShape *D_801A82F8 = NULL; // used in dynlist 4F90
+struct ObjShape *gShapeSilSpark = NULL;    // @ 801A82EC
+struct ObjShape *gShapeRedSpark = NULL;    // @ 801A82F0
+struct ObjShape *gShapeRedStar = NULL;     // @ 801A82F4
+struct ObjShape *gShapeSilverStar = NULL;  // @ 801A82F8
 static struct UnkData sUnref801A82FC = {
     {{1.0, 1.0, 1.0,}, {0.0, 0.0, 0.0}, {0.0, 0.0, 0.0}},
     1, 4, &sUnref801A82FC
@@ -680,8 +680,8 @@ void get_3DG1_shape(struct ObjShape* shape)
     shape->mtlGroup = make_group(0);
     add_to_stacktrace("get_3DG1_shape");
 
-    vtxPtrArr = func_8019BC18(72000 * sizeof(struct ObjVertex*));   //288,000 = 72,000 * 4
-    facePtrArr = func_8019BC18(76000 * sizeof(struct ObjFace*));    //304,000 = 76,000 * 4
+    vtxPtrArr = gd_malloc_perm(72000 * sizeof(struct ObjVertex*));   //288,000 = 72,000 * 4
+    facePtrArr = gd_malloc_perm(76000 * sizeof(struct ObjFace*));    //304,000 = 76,000 * 4
 
     tempNormal.x = 0.0f;
     tempNormal.y = 0.0f;
@@ -762,8 +762,8 @@ void get_3DG1_shape(struct ObjShape* shape)
         clear_buf_to_cr();
     }
 
-    func_8019BA04(vtxPtrArr);
-    func_8019BA04(facePtrArr);
+    gd_free(vtxPtrArr);
+    gd_free(facePtrArr);
 
     shape->vtxGroup = make_group_of_type(OBJ_TYPE_VERTICES, (struct ObjHeader*) vtxHead, NULL);
     shape->faceGroup = make_group_of_type(OBJ_TYPE_FACES, (struct ObjHeader*) faceHead, NULL);
@@ -1129,14 +1129,14 @@ struct ObjShape* make_grid_shape(enum ObjTypeFlag gridType, s32 a1, s32 a2, s32 
     struct ObjGroup* parOrVtxGrp;  // group of made particles or vertices (based on gridType)
     UNUSED u32 pad38;
     struct ObjGroup* mtlGroup;
-    struct MyVec3f* sp30; //MyVec3f* ? from func_80178D98
+    struct MyVec3f* sp30; //MyVec3f* ? from gd_get_colour
     struct MyVec3f* sp2C; //^
     struct ObjMaterial* mtl1;   //first made material
     struct ObjMaterial* mtl2;   //second made material
     UNUSED u32 pad20;
 
-    sp30 = (struct MyVec3f*) func_80178D98(a1);
-    sp2C = (struct MyVec3f*) func_80178D98(a2);
+    sp30 = (struct MyVec3f*) gd_get_colour(a1);
+    sp2C = (struct MyVec3f*) gd_get_colour(a2);
 
     mtl1 = make_material(0, NULL, 1);
     set_cur_dynobj((struct ObjHeader*) mtl1);
@@ -1242,7 +1242,7 @@ void Unknown80199E44(UNUSED s32 a0, struct ObjHeader* a1, struct ObjHeader* a2, 
 void Unknown80199E88(struct ObjFace* face)
 {
     // TODO: remove cast when make_plane is updated
-    D_801BAC74 = make_plane(NULL, face);
+    D_801BAC74 = make_plane(FALSE, face);
 
     if (D_801BAC78 == NULL)
         D_801BAC78 = D_801BAC74;
@@ -1296,7 +1296,7 @@ void Proc80199FA0(struct ObjAnimator* self)
 void Proc8019A068(struct ObjAnimator* self)
 {
     s32 state = 0;  //TODO: label these states
-    s32 sp0 = D_801B9920.unkD8 >> 31;
+    s32 sp0 = D_801B9920.unkD8b80;
 
     switch (self->unk4C)
     {
@@ -1388,7 +1388,7 @@ s32 func_8019A378(void (*aniFn)(struct ObjAnimator*))
     sp28->fn48 = aniFn;
     dynid_is_int(FALSE);
     //FIXME: make segment address work once seg4 is disassembled 
-    D_801A82E0 = load_dynlist(dynlist_04004F90);
+    gMarioFaceGrp = load_dynlist(dynlist_04004F90);
     stop_memtracker("mario face");
 
     sp2C = (struct ObjCamera*) d_makeobj(D_CAMERA, NULL);
@@ -1399,29 +1399,29 @@ s32 func_8019A378(void (*aniFn)(struct ObjAnimator*))
     sp2C->unk34.y = 200.0f;
     sp2C->unk34.z = 0.0f;
 
-    addto_group(D_801A82E0, &sp2C->header);
-    addto_group(D_801A82E0, &sp28->header);
+    addto_group(gMarioFaceGrp, &sp2C->header);
+    addto_group(gMarioFaceGrp, &sp28->header);
 
     d_copystr_to_idbuf(NULL);
     sp24 = make_particle(0, 1, 0.0f, 0.0f, 0.0f);
     sp24->unk60 = 3;
     sp24->unk64 = 3;
     sp24->unkBC = &sp2C->header;
-    sp24->unk1C = D_801A82F0;
+    sp24->unk1C = gShapeRedSpark;
     addto_group(D_801B9BB8, &sp24->header);
 
     sp24 = make_particle(0, 1, 0.0f, 0.0f, 0.0f);
     sp24->unk60 = 3;
     sp24->unk64 = 2;
     sp24->unkBC = d_use_obj("N228l"); //probably a camera
-    sp24->unk1C = D_801A82F0;
+    sp24->unk1C = gShapeRedSpark;
     addto_group(D_801B9BB8, &sp24->header);
 
     sp24 = make_particle(0, 2, 0.0f, 0.0f, 0.0f);
     sp24->unk60 = 3;
     sp24->unk64 = 2;
     sp24->unkBC = d_use_obj("N231l"); //probably a camera
-    sp24->unk1C = D_801A82EC;
+    sp24->unk1C = gShapeSilSpark;
     addto_group(D_801B9BB8, &sp24->header);
 
     sp3C = (struct ObjGroup*) d_use_obj("N1000l");
@@ -1493,8 +1493,8 @@ s32 func_8019A378(void (*aniFn)(struct ObjAnimator*))
     sp48 = make_group_of_type(OBJ_TYPE_JOINTS, sp38, NULL);
     sp54 = make_net(0, NULL, sp48, NULL, NULL);
     sp54->netType = 3;
-    addto_group(D_801A82E0, &sp48->header);
-    addto_groupfirst(D_801A82E0, &sp54->header);
+    addto_group(gMarioFaceGrp, &sp48->header);
+    addto_groupfirst(gMarioFaceGrp, &sp54->header);
 
     return 0;
 }
@@ -1517,7 +1517,7 @@ void load_shapes2(void)
     imout();
 }
 
-/* @ 249368 for 0x22c */
+/* @ 249368 -> 249594 */
 struct ObjGroup* Unknown8019AB98(UNUSED u32 a0)
 {
     struct ObjLight* light1;
@@ -1529,9 +1529,9 @@ struct ObjGroup* Unknown8019AB98(UNUSED u32 a0)
     light1->unk74.y = 200.0f;
     light1->unk74.z = 300.0f;
 
-    light1->unk50.x = 1.0f;
-    light1->unk50.y = 0.0f;
-    light1->unk50.z = 0.0f;
+    light1->unk50.r = 1.0f;
+    light1->unk50.g = 0.0f;
+    light1->unk50.b = 0.0f;
 
     light1->unk30 = 1.0f;
 
@@ -1547,9 +1547,9 @@ struct ObjGroup* Unknown8019AB98(UNUSED u32 a0)
     light2->unk74.y = 200.0f;
     light2->unk74.z = 300.0f;
 
-    light2->unk50.x = 0.0f;
-    light2->unk50.y = 0.0f;
-    light2->unk50.z = 1.0f;
+    light2->unk50.r = 0.0f;
+    light2->unk50.g = 0.0f;
+    light2->unk50.b = 1.0f;
 
     light2->unk30 = 1.0f;
 
@@ -1577,9 +1577,9 @@ struct ObjGroup* Unknown8019ADC4(UNUSED u32 a0)
     newLight->unk74.y = -500.0f;
     newLight->unk74.z = 0.0f;
 
-    newLight->unk50.x = 1.0f;
-    newLight->unk50.y = 0.0f;
-    newLight->unk50.z = 0.0f;
+    newLight->unk50.r = 1.0f;
+    newLight->unk50.g = 0.0f;
+    newLight->unk50.b = 0.0f;
 
     newLight->unk30 = 1.0f;
 

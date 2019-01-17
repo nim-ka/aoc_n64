@@ -256,7 +256,7 @@ struct ObjParticle *make_particle(u32 a, s32 b, f32 x, f32 y, f32 z)
 /* 230DCC -> 230F48 */
 struct Connection *func_801825FC(struct ObjVertex *vtx1, struct ObjVertex *vtx2)
 {
-    struct Connection *sp34 = func_8019BC18(44);
+    struct Connection *sp34 = gd_malloc_perm(44);
     struct MyVec3f sp28;
     struct MyVec3f sp1C;
 

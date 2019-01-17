@@ -139,9 +139,9 @@ void Unknown801781DC(struct ObjZone *a)
         if (sp2C > 600.0f)
             sp2C = 600.0f;
         sp2C = 1.0 - sp2C / 600.0;
-        sp38->unk30->vec2C.x = sp2C * sp28->unk5C.x;
-        sp38->unk30->vec2C.y = sp2C * sp28->unk5C.y;
-        sp38->unk30->vec2C.z = sp2C * sp28->unk5C.z;
+        sp38->unk30->vec2C.x = sp2C * sp28->unk5C.r;
+        sp38->unk30->vec2C.y = sp2C * sp28->unk5C.g;
+        sp38->unk30->vec2C.z = sp2C * sp28->unk5C.b;
         s0 = s0->next;
     }
 }
@@ -162,14 +162,14 @@ void draw_shape(struct ObjShape *shape, int b, float c, float d,
     sp1C.x = sp1C.y = sp1C.z = 0.0f;
     if (b & 2)
     {
-        func_8019F19C(f, g, h);
+        translate_load_mtx_gddl(f, g, h);
         sp1C.x += f;
         sp1C.y += g;
         sp1C.z += h;
     }
     if ((b & 0x10) && mtx != NULL)
     {
-        func_8019EF14(mtx);
+        add_mat4_load_to_dl(mtx);
         sp1C.x += (*mtx)[3][0];
         sp1C.y += (*mtx)[3][1];
         sp1C.z += (*mtx)[3][2];
@@ -186,7 +186,7 @@ void draw_shape(struct ObjShape *shape, int b, float c, float d,
     if (o != 0)
     {
         D_801B9C04 = 1;
-        sSelectedColour = func_80178D98(o);
+        sSelectedColour = gd_get_colour(o);
         if (sSelectedColour != NULL)
             func_801A086C(-1, sSelectedColour, 64);
         else
@@ -212,7 +212,7 @@ void draw_shape(struct ObjShape *shape, int b, float c, float d,
         update_shaders(shape, &sp1C);
     }
     if (b & 4)
-        func_8019F0E4(i, j, k);
+        translate_mtx_gddl(i, j, k);
     if (b & 1)
         func_8019F258(c, d, e);
     func_8017A218(shape);
@@ -243,7 +243,7 @@ void draw_shape_2d(struct ObjShape *shape, int b,
         sp1C.z = h;
         if (D_801A80F8 != NULL)
             func_80196430(&sp1C, &D_801A80F8->unkE8);
-        func_8019F19C(sp1C.x, sp1C.y, sp1C.z);
+        translate_load_mtx_gddl(sp1C.x, sp1C.y, sp1C.z);
     }
     func_8017A218(shape);
     split_timer("drawshape2d");
@@ -260,9 +260,9 @@ void Proc80178900(struct ObjLight *self)
 
     if (D_801B9C00 == 27)
         return;
-    sLightColour.arr[0] = self->unk5C.x;
-    sLightColour.arr[1] = self->unk5C.y;
-    sLightColour.arr[2] = self->unk5C.z;
+    sLightColour.arr[0] = self->unk5C.r;
+    sLightColour.arr[1] = self->unk5C.g;
+    sLightColour.arr[2] = self->unk5C.b;
     if (self->unk2C & 2)
     {
         set_identity_mat4(&sp54);
@@ -344,8 +344,8 @@ void Unknown80178CAC(struct ObjFace *face)
     }
 }
 
-/* 227568 -> 22769C */
-struct GdColour *func_80178D98(s32 num)  
+/* 227568 -> 22769C; orig name: func_80178D98*/
+struct GdColour *gd_get_colour(s32 num)  
 {
     switch (num + 1)
     {
@@ -466,15 +466,15 @@ void draw_face(struct ObjFace *self)
 /* 2279F8 -> 227A5C */
 void func_80179228(int a, float b, float c, float d, float e)
 {
-    func_8019E2F8(func_80178D98(a));
-    func_8019D360(b, c, d, e);
+    gd_set_fill(gd_get_colour(a));
+    gd_draw_rect(b, c, d, e);
 }
 
 /* 227A5C -> 227AC0 */
 void func_8017928C(int a, float b, float c, float d, float e)
 {
-    func_8019E2F8(func_80178D98(a));
-    func_8019D708(b, c, d, e);
+    gd_set_fill(gd_get_colour(a));
+    gd_draw_border_rect(b, c, d, e);
 }
 
 /* 227AC0 -> 227B20 */
@@ -490,7 +490,7 @@ void Unknown801792F0(struct ObjHeader* a)
     func_801A48D8(sp28);
 }
 
-typedef void (*SomeFunc)(union ObjVarVal *, union ObjVarVal);
+typedef union ObjVarVal * (*SomeFunc)(union ObjVarVal *, union ObjVarVal);
 
 /* 227B20 -> 227DF8 */
 void Proc80179350(struct ObjLabel *label)
@@ -719,7 +719,7 @@ void drawscene(int a, struct ObjGroup *groupB, struct ObjGroup* groupC)
     D_801A8100 = 0;
     D_801B9CE8 = 0;
     restart_timer("draw1");
-    func_801A17B0(5);
+    set_gd_mtx_parameters(5);
     if (D_801B9CE0.view->unk38 == 1)
     {
         func_801A3C8C(D_801B9CE0.view->unk60.z, D_801B9CE0.view->unk54.x / D_801B9CE0.view->unk54.y,
@@ -734,22 +734,22 @@ void drawscene(int a, struct ObjGroup *groupB, struct ObjGroup* groupC)
 
     if (groupC != NULL)
     {
-        func_801A17B0(6);
+        set_gd_mtx_parameters(6);
         apply_to_obj_types_in_group(
             OBJ_TYPE_LIGHTS | OBJ_TYPE_PARTICLES, 
             apply_obj_draw_fn, 
             groupC
         );
-        func_801A17B0(5);
+        set_gd_mtx_parameters(5);
     }
 
     if (D_801A80F8 != NULL)
         draw_camera(D_801A80F8);
     else
-        func_8019F0E4(0.0f, 0.0f, -1000.0f);
+        translate_mtx_gddl(0.0f, 0.0f, -1000.0f);
     func_80178140();
-    func_801A17B0(6);
-    func_8019F02C();
+    set_gd_mtx_parameters(6);
+    push_idn_mtx_cur_gddl();
     D_801B9C00 = a;
     if ((D_801B9D80 = D_801B9CE0.view->unk34 & 0x200000) != 0)
         D_801B9CE0.view->unk34 &= ~0x200000;
@@ -771,7 +771,7 @@ void drawscene(int a, struct ObjGroup *groupB, struct ObjGroup* groupC)
     gd_setproperty(11, 0.0f, 0.0f, 0.0f);
     apply_to_obj_types_in_group(OBJ_TYPE_LABELS, apply_obj_draw_fn, groupB);
     gd_setproperty(11, 1.0f, 0.0f, 0.0f);
-    func_8019F098();
+    pop_mtx_gddl();
     imout();
     split_timer("drawscene");
     return;
@@ -787,12 +787,12 @@ void func_8017A218(struct ObjShape *shape)
 {
     D_801B9CEC = 0;
     D_801B9CE8 = 0;
-    func_801A2374(0);
+    func_801A2374(FALSE);
     D_801A8100 = (s32) shape->unk44 & 1;
     func_801A02B8(shape->unk58);
-    if (shape->unk48[D_801A86B0] != 0)
+    if (shape->unk48[gGdFrameBuf] != 0)
     {
-        func_8019BD0C(shape->unk48[D_801A86B0], shape->unk48[2]);
+        func_8019BD0C(shape->unk48[gGdFrameBuf], shape->unk48[2]);
     }
     else if (shape->faceGroup != NULL)
     {
@@ -950,9 +950,9 @@ void Proc8017A980(struct ObjLight *light)
     float sp20;
     float sp1C;
 
-    light->unk5C.x = light->unk50.x * light->unk30;
-    light->unk5C.y = light->unk50.y * light->unk30;
-    light->unk5C.z = light->unk50.z * light->unk30;
+    light->unk5C.r = light->unk50.r * light->unk30;
+    light->unk5C.g = light->unk50.g * light->unk30;
+    light->unk5C.b = light->unk50.b * light->unk30;
     D_801B9D20[light->unk1C].x = light->unk74.x - D_801B9D10.x;
     D_801B9D20[light->unk1C].y = light->unk74.y - D_801B9D10.y;
     D_801B9D20[light->unk1C].z = light->unk74.z - D_801B9D10.z;
@@ -984,7 +984,7 @@ void Proc8017A980(struct ObjLight *light)
         sp24 *= sp20;
     }
     func_801A0324(light->unk1C);
-    gd_setproperty(13, light->unk50.x * sp24, light->unk50.y * sp24, light->unk50.z * sp24);
+    gd_setproperty(13, light->unk50.r * sp24, light->unk50.g * sp24, light->unk50.b * sp24);
     gd_setproperty(15, D_801B9D20[light->unk1C].x, D_801B9D20[light->unk1C].y, D_801B9D20[light->unk1C].z);
     gd_setproperty(11, 2.0f, 0.0f, 0.0f);
 }
@@ -993,7 +993,7 @@ void Proc8017A980(struct ObjLight *light)
 void update_shaders(struct ObjShape *shape, struct MyVec3f *b)
 {
     restart_timer("updateshaders");
-    func_8019E874();
+    stash_current_gddl();
     D_801B9D10.x = b->x;
     D_801B9D10.y = b->y;
     D_801B9D10.z = b->z;
@@ -1002,7 +1002,7 @@ void update_shaders(struct ObjShape *shape, struct MyVec3f *b)
         apply_to_obj_types_in_group(OBJ_TYPE_LIGHTS, Proc8017A980, D_801B9BB8);
     if (shape->mtlGroup != NULL)
         apply_to_obj_types_in_group(OBJ_TYPE_MATERIALS, apply_obj_draw_fn, shape->mtlGroup);
-    func_8019E894();
+    pop_gddl_stash();
     split_timer("updateshaders");
 }
 
@@ -1042,7 +1042,7 @@ int Unknown8017AF48(struct ObjShape *a)
     D_801B9C04 = 0;
     if (shape->unk3C == 0)
         func_8017A218(shape);
-    sp1C = func_8019EA6C();
+    sp1C = gd_end_dl();
     shape->unk48[0] = sp20;
     shape->unk48[1] = sp20;
 
@@ -1277,14 +1277,14 @@ void update_view(struct ObjView *view)
     func_801A2448(D_801B9CE0.view);
     gd_shading(9);
     if (view->unk34 & 0x6000)
-        func_801A2310();
+        gd_set_one_cycle();
     if (view->unk28 != NULL)
     {
-        if (D_801B9920.unkD8 >> 31 != 0)
+        if (D_801B9920.unkD8b80 != 0)
         {
-            if (gd_getproperty(3, 0) != 0 && (D_801B9920.unkD8 * 8) >> 31 != 0)
+            if (gd_getproperty(3, 0) != 0 && D_801B9920.unkD8b10 != 0)
             {
-                func_801A59D4(D_801B9C08, 100);
+                func_801A59D4(D_801B9C08, ARRAY_COUNT(D_801B9C08));
                 drawscene(27, D_801B9CE0.view->unk28, NULL);
                 sp138 = func_801A5A4C(D_801B9C08);
                 D_801B9CD0 = 0;
@@ -1351,7 +1351,7 @@ void update_view(struct ObjView *view)
         drawscene(26, D_801B9CE0.view->unk28, D_801B9CE0.view->unk2C);
     }
     func_801A34E0();
-    func_8019EA6C();
+    gd_end_dl();
     imout();
     return;
 }

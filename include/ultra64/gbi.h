@@ -34,7 +34,6 @@ typedef struct
 {
     short vscale[4];  /* scale, 2 bits fraction */
     short vtrans[4];  /* translate, 2 bits fraction */
-    /* both the above arrays are padded to 64-bit boundary */
 } Vp_t;
 
 typedef union
@@ -481,6 +480,20 @@ typedef union
     _g->words.w1 = (image);              \
 }
 
+#define G_SETPRIMCOLOR 0xFA
+
+#define	gDPSetPrimColor(pkt, m, l, r, g, b, a)     \
+{                                                  \
+    Gfx *_g = (Gfx *)(pkt);                        \
+    _g->words.w0 = _SHIFTL(G_SETPRIMCOLOR, 24, 8)  \
+                 | _SHIFTL(m,  8, 8)               \
+                 | _SHIFTL(l,  0, 8);              \
+    _g->words.w1 = _SHIFTL(r, 24, 8)               \
+                 | _SHIFTL(g, 16, 8)               \
+                 | _SHIFTL(b,  8, 8)               \
+                 | _SHIFTL(a,  0, 8);              \
+}
+
 #define gDPSetEnvColor(pkt, r, g, b, a)  \
 {                                        \
     Gfx *_g = (Gfx *)(pkt);              \
@@ -566,6 +579,107 @@ typedef union
     _g->words.w0 = _SHIFTL(0xB2,   24,  8);                              \
     _g->words.w1 = _SHIFTL((dsdx), 16, 16)                               \
                  | _SHIFTL((dtdy),  0, 16);                              \
+}
+
+/* Lights and Light Operations */
+
+typedef struct {
+    unsigned char col[3];
+    char          pad1;
+    unsigned char colc[3];
+    char          pad2;
+    signed char   dir[3];
+    char          pad3;
+} Light_t;
+
+typedef struct {
+    unsigned char col[3];
+    char          pad1;
+    unsigned char colc[3];
+    char          pad2;
+} Ambient_t;
+
+typedef union {
+    Ambient_t l;
+    long long int force_structure_alignment[1];
+} Ambient;
+
+typedef union {
+    Light_t l;
+    long long int force_structure_alignment[2];
+} Light;
+
+typedef struct {
+    Ambient a;
+    Light   l[4];
+} Lights4;
+
+typedef struct {
+    Light l[2];
+} LookAt;
+
+typedef struct {
+    int x1, y1, x2, y2;
+} Hilite_t;
+
+typedef union {
+    Hilite_t h;
+    long int force_alignmnet[4];
+} Hilite;
+
+#define G_MOVEMEM 0x03
+/* for gSPNumLights */
+// is NUMLIGHTS_0 accurate?
+#define NUMLIGHTS_0 1
+#define NUMLIGHTS_1 1
+#define NUMLIGHTS_2 2
+#define NUMLIGHTS_3 3
+#define NUMLIGHTS_4 4
+#define NUMLIGHTS_5 5
+#define NUMLIGHTS_6 6
+#define NUMLIGHTS_7 7
+
+/* for gSPLight */
+#define LIGHT_1 1
+#define LIGHT_2 2
+#define LIGHT_3 3
+#define LIGHT_4 4
+#define LIGHT_5 5	
+#define LIGHT_6 6
+#define LIGHT_7 7
+#define LIGHT_8 8
+
+#define gSPLight(pkt, l, n)                           \
+{                                                     \
+    Gfx *_g = (Gfx *)(pkt);                           \
+    _g->words.w0 = _SHIFTL(G_MOVEMEM,         24, 8)  \
+                 | _SHIFTL(((n)-1)*2+G_MV_L0, 16, 8)  \
+                 | _SHIFTL(sizeof(Light),     0, 16); \
+    _g->words.w1 = (u32)(l);                          \
+}
+
+#define gSPLookAtX(pkt, la)                       \
+{                                                 \
+    Gfx *_g = (Gfx *)(pkt);                       \
+    _g->words.w0 = _SHIFTL(G_MOVEMEM,    24,  8)  \
+                 | _SHIFTL(G_MV_LOOKATX, 16,  8)  \
+                 | _SHIFTL(sizeof(Light), 0, 16); \
+    _g->words.w1 = (u32)(la);                     \
+}
+
+#define gSPLookAtY(pkt, la)                       \
+{                                                 \
+    Gfx *_g = (Gfx *)(pkt);                       \
+    _g->words.w0 = _SHIFTL(G_MOVEMEM,    24,  8)  \
+                 | _SHIFTL(G_MV_LOOKATY, 16,  8)  \
+                 | _SHIFTL(sizeof(Light), 0, 16); \
+    _g->words.w1 = (u32)(la);                     \
+}
+
+#define gSPLookAt(pkt, la)             \
+{                                      \
+    gSPLookAtX((pkt), (la))            \
+    gSPLookAtY((pkt), (char *)(la)+16) \
 }
 
 #endif

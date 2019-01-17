@@ -21,8 +21,8 @@ static s32 sUnrefScnWidth = 320;
 static s32 sUnrefScnHeight = 240;
 
 // bss
-struct GdMem801B9920 D_801B9920;
-struct GdMem801B9A18 D_801B9A18;
+struct GdControl D_801B9920; // main structure
+struct GdControl D_801B9A18; // backup? stash?
 
 /* @ 225DA0 for 0x110 */
 u32 __main__(void)
@@ -45,7 +45,7 @@ u32 __main__(void)
     func_8017E20C();
     imout();
     
-    _InitControllers();
+    gd_init_controllers();
     print_all_memtrackers();
 
     start_timer("dlgen");

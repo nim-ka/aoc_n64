@@ -18,11 +18,16 @@ struct GMemBlock {
 /* Block Type Defines */
 #define FREE_G_MEM_BLOCK 1
 #define USED_G_MEM_BLOCK 2
+/* Block Permanence Defines */
+/* This may be collections of certain allocation types 
+ * eg. 0x20 = Color Buffer; 0x40 = Z Buf; 0x01 = basic; etc. */
+#define PERM_G_MEM_BLOCK 0xF0
+#define TEMP_G_MEM_BLOCK 0x0F
 
-/****** functions ******/
-extern u32 free_mem_block(void*);
-extern void* request_mem_block(u32, u8);
-extern struct GMemBlock* make_free_mem_block(u32, u32, u8);
+// functions
+extern u32 gd_free_mem(void *);
+extern void * gd_request_mem(u32, u8);
+extern struct GMemBlock * gd_add_mem_to_heap(u32, u32, u8);
 extern void init_mem_block_lists(void);
 extern void mem_stats(void);
 

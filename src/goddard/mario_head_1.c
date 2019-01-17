@@ -1,5 +1,5 @@
 #include <ultra64.h>
-#include "stdarg.h"
+#include <stdarg.h>
 
 #include "sm64.h"
 #include "../libultra.h"
@@ -291,7 +291,7 @@ struct ObjHeader* make_object(enum ObjTypeFlag objType)
 }
 
 /* @ 22AEA0 for 0xD0; orig name: Unknown8017C6D0 */
-void make_zone(struct ObjGroup *a0, struct GdPlaneF *a1, struct ObjGroup *a2)
+struct ObjZone *make_zone(struct ObjGroup *a0, struct GdPlaneF *a1, struct ObjGroup *a2)
 {
     struct ObjZone* newZone = (struct ObjZone*) make_object(OBJ_TYPE_ZONES);
 
@@ -304,6 +304,8 @@ void make_zone(struct ObjGroup *a0, struct GdPlaneF *a1, struct ObjGroup *a2)
     // pointers? prev, next?
     newZone->unk2C = a2;
     newZone->unk30 = a0;
+
+    //! return newZone;
 }
 
 /* @ 22AF70 for 0x60 */
@@ -324,7 +326,7 @@ struct Links* make_link_to_obj(struct Links* head, struct ObjHeader* a1)
 
     start_memtracker("links");
 
-    newLink = func_8019BC18(0x0C);
+    newLink = gd_malloc_perm(0x0C);
 
     if (newLink == NULL)
         fatal_print("Cant allocate link memory!");
@@ -341,12 +343,12 @@ struct Links* make_link_to_obj(struct Links* head, struct ObjHeader* a1)
     return newLink;
 }
 
-/* @ 22B090 for 0xC4; orig name; func_8017C8C0*/
-struct VtxLink * make_vtx_link(struct VtxLink * prevlink, struct VtxLinkData * data)
+/* @ 22B090 -> 22B154; orig name: func_8017C8C0 */
+struct VtxLink * make_vtx_link(struct VtxLink * prevlink, Vtx * data)
 {
     struct VtxLink * newLink;
 
-    newLink = func_8019BC18(sizeof(struct VtxLink));
+    newLink = gd_malloc_perm(sizeof(struct VtxLink));
 
     if (newLink == NULL)
         fatal_print("Cant allocate link memory!");
@@ -467,14 +469,14 @@ void reset_plane(struct ObjPlane* plane)
 }
 
 /* @ 22B60C for 0x94; orig name: func_8017CE3C */
-struct ObjPlane* make_plane(void* a0, struct ObjFace* a1)
+struct ObjPlane* make_plane(s32 inZone, struct ObjFace* a1)
 {
     UNUSED u32 pad1C;
     struct ObjPlane* newPlane = (struct ObjPlane*) make_object(OBJ_TYPE_PLANES);
 
     gGdPlaneCount++;
     newPlane->id = gGdPlaneCount;
-    newPlane->unk18 = a0;
+    newPlane->unk18 = inZone;
     newPlane->unk40 = a1;
     reset_plane(newPlane);
 
@@ -572,7 +574,7 @@ struct ObjLight* make_light(s32 a0, char* name, s32 a2)
 }
 
 /* @ 22BA78 for 0x294; orig name: func_8017D2A8*/
-struct ObjView* make_view(char *a0, s32 a1, s32 a2, s32 a3, s32 sp38, s32 sp3C, s32 sp40, struct ObjGroup* sp44)
+struct ObjView* make_view(const char *name, s32 a1, s32 a2, s32 a3, s32 sp38, s32 sp3C, s32 sp40, struct ObjGroup* sp44)
 {
     struct ObjView* newView = (struct ObjView*) make_object(OBJ_TYPE_VIEWS);
 
@@ -603,17 +605,17 @@ struct ObjView* make_view(char *a0, s32 a1, s32 a2, s32 a3, s32 sp38, s32 sp3C, 
     newView->unk48 = 1.0f;
     newView->unk4C = 1.0f;
 
-    newView->unk7C.x = newView->unk20 * 0.1;    //! 0.1f, unless the extra precision was wanted for the tenth
-    newView->unk7C.y = 0.06f;
-    newView->unk7C.z = 1.0f;
+    newView->unk7C.r = newView->unk20 * 0.1;    //! 0.1f, unless the extra precision was wanted for the tenth
+    newView->unk7C.g = 0.06f;
+    newView->unk7C.b = 1.0f;
 
     newView->unk98 = 0;
     newView->unk9C = 0;
 
-    if (a0 != 0)
-        newView->unk1C = func_801A3E5C(a0, newView, a3, sp38, sp3C, sp40);
+    if (name != NULL)
+        newView->unk1C = func_801A3E5C(name, newView, a3, sp38, sp3C, sp40);
 
-    newView->unk6C = a0;
+    newView->unk6C = name;
     newView->unk2C = NULL;
 
     return newView;
@@ -1225,34 +1227,34 @@ s32 Unknown8017EDCC(struct MyVec3f* a0, struct GdPlaneF* a1)
     return 0;
 }
 
-/* @ 22D62C for 0x1F8 */
-s32 Unknown8017EE5C(struct GdPlaneF* a0, struct GdPlaneF* a1)
+/* @ 22D62C for 0x1F8; orig name: Unknown8017EE5C */
+s32 gd_plane_point_within(struct GdPlaneF* a0, struct GdPlaneF* a1)
 {
     if (a0->vec0.x >= a1->vec0.x)
     if (a0->vec0.x <= a1->vec1.x)
     if (a0->vec0.z >= a1->vec0.z)
     if (a0->vec0.z <= a1->vec1.z)
-        return 1;
+        return TRUE;
     
     if (a0->vec1.x >= a1->vec0.x)
     if (a0->vec1.x <= a1->vec1.x)
     if (a0->vec0.z >= a1->vec0.z)
     if (a0->vec0.z <= a1->vec1.z)
-        return 1;
+        return TRUE;
     
     if (a0->vec1.x >= a1->vec0.x)
     if (a0->vec1.x <= a1->vec1.x)
     if (a0->vec1.z >= a1->vec0.z)
     if (a0->vec1.z <= a1->vec1.z)
-        return 1;
+        return TRUE;
     
     if (a0->vec0.x >= a1->vec0.x)
     if (a0->vec0.x <= a1->vec1.x)
     if (a0->vec1.z >= a1->vec0.z)
     if (a0->vec1.z <= a1->vec1.z)
-        return 1;
+        return TRUE;
     
-    return 0;
+    return FALSE;
 }
 
 /* @ 22D824 for 0x1BC */
@@ -1657,7 +1659,7 @@ void Unknown80180624(struct ObjHeader* inputObj)
     UNUSED u32 spDC;
     struct MyVec3f spD0;
     struct MyVec3f spC4;
-    struct GdMem801B9920* memState;
+    struct GdControl* memState;
     Mat4 sp80;
     Mat4 sp40;
     UNUSED u32 pad34[3];
@@ -1681,7 +1683,7 @@ void Unknown80180624(struct ObjHeader* inputObj)
     func_80196540(&spD0, &sp40);
 
     obj = inputObj;
-    if ( (inputObj->unk12 & 0x0004) != 0 && (D_801B9920.unkD8 >> 31) != 0 )
+    if ( (inputObj->unk12 & 0x0004) != 0 && D_801B9920.unkD8b80 != 0 )
     {
         func_80178114(8);
         /* abs() macro */
@@ -1750,7 +1752,7 @@ void Unknown801809B0(struct ObjCamera* a0)
     Mat4 sp70;
     UNUSED u8 pad30[0x70-0x30];
     Mat4* sp2C;
-    struct GdMem801B9920* sp28;
+    struct GdControl* sp28;
 
     sp28 = &D_801B9920;
     if ((a0->unk2C & 0x10) == 0)
@@ -1790,8 +1792,8 @@ void Unknown801809B0(struct ObjCamera* a0)
     
     sp2C = &a0->unk64;
     if ((a0->unk2C & 0x4) != 0)
-    {
-        if (sp28->unk38 != NULL && sp28->unkF0->unk38 == NULL)
+    {   // new B press
+        if (sp28->unk38 != FALSE && sp28->unkF0->unk38 == FALSE)
         {
             a0->unk174++;
             if (a0->unk174 > a0->unk170)

@@ -31,14 +31,13 @@ static char sHexNumerals[17] = {        // @ 801A82AC
 };
 static s32 sPadNumPrint = 0;            // @ 801A82C0
 
-
 // bss
-u8 *gGdStreamBuffer;                               // @ 801BA190
-static const char *sRoutineNames[64];              // @ 801BA198
-static s32 sTimingActive;                          // @ 801BA298
-static struct GdTimer sTimers[32];                 // @ 801BA2A0
-static struct MemTracker sMemTrackers[32];         // @ 801BA720
-static struct MemTracker *sActiveMemTrackers[16];  // @ 801BA920
+u8 *gGdStreamBuffer;                                     // @ 801BA190
+static const char *sRoutineNames[64];                    // @ 801BA198
+static s32 sTimingActive;                                // @ 801BA298
+static struct GdTimer sTimers[GD_NUM_TIMERS];               // @ 801BA2A0
+static struct MemTracker sMemTrackers[GD_NUM_MEM_TRACKERS]; // @ 801BA720
+static struct MemTracker *sActiveMemTrackers[16];        // @ 801BA920
 
 /* @ 23A980 -> 23AA34; orig name: func_8018C1B0 */
 struct MemTracker *new_memtracker(const char *name)
@@ -96,7 +95,7 @@ struct MemTracker *start_memtracker(const char *name)
         }
     }
 
-    tracker->begin = (f32) func_8019AF20();
+    tracker->begin = (f32) get_alloc_mem_amt();
     if (sNumActiveMemTrackers >= ARRAY_COUNT(sActiveMemTrackers))
     {
         fatal_printf("too many memtracker calls");
@@ -129,7 +128,7 @@ u32 stop_memtracker(const char *name)
         fatal_printf("memtracker '%s' not found", name);
     }
 
-    tracker->end = (f32) func_8019AF20();
+    tracker->end = (f32) get_alloc_mem_amt();
     tracker->total += (tracker->end - tracker->begin);
 
     return (u32) tracker->total;
@@ -292,12 +291,12 @@ void split_timer_ptr(struct GdTimer *timer)
 {
     if (!sTimingActive) { return; }
 
-    timer->end = func_8019AF40();
+    timer->end = gd_get_ostime();
     timer->total += timer->end - timer->start;
 
     if (timer->total < 0) { timer->total = 0; }
 
-    timer->scaledTotal = ((f32) timer->total) / func_8019AF70();
+    timer->scaledTotal = ((f32) timer->total) / get_time_scale();
     timer->start = timer->end;
 }
 
@@ -331,7 +330,7 @@ void start_all_timers(void)
 
         if (timer->name != NULL)
         {
-            timer->start = func_8019AF40();
+            timer->start = gd_get_ostime();
         }
     }
 }
@@ -354,7 +353,7 @@ void start_timer(const char *name)
     }
 
     timer->prevScaledTotal = timer->scaledTotal;
-    timer->start = func_8019AF40();
+    timer->start = gd_get_ostime();
     timer->total = 0;
     timer->resetCount = 1;
 }
@@ -376,7 +375,7 @@ void restart_timer(const char *name)
         }
     }
 
-    timer->start = func_8019AF40();
+    timer->start = gd_get_ostime();
     timer->resetCount++;
 }
 
@@ -399,11 +398,11 @@ void stop_timer(const char *name)
     if (!sTimingActive) { return; }
 
     timer = get_timer_checked(name);
-    timer->end = func_8019AF40();
+    timer->end = gd_get_ostime();
     timer->total += timer->end - timer->start;
     if (timer->total < 0) { timer->total = 0; }
 
-    timer->scaledTotal = ((f32) timer->total) / func_8019AF70();
+    timer->scaledTotal = ((f32) timer->total) / get_time_scale();
 }
 
 /* 23B7F0 -> 23B838; orig name: func_8018D020 */
@@ -539,7 +538,7 @@ f32 func_8018D560(void)
     sPrimarySeed += 4;
 
     /* Seed Switch */
-    if ( (sPrimarySeed ^= func_8019AF40()) & 1 )
+    if ( (sPrimarySeed ^= gd_get_ostime()) & 1 )
     {
         temp = sPrimarySeed;
         sPrimarySeed = sSecondarySeed;
@@ -758,7 +757,7 @@ char *gd_strdup(const char *src)
 {
     char *dst;  // sp24
 
-    dst = func_8019BC18((gd_strlen(src) + 1) * sizeof(char));
+    dst = gd_malloc_perm((gd_strlen(src) + 1) * sizeof(char));
 
     if (dst == NULL)
     {
@@ -867,7 +866,7 @@ struct GdFile *gd_fopen(const char *filename, const char *mode)
         return NULL;
     }
 
-    f = func_8019BC18(sizeof(struct GdFile));
+    f = gd_malloc_perm(sizeof(struct GdFile));
     if (f == NULL)
     {
         fatal_printf("gd_fopen() Out of memory loading '%s'", filename);

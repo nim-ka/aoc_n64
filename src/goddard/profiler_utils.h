@@ -17,7 +17,7 @@ struct GdTimer {
     /* 0x04 */ s32 end;     // in cycles
     /* 0x08 */ s32 total;   // in cycles
     /* 0x0C */ f32 unk0C;
-    /* 0x10 */ f32 scaledTotal;  // total / D_801A8694 (1.0f) Unused function modified value
+    /* 0x10 */ f32 scaledTotal;  // total / sTimeScaleFactor (1.0f) Unused function modified value
     /* 0x14 */ f32 prevScaledTotal;
     /* 0x18 */ const char *name;
     /* 0x1C */ s32 unk1C;
@@ -30,7 +30,7 @@ union PrintVal {
     s64 pad;
 };
 
-/* based on fields set in gd_fopen; func_8019BC18(84) for size */
+/* based on fields set in gd_fopen; gd_malloc_perm(84) for size */
 struct GdFile {
     /* 0x00 */ u8  pad00[4];
     /* 0x04 */ u32 pos;
@@ -46,6 +46,9 @@ struct GdFile {
 
 // bss
 extern u8 *gGdStreamBuffer;
+
+#define GD_NUM_MEM_TRACKERS 32
+#define GD_NUM_TIMERS 32
 
 // functions
 extern struct MemTracker *start_memtracker(const char *);
@@ -78,10 +81,10 @@ extern u32 gd_strlen(const char *);
 extern char *gd_strcat(char *, const char *);
 extern s32 gd_str_not_equal(const char *, const char *);
 extern s32 gd_str_contains(const char *, const char *);
-extern s32 gd_feof(struct GdFile*);
+extern s32 gd_feof(struct GdFile *);
 extern struct GdFile* gd_fopen(const char *, const char *);
-extern s32 gd_fread(s8*, s32, s32, struct GdFile*);
-extern void gd_fclose(struct GdFile*);
+extern s32 gd_fread(s8*, s32, s32, struct GdFile *);
+extern void gd_fclose(struct GdFile *);
 extern u32 gd_get_file_size(struct GdFile *);
 extern s32 gd_fread_line(char *, u32, struct GdFile *);
 

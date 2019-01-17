@@ -377,7 +377,6 @@ SECTIONS
       BUILD_DIR/src/goddard/matrix_fns.o(.text);
       BUILD_DIR/src/goddard/half_6.o(.text);
       BUILD_DIR/src/goddard/mario_head_6.o(.text);
-      BUILD_DIR/asm/mario_head_6.o(.text);
       /* data, rodata, per file */
       BUILD_DIR/src/level_select_menu.o(.data*);
       BUILD_DIR/src/level_select_menu.o(.rodata*);
@@ -395,7 +394,7 @@ SECTIONS
       BUILD_DIR/src/goddard/profiler_utils.o(.data*);
       BUILD_DIR/src/goddard/joint_fns.o(.data*);
       BUILD_DIR/src/goddard/half_6.o(.data*);
-      BUILD_DIR/data/mario_head_6.data.o(.data*);
+      BUILD_DIR/src/goddard/mario_head_6.o(.data*);
       /* goddard texture and DLs */
       BUILD_DIR/data/goddard_tex_dl.o(.rodata*);
       /* goddard subsystem rodata */
@@ -412,7 +411,7 @@ SECTIONS
       BUILD_DIR/src/goddard/skin_fns.o(.rodata*);
       BUILD_DIR/src/goddard/matrix_fns.o(.rodata*);
       BUILD_DIR/src/goddard/half_6.o(.rodata*);
-      BUILD_DIR/data/mario_head_6.rodata.o(.rodata*);
+      BUILD_DIR/src/goddard/mario_head_6.o(.rodata*);
    }
    END_SEG(goddard)
    BEGIN_NOLOAD(goddard)
@@ -433,7 +432,7 @@ SECTIONS
       BUILD_DIR/src/goddard/joint_fns.o(.bss*);
       BUILD_DIR/src/goddard/skin_fns.o(.bss*);
       BUILD_DIR/src/goddard/half_6.o(.bss*);
-      BUILD_DIR/data/mario_head_6.bss.o(.bss*);
+      BUILD_DIR/src/goddard/mario_head_6.o(.bss*);
    }
    END_NOLOAD(goddard)
 

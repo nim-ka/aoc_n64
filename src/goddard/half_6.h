@@ -5,13 +5,12 @@
 #include "gd_types.h"
 
 // data
-extern struct ObjGroup *D_801A82E0;
+extern struct ObjGroup *gMarioFaceGrp;
 extern struct ObjShape *D_801A82E4;
-extern struct ObjShape *D_801A82EC;
-extern struct ObjShape *D_801A82F0;
-extern struct ObjShape *D_801A82F4;
-extern struct ObjShape *D_801A82F4;
-extern struct ObjShape *D_801A82F8;
+extern struct ObjShape *gShapeSilSpark;
+extern struct ObjShape *gShapeRedSpark;
+extern struct ObjShape *gShapeRedStar;
+extern struct ObjShape *gShapeSilverStar;
 
 // functions
 extern void calc_face_normal(struct ObjFace *);

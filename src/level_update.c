@@ -1,10 +1,9 @@
 #include <ultra64.h>
 
-#include "level_update.h"
 #include "sm64.h"
-#include "level_update.h"
 #include "audio/interface_2.h"
 #include "game.h"
+#include "level_update.h"
 #include "main.h"
 #include "math_util.h"
 #include "graph_node.h"

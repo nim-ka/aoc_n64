@@ -233,7 +233,7 @@ extern void guTranslate(Mtx*, float, float, float);
 // extern ? __osPopThread(?);
 // extern ? __osDispatchThread(?);
 // extern ? __osCleanupThread(?);
-// extern ? osVirtualToPhysical(?);
+extern u32 osVirtualToPhysical(void *);
 // extern ? __osSpSetStatus(?);
 // extern ? __osSpSetPc(?);
 // extern ? __osSpRawStartDma(?);

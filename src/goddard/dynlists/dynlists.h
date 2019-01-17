@@ -1,7 +1,7 @@
 #ifndef _DYN_LISTS_H_
 #define _DYN_LISTS_H_
 
-#include "../mario_head_4.h"
+#include "../gd_types.h"
 
 extern struct DynList dynlist_04000000[67];
 extern struct DynList dynlist_04000650[62];

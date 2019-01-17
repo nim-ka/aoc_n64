@@ -174,7 +174,7 @@ glabel redStarDlArray # 0x801B19B8
    .word red_star_dl_801B18E0
    .word red_star_dl_801B18E0
 
-glabel whiteStarDlArray # 0x801B19F8
+glabel silverStarDlArray # 0x801B19F8
    .word white_star_dl_801B18F8
    .word white_star_dl_801B18F8
    .word white_star_dl_801B1910
@@ -323,7 +323,7 @@ glabel redSparkleDlArray # 0x801B4C98
    .word sparkle_dl_801B4BB8
    .word sparkle_dl_801B4BB8
 
-glabel whiteSparkleDlArray # 0x801B4CC8
+glabel silverSparkleDlArray # 0x801B4CC8
    .word sparkle_dl_801B4C58
    .word sparkle_dl_801B4C58
    .word sparkle_dl_801B4C38

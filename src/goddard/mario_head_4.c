@@ -338,7 +338,7 @@ void Unknown801844F0(void)
 
     if (sLoadedDynObjs == 0) { return; }
 
-    func_8019BA04(sGdDynObjList);    //free objlist?
+    gd_free(sGdDynObjList);    //free objlist?
     sLoadedDynObjs = 0;
     sGdDynObjList = NULL;
 }
@@ -419,7 +419,7 @@ void add_to_dynobj_list(struct ObjHeader *newobj, DynId id)
 
     if (sGdDynObjList == NULL)
     {
-        sGdDynObjList = func_8019BC50(DYNOBJ_LIST_SZ * sizeof(struct DynObjInfo));
+        sGdDynObjList = gd_malloc_temp(DYNOBJ_LIST_SZ * sizeof(struct DynObjInfo));
         if (sGdDynObjList == NULL)
             fatal_printf("dMakeObj(): Cant allocate dynlist memory");
     }
@@ -525,7 +525,7 @@ struct ObjHeader *d_makeobj(enum DObjTypes type, DynId id)
             dobj = &make_face_1(1.0, 1.0, 1.0)->header;
             break;
         case D_PLANE:
-            dobj = &make_plane(NULL, NULL)->header;
+            dobj = &make_plane(FALSE, NULL)->header;
             break;
         case D_MATERIAL:
             dobj = &make_material(0, NULL, 0)->header;
@@ -734,7 +734,7 @@ void alloc_animdata(struct ObjAnimator *a0)
     animCnt = 0;
     while (animDst++->count >= 0) { animCnt++; }
     
-    animDst = func_8019BC18(animCnt * sizeof(struct AnimDataInfo));   //gd_alloc_perm
+    animDst = gd_malloc_perm(animCnt * sizeof(struct AnimDataInfo));   //gd_alloc_perm
     if ((animDataArr = animDst) == NULL)
         fatal_printf("cant allocate animation data");
 
@@ -758,7 +758,7 @@ void alloc_animdata(struct ObjAnimator *a0)
                 break;
             }
             
-            allocSpace = func_8019BC18(curAnimSrc->count * datasize);  //gd_alloc_perm
+            allocSpace = gd_malloc_perm(curAnimSrc->count * datasize);  //gd_alloc_perm
             if (allocSpace == NULL)
                 fatal_printf("cant allocate animation data");
             
@@ -844,7 +844,7 @@ void chk_shapegen(struct ObjShape *a0)
         if (vtxdata->count >= VTX_BUF_SZ)
             fatal_printf("shapegen() too many vertices");
 
-        vtxbuf = func_8019BC50(VTX_BUF_SZ * sizeof(struct ObjVertex *));
+        vtxbuf = gd_malloc_temp(VTX_BUF_SZ * sizeof(struct ObjVertex *));
         oldObjHead = gGdObjectList;
 
         for (i = 0; i < vtxdata->count; i++)
@@ -897,7 +897,7 @@ void chk_shapegen(struct ObjShape *a0)
             }
         }
         
-        func_8019BA04(vtxbuf);    //gd_free
+        gd_free(vtxbuf);    //gd_free
         madeFaces = make_group_of_type(OBJ_TYPE_FACES, oldObjHead, NULL);
         a0->faceGroup = madeFaces;
         a0->vtxGroup = madeVtx;
@@ -2187,7 +2187,7 @@ void d_add_valptr(DynId objId, u32 vflags, s32 type, u32 offset)
 }
 
 /* 237F68 -> 238020; orig name: func_80189798 */
-void d_add_valproc(void (*proc)(union ObjVarVal *, union ObjVarVal))
+void d_add_valproc(union ObjVarVal * (*proc)(union ObjVarVal *, union ObjVarVal))
 {
     struct ObjHeader *dynobj;   // sp1C
 
@@ -2591,7 +2591,7 @@ void d_set_colour_num(s32 colornum)
             ((struct ObjGadget *)sDynListCurObj)->unk5C = colornum;
             break;
         case OBJ_TYPE_FACES:
-            rgbcolor = func_80178D98(colornum);  // get pointer to vec3 color
+            rgbcolor = gd_get_colour(colornum);  // get pointer to vec3 color
             if (rgbcolor != NULL)
             {
                 ((struct ObjFace *)sDynListCurObj)->vec14.x = rgbcolor->r;
@@ -2709,9 +2709,9 @@ void d_set_diffuse(f32 r, f32 g, f32 b)
             ((struct ObjMaterial *)sDynListCurObj)->Kd.b = b;
             break;
         case OBJ_TYPE_LIGHTS:
-            ((struct ObjLight *)sDynListCurObj)->unk50.x = r;
-            ((struct ObjLight *)sDynListCurObj)->unk50.y = g;
-            ((struct ObjLight *)sDynListCurObj)->unk50.z = b;
+            ((struct ObjLight *)sDynListCurObj)->unk50.r = r;
+            ((struct ObjLight *)sDynListCurObj)->unk50.g = g;
+            ((struct ObjLight *)sDynListCurObj)->unk50.b = b;
             break;
         default:
             fatal_printf("%s: Object '%s'(%x) does not support this function.",

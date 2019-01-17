@@ -162,7 +162,7 @@ struct ObjNet *make_net(UNUSED s32 a0, struct ObjShape *shapedata, struct ObjGro
     net->unk1D0 = a4;
     net->netType = 0;
     net->unk210 = 0;
-    net->transform = 0;
+    net->unk21C = NULL;
     net->unk3C = 1;
     net->unk40 = 0;
     net->skinGrp = NULL;
@@ -303,7 +303,7 @@ void move_bonesnet(struct ObjNet *net)
 void func_80192CCC(struct ObjNet *net)
 {
     Mat4 sp38;
-    UNUSED struct GdMem801B9920 *gdmem; // 34
+    UNUSED struct GdControl *gdmem; // 34
     struct ObjGroup *group; // 30
     struct MyVec3f sp24;
 
@@ -331,7 +331,7 @@ void func_80192CCC(struct ObjNet *net)
         net->unkA4.x = net->unkA4.y = net->unkA4.z = 0.0f;
     }
 
-    if (D_801B9920.unk54 != NULL) { return; }
+    if (D_801B9920.unk54) { return; } // start was pressed
     
     switch (net->unk210) { case 2: break; }
     
@@ -378,11 +378,11 @@ void func_80192CCC(struct ObjNet *net)
 
 }
 
-/* 241768 -> 241AB4 */
-void func_80192F98(struct ObjGroup *grp)
+/* 241768 -> 241AB4; orig name: func_80192F98 */
+void convert_gd_verts_to_Vn(struct ObjGroup *grp)
 {
     UNUSED u8 pad[0x40-0x2c];
-    struct VtxLinkData *sp28;
+    Vtx *sp28;
     struct { u8 b0, b1, b2, b3;} sp24;
     UNUSED u32 pad20;
     register struct VtxLink *vtxlink; // a1
@@ -408,24 +408,24 @@ void func_80192F98(struct ObjGroup *grp)
 
         for (vtxlink = vtx->unk44; vtxlink != NULL; vtxlink = vtxlink->prev)
         {
-            a2 = vtxlink->data->unk00; 
+            a2 = vtxlink->data->n.ob; 
             sp28 = vtxlink->data;
             *a2++ = x;
             *a2++ = y;
             *a2++ = z;
-            sp28->unkC = sp24.b3;
-            sp28->unkD = sp24.b2;
-            sp28->unkE = sp24.b1;
+            sp28->n.n[0] = sp24.b3;
+            sp28->n.n[1] = sp24.b2;
+            sp28->n.n[2] = sp24.b1;
         }
     }
 }
 
-/* 241AB4 -> 241BCC */
-void func_801932E4(struct ObjGroup *grp)
+/* 241AB4 -> 241BCC; orig name: func_801932E4 */
+void convert_gd_verts_to_Vtx(struct ObjGroup *grp)
 {
     UNUSED u32 pad24[6];
     register struct VtxLink *vtxlink; // a1
-    register s16 *vtxdata;            // a2
+    register s16 *vtxcoords;          // a2
     register s16 x;                   // a3
     register s16 y;                   // t0
     register s16 z;                   // t1
@@ -443,10 +443,10 @@ void func_801932E4(struct ObjGroup *grp)
 
         for (vtxlink = vtx->unk44; vtxlink != NULL; vtxlink = vtxlink->prev)
         {
-            vtxdata = vtxlink->data->unk00;
-            vtxdata[0] = x;
-            vtxdata[1] = y;
-            vtxdata[2] = z;
+            vtxcoords = vtxlink->data->v.ob;
+            vtxcoords[0] = x;
+            vtxcoords[1] = y;
+            vtxcoords[2] = z;
         }
     }
 }
@@ -458,7 +458,7 @@ void Proc801933FC(struct ObjNet *net)
     {
         if (net->unk1A8->unk30)
         {
-            func_80192F98(net->unk1A8->vtxGroup);
+            convert_gd_verts_to_Vn(net->unk1A8->vtxGroup);
         }
     }
 
@@ -467,7 +467,7 @@ void Proc801933FC(struct ObjNet *net)
         case 2:
             if (net->unk1A8 != NULL) 
             {
-                func_801932E4(net->unk1A8->unk24);
+                convert_gd_verts_to_Vtx(net->unk1A8->unk24);
             }
             break;
     }

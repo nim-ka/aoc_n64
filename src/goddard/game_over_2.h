@@ -14,7 +14,7 @@ extern struct ObjGroup *D_801B9BB8;  // ObjGroup* of ObjLights
 // functions
 extern void Proc80178900(struct ObjLight *);
 extern void draw_material(struct ObjMaterial *);
-extern struct GdColour *func_80178D98(s32);
+extern struct GdColour *gd_get_colour(s32);
 extern void draw_face(struct ObjFace *);
 extern void Proc80179350(struct ObjLabel *);
 extern void Proc80179628(struct ObjNet *);

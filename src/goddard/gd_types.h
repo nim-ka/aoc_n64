@@ -1,6 +1,7 @@
 #ifndef _GD_TYPES_H
 #define _GD_TYPES_H
 
+#include <ultra64.h>
 #include "types.h"
 /* Vector Types */
 struct GdPlaneF {
@@ -16,6 +17,20 @@ struct GdTriangleF {
 
 struct GdColour {
     f32 r, g, b;
+};
+
+/* dynlist entries and types */
+union DynUnion {
+    void *ptr;
+    char *str;
+    s32 word;
+};
+
+struct DynList {
+    s32 cmd;
+    union DynUnion w1;
+    union DynUnion w2;
+    struct MyVec3f vec;
 };
 
 /* Goddard Code Object Structs */
@@ -198,7 +213,7 @@ struct ObjShape {
     /* 0x3C */ s32 unk3C;
     /* 0x40 */ u32 id;
     /* 0x44 */ s32 unk44;       //group?, no a flag!?
-    /* 0x48 */ s32 unk48[3];
+    /* 0x48 */ s32 unk48[3];  // gd dl ids for each frame buffer ?
     /* 0x54 */ u8  pad54[0x58-0x54]; // part of above array??
     /* 0x58 */ f32 unk58;       // paramF?
     /* 0x5C */ char name[0x9c-0x5c];
@@ -263,13 +278,13 @@ struct ObjNet {
     /* 0x20C */ struct ObjGroup *unk20C;
     /* 0x210 */ s32 unk210;     // "control type"
     /* 0x214 */ u8  pad214[0x21C-0x214];
-    /* 0x21C */ s32 transform;
+    /* 0x21C */ struct ObjGroup *unk21C;
 }; /* sizeof = 0x220 */
 
 struct ObjPlane {
     /* 0x00 */ struct ObjHeader header;
     /* 0x14 */ u32 id;
-    /* 0x18 */ void* unk18;     // maybe?
+    /* 0x18 */ s32 unk18; //bool;  contained within zone? (from its parent Net?)
     /* 0x1C */ f32 unk1C;
     /* 0x20 */ s32 unk20;
     /* 0x24 */ s32 unk24;
@@ -281,7 +296,7 @@ struct ObjVertex {
     /* 0x00 */ struct ObjHeader header;
     /* 0x14 */ struct MyVec3f vec14;    //position? 
     /* 0x20 */ struct MyVec3f vec20;    // rel position? world pos?
-    /* 0x2C */ struct MyVec3f vec2C;    // normal?
+    /* 0x2C */ struct MyVec3f vec2C;    // normal? also color (like gbi?)
     /* 0x38 */ s16 unk38;   // id
     /* 0x3A */ u8  pad3A[2];
     /* 0x3C */ f32 unk3C;
@@ -292,17 +307,7 @@ struct ObjVertex {
 struct VtxLink {
     struct VtxLink *prev;
     struct VtxLink *next;
-    struct VtxLinkData *data;
-};
-
-struct VtxLinkData {
-    s16 unk00[6]; 
-    // s16 vec[3]; ?
-    // s16 norm[3]; ?
-    u8 unkC; // sub struct?
-    u8 unkD;
-    u8 unkE;
-    u8 unkF;
+    Vtx *data;
 };
 
 struct ObjFace {
@@ -311,9 +316,9 @@ struct ObjFace {
     /* 0x20 */ s32 unk20;   // "colour" index
     /* 0x24 */ struct MyVec3f vec24;    //normal?
     /* 0x30 */ s32 vtxCount;
-    /* 0x34 */ struct ObjVertex* vertices[4];   // these can also be s32 indices? which are then replaced by `find_thisface_verts`
+    /* 0x34 */ struct ObjVertex * vertices[4];   // these can also be s32 indices? which are then replaced by `find_thisface_verts`
     /* 0x44 */ s32 unk44; // material? initialize to -1
-    /* 0x48 */ struct ObjMaterial* unk48; // initialize to NULL
+    /* 0x48 */ struct ObjMaterial * unk48; // initialize to NULL
 }; /* sizeof = 0x4C */
 
 struct ObjCamera {
@@ -402,12 +407,12 @@ struct ObjView {
     /* 0x00 */ struct ObjHeader header;
     /* 0x14 */ u8  pad14[0x8];
     /* 0x1C */ s32 unk1C;
-    /* 0x20 */ s32 unk20;
+    /* 0x20 */ s32 unk20; // view id? view count? parents/antecendents?
     /* 0x24 */ struct ObjCamera* unk24;
-    /* 0x28 */ struct ObjGroup* unk28;     // camera group?
-    /* 0x2C */ struct ObjGroup* unk2C;
+    /* 0x28 */ struct ObjGroup* unk28;    // camera group?
+    /* 0x2C */ struct ObjGroup* unk2C;    // Light group?
     /* 0x30 */ struct ObjJoint* unk30;    // seems to be an ObjJoint?
-    /* 0x34 */ s32 unk34;   // state flags?
+    /* 0x34 */ s32 unk34;   // state flags? 0x0001 = zbuf?
     /* 0x38 */ s32 unk38;
     /* 0x3C */ struct MyVec3f unk3C;    // position vec? d_set_world_pos
     /* 0x48 */ f32 unk48;
@@ -415,12 +420,14 @@ struct ObjView {
     /* 0x50 */ u8  pad50[0x4];
     /* 0x54 */ struct MyVec3f unk54;    // scale?
     /* 0x60 */ struct MyVec3f unk60;
-    /* 0x6C */ char *unk6C;
+    /* 0x6C */ const char *unk6C; // name?
     /* 0x70 */ s32 unk70;   // gd_startdisplist id?
-    /* 0x74 */ u8  pad74[4];
+    /* 0x74 */ s32 unk74;
     /* 0x78 */ s32 unk78;
-    /* 0x7C */ struct MyVec3f unk7C;
-    /* 0x88 */ u8  pad88[0x10];
+    /* 0x7C */ struct GdColour unk7C; // color???
+    /* 0x88 */ struct ObjView *unk88; // parent?
+    /* 0x8C */ void *unk8C; // z buffer pointer?
+    /* 0x90 */ void *unk90[2]; // frame buffer pointers? "colour buf"?
     /* 0x98 */ void (*unk98)(struct ObjView *);   // Never non-null in game...?
     /* 0x9C */ s32 unk9C;
 }; /* sizeof = 0xA0 */
@@ -431,9 +438,13 @@ struct ObjLabel {
     /* 0x20 */ char *fmtstr;
     /* 0x24 */ s32 unk24;
     /* 0x28 */ struct ObjValPtrs *valptr;
-    /* 0x2C */ void (*valfn)(union ObjVarVal *, union ObjVarVal);
+    /* 0x2C */ union ObjVarVal * (*valfn)(union ObjVarVal *, union ObjVarVal);
     /* 0x30 */ s32 unk30;       // state or type?
 }; /* sizeof = 0x34 */
+
+/* unk30 types:
+ * 3 = float? float pointer?
+**/
 
 struct ObjAnimator {
     /* 0x00 */ struct ObjHeader header;
@@ -500,17 +511,17 @@ struct ObjLight {
     /* 0x20 */ char name[8];
     /* 0x28 */ u8  pad28[4];
     /* 0x2C */ s32 unk2C;       // "dflags"?
-    /* 0x30 */ f32 unk30;
+    /* 0x30 */ f32 unk30;       // color (5C) = Kd (50) * 30
     /* 0x34 */ u8  pad34[4];
     /* 0x38 */ f32 unk38;
     /* 0x3C */ s32 unk3C;
     /* 0x40 */ s32 unk40;
     /* 0x44 */ u8  pad3[0x8];
     /* 0x4C */ s32 unk4C;
-    /* 0x50 */ struct MyVec3f unk50;    // 0x50 to 0x90 -> Matrix?  diffuse color (Kd)?
-    /* 0x5C */ struct MyVec3f unk5C;
+    /* 0x50 */ struct GdColour unk50;  // diffuse color (Kd)
+    /* 0x5C */ struct GdColour unk5C;  // color?
     /* 0x68 */ struct MyVec3f unk68;
-    /* 0x74 */ struct MyVec3f unk74;    // world position?
+    /* 0x74 */ struct MyVec3f unk74;  // world position?
     /* 0x80 */ struct MyVec3f unk80;
     /* 0x8C */ struct MyVec3f unk8C;
     /* 0x98 */ s32 unk98;
