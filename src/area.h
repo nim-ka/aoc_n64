@@ -176,24 +176,27 @@ struct Area
     /*0x38*/ u16 unk38;
 };
 
+struct Struct8033A740 {
+    u8 unk0;
+    u8 unk1;
+    u8 unk2;
+    u8 unk3;
+    u8 unk4; // r
+    u8 unk5; // g
+    u8 unk6; // b?
+    s16 unk8;
+    s16 unkA;
+    s16 unkC;
+    s16 unkE;
+    s16 unk10;
+    s16 unk12;
+    s16 unk14;
+};
+
 extern struct SpawnInfo gPlayerSpawnInfos[];
 extern struct GraphNode *D_8033A160[];
 extern struct Area gAreaData[];
-extern u8 D_8033A740;
-extern u8 D_8033A740;
-extern u8 D_8033A741;
-extern u8 D_8033A742;
-extern u8 D_8033A743;
-extern s8 D_8033A744;
-extern s8 D_8033A745;
-extern s8 D_8033A746;
-extern s16 D_8033A748;
-extern s16 D_8033A74A;
-extern s16 D_8033A74C;
-extern s16 D_8033A74E;
-extern s16 D_8033A750;
-extern s16 D_8033A752;
-extern s16 D_8033A754;
+extern struct Struct8033A740 D_8033A740;
 extern s16 gCurrCourseNum;
 extern s16 D_8033A758;
 extern s16 gCurrAreaIndex;

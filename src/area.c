@@ -22,21 +22,9 @@
 struct SpawnInfo gPlayerSpawnInfos[1];
 struct GraphNode *D_8033A160[0x100];
 struct Area gAreaData[8];
-u8 D_8033A740;
-u8 D_8033A740;
-u8 D_8033A741;
-u8 D_8033A742;
-u8 D_8033A743;
-s8 D_8033A744;
-s8 D_8033A745;
-s8 D_8033A746;
-s16 D_8033A748;
-s16 D_8033A74A;
-s16 D_8033A74C;
-s16 D_8033A74E;
-s16 D_8033A750;
-s16 D_8033A752;
-s16 D_8033A754;
+
+struct Struct8033A740 D_8033A740;
+
 s16 gCurrCourseNum;
 s16 D_8033A758;
 s16 gCurrAreaIndex;
@@ -206,8 +194,8 @@ void clear_areas(void)
     s32 i;
 
     gCurrentArea = NULL;
-    D_8033A740 = 0;
-    D_8033A743 = 0;
+    D_8033A740.unk0 = 0;
+    D_8033A740.unk3 = 0;
     gMarioSpawnInfo->areaIndex = -1;
     
     for (i = 0; i < 8; i++)
@@ -242,7 +230,7 @@ void func_8027A7C4(void)
     {
         func_8037C360(gCurrentArea->unk04, 2);
         gCurrentArea = NULL;
-        D_8033A740 = 0;
+        D_8033A740.unk0 = 0;
     }
 
     for (i = 0; i < 8; i++)
@@ -288,7 +276,7 @@ void func_8027A998(void)
 
         gCurrentArea->unk01 = 0;
         gCurrentArea = NULL;
-        D_8033A740 = 0;
+        D_8033A740.unk0 = 0;
     }
 }
 
@@ -343,10 +331,10 @@ void area_update_objects(void)
 
 void func_8027ABF0(s16 a, s16 b, u8 c, u8 d, u8 e)
 {
-    D_8033A740 = 1;
-    D_8033A741 = a;
-    D_8033A742 = b;
-    D_8033A743 = 0;
+    D_8033A740.unk0 = 1;
+    D_8033A740.unk1 = a;
+    D_8033A740.unk2 = b;
+    D_8033A740.unk3 = 0;
 
     if (a & 1)
     {
@@ -359,36 +347,36 @@ void func_8027ABF0(s16 a, s16 b, u8 c, u8 d, u8 e)
 
     if (a < 8)
     {
-        D_8033A744 = c;
-        D_8033A745 = d;
-        D_8033A746 = e;
+        D_8033A740.unk4 = c;
+        D_8033A740.unk5 = d;
+        D_8033A740.unk6 = e;
     }
     else
     {
-        D_8033A744 = c;
-        D_8033A745 = d;
-        D_8033A746 = e;
-        D_8033A74C = 160;
-        D_8033A74E = 120;
-        D_8033A750 = 160;
-        D_8033A752 = 120;
-        D_8033A754 = 0;
+        D_8033A740.unk4 = c;
+        D_8033A740.unk5 = d;
+        D_8033A740.unk6 = e;
+        D_8033A740.unkC = 160;
+        D_8033A740.unkE = 120;
+        D_8033A740.unk10 = 160;
+        D_8033A740.unk12 = 120;
+        D_8033A740.unk14 = 0;
         
         if (a & 1)
         {
-            D_8033A748 = 320;
+            D_8033A740.unk8 = 320;
             if (a >= 15)
-                D_8033A74A = 16;
+                D_8033A740.unkA = 16;
             else
-                D_8033A74A = 0;
+                D_8033A740.unkA = 0;
         }
         else
         {
             if (a >= 14)
-                D_8033A748 = 16;
+                D_8033A740.unk8 = 16;
             else
-                D_8033A748 = 0;
-            D_8033A74A = 320;
+                D_8033A740.unk8 = 0;
+            D_8033A740.unkA = 320;
         }
     }
 }
@@ -401,7 +389,7 @@ void func_8027ADAC(s16 a, s16 b, u8 c, u8 d, u8 e, s16 f)
 
 void render_game(void)
 {
-    if (gCurrentArea != NULL && D_8033A743 == 0)
+    if (gCurrentArea != NULL && D_8033A740.unk3 == 0)
     {
         func_8027DB80(gCurrentArea->unk04, D_8032CE74, D_8032CE78, D_8032CE80);
         
@@ -425,15 +413,15 @@ void render_game(void)
         else
             gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 0, 8, 320, 232);
         
-        if (D_8033A740 != 0)
+        if (D_8033A740.unk0 != 0)
         {
             if (D_8032CE7C == 0)
             {
-                D_8033A740 = !func_802CC108(0, D_8033A741, D_8033A742, (u8 *)&D_8033A740 + 4);
-                if (D_8033A740 == 0)
+                D_8033A740.unk0 = !func_802CC108(0, D_8033A740.unk1, D_8033A740.unk2, &D_8033A740.unk4);
+                if (D_8033A740.unk0 == 0)
                 {
-                    if (D_8033A741 & 1)
-                        D_8033A743 = 1;
+                    if (D_8033A740.unk1 & 1)
+                        D_8033A740.unk3 = 1;
                     else
                         func_8027A28C(0, 0, 0);
                 }

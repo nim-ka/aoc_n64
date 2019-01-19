@@ -186,7 +186,7 @@ static u32 pressed_paused(void)
     u32 val4 = get_dialog_id() >= 0;
     u32 intangible = (gMarioState->action & ACT_FLAG_INTANGIBLE) != 0;
 
-    if (!intangible && !val4 && !D_8033A740 && sDelayedWarpOp == WARP_OP_NONE &&
+    if (!intangible && !val4 && !D_8033A740.unk0 && sDelayedWarpOp == WARP_OP_NONE &&
         (gPlayer1Controller->buttonPressed & START_BUTTON))
     {
         return TRUE;
@@ -961,7 +961,7 @@ static s32 play_mode_normal(void)
                 gMarioState,
                 gCurrLevelNum == LEVEL_PSS ? WARP_OP_DEMO_END : WARP_OP_DEMO_NEXT);
         }
-        else if (!D_8033A740 && sDelayedWarpOp == WARP_OP_NONE &&
+        else if (!D_8033A740.unk0 && sDelayedWarpOp == WARP_OP_NONE &&
             (gPlayer1Controller->buttonPressed & START_BUTTON))
         {
             level_trigger_warp(gMarioState, WARP_OP_DEMO_NEXT);
