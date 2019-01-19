@@ -86,12 +86,12 @@ glabel level_castle_grounds_entry
     load_mio0 /*seg*/ 0x07, /*romStart*/ _level_castle_grounds_segment_7SegmentRomStart, /*romEnd*/ _level_castle_grounds_segment_7SegmentRomEnd
     load_mio0 /*seg*/ 0x0A, /*romStart*/ _water_skybox_mio0SegmentRomStart, /*romEnd*/ _water_skybox_mio0SegmentRomEnd
     cmd1A     /*seg*/ 0x09, /*romStart*/ _castle_grounds_textures_mio0SegmentRomStart, /*romEnd*/ _castle_grounds_textures_mio0SegmentRomEnd
-    load_mio0 /*seg*/ 0x05, /*romStart*/ _peach_toadstool_yoshi_birds_mio0SegmentRomStart, /*romEnd*/ _peach_toadstool_yoshi_birds_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0C, /*romStart*/ _peach_toadstool_yoshi_birds_geoSegmentRomStart,  /*romEnd*/ _peach_toadstool_yoshi_birds_geoSegmentRomEnd
-    load_mio0 /*seg*/ 0x06, /*romStart*/ _lakitu_toad_mips_boo_mio0SegmentRomStart, /*romEnd*/ _lakitu_toad_mips_boo_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0D, /*romStart*/ _lakitu_toad_mips_boo_geoSegmentRomStart,  /*romEnd*/ _lakitu_toad_mips_boo_geoSegmentRomEnd
-    load_mio0 /*seg*/ 0x08, /*romStart*/ _amp_chuckya_flyguy_goomba_boxes_mio0SegmentRomStart, /*romEnd*/ _amp_chuckya_flyguy_goomba_boxes_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0F, /*romStart*/ _amp_chuckya_flyguy_goomba_boxes_geoSegmentRomStart,  /*romEnd*/ _amp_chuckya_flyguy_goomba_boxes_geoSegmentRomEnd
+    load_mio0 /*seg*/ 0x05, /*romStart*/ _group10_mio0SegmentRomStart, /*romEnd*/ _group10_mio0SegmentRomEnd
+    load_raw  /*seg*/ 0x0C, /*romStart*/ _group10_geoSegmentRomStart,  /*romEnd*/ _group10_geoSegmentRomEnd
+    load_mio0 /*seg*/ 0x06, /*romStart*/ _group15_mio0SegmentRomStart, /*romEnd*/ _group15_mio0SegmentRomEnd
+    load_raw  /*seg*/ 0x0D, /*romStart*/ _group15_geoSegmentRomStart,  /*romEnd*/ _group15_geoSegmentRomEnd
+    load_mio0 /*seg*/ 0x08, /*romStart*/ _common0_mio0SegmentRomStart, /*romEnd*/ _common0_mio0SegmentRomEnd
+    load_raw  /*seg*/ 0x0F, /*romStart*/ _common0_geoSegmentRomStart,  /*romEnd*/ _common0_geoSegmentRomEnd
     alloc_level_pool
     mario /*unk3*/ 0x01, /*behParam*/ 0x00000001, /*beh*/ beh_mario
     jump_link /*target*/ script_func_global_1

@@ -213,8 +213,8 @@ glabel level_castle_entry
     init_level
     load_mio0 /*seg*/ 0x07, /*romStart*/ _level_castle_segment_7SegmentRomStart, /*romEnd*/ _level_castle_segment_7SegmentRomEnd
     cmd1A     /*seg*/ 0x09, /*romStart*/ _inside_castle_textures_mio0SegmentRomStart, /*romEnd*/ _inside_castle_textures_mio0SegmentRomEnd
-    load_mio0 /*seg*/ 0x06, /*romStart*/ _lakitu_toad_mips_boo_mio0SegmentRomStart, /*romEnd*/ _lakitu_toad_mips_boo_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0D, /*romStart*/ _lakitu_toad_mips_boo_geoSegmentRomStart,  /*romEnd*/ _lakitu_toad_mips_boo_geoSegmentRomEnd
+    load_mio0 /*seg*/ 0x06, /*romStart*/ _group15_mio0SegmentRomStart, /*romEnd*/ _group15_mio0SegmentRomEnd
+    load_raw  /*seg*/ 0x0D, /*romStart*/ _group15_geoSegmentRomStart,  /*romEnd*/ _group15_geoSegmentRomEnd
     alloc_level_pool
     mario /*unk3*/ 0x01, /*behParam*/ 0x00000001, /*beh*/ beh_mario
     jump_link /*target*/ script_func_global_16

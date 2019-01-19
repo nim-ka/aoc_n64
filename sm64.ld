@@ -50,7 +50,7 @@ __expansionRamStart = 0x80400000;
    MIO0_SEG(name, segAddr) \
    BEGIN_SEG(name##_geo, geoAddr) \
    { \
-      BUILD_DIR/geo/name.o(.geo); \
+      BUILD_DIR/actors/name##_geo.o(.geo); \
       . = ALIGN(0x10); \
    } \
    END_SEG(name##_geo)
@@ -323,30 +323,31 @@ SECTIONS
    /* load MIO0 and level data */
    MIO0_SEG(segment2, 0x02000000)
 
-   STANDARD_OBJECTS(mario_water_sparkles, 0x04000000, 0x17000000)
+   /* mario actor group */
+   STANDARD_OBJECTS(group0,  0x04000000, 0x17000000)
 
-   STANDARD_OBJECTS(hoot_thwomp_bullet_heave, 0x05000000, 0x0C000000)
-   STANDARD_OBJECTS(bully_blargg, 0x05000000, 0x0C000000)
-   STANDARD_OBJECTS(bobombs_bubble, 0x05000000, 0x0C000000)
-   STANDARD_OBJECTS(sea_creatures, 0x05000000, 0x0C000000)
-   STANDARD_OBJECTS(klepto_eyerok_pokey, 0x05000000, 0x0C000000)
-   STANDARD_OBJECTS(mole_ukiki_fwoosh, 0x05000000, 0x0C000000)
-   STANDARD_OBJECTS(spindrift_penguin_snowman, 0x05000000, 0x0C000000)
-   STANDARD_OBJECTS(capswitch_springboard, 0x05000000, 0x0C000000)
-   STANDARD_OBJECTS(boo_bookend_chair_piano, 0x05000000, 0x0C000000)
-   STANDARD_OBJECTS(peach_toadstool_yoshi_birds, 0x05000000, 0x0C000000)
-   STANDARD_OBJECTS(bubba_wiggler_lakitu, 0x05000000, 0x0C000000)
+   /* load the other actor groups */
+   STANDARD_OBJECTS(group1,  0x05000000, 0x0C000000)
+   STANDARD_OBJECTS(group2,  0x05000000, 0x0C000000)
+   STANDARD_OBJECTS(group3,  0x05000000, 0x0C000000)
+   STANDARD_OBJECTS(group4,  0x05000000, 0x0C000000)
+   STANDARD_OBJECTS(group5,  0x05000000, 0x0C000000)
+   STANDARD_OBJECTS(group6,  0x05000000, 0x0C000000)
+   STANDARD_OBJECTS(group7,  0x05000000, 0x0C000000)
+   STANDARD_OBJECTS(group8,  0x05000000, 0x0C000000)
+   STANDARD_OBJECTS(group9,  0x05000000, 0x0C000000)
+   STANDARD_OBJECTS(group10, 0x05000000, 0x0C000000)
+   STANDARD_OBJECTS(group11, 0x05000000, 0x0C000000)
+   STANDARD_OBJECTS(group12, 0x06000000, 0x0D000000)
+   STANDARD_OBJECTS(group13, 0x06000000, 0x0D000000)
+   STANDARD_OBJECTS(group14, 0x06000000, 0x0D000000)
+   STANDARD_OBJECTS(group15, 0x06000000, 0x0D000000)
+   STANDARD_OBJECTS(group16, 0x06000000, 0x0D000000)
+   STANDARD_OBJECTS(group17, 0x06000000, 0x0D000000)
 
-   STANDARD_OBJECTS(bowser_flames_bomb, 0x06000000, 0x0D000000)
-   STANDARD_OBJECTS(skeeter_fish_treasurechest, 0x06000000, 0x0D000000)
-   STANDARD_OBJECTS(koopa_log_piranha_whomp_chomp, 0x06000000, 0x0D000000)
-   STANDARD_OBJECTS(lakitu_toad_mips_boo, 0x06000000, 0x0D000000)
-   STANDARD_OBJECTS(chillychief_moneybag, 0x06000000, 0x0D000000)
-   STANDARD_OBJECTS(mr_i_swoop_snufit_dorrie_scuttlebug, 0x06000000, 0x0D000000)
-
-   STANDARD_OBJECTS(amp_chuckya_flyguy_goomba_boxes, 0x08000000, 0x0F000000)
-
-   STANDARD_OBJECTS(coins_pipe_doors_maps_trees, 0x03000000, 0x16000000)
+   /* load the common actor groups */
+   STANDARD_OBJECTS(common0, 0x08000000, 0x0F000000)
+   STANDARD_OBJECTS(common1, 0x03000000, 0x16000000)
 
    /* use segmented addressing for behaviors */
    BEGIN_SEG(behavior, 0x13000000)
