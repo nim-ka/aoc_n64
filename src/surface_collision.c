@@ -11,9 +11,15 @@
 #include "object_list_processor.h"
 #include "room.h"
 
-static f32 D_8038BE30[4];
-static f32 D_8038BE40, D_8038BE44, D_8038BE48;
-static f32 D_8038BE4C;
+struct Struct8038BE30 {
+    f32 unk0[4];
+    f32 unk10;
+    f32 unk14;
+    f32 unk18;
+    f32 unk1C;
+};
+
+struct Struct8038BE30 D_8038BE30;
 
 static u8 unused8038BE50[0x40];
 
@@ -296,14 +302,12 @@ f32 func_803814B8(f32 xPos, f32 yPos, f32 zPos, f32 **sp2C)
 
     if (floor != NULL)
     {
-        // TODO: These are definitely part of D_8038BE30; I just can't get it
-        // to compile correctly if I have D_8038BE30 contain 8 floats.
-        D_8038BE40 = floor->normal[0];
-        D_8038BE44 = floor->normal[1];
-        D_8038BE48 = floor->normal[2];
-        D_8038BE4C = floor->originOffset;
+        D_8038BE30.unk10 = floor->normal[0];
+        D_8038BE30.unk14 = floor->normal[1];
+        D_8038BE30.unk18 = floor->normal[2];
+        D_8038BE30.unk1C = floor->originOffset;
 
-        *sp2C = D_8038BE30;
+        *sp2C = D_8038BE30.unk0;
     }
     return floorHeight;
 }
