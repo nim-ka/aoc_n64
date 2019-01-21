@@ -37,12 +37,12 @@ __expansionRamStart = 0x80400000;
 #define STANDARD_LEVEL(name) \
    BEGIN_SEG(name##_segment_7, 0x07000000) \
    { \
-      BUILD_DIR/levels/name.o(.seg07); \
+      BUILD_DIR/bin/name/header.o(.seg07); \
    } \
    END_SEG(name##_segment_7) \
    BEGIN_SEG(name, 0x0E000000) \
    { \
-      BUILD_DIR/levels/name.o(.level); \
+      BUILD_DIR/bin/name/header.o(.level); \
    } \
    END_SEG(name)
 
@@ -314,11 +314,11 @@ SECTIONS
 
    ASSERT((rdramEnd <= 0x80400000), "Error: RDRAM expanded into Expansion RAM, despite Expansion RAM not being defined.")
 
-   BEGIN_SEG(level_main_entry, 0x10000000)
+   BEGIN_SEG(entry, 0x10000000)
    {
-      BUILD_DIR/levels/level_main_entry.o(.level);
+      BUILD_DIR/levels/entry.o(.level);
    }
-   END_SEG(level_main_entry)
+   END_SEG(entry)
 
    /* load MIO0 and level data */
    MIO0_SEG(segment2, 0x02000000)
@@ -445,16 +445,17 @@ SECTIONS
    END_NOLOAD(stack)
 
    /* 0x268020 0x268020-0 [0] */
-   BEGIN_SEG(level_intro, 0x14000000)
+   BEGIN_SEG(intro, 0x14000000)
    {
-      BUILD_DIR/levels/level_intro.o(.level);
+      BUILD_DIR/bin/intro/header.o(.level);
    }
-   END_SEG(level_intro)
-   BEGIN_SEG(level_intro_segment_7, 0x07000000)
+   END_SEG(intro)
+   BEGIN_SEG(intro_segment_7, 0x07000000)
    {
-      BUILD_DIR/levels/level_intro.o(.seg07);
+      BUILD_DIR/bin/intro/header.o(.seg07);
    }
-   END_SEG(level_intro_segment_7)
+   END_SEG(intro_segment_7)
+
    MIO0_SEG(debug_level_select, 0x07000000)
    MIO0_SEG(title_screen_bg, 0x0A000000)
 
@@ -481,22 +482,22 @@ SECTIONS
 
    gMainLevels = __romPos;
 
-   BEGIN_SEG(level_main_menu, 0x14000000)
+   BEGIN_SEG(menu, 0x14000000)
    {
-      BUILD_DIR/levels/level_main_menu.o(.level);
+      BUILD_DIR/bin/menu/header.o(.level);
    }
-   END_SEG(level_main_menu)
-   BEGIN_SEG(level_main_menu_segment_7, 0x07000000)
+   END_SEG(menu)
+   BEGIN_SEG(menu_segment_7, 0x07000000)
    {
-      BUILD_DIR/levels/level_main_menu.o(.seg07);
+      BUILD_DIR/bin/menu/header.o(.seg07);
    }
-   END_SEG(level_main_menu_segment_7)
+   END_SEG(menu_segment_7)
 
-   BEGIN_SEG(level_main_scripts, 0x15000000)
+   BEGIN_SEG(scripts, 0x15000000)
    {
-      BUILD_DIR/levels/level_main_scripts.o(.level);
+      BUILD_DIR/levels/scripts.o(.level);
    }
-   END_SEG(level_main_scripts)
+   END_SEG(scripts)
 
    MIO0_SEG(water_skybox, 0x0A000000)
    MIO0_SEG(ccm_skybox, 0x0A000000)
@@ -523,37 +524,37 @@ SECTIONS
    MIO0_SEG(inside_castle_textures, 0x09000000)
    MIO0_SEG(flower_bubbles_textures, 0x0B000000)
 
-   STANDARD_LEVEL(level_bbh)
-   STANDARD_LEVEL(level_ccm)
-   STANDARD_LEVEL(level_castle)
-   STANDARD_LEVEL(level_hmc)
-   STANDARD_LEVEL(level_ssl)
-   STANDARD_LEVEL(level_bob)
-   STANDARD_LEVEL(level_sl)
-   STANDARD_LEVEL(level_wdw)
-   STANDARD_LEVEL(level_jrb)
-   STANDARD_LEVEL(level_thi)
-   STANDARD_LEVEL(level_ttc)
-   STANDARD_LEVEL(level_rr)
-   STANDARD_LEVEL(level_castle_grounds)
-   STANDARD_LEVEL(level_bitdw)
-   STANDARD_LEVEL(level_vcutm)
-   STANDARD_LEVEL(level_bitfs)
-   STANDARD_LEVEL(level_sa)
-   STANDARD_LEVEL(level_bits)
-   STANDARD_LEVEL(level_lll)
-   STANDARD_LEVEL(level_ddd)
-   STANDARD_LEVEL(level_wf)
-   STANDARD_LEVEL(level_ending)
-   STANDARD_LEVEL(level_castle_courtyard)
-   STANDARD_LEVEL(level_pss)
-   STANDARD_LEVEL(level_cotmc)
-   STANDARD_LEVEL(level_totwc)
-   STANDARD_LEVEL(level_bowser_1)
-   STANDARD_LEVEL(level_wmotr)
-   STANDARD_LEVEL(level_bowser_2)
-   STANDARD_LEVEL(level_bowser_3)
-   STANDARD_LEVEL(level_ttm)
+   STANDARD_LEVEL(bbh)
+   STANDARD_LEVEL(ccm)
+   STANDARD_LEVEL(castle_inside)
+   STANDARD_LEVEL(hmc)
+   STANDARD_LEVEL(ssl)
+   STANDARD_LEVEL(bob)
+   STANDARD_LEVEL(sl)
+   STANDARD_LEVEL(wdw)
+   STANDARD_LEVEL(jrb)
+   STANDARD_LEVEL(thi)
+   STANDARD_LEVEL(ttc)
+   STANDARD_LEVEL(rr)
+   STANDARD_LEVEL(castle_grounds)
+   STANDARD_LEVEL(bitdw)
+   STANDARD_LEVEL(vcutm)
+   STANDARD_LEVEL(bitfs)
+   STANDARD_LEVEL(sa)
+   STANDARD_LEVEL(bits)
+   STANDARD_LEVEL(lll)
+   STANDARD_LEVEL(ddd)
+   STANDARD_LEVEL(wf)
+   STANDARD_LEVEL(ending)
+   STANDARD_LEVEL(castle_courtyard)
+   STANDARD_LEVEL(pss)
+   STANDARD_LEVEL(cotmc)
+   STANDARD_LEVEL(totwc)
+   STANDARD_LEVEL(bowser_1)
+   STANDARD_LEVEL(wmotr)
+   STANDARD_LEVEL(bowser_2)
+   STANDARD_LEVEL(bowser_3)
+   STANDARD_LEVEL(ttm)
 
    /* 4E9FA0-? [?] */
    BEGIN_SEG(assets, __romPos)

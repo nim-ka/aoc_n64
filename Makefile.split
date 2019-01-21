@@ -23,12 +23,14 @@ ACTOR_GROUPS := \
     group16 \
     group17 \
     common0 \
-    common1 \
+    common1
 
-MIO0_FILES := $(addprefix $(MIO0_DIR)/,$(addsuffix .mio0,$(BINARY_SEGMENTS) $(SEGMENTS) $(ACTOR_GROUPS)))
+LEVEL_FILES := $(addsuffix level,$(LEVEL_DIRS))
+MIO0_FILES := $(addprefix $(MIO0_DIR)/,$(addsuffix .mio0,$(BINARY_SEGMENTS) $(SEGMENTS) $(ACTOR_GROUPS) $(LEVEL_FILES)))
 MIO0_OBJ_FILES := $(MIO0_FILES:.mio0=.mio0.o)
 
 ACTOR_ELF_FILES := $(addprefix $(BUILD_DIR)/bin/,$(addsuffix .elf,$(ACTOR_GROUPS)))
+LEVEL_ELF_FILES := $(addprefix $(BUILD_DIR)/bin/,$(addsuffix .elf,$(LEVEL_FILES)))
 
 # Actor Directories
 KOOPA_DIRS       := koopa_flag poundable_pole koopa piranha_plant whomp chain_ball chain_chomp
@@ -75,52 +77,58 @@ SKEETER_FISH_FILES           := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(SKEETE
 SPINDRIFT_PENGUIN_FILES      := $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(SPINDRIFT_DIRS)),$(basename $(wildcard $(dir)/*.png)))
 
 # assumes naming convention "texture.<encoding>.png" generates "texture.<encoding>"
+
+# Level Files
+BBH_SEG7_FILES               := $(basename $(notdir $(wildcard levels/bbh/*.png)))
+CCM_SEG7_FILES               := $(basename $(notdir $(wildcard levels/ccm/*.png)))
+INSIDE_CASTLE_SEG7_FILES     := $(basename $(notdir $(wildcard levels/castle_inside/*.png)))
+HMC_SEG7_FILES               := $(basename $(notdir $(wildcard levels/hmc/*.png)))
+SSL_SEG7_FILES               := $(basename $(notdir $(wildcard levels/ssl/*.png)))
+BOB_SEG7_FILES               := $(basename $(notdir $(wildcard levels/bob/*.png)))
+SL_SEG7_FILES                := $(basename $(notdir $(wildcard levels/sl/*.png)))
+WDW_SEG7_FILES               := $(basename $(notdir $(wildcard levels/wdw/*.png)))
+JRB_SEG7_FILES               := $(basename $(notdir $(wildcard levels/jrb/*.png)))
+THI_SEG7_FILES               := $(basename $(notdir $(wildcard levels/thi/*.png)))
+TTC_SEG7_FILES               := $(basename $(notdir $(wildcard levels/ttc/*.png)))
+RR_SEG7_FILES                := $(basename $(notdir $(wildcard levels/rr/*.png)))
+CASTLE_GROUNDS_SEG7_FILES    := $(basename $(notdir $(wildcard levels/castle_grounds/*.png)))
+BITDW_SEG7_FILES             := $(basename $(notdir $(wildcard levels/bitdw/*.png)))
+VCUTM_SEG7_FILES             := $(basename $(notdir $(wildcard levels/vcutm/*.png)))
+BITFS_SEG7_FILES             := $(basename $(notdir $(wildcard levels/bitfs/*.png)))
+# sa does not have any textures, but if you add some, remember to add the dependency here
+BITS_SEG7_FILES              := $(basename $(notdir $(wildcard levels/bits/*.png)))
+LLL_SEG7_FILES               := $(basename $(notdir $(wildcard levels/lll/*.png)))
+DDD_SEG7_FILES               := $(basename $(notdir $(wildcard levels/ddd/*.png)))
+WF_SEG7_FILES                := $(basename $(notdir $(wildcard levels/wf/*.png)))
+CAKE_END_FILES               := $(basename $(notdir $(wildcard levels/ending/*.png)))
+# castle_courtyard does not have any textures, but if you add some, remember to add the dependency here
+PSS_SEG7_FILES               := $(basename $(notdir $(wildcard levels/pss/*.png)))
+COTMC_SEG7_FILES             := $(basename $(notdir $(wildcard levels/cotmc/*.png)))
+TOTWC_SEG7_FILES             := $(basename $(notdir $(wildcard levels/totwc/*.png)))
+BOWSER_1_SEG7_FILES          := $(basename $(notdir $(wildcard levels/bowser_1/*.png)))
+WMOTR_SEG7_FILES             := $(basename $(notdir $(wildcard levels/wmotr/*.png)))
+BOWSER_2_SEG7_FILES          := $(basename $(notdir $(wildcard levels/bowser_2/*.png)))
+BOWSER_3_SEG7_FILES          := $(basename $(notdir $(wildcard levels/bowser_3/*.png)))
+TTM_SEG7_FILES               := $(basename $(notdir $(wildcard levels/ttm/*.png)))
+INTRO_SEG7_FILES             := $(basename $(notdir $(wildcard levels/intro/*.png)))
+MAIN_MENU_SEG7_FILES         := $(basename $(notdir $(wildcard levels/menu/*.png)))
+
+# Others
 SEGMENT2_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/segment2/*.png)))
-CAKE_END_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/cake_end/*.png)))
 TITLE_SCREEN_BG_FILES        := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/title_screen_bg/*.png)))
-INTRO_SEG7_FILES             := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/intro_seg7/*.png)))
-MAIN_MENU_SEG7_FILES         := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/main_menu_seg7/*.png)))
-BITDW_SEG7_FILES             := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bitdw_seg7/*.png)))
-BOWSER_1_SEG7_FILES          := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bowser_1_seg7/*.png)))
-BOWSER_2_SEG7_FILES          := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bowser_2_seg7/*.png)))
-BOWSER_3_SEG7_FILES          := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bowser_3_seg7/*.png)))
-BOB_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bob_seg7/*.png)))
-BBH_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bbh_seg7/*.png)))
 BBH_TEXTURES_FILES           := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bbh_textures/*.png)))
-BITFS_SEG7_FILES             := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bitfs_seg7/*.png)))
-BITS_SEG7_FILES              := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bits_seg7/*.png)))
 BOB_TEXTURES_FILES           := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bob_textures/*.png)))
-CASTLE_GROUNDS_SEG7_FILES    := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/castle_grounds_seg7/*.png)))
 CASTLE_GROUNDS_TEXTURES_FILES := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/castle_grounds_textures/*.png)))
-CCM_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/ccm_seg7/*.png)))
 CCM_TEXTURES_FILES           := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/ccm_textures/*.png)))
-DDD_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/ddd_seg7/*.png)))
-COTMC_SEG7_FILES             := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/cotmc_seg7/*.png)))
 FLOWER_TEXTURES_FILES        := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/flower_bubbles_textures/*.png)))
-HMC_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/hmc_seg7/*.png)))
 HMC_TEXTURES_FILES           := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/hmc_textures/*.png)))
-INSIDE_CASTLE_SEG7_FILES     := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/inside_castle_seg7/*.png)))
 INSIDE_CASTLE_TEXTURES_FILES := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/inside_castle_textures/*.png)))
-JRB_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/jrb_seg7/*.png)))
 JRB_TEXTURES_FILES           := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/jrb_textures/*.png)))
-LLL_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/lll_seg7/*.png)))
 LLL_TEXTURES_FILES           := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/lll_textures/*.png)))
-PSS_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/pss_seg7/*.png)))
-RR_SEG7_FILES                := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/rr_seg7/*.png)))
 RR_TEXTURES_FILES            := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/rr_textures/*.png)))
-SL_SEG7_FILES                := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/sl_seg7/*.png)))
-SSL_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/ssl_seg7/*.png)))
-THI_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/thi_seg7/*.png)))
-TTC_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/ttc_seg7/*.png)))
 TTC_TEXTURES_FILES           := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/ttc_textures/*.png)))
-TOTWC_SEG7_FILES             := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/totwc_seg7/*.png)))
-TTM_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/ttm_seg7/*.png)))
 TTM_TEXTURES_FILES           := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/ttm_textures/*.png)))
-VCUTM_SEG7_FILES             := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/vcutm_seg7/*.png)))
-WDW_SEG7_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/wdw_seg7/*.png)))
-WF_SEG7_FILES                := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/wf_seg7/*.png)))
 WF_TEXTURES_FILES            := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/wf_textures/*.png)))
-WMOTR_SEG7_FILES             := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/wmotr_seg7/*.png)))
 
 # Skybox Files
 BBH_SKYBOX_FILES             := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bbh_skybox/*.png)))
@@ -156,53 +164,57 @@ $(BUILD_DIR)/bin/group17.o: $(addprefix $(BUILD_DIR)/,$(MR_I_SWOOP_FILES)) $(for
 $(BUILD_DIR)/bin/common0.o: $(addprefix $(BUILD_DIR)/,$(AMP_CHUCKYA_FILES)) $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(AMP_DIRS)),$(wildcard $(dir)/*.s))
 $(BUILD_DIR)/bin/common1.o: $(addprefix $(BUILD_DIR)/,$(COINS_PIPE_FILES)) $(foreach dir,$(addprefix $(ACTOR_DIR)/,$(COINS_DIRS)),$(wildcard $(dir)/*.s))
 
+# Level Files
+$(BUILD_DIR)/bin/bbh/level.o: $(addprefix $(BUILD_DIR)/levels/bbh/,$(BBH_SEG7_FILES))
+$(BUILD_DIR)/bin/ccm/level.o: $(addprefix $(BUILD_DIR)/levels/ccm/,$(CCM_SEG7_FILES))
+$(BUILD_DIR)/bin/castle_inside/level.o: $(addprefix $(BUILD_DIR)/levels/castle_inside/,$(INSIDE_CASTLE_SEG7_FILES))
+$(BUILD_DIR)/bin/hmc/level.o: $(addprefix $(BUILD_DIR)/levels/hmc/,$(HMC_SEG7_FILES))
+$(BUILD_DIR)/bin/ssl/level.o: $(addprefix $(BUILD_DIR)/levels/ssl/,$(SSL_SEG7_FILES))
+$(BUILD_DIR)/bin/bob/level.o: $(addprefix $(BUILD_DIR)/levels/bob/,$(BOB_SEG7_FILES))
+$(BUILD_DIR)/bin/sl/level.o: $(addprefix $(BUILD_DIR)/levels/sl/,$(SL_SEG7_FILES))
+$(BUILD_DIR)/bin/wdw/level.o: $(addprefix $(BUILD_DIR)/levels/wdw/,$(WDW_SEG7_FILES))
+$(BUILD_DIR)/bin/jrb/level.o: $(addprefix $(BUILD_DIR)/levels/jrb/,$(JRB_SEG7_FILES))
+$(BUILD_DIR)/bin/thi/level.o: $(addprefix $(BUILD_DIR)/levels/thi/,$(THI_SEG7_FILES))
+$(BUILD_DIR)/bin/ttc/level.o: $(addprefix $(BUILD_DIR)/levels/ttc/,$(TTC_SEG7_FILES))
+$(BUILD_DIR)/bin/rr/level.o: $(addprefix $(BUILD_DIR)/levels/rr/,$(RR_SEG7_FILES))
+$(BUILD_DIR)/bin/castle_grounds/level.o: $(addprefix $(BUILD_DIR)/levels/castle_grounds/,$(CASTLE_GROUNDS_SEG7_FILES))
+$(BUILD_DIR)/bin/bitdw/level.o: $(addprefix $(BUILD_DIR)/levels/bitdw/,$(BITDW_SEG7_FILES))
+$(BUILD_DIR)/bin/vcutm/level.o: $(addprefix $(BUILD_DIR)/levels/vcutm/,$(VCUTM_SEG7_FILES))
+$(BUILD_DIR)/bin/bitfs/level.o: $(addprefix $(BUILD_DIR)/levels/bitfs/,$(BITFS_SEG7_FILES))
+# sa does not have any textures, but if you add some, remember to add the dependency here
+$(BUILD_DIR)/bin/bits/level.o: $(addprefix $(BUILD_DIR)/levels/bits/,$(BITS_SEG7_FILES))
+$(BUILD_DIR)/bin/lll/level.o: $(addprefix $(BUILD_DIR)/levels/lll/,$(LLL_SEG7_FILES))
+$(BUILD_DIR)/bin/ddd/level.o: $(addprefix $(BUILD_DIR)/levels/ddd/,$(DDD_SEG7_FILES))
+$(BUILD_DIR)/bin/wf/level.o: $(addprefix $(BUILD_DIR)/levels/wf/,$(WF_SEG7_FILES))
+$(BUILD_DIR)/bin/ending/level.o: $(addprefix $(BUILD_DIR)/levels/ending/,$(CAKE_END_FILES))
+# castle_courtyard does not have any textures, but if you add some, remember to add the dependency here
+$(BUILD_DIR)/bin/pss/level.o: $(addprefix $(BUILD_DIR)/levels/pss/,$(PSS_SEG7_FILES))
+$(BUILD_DIR)/bin/cotmc/level.o: $(addprefix $(BUILD_DIR)/levels/cotmc/,$(COTMC_SEG7_FILES))
+$(BUILD_DIR)/bin/totwc/level.o: $(addprefix $(BUILD_DIR)/levels/totwc/,$(TOTWC_SEG7_FILES))
+$(BUILD_DIR)/bin/bowser_1/level.o: $(addprefix $(BUILD_DIR)/levels/bowser_1/,$(BOWSER_1_SEG7_FILES))
+$(BUILD_DIR)/bin/wmotr/level.o: $(addprefix $(BUILD_DIR)/levels/wmotr/,$(WMOTR_SEG7_FILES))
+$(BUILD_DIR)/bin/bowser_2/level.o: $(addprefix $(BUILD_DIR)/levels/bowser_2/,$(BOWSER_2_SEG7_FILES))
+$(BUILD_DIR)/bin/bowser_3/level.o: $(addprefix $(BUILD_DIR)/levels/bowser_3/,$(BOWSER_3_SEG7_FILES))
+$(BUILD_DIR)/bin/ttm/level.o: $(addprefix $(BUILD_DIR)/levels/ttm/,$(TTM_SEG7_FILES))
+$(BUILD_DIR)/bin/intro/level.o: $(addprefix $(BUILD_DIR)/levels/intro/,$(INTRO_SEG7_FILES))
+$(BUILD_DIR)/bin/menu/level.o: $(addprefix $(BUILD_DIR)/levels/menu/,$(MAIN_MENU_SEG7_FILES))
+
 # Original Segment Files
 $(BUILD_DIR)/bin/segment2.o: $(addprefix $(BUILD_DIR)/bin/segment2/,$(SEGMENT2_FILES))
-$(BUILD_DIR)/bin/cake_end.o: $(addprefix $(BUILD_DIR)/bin/cake_end/,$(CAKE_END_FILES))
 $(BUILD_DIR)/bin/title_screen_bg.o: $(addprefix $(BUILD_DIR)/bin/title_screen_bg/,$(TITLE_SCREEN_BG_FILES))
-$(BUILD_DIR)/bin/intro_seg7.o: $(addprefix $(BUILD_DIR)/bin/intro_seg7/,$(INTRO_SEG7_FILES))
-$(BUILD_DIR)/bin/main_menu_seg7.o: $(addprefix $(BUILD_DIR)/bin/main_menu_seg7/,$(MAIN_MENU_SEG7_FILES))
-$(BUILD_DIR)/bin/bitdw_seg7.o: $(addprefix $(BUILD_DIR)/bin/bitdw_seg7/,$(BITDW_SEG7_FILES))
-$(BUILD_DIR)/bin/bowser_1_seg7.o: $(addprefix $(BUILD_DIR)/bin/bowser_1_seg7/,$(BOWSER_1_SEG7_FILES))
-$(BUILD_DIR)/bin/bowser_2_seg7.o: $(addprefix $(BUILD_DIR)/bin/bowser_2_seg7/,$(BOWSER_2_SEG7_FILES))
-$(BUILD_DIR)/bin/bowser_3_seg7.o: $(addprefix $(BUILD_DIR)/bin/bowser_3_seg7/,$(BOWSER_3_SEG7_FILES))
-$(BUILD_DIR)/bin/bob_seg7.o: $(addprefix $(BUILD_DIR)/bin/bob_seg7/,$(BOB_SEG7_FILES))
-$(BUILD_DIR)/bin/bbh_seg7.o: $(addprefix $(BUILD_DIR)/bin/bbh_seg7/,$(BBH_SEG7_FILES))
 $(BUILD_DIR)/bin/bbh_textures.o: $(addprefix $(BUILD_DIR)/bin/bbh_textures/,$(BBH_TEXTURES_FILES))
-$(BUILD_DIR)/bin/bitfs_seg7.o: $(addprefix $(BUILD_DIR)/bin/bitfs_seg7/,$(BITFS_SEG7_FILES))
-$(BUILD_DIR)/bin/bits_seg7.o: $(addprefix $(BUILD_DIR)/bin/bits_seg7/,$(BITS_SEG7_FILES))
 $(BUILD_DIR)/bin/bob_textures.o: $(addprefix $(BUILD_DIR)/bin/bob_textures/,$(BOB_TEXTURES_FILES))
-$(BUILD_DIR)/bin/castle_grounds_seg7.o: $(addprefix $(BUILD_DIR)/bin/castle_grounds_seg7/,$(CASTLE_GROUNDS_SEG7_FILES))
 $(BUILD_DIR)/bin/castle_grounds_textures.o: $(addprefix $(BUILD_DIR)/bin/castle_grounds_textures/,$(CASTLE_GROUNDS_TEXTURES_FILES))
-$(BUILD_DIR)/bin/ccm_seg7.o: $(addprefix $(BUILD_DIR)/bin/ccm_seg7/,$(CCM_SEG7_FILES))
 $(BUILD_DIR)/bin/ccm_textures.o: $(addprefix $(BUILD_DIR)/bin/ccm_textures/,$(CCM_TEXTURES_FILES))
-$(BUILD_DIR)/bin/ddd_seg7.o: $(addprefix $(BUILD_DIR)/bin/ddd_seg7/,$(DDD_SEG7_FILES))
-$(BUILD_DIR)/bin/cotmc_seg7.o: $(addprefix $(BUILD_DIR)/bin/cotmc_seg7/,$(COTMC_SEG7_FILES))
 $(BUILD_DIR)/bin/flower_bubbles_textures.o: $(addprefix $(BUILD_DIR)/bin/flower_bubbles_textures/,$(FLOWER_TEXTURES_FILES))
-$(BUILD_DIR)/bin/hmc_seg7.o: $(addprefix $(BUILD_DIR)/bin/hmc_seg7/,$(HMC_SEG7_FILES))
 $(BUILD_DIR)/bin/hmc_textures.o: $(addprefix $(BUILD_DIR)/bin/hmc_textures/,$(HMC_TEXTURES_FILES))
-$(BUILD_DIR)/bin/inside_castle_seg7.o: $(addprefix $(BUILD_DIR)/bin/inside_castle_seg7/,$(INSIDE_CASTLE_SEG7_FILES))
 $(BUILD_DIR)/bin/inside_castle_textures.o: $(addprefix $(BUILD_DIR)/bin/inside_castle_textures/,$(INSIDE_CASTLE_TEXTURES_FILES))
-$(BUILD_DIR)/bin/jrb_seg7.o: $(addprefix $(BUILD_DIR)/bin/jrb_seg7/,$(JRB_SEG7_FILES))
 $(BUILD_DIR)/bin/jrb_textures.o: $(addprefix $(BUILD_DIR)/bin/jrb_textures/,$(JRB_TEXTURES_FILES))
-$(BUILD_DIR)/bin/lll_seg7.o: $(addprefix $(BUILD_DIR)/bin/lll_seg7/,$(LLL_SEG7_FILES))
 $(BUILD_DIR)/bin/lll_textures.o: $(addprefix $(BUILD_DIR)/bin/lll_textures/,$(LLL_TEXTURES_FILES))
-$(BUILD_DIR)/bin/pss_seg7.o: $(addprefix $(BUILD_DIR)/bin/pss_seg7/,$(PSS_SEG7_FILES))
-$(BUILD_DIR)/bin/rr_seg7.o: $(addprefix $(BUILD_DIR)/bin/rr_seg7/,$(RR_SEG7_FILES))
 $(BUILD_DIR)/bin/rr_textures.o: $(addprefix $(BUILD_DIR)/bin/rr_textures/,$(RR_TEXTURES_FILES))
-$(BUILD_DIR)/bin/sl_seg7.o: $(addprefix $(BUILD_DIR)/bin/sl_seg7/,$(SL_SEG7_FILES))
-$(BUILD_DIR)/bin/ssl_seg7.o: $(addprefix $(BUILD_DIR)/bin/ssl_seg7/,$(SSL_SEG7_FILES))
-$(BUILD_DIR)/bin/thi_seg7.o: $(addprefix $(BUILD_DIR)/bin/thi_seg7/,$(THI_SEG7_FILES))
-$(BUILD_DIR)/bin/ttc_seg7.o: $(addprefix $(BUILD_DIR)/bin/ttc_seg7/,$(TTC_SEG7_FILES))
 $(BUILD_DIR)/bin/ttc_textures.o: $(addprefix $(BUILD_DIR)/bin/ttc_textures/,$(TTC_TEXTURES_FILES))
-$(BUILD_DIR)/bin/totwc_seg7.o: $(addprefix $(BUILD_DIR)/bin/totwc_seg7/,$(TOTWC_SEG7_FILES))
-$(BUILD_DIR)/bin/ttm_seg7.o: $(addprefix $(BUILD_DIR)/bin/ttm_seg7/,$(TTM_SEG7_FILES))
 $(BUILD_DIR)/bin/ttm_textures.o: $(addprefix $(BUILD_DIR)/bin/ttm_textures/,$(TTM_TEXTURES_FILES))
-$(BUILD_DIR)/bin/vcutm_seg7.o: $(addprefix $(BUILD_DIR)/bin/vcutm_seg7/,$(VCUTM_SEG7_FILES))
-$(BUILD_DIR)/bin/wdw_seg7.o: $(addprefix $(BUILD_DIR)/bin/wdw_seg7/,$(WDW_SEG7_FILES))
-$(BUILD_DIR)/bin/wf_seg7.o: $(addprefix $(BUILD_DIR)/bin/wf_seg7/,$(WF_SEG7_FILES))
 $(BUILD_DIR)/bin/wf_textures.o: $(addprefix $(BUILD_DIR)/bin/wf_textures/,$(WF_TEXTURES_FILES))
-$(BUILD_DIR)/bin/wmotr_seg7.o: $(addprefix $(BUILD_DIR)/bin/wmotr_seg7/,$(WMOTR_SEG7_FILES))
 
 # Skybox Files
 $(BUILD_DIR)/bin/bbh_skybox.o: $(addprefix $(BUILD_DIR)/bin/bbh_skybox/,$(BBH_SKYBOX_FILES))
@@ -240,44 +252,46 @@ $(BUILD_DIR)/bin/group17.elf: SEGMENT_ADDRESS := 0x06000000
 $(BUILD_DIR)/bin/common0.elf: SEGMENT_ADDRESS := 0x08000000
 $(BUILD_DIR)/bin/common1.elf: SEGMENT_ADDRESS := 0x03000000
 
+# Level Files
+$(BUILD_DIR)/bin/bbh/level.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/ccm/level.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/castle_inside/level.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/hmc/level.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/ssl/level.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/bob/level.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/sl/level.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/wdw/level.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/jrb/level.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/thi/level.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/ttc/level.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/rr/level.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/castle_grounds/level.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/bitdw/level.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/vcutm/level.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/bitfs/level.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/sa/level.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/bits/level.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/lll/level.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/ddd/level.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/wf/level.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/ending/level.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/castle_courtyard/level.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/pss/level.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/cotmc/level.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/totwc/level.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/bowser_1/level.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/wmotr/level.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/bowser_2/level.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/bowser_3/level.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/ttm/level.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/intro/level.elf: SEGMENT_ADDRESS := 0x07000000
+$(BUILD_DIR)/bin/menu/level.elf: SEGMENT_ADDRESS := 0x07000000
+
 # Others
 $(BUILD_DIR)/bin/segment2.elf: SEGMENT_ADDRESS := 0x02000000
-$(BUILD_DIR)/bin/cake_end.elf: SEGMENT_ADDRESS := 0x07000000
-$(BUILD_DIR)/bin/cotmc_seg7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/title_screen_bg.elf: SEGMENT_ADDRESS := 0x0A000000
-$(BUILD_DIR)/bin/intro_seg7.elf: SEGMENT_ADDRESS := 0x07000000
-$(BUILD_DIR)/bin/main_menu_seg7.elf: SEGMENT_ADDRESS := 0x07000000
-$(BUILD_DIR)/bin/bbh_seg7.elf: SEGMENT_ADDRESS := 0x07000000
-$(BUILD_DIR)/bin/bitdw_seg7.elf: SEGMENT_ADDRESS := 0x07000000
-$(BUILD_DIR)/bin/bitfs_seg7.elf: SEGMENT_ADDRESS := 0x07000000
-$(BUILD_DIR)/bin/bits_seg7.elf: SEGMENT_ADDRESS := 0x07000000
-$(BUILD_DIR)/bin/bowser_1_seg7.elf: SEGMENT_ADDRESS := 0x07000000
-$(BUILD_DIR)/bin/bowser_2_seg7.elf: SEGMENT_ADDRESS := 0x07000000
-$(BUILD_DIR)/bin/bowser_3_seg7.elf: SEGMENT_ADDRESS := 0x07000000
-$(BUILD_DIR)/bin/bob_seg7.elf: SEGMENT_ADDRESS := 0x07000000
-$(BUILD_DIR)/bin/castle_courtyard_seg7.elf: SEGMENT_ADDRESS := 0x07000000
-$(BUILD_DIR)/bin/castle_grounds_seg7.elf: SEGMENT_ADDRESS := 0x07000000
-$(BUILD_DIR)/bin/ccm_seg7.elf: SEGMENT_ADDRESS := 0x07000000
-$(BUILD_DIR)/bin/ddd_seg7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/debug_level_select.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/flower_bubbles_textures.elf: SEGMENT_ADDRESS := 0x0B000000
-$(BUILD_DIR)/bin/hmc_seg7.elf: SEGMENT_ADDRESS := 0x07000000
-$(BUILD_DIR)/bin/inside_castle_seg7.elf: SEGMENT_ADDRESS := 0x07000000
-$(BUILD_DIR)/bin/jrb_seg7.elf: SEGMENT_ADDRESS := 0x07000000
-$(BUILD_DIR)/bin/lll_seg7.elf: SEGMENT_ADDRESS := 0x07000000
-$(BUILD_DIR)/bin/pss_seg7.elf: SEGMENT_ADDRESS := 0x07000000
-$(BUILD_DIR)/bin/rr_seg7.elf: SEGMENT_ADDRESS := 0x07000000
-$(BUILD_DIR)/bin/sa_seg7.elf: SEGMENT_ADDRESS := 0x07000000
-$(BUILD_DIR)/bin/sl_seg7.elf: SEGMENT_ADDRESS := 0x07000000
-$(BUILD_DIR)/bin/ssl_seg7.elf: SEGMENT_ADDRESS := 0x07000000
-$(BUILD_DIR)/bin/thi_seg7.elf: SEGMENT_ADDRESS := 0x07000000
-$(BUILD_DIR)/bin/ttc_seg7.elf: SEGMENT_ADDRESS := 0x07000000
-$(BUILD_DIR)/bin/totwc_seg7.elf: SEGMENT_ADDRESS := 0x07000000
-$(BUILD_DIR)/bin/ttm_seg7.elf: SEGMENT_ADDRESS := 0x07000000
-$(BUILD_DIR)/bin/vcutm_seg7.elf: SEGMENT_ADDRESS := 0x07000000
-$(BUILD_DIR)/bin/wdw_seg7.elf: SEGMENT_ADDRESS := 0x07000000
-$(BUILD_DIR)/bin/wf_seg7.elf: SEGMENT_ADDRESS := 0x07000000
-$(BUILD_DIR)/bin/wmotr_seg7.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/bbh_textures.elf: SEGMENT_ADDRESS := 0x09000000
 $(BUILD_DIR)/bin/bob_textures.elf: SEGMENT_ADDRESS := 0x09000000
 $(BUILD_DIR)/bin/castle_grounds_textures.elf: SEGMENT_ADDRESS := 0x09000000

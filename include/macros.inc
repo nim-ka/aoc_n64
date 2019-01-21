@@ -58,3 +58,21 @@
 .dword BINID
 .set BINID, BINID + 1
 .endm
+
+.macro leveldata name
+.section .seg07, "a"
+.align 4
+.incbin "mio0/\name\()/level.mio0"
+.align 4
+.endm
+
+.macro levelscript name
+.section .level, "a"
+.include "levels/\name\()/script.s"
+.endm
+
+.macro levelgeo name
+.align 4
+.include "levels/\name\()/geo.s"
+.align 4
+.endm

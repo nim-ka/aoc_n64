@@ -3,7 +3,7 @@
 
 #include "types.h"
 
-extern u8 _level_main_entrySegmentRomStart[];
-extern u8 _level_main_entrySegmentRomEnd[];
+extern u8 _entrySegmentRomStart[];
+extern u8 _entrySegmentRomEnd[];
 
 #endif /* _MAIN_ENTRY_H */

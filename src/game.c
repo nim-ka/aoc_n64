@@ -296,7 +296,7 @@ void setup_game_memory(void)
     D_80339CF4 = main_pool_alloc(2048, MEMORY_POOL_LEFT);
     set_segment_base_addr(24, (void *)D_80339CF4);
     func_80278A78(&gDemo, gDemoInputs, D_80339CF4);
-    load_segment(0x10, _level_main_entrySegmentRomStart, _level_main_entrySegmentRomEnd, MEMORY_POOL_LEFT);
+    load_segment(0x10, _entrySegmentRomStart, _entrySegmentRomEnd, MEMORY_POOL_LEFT);
     load_segment_decompress(2, _segment2_mio0SegmentRomStart, _segment2_mio0SegmentRomEnd);
 }
 

@@ -41,16 +41,22 @@ BIN_DIRS := bin
 MIPSISET := -mips2
 OPT_FLAGS := -g
 
+# Need this early
+LEVEL_DIRS := $(dir $(wildcard levels/*/header.s))
+LEVEL_DIRS := $(patsubst levels/%,%,$(LEVEL_DIRS))
+
 # Source code files
 C_FILES := $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.c))
 S_FILES := $(foreach dir,$(ASM_DIRS),$(wildcard $(dir)/*.s))
+LEVEL_S_FILES = $(addsuffix header.s,$(addprefix bin/,$(LEVEL_DIRS))) # Append the level header files
 SEG_IN_FILES := $(foreach dir,$(BIN_DIRS),$(wildcard $(dir)/*.s.in))
 SEG_S_FILES := $(foreach dir,$(BIN_DIRS),$(wildcard $(dir)/*.s)) \
                $(foreach file,$(SEG_IN_FILES),$(file:.s.in=.s))
 
 # Object files
 O_FILES := $(foreach file,$(C_FILES),$(BUILD_DIR)/$(file:.c=.o)) \
-           $(foreach file,$(S_FILES),$(BUILD_DIR)/$(file:.s=.o))
+           $(foreach file,$(S_FILES),$(BUILD_DIR)/$(file:.s=.o)) \
+           $(foreach file,$(LEVEL_S_FILES),$(BUILD_DIR)/$(file:.s=.o))
 
 # Automatic dependency files
 DEP_FILES := $(O_FILES:.o=.d)
@@ -120,6 +126,9 @@ include Makefile.split
 # add the actor elf files
 SEG_FILES += $(ACTOR_ELF_FILES)
 
+# and the level elf files
+SEG_FILES += $(LEVEL_ELF_FILES)
+
 # moved it down here, as it needs to update after seg_files gets updated.
 SYMBOL_LINKING_FLAGS := $(addprefix -R ,$(SEG_FILES))
 LDFLAGS := -T undefined_syms.txt -T $(BUILD_DIR)/$(LD_SCRIPT) -Map $(BUILD_DIR)/sm64.map --no-check-sections $(SYMBOL_LINKING_FLAGS)
@@ -153,7 +162,7 @@ $(MIO0_DIR)/%.mio0: bin/%.bin
 	$(MIO0TOOL) $< $@
 
 $(BUILD_DIR):
-	mkdir -p $(BUILD_DIR) $(addprefix $(BUILD_DIR)/,$(SRC_DIRS) $(ASM_DIRS) $(BIN_DIRS) $(TEXTURE_DIRS) include text) $(MIO0_DIR)
+	mkdir -p $(BUILD_DIR) $(addprefix $(BUILD_DIR)/,$(SRC_DIRS) $(ASM_DIRS) $(BIN_DIRS) $(TEXTURE_DIRS) $(addprefix levels/,$(LEVEL_DIRS)) $(addprefix bin/,$(LEVEL_DIRS)) include text) $(MIO0_DIR) $(addprefix $(MIO0_DIR)/,$(LEVEL_DIRS))
 
 # Make sure build directory exists before compiling objects
 $(O_FILES): | $(BUILD_DIR)
@@ -195,12 +204,37 @@ $(BUILD_DIR)/actors/%.ia4: actors/%.ia4.png
 $(BUILD_DIR)/actors/%.ia1: actors/%.ia1.png
 	$(N64GRAPHICS) -i $@ -g $< -f ia1
 
+# texture generation 3rd method: rgba16s are preferred (and used
+# more often) over the ones listed below due to more colors.
+$(BUILD_DIR)/levels/%.rgba16: levels/%.rgba16.png
+	$(N64GRAPHICS) -i $@ -g $< -f rgba16
+
+$(BUILD_DIR)/levels/%.ia16: levels/%.ia16.png
+	$(N64GRAPHICS) -i $@ -g $< -f ia16
+
+$(BUILD_DIR)/levels/%.ia8: levels/%.ia8.png
+	$(N64GRAPHICS) -i $@ -g $< -f ia8
+
+$(BUILD_DIR)/levels/%.ia4: levels/%.ia4.png
+	$(N64GRAPHICS) -i $@ -g $< -f ia4
+
+$(BUILD_DIR)/levels/%.ia1: levels/%.ia1.png
+	$(N64GRAPHICS) -i $@ -g $< -f ia1
+
 # compressed segment generation
 $(BUILD_DIR)/bin/%.o: bin/%.s
 	$(AS) $(ASFLAGS) --no-pad-sections -o $@ $<
 
-# compressed segment generation
+# compressed segment generation (actors)
 $(BUILD_DIR)/bin/%.o: actors/%.s
+	$(AS) $(ASFLAGS) --no-pad-sections -o $@ $<
+
+$(BUILD_DIR)/bin/%/level.o: levels/%/level.s
+	$(warning $@ depends on $^)
+	$(AS) $(ASFLAGS) --no-pad-sections -o $@ $<
+
+$(BUILD_DIR)/bin/%/header.o: levels/%/header.s $(MIO0_DIR)/%/level.mio0 levels/%/script.s
+	$(warning $@ depends on $^)
 	$(AS) $(ASFLAGS) --no-pad-sections -o $@ $<
 
 # TODO: ideally this would be `-Trodata-segment=0x07000000` but that doesn't set the address
