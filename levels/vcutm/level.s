@@ -4,13 +4,6 @@
 .include "ultra64/gbi.inc"
 .include "macro_presets.inc"
 
-# TODO: cross-link between segments
-.equ castle_grounds_textures_09000800, 0x09000800
-.equ castle_grounds_textures_09003000, 0x09003000
-.equ castle_grounds_textures_09009000, 0x09009000
-.equ castle_grounds_textures_0900A000, 0x0900A000
-.equ castle_grounds_textures_0900B000, 0x0900B000
-
 vcutm_seg7_texture_07000000: # 0x07000000 - 0x07000800
 .incbin "levels/vcutm/0.rgba16"
 

@@ -4,27 +4,6 @@
 .include "ultra64/gbi.inc"
 .include "macro_presets.inc"
 
-# TODO: cross-link between segments
-.equ castle_grounds_textures_09000000, 0x09000000
-.equ castle_grounds_textures_09001000, 0x09001000
-.equ castle_grounds_textures_09002000, 0x09002000
-.equ castle_grounds_textures_09003000, 0x09003000
-.equ castle_grounds_textures_09003800, 0x09003800
-.equ castle_grounds_textures_09004000, 0x09004000
-.equ castle_grounds_textures_09004800, 0x09004800
-.equ castle_grounds_textures_09005800, 0x09005800
-.equ castle_grounds_textures_09006000, 0x09006000
-.equ castle_grounds_textures_09006800, 0x09006800
-.equ castle_grounds_textures_09007800, 0x09007800
-.equ castle_grounds_textures_09008000, 0x09008000
-.equ castle_grounds_textures_09009000, 0x09009000
-.equ castle_grounds_textures_09009800, 0x09009800
-.equ castle_grounds_textures_0900A000, 0x0900A000
-.equ castle_grounds_textures_0900A800, 0x0900A800
-.equ castle_grounds_textures_0900B000, 0x0900B000
-.equ castle_grounds_textures_0900B400, 0x0900B400
-.equ castle_grounds_textures_0900BC00, 0x0900BC00
-
 castle_grounds_seg7_texture_07000000: # 0x07000000 - 0x07001000
 .incbin "levels/castle_grounds/0.rgba16"
 

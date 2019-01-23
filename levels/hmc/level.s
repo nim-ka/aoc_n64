@@ -4,25 +4,6 @@
 .include "ultra64/gbi.inc"
 .include "macro_presets.inc"
 
-# TODO: cross-link between segments
-.equ hmc_textures_09000000, 0x09000000
-.equ hmc_textures_09001000, 0x09001000
-.equ hmc_textures_09001800, 0x09001800
-.equ hmc_textures_09002800, 0x09002800
-.equ hmc_textures_09003000, 0x09003000
-.equ hmc_textures_09003800, 0x09003800
-.equ hmc_textures_09004800, 0x09004800
-.equ hmc_textures_09005800, 0x09005800
-.equ hmc_textures_09006800, 0x09006800
-.equ hmc_textures_09007000, 0x09007000
-.equ hmc_textures_09007800, 0x09007800
-.equ hmc_textures_09008800, 0x09008800
-.equ hmc_textures_09009800, 0x09009800
-.equ hmc_textures_0900A000, 0x0900A000
-.equ hmc_textures_0900A800, 0x0900A800
-.equ hmc_textures_0900B800, 0x0900B800
-.equ hmc_textures_0900C000, 0x0900C000
-
 hmc_seg7_texture_07000000: # 0x07000000 - 0x07001000
 .incbin "levels/hmc/0.rgba16"
 

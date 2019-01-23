@@ -4,19 +4,6 @@
 .include "ultra64/gbi.inc"
 .include "macro_presets.inc"
 
-# TODO: cross-link between segments
-.equ bob_textures_09000000, 0x09000000
-.equ bob_textures_09000800, 0x09000800
-.equ bob_textures_09001000, 0x09001000
-.equ bob_textures_09002000, 0x09002000
-.equ bob_textures_09002800, 0x09002800
-.equ bob_textures_09003000, 0x09003000
-.equ bob_textures_09004000, 0x09004000
-.equ bob_textures_09007800, 0x09007800
-.equ bob_textures_09008000, 0x09008000
-.equ bob_textures_09008800, 0x09008800
-.equ bob_textures_0900A800, 0x0900A800
-
 ssl_seg7_texture_07000000: # 0x07000000 - 0x07000800
 .incbin "levels/ssl/0.rgba16"
 

@@ -4,25 +4,6 @@
 .include "ultra64/gbi.inc"
 .include "macro_presets.inc"
 
-# TODO: cross-link between segments
-.equ ccm_textures_09000000, 0x09000000
-.equ ccm_textures_09000800, 0x09000800
-.equ ccm_textures_09001000, 0x09001000
-.equ ccm_textures_09002000, 0x09002000
-.equ ccm_textures_09002800, 0x09002800
-.equ ccm_textures_09003000, 0x09003000
-.equ ccm_textures_09004000, 0x09004000
-.equ ccm_textures_09004800, 0x09004800
-.equ ccm_textures_09005000, 0x09005000
-.equ ccm_textures_09005800, 0x09005800
-.equ ccm_textures_09006000, 0x09006000
-.equ ccm_textures_09006800, 0x09006800
-.equ ccm_textures_09007000, 0x09007000
-.equ ccm_textures_09008000, 0x09008000
-.equ ccm_textures_09008800, 0x09008800
-.equ ccm_textures_09009000, 0x09009000
-.equ ccm_textures_09009800, 0x09009800
-
 ccm_seg7_texture_07000000: # 0x07000000 - 0x07000800
 .incbin "levels/ccm/0.rgba16"
 

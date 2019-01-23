@@ -4,23 +4,6 @@
 .include "ultra64/gbi.inc"
 .include "macro_presets.inc"
 
-# TODO: cross-link between segments
-.equ castle_grounds_textures_09000000, 0x09000000
-.equ castle_grounds_textures_09000800, 0x09000800
-.equ castle_grounds_textures_09001000, 0x09001000
-.equ castle_grounds_textures_09003000, 0x09003000
-.equ castle_grounds_textures_09004000, 0x09004000
-.equ castle_grounds_textures_09004800, 0x09004800
-.equ castle_grounds_textures_09006000, 0x09006000
-.equ castle_grounds_textures_09006800, 0x09006800
-.equ castle_grounds_textures_09007800, 0x09007800
-.equ castle_grounds_textures_09008800, 0x09008800
-.equ castle_grounds_textures_09009000, 0x09009000
-.equ castle_grounds_textures_0900A000, 0x0900A000
-.equ castle_grounds_textures_0900A800, 0x0900A800
-.equ castle_grounds_textures_0900B000, 0x0900B000
-.equ castle_grounds_textures_0900BC00, 0x0900BC00
-
 castle_courtyard_seg7_vertex_07000000: # 0x07000000 - 0x070000F0
 vertex   2867,      0,    307,      0,    479,  0x95, 0x95, 0xA9, 0xFF
 vertex   2939,     20,    717,   2012,    -36,  0x95, 0x95, 0xA9, 0xFF

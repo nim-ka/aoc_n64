@@ -4,12 +4,6 @@
 .include "ultra64/gbi.inc"
 .include "macro_presets.inc"
 
-# TODO: cross-link between segments
-.equ hmc_textures_09003800, 0x09003800
-.equ hmc_textures_09005800, 0x09005800
-.equ hmc_textures_09006800, 0x09006800
-.equ hmc_textures_09007800, 0x09007800
-
 cotmc_seg7_texture_07000000: # 0x07000000 - 0x07001000
 .incbin "levels/cotmc/0.rgba16"
 

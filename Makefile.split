@@ -252,7 +252,7 @@ $(BUILD_DIR)/bin/group17.elf: SEGMENT_ADDRESS := 0x06000000
 $(BUILD_DIR)/bin/common0.elf: SEGMENT_ADDRESS := 0x08000000
 $(BUILD_DIR)/bin/common1.elf: SEGMENT_ADDRESS := 0x03000000
 
-# Level Files
+# Level Files Segment Address Assignment
 $(BUILD_DIR)/bin/bbh/level.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/ccm/level.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/castle_inside/level.elf: SEGMENT_ADDRESS := 0x07000000
@@ -286,6 +286,43 @@ $(BUILD_DIR)/bin/bowser_3/level.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/ttm/level.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/intro/level.elf: SEGMENT_ADDRESS := 0x07000000
 $(BUILD_DIR)/bin/menu/level.elf: SEGMENT_ADDRESS := 0x07000000
+
+# Level Files Texture Bin Assignment
+# Some level.elf files below do not have a texture bin assignment and use the
+# default texture bin (bob_textures) as TEXTURE_BIN so the linking works.
+$(BUILD_DIR)/bin/bbh/level.elf: TEXTURE_BIN := bbh_textures
+$(BUILD_DIR)/bin/ccm/level.elf: TEXTURE_BIN := ccm_textures
+$(BUILD_DIR)/bin/castle_inside/level.elf: TEXTURE_BIN := inside_castle_textures
+$(BUILD_DIR)/bin/hmc/level.elf: TEXTURE_BIN := hmc_textures
+$(BUILD_DIR)/bin/ssl/level.elf: TEXTURE_BIN := bob_textures
+$(BUILD_DIR)/bin/bob/level.elf: TEXTURE_BIN := bob_textures
+$(BUILD_DIR)/bin/sl/level.elf: TEXTURE_BIN := ccm_textures
+$(BUILD_DIR)/bin/wdw/level.elf: TEXTURE_BIN := wf_textures
+$(BUILD_DIR)/bin/jrb/level.elf: TEXTURE_BIN := jrb_textures
+$(BUILD_DIR)/bin/thi/level.elf: TEXTURE_BIN := wf_textures
+$(BUILD_DIR)/bin/ttc/level.elf: TEXTURE_BIN := ttc_textures
+$(BUILD_DIR)/bin/rr/level.elf: TEXTURE_BIN := rr_textures
+$(BUILD_DIR)/bin/castle_grounds/level.elf: TEXTURE_BIN := castle_grounds_textures
+$(BUILD_DIR)/bin/bitdw/level.elf: TEXTURE_BIN := rr_textures
+$(BUILD_DIR)/bin/vcutm/level.elf: TEXTURE_BIN := castle_grounds_textures
+$(BUILD_DIR)/bin/bitfs/level.elf: TEXTURE_BIN := rr_textures
+$(BUILD_DIR)/bin/sa/level.elf: TEXTURE_BIN := inside_castle_textures
+$(BUILD_DIR)/bin/bits/level.elf: TEXTURE_BIN := rr_textures
+$(BUILD_DIR)/bin/lll/level.elf: TEXTURE_BIN := lll_textures
+$(BUILD_DIR)/bin/ddd/level.elf: TEXTURE_BIN := jrb_textures
+$(BUILD_DIR)/bin/wf/level.elf: TEXTURE_BIN := wf_textures
+$(BUILD_DIR)/bin/ending/level.elf: TEXTURE_BIN := bob_textures
+$(BUILD_DIR)/bin/castle_courtyard/level.elf: TEXTURE_BIN := castle_grounds_textures
+$(BUILD_DIR)/bin/pss/level.elf: TEXTURE_BIN := ttm_textures
+$(BUILD_DIR)/bin/cotmc/level.elf: TEXTURE_BIN := hmc_textures
+$(BUILD_DIR)/bin/totwc/level.elf: TEXTURE_BIN := rr_textures
+$(BUILD_DIR)/bin/bowser_1/level.elf: TEXTURE_BIN := bob_textures
+$(BUILD_DIR)/bin/wmotr/level.elf: TEXTURE_BIN := bob_textures
+$(BUILD_DIR)/bin/bowser_2/level.elf: TEXTURE_BIN := lll_textures
+$(BUILD_DIR)/bin/bowser_3/level.elf: TEXTURE_BIN := bob_textures
+$(BUILD_DIR)/bin/ttm/level.elf: TEXTURE_BIN := ttm_textures
+$(BUILD_DIR)/bin/intro/level.elf: TEXTURE_BIN := bob_textures
+$(BUILD_DIR)/bin/menu/level.elf: TEXTURE_BIN := bob_textures
 
 # Others
 $(BUILD_DIR)/bin/segment2.elf: SEGMENT_ADDRESS := 0x02000000

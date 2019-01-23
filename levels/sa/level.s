@@ -4,11 +4,6 @@
 .include "ultra64/gbi.inc"
 .include "macro_presets.inc"
 
-# TODO: cross-link between segments
-.equ inside_castle_textures_09003000, 0x09003000
-.equ inside_castle_textures_09007000, 0x09007000
-.equ inside_castle_textures_0900B000, 0x0900B000
-
 sa_light_07000000: # 0x07000000 - 0x07000008
 .byte 0x00, 0x7F, 0x99, 0x00, 0x00, 0x7F, 0x99, 0x00
 

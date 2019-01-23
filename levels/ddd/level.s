@@ -4,15 +4,6 @@
 .include "ultra64/gbi.inc"
 .include "macro_presets.inc"
 
-# TODO: cross-link between segments
-.equ jrb_textures_09003800, 0x09003800
-.equ jrb_textures_09004800, 0x09004800
-.equ jrb_textures_09006800, 0x09006800
-.equ jrb_textures_09007800, 0x09007800
-.equ jrb_textures_09009000, 0x09009000
-.equ jrb_textures_0900A000, 0x0900A000
-.equ jrb_textures_0900B800, 0x0900B800
-
 ddd_seg7_texture_07000000: # 0x07000000 - 0x07001000
 .incbin "levels/ddd/0.rgba16"
 

@@ -4,25 +4,6 @@
 .include "ultra64/gbi.inc"
 .include "macro_presets.inc"
 
-# TODO: cross-link between segments
-.equ inside_castle_textures_09000000, 0x09000000
-.equ inside_castle_textures_09001000, 0x09001000
-.equ inside_castle_textures_09002000, 0x09002000
-.equ inside_castle_textures_09003000, 0x09003000
-.equ inside_castle_textures_09003800, 0x09003800
-.equ inside_castle_textures_09004000, 0x09004000
-.equ inside_castle_textures_09004800, 0x09004800
-.equ inside_castle_textures_09005000, 0x09005000
-.equ inside_castle_textures_09005800, 0x09005800
-.equ inside_castle_textures_09006000, 0x09006000
-.equ inside_castle_textures_09007000, 0x09007000
-.equ inside_castle_textures_09008000, 0x09008000
-.equ inside_castle_textures_09008800, 0x09008800
-.equ inside_castle_textures_09009000, 0x09009000
-.equ inside_castle_textures_0900A000, 0x0900A000
-.equ inside_castle_textures_0900B000, 0x0900B000
-.equ inside_castle_textures_0900B800, 0x0900B800
-
 inside_castle_seg7_texture_07000000: # 0x07000000 - 0x07000800
 .incbin "levels/castle_inside/0.ia16"
 

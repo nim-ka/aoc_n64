@@ -4,10 +4,6 @@
 .include "ultra64/gbi.inc"
 .include "macro_presets.inc"
 
-# TODO: cross-link between segments
-.equ rr_textures_09001000, 0x09001000
-.equ rr_textures_09005800, 0x09005800
-
 totwc_seg7_texture_07000000: # 0x07000000 - 0x07001000
 .incbin "levels/totwc/0.rgba16"
 

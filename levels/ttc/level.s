@@ -4,25 +4,6 @@
 .include "ultra64/gbi.inc"
 .include "macro_presets.inc"
 
-# TODO: cross-link between segments
-.equ ttc_textures_09000000, 0x09000000
-.equ ttc_textures_09000800, 0x09000800
-.equ ttc_textures_09001000, 0x09001000
-.equ ttc_textures_09001800, 0x09001800
-.equ ttc_textures_09002000, 0x09002000
-.equ ttc_textures_09002800, 0x09002800
-.equ ttc_textures_09003000, 0x09003000
-.equ ttc_textures_09003800, 0x09003800
-.equ ttc_textures_09004000, 0x09004000
-.equ ttc_textures_09005000, 0x09005000
-.equ ttc_textures_09005800, 0x09005800
-.equ ttc_textures_09006000, 0x09006000
-.equ ttc_textures_09006800, 0x09006800
-.equ ttc_textures_09007000, 0x09007000
-.equ ttc_textures_09007800, 0x09007800
-.equ ttc_textures_09008000, 0x09008000
-.equ ttc_textures_09008400, 0x09008400
-
 ttc_seg7_texture_07000000: # 0x07000000 - 0x07000800
 .incbin "levels/ttc/0.rgba16"
 

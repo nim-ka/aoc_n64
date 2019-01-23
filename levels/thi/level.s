@@ -4,21 +4,6 @@
 .include "ultra64/gbi.inc"
 .include "macro_presets.inc"
 
-# TODO: cross-link between segments
-.equ wf_textures_09000000, 0x09000000
-.equ wf_textures_09001800, 0x09001800
-.equ wf_textures_09003000, 0x09003000
-.equ wf_textures_09003800, 0x09003800
-.equ wf_textures_09004800, 0x09004800
-.equ wf_textures_09005000, 0x09005000
-.equ wf_textures_09005800, 0x09005800
-.equ wf_textures_09006800, 0x09006800
-.equ wf_textures_09008000, 0x09008000
-.equ wf_textures_0900A000, 0x0900A000
-.equ wf_textures_0900A800, 0x0900A800
-.equ wf_textures_0900B000, 0x0900B000
-.equ wf_textures_0900B800, 0x0900B800
-
 thi_seg7_texture_07000000: # 0x07000000 - 0x07000002
 .incbin "levels/thi/0.rgba16"
 

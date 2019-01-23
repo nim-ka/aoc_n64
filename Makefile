@@ -241,6 +241,10 @@ $(BUILD_DIR)/bin/%/header.o: levels/%/header.s $(MIO0_DIR)/%/level.mio0 levels/%
 $(BUILD_DIR)/bin/%.elf: $(BUILD_DIR)/bin/%.o
 	$(LD) -e 0 -Ttext=$(SEGMENT_ADDRESS) -Map $@.map -o $@ $<
 
+# Override for level.elf, which otherwise matches the above pattern
+$(BUILD_DIR)/bin/%/level.elf: $(BUILD_DIR)/bin/%/level.o
+	$(LD) -e 0 -Ttext=$(SEGMENT_ADDRESS) --just-symbols=$(BUILD_DIR)/bin/$(TEXTURE_BIN).elf -o $@ $<
+
 $(BUILD_DIR)/bin/%.bin: $(BUILD_DIR)/bin/%.elf
 	$(OBJCOPY) -j .rodata $< -O binary $@
 

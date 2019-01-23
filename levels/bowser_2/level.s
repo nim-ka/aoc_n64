@@ -3,12 +3,6 @@
 .include "macros.inc"
 .include "ultra64/gbi.inc"
 
-# TODO: cross-link between segments
-.equ lll_textures_09003000, 0x09003000
-.equ lll_textures_09005000, 0x09005000
-.equ lll_textures_09005800, 0x09005800
-.equ lll_textures_09009800, 0x09009800
-
 bowser_2_seg7_texture_07000000: # 0x07000000 - 0x07000800
 .incbin "levels/bowser_2/0.rgba16"
 
