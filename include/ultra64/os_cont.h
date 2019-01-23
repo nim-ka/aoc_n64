@@ -1,10 +1,11 @@
 #ifndef _ULTRA64_CONTROLLER_H_
 #define _ULTRA64_CONTROLLER_H_
 
-typedef struct {
- /*0x00*/ u16     type;                   /* Controller Type */
- /*0x02*/ u8      status;                 /* Controller status */
- /*0x03*/ u8      errno;
+typedef struct
+{
+    /*0x00*/ u16 type;  /* Controller Type */
+    /*0x02*/ u8 status; /* Controller status */
+    /*0x03*/ u8 errno;
 } OSContStatus;
 
 typedef struct {
@@ -30,6 +31,7 @@ typedef struct {
 #define D_CBUTTONS                (1 << 2)  // 0x0004
 #define L_CBUTTONS                (1 << 1)  // 0x0002
 #define R_CBUTTONS                (1 << 0)  // 0x0001
+
 
 s32 osContInit(OSMesgQueue *, u8 *, OSContStatus *);
 void osContGetReadData(OSContPad *);

@@ -1,7 +1,6 @@
 #include <ultra64.h>
 
 #include "sm64.h"
-#include "libultra.h"
 #include "display.h"
 #include "game.h"
 #include "level_update.h"

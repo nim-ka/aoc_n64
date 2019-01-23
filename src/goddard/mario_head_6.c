@@ -1,8 +1,8 @@
 #include <ultra64.h>
 #include <stdarg.h>
-#include "sm64.h"
-#include "../libultra.h"
 
+#include "sm64.h"
+#include "prevent_bss_reordering.h"
 #include "gd_types.h"
 #include "dynlists/dynlists.h"
 #include "gd_tex_dl.h"
@@ -167,20 +167,8 @@ static u32 unref_801be8e0[25];
 static OSMesg sGdMesgBuf[1];                   // @ 801BE944
 static u32 unref_801be948[13];
 static OSMesg D_801BE97C;                      // msg buf for D_801BE8B0 queue
-/* There seems to be overlapping symbols:
- * OSIoMesg D_801BE980 @ 801BE980
- * struct ObjView *D_801BE994 @ 801BE994
- * The `ObjView *` overlaps a pointer to an `OSPiHandle` in the OSIoMesg structure. 
- * If anyone has a better guess (or wants to dig deep into the `OSPiHandle` struct 
- * to expose some internal interface), feel free to get rid of this union
- */
-static union HackType {
-    OSIoMesg D_801BE980;
-    struct BssHack {
-        u8 pad[0x14];
-        struct ObjView *view;
-    } D_801BE994;
-} sGdBssOverlap;
+static OSIoMesg D_801BE980;
+static struct ObjView *D_801BE994;
 
 // data
 static u32 unref_801a8670 = 0;
@@ -2742,7 +2730,7 @@ void Unknown801A47B8(struct ObjView *v)
 {
     if (v->unk34 & 0x40)
     {
-        sGdBssOverlap.D_801BE994.view = v;
+        D_801BE994 = v;
     }
 }
 
@@ -3589,7 +3577,7 @@ void gd_block_dma(u32 devAddr, void *vAddr, s32 size)
             transfer = 0x1000;
         } 
         // L801A6E88
-        osPiStartDma(&sGdBssOverlap.D_801BE980, OS_MESG_PRI_NORMAL, OS_READ, devAddr, vAddr, transfer, &sGdDMAQueue);
+        osPiStartDma(&D_801BE980, OS_MESG_PRI_NORMAL, OS_READ, devAddr, vAddr, transfer, &sGdDMAQueue);
         osRecvMesg(&sGdDMAQueue, &D_801BE97C, OS_MESG_BLOCK);
         devAddr += transfer;
         vAddr = (void *)((uintptr_t)vAddr + transfer);

@@ -16,10 +16,6 @@ struct AllocOnlyPool
 
 struct MemoryPool;
 
-
-extern struct MemoryPool *D_8033A124;
-
-
 u32 set_segment_base_addr(s32 segment, void *addr);
 void *get_segment_base_addr(s32 segment);
 void *segmented_to_virtual(void *addr);

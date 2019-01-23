@@ -26,6 +26,7 @@ endif
 BUILD_DIR_BASE := build
 BUILD_DIR := $(BUILD_DIR_BASE)/$(VERSION)
 
+LIBULTRA := $(BUILD_DIR)/libultra.a
 ROM := $(BUILD_DIR)/$(TARGET).z64
 ELF := $(BUILD_DIR)/$(TARGET).elf
 LD_SCRIPT := sm64.ld
@@ -34,11 +35,14 @@ TEXTURE_DIR := textures
 ACTOR_DIR := actors
 
 # Directories containing source files
-SRC_DIRS := src src/libultra src/goddard src/goddard/dynlists src/audio
-ASM_DIRS := asm data levels sound demos anims text lib actors
+SRC_DIRS := src src/goddard src/goddard/dynlists src/audio
+ASM_DIRS := asm actors lib data levels sound demos anims text
 BIN_DIRS := bin
 
-MIPSISET := -mips2
+ULTRA_SRC_DIRS := lib/src lib/src/math
+ULTRA_ASM_DIRS := lib/asm lib/data
+
+MIPSISET := -mips2 -32
 OPT_FLAGS := -g
 
 # Need this early
@@ -48,6 +52,8 @@ LEVEL_DIRS := $(patsubst levels/%,%,$(LEVEL_DIRS))
 # Source code files
 C_FILES := $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.c))
 S_FILES := $(foreach dir,$(ASM_DIRS),$(wildcard $(dir)/*.s))
+ULTRA_C_FILES := $(foreach dir,$(ULTRA_SRC_DIRS),$(wildcard $(dir)/*.c))
+ULTRA_S_FILES := $(foreach dir,$(ULTRA_ASM_DIRS),$(wildcard $(dir)/*.s))
 LEVEL_S_FILES = $(addsuffix header.s,$(addprefix bin/,$(LEVEL_DIRS))) # Append the level header files
 SEG_IN_FILES := $(foreach dir,$(BIN_DIRS),$(wildcard $(dir)/*.s.in))
 SEG_S_FILES := $(foreach dir,$(BIN_DIRS),$(wildcard $(dir)/*.s)) \
@@ -58,8 +64,11 @@ O_FILES := $(foreach file,$(C_FILES),$(BUILD_DIR)/$(file:.c=.o)) \
            $(foreach file,$(S_FILES),$(BUILD_DIR)/$(file:.s=.o)) \
            $(foreach file,$(LEVEL_S_FILES),$(BUILD_DIR)/$(file:.s=.o))
 
+ULTRA_O_FILES := $(foreach file,$(ULTRA_S_FILES),$(BUILD_DIR)/$(file:.s=.o)) \
+                 $(foreach file,$(ULTRA_C_FILES),$(BUILD_DIR)/$(file:.c=.o))
+
 # Automatic dependency files
-DEP_FILES := $(O_FILES:.o=.d)
+DEP_FILES := $(O_FILES:.o=.d) $(ULTRA_O_FILES:.o=.d)
 
 # Segment elf files
 SEG_FILES := $(foreach file,$(SEG_S_FILES),$(BUILD_DIR)/$(file:.s=.elf))
@@ -71,6 +80,7 @@ AS        := $(CROSS)as
 CC        := $(QEMU_IRIX) -silent -L $(IRIX_ROOT) $(IRIX_ROOT)/usr/bin/cc
 CPP       := cpp -P
 LD        := $(CROSS)ld
+AR        := $(CROSS)ar
 OBJDUMP   := $(CROSS)objdump
 OBJCOPY   := $(CROSS)objcopy
 
@@ -80,6 +90,8 @@ CC_CHECK := gcc -fsyntax-only -fsigned-char -I include -I $(BUILD_DIR)/include -
 ASFLAGS := -march=vr4300 -mabi=32 -I include -I $(BUILD_DIR) $(VERSION_ASFLAGS)
 CFLAGS = -Wab,-r4300_mul -non_shared -G 0 -Xcpluscomm -Xfullwarn $(OPT_FLAGS) -signed -I include -I $(BUILD_DIR)/include $(VERSION_CFLAGS) $(MIPSISET)
 OBJCOPYFLAGS := --pad-to=0x800000 --gap-fill=0xFF
+SYMBOL_LINKING_FLAGS := $(addprefix -R ,$(SEG_FILES))
+LDFLAGS := -T undefined_syms.txt -T $(BUILD_DIR)/$(LD_SCRIPT) -Map $(BUILD_DIR)/sm64.map --no-check-sections $(SYMBOL_LINKING_FLAGS)
 
 ifeq ($(shell getconf LONG_BIT), 32)
   # Work around memory allocation bug in QEMU
@@ -147,6 +159,8 @@ test: $(ROM)
 load: $(ROM)
 	$(LOADER) $(LOADER_FLAGS) $<
 
+libultra: $(BUILD_DIR)/libultra.a
+
 $(BUILD_DIR)/include/text_strings.h: include/text_strings.h.in | $(BUILD_DIR)
 	$(TEXTCONV) charmap.txt $< $@
 
@@ -162,7 +176,7 @@ $(MIO0_DIR)/%.mio0: bin/%.bin
 	$(MIO0TOOL) $< $@
 
 $(BUILD_DIR):
-	mkdir -p $(BUILD_DIR) $(addprefix $(BUILD_DIR)/,$(SRC_DIRS) $(ASM_DIRS) $(BIN_DIRS) $(TEXTURE_DIRS) $(addprefix levels/,$(LEVEL_DIRS)) $(addprefix bin/,$(LEVEL_DIRS)) include text) $(MIO0_DIR) $(addprefix $(MIO0_DIR)/,$(LEVEL_DIRS))
+	mkdir -p $(BUILD_DIR) $(addprefix $(BUILD_DIR)/,$(SRC_DIRS) $(ASM_DIRS) $(ULTRA_SRC_DIRS) $(ULTRA_ASM_DIRS) $(BIN_DIRS) $(TEXTURE_DIRS) $(addprefix levels/,$(LEVEL_DIRS)) $(addprefix bin/,$(LEVEL_DIRS)) include text) $(MIO0_DIR) $(addprefix $(MIO0_DIR)/,$(LEVEL_DIRS))
 
 # Make sure build directory exists before compiling objects
 $(O_FILES): | $(BUILD_DIR)
@@ -265,10 +279,24 @@ $(BUILD_DIR)/src/audio/%.o: CC := python3 tools/asm_processor/build.py $(CC) -- 
 $(BUILD_DIR)/src/audio/dma.o: OPT_FLAGS := -O2 -framepointer -Wo,-loopunroll,0
 $(BUILD_DIR)/src/audio/playback.o: OPT_FLAGS := -O2 -Wo,-loopunroll,0
 $(BUILD_DIR)/src/audio/interface_2.o: OPT_FLAGS := -O2 -Wo,-loopunroll,0
+$(BUILD_DIR)/lib/src/%.o: OPT_FLAGS :=
+$(BUILD_DIR)/lib/src/math/ll%.o: MIPSISET := -mips3 -32
+$(BUILD_DIR)/lib/src/math/%.o: OPT_FLAGS := -O2
+$(BUILD_DIR)/lib/src/math/ll%.o: OPT_FLAGS :=
+$(BUILD_DIR)/lib/src/ldiv.o: OPT_FLAGS := -O2
+$(BUILD_DIR)/lib/src/string.o: OPT_FLAGS := -O2
+$(BUILD_DIR)/lib/src/gu%.o: OPT_FLAGS := -O3
+$(BUILD_DIR)/lib/src/al%.o: OPT_FLAGS := -O3
+
+$(BUILD_DIR)/lib/src/math/%.o: lib/src/math/%.c
+	@$(CC_CHECK) -MMD -MT $@ -MF $(BUILD_DIR)/lib/src/$*.d $<
+	$(CC) -c $(CFLAGS) -o $@ $<
+	tools/patch_libultra_math $@ || rm $@
 
 $(BUILD_DIR)/%.o: %.c
 	@$(CC_CHECK) -MMD -MT $@ -MF $(BUILD_DIR)/$*.d $<
 	$(CC) -c $(CFLAGS) -o $@ $<
+
 
 $(BUILD_DIR)/%.o: %.s $(MIO0_FILES)
 	$(AS) $(ASFLAGS) -MD $(BUILD_DIR)/$*.d -o $@ $<
@@ -276,8 +304,11 @@ $(BUILD_DIR)/%.o: %.s $(MIO0_FILES)
 $(BUILD_DIR)/$(LD_SCRIPT): $(LD_SCRIPT)
 	$(CPP) $(VERSION_CFLAGS) -DBUILD_DIR=$(BUILD_DIR) $< > $@
 
-$(ELF): $(O_FILES) $(MIO0_OBJ_FILES) $(SEG_FILES) $(BUILD_DIR)/$(LD_SCRIPT) undefined_syms.txt
-	$(LD) $(LDFLAGS) -o $@ $(O_FILES) $(LIBS)
+$(BUILD_DIR)/libultra.a: $(ULTRA_O_FILES)
+	$(AR) rcs -o $@ $(ULTRA_O_FILES)
+
+$(ELF): $(O_FILES) $(MIO0_OBJ_FILES) $(SEG_FILES) $(BUILD_DIR)/$(LD_SCRIPT) undefined_syms.txt $(BUILD_DIR)/libultra.a
+	$(LD) -L $(BUILD_DIR) $(LDFLAGS) -o $@ $(O_FILES)$(LIBS) -lultra
 
 $(ROM): $(ELF)
 	$(OBJCOPY) $(OBJCOPYFLAGS) $< $(@:.z64=.bin) -O binary
@@ -286,7 +317,9 @@ $(ROM): $(ELF)
 $(BUILD_DIR)/$(TARGET).objdump: $(ELF)
 	$(OBJDUMP) -D $< > $@
 
-.PHONY: all clean default diff test load
+
+
+.PHONY: all clean default diff test load libultra
 .PRECIOUS: $(BUILD_DIR)/mio0/%.mio0 $(BUILD_DIR)/bin/%.elf $(BUILD_DIR)/mio0/%.mio0.s
 
 -include $(DEP_FILES)

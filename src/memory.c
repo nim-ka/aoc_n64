@@ -1,6 +1,7 @@
 #include <ultra64.h>
 
 #include "sm64.h"
+
 #include "decompress.h"
 #include "game.h"
 #include "main.h"
@@ -45,7 +46,6 @@ struct MemoryBlock
     struct MemoryBlock *next;
     u32 size;
 };
-
 
 static u32 sSegmentTable[32];
 

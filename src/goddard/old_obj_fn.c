@@ -1,7 +1,6 @@
 #include <ultra64.h>
 
 #include "sm64.h"
-#include "../libultra.h"
 
 #include "old_obj_fn.h"
 #include "gd_types.h"

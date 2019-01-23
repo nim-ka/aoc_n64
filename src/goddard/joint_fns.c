@@ -1,5 +1,5 @@
 #include <ultra64.h>
-#include "../libultra.h"
+
 #include "sm64.h"
 #include "gd_types.h"
 

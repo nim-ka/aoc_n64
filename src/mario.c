@@ -13,7 +13,6 @@
 #include "graph_node.h"
 #include "interaction.h"
 #include "level_update.h"
-#include "libultra.h"
 #include "memory.h"
 #include "main.h"
 #include "mario_actions_object.h"

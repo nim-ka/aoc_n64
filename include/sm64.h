@@ -11,15 +11,16 @@
 #include "audio_defines.h"
 #include "model_ids.h"
 
+#ifdef VERSION_US
 // FIXME: find out what these are
-#if VERSION_US
-
-extern u32 D_U_80000300;
 extern s16 D_U_8033BACA;
 
 extern int func_u_80321D5C(void);
 extern void func_u_803219AC();
-
+#else
+// Make name indices sync up on JP and US, so that bss reorderings don't happen
+// on just one version.
+typedef int BssDummy;
 #endif
 
 #define ARRAY_COUNT(arr) (s32)(sizeof(arr) / sizeof(arr[0]))

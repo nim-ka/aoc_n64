@@ -5,7 +5,6 @@
 #include "segment2.h"
 #include "segment7.h"
 #include "intro_geo.h"
-#include "libultra.h"
 
 // frame counts for the zoom in, hold, and zoom out of title model
 #define INTRO_STEPS_ZOOM_IN    20

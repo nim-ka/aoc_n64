@@ -3,15 +3,6 @@
 
 #include "types.h"
 
-struct Struct80333F00
-{
-    u8 filler0[0xA0];
-    OSViMode viMode;
-#if VERSION_US
-    u8 filler[0x410];
-    OSViMode unk500;
-#endif
-};
 
 // probably the same as Struct80225DD8
 struct Struct80222A18_2C
@@ -65,13 +56,10 @@ struct Struct80222A18
 
 extern s32 D_80331D40;
 extern f32 D_803320E0[6];
-extern struct Struct80333F00 D_80333F00;
 
 extern struct Struct80222A18 D_80222A18[3];
 
-#ifdef VERSION_JP
-extern u64 gAudioSPTaskYieldBuffer[]; // ucode yield data ptr; not used in non-JP
-#endif
+extern u64 gAudioSPTaskYieldBuffer[]; // ucode yield data ptr; only used in JP
 extern u64 D_8032B800[]; // ucode
 extern u64 D_80338750[]; // gfx ucode data
 extern u64 D_80338F50[]; // ucode data

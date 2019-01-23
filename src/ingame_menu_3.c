@@ -10,7 +10,7 @@
 #include "behavior_script.h"
 #include "audio/interface_2.h"
 #include "obj_behaviors.h"
-
+extern struct MemoryPool *D_8033A124;
 s16 D_803600B0[10];
 Gfx *D_803600C4;
 s32 D_803600C8;

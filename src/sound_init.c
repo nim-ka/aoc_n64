@@ -258,7 +258,7 @@ void thread4_sound(UNUSED void *arg)
     {
         OSMesg msg;
 
-        osRecvMesg(&gSoundMesgQueue, &msg, 1);
+        osRecvMesg(&gSoundMesgQueue, &msg, OS_MESG_BLOCK);
         if (gResetTimer < 25)
         {
             struct SPTask *spTask;

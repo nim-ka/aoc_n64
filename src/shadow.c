@@ -1,7 +1,6 @@
 #include <ultra64.h>
 
 #include "sm64.h"
-#include "shadow.h"
 #include "graph_node.h"
 #include "math_util.h"
 #include "surface_collision.h"
@@ -13,6 +12,7 @@
 #include "memory.h"
 #include "save_file.h"
 #include "room.h"
+#include "shadow.h"
 
 /**
  * Encapsulate information about a shadow at the time of its creation.

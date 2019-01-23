@@ -1,6 +1,6 @@
 CC := gcc
 CFLAGS := -I . -Wall -Wextra -pedantic -std=c99 -O3 -s
-PROGRAMS := n64graphics mio0 n64cksum textconv
+PROGRAMS := n64graphics mio0 n64cksum textconv patch_libultra_math
 
 
 n64graphics_SOURCES := n64graphics.c utils.c
@@ -12,6 +12,7 @@ mio0_CFLAGS := -DMIO0_STANDALONE
 n64cksum_SOURCES := n64cksum.c libmio0.c libsm64.c utils.c
 
 textconv_SOURCES := textconv.c utf8.c hashtable.c
+patch_libultra_math_SOURCES := patch_libultra_math.c
 
 
 all: $(PROGRAMS)

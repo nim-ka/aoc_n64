@@ -115,10 +115,3 @@ glabel D_80333EF0
 
 glabel D_80333EF4
 	.incbin "bin/sm64.j.0EADAC.bin", 0x4148, 0xC
-
-glabel D_80333F00
-.ifdef VERSION_JP
-	.incbin "bin/sm64.j.0EADAC.bin", 0x4154, 0x8C0
-.else
-	.incbin "bin/sm64.u.0F0010.bin", 0x0, 0x8C0
-.endif

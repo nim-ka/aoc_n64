@@ -1,8 +1,6 @@
 #include <ultra64.h>
-#include "libultra.h"
 
 #include "sm64.h"
-#include "object_list_processor.h"
 #include "behavior_data.h"
 #include "behavior_script.h"
 #include "area.h"

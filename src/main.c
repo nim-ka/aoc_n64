@@ -2,7 +2,6 @@
 
 #include "sm64.h"
 #include "audio/interface_2.h"
-#include "libultra.h"
 #include "game.h"
 #include "memory.h"
 #include "sound_init.h"
@@ -55,7 +54,7 @@ static u16 sProfilerKeySequence[] = {U_JPAD, U_JPAD, D_JPAD, D_JPAD, L_JPAD, R_J
 static u16 sDebugTextKeySequence[]     = {D_JPAD, D_JPAD, U_JPAD, U_JPAD, L_JPAD, R_JPAD, L_JPAD, R_JPAD};
 static s16 sProfilerKey = 0;
 static s16 sDebugTextKey = 0;
-
+extern struct MemoryPool *D_8033A124;
 // unused
 void handle_debug_key_sequences(void)
 {
@@ -451,17 +450,17 @@ static void turn_off_audio(void)
 static void thread1_idle(UNUSED void *arg)
 {
 #if VERSION_US
-    int sp24 = D_U_80000300;
+    int sp24 = osTvType;
 #endif
 
     osCreateViManager(OS_PRIORITY_VIMGR);
 #if VERSION_US
-    if (sp24 == 1)
-        osViSetMode(&D_80333F00.viMode);
+    if (sp24 == TV_TYPE_NTSC)
+        osViSetMode(&osViModeTable[OS_VI_NTSC_LAN1]);
     else
-        osViSetMode(&D_80333F00.unk500);
+        osViSetMode(&osViModeTable[OS_VI_PAL_LAN1]);
 #else
-    osViSetMode(&D_80333F00.viMode);
+    osViSetMode(&osViModeTable[OS_VI_NTSC_LAN1]);
 #endif
     osViBlack(TRUE);
     osViSetSpecialFeatures(OS_VI_DITHER_FILTER_ON);

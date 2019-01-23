@@ -61,24 +61,23 @@ typedef struct
     /*0x08*/ void *dramAddr;
     /*0x0C*/ u32 devAddr;
     /*0x10*/ u32 size;
-    // Missing OSPiHandle *piHandle from the official definition
+    //OSPiHandle *piHandle; //from the official definition
 } OSIoMesg;
-
 
 /* Definitions */
 
-#define OS_READ   0  // device -> RDRAM
-#define OS_WRITE  1  // device <- RDRAM
+#define OS_READ 0  // device -> RDRAM
+#define OS_WRITE 1 // device <- RDRAM
 
-#define OS_MESG_PRI_NORMAL  0
-#define OS_MESG_PRI_HIGH    1
+#define OS_MESG_PRI_NORMAL 0
+#define OS_MESG_PRI_HIGH 1
 
 /* Functions */
 
 s32 osPiStartDma(OSIoMesg *mb, s32 priority, s32 direction,
-                u32 devAddr, void *vAddr, u32 nbytes, OSMesgQueue *mq);
+                 u32 devAddr, void *vAddr, u32 nbytes, OSMesgQueue *mq);
 void osCreatePiManager(OSPri pri, OSMesgQueue *cmdQ, OSMesg *cmdBuf,
-                s32 cmdMsgCnt);
+                       s32 cmdMsgCnt);
 OSMesgQueue *osPiGetCmdQueue(void);
 s32 osPiWriteIo(u32 devAddr, u32 data);
 s32 osPiReadIo(u32 devAddr, u32 *data);

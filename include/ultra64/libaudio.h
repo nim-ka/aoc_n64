@@ -1,12 +1,15 @@
 #ifndef _ULTRA64_LIBAUDIO_H_
 #define _ULTRA64_LIBAUDIO_H_
 
-typedef struct {
+
+typedef struct
+{
     u8 *offset;
     s32 len;
 } ALSeqData;
 
-typedef struct {
+typedef struct
+{
     s16 revision;
     s16 seqCount;
     ALSeqData seqArray[1];

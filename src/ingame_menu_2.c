@@ -11,7 +11,7 @@
 #include "behavior_script.h"
 #include "audio/interface_2.h"
 #include "obj_behaviors.h"
-
+extern struct MemoryPool *D_8033A124;
 struct struct802DE838 {
     s16 unk00;
     s16 unk02;

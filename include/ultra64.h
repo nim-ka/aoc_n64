@@ -24,5 +24,6 @@
 #include <ultra64/gu.h>
 #include <ultra64/os_ai.h>
 #include <ultra64/libaudio.h>
+#include <ultra64/libultra.h>
 
 #endif

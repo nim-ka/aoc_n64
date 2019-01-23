@@ -2,7 +2,6 @@
 #include <stdarg.h>
 
 #include "sm64.h"
-#include "../libultra.h"
 #include "gd_types.h"
 
 #include "gd_main.h"
