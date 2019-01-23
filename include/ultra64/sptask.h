@@ -2,13 +2,18 @@
 #define _ULTRA64_SPTASK_H_
 
 /* Task Types */
-#define M_GFXTASK  1
-#define M_AUDTASK  2
-#define M_VIDTASK  3
-#define M_HVQTASK  6
+#define M_GFXTASK 1
+#define M_AUDTASK 2
+#define M_VIDTASK 3
+#define M_HVQTASK 6
 #define M_HVQMTASK 7
 
-#define OS_YIELD_DATA_SIZE  0x900
+//gGfxSPTaskYieldBuffer has to be changed for this too
+#if (defined(F3DEX_GBI) || defined(F3DLP_GBI) || defined(F3DEX_GBI_2))
+#define OS_YIELD_DATA_SIZE 0xc00
+#else
+#define OS_YIELD_DATA_SIZE 0x900
+#endif
 #define OS_YIELD_AUDIO_SIZE 0x400
 
 /* Flags  */
@@ -41,7 +46,6 @@
 #define SPSTATUS_SET_SIGNAL6 0x00800000
 #define SPSTATUS_CLEAR_SIGNAL7 0x01000000
 #define SPSTATUS_SET_SIGNAL7 0x02000000
-
 
 #define SPSTATUS_HALT 0x0001
 #define SPSTATUS_BROKE 0x0002
@@ -89,21 +93,22 @@ typedef struct
     /*0x3C*/ u32 yield_data_size;
 } OSTask_t; // size = 0x40
 
-typedef union
-{
+typedef union {
     OSTask_t t;
     long long int force_structure_alignment;
 } OSTask;
 
 typedef u32 OSYieldResult;
 
-
 /* Functions */
 
+#define osSpTaskStart(p) \
+    osSpTaskLoad(p);     \
+    osSpTaskStartGo(p);
+
 void osSpTaskLoad(OSTask *task);
-s32 osSpTaskStartGo(OSTask *task);
-s32 osSpTaskStart(OSTask *task);
-s32 osSpTaskYield(void);
+void osSpTaskStartGo(OSTask *task);
+void osSpTaskYield(void);
 OSYieldResult osSpTaskYielded(OSTask *task);
 
 #endif

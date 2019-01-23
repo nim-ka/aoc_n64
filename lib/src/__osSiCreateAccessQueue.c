@@ -1,4 +1,4 @@
-#include <ultra64.h>
+#include "libultra_internal.h"
 #define SIAccessQueueSize 2
 OSMesg osSiMesgBuff[SIAccessQueueSize];
 OSMesgQueue gOsSiMessageQueue;

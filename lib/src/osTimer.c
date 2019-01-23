@@ -1,7 +1,4 @@
-#include <ultra64.h>
-void __osSetTimerIntr(u64);
-u64 __osInsertTimer(OSTimer *);
-void __osSetCompare(u32);
+#include "libultra_internal.h"
 
 //TODO: document 
 OSTimer D_80365D80;

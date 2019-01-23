@@ -1,10 +1,13 @@
 #include <ultra64.h>
 #include "sm64.h"
 
+#include "prevent_bss_reordering.h"
 #include "geo_layout.h"
 #include "math_util.h"
 #include "memory.h"
 #include "graph_node.h"
+
+
 
 typedef void (*GeoLayoutCommandProc)(void);
 

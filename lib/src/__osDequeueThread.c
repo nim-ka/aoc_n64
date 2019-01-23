@@ -1,13 +1,14 @@
-#include <ultra64.h>
+#include "libultra_internal.h"
 
 //these don't feel like they belong here
 //but it makes the most logical since there was printf data before
 OSThread *D_80334890 = NULL;
 u32 unknown = -1;
-OSThread *D_80334898 = &D_80334890;
-OSThread *D_8033489C = &D_80334890;
+OSThread *D_80334898 = (OSThread*)&D_80334890;
+OSThread *D_8033489C = (OSThread*)&D_80334890;
 OSThread *D_803348A0 = NULL;
 u32 D_803348A4 = 0; //UNKNOWN
+
 
 void __osDequeueThread(OSThread **queue, OSThread *thread)
 {
@@ -35,7 +36,7 @@ void __osDequeueThread(OSThread **queue, OSThread *thread)
         //   sw    $t6, ($a2)
         //.L80326588:
         //  move  $a2, $a3
-        a2 = a3;
+        a2 = &a3->next;
         //  lw    $a3, ($a2)
         a3 = *a2;
         //  bnez  $a3, .L80326574

@@ -1,4 +1,4 @@
-#include <ultra64.h>
+#include "libultra_internal.h"
 #include "hardware.h"
 
 #ifdef VERSION_US

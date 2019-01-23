@@ -1,4 +1,4 @@
-#include <ultra64.h>
+#include "libultra_internal.h"
 #include "hardware.h"
 s32 __osSiRawReadIo(void *a0, u32 *a1)
 {

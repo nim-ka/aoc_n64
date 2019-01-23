@@ -1,5 +1,5 @@
 
-#include <ultra64.h>
+#include "libultra_internal.h"
 
 OSYieldResult osSpTaskYielded(OSTask *task)
 {

@@ -1,4 +1,4 @@
-#include <ultra64.h>
+#include "libultra_internal.h"
 
 void guRotateF(float m[4][4], float a, float x, float y, float z)
 {

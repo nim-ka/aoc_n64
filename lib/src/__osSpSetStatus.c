@@ -1,4 +1,4 @@
-#include <ultra64.h>
+#include "libultra_internal.h"
 #include "hardware.h"
 void __osSpSetStatus(u32 status)
 {

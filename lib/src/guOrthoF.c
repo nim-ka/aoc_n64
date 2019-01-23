@@ -1,4 +1,4 @@
-#include <ultra64.h>
+#include "libultra_internal.h"
 
 void guOrthoF(float m[4][4], float left, float right, float bottom, float top,
               float near, float far, float scale)

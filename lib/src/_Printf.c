@@ -1,5 +1,6 @@
-#include <ultra64.h>
+#include "libultra_internal.h"
 #include <stdarg.h>
+#include <string.h>
 #include "printf.h"
 
 #define ATOI(i, a)                           \
@@ -25,7 +26,7 @@
                 c = i;                \
             _PROUT(dst, src, c);      \
         }
-u8 *strchr(const u8 *, u8);
+
 
 const u8 length_str[] = "hlL";
 const u8 flags_str[] = " +-#0";
@@ -40,7 +41,7 @@ s32 _Printf(char *prout(char *, const char *, size_t), char *dst, const char *fm
     printf_struct sp78;
     const u8 *fmt_ptr;
     u8 c;
-    u8 *flag_index;
+    const u8 *flag_index;
     u8 sp4c[0x20]; //probably a buffer?
     s32 sp48, sp44, sp40, sp3c, sp38, sp34, sp30, sp2c, sp28, sp24;
     sp78.size = 0;
@@ -217,14 +218,14 @@ void _Putfld(printf_struct *a0, va_list *args, u8 type, u8 *buff)
         break;
 
     case 'p':
-        a0->value.s64 = (s64)va_arg(*args, void *);
+        a0->value.s64 = (long)va_arg(*args, void *); //void*
         a0->buff = (char *)&buff[a0->part1_len];
         _Litob(a0, 'x');
         break;
 
     case 's':
         a0->buff = va_arg(*args, char *);
-        a0->part2_len = strlen(a0->buff);
+        a0->part2_len = strlen((u8*)a0->buff);
         if (a0->precision >= 0 && a0->part2_len > a0->precision)
             a0->part2_len = a0->precision;
         break;

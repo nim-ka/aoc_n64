@@ -1,6 +1,6 @@
-#include <ultra64.h>
+#include "libultra_internal.h"
 
-s32 osSpTaskYield(void)
+void osSpTaskYield(void)
 {
-    return __osSpSetStatus(SPSTATUS_SET_SIGNAL0);
+    __osSpSetStatus(SPSTATUS_SET_SIGNAL0);
 }

@@ -1,8 +1,11 @@
 #include <math.h>
-//TODO: how do I do this correctly
+
+#ifndef __GNUC__
 #pragma intrinsic (sqrtf)
-//should these be f32?
+#define __builtin_sqrtf sqrtf
+#endif
+
 float sqrtf(float f)
 {
-    return sqrtf(f);
+    return __builtin_sqrtf(f);
 }

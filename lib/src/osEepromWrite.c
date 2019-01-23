@@ -1,4 +1,4 @@
-#include <ultra64.h>
+#include "libultra_internal.h"
 #include "osContInternal.h"
 
 u32 D_80365E00[0x3c >> 2];
@@ -34,7 +34,7 @@ typedef struct
 
 s32 __osEepStatus(OSMesgQueue *, unkStruct *);
 s32 __osPackEepWriteData(u8, u8 *);
-osEepromWrite(OSMesgQueue *mq, u8 address, u8 *buffer)
+s32 osEepromWrite(OSMesgQueue *mq, u8 address, u8 *buffer)
 {
     s32 sp34;
     s32 sp30;
@@ -42,7 +42,7 @@ osEepromWrite(OSMesgQueue *mq, u8 address, u8 *buffer)
     unkStruct2 sp20;
     unkStruct sp1c;
     sp34 = 0;
-    sp2c = &D_80365E00;
+    sp2c = (u8*)&D_80365E00;
     if (address > 0x40)
         return -1;
     __osSiGetAccess();
@@ -82,7 +82,7 @@ s32 __osPackEepWriteData(u8 address, u8 *buffer)
     u8 *sp14;
     unkStruct2 sp8;
     s32 sp4;
-    sp14 = D_80365E00;
+    sp14 = (u8*)&D_80365E00;
     for (sp4 = 0; sp4 < 0x10; sp4++)
     {
         D_80365E00[sp4] = 255;
@@ -109,7 +109,7 @@ s32 __osEepStatus(OSMesgQueue *a0, unkStruct *a1)
 {
     u32 sp2c = 0;
     s32 sp28;
-    u8 *sp24 = D_80365E00;
+    u8 *sp24 = (u8*)D_80365E00;
     unkStruct3 sp1c;
 
     for (sp28 = 0; sp28 < 0x10; sp28++)
@@ -117,7 +117,7 @@ s32 __osEepStatus(OSMesgQueue *a0, unkStruct *a1)
         D_80365E00[sp28] = 0;
     }
     D_80365E3C = 1;
-    sp24 = D_80365E00;
+    sp24 = (u8*)D_80365E00;
     for (sp28 = 0; sp28 < 4; sp28++)
     {
         *sp24++ = 0;
@@ -140,7 +140,7 @@ s32 __osEepStatus(OSMesgQueue *a0, unkStruct *a1)
     osRecvMesg(a0, NULL, OS_MESG_BLOCK);
     if (sp2c != 0)
         return sp2c;
-    sp24 = D_80365E00;
+    sp24 = (u8*)D_80365E00;
     for (sp28 = 0; sp28 < 4; sp28++)
     {
         *sp24++ = 0;

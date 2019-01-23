@@ -1,4 +1,4 @@
-#include <ultra64.h>
+#include "libultra_internal.h"
 typedef struct
 {
     u8 unk00 : 2;

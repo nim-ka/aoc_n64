@@ -1,4 +1,4 @@
-#include <ultra64.h>
+#include "libultra_internal.h"
 extern OSViContext *D_80334914;
 //TODO: name magic constants
 void osViBlack(u8 active)

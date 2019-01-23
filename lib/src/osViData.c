@@ -1,4 +1,4 @@
-#include <ultra64.h>
+#include "libultra_internal.h"
 
 OSViMode D_80334990 = {
     /*type*/ 2,

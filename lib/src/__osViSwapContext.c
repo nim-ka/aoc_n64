@@ -1,4 +1,4 @@
-#include <ultra64.h>
+#include "libultra_internal.h"
 #include "hardware.h"
 extern OSViContext *D_80334914;
 extern OSViContext *D_80334910;
@@ -6,17 +6,17 @@ void __osViSwapContext()
 {
     register OSViMode *s0;
     register OSViContext *s1;
-    void *origin;
+    u32 origin;
     u32 hStart;
     u32 sp34;
     u32 field;
-    register void *s2;
+    register u32 s2;
     field = 0;
     s1 = D_80334914;
     s0 = s1->unk08;
     field = HW_REG(VI_V_CURRENT_LINE_REG, u32) & 1;
     s2 = osVirtualToPhysical(s1->buffer);
-    origin = (s0->fldRegs[field].origin) + (u32)s2;
+    origin = (s0->fldRegs[field].origin) + s2;
     if (s1->unk00 & 2)
     {
         s1->unk20 |= s0->comRegs.xScale & ~0xfff;

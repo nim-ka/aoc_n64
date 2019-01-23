@@ -1,5 +1,6 @@
-#include <ultra64.h>
+#include "libultra_internal.h"
 #include <stdlib.h>
+#include <string.h>
 #include "printf.h"
 
  u8 D_80334960[] = "0123456789abcdef";

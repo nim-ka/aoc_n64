@@ -1,5 +1,6 @@
-#include <ultra64.h>
-#define PIF_ADDR_START 0x1FC007FC
+#include "libultra_internal.h"
+#include <unused.h>
+#define PIF_ADDR_START (void*)0x1FC007FC
 
 typedef struct
 {
@@ -24,7 +25,7 @@ void osInitialize(void)
 {
     u32 sp34;
     u32 sp30 = 0;
-    u32 sp2c;
+    UNUSED u32 sp2c; 
     D_80365CD0 = TRUE;
     __osSetSR(__osGetSR() | 0x20000000);
     __osSetFpcCsr(0x01000800);

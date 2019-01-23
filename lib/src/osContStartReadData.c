@@ -1,4 +1,4 @@
-#include <ultra64.h>
+#include "libultra_internal.h"
 #include "osContInternal.h"
 
 OSContPackedStruct D_80365CE0[7];

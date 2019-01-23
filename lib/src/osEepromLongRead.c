@@ -1,4 +1,4 @@
-#include <ultra64.h>
+#include "libultra_internal.h"
 extern u64 osClockRate;
 extern u8 D_80365D20;
 extern u8 _osCont_numControllers;

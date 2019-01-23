@@ -1,4 +1,4 @@
-#include <ultra64.h>
+#include "libultra_internal.h"
 
 void guMtxF2L(float mf[4][4], Mtx *m)
 {

@@ -1,13 +1,14 @@
-#include <ultra64.h>
+#include "libultra_internal.h"
 #include "hardware.h"
+#include <unused.h>
 
-OSTask D_803638B0;
-#define _osVirtualToPhysical(ptr)       \
-    if (ptr != NULL)                    \
-    {                                   \
-        ptr = osVirtualToPhysical(ptr); \
+#define _osVirtualToPhysical(ptr)               \
+    if (ptr != NULL)                            \
+    {                                           \
+        ptr = (void *)osVirtualToPhysical(ptr); \
     }
 
+OSTask D_803638B0;
 OSTask *_VirtualToPhysicalTask(OSTask *task)
 {
     OSTask *physicalTask;
@@ -22,7 +23,6 @@ OSTask *_VirtualToPhysicalTask(OSTask *task)
     _osVirtualToPhysical(physicalTask->t.yield_data_ptr);
     return physicalTask;
 }
-extern void __osPiGetAccess();
 void osSpTaskLoad(OSTask *task)
 {
     OSTask *physicalTask;
@@ -38,20 +38,20 @@ void osSpTaskLoad(OSTask *task)
                     SPSTATUS_CLEAR_SIGNAL1 |
                     SPSTATUS_CLEAR_SIGNAL2 |
                     SPSTATUS_SET_INTR_ON_BREAK);
-    while (__osSpSetPc(SP_IMEM_START) == -1)
+    while (__osSpSetPc((void*)SP_IMEM_START) == -1)
         ;
-    while (__osSpRawStartDma(1, SP_IMEM_START - sizeof(OSTask), physicalTask, sizeof(OSTask)) == -1)
+    while (__osSpRawStartDma(1, (void*)(SP_IMEM_START - sizeof(*physicalTask)), physicalTask, sizeof(OSTask)) == -1)
         ;
     while (__osSpDeviceBusy())
         ;
-    while (__osSpRawStartDma(1, SP_IMEM_START, physicalTask->t.ucode_boot, physicalTask->t.ucode_boot_size) == -1)
+    while (__osSpRawStartDma(1, (void*)SP_IMEM_START, physicalTask->t.ucode_boot, physicalTask->t.ucode_boot_size) == -1)
         ;
 }
-s32 osSpTaskStartGo(OSTask *task)
+void osSpTaskStartGo(UNUSED OSTask *task)
 {
     while (__osSpDeviceBusy())
         ;
-    return __osSpSetStatus(SPSTATUS_SET_INTR_ON_BREAK |
+     __osSpSetStatus(SPSTATUS_SET_INTR_ON_BREAK |
                            SPSTATUS_CLEAR_SSTEP |
                            SPSTATUS_CLEAR_BROKE |
                            SPSTATUS_CLEAR_HALT);

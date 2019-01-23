@@ -1,4 +1,4 @@
-#include <ultra64.h>
+#include "libultra_internal.h"
 extern OSMgrArgs piMgrArgs;
 s32 osPiStartDma(OSIoMesg *mb, s32 priority, s32 direction,
                  u32 devAddr, void *vAddr, u32 nbytes, OSMesgQueue *mq)

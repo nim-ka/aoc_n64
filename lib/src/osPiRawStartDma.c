@@ -1,4 +1,4 @@
-#include <ultra64.h>
+#include "libultra_internal.h"
 #include "hardware.h"
 
 extern u32 osRomBase; //TODO: figure out why this is like this
@@ -11,9 +11,9 @@ s32 osPiRawStartDma(s32 dir, u32 cart_addr, void *dram_addr, size_t size)
         status = HW_REG(PI_STATUS_REG, u32);
     }
 
-    HW_REG(PI_DRAM_ADDR_REG, void *) = osVirtualToPhysical(dram_addr);
+    HW_REG(PI_DRAM_ADDR_REG, void *) = (void *)osVirtualToPhysical(dram_addr);
 
-    HW_REG(PI_CART_ADDR_REG, void *) = (osRomBase /*(*(u32 *)80000308)*/ | cart_addr) & 0x1fffffff;
+    HW_REG(PI_CART_ADDR_REG, void *) = (void *)((osRomBase /*(*(u32 *)80000308)*/ | cart_addr) & 0x1fffffff);
 
     switch (dir)
     {

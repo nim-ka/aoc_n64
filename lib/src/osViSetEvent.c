@@ -1,4 +1,4 @@
-#include <ultra64.h>
+#include "libultra_internal.h"
 extern OSViContext *D_80334914;
 void osViSetEvent(OSMesgQueue *mq, OSMesg msg, u32 retraceCount)
 {

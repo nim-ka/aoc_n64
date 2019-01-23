@@ -1,4 +1,4 @@
-#include <ultra64.h>
+#include "libultra_internal.h"
 #define PIAccessQueueSize 2
 OSMesg osPiMesgBuff[PIAccessQueueSize];
 OSMesgQueue gOsPiMessageQueue;

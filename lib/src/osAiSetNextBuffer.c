@@ -1,4 +1,4 @@
-#include <ultra64.h>
+#include "libultra_internal.h"
 #include "osAi.h"
 #include "hardware.h"
 u8 D_80334820 = 0;
@@ -19,7 +19,7 @@ s32 osAiSetNextBuffer(void *buff, u32 len)
 
     if (__osAiDeviceBusy())
         return -1;
-    HW_REG(AI_DRAM_ADDR_REG, void *) = osVirtualToPhysical(sp1c);
+    HW_REG(AI_DRAM_ADDR_REG, void *) = (void*)osVirtualToPhysical(sp1c);
     HW_REG(AI_LEN_REG, u32) = len;
     return 0;
 }

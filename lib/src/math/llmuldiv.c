@@ -1,46 +1,44 @@
-#include <ultra64.h>
-
-u64 __ull_rshift(u64 a0, u64 a1)
+unsigned long long __ull_rshift(unsigned long long a0, unsigned long long a1)
 {
     return a0 >> a1;
 }
-u64 __ull_rem(u64 a0, u64 a1)
+unsigned long long __ull_rem(unsigned long long a0, unsigned long long a1)
 {
     return a0 % a1;
 }
-u64 __ull_div(u64 a0, u64 a1)
+unsigned long long __ull_div(unsigned long long a0, unsigned long long a1)
 { 
     return a0 / a1;
 }
 
-u64 __ll_lshift(u64 a0, u64 a1)
+unsigned long long __ll_lshift(unsigned long long a0, unsigned long long a1)
 {
     return a0 << a1;
 }
 
-s64 __ll_rem(u64 a0, s64 a1)
+long long __ll_rem(unsigned long long a0, long long a1)
 {
     return a0 % a1;
 }
 
-s64 __ll_div(s64 a0, s64 a1)
+long long __ll_div(long long a0, long long a1)
 {
     return a0 / a1;
 }
 
-u64 __ll_mul(u64 a0, u64 a1)
+unsigned long long __ll_mul(unsigned long long a0, unsigned long long a1)
 {
     return a0 * a1;
 }
 
-void __ull_divremi(u64 *div, u64 *rem, u64 a2, u16 a3)
+void __ull_divremi(unsigned long long *div, unsigned long long *rem, unsigned long long a2, unsigned short a3)
 {
     *div = a2 / a3;
     *rem = a2 % a3; 
 } 
-s64 __ll_mod(s64 a0, s64 a1)
+long long __ll_mod(long long a0, long long a1)
 {
-    s64 tmp = a0 % a1;
+    long long tmp = a0 % a1;
     if ((tmp < 0 && a1 > 0) || (tmp > 0 && a1 < 0))
     {
 
@@ -49,7 +47,7 @@ s64 __ll_mod(s64 a0, s64 a1)
     return tmp;
 }
  
-s64 __ll_rshift(s64 a0, s64 a1)
+long long __ll_rshift(long long a0, long long a1)
 {
     return a0 >> a1;
 }

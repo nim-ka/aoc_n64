@@ -1,4 +1,4 @@
-#include <ultra64.h>
+#include "libultra_internal.h"
 #include "osAi.h"
 #include "hardware.h"
 extern s32 D_8033491C;

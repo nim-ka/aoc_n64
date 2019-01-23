@@ -1,4 +1,4 @@
-#include <ultra64.h>
+#include "libultra_internal.h"
 
 void guPerspectiveF(float mf[4][4], u16 *perspNorm, float fovy, float aspect,
                     float near, float far, float scale)

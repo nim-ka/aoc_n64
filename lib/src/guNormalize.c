@@ -1,4 +1,4 @@
-#include <ultra64.h>
+#include "libultra_internal.h"
 
 void guNormalize(f32 *x, f32 *y, f32 *z)
 {

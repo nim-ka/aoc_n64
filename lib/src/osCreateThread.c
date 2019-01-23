@@ -1,6 +1,9 @@
-#include <ultra64.h>
+#include "libultra_internal.h"
 extern OSThread* D_8033489C;
 void __osCleanupThread(void);
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wint-conversion"
+#pragma GCC diagnostic ignored "-Wpointer-to-int-cast"
 void osCreateThread(OSThread *thread, OSId id, void (*entry)(void *),
                     void *arg, void *sp, OSPri pri)
 {
@@ -11,9 +14,9 @@ void osCreateThread(OSThread *thread, OSId id, void (*entry)(void *),
     thread->next = NULL;
     thread->queue = NULL;
     thread->context.pc = (u32)entry;
-    thread->context.a0 = (u64)arg;
+    thread->context.a0 = arg;
     thread->context.sp = ((u64)sp) - 16;
-    thread->context.ra = (u64)__osCleanupThread;
+    thread->context.ra = __osCleanupThread;
     tmp = 0x003FFF01;
     thread->context.sr = 65283;
     thread->context.rcp = (tmp & 0x3f0000) >> 16;
@@ -27,3 +30,4 @@ void osCreateThread(OSThread *thread, OSId id, void (*entry)(void *),
     D_8033489C = thread;
     __osRestoreInt(int_disabled);
 }
+#pragma GCC diagnostic pop

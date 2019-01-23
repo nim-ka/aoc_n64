@@ -1,4 +1,4 @@
-#include <ultra64.h>
+#include "libultra_internal.h"
 
 void guTranslateF(float m[4][4], float x, float y, float z)
 {

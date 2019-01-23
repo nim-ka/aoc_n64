@@ -10,6 +10,7 @@
 #include "object_lists.h"
 #include "audio_defines.h"
 #include "model_ids.h"
+#include "unused.h"
 
 #ifdef VERSION_US
 // FIXME: find out what these are
@@ -446,12 +447,6 @@ typedef int BssDummy;
 #define ACT_HOLDING_BOWSER             0x00000391 // (0x191 | ACT_FLAG_STATIONARY)
 #define ACT_RELEASING_BOWSER           0x00000392 // (0x192 | ACT_FLAG_STATIONARY)
 
-// Avoid compiler warnings for unused variables
-#ifdef __GNUC__
-#define UNUSED __attribute__((unused))
-#else
-#define UNUSED
-#endif
 
 // Ignore GLOBAL_ASM blocks when syntax-checking with GCC
 #ifdef __GNUC__

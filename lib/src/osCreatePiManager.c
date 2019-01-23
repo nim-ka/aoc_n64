@@ -1,4 +1,4 @@
-#include <ultra64.h>
+#include "libultra_internal.h"
 #define OS_PI_MGR_MESG_BUFF_SIZE 1
 
 OSMgrArgs piMgrArgs = {0};

@@ -1,4 +1,4 @@
-#include <ultra64.h>
+#include "libultra_internal.h"
 extern OSTime _osCurrentTime;
 extern u32 D_80365DA8;
 OSTime osGetTime()

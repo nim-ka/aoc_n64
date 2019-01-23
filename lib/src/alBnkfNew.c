@@ -1,4 +1,4 @@
-#include <ultra64.h>
+#include "libultra_internal.h"
 #include "libaudio_internal.h"
 #define PATCH(SRC, BASE, TYPE) SRC = (TYPE)((u32)SRC + (u32)BASE)
 

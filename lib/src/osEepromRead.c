@@ -1,4 +1,4 @@
-#include <ultra64.h>
+#include "libultra_internal.h"
 
 extern u32 D_80365E00[15];
 extern u32 D_80365E3C;
@@ -33,7 +33,7 @@ typedef struct
 
 s32 __osEepStatus(OSMesgQueue *, unkStruct *);
 s32 __osPackEepReadData(u8);
-osEepromRead(OSMesgQueue *mq, u8 address, u8 *buffer)
+s32 osEepromRead(OSMesgQueue *mq, u8 address, u8 *buffer)
 {
     s32 sp34;
     s32 sp30;
@@ -42,7 +42,7 @@ osEepromRead(OSMesgQueue *mq, u8 address, u8 *buffer)
     unkStruct2 sp20;
     sp34 = 0;
     sp30 = 0;
-    sp2c = &D_80365E00;
+    sp2c = (u8*)&D_80365E00;
     if (address > 0x40)
         return -1;
     __osSiGetAccess();
@@ -89,7 +89,7 @@ s32 __osPackEepReadData(u8 address)
     u8 *sp14;
     unkStruct2 sp8;
     s32 sp4;
-    sp14 = D_80365E00;
+    sp14 = (u8*)&D_80365E00;
     for (sp4 = 0; sp4 < 0x10; sp4++)
     {
         D_80365E00[sp4] = 255;

@@ -1,7 +1,8 @@
 
 #include <stdarg.h>
-#include <ultra64.h>
-
+#include "libultra_internal.h"
+#include "printf.h"
+#include <string.h>
 char *proutSprintf(char *dst, const char *src, size_t count);
 int sprintf(char *dst, const char *fmt, ...)
 {

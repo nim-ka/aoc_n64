@@ -1,4 +1,4 @@
-#include <ultra64.h>
+#include "libultra_internal.h"
 #include "hardware.h"
 extern u32 osRomBase;
 s32 osPiRawReadIo(u32 a0, u32 *a1)
