@@ -60,10 +60,6 @@ extern f32 D_803320E0[6];
 extern struct Struct80222A18 D_80222A18[3];
 
 extern u64 gAudioSPTaskYieldBuffer[]; // ucode yield data ptr; only used in JP
-extern u64 D_8032B800[]; // ucode
-extern u64 D_80338750[]; // gfx ucode data
-extern u64 D_80338F50[]; // ucode data
-extern u64 audio_data_end[]; // end of ucode data
 
 // from audio_something, updates ucode data
 extern u64 *func_80313CD4(u64 *arg0, s32 *arg1, u16 *arg2, s32 arg3);
