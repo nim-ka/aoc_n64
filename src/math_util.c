@@ -11,6 +11,8 @@ Vec4s *D_8038BC90;
 float D_8038BC94;
 int D_8038BC98;
 
+#include "math_tables.h"
+
 // These functions have bogus return values.
 // Disable the compiler warning.
 #pragma GCC diagnostic push

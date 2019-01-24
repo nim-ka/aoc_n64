@@ -415,9 +415,8 @@ SECTIONS
       BUILD_DIR/src/surface_load.o(.text);
       BUILD_DIR/src/behavior_script.o(.text);
       /* data */
-      BUILD_DIR/data/data_80385F90.o(.data*);
       BUILD_DIR/src/graph_node.o(.data*);
-      BUILD_DIR/data/math_util.data.o(.data*);
+      BUILD_DIR/src/math_util.o(.data*);
       BUILD_DIR/src/geo_layout.o(.data*);
       BUILD_DIR/src/level_script.o(.data*);
       BUILD_DIR/src/behavior_script.o(.data*);
