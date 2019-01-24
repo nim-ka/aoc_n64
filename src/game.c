@@ -311,7 +311,10 @@ void thread5_game_loop(UNUSED void *arg)
     save_file_load_all();
 
     set_vblank_handler(2, &gGameVblankHandler, &gGameVblankQueue, (OSMesg)1);
-    addr = (struct LevelCommand *) segmented_to_virtual(D_10000000);
+
+    // point addr to the entry point into the level script data.
+    addr = (struct LevelCommand *) segmented_to_virtual(level_script_entry);
+
     func_80320AE8(2, 0, 0);
     func_80248DD8(save_file_get_sound_mode());
     func_80247ED8();
