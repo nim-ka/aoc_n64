@@ -421,7 +421,7 @@ struct ObjView {
     /* 0x54 */ struct MyVec3f unk54;    // scale?
     /* 0x60 */ struct MyVec3f unk60;
     /* 0x6C */ const char *unk6C; // name?
-    /* 0x70 */ s32 unk70;   // gd_startdisplist id?
+    /* 0x70 */ s32 unk70;   // gd dl number
     /* 0x74 */ s32 unk74;
     /* 0x78 */ s32 unk78;
     /* 0x7C */ struct GdColour unk7C; // color???
@@ -432,13 +432,25 @@ struct ObjView {
     /* 0x9C */ s32 unk9C;
 }; /* sizeof = 0xA0 */
 
+/* View Flags (+0x34)
+ * 0x000010
+ * 0x000800 - show view
+ * 0x008000 - Color buf view?
+ * 0x010000 - Z buf view?
+ * 0x040000 - (dynamic) dlgen? view movement?
+ * 0x080000
+ * 0x100000 - skip rendering (for frame?)
+*/
+
+typedef union ObjVarVal * (*valptrproc_t)(union ObjVarVal *, union ObjVarVal);
+
 struct ObjLabel {
     /* 0x00 */ struct ObjHeader header;
     /* 0x14 */ struct MyVec3f vec14;
     /* 0x20 */ char *fmtstr;
     /* 0x24 */ s32 unk24;
     /* 0x28 */ struct ObjValPtrs *valptr;
-    /* 0x2C */ union ObjVarVal * (*valfn)(union ObjVarVal *, union ObjVarVal);
+    /* 0x2C */ valptrproc_t valfn;
     /* 0x30 */ s32 unk30;       // state or type?
 }; /* sizeof = 0x34 */
 

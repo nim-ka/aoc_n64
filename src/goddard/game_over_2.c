@@ -4,7 +4,7 @@
 #include "gd_main.h"
 #include "game_over_2.h"
 #include "mario_head_1.h"
-#include "mario_head_4.h"
+#include "dynlist_proc.h"
 #include "old_obj_fn.h"
 #include "profiler_utils.h"
 #include "matrix_fns.h"
@@ -37,7 +37,7 @@ static struct GdColour sClrYellow      = { 1.0, 1.0, 0.0 }; // @ 801A80DC
 
 static union ColourArray sLightColour = {{ 1.0, 1.0, 0.0 }}; // @ 801A80E8
 static struct GdColour *sSelectedColour = &sClrRed;          // @ 801A80F4
-struct ObjCamera *D_801A80F8 = NULL;
+struct ObjCamera *D_801A80F8 = NULL; // main camera?
 static void *sUnref801A80FC = NULL;
 static s32 D_801A8100 = 0;
 struct GdColour *sColourPalette[5] = { // @ 801A8104
@@ -64,7 +64,7 @@ static s32 sUnref801A81A4[4] = {0,0,0,0}; //min of 4 zeroes needed.
 
 // bss
 u8 gdUnused801B9B30[0x88];
-struct ObjGroup *D_801B9BB8;  // ObjGroup* of ObjLights
+struct ObjGroup *sGdLightGroup;  // @ 801B9BB8; is this the main light group? only light group?
 
 static u8 sUnused801B9BBC[0x40];
 static s32 D_801B9C00;
@@ -121,7 +121,7 @@ void Unknown801781DC(struct ObjZone *a)
     while (s0 != NULL)
     {
         sp20 = s0->obj;
-        sp28 = (struct ObjLight *)D_801B9BB8->link1C->obj;
+        sp28 = (struct ObjLight *)sGdLightGroup->link1C->obj;
         sp3C.x = sp28->unk74.x;
         sp3C.y = sp28->unk74.y;
         sp3C.z = sp28->unk74.z;
@@ -489,8 +489,6 @@ void Unknown801792F0(struct ObjHeader* a)
     func_801A48D8(sp28);
 }
 
-typedef union ObjVarVal * (*SomeFunc)(union ObjVarVal *, union ObjVarVal);
-
 /* 227B20 -> 227DF8 */
 void Proc80179350(struct ObjLabel *label)
 {
@@ -499,7 +497,7 @@ void Proc80179350(struct ObjLabel *label)
     UNUSED u8 unused[16];
     struct ObjValPtrs *valptr;
     union ObjVarVal sp28;
-    SomeFunc valfn = (SomeFunc)label->valfn;
+    valptrproc_t valfn = label->valfn;
 
     if ((valptr = label->valptr) != NULL)
     {
@@ -695,9 +693,9 @@ void Unknown80179CC8(struct ObjHeader *a)
     sp3C.y = (*mtx)[3][1];
     sp3C.z = (*mtx)[3][2];
     func_80179B9C(&sp3C, D_801A80F8, D_801B9CE0.view);
-    if (ABS(D_801B9920.unkD0 - sp3C.x) < 20.0f)
+    if (ABS(gGdCtrl.csrX - sp3C.x) < 20.0f)
     {
-        if (ABS(D_801B9920.unkD4 - sp3C.y) < 20.0f)
+        if (ABS(gGdCtrl.csrY - sp3C.y) < 20.0f)
         {
             func_801A5A04(2);
             func_801A5A04(obj->type);
@@ -753,7 +751,7 @@ void drawscene(int a, struct ObjGroup *groupB, struct ObjGroup* groupC)
     if ((D_801B9D80 = D_801B9CE0.view->unk34 & 0x200000) != 0)
         D_801B9CE0.view->unk34 &= ~0x200000;
     D_801B9D80 = 1;
-    apply_to_obj_types_in_group(OBJ_TYPE_LIGHTS, Proc8017A91C, D_801B9BB8);
+    apply_to_obj_types_in_group(OBJ_TYPE_LIGHTS, Proc8017A91C, sGdLightGroup);
     split_timer("draw1");
     restart_timer("drawobj");
     add_to_stacktrace("process_group");
@@ -997,8 +995,8 @@ void update_shaders(struct ObjShape *shape, struct MyVec3f *b)
     D_801B9D10.y = b->y;
     D_801B9D10.z = b->z;
     D_801B9CF8 = NULL;
-    if (D_801B9BB8 != NULL)
-        apply_to_obj_types_in_group(OBJ_TYPE_LIGHTS, Proc8017A980, D_801B9BB8);
+    if (sGdLightGroup != NULL)
+        apply_to_obj_types_in_group(OBJ_TYPE_LIGHTS, Proc8017A980, sGdLightGroup);
     if (shape->mtlGroup != NULL)
         apply_to_obj_types_in_group(OBJ_TYPE_MATERIALS, apply_obj_draw_fn, shape->mtlGroup);
     pop_gddl_stash();
@@ -1216,8 +1214,8 @@ void Unknown8017B514(struct ObjJoint *a)
     }
 }
 
-/* 229DC0 -> 229DF4 */
-void Unknown8017B5F0(struct ObjCamera *a)
+/* 229DC0 -> 229DF4; orig name: Unknown8017B5F0 */
+void set_main_camera(struct ObjCamera *a)
 {
     if (D_801A80F8 != NULL)
         return;
@@ -1250,7 +1248,7 @@ void update_view(struct ObjView *view)
     D_801A80F8 = NULL;
     if (view->unk28 != NULL)
     {
-        apply_to_obj_types_in_group(OBJ_TYPE_CAMERAS, Unknown8017B5F0, view->unk28);
+        apply_to_obj_types_in_group(OBJ_TYPE_CAMERAS, set_main_camera, view->unk28);
         view->unk24 = D_801A80F8;
         if (view->unk24 != NULL)
             D_801A80F8->unk18C = view;
@@ -1259,7 +1257,7 @@ void update_view(struct ObjView *view)
     {
         split_timer("dlgen");
         restart_timer("dynamics");
-        func_8018145C(view);
+        proc_view_movement(view);
         split_timer("dynamics");
         restart_timer("dlgen");
         D_801A80F8 = view->unk24;
@@ -1279,9 +1277,9 @@ void update_view(struct ObjView *view)
         gd_set_one_cycle();
     if (view->unk28 != NULL)
     {
-        if (D_801B9920.unkD8b80 != 0)
+        if (gGdCtrl.btnApressed)
         {
-            if (gd_getproperty(3, 0) != 0 && D_801B9920.unkD8b10 != 0)
+            if (gd_getproperty(3, 0) != 0 && gGdCtrl.btnAnewPress != FALSE)
             {
                 func_801A59D4(D_801B9C08, ARRAY_COUNT(D_801B9C08));
                 drawscene(27, D_801B9CE0.view->unk28, NULL);
@@ -1332,8 +1330,8 @@ void update_view(struct ObjView *view)
                     D_801B9CD8->header.unk12 |= 4;
                     D_801B9CD8->header.unk12 |= 0x10;
                     D_801B9CE0.view->unk30 = D_801B9CD8;
-                    D_801B9920.unkB8 = D_801B9920.unkD0 = D_801B9D88.x;
-                    D_801B9920.unkBC = D_801B9920.unkD4 = D_801B9D88.y;
+                    gGdCtrl.csrXatApress = gGdCtrl.csrX = D_801B9D88.x;
+                    gGdCtrl.csrYatApress = gGdCtrl.csrY = D_801B9D88.y;
                 }
             }
             func_80180974(D_801B9CE0.view->unk28);

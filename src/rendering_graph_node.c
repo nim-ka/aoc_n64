@@ -629,7 +629,7 @@ void func_8027D14C(struct Object *a)
             D_8033AF78[D_8033A770] = sp28;
             if (a->header.gfx.asGraphNode != NULL)
             {
-                D_8032CFA0 = a;
+                D_8032CFA0 = (struct GraphNodeObject *)a;
                 a->header.gfx.asGraphNode->parent = &a->header.gfx.node;
                 func_8027D8F8(a->header.gfx.asGraphNode);
                 a->header.gfx.asGraphNode->parent = NULL;

@@ -3,7 +3,7 @@
 #include "sm64.h"
 #include "macros.h"
 #include "dynlists.h"
-#include "../mario_head_4.h"
+#include "../dynlist_proc.h"
 
 #define VTX_NUM 26
 /* @ 040042E0 */
@@ -42,9 +42,9 @@ struct GdFaceData faces_040044A8 = { FACE_NUM, 0x1, facedata_04004388 };
 /* @ 040044B4 */
 struct DynList dynlist_040044B4[16] = {
     StartList(),
-    MakeDynObj(D_DIFF_GRP, 0x5A),
+    MakeDynObj(D_DATA_GRP, 0x5A),
     LinkWithPtr(&vtx_0400437C),
-    MakeDynObj(D_DIFF_GRP, 0x5B),
+    MakeDynObj(D_DATA_GRP, 0x5B),
     LinkWithPtr(&faces_040044A8),
     StartGroup(0x5C),
     MakeDynObj(D_MATERIAL, 0x0),
@@ -98,9 +98,9 @@ struct GdFaceData faces_040047FC = { FACE_NUM, 0x1, facedata_040046DC };
 /* @ 04004808 */
 struct DynList dynlist_04004808[16] = {
     StartList(),
-    MakeDynObj(D_DIFF_GRP, 0x38),
+    MakeDynObj(D_DATA_GRP, 0x38),
     LinkWithPtr(&vtx_040046D0),
-    MakeDynObj(D_DIFF_GRP, 0x39),
+    MakeDynObj(D_DATA_GRP, 0x39),
     LinkWithPtr(&faces_040047FC),
     StartGroup(0x3A),
     MakeDynObj(D_MATERIAL, 0x0),
@@ -175,9 +175,9 @@ struct GdFaceData faces_04004E04 = { FACE_NUM, 0x1, facedata_04004AE4 };
 /* @ 04004E10 */
 struct DynList dynlist_04004E10[16] = {
     StartList(),
-    MakeDynObj(D_DIFF_GRP, 0x16),
+    MakeDynObj(D_DATA_GRP, 0x16),
     LinkWithPtr(&vtx_04004AD8),
-    MakeDynObj(D_DIFF_GRP, 0x17),
+    MakeDynObj(D_DATA_GRP, 0x17),
     LinkWithPtr(&faces_04004E04),
     StartGroup(0x18),
     MakeDynObj(D_MATERIAL, 0x0),

@@ -3,7 +3,7 @@
 #include "sm64.h"
 #include "macros.h"
 #include "dynlists.h"
-#include "../mario_head_4.h"
+#include "../dynlist_proc.h"
 
 #define VTX_NUM 48
 /* @ 04003610 */
@@ -59,9 +59,9 @@ static struct GdFaceData faces_040039CC = { FACE_NUM, 0x1, facedata_0400373C };
 /* @ 040039D8 */
 struct DynList dynlist_040039D8[28] = {
     StartList(),
-    MakeDynObj(D_DIFF_GRP, 0x71),
+    MakeDynObj(D_DATA_GRP, 0x71),
     LinkWithPtr(&vtx_04003730),
-    MakeDynObj(D_DIFF_GRP, 0x72),
+    MakeDynObj(D_DATA_GRP, 0x72),
     LinkWithPtr(&faces_040039CC),
     StartGroup(0x73),
     MakeDynObj(D_MATERIAL, 0x0),
@@ -143,9 +143,9 @@ static struct GdFaceData faces_04004034 = { FACE_NUM, 0x1, facedata_04003DA4 };
 /* @ 04004040 */
 struct DynList dynlist_04004040[28] = {
     StartList(),
-    MakeDynObj(D_DIFF_GRP, 0x61),
+    MakeDynObj(D_DATA_GRP, 0x61),
     LinkWithPtr(&vtx_04003D98),
-    MakeDynObj(D_DIFF_GRP, 0x62),
+    MakeDynObj(D_DATA_GRP, 0x62),
     LinkWithPtr(&faces_04004034),
     StartGroup(0x63),
     MakeDynObj(D_MATERIAL, 0x0),

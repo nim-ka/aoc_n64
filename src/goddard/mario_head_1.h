@@ -12,12 +12,12 @@ struct DebugCounters {
 
 // bss
 extern struct GdPlaneF D_801B9DA0;
-extern struct ObjCamera *D_801B9DB8;
-extern struct ObjView *D_801B9DBC;
+extern struct ObjCamera *sCurrentMoveCamera;
+extern struct ObjView *sCurrentMoveView;
 extern struct DebugCounters gGdCounter;
 extern Mat4 D_801B9DC8;
 extern struct MyVec3f D_801B9E08;
-extern struct ObjGroup* D_801B9E14;
+extern struct ObjGroup* sCurrentMoveGrp;
 extern struct MyVec3f D_801B9E18;
 extern struct MyVec3f D_801B9E28;
 extern f32 D_801B9E34;
@@ -33,7 +33,7 @@ extern s32 gGdObjCount;
 extern s32 gGdGroupCount;
 extern s32 gGdPlaneCount;
 extern s32 gGdCameraCount;
-extern struct Unk801B9E68 D_801B9E68;   /* count in first member? */
+extern struct Unk801B9E68 sGdViewInfo;   /* count in first member? */
 extern void* D_801B9E80;
 extern struct ObjJoint* gGdJointList;
 extern struct ObjBone* gGdBoneList;
@@ -89,13 +89,13 @@ extern void move_animator(struct ObjAnimator*);
 extern void Unknown80180624(struct ObjHeader*);
 extern void move_animators(struct ObjGroup *);
 extern void func_80180974(struct ObjGroup *);
-extern void Unknown801809B0(struct ObjCamera*);
-extern void func_80180FD4(struct ObjGroup*);
+extern void move_camera(struct ObjCamera*);
+extern void move_cameras_in_grp(struct ObjGroup*);
 extern void Unknown8018100C(struct ObjLight*);
-extern void func_80181378(struct ObjGroup*);
-extern void func_80181378(struct ObjGroup*);
-extern void func_8018145C(struct ObjView *);
-extern void func_801814F4(struct ObjGroup *);
+extern void move_lights_in_grp(struct ObjGroup*);
+extern void move_lights_in_grp(struct ObjGroup*);
+extern void proc_view_movement(struct ObjView *);
+extern void reset_nets_and_gadgets(struct ObjGroup *);
 extern void null_obj_lists(void);
 
 #endif /* _MARIO_HEAD_1_H_ */

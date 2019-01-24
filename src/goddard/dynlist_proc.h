@@ -1,7 +1,7 @@
-#ifndef _MARIO_HEAD_4_H_
-#define _MARIO_HEAD_4_H_
+#ifndef _DYNLIST_PROCESSOR_
+#define _DYNLIST_PROCESSOR_
 
-#include "types.h"
+#include <ultra64.h>
 #include "gd_types.h"
 
 // types
@@ -34,7 +34,7 @@ enum DObjTypes {
     D_LABEL         = 12,
     D_VIEW          = 13,
     D_ANIMATOR      = 14,
-    D_DIFF_GRP      = 15,
+    D_DATA_GRP      = 15,
     D_PARTICLE      = 16,
     D_LIGHT         = 17,
     D_GROUP         = 18
@@ -80,4 +80,4 @@ extern Mat4* d_get_matrix_ptr(void);
 extern Mat4* d_get_idn_mtx_ptr(void);
 extern float d_calc_world_dist_btwn();  //d_calc_world_dist_btwn(struct ObjHeader *, struct ObjHeader *)
 
-#endif /* _MARIO_HEAD_4_H_ */
+#endif /* _DYNLIST_PROCESSOR_ */

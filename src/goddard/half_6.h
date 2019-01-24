@@ -19,9 +19,9 @@ extern void add_3_vtx_to_face(struct ObjFace *, struct ObjVertex *, struct ObjVe
 extern struct ObjShape *make_shape(s32, const char *);
 extern void func_8019834C(struct ObjShape *, f32, f32, f32);
 extern struct ObjNet *make_netfromshape(struct ObjShape *);
-extern void Proc80199FA0(struct ObjAnimator *);
-extern void Proc8019A068(struct ObjAnimator *);
-extern s32 func_8019A378(void (*aniFn)(struct ObjAnimator *));
+extern void animate_mario_head_gameover(struct ObjAnimator *);
+extern void animate_mario_head_normal(struct ObjAnimator *);
+extern s32 load_mario_head(void (*aniFn)(struct ObjAnimator *));
 extern void load_shapes2(void);
 
 #ifndef _BAD_GD_DECLARATIONS_H_

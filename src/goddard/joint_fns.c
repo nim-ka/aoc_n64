@@ -5,11 +5,11 @@
 
 #include "joint_fns.h"
 #include "gd_main.h"
-#include "game_over_1.h"
+#include "mhead_sfx.h"
 #include "game_over_2.h"
 #include "mario_head_1.h"
 #include "mario_head_2.h"
-#include "mario_head_4.h"
+#include "dynlist_proc.h"
 #include "profiler_utils.h"
 #include "skin_fns.h"
 #include "matrix_fns.h"
@@ -66,7 +66,7 @@ void Proc8018E520(struct ObjJoint *self)
         self->unk1BC |= 0x2000;
         ; // necessary?
     } else {
-        if (D_801B9920.unk48 == FALSE) // R trigger
+        if (gGdCtrl.trgR == FALSE) // R-trigger not held or released
         {
             self->unk78.x -= sp64.x * 0.5; //! 0.5f
             self->unk78.y -= sp64.y * 0.5; //! 0.5f
@@ -87,7 +87,7 @@ void Proc8018E520(struct ObjJoint *self)
                 }
             } 
 
-            if (self->unk1BC & 0x2000) { func_80178114(0x20); }
+            if (self->unk1BC & 0x2000) { gd_play_sfx(GD_SFX_LET_GO_FACE); }
 
             self->unk1BC &= ~0x2000;
             ; //necessary?
@@ -102,8 +102,8 @@ void Proc8018E520(struct ObjJoint *self)
 
     if (self->header.unk12 & 0x4)
     {
-        D_801B9920.unkD0 -= (D_801B9920.unkD0 - D_801B9920.unkB8) * 0.2;
-        D_801B9920.unkD4 -= (D_801B9920.unkD4 - D_801B9920.unkBC) * 0.2;
+        gGdCtrl.csrX -= (gGdCtrl.csrX - gGdCtrl.csrXatApress) * 0.2;
+        gGdCtrl.csrY -= (gGdCtrl.csrY - gGdCtrl.csrYatApress) * 0.2;
     }
 
     sp64.x = self->mat128[3][0] - self->unk54.x;
@@ -129,7 +129,7 @@ void Proc8018EBE8(struct ObjJoint *self)
     register struct Links *att; // sp28
     struct ObjHeader *attobj;   // sp24
 
-    if (D_801B9DB8 == NULL) { return; }
+    if (sCurrentMoveCamera == NULL) { return; }
 
     if (self->unk1D0 != NULL)
     {
@@ -141,10 +141,10 @@ void Proc8018EBE8(struct ObjJoint *self)
     sp44.x = (*sp5C)[3][0];
     sp44.y = (*sp5C)[3][1];
     sp44.z = (*sp5C)[3][2];
-    func_80179B9C(&sp44, D_801B9DB8, D_801B9DBC);
+    func_80179B9C(&sp44, sCurrentMoveCamera, sCurrentMoveView);
 
-    sp50.x = D_801B9920.unkD0 - sp44.x;
-    sp50.y = -(D_801B9920.unkD4 - sp44.y);
+    sp50.x = gGdCtrl.csrX - sp44.x;
+    sp50.y = -(gGdCtrl.csrY - sp44.y);
     sp50.z = 0.0f;
 
     sp50.x *= 2.0;  //!2.0f

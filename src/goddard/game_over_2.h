@@ -7,9 +7,9 @@
 extern struct ObjCamera *D_801A80F8;
 
 // bss
-// this is unused, but it's need to be declared before D_801B9BB8
+// this is unused, but it's need to be declared before sGdLightGroup
 extern u8 gdUnused801B9B30[0x88];
-extern struct ObjGroup *D_801B9BB8;  // ObjGroup* of ObjLights
+extern struct ObjGroup *sGdLightGroup;  // ObjGroup* of ObjLights
 
 // functions
 extern void Proc80178900(struct ObjLight *);

@@ -3,7 +3,7 @@
 #include "sm64.h"
 #include "macros.h"
 #include "dynlists.h"
-#include "../mario_head_4.h"
+#include "../dynlist_proc.h"
 // maybe move types into the dynlists.h file?
 struct DynList dynlist_04000650[62] = {
     StartList(),

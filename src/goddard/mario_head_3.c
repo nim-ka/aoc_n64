@@ -6,7 +6,7 @@
 #include "game_over_2.h"
 #include "mario_head_1.h"
 #include "mario_head_3.h"
-#include "mario_head_4.h"
+#include "dynlist_proc.h"
 #include "profiler_utils.h"
 #include "skin_fns.h"
 #include "matrix_fns.h"
@@ -53,12 +53,11 @@ void func_80181C00(struct ObjVertex *, struct ObjVertex *);
 void Unknown80181D14(struct ObjFace *);
 void func_80181EB0(struct Connection *);
 void func_80182088(struct Connection *);
-void Unknown80182C84(struct ObjParticle *);
+void move_particle(struct ObjParticle *);
 struct Connection *func_801825FC(struct ObjVertex *, struct ObjVertex *);
 int func_80182778(struct ObjParticle *);
 void func_80182A08(struct ObjParticle *, struct MyVec3f *b);
 void func_801838D0(struct ObjParticle *);
-void Unknown80182C84(struct ObjParticle *);
 void Unknown801835C8(struct ObjParticle *ptc);
 
 /* 2303D0 -> 2304E4 */
@@ -228,7 +227,7 @@ void func_801823A0(struct ObjNet *net)
             func_80182088(cxn);
             link = link->next;
         }
-        apply_to_obj_types_in_group(OBJ_TYPE_PARTICLES, Unknown80182C84, net->unk1C8);
+        apply_to_obj_types_in_group(OBJ_TYPE_PARTICLES, move_particle, net->unk1C8);
         apply_to_obj_types_in_group(OBJ_TYPE_PLANES, reset_plane, net->unk1CC);
         break;
     }
@@ -357,8 +356,8 @@ void func_80182A08(struct ObjParticle *ptc, struct MyVec3f *b)
     }
 }
 
-/* 231454 -> 231D40 */
-void Unknown80182C84(struct ObjParticle *ptc)
+/* 231454 -> 231D40; orig name: Unknown80182C84 */
+void move_particle(struct ObjParticle *ptc)
 {
     float sp7C;
     UNUSED u8 unused2[12];
@@ -508,7 +507,7 @@ void Unknown80182C84(struct ObjParticle *ptc)
             func_80182A08(ptc, &sp34);
             break;
         }
-        apply_to_obj_types_in_group(OBJ_TYPE_PARTICLES, Unknown80182C84, ptc->unk6C);
+        apply_to_obj_types_in_group(OBJ_TYPE_PARTICLES, move_particle, ptc->unk6C);
     }
     if (ptc->unk5C >= 0)
     {
@@ -520,12 +519,12 @@ void Unknown80182C84(struct ObjParticle *ptc)
     }
 }
 
-/* 231D40 -> 231D98 */
-void func_80183570(struct ObjGroup *group)
+/* 231D40 -> 231D98; orig name: func_80183570 */
+void move_particles_in_grp(struct ObjGroup *group)
 {
     start_timer("particles");
     gGdSkinNet = NULL;
-    apply_to_obj_types_in_group(OBJ_TYPE_PARTICLES, Unknown80182C84, group);
+    apply_to_obj_types_in_group(OBJ_TYPE_PARTICLES, move_particle, group);
     stop_timer("particles");
 }
 

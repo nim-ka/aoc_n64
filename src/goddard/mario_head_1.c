@@ -5,11 +5,11 @@
 #include "gd_types.h"
 
 #include "gd_main.h"
-#include "game_over_1.h"
+#include "mhead_sfx.h"
 #include "game_over_2.h"
 #include "mario_head_1.h"
 #include "mario_head_3.h"
-#include "mario_head_4.h"
+#include "dynlist_proc.h"
 #include "old_obj_fn.h"
 #include "profiler_utils.h"
 #include "joint_fns.h"
@@ -17,6 +17,8 @@
 #include "matrix_fns.h"
 #include "half_6.h"
 #include "mario_head_6.h"
+
+#define ABS(val) (((val) < 0 ? (-(val)) : (val)))
 
 // structs
 struct Unk801B9E68 {
@@ -35,12 +37,12 @@ f32 D_801A81C4 = 0.0f;
 
 // bss
 struct GdPlaneF D_801B9DA0;
-struct ObjCamera *D_801B9DB8;
-struct ObjView *D_801B9DBC;
+struct ObjCamera *sCurrentMoveCamera; // @ 801B9DB8
+struct ObjView *sCurrentMoveView; // @ 801B9DBC
 struct DebugCounters gGdCounter; // @ 801B9DC0
 Mat4 D_801B9DC8;
 struct MyVec3f D_801B9E08;
-struct ObjGroup *D_801B9E14;
+struct ObjGroup *sCurrentMoveGrp; // @ 801B9E14
 struct MyVec3f D_801B9E18;
 struct MyVec3f D_801B9E28;
 f32 D_801B9E34;
@@ -56,7 +58,7 @@ s32 gGdObjCount; // @ 801B9E58
 s32 gGdGroupCount; // @ 801B9E5C
 s32 gGdPlaneCount; // @ 801B9E60
 s32 gGdCameraCount; // @ 801B9E64
-struct Unk801B9E68 D_801B9E68;
+struct Unk801B9E68 sGdViewInfo; // @ 801B9E68
 void *D_801B9E80;
 struct ObjJoint *gGdJointList;   // @ 801B9E84
 struct ObjBone *gGdBoneList;     // @ 801B9E88
@@ -573,7 +575,7 @@ struct ObjLight* make_light(s32 a0, char* name, s32 a2)
 }
 
 /* @ 22BA78 for 0x294; orig name: func_8017D2A8*/
-struct ObjView* make_view(const char *name, s32 a1, s32 a2, s32 a3, s32 sp38, s32 sp3C, s32 sp40, struct ObjGroup* sp44)
+struct ObjView* make_view(const char *name, s32 flags, s32 a2, s32 a3, s32 sp38, s32 sp3C, s32 sp40, struct ObjGroup* sp44)
 {
     struct ObjView* newView = (struct ObjView*) make_object(OBJ_TYPE_VIEWS);
 
@@ -582,11 +584,11 @@ struct ObjView* make_view(const char *name, s32 a1, s32 a2, s32 a3, s32 sp38, s3
     
     addto_group(gGdViewsGroup, &newView->header);
 
-    newView->unk34 = a1 | 0x800 | 0x200000;     /* typeArg | OBJ_TYPE_MATERIALS | OBJ_TYPE_UNK200000 ?*/
-    newView->unk20 = D_801B9E68.count++;
+    newView->unk34 = flags | 0x800 | 0x200000;
+    newView->unk20 = sGdViewInfo.count++;
     
     if ((newView->unk28 = sp44) != NULL)
-        func_801814F4(sp44);
+        reset_nets_and_gadgets(sp44);
 
     newView->unk78 = 0;
     newView->unk38 = a2;
@@ -959,7 +961,7 @@ void func_8017E2B8(void)
     apply_to_obj_types_in_group(
         OBJ_TYPE_NETS, 
         &gd_loadtexture, 
-        D_801B9E14
+        sCurrentMoveGrp
     );
 }
 
@@ -1658,7 +1660,7 @@ void Unknown80180624(struct ObjHeader* inputObj)
     UNUSED u32 spDC;
     struct MyVec3f spD0;
     struct MyVec3f spC4;
-    struct GdControl* memState;
+    struct GdControl* ctrl;
     Mat4 sp80;
     Mat4 sp40;
     UNUSED u32 pad34[3];
@@ -1666,7 +1668,7 @@ void Unknown80180624(struct ObjHeader* inputObj)
     UNUSED u32 pad2C;
     f32 sp28;
 
-    memState = &D_801B9920;
+    ctrl = &gGdCtrl;
 
     if (D_801A80F8 == NULL)
         return;
@@ -1674,21 +1676,21 @@ void Unknown80180624(struct ObjHeader* inputObj)
     sp28 = magnitude_vec3f(&D_801A80F8->unk40);
     sp28 /= 1000.0f;
 
-    spD0.x = ((f32) (memState->unkD0 - memState->unkB8)) * sp28;
-    spD0.y = ((f32) -(memState->unkD4 - memState->unkBC)) * sp28;
+    spD0.x = ((f32) (ctrl->csrX - ctrl->csrXatApress)) * sp28;
+    spD0.y = ((f32) -(ctrl->csrY - ctrl->csrYatApress)) * sp28;
     spD0.z = 0.0f;
 
     inverse_mat4(&D_801A80F8->unkE8, &sp40);
     func_80196540(&spD0, &sp40);
 
     obj = inputObj;
-    if ( (inputObj->unk12 & 0x0004) != 0 && D_801B9920.unkD8b80 != 0 )
+    if ( (inputObj->unk12 & 0x0004) != 0 && gGdCtrl.btnApressed != 0 )
     {
-        func_80178114(8);
+        gd_play_sfx(GD_SFX_PINCH_FACE);
         /* abs() macro */
-        if ( (memState->unkC0 < 0 ? -memState->unkC0 : memState->unkC0) + 
-             (memState->unkC4 < 0 ? -memState->unkC4 : memState->unkC4) >= 11)
-            func_80178114(16);
+        //! Note: this second sfx won't play, as it is "overwritten" by the first
+        if (ABS(ctrl->stickDeltaX) + ABS(ctrl->stickDeltaY) >= 11)
+            gd_play_sfx(GD_SFX_PINCH_FACE_2);
         
         switch(inputObj->type)
         {
@@ -1739,8 +1741,8 @@ void func_80180974(struct ObjGroup* group)
     );
 }
 
-/* @ 22F180 for 0x624 */
-void Unknown801809B0(struct ObjCamera* a0)
+/* @ 22F180 for 0x624; orig name: Unknown801809B0 */
+void move_camera(struct ObjCamera* a0)
 {
     struct ObjHeader* spEC;
     struct MyVec3f spE0;
@@ -1751,9 +1753,9 @@ void Unknown801809B0(struct ObjCamera* a0)
     Mat4 sp70;
     UNUSED u8 pad30[0x70-0x30];
     Mat4* sp2C;
-    struct GdControl* sp28;
+    struct GdControl* ctrl; // 28
 
-    sp28 = &D_801B9920;
+    ctrl = &gGdCtrl;
     if ((a0->unk2C & 0x10) == 0)
         return;
     
@@ -1792,7 +1794,7 @@ void Unknown801809B0(struct ObjCamera* a0)
     sp2C = &a0->unk64;
     if ((a0->unk2C & 0x4) != 0)
     {   // new B press
-        if (sp28->unk38 != FALSE && sp28->unkF0->unk38 == FALSE)
+        if (ctrl->btnB != FALSE && ctrl->prevFrame->btnB == FALSE)
         {
             a0->unk174++;
             if (a0->unk174 > a0->unk170)
@@ -1801,25 +1803,25 @@ void Unknown801809B0(struct ObjCamera* a0)
             switch (a0->unk174)
             {
                 case 0:
-                    func_80178114(0x40);
+                    gd_play_sfx(GD_SFX_CAM_ZOOM_IN);
                     break;
                 case 1:
                 case 2:
-                    func_80178114(0x80);
+                    gd_play_sfx(GD_SFX_CAM_ZOOM_OUT);
                     break;
             }
         }
             
-        if (sp28->unk18 != 0)
+        if (ctrl->cleft)
             a0->unk128.y += a0->unk134.y;
         
-        if (sp28->unk1C != 0)
+        if (ctrl->cright)
             a0->unk128.y -= a0->unk134.y;
         
-        if (sp28->unk20 != 0)
+        if (ctrl->cup)
             a0->unk128.x += a0->unk134.x;
         
-        if (sp28->unk24 != 0)
+        if (ctrl->cdown)
             a0->unk128.x -= a0->unk134.x;
         
         a0->unk128.x = func_80194728(a0->unk128.x, 80.0f);
@@ -1862,12 +1864,12 @@ void Unknown801809B0(struct ObjCamera* a0)
     a0->unk14.z += spE0.z;
 }
 
-/* @ 22F7A4 for 0x38 */
-void func_80180FD4(struct ObjGroup* group)
-{
+/* @ 22F7A4 for 0x38; orig name: func_80180FD4 */
+void move_cameras_in_grp(struct ObjGroup* group)
+{ 
     apply_to_obj_types_in_group(
         OBJ_TYPE_CAMERAS,
-        (void (*)(void*)) &Unknown801809B0,
+        (void (*)(void*)) &move_camera,
         group
     );
 }
@@ -1927,8 +1929,8 @@ void Unknown8018100C(struct ObjLight* light)
     imout();
 }
 
-/* @ 22FB48 for 0x38 */
-void func_80181378(struct ObjGroup* group)
+/* @ 22FB48 for 0x38; orig name: func_80181378 */
+void move_lights_in_grp(struct ObjGroup* group)
 {
     apply_to_obj_types_in_group(
         OBJ_TYPE_LIGHTS,
@@ -1937,41 +1939,40 @@ void func_80181378(struct ObjGroup* group)
     );
 }
 
-/* @ 22FB80 for 0xAC */
-/* This function runs apply_fn functions to group in a static group pointer */
-void func_801813B0(void)
+/* @ 22FB80 for 0xAC; orig name: func_801813B0 */
+void move_group_members(void)
 {
     int i;
 
-    if (D_801A8050 != 0)
+    if (gGdMoveScene != 0)
     {
-        reset_gadgets_in_grp(D_801B9E14);
-        func_80181378(D_801B9E14);
-        func_80183570(D_801B9E14);
-        move_animators(D_801B9E14);
+        reset_gadgets_in_grp(sCurrentMoveGrp);
+        move_lights_in_grp(sCurrentMoveGrp);
+        move_particles_in_grp(sCurrentMoveGrp);
+        move_animators(sCurrentMoveGrp);
         
         for (i = 0; i <= 0; i++)
-            move_nets(D_801B9E14);
+            move_nets(sCurrentMoveGrp);
         
-        func_80180FD4(D_801B9E14);
+        move_cameras_in_grp(sCurrentMoveGrp);
     }
 }
 
-/* @ 22FC2C for 0x98 */
-void func_8018145C(struct ObjView* a0)
+/* @ 22FC2C for 0x98; orig name: func_8018145C */
+void proc_view_movement(struct ObjView* view)
 {
     add_to_stacktrace("movement");
-    D_801B9DB8 = a0->unk24;
-    D_801B9DBC = a0;
-    if ((D_801B9E14 = a0->unk28) != NULL)
-        func_801813B0();
-    if ((D_801B9E14 = a0->unk2C) != NULL)
-        func_801813B0();
+    sCurrentMoveCamera = view->unk24;
+    sCurrentMoveView = view;
+    if ((sCurrentMoveGrp = view->unk28) != NULL)
+        move_group_members();
+    if ((sCurrentMoveGrp = view->unk2C) != NULL)
+        move_group_members();
     imout();
 }
 
-/* @ 22FCC4 for 0x44*/
-void func_801814F4(struct ObjGroup* group)
+/* @ 22FCC4 for 0x44; orig name: func_801814F4 */
+void reset_nets_and_gadgets(struct ObjGroup* group)
 {
     func_80193848(group);
     apply_to_obj_types_in_group(
@@ -1989,7 +1990,7 @@ void null_obj_lists(void)
     gGdGroupCount = 0;
     gGdPlaneCount = 0;
     gGdCameraCount = 0;
-    D_801B9E68.count = 0;
+    sGdViewInfo.count = 0;
 
     gGdCameraList = NULL;
     D_801B9E50 = NULL;

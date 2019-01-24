@@ -10,10 +10,10 @@
 #include "mario_head_6.h"
 #include "gd_main.h"
 #include "debug_memory.h"
-#include "game_over_1.h"
+#include "mhead_sfx.h"
 #include "game_over_2.h"
 #include "mario_head_1.h"
-#include "mario_head_4.h"
+#include "dynlist_proc.h"
 #include "profiler_utils.h"
 #include "skin_fns.h"
 #include "matrix_fns.h"
@@ -57,17 +57,17 @@ struct GdDisplayList {
     /* Gfx-es */
     /*0x24*/ s32 curGfxIdx;
     /*0x28*/ s32 totalGfx;
-    /*0x2C*/ Gfx *gfx; // active position in DL
+    /*0x2C*/ Gfx *gfx;    // active position in DL
     /*0x30*/ Gfx **dlptr; // pointer to list/array of display lists?
     /* Viewports */
     /*0x34*/ s32 curVpIdx;
     /*0x38*/ s32 totalVp;
     /*0x3C*/ Vp *vp;
     /* GD DL Info */
-    /*0x40*/ u32 unk40; // dl id? 
-    /*0x44*/ u32 unk44; // number
+    /*0x40*/ u32 id;      // user specified
+    /*0x44*/ u32 number;  // count
     /*0x48*/ u8 pad48[4];
-    /*0x4C*/ struct GdDisplayList *unk4C; // parent? 
+    /*0x4C*/ struct GdDisplayList *parent; // not quite sure? 
 }; /* sizeof = 0x50 */
 // accessor macros for gd dl
 #define DL_CURRENT_VTX(dl) ((dl)->vtx[(dl)->curVtxIdx])
@@ -98,7 +98,7 @@ struct DynListBankInfo {
 
 // bss
 static OSContStatus D_801BAE60[4];
-static OSContPad D_801BAE70[4];
+static OSContPad sGdContPads[4];               // @ 801BAE70
 static OSContPad sPrevFrameCont[4];            // @ 801BAE88
 static u8 D_801BAEA0;
 static struct ObjGadget *sTimerGadgets[GD_NUM_TIMERS]; // @ 801BAEA8
@@ -113,22 +113,22 @@ static s32 D_801BB01C;
 static void *D_801BB020[0x10];                 // texture pointers
 static s32 D_801BB060[0x10];                   // gd_dl indices
 static s16 D_801BB0A0[2];                      // texture coordinates ?
-static s32 D_801BB0A4;                         // gd_dl index
-static struct ObjGroup *D_801BB0A8;            // yoshi scene group?
+static s32 sCarGdDlNum;                        // @ 801BB0A4
+static struct ObjGroup *sYoshiSceneGrp;        // @ 801BB0A8
 static s32 D_801BB0AC;                         // unused DL number
-static struct ObjGroup *D_801BB0B0;            // mario head group?
+static struct ObjGroup *sMarioSceneGrp;        // @ 801BB0B0
 static s32 D_801BB0B4;                         //second offset into D_801BAF30
-static struct ObjGroup *D_801BB0B8;            // car group?
+static struct ObjGroup *sCarSceneGrp;          // @ 801BB0B8
 static s32 D_801BB0BC;                         // Vtx len in GD Dl and in the lower bank (AF30)
-static struct ObjView *D_801BB0C0;             // yoshi scene view?
+static struct ObjView *sYoshiSceneView;        // @ 801BB0C0
 static s32 D_801BB0C4;                         //first offset into D_801BAF30
-static struct ObjView *D_801BB0C8;             // mario scene view?
+static struct ObjView *sMSceneView;            // @ 801BB0C8; mario scene view
 static s32 D_801BB0CC;                         // Vtx start in GD Dl
-static struct ObjView *D_801BB0D0;             // mario scene view?
-static s32 D_801BB0D4;                         // bool check for yoshi scene to X?
-static s32 D_801BB0D8;                         // bool check for mario head scene to X?
+static struct ObjView *sCarSceneView;          // @ 801BB0D0
+static s32 sUpdateYoshiScene;                  // @ 801BB0D4; update dl Vtx from ObjVertex?
+static s32 sUpdateMarioScene;                  // @ 801BB0D8; update dl Vtx from ObjVertex?
 static u32 unref_801bb0dc;
-static s32 D_801BB0E0;
+static s32 sUpdateCarScene;                    // @ 801BB0E0; guess, not really used
 static u32 unref_801bb0e4;
 static struct MyVec3f D_801BB0E8;
 static u32 unref_801bb0f8[2];
@@ -145,14 +145,14 @@ static Hilite D_801BB1D8[600];
 static struct MyVec3f D_801BD758;
 static struct MyVec3f D_801BD768;              // had to migrate earlier
 static u32 D_801BD774;
-/* static */ struct ObjHeader *D_801BD778[9];  // d_obj ptr storage? menu? (fix non-matching)
+static struct ObjHeader *sMenuGadgets[9];      // @ 801BD778; d_obj ptr storage? menu?
 static struct ObjView *D_801BD7A0[2];
 static struct GdDisplayList *sStaticDl;        // @ 801BD7A8
 static struct GdDisplayList *sDynDlSet1[2];    // @ 801BD7B0
 static struct GdDisplayList *sGdDlStash;       // @ 801BD7B8
-static struct GdDisplayList *D_801BD7C0[2];
+static struct GdDisplayList *sMHeadMainDls[2]; // @ 801BD7C0; seem to be basic dls that branch to actual lists?
 static struct GdDisplayList *D_801BD7C8[3][2]; // I guess? 801BD7C8 -> 801BD7E0?
-static struct GdDisplayList * sGdDLArray[MAX_GD_DLS]; // @ 801BD7E0
+static struct GdDisplayList *sGdDLArray[MAX_GD_DLS]; // @ 801BD7E0; indexed by dl number (gddl+0x44)
 static s32 sHalfBufLen;                        // @ 801BE780
 static s32 sHalfBufPosition;                   // @ 801BE784
 static s16 *sHalfBuf;                          // @ 801BE788
@@ -195,18 +195,18 @@ static s32 D_801A86C0 = 0;                        // gd_dl id for something?
 static u32 unref_801a86C4 = 10;
 static s32 sMtxParameters = (G_MTX_PROJECTION | G_MTX_MUL | G_MTX_NOPUSH); // @ 801A86C8;
 static struct MyVec3f D_801A86CC = { 1.0f, 1.0f, 1.0f };
-static struct ObjView *D_801A86D8 = NULL;         // current view? pointer to mscene view in game...
+static struct ObjView *sActiveView = NULL;        // @ 801A86D8 current view? used when drawing dl
 static struct ObjView *sScreenView2 = NULL;       // @ 801A86DC
 static struct ObjView *D_801A86E0 = NULL;
 /* static */ struct ObjView *sHandView = NULL;    // @ 801A86E4 (fix nonmatching for static)
 /* static */ struct ObjView *sMenuView = NULL;    // @ 801A86E8 (fix nonmatching for static)
 /* static */ u32 sItemsInMenu = 0;                // @ 801A86EC (fix nonmatching for static)
 static s32 D_801A86F0 = 0;                        // frame buffer idx into D_801BD7A0?
-static s32 D_801A86F4 = 0;                        // timing activate / z press counter?
+static s32 sNewZPresses = 0;                      // @ 801A86F4; timing activate cool down counter?
 static u32 unref_801a86F8 = 0;
 static struct GdDisplayList *sCurrentGdDl = NULL; // @ 801A86FC
 static u32 sGdDlCount = 0;                        // @ 801A8700
-static struct DynListBankInfo D_801A8704[] = {
+static struct DynListBankInfo sDynLists[] = {     // @ 801A8704
     { STD_LIST_BANK, dynlist_04000000 },
     { STD_LIST_BANK, dynlist_04000650 },
     { STD_LIST_BANK, dynlist_04004F90 },
@@ -222,15 +222,18 @@ extern u8 _gd_dynlistsSegmentRomStart[];
 extern u8 _gd_dynlistsSegmentRomEnd[];
 
 // forward declarations
-u32 func_8019EC08(void *addr, UNUSED s32); // returns GdDisplayList id?
+u32 new_gddl_from(Gfx *, s32);
 void gd_setup_cursor(struct ObjGroup *);
-void func_801A2844(void);
-void func_801A4C0C(void);
-void func_801A5168(struct ObjView *);
+void parse_p1_controller(void);
+void update_cursor(void);
+void update_view_and_dl(struct ObjView *);
 void func_801A1A00(void);
 void func_801A2388(s32);
 void func_801A3370(f32, f32, f32);
 void gd_put_sprite(u16 *, s32, s32, s32, s32);
+void reset_cur_dl_indices(void);
+
+// TODO: make a gddl_num_t? 
 
 
 u32 get_alloc_mem_amt(void)
@@ -250,7 +253,7 @@ f32 get_time_scale(void)
 
 void dump_disp_list(void)
 {
-    gd_printf("%d\n", sCurrentGdDl->unk40);
+    gd_printf("%d\n", sCurrentGdDl->id);
     gd_printf("Vtx=%d/%d, Mtx=%d/%d, Light=%d/%d, Gfx=%d/%d\n", 
         sCurrentGdDl->curVtxIdx,   sCurrentGdDl->totalVtx, 
         sCurrentGdDl->curMtxIdx,   sCurrentGdDl->totalMtx, 
@@ -341,7 +344,6 @@ f64 Unknown8019B3D4(UNUSED f64 x)
 }
 
 /* 249BCC -> 24A19C */
-#define BUFSIZE 0x100
 void gd_printf(const char *format, ...)
 {
     int i;              // 15c
@@ -349,7 +351,7 @@ void gd_printf(const char *format, ...)
     char c;             // 157
     char f;             // 156
     UNUSED u32 pad150;
-    char buf[BUFSIZE];  // 50
+    char buf[0x100];    // 50
     char *csr = buf;    // 4c
     char spec[8];       // 44; goddard specifier string
     UNUSED u32 pad40;
@@ -359,31 +361,30 @@ void gd_printf(const char *format, ...)
     *csr = '\0';
     va_start(args, format);
     while ((c = *format++))
-    { // L8019B45C
+    {
         switch (c) 
         {
         case '%':
             f = *format++;
             i = 0;
-
             // handle float precision formatter (N.Mf)
             if (f >= '0' && f <= '9')
             {
                 for (i = 0; i < 3; i++)
-                { // L8019B4CC
+                {
                     if ((f >= '0' && f <= '9') || f == '.')
                     {
                         spec[i] = f;
                     }
                     else
-                    { // L8019B510
+                    {
                         break;
                     }
-                    // L8019B518
+                    
                     f = *format++;
                 }
             }
-            // L8019B548
+            
             spec[i] = f;
             i++;
             spec[i] = '\0';
@@ -422,10 +423,8 @@ void gd_printf(const char *format, ...)
                     val.f = (f32) va_arg(args, double);
                     csr = sprint_val_withspecifiers(csr, val, spec);
                 }
-                // L8019B8BC
                 break;
             }
-            // L8019B8C4
             break;
         case '\\':
             *csr = '\\';
@@ -443,17 +442,15 @@ void gd_printf(const char *format, ...)
             *csr = '\0';
             break;
         }
-        // L8019B960 loop
     }
     va_end(args);
-    // L8019B980
+
     *csr = '\0';
-    if ((intptr_t)csr - (intptr_t)buf >= BUFSIZE - 1)
+    if ((intptr_t)csr - (intptr_t)buf >= ARRAY_COUNT(buf) - 1)
     {
         fatal_printf("printf too long");
     }
 }
-#undef BUFSIZE
 
 /* 24A19C -> 24A1D4 */
 void gd_exit(UNUSED s32 code)
@@ -488,7 +485,7 @@ void *gd_allocblock(u32 size)
         mem_stats();
         fatal_printf("exit");
     }
-    //L8019BAF0
+
     block = sMemBlockPoolBase + sMemBlockPoolUsed;
     sMemBlockPoolUsed += size;
     return block;
@@ -546,63 +543,62 @@ void *Unknown8019BCD4(u32 size)
 }
 
 /* 24A4DC -> 24A598 */
-void func_8019BD0C(s32 a0, s32 a1)
+void func_8019BD0C(s32 dlNum, s32 gfxIdx)
 {
     Gfx *dl; // 1c
 
-    if (a1 != 0)
+    if (gfxIdx != 0)
     {
-        dl = sGdDLArray[a0]->dlptr[a1 - 1];
+        dl = sGdDLArray[dlNum]->dlptr[gfxIdx - 1];
     }
     else
     {
-        dl = sGdDLArray[a0]->gfx;
+        dl = sGdDLArray[dlNum]->gfx;
     }
     gSPDisplayList(next_gfx(), GD_VIRTUAL_TO_PHYSICAL(dl));
 
 }
 
-/* 24A598 -> 24A610 */
-// TODO: id? goto to dl?
-void func_8019BDC8(s32 a0)
+/* 24A598 -> 24A610; orig name: func_8019BDC8 */
+void branch_cur_dl_to_num(s32 dlNum)
 {
     Gfx *dl; // 24
     UNUSED u32 pad[2];
 
-    dl = sGdDLArray[a0]->gfx;
+    dl = sGdDLArray[dlNum]->gfx;
     gSPDisplayList(next_gfx(), GD_VIRTUAL_TO_PHYSICAL(dl));
 }
 
 /* 24A610 -> 24A640 */
-Gfx *Unknown8019BE40(s32 id)
+Gfx *Unknown8019BE40(s32 num)
 {
-    return sGdDLArray[id]->gfx;
+    return sGdDLArray[num]->gfx;
 }
 
 /* 24A640 -> 24A8D0; orig name: func_8019BE70 */
 void setup_stars(void)
 {
     gShapeRedStar = make_shape(0, "redstar");
-    gShapeRedStar->unk48[0] = func_8019EC08(NULL, 0);
+    gShapeRedStar->unk48[0] = new_gddl_from(NULL, 0);
     gShapeRedStar->unk48[1] = gShapeRedStar->unk48[0];
     sGdDLArray[gShapeRedStar->unk48[0]]->dlptr = redStarDlArray;
     sGdDLArray[gShapeRedStar->unk48[1]]->dlptr = redStarDlArray;
 
     gShapeSilverStar = make_shape(0, "silverstar");
-    gShapeSilverStar->unk48[0] = func_8019EC08(NULL, 0);
+    gShapeSilverStar->unk48[0] = new_gddl_from(NULL, 0);
     gShapeSilverStar->unk48[1] = gShapeSilverStar->unk48[0];
     sGdDLArray[gShapeSilverStar->unk48[0]]->dlptr = silverStarDlArray;
     sGdDLArray[gShapeSilverStar->unk48[1]]->dlptr = silverStarDlArray;
 
     // TODO: what way should we name these? based on goddard's name, or on what they do/actually are?
     gShapeSilSpark = make_shape(0, "sspark");
-    gShapeSilSpark->unk48[0] = func_8019EC08(NULL, 0);
+    gShapeSilSpark->unk48[0] = new_gddl_from(NULL, 0);
     gShapeSilSpark->unk48[1] = gShapeSilSpark->unk48[0];
     sGdDLArray[gShapeSilSpark->unk48[0]]->dlptr = redSparkleDlArray;
     sGdDLArray[gShapeSilSpark->unk48[1]]->dlptr = redSparkleDlArray;
 
     gShapeRedSpark = make_shape(0, "rspark");
-    gShapeRedSpark->unk48[0] = func_8019EC08(NULL, 0);
+    gShapeRedSpark->unk48[0] = new_gddl_from(NULL, 0);
     gShapeRedSpark->unk48[1] = gShapeRedSpark->unk48[0];
     sGdDLArray[gShapeRedSpark->unk48[0]]->dlptr = silverSparkleDlArray;
     sGdDLArray[gShapeRedSpark->unk48[1]]->dlptr = silverSparkleDlArray;
@@ -650,12 +646,12 @@ void Unknown8019C270(u8 *buf)
 }
 
 /* 24AA58 -> 24AAA8 */
-void Unknown8019C288(s32 a0, s32 a1)
+void Unknown8019C288(s32 stickX, s32 stickY)
 {
-    struct GdControl *sp4 = &D_801B9920;
+    struct GdControl *ctrl = &gGdCtrl; // 4
 
-    sp4->unk7C = (f32) a0;
-    sp4->unk80 = (f32) (a1 / 2);
+    ctrl->stickXf = (f32) stickX;
+    ctrl->stickYf = (f32) (stickY / 2);
 }
 
 /* 24AAA8 -> 24AAE0; orig name: func_8019C2D8 */
@@ -680,11 +676,9 @@ void gdm_init(void *blockpool, u32 size)
     sMemBlockPoolUsed = 0;
     sAllocMemory = 0;
     init_mem_block_lists();
-    func_801780A0();
+    gd_reset_sfx();
     imout();
 }
-
-/* self */ void func_8019E75C(void);
 
 /* 24AB7C -> 24AC18 */
 void gdm_setup(void)
@@ -692,16 +686,16 @@ void gdm_setup(void)
     UNUSED u32 pad;
 
     add_to_stacktrace("gdm_setup");
-    D_801BB0A8 = NULL;
-    D_801BB0B0 = NULL;
-    D_801BB0D4 = FALSE;
-    D_801BB0D8 = FALSE;
-    D_801BB0A4 = 0;
+    sYoshiSceneGrp = NULL;
+    sMarioSceneGrp = NULL;
+    sUpdateYoshiScene = FALSE;
+    sUpdateMarioScene = FALSE;
+    sCarGdDlNum = 0;
     osViSetSpecialFeatures(OS_VI_GAMMA_OFF);
     osCreateMesgQueue(&sGdDMAQueue, sGdMesgBuf, ARRAY_COUNT(sGdMesgBuf));
     gd_init();
     load_shapes2();
-    func_8019E75C();
+    reset_cur_dl_indices();
     setup_stars();
     imout();
 }
@@ -726,15 +720,10 @@ struct ObjView *make_view_withgrp(char *name, struct ObjGroup *grp)
 {
     struct ObjView *view;            // 2c
     UNUSED struct ObjGroup *viewgrp; // 28
-    // TODO: 0x00040000 is an unknown object type, or am I wrong with the field?
-    view = make_view(name, 
-        OBJ_TYPE_LIGHTS|OBJ_TYPE_SHAPES|0x40000, 
-        1, 0, 0,
-        320, 240,
-        grp
-    );
+
+    view = make_view(name, (0x80000 | 0x10 | 0x40000), 1, 0, 0, 320, 240, grp);
     viewgrp = make_group(2, grp, view);
-    view->unk2C = D_801B9BB8;
+    view->unk2C = sGdLightGroup;
 
     return view;
 }
@@ -748,34 +737,34 @@ void gdm_maketestdl(s32 id)
     switch (id)
     {
         case 0:
-            D_801BB0C0 = make_view_withgrp("yoshi_scene", D_801BB0A8);
+            sYoshiSceneView = make_view_withgrp("yoshi_scene", sYoshiSceneGrp);
             break;
-        case 1: // reset gadgets in group?
-            func_801814F4(D_801BB0A8);
+        case 1:
+            reset_nets_and_gadgets(sYoshiSceneGrp);
             break;
         case 2: // normal mario head
-            if (D_801BB0B0 == NULL)
+            if (sMarioSceneGrp == NULL)
             {
-                func_8019A378(Proc8019A068);
-                D_801BB0B0 = gMarioFaceGrp;
+                load_mario_head(animate_mario_head_normal);
+                sMarioSceneGrp = gMarioFaceGrp; // gMarioFaceGrp set by load_mario_head
                 gd_setup_cursor(NULL);
             }
-            D_801BB0C8 = make_view_withgrp("mscene", D_801BB0B0);
+            sMSceneView = make_view_withgrp("mscene", sMarioSceneGrp);
             break;
         case 3: // game over mario head
-            if (D_801BB0B0 == NULL)
+            if (sMarioSceneGrp == NULL)
             {
-                func_8019A378(Proc80199FA0);
-                D_801BB0B0 = gMarioFaceGrp;
+                load_mario_head(animate_mario_head_gameover);
+                sMarioSceneGrp = gMarioFaceGrp;
                 gd_setup_cursor(NULL);
             }
-            D_801BB0C8 = make_view_withgrp("mscene", D_801BB0B0);
+            sMSceneView = make_view_withgrp("mscene", sMarioSceneGrp);
             break;
         case 4:
-            D_801BB0D0 = make_view_withgrp("car_scene", D_801BB0B8);
+            sCarSceneView = make_view_withgrp("car_scene", sCarSceneGrp);
             break;
         case 5:
-            func_801814F4(D_801BB0B8);
+            reset_nets_and_gadgets(sCarSceneGrp);
             break;
         default:
             fatal_printf("gdm_maketestdl(): unknown dl");
@@ -796,32 +785,32 @@ void Unknown8019C840(void)
     print_all_timers();
 }
 
-/* 24AF04 -> 24AFC0 */
-void Proc8019C734(void)
+/* 24AF04 -> 24AFC0; orig name: Proc8019C734 */
+void gd_vblank(void)
 {
-    func_801780EC();
-    if (D_801BB0D4)
+    gd_sfx_played();
+    if (sUpdateYoshiScene)
     {
         apply_to_obj_types_in_group(
             OBJ_TYPE_NETS,
-            Proc801933FC,
-            D_801BB0A8
+            convert_net_verts,
+            sYoshiSceneGrp
         );
     }
-    if (D_801BB0D8)
+    if (sUpdateMarioScene)
     {
         apply_to_obj_types_in_group(
             OBJ_TYPE_NETS,
-            Proc801933FC,
-            D_801BB0B0
+            convert_net_verts,
+            sMarioSceneGrp
         );
     }
-    D_801BB0D4 = FALSE;
-    D_801BB0D8 = FALSE;
+    sUpdateYoshiScene = FALSE;
+    sUpdateMarioScene = FALSE;
     gGdFrameBuf ^= 1;
-    func_8019E75C();
-    func_801A2844();
-    func_801A4C0C();
+    reset_cur_dl_indices();
+    parse_p1_controller();
+    update_cursor();
 }
 
 /* 24AFC0 -> 24B058; orig name: func_8019C7F0 */
@@ -829,7 +818,7 @@ void gd_copy_p1_contpad(OSContPad *p1cont)
 {
     unsigned int i;                         // 24
     u8 *contdata = (u8 *)p1cont;            // 20
-    u8 *gd_contdata = (u8 *)&D_801BAE70[0]; // 1c
+    u8 *gd_contdata = (u8 *)&sGdContPads[0]; // 1c
 
     for (i = 0; i < sizeof(OSContPad); i++)
     {
@@ -842,101 +831,101 @@ void gd_copy_p1_contpad(OSContPad *p1cont)
     }
 }
 
-/* 24B058 -> 24B088 */
-s32 func_8019C888(void)
+/* 24B058 -> 24B088; orig name: gd_sfx_to_play */
+s32 gd_sfx_to_play(void)
 {
-    return func_801780C0();
+    return gd_new_sfx_to_play();
 }
 
 /* 24B088 -> 24B418 */
 void *gdm_gettestdl(s32 id)
 {
-    struct ObjHeader *sp34;
-    struct GdDisplayList *sp30;
+    struct ObjHeader *dobj;
+    struct GdDisplayList *gddl;
     UNUSED u32 pad28[2];
-    struct MyVec3f sp1C;
+    struct MyVec3f vec;
     
     start_timer("dlgen");
-    sp1C.x = sp1C.y = sp1C.z = 0.0f;
-    sp30 = NULL;
+    vec.x = vec.y = vec.z = 0.0f;
+    gddl = NULL;
 
     switch (id)
     {
         case 0:
-            if (D_801BB0C0 == NULL)
+            if (sYoshiSceneView == NULL)
             {
                 fatal_printf("gdm_gettestdl(): DL number %d undefined", id);
             }
             apply_to_obj_types_in_group(
                 OBJ_TYPE_VIEWS,
                 update_view,
-                D_801BB0C0
+                sYoshiSceneView
             );
-            sp34 = d_use_obj("yoshi_scene");
-            sp30 = sGdDLArray[((struct ObjView *)sp34)->unk70];
-            D_801BB0D4 = TRUE;
+            dobj = d_use_obj("yoshi_scene");
+            gddl = sGdDLArray[((struct ObjView *)dobj)->unk70];
+            sUpdateYoshiScene = TRUE;
             break;
         case 1:
-            if (D_801BB0A8 == NULL)
+            if (sYoshiSceneGrp == NULL)
             {
                 fatal_printf("gdm_gettestdl(): DL number %d undefined", id);
             }
-            sp34 = d_use_obj("yoshi_sh_l1");
-            sp30 = sGdDLArray[((struct ObjShape *)sp34)->unk48[gGdFrameBuf]];
-            D_801BB0D4 = TRUE;
+            dobj = d_use_obj("yoshi_sh_l1");
+            gddl = sGdDLArray[((struct ObjShape *)dobj)->unk48[gGdFrameBuf]];
+            sUpdateYoshiScene = TRUE;
             break;
         case 2:
         case 3:
             setup_timers();
-            func_801A5168(D_801BB0C8);
+            update_view_and_dl(sMSceneView);
             if (sHandView != NULL)
             {
-                func_801A5168(sHandView);
+                update_view_and_dl(sHandView);
             }
-            sCurrentGdDl = D_801BD7C0[gGdFrameBuf];
+            sCurrentGdDl = sMHeadMainDls[gGdFrameBuf];
             gSPEndDisplayList(next_gfx());
-            sp30 = sCurrentGdDl;
-            D_801BB0D8 = TRUE;
+            gddl = sCurrentGdDl;
+            sUpdateMarioScene = TRUE;
             break;
         case 4:
-            if (D_801BB0D0 == NULL)
+            if (sCarSceneView == NULL)
             {
                 fatal_printf("gdm_gettestdl(): DL number %d undefined", id);
             }
             apply_to_obj_types_in_group(
                 OBJ_TYPE_VIEWS,
                 update_view,
-                D_801BB0D0
+                sCarSceneView
             );
-            sp34 = d_use_obj("car_scene");
-            sp30 = sGdDLArray[((struct ObjView *)sp34)->unk70];
-            D_801BB0E0 = TRUE;
+            dobj = d_use_obj("car_scene");
+            gddl = sGdDLArray[((struct ObjView *)dobj)->unk70];
+            sUpdateCarScene = TRUE;
             break;
         case 5:
-            D_801A86D8 = sScreenView2;
+            sActiveView = sScreenView2;
             set_gd_mtx_parameters(6);
-            sp34 = d_use_obj("testnet2");
-            D_801BB0A4 = gd_startdisplist(8);
+            dobj = d_use_obj("testnet2");
+            sCarGdDlNum = gd_startdisplist(8);
 
-            if (D_801BB0A4 == 0)
+            if (sCarGdDlNum == 0)
             {
                 fatal_printf("no memory for car DL\n");
             }
-            apply_obj_draw_fn(sp34);
+            apply_obj_draw_fn(dobj);
             gd_end_dl();
-            sp30 = sGdDLArray[D_801BB0A4];
-            D_801BB0E0 = TRUE;
+            gddl = sGdDLArray[sCarGdDlNum];
+            sUpdateCarScene = TRUE;
             break;
         default:
             fatal_printf("gdm_gettestdl(): %d out of range", id);
     }
 
-    if (sp30 == NULL)
+    if (gddl == NULL)
     {
         fatal_printf("no display list");
     }
     stop_timer("dlgen");
-    return (void *)osVirtualToPhysical(sp30->gfx);
+    return (void *)osVirtualToPhysical(gddl->gfx);
 }
 
 /* 24B418 -> 24B4CC; not called */
@@ -958,10 +947,10 @@ void gdm_getpos(s32 id, struct MyVec3f *dst)
     return;
 }
 
-/* 24B4CC -> 24B5A8 */
-void func_8019CCFC(f32 *x, f32 *y)
+/* 24B4CC -> 24B5A8; orig name: func_8019CCFC */
+void bound_on_active_view(f32 *x, f32 *y)
 {
-    struct ObjView *view = D_801A86D8;
+    struct ObjView *view = sActiveView;
 
     if (*x < 0.0f)
     {
@@ -999,7 +988,7 @@ struct GdDisplayList *alloc_displaylist(u32 id)
         fatal_no_dl_mem();
     }
     
-    gdDl->unk44 = sGdDlCount++;
+    gdDl->number = sGdDlCount++;
     if (sGdDlCount >= MAX_GD_DLS)
     {
         fatal_printf("alloc_displaylist() too many display lists %d (MAX %d)", 
@@ -1007,15 +996,15 @@ struct GdDisplayList *alloc_displaylist(u32 id)
             MAX_GD_DLS
         );
     }
-    sGdDLArray[gdDl->unk44] = gdDl;
-    gdDl->unk40 = id;
+    sGdDLArray[gdDl->number] = gdDl;
+    gdDl->id = id;
     return gdDl;
 }
 
 /* 24B6AC -> 24B7A0; orig name: func_8019CEDC */
 void cpy_remaining_gddl(struct GdDisplayList *dst, struct GdDisplayList *src)
 {
-    dst->vtx = &DL_CURRENT_VTX(src); //&src->unk8[src->unk0];
+    dst->vtx = &DL_CURRENT_VTX(src);
     dst->mtx = &DL_CURRENT_MTX(src);
     dst->light = &DL_CURRENT_LIGHT(src);
     dst->gfx = &DL_CURRENT_GFX(src);
@@ -1038,9 +1027,14 @@ struct GdDisplayList *create_child_gdl(s32 id, struct GdDisplayList *srcDl)
     struct GdDisplayList *newDl;
 
     newDl = alloc_displaylist(id);
-    newDl->unk4C = srcDl;
+    newDl->parent = srcDl;
     cpy_remaining_gddl(newDl, srcDl);
-    //! no return, despite return value being used
+    //! no return, despite return value being used. 
+    //! Goddard lucked out that `v0` return from `alloc_displaylist 
+    //! is not overwriten... 
+    #ifdef NON_MATCHING
+    return newDl;
+    #endif
 }
 
 /* 24B7F8 -> 24BA48; orig name: func_8019D028 */
@@ -1049,7 +1043,7 @@ struct GdDisplayList *new_gd_dl(s32 id, s32 gfxs, s32 verts, s32 mtxs, s32 light
     struct GdDisplayList *dl; // 24
 
     dl = alloc_displaylist(id);
-    dl->unk4C = NULL;
+    dl->parent = NULL;
     if (verts == 0) { verts = 1; }
     dl->curVtxIdx = 0;
     dl->totalVtx = verts;
@@ -1111,20 +1105,20 @@ void gd_init_RDP(void)
 /* 24BB30 -> 24BED8; orig name: func_8019D360 */
 void gd_draw_rect(f32 ulx, f32 uly, f32 lrx, f32 lry)
 {
-    func_8019CCFC(&ulx, &uly);
-    func_8019CCFC(&lrx, &lry);
+    bound_on_active_view(&ulx, &uly);
+    bound_on_active_view(&lrx, &lry);
 
     if (lrx > ulx && lry > uly)
     {
         gDPFillRectangle(
             next_gfx(),
-            (u32) (D_801A86D8->unk3C.x + ulx),
-            (u32) (uly + D_801A86D8->unk3C.y),
-            (u32) (D_801A86D8->unk3C.x + lrx),
-            (u32) (lry + D_801A86D8->unk3C.y)
+            (u32) (sActiveView->unk3C.x + ulx),
+            (u32) (uly + sActiveView->unk3C.y),
+            (u32) (sActiveView->unk3C.x + lrx),
+            (u32) (lry + sActiveView->unk3C.y)
         );
     }
-    // L8019D678
+
     gDPPipeSync(next_gfx());
     gDPSetCycleType(next_gfx(), G_CYC_1CYCLE);
     // upper 0 0 4 4 =   
@@ -1136,41 +1130,41 @@ void gd_draw_rect(f32 ulx, f32 uly, f32 lrx, f32 lry)
 /* 24BED8 -> 24CAC8; orig name: func_8019D708 */
 void gd_draw_border_rect(f32 ulx, f32 uly, f32 lrx, f32 lry)
 {
-    func_8019CCFC(&ulx, &uly);
-    func_8019CCFC(&lrx, &lry);
+    bound_on_active_view(&ulx, &uly);
+    bound_on_active_view(&lrx, &lry);
 
     if (lrx > ulx && lry > uly)
     {
         gDPFillRectangle(
             next_gfx(),
-            (u32) (D_801A86D8->unk3C.x + ulx),
-            (u32) (uly + D_801A86D8->unk3C.y),
-            (u32) (D_801A86D8->unk3C.x + ulx + 5.0f),
-            (u32) (lry + D_801A86D8->unk3C.y)
+            (u32) (sActiveView->unk3C.x + ulx),
+            (u32) (uly + sActiveView->unk3C.y),
+            (u32) (sActiveView->unk3C.x + ulx + 5.0f),
+            (u32) (lry + sActiveView->unk3C.y)
         );
         gDPFillRectangle(
             next_gfx(),
-            (u32) (D_801A86D8->unk3C.x + lrx - 5.0f),
-            (u32) (uly + D_801A86D8->unk3C.y),
-            (u32) (D_801A86D8->unk3C.x + lrx),
-            (u32) (lry + D_801A86D8->unk3C.y)
+            (u32) (sActiveView->unk3C.x + lrx - 5.0f),
+            (u32) (uly + sActiveView->unk3C.y),
+            (u32) (sActiveView->unk3C.x + lrx),
+            (u32) (lry + sActiveView->unk3C.y)
         );
         gDPFillRectangle(
             next_gfx(),
-            (u32) (D_801A86D8->unk3C.x + ulx),
-            (u32) (uly + D_801A86D8->unk3C.y),
-            (u32) (D_801A86D8->unk3C.x + lrx),
-            (u32) (uly + D_801A86D8->unk3C.y + 5.0f)
+            (u32) (sActiveView->unk3C.x + ulx),
+            (u32) (uly + sActiveView->unk3C.y),
+            (u32) (sActiveView->unk3C.x + lrx),
+            (u32) (uly + sActiveView->unk3C.y + 5.0f)
         );
         gDPFillRectangle(
             next_gfx(),
-            (u32) (D_801A86D8->unk3C.x + ulx),
-            (u32) (lry + D_801A86D8->unk3C.y - 5.0f),
-            (u32) (D_801A86D8->unk3C.x + lrx),
-            (u32) (lry + D_801A86D8->unk3C.y)
+            (u32) (sActiveView->unk3C.x + ulx),
+            (u32) (lry + sActiveView->unk3C.y - 5.0f),
+            (u32) (sActiveView->unk3C.x + lrx),
+            (u32) (lry + sActiveView->unk3C.y)
         );
     }
-    // L8019E268
+
     gDPPipeSync(next_gfx());
     gDPSetCycleType(next_gfx(), G_CYC_1CYCLE);
     // TODO: update mode1, mode2 with constants
@@ -1198,7 +1192,7 @@ void gd_set_view_zbuf(void)
 {
     gDPSetDepthImage(
         next_gfx(),
-        GD_LOWER_24(D_801A86D8->unk88->unk8C)
+        GD_LOWER_24(sActiveView->unk88->unk8C)
     ); 
 }
 
@@ -1209,15 +1203,15 @@ void gd_set_view_framebuf(void)
         next_gfx(),
         G_IM_FMT_RGBA,
         G_IM_SIZ_16b,
-        D_801A86D8->unk88->unk54.x,
-        GD_LOWER_24(D_801A86D8->unk88->unk90[gGdFrameBuf])
+        sActiveView->unk88->unk54.x,
+        GD_LOWER_24(sActiveView->unk88->unk90[gGdFrameBuf])
     );
 }
 
-/* 24CF2C -> 24CFCC */
-void func_8019E75C(void)
+/* 24CF2C -> 24CFCC; orig name: func_8019E75C */
+void reset_cur_dl_indices(void)
 {
-    D_801BD7C0[gGdFrameBuf]->curGfxIdx = 0;
+    sMHeadMainDls[gGdFrameBuf]->curGfxIdx = 0;
     sCurrentGdDl = sDynDlSet1[gGdFrameBuf];
     sCurrentGdDl->curVtxIdx = 0;
     sCurrentGdDl->curMtxIdx = 0;
@@ -1226,10 +1220,10 @@ void func_8019E75C(void)
     sCurrentGdDl->curVpIdx = 0;
 }
 
-/* 24CFCC -> 24D044 */
-void func_8019E7FC(s32 id)
+/* 24CFCC -> 24D044; orig name: func_8019E7FC */
+void reset_dlnum_indices(s32 num)
 {
-    sCurrentGdDl = sGdDLArray[id];
+    sCurrentGdDl = sGdDLArray[num];
     sCurrentGdDl->curVtxIdx = 0;
     sCurrentGdDl->curMtxIdx = 0;
     sCurrentGdDl->curLightIdx = 0;
@@ -1261,13 +1255,13 @@ s32 gd_startdisplist(s32 memarea)
             sCurrentGdDl = create_child_gdl(0, sStaticDl);
             break;
         case 8:
-            if (D_801A86D8->unk20 > 2)
+            if (sActiveView->unk20 > 2)
             {
                 fatal_printf("gd_startdisplist(): Too many views to display");
             }
 
-            sCurrentGdDl = D_801BD7C8[D_801A86D8->unk20][gGdFrameBuf];
-            cpy_remaining_gddl(sCurrentGdDl, sCurrentGdDl->unk4C);
+            sCurrentGdDl = D_801BD7C8[sActiveView->unk20][gGdFrameBuf];
+            cpy_remaining_gddl(sCurrentGdDl, sCurrentGdDl->parent);
             break;
         default:
             fatal_printf("gd_startdisplist(): Unknown memory area");
@@ -1275,7 +1269,7 @@ s32 gd_startdisplist(s32 memarea)
     }
     gDPPipeSync(next_gfx());
 
-    return sCurrentGdDl->unk44;
+    return sCurrentGdDl->number;
 }
 
 /* 24D1D4 -> 24D23C */
@@ -1292,42 +1286,42 @@ s32 gd_end_dl(void)
 
     gDPPipeSync(next_gfx());
     gSPEndDisplayList(next_gfx());
-    if (sCurrentGdDl->unk4C != NULL)
+    if (sCurrentGdDl->parent != NULL)
     {
-        sCurrentGdDl->unk4C->curVtxIdx = (sCurrentGdDl->unk4C->curVtxIdx + sCurrentGdDl->curVtxIdx);
-        sCurrentGdDl->unk4C->curMtxIdx = (sCurrentGdDl->unk4C->curMtxIdx + sCurrentGdDl->curMtxIdx);
-        sCurrentGdDl->unk4C->curLightIdx = (sCurrentGdDl->unk4C->curLightIdx + sCurrentGdDl->curLightIdx);
-        sCurrentGdDl->unk4C->curGfxIdx = (sCurrentGdDl->unk4C->curGfxIdx + sCurrentGdDl->curGfxIdx);
-        sCurrentGdDl->unk4C->curVpIdx = (sCurrentGdDl->unk4C->curVpIdx + sCurrentGdDl->curVpIdx);
+        sCurrentGdDl->parent->curVtxIdx = (sCurrentGdDl->parent->curVtxIdx + sCurrentGdDl->curVtxIdx);
+        sCurrentGdDl->parent->curMtxIdx = (sCurrentGdDl->parent->curMtxIdx + sCurrentGdDl->curMtxIdx);
+        sCurrentGdDl->parent->curLightIdx = (sCurrentGdDl->parent->curLightIdx + sCurrentGdDl->curLightIdx);
+        sCurrentGdDl->parent->curGfxIdx = (sCurrentGdDl->parent->curGfxIdx + sCurrentGdDl->curGfxIdx);
+        sCurrentGdDl->parent->curVpIdx = (sCurrentGdDl->parent->curVpIdx + sCurrentGdDl->curVpIdx);
     }
     curDlIdx = sCurrentGdDl->curGfxIdx;
     return curDlIdx;
 }
 
 /* 24D39C -> 24D3D8 */
-void Unknown8019EBCC(s32 id, uintptr_t arg1)
+void Unknown8019EBCC(s32 num, uintptr_t gfxptr)
 {
-    sGdDLArray[id]->gfx = (Gfx *)(GD_LOWER_24(arg1) + D_801BAF28);
+    sGdDLArray[num]->gfx = (Gfx *)(GD_LOWER_24(gfxptr) + D_801BAF28);
 }
 
-/* 24D3D8 -> 24D458 */
-u32 func_8019EC08(void *addr, UNUSED s32 arg1)
+/* 24D3D8 -> 24D458; orig name: func_8019EC08 */
+u32 new_gddl_from(Gfx *dl, UNUSED s32 arg1)
 {
     struct GdDisplayList *gddl;
 
     gddl = new_gd_dl(0, 0, 0, 0, 0, 0);
-    gddl->gfx = (Gfx *)(GD_LOWER_24((uintptr_t)addr) + D_801BAF28);
-    return gddl->unk44;
+    gddl->gfx = (Gfx *)(GD_LOWER_24((uintptr_t)dl) + D_801BAF28);
+    return gddl->number;
 }
 
 /* 24D458 -> 24D4C4 */
-u32 Unknown8019EC88(void *addr, UNUSED s32 arg1)
+u32 Unknown8019EC88(Gfx *dl, UNUSED s32 arg1)
 {
     struct GdDisplayList *gddl;
 
     gddl = new_gd_dl(0, 0, 0, 0, 0, 0);
-    gddl->gfx = addr;
-    return gddl->unk44;
+    gddl->gfx = dl;
+    return gddl->number;
 }
 
 /* 24D4C4 -> 24D63C; orig name: func_8019ECF4 */
@@ -1722,7 +1716,7 @@ s32 func_801A0354(UNUSED s32 arg0)
 /* 24EC18 -> 24EC48 */
 void func_801A0448(s32 id)
 {
-    func_8019BDC8(id);
+    branch_cur_dl_to_num(id);
 }
 
 /* 24EC48 -> 24F03C */
@@ -1794,7 +1788,7 @@ s32 func_801A086C(s32 id, struct GdColour *colour, s32 arg2)
 
     if (id > 0)
     {
-        func_8019E7FC(id);
+        reset_dlnum_indices(id);
     }
     // L801A08B0
     // TODO: flags?
@@ -1966,13 +1960,13 @@ void func_801A180C(void)
 
     vp = &DL_CURRENT_VP(sCurrentGdDl);
 
-    vp->vp.vscale[0] = (s16) (D_801A86D8->unk54.x * 2.0f);
-    vp->vp.vscale[1] = (s16) (D_801A86D8->unk54.y * 2.0f);
+    vp->vp.vscale[0] = (s16) (sActiveView->unk54.x * 2.0f);
+    vp->vp.vscale[1] = (s16) (sActiveView->unk54.y * 2.0f);
     vp->vp.vscale[2] = 0x1FF;
     vp->vp.vscale[3] = 0x000;
 
-    vp->vp.vtrans[0] = (s16) ((D_801A86D8->unk3C.x * 4.0f) + (D_801A86D8->unk54.x * 2.0f));
-    vp->vp.vtrans[1] = (s16) ((D_801A86D8->unk3C.y * 4.0f) + (D_801A86D8->unk54.y * 2.0f));
+    vp->vp.vtrans[0] = (s16) ((sActiveView->unk3C.x * 4.0f) + (sActiveView->unk54.x * 2.0f));
+    vp->vp.vtrans[1] = (s16) ((sActiveView->unk3C.y * 4.0f) + (sActiveView->unk54.y * 2.0f));
     vp->vp.vtrans[2] = 0x1FF;
     vp->vp.vtrans[3] = 0x000;
 
@@ -1983,7 +1977,7 @@ void func_801A180C(void)
 /* 2501D0 -> 250300 */
 void func_801A1A00(void)
 {
-    if ((D_801A86D8->unk34 & 0x10) != 0)
+    if ((sActiveView->unk34 & 0x10) != 0)
     {
         if (D_801BB184 != 0xff)
         {
@@ -2012,13 +2006,13 @@ void Unknown801A1B30(void)
 {
     gDPPipeSync(next_gfx());
     gd_set_view_framebuf();
-    gd_set_fill(&D_801A86D8->unk7C);
+    gd_set_fill(&sActiveView->unk7C);
     gDPFillRectangle(
         next_gfx(),
-        (u32) (D_801A86D8->unk3C.x),
-        (u32) (D_801A86D8->unk3C.y),
-        (u32) (D_801A86D8->unk3C.x + D_801A86D8->unk54.x - 1.0f),
-        (u32) (D_801A86D8->unk3C.y + D_801A86D8->unk54.y - 1.0f)
+        (u32) (sActiveView->unk3C.x),
+        (u32) (sActiveView->unk3C.y),
+        (u32) (sActiveView->unk3C.x + sActiveView->unk54.x - 1.0f),
+        (u32) (sActiveView->unk3C.y + sActiveView->unk54.y - 1.0f)
     );
     gDPPipeSync(next_gfx());
 }
@@ -2034,16 +2028,16 @@ void Unknown801A1E70(void)
         next_gfx(),
         G_IM_FMT_RGBA,
         G_IM_SIZ_16b,
-        D_801A86D8->unk88->unk54.x,
-        GD_LOWER_24(D_801A86D8->unk88->unk8C)
+        sActiveView->unk88->unk54.x,
+        GD_LOWER_24(sActiveView->unk88->unk8C)
     );
     gDPSetFillColor(next_gfx(), FILL_RGBA5551(248, 248, 240, 0));
     gDPFillRectangle(
         next_gfx(),
-        (u32) (D_801A86D8->unk3C.x),
-        (u32) (D_801A86D8->unk3C.y),
-        (u32) (D_801A86D8->unk3C.x + D_801A86D8->unk54.x - 1.0f),
-        (u32) (D_801A86D8->unk3C.y + D_801A86D8->unk54.y - 1.0f)
+        (u32) (sActiveView->unk3C.x),
+        (u32) (sActiveView->unk3C.y),
+        (u32) (sActiveView->unk3C.x + sActiveView->unk54.x - 1.0f),
+        (u32) (sActiveView->unk3C.y + sActiveView->unk54.y - 1.0f)
     );
     gDPPipeSync(next_gfx());
     gd_set_view_framebuf();
@@ -2147,105 +2141,103 @@ void func_801A2448(struct ObjView *view)
     gDPPipeSync(next_gfx());
 }
 
-// TODO: clean up gd_main.h
-// TODO: bitfields for unkD8
-/* 251014 -> 251A1C */
-void func_801A2844(void)
+/* 251014 -> 251A1C; orig name: func_801A2844 */
+void parse_p1_controller(void)
 {
-    unsigned int i; // 3c
+    unsigned int i;           // 3c
     struct GdControl *gdctrl; // 38
-    OSContPad *p1cont; // 34
-    OSContPad *p1contPrev; // 30
-    u8 *gdCtrlBytes; // 2C
-    u8 *prevGdCtrlBytes; // 28
+    OSContPad *p1cont;        // 34
+    OSContPad *p1contPrev;    // 30
+    u8 *gdCtrlBytes;          // 2C
+    u8 *prevGdCtrlBytes;      // 28
 
-    gdctrl = &D_801B9920;
+    gdctrl = &gGdCtrl;
     gdCtrlBytes = (u8 *)gdctrl;
-    prevGdCtrlBytes = (u8 *)gdctrl->unkF0;
+    prevGdCtrlBytes = (u8 *)gdctrl->prevFrame;
 
     for (i = 0; i < sizeof(struct GdControl); i++)
     {
         *prevGdCtrlBytes++ = *gdCtrlBytes++;
     }
 
-    gdctrl->unk50 = gdctrl->unk4C = gdctrl->unk10 = gdctrl->unk14 = 0;
+    gdctrl->unk50 = gdctrl->unk4C = gdctrl->dup = gdctrl->ddown = 0;
     
-    p1cont = &D_801BAE70[0];
+    p1cont = &sGdContPads[0];
     p1contPrev = &sPrevFrameCont[0];
     // stick values
-    gdctrl->unk7C = (f32) p1cont->stick_x;
-    gdctrl->unk80 = (f32) p1cont->stick_y;
-    gdctrl->unkC0 = gdctrl->unkC8;
-    gdctrl->unkC4 = gdctrl->unkCC;
-    gdctrl->unkC8 = (s32) p1cont->stick_x;
-    gdctrl->unkCC = (s32) p1cont->stick_y;
-    gdctrl->unkC0 -= gdctrl->unkC8;
-    gdctrl->unkC4 -= gdctrl->unkCC;
+    gdctrl->stickXf = (f32) p1cont->stick_x;
+    gdctrl->stickYf = (f32) p1cont->stick_y;
+    gdctrl->stickDeltaX = gdctrl->stickX;
+    gdctrl->stickDeltaY = gdctrl->stickY;
+    gdctrl->stickX = (s32) p1cont->stick_x;
+    gdctrl->stickY = (s32) p1cont->stick_y;
+    gdctrl->stickDeltaX -= gdctrl->stickX;
+    gdctrl->stickDeltaY -= gdctrl->stickY;
     // button values (as bools)
-    gdctrl->unk44 = (p1cont->button & L_TRIG) > 0u;
-    gdctrl->unk48 = (p1cont->button & R_TRIG) > 0u;
-    gdctrl->unk34 = (p1cont->button & A_BUTTON) > 0u;
-    gdctrl->unk38 = (p1cont->button & B_BUTTON) > 0u;
-    gdctrl->unk18 = (p1cont->button & L_CBUTTONS) > 0u;
-    gdctrl->unk1C = (p1cont->button & R_CBUTTONS) > 0u;
-    gdctrl->unk20 = (p1cont->button & U_CBUTTONS) > 0u;
-    gdctrl->unk24 = (p1cont->button & D_CBUTTONS) > 0u;
+    gdctrl->trgL   = (p1cont->button & L_TRIG) > 0u;
+    gdctrl->trgR   = (p1cont->button & R_TRIG) > 0u;
+    gdctrl->btnA   = (p1cont->button & A_BUTTON) > 0u;
+    gdctrl->btnB   = (p1cont->button & B_BUTTON) > 0u;
+    gdctrl->cleft  = (p1cont->button & L_CBUTTONS) > 0u;
+    gdctrl->cright = (p1cont->button & R_CBUTTONS) > 0u;
+    gdctrl->cup    = (p1cont->button & U_CBUTTONS) > 0u;
+    gdctrl->cdown  = (p1cont->button & D_CBUTTONS) > 0u;
     // but not these buttons??
-    gdctrl->unk08 = p1cont->button & L_JPAD;
-    gdctrl->unk0C = p1cont->button & R_JPAD;
-    gdctrl->unk10 = p1cont->button & U_JPAD;
-    gdctrl->unk14 = p1cont->button & D_JPAD;
+    gdctrl->dleft  = p1cont->button & L_JPAD;
+    gdctrl->dright = p1cont->button & R_JPAD;
+    gdctrl->dup    = p1cont->button & U_JPAD;
+    gdctrl->ddown  = p1cont->button & D_JPAD;
 
-    if (gdctrl->unk34 && !gdctrl->unkD8b80)
+    if (gdctrl->btnA && !gdctrl->btnApressed)
     {
-        gdctrl->unkD8b10 = TRUE;
+        gdctrl->btnAnewPress = TRUE;
     }
     else 
     {
-        gdctrl->unkD8b10 = FALSE;
+        gdctrl->btnAnewPress = FALSE;
     }
     // toggle if A is pressed? or is this just some seed for an rng?
-    gdctrl->unkD8b80 = gdctrl->unk34;
-    gdctrl->unkD8b40 = FALSE;
-    gdctrl->unkD8b20 = gdctrl->unkD8b40;
-    gdctrl->unkD8b02 = FALSE;
-    if (gdctrl->unkD8b10)
-    {
-        gdctrl->unkB8 = gdctrl->unkD0;
-        gdctrl->unkBC = gdctrl->unkD4;
+    gdctrl->btnApressed = gdctrl->btnA;
+    gdctrl->unkD8b20 = gdctrl->unkD8b40 = FALSE;
+    gdctrl->AbtnPressWait = FALSE;
 
-        if (gdctrl->unkE8 - gdctrl->unkDC < 10)
+    if (gdctrl->btnAnewPress)
+    {
+        gdctrl->csrXatApress = gdctrl->csrX;
+        gdctrl->csrYatApress = gdctrl->csrY;
+
+        if (gdctrl->frameCount - gdctrl->frameAbtnPressed < 10)
         {
-            gdctrl->unkD8b02 = TRUE;
+            gdctrl->AbtnPressWait = TRUE;
         }
     }
 
-    if (gdctrl->unkD8b80)
+    if (gdctrl->btnApressed)
     {
-        gdctrl->unkDC = gdctrl->unkE8;
+        gdctrl->frameAbtnPressed = gdctrl->frameCount;
     }
-    gdctrl->unkE8++;
+    gdctrl->frameCount++;
 
     if (p1cont->button & START_BUTTON && !(p1contPrev->button & START_BUTTON))
     {
-        gdctrl->unk54 ^= 1;
+        gdctrl->newStartPress ^= 1;
     }
 
     if (p1cont->button & Z_TRIG && !(p1contPrev->button & Z_TRIG))
     {
-        D_801A86F4++;
+        sNewZPresses++;
     }
 
-    if (D_801A86F4 > D_801A86F0)
+    if (sNewZPresses > D_801A86F0)
     {
-        D_801A86F4 = 0;
+        sNewZPresses = 0;
     }
-    else if (D_801A86F4 < 0)
+    else if (sNewZPresses < 0)
     {
-        D_801A86F4 = D_801A86F0;
+        sNewZPresses = D_801A86F0;
     }
 
-    if (D_801A86F4)
+    if (sNewZPresses)
     {
         deactivate_timing();
     }
@@ -2259,40 +2251,39 @@ void func_801A2844(void)
         D_801BD7A0[i]->unk34 &= ~0x800;
     }
 
-    if (D_801A86F4)
+    if (sNewZPresses)
     {
-        // TODO: check this later; guessing on the indexing...
-        D_801BD7A0[D_801A86F4-1]->unk34 |= 0x800;
+        D_801BD7A0[sNewZPresses-1]->unk34 |= 0x800;
     }
     //deadzone checks?
-    if (ABS(gdctrl->unkC8) >= 6)
+    if (ABS(gdctrl->stickX) >= 6)
     {
-        gdctrl->unkD0 += gdctrl->unkC8 * 0.1; //? 0.1f
+        gdctrl->csrX += gdctrl->stickX * 0.1; //? 0.1f
     }
 
-    if (ABS(gdctrl->unkCC) >= 6)
+    if (ABS(gdctrl->stickY) >= 6)
     {
-        gdctrl->unkD4 -= gdctrl->unkCC * 0.1; //? 0.1f
+        gdctrl->csrY -= gdctrl->stickY * 0.1; //? 0.1f
     }
     // border checks? is this for the cursor finger movement?
-    if ((f32) gdctrl->unkD0 < (sScreenView2->unk88->unk3C.x + 16.0f))
+    if ((f32) gdctrl->csrX < (sScreenView2->unk88->unk3C.x + 16.0f))
     {
-        gdctrl->unkD0 = (s32) (sScreenView2->unk88->unk3C.x + 16.0f);
+        gdctrl->csrX = (s32) (sScreenView2->unk88->unk3C.x + 16.0f);
     }
 
-    if ((f32) gdctrl->unkD0 > (sScreenView2->unk88->unk3C.x + sScreenView2->unk88->unk54.x - 48.0f))
+    if ((f32) gdctrl->csrX > (sScreenView2->unk88->unk3C.x + sScreenView2->unk88->unk54.x - 48.0f))
     {
-        gdctrl->unkD0 = (s32) (sScreenView2->unk88->unk3C.x + sScreenView2->unk88->unk54.x - 48.0f);
+        gdctrl->csrX = (s32) (sScreenView2->unk88->unk3C.x + sScreenView2->unk88->unk54.x - 48.0f);
     }
 
-    if ((f32) gdctrl->unkD4 < (sScreenView2->unk88->unk3C.y + 16.0f))
+    if ((f32) gdctrl->csrY < (sScreenView2->unk88->unk3C.y + 16.0f))
     {
-        gdctrl->unkD4 = (s32) (sScreenView2->unk88->unk3C.y + 16.0f);
+        gdctrl->csrY = (s32) (sScreenView2->unk88->unk3C.y + 16.0f);
     }
 
-    if ((f32) gdctrl->unkD4 > (sScreenView2->unk88->unk3C.y + sScreenView2->unk88->unk54.y - 32.0f))
+    if ((f32) gdctrl->csrY > (sScreenView2->unk88->unk3C.y + sScreenView2->unk88->unk54.y - 32.0f))
     {
-        gdctrl->unkD4 = (s32) (sScreenView2->unk88->unk3C.y + sScreenView2->unk88->unk54.y - 32.0f);
+        gdctrl->csrY = (s32) (sScreenView2->unk88->unk3C.y + sScreenView2->unk88->unk54.y - 32.0f);
     }
 
     for (i = 0; i < sizeof(OSContPad); i++)
@@ -2365,10 +2356,10 @@ void Unknown801A347C(f32 x, f32 y, f32 z)
 /* 251CB0 -> 251D44 */
 void func_801A34E0(void)
 {
-    if ((D_801A86D8->unk34 & 0x400) != 0)
+    if ((sActiveView->unk34 & 0x400) != 0)
     {
         gd_set_fill(gd_get_colour(1));
-        gd_draw_border_rect(0.0f, 0.0f, (D_801A86D8->unk54.x - 1.0f), (D_801A86D8->unk54.y - 1.0f));
+        gd_draw_border_rect(0.0f, 0.0f, (sActiveView->unk54.x - 1.0f), (sActiveView->unk54.y - 1.0f));
     }
 }
 
@@ -2644,8 +2635,8 @@ void Proc801A4424(UNUSED void *arg0)
 /* 252C08 -> 252C70 */
 void func_801A4438(f32 arg0, f32 arg1, f32 arg2)
 {
-    D_801BB0E8.x = arg0 - (D_801A86D8->unk54.x / 2.0f);
-    D_801BB0E8.y = (D_801A86D8->unk54.y / 2.0f) - arg1;
+    D_801BB0E8.x = arg0 - (sActiveView->unk54.x / 2.0f);
+    D_801BB0E8.y = (sActiveView->unk54.y / 2.0f) - arg1;
     D_801BB0E8.z = arg2;
 }
 
@@ -2757,8 +2748,8 @@ void func_801A4848(s32 linkDl)
     struct GdDisplayList *curDl;
 
     curDl = sCurrentGdDl;
-    sCurrentGdDl = D_801BD7C0[gGdFrameBuf];
-    func_8019BDC8(linkDl);
+    sCurrentGdDl = sMHeadMainDls[gGdFrameBuf];
+    branch_cur_dl_to_num(linkDl);
     sCurrentGdDl = curDl;
 }
 
@@ -2783,7 +2774,7 @@ void func_801A48D8(UNUSED char *s)
 /* 2530C0 -> 2530D8 */
 void func_801A48F0(struct ObjView *v)
 {
-    D_801A86D8 = v;
+    sActiveView = v;
 }
  
 void stub_801A4908(void)
@@ -2813,7 +2804,7 @@ void func_801A4918(void)
 
     if (ydiff < sItemsInMenu)
     {
-        D_801BD778[ydiff]->unk12 |= 0x10;
+        sMenuGadgets[ydiff]->unk12 |= 0x10;
     }
 }
 
@@ -2838,29 +2829,30 @@ void Unknown801A4B04(void)
     sDynamicsTime = get_scaled_timer_total("dynamics");
 }
 
-/* 2533DC -> 253728 */
-void func_801A4C0C(void)
+/* 2533DC -> 253728; orig name: func_801A4C0C */
+void update_cursor(void)
 {
     if (sHandView == NULL) { return; }
 
-    if (D_801B9920.unkE8 - D_801B9920.unkDC < 300)
+    if (gGdCtrl.frameCount - gGdCtrl.frameAbtnPressed < 300)
     {
         sHandView->unk34 |= 0x800;
-        func_80178114(1);
+        // by playing the sfx every frame, it will only play once as it 
+        // never leaves the "sfx played last frame" buffer 
+        gd_play_sfx(GD_SFX_HAND_APPEAR);
     }
     else
     {
         sHandView->unk34 &= ~0x800;
-        func_80178114(2);
+        gd_play_sfx(GD_SFX_HAND_DISAPPEAR);
     }
 
-    sHandView->unk3C.x = (f32) D_801B9920.unkD0;
-    sHandView->unk3C.y = (f32) D_801B9920.unkD4;
+    sHandView->unk3C.x = (f32) gGdCtrl.csrX;
+    sHandView->unk3C.y = (f32) gGdCtrl.csrY;
 
-    func_8019E7FC(sHandShape->unk48[gGdFrameBuf]);
+    reset_dlnum_indices(sHandShape->unk48[gGdFrameBuf]);
 
-    // TODO: bitfield
-    if (D_801B9920.unkD8b80)
+    if (gGdCtrl.btnApressed)
     {
         gd_put_sprite(textureHandClosed, sHandView->unk3C.x, sHandView->unk3C.y, 0x20, 0x20);
     }
@@ -2936,14 +2928,14 @@ void Proc801A5110(struct ObjView *view)
     {
         apply_to_obj_types_in_group(
             OBJ_TYPE_NETS, 
-            Proc801933FC, 
+            convert_net_verts, 
             view->unk28
         );
     }
 }
 
-/* 253938 -> 2539DC */
-void func_801A5168(struct ObjView *view)
+/* 253938 -> 2539DC; orig name: func_801A5168 */
+void update_view_and_dl(struct ObjView *view)
 {
     UNUSED u32 pad;
     s32 prevFlags; // 18
@@ -2952,7 +2944,7 @@ void func_801A5168(struct ObjView *view)
     update_view(view);
     if (prevFlags & 0x800)
     {
-        sCurrentGdDl = D_801BD7C0[gGdFrameBuf];
+        sCurrentGdDl = sMHeadMainDls[gGdFrameBuf];
         if (view->unk70 != 0)
         {
             func_801A4848(view->unk70);
@@ -2968,14 +2960,14 @@ void func_801A520C(void)
     start_timer("1frame");
     start_timer("cpu");
     func_801A48B4();
-    func_8019E75C();
-    func_801A2844();
+    reset_cur_dl_indices();
+    parse_p1_controller();
     setup_timers();
     start_timer("dlgen");
-    apply_to_obj_types_in_group(OBJ_TYPE_VIEWS, func_801A5168, gGdViewsGroup);
+    apply_to_obj_types_in_group(OBJ_TYPE_VIEWS, update_view_and_dl, gGdViewsGroup);
     stop_timer("dlgen");
     restart_timer("netupd");
-    if (!D_801B9920.unk54)
+    if (!gGdCtrl.newStartPress)
     {
         apply_to_obj_types_in_group(OBJ_TYPE_VIEWS, Proc801A5110, gGdViewsGroup);
     }
@@ -2984,7 +2976,7 @@ void func_801A520C(void)
     func_801A4808();
     restart_timer("cpu");
     func_801A025C();
-    func_801A4C0C();
+    update_cursor();
     func_801A4918();
     stop_timer("1frame");
     sTracked1FrameTime = get_scaled_timer_total("1frame");
@@ -2995,9 +2987,9 @@ void func_801A520C(void)
 /* 253B14 -> 253BC4 */
 void Unknown801A5344(void)
 {
-    if ((D_801A86D8 = sScreenView2) == NULL) { return; }
+    if ((sActiveView = sScreenView2) == NULL) { return; }
 
-    func_8019E75C();
+    reset_cur_dl_indices();
     sScreenView2->unk70 = gd_startdisplist(8);
     func_801A2448(sScreenView2);
     gd_set_one_cycle();
@@ -3027,7 +3019,7 @@ void gd_init(void)
     D_801A86BC = 1;
     sItemsInMenu = 0;
     D_801A86F0 = 0;
-    D_801A86F4 = 0;
+    sNewZPresses = 0;
     sGdDlCount = 0;
     D_801A8674 = 0;
     D_801BB1D0 = 0;
@@ -3061,8 +3053,8 @@ void gd_init(void)
     sDynDlSet1[0] = new_gd_dl(1, 600, 10, 200, 10, 3);
     sDynDlSet1[1] = new_gd_dl(1, 600, 10, 200, 10, 3);
     stop_memtracker("Dynamic DLs");
-    D_801BD7C0[0] = new_gd_dl(1, 100, 0, 0, 0, 0);
-    D_801BD7C0[1] = new_gd_dl(1, 100, 0, 0, 0, 0);
+    sMHeadMainDls[0] = new_gd_dl(1, 100, 0, 0, 0, 0);
+    sMHeadMainDls[1] = new_gd_dl(1, 100, 0, 0, 0, 0);
 
     for (i = 0; i < ARRAY_COUNT(D_801BD7C8); i++)
     {
@@ -3070,29 +3062,29 @@ void gd_init(void)
         D_801BD7C8[i][1] = create_child_gdl(1, sDynDlSet1[1]);
     }
     // 801A5770
-    sScreenView2 = make_view("screenview2", 0x19008, 0, 0, 0, 0x140, 0xf0, 0);
+    sScreenView2 = make_view("screenview2", 0x19008, 0, 0, 0, 320, 240, 0);
     sScreenView2->unk7C.r = 0.0f;
     sScreenView2->unk7C.g = 0.0f;
     sScreenView2->unk7C.b = 0.0f;
     sScreenView2->unk88 = sScreenView2;
     sScreenView2->unk34 &= ~0x800;
-    D_801A86D8 = sScreenView2;
+    sActiveView = sScreenView2;
 
-    data = (s8 *) &D_801B9920;
+    data = (s8 *) &gGdCtrl;
     for (i = 0; (u32) i < sizeof(struct GdControl); i++)
     {
         *data++ = 0;
     }
     // 801A5868
-    D_801B9920.unk88 = 1.0f;
-    D_801B9920.unkA0 = -45.0f;
-    D_801B9920.unkAC = 45.0f;
-    D_801B9920.unk00 = 2;
-    D_801B9920.unk54 = 0;
-    D_801B9920.unkF0 = &D_801B9A18;
-    D_801B9920.unkD0 = 160;
-    D_801B9920.unkD4 = 120;
-    D_801B9920.unkDC = -1000;
+    gGdCtrl.unk88 = 1.0f;
+    gGdCtrl.unkA0 = -45.0f;
+    gGdCtrl.unkAC = 45.0f;
+    gGdCtrl.unk00 = 2;
+    gGdCtrl.newStartPress = FALSE;
+    gGdCtrl.prevFrame = &gGdCtrlPrev;
+    gGdCtrl.csrX = 160;
+    gGdCtrl.csrY = 120;
+    gGdCtrl.frameAbtnPressed = -1000;
     D_801BB0AC = func_801A0354(4);
     imout();
 }
@@ -3179,7 +3171,7 @@ void Unknown801A5AE0(s32 arg0)
     D_801BB018 = arg0;
     if (D_801BB01C != D_801BB018)
     {
-        func_8019BDC8(D_801BB060[arg0]);
+        branch_cur_dl_to_num(D_801BB060[arg0]);
         D_801BB01C = D_801BB018;
     }
 }
@@ -3227,10 +3219,6 @@ void Unknown801A5C80(struct ObjGroup *parentGroup)
         addto_group(parentGroup, &debugGroup->header);
     }
 }
-
-// TODO: copy ValPtrProc type from game over 2 into gd_types
-// typedef union ObjVarVal * (*SomeFunc)(union ObjVarVal *, union ObjVarVal);
-// typedef union ObjVarVal * (*ValPtrProc_t)(union ObjVarVal *, union ObjVarVal);
 
 /* 254560 -> 2547C8 */
 void Unknown801A5D90(struct ObjGroup *arg0)
@@ -3310,7 +3298,7 @@ void Unknown801A5FF8(struct ObjGroup *arg0)
     UNUSED u32 pad2C[2];
 
     d_start_group("menug");
-    D_801BD778[0] = d_makeobj(D_GADGET, "menu0");
+    sMenuGadgets[0] = d_makeobj(D_GADGET, "menu0");
     d_set_objheader_flag(8);
     d_set_world_pos(5.0f, 0.0f, 0.0f);
     d_set_scale(100.0f, 20.0f, 0.0f);
@@ -3321,7 +3309,7 @@ void Unknown801A5FF8(struct ObjGroup *arg0)
     d_set_parm_ptr(PARM_PTR_CHAR, "ITEM 1");
     d_add_valptr("menu0", 0x40000, 0, (uintptr_t) NULL);
 
-    D_801BD778[1] = d_makeobj(D_GADGET, "menu1");
+    sMenuGadgets[1] = d_makeobj(D_GADGET, "menu1");
     d_set_objheader_flag(8);
     d_set_world_pos(5.0f, 25.0f, 0.0f);
     d_set_scale(100.0f, 20.0f, 0.0f);
@@ -3332,7 +3320,7 @@ void Unknown801A5FF8(struct ObjGroup *arg0)
     d_set_parm_ptr(PARM_PTR_CHAR, "ITEM 2");
     d_add_valptr("menu1", 0x40000, 0, (uintptr_t) NULL);
 
-    D_801BD778[2] = d_makeobj(D_GADGET, "menu2");
+    sMenuGadgets[2] = d_makeobj(D_GADGET, "menu2");
     d_set_objheader_flag(8);
     d_set_world_pos(5.0f, 50.0f, 0.0f);
     d_set_scale(100.0f, 20.0f, 0.0f);
@@ -3587,7 +3575,7 @@ void gd_block_dma(u32 devAddr, void *vAddr, s32 size)
 }
 
 /* 255704 -> 255988 */
-struct ObjGroup *load_dynlist(struct DynList *dynlist)
+struct ObjHeader *load_dynlist(struct DynList *dynlist)
 {
     u32 segSize; // 4c
     u8 *allocSegSpace; // 48
@@ -3596,21 +3584,21 @@ struct ObjGroup *load_dynlist(struct DynList *dynlist)
     uintptr_t dynlistSegEnd; // 3c
     s32 i; // 38
     s32 sp34; // tlbPage
-    struct ObjGroup *loadedList; //30
+    struct ObjHeader *loadedList; //30
 
     i = -1;
 
-    while (D_801A8704[++i].list != NULL)
+    while (sDynLists[++i].list != NULL)
     {
-        if (D_801A8704[i].list == dynlist) { break; }
+        if (sDynLists[i].list == dynlist) { break; }
     } 
     // L801A6FC0
-    if (D_801A8704[i].list == NULL)
+    if (sDynLists[i].list == NULL)
     {
         fatal_printf("load_dynlist() ptr not found in any banks");
     }
 
-    switch (D_801A8704[i].flag)
+    switch (sDynLists[i].flag)
     {
         case STD_LIST_BANK:
             dynlistSegStart = (uintptr_t)_gd_dynlistsSegmentRomStart;
@@ -3648,7 +3636,7 @@ struct ObjGroup *load_dynlist(struct DynList *dynlist)
         );
     }
     // L801A7170
-    loadedList = (struct ObjGroup *)proc_dynlist(dynlist);
+    loadedList = proc_dynlist(dynlist);
     gd_free(allocPtr);
     osUnmapTLBAll();
 

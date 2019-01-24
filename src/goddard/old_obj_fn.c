@@ -6,7 +6,7 @@
 #include "gd_types.h"
 
 #include "mario_head_1.h"
-#include "mario_head_4.h"
+#include "dynlist_proc.h"
 #include "profiler_utils.h"
 #include "mario_head_6.h"
 
@@ -180,9 +180,9 @@ void adjust_gadget(struct ObjGadget *gdgt, s32 a1, s32 a2)
     struct ObjValPtrs *vp;
 
     if (gdgt->unk24 == 1)
-        gdgt->unk28 += a2 * (-D_801B9DB8->unk40.z * 1.0E-5);
+        gdgt->unk28 += a2 * (-sCurrentMoveCamera->unk40.z * 1.0E-5);
     else if (gdgt->unk24 == 2)
-        gdgt->unk28 += a1 * (-D_801B9DB8->unk40.z * 1.0E-5);
+        gdgt->unk28 += a1 * (-sCurrentMoveCamera->unk40.z * 1.0E-5);
 
     if (gdgt->unk28 < 0.0f)      { gdgt->unk28 = 0.0f; } 
     else if (gdgt->unk28 > 1.0f) { gdgt->unk28 = 1.0f; }

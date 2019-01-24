@@ -303,15 +303,15 @@ void move_bonesnet(struct ObjNet *net)
 void func_80192CCC(struct ObjNet *net)
 {
     Mat4 sp38;
-    UNUSED struct GdControl *gdmem; // 34
+    UNUSED struct GdControl *ctrl; // 34
     struct ObjGroup *group; // 30
     struct MyVec3f sp24;
 
-    gdmem = &D_801B9920;
-    if (D_801B9920.unk2C != NULL) { func_8017E2B8(); }
+    ctrl = &gGdCtrl;
+    if (gGdCtrl.unk2C != NULL) { func_8017E2B8(); }
     set_identity_mat4(&D_801B9DC8);
 
-    if (D_801B9920.unk30 != NULL)
+    if (gGdCtrl.unk30 != NULL)
     {
         sp24.x = net->mat128[0][0];
         sp24.y = net->mat128[0][1];
@@ -321,7 +321,7 @@ void func_80192CCC(struct ObjNet *net)
         net->unkA4.x = net->unkA4.y = net->unkA4.z = 0.0f;
     }
 
-    if (D_801B9920.unk28 != NULL)
+    if (gGdCtrl.unk28 != NULL)
     {
         sp24.x = net->mat128[0][0];
         sp24.y = net->mat128[0][1];
@@ -331,7 +331,7 @@ void func_80192CCC(struct ObjNet *net)
         net->unkA4.x = net->unkA4.y = net->unkA4.z = 0.0f;
     }
 
-    if (D_801B9920.unk54) { return; } // start was pressed
+    if (gGdCtrl.newStartPress) { return; } // start was pressed
     
     switch (net->unk210) { case 2: break; }
     
@@ -451,8 +451,8 @@ void convert_gd_verts_to_Vtx(struct ObjGroup *grp)
     }
 }
 
-/* 241BCC -> 241CA0 */
-void Proc801933FC(struct ObjNet *net)
+/* 241BCC -> 241CA0; orig name: Proc801933FC */
+void convert_net_verts(struct ObjNet *net)
 {
     if (net->unk1A8 != NULL)
     {

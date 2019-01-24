@@ -506,12 +506,12 @@ SECTIONS
       BUILD_DIR/src/star_select.o(.text);
       BUILD_DIR/src/goddard/gd_main.o(.text);
       BUILD_DIR/src/goddard/debug_memory.o(.text);
-      BUILD_DIR/src/goddard/game_over_1.o(.text);
+      BUILD_DIR/src/goddard/mhead_sfx.o(.text);
       BUILD_DIR/src/goddard/game_over_2.o(.text);
       BUILD_DIR/src/goddard/mario_head_1.o(.text);
       BUILD_DIR/src/goddard/mario_head_2.o(.text);
       BUILD_DIR/src/goddard/mario_head_3.o(.text);
-      BUILD_DIR/src/goddard/mario_head_4.o(.text);
+      BUILD_DIR/src/goddard/dynlist_proc.o(.text);
       BUILD_DIR/src/goddard/old_obj_fn.o(.text);
       BUILD_DIR/src/goddard/profiler_utils.o(.text);
       BUILD_DIR/src/goddard/joint_fns.o(.text);
@@ -532,7 +532,7 @@ SECTIONS
       BUILD_DIR/src/goddard/game_over_2.o(.data*);
       BUILD_DIR/src/goddard/mario_head_1.o(.data*);
       BUILD_DIR/src/goddard/mario_head_3.o(.data*);
-      BUILD_DIR/src/goddard/mario_head_4.o(.data*);
+      BUILD_DIR/src/goddard/dynlist_proc.o(.data*);
       BUILD_DIR/src/goddard/profiler_utils.o(.data*);
       BUILD_DIR/src/goddard/joint_fns.o(.data*);
       BUILD_DIR/src/goddard/half_6.o(.data*);
@@ -546,7 +546,7 @@ SECTIONS
       BUILD_DIR/src/goddard/mario_head_1.o(.rodata*);
       BUILD_DIR/src/goddard/mario_head_2.o(.rodata*);
       BUILD_DIR/src/goddard/mario_head_3.o(.rodata*);
-      BUILD_DIR/src/goddard/mario_head_4.o(.rodata*);
+      BUILD_DIR/src/goddard/dynlist_proc.o(.rodata*);
       BUILD_DIR/src/goddard/old_obj_fn.o(.rodata*);
       BUILD_DIR/src/goddard/profiler_utils.o(.rodata*);
       BUILD_DIR/src/goddard/joint_fns.o(.rodata*);
@@ -563,12 +563,12 @@ SECTIONS
       BUILD_DIR/src/star_select.o(.bss*);
       BUILD_DIR/src/goddard/gd_main.o(.bss*);
       BUILD_DIR/src/goddard/debug_memory.o(.bss*);
-      BUILD_DIR/src/goddard/game_over_1.o(.bss*);
+      BUILD_DIR/src/goddard/mhead_sfx.o(.bss*);
       BUILD_DIR/src/goddard/game_over_2.o(.bss*);
       BUILD_DIR/src/goddard/mario_head_1.o(.bss*);
       BUILD_DIR/src/goddard/mario_head_2.o(.bss*);
       BUILD_DIR/src/goddard/mario_head_3.o(.bss*);
-      BUILD_DIR/src/goddard/mario_head_4.o(.bss*);
+      BUILD_DIR/src/goddard/dynlist_proc.o(.bss*);
       BUILD_DIR/src/goddard/old_obj_fn.o(.bss*);
       BUILD_DIR/src/goddard/profiler_utils.o(.bss*);
       BUILD_DIR/src/goddard/joint_fns.o(.bss*);

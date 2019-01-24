@@ -8,7 +8,7 @@
 #include "game_over_2.h"
 #include "mario_head_1.h"
 #include "mario_head_3.h"
-#include "mario_head_4.h"
+#include "dynlist_proc.h"
 #include "profiler_utils.h"
 #include "joint_fns.h"
 #include "skin_fns.h"
@@ -122,7 +122,7 @@ void func_80197280(void)
 {
     sGdShapeCount = 0;
     sGdShapeListHead = NULL;
-    D_801B9BB8 = make_group(0);
+    sGdLightGroup = make_group(0);
 }
 
 /* @ 245A90 for 0x24C; orig name: func_801972C0 */
@@ -1269,8 +1269,8 @@ struct ObjNet* make_netfromshape(struct ObjShape* shape)
     return newNet;
 }
 
-/* @ 248770 for 0xc8 */
-void Proc80199FA0(struct ObjAnimator* self)
+/* @ 248770 for 0xc8; orig name: Proc80199FA0 */
+void animate_mario_head_gameover(struct ObjAnimator* self)
 {
     switch (self->unk4C)
     {
@@ -1285,18 +1285,18 @@ void Proc80199FA0(struct ObjAnimator* self)
             {
                 self->unk28 = 69.0f;
                 self->unk4C = 4;
-                self->fn48 = &Proc8019A068;
+                self->fn48 = &animate_mario_head_normal;
                 self->unk20 = 0;
             }
             break;
     }
 }
 
-/* @ 248838 for 0x310 */
-void Proc8019A068(struct ObjAnimator* self)
+/* @ 248838 for 0x310; orig name: Proc8019A068 */
+void animate_mario_head_normal(struct ObjAnimator* self)
 {
     s32 state = 0;  //TODO: label these states
-    s32 sp0 = D_801B9920.unkD8b80;
+    s32 aBtnPressed = gGdCtrl.btnApressed;
 
     switch (self->unk4C)
     {
@@ -1307,7 +1307,7 @@ void Proc8019A068(struct ObjAnimator* self)
             self->unk50 = 5;
             break;
         case 2:
-            if (sp0 != 0)
+            if (aBtnPressed)
                 state = 5;
 
             self->unk28 += 1.0f;
@@ -1347,7 +1347,10 @@ void Proc8019A068(struct ObjAnimator* self)
             self->unk54 = 150;
             break;
         case 7:
-            if (sp0 != 0) { self->unk54 = 300; }
+            if (aBtnPressed)
+            { 
+                self->unk54 = 300; 
+            }
             else 
             {
                 self->unk54--;
@@ -1364,8 +1367,8 @@ void Proc8019A068(struct ObjAnimator* self)
     if (state != 0) { self->unk4C = state; }
 }
 
-/* @ 248B48 for 0x740 */
-s32 func_8019A378(void (*aniFn)(struct ObjAnimator*))
+/* @ 248B48 for 0x740; orig name: func_8019A378 */
+s32 load_mario_head(void (*aniFn)(struct ObjAnimator*))
 {
     struct ObjNet* sp54;    // net made with sp48 group
     UNUSED u8 pad4C[0x54-0x4c];
@@ -1388,7 +1391,7 @@ s32 func_8019A378(void (*aniFn)(struct ObjAnimator*))
     sp28->fn48 = aniFn;
     dynid_is_int(FALSE);
     //FIXME: make segment address work once seg4 is disassembled 
-    gMarioFaceGrp = load_dynlist(dynlist_04004F90);
+    gMarioFaceGrp = (struct ObjGroup *)load_dynlist(dynlist_04004F90);
     stop_memtracker("mario face");
 
     sp2C = (struct ObjCamera*) d_makeobj(D_CAMERA, NULL);
@@ -1408,21 +1411,21 @@ s32 func_8019A378(void (*aniFn)(struct ObjAnimator*))
     sp24->unk64 = 3;
     sp24->unkBC = &sp2C->header;
     sp24->unk1C = gShapeRedSpark;
-    addto_group(D_801B9BB8, &sp24->header);
+    addto_group(sGdLightGroup, &sp24->header);
 
     sp24 = make_particle(0, 1, 0.0f, 0.0f, 0.0f);
     sp24->unk60 = 3;
     sp24->unk64 = 2;
     sp24->unkBC = d_use_obj("N228l"); //probably a camera
     sp24->unk1C = gShapeRedSpark;
-    addto_group(D_801B9BB8, &sp24->header);
+    addto_group(sGdLightGroup, &sp24->header);
 
     sp24 = make_particle(0, 2, 0.0f, 0.0f, 0.0f);
     sp24->unk60 = 3;
     sp24->unk64 = 2;
     sp24->unkBC = d_use_obj("N231l"); //probably a camera
     sp24->unk1C = gShapeSilSpark;
-    addto_group(D_801B9BB8, &sp24->header);
+    addto_group(sGdLightGroup, &sp24->header);
 
     sp3C = (struct ObjGroup*) d_use_obj("N1000l");
     func_8017B028(sp3C);
@@ -1557,9 +1560,9 @@ struct ObjGroup* Unknown8019AB98(UNUSED u32 a0)
     light2->unk80.y = 4.0f;
     light2->unk80.z = -2.0f;
 
-    D_801B9BB8 = make_group_of_type(OBJ_TYPE_LIGHTS, oldObjHead, NULL); 
+    sGdLightGroup = make_group_of_type(OBJ_TYPE_LIGHTS, oldObjHead, NULL); 
 
-    return D_801B9BB8;
+    return sGdLightGroup;
 }
 
 /* @ 249594 for 0x100 */
@@ -1583,9 +1586,9 @@ struct ObjGroup* Unknown8019ADC4(UNUSED u32 a0)
 
     newLight->unk30 = 1.0f;
 
-    D_801B9BB8 = make_group_of_type(OBJ_TYPE_LIGHTS, oldObjHead, NULL);
+    sGdLightGroup = make_group_of_type(OBJ_TYPE_LIGHTS, oldObjHead, NULL);
 
-    return D_801B9BB8;
+    return sGdLightGroup;
 }
 
 /* @ 249694 for 0x5c */
@@ -1596,6 +1599,6 @@ struct ObjGroup* Unknown8019AEC4(UNUSED u32 a0)
     UNUSED struct ObjHeader* sp1C;
     
     sp1C = gGdObjectList;
-    D_801B9BB8 = make_group(0);
-    return D_801B9BB8;
+    sGdLightGroup = make_group(0);
+    return sGdLightGroup;
 }

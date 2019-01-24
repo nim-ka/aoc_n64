@@ -8,7 +8,7 @@
 #include "game_over_2.h"
 #include "mario_head_1.h"
 #include "mario_head_3.h"
-#include "mario_head_4.h"
+#include "dynlist_proc.h"
 #include "old_obj_fn.h"
 #include "profiler_utils.h"
 #include "joint_fns.h"
@@ -17,8 +17,6 @@
 #include "half_6.h"
 #include "mario_head_6.h"
 
-/* change name to: process_dynlist.c */
-
 // types
 struct DynObjInfo {
     char name[8];
@@ -26,7 +24,7 @@ struct DynObjInfo {
     s32 id;
     s32 unk;
 };
-// convenient accessors for the DynList entry data 
+// "convenient" accessors for the DynList entry data 
 #define Dyn1AsInt(dyn) ((dyn)->w1.word)
 #define Dyn1AsPtr(dyn) ((dyn)->w1.ptr)
 #define Dyn1AsStr(dyn) ((dyn)->w1.str)
@@ -499,7 +497,7 @@ struct ObjHeader *d_makeobj(enum DObjTypes type, DynId id)
             dobj = &make_group(0)->header;
             dgroup = (struct ObjGroup *)dobj;
             break;
-        case D_DIFF_GRP:
+        case D_DATA_GRP:
             d_makeobj(D_GROUP, id);
             ((struct ObjGroup *)sDynListCurObj)->unk30 = 1;
             //! bad goddard. set the return of the d_makeobj call to `dobj` and return that. 
@@ -547,7 +545,7 @@ struct ObjHeader *d_makeobj(enum DObjTypes type, DynId id)
             break;
         case D_LIGHT:
             dobj = &make_light(0, NULL, 0)->header;
-            addto_group(D_801B9BB8, dobj);
+            addto_group(sGdLightGroup, dobj);
             break;
         default:
             fatal_printf("dMakeObj(): Unkown object type");
@@ -2186,7 +2184,7 @@ void d_add_valptr(DynId objId, u32 vflags, s32 type, u32 offset)
 }
 
 /* 237F68 -> 238020; orig name: func_80189798 */
-void d_add_valproc(union ObjVarVal * (*proc)(union ObjVarVal *, union ObjVarVal))
+void d_add_valproc(valptrproc_t proc)
 {
     struct ObjHeader *dynobj;   // sp1C
 
@@ -2242,7 +2240,7 @@ void d_link_with_ptr(void *ptr)
                 (s32) ((struct ObjView *)dynobj)->unk54.x,
                 (s32) ((struct ObjView *)dynobj)->unk54.y
             );
-            func_801814F4(((struct ObjView *)dynobj)->unk28);
+            reset_nets_and_gadgets(((struct ObjView *)dynobj)->unk28);
             break;
         case OBJ_TYPE_FACES:
             if (((struct ObjFace *)dynobj)->vtxCount >= 4)
