@@ -3,19 +3,13 @@
 
 #include "types.h"
 
-struct UnknownStruct8035FFA8
-{
-    u8 filler0[7];
-    s8 unk7;
-};
-
 // extern ? D_8035FF90;
 // extern ? D_803303FC;
 // extern ? D_803303F8;
 // extern ? D_8035FFA0;
 // extern ? D_8035FFA4;
 // extern ? D_80330400;
-extern struct UnknownStruct8035FFA8 *D_8035FFA8;
+extern struct PaintingData *D_8035FFA8;
 
 // extern ? func_802D1EE0(?);
 // extern ? func_802D1F94(?);

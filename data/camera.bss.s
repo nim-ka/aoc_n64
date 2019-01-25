@@ -23,21 +23,7 @@ glabel D_8033B226
 glabel D_8033B228
     .space 0x8
 glabel D_8033B230
-    .space 0x4
-glabel D_8033B234
-    .space 0x4
-glabel D_8033B238
-    .space 0x4
-glabel D_8033B23C
-    .space 0x4
-glabel D_8033B240
-    .space 0x4
-glabel D_8033B244
-    .space 0x2
-glabel D_8033B246
-    .space 0x2
-glabel D_8033B248
-    .space 0x8
+    .space 0x20
 glabel D_8033B250
     .space 0x2
 glabel D_8033B252
@@ -246,7 +232,7 @@ glabel D_8033B6E8
     .space 0x2
 glabel D_8033B6EA
     .space 0x2
-glabel D_8033B6EC
+glabel gCutsceneTimer
     .space 0x4
 glabel D_8033B6F0
     .space 0x22

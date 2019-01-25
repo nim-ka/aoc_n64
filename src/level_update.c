@@ -2,6 +2,7 @@
 
 #include "sm64.h"
 #include "audio/interface_2.h"
+#include "level_update.h"
 #include "game.h"
 #include "level_update.h"
 #include "main.h"

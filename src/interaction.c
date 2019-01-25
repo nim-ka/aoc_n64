@@ -1,6 +1,8 @@
 #include <ultra64.h>
 
 #include "sm64.h"
+#include "interaction.h"
+#include "camera.h"
 #include "level_update.h"
 #include "math_util.h"
 #include "memory.h"
@@ -10,12 +12,10 @@
 #include "sound_init.h"
 #include "display.h"
 #include "mario.h"
-#include "camera.h"
 #include "obj_behaviors.h"
 #include "object_helpers.h"
 #include "behavior_actions.h"
 #include "audio/interface_2.h"
-#include "interaction.h"
 #include "behavior_data.h"
 
 #define INT_GROUND_POUND_OR_TWIRL (1 << 0) // 0x00000001
@@ -52,12 +52,10 @@
     INT_KICK |\
     INT_TRIP |\
     INT_HIT_FROM_BELOW)
-
-extern u8 warp_pipe_seg3_collision_03009AC8[];
-
+	
 u8 sDelayInvincTimer;
 s16 sInvulnerable;
-
+extern u8 warp_pipe_seg3_collision_03009AC8[];
 static u32 interact_coin(struct MarioState *, u32, struct Object *);
 static u32 interact_water_ring(struct MarioState *, u32, struct Object *);
 static u32 interact_star_or_key(struct MarioState *, u32, struct Object *);

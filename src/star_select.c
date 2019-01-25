@@ -14,6 +14,7 @@
 #include "segment2.h"
 #include "segment7.h"
 #include "star_select.h"
+#include "model_ids.h"
 
 static struct Object *sStarSelectIcons[8];
 static s8 sCurrentMission; // The mission the course is loaded as, affects whether some objects spawn.
@@ -67,7 +68,7 @@ void Show100CoinStar(u8 stars)
 void BehActSelectorInit(void)
 {
     s16 i = 0;
-    int selectorModelIDs[10]; // 121 = transparent star, 122 = normal star
+    int selectorModelIDs[10];
     u8 stars = save_file_get_star_flags(gCurrSaveFileNum - 1, gCurrCourseNum -1);
 
     sVisibleStars = 0;
@@ -75,12 +76,12 @@ void BehActSelectorInit(void)
     {
         if (stars & (1 << sVisibleStars)) // Star has been collected
         {
-            selectorModelIDs[sVisibleStars] = 122;
+            selectorModelIDs[sVisibleStars] = MODEL_STAR;
             i++;
         }
         else // Star has not been collected
         {
-            selectorModelIDs[sVisibleStars] = 121;
+            selectorModelIDs[sVisibleStars] = MODEL_TRANSPARENT_STAR;
             if (sDefaultSelectedAct == 0) // If this is the first star that has not been collected, set the default selection to this star.
             {
                 sDefaultSelectedAct = sVisibleStars + 1;
@@ -92,7 +93,7 @@ void BehActSelectorInit(void)
 
     if (sVisibleStars == sObtainedStars && sVisibleStars != 6) // If the stars have been collected in order so far, show the next star.
     {
-        selectorModelIDs[sVisibleStars] = 121;
+        selectorModelIDs[sVisibleStars] = MODEL_TRANSPARENT_STAR;
         sDefaultSelectedAct = sVisibleStars + 1;
         sSelectedStarIndex = sVisibleStars;
         sVisibleStars++;

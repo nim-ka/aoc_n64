@@ -121,221 +121,228 @@
 
 
 .macro begin arg1
-    .word (0x00 << 24) | (\arg1 << 16)
+    .byte 0x00, \arg1, 0x00, 0x00
 .endm
 
 .macro delay frames
-    .word (0x01 << 24) | (\frames & 0xFFFF)
+    .byte 0x01, 0x00
+    .hword \frames
 .endm
 
 .macro call addr
-    .word (0x02 << 24)
+    .byte 0x02, 0x00, 0x00, 0x00
     .word \addr
 .endm
 
 .macro return
-    .word (0x03 << 24)
+    .byte 0x03, 0x00, 0x00, 0x00
 .endm
 
 .macro goto addr
-    .word (0x04 << 24)
+    .byte 0x04, 0x00, 0x00, 0x00
     .word \addr
 .endm
 
 .macro begin_repeat times
-    .word (0x05 << 24) | (\times & 0xFFFF)
+    .byte 0x05, 0x00
+    .hword \times
 .endm
 
 .macro end_repeat
-    .word (0x06 << 24)
+    .byte 0x06, 0x00, 0x00, 0x00
 .endm
 
 .macro end_repeat_nobreak
-    .word (0x07 << 24)
+    .byte 0x07, 0x00, 0x00, 0x00
 .endm
 
 .macro begin_loop
-    .word (0x08 << 24)
+    .byte 0x08, 0x00, 0x00, 0x00
 .endm
 
 .macro end_loop
-    .word (0x09 << 24)
+    .byte 0x09, 0x00, 0x00, 0x00
 .endm
 
 .macro break
-    .word (0x0A << 24)
+    .byte 0x0A, 0x00, 0x00, 0x00
 .endm
 
 .macro callnative addr
-    .word (0x0C << 24)
+    .byte 0x0C, 0x00, 0x00, 0x00
     .word \addr
 .endm
 
 .macro obj_add_float field, value
-    .word (0x0D << 24) | (\field << 16) | (\value & 0xFFFF)
+    .byte 0x0D, \field
+    .hword \value
 .endm
 
 .macro obj_set_float field, value
-    .word (0x0E << 24) | (\field << 16) | (\value & 0xFFFF)
+    .byte 0x0E, \field
+    .hword \value
 .endm
 
 .macro obj_add_int field, value
-    .word (0x0F << 24) | (\field << 16) | (\value & 0xFFFF)
+    .byte 0x0F, \field
+    .hword \value
 .endm
 
 .macro obj_set_int field, value
-    .word (0x10 << 24) | (\field << 16) | (\value & 0xFFFF)
+    .byte 0x10, \field
+    .hword \value
 .endm
 
 .macro obj_or_int field, value
-    .word (0x11 << 24) | (\field << 16) | (\value & 0xFFFF)
+    .byte 0x11, \field
+    .hword \value
 .endm
 
 .macro obj_bit_clear_int field, value
-    .word (0x12 << 24) | (\field << 16) | (\value & 0xFFFF)
+    .byte 0x12, \field
+    .hword \value
 .endm
 
 .macro obj_set_int_rand_rshift field, min, rshift
-    .word (0x13 << 24) | (\field << 16) | (\min & 0xFFFF)
-    .word ((\rshift & 0xFFFF) << 16)
+    .byte 0x13, \field
+    .hword \min, \rshift, 0x0000
 .endm
 
 .macro obj_set_float_rand field, min, max
-    .word (0x14 << 24) | (\field << 16) | (\min & 0xFFFF)
-    .word ((\max & 0xFFFF) << 16)
+    .byte 0x14, \field
+    .hword \min, \max, 0x0000
 .endm
 
 .macro obj_set_int_rand field, min, max
-    .word (0x15 << 24) | (\field << 16) | (\min & 0xFFFF)
-    .word ((\max & 0xFFFF) << 16)
+    .byte 0x15, \field
+    .hword \min, \max, 0x0000
 .endm
 
 .macro obj_add_float_rand field, min, max
-    .word (0x16 << 24) | (\field << 16) | (\min & 0xFFFF)
-    .word ((\max & 0xFFFF) << 16)
+    .byte 0x16, \field
+    .hword \min, \max, 0x0000
 .endm
 
 .macro obj_add_int_rand_rshift field, min, rshift
-    .word (0x17 << 24) | (\field << 16) | (\min & 0xFFFF)
-    .word ((\rshift & 0xFFFF) << 16)
+    .byte 0x17, \field
+    .hword \min, \rshift, 0x0000
 .endm
 
 .macro geo_layout index
-    .word (0x1B << 24) | (\index & 0xFFFF)
+    .byte 0x1B, 0x00
+    .hword \index
 .endm
 
 .macro unknown_1C arg1, arg2
-    .word (0x1C << 24)
-    .word \arg1
-    .word \arg2
+    .byte 0x1C, 0x00, 0x00, 0x00
+    .word \arg1, \arg2
 .endm
 
 .macro deactivate
-    .word (0x1D << 24)
+    .byte 0x1D, 0x00, 0x00, 0x00
 .endm
 
 .macro unknown_1E
-    .word (0x1E << 24)
+    .byte 0x1E, 0x00, 0x00, 0x00
 .endm
 
 .macro obj_sum_float fieldDest, fieldSrc1, fieldSrc2
-    .word (0x1F << 24) | (\fieldDest << 16) | (\fieldSrc1 << 8) | \fieldSrc2
+    .byte 0x1F, \fieldDest, \fieldSrc1, \fieldSrc2
 .endm
 
 .macro obj_sum_int fieldDest, fieldSrc1, fieldSrc2
-    .word (0x20 << 24) | (\fieldDest << 16) | (\fieldSrc1 << 8) | \fieldSrc2
+    .byte 0x20, \fieldDest, \fieldSrc1, \fieldSrc2
 .endm
 
 .macro billboard
-    .word (0x21 << 24)
+    .byte 0x21, 0x00, 0x00, 0x00
 .endm
 
 .macro unhide
-    .word (0x22 << 24)
+    .byte 0x22, 0x00, 0x00, 0x00
 .endm
 
 .macro set_hitbox radius, height
-    .word (0x23 << 24)
-    .word ((\radius & 0xFFFF) << 16) | (\height & 0xFFFF)
+    .byte 0x23, 0x00, 0x00, 0x00
+    .hword \radius, \height
 .endm
 
 .macro delay_var field
-    .word (0x25 << 24) | (\field << 16)
+    .byte 0x25, \field, 0x00, 0x00
 .endm
 
 .macro obj_set_int32 field, value
-    .word (0x27 << 24) | (\field << 16)
+    .byte 0x27, \field, 0x00, 0x00
     .word \value
 .endm
 
 .macro unknown_28 animIndex
-    .word (0x28 << 24) | ((\animIndex & 0xFF) << 16)
+    .byte 0x28, \animIndex, 0x00, 0x00
 .endm
 
 .macro unknown_29 behParam, arg2, arg3
-    .word (0x29 << 24) | (\behParam & 0xFFFF)
+    .byte 0x29, 0x00
+    .hword \behParam
     .word \arg2
     .word \arg3
 .endm
 
 .macro collision_data addr
-    .word (0x2A << 24)
+    .byte 0x2A, 0x00, 0x00, 0x00
     .word \addr
 .endm
 
 .macro unknown_2B radius, height, arg3
-    .word (0x2B << 24)
-    .word ((\radius & 0xFFFF) << 16) | (\height & 0xFFFF)
-    .word ((\arg3 & 0xFFFF) << 16)
+    .byte 0x2B, 0x00, 0x00, 0x00
+    .hword \radius, \height, \arg3, 0x0000
 .endm
 
 .macro unknown_2C arg1, arg2
-    .word (0x2C << 24)
+    .byte 0x2C, 0x00, 0x00, 0x00
     .word \arg1
     .word \arg2
 .endm
 
 .macro unknown_2D
-    .word (0x2D << 24)
+    .byte 0x2D, 0x00, 0x00, 0x00
 .endm
 
 .macro unknown_2E arg1, arg2
-    .word (0x2E << 24)
-    .word ((\arg1 & 0xFFFF) << 16) | (\arg2 & 0xFFFF)
+    .byte 0x2E, 0x00, 0x00, 0x00
+    .hword \arg1, \arg2
 .endm
 
 .macro interact_type type
-    .word (0x2F << 24)
+    .byte 0x2F, 0x00, 0x00, 0x00
     .word \type
 .endm
 
 .macro unknown_30 arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8
-    .word (0x30 << 24)
-    .word ((\arg1 & 0xFFFF) << 16) | (\arg2 & 0xFFFF)
-    .word ((\arg3 & 0xFFFF) << 16) | (\arg4 & 0xFFFF)
-    .word ((\arg5 & 0xFFFF) << 16) | (\arg6 & 0xFFFF)
-    .word ((\arg7 & 0xFFFF) << 16) | (\arg8 & 0xFFFF)
+    .byte 0x30, 0x00, 0x00, 0x00
+    .hword \arg1, \arg2, \arg3, \arg4, \arg5, \arg6, \arg7, \arg8
 .endm
 
 .macro scale percent
-    .word (0x32 << 24) | (\percent & 0xFFFF)
+    .byte 0x32, 0x00
+    .hword \percent
 .endm
 
 .macro obj_bit_clear_int32 field, value
-    .word (0x33 << 24) | (\field << 16)
+    .byte 0x33, \field, 0x00, 0x00
     .word \value
 .endm
 
 .macro unknown_34 field, arg2
-    .word (0x34 << 24) | (\field << 16) | (\arg2 & 0xFFFF)
+    .byte 0x34, \field
+    .hword \arg2
 .endm
 
 .macro unknown_35
-    .word (0x35 << 24)
+    .byte 0x35, 0x00, 0x00, 0x00
 .endm
 
 .macro unknown_37 arg1
-    .word (0x37 << 24)
+    .byte 0x37, 0x00, 0x00, 0x00
     .word \arg1
 .endm
 
@@ -710,7 +717,7 @@ glabel beh_wf_breakable_wall_right # 0624
     begin OBJ_LIST_SURFACE
     collision_data wf_seg7_collision_breakable_wall
     goto .L13000644
-	
+    
 glabel beh_wf_breakable_wall_left # 0638
     begin OBJ_LIST_SURFACE
     collision_data wf_seg7_collision_breakable_wall_2
@@ -825,7 +832,7 @@ glabel beh_spawned_star # 07F8
     obj_or_int objFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE
     obj_set_int objBehParams2ndByte, 1
     goto .L13000814
-	
+    
 glabel beh_unused_080C # 080C
     begin OBJ_LIST_LEVEL
     obj_or_int objFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE
@@ -886,7 +893,7 @@ glabel beh_one_coin # 090C
     begin OBJ_LIST_LEVEL
     obj_set_int objBehParams2ndByte, 1
     goto .L13000920
-	
+    
 glabel beh_yellow_coin # 091C
     begin OBJ_LIST_LEVEL
 .L13000920: # 0920
@@ -1013,7 +1020,7 @@ glabel beh_door_warp # 0AFC
     begin OBJ_LIST_SURFACE
     obj_set_int objInteractType, 0x800
     goto .L13000B14
-	
+    
 glabel beh_door # 0B0C
     begin OBJ_LIST_SURFACE
     obj_set_int objInteractType, 0x04
@@ -1600,7 +1607,7 @@ glabel beh_floor_switch_animates_object # 1468
 glabel beh_floor_switch_grills # 1478
     begin OBJ_LIST_SURFACE
     goto .Lbeh_floor_switch_1488
-	
+    
 glabel beh_floor_switch_hardcoded_model # 1484
     begin OBJ_LIST_SURFACE
 .Lbeh_floor_switch_1488: # 1488
@@ -1610,12 +1617,12 @@ glabel beh_floor_switch_hardcoded_model # 1484
         callnative BehFloorSwitchLoop
         callnative load_object_collision_model
     end_loop
-	
+    
 glabel beh_floor_switch_hidden_objects # 14AC
     begin OBJ_LIST_SURFACE
     obj_set_int objBehParams2ndByte, 2
     goto .Lbeh_floor_switch_1488
-	
+    
 glabel beh_hidden_object # 14BC
     begin OBJ_LIST_SURFACE
     obj_or_int objFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE

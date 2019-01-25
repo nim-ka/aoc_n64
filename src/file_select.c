@@ -867,9 +867,9 @@ static void erase_menu_init_from_submenu(s16 prevMenuButtonId, struct Object *so
             for (buttonID = 14; buttonID < 21; buttonID++)
                 hide_object(sMainMenuButtons[buttonID]);
         }
-        if (prevMenuButtonId == MENU_BUTTON_ERASE)
+        if (prevMenuButtonId == MENU_BUTTON_ERASE) //! Not possible, this is checking if the erase menu was opened from the erase menu!
         {
-            for (buttonID = 21; buttonID < 28; buttonID++) //! Not possible, this is checking if the erase menu was opened from the erase menu!
+            for (buttonID = 21; buttonID < 28; buttonID++)
                 hide_object(sMainMenuButtons[buttonID]);
         }
         sSelectedButtonID = MENU_BUTTON_ERASE;

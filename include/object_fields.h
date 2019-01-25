@@ -128,6 +128,7 @@
 #define /*0x0FC*/ oUnknownUnkFC_F32 OBJECT_FIELD_F32(0x1D)
 #define /*0x0FC*/ oUnknownUnkFC_VOIDP OBJECT_FIELD_VOIDP(0x1D)
 #define /*0x100*/ oUnknownUnk100_S32 OBJECT_FIELD_S32(0x1E)
+#define /*0x104*/ oUnknownUnk104_F32 OBJECT_FIELD_F32(0x1F)
 #define /*0x108*/ oUnknownUnk108_S32 OBJECT_FIELD_S32(0x20)
 #define /*0x108*/ oUnknownUnk108_F32 OBJECT_FIELD_F32(0x20)
 #define /*0x10C*/ oUnknownUnk10C_S32 OBJECT_FIELD_S32(0x21)
@@ -1017,5 +1018,22 @@
 #define /*0x0F4*/ oYoshiUnkF4 OBJECT_FIELD_S32(0x1B)
 #define /*0x0FC*/ oYoshiUnkFC OBJECT_FIELD_S32(0x1D)
 #define /*0x100*/ oYoshiUnk100 OBJECT_FIELD_S32(0x1E)
+
+/* End birds */
+#define /*0x104*/ oEndBirdUnk104 OBJECT_FIELD_F32(0x1F)
+
+/* Intro cutscene lakitu */
+#define /*0x0F8*/ oIntroLakituUnkF8 OBJECT_FIELD_F32(0x1C)
+#define /*0x0FC*/ oIntroLakituUnkFC OBJECT_FIELD_F32(0x1D)
+#define /*0x100*/ oIntroLakituUnk100 OBJECT_FIELD_F32(0x1E)
+#define /*0x104*/ oIntroLakituUnk104 OBJECT_FIELD_F32(0x1F)
+#define /*0x108*/ oIntroLakituUnk108 OBJECT_FIELD_F32(0x20)
+#define /*0x10C*/ oIntroLakituUnk10C OBJECT_FIELD_F32(0x21)
+#define /*0x110*/ oIntroLakituUnk110 OBJECT_FIELD_F32(0x22)
+
+/* Intro cutscene Peach */
+#define /*0x108*/ oIntroPeachUnk108 OBJECT_FIELD_F32(0x20)
+#define /*0x10C*/ oIntroPeachUnk10C OBJECT_FIELD_F32(0x21)
+#define /*0x110*/ oIntroPeachUnk110 OBJECT_FIELD_F32(0x22)
 
 #endif

@@ -82,10 +82,10 @@ static void draw_profiler_bar(s64 clock_base, s64 clock_start, s64 clock_end, s1
     //! I believe this is supposed to cap rect_x1 and rect_x2 to 320, but the
     //  code seems to use the wrong variables... it's possible that the variable
     //  names were very similar within a single letter.
-    if (rect_x1 >= 320) {
+    if (rect_x1 > 319) {
         clock_start = 319;
     }
-    if (rect_x2 >= 320) {
+    if (rect_x2 > 319) {
         clock_end = 319;
     }
 

@@ -5,6 +5,8 @@
 #include "area.h"
 #include "geo_layout.h"
 
+#define ABS(x) ((x) > 0.f ? (x) : -(x))
+#define ABS2(x) ((x) >= 0.f ? (x) : -(x))
 
 struct Struct80287404
 {
@@ -33,6 +35,25 @@ struct Struct8032CA78
     s16 unk16; // unknown type
 };
 
+struct CutsceneTableEntry
+{
+	CameraCommandProc unk0;
+	s16 unk4;
+};
+
+struct Struct8033B230
+{
+	u8 unk0;
+	u8 filler1[3];
+	f32 fieldOfView;
+	f32 unk8;
+	u32 unkC;
+	f32 unk10;
+	s16 unk14;
+	s16 unk16;
+	s16 unk18;
+};
+
 struct Struct8032D000
 {
     u32 unk0;
@@ -42,7 +63,7 @@ struct Struct8032D000
     s16 unk18;
     u8 filler1A[0x1E - 0x1A];
     s16 unk1E;
-    u32 unk20;
+    struct Object *unk20;
 };
 
 struct Struct8032E040
@@ -77,7 +98,7 @@ struct Struct8033B418_sub
 {
     Vec3f unk0;
     Vec3f unkC;
-    float unk18;
+    f32 unk18;
     s16 unk1C;
     s16 unk1E;
 };
@@ -96,8 +117,8 @@ struct Struct8033B470
     s16 unk0;
     u8 filler2[2];
     Vec3f unk4;
-    float unk10;
-    float unk14;
+    f32 unk10;
+    f32 unk14;
 };
 
 struct Struct8033B4B8
@@ -116,30 +137,35 @@ struct Struct8033B6F0
     s16 unk22;
 };
 
-struct StructUnknown1
-{
-    s8 unk0;
-    u8 unk1;
-    Vec3s unk2;
-};
-
-// TODO: add all the externs from camera.c
-// TODO: figure out which ones of these are static
+// TODO: sort all of this extremely messy shit out after the split
+// TODO: bring in some externs from camera.c
 
 extern struct Object *D_8032CFD0;
 extern s16 D_8032CFD4;
 extern s32 D_8032CFD8;
-extern float D_8032CFEC;
+extern f32 D_8032CFEC;
 extern struct Struct8032D000 *D_8032D000;
 extern Vec3f D_8032D00C;
 extern Vec3f D_8032D090;
-extern struct Struct8032E040 D_8032E040;
-extern struct Struct8032E040 D_8032E090;
-extern struct Struct8032E040 D_8032E0E8;
-extern struct Struct8032E040 D_8032E188;
-extern struct Struct8032E040 D_8032E1D0;
-extern struct Struct8032E040 D_8032E218;
-extern struct Struct8032E040 D_8032E258;
+extern u8 D_8032D0B8[];
+extern struct Struct8032E040 D_8032DDF0[];
+extern struct Struct8032E040 D_8032DEA8[];
+extern struct Struct8032E040 D_8032DF60[];
+extern struct Struct8032E040 D_8032DFD0[];
+extern struct Struct8032E040 D_8032E040[];
+extern struct Struct8032E040 D_8032E090[];
+extern struct Struct8032E040 D_8032E0E8[];
+extern struct Struct8032E040 D_8032E188[];
+extern struct Struct8032E040 D_8032E1D0[];
+extern struct Struct8032E040 D_8032E218[];
+extern struct Struct8032E040 D_8032E258[];
+extern struct Struct8032E040 D_8032E2B4[];
+extern struct Struct8032E040 D_8032E3CC[];
+extern struct Struct8032E040 D_8032E4E4[];
+extern struct Struct8032E040 D_8032E52C[];
+extern struct MyVec3f D_8032E290;
+extern struct MyVec3f D_8032E29C;
+extern struct MyVec3f D_8032E2A8;
 extern struct Struct8033B1B0 D_8033B1B0[1];
 extern struct Struct8033B278 D_8033B278;
 extern s16 D_8033B2AC;
@@ -160,7 +186,7 @@ extern s16 D_8033B402;
 extern s16 D_8033B404;
 extern s16 D_8033B406;
 extern s16 D_8033B408;
-extern float D_8033B40C;
+extern f32 D_8033B40C;
 extern struct Struct8033B418 D_8033B418;
 extern s16 D_8033B43E;
 extern Vec3f D_8033B460;
@@ -172,100 +198,77 @@ extern s16 D_8033B4D8;
 extern s16 D_8033B4DA;
 extern struct Struct8033B6F0 D_8033B6F0[];
 extern s32 D_8033B858;
-
-
-
-// TODO: make some of these functions static
-// "static (ASM)" means they will be resolved after full decompilation
-// "static (postdefined)" means that the function is used before its definition
-// "postdefined" same as above but unconfirmed whether it is actually static
+extern s16 D_8035FE10;
 
 extern void func_8027EFE0(s16);
 extern void func_8027F308(s16);
 extern void func_8027F440(s16, f32, f32, f32);
-
-extern int CameraChange01(struct Struct80280550 *, Vec3f, Vec3f);
-extern int CameraChange0E(struct Struct80280550 *, Vec3f, Vec3f);
-extern int CameraChange02(struct Struct80280550 *, Vec3f, Vec3f);
-extern int CameraChange0C(struct Struct80280550 *, Vec3f, Vec3f);
-extern int CameraChange0D(struct Struct80280550 *, Vec3f, Vec3f);
-extern int CameraChange0B(struct Struct80280550 *, Vec3f, Vec3f);
-extern void CameraChange05(struct Struct80280550 *, Vec3f, Vec3f);
-extern int CameraChange03(struct Struct80280550 *, Vec3f, Vec3f);
-extern void CameraChange08(struct Struct80280550 *, Vec3f, Vec3f);
-extern int CameraChange040710(struct Struct80280550 *, Vec3f, Vec3f);
-extern int CameraChange11(struct Struct80280550 *, Vec3f, Vec3f);
-extern int CameraChange090F(struct Struct80280550 *, Vec3f, Vec3f);
-extern int CameraChange06(struct Struct80280550 *, Vec3f, Vec3f);
 extern void func_802852F4(struct Struct80280550 *); // static (ASM)
-extern int CameraChange0A(struct Struct80280550 *, Vec3f, Vec3f);
-
-extern void func_80285A8C(UNUSED struct Struct80280550 *, s16); // static (postdefined)
+extern void func_80285A8C(UNUSED struct Struct80280550 *, s16);
 extern void func_80285BD8(struct Struct80280550 *, s16, s16);
 extern void func_80286348(struct Struct80280550 *);
 extern void func_802869B8(struct Struct80280550 *);
-extern void func_80286C9C(struct Struct80280550 *); // static (postdefined)
+extern void func_80286C9C(struct Struct80280550 *);
 extern void func_802875DC(void);
-extern int Geo0F_80287D30(int, struct Struct80287404 *, struct AllocOnlyPool *);
-extern void dummy_802877D8(struct Struct80280550 *); // static (postdefined)
-extern void dummy_802877EC(struct Struct80280550 *); // static (postdefined)
-extern void vec3f_sub(Vec3f, Vec3f); // static (postdefined)
-extern void object_pos_to_vec3f(Vec3f, struct Object *); // static (postdefined)
+extern void dummy_802877D8(struct Struct80280550 *);
+extern void dummy_802877EC(struct Struct80280550 *);
+extern void vec3f_sub(Vec3f, Vec3f);
+extern void object_pos_to_vec3f(Vec3f, struct Object *);
 extern void vec3f_to_object_pos(struct Object *, Vec3f); // static (ASM)
-extern int func_80287CFC(Vec3f, struct Struct8032E040 *, s16 *, float *);
-extern int func_8028803C(int);
-extern int func_80288130(int); // static (postdefined)
-extern void func_802882A0(u8); // static (postdefined)
-extern void func_802883C8(Vec3f, Vec3f); // static (postdefined)
-extern int func_802886FC(u16, u16, u16); // static (postdefined)
-extern int update_camera_status(struct Struct80280550 *); // static (postdefined)
-extern int func_80288974(Vec3f, float, float); // static (postdefined)
-extern int func_80288C2C(Vec3f a, Vec3f b, s16 c, s16 d); // static (postdefined)
-extern int func_80288CF0(float, float, float); // static (postdefined)
-extern int func_80288D74(float *, float, float); // static (postdefined)
-extern int func_80288E0C(float *, float, float); // static (postdefined)
-extern float func_80288EA0(float, float, float); // static (ASM)
-extern int func_80288ECC(s16 *, s16, s16); // static (postdefined)
-extern int func_80288F84(s16, s16, s16); // static (ASM)
-extern void func_80289028(Vec3f, Vec3f, float, float, float); // static (ASM)
+extern s32 func_80287CFC(Vec3f, struct Struct8032E040[], s16 *, f32 *);
+extern s32 func_8028803C(s32);
+extern s32 func_80288130(s32);
+extern void func_802882A0(u8);
+extern void func_802883C8(Vec3f, Vec3f);
+extern s32 func_802886FC(u16, u16, u16);
+extern s32 update_camera_status(struct Struct80280550 *);
+extern s32 func_80288974(Vec3f, f32, f32);
+extern s32 func_80288C2C(Vec3f a, Vec3f b, s16 c, s16 d);
+extern s32 func_80288CF0(f32, f32, f32);
+extern s32 func_80288D74(f32 *, f32, f32);
+extern s32 approach_f32_exponential(f32 *, f32, f32);
+extern f32 approach_f32_exponential_2(f32, f32, f32); // static (ASM)
+extern s32 approach_s16_exponential(s16 *, s16, s16);
+extern s32 approach_s16_exponential_2(s16, s16, s16); // static (ASM)
+extern void approach_vec3f_exponential(Vec3f, Vec3f, f32, f32, f32); // static (ASM)
 
 
 
 
-extern void func_8028909C(Vec3f, Vec3f, float, float, float); // postdefined
-// extern ? func_80289110(?);
-extern int func_80289184(s16 *a, s16 b, s16 c);
+extern void func_8028909C(Vec3f, Vec3f, f32, f32, f32); // postdefined
+// extern ? approach_vec3s_exponential(?);
+extern s32 func_80289184(s16 *a, s16 b, s16 c);
 // extern ? func_80289264(?);
-extern int func_80289354(s16 *a, s16 b, s16 c); // postdefined
-extern int func_802893E4(float *, float, float);
+extern s32 func_80289354(s16 *a, s16 b, s16 c); // postdefined
+extern s32 func_802893E4(f32 *, f32, f32);
 // extern ? func_80289524(?);
 void func_80289618(Vec3s a, s16 b, s16 c, s16 d); // postdefined
 // extern ? func_80289738(?);
-extern int func_802899A0(Vec3f, Vec3f, float, float, float, float);
+extern s32 func_802899A0(Vec3f, Vec3f, f32, f32, f32, f32);
 // extern ? func_80289A98(?);
 // extern ? func_80289B0C(?);
 // extern ? func_80289F04(?);
-extern int func_8028A0D4(Vec3f a, Vec3f b, struct Surface *c, s16 d, s16 e);
+extern s32 func_8028A0D4(Vec3f a, Vec3f b, struct Surface *c, s16 d, s16 e);
 // extern ? func_8028A204(?);
-extern void func_8028A24C(Vec3f, Vec3f, Vec3f, float);
+extern void func_8028A24C(Vec3f, Vec3f, Vec3f, f32);
 // extern ? func_8028A300(?);
-extern int func_8028A440(Vec3f, Vec3f);
+extern s16 func_8028A440(Vec3f, Vec3f);
 extern s16 func_8028A4F0(Vec3f, Vec3f);
 extern void func_8028A578(Vec3f, Vec3f, s16 *, s16 *);
-extern float func_8028A640(Vec3f, Vec3f);
-extern float func_8028A6E4(Vec3f, Vec3f);
-extern void func_8028A764(Vec3f, Vec3f, u16);
-extern void func_8028A834(Vec3f, Vec3f, u16);
+extern f32 func_8028A640(Vec3f, Vec3f);
+extern f32 func_8028A6E4(Vec3f, Vec3f);
+extern void func_8028A764(Vec3f, Vec3f, s16);
+extern void func_8028A834(Vec3f, Vec3f, s16);
 extern void func_8028A908(s16, s16, s16);
 extern void func_8028A964(s16, s16, s16);
 extern void func_8028AA24(s16, s16, s16);
-extern void func_8028AA80(s16, s16, s16, float, float, float, float);
+extern void func_8028AA80(s16, s16, s16, f32, f32, f32, f32);
 // extern ? Unknown8028AB34(?);
 // extern ? func_8028ABE8(?);
 extern void func_8028AC30(); // postdefined
 extern void func_8028AD44(); // postdefined
 extern void func_8028AE50(s16 *); // postdefined
-extern int func_8028AF24(struct Struct80280550 *a, s16 b);
+extern s32 func_8028AF24(struct Struct80280550 *a, s16 b);
 // extern ? func_8028B13C(?);
 // extern ? func_8028B16C(?);
 extern void func_8028B19C(void);
@@ -277,8 +280,8 @@ extern void func_8028B2D0(void);
 extern void func_8028B304(void); // postdefined
 extern void func_8028B338(void); // postdefined
 extern void func_8028B36C(void); // postdefined
-extern int func_8028B3DC(struct Struct80280550 *a, float b);
-extern int StopMario(int);
+extern s32 func_8028B3DC(struct Struct80280550 *a, f32 b);
+extern s32 StopMario(s32);
 extern void func_8028B7A4(struct Struct80280550 *);
 // extern ? func_8028BA38(?);
 extern void func_8028BB3C(struct Struct80280550 *a, u8 b); // postdefined
@@ -286,14 +289,14 @@ extern void func_8028BB3C(struct Struct80280550 *a, u8 b); // postdefined
 // extern ? func_8028BC6C(?);
 extern u8 func_8028BCC8(); // postdefined
 extern void func_8028C1A0(f32, f32, f32);
-extern void func_8028C2F0(struct Struct80280550 *, float, float);
+extern void func_8028C2F0(struct Struct80280550 *, f32, f32);
 // extern ? Unknown8028C3AC(?);
 // extern ? func_8028C3CC(?);
 // extern ? Unknown8028C508(?);
 extern void func_8028C5F0(Vec3f, Vec3f, Vec3f, Vec3s);
 // extern ? func_8028C794(?);
 // extern ? func_8028C7EC(?);
-int func_8028C824(Vec3f a, Vec3f b, Vec3f c, Vec3f d, Vec3f e, Vec3f f, s16 g); // postdefined
+s32 func_8028C824(Vec3f a, Vec3f b, Vec3f c, Vec3f d, Vec3f e, Vec3f f, s16 g); // postdefined
 // extern ? Unknown8028CE1C(?);
 // extern ? func_8028CE4C(?);
 // extern ? func_8028CFAC(?);
@@ -387,8 +390,8 @@ extern s16 func_8028F9E8(u8, struct Object *);
 // extern ? Unknown8028FDE8(?);
 // extern ? Cutscene26Todo_0(?);
 // extern ? Unknown8028FE50(?);
-// extern ? CutsceneIntroPeach8028FE84(?);
-// extern ? CutsceneIntroPeach8028FEB0(?);
+// extern ? CutsceneIntroPeach0_2(?);
+// extern ? CutsceneIntroPeach2_1(?);
 // extern ? func_8028FEDC(?);
 // extern ? func_8028FEFC(?);
 // extern ? func_80290144(?);
@@ -505,7 +508,7 @@ extern s16 func_8028F9E8(u8, struct Object *);
 // extern ? CutsceneExitWaterfall80293750(?);
 // extern ? Cutscene80293794(?);
 // extern ? CutsceneExitWaterfall0(?);
-// extern ? CutsceneFallCommon(?);
+// extern ? CutsceneFallCommon1(?);
 // extern ? CutsceneFallToCastleGrounds802938EC(?);
 // extern ? CutsceneFallToCastleGrounds0(?);
 // extern ? CutsceneSpecialStarSpawn8029398C(?);
@@ -568,26 +571,26 @@ extern s16 func_8028F9E8(u8, struct Object *);
 // extern ? CutsceneReadMessage0(?);
 // extern ? CutsceneReadMessage1(?);
 // extern ? CutsceneReadMessage2(?);
-// extern ? CutsceneExitSuccess80295C90(?);
-// extern ? CutsceneExitSuccess80295D30(?);
-// extern ? CutsceneExitSuccess80295EA4(?);
-// extern ? CutsceneExitSuccess80295FD4(?);
+// extern ? CutsceneExitSuccess1(?);
+// extern ? CutsceneExitSuccess2(?);
+// extern ? CutsceneExitSuccess4(?);
+// extern ? CutsceneExitSuccess3(?);
 // extern ? CutsceneExitBowserSuccess80296014(?);
-// extern ? CutsceneExitSuccess8029605C(?);
+// extern ? CutsceneExitSuccess5(?);
 // extern ? CutsceneExitBowserSuccess0(?);
 // extern ? CutsceneExitNonPainting1(?);
 // extern ? CutsceneBBHExitSuccess02961D4(?);
 // extern ? CutsceneBBHExitSuccess0(?);
-// extern ? CutsceneNonPaintingDeath802962D4(?);
+// extern ? CutsceneNonPaintingDeath0_1(?);
 // extern ? Cutscene1CTodo_0(?);
-// extern ? CutsceneNonPaintingDeath802963DC(?);
+// extern ? CutsceneNonPaintingDeath0_2(?);
 // extern ? CutsceneNonPaintingDeath0(?);
-// extern ? CutsceneCapSwitchPress80296540(?);
-// extern ? CutsceneCapSwitchPress802965C4(?);
-// extern ? CutsceneCapSwitchPress802966D8(?);
-// extern ? CutsceneCapSwitchPress80296720(?);
-// extern ? CutsceneCapSwitchPress8029682C(?);
-// extern ? CutsceneCapSwitchPress802968B0(?);
+// extern ? CutsceneCapSwitchPress0_1(?);
+// extern ? CutsceneCapSwitchPress0_4(?);
+// extern ? CutsceneCapSwitchPress0_5(?);
+// extern ? CutsceneCapSwitchPress0_2(?);
+// extern ? CutsceneCapSwitchPress0_3(?);
+// extern ? CutsceneCapSwitchPress0_6(?);
 // extern ? Unknown802968E8(?);
 // extern ? CutsceneCapSwitchPress(?);
 // extern ? CutsceneUnlockKeyDoor80296AC0(?);
@@ -598,32 +601,32 @@ extern s16 func_8028F9E8(u8, struct Object *);
 // extern ? CutsceneUnlockKeyDoor80296CFC(?);
 // extern ? CutsceneUnlockKeyDoor0(?);
 // extern ? func_80296DDC(?);
-// extern ? CutsceneIntroPeach80296ED8(?);
-// extern ? CutsceneIntroPeach80296F04(?);
+// extern ? CutsceneIntroPeach0_3(?);
+// extern ? CutsceneIntroPeachCommon(?);
 // extern ? CutsceneIntroPeach4(?);
-// extern ? CutsceneIntroPeach80296FFC(?);
-// extern ? CutsceneIntroPeach80297068(?);
-// extern ? CutsceneIntroPeach80297088(?);
-// extern ? CutsceneIntroPeach802970C4(?);
-// extern ? CutsceneIntroPeach80297108(?);
-// extern ? CutsceneIntroPeach80297134(?);
+// extern ? CutsceneIntroPeach3_2(?);
+// extern ? CutsceneIntroPeach2_2(?);
+// extern ? CutsceneIntroPeach0_1(?);
+// extern ? CutsceneIntroPeach3_1(?);
+// extern ? CutsceneIntroPeach3_3(?);
+// extern ? CutsceneIntroPeach3_4(?);
 // extern ? CutsceneIntroPeach2(?);
 // extern ? CutsceneIntroPeach3(?);
 // extern ? CutsceneIntroPeach1(?);
 // extern ? CutsceneIntroPeach0(?);
-// extern ? CutsceneEndWaving8029743C(?);
-// extern ? CutsceneEndWaving(?);
-// extern ? CutsceneCredits802974F8(?);
-// extern ? CutsceneCredits(?);
-// extern ? CutsceneSlidingDoorsOpen802979C0(?);
-// extern ? CutsceneSlidingDoors80297A80(?);
-// extern ? CutsceneSlidingDoors80297AFC(?);
-// extern ? CutsceneSlidingDoors80297B38(?);
-// extern ? CutsceneSlidingDoors80297B74(?);
+// extern ? CutsceneEndWaving0_1(?);
+// extern ? CutsceneEndWaving0(?);
+// extern ? CutsceneCredits0_1(?);
+// extern ? CutsceneCredits0(?);
+// extern ? CutsceneSlidingDoorsOpen0_1(?);
+// extern ? CutsceneSlidingDoorsOpen0_2(?);
+// extern ? CutsceneSlidingDoorsOpen0_3(?);
+// extern ? CutsceneSlidingDoorsOpen0_4(?);
+// extern ? CutsceneSlidingDoorsOpen0_5(?);
 // extern ? CutsceneSlidingDoorsOpen0(?);
-// extern ? CutsceneSlidingDoubleDoorsOpen1(?);
-// extern ? CutsceneEnterPainting80297D84(?);
-// extern ? CutsceneEnterPainting(?);
+// extern ? CutsceneDoubleDoorsOpen1(?);
+// extern ? CutsceneEnterPainting0_1(?);
+// extern ? CutsceneEnterPainting0(?);
 // extern ? CutsceneExitPainting80298094(?);
 // extern ? CutsceneExitPainting80298230(?);
 // extern ? CutsceneExitPainting802982CC(?);
@@ -641,32 +644,18 @@ extern s16 func_8028F9E8(u8, struct Object *);
 // extern ? CutsceneDoor3(?);
 // extern ? CutsceneDoor4(?);
 // extern ? CutsceneDoorAB_2(?);
-extern void func_80298DCC(struct Struct80280550 *); // postdefined
-extern void func_80299BDC(CameraCommandProc, struct Struct80280550 *, s32, s32);
-extern void func_80299C60(s16, s16);
-extern void func_80299C98();
+extern void handle_cutscenes(struct Struct80280550 *);
+extern s32 call_cutscene_func_in_time_range(CameraCommandProc, struct Struct80280550 *, s16, s16);
+extern s32 func_80299C60(s32, s16);
+extern void func_80299C98(s16, s16, s16);
 // extern ? func_80299D00(?);
-// extern ? func_80299DB4(?);
-// extern ? Unknown80299EA0(?);
-// extern ? func_80299ECC(?);
-// extern ? func_80299EF0(?);
-// extern ? func_80299F30(?);
-// extern ? func_80299F54(?);
-// extern ? func_80299F78(?);
-// extern ? func_80299FD8(?);
-// extern ? Unknown8029A100(?);
-// extern ? func_8029A13C(?);
-// extern ? func_8029A178(?);
-// extern ? func_8029A1B4(?);
-// extern ? func_8029A24C(?);
-// extern ? func_8029A288(?);
-// extern ? Geo0A_8029AA3C(?);
-extern void func_8029A478();
-extern void func_8029A494(u32);
-extern void func_8029A514(int, float, float, float);
+
+extern void func_8029A478(u8);
+extern void func_8029A494(u8);
+extern void func_8029A514(u8, f32, f32, f32);
 // extern ? Unknown8029A664(?);
 // extern ? Unknown8029A724(?);
-// extern ? func_8029A7DC(?);
+extern void func_8029A7DC(struct Object *, Vec3f, s16, s16, s16, s16);
 // extern ? func_8029A87C(?);
 // extern ? BehBeginningPeachLoop(?);
 // extern ? func_8029AB70(?);

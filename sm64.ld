@@ -92,7 +92,6 @@ SECTIONS
       BUILD_DIR/src/profiler.o(.text);
       BUILD_DIR/asm/decompress.o(.text);
       BUILD_DIR/src/camera.o(.text);
-      BUILD_DIR/asm/camera.o(.text);
       BUILD_DIR/src/object_list_processor.o(.text);
       BUILD_DIR/src/object_helpers.o(.text);
       BUILD_DIR/src/behavior_actions.o(.text);
@@ -310,7 +309,6 @@ SECTIONS
       BUILD_DIR/src/area.o(.rodata*);
       BUILD_DIR/src/rendering_graph_node.o(.rodata*);
       BUILD_DIR/src/camera.o(.rodata*);
-      BUILD_DIR/data/camera.rodata.o(.rodata*);
       BUILD_DIR/src/object_list_processor.o(.rodata*);
       BUILD_DIR/src/object_helpers.o(.rodata*);
       BUILD_DIR/src/behavior_actions.o(.rodata*);

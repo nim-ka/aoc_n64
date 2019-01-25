@@ -3,11 +3,6 @@
 
 .section .data
 
-glabel D_8032D0B0
-    .incbin "bin/sm64.j.0E8090.bin", 0x20, 0x8
-
-glabel D_8032D0B8
-	.incbin "bin/sm64.j.0E8090.bin", 0x28, 0x38
 
 glabel D_8032D0F0
 	.incbin "bin/sm64.j.0E8090.bin", 0x60, 0x48
@@ -275,18 +270,18 @@ glabel TableCutsceneGrandStar
 .word CutsceneGrandStar1, 0x7FFF0000
 
 glabel TableCutscene0FTodo
-.word Cutscene0FTodo_0, 0x00010000
-.word Cutscene0FTodo_1, 0x7FFF0000
+.word Cutscene0FTodo0, 0x00010000
+.word Cutscene0FTodo1, 0x7FFF0000
 
 glabel TableCutsceneDoorWarp
 .word CutsceneDoor0, 0x00010000
 .word CutsceneDoorWarp1, 0x7FFF0000
 
 glabel TableCutsceneEndWaving
-.word CutsceneEndWaving, 0x7FFF0000
+.word CutsceneEndWaving0, 0x7FFF0000
 
-glabel TableCutsceneEndCredits
-.word CutsceneCredits, 0x7FFF0000
+glabel TableCutsceneCredits
+.word CutsceneCredits0, 0x7FFF0000
 
 glabel TableCutsceneDoor00
 .word CutsceneDoor0, 0x00010000
@@ -327,7 +322,7 @@ glabel TableCutsceneSpecialStarSpawn
 .word CutsceneSpecialStarSpawn1, 0x00000000
 
 glabel TableCutsceneEnterPainting
-.word CutsceneEnterPainting, 0x7FFF0000
+.word CutsceneEnterPainting0, 0x7FFF0000
 
 glabel TableCutsceneExitPaintingDeath
 .word CutsceneExitPainting0, 0x00760000
@@ -355,40 +350,40 @@ glabel TableCutscenePrepareCannon
 
 glabel TableCutsceneExitWaterfall
 .word CutsceneExitWaterfall0, 0x00340000
-.word CutsceneFallCommon, 0x00000000
+.word CutsceneFallCommon1, 0x00000000
 
 glabel TableCutsceneFallToCastleGrounds
 .word CutsceneFallToCastleGrounds0, 0x00490000
-.word CutsceneFallCommon, 0x00000000
+.word CutsceneFallCommon1, 0x00000000
 
 glabel TableCutsceneEnterPyramidTop
 .word CutsceneEnterPyramidTop0, 0x005A0000
-.word CutsceneFallCommon, 0x00000000
+.word CutsceneFallCommon1, 0x00000000
 
 glabel TableCutscene26Todo
-.word Cutscene26Todo_0, 0x7FFF0000
-.word Cutscene26Todo_1, 0x00960000
-.word Cutscene26Todo_2, 0x00000000
+.word Cutscene26Todo0, 0x7FFF0000
+.word Cutscene26Todo1, 0x00960000
+.word Cutscene26Todo2, 0x00000000
 
 glabel TableCutsceneDeath1
 .word CutsceneDeath1, 0x7FFF0000
 
 glabel TableCutsceneEnterPool
 .word CutsceneEnterPool0, 0x00640000
-.word CutsceneFallCommon, 0x00000000
+.word CutsceneFallCommon1, 0x00000000
 
 glabel TableCutsceneDeath2
 .word CutsceneDeath2, 0x7FFF0000
 
 glabel TableCutsceneBBHDeath
-.word CutsceneBBHDeath, 0x7FFF0000
+.word CutsceneBBHDeath0, 0x7FFF0000
 
 glabel TableCutsceneQuicksandDeath
 .word CutsceneQuicksandDeath0, 0x7FFF0000
 .word CutsceneQuicksandDeath0, 0x7FFF0000
 
 glabel TableCutscene1ATodo
-.word Cutscene1ATodo, 0x7FFF0000
+.word Cutscene1ATodo0, 0x7FFF0000
 
 glabel TableCutsceneEnterBowserPlatform
 .word CutsceneEnterBowserPlatform0, 0x00B40000
@@ -405,18 +400,18 @@ glabel TableCutsceneStarDance3
 .word CutsceneStarDance3, 0x7FFF0000
 
 glabel TableCutsceneKeyDance
-.word CutsceneKeyDance, 0x7FFF0000
+.word CutsceneKeyDance0, 0x7FFF0000
 
 glabel TableCutsceneCapSwitchPress
-.word CutsceneCapSwitchPress, 0x7FFF0000
+.word CutsceneCapSwitchPress0, 0x7FFF0000
 
-glabel TableCutsceneSlidingDoorOpen
+glabel TableCutsceneSlidingDoorsOpen
 .word CutsceneSlidingDoorsOpen0, 0x00320000
-.word CutsceneSlidingDoubleDoorsOpen1, 0x00000000
+.word CutsceneDoubleDoorsOpen1, 0x00000000
 
 glabel TableCutsceneUnlockKeyDoor
 .word CutsceneUnlockKeyDoor0, 0x00C80000
-.word CutsceneSlidingDoubleDoorsOpen1, 0x00000000
+.word CutsceneDoubleDoorsOpen1, 0x00000000
 
 glabel TableCutsceneExitBowserSuccess
 .word CutsceneExitBowserSuccess0, 0x00BE0000
