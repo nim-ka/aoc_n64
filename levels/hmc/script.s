@@ -50,7 +50,7 @@ script_func_local_4:
 glabel level_hmc_entry
     init_level
     load_mio0 /*seg*/ 0x07, /*romStart*/ _hmc_segment_7SegmentRomStart, /*romEnd*/ _hmc_segment_7SegmentRomEnd
-    cmd1A     /*seg*/ 0x09, /*romStart*/ _hmc_textures_mio0SegmentRomStart, /*romEnd*/ _hmc_textures_mio0SegmentRomEnd
+    cmd1A     /*seg*/ 0x09, /*romStart*/ _cave_mio0SegmentRomStart, /*romEnd*/ _cave_mio0SegmentRomEnd
     load_mio0 /*seg*/ 0x05, /*romStart*/ _group6_mio0SegmentRomStart, /*romEnd*/ _group6_mio0SegmentRomEnd
     load_raw  /*seg*/ 0x0C, /*romStart*/ _group6_geoSegmentRomStart, /*romEnd*/ _group6_geoSegmentRomEnd
     load_mio0 /*seg*/ 0x06, /*romStart*/ _group17_mio0SegmentRomStart, /*romEnd*/ _group17_mio0SegmentRomEnd

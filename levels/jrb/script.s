@@ -93,8 +93,8 @@ script_func_local_5:
 glabel level_jrb_entry
     init_level
     load_mio0 /*seg*/ 0x07, /*romStart*/ _jrb_segment_7SegmentRomStart, /*romEnd*/ _jrb_segment_7SegmentRomEnd
-    load_mio0 /*seg*/ 0x0B, /*romStart*/ _flower_bubbles_textures_mio0SegmentRomStart, /*romEnd*/ _flower_bubbles_textures_mio0SegmentRomEnd
-    cmd1A     /*seg*/ 0x09, /*romStart*/ _jrb_textures_mio0SegmentRomStart, /*romEnd*/ _jrb_textures_mio0SegmentRomEnd
+    load_mio0 /*seg*/ 0x0B, /*romStart*/ _effect_mio0SegmentRomStart, /*romEnd*/ _effect_mio0SegmentRomEnd
+    cmd1A     /*seg*/ 0x09, /*romStart*/ _water_mio0SegmentRomStart, /*romEnd*/ _water_mio0SegmentRomEnd
     load_mio0 /*seg*/ 0x0A, /*romStart*/ _clouds_skybox_mio0SegmentRomStart, /*romEnd*/ _clouds_skybox_mio0SegmentRomEnd
     load_mio0 /*seg*/ 0x05, /*romStart*/ _group4_mio0SegmentRomStart, /*romEnd*/ _group4_mio0SegmentRomEnd
     load_raw  /*seg*/ 0x0C, /*romStart*/ _group4_geoSegmentRomStart, /*romEnd*/ _group4_geoSegmentRomEnd

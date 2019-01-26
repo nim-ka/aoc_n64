@@ -676,7 +676,7 @@ vertex   1024,    819,   2048,      0,    990,  0x00, 0x7F, 0x00, 0xFF
 vertex   2048,    819,   2048,  10188,    990,  0x00, 0x7F, 0x00, 0xFF
 
 bbh_seg7_dl_07006AF0: # 0x07006AF0 - 0x07006DF8
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09008800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09008800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight bbh_seg7_light_07004808, 1
@@ -775,7 +775,7 @@ gsSP1Triangle 12, 15, 13, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_07006DF8: # 0x07006DF8 - 0x07006E88
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09004800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09004800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex bbh_seg7_vertex_07005220, 15, 0
@@ -795,7 +795,7 @@ gsSP1Triangle  0, 10,  1, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_07006E88: # 0x07006E88 - 0x07006EE0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_0900A000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_0900A000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex bbh_seg7_vertex_070053C0, 8, 0
@@ -808,7 +808,7 @@ gsSP1Triangle  5,  6,  7, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_07006EE0: # 0x07006EE0 - 0x070072F8
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09003800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09003800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex bbh_seg7_vertex_07005440, 15, 0
@@ -941,7 +941,7 @@ gsSP1Triangle 11, 12, 13, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_070072F8: # 0x070072F8 - 0x07007468
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09001800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09001800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex bbh_seg7_vertex_07006260, 15, 0
@@ -1008,7 +1008,7 @@ gsSP1Triangle  4,  7,  5, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_070074F0: # 0x070074F0 - 0x070075A8
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09009000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09009000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
 gsSPVertex bbh_seg7_vertex_070068D0, 15, 0
@@ -1104,7 +1104,7 @@ vertex   1659,    922,    389,    990,      0,  0x00, 0x00, 0x00, 0xFF
 vertex   1659,    922,    799,      0,      0,  0x00, 0x00, 0x00, 0xFF
 
 bbh_seg7_dl_070078A0: # 0x070078A0 - 0x07007940
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09008000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09008000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex bbh_seg7_vertex_070076C0, 15, 0
@@ -1176,7 +1176,7 @@ vertex    512,    666,   2038,    990,    990,  0x00, 0x00, 0x81, 0xFF
 vertex    922,   1075,   2038,      0,      0,  0x00, 0x00, 0x81, 0xFF
 
 bbh_seg7_dl_07007AE0: # 0x07007AE0 - 0x07007B48
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09006000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09006000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight bbh_seg7_light_070079B8, 1
@@ -1271,7 +1271,7 @@ vertex      0,   1485,     10,      0,      0,  0xFF, 0xEC, 0x40, 0x9A
 vertex   1434,   1485,     10,      0,      0,  0xFF, 0xEC, 0x40, 0x9A
 
 bbh_seg7_dl_07007EE8: # 0x07007EE8 - 0x07007FD0
-gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_16b, 1, bbh_textures_0900B800
+gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_16b, 1, spooky_0900B800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex bbh_seg7_vertex_07007C08, 15, 0
@@ -1474,7 +1474,7 @@ vertex   -706,   1357,    666,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
 vertex   -706,   1280,    666,      0,    990,  0xFF, 0xFF, 0xFF, 0xFF
 
 bbh_seg7_dl_070088E0: # 0x070088E0 - 0x07008B58
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09006800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09006800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex bbh_seg7_vertex_07008040, 16, 0
@@ -1606,7 +1606,7 @@ vertex    -76,    819,   1398,    990,      0,  0xFF, 0xEC, 0x40, 0x50
 vertex    -76,   1203,   2038,    990,    786,  0xFF, 0xEC, 0x40, 0x50
 
 bbh_seg7_dl_07008DB8: # 0x07008DB8 - 0x07008EA8
-gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_16b, 1, bbh_textures_0900B000
+gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_16b, 1, spooky_0900B000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex bbh_seg7_vertex_07008BC8, 16, 0
@@ -2127,7 +2127,7 @@ vertex   2150,    819,   1741,    480,      0,  0x00, 0x7F, 0x00, 0xFF
 vertex   2099,    819,   1741,    480,    480,  0x00, 0x7F, 0x00, 0xFF
 
 bbh_seg7_dl_0700A800: # 0x0700A800 - 0x0700AA08
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09008800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09008800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight bbh_seg7_light_07008F20, 1
@@ -2194,7 +2194,7 @@ gsSP1Triangle  7,  8,  9, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_0700AA08: # 0x0700AA08 - 0x0700ACB0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09003800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09003800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex bbh_seg7_vertex_07009540, 16, 0
@@ -2281,7 +2281,7 @@ gsSP1Triangle 12, 13, 14, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_0700ACB0: # 0x0700ACB0 - 0x0700AE20
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09005000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09005000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex bbh_seg7_vertex_07009E80, 15, 0
@@ -2340,7 +2340,7 @@ gsSP1Triangle  1,  5,  4, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_0700AE68: # 0x0700AE68 - 0x0700AEB0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09002800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09002800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex bbh_seg7_vertex_0700A3E0, 8, 0
@@ -2351,7 +2351,7 @@ gsSP1Triangle  5,  7,  6, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_0700AEB0: # 0x0700AEB0 - 0x0700AF40
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09001800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09001800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex bbh_seg7_vertex_0700A460, 15, 0
@@ -2371,7 +2371,7 @@ gsSP1Triangle  6,  8, 10, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_0700AF40: # 0x0700AF40 - 0x0700AFF0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09009000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09009000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
 gsSPVertex bbh_seg7_vertex_0700A600, 16, 0
@@ -2443,7 +2443,7 @@ vertex   2662,   1126,   2550,    990,    990,  0x00, 0x00, 0x81, 0xFF
 vertex   3072,   1536,   2550,      0,      0,  0x00, 0x00, 0x81, 0xFF
 
 bbh_seg7_dl_0700B170: # 0x0700B170 - 0x0700B1C8
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09006000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09006000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight bbh_seg7_light_0700B0E0, 1
@@ -2498,7 +2498,7 @@ vertex   2161,    819,   1997,    990,   2012,  0xFF, 0x57, 0x00, 0x9A
 vertex   2161,    666,   1280,      0,      0,  0xFF, 0x57, 0x00, 0x9A
 
 bbh_seg7_dl_0700B398: # 0x0700B398 - 0x0700B418
-gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_16b, 1, bbh_textures_0900B800
+gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_16b, 1, spooky_0900B800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex bbh_seg7_vertex_0700B238, 15, 0
@@ -2608,7 +2608,7 @@ vertex   2186,    461,   1459,    480,    990,  0xFF, 0xCC, 0x90, 0xFF
 vertex   2161,    461,   1485,      0,    480,  0xFF, 0xCC, 0x90, 0xFF
 
 bbh_seg7_dl_0700B8A8: # 0x0700B8A8 - 0x0700B9E0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09006800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09006800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex bbh_seg7_vertex_0700B488, 15, 0
@@ -2683,7 +2683,7 @@ vertex   2995,   1459,   2550,    990,    990,  0xFF, 0xEC, 0x40, 0x50
 vertex   2995,   1203,   2550,    990,    786,  0xFF, 0xEC, 0x40, 0x50
 
 bbh_seg7_dl_0700BB50: # 0x0700BB50 - 0x0700BBF8
-gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_16b, 1, bbh_textures_0900B000
+gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_16b, 1, spooky_0900B000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex bbh_seg7_vertex_0700BA50, 16, 0
@@ -3008,7 +3008,7 @@ vertex   -818,    819,   1331,   3032,   2010,  0x00, 0x7F, 0x00, 0xFF
 vertex   -767,    819,   1485,   3544,   3542,  0x00, 0x7F, 0x00, 0xFF
 
 bbh_seg7_dl_0700CB58: # 0x0700CB58 - 0x0700CCB0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09008800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09008800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight bbh_seg7_light_0700BC70, 1
@@ -3053,7 +3053,7 @@ gsSP1Triangle  7,  9, 10, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_0700CCB0: # 0x0700CCB0 - 0x0700CD18
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09004800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09004800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex bbh_seg7_vertex_0700C088, 16, 0
@@ -3139,7 +3139,7 @@ gsSP1Triangle  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_0700CF40: # 0x0700CF40 - 0x0700CFA8
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09003800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09003800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex bbh_seg7_vertex_0700C878, 16, 0
@@ -3154,7 +3154,7 @@ gsSP1Triangle  0,  2, 15, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_0700CFA8: # 0x0700CFA8 - 0x0700CFE0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09002800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09002800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex bbh_seg7_vertex_0700C978, 4, 0
@@ -3163,7 +3163,7 @@ gsSP1Triangle  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_0700CFE0: # 0x0700CFE0 - 0x0700D080
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09009000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09009000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
 gsSPVertex bbh_seg7_vertex_0700C9B8, 15, 0
@@ -3236,7 +3236,7 @@ vertex  -1863,   1126,   1126,  10104,      0,  0xFF, 0xFF, 0xFF, 0xFF
 vertex  -1863,   1024,   2142,    990,    990,  0xFF, 0xFF, 0xFF, 0xFF
 
 bbh_seg7_dl_0700D278: # 0x0700D278 - 0x0700D2E0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09008000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09008000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex bbh_seg7_vertex_0700D178, 16, 0
@@ -3288,7 +3288,7 @@ vertex   -204,    205,   2038,      0,    990,  0x00, 0x00, 0x81, 0xFF
 vertex   -613,    205,   2038,    990,    990,  0x00, 0x00, 0x81, 0xFF
 
 bbh_seg7_dl_0700D428: # 0x0700D428 - 0x0700D490
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09006000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09006000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight bbh_seg7_light_0700D358, 1
@@ -3354,7 +3354,7 @@ vertex  -1407,      0,   2268,    990,    212,  0xFF, 0xEC, 0x40, 0x50
 vertex  -1663,    282,   2550,      0,    746,  0xFF, 0xEC, 0x40, 0x50
 
 bbh_seg7_dl_0700D6F0: # 0x0700D6F0 - 0x0700D7E0
-gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_16b, 1, bbh_textures_0900B000
+gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_16b, 1, spooky_0900B000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex bbh_seg7_vertex_0700D500, 16, 0
@@ -3825,7 +3825,7 @@ vertex   2253,      0,   -204,    650,   2012,  0x7F, 0x00, 0x00, 0xFF
 vertex   2253,    717,   -101,    308,      0,  0x58, 0x00, 0x5A, 0xFF
 
 bbh_seg7_dl_0700EE98: # 0x0700EE98 - 0x0700EFD8
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09008800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09008800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight bbh_seg7_light_0700D858, 1
@@ -3867,7 +3867,7 @@ gsSP1Triangle  0,  2, 15, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_0700EFD8: # 0x0700EFD8 - 0x0700F2B8
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09003800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09003800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex bbh_seg7_vertex_0700DB98, 15, 0
@@ -3961,7 +3961,7 @@ gsSP1Triangle  9, 10, 11, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_0700F2B8: # 0x0700F2B8 - 0x0700F3D8
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09005000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09005000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex bbh_seg7_vertex_0700E6B8, 15, 0
@@ -3999,7 +3999,7 @@ gsSP1Triangle  4,  6, 14, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_0700F3D8: # 0x0700F3D8 - 0x0700F510
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09001800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09001800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex bbh_seg7_vertex_0700EA78, 15, 0
@@ -4099,7 +4099,7 @@ vertex   3174,    102,  -1248,   5078,      0,  0xFF, 0xFF, 0xFF, 0xFF
 vertex   2765,      0,  -1248,    990,    990,  0xFF, 0xFF, 0xFF, 0xFF
 
 bbh_seg7_dl_0700F7A8: # 0x0700F7A8 - 0x0700F848
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09008000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09008000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex bbh_seg7_vertex_0700F5C8, 15, 0
@@ -4486,7 +4486,7 @@ vertex  -2252,      0,   -306,  -6160,   5076,  0x00, 0x7F, 0x00, 0xFF
 vertex   -818,      0,   -306,   8144,   5076,  0x00, 0x7F, 0x00, 0xFF
 
 bbh_seg7_dl_07010A48: # 0x07010A48 - 0x07010B58
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09008800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09008800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight bbh_seg7_light_0700F8C0, 1
@@ -4522,7 +4522,7 @@ gsSP1Triangle  8, 11,  9, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_07010B58: # 0x07010B58 - 0x07010C30
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09003800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09003800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPLight bbh_seg7_light_0700F8C0, 1
@@ -4579,7 +4579,7 @@ gsSP1Triangle 12, 14, 15, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_07010D00: # 0x07010D00 - 0x07010D90
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09005000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09005000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex bbh_seg7_vertex_0700FF28, 15, 0
@@ -4599,7 +4599,7 @@ gsSP1Triangle  0, 10,  1, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_07010D90: # 0x07010D90 - 0x07011058
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09000800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09000800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex bbh_seg7_vertex_070100C8, 14, 0
@@ -4690,7 +4690,7 @@ gsSP1Triangle  0, 10,  1, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_07011058: # 0x07011058 - 0x070110A0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09002800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09002800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex bbh_seg7_vertex_07010908, 8, 0
@@ -4712,7 +4712,7 @@ gsSP1Triangle  4,  6,  7, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_070110E8: # 0x070110E8 - 0x07011120
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09009000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09009000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
 gsSPVertex bbh_seg7_vertex_07010A08, 4, 0
@@ -4978,7 +4978,7 @@ vertex  -1893,    922,    512,  -7184,  -1564,  0x00, 0x7F, 0x00, 0xFF
 vertex  -2098,    922,    512,  -7184,    478,  0x00, 0x7F, 0x00, 0xFF
 
 bbh_seg7_dl_07011DF0: # 0x07011DF0 - 0x07011E48
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_0900A000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_0900A000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight bbh_seg7_light_07011230, 1
@@ -4991,7 +4991,7 @@ gsSP1Triangle  4,  6,  7, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_07011E48: # 0x07011E48 - 0x07011EA0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09008800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09008800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex bbh_seg7_vertex_070112C0, 14, 0
@@ -5004,7 +5004,7 @@ gsSP1Triangle 10, 13, 11, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_07011EA0: # 0x07011EA0 - 0x07012078
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09003800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09003800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex bbh_seg7_vertex_070113A0, 15, 0
@@ -5065,7 +5065,7 @@ gsSP1Triangle  3,  4,  5, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_07012078: # 0x07012078 - 0x070120E0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09005000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09005000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex bbh_seg7_vertex_07011990, 16, 0
@@ -5080,7 +5080,7 @@ gsSP1Triangle  0,  2, 15, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_070120E0: # 0x070120E0 - 0x070121A8
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09002800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09002800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex bbh_seg7_vertex_07011A90, 15, 0
@@ -5107,7 +5107,7 @@ gsSP1Triangle  4,  7,  5, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_070121A8: # 0x070121A8 - 0x07012220
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09009000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09009000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
 gsSPVertex bbh_seg7_vertex_07011CF0, 16, 0
@@ -5244,7 +5244,7 @@ vertex  -1100,   1178,   1075,    416,    536,  0x09, 0xB3, 0xFF, 0x80
 vertex   -869,   1178,   1075,    990,    536,  0x09, 0xB3, 0xFF, 0x80
 
 bbh_seg7_dl_07012680: # 0x07012680 - 0x070126E8
-gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_16b, 1, bbh_textures_0900B000
+gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_16b, 1, spooky_0900B000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex bbh_seg7_vertex_07012580, 16, 0
@@ -5541,7 +5541,7 @@ vertex   1229,    819,  -1330,    224,   2012,  0x00, 0x00, 0x7F, 0xFF
 vertex   1229,   1638,  -1330,    224,      0,  0x00, 0x00, 0x7F, 0xFF
 
 bbh_seg7_dl_07013508: # 0x07013508 - 0x07013550
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_0900A000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_0900A000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight bbh_seg7_light_07012760, 1
@@ -5552,7 +5552,7 @@ gsSP1Triangle  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_07013550: # 0x07013550 - 0x070135A8
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09008800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09008800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight bbh_seg7_light_07012778, 1
@@ -5565,7 +5565,7 @@ gsSP1Triangle  4,  6,  7, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_070135A8: # 0x070135A8 - 0x070135E0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09004800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09004800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex bbh_seg7_vertex_07012848, 6, 0
@@ -5574,7 +5574,7 @@ gsSP1Triangle  3,  4,  5, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_070135E0: # 0x070135E0 - 0x070137E0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09003800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09003800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex bbh_seg7_vertex_070128A8, 16, 0
@@ -5653,7 +5653,7 @@ gsSP1Triangle  8, 10, 11, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_07013838: # 0x07013838 - 0x070139A8
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09001800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09001800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex bbh_seg7_vertex_07013028, 15, 0
@@ -5750,7 +5750,7 @@ vertex   2140,   1536,   -921,    990,      0,  0xFF, 0x00, 0x00, 0x9A
 vertex   2140,   1536,   -306,    990,      0,  0xFF, 0x00, 0x00, 0x9A
 
 bbh_seg7_dl_07013B80: # 0x07013B80 - 0x07013BE8
-gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_16b, 1, bbh_textures_0900A800
+gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_16b, 1, spooky_0900A800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex bbh_seg7_vertex_07013AA0, 14, 0
@@ -6065,7 +6065,7 @@ vertex   -511,    819,   -204,    224,    -28,  0x7F, 0x00, 0x00, 0xFF
 vertex   -511,      0,   -101,      0,   2688,  0x7F, 0x00, 0x00, 0xFF
 
 bbh_seg7_dl_07014B28: # 0x07014B28 - 0x07014BC8
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09008800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09008800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight bbh_seg7_light_07013C60, 1
@@ -6087,7 +6087,7 @@ gsSP1Triangle  8, 10, 11, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_07014BC8: # 0x07014BC8 - 0x07014C10
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_0900A000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_0900A000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight bbh_seg7_light_07013C60, 1
@@ -6098,7 +6098,7 @@ gsSP1Triangle  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_07014C10: # 0x07014C10 - 0x07014C58
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09004800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09004800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight bbh_seg7_light_07013C78, 1
@@ -6109,7 +6109,7 @@ gsSP1Triangle  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_07014C58: # 0x07014C58 - 0x07014D10
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09003800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09003800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex bbh_seg7_vertex_07013E48, 15, 0
@@ -6134,7 +6134,7 @@ gsSP1Triangle  3,  4,  5, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_07014D10: # 0x07014D10 - 0x07014FD8
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09005000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09005000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex bbh_seg7_vertex_07014088, 15, 0
@@ -6287,7 +6287,7 @@ vertex    614,    819,  -1023,   2524,  -1054,  0xFF, 0xFF, 0xFF, 0xFF
 vertex    819,    819,   -818,   3546,      0,  0xFF, 0xFF, 0xFF, 0xFF
 
 bbh_seg7_dl_07015298: # 0x07015298 - 0x07015398
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09000000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09000000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex bbh_seg7_vertex_07015098, 16, 0
@@ -6377,7 +6377,7 @@ vertex   1014,   1434,  -1023,      0,      0,  0xFF, 0x00, 0x00, 0x9A
 vertex   1014,   1024,  -1023,      0,    990,  0xFF, 0x00, 0x00, 0x9A
 
 bbh_seg7_dl_07015628: # 0x07015628 - 0x070156E0
-gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_16b, 1, bbh_textures_0900A800
+gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_16b, 1, spooky_0900A800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex bbh_seg7_vertex_07015408, 16, 0
@@ -6452,7 +6452,7 @@ vertex    256,   1229,  -1525,    990,    990,  0xFF, 0xFF, 0xFF, 0xFF
 vertex    154,   1331,  -1525,    990,      0,  0xFF, 0xFF, 0xFF, 0xFF
 
 bbh_seg7_dl_07015930: # 0x07015930 - 0x07015A20
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09006800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09006800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex bbh_seg7_vertex_07015750, 15, 0
@@ -6848,7 +6848,7 @@ vertex    102,   1741,   -497,    992,    990,  0x00, 0x00, 0x7F, 0xFF
 vertex    102,   1741,    116,    992,    990,  0x00, 0x00, 0x81, 0xFF
 
 bbh_seg7_dl_07016D38: # 0x07016D38 - 0x07016DC8
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09004800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09004800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight bbh_seg7_light_07015A98, 1
@@ -6868,7 +6868,7 @@ gsSP1Triangle  4,  5,  6, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_07016DC8: # 0x07016DC8 - 0x07016E10
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09008800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09008800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex bbh_seg7_vertex_07015C08, 7, 0
@@ -6879,7 +6879,7 @@ gsSP1Triangle  4,  6,  3, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_07016E10: # 0x07016E10 - 0x07016FE8
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09005000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09005000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex bbh_seg7_vertex_07015C78, 15, 0
@@ -6940,7 +6940,7 @@ gsSP1Triangle  8, 10, 14, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_07016FE8: # 0x07016FE8 - 0x07017050
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09000800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09000800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex bbh_seg7_vertex_070162F8, 16, 0
@@ -6981,7 +6981,7 @@ gsSP1Triangle  4,  7,  5, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_07017100: # 0x07017100 - 0x07017148
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09009000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09009000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
 gsSPVertex bbh_seg7_vertex_07016558, 8, 0
@@ -6992,7 +6992,7 @@ gsSP1Triangle  4,  7,  5, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_07017148: # 0x07017148 - 0x07017378
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09007000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09007000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
 gsSPVertex bbh_seg7_vertex_070165D8, 14, 0
@@ -7116,7 +7116,7 @@ vertex   1638,   2676,    858,      0,      0,  0x00, 0xAB, 0xA2, 0xFF
 vertex   1229,   2372,   1132,    990,    990,  0x00, 0xAB, 0xA2, 0xFF
 
 bbh_seg7_dl_07017518: # 0x07017518 - 0x07017570
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09006000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09006000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight bbh_seg7_light_07017488, 1
@@ -7163,7 +7163,7 @@ vertex     26,   2619,    909,    990,    990,  0xFF, 0xEC, 0x40, 0x84
 vertex     26,   2429,   1080,    990,    974,  0xFF, 0xEC, 0x40, 0x84
 
 bbh_seg7_dl_070176E0: # 0x070176E0 - 0x07017788
-gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_16b, 1, bbh_textures_0900B000
+gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_16b, 1, spooky_0900B000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex bbh_seg7_vertex_070175E0, 16, 0
@@ -7756,7 +7756,7 @@ vertex   2355,  -1433,   2560,      0,      0,  0x00, 0x81, 0x00, 0xFF
 vertex  -1433,  -1433,   2560,      0,      0,  0x00, 0x81, 0x00, 0xFF
 
 bbh_seg7_dl_070195A8: # 0x070195A8 - 0x07019728
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_0900A000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_0900A000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight bbh_seg7_light_07017800, 1
@@ -7826,7 +7826,7 @@ gsSP1Triangle  0,  2, 10, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_070197B8: # 0x070197B8 - 0x070198C8
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09003800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09003800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex bbh_seg7_vertex_07017E68, 14, 0
@@ -7862,7 +7862,7 @@ gsSP1Triangle  4,  7,  5, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_070198C8: # 0x070198C8 - 0x07019B80
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09005000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09005000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex bbh_seg7_vertex_070181A8, 15, 0
@@ -7951,7 +7951,7 @@ gsSP1Triangle  7,  9, 10, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_07019B80: # 0x07019B80 - 0x07019BD8
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09001800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09001800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex bbh_seg7_vertex_07018B88, 12, 0
@@ -8029,7 +8029,7 @@ gsSP1Triangle  9,  4, 11, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_07019DD0: # 0x07019DD0 - 0x07019E60
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09000800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09000800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex bbh_seg7_vertex_070192E8, 16, 0
@@ -8049,7 +8049,7 @@ gsSP1Triangle  3,  9,  4, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_07019E60: # 0x07019E60 - 0x07019EA8
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09009000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09009000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
 gsSPVertex bbh_seg7_vertex_07019488, 8, 0
@@ -8114,7 +8114,7 @@ vertex    640,  -2354,   2048,    480,   4564,  0xFF, 0xFF, 0xFF, 0xFF
 vertex    640,  -1433,   2048,  -4118,      0,  0xFF, 0xFF, 0xFF, 0xFF
 
 bbh_seg7_dl_0701A048: # 0x0701A048 - 0x0701A080
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09000000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09000000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex bbh_seg7_vertex_0701A008, 4, 0
@@ -8245,7 +8245,7 @@ vertex   -306,  -2047,   2150,      0,  -1054,  0x00, 0x00, 0x7F, 0xFF
 vertex   -101,  -1842,   2150,    988,  -2076,  0x00, 0x00, 0x7F, 0xFF
 
 bbh_seg7_dl_0701A620: # 0x0701A620 - 0x0701A668
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_0900A000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_0900A000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight bbh_seg7_light_0701A0F8, 1
@@ -8256,7 +8256,7 @@ gsSP1Triangle  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_0701A668: # 0x0701A668 - 0x0701A6E0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09008800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09008800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight bbh_seg7_light_0701A110, 1
@@ -8273,7 +8273,7 @@ gsSP1Triangle  0,  2, 15, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_0701A6E0: # 0x0701A6E0 - 0x0701A748
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09003800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09003800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex bbh_seg7_vertex_0701A260, 16, 0
@@ -8288,7 +8288,7 @@ gsSP1Triangle  0,  2, 15, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_0701A748: # 0x0701A748 - 0x0701A850
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09007000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09007000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
 gsSPVertex bbh_seg7_vertex_0701A360, 15, 0
@@ -8554,7 +8554,7 @@ vertex  -3385,   -204,   5378,  -6160,   8142,  0x00, 0x7F, 0x00, 0xFF
 vertex  -3675,   -204,   5088, -10248,   8142,  0x00, 0x7F, 0x00, 0xFF
 
 bbh_seg7_dl_0701B328: # 0x0701B328 - 0x0701B380
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09004800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09004800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight bbh_seg7_light_0701A928, 1
@@ -8567,7 +8567,7 @@ gsSP1Triangle  1,  5,  2, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_0701B380: # 0x0701B380 - 0x0701B558
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09008800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09008800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight bbh_seg7_light_0701A940, 1
@@ -8628,7 +8628,7 @@ gsSP1Triangle  3,  5,  6, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_0701B558: # 0x0701B558 - 0x0701B620
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09003800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09003800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex bbh_seg7_vertex_0701AF48, 16, 0
@@ -8655,7 +8655,7 @@ gsSP1Triangle  6,  9,  7, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_0701B620: # 0x0701B620 - 0x0701B678
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09005000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09005000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex bbh_seg7_vertex_0701B1E8, 12, 0
@@ -8668,7 +8668,7 @@ gsSP1Triangle  8, 10, 11, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_0701B678: # 0x0701B678 - 0x0701B6D0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09009000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09009000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
 gsSPVertex bbh_seg7_vertex_0701B2A8, 8, 0
@@ -9372,7 +9372,7 @@ vertex      0,   2150,  -1009,      0,      0,  0x00, 0x00, 0x7F, 0xFF
 vertex   3072,   -409,  -1009,      0,      0,  0x00, 0x00, 0x7F, 0xFF
 
 bbh_seg7_dl_0701D9C0: # 0x0701D9C0 - 0x0701DA50
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09004800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09004800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight bbh_seg7_light_0701B7B0, 1
@@ -9392,7 +9392,7 @@ gsSP1Triangle  0,  2,  6, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_0701DA50: # 0x0701DA50 - 0x0701DB20
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_0900A000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_0900A000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight bbh_seg7_light_0701B7C8, 1
@@ -9420,7 +9420,7 @@ gsSP1Triangle  3,  0,  2, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_0701DB20: # 0x0701DB20 - 0x0701DBF0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09008800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09008800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight bbh_seg7_light_0701B7E0, 1
@@ -9448,7 +9448,7 @@ gsSP1Triangle  0,  2, 15, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_0701DBF0: # 0x0701DBF0 - 0x0701DFA0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09003800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09003800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPLight bbh_seg7_light_0701B7B0, 1
@@ -9568,7 +9568,7 @@ gsSP1Triangle  8, 11,  9, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_0701DFA0: # 0x0701DFA0 - 0x0701E188
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09005000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09005000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPLight bbh_seg7_light_0701B7C8, 1
@@ -9650,7 +9650,7 @@ gsSP1Triangle  0, 15,  1, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_0701E210: # 0x0701E210 - 0x0701E430
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09007000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09007000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
 gsSPLight bbh_seg7_light_0701B7E0, 1
@@ -9720,7 +9720,7 @@ gsSP1Triangle  7,  5,  6, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_0701E430: # 0x0701E430 - 0x0701E4B0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09009000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09009000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
 gsSPVertex bbh_seg7_vertex_0701D820, 15, 0
@@ -9933,7 +9933,7 @@ vertex   3072,   1126,   2673,    990,    990,  0x00, 0x00, 0x7F, 0xFF
 vertex   2662,   1536,   2673,      0,      0,  0x00, 0x00, 0x7F, 0xFF
 
 bbh_seg7_dl_0701EC18: # 0x0701EC18 - 0x0701ED18
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09006000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09006000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight bbh_seg7_light_0701E950, 1
@@ -9999,7 +9999,7 @@ vertex  -1381,      0,  -1648,      0,   2012,  0xFF, 0x57, 0x00, 0x9A
 vertex  -1740,      0,  -1648,    990,   2012,  0xFF, 0x57, 0x00, 0x9A
 
 bbh_seg7_dl_0701EE48: # 0x0701EE48 - 0x0701EE90
-gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_16b, 1, bbh_textures_0900A800
+gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_16b, 1, spooky_0900A800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex bbh_seg7_vertex_0701ED88, 8, 0
@@ -10010,7 +10010,7 @@ gsSP1Triangle  4,  6,  7, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_0701EE90: # 0x0701EE90 - 0x0701EEC8
-gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_16b, 1, bbh_textures_0900B800
+gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_16b, 1, spooky_0900B800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex bbh_seg7_vertex_0701EE08, 4, 0
@@ -10053,7 +10053,7 @@ vertex  -1586,    538,  -1648,    990,    480,  0xFF, 0xCC, 0x90, 0xFF
 vertex  -1535,    538,  -1648,      0,    480,  0xFF, 0xCC, 0x90, 0xFF
 
 bbh_seg7_dl_0701F018: # 0x0701F018 - 0x0701F070
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09006800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09006800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex bbh_seg7_vertex_0701EF58, 12, 0
@@ -10113,7 +10113,7 @@ vertex    154,      0,    102,    990,   2012,  0x7F, 0x00, 0x00, 0xFF
 vertex   -153,    614,   -101,      0,      0,  0x00, 0x00, 0x81, 0xFF
 
 bbh_seg7_dl_0701F238: # 0x0701F238 - 0x0701F280
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_0900A000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_0900A000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight bbh_seg7_light_0701F0E8, 1
@@ -10124,7 +10124,7 @@ gsSP1Triangle  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_0701F280: # 0x0701F280 - 0x0701F2E8
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09005000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09005000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex bbh_seg7_vertex_0701F138, 16, 0
@@ -10196,7 +10196,7 @@ vertex    307,      0,    256,      0,    990,  0x00, 0x7F, 0x00, 0xFF
 vertex   -306,      0,   -255,   5076,  -5142,  0x00, 0x7F, 0x00, 0xFF
 
 bbh_seg7_dl_0701F510: # 0x0701F510 - 0x0701F558
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09008800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09008800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight bbh_seg7_light_0701F380, 1
@@ -10207,7 +10207,7 @@ gsSP1Triangle  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_0701F558: # 0x0701F558 - 0x0701F5C0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09005000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09005000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex bbh_seg7_vertex_0701F3D0, 16, 0
@@ -10222,7 +10222,7 @@ gsSP1Triangle  0, 15,  1, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_0701F5C0: # 0x0701F5C0 - 0x0701F5F8
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09009000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09009000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
 gsSPVertex bbh_seg7_vertex_0701F4D0, 4, 0
@@ -10276,7 +10276,7 @@ vertex    102,      0,    461,    990,    990,  0x00, 0x7F, 0x00, 0xFF
 vertex   -101,      0,   -460,      0,  -8208,  0x00, 0x7F, 0x00, 0xFF
 
 bbh_seg7_dl_0701F780: # 0x0701F780 - 0x0701F7E8
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09004800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09004800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight bbh_seg7_light_0701F6B0, 1
@@ -10344,7 +10344,7 @@ vertex    102,   -101,    -50,    990,   2010,  0x00, 0x81, 0x00, 0xFF
 vertex   -101,      0,    -50,      0,   2010,  0x00, 0x7F, 0x00, 0xFF
 
 bbh_seg7_dl_0701FA10: # 0x0701FA10 - 0x0701FAB0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09004800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09004800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight bbh_seg7_light_0701F860, 1
@@ -10413,7 +10413,7 @@ vertex   -255,    819,    205,   2012,    580,  0x81, 0x00, 0x00, 0xFF
 vertex   -255,      0,   -204,      0,   2012,  0x81, 0x00, 0x00, 0xFF
 
 bbh_seg7_dl_0701FC78: # 0x0701FC78 - 0x0701FCC0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09003800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09003800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPLight bbh_seg7_light_0701FB28, 1
@@ -10424,7 +10424,7 @@ gsSP1Triangle  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 bbh_seg7_dl_0701FCC0: # 0x0701FCC0 - 0x0701FD28
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09002800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09002800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex bbh_seg7_vertex_0701FB78, 16, 0
@@ -10489,7 +10489,7 @@ vertex    307,      0,   -255,  -2074,   1500,  0xFF, 0xFF, 0xFF, 0xFF
 vertex    307,   -101,   -255,  -2074,   1500,  0xFF, 0xFF, 0xFF, 0xFF
 
 bbh_seg7_dl_0701FF58: # 0x0701FF58 - 0x0701FFE8
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09000000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09000000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex bbh_seg7_vertex_0701FDB8, 15, 0
@@ -10564,7 +10564,7 @@ vertex   -204,      0,   -204,    990,    284,  0x00, 0x7F, 0x00, 0xFF
 vertex   1434,      0,   1434,  -3096,   2164,  0x00, 0x7F, 0x00, 0xFF
 
 bbh_seg7_dl_07020230: # 0x07020230 - 0x07020288
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bbh_textures_09005000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09005000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPLight bbh_seg7_light_07020060, 1

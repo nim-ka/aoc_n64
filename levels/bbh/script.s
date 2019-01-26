@@ -59,7 +59,7 @@ glabel level_bbh_entry
     init_level
     load_mio0 /*seg*/ 0x07, /*romStart*/ _bbh_segment_7SegmentRomStart, /*romEnd*/ _bbh_segment_7SegmentRomEnd
     load_mio0 /*seg*/ 0x0A, /*romStart*/ _bbh_skybox_mio0SegmentRomStart, /*romEnd*/ _bbh_skybox_mio0SegmentRomEnd
-    cmd1A     /*seg*/ 0x09, /*romStart*/ _bbh_textures_mio0SegmentRomStart, /*romEnd*/ _bbh_textures_mio0SegmentRomEnd
+    cmd1A     /*seg*/ 0x09, /*romStart*/ _spooky_mio0SegmentRomStart, /*romEnd*/ _spooky_mio0SegmentRomEnd
     load_mio0 /*seg*/ 0x05, /*romStart*/ _group9_mio0SegmentRomStart, /*romEnd*/ _group9_mio0SegmentRomEnd
     load_raw  /*seg*/ 0x0C, /*romStart*/ _group9_geoSegmentRomStart,  /*romEnd*/ _group9_geoSegmentRomEnd
     load_mio0 /*seg*/ 0x06, /*romStart*/ _group17_mio0SegmentRomStart, /*romEnd*/ _group17_mio0SegmentRomEnd

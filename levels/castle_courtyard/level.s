@@ -1008,7 +1008,7 @@ vertex    307,    512,    512,      0,      0,  0x00, 0x00, 0x00, 0xFF
 vertex    307,      0,    512,      0,      0,  0x00, 0x00, 0x00, 0xFF
 
 castle_courtyard_seg7_dl_070036F0: # 0x070036F0 - 0x070039D0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, castle_grounds_textures_0900B000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, outside_0900B000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x1FF, 0x100
 gsSPVertex castle_courtyard_seg7_vertex_07000000, 15, 0
@@ -1102,7 +1102,7 @@ gsSP1Triangle  4,  5,  6, 0x0
 gsSPEndDisplayList
 
 castle_courtyard_seg7_dl_070039D0: # 0x070039D0 - 0x07003AF8
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, castle_grounds_textures_09009000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, outside_09009000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex castle_courtyard_seg7_vertex_07000A80, 16, 0
@@ -1141,7 +1141,7 @@ gsSP1Triangle  8, 14, 15, 0x0
 gsSPEndDisplayList
 
 castle_courtyard_seg7_dl_07003AF8: # 0x07003AF8 - 0x07003BA8
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, castle_grounds_textures_09003000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, outside_09003000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex castle_courtyard_seg7_vertex_07000D70, 16, 0
@@ -1165,7 +1165,7 @@ gsSP1Triangle 12, 14, 15, 0x0
 gsSPEndDisplayList
 
 castle_courtyard_seg7_dl_07003BA8: # 0x07003BA8 - 0x07003EC8
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, castle_grounds_textures_09000800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, outside_09000800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex castle_courtyard_seg7_vertex_07000F70, 15, 0
@@ -1267,7 +1267,7 @@ gsSP1Triangle 12, 15, 13, 0x0
 gsSPEndDisplayList
 
 castle_courtyard_seg7_dl_07003EC8: # 0x07003EC8 - 0x07003F30
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, castle_grounds_textures_09004000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, outside_09004000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex castle_courtyard_seg7_vertex_07001AB0, 15, 0
@@ -1282,7 +1282,7 @@ gsSP1Triangle 12, 14, 13, 0x0
 gsSPEndDisplayList
 
 castle_courtyard_seg7_dl_07003F30: # 0x07003F30 - 0x070040A8
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, castle_grounds_textures_0900A000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, outside_0900A000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex castle_courtyard_seg7_vertex_07001BA0, 16, 0
@@ -1331,7 +1331,7 @@ gsSP1Triangle 13, 14, 15, 0x0
 gsSPEndDisplayList
 
 castle_courtyard_seg7_dl_070040A8: # 0x070040A8 - 0x07004168
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, castle_grounds_textures_09000000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, outside_09000000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex castle_courtyard_seg7_vertex_07001F90, 16, 0
@@ -1357,7 +1357,7 @@ gsSP1Triangle 10,  2,  3, 0x0
 gsSPEndDisplayList
 
 castle_courtyard_seg7_dl_07004168: # 0x07004168 - 0x070041A0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, castle_grounds_textures_09008800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, outside_09008800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex castle_courtyard_seg7_vertex_07002140, 4, 0
@@ -1366,7 +1366,7 @@ gsSP1Triangle  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 castle_courtyard_seg7_dl_070041A0: # 0x070041A0 - 0x070041D8
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, castle_grounds_textures_09006000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, outside_09006000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex castle_courtyard_seg7_vertex_07002180, 4, 0
@@ -1375,7 +1375,7 @@ gsSP1Triangle  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 castle_courtyard_seg7_dl_070041D8: # 0x070041D8 - 0x07004370
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, castle_grounds_textures_09004800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, outside_09004800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex castle_courtyard_seg7_vertex_070021C0, 14, 0
@@ -1428,7 +1428,7 @@ gsSP1Triangle  8, 14, 15, 0x0
 gsSPEndDisplayList
 
 castle_courtyard_seg7_dl_07004370: # 0x07004370 - 0x070045F0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, castle_grounds_textures_09001000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, outside_09001000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
 gsSPVertex castle_courtyard_seg7_vertex_07002650, 15, 0
@@ -1510,7 +1510,7 @@ gsSP1Triangle  4,  5,  6, 0x0
 gsSPEndDisplayList
 
 castle_courtyard_seg7_dl_070045F0: # 0x070045F0 - 0x07004868
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, castle_grounds_textures_09006800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, outside_09006800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
 gsSPVertex castle_courtyard_seg7_vertex_07002E20, 16, 0
@@ -1734,7 +1734,7 @@ vertex      0,   5253,    -96,      0,      0,  0x70, 0x70, 0x8A, 0xFF
 vertex     26,   4639,    -96,      0,      0,  0x70, 0x70, 0x8A, 0xFF
 
 castle_courtyard_seg7_dl_07004ED8: # 0x07004ED8 - 0x07004FB0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, castle_grounds_textures_09007800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, outside_09007800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex castle_courtyard_seg7_vertex_070049E8, 14, 0
@@ -1763,7 +1763,7 @@ gsSP1Triangle 12, 14, 13, 0x0
 gsSPEndDisplayList
 
 castle_courtyard_seg7_dl_07004FB0: # 0x07004FB0 - 0x07005060
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, castle_grounds_textures_09001000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, outside_09001000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
 gsSPVertex castle_courtyard_seg7_vertex_07004CA8, 16, 0
@@ -1891,7 +1891,7 @@ vertex  -1742,   -204,  -3330,    990,    990,  0xFF, 0xFF, 0xFF, 0xFF
 vertex  -1538,   -204,  -3126,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
 
 castle_courtyard_seg7_dl_07005550: # 0x07005550 - 0x07005698
-gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_16b, 1, castle_grounds_textures_0900BC00
+gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_16b, 1, outside_0900BC00
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex castle_courtyard_seg7_vertex_07005110, 15, 0
@@ -1980,7 +1980,7 @@ vertex   1638,    717,    195,    990,    990,  0xA2, 0xA2, 0xC1, 0xFF
 vertex   1638,   1331,    195,    990,    990,  0xA2, 0xA2, 0xC1, 0xFF
 
 castle_courtyard_seg7_dl_070058A8: # 0x070058A8 - 0x07005938
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, castle_grounds_textures_0900A800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, outside_0900A800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex castle_courtyard_seg7_vertex_07005708, 15, 0

@@ -1,7 +1,7 @@
 glabel level_pss_entry
     init_level
     load_mio0 /*seg*/ 0x07, /*romStart*/ _pss_segment_7SegmentRomStart, /*romEnd*/ _pss_segment_7SegmentRomEnd
-    cmd1A     /*seg*/ 0x09, /*romStart*/ _ttm_textures_mio0SegmentRomStart, /*romEnd*/ _ttm_textures_mio0SegmentRomEnd
+    cmd1A     /*seg*/ 0x09, /*romStart*/ _mountain_mio0SegmentRomStart, /*romEnd*/ _mountain_mio0SegmentRomEnd
     load_mio0 /*seg*/ 0x05, /*romStart*/ _group8_mio0SegmentRomStart, /*romEnd*/ _group8_mio0SegmentRomEnd
     load_raw  /*seg*/ 0x0C, /*romStart*/ _group8_geoSegmentRomStart,  /*romEnd*/ _group8_geoSegmentRomEnd
     load_mio0 /*seg*/ 0x08, /*romStart*/ _common0_mio0SegmentRomStart, /*romEnd*/ _common0_mio0SegmentRomEnd

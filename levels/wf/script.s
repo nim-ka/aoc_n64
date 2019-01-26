@@ -73,7 +73,7 @@ glabel level_wf_entry
     init_level
     load_mio0 /*seg*/ 0x07, /*romStart*/ _wf_segment_7SegmentRomStart, /*romEnd*/ _wf_segment_7SegmentRomEnd
     load_mio0 /*seg*/ 0x0A, /*romStart*/ _cloud_floor_skybox_mio0SegmentRomStart, /*romEnd*/ _cloud_floor_skybox_mio0SegmentRomEnd
-    cmd1A     /*seg*/ 0x09, /*romStart*/ _wf_textures_mio0SegmentRomStart, /*romEnd*/ _wf_textures_mio0SegmentRomEnd
+    cmd1A     /*seg*/ 0x09, /*romStart*/ _grass_mio0SegmentRomStart, /*romEnd*/ _grass_mio0SegmentRomEnd
     load_mio0 /*seg*/ 0x05, /*romStart*/ _group1_mio0SegmentRomStart, /*romEnd*/ _group1_mio0SegmentRomEnd
     load_raw  /*seg*/ 0x0C, /*romStart*/ _group1_geoSegmentRomStart,  /*romEnd*/ _group1_geoSegmentRomEnd
     load_mio0 /*seg*/ 0x06, /*romStart*/ _group14_mio0SegmentRomStart, /*romEnd*/ _group14_mio0SegmentRomEnd

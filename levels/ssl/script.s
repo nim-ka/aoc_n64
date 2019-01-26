@@ -48,7 +48,7 @@ glabel level_ssl_entry
     init_level
     load_mio0 /*seg*/ 0x07, /*romStart*/ _ssl_segment_7SegmentRomStart, /*romEnd*/ _ssl_segment_7SegmentRomEnd
     load_mio0 /*seg*/ 0x0A, /*romStart*/ _ssl_skybox_mio0SegmentRomStart, /*romEnd*/ _ssl_skybox_mio0SegmentRomEnd
-    cmd1A     /*seg*/ 0x09, /*romStart*/ _bob_textures_mio0SegmentRomStart, /*romEnd*/ _bob_textures_mio0SegmentRomEnd
+    cmd1A     /*seg*/ 0x09, /*romStart*/ _generic_mio0SegmentRomStart, /*romEnd*/ _generic_mio0SegmentRomEnd
     load_mio0 /*seg*/ 0x05, /*romStart*/ _group5_mio0SegmentRomStart, /*romEnd*/ _group5_mio0SegmentRomEnd
     load_raw  /*seg*/ 0x0C, /*romStart*/ _group5_geoSegmentRomStart,  /*romEnd*/ _group5_geoSegmentRomEnd
     load_mio0 /*seg*/ 0x08, /*romStart*/ _common0_mio0SegmentRomStart, /*romEnd*/ _common0_mio0SegmentRomEnd

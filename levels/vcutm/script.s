@@ -18,7 +18,7 @@ script_func_local_3:
 
 glabel level_vcutm_entry
     init_level
-    cmd1A     /*seg*/ 0x09, /*romStart*/ _castle_grounds_textures_mio0SegmentRomStart, /*romEnd*/ _castle_grounds_textures_mio0SegmentRomEnd
+    cmd1A     /*seg*/ 0x09, /*romStart*/ _outside_mio0SegmentRomStart, /*romEnd*/ _outside_mio0SegmentRomEnd
     load_mio0 /*seg*/ 0x07, /*romStart*/ _vcutm_segment_7SegmentRomStart, /*romEnd*/ _vcutm_segment_7SegmentRomEnd
     load_mio0 /*seg*/ 0x05, /*romStart*/ _group8_mio0SegmentRomStart, /*romEnd*/ _group8_mio0SegmentRomEnd
     load_raw  /*seg*/ 0x0C, /*romStart*/ _group8_geoSegmentRomStart,  /*romEnd*/ _group8_geoSegmentRomEnd

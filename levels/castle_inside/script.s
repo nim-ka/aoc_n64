@@ -200,7 +200,7 @@ script_func_local_4:
 glabel level_castle_entry
     init_level
     load_mio0 /*seg*/ 0x07, /*romStart*/ _castle_inside_segment_7SegmentRomStart, /*romEnd*/ _castle_inside_segment_7SegmentRomEnd
-    cmd1A     /*seg*/ 0x09, /*romStart*/ _inside_castle_textures_mio0SegmentRomStart, /*romEnd*/ _inside_castle_textures_mio0SegmentRomEnd
+    cmd1A     /*seg*/ 0x09, /*romStart*/ _inside_mio0SegmentRomStart, /*romEnd*/ _inside_mio0SegmentRomEnd
     load_mio0 /*seg*/ 0x06, /*romStart*/ _group15_mio0SegmentRomStart, /*romEnd*/ _group15_mio0SegmentRomEnd
     load_raw  /*seg*/ 0x0D, /*romStart*/ _group15_geoSegmentRomStart,  /*romEnd*/ _group15_geoSegmentRomEnd
     alloc_level_pool

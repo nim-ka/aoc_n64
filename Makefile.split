@@ -116,19 +116,19 @@ MAIN_MENU_SEG7_FILES         := $(basename $(notdir $(wildcard levels/menu/*.png
 # Others
 SEGMENT2_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/segment2/*.png)))
 TITLE_SCREEN_BG_FILES        := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/title_screen_bg/*.png)))
-BBH_TEXTURES_FILES           := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bbh_textures/*.png)))
-BOB_TEXTURES_FILES           := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bob_textures/*.png)))
-CASTLE_GROUNDS_TEXTURES_FILES := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/castle_grounds_textures/*.png)))
-CCM_TEXTURES_FILES           := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/ccm_textures/*.png)))
-FLOWER_TEXTURES_FILES        := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/flower_bubbles_textures/*.png)))
-HMC_TEXTURES_FILES           := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/hmc_textures/*.png)))
-INSIDE_CASTLE_TEXTURES_FILES := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/inside_castle_textures/*.png)))
-JRB_TEXTURES_FILES           := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/jrb_textures/*.png)))
-LLL_TEXTURES_FILES           := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/lll_textures/*.png)))
-RR_TEXTURES_FILES            := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/rr_textures/*.png)))
-TTC_TEXTURES_FILES           := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/ttc_textures/*.png)))
-TTM_TEXTURES_FILES           := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/ttm_textures/*.png)))
-WF_TEXTURES_FILES            := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/wf_textures/*.png)))
+SPOOKY_FILES                 := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/spooky/*.png)))
+GENERIC_FILES                := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/generic/*.png)))
+OUTSIDE_FILES                := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/outside/*.png)))
+SNOW_FILES                   := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/snow/*.png)))
+EFFECT_FILES                 := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/effect/*.png)))
+CAVE_FILES                   := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/cave/*.png)))
+INSIDE_FILES                 := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/inside/*.png)))
+WATER_FILES                  := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/water/*.png)))
+FIRE_TEXTURES_FILES          := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/fire/*.png)))
+SKY_FILES                    := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/sky/*.png)))
+MACHINE_FILES                := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/machine/*.png)))
+MOUNTAIN_FILES               := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/mountain/*.png)))
+GRASS_FILES                  := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/grass/*.png)))
 
 # Skybox Files
 BBH_SKYBOX_FILES             := $(basename $(notdir $(wildcard $(TEXTURE_DIR)/bbh_skybox/*.png)))
@@ -200,21 +200,23 @@ $(BUILD_DIR)/bin/intro/level.o: $(addprefix $(BUILD_DIR)/levels/intro/,$(INTRO_S
 $(BUILD_DIR)/bin/menu/level.o: $(addprefix $(BUILD_DIR)/levels/menu/,$(MAIN_MENU_SEG7_FILES))
 
 # Original Segment Files
+
+# Texture Files
 $(BUILD_DIR)/bin/segment2.o: $(addprefix $(BUILD_DIR)/bin/segment2/,$(SEGMENT2_FILES))
 $(BUILD_DIR)/bin/title_screen_bg.o: $(addprefix $(BUILD_DIR)/bin/title_screen_bg/,$(TITLE_SCREEN_BG_FILES))
-$(BUILD_DIR)/bin/bbh_textures.o: $(addprefix $(BUILD_DIR)/bin/bbh_textures/,$(BBH_TEXTURES_FILES))
-$(BUILD_DIR)/bin/bob_textures.o: $(addprefix $(BUILD_DIR)/bin/bob_textures/,$(BOB_TEXTURES_FILES))
-$(BUILD_DIR)/bin/castle_grounds_textures.o: $(addprefix $(BUILD_DIR)/bin/castle_grounds_textures/,$(CASTLE_GROUNDS_TEXTURES_FILES))
-$(BUILD_DIR)/bin/ccm_textures.o: $(addprefix $(BUILD_DIR)/bin/ccm_textures/,$(CCM_TEXTURES_FILES))
-$(BUILD_DIR)/bin/flower_bubbles_textures.o: $(addprefix $(BUILD_DIR)/bin/flower_bubbles_textures/,$(FLOWER_TEXTURES_FILES))
-$(BUILD_DIR)/bin/hmc_textures.o: $(addprefix $(BUILD_DIR)/bin/hmc_textures/,$(HMC_TEXTURES_FILES))
-$(BUILD_DIR)/bin/inside_castle_textures.o: $(addprefix $(BUILD_DIR)/bin/inside_castle_textures/,$(INSIDE_CASTLE_TEXTURES_FILES))
-$(BUILD_DIR)/bin/jrb_textures.o: $(addprefix $(BUILD_DIR)/bin/jrb_textures/,$(JRB_TEXTURES_FILES))
-$(BUILD_DIR)/bin/lll_textures.o: $(addprefix $(BUILD_DIR)/bin/lll_textures/,$(LLL_TEXTURES_FILES))
-$(BUILD_DIR)/bin/rr_textures.o: $(addprefix $(BUILD_DIR)/bin/rr_textures/,$(RR_TEXTURES_FILES))
-$(BUILD_DIR)/bin/ttc_textures.o: $(addprefix $(BUILD_DIR)/bin/ttc_textures/,$(TTC_TEXTURES_FILES))
-$(BUILD_DIR)/bin/ttm_textures.o: $(addprefix $(BUILD_DIR)/bin/ttm_textures/,$(TTM_TEXTURES_FILES))
-$(BUILD_DIR)/bin/wf_textures.o: $(addprefix $(BUILD_DIR)/bin/wf_textures/,$(WF_TEXTURES_FILES))
+$(BUILD_DIR)/bin/spooky.o: $(addprefix $(BUILD_DIR)/bin/spooky/,$(SPOOKY_FILES))
+$(BUILD_DIR)/bin/generic.o: $(addprefix $(BUILD_DIR)/bin/generic/,$(GENERIC_FILES))
+$(BUILD_DIR)/bin/outside.o: $(addprefix $(BUILD_DIR)/bin/outside/,$(OUTSIDE_FILES))
+$(BUILD_DIR)/bin/snow.o: $(addprefix $(BUILD_DIR)/bin/snow/,$(SNOW_FILES))
+$(BUILD_DIR)/bin/effect.o: $(addprefix $(BUILD_DIR)/bin/effect/,$(EFFECT_FILES))
+$(BUILD_DIR)/bin/cave.o: $(addprefix $(BUILD_DIR)/bin/cave/,$(CAVE_FILES))
+$(BUILD_DIR)/bin/inside.o: $(addprefix $(BUILD_DIR)/bin/inside/,$(INSIDE_FILES))
+$(BUILD_DIR)/bin/water.o: $(addprefix $(BUILD_DIR)/bin/water/,$(WATER_FILES))
+$(BUILD_DIR)/bin/fire.o: $(addprefix $(BUILD_DIR)/bin/fire/,$(FIRE_TEXTURES_FILES))
+$(BUILD_DIR)/bin/sky.o: $(addprefix $(BUILD_DIR)/bin/sky/,$(SKY_FILES))
+$(BUILD_DIR)/bin/machine.o: $(addprefix $(BUILD_DIR)/bin/machine/,$(MACHINE_FILES))
+$(BUILD_DIR)/bin/mountain.o: $(addprefix $(BUILD_DIR)/bin/mountain/,$(MOUNTAIN_FILES))
+$(BUILD_DIR)/bin/grass.o: $(addprefix $(BUILD_DIR)/bin/grass/,$(GRASS_FILES))
 
 # Skybox Files
 $(BUILD_DIR)/bin/bbh_skybox.o: $(addprefix $(BUILD_DIR)/bin/bbh_skybox/,$(BBH_SKYBOX_FILES))
@@ -289,58 +291,58 @@ $(BUILD_DIR)/bin/menu/level.elf: SEGMENT_ADDRESS := 0x07000000
 
 # Level Files Texture Bin Assignment
 # Some level.elf files below do not have a texture bin assignment and use the
-# default texture bin (bob_textures) as TEXTURE_BIN so the linking works.
-$(BUILD_DIR)/bin/bbh/level.elf: TEXTURE_BIN := bbh_textures
-$(BUILD_DIR)/bin/ccm/level.elf: TEXTURE_BIN := ccm_textures
-$(BUILD_DIR)/bin/castle_inside/level.elf: TEXTURE_BIN := inside_castle_textures
-$(BUILD_DIR)/bin/hmc/level.elf: TEXTURE_BIN := hmc_textures
-$(BUILD_DIR)/bin/ssl/level.elf: TEXTURE_BIN := bob_textures
-$(BUILD_DIR)/bin/bob/level.elf: TEXTURE_BIN := bob_textures
-$(BUILD_DIR)/bin/sl/level.elf: TEXTURE_BIN := ccm_textures
-$(BUILD_DIR)/bin/wdw/level.elf: TEXTURE_BIN := wf_textures
-$(BUILD_DIR)/bin/jrb/level.elf: TEXTURE_BIN := jrb_textures
-$(BUILD_DIR)/bin/thi/level.elf: TEXTURE_BIN := wf_textures
-$(BUILD_DIR)/bin/ttc/level.elf: TEXTURE_BIN := ttc_textures
-$(BUILD_DIR)/bin/rr/level.elf: TEXTURE_BIN := rr_textures
-$(BUILD_DIR)/bin/castle_grounds/level.elf: TEXTURE_BIN := castle_grounds_textures
-$(BUILD_DIR)/bin/bitdw/level.elf: TEXTURE_BIN := rr_textures
-$(BUILD_DIR)/bin/vcutm/level.elf: TEXTURE_BIN := castle_grounds_textures
-$(BUILD_DIR)/bin/bitfs/level.elf: TEXTURE_BIN := rr_textures
-$(BUILD_DIR)/bin/sa/level.elf: TEXTURE_BIN := inside_castle_textures
-$(BUILD_DIR)/bin/bits/level.elf: TEXTURE_BIN := rr_textures
-$(BUILD_DIR)/bin/lll/level.elf: TEXTURE_BIN := lll_textures
-$(BUILD_DIR)/bin/ddd/level.elf: TEXTURE_BIN := jrb_textures
-$(BUILD_DIR)/bin/wf/level.elf: TEXTURE_BIN := wf_textures
-$(BUILD_DIR)/bin/ending/level.elf: TEXTURE_BIN := bob_textures
-$(BUILD_DIR)/bin/castle_courtyard/level.elf: TEXTURE_BIN := castle_grounds_textures
-$(BUILD_DIR)/bin/pss/level.elf: TEXTURE_BIN := ttm_textures
-$(BUILD_DIR)/bin/cotmc/level.elf: TEXTURE_BIN := hmc_textures
-$(BUILD_DIR)/bin/totwc/level.elf: TEXTURE_BIN := rr_textures
-$(BUILD_DIR)/bin/bowser_1/level.elf: TEXTURE_BIN := bob_textures
-$(BUILD_DIR)/bin/wmotr/level.elf: TEXTURE_BIN := bob_textures
-$(BUILD_DIR)/bin/bowser_2/level.elf: TEXTURE_BIN := lll_textures
-$(BUILD_DIR)/bin/bowser_3/level.elf: TEXTURE_BIN := bob_textures
-$(BUILD_DIR)/bin/ttm/level.elf: TEXTURE_BIN := ttm_textures
-$(BUILD_DIR)/bin/intro/level.elf: TEXTURE_BIN := bob_textures
-$(BUILD_DIR)/bin/menu/level.elf: TEXTURE_BIN := bob_textures
+# default texture bin (generic) as TEXTURE_BIN so the linking works.
+$(BUILD_DIR)/bin/bbh/level.elf: TEXTURE_BIN := spooky
+$(BUILD_DIR)/bin/ccm/level.elf: TEXTURE_BIN := snow
+$(BUILD_DIR)/bin/castle_inside/level.elf: TEXTURE_BIN := inside
+$(BUILD_DIR)/bin/hmc/level.elf: TEXTURE_BIN := cave
+$(BUILD_DIR)/bin/ssl/level.elf: TEXTURE_BIN := generic
+$(BUILD_DIR)/bin/bob/level.elf: TEXTURE_BIN := generic
+$(BUILD_DIR)/bin/sl/level.elf: TEXTURE_BIN := snow
+$(BUILD_DIR)/bin/wdw/level.elf: TEXTURE_BIN := grass
+$(BUILD_DIR)/bin/jrb/level.elf: TEXTURE_BIN := water
+$(BUILD_DIR)/bin/thi/level.elf: TEXTURE_BIN := grass
+$(BUILD_DIR)/bin/ttc/level.elf: TEXTURE_BIN := machine
+$(BUILD_DIR)/bin/rr/level.elf: TEXTURE_BIN := sky
+$(BUILD_DIR)/bin/castle_grounds/level.elf: TEXTURE_BIN := outside
+$(BUILD_DIR)/bin/bitdw/level.elf: TEXTURE_BIN := sky
+$(BUILD_DIR)/bin/vcutm/level.elf: TEXTURE_BIN := outside
+$(BUILD_DIR)/bin/bitfs/level.elf: TEXTURE_BIN := sky
+$(BUILD_DIR)/bin/sa/level.elf: TEXTURE_BIN := inside
+$(BUILD_DIR)/bin/bits/level.elf: TEXTURE_BIN := sky
+$(BUILD_DIR)/bin/lll/level.elf: TEXTURE_BIN := fire
+$(BUILD_DIR)/bin/ddd/level.elf: TEXTURE_BIN := water
+$(BUILD_DIR)/bin/wf/level.elf: TEXTURE_BIN := grass
+$(BUILD_DIR)/bin/ending/level.elf: TEXTURE_BIN := generic
+$(BUILD_DIR)/bin/castle_courtyard/level.elf: TEXTURE_BIN := outside
+$(BUILD_DIR)/bin/pss/level.elf: TEXTURE_BIN := mountain
+$(BUILD_DIR)/bin/cotmc/level.elf: TEXTURE_BIN := cave
+$(BUILD_DIR)/bin/totwc/level.elf: TEXTURE_BIN := sky
+$(BUILD_DIR)/bin/bowser_1/level.elf: TEXTURE_BIN := generic
+$(BUILD_DIR)/bin/wmotr/level.elf: TEXTURE_BIN := generic
+$(BUILD_DIR)/bin/bowser_2/level.elf: TEXTURE_BIN := fire
+$(BUILD_DIR)/bin/bowser_3/level.elf: TEXTURE_BIN := generic
+$(BUILD_DIR)/bin/ttm/level.elf: TEXTURE_BIN := mountain
+$(BUILD_DIR)/bin/intro/level.elf: TEXTURE_BIN := generic
+$(BUILD_DIR)/bin/menu/level.elf: TEXTURE_BIN := generic
 
 # Others
 $(BUILD_DIR)/bin/segment2.elf: SEGMENT_ADDRESS := 0x02000000
 $(BUILD_DIR)/bin/title_screen_bg.elf: SEGMENT_ADDRESS := 0x0A000000
 $(BUILD_DIR)/bin/debug_level_select.elf: SEGMENT_ADDRESS := 0x07000000
-$(BUILD_DIR)/bin/flower_bubbles_textures.elf: SEGMENT_ADDRESS := 0x0B000000
-$(BUILD_DIR)/bin/bbh_textures.elf: SEGMENT_ADDRESS := 0x09000000
-$(BUILD_DIR)/bin/bob_textures.elf: SEGMENT_ADDRESS := 0x09000000
-$(BUILD_DIR)/bin/castle_grounds_textures.elf: SEGMENT_ADDRESS := 0x09000000
-$(BUILD_DIR)/bin/ccm_textures.elf: SEGMENT_ADDRESS := 0x09000000
-$(BUILD_DIR)/bin/hmc_textures.elf: SEGMENT_ADDRESS := 0x09000000
-$(BUILD_DIR)/bin/inside_castle_textures.elf: SEGMENT_ADDRESS := 0x09000000
-$(BUILD_DIR)/bin/jrb_textures.elf: SEGMENT_ADDRESS := 0x09000000
-$(BUILD_DIR)/bin/lll_textures.elf: SEGMENT_ADDRESS := 0x09000000
-$(BUILD_DIR)/bin/rr_textures.elf: SEGMENT_ADDRESS := 0x09000000
-$(BUILD_DIR)/bin/ttc_textures.elf: SEGMENT_ADDRESS := 0x09000000
-$(BUILD_DIR)/bin/ttm_textures.elf: SEGMENT_ADDRESS := 0x09000000
-$(BUILD_DIR)/bin/wf_textures.elf: SEGMENT_ADDRESS := 0x09000000
+$(BUILD_DIR)/bin/effect.elf: SEGMENT_ADDRESS := 0x0B000000
+$(BUILD_DIR)/bin/spooky.elf: SEGMENT_ADDRESS := 0x09000000
+$(BUILD_DIR)/bin/generic.elf: SEGMENT_ADDRESS := 0x09000000
+$(BUILD_DIR)/bin/outside.elf: SEGMENT_ADDRESS := 0x09000000
+$(BUILD_DIR)/bin/snow.elf: SEGMENT_ADDRESS := 0x09000000
+$(BUILD_DIR)/bin/cave.elf: SEGMENT_ADDRESS := 0x09000000
+$(BUILD_DIR)/bin/inside.elf: SEGMENT_ADDRESS := 0x09000000
+$(BUILD_DIR)/bin/water.elf: SEGMENT_ADDRESS := 0x09000000
+$(BUILD_DIR)/bin/fire.elf: SEGMENT_ADDRESS := 0x09000000
+$(BUILD_DIR)/bin/sky.elf: SEGMENT_ADDRESS := 0x09000000
+$(BUILD_DIR)/bin/machine.elf: SEGMENT_ADDRESS := 0x09000000
+$(BUILD_DIR)/bin/mountain.elf: SEGMENT_ADDRESS := 0x09000000
+$(BUILD_DIR)/bin/grass.elf: SEGMENT_ADDRESS := 0x09000000
 
 # Skybox Files
 $(BUILD_DIR)/bin/bbh_skybox.elf: SEGMENT_ADDRESS := 0x0A000000

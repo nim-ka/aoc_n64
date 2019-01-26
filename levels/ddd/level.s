@@ -316,7 +316,7 @@ vertex  -3378,  -4607,   -409,   -744,    888,  0xE2, 0x78, 0xE5, 0xFF
 vertex  -3378,  -4607,      0,   -336,   1294,  0x28, 0x77, 0x10, 0xFF
 
 ddd_seg7_dl_07004700: # 0x07004700 - 0x07004D48
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, jrb_textures_09003800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, water_09003800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
 gsSPLight ddd_seg7_light_07003808, 1
@@ -681,7 +681,7 @@ vertex   2150,  -3583,    205,   2012,      0,  0x2A, 0x8D, 0xE2, 0xFF
 vertex   -921,  -3583,    205,      0,      0,  0x00, 0x93, 0xC0, 0xFF
 
 ddd_seg7_dl_07005570: # 0x07005570 - 0x07005738
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, jrb_textures_09007800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, water_09007800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
 gsSPLight ddd_seg7_light_07004DB0, 1
@@ -740,7 +740,7 @@ gsSP1Triangle  4,  5,  6, 0x0
 gsSPEndDisplayList
 
 ddd_seg7_dl_07005738: # 0x07005738 - 0x070057E8
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, jrb_textures_09004800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, water_09004800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
 gsSPVertex ddd_seg7_vertex_070053C0, 15, 0
@@ -833,7 +833,7 @@ vertex  -6655,   2048,   1024,  25616,      0,  0x7E, 0x00, 0x03, 0xFF
 vertex  -6655,      0,   1024,  25616,    990,  0x7B, 0x00, 0xE4, 0xFF
 
 ddd_seg7_dl_07005AF8: # 0x07005AF8 - 0x07005C40
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, jrb_textures_0900B800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, water_0900B800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
 gsSPLight ddd_seg7_light_07005858, 1
@@ -1267,7 +1267,7 @@ vertex   6989,      8,   4096,    552,  -2068,  0xA7, 0x00, 0xA7, 0xFF
 vertex   4429,  -1015,   5635,      0,      0,  0xC4, 0x00, 0x91, 0xFF
 
 ddd_seg7_dl_07006E20: # 0x07006E20 - 0x07006EE0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, jrb_textures_09007800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, water_09007800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
 gsSPLight ddd_seg7_light_07005FD0, 1
@@ -1293,7 +1293,7 @@ gsSP1Triangle  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 ddd_seg7_dl_07006EE0: # 0x07006EE0 - 0x07007080
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, jrb_textures_09006800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, water_09006800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
 gsSPLight ddd_seg7_light_07005FE8, 1
@@ -1347,7 +1347,7 @@ gsSP1Triangle  4,  6,  7, 0x0
 gsSPEndDisplayList
 
 ddd_seg7_dl_07007080: # 0x07007080 - 0x07007298
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, jrb_textures_09003800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, water_09003800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
 gsSPLight ddd_seg7_light_07005FE8, 1
@@ -1416,7 +1416,7 @@ gsSP1Triangle  9, 12, 10, 0x0
 gsSPEndDisplayList
 
 ddd_seg7_dl_07007298: # 0x07007298 - 0x07007408
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, jrb_textures_09009000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, water_09009000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
 gsSPVertex ddd_seg7_vertex_070069B0, 15, 0
@@ -1608,7 +1608,7 @@ vertex  -2866,  -2756,    512,      0,    362,  0x30, 0x75, 0x00, 0xFF
 vertex  -2866,  -2756,   -511,   2012,    362,  0x30, 0x75, 0x00, 0xFF
 
 ddd_seg7_dl_07007AF0: # 0x07007AF0 - 0x07007CB8
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, jrb_textures_09007800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, water_09007800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
 gsSPLight ddd_seg7_light_070074D0, 1
@@ -2862,7 +2862,7 @@ gsSP1Triangle  5,  7,  1, 0x0
 gsSPEndDisplayList
 
 ddd_seg7_dl_0700AEB8: # 0x0700AEB8 - 0x0700AF10
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, jrb_textures_0900A000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, water_0900A000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex ddd_seg7_vertex_0700A580, 8, 0
@@ -3445,7 +3445,7 @@ vertex   1971,    929,    361,  -2072,  -1054,  0x00, 0x7F, 0x00, 0xFF
 vertex   1254,    929,    361,  -2072,   2522,  0x00, 0x7F, 0x00, 0xFF
 
 ddd_seg7_dl_0700C9D8: # 0x0700C9D8 - 0x0700CA70
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, jrb_textures_0900A000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, water_0900A000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight ddd_seg7_light_0700BB58, 1
@@ -3532,7 +3532,7 @@ gsSP1Triangle  0,  6,  1, 0x0
 gsSPEndDisplayList
 
 ddd_seg7_dl_0700CC70: # 0x0700CC70 - 0x0700CE48
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, jrb_textures_09007800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, water_09007800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
 gsSPVertex ddd_seg7_vertex_0700C398, 15, 0

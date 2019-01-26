@@ -661,7 +661,7 @@ vertex     36,  -2011,  -3173,    734,   1944,  0x00, 0x00, 0x7F, 0xFF
 vertex    -35,  -2011,  -3173,    224,   1944,  0x00, 0x00, 0x7F, 0xFF
 
 sa_dl_070023E8: # 0x070023E8 - 0x07002470
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, inside_castle_textures_0900B000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, inside_0900B000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight sa_light_07000008, 1
@@ -680,7 +680,7 @@ gsSP1Triangle  8, 11,  9, 0x0
 gsSPEndDisplayList
 
 sa_dl_07002470: # 0x07002470 - 0x070028F0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, inside_castle_textures_09003000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, inside_09003000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex sa_vertex_070000D8, 15, 0
@@ -826,7 +826,7 @@ gsSP1Triangle 11, 13, 14, 0x0
 gsSPEndDisplayList
 
 sa_dl_070028F0: # 0x070028F0 - 0x07002DE8
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, inside_castle_textures_09007000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, inside_09007000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex sa_vertex_07001218, 15, 0

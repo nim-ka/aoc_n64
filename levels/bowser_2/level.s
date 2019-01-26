@@ -102,7 +102,7 @@ vertex   1703,   1229,   -704,   4568, -10252,  0xFD, 0x42, 0x34, 0xFF
 vertex   1419,   1229,   -587,   3800,  -9486,  0xFD, 0x42, 0x34, 0xFF
 
 glabel bowser_2_seg7_dl_07000D30 # 0x07000D30 - 0x07000E28
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, lll_textures_09009800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, fire_09009800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex bowser_2_seg7_vertex_07000800, 16, 0
@@ -135,7 +135,7 @@ gsSP1Triangle  6,  8,  9, 0x0
 gsSPEndDisplayList
 
 bowser_2_seg7_dl_07000E28: # 0x07000E28 - 0x07000ED0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, lll_textures_09003000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, fire_09003000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex bowser_2_seg7_vertex_07000AA0, 16, 0
@@ -158,7 +158,7 @@ gsSP1Triangle 10, 15,  0, 0x0
 gsSPEndDisplayList
 
 bowser_2_seg7_dl_07000ED0: # 0x07000ED0 - 0x07000F38
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, lll_textures_09005800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, fire_09005800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex bowser_2_seg7_vertex_07000BA0, 9, 0
@@ -173,7 +173,7 @@ gsSP1Triangle  7,  8,  2, 0x0
 gsSPEndDisplayList
 
 bowser_2_seg7_dl_07000F38: # 0x07000F38 - 0x07000FE0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, lll_textures_09005000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, fire_09005000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex bowser_2_seg7_vertex_07000C30, 16, 0
@@ -364,7 +364,7 @@ gsSP1Triangle  0,  1,  2, 0x0
 gsSPEndDisplayList
 
 bowser_2_seg7_dl_07001788: # 0x07001788 - 0x07001930
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, lll_textures_09005800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, fire_09005800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex bowser_2_seg7_vertex_070012E0, 16, 0

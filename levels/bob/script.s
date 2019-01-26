@@ -35,7 +35,7 @@ script_func_local_3:
 glabel level_bob_entry
     init_level
     load_mio0 /*seg*/ 0x07, /*romStart*/ _bob_segment_7SegmentRomStart, /*romEnd*/ _bob_segment_7SegmentRomEnd
-    cmd1A     /*seg*/ 0x09, /*romStart*/ _bob_textures_mio0SegmentRomStart, /*romEnd*/ _bob_textures_mio0SegmentRomEnd
+    cmd1A     /*seg*/ 0x09, /*romStart*/ _generic_mio0SegmentRomStart, /*romEnd*/ _generic_mio0SegmentRomEnd
     load_mio0 /*seg*/ 0x0A, /*romStart*/ _water_skybox_mio0SegmentRomStart, /*romEnd*/ _water_skybox_mio0SegmentRomEnd
     load_mio0 /*seg*/ 0x05, /*romStart*/ _group3_mio0SegmentRomStart, /*romEnd*/ _group3_mio0SegmentRomEnd
     load_raw  /*seg*/ 0x0C, /*romStart*/ _group3_geoSegmentRomStart,  /*romEnd*/ _group3_geoSegmentRomEnd

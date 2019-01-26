@@ -4,21 +4,6 @@
 .include "ultra64/gbi.inc"
 .include "macro_presets.inc"
 
-# TODO: cross-link between segments
-.equ bob_textures_09001800, 0x09001800
-.equ bob_textures_09002000, 0x09002000
-.equ bob_textures_09003000, 0x09003000
-.equ bob_textures_09003800, 0x09003800
-.equ bob_textures_09004800, 0x09004800
-.equ bob_textures_09005000, 0x09005000
-.equ bob_textures_09005800, 0x09005800
-.equ bob_textures_09006000, 0x09006000
-.equ bob_textures_09008800, 0x09008800
-.equ bob_textures_09009000, 0x09009000
-.equ bob_textures_09009800, 0x09009800
-.equ bob_textures_0900A000, 0x0900A000
-.equ bob_textures_0900B000, 0x0900B000
-
 bob_seg7_texture_07000000: # 0x07000000 - 0x07000800
 .incbin "levels/bob/0.rgba16"
 
@@ -417,7 +402,7 @@ vertex   2407,   2917,  -1925,    970,   2040,  0x90, 0xCC, 0x18, 0xFF
 vertex   2447,   2917,  -2073,      0,   2032,  0xEE, 0xAC, 0xA4, 0xFF
 
 bob_seg7_dl_07003CA8: # 0x07003CA8 - 0x070041E0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bob_textures_09005800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, generic_09005800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight bob_seg7_light_07002808, 1
@@ -586,7 +571,7 @@ gsSP1Triangle  0,  7,  1, 0x0
 gsSPEndDisplayList
 
 bob_seg7_dl_070041E0: # 0x070041E0 - 0x070042B8
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bob_textures_09009800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, generic_09009800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex bob_seg7_vertex_070037E8, 16, 0
@@ -615,7 +600,7 @@ gsSP1Triangle  4,  6,  7, 0x0
 gsSPEndDisplayList
 
 bob_seg7_dl_070042B8: # 0x070042B8 - 0x07004390
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bob_textures_09006000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, generic_09006000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex bob_seg7_vertex_07003A68, 15, 0
@@ -1966,7 +1951,7 @@ vertex   6205,    993,  -1524,    352,     96,  0xA7, 0x00, 0x59, 0xFF
 vertex   6198,    993,  -1531,      0,     96,  0xA7, 0x00, 0x59, 0xFF
 
 bob_seg7_dl_07008AF0: # 0x07008AF0 - 0x07008C28
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bob_textures_09003800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, generic_09003800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight bob_seg7_light_07004480, 1
@@ -2007,7 +1992,7 @@ gsSP1Triangle  0,  1,  2, 0x0
 gsSPEndDisplayList
 
 bob_seg7_dl_07008C28: # 0x07008C28 - 0x07009050
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bob_textures_09002000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, generic_09002000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex bob_seg7_vertex_070048A0, 15, 0
@@ -2142,7 +2127,7 @@ gsSP1Triangle  0,  2,  6, 0x0
 gsSPEndDisplayList
 
 bob_seg7_dl_07009050: # 0x07009050 - 0x07009370
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bob_textures_09001800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, generic_09001800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex bob_seg7_vertex_07005800, 15, 0
@@ -2244,7 +2229,7 @@ gsSP1Triangle  3,  4,  5, 0x0
 gsSPEndDisplayList
 
 bob_seg7_dl_07009370: # 0x07009370 - 0x07009490
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bob_textures_09005000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, generic_09005000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex bob_seg7_vertex_07006680, 14, 0
@@ -2282,7 +2267,7 @@ gsSP1Triangle  4,  6,  7, 0x0
 gsSPEndDisplayList
 
 bob_seg7_dl_07009490: # 0x07009490 - 0x070095B8
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bob_textures_09004800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, generic_09004800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex bob_seg7_vertex_070069D0, 15, 0
@@ -2321,7 +2306,7 @@ gsSP1Triangle  4,  7,  5, 0x0
 gsSPEndDisplayList
 
 bob_seg7_dl_070095B8: # 0x070095B8 - 0x07009768
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bob_textures_09003000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, generic_09003000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex bob_seg7_vertex_07006E30, 16, 0
@@ -2462,7 +2447,7 @@ gsSP1Triangle  3,  5,  9, 0x0
 gsSPEndDisplayList
 
 bob_seg7_dl_070099E0: # 0x070099E0 - 0x07009D80
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bob_textures_09006000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, generic_09006000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex bob_seg7_vertex_07007B20, 15, 0
@@ -2699,7 +2684,7 @@ vertex  -1220,    125,   5114,      0,      0,  0xFF, 0xFF, 0xFF, 0xB4
 vertex  -1520,    250,   5364,    990,      0,  0xFF, 0xFF, 0xFF, 0xB4
 
 bob_seg7_dl_0700A318: # 0x0700A318 - 0x0700A470
-gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_16b, 1, bob_textures_0900B000
+gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_16b, 1, generic_0900B000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex bob_seg7_vertex_07009E98, 15, 0
@@ -2818,7 +2803,7 @@ vertex    768,    870,   5847, -12192,      0,  0xFF, 0xFF, 0xFF, 0xFF
 vertex    768,    768,   5847, -12192,    990,  0xFF, 0xFF, 0xFF, 0xFF
 
 bob_seg7_dl_0700A800: # 0x0700A800 - 0x0700A848
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bob_textures_09008800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, generic_09008800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex bob_seg7_vertex_0700A4E0, 8, 0
@@ -3587,7 +3572,7 @@ vertex   1782,    282,   4557,      0,   2012,  0x81, 0x00, 0x00, 0xFF
 vertex   1782,    666,   4659,    990,      0,  0x81, 0x00, 0x00, 0xFF
 
 bob_seg7_dl_0700CFC0: # 0x0700CFC0 - 0x0700D7D8
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bob_textures_09009000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, generic_09009000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight bob_seg7_light_0700A9E8, 1
@@ -3848,7 +3833,7 @@ gsSP1Triangle  0,  2, 14, 0x0
 gsSPEndDisplayList
 
 bob_seg7_dl_0700D7D8: # 0x0700D7D8 - 0x0700D910
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bob_textures_09005800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, generic_09005800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight bob_seg7_light_0700A9E8, 1
@@ -3889,7 +3874,7 @@ gsSP1Triangle  3,  4,  5, 0x0
 gsSPEndDisplayList
 
 bob_seg7_dl_0700D910: # 0x0700D910 - 0x0700DC40
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bob_textures_09009800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, generic_09009800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex bob_seg7_vertex_0700C4A0, 16, 0
@@ -4004,7 +3989,7 @@ gsSP1Triangle  4,  7,  5, 0x0
 gsSPEndDisplayList
 
 bob_seg7_dl_0700DC88: # 0x0700DC88 - 0x0700DCE0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bob_textures_0900A000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, generic_0900A000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex bob_seg7_vertex_0700CEC0, 12, 0
@@ -4017,7 +4002,7 @@ gsSP1Triangle  9, 11, 10, 0x0
 gsSPEndDisplayList
 
 bob_seg7_dl_0700DCE0: # 0x0700DCE0 - 0x0700DD18
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bob_textures_09006000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, generic_09006000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex bob_seg7_vertex_0700CF80, 4, 0
@@ -4136,7 +4121,7 @@ vertex    534,   3042,  -5240,   3476,   3100,  0xF2, 0x9D, 0xB3, 0xFF
 vertex    712,   3042,  -5342,   2932,   3100,  0xAF, 0xA7, 0xDA, 0xFF
 
 bob_seg7_dl_0700E1E8: # 0x0700E1E8 - 0x0700E338
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bob_textures_09009000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, generic_09009000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight bob_seg7_light_0700DE38, 1
@@ -4209,7 +4194,7 @@ vertex   -511,    640,      0,    990,    990,  0xFF, 0xFF, 0xFF, 0xFF
 vertex   -511,      0,      0,    990,  -5142,  0xFF, 0xFF, 0xFF, 0xFF
 
 bob_seg7_dl_0700E420: # 0x0700E420 - 0x0700E458
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bob_textures_09008800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, generic_09008800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex bob_seg7_vertex_0700E3E0, 4, 0
@@ -4280,7 +4265,7 @@ vertex    181,      0,    905,    690,    172,  0x54, 0xAC, 0x2A, 0xFF
 vertex    181,     51,    905,    690,      0,  0x33, 0x33, 0x67, 0xFF
 
 bob_seg7_dl_0700E6C8: # 0x0700E6C8 - 0x0700E768
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bob_textures_09006000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, generic_09006000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPLight bob_seg7_light_0700E518, 1
@@ -4332,7 +4317,7 @@ vertex      0,      0,      0,  -1956,    990,  0xFF, 0xFF, 0xFF, 0xFF
 vertex    320,      0,      0,    598,    990,  0xFF, 0xFF, 0xFF, 0xFF
 
 bob_seg7_dl_0700E860: # 0x0700E860 - 0x0700E8A0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bob_textures_09008800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, generic_09008800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex bob_seg7_vertex_0700E810, 5, 0
