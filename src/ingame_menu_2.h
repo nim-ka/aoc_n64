@@ -11,8 +11,7 @@ struct struct802DCEE0 {
     s32 unk04;
     s32 unk08;
     s32 unk0C;
-    s32 unk10;
-    s32 unk14;
+    s32 unk10[2];
     s32 unk18;
     s32 unk1C;
     s8 filler20[56 - 0x20];

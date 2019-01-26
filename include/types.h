@@ -375,10 +375,8 @@ struct Struct8033B1B0
 
 struct MyVec3f
 {
-
     float x;
     float y;
-
     float z;
 };
 

@@ -261,8 +261,6 @@ $(MIO0_DIR)/%.mio0.s: $(MIO0_DIR)/%.mio0
 	printf ".section .data\n\n.incbin \"$<\"\n" > $@
 
 # Source code
-$(BUILD_DIR)/src/ingame_menu_3.o: CC := python3 tools/asm_processor/build.py $(CC) -- $(AS) $(ASFLAGS) --
-
 $(BUILD_DIR)/src/goddard/%.o: MIPSISET := -mips1
 $(BUILD_DIR)/src/audio/%.o: CC := python3 tools/asm_processor/build.py $(CC) -- $(AS) $(ASFLAGS) --
 $(BUILD_DIR)/src/audio/dma.o: OPT_FLAGS := -O2 -framepointer -Wo,-loopunroll,0
