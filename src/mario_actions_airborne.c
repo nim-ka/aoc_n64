@@ -48,7 +48,7 @@ void func_u_8026A090(struct MarioState *m)
 
 static s32 lava_boost_on_wall(struct MarioState *m)
 {
-    m->faceAngle[1] = atan2s(m->wall->normal[2], m->wall->normal[0]);
+    m->faceAngle[1] = atan2s(m->wall->normal.z, m->wall->normal.x);
 
     if (m->forwardVel < 24.0f)
        m->forwardVel = 24.0f;
@@ -125,7 +125,7 @@ static s32 should_get_stuck_in_ground(struct MarioState *m)
     {
         if (!(flags & 0x01) &&
             m->peakHeight - m->pos[1] > 1000.0f &&
-            floor->normal[1] >= 0.8660254f)
+            floor->normal.y >= 0.8660254f)
         {
             return TRUE;
         }
@@ -1463,7 +1463,7 @@ static s32 act_butt_slide_air(struct MarioState *m)
     switch (perform_air_step(m, 0))
     {
     case AIR_STEP_LANDED:
-        if (m->actionState == 0 && m->vel[1] < 0.0f && m->floor->normal[1] >= 0.9848077f)
+        if (m->actionState == 0 && m->vel[1] < 0.0f && m->floor->normal.y >= 0.9848077f)
         {
             m->vel[1] = -m->vel[1] / 2.0f;
             m->actionState = 1;
@@ -1504,7 +1504,7 @@ static s32 act_hold_butt_slide_air(struct MarioState *m)
     switch (perform_air_step(m, 0))
     {
     case AIR_STEP_LANDED:
-        if (m->actionState == 0 && m->vel[1] < 0.0f && m->floor->normal[1] >= 0.9848077f)
+        if (m->actionState == 0 && m->vel[1] < 0.0f && m->floor->normal.y >= 0.9848077f)
         {
             m->vel[1] = -m->vel[1] / 2.0f;
             m->actionState = 1;

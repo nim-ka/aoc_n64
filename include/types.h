@@ -241,7 +241,11 @@ struct Surface
     /*0x0A*/ Vec3s vertex1;
     /*0x10*/ Vec3s vertex2;
     /*0x16*/ Vec3s vertex3;
-    /*0x1C*/ Vec3f normal;
+    /*0x1C*/ struct {
+        f32 x;
+        f32 y;
+        f32 z;
+    } normal;
     /*0x28*/ f32 originOffset;
     /*0x2C*/ struct Object *object;
 };

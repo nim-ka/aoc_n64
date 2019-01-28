@@ -49,7 +49,7 @@ static s32 find_wall_collisions_from_list(
         if (y < surf->lowerY || y > surf->upperY)
             continue;
 
-        offset = surf->normal[2] * z + (surf->normal[1] * y + surf->normal[0] * x) + surf->originOffset;
+        offset = surf->normal.x * x + surf->normal.y * y + surf->normal.z * z + surf->originOffset;
 
         if (offset < -radius || offset > radius)
             continue;
@@ -66,7 +66,7 @@ static s32 find_wall_collisions_from_list(
             y2 = surf->vertex2[1];
             y3 = surf->vertex3[1];
 
-            if (surf->normal[0] > 0.0f)
+            if (surf->normal.x > 0.0f)
             {
                 if ((y1 - y) * (w2 - w1) - (w1 - -pz) * (y2 - y1) > 0.0f) continue;
                 if ((y2 - y) * (w3 - w2) - (w2 - -pz) * (y3 - y2) > 0.0f) continue;
@@ -88,7 +88,7 @@ static s32 find_wall_collisions_from_list(
             y2 = surf->vertex2[1];
             y3 = surf->vertex3[1];
 
-            if (surf->normal[2] > 0.0f)
+            if (surf->normal.z > 0.0f)
             {
                 if ((y1 - y) * (w2 - w1) - (w1 - px) * (y2 - y1) > 0.0f) continue;
                 if ((y2 - y) * (w3 - w2) - (w2 - px) * (y3 - y2) > 0.0f) continue;
@@ -130,8 +130,8 @@ static s32 find_wall_collisions_from_list(
 
         //! Because this doesn't update the x and z local variables, multiple
         // walls can push mario more than is required.
-        data->x += surf->normal[0] * (radius - offset);
-        data->z += surf->normal[2] * (radius - offset);
+        data->x += surf->normal.x * (radius - offset);
+        data->z += surf->normal.z * (radius - offset);
 
         if (data->numWalls < 4)
             data->walls[data->numWalls++] = surf;
@@ -227,9 +227,9 @@ static struct Surface *find_ceil_from_list(
         }
 
         {
-            f32 nx = surf->normal[0];
-            f32 ny = surf->normal[1];
-            f32 nz = surf->normal[2];
+            f32 nx = surf->normal.x;
+            f32 ny = surf->normal.y;
+            f32 nz = surf->normal.z;
             f32 oo = surf->originOffset;
             f32 height;
 
@@ -302,9 +302,9 @@ f32 func_803814B8(f32 xPos, f32 yPos, f32 zPos, f32 **sp2C)
 
     if (floor != NULL)
     {
-        D_8038BE30.unk10 = floor->normal[0];
-        D_8038BE30.unk14 = floor->normal[1];
-        D_8038BE30.unk18 = floor->normal[2];
+        D_8038BE30.unk10 = floor->normal.x;
+        D_8038BE30.unk14 = floor->normal.y;
+        D_8038BE30.unk18 = floor->normal.z;
         D_8038BE30.unk1C = floor->originOffset;
 
         *sp2C = D_8038BE30.unk0;
@@ -348,9 +348,9 @@ static struct Surface *find_floor_from_list(
             continue;
         }
 
-        nx = surf->normal[0];
-        ny = surf->normal[1];
-        nz = surf->normal[2];
+        nx = surf->normal.x;
+        ny = surf->normal.y;
+        nz = surf->normal.z;
         oo = surf->originOffset;
 
         if (ny == 0.0f) continue;
@@ -603,9 +603,9 @@ static s32 unused_resolve_floor_or_ceil_collisions(
     if (*psurface == NULL)
         return -1;
 
-    nx = (*psurface)->normal[0];
-    ny = (*psurface)->normal[1];
-    nz = (*psurface)->normal[2];
+    nx = (*psurface)->normal.x;
+    ny = (*psurface)->normal.y;
+    nz = (*psurface)->normal.z;
     oo = (*psurface)->originOffset;
 
     offset = nx * x + ny * y + nz * z + oo;

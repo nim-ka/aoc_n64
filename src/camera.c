@@ -479,7 +479,7 @@ s32 func_8027FDB8(u16 a)
     {
         if (sp44->type != 40 && sp40 > 0.f)
         {
-            if (sp44->normal[2] == 0.f && sp40 < 100.f)
+            if (sp44->normal.z == 0.f && sp40 < 100.f)
                 sp3E = 1456;
             else
                 sp3E += atan2s(40.f, sp40);
@@ -1122,9 +1122,9 @@ s32 CameraChange0B(struct Struct80280550 *a, Vec3f b, Vec3f c)
     c[1] = find_floor(a->unk28, 20000.f, a->unk2C, &sp58);
     if (sp58 != NULL)
     {
-        sp74 = sp58->normal[0];
-        sp70 = sp58->normal[1];
-        sp6C = sp58->normal[2];
+        sp74 = sp58->normal.x;
+        sp70 = sp58->normal.y;
+        sp6C = sp58->normal.z;
         sp68 = sp58->originOffset;
         c[1] = 300.f - (sp74 * c[0] + sp6C * c[2] + sp68) / sp70;
         switch (D_8032CFD8)
@@ -3078,9 +3078,9 @@ s32 func_80288974(Vec3f pos, f32 offsetY, f32 radius)
         {
             wall = collisionData.walls[collisionData.numWalls - 1];
             vec3f_copy(sp24[sp20], pos);
-            sp68 = wall->normal[0];
-            sp64 = wall->normal[1];
-            sp60 = wall->normal[2];
+            sp68 = wall->normal.x;
+            sp64 = wall->normal.y;
+            sp60 = wall->normal.z;
             sp5C = wall->originOffset;
             sp58 = sp68 * sp24[sp20][0] + sp64 * sp24[sp20][1] + sp60 * sp24[sp20][2] + sp5C;
             sp54 = ABS2(sp58);
@@ -5241,7 +5241,7 @@ s32 func_8028F2F0(struct Struct80280550 *a, Vec3f b, s16 *c, s16 d)
                 {
                     sp28 = 1;
                     sp58 = sp5C.walls[sp5C.numWalls - 1];
-                    sp36 = atan2s(sp58->normal[2], sp58->normal[0]) + 0x4000;
+                    sp36 = atan2s(sp58->normal.z, sp58->normal.x) + 0x4000;
                     *c = func_80289A98(sp2E, sp36) + 0x8000;
                 }
             }
@@ -5255,7 +5255,7 @@ s32 func_8028F2F0(struct Struct80280550 *a, Vec3f b, s16 *c, s16 d)
             if (find_wall_collisions(&sp5C) != 0)
             {
                 sp58 = sp5C.walls[sp5C.numWalls - 1];
-                sp34 = atan2s(sp58->normal[2], sp58->normal[0]);
+                sp34 = atan2s(sp58->normal.z, sp58->normal.x);
                 sp36 = sp34 + 0x4000;
                 if ((func_8028A0D4(D_8032D000->unk4, b, sp58, d, 40) == 0)
                     && (func_8028A204((u32)a, sp58) == 1)

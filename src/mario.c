@@ -352,7 +352,7 @@ extern s32 mario_get_floor_class(struct MarioState *m)
                 break;
         }
     }
-    if (m->action == ACT_CRAWLING && m->floor->normal[1] > 0.5f && sp4 == 0)
+    if (m->action == ACT_CRAWLING && m->floor->normal.y > 0.5f && sp4 == 0)
         sp4 = 0x15;
     return sp4;
 }
@@ -454,7 +454,7 @@ u32 func_802519A8(struct MarioState *m)
 {
     f32 sp24;
 
-    if ((m->area->unk02 & 7) == 6 && m->floor->normal[1] < 0.9998477f)
+    if ((m->area->unk02 & 7) == 6 && m->floor->normal.y < 0.9998477f)
         return TRUE;
 
     switch (mario_get_floor_class(m))
@@ -472,14 +472,14 @@ u32 func_802519A8(struct MarioState *m)
             sp24 = 0.0f;
             break;
     }
-    return m->floor->normal[1] <= sp24;
+    return m->floor->normal.y <= sp24;
 }
 
 s32 mario_floor_is_slope(struct MarioState *m)
 {
     f32 tmp;
 
-    if ((m->area->unk02 & 0x0007) == 6 && m->floor->normal[1] < 0.9998477f)
+    if ((m->area->unk02 & 0x0007) == 6 && m->floor->normal.y < 0.9998477f)
         return TRUE;
 
     switch (mario_get_floor_class(m))
@@ -497,7 +497,7 @@ s32 mario_floor_is_slope(struct MarioState *m)
             tmp = 0.9396926f;
             break;
     }
-    return m->floor->normal[1] <= tmp;
+    return m->floor->normal.y <= tmp;
 }
 
 s32 func_80251BF8(struct MarioState *m)
@@ -521,7 +521,7 @@ s32 func_80251BF8(struct MarioState *m)
                 tmp = 0.8660254f;
                 break;
         }
-        result = m->floor->normal[1] <= tmp;
+        result = m->floor->normal.y <= tmp;
     }
     return result;
 }
@@ -980,9 +980,9 @@ void func_802534F4(struct MarioState *m)
 
     if (gShowDebugText)
     {
-        steepness = sqrtf(((m->floor->normal[2] * m->floor->normal[2]) +
-                           (m->floor->normal[0] * m->floor->normal[0])));
-        floor_nY = m->floor->normal[1];
+        steepness = sqrtf(((m->floor->normal.x * m->floor->normal.x) +
+                           (m->floor->normal.z * m->floor->normal.z)));
+        floor_nY = m->floor->normal.y;
         print_text_fmt_int(210, 88, "ANG %d", (atan2s(floor_nY, steepness) * 180.0f) / 32768.0f);
         print_text_fmt_int(210, 72, "SPD %d", m->forwardVel);
         print_text_fmt_int(210, 56, "STA %x", (m->action & ACT_ID_MASK));
@@ -1062,7 +1062,7 @@ void func_80253834(struct MarioState *m)
 
     if (m->floor)
     {
-        m->floorAngle = atan2s(m->floor->normal[2], m->floor->normal[0]);
+        m->floorAngle = atan2s(m->floor->normal.z, m->floor->normal.x);
         m->unk14 = func_8025167C(m);
 
         if ((m->pos[1] > m->waterLevel - 0x28) && func_802519A8(m))

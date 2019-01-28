@@ -295,9 +295,9 @@ s32 ObjFindWall(f32 objNewX, f32 objY, f32 objNewZ, f32 objVelX, f32 objVelZ)
         o->oPosX = hitbox.x;
         o->oPosY = hitbox.y;
         o->oPosZ = hitbox.z;
-        wall_nX = hitbox.walls[0]->normal[0];
-        wall_nY = hitbox.walls[0]->normal[1];
-        wall_nZ = hitbox.walls[0]->normal[2];
+        wall_nX = hitbox.walls[0]->normal.x;
+        wall_nY = hitbox.walls[0]->normal.y;
+        wall_nZ = hitbox.walls[0]->normal.z;
         objVelXCopy = objVelX;
         objVelZCopy = objVelZ;
         TurnObjAwayFromSurface(objVelXCopy, objVelZCopy, wall_nX, wall_nY, wall_nZ, &objYawX, &objYawZ);
@@ -326,9 +326,9 @@ s32 TurnObjAwayFromAwkwardFloor(struct Surface* objFloor, f32 floorY, f32 objVel
         return 0;
     }
 
-    floor_nX = objFloor->normal[0];
-    floor_nY = objFloor->normal[1];
-    floor_nZ = objFloor->normal[2];
+    floor_nX = objFloor->normal.x;
+    floor_nY = objFloor->normal.y;
+    floor_nZ = objFloor->normal.z;
 
     if (floor_nY < 0.5 && floorY > o->oPosY)
     {
@@ -388,9 +388,9 @@ void CalcObjFriction(f32 *objFriction, f32 floor_nY)
 
 void CalcNewObjVelAndPosY(struct Surface* objFloor, f32 objFloorY, f32 objVelX, f32 objVelZ)
 {
-    f32 floor_nX = objFloor->normal[0];
-    f32 floor_nY = objFloor->normal[1];
-    f32 floor_nZ = objFloor->normal[2];
+    f32 floor_nX = objFloor->normal.x;
+    f32 floor_nY = objFloor->normal.y;
+    f32 floor_nZ = objFloor->normal.z;
     f32 objFriction;
     
     o->oVelY -= o->oGravity;
@@ -434,9 +434,9 @@ void CalcNewObjVelAndPosY(struct Surface* objFloor, f32 objFloorY, f32 objVelX, 
 
 void CalcNewObjVelAndPosYUnderwater(struct Surface* objFloor, f32 floorY, f32 objVelX, f32 objVelZ, f32 waterY)
 {
-    f32 floor_nX = objFloor->normal[0];
-    f32 floor_nY = objFloor->normal[1];
-    f32 floor_nZ = objFloor->normal[2];
+    f32 floor_nX = objFloor->normal.x;
+    f32 floor_nY = objFloor->normal.y;
+    f32 floor_nZ = objFloor->normal.z;
 
     f32 netYAccel = (1.0f - o->oBuoyancy) * (-1.0f * o->oGravity);
     o->oVelY -= netYAccel;

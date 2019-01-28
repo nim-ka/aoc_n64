@@ -80,12 +80,12 @@ static void add_surface_to_cell(s16 dynamic, s16 cellX, s16 cellZ, struct Surfac
     s16 sortDir;
     s16 listIndex;
 
-    if (surface->normal[1] > 0.01)
+    if (surface->normal.y > 0.01)
     {
         listIndex = SPATIAL_PARTITION_FLOORS;
         sortDir = 1; // highest to lowest, then insertion order
     }
-    else if (surface->normal[1] < -0.01)
+    else if (surface->normal.y < -0.01)
     {
         listIndex = SPATIAL_PARTITION_CEILS;
         sortDir = -1; // lowest to highest, then insertion order
@@ -95,7 +95,7 @@ static void add_surface_to_cell(s16 dynamic, s16 cellX, s16 cellZ, struct Surfac
         listIndex = SPATIAL_PARTITION_WALLS;
         sortDir = 0; // insertion order
 
-        if (surface->normal[0] < -0.707 || surface->normal[0] > 0.707)
+        if (surface->normal.x < -0.707 || surface->normal.x > 0.707)
             surface->flags |= SURFACE_FLAG_X_PROJECTION;
     }
 
@@ -277,9 +277,9 @@ static struct Surface *read_surface_data(s16 *vertexData, s16 **vertexIndices)
     surface->vertex2[2] = z2;
     surface->vertex3[2] = z3;
 
-    surface->normal[0] = nx;
-    surface->normal[1] = ny;
-    surface->normal[2] = nz;
+    surface->normal.x = nx;
+    surface->normal.y = ny;
+    surface->normal.z = nz;
 
     surface->originOffset = -(nx*x1 + ny*y1 + nz*z1);
 

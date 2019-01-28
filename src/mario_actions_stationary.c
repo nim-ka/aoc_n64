@@ -17,7 +17,7 @@
 
 s32 func_802604E0(struct MarioState *m) {
     mario_drop_held_object(m);
-    if (m->floor->normal[1] < 0.29237169f)
+    if (m->floor->normal.y < 0.29237169f)
     {
         return mario_push_off_steep_floor(m, ACT_FREEFALL, 0);
     }
@@ -67,7 +67,7 @@ s32 func_802604E0(struct MarioState *m) {
 }
 
 s32 func_802606DC(struct MarioState *m) {
-    if (m->floor->normal[1] < 0.29237169f)
+    if (m->floor->normal.y < 0.29237169f)
     {
         return mario_push_off_steep_floor(m, ACT_HOLD_FREEFALL, 0);
     }

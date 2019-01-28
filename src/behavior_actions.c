@@ -1977,9 +1977,9 @@ void BehCoinLoop(void)
         if(o->oSubAction == 1)
         {
             o->oBounce = 0;
-            if(sp1C->normal[1] < 0.9)
+            if(sp1C->normal.y < 0.9)
             {
-                sp1A = atan2s(sp1C->normal[2],sp1C->normal[0]);
+                sp1A = atan2s(sp1C->normal.z,sp1C->normal.x);
                 obj_rotate_yaw_toward(sp1A,0x400);
             }
         }
@@ -8788,9 +8788,9 @@ void BehJrbSlidingBox(void)
     find_floor(sp20[0],sp20[1],sp20[2],&sp38);
     if(sp38 != NULL)
     {
-        sp2C[0] = sp38->normal[0];
-        sp2C[1] = sp38->normal[1];
-        sp2C[2] = sp38->normal[2];
+        sp2C[0] = sp38->normal.x;
+        sp2C[1] = sp38->normal.y;
+        sp2C[2] = sp38->normal.z;
         o->oFaceAnglePitch = sp1E;
     }
     o->oJrbSlidingBoxUnkFC = sins(o->oJrbSlidingBoxUnkF8) * 20.0f;
