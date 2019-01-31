@@ -387,7 +387,7 @@ void func_8027C2A8(struct GraphNodeBackground *a)
         gDPPipeSync(sp34++);
         gDPSetCycleType(sp34++, G_CYC_FILL);
         gDPSetFillColor(sp34++, a->background);
-        gDPFillRectangle(sp34++, 0, 8, 319, 231);
+        gDPFillRectangle(sp34++, 0, BORDER_HEIGHT, 319, 239-BORDER_HEIGHT);
         gDPPipeSync(sp34++);
         gDPSetCycleType(sp34++, G_CYC_1CYCLE);
         gSPEndDisplayList(sp34++);

@@ -395,14 +395,14 @@ void render_game(void)
         
         gSPViewport(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&D_8032CF00));
         
-        gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 0, 8, 320, 232);
+        gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 0, BORDER_HEIGHT, 320, 240-BORDER_HEIGHT);
         render_hud();
         
         gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 0, 0, 320, 240);
         func_802D61A8();
         do_cutscene_handler();
         func_80256CA8();
-        gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 0, 8, 320, 232);
+        gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 0, BORDER_HEIGHT, 320, 240-BORDER_HEIGHT);
         D_8033A75E = func_802DCD98();
         
         if (D_8033A75E != 0)
@@ -411,7 +411,7 @@ void render_game(void)
         if (D_8032CE78 != NULL)
             func_8024798C(D_8032CE78);
         else
-            gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 0, 8, 320, 232);
+            gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 0, BORDER_HEIGHT, 320, 240-BORDER_HEIGHT);
         
         if (D_8033A740.unk0 != 0)
         {

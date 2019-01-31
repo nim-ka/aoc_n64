@@ -458,6 +458,9 @@ typedef int BssDummy;
 // convert a physical address to virtual.
 #define PHYSICAL_TO_VIRTUAL(addr)    ((u32)(addr) | 0x80000000)
 
+//Border Height Define for NTSC Versions
+#define BORDER_HEIGHT 8
+
 /*
  this input mask is unused by the controller,
  but END_DEMO is used internally to signal

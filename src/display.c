@@ -61,7 +61,7 @@ void ClearZBuffer(void)
     gDPSetFillColor(gDisplayListHead++,
         GPACK_RGBA5551(255, 255, 240, 0) << 16 | GPACK_RGBA5551(255, 255, 240, 0));
 
-    gDPFillRectangle(gDisplayListHead++, 0, 8, 319, 231);
+    gDPFillRectangle(gDisplayListHead++, 0, BORDER_HEIGHT, 319, 239-BORDER_HEIGHT);
 }
 
 void DisplayFrameBuffer(void)
@@ -70,7 +70,7 @@ void DisplayFrameBuffer(void)
 
     gDPSetCycleType(gDisplayListHead++, G_CYC_1CYCLE);
     gDPSetColorImage(gDisplayListHead++, G_IM_FMT_RGBA, 2, 320, gFrameBuffers[D_8032C69C]);
-    gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 0, 8, 320, 232);
+    gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 0, BORDER_HEIGHT, 320, 240-BORDER_HEIGHT);
 }
 
 void ClearFrameBuffer(int a)
@@ -81,7 +81,7 @@ void ClearFrameBuffer(int a)
     gDPSetCycleType(gDisplayListHead++, G_CYC_FILL);
 
     gDPSetFillColor(gDisplayListHead++, a);
-    gDPFillRectangle(gDisplayListHead++, 0, 8, 319, 231);
+    gDPFillRectangle(gDisplayListHead++, 0, BORDER_HEIGHT, 319, 239-BORDER_HEIGHT);
 
     gDPPipeSync(gDisplayListHead++);
 
@@ -118,8 +118,11 @@ void func_8024781C(void)
 
     gDPSetFillColor(gDisplayListHead++,
         GPACK_RGBA5551(0, 0, 0, 0) << 16 | GPACK_RGBA5551(0, 0, 0, 0));
-    gDPFillRectangle(gDisplayListHead++, 0, 0, 319, 7);
-    gDPFillRectangle(gDisplayListHead++, 0, 232, 319, 239);
+    
+    #if BORDER_HEIGHT != 0
+        gDPFillRectangle(gDisplayListHead++, 0, 0, 319, BORDER_HEIGHT-1);
+        gDPFillRectangle(gDisplayListHead++, 0, 240-BORDER_HEIGHT, 319, 239);
+    #endif
 }
 
 void func_8024798C(Vp *viewport)
