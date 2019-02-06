@@ -120,8 +120,8 @@ static s32 should_get_stuck_in_ground(struct MarioState *m)
     if (floor != NULL &&
         (terrainType == 2 || terrainType == 3) &&
         type != SURFACE_LAVA &&
-        type != SURFACE_0030 &&
-        !(type >= SURFACE_0035 && type <= SURFACE_0037))
+        type != SURFACE_HARD &&
+        !(type >= SURFACE_HARD_SLIPPERY && type <= SURFACE_HARD_NOT_SLIPPERY))
     {
         if (!(flags & 0x01) &&
             m->peakHeight - m->pos[1] > 1000.0f &&
@@ -159,7 +159,7 @@ static s32 check_horizontal_wind(struct MarioState *m)
 
     floor = m->floor;
 
-    if (floor->type == SURFACE_002C)
+    if (floor->type == SURFACE_HORIZONTAL_WIND)
     {
         pushAngle = floor->force << 8;
 
@@ -642,7 +642,7 @@ static s32 act_long_jump(struct MarioState *m)
 
     func_80251410(m, 0x04008081, 0x24048081);
 
-    if (m->floor->type == SURFACE_0038 && m->actionState == 0)
+    if (m->floor->type == SURFACE_VERTICAL_WIND && m->actionState == 0)
     {
         SetSound(SOUND_MARIO_HEREWEGO, &m->marioObj->header.gfx.unk54);
         m->actionState = 1;
@@ -2057,7 +2057,7 @@ static s32 check_common_airborne_cancels(struct MarioState *m)
     if (m->input & INPUT_SQUISHED)
         return drop_and_set_mario_action(m, ACT_SQUISHED, 0);
 
-    if (m->floor->type == SURFACE_0038 && (m->action & ACT_FLAG_ALLOW_VERTICAL_WIND_ACTION))
+    if (m->floor->type == SURFACE_VERTICAL_WIND && (m->action & ACT_FLAG_ALLOW_VERTICAL_WIND_ACTION))
         return drop_and_set_mario_action(m, ACT_VERTICAL_WIND, 0);
 
     m->quicksandDepth = 0.0f;

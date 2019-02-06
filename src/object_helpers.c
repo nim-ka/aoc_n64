@@ -2169,9 +2169,9 @@ static void obj_update_floor(void)
             o->oMoveFlags |= OBJ_MOVE_ABOVE_LAVA;
         }
 #ifndef VERSION_JP
-        else if (floor->type == SURFACE_000A)
+        else if (floor->type == SURFACE_DEATH_PLANE)
         {
-            //! This misses SURFACE_0038 (and maybe SURFACE_0032)
+            //! This misses SURFACE_VERTICAL_WIND (and maybe SURFACE_WARP)
             o->oMoveFlags |= OBJ_MOVE_ABOVE_DEATH_BARRIER;
         }
 #endif

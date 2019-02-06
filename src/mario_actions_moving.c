@@ -451,7 +451,7 @@ static void update_shell_speed(struct MarioState *m)
         m->floor->originOffset = m->waterLevel; //! Negative origin offset
     }
 
-    if (m->floor != NULL && m->floor->type == SURFACE_0009)
+    if (m->floor != NULL && m->floor->type == SURFACE_SLOW)
         maxTargetSpeed = 48.0f;
     else
         maxTargetSpeed = 64.0f;
@@ -518,7 +518,7 @@ static void update_walking_speed(struct MarioState *m)
     f32 maxTargetSpeed;
     f32 targetSpeed;
 
-    if (m->floor != NULL && m->floor->type == SURFACE_0009)
+    if (m->floor != NULL && m->floor->type == SURFACE_SLOW)
         maxTargetSpeed = 24.0f;
     else
         maxTargetSpeed = 32.0f;
@@ -1805,7 +1805,7 @@ static u32 common_landing_action(struct MarioState *m, s16 animation, u32 airAct
     func_802507E8(m, animation);
     func_802512E4(m, SOUND_ACTION_UNKNOWN408);
 
-    if (m->floor->type >= SURFACE_0021 && m->floor->type <= SURFACE_0027)
+    if (m->floor->type >= SURFACE_SHALLOW_QUICKSAND && m->floor->type <= SURFACE_MOVING_QUICKSAND)
         m->quicksandDepth += (4 - m->actionTimer) * 3.5f - 0.5f;
 
     return stepResult;

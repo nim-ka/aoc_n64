@@ -4754,31 +4754,31 @@ void func_802F09C0(void) {
         return;
 
     switch (D_803600E0->type) {
-        case SURFACE_000A:
+        case SURFACE_DEATH_PLANE:
             o->activeFlags = 0;
             break;
 
-        case SURFACE_0021:
-        case SURFACE_0022: 
-        case SURFACE_0026:
+        case SURFACE_SHALLOW_QUICKSAND:
+        case SURFACE_DEEP_QUICKSAND: 
+        case SURFACE_QUICKSAND:
             o->oAction = 10;
             o->oForwardVel = 0.0f;
             break;
 
-        case SURFACE_0024:
-        case SURFACE_0025:
-        case SURFACE_0027:
+        case SURFACE_DEEP_MOVING_QUICKSAND:
+        case SURFACE_SHALLOW_MOVING_QUICKSAND:
+        case SURFACE_MOVING_QUICKSAND:
             o->oAction = 11;
             o->oMoveAngleYaw = (D_803600E0->force & 0xFF) << 8;
             o->oForwardVel = -((D_803600E0->force & 0xff00) >> 8) * 2 + 8;
             break;
 
-        case SURFACE_0023:
+        case SURFACE_INSTANT_QUICKSAND:
             o->oAction = 12;
             o->oForwardVel = 0;
             break;
             
-        case SURFACE_002D:
+        case SURFACE_INSTANT_MOVING_QUICKSAND:
             o->oAction = 13;
             o->oMoveAngleYaw = (D_803600E0->force & 0xFF) << 8;
             o->oForwardVel = -((D_803600E0->force & 0xff00) >> 8) * 2 + 8;

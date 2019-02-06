@@ -26,55 +26,55 @@ typedef int BssDummy;
 
 #define ARRAY_COUNT(arr) (s32)(sizeof(arr) / sizeof(arr[0]))
 
-#define SURFACE_0000     0x0000
-#define SURFACE_LAVA     0x0001
-#define SURFACE_0004     0x0004
-#define SURFACE_HANGABLE 0x0005
-#define SURFACE_0009     0x0009
-#define SURFACE_000A     0x000A
-#define SURFACE_000E     0x000E
-#define SURFACE_0012     0x0012
-#define SURFACE_0013     0x0013
-#define SURFACE_0014     0x0014
-#define SURFACE_0015     0x0015
-#define SURFACE_001A     0x001A
-#define SURFACE_001B     0x001B
-#define SURFACE_0020     0x0020
-#define SURFACE_0021     0x0021
-#define SURFACE_0022     0x0022
-#define SURFACE_0023     0x0023
-#define SURFACE_0024     0x0024
-#define SURFACE_0025     0x0025
-#define SURFACE_0026     0x0026
-#define SURFACE_0027     0x0027
-#define SURFACE_0029     0x0029
-#define SURFACE_002A     0x002A
-#define SURFACE_002C     0x002C
-#define SURFACE_002D     0x002D
-#define SURFACE_002E     0x002E
-#define SURFACE_002F     0x002F
-#define SURFACE_0030     0x0030
-#define SURFACE_0032     0x0032
-#define SURFACE_0033     0x0033
-#define SURFACE_0034     0x0034
-#define SURFACE_0035     0x0035
-#define SURFACE_0036     0x0036
-#define SURFACE_0037     0x0037
-#define SURFACE_0038     0x0038
-#define SURFACE_0072     0x0072
-#define SURFACE_0073     0x0073
-#define SURFACE_0074     0x0074
-#define SURFACE_0075     0x0075
-#define SURFACE_0076     0x0076
-#define SURFACE_0077     0x0077
-#define SURFACE_0078     0x0078
-#define SURFACE_0079     0x0079
-#define SURFACE_007A     0x007A
-#define SURFACE_007B     0x007B
-#define SURFACE_00D3     0x00D3
-#define SURFACE_00F4     0x00F4
-#define SURFACE_00F5     0x00F5
-#define SURFACE_00F6     0x00F6
+#define SURFACE_DEFAULT                      0x0000
+#define SURFACE_LAVA                         0x0001
+#define SURFACE_0004                         0x0004   //Unused?
+#define SURFACE_HANGABLE                     0x0005
+#define SURFACE_SLOW                         0x0009   //Unused?
+#define SURFACE_DEATH_PLANE                  0x000A
+#define SURFACE_FLOWING_WATER                0x000E
+#define SURFACE_0012                         0x0012   //Intangible, separates rooms in BBH
+#define SURFACE_SLIDE                        0x0013
+#define SURFACE_SLIPPERY                     0x0014
+#define SURFACE_NOT_SLIPPERY                 0x0015
+#define SURFACE_001A                         0x001A   // Noise/Merry-Go-Round
+#define SURFACE_INSTANT_WARP_0               0x001B
+#define SURFACE_0020                         0x0020   //Unused completely, does this need to be here?
+#define SURFACE_SHALLOW_QUICKSAND            0x0021
+#define SURFACE_DEEP_QUICKSAND               0x0022
+#define SURFACE_INSTANT_QUICKSAND            0x0023
+#define SURFACE_DEEP_MOVING_QUICKSAND        0x0024
+#define SURFACE_SHALLOW_MOVING_QUICKSAND     0x0025
+#define SURFACE_QUICKSAND                    0x0026
+#define SURFACE_MOVING_QUICKSAND             0x0027
+#define SURFACE_0029                         0x0029   //Default with noise
+#define SURFACE_002A                         0x002A   //Slippery with noise
+#define SURFACE_HORIZONTAL_WIND              0x002C
+#define SURFACE_INSTANT_MOVING_QUICKSAND     0x002D
+#define SURFACE_ICE                          0x002E
+#define SURFACE_TOTWC_ENTRANCE               0x002F   
+#define SURFACE_HARD                         0x0030
+#define SURFACE_WARP                         0x0032
+#define SURFACE_TIMER_START                  0x0033
+#define SURFACE_TIMER_END                    0x0034
+#define SURFACE_HARD_SLIPPERY                0x0035
+#define SURFACE_HARD_SLIDE                   0x0036
+#define SURFACE_HARD_NOT_SLIPPERY            0x0037
+#define SURFACE_VERTICAL_WIND                0x0038
+#define SURFACE_CAMERA_BOUNDARY              0x0072
+#define SURFACE_0073                         0x0073   //Slide with noise, unused
+#define SURFACE_0074                         0x0074   //Slide with noise, unused
+#define SURFACE_0075                         0x0075   //Slide with noise
+#define SURFACE_0076                         0x0076   //Flag?
+#define SURFACE_0077                         0x0077   //Unused?
+#define SURFACE_0078                         0x0078   //Slide Surface?
+#define SURFACE_0079                         0x0079
+#define SURFACE_SWITCH                       0x007A
+#define SURFACE_VANISH_CAP_PASSABLE          0x007B
+#define SURFACE_PAINTING_WARP_0              0x00D3
+#define SURFACE_TTC_PAINTING_1               0x00F4
+#define SURFACE_TTC_PAINTING_2               0x00F5
+#define SURFACE_TTC_PAINTING_3               0x00F6
 
 #define SURFACE_CLASS_SLIDE        0x0013
 #define SURFACE_CLASS_SLIPPERY     0x0014

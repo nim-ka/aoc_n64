@@ -330,23 +330,23 @@ extern s32 mario_get_floor_class(struct MarioState *m)
     {
         switch (m->floor->type)
         {
-            case SURFACE_0015:
-            case SURFACE_0037:
-            case SURFACE_007A:
+            case SURFACE_NOT_SLIPPERY:
+            case SURFACE_HARD_NOT_SLIPPERY:
+            case SURFACE_SWITCH:
                 sp4 = 21;
                 break;
-            case SURFACE_0014:
-            case SURFACE_002A:
-            case SURFACE_0035:
+            case SURFACE_SLIPPERY:
+            case SURFACE_002A:   //Slippery with noise
+            case SURFACE_HARD_SLIPPERY:
             case SURFACE_0079:
                 sp4 = 20;
                 break;
-            case SURFACE_0013:
-            case SURFACE_002E:
-            case SURFACE_0036:
-            case SURFACE_0073:
-            case SURFACE_0074:
-            case SURFACE_0075:
+            case SURFACE_SLIDE:
+            case SURFACE_ICE:
+            case SURFACE_HARD_SLIDE:
+            case SURFACE_0073:	//Slide with noise, unused
+            case SURFACE_0074:	//Slide with noise, unused
+            case SURFACE_0075:	//Slide with noise
             case SURFACE_0078:
                 sp4 = 19;
                 break;
@@ -378,20 +378,20 @@ u32 func_8025167C(struct MarioState *m)
                 default:
                     spE = 0;
                     break;
-                case SURFACE_0015:
-                case SURFACE_0030:
-                case SURFACE_0037:
-                case SURFACE_007A:
+                case SURFACE_NOT_SLIPPERY:
+                case SURFACE_HARD:
+                case SURFACE_HARD_NOT_SLIPPERY:
+                case SURFACE_SWITCH:
                     spE = 1;
                     break;
-                case SURFACE_0014:
-                case SURFACE_0035:
+                case SURFACE_SLIPPERY:
+                case SURFACE_HARD_SLIPPERY:
                 case SURFACE_0079:
                     spE = 2;
                     break;
-                case SURFACE_0013:
-                case SURFACE_002E:
-                case SURFACE_0036:
+                case SURFACE_SLIDE:
+                case SURFACE_ICE:
+                case SURFACE_HARD_SLIDE:
                 case SURFACE_0073:
                 case SURFACE_0074:
                 case SURFACE_0075:
@@ -459,16 +459,16 @@ u32 func_802519A8(struct MarioState *m)
 
     switch (mario_get_floor_class(m))
 	{
-        case SURFACE_0013:
+        case SURFACE_SLIDE:
             sp24 = 0.9848077f;
             break;
-        case SURFACE_0014:
+        case SURFACE_SLIPPERY:
             sp24 = 0.9396926f;
             break;
         default:
             sp24 = 0.7880108f;
             break;
-        case SURFACE_0015:
+        case SURFACE_NOT_SLIPPERY:
             sp24 = 0.0f;
             break;
     }
@@ -484,16 +484,16 @@ s32 mario_floor_is_slope(struct MarioState *m)
 
     switch (mario_get_floor_class(m))
 	{
-        case SURFACE_0013:
+        case SURFACE_SLIDE:
             tmp = 0.9961947f;
             break;
-        case SURFACE_0014:
+        case SURFACE_SLIPPERY:
             tmp = 0.9848077f;
             break;
         default:
             tmp = 0.9659258f;
             break;
-        case SURFACE_0015:
+        case SURFACE_NOT_SLIPPERY:
             tmp = 0.9396926f;
             break;
     }
@@ -508,16 +508,16 @@ s32 func_80251BF8(struct MarioState *m)
 	{
         switch (mario_get_floor_class(m))
 		{
-            case SURFACE_0013:
+            case SURFACE_SLIDE:
                 tmp = 0.9659258f;
                 break;
-            case SURFACE_0014:
+            case SURFACE_SLIPPERY:
                 tmp = 0.9396926f;
                 break;
             default:
                 tmp = 0.8660254f;
                 break;
-            case SURFACE_0015:
+            case SURFACE_NOT_SLIPPERY:
                 tmp = 0.8660254f;
                 break;
         }
@@ -1390,7 +1390,7 @@ s32 func_80254604(UNUSED struct Object *arg0)
         func_80254088(gMarioState);
         func_8025435C(gMarioState);
 
-        if (gMarioState->floor->type == SURFACE_002C)
+        if (gMarioState->floor->type == SURFACE_HORIZONTAL_WIND)
         {
             func_802ADC20(0, (gMarioState->floor->force << 8));
             #if VERSION_US
@@ -1398,7 +1398,7 @@ s32 func_80254604(UNUSED struct Object *arg0)
             #endif
         }
 
-        if (gMarioState->floor->type == SURFACE_0038)
+        if (gMarioState->floor->type == SURFACE_VERTICAL_WIND)
         {
             func_802ADC20(1, 0);
             #if VERSION_US

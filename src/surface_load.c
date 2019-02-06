@@ -295,13 +295,13 @@ static s32 surface_has_force(s16 surfaceType)
 
     switch (surfaceType)
     {
-        case SURFACE_0004:
-        case SURFACE_000E:
-        case SURFACE_0024:
-        case SURFACE_0025:
-        case SURFACE_0027:
-        case SURFACE_002C:
-        case SURFACE_002D:
+        case SURFACE_0004: //Unused?
+        case SURFACE_FLOWING_WATER:
+        case SURFACE_DEEP_MOVING_QUICKSAND:
+        case SURFACE_SHALLOW_MOVING_QUICKSAND:
+        case SURFACE_MOVING_QUICKSAND:
+        case SURFACE_HORIZONTAL_WIND:
+        case SURFACE_INSTANT_MOVING_QUICKSAND:
             hasForce = TRUE;
             break;
         default:
@@ -316,10 +316,10 @@ static s32 get_surface_flags(s16 surfaceType)
 
     switch (surfaceType)
     {
-        case SURFACE_0076:
-        case SURFACE_0077:
-        case SURFACE_0078:
-        case SURFACE_007A:
+        case SURFACE_0076:  //Flag?
+        case SURFACE_0077:  //Unused?
+        case SURFACE_0078:  //Slide Surface?
+        case SURFACE_SWITCH:
             flags = SURFACE_FLAG_1;
             break;
 

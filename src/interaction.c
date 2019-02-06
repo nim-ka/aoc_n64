@@ -1914,20 +1914,20 @@ void mario_handle_special_floors(struct MarioState *m)
         
         switch (floorType)
         {
-        case SURFACE_000A:
-        case SURFACE_0038:
+        case SURFACE_DEATH_PLANE:
+        case SURFACE_VERTICAL_WIND:
             check_death_barrier(m);
             break;
 
-        case SURFACE_0032:
+        case SURFACE_WARP:
             level_trigger_warp(m, WARP_OP_WARP_FLOOR);
             break;
         
-        case SURFACE_0033:
+        case SURFACE_TIMER_START:
             pss_begin_slide(m);
             break;
         
-        case SURFACE_0034:
+        case SURFACE_TIMER_END:
             pss_end_slide(m);
             break;
         }

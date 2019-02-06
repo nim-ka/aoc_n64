@@ -529,7 +529,7 @@ Gfx *func_802CDCBC(
     s8 ret;
     s32 i;
 
-    if (gCurrLevelNum == LEVEL_RR && gSurfaceTypeBelowShadow != SURFACE_000A) {
+    if (gCurrLevelNum == LEVEL_RR && gSurfaceTypeBelowShadow != SURFACE_DEATH_PLANE) {
         switch (D_8035FF80) {
             case 1:
                 D_8035FF45 = 1;
@@ -775,7 +775,7 @@ Gfx *create_shadow_below_xyz(
     D_8035FF45 = 0;
     D_8035FF40 = 0;
     if (pfloor != NULL) {
-        if (pfloor->type == SURFACE_002E) {
+        if (pfloor->type == SURFACE_ICE) {
             D_8035FF45 = 1;
         }
         gSurfaceTypeBelowShadow = pfloor->type;

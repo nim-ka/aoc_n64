@@ -6441,13 +6441,13 @@ void BehRotatingClockArmLoop(void)
     o->oFloorHeight = find_floor(gMarioObject->oPosX,gMarioObject->oPosY,gMarioObject->oPosZ,&sp1C);
     if(o->oAction == 0)
     {
-        if(sp1C->type == SURFACE_0000)
+        if(sp1C->type == SURFACE_DEFAULT)
             if(o->oTimer >= 4)
                 o->oAction++;
     }
     else if(o->oAction == 1)
     {
-        if(sp1C != NULL && (sp1C->type == SURFACE_00F4 || sp1C->type == SURFACE_00F5 || sp1C->type == SURFACE_00F6))
+        if(sp1C != NULL && (sp1C->type == SURFACE_TTC_PAINTING_1 || sp1C->type == SURFACE_TTC_PAINTING_2 || sp1C->type == SURFACE_TTC_PAINTING_3))
         {
             if(obj_has_behavior(beh_clock_minute_hand))
             {
@@ -10019,7 +10019,7 @@ void func_802C50F4(void)
             sp1A = 0;
         else
             sp1A = sp1C->type;
-        if(obj_is_mario_on_platform() || sp1A == SURFACE_001A)
+        if(obj_is_mario_on_platform() || sp1A == SURFACE_001A)  //Surface 1A is floor of Merry-Go-Round
         {
             func_80320F84(19,0,78,50);
             D_8035FEF4 = 1;

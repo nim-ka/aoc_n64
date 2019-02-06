@@ -12,7 +12,7 @@
 static s16 sMovingSandSpeeds[] = { 12, 8, 4, 0 };
 
 struct Surface gWaterSurfacePseudoFloor = {
-  SURFACE_0013,
+  SURFACE_SLIDE,
   0,
   0,
   0,
@@ -115,24 +115,24 @@ u32 mario_update_quicksand(struct MarioState *m, f32 sinkingSpeed)
 
         switch (m->floor->type)
         {
-        case SURFACE_0021:
+        case SURFACE_SHALLOW_QUICKSAND:
             if ((m->quicksandDepth += sinkingSpeed) >= 10.0f)
                 m->quicksandDepth = 10.0f;
             break;
 
-        case SURFACE_0025:
+        case SURFACE_SHALLOW_MOVING_QUICKSAND:
             if ((m->quicksandDepth += sinkingSpeed) >= 25.0f)
                 m->quicksandDepth = 25.0f;
             break;
 
-        case SURFACE_0026:
-        case SURFACE_0027:
+        case SURFACE_QUICKSAND:
+        case SURFACE_MOVING_QUICKSAND:
             if ((m->quicksandDepth += sinkingSpeed) >= 60.0f)
                 m->quicksandDepth = 60.0f;
             break;
 
-        case SURFACE_0022:
-        case SURFACE_0024:
+        case SURFACE_DEEP_QUICKSAND:
+        case SURFACE_DEEP_MOVING_QUICKSAND:
             if ((m->quicksandDepth += sinkingSpeed) >= 160.0f)
             {
                 func_80251F74(m);
@@ -140,8 +140,8 @@ u32 mario_update_quicksand(struct MarioState *m, f32 sinkingSpeed)
             }
             break;
 
-        case SURFACE_0023:
-        case SURFACE_002D:
+        case SURFACE_INSTANT_QUICKSAND:
+        case SURFACE_INSTANT_MOVING_QUICKSAND:
             func_80251F74(m);
             return drop_and_set_mario_action(m, ACT_QUICKSAND_DEATH, 0);
             break;
@@ -178,10 +178,10 @@ u32 mario_update_moving_sand(struct MarioState *m)
     struct Surface *floor = m->floor;
     s32 floorType = floor->type;
 
-    if (floorType == SURFACE_0024 ||
-        floorType == SURFACE_0025 ||
-        floorType == SURFACE_0027 ||
-        floorType == SURFACE_002D)
+    if (floorType == SURFACE_DEEP_MOVING_QUICKSAND ||
+        floorType == SURFACE_SHALLOW_MOVING_QUICKSAND ||
+        floorType == SURFACE_MOVING_QUICKSAND ||
+        floorType == SURFACE_INSTANT_MOVING_QUICKSAND)
     {
         s16 pushAngle = floor->force << 8;
         f32 pushSpeed = sMovingSandSpeeds[floor->force >> 8];
@@ -199,7 +199,7 @@ u32 mario_update_windy_ground(struct MarioState *m)
 {
     struct Surface *floor = m->floor;
 
-    if (floor->type == SURFACE_002C)
+    if (floor->type == SURFACE_HORIZONTAL_WIND)
     {
         f32 pushSpeed;
         s16 pushAngle = floor->force << 8;
@@ -631,7 +631,7 @@ static void apply_vertical_wind(struct MarioState *m)
     {
         offsetY = m->pos[1] - -1500.0f;
 
-        if (m->floor->type == SURFACE_0038 && -3000.0f < offsetY && offsetY < 2000.0f)
+        if (m->floor->type == SURFACE_VERTICAL_WIND && -3000.0f < offsetY && offsetY < 2000.0f)
         {
             if (offsetY >= 0.0f)
                 maxVelY = 10000.0f / (offsetY + 200.0f);

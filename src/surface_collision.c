@@ -109,10 +109,10 @@ static s32 find_wall_collisions_from_list(
         }
         else
         {
-            if (surf->type == SURFACE_0072)
+            if (surf->type == SURFACE_CAMERA_BOUNDARY)
                 continue;
 
-            if (surf->type == SURFACE_007B)
+            if (surf->type == SURFACE_VANISH_CAP_PASSABLE)
             {
                 if (gCurrentObject != NULL &&
                     (gCurrentObject->activeFlags & ACTIVE_FLAG_MOVE_THROUGH_GRATE))
@@ -221,7 +221,7 @@ static struct Surface *find_ceil_from_list(
             if (surf->flags & SURFACE_FLAG_1)
                 continue;
         }
-        else if (surf->type == SURFACE_0072)
+        else if (surf->type == SURFACE_CAMERA_BOUNDARY)
         {
             continue;
         }
@@ -343,7 +343,7 @@ static struct Surface *find_floor_from_list(
             if (surf->flags & 0x02)
                 continue;
         }
-        else if (surf->type == SURFACE_0072)
+        else if (surf->type == SURFACE_CAMERA_BOUNDARY)
         {
             continue;
         }
