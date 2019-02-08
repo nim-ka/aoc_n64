@@ -85,6 +85,16 @@ typedef int BssDummy;
 #define SURFACE_FLAG_1            (1 << 1)
 #define SURFACE_FLAG_X_PROJECTION (1 << 3)
 
+//These are effectively special "surface" types like those defined higher
+#define TERRAIN_LOAD_VERTICES 0x0040 //Begins vertices list for collision triangles
+#define TERRAIN_LOAD_CONTINUE 0x0041
+#define TERRAIN_LOAD_END      0x0042
+#define TERRAIN_LOAD_OBJECTS  0x0043 //Loads in certain objects for level start
+#define TERRAIN_LOAD_WATER    0x0044 //Loads water/HMC gas
+
+#define TERRAIN_LOAD_IS_SURFACE_TYPE_LOW(cmd)  (cmd < 0x40)
+#define TERRAIN_LOAD_IS_SURFACE_TYPE_HIGH(cmd) (cmd >= 0x65)
+
 #define INPUT_NONZERO_ANALOG         0x0001
 #define INPUT_A_PRESSED              0x0002
 #define INPUT_OFF_FLOOR              0x0004

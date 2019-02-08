@@ -424,7 +424,7 @@ void alloc_surface_pools(void)
 
 void load_area_terrain(s16 index, s16 *data, s8 *surfaceRooms, s16 *arg3)
 {
-    s16 terrainType;
+    s16 terrainLoadType;
     s16 *vertexData;
     UNUSED s32 unused;
 
@@ -437,36 +437,36 @@ void load_area_terrain(s16 index, s16 *data, s8 *surfaceRooms, s16 *arg3)
 
     while (TRUE)
     {
-        terrainType = *data;
+        terrainLoadType = *data;
         data++;
 
-        if (terrainType < 0x40)
+        if (TERRAIN_LOAD_IS_SURFACE_TYPE_LOW(terrainLoadType))
         {
-            load_static_surfaces(&data, vertexData, terrainType, &surfaceRooms);
+            load_static_surfaces(&data, vertexData, terrainLoadType, &surfaceRooms);
         }
-        else if (terrainType == 0x40)
+        else if (terrainLoadType == TERRAIN_LOAD_VERTICES)
         {
             vertexData = read_vertex_data(&data);
         }
-        else if (terrainType == 0x43)
+        else if (terrainLoadType == TERRAIN_LOAD_OBJECTS)
         {
             func_802E19DC(index, &data);
         }
-        else if (terrainType == 0x44)
+        else if (terrainLoadType == TERRAIN_LOAD_WATER)
         {
             load_water_regions(&data);
         }
-        else if (terrainType == 0x41)
+        else if (terrainLoadType == TERRAIN_LOAD_CONTINUE)
         {
             continue;
         }
-        else if (terrainType == 0x42)
+        else if (terrainLoadType == TERRAIN_LOAD_END)
         {
             break;
         }
-        else if (terrainType > 0x64)
+        else if (TERRAIN_LOAD_IS_SURFACE_TYPE_HIGH(terrainLoadType))
         {
-            load_static_surfaces(&data, vertexData, terrainType, &surfaceRooms);
+            load_static_surfaces(&data, vertexData, terrainLoadType, &surfaceRooms);
             continue;
         }
     }
