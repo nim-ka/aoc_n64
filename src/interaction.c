@@ -783,7 +783,7 @@ static u32 interact_coin(struct MarioState *m, UNUSED u32 interactType, struct O
 
     o->oInteractStatus = INT_STATUS_INTERACTED;
 
-    if (gCurrCourseNum >= 1 && gCurrCourseNum <= 15 &&
+    if (COURSE_IS_MAIN_COURSE(gCurrCourseNum) &&
         m->numCoins - o->oDamageOrCoinValue < 100 && m->numCoins >= 100)
     {
         func_802AACE4(6);

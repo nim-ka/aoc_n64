@@ -604,11 +604,11 @@ void func_80280550(struct Struct80280550 *a)
 
     if (!(D_8033B4D8 & 0xD))
     {
-        if (D_8033B278.unk8 == 110 && D_8033B278.unk20 != 110)
+        if (D_8033B278.unk8 == SURFACE_006E && D_8033B278.unk20 != SURFACE_006E)
             D_8033B4D8 |= 0x11;
-        if (D_8033B278.unk8 == 111 && D_8033B278.unk20 != 111)
+        if (D_8033B278.unk8 == SURFACE_006F && D_8033B278.unk20 != SURFACE_006F)
             D_8033B4D8 |= 0x14;
-        if (D_8033B278.unk8 == 112 && D_8033B278.unk20 != 112)
+        if (D_8033B278.unk8 == SURFACE_0070 && D_8033B278.unk20 != SURFACE_0070)
             D_8033B4D8 |= 0x18;
     }
 
@@ -1017,7 +1017,7 @@ s32 CameraChange0D(struct Struct80280550 *a, Vec3f b, UNUSED Vec3f c)
     vec3f_copy(sp3C, D_8032D00C);
     vec3f_add(sp3C, D_8033B460);
 
-    if (D_8033B278.unk8 != 10 && D_8033B278.unk4 != -11000.f)
+    if (D_8033B278.unk8 != SURFACE_DEATH_PLANE && D_8033B278.unk4 != -11000.f)
         sp70 = D_8033B278.unk4 + sp3C[1] + sp68;
     else
         sp70 = D_8033B328.unk0[3][1];
@@ -1137,7 +1137,7 @@ s32 CameraChange0B(struct Struct80280550 *a, Vec3f b, Vec3f c)
         }
     }
 
-    if (gCurrLevelNum == 4)
+    if (gCurrLevelNum == LEVEL_BBH)
         c[1] = 2047.f;
 
     if (D_8033B3F8 < 0)
@@ -1192,7 +1192,7 @@ void func_80282730(struct Struct80280550 *a)
 {
     UNUSED u8 unused[8];
 
-    if (gCurrLevelNum == 4)
+    if (gCurrLevelNum == LEVEL_BBH)
         func_8029A478(7);
     else
         func_8029A478(4);
@@ -1399,7 +1399,7 @@ s32 func_80282FC8(struct Struct80280550 *a)
         func_80289184(&sp2C, sp24, 128);
     }
     func_80289184(&sp2E, sp26, 256);
-    if (D_8032D000->unk0 != 1192 && D_8033B278.unk8 == 10)
+    if (D_8032D000->unk0 != 1192 && D_8033B278.unk8 == SURFACE_DEATH_PLANE)
     {
         vec3f_set_dist_and_angle(a->unk4, sp3C, sp34 + D_8033B3EE, sp2E, sp2C);
         a->unk10[0] = sp3C[0];
@@ -1706,7 +1706,7 @@ s32 func_80283548(struct Struct80280550 *a)
     if ((D_8033B4D8 & 2) && (D_8033B314 & 1))
     {
         sp68 = 610.f;
-        if (D_8032CFD8 == 130 || gCurrLevelNum == 6)
+        if (D_8032CFD8 == 130 || gCurrLevelNum == LEVEL_CASTLE)
             sp68 /= 2.f;
     }
     sp74 = func_80381D3C(spB0[0], spB0[2]);
@@ -1747,7 +1747,7 @@ s32 func_80283548(struct Struct80280550 *a)
         sp80 = 50.f;
         vec3f_set_dist_and_angle(spB0, a->unk10, sp80, sp5E, sp5C);
     }
-    if (D_8033B278.unk8 != 10)
+    if (D_8033B278.unk8 != SURFACE_DEATH_PLANE)
     {
         vec3f_get_dist_and_angle(a->unk4, a->unk10, &sp80, &sp5E, &sp5C);
         if (sp80 > sp7C)
@@ -1864,7 +1864,7 @@ static void unused_80284BCC(struct Struct80280550 *a)
 
 void func_80284C2C(struct Struct80280550 *a)
 {
-    if (D_8033B278.unk8 == 11 || D_8033B278.unk8 == 121)
+    if (D_8033B278.unk8 == SURFACE_000B || D_8033B278.unk8 == SURFACE_0079)
     {
         func_8028474C(a);
     }
@@ -2400,7 +2400,7 @@ void func_80286348(struct Struct80280550 *a)
     func_8028BB3C(a, func_8028BCC8(a));
     dummy_802877D8(a);
     D_8035FE10 = 0;
-    if (gCurrLevelNum != 6)
+    if (gCurrLevelNum != LEVEL_CASTLE)
     {
         if ((a->unk30 == 0 && (gPlayer1Controller->buttonDown & R_TRIG) && func_8028803C(0) == 2)
          || (D_8033B4D8 & 0x40) || (D_8032D000->unk0) == 0x010208B8)
@@ -2561,7 +2561,7 @@ void func_80286C9C(struct Struct80280550 *a)
     sp28[2] = 400.f;
     switch (gCurrLevelNum - 6)
     {
-    case 24:
+    case 24:  //LEVEL_BOWSER_1
 #if VERSION_US
         if (gCurrDemoInput == NULL)
             func_8028BB3C(a, 144);
@@ -2571,13 +2571,13 @@ void func_80286C9C(struct Struct80280550 *a)
         func_8028BB3C(a, 144);
 #endif
         break;
-    case 27:
+    case 27:  //LEVEL_BOWSER_2
         func_8028BB3C(a, 144);
         break;
-    case 28:
+    case 28:  //LEVEL_BOWSER_3
         func_8028BB3C(a, 144);
         break;
-    case 10:
+    case 10:  //LEVEL_CASTLE_GROUNDS
         if (func_80288CF0(-1328.f, 260.f, 4664.f) != 1)
         {
             sp28[0] = -400.f;
@@ -2589,19 +2589,19 @@ void func_80286C9C(struct Struct80280550 *a)
             func_8028BB3C(a, 180);
         D_8033B364 = 16;
         break;
-    case 14:
+    case 14:  //LEVEL_SA
         sp28[2] = 200.f;
         break;
-    case 20:
+    case 20:  //LEVEL_CASTLE_COURTYARD
         sp28[2] = -300.f;
         break;
-    case 16:
+    case 16:  //LEVEL_LLL
         D_8033B4D8 |= 2;
         break;
-    case 0:
+    case 0:  //LEVEL_CASTLE
         sp28[2] = 150.f;
         break;
-    case 9:
+    case 9:  //LEVEL_RR
         vec3f_set(D_8032D00C, -2985.f, 478.f, -5568.f);
         break;
     }
@@ -2677,7 +2677,7 @@ void func_80287404(struct Struct80287404 *a)
                 a->unk28[2] = D_8033B860->unk2C;
                 vec3f_get_dist_and_angle(a->unk28, D_8032D000->unk4, &sp34, &sp32, &sp30);
                 vec3f_set_dist_and_angle(D_8032D000->unk4, a->unk1C, 6000.f, 4096, sp30);
-                if (gCurrLevelNum != 13)
+                if (gCurrLevelNum != LEVEL_THI)
                     func_802800F4(a->unk1C, a->unk28, 0);
             }
         }
@@ -4140,7 +4140,7 @@ u8 func_8028BCC8(struct Struct80280550 *a)
             sp33 = 139;
         if (D_8032D000->unk1E == 1)
             sp33 = 133;
-        if (D_8033B278.unk8 >= 0xD3 && D_8033B278.unk8 < 0xFD)
+        if (SURFACE_IS_PAINTING_WARP(D_8033B278.unk8))
             sp33 = 134;
         switch (D_8032D000->unk0)
         {
@@ -4520,7 +4520,7 @@ void func_8028D32C(u8 *a)
 {
     if ((D_8032D000->unk0 & 0x4000) || *a == 3 || *a == 8)
         D_8033B4DA |= 0x1000;
-    if (gCurrLevelNum == 23 || gCurrLevelNum == 11 || gCurrLevelNum == 28)
+    if (gCurrLevelNum == LEVEL_DDD || gCurrLevelNum == LEVEL_WDW || gCurrLevelNum == LEVEL_COTMC)
         D_8033B4DA &= ~4096;
     if ((*a == 3 && !(D_8032D000->unk0 & 0x6000)) || *a == 10)
         D_8033B4DA |= 0x1000;
@@ -4932,17 +4932,17 @@ u32 func_8028E634(struct Struct80280550 *a)
     
     switch (D_8033B278.unk8)
     {
-    case 11:
+    case SURFACE_000B:
         func_80285AD8(a, 4, 90);
         sp24 += 1;
         break;
         
-    case 102:
+    case SURFACE_0066:
         func_80285AD8(a, 16, 90);
         sp24 += 1;
         break;
         
-    case 121:
+    case SURFACE_0079:
         func_80285AD8(a, 4, 90);
         sp24 += 1;
         break;
@@ -4965,22 +4965,22 @@ void func_8028E774(struct Struct80280550 *a)
 {
     switch (D_8033B278.unk8)
     {
-    case 11:
+    case SURFACE_000B:
         if (a->unk0 != 4)
             func_80285AD8(a, 16, 90);
         break;
         
-    case 102:
+    case SURFACE_0066:
         if (a->unk0 != 4)
             func_80285AD8(a, 16, 90);
         break;
         
-    case 121:
+    case SURFACE_0079:
         if (a->unk0 != 4)
             func_80285AD8(a, 16, 90);
         break;
         
-    case 105:
+    case SURFACE_0069:
         func_80285AD8(a, 14, 90);
         break;
         
@@ -5056,12 +5056,12 @@ s16 func_8028E88C(struct Struct80280550 *a)
             {
                 switch (D_8033B278.unk8)
                 {
-                case 105:
+                case SURFACE_0069:
                     func_80285AD8(a, 14, 90);
                     D_8033B406 = 0x4000;
                     break;
                     
-                case 101:
+                case SURFACE_0065:
                     if (D_8033A758 == 1)
                         func_8028CFFC(a);
                     else
@@ -5103,7 +5103,7 @@ s16 func_8028E88C(struct Struct80280550 *a)
         case 145:
             if (func_8028E70C(a, 0) == 0)
             {
-                if (D_8033B278.unk8 == 101)
+                if (D_8033B278.unk8 == SURFACE_0065)
                     func_8028CFFC(a);
                 else
                 {
@@ -5116,7 +5116,7 @@ s16 func_8028E88C(struct Struct80280550 *a)
             break;
             
         case 177:
-            if (D_8033B278.unk8 == 27)
+            if (D_8033B278.unk8 == SURFACE_INSTANT_WARP_0)
             {
                 if (0) {}
                 a->unk1 = 1;
@@ -5125,7 +5125,7 @@ s16 func_8028E88C(struct Struct80280550 *a)
             break;
             
         case 178:
-            if (D_8033B278.unk8 == 28)
+            if (D_8033B278.unk8 == SURFACE_001C)
             {
                 if (0) {}
                 a->unk1 = 4;

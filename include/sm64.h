@@ -32,6 +32,7 @@ typedef int BssDummy;
 #define SURFACE_HANGABLE                     0x0005
 #define SURFACE_SLOW                         0x0009   //Unused?
 #define SURFACE_DEATH_PLANE                  0x000A
+#define SURFACE_000B                         0x000B   //Camera
 #define SURFACE_FLOWING_WATER                0x000E
 #define SURFACE_0012                         0x0012   //Intangible, separates rooms in BBH
 #define SURFACE_SLIDE                        0x0013
@@ -39,6 +40,7 @@ typedef int BssDummy;
 #define SURFACE_NOT_SLIPPERY                 0x0015
 #define SURFACE_001A                         0x001A   // Noise/Merry-Go-Round
 #define SURFACE_INSTANT_WARP_0               0x001B
+#define SURFACE_001C                         0x001C
 #define SURFACE_0020                         0x0020   //Unused completely, does this need to be here?
 #define SURFACE_SHALLOW_QUICKSAND            0x0021
 #define SURFACE_DEEP_QUICKSAND               0x0022
@@ -47,6 +49,7 @@ typedef int BssDummy;
 #define SURFACE_SHALLOW_MOVING_QUICKSAND     0x0025
 #define SURFACE_QUICKSAND                    0x0026
 #define SURFACE_MOVING_QUICKSAND             0x0027
+#define SURFACE_0028                         0x0028   //Camera
 #define SURFACE_0029                         0x0029   //Default with noise
 #define SURFACE_002A                         0x002A   //Slippery with noise
 #define SURFACE_HORIZONTAL_WIND              0x002C
@@ -61,6 +64,12 @@ typedef int BssDummy;
 #define SURFACE_HARD_SLIDE                   0x0036
 #define SURFACE_HARD_NOT_SLIPPERY            0x0037
 #define SURFACE_VERTICAL_WIND                0x0038
+#define SURFACE_0065                         0x0065   //Camera
+#define SURFACE_0066                         0x0066   //Camera
+#define SURFACE_0069                         0x0069   //Camera
+#define SURFACE_006E                         0x006E   //Camera
+#define SURFACE_006F                         0x006F   //Camera
+#define SURFACE_0070                         0x0070   //Camera
 #define SURFACE_CAMERA_BOUNDARY              0x0072
 #define SURFACE_0073                         0x0073   //Slide with noise, unused
 #define SURFACE_0074                         0x0074   //Slide with noise, unused
@@ -68,13 +77,18 @@ typedef int BssDummy;
 #define SURFACE_0076                         0x0076   //Flag?
 #define SURFACE_0077                         0x0077   //Unused?
 #define SURFACE_0078                         0x0078   //Slide Surface?
-#define SURFACE_0079                         0x0079
+#define SURFACE_0079                         0x0079   //Camera
 #define SURFACE_SWITCH                       0x007A
 #define SURFACE_VANISH_CAP_PASSABLE          0x007B
 #define SURFACE_PAINTING_WARP_0              0x00D3
 #define SURFACE_TTC_PAINTING_1               0x00F4
 #define SURFACE_TTC_PAINTING_2               0x00F5
 #define SURFACE_TTC_PAINTING_3               0x00F6
+
+#define SURFACE_IS_QUICKSAND(cmd)     (cmd >= 0x21 && cmd < 0x28)   //Doesn't include SURFACE_INSTANT_MOVING_QUICKSAND
+#define SURFACE_IS_NOT_HARD(cmd)      (cmd != SURFACE_HARD && \
+                                     !(cmd >= 0x35 && cmd <= 0x37))
+#define SURFACE_IS_PAINTING_WARP(cmd) (cmd >= 0xD3 && cmd < 0xFD)
 
 #define SURFACE_CLASS_SLIDE        0x0013
 #define SURFACE_CLASS_SLIPPERY     0x0014

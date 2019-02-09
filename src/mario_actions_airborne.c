@@ -120,8 +120,7 @@ static s32 should_get_stuck_in_ground(struct MarioState *m)
     if (floor != NULL &&
         (terrainType == TERRAIN_SNOW || terrainType == TERRAIN_SAND) &&
         type != SURFACE_LAVA &&
-        type != SURFACE_HARD &&
-        !(type >= SURFACE_HARD_SLIPPERY && type <= SURFACE_HARD_NOT_SLIPPERY))
+        SURFACE_IS_NOT_HARD(type))
     {
         if (!(flags & 0x01) &&
             m->peakHeight - m->pos[1] > 1000.0f &&

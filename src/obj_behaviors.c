@@ -794,8 +794,8 @@ void ObjCheckFloorDeath(s16 collisionFlags, struct Surface *floor)
     {
         switch (floor->type)
         {
-            case 1: o->oAction = OBJ_ACT_LAVA_DEATH; break;
-            case 10: o->oAction = OBJ_ACT_DEATH_PLANE_DEATH; break;
+            case SURFACE_LAVA: o->oAction = OBJ_ACT_LAVA_DEATH; break;
+            case SURFACE_DEATH_PLANE: o->oAction = OBJ_ACT_DEATH_PLANE_DEATH; break;
             default: break;
         }
     }
@@ -4922,15 +4922,15 @@ void func_802F1190(void) {
     save_file_clear_flags(0x10000);
 
     switch (gCurrCourseNum) {
-        case 8:
+        case COURSE_SSL:
             save_file_set_flags(0x20000);
             break;
 
-        case 10:
+        case COURSE_SL:
             save_file_set_flags(0x80000);
             break;
 
-        case 12:
+        case COURSE_TTM:
             save_file_set_flags(0x40000);
             break;
 

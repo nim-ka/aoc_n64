@@ -367,9 +367,9 @@ u32 func_8025167C(struct MarioState *m)
     if (m->floor)
     {
         floorType = m->floor->type;
-        if ((gCurrLevelNum != 0x16) && (m->floorHeight < (m->waterLevel - 10)))
+        if ((gCurrLevelNum != LEVEL_LLL) && (m->floorHeight < (m->waterLevel - 10)))
             sp8 = 0x20000;
-        else if (floorType >= SURFACE_SHALLOW_QUICKSAND && floorType < 0x28)
+        else if (SURFACE_IS_QUICKSAND(floorType))
             sp8 = 0x70000;
         else
         {

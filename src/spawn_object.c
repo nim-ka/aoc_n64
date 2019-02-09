@@ -208,7 +208,7 @@ struct Object *try_init_object(struct ObjectNode *objList)
     obj->oDamageOrCoinValue = 0;
     obj->oHealth = 2048;
     obj->oCollisionDistance = 1000.0f;
-    if (gCurrLevelNum == 14)
+    if (gCurrLevelNum == LEVEL_TTC)
         obj->oDrawingDistance = 2000.0f;
     else
         obj->oDrawingDistance = 4000.0f;

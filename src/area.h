@@ -40,6 +40,8 @@ enum CourseNum
     COURSE_MAX = COURSE_CAKE_END
 };
 
+#define COURSE_IS_MAIN_COURSE(cmd) (cmd >= 1 && cmd <= 15)
+
 enum LevelNum
 {
     LEVEL_NONE,                  // not indexed
