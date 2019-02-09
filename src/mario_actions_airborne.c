@@ -118,7 +118,7 @@ static s32 should_get_stuck_in_ground(struct MarioState *m)
     s32 type = floor->type;
 
     if (floor != NULL &&
-        (terrainType == 2 || terrainType == 3) &&
+        (terrainType == TERRAIN_SNOW || terrainType == TERRAIN_SAND) &&
         type != SURFACE_LAVA &&
         type != SURFACE_HARD &&
         !(type >= SURFACE_HARD_SLIPPERY && type <= SURFACE_HARD_NOT_SLIPPERY))
@@ -1580,7 +1580,7 @@ static s32 act_lava_boost(struct MarioState *m)
     }
 
     func_802507E8(m, 0x0029);
-    if ((m->area->unk02 & 0x0007) != 2 && !(m->flags & MARIO_METAL_CAP) &&
+    if ((m->area->unk02 & 0x0007) != TERRAIN_SNOW && !(m->flags & MARIO_METAL_CAP) &&
         m->vel[1] > 0.0f)
     {
         m->particleFlags |= 0x00000800;

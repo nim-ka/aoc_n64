@@ -320,12 +320,12 @@ void mario_set_forward_vel(struct MarioState *m, f32 forwardVel)
 
 extern s32 mario_get_floor_class(struct MarioState *m)
 {
-    s32 sp4;
+    s32 floorClass;
 
-    if ((m->area->unk02 & 7) == 6)
-        sp4 = 0x13;
+    if ((m->area->unk02 & 7) == TERRAIN_SLIDE)
+        floorClass = SURFACE_CLASS_SLIDE;
     else
-        sp4 = 0;
+        floorClass = SURFACE_CLASS_DEFAULT;
     if (m->floor)
     {
         switch (m->floor->type)
@@ -333,13 +333,13 @@ extern s32 mario_get_floor_class(struct MarioState *m)
             case SURFACE_NOT_SLIPPERY:
             case SURFACE_HARD_NOT_SLIPPERY:
             case SURFACE_SWITCH:
-                sp4 = 21;
+                floorClass = SURFACE_CLASS_NOT_SLIPPERY;
                 break;
             case SURFACE_SLIPPERY:
             case SURFACE_002A:   //Slippery with noise
             case SURFACE_HARD_SLIPPERY:
             case SURFACE_0079:
-                sp4 = 20;
+                floorClass = SURFACE_CLASS_SLIPPERY;
                 break;
             case SURFACE_SLIDE:
             case SURFACE_ICE:
@@ -348,19 +348,19 @@ extern s32 mario_get_floor_class(struct MarioState *m)
             case SURFACE_0074:	//Slide with noise, unused
             case SURFACE_0075:	//Slide with noise
             case SURFACE_0078:
-                sp4 = 19;
+                floorClass = SURFACE_CLASS_SLIDE;
                 break;
         }
     }
-    if (m->action == ACT_CRAWLING && m->floor->normal.y > 0.5f && sp4 == 0)
-        sp4 = 0x15;
-    return sp4;
+    if (m->action == ACT_CRAWLING && m->floor->normal.y > 0.5f && floorClass == SURFACE_CLASS_DEFAULT)
+        floorClass = SURFACE_CLASS_NOT_SLIPPERY;
+    return floorClass;
 }
 
 u32 func_8025167C(struct MarioState *m)
 {
     s16 spE;
-    s16 spC = m->area->unk02 & 7;
+    s16 terrainType = m->area->unk02 & 7;
     s32 sp8 = 0;
     s32 floorType;
 
@@ -369,7 +369,7 @@ u32 func_8025167C(struct MarioState *m)
         floorType = m->floor->type;
         if ((gCurrLevelNum != 0x16) && (m->floorHeight < (m->waterLevel - 10)))
             sp8 = 0x20000;
-        else if (floorType >= 0x21 && floorType < 0x28)
+        else if (floorType >= SURFACE_SHALLOW_QUICKSAND && floorType < 0x28)
             sp8 = 0x70000;
         else
         {
@@ -405,7 +405,7 @@ u32 func_8025167C(struct MarioState *m)
                     spE = 5;
                     break;
             }
-            sp8 = D_8032CB40[spC][spE] << 0x10;
+            sp8 = D_8032CB40[terrainType][spE] << 0x10;
         }
 
     }
@@ -454,7 +454,7 @@ u32 func_802519A8(struct MarioState *m)
 {
     f32 sp24;
 
-    if ((m->area->unk02 & 7) == 6 && m->floor->normal.y < 0.9998477f)
+    if ((m->area->unk02 & 7) == TERRAIN_SLIDE && m->floor->normal.y < 0.9998477f)
         return TRUE;
 
     switch (mario_get_floor_class(m))
@@ -479,7 +479,7 @@ s32 mario_floor_is_slope(struct MarioState *m)
 {
     f32 tmp;
 
-    if ((m->area->unk02 & 0x0007) == 6 && m->floor->normal.y < 0.9998477f)
+    if ((m->area->unk02 & 0x0007) == TERRAIN_SLIDE && m->floor->normal.y < 0.9998477f)
         return TRUE;
 
     switch (mario_get_floor_class(m))
@@ -1156,7 +1156,7 @@ void func_80253C94(struct MarioState *m)
 
 void func_80253E34(struct MarioState *m)
 {
-    s32 sp24;
+    s32 terrainIsSnow;
 
     if (m->health >= 0x100)
     {
@@ -1171,12 +1171,12 @@ void func_80253E34(struct MarioState *m)
             {
                 if ((m->action & 0x2000) && ((m->action & 0x1000) == 0))
                 {
-                    sp24 = (m->area->unk02 & 0x7) == 2;
+                    terrainIsSnow = (m->area->unk02 & 0x7) == TERRAIN_SNOW;
 
-                    if ((m->pos[1] >= (m->waterLevel - 140)) && !sp24)
+                    if ((m->pos[1] >= (m->waterLevel - 140)) && !terrainIsSnow)
                         m->health += 0x1A;
                     else if (gDebugLevelSelect == 0)
-                        m->health -= (sp24 ? 3 : 1);
+                        m->health -= (terrainIsSnow ? 3 : 1);
                 }
             }
         }

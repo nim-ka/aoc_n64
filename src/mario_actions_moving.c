@@ -547,7 +547,7 @@ static s32 should_begin_sliding(struct MarioState *m)
 {
     if (m->input & INPUT_ABOVE_SLIDE)
     {
-        s32 slideLevel = (m->area->unk02 & 0x0007) == 6;
+        s32 slideLevel = (m->area->unk02 & 0x0007) == TERRAIN_SLIDE;
         s32 movingBackward = m->forwardVel <= -1.0f;
 
         if (slideLevel || movingBackward || mario_facing_downhill(m, FALSE))
