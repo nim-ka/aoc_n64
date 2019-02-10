@@ -702,9 +702,11 @@ SECTIONS
       . = ALIGN(0x10);
       BUILD_DIR/demos/demo_data.o(.data);
       . = ALIGN(0x10);
-      BUILD_DIR/sound/sound_data.o(.data);
+      BUILD_DIR/sound/sound_data.ctl.o(.data);
       . = ALIGN(0x10);
-      BUILD_DIR/sound/music_data.o(.data);
+      BUILD_DIR/sound/sound_data.tbl.o(.data);
+      . = ALIGN(0x10);
+      BUILD_DIR/sound/music_data.sbk.o(.data);
       . = ALIGN(0x10);
    }
    END_SEG(assets)
