@@ -92,10 +92,6 @@ static struct ParticleType sParticleTypes[] = {
     { 0,                 0x00000000, 0x00, 0x00, 0x0000, NULL                                  },
 };
 
-void nop_change_course()
-{
-}
-
 static void copy_mario_state_to_object(void)
 {
     s32 i = 0;

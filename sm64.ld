@@ -84,7 +84,8 @@ SECTIONS
       BUILD_DIR/src/mario_actions_airborne.o(.text);
       BUILD_DIR/src/mario_actions_submerged.o(.text);
       BUILD_DIR/src/mario_actions_object.o(.text);
-      BUILD_DIR/src/castle_message_behaviors.o(.text);
+      BUILD_DIR/src/level_geo.o(.text);
+      BUILD_DIR/src/mario_misc.o(.text);
       BUILD_DIR/src/memory.o(.text);
       BUILD_DIR/src/save_file.o(.text);
       BUILD_DIR/src/area.o(.text);
@@ -92,6 +93,7 @@ SECTIONS
       BUILD_DIR/src/profiler.o(.text);
       BUILD_DIR/asm/decompress.o(.text);
       BUILD_DIR/src/camera.o(.text);
+      BUILD_DIR/src/debug_course.o(.text);
       BUILD_DIR/src/object_list_processor.o(.text);
       BUILD_DIR/src/object_helpers.o(.text);
       BUILD_DIR/src/behavior_actions.o(.text);
@@ -241,7 +243,7 @@ SECTIONS
       BUILD_DIR/src/mario_actions_moving.o(.data*);
       BUILD_DIR/src/mario_actions_submerged.o(.data*);
       BUILD_DIR/src/mario_actions_object.o(.data*);
-      BUILD_DIR/src/castle_message_behaviors.o(.data*);
+      BUILD_DIR/src/mario_misc.o(.data*);
       BUILD_DIR/src/memory.o(.data*);
       BUILD_DIR/src/save_file.o(.data*);
       BUILD_DIR/src/area.o(.data*);
@@ -305,7 +307,7 @@ SECTIONS
       BUILD_DIR/src/mario_actions_airborne.o(.rodata*);
       BUILD_DIR/src/mario_actions_submerged.o(.rodata*);
       BUILD_DIR/src/mario_actions_object.o(.rodata*);
-      BUILD_DIR/src/castle_message_behaviors.o(.rodata*);
+      BUILD_DIR/src/mario_misc.o(.rodata*);
       BUILD_DIR/src/area.o(.rodata*);
       BUILD_DIR/src/rendering_graph_node.o(.rodata*);
       BUILD_DIR/src/camera.o(.rodata*);
@@ -359,7 +361,7 @@ SECTIONS
       BUILD_DIR/data/mario_actions_cutscene.bss.o(.bss*);
       BUILD_DIR/src/mario_actions_moving.o(.bss*);
       BUILD_DIR/src/mario_actions_submerged.o(.bss*);
-      BUILD_DIR/src/castle_message_behaviors.o(.bss*);
+      BUILD_DIR/src/mario_misc.o(.bss*);
       BUILD_DIR/src/memory.o(.bss*);
       BUILD_DIR/src/save_file.o(.bss*);
       BUILD_DIR/src/area.o(.bss*);

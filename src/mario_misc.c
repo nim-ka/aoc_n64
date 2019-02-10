@@ -17,7 +17,6 @@
 #include "object_helpers.h"
 #include "object_helpers2.h"
 #include "goddard/mario_head_6.h"
-//#include "rendering.h"
 #include "rendering_graph_node.h"
 #include "save_file.h"
 #include "sound_init.h"
@@ -28,76 +27,17 @@ static s8 D_8032CDF0[7] = {0x01, 0x02, 0x01, 0x00, 0x01, 0x02, 0x01};
 static s8 D_8032CDF8[] = {0x0a, 0x0c, 0x10, 0x18, 0x0a, 0x0a, 0x0a, 0x0e, 0x14, 0x1e, 0x0a, 0x0a, 0x0a, 0x10, 0x14, 0x1a, 0x1a, 0x14, 0x00, 0x00};
 static s16 D_8032CE0C = 0;
 
-
 struct GraphNodeObject D_80339FE0;
 struct Struct8033A040 D_8033A040[2]; 
 
-Gfx *Geo18_802761D0(int a, struct GraphNode *b, float c[4][4])
-{
-    Vec3s sp50;
-    Vec3s sp48;
-    Vec3s sp40;
-    void *sp3C;
-    Gfx *sp38 = NULL;
+// This whole file is weirdly organized. It has to be the same file due
+// to rodata boundries and function aligns, which means the programmer
+// treated this like a "misc" file for vaguely mario related things
+// (message NPC related things, the mario head geo, and mario geo
+// functions)
 
-    if (a == 1 && D_8032CF9C != NULL)
-    {
-        struct Struct802761D0 *sp34 = (struct Struct802761D0 *)b;
-        struct Struct802761D0 *sp30 = sp34 + 1;
 
-        if (sp30->unk0 != gAreaUpdateCounter)
-        {
-            UNUSED int sp2C = D_8032CF9C->unk18;
-            int sp28 = (u16)sp30->unk2;
-
-            vec3f_to_vec3s(sp40, D_8032CF9C->unk28);
-            vec3f_to_vec3s(sp48, D_8032CF9C->unk1C);
-            vec3f_to_vec3s(sp50, D_8033B1B0->unk4);
-            sp3C = func_802DECB8(sp28, sp50, sp40, sp48);
-            if (sp3C != NULL)
-            {
-                Mtx *mtx = alloc_display_list(sizeof(*mtx));
-
-                sp38 = alloc_display_list(2 * sizeof(*sp38));
-                mtxf_to_mtx(mtx, c);
-                gSPMatrix(&sp38[0], VIRTUAL_TO_PHYSICAL(mtx), G_MTX_MODELVIEW | G_MTX_LOAD);
-                gSPBranchList(&sp38[1], VIRTUAL_TO_PHYSICAL(sp3C));
-                sp34->unk2 = (sp34->unk2 & 0xFF) | 0x400;
-            }
-            sp30->unk0 = gAreaUpdateCounter;
-        }
-    }
-    else if (a == 4)
-    {
-        vec3s_copy(sp40, D_80385FDC);
-        vec3s_copy(sp48, D_80385FDC);
-        vec3s_copy(sp50, D_80385FDC);
-        func_802DECB8(0, sp50, sp40, sp48);
-    }
-    return sp38;
-}
-
-Gfx *Geo19_802763D4(int a, struct GraphNode *b, UNUSED Mat4 *c)
-{
-    Gfx *sp3C = NULL;
-    struct Struct802763D4 *sp38 = (struct Struct802763D4 *)b;
-
-    if (a == 3)
-    {
-        sp38->unk18 = 0;
-    }
-    else if (a == 1)
-    {
-        struct GraphNode *sp34 = D_8032CF90->unk20[0];
-        struct Struct802763D4_Unknown *sp30 = (struct Struct802763D4_Unknown *)sp34->parent;
-
-        sp3C = func_802CF414(0, sp38->unk1C, sp30->unk1C,
-            D_8033B328.unk8C[0], D_8033B328.unk8C[1], D_8033B328.unk8C[2],
-            D_8033B328.unk80[0], D_8033B328.unk80[1], D_8033B328.unk80[2]);
-    }
-    return sp3C;
-}
-
+// mario head geo
 Gfx *Geo18_802764B0(int a, struct GraphNode *b, Mat4 *c)
 {
     Gfx *sp24 = NULL;
@@ -319,6 +259,7 @@ void beh_unlock_door_star_loop(void)
     if (prevYaw > (s16)gCurrentObject->oMoveAngleYaw)
         SetSound(SOUND_GENERAL_SHORTSTAR, &gCurrentObject->header.gfx.unk54); // Play a sound every time the star spins once
 }
+
 
 static Gfx *func_802769E0(struct Struct802769E0 *a, s16 b)
 {
