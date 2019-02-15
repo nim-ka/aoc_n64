@@ -364,17 +364,6 @@ struct StructGeo802D2360
     s32 *unk4;
 };
 
-struct Struct8033B1B0
-{
-    /*0x00*/ s32 unk0;
-    /*0x04*/ Vec3f unk4;
-    /*0x10*/ u8 filler10[6];
-    /*0x16*/ Vec3s unk16;
-    /*0x1C*/ s16 unk1C[2];
-    /*0x20*/ struct Object* unk20;
-};
-
-
 // used in goddard code
 
 struct MyVec3f

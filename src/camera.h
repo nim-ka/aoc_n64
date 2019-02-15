@@ -8,6 +8,42 @@
 #define ABS(x) ((x) > 0.f ? (x) : -(x))
 #define ABS2(x) ((x) >= 0.f ? (x) : -(x))
 
+// sorted
+
+struct Struct8033B1B0
+{
+    /*0x00*/ u32 unk0;
+    /*0x04*/ Vec3f unk4;
+    /*0x10*/ Vec3s unk10;
+    /*0x16*/ Vec3s unk16;
+    /*0x1C*/ s16 unk1C[2];
+    /*0x20*/ struct Object *unk20;
+};
+
+struct Struct8033B250
+{
+    /*0x00*/ s16 unk0;
+    /*0x02*/ s16 unk2;
+    /*0x04*/ f32 unk4;
+    /*0x08*/ s16 unk8;
+    /*0x0A*/ s16 unkA;
+    /*0x0C*/ f32 unkC;
+    /*0x10*/ s32 unk10;
+    /*0x14*/ Vec3f unk14;
+    /*0x20*/ u8 pad; // for the structs to align, there has to be an extra unused variable here. type is unknown.
+};
+
+struct Struct8033B2B8
+{
+    /*0x00*/ s8 unk0;
+    union {
+        /*0x08*/ Vec3s unk8;
+        /*0x08*/ long long int force_structure_alignment;
+    } myUnion;
+}; // size = 0x10
+
+// unsorted
+
 struct Struct80287404
 {
     u8 filler0[0x18];
@@ -37,33 +73,20 @@ struct Struct8032CA78
 
 struct CutsceneTableEntry
 {
-	CameraCommandProc unk0;
-	s16 unk4;
+    CameraCommandProc unk0;
+    s16 unk4;
 };
 
 struct Struct8033B230
 {
-	u8 unk0;
-	u8 filler1[3];
-	f32 fieldOfView;
-	f32 unk8;
-	u32 unkC;
-	f32 unk10;
-	s16 unk14;
-	s16 unk16;
-	s16 unk18;
-};
-
-struct Struct8032D000
-{
-    u32 unk0;
-    Vec3f unk4;
-    Vec3s unk10;
-    s16 unk16;
-    s16 unk18;
-    u8 filler1A[0x1E - 0x1A];
-    s16 unk1E;
-    struct Object *unk20;
+    /*0x00*/ u8 unk0;
+    /*0x04*/ f32 fieldOfView;
+    /*0x08*/ f32 unk8;
+    /*0x0C*/ u32 unkC;
+    /*0x10*/ f32 unk10;
+    /*0x14*/ s16 unk14;
+    /*0x16*/ s16 unk16;
+    /*0x18*/ s16 unk18;
 };
 
 struct Struct8032E040
@@ -78,19 +101,15 @@ struct Struct8033B278
     struct Surface *unk0;
     f32 unk4;
     s16 unk8;
-    u8 fillerA[2];
     struct Surface *unkC;
     s16 unk10;
-    u8 filler12[2];
     f32 unk14;
     struct Surface *unk18;
     f32 unk1C;
     s16 unk20;
-    u8 filler22[2];
     struct Surface *unk24;
     f32 unk28;
     s16 unk2C;
-    u8 filler2E[2];
     f32 unk30;
 };
 
@@ -109,7 +128,8 @@ struct Struct8033B418
     s16 unk2;
     s16 unk4;
     s16 unk6;
-    struct Struct8033B418_sub unk8[2];  // unknown length
+    struct Struct8033B418_sub unk8;
+    struct Struct8033B418_sub unk28;
 };
 
 struct Struct8033B470
@@ -123,9 +143,10 @@ struct Struct8033B470
 
 struct Struct8033B4B8
 {
-    Vec3f unk0;
-    Vec3f unkC;
-    u32 filler2[2];
+    /*0x00*/ Vec3f unk0;
+    /*0x0C*/ Vec3f unkC;
+    /*0x18*/ f32 unk18;
+    /*0x1C*/ f32 unk1C;
 };
 
 struct Struct8033B6F0
@@ -137,6 +158,56 @@ struct Struct8033B6F0
     s16 unk22;
 };
 
+struct Struct8033B328
+{
+    Vec3f unk0[4];
+    u8 filler30[12]; // extra unused Vec3f?
+    u8 unk3C;
+    u8 unk3D;
+    u8 filler3E[10];
+    float unk48;
+    s16 unk4C;
+    s16 unk4E;
+    u8 filler50[2];
+    Vec3s unk52;
+    s16 unk58;
+    s16 unk5A;
+    s16 unk5C;
+    u8 filler5E[2];
+    Vec3f unk60;
+    Vec3s unk6C;
+    u8 filler72[8];
+    s16 unk7A;
+    s16 unk7C;
+    s16 unk7E;
+    //u8 unk7A[0x80-0x7A];  // unknown type
+    Vec3f unk80;
+    Vec3f unk8C;
+    s16 unk98;
+    s16 unk9A;
+    s16 unk9C;
+    s16 unk9E;
+    s16 unkA0;
+    s16 unkA2;
+    float unkA4;
+    float unkA8;
+    float unkAC;
+    float unkB0;
+};
+
+// bss order hack to not affect BSS order. if possible, remove me, but it will be hard to match otherwise
+#ifndef INCLUDED_FROM_CAMERA_C
+extern struct Struct8033B1B0 D_8033B1B0[2];
+extern s16 D_8033B314;
+extern s16 D_8033B318;
+extern s16 D_8033B31C;
+extern u16 D_8033B31E;
+extern struct Struct8033B328 D_8033B328;
+extern s16 D_8033B4D8;
+extern s32 D_8033B858;
+extern struct Struct80280550 *D_8033B860;
+#endif
+
 // TODO: sort all of this extremely messy shit out after the split
 // TODO: bring in some externs from camera.c
 
@@ -144,7 +215,6 @@ extern struct Object *D_8032CFD0;
 extern s16 D_8032CFD4;
 extern s32 D_8032CFD8;
 extern f32 D_8032CFEC;
-extern struct Struct8032D000 *D_8032D000;
 extern Vec3f D_8032D00C;
 extern Vec3f D_8032D090;
 extern u8 D_8032D0B8[];
@@ -166,39 +236,10 @@ extern struct Struct8032E040 D_8032E52C[];
 extern struct MyVec3f D_8032E290;
 extern struct MyVec3f D_8032E29C;
 extern struct MyVec3f D_8032E2A8;
-extern struct Struct8033B1B0 D_8033B1B0[1];
-extern struct Struct8033B278 D_8033B278;
-extern s16 D_8033B2AC;
-extern s16 D_8033B2AE;
-extern s16 D_8033B2B0;
-extern s16 D_8033B314;
-extern s16 D_8033B318;
-extern s16 D_8033B31C;
-extern u16 D_8033B31E;
-extern s16 D_8033B3EA;
-extern s16 D_8033B3EC;
-extern s16 D_8033B3EE;
-extern s16 D_8033B3F0;
-extern s16 D_8033B3F8;
-extern s16 D_8033B3FA;
-extern s16 D_8033B400;
-extern s16 D_8033B402;
-extern s16 D_8033B404;
-extern s16 D_8033B406;
-extern s16 D_8033B408;
-extern f32 D_8033B40C;
-extern struct Struct8033B418 D_8033B418;
-extern s16 D_8033B43E;
-extern Vec3f D_8033B460;
-extern u32 D_8033B46C;
-extern struct Struct8033B470 *D_8033B470;
-extern Vec3f D_8033B478;
-extern Vec3f D_8033B498[];
-extern s16 D_8033B4D8;
-extern s16 D_8033B4DA;
-extern struct Struct8033B6F0 D_8033B6F0[];
-extern s32 D_8033B858;
+
 extern s16 D_8035FE10;
+extern struct Struct8033B1B0 *D_8032D000;
+extern struct Struct8033B1B0 *D_8032D004;
 
 extern void func_8027EFE0(s16);
 extern void func_8027F308(s16);

@@ -48,8 +48,9 @@ glabel D_8032D000
 	.word D_8033B1B0
 
 glabel D_8032D004
-	.word D_8033B1D4
-	.word 0
+	.word D_8033B1B0 + 0x24 # D_8033B1B0[1]
+
+	.word 0 # unused?
 
 glabel D_8032D00C
 	.incbin "bin/sm64.j.0E7AE8.bin", 0x524, 0x3C

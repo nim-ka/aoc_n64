@@ -3,7 +3,7 @@
 #include "sm64.h"
 #include "moving_texture.h"
 #include "area.h"
-#include "castle_message_behaviors.h"
+#include "camera.h"
 #include "rendering_graph_node.h"
 #include "math_util.h"
 #include "memory.h"

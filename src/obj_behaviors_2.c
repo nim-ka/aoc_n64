@@ -29,7 +29,6 @@
 
 extern u32 wiggler_seg5_anims_0500C874[];
 extern u32 spiny_egg_seg5_anims_050157E4[];
-extern f32 D_8033B328[];
 extern struct ObjectNode *gObjectLists;
 extern u8 ttc_seg7_arr_07016840[];
 extern u8 ttc_seg7_arr_07016904[];

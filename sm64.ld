@@ -367,7 +367,7 @@ SECTIONS
       BUILD_DIR/src/area.o(.bss*);
       BUILD_DIR/src/rendering_graph_node.o(.bss*);
       BUILD_DIR/src/profiler.o(.bss*);
-      BUILD_DIR/data/camera.bss.o(.bss*);
+      BUILD_DIR/src/camera.o(.bss*);
       BUILD_DIR/src/object_list_processor.o(.bss*);
       BUILD_DIR/data/bss8035FD80.o(.bss*);
       BUILD_DIR/src/room.o(.bss*);

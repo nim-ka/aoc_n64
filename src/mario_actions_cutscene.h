@@ -10,7 +10,6 @@
 extern u16 gAreaUpdateCounter;
 // extern ? D_8032CBE8;
 extern s16 D_8033A760;
-extern struct Struct80280550 *D_8033B860;
 extern u8 D_8032CE24;
 // extern ? gDialogueResponse;
 extern u8 D_8032CE20;
