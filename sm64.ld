@@ -249,9 +249,7 @@ SECTIONS
       BUILD_DIR/src/area.o(.data*);
       BUILD_DIR/src/rendering_graph_node.o(.data*);
       BUILD_DIR/src/profiler.o(.data*);
-      BUILD_DIR/data/camera_before.data.o(.data*);
       BUILD_DIR/src/camera.o(.data*);
-      BUILD_DIR/data/camera.data.o(.data*);
       BUILD_DIR/src/object_list_processor.o(.data*);
       BUILD_DIR/src/object_helpers.o(.data*);
       BUILD_DIR/src/behavior_actions.o(.data*);

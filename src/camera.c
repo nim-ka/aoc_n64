@@ -99,7 +99,71 @@ struct Struct8033B6F0 D_8033B6F0[10];
 s32 D_8033B858;
 u32 D_8033B85C;
 struct Struct80280550 *D_8033B860;
-// rest of BSS here
+
+// first iteration of data
+u32 D_8032CFC0 = 0; // unused
+struct Object *D_8032CFC4 = NULL;
+u32 D_8032CFC8 = 0;
+u32 D_8032CFCC = 0;
+struct Object *D_8032CFD0 = NULL;
+s16 D_8032CFD4 = 1024;
+s32 D_8032CFD8 = 0;
+u32 D_8032CFDC = 0;
+f32 D_8032CFE0 = 1000.0f; // unused
+f32 D_8032CFE4 = 800.0f; // unused
+u32 D_8032CFE8 = 0; // unused
+f32 D_8032CFEC = 800.0f;
+u8 D_8032CFF0 = 0;
+u8 D_8032CFF4 = 0;
+u8 D_8032CFF8 = 0;
+u8 D_8032CFFC = 0;
+struct Struct8033B1B0 *D_8032D000 = &D_8033B1B0[0];
+struct Struct8033B1B0 *D_8032D004 = &D_8033B1B0[1];
+u32 D_8032D008 = 0; // unused
+Vec3f D_8032D00C = {646.0f, 143.0f, -1513.0f};
+Vec3f D_8032D00C_2 = {646.0f, 143.0f, -1513.0f}; // unused
+Vec3f D_8032D00C_3 = {646.0f, 143.0f, -1513.0f}; // unused
+Vec3f D_8032D00C_4 = {646.0f, 143.0f, -1513.0f}; // unused
+Vec3f D_8032D00C_5 = {646.0f, 143.0f, -1513.0f}; // unused
+
+s32 CameraChange01(struct Struct80280550 *, Vec3f, Vec3f);
+s32 CameraChange02(struct Struct80280550 *, Vec3f, Vec3f);
+s32 CameraChange03(struct Struct80280550 *, Vec3f, Vec3f);
+s32 CameraChange040710(struct Struct80280550 *, Vec3f, Vec3f);
+s32 CameraChange05(struct Struct80280550 *, Vec3f, Vec3f);
+s32 CameraChange06(struct Struct80280550 *, Vec3f, Vec3f);
+s32 CameraChange040710(struct Struct80280550 *, Vec3f, Vec3f);
+s32 CameraChange08(struct Struct80280550 *, Vec3f, Vec3f);
+s32 CameraChange090F(struct Struct80280550 *, Vec3f, Vec3f);
+s32 CameraChange0A(struct Struct80280550 *, Vec3f, Vec3f);
+s32 CameraChange0B(struct Struct80280550 *, Vec3f, Vec3f);
+s32 CameraChange0C(struct Struct80280550 *, Vec3f, Vec3f);
+s32 CameraChange0D(struct Struct80280550 *, Vec3f, Vec3f);
+s32 CameraChange0E(struct Struct80280550 *, Vec3f, Vec3f);
+s32 CameraChange090F(struct Struct80280550 *, Vec3f, Vec3f);
+s32 CameraChange040710(struct Struct80280550 *, Vec3f, Vec3f);
+s32 CameraChange11(struct Struct80280550 *, Vec3f, Vec3f);
+
+s32 (*TableCameraTransitions[])(struct Struct80280550 *, Vec3f, Vec3f) = {
+    NULL,
+    CameraChange01,
+    CameraChange02,
+    CameraChange03,
+    CameraChange040710,
+    CameraChange05,
+    CameraChange06,
+    CameraChange040710,
+    CameraChange08,
+    CameraChange090F,
+    CameraChange0A,
+    CameraChange0B,
+    CameraChange0C,
+    CameraChange0D,
+    CameraChange0E,
+    CameraChange090F,
+    CameraChange040710,
+    CameraChange11
+};
 
 extern s32 gDialogueResponse;
 extern f32 D_8033B3CC;
@@ -108,16 +172,8 @@ extern s16 D_8033B3A2;
 extern f32 D_80336074;
 extern s16 D_8033B3A4;
 extern s16 D_8033B3A6;
-extern u8 D_8032CFFC;
-extern u8 D_8032CFF8;
-extern u8 D_8032CFF4;
-extern struct Object *D_8032CFC4;
-extern u32 D_8032CFC8;
-extern u32 D_8032CFCC;
 
-extern u8 D_8032CFF0;
 extern u32 D_8032CFDC;
-extern u8 D_8032E910[];
 
 extern f32 D_8033B3D8;
 extern f32 D_8033B3D0;
@@ -126,96 +182,6 @@ extern f32 D_803365D0;
 extern f32 D_803365D4;
 extern f32 D_803365D8;
 extern f32 D_803365DC;
-
-extern struct Struct8033B470 D_8032D0F0;
-
-extern struct Struct8032CA78 *TableLevelCinematicCamera[];
-
-extern struct CutsceneTableEntry TableCutscenePeachEnd[];
-extern struct CutsceneTableEntry TableCutsceneGrandStar[];
-extern struct CutsceneTableEntry TableCutscene0FTodo[];
-extern struct CutsceneTableEntry TableCutsceneDoorWarp[];
-extern struct CutsceneTableEntry TableCutsceneEndWaving[];
-extern struct CutsceneTableEntry TableCutsceneCredits[];
-extern struct CutsceneTableEntry TableCutsceneDoor00[];
-extern struct CutsceneTableEntry TableCutsceneDoor01[];
-extern struct CutsceneTableEntry TableCutsceneDoor0A[];
-extern struct CutsceneTableEntry TableCutsceneDoor0B[];
-extern struct CutsceneTableEntry TableCutsceneEnterCannon[];
-extern struct CutsceneTableEntry TableCutsceneStarSpawn[];
-extern struct CutsceneTableEntry TableCutsceneSpecialStarSpawn[];
-extern struct CutsceneTableEntry TableCutsceneEnterPainting[];
-extern struct CutsceneTableEntry TableCutsceneExitPaintingDeath[];
-extern struct CutsceneTableEntry TableCutsceneExitPaintingSuccess[];
-extern struct CutsceneTableEntry TableCutscene11Todo[];
-extern struct CutsceneTableEntry TableCutsceneIntroPeach[];
-extern struct CutsceneTableEntry TableCutscenePrepareCannon[];
-extern struct CutsceneTableEntry TableCutsceneExitWaterfall[];
-extern struct CutsceneTableEntry TableCutsceneFallToCastleGrounds[];
-extern struct CutsceneTableEntry TableCutsceneEnterPyramidTop[];
-extern struct CutsceneTableEntry TableCutscene26Todo[];
-extern struct CutsceneTableEntry TableCutsceneDeath1[];
-extern struct CutsceneTableEntry TableCutsceneEnterPool[];
-extern struct CutsceneTableEntry TableCutsceneDeath2[];
-extern struct CutsceneTableEntry TableCutsceneBBHDeath[];
-extern struct CutsceneTableEntry TableCutsceneQuicksandDeath[];
-extern struct CutsceneTableEntry TableCutscene1ATodo[];
-extern struct CutsceneTableEntry TableCutsceneEnterBowserPlatform[];
-extern struct CutsceneTableEntry TableCutsceneStarDance1[];
-extern struct CutsceneTableEntry TableCutsceneStarDance2[];
-extern struct CutsceneTableEntry TableCutsceneStarDance3[];
-extern struct CutsceneTableEntry TableCutsceneKeyDance[];
-extern struct CutsceneTableEntry TableCutsceneCapSwitchPress[];
-extern struct CutsceneTableEntry TableCutsceneSlidingDoorsOpen[];
-extern struct CutsceneTableEntry TableCutsceneUnlockKeyDoor[];
-extern struct CutsceneTableEntry TableCutsceneExitBowserSuccess[];
-extern struct CutsceneTableEntry TableCutscene1CTodo[];
-extern struct CutsceneTableEntry TableCutsceneBBHExitSuccess[];
-extern struct CutsceneTableEntry TableCutsceneNonPaintingDeath[];
-extern struct CutsceneTableEntry TableCutsceneDialog[];
-extern struct CutsceneTableEntry TableCutsceneReadMessage[];
-
-extern struct Struct8032E040 D_8032E924[];
-extern struct Struct8032E040 D_8032E924[];
-extern struct Struct8032E040 D_8032E94C[];
-extern struct Struct8032E040 D_8032E974[];
-extern struct Struct8032E040 D_8032E99C[];
-extern struct Struct8032E040 D_8032E9C4[];
-extern struct Struct8032E040 D_8032E9EC[];
-extern struct Struct8032E040 D_8032EA14[];
-extern struct Struct8032E040 D_8032EA3C[];
-extern struct Struct8032E040 D_8032EA64[];
-extern struct Struct8032E040 D_8032EA84[];
-extern struct Struct8032E040 D_8032EAA4[];
-extern struct Struct8032E040 D_8032EACC[];
-extern struct Struct8032E040 D_8032EAF4[];
-extern struct Struct8032E040 D_8032EB0C[];
-extern struct Struct8032E040 D_8032EB24[];
-extern struct Struct8032E040 D_8032EB54[];
-extern struct Struct8032E040 D_8032EB84[];
-extern struct Struct8032E040 D_8032EBB4[];
-extern struct Struct8032E040 D_8032EBE4[];
-extern struct Struct8032E040 D_8032EC1C[];
-extern struct Struct8032E040 D_8032EC54[];
-extern struct Struct8032E040 D_8032EC74[];
-extern struct Struct8032E040 D_8032EC94[];
-extern struct Struct8032E040 D_8032ECB4[];
-extern struct Struct8032E040 D_8032ECD4[];
-extern struct Struct8032E040 D_8032ED04[];
-extern struct Struct8032E040 D_8032ED34[];
-extern struct Struct8032E040 D_8032ED6C[];
-extern struct Struct8032E040 D_8032EDA4[];
-extern struct Struct8032E040 D_8032EDC4[];
-extern struct Struct8032E040 D_8032EDE4[];
-extern struct Struct8032E040 D_8032EE04[];
-extern struct Struct8032E040 D_8032EE24[];
-extern struct Struct8032E040 D_8032EE4C[];
-extern struct Struct8032E040 D_8032EE74[];
-extern struct Struct8032E040 D_8032EE9C[];
-extern struct Struct8032E040 D_8032EEC4[];
-extern struct Struct8032E040 D_8032EEEC[];
-extern struct Struct8032E040 D_8032EF14[];
-extern struct Struct8032E040 D_8032EF34[];
 
 void func_8027EFE0(s16 a)
 {
@@ -1181,7 +1147,18 @@ s32 CameraChange0B(struct Struct80280550 *a, Vec3f b, Vec3f c)
     return sp60;
 }
 
-void CameraChange05(UNUSED struct Struct80280550 *a, UNUSED Vec3f b, UNUSED Vec3f c)
+// 2nd iteration of data
+s16 D_8032D0A8[] = {14, 1, 2, 4};
+s16 D_8032D0B0[] = {16, 9, 17, 0};
+u8 D_8032D0B8[] = {0xA5, 0x8F, 0xA6, 0xA7, 0xAF, 0, 0, 0, 0, 1, 0, 0, 0xC5, 0x3D, 0x20, 0, 0x44, 0x64, 0, 0, 0xC5, 6, 0x40, 0, 0x44, 0x16, 0, 0, 0x3E, 0x99, 0x99, 0x9A, 0, 0, 0, 0, 0xC5, 0x92, 0x20, 0, 0x44, 0x65, 0x40, 0, 0xC5, 0x6D, 0xA0, 0, 0x44, 0x16, 0, 0, 0x3E, 0x99, 0x99, 0x9A};
+
+struct Struct8033B470 D_8032D0F0[3] = {
+    {1,{ -929.0f, 1619.0f, -1490.0f},50.0f,0.0f},
+    {0,{-2118.0f, 1619.0f, -1490.0f},50.0f,0.0f},
+    {0,{    0.0f,    0.0f,     0.0f}, 0.0f,0.0f},
+};
+
+s32 CameraChange05(UNUSED struct Struct80280550 *a, UNUSED Vec3f b, UNUSED Vec3f c)
 {
 }
 
@@ -1452,7 +1429,7 @@ void func_80283434(struct Struct80280550 *a)
     a->unk3A = func_80282D90(a);
 }
 
-void CameraChange08(UNUSED struct Struct80280550 *a, UNUSED Vec3f b, UNUSED Vec3f c)
+s32 CameraChange08(UNUSED struct Struct80280550 *a, UNUSED Vec3f b, UNUSED Vec3f c)
 {
 }
 
@@ -2142,8 +2119,6 @@ void func_80285AD8(struct Struct80280550 *a, s16 b, s16 c)
     }
 }
 
-extern s32 (*TableCameraTransitions[])(struct Struct80280550 *, Vec3f, Vec3f);
-
 void func_80285BD8(struct Struct80280550 *a, s16 b, s16 c)
 {
     struct Struct8033B418_sub *sp24 = &D_8033B418.unk8;
@@ -2661,6 +2636,8 @@ void func_80286C9C(struct Struct80280550 *a)
     a->unk3A = D_8033B328.unk7C;
 }
 
+extern u8 D_8032E910[20];
+
 void func_80287404(struct Struct80287404 *a)
 {
     UNUSED u8 unused1[8];
@@ -2671,7 +2648,7 @@ void func_80287404(struct Struct80287404 *a)
     s32 sp28 = D_8032CFD8 / 32;
     s32 sp24 = 1 << (((D_8032CFD8 & 0x10) / 4) + (((D_8032CFD8 & 0xF) - 1) & 3));
 
-    if (sp28 >= 0x13)
+    if (sp28 >= ARRAY_COUNT(D_8032E910) - 1)
     {
         sp28 = 0;
         sp24 = 0;
@@ -4079,7 +4056,7 @@ void func_8028BB3C(struct Struct80280550 *a, u8 b)
     }
 }
 
-extern u8 D_8032E8A4[][4];
+extern u8 D_8032E8A4[27][4];
 
 s32 func_8028BB8C(UNUSED struct Struct80280550 *a)
 {
@@ -4749,7 +4726,7 @@ void CameraInside0F(struct Struct80280550 *a)
 
 void CameraBBH2B2C(struct Struct80280550 *a)
 {
-    func_8028D19C(a, &D_8032D0F0);
+    func_8028D19C(a, D_8032D0F0);
 }
 
 void CameraBBH24(struct Struct80280550 *a)
@@ -4993,6 +4970,388 @@ void func_8028E774(struct Struct80280550 *a)
         func_80285AD8(a, 1, 90);
     }
 }
+
+#define TABLE_EMPTY {0, NULL, 0, 0, 0, 0, 0, 0, 0}
+
+struct Struct8032CA78 TableCameraSL[3] = {
+    { 1, CameraSL00,    1119,  3584,  1125,  1177,   358,   358, -7463},
+    { 1, CameraSL01,    1119,  3584,  1125,  4096,  4096,  4096, -7463},
+    TABLE_EMPTY
+};
+
+struct Struct8032CA78 TableCameraTHI[3] = {
+    { 1, CameraTHI00,  -4609, -2969,  6448,   100,   300,   300,     0},
+    { 1, CameraTHI01,  -4809, -2969,  6448,   100,   300,   300,     0},
+    TABLE_EMPTY
+};
+
+struct Struct8032CA78 TableCameraHMC[7] = {
+    { 1, CameraHMC00,   1996,   102,     0,   205,   100,   205,     0},
+    { 1, CameraHMC01,   3350, -4689,  4800,   600,    50,   600,     0},
+    { 1, CameraHMC02,  -3278,  1236,  1379,   358,   200,   358,     0},
+    { 1, CameraHMC03,  -2816,  2055, -2560,   358,   200,   358,     0},
+    { 1, CameraHMC04,  -3532,  1543, -7040,   358,   200,   358,     0},
+    { 1, CameraHMC05,   -972,  1543, -7347,   358,   200,   358,     0},
+    TABLE_EMPTY
+};
+
+struct Struct8032CA78 TableCameraSSL[5] = {
+    { 1, CameraSSL00,   -2048,  1080, -1024,   150,   150,   150,     0},
+    { 2, CameraSSL0102,     0,  -104,  -104,  1248,  1536,  2950,     0},
+    { 2, CameraSSL0102,     0,  2500,   256,   515,  5000,   515,     0},
+    { 3, CameraSSL03,       0, -1534, -2040,  1000,   800,  1000,     0},
+    TABLE_EMPTY
+};
+
+struct Struct8032CA78 TableCameraRR[10] = {
+    { 1, CameraRR00,   -4197,  3819, -3087,  1769,  1490,   342,     0},
+    { 1, CameraRR01,   -4197,  3819, -3771,   769,   490,   342,     0},
+    { 1, CameraRR02,   -5603,  4834, -5209,   300,   600,   591,     0},
+    { 1, CameraRR0305, -2609,  3730, -5463,   300,   650,   577,     0},
+    { 1, CameraRR04,   -4196,  7343, -5155,  4500,  1000,  4500,     0},
+    { 1, CameraRR0305, -4196,  6043, -5155,   500,   300,   500,     0},
+    TABLE_EMPTY,
+    { 1, CameraRR07,    2468,  2720, -4608,  3263,  1696,  3072,     0},
+    {-1, CameraRR08,       0,     0,     0,     0,     0,     0,     0},
+    TABLE_EMPTY
+};
+
+struct Struct8032CA78 TableCameraMetal[2] = {
+    { 1, CameraMetal00,     0,  1500,  3500,   550, 10000,  1500,     0},
+    TABLE_EMPTY
+};
+
+struct Struct8032CA78 TableCameraCCM[3] = {
+    { 2, CameraCCM00, -4846,  2061,    27,  1229,  1342,   396,     0},
+    { 2, CameraCCM01, -6412, -3917, -6246,   307,   185,   132,     0},
+    TABLE_EMPTY
+};
+
+struct Struct8032CA78 TableCameraInside[35] = {
+    { 1, CameraInside00,    -1100,    657,  -1346,    300,    150,    300,      0},
+    { 1, CameraInside01,    -1099,    657,   -803,    300,    150,    300,      0},
+    { 1, CameraInside00,    -2304,   -264,  -4072,    140,    150,    140,      0},
+    { 1, CameraInside00,    -2304,    145,  -1344,    140,    150,    140,      0},
+    { 1, CameraInside01,    -2304,    145,   -802,    140,    150,    140,      0},
+    { 1, CameraInside00,     2816,   1200,   -256,    100,    100,    100,      0},
+    { 1, CameraInside00,      256,   -161,  -4226,    140,    150,    140,      0},
+    { 1, CameraInside00,      256,    145,  -1344,    140,    150,    140,      0},
+    { 1, CameraInside01,      256,    145,   -802,    140,    150,    140,      0},
+    { 1, CameraInside00,    -1023,     44,  -4870,    140,    150,    140,      0},
+    { 1, CameraInside00,     -459,    145,  -1020,    140,    150,    140,  24576},
+    { 1, CameraInside01,      -85,    145,   -627,    140,    150,    140,      0},
+    { 1, CameraInside00,    -1589,    145,  -1020,    140,    150,    140, -24576},
+    { 1, CameraInside01,    -1963,    145,   -627,    140,    150,    140,      0},
+    { 1, CameraInside0E,    -2838,    657,  -1659,    200,    150,    150,   8192},
+    { 1, CameraInside0F,    -2319,    512,  -1266,    300,    150,    300,   8192},
+    { 1, CameraInside00,      844,    759,  -1657,     40,    150,     40,  -8192},
+    { 1, CameraInside01,      442,    759,  -1292,    140,    150,    140,  -8192},
+    { 2, CameraInside1213,  -1000,    657,   1740,    200,    300,    200,      0},
+    { 2, CameraInside1213,   -996,   1348,   1814,    200,    300,    200,      0},
+    { 2, CameraInside00,     -946,    657,   2721,     50,    150,     50,      0},
+    { 2, CameraInside00,     -996,   1348,    907,     50,    150,     50,      0},
+    { 2, CameraInside00,     -997,   1348,   1450,    140,    150,    140,      0},
+    { 1, CameraInside00,    -4942,    452,   -461,    140,    150,    140,  16384},
+    { 1, CameraInside00,    -3393,    350,   -793,    140,    150,    140,  16384},
+    { 1, CameraInside01,    -2851,    350,   -792,    140,    150,    140,  16384},
+    { 1, CameraInside01,      803,    350,   -228,    140,    150,    140, -16384},
+    { 1, CameraInside01,      803,    350,   -228,    140,    150,    140, -16384},
+    { 1, CameraInside00,     1345,    350,   -229,    140,    150,    140,  16384},
+    { 1, CameraInside00,     -946,   -929,    622,    300,    150,    300,      0},
+    { 2, CameraInside1E,     -205,   1456,   2508,    210,    928,    718,      0},
+    { 1, CameraInside1F,    -1027,   -587,   -718,    318,    486,    577,      0},
+    { 1, CameraInside20,    -1023,    376,   1830,    300,    400,    300,      0},
+    { 3, CameraHMC01,        2485,  -1689,  -2659,    600,     50,    600,      0},
+    TABLE_EMPTY
+};
+
+struct Struct8032CA78 TableCameraBBH[61] = {
+    { 1, CameraBBH00,      742,      0,   2369,    200,    200,    200,      0},
+    { 1, CameraBBH01,      741,      0,   1827,    200,    200,    200,      0},
+    { 1, CameraBBH020C,    222,      0,   1458,    200,    200,    200,      0},
+    { 1, CameraBBH020C,    222,      0,    639,    200,    200,    200,      0},
+    { 1, CameraBBH020C,    435,      0,    222,    200,    200,    200,      0},
+    { 1, CameraBBH020C,   1613,      0,    222,    200,    200,    200,      0},
+    { 1, CameraBBH020C,   1827,      0,   1459,    200,    200,    200,      0},
+    { 1, CameraBBH020C,   -495,    819,   1407,    200,    200,    200,      0},
+    { 1, CameraBBH020C,   -495,    819,    640,    250,    200,    200,      0},
+    { 1, CameraBBH020C,    179,    819,    222,    200,    200,    200,      0},
+    { 1, CameraBBH020C,   1613,    819,    222,    200,    200,    200,      0},
+    { 1, CameraBBH020C,   1827,    819,    486,    200,    200,    200,      0},
+    { 1, CameraBBH020C,   1827,    819,   1818,    200,    200,    200,      0},
+    { 1, CameraBBH0D0F,   2369,      0,   1459,    200,    200,    200,      0},
+    { 1, CameraBBH0D0F,   3354,      0,   1347,    200,    200,    200,      0},
+    { 1, CameraBBH0D0F,   2867,    514,   1843,    512,    102,    409,      0},
+    { 1, CameraBBH1011,   3354,      0,    804,    200,    200,    200,      0},
+    { 1, CameraBBH1011,   1613,      0,   -320,    200,    200,    200,      0},
+    { 1, CameraBBH12,      435,      0,   -320,    200,    200,    200,      0},
+    { 1, CameraBBH1314,  -2021,      0,    803,    200,    200,    200,      0},
+    { 1, CameraBBH1314,   -320,      0,    640,    200,    200,    200,      0},
+    { 1, CameraBBH15,    -1536,    358,   -254,    716,    363,    102,      0},
+    { 1, CameraBBH16,    -1536,    358,   -459,    716,    363,    102,      0},
+    { 1, CameraBBH17,    -1560,      0,  -1314,    200,    200,    200,      0},
+    { 1, CameraBBH18,     -320,      0,   1459,    200,    200,    200,      0},
+    { 1, CameraBBH18,    -2021,      0,   1345,    200,    200,    200,      0},
+    { 1, CameraBBH1A1B,   2369,    819,    486,    200,    200,    200,      0},
+    { 1, CameraBBH1A1B,   2369,   1741,    486,    200,    200,    200,      0},
+    { 1, CameraBBH1C,     2867,   1228,   1174,    716,    414,    102,      0},
+    { 1, CameraBBH1D,     2867,   1228,   1378,    716,    414,    102,      0},
+    { 1, CameraBBH1E,     2369,    819,   1818,    200,    200,    200,      0},
+    { 1, CameraBBH1F20,   1829,   1741,    486,    200,    200,    200,      0},
+    { 1, CameraBBH1F20,    741,   1741,   1587,    200,    200,    200,      0},
+    { 1, CameraBBH21,      102,   2048,   -191,    100,    310,    307,      0},
+    { 1, CameraBBH22,      409,   2048,   -191,    100,    310,    307,      0},
+    { 1, CameraBBH23,      742,   1922,   2164,    200,    200,    200,      0},
+    { 1, CameraBBH24,      587,   1322,   2677,   1000,    400,    600,      0},
+    { 1, CameraBBH18,    -1037,    819,   1408,    200,    200,    200,      0},
+    { 1, CameraBBH18,    -1970,   1024,   1345,    200,    200,    200,      0},
+    { 1, CameraBBH12,      179,    819,   -320,    200,    200,    200,      0},
+    { 1, CameraBBH28,     1613,    819,   -320,    200,    200,    200,      0},
+    { 1, CameraBBH29,     2099,   1228,   -819,    102,    414,    716,      0},
+    { 1, CameraBBH2A,     2304,   1228,   -819,    102,    414,    716,      0},
+    { 1, CameraBBH2B2C,  -1037,    819,    640,    200,    200,    200,      0},
+    { 1, CameraBBH2B2C,  -1970,   1024,    803,    200,    200,    200,      0},
+    { 1, CameraBBH020C,   1827,    819,   1818,    200,    200,    200,      0},
+    { 1, CameraBBH2E2F,   2355,  -1112,   -193,   1228,    500,   1343,      0},
+    { 1, CameraBBH2E2F,   2355,  -1727,   1410,   1228,    500,    705,      0},
+    { 1, CameraBBH3033,      0,  -2457,   1827,    250,    200,    250,      0},
+    { 1, CameraBBH3033,      0,  -2457,   2369,    250,    200,    250,      0},
+    { 1, CameraBBH3033,      0,  -2457,   4929,    250,    200,    250,      0},
+    { 1, CameraBBH3033,      0,  -2457,   4387,    250,    200,    250,      0},
+    { 1, CameraBBH34,     1887,  -2457,    204,    250,    200,    250,      0},
+    { 1, CameraBBH3536,   1272,  -2457,    204,    250,    200,    250,      0},
+    { 1, CameraBBH3536,  -1681,  -2457,    204,    250,    200,    250,      0},
+    { 1, CameraBBH34,    -2296,  -2457,    204,    250,    200,    250,      0},
+    { 1, CameraBBH38,    -2939,   -605,   5367,    800,    100,    800,      0},
+    { 1, CameraBBH393A,  -2939,   -205,   5367,    300,    100,    300,      0},
+    { 1, CameraBBH393A,  -2332,   -204,   4714,    250,    200,    250,  24576},
+    { 1, CameraBBH34,    -1939,   -204,   4340,    250,    200,    250,  24576},
+    TABLE_EMPTY
+};
+
+struct Struct8032CA78 *TableLevelCinematicCamera[40] = {
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    TableCameraBBH,
+    TableCameraCCM,
+    TableCameraInside,
+    TableCameraHMC,
+    TableCameraSSL,
+    NULL,
+    TableCameraSL,
+    NULL,
+    NULL,
+    TableCameraTHI,
+    NULL,
+    TableCameraRR,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    TableCameraMetal,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+};
+
+struct Struct8032E040 D_8032DDF0[23] = {
+    {  0,   0, {  2122,   8762,   9114}},
+    {  0,   0, {  2122,   8762,   9114}},
+    {  1,   0, {  2122,   7916,   9114}},
+    {  1,   0, {  2122,   7916,   9114}},
+    {  2,   0, {   957,   5166,   8613}},
+    {  3,   0, {   589,   4338,   7727}},
+    {  4,   0, {   690,   3366,   6267}},
+    {  5,   0, { -1600,   2151,   4955}},
+    {  6,   0, { -1557,    232,   1283}},
+    {  7,   0, { -6962,   -295,   2729}},
+    {  8,   0, { -6979,    131,   3246}},
+    {  9,   0, { -6360,   -283,   4044}},
+    {  0,   0, { -5695,   -334,   5264}},
+    {  1,   0, { -5568,   -319,   7933}},
+    {  2,   0, { -3848,   -200,   6278}},
+    {  3,   0, {  -965,   -263,   6092}},
+    {  4,   0, {  1607,   2465,   6329}},
+    {  5,   0, {  2824,    180,   3548}},
+    {  6,   0, {  1236,    136,    945}},
+    {  0,   0, {   448,    136,    564}},
+    {  0,   0, {   448,    136,    564}},
+    {  0,   0, {   448,    136,    564}},
+    { -1,   0, {   448,    136,    564}}
+};
+
+struct Struct8032E040 D_8032DEA8[23] = {
+    {  0,  50, {  1753,  29800,   8999}},
+    {  0,  50, {  1753,  29800,   8999}},
+    {  1,  50, {  1753,   8580,   8999}},
+    {  1, 100, {  1753,   8580,   8999}},
+    {  2,  50, {   520,   5400,   8674}},
+    {  3,  50, {   122,   4437,   7875}},
+    {  4,  50, {   316,   3333,   6538}},
+    {  5,  36, { -1526,   2189,   5448}},
+    {  6,  50, { -1517,    452,   1731}},
+    {  7,  50, { -6659,   -181,   3109}},
+    {  8,  17, { -6649,    183,   3618}},
+    {  9,  20, { -6009,   -214,   4395}},
+    {  0,  50, { -5258,   -175,   5449}},
+    {  1,  36, { -5158,   -266,   7651}},
+    {  2,  26, { -3351,   -192,   6222}},
+    {  3,  25, {  -483,   -137,   6060}},
+    {  4, 100, {  1833,   2211,   5962}},
+    {  5,  26, {  3022,    207,   3090}},
+    {  6,  20, {  1250,    197,    449}},
+    {  7,  50, {   248,    191,    227}},
+    {  7,   0, {    48,    191,    227}},
+    {  7,   0, {    48,    191,    227}},
+    { -1,   0, {    48,    191,    227}}
+};
+
+struct Struct8032E040 D_8032DF60[14] = {
+    {  0,   0, {  -785,    625,   4527}},
+    {  1,   0, {  -785,    625,   4527}},
+    {  2,   0, { -1286,    644,   4376}},
+    {  3,   0, { -1286,    623,   4387}},
+    {  4,   0, { -1286,    388,   3963}},
+    {  5,   0, { -1286,    358,   4093}},
+    {  6,   0, { -1386,    354,   4159}},
+    {  7,   0, { -1477,    306,   4223}},
+    {  8,   0, { -1540,    299,   4378}},
+    {  9,   0, { -1473,    316,   4574}},
+    {  0,   0, { -1328,    485,   5017}},
+    {  0,   0, { -1328,    485,   5017}},
+    {  0,   0, { -1328,    485,   5017}},
+    { -1,   0, { -1328,    485,   5017}}
+};
+
+struct Struct8032E040 D_8032DFD0[14] = {
+    {  0,  20, { -1248,    450,   4596}},
+    {  1,  59, { -1258,    485,   4606}},
+    {  2,  59, { -1379,    344,   4769}},
+    {  3,  20, { -1335,    366,   4815}},
+    {  4,  23, { -1315,    370,   4450}},
+    {  5,  40, { -1322,    333,   4591}},
+    {  6,  25, { -1185,    329,   4616}},
+    {  7,  21, { -1059,    380,   4487}},
+    {  8,  14, { -1086,    421,   4206}},
+    {  9,  21, { -1321,    346,   4098}},
+    {  0,   0, { -1328,    385,   4354}},
+    {  0,   0, { -1328,    385,   4354}},
+    {  0,   0, { -1328,    385,   4354}},
+    { -1,   0, { -1328,    385,   4354}}
+};
+
+struct Struct8032E040 D_8032E040[10] = {
+    {  0,   0, {   -86,    876,    640}},
+    {  1,   0, {   -86,    876,    610}},
+    {  2,   0, {   -66,    945,    393}},
+    {  3,   0, {   -80,    976,    272}},
+    {  4,   0, {   -66,   1306,    -36}},
+    {  5,   0, {   -70,   1869,   -149}},
+    {  6,   0, {   -10,   2093,   -146}},
+    {  7,   0, {   -10,   2530,   -248}},
+    {  8,   0, {   -10,   2530,   -263}},
+    {  9,   0, {   -10,   2530,   -273}}
+};
+
+struct Struct8032E040 D_8032E090[11] = {
+    {  0,  50, {   -33,    889,     -7}},
+    {  1,  35, {   -33,    889,     -7}},
+    {  2,  31, {   -17,   1070,   -193}},
+    {  3,  25, {   -65,   1182,   -272}},
+    {  4,  20, {   -64,   1559,   -542}},
+    {  5,  25, {   -68,   2029,   -677}},
+    {  6,  25, {    -9,   2204,   -673}},
+    {  7,  25, {    -8,   2529,   -772}},
+    {  8,   0, {    -8,   2529,   -772}},
+    {  9,   0, {    -8,   2529,   -772}},
+    { -1,   0, {    -8,   2529,   -772}}
+};
+
+struct Struct8032E040 D_8032E0E8[20] = {
+    {  0,  50, {     1,    120,  -1150}},
+    {  1,  50, {     1,    120,  -1150}},
+    {  2,  40, {   118,    121,  -1199}},
+    {  3,  40, {   147,     74,  -1306}},
+    {  4,  40, {   162,     95,  -1416}},
+    {  5,  40, {    25,    111,  -1555}},
+    {  6,  40, {  -188,    154,  -1439}},
+    {  7,  40, {  -203,    181,  -1242}},
+    {  8,  40, {     7,    191,  -1057}},
+    {  9,  40, {   262,    273,  -1326}},
+    {  0,  40, {    -4,    272,  -1627}},
+    {  1,  35, {  -331,    206,  -1287}},
+    {  2,  30, {   -65,    219,   -877}},
+    {  3,  25, {     6,    216,   -569}},
+    {  4,  25, {    -8,    157,     40}},
+    {  5,  25, {    -4,    106,    200}},
+    {  6,  25, {    -6,     72,    574}},
+    {  7,   0, {    -6,     72,    574}},
+    {  8,   0, {    -6,     72,    574}},
+    { -1,   0, {    -6,     72,    574}}
+};
+
+struct Struct8032E040 D_8032E188[9] = {
+    {  0,   0, {  -130,   1111,  -1815}},
+    {  1,   0, {  -131,   1052,  -1820}},
+    {  2,   0, {  -271,   1008,  -1651}},
+    {  3,   0, {  -439,   1043,  -1398}},
+    {  4,   0, {  -433,   1040,  -1120}},
+    {  5,   0, {  -417,   1040,  -1076}},
+    {  6,   0, {  -417,   1040,  -1076}},
+    {  7,   0, {  -417,   1040,  -1076}},
+    { -1,   0, {  -417,   1040,  -1076}}
+};
+
+struct Struct8032E040 D_8032E1D0[9] = {
+    {  0,  50, {   -37,   1020,  -1332}},
+    {  1,  20, {   -36,   1012,  -1330}},
+    {  2,  20, {   -24,   1006,  -1215}},
+    {  3,  20, {    28,   1002,  -1224}},
+    {  4,  24, {    45,   1013,  -1262}},
+    {  5,  35, {    34,   1000,  -1287}},
+    {  6,   0, {    34,   1000,  -1287}},
+    {  7,   0, {    34,   1000,  -1287}},
+    { -1,   0, {    34,   1000,  -1287}}
+};
+
+struct Struct8032E040 D_8032E218[8] = {
+    {  0,  50, {   200,   1066,  -1414}},
+    {  0,  50, {   200,   1066,  -1414}},
+    {  0,  30, {   198,   1078,  -1412}},
+    {  0,  33, {    15,   1231,  -1474}},
+    {  0,  39, {   -94,   1381,  -1368}},
+    {  0,   0, {   -92,   1374,  -1379}},
+    {  0,   0, {   -92,   1374,  -1379}},
+    { -1,   0, {   -92,   1374,  -1379}}
+};
+
+struct Struct8032E040 D_8032E258[7] = {
+    {  0,  50, {   484,   1368,   -888}},
+    {  0,  72, {   479,   1372,   -892}},
+    {  0,  50, {   351,   1817,   -918}},
+    {  0,  50, {   351,   1922,   -598}},
+    {  0,   0, {   636,   2027,   -415}},
+    {  0,   0, {   636,   2027,   -415}},
+    { -1,   0, {   636,   2027,   -415}}
+};
 
 s16 func_8028E88C(struct Struct80280550 *a)
 {
@@ -6728,12 +7087,9 @@ void CutsceneDeath1(struct Struct80280550 *a)
 
 static void CutsceneDeath2_1(struct Struct80280550 *a)
 {
-    struct MyVec3f sp1C = D_8032E290; // TODO: This is actually a Vec3f that is set in the code, and is moved into data.
-    // This can be fixed when the file is split into two files.
-    // D_8032E290 would be the start of the data of the second file.
-    // Correct code: Vec3f sp1C = {0, 40.f, -60.f};
+    Vec3f sp1C = {0, 40.f, -60.f};
     
-    func_8028C5F0(D_8033B6F0[3].unk4, D_8032D000->unk4, (f32*)&sp1C, D_8032D000->unk10); // ugly hack to generate matching for now
+    func_8028C5F0(D_8033B6F0[3].unk4, D_8032D000->unk4, sp1C, D_8032D000->unk10);
     vec3f_copy(D_8033B6F0[0].unk4, a->unk4);
 }
 
@@ -6757,10 +7113,9 @@ void CutsceneDeath2(struct Struct80280550 *a)
 
 static void CutsceneBBHDeath0_1(struct Struct80280550 *a)
 {
-    struct MyVec3f sp1C = D_8032E29C; // TODO: same problem as above
-    // Vec3f sp1C = {0, 40.f, 60.f};
+    Vec3f sp1C = {0, 40.f, 60.f};
     
-    func_8028C5F0(D_8033B6F0[3].unk4, D_8032D000->unk4, (f32*)&sp1C, D_8032D000->unk10);
+    func_8028C5F0(D_8033B6F0[3].unk4, D_8032D000->unk4, sp1C, D_8032D000->unk10);
     vec3f_copy(D_8033B6F0[0].unk4, a->unk4);
 }
 
@@ -6805,10 +7160,9 @@ void CutsceneQuicksandDeath0(struct Struct80280550 *a)
 static void Cutscene1ATodo0_3(UNUSED struct Struct80280550 *a)
 {
     Vec3f sp2C;
-    struct MyVec3f sp20 = D_8032E2A8; // TODO: same problem as above
-    // Vec3f sp20 = {0, 20.f, 120.f};
+    Vec3f sp20 = {0, 20.f, 120.f};
     
-    func_8028C5F0(sp2C, D_8032D000->unk4, (f32*)&sp20, D_8032D000->unk10);
+    func_8028C5F0(sp2C, D_8032D000->unk4, sp20, D_8032D000->unk10);
     approach_vec3f_exponential(D_8033B6F0[3].unk4, sp2C, 0.1f, 0.1f, 0.1f);
 }
 
@@ -7600,6 +7954,107 @@ static void CutsceneEndWaving0_1(UNUSED struct Struct80280550 *a)
     func_8028FABC();
 }
 
+// 3rd part of data
+struct Struct8032E040 D_8032E2B4[35] = {
+    {  0,  32, {    58,   -250,    346}},
+    {  1,  50, {  -159,   -382,    224}},
+    {  2,  37, {     0,   -277,    237}},
+    {  3,  15, {     1,    -44,    245}},
+    {  4,  35, {     0,    -89,    228}},
+    {  5,  15, {    28,      3,    259}},
+    {  6,  25, {   -38,   -201,    371}},
+    {  7,  20, {  -642,    118,    652}},
+    {  8,  25, {   103,    -90,    861}},
+    {  9,  25, {   294,    145,    579}},
+    { 10,  30, {   220,    -42,    500}},
+    { 11,  20, {    10,   -134,    200}},
+    { 12,  20, {  -143,   -145,    351}},
+    { 13,  14, {  -256,    -65,    528}},
+    { 14,  20, {  -251,    -52,    459}},
+    { 15,  25, {  -382,    520,    395}},
+    { 16,  25, {  -341,    240,    653}},
+    { 17,   5, {  -262,    700,    143}},
+    { 18,  15, {  -760,     32,     27}},
+    { 19,  20, {  -756,     -6,    -26}},
+    { 20,  20, {  -613,      5,    424}},
+    { 21,  20, {   -22,   -100,    312}},
+    { 22,  25, {   212,     80,     61}},
+    { 23,  20, {   230,    -28,    230}},
+    { 24,  35, {   -83,    -51,    303}},
+    { 25,  17, {   126,     90,    640}},
+    { 26,   9, {   158,     95,    763}},
+    { 27,   8, {   113,    -25,   1033}},
+    { 28,  20, {    57,    -53,   1291}},
+    { 29,  15, {    73,    -34,   1350}},
+    { 30,   7, {     0,     96,   1400}},
+    { 31,   8, {   -59,    269,   1450}},
+    { 32,  15, {    57,   1705,   1500}},
+    {  0,  15, {  -227,    511,   1550}},
+    { -1,  15, {  -227,    511,   1600}}
+};
+
+struct Struct8032E040 D_8032E3CC[35] = {
+    {  0,   0, {   -46,     87,    -15}},
+    {  1,   0, {   -38,     91,    -11}},
+    {  2,   0, {   -31,     93,    -13}},
+    {  3,   0, {   -50,     84,    -16}},
+    {  4,   0, {   -52,     83,    -17}},
+    {  5,   0, {   -10,     99,      3}},
+    {  6,   0, {   -54,     83,    -10}},
+    {  7,   0, {   -31,     85,    -40}},
+    {  8,   0, {   -34,     91,     19}},
+    {  9,   0, {    -9,     95,     28}},
+    { 10,   0, {    17,     72,     66}},
+    { 11,   0, {    88,     -7,     45}},
+    { 12,   0, {    96,     -6,    -26}},
+    { 13,   0, {    56,     -1,    -82}},
+    { 14,   0, {    40,     65,    -63}},
+    { 15,   0, {   -26,     -3,    -96}},
+    { 16,   0, {    92,     82,     19}},
+    { 17,   0, {    92,     32,     19}},
+    { 18,   0, {    92,     32,     19}},
+    { 19,   0, {    92,    102,     19}},
+    { 20,   0, {   -69,     59,    -70}},
+    { 21,   0, {   -77,    109,    -61}},
+    { 22,   0, {   -87,     59,    -46}},
+    { 23,   0, {   -99,     -3,     11}},
+    { 24,   0, {   -99,    -11,      5}},
+    { 25,   0, {   -97,     -6,     19}},
+    { 26,   0, {   -97,     22,     -7}},
+    { 27,   0, {   -98,    -11,    -13}},
+    { 28,   0, {   -97,    -11,     19}},
+    { 29,   0, {   -91,    -11,     38}},
+    { 30,   0, {   -76,    -11,     63}},
+    { 31,   0, {   -13,     33,     93}},
+    { 32,   0, {    51,    -11,     84}},
+    { 33,   0, {    51,    -11,     84}},
+    { -1,   0, {    51,    -11,     84}}
+};
+
+struct Struct8032E040 D_8032E4E4[9] = {
+    {  0,   0, {    -5,    975,   -917}},
+    {  0,   0, {    -5,    975,   -917}},
+    {  0,   0, {    -5,    975,   -917}},
+    {  0,   0, {   -76,   1067,    742}},
+    {  0,   0, {  -105,   1576,   3240}},
+    {  0,   0, {  -177,   1709,   5586}},
+    {  0,   0, {  -177,   1709,   5586}},
+    {  0,   0, {  -177,   1709,   5586}},
+    {  0,   0, {  -177,   1709,   5586}}
+};
+
+struct Struct8032E040 D_8032E52C[9] = {
+    {  0,  50, {    18,   1013,  -1415}},
+    {  0, 100, {    17,   1037,  -1412}},
+    {  0, 100, {    16,   1061,  -1408}},
+    {  0, 100, {   -54,   1053,    243}},
+    {  0, 100, {   -84,   1575,   2740}},
+    {  0,  50, {  -156,   1718,   5086}},
+    {  0,   0, {  -156,   1718,   5086}},
+    {  0,   0, {  -156,   1718,   5086}},
+    {  0,   0, {  -156,   1718,   5086}}
+};
+
 void CutsceneEndWaving0(struct Struct80280550 *a)
 {
     call_cutscene_func_in_time_range(CutsceneEndWaving0_1, a, 0, 0);
@@ -7613,6 +8068,46 @@ static void CutsceneCredits0_1(UNUSED struct Struct80280550 *a)
     func_8028FABC();
 }
 
+extern struct Struct8032E040 D_8032E924[5];
+extern struct Struct8032E040 D_8032E94C[5];
+extern struct Struct8032E040 D_8032E974[5];
+extern struct Struct8032E040 D_8032E99C[5];
+extern struct Struct8032E040 D_8032E9C4[5];
+extern struct Struct8032E040 D_8032E9EC[5];
+extern struct Struct8032E040 D_8032EA14[5];
+extern struct Struct8032E040 D_8032EA3C[5];
+extern struct Struct8032E040 D_8032EA64[4];
+extern struct Struct8032E040 D_8032EA84[4];
+extern struct Struct8032E040 D_8032EAA4[5];
+extern struct Struct8032E040 D_8032EACC[5];
+extern struct Struct8032E040 D_8032EAF4[3];
+extern struct Struct8032E040 D_8032EB0C[3];
+extern struct Struct8032E040 D_8032EB24[6];
+extern struct Struct8032E040 D_8032EB54[6];
+extern struct Struct8032E040 D_8032EB84[6];
+extern struct Struct8032E040 D_8032EBB4[6];
+extern struct Struct8032E040 D_8032EBE4[7];
+extern struct Struct8032E040 D_8032EC1C[7];
+extern struct Struct8032E040 D_8032EC54[4];
+extern struct Struct8032E040 D_8032EC74[4];
+extern struct Struct8032E040 D_8032EC94[4];
+extern struct Struct8032E040 D_8032ECB4[4];
+extern struct Struct8032E040 D_8032ECD4[6];
+extern struct Struct8032E040 D_8032ED04[6];
+extern struct Struct8032E040 D_8032ED34[7];
+extern struct Struct8032E040 D_8032ED6C[7];
+extern struct Struct8032E040 D_8032EDA4[4];
+extern struct Struct8032E040 D_8032EDC4[4];
+extern struct Struct8032E040 D_8032EDE4[4];
+extern struct Struct8032E040 D_8032EE04[4];
+extern struct Struct8032E040 D_8032EE24[5];
+extern struct Struct8032E040 D_8032EE4C[5];
+extern struct Struct8032E040 D_8032EE74[5];
+extern struct Struct8032E040 D_8032EE9C[5];
+extern struct Struct8032E040 D_8032EEC4[5];
+extern struct Struct8032E040 D_8032EEEC[5];
+extern struct Struct8032E040 D_8032EF14[4];
+extern struct Struct8032E040 D_8032EF34[4];
 
 void CutsceneCredits0(struct Struct80280550 *a)
 {
@@ -8061,6 +8556,587 @@ void CutsceneDoorAB_2(struct Struct80280550 *a)
     }
 }
 
+// Cutscene Tables
+struct CutsceneTableEntry TableCutscenePeachEnd[12] = {
+    {CutscenePeachEnd0,    170},
+    {CutscenePeachEnd1,     70},
+    {CutscenePeachEnd2,     75},
+    {CutscenePeachEnd3,    386},
+    {CutscenePeachEnd4,    139},
+    {CutscenePeachEnd5,    590},
+    {CutscenePeachEnd6,     95},
+    {CutscenePeachEnd7,    425},
+    {CutscenePeachEnd8,    236},
+    {CutscenePeachEnd9,    245},
+    {CutscenePeachEndA,  32767},
+    {CutscenePeachEndB,      0}
+};
+
+struct CutsceneTableEntry TableCutsceneGrandStar[2] = {
+    {CutsceneGrandStar0,   360},
+    {CutsceneGrandStar1, 32767}
+};
+
+struct CutsceneTableEntry TableCutscene0FTodo[2] = {
+    {Cutscene0FTodo0,     1},
+    {Cutscene0FTodo1, 32767}
+};
+
+struct CutsceneTableEntry TableCutsceneDoorWarp[2] = {
+    {CutsceneDoor0,         1},
+    {CutsceneDoorWarp1, 32767}
+};
+
+struct CutsceneTableEntry TableCutsceneEndWaving[1] = {
+    {CutsceneEndWaving0, 32767}
+};
+
+struct CutsceneTableEntry TableCutsceneCredits[1] = {
+    {CutsceneCredits0, 32767}
+};
+
+struct CutsceneTableEntry TableCutsceneDoor00[5] = {
+    {CutsceneDoor0,     1},
+    {CutsceneDoor1,    30},
+    {CutsceneDoor2,     1},
+    {CutsceneDoor3,    50},
+    {CutsceneDoor4,     0}
+};
+
+struct CutsceneTableEntry TableCutsceneDoor01[5] = {
+    {CutsceneDoor0,     1},
+    {CutsceneDoor1,    20},
+    {CutsceneDoor2,     1},
+    {CutsceneDoor3,    50},
+    {CutsceneDoor4,     0}
+};
+
+struct CutsceneTableEntry TableCutsceneDoor0A[3] = {
+    {CutsceneDoor0,        1},
+    {CutsceneDoor1,       30},
+    {CutsceneDoorAB_2, 32767}
+};
+
+struct CutsceneTableEntry TableCutsceneDoor0B[3] = {
+    {CutsceneDoor0,        1},
+    {CutsceneDoor1,       20},
+    {CutsceneDoorAB_2, 32767}
+};
+
+struct CutsceneTableEntry TableCutsceneEnterCannon[3] = {
+    {CutsceneEnterCannon0,   1},
+    {CutsceneEnterCannon1, 121},
+    {CutsceneEnterCannon2,   0}
+};
+
+struct CutsceneTableEntry TableCutsceneStarSpawn[3] = {
+    {CutsceneStarSpawn0, 32767},
+    {CutsceneStarSpawn1,    15},
+    {CutsceneStarSpawn2,     0}
+};
+
+struct CutsceneTableEntry TableCutsceneSpecialStarSpawn[2] = {
+    {CutsceneSpecialStarSpawn0, 32767},
+    {CutsceneSpecialStarSpawn1,     0}
+};
+
+struct CutsceneTableEntry TableCutsceneEnterPainting[1] = {
+    {CutsceneEnterPainting0, 32767}
+};
+
+struct CutsceneTableEntry TableCutsceneExitPaintingDeath[2] = {
+    {CutsceneExitPainting0, 118},
+    {CutsceneExitPainting1,   0}
+};
+
+struct CutsceneTableEntry TableCutsceneExitPaintingSuccess[2] = {
+    {CutsceneExitPainting0, 180},
+    {CutsceneExitPainting1,   0}
+};
+
+struct CutsceneTableEntry TableCutscene11Todo[3] = {
+    {Cutscene11Todo_0,       1},
+    {Cutscene11Todo_1,      60},
+    {CutsceneExitPainting1,  0}
+};
+
+struct CutsceneTableEntry TableCutsceneIntroPeach[5] = {
+    {CutsceneIntroPeach0, 32767},
+    {CutsceneIntroPeach1,    35},
+    {CutsceneIntroPeach2,   820},
+    {CutsceneIntroPeach3,   270},
+    {CutsceneIntroPeach4, 32767}
+};
+
+struct CutsceneTableEntry TableCutscenePrepareCannon[2] = {
+    {CutscenePrepareCannon0, 170},
+    {CutscenePrepareCannon1,   0}
+};
+
+struct CutsceneTableEntry TableCutsceneExitWaterfall[2] = {
+    {CutsceneExitWaterfall0, 52},
+    {CutsceneFallCommon1,     0}
+};
+
+struct CutsceneTableEntry TableCutsceneFallToCastleGrounds[2] = {
+    {CutsceneFallToCastleGrounds0, 73},
+    {CutsceneFallCommon1,           0}
+};
+
+struct CutsceneTableEntry TableCutsceneEnterPyramidTop[2] = {
+    {CutsceneEnterPyramidTop0, 90},
+    {CutsceneFallCommon1,       0}
+};
+
+struct CutsceneTableEntry TableCutscene26Todo[3] = {
+    {Cutscene26Todo0, 32767},
+    {Cutscene26Todo1,   150},
+    {Cutscene26Todo2,     0}
+};
+
+struct CutsceneTableEntry TableCutsceneDeath1[1] = {
+    {CutsceneDeath1, 32767}
+};
+
+struct CutsceneTableEntry TableCutsceneEnterPool[2] = {
+    {CutsceneEnterPool0,  100},
+    {CutsceneFallCommon1,   0}
+};
+
+struct CutsceneTableEntry TableCutsceneDeath2[1] = {
+    {CutsceneDeath2, 32767}
+};
+
+struct CutsceneTableEntry TableCutsceneBBHDeath[1] = {
+    {CutsceneBBHDeath0, 32767}
+};
+
+struct CutsceneTableEntry TableCutsceneQuicksandDeath[2] = {
+    {CutsceneQuicksandDeath0, 32767},
+    {CutsceneQuicksandDeath0, 32767}
+};
+
+struct CutsceneTableEntry TableCutscene1ATodo[1] = {
+    {Cutscene1ATodo0, 32767}
+};
+
+struct CutsceneTableEntry TableCutsceneEnterBowserPlatform[3] = {
+    {CutsceneEnterBowserPlatform0,   180},
+    {CutsceneEnterBowserPlatform1, 32767},
+    {CutsceneEnterBowserPlatform2,     0}
+};
+
+struct CutsceneTableEntry TableCutsceneStarDance1[1] = {
+    {CutsceneStarDance1, 32767}
+};
+
+struct CutsceneTableEntry TableCutsceneStarDance2[1] = {
+    {CutsceneStarDance2, 32767}
+};
+
+struct CutsceneTableEntry TableCutsceneStarDance3[1] = {
+    {CutsceneStarDance3, 32767}
+};
+
+struct CutsceneTableEntry TableCutsceneKeyDance[1] = {
+    {CutsceneKeyDance0, 32767}
+};
+
+struct CutsceneTableEntry TableCutsceneCapSwitchPress[1] = {
+    {CutsceneCapSwitchPress0, 32767}
+};
+
+struct CutsceneTableEntry TableCutsceneSlidingDoorsOpen[2] = {
+    {CutsceneSlidingDoorsOpen0, 50},
+    {CutsceneDoubleDoorsOpen1,   0}
+};
+
+struct CutsceneTableEntry TableCutsceneUnlockKeyDoor[2] = {
+    {CutsceneUnlockKeyDoor0,   200},
+    {CutsceneDoubleDoorsOpen1,   0}
+};
+
+struct CutsceneTableEntry TableCutsceneExitBowserSuccess[2] = {
+    {CutsceneExitBowserSuccess0, 190},
+    {CutsceneExitNonPainting1,     0}
+};
+
+struct CutsceneTableEntry TableCutscene1CTodo[2] = {
+    {Cutscene1CTodo_0,         120},
+    {CutsceneExitNonPainting1,   0}
+};
+
+struct CutsceneTableEntry TableCutsceneBBHExitSuccess[2] = {
+    {CutsceneBBHExitSuccess0,  163},
+    {CutsceneExitNonPainting1,   0}
+};
+
+struct CutsceneTableEntry TableCutsceneNonPaintingDeath[2] = {
+    {CutsceneNonPaintingDeath0, 120},
+    {CutsceneExitNonPainting1,    0}
+};
+
+struct CutsceneTableEntry TableCutsceneDialog[3] = {
+    {CutsceneDialog0, 32767},
+    {CutsceneDialog1,    12},
+    {CutsceneDialog2,     0}
+};
+
+struct CutsceneTableEntry TableCutsceneReadMessage[3] = {
+    {CutsceneReadMessage0, 32767},
+    {CutsceneReadMessage1,    15},
+    {CutsceneReadMessage2,     0}
+};
+
+u8 D_8032E8A4[27][4] = {
+    {0x44, 0x44, 0x44, 0x04},
+    {0x00, 0x20, 0x22, 0x04},
+    {0x00, 0x00, 0x02, 0x04},
+    {0x22, 0x22, 0x22, 0x04},
+    {0x00, 0x22, 0x00, 0x04},
+    {0x22, 0x22, 0x22, 0x04},
+    {0x22, 0x22, 0x22, 0x04},
+    {0x12, 0x12, 0x12, 0x04},
+    {0x02, 0x22, 0x22, 0x04},
+    {0x22, 0x22, 0x22, 0x04},
+    {0x20, 0x20, 0x20, 0x04},
+    {0x22, 0x01, 0x22, 0x04},
+    {0x00, 0x00, 0x00, 0x04},
+    {0x11, 0x11, 0x12, 0x04},
+    {0x22, 0x22, 0x22, 0x04},
+    {0x00, 0x00, 0x00, 0x04},
+    {0x43, 0x44, 0x44, 0x04},
+    {0x43, 0x44, 0x44, 0x04},
+    {0x43, 0x44, 0x44, 0x04},
+    {0x42, 0x44, 0x44, 0x04},
+    {0x44, 0x44, 0x44, 0x04},
+    {0x40, 0x44, 0x44, 0x04},
+    {0x42, 0x44, 0x44, 0x04},
+    {0x40, 0x44, 0x44, 0x04},
+    {0x42, 0x44, 0x44, 0x04},
+    {0x44, 0x44, 0x44, 0x04},
+    {0x44, 0x44, 0x44, 0x04}
+};
+
+u8 D_8032E910[20] = {0x00, 0x00, 0x10, 0x00, 0x11, 0x11, 0x30, 0x10, 0x11, 0x10, 0x10, 0x01, 0x01, 0x00, 0x10, 0x11, 0x10, 0x01, 0x01, 0x00};
+
+struct Struct8032E040 D_8032E924[5] = {
+    {  1,   0, {  5984,   3255,   4975}},
+    {  2,   0, {  4423,   3315,   1888}},
+    {  3,   0, {   776,   2740,  -1825}},
+    {  4,   0, {  -146,   3894,  -3167}},
+    { -1,   0, {   741,   4387,  -5474}}
+};
+
+struct Struct8032E040 D_8032E94C[5] = {
+    {  0,  30, {  5817,   3306,   4507}},
+    {  0,  40, {  4025,   3378,   1593}},
+    {  0,  50, {  1088,   2652,  -2205}},
+    {  0,  60, {   205,   3959,  -3517}},
+    { -1,  60, {  1231,   4400,  -5649}}
+};
+
+struct Struct8032E040 D_8032E974[5] = {
+    {  0,   0, {  -301,   1399,   2643}},
+    {  0,   0, {  -182,   2374,   4572}},
+    {  0,   0, {  4696,   3864,    413}},
+    {  0,   0, {  1738,   4891,  -1516}},
+    { -1,   0, {  1783,   4891,  -1516}}
+};
+
+struct Struct8032E040 D_8032E99C[5] = {
+    {  1,  30, {  -249,   1484,   2153}},
+    {  2,  40, {  -200,   2470,   4082}},
+    {  3,  40, {  4200,   3916,    370}},
+    {  4,  40, {  1523,   4976,  -1072}},
+    { -1,  40, {  1523,   4976,  -1072}}
+};
+
+struct Struct8032E040 D_8032E9C4[5] = {
+    {  0,   0, {  5538,  -4272,   2376}},
+    {  0,   0, {  5997,  -3303,   2261}},
+    {  0,   0, {  6345,  -3255,   2179}},
+    {  0,   0, {  6345,  -3255,   2179}},
+    { -1,   0, {  6694,  -3203,   2116}}
+};
+
+struct Struct8032E040 D_8032E9EC[5] = {
+    {  0,  50, {  5261,  -4683,   2443}},
+    {  0,  50, {  5726,  -3675,   2456}},
+    {  0,  50, {  6268,  -2817,   2409}},
+    {  0,  50, {  6596,  -2866,   2369}},
+    { -1,  50, {  7186,  -3153,   2041}}
+};
+
+struct Struct8032E040 D_8032EA14[5] = {
+    {  0,   0, { -6324,   6745,  -5626}},
+    {  1,   0, { -6324,   6745,  -5626}},
+    {  2,   0, { -6108,   6762,  -5770}},
+    {  3,   0, { -5771,   6787,  -5962}},
+    { -1,   0, { -5672,   6790,  -5979}}
+};
+
+struct Struct8032E040 D_8032EA3C[5] = {
+    {  0,  50, { -5911,   6758,  -5908}},
+    {  1,  50, { -5911,   6758,  -5908}},
+    {  2,  50, { -5652,   6814,  -5968}},
+    {  3,  50, { -5277,   6801,  -6043}},
+    { -1,  50, { -5179,   6804,  -6060}}
+};
+
+struct Struct8032E040 D_8032EA64[4] = {
+    {  1,   0, {  1088,    341,   2447}},
+    {  2,   0, {  1338,    610,   2808}},
+    {  3,   0, {  2267,   1612,   2966}},
+    { -1,   0, {  2296,   1913,   2990}}
+};
+
+struct Struct8032E040 D_8032EA84[4] = {
+    {  1,  50, {  1160,    263,   1958}},
+    {  2,  50, {  1034,    472,   2436}},
+    {  3,  50, {  1915,   1833,   2688}},
+    { -1,  50, {  2134,   2316,   2742}}
+};
+
+struct Struct8032E040 D_8032EAA4[5] = {
+    {  1,   0, { -5952,   1807,  -5882}},
+    {  2,   0, { -5623,   1749,  -4863}},
+    {  3,   0, { -5472,   1955,  -2520}},
+    {  4,   0, { -5544,   1187,  -1085}},
+    { -1,   0, { -5547,    391,   -721}}
+};
+
+struct Struct8032E040 D_8032EACC[5] = {
+    {  1, 210, { -5952,   1884,  -6376}},
+    {  2,  58, { -5891,   1711,  -5283}},
+    {  3,  30, { -5595,   1699,  -2108}},
+    {  4,  31, { -5546,    794,   -777}},
+    { -1,  31, { -5548,    -85,   -572}}
+};
+
+struct Struct8032E040 D_8032EAF4[3] = {
+    {  1,   0, { -1411,   2474,  -1276}},
+    {  2,   0, { -1606,   2479,   -434}},
+    { -1,   0, { -1170,   2122,   1337}}
+};
+
+struct Struct8032E040 D_8032EB0C[3] = {
+    {  1,  50, { -1053,   2512,   -928}},
+    {  2,  50, { -1234,   2377,   -114}},
+    { -1,  50, {  -758,   2147,   1054}}
+};
+
+struct Struct8032E040 D_8032EB24[6] = {
+    {  0,   0, { -1445,   1094,   1617}},
+    {  0,   0, { -1509,    649,    871}},
+    {  0,   0, { -1133,    420,   -248}},
+    {  0,   0, {  -778,    359,  -1052}},
+    {  0,   0, {  -565,    260,  -1730}},
+    { -1,   0, {  1274,    473,   -275}}
+};
+
+struct Struct8032E040 D_8032EB54[6] = {
+    {  0,  50, { -1500,    757,   1251}},
+    {  0,  50, { -1401,    439,    431}},
+    {  0,  50, {  -749,    270,   -532}},
+    {  0,  50, {  -396,    270,  -1363}},
+    {  0,  50, {  -321,    143,  -2151}},
+    { -1,  50, {  1002,    460,   -694}}
+};
+
+struct Struct8032E040 D_8032EB84[6] = {
+    {  0,   0, { -4262,   4658,  -5015}},
+    {  0,   0, { -3274,   2963,  -4661}},
+    {  0,   0, { -2568,    812,  -6528}},
+    {  0,   0, {  -414,    660,  -7232}},
+    {  0,   0, {  1466,    660,  -6898}},
+    { -1,   0, {  2724,    660,  -6298}}
+};
+
+struct Struct8032E040 D_8032EBB4[6] = {
+    {  0,  50, { -4083,   4277,  -4745}},
+    {  0,  50, { -2975,   2574,  -4759}},
+    {  0,  50, { -2343,    736,  -6088}},
+    {  0,  50, {  -535,    572,  -6755}},
+    {  0,  50, {  1311,    597,  -6427}},
+    { -1,  50, {  2448,    612,  -5884}}
+};
+
+struct Struct8032E040 D_8032EBE4[7] = {
+    {  0,   0, {  -874,  -4933,    366}},
+    {  0,   0, { -1463,  -4782,    963}},
+    {  0,   0, { -1893,  -4684,   1303}},
+    {  0,   0, { -2818,  -4503,   1583}},
+    {  0,   0, { -4095,  -2924,    730}},
+    {  0,   0, { -4737,  -1594,    -63}},
+    { -1,   0, { -4681,  -1084,   -623}}
+};
+
+struct Struct8032E040 D_8032EC1C[7] = {
+    {  0,  50, { -1276,  -4683,    622}},
+    {  0,  50, { -1858,  -4407,   1097}},
+    {  0,  50, { -2324,  -4332,   1318}},
+    {  0,  50, { -3138,  -4048,   1434}},
+    {  0,  50, { -4353,  -2444,    533}},
+    {  0,  50, { -4807,  -1169,   -436}},
+    { -1,  50, { -4665,   -664,  -1007}}
+};
+
+struct Struct8032E040 D_8032EC54[4] = {
+    {  0,   0, {   939,   6654,   6196}},
+    {  0,   0, {  1873,   5160,   3714}},
+    {  0,   0, {  3120,   3564,   1314}},
+    { -1,   0, {  2881,   4231,    573}}
+};
+
+struct Struct8032E040 D_8032EC74[4] = {
+    {  0,  50, {   875,   6411,   5763}},
+    {  0,  50, {  1659,   4951,   3313}},
+    {  0,  50, {  2630,   3565,   1215}},
+    { -1,  50, {  2417,   4056,    639}}
+};
+
+struct Struct8032E040 D_8032EC94[4] = {
+    {  0,   0, {  3927,   2573,   3685}},
+    {  0,   0, {  2389,   2054,   1210}},
+    {  0,   0, {  2309,   2069,     22}},
+    { -1,   0, {  2122,   2271,   -979}}
+};
+
+struct Struct8032E040 D_8032ECB4[4] = {
+    {  0,  50, {  3637,   2460,   3294}},
+    {  0,  50, {  1984,   2067,    918}},
+    {  0,  50, {  1941,   2255,   -261}},
+    { -1,  50, {  1779,   2587,  -1158}}
+};
+
+struct Struct8032E040 D_8032ECD4[6] = {
+    {  0,   0, {   386,   2535,    644}},
+    {  0,   0, {  1105,   2576,    918}},
+    {  0,   0, {  3565,   2261,   2098}},
+    {  0,   0, {  6715,  -2791,   4554}},
+    {  0,   0, {  3917,  -3130,   3656}},
+    { -1,   0, {  3917,  -3130,   3656}}
+};
+
+struct Struct8032E040 D_8032ED04[6] = {
+    {  1,  50, {   751,   2434,    318}},
+    {  2,  50, {   768,   2382,    603}},
+    {  3,  60, {  3115,   2086,   1969}},
+    {  4,  30, {  6370,  -3108,   4727}},
+    {  5,  50, {  4172,  -3385,   4001}},
+    { -1,  50, {  4172,  -3385,   4001}}
+};
+
+struct Struct8032E040 D_8032ED34[7] = {
+    {  0,   0, {  6990,  -1000,  -4858}},
+    {  0,   0, {  7886,  -1055,   2878}},
+    {  0,   0, {  1952,  -1481,  10920}},
+    {  0,   0, { -1684,   -219,   2819}},
+    {  0,   0, { -2427,   -131,   2755}},
+    {  0,   0, { -3246,    416,   3286}},
+    { -1,   0, { -3246,    416,   3286}}
+};
+
+struct Struct8032E040 D_8032ED6C[7] = {
+    {  1,  70, {  7022,   -965,  -5356}},
+    {  2,  40, {  7799,   -915,   2405}},
+    {  3,  60, {  1878,  -1137,  10568}},
+    {  4,  50, { -1931,   -308,   2394}},
+    {  5,  50, { -2066,   -386,   2521}},
+    {  6,  50, { -2875,    182,   3045}},
+    { -1,  50, { -2875,    182,   3045}}
+};
+
+struct Struct8032E040 D_8032EDA4[4] = {
+    {  1,   0, { -1724,    277,   -994}},
+    {  2,   0, { -1720,    456,   -995}},
+    {  3,   0, { -1655,    810,  -1014}},
+    { -1,   0, { -1753,    883,  -1009}}
+};
+
+struct Struct8032E040 D_8032EDC4[4] = {
+    {  1,  50, { -1554,    742,  -1063}},
+    {  2,  50, { -1245,    571,  -1102}},
+    {  3,  50, { -1220,    603,  -1151}},
+    { -1,  50, { -1412,    520,  -1053}}
+};
+
+struct Struct8032E040 D_8032EDE4[4] = {
+    {  0,   0, { -1818,   4036,     97}},
+    {  0,   0, {  -575,   3460,   -505}},
+    {  0,   0, {  1191,   3611,  -1134}},
+    { -1,   0, {  2701,   3777,  -3686}}
+};
+
+struct Struct8032E040 D_8032EE04[4] = {
+    {  0,  50, { -1376,   3885,    -81}},
+    {  0,  50, {  -146,   3343,   -734}},
+    {  0,  50, {  1570,   3446,  -1415}},
+    { -1,  50, {  2794,   3627,  -3218}}
+};
+
+struct Struct8032E040 D_8032EE24[5] = {
+    {  0,   0, {  -295,   -396,   -585}},
+    {  1,   0, {  -295,   -396,   -585}},
+    {  2,   0, {  -292,   -856,   -573}},
+    {  3,   0, {  -312,   -856,   -541}},
+    { -1,   0, {   175,   -856,   -654}}
+};
+
+struct Struct8032E040 D_8032EE4C[5] = {
+    {  0,  50, {  -175,   -594,   -142}},
+    {  1,  50, {  -175,   -594,   -142}},
+    {  2,  50, {  -195,   -956,    -92}},
+    {  3,  50, {  -572,   -956,   -150}},
+    { -1,  50, {  -307,   -956,   -537}}
+};
+
+struct Struct8032E040 D_8032EE74[5] = {
+    {  0,   0, {  -296,    495,   1607}},
+    {  0,   0, {  -430,    541,    654}},
+    {  0,   0, {  -466,    601,   -359}},
+    {  0,   0, {  -217,    433,  -1549}},
+    { -1,   0, {   -95,    366,  -2922}}
+};
+
+struct Struct8032E040 D_8032EE9C[5] = {
+    {  0,  50, {  -176,    483,   2092}},
+    {  0,  50, {  -122,    392,   1019}},
+    {  0,  50, {  -268,    450,   -792}},
+    {  0,  50, {  -172,    399,  -2046}},
+    { -1,  50, {   -51,    355,  -3420}}
+};
+
+struct Struct8032E040 D_8032EEC4[5] = {
+    {  0,   0, {  4656,   2171,   5028}},
+    {  0,   0, {  4548,   1182,   4596}},
+    {  0,   0, {  5007,    813,   3257}},
+    {  0,   0, {  5681,    648,   1060}},
+    { -1,   0, {  4644,    774,    113}}
+};
+
+struct Struct8032E040 D_8032EEEC[5] = {
+    {  0,  50, {  4512,   2183,   4549}},
+    {  0,  50, {  4327,    838,   4308}},
+    {  0,  50, {  4774,    749,   2819}},
+    {  0,  50, {  5279,    660,    763}},
+    { -1,  50, {  4194,    885,    -75}}
+};
+
+struct Struct8032E040 D_8032EF14[4] = {
+    {  1,   0, {  1427,  -1387,   5409}},
+    {  2,   0, { -1646,  -1536,   4526}},
+    {  3,   0, { -3852,  -1448,   3913}},
+    { -1,   0, { -5199,  -1366,   1886}}
+};
+
+struct Struct8032E040 D_8032EF34[4] = {
+    {  1,  50, {   958,  -1481,   5262}},
+    {  2,  50, { -2123,  -1600,   4391}},
+    {  3,  50, { -3957,  -1401,   3426}},
+    { -1,  50, { -4730,  -1215,   1795}}
+};
 
 void handle_cutscenes(struct Struct80280550 *a)
 {
@@ -8783,7 +9859,3 @@ void BehIntroSceneLoop(void)
         D_8033B85C = 0;
     }
 }
-
-s16 D_8032D0A8[] = {14, 1, 2, 4};
-s16 D_8032D0B0[] = {16, 9, 17, 0};
-u8 D_8032D0B8[] = {0xA5, 0x8F, 0xA6, 0xA7, 0xAF, 0, 0, 0, 0, 1, 0, 0, 0xC5, 0x3D, 0x20, 0, 0x44, 0x64, 0, 0, 0xC5, 6, 0x40, 0, 0x44, 0x16, 0, 0, 0x3E, 0x99, 0x99, 0x9A, 0, 0, 0, 0, 0xC5, 0x92, 0x20, 0, 0x44, 0x65, 0x40, 0, 0xC5, 0x6D, 0xA0, 0, 0x44, 0x16, 0, 0, 0x3E, 0x99, 0x99, 0x9A};

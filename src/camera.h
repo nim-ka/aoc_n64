@@ -59,7 +59,6 @@ typedef void (*CameraCommandProc)(struct Struct80280550 *a);
 struct Struct8032CA78
 {
     s8 unk0;
-    s8 filler1[3];
     CameraCommandProc unk4;
     s16 unk8;
     s16 unkA;
@@ -68,7 +67,6 @@ struct Struct8032CA78
     s16 unk10;
     s16 unk12;
     s16 unk14;
-    s16 unk16; // unknown type
 };
 
 struct CutsceneTableEntry
@@ -91,10 +89,10 @@ struct Struct8033B230
 
 struct Struct8032E040
 {
-    s8 unk0;
-    u8 unk1;
-    Vec3s unk2;
-};
+    /*0x00*/ s8 unk0;
+    /*0x01*/ u8 unk1;
+    /*0x02*/ Vec3s unk2;
+}; // size = 0x08
 
 struct Struct8033B278
 {
@@ -135,7 +133,6 @@ struct Struct8033B418
 struct Struct8033B470
 {
     s16 unk0;
-    u8 filler2[2];
     Vec3f unk4;
     f32 unk10;
     f32 unk14;
@@ -197,6 +194,7 @@ struct Struct8033B328
 
 // bss order hack to not affect BSS order. if possible, remove me, but it will be hard to match otherwise
 #ifndef INCLUDED_FROM_CAMERA_C
+// BSS
 extern struct Struct8033B1B0 D_8033B1B0[2];
 extern s16 D_8033B314;
 extern s16 D_8033B318;
@@ -208,38 +206,16 @@ extern s32 D_8033B858;
 extern struct Struct80280550 *D_8033B860;
 #endif
 
+extern struct Object *D_8032CFC4;
+extern struct Object *D_8032CFD0;
+
 // TODO: sort all of this extremely messy shit out after the split
 // TODO: bring in some externs from camera.c
 
-extern struct Object *D_8032CFD0;
-extern s16 D_8032CFD4;
-extern s32 D_8032CFD8;
-extern f32 D_8032CFEC;
 extern Vec3f D_8032D00C;
-extern Vec3f D_8032D090;
 extern u8 D_8032D0B8[];
-extern struct Struct8032E040 D_8032DDF0[];
-extern struct Struct8032E040 D_8032DEA8[];
-extern struct Struct8032E040 D_8032DF60[];
-extern struct Struct8032E040 D_8032DFD0[];
-extern struct Struct8032E040 D_8032E040[];
-extern struct Struct8032E040 D_8032E090[];
-extern struct Struct8032E040 D_8032E0E8[];
-extern struct Struct8032E040 D_8032E188[];
-extern struct Struct8032E040 D_8032E1D0[];
-extern struct Struct8032E040 D_8032E218[];
-extern struct Struct8032E040 D_8032E258[];
-extern struct Struct8032E040 D_8032E2B4[];
-extern struct Struct8032E040 D_8032E3CC[];
-extern struct Struct8032E040 D_8032E4E4[];
-extern struct Struct8032E040 D_8032E52C[];
-extern struct MyVec3f D_8032E290;
-extern struct MyVec3f D_8032E29C;
-extern struct MyVec3f D_8032E2A8;
 
 extern s16 D_8035FE10;
-extern struct Struct8033B1B0 *D_8032D000;
-extern struct Struct8033B1B0 *D_8032D004;
 
 extern void func_8027EFE0(s16);
 extern void func_8027F308(s16);
