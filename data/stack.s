@@ -45,9 +45,7 @@ glabel D_802212A2
 glabel D_802212A3
     .space 0x5
 glabel D_802212A8
-    .space 0x8
-glabel D_802212B0
-    .space 0x8
+    .space 0x10
 glabel D_802212B8
     .space 0x10
 glabel D_802212C8
@@ -59,29 +57,11 @@ glabel D_80221308
 glabel D_80221318
     .space 0x10
 glabel D_80221328
-    .space 0x4
-glabel D_8022132C
-    .space 0x190
-glabel D_802214BC
-    .space 0x4
-glabel D_802214C0
-    .space 0x38
+    .space 0x1D0
 glabel D_802214F8
-    .space 0x4
-glabel D_802214FC
-    .space 0x190
-glabel D_8022168C
-    .space 0x4
-glabel D_80221690
-    .space 0x38
+    .space 0x1D0
 glabel D_802216C8
-    .space 0x4
-glabel D_802216CC
-    .space 0x190
-glabel D_8022185C
-    .space 0x4
-glabel D_80221860
-    .space 0x38
+    .space 0x1D0
 glabel D_80221898
     .space 0x10
 glabel D_802218A8

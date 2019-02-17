@@ -4,77 +4,109 @@
 #include "types.h"
 #include "dma.h"
 
-// extern ? D_802212A2;
-// extern ? D_802211B0;
-extern s8 D_80226D7E;
-extern s32 D_80226D70;
-// extern ? D_802212A0;
+struct SoundAllocPool
+{
+    u8 *unk0; // start
+    u8 *unk4; // current position
+    u32 unk8; // size
+    s32 unkC; // unknown type, set to zero
+}; // size = 0x10
+
+struct MultiPoolSub {
+    u8 *unk0;
+    u32 unk4; // size
+    s32 unk8; // small integer
+}; // size = 0xC
+
+struct SoundPoolHolder
+{
+    u32 unk0;
+    struct SoundAllocPool pool;
+}; // size = 0x14
+
+struct SoundPoolHolder2
+{
+    /*0x00*/ u32 unk0;
+    /*0x04*/ struct SoundAllocPool pool;
+    /*0x14*/ struct MultiPoolSub arr[2];
+    /*0x2C*/ u32 pad2[4];
+}; // size = 0x3C
+
+struct SoundMultiPool
+{
+    /*0x000*/ struct SoundPoolHolder first;
+    /*0x014*/ struct MultiPoolSub arr[32];
+    /*0x194*/ struct SoundPoolHolder2 second;
+}; // size = 0x1D0
+
+// from something.h, not merged yet
+struct struct_3920_sp1c
+{
+    s16 unk00;
+    s16 unk02;
+    s16 *unk4;
+    s16 *unk8;
+    s32 unkC;
+    s16 unk10;
+    s16 unk12;
+};
+
+struct Struct802211B0
+{
+    u8 unk0;
+    u8 unk1;
+    u8 unk2;
+    u8 unk3;
+    u16 unk4;
+    s16 unk6;
+    s32 unk8;
+    s32 unkC;
+    s32 unk10;
+    void *unk14;
+    void *unk18;
+    void *unk1C;
+    void *unk20;
+    void *unk24;
+    void *unk28;
+    struct struct_3920_sp1c unk2C[2][4];
+};
+extern struct Struct802211B0 D_802211B0;
+
+extern u8 gAudioHeap[];
 // extern ? D_802211B1;
-// extern ? D_0A000004;
-extern u8 D_80226D7F;
-// extern ? D_803330E0;
-// extern ? D_80332F5C;
-extern u8 D_802218D0[];
-extern u8 D_80221910[];
+extern struct SoundAllocPool D_802212B8;
+extern struct SoundAllocPool D_802212C8;
+extern struct SoundMultiPool D_80221328;
+extern struct SoundMultiPool D_802214F8;
+extern u8 D_802218D0[64];
+extern u8 D_80221910[256];
 // extern ? D_80221A10;
-// extern ? D_80225EA8;
 // extern ? D_80222A18;
 // extern ? D_80222DD8;
-extern u8 D_802212B8[]; // sound alloc pool
-extern u8 gAudioHeap[];
-extern s32 D_80333EEC;
-// extern ? D_802212A8;
-extern u8 D_802212C8[]; // sound alloc pool
-// extern ? D_802212F8;
-// extern ? D_80221308;
-// extern ? D_80221318;
-// extern ? D_8022132C;
-// extern ? D_802214FC;
-// extern ? D_802216CC;
-extern u32 D_80221328[]; // unknown type, some kind of memory arena?
-extern u32 D_802214F8[]; // same type
-// extern ? D_802216C8;
-// extern ? D_802214C0;
-// extern ? D_80221690;
-// extern ? D_80221860;
-// extern ? D_802214BC;
-// extern ? D_8022168C;
-// extern ? D_8022185C;
-extern volatile s32 D_80226D84; // counter of some sort
+// extern ? D_80225EA8;
 extern u32 D_80226B38;
 extern s32 D_80226D64;
-extern u32 D_80226D74;
-// extern ? D_802212A3;
-// extern ? D_80333EE4;
-// extern ? D_80226D6C;
+extern s32 D_80226D70;
+extern s32 D_80226D74;
 extern s32 D_80226D78;
-// extern ? D_80221898;
-// extern ? D_80226D7C;
-// extern ? D_802212B0;
-// extern ? D_802218A8;
-// extern ? D_802218B0;
-// extern ? D_802218C0;
+extern s16 D_80226D7C;
+extern s8 D_80226D7E;
+extern u8 D_80226D7F;
+extern volatile s32 D_80226D84; // counter of some sort
 extern u64 *D_80226D90[2];
 extern u64 *D_80226D98; // audio ucode data
+// extern ? D_80332F5C;
+// extern ? D_803330E0;
+extern s32 D_80333EEC; // size of audio heap
 
 // extern ? func_80315E60(?);
 // extern ? func_80315EA4(?);
 // extern ? func_80315F94(?);
-extern void *soundAlloc(u8 *pool, u32 size);
-// extern ? func_80316094(?);
-// extern ? func_803160B4(?);
-// extern ? func_803160C8(?);
-// extern ? Unknown803160F8(?);
-extern s32 func_80316108(s32 arg0);
-// extern ? func_80316164(?);
-// extern ? func_803161E0(?);
-// extern ? func_8031625C(?);
-// extern ? func_80316318(?);
-// extern ? func_803163DC(?);
-extern void *func_803163DC(void *arg0, s32 arg1, s32 alloc, s32 arg3, s32 arg4);
-extern void *func_8031680C(void *arg0, s32 arg1, s32 arg2);
+extern void *soundAlloc(struct SoundAllocPool *pool, u32 size);
+extern void func_80316108(s32 arg0);
+extern void *func_803163DC(struct SoundMultiPool *arg0, s32 arg1, s32 alloc, s32 arg3, s32 arg4);
+extern void *func_8031680C(struct SoundMultiPool *arg0, s32 arg1, s32 arg2);
 // extern ? func_803168CC(?);
-// extern ? func_803168F4(?);
 extern void func_80316928(struct Struct80332190 *arg0);
 
 #endif /* _AUDIO_DAC_H */

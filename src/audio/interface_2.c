@@ -320,8 +320,8 @@ void unused_8031E4F0(void)
     "COUNT %8d\n";
 #pragma GCC diagnostic pop
 
-    for (i = 0; (u32)i < D_80221328[0]; i++) {}
-    for (i = 0; (u32)i < D_802214F8[0]; i++) {}
+    for (i = 0; (u32)i < D_80221328.first.unk0; i++) {}
+    for (i = 0; (u32)i < D_802214F8.first.unk0; i++) {}
     for (i = 0; i < 40; i++) {}
     for (i = 0; i < 40; i += 4) {}
 }

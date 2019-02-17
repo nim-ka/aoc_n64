@@ -607,7 +607,7 @@ void func_8031758C(UNUSED s32 arg0)
     D_80226D68 = 0x510;
     for (i = 0; i < D_80226D70 * 3; i++)
     {
-        D_80226538[D_80226B38].unk0 = soundAlloc(D_802212C8, D_80226D68);
+        D_80226538[D_80226B38].unk0 = soundAlloc(&D_802212C8, D_80226D68);
         if (D_80226538[D_80226B38].unk0 == NULL)
         {
             goto out1;
@@ -639,7 +639,7 @@ out1:
 
     for (i = 0; i < D_80226D70; i++)
     {
-        D_80226538[D_80226B38].unk0 = soundAlloc(D_802212C8, D_80226D68);
+        D_80226538[D_80226B38].unk0 = soundAlloc(&D_802212C8, D_80226D68);
         if (D_80226538[D_80226B38].unk0 == NULL)
         {
             goto out2;
@@ -1014,7 +1014,7 @@ void *func_80317BE4(s32 arg0, s32 arg1, struct Struct80222A18 *arg2)
     alloc = ALIGN16(alloc);
     alloc -= 0x10;
     data = D_80226D50->seqArray[arg0].offset;
-    ret = func_803163DC(D_802214F8, 1, alloc, arg1, arg0);
+    ret = func_803163DC(&D_802214F8, 1, alloc, arg1, arg0);
     if (ret == 0)
     {
         return 0;
@@ -1048,7 +1048,7 @@ void *func_80317D1C(s32 arg0, s32 arg1)
 
     alloc = ALIGN16(D_80226D4C->seqArray[arg0].len + 0xf);
     data = D_80226D4C->seqArray[arg0].offset;
-    ret = func_803163DC(D_80221328, 1, alloc, arg1, arg0);
+    ret = func_803163DC(&D_80221328, 1, alloc, arg1, arg0);
     if (ret == NULL)
     {
         return NULL;
@@ -1111,7 +1111,7 @@ u8 func_80317F04(u32 arg0, s32 *arg1, s32 *arg2)
 
         if ((D_802218D0[v0] >= 2) == 1)
         {
-            temp = func_8031680C(D_802214F8, 2, D_80226D58[offset - 1]);
+            temp = func_8031680C(&D_802214F8, 2, D_80226D58[offset - 1]);
         }
         else
         {
@@ -1147,7 +1147,7 @@ void *func_8031804C(s32 arg0, u8 *arg1)
 
         if ((D_802218D0[v0] >= 2) == 1)
         {
-            ret = func_8031680C(D_802214F8, 2, D_80226D58[offset - 1]);
+            ret = func_8031680C(&D_802214F8, 2, D_80226D58[offset - 1]);
         }
         else
         {
@@ -1183,7 +1183,7 @@ void func_80318178(u32 arg0, u8 arg1)
     {
         if ((D_802218D0[arg0] >= 2) == 1)
         {
-            cond = func_8031680C(D_80221328, 2, arg0);
+            cond = func_8031680C(&D_80221328, 2, arg0);
         }
         else
         {
@@ -1344,7 +1344,7 @@ void InitAudioSystem(void)
 
     for (i = 0; i < 3; i++)
     {
-        D_80226E40[i] = soundAlloc(D_802212B8, 0xa00);
+        D_80226E40[i] = soundAlloc(&D_802212B8, 0xa00);
 
         for (j = 0; j < 0x500; j++)
         {
@@ -1359,7 +1359,7 @@ void InitAudioSystem(void)
     BlockDmaCopy((u32)data, D_80226D4C, 0x10);
     D_80226D5C = D_80226D4C->seqCount;
     alloc = ALIGN16(D_80226D5C * sizeof(ALSeqData) + 4);
-    D_80226D4C = soundAlloc(D_802212B8, alloc);
+    D_80226D4C = soundAlloc(&D_802212B8, alloc);
     BlockDmaCopy((u32)data, D_80226D4C, alloc);
     alSeqFileNew(D_80226D4C, data);
 
@@ -1368,8 +1368,8 @@ void InitAudioSystem(void)
     BlockDmaCopy((u32)data, D_80226D50, 0x10);
     alloc = D_80226D50->seqCount * sizeof(ALSeqData) + 4;
     alloc = ALIGN16(alloc);
-    D_80226D60 = soundAlloc(D_802212B8, D_80226D50->seqCount * sizeof(struct Struct_80226D60));
-    D_80226D50 = soundAlloc(D_802212B8, alloc);
+    D_80226D60 = soundAlloc(&D_802212B8, D_80226D50->seqCount * sizeof(struct Struct_80226D60));
+    D_80226D50 = soundAlloc(&D_802212B8, alloc);
     BlockDmaCopy((u32)data, D_80226D50, alloc);
     alSeqFileNew(D_80226D50, data);
 
@@ -1377,11 +1377,11 @@ void InitAudioSystem(void)
     BlockDmaCopy((u32)data, D_80226D54, 0x10);
     alloc = D_80226D54->seqCount * sizeof(ALSeqData) + 4;
     alloc = ALIGN16(alloc);
-    D_80226D54 = soundAlloc(D_802212B8, alloc);
+    D_80226D54 = soundAlloc(&D_802212B8, alloc);
     BlockDmaCopy((u32)gSoundDataRaw, D_80226D54, alloc);
     alSeqFileNew(D_80226D54, gSoundDataRaw);
 
-    D_80226D58 = soundAlloc(D_802212B8, 0x100);
+    D_80226D58 = soundAlloc(&D_802212B8, 0x100);
     BlockDmaCopy((u32)gInstrumentSets, D_80226D58, 0x100);
 
     func_8031D4B8();

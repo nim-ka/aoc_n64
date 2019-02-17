@@ -3,5 +3,6 @@
 
 u32 osAiGetLength(void);
 s32 osAiSetNextBuffer(void *, u32);
+s32 osAiSetFrequency(u32);
 
 #endif

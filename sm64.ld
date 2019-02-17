@@ -117,7 +117,7 @@ SECTIONS
       BUILD_DIR/src/obj_behaviors.o(.text);
       BUILD_DIR/src/obj_behaviors_2.o(.text);
       BUILD_DIR/asm/audio_something.o(.text);
-      BUILD_DIR/asm/audio_dac.o(.text);
+      BUILD_DIR/src/audio/dac.o(.text);
       BUILD_DIR/src/audio/dma.o(.text);
       BUILD_DIR/src/audio/playback.o(.text);
       BUILD_DIR/asm/audio_playback_2.o(.text);
@@ -330,7 +330,7 @@ SECTIONS
       BUILD_DIR/src/obj_behaviors.o(.rodata*);
       BUILD_DIR/src/obj_behaviors_2.o(.rodata*);
       BUILD_DIR/data/audio_something.rodata.o(.rodata*);
-      BUILD_DIR/data/audio_dac.rodata.o(.rodata*);
+      BUILD_DIR/src/audio/dac.o(.rodata*);
       BUILD_DIR/src/audio/playback.o(.rodata*);
       BUILD_DIR/data/audio.rodata.o(.rodata*);
       BUILD_DIR/src/audio/interface_2.o(.rodata*);

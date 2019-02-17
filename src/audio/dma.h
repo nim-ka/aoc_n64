@@ -58,7 +58,16 @@ struct Struct_func_8031784C
 
 struct Struct80332190
 {
-    u8 pad0[0x1C];
+    u32 unk0;
+    u8 unk4;
+    u8 unk5;
+    u16 unk6;
+    u16 unk8;
+    u16 unkA;
+    s32 unkC;
+    s32 unk10;
+    s32 unk14;
+    s32 unk18;
 }; // size = 0x1C
 
 extern u64 D_802211A0; // audio .stack data start marker
@@ -98,7 +107,7 @@ extern u64 D_80226EC0; // audio .stack data end marker
 
 extern struct Struct80332190 D_80332190[]; // unknown type, [27]?
 extern s8 D_80333EE8;
-extern s32 D_80333EF0;
+extern s32 D_80333EF0; // amount of heap designated to D_802212B8
 extern volatile s32 D_80333EF4;
 
 extern u8 gMusicData[];

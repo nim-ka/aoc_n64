@@ -53,7 +53,8 @@ struct Unk50
 
 struct SubStruct_func_80318870
 {
-    u8 unk0 : 1;
+    u8 unk0b80 : 1;
+    u8 unk0b40 : 1;
     u8 unk1;
     u8 pad0[0x12];
     u8 unk14;

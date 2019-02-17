@@ -653,7 +653,7 @@ void func_80319BC8(void)
         if (s0->unk2C != MINUS_ONE)
         {
             cond = FALSE;
-            if (!s0->unk2C->unk0 && s0->unk4 >= 2)
+            if (!s0->unk2C->unk0b80 && s0->unk4 >= 2)
             {
                 cond = TRUE;
             }
@@ -726,6 +726,6 @@ void func_80319D40(void)
         temp->unk90 = 0;
         temp->unk78 = 0.0f;
         temp->unk7C = 0.0f;
-        temp->unk34 = soundAlloc(D_802212C8, 0x190);
+        temp->unk34 = soundAlloc(&D_802212C8, 0x190);
     }
 }
