@@ -1107,7 +1107,7 @@ s32 act_first_person(struct MarioState *m) {
 
 s32 func_80263378(struct MarioState *m) {
     if (m->pos[1] < m->waterLevel - 100) {
-        if (m->action == ACT_UNKNOWN_125) {
+        if (m->action == ACT_SPAWN_SPIN_LANDING) {
             func_8024980C(0);
         }
         func_80251F74(m);

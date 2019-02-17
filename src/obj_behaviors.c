@@ -770,12 +770,12 @@ s16 func_802E4A38(s32 *arg0, s16 arg1, f32 arg2, s32 arg3)
     )
     {
         *arg0 = 1;
-        if (func_802573C8(arg3) == 2)
+        if (set_mario_npc_dialogue(arg3) == 2)
         {
             sp1e = func_8028F8E0(162, o, arg1);
             if (sp1e != 0)
             {
-                func_802573C8(0);
+                set_mario_npc_dialogue(0);
                 *arg0 = 0;
                 return sp1e;
             }
@@ -1501,7 +1501,7 @@ void BobombBuddyCannonLoop(s16 arg0, s16 arg1)
             break;
             
         case BOBOMB_BUDDY_CANNON_STOP_TALKING:
-            func_802573C8(0);
+            set_mario_npc_dialogue(0);
             
             o->activeFlags &= ~0x20; /* bit 5 */
             o->oBobombBuddyHasTalkedToMario = BOBOMB_BUDDY_HAS_TALKED;
@@ -1514,7 +1514,7 @@ void BobombBuddyCannonLoop(s16 arg0, s16 arg1)
 
 void BobombBuddyTalkLoop(void)
 {
-    if (func_802573C8(1) == 2)
+    if (set_mario_npc_dialogue(1) == 2)
     {
         o->activeFlags |= 0x20; /* bit 5 */
 
@@ -1523,7 +1523,7 @@ void BobombBuddyTalkLoop(void)
             case BOBOMB_BUDDY_ROLE_ADVICE:
                 if (func_8028F8E0(162, o, o->oBehParams2ndByte) != BOBOMB_BUDDY_BP_STYPE_GENERIC)
                 {
-                    func_802573C8(0);
+                    set_mario_npc_dialogue(0);
 
                     o->activeFlags &= ~0x20; /* bit 5 */
                     o->oBobombBuddyHasTalkedToMario = BOBOMB_BUDDY_HAS_TALKED;
@@ -2332,9 +2332,9 @@ void BehHootLoop(void)
         case HOOT_AVAIL_WANTS_TO_TALK:
             HootAwakeLoop();
             
-            if (func_802573C8(2) == 2 && func_8028F8E0(162, o, 44))
+            if (set_mario_npc_dialogue(2) == 2 && func_8028F8E0(162, o, 44))
             {
-                func_802573C8(0);
+                set_mario_npc_dialogue(0);
                 
                 obj_become_tangible();
                 
@@ -4552,12 +4552,12 @@ void BehSnowmansBottomLoop(void) {
     switch (o->oAction) {
         case 0:
             if (IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, 400) == 1
-                && func_802573C8(1) == 2) {
+                && set_mario_npc_dialogue(1) == 2) {
                 sp1E = func_8028F8E0(162, o, 110);
                 if (sp1E) {
                     o->oForwardVel = 10.0f;
                     o->oAction = 1;
-                    func_802573C8(0);
+                    set_mario_npc_dialogue(0);
                 }
             }
             break;
@@ -6795,13 +6795,13 @@ void func_802F7AA4(void) {
         else
             sp1E = 162;
 
-        if (func_802573C8(1) == 2) {
+        if (set_mario_npc_dialogue(1) == 2) {
             o->activeFlags |= 0x20;
             if (func_8028F8E0(162, o, sp1E)) {
                 o->oUnk190 |= 0x40;
                 o->activeFlags &= ~0x20;
                 o->oMipsUnkF4 = 1;
-                func_802573C8(0);
+                set_mario_npc_dialogue(0);
             }
         }
     }
@@ -6918,7 +6918,7 @@ void func_802F7FA4(void) {
 void func_802F818C(void) {
     if ((s16) o->oMoveAngleYaw == (s16)o->oAngleToMario) {
         SetObjAnimation(0);
-        if (func_802573C8(1) == 2) {
+        if (set_mario_npc_dialogue(1) == 2) {
             o->activeFlags |= 0x20;
             if (func_8028F8E0(162, o, 161)) {
                 o->activeFlags &= ~0x20;
@@ -6966,7 +6966,7 @@ void func_802F8450(void) {
     func_802E4250(o);
     o->oVelY -= 2.0;
     if (o->oPosY < 2100.0f) {
-        func_802573C8(0);
+        set_mario_npc_dialogue(0);
         D_8033B858 = 1;
         D_80331508 = 1;
         o->activeFlags = 0;

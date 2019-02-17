@@ -53,7 +53,7 @@ glabel func_80256C20
 /* 011CA4 80256CA4 27BD0010 */   addiu $sp, $sp, 0x10
 
 .ifdef VERSION_US
-glabel func_80256CA8
+glabel print_displaying_credits_entry
 /* 011E88 80256E88 27BDFFC8 */  addiu $sp, $sp, -0x38
 /* 011E8C 80256E8C AFBF001C */  sw    $ra, 0x1c($sp)
 /* 011E90 80256E90 AFB00018 */  sw    $s0, 0x18($sp)
@@ -182,7 +182,7 @@ glabel func_80256CA8
 /* 012058 80257058 03E00008 */  jr    $ra
 /* 01205C 8025705C 00000000 */   nop   
 .else
-glabel func_80256CA8
+glabel print_displaying_credits_entry
 /* 011CA8 80256CA8 27BDFFD0 */  addiu $sp, $sp, -0x30
 /* 011CAC 80256CAC AFBF001C */  sw    $ra, 0x1c($sp)
 /* 011CB0 80256CB0 AFB00018 */  sw    $s0, 0x18($sp)
@@ -696,7 +696,7 @@ glabel mario_ready_to_speak
 /* 0123C0 802573C0 03E00008 */  jr    $ra
 /* 0123C4 802573C4 27BD0008 */   addiu $sp, $sp, 8
 
-glabel func_802573C8
+glabel set_mario_npc_dialogue
 /* 0123C8 802573C8 27BDFFE0 */  addiu $sp, $sp, -0x20
 /* 0123CC 802573CC AFBF0014 */  sw    $ra, 0x14($sp)
 /* 0123D0 802573D0 AFA40020 */  sw    $a0, 0x20($sp)
@@ -7649,7 +7649,7 @@ glabel func_8025D38C
 /* 018410 8025D410 03E00008 */  jr    $ra
 /* 018414 8025D414 00000000 */   nop   
 
-glabel func_8025D418
+glabel mario_execute_cutscene_action
 /* 018418 8025D418 27BDFFD8 */  addiu $sp, $sp, -0x28
 /* 01841C 8025D41C AFBF001C */  sw    $ra, 0x1c($sp)
 /* 018420 8025D420 AFA40028 */  sw    $a0, 0x28($sp)

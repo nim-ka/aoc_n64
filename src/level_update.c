@@ -296,24 +296,24 @@ static void set_mario_initial_action(struct MarioState *m, u32 spawnType, u32 ac
 {
     switch (spawnType)
     {
-    case MARIO_SPAWN_UNKNOWN_01: set_mario_action(m, ACT_UNKNOWN_122, actionArg);  break;
+    case MARIO_SPAWN_UNKNOWN_01: set_mario_action(m, ACT_WARP_DOOR_SPAWN, actionArg);  break;
     case MARIO_SPAWN_UNKNOWN_02: set_mario_action(m, ACT_IDLE, 0);                 break;
     case MARIO_SPAWN_UNKNOWN_03: set_mario_action(m, ACT_EMERGE_FROM_PIPE, 0);     break;
     case MARIO_SPAWN_UNKNOWN_04: set_mario_action(m, ACT_TELEPORT_FADE_IN, 0);     break;
     case MARIO_SPAWN_UNKNOWN_10: set_mario_action(m, ACT_IDLE, 0);                 break;
-    case MARIO_SPAWN_UNKNOWN_12: set_mario_action(m, ACT_UNKNOWN_132, 0);          break;
+    case MARIO_SPAWN_UNKNOWN_12: set_mario_action(m, ACT_SPAWN_NO_SPIN_AIRBORNE, 0);          break;
     case MARIO_SPAWN_UNKNOWN_13: set_mario_action(m, ACT_HARD_BACKWARD_AIR_KB, 0); break;
-    case MARIO_SPAWN_UNKNOWN_14: set_mario_action(m, ACT_UNKNOWN_124, 0);          break;
-    case MARIO_SPAWN_UNKNOWN_15: set_mario_action(m, ACT_UNKNOWN_12A, 0);          break;
-    case MARIO_SPAWN_UNKNOWN_16: set_mario_action(m, ACT_UNKNOWN_124, 0);          break;
+    case MARIO_SPAWN_UNKNOWN_14: set_mario_action(m, ACT_SPAWN_SPIN_AIRBORNE, 0);          break;
+    case MARIO_SPAWN_UNKNOWN_15: set_mario_action(m, ACT_FALLING_DEATH_EXIT, 0);          break;
+    case MARIO_SPAWN_UNKNOWN_16: set_mario_action(m, ACT_SPAWN_SPIN_AIRBORNE, 0);          break;
     case MARIO_SPAWN_UNKNOWN_17: set_mario_action(m, ACT_FLYING, 2);               break;
     case MARIO_SPAWN_UNKNOWN_11: set_mario_action(m, ACT_WATER_IDLE, 1);           break;
-    case MARIO_SPAWN_UNKNOWN_20: set_mario_action(m, ACT_UNKNOWN_126, 0);          break;
-    case MARIO_SPAWN_UNKNOWN_21: set_mario_action(m, ACT_UNKNOWN_128, 0);          break;
-    case MARIO_SPAWN_UNKNOWN_22: set_mario_action(m, ACT_UNKNOWN_12D, 0);          break;
-    case MARIO_SPAWN_UNKNOWN_23: set_mario_action(m, ACT_UNKNOWN_129, 0);          break;
-    case MARIO_SPAWN_UNKNOWN_24: set_mario_action(m, ACT_UNKNOWN_12B, 0);          break;
-    case MARIO_SPAWN_UNKNOWN_25: set_mario_action(m, ACT_UNKNOWN_12C, 0);          break;
+    case MARIO_SPAWN_UNKNOWN_20: set_mario_action(m, ACT_EXIT_AIRBORNE, 0);          break;
+    case MARIO_SPAWN_UNKNOWN_21: set_mario_action(m, ACT_DEATH_EXIT, 0);          break;
+    case MARIO_SPAWN_UNKNOWN_22: set_mario_action(m, ACT_FALLING_EXIT_AIRBORNE, 0);          break;
+    case MARIO_SPAWN_UNKNOWN_23: set_mario_action(m, ACT_UNUSED_DEATH_EXIT, 0);          break;
+    case MARIO_SPAWN_UNKNOWN_24: set_mario_action(m, ACT_SPECIAL_EXIT_AIRBORNE, 0);          break;
+    case MARIO_SPAWN_UNKNOWN_25: set_mario_action(m, ACT_SPECIAL_DEATH_EXIT, 0);          break;
     }
 
     set_mario_initial_cap_powerup(m);
@@ -435,15 +435,15 @@ static void func_8024A0E0(void)
     switch (sDestWarpNodeId)
     {
     case WARP_NODE_CREDITS_START:
-        marioAction = ACT_PEACH_CUTSCENE;
+        marioAction = ACT_END_PEACH_CUTSCENE;
         break;
 
     case WARP_NODE_CREDITS_NEXT:
-        marioAction = ACT_CREDITS;
+        marioAction = ACT_CREDITS_CUTSCENE;
         break;
 
     case WARP_NODE_CREDITS_END:
-        marioAction = ACT_WAVING;
+        marioAction = ACT_END_WAVING_CUTSCENE;
         break;
     }
 

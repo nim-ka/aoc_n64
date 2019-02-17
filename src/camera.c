@@ -5796,7 +5796,7 @@ void func_8028FBD8(struct Struct8032E040 a[], struct Struct8032E040 b[])
 s16 func_8028FD94(s32 a)
 {
     s16 timer = gCutsceneTimer;
-    if (func_802573C8(a) == 2)
+    if (set_mario_npc_dialogue(a) == 2)
         timer = 0x7FFF;
     return timer;
 }

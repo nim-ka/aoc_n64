@@ -162,7 +162,7 @@ static s32 obj_update_race_proposition_dialogue(s16 arg0)
 
     if (dialogueResponse == 2)
     {
-        func_802573C8(0);
+        set_mario_npc_dialogue(0);
         disable_time_stop_including_mario();
     }
 

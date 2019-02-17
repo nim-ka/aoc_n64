@@ -1705,7 +1705,7 @@ static s32 act_hard_backward_ground_kb(struct MarioState *m)
         set_mario_action(m, ACT_DEATH_ON_BACK, 0);
 
 #if VERSION_US
-    if (val04 == 0x36 && m->prevAction == ACT_UNKNOWN_12C)
+    if (val04 == 0x36 && m->prevAction == ACT_SPECIAL_DEATH_EXIT)
         SetSound(SOUND_MARIO_MAMAMIA, &m->marioObj->header.gfx.unk54);
 #endif
 

@@ -13,6 +13,7 @@ struct Struct8032CE34 {
     s8 levelToCourseNumTable[LEVEL_MAX + 1];
 };
 
+extern u8 D_8032CE24;
 extern s8 D_8032CE28;
 extern u8 D_8032CE2C;
 extern u8 D_8032CE30;

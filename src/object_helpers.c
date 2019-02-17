@@ -3182,7 +3182,7 @@ static void obj_end_dialogue(s32 dialogueFlags, s32 dialogueResult)
 
     if (!(dialogueFlags & DIALOGUE_UNK1_FLAG_4))
     {
-        func_802573C8(0);
+        set_mario_npc_dialogue(0);
     }
 }
 
@@ -3209,7 +3209,7 @@ s32 obj_update_dialogue_unk1(s32 arg0, s32 dialogueFlags, s32 dialogID, UNUSED s
     case DIALOGUE_UNK1_ENABLE_TIME_STOP:
         // Patched :(
         // Wait for mario to be ready to speak, and then enable time stop
-        if (mario_ready_to_speak() || gMarioState->action == ACT_UNKNOWN_106)
+        if (mario_ready_to_speak() || gMarioState->action == ACT_READING_NPC_DIALOGUE)
         {
             gTimeStopState |= TIME_STOP_ENABLED;
             o->activeFlags |= ACTIVE_FLAG_INITIATED_TIME_STOP;
@@ -3224,7 +3224,7 @@ s32 obj_update_dialogue_unk1(s32 arg0, s32 dialogueFlags, s32 dialogID, UNUSED s
 #endif
 
     case DIALOGUE_UNK1_INTERRUPT_MARIO_ACTION:
-        if (func_802573C8(arg0) == 2)
+        if (set_mario_npc_dialogue(arg0) == 2)
         {
             o->oDialogueState++;
         }
@@ -3264,7 +3264,7 @@ s32 obj_update_dialogue_unk1(s32 arg0, s32 dialogueFlags, s32 dialogID, UNUSED s
         break;
 
     case DIALOGUE_UNK1_DISABLE_TIME_STOP:
-        if (gMarioState->action != ACT_UNKNOWN_106 ||
+        if (gMarioState->action != ACT_READING_NPC_DIALOGUE ||
             (dialogueFlags & DIALOGUE_UNK1_FLAG_4))
         {
             gTimeStopState &= ~TIME_STOP_ENABLED;
@@ -3305,7 +3305,7 @@ s32 obj_update_dialogue_unk2(s32 arg0, s32 dialogueFlags, s32 dialogueID, s32 ar
 #else
     case DIALOGUE_UNK2_ENABLE_TIME_STOP:
         // Wait for mario to be ready to speak, and then enable time stop
-        if (mario_ready_to_speak() || gMarioState->action == ACT_UNKNOWN_106)
+        if (mario_ready_to_speak() || gMarioState->action == ACT_READING_NPC_DIALOGUE)
         {
             gTimeStopState |= TIME_STOP_ENABLED;
             o->activeFlags |= ACTIVE_FLAG_INITIATED_TIME_STOP;
@@ -3330,7 +3330,7 @@ s32 obj_update_dialogue_unk2(s32 arg0, s32 dialogueFlags, s32 dialogueID, s32 ar
             }
         }
 
-        if (func_802573C8(arg0) == 2 && doneTurning)
+        if (set_mario_npc_dialogue(arg0) == 2 && doneTurning)
         {
             o->oDialogueResponse = 0;
             o->oDialogueState++;
@@ -3364,7 +3364,7 @@ s32 obj_update_dialogue_unk2(s32 arg0, s32 dialogueFlags, s32 dialogueID, s32 ar
             dialogueResponse = o->oDialogueResponse;
             o->oDialogueState = DIALOGUE_UNK2_ENABLE_TIME_STOP;
         }
-        else if (gMarioState->action != ACT_UNKNOWN_106)
+        else if (gMarioState->action != ACT_READING_NPC_DIALOGUE)
         {
             gTimeStopState &= ~TIME_STOP_ENABLED;
             o->activeFlags &= ~ACTIVE_FLAG_INITIATED_TIME_STOP;
@@ -3373,7 +3373,7 @@ s32 obj_update_dialogue_unk2(s32 arg0, s32 dialogueFlags, s32 dialogueID, s32 ar
         }
         else
         {
-            func_802573C8(0);
+            set_mario_npc_dialogue(0);
         }
         break;
     }

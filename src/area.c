@@ -401,7 +401,7 @@ void render_game(void)
         gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 0, 0, 320, 240);
         func_802D61A8();
         do_cutscene_handler();
-        func_80256CA8();
+        print_displaying_credits_entry();
         gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 0, BORDER_HEIGHT, 320, 240-BORDER_HEIGHT);
         D_8033A75E = func_802DCD98();
         

@@ -572,7 +572,7 @@ s32 obj_begin_race(s32 noTimer)
         }
 
         // Unfreeze mario and disable time stop to begin the race
-        func_802573C8(0);
+        set_mario_npc_dialogue(0);
         disable_time_stop_including_mario();
     }
     else if (o->oTimer > 50)

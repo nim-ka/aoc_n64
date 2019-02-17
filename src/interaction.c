@@ -855,7 +855,7 @@ static u32 interact_star_or_key(struct MarioState *m, UNUSED u32 interactType, s
 #endif
         
         if (grandStar)
-            return set_mario_action(m, ACT_GRABBED_GRAND_STAR, 0);
+            return set_mario_action(m, ACT_GRAND_STAR_CUTSCENE, 0);
         
         return set_mario_action(m, starGrabAction, noExit + 2*grandStar);
     }
@@ -942,7 +942,7 @@ static u32 interact_warp_door(struct MarioState *m, UNUSED u32 interactType, str
             if (!(saveFlags & SAVE_FLAG_HAVE_KEY_2))
             {
                 if (!sDisplayingDoorText)
-                    set_mario_action(m, ACT_UNKNOWN_105, (saveFlags & SAVE_FLAG_HAVE_KEY_1) ? 0x17 : 0x16);
+                    set_mario_action(m, ACT_READING_AUTOMATIC_DIALOGUE, (saveFlags & SAVE_FLAG_HAVE_KEY_1) ? 0x17 : 0x16);
                 sDisplayingDoorText = TRUE;
 
                 return FALSE;
@@ -957,7 +957,7 @@ static u32 interact_warp_door(struct MarioState *m, UNUSED u32 interactType, str
             {
                 if (!sDisplayingDoorText)
                     // Moat door skip was intended confirmed
-                    set_mario_action(m, ACT_UNKNOWN_105, (saveFlags & SAVE_FLAG_HAVE_KEY_2) ? 0x17 : 0x16);
+                    set_mario_action(m, ACT_READING_AUTOMATIC_DIALOGUE, (saveFlags & SAVE_FLAG_HAVE_KEY_2) ? 0x17 : 0x16);
                 sDisplayingDoorText = TRUE;
 
                 return FALSE;
@@ -1054,7 +1054,7 @@ static u32 interact_door(struct MarioState *m, UNUSED u32 interactType, struct O
                 enterDoorAction = ACT_ENTERING_STAR_DOOR;
 
             if (doorSaveFileFlag != 0 && !(save_file_get_flags() & doorSaveFileFlag))
-                enterDoorAction = ACT_UNKNOWN_12F;
+                enterDoorAction = ACT_UNLOCKING_STAR_DOOR;
 
             return set_mario_action(m, enterDoorAction, actionArg);
         }
@@ -1075,7 +1075,7 @@ static u32 interact_door(struct MarioState *m, UNUSED u32 interactType, struct O
             text += requiredNumStars - numStars;
 
             sDisplayingDoorText = TRUE;
-            return set_mario_action(m, ACT_UNKNOWN_105, text);
+            return set_mario_action(m, ACT_READING_AUTOMATIC_DIALOGUE, text);
         }
     }
     else if (m->action == ACT_IDLE && sDisplayingDoorText == TRUE && requiredNumStars == 70)
@@ -1762,7 +1762,7 @@ static u32 func_8024FEC0(struct MarioState *m, struct Object *o)
             m->usedObj = o;
 
             push_mario_out_of_object(m, o, -10.0f);
-            return set_mario_action(m, ACT_UNKNOWN_10A, 0);
+            return set_mario_action(m, ACT_WAITING_FOR_DIALOGUE, 0);
         }
     }
 

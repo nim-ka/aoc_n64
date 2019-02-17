@@ -4210,7 +4210,7 @@ void BehGrandStarLoop(void)
             o->oPosY = o->oHomeY + 200.0f;
             func_802B29B0();
             D_8033B858 = 1;
-            func_802573C8(0);
+            set_mario_npc_dialogue(0);
             o->oAction++;
             o->oInteractStatus = 0;
             PlaySound2(0x30740081);
@@ -5349,7 +5349,7 @@ s32 func_802B6120(void)
         func_802B60B8();
         func_802AD82C(20,116,1.0f,0);
         func_802B5C78();
-        func_802573C8(0);
+        set_mario_npc_dialogue(0);
         ret = 1;
     }
     return ret;
@@ -6813,7 +6813,7 @@ void func_802BAF30(void)
         switch(o->oUnk1AC_S16)
         {
         case 0:
-            if(func_802573C8(2) == 2)
+            if(set_mario_npc_dialogue(2) == 2)
             {
                 func_802D8050(79);
                 o->oUnk1AC_S16 = 1;
@@ -6822,7 +6822,7 @@ void func_802BAF30(void)
         case 1:
             if(gDialogueResponse != 0)
             {
-                func_802573C8(0);
+                set_mario_npc_dialogue(0);
                 if(gDialogueResponse == 1)
                 {
                     o->oUnk190 |= 0x40;
@@ -6875,7 +6875,7 @@ void func_802BB0E4(void)
         if(obj_update_dialogue_unk1(2,18,101,0))
         {
             mario_retrieve_cap();
-            func_802573C8(0);
+            set_mario_npc_dialogue(0);
             o->oUnk1B2 &= ~1;
             o->oUnk1AC_S16 = 5;
         }
@@ -10131,7 +10131,7 @@ void BehCastleFloorTrapInit(void)
 
 void func_802C567C(void)
 {
-    if(gMarioStates->action == ACT_UNKNOWN_12B || gMarioStates->action == ACT_UNKNOWN_12C)
+    if(gMarioStates->action == ACT_SPECIAL_EXIT_AIRBORNE || gMarioStates->action == ACT_SPECIAL_DEATH_EXIT)
         o->oAction = 4;
     else
     {

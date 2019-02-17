@@ -46,7 +46,7 @@ static void camera_lakitu_intro_act_trigger_cutscene(void)
         gMarioObject->oPosZ > -2000.0f && gMarioObject->oPosZ < -177.0f &&
         gMarioObject->oPosZ < -177.0f) // always double check your conditions
     {
-        if (func_802573C8(2) == 1)
+        if (set_mario_npc_dialogue(2) == 1)
         {
             o->oAction = CAMERA_LAKITU_INTRO_ACT_SPAWN_CLOUD;
         }
@@ -58,7 +58,7 @@ static void camera_lakitu_intro_act_trigger_cutscene(void)
  */
 static void camera_lakitu_intro_act_spawn_cloud(void)
 {
-    if (func_802573C8(2) == 2)
+    if (set_mario_npc_dialogue(2) == 2)
     {
         o->oAction = CAMERA_LAKITU_INTRO_ACT_UNK2;
 

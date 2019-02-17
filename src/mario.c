@@ -773,12 +773,12 @@ static u32 set_mario_action_cutscene(struct MarioState *m, u32 action, UNUSED u3
             mario_set_forward_vel(m, 0.0f);
             break;
 
-        case ACT_UNKNOWN_124:
+        case ACT_SPAWN_SPIN_AIRBORNE:
             mario_set_forward_vel(m, 2.0f);
             break;
 
-        case ACT_UNKNOWN_12B:
-        case ACT_UNKNOWN_12C:
+        case ACT_SPECIAL_EXIT_AIRBORNE:
+        case ACT_SPECIAL_DEATH_EXIT:
             m->vel[1] = 64.0f;
             break;
     }
@@ -1248,8 +1248,8 @@ s32 func_802541BC(struct MarioState *m)
         if (
             (m->capTimer < 0x3D) ||
             (
-                (action != ACT_UNKNOWN_105) &&
-                    (action != ACT_UNKNOWN_106) &&
+                (action != ACT_READING_AUTOMATIC_DIALOGUE) &&
+                    (action != ACT_READING_NPC_DIALOGUE) &&
                     (action != ACT_READING_SIGN) &&
                     (action != ACT_IN_CANNON)
             )
@@ -1372,7 +1372,7 @@ s32 func_80254604(UNUSED struct Object *arg0)
                     sp24 = mario_execute_submerged_action(gMarioState);
                     break;
                 case ACT_GROUP_CUTSCENE:
-                    sp24 = func_8025D418(gMarioState);
+                    sp24 = mario_execute_cutscene_action(gMarioState);
                     break;
                 case ACT_GROUP_AUTOMATIC:
                     sp24 = mario_execute_automatic_action(gMarioState);
