@@ -30,6 +30,7 @@ enum HudFontType {
     FONT_ENGLISH
 };
 
+extern s32 gDialogueResponse;
 extern u16 D_80360080;
 extern s8 gLastDialogLineNum;
 extern s32 D_80360084;
@@ -69,7 +70,7 @@ extern u32 func_802D8954(s16 a0);
 #ifdef VERSION_JP
 extern void func_802D8980(s8 sp63, struct DialogEntry *diagEntry);
 #else
-extern void func_802D8980(s8 sp5B, struct DialogEntry *diagEntry, s8 sp63);    
+extern void func_802D8980(s8 sp5B, struct DialogEntry *diagEntry, s8 sp63);
 #endif
 extern void func_802D8ED4(void);
 extern void func_802D9030(s8 sp3b);

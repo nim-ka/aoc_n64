@@ -42,6 +42,8 @@ extern struct Struct8032CE34 D_8032CE34;
 #define SAVE_FLAG_CAP_ON_MR_BLIZZARD     (1 << 19)
 #define SAVE_FLAG_UNLOCKED_50_STAR_DOOR  (1 << 20)
 
+extern u8 D_8032CE20;
+extern u8 D_8032CE24;
 extern u8 D_8033A130;
 extern u8 D_8033A131;
 extern u8 D_8033A132;

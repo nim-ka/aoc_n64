@@ -258,7 +258,7 @@ extern s32 func_80289184(s16 *a, s16 b, s16 c);
 // extern ? func_80289264(?);
 extern s32 func_80289354(s16 *a, s16 b, s16 c); // postdefined
 extern s32 func_802893E4(f32 *, f32, f32);
-// extern ? func_80289524(?);
+extern f32 func_80289524(f32, f32, f32);
 void func_80289618(Vec3s a, s16 b, s16 c, s16 d); // postdefined
 // extern ? func_80289738(?);
 extern s32 func_802899A0(Vec3f, Vec3f, f32, f32, f32, f32);

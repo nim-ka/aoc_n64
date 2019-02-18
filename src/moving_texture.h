@@ -3,6 +3,7 @@
 
 #include "types.h"
 
+extern f32 D_8032FFDC;
 // extern ? D_80330388;
 // extern ? D_8032FFE0;
 // extern ? D_8032FFD4;
