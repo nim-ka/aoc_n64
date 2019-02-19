@@ -5,7 +5,7 @@
 #include "../gd_types.h"
 
 /* @ 04021430 */
-s16 animdata_04021430[820][3] = {
+s16 animdata_mario_ear_right_1[820][3] = {
     {   0,   0, 265 }, {   0,   0, 265 }, {   0,   0, 265 }, {   0,   0, 265 },
     {   0,   0, 265 }, {   0,   0, 265 }, {   0,   0, 265 }, {   0,   0, 265 },
     {   0,   0, 265 }, {   0,   0, 265 }, {   0,   0, 265 }, {   0,   0, 265 },
@@ -214,14 +214,14 @@ s16 animdata_04021430[820][3] = {
 };
 
 /* @ 04022768 */
-struct AnimDataInfo anim_04022768[3] = {
-    { 820, GD_ANIM_3H_SCALED, animdata_04021430 },
+struct AnimDataInfo anim_mario_ear_right[3] = {
+    { 820, GD_ANIM_3H_SCALED, animdata_mario_ear_right_1 },
     { 0, GD_ANIM_EMPTY, NULL },
     END_ANIMDATA_INFO_ARR,
 };
 
 /* @ 0402278C */
-s16 animdata_0402278C[820][3] = {
+s16 animdata_mario_nose_1[820][3] = {
     {    0,    0, -1785 }, {    0,    0, -1785 }, {    0,    0, -1786 }, {    0,    0, -1786 },
     {    0,    0, -1787 }, {    0,    0, -1788 }, {    0,    0, -1789 }, {    0,    0, -1790 },
     {    0,    0, -1791 }, {    0,    0, -1792 }, {    0,    0, -1793 }, {    0,    0, -1793 },
@@ -430,7 +430,7 @@ s16 animdata_0402278C[820][3] = {
 };
 
 /* @ 04023AC4 */
-s16 animdata_04023AC4[166][3] = {
+s16 animdata_mario_nose_2[166][3] = {
     {    0,    0, -1785 }, {    0,    0, -1785 }, {    0,    0, -1785 }, {    0,    0, -1784 },
     {    0,    0, -1783 }, {    0,    0, -1782 }, {    0,    0, -1780 }, {    0,    0, -1779 },
     {    0,    0, -1777 }, {    0,    0, -1776 }, {    0,    0, -1775 }, {    0,    0, -1774 },
@@ -476,14 +476,14 @@ s16 animdata_04023AC4[166][3] = {
 };
 
 /* @ 04023EA8 */
-struct AnimDataInfo anim_04023EA8[3] = {
-    { 820, GD_ANIM_3H_SCALED, animdata_0402278C },
-    { 166, GD_ANIM_3H_SCALED, animdata_04023AC4 },
+struct AnimDataInfo anim_mario_nose[3] = {
+    { 820, GD_ANIM_3H_SCALED, animdata_mario_nose_1 },
+    { 166, GD_ANIM_3H_SCALED, animdata_mario_nose_2 },
     END_ANIMDATA_INFO_ARR,
 };
 
 /* @ 04023ECC */
-s16 animdata_04023ECC[820][3] = {
+s16 animdata_mario_lips_5_1[820][3] = {
     {    0,    0, -311 }, {    0,    0, -311 }, {    0,    0, -310 }, {    0,    0, -310 },
     {    0,    0, -309 }, {    0,    0, -307 }, {    0,    0, -306 }, {    0,    0, -304 },
     {    0,    0, -302 }, {    0,    0, -300 }, {    0,    0, -297 }, {    0,    0, -295 },
@@ -692,7 +692,7 @@ s16 animdata_04023ECC[820][3] = {
 };
 
 /* @ 04025204 */
-s16 animdata_04025204[166][3] = {
+s16 animdata_mario_lips_5_2[166][3] = {
     {    0,    0, -311 }, {    0,    0, -311 }, {    0,    0, -311 }, {    0,    0, -310 },
     {    0,    0, -309 }, {    0,    0, -308 }, {    0,    0, -307 }, {    0,    0, -306 },
     {    0,    0, -305 }, {    0,    0, -303 }, {    0,    0, -302 }, {    0,    0, -300 },
@@ -738,14 +738,14 @@ s16 animdata_04025204[166][3] = {
 };
 
 /* @ 040255E8 */
-struct AnimDataInfo anim_040255E8[3] = {
-    { 820, GD_ANIM_3H_SCALED, animdata_04023ECC },
-    { 166, GD_ANIM_3H_SCALED, animdata_04025204 },
+struct AnimDataInfo anim_mario_lips_5[3] = {
+    { 820, GD_ANIM_3H_SCALED, animdata_mario_lips_5_1 },
+    { 166, GD_ANIM_3H_SCALED, animdata_mario_lips_5_2 },
     END_ANIMDATA_INFO_ARR,
 };
 
 /* @ 0402560C */
-s16 animdata_0402560C[820][3] = {
+s16 animdata_mario_lip_6_1[820][3] = {
     {     0,     0, -1115 }, {     0,     0, -1116 }, {     0,     0, -1117 }, {     0,     0, -1119 },
     {     0,     0, -1122 }, {     0,     0, -1125 }, {     0,     0, -1129 }, {     0,     0, -1133 },
     {     0,     0, -1137 }, {     0,     0, -1142 }, {     0,     0, -1146 }, {     0,     0, -1151 },
@@ -954,7 +954,7 @@ s16 animdata_0402560C[820][3] = {
 };
 
 /* @ 04026944 */
-s16 animdata_04026944[166][3] = {
+s16 animdata_mario_lip_6_2[166][3] = {
     {    60,   -96, -1085 }, {    59,   -96, -1084 }, {    59,   -97, -1081 }, {    58,   -97, -1076 },
     {    57,   -98, -1070 }, {    56,   -99, -1062 }, {    55,   -99, -1054 }, {    53,  -100, -1045 },
     {    52,  -101, -1036 }, {    50,  -102, -1027 }, {    49,  -103, -1018 }, {    47,  -104, -1009 },
@@ -1000,14 +1000,14 @@ s16 animdata_04026944[166][3] = {
 };
 
 /* @ 04026D28 */
-struct AnimDataInfo anim_04026D28[3] = {
-    { 820, GD_ANIM_3H_SCALED, animdata_0402560C },
-    { 166, GD_ANIM_3H_SCALED, animdata_04026944 },
+struct AnimDataInfo anim_mario_lips_6[3] = {
+    { 820, GD_ANIM_3H_SCALED, animdata_mario_lip_6_1 },
+    { 166, GD_ANIM_3H_SCALED, animdata_mario_lip_6_2 },
     END_ANIMDATA_INFO_ARR,
 };
 
 /* @ 04026D4C */
-s16 animdata_04026D4C[820][3] = {
+s16 animdata_mario_eyelid_left_1[820][3] = {
     {   0,   0, 1620 }, {   0,   0, 1619 }, {   0,   0, 1617 }, {   0,   0, 1614 },
     {   0,   0, 1611 }, {   0,   0, 1607 }, {   0,   0, 1602 }, {   0,   0, 1598 },
     {   0,   0, 1593 }, {   0,   0, 1589 }, {   0,   0, 1585 }, {   0,   0, 1581 },
@@ -1216,7 +1216,7 @@ s16 animdata_04026D4C[820][3] = {
 };
 
 /* @ 04028084 */
-s16 animdata_04028084[166][3] = {
+s16 animdata_mario_eyelid_left_2[166][3] = {
     {   0,   0, 1717 }, {   0,   0, 1717 }, {   0,   0, 1715 }, {   0,   0, 1714 },
     {   0,   0, 1711 }, {   0,   0, 1708 }, {   0,   0, 1705 }, {   0,   0, 1702 },
     {   0,   0, 1699 }, {   0,   0, 1696 }, {   0,   0, 1694 }, {   0,   0, 1691 },
@@ -1262,14 +1262,14 @@ s16 animdata_04028084[166][3] = {
 };
 
 /* @ 04028468 */
-struct AnimDataInfo anim_04028468[3] = {
-    { 820, GD_ANIM_3H_SCALED, animdata_04026D4C },
-    { 166, GD_ANIM_3H_SCALED, animdata_04028084 },
+struct AnimDataInfo anim_mario_eyelid_left[3] = {
+    { 820, GD_ANIM_3H_SCALED, animdata_mario_eyelid_left_1 },
+    { 166, GD_ANIM_3H_SCALED, animdata_mario_eyelid_left_2 },
     END_ANIMDATA_INFO_ARR,
 };
 
 /* @ 0402848C */
-s16 animdata_0402848C[820][3] = {
+s16 animdata_mario_eyelid_right_1[820][3] = {
     {   0,   0, 1620 }, {   0,   0, 1619 }, {   0,   0, 1617 }, {   0,   0, 1614 },
     {   0,   0, 1611 }, {   0,   0, 1607 }, {   0,   0, 1602 }, {   0,   0, 1598 },
     {   0,   0, 1593 }, {   0,   0, 1589 }, {   0,   0, 1585 }, {   0,   0, 1581 },
@@ -1478,7 +1478,7 @@ s16 animdata_0402848C[820][3] = {
 };
 
 /* @ 040297C4 */
-s16 animdata_040297C4[166][3] = {
+s16 animdata_mario_eyelid_right_2[166][3] = {
     {   0,   0, 1763 }, {   0,   0, 1762 }, {   0,   0, 1761 }, {   0,   0, 1760 },
     {   0,   0, 1757 }, {   0,   0, 1755 }, {   0,   0, 1752 }, {   0,   0, 1749 },
     {   0,   0, 1746 }, {   0,   0, 1744 }, {   0,   0, 1741 }, {   0,   0, 1739 },
@@ -1524,14 +1524,14 @@ s16 animdata_040297C4[166][3] = {
 };
 
 /* @ 04029BA8 */
-struct AnimDataInfo anim_04029BA8[3] = {
-    { 820, GD_ANIM_3H_SCALED, animdata_0402848C },
-    { 166, GD_ANIM_3H_SCALED, animdata_040297C4 },
+struct AnimDataInfo anim_mario_eyelid_right[3] = {
+    { 820, GD_ANIM_3H_SCALED, animdata_mario_eyelid_right_1 },
+    { 166, GD_ANIM_3H_SCALED, animdata_mario_eyelid_right_2 },
     END_ANIMDATA_INFO_ARR,
 };
 
 /* @ 04029BCC */
-s16 animdata_04029BCC[820][6] = {
+s16 animdata_mario_intro_1[820][6] = {
     { 1128,    0,    0,    0,    0, -20010 },
     { 1123,    0,    0,    0,   -2, -19891 },
     { 1108,    0,    0,    0,   -7, -19548 },
@@ -2355,7 +2355,7 @@ s16 animdata_04029BCC[820][6] = {
 };
 
 /* @ 0402C23C */
-s16 animdata_0402C23C[166][6] = {
+s16 animdata_mario_intro_2[166][6] = {
     {    0,    0,   10,    0,    0, -20000 },
     {    0,    0, 3584,   19,   -3, -19864 },
     {    0,    0, 3541,   71,  -14, -19484 },
@@ -2525,14 +2525,14 @@ s16 animdata_0402C23C[166][6] = {
 };
 
 /* @ 0402CA04 */
-struct AnimDataInfo anim_0402CA04[3] = {
-    { 820, GD_ANIM_6H_SCALED, animdata_04029BCC },
-    { 166, GD_ANIM_6H_SCALED, animdata_0402C23C },
+struct AnimDataInfo anim_mario_intro[3] = {
+    { 820, GD_ANIM_6H_SCALED, animdata_mario_intro_1 },
+    { 166, GD_ANIM_6H_SCALED, animdata_mario_intro_2 },
     END_ANIMDATA_INFO_ARR,
 };
 
 /* @ 0402CA28 */
-s16 animdata_0402CA28[820][6] = {
+s16 animdata_silver_star_1[820][6] = {
     {    0,    0,    0, -1300, 1500, 2600 },
     {    0,    0,    0, -1300, 1500, 2600 },
     {    0,    0,    0, -1300, 1500, 2600 },
@@ -3356,7 +3356,7 @@ s16 animdata_0402CA28[820][6] = {
 };
 
 /* @ 0402F098 */
-s16 animdata_0402F098[166][6] = {
+s16 animdata_silver_star_2[166][6] = {
     {    0,    0,    0,  -25, -1862, -21178 },
     {    0,    0,    0,  -23, -1860, -21094 },
     {    0,    0,    0,  -16, -1854, -20848 },
@@ -3526,14 +3526,14 @@ s16 animdata_0402F098[166][6] = {
 };
 
 /* @ 0402F860 */
-struct AnimDataInfo anim_0402F860[3] = {
-    { 820, GD_ANIM_6H_SCALED, animdata_0402CA28 },
-    { 166, GD_ANIM_6H_SCALED, animdata_0402F098 },
+struct AnimDataInfo anim_silver_star[3] = {
+    { 820, GD_ANIM_6H_SCALED, animdata_silver_star_1 },
+    { 166, GD_ANIM_6H_SCALED, animdata_silver_star_2 },
     END_ANIMDATA_INFO_ARR,
 };
 
 /* @ 0402F884 */
-s16 animdata_0402F884[820][6] = {
+s16 animdata_red_star_1[820][6] = {
     {    0,    0,    0,    0,    0, -20000 },
     {    0,    0,    0,    0,    0, -20000 },
     {    0,    0,    0,    0,    0, -20000 },
@@ -4357,7 +4357,7 @@ s16 animdata_0402F884[820][6] = {
 };
 
 /* @ 04031EF4 */
-s16 animdata_04031EF4[166][6] = {
+s16 animdata_red_star_2[166][6] = {
     {    0,    0,    0, 4291, 2080, 2392 },
     {    0,    0,    0, 4290, 2079, 2391 },
     {    0,    0,    0, 4289, 2079, 2389 },
@@ -4527,8 +4527,8 @@ s16 animdata_04031EF4[166][6] = {
 };
 
 /* @ 040326BC */
-struct AnimDataInfo anim_040326BC[3] = {
-    { 820, GD_ANIM_6H_SCALED, animdata_0402F884 },
-    { 166, GD_ANIM_6H_SCALED, animdata_04031EF4 },
+struct AnimDataInfo anim_red_star[3] = {
+    { 820, GD_ANIM_6H_SCALED, animdata_red_star_1 },
+    { 166, GD_ANIM_6H_SCALED, animdata_red_star_2 },
     END_ANIMDATA_INFO_ARR,
 };

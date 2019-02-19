@@ -7,7 +7,7 @@
 
 #define VTX_NUM 26
 /* @ 040042E0 */
-s16 verts_040042E0[VTX_NUM][3] = {
+s16 verts_mario_eyebrow_right[VTX_NUM][3] = {
     { 105, 391, 363 }, {  62, 370, 378 }, {  86, 366, 370 }, { 171, 380, 339 },
     { 139, 377, 353 }, { 193, 353, 331 }, { 204, 314, 297 }, { 175, 342, 305 },
     { 209, 361, 291 }, { 124, 360, 323 }, { 161, 393, 306 }, { 230, 323, 286 },
@@ -18,12 +18,12 @@ s16 verts_040042E0[VTX_NUM][3] = {
 };
 
 /* @ 0400437C */
-struct GdVtxData vtx_0400437C = { VTX_NUM, 0x1, verts_040042E0 };
+struct GdVtxData vtx_mario_eyebrow_right = { VTX_NUM, 0x1, verts_mario_eyebrow_right };
 #undef VTX_NUM
 
 #define FACE_NUM 36
 /* @ 04004388 */
-u16 facedata_04004388[FACE_NUM][4] = {
+u16 facedata_mario_eyebrow_right[FACE_NUM][4] = {
     { 0,  0,  1,  2 }, { 0,  3,  4,  5 }, { 0, 20, 23, 19 }, { 0,  1, 25, 22 },
     { 0,  0, 21, 13 }, { 0,  2, 15,  9 }, { 0,  7,  6, 20 }, { 0,  3, 19,  8 },
     { 0, 25,  1, 24 }, { 0, 19,  5, 20 }, { 0, 19,  3,  5 }, { 0,  3, 21,  4 },
@@ -36,16 +36,16 @@ u16 facedata_04004388[FACE_NUM][4] = {
 };
 
 /* @ 040044A8 */
-struct GdFaceData faces_040044A8 = { FACE_NUM, 0x1, facedata_04004388 };
+struct GdFaceData faces_mario_eyebrow_right = { FACE_NUM, 0x1, facedata_mario_eyebrow_right };
 #undef FACE_NUM
 
 /* @ 040044B4 */
-struct DynList dynlist_040044B4[16] = {
+struct DynList dynlist_mario_eyebrow_right[16] = {
     StartList(),
     MakeDynObj(D_DATA_GRP, 0x5A),
-    LinkWithPtr(&vtx_0400437C),
+    LinkWithPtr(&vtx_mario_eyebrow_right),
     MakeDynObj(D_DATA_GRP, 0x5B),
-    LinkWithPtr(&faces_040044A8),
+    LinkWithPtr(&faces_mario_eyebrow_right),
     StartGroup(0x5C),
     MakeDynObj(D_MATERIAL, 0x0),
     SetId(0),
@@ -61,7 +61,7 @@ struct DynList dynlist_040044B4[16] = {
 
 #define VTX_NUM 26
 /* @ 04004634 */
-s16 verts_04004634[VTX_NUM][3] = {
+s16 verts_mario_eyebrow_left[VTX_NUM][3] = {
     {  -57,  339,  377 }, {  -17,  294,  356 }, {  -45,  341,  383 }, {  -45,  330,  354 },
     {  -73,  355,  342 }, {  -52,  377,  349 }, { -139,  394,  353 }, { -123,  402,  319 },
     { -161,  393,  306 }, { -233,  276,  289 }, { -204,  314,  297 }, { -214,  324,  318 },
@@ -72,13 +72,13 @@ s16 verts_04004634[VTX_NUM][3] = {
 };
 
 /* @ 040046D0 */
-struct GdVtxData vtx_040046D0 = { VTX_NUM, 0x1, verts_04004634 };
+struct GdVtxData vtx_mario_eyebrow_left = { VTX_NUM, 0x1, verts_mario_eyebrow_left };
 #undef VTX_NUM
 
 
 #define FACE_NUM 36
 /* @ 040046DC */
-u16 facedata_040046DC[FACE_NUM][4] = {
+u16 facedata_mario_eyebrow_left[FACE_NUM][4] = {
     { 0,  0,  1,  2 }, { 0,  8, 22,  6 }, { 0,  6,  7,  8 }, { 0,  9, 10, 11 },
     { 0,  1, 12,  2 }, { 0,  9, 13, 14 }, { 0,  4,  0, 15 }, { 0, 16, 17, 18 },
     { 0, 19,  5, 20 }, { 0, 21, 14, 13 }, { 0,  2, 12,  5 }, { 0, 22,  8, 21 },
@@ -91,17 +91,17 @@ u16 facedata_040046DC[FACE_NUM][4] = {
 };
 
 /* @ 040047FC */
-struct GdFaceData faces_040047FC = { FACE_NUM, 0x1, facedata_040046DC };
+struct GdFaceData faces_mario_eyebrow_left = { FACE_NUM, 0x1, facedata_mario_eyebrow_left };
 #undef FACE_NUM
 
 
 /* @ 04004808 */
-struct DynList dynlist_04004808[16] = {
+struct DynList dynlist_mario_eyebrow_left[16] = {
     StartList(),
     MakeDynObj(D_DATA_GRP, 0x38),
-    LinkWithPtr(&vtx_040046D0),
+    LinkWithPtr(&vtx_mario_eyebrow_left),
     MakeDynObj(D_DATA_GRP, 0x39),
-    LinkWithPtr(&faces_040047FC),
+    LinkWithPtr(&faces_mario_eyebrow_left),
     StartGroup(0x3A),
     MakeDynObj(D_MATERIAL, 0x0),
     SetId(0),
@@ -117,7 +117,7 @@ struct DynList dynlist_04004808[16] = {
 
 #define VTX_NUM 56
 /* @ 04004988 */
-s16 verts_04004988[VTX_NUM][3] = {
+s16 verts_mario_mustache[VTX_NUM][3] = {
     { -202,   15,  400 }, { -295,  -13,  358 }, { -287,  -45,  362 }, {  229,  -89,  385 },
     {  214, -126,  385 }, {  221, -131,  360 }, { -266,   73,  363 }, { -202,   15,  375 },
     { -154, -160,  372 }, { -154, -148,  397 }, { -191, -150,  387 }, {  276,  -74,  345 },
@@ -135,12 +135,12 @@ s16 verts_04004988[VTX_NUM][3] = {
 };
 
 /* @ 04004AD8 */
-struct GdVtxData vtx_04004AD8 = { VTX_NUM, 0x1, verts_04004988 };
+struct GdVtxData vtx_mario_mustache = { VTX_NUM, 0x1, verts_mario_mustache };
 #undef VTX_NUM
 
 #define FACE_NUM 100
 /* @ 04004AE4 */
-u16 facedata_04004AE4[FACE_NUM][4] = {
+u16 facedata_mario_mustache[FACE_NUM][4] = {
     { 0,  0,  1,  2 }, { 0,  3,  4,  5 }, { 0,  3,  5, 46 }, { 0,  6,  0,  7 },
     { 0,  6,  7, 33 }, { 0,  8,  9, 10 }, { 0,  8, 10, 44 }, { 0, 11, 47, 12 },
     { 0, 11, 12, 13 }, { 0, 14, 15, 16 }, { 0, 14, 16, 35 }, { 0,  2,  1, 48 },
@@ -169,16 +169,16 @@ u16 facedata_04004AE4[FACE_NUM][4] = {
 };
 
 /* @ 04004E04 */
-struct GdFaceData faces_04004E04 = { FACE_NUM, 0x1, facedata_04004AE4 };
+struct GdFaceData faces_mario_mustache = { FACE_NUM, 0x1, facedata_mario_mustache };
 #undef FACE_NUM
 
 /* @ 04004E10 */
-struct DynList dynlist_04004E10[16] = {
+struct DynList dynlist_mario_mustache[16] = {
     StartList(),
     MakeDynObj(D_DATA_GRP, 0x16),
-    LinkWithPtr(&vtx_04004AD8),
+    LinkWithPtr(&vtx_mario_mustache),
     MakeDynObj(D_DATA_GRP, 0x17),
-    LinkWithPtr(&faces_04004E04),
+    LinkWithPtr(&faces_mario_mustache),
     StartGroup(0x18),
     MakeDynObj(D_MATERIAL, 0x0),
     SetId(0),

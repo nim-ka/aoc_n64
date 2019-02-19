@@ -8,16 +8,16 @@
 #include "../half_6.h"
 
 /* @ 04004F90 */
-struct DynList dynlist_04004F90[1026] = {
+struct DynList dynlist_mario_master[1026] = {
     StartList(),
     UseIntId(TRUE),
     StartGroup(0x3E8),
-    JumpToList(dynlist_040031F0),
-    JumpToList(dynlist_040039D8),
-    JumpToList(dynlist_04004040),
-    JumpToList(dynlist_040044B4),
-    JumpToList(dynlist_04004808),
-    JumpToList(dynlist_04004E10),
+    JumpToList(dynlist_mario_face),
+    JumpToList(dynlist_mario_eye_right),
+    JumpToList(dynlist_mario_eye_left),
+    JumpToList(dynlist_mario_eyebrow_right),
+    JumpToList(dynlist_mario_eyebrow_left),
+    JumpToList(dynlist_mario_mustache),
     EndGroup(0x3E8),
     MakeDynObj(D_LIGHT, 0xE4),
     SetId(1),
@@ -881,156 +881,182 @@ struct DynList dynlist_04004F90[1026] = {
     SetRotation(0.0, 0.0, 0.0),
     SetAttachOffset(292.7, 0.0, 0.0),
     EndNetSubGroup(0x9),
-    MakeDynObj(D_DATA_GRP, 0x7),
-    LinkWithPtr(&anim_0400C6DC),
+
+    MakeDynObj(D_DATA_GRP, 0x7), // mustache right
+    LinkWithPtr(&anim_mario_mustache_right),
     MakeDynObj(D_ANIMATOR, 0x8),
     AttachTo(0x0, 0x3E9),
     SetNodeGroup(0x7),
     LinkWith(0x6),
-    MakeDynObj(D_DATA_GRP, 0x10),
-    LinkWithPtr(&anim_0400DE1C),
+
+    MakeDynObj(D_DATA_GRP, 0x10), // mustache left
+    LinkWithPtr(&anim_mario_mustache_left),
     MakeDynObj(D_ANIMATOR, 0x11),
     AttachTo(0x0, 0x3E9),
     SetNodeGroup(0x10),
     LinkWith(0xF),
-    MakeDynObj(D_DATA_GRP, 0x20),
-    LinkWithPtr(&anim_0400F55C),
+    
+    MakeDynObj(D_DATA_GRP, 0x20), // lips
+    LinkWithPtr(&anim_mario_lips_1),
     MakeDynObj(D_ANIMATOR, 0x21),
     AttachTo(0x0, 0x3E9),
     SetNodeGroup(0x20),
     LinkWith(0x1F),
-    MakeDynObj(D_DATA_GRP, 0x29),
-    LinkWithPtr(&anim_04010C9C),
+    
+    MakeDynObj(D_DATA_GRP, 0x29), // lips
+    LinkWithPtr(&anim_mario_lips_2),
     MakeDynObj(D_ANIMATOR, 0x2A),
     AttachTo(0x0, 0x3E9),
     SetNodeGroup(0x29),
     LinkWith(0x28),
-    MakeDynObj(D_DATA_GRP, 0x32),
-    LinkWithPtr(&anim_040123DC),
+    
+    MakeDynObj(D_DATA_GRP, 0x32), // eyebrows
+    LinkWithPtr(&anim_mario_eyebrows_1),
     MakeDynObj(D_ANIMATOR, 0x33),
     AttachTo(0x0, 0x3E9),
     SetNodeGroup(0x32),
     LinkWith(0x31),
-    MakeDynObj(D_DATA_GRP, 0x3F),
-    LinkWithPtr(&anim_04013738),
+    
+    MakeDynObj(D_DATA_GRP, 0x3F), // eyebrows equalizer
+    LinkWithPtr(&anim_mario_eyebrows_equalizer),
     MakeDynObj(D_ANIMATOR, 0x40),
     AttachTo(0x0, 0x3E9),
     SetNodeGroup(0x3F),
     LinkWith(0x3E),
-    MakeDynObj(D_DATA_GRP, 0x42),
-    LinkWithPtr(&anim_04014E78),
+    
+    MakeDynObj(D_DATA_GRP, 0x42), // eyebrows
+    LinkWithPtr(&anim_mario_eyebrows_2),
     MakeDynObj(D_ANIMATOR, 0x43),
     AttachTo(0x0, 0x3E9),
     SetNodeGroup(0x42),
     LinkWith(0x41),
-    MakeDynObj(D_DATA_GRP, 0x48),
-    LinkWithPtr(&anim_040161D4),
+   
+    MakeDynObj(D_DATA_GRP, 0x48), // eyebrows
+    LinkWithPtr(&anim_mario_eyebrows_3),
     MakeDynObj(D_ANIMATOR, 0x49),
     AttachTo(0x0, 0x3E9),
     SetNodeGroup(0x48),
     LinkWith(0x47),
-    MakeDynObj(D_DATA_GRP, 0x4B),
-    LinkWithPtr(&anim_04017914),
+   
+    MakeDynObj(D_DATA_GRP, 0x4B), // eyebrows
+    LinkWithPtr(&anim_mario_eyebrows_4),
     MakeDynObj(D_ANIMATOR, 0x4C),
     AttachTo(0x0, 0x3E9),
     SetNodeGroup(0x4B),
     LinkWith(0x4A),
-    MakeDynObj(D_DATA_GRP, 0x54),
-    LinkWithPtr(&anim_04018C70),
+   
+    MakeDynObj(D_DATA_GRP, 0x54), // eyebrows
+    LinkWithPtr(&anim_mario_eyebrows_5),
     MakeDynObj(D_ANIMATOR, 0x55),
     AttachTo(0x0, 0x3E9),
     SetNodeGroup(0x54),
     LinkWith(0x53),
-    MakeDynObj(D_DATA_GRP, 0x6B),
-    LinkWithPtr(&anim_0401A3B0),
+   
+    MakeDynObj(D_DATA_GRP, 0x6B), // left eye
+    LinkWithPtr(&anim_mario_eye_left),
     MakeDynObj(D_ANIMATOR, 0x6C),
     AttachTo(0x0, 0x3E9),
     SetNodeGroup(0x6B),
     LinkWith(0x6A),
-    MakeDynObj(D_DATA_GRP, 0x7B),
-    LinkWithPtr(&anim_0401BAF0),
+   
+    MakeDynObj(D_DATA_GRP, 0x7B), // right eye
+    LinkWithPtr(&anim_mario_eye_right),
     MakeDynObj(D_ANIMATOR, 0x7C),
     AttachTo(0x0, 0x3E9),
     SetNodeGroup(0x7B),
     LinkWith(0x7A),
-    MakeDynObj(D_DATA_GRP, 0x84),
-    LinkWithPtr(&anim_0401D230),
+   
+    MakeDynObj(D_DATA_GRP, 0x84), // hat
+    LinkWithPtr(&anim_mario_hat),
     MakeDynObj(D_ANIMATOR, 0x85),
     AttachTo(0x0, 0x3E9),
     SetNodeGroup(0x84),
     LinkWith(0x83),
-    MakeDynObj(D_DATA_GRP, 0x96),
-    LinkWithPtr(&anim_0401E970),
+   
+    MakeDynObj(D_DATA_GRP, 0x96), // upper lip left
+    LinkWithPtr(&anim_mario_lips_3),
     MakeDynObj(D_ANIMATOR, 0x97),
     AttachTo(0x0, 0x3E9),
     SetNodeGroup(0x96),
     LinkWith(0x95),
-    MakeDynObj(D_DATA_GRP, 0x9F),
-    LinkWithPtr(&anim_040200B0),
+   
+    MakeDynObj(D_DATA_GRP, 0x9F), // upper lip right
+    LinkWithPtr(&anim_mario_lips_4),
     MakeDynObj(D_ANIMATOR, 0xA0),
     AttachTo(0x0, 0x3E9),
     SetNodeGroup(0x9F),
     LinkWith(0x9E),
-    MakeDynObj(D_DATA_GRP, 0xA8),
-    LinkWithPtr(&anim_0402140C),
+   
+    MakeDynObj(D_DATA_GRP, 0xA8), // left ear
+    LinkWithPtr(&anim_mario_ear_left),
     MakeDynObj(D_ANIMATOR, 0xA9),
     AttachTo(0x0, 0x3E9),
     SetNodeGroup(0xA8),
     LinkWith(0xA7),
-    MakeDynObj(D_DATA_GRP, 0xB1),
-    LinkWithPtr(&anim_04022768),
+   
+    MakeDynObj(D_DATA_GRP, 0xB1), // right ear
+    LinkWithPtr(&anim_mario_ear_right),
     MakeDynObj(D_ANIMATOR, 0xB2),
     AttachTo(0x0, 0x3E9),
     SetNodeGroup(0xB1),
     LinkWith(0xB0),
-    MakeDynObj(D_DATA_GRP, 0xBA),
-    LinkWithPtr(&anim_04023EA8),
+   
+    MakeDynObj(D_DATA_GRP, 0xBA), // nose
+    LinkWithPtr(&anim_mario_nose),
     MakeDynObj(D_ANIMATOR, 0xBB),
     AttachTo(0x0, 0x3E9),
     SetNodeGroup(0xBA),
     LinkWith(0xB9),
-    MakeDynObj(D_DATA_GRP, 0xC3),
-    LinkWithPtr(&anim_040255E8),
+   
+    MakeDynObj(D_DATA_GRP, 0xC3), // lip
+    LinkWithPtr(&anim_mario_lips_5),
     MakeDynObj(D_ANIMATOR, 0xC4),
     AttachTo(0x0, 0x3E9),
     SetNodeGroup(0xC3),
     LinkWith(0xC2),
-    MakeDynObj(D_DATA_GRP, 0xC6),
-    LinkWithPtr(&anim_04026D28),
+   
+    MakeDynObj(D_DATA_GRP, 0xC6), // lip
+    LinkWithPtr(&anim_mario_lips_6),
     MakeDynObj(D_ANIMATOR, 0xC7),
     AttachTo(0x0, 0x3E9),
     SetNodeGroup(0xC6),
     LinkWith(0xC5),
-    MakeDynObj(D_DATA_GRP, 0xCF),
-    LinkWithPtr(&anim_04028468),
+   
+    MakeDynObj(D_DATA_GRP, 0xCF), // left eyelid
+    LinkWithPtr(&anim_mario_eyelid_left),
     MakeDynObj(D_ANIMATOR, 0xD0),
     AttachTo(0x0, 0x3E9),
     SetNodeGroup(0xCF),
     LinkWith(0xCE),
-    MakeDynObj(D_DATA_GRP, 0xD8),
-    LinkWithPtr(&anim_04029BA8),
+   
+    MakeDynObj(D_DATA_GRP, 0xD8), // right eyelid
+    LinkWithPtr(&anim_mario_eyelid_right),
     MakeDynObj(D_ANIMATOR, 0xD9),
     AttachTo(0x0, 0x3E9),
     SetNodeGroup(0xD8),
     LinkWith(0xD7),
-    MakeDynObj(D_DATA_GRP, 0xE2),
-    LinkWithPtr(&anim_0402CA04),
+   
+    MakeDynObj(D_DATA_GRP, 0xE2), // intro
+    LinkWithPtr(&anim_mario_intro),
     MakeDynObj(D_ANIMATOR, 0xE3),
     AttachTo(0x0, 0x3E9),
     SetNodeGroup(0xE2),
     LinkWith(0xDD),
-    MakeDynObj(D_DATA_GRP, 0xE5),
-    LinkWithPtr(&anim_0402F860),
+   
+    MakeDynObj(D_DATA_GRP, 0xE5), // silver star
+    LinkWithPtr(&anim_silver_star),
     MakeDynObj(D_ANIMATOR, 0xE6),
     AttachTo(0x0, 0x3E9),
     SetNodeGroup(0xE5),
     LinkWith(0xE4),
-    MakeDynObj(D_DATA_GRP, 0xE8),
-    LinkWithPtr(&anim_040326BC),
+  
+    MakeDynObj(D_DATA_GRP, 0xE8), // red star
+    LinkWithPtr(&anim_red_star),
     MakeDynObj(D_ANIMATOR, 0xE9),
     AttachTo(0x0, 0x3E9),
     SetNodeGroup(0xE8),
     LinkWith(0xE7),
+    
     EndGroup(0x1),
     UseObj(0x1),
     UseIntId(FALSE),

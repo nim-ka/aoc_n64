@@ -1,3 +1,4 @@
+// early unused test dynlist
 #include <ultra64.h>
 
 #include "sm64.h"
@@ -6,7 +7,7 @@
 #include "../dynlist_proc.h"
 // maybe move types into the dynlists.h file?
 
-struct DynList dynlist_04000000[67] = { 
+struct DynList dynlist_test_cube[67] = { 
     StartList(), 
     StartGroup("ico1vg"), 
     MakeVertex(-2.0, 0.0, -2.0), 

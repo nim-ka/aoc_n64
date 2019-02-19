@@ -600,21 +600,21 @@ SECTIONS
    /* 271B20-2A42A0 [32780] */
    BEGIN_SEG(gd_dynlists, 0x04000000)
    {
-      BUILD_DIR/src/goddard/dynlists/04000000.o(.data);
-      BUILD_DIR/src/goddard/dynlists/04000650.o(.data);
-      BUILD_DIR/src/goddard/dynlists/04000C20.o(.data);
-      BUILD_DIR/src/goddard/dynlists/04003610.o(.data);
-      BUILD_DIR/src/goddard/dynlists/040042E0.o(.data);
-      BUILD_DIR/src/goddard/dynlists/04004F90.o(.data);
-      BUILD_DIR/src/goddard/dynlists/anim_0C6DC.o(.data);
-      BUILD_DIR/src/goddard/dynlists/anim_0DE1C.o(.data);
-      BUILD_DIR/src/goddard/dynlists/anim_0F55C.o(.data);
-      BUILD_DIR/src/goddard/dynlists/anim_10C9C.o(.data);
-      BUILD_DIR/src/goddard/dynlists/anim_123DC.o(.data);
-      BUILD_DIR/src/goddard/dynlists/anim_13738.o(.data);
-      BUILD_DIR/src/goddard/dynlists/anim_22768.o(.data);
-      BUILD_DIR/src/goddard/dynlists/04000000.o(.rodata);
-      BUILD_DIR/src/goddard/dynlists/04000650.o(.rodata);
+      BUILD_DIR/src/goddard/dynlists/dynlist_test_cube.o(.data);
+      BUILD_DIR/src/goddard/dynlists/dynlist_unused.o(.data);
+      BUILD_DIR/src/goddard/dynlists/dynlist_mario_face.o(.data);
+      BUILD_DIR/src/goddard/dynlists/dynlists_mario_eyes.o(.data);
+      BUILD_DIR/src/goddard/dynlists/dynlists_mario_eyebrows_mustache.o(.data);
+      BUILD_DIR/src/goddard/dynlists/dynlist_mario_master.o(.data);
+      BUILD_DIR/src/goddard/dynlists/anim_mario_mustache_right.o(.data);
+      BUILD_DIR/src/goddard/dynlists/anim_mario_mustache_left.o(.data);
+      BUILD_DIR/src/goddard/dynlists/anim_mario_lips_1.o(.data);
+      BUILD_DIR/src/goddard/dynlists/anim_mario_lips_2.o(.data);
+      BUILD_DIR/src/goddard/dynlists/anim_mario_eyebrows_1.o(.data);
+      BUILD_DIR/src/goddard/dynlists/anim_group_1.o(.data);
+      BUILD_DIR/src/goddard/dynlists/anim_group_2.o(.data);
+      BUILD_DIR/src/goddard/dynlists/dynlist_test_cube.o(.rodata);
+      BUILD_DIR/src/goddard/dynlists/dynlist_unused.o(.rodata);
    }
    END_SEG(gd_dynlists)
 

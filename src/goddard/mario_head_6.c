@@ -207,9 +207,9 @@ static u32 unref_801a86F8 = 0;
 static struct GdDisplayList *sCurrentGdDl = NULL; // @ 801A86FC
 static u32 sGdDlCount = 0;                        // @ 801A8700
 static struct DynListBankInfo sDynLists[] = {     // @ 801A8704
-    { STD_LIST_BANK, dynlist_04000000 },
-    { STD_LIST_BANK, dynlist_04000650 },
-    { STD_LIST_BANK, dynlist_04004F90 },
+    { STD_LIST_BANK, dynlist_test_cube },
+    { STD_LIST_BANK, dynlist_unused },
+    { STD_LIST_BANK, dynlist_mario_master },
     { TABLE_END, NULL }
 };
 /*  It doesn't really make sense for this DL command to be here,

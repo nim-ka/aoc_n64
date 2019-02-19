@@ -7,7 +7,7 @@
 
 #define VTX_NUM 440
 /* @ 04000C20 */
-static s16 vtxData[VTX_NUM][3] = {
+static s16 mario_Face_VtxData[VTX_NUM][3] = {
     {  434,  326, -209 }, {  283,  371, -268 }, {  344,  531,  -97 }, {  360,  187, -363 },
     {  162, -260,  265 }, {  172, -251,  175 }, {  218, -191,  287 }, {  173,  279,  296 },
     {  192,  226,  279 }, {  233,  346,  216 }, {  135, -283,  182 }, {  165, -299,  114 },
@@ -121,11 +121,11 @@ static s16 vtxData[VTX_NUM][3] = {
 };
 
 /* @ 04001670 */
-static struct GdVtxData vtxInfo = { VTX_NUM, 0x1, vtxData };
+static struct GdVtxData mario_Face_VtxInfo = { VTX_NUM, 0x1, mario_Face_VtxData };
 
 #define FACE_NUM 877
 /* @ 0400167C */
-static u16 faceData[FACE_NUM][4] = {
+static u16 mario_Face_FaceData[FACE_NUM][4] = {
     { 0,  43, 102, 112 }, { 0, 102,  42, 188 }, { 0, 354, 356, 188 }, { 0, 188, 198, 354 },
     { 0, 198, 188,  42 }, { 0,  43,  42, 102 }, { 1,   4,   5,   6 }, { 1,   7,   8,   9 },
     { 1,  10,  11,   5 }, { 1,  15,  16,  17 }, { 1,  18,  19,  20 }, { 1,  21,  22,  15 },
@@ -349,15 +349,15 @@ static u16 faceData[FACE_NUM][4] = {
 };
 
 /* @ 040031E4 */
-static struct GdFaceData faceInfo = { FACE_NUM, 0x1, faceData };
+static struct GdFaceData mario_Face_FaceInfo = { FACE_NUM, 0x1, mario_Face_FaceData };
 
 /* @ 040031F0 */
-struct DynList dynlist_040031F0[44] = {
+struct DynList dynlist_mario_face[44] = {
     StartList(),
     MakeDynObj(D_DATA_GRP, 0xDE),
-    LinkWithPtr(&vtxInfo),
+    LinkWithPtr(&mario_Face_VtxInfo),
     MakeDynObj(D_DATA_GRP, 0xDF),
-    LinkWithPtr(&faceInfo),
+    LinkWithPtr(&mario_Face_FaceInfo),
     StartGroup(0xE0),
     MakeDynObj(D_MATERIAL, 0x0),
     SetId(0),

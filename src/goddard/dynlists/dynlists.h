@@ -3,14 +3,14 @@
 
 #include "../gd_types.h"
 
-extern struct DynList dynlist_04000000[67];
-extern struct DynList dynlist_04000650[62];
-extern struct DynList dynlist_040031F0[44];
-extern struct DynList dynlist_040039D8[28];
-extern struct DynList dynlist_04004040[28];
-extern struct DynList dynlist_040044B4[16];
-extern struct DynList dynlist_04004808[16];
-extern struct DynList dynlist_04004E10[16];
-extern struct DynList dynlist_04004F90[1026];
+extern struct DynList dynlist_test_cube[67];
+extern struct DynList dynlist_unused[62];
+extern struct DynList dynlist_mario_face[44];
+extern struct DynList dynlist_mario_eye_right[28];
+extern struct DynList dynlist_mario_eye_left[28];
+extern struct DynList dynlist_mario_eyebrow_right[16];
+extern struct DynList dynlist_mario_eyebrow_left[16];
+extern struct DynList dynlist_mario_mustache[16];
+extern struct DynList dynlist_mario_master[1026];
 
 #endif /* _DYN_LISTS_H */
