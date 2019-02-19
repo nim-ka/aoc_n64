@@ -6,12 +6,16 @@
 #include "dma.h"
 #include "dac.h"
 #include "../mario.h"
+#include "../level_update.h"
 #include "../area.h"
+#include "../room.h"
 
 #ifdef VERSION_JP
 #define US_FLOAT(x) x
+#define IF_US(jp, us) jp
 #else
 #define US_FLOAT(x) x ## f
+#define IF_US(jp, us) us
 #endif
 
 struct Sound
@@ -65,20 +69,15 @@ s32 D_80331D40 = 0;
 s32 D_80331D44 = 0;
 
 // Dialog sounds
-#ifdef VERSION_JP
-// Sound for Dialog037 ("I win! You lose! Ha ha ha ha! You're no slouch,
-// but I'm a better sledder! Better luck next time!")
-#define X 3
-#else
-#define X 1
-#endif
+// The US difference is the sound for Dialog037 ("I win! You lose! Ha ha ha ha!
+// You're no slouch, but I'm a better sledder! Better luck next time!")
 #define _ 0xff
 u8 D_80331D48[170] = {
 //     0  1  2  3  4  5  6  7  8  9
 /* 0*/ _, 6, 6, 6, 6, 3, 3, 3, _, 3,
 /* 1*/ _, _, _, _, _, _, _, 4, _, _,
 /* 2*/ _, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-/* 3*/ _, _, _, _, _, _, _, X, _, _,
+/* 3*/ _, _, _, _, _, _, _, IF_US(3, 1), _, _,
 /* 4*/ _, 3, _, _, _, _, _, 6, _, _,
 /* 5*/ _, _, _, _, _, 1, 1, 1, 1, 1,
 /* 6*/ _, _, _, _, _, _, _, 7, _, _,
@@ -94,7 +93,6 @@ u8 D_80331D48[170] = {
 /*16*/ _, 10, _, _, _, _, _, _, 9, _
 };
 #undef _
-#undef X
 
 s32 D_80331DF4[15] = {
     0x50210081, 0x502d0081, 0x505f8091, 0x503da081,
@@ -147,7 +145,7 @@ s16 D_80331E98[] = // LEVEL_UNKNOWN_38
     0};
 s16 D_80331EA8[] = {0, 0};
 
-u8 D_80331EAC = 0xff;
+u8 D_80331EAC = 0xff; // current music?
 u8 D_80331EB0 = 0xff;
 
 #define _ D_80331EA8
@@ -169,29 +167,55 @@ struct Struct80331F50 D_80331F50[8] = {
     {0xffff, 0, 0x7f, 100, 0,     0, 0, 100}
 };
 
-u8 D_80331FB0[120] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x28,
-    0x28, 0x28, 0x10, 0x38, 0x38, 0x20, 0x20, 0x30, 0x28, 0x28, 0x28, 0x08, 0x30,
-    0x30, 0x08, 0x08, 0x08, 0x10, 0x28, 0x28, 0x10, 0x18, 0x18, 0x10, 0x18, 0x18,
-    0x0c, 0x0c, 0x20, 0x18, 0x18, 0x18, 0x20, 0x20, 0x20, 0x08, 0x08, 0x08, 0x28,
-    0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x10, 0x10, 0x10, 0x28, 0x28,
-    0x28, 0x08, 0x30, 0x30, 0x10, 0x20, 0x20, 0x08, 0x08, 0x08, 0x00, 0x00, 0x00,
-    0x08, 0x08, 0x08, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x20, 0x20, 0x20, 0x40,
-    0x40, 0x40, 0x28, 0x28, 0x28, 0x70, 0x00, 0x00, 0x40, 0x40, 0x40, 0x40, 0x40,
-    0x40, 0x00, 0x00, 0x00, 0x08, 0x08, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00
+u8 D_80331FB0[40][3] = {
+    {0x00, 0x00, 0x00},
+    {0x00, 0x00, 0x00},
+    {0x00, 0x00, 0x00},
+    {0x00, 0x00, 0x00},
+    {0x28, 0x28, 0x28},
+    {0x10, 0x38, 0x38},
+    {0x20, 0x20, 0x30},
+    {0x28, 0x28, 0x28},
+    {0x08, 0x30, 0x30},
+    {0x08, 0x08, 0x08},
+    {0x10, 0x28, 0x28},
+    {0x10, 0x18, 0x18},
+    {0x10, 0x18, 0x18},
+    {0x0c, 0x0c, 0x20},
+    {0x18, 0x18, 0x18},
+    {0x20, 0x20, 0x20},
+    {0x08, 0x08, 0x08},
+    {0x28, 0x28, 0x28},
+    {0x28, 0x28, 0x28},
+    {0x28, 0x28, 0x28},
+    {0x10, 0x10, 0x10},
+    {0x28, 0x28, 0x28},
+    {0x08, 0x30, 0x30},
+    {0x10, 0x20, 0x20},
+    {0x08, 0x08, 0x08},
+    {0x00, 0x00, 0x00},
+    {0x08, 0x08, 0x08},
+    {0x28, 0x28, 0x28},
+    {0x28, 0x28, 0x28},
+    {0x20, 0x20, 0x20},
+    {0x40, 0x40, 0x40},
+    {0x28, 0x28, 0x28},
+    {0x70, 0x00, 0x00},
+    {0x40, 0x40, 0x40},
+    {0x40, 0x40, 0x40},
+    {0x00, 0x00, 0x00},
+    {0x08, 0x08, 0x08},
+    {0x00, 0x00, 0x00},
+    {0x00, 0x00, 0x00},
+    {0x00, 0x00, 0x00}
 };
 
 u16 D_80332028[LEVEL_MAX+1] = {
     20000, 20000, 20000, 20000, 28000, 17000, 20000, 16000,
     15000, 15000, 14000, 17000, 20000, 20000, 18000, 20000,
     25000, 16000, 30000, 16000, 20000, 16000, 22000, 17000,
-    13000, 20000, 20000, 20000, 18000, 20000,
-#ifdef VERSION_JP
-    25000, 20000, 20000, 25000, 25000,
-#else
-    60000, 20000, 20000, 60000, 60000,
-#endif
+    13000, 20000, 20000, 20000, 18000, 20000, IF_US(25000, 60000),
+    20000, 20000, IF_US(25000, 60000), IF_US(25000, 60000),
     20000, 15000, 20000, 20000
 };
 
@@ -206,12 +230,8 @@ u8 D_803320A4[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}; // pointers to head of list
 u8 D_803320B0[10] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1}; // pointers to head of list
 u8 D_803320BC[10] = {0};
 u8 D_803320C8[10] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1}; // sizes of D_80360C38
-u8 D_803320D4[10] =
-#ifdef VERSION_JP
-    {0x70, 0x30, 0x30, 0x80, 0x20, 0x80, 0x20, 0x30, 0x80, 0x80};
-#else
-    {0x70, 0x30, 0x40, 0x80, 0x20, 0x80, 0x20, 0x40, 0x80, 0x80};
-#endif
+u8 D_803320D4[10] = {0x70, 0x30, IF_US(0x30, 0x40), 0x80, 0x20,
+                     0x80, 0x20, IF_US(0x30, 0x40), 0x80, 0x80};
 f32 D_803320E0[6] = {0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f}; // exported
 u8 D_803320F8[16] = {0}; // (size 10 + file split/unused var?)
 u8 D_80332108 = 0;
@@ -256,8 +276,10 @@ struct Struct80363818 D_80363818[6];
 
 #ifdef VERSION_JP
 typedef u16 Arg1T;
+typedef u8 Arg2T;
 #else
 typedef s32 Arg1T;
+typedef s32 Arg2T;
 #endif
 
 // Local functions that should be static but are defined in/called from GLOBAL_ASM blocks:
@@ -373,11 +395,7 @@ static void func_8031D690(s32 arg0, Arg1T arg1)
 static void func_8031D6E4(s32 arg0, Arg1T arg1, u8 arg2)
 {
     struct Struct80222A18 *temp = &D_80222A18[arg0];
-#ifdef VERSION_JP
-    u8 arg2i = arg2;
-#else
-    s32 arg2i = arg2;
-#endif
+    Arg2T arg2i = arg2;
     f32 f0;
 
     if (temp->unk2 == 1)
@@ -421,11 +439,7 @@ static void func_8031D7B0(s32 arg0, Arg1T arg1)
 static void func_8031D838(s32 arg0, Arg1T arg1, u8 arg2)
 {
     struct Struct80222A18 *temp = &D_80222A18[arg0];
-#ifdef VERSION_JP
-    u8 arg2i = arg2;
-#else
-    s32 arg2i = arg2;
-#endif
+    Arg2T arg2i = arg2;
 
     if (temp->unk2 == 1)
     {
@@ -2354,216 +2368,38 @@ f32 func_8031EC7C(u8 listIndex, u8 item)
     return f2 / US_FLOAT(15.0) + US_FLOAT(1.0);
 }
 
-#ifdef VERSION_JP
-GLOBAL_ASM(
-glabel func_8031ED70 # US: 8031FBE8
-/* 0D9D70 8031ED70 3C028033 */  lui   $v0, %hi(gCurrLevelNum) 
-/* 0D9D74 8031ED74 8442CE98 */  lh    $v0, %lo(gCurrLevelNum)($v0)
-/* 0D9D78 8031ED78 AFA60008 */  sw    $a2, 8($sp)
-/* 0D9D7C 8031ED7C 30CE00FF */  andi  $t6, $a2, 0xff
-/* 0D9D80 8031ED80 28410027 */  slti  $at, $v0, 0x27
-/* 0D9D84 8031ED84 01C03025 */  move  $a2, $t6
-/* 0D9D88 8031ED88 AFA40000 */  sw    $a0, ($sp)
-/* 0D9D8C 8031ED8C 14200003 */  bnez  $at, .L8031ED9C
-/* 0D9D90 8031ED90 AFA50004 */   sw    $a1, 4($sp)
-/* 0D9D94 8031ED94 10000002 */  b     .L8031EDA0
-/* 0D9D98 8031ED98 24030026 */   li    $v1, 38
-.L8031ED9C:
-/* 0D9D9C 8031ED9C 304300FF */  andi  $v1, $v0, 0xff
-.L8031EDA0:
-/* 0D9DA0 8031EDA0 3C028034 */  lui   $v0, %hi(gCurrAreaIndex) 
-/* 0D9DA4 8031EDA4 8442A75A */  lh    $v0, %lo(gCurrAreaIndex)($v0)
-/* 0D9DA8 8031EDA8 0006C080 */  sll   $t8, $a2, 2
-/* 0D9DAC 8031EDAC 3C058022 */  lui   $a1, %hi(D_80222A18 + 0x2ac) 
-/* 0D9DB0 8031EDB0 2442FFFF */  addiu $v0, $v0, -1
-/* 0D9DB4 8031EDB4 304F00FF */  andi  $t7, $v0, 0xff
-/* 0D9DB8 8031EDB8 29E10003 */  slti  $at, $t7, 3
-/* 0D9DBC 8031EDBC 14200002 */  bnez  $at, .L8031EDC8
-/* 0D9DC0 8031EDC0 01E01025 */   move  $v0, $t7
-/* 0D9DC4 8031EDC4 24020002 */  li    $v0, 2
-.L8031EDC8:
-/* 0D9DC8 8031EDC8 00B82821 */  addu  $a1, $a1, $t8
-/* 0D9DCC 8031EDCC 8CA52CC4 */  lw    $a1, %lo(D_80222A18 + 0x2ac)($a1)
-/* 0D9DD0 8031EDD0 3C013FF0 */  li    $at, 0x3FF00000 # 1.875000
-/* 0D9DD4 8031EDD4 00034080 */  sll   $t0, $v1, 2
-/* 0D9DD8 8031EDD8 C4A60020 */  lwc1  $f6, 0x20($a1)
-/* 0D9DDC 8031EDDC 44812800 */  mtc1  $at, $f5
-/* 0D9DE0 8031EDE0 44802000 */  mtc1  $zero, $f4
-/* 0D9DE4 8031EDE4 01034023 */  subu  $t0, $t0, $v1
-/* 0D9DE8 8031EDE8 46003221 */  cvt.d.s $f8, $f6
-/* 0D9DEC 8031EDEC 01024821 */  addu  $t1, $t0, $v0
-/* 0D9DF0 8031EDF0 3C0A8033 */  lui   $t2, %hi(D_80331FB0) 
-/* 0D9DF4 8031EDF4 01495021 */  addu  $t2, $t2, $t1
-/* 0D9DF8 8031EDF8 46282281 */  sub.d $f10, $f4, $f8
-/* 0D9DFC 8031EDFC 914A1FB0 */  lbu   $t2, %lo(D_80331FB0)($t2)
-/* 0D9E00 8031EE00 90B90059 */  lbu   $t9, 0x59($a1)
-/* 0D9E04 8031EE04 3C014048 */  li    $at, 0x40480000 # 3.125000
-/* 0D9E08 8031EE08 44818800 */  mtc1  $at, $f17
-/* 0D9E0C 8031EE0C 44808000 */  mtc1  $zero, $f16
-/* 0D9E10 8031EE10 032A5821 */  addu  $t3, $t9, $t2
-/* 0D9E14 8031EE14 448B3000 */  mtc1  $t3, $f6
-/* 0D9E18 8031EE18 46305482 */  mul.d $f18, $f10, $f16
-/* 0D9E1C 8031EE1C 24040001 */  li    $a0, 1
-/* 0D9E20 8031EE20 3C0141E0 */  li    $at, 0x41E00000 # 28.000000
-/* 0D9E24 8031EE24 46803121 */  cvt.d.w $f4, $f6
-/* 0D9E28 8031EE28 46249200 */  add.d $f8, $f18, $f4
-/* 0D9E2C 8031EE2C 444CF800 */  cfc1  $t4, $31
-/* 0D9E30 8031EE30 44C4F800 */  ctc1  $a0, $31
-/* 0D9E34 8031EE34 00000000 */  nop   
-/* 0D9E38 8031EE38 462042A4 */  cvt.w.d $f10, $f8
-/* 0D9E3C 8031EE3C 4444F800 */  cfc1  $a0, $31
-/* 0D9E40 8031EE40 00000000 */  nop   
-/* 0D9E44 8031EE44 30840078 */  andi  $a0, $a0, 0x78
-/* 0D9E48 8031EE48 50800014 */  beql  $a0, $zero, .L8031EE9C
-/* 0D9E4C 8031EE4C 44045000 */   mfc1  $a0, $f10
-/* 0D9E50 8031EE50 44815800 */  mtc1  $at, $f11
-/* 0D9E54 8031EE54 44805000 */  mtc1  $zero, $f10
-/* 0D9E58 8031EE58 24040001 */  li    $a0, 1
-/* 0D9E5C 8031EE5C 462A4281 */  sub.d $f10, $f8, $f10
-/* 0D9E60 8031EE60 44C4F800 */  ctc1  $a0, $31
-/* 0D9E64 8031EE64 00000000 */  nop   
-/* 0D9E68 8031EE68 462052A4 */  cvt.w.d $f10, $f10
-/* 0D9E6C 8031EE6C 4444F800 */  cfc1  $a0, $31
-/* 0D9E70 8031EE70 00000000 */  nop   
-/* 0D9E74 8031EE74 30840078 */  andi  $a0, $a0, 0x78
-/* 0D9E78 8031EE78 14800005 */  bnez  $a0, .L8031EE90
-/* 0D9E7C 8031EE7C 00000000 */   nop   
-/* 0D9E80 8031EE80 44045000 */  mfc1  $a0, $f10
-/* 0D9E84 8031EE84 3C018000 */  lui   $at, 0x8000
-/* 0D9E88 8031EE88 10000007 */  b     .L8031EEA8
-/* 0D9E8C 8031EE8C 00812025 */   or    $a0, $a0, $at
-.L8031EE90:
-/* 0D9E90 8031EE90 10000005 */  b     .L8031EEA8
-/* 0D9E94 8031EE94 2404FFFF */   li    $a0, -1
-/* 0D9E98 8031EE98 44045000 */  mfc1  $a0, $f10
-.L8031EE9C:
-/* 0D9E9C 8031EE9C 00000000 */  nop   
-/* 0D9EA0 8031EEA0 0480FFFB */  bltz  $a0, .L8031EE90
-/* 0D9EA4 8031EEA4 00000000 */   nop   
-.L8031EEA8:
-/* 0D9EA8 8031EEA8 308D00FF */  andi  $t5, $a0, 0xff
-/* 0D9EAC 8031EEAC 44CCF800 */  ctc1  $t4, $31
-/* 0D9EB0 8031EEB0 29A10080 */  slti  $at, $t5, 0x80
-/* 0D9EB4 8031EEB4 14200002 */  bnez  $at, .L8031EEC0
-/* 0D9EB8 8031EEB8 01A02025 */   move  $a0, $t5
-/* 0D9EBC 8031EEBC 2404007F */  li    $a0, 127
-.L8031EEC0:
-/* 0D9EC0 8031EEC0 03E00008 */  jr    $ra
-/* 0D9EC4 8031EEC4 00801025 */   move  $v0, $a0
-)
-#else
-GLOBAL_ASM(
-glabel func_8031ED70 # US: 8031FBE8
-/* 0DABE8 8031FBE8 308E00FF */  andi  $t6, $a0, 0xff
-/* 0DABEC 8031FBEC 000EC8C0 */  sll   $t9, $t6, 3
-/* 0DABF0 8031FBF0 30AF00FF */  andi  $t7, $a1, 0xff
-/* 0DABF4 8031FBF4 032EC821 */  addu  $t9, $t9, $t6
-/* 0DABF8 8031FBF8 0019C880 */  sll   $t9, $t9, 2
-/* 0DABFC 8031FBFC 000F40C0 */  sll   $t0, $t7, 3
-/* 0DAC00 8031FC00 010F4023 */  subu  $t0, $t0, $t7
-/* 0DAC04 8031FC04 032EC823 */  subu  $t9, $t9, $t6
-/* 0DAC08 8031FC08 0019C940 */  sll   $t9, $t9, 5
-/* 0DAC0C 8031FC0C 00084080 */  sll   $t0, $t0, 2
-/* 0DAC10 8031FC10 03284821 */  addu  $t1, $t9, $t0
-/* 0DAC14 8031FC14 3C0A8036 */  lui   $t2, %hi(D_80360C48 + 0x14)
-/* 0DAC18 8031FC18 01495021 */  addu  $t2, $t2, $t1
-/* 0DAC1C 8031FC1C 8D4A1FCC */  lw    $t2, %lo(D_80360C48 + 0x14)($t2)
-/* 0DAC20 8031FC20 AFA60008 */  sw    $a2, 8($sp)
-/* 0DAC24 8031FC24 30D800FF */  andi  $t8, $a2, 0xff
-/* 0DAC28 8031FC28 314B0020 */  andi  $t3, $t2, 0x20
-/* 0DAC2C 8031FC2C 03003025 */  move  $a2, $t8
-/* 0DAC30 8031FC30 AFA40000 */  sw    $a0, ($sp)
-/* 0DAC34 8031FC34 11600004 */  beqz  $t3, .L_U_8031FC48
-/* 0DAC38 8031FC38 AFA50004 */   sw    $a1, 4($sp)
-/* 0DAC3C 8031FC3C 00001025 */  move  $v0, $zero
-/* 0DAC40 8031FC40 10000010 */  b     .L_U_8031FC84
-/* 0DAC44 8031FC44 00001825 */   move  $v1, $zero
-.L_U_8031FC48:
-/* 0DAC48 8031FC48 3C038033 */  lui   $v1, %hi(gCurrLevelNum) # $v1, 0x8033
-/* 0DAC4C 8031FC4C 8463DDF8 */  lh    $v1, %lo(gCurrLevelNum)($v1)
-/* 0DAC50 8031FC50 28610027 */  slti  $at, $v1, 0x27
-/* 0DAC54 8031FC54 14200003 */  bnez  $at, .L_U_8031FC64
-/* 0DAC58 8031FC58 306200FF */   andi  $v0, $v1, 0xff
-/* 0DAC5C 8031FC5C 10000001 */  b     .L_U_8031FC64
-/* 0DAC60 8031FC60 24020026 */   li    $v0, 38
-.L_U_8031FC64:
-/* 0DAC64 8031FC64 3C038034 */  lui   $v1, %hi(gCurrAreaIndex) # $v1, 0x8034
-/* 0DAC68 8031FC68 8463BACA */  lh    $v1, %lo(gCurrAreaIndex)($v1)
-/* 0DAC6C 8031FC6C 2463FFFF */  addiu $v1, $v1, -1
-/* 0DAC70 8031FC70 306C00FF */  andi  $t4, $v1, 0xff
-/* 0DAC74 8031FC74 29810003 */  slti  $at, $t4, 3
-/* 0DAC78 8031FC78 14200002 */  bnez  $at, .L_U_8031FC84
-/* 0DAC7C 8031FC7C 01801825 */   move  $v1, $t4
-/* 0DAC80 8031FC80 24030002 */  li    $v1, 2
-.L_U_8031FC84:
-/* 0DAC84 8031FC84 00066880 */  sll   $t5, $a2, 2
-/* 0DAC88 8031FC88 3C058022 */  lui   $a1, %hi(D_80222A18 + 0x2ac)
-/* 0DAC8C 8031FC8C 00AD2821 */  addu  $a1, $a1, $t5
-/* 0DAC90 8031FC90 8CA528C4 */  lw    $a1, %lo(D_80222A18 + 0x2ac)($a1)
-/* 0DAC94 8031FC94 00027880 */  sll   $t7, $v0, 2
-/* 0DAC98 8031FC98 01E27823 */  subu  $t7, $t7, $v0
-/* 0DAC9C 8031FC9C 01E3C021 */  addu  $t8, $t7, $v1
-/* 0DACA0 8031FCA0 3C013F80 */  li    $at, 0x3F800000 # 1.000000
-/* 0DACA4 8031FCA4 3C198033 */  lui   $t9, %hi(D_80331FB0)
-/* 0DACA8 8031FCA8 44812000 */  mtc1  $at, $f4
-/* 0DACAC 8031FCAC C4A60020 */  lwc1  $f6, 0x20($a1)
-/* 0DACB0 8031FCB0 0338C821 */  addu  $t9, $t9, $t8
-/* 0DACB4 8031FCB4 933930C0 */  lbu   $t9, %lo(D_80331FB0)($t9)
-/* 0DACB8 8031FCB8 90AE0059 */  lbu   $t6, 0x59($a1)
-/* 0DACBC 8031FCBC 46062201 */  sub.s $f8, $f4, $f6
-/* 0DACC0 8031FCC0 3C014220 */  li    $at, 0x42200000 # 40.000000
-/* 0DACC4 8031FCC4 44815000 */  mtc1  $at, $f10
-/* 0DACC8 8031FCC8 01D94021 */  addu  $t0, $t6, $t9
-/* 0DACCC 8031FCCC 44889000 */  mtc1  $t0, $f18
-/* 0DACD0 8031FCD0 460A4402 */  mul.s $f16, $f8, $f10
-/* 0DACD4 8031FCD4 24040001 */  li    $a0, 1
-/* 0DACD8 8031FCD8 3C014F00 */  li    $at, 0x4F000000 # 2147483648.000000
-/* 0DACDC 8031FCDC 46809120 */  cvt.s.w $f4, $f18
-/* 0DACE0 8031FCE0 46048180 */  add.s $f6, $f16, $f4
-/* 0DACE4 8031FCE4 4449F800 */  cfc1  $t1, $31
-/* 0DACE8 8031FCE8 44C4F800 */  ctc1  $a0, $31
-/* 0DACEC 8031FCEC 00000000 */  nop   
-/* 0DACF0 8031FCF0 46003224 */  cvt.w.s $f8, $f6
-/* 0DACF4 8031FCF4 4444F800 */  cfc1  $a0, $31
-/* 0DACF8 8031FCF8 00000000 */  nop   
-/* 0DACFC 8031FCFC 30840078 */  andi  $a0, $a0, 0x78
-/* 0DAD00 8031FD00 50800013 */  beql  $a0, $zero, .L_U_8031FD50
-/* 0DAD04 8031FD04 44044000 */   mfc1  $a0, $f8
-/* 0DAD08 8031FD08 44814000 */  mtc1  $at, $f8
-/* 0DAD0C 8031FD0C 24040001 */  li    $a0, 1
-/* 0DAD10 8031FD10 46083201 */  sub.s $f8, $f6, $f8
-/* 0DAD14 8031FD14 44C4F800 */  ctc1  $a0, $31
-/* 0DAD18 8031FD18 00000000 */  nop   
-/* 0DAD1C 8031FD1C 46004224 */  cvt.w.s $f8, $f8
-/* 0DAD20 8031FD20 4444F800 */  cfc1  $a0, $31
-/* 0DAD24 8031FD24 00000000 */  nop   
-/* 0DAD28 8031FD28 30840078 */  andi  $a0, $a0, 0x78
-/* 0DAD2C 8031FD2C 14800005 */  bnez  $a0, .L_U_8031FD44
-/* 0DAD30 8031FD30 00000000 */   nop   
-/* 0DAD34 8031FD34 44044000 */  mfc1  $a0, $f8
-/* 0DAD38 8031FD38 3C018000 */  lui   $at, 0x8000
-/* 0DAD3C 8031FD3C 10000007 */  b     .L_U_8031FD5C
-/* 0DAD40 8031FD40 00812025 */   or    $a0, $a0, $at
-.L_U_8031FD44:
-/* 0DAD44 8031FD44 10000005 */  b     .L_U_8031FD5C
-/* 0DAD48 8031FD48 2404FFFF */   li    $a0, -1
-/* 0DAD4C 8031FD4C 44044000 */  mfc1  $a0, $f8
-.L_U_8031FD50:
-/* 0DAD50 8031FD50 00000000 */  nop   
-/* 0DAD54 8031FD54 0480FFFB */  bltz  $a0, .L_U_8031FD44
-/* 0DAD58 8031FD58 00000000 */   nop   
-.L_U_8031FD5C:
-/* 0DAD5C 8031FD5C 308A00FF */  andi  $t2, $a0, 0xff
-/* 0DAD60 8031FD60 44C9F800 */  ctc1  $t1, $31
-/* 0DAD64 8031FD64 29410080 */  slti  $at, $t2, 0x80
-/* 0DAD68 8031FD68 14200002 */  bnez  $at, .L_U_8031FD74
-/* 0DAD6C 8031FD6C 01402025 */   move  $a0, $t2
-/* 0DAD70 8031FD70 2404007F */  li    $a0, 127
-.L_U_8031FD74:
-/* 0DAD74 8031FD74 03E00008 */  jr    $ra
-/* 0DAD78 8031FD78 00801025 */   move  $v0, $a0
-)
+u8 func_8031ED70(UNUSED u8 listIndex, UNUSED u8 item, u8 arg2)
+{
+    u8 area;
+    u8 level;
+    u8 ret;
+
+#ifndef VERSION_JP
+    if (D_80360C48[listIndex][item].unk14 & 0x20)
+    {
+        level = 0;
+        area = 0;
+    }
+    else
+    {
 #endif
+        level = (gCurrLevelNum > LEVEL_MAX ? LEVEL_MAX : gCurrLevelNum);
+        area = gCurrAreaIndex - 1;
+        if (area > 2)
+            area = 2;
+#ifndef VERSION_JP
+    }
+#endif
+
+    ret = (u8) (D_80222A18[2].unk2C[arg2]->unk59 + D_80331FB0[level][area] +
+            (US_FLOAT(1.0) - D_80222A18[2].unk2C[arg2]->unk20) * IF_US(48.0, 40.0f));
+
+    if (ret > 0x7f)
+    {
+        ret = 0x7f;
+    }
+    return ret;
+}
 
 static void func_8031EEC8(void)
 {
@@ -2579,31 +2415,31 @@ void func_8031EED0(void)
 GLOBAL_ASM(
 .late_rodata
 glabel D_803383B0
-	.incbin "bin/rodata.bin", 0x3940, 0x4
+    .incbin "bin/rodata.bin", 0x3940, 0x4
 
 glabel jtbl_803383B4
-	.word L8031F244
-	.word L8031F0B4
-	.word L8031F244
-	.word L8031F2A8
-	.word L8031F2A8
-	.word L8031F2A8
-	.word L8031F2A8
-	.word L8031F220
-	.word L8031F2A8
-	.word L8031F2A8
+    .word L8031F244
+    .word L8031F0B4
+    .word L8031F244
+    .word L8031F2A8
+    .word L8031F2A8
+    .word L8031F2A8
+    .word L8031F2A8
+    .word L8031F220
+    .word L8031F2A8
+    .word L8031F2A8
 
 glabel jtbl_803383DC
-	.word L8031F52C
-	.word L8031F3A4
-	.word L8031F52C
-	.word L8031F590
-	.word L8031F590
-	.word L8031F590
-	.word L8031F590
-	.word L8031F50C
-	.word L8031F590
-	.word L8031F590
+    .word L8031F52C
+    .word L8031F3A4
+    .word L8031F52C
+    .word L8031F590
+    .word L8031F590
+    .word L8031F590
+    .word L8031F590
+    .word L8031F50C
+    .word L8031F590
+    .word L8031F590
 
 .text
 glabel func_8031EEF8 # US: 8031FDAC
@@ -3133,31 +2969,31 @@ GLOBAL_ASM(
 
 glabel D_U_80339738
 glabel D_803383B0
-	.word 0x3F666666
+    .word 0x3F666666
 
 glabel jtbl_803383B4
-	.word L_U_803200D4
-	.word L_U_8031FF5C
-	.word L_U_803200D4
-	.word L_U_80320138
-	.word L_U_80320138
-	.word L_U_80320138
-	.word L_U_80320138
-	.word L_U_803200B0
-	.word L_U_80320138
-	.word L_U_80320138
+    .word L_U_803200D4
+    .word L_U_8031FF5C
+    .word L_U_803200D4
+    .word L_U_80320138
+    .word L_U_80320138
+    .word L_U_80320138
+    .word L_U_80320138
+    .word L_U_803200B0
+    .word L_U_80320138
+    .word L_U_80320138
 
 glabel jtbl_803383DC
-	.word L_U_803203DC
-	.word L_U_8032026C
-	.word L_U_803203DC
-	.word L_U_80320440
-	.word L_U_80320440
-	.word L_U_80320440
-	.word L_U_80320440
-	.word L_U_803203BC
-	.word L_U_80320440
-	.word L_U_80320440
+    .word L_U_803203DC
+    .word L_U_8032026C
+    .word L_U_803203DC
+    .word L_U_80320440
+    .word L_U_80320440
+    .word L_U_80320440
+    .word L_U_80320440
+    .word L_U_803203BC
+    .word L_U_80320440
+    .word L_U_80320440
 
 .text
 glabel func_8031EEF8 # US: 8031FDAC
@@ -3739,15 +3575,15 @@ void func_8031F810(u8 arg0, u8 arg1, u16 arg2)
 
 void func_8031F888(u8 arg0, u8 arg1, u8 arg2, u16 arg3)
 {
-    struct Struct80360928 *temp_v1;
+    struct Struct80360928 *temp;
 
     if (D_80222A18[arg0].unk2C[arg1] != (void *)&D_80225DD8)
     {
-        temp_v1 = &D_80360928[arg0][arg1];
-        temp_v1->unkC = arg3;
-        temp_v1->unk0 = ((f32) (arg2 / US_FLOAT(127.0)) - D_80222A18[arg0].unk2C[arg1]->unk1C) / arg3;
-        temp_v1->unk4 = arg2;
-        temp_v1->unk8 = D_80222A18[arg0].unk2C[arg1]->unk1C;
+        temp = &D_80360928[arg0][arg1];
+        temp->unkC = arg3;
+        temp->unk0 = ((f32) (arg2 / US_FLOAT(127.0)) - D_80222A18[arg0].unk2C[arg1]->unk1C) / arg3;
+        temp->unk4 = arg2;
+        temp->unk8 = D_80222A18[arg0].unk2C[arg1]->unk1C;
     }
 }
 
@@ -3770,17 +3606,176 @@ void func_8031F96C(u8 arg0)
     }
 }
 
+#ifdef NON_MATCHING
+
+void func_8031FA4C(void)
+{
+    u8 music; // sp57
+    s16 conditionValues[8]; // sp44
+    u8 conditionTypes[8]; // sp3C
+    s16 sp3A;
+    s16 sp38;
+    u32 conditionBits; // s0
+    u32 tempBits; // v1
+    s32 numConditions; // v1
+    u16 bit; // a1
+    u8 condIndex; // a0 (same as numConditions?)
+    u8 i; // s1
+    u8 j; // v0
+    u16 bit2; // s0, v1
+
+    func_8031F96C(0);
+    func_8031F96C(2);
+    func_80320ED8();
+    if (D_803320A0 != 0)
+    {
+        D_803320A0--;
+    }
+    else
+    {
+        D_80331EB0 = D_8033209C;
+    }
+
+    if (D_80331EB0 != D_80331EB4[gCurrLevelNum][0])
+    {
+        return;
+    }
+
+    conditionBits = D_80331EB4[gCurrLevelNum][1] & 0xff00;
+    music = D_80331EB4[gCurrLevelNum][1] & 0xff;
+    i = 2;
+    while (conditionBits & 0xff00)
+    {
+        condIndex = 0;
+        for (j = 0, bit = 0x8000; j < 8; j++, bit = bit >> 1)
+        {
+            if (conditionBits & bit)
+            {
+                s16 val = D_80331EB4[gCurrLevelNum][i];
+                conditionValues[condIndex] = val;
+                i++;
+                conditionTypes[condIndex] = j;
+                condIndex++;
+            }
+        }
+
+        numConditions = condIndex;
+        for (j = 0; j < numConditions; j++)
+        {
+            // (having all 'temp' share a single variable affects regalloc)
+            UNUSED s16 temp;
+            switch (conditionTypes[j])
+            {
+            case 0: {
+                s16 temp = gMarioStates[0].pos[0];
+                if (temp < conditionValues[j])
+                    j = numConditions + 1;
+                break;
+            }
+            case 1: {
+                s16 temp = gMarioStates[0].pos[1];
+                if (temp < conditionValues[j])
+                    j = numConditions + 1;
+                break;
+            }
+            case 2: {
+                s16 temp = gMarioStates[0].pos[2];
+                if (temp < conditionValues[j])
+                    j = numConditions + 1;
+                break;
+            }
+            case 3: {
+                s16 temp = gMarioStates[0].pos[0];
+                if (temp >= conditionValues[j])
+                    j = numConditions + 1;
+                break;
+            }
+            case 4: {
+                s16 temp = gMarioStates[0].pos[1];
+                if (temp >= conditionValues[j])
+                    j = numConditions + 1;
+                break;
+            }
+            case 5: {
+                s16 temp = gMarioStates[0].pos[2];
+                if (temp >= conditionValues[j])
+                    j = numConditions + 1;
+                break;
+            }
+            case 6: {
+                s16 temp = gCurrAreaIndex;
+                if (temp != conditionValues[j])
+                    j = numConditions + 1;
+                break;
+            }
+            case 7: {
+                s16 temp = gMarioCurrentRoom;
+                if (temp != conditionValues[j])
+                    j = numConditions + 1;
+                break;
+            }
+            }
+        }
+
+        if (j == numConditions)
+        {
+            // The area matches. Break out of the loop.
+            tempBits = 0;
+        }
+        else
+        {
+            tempBits = D_80331EB4[gCurrLevelNum][i++];
+            music = tempBits & 0xff,
+            tempBits &= 0xff00;
+        }
+
+        conditionBits = tempBits;
+    }
+
+    if (music != D_80331EAC)
+    {
+        bit2 = 1;
+        if (D_80331EAC == 0xff)
+        {
+            sp3A = 1;
+            sp38 = 1;
+        }
+        else
+        {
+            sp3A = D_80331F50[music].unk4;
+            sp38 = D_80331F50[music].unkA;
+        }
+
+        for (i = 0; i < 16; i++)
+        {
+            if (D_80331F50[music].unk0 & bit2)
+            {
+                func_8031F888(0, i, D_80331F50[music].unk3, sp3A);
+            }
+            if (D_80331F50[music].unk6 & bit2)
+            {
+                func_8031F888(0, i, D_80331F50[music].unk9, sp38);
+            }
+            bit2 <<= 1;
+        }
+
+        D_80331EAC = music;
+    }
+}
+
+#else
+
 GLOBAL_ASM(
 .late_rodata
 glabel jtbl_80338418
-	.word L8031FBAC
-	.word L8031FBEC
-	.word L8031FC2C
-	.word L8031FC6C
-	.word L8031FCAC
-	.word L8031FCEC
-	.word L8031FD2C
-	.word L8031FD54
+    .word L8031FBAC
+    .word L8031FBEC
+    .word L8031FC2C
+    .word L8031FC6C
+    .word L8031FCAC
+    .word L8031FCEC
+    .word L8031FD2C
+    .word L8031FD54
 
 .text
 glabel func_8031FA4C # US: 803208EC
@@ -3878,7 +3873,6 @@ glabel func_8031FA4C # US: 803208EC
 /* 0DABA0 8031FBA0 8C398418 */  lw    $t9, %lo(jtbl_80338418)($at)
 /* 0DABA4 8031FBA4 03200008 */  jr    $t9
 /* 0DABA8 8031FBA8 00000000 */   nop   
-glabel L_U_80320A4C
 glabel L8031FBAC
 /* 0DABAC 8031FBAC C4E4003C */  lwc1  $f4, 0x3c($a3)
 /* 0DABB0 8031FBB0 0002C040 */  sll   $t8, $v0, 1
@@ -3896,7 +3890,6 @@ glabel L8031FBAC
 /* 0DABE0 8031FBE0 304D00FF */  andi  $t5, $v0, 0xff
 /* 0DABE4 8031FBE4 10000064 */  b     .L8031FD78
 /* 0DABE8 8031FBE8 01A01025 */   move  $v0, $t5
-glabel L_U_80320A8C
 glabel L8031FBEC
 /* 0DABEC 8031FBEC C4E80040 */  lwc1  $f8, 0x40($a3)
 /* 0DABF0 8031FBF0 00026040 */  sll   $t4, $v0, 1
@@ -3914,7 +3907,6 @@ glabel L8031FBEC
 /* 0DAC20 8031FC20 305800FF */  andi  $t8, $v0, 0xff
 /* 0DAC24 8031FC24 10000054 */  b     .L8031FD78
 /* 0DAC28 8031FC28 03001025 */   move  $v0, $t8
-glabel L_U_80320ACC
 glabel L8031FC2C
 /* 0DAC2C 8031FC2C C4F00044 */  lwc1  $f16, 0x44($a3)
 /* 0DAC30 8031FC30 00027840 */  sll   $t7, $v0, 1
@@ -3932,7 +3924,6 @@ glabel L8031FC2C
 /* 0DAC60 8031FC60 304C00FF */  andi  $t4, $v0, 0xff
 /* 0DAC64 8031FC64 10000044 */  b     .L8031FD78
 /* 0DAC68 8031FC68 01801025 */   move  $v0, $t4
-glabel L_U_80320B0C
 glabel L8031FC6C
 /* 0DAC6C 8031FC6C C4E4003C */  lwc1  $f4, 0x3c($a3)
 /* 0DAC70 8031FC70 0002C840 */  sll   $t9, $v0, 1
@@ -3950,7 +3941,6 @@ glabel L8031FC6C
 /* 0DACA0 8031FCA0 304F00FF */  andi  $t7, $v0, 0xff
 /* 0DACA4 8031FCA4 10000034 */  b     .L8031FD78
 /* 0DACA8 8031FCA8 01E01025 */   move  $v0, $t7
-glabel L_U_80320B4C
 glabel L8031FCAC
 /* 0DACAC 8031FCAC C4E80040 */  lwc1  $f8, 0x40($a3)
 /* 0DACB0 8031FCB0 00026840 */  sll   $t5, $v0, 1
@@ -3968,7 +3958,6 @@ glabel L8031FCAC
 /* 0DACE0 8031FCE0 305900FF */  andi  $t9, $v0, 0xff
 /* 0DACE4 8031FCE4 10000024 */  b     .L8031FD78
 /* 0DACE8 8031FCE8 03201025 */   move  $v0, $t9
-glabel L_U_80320B8C
 glabel L8031FCEC
 /* 0DACEC 8031FCEC C4F00044 */  lwc1  $f16, 0x44($a3)
 /* 0DACF0 8031FCF0 0002C040 */  sll   $t8, $v0, 1
@@ -3986,7 +3975,6 @@ glabel L8031FCEC
 /* 0DAD20 8031FD20 304D00FF */  andi  $t5, $v0, 0xff
 /* 0DAD24 8031FD24 10000014 */  b     .L8031FD78
 /* 0DAD28 8031FD28 01A01025 */   move  $v0, $t5
-glabel L_U_80320BCC
 glabel L8031FD2C
 /* 0DAD2C 8031FD2C 0002C040 */  sll   $t8, $v0, 1
 /* 0DAD30 8031FD30 00D8C821 */  addu  $t9, $a2, $t8
@@ -3998,7 +3986,6 @@ glabel L8031FD2C
 /* 0DAD48 8031FD48 304C00FF */  andi  $t4, $v0, 0xff
 /* 0DAD4C 8031FD4C 1000000A */  b     .L8031FD78
 /* 0DAD50 8031FD50 01801025 */   move  $v0, $t4
-glabel L_U_80320BF4
 glabel L8031FD54
 /* 0DAD54 8031FD54 0002C040 */  sll   $t8, $v0, 1
 /* 0DAD58 8031FD58 00D8C821 */  addu  $t9, $a2, $t8
@@ -4107,6 +4094,8 @@ glabel L8031FD54
 /* 0DAEC8 8031FEC8 03E00008 */  jr    $ra
 /* 0DAECC 8031FECC 27BD0060 */   addiu $sp, $sp, 0x60
 )
+
+#endif
 
 void Unknown8031FED0(u8 arg0, u32 arg1, s8 arg2)
 {
@@ -4469,150 +4458,64 @@ void func_80320A68(u8 dialogId)
 #endif
 }
 
-GLOBAL_ASM(
-glabel func_80320AE8
-/* 0DBAE8 80320AE8 27BDFFD0 */  addiu $sp, $sp, -0x30
-/* 0DBAEC 80320AEC AFA40030 */  sw    $a0, 0x30($sp)
-/* 0DBAF0 80320AF0 308E00FF */  andi  $t6, $a0, 0xff
-/* 0DBAF4 80320AF4 01C02025 */  move  $a0, $t6
-/* 0DBAF8 80320AF8 AFBF0014 */  sw    $ra, 0x14($sp)
-/* 0DBAFC 80320AFC AFA50034 */  sw    $a1, 0x34($sp)
-/* 0DBB00 80320B00 AFA60038 */  sw    $a2, 0x38($sp)
-/* 0DBB04 80320B04 11C00007 */  beqz  $t6, .L80320B24
-/* 0DBB08 80320B08 00004825 */   move  $t1, $zero
-/* 0DBB0C 80320B0C 97AF0036 */  lhu   $t7, 0x36($sp)
-/* 0DBB10 80320B10 97A6003A */  lhu   $a2, 0x3a($sp)
-/* 0DBB14 80320B14 0C0C7DA4 */  jal   SetMusic
-/* 0DBB18 80320B18 31E500FF */   andi  $a1, $t7, 0xff
-/* 0DBB1C 80320B1C 1000006F */  b     .L80320CDC
-/* 0DBB20 80320B20 8FBF0014 */   lw    $ra, 0x14($sp)
-.L80320B24:
-/* 0DBB24 80320B24 3C0B8033 */  lui   $t3, %hi(D_80332128) # $t3, 0x8033
-/* 0DBB28 80320B28 256B2128 */  addiu $t3, %lo(D_80332128) # addiu $t3, $t3, 0x2128
-/* 0DBB2C 80320B2C 91650000 */  lbu   $a1, ($t3)
-/* 0DBB30 80320B30 24010006 */  li    $at, 6
-/* 0DBB34 80320B34 10A10068 */  beq   $a1, $at, .L80320CD8
-/* 0DBB38 80320B38 00A01825 */   move  $v1, $a1
-/* 0DBB3C 80320B3C 18A00022 */  blez  $a1, .L80320BC8
-/* 0DBB40 80320B40 00002025 */   move  $a0, $zero
-/* 0DBB44 80320B44 97AC0036 */  lhu   $t4, 0x36($sp)
-/* 0DBB48 80320B48 3C078036 */  lui   $a3, %hi(D_80363818) # $a3, 0x8036
-/* 0DBB4C 80320B4C 24E73818 */  addiu $a3, %lo(D_80363818) # addiu $a3, $a3, 0x3818
-/* 0DBB50 80320B50 318200FF */  andi  $v0, $t4, 0xff
-/* 0DBB54 80320B54 AFA20018 */  sw    $v0, 0x18($sp)
-.L80320B58:
-/* 0DBB58 80320B58 00047040 */  sll   $t6, $a0, 1
-/* 0DBB5C 80320B5C 00EE7821 */  addu  $t7, $a3, $t6
-/* 0DBB60 80320B60 91F80000 */  lbu   $t8, ($t7)
-/* 0DBB64 80320B64 54580013 */  bnel  $v0, $t8, .L80320BB4
-/* 0DBB68 80320B68 24840001 */   addiu $a0, $a0, 1
-/* 0DBB6C 80320B6C 14800007 */  bnez  $a0, .L80320B8C
-/* 0DBB70 80320B70 3C198022 */   lui   $t9, %hi(D_80222A18) # $t9, 0x8022
-/* 0DBB74 80320B74 00002025 */  move  $a0, $zero
-/* 0DBB78 80320B78 93A5001B */  lbu   $a1, 0x1b($sp)
-/* 0DBB7C 80320B7C 0C0C7DA4 */  jal   SetMusic
-/* 0DBB80 80320B80 97A6003A */   lhu   $a2, 0x3a($sp)
-/* 0DBB84 80320B84 10000055 */  b     .L80320CDC
-/* 0DBB88 80320B88 8FBF0014 */   lw    $ra, 0x14($sp)
-.L80320B8C:
-/* 0DBB8C 80320B8C 27392A18 */  addiu $t9, %lo(D_80222A18) # addiu $t9, $t9, 0x2a18
-/* 0DBB90 80320B90 8F2C0000 */  lw    $t4, ($t9)
-/* 0DBB94 80320B94 000C6FC2 */  srl   $t5, $t4, 0x1f
-/* 0DBB98 80320B98 55A00050 */  bnezl $t5, .L80320CDC
-/* 0DBB9C 80320B9C 8FBF0014 */   lw    $ra, 0x14($sp)
-/* 0DBBA0 80320BA0 0C0C833A */  jal   func_80320CE8
-/* 0DBBA4 80320BA4 90E40000 */   lbu   $a0, ($a3)
-/* 0DBBA8 80320BA8 1000004C */  b     .L80320CDC
-/* 0DBBAC 80320BAC 8FBF0014 */   lw    $ra, 0x14($sp)
-/* 0DBBB0 80320BB0 24840001 */  addiu $a0, $a0, 1
-.L80320BB4:
-/* 0DBBB4 80320BB4 308E00FF */  andi  $t6, $a0, 0xff
-/* 0DBBB8 80320BB8 01C3082A */  slt   $at, $t6, $v1
-/* 0DBBBC 80320BBC 1420FFE6 */  bnez  $at, .L80320B58
-/* 0DBBC0 80320BC0 01C02025 */   move  $a0, $t6
-/* 0DBBC4 80320BC4 00002025 */  move  $a0, $zero
-.L80320BC8:
-/* 0DBBC8 80320BC8 97A60036 */  lhu   $a2, 0x36($sp)
-/* 0DBBCC 80320BCC 3C078036 */  lui   $a3, %hi(D_80363818) # $a3, 0x8036
-/* 0DBBD0 80320BD0 24E73818 */  addiu $a3, %lo(D_80363818) # addiu $a3, $a3, 0x3818
-/* 0DBBD4 80320BD4 30D800FF */  andi  $t8, $a2, 0xff
-/* 0DBBD8 80320BD8 18600011 */  blez  $v1, .L80320C20
-/* 0DBBDC 80320BDC AFB80018 */   sw    $t8, 0x18($sp)
-/* 0DBBE0 80320BE0 00061203 */  sra   $v0, $a2, 8
-/* 0DBBE4 80320BE4 305900FF */  andi  $t9, $v0, 0xff
-/* 0DBBE8 80320BE8 03201025 */  move  $v0, $t9
-.L80320BEC:
-/* 0DBBEC 80320BEC 00046040 */  sll   $t4, $a0, 1
-/* 0DBBF0 80320BF0 00EC6821 */  addu  $t5, $a3, $t4
-/* 0DBBF4 80320BF4 91AE0001 */  lbu   $t6, 1($t5)
-/* 0DBBF8 80320BF8 004E082A */  slt   $at, $v0, $t6
-/* 0DBBFC 80320BFC 54200004 */  bnezl $at, .L80320C10
-/* 0DBC00 80320C00 24840001 */   addiu $a0, $a0, 1
-/* 0DBC04 80320C04 308900FF */  andi  $t1, $a0, 0xff
-/* 0DBC08 80320C08 30A400FF */  andi  $a0, $a1, 0xff
-/* 0DBC0C 80320C0C 24840001 */  addiu $a0, $a0, 1
-.L80320C10:
-/* 0DBC10 80320C10 308F00FF */  andi  $t7, $a0, 0xff
-/* 0DBC14 80320C14 01E3082A */  slt   $at, $t7, $v1
-/* 0DBC18 80320C18 1420FFF4 */  bnez  $at, .L80320BEC
-/* 0DBC1C 80320C1C 01E02025 */   move  $a0, $t7
-.L80320C20:
-/* 0DBC20 80320C20 00065203 */  sra   $t2, $a2, 8
-/* 0DBC24 80320C24 315800FF */  andi  $t8, $t2, 0xff
-/* 0DBC28 80320C28 03005025 */  move  $t2, $t8
-/* 0DBC2C 80320C2C 15200013 */  bnez  $t1, .L80320C7C
-/* 0DBC30 80320C30 01204025 */   move  $t0, $t1
-/* 0DBC34 80320C34 00002025 */  move  $a0, $zero
-/* 0DBC38 80320C38 93A5001B */  lbu   $a1, 0x1b($sp)
-/* 0DBC3C 80320C3C 97A6003A */  lhu   $a2, 0x3a($sp)
-/* 0DBC40 80320C40 AFA80024 */  sw    $t0, 0x24($sp)
-/* 0DBC44 80320C44 A3A9002C */  sb    $t1, 0x2c($sp)
-/* 0DBC48 80320C48 0C0C7DA4 */  jal   SetMusic
-/* 0DBC4C 80320C4C AFB8001C */   sw    $t8, 0x1c($sp)
-/* 0DBC50 80320C50 3C0B8033 */  lui   $t3, %hi(D_80332128) # $t3, 0x8033
-/* 0DBC54 80320C54 256B2128 */  addiu $t3, %lo(D_80332128) # addiu $t3, $t3, 0x2128
-/* 0DBC58 80320C58 91790000 */  lbu   $t9, ($t3)
-/* 0DBC5C 80320C5C 3C078036 */  lui   $a3, %hi(D_80363818) # $a3, 0x8036
-/* 0DBC60 80320C60 24E73818 */  addiu $a3, %lo(D_80363818) # addiu $a3, $a3, 0x3818
-/* 0DBC64 80320C64 272C0001 */  addiu $t4, $t9, 1
-/* 0DBC68 80320C68 8FA80024 */  lw    $t0, 0x24($sp)
-/* 0DBC6C 80320C6C 93A9002C */  lbu   $t1, 0x2c($sp)
-/* 0DBC70 80320C70 8FAA001C */  lw    $t2, 0x1c($sp)
-/* 0DBC74 80320C74 A16C0000 */  sb    $t4, ($t3)
-/* 0DBC78 80320C78 318300FF */  andi  $v1, $t4, 0xff
-.L80320C7C:
-/* 0DBC7C 80320C7C 2464FFFF */  addiu $a0, $v1, -1
-/* 0DBC80 80320C80 308500FF */  andi  $a1, $a0, 0xff
-/* 0DBC84 80320C84 0105082A */  slt   $at, $t0, $a1
-/* 0DBC88 80320C88 1020000E */  beqz  $at, .L80320CC4
-/* 0DBC8C 80320C8C 00A02025 */   move  $a0, $a1
-.L80320C90:
-/* 0DBC90 80320C90 00057840 */  sll   $t7, $a1, 1
-/* 0DBC94 80320C94 00EF1821 */  addu  $v1, $a3, $t7
-/* 0DBC98 80320C98 9078FFFF */  lbu   $t8, -1($v1)
-/* 0DBC9C 80320C9C 00047040 */  sll   $t6, $a0, 1
-/* 0DBCA0 80320CA0 00EE1021 */  addu  $v0, $a3, $t6
-/* 0DBCA4 80320CA4 2484FFFF */  addiu $a0, $a0, -1
-/* 0DBCA8 80320CA8 A0580001 */  sb    $t8, 1($v0)
-/* 0DBCAC 80320CAC 9079FFFE */  lbu   $t9, -2($v1)
-/* 0DBCB0 80320CB0 308500FF */  andi  $a1, $a0, 0xff
-/* 0DBCB4 80320CB4 0105082A */  slt   $at, $t0, $a1
-/* 0DBCB8 80320CB8 00A02025 */  move  $a0, $a1
-/* 0DBCBC 80320CBC 1420FFF4 */  bnez  $at, .L80320C90
-/* 0DBCC0 80320CC0 A0590000 */   sb    $t9, ($v0)
-.L80320CC4:
-/* 0DBCC4 80320CC4 8FAE0018 */  lw    $t6, 0x18($sp)
-/* 0DBCC8 80320CC8 00096840 */  sll   $t5, $t1, 1
-/* 0DBCCC 80320CCC 00ED1021 */  addu  $v0, $a3, $t5
-/* 0DBCD0 80320CD0 A04A0001 */  sb    $t2, 1($v0)
-/* 0DBCD4 80320CD4 A04E0000 */  sb    $t6, ($v0)
-.L80320CD8:
-/* 0DBCD8 80320CD8 8FBF0014 */  lw    $ra, 0x14($sp)
-.L80320CDC:
-/* 0DBCDC 80320CDC 27BD0030 */  addiu $sp, $sp, 0x30
-/* 0DBCE0 80320CE0 03E00008 */  jr    $ra
-/* 0DBCE4 80320CE4 00000000 */   nop   
-)
+void func_80320AE8(u8 arg0, u16 arg1, s16 arg2)
+{
+    u8 loBits = arg1 & 0xff;
+    u8 hiBits = arg1 >> 8;
+    u8 i;
+    u8 foundIndex = 0;
+
+    if (arg0 != 0)
+    {
+        SetMusic(arg0, loBits, arg2);
+        return;
+    }
+
+    if (D_80332128 == 6)
+    {
+        return;
+    }
+
+    for (i = 0; i < D_80332128; i++)
+    {
+        if (D_80363818[i].unk0 == loBits)
+        {
+            if (i == 0)
+            {
+                SetMusic(0, loBits, arg2);
+            }
+            else if (!D_80222A18[0].unk0b80)
+            {
+                func_80320CE8(D_80363818[0].unk0);
+            }
+            return;
+        }
+    }
+
+    for (i = 0; i < D_80332128; i++)
+    {
+        if (D_80363818[i].unk1 <= hiBits)
+        {
+            foundIndex = i;
+            i = D_80332128;
+        }
+    }
+
+    if (foundIndex == 0)
+    {
+        SetMusic(0, loBits, arg2);
+        D_80332128++;
+    }
+
+    for (i = D_80332128 - 1; i > foundIndex; i--)
+    {
+        D_80363818[i].unk1 = D_80363818[i - 1].unk1;
+        D_80363818[i].unk0 = D_80363818[i - 1].unk0;
+    }
+
+    D_80363818[foundIndex].unk1 = hiBits;
+    D_80363818[foundIndex].unk0 = loBits;
+}
 
 void func_80320CE8(u16 arg0)
 {
@@ -4682,8 +4585,7 @@ u16 func_80320E98(void)
 
 void func_80320ED8(void)
 {
-    volatile struct Struct80222A18 *temp = D_80222A18;
-    if (temp[1].unk0b80 || D_8033211C == 0)
+    if (D_80222A18[1].unk0b80 || D_8033211C == 0)
     {
         return;
     }

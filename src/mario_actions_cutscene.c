@@ -605,7 +605,7 @@ static s32 act_reading_automatic_dialogue(struct MarioState *m)
             if (gSaveFileDoesNotExist)
             {
                 gSaveFileDoesNotExist = FALSE;
-                func_802492A0(4);
+                func_802492A0((0 << 8) | 4);
             }
             if (m->prevAction == ACT_STAR_DANCE_WATER)
                 set_mario_action(m, ACT_WATER_IDLE, 0); // 100c star?
@@ -740,9 +740,9 @@ static void general_star_dance_handler(struct MarioState *m, s32 isInWater)
                 {
                     if (gCurrLevelNum == LEVEL_BOWSER_1 ||
                         gCurrLevelNum == LEVEL_BOWSER_2)
-                        func_80320AE8(1, 3863, 0);
+                        func_80320AE8(1, (15 << 8) | 23, 0);
                     else
-                        func_80320AE8(1, 3841, 0);
+                        func_80320AE8(1, (15 << 8) | 1, 0);
                 }
                 break;
 
@@ -2077,7 +2077,7 @@ static void grand_star_cutscene_falling(struct MarioState *m)
 
         if (perform_air_step(m, 1) == AIR_STEP_LANDED)
         {
-            func_802492A0(0x0F1F);
+            func_802492A0((15 << 8) | 31);
             func_80251280(m, SOUND_ACTION_UNKNOWN408);
             m->actionState++;
         }
@@ -2315,7 +2315,7 @@ static void end_peach_cutscene_summon_grand_star(struct MarioState *m)
     if (m->actionState == 0 && func_802507AC(m))
         m->actionState++;
     if (m->actionTimer == 90)
-        func_802492A0(32);
+        func_802492A0((0 << 8) | 32);
     if (m->actionTimer == 255)
         advance_cutscene_step(m);
 
@@ -2639,7 +2639,7 @@ static void end_peach_cutscene_star_dance(struct MarioState *m)
         #ifndef VERSION_JP
             func_80320040(0, 60);
         #endif
-            func_802492A0(0x0F1A);
+            func_802492A0((15 << 8) | 26);
             break;
 
         case 142:

@@ -1274,7 +1274,7 @@ void func_802D91C0(s16 sp4a)
         if(sp3c[i] == sp4a)
         {
             func_80320040(0, 60);
-            func_80320AE8(0, 1046, 0);
+            func_80320AE8(0, (4 << 8) | 22, 0);
             return;
         }
     }
@@ -1318,7 +1318,7 @@ void func_802D91C0(s16 sp4a)
         if(sp3c[i] == sp4a)
         {
             func_80320040(0, 60);
-            func_80320AE8(0, 1046, 0);
+            func_80320AE8(0, (4 << 8) | 22, 0);
             return;
         }
     }

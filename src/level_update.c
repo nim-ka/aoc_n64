@@ -377,7 +377,7 @@ static void init_mario_after_warp(void)
 
 #if VERSION_US
         if (gCurrLevelNum == LEVEL_BOB && func_80320E98() != 1033 && sTimerRunning != 0)
-            func_80320AE8(0, 1033, 0);
+            func_80320AE8(0, (4 << 8) | 9, 0);
 #endif
 
         if (sDestLevelNum == LEVEL_CASTLE
@@ -1230,7 +1230,7 @@ static s32 init_level(void)
 
         if (gCurrDemoInput == NULL)
         {
-            func_80249148(gCurrentArea->unk36, gCurrentArea->unk38, 0);;
+            func_80249148(gCurrentArea->unk36, gCurrentArea->unk38, 0);
         }
     }
 

@@ -11,11 +11,14 @@ struct Struct80222A18_2C
     u8 unk0b10 : 1;
     u8 pad[0x1B];
     f32 unk1C;
+    f32 unk20;
+    u8 pad2[0x35];
+    u8 unk59;
 };
 
 struct Struct80222A18
 {
-    /*0x000*/ u8 unk0b80 : 1;
+    /*0x000*/ volatile u8 unk0b80 : 1;
     /*0x000*/ u8 unk0b40 : 1;
     /*0x000*/ u8 unk0b20 : 1;
     /*0x000*/ u8 unk0b10 : 1;
@@ -80,7 +83,7 @@ void func_803208C0(u8 arg0, u16 arg1);
 void func_80320980(u8 arg0, u16 arg1);
 void func_80320A4C(u8 arg0, u8 arg1);
 void func_80320A68(u8 dialogId);
-extern void func_80320AE8(int, int, int);
+void func_80320AE8(u8 arg0, u16 arg1, s16 arg2);
 void func_80320CE8(u16 arg0);
 void func_80320E20(u16 arg0, u16 arg1);
 void func_80320E74(void);

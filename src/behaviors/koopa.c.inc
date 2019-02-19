@@ -563,7 +563,7 @@ s32 obj_begin_race(s32 noTimer)
 
         if (!noTimer)
         {
-            func_80320AE8(0, 0x409, 0);
+            func_80320AE8(0, (4 << 8) | 9, 0);
 
             level_control_timer(TIMER_CONTROL_SHOW);
             level_control_timer(TIMER_CONTROL_START);

@@ -3792,12 +3792,12 @@ s32 func_8028AF24(struct Struct80280550 *a, s16 b)
 
 void func_8028B13C(void)
 {
-    func_80320AE8(0, 1053, 0);
+    func_80320AE8(0, (4 << 8) | 29, 0);
 }
 
 void func_8028B16C(void)
 {
-    func_80320AE8(0, 3870, 0);
+    func_80320AE8(0, (15 << 8) | 30, 0);
 }
 
 void func_8028B19C(void)

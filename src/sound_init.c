@@ -200,8 +200,8 @@ void func_802492A0(u16 a)
 
 void func_802492E0(void)
 {
-    func_80320AE8(0, 1166, 0);
-    D_8032C6CC = 1166;
+    func_80320AE8(0, (4 << 8) | 142, 0);
+    D_8032C6CC = (4 << 8) | 142;
 }
 
 void func_8024931C(void)
