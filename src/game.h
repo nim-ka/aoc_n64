@@ -2,7 +2,6 @@
 #define _GAME_H_
 
 #include "memory.h"
-
 struct DemoInput
 { // TODO: see if timer matches with s8
  /*0x00*/ u8 timer; // until next input: if this value 

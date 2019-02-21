@@ -116,7 +116,9 @@ SECTIONS
       BUILD_DIR/src/hud_print.o(.text);
       BUILD_DIR/src/obj_behaviors.o(.text);
       BUILD_DIR/src/obj_behaviors_2.o(.text);
-      BUILD_DIR/asm/audio_something.o(.text);
+      BUILD_DIR/src/audio/something.o(.text);
+      BUILD_DIR/src/audio/something_2.o(.text);
+      BUILD_DIR/src/audio/something_3.o(.text);
       BUILD_DIR/src/audio/dac.o(.text);
       BUILD_DIR/src/audio/dma.o(.text);
       BUILD_DIR/src/audio/playback.o(.text);
@@ -272,7 +274,7 @@ SECTIONS
       BUILD_DIR/src/obj_behaviors.o(.data*);
       BUILD_DIR/src/obj_behaviors_2.o(.data*);
       BUILD_DIR/src/audio/interface_2.o(.data*);
-      BUILD_DIR/data/audio.data.o(.data*);
+      BUILD_DIR/src/audio/data.o(.data*);
       BUILD_DIR/libultra.a:osCreateViManager.o(.data*);
       BUILD_DIR/libultra.a:osCreatePiManager.o(.data*);
       BUILD_DIR/libultra.a:osInitialize.o(.data*);
@@ -329,7 +331,7 @@ SECTIONS
       BUILD_DIR/src/hud_print.o(.rodata*);
       BUILD_DIR/src/obj_behaviors.o(.rodata*);
       BUILD_DIR/src/obj_behaviors_2.o(.rodata*);
-      BUILD_DIR/data/audio_something.rodata.o(.rodata*);
+      BUILD_DIR/src/audio/something_3.o(.rodata*);
       BUILD_DIR/src/audio/dac.o(.rodata*);
       BUILD_DIR/src/audio/playback.o(.rodata*);
       BUILD_DIR/data/audio.rodata.o(.rodata*);

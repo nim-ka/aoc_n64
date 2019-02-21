@@ -1,12 +1,6 @@
 #ifndef _LIBAUDIO_INTERNAL_H_
 #define _LIBAUDIO_INTERNAL_H_
-
-/* abi.h */
-#define ADPCMVSIZE 8
-#define ADPCMFSIZE 16
-typedef short ADPCM_STATE[ADPCMFSIZE];
-/**/
-
+#include <ultra64.h>
 #define AL_BANK_VERSION 0x4231 /* 'B1' */
 
 typedef u8 ALPan;

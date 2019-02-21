@@ -12,7 +12,7 @@ struct Struct80225DD8
     u8 unk5;
     u8 pad3[0x3a];
     s32 unk40;
-}; // unknown size
+}; // unknown size, at least 0x80 I think?, maybe 0xc0.  0x74 get set to &D_80332AB4 at one point, which is array of 6 s16
 
 struct Struct80222A18;
 

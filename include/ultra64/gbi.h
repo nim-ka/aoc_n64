@@ -56,13 +56,6 @@ typedef union
     long long int force_structure_alignment;
 } Gfx;
 
-
-#define _SHIFTL(value, shift, size) \
-    ((unsigned int) (((unsigned int) (value) & ((1 << size) - 1)) << shift))
-
-#define G_ON  1
-#define G_OFF 0
-
 #define GPACK_RGBA5551(r, g, b, a) \
     ((((r) << 8) & 0xF800) | \
     (((g) << 3) & 0x07C0) | \

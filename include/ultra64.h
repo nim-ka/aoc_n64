@@ -18,7 +18,7 @@
 #include <ultra64/vi.h>
 #include <ultra64/pi.h>
 #include <ultra64/os_internal.h>
-#include <ultra64/gbi.h>
+#include <ultra64/mbi.h>
 #include <ultra64/eeprom.h>
 #include <ultra64/libc.h>
 #include <ultra64/gu.h>

@@ -14,8 +14,7 @@ struct PlaybackListItem
     //   to itself. 'count' contains the size of the list.
     struct PlaybackListItem *prev;
     struct PlaybackListItem *next;
-    union
-    {
+    union {
         struct Struct_func_80318870 *value;
         s32 count;
     } u;
@@ -32,7 +31,7 @@ struct Unk50
     u8 unk4;
     u8 unk5;
     u8 pad1[0x12];
-    s16 unk18;
+    s16 unk18; //this - 0x80 defines which wave to use (0,1,2,3) (sawtooth, triangle, sine, square)
     u8 pad2[0x1a];
     struct Struct_func_80318870 *unk34;
     struct SubStruct_func_80318870 *unk38;
@@ -43,7 +42,7 @@ struct Unk50
         u32 unk0b20 : 1;
         u8 pad[0x8c];
         struct PlaybackListItem unk90[4]; // heads
-    } *unk40; // points to a SubStruct_func_80318870?
+    } * unk40;                            // points to a SubStruct_func_80318870?
     u8 pad4[0x34];
     u8 unk78;
     u16 unk7A;
@@ -56,12 +55,14 @@ struct SubStruct_func_80318870
     u8 unk0b80 : 1;
     u8 unk0b40 : 1;
     u8 unk1;
-    u8 pad0[0x12];
+    u8 pad0[0x5];
+    u8 unk7;
+    u8 pad6[0xC];
     u8 unk14;
     u32 unk18;
     u8 pad1[0x4];
     f32 unk20;
-    u8 pad2[0x08];
+    u8 pad2[0x8];
     f32 unk2C;
     f32 unk30;
     f32 unk34;
@@ -82,32 +83,54 @@ struct SubStruct_func_80318870_2
     f32 unkC;
 };
 
+struct SubStruct_func_80318870_3
+{
+    struct
+    {
+        u32 unk00;
+        u32 unk04;
+        u32 *unk08;
+    } unk00; //probably struct
+    u32 unk04;
+    u32 *unk08; //probably u16/s16 *
+    u32 *unk0c; //probably struct*?
+    //starts with 2 u32 and then a pointer (probably s16, since most of the audio stuff is s16)
+};
+
 struct Struct_func_80318870
 {
     u8 unk0b80 : 1;
-    u8 pad0b1 : 2;
+    u8 unk0b40 : 1;
+    u8 unk0b20 : 1;
     u8 unk0b10 : 1;
-    u8 pad0b2 : 1;
+    u8 unk0b8 : 1;
     u8 unk0b4 : 1;
     u8 unk0b2 : 1;
     u8 unk0b1 : 1;
     u8 unk1;
-    u8 pad0[0x2];
+    u8 unk2;
+    u8 unk3;
     u8 unk4;
     u8 unk5; // 0, 8, 16, 32 or 64
     u8 unk6;
     u8 unk7;
     s16 unk8;
-    u8 pad1[0xA];
+    u8 pad1[0x2];
+    u16 unkC;
+    u16 unkE;
+    u16 unk10;
+    u16 unk12;
     s32 unk14;
     f32 unk18;
     f32 unk1C;
-    u8 pad2[0x04];
-    u32 unk24; // unknown type
+    u16 unk20;
+    //u8 pad2[0x04];
+    struct SubStruct_func_80318870_3 *unk24; // unknown type, pointer
     struct SubStruct_func_80318870 *unk28;
     struct SubStruct_func_80318870 *unk2C;
     struct SubStruct_func_80318870 *unk30;
     struct SubStruct_func_80318F04 *unk34;
+    //s16 *unk34;
     f32 unk38;
     u16 unk3C;
     u16 unk3E;
@@ -126,21 +149,31 @@ struct Struct_func_80318870
     f32 unk7C;
     u8 pad6[0x10];
     u8 unk90;
-    u8 pad7[0x13];
+    u8 pad7[0xb];
+    s16 unk9C;
+    s16 unk9E;
+    s16 unkA0;
+    s16 unkA2;
     struct PlaybackListItem unkA4; // item, not head
-    u8 pad8[0x0c];
+    u8 pad9[0x0c];
 }; // size = 0xC0
 
+//this is probably just an array with a bunch of indexes
 struct SubStruct_func_80318F04
 {
-    u8 pad[0x110];
+    s16 unk00[0x10];
+    s16 unk20[0x10];
+    s16 unk40[0x28];
+    s16 unk90[0x10];
+    s16 unkb0[0x10];
+    s16 unkd0[0x10];
+    s16 unkf0[0x10];
     s16 unk110[0x40];
 };
 
 extern struct Struct_func_80318870 *D_80222A10; // points to an array
-extern struct PlaybackListItem D_80225E98; // head, maybe part of the next array
-extern struct PlaybackListItem D_80225EA8[4]; // four heads
-extern s16 *D_80332CC0[];
+extern struct PlaybackListItem D_80225E98;      // head, maybe part of the next array
+extern struct PlaybackListItem D_80225EA8[4];   // four heads
 
 extern void func_803159C0(struct Struct_func_80318870 *arg0);
 extern void func_80315D94(struct Struct_func_80318870 *arg0);

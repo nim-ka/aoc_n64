@@ -12,6 +12,7 @@
 #include "segment2.h"
 #include "main_entry.h"
 #include "audio/interface_2.h"
+#include <prevent_bss_reordering.h>
 #include "game.h"
 
 // FIXME: I'm not sure all of these variables belong in this file, but I don't

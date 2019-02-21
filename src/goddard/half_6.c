@@ -17,6 +17,7 @@
 
 #include "dynlists/dynlists.h"
 #include "dynlists/macros.h"
+#include <prevent_bss_reordering.h>
 
 // types
 struct UnkData {

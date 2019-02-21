@@ -58,12 +58,15 @@ struct Struct802211B0
     u8 unk2;
     u8 unk3;
     u16 unk4;
-    s16 unk6;
+    u16 unk6;
     s32 unk8;
     s32 unkC;
     s32 unk10;
-    void *unk14;
-    void *unk18;
+    struct
+    {
+        s16 *unk00;
+        s16 *unk04;
+    } unk14;
     void *unk1C;
     void *unk20;
     void *unk24;
@@ -91,7 +94,7 @@ extern s32 D_80226D74;
 extern s32 D_80226D78;
 extern s16 D_80226D7C;
 extern s8 D_80226D7E;
-extern u8 D_80226D7F;
+extern s8 D_80226D7F;
 extern volatile s32 D_80226D84; // counter of some sort
 extern u64 *D_80226D90[2];
 extern u64 *D_80226D98; // audio ucode data

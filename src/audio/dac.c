@@ -850,8 +850,8 @@ void func_80316928(struct Struct80332190 *arg0)
     }
 
     D_80226B38 = 0;
-    sp2C = arg0->unk6;
-    D_80226D64 = osAiSetFrequency(arg0->unk0);
+    sp2C = arg0->size;
+    D_80226D64 = osAiSetFrequency(arg0->frequency);
     D_80226D70 = arg0->unk4;
     D_80226D74 = ALIGN16(D_80226D64 / 60);
     D_802212A2 = arg0->unk5;
@@ -888,11 +888,15 @@ void func_80316928(struct Struct80332190 *arg0)
     D_80226D7C = (u32) (temp8 * 2880000.0f / D_80333EE4 / 16.713f);
 #endif
     D_80226D6C = D_80226D70 * 20 * temp8 + 320;
-    sum1 = arg0->unk10 + arg0->unkC;
-    sum2 = arg0->unk18 + arg0->unk14;
-    sum3 = sum1 + sum2;
+    #define sum1 (arg0->unk10 + arg0->unkC)
+    #define sum2 (arg0->unk18 + arg0->unk14)
+    sum3 = (sum1 + sum2);
     // (the address of D_802212A8.unk8 is lui'd too far up)
-    sum4 = D_802212A8.unk8 - sum3 - 0x100;
+    sum4 = (D_802212A8.unk8 - sum3 - 0x100);
+    #undef sum1
+    #undef sum2
+    sum1 = (arg0->unk10 + arg0->unkC);
+    sum2 = (arg0->unk18 + arg0->unk14);
     D_80221898.unk0 = sum4;
     D_80221898.unkC = sum3;
     func_80316164(&D_80221898);
@@ -926,8 +930,8 @@ void func_80316928(struct Struct80332190 *arg0)
     else
     {
         D_802211B0.unk1 = 8;
-        D_802211B0.unk14 = soundAlloc(&D_802212C8, sp2C * 2);
-        D_802211B0.unk18 = soundAlloc(&D_802212C8, sp2C * 2);
+        D_802211B0.unk14.unk00 = soundAlloc(&D_802212C8, sp2C * 2);
+        D_802211B0.unk14.unk04 = soundAlloc(&D_802212C8, sp2C * 2);
         D_802211B0.unk8 = 0;
         D_802211B0.unkC = 0;
         D_802211B0.unk3 = 0;
