@@ -2415,7 +2415,7 @@ void func_8031EED0(void)
 GLOBAL_ASM(
 .late_rodata
 glabel D_803383B0
-    .incbin "bin/rodata.bin", 0x3940, 0x4
+    .float 0.8
 
 glabel jtbl_803383B4
     .word L8031F244

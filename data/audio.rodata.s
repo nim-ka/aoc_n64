@@ -96,17 +96,17 @@ glabel jtbl_80337CDC
 
 .ifdef VERSION_JP
 glabel D_80337CF0
-	.incbin "bin/rodata.bin", 0x3280, 0x8
+	.double 32512.0
 .endif
 
 .ifdef VERSION_JP
 glabel D_80337CF8
-	.incbin "bin/rodata.bin", 0x3288, 0x8
+	.double 127.0
 .endif
 
 .ifdef VERSION_JP
 glabel D_80337D00
-	.incbin "bin/rodata.bin", 0x3290, 0x8
+	.double 127.0
 .endif
 
 glabel jtbl_80337D08 # US: 80338EC0
@@ -601,7 +601,7 @@ glabel jtbl_80337E04 # US: 80338FBC
 
 .ifdef VERSION_JP
 glabel D_803380C8
-	.incbin "bin/rodata.bin", 0x3658, 0x8
+	.double 127.0
 .endif
 
 glabel jtbl_803380D0 # US: 80339280
