@@ -12,6 +12,7 @@
 #include "save_file.h"
 #include "spawn_object.h"
 #include "file_select.h"
+#include "object_list_processor.h"
 
 #include "text_strings.h"
 

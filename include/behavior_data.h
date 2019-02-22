@@ -538,5 +538,6 @@ extern u32 beh_beginning_peach[];
 extern u32 beh_end_birds_1[];
 extern u32 beh_end_birds_2[];
 extern u32 beh_intro_scene[];
+extern u32 beh_unused_fake_star[];
 
 #endif /* _BEHAVIOR_DATA_H */

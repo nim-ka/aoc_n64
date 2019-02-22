@@ -15,6 +15,7 @@
 #include "segment7.h"
 #include "star_select.h"
 #include "model_ids.h"
+#include "object_list_processor.h"
 
 static struct Object *sStarSelectIcons[8];
 static s8 sCurrentMission; // The mission the course is loaded as, affects whether some objects spawn.

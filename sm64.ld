@@ -268,7 +268,6 @@ SECTIONS
       BUILD_DIR/src/ingame_menu.o(.data*);
       BUILD_DIR/src/ingame_menu_2.o(.data*);
       BUILD_DIR/src/ingame_menu_3.o(.data*);
-      BUILD_DIR/data/hud.data.o(.data*);
       BUILD_DIR/src/hud.o(.data*);
       BUILD_DIR/src/hud_print.o(.data*);
       BUILD_DIR/src/obj_behaviors.o(.data*);
@@ -369,10 +368,9 @@ SECTIONS
       BUILD_DIR/src/profiler.o(.bss*);
       BUILD_DIR/src/camera.o(.bss*);
       BUILD_DIR/src/object_list_processor.o(.bss*);
-      BUILD_DIR/data/bss8035FD80.o(.bss*);
       BUILD_DIR/src/room.o(.bss*);
       BUILD_DIR/src/object_helpers.o(.bss*);
-      BUILD_DIR/data/behavior_actions.bss.o(.bss*);
+      BUILD_DIR/src/behavior_actions.o(.bss*);
       BUILD_DIR/src/debug.o(.bss*);
       BUILD_DIR/src/shadow.o(.bss*);
       BUILD_DIR/src/skybox.o(.bss*);

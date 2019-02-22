@@ -11,12 +11,6 @@ struct WallCollisionData
     /*0x18*/ struct Surface *walls[4];
 };
 
-// TODO: Move these to where they belong
-extern s32 gSurfaceNodesAllocated;
-extern s32 gNumStaticSurfaceNodes;
-extern s32 gNumStaticSurfaces;
-extern s32 gSurfacesAllocated;
-
 s32 resolve_wall_collisions(f32 *xPtr, f32 *yPtr, f32 *zPtr, f32 offsetY, f32 radius);
 s32 find_wall_collisions(struct WallCollisionData *colData);
 f32 find_ceil(f32 posX, f32 posY, f32 posZ, struct Surface **pceil);

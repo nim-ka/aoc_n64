@@ -11,8 +11,7 @@
  * It might not have anything to do with the HUD anymore, though
 **/
 
-extern struct Struct803306D0 MacroObjectPresets[];
-
+#include "macro_presets.h"
 
 static struct Struct802E19DC D_80331240[] = 
 {
@@ -121,13 +120,19 @@ void Unknown802E142C(u32 (*a0)[], s16 a1[])
     sp3C->oBehParams = (a1[4] & 0xFF) >> 16;
 }
 
+struct LoadedPreset {
+    /*0x00*/ u32 *beh;
+    /*0x04*/ s16 param; // huh? why does the below function swap these.. just use the struct..
+    /*0x06*/ s16 model;
+};
+
 void func_802E1504(s16 a0, s16* a1)
 {
     UNUSED u32 pad5C;
     s32 offset;
     s16 sp4C[5];
     struct Object * sp48;
-    struct Struct803306D0 sp40;
+    struct LoadedPreset preset;
 
     D_8035FB18.header.gfx.unk18 = a0;
     D_8035FB18.header.gfx.unk19 = a0;
@@ -148,16 +153,16 @@ void func_802E1504(s16 a0, s16* a1)
         sp4C[3] = *a1++;
         sp4C[4] = *a1++;
 
-        sp40.unk6 = MacroObjectPresets[offset].unk4; 
-        sp40.beh  = MacroObjectPresets[offset].beh;
-        sp40.unk4 = MacroObjectPresets[offset].unk6;
+        preset.model = MacroObjectPresets[offset].model; 
+        preset.beh  = MacroObjectPresets[offset].beh;
+        preset.param = MacroObjectPresets[offset].param;
 
-        if (sp40.unk4 != 0)
-            sp4C[4] = (sp4C[4] & 0xFF00) + (sp40.unk4 & 0x00FF); 
+        if (preset.param != 0)
+            sp4C[4] = (sp4C[4] & 0xFF00) + (preset.param & 0x00FF); 
 
         if (((sp4C[4] >> 8) & 0x00FF) != 0xFF)
         {
-            sp48 = func_8029E230(&D_8035FB18, 0, sp40.unk6, sp40.beh, sp4C[1], sp4C[2], sp4C[3], 0, func_802E1190(sp4C[0]), 0);
+            sp48 = func_8029E230(&D_8035FB18, 0, preset.model, preset.beh, sp4C[1], sp4C[2], sp4C[3], 0, func_802E1190(sp4C[0]), 0);
 
             sp48->oUnk1A8   = sp4C[4];
             sp48->oBehParams   = ((sp4C[4] & 0x00FF) << 16) + (sp4C[4] & 0xFF00);

@@ -37,6 +37,9 @@
 
 #define o gCurrentObject
 
+// BSS
+s16 D_8035FF10;
+
 struct Struct8032F24A {
     s16 pad;
     s16 unk0;
@@ -99,7 +102,6 @@ extern void BehClimbDetectLoop();
 extern s16 gDebugInfo[][8];
 extern s8 D_8035FE68[][2];
 extern s32 inside_castle_seg7_dl_0702A880;
-extern s16 D_8035FF10;
 extern u8 inside_castle_seg7_collision_ddd_warp_2[];
 extern u8 inside_castle_seg7_collision_ddd_warp[];
 extern s32 gDialogueResponse;

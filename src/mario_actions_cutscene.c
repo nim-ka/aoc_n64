@@ -21,6 +21,7 @@
 #include "surface_collision.h"
 #include "behavior_script.h"
 #include "behavior_data.h"
+#include "object_list_processor.h"
 
 // TODO: put these elsewhere
 #define SAVE_OPT_SAVE_AND_CONTINUE  1

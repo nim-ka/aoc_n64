@@ -63,8 +63,6 @@ struct SpawnParticlesInfo
 #define TIME_STOP_UNKNOWN_5       (1 << 5)
 #define TIME_STOP_ACTIVE          (1 << 6)
 
-extern struct MemoryPool *D_8035FE0C;
-extern s16 gPostUpdateObjCount;
 // extern ? D_80336610;
 extern struct GraphNode **gLoadedGraphNodes;
 // extern ? sLevelsWithRooms;

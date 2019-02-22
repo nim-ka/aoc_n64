@@ -4,13 +4,6 @@
 #include "types.h"
 
 /* Types and Structures */
-struct Struct803306D0
-{
-    u32 (*beh)[];
-    s16   unk4;
-    s16   unk6;
-};
-
 struct Struct802E19DC
 {
     /*00*/ u8  unk00;

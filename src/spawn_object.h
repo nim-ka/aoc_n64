@@ -3,8 +3,6 @@
 
 #include "types.h"
 
-extern struct ObjectNode gFreeObjectList;
-
 // extern ? Unknown802C8CF0(?);
 // extern ? Unknown802C8D60(?);
 // extern ? func_802C8DC4(?);

@@ -1,6 +1,7 @@
 #include <ultra64.h>
 
 #include "sm64.h"
+#include "prevent_bss_reordering.h"
 #include "behavior_actions.h"
 #include "behavior_script.h"
 #include "camera.h"
@@ -15,16 +16,16 @@
 #include "audio/interface_2.h"
 #include "level_update.h"
 #include "memory.h"
+#include "platform_displacement.h"
+#include "rendering_graph_node.h"
+#include "surface_load.h"
 #include "obj_behaviors.h"
 #include "object_constants.h"
 #include "interaction.h"
-#include "save_file.h"
-#include "platform_displacement.h"
-#include "rendering_graph_node.h"
 #include "object_list_processor.h"
-#include "surface_load.h"
 #include "spawn_sound.h"
 #include "transparent_texture.h"
+#include "save_file.h"
 #include "room.h"
 
 extern u32 wiggler_seg5_anims_0500C874[];

@@ -5,6 +5,7 @@
 #include "object_helpers.h"
 #include "audio/interface_2.h"
 #include "spawn_sound.h"
+#include "object_list_processor.h"
 
 extern void *beh_sound_spawner;
 

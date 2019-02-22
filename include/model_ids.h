@@ -3,6 +3,10 @@
 
 // Don't worry about formatting here, this file should be deleted and replaced with model_ids.inc.
 
+#define COIN_FORMATION_FLAG_VERTICAL  (1 << 0)
+#define COIN_FORMATION_FLAG_RING      (1 << 1)
+#define COIN_FORMATION_FLAG_ARROW     (1 << 2)
+#define COIN_FORMATION_FLAG_FLYING    (1 << 4)
 
 #define MODEL_NONE                        0x00
 

@@ -1,5 +1,7 @@
 #include <ultra64.h>
 
+#define INCLUDED_FROM_OBJ_LIST_PROC
+
 #include "sm64.h"
 #include "behavior_data.h"
 #include "behavior_script.h"
@@ -7,19 +9,19 @@
 #include "camera.h"
 #include "graph_node.h"
 #include "interaction.h"
-#include "mario.h"
 #include "debug.h"
+#include "profiler.h"
+#include "spawn_object.h"
+#include "surface_collision.h"
 #include "memory.h"
 #include "level_update.h"
 #include "object_collision.h"
 #include "object_helpers.h"
 #include "platform_displacement.h"
-#include "profiler.h"
-#include "spawn_object.h"
-#include "surface_collision.h"
 #include "surface_load.h"
-#include "object_list_processor.h"
 #include "room.h"
+#include "mario.h"
+#include "object_list_processor.h"
 
 #if VERSION_US
 extern void func_u_802C8F28(void);
@@ -53,7 +55,18 @@ struct Object gObjectPool[OBJECT_ARRAY_SIZE];
 struct Object D_8035FB18;
 struct ObjectNode *gObjectLists;
 
+struct ObjectNode gFreeObjectList;
+struct Object *gMarioObject;
+struct Object *gLuigiObject;
 
+struct Object *gCurrentObject;
+u32 *gBehCommand;
+s16 gPostUpdateObjCount;
+s32 gSurfaceNodesAllocated;
+s32 gSurfacesAllocated;
+s32 gNumStaticSurfaceNodes;
+s32 gNumStaticSurfaces;
+struct MemoryPool *D_8035FE0C;
 
 static s8 sObjectListUpdateOrder[] = 
 { 

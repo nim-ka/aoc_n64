@@ -11,8 +11,8 @@
 #include "display.h"
 #include "obj_behaviors_2.h"
 #include "behavior_data.h"
+#include "object_list_processor.h"
 
-extern u32 *gBehCommand;
 static u16 gRandomSeed16;
 
 // unused
