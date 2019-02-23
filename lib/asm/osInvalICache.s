@@ -33,13 +33,13 @@ glabel osInvalICache
 	 nop   
 
 .L80323730:
-	lui   $t0, %hi(D_80000020) # $t0, 0x8000
+	li    $t0, K0BASE
 	addu  $t1, $t0, $t3
 	addiu $t1, $t1, -0x20
 .L8032373C:
 	cache 0, ($t0)
 	sltu  $at, $t0, $t1
 	bnez  $at, .L8032373C
-	 addiu $t0, %lo(D_80000020) # addiu $t0, $t0, 0x20
+	 addiu $t0, $t0, 0x20
 	jr    $ra
 	 nop   	

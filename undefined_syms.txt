@@ -1,12 +1,11 @@
 /* libultra OS symbols */
-D_80000010 = 0x80000010;
-D_80000020 = 0x80000020;
 osTvType = 0x80000300;
 osRomBase = 0x80000308;
 osResetType = 0x8000030C;
 osAppNmiBuffer = 0x8000031C;
 D_80000400 = 0x80000400; /* boot location */
 
+/* boot and osException symbols */
 D_A0000004 = 0xA0000004;
 D_A0000008 = 0xA0000008;
 D_A000000C = 0xA000000C;

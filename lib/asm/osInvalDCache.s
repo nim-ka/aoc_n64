@@ -47,12 +47,12 @@ glabel osInvalDCache
   nop   
 
 .L80323508:
-  lui   $t0, %hi(D_80000010) # $t0, 0x8000
+  li    $t0, K0BASE
   addu  $t1, $t0, $t3
   addiu $t1, $t1, -0x10
 .L80323514:
   cache 1, ($t0)
   sltu  $at, $t0, $t1
   bnez  $at, .L80323514
-  addiu $t0, %lo(D_80000010) # addiu $t0, $t0, 0x10
+   addiu $t0, $t0, 0x10
   jr    $ra
