@@ -1,7 +1,9 @@
 #include "libultra_internal.h"
 #include "osAi.h"
 #include "hardware.h"
+
 extern s32 D_8033491C;
+
 s32 osAiSetFrequency(u32 freq)
 {
     register u32 a1;
@@ -24,6 +26,6 @@ s32 osAiSetFrequency(u32 freq)
     return D_8033491C / (s32)a1;
 }
 
-//put some extra jr $ra's down there please
+// put some extra jr $ra's down there please
 static void filler1(void) {}
 static void filler2(void) {}

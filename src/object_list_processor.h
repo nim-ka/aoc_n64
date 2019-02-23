@@ -8,10 +8,9 @@ struct SpawnInfo;
 
 extern struct ObjectNode D_8033B870[];
 
-#ifndef INCLUDED_FROM_OBJ_LIST_PROC
 extern int gDebugInfoFlags;
 extern int gNumFindFloorMisses;
-extern UNUSED s32 D_8033bef8;
+extern UNUSED s32 D_8033BEF8;
 extern int gUnknownWallCount;
 extern u32 gUpdatedObjectCount;
 extern s16 gNumFindFloorCalls;
@@ -33,6 +32,8 @@ extern struct Object gObjectPool[];
 extern struct Object D_8035FB18;
 extern struct ObjectNode *gObjectLists;
 extern struct ObjectNode gFreeObjectList;
+extern struct Object *gMarioObject;
+extern struct Object *gLuigiObject;
 extern struct Object *gCurrentObject;
 extern u32 *gBehCommand;
 extern s16 gPostUpdateObjCount;
@@ -41,7 +42,6 @@ extern s32 gSurfacesAllocated;
 extern s32 gNumStaticSurfaceNodes;
 extern s32 gNumStaticSurfaces;
 extern struct MemoryPool *D_8035FE0C;
-#endif
 
 void nop_change_course(void);
 void BehMarioLoop2(void);

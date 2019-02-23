@@ -2,6 +2,8 @@
 
 #include "sm64.h"
 
+#define INCLUDED_FROM_MEMORY_C
+
 #include "decompress.h"
 #include "game.h"
 #include "main.h"

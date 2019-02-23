@@ -1,8 +1,11 @@
 #include "libultra_internal.h"
+
 #define PIAccessQueueSize 2
+
 OSMesg osPiMesgBuff[PIAccessQueueSize];
 OSMesgQueue gOsPiMessageQueue;
 u32 gOsPiAccessQueueCreated = 0;
+
 void __osPiCreateAccessQueue()
 {
     gOsPiAccessQueueCreated = 1;
@@ -17,6 +20,7 @@ void __osPiGetAccess()
         __osPiCreateAccessQueue();
     osRecvMesg(&gOsPiMessageQueue, &sp1c, OS_MESG_BLOCK);
 }
+
 void __osPiRelAccess()
 {
     osSendMesg(&gOsPiMessageQueue, NULL, OS_MESG_NOBLOCK);

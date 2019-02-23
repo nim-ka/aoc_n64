@@ -751,6 +751,7 @@ void *func_8031680C(struct SoundMultiPool *arg0, s32 arg1, s32 arg2)
         if (arg1 == 2)
         {
             // Prevent tail call optimization by using a temporary.
+            // (Did they compile with -Wo,-notail?)
             ret = func_8031680C(arg0, 0, arg2);
             return ret;
         }

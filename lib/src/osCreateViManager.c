@@ -1,4 +1,5 @@
 #include "libultra_internal.h"
+
 OSViMode osViModeTable[] = {
     /*osViModeNtscLpn1*/
     {
@@ -295,8 +296,8 @@ OSViMode osViModeTable[] = {
                    /*vStart*/ 2425343,
                    /*vBurst*/ 918020,
                    /*vIntr*/ 2}}},
-#ifdef VERSION_JP
 
+#ifdef VERSION_JP
     /*osViModePalLpn1*/
     {/*type*/ 14,
      /*comRegs*/ {/*ctrl*/ 12814,
@@ -888,12 +889,15 @@ OSViMode osViModeTable[] = {
                    /*vIntr*/ 2}}}
 #endif
 };
+
 #define OS_VI_MANAGER_MESSAGE_BUFF_SIZE 5
+
 OSMgrArgs viMgrMainArgs = {0};
 OSThread viMgrThread;
 u32 viMgrStack[0x400]; //stack bottom
 OSMesgQueue __osViMesgQueue;
 OSMesg viMgrMesgBuff[OS_VI_MANAGER_MESSAGE_BUFF_SIZE + 1];
+
 typedef struct
 {
     u16 unk00;
@@ -903,18 +907,20 @@ typedef struct
     u16 unk14;
     u16 unk16;
 } viMesgStruct;
+
 viMesgStruct viEventViMesg;
 viMesgStruct viEventCounterMesg;
+
 extern void __osTimerServicesInit(void);
 extern void __osTimerInterrupt(void);
 extern OSTime _osCurrentTime;
 extern u32 D_80365DA8;
 extern u32 D_80365DAC;
 void viMgrMain(void *);
-//glabel osCreateViManager
+
 void osCreateViManager(OSPri pri)
 {
-    u32 int_disabled; //not register this time!
+    u32 int_disabled;
     OSPri newPri;
     OSPri currentPri;
     if (!viMgrMainArgs.initialized)
@@ -954,22 +960,25 @@ void osCreateViManager(OSPri pri)
         }
     }
 }
-//glabel viMgrMain
+
 void viMgrMain(void *vargs)
 {
     OSViContext *context;
     OSMgrArgs *args;
     OSMesg mesg;
-    u32 sp28; //useless?
-    u32 sp24; //time related
+    u32 sp28; // always 0
+    u32 sp24; // time related
     mesg = NULL;
     sp28 = FALSE;
     context = __osViGetCurrentContext();
+
     if ((viEventCounterMesg.unk14 = context->retraceCount) == 0)
     {
         viEventCounterMesg.unk14 = 1;
     }
+
     args = (OSMgrArgs *)vargs;
+
     while (1)
     {
         osRecvMesg(args->unk0c, &mesg, OS_MESG_BLOCK);
@@ -998,6 +1007,7 @@ void viMgrMain(void *vargs)
             sp24 = D_80365DA8 - sp24;
             _osCurrentTime = _osCurrentTime + sp24;
             break;
+
         case 14:
             __osTimerInterrupt();
             break;

@@ -303,8 +303,8 @@ static s32 get_star_collection_dialogue(struct MarioState *m)
     s32 dialogueID = 0;
     s32 numStarsRequired;
 
-    i = 0;
-    do {
+    for (i = 0; i < 6; i++)
+    {
         numStarsRequired = sStarsNeededForDialogue[i];
         if (m->unkB8 < numStarsRequired && m->numStars >= numStarsRequired)
         {
@@ -312,7 +312,6 @@ static s32 get_star_collection_dialogue(struct MarioState *m)
             break;
         }
     }
-    while (++i < 6);
 
     m->unkB8 = m->numStars;
     return dialogueID;

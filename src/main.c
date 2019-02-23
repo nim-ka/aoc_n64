@@ -54,7 +54,7 @@ static u16 sProfilerKeySequence[] = {U_JPAD, U_JPAD, D_JPAD, D_JPAD, L_JPAD, R_J
 static u16 sDebugTextKeySequence[]     = {D_JPAD, D_JPAD, U_JPAD, U_JPAD, L_JPAD, R_JPAD, L_JPAD, R_JPAD};
 static s16 sProfilerKey = 0;
 static s16 sDebugTextKey = 0;
-extern struct MemoryPool *D_8033A124;
+
 // unused
 void handle_debug_key_sequences(void)
 {

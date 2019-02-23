@@ -8,5 +8,8 @@ extern void get_mario_pos(f32 *, f32 *, f32 *);
 extern void set_mario_pos(f32, f32, f32);
 extern void apply_platform_displacement(u32, struct Object *);
 extern void apply_mario_platform_displacement(void);
+#ifdef VERSION_US
+extern void func_u_802C8F28(void);
+#endif
 
 #endif /* _PLATFORM_DISPLACEMENT_H */

@@ -3,8 +3,9 @@
 
 /**
  * To determine variable order for .bss, the compiler sorts variables by their
- * "name index" mod 256, where name index is something that gets incremented
- * by (among else) struct and variable declarations, typedefs, and file markers.
+ * "name index" mod 256, where name index is something that, with -g, gets
+ * incremented by struct and variable declarations, typedefs, and file markers,
+ * among else. (Without -g, only variable declarations affects the index.)
  * This file contains enough dummy declarations to bump the index by 128.
  * Including it, or removing the include, should fix bss reordering problems
  * for a file, assuming the name index distance between its first and last bss

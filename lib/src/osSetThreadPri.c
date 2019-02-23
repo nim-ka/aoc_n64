@@ -1,6 +1,8 @@
 #include "libultra_internal.h"
+
 extern OSThread *D_803348A0;
 extern OSThread *D_80334898;
+
 void osSetThreadPri(OSThread *thread, OSPri pri)
 {
     register u32 int_disabled = __osDisableInt();
@@ -8,6 +10,7 @@ void osSetThreadPri(OSThread *thread, OSPri pri)
     {
         thread = D_803348A0;
     }
+
     if (thread->priority != pri)
     {
         thread->priority = pri;
@@ -25,5 +28,6 @@ void osSetThreadPri(OSThread *thread, OSPri pri)
             __osEnqueueAndYield(&D_80334898);
         }
     }
+
     __osRestoreInt(int_disabled);
 }

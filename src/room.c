@@ -1,7 +1,6 @@
 #include <ultra64.h>
 
 #include "sm64.h"
-#include "prevent_bss_reordering.h"
 #include "room.h"
 
 s16 D_8035FE10;

@@ -1,5 +1,6 @@
 #include "libultra_internal.h"
 #include <unused.h>
+
 #define PIF_ADDR_START (void*)0x1FC007FC
 
 typedef struct
@@ -21,6 +22,7 @@ u32 D_80334808 = 0;
 
 extern u32 osResetType;
 extern exceptionPreamble __osExceptionPreamble;
+
 void osInitialize(void)
 {
     u32 sp34;

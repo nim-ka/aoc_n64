@@ -8,10 +8,8 @@ extern u32 D_80335280;
 extern u32 D_80335288;
 extern u32 D_80335290;
 
-#ifndef INCLUDED_FROM_OBJ_LIST_PROC // dumb bss hack
 extern struct Object *gMarioObject;
 extern struct Object *gLuigiObject;
-#endif
 
 extern s32 func_80250770(struct MarioState *);
 extern s32 func_802507AC(struct MarioState *);

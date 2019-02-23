@@ -33,6 +33,7 @@ typedef struct
 
 s32 __osEepStatus(OSMesgQueue *, unkStruct *);
 s32 __osPackEepReadData(u8);
+
 s32 osEepromRead(OSMesgQueue *mq, u8 address, u8 *buffer)
 {
     s32 sp34;
@@ -57,14 +58,14 @@ s32 osEepromRead(OSMesgQueue *mq, u8 address, u8 *buffer)
         __osEepStatus(mq, &sp28);
     }
     __osPackEepReadData(address);
-    sp34 = __osSiRawStartDma(1 /*write*/, &D_80365E00);
+    sp34 = __osSiRawStartDma(OS_WRITE, &D_80365E00);
     osRecvMesg(mq, NULL, OS_MESG_BLOCK);
     for (sp30 = 0; sp30 < 0x10; sp30++)
     {
         (D_80365E00)[sp30] = 255;
     }
     D_80365E3C = 0;
-    sp34 = __osSiRawStartDma(0 /*write*/, D_80365E00);
+    sp34 = __osSiRawStartDma(OS_READ, D_80365E00);
     D_80365D20 = 4;
     osRecvMesg(mq, NULL, OS_MESG_BLOCK);
     for (sp30 = 0; sp30 < 4; sp30++)

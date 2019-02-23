@@ -4229,14 +4229,14 @@ void BehSSLMovingPyramidWallLoop(void) {
 }
 
 void BehPyramidElevatorInit(void) {
-    s32 sp1C = 0;
+    s32 sp1C;
     struct Object *sp18;
 
-    do {
+    for (sp1C = 0; sp1C < 10; sp1C++)
+    {
         sp18 = spawn_object(o, 225, beh_pyramid_elevator_metal_balls);
         sp18->oPosY = 4600 - sp1C * 460;
     }
-    while (++sp1C < 10);
 }
 
 void BehPyramidElevatorLoop(void) {
@@ -4325,16 +4325,15 @@ void func_802EF450(void) {
     s16 sp1A;
 
     func_802AA618(0, 0, 690.0f);
-    sp1A = 0; 
 
-    do {
+    for (sp1A = 0; sp1A < 30; sp1A++) {
         sp1C = spawn_object(o, 138, beh_pyramid_top_explosion);
         sp1C->oForwardVel = RandomFloat() * 50.0f + 80.0f;
         sp1C->oVelY = RandomFloat() * 80.0f + 20.0f;
         sp1C->oMoveAngleYaw = RandomU16();
         sp1C->oUnknownUnkF4_F32 = 3.0f;
         sp1C->oGravity = RandomFloat() * 2.0f + 5.0f;
-    } while(++sp1A < 30);
+    }
 
     o->activeFlags = 0;
 }

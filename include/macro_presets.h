@@ -1,12 +1,9 @@
-#ifndef _GUARD_MACRO_PRESETS_H
-#define _GUARD_MACRO_PRESETS_H
+#ifndef _MACRO_PRESETS_H
+#define _MACRO_PRESETS_H
 
 #include "macro_preset_names.h"
 #include "behavior_data.h"
 #include "model_ids.h"
-
-#define MACRO_OBJ_PRESET(name, beh, model, bparam) \
-    {\name, beh, model, bparam}
 
 struct MacroPreset
 {
@@ -384,4 +381,4 @@ struct MacroPreset MacroObjectPresets[] = {
     {beh_yellow_coin, MODEL_YELLOW_COIN, 0}
 };
 
-#endif // _GUARD_MACRO_PRESETS_H
+#endif // _MACRO_PRESETS_H

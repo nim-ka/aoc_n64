@@ -1,11 +1,13 @@
 #include "libultra_internal.h"
+
 typedef struct OSEventMessageStruct_0_s
 {
     OSMesgQueue *queue;
     OSMesg msg;
-    //u8 pad[4];
 } OSEventMessageStruct_0;
-OSEventMessageStruct_0 D_80363830[0x80 >> 3];
+
+OSEventMessageStruct_0 D_80363830[16];
+
 void osSetEventMesg(OSEvent e, OSMesgQueue *mq, OSMesg msg)
 {
     register u32 int_disabled;

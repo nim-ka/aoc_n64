@@ -3,9 +3,11 @@
 #include <string.h>
 #include "printf.h"
 
- u8 D_80334960[] = "0123456789abcdef";
- u8 D_80334974[] = "0123456789ABCDEF";
 #define BUFF_LEN 0x18
+
+static u8 D_80334960[] = "0123456789abcdef";
+static u8 D_80334974[] = "0123456789ABCDEF";
+
 void _Litob(printf_struct *args, u8 type)
 {
     u8 buff[BUFF_LEN];

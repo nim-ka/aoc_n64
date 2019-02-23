@@ -1,4 +1,5 @@
 #include "libultra_internal.h"
+
 typedef struct
 {
     u8 unk00 : 2;
@@ -8,13 +9,13 @@ typedef struct
 } unkStruct;
 
 extern u32 D_80334A44;
+
 u32 D_80334A30 = 0;
-
 u32 D_80334A34 = 0;
-
 s32 D_80334A38 = 0;
 
 u8 D_80365E40[0x100];
+
 OSThread gInterruptedThread;
 
 void u32_to_string(u32 i, u8 *str)
@@ -24,6 +25,7 @@ void u32_to_string(u32 i, u8 *str)
     str[2] = (i >> 0x8) & 0xff;
     str[3] = i & 0xff;
 }
+
 u32 string_to_u32(u8 *str)
 {
     u32 i;
@@ -39,17 +41,16 @@ void send_packet(u8 *a0, s32 a1)
     unkStruct sp1c;
     s32 i;
     sp1c.unk00 = 2;
-    ;
     for (sp1c.unk01 = a1, i = 0; i < a1; i++)
-
     {
         sp1c.unk2[i] = a0[i];
     }
-    *(u32 *)0xc0000000 = *(u32 *)&sp1c;
+    *(volatile u32 *)0xc0000000 = *(u32 *)&sp1c;
     while (!(__osGetCause() & 0x2000))
         ;
-    *(u32 *)0xc000000c = 0;
+    *(volatile u32 *)0xc000000c = 0;
 }
+
 void send(u8 *buff, s32 len)
 {
     s32 i;
@@ -59,7 +60,7 @@ void send(u8 *buff, s32 len)
     {
         while (!(__osGetCause() & 0x2000))
             ;
-        *(u32 *)0xC000000C = 0;
+        *(volatile u32 *)0xc000000c = 0;
         D_80334A44 = 1;
     }
     i = 0;

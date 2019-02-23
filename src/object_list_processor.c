@@ -1,7 +1,5 @@
 #include <ultra64.h>
 
-#define INCLUDED_FROM_OBJ_LIST_PROC
-
 #include "sm64.h"
 #include "behavior_data.h"
 #include "behavior_script.h"
@@ -20,12 +18,8 @@
 #include "platform_displacement.h"
 #include "surface_load.h"
 #include "room.h"
-#include "mario.h"
 #include "object_list_processor.h"
-
-#if VERSION_US
-extern void func_u_802C8F28(void);
-#endif
+#include "mario.h"
 
 struct ParticleType
 {
@@ -41,7 +35,7 @@ struct ObjectNode D_8033B870[16];
 
 int gDebugInfoFlags;
 int gNumFindFloorMisses;
-UNUSED s32 D_8033bef8;
+UNUSED s32 D_8033BEF8;
 int gUnknownWallCount;
 u32 gUpdatedObjectCount;
 s16 gNumFindFloorCalls;

@@ -2,7 +2,6 @@
 
 #include "sm64.h"
 #include "gd_main.h"
-#include "game_over_2.h"
 #include "mario_head_1.h"
 #include "dynlist_proc.h"
 #include "old_obj_fn.h"
@@ -10,18 +9,14 @@
 #include "matrix_fns.h"
 #include "half_6.h"
 #include "mario_head_6.h"
+#include "prevent_bss_reordering.h"
+#include "game_over_2.h"
 
 // forward declarations
 void func_80179B64(struct ObjGroup *);
 void update_shaders(struct ObjShape *, struct MyVec3f *);
 void func_8017A218(struct ObjShape *);
 void Proc8017A91C(struct ObjLight *);
-
-// types
-union ColourArray { 
-    f32 arr[3]; 
-    struct GdColour colour; 
-};
 
 // data
 static struct GdColour sClrWhite       = { 1.0, 1.0, 1.0 }; // @ 801A8070
@@ -35,8 +30,8 @@ static struct GdColour sClrGrey        = { 0.6, 0.6, 0.6 }; // @ 801A80C4
 static struct GdColour sClrDarkGrey    = { 0.4, 0.4, 0.4 }; // @ 801A80D0
 static struct GdColour sClrYellow      = { 1.0, 1.0, 0.0 }; // @ 801A80DC
 
-static union ColourArray sLightColour = {{ 1.0, 1.0, 0.0 }}; // @ 801A80E8
-static struct GdColour *sSelectedColour = &sClrRed;          // @ 801A80F4
+static struct GdColour sLightColours[1] = {{ 1.0, 1.0, 0.0 }}; // @ 801A80E8
+static struct GdColour *sSelectedColour = &sClrRed;            // @ 801A80F4
 struct ObjCamera *D_801A80F8 = NULL; // main camera?
 static void *sUnref801A80FC = NULL;
 static s32 D_801A8100 = 0;
@@ -259,9 +254,9 @@ void Proc80178900(struct ObjLight *self)
 
     if (D_801B9C00 == 27)
         return;
-    sLightColour.arr[0] = self->unk5C.r;
-    sLightColour.arr[1] = self->unk5C.g;
-    sLightColour.arr[2] = self->unk5C.b;
+    sLightColours[0].r = self->unk5C.r;
+    sLightColours[0].g = self->unk5C.g;
+    sLightColours[0].b = self->unk5C.b;
     if (self->unk2C & 2)
     {
         set_identity_mat4(&sp54);
@@ -382,7 +377,7 @@ struct GdColour *gd_get_colour(s32 num)
         return &sClrPink;
         break;
     case 0:
-        return &sLightColour.colour;
+        return &sLightColours[0];
         break;
     default:
         return NULL;
@@ -814,16 +809,16 @@ void Proc8017A30C(struct ObjHeader *self)
         white = sColourPalette[0];
         black = sWhiteBlack[1];
         sp58 = ptc->unk5C / 10.0;
-        sLightColour.arr[0] = (white->r - black->r) * sp58 + black->r;
-        sLightColour.arr[1] = (white->g - black->g) * sp58 + black->g;
-        sLightColour.arr[2] = (white->b - black->b) * sp58 + black->b;
+        sLightColours[0].r = (white->r - black->r) * sp58 + black->r;
+        sLightColours[0].g = (white->g - black->g) * sp58 + black->g;
+        sLightColours[0].b = (white->b - black->b) * sp58 + black->b;
         ;  // needed to match
     }
     else
     {
-        sLightColour.arr[0] = 0.0f;
-        sLightColour.arr[1] = 0.0f;
-        sLightColour.arr[2] = 0.0f;
+        sLightColours[0].r = 0.0f;
+        sLightColours[0].g = 0.0f;
+        sLightColours[0].b = 0.0f;
     }
 
     if (ptc->unk5C > 0)

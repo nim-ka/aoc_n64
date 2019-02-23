@@ -1,12 +1,16 @@
 #include "libultra_internal.h"
+
 extern OSThread *D_803348A0;
-extern OSThread* D_8033489C;
+extern OSThread *D_8033489C;
+
 void osDestroyThread(OSThread *thread)
 {
     register s32 int_disabled;
     register OSThread *s1;
     register OSThread *s2;
+
     int_disabled = __osDisableInt();
+
     if (thread == NULL)
     {
         thread = D_803348A0;
@@ -15,6 +19,7 @@ void osDestroyThread(OSThread *thread)
     {
         __osDequeueThread(thread->queue, thread);
     }
+
     if (D_8033489C == thread)
     {
         D_8033489C = D_8033489C->tlnext;
@@ -37,7 +42,11 @@ void osDestroyThread(OSThread *thread)
             }
         }
     }
+
     if (thread == D_803348A0)
+    {
         __osDispatchThread();
+    }
+
     __osRestoreInt(int_disabled);
 }

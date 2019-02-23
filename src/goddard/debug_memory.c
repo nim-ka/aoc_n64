@@ -5,10 +5,6 @@
 #include "profiler_utils.h"
 #include "mario_head_6.h"
 
-// This dummy struct seems to be needed for the bss variables to
-// come in correct order, apparently...
-struct DummyStruct { int dummy; };
-
 /* bss */
 static struct GMemBlock* sFreeBlockListHead;
 static struct GMemBlock* sUsedBlockListHead;

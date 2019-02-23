@@ -66,7 +66,12 @@ SECTIONS
    }
    END_SEG(boot)
 
-   BEGIN_SEG(main, 0x80246000) SUBALIGN(16) /* fix for some libultra files having wrong file alignment */
+   /* lib/src/__osDevMgrMain.c and lib/src/osCreateViManager.c contain infinite
+    * loops compiled without -g, which cause the return statements and the .o
+    * files themselves to be aligned to 32-byte boundaries. But in the binary,
+    * they are actually aligned only to 16 bytes! We force this to happen using
+    * a SUBALIGN directive. */
+   BEGIN_SEG(main, 0x80246000) SUBALIGN(16)
    {
       BUILD_DIR/asm/entry.o(.text);
       BUILD_DIR/src/main.o(.text);

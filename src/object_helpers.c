@@ -1810,18 +1810,13 @@ f32 func_802A0BF4(f32 value, f32 center, f32 zeroThreshold, f32 increment)
 
 s32 are_objects_collided(struct Object *obj1, struct Object *obj2)
 {
-    s32 i = 0;
-
-    if (obj1->numCollidedObjs > 0)
+    s32 i;
+    for (i = 0; i < obj1->numCollidedObjs; i++)
     {
-        do
+        if (obj1->collidedObjs[i] == obj2)
         {
-            if (obj1->collidedObjs[i] == obj2)
-            {
-                return TRUE;
-            }
+            return TRUE;
         }
-        while (++i < obj1->numCollidedObjs);
     }
 
     return FALSE;

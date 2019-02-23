@@ -56,3 +56,4 @@ glabel osInvalDCache
   bnez  $at, .L80323514
    addiu $t0, $t0, 0x10
   jr    $ra
+   nop

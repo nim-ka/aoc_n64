@@ -16,6 +16,13 @@ struct AllocOnlyPool
 
 struct MemoryPool;
 
+#ifndef INCLUDED_FROM_MEMORY_C
+// Declaring this variable extern puts it in the wrong place in the bss order
+// when this file is included from memory.c (first instead of last). Hence,
+// ifdef hack. It was very likely subject to bss reordering originally.
+extern struct MemoryPool *D_8033A124;
+#endif
+
 u32 set_segment_base_addr(s32 segment, void *addr);
 void *get_segment_base_addr(s32 segment);
 void *segmented_to_virtual(void *addr);

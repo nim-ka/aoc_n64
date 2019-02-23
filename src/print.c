@@ -16,7 +16,7 @@ struct TextLabel
     s16 length;
     char buffer[1];  // unknown length
 };
-extern struct MemoryPool *D_8033A124;
+
 extern u8 seg2_dl_0200EC60[];
 extern u8 seg2_dl_0200ECC8[];
 extern u8 seg2_hud_lut[];

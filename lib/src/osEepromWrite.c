@@ -2,7 +2,7 @@
 #include "osContInternal.h"
 
 u32 D_80365E00[0x3c >> 2];
- u32 D_80365E3C;
+u32 D_80365E3C;
 extern u8 D_80365D20;
 
 typedef struct
@@ -34,6 +34,7 @@ typedef struct
 
 s32 __osEepStatus(OSMesgQueue *, unkStruct *);
 s32 __osPackEepWriteData(u8, u8 *);
+
 s32 osEepromWrite(OSMesgQueue *mq, u8 address, u8 *buffer)
 {
     s32 sp34;
@@ -43,34 +44,45 @@ s32 osEepromWrite(OSMesgQueue *mq, u8 address, u8 *buffer)
     unkStruct sp1c;
     sp34 = 0;
     sp2c = (u8*)&D_80365E00;
+
     if (address > 0x40)
+    {
         return -1;
+    }
+
     __osSiGetAccess();
     sp34 = __osEepStatus(mq, &sp1c);
+
     if (sp34 != 0 || sp1c.unk00 != 0x8000)
     {
-
         return 8;
     }
+
     while (sp1c.unk02 & 0x80)
     {
         __osEepStatus(mq, &sp1c);
     }
+
     __osPackEepWriteData(address, buffer);
-    sp34 = __osSiRawStartDma(1 /*write*/, &D_80365E00);
+
+    sp34 = __osSiRawStartDma(OS_WRITE, &D_80365E00);
     osRecvMesg(mq, NULL, OS_MESG_BLOCK);
+
     for (sp30 = 0; sp30 < 0x10; sp30++)
     {
         (D_80365E00)[sp30] = 255;
     }
+
     D_80365E3C = 0;
-    sp34 = __osSiRawStartDma(0 /*write*/, D_80365E00);
+    sp34 = __osSiRawStartDma(OS_READ, D_80365E00);
     D_80365D20 = 5;
     osRecvMesg(mq, NULL, OS_MESG_BLOCK);
+
     for (sp30 = 0; sp30 < 4; sp30++)
     {
         sp2c++;
     }
+
     sp20 = *(unkStruct2 *)sp2c;
     sp34 = (sp20.unk01 & 0xc0) >> 4;
     __osSiRelAccess();
@@ -116,12 +128,14 @@ s32 __osEepStatus(OSMesgQueue *a0, unkStruct *a1)
     {
         D_80365E00[sp28] = 0;
     }
+
     D_80365E3C = 1;
     sp24 = (u8*)D_80365E00;
     for (sp28 = 0; sp28 < 4; sp28++)
     {
         *sp24++ = 0;
     }
+
     sp1c.unk00 = 255;
     sp1c.unk01 = 1;
     sp1c.unk02 = 3;
@@ -131,25 +145,36 @@ s32 __osEepStatus(OSMesgQueue *a0, unkStruct *a1)
     sp1c.unk06 = 255;
     sp1c.unk07 = 255;
     *(unkStruct3 *)sp24 = sp1c;
+
     sp24 += 8;
     sp24[0] = 254;
-    sp2c = __osSiRawStartDma(1, D_80365E00);
+
+    sp2c = __osSiRawStartDma(OS_WRITE, D_80365E00);
     osRecvMesg(a0, NULL, OS_MESG_BLOCK);
+
     D_80365D20 = 5;
-    sp2c = __osSiRawStartDma(0, D_80365E00);
+
+    sp2c = __osSiRawStartDma(OS_READ, D_80365E00);
     osRecvMesg(a0, NULL, OS_MESG_BLOCK);
+
     if (sp2c != 0)
+    {
         return sp2c;
+    }
+
     sp24 = (u8*)D_80365E00;
     for (sp28 = 0; sp28 < 4; sp28++)
     {
         *sp24++ = 0;
     }
+
     sp1c = *(unkStruct3 *)sp24;
     a1->unk03 = (sp1c.unk02 & 0xc0) >> 4;
     a1->unk00 = (sp1c.unk05 << 8) | sp1c.unk04;
     a1->unk02 = sp1c.unk06;
     if (a1->unk03 != 0)
+    {
         return a1->unk03;
+    }
     return 0;
 }

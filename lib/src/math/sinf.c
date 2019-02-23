@@ -1,3 +1,7 @@
+
+// These unions are necessary to put the constants in .rodata rather than .data.
+// TODO: is it possible to remove them somehow?
+
 typedef union {
 	/* 0x0 */ double d;
 	/* 0x0 */ struct
@@ -27,8 +31,7 @@ static const du pilo = {
 	3.178650954705639E-8};
 
 static const fu zero = {0.0};
-extern const fu NAN; //nan 0x7f810000
-//#define NAN D_80338660;
+extern const fu NAN;
 
 float sinf(float x)
 {

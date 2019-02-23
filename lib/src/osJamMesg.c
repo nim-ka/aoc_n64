@@ -1,12 +1,14 @@
 #include "libultra_internal.h"
+
 extern OSThread *D_803348A0;
+
 s32 osJamMesg(OSMesgQueue *mq, OSMesg msg, s32 flag)
 {
     register s32 int_disabled;
     int_disabled = __osDisableInt();
     while (mq->validCount >= mq->msgCount)
     {
-        if (flag == 1)
+        if (flag == OS_MESG_BLOCK)
         {
             D_803348A0->state = OS_STATE_WAITING;
             __osEnqueueAndYield(&mq->fullqueue);

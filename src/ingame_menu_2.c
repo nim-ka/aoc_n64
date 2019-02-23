@@ -11,7 +11,7 @@
 #include "behavior_script.h"
 #include "audio/interface_2.h"
 #include "obj_behaviors.h"
-extern struct MemoryPool *D_8033A124;
+
 struct struct802DE838 {
     s16 unk00;
     s16 unk02;
@@ -268,8 +268,8 @@ void func_802DE424(Gfx *sp28, s32 sp2C, Vec3s sp30, Vec3s sp34, Vec3s sp38) {
     if (sp20 == NULL)
         return;
 
-    sp24 = 0;
-    do {
+    for (sp24 = 0; sp24 < 15; sp24 += 3)
+    {
         sp20[sp24] = ((Vtx *)D_80330648)[0];
         sp20[sp24].v.ob[0] = sp30[0] + (D_80360090 + (sp2C + sp24 / 3))->unk04;
         sp20[sp24].v.ob[1] = sp30[1] + (D_80360090 + (sp2C + sp24 / 3))->unk08;
@@ -285,7 +285,6 @@ void func_802DE424(Gfx *sp28, s32 sp2C, Vec3s sp30, Vec3s sp34, Vec3s sp38) {
         sp20[sp24 + 2].v.ob[1] = sp38[1] + (D_80360090 + (sp2C + sp24 / 3))->unk08;
         sp20[sp24 + 2].v.ob[2] = sp38[2] + (D_80360090 + (sp2C + sp24 / 3))->unk0C;
     }
-    while ((sp24 += 3) < 15);
 
     gSPVertex(sp28, VIRTUAL_TO_PHYSICAL(sp20), 15, 0);
 }
@@ -346,7 +345,6 @@ Gfx *func_802DE838(s32 sp80, Vec3s sp84, Vec3s sp88, Vec3s sp8C) {
 
     if (sp80 == 1 || sp80 == 3) {
         gSPDisplayList(sp50++, &tiny_bubble_dl_0B006A50);
-        do {} while (0);
     } else if (sp80 == 2) {
         gSPDisplayList(sp50++, &tiny_bubble_dl_0B006CD8);  
     }

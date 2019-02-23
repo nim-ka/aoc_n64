@@ -3,23 +3,13 @@
 #include <string.h>
 #include "printf.h"
 #include <unused.h>
-#define BUFF_LEN 0x20
-s16 _Ldunscale(s16 *, printf_struct *);
-void _Genld(printf_struct *, u8, u8 *, s16, s16);
-const double D_80338670[] = {10e0L, 10e1L, 10e3L, 10e7L, 10e15L, 10e31L, 10e63L, 10e127L, 10e255L};
 
-const u8 D_803386B8[] = "NaN";
-const u8 D_803386BC[] = "Inf";
-const u8 D_803386C0[] = "0"; //(0x3000000000000000);
-typedef union {
-    struct
-    {
-        u32 upper;
-        u32 lower;
-    } i;
-    f64 d;
-} du;
-const du D_803386C8 = {{0x4197d784, 0x00000000}}; //10.0e8;
+#define BUFF_LEN 0x20
+
+static s16 _Ldunscale(s16 *, printf_struct *);
+static void _Genld(printf_struct *, u8, u8 *, s16, s16);
+
+const double D_80338670[] = {10e0L, 10e1L, 10e3L, 10e7L, 10e15L, 10e31L, 10e63L, 10e127L, 10e255L};
 
 /* float properties */
 #define _D0 0
@@ -53,6 +43,7 @@ const du D_803386C8 = {{0x4197d784, 0x00000000}}; //10.0e8;
 #define _D2 2
 #define _D3 3
 #endif
+
 void _Ldtob(printf_struct *args, u8 type)
 {
     u8 buff[BUFF_LEN];
@@ -91,7 +82,7 @@ void _Ldtob(printf_struct *args, u8 type)
     err = _Ldunscale(&exp, args);
     if (err > 0)
     {
-        memcpy(args->buff, err == 2 ? D_803386B8 : D_803386BC, args->part2_len = 3);
+        memcpy(args->buff, err == 2 ? "NaN" : "Inf", args->part2_len = 3);
         return;
     }
     if (err == 0)
@@ -143,7 +134,7 @@ void _Ldtob(printf_struct *args, u8 type)
             lo = val;
             if ((gen -= 8) > 0)
             {
-                val = (val - lo) * D_803386C8.d;
+                val = (val - lo) * 1.0e8;
             }
             ptr = ptr + 8;
             for (j = 8; lo > 0 && --j >= 0;)
@@ -194,7 +185,7 @@ void _Ldtob(printf_struct *args, u8 type)
     _Genld(args, type, ptr, nsig, exp);
 }
 
-s16 _Ldunscale(s16 *pex, printf_struct *px)
+static s16 _Ldunscale(s16 *pex, printf_struct *px)
 {
 
     unsigned short *ps = (unsigned short *)px;
@@ -218,13 +209,14 @@ s16 _Ldunscale(s16 *pex, printf_struct *px)
         return (0);
     }
 }
-void _Genld(printf_struct *px, u8 code, u8 *p, s16 nsig, s16 xexp)
+
+static void _Genld(printf_struct *px, u8 code, u8 *p, s16 nsig, s16 xexp)
 {
     u8 point = '.';
     if (nsig <= 0)
         nsig = 1,
 
-        p = (u8 *)D_803386C0;
+        p = (u8 *)"0";
 
     if (code == 'f' || ((code == 'g' || code == 'G') && (-4 <= xexp) && (xexp < px->precision)))
     {           /* 'f' format */

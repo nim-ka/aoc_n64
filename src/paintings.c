@@ -23,7 +23,7 @@ struct Struct802D1EE0
     u8 filler2[5];
     u8 unk7;
 };
-extern struct MemoryPool *D_8033A124;
+
 extern u8 seg2_dl_02014A30[];
 extern u8 seg2_dl_02014970[];
 extern u8 seg2_dl_020149A8[];

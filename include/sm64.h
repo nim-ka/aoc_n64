@@ -13,18 +13,6 @@
 #include "mario_animation_ids.h"
 #include "unused.h"
 
-#ifdef VERSION_US
-// FIXME: find out what these are
-extern s16 D_U_8033BACA;
-
-extern int func_u_80321D5C(void);
-extern void func_u_803219AC();
-#else
-// Make name indices sync up on JP and US, so that bss reorderings don't happen
-// on just one version.
-typedef int BssDummy;
-#endif
-
 #define ARRAY_COUNT(arr) (s32)(sizeof(arr) / sizeof(arr[0]))
 
 #define SURFACE_DEFAULT                      0x0000

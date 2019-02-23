@@ -1,9 +1,10 @@
 #include "libultra_internal.h"
+
 extern OSTime _osCurrentTime;
 extern u32 D_80365DA8;
+
 OSTime osGetTime()
 {
-
     u32 sp34;
     u32 sp30;
     OSTime sp28;

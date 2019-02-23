@@ -16,14 +16,6 @@ void __osDequeueThread(OSThread **queue, OSThread *thread)
     register OSThread *a3;
     a2 = queue;
     a3 = *a2;
-    //  move  $a2, $a0
-    //  lw    $a3, ($a2)
-    //  addiu $sp, $sp, -8
-    //  beqz  $a3, .L80326598
-    //   nop
-    //.L80326574:
-    //  bne   $a3, $a1, .L80326588
-    //   nop
     while (a3 != NULL)
     {
         if (a3 == thread)
@@ -31,21 +23,7 @@ void __osDequeueThread(OSThread **queue, OSThread *thread)
             *a2 = thread->next;
             return;
         }
-        //  lw    $t6, ($a1)
-        //  b     .L80326598
-        //   sw    $t6, ($a2)
-        //.L80326588:
-        //  move  $a2, $a3
         a2 = &a3->next;
-        //  lw    $a3, ($a2)
         a3 = *a2;
-        //  bnez  $a3, .L80326574
-        //   nop
-        //a3 = a3->next;
     }
-    //a3->next = thread->next;
-
-    //.L80326598:
-    //  jr    $ra
-    //   addiu $sp, $sp, 8
 }
