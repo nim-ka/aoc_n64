@@ -788,4 +788,4 @@ func_04000AD0:
 /* 000B68 00000B28 00000000 */   nop   
 /* 000B6C 00000B2C 00000000 */  nop   
 
-.include "data/ipl3_font.s"
+.incbin "lib/bin/ipl3_font.bin"

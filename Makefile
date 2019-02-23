@@ -45,6 +45,7 @@ BIN_DIRS := bin
 
 ULTRA_SRC_DIRS := lib/src lib/src/math
 ULTRA_ASM_DIRS := lib/asm lib/data
+ULTRA_BIN_DIRS := lib/bin
 
 LEVEL_DIRS := $(patsubst levels/%,%,$(dir $(wildcard levels/*/header.s)))
 
@@ -114,6 +115,7 @@ MIO0TOOL = $(TOOLS_DIR)/mio0
 N64CKSUM = $(TOOLS_DIR)/n64cksum
 N64GRAPHICS = $(TOOLS_DIR)/n64graphics
 TEXTCONV = $(TOOLS_DIR)/textconv
+IPLFONTUTIL = $(TOOLS_DIR)/iplfontutil
 EMULATOR = mupen64plus
 EMU_FLAGS = --noosd
 LOADER = loader64
@@ -151,6 +153,11 @@ load: $(ROM)
 
 libultra: $(BUILD_DIR)/libultra.a
 
+asm/boot.s: $(BUILD_DIR)/lib/bin/ipl3_font.bin
+
+$(BUILD_DIR)/lib/bin/ipl3_font.bin: lib/ipl3_font.png | $(BUILD_DIR)
+	$(IPLFONTUTIL) e $< $@
+
 $(BUILD_DIR)/include/text_strings.h: include/text_strings.h.in | $(BUILD_DIR)
 	$(TEXTCONV) charmap.txt $< $@
 
@@ -166,7 +173,7 @@ $(MIO0_DIR)/%.mio0: bin/%.bin
 	$(MIO0TOOL) $< $@
 
 $(BUILD_DIR):
-	mkdir -p $(BUILD_DIR) $(addprefix $(BUILD_DIR)/,$(SRC_DIRS) $(ASM_DIRS) $(ULTRA_SRC_DIRS) $(ULTRA_ASM_DIRS) $(BIN_DIRS) $(TEXTURE_DIRS) $(addprefix levels/,$(LEVEL_DIRS)) $(addprefix bin/,$(LEVEL_DIRS)) include text) $(MIO0_DIR) $(addprefix $(MIO0_DIR)/,$(LEVEL_DIRS))
+	mkdir -p $(BUILD_DIR) $(addprefix $(BUILD_DIR)/,$(SRC_DIRS) $(ASM_DIRS) $(ULTRA_SRC_DIRS) $(ULTRA_ASM_DIRS) $(ULTRA_BIN_DIRS) $(BIN_DIRS) $(TEXTURE_DIRS) $(addprefix levels/,$(LEVEL_DIRS)) $(addprefix bin/,$(LEVEL_DIRS)) include text) $(MIO0_DIR) $(addprefix $(MIO0_DIR)/,$(LEVEL_DIRS))
 
 # Make sure build directory exists before compiling objects
 $(O_FILES): | $(BUILD_DIR)
