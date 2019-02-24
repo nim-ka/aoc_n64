@@ -286,12 +286,12 @@ $(BUILD_DIR)/lib/src/gu%.o: OPT_FLAGS := -O3
 $(BUILD_DIR)/lib/src/al%.o: OPT_FLAGS := -O3
 
 $(BUILD_DIR)/lib/src/math/%.o: lib/src/math/%.c
-	@$(CC_CHECK) -MMD -MT $@ -MF $(BUILD_DIR)/lib/src/$*.d $<
+	@$(CC_CHECK) -MMD -MP -MT $@ -MF $(BUILD_DIR)/lib/src/math/$*.d $<
 	$(CC) -c $(CFLAGS) -o $@ $<
 	tools/patch_libultra_math $@ || rm $@
 
 $(BUILD_DIR)/%.o: %.c
-	@$(CC_CHECK) -MMD -MT $@ -MF $(BUILD_DIR)/$*.d $<
+	@$(CC_CHECK) -MMD -MP -MT $@ -MF $(BUILD_DIR)/$*.d $<
 	$(CC) -c $(CFLAGS) -o $@ $<
 
 
