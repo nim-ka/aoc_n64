@@ -21,7 +21,7 @@
 
 4] Define "QEMU_IRIX" in your bashrc to point to this qemu-irix executable.
 
-5] After setting this repository up, run `make -C tools` and then `make` to build the ROM. Make sure your path is not too long or else this process will error, as the emulated IDO compiler cannot handle paths longer than 255 characters.
+5] After setting this repository up, run `make` to build the ROM. Make sure your path is not too long or else this process will error, as the emulated IDO compiler cannot handle paths longer than 255 characters.
 
 # Windows
 

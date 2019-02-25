@@ -122,6 +122,9 @@ LOADER = loader64
 LOADER_FLAGS = -vwf
 SHA1SUM = sha1sum
 
+# Make tools if out of date
+DUMMY != make -s -C tools >&2
+
 ###################### Dependency Check #####################
 
 BINUTILS_VER_MAJOR := $(shell $(LD) --version | grep ^GNU | sed 's/^.* //; s/\..*//g')
@@ -318,6 +321,9 @@ $(BUILD_DIR)/$(TARGET).objdump: $(ELF)
 
 .PHONY: all clean default diff test load libultra
 .PRECIOUS: $(BUILD_DIR)/mio0/%.mio0 $(BUILD_DIR)/bin/%.elf $(BUILD_DIR)/mio0/%.mio0.s
+
+# Remove built-in rules, to improve performance
+MAKEFLAGS += --no-builtin-rules
 
 -include $(DEP_FILES)
 
