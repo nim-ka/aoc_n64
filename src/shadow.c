@@ -424,11 +424,11 @@ void add_shadow_to_display_list(
     }
     switch (shadowVertexType) {
         case SHADOW_WITH_9_VERTS:
-            gSPVertex(displayListHead++, verts, 9, 0x80);
+            gSPVertex(displayListHead++, verts, 9, 0);
             gSPDisplayList(displayListHead++, seg2_dl_020145D8);
             break;
         case SHADOW_WITH_4_VERTS:
-            gSPVertex(displayListHead++, verts, 4, 0x30);
+            gSPVertex(displayListHead++, verts, 4, 0);
             gSPDisplayList(displayListHead++, seg2_dl_02014620);
             break;
     }
