@@ -299,23 +299,7 @@ static void func_802D605C(int x, int y, int pos)
     func_802D5FEC(&sp34, &sp30);
     sp2C = sp34;
     sp28 = sp30;
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xE4000000
-                    | ((((sp2C + 15) << 2) & 0xFFF) << 12)
-                    | (((sp28 + 15) << 2) & 0xFFF);
-        g->words.w1 = (((sp2C << 2) & 0xFFF) << 12) | ((sp28 << 2) & 0xFFF);
-    }
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xB3000000;
-        g->words.w1 = 0;
-    }
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xB2000000;
-        g->words.w1 = 0x10000400;
-    }
+    gSPTextureRectangle(gDisplayListHead++, sp2C << 2, sp28 << 2, (sp2C + 15) << 2, (sp28 + 15) << 2, 0, 0, 0, 4096, 1024);
 }
 
 void func_802D61A8(void)

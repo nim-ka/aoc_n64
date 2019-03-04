@@ -153,18 +153,10 @@ void func_8027B4E8(struct GraphNode002 *a)
         float bottom = (D_8032CF90->y + D_8032CF90->height) / 2.0f * a->unk14;
 
         guOrtho(mtx, left, right, bottom, top, -2.0f, 2.0f, 1.0f);
-
-        // FIXME: What command is this?
-        {
-            Gfx *g = gDisplayListHead++;
-            g->words.w0 = 0xB4000000;
-            g->words.w1 = 0xFFFF;
-        }
-
+        gSPPerspNormalize(gDisplayListHead++, 0xFFFF);
         gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(mtx), G_MTX_PROJECTION | G_MTX_LOAD);
 
         func_8027D8F8(a->node.children);
-
     }
 }
 
@@ -179,14 +171,7 @@ void func_8027B6C4(struct GraphNodeCamFrustum *a)
         float aspect = (float)D_8032CF90->width / (float)D_8032CF90->height;
 
         guPerspective(mtx, &perspNorm, a->fov, aspect, a->near, a->far, 1.0f);
-
-        // FIXME: What command is this?
-        {
-            Gfx *g = gDisplayListHead++;
-            g->words.w0 = 0xB4000000;
-            g->words.w1 = perspNorm;
-        }
-
+        gSPPerspNormalize(gDisplayListHead++, perspNorm);
         gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(mtx), G_MTX_PROJECTION | G_MTX_LOAD);
 
         D_8032CF98 = a;

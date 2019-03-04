@@ -1,5 +1,7 @@
 /* GNU as assembler macros for F3D GBI */
 
+.set UCODE_SIZE, 0x800
+
 /* commands with no parameters */
 .macro f3d_noparam cmd
    .word (\cmd << 24), 0x00000000
@@ -42,7 +44,11 @@
 /* 04: G_VTX */
 .set G_VTX, 0x04
 .macro gsSPVertex verts, num, index
+   .ifndef F3DEX_GBI
    gsDma1p G_VTX, \verts, 16*\num, ((\num)-1)<<4|(\index)
+   .else
+   gsDma1p G_VTX, \verts, (\num)<<10|(16*(\num)-1), (2*\index)
+   .endif
 .endm
 
 /* 05: reserved */
@@ -68,6 +74,22 @@
 .set G_LIGHTING,           0x00020000
 .set G_TEXTURE_GEN,        0x00040000
 .set G_TEXTURE_GEN_LINEAR, 0x00080000
+
+.ifdef F3DEX_GBI
+/* AF: G_LOAD_UCODE */
+.set G_LOAD_UCODE, 0xAF
+.macro gsSPLoadUcode ucdstart, uctstart
+   .word G_RDPHALF_1 << 24, \ucdstart + 0x80000000
+   .hword G_LOAD_UCODE << 8, UCODE_SIZE
+   .word \uctstart + 0x80000000
+.endm
+
+/* B1: G_TRI2 */
+.set G_TRI2, 0xB1
+.macro gsSP2Triangles v0, v1, v2, flag0, v3, v4, v5, flag1 /* Note: flag has no effect on this variant of gSP2Triangles */
+   .byte G_TRI2, \v0*2, \v1*2, \v2*2, 0x00, \v3*2, \v4*2, \v5*2
+.endm
+.endif
 
 /* B3: G_RDPHALF_2 */
 .set G_RDPHALF_2, 0xB3
@@ -139,9 +161,13 @@
 
 /* BF: G_TRI1 */
 .set G_TRI1, 0xBF
-.macro gsSP1Triangle v0, v1, v2, flag
+.macro gsSP1Triangle v0, v1, v2, flag /* Note: flag has no effect on this variant of gSP1Triangle */
    .word G_TRI1 << 24
-   .byte \flag, \v0*10, \v1*10, \v2*10
+   .ifndef F3DEX_GBI
+   .byte 0x00, \v0*10, \v1*10, \v2*10
+   .else
+   .byte 0x00, \v0*2, \v1*2, \v2*2
+   .endif
 .endm
 
 /* C0: G_NOOP */
