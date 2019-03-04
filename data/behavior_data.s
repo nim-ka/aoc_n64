@@ -2387,7 +2387,9 @@ glabel beh_chirp_chirp # 21E4
     begin OBJ_LIST_DEFAULT
     obj_set_int objVarF4, 1
     goto .Lbeh_chirp_chirp_21F4
-.Lbeh_chirp_chirp_21F4: # 21F4
+
+glabel beh_chirp_chirp_unused # 21F4
+.Lbeh_chirp_chirp_21F4: 
     unknown_35
     obj_or_int objFlags, (OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
     begin_loop

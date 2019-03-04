@@ -1,0 +1,70 @@
+// jumping_box.c.inc
+
+void ActionJumpingBox0(void)
+{
+    if(o->oSubAction == 0)
+    {
+        if(o->oJumpingBoxUnkF8-- < 0)
+            o->oSubAction++;
+        if(o->oTimer > o->oJumpingBoxUnkF4)
+        {
+            o->oVelY = RandomFloat() * 5.0f + 15.0f;
+            o->oSubAction++;
+        }
+    }
+    else if(o->oMoveFlags & 2)
+    {
+        o->oSubAction = 0;
+        o->oJumpingBoxUnkF8 = RandomFloat() * 60.0f + 30.0f;
+    }
+}
+
+void ActionJumpingBox1(void)
+{
+    if(o->oMoveFlags & (0x200 | 0x40 | 0x20 | 0x10 | 0x8 | 0x1))
+    {
+        mark_object_for_deletion(o);
+        func_802A3004();
+    }
+}
+
+void (*TableJumpingBoxActions[])(void) = {ActionJumpingBox0,ActionJumpingBox1};
+struct ObjectHitbox D_8032F4B0 = {0x8000000,0,0,0,0,120,300,0,0};
+
+void func_802B1F84(void)
+{
+    obj_set_model(129);
+    obj_scale(0.5f);
+    set_object_hitbox(o,&D_8032F498);
+    obj_update_floor_and_walls();
+    obj_move_standard(78);
+    obj_call_action_function(TableJumpingBoxActions);
+}
+
+void BehJumpingBoxLoop(void)
+{
+    switch(o->oHeldState)
+    {
+    case HELD_FREE:
+        func_802B1F84();
+        break;
+    case HELD_HELD:
+        copy_object_pos(o,gMarioObject);
+        obj_set_model(130);
+        func_8029FA5C(-1,0);
+        break;
+    case HELD_THROWN:
+        obj_get_thrown_or_placed(40.0f,20.0f,1);
+        break;
+    case HELD_DROPPED:
+        obj_get_dropped();
+        o->oAction = 1;
+        break;
+    }
+    if(o->oInteractStatus & 0x400000)
+    {
+        create_sound_spawner(0x3041C081);
+        func_802A3C98(46.0f,1);
+    }
+    o->oInteractStatus = 0;
+}

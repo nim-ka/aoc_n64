@@ -1,0 +1,35 @@
+// rotating_platform.c.inc
+
+void BehWFRotatingWoodenPlatformLoop(void)
+{
+    if(o->oAction == 0)
+    {
+        o->oAngleVelYaw = 0;
+        if(o->oTimer > 60)
+        {
+            o->oAction++;
+            ; // needed to match
+        }
+    }
+    else
+    {
+    o->oAngleVelYaw = 0x100;
+    if(o->oTimer > 126)
+        o->oAction = 0;
+    PlaySound(0x40080001);
+    }
+    obj_rotate_face_angle_using_vel();
+}
+
+void BehRotatingPlatformLoop(void)
+{
+    s8 sp1F = o->oBehParams >> 24;
+    if(o->oTimer == 0)
+    {
+        set_object_collision_data(o,D_8032F24A[o->oBehParams2ndByte].unk1);
+        o->oCollisionDistance = D_8032F24A[o->oBehParams2ndByte].unk2;
+        obj_scale(D_8032F24A[o->oBehParams2ndByte].unk0 * 0.01f);
+    }
+    o->oAngleVelYaw = sp1F << 4;
+    o->oFaceAngleYaw += o->oAngleVelYaw;
+}

@@ -2874,6 +2874,9 @@ static struct Object *func_802A36D8(s32 sp20, s32 sp24)
     return sp1C;
 }
 
+// old unused initializer for 2d star spawn behavior.
+// speculation: was 2d spawn handler from spaceworld 1995.
+// uses behavior parameters not used in the current sparkle code.
 void Unknown802A3750(void)
 {
     func_802A36D8(0, 0);
