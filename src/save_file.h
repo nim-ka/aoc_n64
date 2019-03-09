@@ -44,11 +44,14 @@ extern struct Struct8032CE34 D_8032CE34;
 
 extern u8 D_8032CE20;
 extern u8 D_8032CE24;
-extern u8 D_8033A130;
-extern u8 D_8033A131;
-extern u8 D_8033A132;
-extern u8 D_8033A133;
-extern u8 D_8033A134;
+
+// Variables for setting a warp checkpoint.
+extern u8 gWarpCheckpointActNum;
+extern u8 gWarpCheckpointCourseNum;
+extern u8 gWarpCheckpointLevelID;
+extern u8 gWarpCheckpointAreaNum;
+extern u8 gWarpCheckpointWarpNode;
+
 extern s8 gMainMenuDataModified;
 extern s8 gSaveFileModified;
 
@@ -75,8 +78,9 @@ s32 save_file_get_cap_pos(Vec3s capPos);
 void save_file_set_sound_mode(u16 mode);
 u16 save_file_get_sound_mode(void);
 void save_file_move_cap_to_default_location(void);
-void func_8027A0E8(void);
-void func_8027A100(struct WarpNode *a);
-s32 func_8027A168(struct WarpNode *a);
+
+void disable_warp_checkpoint(void);
+void check_if_should_set_warp_checkpoint(struct WarpNode *a);
+s32 check_warp_checkpoint(struct WarpNode *a);
 
 #endif

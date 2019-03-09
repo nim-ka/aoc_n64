@@ -5427,7 +5427,7 @@ s16 func_8028E88C(struct Struct80280550 *a)
                     break;
                     
                 case SURFACE_0065:
-                    if (D_8033A758 == 1)
+                    if (gCurrActNum == 1)
                         func_8028CFFC(a);
                     else
                         func_8028D098(a, 60);

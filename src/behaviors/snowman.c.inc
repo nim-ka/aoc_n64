@@ -166,7 +166,7 @@ void BehSnowmansHeadInit(void) {
     o->oBuoyancy = 2.0f;
 
     if ((sp37 & (1 << sp36))
-        && D_8033A758 != sp36 + 1) {
+        && gCurrActNum != sp36 + 1) {
         func_8029E230(o, 0, 210, beh_big_snowman_whole, -4230, -1344, 1813, 0, 0, 0);
         o->oPosX = -4230.0f;
         o->oPosY = -994.0f;

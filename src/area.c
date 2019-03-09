@@ -26,9 +26,9 @@ struct Area gAreaData[8];
 struct Struct8033A740 D_8033A740;
 
 s16 gCurrCourseNum;
-s16 D_8033A758;
+s16 gCurrActNum;
 s16 gCurrAreaIndex;
-s16 D_8033A75C;
+s16 gSavedCourseNum;
 s16 D_8033A75E;
 s16 D_8033A760;
 

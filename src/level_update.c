@@ -646,14 +646,14 @@ static void initiate_painting_warp(void)
                 warpNode = *pWarpNode;
 
                 if (!(warpNode.destLevel & 0x80))
-                    D_8032C9E0 = func_8027A168(&warpNode);
+                    D_8032C9E0 = check_warp_checkpoint(&warpNode);
 
                 initiate_warp(
                     warpNode.destLevel & 0x7F,
                     warpNode.destArea,
                     warpNode.destNode,
                     0);
-                func_8027A100(&warpNode);
+                check_if_should_set_warp_checkpoint(&warpNode);
 
                 func_8027ADAC(1, 30, 255, 255, 255, 45);
                 level_set_transition(74, basic_update);
@@ -690,7 +690,7 @@ s16 level_trigger_warp(struct MarioState *m, s32 warpOp)
         case WARP_OP_DEMO_END:
             sDelayedWarpTimer = 20;
             sSourceWarpNodeId = WARP_NODE_F0;
-            D_8033A75C = 0;
+            gSavedCourseNum = 0;
             val04 = FALSE;
             func_8027ABF0(0x09, 0x14, 0x00, 0x00, 0x00);
             break;
@@ -699,14 +699,14 @@ s16 level_trigger_warp(struct MarioState *m, s32 warpOp)
             sDelayedWarpTimer = 60;
             sSourceWarpNodeId = WARP_NODE_F0;
             val04 = FALSE;
-            D_8033A75C = 0;
+            gSavedCourseNum = 0;
             func_8027ABF0(0x01, 0x3C, 0x00, 0x00, 0x00);
             break;
 
         case WARP_OP_STAR_EXIT:
             sDelayedWarpTimer = 32;
             sSourceWarpNodeId = WARP_NODE_F0;
-            D_8033A75C = 0;
+            gSavedCourseNum = 0;
             func_8027ABF0(0x11, 0x20, 0x00, 0x00, 0x00);
             break;
 
@@ -850,7 +850,7 @@ static void initiate_delayed_warp(void)
                 func_803208C0(2, 0x3FF);
 
                 gCurrCreditsEntry += 1;
-                D_8033A758 = gCurrCreditsEntry->unk02 & 0x07;
+                gCurrActNum = gCurrCreditsEntry->unk02 & 0x07;
                 if ((gCurrCreditsEntry + 1)->levelNum == 0)
                     destWarpNode = WARP_NODE_CREDITS_END;
                 else
@@ -872,7 +872,7 @@ static void initiate_delayed_warp(void)
                     warpNode->node.destNode,
                     sDelayedWarpArg);
 
-                func_8027A100(&warpNode->node);
+                check_if_should_set_warp_checkpoint(&warpNode->node);
                 if (sCurrWarpType != WARP_TYPE_CHANGE_LEVEL)
                     level_set_transition(2, NULL);
                 break;
@@ -1031,7 +1031,7 @@ static s32 play_mode_paused(void)
         {
             initiate_warp(LEVEL_CASTLE, 1, 0x1F, 0);
             func_80249788(0, 0);
-            D_8033A75C = 0;
+            gSavedCourseNum = 0;
         }
 
         D_8033B4D8 &= ~0x8000;
@@ -1265,12 +1265,12 @@ s32 lvl_init_from_save_file(UNUSED s16 arg0, s32 levelNum)
 
     gCurrLevelNum = levelNum;
     gCurrCourseNum = COURSE_NONE;
-    D_8033A75C = 0;
+    gSavedCourseNum = 0;
     gCurrCreditsEntry = NULL;
     D_8032CE34.specialTripleJump = 0;
 
     func_80254CE0();
-    func_8027A0E8();
+    disable_warp_checkpoint();
     save_file_move_cap_to_default_location();
     func_802875DC();
     func_802E2F40();
@@ -1302,11 +1302,11 @@ s32 lvl_set_current_level(UNUSED s16 arg0, s32 levelNum)
         D_8032CE30 = save_file_get_star_flags(gCurrSaveFileNum - 1, gCurrCourseNum - 1);
     }
 
-    if (D_8033A75C != gCurrCourseNum)
+    if (gSavedCourseNum != gCurrCourseNum)
     {
-        D_8033A75C = gCurrCourseNum;
+        gSavedCourseNum = gCurrCourseNum;
         nop_change_course();
-        func_8027A0E8();
+        disable_warp_checkpoint();
     }
 
     if (gCurrCourseNum > COURSE_STAGES_MAX || val4 != 0)

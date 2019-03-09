@@ -492,7 +492,7 @@ static void level_cmd_init_mario(void)
 
 static void level_cmd_place_object(void)
 {
-    u8 val7 = 1 << (D_8033A758 + 31);
+    u8 val7 = 1 << (gCurrActNum + 31);
     u16 val4;
     struct SpawnInfo *spawnInfo;
 
@@ -635,7 +635,7 @@ static void level_cmd_create_whirlpool(void)
     if (CMD_GET(u8, 3) == 0 ||
         (CMD_GET(u8, 3) == 1 && !beatBowser2) ||
         (CMD_GET(u8, 3) == 2 && beatBowser2) ||
-        (CMD_GET(u8, 3) == 3 && D_8033A758 >= 2))
+        (CMD_GET(u8, 3) == 3 && gCurrActNum >= 2))
     {
         if (sCurrAreaIndex != -1 && index < 2)
         {
@@ -777,7 +777,7 @@ static void level_cmd_get_or_set_var(void)
         {
         case 0: gCurrSaveFileNum = sRegister; break;
         case 1: gCurrCourseNum   = sRegister; break;
-        case 2: D_8033A758       = sRegister; break;
+        case 2: gCurrActNum      = sRegister; break;
         case 3: gCurrLevelNum    = sRegister; break;
         case 4: gCurrAreaIndex   = sRegister; break;
         }
@@ -788,7 +788,7 @@ static void level_cmd_get_or_set_var(void)
         {
         case 0: sRegister = gCurrSaveFileNum; break;
         case 1: sRegister = gCurrCourseNum;   break;
-        case 2: sRegister = D_8033A758;       break;
+        case 2: sRegister = gCurrActNum;      break;
         case 3: sRegister = gCurrLevelNum;    break;
         case 4: sRegister = gCurrAreaIndex;   break;
         }

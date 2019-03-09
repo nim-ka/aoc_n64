@@ -121,7 +121,7 @@ int run_press_start_demo_timer(int timer)
                 gCurrDemoInput = ((struct DemoInput *) gDemo.targetAnim) + 1; // add 1 (+4) to the pointer to skip the demoID.
                 timer = (s8)((struct DemoInput *) gDemo.targetAnim)->timer; // TODO: see if making timer s8 matches
                 gCurrSaveFileNum = 1;
-                D_8033A758 = 1;
+                gCurrActNum = 1;
             }
         }
         else // activity was detected, so reset the demo countdown.
@@ -165,7 +165,7 @@ s16 level_select_input_loop(void)
         gCurrLevelNum = LEVEL_MAX; // exceeded min. set to max.
 
     gCurrSaveFileNum = 4; // file 4 is used for level select tests
-    D_8033A758 = 6;
+    gCurrActNum = 6;
     print_text_centered(160, 80, "SELECT STAGE");
     print_text_centered(160, 30, "PRESS START BUTTON");
     print_text_fmt_int(40, 60, "%2d", gCurrLevelNum);

@@ -59,11 +59,12 @@ struct SaveBuffer
     struct MainMenuSaveData menuData[2];
 };
 
-u8 D_8033A130;
-u8 D_8033A131;
-u8 D_8033A132;
-u8 D_8033A133;
-u8 D_8033A134;
+u8 gWarpCheckpointActNum;
+u8 gWarpCheckpointCourseNum;
+u8 gWarpCheckpointLevelID;
+u8 gWarpCheckpointAreaNum;
+u8 gWarpCheckpointWarpNode;
+
 s8 gMainMenuDataModified;
 s8 gSaveFileModified;
 
@@ -731,38 +732,52 @@ void save_file_move_cap_to_default_location(void)
     }
 }
 
-void func_8027A0E8(void)
+void disable_warp_checkpoint(void)
 {
-    D_8033A131 = 0;
+    // check_warp_checkpoint() checks to see if gWarpCheckpointCourseNum != 0
+    gWarpCheckpointCourseNum = 0;
 }
 
-void func_8027A100(struct WarpNode *a)
+/**
+ * Checks the upper bit of the WarpNode->destLevel byte to see if the 
+ * game should set a warp checkpoint.
+ */
+void check_if_should_set_warp_checkpoint(struct WarpNode *a)
 {
     if (a->destLevel & 0x80)
     {
-        D_8033A130 = D_8033A758;
-        D_8033A131 = gCurrCourseNum;
-        D_8033A132 = a->destLevel & 0x7F;
-        D_8033A133 = a->destArea;
-        D_8033A134 = a->destNode;
+        // Overwrite the warp checkpoint variables.
+        gWarpCheckpointActNum = gCurrActNum;
+        gWarpCheckpointCourseNum = gCurrCourseNum;
+        gWarpCheckpointLevelID = a->destLevel & 0x7F;
+        gWarpCheckpointAreaNum = a->destArea;
+        gWarpCheckpointWarpNode = a->destNode;
     }
 }
 
-s32 func_8027A168(struct WarpNode *a)
+/**
+ * Checks to see if a checkpoint is properly active or not. This will
+ * also update the level, area, and destination node of the input WarpNode.
+ * returns TRUE if input WarpNode was updated, and FALSE if not.
+ */
+s32 check_warp_checkpoint(struct WarpNode *a)
 {
-    s16 sp6 = 0;
-    s16 sp4 = D_8032CE34.levelToCourseNumTable[a->destLevel & 0x7F];
+    s16 isWarpCheckpointActive = FALSE;
+    s16 currCourseNum = D_8032CE34.levelToCourseNumTable[a->destLevel & 0x7F];
 
-    if (D_8033A131 != 0 && D_8033A75C == sp4 && D_8033A130 == D_8033A758)
+    // gSavedCourseNum is only used in this function. 
+    if (gWarpCheckpointCourseNum != 0 && gSavedCourseNum == currCourseNum && gWarpCheckpointActNum == gCurrActNum)
     {
-        a->destLevel = D_8033A132;
-        a->destArea = D_8033A133;
-        a->destNode = D_8033A134;
-        sp6 = 1;
+        a->destLevel = gWarpCheckpointLevelID;
+        a->destArea = gWarpCheckpointAreaNum;
+        a->destNode = gWarpCheckpointWarpNode;
+        isWarpCheckpointActive = TRUE;
     }
     else
     {
-        D_8033A131 = 0;
+        // Disable the warp checkpoint just incase the other 2 conditions failed?
+        gWarpCheckpointCourseNum = 0;
     }
-    return sp6;
+
+    return isWarpCheckpointActive;
 }

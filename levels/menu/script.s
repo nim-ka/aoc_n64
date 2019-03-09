@@ -56,7 +56,7 @@ glabel level_main_menu_entry_2
     set_menu_music /*seq*/ 0x000D
     call /*arg*/ 0, /*func*/ LevelProc_80177560
     call_loop /*arg*/ 0, /*func*/ LevelProc_80177610
-    get_or_set /*op*/ OP_SET, /*var*/ VAR_D_8033A758
+    get_or_set /*op*/ OP_SET, /*var*/ VAR_CURR_ACT_NUM
     cmd38 /*unk2*/ 0x00BE
     transition /*unk2*/ 1, /*unk3*/ 16, /*color*/ -1, -1, -1
     sleep /*frames*/ 16
