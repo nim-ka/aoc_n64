@@ -2329,7 +2329,7 @@ static void end_peach_cutscene_spawn_peach(struct MarioState *m)
 {
     if (m->actionTimer == 1)
     {
-        func_8027ABF0(1, 14, 255, 255, 255);
+        play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 14, 255, 255, 255);
     }
     if (m->actionTimer == 2)
     {
@@ -2337,7 +2337,7 @@ static void end_peach_cutscene_spawn_peach(struct MarioState *m)
     }
     if (m->actionTimer == 44)
     {
-        func_8027ABF0(0, 192, 255, 255, 255);
+        play_transition(WARP_TRANSITION_FADE_FROM_COLOR, 192, 255, 255, 255);
     }
     if (m->actionTimer == 40)
     {

@@ -48,7 +48,7 @@ Gfx *Geo18_802764B0(int a, struct GraphNode *b, Mat4 *c)
 
     if (a == 1)
     {
-        if (gPlayer1Controller->controllerData != NULL && D_8033A740.unk0 == 0)
+        if (gPlayer1Controller->controllerData != NULL && gWarpTransition.isActive == 0)
             gd_copy_p1_contpad(gPlayer1Controller->controllerData);
         sp24 = (Gfx *)PHYSICAL_TO_VIRTUAL(gdm_gettestdl(sp1C->unk18));
         D_8032C6A0 = gd_vblank;

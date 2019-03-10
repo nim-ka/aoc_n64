@@ -187,7 +187,7 @@ static u32 pressed_paused(void)
     u32 val4 = get_dialog_id() >= 0;
     u32 intangible = (gMarioState->action & ACT_FLAG_INTANGIBLE) != 0;
 
-    if (!intangible && !val4 && !D_8033A740.unk0 && sDelayedWarpOp == WARP_OP_NONE &&
+    if (!intangible && !val4 && !gWarpTransition.isActive && sDelayedWarpOp == WARP_OP_NONE &&
         (gPlayer1Controller->buttonPressed & START_BUTTON))
     {
         return TRUE;
@@ -215,7 +215,7 @@ void func_80249788(u32 arg, u32 color)
         color = 0xFF;
 
     func_802491FC(190);
-    func_8027ABF0(0x01, 0x10, color, color, color);
+    play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 0x10, color, color, color);
     level_set_transition(30, NULL);
 
     func_8024975C(arg);
@@ -356,13 +356,13 @@ static void init_mario_after_warp(void)
 
     switch (marioSpawnType)
     {
-    case MARIO_SPAWN_UNKNOWN_03: func_8027ABF0(0x08, 0x10, 0x00, 0x00, 0x00); break;
-    case MARIO_SPAWN_UNKNOWN_01: func_8027ABF0(0x0A, 0x10, 0x00, 0x00, 0x00); break;
-    case MARIO_SPAWN_UNKNOWN_04: func_8027ABF0(0x00, 0x14, 0xFF, 0xFF, 0xFF); break;
-    case MARIO_SPAWN_UNKNOWN_16: func_8027ABF0(0x00, 0x1A, 0xFF, 0xFF, 0xFF); break;
-    case MARIO_SPAWN_UNKNOWN_14: func_8027ABF0(0x0A, 0x10, 0x00, 0x00, 0x00); break;
-    case MARIO_SPAWN_UNKNOWN_27: func_8027ABF0(0x00, 0x10, 0x00, 0x00, 0x00); break;
-    default:                     func_8027ABF0(0x08, 0x10, 0x00, 0x00, 0x00); break;
+    case MARIO_SPAWN_UNKNOWN_03: play_transition(WARP_TRANSITION_FADE_FROM_STAR, 0x10, 0x00, 0x00, 0x00); break;
+    case MARIO_SPAWN_UNKNOWN_01: play_transition(WARP_TRANSITION_FADE_FROM_CIRCLE, 0x10, 0x00, 0x00, 0x00); break;
+    case MARIO_SPAWN_UNKNOWN_04: play_transition(WARP_TRANSITION_FADE_FROM_COLOR, 0x14, 0xFF, 0xFF, 0xFF); break;
+    case MARIO_SPAWN_UNKNOWN_16: play_transition(WARP_TRANSITION_FADE_FROM_COLOR, 0x1A, 0xFF, 0xFF, 0xFF); break;
+    case MARIO_SPAWN_UNKNOWN_14: play_transition(WARP_TRANSITION_FADE_FROM_CIRCLE, 0x10, 0x00, 0x00, 0x00); break;
+    case MARIO_SPAWN_UNKNOWN_27: play_transition(WARP_TRANSITION_FADE_FROM_COLOR, 0x10, 0x00, 0x00, 0x00); break;
+    default:                     play_transition(WARP_TRANSITION_FADE_FROM_STAR, 0x10, 0x00, 0x00, 0x00); break;
     }
 
     if (gCurrDemoInput == NULL)
@@ -475,7 +475,7 @@ static void func_8024A0E0(void)
     sCurrWarpType = WARP_TYPE_NOT_WARPING;
     sDelayedWarpOp = WARP_OP_NONE;
 
-    func_8027ABF0(0x00, 0x14, 0x00, 0x00, 0x00);
+    play_transition(WARP_TRANSITION_FADE_FROM_COLOR, 0x14, 0x00, 0x00, 0x00);
 
     if (gCurrCreditsEntry == NULL || gCurrCreditsEntry == sCreditsSequence)
         func_80249148(gCurrentArea->unk36, gCurrentArea->unk38, 0);
@@ -655,7 +655,7 @@ static void initiate_painting_warp(void)
                     0);
                 check_if_should_set_warp_checkpoint(&warpNode);
 
-                func_8027ADAC(1, 30, 255, 255, 255, 45);
+                play_transition_after_delay(WARP_TRANSITION_FADE_INTO_COLOR, 30, 255, 255, 255, 45);
                 level_set_transition(74, basic_update);
 
                 set_mario_action(gMarioState, ACT_DISAPPEARED, 0);
@@ -692,7 +692,7 @@ s16 level_trigger_warp(struct MarioState *m, s32 warpOp)
             sSourceWarpNodeId = WARP_NODE_F0;
             gSavedCourseNum = 0;
             val04 = FALSE;
-            func_8027ABF0(0x09, 0x14, 0x00, 0x00, 0x00);
+            play_transition(WARP_TRANSITION_FADE_INTO_STAR, 0x14, 0x00, 0x00, 0x00);
             break;
 
         case WARP_OP_CREDITS_END:
@@ -700,14 +700,14 @@ s16 level_trigger_warp(struct MarioState *m, s32 warpOp)
             sSourceWarpNodeId = WARP_NODE_F0;
             val04 = FALSE;
             gSavedCourseNum = 0;
-            func_8027ABF0(0x01, 0x3C, 0x00, 0x00, 0x00);
+            play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 0x3C, 0x00, 0x00, 0x00);
             break;
 
         case WARP_OP_STAR_EXIT:
             sDelayedWarpTimer = 32;
             sSourceWarpNodeId = WARP_NODE_F0;
             gSavedCourseNum = 0;
-            func_8027ABF0(0x11, 0x20, 0x00, 0x00, 0x00);
+            play_transition(WARP_TRANSITION_FADE_INTO_MARIO, 0x20, 0x00, 0x00, 0x00);
             break;
 
         case WARP_OP_DEATH:
@@ -715,7 +715,7 @@ s16 level_trigger_warp(struct MarioState *m, s32 warpOp)
                 sDelayedWarpOp = WARP_OP_GAME_OVER;
             sDelayedWarpTimer = 48;
             sSourceWarpNodeId = WARP_NODE_DEATH;
-            func_8027ABF0(0x13, 0x30, 0x00, 0x00, 0x00);
+            play_transition(WARP_TRANSITION_FADE_INTO_BOWSER, 0x30, 0x00, 0x00, 0x00);
             SetSound(SOUND_MENU_BOWSERLAUGH, D_803320E0);
             break;
 
@@ -729,13 +729,13 @@ s16 level_trigger_warp(struct MarioState *m, s32 warpOp)
                     sSourceWarpNodeId = WARP_NODE_DEATH;
             }
             sDelayedWarpTimer = 20;
-            func_8027ABF0(0x0B, 0x14, 0x00, 0x00, 0x00);
+            play_transition(WARP_TRANSITION_FADE_INTO_CIRCLE, 0x14, 0x00, 0x00, 0x00);
             break;
 
         case WARP_OP_UNKNOWN_01: // enter totwc
             sDelayedWarpTimer = 30;
             sSourceWarpNodeId = WARP_NODE_F2;
-            func_8027ABF0(0x01, 0x1E, 0xFF, 0xFF, 0xFF);
+            play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 0x1E, 0xFF, 0xFF, 0xFF);
 #if VERSION_US
             SetSound(SOUND_MENU_STARSOUND, D_803320E0);
 #endif
@@ -744,14 +744,14 @@ s16 level_trigger_warp(struct MarioState *m, s32 warpOp)
         case WARP_OP_UNKNOWN_02: // bbh enter
             sDelayedWarpTimer = 30;
             sSourceWarpNodeId = (m->usedObj->oBehParams & 0x00FF0000) >> 16;
-            func_8027ABF0(0x01, 0x1E, 0xFF, 0xFF, 0xFF);
+            play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 0x1E, 0xFF, 0xFF, 0xFF);
             break;
 
         case WARP_OP_TELEPORT:
             sDelayedWarpTimer = 20;
             sSourceWarpNodeId = (m->usedObj->oBehParams & 0x00FF0000) >> 16;
             val04 = !func_8024A48C(sSourceWarpNodeId);
-            func_8027ABF0(0x01, 0x14, 0xFF, 0xFF, 0xFF);
+            play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 0x14, 0xFF, 0xFF, 0xFF);
             break;
 
         case WARP_OP_WARP_DOOR:
@@ -759,31 +759,31 @@ s16 level_trigger_warp(struct MarioState *m, s32 warpOp)
             sDelayedWarpArg = m->actionArg;
             sSourceWarpNodeId = (m->usedObj->oBehParams & 0x00FF0000) >> 16;
             val04 = !func_8024A48C(sSourceWarpNodeId);
-            func_8027ABF0(0x0B, 0x14, 0x00, 0x00, 0x00);
+            play_transition(WARP_TRANSITION_FADE_INTO_CIRCLE, 0x14, 0x00, 0x00, 0x00);
             break;
 
         case WARP_OP_WARP_OBJECT:
             sDelayedWarpTimer = 20;
             sSourceWarpNodeId = (m->usedObj->oBehParams & 0x00FF0000) >> 16;
             val04 = !func_8024A48C(sSourceWarpNodeId);
-            func_8027ABF0(0x09, 0x14, 0x00, 0x00, 0x00);
+            play_transition(WARP_TRANSITION_FADE_INTO_STAR, 0x14, 0x00, 0x00, 0x00);
             break;
 
         case WARP_OP_CREDITS_START:
             sDelayedWarpTimer = 30;
-            func_8027ABF0(0x01, 0x1E, 0x00, 0x00, 0x00);
+            play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 0x1E, 0x00, 0x00, 0x00);
             break;
 
         case WARP_OP_CREDITS_NEXT:
             if (gCurrCreditsEntry == &sCreditsSequence[0])
             {
                 sDelayedWarpTimer = 60;
-                func_8027ABF0(0x01, 0x3C, 0x00, 0x00, 0x00);
+                play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 0x3C, 0x00, 0x00, 0x00);
             }
             else
             {
                 sDelayedWarpTimer = 20;
-                func_8027ABF0(0x01, 0x14, 0x00, 0x00, 0x00);
+                play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 0x14, 0x00, 0x00, 0x00);
             }
             val04 = FALSE;
             break;
@@ -962,7 +962,7 @@ static s32 play_mode_normal(void)
                 gMarioState,
                 gCurrLevelNum == LEVEL_PSS ? WARP_OP_DEMO_END : WARP_OP_DEMO_NEXT);
         }
-        else if (!D_8033A740.unk0 && sDelayedWarpOp == WARP_OP_NONE &&
+        else if (!gWarpTransition.isActive && sDelayedWarpOp == WARP_OP_NONE &&
             (gPlayer1Controller->buttonPressed & START_BUTTON))
         {
             level_trigger_warp(gMarioState, WARP_OP_DEMO_NEXT);
@@ -1224,9 +1224,9 @@ static s32 init_level(void)
         }
 
         if (val4 != 0)
-            func_8027ABF0(0x00, 0x5A, 0xFF, 0xFF, 0xFF);
+            play_transition(WARP_TRANSITION_FADE_FROM_COLOR, 0x5A, 0xFF, 0xFF, 0xFF);
         else
-            func_8027ABF0(0x08, 0x10, 0xFF, 0xFF, 0xFF);
+            play_transition(WARP_TRANSITION_FADE_FROM_STAR, 0x10, 0xFF, 0xFF, 0xFF);
 
         if (gCurrDemoInput == NULL)
         {

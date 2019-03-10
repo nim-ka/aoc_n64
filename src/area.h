@@ -178,27 +178,47 @@ struct Area
     /*0x38*/ u16 unk38;
 };
 
-struct Struct8033A740 {
-    u8 unk0;
-    u8 unk1;
-    u8 unk2;
-    u8 unk3;
-    u8 unk4; // r
-    u8 unk5; // g
-    u8 unk6; // b?
-    s16 unk8;
-    s16 unkA;
-    s16 unkC;
-    s16 unkE;
-    s16 unk10;
-    s16 unk12;
-    s16 unk14;
+// All the transition data to be used in screen_transition.c
+struct WarpTransitionData
+{
+    /*0x00*/ u8 red;
+    /*0x01*/ u8 green;
+    /*0x02*/ u8 blue;
+
+    /*0x04*/ s16 startCircleRadius;
+    /*0x06*/ s16 endCircleRadius;
+    /*0x08*/ s16 startCircleX;
+    /*0x0A*/ s16 startCircleY;
+    /*0x0C*/ s16 endCircleX;
+    /*0x0E*/ s16 endCircleY;
+
+    /*0x10*/ s16 unk10;
+};
+
+#define WARP_TRANSITION_FADE_FROM_COLOR  0x00
+#define WARP_TRANSITION_FADE_INTO_COLOR  0x01
+#define WARP_TRANSITION_FADE_FROM_STAR   0x08
+#define WARP_TRANSITION_FADE_INTO_STAR   0x09
+#define WARP_TRANSITION_FADE_FROM_CIRCLE 0x0A
+#define WARP_TRANSITION_FADE_INTO_CIRCLE 0x0B
+#define WARP_TRANSITION_FADE_FROM_MARIO  0x10
+#define WARP_TRANSITION_FADE_INTO_MARIO  0x11
+#define WARP_TRANSITION_FADE_FROM_BOWSER 0x12
+#define WARP_TRANSITION_FADE_INTO_BOWSER 0x13
+
+struct WarpTransition
+{
+    /*0x00*/ u8 isActive;       // Is the transition active. (either TRUE or FALSE)
+    /*0x01*/ u8 type;           // Determines the type of transition to use (circle, star, etc.)
+    /*0x02*/ u8 time;           // Amount of time to complete the transition (in frames)
+    /*0x03*/ u8 pauseRendering; // Should the game stop rendering. (either TRUE or FALSE)
+    /*0x04*/ struct WarpTransitionData data;
 };
 
 extern struct SpawnInfo gPlayerSpawnInfos[];
 extern struct GraphNode *D_8033A160[];
 extern struct Area gAreaData[];
-extern struct Struct8033A740 D_8033A740;
+extern struct WarpTransition gWarpTransition;
 extern s16 gCurrCourseNum;
 extern s16 gCurrActNum;
 extern s16 gCurrAreaIndex;
@@ -227,8 +247,8 @@ void load_mario_area(void);
 void func_8027AA88(void);
 void change_area(s32 index);
 void area_update_objects(void);
-void func_8027ABF0(s16 a, s16 b, u8 c, u8 d, u8 e);
-void func_8027ADAC(s16 a, s16 b, u8 c, u8 d, u8 e, s16 f);
+void play_transition(s16 transType, s16 time, u8 red, u8 green, u8 blue);
+void play_transition_after_delay(s16 transType, s16 time, u8 red, u8 green, u8 blue, s16 delay);
 void render_game(void);
 
 

@@ -728,7 +728,7 @@ static void level_cmd_2D(void)
 static void level_cmd_set_transition(void)
 {
     if (gCurrentArea != NULL)
-        func_8027ABF0(CMD_GET(u8, 2), CMD_GET(u8, 3), CMD_GET(u8, 4), CMD_GET(u8, 5), CMD_GET(u8, 6));
+        play_transition(CMD_GET(u8, 2), CMD_GET(u8, 3), CMD_GET(u8, 4), CMD_GET(u8, 5), CMD_GET(u8, 6));
     sCurrentCmd = CMD_NEXT;
 }
 

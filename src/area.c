@@ -23,7 +23,7 @@ struct SpawnInfo gPlayerSpawnInfos[1];
 struct GraphNode *D_8033A160[0x100];
 struct Area gAreaData[8];
 
-struct Struct8033A740 D_8033A740;
+struct WarpTransition gWarpTransition;
 
 s16 gCurrCourseNum;
 s16 gCurrActNum;
@@ -39,12 +39,12 @@ struct Area *gCurrentArea = NULL;
 struct CreditsEntry *gCurrCreditsEntry = NULL;
 Vp *D_8032CE74 = NULL;
 Vp *D_8032CE78 = NULL;
-s16 D_8032CE7C = 0;
-u32 D_8032CE80 = 0;
-u32 D_8032CE84 = 0;
-u8 D_8032CE88 = 0;
-u8 D_8032CE8C = 0;
-u8 D_8032CE90 = 0;
+s16 gWarpTransDelay = 0;
+u32 gFBSetColor  = 0;
+u32 gWarpTransFBSetColor = 0;
+u8 gWarpTransRed = 0;
+u8 gWarpTransGreen = 0;
+u8 gWarpTransBlue = 0;
 s16 gCurrSaveFileNum = 1;
 s16 gCurrLevelNum = 1;
 
@@ -107,19 +107,19 @@ void func_8027A220(Vp *a, Vp *b, u8 c, u8 d, u8 e)
 {
     u16 sp6 = ((c >> 3) << 11) | ((d >> 3) << 6) | ((e >> 3) << 1) | 1;
 
-    D_8032CE80 = (sp6 << 16) | sp6;
+    gFBSetColor  = (sp6 << 16) | sp6;
     D_8032CE74 = a;
     D_8032CE78 = b;
 }
 
-static void func_8027A28C(u8 a, u8 b, u8 c)
+static void set_warp_transition_rgb(u8 red, u8 green, u8 blue)
 {
-    u16 sp6 = ((a >> 3) << 11) | ((b >> 3) << 6) | ((c >> 3) << 1) | 1;
+    u16 warpTransitionRGBA16 = ((red >> 3) << 11) | ((green >> 3) << 6) | ((blue >> 3) << 1) | 1;
 
-    D_8032CE84 = (sp6 << 16) | sp6;
-    D_8032CE88 = a;
-    D_8032CE8C = b;
-    D_8032CE90 = c;
+    gWarpTransFBSetColor = (warpTransitionRGBA16 << 16) | warpTransitionRGBA16;
+    gWarpTransRed = red;
+    gWarpTransGreen = green;
+    gWarpTransBlue = blue;
 }
 
 void print_intro_text(void)
@@ -194,8 +194,8 @@ void clear_areas(void)
     s32 i;
 
     gCurrentArea = NULL;
-    D_8033A740.unk0 = 0;
-    D_8033A740.unk3 = 0;
+    gWarpTransition.isActive = FALSE;
+    gWarpTransition.pauseRendering = FALSE;
     gMarioSpawnInfo->areaIndex = -1;
     
     for (i = 0; i < 8; i++)
@@ -230,7 +230,7 @@ void func_8027A7C4(void)
     {
         func_8037C360(gCurrentArea->unk04, 2);
         gCurrentArea = NULL;
-        D_8033A740.unk0 = 0;
+        gWarpTransition.isActive = 0;
     }
 
     for (i = 0; i < 8; i++)
@@ -276,7 +276,7 @@ void func_8027A998(void)
 
         gCurrentArea->unk01 = 0;
         gCurrentArea = NULL;
-        D_8033A740.unk0 = 0;
+        gWarpTransition.isActive = 0;
     }
 }
 
@@ -329,69 +329,85 @@ void area_update_objects(void)
     update_objects(0);
 }
 
-void func_8027ABF0(s16 a, s16 b, u8 c, u8 d, u8 e)
+/*
+ * Sets up the information needed to play a warp transition, including the
+ * transition type, time in frames, and the RGB color that will fill the screen.
+ */
+void play_transition(s16 transType, s16 time, u8 red, u8 green, u8 blue)
 {
-    D_8033A740.unk0 = 1;
-    D_8033A740.unk1 = a;
-    D_8033A740.unk2 = b;
-    D_8033A740.unk3 = 0;
+    gWarpTransition.isActive = TRUE;
+    gWarpTransition.type = transType;
+    gWarpTransition.time = time;
+    gWarpTransition.pauseRendering = FALSE;
 
-    if (a & 1)
+    // The lowest bit of transType determines if the transition is fading in or out.
+    if (transType & 1)
     {
-        func_8027A28C(c, d, e);
+        set_warp_transition_rgb(red, green, blue);
     }
     else
     {
-        c = D_8032CE88, d = D_8032CE8C, e = D_8032CE90;
+        red = gWarpTransRed, green = gWarpTransGreen, blue = gWarpTransBlue;
     }
 
-    if (a < 8)
+    if (transType < 8)
     {
-        D_8033A740.unk4 = c;
-        D_8033A740.unk5 = d;
-        D_8033A740.unk6 = e;
+        gWarpTransition.data.red = red;
+        gWarpTransition.data.green = green;
+        gWarpTransition.data.blue = blue;
     }
     else
     {
-        D_8033A740.unk4 = c;
-        D_8033A740.unk5 = d;
-        D_8033A740.unk6 = e;
-        D_8033A740.unkC = 160;
-        D_8033A740.unkE = 120;
-        D_8033A740.unk10 = 160;
-        D_8033A740.unk12 = 120;
-        D_8033A740.unk14 = 0;
+        gWarpTransition.data.red = red;
+        gWarpTransition.data.green = green;
+        gWarpTransition.data.blue = blue;
+
+        // Both the start and end circles are always located in the middle of the screen.
+        // If you really wanted to, you could place the start at one corner and the end at 
+        // the opposite corner. This will make the transition image look like it is moving
+        // across the screen.
+        gWarpTransition.data.startCircleX = 160;
+        gWarpTransition.data.startCircleY = 120;
+        gWarpTransition.data.endCircleX = 160;
+        gWarpTransition.data.endCircleY = 120;
+
+        gWarpTransition.data.unk10 = 0;
         
-        if (a & 1)
+        if (transType & 1) // Is the image fading in?
         {
-            D_8033A740.unk8 = 320;
-            if (a >= 15)
-                D_8033A740.unkA = 16;
+            gWarpTransition.data.startCircleRadius = 320;
+            if (transType >= 0x0F)
+                gWarpTransition.data.endCircleRadius = 16;
             else
-                D_8033A740.unkA = 0;
+                gWarpTransition.data.endCircleRadius = 0;
         }
-        else
+        else // The image is fading out. (Reverses start & end circles)
         {
-            if (a >= 14)
-                D_8033A740.unk8 = 16;
+            if (transType >= 0x0E)
+                gWarpTransition.data.startCircleRadius = 16;
             else
-                D_8033A740.unk8 = 0;
-            D_8033A740.unkA = 320;
+                gWarpTransition.data.startCircleRadius = 0;
+            gWarpTransition.data.endCircleRadius = 320;
         }
     }
 }
 
-void func_8027ADAC(s16 a, s16 b, u8 c, u8 d, u8 e, s16 f)
+/*
+ * Sets up the information needed to play a warp transition, including the
+ * transition type, time in frames, and the RGB color that will fill the screen.
+ * The transition will play only after a number of frames specified by 'delay'
+ */
+void play_transition_after_delay(s16 transType, s16 time, u8 red, u8 green, u8 blue, s16 delay)
 {
-    D_8032CE7C = f;
-    func_8027ABF0(a, b, c, d, e);
+    gWarpTransDelay = delay; // Number of frames to delay playing the transition.
+    play_transition(transType, time, red, green, blue);
 }
 
 void render_game(void)
 {
-    if (gCurrentArea != NULL && D_8033A740.unk3 == 0)
+    if (gCurrentArea != NULL && !gWarpTransition.pauseRendering)
     {
-        func_8027DB80(gCurrentArea->unk04, D_8032CE74, D_8032CE78, D_8032CE80);
+        func_8027DB80(gCurrentArea->unk04, D_8032CE74, D_8032CE78, gFBSetColor);
         
         gSPViewport(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&D_8032CF00));
         
@@ -413,22 +429,22 @@ void render_game(void)
         else
             gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 0, BORDER_HEIGHT, 320, 240-BORDER_HEIGHT);
         
-        if (D_8033A740.unk0 != 0)
+        if (gWarpTransition.isActive)
         {
-            if (D_8032CE7C == 0)
+            if (gWarpTransDelay == 0)
             {
-                D_8033A740.unk0 = !func_802CC108(0, D_8033A740.unk1, D_8033A740.unk2, &D_8033A740.unk4);
-                if (D_8033A740.unk0 == 0)
+                gWarpTransition.isActive = !func_802CC108(0, gWarpTransition.type, gWarpTransition.time, &gWarpTransition.data);
+                if (!gWarpTransition.isActive)
                 {
-                    if (D_8033A740.unk1 & 1)
-                        D_8033A740.unk3 = 1;
+                    if (gWarpTransition.type & 1)
+                        gWarpTransition.pauseRendering = TRUE;
                     else
-                        func_8027A28C(0, 0, 0);
+                        set_warp_transition_rgb(0, 0, 0);
                 }
             }
             else
             {
-                D_8032CE7C--;
+                gWarpTransDelay--;
             }
         }
     }
@@ -436,9 +452,9 @@ void render_game(void)
     {
         func_802D61A8();
         if (D_8032CE78 != 0)
-            DisplayInit(D_8032CE78, D_8032CE84);
+            DisplayInit(D_8032CE78, gWarpTransFBSetColor);
         else
-            ClearFrameBuffer(D_8032CE84);
+            ClearFrameBuffer(gWarpTransFBSetColor);
     }
 
     D_8032CE74 = NULL;

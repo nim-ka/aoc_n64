@@ -43,12 +43,12 @@ static u8 func_802CAB60(s8 a0, s8 a1, u8 a2)
     return sp7;
 }
 
-static Vtx *func_802CADB4(u8 *color, u8 alpha)
+static Vtx *func_802CADB4(struct WarpTransitionData *transData, u8 alpha)
 {
     Vtx *verts = alloc_display_list(4 * sizeof(*verts));
-    u8 r = color[0];
-    u8 g = color[1];
-    u8 b = color[2];
+    u8 r = transData->red;
+    u8 g = transData->green;
+    u8 b = transData->blue;
 
     if (verts != NULL)
     {
@@ -63,9 +63,9 @@ static Vtx *func_802CADB4(u8 *color, u8 alpha)
     return verts;
 }
 
-static int func_802CAF38(s8 a0, u8 a1, u8 *color, u8 alpha)
+static int func_802CAF38(s8 a0, u8 a1, struct WarpTransitionData *transData, u8 alpha)
 {
-    Vtx *verts = func_802CADB4(color, alpha);
+    Vtx *verts = func_802CADB4(transData, alpha);
 
     if (verts != NULL)
     {
@@ -79,68 +79,68 @@ static int func_802CAF38(s8 a0, u8 a1, u8 *color, u8 alpha)
     return func_802CAAE0(a0, a1);
 }
 
-static int func_802CB0E4(s8 a0, u8 a1, u8 *color)
+static int func_802CB0E4(s8 a0, u8 a1, struct WarpTransitionData *transData)
 {
     u8 alpha = func_802CAB60(1, a0, a1);
 
-    return func_802CAF38(a0, a1, color, alpha);
+    return func_802CAF38(a0, a1, transData, alpha);
 }
 
-static int func_802CB140(s8 a0, u8 a1, u8 *color)
+static int func_802CB140(s8 a0, u8 a1, struct WarpTransitionData *transData)
 {
     u8 alpha = func_802CAB60(0, a0, a1);
 
-    return func_802CAF38(a0, a1, color, alpha);
+    return func_802CAF38(a0, a1, transData, alpha);
 }
 
-static s16 func_802CB19C(s8 a0, s8 a1, s16 *a2)
+static s16 func_802CB19C(s8 a0, s8 a1, struct WarpTransitionData *transData)
 {
-    float spC = a2[3] - a2[2];
+    float spC = transData->endCircleRadius - transData->startCircleRadius;
     float sp8 = D_8032FF60[a0] * spC / (float)(a1 - 1);
-    float sp4 = a2[2] + sp8;
+    float sp4 = transData->startCircleRadius + sp8;
 
     return sp4 + 0.5;
 }
 
-static float func_802CB274(s8 a0, s8 a1, s16 *a2)
+static float func_802CB274(s8 a0, s8 a1, struct WarpTransitionData *transData)
 {
-    float sp2C = a2[4];
-    float sp28 = a2[5];
-    float sp24 = a2[6];
-    float sp20 = a2[7];
+    float sp2C = transData->startCircleX;
+    float sp28 = transData->startCircleY;
+    float sp24 = transData->endCircleX;
+    float sp20 = transData->endCircleY;
     float sp1C = sqrtf((sp2C - sp24) * (sp2C - sp24) + (sp28 - sp20) * (sp28 - sp20));
     float sp18 = (float)D_8032FF60[a0] * sp1C / (float)(a1 - 1);
 
     return sp18;
 }
 
-static u16 func_802CB384(s16 *a0)
+static u16 func_802CB384(struct WarpTransitionData *transData)
 {
-    float sp1C = a0[6] - a0[4];
-    float sp18 = a0[7] - a0[5];
+    float sp1C = transData->endCircleX - transData->startCircleX;
+    float sp18 = transData->endCircleY - transData->startCircleY;
 
     return atan2s(sp1C, sp18);
 }
 
-static s16 func_802CB400(s16 *a0, float a1, u16 a2)
+static s16 func_802CB400(struct WarpTransitionData *transData, float a1, u16 a2)
 {
-    float sp4 = a0[4] + coss(a2) * a1;
+    float sp4 = transData->startCircleX + coss(a2) * a1;
 
     return sp4 + 0.5;
 }
 
-static s16 func_802CB484(s16 *a0, float a1, u16 a2)
+static s16 func_802CB484(struct WarpTransitionData *transData, float a1, u16 a2)
 {
-    float sp4 = a0[5] + sins(a2) * a1;
+    float sp4 = transData->startCircleY + sins(a2) * a1;
 
     return sp4 + 0.5;
 }
 
-static void func_802CB508(Vtx *verts, int n, s8 a2, u8 *color, s16 sp62, s16 sp66, s16 sp6A, s16 sp6E, s16 sp72, s16 sp76)
+static void func_802CB508(Vtx *verts, int n, s8 a2, struct WarpTransitionData *transData, s16 sp62, s16 sp66, s16 sp6A, s16 sp6E, s16 sp72, s16 sp76)
 {
-    u8 r = color[0];
-    u8 g = color[1];
-    u8 b = color[2];
+    u8 r = transData->red;
+    u8 g = transData->green;
+    u8 b = transData->blue;
     u16 sp4A = D_8032FF64[a2];
     float sp44 = sp6A * coss(sp4A) - sp6E * sins(sp4A) + sp62;
     float sp40 = sp6A * sins(sp4A) + sp6E * coss(sp4A) + sp66;
@@ -150,27 +150,27 @@ static void func_802CB508(Vtx *verts, int n, s8 a2, u8 *color, s16 sp62, s16 sp6
     make_vertex(verts, n, x, y, -1, sp72 * 32, sp76 * 32, r, g, b, 255);
 }
 
-static void func_802CB6A0(Vtx *verts, s8 sp47, u8 *color, s16 sp4E, s16 sp52, s16 sp56, s8 sp5B)
+static void func_802CB6A0(Vtx *verts, s8 sp47, struct WarpTransitionData *transData, s16 sp4E, s16 sp52, s16 sp56, s8 sp5B)
 {
     switch (sp5B)
     {
     case 0:
-        func_802CB508(verts, 0, sp47, color, sp4E, sp52, -sp56, -sp56, -31, 63);
-        func_802CB508(verts, 1, sp47, color, sp4E, sp52,  sp56, -sp56,  31, 63);
-        func_802CB508(verts, 2, sp47, color, sp4E, sp52,  sp56,  sp56,  31,  0);
-        func_802CB508(verts, 3, sp47, color, sp4E, sp52, -sp56,  sp56, -31,  0);
+        func_802CB508(verts, 0, sp47, transData, sp4E, sp52, -sp56, -sp56, -31, 63);
+        func_802CB508(verts, 1, sp47, transData, sp4E, sp52,  sp56, -sp56,  31, 63);
+        func_802CB508(verts, 2, sp47, transData, sp4E, sp52,  sp56,  sp56,  31,  0);
+        func_802CB508(verts, 3, sp47, transData, sp4E, sp52, -sp56,  sp56, -31,  0);
         break;
     case 1:
-        func_802CB508(verts, 0, sp47, color, sp4E, sp52, -sp56, -sp56,  0, 63);
-        func_802CB508(verts, 1, sp47, color, sp4E, sp52,  sp56, -sp56, 63, 63);
-        func_802CB508(verts, 2, sp47, color, sp4E, sp52,  sp56,  sp56, 63,  0);
-        func_802CB508(verts, 3, sp47, color, sp4E, sp52, -sp56,  sp56,  0,  0);
+        func_802CB508(verts, 0, sp47, transData, sp4E, sp52, -sp56, -sp56,  0, 63);
+        func_802CB508(verts, 1, sp47, transData, sp4E, sp52,  sp56, -sp56, 63, 63);
+        func_802CB508(verts, 2, sp47, transData, sp4E, sp52,  sp56,  sp56, 63,  0);
+        func_802CB508(verts, 3, sp47, transData, sp4E, sp52, -sp56,  sp56,  0,  0);
         break;
     }
-    func_802CB508(verts, 4, sp47, color, sp4E, sp52, -2000, -2000, 0, 0);
-    func_802CB508(verts, 5, sp47, color, sp4E, sp52,  2000, -2000, 0, 0);
-    func_802CB508(verts, 6, sp47, color, sp4E, sp52,  2000,  2000, 0, 0);
-    func_802CB508(verts, 7, sp47, color, sp4E, sp52, -2000,  2000, 0, 0);
+    func_802CB508(verts, 4, sp47, transData, sp4E, sp52, -2000, -2000, 0, 0);
+    func_802CB508(verts, 5, sp47, transData, sp4E, sp52,  2000, -2000, 0, 0);
+    func_802CB508(verts, 6, sp47, transData, sp4E, sp52,  2000,  2000, 0, 0);
+    func_802CB508(verts, 7, sp47, transData, sp4E, sp52, -2000,  2000, 0, 0);
 }
 
 static void *D_8032FF68[] =
@@ -181,18 +181,18 @@ static void *D_8032FF68[] =
     seg2_texture_02011458,
 };
 
-static int func_802CB9F8(s8 spBB, s8 spBF, s16 *spC0, s8 spC7, s8 spCB)
+static int func_802CB9F8(s8 spBB, s8 spBF, struct WarpTransitionData *transData, s8 spC7, s8 spCB)
 {
-    float spB4 = func_802CB274(spBB, spBF, spC0);
-    u16 spB2 = func_802CB384(spC0);
-    s16 spB0 = func_802CB400(spC0, spB4, spB2);
-    s16 spAE = func_802CB484(spC0, spB4, spB2);
-    s16 spAC = func_802CB19C(spBB, spBF, spC0);
+    float spB4 = func_802CB274(spBB, spBF, transData);
+    u16 spB2 = func_802CB384(transData);
+    s16 spB0 = func_802CB400(transData, spB4, spB2);
+    s16 spAE = func_802CB484(transData, spB4, spB2);
+    s16 spAC = func_802CB19C(spBB, spBF, transData);
     Vtx *spA8 = alloc_display_list(8 * sizeof(*spA8));
 
     if (spA8 != NULL)
     {
-        func_802CB6A0(spA8, spBB, (u8 *)spC0, spB0, spAE, spAC, spCB);  // TODO types
+        func_802CB6A0(spA8, spBB, transData, spB0, spAE, spAC, spCB);  // TODO types
         gSPDisplayList(gDisplayListHead++, seg2_dl_02014660)
         gDPSetCombine(gDisplayListHead++, 0xFFFFFF, 0xFFFE793C)
         gDPSetRenderMode(gDisplayListHead++, 0x00552048, 0)  // TODO: mode1 | mode2
@@ -228,7 +228,7 @@ static int func_802CB9F8(s8 spBB, s8 spBF, s16 *spC0, s8 spC7, s8 spCB)
         gSPDisplayList(gDisplayListHead++, seg2_dl_020144F0)
         gSPTexture(gDisplayListHead++, -1, -1, 0, 0, G_OFF)
         gSPDisplayList(gDisplayListHead++, seg2_dl_02014698)
-        D_8032FF64[spBB] += spC0[8];
+        D_8032FF64[spBB] += transData->unk10;
     }
     else
     {
@@ -236,7 +236,7 @@ static int func_802CB9F8(s8 spBB, s8 spBF, s16 *spC0, s8 spC7, s8 spCB)
     return func_802CAAE0(spBB, spBF);
 }
 
-int func_802CC108(s8 sp23, u8 sp27, u8 sp2B, void *sp2C)
+int func_802CC108(s8 sp23, u8 sp27, u8 sp2B, struct WarpTransitionData *sp2C)
 {
     switch (sp27)
     {
