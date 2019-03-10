@@ -787,6 +787,7 @@ void func_80316928(struct Struct80332190 *arg0)
     s32 sum4;
     s32 s1;
     s8 temp8;
+    s32 size;
     UNUSED s32 temp;
 
     if (D_80333EF4 != 0)
@@ -794,7 +795,7 @@ void func_80316928(struct Struct80332190 *arg0)
         func_803168CC();
         for (i = 0; i < D_80226D70; i++)
         {
-            if (D_80222A10[i].unk0b80 && D_80222A10[i].unk55 != 0)
+            if (D_80222A10[i].unk0b80 && D_80222A10[i].unk55)
             {
                 D_80222A10[i].unk62 = 0x8000 / D_80226D7E;
                 D_80222A10[i].unk54 |= 0x10;
@@ -839,8 +840,8 @@ void func_80316928(struct Struct80332190 *arg0)
                     s1--;
             }
         }
-
         D_80226D84 = 0;
+
         for (j = 0; j < 3; j++)
         {
             for (k = 0; k < 0x500; k++)
@@ -854,7 +855,8 @@ void func_80316928(struct Struct80332190 *arg0)
     sp2C = arg0->size;
     D_80226D64 = osAiSetFrequency(arg0->frequency);
     D_80226D70 = arg0->unk4;
-    D_80226D74 = ALIGN16(D_80226D64 / 60);
+    size = D_80226D64 / 60;
+    D_80226D74 = ALIGN16(size);
     D_802212A2 = arg0->unk5;
 
     switch (D_802212A2)
@@ -889,15 +891,11 @@ void func_80316928(struct Struct80332190 *arg0)
     D_80226D7C = (u32) (temp8 * 2880000.0f / D_80333EE4 / 16.713f);
 #endif
     D_80226D6C = D_80226D70 * 20 * temp8 + 320;
-    #define sum1 (arg0->unk10 + arg0->unkC)
-    #define sum2 (arg0->unk18 + arg0->unk14)
-    sum3 = (sum1 + sum2);
+    sum1 = arg0->unk10 + arg0->unkC;
+    sum2 = arg0->unk18 + arg0->unk14;
+    sum3 = sum1 + sum2;
     // (the address of D_802212A8.unk8 is lui'd too far up)
-    sum4 = (D_802212A8.unk8 - sum3 - 0x100);
-    #undef sum1
-    #undef sum2
-    sum1 = (arg0->unk10 + arg0->unkC);
-    sum2 = (arg0->unk18 + arg0->unk14);
+    sum4 = D_802212A8.unk8 - sum3 - 0x100;
     D_80221898.unk0 = sum4;
     D_80221898.unkC = sum3;
     func_80316164(&D_80221898);
@@ -1121,9 +1119,9 @@ glabel func_80316928
 /* 0D1AF8 80316AF8 8E6C0000 */   lw    $t4, ($s3)
 .L80316AFC:
 /* 0D1AFC 80316AFC 3C038022 */  lui   $v1, %hi(D_80226E40) # $v1, 0x8022
-/* 0D1B00 80316B00 3C068022 */  lui   $a2, %hi(D_80226E4C) # $a2, 0x8022
+/* 0D1B00 80316B00 3C068022 */  lui   $a2, %hi(D_80226E40 + 0xC) # $a2, 0x8022
 /* 0D1B04 80316B04 AE600000 */  sw    $zero, ($s3)
-/* 0D1B08 80316B08 24C66E4C */  addiu $a2, %lo(D_80226E4C) # addiu $a2, $a2, 0x6e4c
+/* 0D1B08 80316B08 24C66E4C */  addiu $a2, %lo(D_80226E40 + 0xC) # addiu $a2, $a2, 0x6e4c
 /* 0D1B0C 80316B0C 24636E40 */  addiu $v1, %lo(D_80226E40) # addiu $v1, $v1, 0x6e40
 /* 0D1B10 80316B10 24040A00 */  li    $a0, 2560
 /* 0D1B14 80316B14 00001025 */  move  $v0, $zero
@@ -1298,8 +1296,8 @@ glabel L80316C1C
 /* 0D1D88 80316D88 00000000 */   nop   
 /* 0D1D8C 80316D8C 3C108022 */  lui   $s0, %hi(D_80226D90) # $s0, 0x8022
 /* 0D1D90 80316D90 3C128022 */  lui   $s2, %hi(D_802212C8) # $s2, 0x8022
-/* 0D1D94 80316D94 3C118022 */  lui   $s1, %hi(D_80226D98) # $s1, 0x8022
-/* 0D1D98 80316D98 26316D98 */  addiu $s1, %lo(D_80226D98) # addiu $s1, $s1, 0x6d98
+/* 0D1D94 80316D94 3C118022 */  lui   $s1, %hi(D_80226D90 + 8) # $s1, 0x8022
+/* 0D1D98 80316D98 26316D98 */  addiu $s1, %lo(D_80226D90 + 8) # addiu $s1, $s1, 0x6d98
 /* 0D1D9C 80316D9C 265212C8 */  addiu $s2, %lo(D_802212C8) # addiu $s2, $s2, 0x12c8
 /* 0D1DA0 80316DA0 26106D90 */  addiu $s0, %lo(D_80226D90) # addiu $s0, $s0, 0x6d90
 .L80316DA4:
@@ -1599,9 +1597,9 @@ glabel func_80316928
 /* 0D2B18 80317B18 8E6C0000 */   lw    $t4, ($s3)
 .L80317B1C:
 /* 0D2B1C 80317B1C 3C038022 */  lui   $v1, %hi(D_80226E40) # $v1, 0x8022
-/* 0D2B20 80317B20 3C068022 */  lui   $a2, %hi(D_80226E4C) # $a2, 0x8022
+/* 0D2B20 80317B20 3C068022 */  lui   $a2, %hi(D_80226E40 + 0xC) # $a2, 0x8022
 /* 0D2B24 80317B24 AE600000 */  sw    $zero, ($s3)
-/* 0D2B28 80317B28 24C66C4C */  addiu $a2, %lo(D_80226E4C) # addiu $a2, $a2, 0x6c4c
+/* 0D2B28 80317B28 24C66C4C */  addiu $a2, %lo(D_80226E40 + 0xC) # addiu $a2, $a2, 0x6c4c
 /* 0D2B2C 80317B2C 24636C40 */  addiu $v1, %lo(D_80226E40) # addiu $v1, $v1, 0x6c40
 /* 0D2B30 80317B30 24040A00 */  li    $a0, 2560
 /* 0D2B34 80317B34 00001025 */  move  $v0, $zero
@@ -1804,8 +1802,8 @@ glabel L80317C3C
 /* 0D2E14 80317E14 00000000 */   nop   
 /* 0D2E18 80317E18 3C108022 */  lui   $s0, %hi(D_80226D90) # $s0, 0x8022
 /* 0D2E1C 80317E1C 3C128022 */  lui   $s2, %hi(D_802212C8) # $s2, 0x8022
-/* 0D2E20 80317E20 3C118022 */  lui   $s1, %hi(D_80226D98) # $s1, 0x8022
-/* 0D2E24 80317E24 26316B98 */  addiu $s1, %lo(D_80226D98) # addiu $s1, $s1, 0x6b98
+/* 0D2E20 80317E20 3C118022 */  lui   $s1, %hi(D_80226D90 + 8) # $s1, 0x8022
+/* 0D2E24 80317E24 26316B98 */  addiu $s1, %lo(D_80226D90 + 8) # addiu $s1, $s1, 0x6b98
 /* 0D2E28 80317E28 26520EC8 */  addiu $s2, %lo(D_802212C8) # addiu $s2, $s2, 0xec8
 /* 0D2E2C 80317E2C 26106B90 */  addiu $s0, %lo(D_80226D90) # addiu $s0, $s0, 0x6b90
 .L80317E30:

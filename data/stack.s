@@ -2,7 +2,7 @@
 
 .section .stack
 
-# general stack .data
+# general stack .bss
 
 glabel gDecompressionHeap
     .space 0xD000
@@ -41,7 +41,7 @@ glabel gGfxSPTaskStack
 glabel gGfxPools # 0xc850 * 2
     .space 0x190a0
 
-# audio stack .data
+# audio stack .bss
 
 glabel D_802211A0
     .space 0x10
@@ -95,9 +95,8 @@ glabel D_802245D8
     .space 0x70
 glabel D_80224648
     .space 0x1790
-.ifdef VERSION_US
-	# TODO: Identify me
-	.space 0x200
+.ifndef VERSION_JP
+    .space 0x200
 .endif
 glabel D_80225DD8
     .space 0xC0
@@ -196,10 +195,13 @@ glabel D_80226E98
 glabel D_80226EB8
     .space 0x8
 glabel D_80226EC0
-    .space 0x140
-.ifdef VERSION_US
-glabel D_U_80226E00
-	.space 0x200
+    .space 0x8
+# Pad to a multiple of 0x1000
+# (Is gGfxSPTaskOutputBuffer declared in a .o file with large alignment?)
+.ifdef VERSION_JP
+    .space 0x138
+.else
+    .space 0x338
 .endif
 glabel gGfxSPTaskOutputBuffer
     .space 0x1F000

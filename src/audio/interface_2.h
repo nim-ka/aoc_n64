@@ -5,16 +5,27 @@
 
 
 // probably the same as Struct80225DD8
+// probably the same as SubStruct_func_80318870
 struct Struct80222A18_2C
 {
-    u8 pad0b : 3;
-    u8 unk0b10 : 1;
-    u8 pad[0x1B];
-    f32 unk1C;
-    f32 unk20;
-    u8 pad2[0x35];
-    u8 unk59;
-};
+    /*    */ u8 pad0b : 3;
+    /*0x00*/ u8 unk0b10 : 1;
+    /*    */ u8 pad1[2];
+    /*0x03*/ u8 unk3;
+    /*    */ u8 pad2[0x18];
+    /*0x1C*/ f32 unk1C;
+    /*0x20*/ f32 unk20;
+    /*0x24*/ f32 unk24;
+    /*    */ u8 pad3[4];
+    /*0x2C*/ f32 unk2C;
+    /*    */ u8 pad4[0x44 - 0x30];
+    /*0x44*/ struct Struct_func_80318870 *unk44; // (type might be wrong)
+    /*    */ u8 pad5[0x54 - 0x48];
+    /*0x54*/ u8 unk54;
+    /*    */ u8 pad6[3];
+    /*0x58*/ u8 unk58;
+    /*0x59*/ u8 unk59;
+}; // size unknown
 
 struct Struct80222A18
 {

@@ -69,7 +69,7 @@ struct SubStruct_func_80318870
     u8 pad3[0xC];
     struct Struct_func_80318870 *unk44;
     u8 pad4[0x4];
-    u32 unk4C; // unknown type
+    struct SubStruct_func_80318870_3 *unk4C; // unknown type
     struct Unk50 *unk50;
     u8 pad5[0x1c];
     struct PlaybackListItem unk70;
@@ -137,6 +137,7 @@ struct Struct_func_80318870
     u8 unk40;
     u8 unk41;
     struct SubStruct_func_80318870_2 unk44;
+    // struct {
     u8 unk54;
     u8 unk55;
     u8 pad3[0x4];
@@ -145,6 +146,7 @@ struct Struct_func_80318870
     s16 unk60;
     s16 unk62;
     u8 pad5[0x14];
+    // }; ?
     f32 unk78;
     f32 unk7C;
     u8 pad6[0x10];
