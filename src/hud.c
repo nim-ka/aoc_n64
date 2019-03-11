@@ -354,7 +354,7 @@ void render_hud(void)
     } else {
         dl_add_new_ortho_matrix();
 
-        if (gCurrentArea != NULL && gCurrentArea->unk24->unk0 == 10)
+        if (gCurrentArea != NULL && gCurrentArea->camera->preset == CAMERA_PRESET_INSIDE_CANNON)
             RenderHudCannonReticle();
         
         if (hudDisplayFlags & HUD_DISPLAY_FLAG_LIVES)

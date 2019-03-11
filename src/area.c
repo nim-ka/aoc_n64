@@ -201,24 +201,24 @@ void clear_areas(void)
     for (i = 0; i < 8; i++)
     {
         gAreaData[i].index = i;
-        gAreaData[i].unk01 = 0;
-        gAreaData[i].unk02 = 0;
+        gAreaData[i].flags = 0;
+        gAreaData[i].terrainType = 0;
         gAreaData[i].unk04 = NULL;
-        gAreaData[i].terrainData = 0;
-        gAreaData[i].surfaceRooms = 0;
-        gAreaData[i].unk10 = 0;
+        gAreaData[i].terrainData = NULL;
+        gAreaData[i].surfaceRooms = NULL;
+        gAreaData[i].macroObjects = NULL;
         gAreaData[i].warpNodes = NULL;
         gAreaData[i].paintingWarpNodes = NULL;
         gAreaData[i].instantWarps = NULL;
         gAreaData[i].objectSpawnInfos = NULL;
-        gAreaData[i].unk24 = 0;
-        gAreaData[i].unk28 = 0;
+        gAreaData[i].camera = NULL;
+        gAreaData[i].unused28 = NULL;
         gAreaData[i].whirlpools[0] = NULL;
         gAreaData[i].whirlpools[1] = NULL;
-        gAreaData[i].unk34[0] = 255;
-        gAreaData[i].unk35 = 255;
-        gAreaData[i].unk36 = 0;
-        gAreaData[i].unk38 = 0;
+        gAreaData[i].dialog[0] = 255;
+        gAreaData[i].dialog[1] = 255;
+        gAreaData[i].musicParam = 0;
+        gAreaData[i].musicParam2 = 0;
     }
 }
 
@@ -256,7 +256,7 @@ void load_area(s32 index)
                 index,
                 gCurrentArea->terrainData,
                 gCurrentArea->surfaceRooms,
-                gCurrentArea->unk10);
+                gCurrentArea->macroObjects);
         }
         
         if (gCurrentArea->objectSpawnInfos != NULL)
@@ -274,7 +274,7 @@ void func_8027A998(void)
         func_8029C75C(0, gCurrentArea->index);
         func_8037C360(gCurrentArea->unk04, 2);
 
-        gCurrentArea->unk01 = 0;
+        gCurrentArea->flags = 0;
         gCurrentArea = NULL;
         gWarpTransition.isActive = 0;
     }
@@ -287,33 +287,33 @@ void load_mario_area(void)
     
     if (gCurrentArea->index == gMarioSpawnInfo->areaIndex)
     {
-        gCurrentArea->unk01 |= 0x01;
+        gCurrentArea->flags |= 0x01;
         spawn_objects_from_info(0, gMarioSpawnInfo);
     }
 }
 
 void func_8027AA88(void)
 {
-    if (gCurrentArea != NULL && (gCurrentArea->unk01 & 0x01))
+    if (gCurrentArea != NULL && (gCurrentArea->flags & 0x01))
     {
         func_8029C75C(0, gMarioSpawnInfo->unk0D);
 
-        gCurrentArea->unk01 &= ~0x01;
-        if (gCurrentArea->unk01 == 0)
+        gCurrentArea->flags &= ~0x01;
+        if (gCurrentArea->flags == 0)
             func_8027A998();
     }
 }
 
 void change_area(s32 index)
 {
-    s32 areaFlags = gCurrentArea->unk01;
+    s32 areaFlags = gCurrentArea->flags;
 
     if (gCurrAreaIndex != index)
     {
         func_8027A998();
         load_area(index);
         
-        gCurrentArea->unk01 = areaFlags;
+        gCurrentArea->flags = areaFlags;
         gMarioObject->oUnkE0 = 0;
     }
 

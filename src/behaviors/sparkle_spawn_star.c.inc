@@ -99,7 +99,7 @@ void BehUnused080CLoop(void)
     }
     else if(o->oAction == 2)
     {
-        if(D_8033B860->unk30 == 0 && D_8032CFF4 == 0)
+        if(gCurrLevelCamera->unk30 == 0 && D_8032CFF4 == 0)
         {
             clear_time_stop_flag(10);
             o->activeFlags &= ~0x20;

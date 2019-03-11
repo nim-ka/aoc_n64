@@ -322,7 +322,7 @@ extern s32 mario_get_floor_class(struct MarioState *m)
 {
     s32 floorClass;
 
-    if ((m->area->unk02 & 7) == TERRAIN_SLIDE)
+    if ((m->area->terrainType & 7) == TERRAIN_SLIDE)
         floorClass = SURFACE_CLASS_SLIDE;
     else
         floorClass = SURFACE_CLASS_DEFAULT;
@@ -360,7 +360,7 @@ extern s32 mario_get_floor_class(struct MarioState *m)
 u32 func_8025167C(struct MarioState *m)
 {
     s16 spE;
-    s16 terrainType = m->area->unk02 & 7;
+    s16 terrainType = m->area->terrainType & 7;
     s32 sp8 = 0;
     s32 floorType;
 
@@ -454,7 +454,7 @@ u32 func_802519A8(struct MarioState *m)
 {
     f32 sp24;
 
-    if ((m->area->unk02 & 7) == TERRAIN_SLIDE && m->floor->normal.y < 0.9998477f)
+    if ((m->area->terrainType & 7) == TERRAIN_SLIDE && m->floor->normal.y < 0.9998477f)
         return TRUE;
 
     switch (mario_get_floor_class(m))
@@ -479,7 +479,7 @@ s32 mario_floor_is_slope(struct MarioState *m)
 {
     f32 tmp;
 
-    if ((m->area->unk02 & 0x0007) == TERRAIN_SLIDE && m->floor->normal.y < 0.9998477f)
+    if ((m->area->terrainType & 0x0007) == TERRAIN_SLIDE && m->floor->normal.y < 0.9998477f)
         return TRUE;
 
     switch (mario_get_floor_class(m))
@@ -561,13 +561,13 @@ s16 func_80251DD4(struct MarioState *m, s16 unk1)
 void func_80251F74(struct MarioState *m)
 {
     u32 action = m->action;
-    s32 unk0 = m->area->unk24->unk0;
+    s32 unk0 = m->area->camera->preset;
 
     if (action == ACT_FIRST_PERSON)
 	{
         func_80248CB8(2);
         D_8033B4D8 &= ~0x2000;
-        func_80285BD8(m->area->unk24, -1, 1);
+        func_80285BD8(m->area->camera, -1, 1);
     }
 	else if (action == ACT_SLEEPING)
         func_80248CB8(2);
@@ -575,7 +575,7 @@ void func_80251F74(struct MarioState *m)
     if (!(action & (ACT_FLAG_SWIMMING | ACT_FLAG_METAL_WATER)))
 	{
         if (unk0 == 3 || unk0 == 8)
-            func_80285BD8(m->area->unk24, m->area->unk24->unk1, 1);
+            func_80285BD8(m->area->camera, m->area->camera->unk1, 1);
     }
 }
 
@@ -925,7 +925,7 @@ s32 func_802530D4(struct MarioState *m)
 
 s32 func_802531B8(struct MarioState *m)
 {
-    func_80285BD8(m->area->unk24, m->area->unk24->unk1, 1);
+    func_80285BD8(m->area->camera, m->area->camera->unk1, 1);
     vec3s_set(m->angleVel, 0, 0, 0);
     if (m->heldObj == NULL)
         return set_mario_action(m, ACT_WALKING, 0);
@@ -944,8 +944,8 @@ s32 func_8025325C(struct MarioState *m)
     if ((m->action & ACT_FLAG_DIVING) == 0)
         m->faceAngle[0] = 0;
 
-    if (m->area->unk24->unk0 != 8)
-        func_80285BD8(m->area->unk24, 8, 1);
+    if (m->area->camera->preset != CAMERA_PRESET_UNDERWATER)
+        func_80285BD8(m->area->camera, 8, 1);
 
     return set_mario_action(m, ACT_WATER_PLUNGE, 0);
 }
@@ -1034,7 +1034,7 @@ void func_80253730(struct MarioState *m)
     if (m->intendedMag > 0.0f)
     {
         m->intendedYaw =
-			atan2s(-controller->stickY, controller->stickX) + m->area->unk24->unk2;
+			atan2s(-controller->stickY, controller->stickX) + m->area->camera->angle;
         m->input |= INPUT_NONZERO_ANALOG;
     }
     else
@@ -1130,19 +1130,19 @@ void func_80253C94(struct MarioState *m)
     if ((m->action & ACT_GROUP_MASK) == ACT_GROUP_SUBMERGED)
     {
         sp1C = (f32) (m->waterLevel - 80) - m->pos[1];
-        sp1A = m->area->unk24->unk0;
+        sp1A = m->area->camera->preset;
         if ((m->action & ACT_FLAG_METAL_WATER))
         {
             if (sp1A != 4)
-                func_80285BD8(m->area->unk24, 4, 1);
+                func_80285BD8(m->area->camera, 4, 1);
         }
         else
         {
             if ((sp1C > 800.0f) && (sp1A != 3))
-                func_80285BD8(m->area->unk24, 3, 1);
+                func_80285BD8(m->area->camera, 3, 1);
 
             if ((sp1C < 400.0f) && (sp1A != 8))
-                func_80285BD8(m->area->unk24, 8, 1);
+                func_80285BD8(m->area->camera, 8, 1);
 
             if ((m->action & ACT_FLAG_INTANGIBLE) == 0)
             {
@@ -1171,7 +1171,7 @@ void func_80253E34(struct MarioState *m)
             {
                 if ((m->action & 0x2000) && ((m->action & 0x1000) == 0))
                 {
-                    terrainIsSnow = (m->area->unk02 & 0x7) == TERRAIN_SNOW;
+                    terrainIsSnow = (m->area->terrainType & 0x7) == TERRAIN_SNOW;
 
                     if ((m->pos[1] >= (m->waterLevel - 140)) && !terrainIsSnow)
                         m->health += 0x1A;

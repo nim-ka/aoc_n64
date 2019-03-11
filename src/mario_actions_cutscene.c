@@ -654,7 +654,7 @@ static s32 act_reading_sign(struct MarioState *m)
         // in dialogue
         case 2:
             // dialogue finished
-            if (D_8033B860->unk30 == 0)
+            if (gCurrLevelCamera->unk30 == 0)
             {
                 disable_time_stop();
                 set_mario_action(m, ACT_IDLE, 0);
@@ -785,7 +785,7 @@ static void general_star_dance_handler(struct MarioState *m, s32 isInWater)
 
 static s32 act_star_dance(struct MarioState *m)
 {
-    m->faceAngle[1] = m->area->unk24->unk2;
+    m->faceAngle[1] = m->area->camera->angle;
     func_802507E8(
         m, m->actionState == 2 ? \
         M_ANIM_RETURN_FROM_STAR_DANCE : M_ANIM_STAR_DANCE
@@ -799,7 +799,7 @@ static s32 act_star_dance(struct MarioState *m)
 
 static s32 act_star_dance_water(struct MarioState *m)
 {
-    m->faceAngle[1] = m->area->unk24->unk2;
+    m->faceAngle[1] = m->area->camera->angle;
     func_802507E8(
         m, m->actionState == 2 ? \
         M_ANIM_RETURN_FROM_WATER_STAR_DANCE : M_ANIM_WATER_STAR_DANCE
@@ -1674,10 +1674,10 @@ static s32 act_teleport_fade_in(struct MarioState *m)
     {
         if (m->pos[1] < m->waterLevel - 100)
         {
-            // camera flag for not in water?
-            if (m->area->unk24->unk0 != 8)
+            // Check if the camera is not underwater.
+            if (m->area->camera->preset != CAMERA_PRESET_UNDERWATER)
                 // camera related function?
-                func_80285BD8(m->area->unk24, 8, 1);
+                func_80285BD8(m->area->camera, 8, 1);
             set_mario_action(m, ACT_WATER_IDLE, 0);
         }
         else
@@ -2036,7 +2036,7 @@ static void intro_cutscene_lower_pipe(struct MarioState *m)
 
 static void intro_cutscene_set_mario_to_idle(struct MarioState *m)
 {
-    if (D_8033B860->unk30 == 0)
+    if (gCurrLevelCamera->unk30 == 0)
     {
         D_8033B4D8 &= ~0x2000;
         set_mario_action(m, ACT_IDLE, 0);
@@ -2764,8 +2764,8 @@ static s32 act_credits_cutscene(struct MarioState *m)
     // checks if mario is underwater (JRB, DDD, SA, etc.)
     if (m->pos[1] < m->waterLevel - 100)
     {
-        if (m->area->unk24->unk0 != 3)
-            func_80285BD8(m->area->unk24, 3, 1);
+        if (m->area->camera->preset != CAMERA_PRESET_SECRET_AQUARIUM)
+            func_80285BD8(m->area->camera, 3, 1);
         func_802507E8(m, M_ANIM_WATER_IDLE);
         vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
         // will copy over roll and pitch, if set

@@ -228,7 +228,7 @@ static void nop_802497FC(void)
 void func_8024980C(u32 arg)
 {
     s32 gotAchievement;
-    u32 val8 = gCurrentArea->unk34[arg];
+    u32 val8 = gCurrentArea->dialog[arg];
 
     switch (val8)
     {
@@ -350,7 +350,7 @@ static void init_mario_after_warp(void)
         gMarioState->usedObj = spawnNode->object;
     }
 
-    func_802869B8(gCurrentArea->unk24);
+    func_802869B8(gCurrentArea->camera);
     sCurrWarpType = WARP_TYPE_NOT_WARPING;
     sDelayedWarpOp = WARP_OP_NONE;
 
@@ -367,7 +367,7 @@ static void init_mario_after_warp(void)
 
     if (gCurrDemoInput == NULL)
     {
-        func_80249148(gCurrentArea->unk36, gCurrentArea->unk38, 0);
+        func_80249148(gCurrentArea->musicParam, gCurrentArea->musicParam2, 0);
 
         if (gMarioState->flags & MARIO_METAL_CAP)
             func_80249368(0x0000040F);
@@ -470,7 +470,7 @@ static void func_8024A0E0(void)
 
     set_mario_action(gMarioState, marioAction, 0);
 
-    func_802869B8(gCurrentArea->unk24);
+    func_802869B8(gCurrentArea->camera);
 
     sCurrWarpType = WARP_TYPE_NOT_WARPING;
     sDelayedWarpOp = WARP_OP_NONE;
@@ -478,7 +478,7 @@ static void func_8024A0E0(void)
     play_transition(WARP_TRANSITION_FADE_FROM_COLOR, 0x14, 0x00, 0x00, 0x00);
 
     if (gCurrCreditsEntry == NULL || gCurrCreditsEntry == sCreditsSequence)
-        func_80249148(gCurrentArea->unk36, gCurrentArea->unk38, 0);
+        func_80249148(gCurrentArea->musicParam, gCurrentArea->musicParam2, 0);
 }
 
 static void check_instant_warp(void)
@@ -509,7 +509,7 @@ static void check_instant_warp(void)
                 gMarioState->marioObj->oPosY = gMarioState->pos[1];
                 gMarioState->marioObj->oPosZ = gMarioState->pos[2];
 
-                cameraAngle = gMarioState->area->unk24->unk2;
+                cameraAngle = gMarioState->area->camera->angle;
 
                 change_area(warp->area);
                 gMarioState->area = gCurrentArea;
@@ -519,7 +519,7 @@ static void check_instant_warp(void)
                     warp->displacement[1],
                     warp->displacement[2]);
 
-                gMarioState->area->unk24->unk2 = cameraAngle;
+                gMarioState->area->camera->angle = cameraAngle;
             }
         }
     }
@@ -543,13 +543,13 @@ static s16 func_8024A48C(s16 arg)
     }
     else
     {
-        u16 val8 = gAreas[destArea].unk36;
-        u16 val6 = gAreas[destArea].unk38;
+        u16 val8 = gAreas[destArea].musicParam;
+        u16 val6 = gAreas[destArea].musicParam2;
 
         val4 =
             levelNum == gCurrLevelNum &&
-            val8 == gCurrentArea->unk36 &&
-            val6 == gCurrentArea->unk38;
+            val8 == gCurrentArea->musicParam &&
+            val6 == gCurrentArea->musicParam2;
 
         if (func_80320E98() != val6)
             val4 = FALSE;
@@ -561,13 +561,13 @@ static s16 func_8024A48C(s16 arg)
     struct ObjectWarpNode *warpNode = area_get_warp_node(arg);
     s16 levelNum = warpNode->node.destLevel & 0x7F;
 
-    u16 val8 = gAreas[warpNode->node.destArea].unk36;
-    u16 val6 = gAreas[warpNode->node.destArea].unk38;
+    u16 val8 = gAreas[warpNode->node.destArea].musicParam;
+    u16 val6 = gAreas[warpNode->node.destArea].musicParam2;
 
     s16 val4 =
         levelNum == gCurrLevelNum &&
-        val8 == gCurrentArea->unk36 &&
-        val6 == gCurrentArea->unk38;
+        val8 == gCurrentArea->musicParam &&
+        val6 == gCurrentArea->musicParam2;
 
     if (func_80320E98() != val6)
         val4 = FALSE;
@@ -948,7 +948,7 @@ static void basic_update(UNUSED s16 *arg)
     update_hud_values();
 
     if (gCurrentArea != NULL)
-        func_80286348(gCurrentArea->unk24);
+        func_80286348(gCurrentArea->camera);
 }
 
 static s32 play_mode_normal(void)
@@ -979,7 +979,7 @@ static s32 play_mode_normal(void)
     update_hud_values();
 
     if (gCurrentArea != NULL)
-        func_80286348(gCurrentArea->unk24);
+        func_80286348(gCurrentArea->camera);
 
     initiate_painting_warp();
     initiate_delayed_warp();
@@ -1084,7 +1084,7 @@ static s32 play_mode_change_area(void)
     //! This maybe was supposed to be sTransitionTimer == -1? sTransitionUpdate
     // is never set to -1.
     if (sTransitionUpdate == (void (*)(s16 *)) -1)
-        func_80286348(gCurrentArea->unk24);
+        func_80286348(gCurrentArea->camera);
     else if (sTransitionUpdate != NULL)
         sTransitionUpdate(&sTransitionTimer);
 
@@ -1200,7 +1200,7 @@ static s32 init_level(void)
 
         if (gCurrentArea != NULL)
         {
-            func_802869B8(gCurrentArea->unk24);
+            func_802869B8(gCurrentArea->camera);
 
             if (gCurrDemoInput != NULL)
             {
@@ -1230,7 +1230,7 @@ static s32 init_level(void)
 
         if (gCurrDemoInput == NULL)
         {
-            func_80249148(gCurrentArea->unk36, gCurrentArea->unk38, 0);
+            func_80249148(gCurrentArea->musicParam, gCurrentArea->musicParam2, 0);
         }
     }
 

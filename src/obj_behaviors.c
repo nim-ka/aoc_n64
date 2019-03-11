@@ -910,7 +910,7 @@ void BehCastleFlagWavingInit(void) {
 }
 
 void BehBirdsSoundLoop(void) {
-    if (D_8033B860->unk0 == 3)
+    if (gCurrLevelCamera->preset == CAMERA_PRESET_SECRET_AQUARIUM)
         return;
 
     switch(o->oBehParams2ndByte) {
@@ -929,14 +929,14 @@ void BehBirdsSoundLoop(void) {
 }
 
 void BehAmbiantSoundsInit(void) {
-    if (D_8033B860->unk0 == 3)
+    if (gCurrLevelCamera->preset == CAMERA_PRESET_SECRET_AQUARIUM)
         return;
 
     SetSound(0x60104001, D_803320E0);
 }
 
 void BehSandSoundLoop(void) {
-    if (D_8033B860->unk0 == 3)
+    if (gCurrLevelCamera->preset == CAMERA_PRESET_SECRET_AQUARIUM)
         return;
 
     PlaySound(0x400E0001);

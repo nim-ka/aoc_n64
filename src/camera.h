@@ -54,7 +54,7 @@ struct Struct80287404
     s16 unk3A;
 };
 
-typedef void (*CameraCommandProc)(struct Struct80280550 *a);
+typedef void (*CameraCommandProc)(struct LevelCamera *a);
 
 struct Struct8032CA78
 {
@@ -203,7 +203,7 @@ extern u16 D_8033B31E;
 extern struct Struct8033B328 D_8033B328;
 extern s16 D_8033B4D8;
 extern s32 D_8033B858;
-extern struct Struct80280550 *D_8033B860;
+extern struct LevelCamera *gCurrLevelCamera;
 #endif
 
 extern struct Object *D_8032CFC4;
@@ -220,15 +220,15 @@ extern s16 D_8035FE10;
 extern void func_8027EFE0(s16);
 extern void func_8027F308(s16);
 extern void func_8027F440(s16, f32, f32, f32);
-extern void func_802852F4(struct Struct80280550 *); // static (ASM)
-extern void func_80285A8C(UNUSED struct Struct80280550 *, s16);
-extern void func_80285BD8(struct Struct80280550 *, s16, s16);
-extern void func_80286348(struct Struct80280550 *);
-extern void func_802869B8(struct Struct80280550 *);
-extern void func_80286C9C(struct Struct80280550 *);
+extern void func_802852F4(struct LevelCamera *); // static (ASM)
+extern void func_80285A8C(UNUSED struct LevelCamera *, s16);
+extern void func_80285BD8(struct LevelCamera *, s16, s16);
+extern void func_80286348(struct LevelCamera *);
+extern void func_802869B8(struct LevelCamera *);
+extern void func_80286C9C(struct LevelCamera *);
 extern void func_802875DC(void);
-extern void dummy_802877D8(struct Struct80280550 *);
-extern void dummy_802877EC(struct Struct80280550 *);
+extern void dummy_802877D8(struct LevelCamera *);
+extern void dummy_802877EC(struct LevelCamera *);
 extern void vec3f_sub(Vec3f, Vec3f);
 extern void object_pos_to_vec3f(Vec3f, struct Object *);
 extern void vec3f_to_object_pos(struct Object *, Vec3f); // static (ASM)
@@ -238,7 +238,7 @@ extern s32 func_80288130(s32);
 extern void func_802882A0(u8);
 extern void func_802883C8(Vec3f, Vec3f);
 extern s32 func_802886FC(u16, u16, u16);
-extern s32 update_camera_status(struct Struct80280550 *);
+extern s32 update_camera_status(struct LevelCamera *);
 extern s32 func_80288974(Vec3f, f32, f32);
 extern s32 func_80288C2C(Vec3f a, Vec3f b, s16 c, s16 d);
 extern s32 func_80288CF0(f32, f32, f32);
@@ -285,7 +285,7 @@ extern void func_8028AA80(s16, s16, s16, f32, f32, f32, f32);
 extern void func_8028AC30(); // postdefined
 extern void func_8028AD44(); // postdefined
 extern void func_8028AE50(s16 *); // postdefined
-extern s32 func_8028AF24(struct Struct80280550 *a, s16 b);
+extern s32 func_8028AF24(struct LevelCamera *a, s16 b);
 // extern ? func_8028B13C(?);
 // extern ? func_8028B16C(?);
 extern void func_8028B19C(void);
@@ -297,16 +297,16 @@ extern void func_8028B2D0(void);
 extern void func_8028B304(void); // postdefined
 extern void func_8028B338(void); // postdefined
 extern void func_8028B36C(void); // postdefined
-extern s32 func_8028B3DC(struct Struct80280550 *a, f32 b);
+extern s32 func_8028B3DC(struct LevelCamera *a, f32 b);
 extern s32 StopMario(s32);
-extern void func_8028B7A4(struct Struct80280550 *);
+extern void func_8028B7A4(struct LevelCamera *);
 // extern ? func_8028BA38(?);
-extern void func_8028BB3C(struct Struct80280550 *a, u8 b); // postdefined
+extern void func_8028BB3C(struct LevelCamera *a, u8 b); // postdefined
 // extern ? func_8028BB8C(?);
 // extern ? func_8028BC6C(?);
 extern u8 func_8028BCC8(); // postdefined
 extern void func_8028C1A0(f32, f32, f32);
-extern void func_8028C2F0(struct Struct80280550 *, f32, f32);
+extern void func_8028C2F0(struct LevelCamera *, f32, f32);
 // extern ? Unknown8028C3AC(?);
 // extern ? func_8028C3CC(?);
 // extern ? Unknown8028C508(?);
@@ -388,9 +388,9 @@ extern void func_8028D288(); // postdefined
 // extern ? func_8028E634(?);
 // extern ? func_8028E70C(?);
 // extern ? func_8028E774(?);
-extern s16 func_8028E88C(struct Struct80280550 *); // postdefined
+extern s16 func_8028E88C(struct LevelCamera *); // postdefined
 extern void func_8028F04C(Vec3f, Vec3f);
-extern s32 func_8028F2F0(struct Struct80280550 *, Vec3f, s16 *, s16);
+extern s32 func_8028F2F0(struct LevelCamera *, Vec3f, s16 *, s16);
 extern void func_8028F678(struct Struct8033B278 *); // postdefined
 // extern ? func_8028F800(?);
 extern u8 func_8028F834(u8);
@@ -661,8 +661,8 @@ extern s16 func_8028F9E8(u8, struct Object *);
 // extern ? CutsceneDoor3(?);
 // extern ? CutsceneDoor4(?);
 // extern ? CutsceneDoorAB_2(?);
-extern void handle_cutscenes(struct Struct80280550 *);
-extern s32 call_cutscene_func_in_time_range(CameraCommandProc, struct Struct80280550 *, s16, s16);
+extern void handle_cutscenes(struct LevelCamera *);
+extern s32 call_cutscene_func_in_time_range(CameraCommandProc, struct LevelCamera *, s16, s16);
 extern s32 func_80299C60(s32, s16);
 extern void func_80299C98(s16, s16, s16);
 // extern ? func_80299D00(?);

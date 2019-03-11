@@ -99,7 +99,7 @@ s16 gCutsceneTimer;
 struct Struct8033B6F0 D_8033B6F0[10];
 s32 D_8033B858;
 u32 D_8033B85C;
-struct Struct80280550 *D_8033B860;
+struct LevelCamera *gCurrLevelCamera;
 
 // first iteration of data
 u32 D_8032CFC0 = 0; // unused
@@ -127,25 +127,25 @@ Vec3f D_8032D00C_3 = {646.0f, 143.0f, -1513.0f}; // unused
 Vec3f D_8032D00C_4 = {646.0f, 143.0f, -1513.0f}; // unused
 Vec3f D_8032D00C_5 = {646.0f, 143.0f, -1513.0f}; // unused
 
-s32 CameraChange01(struct Struct80280550 *, Vec3f, Vec3f);
-s32 CameraChange02(struct Struct80280550 *, Vec3f, Vec3f);
-s32 CameraChange03(struct Struct80280550 *, Vec3f, Vec3f);
-s32 CameraChange040710(struct Struct80280550 *, Vec3f, Vec3f);
-s32 CameraChange05(struct Struct80280550 *, Vec3f, Vec3f);
-s32 CameraChange06(struct Struct80280550 *, Vec3f, Vec3f);
-s32 CameraChange040710(struct Struct80280550 *, Vec3f, Vec3f);
-s32 CameraChange08(struct Struct80280550 *, Vec3f, Vec3f);
-s32 CameraChange090F(struct Struct80280550 *, Vec3f, Vec3f);
-s32 CameraChange0A(struct Struct80280550 *, Vec3f, Vec3f);
-s32 CameraChange0B(struct Struct80280550 *, Vec3f, Vec3f);
-s32 CameraChange0C(struct Struct80280550 *, Vec3f, Vec3f);
-s32 CameraChange0D(struct Struct80280550 *, Vec3f, Vec3f);
-s32 CameraChange0E(struct Struct80280550 *, Vec3f, Vec3f);
-s32 CameraChange090F(struct Struct80280550 *, Vec3f, Vec3f);
-s32 CameraChange040710(struct Struct80280550 *, Vec3f, Vec3f);
-s32 CameraChange11(struct Struct80280550 *, Vec3f, Vec3f);
+s32 CameraChange01(struct LevelCamera *, Vec3f, Vec3f);
+s32 CameraChange02(struct LevelCamera *, Vec3f, Vec3f);
+s32 CameraChange03(struct LevelCamera *, Vec3f, Vec3f);
+s32 CameraChange040710(struct LevelCamera *, Vec3f, Vec3f);
+s32 CameraChange05(struct LevelCamera *, Vec3f, Vec3f);
+s32 CameraChange06(struct LevelCamera *, Vec3f, Vec3f);
+s32 CameraChange040710(struct LevelCamera *, Vec3f, Vec3f);
+s32 CameraChange08(struct LevelCamera *, Vec3f, Vec3f);
+s32 CameraChange090F(struct LevelCamera *, Vec3f, Vec3f);
+s32 CameraChange0A(struct LevelCamera *, Vec3f, Vec3f);
+s32 CameraChange0B(struct LevelCamera *, Vec3f, Vec3f);
+s32 CameraChange0C(struct LevelCamera *, Vec3f, Vec3f);
+s32 CameraChange0D(struct LevelCamera *, Vec3f, Vec3f);
+s32 CameraChange0E(struct LevelCamera *, Vec3f, Vec3f);
+s32 CameraChange090F(struct LevelCamera *, Vec3f, Vec3f);
+s32 CameraChange040710(struct LevelCamera *, Vec3f, Vec3f);
+s32 CameraChange11(struct LevelCamera *, Vec3f, Vec3f);
 
-s32 (*TableCameraTransitions[])(struct Struct80280550 *, Vec3f, Vec3f) = {
+s32 (*TableCameraTransitions[])(struct LevelCamera *, Vec3f, Vec3f) = {
     NULL,
     CameraChange01,
     CameraChange02,
@@ -399,7 +399,7 @@ static void unused_8027F950(Vec3f a, Vec3f b, f32 c, f32 d, f32 e, s16 f, s16 g)
     a[1] = D_8032D000->unk4[1] + d;
 }
 
-void func_8027FA48(struct Struct80280550 *a, f32 b)
+void func_8027FA48(struct LevelCamera *a, f32 b)
 {
     struct Surface *sp44;
     f32 sp40;
@@ -471,7 +471,7 @@ s32 func_8027FDB8(u16 a)
     return sp3E;
 }
 
-void func_8027FF44(struct Struct80280550 *a)
+void func_8027FF44(struct LevelCamera *a)
 {
     f32 sp34;
     s16 sp32;
@@ -520,7 +520,7 @@ s32 func_802800F4(Vec3f a, Vec3f b, s16 c)
     return c;
 }
 
-s32 CameraChange01(struct Struct80280550 *a, Vec3f b, Vec3f c)
+s32 CameraChange01(struct LevelCamera *a, Vec3f b, Vec3f c)
 {
     f32 sp4C = D_8032D000->unk4[0] - a->unk28;
     f32 sp48 = D_8032D000->unk4[2] - a->unk2C;
@@ -542,7 +542,7 @@ s32 CameraChange01(struct Struct80280550 *a, Vec3f b, Vec3f c)
     return sp46;
 }
 
-s32 CameraChange0E(struct Struct80280550 *a, Vec3f b, Vec3f c)
+s32 CameraChange0E(struct LevelCamera *a, Vec3f b, Vec3f c)
 {
     UNUSED f32 sp4C = D_8032D000->unk4[0] - a->unk28;
     UNUSED f32 sp48 = D_8032D000->unk4[2] - a->unk2C;
@@ -566,7 +566,7 @@ s32 CameraChange0E(struct Struct80280550 *a, Vec3f b, Vec3f c)
     return sp46;
 }
 
-void func_80280550(struct Struct80280550 *a)
+void func_80280550(struct LevelCamera *a)
 {
     s16 sp46 = 10922;
     s16 sp44 = -10922;
@@ -598,7 +598,7 @@ void func_80280550(struct Struct80280550 *a)
     if (D_8033B4D8 & 0x10)
         sp42 = 512;
 
-    if (a->unk0 == 2)
+    if (a->preset == CAMERA_PRESET_TICK_TOCK_CLOCK)
     {
         sp30 = -sp30;
         sp2C = -sp2C;
@@ -656,12 +656,12 @@ void func_80280550(struct Struct80280550 *a)
         }
         else
         {
-            if (a->unk0 == 1)
+            if (a->preset == CAMERA_PRESET_OPEN_CAMERA)
             {
                 sp42 = gMarioStates[0].forwardVel / 32.f * 128.f;
                 func_80289184(&D_8033B402, sp26, sp42);
             }
-            if (a->unk0 == 2)
+            if (a->preset == CAMERA_PRESET_TICK_TOCK_CLOCK)
                 D_8033B402 = func_8028AF24(a, atan2s(sp2C, sp30));
         }
     }
@@ -695,7 +695,7 @@ void func_80280BD8(f32 a, s16 b)
             D_8033B3EE = 0;
     }
 
-    if (D_8032CFD8 == 130 && D_8033B860->unk0 == 2)
+    if (D_8032CFD8 == 130 && gCurrLevelCamera->preset == CAMERA_PRESET_TICK_TOCK_CLOCK)
         b /= 2;
 
     if (D_8033B4D8 & 2)
@@ -710,12 +710,12 @@ void func_80280BD8(f32 a, s16 b)
     }
 }
 
-void func_80280E0C(struct Struct80280550 *a)
+void func_80280E0C(struct LevelCamera *a)
 {
     func_8028B3DC(a, 0.f);
 }
 
-void func_80280E3C(UNUSED struct Struct80280550 *a)
+void func_80280E3C(UNUSED struct LevelCamera *a)
 {
     f32 sp4 = 1000.f;
 
@@ -724,7 +724,7 @@ void func_80280E3C(UNUSED struct Struct80280550 *a)
     D_8033B4D8 &= ~0x100;
 }
 
-void func_80280EBC(struct Struct80280550 *a)
+void func_80280EBC(struct LevelCamera *a)
 {
     Vec3f sp2C;
     UNUSED u8 unused1[8];
@@ -735,7 +735,7 @@ void func_80280EBC(struct Struct80280550 *a)
         func_80280E3C(a);
     func_80280E0C(a);
     func_80280550(a);
-    if (a->unk0 == 1)
+    if (a->preset == CAMERA_PRESET_OPEN_CAMERA)
         func_80280BD8(400.f, 2304);
     a->unk3A = CameraChange01(a, a->unk4, sp2C);
     a->unk10[0] = sp2C[0];
@@ -747,7 +747,7 @@ void func_80280EBC(struct Struct80280550 *a)
     func_8027FF44(a);
 }
 
-void func_80280FD8(struct Struct80280550 *a)
+void func_80280FD8(struct LevelCamera *a)
 {
     Vec3f sp24;
     UNUSED u8 unused[8];
@@ -774,7 +774,7 @@ void func_80280FD8(struct Struct80280550 *a)
     func_8027FA48(a, sp24[1]);
 }
 
-s32 CameraChange02(struct Struct80280550 *a, Vec3f b, Vec3f c)
+s32 CameraChange02(struct LevelCamera *a, Vec3f b, Vec3f c)
 {
     f32 sp44 = D_8032D000->unk4[0] - a->unk28;
     f32 sp40 = D_8032D000->unk4[2] - a->unk2C;
@@ -792,7 +792,7 @@ s32 CameraChange02(struct Struct80280550 *a, Vec3f b, Vec3f c)
     return sp3E;
 }
 
-void func_8028124C(struct Struct80280550 *a)
+void func_8028124C(struct LevelCamera *a)
 {
     Vec3f sp1C;
     s16 sp1A = D_8033B3EA;
@@ -812,7 +812,7 @@ void func_8028124C(struct Struct80280550 *a)
     func_8027FF44(a);
 }
 
-s32 CameraChange0C(struct Struct80280550 *a, Vec3f b, Vec3f c)
+s32 CameraChange0C(struct LevelCamera *a, Vec3f b, Vec3f c)
 {
     Vec3f spE8[2];
     Vec3f spDC;
@@ -957,7 +957,7 @@ s32 CameraChange0C(struct Struct80280550 *a, Vec3f b, Vec3f c)
     return spB4;
 }
 
-s32 CameraChange0D(struct Struct80280550 *a, Vec3f b, UNUSED Vec3f c)
+s32 CameraChange0D(struct LevelCamera *a, Vec3f b, UNUSED Vec3f c)
 {
     f32 sp74;
     f32 sp70;
@@ -1041,7 +1041,7 @@ s32 CameraChange0D(struct Struct80280550 *a, Vec3f b, UNUSED Vec3f c)
     return sp4C[1];
 }
 
-s32 CameraChange0B(struct Struct80280550 *a, Vec3f b, Vec3f c)
+s32 CameraChange0B(struct LevelCamera *a, Vec3f b, Vec3f c)
 {
     struct Object *sp8C;
     UNUSED u8 filler2[12];
@@ -1159,7 +1159,7 @@ struct Struct8033B470 D_8032D0F0[3] = {
     {0,{    0.0f,    0.0f,     0.0f}, 0.0f,0.0f},
 };
 
-s32 CameraChange05(UNUSED struct Struct80280550 *a, UNUSED Vec3f b, UNUSED Vec3f c)
+s32 CameraChange05(UNUSED struct LevelCamera *a, UNUSED Vec3f b, UNUSED Vec3f c)
 {
 }
 
@@ -1167,12 +1167,12 @@ static void unused_80282678(UNUSED s32 unused)
 {
 }
 
-void func_8028268C(struct Struct80280550 *a)
+void func_8028268C(struct LevelCamera *a)
 {
     a->unk3A = CameraChange0B(a, a->unk4, a->unk10);
 }
 
-void func_802826CC(struct Struct80280550 *a)
+void func_802826CC(struct LevelCamera *a)
 {
     s16 dummy;
 
@@ -1182,7 +1182,7 @@ void func_802826CC(struct Struct80280550 *a)
     func_80289184(&dummy, 0, 1024);
 }
 
-void func_80282730(struct Struct80280550 *a)
+void func_80282730(struct LevelCamera *a)
 {
     UNUSED u8 unused[8];
 
@@ -1191,12 +1191,12 @@ void func_80282730(struct Struct80280550 *a)
     else
         func_8029A478(4);
     a->unk3A = CameraChange0D(a, a->unk4, a->unk10);
-    a->unk2 = a->unk3A;
+    a->angle = a->unk3A;
     func_8027FF44(a);
     vec3f_set(D_8033B460, 0.f, 0.f, 0.f);
 }
 
-s32 CameraChange03(struct Struct80280550 *a, Vec3f b, Vec3f c)
+s32 CameraChange03(struct LevelCamera *a, Vec3f b, Vec3f c)
 {
     UNUSED u8 unused2[12];
     f32 sp48;
@@ -1314,7 +1314,7 @@ s32 CameraChange03(struct Struct80280550 *a, Vec3f b, Vec3f c)
     return sp3E;
 }
 
-s32 func_80282D90(struct Struct80280550 *a)
+s32 func_80282D90(struct LevelCamera *a)
 {
     struct MarioState *sp54 = &gMarioStates[0];
     struct Surface *sp50;
@@ -1333,7 +1333,7 @@ s32 func_80282D90(struct Struct80280550 *a)
     sp26 = CameraChange03(a, a->unk4, sp44);
     a->unk10[0] = sp44[0];
     a->unk10[2] = sp44[2];
-    if (a->unk0 == 8)
+    if (a->preset == CAMERA_PRESET_UNDERWATER)
     {
         sp30 = find_floor(a->unk10[0], a->unk10[1], a->unk10[2], &sp50);
         sp44[1] = sp54->waterLevel + 0x78;
@@ -1358,7 +1358,7 @@ s32 func_80282D90(struct Struct80280550 *a)
     return sp26;
 }
 
-s32 func_80282FC8(struct Struct80280550 *a)
+s32 func_80282FC8(struct LevelCamera *a)
 {
     struct Surface *sp4C;
     f32 sp48;
@@ -1425,21 +1425,21 @@ s32 func_80282FC8(struct Struct80280550 *a)
     return sp2C;
 }
 
-void func_80283434(struct Struct80280550 *a)
+void func_80283434(struct LevelCamera *a)
 {
     a->unk3A = func_80282D90(a);
 }
 
-s32 CameraChange08(UNUSED struct Struct80280550 *a, UNUSED Vec3f b, UNUSED Vec3f c)
+s32 CameraChange08(UNUSED struct LevelCamera *a, UNUSED Vec3f b, UNUSED Vec3f c)
 {
 }
 
-void func_80283484(struct Struct80280550 *a)
+void func_80283484(struct LevelCamera *a)
 {
     a->unk3A = func_80282D90(a);
 }
 
-s32 CameraChange040710(UNUSED struct Struct80280550 *a, Vec3f b, Vec3f c)
+s32 CameraChange040710(UNUSED struct LevelCamera *a, Vec3f b, Vec3f c)
 {
     s16 sp2E = D_8032D000->unk10[1] + D_8033B402 + 32768;
 
@@ -1448,7 +1448,7 @@ s32 CameraChange040710(UNUSED struct Struct80280550 *a, Vec3f b, Vec3f c)
 }
 extern f32 D_80336070;
 
-s32 func_80283548(struct Struct80280550 *a)
+s32 func_80283548(struct LevelCamera *a)
 {
     Vec3f spBC;
     Vec3f spB0;
@@ -1530,7 +1530,7 @@ s32 func_80283548(struct Struct80280550 *a)
     }
     if (D_8033B3F8 == 0)
     {
-        if (a->unk0 == 16)
+        if (a->preset == CAMERA_PRESET_FREE_ROAM)
             sp52 = 192;
         else
             sp52 = 256;
@@ -1575,7 +1575,7 @@ s32 func_80283548(struct Struct80280550 *a)
     }
 
     if (-16.f < gPlayer1Controller->stickY)
-        a->unk2 = sp6E;
+        a->angle = sp6E;
 
     func_8027F668(&sp68, 1.f, 200.f, &sp64, 0.9f, 200.f);
     vec3f_copy(spB0, a->unk10);
@@ -1682,7 +1682,7 @@ s32 func_80283548(struct Struct80280550 *a)
             sp90 = sp88;
     }
     sp68 = 0.f;
-    if (a->unk0 == 16)
+    if (a->preset == CAMERA_PRESET_FREE_ROAM)
     {
         if (D_8033B4D8 & 2)
         {
@@ -1710,7 +1710,7 @@ s32 func_80283548(struct Struct80280550 *a)
     if ((D_8032D000->unk0 & 0x200000) || D_8032D000->unk0 == 1192)
     {
         sp90 = D_8032D000->unk4[1] + 400.f;
-        if (a->unk0 == 16)
+        if (a->preset == CAMERA_PRESET_FREE_ROAM)
             sp90 -= 100.f;
         sp40 = 20000.f;
         vec3f_copy(a->unk4, D_8032D000->unk4);
@@ -1760,26 +1760,26 @@ s32 func_80283548(struct Struct80280550 *a)
     return sp6E;
 }
 
-void func_80284708(struct Struct80280550 *a)
+void func_80284708(struct LevelCamera *a)
 {
     func_8029A478(2);
     a->unk3A = func_80283548(a);
     func_8027FF44(a);
 }
 
-void func_8028474C(struct Struct80280550 *a)
+void func_8028474C(struct LevelCamera *a)
 {
     D_8032CFEC = 800.f;
     func_80284708(a);
 }
 
-void func_80284788(struct Struct80280550 *a)
+void func_80284788(struct LevelCamera *a)
 {
     D_8032CFEC = 350.f;
     func_80284708(a);
 }
 
-s32 CameraChange11(struct Struct80280550 *a, Vec3f b, Vec3f c)
+s32 CameraChange11(struct LevelCamera *a, Vec3f b, Vec3f c)
 {
     UNUSED s16 unused1;
     s16 sp5C;
@@ -1834,12 +1834,12 @@ s32 CameraChange11(struct Struct80280550 *a, Vec3f b, Vec3f c)
     return sp5C;
 }
 
-void func_80284AFC(struct Struct80280550 *a)
+void func_80284AFC(struct LevelCamera *a)
 {
     a->unk3A = CameraChange11(a, a->unk4, a->unk10);
 }
 
-s32 CameraChange090F(UNUSED struct Struct80280550 *a, Vec3f b, Vec3f c)
+s32 CameraChange090F(UNUSED struct LevelCamera *a, Vec3f b, Vec3f c)
 {
     s16 sp2E = D_8032D000->unk10[1] + D_8033B402 + 32768;
 
@@ -1847,14 +1847,14 @@ s32 CameraChange090F(UNUSED struct Struct80280550 *a, Vec3f b, Vec3f c)
     return D_8032D000->unk10[1];
 }
 
-static void unused_80284BCC(struct Struct80280550 *a)
+static void unused_80284BCC(struct LevelCamera *a)
 {
     if (gPlayer1Controller->buttonPressed & U_CBUTTONS)
         D_8033B4D8 |= 0x2000;
     a->unk3A = func_80282FC8(a);
 }
 
-void func_80284C2C(struct Struct80280550 *a)
+void func_80284C2C(struct LevelCamera *a)
 {
     if (D_8033B278.unk8 == SURFACE_000B || D_8033B278.unk8 == SURFACE_0079)
     {
@@ -1868,14 +1868,14 @@ void func_80284C2C(struct Struct80280550 *a)
     }
 }
 
-void func_80284CBC(struct Struct80280550 *a)
+void func_80284CBC(struct LevelCamera *a)
 {
     vec3f_copy(D_8033B498.unk0, a->unk10);
     vec3f_sub(D_8033B498.unk0, D_8032D000->unk4);
     vec3f_set(D_8033B498.unkC, 0.f, a->unk4[1] - D_8032D000->unk4[1], 0.f);
 }
 
-s32 func_80284D44(struct Struct80280550 *a)
+s32 func_80284D44(struct LevelCamera *a)
 {
     if (!(D_8033B4D8 & 0x2000))
     {
@@ -1887,7 +1887,7 @@ s32 func_80284D44(struct Struct80280550 *a)
     return 0;
 }
 
-s32 func_80284DC0(struct Struct80280550 *a)
+s32 func_80284DC0(struct LevelCamera *a)
 {
     struct Surface *sp74;
     Vec3f sp68;
@@ -1968,7 +1968,7 @@ s32 func_80284DC0(struct Struct80280550 *a)
     return 0;
 }
 
-s32 CameraChange06(UNUSED struct Struct80280550 *a, Vec3f b, Vec3f c)
+s32 CameraChange06(UNUSED struct LevelCamera *a, Vec3f b, Vec3f c)
 {
     s16 sp2E = D_8033B400;
     s16 sp2C = D_8032D000->unk10[1] + D_8033B402 + 32768;
@@ -1977,7 +1977,7 @@ s32 CameraChange06(UNUSED struct Struct80280550 *a, Vec3f b, Vec3f c)
     return D_8032D000->unk10[1];
 }
 
-void func_802852F4(UNUSED struct Struct80280550 *a)
+void func_802852F4(UNUSED struct LevelCamera *a)
 {
     UNUSED s16 sp6 = D_8033B400;
     UNUSED s16 sp4 = D_8033B402;
@@ -1998,7 +1998,7 @@ void func_802852F4(UNUSED struct Struct80280550 *a)
     D_8032D000->unk16[1] = D_8033B402 * 3 / 4;
 }
 
-void func_8028547C(struct Struct80280550 *a)
+void func_8028547C(struct LevelCamera *a)
 {
     struct Struct8033B418_sub *sp2C = &D_8033B418.unk8;
     struct Struct8033B418_sub *sp28 = &D_8033B418.unk28;
@@ -2020,7 +2020,7 @@ void func_8028547C(struct Struct80280550 *a)
         D_8033B4D8 &= ~0x100;
 }
 
-s32 func_80285770(struct Struct80280550 *a)
+s32 func_80285770(struct LevelCamera *a)
 {
     UNUSED u8 unused[16];
 
@@ -2062,14 +2062,14 @@ s32 func_80285770(struct Struct80280550 *a)
     return 0;
 }
 
-s32 CameraChange0A(UNUSED struct Struct80280550 *a, Vec3f b, Vec3f c)
+s32 CameraChange0A(UNUSED struct LevelCamera *a, Vec3f b, Vec3f c)
 {
     func_8027F870(c, b, 125.f + D_8033B410, 125.f, 800.f,
         D_8032D000->unk10[0], D_8032D000->unk10[1]);
     return D_8032D000->unk10[1];
 }
 
-void func_802859B0(struct Struct80280550 *a)
+void func_802859B0(struct LevelCamera *a)
 {
     UNUSED u8 unused[24];
 
@@ -2089,7 +2089,7 @@ void func_802859B0(struct Struct80280550 *a)
     }
 }
 
-void func_80285A8C(UNUSED struct Struct80280550 *a, s16 b)
+void func_80285A8C(UNUSED struct LevelCamera *a, s16 b)
 {
     if (!(D_8033B4DA & 4))
     {
@@ -2098,13 +2098,13 @@ void func_80285A8C(UNUSED struct Struct80280550 *a, s16 b)
     }
 }
 
-void func_80285AD8(struct Struct80280550 *a, s16 b, s16 c)
+void func_80285AD8(struct LevelCamera *a, s16 b, s16 c)
 {
-    if (a->unk0 != b)
+    if (a->preset != b)
     {
         D_8033B418.unk0 = (b != -1) ? b : D_8033B418.unk2;
-        D_8033B418.unk2 = a->unk0;
-        a->unk0 = D_8033B418.unk0;
+        D_8033B418.unk2 = a->preset;
+        a->preset = D_8033B418.unk0;
         D_8033B4D8 &= 0xFF02;
         if (!(D_8033B4DA & 4))
         {
@@ -2120,7 +2120,7 @@ void func_80285AD8(struct Struct80280550 *a, s16 b, s16 c)
     }
 }
 
-void func_80285BD8(struct Struct80280550 *a, s16 b, s16 c)
+void func_80285BD8(struct LevelCamera *a, s16 b, s16 c)
 {
     struct Struct8033B418_sub *sp24 = &D_8033B418.unk8;
     struct Struct8033B418_sub *sp20 = &D_8033B418.unk28;
@@ -2140,11 +2140,11 @@ void func_80285BD8(struct Struct80280550 *a, s16 b, s16 c)
         D_8033B3F0 = 0;
         D_8033B3EC = 0;
         D_8033B418.unk0 = (b != -1) ? b : D_8033B418.unk2;
-        D_8033B418.unk2 = a->unk0;
+        D_8033B418.unk2 = a->preset;
         D_8033B418.unk4 = c;
         D_8033B418.unk6 = 1;
-        a->unk0 = D_8033B418.unk0;
-        D_8033B328.unk3C = a->unk0;
+        a->preset = D_8033B418.unk0;
+        D_8033B328.unk3C = a->preset;
         vec3f_copy(sp20->unk0, a->unk4);
         vec3f_sub(sp20->unk0, D_8032D000->unk4);
         vec3f_copy(sp20->unkC, a->unk10);
@@ -2161,7 +2161,7 @@ void func_80285BD8(struct Struct80280550 *a, s16 b, s16 c)
     }
 }
 
-void func_80285E70(struct Struct80280550 *a)
+void func_80285E70(struct LevelCamera *a)
 {
     struct Surface *sp5C = NULL;
     Vec3f sp50;
@@ -2181,7 +2181,7 @@ void func_80285E70(struct Struct80280550 *a)
         }
         sp32 = func_8028C824(sp50, sp44, a->unk10, a->unk4,
             D_8033B1F8, D_8033B208, a->unk3A);
-        func_80289354(&a->unk2, sp32, D_8032CFD4);
+        func_80289354(&a->angle, sp32, D_8032CFD4);
         if (1)
         {
             D_8033B4DA &= ~0x4000;
@@ -2194,7 +2194,7 @@ void func_80285E70(struct Struct80280550 *a)
         }
         vec3f_copy(D_8033B1F8, sp50);
         vec3f_copy(D_8033B208, sp44);
-        D_8033B328.unk7C = a->unk2;
+        D_8033B328.unk7C = a->angle;
         D_8033B328.unk7E = a->unk3A;
         vec3f_copy(D_8033B328.unk0[3], a->unk10);
         vec3f_copy(D_8033B328.unk0[2], a->unk4);
@@ -2226,7 +2226,7 @@ void func_80285E70(struct Struct80280550 *a)
             func_8027EFE0(8);
         D_8033B328.unk7A += D_8033B308;
         D_8033B328.unk7A += D_8033B3DC;
-        if (a->unk0 != 6 && a->unk30 == 0)
+        if (a->preset != CAMERA_PRESET_C_UP_LOOK && a->unk30 == 0)
         {
             D_8035FE10 = 1;
             sp34 = find_floor(
@@ -2245,15 +2245,15 @@ void func_80285E70(struct Struct80280550 *a)
         vec3f_copy(D_8033B250.unk14, D_8032D000->unk4);
     }
     func_80288C2C(D_8033B328.unk8C, D_8033B328.unk80, 15872, -15872);
-    D_8033B328.unk3C = a->unk0;
+    D_8033B328.unk3C = a->preset;
     D_8033B328.unk3D = a->unk1;
 }
 
-void func_80286348(struct Struct80280550 *a)
+void func_80286348(struct LevelCamera *a)
 {
     UNUSED u8 unused[24];
 
-    D_8033B860 = a;
+    gCurrLevelCamera = a;
     update_camera_status(a);
     if (a->unk30 == 0)
     {
@@ -2286,9 +2286,9 @@ void func_80286348(struct Struct80280550 *a)
     D_8035FE10 = 1;
     vec3f_copy(a->unk10, D_8033B328.unk0[3]);
     vec3f_copy(a->unk4, D_8033B328.unk0[2]);
-    a->unk2 = D_8033B328.unk7C;
+    a->angle = D_8033B328.unk7C;
     a->unk3A = D_8033B328.unk7E;
-    a->unk0 = D_8033B328.unk3C;
+    a->preset = D_8033B328.unk3C;
     a->unk1 = D_8033B328.unk3D;
     func_8028E88C(a);
     dummy_802877EC(a);
@@ -2316,18 +2316,18 @@ void func_80286348(struct Struct80280550 *a)
         D_8032CFD4 = 0x400;
         if (D_8033B314 & 1)
         {
-            switch (a->unk0)
+            switch (a->preset)
             {
-            case 3:
+            case CAMERA_PRESET_SECRET_AQUARIUM:
                 func_80283434(a);
                 break;
-            case 6:
+            case CAMERA_PRESET_C_UP_LOOK:
                 func_80285770(a);
                 break;
-            case 8:
+            case CAMERA_PRESET_UNDERWATER:
                 func_80283484(a);
                 break;
-            case 10:
+            case CAMERA_PRESET_INSIDE_CANNON:
                 func_802859B0(a);
                 break;
             default:
@@ -2336,7 +2336,7 @@ void func_80286348(struct Struct80280550 *a)
         }
         else
         {
-            switch (a->unk0 - 1)
+            switch (a->preset - 1)
             {
             case 2:
                 func_80283434(a);
@@ -2399,7 +2399,7 @@ void func_80286348(struct Struct80280550 *a)
             D_8033B328.unkAC = 0.f;
             D_8033B328.unkB0 = 0.f;
             a->unk3A = func_8028A4F0(D_8033B328.unk80, D_8033B328.unk8C);
-            a->unk2 = a->unk3A;
+            a->angle = a->unk3A;
             D_8033B4D8 &= ~0x40;
         }
         else
@@ -2420,14 +2420,14 @@ void func_80286348(struct Struct80280550 *a)
     D_8033B3E0 = D_8032D000->unk0;
 }
 
-void func_802869B8(struct Struct80280550 *a)
+void func_802869B8(struct LevelCamera *a)
 {
     UNUSED s32 sp34 = 0;
     UNUSED u8 unused[16];
     UNUSED struct Struct8033B418_sub *sp20 = &D_8033B418.unk8;
     UNUSED struct Struct8033B418_sub *sp1C = &D_8033B418.unk28;
 
-    D_8033B860 = a;
+    gCurrLevelCamera = a;
     D_8033B4D8 = 0;
     D_8033B318 = 0;
     D_8033B4DA = 0;
@@ -2494,7 +2494,7 @@ void func_802869B8(struct Struct80280550 *a)
     D_8033B310 = 0;
 }
 
-void func_80286C9C(struct Struct80280550 *a)
+void func_80286C9C(struct LevelCamera *a)
 {
     struct Surface *sp34 = 0;
     Vec3f sp28;
@@ -2506,7 +2506,7 @@ void func_80286C9C(struct Struct80280550 *a)
     D_8032CFD8 = gCurrLevelNum * 16 + gCurrentArea->index;
     D_8033B314 &= 4;
     D_8033B228 = 0;
-    D_8033B328.unk3C = a->unk0;
+    D_8033B328.unk3C = a->preset;
     D_8033B328.unk3D = a->unk1;
     D_8033B328.unkAC = 0.3f;
     D_8033B328.unkB0 = 0.3f;
@@ -2591,7 +2591,7 @@ void func_80286C9C(struct Struct80280550 *a)
         vec3f_set(D_8032D00C, -2985.f, 478.f, -5568.f);
         break;
     }
-    if (a->unk0 == 14)
+    if (a->preset == CAMERA_PRESET_BOWSER_LEVEL)
         D_8033B4D8 |= 2;
     switch (D_8032CFD8)
     {
@@ -2619,7 +2619,7 @@ void func_80286C9C(struct Struct80280550 *a)
         break;
     }
     func_8028C5F0(a->unk10, D_8032D000->unk4, sp28, D_8032D000->unk10);
-    if (a->unk0 != 3)
+    if (a->preset != CAMERA_PRESET_SECRET_AQUARIUM)
         a->unk10[1] = find_floor(D_8032D000->unk4[0], D_8032D000->unk4[1] + 100.f, D_8032D000->unk4[2], &sp34) + 125.f;
     vec3f_copy(a->unk4, D_8032D000->unk4);
     vec3f_copy(D_8033B328.unk0[1], a->unk10);
@@ -2628,12 +2628,12 @@ void func_80286C9C(struct Struct80280550 *a)
     vec3f_copy(D_8033B328.unk0[2], a->unk4);
     vec3f_copy(D_8033B328.unk8C, a->unk10);
     vec3f_copy(D_8033B328.unk80, a->unk4);
-    if (a->unk0 == 13)
-        func_8028D288(a->unk0);
+    if (a->preset == CAMERA_PRESET_FIXED_REF_POINT)
+        func_8028D288(a->preset);
     func_80284CBC(a);
     D_8033B328.unk7C = func_8028A4F0(a->unk4, a->unk10);
     D_8033B328.unk7E = D_8033B328.unk7C;
-    a->unk2 = D_8033B328.unk7C;
+    a->angle = D_8033B328.unk7C;
     a->unk3A = D_8033B328.unk7C;
 }
 
@@ -2660,9 +2660,9 @@ void func_80287404(struct Struct80287404 *a)
         {
             if (D_8032E910[sp28] & sp24)
             {
-                a->unk28[0] = D_8033B860->unk28;
-                a->unk28[1] = (D_8032D000->unk4[1] + D_8033B860->unk68) / 2.f;
-                a->unk28[2] = D_8033B860->unk2C;
+                a->unk28[0] = gCurrLevelCamera->unk28;
+                a->unk28[1] = (D_8032D000->unk4[1] + gCurrLevelCamera->unk68) / 2.f;
+                a->unk28[2] = gCurrLevelCamera->unk2C;
                 vec3f_get_dist_and_angle(a->unk28, D_8032D000->unk4, &sp34, &sp32, &sp30);
                 vec3f_set_dist_and_angle(D_8032D000->unk4, a->unk1C, 6000.f, 4096, sp30);
                 if (gCurrLevelNum != LEVEL_THI)
@@ -2688,17 +2688,17 @@ void func_802875DC(void)
 void func_802875F8(struct Struct80287404 *a, struct AllocOnlyPool *b)
 {
     s16 sp1E = a->unk18;
-    struct Struct80280550 *sp18 = alloc_only_pool_alloc(b, 108);
+    struct LevelCamera *sp18 = alloc_only_pool_alloc(b, 108);
 
     a->unk18 = (s32)sp18;
-    sp18->unk0 = sp1E;
+    sp18->preset = sp1E;
     sp18->unk1 = sp1E;
     sp18->unk30 = 0;
     sp18->unk64 = 0;
     sp18->unk28 = a->unk28[0];
     sp18->unk68 = a->unk28[1];
     sp18->unk2C = a->unk28[2];
-    sp18->unk2 = 0;
+    sp18->angle = 0;
     vec3f_copy(sp18->unk10, a->unk1C);
     vec3f_copy(sp18->unk4, a->unk28);
 }
@@ -2731,11 +2731,11 @@ s32 Geo0F_80287D30(s32 a, struct Struct80287404 *b, struct AllocOnlyPool *c)
     return 0;
 }
 
-void dummy_802877D8(UNUSED struct Struct80280550 *a)
+void dummy_802877D8(UNUSED struct LevelCamera *a)
 {
 }
 
-void dummy_802877EC(UNUSED struct Struct80280550 *a)
+void dummy_802877EC(UNUSED struct LevelCamera *a)
 {
 }
 
@@ -3019,7 +3019,7 @@ s32 func_802886FC(u16 a, u16 buttonsPressed, u16 buttonsDown)
     return a;
 }
 
-s32 update_camera_status(struct Struct80280550 *a)
+s32 update_camera_status(struct LevelCamera *a)
 {
     s16 sp1E = 0;
 
@@ -3402,7 +3402,7 @@ s32 func_80289738(s16 a, f32 b, f32 c, f32 d, f32 e)
 
 s32 func_802899A0(Vec3f a, Vec3f b, f32 c, f32 d, f32 e, f32 f)
 {
-    s16 sp1E = D_8033B860->unk3A;
+    s16 sp1E = gCurrLevelCamera->unk3A;
 
     if (a[0] >= c)
         a[0] = c;
@@ -3751,7 +3751,7 @@ void func_8028AE50(s16 *a)
     }
 }
 
-s32 func_8028AF24(struct Struct80280550 *a, s16 b)
+s32 func_8028AF24(struct LevelCamera *a, s16 b)
 {
     s16 sp3E = 10922;
     s16 sp3C = D_8033B402;
@@ -3853,7 +3853,7 @@ void func_8028B36C(void)
     D_8033B31C &= ~6;
 }
 
-s32 func_8028B3DC(struct Struct80280550 *a, UNUSED f32 b)
+s32 func_8028B3DC(struct LevelCamera *a, UNUSED f32 b)
 {
     s16 sp1E;
 
@@ -3867,7 +3867,7 @@ s32 func_8028B3DC(struct Struct80280550 *a, UNUSED f32 b)
             {
                 if (!(D_8033B4D8 & 4))
                     D_8033B4D8 |= 4;
-                if (a->unk0 == 1)
+                if (a->preset == CAMERA_PRESET_OPEN_CAMERA)
                 {
                     if (D_8033B402 > 0x22AA)
                         D_8033B318 |= 4;
@@ -3896,7 +3896,7 @@ s32 func_8028B3DC(struct Struct80280550 *a, UNUSED f32 b)
             {
                 if (!(D_8033B4D8 & 8))
                     D_8033B4D8 |= 8;
-                if (a->unk0 == 1)
+                if (a->preset == CAMERA_PRESET_OPEN_CAMERA)
                 {
                     if (D_8033B402 < -0x22AA)
                         D_8033B318 |= 8;
@@ -3955,7 +3955,7 @@ s32 func_8028B3DC(struct Struct80280550 *a, UNUSED f32 b)
 s32 StopMario(s32 a)
 {
     s32 sp1C = 0;
-    UNUSED struct Struct80280550 *sp18 = D_8033B860;
+    UNUSED struct LevelCamera *sp18 = gCurrLevelCamera;
 
     if (a == 1)
         func_8028F834(171);
@@ -3963,13 +3963,13 @@ s32 StopMario(s32 a)
     return sp1C;
 }
 
-void func_8028B7A4(struct Struct80280550 *a)
+void func_8028B7A4(struct LevelCamera *a)
 {
     s16 sp1E;
 
     if (gPlayer1Controller->buttonPressed & U_CBUTTONS)
     {
-        if (a->unk0 != 13 && (D_8033B4D8 & 2))
+        if (a->preset != CAMERA_PRESET_FIXED_REF_POINT && (D_8033B4D8 & 2))
         {
             D_8033B4D8 &= ~2;
             func_8028B268();
@@ -3983,7 +3983,7 @@ void func_8028B7A4(struct Struct80280550 *a)
                 D_8033B3F4 = D_8032CFEC;
         }
     }
-    if (a->unk0 != 13)
+    if (a->preset != CAMERA_PRESET_FIXED_REF_POINT)
     {
         if (gPlayer1Controller->buttonPressed & D_CBUTTONS)
         {
@@ -4034,7 +4034,7 @@ void func_8028B7A4(struct Struct80280550 *a)
     }
 }
 
-void func_8028BA38(UNUSED struct Struct80280550 *a)
+void func_8028BA38(UNUSED struct LevelCamera *a)
 {
     s32 sp1C;
 
@@ -4048,7 +4048,7 @@ void func_8028BA38(UNUSED struct Struct80280550 *a)
     }
 }
 
-void func_8028BB3C(struct Struct80280550 *a, u8 b)
+void func_8028BB3C(struct LevelCamera *a, u8 b)
 {
     if (a->unk30 != b)
     {
@@ -4059,7 +4059,7 @@ void func_8028BB3C(struct Struct80280550 *a, u8 b)
 
 extern u8 D_8032E8A4[27][4];
 
-s32 func_8028BB8C(UNUSED struct Struct80280550 *a)
+s32 func_8028BB8C(UNUSED struct LevelCamera *a)
 {
     u8 sp7 = 0;
     u8 sp6 = 0;
@@ -4090,7 +4090,7 @@ u8 func_8028BC6C(u8 a, u8 b)
     return sp6;
 }
 
-u8 func_8028BCC8(struct Struct80280550 *a)
+u8 func_8028BCC8(struct LevelCamera *a)
 {
     UNUSED u8 unused1[4];
     u8 sp33 = a->unk30;
@@ -4105,7 +4105,7 @@ u8 func_8028BCC8(struct Struct80280550 *a)
             switch (D_8032CFD8)
             {
             case 97:
-                if (a->unk0 == 17 || a->unk0 == 4 || a->unk64 == 2)
+                if (a->preset == CAMERA_PRESET_UNKNOWN_11 || a->preset == CAMERA_PRESET_CLOSE || a->unk64 == 2)
                     sp33 = func_8028BC6C(140, 141);
                 else
                     sp33 = func_8028BC6C(130, 131);
@@ -4232,7 +4232,7 @@ void func_8028C1A0(f32 a, f32 b, f32 c)
     vec3f_add(sp28->unkC, sp24);
 }
 
-void func_8028C2F0(struct Struct80280550 *a, f32 b, f32 c)
+void func_8028C2F0(struct LevelCamera *a, f32 b, f32 c)
 {
     if (D_8033B4DA & 1)
     {
@@ -4257,7 +4257,7 @@ void Unknown8028C3AC(UNUSED s32 a, UNUSED s32 b, UNUSED s32 c, UNUSED s32 d)
 {
 }
 
-void func_8028C3CC(struct Struct80280550 *a, f32 b, f32 c, f32 d, s16 e)
+void func_8028C3CC(struct LevelCamera *a, f32 b, f32 c, f32 d, s16 e)
 {
     u16 sp26;
     UNUSED u8 unused[2];
@@ -4270,7 +4270,7 @@ void func_8028C3CC(struct Struct80280550 *a, f32 b, f32 c, f32 d, s16 e)
     a->unk4[1] = D_8032D000->unk4[1] + c + sp20;
 }
 
-static void unused_8028C508(struct Struct80280550 *a, f32 b, f32 c, f32 d, s16 e)
+static void unused_8028C508(struct LevelCamera *a, f32 b, f32 c, f32 d, s16 e)
 {
     u16 sp6 = D_8032D000->unk10[1] + e;
 
@@ -4364,7 +4364,7 @@ s32 func_8028C824(Vec3f a, Vec3f b, Vec3f c, Vec3f d, Vec3f e, Vec3f f, s16 g)
         vec3f_set_dist_and_angle(d, sp60, D_8033B250.unkC, D_8033B250.unk8, D_8033B250.unkA);
         vec3f_copy(b, sp60);
         vec3f_copy(a, sp6C);
-        if (D_8033B860->unk30 != 0 || !(D_8033B4D8 & 0x2000))
+        if (gCurrLevelCamera->unk30 != 0 || !(D_8033B4D8 & 0x2000))
         {
             sp40 = find_floor(a[0], a[1], a[2], &sp3C);
             if (sp40 != -11000.f)
@@ -4394,7 +4394,7 @@ void Unknown8028CE1C(void)
     D_8033B250.unk10 = 0;
 }
 
-s32 func_8028CE4C(struct Struct80280550 *a, s16 b, s16 c, s16 d)
+s32 func_8028CE4C(struct LevelCamera *a, s16 b, s16 c, s16 d)
 {
     s32 sp24 = 0;
     f32 sp20 = b;
@@ -4407,29 +4407,29 @@ s32 func_8028CE4C(struct Struct80280550 *a, s16 b, s16 c, s16 d)
         D_8033B4DA &= ~1;
     }
     vec3f_set(D_8032D00C, sp20, sp1C, sp18);
-    if (a->unk0 != 13)
+    if (a->preset != CAMERA_PRESET_FIXED_REF_POINT)
     {
         D_8033B4DA &= ~1;
-        a->unk0 = 13;
+        a->preset = CAMERA_PRESET_FIXED_REF_POINT;
         vec3f_set(a->unk10, D_8032D00C[0], D_8032D000->unk4[1], D_8032D00C[2]);
     }
     return sp24;
 }
 
-void func_8028CFAC(struct Struct80280550 *a)
+void func_8028CFAC(struct LevelCamera *a)
 {
-    if (a->unk0 != 14)
+    if (a->preset != CAMERA_PRESET_BOWSER_LEVEL)
     {
-        a->unk0 = 14;
+        a->preset = CAMERA_PRESET_BOWSER_LEVEL;
         D_8033B4DA &= ~1;
         D_8033B406 = 0;
         D_8033B408 = 0;
     }
 }
 
-void func_8028CFFC(struct Struct80280550 *a)
+void func_8028CFFC(struct LevelCamera *a)
 {
-    if (a->unk0 != 11)
+    if (a->preset != CAMERA_PRESET_BOWSER_FIGHT)
     {
         func_80285AD8(a, 11, 15);
         D_8033B402 = a->unk3A - 0x2000;
@@ -4445,7 +4445,7 @@ void func_8028D058(u8 *a)
     }
 }
 
-void func_8028D098(struct Struct80280550 *a, s16 b)
+void func_8028D098(struct LevelCamera *a, s16 b)
 {
     Vec3f sp24;
     s16 sp22;
@@ -4453,7 +4453,7 @@ void func_8028D098(struct Struct80280550 *a, s16 b)
     sp24[0] = a->unk28;
     sp24[1] = D_8032D000->unk4[1];
     sp24[2] = a->unk2C;
-    if (a->unk0 != 1)
+    if (a->preset != CAMERA_PRESET_OPEN_CAMERA)
     {
         sp22 = func_8028A4F0(sp24, D_8032D000->unk4) - func_8028A4F0(a->unk4, a->unk10) + 0x4000;
         if (sp22 > 0)
@@ -4462,16 +4462,16 @@ void func_8028D098(struct Struct80280550 *a, s16 b)
         }
         else
         {
-            a->unk0 = 1;
+            a->preset = CAMERA_PRESET_OPEN_CAMERA;
             D_8033B4DA &= ~1;
         }
         D_8033B402 = 0;
     }
 }
 
-void func_8028D19C(struct Struct80280550 *a, struct Struct8033B470 *b)
+void func_8028D19C(struct LevelCamera *a, struct Struct8033B470 *b)
 {
-    if (a->unk0 != 12)
+    if (a->preset != CAMERA_PRESET_UNKNOWN_0C)
     {
         D_8033B470 = b;
         D_8033B46C = 0;
@@ -4482,7 +4482,7 @@ void func_8028D19C(struct Struct80280550 *a, struct Struct8033B470 *b)
         a->unk10[1] = (D_8033B470[0].unk4[1] + D_8033B470[1].unk4[1]) / 2.f;
         a->unk10[2] = (D_8033B470[0].unk4[2] + D_8033B470[1].unk4[2]) / 2.f;
         D_8033B4DA &= ~1;
-        a->unk0 = 12;
+        a->preset = CAMERA_PRESET_UNKNOWN_0C;
     }
 }
 
@@ -4509,13 +4509,13 @@ void func_8028D32C(u8 *a)
         D_8033B4DA |= 0x1000;
 }
 
-void CameraRR00(struct Struct80280550 *a)
+void CameraRR00(struct LevelCamera *a)
 {
     func_8028CFAC(a);
     D_8033B406 = 16384;
 }
 
-void CameraRR04(struct Struct80280550 *a)
+void CameraRR04(struct LevelCamera *a)
 {
     func_8028CFAC(a);
     if (a->unk10[1] < 6343.f)
@@ -4527,47 +4527,47 @@ void CameraRR04(struct Struct80280550 *a)
     }
 }
 
-void CameraRR02(struct Struct80280550 *a)
+void CameraRR02(struct LevelCamera *a)
 {
-    if (a->unk0 != 13)
+    if (a->preset != CAMERA_PRESET_FIXED_REF_POINT)
         func_8028CE4C(a, -2974, 478, -3975);
 }
 
-void CameraRR0305(struct Struct80280550 *a)
+void CameraRR0305(struct LevelCamera *a)
 {
-    if (a->unk0 != 13)
+    if (a->preset != CAMERA_PRESET_FIXED_REF_POINT)
         func_8028CE4C(a, -2953, 798, -3943);
     if (a->unk10[1] > 6043.f)
         a->unk10[1] = 6043.f;
 }
 
-void CameraRR01(struct Struct80280550 *a)
+void CameraRR01(struct LevelCamera *a)
 {
-    if (a->unk0 != 13)
+    if (a->preset != CAMERA_PRESET_FIXED_REF_POINT)
     {
         D_8033B4DA &= ~1;
-        a->unk0 = 13;
+        a->preset = CAMERA_PRESET_FIXED_REF_POINT;
     }
 }
 
-void CameraMetal00(UNUSED struct Struct80280550 *a)
+void CameraMetal00(UNUSED struct LevelCamera *a)
 {
     D_8033B4D8 |= 0x40;
 }
 
-void CameraSL00(struct Struct80280550 *a)
+void CameraSL00(struct LevelCamera *a)
 {
     D_8033B4DA |= 0x1000;
     func_80285AD8(a, 14, 60);
     D_8033B406 = 7463;
 }
 
-void CameraSL01(struct Struct80280550 *a)
+void CameraSL01(struct LevelCamera *a)
 {
     func_80285AD8(a, 16, 60);
 }
 
-void func_8028D6A4(struct Struct80280550 *a, f32 b)
+void func_8028D6A4(struct LevelCamera *a, f32 b)
 {
     UNUSED f32 pad;
     
@@ -4579,7 +4579,7 @@ void func_8028D6A4(struct Struct80280550 *a, f32 b)
     }
 }
 
-void CameraHMC00(struct Struct80280550 *a)
+void CameraHMC00(struct LevelCamera *a)
 {
     s16 sp26, sp24;
     f32 sp20;
@@ -4597,78 +4597,78 @@ void CameraHMC00(struct Struct80280550 *a)
     }
 }
 
-void CameraHMC02(struct Struct80280550 *a)
+void CameraHMC02(struct LevelCamera *a)
 {
     func_8028D6A4(a, 1536.f);
 }
 
-void CameraHMC03(struct Struct80280550 *a)
+void CameraHMC03(struct LevelCamera *a)
 {
     func_8028D6A4(a, 2355.f);
 }
 
-void CameraHMC04(struct Struct80280550 *a)
+void CameraHMC04(struct LevelCamera *a)
 {
     func_8028D6A4(a, 1843.f);
 }
 
-void CameraHMC05(struct Struct80280550 *a)
+void CameraHMC05(struct LevelCamera *a)
 {
     func_8028D6A4(a, 1843.f);
 }
 
-void CameraSSL00(UNUSED struct Struct80280550 *a)
+void CameraSSL00(UNUSED struct LevelCamera *a)
 {
     func_8028F834(164);
 }
 
-void CameraSSL0102(struct Struct80280550 *a)
+void CameraSSL0102(struct LevelCamera *a)
 {
     D_8033B4DA |= 0x1000;
     func_80285AD8(a, 4, 90);
 }
 
-void CameraSSL03(struct Struct80280550 *a)
+void CameraSSL03(struct LevelCamera *a)
 {
     D_8033B4DA |= 0x1000;
     func_80285AD8(a, 2, 90);
 }
 
-void CameraTHI00(UNUSED struct Struct80280550 *a)
+void CameraTHI00(UNUSED struct LevelCamera *a)
 {
     if (D_8033B402 < 10922)
         D_8033B402 = 10922;
 }
 
-void CameraTHI01(UNUSED struct Struct80280550 *a)
+void CameraTHI01(UNUSED struct LevelCamera *a)
 {
     if (D_8033B402 > 15018)
         D_8033B402 = 15018;
 }
 
-void CameraRR07(struct Struct80280550 *a)
+void CameraRR07(struct LevelCamera *a)
 {
     D_8033B4DA |= 0x1000;
     func_80285AD8(a, 1, 90);
 }
 
-void CameraRR08(struct Struct80280550 *a)
+void CameraRR08(struct LevelCamera *a)
 {
     func_80285AD8(a, 16, 90);
 }
 
-void CameraHMC01(struct Struct80280550 *a)
+void CameraHMC01(struct LevelCamera *a)
 {
     if ((D_8032D000->unk0 != 6444) && (D_8032D000->unk0 != 6443))
         func_8028BB3C(a, 181);
 }
 
-void CameraInside20(UNUSED struct Struct80280550 *a)
+void CameraInside20(UNUSED struct LevelCamera *a)
 {
     vec3f_set(D_8033B460, -813.f - D_8032D00C[0], 378.f - D_8032D00C[1], 1103.f - D_8032D00C[2]);
 }
 
-void CameraInside1E(struct Struct80280550 *a)
+void CameraInside1E(struct LevelCamera *a)
 {
     struct Surface *sp1C;
     f32 sp18 = find_floor(a->unk10[0], a->unk10[1], a->unk10[2], &sp1C);
@@ -4677,7 +4677,7 @@ void CameraInside1E(struct Struct80280550 *a)
         vec3f_set(a->unk10, -227.f, 1425.f, 1533.f);
 }
 
-void CameraInside1F(struct Struct80280550 *a)
+void CameraInside1F(struct LevelCamera *a)
 {
     struct Surface *sp1C;
     f32 sp18 = find_floor(a->unk10[0], a->unk10[1], a->unk10[2], &sp1C);
@@ -4686,59 +4686,59 @@ void CameraInside1F(struct Struct80280550 *a)
         vec3f_set(a->unk10, -980.f, 249.f, -1398.f);
 }
 
-void CameraInside01(struct Struct80280550 *a)
+void CameraInside01(struct LevelCamera *a)
 {
-    if (a->unk0 != 13)
+    if (a->preset != CAMERA_PRESET_FIXED_REF_POINT)
     {
         D_8033B4DA &= ~1;
-        func_8028D288(a->unk0);
-        a->unk0 = 13;
+        func_8028D288(a->preset);
+        a->preset = CAMERA_PRESET_FIXED_REF_POINT;
     }
 }
 
-void CameraInside1213(struct Struct80280550 *a)
+void CameraInside1213(struct LevelCamera *a)
 {
     func_80285AD8(a, 17, 20);
 }
 
-void CameraUnused(struct Struct80280550 *a)
+void CameraUnused(struct LevelCamera *a)
 {
-    if (a->unk0 == 17)
+    if (a->preset == CAMERA_PRESET_UNKNOWN_11)
         func_80285AD8(a, 4, 30);
     else
-        func_8028D058(&a->unk0);
+        func_8028D058(&a->preset);
 }
 
-void CameraInside00(struct Struct80280550 *a)
+void CameraInside00(struct LevelCamera *a)
 {
-    func_8028D058(&a->unk0);
+    func_8028D058(&a->preset);
 }
 
-void CameraInside0E(struct Struct80280550 *a)
+void CameraInside0E(struct LevelCamera *a)
 {
     CameraInside00(a);
     a->unk64 = 2;
 }
 
-void CameraInside0F(struct Struct80280550 *a)
+void CameraInside0F(struct LevelCamera *a)
 {
     CameraInside01(a);
 }
 
-void CameraBBH2B2C(struct Struct80280550 *a)
+void CameraBBH2B2C(struct LevelCamera *a)
 {
     func_8028D19C(a, D_8032D0F0);
 }
 
-void CameraBBH24(struct Struct80280550 *a)
+void CameraBBH24(struct LevelCamera *a)
 {
-    func_8028D058(&a->unk0);
+    func_8028D058(&a->preset);
 }
 
-void CameraBBH2E2F(struct Struct80280550 *a)
+void CameraBBH2E2F(struct LevelCamera *a)
 {
     Vec3f sp1C;
-    func_8028D058(&a->unk0);
+    func_8028D058(&a->preset);
     vec3f_set(sp1C, 0.f, 0.f, 300.f);
     func_8028C5F0(D_8033B328.unk0[3], D_8032D000->unk4, sp1C, D_8032D000->unk10);
     D_8033B328.unk0[3][1] = -2300.f;
@@ -4746,170 +4746,170 @@ void CameraBBH2E2F(struct Struct80280550 *a)
     D_8033B4DA &= ~1;
 }
 
-void CameraBBH020C(struct Struct80280550 *a)
+void CameraBBH020C(struct LevelCamera *a)
 {
     func_8028CE4C(a, 956, 440, 1994);
 }
 
-void CameraBBH01(struct Struct80280550 *a)
+void CameraBBH01(struct LevelCamera *a)
 {
     a->unk64 = 1;
     CameraBBH020C(a);
 }
 
-void CameraBBH0D0F(struct Struct80280550 *a)
+void CameraBBH0D0F(struct LevelCamera *a)
 {
     func_8028CE4C(a, 2591, 400, 1284);
 }
 
-void CameraBBH1011(struct Struct80280550 *a)
+void CameraBBH1011(struct LevelCamera *a)
 {
     func_8028CE4C(a, 3529, 340, -1384);
 }
 
-void CameraBBH12(struct Struct80280550 *a)
+void CameraBBH12(struct LevelCamera *a)
 {
     func_8028CE4C(a, -500, 740, -1306);
 }
 
-void CameraBBH1314(struct Struct80280550 *a)
+void CameraBBH1314(struct LevelCamera *a)
 {
     func_8028CE4C(a, -2172, 200, 675);
 }
 
-void CameraBBH15(struct Struct80280550 *a)
+void CameraBBH15(struct LevelCamera *a)
 {
     if (func_8028CE4C(a, -2172, 200, 675) == 1)
         func_80285A8C(a, 20);
 }
 
-void CameraBBH16(struct Struct80280550 *a)
+void CameraBBH16(struct LevelCamera *a)
 {
     if (func_8028CE4C(a, -1542, 320, -307) == 1)
         func_80285A8C(a, 20);
 }
 
-void CameraBBH17(struct Struct80280550 *a)
+void CameraBBH17(struct LevelCamera *a)
 {
     a->unk64 = 1;
     func_8028CE4C(a, -1542, 320, -307);
 }
 
-void CameraBBH18(struct Struct80280550 *a)
+void CameraBBH18(struct LevelCamera *a)
 {
     func_8028CE4C(a, -1893, 320, 2327);
 }
 
-void CameraBBH28(struct Struct80280550 *a)
+void CameraBBH28(struct LevelCamera *a)
 {
     func_8028CE4C(a, 1371, 360, -1302);
 }
 
-void CameraBBH29(struct Struct80280550 *a)
+void CameraBBH29(struct LevelCamera *a)
 {
     if (func_8028CE4C(a, 1371, 360, -1302) == 1)
         func_80285A8C(a, 20);
 }
 
-void CameraBBH2A(struct Struct80280550 *a)
+void CameraBBH2A(struct LevelCamera *a)
 {
     if (func_8028CE4C(a, 2115, 260, -772) == 1)
         func_80285A8C(a, 20);
 }
 
-void CameraBBH3033(struct Struct80280550 *a)
+void CameraBBH3033(struct LevelCamera *a)
 {
     a->unk64 = 1;
-    func_8028D058(&a->unk0);
+    func_8028D058(&a->preset);
 }
 
-void CameraBBH34(struct Struct80280550 *a)
+void CameraBBH34(struct LevelCamera *a)
 {
-    func_8028D058(&a->unk0);
+    func_8028D058(&a->preset);
 }
 
-void CameraBBH38(struct Struct80280550 *a)
+void CameraBBH38(struct LevelCamera *a)
 {
-    if (a->unk0 == 13)
+    if (a->preset == CAMERA_PRESET_FIXED_REF_POINT)
     {
-        func_8028D058(&a->unk0);
+        func_8028D058(&a->preset);
         a->unk10[1] = -405.f;
         D_8033B328.unk0[3][1] = -405.f;
     }
 }
 
-void CameraBBH393A(struct Struct80280550 *a)
+void CameraBBH393A(struct LevelCamera *a)
 {
     a->unk64 = 1;
     func_8028CE4C(a, -2932, 296, 4429);
 }
 
-void CameraBBH00(struct Struct80280550 *a)
+void CameraBBH00(struct LevelCamera *a)
 {
-    func_8028D058(&a->unk0);
+    func_8028D058(&a->preset);
 }
 
-void CameraBBH1A1B(struct Struct80280550 *a)
+void CameraBBH1A1B(struct LevelCamera *a)
 {
     func_8028CE4C(a, 3493, 440, 617);
 }
 
-void CameraBBH1C(struct Struct80280550 *a)
+void CameraBBH1C(struct LevelCamera *a)
 {
     if (func_8028CE4C(a, 3493, 440, 617) == 1)
         func_80285A8C(a, 20);
 }
 
-void CameraBBH1E(struct Struct80280550 *a)
+void CameraBBH1E(struct LevelCamera *a)
 {
     func_8028CE4C(a, 3502, 440, 1217);
 }
 
-void CameraBBH1D(struct Struct80280550 *a)
+void CameraBBH1D(struct LevelCamera *a)
 {
     if (func_8028CE4C(a, 3502, 440, 1217) == 1)
         func_80285A8C(a, 20);
 }
 
-void CameraBBH1F20(struct Struct80280550 *a)
+void CameraBBH1F20(struct LevelCamera *a)
 {
     func_8028CE4C(a, -670, 460, 372);
 }
 
-void CameraBBH21(struct Struct80280550 *a)
+void CameraBBH21(struct LevelCamera *a)
 {
     if (func_8028CE4C(a, -670, 460, 372) == 1)
         func_80285A8C(a, 20);
 }
 
-void CameraBBH22(struct Struct80280550 *a)
+void CameraBBH22(struct LevelCamera *a)
 {
     if (func_8028CE4C(a, 131, 380, -263) == 1)
         func_80285A8C(a, 20);
 }
 
-void CameraBBH23(struct Struct80280550 *a)
+void CameraBBH23(struct LevelCamera *a)
 {
     func_8028CE4C(a, 210, 420, 3109);
 }
 
-void CameraBBH3536(struct Struct80280550 *a)
+void CameraBBH3536(struct LevelCamera *a)
 {
     a->unk64 = 1;
     func_8028CE4C(a, -204, 807, 204);
 }
 
-void CameraCCM00(UNUSED struct Struct80280550 *a)
+void CameraCCM00(UNUSED struct LevelCamera *a)
 {
     D_8033B4DA |= 0x10;
 }
 
-void CameraCCM01(UNUSED struct Struct80280550 *a)
+void CameraCCM01(UNUSED struct LevelCamera *a)
 {
     D_8033B4DA &= ~0x10;
 }
 
-u32 func_8028E634(struct Struct80280550 *a)
+u32 func_8028E634(struct LevelCamera *a)
 {
     u32 sp24 = 0;
     
@@ -4933,7 +4933,7 @@ u32 func_8028E634(struct Struct80280550 *a)
     return sp24;
 }
 
-u32 func_8028E70C(struct Struct80280550 *a, u8 b)
+u32 func_8028E70C(struct LevelCamera *a, u8 b)
 {
     u32 sp1C = 0;
     sp1C = func_8028E634(a);
@@ -4944,22 +4944,22 @@ u32 func_8028E70C(struct Struct80280550 *a, u8 b)
     return sp1C;
 }
 
-void func_8028E774(struct Struct80280550 *a)
+void func_8028E774(struct LevelCamera *a)
 {
     switch (D_8033B278.unk8)
     {
     case SURFACE_000B:
-        if (a->unk0 != 4)
+        if (a->preset != CAMERA_PRESET_CLOSE)
             func_80285AD8(a, 16, 90);
         break;
         
     case SURFACE_0066:
-        if (a->unk0 != 4)
+        if (a->preset != CAMERA_PRESET_CLOSE)
             func_80285AD8(a, 16, 90);
         break;
         
     case SURFACE_0079:
-        if (a->unk0 != 4)
+        if (a->preset != CAMERA_PRESET_CLOSE)
             func_80285AD8(a, 16, 90);
         break;
         
@@ -5354,7 +5354,7 @@ struct Struct8032E040 D_8032E258[7] = {
     { -1,   0, {   636,   2027,   -415}}
 };
 
-s16 func_8028E88C(struct Struct80280550 *a)
+s16 func_8028E88C(struct LevelCamera *a)
 {
     s16 currLevelNum = gCurrLevelNum;
     s16 sp64;
@@ -5363,11 +5363,11 @@ s16 func_8028E88C(struct Struct80280550 *a)
     Vec3f sp50, sp44;
     u32 sp40 = 0;
     UNUSED struct Struct8032CA78 sp28;
-    u8 sp27 = a->unk0;
+    u8 sp27 = a->preset;
     
-    if (a->unk0 == 6)
-        a->unk0 = (u8)D_8033B418.unk2;
-    func_8028D32C(&a->unk0);
+    if (a->preset == CAMERA_PRESET_C_UP_LOOK)
+        a->preset = (u8)D_8033B418.unk2;
+    func_8028D32C(&a->preset);
     if (currLevelNum > 40)
         currLevelNum = 40;
     
@@ -5472,7 +5472,7 @@ s16 func_8028E88C(struct Struct80280550 *a)
                     func_8028CFFC(a);
                 else
                 {
-                    if (a->unk0 == 4)
+                    if (a->preset == CAMERA_PRESET_CLOSE)
                         func_80285AD8(a, 1, 60);
                     else
                         func_8028D098(a, 60);
@@ -5503,7 +5503,7 @@ s16 func_8028E88C(struct Struct80280550 *a)
             break;
             
         case 370:
-            if ((a->unk0 != 3) && (a->unk0 != 8))
+            if ((a->preset != CAMERA_PRESET_SECRET_AQUARIUM) && (a->preset != CAMERA_PRESET_UNDERWATER))
             {
                 if (((D_8032D000->unk0 & 0x00100000) != 0) || (D_8033B278.unk4 > 800.f))
                     func_80285AD8(a, 14, 60);
@@ -5522,10 +5522,10 @@ s16 func_8028E88C(struct Struct80280550 *a)
     D_8033B4DA &= ~0x1000;
     if (sp27 == 6)
     {
-        D_8033B418.unk2 = a->unk0;
-        a->unk0 = sp27;
+        D_8033B418.unk2 = a->preset;
+        a->preset = sp27;
     }
-    sp64 = a->unk0;
+    sp64 = a->preset;
     return sp64;
 }
 
@@ -5564,7 +5564,7 @@ void func_8028F04C(Vec3f a, UNUSED Vec3f b)
     }
 }
     
-s32 func_8028F2F0(struct Struct80280550 *a, Vec3f b, s16 *c, s16 d)
+s32 func_8028F2F0(struct LevelCamera *a, Vec3f b, s16 *c, s16 d)
 {
     UNUSED f32 sp84;
     struct WallCollisionData sp5C;
@@ -5678,10 +5678,10 @@ u8 func_8028F834(u8 a)
 
 static u8 unused_8028F860(u8 a)
 {
-    if ((D_8033B860->unk30 == 0) && (D_8032CFF0 == 0))
+    if ((gCurrLevelCamera->unk30 == 0) && (D_8032CFF0 == 0))
         D_8032CFF0 = a;
     
-    if ((D_8033B860->unk30 == a) && (D_8032CFFC != 0))
+    if ((gCurrLevelCamera->unk30 == a) && (D_8032CFFC != 0))
         return D_8032CFFC;
     else
         return 0;
@@ -5691,7 +5691,7 @@ s16 func_8028F8E0(u8 a, struct Object *b, s16 c)
 {
     s16 sp1E = 0;
     
-    if ((D_8033B860->unk30 == 0) && (D_8032CFF0 == 0))
+    if ((gCurrLevelCamera->unk30 == 0) && (D_8032CFF0 == 0))
     {
         if (D_8032CFF4 != a)
         {
@@ -5719,7 +5719,7 @@ s16 func_8028F9E8(u8 a, struct Object *b)
 {
     s16 sp1E = 0;
     
-    if ((D_8033B860->unk30 == 0) && (D_8032CFF0 == 0))
+    if ((gCurrLevelCamera->unk30 == 0) && (D_8032CFF0 == 0))
     {
         if (D_8032CFF4 != a)
         {
@@ -5734,10 +5734,10 @@ s16 func_8028F9E8(u8 a, struct Object *b)
     return sp1E;
 }
 
-void func_8028FA74(struct Struct80280550 *a)
+void func_8028FA74(struct LevelCamera *a)
 {
     a->unk3A = func_8028A4F0(a->unk4, a->unk10);
-    a->unk2 = a->unk3A;
+    a->angle = a->unk3A;
 }
 
 void func_8028FABC(void)
@@ -5746,7 +5746,7 @@ void func_8028FABC(void)
     D_8033B6E4 = 0;
 }
 
-void func_8028FAE0(struct Struct80280550 *a)
+void func_8028FAE0(struct LevelCamera *a)
 {
     gCutsceneTimer = 0x8000;
     a->unk30 = 0;
@@ -5802,22 +5802,22 @@ s16 func_8028FD94(s32 a)
     return timer;
 }
 
-static void unused_8028FDE8(UNUSED struct Struct80280550 *a)
+static void unused_8028FDE8(UNUSED struct LevelCamera *a)
 {
     gCutsceneTimer = func_8028FD94(3);
 }
 
-void Cutscene26Todo0(UNUSED struct Struct80280550 *a)
+void Cutscene26Todo0(UNUSED struct LevelCamera *a)
 {
     gCutsceneTimer = func_8028FD94(1);
 }
 
-static void unused_8028FE50(UNUSED struct Struct80280550 *a)
+static void unused_8028FE50(UNUSED struct LevelCamera *a)
 {
     gCutsceneTimer = func_8028FD94(2);
 }
 
-static void CutsceneIntroPeach0_2(UNUSED struct Struct80280550 *a)
+static void CutsceneIntroPeach0_2(UNUSED struct LevelCamera *a)
 {
 #if VERSION_US
     func_8031FFB4(0, 60, 40);
@@ -5825,7 +5825,7 @@ static void CutsceneIntroPeach0_2(UNUSED struct Struct80280550 *a)
     func_8028B13C();
 }
 
-static void CutsceneIntroPeach2_1(UNUSED struct Struct80280550 *a)
+static void CutsceneIntroPeach2_1(UNUSED struct LevelCamera *a)
 {
 #if VERSION_US
     func_80320040(0, 60);
@@ -5833,12 +5833,12 @@ static void CutsceneIntroPeach2_1(UNUSED struct Struct80280550 *a)
     func_8028B16C();
 }
 
-void func_8028FEDC(UNUSED struct Struct80280550 *a)
+void func_8028FEDC(UNUSED struct LevelCamera *a)
 {
     D_8033B40C = 0.f;
 }
 
-void func_8028FEFC(struct Struct80280550 *a, s16 b, s16 c, s16 d, s16 e)
+void func_8028FEFC(struct LevelCamera *a, s16 b, s16 c, s16 d, s16 e)
 {
     f32 sp2C;
     s16 sp2A, sp28, sp26;
@@ -5875,7 +5875,7 @@ void func_8028FEFC(struct Struct80280550 *a, s16 b, s16 c, s16 d, s16 e)
     vec3f_sub(D_8033B218, a->unk4);
 }
 
-void func_80290144(struct Struct80280550 *a)
+void func_80290144(struct LevelCamera *a)
 {
     vec3f_copy(D_8033B4B8.unk0, a->unk10);
     vec3f_copy(D_8033B4B8.unkC, a->unk4);
@@ -5883,7 +5883,7 @@ void func_80290144(struct Struct80280550 *a)
     D_8033B4B8.unk1C = D_8033B410;
 }
 
-void func_802901B4(struct Struct80280550 *a)
+void func_802901B4(struct LevelCamera *a)
 {
     vec3f_copy(a->unk10, D_8033B4B8.unk0);
     vec3f_copy(a->unk4, D_8033B4B8.unkC);
@@ -5891,7 +5891,7 @@ void func_802901B4(struct Struct80280550 *a)
     D_8033B410 = D_8033B4B8.unk1C;
 }
 
-void func_80290224(struct Struct80280550 *a)
+void func_80290224(struct LevelCamera *a)
 {
     func_8028FEDC(a);
     vec3f_copy(D_8033B4B8.unk0, a->unk10);
@@ -5900,7 +5900,7 @@ void func_80290224(struct Struct80280550 *a)
     D_8033B4B8.unkC[2] = D_8032D000->unk4[2];
 }
 
-void func_802902A8(struct Struct80280550 *a)
+void func_802902A8(struct LevelCamera *a)
 {
     vec3f_copy(a->unk10, D_8033B4B8.unk0);
     vec3f_copy(a->unk4, D_8033B4B8.unkC);
@@ -5921,7 +5921,7 @@ static void unused_vec3f_to_vec3s(Vec3s dst, Vec3f src)
     dst[2] = src[2];
 }
 
-void func_80290390(struct Struct80280550 *a, s16 b, s16 c)
+void func_80290390(struct LevelCamera *a, s16 b, s16 c)
 {
     UNUSED Vec3f sp2C;
     f32 sp28;
@@ -5934,13 +5934,13 @@ void func_80290390(struct Struct80280550 *a, s16 b, s16 c)
     vec3f_set_dist_and_angle(a->unk10, a->unk4, sp28, sp26, sp24);
 }
 
-void CutsceneEnterSomething8029041C(UNUSED struct Struct80280550 *a)
+void CutsceneEnterSomething8029041C(UNUSED struct LevelCamera *a)
 {
     func_8027F308(1);
     func_8029A494(1);
 }
 
-static void unused_80290450(UNUSED struct Struct80280550 *a)
+static void unused_80290450(UNUSED struct LevelCamera *a)
 {
     func_8027F308(2);
 }
@@ -5957,41 +5957,41 @@ void func_8029047C(Vec3f a, Vec3f b, f32 c, s16 d, s16 e)
     vec3f_set_dist_and_angle(b, a, sp24, sp22, sp20);
 }
 
-void func_80290514(struct Struct80280550 *a)
+void func_80290514(struct LevelCamera *a)
 {
     D_8033B4DA |= 0x8000;
     D_8033B2B0 = func_8028A4F0(a->unk4, a->unk10);
 }
 
-void func_80290564(UNUSED struct Struct80280550 *a)
+void func_80290564(UNUSED struct LevelCamera *a)
 {
     func_8031FFB4(0, 60, 40);
 }
 
-void func_80290598(UNUSED struct Struct80280550 *a)
+void func_80290598(UNUSED struct LevelCamera *a)
 {
     func_80320040(0, 60);
 }
 
-static void unused_802905C8(UNUSED struct Struct80280550 *a)
+static void unused_802905C8(UNUSED struct LevelCamera *a)
 {
 }
 
-void Cutscene0FTodo0(UNUSED struct Struct80280550 *a)
+void Cutscene0FTodo0(UNUSED struct LevelCamera *a)
 {
 }
 
-void Cutscene0FTodo1(UNUSED struct Struct80280550 *a)
+void Cutscene0FTodo1(UNUSED struct LevelCamera *a)
 {
 }
 
-static void CutscenePeachEnd0_1(struct Struct80280550 *a)
+static void CutscenePeachEnd0_1(struct LevelCamera *a)
 {
     vec3f_set(a->unk4, -26.f, 0.f, -137.f);
     vec3f_set(a->unk10, 165.f, 4725.f, 324.f);
 }
 
-static void CutscenePeachEnd0_2(struct Struct80280550 *a)
+static void CutscenePeachEnd0_2(struct LevelCamera *a)
 {
     Vec3f sp24;
     vec3f_set(sp24, 0.f, 80.f, 0.f);
@@ -6003,54 +6003,54 @@ static void CutscenePeachEnd0_2(struct Struct80280550 *a)
     func_8028C5F0(a->unk4, D_8032D000->unk4, sp24, D_8032D000->unk10);
 }
 
-void CutscenePeachEnd0(struct Struct80280550 *a)
+void CutscenePeachEnd0(struct LevelCamera *a)
 {
     call_cutscene_func_in_time_range(CutscenePeachEnd0_1, a, 0, 0);
     call_cutscene_func_in_time_range(CutscenePeachEnd0_2, a, 0, -1);
     func_8028FEFC(a, -0x2000, 0x2000, -0x2000, 0x2000);
 }
 
-void CutscenePeachEnd2(struct Struct80280550 *a)
+void CutscenePeachEnd2(struct LevelCamera *a)
 {
     vec3f_set(a->unk4, 85.f, 826.f, 250.f);
     vec3f_set(a->unk10, -51.f, 988.f, -202.f);
     func_8028FEFC(a, -0x2000, 0x2000, -0x2000, 0x2000);
 }
 
-static void CutscenePeachEndCommon367A(UNUSED struct Struct80280550 *a)
+static void CutscenePeachEndCommon367A(UNUSED struct LevelCamera *a)
 {
     D_8033B6F0[9].unk4[0] = 0.f;
     func_8028FABC();
 }
 
-static void CutscenePeachEnd3_1(struct Struct80280550 *a)
+static void CutscenePeachEnd3_1(struct LevelCamera *a)
 {
     func_80287CFC(a->unk10, D_8032E040, &D_8033B6E0, &D_8033B6E4);
     func_80287CFC(a->unk4, D_8032E090, &D_8033B6E0, &D_8033B6E4);
 }
 
-void CutscenePeachEnd3(struct Struct80280550 *a)
+void CutscenePeachEnd3(struct LevelCamera *a)
 {
     call_cutscene_func_in_time_range(CutscenePeachEndCommon367A, a, 0, 0);
     call_cutscene_func_in_time_range(CutscenePeachEnd3_1, a, 0, -1);
     func_8028FEFC(a, -0x2000, 0x2000, -0x2000, 0x2000);
 }
 
-void CutscenePeachEnd1(struct Struct80280550 *a)
+void CutscenePeachEnd1(struct LevelCamera *a)
 {
     vec3f_set(a->unk4, D_8032E090[0].unk2[0], D_8032E090[0].unk2[1] + 80.f, D_8032E090[0].unk2[2]);
     vec3f_set(a->unk10, D_8032E040[0].unk2[0], D_8032E040[0].unk2[1], D_8032E040[0].unk2[2] + 150.f);
     func_8028FEFC(a, -0x800, 0x2000, -0x2000, 0x2000);
 }
 
-static void CutscenePeachEnd4_1(struct Struct80280550 *a)
+static void CutscenePeachEnd4_1(struct LevelCamera *a)
 {
     vec3f_set(a->unk10, 179.f, 2463.f, -1216.f);
     a->unk10[1] = D_8032CFC4->oPosY + 35.f;
     vec3f_set(a->unk4, D_8032CFC4->oPosX, D_8032CFC4->oPosY + 125.f, D_8032CFC4->oPosZ);
 }
 
-void CutscenePeachEnd4(struct Struct80280550 *a)
+void CutscenePeachEnd4(struct LevelCamera *a)
 {
     call_cutscene_func_in_time_range(CutscenePeachEnd4_1, a, 0, 0);
     approach_f32_exponential(&a->unk10[1], D_8032CFC4->oPosY + 35.f, 0.02f);
@@ -6058,24 +6058,24 @@ void CutscenePeachEnd4(struct Struct80280550 *a)
     func_8028FEFC(a, -0x2000, 0x2000, -0x2000, 0x2000);
 }
 
-static void CutscenePeachEnd5_1(UNUSED struct Struct80280550 *a)
+static void CutscenePeachEnd5_1(UNUSED struct LevelCamera *a)
 {
     func_8028FABC();
     D_8033B6F0[2].unk4[1] = 150.f;
 }
 
-static void CutscenePeachEnd5_2(struct Struct80280550 *a)
+static void CutscenePeachEnd5_2(struct LevelCamera *a)
 {
     func_80287CFC(a->unk10, D_8032E0E8, &D_8033B6E0, &D_8033B6E4);
     a->unk10[1] += D_8032CFC4->oPosY + D_8033B6F0[3].unk4[1];
 }
 
-static void CutscenePeachEnd5_3(UNUSED struct Struct80280550 *a)
+static void CutscenePeachEnd5_3(UNUSED struct LevelCamera *a)
 {
     func_802893E4(&(D_8033B6F0[2].unk4[1]), 90.f, 0.5f);
 }
 
-static void CutscenePeachEnd5_4(struct Struct80280550 *a)
+static void CutscenePeachEnd5_4(struct LevelCamera *a)
 {
     Vec3f sp1C;
     
@@ -6085,7 +6085,7 @@ static void CutscenePeachEnd5_4(struct Struct80280550 *a)
     approach_f32_exponential(&a->unk10[1], (sp1C[1] += D_8032CFC4->oPosY), 0.07f);
 }
 
-void CutscenePeachEnd5(struct Struct80280550 *a)
+void CutscenePeachEnd5(struct LevelCamera *a)
 {
     call_cutscene_func_in_time_range(CutscenePeachEnd5_1, a, 0, 0);
     call_cutscene_func_in_time_range(CutscenePeachEnd5_2, a, 0, 299);
@@ -6095,7 +6095,7 @@ void CutscenePeachEnd5(struct Struct80280550 *a)
     func_8028FEFC(a, -0x2000, 0x2000, -0x2000, 0x2000);
 }
 
-void CutscenePeachEnd6(struct Struct80280550 *a)
+void CutscenePeachEnd6(struct LevelCamera *a)
 {
     call_cutscene_func_in_time_range(CutscenePeachEndCommon367A, a, 0, 0);
     func_80287CFC(a->unk10, D_8032E188, &D_8033B6E0, &D_8033B6E4);
@@ -6103,12 +6103,12 @@ void CutscenePeachEnd6(struct Struct80280550 *a)
     func_8028FEFC(a, -0x2000, 0x2000, -0x2000, 0x2000);
 }
 
-static void CutscenePeachEnd7_1(UNUSED struct Struct80280550 *a)
+static void CutscenePeachEnd7_1(UNUSED struct LevelCamera *a)
 {
     func_80287CFC(a->unk4, D_8032E218, &D_8033B6E0, &D_8033B6E4);
 }
 
-void CutscenePeachEnd7(struct Struct80280550 *a)
+void CutscenePeachEnd7(struct LevelCamera *a)
 {
     call_cutscene_func_in_time_range(CutscenePeachEndCommon367A, a, 0, 0);
     call_cutscene_func_in_time_range(CutscenePeachEnd7_1, a, 0, 0);
@@ -6119,21 +6119,21 @@ void CutscenePeachEnd7(struct Struct80280550 *a)
     func_8028FEFC(a, -0x800, 0x2000, -0x2000, 0x2000);
 }
 
-void CutscenePeachEnd8(struct Struct80280550 *a)
+void CutscenePeachEnd8(struct LevelCamera *a)
 {
     vec3f_set(a->unk4, 11.f, 983.f, -1273.f);
     vec3f_set(a->unk10, -473.f, 970.f, -1152.f);
     func_8028FEFC(a, -0x800, 0x2000, -0x2000, 0x2000);
 }
 
-static void CutscenePeachEnd9_1(struct Struct80280550 *a)
+static void CutscenePeachEnd9_1(struct LevelCamera *a)
 {
     func_8029A478(13);
     vec3f_set(a->unk4, 350.f, 1034.f, -1216.f);
     vec3f_set(a->unk10, -149.f, 1021.f, -1216.f);
 }
 
-static void CutscenePeachEnd9_2(struct Struct80280550 *a)
+static void CutscenePeachEnd9_2(struct LevelCamera *a)
 {
     Vec3f sp2C, sp20;
     
@@ -6144,25 +6144,25 @@ static void CutscenePeachEnd9_2(struct Struct80280550 *a)
     approach_vec3f_exponential(a->unk4, sp20, 0.2f, 0.1f, 0.2f);
 }
 
-void CutscenePeachEnd9(struct Struct80280550 *a)
+void CutscenePeachEnd9(struct LevelCamera *a)
 {
     call_cutscene_func_in_time_range(CutscenePeachEnd9_1, a, 0, 0);
     call_cutscene_func_in_time_range(CutscenePeachEnd9_2, a, 155, -1);
     func_8028FEFC(a, -0x800, 0x2000, -0x2000, 0x2000);
 }
 
-static void CutscenePeachEndA_1(struct Struct80280550 *a)
+static void CutscenePeachEndA_1(struct LevelCamera *a)
 {
     func_80287CFC(a->unk4, D_8032E258, &D_8033B6E0, &D_8033B6E4);
     vec3f_set(a->unk10, 699.f, 1680.f, -703.f);
 }
 
-static void CutscenePeachEndA_2(UNUSED struct Struct80280550 *a)
+static void CutscenePeachEndA_2(UNUSED struct LevelCamera *a)
 {
     D_8033B230.fieldOfView = 37.f;
 }
 
-void CutscenePeachEndA(struct Struct80280550 *a)
+void CutscenePeachEndA(struct LevelCamera *a)
 {
     call_cutscene_func_in_time_range(CutscenePeachEndCommon367A, a, 0, 0);
     call_cutscene_func_in_time_range(CutscenePeachEndA_1, a, 0, 0);
@@ -6174,21 +6174,21 @@ void CutscenePeachEndA(struct Struct80280550 *a)
     func_80299C60(8, 710);
 }
 
-void CutscenePeachEndB(struct Struct80280550 *a)
+void CutscenePeachEndB(struct LevelCamera *a)
 {
     func_8029A478(1);
     a->unk30 = 0;
     gCutsceneTimer = -0x8000;
 }
 
-static void CutsceneGrandStar0_1(UNUSED struct Struct80280550 *a)
+static void CutsceneGrandStar0_1(UNUSED struct LevelCamera *a)
 {
     vec3f_set(D_8033B6F0[0].unk4, 0.f, 150.f, -600.f);
     func_8028C5F0(D_8033B6F0[1].unk4, D_8032D000->unk4, D_8033B6F0[0].unk4, D_8032D000->unk10);
     D_8033B6F0[1].unk4[1] = 457.f;
 }
 
-static void CutsceneGrandStar0_2(struct Struct80280550 *a)
+static void CutsceneGrandStar0_2(struct LevelCamera *a)
 {
     f32 sp2C;
     s16 sp2A, sp28;
@@ -6203,19 +6203,19 @@ static void CutsceneGrandStar0_2(struct Struct80280550 *a)
     vec3f_set_dist_and_angle(D_8032D000->unk4, a->unk10, sp24, sp22, sp20);
 }
 
-static void CutsceneGrandStar0_4(UNUSED struct Struct80280550 *a)
+static void CutsceneGrandStar0_4(UNUSED struct LevelCamera *a)
 {
     vec3s_set(D_8033B6F0[0].unk1C, 0, D_8032D000->unk10[1], 0);
     vec3f_set(D_8033B6F0[2].unk4, 0.f, 0.f, 0.f);
 }
 
-static void CutsceneGrandStar0_5(UNUSED struct Struct80280550 *a)
+static void CutsceneGrandStar0_5(UNUSED struct LevelCamera *a)
 {
     func_802893E4(&D_8033B6F0[2].unk4[2], -40.f, 2.0f);
     D_8033B6F0[2].unk4[0] = 5.0f;
 }
 
-static void CutsceneGrandStar0_6(struct Struct80280550 *a)
+static void CutsceneGrandStar0_6(struct LevelCamera *a)
 {
     func_802893E4(&D_8033B6F0[2].unk4[2], 0.f, 2.f);
     D_8033B6F0[2].unk4[0] = 0.f;
@@ -6223,12 +6223,12 @@ static void CutsceneGrandStar0_6(struct Struct80280550 *a)
     approach_f32_exponential(&a->unk10[2], D_8032D000->unk4[2], 0.01f);
 }
 
-static void CutsceneGrandStar0_7(struct Struct80280550 *a)
+static void CutsceneGrandStar0_7(struct LevelCamera *a)
 {
     func_8028C5F0(a->unk10, a->unk10, D_8033B6F0[2].unk4, D_8033B6F0[0].unk1C);
 }
 
-static void CutsceneGrandStar0_3(struct Struct80280550 *a)
+static void CutsceneGrandStar0_3(struct LevelCamera *a)
 {
     Vec3f sp24;
     
@@ -6236,7 +6236,7 @@ static void CutsceneGrandStar0_3(struct Struct80280550 *a)
     approach_vec3f_exponential(a->unk4, sp24, 0.5f, 0.8f, 0.5f);
 }
 
-void CutsceneGrandStar0(struct Struct80280550 *a)
+void CutsceneGrandStar0(struct LevelCamera *a)
 {
     D_8033B4DA |= 1;
     call_cutscene_func_in_time_range(CutsceneGrandStar0_1, a, 0, 0);
@@ -6248,7 +6248,7 @@ void CutsceneGrandStar0(struct Struct80280550 *a)
     call_cutscene_func_in_time_range(CutsceneGrandStar0_7, a, 110, -1);
 }
 
-static void CutsceneGrandStar1_1(struct Struct80280550 *a)
+static void CutsceneGrandStar1_1(struct LevelCamera *a)
 {
     vec3f_set(D_8033B6F0[7].unk4, 0.5f, 0.5f, 0.5f);
     vec3f_set(D_8033B6F0[6].unk4, 0.01f, 0.01f, 0.01f);
@@ -6258,7 +6258,7 @@ static void CutsceneGrandStar1_1(struct Struct80280550 *a)
     D_8033B6F0[8].unk4[0] = 0.f;
 }
 
-static void CutsceneGrandStar1_2(UNUSED struct Struct80280550 *a)
+static void CutsceneGrandStar1_2(UNUSED struct LevelCamera *a)
 {
     Vec3f sp24;
     
@@ -6268,7 +6268,7 @@ static void CutsceneGrandStar1_2(UNUSED struct Struct80280550 *a)
     func_802893E4(&D_8033B6F0[5].unk4[2], -200.f, 6.f);
 }
 
-static void CutsceneGrandStar1_3(UNUSED struct Struct80280550 *a)
+static void CutsceneGrandStar1_3(UNUSED struct LevelCamera *a)
 {
     func_802893E4(&D_8033B6F0[8].unk4[0], 15.f, 0.1f);
     
@@ -6281,7 +6281,7 @@ static void CutsceneGrandStar1_3(UNUSED struct Struct80280550 *a)
     func_802893E4(&D_8033B6F0[5].unk4[2], 1000.f, D_8033B6F0[8].unk4[0] / 1.5f);
 }
 
-static void CutsceneGrandStar1_4(struct Struct80280550 *a)
+static void CutsceneGrandStar1_4(struct LevelCamera *a)
 {
     Vec3f sp34, sp28;
     f32 sp24;
@@ -6299,7 +6299,7 @@ static void CutsceneGrandStar1_4(struct Struct80280550 *a)
     approach_vec3f_exponential(a->unk4, sp28, 0.5f, 0.8f, 0.5f);
 }
 
-void CutsceneGrandStar1(struct Struct80280550 *a)
+void CutsceneGrandStar1(struct LevelCamera *a)
 {
     D_8033B4DA |= 1;
     call_cutscene_func_in_time_range(CutsceneGrandStar1_1, a, 0, 0);
@@ -6308,7 +6308,7 @@ void CutsceneGrandStar1(struct Struct80280550 *a)
     call_cutscene_func_in_time_range(CutsceneGrandStar1_4, a, 0, -1);
 }
 
-void func_80291BBC(struct Struct80280550 *a, f32 b, f32 c)
+void func_80291BBC(struct LevelCamera *a, f32 b, f32 c)
 {
     Vec3f sp2C, sp20;
     
@@ -6320,7 +6320,7 @@ void func_80291BBC(struct Struct80280550 *a, f32 b, f32 c)
     approach_vec3f_exponential(a->unk4, sp2C, c, c, c);
 }
 
-static void CutsceneDanceCommon(struct Struct80280550 *a)
+static void CutsceneDanceCommon(struct LevelCamera *a)
 {
     s16 sp26, sp24;
     f32 sp20;
@@ -6331,41 +6331,41 @@ static void CutsceneDanceCommon(struct Struct80280550 *a)
     vec3f_set_dist_and_angle(D_8032D000->unk4, a->unk10, sp20, sp26, sp24);
 }
 
-static void CutsceneStarDance1_4(struct Struct80280550 *a)
+static void CutsceneStarDance1_4(struct LevelCamera *a)
 {
     func_8029047C(a->unk10, D_8032D000->unk4, 0, 0, 0x200);
 }
 
-static void CutsceneStarDance1_5(struct Struct80280550 *a)
+static void CutsceneStarDance1_5(struct LevelCamera *a)
 {
     func_8029047C(a->unk10, D_8032D000->unk4, -15.f, 0, 0);
 }
 
-static void CutsceneStarDance1_6(struct Struct80280550 *a)
+static void CutsceneStarDance1_6(struct LevelCamera *a)
 {
     func_8029047C(a->unk10, D_8032D000->unk4, 20.f, 0, 0);
 }
 
-static void dummy_80291DC0(UNUSED struct Struct80280550 *a)
+static void dummy_80291DC0(UNUSED struct LevelCamera *a)
 {
 }
 
-static void CutsceneStarDance1_1(struct Struct80280550 *a)
+static void CutsceneStarDance1_1(struct LevelCamera *a)
 {
     func_80291BBC(a, -100.f, 0.2f);
 }
 
-static void CutsceneStarDance1_3(struct Struct80280550 *a)
+static void CutsceneStarDance1_3(struct LevelCamera *a)
 {
     func_80291BBC(a, -200.f, 0.03f);
 }
 
-static void CutsceneStarDance1_2(UNUSED struct Struct80280550 *a)
+static void CutsceneStarDance1_2(UNUSED struct LevelCamera *a)
 {
     func_80299C98(0x200, 40, -0x8000);
 }
 
-void CutsceneStarDance1(struct Struct80280550 *a)
+void CutsceneStarDance1(struct LevelCamera *a)
 {
     D_8033B4DA |= 1;
     D_8032CFD4 = 0;
@@ -6392,7 +6392,7 @@ void CutsceneStarDance1(struct Struct80280550 *a)
     }
 }
 
-void func_80291FE8(struct Struct80280550 *a, s16 b, s16 c)
+void func_80291FE8(struct LevelCamera *a, s16 b, s16 c)
 {
     s16 sp2E, sp2C;
     f32 sp28;
@@ -6409,11 +6409,11 @@ void func_80291FE8(struct Struct80280550 *a, s16 b, s16 c)
     {
         sp2C = b;
         a->unk3A = sp2C;
-        a->unk2 = sp2C;
+        a->angle = sp2C;
     }
 }
 
-static void CutsceneStarDance3_1(struct Struct80280550 *a)
+static void CutsceneStarDance3_1(struct LevelCamera *a)
 {
     UNUSED u32 pad[2];
     
@@ -6428,7 +6428,7 @@ static void CutsceneStarDance3_1(struct Struct80280550 *a)
     D_8033B6F0[8].unk1C[0] = 0x2000;
 }
 
-static void CutsceneStarDance3_2(struct Struct80280550 *a)
+static void CutsceneStarDance3_2(struct LevelCamera *a)
 {
     Vec3f sp24;
     
@@ -6437,7 +6437,7 @@ static void CutsceneStarDance3_2(struct Struct80280550 *a)
     vec3f_copy(a->unk4, D_8033B6F0[9].unk4);
 }
 
-static void CutsceneStarDance3_3(struct Struct80280550 *a)
+static void CutsceneStarDance3_3(struct LevelCamera *a)
 {
     s16 sp2E, sp2C;
     f32 sp28;
@@ -6449,33 +6449,33 @@ static void CutsceneStarDance3_3(struct Struct80280550 *a)
     vec3f_get_dist_and_angle(D_8032D000->unk4, a->unk10, &sp28, &sp2E, &sp2C);
     approach_f32_exponential(&sp28, 800.f, 0.05f);
     approach_s16_exponential(&sp2E, sp26, 16);
-    approach_s16_exponential(&sp2C, a->unk2, 8);
+    approach_s16_exponential(&sp2C, a->angle, 8);
     vec3f_set_dist_and_angle(D_8032D000->unk4, a->unk10, sp28, sp2E, sp2C);
 }
 
-static void CutsceneStarDance3_4(struct Struct80280550 *a)
+static void CutsceneStarDance3_4(struct LevelCamera *a)
 {
     s16 sp26, sp24;
     f32 sp20;
     
     vec3f_get_dist_and_angle(D_8032D000->unk4, a->unk10, &sp20, &sp26, &sp24);
     approach_f32_exponential(&sp20, 240.f, 0.4f);
-    approach_s16_exponential(&sp24, a->unk2, 8);
+    approach_s16_exponential(&sp24, a->angle, 8);
     approach_s16_exponential(&sp26, 0x1000, 5);
     vec3f_set_dist_and_angle(D_8032D000->unk4, a->unk10, sp20, sp26, sp24);
 }
 
-static void CutsceneStarDance3_5(UNUSED struct Struct80280550 *a)
+static void CutsceneStarDance3_5(UNUSED struct LevelCamera *a)
 {
     func_8029A478(9);
 }
 
-static void CutsceneStarDance3_6(UNUSED struct Struct80280550 *a)
+static void CutsceneStarDance3_6(UNUSED struct LevelCamera *a)
 {
     func_80299C98(0x300, 48, -0x8000);
 }
 
-void CutsceneStarDance3(struct Struct80280550 *a)
+void CutsceneStarDance3(struct LevelCamera *a)
 {
     D_8033B4DA |= 1;
     
@@ -6500,18 +6500,18 @@ void CutsceneStarDance3(struct Struct80280550 *a)
     func_802882A0(1);
 }
 
-static void CutsceneStarDance2_1(struct Struct80280550 *a)
+static void CutsceneStarDance2_1(struct LevelCamera *a)
 {
     Vec3f sp1C;
     
     vec3f_copy(D_8033B6F0[9].unk4, a->unk4);
     D_8033B6F0[8].unk4[2] = 65.f;
     
-    if (a->unk0 == 1)
+    if (a->preset == CAMERA_PRESET_OPEN_CAMERA)
     {
         vec3f_set(sp1C, a->unk28, a->unk68, a->unk2C);
-        a->unk2 = func_8028A4F0(sp1C, a->unk10);
-        a->unk3A = a->unk2;
+        a->angle = func_8028A4F0(sp1C, a->unk10);
+        a->unk3A = a->angle;
     }
     
     if ((D_8032CE24 == 6) && (gCurrCourseNum == COURSE_CCM))
@@ -6524,7 +6524,7 @@ static void CutsceneStarDance2_1(struct Struct80280550 *a)
         func_80291FE8(a, 0, 0x800);
 }
 
-static void CutsceneStarDance2_3(struct Struct80280550 *a)
+static void CutsceneStarDance2_3(struct LevelCamera *a)
 {
     s16 sp26, sp24;
     f32 sp20;
@@ -6532,11 +6532,11 @@ static void CutsceneStarDance2_3(struct Struct80280550 *a)
     vec3f_get_dist_and_angle(D_8032D000->unk4, a->unk10, &sp20, &sp26, &sp24);
     approach_f32_exponential(&sp20, 600.f, 0.3f);
     approach_s16_exponential(&sp26, 0x1000, 16);
-    approach_s16_exponential(&sp24, a->unk2, 8);
+    approach_s16_exponential(&sp24, a->angle, 8);
     vec3f_set_dist_and_angle(D_8032D000->unk4, a->unk10, sp20, sp26, sp24);
 }
 
-static void CutsceneStarDance2_2(struct Struct80280550 *a)
+static void CutsceneStarDance2_2(struct LevelCamera *a)
 {
     Vec3f sp24;
     
@@ -6545,7 +6545,7 @@ static void CutsceneStarDance2_2(struct Struct80280550 *a)
     vec3f_copy(a->unk4, D_8033B6F0[9].unk4);
 }
 
-void func_80292884(struct Struct80280550 *a)
+void func_80292884(struct LevelCamera *a)
 {
     vec3f_copy(a->unk4, D_8033B6F0[9].unk4);
     D_8033B6F0[9].unk1C[0] -= 29;
@@ -6553,23 +6553,23 @@ void func_80292884(struct Struct80280550 *a)
     func_80290390(a, D_8033B6F0[9].unk1C[0], D_8033B6F0[9].unk1C[1]);
 }
 
-static void CutsceneStarDance2_4(struct Struct80280550 *a)
+static void CutsceneStarDance2_4(struct LevelCamera *a)
 {
     func_80292884(a);
     func_8029047C(a->unk10, D_8032D000->unk4, D_8033B6F0[8].unk4[2], 0, 0);
 }
 
-static void CutsceneStarDance2_5(struct Struct80280550 *a)
+static void CutsceneStarDance2_5(struct LevelCamera *a)
 {
     func_8029047C(a->unk10, D_8032D000->unk4, 0, 0, 0x80);
 }
 
-static void CutsceneStarDance2_6(UNUSED struct Struct80280550 *a)
+static void CutsceneStarDance2_6(UNUSED struct LevelCamera *a)
 {
     func_80299C98(0x400, 48, -0x8000);
 }
 
-void CutsceneStarDance2(struct Struct80280550 *a)
+void CutsceneStarDance2(struct LevelCamera *a)
 {
     D_8033B4DA |= 1;
     call_cutscene_func_in_time_range(CutsceneStarDance2_1, a, 0, 0);
@@ -6582,54 +6582,54 @@ void CutsceneStarDance2(struct Struct80280550 *a)
     func_802882A0(5);
 }
 
-static void CutsceneKeyDance0_6(struct Struct80280550 *a)
+static void CutsceneKeyDance0_6(struct LevelCamera *a)
 {
     func_8028C5F0(a->unk10, D_8032D000->unk4, D_8033B6F0[8].unk4, D_8032D000->unk10);
     func_8028C5F0(a->unk4, D_8032D000->unk4, D_8033B6F0[7].unk4, D_8032D000->unk10);
 }
 
-static void CutsceneKeyDance0_2(UNUSED struct Struct80280550 *a)
+static void CutsceneKeyDance0_2(UNUSED struct LevelCamera *a)
 {
     vec3f_set(D_8033B6F0[8].unk4, 38.f, 171.f, -248.f);
     vec3f_set(D_8033B6F0[7].unk4, -57.f, 51.f, 187.f);
 }
 
-static void CutsceneKeyDance0_3(UNUSED struct Struct80280550 *a)
+static void CutsceneKeyDance0_3(UNUSED struct LevelCamera *a)
 {
     vec3f_set(D_8033B6F0[8].unk4, -178.f, 62.f, -132.f);
     vec3f_set(D_8033B6F0[7].unk4, 299.f, 91.f, 58.f);
 }
 
-static void CutsceneKeyDance0_4(UNUSED struct Struct80280550 *a)
+static void CutsceneKeyDance0_4(UNUSED struct LevelCamera *a)
 {
     D_8033B3DC = 0x2800;
     vec3f_set(D_8033B6F0[8].unk4, 89.f, 373.f, -304.f);
     vec3f_set(D_8033B6F0[7].unk4, 0.f, 127.f, 0.f);
 }
 
-static void CutsceneKeyDance0_5(UNUSED struct Struct80280550 *a)
+static void CutsceneKeyDance0_5(UNUSED struct LevelCamera *a)
 {
     D_8033B3DC = 0;
     vec3f_set(D_8033B6F0[8].unk4, 135.f, 158.f, -673.f);
     vec3f_set(D_8033B6F0[7].unk4, -20.f, 135.f, -198.f);
 }
 
-static void CutsceneKeyDance0_7(UNUSED struct Struct80280550 *a)
+static void CutsceneKeyDance0_7(UNUSED struct LevelCamera *a)
 {
     func_80299C98(0x180, 48, -0x8000);
 }
 
-static void CutsceneKeyDance0_8(UNUSED struct Struct80280550 *a)
+static void CutsceneKeyDance0_8(UNUSED struct LevelCamera *a)
 {
     func_802882A0(1);
 }
 
-static void CutsceneKeyDance0_1(struct Struct80280550 *a)
+static void CutsceneKeyDance0_1(struct LevelCamera *a)
 {
     func_80291BBC(a, 0, 0.2f);
 }
 
-void CutsceneKeyDance0(struct Struct80280550 *a)
+void CutsceneKeyDance0(struct LevelCamera *a)
 {
     call_cutscene_func_in_time_range(CutsceneDanceCommon, a, 0, 10);
     call_cutscene_func_in_time_range(CutsceneKeyDance0_1, a, 0, 10);
@@ -6642,23 +6642,23 @@ void CutsceneKeyDance0(struct Struct80280550 *a)
     call_cutscene_func_in_time_range(CutsceneKeyDance0_8, a, 52, -1);
 }
 
-static void CutsceneEnterBowserPlatform0_4(UNUSED struct Struct80280550 *a)
+static void CutsceneEnterBowserPlatform0_4(UNUSED struct LevelCamera *a)
 {
     func_8029A494(2);
 }
 
-static void CutsceneEnterBowserPlatform0_3(UNUSED struct Struct80280550 *a)
+static void CutsceneEnterBowserPlatform0_3(UNUSED struct LevelCamera *a)
 {
     D_8032CFD0->oUnk88 = 1;
 }
 
-static void CutsceneEnterBowserPlatform0_5(struct Struct80280550 *a)
+static void CutsceneEnterBowserPlatform0_5(struct LevelCamera *a)
 {
     vec3f_set_dist_and_angle(D_8033B6F0[2].unk4, a->unk10, D_8033B6F0[3].unk4[2], D_8033B6F0[3].unk1C[0], D_8033B6F0[3].unk1C[1]);
     vec3f_set(D_8033B6F0[2].unk4, D_8032CFD0->oPosX, D_8032CFD0->oPosY, D_8032CFD0->oPosZ);
 }
 
-static void CutsceneEnterBowserPlatform0_8(UNUSED struct Struct80280550 *a)
+static void CutsceneEnterBowserPlatform0_8(UNUSED struct LevelCamera *a)
 {
     f32 sp1C = 150.0f;
     
@@ -6667,34 +6667,34 @@ static void CutsceneEnterBowserPlatform0_8(UNUSED struct Struct80280550 *a)
     approach_f32_exponential(&D_8033B6F0[0].unk4[1], sp1C, 0.5f);
 }
 
-static void CutsceneEnterBowserPlatform0_9(struct Struct80280550 *a)
+static void CutsceneEnterBowserPlatform0_9(struct LevelCamera *a)
 {
     func_8028C5F0(a->unk4, D_8033B6F0[2].unk4, D_8033B6F0[0].unk4, D_8033B6F0[2].unk1C);
 }
 
-static void CutsceneEnterBowserPlatform0_7(UNUSED struct Struct80280550 *a)
+static void CutsceneEnterBowserPlatform0_7(UNUSED struct LevelCamera *a)
 {
     approach_s16_exponential(&D_8033B6F0[3].unk1C[0], 1736, 30);
     approach_f32_exponential(&D_8033B6F0[0].unk4[2], -200.f, 0.02f);
     approach_f32_exponential(&D_8033B6F0[3].unk4[2], 550.f, 0.02f);
 }
 
-static void CutsceneEnterBowserPlatform0_6(UNUSED struct Struct80280550 *a)
+static void CutsceneEnterBowserPlatform0_6(UNUSED struct LevelCamera *a)
 {
     approach_f32_exponential(&D_8033B6F0[0].unk4[2], 0.f, 0.05f);
 }
 
-static void CutsceneEnterBowserPlatform0_1(UNUSED struct Struct80280550 *a)
+static void CutsceneEnterBowserPlatform0_1(UNUSED struct LevelCamera *a)
 {
     func_8028FD94(1);
 }
 
-void func_802930C8(UNUSED struct Struct80280550 *a)
+void func_802930C8(UNUSED struct LevelCamera *a)
 {
     func_8028FD94(0);
 }
 
-static void CutsceneEnterBowserPlatform0_2(struct Struct80280550 *a)
+static void CutsceneEnterBowserPlatform0_2(struct LevelCamera *a)
 {
     D_8033B6F0[3].unk4[2] = 430.f;
     D_8033B6F0[3].unk1C[1] = D_8032CFD0->oMoveAngleYaw - 0x2000;
@@ -6707,7 +6707,7 @@ static void CutsceneEnterBowserPlatform0_2(struct Struct80280550 *a)
     CutsceneEnterBowserPlatform0_9(a);
 }
 
-static void CutsceneEnterBowserPlatform1_1(UNUSED struct Struct80280550 *a)
+static void CutsceneEnterBowserPlatform1_1(UNUSED struct LevelCamera *a)
 {
     s16 sp26;
     
@@ -6726,7 +6726,7 @@ static void CutsceneEnterBowserPlatform1_1(UNUSED struct Struct80280550 *a)
     func_802D7F90(sp26);
 }
 
-void CutsceneEnterBowserPlatform1(struct Struct80280550 *a)
+void CutsceneEnterBowserPlatform1(struct LevelCamera *a)
 {
     call_cutscene_func_in_time_range(CutsceneEnterBowserPlatform1_1, a, 0, 0);
     
@@ -6734,7 +6734,7 @@ void CutsceneEnterBowserPlatform1(struct Struct80280550 *a)
         gCutsceneTimer = 0x7FFF;
 }
 
-void CutsceneEnterBowserPlatform2(struct Struct80280550 *a)
+void CutsceneEnterBowserPlatform2(struct LevelCamera *a)
 {
     func_802930C8(a);
     a->unk30 = 0;
@@ -6744,7 +6744,7 @@ void CutsceneEnterBowserPlatform2(struct Struct80280550 *a)
     D_8032CFD0->oUnk88 = 2;
 }
 
-void CutsceneEnterBowserPlatform0(struct Struct80280550 *a)
+void CutsceneEnterBowserPlatform0(struct LevelCamera *a)
 {
     func_80299C60(2, 0);
     
@@ -6766,12 +6766,12 @@ void CutsceneEnterBowserPlatform0(struct Struct80280550 *a)
     }
 }
 
-static void CutsceneStarSpawn0_1(struct Struct80280550 *a)
+static void CutsceneStarSpawn0_1(struct LevelCamera *a)
 {
     func_80290224(a);
 }
 
-static void CutsceneStarSpawn0_2(struct Struct80280550 *a)
+static void CutsceneStarSpawn0_2(struct LevelCamera *a)
 {
     UNUSED f32 sp34;
     Vec3f sp28;
@@ -6785,7 +6785,7 @@ static void CutsceneStarSpawn0_2(struct Struct80280550 *a)
     }
 }
 
-static void CutsceneStarSpawn1_1(struct Struct80280550 *a)
+static void CutsceneStarSpawn1_1(struct LevelCamera *a)
 {
     Vec3f sp2C, sp20;
     
@@ -6794,13 +6794,13 @@ static void CutsceneStarSpawn1_1(struct Struct80280550 *a)
     approach_vec3f_exponential(a->unk10, sp2C, 0.2f, 0.2f, 0.2f);
 }
 
-static void CutsceneStarSpawn1_2(struct Struct80280550 *a)
+static void CutsceneStarSpawn1_2(struct LevelCamera *a)
 {
     func_802902A8(a);
     func_80285A8C(a, 15);
 }
 
-void CutsceneStarSpawn0(struct Struct80280550 *a)
+void CutsceneStarSpawn0(struct LevelCamera *a)
 {
     call_cutscene_func_in_time_range(CutsceneStarSpawn0_1, a, 0, 0);
     call_cutscene_func_in_time_range(CutsceneStarSpawn0_2, a, 0, -1);
@@ -6810,9 +6810,9 @@ void CutsceneStarSpawn0(struct Struct80280550 *a)
         gCutsceneTimer = 0x7FFF;
 }
 
-void CutsceneStarSpawn1(struct Struct80280550 *a)
+void CutsceneStarSpawn1(struct LevelCamera *a)
 {
-    if ((a->unk0 == 11) && (func_80288130(0) == 2))
+    if ((a->preset == CAMERA_PRESET_BOWSER_FIGHT) && (func_80288130(0) == 2))
         call_cutscene_func_in_time_range(CutsceneStarSpawn1_1, a, 0, -1);
     else
         call_cutscene_func_in_time_range(CutsceneStarSpawn1_2, a, 0, 0);
@@ -6821,33 +6821,33 @@ void CutsceneStarSpawn1(struct Struct80280550 *a)
     D_8033B4DA |= 0x4000;
 }
 
-void CutsceneStarSpawn2(struct Struct80280550 *a)
+void CutsceneStarSpawn2(struct LevelCamera *a)
 {
     D_8033B4DA |= 0x1;
     gCutsceneTimer = -0x8000;
     a->unk30 = 0;
 }
 
-static void CutsceneExitWaterfall0_1(struct Struct80280550 *a)
+static void CutsceneExitWaterfall0_1(struct LevelCamera *a)
 {
     vec3f_set(a->unk10, -3899.f, 39.f, -5671.f);
 }
 
-static void Cutscene80293794(struct Struct80280550 *a)
+static void Cutscene80293794(struct LevelCamera *a)
 {
     vec3f_copy(a->unk4, D_8032D000->unk4);
     a->unk4[1] = a->unk10[1] + (D_8032D000->unk4[1] + 125.f - a->unk10[1]) * 0.5f;
     approach_vec3f_exponential(a->unk4, D_8032D000->unk4, 0.05f, 0.4f, 0.05f);
 }
 
-void CutsceneExitWaterfall0(struct Struct80280550 *a)
+void CutsceneExitWaterfall0(struct LevelCamera *a)
 {
     call_cutscene_func_in_time_range(CutsceneExitWaterfall0_1, a, 0, 0);
     call_cutscene_func_in_time_range(Cutscene80293794, a, 0, -1);
     func_8028FA74(a);
 }
 
-void CutsceneFallCommon1(struct Struct80280550 *a)
+void CutsceneFallCommon1(struct LevelCamera *a)
 {
     D_8033B4DA |= 1;
     gCutsceneTimer = -0x8000;
@@ -6855,42 +6855,42 @@ void CutsceneFallCommon1(struct Struct80280550 *a)
     func_8028FA74(a);
 }
 
-static void CutsceneFallToCastleGrounds0_1(struct Struct80280550 *a)
+static void CutsceneFallToCastleGrounds0_1(struct LevelCamera *a)
 {
     vec3f_set(a->unk10, 5830.f, 32.f, 3985.f);
 }
 
-void CutsceneFallToCastleGrounds0(struct Struct80280550 *a)
+void CutsceneFallToCastleGrounds0(struct LevelCamera *a)
 {
     call_cutscene_func_in_time_range(CutsceneFallToCastleGrounds0_1, a, 0, 0);
     call_cutscene_func_in_time_range(Cutscene80293794, a, 0, -1);
     func_8028FA74(a);
 }
 
-static void CutsceneSpecialStarSpawn0_1(struct Struct80280550 *a)
+static void CutsceneSpecialStarSpawn0_1(struct LevelCamera *a)
 {
     object_pos_to_vec3f(D_8033B6F0[1].unk4, D_8032CFC4);
     func_80290224(a);
     D_8033B6F0[2].unk4[2] = D_8033B230.fieldOfView;
 }
 
-static void CutsceneSpecialStarSpawn0_3(struct Struct80280550 *a)
+static void CutsceneSpecialStarSpawn0_3(struct LevelCamera *a)
 {
     approach_f32_exponential(&a->unk4[0], D_8032CFC4->oPosX, 0.15f);
     approach_f32_exponential(&a->unk4[2], D_8032CFC4->oPosZ, 0.15f);
 }
 
-static void CutsceneSpecialStarSpawn0_4(struct Struct80280550 *a)
+static void CutsceneSpecialStarSpawn0_4(struct LevelCamera *a)
 {
     approach_f32_exponential(&a->unk4[1], D_8032CFC4->oPosY, 0.1f);
 }
 
-static void CutsceneSpecialStarSpawn0_5(struct Struct80280550 *a)
+static void CutsceneSpecialStarSpawn0_5(struct LevelCamera *a)
 {
     a->unk4[1] = D_8033B6F0[1].unk4[1] + (D_8032CFC4->oPosY - D_8033B6F0[1].unk4[1]) * 0.8f;
 }
 
-static void CutsceneSpecialStarSpawn0_2(struct Struct80280550 *a)
+static void CutsceneSpecialStarSpawn0_2(struct LevelCamera *a)
 {
     f32 sp3C;
     s16 sp3A, sp38, sp36;
@@ -6910,12 +6910,12 @@ static void CutsceneSpecialStarSpawn0_2(struct Struct80280550 *a)
     D_8033B4DA &= ~1;
 }
 
-static void CutsceneSpecialStarSpawn0_6(UNUSED struct Struct80280550 *a)
+static void CutsceneSpecialStarSpawn0_6(UNUSED struct LevelCamera *a)
 {
     D_8033B230.fieldOfView = 60.f;
 }
 
-void CutsceneSpecialStarSpawn0(struct Struct80280550 *a)
+void CutsceneSpecialStarSpawn0(struct LevelCamera *a)
 {
     D_8033B4DA |= 1;
     call_cutscene_func_in_time_range(CutsceneSpecialStarSpawn0_1, a, 0, 0);
@@ -6929,7 +6929,7 @@ void CutsceneSpecialStarSpawn0(struct Struct80280550 *a)
         gCutsceneTimer = 0x7FFF;
 }
 
-void CutsceneSpecialStarSpawn1(struct Struct80280550 *a)
+void CutsceneSpecialStarSpawn1(struct LevelCamera *a)
 {
     func_802902A8(a);
     gCutsceneTimer = -0x8000;
@@ -6937,7 +6937,7 @@ void CutsceneSpecialStarSpawn1(struct Struct80280550 *a)
     D_8033B230.fieldOfView = D_8033B6F0[2].unk4[2];
 }
 
-void func_80293DE8(struct Struct80280550 *a, f32 b, s16 c, s16 d, s16 e)
+void func_80293DE8(struct LevelCamera *a, f32 b, s16 c, s16 d, s16 e)
 {
     UNUSED f32 sp44;
     f32 sp40;
@@ -6990,7 +6990,7 @@ void func_80293DE8(struct Struct80280550 *a, f32 b, s16 c, s16 d, s16 e)
     vec3f_set_dist_and_angle(a->unk10, a->unk4, sp40, sp3E, sp3C);
 }
 
-static void CutscenePrepareCannon0_1(struct Struct80280550 *a)
+static void CutscenePrepareCannon0_1(struct LevelCamera *a)
 {
     func_80290144(a);
     vec3f_copy(D_8033B6F0[0].unk4, a->unk4);
@@ -6999,7 +6999,7 @@ static void CutscenePrepareCannon0_1(struct Struct80280550 *a)
     vec3s_set(D_8033B6F0[5].unk1C, 0, 0, 0);
 }
 
-static void CutscenePrepareCannon0_2(struct Struct80280550 *a)
+static void CutscenePrepareCannon0_2(struct LevelCamera *a)
 {
     func_80293DE8(a, 300.f, 0x2000, 0, D_8033B6F0[5].unk1C[1]);
     func_80289184(&D_8033B6F0[5].unk1C[1], 0x400, 17);
@@ -7012,7 +7012,7 @@ void func_802941CC(f32 *a, f32 b)
     func_802893E4(a, b, sp24);
 }
 
-static void CutscenePrepareCannon0_3(struct Struct80280550 *a)
+static void CutscenePrepareCannon0_3(struct LevelCamera *a)
 {
     f32 sp1C = func_8028A640(a->unk10, D_8033B4B8.unk0);
     
@@ -7035,7 +7035,7 @@ static void CutscenePrepareCannon0_3(struct Struct80280550 *a)
         D_8033B6F0[2].unk4[0] -= 1.f;
 }
 
-void CutscenePrepareCannon0(struct Struct80280550 *a)
+void CutscenePrepareCannon0(struct LevelCamera *a)
 {
     D_8033B4DA |= 1;
     call_cutscene_func_in_time_range(CutscenePrepareCannon0_1, a, 0, 0);
@@ -7043,7 +7043,7 @@ void CutscenePrepareCannon0(struct Struct80280550 *a)
     call_cutscene_func_in_time_range(CutscenePrepareCannon0_3, a, 141, -1);
 }
 
-void CutscenePrepareCannon1(struct Struct80280550 *a)
+void CutscenePrepareCannon1(struct LevelCamera *a)
 {
     gCutsceneTimer = -0x8000;
     a->unk30 = 0;
@@ -7051,7 +7051,7 @@ void CutscenePrepareCannon1(struct Struct80280550 *a)
     D_8033B4DA |= 1;
 }
 
-static void func_802944A8(struct Struct80280550 *a)
+static void func_802944A8(struct LevelCamera *a)
 {
     f32 sp24;
     s16 sp22, sp20;
@@ -7061,32 +7061,32 @@ static void func_802944A8(struct Struct80280550 *a)
     vec3f_set_dist_and_angle(D_8032D000->unk4, a->unk10, sp24, sp22, sp20);
 }
 
-static void func_80294538(struct Struct80280550 *a)
+static void func_80294538(struct LevelCamera *a)
 {
     func_80293DE8(a, 400.f, 0x1000, 0x300, 0);
 }
 
-static void CutsceneDeath1_1(struct Struct80280550 *a)
+static void CutsceneDeath1_1(struct LevelCamera *a)
 {
     vec3f_copy(D_8033B6F0[0].unk4, a->unk4);
     vec3f_copy(D_8033B6F0[3].unk4, D_8032D000->unk4);
     D_8033B6F0[3].unk4[1] += 70.f;
 }
 
-static void CutsceneDeath1_2(struct Struct80280550 *a)
+static void CutsceneDeath1_2(struct LevelCamera *a)
 {
     func_80294538(a);
     func_802882A0(4);
 }
 
-void CutsceneDeath1(struct Struct80280550 *a)
+void CutsceneDeath1(struct LevelCamera *a)
 {
     call_cutscene_func_in_time_range(CutsceneDeath1_1, a, 0, 0);
     call_cutscene_func_in_time_range(CutsceneDeath1_2, a, 0, -1);
     D_8033B4DA |= 1;
 }
 
-static void CutsceneDeath2_1(struct Struct80280550 *a)
+static void CutsceneDeath2_1(struct LevelCamera *a)
 {
     Vec3f sp1C = {0, 40.f, -60.f};
     
@@ -7094,17 +7094,17 @@ static void CutsceneDeath2_1(struct Struct80280550 *a)
     vec3f_copy(D_8033B6F0[0].unk4, a->unk4);
 }
 
-static void CutsceneDeath2_2(struct Struct80280550 *a)
+static void CutsceneDeath2_2(struct LevelCamera *a)
 {
     func_80293DE8(a, 400.f, 0x1800, 0, -0x400);
 }
 
-static void unused_80294748(struct Struct80280550 *a)
+static void unused_80294748(struct LevelCamera *a)
 {
     func_802944A8(a);
 }
 
-void CutsceneDeath2(struct Struct80280550 *a)
+void CutsceneDeath2(struct LevelCamera *a)
 {
     call_cutscene_func_in_time_range(CutsceneDeath2_1, a, 0, 0);
     call_cutscene_func_in_time_range(CutsceneDeath2_2, a, 0, -1);
@@ -7112,7 +7112,7 @@ void CutsceneDeath2(struct Struct80280550 *a)
     func_802882A0(1);
 }
 
-static void CutsceneBBHDeath0_1(struct Struct80280550 *a)
+static void CutsceneBBHDeath0_1(struct LevelCamera *a)
 {
     Vec3f sp1C = {0, 40.f, 60.f};
     
@@ -7120,12 +7120,12 @@ static void CutsceneBBHDeath0_1(struct Struct80280550 *a)
     vec3f_copy(D_8033B6F0[0].unk4, a->unk4);
 }
 
-static void CutsceneBBHDeath0_2(struct Struct80280550 *a)
+static void CutsceneBBHDeath0_2(struct LevelCamera *a)
 {
     func_80293DE8(a, 400.f, 0x1800, 0, 0x400);
 }
 
-void CutsceneBBHDeath0(struct Struct80280550 *a)
+void CutsceneBBHDeath0(struct LevelCamera *a)
 {
     call_cutscene_func_in_time_range(CutsceneBBHDeath0_1, a, 0, 0);
     call_cutscene_func_in_time_range(CutsceneBBHDeath0_2, a, 0, -1);
@@ -7133,12 +7133,12 @@ void CutsceneBBHDeath0(struct Struct80280550 *a)
     func_802882A0(1);
 }
 
-static void CutsceneQuicksandDeath0_1(struct Struct80280550 *a)
+static void CutsceneQuicksandDeath0_1(struct LevelCamera *a)
 {
     vec3f_copy(D_8033B6F0[0].unk4, a->unk4);
 }
 
-static void CutsceneQuicksandDeath0_2(struct Struct80280550 *a)
+static void CutsceneQuicksandDeath0_2(struct LevelCamera *a)
 {
     func_80293DE8(a, 400.f, 0x2800, 0x200, 0);
     
@@ -7146,7 +7146,7 @@ static void CutsceneQuicksandDeath0_2(struct Struct80280550 *a)
         func_802944A8(a);
 }
 
-void CutsceneQuicksandDeath0(struct Struct80280550 *a)
+void CutsceneQuicksandDeath0(struct LevelCamera *a)
 {
     D_8033B6F0[3].unk4[0] = D_8032D000->unk4[0];
     D_8033B6F0[3].unk4[1] = D_8032D000->unk4[1] + 20.f;
@@ -7158,7 +7158,7 @@ void CutsceneQuicksandDeath0(struct Struct80280550 *a)
     func_802882A0(4);
 }
 
-static void Cutscene1ATodo0_3(UNUSED struct Struct80280550 *a)
+static void Cutscene1ATodo0_3(UNUSED struct LevelCamera *a)
 {
     Vec3f sp2C;
     Vec3f sp20 = {0, 20.f, 120.f};
@@ -7167,7 +7167,7 @@ static void Cutscene1ATodo0_3(UNUSED struct Struct80280550 *a)
     approach_vec3f_exponential(D_8033B6F0[3].unk4, sp2C, 0.1f, 0.1f, 0.1f);
 }
 
-static void Cutscene1ATodo0_2(struct Struct80280550 *a)
+static void Cutscene1ATodo0_2(struct LevelCamera *a)
 {
     UNUSED f32 sp34;
     f32 sp30;
@@ -7183,7 +7183,7 @@ static void Cutscene1ATodo0_2(struct Struct80280550 *a)
     }
 }
 
-static void Cutscene1ATodo0_1(struct Struct80280550 *a)
+static void Cutscene1ATodo0_1(struct LevelCamera *a)
 {
     f32 sp24;
     s16 sp22, sp20;
@@ -7193,7 +7193,7 @@ static void Cutscene1ATodo0_1(struct Struct80280550 *a)
     vec3f_set_dist_and_angle(D_8032D000->unk4, a->unk10, sp24, sp22, sp20);
 }
 
-void Cutscene1ATodo0(struct Struct80280550 *a)
+void Cutscene1ATodo0(struct LevelCamera *a)
 {
     call_cutscene_func_in_time_range(CutsceneDeath2_1, a, 0, 0);
     call_cutscene_func_in_time_range(Cutscene1ATodo0_1, a, 0, -1);
@@ -7203,7 +7203,7 @@ void Cutscene1ATodo0(struct Struct80280550 *a)
     func_802882A0(4);
 }
 
-static void CutsceneEnterPool0_1(struct Struct80280550 *a)
+static void CutsceneEnterPool0_1(struct LevelCamera *a)
 {
     vec3f_copy(D_8033B6F0[3].unk4, D_8032D000->unk4);
     
@@ -7215,21 +7215,21 @@ static void CutsceneEnterPool0_1(struct Struct80280550 *a)
     vec3f_copy(D_8033B6F0[0].unk4, a->unk4);
 }
 
-static void CutsceneEnterPool0_2(struct Struct80280550 *a)
+static void CutsceneEnterPool0_2(struct LevelCamera *a)
 {
     UNUSED u32 pad[2];
     
     func_80293DE8(a, 1200.f, 0x2000, 0x200, 0);
 }
 
-void CutsceneEnterPool0(struct Struct80280550 *a)
+void CutsceneEnterPool0(struct LevelCamera *a)
 {
     call_cutscene_func_in_time_range(CutsceneEnterPool0_1, a, 0, 0);
     call_cutscene_func_in_time_range(CutsceneEnterPool0_2, a, 0, -1);
     D_8033B4DA |= 1;
 }
 
-static void Cutscene26Todo1_1(struct Struct80280550 *a)
+static void Cutscene26Todo1_1(struct LevelCamera *a)
 {
     func_8028FEDC(a);
     func_80290144(a);
@@ -7238,18 +7238,18 @@ static void Cutscene26Todo1_1(struct Struct80280550 *a)
     vec3f_set(D_8033B6F0[3].unk4, a->unk28, 1280.f, a->unk2C);
 }
 
-static void Cutscene26Todo1_5(UNUSED struct Struct80280550 *a)
+static void Cutscene26Todo1_5(UNUSED struct LevelCamera *a)
 {
     func_8029A478(10);
 }
 
-static void Cutscene26Todo1_2(struct Struct80280550 *a)
+static void Cutscene26Todo1_2(struct LevelCamera *a)
 {
     approach_vec3f_exponential(a->unk4, D_8033B6F0[3].unk4, 0.02f, 0.02f, 0.02f);
     D_8033B4DA |= 1;
 }
 
-static void Cutscene26Todo1_3(struct Struct80280550 *a)
+static void Cutscene26Todo1_3(struct LevelCamera *a)
 {
     s16 sp26, sp24;
     f32 sp20;
@@ -7266,7 +7266,7 @@ static void Cutscene26Todo1_3(struct Struct80280550 *a)
     a->unk10[1] += 500.f;
 }
 
-static void Cutscene26Todo1_4(struct Struct80280550 *a)
+static void Cutscene26Todo1_4(struct LevelCamera *a)
 {
     s16 sp26, sp24;
     f32 sp20;
@@ -7281,12 +7281,12 @@ static void Cutscene26Todo1_4(struct Struct80280550 *a)
     func_802882A0(1);
 }
 
-static void Cutscene26Todo1_7(UNUSED struct Struct80280550 *a)
+static void Cutscene26Todo1_7(UNUSED struct LevelCamera *a)
 {
     func_8027F308(8);
 }
 
-static void Cutscene26Todo1_6(struct Struct80280550 *a)
+static void Cutscene26Todo1_6(struct LevelCamera *a)
 {
     UNUSED u32 pad[2];
     
@@ -7295,7 +7295,7 @@ static void Cutscene26Todo1_6(struct Struct80280550 *a)
     func_8027F308(3);
 }
 
-void Cutscene26Todo1(struct Struct80280550 *a)
+void Cutscene26Todo1(struct LevelCamera *a)
 {
     call_cutscene_func_in_time_range(Cutscene26Todo1_1, a, 0, 0);
     call_cutscene_func_in_time_range(Cutscene26Todo1_2, a, 0, 30);
@@ -7306,20 +7306,20 @@ void Cutscene26Todo1(struct Struct80280550 *a)
     call_cutscene_func_in_time_range(Cutscene26Todo1_7, a, 31, 139);
 }
 
-void Cutscene26Todo2(struct Struct80280550 *a)
+void Cutscene26Todo2(struct LevelCamera *a)
 {
     func_802930C8(a);
     func_8028FAE0(a);
     func_80285A8C(a, 30);
 }
 
-static void CutsceneEnterPyramidTop0_1(struct Struct80280550 *a)
+static void CutsceneEnterPyramidTop0_1(struct LevelCamera *a)
 {
     vec3f_copy(D_8033B6F0[0].unk4, a->unk4);
     vec3f_set(D_8033B6F0[3].unk4, a->unk28, 1280.f, a->unk2C);
 }
 
-void CutsceneEnterPyramidTop0(struct Struct80280550 *a)
+void CutsceneEnterPyramidTop0(struct LevelCamera *a)
 {
     call_cutscene_func_in_time_range(CutsceneEnterPyramidTop0_1, a, 0, 0);
     func_80293DE8(a, 200.f, 0x3000, 0, 0);
@@ -7330,7 +7330,7 @@ void CutsceneEnterPyramidTop0(struct Struct80280550 *a)
         CutsceneFallCommon1(a);
 }
 
-static void unused_8029538C(struct Struct80280550 *a)
+static void unused_8029538C(struct LevelCamera *a)
 {
     f32 sp24;
     
@@ -7339,7 +7339,7 @@ static void unused_8029538C(struct Struct80280550 *a)
     func_80293DE8(a, sp24, 0x1000, 0x300, 0);
 }
 
-static void CutsceneDialog0_1(struct Struct80280550 *a)
+static void CutsceneDialog0_1(struct LevelCamera *a)
 {
     UNUSED f32 sp1C;
     UNUSED s16 sp1A;
@@ -7349,7 +7349,7 @@ static void CutsceneDialog0_1(struct Struct80280550 *a)
     set_time_stop_flag(6);
     
 #if VERSION_US
-    if (a->unk0 == 11)
+    if (a->preset == CAMERA_PRESET_BOWSER_FIGHT)
     {
         vec3f_copy(D_8033B4B8.unkC, a->unk4);
         vec3f_copy(D_8033B4B8.unk0, a->unk10);
@@ -7373,7 +7373,7 @@ static void CutsceneDialog0_1(struct Struct80280550 *a)
         D_8033B6F0[9].unk1C[1] += 0x6000;
 }
 
-static void CutsceneDialog0_2(struct Struct80280550 *a)
+static void CutsceneDialog0_2(struct LevelCamera *a)
 {
     f32 sp4C;
     s16 sp4A, sp48;
@@ -7397,7 +7397,7 @@ static void CutsceneDialog0_2(struct Struct80280550 *a)
     a->unk10[2] = sp30[2];
 }
 
-static void CutsceneDialog0_3(struct Struct80280550 *a)
+static void CutsceneDialog0_3(struct LevelCamera *a)
 {
     if (a->unk30 == 163)
         func_802D8050(D_8033B320);
@@ -7407,7 +7407,7 @@ static void CutsceneDialog0_3(struct Struct80280550 *a)
     D_8033B6F0[8].unk1C[0] = 3;
 }
 
-void CutsceneDialog0(struct Struct80280550 *a)
+void CutsceneDialog0(struct LevelCamera *a)
 {
     call_cutscene_func_in_time_range(CutsceneDialog0_1, a, 0, 0);
     call_cutscene_func_in_time_range(CutsceneDialog0_2, a, 0, -1);
@@ -7430,19 +7430,19 @@ void CutsceneDialog0(struct Struct80280550 *a)
     }
 }
 
-void CutsceneDialog1(UNUSED struct Struct80280550 *a)
+void CutsceneDialog1(UNUSED struct LevelCamera *a)
 {
     D_8033B4DA |= 0x4000;
 }
 
-void CutsceneDialog2(struct Struct80280550 *a)
+void CutsceneDialog2(struct LevelCamera *a)
 {
     D_8033B4DA |= 0x4000;
     a->unk30 = 0;
     clear_time_stop_flag(6);
 }
 
-static void CutsceneReadMessage0_1(struct Struct80280550 *a)
+static void CutsceneReadMessage0_1(struct LevelCamera *a)
 {
     func_80290564(a);
     func_80285A8C(a, 30);
@@ -7456,7 +7456,7 @@ static void CutsceneReadMessage0_1(struct Struct80280550 *a)
     D_8033B6F0[0].unk1C[0] = 0;
 }
 
-static void unused_80295A28(struct Struct80280550 *a)
+static void unused_80295A28(struct LevelCamera *a)
 {
     Vec3s sp20;
     
@@ -7465,7 +7465,7 @@ static void unused_80295A28(struct Struct80280550 *a)
     func_8028C794(a->unk4, D_8032D000->unk4, sp20, 0, 70.f, -20.f);
 }
 
-void CutsceneReadMessage0(struct Struct80280550 *a)
+void CutsceneReadMessage0(struct LevelCamera *a)
 {
     UNUSED u32 pad[2];
     
@@ -7500,18 +7500,18 @@ void CutsceneReadMessage0(struct Struct80280550 *a)
     D_8033B4DA |= 0x4000;
 }
 
-void CutsceneReadMessage1(UNUSED struct Struct80280550 *a)
+void CutsceneReadMessage1(UNUSED struct LevelCamera *a)
 {
     D_8033B4DA |= 0x4000;
 }
 
-void CutsceneReadMessage2(struct Struct80280550 *a)
+void CutsceneReadMessage2(struct LevelCamera *a)
 {
     D_8033B4DA |= 0x4000;
     a->unk30 = 0;
 }
 
-static void CutsceneExitSuccess1(UNUSED struct Struct80280550 *a)
+static void CutsceneExitSuccess1(UNUSED struct LevelCamera *a)
 {
     vec3f_copy(D_8033B6F0[7].unk4, D_8032D000->unk4);
     vec3s_copy(D_8033B6F0[7].unk1C, D_8032D000->unk10);
@@ -7519,7 +7519,7 @@ static void CutsceneExitSuccess1(UNUSED struct Struct80280550 *a)
     vec3f_set(D_8033B6F0[5].unk4, 137.f, 226.f, 995.f);
 }
 
-static void CutsceneExitSuccess2(struct Struct80280550 *a)
+static void CutsceneExitSuccess2(struct LevelCamera *a)
 {
     UNUSED u32 sp34;
     struct Surface *sp30;
@@ -7546,7 +7546,7 @@ static void CutsceneExitSuccess2(struct Struct80280550 *a)
     }
 }
 
-static void CutsceneExitSuccess4(struct Struct80280550 *a)
+static void CutsceneExitSuccess4(struct LevelCamera *a)
 {
     func_8028C5F0(a->unk4, D_8033B6F0[7].unk4, D_8033B6F0[6].unk4, D_8033B6F0[7].unk1C);
     
@@ -7560,23 +7560,23 @@ static void CutsceneExitSuccess4(struct Struct80280550 *a)
         a->unk4[1] = a->unk10[1] + (D_8032D000->unk4[1] - a->unk10[1]) * 0.2f;
 }
 
-static void CutsceneExitSuccess3(UNUSED struct Struct80280550 *a)
+static void CutsceneExitSuccess3(UNUSED struct LevelCamera *a)
 {
     approach_f32_exponential(&D_8033B6F0[6].unk4[0], -24.f, 0.05f);
 }
 
-static void CutsceneExitBowserSuccess0_1(struct Struct80280550 *a)
+static void CutsceneExitBowserSuccess0_1(struct LevelCamera *a)
 {
     if (a->unk30 == 157)
         func_8028A908(0x800, 0x40, 0x800);
 }
 
-static void CutsceneExitSuccess5(UNUSED struct Struct80280550 *a)
+static void CutsceneExitSuccess5(UNUSED struct LevelCamera *a)
 {
     func_8027F308(1);
 }
 
-void CutsceneExitBowserSuccess0(struct Struct80280550 *a)
+void CutsceneExitBowserSuccess0(struct LevelCamera *a)
 {
     call_cutscene_func_in_time_range(CutsceneExitSuccess1, a, 0, 0);
     call_cutscene_func_in_time_range(CutsceneExitSuccess2, a, 0, -1);
@@ -7586,14 +7586,14 @@ void CutsceneExitBowserSuccess0(struct Struct80280550 *a)
     call_cutscene_func_in_time_range(CutsceneExitSuccess5, a, 41, 41);
 }
 
-void CutsceneExitNonPainting1(struct Struct80280550 *a)
+void CutsceneExitNonPainting1(struct LevelCamera *a)
 {
     a->unk30 = 0;
     
     if (a->unk1 == 4)
-        a->unk0 = 4;
+        a->preset = CAMERA_PRESET_CLOSE;
     else
-        a->unk0 = 16;
+        a->preset = CAMERA_PRESET_FREE_ROAM;
     
     D_8033B4DA |= 0x4000;
     D_8033B4DA |= 1;
@@ -7601,12 +7601,12 @@ void CutsceneExitNonPainting1(struct Struct80280550 *a)
     func_8028FA74(a);
 }
 
-static void CutsceneBBHExitSuccess0_1(UNUSED struct Struct80280550 *a)
+static void CutsceneBBHExitSuccess0_1(UNUSED struct LevelCamera *a)
 {
     vec3f_set(D_8033B6F0[5].unk4, 137.f, 246.f, 1115.f);
 }
 
-void CutsceneBBHExitSuccess0(struct Struct80280550 *a)
+void CutsceneBBHExitSuccess0(struct LevelCamera *a)
 {
     call_cutscene_func_in_time_range(CutsceneExitSuccess1, a, 0, 0);
     call_cutscene_func_in_time_range(CutsceneBBHExitSuccess0_1, a, 0, 0);
@@ -7617,7 +7617,7 @@ void CutsceneBBHExitSuccess0(struct Struct80280550 *a)
     func_8028FA74(a);
 }
 
-static void CutsceneNonPaintingDeath0_1(UNUSED struct Struct80280550 *a)
+static void CutsceneNonPaintingDeath0_1(UNUSED struct LevelCamera *a)
 {
     vec3f_copy(D_8033B6F0[7].unk4, D_8032D000->unk4);
     vec3s_copy(D_8033B6F0[7].unk1C, D_8032D000->unk10);
@@ -7625,14 +7625,14 @@ static void CutsceneNonPaintingDeath0_1(UNUSED struct Struct80280550 *a)
     vec3f_set(D_8033B6F0[5].unk4, 107.f, 226.f, 1187.f);
 }
 
-void Cutscene1CTodo_0(struct Struct80280550 *a)
+void Cutscene1CTodo_0(struct LevelCamera *a)
 {
     call_cutscene_func_in_time_range(CutsceneNonPaintingDeath0_1, a, 0, 0);
     call_cutscene_func_in_time_range(CutsceneExitSuccess2, a, 0, -1);
     call_cutscene_func_in_time_range(CutsceneExitSuccess4, a, 0, -1);
 }
 
-static void CutsceneNonPaintingDeath0_2(UNUSED struct Struct80280550 *a)
+static void CutsceneNonPaintingDeath0_2(UNUSED struct LevelCamera *a)
 {
     switch (D_8032CFDC)
     {
@@ -7648,7 +7648,7 @@ static void CutsceneNonPaintingDeath0_2(UNUSED struct Struct80280550 *a)
     }
 }
     
-void CutsceneNonPaintingDeath0(struct Struct80280550 *a)
+void CutsceneNonPaintingDeath0(struct LevelCamera *a)
 {
     call_cutscene_func_in_time_range(CutsceneNonPaintingDeath0_1, a, 0, 0);
     call_cutscene_func_in_time_range(CutsceneNonPaintingDeath0_2, a, 0, 0);
@@ -7657,7 +7657,7 @@ void CutsceneNonPaintingDeath0(struct Struct80280550 *a)
     D_8033B4DA |= 0x4000;
 }
 
-static void CutsceneCapSwitchPress0_1(struct Struct80280550 *a)
+static void CutsceneCapSwitchPress0_1(struct LevelCamera *a)
 {
     UNUSED s16 sp26;
     s16 sp24;
@@ -7670,7 +7670,7 @@ static void CutsceneCapSwitchPress0_1(struct Struct80280550 *a)
     
 }
 
-static void CutsceneCapSwitchPress0_4(struct Struct80280550 *a)
+static void CutsceneCapSwitchPress0_4(struct LevelCamera *a)
 {
     f32 sp2C;
     s16 sp2A, sp28;
@@ -7689,13 +7689,13 @@ static void CutsceneCapSwitchPress0_4(struct Struct80280550 *a)
     vec3f_set_dist_and_angle(D_8032D000->unk4, a->unk10, sp2C, sp2A, sp28);
 }
 
-static void CutsceneCapSwitchPress0_5(struct Struct80280550 *a)
+static void CutsceneCapSwitchPress0_5(struct LevelCamera *a)
 {
     func_8029047C(a->unk10, D_8032D000->unk4, 0, -0x20, 0);
 }
 
 
-static void CutsceneCapSwitchPress0_2(struct Struct80280550 *a)
+static void CutsceneCapSwitchPress0_2(struct LevelCamera *a)
 {
     s16 sp26, sp24;
     f32 sp20;
@@ -7710,7 +7710,7 @@ static void CutsceneCapSwitchPress0_2(struct Struct80280550 *a)
     approach_f32_exponential(&a->unk4[2], D_8032D000->unk4[2], 0.1f);
 }
 
-static void CutsceneCapSwitchPress0_3(struct Struct80280550 *a)
+static void CutsceneCapSwitchPress0_3(struct LevelCamera *a)
 {
     vec3f_copy(a->unk4, D_8032D000->unk4);
     a->unk4[1] += 110.f;
@@ -7718,18 +7718,18 @@ static void CutsceneCapSwitchPress0_3(struct Struct80280550 *a)
     func_80290390(a, D_8033B6F0[0].unk1C[0], D_8033B6F0[0].unk1C[1]);
 }
 
-static void CutsceneCapSwitchPress0_6(UNUSED struct Struct80280550 *a)
+static void CutsceneCapSwitchPress0_6(UNUSED struct LevelCamera *a)
 {
     func_802D8050(D_8032CFC4->oBehParams2ndByte + 10);
 }
 
-static void unused_802968E8(struct Struct80280550 *a)
+static void unused_802968E8(struct LevelCamera *a)
 {
     func_802902A8(a);
     func_80285A8C(a, 30);
 }
 
-void CutsceneCapSwitchPress0(struct Struct80280550 *a)
+void CutsceneCapSwitchPress0(struct LevelCamera *a)
 {
     f32 sp24;
     s16 sp22, sp20;
@@ -7758,7 +7758,7 @@ void CutsceneCapSwitchPress0(struct Struct80280550 *a)
     }
 }
 
-static void CutsceneUnlockKeyDoor0_1(struct Struct80280550 *a)
+static void CutsceneUnlockKeyDoor0_1(struct LevelCamera *a)
 {
     Vec3f sp24, sp18;
     
@@ -7770,33 +7770,33 @@ static void CutsceneUnlockKeyDoor0_1(struct Struct80280550 *a)
     func_8028C5F0(D_8033B6F0[3].unk4, D_8032D000->unk4, sp18, D_8032D000->unk10);
 }
 
-static void CutsceneUnlockKeyDoor0_2(struct Struct80280550 *a)
+static void CutsceneUnlockKeyDoor0_2(struct LevelCamera *a)
 {
     approach_vec3f_exponential(a->unk10, D_8033B6F0[2].unk4, 0.1f, 0.1f, 0.1f);
     approach_vec3f_exponential(a->unk4,  D_8033B6F0[3].unk4, 0.1f, 0.1f, 0.1f);
 }
 
-static void CutsceneUnlockKeyDoor0_5(UNUSED struct Struct80280550 *a)
+static void CutsceneUnlockKeyDoor0_5(UNUSED struct LevelCamera *a)
 {
     approach_f32_exponential(&D_8033B6F0[3].unk4[1], D_8032D000->unk4[1] + 140.f, 0.07f);
 }
 
-static void CutsceneUnlockKeyDoor0_6(UNUSED struct Struct80280550 *a)
+static void CutsceneUnlockKeyDoor0_6(UNUSED struct LevelCamera *a)
 {
 }
 
-static void CutsceneUnlockKeyDoor0_3(struct Struct80280550 *a)
+static void CutsceneUnlockKeyDoor0_3(struct LevelCamera *a)
 {
     approach_vec3f_exponential(a->unk10, D_8033B6F0[0].unk4, 0.1f, 0.1f, 0.1f);
     approach_vec3f_exponential(a->unk4,  D_8033B6F0[1].unk4, 0.1f, 0.1f, 0.1f);
 }
 
-static void CutsceneUnlockKeyDoor0_4(UNUSED struct Struct80280550 *a)
+static void CutsceneUnlockKeyDoor0_4(UNUSED struct LevelCamera *a)
 {
     func_8029A494(1);
 }
 
-void CutsceneUnlockKeyDoor0(UNUSED struct Struct80280550 *a)
+void CutsceneUnlockKeyDoor0(UNUSED struct LevelCamera *a)
 {
     call_cutscene_func_in_time_range(CutsceneUnlockKeyDoor0_1, a, 0, 0);
     call_cutscene_func_in_time_range(CutsceneUnlockKeyDoor0_2, a, 0, 123);
@@ -7806,7 +7806,7 @@ void CutsceneUnlockKeyDoor0(UNUSED struct Struct80280550 *a)
     call_cutscene_func_in_time_range(CutsceneUnlockKeyDoor0_6, a, 112, 112);
 }
 
-s32 func_80296DDC(struct Struct80280550 *a, struct Struct8032E040 b[], struct Struct8032E040 c[])
+s32 func_80296DDC(struct LevelCamera *a, struct Struct8032E040 b[], struct Struct8032E040 c[])
 {
     Vec3f sp24;
     s32 sp20 = 0;
@@ -7824,19 +7824,19 @@ s32 func_80296DDC(struct Struct80280550 *a, struct Struct8032E040 b[], struct St
     return sp1C;
 }
 
-static void CutsceneIntroPeach0_3(UNUSED struct Struct80280550 *a)
+static void CutsceneIntroPeach0_3(UNUSED struct LevelCamera *a)
 {
     func_802D7F90(20);
 }
 
 #if VERSION_US
-static void CutsceneIntroPeach0_4(UNUSED struct Struct80280550 *a)
+static void CutsceneIntroPeach0_4(UNUSED struct LevelCamera *a)
 {
     SetSound(0x2428FF81, D_803320E0);
 }
 #endif
 
-static void CutsceneIntroPeachCommon(struct Struct80280550 *a)
+static void CutsceneIntroPeachCommon(struct LevelCamera *a)
 {
     if (func_80296DDC(a, D_8032DDF0, D_8032DEA8) != 0)
     {
@@ -7845,7 +7845,7 @@ static void CutsceneIntroPeachCommon(struct Struct80280550 *a)
     }
 }
 
-void CutsceneIntroPeach4(struct Struct80280550 *a)
+void CutsceneIntroPeach4(struct LevelCamera *a)
 {
     if (get_dialog_id() == -1)
     {
@@ -7857,48 +7857,48 @@ void CutsceneIntroPeach4(struct Struct80280550 *a)
     }
 }
 
-static void CutsceneIntroPeach3_2(struct Struct80280550 *a)
+static void CutsceneIntroPeach3_2(struct LevelCamera *a)
 {
     func_80287CFC(a->unk10, D_8032DF60, &D_8033B6E0, &D_8033B6E4);
     func_80287CFC(a->unk4, D_8032DFD0, &D_8033B6E0, &D_8033B6E4);
 }
 
-static void CutsceneIntroPeach2_2(UNUSED struct Struct80280550 *a)
+static void CutsceneIntroPeach2_2(UNUSED struct LevelCamera *a)
 {
     D_8032D000->unk1C[1] = 0;
 }
 
-static void CutsceneIntroPeach0_1(UNUSED struct Struct80280550 *a)
+static void CutsceneIntroPeach0_1(UNUSED struct LevelCamera *a)
 {
     D_8033B230.fieldOfView = 8.f;
     func_8029A478(12);
 }
 
-static void CutsceneIntroPeach3_1(UNUSED struct Struct80280550 *a)
+static void CutsceneIntroPeach3_1(UNUSED struct LevelCamera *a)
 {
     D_8033B6E0 = 0;
     D_8033B6E4 = 0.1f;
     func_802882A0(4);
 }
 
-static void CutsceneIntroPeach3_3(UNUSED struct Struct80280550 *a)
+static void CutsceneIntroPeach3_3(UNUSED struct LevelCamera *a)
 {
     func_802882A0(0);
 }
 
-static void CutsceneIntroPeach3_4(UNUSED struct Struct80280550 *a)
+static void CutsceneIntroPeach3_4(UNUSED struct LevelCamera *a)
 {
     func_802D7F90(33);
 }
 
 #if VERSION_US
-static void CutsceneIntroPeach2_3(UNUSED struct Struct80280550 *a)
+static void CutsceneIntroPeach2_3(UNUSED struct LevelCamera *a)
 {
     func_8028B338();
 }
 #endif
 
-void CutsceneIntroPeach2(struct Struct80280550 *a)
+void CutsceneIntroPeach2(struct LevelCamera *a)
 {
 #if VERSION_US
     call_cutscene_func_in_time_range(CutsceneIntroPeach2_3, a, 818, 818);
@@ -7911,7 +7911,7 @@ void CutsceneIntroPeach2(struct Struct80280550 *a)
     D_8033B6F0[1].unk4[1] = 400.f;
 }
 
-void CutsceneIntroPeach3(struct Struct80280550 *a)
+void CutsceneIntroPeach3(struct LevelCamera *a)
 {
     UNUSED u32 pad[2];
     
@@ -7928,12 +7928,12 @@ void CutsceneIntroPeach3(struct Struct80280550 *a)
     D_8033B4DA |= 0x4000;
 }
 
-void CutsceneIntroPeach1(UNUSED struct Struct80280550 *a)
+void CutsceneIntroPeach1(UNUSED struct LevelCamera *a)
 {
     func_8029A478(2);
 }
     
-void CutsceneIntroPeach0(struct Struct80280550 *a)
+void CutsceneIntroPeach0(struct LevelCamera *a)
 {
     func_80299C60(5, 0);
     call_cutscene_func_in_time_range(CutsceneIntroPeach0_1, a, 0, 0);
@@ -7950,7 +7950,7 @@ void CutsceneIntroPeach0(struct Struct80280550 *a)
     func_80288C2C(a->unk10, a->unk4, 0x3B00, -0x3B00);
 }
 
-static void CutsceneEndWaving0_1(UNUSED struct Struct80280550 *a)
+static void CutsceneEndWaving0_1(UNUSED struct LevelCamera *a)
 {
     func_8028FABC();
 }
@@ -8056,7 +8056,7 @@ struct Struct8032E040 D_8032E52C[9] = {
     {  0,   0, {  -156,   1718,   5086}}
 };
 
-void CutsceneEndWaving0(struct Struct80280550 *a)
+void CutsceneEndWaving0(struct LevelCamera *a)
 {
     call_cutscene_func_in_time_range(CutsceneEndWaving0_1, a, 0, 0);
     func_80287CFC(a->unk10, D_8032E4E4, &D_8033B6E0, &D_8033B6E4);
@@ -8064,7 +8064,7 @@ void CutsceneEndWaving0(struct Struct80280550 *a)
     func_80299C60(6, 120);
 }
 
-static void CutsceneCredits0_1(UNUSED struct Struct80280550 *a)
+static void CutsceneCredits0_1(UNUSED struct LevelCamera *a)
 {
     func_8028FABC();
 }
@@ -8110,7 +8110,7 @@ extern struct Struct8032E040 D_8032EEEC[5];
 extern struct Struct8032E040 D_8032EF14[4];
 extern struct Struct8032E040 D_8032EF34[4];
 
-void CutsceneCredits0(struct Struct80280550 *a)
+void CutsceneCredits0(struct LevelCamera *a)
 {
     struct Struct8032E040 *sp34, *sp30;
     
@@ -8169,7 +8169,7 @@ void CutsceneCredits0(struct Struct80280550 *a)
     func_8028FEFC(a, -0x2000, 0x2000, -0x4000, 0x4000);
 }
 
-static void CutsceneSlidingDoorsOpen0_1(struct Struct80280550 *a)
+static void CutsceneSlidingDoorsOpen0_1(struct LevelCamera *a)
 {
     f32 sp24;
     s16 sp22, sp20;
@@ -8186,24 +8186,24 @@ static void CutsceneSlidingDoorsOpen0_1(struct Struct80280550 *a)
     vec3f_set_dist_and_angle(D_8032D000->unk4, a->unk10, sp24, sp22, sp20);
 }
 
-static void CutsceneSlidingDoorsOpen0_2(UNUSED struct Struct80280550 *a)
+static void CutsceneSlidingDoorsOpen0_2(UNUSED struct LevelCamera *a)
 {
     vec3f_copy(D_8033B6F0[1].unk4, D_8032D000->unk4);
     vec3s_copy(D_8033B6F0[0].unk1C, D_8032D000->unk10);
     vec3f_set(D_8033B6F0[0].unk4, 80.f, 325.f, 200.f);
 }
 
-static void CutsceneSlidingDoorsOpen0_3(UNUSED struct Struct80280550 *a)
+static void CutsceneSlidingDoorsOpen0_3(UNUSED struct LevelCamera *a)
 {
     func_802893E4(&D_8033B6F0[0].unk4[1], 75.f, 10.f);
 }
 
-static void CutsceneSlidingDoorsOpen0_4(UNUSED struct Struct80280550 *a)
+static void CutsceneSlidingDoorsOpen0_4(UNUSED struct LevelCamera *a)
 {
     func_802893E4(&D_8033B6F0[0].unk4[1], 125.f, 10.f);
 }
 
-static void CutsceneSlidingDoorsOpen0_5(struct Struct80280550 *a)
+static void CutsceneSlidingDoorsOpen0_5(struct LevelCamera *a)
 {
     Vec3f sp34;
     UNUSED u32 pad[4];
@@ -8219,7 +8219,7 @@ static void CutsceneSlidingDoorsOpen0_5(struct Struct80280550 *a)
     func_8028C3CC(a, 0, 125.f, 0, 0);
 }
 
-void CutsceneSlidingDoorsOpen0(struct Struct80280550 *a)
+void CutsceneSlidingDoorsOpen0(struct LevelCamera *a)
 {
     UNUSED u32 pad[2];
     
@@ -8231,18 +8231,18 @@ void CutsceneSlidingDoorsOpen0(struct Struct80280550 *a)
     call_cutscene_func_in_time_range(CutsceneSlidingDoorsOpen0_5, a, 8, -1);
 }
 
-void CutsceneDoubleDoorsOpen1(struct Struct80280550 *a)
+void CutsceneDoubleDoorsOpen1(struct LevelCamera *a)
 {
     func_80290514(a);
     a->unk30 = 0;
     D_8033B4DA |= 1;
 }
 
-void CutsceneEnterPainting0_1(UNUSED struct Struct80280550 *a)
+void CutsceneEnterPainting0_1(UNUSED struct LevelCamera *a)
 {
 }
 
-void CutsceneEnterPainting0(struct Struct80280550 *a)
+void CutsceneEnterPainting0(struct LevelCamera *a)
 {
     struct Surface *sp54, *sp50;
     Vec3f sp44, sp38, sp2C;
@@ -8290,10 +8290,10 @@ void CutsceneEnterPainting0(struct Struct80280550 *a)
             D_8033B4DA |= 1;
         }
     }
-    a->unk0 = 4;
+    a->preset = CAMERA_PRESET_CLOSE;
 }
 
-void CutsceneExitPainting80298094(struct Struct80280550 *a)
+void CutsceneExitPainting80298094(struct LevelCamera *a)
 {
     struct Surface *sp1C;
     f32 sp18;
@@ -8321,7 +8321,7 @@ void CutsceneExitPainting80298094(struct Struct80280550 *a)
     }
 }
 
-void CutsceneExitPainting80298230(struct Struct80280550 *a)
+void CutsceneExitPainting80298230(struct LevelCamera *a)
 {
     Vec3f sp1C;
     
@@ -8332,7 +8332,7 @@ void CutsceneExitPainting80298230(struct Struct80280550 *a)
     a->unk10[2] = sp1C[2];
 }
 
-void CutsceneExitPainting802982CC(struct Struct80280550 *a)
+void CutsceneExitPainting802982CC(struct LevelCamera *a)
 {
     struct Surface *sp2C;
     Vec3f sp20;
@@ -8350,7 +8350,7 @@ void CutsceneExitPainting802982CC(struct Struct80280550 *a)
     }
 }
 
-void CutsceneExitPainting0(struct Struct80280550 *a)
+void CutsceneExitPainting0(struct LevelCamera *a)
 {
     call_cutscene_func_in_time_range(CutsceneExitPainting80298094, a, 0, 0);
     call_cutscene_func_in_time_range(CutsceneExitPainting80298230, a, 5, -1);
@@ -8364,7 +8364,7 @@ void CutsceneExitPainting0(struct Struct80280550 *a)
     func_8028FA74(a);
 }
 
-void Cutscene11Todo_0(struct Struct80280550 *a)
+void Cutscene11Todo_0(struct LevelCamera *a)
 {
     UNUSED Vec3f sp3C;
     UNUSED Vec3s sp34;
@@ -8377,7 +8377,7 @@ void Cutscene11Todo_0(struct Struct80280550 *a)
     func_8028C3CC(a, 0.f, 125.f, 0.f, 0);
 }
 
-void Cutscene11Todo_1(struct Struct80280550 *a)
+void Cutscene11Todo_1(struct LevelCamera *a)
 {
     Vec3f sp24;
     
@@ -8387,9 +8387,9 @@ void Cutscene11Todo_1(struct Struct80280550 *a)
     func_8028FA74(a);
 }
 
-void CutsceneExitPainting1(struct Struct80280550 *a)
+void CutsceneExitPainting1(struct LevelCamera *a)
 {
-    a->unk0 = 4;
+    a->preset = CAMERA_PRESET_CLOSE;
     a->unk30 = 0;
     gCutsceneTimer = 0x8000;
     D_8033B4DA |= 1;
@@ -8397,16 +8397,16 @@ void CutsceneExitPainting1(struct Struct80280550 *a)
     func_8028FA74(a);
 }
 
-void CutsceneEnterCannon2(struct Struct80280550 *a)
+void CutsceneEnterCannon2(struct LevelCamera *a)
 {
     D_8033B4DA &= ~1;
     D_8033B4DA |= 2;
-    a->unk0 = 10;
+    a->preset = CAMERA_PRESET_INSIDE_CANNON;
     a->unk30 = 0;
     D_8033B410 = 800.f;
 }
 
-void CutsceneEnterCannon1(struct Struct80280550 *a)
+void CutsceneEnterCannon1(struct LevelCamera *a)
 {
     struct Object *sp44;
     UNUSED u32 pad[2];
@@ -8446,7 +8446,7 @@ void CutsceneEnterCannon1(struct Struct80280550 *a)
         a->unk10[1] = sp38;
 }
 
-void CutsceneEnterCannon0(struct Struct80280550 *a)
+void CutsceneEnterCannon0(struct LevelCamera *a)
 {
     UNUSED u32 pad[2];
     struct Object *sp24;
@@ -8469,19 +8469,19 @@ void CutsceneEnterCannon0(struct Struct80280550 *a)
     D_8033B6F0[4].unk4[1] = 0.f;
 }
 
-void CutsceneDoor0(struct Struct80280550 *a)
+void CutsceneDoor0(struct LevelCamera *a)
 {
     vec3f_copy(D_8033B6F0[0].unk4, a->unk10);
     vec3f_copy(D_8033B6F0[1].unk4, a->unk4);
 }
 
-void CutsceneDoor1(struct Struct80280550 *a)
+void CutsceneDoor1(struct LevelCamera *a)
 {
     vec3f_copy(a->unk10, D_8033B6F0[0].unk4);
     vec3f_copy(a->unk4, D_8033B6F0[1].unk4);
 }
 
-void CutsceneDoorWarp1(struct Struct80280550 *a)
+void CutsceneDoorWarp1(struct LevelCamera *a)
 {
     if ((D_8032D000->unk0 != 0x1320) & (D_8032D000->unk0 != 0x1321)) //! bitwise AND instead of boolean
     {
@@ -8490,7 +8490,7 @@ void CutsceneDoorWarp1(struct Struct80280550 *a)
     }
 }
 
-void CutsceneDoor2(struct Struct80280550 *a)
+void CutsceneDoor2(struct LevelCamera *a)
 {
     Vec3f sp24;
     s16 sp22;
@@ -8509,7 +8509,7 @@ void CutsceneDoor2(struct Struct80280550 *a)
     func_8028C5F0(a->unk10, D_8032D000->unk4, sp24, D_8033B6F0[0].unk1C);
 }
 
-void CutsceneDoor3(struct Struct80280550 *a)
+void CutsceneDoor3(struct LevelCamera *a)
 {
     s16 sp26, sp24;
     f32 sp20;
@@ -8521,12 +8521,12 @@ void CutsceneDoor3(struct Struct80280550 *a)
     func_8028FA74(a);
 }
 
-void CutsceneDoor4(struct Struct80280550 *a)
+void CutsceneDoor4(struct LevelCamera *a)
 {
     if (a->unk1 == 16)
-        a->unk0 = 16;
+        a->preset = CAMERA_PRESET_FREE_ROAM;
     else
-        a->unk0 = 4;
+        a->preset = CAMERA_PRESET_CLOSE;
     
     a->unk30 = 0;
     gCutsceneTimer = 0x8000;
@@ -8536,19 +8536,19 @@ void CutsceneDoor4(struct Struct80280550 *a)
     func_8028FA74(a);
 }
 
-void CutsceneDoorAB_2(struct Struct80280550 *a)
+void CutsceneDoorAB_2(struct LevelCamera *a)
 {
     UNUSED u32 pad[2];
     
     func_8028FEDC(a);
     func_8028E88C(a);
     
-    if (a->unk0 == 13)
+    if (a->preset == CAMERA_PRESET_FIXED_REF_POINT)
         a->unk3A = CameraChange0D(a, a->unk4, a->unk10);
-    if (a->unk0 == 12)
+    if (a->preset == CAMERA_PRESET_UNKNOWN_0C)
         a->unk3A = CameraChange0C(a, a->unk4, a->unk10);
     
-    a->unk2 = a->unk3A;
+    a->angle = a->unk3A;
     
     if ((D_8032D000->unk0 != 0x1331) && (D_8032D000->unk0 != 0x1320) && (D_8032D000->unk0 != 0x1321))
     {
@@ -9139,7 +9139,7 @@ struct Struct8032E040 D_8032EF34[4] = {
     { -1,  50, { -4730,  -1215,   1795}}
 };
 
-void handle_cutscenes(struct Struct80280550 *a)
+void handle_cutscenes(struct LevelCamera *a)
 {
     UNUSED u32 pad[3];
     UNUSED s16 sp22;
@@ -9231,7 +9231,7 @@ void handle_cutscenes(struct Struct80280550 *a)
         D_8032CFF4 = sp1F;
 }
 
-s32 call_cutscene_func_in_time_range(CameraCommandProc func, struct Struct80280550 *a, s16 start, s16 end)
+s32 call_cutscene_func_in_time_range(CameraCommandProc func, struct LevelCamera *a, s16 start, s16 end)
 {
     if (start <= gCutsceneTimer)
     {
@@ -9331,7 +9331,7 @@ void func_80299FD8(struct MarioState *m)
         func_802893E4(&D_8033B230.fieldOfView, 45.f, (45.f - D_8033B230.fieldOfView) / 30.f);
         D_8033B230.unkC = 0;
     }
-    if (m->area->unk24->unk30 == 145)
+    if (m->area->camera->unk30 == 145)
         D_8033B230.fieldOfView = 45.f;
 }
 
@@ -9354,7 +9354,7 @@ void func_8029A1B4(struct MarioState *m)
 {
     f32 targetFoV = D_8033B230.fieldOfView;
     
-    if ((m->area->unk24->unk0 == 13) && (m->area->unk24->unk30 == 0))
+    if ((m->area->camera->preset == CAMERA_PRESET_FIXED_REF_POINT) && (m->area->camera->unk30 == 0))
         targetFoV = 45.f;
     else
         targetFoV = 45.f;
@@ -9371,7 +9371,7 @@ void func_8029A288(struct MarioState *m)
 {
     f32 targetFoV = D_8033B230.fieldOfView;
     
-    if ((m->area->unk24->unk0 == 13) && (m->area->unk24->unk30 == 0)) // nice useless if statement
+    if ((m->area->camera->preset == CAMERA_PRESET_FIXED_REF_POINT) && (m->area->camera->unk30 == 0)) // nice useless if statement
         targetFoV = 60.f;
     else
         targetFoV = 45.f;
@@ -9552,10 +9552,10 @@ void func_8029AB70(struct Object *a, Vec3f b)
     Vec3s sp24;
     s16 sp22, sp20;
     
-    vec3f_add(b, D_8033B860->unk10);
-    vec3f_get_dist_and_angle(D_8033B860->unk10, D_8033B860->unk4, &sp2C, &sp24[0], &sp24[1]);
-    vec3f_get_dist_and_angle(D_8033B860->unk10, b, &sp2C, &sp22, &sp20);
-    vec3f_set_dist_and_angle(D_8033B860->unk10, b, sp2C, sp24[0] + sp22, sp24[1] + sp20);
+    vec3f_add(b, gCurrLevelCamera->unk10);
+    vec3f_get_dist_and_angle(gCurrLevelCamera->unk10, gCurrLevelCamera->unk4, &sp2C, &sp24[0], &sp24[1]);
+    vec3f_get_dist_and_angle(gCurrLevelCamera->unk10, b, &sp2C, &sp22, &sp20);
+    vec3f_set_dist_and_angle(gCurrLevelCamera->unk10, b, sp2C, sp24[0] + sp22, sp24[1] + sp20);
     vec3f_to_object_pos(a, b);
 }
 
@@ -9600,7 +9600,7 @@ void BehBeginningLakituLoop(void)
         gCurrentObject->oIntroLakituUnkFC = 0.f;
         gCurrentObject->oIntroLakituUnkF8 = 0.f;
         gCurrentObject->oUnk1AC_VPTR = spawn_object_relative_with_scale(1, 0, 0, 0, 2.f, gCurrentObject, MODEL_MIST, bCloud);
-        if (D_8033B860->unk30 == 177)
+        if (gCurrLevelCamera->unk30 == 177)
             gCurrentObject->oAction = 100;
         else
             gCurrentObject->oAction += 1;
@@ -9610,9 +9610,9 @@ void BehBeginningLakituLoop(void)
         obj_enable_rendering();
         if ((gCutsceneTimer > 350) && (gCutsceneTimer < 458))
         {
-            gCurrentObject->oPosX = D_8033B860->unk10[0];
-            gCurrentObject->oPosY = D_8033B860->unk10[1] + 500.f;
-            gCurrentObject->oPosZ = D_8033B860->unk10[2];
+            gCurrentObject->oPosX = gCurrLevelCamera->unk10[0];
+            gCurrentObject->oPosY = gCurrLevelCamera->unk10[1] + 500.f;
+            gCurrentObject->oPosZ = gCurrLevelCamera->unk10[2];
         }
         if (gCutsceneTimer > 52)
             PlaySound(0x6002FF01);
@@ -9694,7 +9694,7 @@ void BehBeginningLakituLoop(void)
     case 100:
         obj_enable_rendering();
         vec3f_set(sp64, -100.f, 100.f, 300.f);
-        func_8028C5F0(sp4C, D_8033B860->unk10, sp64, D_8032D000->unk10);
+        func_8028C5F0(sp4C, gCurrLevelCamera->unk10, sp64, D_8032D000->unk10);
         vec3f_to_object_pos(gCurrentObject, sp4C);
         gCurrentObject->oMoveAnglePitch = 0x1000;
         gCurrentObject->oMoveAngleYaw = 0x9000;
@@ -9710,7 +9710,7 @@ void BehBeginningLakituLoop(void)
             gCurrentObject->oForwardVel = approach_f32_exponential_2(gCurrentObject->oForwardVel, -10.f, 0.05f);
             gCurrentObject->oMoveAngleYaw += 0x78;
             gCurrentObject->oMoveAnglePitch += 0x40;
-            gCurrentObject->oFaceAngleYaw = func_80289264(gCurrentObject->oFaceAngleYaw, (s16)func_8028A4F0(sp4C, D_8033B860->unk10), 0x200);
+            gCurrentObject->oFaceAngleYaw = func_80289264(gCurrentObject->oFaceAngleYaw, (s16)func_8028A4F0(sp4C, gCurrLevelCamera->unk10), 0x200);
         }
         if (gCurrentObject->oTimer > 105)
         {
@@ -9724,7 +9724,7 @@ void BehBeginningLakituLoop(void)
     case 102:
         object_pos_to_vec3f(sp4C, gCurrentObject);
         gCurrentObject->oForwardVel = approach_f32_exponential_2(gCurrentObject->oForwardVel, 60.f, 0.05f);
-        gCurrentObject->oFaceAngleYaw = func_80289264(gCurrentObject->oFaceAngleYaw, (s16)func_8028A4F0(sp4C, D_8033B860->unk10), 0x200);
+        gCurrentObject->oFaceAngleYaw = func_80289264(gCurrentObject->oFaceAngleYaw, (s16)func_8028A4F0(sp4C, gCurrLevelCamera->unk10), 0x200);
         if (gCurrentObject->oTimer < 62)
             gCurrentObject->oMoveAngleYaw = approach_s16_exponential_2(gCurrentObject->oMoveAngleYaw, 0x1800, 0x1E);
         gCurrentObject->oMoveAnglePitch = func_80289264(gCurrentObject->oMoveAnglePitch, -0x2000, 0x5A);
@@ -9780,10 +9780,10 @@ void BehEndBirds2Loop(void)
         gCurrentObject->oAction += 1;
         break;
     case 1:
-        vec3f_get_dist_and_angle(D_8033B860->unk10, D_8033B860->unk4, &sp34, &sp32, &sp30);
+        vec3f_get_dist_and_angle(gCurrLevelCamera->unk10, gCurrLevelCamera->unk4, &sp34, &sp32, &sp30);
         sp30 += 0x1000;
         sp32 += 0; // nice work, Nintendo
-        vec3f_set_dist_and_angle(D_8033B860->unk10, sp3C, 14000.f, sp32, sp30);
+        vec3f_set_dist_and_angle(gCurrLevelCamera->unk10, sp3C, 14000.f, sp32, sp30);
         func_8029A7DC(gCurrentObject, sp3C, 0, 0, 8, 8);
         
         if ((gCurrentObject->oEndBirdUnk104 == 0.f) && (gCurrentObject->oTimer == 0))
@@ -9821,9 +9821,9 @@ void BehIntroSceneLoop(void)
     
     if (D_8033B85C != 0)
     {
-        gCurrentObject->oPosX = D_8033B860->unk10[0];
-        gCurrentObject->oPosY = D_8033B860->unk10[1];
-        gCurrentObject->oPosZ = D_8033B860->unk10[2];
+        gCurrentObject->oPosX = gCurrLevelCamera->unk10[0];
+        gCurrentObject->oPosY = gCurrLevelCamera->unk10[1];
+        gCurrentObject->oPosZ = gCurrLevelCamera->unk10[2];
         gCurrentObject->oMoveAnglePitch = 0;
         gCurrentObject->oMoveAngleYaw = 0;
         

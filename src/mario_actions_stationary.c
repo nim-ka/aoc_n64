@@ -135,7 +135,7 @@ s32 act_idle(struct MarioState *m) {
     }
     
     if (m->actionState == 3) {
-        if ((m->area->unk02 & 7) == TERRAIN_SNOW) {
+        if ((m->area->terrainType & 7) == TERRAIN_SNOW) {
             return set_mario_action(m, ACT_SHIVERING, 0);
         } else {
             return set_mario_action(m, ACT_START_SLEEPING, 0);
@@ -1078,12 +1078,12 @@ s32 act_first_person(struct MarioState *m) {
     sp1C = 0U < (m->input & (INPUT_UNKNOWN_10 | 0xC));
     if (m->actionState == 0) {
         func_80248C28(2);
-        func_80285BD8(m->area->unk24, 6, 0x10);
+        func_80285BD8(m->area->camera, 6, 0x10);
         m->actionState = 1;
     } else {
         if (!(m->input & INPUT_FIRST_PERSON) || sp1C) {
             func_80248CB8(2);
-            func_80285BD8(m->area->unk24, -1, 1);
+            func_80285BD8(m->area->camera, -1, 1);
             return set_mario_action(m, ACT_IDLE, 0);
         }
     }

@@ -417,9 +417,9 @@ static void level_cmd_begin_area(void)
         gAreas[areaIndex].unk04 = (struct GraphNode *) screenArea;
 
         if (node != NULL)
-            gAreas[areaIndex].unk24 = (struct Struct80280550 *) node->unk18;
+            gAreas[areaIndex].camera = (struct LevelCamera *) node->unk18;
         else
-            gAreas[areaIndex].unk24 = NULL;
+            gAreas[areaIndex].camera = NULL;
     }
 
     sCurrentCmd = CMD_NEXT;
@@ -574,7 +574,7 @@ static void level_cmd_create_instant_warp(void)
 static void level_cmd_set_terrain_type(void)
 {
     if (sCurrAreaIndex != -1)
-        gAreas[sCurrAreaIndex].unk02 |= CMD_GET(s16, 2);
+        gAreas[sCurrAreaIndex].terrainType |= CMD_GET(s16, 2);
 
     sCurrentCmd = CMD_NEXT;
 }
@@ -608,13 +608,13 @@ static void level_cmd_create_painting_warp_node(void)
 
 static void level_cmd_3A(void)
 {
-    struct UnknownArea28 *val4;
+    struct UnusedArea28 *val4;
 
     if (sCurrAreaIndex != -1)
     {
-        if ((val4 = gAreas[sCurrAreaIndex].unk28) == NULL)
-            val4 = gAreas[sCurrAreaIndex].unk28 =
-                alloc_only_pool_alloc(sLevelPool, sizeof(struct UnknownArea28));
+        if ((val4 = gAreas[sCurrAreaIndex].unused28) == NULL)
+            val4 = gAreas[sCurrAreaIndex].unused28 =
+                alloc_only_pool_alloc(sLevelPool, sizeof(struct UnusedArea28));
         
         val4->unk00 = CMD_GET(s16, 2);
         val4->unk02 = CMD_GET(s16, 4);
@@ -682,7 +682,7 @@ static void level_cmd_set_rooms(void)
 static void level_cmd_39(void)
 {
     if (sCurrAreaIndex != -1)
-        gAreas[sCurrAreaIndex].unk10 = segmented_to_virtual(CMD_GET(void *, 4));
+        gAreas[sCurrAreaIndex].macroObjects = segmented_to_virtual(CMD_GET(void *, 4));
     sCurrentCmd = CMD_NEXT;
 }
 
@@ -742,7 +742,7 @@ static void level_cmd_30(void)
     if (sCurrAreaIndex != -1)
     {
         if (CMD_GET(u8, 2) < 2)
-            gAreas[sCurrAreaIndex].unk34[CMD_GET(u8, 2)] = CMD_GET(u8, 3);
+            gAreas[sCurrAreaIndex].dialog[CMD_GET(u8, 2)] = CMD_GET(u8, 3);
     }
     sCurrentCmd = CMD_NEXT;
 }
@@ -751,8 +751,8 @@ static void level_cmd_set_music(void)
 {
     if (sCurrAreaIndex != -1)
     {
-        gAreas[sCurrAreaIndex].unk36 = CMD_GET(s16, 2);
-        gAreas[sCurrAreaIndex].unk38 = CMD_GET(s16, 4);
+        gAreas[sCurrAreaIndex].musicParam = CMD_GET(s16, 2);
+        gAreas[sCurrAreaIndex].musicParam2 = CMD_GET(s16, 4);
     }
     sCurrentCmd = CMD_NEXT;
 }

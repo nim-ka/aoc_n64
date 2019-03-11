@@ -315,7 +315,7 @@ Gfx *Geo18_802CD1E8(int sp20, struct GraphNode *sp24, UNUSED int sp28)
     struct GraphNode *sp1C = sp24;
     Gfx *dlist = NULL;
 
-    if (sp20 == 1 && gCurrentArea != NULL && gCurrentArea->unk24->unk0 == 10)
+    if (sp20 == 1 && gCurrentArea != NULL && gCurrentArea->camera->preset == CAMERA_PRESET_INSIDE_CANNON)
     {
         sp1C->flags = (sp1C->flags & 0xFF) | 0x500;
         dlist = func_802CC2E8();

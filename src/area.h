@@ -121,12 +121,29 @@ struct SpawnInfo
     /*0x1C*/ struct SpawnInfo *next;
 };
 
-// camera related
-struct Struct80280550
+// Some of these might need to be renamed at some point.
+#define CAMERA_PRESET_NONE            0x00
+#define CAMERA_PRESET_OPEN_CAMERA     0x01
+#define CAMERA_PRESET_TICK_TOCK_CLOCK 0x02
+#define CAMERA_PRESET_SECRET_AQUARIUM 0x03
+#define CAMERA_PRESET_CLOSE           0x04 // Inside Castle / Big Boo's Haunt
+#define CAMERA_PRESET_C_UP_LOOK       0x06
+#define CAMERA_PRESET_UNDERWATER      0x08
+#define CAMERA_PRESET_SLIDE           0x09
+#define CAMERA_PRESET_INSIDE_CANNON   0x0A
+#define CAMERA_PRESET_BOWSER_FIGHT    0x0B
+#define CAMERA_PRESET_UNKNOWN_0C      0x0C
+#define CAMERA_PRESET_FIXED_REF_POINT 0x0D
+#define CAMERA_PRESET_BOWSER_LEVEL    0x0E
+#define CAMERA_PRESET_FREE_ROAM       0x10
+#define CAMERA_PRESET_UNKNOWN_11      0x11
+
+// Used mostly in camera.c
+struct LevelCamera
 {
-    u8 unk0;
+    u8 preset; // What type of preset the camera uses (see defines above)
     u8 unk1;
-    s16 unk2;
+    s16 angle;
     Vec3f unk4;
     Vec3f unk10;
     u8 filler1C[0x28-0x1C];
@@ -141,7 +158,7 @@ struct Struct80280550
     float unk68;
 };
 
-struct UnknownArea28
+struct UnusedArea28
 {
     /*0x00*/ s16 unk00;
     /*0x02*/ s16 unk02;
@@ -159,23 +176,22 @@ struct Whirlpool
 struct Area
 {
     /*0x00*/ s8 index;
-    /*0x01*/ s8 unk01;
-    /*0x02*/ u16 unk02;
-    /*0x04*/ struct GraphNode *unk04;
-    /*0x08*/ s16 *terrainData;
-    /*0x0C*/ s8 *surfaceRooms;
-    /*0x10*/ s16 *unk10;
+    /*0x01*/ s8 flags; // Only has 1 flag: 0x01 = Is this the active area?
+    /*0x02*/ u16 terrainType; // default terrain of the level (set from level script cmd 0x31)
+    /*0x04*/ struct GraphNode *unk04; // geometry layout data
+    /*0x08*/ s16 *terrainData; // collision data (set from level script cmd 0x2E)
+    /*0x0C*/ s8 *surfaceRooms; // (set from level script cmd 0x2F)
+    /*0x10*/ s16 *macroObjects; // Macro Objects Ptr (set from level script cmd 0x39)
     /*0x14*/ struct ObjectWarpNode *warpNodes;
     /*0x18*/ struct WarpNode *paintingWarpNodes;
     /*0x1C*/ struct InstantWarp *instantWarps;
     /*0x20*/ struct SpawnInfo *objectSpawnInfos;
-    /*0x24*/ struct Struct80280550 *unk24;
-    /*0x28*/ struct UnknownArea28 *unk28;
+    /*0x24*/ struct LevelCamera *camera;
+    /*0x28*/ struct UnusedArea28 *unused28; // Filled by level script 0x3A, but is unused.
     /*0x2C*/ struct Whirlpool *whirlpools[2];
-    /*0x34*/ u8 unk34[1];
-    /*0x35*/ u8 unk35;
-    /*0x36*/ u16 unk36;
-    /*0x38*/ u16 unk38;
+    /*0x34*/ u8 dialog[2]; // Level start dialog number (set by level script cmd 0x30)
+    /*0x36*/ u16 musicParam;
+    /*0x38*/ u16 musicParam2;
 };
 
 // All the transition data to be used in screen_transition.c
