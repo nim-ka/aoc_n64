@@ -3,6 +3,7 @@
 .include "macros.inc"
 .include "ultra64/gbi.inc"
 .include "macro_presets.inc"
+.include "special_presets.inc"
 
 thi_seg7_texture_07000000: # 0x07000000 - 0x07000002
 .incbin "levels/thi/0.rgba16"
@@ -4712,10 +4713,10 @@ glabel thi_seg7_area_1_collision # 0x07009FC8 - 0x0700BD5E
 .hword  413,  414,  415
 .hword  412,  320,  319
 .hword 0x0041
-# collision macro? 0x43
-.hword 0x0043,    2
-.hword 0x00, -7372, -2969,  7373,   106
-.hword 0x79,  4813,  -511,  2254
+# special objects area 1 0x43
+.hword 0x0043,    2 # add 2 special objects
+special_object_10_byte /*preset*/ special_null_start,  /*pos*/ -7372, -2969,  7373, /*yaw*/ 106 # unused, probably an early way to set intial position
+special_object_8_byte  /*preset*/ special_bubble_tree, /*pos*/  4813,  -511,  2254
 # water boxes (val, loX, hiX, loZ, hiZ, height)
 .hword 0x0044,    3
 .hword     0, -8191, -8191, -5119,  6246, -3071
@@ -5703,11 +5704,11 @@ glabel thi_seg7_area_2_collision # 0x0700BD60 - 0x0700D444
 .hword  242,  244,  148
 .hword  244,   25,  148
 .hword 0x0041
-# collision macro? 0x43
-.hword 0x0043,    3
-.hword 0x00, -2211,  -890,  2212,   106
-.hword 0x65,   -40,  -767, -4494,     0
-.hword 0x79,  1444,  -153,   676
+# special objects area 2 0x43
+.hword 0x0043,    3 # add 3 special objects
+special_object_10_byte /*preset*/ special_null_start,   /*pos*/ -2211,  -890,  2212, /*yaw*/ 106 # unused, probably an early way to set intial position
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/   -40,  -767, -4494, /*yaw*/   0
+special_object_8_byte  /*preset*/ special_bubble_tree,  /*pos*/  1444,  -153,   676
 # water boxes (val, loX, hiX, loZ, hiZ, height)
 .hword 0x0044,    3
 .hword     0, -2457, -2457, -1535,  1874,  -921

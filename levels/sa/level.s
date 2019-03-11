@@ -3,6 +3,7 @@
 .include "macros.inc"
 .include "ultra64/gbi.inc"
 .include "macro_presets.inc"
+.include "special_presets.inc"
 
 sa_light_07000000: # 0x07000000 - 0x07000008
 .byte 0x00, 0x7F, 0x99, 0x00, 0x00, 0x7F, 0x99, 0x00
@@ -1151,9 +1152,9 @@ glabel sa_seg7_collision # 0x07003000 - 0x07003282
 .hword   29,   47,   30
 .hword   30,   47,   12
 .hword 0x0041
-# terrain macro? 0x43
-.hword 0x0043,    1
-.hword 0x00,     0, -1535,     0,    64
+# special object 0x43
+.hword 0x0043,    1 # add 1 special object
+special_object_10_byte /*preset*/ special_null_start, /*pos*/ 0, -1535, 0, /*yaw*/ 64 # unused, probably an early way to set intial position
 # water boxes (val, loX, hiX, loZ, hiZ, height)
 .hword 0x0044,    1
 .hword     0, -3173, -3173,  3174,  3174,   102

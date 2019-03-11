@@ -3,6 +3,7 @@
 .include "macros.inc"
 .include "ultra64/gbi.inc"
 .include "macro_presets.inc"
+.include "special_presets.inc"
 
 pss_seg7_texture_07000000: # 0x07000000 - 0x07000002
 .incbin "levels/pss/0.rgba16"
@@ -6358,9 +6359,9 @@ glabel pss_seg7_collision # 0x0700E490 - 0x07010F00
 .hword  117,  127,  128
 .hword  118,  131,  129
 .hword 0x0041
-# collision macro? 0x43
-.hword 0x0043,    1
-.hword 0x00,  5632,  6656, -5631,   192
+# special objects 0x43
+.hword 0x0043,    1 # add 1 special object
+special_object_10_byte /*preset*/ special_null_start, /*pos*/ 5632, 6656, -5631, /*yaw*/ 192
 .hword 0x0042
 
 glabel pss_seg7_macro_objs # 0x07010F00 - 0x0701109C

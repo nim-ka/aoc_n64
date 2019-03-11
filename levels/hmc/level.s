@@ -3,6 +3,7 @@
 .include "macros.inc"
 .include "ultra64/gbi.inc"
 .include "macro_presets.inc"
+.include "special_presets.inc"
 
 hmc_seg7_texture_07000000: # 0x07000000 - 0x07001000
 .incbin "levels/hmc/0.rgba16"
@@ -15584,21 +15585,21 @@ glabel hmc_seg7_collision_level # 0x07025594 - 0x0702AA78
 .hword   55,   56,   57
 .hword   55,   58,   56
 .hword 0x0041
-# collision macro? 0x43
-.hword 0x0043,   13
-.hword 0x00, -7601,  2253,  7630,    96
-.hword 0x7E,   922, -4689,  2330,   192
-.hword 0x7E, -3586,  1536,   647,    19
-.hword 0x7E,  5911,  -204,   870,     0
-.hword 0x7E,  3817,   205,   870,     0
-.hword 0x80,  1127,  -409, -4709,    64
-.hword 0x80,  -468, -4279,  6711,    32
-.hword 0x80,  -359, -4279,  6602,   160
-.hword 0x80, -3634,  2355, -2764,    64
-.hword 0x80, -4863,  1843, -7551,   192
-.hword 0x80,  3328,  -409, -6911,     0
-.hword 0x81,   358,  2048,  3661,   192
-.hword 0x81, -6553,  1536,  1459,     0
+# special objects 0x43
+.hword 0x0043,   13 # add 13 special objects
+special_object_10_byte /*preset*/ special_null_start,  /*pos*/ -7601,  2253,  7630, /*yaw*/  96 # unused, probably an early way to set intial position
+special_object_10_byte /*preset*/ special_wooden_door, /*pos*/   922, -4689,  2330, /*yaw*/ 192
+special_object_10_byte /*preset*/ special_wooden_door, /*pos*/ -3586,  1536,   647, /*yaw*/  19
+special_object_10_byte /*preset*/ special_wooden_door, /*pos*/  5911,  -204,   870, /*yaw*/   0
+special_object_10_byte /*preset*/ special_wooden_door, /*pos*/  3817,   205,   870, /*yaw*/   0
+special_object_10_byte /*preset*/ special_metal_door,  /*pos*/  1127,  -409, -4709, /*yaw*/  64
+special_object_10_byte /*preset*/ special_metal_door,  /*pos*/  -468, -4279,  6711, /*yaw*/  32
+special_object_10_byte /*preset*/ special_metal_door,  /*pos*/  -359, -4279,  6602, /*yaw*/ 160
+special_object_10_byte /*preset*/ special_metal_door,  /*pos*/ -3634,  2355, -2764, /*yaw*/  64
+special_object_10_byte /*preset*/ special_metal_door,  /*pos*/ -4863,  1843, -7551, /*yaw*/ 192
+special_object_10_byte /*preset*/ special_metal_door,  /*pos*/  3328,  -409, -6911, /*yaw*/   0
+special_object_10_byte /*preset*/ special_hmc_door,    /*pos*/   358,  2048,  3661, /*yaw*/ 192
+special_object_10_byte /*preset*/ special_hmc_door,    /*pos*/ -6553,  1536,  1459, /*yaw*/   0
 # water boxes (val, loX, hiX, loZ, hiZ, height)
 .hword 0x0044,    3
 .hword     0, -7628, -2559,   563,  7654, -4791

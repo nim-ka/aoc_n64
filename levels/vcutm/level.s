@@ -3,6 +3,7 @@
 .include "macros.inc"
 .include "ultra64/gbi.inc"
 .include "macro_presets.inc"
+.include "special_presets.inc"
 
 vcutm_seg7_texture_07000000: # 0x07000000 - 0x07000800
 .incbin "levels/vcutm/0.rgba16"
@@ -3177,9 +3178,9 @@ glabel vcutm_seg7_collision # 0x07009750 - 0x0700AB0C
 .hword   32,   28,   39
 .hword   40,   27,   30
 .hword 0x0041
-# collision macro? 0x43
-.hword 0x0043,    1
-.hword 0x00, -6143,  5734, -6143,     0
+# special object 0x43 
+.hword 0x0043,    1 # add 1 special object
+special_object_10_byte /*preset*/ special_null_start, /*pos*/ -6143, 5734, -6143, /*yaw*/ 0 # unused, probably an early way to set intial position
 .hword 0x0042
 
 glabel vcutm_seg7_macro_objs # 0x0700AB0C - 0x0700AC44

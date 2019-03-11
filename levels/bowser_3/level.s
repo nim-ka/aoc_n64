@@ -2,6 +2,7 @@
 .section .rodata
 .include "macros.inc"
 .include "ultra64/gbi.inc"
+.include "special_presets.inc"
 
 bowser_3_seg7_texture_07000000: # 0x07000000 - 0x07000800
 .incbin "levels/bowser_3/0.rgba16"
@@ -1299,15 +1300,15 @@ glabel bowser_3_seg7_collision_level # 0x070049C8 - 0x07004B94
 .hword    0,    1,    2
 .hword    0,    2,    3
 .hword 0x0041
-# collision macro? 0x43
-.hword 0x0043,    7
-.hword 0x00,     0,   307,     0,   128
-.hword 0x21,    13,   307, -1024
-.hword 0x65, -3362,  -204,  1121,     0
-.hword 0x65,     0,  -204,  3584,     0
-.hword 0x65,  3362,  -204,  1126,     0
-.hword 0x65,  2123,  -204, -2912,     0
-.hword 0x65, -2122,  -204, -2912,     0
+# special objects 0x43
+.hword 0x0043,    7 # add 7 special objects
+special_object_10_byte /*preset*/ special_null_start,   /*pos*/     0,   307,     0, /*yaw*/  128 # unused, probably an early way to set intial position
+special_object_8_byte  /*preset*/ special_bowser,       /*pos*/    13,   307, -1024
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/ -3362,  -204,  1121, /*yaw*/    0
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/     0,  -204,  3584, /*yaw*/    0
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/  3362,  -204,  1126, /*yaw*/    0
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/  2123,  -204, -2912, /*yaw*/    0
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/ -2122,  -204, -2912, /*yaw*/    0
 .hword 0x0042
 
 glabel bowser_3_seg7_collision_07004B94 # 0x07004B94 - 0x07004C18

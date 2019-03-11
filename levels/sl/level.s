@@ -3,6 +3,7 @@
 .include "macros.inc"
 .include "ultra64/gbi.inc"
 .include "macro_presets.inc"
+.include "special_presets.inc"
 
 sl_seg7_texture_07000000: # 0x07000000 - 0x07000800
 .incbin "levels/sl/0.rgba16"
@@ -5277,18 +5278,18 @@ glabel sl_seg7_area_1_collision # 0x0700CBD8 - 0x0700ED92
 .hword  510,  513,  327
 .hword  510,  327,  321
 .hword 0x0041
-# collision macro? 0x43
-.hword 0x0043,   10
-.hword 0x00,  5541,  1024,   443,   192
-.hword 0x7B,  5395,  1054, -5443
-.hword 0x7B,     0,  4864,     0
-.hword 0x7B,  5666,  1024, -3341
-.hword 0x7B,  1919,  1024, -4759
-.hword 0x7B,  3645,  1024, -5889
-.hword 0x7B,  1658,  1536, -3605
-.hword 0x7B, -3769,  1024, -1197
-.hword 0x7B, -2745,  1024,  -582
-.hword 0x7B,  1766,  2816,  -942
+# special objects area 1 0x43
+.hword 0x0043,   10 # add 10 special objects
+special_object_10_byte /*preset*/ special_null_start, /*pos*/  5541,  1024,   443, /*yaw*/ 192 # unused, probably an early way to set intial position
+special_object_8_byte  /*preset*/ special_snow_tree,  /*pos*/  5395,  1054, -5443
+special_object_8_byte  /*preset*/ special_snow_tree,  /*pos*/     0,  4864,     0
+special_object_8_byte  /*preset*/ special_snow_tree,  /*pos*/  5666,  1024, -3341
+special_object_8_byte  /*preset*/ special_snow_tree,  /*pos*/  1919,  1024, -4759
+special_object_8_byte  /*preset*/ special_snow_tree,  /*pos*/  3645,  1024, -5889
+special_object_8_byte  /*preset*/ special_snow_tree,  /*pos*/  1658,  1536, -3605
+special_object_8_byte  /*preset*/ special_snow_tree,  /*pos*/ -3769,  1024, -1197
+special_object_8_byte  /*preset*/ special_snow_tree,  /*pos*/ -2745,  1024,  -582
+special_object_8_byte  /*preset*/ special_snow_tree,  /*pos*/  1766,  2816,  -942
 # water boxes (val, loX, hiX, loZ, hiZ, height)
 .hword 0x0044,    2
 .hword     0, -6194,  -409,   154,  4198,   973
@@ -5796,9 +5797,9 @@ glabel sl_seg7_area_2_collision # 0x0700EFFC - 0x0700F978
 .hword  146,  188,  187
 .hword  146,  187,  145
 .hword 0x0041
-# collision macro? 0x43
-.hword 0x0043,    1
-.hword 0x00,     0,     0,  2867,   128
+# special object area 2 0x43
+.hword 0x0043,    1 # add 1 special object
+special_object_10_byte /*preset*/ special_null_start, /*pos*/ 0, 0, 2867, /*yaw*/ 128 # unused, probably an early way to set intial position
 .hword 0x0042
 
 glabel sl_seg7_area_2_macro_objs # 0x0700F978 - 0x0700FA2E

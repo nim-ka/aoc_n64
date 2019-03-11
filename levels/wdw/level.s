@@ -3,6 +3,7 @@
 .include "macros.inc"
 .include "ultra64/gbi.inc"
 .include "macro_presets.inc"
+.include "special_presets.inc"
 
 wdw_seg7_texture_07000000: # 0x07000000 - 0x07000800
 .incbin "levels/wdw/0.rgba16"
@@ -7712,9 +7713,9 @@ glabel wdw_seg7_area_1_collision # 0x07014150 - 0x070160D6
 .hword   85,  157,  158
 .hword   85,  159,  157
 .hword 0x0041
-# collision macro? 0x43
-.hword 0x0043,    1
-.hword 0x00,  3395,  1280,   384,   128
+#special object area 1 0x43
+.hword 0x0043,    1 # add 1 special object
+special_object_10_byte /*preset*/ special_null_start, /*pos*/ 3395, 1280, 384, /*yaw*/ 128 # unused, probably an early way to set intial position
 # water boxes (val, loX, hiX, loZ, hiZ, height)
 .hword 0x0044,    1
 .hword     0, -3839, -3839,  4608,  4608,    31
@@ -9113,10 +9114,10 @@ glabel wdw_seg7_area_2_collision # 0x0701633C - 0x07018222
 .hword  129,  164,  162
 .hword  131,  163,  165
 .hword 0x0041
-# collision macro? 0x43
-.hword 0x0043,    2
-.hword 0x79,  1664, -2457,  -946
-.hword 0x79,  1664, -2457, -1637
+# special objects 0x43
+.hword 0x0043,    2 # add 2 special objects
+special_object_8_byte /*preset*/ special_bubble_tree, /*pos*/ 1664, -2457,  -946
+special_object_8_byte /*preset*/ special_bubble_tree, /*pos*/ 1664, -2457, -1637
 # water boxes (val, loX, hiX, loZ, hiZ, height)
 .hword 0x0044,    1
 .hword     0, -3839, -3839,  4608,  4608,  -127

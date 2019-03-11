@@ -3,6 +3,7 @@
 .include "macros.inc"
 .include "ultra64/gbi.inc"
 .include "macro_presets.inc"
+.include "special_presets.inc"
 
 ssl_seg7_texture_07000000: # 0x07000000 - 0x07000800
 .incbin "levels/ssl/0.rgba16"
@@ -4494,15 +4495,15 @@ glabel ssl_seg7_area_1_collision # 0x0700FD80 - 0x07012422
 .hword  478,  479,  480
 .hword  482,  483,  484
 .hword 0x0041
-# collision macro? 0x43
-.hword 0x0043,    7
-.hword 0x00,   653,    38,  6566,    64
-.hword 0x65,  5760,     0,  5751,     0
-.hword 0x65, -3583,     0,  2935,     0
-.hword 0x65,  -511,     0,  2935,     0
-.hword 0x65,  1024,     0,  3822,     0
-.hword 0x65,  3072,     0,   375,     0
-.hword 0x7D, -5989,     0, -4850
+# special objects 0x43
+.hword 0x0043,    7 # add 7 special objects
+special_object_10_byte /*preset*/ special_null_start,   /*pos*/   653, 38,  6566, /*yaw*/ 64 # unused, probably an early way to set intial position
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/  5760,  0,  5751, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/ -3583,  0,  2935, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/  -511,  0,  2935, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/  1024,  0,  3822, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/  3072,  0,   375, /*yaw*/  0
+special_object_8_byte  /*preset*/ special_palm_tree,    /*pos*/ -5989,  0, -4850
 # water boxes (val, loX, hiX, loZ, hiZ, height)
 .hword 0x0044,    3
 .hword    51,  1024, -7065,  7578,  -716,   -50
@@ -13406,12 +13407,12 @@ glabel ssl_seg7_area_2_collision # 0x07023678 - 0x070275BC
 .hword  359,  419,  416
 .hword  359,  420,  419
 .hword 0x0041
-# collision macro? 0x43
-.hword 0x0043,    4
-.hword 0x00,     0,     0,  6451,   128
-.hword 0x66,  1741,  -101,  1843,     0
-.hword 0x66,     0,  -101,   528,     0
-.hword 0x66, -1740,  -101,  1843,     0
+# special objects 0x43
+.hword 0x0043,    4 # add 4 special objects
+special_object_10_byte /*preset*/ special_null_start,   /*pos*/     0,     0,  6451, /*yaw*/ 128 # unused, probably an early way to set intial position
+special_object_10_byte /*preset*/ special_level_geo_04, /*pos*/  1741,  -101,  1843, /*yaw*/   0
+special_object_10_byte /*preset*/ special_level_geo_04, /*pos*/     0,  -101,   528, /*yaw*/   0
+special_object_10_byte /*preset*/ special_level_geo_04, /*pos*/ -1740,  -101,  1843, /*yaw*/   0
 .hword 0x0042
 
 glabel ssl_seg7_area_3_collision # 0x070275BC - 0x07027CD4

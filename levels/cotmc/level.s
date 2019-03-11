@@ -3,6 +3,7 @@
 .include "macros.inc"
 .include "ultra64/gbi.inc"
 .include "macro_presets.inc"
+.include "special_presets.inc"
 
 cotmc_seg7_texture_07000000: # 0x07000000 - 0x07001000
 .incbin "levels/cotmc/0.rgba16"
@@ -3656,9 +3657,9 @@ glabel cotmc_seg7_collision_level # 0x0700A508 - 0x0700BD38
 .hword  201,  207,  202
 .hword  208,  206,  207
 .hword 0x0041
-# collision macro? 0x43
-.hword 0x0043,    1
-.hword 0x00, -4185,    20,   -47,    64
+# special object 0x43
+.hword 0x0043,    1 # add 1 special object
+special_object_10_byte /*preset*/ special_null_start, /*pos*/ -4185, 20, -47, /*yaw*/ 64 # unused, probably an early way to set intial position
 # water boxes (val, loX, hiX, loZ, hiZ, height)
 .hword 0x0044,    1
 .hword     0, -1535, -7679,  1536,  3389,     0

@@ -3,6 +3,7 @@
 .include "macros.inc"
 .include "ultra64/gbi.inc"
 .include "macro_presets.inc"
+.include "special_presets.inc"
 
 ttc_seg7_texture_07000000: # 0x07000000 - 0x07000800
 .incbin "levels/ttc/0.rgba16"
@@ -8257,9 +8258,9 @@ glabel ttc_seg7_collision_level # 0x07012330 - 0x07014F6E
 .hword  519,  626,  526
 .hword  526,  625,  624
 .hword 0x0041
-# collision macro? 0x43
-.hword 0x0043,    1
-.hword 0x00,  1046, -4822,  -266,   192
+# special object 0x43
+.hword 0x0043,    1 # add 1 special object
+special_object_10_byte /*preset*/ special_null_start, /*pos*/ 1046, -4822, -266, /*yaw*/ 192 # unused, probably an early way to set intial position
 .hword 0x0042
 
 .balign 4 # 0x07014F6E - 0x07014F70

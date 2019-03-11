@@ -3,6 +3,7 @@
 .include "macros.inc"
 .include "ultra64/gbi.inc"
 .include "macro_presets.inc"
+.include "special_presets.inc"
 
 ttm_seg7_texture_07000000: # 0x07000000 - 0x07001000
 .incbin "levels/ttm/0.ia16"
@@ -8369,37 +8370,37 @@ glabel ttm_seg7_area_1_collision # 0x07013814 - 0x07016F16
 .hword  516,  819,  365
 .hword  516,  430,  819
 .hword 0x0041
-# collision macro? 0x43
-.hword 0x0043,   29
-.hword 0x00,   102, -4332,  5734,    32
-.hword 0x65, -3276, -4423, -3685,     0
-.hword 0x65,  7293, -5056,  1429,     0
-.hword 0x65,  4938, -5568,  5115,     0
-.hword 0x66,  4198, -4508, -2866,     0
-.hword 0x66,  1470, -4507, -4298,     0
-.hword 0x66,  3277, -4508, -4095,     0
-.hword 0x67,  3891, -4489, -3532,     0
-.hword 0x67,  3277, -4489, -3071,     0
-.hword 0x67,  2509, -4489, -3378,     0
-.hword 0x67,   534, -4490, -4176,     0
-.hword 0x68,  2358, -4594, -4386,     0
-.hword 0x68,  1843, -4515, -3583,     0
-.hword 0x68,  2317, -4635, -3838,     0
-.hword 0x69,   102, -4363,  5734,     0
-.hword 0x6A,  4710, -4656,  -101,     0
-.hword 0x6B,  5018, -4249, -3481,     0
-.hword 0x6C,  -306, -3356,  3584,     0
-.hword 0x6D,  1434, -2279,  3277,     0
-.hword 0x6E,  2970, -1854,  4301,     0
-.hword 0x6F,  4608, -1854,  2560,     0
-.hword 0x71,  2355,  1309,  1229,     0
-.hword 0x72,  1843,  1295,  1024,     0
-.hword 0x73,   819,  2349,  -101,     0
-.hword 0x74, -1945,  -918, -3071,     0
-.hword 0x75, -1842, -1791, -2866,     0
-.hword 0x76, -1228,  -613, -3071,     0
-.hword 0x77, -1740,  -204, -2354,     0
-.hword 0x78, -2764, -2661,  3789,     0
+# special objects area 1 0x43
+.hword 0x0043,   29 # add 29 special objects
+special_object_10_byte /*preset*/ special_null_start,   /*pos*/   102, -4332,  5734, /*yaw*/ 32 # unused, probably an early way to set intial position
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/ -3276, -4423, -3685, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/  7293, -5056,  1429, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/  4938, -5568,  5115, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_04, /*pos*/  4198, -4508, -2866, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_04, /*pos*/  1470, -4507, -4298, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_04, /*pos*/  3277, -4508, -4095, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_05, /*pos*/  3891, -4489, -3532, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_05, /*pos*/  3277, -4489, -3071, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_05, /*pos*/  2509, -4489, -3378, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_05, /*pos*/   534, -4490, -4176, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_06, /*pos*/  2358, -4594, -4386, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_06, /*pos*/  1843, -4515, -3583, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_06, /*pos*/  2317, -4635, -3838, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_07, /*pos*/   102, -4363,  5734, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_08, /*pos*/  4710, -4656,  -101, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_09, /*pos*/  5018, -4249, -3481, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_0A, /*pos*/  -306, -3356,  3584, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_0B, /*pos*/  1434, -2279,  3277, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_0C, /*pos*/  2970, -1854,  4301, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_0D, /*pos*/  4608, -1854,  2560, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_0F, /*pos*/  2355,  1309,  1229, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_10, /*pos*/  1843,  1295,  1024, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_11, /*pos*/   819,  2349,  -101, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_12, /*pos*/ -1945,  -918, -3071, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_13, /*pos*/ -1842, -1791, -2866, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_14, /*pos*/ -1228,  -613, -3071, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_15, /*pos*/ -1740,  -204, -2354, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_16, /*pos*/ -2764, -2661,  3789, /*yaw*/  0
 # water boxes (val, loX, hiX, loZ, hiZ, height)
 .hword 0x0044,    4
 .hword     0, -2047,  2765,  1946,  5069, -4402

@@ -12,7 +12,7 @@
 #include "mario.h"
 #include "mario_actions_cutscene.h"
 #include "print.h"
-#include "hud_print.h"
+#include "hud.h"
 #include "audio/interface_2.h"
 #include "area.h"
 #include "rendering_graph_node.h"

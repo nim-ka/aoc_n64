@@ -3,6 +3,7 @@
 .include "macros.inc"
 .include "ultra64/gbi.inc"
 .include "macro_presets.inc"
+.include "special_presets.inc"
 
 bbh_seg7_texture_07000000: # 0x07000000 - 0x07001000
 .incbin "levels/bbh/0.rgba16"
@@ -14475,34 +14476,34 @@ glabel bbh_seg7_collision_level # 0x070207A0 - 0x0702605C
 .hword    8,   11,    9
 .hword   12,   14,   15
 .hword 0x0041
-# collision macro? 0x43
-.hword 0x0043,   26
-.hword 0x00,  1434,  -204,  4710,   128
-.hword 0x7E,     0, -2457,  2099,   128
-.hword 0x7E, -1996, -2457,   205,   192
-.hword 0x7E,  1587, -2457,   205,    64
-.hword 0x7E, -2136,  -204,  4527,   224
-.hword 0x7E,     0, -2457,  4659,   128
-.hword 0x7E,  2099,  1741,   486,    64
-.hword 0x7E,   589,  1922,  1894,     0
-.hword 0x7E,   742,  1922,  1894,   128
-.hword 0x7E, -1970,  1024,  1075,   128
-.hword 0x7E, -2021,     0,  1075,   128
-.hword 0x7E,  2099,   819,  1818,   192
-.hword 0x7E,  3354,     0,  1075,     0
-.hword 0x7E,   742,     0,  2099,   128
-.hword 0x7E,   589,     0,  2099,     0
-.hword 0x7E,  2099,     0,  1459,   192
-.hword 0x7E,   179,   819,   -50,     0
-.hword 0x7E,  2099,   819,   486,   192
-.hword 0x7E,   435,     0,   -50,     0
-.hword 0x7E,  1613,     0,   -50,     0
-.hword 0x7E,  1613,   819,   -50,     0
-.hword 0x7E, -1561,     0, -1586,     0
-.hword 0x7E,  -767,   819,  1408,    64
-.hword 0x7E,  -767,   819,   640,    64
-.hword 0x7E,   -50,     0,   640,    64
-.hword 0x7E,   -50,     0,  1459,    64
+# special objects 0x43
+.hword 0x0043,   26 # add 26 special objects
+special_object_10_byte /*preset*/ special_null_start,   /*pos*/  1434,  -204,  4710, /*yaw*/ 128 # unused, probably an early way to set intial position
+special_object_10_byte /*preset*/ special_haunted_door, /*pos*/     0, -2457,  2099, /*yaw*/ 128
+special_object_10_byte /*preset*/ special_haunted_door, /*pos*/ -1996, -2457,   205, /*yaw*/ 192
+special_object_10_byte /*preset*/ special_haunted_door, /*pos*/  1587, -2457,   205, /*yaw*/  64
+special_object_10_byte /*preset*/ special_haunted_door, /*pos*/ -2136,  -204,  4527, /*yaw*/ 224
+special_object_10_byte /*preset*/ special_haunted_door, /*pos*/     0, -2457,  4659, /*yaw*/ 128
+special_object_10_byte /*preset*/ special_haunted_door, /*pos*/  2099,  1741,   486, /*yaw*/  64
+special_object_10_byte /*preset*/ special_haunted_door, /*pos*/   589,  1922,  1894, /*yaw*/   0
+special_object_10_byte /*preset*/ special_haunted_door, /*pos*/   742,  1922,  1894, /*yaw*/ 128
+special_object_10_byte /*preset*/ special_haunted_door, /*pos*/ -1970,  1024,  1075, /*yaw*/ 128
+special_object_10_byte /*preset*/ special_haunted_door, /*pos*/ -2021,     0,  1075, /*yaw*/ 128
+special_object_10_byte /*preset*/ special_haunted_door, /*pos*/  2099,   819,  1818, /*yaw*/ 192
+special_object_10_byte /*preset*/ special_haunted_door, /*pos*/  3354,     0,  1075, /*yaw*/   0
+special_object_10_byte /*preset*/ special_haunted_door, /*pos*/   742,     0,  2099, /*yaw*/ 128
+special_object_10_byte /*preset*/ special_haunted_door, /*pos*/   589,     0,  2099, /*yaw*/   0
+special_object_10_byte /*preset*/ special_haunted_door, /*pos*/  2099,     0,  1459, /*yaw*/ 192
+special_object_10_byte /*preset*/ special_haunted_door, /*pos*/   179,   819,   -50, /*yaw*/   0
+special_object_10_byte /*preset*/ special_haunted_door, /*pos*/  2099,   819,   486, /*yaw*/ 192
+special_object_10_byte /*preset*/ special_haunted_door, /*pos*/   435,     0,   -50, /*yaw*/   0
+special_object_10_byte /*preset*/ special_haunted_door, /*pos*/  1613,     0,   -50, /*yaw*/   0
+special_object_10_byte /*preset*/ special_haunted_door, /*pos*/  1613,   819,   -50, /*yaw*/   0
+special_object_10_byte /*preset*/ special_haunted_door, /*pos*/ -1561,     0, -1586, /*yaw*/   0
+special_object_10_byte /*preset*/ special_haunted_door, /*pos*/  -767,   819,  1408, /*yaw*/  64
+special_object_10_byte /*preset*/ special_haunted_door, /*pos*/  -767,   819,   640, /*yaw*/  64
+special_object_10_byte /*preset*/ special_haunted_door, /*pos*/   -50,     0,   640, /*yaw*/  64
+special_object_10_byte /*preset*/ special_haunted_door, /*pos*/   -50,     0,  1459, /*yaw*/  64
 # water boxes (val, loX, hiX, loZ, hiZ, height)
 .hword 0x0044,    2
 .hword     0, -4812,  1485,   640,  7270, -2405

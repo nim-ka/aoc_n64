@@ -3,6 +3,7 @@
 .include "macros.inc"
 .include "ultra64/gbi.inc"
 .include "macro_presets.inc"
+.include "special_presets.inc"
 
 wmotr_seg7_texture_07000000: # 0x07000000 - 0x07000800
 .incbin "levels/wmotr/0.rgba16"
@@ -7428,9 +7429,9 @@ glabel wmotr_seg7_collision # 0x07010688 - 0x070136A6
 .hword  286,  287,  278
 .hword  288,  286,  289
 .hword 0x0041
-# collision macro? 0x43
-.hword 0x0043,    1
-.hword 0x00,   -67,  1669,   -16,   192
+# special object 0x43
+.hword 0x0043,    1 # add 1 special object
+special_object_10_byte /*preset*/ special_null_start, /*pos*/ -67, 1669, -16, /*yaw*/ 192 # unused, probably an early way to set intial position
 .hword 0x0042
 
 .balign 4 # 0x070136A6 - 0x070136A8

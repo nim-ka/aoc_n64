@@ -2,6 +2,7 @@
 .section .rodata
 .include "macros.inc"
 .include "ultra64/gbi.inc"
+.include "special_presets.inc"
 
 bowser_1_seg7_texture_07000000: # 0x07000000 - 0x07000002
 .incbin "levels/bowser_1/0.rgba16"
@@ -296,29 +297,29 @@ glabel bowser_1_seg7_collision_level # 0x07002838 - 0x07002AC8
 .hword   25,   26,   27
 .hword   25,   27,   28
 .hword 0x0041
-# collision macro? 0x43
-.hword 0x0043,   22
-.hword 0x00,     0,  1843,     0,  1423
-.hword 0x1D,  2949,   589,     0
-.hword 0x1D,     0,   589, -2949
-.hword 0x1D,     0,   589,  2949
-.hword 0x1D, -2949,   589,     0
-.hword 0x21,     0,   300, -1000
-.hword 0x65,     0,   384,  3072,     0
-.hword 0x65, -2171,   384, -2171,     0
-.hword 0x65,     0,   384, -3071,     0
-.hword 0x65, -3071,   384,     0,     0
-.hword 0x65, -2171,   384,  2172,     0
-.hword 0x65, -2621,   384,  1086,     0
-.hword 0x65,  2172,   384,  2172,     0
-.hword 0x65,  3072,   384,     0,     0
-.hword 0x65,  2172,   384, -2171,     0
-.hword 0x65, -1085,   384,  2622,     0
-.hword 0x65,  2622,   384,  1086,     0
-.hword 0x65, -2621,   384, -1085,     0
-.hword 0x65, -1085,   384, -2621,     0
-.hword 0x65,  1086,   384, -2621,     0
-.hword 0x65,  2622,   384, -1085,     0
-.hword 0x65,  1086,   384,  2622,     0
+# special objects 0x43
+.hword 0x0043,   22 # add 22 special objects
+special_object_10_byte /*preset*/ special_null_start,   /*pos*/     0, 1843,     0, /*yaw*/ 1423 # unused, probably an early way to set intial position
+special_object_8_byte  /*preset*/ special_mine,         /*pos*/  2949,  589,     0
+special_object_8_byte  /*preset*/ special_mine,         /*pos*/     0,  589, -2949
+special_object_8_byte  /*preset*/ special_mine,         /*pos*/     0,  589,  2949
+special_object_8_byte  /*preset*/ special_mine,         /*pos*/ -2949,  589,     0
+special_object_8_byte  /*preset*/ special_bowser,       /*pos*/     0,  300, -1000
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/     0,  384,  3072, /*yaw*/    0
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/ -2171,  384, -2171, /*yaw*/    0
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/     0,  384, -3071, /*yaw*/    0
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/ -3071,  384,     0, /*yaw*/    0
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/ -2171,  384,  2172, /*yaw*/    0
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/ -2621,  384,  1086, /*yaw*/    0
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/  2172,  384,  2172, /*yaw*/    0
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/  3072,  384,     0, /*yaw*/    0
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/  2172,  384, -2171, /*yaw*/    0
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/ -1085,  384,  2622, /*yaw*/    0
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/  2622,  384,  1086, /*yaw*/    0
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/ -2621,  384, -1085, /*yaw*/    0
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/ -1085,  384, -2621, /*yaw*/    0
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/  1086,  384, -2621, /*yaw*/    0
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/  2622,  384, -1085, /*yaw*/    0
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/  1086,  384,  2622, /*yaw*/    0
 .hword 0x0042
 

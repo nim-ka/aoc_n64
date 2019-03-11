@@ -3,6 +3,7 @@
 .include "macros.inc"
 .include "ultra64/gbi.inc"
 .include "macro_presets.inc"
+.include "special_presets.inc"
 
 totwc_seg7_texture_07000000: # 0x07000000 - 0x07001000
 .incbin "levels/totwc/0.rgba16"
@@ -2404,31 +2405,31 @@ glabel totwc_seg7_collision # 0x07007A18 - 0x070088AC
 .hword   81,   98,   97
 .hword   81,   97,   67
 .hword 0x0041
-# collision macro? 0x43
-.hword 0x0043,   23
-.hword 0x00, -4095,  2935,     0,    64
-.hword 0x65,  4608,  -357,  -511,     0
-.hword 0x65, -4095,   666,   512,     0
-.hword 0x65, -5631, -1893,  6144,     0
-.hword 0x65, -2047,  -869,  2048,     0
-.hword 0x65,  1024,  1178,  1536,     0
-.hword 0x65, -2047,  -357, -2559,     0
-.hword 0x65,  2560, -2917,  2560,     0
-.hword 0x65,  1024,  1178,  4096,     0
-.hword 0x65, -1023,  -869,  5632,     0
-.hword 0x65, -5119, -2405,  1024,     0
-.hword 0x65,   512, -2917,  3584,     0
-.hword 0x65,  1024, -1893, -3071,     0
-.hword 0x65,  -511,  -869, -4095,     0
-.hword 0x65,  4608, -3429,  1536,     0
-.hword 0x65,  6144, -3429, -5119,     0
-.hword 0x65, -2559, -2405, -6655,     0
-.hword 0x65,  3072,  -869,  5632,     0
-.hword 0x65,  6144, -1381,  -511,     0
-.hword 0x65,  4096,   666, -1535,     0
-.hword 0x65, -4607, -1381, -2559,     0
-.hword 0x65, -1535, -2917, -6143,     0
-.hword 0x65,  2560, -3429, -3583,     0
+# special objects 0x43
+.hword 0x0043,   23 # add 23 special objects
+special_object_10_byte /*preset*/ special_null_start,   /*pos*/ -4095,  2935,     0, /*yaw*/ 64 # unused, probably an early way to set intial position
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/  4608,  -357,  -511, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/ -4095,   666,   512, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/ -5631, -1893,  6144, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/ -2047,  -869,  2048, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/  1024,  1178,  1536, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/ -2047,  -357, -2559, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/  2560, -2917,  2560, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/  1024,  1178,  4096, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/ -1023,  -869,  5632, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/ -5119, -2405,  1024, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/   512, -2917,  3584, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/  1024, -1893, -3071, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/  -511,  -869, -4095, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/  4608, -3429,  1536, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/  6144, -3429, -5119, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/ -2559, -2405, -6655, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/  3072,  -869,  5632, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/  6144, -1381,  -511, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/  4096,   666, -1535, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/ -4607, -1381, -2559, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/ -1535, -2917, -6143, /*yaw*/  0
+special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/  2560, -3429, -3583, /*yaw*/  0
 .hword 0x0042
 
 glabel totwc_seg7_macro_objs # 0x070088AC - 0x070089C6

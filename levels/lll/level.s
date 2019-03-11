@@ -3,6 +3,7 @@
 .include "macros.inc"
 .include "ultra64/gbi.inc"
 .include "macro_presets.inc"
+.include "special_presets.inc"
 
 lll_seg7_texture_07000000: # 0x07000000 - 0x07000800
 .incbin "levels/lll/0.rgba16"
@@ -5911,9 +5912,9 @@ glabel lll_seg7_area_1_collision # 0x0701ADE8 - 0x0701CE18
 .hword    1,   52,   71
 .hword   10,   52,    3
 .hword 0x0041
-# collision macro? 0x43
-.hword 0x0043,    1
-.hword 0x00, -3839,   154,  6272,    64
+# special object area 1 0x43
+.hword 0x0043,    1 # add 1 special object
+special_object_10_byte /*preset*/ special_null_start, /*pos*/ -3839, 154, 6272, /*yaw*/ 64 # unused, probably an early way to set intial position
 .hword 0x0042
 .else
 # collision vertices
@@ -7270,9 +7271,9 @@ glabel lll_seg7_area_1_collision # 0x0701ADE8 - 0x0701CE18
 .hword    3,    0,   52
 .hword    3,   52,   71
 .hword 0x0041
-# collision macro? 0x43
-.hword 0x0043,    1
-.hword 0x00, -3839,   154,  6272,    64
+# special object area 2 0x43
+.hword 0x0043,    1 # add 1 special object
+special_object_10_byte /*preset*/ special_null_start, /*pos*/ -3839, 154, 6272, /*yaw*/ 64 # unused, probably an early way to set intial position
 .hword 0x0042
 .endif
 

@@ -5,7 +5,7 @@
 #include "behavior_data.h"
 #include "memory.h"
 #include "object_helpers.h"
-#include "hud.h"
+#include "macro_special_objects.h"
 #include "surface_collision.h"
 #include "surface_load.h"
 #include "mario.h"

@@ -3,6 +3,7 @@
 .include "macros.inc"
 .include "ultra64/gbi.inc"
 .include "macro_presets.inc"
+.include "special_presets.inc"
 
 ccm_seg7_texture_07000000: # 0x07000000 - 0x07000800
 .incbin "levels/ccm/0.rgba16"
@@ -7077,29 +7078,29 @@ glabel ccm_seg7_area_1_collision # 0x070138E8 - 0x07016282
 .hword  333,  610,  335
 .hword  336,  609,  616
 .hword 0x0041
-# collision macro? 0x43
-.hword 0x0043,   21
-.hword 0x00, -1512,  2560, -2305,   100
-.hword 0x65,  -409,  2765, -1637,     0
-.hword 0x66,  2355, -4095,  4096,     0
-.hword 0x67, -4210, -1446,  1874,     0
-.hword 0x67,  2560,  2560, -1023,     0
-.hword 0x68,  -818,   102,  2048,     0
-.hword 0x69,  -511, -3071, -3583,     0
-.hword 0x7B, -5201, -1740,  2994
-.hword 0x7B,  1989, -4607,  4949
-.hword 0x7B,  1248, -4607,  5474
-.hword 0x7B, -5508, -1740,  4148
-.hword 0x7B, -4576, -1740,  4814
-.hword 0x7B,  -488,  2560, -2305
-.hword 0x7B, -5892, -1740,   811
-.hword 0x7B, -3748, -4607,  4464
-.hword 0x7B,  2237,  2560, -1630
-.hword 0x7B,  2885,  2560, -1638
-.hword 0x7B, -1146, -3583,  5919
-.hword 0x7B, -1768,  2560, -1793
-.hword 0x7B, -3443,   807, -2713
-.hword 0x83,  2464, -4607,  4302,   158,    20
+# special objects area 1 0x43
+.hword 0x0043,   21 # add 21 special objects
+special_object_10_byte /*preset*/ special_null_start,       /*pos*/ -1512,  2560, -2305, /*yaw*/ 100 # unused, probably an early way to set intial position
+special_object_10_byte /*preset*/ special_level_geo_03,     /*pos*/  -409,  2765, -1637, /*yaw*/   0
+special_object_10_byte /*preset*/ special_level_geo_04,     /*pos*/  2355, -4095,  4096, /*yaw*/   0
+special_object_10_byte /*preset*/ special_level_geo_05,     /*pos*/ -4210, -1446,  1874, /*yaw*/   0
+special_object_10_byte /*preset*/ special_level_geo_05,     /*pos*/  2560,  2560, -1023, /*yaw*/   0
+special_object_10_byte /*preset*/ special_level_geo_06,     /*pos*/  -818,   102,  2048, /*yaw*/   0
+special_object_10_byte /*preset*/ special_level_geo_07,     /*pos*/  -511, -3071, -3583, /*yaw*/   0
+special_object_8_byte  /*preset*/ special_snow_tree,        /*pos*/ -5201, -1740,  2994
+special_object_8_byte  /*preset*/ special_snow_tree,        /*pos*/  1989, -4607,  4949
+special_object_8_byte  /*preset*/ special_snow_tree,        /*pos*/  1248, -4607,  5474
+special_object_8_byte  /*preset*/ special_snow_tree,        /*pos*/ -5508, -1740,  4148
+special_object_8_byte  /*preset*/ special_snow_tree,        /*pos*/ -4576, -1740,  4814
+special_object_8_byte  /*preset*/ special_snow_tree,        /*pos*/  -488,  2560, -2305
+special_object_8_byte  /*preset*/ special_snow_tree,        /*pos*/ -5892, -1740,   811
+special_object_8_byte  /*preset*/ special_snow_tree,        /*pos*/ -3748, -4607,  4464
+special_object_8_byte  /*preset*/ special_snow_tree,        /*pos*/  2237,  2560, -1630
+special_object_8_byte  /*preset*/ special_snow_tree,        /*pos*/  2885,  2560, -1638
+special_object_8_byte  /*preset*/ special_snow_tree,        /*pos*/ -1146, -3583,  5919
+special_object_8_byte  /*preset*/ special_snow_tree,        /*pos*/ -1768,  2560, -1793
+special_object_8_byte  /*preset*/ special_snow_tree,        /*pos*/ -3443,   807, -2713
+special_object_11_byte /*preset*/ special_wooden_door_warp, /*pos*/  2464, -4607,  4302, /*yaw*/ 158, /*behParam2*/ 20
 # water boxes (val, loX, hiX, loZ, hiZ, height)
 .hword 0x0044,    1
 .hword     0,  3137,  4228,  3925,  4945, -4638
@@ -12846,10 +12847,10 @@ glabel ccm_seg7_area_2_collision # 0x07020880 - 0x07023468
 .hword   18,   21,   22
 .hword   19,   23,   24
 .hword 0x0041
-# collision macro? 0x43
-.hword 0x0043,    2
-.hword 0x00, -5836,  7465, -6143,    64
-.hword 0x83, -7628, -5836, -6988,    64,    20
+# special objects area 2 0x43
+.hword 0x0043,    2 # add 2 special objects
+special_object_10_byte /*preset*/ special_null_start,       /*pos*/ -5836,  7465, -6143, /*yaw*/ 64 # unused, probably an early way to set intial position
+special_object_11_byte /*preset*/ special_wooden_door_warp, /*pos*/ -7628, -5836, -6988, /*yaw*/ 64, /*behParam2*/ 20
 .hword 0x0042
 
 glabel ccm_seg7_area_2_macro_objs # 0x07023468 - 0x07023604

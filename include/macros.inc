@@ -44,6 +44,21 @@
     .hword ((\yaw * 0x10 / 45) << 9) | (\preset + 0x1F), \x, \y, \z, \bparam
 .endm
 
+# 8 byte special_object 
+.macro special_object_8_byte preset, posX, posY, posZ
+.hword \preset, \posX, \posY, \posZ
+.endm
+
+# 10 byte special_object 
+.macro special_object_10_byte preset, posX, posY, posZ, rotY
+.hword \preset, \posX, \posY, \posZ, \rotY
+.endm
+
+# 11 byte special_object 
+.macro special_object_11_byte preset, posX, posY, posZ, rotY, param
+.hword \preset, \posX, \posY, \posZ, \rotY, \param
+.endm
+
 # Actor include
 .macro actor name
 .include "actors/\name\()/actor.s"

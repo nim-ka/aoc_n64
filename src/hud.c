@@ -1,315 +1,381 @@
 #include <ultra64.h>
 
 #include "sm64.h"
-#include "object_helpers.h"
+#include "display.h"
+#include "game.h"
+#include "level_update.h"
+#include "camera.h"
+#include "print.h"
+#include "ingame_menu.h"
 #include "hud.h"
-#include "object_list_processor.h"
+#include "segment2.h"
+#include "area.h"
 
-#include "behavior_data.h"
-
-/* First half of old "hud.s" file; 
- * It might not have anything to do with the HUD anymore, though
+/* Originally hud_print.c 
+ * This file seems to draw the in-game HUD
 **/
 
-#include "macro_presets.h"
-
-static struct Struct802E19DC D_80331240[] = 
-{
-    {0x00, 0x01, 0x00, 0x00, NULL},                            {0x01, 0x00, 0x00, 0x74, &beh_yellow_coin},
-    {0x02, 0x00, 0x00, 0x74, &beh_yellow_coin},           {0x03, 0x00, 0x00, 0xB8, &beh_static_object},
-    {0x04, 0x00, 0x00, 0x54, &beh_boo_group},                  {0x05, 0x00, 0x00, 0xAC, &beh_castle_floor_trap},
-    {0x06, 0x00, 0x00, 0x36, &beh_lll_moving_octagonal_mesh_platform},        {0x07, 0x00, 0x00, 0x37, &beh_snow_ball},
-    {0x08, 0x01, 0x00, 0x38, &beh_lll_drawbridge_spawner},             {0x09, 0x00, 0x00, 0x00, &beh_static_object},
-    {0x0A, 0x00, 0x00, 0x3A, &beh_lll_rotating_block_with_fire_bars}, {0x0B, 0x00, 0x00, 0x00, &beh_lll_floating_wood_bridge},
-    {0x0C, 0x00, 0x00, 0x00, &beh_tumbling_platform},          {0x0D, 0x00, 0x00, 0x3E, &beh_lll_rotating_hexagonal_ring},
-    {0x0E, 0x01, 0x00, 0x3F, &beh_lll_sinking_rectangular_platform},  {0x0F, 0x00, 0x00, 0x40, &beh_lll_sinking_square_platforms},
-    {0x10, 0x00, 0x00, 0x41, &beh_lll_tilting_square_platform},  {0x11, 0x00, 0x00, 0x00, &beh_lll_bowser_puzzle},
-    {0x12, 0x00, 0x00, 0x00, &beh_mr_i},                       {0x13, 0x00, 0x00, 0x56, &beh_small_bully},
-    {0x14, 0x00, 0x00, 0x57, &beh_big_bully},                  {0x15, 0x00, 0x00, 0x00, &beh_static_object},
-    {0x16, 0x00, 0x00, 0x00, &beh_static_object},              {0x17, 0x00, 0x00, 0x00, &beh_static_object},
-    {0x18, 0x00, 0x00, 0x00, &beh_static_object},              {0x19, 0x00, 0x00, 0x00, &beh_static_object},
-    {0x1A, 0x00, 0x00, 0x74, &beh_moving_blue_coin},           {0x1B, 0x00, 0x00, 0x65, &beh_beta_chest},
-    {0x1C, 0x00, 0x00, 0x68, &beh_jet_stream_ring_spawner},    {0x1D, 0x00, 0x00, 0xB3, &beh_bowser_bomb},
-    {0x1E, 0x03, 0x00, 0x00, &beh_static_object},              {0x1F, 0x00, 0x00, 0x00, &beh_static_object},
-    {0x20, 0x00, 0x00, 0xBB, &beh_butterfly},                  {0x21, 0x00, 0x00, 0x64, &beh_bowser},
-    {0x22, 0x00, 0x00, 0xAF, &beh_wf_rotating_wooden_platform},         {0x23, 0x01, 0x00, 0xAE, &beh_small_bomp},
-    {0x24, 0x01, 0x00, 0xAD, &beh_wf_sliding_platform},   {0x25, 0x00, 0x00, 0x00, &beh_tower_platform_group},
-    {0x26, 0x00, 0x00, 0x00, &beh_rotating_counter_clockwise}, {0x27, 0x00, 0x00, 0xB2, &beh_wf_tumbling_bridge},
-    {0x28, 0x00, 0x00, 0xB1, &beh_large_bomp},            {0x65, 0x01, 0x00, 0x03, &beh_static_object},
-    {0x66, 0x01, 0x00, 0x04, &beh_static_object},              {0x67, 0x01, 0x00, 0x05, &beh_static_object},
-    {0x68, 0x01, 0x00, 0x06, &beh_static_object},              {0x69, 0x01, 0x00, 0x07, &beh_static_object},
-    {0x6A, 0x01, 0x00, 0x08, &beh_static_object},              {0x6B, 0x01, 0x00, 0x09, &beh_static_object},
-    {0x6C, 0x01, 0x00, 0x0A, &beh_static_object},              {0x6D, 0x01, 0x00, 0x0B, &beh_static_object},
-    {0x6E, 0x01, 0x00, 0x0C, &beh_static_object},              {0x6F, 0x01, 0x00, 0x0D, &beh_static_object},
-    {0x70, 0x01, 0x00, 0x0E, &beh_static_object},              {0x71, 0x01, 0x00, 0x0F, &beh_static_object},
-    {0x72, 0x01, 0x00, 0x10, &beh_static_object},              {0x73, 0x01, 0x00, 0x11, &beh_static_object},
-    {0x74, 0x01, 0x00, 0x12, &beh_static_object},              {0x75, 0x01, 0x00, 0x13, &beh_static_object},
-    {0x76, 0x01, 0x00, 0x14, &beh_static_object},              {0x77, 0x01, 0x00, 0x15, &beh_static_object},
-    {0x78, 0x01, 0x00, 0x16, &beh_static_object},              {0x79, 0x00, 0x00, 0x17, &beh_tree},
-    {0x7A, 0x00, 0x00, 0x18, &beh_tree},                       {0x7B, 0x00, 0x00, 0x19, &beh_tree},
-    {0x7C, 0x00, 0x00, 0x1A, &beh_tree},                       {0x7D, 0x00, 0x00, 0x1B, &beh_tree},
-    {0x89, 0x01, 0x00, 0x1C, &beh_door},                       {0x7E, 0x01, 0x00, 0x1D, &beh_door},
-    {0x7F, 0x01, 0x00, 0x1E, &beh_door},                       {0x80, 0x01, 0x00, 0x1F, &beh_door},
-    {0x81, 0x01, 0x00, 0x20, &beh_door},                       {0x82, 0x01, 0x00, 0x21, &beh_door},
-    {0x8A, 0x04, 0x00, 0x22, &beh_door},                       {0x8B, 0x04, 0x01, 0x23, &beh_door},
-    {0x8C, 0x04, 0x03, 0x24, &beh_door},                       {0x8D, 0x04, 0x00, 0x25, &beh_door},
-    {0x88, 0x02, 0x00, 0x26, &beh_door_warp},                  {0x83, 0x02, 0x00, 0x27, &beh_door_warp},
-    {0x84, 0x02, 0x00, 0x28, &beh_door_warp},                  {0x85, 0x02, 0x00, 0x29, &beh_door_warp},
-    {0x86, 0x02, 0x00, 0x2A, &beh_door_warp},                  {0x87, 0x02, 0x00, 0x2B, &beh_door_warp},
-    {0xFF, 0x00, 0x00, 0x00, NULL}
+enum PowerMeterAnimation {
+    POWER_METER_HIDDEN,
+    POWER_METER_EMPHASIZED,
+    POWER_METER_DEEMPHASIZING,
+    POWER_METER_HIDING,
+    POWER_METER_VISIBLE
 };
 
-s16 func_802E1190(s16 a0)
-{
-    u16 sp06 = ((u16) (a0 & 0xFF));
-    sp06 <<= 8;
-
-    if (sp06 == 0x3F00)
-        sp06 = 0x4000;
-    
-    if (sp06 == 0x7F00)
-        sp06 = 0x8000;
-    
-    if (sp06 == 0xBF00)
-        sp06 = 0xC000;
-    
-    if (sp06 == 0xFF00)
-        sp06 = 0x0000;
-    
-    return (s16) sp06;
-}
-
-void func_802E1224(u32 a0, u32 (*a1)[], s16 a2, s16 a3, s16 a4, s16 a5, s16 a6)
-{
-    if (a1 != NULL)
-    {
-        struct Object *sp3C = func_8029E230(&D_8035FB18, 0, a0, a1, a2, a3, a4, 0, func_802E1190(a5), 0);
-        sp3C->oBehParams = ((u32) a6) << 16;
-    }
-}
-
-void func_802E12CC(u32 a0, u8 (*a1)[], s16 a2, s16 a3, s16 a4, s16 a5, s16 a6)
-{
-    if (a1 != NULL)
-    {
-        struct Object *sp3C = func_8029E230(&D_8035FB18, 0, a0, a1, a2, a3, a4, 0, func_802E1190(a5), 0);
-        sp3C->oBehParams = ((u32) a6) << 24;
-    }
-}
-
-void func_802E1374(u32 a0, u8 (*a1)[], s16 a2, s16 a3, s16 a4, s16 a5, s16 a6, s16 a7)
-{
-    struct Object *sp34 = func_8029E230(&D_8035FB18, 0, a0, a1, a2, a3, a4, 0, 0, 0);
-
-
-    sp34->oUnknownUnk108_F32 = (f32) a5;
-    sp34->oUnknownUnk10C_F32 = (f32) a6;
-    sp34->oUnknownUnk110_F32 = (f32) a7;
-}
-
-void Unknown802E142C(u32 (*a0)[], s16 a1[])
-{    
-    struct Object *sp3C;
-    s16 sp3A;
-        
-    sp3A = &beh_yellow_coin == a0 ? 116 : 0;
-    
-    sp3C = func_8029E230(&D_8035FB18, 0, sp3A, a0, a1[1], a1[2], a1[3], 0, func_802E1190(a1[0]), 0);
-
-    sp3C->oUnk1A8 = a1[4];
-    sp3C->oBehParams = (a1[4] & 0xFF) >> 16;
-}
-
-struct LoadedPreset {
-    /*0x00*/ u32 *beh;
-    /*0x04*/ s16 param; // huh? why does the below function swap these.. just use the struct..
-    /*0x06*/ s16 model;
+struct PowerMeterHUD {
+    s8  animation;
+    s16 x;
+    s16 y;
+    f32 u_E8;
+    s32 d_EC;
 };
 
-void func_802E1504(s16 a0, s16* a1)
+struct UnknownStruct803314F0 {
+    u32 u_F0;
+    u16 u_F4;
+    u16 u_F6;
+};
+
+struct CameraHUD {
+    s16 d_F8;
+};
+
+// some sort of store for shown health wedges (0-8); maybe from previous frame/update?
+static s16 D_803600D0;
+
+static struct PowerMeterHUD sPowerMeterHUD = {
+    POWER_METER_HIDDEN, 140, 166, 1.0, 0x00000000,
+};
+
+static struct UnknownStruct803314F0 D_803314F0 = {
+    0x00000000, 0x000A, 0x0000
+};
+
+static struct CameraHUD sCameraHUD = {
+    0x0000
+};
+
+void render_hud_camera(s32 x, s32 y, u8 texture[])
 {
-    UNUSED u32 pad5C;
-    s32 offset;
-    s16 sp4C[5];
-    struct Object * sp48;
-    struct LoadedPreset preset;
+    gDPPipeSync(gDisplayListHead++);
+    gDPSetTextureImage(gDisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, (u32) texture);
+    gSPDisplayList(gDisplayListHead++, &seg2_dl_0200EC98);
+    gSPTextureRectangle(gDisplayListHead++, x << 2, y << 2, (x + 15) << 2, (y + 15) << 2, G_TX_RENDERTILE, 0, 0, 0x1000, 0x400);
+}
 
-    D_8035FB18.header.gfx.unk18 = a0;
-    D_8035FB18.header.gfx.unk19 = a0;
+void render_hud_c_buttons(s32 x, s32 y, u8 texture[])
+{
+    gDPSetTile(gDisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, (G_TX_NOMIRROR | G_TX_WRAP), G_TX_NOMASK, G_TX_NOLOD, (G_TX_NOMIRROR | G_TX_WRAP), G_TX_NOMASK, G_TX_NOLOD);
+    gDPTileSync(gDisplayListHead++);
+    gDPSetTile(gDisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 2, 0, G_TX_RENDERTILE, 0, (G_TX_NOMIRROR | G_TX_CLAMP), 3, G_TX_NOLOD, (G_TX_NOMIRROR | G_TX_CLAMP), 3, G_TX_NOLOD);
+    gDPSetTileSize(gDisplayListHead++, G_TX_RENDERTILE, 0, 0, 28, 28);
+    gDPPipeSync(gDisplayListHead++);
+    gDPSetTextureImage(gDisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, (u32) texture);
+    gDPLoadSync(gDisplayListHead++);
+    gDPLoadBlock(gDisplayListHead++, G_TX_LOADTILE, 0, 0, 63, 1024);
+    gSPTextureRectangle(gDisplayListHead++, x << 2, y << 2, (x + 7) << 2, (y + 7) << 2, G_TX_RENDERTILE, 0, 0, 0x1000, 0x400);
+}
 
-    while (TRUE)
+void func_802E21A4(s16 numHealthWedges)
+{
+    u8* (*sp34)[];
+
+    sp34 = segmented_to_virtual(&power_meter_seg3_health_icons_030293E0);
+    
+    gDPPipeSync(gDisplayListHead++);
+    gDPSetTextureImage(gDisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, (*sp34)[numHealthWedges - 1]);
+    gDPLoadSync(gDisplayListHead++);
+    gDPLoadBlock(gDisplayListHead++, G_TX_LOADTILE, 0, 0, 1023, 256);
+    gSP1Triangle(gDisplayListHead++, 0, 1, 2, 0);
+    gSP1Triangle(gDisplayListHead++, 0, 2, 3, 0);
+}
+
+void func_802E2304(s16 numHealthWedges)
+{
+    Mtx * sp2C;
+
+    sp2C = alloc_display_list(0x40);
+
+    if (sp2C == NULL)
+        return;
+
+    guTranslate(sp2C, (f32) sPowerMeterHUD.x, (f32) sPowerMeterHUD.y, 0);
+
+    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(sp2C++), (G_MTX_MODELVIEW|G_MTX_MUL|G_MTX_PUSH));
+    gSPDisplayList(gDisplayListHead++, &power_meter_seg3_dl_03029480);
+
+    if (numHealthWedges != 0)
     {
-        if (*a1 == -1)
-            break;
+        gSPDisplayList(gDisplayListHead++, &power_meter_seg3_dl_03029570);
+        func_802E21A4(numHealthWedges);
+        gSPDisplayList(gDisplayListHead++, &power_meter_seg3_dl_030295A0);
+    }
 
-        offset = (*a1 & 0x1FF) - 0x1F;
+    gSPPopMatrix(gDisplayListHead++, 0);
+}
 
-        if (offset < 0)
-            break;
 
-        sp4C[0] = ((*a1++ >> 9) & 0x7F) << 1;
-        sp4C[1] = *a1++;
-        sp4C[2] = *a1++;
-        sp4C[3] = *a1++;
-        sp4C[4] = *a1++;
+static void animate_power_meter_emphasized(void)
+{
+    s16 hudDisplayFlags;
+    hudDisplayFlags = gHudDisplayFlags;
 
-        preset.model = MacroObjectPresets[offset].model; 
-        preset.beh  = MacroObjectPresets[offset].beh;
-        preset.param = MacroObjectPresets[offset].param;
-
-        if (preset.param != 0)
-            sp4C[4] = (sp4C[4] & 0xFF00) + (preset.param & 0x00FF); 
-
-        if (((sp4C[4] >> 8) & 0x00FF) != 0xFF)
-        {
-            sp48 = func_8029E230(&D_8035FB18, 0, preset.model, preset.beh, sp4C[1], sp4C[2], sp4C[3], 0, func_802E1190(sp4C[0]), 0);
-
-            sp48->oUnk1A8   = sp4C[4];
-            sp48->oBehParams   = ((sp4C[4] & 0x00FF) << 16) + (sp4C[4] & 0xFF00);
-            sp48->oBehParams2ndByte = sp4C[4] & 0x00FF;
-            sp48->unk1F6   = 2;
-            sp48->unk25C   = a1 - 1;
-            sp48->parentObj    = sp48;
-        }
+    if (!(hudDisplayFlags & HUD_DISPLAY_FLAG_EMPHASIZE_POWER))
+    {
+        if ( (f64) sPowerMeterHUD.d_EC == 45.0 )
+            sPowerMeterHUD.animation = POWER_METER_DEEMPHASIZING;
+    } else {
+        sPowerMeterHUD.d_EC = 0;
     }
 }
 
-void func_802E1780(s16 a0, s16* a1)
+static void animate_power_meter_deemphasizing(void)
 {
-    UNUSED u8 pad[8];
-    s16 sp3E;
-    s16 sp3C;
-    s16 sp3A;
-    s16 sp38;
-    s16 sp36;
-    UNUSED u8 pad2[10];
+    s16 speed = 5;
+    
+    if (sPowerMeterHUD.y >= 181)
+        speed = 3;
+    
+    if (sPowerMeterHUD.y >= 191)
+        speed = 2;
+    
+    if (sPowerMeterHUD.y >= 196)
+        speed = 1;
+    
+    sPowerMeterHUD.y += speed;
 
-    D_8035FB18.header.gfx.unk18 = a0;
-    D_8035FB18.header.gfx.unk19 = a0;
-
-    while (TRUE)
+    if (sPowerMeterHUD.y >= 201)
     {
-        sp38 = *a1++;
-
-        if (sp38 < 0)
-            break;
-        
-        sp3E = *a1++;
-        sp3C = *a1++;
-        sp3A = *a1++;
-        sp36 = *a1++;
-
-        switch (sp38)
-        {
-            case 0x00:
-                func_802E1224(0, &beh_boo_boss_spawned_bridge, sp3E, sp3C, sp3A, sp36, 0);
-                break;
-            case 0x01:
-                func_802E1224(54, &beh_bbh_tilt_floor_platforms, sp3E, sp3C, sp3A, sp36, 0);
-                break;
-            case 0x02:
-                func_802E1224(55, &beh_bbh_tumbling_platform_group, sp3E, sp3C, sp3A, sp36, 0);
-                break;
-            case 0x03:
-                func_802E1224(57, &beh_tumbling_bookshelf, sp3E, sp3C, sp3A, sp36, 0);
-                break;
-            case 0x04:
-                func_802E1224(58, &beh_mesh_elevator, sp3E, sp3C, sp3A, sp36, 0);
-                break;
-            case 0x14:
-                func_802E1224(116, &beh_yellow_coin, sp3E, sp3C, sp3A, sp36, 0);
-                break;
-            case 0x15:
-                func_802E1224(116, &beh_yellow_coin, sp3E, sp3C, sp3A, sp36, 0);
-                break;
-            default:
-                break;
-        }
-    }   
+        sPowerMeterHUD.y = 200;
+        sPowerMeterHUD.animation = POWER_METER_VISIBLE;
+    }
 }
 
-void func_802E19DC(s16 a0, s16** a1)
+static void animate_power_meter_hiding(void)
 {
-    s32 sp4C;
-    int i;          //sp48
-    u32 offset;     //sp44
-    s16 sp42;
-    s16 sp40;
-    s16 sp3E;
-    s16 sp34[5];
-    u8  sp33;
-    u8  sp32;
-    s8  sp31;
-    u8  sp30;
-    void* sp2C;
-
-    sp4C = **a1;
-    (*a1)++;
-
-    D_8035FB18.header.gfx.unk18 = a0;
-    D_8035FB18.header.gfx.unk19 = a0;
-
-    for (i = 0; i < sp4C; i++)
+    sPowerMeterHUD.y += 20;
+    if (sPowerMeterHUD.y >= 301)
     {
-        sp31 = (s8) **a1;
-        (*a1)++;
-        sp42 = **a1;
-        (*a1)++;
-        sp40 = **a1;
-        (*a1)++;
-        sp3E = **a1;
-        (*a1)++;
+        sPowerMeterHUD.animation = POWER_METER_HIDDEN;
+        sPowerMeterHUD.d_EC = 0;
+    }
+}
 
-        offset = 0;
-        while (TRUE)
+void func_802E261C(s16 numHealthWedges)
+{
+    if (numHealthWedges < 8 && D_803600D0 == 8 && sPowerMeterHUD.animation == POWER_METER_HIDDEN)
+    {
+        sPowerMeterHUD.animation = POWER_METER_EMPHASIZED;
+        sPowerMeterHUD.y = 166;
+    }
+
+    if (numHealthWedges == 8 && D_803600D0 == 7)
+        sPowerMeterHUD.d_EC = 0;
+    
+    if (numHealthWedges == 8 && (f64) sPowerMeterHUD.d_EC > 45.0)
+        sPowerMeterHUD.animation = POWER_METER_HIDING;
+    
+    D_803600D0 = numHealthWedges;
+
+    if (D_8033B1B0->unk0 & 0x2000)
+    {
+        if (sPowerMeterHUD.animation == POWER_METER_HIDDEN || sPowerMeterHUD.animation == POWER_METER_EMPHASIZED)
         {
-            if (D_80331240[offset].unk00 == (u8) sp31)
-                break;
+            sPowerMeterHUD.animation = POWER_METER_DEEMPHASIZING;
+            sPowerMeterHUD.y = 166;
+        }
+        sPowerMeterHUD.d_EC = 0;
+    }
+}
 
-            if (D_80331240[offset].unk00 == 0xFF) { }
+void render_hud_hp(void)
+{
+    s16 shownHealthWedges = gDisplayedHealthWedges;
 
-            offset++;
+    if (sPowerMeterHUD.animation != POWER_METER_HIDING)
+        func_802E261C(shownHealthWedges);
+    
+    if (sPowerMeterHUD.animation == POWER_METER_HIDDEN)
+        return;
+
+    switch (sPowerMeterHUD.animation)
+    {
+        case POWER_METER_EMPHASIZED:
+            animate_power_meter_emphasized();
+            break;
+        case POWER_METER_DEEMPHASIZING:
+            animate_power_meter_deemphasizing();
+            break;
+        case POWER_METER_HIDING:
+            animate_power_meter_hiding();
+            break;
+        default:
+            break;
+    }
+
+    func_802E2304(shownHealthWedges);
+
+    sPowerMeterHUD.d_EC += 1;
+}
+
+#ifdef VERSION_JP
+#define HUD_TOP_Y 210
+#else
+#define HUD_TOP_Y 209
+#endif
+
+void render_hud_mario_lives(void)
+{
+    print_text(22, HUD_TOP_Y, ",");   // 'Mario Head' glyph
+    print_text(38, HUD_TOP_Y, "*");   // 'X' glyph
+    print_text_fmt_int(54, HUD_TOP_Y, "%d", gDisplayedLives);
+}
+
+void render_hud_coins(void)
+{
+    print_text(168, HUD_TOP_Y, "+");  // 'Coin' glyph
+    print_text(184, HUD_TOP_Y, "*");  // 'X' glyph
+    print_text_fmt_int(198, HUD_TOP_Y, "%d", gDisplayedCoins);
+}
+
+#ifdef VERSION_JP
+#define HUD_STARS_X 247
+#else
+#define HUD_STARS_X 242
+#endif
+
+void render_hud_stars(void)
+{
+    s8 showX = 0;
+
+    if (D_803305CC == 1 && gGlobalTimer & 0x00000008)
+        return;
+
+    if (gDisplayedStars < 100)
+        showX = 1;
+
+    print_text(HUD_STARS_X, HUD_TOP_Y, "-");                  // 'Star' glyph
+    if (showX == 1) print_text((HUD_STARS_X + 16), HUD_TOP_Y, "*");  // 'X' glyph
+    print_text_fmt_int(((showX * 14) + (HUD_STARS_X + 16)), HUD_TOP_Y, "%d", gDisplayedStars);
+}
+
+void func_802E29D4()
+{
+    s16 i;
+
+    for (i = 0; i < gDisplayedKeys; i++)
+        print_text((i * 16) + 220, 142, "/");     // unused glyph (originally for a key?)
+}
+
+void render_hud_timer(void)
+{
+    u8* (*hudPrintLUT)[58];
+    u16 timerValFrames;
+    u16 timerMins;
+    u16 timerSecs;
+    u16 timerFracSecs;
+
+    hudPrintLUT = segmented_to_virtual(&seg2_hud_lut);
+    timerValFrames = gTimerValueInFrames;
+    timerMins = timerValFrames / (30 * 60);
+    timerSecs = (timerValFrames - (timerMins * 1800)) / 30;
+
+    timerFracSecs = ((timerValFrames - (timerMins * 1800) - (timerSecs * 30)) & 0xFFFF) / 3;
+
+    print_text(170, 185, "TIME");
+    print_text_fmt_int(229, 185,  "%0d", timerMins);
+    print_text_fmt_int(249, 185, "%02d", timerSecs);
+    print_text_fmt_int(283, 185,   "%d", timerFracSecs);
+    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EC60);
+    render_hud_camera(239, 32, (*hudPrintLUT)[56]);
+    render_hud_camera(274, 32, (*hudPrintLUT)[57]);
+    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ECC8);
+}
+
+void set_camera_status(s16 a0)
+{
+    sCameraHUD.d_F8 = a0;
+}
+
+void show_camera_status(void)
+{
+    u8* (*cameraLUT)[6];
+    s32 x;
+    s32 y;
+
+    cameraLUT = segmented_to_virtual(&seg2_hud_camera_lut);
+    x = 266;
+    y = 205;
+
+    if (sCameraHUD.d_F8 == 0)
+        return;
+    
+    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EC60);
+    render_hud_camera(x, y, (*cameraLUT)[0]);
+
+    switch (sCameraHUD.d_F8 & 0x07)
+    {
+        case 1 << 0:    // 1
+            render_hud_camera(x + 16, y, (*cameraLUT)[1]);
+            break;
+        case 1 << 1:    // 2
+            render_hud_camera(x + 16, y, (*cameraLUT)[2]);
+            break;
+        case 1 << 2:    // 4
+            render_hud_camera(x + 16, y, (*cameraLUT)[3]);
+            break;
+    }
+
+    switch (sCameraHUD.d_F8 & 0x18)
+    {
+        case 1 << 3:    // 8
+            render_hud_c_buttons(x + 4, y + 16, (*cameraLUT)[5]);
+            break;
+        case 1 << 4:    // 16
+            render_hud_c_buttons(x + 4, y - 8, (*cameraLUT)[4]);
+            break;
+    }
+
+    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ECC8);
+}
+
+void render_hud(void)
+{
+    s16 hudDisplayFlags;
+
+    hudDisplayFlags = gHudDisplayFlags;
+
+    if (hudDisplayFlags == HUD_DISPLAY_NONE)
+    {
+        sPowerMeterHUD.animation = POWER_METER_HIDDEN;
+        D_803600D0 = 8;
+        sPowerMeterHUD.d_EC = 0;
+    } else {
+        dl_add_new_ortho_matrix();
+
+        if (gCurrentArea != NULL && gCurrentArea->unk24->unk0 == 10)
+            RenderHudCannonReticle();
+        
+        if (hudDisplayFlags & HUD_DISPLAY_FLAG_LIVES)
+            render_hud_mario_lives();
+        
+        if (hudDisplayFlags & HUD_DISPLAY_FLAG_COIN_COUNT)
+            render_hud_coins();
+        
+        if (hudDisplayFlags & HUD_DISPLAY_FLAG_STAR_COUNT)
+            render_hud_stars();
+        
+        if (hudDisplayFlags & HUD_DISPLAY_FLAG_UNKNOWN_0010)
+            func_802E29D4();
+        
+        if (hudDisplayFlags & HUD_DISPLAY_FLAG_CAMERA_AND_POWER)
+        {
+            render_hud_hp();
+            show_camera_status();
         }
 
-        sp33 = D_80331240[offset].unk03;
-        sp2C = D_80331240[offset].beh;
-        sp32 = D_80331240[offset].unk01;
-        sp30 = D_80331240[offset].unk02;
-
-        switch (sp32)
-        {
-            case 0:
-                func_802E1224(sp33, sp2C, sp42, sp40, sp3E, 0, 0);
-                break;
-            case 1:
-                sp34[0] = **a1;
-                (*a1)++;
-                func_802E1224(sp33, sp2C, sp42, sp40, sp3E, sp34[0], 0);
-                break;
-            case 2:
-                sp34[0] = **a1;
-                (*a1)++;
-                sp34[1] = **a1;
-                (*a1)++;
-                func_802E1224(sp33, sp2C, sp42, sp40, sp3E, sp34[0], sp34[1]);
-                break;
-            case 3:
-                sp34[0] = **a1;
-                (*a1)++;
-                sp34[1] = **a1;
-                (*a1)++;
-                sp34[2] = **a1;
-                (*a1)++;
-                func_802E1374(sp33, sp2C, sp42, sp40, sp3E, sp34[0], sp34[1], sp34[2]);
-                break;
-            case 4:
-                sp34[0] = **a1;
-                (*a1)++;
-                func_802E12CC(sp33, sp2C, sp42, sp40, sp3E, sp34[0], sp30);
-                break;
-            default:
-                break;
-        }
-
+        if (hudDisplayFlags & HUD_DISPLAY_FLAG_TIMER)
+            render_hud_timer();
     }
 }

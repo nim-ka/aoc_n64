@@ -117,8 +117,8 @@ SECTIONS
       BUILD_DIR/src/ingame_menu.o(.text);
       BUILD_DIR/src/ingame_menu_2.o(.text);
       BUILD_DIR/src/ingame_menu_3.o(.text);
+      BUILD_DIR/src/macro_special_objects.o(.text);
       BUILD_DIR/src/hud.o(.text);
-      BUILD_DIR/src/hud_print.o(.text);
       BUILD_DIR/src/obj_behaviors.o(.text);
       BUILD_DIR/src/obj_behaviors_2.o(.text);
       BUILD_DIR/src/audio/something.o(.text);
@@ -273,8 +273,8 @@ SECTIONS
       BUILD_DIR/src/ingame_menu.o(.data*);
       BUILD_DIR/src/ingame_menu_2.o(.data*);
       BUILD_DIR/src/ingame_menu_3.o(.data*);
+      BUILD_DIR/src/macro_special_objects.o(.data*);
       BUILD_DIR/src/hud.o(.data*);
-      BUILD_DIR/src/hud_print.o(.data*);
       BUILD_DIR/src/obj_behaviors.o(.data*);
       BUILD_DIR/src/obj_behaviors_2.o(.data*);
       BUILD_DIR/src/audio/interface_2.o(.data*);
@@ -331,8 +331,8 @@ SECTIONS
       BUILD_DIR/src/ingame_menu.o(.rodata*);
       BUILD_DIR/src/ingame_menu_2.o(.rodata*);
       BUILD_DIR/src/ingame_menu_3.o(.rodata*);
+      BUILD_DIR/src/macro_special_objects.o(.rodata*);
       BUILD_DIR/src/hud.o(.rodata*);
-      BUILD_DIR/src/hud_print.o(.rodata*);
       BUILD_DIR/src/obj_behaviors.o(.rodata*);
       BUILD_DIR/src/obj_behaviors_2.o(.rodata*);
       BUILD_DIR/src/audio/something_3.o(.rodata*);
@@ -386,8 +386,8 @@ SECTIONS
       BUILD_DIR/src/ingame_menu.o(.bss*);
       BUILD_DIR/src/ingame_menu_2.o(.bss*);
       BUILD_DIR/src/ingame_menu_3.o(.bss*);
-      BUILD_DIR/src/hud.o(.bss*)
-      BUILD_DIR/src/hud_print.o(.bss*);
+      BUILD_DIR/src/macro_special_objects.o(.bss*)
+      BUILD_DIR/src/hud.o(.bss*);
       BUILD_DIR/src/obj_behaviors.o(.bss*);
       BUILD_DIR/src/obj_behaviors_2.o(.bss*);
       BUILD_DIR/src/audio/interface_2.o(.bss*);

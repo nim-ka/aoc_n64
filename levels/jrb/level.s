@@ -3,6 +3,7 @@
 .include "macros.inc"
 .include "ultra64/gbi.inc"
 .include "macro_presets.inc"
+.include "special_presets.inc"
 
 jrb_seg7_texture_07000000: # 0x07000000 - 0x07000800
 .incbin "levels/jrb/0.rgba16"
@@ -4360,9 +4361,9 @@ glabel jrb_seg7_area_1_collision # 0x0700B058 - 0x0700C4E8
 .hword    7,    6,    5
 .hword    7,    5,    0
 .hword 0x0041
-# collision macro? 0x43
-.hword 0x0043,    1
-.hword 0x00, -6750,  1126,  1482,    64
+# special object 0x43
+.hword 0x0043,    1 # add 1 special object
+special_object_10_byte /*preset*/ special_null_start, /*pos*/ -6750, 1126, 1482, /*yaw*/ 64
 # water boxes (val, loX, hiX, loZ, hiZ, height)
 .hword 0x0044,    3
 .hword     0, -6304,  -669,  7992,  7814,  1024

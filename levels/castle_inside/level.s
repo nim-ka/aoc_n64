@@ -3,6 +3,7 @@
 .include "macros.inc"
 .include "ultra64/gbi.inc"
 .include "macro_presets.inc"
+.include "special_presets.inc"
 
 inside_castle_seg7_texture_07000000: # 0x07000000 - 0x07000800
 .incbin "levels/castle_inside/0.ia16"
@@ -31234,19 +31235,19 @@ glabel inside_castle_seg7_area_1_collision # 0x07068B88 - 0x0706E362
 .hword   77,   78,   79
 .hword   77,   79,   80
 .hword 0x0041
-# collision macro? 0x43
-.hword 0x0043,   11
-.hword 0x00, -1023,     0,  1152,   128
-.hword 0x7E,  -271,     0,  -824,    32
-.hword 0x7E, -1775,     0,  -824,   224
-.hword 0x88, -1100,     0,  2202,     0,     0
-.hword 0x88,  -946,     0,  2202,   128,     1
-.hword 0x83, -1023,  -101, -5170,     0,     2
-.hword 0x8A, -3122,   205,  -793,    64
-.hword 0x8B,   256,     0, -1074,     0
-.hword 0x8B,   644,   614, -1476,   224
-.hword 0x8C,  1075,   205,  -229,   192
-.hword 0x8C, -2303,     0, -1074,     0
+# special objects area 1 0x43
+.hword 0x0043,   11 # add 11 special objects
+special_object_10_byte /*preset*/ special_null_start,        /*pos*/ -1023,    0,  1152, /*yaw*/ 128 # unused, probably an early way to set intial position
+special_object_10_byte /*preset*/ special_wooden_door,       /*pos*/  -271,    0,  -824, /*yaw*/  32
+special_object_10_byte /*preset*/ special_wooden_door,       /*pos*/ -1775,    0,  -824, /*yaw*/ 224
+special_object_11_byte /*preset*/ special_castle_door_warp,  /*pos*/ -1100,    0,  2202, /*yaw*/   0, /*behParam2*/ 0
+special_object_11_byte /*preset*/ special_castle_door_warp,  /*pos*/ -946,     0,  2202, /*yaw*/ 128, /*behParam2*/ 1
+special_object_11_byte /*preset*/ special_wooden_door_warp,  /*pos*/ -1023, -101, -5170, /*yaw*/   0, /*behParam2*/ 2
+special_object_10_byte /*preset*/ special_0stars_door,       /*pos*/ -3122,  205,  -793, /*yaw*/  64
+special_object_10_byte /*preset*/ special_1star_door,        /*pos*/   256,    0, -1074, /*yaw*/   0
+special_object_10_byte /*preset*/ special_1star_door,        /*pos*/   644,  614, -1476, /*yaw*/ 224
+special_object_10_byte /*preset*/ special_3star_door,        /*pos*/  1075,  205,  -229, /*yaw*/ 192
+special_object_10_byte /*preset*/ special_3star_door,        /*pos*/ -2303,    0, -1074, /*yaw*/   0
 .hword 0x0042
 
 .balign 4 # 0x0706E362 - 0x0706E364
@@ -35018,12 +35019,12 @@ glabel inside_castle_seg7_area_2_collision # 0x0706E364 - 0x07073AAA
 .hword   38,   35,   33
 .hword   38,   37,   35
 .hword 0x0041
-# collision macro? 0x43
-.hword 0x0043,    4
-.hword 0x8A, -2695,  1203,  1828,    64
-.hword 0x8A,  6994,  1203,  1828,    64
-.hword 0x8A,  1670,  1203,  1828,   192
-.hword 0x7E,  -997,  1203,  1178,     0
+# special objects area 2 0x43
+.hword 0x0043,    4 # add 4 special objects
+special_object_10_byte /*preset*/ special_0stars_door, /*pos*/ -2695, 1203,  1828, /*yaw*/  64
+special_object_10_byte /*preset*/ special_0stars_door, /*pos*/  6994, 1203,  1828, /*yaw*/  64
+special_object_10_byte /*preset*/ special_0stars_door, /*pos*/  1670, 1203,  1828, /*yaw*/ 192
+special_object_10_byte /*preset*/ special_wooden_door, /*pos*/  -997, 1203,  1178, /*yaw*/   0
 .hword 0x0042
 
 .balign 4 # 0x07073AAA - 0x07073AAC
@@ -37562,13 +37563,13 @@ glabel inside_castle_seg7_area_3_collision # 0x07073AAC - 0x070775B4
 .hword   49,   53,   52
 .hword   49,   52,   50
 .hword 0x0041
-# collision macro? 0x43
-.hword 0x0043,    5
-.hword 0x7E, -3097, -1279,  1434,     0
-.hword 0x7E,  -332,  -767,   205,     0
-.hword 0x7E,   717, -1177,  -869,   192
-.hword 0x8A,  1126, -1074, -2661,   192
-.hword 0x85,  7885, -1586,  -511,   192,     2
+# special objects area 3 0x43
+.hword 0x0043,    5 # add 5 special objects
+special_object_10_byte /*preset*/ special_wooden_door,     /*pos*/ -3097, -1279,  1434, /*yaw*/   0
+special_object_10_byte /*preset*/ special_wooden_door,     /*pos*/  -332,  -767,   205, /*yaw*/   0
+special_object_10_byte /*preset*/ special_wooden_door,     /*pos*/   717, -1177,  -869, /*yaw*/ 192
+special_object_10_byte /*preset*/ special_0stars_door,     /*pos*/  1126, -1074, -2661, /*yaw*/ 192
+special_object_11_byte /*preset*/ special_metal_door_warp, /*pos*/  7885, -1586,  -511, /*yaw*/ 192, /*behParam2*/ 2
 # water boxes (val, loX, hiX, loZ, hiZ, height)
 .hword 0x0044,    3
 .hword     1,   973, -1279,  5786,   256, -1228

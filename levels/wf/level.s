@@ -3,6 +3,7 @@
 .include "macros.inc"
 .include "ultra64/gbi.inc"
 .include "macro_presets.inc"
+.include "special_presets.inc"
 
 wf_seg7_texture_07000000: # 0x07000000 - 0x07000800
 .incbin "levels/wf/0.rgba16"
@@ -6887,14 +6888,14 @@ glabel wf_seg7_collision_070102D8 # 0x070102D8 - 0x07011C36
 .hword    4,    5,    6
 .hword    4,    7,    5
 .hword 0x0041
-# terrain macro? 0x43
-.hword 0x0043,    6
-.hword 0x00,  2560,   256,  5120,    64
-.hword 0x70,  3584,   154,  4864,     0
-.hword 0x71,  4608,   256,  1792,     0
-.hword 0x73, -2499,  1792,  -261,     0
-.hword 0x74, -2661,   384,   640,     0
-.hword 0x79,  2560,   256,  4608
+# special objects 0x43
+.hword 0x0043,    6 # add 6 special objects
+special_object_10_byte /*preset*/ special_null_start,   /*pos*/  2560,  256, 5120, /*yaw*/ 64 # unused, probably an early way to set intial position
+special_object_10_byte /*preset*/ special_level_geo_0E, /*pos*/  3584,  154, 4864, /*yaw*/ 0
+special_object_10_byte /*preset*/ special_level_geo_0F, /*pos*/  4608,  256, 1792, /*yaw*/ 0
+special_object_10_byte /*preset*/ special_level_geo_11, /*pos*/ -2499, 1792, -261, /*yaw*/ 0
+special_object_10_byte /*preset*/ special_level_geo_12, /*pos*/ -2661,  384,  640, /*yaw*/ 0
+special_object_8_byte  /*preset*/ special_bubble_tree,  /*pos*/  2560,  256, 4608
 # water boxes (val, loX, hiX, loZ, hiZ, height)
 .hword 0x0044,    1
 .hword     0, -1023,  1024,  3226,  4096,   973

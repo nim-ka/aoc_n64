@@ -3,6 +3,7 @@
 .include "macros.inc"
 .include "ultra64/gbi.inc"
 .include "macro_presets.inc"
+.include "special_presets.inc"
 
 castle_grounds_seg7_texture_07000000: # 0x07000000 - 0x07001000
 .incbin "levels/castle_grounds/0.rgba16"
@@ -5135,38 +5136,38 @@ glabel castle_grounds_seg7_collision_level # 0x0700EAE8 - 0x07010D08
 .hword  469,  473,  489
 .hword  472,  473,  469
 .hword 0x0041
-# terrain macro? 0x43
-.hword 0x0043,   30
-.hword 0x65,     0,  2867, -3924,     0
-.hword 0x79, -1333,   711,  1881
-.hword 0x79, -6220,   468,  3458
-.hword 0x79, -5069,   350,  3221
-.hword 0x79, -2566,   438,  2626
-.hword 0x79, -1900,   401,  2868
-.hword 0x79,  6399,   494, -1680
-.hword 0x79,   767,   498,  2598
-.hword 0x79,  1476,   189,  3280
-.hword 0x79,  3153,   206,   469
-.hword 0x79,  6178,   219,   167
-.hword 0x79, -6510,   260,  1411
-.hword 0x79,  5457,   528, -3259
-.hword 0x79,  5868,   698, -4453
-.hword 0x79,  6408,   869, -5314
-.hword 0x79, -4711,   342,   433
-.hword 0x79,  1132,   365,  1977
-.hword 0x79, -5506,   364,  -661
-.hword 0x79, -6269,   402, -2145
-.hword 0x79, -5600,   440, -2627
-.hword 0x79,  1919,   268,  1157
-.hword 0x79, -5957,   517, -3447
-.hword 0x79, -2021,   633,  1468
-.hword 0x79,  -109,   613,  3008
-.hword 0x79,  5774,   413, -1114
-.hword 0x79,  5954,   526, -2846
-.hword 0x79, -5204,   296,   811
-.hword 0x85,  3292,  -511, -2931,   160,     2
-.hword 0x88,   -76,   803, -3155,     0,     0
-.hword 0x88,    77,   803, -3155,   128,     1
+# special objects 0x43
+.hword 0x0043,   30 # Add 30 special objects
+special_object_10_byte /*preset*/ special_level_geo_03,     /*pos*/     0, 2867, -3924, /*yaw*/ 0
+special_object_8_byte  /*preset*/ special_bubble_tree,      /*pos*/ -1333,  711,  1881
+special_object_8_byte  /*preset*/ special_bubble_tree,      /*pos*/ -6220,  468,  3458
+special_object_8_byte  /*preset*/ special_bubble_tree,      /*pos*/ -5069,  350,  3221
+special_object_8_byte  /*preset*/ special_bubble_tree,      /*pos*/ -2566,  438,  2626
+special_object_8_byte  /*preset*/ special_bubble_tree,      /*pos*/ -1900,  401,  2868
+special_object_8_byte  /*preset*/ special_bubble_tree,      /*pos*/  6399,  494, -1680
+special_object_8_byte  /*preset*/ special_bubble_tree,      /*pos*/   767,  498,  2598
+special_object_8_byte  /*preset*/ special_bubble_tree,      /*pos*/  1476,  189,  3280
+special_object_8_byte  /*preset*/ special_bubble_tree,      /*pos*/  3153,  206,   469
+special_object_8_byte  /*preset*/ special_bubble_tree,      /*pos*/  6178,  219,   167
+special_object_8_byte  /*preset*/ special_bubble_tree,      /*pos*/ -6510,  260,  1411
+special_object_8_byte  /*preset*/ special_bubble_tree,      /*pos*/  5457,  528, -3259
+special_object_8_byte  /*preset*/ special_bubble_tree,      /*pos*/  5868,  698, -4453
+special_object_8_byte  /*preset*/ special_bubble_tree,      /*pos*/  6408,  869, -5314
+special_object_8_byte  /*preset*/ special_bubble_tree,      /*pos*/ -4711,  342,   433
+special_object_8_byte  /*preset*/ special_bubble_tree,      /*pos*/  1132,  365,  1977
+special_object_8_byte  /*preset*/ special_bubble_tree,      /*pos*/ -5506,  364,  -661
+special_object_8_byte  /*preset*/ special_bubble_tree,      /*pos*/ -6269,  402, -2145
+special_object_8_byte  /*preset*/ special_bubble_tree,      /*pos*/ -5600,  440, -2627
+special_object_8_byte  /*preset*/ special_bubble_tree,      /*pos*/  1919,  268,  1157
+special_object_8_byte  /*preset*/ special_bubble_tree,      /*pos*/ -5957,  517, -3447
+special_object_8_byte  /*preset*/ special_bubble_tree,      /*pos*/ -2021,  633,  1468
+special_object_8_byte  /*preset*/ special_bubble_tree,      /*pos*/  -109,  613,  3008
+special_object_8_byte  /*preset*/ special_bubble_tree,      /*pos*/  5774,  413, -1114
+special_object_8_byte  /*preset*/ special_bubble_tree,      /*pos*/  5954,  526, -2846
+special_object_8_byte  /*preset*/ special_bubble_tree,      /*pos*/ -5204,  296,   811
+special_object_11_byte /*preset*/ special_metal_door_warp,  /*pos*/  3292, -511, -2931, /*yaw*/ 160, /*behParam2*/ 2
+special_object_11_byte /*preset*/ special_castle_door_warp, /*pos*/   -76,  803, -3155, /*yaw*/   0, /*behParam2*/ 0
+special_object_11_byte /*preset*/ special_castle_door_warp, /*pos*/    77,  803, -3155, /*yaw*/ 128, /*behParam2*/ 1
 # water boxes (val, loX, hiX, loZ, hiZ, height)
 .hword 0x0044,    2
 .hword     0, -7129, -7222,  8253,   -58,   -81
