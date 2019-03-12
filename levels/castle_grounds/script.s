@@ -104,7 +104,7 @@ glabel level_castle_grounds_entry
         jump_link /*target*/ script_func_local_4
         terrain /*terrainData*/ castle_grounds_seg7_collision_level
         macro_objects /*objList*/ castle_grounds_seg7_macro_objs
-        set_music /*unk2*/ 0x0000, /*seq*/ 0x0000
+        set_music /*unk2*/ 0x0000, /*seq*/ SEQ_NONE
         terrain_type /*terrainType*/ 0x0000
     end_area
 

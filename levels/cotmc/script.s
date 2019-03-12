@@ -35,7 +35,7 @@ glabel level_cotmc_entry
         terrain /*terrainData*/ cotmc_seg7_collision_level
         macro_objects /*objList*/ cotmc_seg7_macro_objs
         cmd30 /*unk2*/ 0x00, /*unk3*/ 0x82
-        set_music /*unk2*/ 0x0004, /*seq*/ 0x000C
+        set_music /*unk2*/ 0x0004, /*seq*/ SEQ_LEVEL_UNDERGROUND
         terrain_type /*terrainType*/ 0x0001
     end_area
 

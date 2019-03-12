@@ -91,7 +91,7 @@ glabel level_thi_entry
         jump_link /*target*/ script_func_local_4
         terrain /*terrainData*/ thi_seg7_area_1_collision
         macro_objects /*objList*/ thi_seg7_area_1_macro_objs
-        set_music /*unk2*/ 0x0000, /*seq*/ 0x0003
+        set_music /*unk2*/ 0x0000, /*seq*/ SEQ_LEVEL_GRASS
         terrain_type /*terrainType*/ 0x0000
     end_area
 
@@ -109,7 +109,7 @@ glabel level_thi_entry
         jump_link /*target*/ script_func_local_6
         terrain /*terrainData*/ thi_seg7_area_2_collision
         macro_objects /*objList*/ thi_seg7_area_2_macro_objs
-        set_music /*unk2*/ 0x0000, /*seq*/ 0x0003
+        set_music /*unk2*/ 0x0000, /*seq*/ SEQ_LEVEL_GRASS
         terrain_type /*terrainType*/ 0x0000
     end_area
 
@@ -125,7 +125,7 @@ glabel level_thi_entry
         jump_link /*target*/ script_func_local_3
         terrain /*terrainData*/ thi_seg7_area_3_collision
         macro_objects /*objList*/ thi_seg7_area_3_macro_objs
-        set_music /*unk2*/ 0x0004, /*seq*/ 0x000C
+        set_music /*unk2*/ 0x0004, /*seq*/ SEQ_LEVEL_UNDERGROUND
         terrain_type /*terrainType*/ 0x0000
     end_area
 

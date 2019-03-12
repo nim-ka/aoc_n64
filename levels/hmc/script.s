@@ -87,7 +87,7 @@ glabel level_hmc_entry
         terrain /*terrainData*/ hmc_seg7_collision_level
         macro_objects /*objList*/ hmc_seg7_macro_objs
         rooms /*surfaceRooms*/ hmc_seg7_rooms
-        set_music /*unk2*/ 0x0004, /*seq*/ 0x000C
+        set_music /*unk2*/ 0x0004, /*seq*/ SEQ_LEVEL_UNDERGROUND
         terrain_type /*terrainType*/ 0x0001
     end_area
 

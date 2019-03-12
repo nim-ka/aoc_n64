@@ -133,7 +133,7 @@ glabel level_wf_entry
         terrain /*terrainData*/ wf_seg7_collision_070102D8
         macro_objects /*objList*/ wf_seg7_macro_objs
         cmd30 /*unk2*/ 0x00, /*unk3*/ 0x1E
-        set_music /*unk2*/ 0x0005, /*seq*/ 0x0003
+        set_music /*unk2*/ 0x0005, /*seq*/ SEQ_LEVEL_GRASS
         terrain_type /*terrainType*/ 0x0001
     end_area
 

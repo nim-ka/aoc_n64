@@ -72,7 +72,7 @@ glabel level_bob_entry
         terrain /*terrainData*/ bob_seg7_collision_level
         macro_objects /*objList*/ bob_seg7_macro_objs
         cmd30 /*unk2*/ 0x00, /*unk3*/ 0x00
-        set_music /*unk2*/ 0x0000, /*seq*/ 0x0003
+        set_music /*unk2*/ 0x0000, /*seq*/ SEQ_LEVEL_GRASS
         terrain_type /*terrainType*/ 0x0000
     end_area
 

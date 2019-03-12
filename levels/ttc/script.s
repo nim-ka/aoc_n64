@@ -49,7 +49,7 @@ glabel level_ttc_entry
         jump_link /*target*/ script_func_local_2
         terrain /*terrainData*/ ttc_seg7_collision_level
         macro_objects /*objList*/ ttc_seg7_macro_objs
-        set_music /*unk2*/ 0x0001, /*seq*/ 0x0009
+        set_music /*unk2*/ 0x0001, /*seq*/ SEQ_LEVEL_SLIDE
         terrain_type /*terrainType*/ 0x0001
     end_area
 

@@ -70,7 +70,7 @@ glabel level_ddd_entry
         instant_warp /*index*/ 3, /*destArea*/ 2, /*displace*/ -8192, 0, 0
         terrain /*terrainData*/ ddd_seg7_area_1_collision
         macro_objects /*objList*/ ddd_seg7_area_1_macro_objs
-        set_music /*unk2*/ 0x0003, /*seq*/ 0x0005
+        set_music /*unk2*/ 0x0003, /*seq*/ SEQ_LEVEL_WATER
         terrain_type /*terrainType*/ 0x0005
     end_area
 
@@ -86,7 +86,7 @@ glabel level_ddd_entry
         instant_warp /*index*/ 2, /*destArea*/ 1, /*displace*/ 8192, 0, 0
         terrain /*terrainData*/ ddd_seg7_area_2_collision
         macro_objects /*objList*/ ddd_seg7_area_2_macro_objs
-        set_music /*unk2*/ 0x0003, /*seq*/ 0x0005
+        set_music /*unk2*/ 0x0003, /*seq*/ SEQ_LEVEL_WATER
         terrain_type /*terrainType*/ 0x0005
     end_area
 

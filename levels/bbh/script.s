@@ -94,7 +94,7 @@ glabel level_bbh_entry
         macro_objects /*objList*/ bbh_seg7_macro_objs
         rooms /*surfaceRooms*/ bbh_seg7_rooms
         cmd30 /*unk2*/ 0x00, /*unk3*/ 0x62
-        set_music /*unk2*/ 0x0006, /*seq*/ 0x000A
+        set_music /*unk2*/ 0x0006, /*seq*/ SEQ_LEVEL_SPOOKY
         terrain_type /*terrainType*/ 0x0004
     end_area
 

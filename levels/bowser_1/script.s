@@ -15,7 +15,7 @@ glabel level_bowser_1_entry
         warp_node /*id*/ 0xF0, /*destLevel*/ 0x06, /*destArea*/ 0x01, /*destNode*/ 0x24, /*unk6*/ 0x0000
         warp_node /*id*/ 0xF1, /*destLevel*/ 0x11, /*destArea*/ 0x01, /*destNode*/ 0x0C, /*unk6*/ 0x0000
         terrain /*terrainData*/ bowser_1_seg7_collision_level
-        set_music /*unk2*/ 0x0002, /*seq*/ 0x0007
+        set_music /*unk2*/ 0x0002, /*seq*/ SEQ_LEVEL_BOSS_KOOPA
         terrain_type /*terrainType*/ 0x0001
     end_area
 

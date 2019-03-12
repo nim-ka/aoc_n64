@@ -43,7 +43,7 @@ glabel level_vcutm_entry
         terrain /*terrainData*/ vcutm_seg7_collision
         macro_objects /*objList*/ vcutm_seg7_macro_objs
         cmd30 /*unk2*/ 0x00, /*unk3*/ 0x81
-        set_music /*unk2*/ 0x0000, /*seq*/ 0x0009
+        set_music /*unk2*/ 0x0000, /*seq*/ SEQ_LEVEL_SLIDE
         terrain_type /*terrainType*/ 0x0001
     end_area
 

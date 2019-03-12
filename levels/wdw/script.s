@@ -85,7 +85,7 @@ glabel level_wdw_entry
         instant_warp /*index*/ 1, /*destArea*/ 2, /*displace*/ 0, 0, 0
         terrain /*terrainData*/ wdw_seg7_area_1_collision 
         macro_objects /*objList*/ wdw_seg7_area_1_macro_objs 
-        set_music /*unk2*/ 0x0003, /*seq*/ 0x000C
+        set_music /*unk2*/ 0x0003, /*seq*/ SEQ_LEVEL_UNDERGROUND
         terrain_type /*terrainType*/ 0x0001
     end_area
 
@@ -97,7 +97,7 @@ glabel level_wdw_entry
         instant_warp /*index*/ 0, /*destArea*/ 1, /*displace*/ 0, 0, 0
         terrain /*terrainData*/ wdw_seg7_area_2_collision 
         macro_objects /*objList*/ wdw_seg7_area_2_macro_objs 
-        set_music /*unk2*/ 0x0003, /*seq*/ 0x000C
+        set_music /*unk2*/ 0x0003, /*seq*/ SEQ_LEVEL_UNDERGROUND
         terrain_type /*terrainType*/ 0x0005
     end_area
 

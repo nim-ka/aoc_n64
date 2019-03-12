@@ -168,7 +168,7 @@ glabel level_lll_entry
         terrain /*terrainData*/ lll_seg7_area_1_collision
         macro_objects /*objList*/ lll_seg7_area_1_macro_objs
         cmd30 /*unk2*/ 0x00, /*unk3*/ 0x61
-        set_music /*unk2*/ 0x0000, /*seq*/ 0x0006
+        set_music /*unk2*/ 0x0000, /*seq*/ SEQ_LEVEL_HOT
         terrain_type /*terrainType*/ 0x0001
     end_area
 
@@ -181,7 +181,7 @@ glabel level_lll_entry
         jump_link /*target*/ script_func_local_7
         terrain /*terrainData*/ lll_seg7_area_2_collision
         macro_objects /*objList*/ lll_seg7_area_2_macro_objs
-        set_music /*unk2*/ 0x0004, /*seq*/ 0x0006
+        set_music /*unk2*/ 0x0004, /*seq*/ SEQ_LEVEL_HOT
         terrain_type /*terrainType*/ 0x0001
     end_area
 

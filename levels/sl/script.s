@@ -60,7 +60,7 @@ glabel level_sl_entry
         warp_node /*id*/ 0xF1, /*destLevel*/ 0x06, /*destArea*/ 0x02, /*destNode*/ 0x68, /*unk6*/ 0x0000
         terrain /*terrainData*/ sl_seg7_area_1_collision
         macro_objects /*objList*/ sl_seg7_area_1_macro_objs
-        set_music /*unk2*/ 0x0000, /*seq*/ 0x0008
+        set_music /*unk2*/ 0x0000, /*seq*/ SEQ_LEVEL_SNOW
         terrain_type /*terrainType*/ 0x0002
     end_area
 
@@ -74,7 +74,7 @@ glabel level_sl_entry
         warp_node /*id*/ 0xF1, /*destLevel*/ 0x06, /*destArea*/ 0x02, /*destNode*/ 0x68, /*unk6*/ 0x0000
         terrain /*terrainData*/ sl_seg7_area_2_collision
         macro_objects /*objList*/ sl_seg7_area_2_macro_objs
-        set_music /*unk2*/ 0x0004, /*seq*/ 0x000C
+        set_music /*unk2*/ 0x0004, /*seq*/ SEQ_LEVEL_UNDERGROUND
         terrain_type /*terrainType*/ 0x0002
     end_area
 
