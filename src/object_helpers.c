@@ -75,23 +75,13 @@ struct struct8029D924
     /*0x18*/ s32 unk18;
 };
 
-struct struct8029D924_2
+Gfx *Geo18_8029D924(s32 sp40, struct struct8029D924 *sp44, UNUSED s32 sp48)
 {
-    /*0x00*/ s32 unk00;
-    /*0x04*/ s32 unk04;
-};
-
-struct struct8029D924_2 *Geo18_8029D924(s32 sp40, struct struct8029D924 *sp44, UNUSED s32 sp48)
-{
-    struct struct8029D924_2 *sp3C, *sp38;
+    Gfx *sp3C, *sp38;
     struct Object *sp34;
     struct struct8029D924 *sp30;
     UNUSED struct struct8029D924 *sp2C;
     s32 sp28;
-#ifdef VERSION_JP
-    UNUSED struct struct8029D924_2 *sp24; // sp24 is unused in non-JP versions.
-#endif
-    struct struct8029D924_2 *sp20, *sp1C, *sp18;
 
     sp3C = NULL;
 
@@ -107,7 +97,7 @@ struct struct8029D924_2 *Geo18_8029D924(s32 sp40, struct struct8029D924 *sp44, U
         }
 
         sp28 = sp34->oOpacity;
-        sp3C = alloc_display_list(24); // likely sizeof(struct struct8029D924_2) * 3
+        sp3C = alloc_display_list(sizeof(Gfx) * 3);
 
         sp38 = sp3C;
 
@@ -142,18 +132,14 @@ struct struct8029D924_2 *Geo18_8029D924(s32 sp40, struct struct8029D924 *sp44, U
             {
                 if (gDebugInfo[DEBUG_PAGE_ENEMYINFO][3])
                 {
-                    sp24 = sp38++;
-                    sp24->unk00 = 0xB9000002;
-                    sp24->unk04 = 3;
+                    gDPSetAlphaCompare(sp38++, 3);
                 }
             }
             else
             {
                 if (sp34->activeFlags & ACTIVE_FLAG_UNK7)
                 {
-                    sp20 = sp38++;
-                    sp20->unk00 = 0xB9000002;
-                    sp20->unk04 = 3;
+                    gDPSetAlphaCompare(sp38++, 3);
                 }
             }
 #else // gDebugInfo accesses were removed in all non-JP versions.
@@ -168,21 +154,14 @@ struct struct8029D924_2 *Geo18_8029D924(s32 sp40, struct struct8029D924 *sp44, U
             {
                 if (sp34->activeFlags & ACTIVE_FLAG_UNK7)
                 {
-                    sp20 = sp38++;
-                    sp20->unk00 = 0xB9000002;
-                    sp20->unk04 = 3;
+                    gDPSetAlphaCompare(sp38++, 3);
                 }
             }
 #endif
         }
 
-        sp1C = sp38++;
-        sp1C->unk00 = 0xfb000000;
-        sp1C->unk04 = (sp28 & 0xFF) | ~0xFF;
-
-        sp18 = sp38;
-        sp18->unk00 = 0xb8000000;
-        sp18->unk04 = 0;
+        gDPSetEnvColor(sp38++, 0xFF, 0xFF, 0xFF, sp28);
+        gSPEndDisplayList(sp38);
     }
 
     return sp3C;

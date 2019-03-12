@@ -1400,8 +1400,7 @@ Gfx* Geo18_802B7D44(s32 a0,struct GraphNode* a1,UNUSED s32 a2)
     Gfx* sp28;
     struct Object* sp24;
     struct GraphNode* sp20;
-    Gfx* sp1C;
-    Gfx* sp18;
+
     if(a0 == 1)
     {
         sp24 = (struct Object*)D_8032CFA0;
@@ -1413,15 +1412,12 @@ Gfx* Geo18_802B7D44(s32 a0,struct GraphNode* a1,UNUSED s32 a2)
         else
             sp20->flags = (sp20->flags & 0xFF) | (0x100 | 0x400);
         sp28 = sp2C = alloc_display_list(16);
+
         if(sp24->oUnk1B2 != 0)
         {
-            sp1C = sp28++;
-            sp1C->words.w0 = 0xb6000000;
-            sp1C->words.w1 = 0x20000;
+            gSPClearGeometryMode(sp28++, G_LIGHTING);
         }
-        sp18 = sp28;
-        sp18->words.w0 = 0xb8000000;
-        sp18->words.w1 = 0;
+        gSPEndDisplayList(sp28);
     }
     return sp2C;
 }

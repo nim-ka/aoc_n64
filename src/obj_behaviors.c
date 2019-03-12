@@ -218,13 +218,11 @@ void func_802E2F40(void)
 struct Struct802E2F58 *func_802E2F58(s32 arg0, struct Object *arg1, UNUSED s32 arg2)
 {
     struct Struct802E2F58 *sp34;
-    s32 (*sp30)[2];
+    Gfx *sp30;
     struct Object *sp2c;
     struct Object *sp28;
     UNUSED struct Object *sp24;
     UNUSED s32 sp20;
-    s32 (*sp1c)[2];
-    s32 (*sp18)[2];
     
     sp34 = NULL;
 
@@ -236,14 +234,12 @@ struct Struct802E2F58 *func_802E2F58(s32 arg0, struct Object *arg1, UNUSED s32 a
         if (D_8032CFA4 != NULL) sp2c = (struct Object*)D_8032CFA4->unk1C;
         
         sp34 = (struct Struct802E2F58 *)alloc_display_list(0x18);
-        sp30 = (s32 (*)[2])sp34;
+        sp30 = (Gfx*)sp34;
         sp28->header.gfx.node.flags = (sp28->header.gfx.node.flags & 0xFF) | 0x500; //sets bits 8, 10 and zeros upper byte
-        sp1c = sp30++;
-        (*sp1c)[0] = 0xFB000000;
-        (*sp1c)[1] = (s32)(sp2c->oOpacity & 0xFF) | 0xFFFFFF00;
-        sp18 = sp30;
-        (*sp18)[0] = 0xB8000000;
-        (*sp18)[1] = 0;    
+        
+        gDPSetEnvColor(sp30++, 0xFF, 0xFF, 0xFF, sp2c->oOpacity);
+
+        gSPEndDisplayList(sp30);
     }
     
     return sp34;

@@ -2467,12 +2467,8 @@ void func_801A3AF0(f32 l, f32 r, f32 b, f32 t, f32 n, f32 f)
     uintptr_t orthoMtx; // 3c
     uintptr_t rotMtx;   // 38
 
-    {
-        // G_RDPHALF_1
-        Gfx *_g = next_gfx();
-        _g->words.w0 = 0xb4000000;
-        _g->words.w1 = 0xffff;
-    }
+    // Should produce G_RDPHALF_1 in Fast3D
+    gSPPerspNormalize(next_gfx(), 0x0000FFFF);
 
     guOrtho(&DL_CURRENT_MTX(sCurrentGdDl), l, r, b, t, n, f, 1.0f);
     orthoMtx = GD_LOWER_29(&DL_CURRENT_MTX(sCurrentGdDl));
@@ -2500,12 +2496,9 @@ void func_801A3C8C(f32 fovy, f32 aspect, f32 near, f32 far)
 
     D_801B520C += 0.1; //? 1.0f
     guPerspective(&DL_CURRENT_MTX(sCurrentGdDl), &perspNorm, fovy, aspect, near, far, 1.0f);
-    {
-        // G_RDPHALF_1
-        Gfx *_g = next_gfx();
-        _g->words.w0 = 0xb4000000;
-        _g->words.w1 = perspNorm;
-    }
+
+    gSPPerspNormalize(next_gfx(), perspNorm);
+
     perspecMtx = GD_LOWER_29(&DL_CURRENT_MTX(sCurrentGdDl));
     gSPMatrix(next_gfx(), perspecMtx, G_MTX_PROJECTION | G_MTX_LOAD | G_MTX_NOPUSH);
     next_mtx();

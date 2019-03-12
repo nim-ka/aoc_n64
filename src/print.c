@@ -318,16 +318,8 @@ void func_802D61A8(void)
         return;
     }
     guOrtho(mtx, 0.0f, 320.0f, 0.0f, 240.0f, -10.0f, 10.0f, 1.0f);
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0xB4000000;
-        g->words.w1 = 0xFFFF;
-    }
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0x01030040;
-        g->words.w1 = VIRTUAL_TO_PHYSICAL(mtx);
-    }
+    gSPPerspNormalize((Gfx *)(gDisplayListHead++), 0x0000FFFF);
+    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(mtx), G_MTX_PROJECTION | G_MTX_LOAD);
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200EC60);
 
     for (i = 0; i < sTextLabelsCount; i++)

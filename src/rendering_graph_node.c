@@ -215,11 +215,9 @@ void func_8027B9A8(struct GraphNode114 *a) // 114
     if (a->fnNode.func != NULL)
         a->fnNode.func(1, &a->fnNode.node, D_8033A778[D_8033A770]);
     mtxf_rotate_xy(sp24, a->unk3A);
-    {
-        Gfx *g = gDisplayListHead++;
-        g->words.w0 = 0x01010040;
-        g->words.w1 = VIRTUAL_TO_PHYSICAL(sp24);
-    }
+
+    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(sp24), G_MTX_PROJECTION);
+
     func_80378F84(sp28, a->unk1C, a->unk28, a->unk38);
     mtxf_mul(D_8033A778[D_8033A770 + 1], sp28, D_8033A778[D_8033A770]);
     D_8033A770++;

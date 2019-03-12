@@ -186,12 +186,8 @@ void dl_add_new_ortho_matrix(void)
 
     guOrtho(matrix, 0.0f, 320.0f, 0.0f, 240.0f, -10.0f, 10.0f, 1.0f); 
 
-    // G_RDPHALF_1
-    {
-        Gfx *_g = (Gfx *)(gDisplayListHead++);
-        _g->words.w0 = 0xB4000000;
-        _g->words.w1 = 0x0000FFFF;
-    }
+    // Should produce G_RDPHALF_1 in Fast3D
+    gSPPerspNormalize((Gfx *)(gDisplayListHead++), 0x0000FFFF);
 
     gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(matrix), G_MTX_PROJECTION)
 }
