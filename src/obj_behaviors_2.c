@@ -2606,7 +2606,7 @@ void BehBookSwitchLoop(void)
                             sp34 = 0;
                         }
 
-                        sp38 = func_8029E230(
+                        sp38 = spawn_object_abs_with_rot(
                             o,
                             0,
                             0x59,

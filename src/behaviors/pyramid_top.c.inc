@@ -1,10 +1,10 @@
 // pyramid_top.c.inc
 
 void BehPyramidTopInit(void) {
-    func_8029E230(o, 0, 0, beh_collision_box_subbehavior, 1789, 1024, 764, 0, 0, 0);
-    func_8029E230(o, 0, 0, beh_collision_box_subbehavior, 1789, 896, -2579, 0, 0, 0);
-    func_8029E230(o, 0, 0, beh_collision_box_subbehavior, -5883, 1024, -2579, 0, 0, 0);
-    func_8029E230(o, 0, 0, beh_collision_box_subbehavior, -5883, 1024, 764, 0, 0, 0);
+    spawn_object_abs_with_rot(o, 0, 0, beh_collision_box_subbehavior, 1789, 1024, 764, 0, 0, 0);
+    spawn_object_abs_with_rot(o, 0, 0, beh_collision_box_subbehavior, 1789, 896, -2579, 0, 0, 0);
+    spawn_object_abs_with_rot(o, 0, 0, beh_collision_box_subbehavior, -5883, 1024, -2579, 0, 0, 0);
+    spawn_object_abs_with_rot(o, 0, 0, beh_collision_box_subbehavior, -5883, 1024, 764, 0, 0, 0);
 }
 
 void func_802EF238(void) {

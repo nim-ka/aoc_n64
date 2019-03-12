@@ -60,7 +60,7 @@ void Show100CoinStar(u8 stars)
     if (stars & (1 << 6))
     {
         // If the 100 coin star has been collected, create a new star selector next to the coin score.
-        sStarSelectIcons[6] = func_8029E230(gCurrentObject, 0, 122, beh_star_in_act_selector, 370, 24, -300, 0, 0, 0);
+        sStarSelectIcons[6] = spawn_object_abs_with_rot(gCurrentObject, 0, 122, beh_star_in_act_selector, 370, 24, -300, 0, 0, 0);
         sStarSelectIcons[6]->oStarSelectorSize = 0.8;
         sStarSelectIcons[6]->oStarSelectorType = STAR_SELECTOR_100_COINS;
     }
@@ -107,7 +107,7 @@ void BehActSelectorInit(void)
 
     for (i = 0; i < sVisibleStars; i++) // Spawn star selector objects
     {
-        sStarSelectIcons[i] = func_8029E230(gCurrentObject, 0, selectorModelIDs[i], beh_star_in_act_selector, 75 + sVisibleStars * -75 + i * 152, 248, -300, 0, 0, 0);
+        sStarSelectIcons[i] = spawn_object_abs_with_rot(gCurrentObject, 0, selectorModelIDs[i], beh_star_in_act_selector, 75 + sVisibleStars * -75 + i * 152, 248, -300, 0, 0, 0);
         sStarSelectIcons[i]->oStarSelectorSize = 1.0f;
     }
 

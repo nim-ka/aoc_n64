@@ -100,7 +100,7 @@ void BehStarSpawnLoop(void) {
 }
 
 struct Object *func_802F1A50(struct Object *sp30, f32 sp34, f32 sp38, f32 sp3C) {
-    sp30 = func_8029E230(o, 0, 122, beh_star_spawn_coordinates, o->oPosX, o->oPosY, o->oPosZ, 0, 0, 0);
+    sp30 = spawn_object_abs_with_rot(o, 0, 122, beh_star_spawn_coordinates, o->oPosX, o->oPosY, o->oPosZ, 0, 0, 0);
     sp30->oBehParams = o->oBehParams;
     sp30->oHomeX = sp34;
     sp30->oHomeY = sp38;
@@ -138,7 +138,7 @@ void BehHiddenRedCoinStarInit(void) {
 
     sp36 = count_objects_with_behavior(beh_red_coin);
     if (sp36 == 0) {
-        sp30 = func_8029E230(o, 0, 122, beh_star, o->oPosX, o->oPosY, o->oPosZ, 0, 0, 0);
+        sp30 = spawn_object_abs_with_rot(o, 0, 122, beh_star, o->oPosX, o->oPosY, o->oPosZ, 0, 0, 0);
         sp30->oBehParams = o->oBehParams;
         o->activeFlags = 0;
     }

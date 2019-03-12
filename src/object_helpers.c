@@ -558,23 +558,32 @@ void set_object_angle(struct Object *a0, s16 pitch, s16 yaw, s16 roll)
     a0->oMoveAngleRoll = roll;
 }
 
-struct Object *func_8029E230(struct Object *sp20, s16 sp26, u32 sp28, void *sp2C, s16 sp32, s16 sp36, s16 sp3A, s16 sp3E, s16 sp42, s16 sp46)
+/*
+ * Spawns an object at an absolute location with a specified angle.
+ */
+struct Object *spawn_object_abs_with_rot(struct Object *parent, s16 uselessArg, u32 model, void *behavior, s16 x, s16 y, s16 z, s16 rx, s16 ry, s16 rz)
 {
-    struct Object *sp1C = spawn_object_at_origin(sp20, sp26, sp28, sp2C);
-    set_object_pos(sp1C, sp32, sp36, sp3A);
-    set_object_angle(sp1C, sp3E, sp42, sp46);
+    // 'uselessArg' is unused in the function spawn_object_at_origin()
+    struct Object *newObj = spawn_object_at_origin(parent, uselessArg, model, behavior);
+    set_object_pos(newObj, x, y, z);
+    set_object_angle(newObj, rx, ry, rz);
 
-    return sp1C;
+    return newObj;
 }
 
-struct Object *func_8029E2A8(struct Object *sp20, u32 sp24, void *sp28, s16 sp2E, s16 sp32, s16 sp36, s16 sp3A, s16 sp3E, UNUSED s16 sp42)
+/*
+ * Spawns an object relative to the parent with a specified angle... is what it is supposed to do.
+ * The rz argument is never used, and the z offset is used for z-rotation instead. This is most likely
+ * a copy-paste typo by one of the programmers.
+ */
+struct Object *spawn_object_rel_with_rot(struct Object *parent, u32 model, void *behavior, s16 xOff, s16 yOff, s16 zOff, s16 rx, s16 ry, UNUSED s16 rz)
 {
-    struct Object *sp1C = spawn_object_at_origin(sp20, 0, sp24, sp28);
-    sp1C->oFlags |= OBJ_FLAG_TRANSFORM_RELATIVE_TO_PARENT;
-    set_object_parent_relative_pos(sp1C, sp2E, sp32, sp36);
-    set_object_angle(sp1C, sp3A, sp3E, sp36);
+    struct Object *newObj = spawn_object_at_origin(parent, 0, model, behavior);
+    newObj->oFlags |= OBJ_FLAG_TRANSFORM_RELATIVE_TO_PARENT;
+    set_object_parent_relative_pos(newObj, xOff, yOff, zOff);
+    set_object_angle(newObj, rx, ry, zOff); // Nice typo you got there Nintendo.
 
-    return sp1C;
+    return newObj;
 }
 
 struct Object *Unknown8029E330(struct Object *sp20, s32 sp24, void *sp28)

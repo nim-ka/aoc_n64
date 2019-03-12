@@ -19,7 +19,7 @@ void BehSnowmansBottomInit(void) {
     if (sp34 != NULL) {
         o->parentObj = sp34;
     }
-    func_8029E230(o, 0, 0, beh_snowmans_body_checkpoint, -402, 461, -2898, 0, 0, 0);
+    spawn_object_abs_with_rot(o, 0, 0, beh_snowmans_body_checkpoint, -402, 461, -2898, 0, 0, 0);
 }
 
 void func_802EFB2C(void) {
@@ -167,7 +167,7 @@ void BehSnowmansHeadInit(void) {
 
     if ((sp37 & (1 << sp36))
         && gCurrActNum != sp36 + 1) {
-        func_8029E230(o, 0, 210, beh_big_snowman_whole, -4230, -1344, 1813, 0, 0, 0);
+        spawn_object_abs_with_rot(o, 0, 210, beh_big_snowman_whole, -4230, -1344, 1813, 0, 0, 0);
         o->oPosX = -4230.0f;
         o->oPosY = -994.0f;
         o->oPosZ = 1813.0f;

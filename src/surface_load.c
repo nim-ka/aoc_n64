@@ -450,7 +450,7 @@ void load_area_terrain(s16 index, s16 *data, s8 *surfaceRooms, s16 *arg3)
         }
         else if (terrainLoadType == TERRAIN_LOAD_OBJECTS)
         {
-            func_802E19DC(index, &data);
+            spawn_special_objects(index, &data);
         }
         else if (terrainLoadType == TERRAIN_LOAD_WATER)
         {
@@ -473,10 +473,10 @@ void load_area_terrain(s16 index, s16 *data, s8 *surfaceRooms, s16 *arg3)
 
     if (arg3 != NULL && *arg3 != -1)
     {
-        if (0 <= *arg3 && *arg3 < 30)
-            func_802E1780(index, arg3);
+        if (0 <= *arg3 && *arg3 < 30) // If the first macro object presetID is within the range [0, 29]
+            spawn_macro_objects_hardcoded(index, arg3);
         else
-            func_802E1504(index, arg3);
+            spawn_macro_objects(index, arg3);
     }
 
     gNumStaticSurfaceNodes = gSurfaceNodesAllocated;

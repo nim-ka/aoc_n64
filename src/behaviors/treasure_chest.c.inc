@@ -89,7 +89,7 @@ void BehTreasureChestBottomLoop(void) {
 
 void func_802F6E8C(s8 sp3B, s32 sp3C, s32 sp40, s32 sp44, s16 sp4A) {
     struct Object *sp34;
-    sp34 = func_8029E230(o, 0, 101, beh_treasure_chest_bottom, sp3C, sp40, sp44, 0, sp4A, 0);
+    sp34 = spawn_object_abs_with_rot(o, 0, 101, beh_treasure_chest_bottom, sp3C, sp40, sp44, 0, sp4A, 0);
     sp34->oBehParams2ndByte = sp3B;
 }
 

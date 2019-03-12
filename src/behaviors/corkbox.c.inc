@@ -59,7 +59,7 @@ void BehBobombCorkBoxRespawnerLoop(void)
 
 void RespawnBobombOrCorkbox(s32 arg0, void *behToSpawn, s32 minSpawnDist)
 {
-    struct Object *respawner = func_8029E230(o, 0, 0, beh_bobomb_cork_box_respawner, o->oHomeX, o->oHomeY, o->oHomeZ, 0, 0, 0);
+    struct Object *respawner = spawn_object_abs_with_rot(o, 0, 0, beh_bobomb_cork_box_respawner, o->oHomeX, o->oHomeY, o->oHomeZ, 0, 0, 0);
     respawner->oBehParams = o->oBehParams;
     respawner->oBreakableBoxBackupUnkF4 = arg0;
     respawner->oBBCBRespawnerMinSpawnDist = minSpawnDist;
