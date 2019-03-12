@@ -320,7 +320,7 @@ $(BUILD_DIR)/%.o: %.s $(MIO0_FILES)
 	$(AS) $(ASFLAGS) -MD $(BUILD_DIR)/$*.d -o $@ $<
 
 $(BUILD_DIR)/$(LD_SCRIPT): $(LD_SCRIPT)
-	$(CPP) $(VERSION_CFLAGS) -DBUILD_DIR=$(BUILD_DIR) $< > $@
+	$(CPP) $(VERSION_CFLAGS) -I include/ -DBUILD_DIR=$(BUILD_DIR) -o $@ $<
 
 $(BUILD_DIR)/libultra.a: $(ULTRA_O_FILES)
 	$(AR) rcs -o $@ $(ULTRA_O_FILES)

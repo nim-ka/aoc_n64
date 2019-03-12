@@ -3,11 +3,9 @@
 
 OUTPUT_ARCH (mips)
 
-__segPoolStart = 0x8005C000; /* the segment pool starts here. */
-__segCodeSection = 0x8016F000;
-__segPoolEnd = 0x801C1000;
-__rdramStart = 0x8038F800;
-__expansionRamStart = 0x80400000;
+/* include/segments.h defines SEG_POOL_START, SEG_POOL_END, SEG_STACK,
+ * SEG_GODDARD, SEG_MAIN, SEG_ENGINE, SEG_FRAMEBUFFERS */
+#include "segments.h"
 
 #define BEGIN_SEG(name, addr) \
     _##name##SegmentStart = ADDR(.name); \
@@ -71,7 +69,7 @@ SECTIONS
     * files themselves to be aligned to 32-byte boundaries. But in the binary,
     * they are actually aligned only to 16 bytes! We force this to happen using
     * a SUBALIGN directive. */
-   BEGIN_SEG(main, 0x80246000) SUBALIGN(16)
+   BEGIN_SEG(main, SEG_MAIN) SUBALIGN(16)
    {
       BUILD_DIR/asm/entry.o(.text);
       BUILD_DIR/src/main.o(.text);
@@ -408,7 +406,9 @@ SECTIONS
    }
    END_NOLOAD(main)
 
-   BEGIN_SEG(engine, 0x80378800)
+   ASSERT((. <= SEG_ENGINE), "Error: main segment extended into engine.")
+
+   BEGIN_SEG(engine, SEG_ENGINE)
    {
       BUILD_DIR/src/math_util.o(.text);
       BUILD_DIR/src/graph_node.o(.text);
@@ -441,21 +441,18 @@ SECTIONS
    }
    END_NOLOAD(engine)
 
-   /*
-    RDRAM begins at 0x8038F800 and ends where
-    expansion RAM begins at 0x80400000;
-   */
-   . = __rdramStart;
+   ASSERT((. <= SEG_FRAMEBUFFERS), "Error: engine segment extended into framebuffers.")
 
-   BEGIN_NOLOAD(rdram)
+   . = SEG_FRAMEBUFFERS;
+   BEGIN_NOLOAD(framebuffers)
    {
-      BUILD_DIR/data/rdram.o(.bss*);
+      BUILD_DIR/data/framebuffers.o(.bss*);
    }
-   END_NOLOAD(rdram)
-   __rdramEnd = .;
-   PROVIDE(rdramEnd = .);
+   END_NOLOAD(framebuffers)
 
-   ASSERT((rdramEnd <= 0x80400000), "Error: RDRAM expanded into Expansion RAM, despite Expansion RAM not being defined.")
+   __expansionRamStart = 0x80400000;
+   ASSERT((. <= __expansionRamStart), "Error: RDRAM expanded into Expansion RAM, despite Expansion RAM not being defined.")
+
 
    BEGIN_SEG(entry, 0x10000000)
    {
@@ -500,7 +497,7 @@ SECTIONS
    END_SEG(behavior)
 
    /* 0x8016F000 21D7D0-255EC0 [386F0] */
-   BEGIN_SEG(goddard, __segCodeSection)
+   BEGIN_SEG(goddard, SEG_GODDARD)
    {
       BUILD_DIR/src/level_select_menu.o(.text);
       BUILD_DIR/src/intro_geo.o(.text);
@@ -580,12 +577,16 @@ SECTIONS
    }
    END_NOLOAD(goddard)
 
-   . = 0x801C1000; /* stack begin addr */
+   ASSERT((. <= SEG_STACK), "Error: goddard segment extended into stack.")
+
+   . = SEG_STACK;
    BEGIN_NOLOAD(stack)
    {
       BUILD_DIR/data/stack.o(.stack);
    }
    END_NOLOAD(stack)
+
+   ASSERT((. <= SEG_MAIN), "Error: stack segment extended into main.")
 
    /* 0x268020 0x268020-0 [0] */
    BEGIN_SEG(intro, 0x14000000)

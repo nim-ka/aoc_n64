@@ -7,6 +7,7 @@
 #include "sound_init.h"
 #include "profiler.h"
 #include "game.h"
+#include "segments.h"
 #include "main.h"
 
 // Message IDs
@@ -125,18 +126,6 @@ static void setup_mesg_queues(void)
     osSetEventMesg(OS_EVENT_PRENMI, &gIntrMesgQueue, (OSMesg)MESG_NMI_REQUEST);
 }
 
-// wtf? Nintendo defined these via the assembler and NOT the linker
-// script. Most likely it is via an include and not a symbol in the
-// linker script. Using the linker symbol(s) causes the asm to not
-// match due to lw over an or to load the addresses.
-#define SEG_POOL_START 0x8005C000
-#define SEG_POOL_END   0x801C1000
-
-extern char __segPoolStart[];
-extern char __segPoolEnd[];
-
-// if one were sane, you'd use the linker symbols for these defs, not
-// header defines. But Nintendo was not sane when writing this.
 void AllocPool(void)
 {
     void *start = (void *)SEG_POOL_START;

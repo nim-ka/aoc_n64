@@ -7,6 +7,7 @@
 #include "decompress.h"
 #include "game.h"
 #include "main.h"
+#include "segments.h"
 #include "memory.h"
 
 
@@ -378,9 +379,8 @@ void *func_80278304(u32 segment, u8 *srcStart, u8 *srcEnd)
 
 void load_engine_code_segment(void)
 {
-    // TODO: Figure out best way to handle these (can't be replaced with symbols)
-    void *startAddr = (void *)0x80378800;
-    u32 totalSize = (u8 *)0x8038F800 - (u8 *)0x80378800;
+    void *startAddr = (void *)SEG_ENGINE;
+    u32 totalSize = SEG_FRAMEBUFFERS - SEG_ENGINE;
     UNUSED u32 alignedSize = ALIGN16(_engineSegmentRomEnd - _engineSegmentRomStart);
 
     bzero(startAddr, totalSize);
