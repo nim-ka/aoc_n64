@@ -97,7 +97,9 @@ extern u32 D_80226D68;
 extern volatile s32 D_80226D80;
 extern s32 D_80226D88;
 extern s32 D_80226D8C;
-extern struct SPTask *D_80226D9C;
+// volatile according to func_8031D924, but not to InitAudioSystem.
+// Maybe incorrectly extern'd in dma.c?
+extern struct SPTask *volatile D_80226D9C;
 extern struct SPTask D_80226DA0[2];
 extern u16 *D_80226E40[3];
 extern s16 D_80226E4C[3];
