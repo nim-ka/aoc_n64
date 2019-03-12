@@ -3,8 +3,7 @@ pipeline {
   stages {
     stage('Build Tools') {
       steps {
-        sh '''cd tools/
-make'''
+        sh 'make -C tools/'
       }
     }
     stage('Build J Source') {
@@ -15,6 +14,16 @@ make'''
     stage('Build U Source') {
       steps {
         sh 'make VERSION=us'
+      }
+    }
+    stage('Build J Source, NON_MATCHING') {
+      steps {
+        sh 'make VERSION=jp NON_MATCHING=1'
+      }
+    }
+    stage('Build U Source, NON_MATCHING') {
+      steps {
+        sh 'make VERSION=us NON_MATCHING=1'
       }
     }
   }

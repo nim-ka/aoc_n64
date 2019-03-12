@@ -9,6 +9,8 @@ default: all
 VERSION ?= jp
 # If COMPARE is 1, check the output sha1sum when building 'all'
 COMPARE ?= 1
+# If NON_MATCHING is 1, define the NON_MATCHING macro when building
+NON_MATCHING ?= 0
 
 ifeq ($(VERSION),jp)
   VERSION_CFLAGS := -DVERSION_JP=1
@@ -22,6 +24,10 @@ ifeq ($(VERSION),us)
 else
   $(error unknown version "$(VERSION)")
 endif
+endif
+
+ifeq ($(NON_MATCHING),1)
+  VERSION_CFLAGS := $(VERSION_CFLAGS) -DNON_MATCHING=1
 endif
 
 ################ Target Executable and Sources ###############
@@ -75,6 +81,11 @@ ULTRA_O_FILES := $(foreach file,$(ULTRA_S_FILES),$(BUILD_DIR)/$(file:.s=.o)) \
 
 # Automatic dependency files
 DEP_FILES := $(O_FILES:.o=.d) $(ULTRA_O_FILES:.o=.d)
+
+# Files with NON_MATCHING ifdefs
+NON_MATCHING_C_FILES != grep -rl 'ifdef NON_MATCHING' $(wildcard src/audio/*.c)
+NON_MATCHING_O_FILES = $(foreach file,$(NON_MATCHING_C_FILES),$(BUILD_DIR)/$(file:.c=.o))
+NON_MATCHING_DEP = $(BUILD_DIR)/src/audio/non_matching_dep
 
 # Segment elf files
 SEG_FILES := $(foreach file,$(SEG_S_FILES),$(BUILD_DIR)/$(file:.s=.elf)) $(ACTOR_ELF_FILES) $(LEVEL_ELF_FILES)
@@ -287,6 +298,12 @@ $(BUILD_DIR)/lib/src/ldiv.o: OPT_FLAGS := -O2
 $(BUILD_DIR)/lib/src/string.o: OPT_FLAGS := -O2
 $(BUILD_DIR)/lib/src/gu%.o: OPT_FLAGS := -O3
 $(BUILD_DIR)/lib/src/al%.o: OPT_FLAGS := -O3
+
+# Rebuild files with '#ifdef NON_MATCHING' when that macro changes.
+$(NON_MATCHING_O_FILES): $(NON_MATCHING_DEP).$(NON_MATCHING)
+$(NON_MATCHING_DEP).$(NON_MATCHING):
+	@rm -f $(NON_MATCHING_DEP).*
+	touch $@
 
 $(BUILD_DIR)/lib/src/math/%.o: lib/src/math/%.c
 	@$(CC_CHECK) -MMD -MP -MT $@ -MF $(BUILD_DIR)/lib/src/math/$*.d $<
