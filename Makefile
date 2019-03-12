@@ -28,6 +28,7 @@ endif
 
 ifeq ($(NON_MATCHING),1)
   VERSION_CFLAGS := $(VERSION_CFLAGS) -DNON_MATCHING=1
+  COMPARE := 0
 endif
 
 ################ Target Executable and Sources ###############
