@@ -572,47 +572,48 @@ struct Object *Unknown8029E330(struct Object *sp20, s32 sp24, void *sp28)
     return sp1C;
 }
 
-struct Object *func_8029E388(struct Object *sp20, struct Struct8029E388 *sp24)
+struct Object *spawn_water_splash(struct Object *parent, struct WaterSplashParams *params)
 {
-    f32 sp1C;
-    struct Object *sp18 = spawn_object(sp20, sp24->unk02, sp24->unk04);
+    f32 randomScale;
+    struct Object *newObj = spawn_object(parent, params->model, params->behavior);
 
-    if (sp24->unk00 & 0x02)
+    if (params->flags & WATER_SPLASH_FLAG_RAND_ANGLE)
     {
-        sp18->oMoveAngleYaw = RandomU16();
+        newObj->oMoveAngleYaw = RandomU16();
     }
 
-    if (sp24->unk00 & 0x40)
+    if (params->flags & WATER_SPLASH_FLAG_RAND_ANGLE_INCR_PLUS_8000)
     {
-        sp18->oMoveAngleYaw = (s16)(sp18->oMoveAngleYaw + 0x8000) + (s16)random_f32_around_zero(sp24->unk08);
+        newObj->oMoveAngleYaw = (s16)(newObj->oMoveAngleYaw + 0x8000) + (s16)random_f32_around_zero(params->moveAngleRange);
     }
 
-    if (sp24->unk00 & 0x80)
+    if (params->flags & WATER_SPLASH_FLAG_RAND_ANGLE_INCR)
     {
-        sp18->oMoveAngleYaw = (s16)sp18->oMoveAngleYaw + (s16)random_f32_around_zero(sp24->unk08);
+        newObj->oMoveAngleYaw = (s16)newObj->oMoveAngleYaw + (s16)random_f32_around_zero(params->moveAngleRange);
     }
 
-    if (sp24->unk00 & 0x20)
+    if (params->flags & WATER_SPLASH_FLAG_SET_Y_TO_WATER_LEVEL)
     {
-        sp18->oPosY = find_water_level(sp18->oPosX, sp18->oPosZ);
+        newObj->oPosY = find_water_level(newObj->oPosX, newObj->oPosZ);
     }
 
-    if (sp24->unk00 & 0x04)
+    if (params->flags & WATER_SPLASH_FLAG_RAND_OFFSET_XZ)
     {
-        translate_object_xz_random(sp18, sp24->unk0A);
+        translate_object_xz_random(newObj, params->moveRange);
     }
 
-    if (sp24->unk00 & 0x08)
+    if (params->flags & WATER_SPLASH_FLAG_RAND_OFFSET_XYZ)
     {
-        translate_object_xyz_random(sp18, sp24->unk0A);
+        translate_object_xyz_random(newObj, params->moveRange);
     }
 
-    sp18->oForwardVel = RandomFloat() * sp24->unk10 + sp24->unk0C;
-    sp18->oVelY = RandomFloat() * sp24->unk18 + sp24->unk14;
-    sp1C = RandomFloat() * sp24->unk20 + sp24->unk1C;
-    scale_object(sp18, sp1C);
+    newObj->oForwardVel = RandomFloat() * params->randForwardVelScale + params->randForwardVelOffset;
+    newObj->oVelY = RandomFloat() * params->randYVelScale + params->randYVelOffset;
 
-    return sp18;
+    randomScale = RandomFloat() * params->randSizeScale + params->randSizeOffset;
+    scale_object(newObj, randomScale);
+
+    return newObj;
 }
 
 struct Object *spawn_object_at_origin(
@@ -743,9 +744,9 @@ void obj_move_using_vel(void)
     o->oPosZ += o->oVelZ;
 }
 
-void func_8029E94C(struct Object *a0, struct Object *a1)
+void copy_object_graph_y_offset(struct Object *dst, struct Object *src)
 {
-    a0->oGraphYOffset = a1->oGraphYOffset;
+    dst->oGraphYOffset = src->oGraphYOffset;
 }
 
 void copy_object_pos_and_angle(struct Object *dst, struct Object *src)
@@ -968,7 +969,7 @@ void obj_unused_init_on_floor(void)
     }
 }
 
-void func_8029F170(struct Object *a0)
+void obj_set_facing_to_move_angles(struct Object *a0)
 {
     a0->oFaceAnglePitch = a0->oMoveAnglePitch;
     a0->oFaceAngleYaw = a0->oMoveAngleYaw;
@@ -1186,19 +1187,19 @@ s32 func_8029F788(void)
     u32 spC = (s32)o->header.gfx.unk38.curAnim->flags;
     s32 sp8 = o->header.gfx.unk38.animFrame;
     s32 sp4 = o->header.gfx.unk38.curAnim->unk08 - 2;
-    s32 sp0 = 0;
+    s32 sp0 = FALSE;
 
     if (spC & 0x01)
     {
         if (sp4 + 1 == sp8)
         {
-            sp0 = 1;
+            sp0 = TRUE;
         }
     }
 
     if (sp8 == sp4)
     {
-        sp0 = 1;
+        sp0 = TRUE;
     }
 
     return sp0;
@@ -1211,11 +1212,11 @@ s32 func_8029F828(void)
 
     if (sp4 == sp0)
     {
-        return 1;
+        return TRUE;
     }
     else
     {
-        return 0;
+        return FALSE;
     }
 }
 
@@ -1233,17 +1234,17 @@ s32 obj_check_anim_frame(s32 frame)
     }
 }
 
-s32 func_8029F8D4(s32 a0, s32 a1)
+s32 obj_check_anim_frame_in_range(s32 startFrame, s32 rangeLength)
 {
-    s32 sp4 = o->header.gfx.unk38.animFrame;
+    s32 animFrame = o->header.gfx.unk38.animFrame;
 
-    if (sp4 >= a0 && sp4 < a0 + a1)
+    if (animFrame >= startFrame && animFrame < startFrame + rangeLength)
     {
-        return 1;
+        return TRUE;
     }
     else
     {
-        return 0;
+        return FALSE;
     }
 }
 
@@ -1255,13 +1256,13 @@ s32 Unknown8029F930(s16 *a0)
     {
         if (*a0 == sp6)
         {
-            return 1;
+            return TRUE;
         }
 
         a0++;
     }
 
-    return 0;
+    return FALSE;
 }
 
 s32 mario_is_in_air_action(void)
@@ -1396,7 +1397,7 @@ void mark_object_for_deletion(struct Object *obj)
     obj->activeFlags = ACTIVE_FLAGS_INACTIVE;
 }
 
-void func_8029FE00(void)
+void obj_disable(void)
 {
     obj_disable_rendering();
     obj_hide();
@@ -1956,9 +1957,9 @@ void Unknown802A11E4(UNUSED s32 sp0, UNUSED s32 sp4, f32 sp8)
     }
 }
 
-void func_802A1230(struct Object *a0)
+void obj_set_billboard(struct Object *a0)
 {
-    a0->header.gfx.node.flags |= 0x04;
+    a0->header.gfx.node.flags |= GRAPH_RENDER_BILLBOARD;
 }
 
 void obj_set_hitbox_radius_and_height(f32 radius, f32 height)
@@ -1967,10 +1968,10 @@ void obj_set_hitbox_radius_and_height(f32 radius, f32 height)
     o->hitboxHeight = height;
 }
 
-void func_802A1274(f32 f12, f32 f14)
+void obj_set_hurtbox_radius_and_height(f32 radius, f32 height)
 {
-    o->hurtboxRadius = f12;
-    o->hurtboxHeight = f14;
+    o->hurtboxRadius = radius;
+    o->hurtboxHeight = height;
 }
 
 static void spawn_object_loot_coins(

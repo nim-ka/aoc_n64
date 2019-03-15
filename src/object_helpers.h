@@ -14,18 +14,27 @@ struct ChainSegment
     s16 roll;
 };
 
-struct Struct8029E388 {
-    s16 unk00;
-    s16 unk02;
-    void *unk04;
-    s16 unk08;
-    s16 unk0A;
-    f32 unk0C;
-    f32 unk10;
-    f32 unk14;
-    f32 unk18;
-    f32 unk1C;
-    f32 unk20;
+#define WATER_SPLASH_FLAG_RAND_ANGLE                0x02
+#define WATER_SPLASH_FLAG_RAND_OFFSET_XZ            0x04
+#define WATER_SPLASH_FLAG_RAND_OFFSET_XYZ           0x08
+#define WATER_SPLASH_FLAG_SET_Y_TO_WATER_LEVEL      0x20
+#define WATER_SPLASH_FLAG_RAND_ANGLE_INCR_PLUS_8000 0x40
+#define WATER_SPLASH_FLAG_RAND_ANGLE_INCR           0x80
+
+// Call spawn_water_splash with this struct to spawn an object.
+struct WaterSplashParams
+{
+    s16 flags; // spawn flags, see WATER_SPLASH_FLAG_* defines above
+    s16 model;
+    void *behavior;
+    s16 moveAngleRange; // only used for flags 0x40 & 0x80
+    s16 moveRange;      // only used for flags 0x04 & 0x08
+    f32 randForwardVelOffset;
+    f32 randForwardVelScale;
+    f32 randYVelOffset;
+    f32 randYVelScale;
+    f32 randSizeOffset;
+    f32 randSizeScale;
 };
 
 struct struct802A1230 {
@@ -188,7 +197,7 @@ extern void set_object_angle(struct Object*,s16,s16,s16);
 extern struct Object *spawn_object_abs_with_rot(struct Object *, s16, u32, void *, s16, s16, s16, s16, s16, s16);
 extern struct Object *spawn_object_rel_with_rot(struct Object *sp20, u32 sp24, void *sp28, s16 sp2E, s16 sp32, s16 sp36, s16 sp3A, s16 sp3E, s16 sp42);
 // extern ? Unknown8029E330(?);
-extern struct Object *func_8029E388(struct Object *, struct Struct8029E388 *);
+extern struct Object *spawn_water_splash(struct Object *, struct WaterSplashParams *);
 extern struct Object *spawn_object_at_origin(struct Object *, u32, u32, void *);
 extern struct Object *spawn_object(struct Object *, s32, void *);
 extern struct Object* try_to_spawn_object(s16,f32,struct Object*,s32,void*);
@@ -197,7 +206,7 @@ extern struct Object* spawn_object_with_scale(struct Object*,s32,void*,f32);
 extern struct Object* spawn_object_relative(s16, s16, s16, s16, struct Object *, s32, void *);
 extern struct Object* spawn_object_relative_with_scale(s16,s16,s16,s16,f32,struct Object*,s32,void*);
 // extern ? obj_move_using_vel(?);
-extern void func_8029E94C(struct Object*,struct Object*);
+extern void copy_object_graph_y_offset(struct Object*,struct Object*);
 extern void copy_object_pos_and_angle(struct Object *, struct Object *);
 extern void copy_object_pos(struct Object*,struct Object*);
 // extern ? copy_object_angle(?);
@@ -224,7 +233,7 @@ extern void obj_set_pos_relative(struct Object *MarioObj, f32, f32, f32);
 // extern ? obj_set_pos_relative_to_parent(?);
 extern void obj_enable_rendering_2(void);
 // extern ? obj_unused_init_on_floor(?);
-extern void func_8029F170(struct Object *);
+extern void obj_set_facing_to_move_angles(struct Object *);
 u32 get_object_list_from_behavior(u32 *a0);
 extern struct Object *obj_nearest_object_with_behavior(void *);
 f32 obj_dist_to_nearest_object_with_behavior(void*);
@@ -241,7 +250,7 @@ extern void func_8029F728(void);
 extern s32 func_8029F788(void);
 extern s32 func_8029F828(void);
 extern s32 obj_check_anim_frame(s32);
-extern s32 func_8029F8D4(s32, s32);
+extern s32 obj_check_anim_frame_in_range(s32, s32);
 // extern ? Unknown8029F930(?);
 s32 mario_is_in_air_action(void);
 s32 mario_is_dive_sliding(void);
@@ -254,7 +263,7 @@ extern void obj_set_model(s32);
 // extern ? mario_set_flag(?);
 s32 obj_clear_interact_status_flag(s32);
 extern void mark_object_for_deletion(struct Object *);
-void func_8029FE00(void);
+void obj_disable(void);
 extern void obj_become_intangible(void);
 extern void obj_become_tangible(void);
 void make_object_tangible(struct Object*);
@@ -288,9 +297,9 @@ void obj_set_pos_to_home_and_stop(void);
 extern void obj_shake_y(f32);
 void func_802A11B4(struct Object*, s32);
 // extern ? Unknown802A11E4(?);
-void func_802A1230(struct Object *a0);
+void obj_set_billboard(struct Object *a0);
 void obj_set_hitbox_radius_and_height(f32,f32);
-void func_802A1274(f32,f32);
+void obj_set_hurtbox_radius_and_height(f32,f32);
 // extern ? spawn_object_loot_coins(?);
 // extern ? spawn_object_loot_blue_coins(?);
 extern void spawn_object_loot_yellow_coins(struct Object *, s32, f32);

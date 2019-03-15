@@ -36,7 +36,7 @@ void BehWindLoop(void)
             o->oMoveAngleYaw = RandomU16();
             o->oForwardVel = 10.0f;
         }
-        func_802A1230(o);
+        obj_set_billboard(o);
         obj_scale(sp28);
     }
     if(o->oTimer > 8)

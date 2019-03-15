@@ -36,7 +36,7 @@ static void cloud_act_spawn_parts(void)
 
         if (cloudPart != NULL)
         {
-            func_802A1230(cloudPart);
+            obj_set_billboard(cloudPart);
         }
     }
 

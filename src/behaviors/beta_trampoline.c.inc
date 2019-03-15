@@ -5,7 +5,7 @@ void BehBetaTrampolineSpawnLoop(void)
     f32 yScale;
     f32 yDisplacement;
     copy_object_pos_and_angle(o,o->parentObj);
-    func_8029E94C(o,o->parentObj);
+    copy_object_graph_y_offset(o,o->parentObj);
     o->oPosY -= 75.0f;
     if((yDisplacement = o->oPosY - o->oHomeY) >= 0)
         yScale = yDisplacement/10.0 + 1.0;

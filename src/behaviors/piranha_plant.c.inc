@@ -40,7 +40,7 @@ void ActionPiranhaPlant21(void)
     o->oInteractType = 0x8000;
     func_8029ED38(8);
     obj_set_hitbox_radius_and_height(250.0f,200.0f);
-    func_802A1274(150.0f,100.0f);
+    obj_set_hurtbox_radius_and_height(150.0f,100.0f);
 #ifdef VERSION_US
     o->oDamageOrCoinValue = 0;
 #endif
@@ -144,7 +144,7 @@ void ActionPiranhaPlant22(void)
     o->oInteractType = 8;
     func_8029ED38(0);
     obj_set_hitbox_radius_and_height(150.0f,100.0f);
-    func_802A1274(150.0f,100.0f);
+    obj_set_hurtbox_radius_and_height(150.0f,100.0f);
     if(item_in_array(frame,D_8032F998))
         PlaySound2(0x90105081);
     o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, o->oAngleToMario, 0x400);

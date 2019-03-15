@@ -387,7 +387,7 @@ void ActionBoo3(void)
         else
         {
             o->oAction = 4;
-            func_8029FE00();
+            obj_disable();
         }
     }
 }
@@ -526,7 +526,7 @@ void ActionBooGivingStar3(void)
     {
         if(func_802C35C0())
         {
-            func_8029FE00();
+            obj_disable();
             o->oAction = 4;
             set_object_angle(o,0,0,0);
             if(o->oBehParams2ndByte == 0)

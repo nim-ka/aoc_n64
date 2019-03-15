@@ -487,7 +487,7 @@ static s32 func_802F9378(s8 arg0, s8 arg1, u32 sound)
         val04 = 1;
     }
 
-    if (func_8029F8D4(arg0, val04) || func_8029F8D4(arg1, val04))
+    if (obj_check_anim_frame_in_range(arg0, val04) || obj_check_anim_frame_in_range(arg1, val04))
     {
         PlaySound2(sound);
         return TRUE;

@@ -92,7 +92,7 @@ static void triplet_butterfly_act_activate(void)
             spawn_object_relative_with_scale(0, 0, -40, 0, 1.5f, o, 0x96, beh_white_puff_smoke2);
             o->oTripletButterflyModel = sTripletButterflyActivationData[o->oTripletButterflyType].model;
             obj_set_model(o->oTripletButterflyModel);
-            func_802A1230(o);
+            obj_set_billboard(o);
             o->oTripletButterflyScale = 0.0f;
             o->oHomeY = o->oPosY;
         }

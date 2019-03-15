@@ -11,8 +11,8 @@ void func_802C61CC(void)
     }
     else
     {
-        sp28 = func_8029F8D4(0,3);
-        sp28 |= func_8029F8D4(23,3);
+        sp28 = obj_check_anim_frame_in_range(0,3);
+        sp28 |= obj_check_anim_frame_in_range(23,3);
     }
     if(sp28)
         PlaySound2(0x50155081);
@@ -294,10 +294,10 @@ void ActionWhomp9(void)
 }
 
 void (*TableWhompActions[])(void) = {ActionWhomp0,ActionWhomp1,ActionWhomp2,ActionWhomp3,ActionWhomp4,ActionWhomp5,ActionWhomp6,ActionWhomp7,ActionWhomp8,ActionWhomp9};
-struct Struct8029E388 D_8032FDAC = {2 ,164,beh_water_drops,0,0,5.0f,3.0f,30.0f,20.0f,0.5f,1.0f};
-struct Struct8029E388 D_8032FDD0 = {34,164,beh_water_drops,0,0,2.0f,3.0f,20.0f,20.0f,0.5f,1.0f};
-struct Struct8029E388 D_8032FDF4 = {34,185,beh_water_drops,0,0,2.0f,3.0f,20.0f,20.0f,1.0f,0.0f};
-struct Struct8029E388 D_8032FE18 = {98,164,beh_water_drops,0x6000,0,2.0f,8.0f,10.0f,10.0f,0.5f,1.0f};
+struct WaterSplashParams D_8032FDAC = {2 ,164,beh_water_drops,0,0,5.0f,3.0f,30.0f,20.0f,0.5f,1.0f};
+struct WaterSplashParams D_8032FDD0 = {34,164,beh_water_drops,0,0,2.0f,3.0f,20.0f,20.0f,0.5f,1.0f};
+struct WaterSplashParams D_8032FDF4 = {34,185,beh_water_drops,0,0,2.0f,3.0f,20.0f,20.0f,1.0f,0.0f};
+struct WaterSplashParams D_8032FE18 = {98,164,beh_water_drops,0x6000,0,2.0f,8.0f,10.0f,10.0f,0.5f,1.0f};
 struct ObjectHitbox D_8032FE3C = {0x400,0,0,0,0,20,70,20,70};
 struct Struct8032FE4C D_8032FE4C[] = {{60,0,6.0f,1.0f},{30,3,0.0f,1.0f},{30,0,12.0f,2.0f},{30,3,0.0f,1.0f},{30,0,-6.0f,1.0f},{30,3,0.0f,1.0f},{-1,0,0.0f,0.0f}};
 

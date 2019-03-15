@@ -5,7 +5,7 @@ s32 func_802BE2E8(s16 a0,s16 a1,s32 a2)
     f32 sp1C;
     if((sp1C = o->header.gfx.unk38.animAccel/(f32)0x10000) == 0)
         sp1C = 1.0f;
-    if(func_8029F8D4(a0,sp1C) || func_8029F8D4(a1,sp1C))
+    if(obj_check_anim_frame_in_range(a0,sp1C) || obj_check_anim_frame_in_range(a1,sp1C))
     {
         PlaySound2(a2);
         return 1;

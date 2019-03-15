@@ -7,7 +7,7 @@ void BehWaterSplashLoop(void)
         o->oPosY = find_water_level(o->oPosX,o->oPosZ);
     if(o->oPosY > -10000.0f)
         for(i=0;i<3;i++)
-            func_8029E388(o,&D_8032FDAC);
+            spawn_water_splash(o,&D_8032FDAC);
 }
 
 void BehWaterDropsLoop(void)
@@ -66,7 +66,7 @@ void BehSurfaceWaveShrinkingInit(void)
     UNUSED struct Object* sp1C;
     if((RandomU16() & 0xFF) <= 0) // weird
     {
-        sp1C = func_8029E388(o,&D_8032FDF4);
+        sp1C = spawn_water_splash(o,&D_8032FDF4);
         func_8029EE20(sp1C,blue_fish_seg3_anims_0301C2B0,0);
     }
 }

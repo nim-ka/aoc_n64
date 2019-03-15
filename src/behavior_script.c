@@ -731,8 +731,8 @@ static s32 beh_cmd_obj_bit_clear_int32(void)
 
 static s32 Behavior37(void)
 {
-    struct Struct8029E388 *arg0 = (struct Struct8029E388 *) gBehCommand[1];
-    func_8029E388(gCurrentObject, arg0);
+    struct WaterSplashParams *arg0 = (struct WaterSplashParams *) gBehCommand[1];
+    spawn_water_splash(gCurrentObject, arg0);
     gBehCommand += 2;
     return BEH_CONTINUE;
 }
@@ -867,7 +867,7 @@ void cur_object_exec_behavior(void)
     flagsLo = (s16)gCurrentObject->oFlags;
 
     if (flagsLo & OBJ_FLAG_0010)
-        func_8029F170(gCurrentObject);
+        obj_set_facing_to_move_angles(gCurrentObject);
 
     if (flagsLo & OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW)
         gCurrentObject->oFaceAngleYaw = gCurrentObject->oMoveAngleYaw;
