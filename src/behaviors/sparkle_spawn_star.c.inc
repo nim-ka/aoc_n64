@@ -116,7 +116,7 @@ void BehUnused080CLoop(void)
     o->oInteractStatus = 0;
 }
 
-void func_802AACE4(u32 sp20)
+void BehSpawnStarObjects(u32 sp20)
 {
     struct Object* sp1C = spawn_object(o,122,beh_unused_080C);
     sp1C->oBehParams = sp20 << 24;

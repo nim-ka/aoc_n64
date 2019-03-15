@@ -1,6 +1,6 @@
 // mushroom_1up.c.inc
 
-void func_802F2BC4(void) {
+void Beh1UpInteract(void) {
     UNUSED s32 sp1C;
 
     if (are_objects_collided(o, gMarioObject) == 1) {
@@ -51,13 +51,13 @@ void func_802F2E18(void) {
     o->oMoveAnglePitch = approach_s16_symmetric(o->oMoveAnglePitch, sp2A, 0x1000);
     o->oVelY = sins(o->oMoveAnglePitch) * 30.0f;
     o->oForwardVel = coss(o->oMoveAnglePitch) * 30.0f;
-    func_802F2BC4();
+    Beh1UpInteract();
 }
 
 void func_802F2F8C(s16 sp1A) {
     o->oForwardVel = 8.0f;
     o->oMoveAngleYaw = o->oAngleToMario + 0x8000;
-    func_802F2BC4();
+    Beh1UpInteract();
     if (sp1A & 0x02) 
         o->oAction = 2;
 
@@ -89,12 +89,12 @@ void Beh1UpWalkingLoop(void) {
             if (o->oTimer > 300)
                 o->oAction = 2;
 
-            func_802F2BC4();
+            Beh1UpInteract();
             break;
 
         case 2:
             ObjFlickerAndDisappear(o, 30);
-            func_802F2BC4();
+            Beh1UpInteract();
             break;
     }
 
@@ -129,7 +129,7 @@ void Beh1UpRunningAwayLoop(void) {
 
         case 2:
             ObjFlickerAndDisappear(o, 30);
-            func_802F2BC4();
+            Beh1UpInteract();
             break;
     }
 
@@ -168,16 +168,16 @@ void Beh1UpSlidingLoop(void) {
 
         case 2:
             ObjFlickerAndDisappear(o, 30);
-            func_802F2BC4();
+            Beh1UpInteract();
             break;
     }
 
-    func_802F2BC4();
+    Beh1UpInteract();
     spawn_object(o, 0, beh_powerup_sparkles2);
 }
 
 void Beh1UpLoop(void) {
-    func_802F2BC4();
+    Beh1UpInteract();
     SetObjectVisibility(o, 3000);
 }
 
@@ -200,7 +200,7 @@ void Beh1UpJumpOnApproachLoop(void) {
 
         case 2:
             sp26 = ObjectStep();
-            func_802F2BC4();
+            Beh1UpInteract();
             ObjFlickerAndDisappear(o, 30);
             break;
     }
@@ -229,7 +229,7 @@ void Beh1UpHiddenLoop(void) {
 
         case 2:
             sp26 = ObjectStep();
-            func_802F2BC4();
+            Beh1UpInteract();
             ObjFlickerAndDisappear(o, 30);
             break;
 

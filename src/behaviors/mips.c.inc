@@ -134,7 +134,7 @@ void func_802F7984(void) {
     o->oForwardVel = 0;
     sp1E = ObjectStep();
     if (o->oMipsUnkF4 == 1) {
-        func_802AACE4(o->oBehParams2ndByte + 3);
+        BehSpawnStarObjects(o->oBehParams2ndByte + 3);
         o->oMipsUnkF4 = 2;
     }
 }

@@ -339,7 +339,7 @@ extern void CreateStar(f32, f32, f32);
 // extern ? func_802F2924(?);
 // extern ? BehLLLVolcanoFallingTrap(?);
 // extern ? BehLLLRollingLogInit(?);
-// extern ? func_802F2BC4(?);
+// extern ? Beh1UpInteract(?);
 // extern ? Beh1UpCommonInit(?);
 // extern ? Beh1UpInit(?);
 // extern ? func_802F2D40(?);

@@ -97,15 +97,15 @@ static void beh_toad_message_talking(void)
         {
         case TOAD_STAR_1_DIALOG:
             gCurrentObject->oToadMessageDialogNum = TOAD_STAR_1_DIALOG_AFTER;
-            func_802AACE4(0);
+            BehSpawnStarObjects(0);
             break;
         case TOAD_STAR_2_DIALOG:
             gCurrentObject->oToadMessageDialogNum = TOAD_STAR_2_DIALOG_AFTER;
-            func_802AACE4(1);
+            BehSpawnStarObjects(1);
             break;
         case TOAD_STAR_3_DIALOG:
             gCurrentObject->oToadMessageDialogNum = TOAD_STAR_3_DIALOG_AFTER;
-            func_802AACE4(2);
+            BehSpawnStarObjects(2);
             break;
         }
     }

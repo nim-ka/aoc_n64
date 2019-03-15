@@ -113,7 +113,7 @@ u32 D_8032CFDC = 0;
 f32 D_8032CFE0 = 1000.0f; // unused
 f32 D_8032CFE4 = 800.0f; // unused
 u32 D_8032CFE8 = 0; // unused
-f32 D_8032CFEC = 800.0f;
+f32 gCameraZoomDist = 800.0f;
 u8 D_8032CFF0 = 0;
 u8 D_8032CFF4 = 0;
 u8 D_8032CFF8 = 0;
@@ -1443,7 +1443,7 @@ s32 CameraChange040710(UNUSED struct LevelCamera *a, Vec3f b, Vec3f c)
 {
     s16 sp2E = D_8032D000->unk10[1] + D_8033B402 + 32768;
 
-    func_8027F870(b, c, 125.f, 125.f, D_8032CFEC, 1456, sp2E);
+    func_8027F870(b, c, 125.f, 125.f, gCameraZoomDist, 1456, sp2E);
     return D_8032D000->unk10[1];
 }
 extern f32 D_80336070;
@@ -1490,13 +1490,13 @@ s32 func_80283548(struct LevelCamera *a)
     if (D_8033B4D8 & 2)
     {
         if (func_80288130(0) == 1)
-            sp7C = D_8032CFEC + 1050.f;
+            sp7C = gCameraZoomDist + 1050.f;
         else
-            sp7C = D_8032CFEC + 400.f;
+            sp7C = gCameraZoomDist + 400.f;
     }
     else
     {
-        sp7C = D_8032CFEC;
+        sp7C = gCameraZoomDist;
     }
 
     if ((D_8032D000->unk0 & 0x200000) || D_8032D000->unk0 == 1192)
@@ -1767,15 +1767,15 @@ void func_80284708(struct LevelCamera *a)
     func_8027FF44(a);
 }
 
-void func_8028474C(struct LevelCamera *a)
+void camera_lakitu_zoom_distance(struct LevelCamera *a)
 {
-    D_8032CFEC = 800.f;
+    gCameraZoomDist = 800.f;
     func_80284708(a);
 }
 
-void func_80284788(struct LevelCamera *a)
+void camera_mario_zoom_distance(struct LevelCamera *a)
 {
-    D_8032CFEC = 350.f;
+    gCameraZoomDist = 350.f;
     func_80284708(a);
 }
 
@@ -1858,7 +1858,7 @@ void func_80284C2C(struct LevelCamera *a)
 {
     if (D_8033B278.unk8 == SURFACE_000B || D_8033B278.unk8 == SURFACE_0079)
     {
-        func_8028474C(a);
+        camera_lakitu_zoom_distance(a);
     }
     else
     {
@@ -1924,7 +1924,7 @@ s32 func_80284DC0(struct LevelCamera *a)
                 vec3f_set_dist_and_angle(sp68, sp5C, sp48, 0, sp40 + sp3E);
                 if (resolve_wall_collisions(&sp5C[0], &sp5C[1], &sp5C[2], 20.f, 50.f) == 0)
                 {
-                    for (sp44 = sp48; sp44 < D_8032CFEC; sp44 += 20.f)
+                    for (sp44 = sp48; sp44 < gCameraZoomDist; sp44 += 20.f)
                     {
                         vec3f_set_dist_and_angle(sp68, sp5C, sp44, 0, sp40 + sp3E);
                         sp50 = find_ceil(sp5C[0], sp5C[1] - 150.f, sp5C[2], &sp74) + -10.f;
@@ -1936,7 +1936,7 @@ s32 func_80284DC0(struct LevelCamera *a)
                         if (resolve_wall_collisions(&sp5C[0], &sp5C[1], &sp5C[2], 20.f, 50.f) == 1)
                             break;
                     }
-                    if (sp44 >= D_8032CFEC)
+                    if (sp44 >= gCameraZoomDist)
                         sp58 = 0;
                 }
                 if (sp58 == 1)
@@ -1950,7 +1950,7 @@ s32 func_80284DC0(struct LevelCamera *a)
             }
             if (sp58 == 0)
             {
-                vec3f_set_dist_and_angle(sp68, D_8033B498.unk0, D_8032CFEC, 0, sp40 + sp3E);
+                vec3f_set_dist_and_angle(sp68, D_8033B498.unk0, gCameraZoomDist, 0, sp40 + sp3E);
                 vec3f_copy(D_8033B498.unkC, sp68);
                 vec3f_sub(D_8033B498.unk0, D_8032D000->unk4);
                 vec3f_sub(D_8033B498.unkC, D_8032D000->unk4);
@@ -2331,7 +2331,7 @@ void func_80286348(struct LevelCamera *a)
                 func_802859B0(a);
                 break;
             default:
-                func_80284788(a);
+                camera_mario_zoom_distance(a);
             }
         }
         else
@@ -2360,10 +2360,10 @@ void func_80286348(struct LevelCamera *a)
                 func_8028124C(a);
                 break;
             case 3:
-                func_8028474C(a);
+                camera_lakitu_zoom_distance(a);
                 break;
             case 15:
-                func_8028474C(a);
+                camera_lakitu_zoom_distance(a);
                 break;
             case 10:
                 func_8028268C(a);
@@ -3977,10 +3977,10 @@ void func_8028B7A4(struct LevelCamera *a)
         else
         {
             func_80284D44(a);
-            if (D_8033B3FC > D_8032CFEC)
-                D_8033B3F4 = -D_8032CFEC;
+            if (D_8033B3FC > gCameraZoomDist)
+                D_8033B3F4 = -gCameraZoomDist;
             else
-                D_8033B3F4 = D_8032CFEC;
+                D_8033B3F4 = gCameraZoomDist;
         }
     }
     if (a->preset != CAMERA_PRESET_FIXED_REF_POINT)
@@ -3990,7 +3990,7 @@ void func_8028B7A4(struct LevelCamera *a)
             if (D_8033B4D8 & 2)
             {
                 D_8033B4D8 |= 0x1000;
-                D_8033B3F4 = D_8032CFEC + 400.f;
+                D_8033B3F4 = gCameraZoomDist + 400.f;
 #if VERSION_US
                 func_8028B19C();
 #endif
@@ -3998,7 +3998,7 @@ void func_8028B7A4(struct LevelCamera *a)
             else
             {
                 D_8033B4D8 |= 2;
-                D_8033B3F4 = D_8032CFEC + 400.f;
+                D_8033B3F4 = gCameraZoomDist + 400.f;
                 func_8028B29C();
             }
         }

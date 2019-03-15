@@ -32,7 +32,7 @@ void BehKoopaShellFlameLoop(void)
     obj_scale(o->oKoopaShellFlameUnkF8);
 }
 
-void func_802BCC84(void)
+void BehKoopaShellFlameSpawn(void)
 {
     s32 i;
     for(i=0;i<2;i++)
@@ -69,7 +69,7 @@ void BehKoopaShellLoop(void)
         else if(5.0f > absf(o->oPosY-o->oFloorHeight))
         {
             if(sp34 != NULL && sp34->type == 1)
-                    func_802BCC84();
+                    BehKoopaShellFlameSpawn();
             else
                     func_802BCCD4(10.0f);
         }
