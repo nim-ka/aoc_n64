@@ -2,6 +2,19 @@
 #include "something.h"
 #include "unused.h"
 
+// Like aSetBuffer, expect that the order of operands to the w1 bitor is
+// swapped. This is needed for the code to match... (In fact, it's almost
+// fine to redefine aSetBuffer itself this way, but there's a single function
+// whose bitor then get its order of operands messed up.)
+#define aSetBuffer2(pkt, f, i, o, c)                                    \
+    {                                                                   \
+        Acmd *_a = (Acmd *)pkt;                                         \
+                                                                        \
+        _a->words.w0 = (_SHIFTL(A_SETBUFF, 24, 8) | _SHIFTL(f, 16, 8) | \
+                        _SHIFTL(i, 0, 16));                             \
+        _a->words.w1 =  _SHIFTL(c, 0, 16) | _SHIFTL(o, 16, 16);         \
+    }
+
 //volume related
 s32 func_80313BB0(u16 arg0, u16 arg1, s32 arg2)
 {
@@ -124,10 +137,10 @@ u64 *func_80313E54(u16 *arg0, s32 arg1, u64 *arg2, u32 arg3)
             aSaveBuffer(arg2++, FIX(&D_802211B0.unk14.unk04[v1->unkC]));
             if (v1->unk12 != 0)
             {
-                aSetBuffer(arg2++, 0, 0, v1->unk10 + 0x740, v1->unk12);
-                aSaveBuffer(arg2++, FIX(&D_802211B0.unk14.unk00[0]));
-                aSetBuffer(arg2++, 0, 0, v1->unk10 + 0x880, v1->unk12);
-                aSaveBuffer(arg2++, FIX(&D_802211B0.unk14.unk04[0]));
+                aSetBuffer2(arg2++, 0, 0, v1->unk10 + 0x740, v1->unk12);
+                aSaveBuffer(arg2++, FIX(D_802211B0.unk14.unk00));
+                aSetBuffer2(arg2++, 0, 0, v1->unk10 + 0x880, v1->unk12);
+                aSaveBuffer(arg2++, FIX(D_802211B0.unk14.unk04));
             }
         }
         else

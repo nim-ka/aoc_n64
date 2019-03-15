@@ -352,17 +352,16 @@ typedef short ENVMIX_STATE[40];
                                                                         \
         _a->words.w0 = (_SHIFTL(A_SETBUFF, 24, 8) | _SHIFTL(f, 16, 8) | \
                         _SHIFTL(i, 0, 16));                             \
-        _a->words.w1 = _SHIFTL(c, 0, 16) | _SHIFTL(o, 16, 16);          \
+        _a->words.w1 = _SHIFTL(o, 16, 16) | _SHIFTL(c, 0, 16);          \
     }
 
-#define aSetVolume(pkt, f, v, t, r)                                                  \
-    {                                                                                \
-        Acmd *_a = (Acmd *)pkt;                                                      \
-                                                                                     \
-        _a->words.w0 = (_SHIFTL(A_SETVOL, 24, 8) | _SHIFTL(f, 16, 16) |              \
-                        _SHIFTL(v, 0, 16));                                          \
-        /* had to change this otherwise it doesn't want to match */                  \
-        _a->words.w1 = (unsigned int)(r); /*_SHIFTL(r, 0, 16)|_SHIFTL(t, 16, 16) ;*/ \
+#define aSetVolume(pkt, f, v, t, r)                                     \
+    {                                                                   \
+        Acmd *_a = (Acmd *)pkt;                                         \
+                                                                        \
+        _a->words.w0 = (_SHIFTL(A_SETVOL, 24, 8) | _SHIFTL(f, 16, 16) | \
+                        _SHIFTL(v, 0, 16));                             \
+        _a->words.w1 = _SHIFTL(t, 16, 16) | _SHIFTL(r, 0, 16);          \
     }
 
 #define aSetLoop(pkt, a)                          \

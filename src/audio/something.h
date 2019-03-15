@@ -9,7 +9,7 @@
     aLoadBuffer(pkt, s);
 
 #define ALIGN(val, amnt) (((val) + (1 << amnt) - 1) & ~((1 << amnt) - 1))
-#define FIX(a) ((u32)(a) + 0x80000000)
+#define FIX(a) (u16 *)((u8 *)(a) + 0x80000000U)
 #define aSetLoadBufferPair(pkt, c, off)                                                 \
     aSetLoadBuffer(pkt++, 0, c + 0x740, 0, 320 - c, FIX(&D_802211B0.unk14.unk00[off])); \
     aSetLoadBuffer(pkt++, 0, c + 0x880, 0, 320 - c, FIX(&D_802211B0.unk14.unk04[off]));
@@ -43,8 +43,8 @@ u64 *func_80313E54(u16 *, s32, u64 *, u32);
 u64 *func_80314480(u16 *, s32, u64 *);
 void func_8031D384(s32);
 u64 *func_80314F08(u64 *, struct Struct_func_80318870 *, s32);
-u64 *func_80315030(u64 *arg0, struct Struct_func_80318870 *arg1, u32 arg2, u16 arg3, s32 arg4, u32 arg5);
-u64 *func_80315094(u64 *arg0, struct Struct_func_80318870 *arg1, u32 arg2, u16 arg3, s32 arg4, u16 *arg5);
+u64 *func_80315030(u64 *arg0, struct Struct_func_80318870 *arg1, s32 arg2, u16 arg3, s32 arg4, u32 arg5);
+u64 *func_80315094(u64 *arg0, struct Struct_func_80318870 *arg1, s32 arg2, u16 arg3, s32 arg4, u16 *arg5);
 u64 *func_80314FD4(u64 *arg0, struct Struct_func_80318870 *arg1, s32 arg2, u16 arg3, u16 arg4, u32 arg5);
-u64 *func_803155F4(u64 *arg0, struct Struct_func_80318870 *arg1, u32 arg2, s32 arg3, s32 arg4);
+u64 *func_803155F4(u64 *arg0, struct Struct_func_80318870 *arg1, s32 arg2, s32 arg3, s32 arg4);
 #endif

@@ -39,7 +39,7 @@ struct SoundMultiPool
     /*0x194*/ struct SoundPoolHolder2 second;
 }; // size = 0x1D0
 
-// from something.h, not merged yet
+// should probably live in something.h
 struct struct_3920_sp1c
 {
     s16 unk00;

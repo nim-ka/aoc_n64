@@ -15,9 +15,18 @@
 #define GLOBAL_ASM(...)
 #endif
 
-#define FIX2(a, b) ((u32)a + (0x80000000 | b))
+// Like aSetVolume, but it combines the last two parameters into one.
+#define aSetVolume2(pkt, f, v, tr)                                      \
+    {                                                                   \
+        Acmd *_a = (Acmd *)pkt;                                         \
+                                                                        \
+        _a->words.w0 = (_SHIFTL(A_SETVOL, 24, 8) | _SHIFTL(f, 16, 16) | \
+                        _SHIFTL(v, 0, 16));                             \
+        _a->words.w1 = (unsigned int)(tr);                              \
+    }
 
 #ifdef NON_MATCHING
+
 u64 *func_80314480(u16 *arg0, s32 arg1, u64 *arg2)
 {
     s32 sp174;
@@ -1077,758 +1086,11 @@ u64 *func_80314480(u16 *arg0, s32 arg1, u64 *arg2)
     //  lw    $s0, 0x20($sp)
     //  jr    $ra
     //   addiu $sp, $sp, 0x178
-    *arg2++ = 0;
-    *arg2++ = 0;
-    *arg2++ = 0;
-    *arg2++ = 0;
-    *arg2++ = 0;
-    *arg2++ = 0;
-    *arg2++ = 0;
-    *arg2++ = 0;
-    *arg2++ = 0;
-    *arg2++ = 0;
-    *arg2++ = 0;
-    *arg2++ = 0;
-    *arg2++ = 0;
-    *arg2++ = 0;
-    *arg2++ = 0;
-    *arg2++ = 0;
-    //*arg2++ = 0;
-    //*arg2++ = 0;
-    //*((u32 *)arg2++) = 0;
     return arg2;
-    //.else
-    //  addiu $sp, $sp, -0x170
-    //  lui   $t6, %hi(D_80226D70) # $t6, 0x8022
-    //  lw    $t6, %lo(D_80226D70)($t6)
-    //  sw    $s4, 0x30($sp)
-    //  move  $s4, $a2
-    //  sw    $ra, 0x44($sp)
-    //  sw    $fp, 0x40($sp)
-    //  sw    $s7, 0x3c($sp)
-    //  sw    $s6, 0x38($sp)
-    //  sw    $s5, 0x34($sp)
-    //  sw    $s3, 0x2c($sp)
-    //  sw    $s2, 0x28($sp)
-    //  sw    $s1, 0x24($sp)
-    //  sw    $s0, 0x20($sp)
-    //  sw    $a0, 0x170($sp)
-    //  sw    $a1, 0x174($sp)
-    //  sw    $zero, 0x16c($sp)
-    //  blez  $t6, .L_US_80315F6C
-    //   sw    $zero, 0x154($sp)
-    //  sw    $zero, 0x64($sp)
-    //.L_US_803155E0:
-    //  lui   $t8, %hi(D_80222A10) # $t8, 0x8022
-    //  lw    $t8, %lo(D_80222A10)($t8)
-    //  lw    $t7, 0x64($sp)
-    //  addu  $s7, $t7, $t8
-    //  lw    $t9, ($s7)
-    //  srl   $t6, $t9, 0x1f
-    //  beql  $t6, $zero, .L_US_8031563C
-    //   lw    $t9, ($s7)
-    //  lbu   $v0, 7($s7)
-    //  lui   $t7, %hi(D_802218D0)
-    //  lw    $t6, 0x16c($sp)
-    //  addu  $t7, $t7, $v0
-    //  lbu   $t7, %lo(D_802218D0)($t7)
-    //  lui   $at, 0x100
-    //  slti  $t8, $t7, 2
-    //  beqz  $t8, .L_US_80315638
-    //   sll   $t9, $v0, 8
-    //  addu  $t7, $t9, $t6
-    //  addu  $t8, $t7, $at
-    //  lui   $at, %hi(D_80331D40) # $at, 0x8033
-    //  b     .L_US_80315F44
-    //   sw    $t8, %lo(D_80331D40)($at)
-    //.L_US_80315638:
-    //  lw    $t9, ($s7)
-    //.L_US_8031563C:
-    //  srl   $t6, $t9, 0x1f
-    //  beql  $t6, $zero, .L_US_80315F48
-    //   lw    $t9, 0x16c($sp)
-    //  lw    $t7, 0x174($sp)
-    //  sw    $zero, 0x140($sp)
-    //  li    $at, 1
-    //  sll   $t8, $t7, 1
-    //  sw    $t8, 0x48($sp)
-    //  lw    $t9, ($s7)
-    //  li    $t8, 1
-    //  move  $a0, $s4
-    //  sll   $t6, $t9, 1
-    //  srl   $t7, $t6, 0x1f
-    //  bne   $t7, $at, .L_US_80315684
-    //   move  $a1, $s7
-    //  sw    $t8, 0x140($sp)
-    //  sw    $zero, 0x14($s7)
-    //  sh    $zero, 0x20($s7)
-    //.L_US_80315684:
-    //  li    $at, 0x40000000 # 2.000000
-    //  mtc1  $at, $f4
-    //  lwc1  $f0, 0x38($s7)
-    //  lui   $at, %hi(D_80337BB8)
-    //  c.lt.s $f0, $f4
-    //  nop
-    //  bc1f  .L_US_803156D8
-    //   nop
-    //  lui   $at, %hi(D_80337BB0) # $at, 0x8034
-    //  lwc1  $f6, %lo(D_80337BB0)($at)
-    //  li    $t9, 1
-    //  sw    $t9, 0xe0($sp)
-    //  c.lt.s $f6, $f0
-    //  lui   $at, %hi(D_80337BB0 + 0x4) # $at, 0x8034
-    //  bc1f  .L_US_803156D0
-    //   nop
-    //  lwc1  $f8, %lo(D_80337BB0 + 0x4)($at)
-    //  swc1  $f8, 0x38($s7)
-    //  lwc1  $f0, 0x38($s7)
-    //.L_US_803156D0:
-    //  b     .L_US_80315714
-    //   mov.s $f2, $f0
-    //.L_US_803156D8:
-    //  lwc1  $f10, %lo(D_80337BB8)($at)
-    //  li    $t6, 2
-    //  sw    $t6, 0xe0($sp)
-    //  c.le.s $f10, $f0
-    //  lui   $at, %hi(D_80337BB8)
-    //  bc1fl .L_US_80315704
-    //   lui   $at, 0x3f00 # $at, 0x3f00
-    //  lwc1  $f16, %lo(D_80337BB8 + 0x4)($at)
-    //  swc1  $f16, 0x38($s7)
-    //  lwc1  $f0, 0x38($s7)
-    //  li    $at, 0x3F000000 # 0.500000
-    //.L_US_80315704:
-    //  mtc1  $at, $f18
-    //  nop
-    //  mul.s $f2, $f0, $f18
-    //  nop
-    //.L_US_80315714:
-    //  li    $at, 0x47000000 # 32768.000000
-    //  mtc1  $at, $f4
-    //  lw    $t6, 0x174($sp)
-    //  mul.s $f6, $f2, $f4
-    //  trunc.w.s $f8, $f6
-    //  mfc1  $t8, $f8
-    //  nop
-    //  andi  $t9, $t8, 0xffff
-    //  multu $t9, $t6
-    //  sw    $t9, 0x5c($sp)
-    //  lhu   $t9, 0x20($s7)
-    //  lw    $v0, 0x24($s7)
-    //  mflo  $t7
-    //  sll   $t8, $t7, 1
-    //  addu  $v1, $t9, $t8
-    //  bnez  $v0, .L_US_8031578C
-    //   sh    $v1, 0x20($s7)
-    //  srl   $s0, $v1, 0x10
-    //  move  $a2, $s0
-    //  jal   func_80314F08
-    //   sw    $zero, 0x140($sp)
-    //  lw    $t1, 0x14($s7)
-    //  move  $s4, $v0
-    //  sll   $t7, $t1, 1
-    //  addiu $t9, $t7, 0x180
-    //  sh    $t9, 0xce($sp)
-    //  addu  $t8, $t1, $s0
-    //  sw    $t8, 0x14($s7)
-    //  b     .L_US_80315E6C
-    //   lw    $a1, ($s7)
-    //.L_US_8031578C:
-    //  lw    $t6, ($v0)
-    //  srl   $v0, $v1, 0x10
-    //  sw    $t6, 0x15c($sp)
-    //  lw    $ra, 8($t6)
-    //  lw    $t9, 4($ra)
-    //  sw    $t9, 0x108($sp)
-    //  lw    $t8, 4($t6)
-    //  lw    $t6, 0xe0($sp)
-    //  sw    $zero, 0xd0($sp)
-    //  sw    $zero, 0xdc($sp)
-    //  blez  $t6, .L_US_80315E64
-    //   sw    $t8, 0x118($sp)
-    //  xori  $t9, $t6, 1
-    //  sltiu $t9, $t9, 1
-    //  sw    $t9, 0x54($sp)
-    //  sw    $v0, 0x58($sp)
-    //  lw    $t7, 0x15c($sp)
-    //.L_US_803157D0:
-    //  lw    $t8, 0x54($sp)
-    //  lw    $v0, 0x58($sp)
-    //  lw    $a0, 0xc($t7)
-    //  move  $fp, $zero
-    //  move  $s5, $zero
-    //  beqz  $t8, .L_US_803157F4
-    //   addiu $a1, $a0, 8
-    //  b     .L_US_80315818
-    //   move  $t5, $v0
-    //.L_US_803157F4:
-    //  andi  $t6, $v0, 1
-    //  beqz  $t6, .L_US_80315818
-    //   move  $t5, $v0
-    //  lw    $t7, 0xdc($sp)
-    //  li    $at, -2
-    //  and   $t9, $v0, $at
-    //  sll   $t8, $t7, 1
-    //  b     .L_US_80315818
-    //   addu  $t5, $t9, $t8
-    //.L_US_80315818:
-    //  lw    $t6, 0x154($sp)
-    //  sw    $v0, 0x58($sp)
-    //  beq   $t6, $a1, .L_US_80315870
-    //   nop
-    //  sw    $a1, 0x154($sp)
-    //  lw    $t9, ($a0)
-    //  lw    $t7, 4($a0)
-    //  lui   $at, (0x00FFFFFF >> 16) # lui $at, 0xff
-    //  ori   $at, (0x00FFFFFF & 0xFFFF) # ori $at, $at, 0xffff
-    //  multu $t7, $t9
-    //  move  $v0, $s4
-    //  addiu $s4, $s4, 8
-    //  mflo  $v1
-    //  sll   $t8, $v1, 4
-    //  and   $t6, $t8, $at
-    //  lui   $at, 0xb00
-    //  or    $t7, $t6, $at
-    //  sw    $t7, ($v0)
-    //  lw    $t9, 0x154($sp)
-    //  lui   $at, 0x8000
-    //  addu  $t8, $t9, $at
-    //  sw    $t8, 4($v0)
-    //.L_US_80315870:
-    //  beqz  $t5, .L_US_80315C7C
-    //   lw    $v0, 0x58($sp)
-    //  sw    $v0, 0x58($sp)
-    //  lw    $t1, 0x14($s7)
-    //.L_US_80315880:
-    //  lw    $t6, 0x108($sp)
-    //  subu  $a0, $t5, $fp
-    //  andi  $s2, $t1, 0xf
-    //  move  $t2, $zero
-    //  move  $t3, $zero
-    //  move  $t4, $a0
-    //  bnez  $s2, .L_US_803158B4
-    //   subu  $v1, $t6, $t1
-    //  lw    $t7, ($s7)
-    //  sll   $t8, $t7, 2
-    //  bltzl $t8, .L_US_803158B8
-    //   li    $t6, 16
-    //  li    $s2, 16
-    //.L_US_803158B4:
-    //  li    $t6, 16
-    //.L_US_803158B8:
-    //  subu  $a1, $t6, $s2
-    //  slt   $at, $a0, $v1
-    //  beqz  $at, .L_US_803158F4
-    //   move  $s6, $a1
-    //  subu  $v0, $a0, $a1
-    //  addiu $v0, $v0, 0xf
-    //  bgez  $v0, .L_US_803158E0
-    //   sra   $t7, $v0, 4
-    //  addiu $at, $v0, 0xf
-    //  sra   $t7, $at, 4
-    //.L_US_803158E0:
-    //  sll   $s0, $t7, 4
-    //  addu  $t9, $a1, $s0
-    //  move  $t0, $t7
-    //  b     .L_US_80315938
-    //   subu  $s3, $t9, $a0
-    //.L_US_803158F4:
-    //  addu  $v0, $v1, $s2
-    //  addiu $s0, $v0, -0x10
-    //  bgtz  $s0, .L_US_8031590C
-    //   move  $s3, $zero
-    //  move  $s0, $zero
-    //  move  $s6, $v1
-    //.L_US_8031590C:
-    //  addiu $t0, $s0, 0xf
-    //  lw    $t6, 8($ra)
-    //  bgez  $t0, .L_US_80315924
-    //   sra   $t8, $t0, 4
-    //  addiu $at, $t0, 0xf
-    //  sra   $t8, $at, 4
-    //.L_US_80315924:
-    //  beqz  $t6, .L_US_80315934
-    //   move  $t0, $t8
-    //  b     .L_US_80315938
-    //   li    $t3, 1
-    //.L_US_80315934:
-    //  li    $t2, 1
-    //.L_US_80315938:
-    //  beqz  $t0, .L_US_80315A04
-    //   li    $v1, 9
-    //  subu  $v0, $t1, $s2
-    //  addiu $v0, $v0, 0x10
-    //  bgez  $v0, .L_US_80315958
-    //   sra   $t7, $v0, 4
-    //  addiu $at, $v0, 0xf
-    //  sra   $t7, $at, 4
-    //.L_US_80315958:
-    //  multu $t7, $v1
-    //  lw    $t8, 0x118($sp)
-    //  sw    $ra, 0x158($sp)
-    //  lw    $a2, 0x140($sp)
-    //  addiu $a3, $s7, 3
-    //  sw    $t2, 0x148($sp)
-    //  sw    $t3, 0x144($sp)
-    //  sw    $t4, 0x104($sp)
-    //  sw    $t5, 0x110($sp)
-    //  mflo  $t9
-    //  addu  $a0, $t9, $t8
-    //  nop
-    //  multu $t0, $v1
-    //  mflo  $s1
-    //  move  $a1, $s1
-    //  jal   func_80317270
-    //   nop
-    //  andi  $a3, $v0, 0xf
-    //  move  $a0, $s4
-    //  lui   $t6, (0x080003F0 >> 16) # lui $t6, 0x800
-    //  lw    $t2, 0x148($sp)
-    //  lw    $t3, 0x144($sp)
-    //  lw    $t4, 0x104($sp)
-    //  lw    $t5, 0x110($sp)
-    //  lw    $ra, 0x158($sp)
-    //  ori   $t6, (0x080003F0 & 0xFFFF) # ori $t6, $t6, 0x3f0
-    //  addu  $t7, $s1, $a3
-    //  andi  $t9, $t7, 0xffff
-    //  sw    $t6, ($a0)
-    //  addiu $s4, $s4, 8
-    //  sw    $t9, 4($a0)
-    //  move  $a1, $s4
-    //  subu  $t6, $v0, $a3
-    //  lui   $at, 0x8000
-    //  addu  $t7, $t6, $at
-    //  lui   $t8, 0x400
-    //  sw    $t8, ($a1)
-    //  sw    $t7, 4($a1)
-    //  lw    $a2, ($s7)
-    //  addiu $s4, $s4, 8
-    //  sll   $t9, $a2, 2
-    //  b     .L_US_80315A18
-    //   srl   $a2, $t9, 0x1f
-    //.L_US_80315A04:
-    //  lw    $a2, ($s7)
-    //  move  $s0, $zero
-    //  move  $a3, $zero
-    //  sll   $t6, $a2, 2
-    //  srl   $a2, $t6, 0x1f
-    //.L_US_80315A18:
-    //  beqz  $a2, .L_US_80315A58
-    //   move  $v0, $s4
-    //  lui   $t9, 0xf00
-    //  sw    $t9, ($v0)
-    //  lw    $t8, 0x15c($sp)
-    //  lui   $at, (0x80000010 >> 16) # lui $at, 0x8000
-    //  ori   $at, (0x80000010 & 0xFFFF) # ori $at, $at, 0x10
-    //  lw    $t6, 8($t8)
-    //  li    $t9, 2
-    //  addiu $s4, $s4, 8
-    //  addu  $t7, $t6, $at
-    //  sw    $t7, 4($v0)
-    //  sw    $t9, 0x140($sp)
-    //  lbu   $t8, ($s7)
-    //  andi  $t6, $t8, 0xffdf
-    //  sb    $t6, ($s7)
-    //.L_US_80315A58:
-    //  bnez  $fp, .L_US_80315ACC
-    //   move  $v0, $s4
-    //  addiu $t7, $a3, 0x3f0
-    //  andi  $t9, $t7, 0xffff
-    //  lui   $at, 0x800
-    //  or    $t8, $t9, $at
-    //  sll   $a2, $s0, 1
-    //  andi  $t6, $a2, 0xffff
-    //  lui   $at, 0x180
-    //  move  $v0, $s4
-    //  or    $t7, $t6, $at
-    //  sw    $t7, 4($v0)
-    //  sw    $t8, ($v0)
-    //  lw    $t9, 0x140($sp)
-    //  addiu $s4, $s4, 8
-    //  lui   $at, 0x100
-    //  andi  $t8, $t9, 0xff
-    //  sll   $t6, $t8, 0x10
-    //  or    $t7, $t6, $at
-    //  move  $v1, $s4
-    //  sw    $t7, ($v1)
-    //  lw    $t9, 0x34($s7)
-    //  lui   $at, 0x8000
-    //  sll   $t6, $s2, 1
-    //  addu  $t8, $t9, $at
-    //  sw    $t8, 4($v1)
-    //  addiu $s4, $s4, 8
-    //  b     .L_US_80315B88
-    //   sw    $t6, 0x128($sp)
-    //.L_US_80315ACC:
-    //  addiu $t7, $a3, 0x3f0
-    //  andi  $t9, $t7, 0xffff
-    //  lui   $at, 0x800
-    //  or    $t8, $t9, $at
-    //  li    $at, -32
-    //  addiu $v1, $s5, 0x1f
-    //  and   $t6, $v1, $at
-    //  addiu $t9, $t6, 0x180
-    //  move  $v1, $t6
-    //  sw    $t8, ($v0)
-    //  sll   $a2, $s0, 1
-    //  andi  $t6, $a2, 0xffff
-    //  sll   $t8, $t9, 0x10
-    //  or    $t7, $t8, $t6
-    //  sw    $t7, 4($v0)
-    //  lw    $t9, 0x140($sp)
-    //  addiu $s4, $s4, 8
-    //  lui   $at, 0x100
-    //  andi  $t8, $t9, 0xff
-    //  sll   $t6, $t8, 0x10
-    //  or    $t7, $t6, $at
-    //  move  $a0, $s4
-    //  sw    $t7, ($a0)
-    //  lw    $t9, 0x34($s7)
-    //  lui   $at, 0x8000
-    //  sll   $t6, $s2, 1
-    //  addu  $t8, $t9, $at
-    //  lui   $at, (0x00FFFFFF >> 16) # lui $at, 0xff
-    //  addu  $t7, $v1, $t6
-    //  sw    $t8, 4($a0)
-    //  addiu $t9, $t7, 0x180
-    //  ori   $at, (0x00FFFFFF & 0xFFFF) # ori $at, $at, 0xffff
-    //  and   $t8, $t9, $at
-    //  addiu $s4, $s4, 8
-    //  lui   $at, 0xa00
-    //  or    $t6, $t8, $at
-    //  move  $a1, $s4
-    //  sw    $t6, ($a1)
-    //  addu  $t6, $s0, $s6
-    //  addiu $t9, $s5, 0x180
-    //  sll   $t8, $t9, 0x10
-    //  subu  $t7, $t6, $s3
-    //  sll   $t9, $t7, 1
-    //  andi  $t6, $t9, 0xffff
-    //  or    $t7, $t8, $t6
-    //  sw    $t7, 4($a1)
-    //  addiu $s4, $s4, 8
-    //.L_US_80315B88:
-    //  lw    $t6, 0x140($sp)
-    //  addu  $t9, $fp, $s0
-    //  addu  $t8, $t9, $s6
-    //  li    $at, 1
-    //  beq   $t6, $at, .L_US_80315BBC
-    //   subu  $fp, $t8, $s3
-    //  xori  $v0, $t6, 2
-    //  addu  $t7, $s0, $s6
-    //  subu  $v1, $t7, $s3
-    //  beqz  $v0, .L_US_80315BCC
-    //   sw    $zero, 0x140($sp)
-    //  b     .L_US_80315BD8
-    //   sll   $t8, $v1, 1
-    //.L_US_80315BBC:
-    //  sw    $zero, 0x128($sp)
-    //  addu  $s5, $s5, $a2
-    //  b     .L_US_80315BF4
-    //   sw    $zero, 0x140($sp)
-    //.L_US_80315BCC:
-    //  sll   $t9, $v1, 1
-    //  b     .L_US_80315BF4
-    //   addu  $s5, $s5, $t9
-    //.L_US_80315BD8:
-    //  beql  $s5, $zero, .L_US_80315BEC
-    //   addu  $s5, $v1, $s2
-    //  b     .L_US_80315BF4
-    //   addu  $s5, $s5, $t8
-    //  addu  $s5, $v1, $s2
-    //.L_US_80315BEC:
-    //  sll   $t6, $s5, 1
-    //  move  $s5, $t6
-    //.L_US_80315BF4:
-    //  beqz  $t2, .L_US_80315C48
-    //   lui   $at, (0x00FFFFFF >> 16) # lui $at, 0xff
-    //  ori   $at, (0x00FFFFFF & 0xFFFF) # ori $at, $at, 0xffff
-    //  addiu $t7, $s5, 0x180
-    //  and   $t9, $t7, $at
-    //  lui   $at, 0x200
-    //  move  $v0, $s4
-    //  subu  $t6, $t5, $fp
-    //  sll   $t7, $t6, 1
-    //  or    $t8, $t9, $at
-    //  sw    $t8, ($v0)
-    //  sw    $t7, 4($v0)
-    //  lbu   $t8, ($s7)
-    //  addiu $s4, $s4, 8
-    //  sw    $zero, 0x14($s7)
-    //  ori   $t6, $t8, 0x10
-    //  sb    $t6, ($s7)
-    //  lbu   $t7, ($s7)
-    //  andi  $t9, $t7, 0xff7f
-    //  b     .L_US_80315C7C
-    //   sb    $t9, ($s7)
-    //.L_US_80315C48:
-    //  beql  $t3, $zero, .L_US_80315C6C
-    //   lw    $t8, 0x14($s7)
-    //  lbu   $t6, ($s7)
-    //  ori   $t7, $t6, 0x20
-    //  sb    $t7, ($s7)
-    //  lw    $t9, ($ra)
-    //  b     .L_US_80315C74
-    //   sw    $t9, 0x14($s7)
-    //  lw    $t8, 0x14($s7)
-    //.L_US_80315C6C:
-    //  addu  $t6, $t8, $t4
-    //  sw    $t6, 0x14($s7)
-    //.L_US_80315C74:
-    //  bnel  $fp, $t5, .L_US_80315880
-    //   lw    $t1, 0x14($s7)
-    //.L_US_80315C7C:
-    //  lw    $t7, 0x54($sp)
-    //  lw    $t9, 0xe0($sp)
-    //  li    $at, 2
-    //  bnez  $t7, .L_US_80315CAC
-    //   lw    $t6, 0x128($sp)
-    //  beq   $t9, $at, .L_US_80315CC8
-    //   lw    $t8, 0xdc($sp)
-    //  lw    $a1, ($s7)
-    //  sll   $a2, $a1, 3
-    //  srl   $t8, $a2, 0x1f
-    //  b     .L_US_80315E40
-    //   move  $a2, $t8
-    //.L_US_80315CAC:
-    //  addiu $t7, $t6, 0x180
-    //  sh    $t7, 0xce($sp)
-    //  lw    $a1, ($s7)
-    //  sll   $a2, $a1, 3
-    //  srl   $t9, $a2, 0x1f
-    //  b     .L_US_80315E40
-    //   move  $a2, $t9
-    //.L_US_80315CC8:
-    //  beqz  $t8, .L_US_80315CF0
-    //   move  $v0, $s4
-    //  li    $at, 1
-    //  beq   $t8, $at, .L_US_80315DA8
-    //   move  $v0, $s4
-    //  lw    $a1, ($s7)
-    //  sll   $a2, $a1, 3
-    //  srl   $t6, $a2, 0x1f
-    //  b     .L_US_80315E40
-    //   move  $a2, $t6
-    //.L_US_80315CF0:
-    //  lw    $t7, 0x128($sp)
-    //  lui   $at, 0x800
-    //  addiu $v1, $t5, 4
-    //  addiu $t9, $t7, 0x180
-    //  andi  $t8, $t9, 0xffff
-    //  or    $t6, $t8, $at
-    //  lui   $at, 0x20
-    //  andi  $t7, $v1, 0xffff
-    //  or    $t9, $t7, $at
-    //  addiu $s4, $s4, 8
-    //  lui   $t8, (0x0501FF60 >> 16) # lui $t8, 0x501
-    //  sw    $t9, 4($v0)
-    //  sw    $t6, ($v0)
-    //  ori   $t8, (0x0501FF60 & 0xFFFF) # ori $t8, $t8, 0xff60
-    //  move  $a0, $s4
-    //  sw    $t8, ($a0)
-    //  lw    $t6, 0x34($s7)
-    //  lui   $at, (0x800000F0 >> 16) # lui $at, 0x8000
-    //  ori   $at, (0x800000F0 & 0xFFFF) # ori $at, $at, 0xf0
-    //  addu  $t7, $t6, $at
-    //  sw    $t7, 4($a0)
-    //  li    $t9, 36
-    //  sw    $v1, 0xd0($sp)
-    //  sh    $t9, 0xce($sp)
-    //  lw    $a1, ($s7)
-    //  addiu $s4, $s4, 8
-    //  move  $v0, $s4
-    //  sll   $a2, $a1, 3
-    //  srl   $t8, $a2, 0x1f
-    //  beqz  $t8, .L_US_80315E40
-    //   move  $a2, $t8
-    //  lui   $at, (0x00FFFFFF >> 16) # lui $at, 0xff
-    //  ori   $at, (0x00FFFFFF & 0xFFFF) # ori $at, $at, 0xffff
-    //  addiu $t6, $t5, 0x24
-    //  and   $t7, $t6, $at
-    //  lui   $at, 0x200
-    //  or    $t9, $t7, $at
-    //  addiu $t8, $t5, 0x10
-    //  sw    $t8, 4($v0)
-    //  sw    $t9, ($v0)
-    //  lw    $a1, ($s7)
-    //  addiu $s4, $s4, 8
-    //  sll   $a2, $a1, 3
-    //  srl   $t6, $a2, 0x1f
-    //  b     .L_US_80315E40
-    //   move  $a2, $t6
-    //.L_US_80315DA8:
-    //  lw    $t7, 0x128($sp)
-    //  lui   $at, 0x800
-    //  addiu $s4, $s4, 8
-    //  addiu $t9, $t7, 0x180
-    //  andi  $t8, $t9, 0xffff
-    //  or    $t6, $t8, $at
-    //  addiu $t7, $t5, 8
-    //  andi  $t9, $t7, 0xffff
-    //  sw    $t6, ($v0)
-    //  lui   $at, 0x160
-    //  or    $t8, $t9, $at
-    //  lui   $t6, (0x0501FF60 >> 16) # lui $t6, 0x501
-    //  sw    $t8, 4($v0)
-    //  ori   $t6, (0x0501FF60 & 0xFFFF) # ori $t6, $t6, 0xff60
-    //  move  $v1, $s4
-    //  sw    $t6, ($v1)
-    //  lw    $t7, 0x34($s7)
-    //  lui   $at, (0x800000F0 >> 16) # lui $at, 0x8000
-    //  ori   $at, (0x800000F0 & 0xFFFF) # ori $at, $at, 0xf0
-    //  addiu $s4, $s4, 8
-    //  lui   $t8, (0x0A000164 >> 16) # lui $t8, 0xa00
-    //  addu  $t9, $t7, $at
-    //  sw    $t9, 4($v1)
-    //  ori   $t8, (0x0A000164 & 0xFFFF) # ori $t8, $t8, 0x164
-    //  move  $a0, $s4
-    //  sw    $t8, ($a0)
-    //  lw    $t6, 0xd0($sp)
-    //  addiu $s4, $s4, 8
-    //  addiu $t9, $t6, 0x20
-    //  addiu $t6, $t5, 4
-    //  andi  $t7, $t6, 0xffff
-    //  sll   $t8, $t9, 0x10
-    //  or    $t9, $t8, $t7
-    //  sw    $t9, 4($a0)
-    //  lw    $a1, ($s7)
-    //  sll   $a2, $a1, 3
-    //  srl   $t6, $a2, 0x1f
-    //  move  $a2, $t6
-    //.L_US_80315E40:
-    //  beqz  $a2, .L_US_80315E50
-    //   lw    $v0, 0xdc($sp)
-    //  b     .L_US_80315E6C
-    //   sw    $zero, 0x140($sp)
-    //.L_US_80315E50:
-    //  lw    $t8, 0xe0($sp)
-    //  addiu $v0, $v0, 1
-    //  sw    $v0, 0xdc($sp)
-    //  bnel  $v0, $t8, .L_US_803157D0
-    //   lw    $t7, 0x15c($sp)
-    //.L_US_80315E64:
-    //  sw    $zero, 0x140($sp)
-    //  lw    $a1, ($s7)
-    //.L_US_80315E6C:
-    //  sll   $t7, $a1, 1
-    //  srl   $t9, $t7, 0x1f
-    //  li    $at, 1
-    //  bne   $t9, $at, .L_US_80315E94
-    //   move  $a0, $s4
-    //  li    $t6, 1
-    //  sw    $t6, 0x140($sp)
-    //  lbu   $t8, ($s7)
-    //  andi  $t7, $t8, 0xffbf
-    //  sb    $t7, ($s7)
-    //.L_US_80315E94:
-    //  lw    $s1, 0x48($sp)
-    //  lhu   $t9, 0xce($sp)
-    //  lw    $t6, 0x140($sp)
-    //  move  $a1, $s7
-    //  lhu   $a3, 0x5e($sp)
-    //  move  $a2, $s1
-    //  sw    $t9, 0x10($sp)
-    //  jal   func_80314FD4
-    //   sw    $t6, 0x14($sp)
-    //  lhu   $t8, 0xc($s7)
-    //  move  $s4, $v0
-    //  move  $a0, $s4
-    //  bnez  $t8, .L_US_80315ED8
-    //   move  $a1, $s7
-    //  lhu   $t7, 0x10($s7)
-    //  beql  $t7, $zero, .L_US_80315EE4
-    //   lhu   $t9, 0xe($s7)
-    //.L_US_80315ED8:
-    //  b     .L_US_80315F04
-    //   li    $s0, 1
-    //  lhu   $t9, 0xe($s7)
-    //.L_US_80315EE4:
-    //  bnez  $t9, .L_US_80315EFC
-    //   nop
-    //  lhu   $t6, 0x12($s7)
-    //  move  $s0, $zero
-    //  beqz  $t6, .L_US_80315F04
-    //   nop
-    //.L_US_80315EFC:
-    //  b     .L_US_80315F04
-    //   li    $s0, 2
-    //.L_US_80315F04:
-    //  lw    $t8, 0x140($sp)
-    //  lw    $a2, 0x174($sp)
-    //  move  $a3, $zero
-    //  sw    $s0, 0x10($sp)
-    //  jal   func_80315030
-    //   sw    $t8, 0x14($sp)
-    //  lbu   $t7, 1($s7)
-    //  move  $s4, $v0
-    //  move  $a0, $v0
-    //  beqz  $t7, .L_US_80315F44
-    //   move  $a1, $s7
-    //  move  $a2, $s1
-    //  lw    $a3, 0x140($sp)
-    //  jal   func_803155F4
-    //   sw    $s0, 0x10($sp)
-    //  move  $s4, $v0
-    //.L_US_80315F44:
-    //  lw    $t9, 0x16c($sp)
-    //.L_US_80315F48:
-    //  lw    $t8, 0x64($sp)
-    //  addiu $t6, $t9, 1
-    //  lui   $t9, %hi(D_80226D70) # $t9, 0x8022
-    //  lw    $t9, %lo(D_80226D70)($t9)
-    //  addiu $t7, $t8, 0xc0
-    //  sw    $t7, 0x64($sp)
-    //  slt   $at, $t6, $t9
-    //  bnez  $at, .L_US_803155E0
-    //   sw    $t6, 0x16c($sp)
-    //.L_US_80315F6C:
-    //  lui   $t0, 0x800
-    //  move  $a0, $s4
-    //  sw    $t0, ($a0)
-    //  lw    $v1, 0x174($sp)
-    //  addiu $s4, $s4, 8
-    //  move  $a1, $s4
-    //  sll   $t8, $v1, 1
-    //  andi  $t7, $t8, 0xffff
-    //  sw    $t7, 4($a0)
-    //  addiu $s4, $s4, 8
-    //  lui   $t6, 0xd00
-    //  lui   $t9, (0x04C00600 >> 16) # lui $t9, 0x4c0
-    //  ori   $t9, (0x04C00600 & 0xFFFF) # ori $t9, $t9, 0x600
-    //  sw    $t6, ($a1)
-    //  move  $a2, $s4
-    //  sw    $t9, 4($a1)
-    //  sll   $t8, $t8, 1
-    //  andi  $t7, $t8, 0xffff
-    //  addiu $s4, $s4, 8
-    //  sw    $t7, 4($a2)
-    //  sw    $t0, ($a2)
-    //  move  $a3, $s4
-    //  lui   $t6, 0x600
-    //  sw    $t6, ($a3)
-    //  lw    $t9, 0x170($sp)
-    //  lui   $at, 0x8000
-    //  addiu $v0, $s4, 8
-    //  addu  $t8, $t9, $at
-    //  sw    $t8, 4($a3)
-    //  lw    $ra, 0x44($sp)
-    //  lw    $fp, 0x40($sp)
-    //  lw    $s7, 0x3c($sp)
-    //  lw    $s6, 0x38($sp)
-    //  lw    $s5, 0x34($sp)
-    //  lw    $s4, 0x30($sp)
-    //  lw    $s3, 0x2c($sp)
-    //  lw    $s2, 0x28($sp)
-    //  lw    $s1, 0x24($sp)
-    //  lw    $s0, 0x20($sp)
-    //  jr    $ra
-    //   addiu $sp, $sp, 0x170
-    //.endif
 }
 
-#else
+#elif defined(VERSION_JP)
 
-#ifdef VERSION_JP
 // clang-format off
 GLOBAL_ASM(
 .late_rodata
@@ -3311,8 +2573,6 @@ glabel func_80314480
 // clang-format on
 #endif
 
-#endif
-
 u64 *func_80314F08(u64 *arg0, struct Struct_func_80318870 *arg1, s32 arg2)
 {
     s32 a3;
@@ -3339,7 +2599,8 @@ u64 *func_80314FD4(u64 *arg0, struct Struct_func_80318870 *arg1, s32 arg2, u16 a
     aResample(arg0++, arg5, arg3, FIX(arg1->unk34->unk20));
     return arg0;
 }
-u64 *func_80315030(u64 *arg0, struct Struct_func_80318870 *arg1, u32 arg2, u16 arg3, s32 arg4, UNUSED u32 arg5)
+
+u64 *func_80315030(u64 *arg0, struct Struct_func_80318870 *arg1, s32 arg2, u16 arg3, s32 arg4, UNUSED u32 arg5)
 {
     UNUSED u8 pad[16];
     u16 sp20[4];
@@ -3352,7 +2613,7 @@ u64 *func_80315030(u64 *arg0, struct Struct_func_80318870 *arg1, u32 arg2, u16 a
     return func_80315094(arg0, arg1, arg2, arg3, arg4, sp20);
 }
 
-u64 *func_80315094(u64 *audio_cmd, struct Struct_func_80318870 *arg1, u32 arg2, u16 arg3, s32 arg4, u16 *arg5)
+u64 *func_80315094(u64 *audio_cmd, struct Struct_func_80318870 *arg1, s32 arg2, u16 arg3, s32 arg4, u16 *arg5)
 {
     UNUSED u8 pad[3];
     u8 t1;
@@ -3409,17 +2670,14 @@ u64 *func_80315094(u64 *audio_cmd, struct Struct_func_80318870 *arg1, u32 arg2, 
         spac = func_80313BB0(arg5[0], arg5[2], arg2);
         v0 = func_80313BB0(arg5[1], arg5[3], arg2);
 
-        //some weird stuff is going on here.  the 4th param to these macros
-        //is always zero.  I modified the macro to ignore it and just store the last
-        //parameter.  however the last setVolume suggests it's still there
-        //but func_80313BB0 definitely returns a s32 and spac/v0 are never &'d...
-        //arg5 is volume, so spac and v0 must be rate?
-        //
+        // Oddly enough, these don't all use the regular aSetVolume -- spac and
+        // v0 are never ANDed by 0xffff.
+        // arg5 is volume, so spac and v0 must be rate?
         aSetVolume(audio_cmd++, 6, arg5[0], 0, 0);
         aSetVolume(audio_cmd++, 4, arg5[1], 0, 0);
-        aSetVolume(audio_cmd++, 2, arg5[2], 0, spac);
-        aSetVolume(audio_cmd++, 0, arg5[3], 0, v0);
-        aSetVolume(audio_cmd++, 8, D_802212A0, 0, arg1->unkA0 & 0xffff);
+        aSetVolume2(audio_cmd++, 2, arg5[2], spac);
+        aSetVolume2(audio_cmd++, 0, arg5[3], v0);
+        aSetVolume(audio_cmd++, 8, D_802212A0, 0, arg1->unkA0);
     }
     if (D_802211B0.unk1 && arg1->unk40)
     {
@@ -3454,45 +2712,17 @@ u64 *func_80315094(u64 *audio_cmd, struct Struct_func_80318870 *arg1, u32 arg2, 
     return audio_cmd;
 }
 
-#ifdef NON_MATCHING
-u64 *func_803155F4(u64 *arg0, struct Struct_func_80318870 *arg1, u32 arg2, s32 arg3, s32 arg4)
+u64 *func_803155F4(u64 *arg0, struct Struct_func_80318870 *arg1, s32 arg2, s32 arg3, s32 arg4)
 {
-    //a0 0x50
-    //a1 0x54
-    //a2 0x58
-    //a3 0x5c
-    //a4 0x60
-    u32 t0;
+    u16 t0;
     u16 a3;
-    //u32 v1;
-    u32 a2;
-    u16 t2;
-    s32 t3;
-    register u32 v1;
-    //  addiu $sp, $sp, -0x50
-    //  lw    $t6, 0x60($sp)
-    //  sw    $s0, 4($sp)
-    //  li    $v0, 1
+    u16 a2;
+    u16 pitch; // t2
+    UNUSED s32 padding[11];
 
-    //  move  $s0, $a2
-
-    //  beq   $t6, $v0, .L80315624
-    //   sw    $a3, 0x5c($sp)
     switch (arg4)
     {
-    //  li    $at, 2
-    //  beq   $t6, $at, .L8031563C
-    //   li    $t0, 1536
-    //  b     .L803159B4
-    //   move  $v0, $a0
     case 1:
-        //.L80315624:
-        //  lhu   $a2, 0xc($a1)
-        //  lhu   $a3, 0x10($a1)
-        //  li    $t0, 1216
-        //  sh    $zero, 0x12($a1)
-        //  b     .L80315658
-        //   sh    $a2, 0x10($a1)
         t0 = 0x4c0;
         arg1->unk12 = 0;
         a2 = arg1->unkC;
@@ -3505,589 +2735,62 @@ u64 *func_803155F4(u64 *arg0, struct Struct_func_80318870 *arg1, u32 arg2, s32 a
         a2 = arg1->unkE;
         a3 = arg1->unk12;
         arg1->unk12 = a2;
-        //.L8031563C:
-        //  lhu   $a2, 0xe($a1)
-        //  lhu   $a3, 0x12($a1)
-        //  sh    $zero, 0x10($a1)
-        //  b     .L80315658
-        //   sh    $a2, 0x12($a1)
-
         break;
     default:
         return arg0;
-        //  b     .L803159B4
-        //   move  $v0, $a0
     }
-    //.L80315658:
-    //  lw    $t7, 0x5c($sp)
-    //  move  $v1, $a0
-    //  lui   $t9, 0xa00
-    //  beq   $t7, $v0, .L803158F0
-    //   lui   $t6, 0x200
+
     if (arg3 != 1) //A_INIT?
     {
-        //s32 v1;
-        //  bnez  $a3, .L80315784
-        //   move  $v1, $a3
-        v1 = a3;
-        //#define v1 a3
         if (a3 == 0)
         {
-
-            //  move  $t2, $a0
-            //  lui   $v0, (0x0A000200 >> 16) # lui $v0, 0xa00
-            //  addiu $a0, $a0, 8
-            //  li    $t8, 8
-            //  ori   $v0, (0x0A000200 & 0xFFFF) # ori $v0, $v0, 0x200
-            //  sw    $t8, 4($t2)
-            //  move  $t3, $a0
-            //  lui   $t9, (0x02000008 >> 16) # lui $t9, 0x200
-            //  sw    $v0, ($t2)
             aDMEMMove(arg0++, 0x200, 0, 8);
-            //  ori   $t9, (0x02000008 & 0xFFFF) # ori $t9, $t9, 8
-            //  addiu $a0, $a0, 8
-            //  sw    $t9, ($t3)
-            //  li    $t6, 8
-            //  move  $t4, $a0
-            //  sw    $t6, 4($t3)
-
             aClearBuffer(arg0++, 8, 8);
-
-            //  addiu $a0, $a0, 8
-            //  lui   $t7, (0x00100010 >> 16) # lui $t7, 0x10
-            //  ori   $t7, (0x00100010 & 0xFFFF) # ori $t7, $t7, 0x10
-            //  move  $t5, $a0
-            //  sw    $t7, 4($t4)
-            //  sw    $v0, ($t4)
             aDMEMMove(arg0++, 0x200, 0x10, 0x10);
-            //  li    $t9, 32
-            //  lui   $t8, 0x800
-            //  sw    $t8, ($t5)
-            //  sw    $t9, 4($t5)
             aSetBuffer(arg0++, 0, 0, 0, 32);
-            //  addiu $a0, $a0, 8
-            //  sw    $a0, 8($sp)
-            //  lw    $t7, 8($sp)
-            //  lui   $t6, 0x600
-            //  lui   $t1, (0x80000090 >> 16) # lui $t1, 0x8000
-            //  sw    $t6, ($t7)
-            //  lw    $t8, 0x34($a1)
-            //  ori   $t1, (0x80000090 & 0xFFFF) # ori $t1, $t1, 0x90
-            //  addiu $a0, $a0, 8
-            //  addu  $t9, $t8, $t1
-            //  addu  $t8, $a2, $s0
-            //  sw    $t9, 4($t7)
             aSaveBuffer(arg0++, FIX(arg1->unk34->unk90));
-//  subu  $t3, $t8, $v1
-//  sll   $t9, $s0, 0xf
-//  addiu $t7, $t3, 8
-//  div   $zero, $t9, $t7
-//  move  $t2, $a0
-//  lui   $t6, (0x08000208 >> 16) # lui $t6, 0x800
-//  mflo  $t8
-//  ori   $t6, (0x08000208 & 0xFFFF) # ori $t6, $t6, 0x208
-//  addiu $a0, $a0, 8
-//  andi  $v0, $t3, 0xffff
-//  sw    $v0, 4($t2)
-//  sw    $t6, ($t2)
-//t3 = a2 + arg2 - v1;
-#define t3 (a2 + arg2 - v1)
-            aSetBuffer(arg0++, 0, 0x208, 0, t3);
-            //  move  $t4, $a0
-            //  addiu $a0, $a0, 8
-            //  bnez  $t7, .L8031574C
-            //   nop
-            //  break 7
-            //.L8031574C:
-            //  li    $at, -1
-            //  bne   $t7, $at, .L80315764
-            //   lui   $at, 0x8000
-            //  bne   $t9, $at, .L80315764
-            //   nop
-            //  break 6
-            //.L80315764:
-            //  lui   $at, 0x500
-            //  andi  $t9, $t8, 0xffff
-            //  or    $t7, $t9, $at
-            //  sw    $t7, ($t4)
-            //  lw    $t6, 0x34($a1)
-            //  addu  $t8, $t6, $t1
-            //  b     .L80315860
-            //   sw    $t8, 4($t4)
-            aResample(arg0++, 0, (s32)(arg2 << 0xf) / (s32)(t3 + 8), FIX(arg1->unk34->unk90));
+            pitch = (arg2 << 0xf) / (a2 + arg2 - a3 + 8);
+            aSetBuffer(arg0++, 0, 0x208, 0, a2 + arg2 - a3);
+            aResample(arg0++, 0, pitch, FIX(arg1->unk34->unk90));
         }
         else
         {
-            //.L80315784:
-            //  bnez  $a2, .L803157D8
-            //   move  $v0, $a2
-            if (a2 == 0)
-            {
-                //  subu  $t7, $s0, $v1
-                //  addiu $t6, $t7, -4
-                //  sll   $t9, $s0, 0xf
-                //  div   $zero, $t9, $t6
-                //  mflo  $t2
-                //  andi  $t8, $t2, 0xffff
-                //  bnez  $t6, .L803157B0
-                //   nop
-                //  break 7
-                //.L803157B0:
-                //  li    $at, -1
-                //  bne   $t6, $at, .L803157C8
-                //   lui   $at, 0x8000
-                //  bne   $t9, $at, .L803157C8
-                //   nop
-                //  break 6
-                //.L803157C8:
-                //  addu  $t7, $v0, $s0
-                //  subu  $t3, $t7, $v1
-                //  b     .L80315818
-                //   move  $t2, $t8
-
-                //t3 = a2 + arg2 - v1;
-
-                t2 = (s32)(arg2 << 0xf) / (s32)(arg2 - v1 - 4);
-            }
-            else
-            {
-                //.L803157D8:
-                //  addu  $t9, $s0, $v0
-                //  subu  $t3, $t9, $v1
-
-                //  sll   $t6, $s0, 0xf
-                //  div   $zero, $t6, $t3
-                //  mflo  $t2
-                //  andi  $t8, $t2, 0xffff
-                //  move  $t2, $t8
-                t2 = (s32)(arg2 << 0xf) / (s32)(t3);
-                //  bnez  $t3, .L80315800
-                //   nop
-                //  break 7
-                //.L80315800:
-                //  li    $at, -1
-                //  bne   $t3, $at, .L80315818
-                //   lui   $at, 0x8000
-                //  bne   $t6, $at, .L80315818
-                //   nop
-                //  break 6
-            }
-            //.L80315818:
-            //  move  $t4, $a0
-            //  lui   $t7, (0x08000200 >> 16) # lui $t7, 0x800
-            //  ori   $t7, (0x08000200 & 0xFFFF) # ori $t7, $t7, 0x200
-            //  addiu $a0, $a0, 8
-            //  andi  $v0, $t3, 0xffff
-            //  andi  $t9, $t2, 0xffff
-            //  lui   $at, 0x500
-            //  sw    $v0, 4($t4)
-            //  sw    $t7, ($t4)
-            aSetBuffer(arg0++, 0, 0x200, 0, t3);
-            //  or    $t6, $t9, $at
-            //  move  $t5, $a0
-            //  sw    $t6, ($t5)
-            //  lw    $t8, 0x34($a1)
-            //  lui   $t1, (0x80000090 >> 16) # $t1, 0x8000
-            //  ori   $t1, (0x80000090 & 0xFFFF) # ori $t1, $t1, 0x90
-            //  addu  $t7, $t8, $t1
-            //  sw    $t7, 4($t5)
-            aResample(arg0++, 0, t2, FIX(arg1->unk34->unk90));
-            //  addiu $a0, $a0, 8
+            pitch = (a2 == 0) ?
+                (arg2 << 0xf) / (arg2 - a3 - 4) :
+                (arg2 << 0xf) / (arg2 + a2 - a3);
+            aSetBuffer(arg0++, 0, 0x200, 0, a2 + arg2 - a3);
+            aResample(arg0++, 0, pitch, FIX(arg1->unk34->unk90));
         }
-        //.L80315860:
-        //  beqz  $v1, .L803158D0
-        //   lui   $t8, 0xa00
-        if (v1 > 0)
+
+        if (a3 != 0)
         {
-            //  move  $t1, $a0
-            //  lui   $t9, (0x08000200 >> 16) # lui $t9, 0x800
-            //  ori   $t9, (0x08000200 & 0xFFFF) # ori $t9, $t9, 0x200
-            //  addiu $a0, $a0, 8
-            //  andi  $t6, $a3, 0xffff
-            //  sw    $t6, 4($t1)
-            //  sw    $t9, ($t1)
             aSetBuffer(arg0++, 0, 0x200, 0, a3);
-            //  move  $t2, $a0
-            //  lui   $t8, 0x400
-            //  sw    $t8, ($t2)
-            //  lw    $t7, 0x34($a1)
-            //  lui   $at, (0x800000B0 >> 16) # lui $at, 0x8000
-            //  ori   $at, (0x800000B0 & 0xFFFF) # ori $at, $at, 0xb0
-            //  addu  $t9, $t7, $at
-            //  sw    $t9, 4($t2)
             aLoadBuffer(arg0++, FIX(arg1->unk34->unkb0));
-            //  addiu $a0, $a0, 8
-            //  move  $t3, $a0
-            //  addiu $t7, $v1, 0x200
-            //  lui   $t6, (0x0A000200 >> 16) # lui $t6, 0xa00
-            //  sw    $t6, ($t3)
-            //  sll   $t9, $t7, 0x10
-            //  or    $t6, $t9, $v0
-            //  sw    $t6, 4($t3)
-            aDMEMMove(arg0++, 0, v1 + 0x200, t3); 
-            //  addiu $a0, $a0, 8
-            //  b     .L80315938
-            //   andi  $a3, $s0, 0xffff
-            //a3 = arg2;
+            aDMEMMove(arg0++, 0, a3 + 0x200, a2 + arg2 - a3);
         }
         else
         {
-            //.L803158D0:
-            //  move  $v1, $a0
-            //  lui   $at, 0x200
-            //  or    $t7, $v0, $at
-            //  sw    $t7, 4($v1)
-            //  sw    $t8, ($v1)
-            aDMEMMove(arg0++, 0, 0x200, t3);
-            //  addiu $a0, $a0, 8
-            //  b     .L80315938
-            //   andi  $a3, $s0, 0xffff
+            aDMEMMove(arg0++, 0, 0x200, a2 + arg2 - a3);
         }
     }
     else
     {
-        //.L803158F0:
-        //  lui   $v0, (0x0A000200 >> 16) # $v0, 0xa00
-        //  addiu $a0, $a0, 8
-        //  ori   $v0, (0x0A000200 & 0xFFFF) # ori $v0, $v0, 0x200
-        //  andi  $a3, $s0, 0xffff
-        //  move  $t1, $a0
-        //  sw    $a3, 4($v1)
-        //  sw    $v0, ($v1)
         aDMEMMove(arg0++, 0x200, 0, arg2);
-        //  addiu $t8, $a2, 0x200
-        //  sll   $t7, $t8, 0x10
-        //  sw    $t9, ($t1)
-        //  addiu $a0, $a0, 8
-        //  or    $t9, $t7, $a3
-        //  move  $t2, $a0
-        //  sw    $t9, 4($t1)
         aDMEMMove(arg0++, 0, a2 + 0x200, arg2);
-        //  ori   $t6, (0x0A000200 & 0xFFFF) # ori $t6, $t6, 0x200
-        //  sw    $t6, ($t2)
-        //  sw    $a2, 4($t2)
         aClearBuffer(arg0++, 0x200, a2);
-        //  addiu $a0, $a0, 8
     }
-    //.L80315938:
-    //  beqz  $a2, .L80315984
-    //   move  $v0, $a0
+
     if (a2)
     {
-        //  lui   $t8, 0x800
-        //  sw    $t8, ($v0)
-        //  addiu $t9, $s0, 0x200
-        //  sll   $t6, $t9, 0x10
-        //  andi  $t8, $a2, 0xffff
-        //  or    $t7, $t6, $t8
-        //  addiu $a0, $a0, 8
-        //  sw    $t7, 4($v0)
         aSetBuffer(arg0++, 0, 0, arg2 + 0x200, a2);
-        //  move  $v1, $a0
-        //  lui   $t9, 0x600
-        //  sw    $t9, ($v1)
-        //  lw    $t6, 0x34($a1)
-        //  lui   $at, (0x800000B0 >> 16) # lui $at, 0x8000
-        //  ori   $at, (0x800000B0 & 0xFFFF) # ori $at, $at, 0xb0
-        //  addu  $t8, $t6, $at
-        //  sw    $t8, 4($v1)
         aSaveBuffer(arg0++, FIX(arg1->unk34->unkb0));
-        //  addiu $a0, $a0, 8
     }
-    //.L80315984:
-    //  addiu $a1, $a0, 8
-    //  lui   $t7, 0x800
-    //  sw    $t7, ($a0)
-    //  sw    $a3, 4($a0)
+
     aSetBuffer(arg0++, 0, 0, 0, arg2);
-    //  lui   $t9, (0x0C007FFF >> 16) # lui $t9, 0xc00
-    //  andi  $t6, $t0, 0xffff
-    //  lui   $at, 0x200
-    //  or    $t8, $t6, $at
-    //  ori   $t9, (0x0C007FFF & 0xFFFF) # ori $t9, $t9, 0x7fff
-    //  sw    $t9, ($a1)
-    //  sw    $t8, 4($a1)
     aMix(arg0++, 0, 0x7fff, 0x200, t0);
 
-    //  addiu $v0, $a1, 8
-    //.L803159B4:
-    //  lw    $s0, 4($sp)
-    //  jr    $ra
-    //   addiu $sp, $sp, 0x50
-    *(u32 *)arg0++ = 0;
-    *(u32 *)arg0++ = 0;
     return arg0;
 }
-#else
-
-// clang-format off
-GLOBAL_ASM(
-
-glabel func_803155F4
-/* 0D05F4 803155F4 27BDFFB0 */  addiu $sp, $sp, -0x50
-/* 0D05F8 803155F8 8FAE0060 */  lw    $t6, 0x60($sp)
-/* 0D05FC 803155FC AFB00004 */  sw    $s0, 4($sp)
-/* 0D0600 80315600 24020001 */  li    $v0, 1
-/* 0D0604 80315604 00C08025 */  move  $s0, $a2
-/* 0D0608 80315608 11C20006 */  beq   $t6, $v0, .L80315624
-/* 0D060C 8031560C AFA7005C */   sw    $a3, 0x5c($sp)
-/* 0D0610 80315610 24010002 */  li    $at, 2
-/* 0D0614 80315614 11C10009 */  beq   $t6, $at, .L8031563C
-/* 0D0618 80315618 24080600 */   li    $t0, 1536
-/* 0D061C 8031561C 100000E5 */  b     .L803159B4
-/* 0D0620 80315620 00801025 */   move  $v0, $a0
-.L80315624:
-/* 0D0624 80315624 94A6000C */  lhu   $a2, 0xc($a1)
-/* 0D0628 80315628 94A70010 */  lhu   $a3, 0x10($a1)
-/* 0D062C 8031562C 240804C0 */  li    $t0, 1216
-/* 0D0630 80315630 A4A00012 */  sh    $zero, 0x12($a1)
-/* 0D0634 80315634 10000008 */  b     .L80315658
-/* 0D0638 80315638 A4A60010 */   sh    $a2, 0x10($a1)
-.L8031563C:
-/* 0D063C 8031563C 94A6000E */  lhu   $a2, 0xe($a1)
-/* 0D0640 80315640 94A70012 */  lhu   $a3, 0x12($a1)
-/* 0D0644 80315644 A4A00010 */  sh    $zero, 0x10($a1)
-/* 0D0648 80315648 10000003 */  b     .L80315658
-/* 0D064C 8031564C A4A60012 */   sh    $a2, 0x12($a1)
-/* 0D0650 80315650 100000D8 */  b     .L803159B4
-/* 0D0654 80315654 00801025 */   move  $v0, $a0
-.L80315658:
-/* 0D0658 80315658 8FAF005C */  lw    $t7, 0x5c($sp)
-/* 0D065C 8031565C 00801825 */  move  $v1, $a0
-/* 0D0660 80315660 3C190A00 */  lui   $t9, 0xa00
-/* 0D0664 80315664 11E200A2 */  beq   $t7, $v0, .L803158F0
-/* 0D0668 80315668 3C0E0200 */   lui   $t6, 0x200
-/* 0D066C 8031566C 14E00045 */  bnez  $a3, .L80315784
-/* 0D0670 80315670 00E01825 */   move  $v1, $a3
-/* 0D0674 80315674 00805025 */  move  $t2, $a0
-/* 0D0678 80315678 3C020A00 */  lui   $v0, (0x0A000200 >> 16) # lui $v0, 0xa00
-/* 0D067C 8031567C 24840008 */  addiu $a0, $a0, 8
-/* 0D0680 80315680 24180008 */  li    $t8, 8
-/* 0D0684 80315684 34420200 */  ori   $v0, (0x0A000200 & 0xFFFF) # ori $v0, $v0, 0x200
-/* 0D0688 80315688 AD580004 */  sw    $t8, 4($t2)
-/* 0D068C 8031568C 00805825 */  move  $t3, $a0
-/* 0D0690 80315690 3C190200 */  lui   $t9, (0x02000008 >> 16) # lui $t9, 0x200
-/* 0D0694 80315694 AD420000 */  sw    $v0, ($t2)
-/* 0D0698 80315698 37390008 */  ori   $t9, (0x02000008 & 0xFFFF) # ori $t9, $t9, 8
-/* 0D069C 8031569C 24840008 */  addiu $a0, $a0, 8
-/* 0D06A0 803156A0 AD790000 */  sw    $t9, ($t3)
-/* 0D06A4 803156A4 240E0008 */  li    $t6, 8
-/* 0D06A8 803156A8 00806025 */  move  $t4, $a0
-/* 0D06AC 803156AC AD6E0004 */  sw    $t6, 4($t3)
-/* 0D06B0 803156B0 24840008 */  addiu $a0, $a0, 8
-/* 0D06B4 803156B4 3C0F0010 */  lui   $t7, (0x00100010 >> 16) # lui $t7, 0x10
-/* 0D06B8 803156B8 35EF0010 */  ori   $t7, (0x00100010 & 0xFFFF) # ori $t7, $t7, 0x10
-/* 0D06BC 803156BC 00806825 */  move  $t5, $a0
-/* 0D06C0 803156C0 AD8F0004 */  sw    $t7, 4($t4)
-/* 0D06C4 803156C4 AD820000 */  sw    $v0, ($t4)
-/* 0D06C8 803156C8 24190020 */  li    $t9, 32
-/* 0D06CC 803156CC 3C180800 */  lui   $t8, 0x800
-/* 0D06D0 803156D0 ADB80000 */  sw    $t8, ($t5)
-/* 0D06D4 803156D4 ADB90004 */  sw    $t9, 4($t5)
-/* 0D06D8 803156D8 24840008 */  addiu $a0, $a0, 8
-/* 0D06DC 803156DC AFA40008 */  sw    $a0, 8($sp)
-/* 0D06E0 803156E0 8FAF0008 */  lw    $t7, 8($sp)
-/* 0D06E4 803156E4 3C0E0600 */  lui   $t6, 0x600
-/* 0D06E8 803156E8 3C098000 */  lui   $t1, (0x80000090 >> 16) # lui $t1, 0x8000
-/* 0D06EC 803156EC ADEE0000 */  sw    $t6, ($t7)
-/* 0D06F0 803156F0 8CB80034 */  lw    $t8, 0x34($a1)
-/* 0D06F4 803156F4 35290090 */  ori   $t1, (0x80000090 & 0xFFFF) # ori $t1, $t1, 0x90
-/* 0D06F8 803156F8 24840008 */  addiu $a0, $a0, 8
-/* 0D06FC 803156FC 0309C821 */  addu  $t9, $t8, $t1
-/* 0D0700 80315700 00D0C021 */  addu  $t8, $a2, $s0
-/* 0D0704 80315704 ADF90004 */  sw    $t9, 4($t7)
-/* 0D0708 80315708 03035823 */  subu  $t3, $t8, $v1
-/* 0D070C 8031570C 0010CBC0 */  sll   $t9, $s0, 0xf
-/* 0D0710 80315710 256F0008 */  addiu $t7, $t3, 8
-/* 0D0714 80315714 032F001A */  div   $zero, $t9, $t7
-/* 0D0718 80315718 00805025 */  move  $t2, $a0
-/* 0D071C 8031571C 3C0E0800 */  lui   $t6, (0x08000208 >> 16) # lui $t6, 0x800
-/* 0D0720 80315720 0000C012 */  mflo  $t8
-/* 0D0724 80315724 35CE0208 */  ori   $t6, (0x08000208 & 0xFFFF) # ori $t6, $t6, 0x208
-/* 0D0728 80315728 24840008 */  addiu $a0, $a0, 8
-/* 0D072C 8031572C 3162FFFF */  andi  $v0, $t3, 0xffff
-/* 0D0730 80315730 AD420004 */  sw    $v0, 4($t2)
-/* 0D0734 80315734 AD4E0000 */  sw    $t6, ($t2)
-/* 0D0738 80315738 00806025 */  move  $t4, $a0
-/* 0D073C 8031573C 24840008 */  addiu $a0, $a0, 8
-/* 0D0740 80315740 15E00002 */  bnez  $t7, .L8031574C
-/* 0D0744 80315744 00000000 */   nop   
-/* 0D0748 80315748 0007000D */  break 7
-.L8031574C:
-/* 0D074C 8031574C 2401FFFF */  li    $at, -1
-/* 0D0750 80315750 15E10004 */  bne   $t7, $at, .L80315764
-/* 0D0754 80315754 3C018000 */   lui   $at, 0x8000
-/* 0D0758 80315758 17210002 */  bne   $t9, $at, .L80315764
-/* 0D075C 8031575C 00000000 */   nop   
-/* 0D0760 80315760 0006000D */  break 6
-.L80315764:
-/* 0D0764 80315764 3C010500 */  lui   $at, 0x500
-/* 0D0768 80315768 3319FFFF */  andi  $t9, $t8, 0xffff
-/* 0D076C 8031576C 03217825 */  or    $t7, $t9, $at
-/* 0D0770 80315770 AD8F0000 */  sw    $t7, ($t4)
-/* 0D0774 80315774 8CAE0034 */  lw    $t6, 0x34($a1)
-/* 0D0778 80315778 01C9C021 */  addu  $t8, $t6, $t1
-/* 0D077C 8031577C 10000038 */  b     .L80315860
-/* 0D0780 80315780 AD980004 */   sw    $t8, 4($t4)
-.L80315784:
-/* 0D0784 80315784 14C00014 */  bnez  $a2, .L803157D8
-/* 0D0788 80315788 00C01025 */   move  $v0, $a2
-/* 0D078C 8031578C 02037823 */  subu  $t7, $s0, $v1
-/* 0D0790 80315790 25EEFFFC */  addiu $t6, $t7, -4
-/* 0D0794 80315794 0010CBC0 */  sll   $t9, $s0, 0xf
-/* 0D0798 80315798 032E001A */  div   $zero, $t9, $t6
-/* 0D079C 8031579C 00005012 */  mflo  $t2
-/* 0D07A0 803157A0 3158FFFF */  andi  $t8, $t2, 0xffff
-/* 0D07A4 803157A4 15C00002 */  bnez  $t6, .L803157B0
-/* 0D07A8 803157A8 00000000 */   nop   
-/* 0D07AC 803157AC 0007000D */  break 7
-.L803157B0:
-/* 0D07B0 803157B0 2401FFFF */  li    $at, -1
-/* 0D07B4 803157B4 15C10004 */  bne   $t6, $at, .L803157C8
-/* 0D07B8 803157B8 3C018000 */   lui   $at, 0x8000
-/* 0D07BC 803157BC 17210002 */  bne   $t9, $at, .L803157C8
-/* 0D07C0 803157C0 00000000 */   nop   
-/* 0D07C4 803157C4 0006000D */  break 6
-.L803157C8:
-/* 0D07C8 803157C8 00507821 */  addu  $t7, $v0, $s0
-/* 0D07CC 803157CC 01E35823 */  subu  $t3, $t7, $v1
-/* 0D07D0 803157D0 10000011 */  b     .L80315818
-/* 0D07D4 803157D4 03005025 */   move  $t2, $t8
-.L803157D8:
-/* 0D07D8 803157D8 0202C821 */  addu  $t9, $s0, $v0
-/* 0D07DC 803157DC 03235823 */  subu  $t3, $t9, $v1
-/* 0D07E0 803157E0 001073C0 */  sll   $t6, $s0, 0xf
-/* 0D07E4 803157E4 01CB001A */  div   $zero, $t6, $t3
-/* 0D07E8 803157E8 00005012 */  mflo  $t2
-/* 0D07EC 803157EC 3158FFFF */  andi  $t8, $t2, 0xffff
-/* 0D07F0 803157F0 03005025 */  move  $t2, $t8
-/* 0D07F4 803157F4 15600002 */  bnez  $t3, .L80315800
-/* 0D07F8 803157F8 00000000 */   nop   
-/* 0D07FC 803157FC 0007000D */  break 7
-.L80315800:
-/* 0D0800 80315800 2401FFFF */  li    $at, -1
-/* 0D0804 80315804 15610004 */  bne   $t3, $at, .L80315818
-/* 0D0808 80315808 3C018000 */   lui   $at, 0x8000
-/* 0D080C 8031580C 15C10002 */  bne   $t6, $at, .L80315818
-/* 0D0810 80315810 00000000 */   nop   
-/* 0D0814 80315814 0006000D */  break 6
-.L80315818:
-/* 0D0818 80315818 00806025 */  move  $t4, $a0
-/* 0D081C 8031581C 3C0F0800 */  lui   $t7, (0x08000200 >> 16) # lui $t7, 0x800
-/* 0D0820 80315820 35EF0200 */  ori   $t7, (0x08000200 & 0xFFFF) # ori $t7, $t7, 0x200
-/* 0D0824 80315824 24840008 */  addiu $a0, $a0, 8
-/* 0D0828 80315828 3162FFFF */  andi  $v0, $t3, 0xffff
-/* 0D082C 8031582C 3159FFFF */  andi  $t9, $t2, 0xffff
-/* 0D0830 80315830 3C010500 */  lui   $at, 0x500
-/* 0D0834 80315834 AD820004 */  sw    $v0, 4($t4)
-/* 0D0838 80315838 AD8F0000 */  sw    $t7, ($t4)
-/* 0D083C 8031583C 03217025 */  or    $t6, $t9, $at
-/* 0D0840 80315840 00806825 */  move  $t5, $a0
-/* 0D0844 80315844 ADAE0000 */  sw    $t6, ($t5)
-/* 0D0848 80315848 8CB80034 */  lw    $t8, 0x34($a1)
-/* 0D084C 8031584C 3C098000 */  lui   $t1, (0x80000090 >> 16) # $t1, 0x8000
-/* 0D0850 80315850 35290090 */  ori   $t1, (0x80000090 & 0xFFFF) # ori $t1, $t1, 0x90
-/* 0D0854 80315854 03097821 */  addu  $t7, $t8, $t1
-/* 0D0858 80315858 ADAF0004 */  sw    $t7, 4($t5)
-/* 0D085C 8031585C 24840008 */  addiu $a0, $a0, 8
-.L80315860:
-/* 0D0860 80315860 1060001B */  beqz  $v1, .L803158D0
-/* 0D0864 80315864 3C180A00 */   lui   $t8, 0xa00
-/* 0D0868 80315868 00804825 */  move  $t1, $a0
-/* 0D086C 8031586C 3C190800 */  lui   $t9, (0x08000200 >> 16) # lui $t9, 0x800
-/* 0D0870 80315870 37390200 */  ori   $t9, (0x08000200 & 0xFFFF) # ori $t9, $t9, 0x200
-/* 0D0874 80315874 24840008 */  addiu $a0, $a0, 8
-/* 0D0878 80315878 30EEFFFF */  andi  $t6, $a3, 0xffff
-/* 0D087C 8031587C AD2E0004 */  sw    $t6, 4($t1)
-/* 0D0880 80315880 AD390000 */  sw    $t9, ($t1)
-/* 0D0884 80315884 00805025 */  move  $t2, $a0
-/* 0D0888 80315888 3C180400 */  lui   $t8, 0x400
-/* 0D088C 8031588C AD580000 */  sw    $t8, ($t2)
-/* 0D0890 80315890 8CAF0034 */  lw    $t7, 0x34($a1)
-/* 0D0894 80315894 3C018000 */  lui   $at, (0x800000B0 >> 16) # lui $at, 0x8000
-/* 0D0898 80315898 342100B0 */  ori   $at, (0x800000B0 & 0xFFFF) # ori $at, $at, 0xb0
-/* 0D089C 8031589C 01E1C821 */  addu  $t9, $t7, $at
-/* 0D08A0 803158A0 AD590004 */  sw    $t9, 4($t2)
-/* 0D08A4 803158A4 24840008 */  addiu $a0, $a0, 8
-/* 0D08A8 803158A8 00805825 */  move  $t3, $a0
-/* 0D08AC 803158AC 246F0200 */  addiu $t7, $v1, 0x200
-/* 0D08B0 803158B0 3C0E0A00 */  lui   $t6, (0x0A000200 >> 16) # lui $t6, 0xa00
-/* 0D08B4 803158B4 AD6E0000 */  sw    $t6, ($t3)
-/* 0D08B8 803158B8 000FCC00 */  sll   $t9, $t7, 0x10
-/* 0D08BC 803158BC 03227025 */  or    $t6, $t9, $v0
-/* 0D08C0 803158C0 AD6E0004 */  sw    $t6, 4($t3)
-/* 0D08C4 803158C4 24840008 */  addiu $a0, $a0, 8
-/* 0D08C8 803158C8 1000001B */  b     .L80315938
-/* 0D08CC 803158CC 3207FFFF */   andi  $a3, $s0, 0xffff
-.L803158D0:
-/* 0D08D0 803158D0 00801825 */  move  $v1, $a0
-/* 0D08D4 803158D4 3C010200 */  lui   $at, 0x200
-/* 0D08D8 803158D8 00417825 */  or    $t7, $v0, $at
-/* 0D08DC 803158DC AC6F0004 */  sw    $t7, 4($v1)
-/* 0D08E0 803158E0 AC780000 */  sw    $t8, ($v1)
-/* 0D08E4 803158E4 24840008 */  addiu $a0, $a0, 8
-/* 0D08E8 803158E8 10000013 */  b     .L80315938
-/* 0D08EC 803158EC 3207FFFF */   andi  $a3, $s0, 0xffff
-.L803158F0:
-/* 0D08F0 803158F0 3C020A00 */  lui   $v0, (0x0A000200 >> 16) # $v0, 0xa00
-/* 0D08F4 803158F4 24840008 */  addiu $a0, $a0, 8
-/* 0D08F8 803158F8 34420200 */  ori   $v0, (0x0A000200 & 0xFFFF) # ori $v0, $v0, 0x200
-/* 0D08FC 803158FC 3207FFFF */  andi  $a3, $s0, 0xffff
-/* 0D0900 80315900 00804825 */  move  $t1, $a0
-/* 0D0904 80315904 AC670004 */  sw    $a3, 4($v1)
-/* 0D0908 80315908 AC620000 */  sw    $v0, ($v1)
-/* 0D090C 8031590C 24D80200 */  addiu $t8, $a2, 0x200
-/* 0D0910 80315910 00187C00 */  sll   $t7, $t8, 0x10
-/* 0D0914 80315914 AD390000 */  sw    $t9, ($t1)
-/* 0D0918 80315918 24840008 */  addiu $a0, $a0, 8
-/* 0D091C 8031591C 01E7C825 */  or    $t9, $t7, $a3
-/* 0D0920 80315920 00805025 */  move  $t2, $a0
-/* 0D0924 80315924 AD390004 */  sw    $t9, 4($t1)
-/* 0D0928 80315928 35CE0200 */  ori   $t6, (0x0A000200 & 0xFFFF) # ori $t6, $t6, 0x200
-/* 0D092C 8031592C AD4E0000 */  sw    $t6, ($t2)
-/* 0D0930 80315930 AD460004 */  sw    $a2, 4($t2)
-/* 0D0934 80315934 24840008 */  addiu $a0, $a0, 8
-.L80315938:
-/* 0D0938 80315938 10C00012 */  beqz  $a2, .L80315984
-/* 0D093C 8031593C 00801025 */   move  $v0, $a0
-/* 0D0940 80315940 3C180800 */  lui   $t8, 0x800
-/* 0D0944 80315944 AC580000 */  sw    $t8, ($v0)
-/* 0D0948 80315948 26190200 */  addiu $t9, $s0, 0x200
-/* 0D094C 8031594C 00197400 */  sll   $t6, $t9, 0x10
-/* 0D0950 80315950 30D8FFFF */  andi  $t8, $a2, 0xffff
-/* 0D0954 80315954 01D87825 */  or    $t7, $t6, $t8
-/* 0D0958 80315958 24840008 */  addiu $a0, $a0, 8
-/* 0D095C 8031595C AC4F0004 */  sw    $t7, 4($v0)
-/* 0D0960 80315960 00801825 */  move  $v1, $a0
-/* 0D0964 80315964 3C190600 */  lui   $t9, 0x600
-/* 0D0968 80315968 AC790000 */  sw    $t9, ($v1)
-/* 0D096C 8031596C 8CAE0034 */  lw    $t6, 0x34($a1)
-/* 0D0970 80315970 3C018000 */  lui   $at, (0x800000B0 >> 16) # lui $at, 0x8000
-/* 0D0974 80315974 342100B0 */  ori   $at, (0x800000B0 & 0xFFFF) # ori $at, $at, 0xb0
-/* 0D0978 80315978 01C1C021 */  addu  $t8, $t6, $at
-/* 0D097C 8031597C AC780004 */  sw    $t8, 4($v1)
-/* 0D0980 80315980 24840008 */  addiu $a0, $a0, 8
-.L80315984:
-/* 0D0984 80315984 24850008 */  addiu $a1, $a0, 8
-/* 0D0988 80315988 3C0F0800 */  lui   $t7, 0x800
-/* 0D098C 8031598C AC8F0000 */  sw    $t7, ($a0)
-/* 0D0990 80315990 AC870004 */  sw    $a3, 4($a0)
-/* 0D0994 80315994 3C190C00 */  lui   $t9, (0x0C007FFF >> 16) # lui $t9, 0xc00
-/* 0D0998 80315998 310EFFFF */  andi  $t6, $t0, 0xffff
-/* 0D099C 8031599C 3C010200 */  lui   $at, 0x200
-/* 0D09A0 803159A0 01C1C025 */  or    $t8, $t6, $at
-/* 0D09A4 803159A4 37397FFF */  ori   $t9, (0x0C007FFF & 0xFFFF) # ori $t9, $t9, 0x7fff
-/* 0D09A8 803159A8 ACB90000 */  sw    $t9, ($a1)
-/* 0D09AC 803159AC ACB80004 */  sw    $t8, 4($a1)
-/* 0D09B0 803159B0 24A20008 */  addiu $v0, $a1, 8
-.L803159B4:
-/* 0D09B4 803159B4 8FB00004 */  lw    $s0, 4($sp)
-/* 0D09B8 803159B8 03E00008 */  jr    $ra
-/* 0D09BC 803159BC 27BD0050 */   addiu $sp, $sp, 0x50
-)
-// clang-format on
-
-#endif
 
 void func_803159C0(struct Struct_func_80318870 *arg0)
 {
@@ -4213,6 +2916,7 @@ void func_80315D94(struct Struct_func_80318870 *arg0)
     arg0->unk10 = 0;
     arg0->unk12 = 0;
 }
+
 void func_80315DE0(struct Struct_func_80318870 *arg0)
 {
     if (arg0->unk0b40 == 1)
@@ -4226,6 +2930,6 @@ void func_80315DE0(struct Struct_func_80318870 *arg0)
     arg0->unk4 = 0;
     arg0->unk0b80 = 0;
     arg0->unk0b10 = 0;
-    arg0->unk2C = MINUS_ONE; //I don't like this...
-    arg0->unk28 = MINUS_ONE; //okay apparently this is in playback.c too
+    arg0->unk2C = MINUS_ONE;
+    arg0->unk28 = MINUS_ONE;
 }

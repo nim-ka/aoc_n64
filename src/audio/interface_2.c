@@ -268,14 +268,10 @@ typedef s32 Arg1T;
 typedef s32 Arg2T;
 #endif
 
-// Local functions that should be static but are defined in/called from GLOBAL_ASM blocks:
-void func_8031DFE8(u8 listIndex, u8 item);
-void func_8031E0E4(u8 listIndex, u8 item);
-void func_8031E16C(u8 arg0);
-f32 func_8031E97C(f32 arg0, f32 arg1);
-f32 func_8031EB24(u8 listIndex, u8 item, f32 arg2);
-f32 func_8031EC7C(u8 listIndex, u8 item);
-u8 func_8031ED70(u8 arg0, u8 arg1, u8 arg2);
+static void func_8031E0E4(u8 listIndex, u8 item);
+
+// Local functions that could be static but are defined in/called from GLOBAL_ASM blocks,
+// or not part of the large block of static functions.
 void func_8031EEF8(void);
 void SetMusic(u8 arg0, u8 arg1, u16 arg2);
 void func_8031F888(u8 arg0, u8 arg1, u8 arg2, u16 arg3);
@@ -1058,7 +1054,7 @@ static void func_8031DCA8(u32 arg0, f32 *arg1)
     }
 }
 
-void func_8031DF64(void)
+static void func_8031DF64(void)
 {
     struct Sound *temp;
 
@@ -1070,7 +1066,7 @@ void func_8031DF64(void)
     }
 }
 
-void func_8031DFE8(u8 listIndex, u8 item)
+static void func_8031DFE8(u8 listIndex, u8 item)
 {
     // move item from list D_803320A4 to list D_803320B0
     if (D_803320A4[listIndex] == item)
@@ -1091,7 +1087,7 @@ void func_8031DFE8(u8 listIndex, u8 item)
     D_803320B0[listIndex] = item;
 }
 
-void func_8031E0E4(u8 listIndex, u8 item)
+static void func_8031E0E4(u8 listIndex, u8 item)
 {
     if (D_80360C48[listIndex][item].unk14 & 0x10)
     {
@@ -1100,7 +1096,7 @@ void func_8031E0E4(u8 listIndex, u8 item)
     }
 }
 
-void func_8031E16C(u8 listIndex)
+static void func_8031E16C(u8 listIndex)
 {
     u32 val2;
     u8 spDB;
@@ -1267,7 +1263,7 @@ void func_8031E16C(u8 listIndex)
     }
 }
 
-f32 func_8031E97C(f32 arg0, f32 arg1)
+static f32 func_8031E97C(f32 arg0, f32 arg1)
 {
     f32 abs0;
     f32 abs1;
@@ -1310,7 +1306,7 @@ f32 func_8031E97C(f32 arg0, f32 arg1)
     return ret;
 }
 
-f32 func_8031EB24(u8 listIndex, u8 item, f32 arg2)
+static f32 func_8031EB24(u8 listIndex, u8 item, f32 arg2)
 {
     f32 f0;
     f32 f12;
@@ -1372,7 +1368,7 @@ f32 func_8031EB24(u8 listIndex, u8 item, f32 arg2)
     return arg2 * f12 * f12 + 1.0f - arg2;
 }
 
-f32 func_8031EC7C(u8 listIndex, u8 item)
+static f32 func_8031EC7C(u8 listIndex, u8 item)
 {
     f32 f2;
 
@@ -1391,7 +1387,7 @@ f32 func_8031EC7C(u8 listIndex, u8 item)
     return f2 / US_FLOAT(15.0) + US_FLOAT(1.0);
 }
 
-u8 func_8031ED70(UNUSED u8 listIndex, UNUSED u8 item, u8 arg2)
+static u8 func_8031ED70(UNUSED u8 listIndex, UNUSED u8 item, u8 arg2)
 {
     u8 area;
     u8 level;
