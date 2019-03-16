@@ -2,19 +2,6 @@
 #include "something.h"
 #include "unused.h"
 
-// Like aSetBuffer, expect that the order of operands to the w1 bitor is
-// swapped. This is needed for the code to match... (In fact, it's almost
-// fine to redefine aSetBuffer itself this way, but there's a single function
-// whose bitor then get its order of operands messed up.)
-#define aSetBuffer2(pkt, f, i, o, c)                                    \
-    {                                                                   \
-        Acmd *_a = (Acmd *)pkt;                                         \
-                                                                        \
-        _a->words.w0 = (_SHIFTL(A_SETBUFF, 24, 8) | _SHIFTL(f, 16, 8) | \
-                        _SHIFTL(i, 0, 16));                             \
-        _a->words.w1 =  _SHIFTL(c, 0, 16) | _SHIFTL(o, 16, 16);         \
-    }
-
 //volume related
 s32 func_80313BB0(u16 arg0, u16 arg1, s32 arg2)
 {

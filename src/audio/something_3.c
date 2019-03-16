@@ -15,16 +15,6 @@
 #define GLOBAL_ASM(...)
 #endif
 
-// Like aSetVolume, but it combines the last two parameters into one.
-#define aSetVolume2(pkt, f, v, tr)                                      \
-    {                                                                   \
-        Acmd *_a = (Acmd *)pkt;                                         \
-                                                                        \
-        _a->words.w0 = (_SHIFTL(A_SETVOL, 24, 8) | _SHIFTL(f, 16, 16) | \
-                        _SHIFTL(v, 0, 16));                             \
-        _a->words.w1 = (unsigned int)(tr);                              \
-    }
-
 #ifdef NON_MATCHING
 
 u64 *func_80314480(u16 *arg0, s32 arg1, u64 *arg2)
@@ -2670,13 +2660,11 @@ u64 *func_80315094(u64 *audio_cmd, struct Struct_func_80318870 *arg1, s32 arg2, 
         spac = func_80313BB0(arg5[0], arg5[2], arg2);
         v0 = func_80313BB0(arg5[1], arg5[3], arg2);
 
-        // Oddly enough, these don't all use the regular aSetVolume -- spac and
-        // v0 are never ANDed by 0xffff.
         // arg5 is volume, so spac and v0 must be rate?
         aSetVolume(audio_cmd++, 6, arg5[0], 0, 0);
         aSetVolume(audio_cmd++, 4, arg5[1], 0, 0);
-        aSetVolume2(audio_cmd++, 2, arg5[2], spac);
-        aSetVolume2(audio_cmd++, 0, arg5[3], v0);
+        aSetVolume32(audio_cmd++, 2, arg5[2], spac);
+        aSetVolume32(audio_cmd++, 0, arg5[3], v0);
         aSetVolume(audio_cmd++, 8, D_802212A0, 0, arg1->unkA0);
     }
     if (D_802211B0.unk1 && arg1->unk40)
