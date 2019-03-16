@@ -132,13 +132,7 @@ gsDPSetCombineMode G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_
 gsSPLight ssl_seg7_light_07004008, 1
 gsSPLight ssl_seg7_light_07004000, 2
 gsSPTexture -1, -1, 0, 0, 1
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, ssl_seg7_texture_07001000
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPLoadSync
-gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
-gsDPPipeSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+gsDPLoadTextureBlock ssl_seg7_texture_07001000, G_IM_FMT_RGBA, G_IM_SIZ_16b, 32, 32, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_WRAP | G_TX_NOMIRROR, 5, 5, G_TX_NOLOD, G_TX_NOLOD
 gsSPVertex ssl_seg7_vertex_07004A70, 7, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  0,  2,  3, 0x0

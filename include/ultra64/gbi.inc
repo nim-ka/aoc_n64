@@ -359,3 +359,78 @@
    .word \segAddr
 .endm
 
+
+
+.set G_TX_DXT_FRAC, 11
+.set G_TEXTURE_IMAGE_FRAC, 2
+
+/* Calculate gsDPLoadBlock for 8, 16, and 32 bit textures */
+.macro _calc_gsDPLoadBlockNot4b width, height, shift, incr, byteSize
+    .if (((\width * \byteSize) / 8) > 1) /* result of TXL2WORDS is greater than 1 */
+        gsDPLoadBlock G_TX_LOADTILE, 0, 0, (((\width * \height) + \incr) >> \shift) - 1, (((1 << G_TX_DXT_FRAC) + ((\width * \byteSize) / 8) - 1) / ((\width * \byteSize) / 8))
+    .else /* result of TXL2WORDS is 1 */
+        gsDPLoadBlock G_TX_LOADTILE, 0, 0, (((\width * \height) + \incr) >> \shift) - 1, (1 << G_TX_DXT_FRAC)
+    .endif
+.endm
+
+/* Calculate gsDPLoadBlock for 4-bit textures */
+.macro _calc_gsDPLoadBlock4b width, height
+    .if ((\width / 16) > 1) /* result of TXL2WORDS_4b is greater than 1 */
+        gsDPLoadBlock G_TX_LOADTILE, 0, 0, (((\width * \height) + 3) >> 2) - 1, (((1 << G_TX_DXT_FRAC) + (\width / 16) - 1) / (\width / 16))
+    .else /* result of TXL2WORDS_4b is 1 */
+        gsDPLoadBlock G_TX_LOADTILE, 0, 0, (((\width * \height) + 3) >> 2) - 1, (1 << G_TX_DXT_FRAC)
+    .endif
+.endm
+
+/* Calculate gsDPLoadBlock using texture bit size, width, and height */
+.macro _calc_gsDPLoadBlock siz, width, height
+    .if (\siz == G_IM_SIZ_4b)
+        _calc_gsDPLoadBlock4b \width, \height
+    .elseif (\siz == G_IM_SIZ_8b)
+        _calc_gsDPLoadBlockNot4b \width, \height, 1, 1, 1
+    .elseif (\siz == G_IM_SIZ_16b)
+        _calc_gsDPLoadBlockNot4b \width, \height, 0, 0, 2
+    .elseif (\siz == G_IM_SIZ_32b)
+        _calc_gsDPLoadBlockNot4b \width, \height, 0, 0, 4
+    .endif
+.endm
+
+/* 
+ * gsDPLoadTextureBlock is a macro that allows you to easily load a texture in the f3d family of ucodes
+ * Parameters:
+ * timg = label to the texture data
+ * fmt  = image format (G_IM_FMT_RGBA, G_IM_FMT_CI, G_IM_FMT_IA, G_IM_FMT_I, or G_IM_FMT_YUV)
+ * siz  = bits per pixel (G_IM_SIZ_4b, G_IM_SIZ_8b, G_IM_SIZ_16b, or G_IM_SIZ_32b)
+ * width = width of the texture in pixels
+ * height = height of the texture in pixels
+ * pal = palette id to use if using G_IM_FMT_CI, otherwise it should be 0.
+ * cms = Clamp & Mirror flags for the S axis
+ * cmt = Clamp & Mirror flags for the T axis
+ * masks = Sets how much of the S axis is shown before clamping. This is usually just log2(width).
+ * maskt = Sets how much of the T axis is shown before clamping. This is usually just log2(height).
+ * shifts = Sets the amount to shift S axis values after perspective division. This is usually G_TX_NOLOD.
+ * shiftt = Sets the amount to shift T axis values after perspective division. This is usually G_TX_NOLOD.
+ */
+.macro gsDPLoadTextureBlock timg, fmt, siz, width, height, pal, cms, cmt, masks, maskt, shifts, shiftt
+    .if (\siz == G_IM_SIZ_32b)
+        gsDPSetTextureImage \fmt, \siz, 1, \timg
+        gsDPSetTile \fmt, \siz, 0, 0, G_TX_LOADTILE, 0, \cmt, \maskt, \shiftt, \cms, \masks, \shifts 
+    .else
+        gsDPSetTextureImage \fmt, G_IM_SIZ_16b, 1, \timg
+        gsDPSetTile \fmt, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, \cmt, \maskt, \shiftt, \cms, \masks, \shifts 
+    .endif
+    
+    gsDPLoadSync
+    _calc_gsDPLoadBlock \siz, \width, \height
+    gsDPPipeSync
+    
+    .if (\siz == G_IM_SIZ_4b)
+        gsDPSetTile \fmt, \siz, (7 >> 3), 0, G_TX_RENDERTILE, \pal, \cmt, \maskt, \shiftt, \cms, \masks, \shifts 
+    .elseif (\siz == G_IM_SIZ_8b)
+        gsDPSetTile \fmt, \siz, ((\width + 7) >> 3), 0, G_TX_RENDERTILE, \pal, \cmt, \maskt, \shiftt, \cms, \masks, \shifts 
+    .else
+        gsDPSetTile \fmt, \siz, (((\width * 2) + 7) >> 3), 0, G_TX_RENDERTILE, \pal, \cmt, \maskt, \shiftt, \cms, \masks, \shifts 
+    .endif
+    
+    gsDPSetTileSize G_TX_RENDERTILE, 0, 0, ((\width - 1) << G_TEXTURE_IMAGE_FRAC), ((\height - 1) << G_TEXTURE_IMAGE_FRAC)
+.endm

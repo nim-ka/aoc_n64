@@ -16170,13 +16170,9 @@ glabel inside_castle_seg7_dl_0704A2E0 # 0x0704A2E0 - 0x0704A368
 gsDPPipeSync
 gsSPSetGeometryMode G_TEXTURE_GEN
 gsDPSetCombineMode1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_SHADE, G_ACMUX_0
-gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_16b, 1, inside_castle_seg7_texture_0700A000
-gsDPSetTile G_IM_FMT_IA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPLoadSync
-gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
-gsDPPipeSync
-gsDPSetTile G_IM_FMT_IA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 124, 124
+
+gsDPLoadTextureBlock inside_castle_seg7_texture_0700A000, G_IM_FMT_IA, G_IM_SIZ_16b, 32, 32, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_WRAP | G_TX_NOMIRROR, 5, 5, G_TX_NOLOD, G_TX_NOLOD
+
 gsSPTexture 1984, 1984, 0, 0, 1
 gsSPDisplayList inside_castle_seg7_dl_0704A290
 gsSPTexture 1984, 1984, 0, 0, 0

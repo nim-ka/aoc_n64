@@ -1594,24 +1594,12 @@ gsSPEndDisplayList
 
 glabel seg2_dl_02014548 # 0x02014548 - 0x02014590
 gsSPDisplayList seg2_dl_02014520
-gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_16b, 1, seg2_texture_0200F258
-gsDPSetTile G_IM_FMT_IA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_MIRROR, 4, G_TX_NOLOD, G_TX_WRAP | G_TX_MIRROR, 4, G_TX_NOLOD
-gsDPLoadSync
-gsDPLoadBlock 7, 0, 0, 0x07F, 0x400
-gsDPPipeSync
-gsDPSetTile G_IM_FMT_IA, G_IM_SIZ_8b, 2, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_MIRROR, 4, G_TX_NOLOD, G_TX_WRAP | G_TX_MIRROR, 4, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 60, 60
+gsDPLoadTextureBlock seg2_texture_0200F258, G_IM_FMT_IA, G_IM_SIZ_8b, 16, 16, 0, G_TX_WRAP | G_TX_MIRROR, G_TX_WRAP | G_TX_MIRROR, 4, 4, G_TX_NOLOD, G_TX_NOLOD
 gsSPEndDisplayList
 
 glabel seg2_dl_02014590 # 0x02014590 - 0x020145D8
 gsSPDisplayList seg2_dl_02014520
-gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_16b, 1, seg2_texture_0200F358
-gsDPSetTile G_IM_FMT_IA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_MIRROR, 4, G_TX_NOLOD, G_TX_WRAP | G_TX_MIRROR, 4, G_TX_NOLOD
-gsDPLoadSync
-gsDPLoadBlock 7, 0, 0, 0x07F, 0x400
-gsDPPipeSync
-gsDPSetTile G_IM_FMT_IA, G_IM_SIZ_8b, 2, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_MIRROR, 4, G_TX_NOLOD, G_TX_WRAP | G_TX_MIRROR, 4, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 60, 60
+gsDPLoadTextureBlock seg2_texture_0200F358, G_IM_FMT_IA, G_IM_SIZ_8b, 16, 16, 0, G_TX_WRAP | G_TX_MIRROR, G_TX_WRAP | G_TX_MIRROR, 4, 4, G_TX_NOLOD, G_TX_NOLOD
 gsSPEndDisplayList
 
 glabel seg2_dl_020145D8 # 0x020145D8 - 0x02014620

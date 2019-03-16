@@ -5187,13 +5187,7 @@ gsDPPipeSync
 gsSPClearGeometryMode G_LIGHTING
 gsDPSetCombineMode1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_SHADE, G_ACMUX_0
 gsSPTexture -1, -1, 0, 0, 1
-gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_16b, 1, wf_seg7_texture_07002800
-gsDPSetTile G_IM_FMT_IA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_MIRROR, 4, G_TX_NOLOD, G_TX_WRAP | G_TX_MIRROR, 4, G_TX_NOLOD
-gsDPLoadSync
-gsDPLoadBlock 7, 0, 0, 0x07F, 0x400
-gsDPPipeSync
-gsDPSetTile G_IM_FMT_IA, G_IM_SIZ_8b, 2, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_MIRROR, 4, G_TX_NOLOD, G_TX_WRAP | G_TX_MIRROR, 4, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 60, 60
+gsDPLoadTextureBlock wf_seg7_texture_07002800, G_IM_FMT_IA, G_IM_SIZ_8b, 16, 16, 0, G_TX_WRAP | G_TX_MIRROR, G_TX_WRAP | G_TX_MIRROR, 4, 4, G_TX_NOLOD, G_TX_NOLOD
 gsSPVertex wf_seg7_vertex_0700F680, 4, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  0,  2,  3, 0x0

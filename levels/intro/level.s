@@ -3537,26 +3537,17 @@ glabel intro_seg7_dl_0700C6A0 # 0x0700C6A0 - 0x0700C790
 gsDPPipeSync
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
 gsSPTexture -1, -1, 0, 0, 1
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, intro_seg7_texture_0700B4A0
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 4, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 7, G_TX_NOLOD
-gsDPLoadSync
-gsDPLoadBlock 7, 0, 0, 0x7FF, 0x040
-gsDPPipeSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 32, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 4, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 7, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 508, 60
+
+gsDPLoadTextureBlock intro_seg7_texture_0700B4A0, G_IM_FMT_RGBA, G_IM_SIZ_16b, 128, 16, 0, G_TX_CLAMP | G_TX_NOMIRROR, G_TX_CLAMP | G_TX_NOMIRROR, 7, 4, G_TX_NOLOD, G_TX_NOLOD
 gsSPVertex intro_seg7_vertex_0700B420, 4, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  0,  2,  3, 0x0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, intro_seg7_texture_0700C4A0
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 4, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 4, G_TX_NOLOD
-gsDPLoadSync
-gsDPLoadBlock 7, 0, 0, 0x0FF, 0x200
-gsDPPipeSync
-gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 4, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 4, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 4, G_TX_NOLOD
-gsDPSetTileSize 0, 0, 0, 60, 60
+
+gsDPLoadTextureBlock intro_seg7_texture_0700C4A0, G_IM_FMT_RGBA, G_IM_SIZ_16b, 16, 16, 0, G_TX_CLAMP | G_TX_NOMIRROR, G_TX_CLAMP | G_TX_NOMIRROR, 4, 4, G_TX_NOLOD, G_TX_NOLOD
 gsSPVertex intro_seg7_vertex_0700B460, 4, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSP1Triangle  0,  2,  3, 0x0
+
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
 gsSPSetGeometryMode G_LIGHTING
