@@ -155,7 +155,11 @@
 /* BC: G_MOVEWORD */
 .set G_MOVEWORD, 0xBC
 .macro gsMoveWd index, offset, data
-   .word G_MOVEWORD << 24 | ((\index & 0xFFFF) << 8) | (\offset & 0xFF)
+   .ifdef F3DEX_GBI_2
+       .word G_MOVEWORD << 24 | ((\index & 0xFF) << 16) | (\offset & 0xFFFF)
+   .else
+       .word G_MOVEWORD << 24 | ((\offset & 0xFFFF) << 8) | (\index & 0xFF)
+   .endif
    .word \data
 .endm
 
@@ -433,4 +437,78 @@
     .endif
     
     gsDPSetTileSize G_TX_RENDERTILE, 0, 0, ((\width - 1) << G_TEXTURE_IMAGE_FRAC), ((\height - 1) << G_TEXTURE_IMAGE_FRAC)
+.endm
+
+/* Index in DMEM table */
+.set G_MW_NUMLIGHT, 0x02
+.set G_MW_FOG, 0x08
+
+/* Offsets in DMEM table */
+.set G_MWO_NUMLIGHT, 0x00
+.set G_MWO_FOG, 0x00
+
+/* Parameter for gsSPNumLights; not really needed but is good for formality. */
+.set NUMLIGHTS_0, 1
+.set NUMLIGHTS_1, 1
+.set NUMLIGHTS_2, 2
+.set NUMLIGHTS_3, 3
+.set NUMLIGHTS_4, 4
+.set NUMLIGHTS_5, 5
+.set NUMLIGHTS_6, 6
+.set NUMLIGHTS_7, 7
+
+/* 
+ * Parameter:
+ * n = NUMLIGHTS_* (ranges from 0 to 7)
+ */
+.macro gsSPNumLights n
+    .if \n < 0 || \n > 7
+        .error "[gsSPNumLights]: n should be in the range [0, 7]"
+    .endif
+
+    .if \n == 0 /* Special edge case where 0 is the same as 1. No idea why atm. */
+        .ifdef F3DEX_GBI_2
+            gsMoveWd G_MW_NUMLIGHT, G_MWO_NUMLIGHT, 24
+        .else
+            gsMoveWd G_MW_NUMLIGHT, G_MWO_NUMLIGHT, 0x80000040
+        .endif
+    .else
+        .ifdef F3DEX_GBI_2
+            gsMoveWd G_MW_NUMLIGHT, G_MWO_NUMLIGHT, (\n * 24)
+        .else
+            gsMoveWd G_MW_NUMLIGHT, G_MWO_NUMLIGHT, ((\n + 1) * 32 + 0x80000000)
+        .endif
+    .endif
+.endm
+
+/* 
+ * Parameters:
+ * fm = z multiplier
+ * fo = z offset
+ *
+ * FOG FORMULA: alpha(fog) = (eyespace z) * fm + fo (CLAMPED 0 to 255)
+ * note: (eyespace z) ranges [-1, 1]
+ */
+.macro gsSPFogFactor fm, fo
+    gsMoveWd G_MW_FOG, G_MWO_FOG, ((\fm & 0xFFFF) << 16) | (\fo & 0xFFFF)
+.endm
+
+/*
+ * Parameters:
+ * min = Place where fog starts (0 at the near plane, and 1000 at the far plane)
+ * max = Place where fog saturates (0 at the near plane, and 1000 at the far plane)
+ *
+ * This macro will throw an error if min or max is outside the range [0, 1000]
+ *
+ * Note: The min can be larger than max, as that just makes objects fade when they
+ * get closer to the camera.
+ */
+.macro gsSPFogPosition min, max
+    .if (\min >= 0 && \min <= 1000 && \max >= 0 && \max <= 1000)
+        gsMoveWd G_MW_FOG, G_MWO_FOG, (((128000 / (\max - \min)) & 0xFFFF) << 16) | ((((500 - \min) * 256) / (\max - \min)) & 0xFFFF)
+    .elseif \min < 0 || \min > 1000
+        .error "[gsSPFogPosition]: min should be in the range [0, 1000]"
+    .elseif \max < 0 || \max > 1000
+        .error "[gsSPFogPosition]: max should be in the range [0, 1000]"
+    .endif
 .endm

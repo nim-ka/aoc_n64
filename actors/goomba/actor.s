@@ -1028,7 +1028,7 @@ gsSP1Triangle  0,  1,  2, 0x0
 gsSPEndDisplayList
 
 glabel goomba_seg8_dl_0801D760 # 0x0801D760 - 0x0801D770
-gsMoveWd 0, 2, 0x80000040
+gsSPNumLights NUMLIGHTS_0 # I cannot tell if they meant to put 0 or 1 here.
 gsSPEndDisplayList
 
 goomba_seg8_animvalue_0801D770: # 0x0801D770

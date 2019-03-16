@@ -364,7 +364,7 @@ gsSPEndDisplayList
 
 glabel koopa_shell_seg8_dl_080273C8 # 0x080273C8 - 0x08027420
 gsDPPipeSync
-gsMoveWd 0, 2, 0x80000040
+gsSPNumLights NUMLIGHTS_0 # I cannot tell if they meant to put 0 or 1 here.
 gsSPLight koopa_shell_seg8_light_08026390, 1
 gsSPLight koopa_shell_seg8_light_08026388, 2
 gsSPDisplayList koopa_shell_seg8_dl_08027108

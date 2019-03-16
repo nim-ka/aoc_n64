@@ -162,7 +162,7 @@ vertex      5,     44,     20,      0,      0,  0x00, 0x00, 0x7F, 0x00
 
 glabel debug_level_select_dl_07000858 # 0x07000858 - 0x07000A28
 gsDPPipeSync
-gsMoveWd 0, 2, 0x80000040
+gsSPNumLights NUMLIGHTS_1 # I cannot tell if they meant to put 0 or 1 here.
 gsSPLight debug_level_select_light_07000008, 1
 gsSPLight debug_level_select_light_07000000, 2
 gsSPVertex debug_level_select_vertex_07000018, 15, 0
@@ -353,7 +353,7 @@ vertex     33,    -64,     20,      0,      0,  0x00, 0x00, 0x7F, 0x00
 
 glabel debug_level_select_dl_07001100 # 0x07001100 - 0x07001288
 gsDPPipeSync
-gsMoveWd 0, 2, 0x80000040
+gsSPNumLights NUMLIGHTS_1 # I cannot tell if they meant to put 0 or 1 here.
 gsSPLight debug_level_select_light_07000A30, 1
 gsSPLight debug_level_select_light_07000A28, 2
 gsSPVertex debug_level_select_vertex_07000A40, 15, 0
@@ -575,7 +575,7 @@ vertex     18,     -9,     20,      0,      0,  0x00, 0x00, 0x7F, 0x00
 
 glabel debug_level_select_dl_07001BA0 # 0x07001BA0 - 0x07001D98
 gsDPPipeSync
-gsMoveWd 0, 2, 0x80000040
+gsSPNumLights NUMLIGHTS_1 # I cannot tell if they meant to put 0 or 1 here.
 gsSPLight debug_level_select_light_07001290, 1
 gsSPLight debug_level_select_light_07001288, 2
 gsSPVertex debug_level_select_vertex_070012A0, 15, 0
@@ -797,7 +797,7 @@ vertex      1,     42,     20,      0,      0,  0x00, 0x00, 0x7F, 0x00
 
 glabel debug_level_select_dl_070025F0 # 0x070025F0 - 0x070027C0
 gsDPPipeSync
-gsMoveWd 0, 2, 0x80000040
+gsSPNumLights NUMLIGHTS_1 # I cannot tell if they meant to put 0 or 1 here.
 gsSPLight debug_level_select_light_07001DA0, 1
 gsSPLight debug_level_select_light_07001D98, 2
 gsSPVertex debug_level_select_vertex_07001DB0, 15, 0
@@ -1056,7 +1056,7 @@ vertex     -9,     10,     20,      0,      0,  0x00, 0x00, 0x7F, 0x00
 
 glabel debug_level_select_dl_07003258 # 0x07003258 - 0x070034A0
 gsDPPipeSync
-gsMoveWd 0, 2, 0x80000040
+gsSPNumLights NUMLIGHTS_1 # I cannot tell if they meant to put 0 or 1 here.
 gsSPLight debug_level_select_light_070027C8, 1
 gsSPLight debug_level_select_light_070027C0, 2
 gsSPVertex debug_level_select_vertex_070027D8, 15, 0
@@ -1302,7 +1302,7 @@ vertex     -1,     60,     19,      0,      0,  0x00, 0x00, 0x7F, 0x00
 
 glabel debug_level_select_dl_07003DB8 # 0x07003DB8 - 0x07003FB0
 gsDPPipeSync
-gsMoveWd 0, 2, 0x80000040
+gsSPNumLights NUMLIGHTS_1 # I cannot tell if they meant to put 0 or 1 here.
 gsSPLight debug_level_select_light_070034A8, 1
 gsSPLight debug_level_select_light_070034A0, 2
 gsSPVertex debug_level_select_vertex_070034B8, 15, 0
@@ -1538,7 +1538,7 @@ vertex     28,     74,     19,      0,      0,  0x00, 0x00, 0x7F, 0x00
 
 glabel debug_level_select_dl_070048C8 # 0x070048C8 - 0x07004AC0
 gsDPPipeSync
-gsMoveWd 0, 2, 0x80000040
+gsSPNumLights NUMLIGHTS_1 # I cannot tell if they meant to put 0 or 1 here.
 gsSPLight debug_level_select_light_07003FB8, 1
 gsSPLight debug_level_select_light_07003FB0, 2
 gsSPVertex debug_level_select_vertex_07003FC8, 15, 0
@@ -1802,7 +1802,7 @@ vertex     -1,    -14,     19,      0,      0,  0x00, 0x00, 0x7F, 0x00
 
 glabel debug_level_select_dl_07005558 # 0x07005558 - 0x070057A0
 gsDPPipeSync
-gsMoveWd 0, 2, 0x80000040
+gsSPNumLights NUMLIGHTS_1 # I cannot tell if they meant to put 0 or 1 here.
 gsSPLight debug_level_select_light_07004AC8, 1
 gsSPLight debug_level_select_light_07004AC0, 2
 gsSPVertex debug_level_select_vertex_07004AD8, 15, 0
@@ -1926,7 +1926,7 @@ vertex    -32,    103,     20,      0,      0,  0x00, 0x00, 0x7F, 0x00
 
 glabel debug_level_select_dl_070059F8 # 0x070059F8 - 0x07005A98
 gsDPPipeSync
-gsMoveWd 0, 2, 0x80000040
+gsSPNumLights NUMLIGHTS_1 # I cannot tell if they meant to put 0 or 1 here.
 gsSPLight debug_level_select_light_070057A8, 1
 gsSPLight debug_level_select_light_070057A0, 2
 gsSPVertex debug_level_select_vertex_070057B8, 15, 0
@@ -2119,7 +2119,7 @@ vertex    -33,      5,     20,      0,      0,  0x00, 0x00, 0x7F, 0x00
 
 glabel debug_level_select_dl_070063B0 # 0x070063B0 - 0x070065A8
 gsDPPipeSync
-gsMoveWd 0, 2, 0x80000040
+gsSPNumLights NUMLIGHTS_1 # I cannot tell if they meant to put 0 or 1 here.
 gsSPLight debug_level_select_light_07005AA0, 1
 gsSPLight debug_level_select_light_07005A98, 2
 gsSPVertex debug_level_select_vertex_07005AB0, 15, 0

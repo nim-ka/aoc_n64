@@ -568,7 +568,7 @@ gsSP1Triangle 10, 11, 12, 0x0
 gsSPEndDisplayList
 
 glabel lakitu_enemy_seg5_dl_050138B0 # 0x050138B0 - 0x050138C0
-gsMoveWd 0, 2, 0x80000040
+gsSPNumLights NUMLIGHTS_0 # I cannot tell if they meant to put 0 or 1 here.
 gsSPEndDisplayList
 
 lakitu_enemy_seg5_animvalue_050138C0: # 0x050138C0

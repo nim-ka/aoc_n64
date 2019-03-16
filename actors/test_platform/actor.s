@@ -50,7 +50,7 @@ vertex   -200,      0,    200,      0,      0,  0x00, 0x00, 0x7F, 0x00
 vertex   -200,   -100,    200,      0,      0,  0x00, 0x00, 0x7F, 0x00
 
 glabel unknown_seg8_dl_08026260 # 0x08026260 - 0x080262F8
-gsMoveWd 0, 2, 0x80000040
+gsSPNumLights NUMLIGHTS_0 # I cannot tell if they meant to put 0 or 1 here.
 gsSPLight unknown_seg8_light_08026010, 1
 gsSPLight unknown_seg8_light_08026008, 2
 gsSPVertex unknown_seg8_vertex_08026020, 15, 0

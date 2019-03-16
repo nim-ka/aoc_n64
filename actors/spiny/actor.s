@@ -468,7 +468,7 @@ gsSP1Triangle 12, 13, 14, 0x0
 gsSPEndDisplayList
 
 glabel spiny_seg5_dl_05016A48 # 0x05016A48 - 0x05016A58
-gsMoveWd 0, 2, 0x80000040
+gsSPNumLights NUMLIGHTS_0 # I cannot tell if they meant to put 0 or 1 here.
 gsSPEndDisplayList
 
 spiny_seg5_animvalue_05016A58: # 0x05016A58

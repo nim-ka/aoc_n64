@@ -401,25 +401,25 @@ gsSP1Triangle 12, 13, 14, 0x0
 gsSPEndDisplayList
 
 glabel small_key_seg5_dl_05006A08 # 0x05006A08 - 0x05006A28
-gsMoveWd 0, 2, 0x80000040
+gsSPNumLights NUMLIGHTS_0 # I cannot tell if they meant to put 0 or 1 here.
 gsSPLight small_key_seg5_light_050057D0, 1
 gsSPLight small_key_seg5_light_050057C8, 2
 gsSPBranchList small_key_seg5_dl_05006700
 
 glabel small_key_seg5_dl_05006A28 # 0x05006A28 - 0x05006A48
-gsMoveWd 0, 2, 0x80000040
+gsSPNumLights NUMLIGHTS_0 # I cannot tell if they meant to put 0 or 1 here.
 gsSPLight small_key_seg5_light_050057B8, 1
 gsSPLight small_key_seg5_light_050057B0, 2
 gsSPBranchList small_key_seg5_dl_05006700
 
 glabel small_key_seg5_dl_05006A48 # 0x05006A48 - 0x05006A68
-gsMoveWd 0, 2, 0x80000040
+gsSPNumLights NUMLIGHTS_0 # I cannot tell if they meant to put 0 or 1 here.
 gsSPLight small_key_seg5_light_050057A0, 1
 gsSPLight small_key_seg5_light_05005798, 2
 gsSPBranchList small_key_seg5_dl_05006700
 
 glabel small_key_seg5_dl_05006A68 # 0x05006A68 - 0x05006A88
-gsMoveWd 0, 2, 0x80000040
+gsSPNumLights NUMLIGHTS_0 # I cannot tell if they meant to put 0 or 1 here.
 gsSPLight small_key_seg5_light_050057E8, 1
 gsSPLight small_key_seg5_light_050057E0, 2
 gsSPBranchList small_key_seg5_dl_05006700

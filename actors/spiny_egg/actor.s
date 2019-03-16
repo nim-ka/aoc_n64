@@ -444,7 +444,7 @@ gsSP1Triangle 14, 13, 15, 0x0
 gsSPEndDisplayList
 
 glabel spiny_egg_seg5_dl_05015740 # 0x05015740 - 0x05015750
-gsMoveWd 0, 2, 0x80000040
+gsSPNumLights NUMLIGHTS_0 # I cannot tell if they meant to put 0 or 1 here.
 gsSPEndDisplayList
 
 spiny_egg_seg5_animvalue_05015750: # 0x05015750
