@@ -88,3 +88,4 @@ enum SpecialPresets {
 };
 
 #endif // _SPECIAL_PRESET_NAMES_H
+

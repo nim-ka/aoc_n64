@@ -85,3 +85,4 @@
 # bbh
 
 .set special_haunted_door,                       0x7E
+
