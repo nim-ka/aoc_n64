@@ -145,6 +145,276 @@
    .word \data
 .endm
 
+/* G_SETOTHERMODE_H gSetCycleType */
+.set G_CYC_1CYCLE, (0 << G_MDSFT_CYCLETYPE)
+.set G_CYC_2CYCLE, (1 << G_MDSFT_CYCLETYPE)
+.set G_CYC_COPY,   (2 << G_MDSFT_CYCLETYPE)
+.set G_CYC_FILL,   (3 << G_MDSFT_CYCLETYPE)
+
+/*
+ * Parameter:
+ * type; Must be G_CYC_1CYCLE, G_CYC_2CYCLE, G_CYC_COPY, or G_CYC_FILL
+ */
+.macro gsDPSetCycleType type
+    gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_CYCLETYPE, 2, \type
+.endm
+
+/* G_SETOTHERMODE_H gSetTexturePersp */
+.set G_TP_NONE,  (0 << G_MDSFT_TEXTPERSP)
+.set G_TP_PERSP, (1 << G_MDSFT_TEXTPERSP)
+
+/*
+ * Parameter:
+ * type; Must be G_TP_NONE or G_TP_PERSP
+ */
+.macro gsDPSetTexturePersp type
+    gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_TEXTPERSP, 1, \type
+.endm
+
+/* G_SETOTHERMODE_H gSetTextureDetail */
+.set G_TD_CLAMP,   (0 << G_MDSFT_TEXTDETAIL)
+.set G_TD_SHARPEN, (1 << G_MDSFT_TEXTDETAIL)
+.set G_TD_DETAIL,  (2 << G_MDSFT_TEXTDETAIL)
+
+/*
+ * Parameter:
+ * type; Must be G_TD_CLAMP, G_TD_SHARPEN, or G_TD_DETAIL
+ */
+.macro gsDPSetTextureDetail type
+    gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_TEXTDETAIL, 2, \type
+.endm
+
+/* G_SETOTHERMODE_H gSetTextureLOD */
+.set G_TL_TILE, (0 << G_MDSFT_TEXTLOD)
+.set G_TL_LOD,  (1 << G_MDSFT_TEXTLOD)
+
+/*
+ * Parameter:
+ * type; Must be G_TL_TILE, or G_TL_LOD
+ */
+.macro gsDPSetTextureLOD type
+    gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_TEXTLOD, 1, \type
+.endm
+
+/* G_SETOTHERMODE_H gSetTextureLUT */
+.set G_TT_NONE,   (0 << G_MDSFT_TEXTLUT)
+.set G_TT_RGBA16, (2 << G_MDSFT_TEXTLUT)
+.set G_TT_IA16,   (3 << G_MDSFT_TEXTLUT)
+
+/*
+ * Parameter:
+ * type; Must be G_TT_NONE, G_TT_RGBA16, or G_TT_IA16
+ */
+.macro gsDPSetTextureLUT type
+    gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_TEXTLUT, 2, \type
+.endm
+
+/* G_SETOTHERMODE_H gSetTextureFilter */
+.set G_TF_POINT,   (0 << G_MDSFT_TEXTFILT)
+.set G_TF_AVERAGE, (3 << G_MDSFT_TEXTFILT)
+.set G_TF_BILERP,  (2 << G_MDSFT_TEXTFILT)
+
+/*
+ * Parameter:
+ * type; Must be G_TF_POINT, G_TF_AVERAGE, or G_TF_BILERP
+ */
+.macro gsDPSetTextureFilter type
+    gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_TEXTFILT, 2, \type
+.endm
+
+/* G_SETOTHERMODE_H gSetTextureConvert */
+.set G_TC_CONV,     (0 << G_MDSFT_TEXTCONV)
+.set G_TC_FILTCONV, (5 << G_MDSFT_TEXTCONV)
+.set G_TC_FILT,     (6 << G_MDSFT_TEXTCONV)
+
+/*
+ * Parameter:
+ * type; Must be G_TC_CONV, G_TC_FILTCONV, or G_TC_FILT
+ */
+.macro gsDPSetTextureConvert type
+    gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_TEXTCONV, 3, \type
+.endm
+
+/* G_SETOTHERMODE_H gSetCombineKey */
+.set G_CK_NONE, (0 << G_MDSFT_COMBKEY)
+.set G_CK_KEY,  (1 << G_MDSFT_COMBKEY)
+
+/*
+ * Parameter:
+ * type; Must be G_CK_NONE, or G_CK_KEY
+ */
+.macro gsDPSetCombineKey type
+    gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_COMBKEY, 1, \type
+.endm
+
+/* G_SETOTHERMODE_H gSetColorDither */
+.set G_CD_MAGICSQ, (0 << G_MDSFT_RGBDITHER)
+.set G_CD_BAYER,   (1 << G_MDSFT_RGBDITHER)
+.set G_CD_NOISE,   (2 << G_MDSFT_RGBDITHER)
+
+/*
+ * Parameter:
+ * mode; Must be G_CD_MAGICSQ, G_CD_BAYER, or G_CD_NOISE
+ */
+.macro gsDPSetColorDither mode
+    gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_RGBDITHER, 2, \mode
+.endm
+
+/* G_SETOTHERMODE_L gSetAlphaCompare */
+.set G_AC_NONE,      (0 << G_MDSFT_ALPHACOMPARE)
+.set G_AC_THRESHOLD, (1 << G_MDSFT_ALPHACOMPARE)
+.set G_AC_DITHER,    (3 << G_MDSFT_ALPHACOMPARE)
+
+/*
+ * Parameter:
+ * type; Must be G_AC_NONE, G_AC_THRESHOLD, or G_AC_DITHER
+ */
+.macro gsDPSetAlphaCompare type
+    gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_ALPHACOMPARE, 2, \type
+.endm
+
+/* G_SETOTHERMODE_L gSetDepthSource */
+.set G_ZS_PIXEL, (0 << G_MDSFT_ZSRCSEL)
+.set G_ZS_PRIM,  (1 << G_MDSFT_ZSRCSEL)
+
+/*
+ * Parameter:
+ * src = source; Must be G_ZS_PIXEL or G_ZS_PRIM
+ */
+.macro gsDPSetDepthSource src
+    gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_ZSRCSEL, 1, \src
+.endm
+
+
+/************************* Set Render Mode *************************/
+
+/* Cycle-Independent Blender Settings */
+
+.set AA_EN, 0x8
+.set Z_CMP, 0x10
+.set Z_UPD, 0x20
+.set IM_RD, 0x40
+.set CLR_ON_CVG, 0x80
+.set CVG_DST_CLAMP, 0
+.set CVG_DST_WRAP, 0x100
+.set CVG_DST_FULL, 0x200
+.set CVG_DST_SAVE, 0x300
+.set ZMODE_OPA, 0
+.set ZMODE_INTER, 0x400
+.set ZMODE_XLU, 0x800
+.set ZMODE_DEC, 0xc00
+.set CVG_X_ALPHA, 0x1000
+.set ALPHA_CVG_SEL, 0x2000
+.set FORCE_BL, 0x4000
+.set TEX_EDGE, 0x0000 /* used to be 0x8000 */
+
+/* Cycle-Dependent Blender Settings */
+/* Blender runs the formula: (P * A + M - B) / (A + B) */
+/* P and M values */
+.set G_BL_CLR_IN,	0 /* 1st cycle: get color from input pixel. 
+                         2nd cycle: param is the numerator of the formula as computed for the first cycle. */
+.set G_BL_CLR_MEM,	1 /* Takes color from the framebuffer */
+.set G_BL_CLR_BL,	2 /* Takes color from the blend color register */
+.set G_BL_CLR_FOG,	3 /* Takes color from the fog color register */
+/* A values */
+.set G_BL_A_IN,     0 /* Parameter is alpha value of input pixel */
+.set G_BL_A_FOG,    1 /* Alpha value from the fog color register */
+.set G_BL_A_SHADE,  2 /* Calculated alpha value for the pixel, presumably */
+/* B values */
+.set G_BL_1MA,      0 /* 1.0 - source alpha */
+.set G_BL_A_MEM,    1 /* Framebuffer alpha value */
+.set G_BL_1,        2 /* Constant 1.0 */
+/* A and B values */
+.set G_BL_0,        3 /* Constant 0.0 */
+
+.macro .BL_DEPENDENT_SETTING label, p, a, m, b
+    .set \label\()_CYCLE1, ((\p << 30) | (\a << 26) | (\m << 22) | (\b << 18))
+    .set \label\()_CYCLE2, ((\p << 28) | (\a << 24) | (\m << 20) | (\b << 16))
+.endm
+
+.macro .BL_DEPENDENT_SETTING_CYCLE1_ONLY label, p, a, m, b
+    .set \label, ((\p << 30) | (\a << 26) | (\m << 22) | (\b << 18))
+.endm
+
+.BL_DEPENDENT_SETTING BL_DEP_SETTING_ZERO, G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_IN, G_BL_1MA /* Basically (0, 0, 0 ,0) */
+
+/* Properly label these later! */
+.BL_DEPENDENT_SETTING BL_DEP_SETTING_1, G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_A_MEM
+.BL_DEPENDENT_SETTING BL_DEP_SETTING_2, G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA
+.BL_DEPENDENT_SETTING BL_DEP_SETTING_3, G_BL_CLR_IN, G_BL_0, G_BL_CLR_IN, G_BL_1
+.BL_DEPENDENT_SETTING BL_DEP_SETTING_4, G_BL_CLR_IN, G_BL_A_FOG, G_BL_CLR_MEM, G_BL_1
+.BL_DEPENDENT_SETTING BL_DEP_SETTING_5, G_BL_CLR_IN, G_BL_0, G_BL_CLR_BL, G_BL_A_MEM
+
+.BL_DEPENDENT_SETTING_CYCLE1_ONLY BL_DEP_SETTING_FOG_SHADE_A, G_BL_CLR_FOG, G_BL_A_SHADE, G_BL_CLR_IN, G_BL_1MA
+.BL_DEPENDENT_SETTING_CYCLE1_ONLY BL_DEP_SETTING_FOG_PRIM_A, G_BL_CLR_FOG, G_BL_A_FOG, G_BL_CLR_IN, G_BL_1MA 
+.BL_DEPENDENT_SETTING_CYCLE1_ONLY BL_DEP_SETTING_PASS, G_BL_CLR_IN, G_BL_0, G_BL_CLR_IN, G_BL_1
+
+.macro .SET_RENDER_MODE label, indeptSettings, deptSettings
+    .set \label , (\indeptSettings | \deptSettings\()_CYCLE1)
+    .set \label\()2 , (\indeptSettings | \deptSettings\()_CYCLE2)
+.endm
+
+/* TODO: Make these more readable */
+.SET_RENDER_MODE G_RM_AA_ZB_OPA_SURF, (AA_EN | Z_CMP | Z_UPD | IM_RD | CVG_DST_CLAMP | ZMODE_OPA | ALPHA_CVG_SEL), BL_DEP_SETTING_1
+.SET_RENDER_MODE G_RM_RA_ZB_OPA_SURF, (AA_EN | Z_CMP | Z_UPD | CVG_DST_CLAMP | ZMODE_OPA | ALPHA_CVG_SEL), BL_DEP_SETTING_1
+.SET_RENDER_MODE G_RM_AA_ZB_XLU_SURF, (AA_EN | Z_CMP | IM_RD | CVG_DST_WRAP | CLR_ON_CVG | FORCE_BL | ZMODE_XLU), BL_DEP_SETTING_2
+.SET_RENDER_MODE G_RM_AA_ZB_OPA_DECAL, (AA_EN | Z_CMP | IM_RD | CVG_DST_WRAP | ALPHA_CVG_SEL | ZMODE_DEC), BL_DEP_SETTING_1
+.SET_RENDER_MODE G_RM_RA_ZB_OPA_DECAL, (AA_EN | Z_CMP | CVG_DST_WRAP | ALPHA_CVG_SEL | ZMODE_DEC), BL_DEP_SETTING_1
+.SET_RENDER_MODE G_RM_AA_ZB_XLU_DECAL, (AA_EN | Z_CMP | IM_RD | CVG_DST_WRAP | CLR_ON_CVG | FORCE_BL | ZMODE_DEC), BL_DEP_SETTING_2
+.SET_RENDER_MODE G_RM_AA_ZB_OPA_INTER, (AA_EN | Z_CMP | Z_UPD | IM_RD | CVG_DST_CLAMP | ALPHA_CVG_SEL | ZMODE_INTER), BL_DEP_SETTING_1
+.SET_RENDER_MODE G_RM_RA_ZB_OPA_INTER, (AA_EN | Z_CMP | Z_UPD | CVG_DST_CLAMP | ALPHA_CVG_SEL | ZMODE_INTER), BL_DEP_SETTING_1
+.SET_RENDER_MODE G_RM_AA_ZB_XLU_INTER, (AA_EN | Z_CMP | IM_RD | CVG_DST_WRAP | CLR_ON_CVG | FORCE_BL | ZMODE_INTER), BL_DEP_SETTING_2
+.SET_RENDER_MODE G_RM_AA_ZB_XLU_LINE, (AA_EN | Z_CMP | IM_RD | CVG_DST_CLAMP | CVG_X_ALPHA | ALPHA_CVG_SEL | FORCE_BL | ZMODE_XLU), BL_DEP_SETTING_2
+.SET_RENDER_MODE G_RM_AA_ZB_DEC_LINE, (AA_EN | Z_CMP | IM_RD | CVG_DST_SAVE | CVG_X_ALPHA | ALPHA_CVG_SEL | FORCE_BL | ZMODE_DEC), BL_DEP_SETTING_2
+.SET_RENDER_MODE G_RM_AA_ZB_TEX_EDGE, (AA_EN | Z_CMP | Z_UPD | IM_RD | CVG_DST_CLAMP | CVG_X_ALPHA | ALPHA_CVG_SEL | ZMODE_OPA | TEX_EDGE), BL_DEP_SETTING_1
+.SET_RENDER_MODE G_RM_AA_ZB_TEX_INTER, (AA_EN | Z_CMP | Z_UPD | IM_RD | CVG_DST_CLAMP | CVG_X_ALPHA | ALPHA_CVG_SEL | ZMODE_INTER | TEX_EDGE), BL_DEP_SETTING_1
+.SET_RENDER_MODE G_RM_AA_ZB_SUB_SURF, (AA_EN | Z_CMP | Z_UPD | IM_RD | CVG_DST_FULL | ZMODE_OPA | ALPHA_CVG_SEL), BL_DEP_SETTING_1
+.SET_RENDER_MODE G_RM_AA_ZB_PCL_SURF, (AA_EN | Z_CMP | Z_UPD | IM_RD | CVG_DST_CLAMP | ZMODE_OPA | G_AC_DITHER), BL_DEP_SETTING_2
+.SET_RENDER_MODE G_RM_AA_ZB_OPA_TERR, (AA_EN | Z_CMP | Z_UPD | IM_RD | CVG_DST_CLAMP | ZMODE_OPA | ALPHA_CVG_SEL), BL_DEP_SETTING_2
+.SET_RENDER_MODE G_RM_AA_ZB_TEX_TERR, (AA_EN | Z_CMP | Z_UPD | IM_RD | CVG_DST_CLAMP | CVG_X_ALPHA | ALPHA_CVG_SEL | ZMODE_OPA | TEX_EDGE), BL_DEP_SETTING_2
+.SET_RENDER_MODE G_RM_AA_ZB_SUB_TERR, (AA_EN | Z_CMP | Z_UPD | IM_RD | CVG_DST_FULL | ZMODE_OPA | ALPHA_CVG_SEL), BL_DEP_SETTING_2
+.SET_RENDER_MODE G_RM_AA_OPA_SURF, (AA_EN | IM_RD | CVG_DST_CLAMP | ZMODE_OPA | ALPHA_CVG_SEL), BL_DEP_SETTING_1
+.SET_RENDER_MODE G_RM_RA_OPA_SURF, (AA_EN | CVG_DST_CLAMP | ZMODE_OPA | ALPHA_CVG_SEL), BL_DEP_SETTING_1
+.SET_RENDER_MODE G_RM_AA_XLU_SURF, (AA_EN | IM_RD | CVG_DST_WRAP | CLR_ON_CVG | FORCE_BL | ZMODE_OPA), BL_DEP_SETTING_2
+.SET_RENDER_MODE G_RM_AA_XLU_LINE, (AA_EN | IM_RD | CVG_DST_CLAMP | CVG_X_ALPHA | ALPHA_CVG_SEL | FORCE_BL | ZMODE_OPA), BL_DEP_SETTING_2
+.SET_RENDER_MODE G_RM_AA_DEC_LINE, (AA_EN | IM_RD | CVG_DST_FULL | CVG_X_ALPHA | ALPHA_CVG_SEL | FORCE_BL | ZMODE_OPA), BL_DEP_SETTING_2
+.SET_RENDER_MODE G_RM_AA_TEX_EDGE, (AA_EN | IM_RD | CVG_DST_CLAMP | CVG_X_ALPHA | ALPHA_CVG_SEL | ZMODE_OPA | TEX_EDGE), BL_DEP_SETTING_1
+.SET_RENDER_MODE G_RM_AA_SUB_SURF, (AA_EN | IM_RD | CVG_DST_FULL | ZMODE_OPA | ALPHA_CVG_SEL), BL_DEP_SETTING_1
+.SET_RENDER_MODE G_RM_AA_PCL_SURF, (AA_EN | IM_RD | CVG_DST_CLAMP | ZMODE_OPA | G_AC_DITHER), BL_DEP_SETTING_2
+.SET_RENDER_MODE G_RM_AA_OPA_TERR, (AA_EN | IM_RD | CVG_DST_CLAMP | ZMODE_OPA | ALPHA_CVG_SEL), BL_DEP_SETTING_2
+.SET_RENDER_MODE G_RM_AA_TEX_TERR, (AA_EN | IM_RD | CVG_DST_CLAMP | CVG_X_ALPHA | ALPHA_CVG_SEL | ZMODE_OPA | TEX_EDGE), BL_DEP_SETTING_2
+.SET_RENDER_MODE G_RM_AA_SUB_TERR, (AA_EN | IM_RD | CVG_DST_FULL | ZMODE_OPA | ALPHA_CVG_SEL), BL_DEP_SETTING_2
+.SET_RENDER_MODE G_RM_ZB_OPA_SURF, (Z_CMP | Z_UPD | CVG_DST_FULL | ALPHA_CVG_SEL | ZMODE_OPA), BL_DEP_SETTING_1
+.SET_RENDER_MODE G_RM_ZB_XLU_SURF, (Z_CMP | IM_RD | CVG_DST_FULL | FORCE_BL | ZMODE_XLU), BL_DEP_SETTING_2
+.SET_RENDER_MODE G_RM_ZB_OPA_DECAL, (Z_CMP | CVG_DST_FULL | ALPHA_CVG_SEL | ZMODE_DEC), BL_DEP_SETTING_1
+.SET_RENDER_MODE G_RM_ZB_XLU_DECAL, (Z_CMP | IM_RD | CVG_DST_FULL | FORCE_BL | ZMODE_DEC), BL_DEP_SETTING_2
+.SET_RENDER_MODE G_RM_ZB_CLD_SURF, (Z_CMP | IM_RD | CVG_DST_SAVE | FORCE_BL | ZMODE_XLU), BL_DEP_SETTING_2
+.SET_RENDER_MODE G_RM_ZB_OVL_SURF, (Z_CMP | IM_RD | CVG_DST_SAVE | FORCE_BL | ZMODE_DEC), BL_DEP_SETTING_2
+.SET_RENDER_MODE G_RM_ZB_PCL_SURF, (Z_CMP | Z_UPD | CVG_DST_FULL | ZMODE_OPA | G_AC_DITHER), BL_DEP_SETTING_3
+.SET_RENDER_MODE G_RM_OPA_SURF, (CVG_DST_CLAMP | FORCE_BL | ZMODE_OPA), BL_DEP_SETTING_3
+.SET_RENDER_MODE G_RM_XLU_SURF, (IM_RD | CVG_DST_FULL | FORCE_BL | ZMODE_OPA), BL_DEP_SETTING_2
+.SET_RENDER_MODE G_RM_TEX_EDGE, (CVG_DST_CLAMP | CVG_X_ALPHA | ALPHA_CVG_SEL | FORCE_BL | ZMODE_OPA | TEX_EDGE | AA_EN), BL_DEP_SETTING_3
+.SET_RENDER_MODE G_RM_CLD_SURF, (IM_RD | CVG_DST_SAVE | FORCE_BL | ZMODE_OPA), BL_DEP_SETTING_2
+.SET_RENDER_MODE G_RM_PCL_SURF, (CVG_DST_FULL | FORCE_BL | ZMODE_OPA | G_AC_DITHER), BL_DEP_SETTING_3
+.SET_RENDER_MODE G_RM_ADD, (IM_RD | CVG_DST_SAVE | FORCE_BL | ZMODE_OPA), BL_DEP_SETTING_4
+.SET_RENDER_MODE G_RM_NOOP, (0), BL_DEP_SETTING_ZERO
+.SET_RENDER_MODE G_RM_VISCVG, (IM_RD | FORCE_BL), BL_DEP_SETTING_5
+.SET_RENDER_MODE G_RM_OPA_CI, (CVG_DST_CLAMP | ZMODE_OPA), BL_DEP_SETTING_3
+
+/* Custom version of G_RM_AA_ZB_XLU_SURF with Z_UPD */
+.SET_RENDER_MODE G_RM_CUSTOM_AA_ZB_XLU_SURF, (AA_EN | Z_CMP | Z_UPD | IM_RD | CVG_DST_WRAP | CLR_ON_CVG | FORCE_BL | ZMODE_XLU), BL_DEP_SETTING_2
+
+/* Special mode types only for mode 1 */
+.set G_RM_FOG_SHADE_A, BL_DEP_SETTING_FOG_SHADE_A
+.set G_RM_FOG_PRIM_A,  BL_DEP_SETTING_FOG_PRIM_A
+.set G_RM_PASS,        BL_DEP_SETTING_PASS
+
+.macro gsDPSetRenderMode cycle1Mode, cycle2Mode
+	gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_RENDERMODE, 29, \cycle1Mode | \cycle2Mode
+.endm
+
+/*******************************************************************/
+
 /* BB: G_TEXTURE */
 .set G_TEXTURE, 0xBB
 .macro gsSPTexture scaleS, scaleT, level, tile, enable

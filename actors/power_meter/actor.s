@@ -54,8 +54,14 @@ glabel power_meter_seg3_dl_03029480 # 0x03029480 - 0x03029530
 gsDPPipeSync
 gsSPClearGeometryMode G_LIGHTING
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_TEXEL0
-gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_RENDERMODE, 29, 0x0F0A7008
-gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_TEXTFILT, 2, 0x00000000
+
+# There were multiple matching pairs, so I don't know if this is correct or not.
+gsDPSetRenderMode G_RM_TEX_EDGE, G_RM_TEX_EDGE2
+# It could also be one of these: 
+# G_RM_OPA_SURF, G_RM_TEX_EDGE2; G_RM_TEX_EDGE, G_RM_OPA_SURF2; G_RM_RA_ZB_OPA_SURF, G_RM_TEX_EDGE, G_RM_OPA_CI2;
+# G_RM_OPA_CI, G_RM_TEX_EDGE2; G_G_RM_PASS, G_RM_TEX_EDGE2; 
+
+gsDPSetTextureFilter G_TF_POINT
 gsSPTexture -1, -1, 0, 0, 1
 gsSPVertex power_meter_seg3_vertex_03029400, 8, 0
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
@@ -92,9 +98,14 @@ glabel power_meter_seg3_dl_030295A0 # 0x030295A0 - 0x030295D8
 gsDPPipeSync
 gsSPTexture -1, -1, 0, 0, 0
 gsSPSetGeometryMode G_LIGHTING
-gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_RENDERMODE, 29, 0x0F0A4000
+
+# There were multiple matching pairs, so I don't know if this is correct or not.
+gsDPSetRenderMode G_RM_OPA_SURF, G_RM_OPA_SURF2
+# It could also be one of these: 
+# G_RM_OPA_SURF, G_RM_OPA_CI2; G_RM_OPA_CI, G_RM_OPA_SURF2; G_RM_PASS, G_RM_OPA_SURF2;
+
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
-gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_TEXTFILT, 2, 0x00002000
+gsDPSetTextureFilter G_TF_BILERP
 gsSPEndDisplayList
 
 binid

@@ -55,9 +55,9 @@ gsSPEndDisplayList
 
 glabel ssl_seg7_dl_07004880 # 0x07004880 - 0x070048F8
 gsDPPipeSync
-gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_CYCLETYPE, 2, 0x00100000
-gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_RENDERMODE, 29, 0xC8112078
-gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_ZSRCSEL, 1, 0x00000000
+gsDPSetCycleType G_CYC_2CYCLE
+gsDPSetRenderMode G_RM_FOG_SHADE_A, G_RM_AA_ZB_OPA_SURF2
+gsDPSetDepthSource G_ZS_PIXEL
 gsDPSetFogColor 0, 0, 0, 255
 gsSPFogFactor 0x0E49, 0xF2B7 # This isn't gsSPFogPosition since there is no valid min/max pair that corresponds to 0x0E49F2B7
 gsSPSetGeometryMode G_FOG
@@ -73,8 +73,8 @@ gsSPEndDisplayList
 glabel ssl_seg7_dl_070048F8 # 0x070048F8 - 0x07004930
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
-gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_CYCLETYPE, 2, 0x00000000
-gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_RENDERMODE, 29, 0x00442078
+gsDPSetCycleType G_CYC_1CYCLE
+gsDPSetRenderMode G_RM_AA_ZB_OPA_SURF, G_RM_NOOP2
 gsSPClearGeometryMode G_FOG
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPEndDisplayList
@@ -122,9 +122,9 @@ vertex    512,      0,    887,   2016,    992,  0x00, 0x7F, 0x00, 0xFF
 
 glabel ssl_seg7_dl_07004AE0 # 0x07004AE0 - 0x07004BE0
 gsDPPipeSync
-gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_CYCLETYPE, 2, 0x00100000
-gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_RENDERMODE, 29, 0xC8112078
-gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_ZSRCSEL, 1, 0x00000000
+gsDPSetCycleType G_CYC_2CYCLE
+gsDPSetRenderMode G_RM_FOG_SHADE_A, G_RM_AA_ZB_OPA_SURF2
+gsDPSetDepthSource G_ZS_PIXEL
 gsDPSetFogColor 0, 0, 0, 255
 gsSPFogFactor 0x0E49, 0xF2B7 # This isn't gsSPFogPosition since there is no valid min/max pair that corresponds to 0x0E49F2B7
 gsSPSetGeometryMode G_FOG
@@ -142,8 +142,8 @@ gsSP1Triangle  0,  5,  6, 0x0
 gsSP1Triangle  0,  6,  1, 0x0
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
-gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_CYCLETYPE, 2, 0x00000000
-gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_RENDERMODE, 29, 0x00442078
+gsDPSetCycleType G_CYC_1CYCLE
+gsDPSetRenderMode G_RM_AA_ZB_OPA_SURF, G_RM_NOOP2
 gsSPClearGeometryMode G_FOG
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPEndDisplayList
@@ -8956,9 +8956,9 @@ gsSPEndDisplayList
 
 glabel ssl_seg7_dl_0701EE80 # 0x0701EE80 - 0x0701EF80
 gsDPPipeSync
-gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_CYCLETYPE, 2, 0x00100000
-gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_RENDERMODE, 29, 0xC8112078
-gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_ZSRCSEL, 1, 0x00000000
+gsDPSetCycleType G_CYC_2CYCLE
+gsDPSetRenderMode G_RM_FOG_SHADE_A, G_RM_AA_ZB_OPA_SURF2
+gsDPSetDepthSource G_ZS_PIXEL
 gsDPSetFogColor 0, 0, 0, 255
 gsSPFogFactor 0x0E49, 0xF2B7 # This isn't gsSPFogPosition since there is no valid min/max pair that corresponds to 0x0E49F2B7
 gsSPSetGeometryMode G_FOG
@@ -8982,8 +8982,8 @@ gsSPDisplayList ssl_seg7_dl_0701EAD8
 gsSPDisplayList ssl_seg7_dl_0701ECB0
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
-gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_CYCLETYPE, 2, 0x00000000
-gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_RENDERMODE, 29, 0x00442078
+gsDPSetCycleType G_CYC_1CYCLE
+gsDPSetRenderMode G_RM_AA_ZB_OPA_SURF, G_RM_NOOP2
 gsSPClearGeometryMode G_FOG
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPEndDisplayList
@@ -9196,9 +9196,9 @@ gsSPEndDisplayList
 
 glabel ssl_seg7_dl_0701F920 # 0x0701F920 - 0x0701F9D8
 gsDPPipeSync
-gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_CYCLETYPE, 2, 0x00100000
-gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_RENDERMODE, 29, 0xC8113078
-gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_ZSRCSEL, 1, 0x00000000
+gsDPSetCycleType G_CYC_2CYCLE
+gsDPSetRenderMode G_RM_FOG_SHADE_A, G_RM_AA_ZB_TEX_EDGE2
+gsDPSetDepthSource G_ZS_PIXEL
 gsDPSetFogColor 0, 0, 0, 255
 gsSPFogFactor 0x0E49, 0xF2B7 # This isn't gsSPFogPosition since there is no valid min/max pair that corresponds to 0x0E49F2B7
 gsSPSetGeometryMode G_FOG
@@ -9212,8 +9212,8 @@ gsDPSetTileSize 0, 0, 0, 124, 124
 gsSPDisplayList ssl_seg7_dl_0701F700
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
-gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_CYCLETYPE, 2, 0x00000000
-gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_RENDERMODE, 29, 0x00443078
+gsDPSetCycleType G_CYC_1CYCLE
+gsDPSetRenderMode G_RM_AA_ZB_TEX_EDGE, G_RM_NOOP2
 gsSPClearGeometryMode G_FOG
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPSetGeometryMode G_LIGHTING | G_CULL_BACK
@@ -10145,9 +10145,9 @@ gsSPEndDisplayList
 
 glabel ssl_seg7_dl_070220A8 # 0x070220A8 - 0x07022170
 gsDPPipeSync
-gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_CYCLETYPE, 2, 0x00100000
-gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_RENDERMODE, 29, 0xC8112078
-gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_ZSRCSEL, 1, 0x00000000
+gsDPSetCycleType G_CYC_2CYCLE
+gsDPSetRenderMode G_RM_FOG_SHADE_A, G_RM_AA_ZB_OPA_SURF2
+gsDPSetDepthSource G_ZS_PIXEL
 gsDPSetFogColor 0, 0, 0, 255
 gsSPFogFactor 0x0E49, 0xF2B7 # This isn't gsSPFogPosition since there is no valid min/max pair that corresponds to 0x0E49F2B7
 gsSPSetGeometryMode G_FOG
@@ -10164,8 +10164,8 @@ gsDPSetTileSize 0, 0, 0, 124, 252
 gsSPDisplayList ssl_seg7_dl_07022040
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
-gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_CYCLETYPE, 2, 0x00000000
-gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_RENDERMODE, 29, 0x00442078
+gsDPSetCycleType G_CYC_1CYCLE
+gsDPSetRenderMode G_RM_AA_ZB_OPA_SURF, G_RM_NOOP2
 gsSPClearGeometryMode G_FOG
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPEndDisplayList
@@ -10187,9 +10187,9 @@ gsSPEndDisplayList
 
 glabel ssl_seg7_dl_070221E8 # 0x070221E8 - 0x070222A0
 gsDPPipeSync
-gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_CYCLETYPE, 2, 0x00100000
-gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_RENDERMODE, 29, 0xC8113078
-gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_ZSRCSEL, 1, 0x00000000
+gsDPSetCycleType G_CYC_2CYCLE
+gsDPSetRenderMode G_RM_FOG_SHADE_A, G_RM_AA_ZB_TEX_EDGE2
+gsDPSetDepthSource G_ZS_PIXEL
 gsDPSetFogColor 0, 0, 0, 255
 gsSPFogFactor 0x0E49, 0xF2B7 # This isn't gsSPFogPosition since there is no valid min/max pair that corresponds to 0x0E49F2B7
 gsSPSetGeometryMode G_FOG
@@ -10203,8 +10203,8 @@ gsDPSetTileSize 0, 0, 0, 124, 124
 gsSPDisplayList ssl_seg7_dl_070221B0
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
-gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_CYCLETYPE, 2, 0x00000000
-gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_RENDERMODE, 29, 0x00443078
+gsDPSetCycleType G_CYC_1CYCLE
+gsDPSetRenderMode G_RM_AA_ZB_TEX_EDGE, G_RM_NOOP2
 gsSPClearGeometryMode G_FOG
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPSetGeometryMode G_LIGHTING
@@ -10354,9 +10354,9 @@ gsSPEndDisplayList
 
 glabel ssl_seg7_dl_070228A8 # 0x070228A8 - 0x07022970
 gsDPPipeSync
-gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_CYCLETYPE, 2, 0x00100000
-gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_RENDERMODE, 29, 0xC8112078
-gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_ZSRCSEL, 1, 0x00000000
+gsDPSetCycleType G_CYC_2CYCLE
+gsDPSetRenderMode G_RM_FOG_SHADE_A, G_RM_AA_ZB_OPA_SURF2
+gsDPSetDepthSource G_ZS_PIXEL
 gsDPSetFogColor 0, 0, 0, 255
 gsSPFogFactor 0x0E49, 0xF2B7 # This isn't gsSPFogPosition since there is no valid min/max pair that corresponds to 0x0E49F2B7
 gsSPSetGeometryMode G_FOG
@@ -10373,8 +10373,8 @@ gsDPSetTileSize 0, 0, 0, 124, 252
 gsSPDisplayList ssl_seg7_dl_070227F0
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
-gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_CYCLETYPE, 2, 0x00000000
-gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_RENDERMODE, 29, 0x00442078
+gsDPSetCycleType G_CYC_1CYCLE
+gsDPSetRenderMode G_RM_AA_ZB_OPA_SURF, G_RM_NOOP2
 gsSPClearGeometryMode G_FOG
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPEndDisplayList
@@ -10396,9 +10396,9 @@ gsSPEndDisplayList
 
 glabel ssl_seg7_dl_070229E8 # 0x070229E8 - 0x07022AA0
 gsDPPipeSync
-gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_CYCLETYPE, 2, 0x00100000
-gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_RENDERMODE, 29, 0xC8113078
-gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_ZSRCSEL, 1, 0x00000000
+gsDPSetCycleType G_CYC_2CYCLE
+gsDPSetRenderMode G_RM_FOG_SHADE_A, G_RM_AA_ZB_TEX_EDGE2
+gsDPSetDepthSource G_ZS_PIXEL
 gsDPSetFogColor 0, 0, 0, 255
 gsSPFogFactor 0x0E49, 0xF2B7 # This isn't gsSPFogPosition since there is no valid min/max pair that corresponds to 0x0E49F2B7
 gsSPSetGeometryMode G_FOG
@@ -10412,8 +10412,8 @@ gsDPSetTileSize 0, 0, 0, 124, 124
 gsSPDisplayList ssl_seg7_dl_070229B0
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
-gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_CYCLETYPE, 2, 0x00000000
-gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_RENDERMODE, 29, 0x00443078
+gsDPSetCycleType G_CYC_1CYCLE
+gsDPSetRenderMode G_RM_AA_ZB_TEX_EDGE, G_RM_NOOP2
 gsSPClearGeometryMode G_FOG
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPSetGeometryMode G_LIGHTING
@@ -10484,9 +10484,9 @@ gsSPEndDisplayList
 
 glabel ssl_seg7_dl_07022CF8 # 0x07022CF8 - 0x07022DA8
 gsDPPipeSync
-gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_CYCLETYPE, 2, 0x00100000
-gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_RENDERMODE, 29, 0xC8112078
-gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_ZSRCSEL, 1, 0x00000000
+gsDPSetCycleType G_CYC_2CYCLE
+gsDPSetRenderMode G_RM_FOG_SHADE_A, G_RM_AA_ZB_OPA_SURF2
+gsDPSetDepthSource G_ZS_PIXEL
 gsDPSetFogColor 0, 0, 0, 255
 gsSPFogFactor 0x0E49, 0xF2B7 # This isn't gsSPFogPosition since there is no valid min/max pair that corresponds to 0x0E49F2B7
 gsSPSetGeometryMode G_FOG
@@ -10500,8 +10500,8 @@ gsSPDisplayList ssl_seg7_dl_07022C38
 gsSPDisplayList ssl_seg7_dl_07022CB0
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
-gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_CYCLETYPE, 2, 0x00000000
-gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_RENDERMODE, 29, 0x00442078
+gsDPSetCycleType G_CYC_1CYCLE
+gsDPSetRenderMode G_RM_AA_ZB_OPA_SURF, G_RM_NOOP2
 gsSPClearGeometryMode G_FOG
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPEndDisplayList
@@ -10653,9 +10653,9 @@ gsSPEndDisplayList
 
 glabel ssl_seg7_dl_070233A8 # 0x070233A8 - 0x07023458
 gsDPPipeSync
-gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_CYCLETYPE, 2, 0x00100000
-gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_RENDERMODE, 29, 0xC8112078
-gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_ZSRCSEL, 1, 0x00000000
+gsDPSetCycleType G_CYC_2CYCLE
+gsDPSetRenderMode G_RM_FOG_SHADE_A, G_RM_AA_ZB_OPA_SURF2
+gsDPSetDepthSource G_ZS_PIXEL
 gsDPSetFogColor 0, 0, 0, 255
 gsSPFogFactor 0x0E49, 0xF2B7 # This isn't gsSPFogPosition since there is no valid min/max pair that corresponds to 0x0E49F2B7
 gsSPSetGeometryMode G_FOG
@@ -10669,8 +10669,8 @@ gsSPDisplayList ssl_seg7_dl_070231D0
 gsSPDisplayList ssl_seg7_dl_07023268
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
-gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_CYCLETYPE, 2, 0x00000000
-gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_RENDERMODE, 29, 0x00442078
+gsDPSetCycleType G_CYC_1CYCLE
+gsDPSetRenderMode G_RM_AA_ZB_OPA_SURF, G_RM_NOOP2
 gsSPClearGeometryMode G_FOG
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPEndDisplayList
@@ -10710,9 +10710,9 @@ gsSPEndDisplayList
 
 glabel ssl_seg7_dl_070235C0  # 0x070235C0 - 0x07023678
 gsDPPipeSync
-gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_CYCLETYPE, 2, 0x00100000
-gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_RENDERMODE, 29, 0xC8113078
-gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_ZSRCSEL, 1, 0x00000000
+gsDPSetCycleType G_CYC_2CYCLE
+gsDPSetRenderMode G_RM_FOG_SHADE_A, G_RM_AA_ZB_TEX_EDGE2
+gsDPSetDepthSource G_ZS_PIXEL
 gsDPSetFogColor 0, 0, 0, 255
 gsSPFogFactor 0x0E49, 0xF2B7 # This isn't gsSPFogPosition since there is no valid min/max pair that corresponds to 0x0E49F2B7
 gsSPSetGeometryMode G_FOG
@@ -10726,8 +10726,8 @@ gsDPSetTileSize 0, 0, 0, 124, 124
 gsSPDisplayList ssl_seg7_dl_07023558
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
-gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_CYCLETYPE, 2, 0x00000000
-gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_RENDERMODE, 29, 0x00443078
+gsDPSetCycleType G_CYC_1CYCLE
+gsDPSetRenderMode G_RM_AA_ZB_TEX_EDGE, G_RM_NOOP2
 gsSPClearGeometryMode G_FOG
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPSetGeometryMode G_LIGHTING | G_CULL_BACK
@@ -14143,9 +14143,9 @@ glabel ssl_seg7_collision_070284B0 # 0x070284B0 - 0x070285EE
 
 glabel ssl_seg7_dl_070285F0 # 0x070285F0 - 0x07028660
 gsDPPipeSync
-gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_CYCLETYPE, 2, 0x00100000
-gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_RENDERMODE, 29, 0xC8112478
-gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_ZSRCSEL, 1, 0x00000000
+gsDPSetCycleType G_CYC_2CYCLE
+gsDPSetRenderMode G_RM_FOG_SHADE_A, G_RM_AA_ZB_OPA_INTER2
+gsDPSetDepthSource G_ZS_PIXEL
 gsDPSetFogColor 0, 0, 0, 255
 gsSPFogFactor 0x0E49, 0xF2B7 # This isn't gsSPFogPosition since there is no valid min/max pair that corresponds to 0x0E49F2B7
 gsSPSetGeometryMode G_FOG
@@ -14160,18 +14160,18 @@ gsSPEndDisplayList
 glabel ssl_seg7_dl_07028660 # 0x07028660 - 0x070286A0
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
-gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_CYCLETYPE, 2, 0x00000000
+gsDPSetCycleType G_CYC_1CYCLE
 gsSPSetGeometryMode G_LIGHTING | G_CULL_BACK
 gsSPClearGeometryMode G_FOG
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
-gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_RENDERMODE, 29, 0x00442478
+gsDPSetRenderMode G_RM_AA_ZB_OPA_INTER, G_RM_NOOP2
 gsSPEndDisplayList
 
 glabel ssl_seg7_dl_070286A0 # 0x070286A0 - 0x07028718
 gsDPPipeSync
-gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_CYCLETYPE, 2, 0x00100000
-gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_RENDERMODE, 29, 0xC81045D8
-gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_ZSRCSEL, 1, 0x00000000
+gsDPSetCycleType G_CYC_2CYCLE
+gsDPSetRenderMode G_RM_FOG_SHADE_A, G_RM_AA_ZB_XLU_INTER2
+gsDPSetDepthSource G_ZS_PIXEL
 gsDPSetFogColor 0, 0, 0, 255
 gsSPFogFactor 0x0E49, 0xF2B7 # This isn't gsSPFogPosition since there is no valid min/max pair that corresponds to 0x0E49F2B7
 gsSPSetGeometryMode G_FOG
@@ -14187,12 +14187,12 @@ gsSPEndDisplayList
 glabel ssl_seg7_dl_07028718 # 0x07028718 - 0x07028760
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
-gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_CYCLETYPE, 2, 0x00000000
+gsDPSetCycleType G_CYC_1CYCLE
 gsSPSetGeometryMode G_LIGHTING | G_CULL_BACK
 gsSPClearGeometryMode G_FOG
 gsDPSetEnvColor 255, 255, 255, 255
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
-gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_RENDERMODE, 29, 0x004045D8
+gsDPSetRenderMode G_RM_AA_ZB_XLU_INTER, G_RM_NOOP2
 gsSPEndDisplayList
 
 glabel ssl_seg7_arr_07028760 # 0x07028760 - 0x070287B8
