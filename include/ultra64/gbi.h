@@ -1,7 +1,7 @@
 #ifndef _ULTRA64_GBI_H_
 #define _ULTRA64_GBI_H_
 
-/* To enable Fast3DEX grucode support, define F3DEX_GBI. */
+/* To enable Fast3DEX grucode support, pass GRUCODE=f3dex to make */
 
 /* Types */
 

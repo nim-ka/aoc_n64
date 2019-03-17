@@ -5,8 +5,9 @@
 default: all
 
 ### Build Options ###
-# Version of the game to build
-VERSION ?= jp
+# Version of the game to build and graphics microcode used
+VERSION ?= us
+GRUCODE ?= f3d
 # If COMPARE is 1, check the output sha1sum when building 'all'
 COMPARE ?= 1
 # If NON_MATCHING is 1, define the NON_MATCHING macro when building
@@ -26,11 +27,25 @@ else
 endif
 endif
 
+ifeq ($(GRUCODE),f3dex)
+  GRUCODE_CFLAGS := -DF3DEX_GBI=1
+  GRUCODE_ASFLAGS := --defsym F3DEX_GBI=1
+  TARGET := $(TARGET).f3dex
+  COMPARE := 0
+else
+ifeq ($(GRUCODE), f3dex2)
+  $(error Fast3DEX2 is not implemented.)
+  GRUCODE_CFLAGS := -DF3DEX_GBI_2=1
+  GRUCODE_ASFLAGS := --defsym F3DEX_GBI_2=1
+  TARGET := $(TARGET).f3dex2
+  COMPARE := 0
+endif
+endif
+
 ifeq ($(NON_MATCHING),1)
   VERSION_CFLAGS := $(VERSION_CFLAGS) -DNON_MATCHING=1
   COMPARE := 0
 endif
-
 ################ Target Executable and Sources ###############
 
 # BUILD_DIR is location where all build artifacts are placed
@@ -103,10 +118,10 @@ OBJDUMP   := $(CROSS)objdump
 OBJCOPY   := $(CROSS)objcopy
 
 # Check code syntax with host compiler
-CC_CHECK := gcc -fsyntax-only -fsigned-char -I include -I $(BUILD_DIR)/include -std=gnu90 -Wall -Wextra -Wno-format-security $(VERSION_CFLAGS)
+CC_CHECK := gcc -fsyntax-only -fsigned-char -I include -I $(BUILD_DIR)/include -std=gnu90 -Wall -Wextra -Wno-format-security $(VERSION_CFLAGS) $(GRUCODE_CFLAGS)
 
-ASFLAGS := -march=vr4300 -mabi=32 -I include -I $(BUILD_DIR) $(VERSION_ASFLAGS)
-CFLAGS = -Wab,-r4300_mul -non_shared -G 0 -Xcpluscomm -Xfullwarn $(OPT_FLAGS) -signed -I include -I $(BUILD_DIR)/include $(VERSION_CFLAGS) $(MIPSISET)
+ASFLAGS := -march=vr4300 -mabi=32 -I include -I $(BUILD_DIR) $(VERSION_ASFLAGS) $(GRUCODE_ASFLAGS)
+CFLAGS = -Wab,-r4300_mul -non_shared -G 0 -Xcpluscomm -Xfullwarn $(OPT_FLAGS) -signed -I include -I $(BUILD_DIR)/include $(VERSION_CFLAGS) $(MIPSISET) $(GRUCODE_CFLAGS)
 OBJCOPYFLAGS := --pad-to=0x800000 --gap-fill=0xFF
 SYMBOL_LINKING_FLAGS := $(addprefix -R ,$(SEG_FILES))
 LDFLAGS := -T undefined_syms.txt -T $(BUILD_DIR)/$(LD_SCRIPT) -Map $(BUILD_DIR)/sm64.map --no-check-sections $(SYMBOL_LINKING_FLAGS)
