@@ -108,7 +108,13 @@ SEG_FILES := $(foreach file,$(SEG_S_FILES),$(BUILD_DIR)/$(file:.s=.elf)) $(ACTOR
 
 ##################### Compiler Options #######################
 IRIX_ROOT := tools/ido5.3_compiler
-CROSS     := mips-linux-gnu-
+
+ifeq ($(shell type mips-linux-gnu-ld >/dev/null 2>/dev/null; echo $$?), 0)
+  CROSS := mips-linux-gnu-
+else
+  CROSS := mips64-elf-
+endif
+
 AS        := $(CROSS)as
 CC        := $(QEMU_IRIX) -silent -L $(IRIX_ROOT) $(IRIX_ROOT)/usr/bin/cc
 CPP       := cpp -P
