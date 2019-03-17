@@ -36,7 +36,7 @@ void func_80379798(f32 mtx1[4][4], f32 mtx2[4][4], Vec3f c, s16 d);
 void mtxf_from_up_direction(f32 mtx[4][4], Vec3f b, Vec3f c, s16 d);
 void func_80379AA4(f32 mtx[4][4], Vec3f b, s16 c, f32 d);
 void mtxf_mul(f32 dest[4][4], f32 a[4][4], f32 b[4][4]);
-void func_8037A29C(f32 a[4][4], f32 b[4][4], Vec3f c);
+void mtxf_scale_vec3f(f32 a[4][4], f32 b[4][4], Vec3f c);
 void mtxf_mul_vec3s(f32 a[4][4], Vec3s b);
 void mtxf_to_mtx(Mtx *a, f32 b[4][4]);
 void mtxf_rotate_xy(Mtx *a, s16 b);

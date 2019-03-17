@@ -1,6 +1,6 @@
 # obtain a list of segments from the *.s and *.s.in files in bin directory
 SEGMENTS := $(notdir $(basename $(wildcard bin/*.s) $(basename $(wildcard bin/*.s.in))))
-ACTORS := $(dir $(wildcard actors/*/))
+ACTORS := $(filter %/,$(wildcard actors/*/))
 TEXTURE_DIRS := $(addprefix bin/,$(SEGMENTS)) $(ACTORS) bin/intro_raw
 
 ACTOR_GROUPS := \

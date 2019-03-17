@@ -482,7 +482,7 @@ void mtxf_mul(f32 dest[4][4], f32 a[4][4], f32 b[4][4])
     mtxf_copy(dest, temp);
 }
 
-void func_8037A29C(f32 a[4][4], f32 b[4][4], Vec3f c)
+void mtxf_scale_vec3f(f32 a[4][4], f32 b[4][4], Vec3f c)
 {
     register s32 i;
 

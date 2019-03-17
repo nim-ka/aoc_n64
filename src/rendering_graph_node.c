@@ -295,7 +295,7 @@ void func_8027BEC4(struct GraphNodeScaleOptionalDisplayList *a)
     Mtx *sp18 = alloc_display_list(sizeof(*sp18));
 
     vec3f_set(sp1C, a->scale, a->scale, a->scale);
-    func_8037A29C(D_8033A778[D_8033A770 + 1], D_8033A778[D_8033A770], sp1C);
+    mtxf_scale_vec3f(D_8033A778[D_8033A770 + 1], D_8033A778[D_8033A770], sp1C);
     D_8033A770++;
     mtxf_to_mtx(sp18, D_8033A778[D_8033A770]);
     D_8033AF78[D_8033A770] = sp18;
@@ -315,9 +315,9 @@ void func_8027BFE4(struct GraphNodeBillboardOptionalDisplayList *a)
     vec3s_to_vec3f(sp1C, a->translation);
     func_80379798(D_8033A778[D_8033A770], D_8033A778[D_8033A770 - 1], sp1C, D_8032CF9C->unk38);
     if (D_8032CFA4 != NULL)
-        func_8037A29C(D_8033A778[D_8033A770], D_8033A778[D_8033A770], D_8032CFA4->unk1C->scale);
+        mtxf_scale_vec3f(D_8033A778[D_8033A770], D_8033A778[D_8033A770], D_8032CFA4->unk1C->scale);
     else if (D_8032CFA0 != NULL)
-        func_8037A29C(D_8033A778[D_8033A770], D_8033A778[D_8033A770], D_8032CFA0->scale);
+        mtxf_scale_vec3f(D_8033A778[D_8033A770], D_8033A778[D_8033A770], D_8032CFA0->scale);
 
     mtxf_to_mtx(sp18, D_8033A778[D_8033A770]);
     D_8033AF78[D_8033A770] = sp18;
@@ -596,7 +596,7 @@ void func_8027D14C(struct Object *a)
             mtxf_mul(D_8033A778[D_8033A770 + 1], sp30, D_8033A778[D_8033A770]);
         }
 
-        func_8037A29C(D_8033A778[D_8033A770 + 1], D_8033A778[D_8033A770 + 1], a->header.gfx.scale);
+        mtxf_scale_vec3f(D_8033A778[D_8033A770 + 1], D_8033A778[D_8033A770 + 1], a->header.gfx.scale);
         a->header.gfx.throwMatrix = D_8033A778[++D_8033A770];
         a->header.gfx.unk54 = D_8033A778[D_8033A770][3][0];
         a->header.gfx.unk58 = D_8033A778[D_8033A770][3][1];
@@ -666,7 +666,7 @@ void func_8027D4D4(struct GraphNode12E *a)
         D_8033A778[D_8033A770 + 1][3][1] = D_8033A778[D_8033A770][3][1];
         D_8033A778[D_8033A770 + 1][3][2] = D_8033A778[D_8033A770][3][2];
         mtxf_mul(D_8033A778[D_8033A770 + 1], sp30, D_8033A778[D_8033A770 + 1]);
-        func_8037A29C(D_8033A778[D_8033A770 + 1], D_8033A778[D_8033A770 + 1], a->unk1C->scale);
+        mtxf_scale_vec3f(D_8033A778[D_8033A770 + 1], D_8033A778[D_8033A770 + 1], a->unk1C->scale);
         if (a->fnNode.func != NULL)
             a->fnNode.func(5, &a->fnNode.node, (struct AllocOnlyPool *) D_8033A778[D_8033A770 + 1]);
         D_8033A770++;

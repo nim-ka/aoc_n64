@@ -202,11 +202,10 @@ bin/segment2.s: $(BUILD_DIR)/text/debug.s $(BUILD_DIR)/text/dialog.s $(BUILD_DIR
 $(MIO0_DIR)/%.mio0: bin/%.bin
 	$(MIO0TOOL) $< $@
 
-$(BUILD_DIR):
-	mkdir -p $(BUILD_DIR) $(addprefix $(BUILD_DIR)/,$(SRC_DIRS) $(ASM_DIRS) $(ULTRA_SRC_DIRS) $(ULTRA_ASM_DIRS) $(ULTRA_BIN_DIRS) $(BIN_DIRS) $(TEXTURE_DIRS) $(addprefix levels/,$(LEVEL_DIRS)) $(addprefix bin/,$(LEVEL_DIRS)) include text) $(MIO0_DIR) $(addprefix $(MIO0_DIR)/,$(LEVEL_DIRS))
+ALL_DIRS := $(BUILD_DIR) $(addprefix $(BUILD_DIR)/,$(SRC_DIRS) $(ASM_DIRS) $(ULTRA_SRC_DIRS) $(ULTRA_ASM_DIRS) $(ULTRA_BIN_DIRS) $(BIN_DIRS) $(TEXTURE_DIRS) $(addprefix levels/,$(LEVEL_DIRS)) $(addprefix bin/,$(LEVEL_DIRS)) include) $(MIO0_DIR) $(addprefix $(MIO0_DIR)/,$(LEVEL_DIRS))
 
-# Make sure build directory exists before compiling objects
-$(O_FILES): | $(BUILD_DIR)
+# Make sure build directory exists before compiling anything
+DUMMY != mkdir -p $(ALL_DIRS)
 
 $(BUILD_DIR)/src/star_select.o: $(BUILD_DIR)/include/text_strings.h
 $(BUILD_DIR)/src/file_select.o: $(BUILD_DIR)/include/text_strings.h
