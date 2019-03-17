@@ -1245,7 +1245,7 @@ typedef union {
 #define gSPPerspNormalize(pkt, s)       \
 	gMoveWd(pkt, G_MW_PERSPNORM, 0, (s))
 
-#define gSPPerspNormalize(s)            \
+#define gsSPPerspNormalize(s)            \
 	gsMoveWd(G_MW_PERSPNORM, 0, (s))
 #endif
 
