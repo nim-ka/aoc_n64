@@ -5,7 +5,7 @@ void BehBreakableBoxSmallInit(void) {
     o->oFriction = 0.99f;
     o->oBuoyancy = 1.4f;
     obj_scale(0.4f);
-    set_object_hitbox(o, &D_80331698);
+    set_object_hitbox(o, &sBreakableBoxSmallHitbox);
     o->oAnimState = 1;
     o->activeFlags |= 0x200;
 }

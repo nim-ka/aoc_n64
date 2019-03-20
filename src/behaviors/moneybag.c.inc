@@ -11,7 +11,7 @@ void BehMoneybagInit(void)
 
 void MoneybagCheckMarioCollision(void)
 {
-    set_object_hitbox(o, &D_80331584);
+    set_object_hitbox(o, &sMoneybagHitbox);
     
     if (o->oInteractStatus & 0x8000) /* bit 15 */
     {
@@ -207,7 +207,7 @@ void BehMoneybagLoop(void)
 
 void BehMoneybagHiddenLoop(void)
 {
-    set_object_hitbox(o, &D_80331594);
+    set_object_hitbox(o, &sMoneybagHiddenHitbox);
     
     switch (o->oAction)
     {

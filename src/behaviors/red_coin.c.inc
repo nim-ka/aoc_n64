@@ -16,7 +16,7 @@ void BehRedCoinInit(void) {
             o->parentObj = NULL;
     }
 
-    set_object_hitbox(o, &D_80331684);
+    set_object_hitbox(o, &sRedCoinHitbox);
 }
 
 void BehRedCoinLoop(void) {

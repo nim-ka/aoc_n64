@@ -4,7 +4,7 @@ void BehMantaRayInit(void) {
     struct Object *sp1C;
     sp1C = spawn_object(o, 0, beh_manta_ray_ring_manager);
     o->parentObj = sp1C;
-    set_object_hitbox(o, &D_803316EC);
+    set_object_hitbox(o, &sMantaRayHitbox);
     obj_scale(2.5f);
 }
 

@@ -26,6 +26,7 @@
 #include "room.h"
 #include "ingame_menu_3.h"
 #include "ingame_menu.h"
+#include "interaction.h"
 
 #define o gCurrentObject
 
@@ -44,65 +45,124 @@ s8 D_80331508 = 0;
 s8 D_8033150C = 0;
 s8 D_80331510 = 0;
 
-struct ObjectHitbox D_80331514 = {
-    0x00000010, 
-    0, 1, 0, 0,
-    100, 64,
-    0, 0
+struct ObjectHitbox sMovingYellowCoinHitbox = {
+    /* interactType:      */ INTERACT_COIN,
+    /* downOffset:        */ 0,
+    /* damageOrCoinValue: */ 1,
+    /* health:            */ 0,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 100,
+    /* height:            */ 64,
+    /* hurtboxRadius:     */ 0,
+    /* hurtboxHeight:     */ 0,
 };
-struct ObjectHitbox D_80331524 = {
-    0x00000010, 
-    0, 5, 0, 0,
-    100, 64,
-    0, 0
+
+struct ObjectHitbox sMovingBlueCoinHitbox = {
+    /* interactType:      */ INTERACT_COIN,
+    /* downOffset:        */ 0,
+    /* damageOrCoinValue: */ 5,
+    /* health:            */ 0,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 100,
+    /* height:            */ 64,
+    /* hurtboxRadius:     */ 0,
+    /* hurtboxHeight:     */ 0,
 };
-struct ObjectHitbox D_80331534 = {
-    0x00000002, 
-    0, 0, 0, 0,
-    65, 113,
-    0, 0
+
+struct ObjectHitbox sBobombHitbox = {
+    /* interactType:      */ INTERACT_GRABBABLE,
+    /* downOffset:        */ 0,
+    /* damageOrCoinValue: */ 0,
+    /* health:            */ 0,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 65,
+    /* height:            */ 113,
+    /* hurtboxRadius:     */ 0,
+    /* hurtboxHeight:     */ 0,
 };
-struct ObjectHitbox D_80331544 = {
-    0x02000000, 
-    0, 0, 0, 0,
-    200, 500,
-    0, 0
+
+struct ObjectHitbox sWhirlpoolHitbox = {
+    /* interactType:      */ INTERACT_WHIRLPOOL,
+    /* downOffset:        */ 0,
+    /* damageOrCoinValue: */ 0,
+    /* health:            */ 0,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 200,
+    /* height:            */ 500,
+    /* hurtboxRadius:     */ 0,
+    /* hurtboxHeight:     */ 0,
 };
-struct ObjectHitbox D_80331554 = {
-    0x20000000, 
-    40, 1, 0, 0,
-    40, 50,
-    50, 60
+
+struct ObjectHitbox sAmpHitbox = {
+    /* interactType:      */ INTERACT_SHOCK,
+    /* downOffset:        */ 40,
+    /* damageOrCoinValue: */ 1,
+    /* health:            */ 0,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 40,
+    /* height:            */ 50,
+    /* hurtboxRadius:     */ 50,
+    /* hurtboxHeight:     */ 60,
 };
-struct ObjectHitbox D_80331564 = {
-    0x00020000, 
-    0, 1, 0, 0,
-    73, 123,
-    63, 0x71,
+
+struct ObjectHitbox sSmallBullyHitbox = {
+    /* interactType:      */ INTERACT_BULLY,
+    /* downOffset:        */ 0,
+    /* damageOrCoinValue: */ 1,
+    /* health:            */ 0,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 73,
+    /* height:            */ 123,
+    /* hurtboxRadius:     */ 63,
+    /* hurtboxHeight:     */ 113,
 };
-struct ObjectHitbox D_80331574 = {
-    0x00020000, 
-    0, 1, 0, 0,
-    115, 235,
-    105, 225,
+
+struct ObjectHitbox sBigBullyHitbox = {
+    /* interactType:      */ INTERACT_BULLY,
+    /* downOffset:        */ 0,
+    /* damageOrCoinValue: */ 1,
+    /* health:            */ 0,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 115,
+    /* height:            */ 235,
+    /* hurtboxRadius:     */ 105,
+    /* hurtboxHeight:     */ 225,
 };
-struct ObjectHitbox D_80331584 = {
-    0x00008000, 
-    0, 2, 1, 0,
-    120, 60,
-    100, 50,
+
+struct ObjectHitbox sMoneybagHitbox = {
+    /* interactType:      */ INTERACT_BOUNCE_TOP,
+    /* downOffset:        */ 0,
+    /* damageOrCoinValue: */ 2,
+    /* health:            */ 1,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 120,
+    /* height:            */ 60,
+    /* hurtboxRadius:     */ 100,
+    /* hurtboxHeight:     */ 50,
 };
-struct ObjectHitbox D_80331594 = {
-    0x00000008, 
-    0, 2, 1, 0,
-    120, 60,
-    100, 50,
+
+struct ObjectHitbox sMoneybagHiddenHitbox = {
+    /* interactType:      */ INTERACT_DAMAGE,
+    /* downOffset:        */ 0,
+    /* damageOrCoinValue: */ 2,
+    /* health:            */ 1,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 120,
+    /* height:            */ 60,
+    /* hurtboxRadius:     */ 100,
+    /* hurtboxHeight:     */ 50,
 };
-struct ObjectHitbox D_803315A4 = {
-    0x00000008, 
-    0, 2, 0, 0,
-    100, 150,
-    0, 0,
+
+struct ObjectHitbox sBowlingBallHitbox = {
+    /* interactType:      */ INTERACT_DAMAGE,
+    /* downOffset:        */ 0,
+    /* damageOrCoinValue: */ 2,
+    /* health:            */ 0,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 100,
+    /* height:            */ 150,
+    /* hurtboxRadius:     */ 0,
+    /* hurtboxHeight:     */ 0,
 };
 
 // TODO: these are likely Waypoint structs
@@ -133,38 +193,66 @@ s16 D_80331608[] = {
     0xFFFF, 0x0000
 };
 
-struct ObjectHitbox D_80331654 = {
-    0x00000008, 
-    0, 3, 0, 0,
-    210, 350,
-    0, 0,
+struct ObjectHitbox sRollingSphereHitbox = {
+    /* interactType:      */ INTERACT_DAMAGE,
+    /* downOffset:        */ 0,
+    /* damageOrCoinValue: */ 3,
+    /* health:            */ 0,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 210,
+    /* height:            */ 350,
+    /* hurtboxRadius:     */ 0,
+    /* hurtboxHeight:     */ 0,
 };
-struct ObjectHitbox D_80331664 = {
-    0x00000020, 
-    0, 0, 0, 0,
-    80, 80,
-    90, 90,
+
+struct ObjectHitbox sCapHitbox = {
+    /* interactType:      */ INTERACT_CAP,
+    /* downOffset:        */ 0,
+    /* damageOrCoinValue: */ 0,
+    /* health:            */ 0,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 80,
+    /* height:            */ 80,
+    /* hurtboxRadius:     */ 90,
+    /* hurtboxHeight:     */ 90,
 };
-struct ObjectHitbox D_80331674 = {
-    0x00001000, 
-    0, 0, 0, 0,
-    80, 50,
-    0, 0,
+
+struct ObjectHitbox sCollectStarHitbox = {
+    /* interactType:      */ INTERACT_STAR_OR_KEY,
+    /* downOffset:        */ 0,
+    /* damageOrCoinValue: */ 0,
+    /* health:            */ 0,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 80,
+    /* height:            */ 50,
+    /* hurtboxRadius:     */ 0,
+    /* hurtboxHeight:     */ 0,
 };
-struct ObjectHitbox D_80331684 = {
-    0x00000010, 
-    0, 2, 0, 0,
-    100, 64,
-    0, 0,
+
+struct ObjectHitbox sRedCoinHitbox = {
+    /* interactType:      */ INTERACT_COIN,
+    /* downOffset:        */ 0,
+    /* damageOrCoinValue: */ 2,
+    /* health:            */ 0,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 100,
+    /* height:            */ 64,
+    /* hurtboxRadius:     */ 0,
+    /* hurtboxHeight:     */ 0,
 };
 
 s8 D_80331694 = 0;
 
-struct ObjectHitbox D_80331698 = {
-    0x00000002, 
-    20, 0, 1, 0,
-    150, 250,
-    150, 250,
+struct ObjectHitbox sBreakableBoxSmallHitbox = {
+    /* interactType:      */ INTERACT_GRABBABLE,
+    /* downOffset:        */ 20,
+    /* damageOrCoinValue: */ 0,
+    /* health:            */ 1,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 150,
+    /* height:            */ 250,
+    /* hurtboxRadius:     */ 150,
+    /* hurtboxHeight:     */ 250,
 };
 
 // TODO: these are likely Waypoint structs
@@ -180,23 +268,40 @@ s16 D_803316A8[] = {
     0xFFFF, 0x0000
 };
 
-struct ObjectHitbox D_803316EC = {
-    0x00000008, 
-    0, 0, 3, 0,
-    210, 60,
-    200, 50,
+struct ObjectHitbox sMantaRayHitbox = {
+    /* interactType:      */ INTERACT_DAMAGE,
+    /* downOffset:        */ 0,
+    /* damageOrCoinValue: */ 0,
+    /* health:            */ 3,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 210,
+    /* height:            */ 60,
+    /* hurtboxRadius:     */ 200,
+    /* hurtboxHeight:     */ 50,
 };
-struct ObjectHitbox D_803316FC = {
-    0x00000008, 
-    150, 3, 0, 0,
-    150, 300,
-    0, 0,
+
+struct ObjectHitbox sFallingPillarHitbox = {
+    /* interactType:      */ INTERACT_DAMAGE,
+    /* downOffset:        */ 150,
+    /* damageOrCoinValue: */ 3,
+    /* health:            */ 0,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 150,
+    /* height:            */ 300,
+    /* hurtboxRadius:     */ 0,
+    /* hurtboxHeight:     */ 0,
 };
-struct ObjectHitbox D_8033170C = {
-    0x20000000, 
-    0, 1, 0, 0,
-    300, 300,
-    310, 310,
+
+struct ObjectHitbox sTreasureChestBottomHitbox = {
+    /* interactType:      */ INTERACT_SHOCK,
+    /* downOffset:        */ 0,
+    /* damageOrCoinValue: */ 1,
+    /* health:            */ 0,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 300,
+    /* height:            */ 300,
+    /* hurtboxRadius:     */ 310,
+    /* hurtboxHeight:     */ 310,
 };
 
 

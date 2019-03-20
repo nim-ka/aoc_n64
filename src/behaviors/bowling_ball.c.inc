@@ -9,7 +9,7 @@ void BehBowlingBallInit(void)
 
 void func_802EDA14(void)
 {
-    set_object_hitbox(o, &D_803315A4);
+    set_object_hitbox(o, &sBowlingBallHitbox);
     
     if (o->oInteractStatus & 0x8000) o->oInteractStatus = 0;
 }

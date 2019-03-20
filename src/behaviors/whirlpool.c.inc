@@ -10,7 +10,7 @@ void BehWhirlpoolInit(void)
 
 void func_802E70A8(void)
 {
-    set_object_hitbox(o, &D_80331544);
+    set_object_hitbox(o, &sWhirlpoolHitbox);
 }
 
 void func_802E70DC(void)

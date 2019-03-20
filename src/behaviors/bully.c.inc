@@ -11,7 +11,7 @@ void BehSmallBullyInit(void)
     o->oFriction = 0.91;
     o->oBuoyancy = 1.3;
     
-    set_object_hitbox(o, &D_80331564);
+    set_object_hitbox(o, &sSmallBullyHitbox);
 }
 
 void BehBigBullyInit(void)
@@ -26,7 +26,7 @@ void BehBigBullyInit(void)
     o->oFriction = 0.93;
     o->oBuoyancy = 1.3;
     
-    set_object_hitbox(o, &D_80331574);
+    set_object_hitbox(o, &sBigBullyHitbox);
 }
 
 void BullyCheckMarioCollision(void)

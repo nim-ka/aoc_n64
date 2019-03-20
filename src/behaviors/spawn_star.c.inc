@@ -13,7 +13,7 @@ void BehCollectStarInit(void) {
         o->header.gfx.asGraphNode = gLoadedGraphNodes[122];
     }
 
-    set_object_hitbox(o, &D_80331674);
+    set_object_hitbox(o, &sCollectStarHitbox);
 }
 
 void BehCollectStarLoop(void) {

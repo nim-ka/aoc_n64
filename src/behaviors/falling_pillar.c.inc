@@ -74,7 +74,7 @@ void BehSomeSubobjectFallingPillarLoop(void) {
     o->oPosY = coss(sp2C) * sp18 + sp20;
     o->oPosZ = sins(sp2C) * coss(sp28) * sp18 + sp1C;
 
-    set_object_hitbox(o, &D_803316FC);
+    set_object_hitbox(o, &sFallingPillarHitbox);
     if (o->parentObj->activeFlags == 0)
         o->activeFlags = 0;
 }

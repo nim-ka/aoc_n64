@@ -37,7 +37,7 @@ void BehMovingYellowCoinInit(void)
     o->oFriction = 1.0f;
     o->oBuoyancy = 1.5f;
     
-    set_object_hitbox(o, &D_80331514);
+    set_object_hitbox(o, &sMovingYellowCoinHitbox);
 }
 
 void BehMovingYellowCoinLoop(void)
@@ -80,7 +80,7 @@ void BehMovingBlueCoinInit(void)
     o->oFriction = 1.0f;
     o->oBuoyancy = 1.5f;
     
-    set_object_hitbox(o, &D_80331524);
+    set_object_hitbox(o, &sMovingBlueCoinHitbox);
 }
 
 void BehMovingBlueCoinLoop(void)
@@ -122,7 +122,7 @@ void BehBlueCoinSlidingJumpingInit(void)
     o->oFriction = 0.98;
     o->oBuoyancy = 1.5;
     
-    set_object_hitbox(o, &D_80331524);
+    set_object_hitbox(o, &sMovingBlueCoinHitbox);
 }
 
 void func_802E540C(void)

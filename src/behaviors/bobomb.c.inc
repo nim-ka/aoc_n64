@@ -35,7 +35,7 @@ void BobombExplodeLoop(void)
 
 void CheckBobombInteractions(void)
 {
-    set_object_hitbox(o, &D_80331534);
+    set_object_hitbox(o, &sBobombHitbox);
     if ((o->oInteractStatus & 0x8000) != 0) /* bit 15 */
     {
         if ((o->oInteractStatus & 0x2) != 0) /* bit 1 */

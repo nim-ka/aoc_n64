@@ -1,7 +1,7 @@
 // cap.c.inc
 
 s32 func_802F0904(void) {
-    set_object_hitbox(o, &D_80331664);
+    set_object_hitbox(o, &sCapHitbox);
     if (o->oInteractStatus & 0x8000) {
         o->activeFlags = 0;
         o->oInteractStatus = 0;

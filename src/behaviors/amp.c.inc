@@ -16,7 +16,7 @@ void BehAmpHomingInit(void)
 
 void CheckAmpAttack(void)
 {
-    set_object_hitbox(o, &D_80331554);
+    set_object_hitbox(o, &sAmpHitbox);
     if (o->oInteractStatus & 0x8000) /* bit 15 */
     {
         if (o->oInteractStatus & 0x8000) /* bit 15 */

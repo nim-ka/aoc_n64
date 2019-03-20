@@ -44,7 +44,7 @@ void BehTreasureChestTopLoop(void) {
 
 void BehTreasureChestBottomInit(void) {
     spawn_object_relative(0, 0, 102, -77, o, 102, beh_treasure_chest_top);
-    set_object_hitbox(o, &D_8033170C);
+    set_object_hitbox(o, &sTreasureChestBottomHitbox);
 }
 
 void BehTreasureChestBottomLoop(void) {
