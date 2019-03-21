@@ -1,5 +1,23 @@
 // treasure_chest.c.inc
 
+
+/**
+ * Hitbox for treasure chest bottom.
+ */
+static struct ObjectHitbox sTreasureChestBottomHitbox =
+{
+    /* interactType:      */ INTERACT_SHOCK,
+    /* downOffset:        */ 0,
+    /* damageOrCoinValue: */ 1,
+    /* health:            */ 0,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 300,
+    /* height:            */ 300,
+    /* hurtboxRadius:     */ 310,
+    /* hurtboxHeight:     */ 310,
+};
+
+
 void BehTreasureChestTopLoop(void) {
     struct Object *sp34 = o->parentObj->parentObj;
 

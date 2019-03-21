@@ -1,5 +1,18 @@
 // red_coin.c.inc
 
+static struct ObjectHitbox sRedCoinHitbox =
+{
+    /* interactType:      */ INTERACT_COIN,
+    /* downOffset:        */ 0,
+    /* damageOrCoinValue: */ 2,
+    /* health:            */ 0,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 100,
+    /* height:            */ 64,
+    /* hurtboxRadius:     */ 0,
+    /* hurtboxHeight:     */ 0,
+};
+
 void BehRedCoinInit(void) {
     struct Surface *sp24;
     UNUSED f32 sp20 = find_floor(o->oPosX, o->oPosY, o->oPosZ, &sp24);

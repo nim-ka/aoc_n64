@@ -1,5 +1,18 @@
 // amp.c.inc
 
+static struct ObjectHitbox sAmpHitbox =
+{
+    /* interactType:      */ INTERACT_SHOCK,
+    /* downOffset:        */ 40,
+    /* damageOrCoinValue: */ 1,
+    /* health:            */ 0,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 40,
+    /* height:            */ 50,
+    /* hurtboxRadius:     */ 50,
+    /* hurtboxHeight:     */ 60,
+};
+
 void BehAmpHomingInit(void)
 {
     o->oHomeX = o->oPosX;

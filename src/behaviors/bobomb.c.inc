@@ -1,5 +1,18 @@
 // bobomb.c.inc
 
+static struct ObjectHitbox sBobombHitbox =
+{
+    /* interactType:      */ INTERACT_GRABBABLE,
+    /* downOffset:        */ 0,
+    /* damageOrCoinValue: */ 0,
+    /* health:            */ 0,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 65,
+    /* height:            */ 113,
+    /* hurtboxRadius:     */ 0,
+    /* hurtboxHeight:     */ 0,
+};
+
 void BehBobombInit(void)
 {
     o->oGravity = 2.5;

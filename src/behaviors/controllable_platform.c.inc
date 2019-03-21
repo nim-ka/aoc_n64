@@ -1,5 +1,7 @@
 // controllable_platform.c.inc
 
+static s8 D_80331694 = 0;
+
 void func_802F3BD8(void) {
     o->oParentRelativePosY -= 4.0f;
     if (o->oParentRelativePosY < 41.0f) {

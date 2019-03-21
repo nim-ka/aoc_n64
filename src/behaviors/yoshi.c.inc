@@ -1,5 +1,13 @@
 // yoshi.c.inc
 
+//Variety of X,Z coordinates that Yoshi's home swaps between
+static s16 D_8033171C[] = {
+     0,     -5625, 
+    -1364,  -5912, 
+    -1403,  -4609, 
+    -1004,  -5308
+};
+
 void BehYoshiInit(void) {
     o->oGravity = 2.0f;
     o->oFriction = 0.9f;

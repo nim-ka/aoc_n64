@@ -1,5 +1,19 @@
 // falling_pillar.c.inc
 
+
+static struct ObjectHitbox sFallingPillarHitbox = 
+{
+    /* interactType:      */ INTERACT_DAMAGE,
+    /* downOffset:        */ 150,
+    /* damageOrCoinValue: */ 3,
+    /* health:            */ 0,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 150,
+    /* height:            */ 300,
+    /* hurtboxRadius:     */ 0,
+    /* hurtboxHeight:     */ 0,
+};
+
 void BehFallingPillarInit(void) {
     o->oGravity = 0.5f;
     o->oFriction = 0.91f;

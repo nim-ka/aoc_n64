@@ -1,5 +1,17 @@
 // snowman.c.inc
 
+static struct ObjectHitbox sRollingSphereHitbox = {
+    /* interactType:      */ INTERACT_DAMAGE,
+    /* downOffset:        */ 0,
+    /* damageOrCoinValue: */ 3,
+    /* health:            */ 0,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 210,
+    /* height:            */ 350,
+    /* hurtboxRadius:     */ 0,
+    /* hurtboxHeight:     */ 0,
+};
+
 void BehSnowmansBottomInit(void) {
     struct Object *sp34;
 

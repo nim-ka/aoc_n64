@@ -1,5 +1,32 @@
 // manta_ray.c.inc
 
+// TODO: these are likely Waypoint structs
+static s16 D_803316A8[] =
+{
+    0x0000, 0xEE6C, 0xFA9C, 0xFFD8, 
+    0x0001, 0xEFE8, 0xF740, 0x02E4, 
+    0x0002, 0xF330, 0xF3F8, 0x0410, 
+    0x0003, 0xF740, 0xF308, 0x02D0, 
+    0x0004, 0xF8D0, 0xF3BC, 0xFEE8, 
+    0x0005, 0xF6F0, 0xF650, 0xFBB4, 
+    0x0006, 0xF36C, 0xF9C0, 0xFAB0, 
+    0x0007, 0xEFAC, 0xFC04, 0xFBF0, 
+    0xFFFF, 0x0000
+};
+
+static struct ObjectHitbox sMantaRayHitbox =
+{
+    /* interactType:      */ INTERACT_DAMAGE,
+    /* downOffset:        */ 0,
+    /* damageOrCoinValue: */ 0,
+    /* health:            */ 3,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 210,
+    /* height:            */ 60,
+    /* hurtboxRadius:     */ 200,
+    /* hurtboxHeight:     */ 50,
+};
+
 void BehMantaRayInit(void) {
     struct Object *sp1C;
     sp1C = spawn_object(o, 0, beh_manta_ray_ring_manager);

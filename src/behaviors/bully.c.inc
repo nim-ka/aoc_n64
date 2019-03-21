@@ -1,5 +1,31 @@
 // bully.c.inc
 
+static struct ObjectHitbox sSmallBullyHitbox =
+{
+    /* interactType:      */ INTERACT_BULLY,
+    /* downOffset:        */ 0,
+    /* damageOrCoinValue: */ 1,
+    /* health:            */ 0,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 73,
+    /* height:            */ 123,
+    /* hurtboxRadius:     */ 63,
+    /* hurtboxHeight:     */ 113,
+};
+
+static struct ObjectHitbox sBigBullyHitbox =
+{
+    /* interactType:      */ INTERACT_BULLY,
+    /* downOffset:        */ 0,
+    /* damageOrCoinValue: */ 1,
+    /* health:            */ 0,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 115,
+    /* height:            */ 235,
+    /* hurtboxRadius:     */ 105,
+    /* hurtboxHeight:     */ 225,
+};
+
 void BehSmallBullyInit(void)
 {
     SetObjAnimation(0);

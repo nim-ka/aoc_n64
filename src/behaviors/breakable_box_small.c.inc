@@ -1,5 +1,19 @@
 // breakable_box.c.inc
 
+
+struct ObjectHitbox sBreakableBoxSmallHitbox =
+{
+    /* interactType:      */ INTERACT_GRABBABLE,
+    /* downOffset:        */ 20,
+    /* damageOrCoinValue: */ 0,
+    /* health:            */ 1,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 150,
+    /* height:            */ 250,
+    /* hurtboxRadius:     */ 150,
+    /* hurtboxHeight:     */ 250,
+};
+
 void BehBreakableBoxSmallInit(void) {
     o->oGravity = 2.5f;
     o->oFriction = 0.99f;

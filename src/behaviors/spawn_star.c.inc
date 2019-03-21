@@ -1,5 +1,18 @@
 // spawn_star.c.inc
 
+static struct ObjectHitbox sCollectStarHitbox =
+{
+    /* interactType:      */ INTERACT_STAR_OR_KEY,
+    /* downOffset:        */ 0,
+    /* damageOrCoinValue: */ 0,
+    /* health:            */ 0,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 80,
+    /* height:            */ 50,
+    /* hurtboxRadius:     */ 0,
+    /* hurtboxHeight:     */ 0,
+};
+
 void BehCollectStarInit(void) {
     s8 sp1F;
     u8 sp1E;

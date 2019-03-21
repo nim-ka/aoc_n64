@@ -2,6 +2,32 @@
 
 //sp18 = collisionFlagsPtr
 
+static struct ObjectHitbox sMovingYellowCoinHitbox =
+{
+    /* interactType:      */ INTERACT_COIN,
+    /* downOffset:        */ 0,
+    /* damageOrCoinValue: */ 1,
+    /* health:            */ 0,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 100,
+    /* height:            */ 64,
+    /* hurtboxRadius:     */ 0,
+    /* hurtboxHeight:     */ 0,
+};
+
+static struct ObjectHitbox sMovingBlueCoinHitbox =
+{
+    /* interactType:      */ INTERACT_COIN,
+    /* downOffset:        */ 0,
+    /* damageOrCoinValue: */ 5,
+    /* health:            */ 0,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 100,
+    /* height:            */ 64,
+    /* hurtboxRadius:     */ 0,
+    /* hurtboxHeight:     */ 0,
+};
+
 s32 CoinStep(s16 *collisionFlagsPtr)
 {
     *collisionFlagsPtr = ObjectStep();
