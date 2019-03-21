@@ -61,7 +61,15 @@
 
 # Actor include
 .macro actor name
-.include "actors/\name\()/actor.s"
+.include "actors/\name\()/model.s"
+.include "actors/\name\()/collision.s"
+binid
+.endm
+
+# Actor include (no binid), needed for mario bin (TODO: Better solution?)
+.macro rawactor name
+.include "actors/\name\()/model.s"
+.include "actors/\name\()/collision.s"
 .endm
 
 # Actor geo include

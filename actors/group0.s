@@ -5,13 +5,13 @@
 
 # Note: This bin does not use bin IDs, unlike the other segmented bins.
 
-actor mario
-actor bubble
-actor walk_smoke
-actor burn_smoke
-actor stomp_smoke
-actor water_wave
-actor sparkle
-actor water_splash
-actor snowball2
-actor sparkle_animation
+rawactor mario
+rawactor bubble
+rawactor walk_smoke
+rawactor burn_smoke
+rawactor stomp_smoke
+rawactor water_wave
+rawactor sparkle
+rawactor water_splash
+rawactor snowball2
+rawactor sparkle_animation

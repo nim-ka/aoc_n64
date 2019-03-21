@@ -1,3 +1,0 @@
-# Empty Actor
-
-binid
