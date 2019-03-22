@@ -140,7 +140,11 @@ s16 D_8032F0CC[] = {6047,5664,5292,4934,4587,4254,3933,3624,3329,3046,2775,2517,
 #include "behaviors/warp.c.inc"
 #include "behaviors/white_puff_explode.c.inc"
 
+
+
 // not in behavior file
+struct SpawnParticlesInfo D_8032F270 = {2,20,142,0,40,5,30,20,252,30,330.0f,10.0f};
+
 void func_802AA618(s32 sp18,s32 sp1C,f32 sp20)
 {
     D_8032F270.sizeBase = sp20;
@@ -249,7 +253,7 @@ void func_802B2328(s32 n,s32 a1,s32 a2,s32 r) // n is the number of objects to s
 #include "behaviors/lll_sinking_rectangle.c.inc"
 #include "behaviors/lll_tilting_platform.c.inc"
 #include "behaviors/koopa_shell.c.inc"
-#include "behaviors/toy_box.c.inc"
+#include "behaviors/tox_box.c.inc"
 #include "behaviors/piranha_plant.c.inc"
 #include "behaviors/bowser_puzzle_piece.c.inc"
 #include "behaviors/tuxie.c.inc"

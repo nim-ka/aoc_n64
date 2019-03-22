@@ -1,9 +1,22 @@
 // spindrift.c.inc
 
+struct ObjectHitbox sSpindriftHitbox =
+{
+    /* interactType: */      INTERACT_BOUNCE_TOP,
+    /* downOffset: */        0,
+    /* damageOrCoinValue: */ 2,
+    /* health: */            1,
+    /* numLootCoins: */      3,
+    /* radius: */            90,
+    /* height: */            80,
+    /* hurtboxRadius: */     80,
+    /* hurtboxHeight: */     70,
+};
+
 void BehSpindriftLoop(void)
 {
     o->activeFlags |= 0x400;
-    if(obj_set_hitbox_and_die_if_attacked(&D_8032F430,0x50244081,0))
+    if(obj_set_hitbox_and_die_if_attacked(&sSpindriftHitbox,0x50244081,0))
         obj_change_action(1);
     obj_update_floor_and_walls();
     switch(o->oAction)

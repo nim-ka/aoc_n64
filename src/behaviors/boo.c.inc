@@ -1,5 +1,21 @@
 // boo.c.inc
 
+
+struct ObjectHitbox sBooGivingStarHitbox =
+{
+    /* interactType: */      0,
+    /* downOffset: */        0,
+    /* damageOrCoinValue: */ 3,
+    /* health: */            3,
+    /* numLootCoins: */      0,
+    /* radius: */            140,
+    /* height: */            80,
+    /* hurtboxRadius: */     40,
+    /* hurtboxHeight: */     60,
+};
+
+s16 D_8032FD24[][3] = {{0,50,0},{210,110,210},{-210,70,-210}};
+
 void func_802C2A28(void)
 {
     o->oForwardVel = 0.0f;
@@ -574,7 +590,7 @@ void (*TableBooGivingStarActions[])(void) = {ActionBooGivingStar0,ActionBooGivin
 
 void BehBooGivingStarLoop(void)
 {
-    set_object_hitbox(o,&D_8032FD14);
+    set_object_hitbox(o,&sBooGivingStarHitbox);
     o->oGraphYOffset = o->oBooUnkF8 * 60.0f;
     obj_update_floor_and_walls();
     obj_call_action_function(TableBooGivingStarActions);
@@ -633,7 +649,6 @@ void BehBooWithCageInit(void)
 }
 
 void (*TableBooWithCageActions[])(void) = {ActionBooWithCage0,ActionBooWithCage1,ActionBooWithCage2,ActionBooWithCage3};
-struct ObjectHitbox D_8032FD74 = {0x8000,0,1,1,3,130,70,90,60};
 
 void BehBooWithCageLoop(void)
 {

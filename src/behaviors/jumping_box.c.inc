@@ -1,5 +1,18 @@
 // jumping_box.c.inc
 
+struct ObjectHitbox sJumpingBoxHitbox =
+{
+    /* interactType: */      INTERACT_GRABBABLE,
+    /* downOffset: */        20,
+    /* damageOrCoinValue: */ 0,
+    /* health: */            1,
+    /* numLootCoins: */      5,
+    /* radius: */            150,
+    /* height: */            250,
+    /* hurtboxRadius: */     150,
+    /* hurtboxHeight: */     250,
+};
+
 void ActionJumpingBox0(void)
 {
     if(o->oSubAction == 0)
@@ -29,13 +42,12 @@ void ActionJumpingBox1(void)
 }
 
 void (*TableJumpingBoxActions[])(void) = {ActionJumpingBox0,ActionJumpingBox1};
-struct ObjectHitbox D_8032F4B0 = {0x8000000,0,0,0,0,120,300,0,0};
 
 void func_802B1F84(void)
 {
     obj_set_model(129);
     obj_scale(0.5f);
-    set_object_hitbox(o,&D_8032F498);
+    set_object_hitbox(o,&sJumpingBoxHitbox);
     obj_update_floor_and_walls();
     obj_move_standard(78);
     obj_call_action_function(TableJumpingBoxActions);

@@ -1,5 +1,18 @@
 // switch_hidden_objects.c.inc
 
+struct ObjectHitbox sBreakableBoxHitbox =
+{
+    /* interactType: */      INTERACT_BREAKABLE,
+    /* downOffset: */        20,
+    /* damageOrCoinValue: */ 0,
+    /* health: */            1,
+    /* numLootCoins: */      0,
+    /* radius: */            150,
+    /* height: */            200,
+    /* hurtboxRadius: */     150,
+    /* hurtboxHeight: */     200,
+};
+
 void func_802B0E74(void)
 {
     o->oUnknownUnkF4_S32 = 0;
@@ -25,7 +38,7 @@ void func_802B0E74(void)
 void func_802B0F54(void)
 {
     struct Object* sp1C;
-    set_object_hitbox(o,&D_8032F450);
+    set_object_hitbox(o,&sBreakableBoxHitbox);
     obj_set_model(130);
     if(o->oAction == 0)
     {

@@ -1,5 +1,7 @@
 // walking_penguin.c.inc
 
+struct Struct8032FE4C D_8032FE4C[] = {{60,0,6.0f,1.0f},{30,3,0.0f,1.0f},{30,0,12.0f,2.0f},{30,3,0.0f,1.0f},{30,0,-6.0f,1.0f},{30,3,0.0f,1.0f},{-1,0,0.0f,0.0f}};
+
 s32 func_802C7AD0(void)
 {
     o->oForwardVel = 0.0f;

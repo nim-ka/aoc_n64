@@ -1,5 +1,7 @@
 // checkerboard_platform.c.inc
 
+struct Struct8032F754 D_8032F754[] = {{145,{0.7f,1.5f,0.7f},7.0f},{235,{1.2f,2.0f,1.2f},11.6f}};
+
 void func_802B8F7C(Vec3f dest,Vec3f src)
 {
     dest[0] = src[0];

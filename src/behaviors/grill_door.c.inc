@@ -1,5 +1,9 @@
 // grill_door.c.inc
 
+extern u8 bob_seg7_collision_gate[];
+extern u8 hmc_seg7_collision_0702B65C[];
+struct Struct8032FCE8 D_8032FCE8[] = {{320,56,bob_seg7_collision_gate},{410,60,hmc_seg7_collision_0702B65C}};
+
 void BehBobHmcCageDoorLoop(void)
 {
     if(gCurrentObject->oAction == 0)

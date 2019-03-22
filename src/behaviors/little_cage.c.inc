@@ -53,16 +53,6 @@ void ActionLittleCage3(void)
 
 void (*TableLittleCageActions[])(void) = {ActionLittleCage0,ActionLittleCage1,ActionLittleCage2,ActionLittleCage3};
 
-f32 D_8032F420[] = {1.9f,2.4f,4.0f,4.8f};
-
-struct ObjectHitbox D_8032F430 = {0x8000,0,2,1,3,90,80,80,70};
-
-struct ObjectHitbox D_8032F440 = {0,0,0,1,0,220,300,220,300};
-
-struct ObjectHitbox D_8032F450 = {0x200,20,0,1,0,150,200,150,200};
-
-s16 D_8032F460[][2] = {{30,0},{42,1},{52,0},{64,1},{74,0},{86,1},{96,0},{108,1},{118,0},{-1,0}};
-
 void BehLittleCageLoop(void)
 {
     obj_call_action_function(TableLittleCageActions);

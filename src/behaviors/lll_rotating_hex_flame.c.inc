@@ -64,11 +64,6 @@ void ActionRotatingCwFireBars3(void)
 }
 
 void (*TableRotatingCwFireBarsActions[])(void) = {ActionRotatingCwFireBars0,ActionRotatingCwFireBars1,ActionRotatingCwFireBars2,ActionRotatingCwFireBars3};
-struct ObjectHitbox D_8032F8E0 = {0x80000,0,4,1,1,50,50,50,50};
-s8 D_8032F8F0[] = {4,1,4,1,6,1,6,1,5,1,5,1,6,1,6,1,5,1,2,4,1,4,1,4,1,2,5,1,5,1,7,1,7,1,4,1,4,1,7,1,7,1,5,1,5,1,5,1,2,4,1,-1};
-s8 D_8032F924[] = {4,1,4,1,7,1,7,1,7,1,2,6,1,6,1,6,1,5,1,5,1,6,1,5,1,5,1,2,4,1,4,1,7,1,-1};
-s8 D_8032F948[] = {4,1,4,1,4,1,4,1,4,1,2,5,1,5,1,5,1,5,1,5,1,7,1,2,6,1,6,1,5,1,2,4,1,7,1,-1};
-s8* D_8032F96C[] = {D_8032F8F0,D_8032F924,D_8032F948};
 
 void BehLLLRotatingBlockFireBarsLoop(void)
 {

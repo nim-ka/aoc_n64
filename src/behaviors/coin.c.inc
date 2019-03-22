@@ -1,5 +1,20 @@
 // coin.c.inc
 
+struct ObjectHitbox sYellowCoinHitbox =
+{
+    /* interactType: */      INTERACT_COIN,
+    /* downOffset: */        0,
+    /* damageOrCoinValue: */ 1,
+    /* health: */            0,
+    /* numLootCoins: */      0,
+    /* radius: */            100,
+    /* height: */            64,
+    /* hurtboxRadius: */     0,
+    /* hurtboxHeight: */     0,
+};
+
+s16 D_8032F2A4[][2] = {{0,-150},{0,-50},{0,50},{0,150},{-50,100},{-100,50},{50,100},{100,50}};
+
 s32 func_802AAD54(void)
 {
     if(o->oInteractStatus & 0x8000 && !(o->oInteractStatus & 0x800000))
@@ -15,7 +30,7 @@ s32 func_802AAD54(void)
 void BehYellowCoinInit(void)
 {
     obj_set_behavior(beh_yellow_coin);
-    set_object_hitbox(o,&D_8032F294);
+    set_object_hitbox(o,&sYellowCoinHitbox);
     bhv_init_room();
     obj_update_floor_height();
     if(500.0f < absf(o->oPosY - o->oFloorHeight))
@@ -44,7 +59,7 @@ void BehCoinInit(void)
     o->oForwardVel = RandomFloat() * 10.0f;
     o->oMoveAngleYaw = RandomU16();
     obj_set_behavior(beh_yellow_coin);
-    set_object_hitbox(o,&D_8032F294);
+    set_object_hitbox(o,&sYellowCoinHitbox);
     obj_become_intangible();
 }
 
@@ -106,7 +121,7 @@ void BehCoinFormationSpawnLoop(void)
     if(o->oTimer == 0)
     {
         obj_set_behavior(beh_yellow_coin);
-        set_object_hitbox(o,&D_8032F294);
+        set_object_hitbox(o,&sYellowCoinHitbox);
         bhv_init_room();
         if(o->OBJECT_FIELD_S32(0x1C))
         {
@@ -219,7 +234,7 @@ void ActionCoinInsideBoo1(void)
         PlaySound2(0x30364081);
     if(o->oTimer > 90 || (o->oMoveFlags & 1))
     {
-        set_object_hitbox(o,&D_8032F294);
+        set_object_hitbox(o,&sYellowCoinHitbox);
         obj_become_tangible();
         obj_set_behavior(beh_yellow_coin);
     }
@@ -255,16 +270,6 @@ void ActionCoinInsideBoo0(void)
 }
 
 void (*TableCoinInsideBooActions[])(void) = {ActionCoinInsideBoo0,ActionCoinInsideBoo1};
-
-s16 D_8032F2CC[] = {0xD000,0,0x3000,0,0xDE67,0x2199,0x2199,0x2199,0xDE67,0xDE67,0x2199,0xDE67};
-
-s16 D_8032F2E4[] = {0xE000,0,0,0,0x2000,0,0xE99A,0x1666,0x1666,0x1666,0xE99A,0xE99A,0x1666,0xE99A};
-
-s32 D_8032F300[][2] = {{0x40000,3},{0x80000,4},{0x10000,1},{0x20000,2},{-1,0}};
-
-s32 D_8032F328[] = {0x3004C081,0x3006C081};
-
-s32 D_8032F330[] = {0x3005C081,0x3007C081};
 
 void BehCoinInsideBooLoop(void)
 {

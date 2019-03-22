@@ -1,8 +1,21 @@
 // koopa_shell_underwater.c.inc
 
+struct ObjectHitbox sKoopaShellUnderwaterHitbox =
+{
+    /* interactType: */      INTERACT_GRABBABLE,
+    /* downOffset: */        0,
+    /* damageOrCoinValue: */ 0,
+    /* health: */            1,
+    /* numLootCoins: */      0,
+    /* radius: */            80,
+    /* height: */            50,
+    /* hurtboxRadius: */     0,
+    /* hurtboxHeight: */     0,
+};
+
 void func_802AA0D4(void)
 {
-    set_object_hitbox(o,&D_8032F260);
+    set_object_hitbox(o,&sKoopaShellUnderwaterHitbox);
 }
 
 void BehKoopaShellUnderwaterLoop(void)

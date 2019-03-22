@@ -1,12 +1,25 @@
 // wind_particle.c.inc
 
+struct ObjectHitbox sWindParticleHitbox =
+{
+    /* interactType: */      INTERACT_WIND,
+    /* downOffset: */        0,
+    /* damageOrCoinValue: */ 0,
+    /* health: */            0,
+    /* numLootCoins: */      0,
+    /* radius: */            20,
+    /* height: */            70,
+    /* hurtboxRadius: */     20,
+    /* hurtboxHeight: */     70,
+};
+
 void BehWhiteWindParticleLoop(void)
 {
     struct Object* sp34;
     f32 sp30;
     f32 sp2C;
     f32 sp28;
-    set_object_hitbox(o,&D_8032FE3C);
+    set_object_hitbox(o,&sWindParticleHitbox);
     if(o->oTimer == 0)
     {
         o->oWhiteWindParticleUnkF4 = obj_nearest_object_with_behavior(beh_walking_penguin);

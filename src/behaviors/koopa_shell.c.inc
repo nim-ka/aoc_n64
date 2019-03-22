@@ -1,5 +1,18 @@
 // koopa_shell.c.inc
 
+struct ObjectHitbox sKoopaShellHitbox =
+{
+    /* interactType: */      INTERACT_KOOPA_SHELL,
+    /* downOffset: */        0,
+    /* damageOrCoinValue: */ 4,
+    /* health: */            1,
+    /* numLootCoins: */      1,
+    /* radius: */            50,
+    /* height: */            50,
+    /* hurtboxRadius: */     50,
+    /* hurtboxHeight: */     50,
+};
+
 void func_802BCA8C(void)
 {
     UNUSED s32 unused;
@@ -48,7 +61,7 @@ void func_802BCCD4(f32 a)
 void BehKoopaShellLoop(void)
 {
     struct Surface* sp34;
-    set_object_hitbox(o,&D_8032F8E0);
+    set_object_hitbox(o,&sKoopaShellHitbox);
     obj_scale(1.0f);
     switch(o->oAction)
     {

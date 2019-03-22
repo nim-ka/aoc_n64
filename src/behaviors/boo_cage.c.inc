@@ -1,9 +1,22 @@
 // boo_cage.c.inc
 
+struct ObjectHitbox sBooCageHitbox =
+{
+    /* interactType: */      INTERACT_BBH_ENTRANCE,
+    /* downOffset: */        0,
+    /* damageOrCoinValue: */ 0,
+    /* health: */            0,
+    /* numLootCoins: */      0,
+    /* radius: */            120,
+    /* height: */            300,
+    /* hurtboxRadius: */     0,
+    /* hurtboxHeight: */     0,
+};
+
 void BehBooCageLoop(void)
 {
     UNUSED s32 unused;
-    set_object_hitbox(o,&D_8032F4B0);
+    set_object_hitbox(o,&sBooCageHitbox);
     switch(o->oAction)
     {
     case 0:

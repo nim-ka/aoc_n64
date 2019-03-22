@@ -40,7 +40,7 @@ void ActionExclamationBox1(void)
 
 void ActionExclamationBox2(void)
 {
-    set_object_hitbox(o,&D_8032FC30);
+    set_object_hitbox(o,&sExclamationBoxHitbox);
     if(o->oTimer == 0)
     {
         obj_unhide();
@@ -123,11 +123,6 @@ void ActionExclamationBox5(void)
 }
 
 void (*TableExclamationBoxActions[])(void) = {ActionExclamationBox0,ActionExclamationBox1,ActionExclamationBox2,ActionExclamationBox3,ActionExclamationBox4,ActionExclamationBox5};
-struct ObjectHitbox D_8032FCD8 = {8,0,1,1,0,130,100,0,0};
-extern u8 bob_seg7_collision_gate[];
-extern u8 hmc_seg7_collision_0702B65C[];
-struct Struct8032FCE8 D_8032FCE8[] = {{320,56,bob_seg7_collision_gate},{410,60,hmc_seg7_collision_0702B65C}};
-struct ObjectHitbox D_8032FCF8 = {0x1000000,0,0,0,0,1500,4000,0,0};
 
 void BehExclamationBoxLoop(void)
 {

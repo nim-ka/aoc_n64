@@ -1485,12 +1485,34 @@ void ActionFallingBowserPlatform2(void)
 }
 
 void (*TableFallingBowserPlatformActions[])(void) = {ActionFallingBowserPlatform0,ActionFallingBowserPlatform1,ActionFallingBowserPlatform2};
-struct ObjectHitbox D_8032F728 = {0x40000,20,1,0,0,10,40,0,0};
-struct ObjectHitbox D_8032F738 = {0x40000,0,1,0,0,10,40,0,0};
+
+struct ObjectHitbox sGrowingBowserFlameHitbox =
+{
+    /* interactType: */      INTERACT_FLAME,
+    /* downOffset: */        20,
+    /* damageOrCoinValue: */ 1,
+    /* health: */            0,
+    /* numLootCoins: */      0,
+    /* radius: */            10,
+    /* height: */            40,
+    /* hurtboxRadius: */     0,
+    /* hurtboxHeight: */     0,
+};
+
+struct ObjectHitbox sBowserFlameHitbox =
+{
+    /* interactType: */      INTERACT_FLAME,
+    /* downOffset: */        0,
+    /* damageOrCoinValue: */ 1,
+    /* health: */            0,
+    /* numLootCoins: */      0,
+    /* radius: */            10,
+    /* height: */            40,
+    /* hurtboxRadius: */     0,
+    /* hurtboxHeight: */     0,
+};
+
 f32 D_8032F748[] = {-8.0f,-6.0f,-3.0f};
-struct Struct8032F754 D_8032F754[] = {{145,{0.7f,1.5f,0.7f},7.0f},{235,{1.2f,2.0f,1.2f},11.6f}};
-s32 D_8032F77C[] = {1011,151191267,1151,151059970,1723,122027068,2082,116390808,2489,112589707,2662,111082380,2902,100727885,2946,100728365,2924,100663368,2908,100663832,2886,100664079,-(1<<16)};
-struct SoundState D_8032F7D8[] = {{1,1,10,0x503B0081},{0,0,0,0},{0,0,0,0},{0,0,0,0},{1,0,-1,0x50390081},{1,0,-1,0x50210081},{0,0,0,0},{0,0,0,0},{1,0,-1,0x50210081},{1,0,-1,0x503C0081},{1,0,-1,0x503A0081},{0,0,0,0},{0,0,0,0}};
 
 void BehFallingBowserPlatformLoop(void)
 {
@@ -1580,7 +1602,7 @@ void BehFlameBowserLoop(void)
     }
     obj_scale(o->oFlameUnkF4);
     o->oGraphYOffset = o->header.gfx.scale[1] * 14.0f;
-    set_object_hitbox(o,&D_8032F738);
+    set_object_hitbox(o,&sBowserFlameHitbox);
 }
 
 void BehFlameMovingForwardGrowingInit(void)
@@ -1595,7 +1617,7 @@ void BehFlameMovingForwardGrowingLoop(void)
 {
     UNUSED s32 unused;
     UNUSED struct Object* sp18;
-    set_object_hitbox(o,&D_8032F728);
+    set_object_hitbox(o,&sGrowingBowserFlameHitbox);
     o->oFlameUnkF4 = o->oFlameUnkF4 + 0.5;
     obj_scale(o->oFlameUnkF4);
     if(o->oMoveAnglePitch > 0x800)
@@ -1661,7 +1683,7 @@ void BehBlueBowserFlameInit(void)
 void BehBlueBowserFlameLoop(void)
 {
     s32 i;
-    set_object_hitbox(o,&D_8032F728);
+    set_object_hitbox(o,&sGrowingBowserFlameHitbox);
     if(o->oFlameUnkF4 < 16.0f)
         o->oFlameUnkF4 = o->oFlameUnkF4 + 0.5;
     obj_scale(o->oFlameUnkF4);
@@ -1699,7 +1721,7 @@ void BehFlameBouncingLoop(void)
     o->oForwardVel = 15.0f;
     o->oBounce = -1.0f;
     obj_scale(o->oFlameUnkF4);
-    set_object_hitbox(o,&D_8032F728);
+    set_object_hitbox(o,&sGrowingBowserFlameHitbox);
     obj_update_floor_and_walls();
     obj_move_standard(78);
     if(func_802B7ADC(300))

@@ -1,5 +1,18 @@
 // scuttlebug.c.inc
 
+struct ObjectHitbox sScuttlebugHitbox =	
+{	
+    /* interactType: */      INTERACT_BOUNCE_TOP,	
+    /* downOffset: */        0,	
+    /* damageOrCoinValue: */ 1,	
+    /* health: */            1,	
+    /* numLootCoins: */      3,	
+    /* radius: */            130,	
+    /* height: */            70,	
+    /* hurtboxRadius: */     90,	
+    /* hurtboxHeight: */     60,	
+};
+
 s32 func_802C5A64(s32* a0)
 {
     if(o->oMoveFlags & 0x200)
@@ -20,7 +33,7 @@ void BehScuttlebugLoop(void)
     UNUSED s32 unused;
     f32 sp18;
     obj_update_floor_and_walls();
-    if(o->oSubAction != 0 && obj_set_hitbox_and_die_if_attacked(&D_8032FD74,0x50244081,o->oScuttlebugUnkF4))
+    if(o->oSubAction != 0 && obj_set_hitbox_and_die_if_attacked(&sScuttlebugHitbox,0x50244081,o->oScuttlebugUnkF4))
         o->oSubAction = 3;
     if(o->oSubAction != 1)
         o->oScuttlebugUnkF8 = 0;

@@ -1,5 +1,7 @@
 // heave_ho.c.inc
 
+s16 D_8032F460[][2] = {{30,0},{42,1},{52,0},{64,1},{74,0},{86,1},{96,0},{108,1},{118,0},{-1,0}};
+
 void BehHeaveHoThrowMarioLoop(void)
 {
     o->oParentRelativePosX = 200.0f;
@@ -97,7 +99,6 @@ void ActionHeaveHo0(void)
 }
 
 void (*TableHeaveHoActions[])(void) = {ActionHeaveHo0,ActionHeaveHo1,ActionHeaveHo2,ActionHeaveHo3};
-struct ObjectHitbox D_8032F498 = {2,20,0,1,5,150,250,150,250};
 
 void func_802B18B4(void)
 {
@@ -125,10 +126,10 @@ void BehHeaveHoLoop(void)
     obj_scale(2.0f);
     switch(o->oHeldState)
     {
-    case HELD_FREE:        func_802B18B4();        break;
-    case HELD_HELD:        func_8029FA5C(0,0); break;
-    case HELD_THROWN:    obj_get_dropped();        break;
-    case HELD_DROPPED: obj_get_dropped();        break;
+    case HELD_FREE:         func_802B18B4();        break;
+    case HELD_HELD:         func_8029FA5C(0,0);     break;
+    case HELD_THROWN:       obj_get_dropped();      break;
+    case HELD_DROPPED:      obj_get_dropped();      break;
     }
     o->oInteractStatus = 0;
 }

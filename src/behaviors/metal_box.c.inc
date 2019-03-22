@@ -1,5 +1,18 @@
 // metal_box.c.inc
 
+struct ObjectHitbox sMetalBoxHitbox =
+{
+    /* interactType: */      0,
+    /* downOffset: */        0,
+    /* damageOrCoinValue: */ 0,
+    /* health: */            1,
+    /* numLootCoins: */      0,
+    /* radius: */            220,
+    /* height: */            300,
+    /* hurtboxRadius: */     220,
+    /* hurtboxHeight: */     300,
+};
+
 s32 func_802B0C54(f32 a0,f32 a1)
 {
     struct Surface* sp24;
@@ -17,7 +30,7 @@ void BehPushableLoop(void)
 {
     UNUSED s16 unused;
     s16 sp1C;
-    set_object_hitbox(o,&D_8032F440);
+    set_object_hitbox(o,&sMetalBoxHitbox);
     o->oForwardVel = 0.0f;
     if(are_objects_collided(o,gMarioObject) && gMarioStates->flags & 0x80000000)
     {

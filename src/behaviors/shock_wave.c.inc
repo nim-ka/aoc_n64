@@ -1,5 +1,7 @@
 // shock_wave.c.inc
 
+f32 D_8032F420[] = {1.9f,2.4f,4.0f,4.8f};
+
 void BehBowserShockWave(void)
 {
     f32 sp2C,sp28,sp24,sp20;

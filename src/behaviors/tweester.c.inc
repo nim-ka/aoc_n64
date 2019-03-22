@@ -1,5 +1,18 @@
 // tweester.c.inc
 
+struct ObjectHitbox sTweesterHitbox =
+{
+    /* interactType: */      INTERACT_TORNADO,
+    /* downOffset: */        0,
+    /* damageOrCoinValue: */ 0,
+    /* health: */            0,
+    /* numLootCoins: */      0,
+    /* radius: */            1500,
+    /* height: */            4000,
+    /* hurtboxRadius: */     0,
+    /* hurtboxHeight: */     0,
+};
+
 void func_802C231C(f32 a0)
 {
     s16 sp6 = 0x2C00;
@@ -79,12 +92,10 @@ void ActionTweester2(void)
 }
 
 void (*TableTweesterActions[])(void) = {ActionTweester0,ActionTweester1,ActionTweester2};
-struct ObjectHitbox D_8032FD14 = {0,0,3,3,0,140,80,40,60};
-s16 D_8032FD24[][3] = {{0,50,0},{210,110,210},{-210,70,-210}};
 
 void BehTweesterLoop(void)
 {
-    set_object_hitbox(o,&D_8032FCF8);
+    set_object_hitbox(o,&sTweesterHitbox);
     obj_call_action_function(TableTweesterActions);
     o->oInteractStatus = 0;
 }

@@ -1,5 +1,18 @@
 // jrb_ship.c.inc
 
+struct ObjectHitbox sSkullSlidingBoxHitbox =
+{
+    /* interactType: */      INTERACT_DAMAGE,
+    /* downOffset: */        0,
+    /* damageOrCoinValue: */ 1,
+    /* health: */            1,
+    /* numLootCoins: */      0,
+    /* radius: */            130,
+    /* height: */            100,
+    /* hurtboxRadius: */     0,
+    /* hurtboxHeight: */     0,
+};
+
 void BehSunkenShipPartLoop(void)
 {
     if(o->oDistanceToMario > 10000.0f)
@@ -76,7 +89,7 @@ void BehJrbSlidingBox(void)
     if(gMarioObject->oPosY > 1000.0f)
         if(absf(o->oJrbSlidingBoxUnkFC) > 3.0f)
             PlaySound(0x60050001);
-    set_object_hitbox(o,&D_8032FCD8);
+    set_object_hitbox(o,&sSkullSlidingBoxHitbox);
     if(!(o->oJrbSlidingBoxUnkF8 & 0x7FFF))
         obj_become_tangible();
     if(are_objects_collided(o,gMarioObject))

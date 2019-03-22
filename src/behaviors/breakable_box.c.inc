@@ -2,7 +2,7 @@
 
 void BehBreakableBoxLoop(void)
 {
-    set_object_hitbox(o,&D_8032F450);
+    set_object_hitbox(o,&sBreakableBoxHitbox);
     obj_set_model(130);
     if(o->oTimer == 0)
         func_802B0E74();

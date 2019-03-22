@@ -212,15 +212,6 @@ void ActionChuckya2(void)
 
 void (*TableChuckyaActions[])(void) = {ActionChuckya0,ActionChuckya1,ActionChuckya2,ActionChuckya3};
 
-extern u8 wf_seg7_collision_rotating_platform[];
-extern u8 wdw_seg7_collision_070186B4[];
-struct Struct8032F24A D_8032F24A[] = {{0,100,wf_seg7_collision_rotating_platform,2000},{0,150,wdw_seg7_collision_070186B4,1000}};
-struct ObjectHitbox D_8032F260 = {2,0,0,1,0,80,50,0,0};
-struct SpawnParticlesInfo D_8032F270 = {2,20,142,0,40,5,30,20,252,30,330.0f,10.0f};
-struct ObjectHitbox D_8032F284 = {0x1000,0,0,0,0,80,50,0,0};
-struct ObjectHitbox D_8032F294 = {16,0,1,0,0,100,64,0,0};
-s16 D_8032F2A4[][2] = {{0,-150},{0,-50},{0,50},{0,150},{-50,100},{-100,50},{50,100},{100,50}};
-
 void func_802A97B8(void)
 {
     obj_update_floor_and_walls();

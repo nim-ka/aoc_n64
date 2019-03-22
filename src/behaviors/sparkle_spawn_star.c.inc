@@ -1,5 +1,18 @@
 // sparkle_spawn_star.c.inc
 
+struct ObjectHitbox sSparkleSpawnStarHitbox =
+{
+    /* interactType: */      INTERACT_STAR_OR_KEY,
+    /* downOffset: */        0,
+    /* damageOrCoinValue: */ 0,
+    /* health: */            0,
+    /* numLootCoins: */      0,
+    /* radius: */            80,
+    /* height: */            50,
+    /* hurtboxRadius: */     0,
+    /* hurtboxHeight: */     0,
+};
+
 void BehUnused080CInit(void)
 {
     s32 sp24;
@@ -13,7 +26,7 @@ void BehUnused080CInit(void)
 
 void func_802AA788(void)
 {
-    set_object_hitbox(o,&D_8032F284);
+    set_object_hitbox(o,&sSparkleSpawnStarHitbox);
     if(o->oInteractStatus & 0x8000)
     {
         hide_object(o);

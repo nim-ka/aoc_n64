@@ -266,15 +266,22 @@ void ActionMrI0(void)
 
 void (*TableMrIActions[])(void) = {ActionMrI0,ActionMrI1,ActionMrI2,ActionMrI3};
 
-struct ObjectHitbox D_8032F124 = {8,0,2,2,5,80,150,0,0};
-
-struct SpawnParticlesInfo D_8032F134 = {0,30,164,0,40,0,20,40,252,30,20.0f,0.0f};
-
-UNUSED u8 unused8032F134[] = {10,11,12};
+struct ObjectHitbox sMrIHitbox =
+{
+    /* interactType: */      INTERACT_DAMAGE,
+    /* downOffset: */        0,
+    /* damageOrCoinValue: */ 2,
+    /* health: */            2,
+    /* numLootCoins: */      5,
+    /* radius: */            80,
+    /* height: */            150,
+    /* hurtboxRadius: */     0,
+    /* hurtboxHeight: */     0,
+};
 
 void BehMrILoop(void)
 {
-    set_object_hitbox(o,&D_8032F124);
+    set_object_hitbox(o,&sMrIHitbox);
     obj_call_action_function(TableMrIActions);
     if(o->oAction != 3)
         if(o->oDistanceToMario > 3000.0f || o->activeFlags & 8)

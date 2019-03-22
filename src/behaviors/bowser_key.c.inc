@@ -1,5 +1,18 @@
 // bowser_key.c.inc
 
+struct ObjectHitbox sBowserKeyHitbox =
+{
+    /* interactType: */      INTERACT_STAR_OR_KEY,
+    /* downOffset: */        0,
+    /* damageOrCoinValue: */ 0,
+    /* health: */            0,
+    /* numLootCoins: */      0,
+    /* radius: */            160,
+    /* height: */            100,
+    /* hurtboxRadius: */     160,
+    /* hurtboxHeight: */     100,
+};
+
 void BehBowserKey2Loop(void)
 {
     obj_scale(0.5f);
@@ -27,7 +40,7 @@ void BehBowserKey2Loop(void)
     }
     else
     {
-        set_object_hitbox(o,&D_8032F4CC);
+        set_object_hitbox(o,&sBowserKeyHitbox);
         if(o->oInteractStatus & 0x8000)
         {
             hide_object(o);

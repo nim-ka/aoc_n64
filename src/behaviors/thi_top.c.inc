@@ -1,5 +1,9 @@
 // thi_top.c.inc
 
+struct SpawnParticlesInfo D_8032F134 = {0,30,164,0,40,0,20,40,252,30,20.0f,0.0f};
+
+UNUSED u8 unused8032F134[] = {10,11,12};
+
 void BehTHIHugeIslandTopLoop(void)
 {
     if(D_8035FEE6 & 1)

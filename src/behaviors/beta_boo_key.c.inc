@@ -73,7 +73,6 @@ void ActionBetaBooKeyInside0(void)
 }
 
 void (*TableBetaBooKeyInsideActions[])(void) = {ActionBetaBooKeyInside0,ActionBetaBooKeyInside1,ActionBetaBooKeyInside2};
-struct ObjectHitbox D_8032F4CC = {0x1000,0,0,0,0,160,100,160,100};
 
 void BehBetaBooKeyInsideLoop(void)
 {

@@ -1,5 +1,9 @@
 // rotating_platform.c.inc
 
+extern u8 wf_seg7_collision_rotating_platform[];
+extern u8 wdw_seg7_collision_070186B4[];
+struct Struct8032F24A D_8032F24A[] = {{0,100,wf_seg7_collision_rotating_platform,2000},{0,150,wdw_seg7_collision_070186B4,1000}};
+
 void BehWFRotatingWoodenPlatformLoop(void)
 {
     if(o->oAction == 0)
