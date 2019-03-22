@@ -17,27 +17,22 @@
  * to toggle the FPS counter.
  */
 
-#define SECONDS_PER_CYCLE 0.00000002133f
+// SDK states that 1 cycle takes about 21.33 nanoseconds
+#define SECONDS_PER_CYCLE 0.00000002133f 
 
-#define FPS_COUNTER_X_POS 28
-#define FPS_COUNTER_Y_POS 30
+#define FPS_COUNTER_X_POS 24
+#define FPS_COUNTER_Y_POS 190
 
-OSTime gLastOSTimeValue = 0;
+OSTime gLastOSTime = 0;
+float gFrameTime = 0.0f;
+u16 gFrames = 0;
 u16 gFPS = 0;
 u8 gRenderFPS = FALSE;
-s8 gDelayRenderFPS = 0;
 
-// TODO: replace this with a function that calls the asm opcode "round.w.s"
-int round(float num) 
-{ 
-    return num + 0.5f;
-} 
-
-u16 calculate_fps_from_OSTime(OSTime diff)
+void calculate_frameTime_from_OSTime(OSTime diff)
 {
-    float fps = 1.0f / (diff * SECONDS_PER_CYCLE);
-    
-    return (u16)round(fps); // Round to the nearest whole integer.
+    gFrameTime += diff * SECONDS_PER_CYCLE;
+    gFrames++;
 }
 
 void render_fps(void)
@@ -52,16 +47,19 @@ void render_fps(void)
     {
         OSTime newTime = osGetTime();
         
-        if(--gDelayRenderFPS < 0)
+        calculate_frameTime_from_OSTime(newTime - gLastOSTime);
+        
+        // If frame time is longer or equal to a second, update FPS counter.
+        if(gFrameTime >= 1.0f) 
         {
-            gFPS = calculate_fps_from_OSTime(newTime - gLastOSTimeValue);
-            
-            gDelayRenderFPS = 10; // Update the display 3 times per second.
+            gFPS = gFrames;
+            gFrames = 0;
+            gFrameTime -= 1.0f;
         }
         
         print_text_fmt_int(FPS_COUNTER_X_POS, FPS_COUNTER_Y_POS, "FPS %d", gFPS);
         
-        gLastOSTimeValue = newTime;
+        gLastOSTime = newTime;
     }
     
 }
