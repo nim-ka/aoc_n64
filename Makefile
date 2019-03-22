@@ -39,6 +39,13 @@ ifeq ($(GRUCODE), f3dex2)
   GRUCODE_ASFLAGS := --defsym F3DEX_GBI_2=1
   TARGET := $(TARGET).f3dex2
   COMPARE := 0
+else
+ifeq ($(GRUCODE), f3d_h)
+  $(error Fast3D 2.0H is not implemented.)
+  GRUCODE_ASFLAGS := --defsym F3D_H=1
+else
+  GRUCODE_ASFLAGS := --defsym F3D_D=1
+endif
 endif
 endif
 

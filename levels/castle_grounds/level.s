@@ -3737,9 +3737,7 @@ gsDPSetTileSize 0, 0, 0, 252, 124
 gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_8b, 1, castle_grounds_seg7_us_texture_0700EAE8
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
-.word 0xE42D0318, 0x001D0298 # TODO: Define me
-gsImmp1 G_RDPHALF_2, 0x00000000
-.word 0xB2000000, 0x04000400 # TODO: Define me
+gsSPTextureRectangle 464, 664, 720, 792, 0, 0, 0, 1024, 1024
 gsDPPipeSync
 gsDPSetTexturePersp G_TP_PERSP
 

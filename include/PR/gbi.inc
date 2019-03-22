@@ -91,6 +91,9 @@
 .endm
 .endif
 
+/* B2: G_RDPHALF_CONT */
+.set G_RDPHALF_CONT, 0xB2
+
 /* B3: G_RDPHALF_2 */
 .set G_RDPHALF_2, 0xB3
 
@@ -448,6 +451,26 @@
 .set G_NOOP, 0xC0
 .macro gsDPNoOp
    f3d_noparam G_NOOP
+.endm
+
+/* E4: G_TEXRECT */
+.set G_TEXRECT, 0xE4
+
+.macro gsSPTextureRectangle xl, yl, xh, yh, tile, s, t, dsdx, dtdy
+    .word (G_TEXRECT << 24) | (\xh << 12) | \yh
+    .word (\tile << 24) | (\xl << 12) | \yl
+    .ifdef F3D_D
+        .word (G_RDPHALF_2 << 24)
+    .else
+        .word (G_RDPHALF_1 << 24)
+    .endif
+    .word (\s << 16) | \t
+    .ifdef F3D_D
+        .word (G_RDPHALF_CONT << 24)
+    .else
+        .word (G_RDPHALF_2 << 24)
+    .endif
+    .word (\dsdx << 16) | \dtdy
 .endm
 
 /* E6: G_RDPLOADSYNC */
