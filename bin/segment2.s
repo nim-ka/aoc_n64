@@ -1,7 +1,7 @@
 # SM64 (US/JP) Segment 02
 .section .rodata
 .include "macros.inc"
-.include "ultra64/gbi.inc"
+.include "PR/gbi.inc"
 
 seg2_texture_02000000:
 .incbin "bin/segment2/segment2.00000.rgba16"

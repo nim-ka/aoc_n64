@@ -44,6 +44,12 @@ typedef union
     long long int force_structure_alignment;
 } Vp;
 
+typedef long int Mtx_t[4][4];
+typedef union
+{
+    Mtx_t m;
+    long long int force_structure_alignment;
+} Mtx;
 
 typedef struct
 {

@@ -2,7 +2,7 @@
 .section .rodata
 .include "macros.inc"
 .include "geo_commands.inc"
-.include "ultra64/gbi.inc"
+.include "PR/gbi.inc"
 
 initbinid
 actor bubba

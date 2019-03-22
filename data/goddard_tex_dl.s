@@ -1,5 +1,5 @@
 .include "macros.inc"
-.include "ultra64/gbi.inc"
+.include "PR/gbi.inc"
 
 .section .rodata
 
