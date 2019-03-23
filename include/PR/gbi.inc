@@ -459,13 +459,13 @@
 .macro gsSPTextureRectangle xl, yl, xh, yh, tile, s, t, dsdx, dtdy
     .word (G_TEXRECT << 24) | (\xh << 12) | \yh
     .word (\tile << 24) | (\xl << 12) | \yl
-    .ifdef F3D_D
+    .ifdef F3D_OLD
         .word (G_RDPHALF_2 << 24)
     .else
         .word (G_RDPHALF_1 << 24)
     .endif
     .word (\s << 16) | \t
-    .ifdef F3D_D
+    .ifdef F3D_OLD
         .word (G_RDPHALF_CONT << 24)
     .else
         .word (G_RDPHALF_2 << 24)

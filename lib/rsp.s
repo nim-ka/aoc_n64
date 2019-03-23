@@ -16,9 +16,14 @@ glabel rspF3DBootEnd
 .ifndef F3DEX_GBI
 .balign 16
 glabel rspF3DStart /* Use regular Fast3D bins (default) */
-    .incbin "lib/PR/f3d/F3D.bin"
-    .incbin "lib/PR/f3d/F3D_unk.bin"
+    .ifndef F3D_OLD
+    .incbin "lib/PR/f3d/new/F3D.bin" /* OS 2.0H (J2 and IQ) */
+    .else
+    .incbin "lib/PR/f3d/old/F3D.bin" /* OS 2.0D (US and JP) */
+    .incbin "lib/PR/f3d/old/F3D_unk.bin"
+    .endif
 glabel rspF3DEnd
+
 .else /* Default to Fast3DEX bin when F3DEX_GBI is defined */
 .balign 16
 glabel rspF3DStart
@@ -79,12 +84,24 @@ glabel rspL3DEXStart
 glabel rspL3DEXEnd
 .endif
 
+/* S2DEX Text */
+
+.ifdef S2DEX_GBI
+glabel rspS2DEXTextStart
+    .incbin "lib/PR/s2dex/S2DEX.bin"
+glabel rspS2DEXTextEnd
+.endif
+
 .section .rodata
 
 .ifndef F3DEX_GBI /* Use regular Fast3D data (default) */
 .balign 16
 glabel rspF3DDataStart
-    .incbin "lib/PR/f3d/F3D_data.bin"
+    .ifndef F3D_OLD /* OS 2.0H (J2 and IQ) */
+    .incbin "lib/PR/f3d/new/F3D_data.bin"
+    .else /* OS 2.0D (US and JP) */
+    .incbin "lib/PR/f3d/old/F3D_data.bin"
+    .endif
 glabel rspF3DDataEnd
 .else /* Default to Fast3DEX data when F3DEX_GBI is defined */
 glabel rspF3DDataStart
@@ -141,4 +158,12 @@ glabel rspF3DLXRejDataEnd
 glabel rspL3DEXDataStart
     .incbin "lib/PR/f3dex/L3DEX_data.bin"
 glabel rspL3DEXDataEnd
+.endif
+
+/* S2DEX Data */
+
+.ifdef S2DEX_GBI
+glabel rspS2DEXDataStart
+    .incbin "lib/PR/s2dex/S2DEX_data.bin"
+glabel rspS2DEXDataEnd
 .endif

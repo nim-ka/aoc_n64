@@ -7,7 +7,7 @@ default: all
 ### Build Options ###
 # Version of the game to build and graphics microcode used
 VERSION ?= us
-GRUCODE ?= f3d
+GRUCODE ?= f3d_old
 # If COMPARE is 1, check the output sha1sum when building 'all'
 COMPARE ?= 1
 # If NON_MATCHING is 1, define the NON_MATCHING macro when building
@@ -16,11 +16,15 @@ NON_MATCHING ?= 0
 ifeq ($(VERSION),jp)
   VERSION_CFLAGS := -DVERSION_JP=1
   VERSION_ASFLAGS := --defsym VERSION_JP=1
+  GRUCODE_CFLAGS := -DF3D_OLD
+  GRUCODE_ASFLAGS := --defsym F3D_OLD=1
   TARGET := sm64.j
 else
 ifeq ($(VERSION),us)
   VERSION_CFLAGS := -DVERSION_US=1
   VERSION_ASFLAGS := --defsym VERSION_US=1
+  GRUCODE_CFLAGS := -DF3D_OLD
+  GRUCODE_ASFLAGS := --defsym F3D_OLD=1
   TARGET := sm64.u
 else
   $(error unknown version "$(VERSION)")
@@ -40,11 +44,11 @@ ifeq ($(GRUCODE), f3dex2)
   TARGET := $(TARGET).f3dex2
   COMPARE := 0
 else
-ifeq ($(GRUCODE), f3d_h)
-  $(error Fast3D 2.0H is not implemented.)
-  GRUCODE_ASFLAGS := --defsym F3D_H=1
-else
-  GRUCODE_ASFLAGS := --defsym F3D_D=1
+ifeq ($(GRUCODE),f3d_new)
+  GRUCODE_CFLAGS := -DF3D_NEW
+  GRUCODE_ASFLAGS := --defsym F3D_NEW=1
+  TARGET := $(TARGET).f3d_new
+  COMPARE := 0
 endif
 endif
 endif
