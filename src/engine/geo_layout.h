@@ -1,7 +1,7 @@
 #ifndef _GEO_LAYOUT_H_
 #define _GEO_LAYOUT_H_
 
-#include "memory.h"
+#include "game/memory.h"
 
 #define GEO_CMD_FLAGS_RESET 0
 #define GEO_CMD_FLAGS_SET   1

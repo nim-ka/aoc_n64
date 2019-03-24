@@ -3,7 +3,7 @@
 
 #include "geo_layout.h"
 #include "math_util.h"
-#include "memory.h"
+#include "game/memory.h"
 #include "graph_node.h"
 
 

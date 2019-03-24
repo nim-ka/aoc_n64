@@ -2,7 +2,7 @@
 #define _GRAPH_NODE_H_
 
 #include "types.h"
-#include "memory.h"
+#include "game/memory.h"
 
 struct AllocOnlyPool;
 
