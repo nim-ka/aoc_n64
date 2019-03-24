@@ -6,10 +6,10 @@
 #include "playback.h"
 #include "dma.h"
 #include "dac.h"
-#include "../mario.h"
-#include "../level_update.h"
-#include "../area.h"
-#include "../room.h"
+#include "game/mario.h"
+#include "game/level_update.h"
+#include "game/area.h"
+#include "game/room.h"
 
 #ifdef VERSION_JP
 #define US_FLOAT(x) x
