@@ -1,7 +1,7 @@
 
 void BehRecoveryHeartLoop(void)
 {
-    set_object_hitbox(o, &D_80331AE0);
+    set_object_hitbox(o, &sRecoveryHeartHitbox);
     if (are_objects_collided(o, gMarioObject))
     {
         if (o->oSpinningHeartPlayedSound == 0)

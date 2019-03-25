@@ -671,7 +671,7 @@ void BehEyerokHandLoop(void)
         case EYEROK_HAND_ACT_DIE:                eyerok_hand_act_die();                break;
         }
 
-        o->oEyerokReceivedAttack = obj_check_attacks(&D_80331B94, o->oAction);
+        o->oEyerokReceivedAttack = obj_check_attacks(&sEyerokHitbox, o->oAction);
         obj_move_standard(-78);
     }
 

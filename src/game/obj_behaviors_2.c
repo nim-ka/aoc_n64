@@ -1241,46 +1241,46 @@ struct Struct80331874
 //DATA
 
 
-struct ObjectHitbox D_803319F0 =
+struct ObjectHitbox sMrBlizzardHitbox =
 {
-    INTERACT_MR_BLIZZARD,
-    24,
-    2,
-    99,
-    3,
-    65,
-    170,
-    65,
-    170,
+    /* interactType:      */ INTERACT_MR_BLIZZARD,
+    /* downOffset:        */ 24,
+    /* damageOrCoinValue: */ 2,
+    /* health:            */ 99,
+    /* numLootCoins:      */ 3,
+    /* radius:            */ 65,
+    /* height:            */ 170,
+    /* hurtboxRadius:     */ 65,
+    /* hurtboxHeight:     */ 170,
 };
 
 struct SpawnParticlesInfo D_80331A00 =
 {
-    0,
-    6,
-    160,
-    0,
-    5,
-    5,
-    10,
-    10,
-    0xFD,
-    0,
-    3.0f,
-    5.0f,
+    /* behParam:        */ 0,
+    /* count:           */ 6,
+    /* model:           */ MODEL_SNOWMAN_SNOW_BALL,
+    /* offsetY:         */ 0,
+    /* forwardVelBase:  */ 5,
+    /* forwardVelRange: */ 5,
+    /* velYBase:        */ 10,
+    /* velYRange:       */ 10,
+    /* gravity:         */ -3,
+    /* dragStrength:    */ 0,
+    /* sizeBase:        */ 3.0f,
+    /* sizeRange:       */ 5.0f,
 };
 
-struct ObjectHitbox D_80331A14 =
+struct ObjectHitbox sMrBlizzardSnowballHitbox =
 {
-    INTERACT_MR_BLIZZARD,
-    12,
-    1,
-    99,
-    0,
-    30,
-    30,
-    25,
-    25,
+    /* interactType:      */ INTERACT_MR_BLIZZARD,
+    /* downOffset:        */ 12,
+    /* damageOrCoinValue: */ 1,
+    /* health:            */ 99,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 30,
+    /* height:            */ 30,
+    /* hurtboxRadius:     */ 25,
+    /* hurtboxHeight:     */ 25,
 };
 
 void *D_80331A24[] =
@@ -1337,69 +1337,69 @@ void *D_80331AD4[] =
     bitfs_seg7_collision_07015124,
 };
 
-struct ObjectHitbox D_80331AE0 =
+struct ObjectHitbox sRecoveryHeartHitbox =
 {
-    0,
-    0,
-    0,
-    0,
-    0,
-    50,
-    50,
-    50,
-    50,
+    /* interactType:      */ 0,
+    /* downOffset:        */ 0,
+    /* damageOrCoinValue: */ 0,
+    /* health:            */ 0,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 50,
+    /* height:            */ 50,
+    /* hurtboxRadius:     */ 50,
+    /* hurtboxHeight:     */ 50,
 };
 
-struct ObjectHitbox D_80331AF0 =
+struct ObjectHitbox sUnagiHitbox =
 {
-    INTERACT_CLAM_OR_BUBBA,
-    50,
-    3,
-    99,
-    0,
-    150,
-    150,
-    150,
-    150,
+    /* interactType:      */ INTERACT_CLAM_OR_BUBBA,
+    /* downOffset:        */ 50,
+    /* damageOrCoinValue: */ 3,
+    /* health:            */ 99,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 150,
+    /* height:            */ 150,
+    /* hurtboxRadius:     */ 150,
+    /* hurtboxHeight:     */ 150,
 };
 
-struct ObjectHitbox D_80331B00 =
+struct ObjectHitbox sHauntedChairHitbox =
 {
-    INTERACT_MR_BLIZZARD,
-    0,
-    2,
-    0,
-    0,
-    50,
-    50,
-    50,
-    50,
+    /* interactType:      */ INTERACT_MR_BLIZZARD,
+    /* downOffset:        */ 0,
+    /* damageOrCoinValue: */ 2,
+    /* health:            */ 0,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 50,
+    /* height:            */ 50,
+    /* hurtboxRadius:     */ 50,
+    /* hurtboxHeight:     */ 50,
 };
 
 static struct ObjectHitbox sMadPianoHitbox =
 {
-    INTERACT_MR_BLIZZARD,
-    0,
-    3,
-    99,
-    0,
-    200,
-    150,
-    200,
-    150,
+    /* interactType:      */ INTERACT_MR_BLIZZARD,
+    /* downOffset:        */ 0,
+    /* damageOrCoinValue: */ 3,
+    /* health:            */ 99,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 200,
+    /* height:            */ 150,
+    /* hurtboxRadius:     */ 200,
+    /* hurtboxHeight:     */ 150,
 };
 
-struct ObjectHitbox D_80331B20 =
+struct ObjectHitbox sFlyingBookendHitbox =
 {
-    INTERACT_HIT_FROM_BELOW,
-    0,
-    2,
-    0,
-    -1,
-    60,
-    30,
-    40,
-    30,
+    /* interactType:      */ INTERACT_HIT_FROM_BELOW,
+    /* downOffset:        */ 0,
+    /* damageOrCoinValue: */ 2,
+    /* health:            */ 0,
+    /* numLootCoins:      */ -1,
+    /* radius:            */ 60,
+    /* height:            */ 30,
+    /* hurtboxRadius:     */ 40,
+    /* hurtboxHeight:     */ 30,
 };
 
 struct Struct80331B30 D_80331B30[] =
@@ -1409,30 +1409,30 @@ struct Struct80331B30 D_80331B30[] =
     { -75, 78 },
 };
 
-struct ObjectHitbox D_80331B3C =
+struct ObjectHitbox sBookSwitchHitbox =
 {
-    INTERACT_BREAKABLE,
-    0,
-    0,
-    99,
-    0,
-    20,
-    30,
-    20,
-    30,
+    /* interactType:      */ INTERACT_BREAKABLE,
+    /* downOffset:        */ 0,
+    /* damageOrCoinValue: */ 0,
+    /* health:            */ 99,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 20,
+    /* height:            */ 30,
+    /* hurtboxRadius:     */ 20,
+    /* hurtboxHeight:     */ 30,
 };
 
 struct ObjectHitbox sFirePiranhaPlantHitbox =
 {
-    INTERACT_BOUNCE_TOP,
-    0,
-    2,
-    0,
-    1,
-    80,
-    160,
-    50,
-    150,
+    /* interactType:      */ INTERACT_BOUNCE_TOP,
+    /* downOffset:        */ 0,
+    /* damageOrCoinValue: */ 2,
+    /* health:            */ 0,
+    /* numLootCoins:      */ 1,
+    /* radius:            */ 80,
+    /* height:            */ 160,
+    /* hurtboxRadius:     */ 50,
+    /* hurtboxHeight:     */ 150,
 };
 
 f32 D_80331B5C[] =
@@ -1441,71 +1441,71 @@ f32 D_80331B5C[] =
     2.0f,
 };
 
-struct ObjectHitbox D_80331B64 =
+struct ObjectHitbox sPiranhaPlantFireHitbox =
 {
-    INTERACT_FLAME,
-    10,
-    0,
-    0,
-    0,
-    10,
-    20,
-    10,
-    20,
+    /* interactType:      */ INTERACT_FLAME,
+    /* downOffset:        */ 10,
+    /* damageOrCoinValue: */ 0,
+    /* health:            */ 0,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 10,
+    /* height:            */ 20,
+    /* hurtboxRadius:     */ 10,
+    /* hurtboxHeight:     */ 20,
 };
 
-struct ObjectHitbox D_80331B74 =
+struct ObjectHitbox sSnufitHitbox =
 {
-    INTERACT_HIT_FROM_BELOW,
-    0,
-    2,
-    0,
-    2,
-    100,
-    60,
-    70,
-    50,
+    /* interactType:      */ INTERACT_HIT_FROM_BELOW,
+    /* downOffset:        */ 0,
+    /* damageOrCoinValue: */ 2,
+    /* health:            */ 0,
+    /* numLootCoins:      */ 2,
+    /* radius:            */ 100,
+    /* height:            */ 60,
+    /* hurtboxRadius:     */ 70,
+    /* hurtboxHeight:     */ 50,
 };
 
-struct ObjectHitbox D_80331B84 =
+struct ObjectHitbox sSnufitBulletHitbox =
 {
-    INTERACT_SNUFIT_BULLET,
-    50,
-    1,
-    0,
-    0,
-    100,
-    50,
-    100,
-    50,
+    /* interactType:      */ INTERACT_SNUFIT_BULLET,
+    /* downOffset:        */ 50,
+    /* damageOrCoinValue: */ 1,
+    /* health:            */ 0,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 100,
+    /* height:            */ 50,
+    /* hurtboxRadius:     */ 100,
+    /* hurtboxHeight:     */ 50,
 };
 
-struct ObjectHitbox D_80331B94 =
+struct ObjectHitbox sEyerokHitbox =
 {
-    INTERACT_BOUNCE_TOP,
-    0,
-    0,
-    4,
-    0,
-    150,
-    100,
-    1,
-    1,
+    /* interactType:      */ INTERACT_BOUNCE_TOP,
+    /* downOffset:        */ 0,
+    /* damageOrCoinValue: */ 0,
+    /* health:            */ 4,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 150,
+    /* height:            */ 100,
+    /* hurtboxRadius:     */ 1,
+    /* hurtboxHeight:     */ 1,
 };
 
 s8 D_80331BA4[] = { 0, 1, 3, 2, 1, 0 };
 
 static struct ObjectHitbox sKleptoHitbox =
 {
-    INTERACT_HIT_FROM_BELOW,
-    0,
-    0,
-    1,
-    0,
-    160,
-    250,
-    80,
-    200,
+    /* interactType:      */ INTERACT_HIT_FROM_BELOW,
+    /* downOffset:        */ 0,
+    /* damageOrCoinValue: */ 0,
+    /* health:            */ 1,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 160,
+    /* height:            */ 250,
+    /* hurtboxRadius:     */ 80,
+    /* hurtboxHeight:     */ 200,
 };
 
 static Vec3f sKleptoTargetPositions[] =
@@ -1533,30 +1533,30 @@ struct Struct80331C00 D_80331C00[] =
     { 0x0458, 0x0096 },
 };
 
-struct ObjectHitbox D_80331C18 =
+struct ObjectHitbox sClamShellHitbox =
 {
-    INTERACT_CLAM_OR_BUBBA,
-    0,
-    2,
-    99,
-    0,
-    150,
-    80,
-    150,
-    80,
+    /* interactType:      */ INTERACT_CLAM_OR_BUBBA,
+    /* downOffset:        */ 0,
+    /* damageOrCoinValue: */ 2,
+    /* health:            */ 99,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 150,
+    /* height:            */ 80,
+    /* hurtboxRadius:     */ 150,
+    /* hurtboxHeight:     */ 80,
 };
 
-struct ObjectHitbox D_80331C28 =
+struct ObjectHitbox sSkeeterHitbox =
 {
-    INTERACT_BOUNCE_TOP,
-    20,
-    2,
-    0,
-    3,
-    180,
-    100,
-    150,
-    90,
+    /* interactType:      */ INTERACT_BOUNCE_TOP,
+    /* downOffset:        */ 20,
+    /* damageOrCoinValue: */ 2,
+    /* health:            */ 0,
+    /* numLootCoins:      */ 3,
+    /* radius:            */ 180,
+    /* height:            */ 100,
+    /* hurtboxRadius:     */ 150,
+    /* hurtboxHeight:     */ 90,
 };
 
 struct Struct80331C38 D_80331C38[] =
@@ -1604,15 +1604,15 @@ static Vec3s sDonutPlatformPositions[] =
 
 static struct ObjectHitbox sTripletButterflyExplodeHitbox =
 {
-    INTERACT_MR_BLIZZARD,
-    50,
-    2,
-    1,
-    0,
-    100,
-    50,
-    100,
-    50,
+    /* interactType:      */ INTERACT_MR_BLIZZARD,
+    /* downOffset:        */ 50,
+    /* damageOrCoinValue: */ 2,
+    /* health:            */ 1,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 100,
+    /* height:            */ 50,
+    /* hurtboxRadius:     */ 100,
+    /* hurtboxHeight:     */ 50,
 };
 
 static struct TripletButterflyActivationData sTripletButterflyActivationData[] =
@@ -1621,17 +1621,17 @@ static struct TripletButterflyActivationData sTripletButterflyActivationData[] =
     { 0xD4, beh_1up_walking, 1.0f },
 };
 
-struct ObjectHitbox D_80331D2C =
+struct ObjectHitbox sBubbaHitbox =
 {
-    INTERACT_CLAM_OR_BUBBA,
-    0,
-    1,
-    99,
-    0,
-    300,
-    200,
-    300,
-    200,
+    /* interactType:      */ INTERACT_CLAM_OR_BUBBA,
+    /* downOffset:        */ 0,
+    /* damageOrCoinValue: */ 1,
+    /* health:            */ 99,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 300,
+    /* height:            */ 200,
+    /* hurtboxRadius:     */ 300,
+    /* hurtboxHeight:     */ 200,
 };
 
 // TODO: Finish
@@ -2114,7 +2114,7 @@ void BehUnagiSubobjectLoop(void)
         }
         else
         {
-            obj_check_attacks(&D_80331AF0, o->oAction);
+            obj_check_attacks(&sUnagiHitbox, o->oAction);
             if (o->oBehParams2ndByte == 3)
             {
                 o->parentObj->oUnagiUnk1AC = o->oDistanceToMario;
@@ -2282,7 +2282,7 @@ void func_8030A968(void)
         }
     }
 
-    obj_check_attacks(&D_80331B00, o->oAction);
+    obj_check_attacks(&sHauntedChairHitbox, o->oAction);
     obj_move_standard(78);
 }
 
@@ -2393,7 +2393,7 @@ void BehFlyingBookendLoop(void)
         case 3: func_8030B1C8(); break;
         }
 
-        obj_check_attacks(&D_80331B20, -1);
+        obj_check_attacks(&sFlyingBookendHitbox, -1);
         if (o->oAction == -1 || (o->oMoveFlags & 0x00000203))
         {
             o->oNumLootCoins = 0;
@@ -2550,7 +2550,7 @@ void BehBookSwitchLoop(void)
     }
     else
     {
-        sp3C = obj_check_attacks(&D_80331B3C, o->oAction);
+        sp3C = obj_check_attacks(&sBookSwitchHitbox, o->oAction);
         if (o->parentObj->oBookSwitchManagerUnkF8 != 0 || o->oAction == 1)
         {
             if (o->oDistanceToMario < 100.0f)
@@ -2705,7 +2705,7 @@ void BehSmallPiranhaFlameLoop(void)
             o->oTimer = 0;
         }
 
-        obj_check_attacks(&D_80331B64, o->oAction);
+        obj_check_attacks(&sPiranhaPlantFireHitbox, o->oAction);
         o->oSmallPiranhaFlameUnk104 += o->oSmallPiranhaFlameUnkF4;
 
         if (o->oSmallPiranhaFlameUnk104 > 1500.0f || (o->oMoveFlags & 0x00000278))
@@ -2857,7 +2857,7 @@ void BehSnufitLoop(void)
         }
 
         obj_scale(o->oSnufitUnkF8);
-        obj_check_attacks(&D_80331B74, o->oAction);
+        obj_check_attacks(&sSnufitHitbox, o->oAction);
     }
 }
 
@@ -2873,7 +2873,7 @@ void BehSnufitBallsLoop(void)
         obj_update_floor_and_walls();
 
         obj_compute_vel_from_move_pitch(40.0f);
-        if (obj_check_attacks(&D_80331B84, 1))
+        if (obj_check_attacks(&sSnufitBulletHitbox, 1))
         {
             o->oMoveAngleYaw += 0x8000;
             o->oForwardVel *= 0.05f;
@@ -3098,7 +3098,7 @@ void BehClamShellLoop(void)
     case 1: func_803117F4(); break;
     }
 
-    obj_check_attacks(&D_80331C18, o->oAction);
+    obj_check_attacks(&sClamShellHitbox, o->oAction);
 }
 
 #include "behaviors/skeeter.c.inc"
@@ -3296,7 +3296,7 @@ void BehBubbaLoop(void)
     }
 
     obj_face_pitch_approach(o->oMoveAnglePitch, 400);
-    obj_check_attacks(&D_80331D2C, o->oAction);
+    obj_check_attacks(&sBubbaHitbox, o->oAction);
 
     obj_move_standard(78);
 

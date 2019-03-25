@@ -334,7 +334,7 @@ void bhv_mr_blizzard_update(void)
 
     obj_scale(o->oMrBlizzardUnkF4);
     obj_move_standard(78);
-    obj_check_attacks(&D_803319F0, o->oAction);
+    obj_check_attacks(&sMrBlizzardHitbox, o->oAction);
 }
 
 static void func_80307E24(void)
@@ -375,7 +375,7 @@ static void func_80307EB0(void)
 static void func_80307FD4(void)
 {
     obj_update_floor_and_walls();
-    obj_check_attacks(&D_80331A14, -1);
+    obj_check_attacks(&sMrBlizzardSnowballHitbox, -1);
 
     if (o->oAction == -1 || o->oMoveFlags & 0x0000000B)
     {
