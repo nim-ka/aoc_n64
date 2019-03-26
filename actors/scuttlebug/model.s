@@ -44,8 +44,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, scuttlebug_seg6_texture_0601
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex scuttlebug_seg6_vertex_06013908, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel scuttlebug_seg6_dl_060139C0 # 0x060139C0 - 0x060139F8
@@ -53,8 +52,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, scuttlebug_seg6_texture_0601
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex scuttlebug_seg6_vertex_06013948, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel scuttlebug_seg6_dl_060139F8 # 0x060139F8 - 0x06013A70
@@ -85,8 +83,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, scuttlebug_seg6_texture_0601
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex scuttlebug_seg6_vertex_06013A70, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel scuttlebug_seg6_dl_06013AE8 # 0x06013AE8 - 0x06013B58
@@ -116,8 +113,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, scuttlebug_seg6_texture_0601
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex scuttlebug_seg6_vertex_06013B58, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel scuttlebug_seg6_dl_06013BD0 # 0x06013BD0 - 0x06013C40
@@ -147,8 +143,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, scuttlebug_seg6_texture_0601
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex scuttlebug_seg6_vertex_06013C40, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel scuttlebug_seg6_dl_06013CB8 # 0x06013CB8 - 0x06013D28
@@ -178,8 +173,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, scuttlebug_seg6_texture_0601
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex scuttlebug_seg6_vertex_06013D28, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel scuttlebug_seg6_dl_06013DA0 # 0x06013DA0 - 0x06013E10
@@ -239,39 +233,23 @@ glabel scuttlebug_seg6_dl_06013FC8 # 0x06013FC8 - 0x060140F0
 gsSPLight scuttlebug_seg6_light_06013E18, 1
 gsSPLight scuttlebug_seg6_light_06013E10, 2
 gsSPVertex scuttlebug_seg6_vertex_06013E28, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  5,  6,  7, 0x0
-gsSP1Triangle  5,  4,  6, 0x0
-gsSP1Triangle  8,  5,  7, 0x0
-gsSP1Triangle  3,  5,  8, 0x0
-gsSP1Triangle  9, 10,  4, 0x0
-gsSP1Triangle  3,  9,  4, 0x0
-gsSP1Triangle 10,  6,  4, 0x0
-gsSP1Triangle 10, 11,  6, 0x0
-gsSP1Triangle 11,  7,  6, 0x0
-gsSP1Triangle 12,  7, 11, 0x0
-gsSP1Triangle 12,  8,  7, 0x0
-gsSP1Triangle 12,  9,  3, 0x0
-gsSP1Triangle  3,  8, 12, 0x0
-gsSP1Triangle 11, 10,  9, 0x0
-gsSP1Triangle 11,  9, 12, 0x0
-gsSP1Triangle 13, 14,  0, 0x0
-gsSP1Triangle  0, 14,  1, 0x0
-gsSP1Triangle 15, 13,  0, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  5,  6,  7, 0x0,  5,  4,  6, 0x0
+gsSP2Triangles  8,  5,  7, 0x0,  3,  5,  8, 0x0
+gsSP2Triangles  9, 10,  4, 0x0,  3,  9,  4, 0x0
+gsSP2Triangles 10,  6,  4, 0x0, 10, 11,  6, 0x0
+gsSP2Triangles 11,  7,  6, 0x0, 12,  7, 11, 0x0
+gsSP2Triangles 12,  8,  7, 0x0, 12,  9,  3, 0x0
+gsSP2Triangles  3,  8, 12, 0x0, 11, 10,  9, 0x0
+gsSP2Triangles 11,  9, 12, 0x0, 13, 14,  0, 0x0
+gsSP2Triangles  0, 14,  1, 0x0, 15, 13,  0, 0x0
 gsSPVertex scuttlebug_seg6_vertex_06013F28, 10, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  2,  1, 0x0
-gsSP1Triangle  4,  2,  3, 0x0
-gsSP1Triangle  5,  4,  6, 0x0
-gsSP1Triangle  6,  4,  7, 0x0
-gsSP1Triangle  4,  3,  7, 0x0
-gsSP1Triangle  1,  8,  3, 0x0
-gsSP1Triangle  8,  7,  3, 0x0
-gsSP1Triangle  8,  1,  0, 0x0
-gsSP1Triangle  8,  0,  9, 0x0
-gsSP1Triangle  9,  7,  8, 0x0
-gsSP1Triangle  7,  9,  6, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  2,  1, 0x0
+gsSP2Triangles  4,  2,  3, 0x0,  5,  4,  6, 0x0
+gsSP2Triangles  6,  4,  7, 0x0,  4,  3,  7, 0x0
+gsSP2Triangles  1,  8,  3, 0x0,  8,  7,  3, 0x0
+gsSP2Triangles  8,  1,  0, 0x0,  8,  0,  9, 0x0
+gsSP2Triangles  9,  7,  8, 0x0,  7,  9,  6, 0x0
 gsSPEndDisplayList
 
 glabel scuttlebug_seg6_dl_060140F0 # 0x060140F0 - 0x06014110
@@ -291,8 +269,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, scuttlebug_seg6_texture_0601
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex scuttlebug_seg6_vertex_06014110, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  0,  2, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  0,  2, 0x0
 gsSPEndDisplayList
 
 glabel scuttlebug_seg6_dl_06014188 # 0x06014188 - 0x060141F8
@@ -322,8 +299,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, scuttlebug_seg6_texture_0601
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex scuttlebug_seg6_vertex_060141F8, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  0,  2, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  0,  2, 0x0
 gsSPEndDisplayList
 
 glabel scuttlebug_seg6_dl_06014270 # 0x06014270 - 0x060142E0
@@ -359,10 +335,8 @@ glabel scuttlebug_seg6_dl_06014338 # 0x06014338 - 0x06014378
 gsSPLight scuttlebug_seg6_light_060142E8, 1
 gsSPLight scuttlebug_seg6_light_060142E0, 2
 gsSPVertex scuttlebug_seg6_vertex_060142F8, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  2,  1, 0x0
-gsSP1Triangle  2,  3,  0, 0x0
-gsSP1Triangle  1,  0,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  2,  1, 0x0
+gsSP2Triangles  2,  3,  0, 0x0,  1,  0,  3, 0x0
 gsSPEndDisplayList
 
 glabel scuttlebug_seg6_dl_06014378 # 0x06014378 - 0x06014398

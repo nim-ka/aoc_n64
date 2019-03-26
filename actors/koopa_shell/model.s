@@ -270,92 +270,65 @@ vertex    -25,     51,    118,      0,      0,  0xF0, 0xBB, 0x6A, 0xFF
 
 glabel koopa_shell_seg8_dl_08027108 # 0x08027108 - 0x08027170
 gsSPVertex koopa_shell_seg8_vertex_080263E8, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
 gsSP1Triangle 12, 13, 14, 0x0
 gsSPVertex koopa_shell_seg8_vertex_080264D8, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
 gsSP1Triangle 12, 13, 14, 0x0
 gsSPEndDisplayList
 
 glabel koopa_shell_seg8_dl_08027170 # 0x08027170 - 0x08027258
 gsSPVertex koopa_shell_seg8_vertex_080265C8, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
 gsSP1Triangle 12, 13, 14, 0x0
 gsSPVertex koopa_shell_seg8_vertex_080266B8, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
 gsSP1Triangle 12, 13, 14, 0x0
 gsSPVertex koopa_shell_seg8_vertex_080267A8, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
 gsSP1Triangle 12, 13, 14, 0x0
 gsSPVertex koopa_shell_seg8_vertex_08026898, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
 gsSP1Triangle 12, 13, 14, 0x0
 gsSPVertex koopa_shell_seg8_vertex_08026988, 9, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
 gsSP1Triangle  6,  7,  8, 0x0
 gsSPEndDisplayList
 
 glabel koopa_shell_seg8_dl_08027258 # 0x08027258 - 0x080273C8
 gsSPVertex koopa_shell_seg8_vertex_08026A18, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
 gsSP1Triangle 12, 13, 14, 0x0
 gsSPVertex koopa_shell_seg8_vertex_08026B08, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
 gsSP1Triangle 12, 13, 14, 0x0
 gsSPVertex koopa_shell_seg8_vertex_08026BF8, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
 gsSP1Triangle 12, 13, 14, 0x0
 gsSPVertex koopa_shell_seg8_vertex_08026CE8, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
 gsSP1Triangle 12, 13, 14, 0x0
 gsSPVertex koopa_shell_seg8_vertex_08026DD8, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
 gsSP1Triangle 12, 13, 14, 0x0
 gsSPVertex koopa_shell_seg8_vertex_08026EC8, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
 gsSP1Triangle 12, 13, 14, 0x0
 gsSPVertex koopa_shell_seg8_vertex_08026FB8, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
 gsSP1Triangle 12, 13, 14, 0x0
 gsSPVertex koopa_shell_seg8_vertex_080270A8, 6, 0
 gsSP1Triangle  0,  1,  2, 0x0
@@ -494,18 +467,12 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight koopa_shell_seg8_light_08027478, 1
 gsSPLight koopa_shell_seg8_light_08027470, 2
 gsSPVertex koopa_shell_seg8_vertex_080284A0, 10, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  3,  0, 0x0
-gsSP1Triangle  0,  4,  1, 0x0
-gsSP1Triangle  0,  5,  4, 0x0
-gsSP1Triangle  0,  3,  5, 0x0
-gsSP1Triangle  1,  4,  6, 0x0
-gsSP1Triangle  6,  4,  5, 0x0
-gsSP1Triangle  3,  2,  7, 0x0
-gsSP1Triangle  3,  8,  5, 0x0
-gsSP1Triangle  8,  3,  7, 0x0
-gsSP1Triangle  9,  5,  8, 0x0
-gsSP1Triangle  9,  6,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  3,  0, 0x0
+gsSP2Triangles  0,  4,  1, 0x0,  0,  5,  4, 0x0
+gsSP2Triangles  0,  3,  5, 0x0,  1,  4,  6, 0x0
+gsSP2Triangles  6,  4,  5, 0x0,  3,  2,  7, 0x0
+gsSP2Triangles  3,  8,  5, 0x0,  8,  3,  7, 0x0
+gsSP2Triangles  9,  5,  8, 0x0,  9,  6,  5, 0x0
 gsSPEndDisplayList
 
 glabel koopa_shell_seg8_dl_08028978 # 0x08028978 - 0x08028A20
@@ -513,67 +480,43 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, koopa_shell_seg8_texture_080
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex koopa_shell_seg8_vertex_08028540, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  0, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  1,  0,  5, 0x0
-gsSP1Triangle  4,  6,  0, 0x0
-gsSP1Triangle  6,  5,  0, 0x0
-gsSP1Triangle  3,  2,  7, 0x0
-gsSP1Triangle  8,  2,  1, 0x0
-gsSP1Triangle  2,  8,  7, 0x0
-gsSP1Triangle  9,  4,  3, 0x0
-gsSP1Triangle  3, 10,  9, 0x0
-gsSP1Triangle  7, 11,  3, 0x0
-gsSP1Triangle 11, 10,  3, 0x0
-gsSP1Triangle 10, 12,  9, 0x0
-gsSP1Triangle  4,  9, 13, 0x0
-gsSP1Triangle  4, 13,  6, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  0, 0x0
+gsSP2Triangles  0,  2,  3, 0x0,  1,  0,  5, 0x0
+gsSP2Triangles  4,  6,  0, 0x0,  6,  5,  0, 0x0
+gsSP2Triangles  3,  2,  7, 0x0,  8,  2,  1, 0x0
+gsSP2Triangles  2,  8,  7, 0x0,  9,  4,  3, 0x0
+gsSP2Triangles  3, 10,  9, 0x0,  7, 11,  3, 0x0
+gsSP2Triangles 11, 10,  3, 0x0, 10, 12,  9, 0x0
+gsSP2Triangles  4,  9, 13, 0x0,  4, 13,  6, 0x0
 gsSPEndDisplayList
 
 glabel koopa_shell_seg8_dl_08028A20 # 0x08028A20 - 0x08028B78
 gsSPLight koopa_shell_seg8_light_08027490, 1
 gsSPLight koopa_shell_seg8_light_08027488, 2
 gsSPVertex koopa_shell_seg8_vertex_08028620, 5, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  0,  2, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  0,  2, 0x0
 gsSP1Triangle  2,  4,  3, 0x0
 gsSPLight koopa_shell_seg8_light_08027478, 1
 gsSPLight koopa_shell_seg8_light_08027470, 2
 gsSPVertex koopa_shell_seg8_vertex_08028670, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  1,  0, 0x0
-gsSP1Triangle  4,  1,  3, 0x0
-gsSP1Triangle  2,  1,  5, 0x0
-gsSP1Triangle  1,  4,  5, 0x0
-gsSP1Triangle  4,  3,  6, 0x0
-gsSP1Triangle  7,  4,  6, 0x0
-gsSP1Triangle  2,  5,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle 11, 12,  9, 0x0
-gsSP1Triangle 12, 11, 13, 0x0
-gsSP1Triangle 11, 10, 14, 0x0
-gsSP1Triangle  9,  2, 10, 0x0
-gsSP1Triangle  2,  9,  0, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  1,  0, 0x0
+gsSP2Triangles  4,  1,  3, 0x0,  2,  1,  5, 0x0
+gsSP2Triangles  1,  4,  5, 0x0,  4,  3,  6, 0x0
+gsSP2Triangles  7,  4,  6, 0x0,  2,  5,  8, 0x0
+gsSP2Triangles  9, 10, 11, 0x0, 11, 12,  9, 0x0
+gsSP2Triangles 12, 11, 13, 0x0, 11, 10, 14, 0x0
+gsSP2Triangles  9,  2, 10, 0x0,  2,  9,  0, 0x0
 gsSPVertex koopa_shell_seg8_vertex_08028760, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  5,  6,  3, 0x0
-gsSP1Triangle  6,  7,  3, 0x0
-gsSP1Triangle  0,  8,  1, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle  2, 12,  0, 0x0
-gsSP1Triangle 13, 14, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  5,  6,  3, 0x0,  6,  7,  3, 0x0
+gsSP2Triangles  0,  8,  1, 0x0,  9, 10, 11, 0x0
+gsSP2Triangles  2, 12,  0, 0x0, 13, 14, 11, 0x0
 gsSP1Triangle 11, 14,  9, 0x0
 gsSPVertex koopa_shell_seg8_vertex_08028850, 9, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  0,  2, 0x0
-gsSP1Triangle  2,  1,  4, 0x0
-gsSP1Triangle  4,  5,  2, 0x0
-gsSP1Triangle  6,  2,  7, 0x0
-gsSP1Triangle  6,  3,  2, 0x0
-gsSP1Triangle  7,  2,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  0,  2, 0x0
+gsSP2Triangles  2,  1,  4, 0x0,  4,  5,  2, 0x0
+gsSP2Triangles  6,  2,  7, 0x0,  6,  3,  2, 0x0
+gsSP2Triangles  7,  2,  5, 0x0,  6,  7,  8, 0x0
 gsSPEndDisplayList
 
 glabel koopa_shell_seg8_dl_08028B78 # 0x08028B78 - 0x08028BE8

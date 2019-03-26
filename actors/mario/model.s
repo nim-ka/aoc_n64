@@ -274,86 +274,52 @@ vertex     55,    -61,    -36,      0,      0,  0x67, 0xBE, 0xE1, 0x00
 
 glabel mario_seg4_dl_0400CA00 # 0x0400CA00 - 0x0400CC98
 gsSPVertex mario_seg4_vertex_0400C090, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9,  5, 10, 0x0
-gsSP1Triangle  4, 11, 10, 0x0
-gsSP1Triangle 12, 13, 14, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9,  5, 10, 0x0
+gsSP2Triangles  4, 11, 10, 0x0, 12, 13, 14, 0x0
 gsSPVertex mario_seg4_vertex_0400C180, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle 12,  3, 13, 0x0
-gsSP1Triangle  6,  8, 12, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
+gsSP2Triangles 12,  3, 13, 0x0,  6,  8, 12, 0x0
 gsSPVertex mario_seg4_vertex_0400C260, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  1,  7, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle 11,  9, 12, 0x0
-gsSP1Triangle 13, 14, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  1,  7, 0x0,  8,  9, 10, 0x0
+gsSP2Triangles 11,  9, 12, 0x0, 13, 14, 15, 0x0
 gsSPVertex mario_seg4_vertex_0400C360, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  4,  6,  5, 0x0
-gsSP1Triangle  7,  8,  2, 0x0
-gsSP1Triangle  9,  7, 10, 0x0
-gsSP1Triangle 11, 12,  7, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  4,  6,  5, 0x0,  7,  8,  2, 0x0
+gsSP2Triangles  9,  7, 10, 0x0, 11, 12,  7, 0x0
 gsSP1Triangle 13, 11, 14, 0x0
 gsSPVertex mario_seg4_vertex_0400C450, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  1,  0, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  2,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle 12, 13, 14, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  1,  0, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  2,  7,  8, 0x0
+gsSP2Triangles  9, 10, 11, 0x0, 12, 13, 14, 0x0
 gsSPVertex mario_seg4_vertex_0400C540, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10,  7, 0x0
-gsSP1Triangle 11, 10,  9, 0x0
-gsSP1Triangle 12, 13, 14, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10,  7, 0x0
+gsSP2Triangles 11, 10,  9, 0x0, 12, 13, 14, 0x0
 gsSP1Triangle  0, 13, 12, 0x0
 gsSPVertex mario_seg4_vertex_0400C630, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  2,  1, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  7,  2,  3, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle  9,  8, 11, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
-gsSP1Triangle 13, 14,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  2,  1, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  7,  2,  3, 0x0
+gsSP2Triangles  8,  9, 10, 0x0,  9,  8, 11, 0x0
+gsSP2Triangles 11, 12, 13, 0x0, 13, 14,  1, 0x0
 gsSPVertex mario_seg4_vertex_0400C720, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10,  5, 0x0
-gsSP1Triangle  4, 11, 12, 0x0
-gsSP1Triangle  6, 11, 13, 0x0
-gsSP1Triangle 13,  3, 14, 0x0
-gsSP1Triangle 15,  2,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10,  5, 0x0
+gsSP2Triangles  4, 11, 12, 0x0,  6, 11, 13, 0x0
+gsSP2Triangles 13,  3, 14, 0x0, 15,  2,  1, 0x0
 gsSPVertex mario_seg4_vertex_0400C820, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  1,  0,  6, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle  0, 13, 14, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  1,  0,  6, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles 10, 11, 12, 0x0,  0, 13, 14, 0x0
 gsSP1Triangle 15,  0, 14, 0x0
 gsSPVertex mario_seg4_vertex_0400C920, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  3,  0, 0x0
-gsSP1Triangle  3,  4,  0, 0x0
-gsSP1Triangle  0,  4,  5, 0x0
-gsSP1Triangle  5,  6,  7, 0x0
-gsSP1Triangle  5,  7,  0, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle  9, 11, 10, 0x0
-gsSP1Triangle  9,  1, 11, 0x0
-gsSP1Triangle 11, 12, 10, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  3,  0, 0x0
+gsSP2Triangles  3,  4,  0, 0x0,  0,  4,  5, 0x0
+gsSP2Triangles  5,  6,  7, 0x0,  5,  7,  0, 0x0
+gsSP2Triangles  8,  9, 10, 0x0,  9, 11, 10, 0x0
+gsSP2Triangles  9,  1, 11, 0x0, 11, 12, 10, 0x0
 gsSP1Triangle 10, 13,  8, 0x0
 gsSPEndDisplayList
 
@@ -445,44 +411,27 @@ vertex     -9,    -26,     -5,      0,      0,  0x96, 0xBD, 0x0E, 0x00
 
 glabel mario_seg4_dl_0400D090 # 0x0400D090 - 0x0400D1D8
 gsSPVertex mario_seg4_vertex_0400CD40, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  1, 0x0
-gsSP1Triangle  5,  6,  4, 0x0
-gsSP1Triangle  7,  8,  6, 0x0
-gsSP1Triangle  9,  2,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle  7, 12, 10, 0x0
-gsSP1Triangle  5, 13, 12, 0x0
-gsSP1Triangle  3, 14, 13, 0x0
-gsSP1Triangle  0, 11, 14, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  1, 0x0
+gsSP2Triangles  5,  6,  4, 0x0,  7,  8,  6, 0x0
+gsSP2Triangles  9,  2,  8, 0x0,  9, 10, 11, 0x0
+gsSP2Triangles  7, 12, 10, 0x0,  5, 13, 12, 0x0
+gsSP2Triangles  3, 14, 13, 0x0,  0, 11, 14, 0x0
 gsSPVertex mario_seg4_vertex_0400CE30, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  0, 0x0
-gsSP1Triangle  5,  4,  3, 0x0
-gsSP1Triangle  6,  7,  5, 0x0
-gsSP1Triangle  1,  7,  6, 0x0
-gsSP1Triangle  2,  1,  6, 0x0
-gsSP1Triangle  6,  5,  8, 0x0
-gsSP1Triangle  8,  5,  3, 0x0
-gsSP1Triangle  3,  0,  9, 0x0
-gsSP1Triangle  9,  0,  2, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 12, 13, 14, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  0, 0x0
+gsSP2Triangles  5,  4,  3, 0x0,  6,  7,  5, 0x0
+gsSP2Triangles  1,  7,  6, 0x0,  2,  1,  6, 0x0
+gsSP2Triangles  6,  5,  8, 0x0,  8,  5,  3, 0x0
+gsSP2Triangles  3,  0,  9, 0x0,  9,  0,  2, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 12, 13, 14, 0x0
 gsSPVertex mario_seg4_vertex_0400CF20, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  3,  4, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  2,  4,  7, 0x0
-gsSP1Triangle  0,  2,  8, 0x0
-gsSP1Triangle  9,  0, 10, 0x0
-gsSP1Triangle  6,  9, 11, 0x0
-gsSP1Triangle  4,  6, 12, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  3,  4, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  2,  4,  7, 0x0
+gsSP2Triangles  0,  2,  8, 0x0,  9,  0, 10, 0x0
+gsSP2Triangles  6,  9, 11, 0x0,  4,  6, 12, 0x0
 gsSP1Triangle 13,  5,  3, 0x0
 gsSPVertex mario_seg4_vertex_0400D000, 9, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  3,  4,  1, 0x0
-gsSP1Triangle  5,  6,  7, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  3,  4,  1, 0x0,  5,  6,  7, 0x0
 gsSP1Triangle  6,  8,  7, 0x0
 gsSPEndDisplayList
 
@@ -512,34 +461,20 @@ vertex     58,     -7,     -3,      0,      0,  0x7E, 0xFC, 0x00, 0x00
 
 glabel mario_seg4_dl_0400D2F8 # 0x0400D2F8 - 0x0400D3E8
 gsSPVertex mario_seg4_vertex_0400D1F8, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  1, 0x0
-gsSP1Triangle  5,  6,  4, 0x0
-gsSP1Triangle  7,  8,  6, 0x0
-gsSP1Triangle  9,  2,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle  7, 12, 10, 0x0
-gsSP1Triangle  5, 13, 12, 0x0
-gsSP1Triangle  3, 14, 13, 0x0
-gsSP1Triangle  0, 11, 14, 0x0
-gsSP1Triangle  8, 15,  6, 0x0
-gsSP1Triangle  6, 15,  4, 0x0
-gsSP1Triangle  4, 15,  1, 0x0
-gsSP1Triangle  1, 15,  2, 0x0
-gsSP1Triangle  2, 15,  8, 0x0
-gsSP1Triangle  0, 14,  3, 0x0
-gsSP1Triangle  3, 13,  5, 0x0
-gsSP1Triangle  5, 12,  7, 0x0
-gsSP1Triangle  7, 10,  9, 0x0
-gsSP1Triangle  9, 11,  0, 0x0
-gsSP1Triangle  7,  9,  8, 0x0
-gsSP1Triangle  5,  7,  6, 0x0
-gsSP1Triangle  3,  5,  4, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  9,  0,  2, 0x0
-gsSP1Triangle 12, 13, 10, 0x0
-gsSP1Triangle 13, 11, 10, 0x0
-gsSP1Triangle 13, 14, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  1, 0x0
+gsSP2Triangles  5,  6,  4, 0x0,  7,  8,  6, 0x0
+gsSP2Triangles  9,  2,  8, 0x0,  9, 10, 11, 0x0
+gsSP2Triangles  7, 12, 10, 0x0,  5, 13, 12, 0x0
+gsSP2Triangles  3, 14, 13, 0x0,  0, 11, 14, 0x0
+gsSP2Triangles  8, 15,  6, 0x0,  6, 15,  4, 0x0
+gsSP2Triangles  4, 15,  1, 0x0,  1, 15,  2, 0x0
+gsSP2Triangles  2, 15,  8, 0x0,  0, 14,  3, 0x0
+gsSP2Triangles  3, 13,  5, 0x0,  5, 12,  7, 0x0
+gsSP2Triangles  7, 10,  9, 0x0,  9, 11,  0, 0x0
+gsSP2Triangles  7,  9,  8, 0x0,  5,  7,  6, 0x0
+gsSP2Triangles  3,  5,  4, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  9,  0,  2, 0x0, 12, 13, 10, 0x0
+gsSP2Triangles 13, 11, 10, 0x0, 13, 14, 11, 0x0
 gsSPEndDisplayList
 
 mario_seg4_vertex_0400D3E8: # 0x0400D3E8
@@ -607,54 +542,32 @@ vertex     -1,     39,      5,      0,      0,  0xEA, 0x6E, 0x3A, 0x00
 
 glabel mario_seg4_dl_0400D758 # 0x0400D758 - 0x0400D8F0
 gsSPVertex mario_seg4_vertex_0400D3E8, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  1,  0, 0x0
-gsSP1Triangle  2,  1,  7, 0x0
-gsSP1Triangle  7,  1,  6, 0x0
-gsSP1Triangle  6,  4,  8, 0x0
-gsSP1Triangle  8,  4,  3, 0x0
-gsSP1Triangle  9,  3,  2, 0x0
-gsSP1Triangle  0, 10, 11, 0x0
-gsSP1Triangle 12, 10,  0, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  1,  0, 0x0,  2,  1,  7, 0x0
+gsSP2Triangles  7,  1,  6, 0x0,  6,  4,  8, 0x0
+gsSP2Triangles  8,  4,  3, 0x0,  9,  3,  2, 0x0
+gsSP2Triangles  0, 10, 11, 0x0, 12, 10,  0, 0x0
 gsSP1Triangle 13, 14, 15, 0x0
 gsSPVertex mario_seg4_vertex_0400D4E8, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  5,  1,  3, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10,  3, 0x0
-gsSP1Triangle  1,  0,  9, 0x0
-gsSP1Triangle  9,  3,  1, 0x0
-gsSP1Triangle  5,  2,  1, 0x0
-gsSP1Triangle  0,  2,  7, 0x0
-gsSP1Triangle  7,  2,  8, 0x0
-gsSP1Triangle  8,  2, 11, 0x0
-gsSP1Triangle 11,  2,  5, 0x0
-gsSP1Triangle  9,  7,  6, 0x0
-gsSP1Triangle  6,  8, 12, 0x0
-gsSP1Triangle 12,  8, 13, 0x0
-gsSP1Triangle 13,  5,  4, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  5,  1,  3, 0x0,  6,  7,  8, 0x0
+gsSP2Triangles  9, 10,  3, 0x0,  1,  0,  9, 0x0
+gsSP2Triangles  9,  3,  1, 0x0,  5,  2,  1, 0x0
+gsSP2Triangles  0,  2,  7, 0x0,  7,  2,  8, 0x0
+gsSP2Triangles  8,  2, 11, 0x0, 11,  2,  5, 0x0
+gsSP2Triangles  9,  7,  6, 0x0,  6,  8, 12, 0x0
+gsSP2Triangles 12,  8, 13, 0x0, 13,  5,  4, 0x0
 gsSPVertex mario_seg4_vertex_0400D5C8, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  1,  3, 0x0
-gsSP1Triangle  3,  1,  4, 0x0
-gsSP1Triangle  4,  1,  5, 0x0
-gsSP1Triangle  5,  1,  0, 0x0
-gsSP1Triangle  6,  7,  2, 0x0
-gsSP1Triangle  8,  2,  3, 0x0
-gsSP1Triangle  3,  9, 10, 0x0
-gsSP1Triangle 10,  9, 11, 0x0
-gsSP1Triangle 11,  7,  6, 0x0
-gsSP1Triangle 10, 12, 13, 0x0
-gsSP1Triangle  6, 14, 12, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  1,  3, 0x0
+gsSP2Triangles  3,  1,  4, 0x0,  4,  1,  5, 0x0
+gsSP2Triangles  5,  1,  0, 0x0,  6,  7,  2, 0x0
+gsSP2Triangles  8,  2,  3, 0x0,  3,  9, 10, 0x0
+gsSP2Triangles 10,  9, 11, 0x0, 11,  7,  6, 0x0
+gsSP2Triangles 10, 12, 13, 0x0,  6, 14, 12, 0x0
 gsSPVertex mario_seg4_vertex_0400D6B8, 10, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  0, 0x0
-gsSP1Triangle  1,  5,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  8,  9,  6, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  0, 0x0
+gsSP2Triangles  1,  5,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  8,  9,  6, 0x0
 gsSP1Triangle  7,  1,  8, 0x0
 gsSPEndDisplayList
 
@@ -731,44 +644,27 @@ vertex     67,     10,     21,      0,      0,  0x71, 0x2A, 0x25, 0x00
 
 glabel mario_seg4_dl_0400DCA0 # 0x0400DCA0 - 0x0400DDE8
 gsSPVertex mario_seg4_vertex_0400D910, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  1, 0x0
-gsSP1Triangle  5,  6,  4, 0x0
-gsSP1Triangle  7,  8,  6, 0x0
-gsSP1Triangle  9,  2,  8, 0x0
-gsSP1Triangle  1, 10,  2, 0x0
-gsSP1Triangle  2, 11,  8, 0x0
-gsSP1Triangle  8, 12,  6, 0x0
-gsSP1Triangle  6, 13,  4, 0x0
-gsSP1Triangle  4, 14,  1, 0x0
-gsSP1Triangle  9, 15,  0, 0x0
-gsSP1Triangle  0, 15,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  1, 0x0
+gsSP2Triangles  5,  6,  4, 0x0,  7,  8,  6, 0x0
+gsSP2Triangles  9,  2,  8, 0x0,  1, 10,  2, 0x0
+gsSP2Triangles  2, 11,  8, 0x0,  8, 12,  6, 0x0
+gsSP2Triangles  6, 13,  4, 0x0,  4, 14,  1, 0x0
+gsSP2Triangles  9, 15,  0, 0x0,  0, 15,  3, 0x0
 gsSPVertex mario_seg4_vertex_0400DA10, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  1,  3, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  6,  4, 0x0
-gsSP1Triangle  1,  6,  3, 0x0
-gsSP1Triangle  0,  7,  1, 0x0
-gsSP1Triangle  8,  7,  0, 0x0
-gsSP1Triangle  5,  4,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle 12,  9, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  1,  3, 0x0
+gsSP2Triangles  3,  4,  5, 0x0,  3,  6,  4, 0x0
+gsSP2Triangles  1,  6,  3, 0x0,  0,  7,  1, 0x0
+gsSP2Triangles  8,  7,  0, 0x0,  5,  4,  8, 0x0
+gsSP2Triangles  9, 10, 11, 0x0, 12,  9, 13, 0x0
 gsSP1Triangle 14, 12, 15, 0x0
 gsSPVertex mario_seg4_vertex_0400DB10, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  0,  4, 0x0
-gsSP1Triangle  5,  6,  4, 0x0
-gsSP1Triangle  7,  5,  2, 0x0
-gsSP1Triangle  8,  7,  9, 0x0
-gsSP1Triangle 10,  8, 11, 0x0
-gsSP1Triangle  6, 10, 12, 0x0
-gsSP1Triangle 13, 14, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  0,  4, 0x0
+gsSP2Triangles  5,  6,  4, 0x0,  7,  5,  2, 0x0
+gsSP2Triangles  8,  7,  9, 0x0, 10,  8, 11, 0x0
+gsSP2Triangles  6, 10, 12, 0x0, 13, 14, 15, 0x0
 gsSPVertex mario_seg4_vertex_0400DC10, 9, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  3,  0, 0x0
-gsSP1Triangle  2,  4,  3, 0x0
-gsSP1Triangle  5,  6,  7, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  3,  0, 0x0
+gsSP2Triangles  2,  4,  3, 0x0,  5,  6,  7, 0x0
 gsSP1Triangle  5,  8,  6, 0x0
 gsSPEndDisplayList
 
@@ -798,34 +694,20 @@ vertex     59,     -8,      7,      0,      0,  0x7F, 0xFD, 0x00, 0x00
 
 glabel mario_seg4_dl_0400DF08 # 0x0400DF08 - 0x0400DFF8
 gsSPVertex mario_seg4_vertex_0400DE08, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  1, 0x0
-gsSP1Triangle  5,  6,  4, 0x0
-gsSP1Triangle  7,  8,  6, 0x0
-gsSP1Triangle  9,  2,  8, 0x0
-gsSP1Triangle  1, 10,  2, 0x0
-gsSP1Triangle  2, 11,  8, 0x0
-gsSP1Triangle  8, 12,  6, 0x0
-gsSP1Triangle  6, 13,  4, 0x0
-gsSP1Triangle  4, 14,  1, 0x0
-gsSP1Triangle  9, 15,  0, 0x0
-gsSP1Triangle  0, 15,  3, 0x0
-gsSP1Triangle  3, 15,  5, 0x0
-gsSP1Triangle  5, 15,  7, 0x0
-gsSP1Triangle  7, 15,  9, 0x0
-gsSP1Triangle 14, 10,  1, 0x0
-gsSP1Triangle 13, 14,  4, 0x0
-gsSP1Triangle 12, 13,  6, 0x0
-gsSP1Triangle 11, 12,  8, 0x0
-gsSP1Triangle 10, 11,  2, 0x0
-gsSP1Triangle  9,  0,  2, 0x0
-gsSP1Triangle  7,  9,  8, 0x0
-gsSP1Triangle  5,  7,  6, 0x0
-gsSP1Triangle  3,  5,  4, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle 11, 13, 12, 0x0
-gsSP1Triangle 11, 10, 13, 0x0
-gsSP1Triangle 10, 14, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  1, 0x0
+gsSP2Triangles  5,  6,  4, 0x0,  7,  8,  6, 0x0
+gsSP2Triangles  9,  2,  8, 0x0,  1, 10,  2, 0x0
+gsSP2Triangles  2, 11,  8, 0x0,  8, 12,  6, 0x0
+gsSP2Triangles  6, 13,  4, 0x0,  4, 14,  1, 0x0
+gsSP2Triangles  9, 15,  0, 0x0,  0, 15,  3, 0x0
+gsSP2Triangles  3, 15,  5, 0x0,  5, 15,  7, 0x0
+gsSP2Triangles  7, 15,  9, 0x0, 14, 10,  1, 0x0
+gsSP2Triangles 13, 14,  4, 0x0, 12, 13,  6, 0x0
+gsSP2Triangles 11, 12,  8, 0x0, 10, 11,  2, 0x0
+gsSP2Triangles  9,  0,  2, 0x0,  7,  9,  8, 0x0
+gsSP2Triangles  5,  7,  6, 0x0,  3,  5,  4, 0x0
+gsSP2Triangles  0,  3,  1, 0x0, 11, 13, 12, 0x0
+gsSP2Triangles 11, 10, 13, 0x0, 10, 14, 13, 0x0
 gsSPEndDisplayList
 
 mario_seg4_vertex_0400DFF8: # 0x0400DFF8
@@ -881,53 +763,31 @@ vertex     29,     62,     34,      0,      0,  0xCE, 0x4C, 0x57, 0x00
 
 glabel mario_seg4_dl_0400E2C8 # 0x0400E2C8 - 0x0400E458
 gsSPVertex mario_seg4_vertex_0400DFF8, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  0,  4, 0x0
-gsSP1Triangle  2,  5,  6, 0x0
-gsSP1Triangle  6,  7,  4, 0x0
-gsSP1Triangle  4,  7,  8, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle  9,  5,  2, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
-gsSP1Triangle 13, 12, 14, 0x0
-gsSP1Triangle 14, 12,  8, 0x0
-gsSP1Triangle  8, 12,  9, 0x0
-gsSP1Triangle  9, 12, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  0,  4, 0x0
+gsSP2Triangles  2,  5,  6, 0x0,  6,  7,  4, 0x0
+gsSP2Triangles  4,  7,  8, 0x0,  8,  9, 10, 0x0
+gsSP2Triangles  9,  5,  2, 0x0, 11, 12, 13, 0x0
+gsSP2Triangles 13, 12, 14, 0x0, 14, 12,  8, 0x0
+gsSP2Triangles  8, 12,  9, 0x0,  9, 12, 11, 0x0
 gsSP1Triangle  3, 15,  0, 0x0
 gsSPVertex mario_seg4_vertex_0400E0F8, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  1,  3, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  8,  7,  1, 0x0
-gsSP1Triangle  1,  7,  4, 0x0
-gsSP1Triangle  4,  7,  9, 0x0
-gsSP1Triangle 10,  7,  6, 0x0
-gsSP1Triangle  9, 10,  5, 0x0
-gsSP1Triangle 10, 11,  5, 0x0
-gsSP1Triangle 11, 12,  5, 0x0
-gsSP1Triangle  1,  4,  3, 0x0
-gsSP1Triangle 11, 10,  6, 0x0
-gsSP1Triangle  6, 13, 11, 0x0
-gsSP1Triangle  7, 10,  9, 0x0
-gsSP1Triangle  4,  9,  5, 0x0
-gsSP1Triangle  0,  8,  1, 0x0
-gsSP1Triangle  6,  8,  0, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  1,  3, 0x0
+gsSP2Triangles  3,  4,  5, 0x0,  6,  7,  8, 0x0
+gsSP2Triangles  8,  7,  1, 0x0,  1,  7,  4, 0x0
+gsSP2Triangles  4,  7,  9, 0x0, 10,  7,  6, 0x0
+gsSP2Triangles  9, 10,  5, 0x0, 10, 11,  5, 0x0
+gsSP2Triangles 11, 12,  5, 0x0,  1,  4,  3, 0x0
+gsSP2Triangles 11, 10,  6, 0x0,  6, 13, 11, 0x0
+gsSP2Triangles  7, 10,  9, 0x0,  4,  9,  5, 0x0
+gsSP2Triangles  0,  8,  1, 0x0,  6,  8,  0, 0x0
 gsSPVertex mario_seg4_vertex_0400E1D8, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  3,  4, 0x0
-gsSP1Triangle  4,  3,  5, 0x0
-gsSP1Triangle  5,  6,  7, 0x0
-gsSP1Triangle  7,  6,  0, 0x0
-gsSP1Triangle  8,  6,  5, 0x0
-gsSP1Triangle  9,  3,  1, 0x0
-gsSP1Triangle  0,  6,  8, 0x0
-gsSP1Triangle 10, 11,  1, 0x0
-gsSP1Triangle 11,  9,  1, 0x0
-gsSP1Triangle 11, 12,  9, 0x0
-gsSP1Triangle  1,  0, 10, 0x0
-gsSP1Triangle 13,  5,  3, 0x0
-gsSP1Triangle  3,  9, 14, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  3,  4, 0x0
+gsSP2Triangles  4,  3,  5, 0x0,  5,  6,  7, 0x0
+gsSP2Triangles  7,  6,  0, 0x0,  8,  6,  5, 0x0
+gsSP2Triangles  9,  3,  1, 0x0,  0,  6,  8, 0x0
+gsSP2Triangles 10, 11,  1, 0x0, 11,  9,  1, 0x0
+gsSP2Triangles 11, 12,  9, 0x0,  1,  0, 10, 0x0
+gsSP2Triangles 13,  5,  3, 0x0,  3,  9, 14, 0x0
 gsSP1Triangle 14, 13,  3, 0x0
 gsSPEndDisplayList
 
@@ -983,37 +843,22 @@ vertex     -4,     37,    -17,      0,      0,  0x9E, 0x30, 0xC0, 0x00
 
 glabel mario_seg4_dl_0400E6A8 # 0x0400E6A8 - 0x0400E7B0
 gsSPVertex mario_seg4_vertex_0400E4A8, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  1,  3, 0x0
-gsSP1Triangle  3,  1,  4, 0x0
-gsSP1Triangle  4,  1,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  8,  7,  9, 0x0
-gsSP1Triangle  9,  7, 10, 0x0
-gsSP1Triangle 10,  7, 11, 0x0
-gsSP1Triangle 11,  7,  6, 0x0
-gsSP1Triangle 12,  3, 13, 0x0
-gsSP1Triangle 13,  4, 14, 0x0
-gsSP1Triangle 14,  4, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  1,  3, 0x0
+gsSP2Triangles  3,  1,  4, 0x0,  4,  1,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  8,  7,  9, 0x0
+gsSP2Triangles  9,  7, 10, 0x0, 10,  7, 11, 0x0
+gsSP2Triangles 11,  7,  6, 0x0, 12,  3, 13, 0x0
+gsSP2Triangles 13,  4, 14, 0x0, 14,  4, 15, 0x0
 gsSPVertex mario_seg4_vertex_0400E5A8, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  1,  3, 0x0
-gsSP1Triangle  4,  5,  1, 0x0
-gsSP1Triangle  0,  2,  6, 0x0
-gsSP1Triangle  7,  0,  8, 0x0
-gsSP1Triangle  9,  7, 10, 0x0
-gsSP1Triangle  3,  9, 10, 0x0
-gsSP1Triangle  2,  3,  6, 0x0
-gsSP1Triangle  3, 11,  6, 0x0
-gsSP1Triangle 10, 11,  3, 0x0
-gsSP1Triangle  7,  8, 10, 0x0
-gsSP1Triangle  0, 12,  8, 0x0
-gsSP1Triangle  6, 12,  0, 0x0
-gsSP1Triangle  1, 13,  3, 0x0
-gsSP1Triangle  0,  4,  1, 0x0
-gsSP1Triangle 14,  4,  0, 0x0
-gsSP1Triangle  9, 15, 14, 0x0
-gsSP1Triangle  3, 13, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  1,  3, 0x0
+gsSP2Triangles  4,  5,  1, 0x0,  0,  2,  6, 0x0
+gsSP2Triangles  7,  0,  8, 0x0,  9,  7, 10, 0x0
+gsSP2Triangles  3,  9, 10, 0x0,  2,  3,  6, 0x0
+gsSP2Triangles  3, 11,  6, 0x0, 10, 11,  3, 0x0
+gsSP2Triangles  7,  8, 10, 0x0,  0, 12,  8, 0x0
+gsSP2Triangles  6, 12,  0, 0x0,  1, 13,  3, 0x0
+gsSP2Triangles  0,  4,  1, 0x0, 14,  4,  0, 0x0
+gsSP2Triangles  9, 15, 14, 0x0,  3, 13, 15, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_0400E7B0 # 0x0400E7B0 - 0x0400E7E0
@@ -1057,26 +902,16 @@ vertex     81,      3,      9,      0,      0,  0x7E, 0xFA, 0x01, 0x00
 
 glabel mario_seg4_dl_0400E918 # 0x0400E918 - 0x0400E9C8
 gsSPVertex mario_seg4_vertex_0400E858, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  2,  4, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  5,  7, 0x0
-gsSP1Triangle  0,  7,  1, 0x0
-gsSP1Triangle  0,  8,  7, 0x0
-gsSP1Triangle  7,  8,  6, 0x0
-gsSP1Triangle  5,  6,  3, 0x0
-gsSP1Triangle  3,  9,  2, 0x0
-gsSP1Triangle  2,  9,  0, 0x0
-gsSP1Triangle  3, 10,  9, 0x0
-gsSP1Triangle  5, 11,  7, 0x0
-gsSP1Triangle  7, 11,  1, 0x0
-gsSP1Triangle  1, 11,  2, 0x0
-gsSP1Triangle  2, 11,  4, 0x0
-gsSP1Triangle  4, 11,  5, 0x0
-gsSP1Triangle  9, 10,  0, 0x0
-gsSP1Triangle  0, 10,  8, 0x0
-gsSP1Triangle  8, 10,  6, 0x0
-gsSP1Triangle  6, 10,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  2,  4, 0x0
+gsSP2Triangles  3,  4,  5, 0x0,  6,  5,  7, 0x0
+gsSP2Triangles  0,  7,  1, 0x0,  0,  8,  7, 0x0
+gsSP2Triangles  7,  8,  6, 0x0,  5,  6,  3, 0x0
+gsSP2Triangles  3,  9,  2, 0x0,  2,  9,  0, 0x0
+gsSP2Triangles  3, 10,  9, 0x0,  5, 11,  7, 0x0
+gsSP2Triangles  7, 11,  1, 0x0,  1, 11,  2, 0x0
+gsSP2Triangles  2, 11,  4, 0x0,  4, 11,  5, 0x0
+gsSP2Triangles  9, 10,  0, 0x0,  0, 10,  8, 0x0
+gsSP2Triangles  8, 10,  6, 0x0,  6, 10,  3, 0x0
 gsSPEndDisplayList
 
 mario_seg4_vertex_0400E9C8: # 0x0400E9C8
@@ -1116,33 +951,20 @@ vertex     27,    -35,     11,      0,      0,  0xDB, 0x87, 0xFC, 0x00
 
 glabel mario_seg4_dl_0400EBB8 # 0x0400EBB8 - 0x0400ECA0
 gsSPVertex mario_seg4_vertex_0400E9C8, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  0,  2, 0x0
-gsSP1Triangle  3,  2,  4, 0x0
-gsSP1Triangle  5,  3,  4, 0x0
-gsSP1Triangle  5,  4,  6, 0x0
-gsSP1Triangle  5,  6,  7, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
-gsSP1Triangle 14,  8, 10, 0x0
-gsSP1Triangle 11, 13, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  0,  2, 0x0
+gsSP2Triangles  3,  2,  4, 0x0,  5,  3,  4, 0x0
+gsSP2Triangles  5,  4,  6, 0x0,  5,  6,  7, 0x0
+gsSP2Triangles  8,  9, 10, 0x0, 11, 12, 13, 0x0
+gsSP2Triangles 14,  8, 10, 0x0, 11, 13, 15, 0x0
 gsSPVertex mario_seg4_vertex_0400EAC8, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  2,  4, 0x0
-gsSP1Triangle  2,  3,  0, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  6,  3,  4, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 10, 13, 11, 0x0
-gsSP1Triangle 12,  9, 10, 0x0
-gsSP1Triangle  9, 12,  7, 0x0
-gsSP1Triangle 14,  0,  3, 0x0
-gsSP1Triangle 11,  0, 14, 0x0
-gsSP1Triangle  3,  6, 14, 0x0
-gsSP1Triangle 14,  6,  7, 0x0
-gsSP1Triangle 14,  7, 12, 0x0
-gsSP1Triangle 12, 11, 14, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  2,  4, 0x0
+gsSP2Triangles  2,  3,  0, 0x0,  4,  5,  6, 0x0
+gsSP2Triangles  6,  3,  4, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 10, 13, 11, 0x0
+gsSP2Triangles 12,  9, 10, 0x0,  9, 12,  7, 0x0
+gsSP2Triangles 14,  0,  3, 0x0, 11,  0, 14, 0x0
+gsSP2Triangles  3,  6, 14, 0x0, 14,  6,  7, 0x0
+gsSP2Triangles 14,  7, 12, 0x0, 12, 11, 14, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_0400ECA0 # 0x0400ECA0 - 0x0400ECC0
@@ -1188,37 +1010,22 @@ vertex     96,     -5,     30,      0,      0,  0x51, 0xE7, 0x5D, 0x00
 
 glabel mario_seg4_dl_0400EEB0 # 0x0400EEB0 - 0x0400EFB8
 gsSPVertex mario_seg4_vertex_0400ECC0, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  1, 0x0
-gsSP1Triangle  3,  5,  4, 0x0
-gsSP1Triangle  6,  7,  5, 0x0
-gsSP1Triangle  0,  2,  7, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle  1,  8,  2, 0x0
-gsSP1Triangle  2,  8,  7, 0x0
-gsSP1Triangle  7, 11,  5, 0x0
-gsSP1Triangle  5, 11,  4, 0x0
-gsSP1Triangle  4, 12,  1, 0x0
-gsSP1Triangle 13, 14,  0, 0x0
-gsSP1Triangle  0, 14, 15, 0x0
-gsSP1Triangle 15, 14,  3, 0x0
-gsSP1Triangle  3, 14,  6, 0x0
-gsSP1Triangle  6, 14, 13, 0x0
-gsSP1Triangle 10,  9, 11, 0x0
-gsSP1Triangle 11,  9, 12, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  1, 0x0
+gsSP2Triangles  3,  5,  4, 0x0,  6,  7,  5, 0x0
+gsSP2Triangles  0,  2,  7, 0x0,  8,  9, 10, 0x0
+gsSP2Triangles  1,  8,  2, 0x0,  2,  8,  7, 0x0
+gsSP2Triangles  7, 11,  5, 0x0,  5, 11,  4, 0x0
+gsSP2Triangles  4, 12,  1, 0x0, 13, 14,  0, 0x0
+gsSP2Triangles  0, 14, 15, 0x0, 15, 14,  3, 0x0
+gsSP2Triangles  3, 14,  6, 0x0,  6, 14, 13, 0x0
+gsSP2Triangles 10,  9, 11, 0x0, 11,  9, 12, 0x0
 gsSPVertex mario_seg4_vertex_0400EDC0, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  1,  3, 0x0
-gsSP1Triangle  0,  2,  4, 0x0
-gsSP1Triangle  5,  0,  6, 0x0
-gsSP1Triangle  7,  8,  5, 0x0
-gsSP1Triangle  3,  8,  7, 0x0
-gsSP1Triangle  4,  2,  3, 0x0
-gsSP1Triangle  7,  9, 10, 0x0
-gsSP1Triangle 11,  9,  7, 0x0
-gsSP1Triangle 12, 11, 13, 0x0
-gsSP1Triangle  4, 14, 12, 0x0
-gsSP1Triangle 10, 14,  4, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  1,  3, 0x0
+gsSP2Triangles  0,  2,  4, 0x0,  5,  0,  6, 0x0
+gsSP2Triangles  7,  8,  5, 0x0,  3,  8,  7, 0x0
+gsSP2Triangles  4,  2,  3, 0x0,  7,  9, 10, 0x0
+gsSP2Triangles 11,  9,  7, 0x0, 12, 11, 13, 0x0
+gsSP2Triangles  4, 14, 12, 0x0, 10, 14,  4, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_0400EFB8 # 0x0400EFB8 - 0x0400EFD8
@@ -1265,27 +1072,17 @@ vertex     66,    -11,     34,      0,      0,  0xF2, 0x9B, 0x4A, 0x00
 
 glabel mario_seg4_dl_0400F1D8 # 0x0400F1D8 - 0x0400F290
 gsSPVertex mario_seg4_vertex_0400EFD8, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10,  8, 0x0
-gsSP1Triangle 11, 12,  2, 0x0
-gsSP1Triangle 13, 14,  2, 0x0
-gsSP1Triangle  2, 14, 15, 0x0
-gsSP1Triangle 15, 14,  8, 0x0
-gsSP1Triangle  8, 14,  5, 0x0
-gsSP1Triangle  5, 14, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10,  8, 0x0
+gsSP2Triangles 11, 12,  2, 0x0, 13, 14,  2, 0x0
+gsSP2Triangles  2, 14, 15, 0x0, 15, 14,  8, 0x0
+gsSP2Triangles  8, 14,  5, 0x0,  5, 14, 13, 0x0
 gsSPVertex mario_seg4_vertex_0400F0D8, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  1,  3, 0x0
-gsSP1Triangle  3,  1,  4, 0x0
-gsSP1Triangle  4,  1,  5, 0x0
-gsSP1Triangle  5,  1,  0, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9,  7, 10, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 11, 13, 14, 0x0
-gsSP1Triangle 15, 13,  6, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  1,  3, 0x0
+gsSP2Triangles  3,  1,  4, 0x0,  4,  1,  5, 0x0
+gsSP2Triangles  5,  1,  0, 0x0,  6,  7,  8, 0x0
+gsSP2Triangles  9,  7, 10, 0x0, 10, 11, 12, 0x0
+gsSP2Triangles 11, 13, 14, 0x0, 15, 13,  6, 0x0
 gsSPEndDisplayList
 
 mario_seg4_vertex_0400F290: # 0x0400F290
@@ -1317,33 +1114,20 @@ vertex    109,     11,     20,      0,      0,  0x29, 0x77, 0x00, 0x00
 
 glabel mario_seg4_dl_0400F400 # 0x0400F400 - 0x0400F4E8
 gsSPVertex mario_seg4_vertex_0400F290, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  3,  0, 0x0
-gsSP1Triangle  3,  4,  0, 0x0
-gsSP1Triangle  0,  4,  5, 0x0
-gsSP1Triangle  0,  6,  1, 0x0
-gsSP1Triangle  5,  6,  0, 0x0
-gsSP1Triangle  3,  2,  7, 0x0
-gsSP1Triangle  8,  7,  2, 0x0
-gsSP1Triangle  1,  9,  8, 0x0
-gsSP1Triangle  2,  1,  8, 0x0
-gsSP1Triangle  7, 10,  3, 0x0
-gsSP1Triangle 11,  5,  4, 0x0
-gsSP1Triangle  4, 12, 11, 0x0
-gsSP1Triangle  6,  5, 13, 0x0
-gsSP1Triangle 11, 13,  5, 0x0
-gsSP1Triangle 13, 14,  6, 0x0
-gsSP1Triangle 14,  9,  6, 0x0
-gsSP1Triangle 10,  4,  3, 0x0
-gsSP1Triangle  9,  1,  6, 0x0
-gsSP1Triangle 10, 12,  4, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  3,  0, 0x0
+gsSP2Triangles  3,  4,  0, 0x0,  0,  4,  5, 0x0
+gsSP2Triangles  0,  6,  1, 0x0,  5,  6,  0, 0x0
+gsSP2Triangles  3,  2,  7, 0x0,  8,  7,  2, 0x0
+gsSP2Triangles  1,  9,  8, 0x0,  2,  1,  8, 0x0
+gsSP2Triangles  7, 10,  3, 0x0, 11,  5,  4, 0x0
+gsSP2Triangles  4, 12, 11, 0x0,  6,  5, 13, 0x0
+gsSP2Triangles 11, 13,  5, 0x0, 13, 14,  6, 0x0
+gsSP2Triangles 14,  9,  6, 0x0, 10,  4,  3, 0x0
+gsSP2Triangles  9,  1,  6, 0x0, 10, 12,  4, 0x0
 gsSPVertex mario_seg4_vertex_0400F380, 8, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  3,  2, 0x0
-gsSP1Triangle  3,  4,  2, 0x0
-gsSP1Triangle  3,  5,  4, 0x0
-gsSP1Triangle  5,  6,  4, 0x0
-gsSP1Triangle  5,  7,  6, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  3,  2, 0x0
+gsSP2Triangles  3,  4,  2, 0x0,  3,  5,  4, 0x0
+gsSP2Triangles  5,  6,  4, 0x0,  5,  7,  6, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_0400F4E8 # 0x0400F4E8 - 0x0400F528
@@ -1546,139 +1330,83 @@ vertex     44,     51,     75,      0,      0,  0x3C, 0x34, 0x62, 0xFF
 
 glabel mario_seg4_dl_0400FF28 # 0x0400FF28 - 0x0400FF88
 gsSPVertex mario_seg4_vertex_0400F568, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  3,  0, 0x0
-gsSP1Triangle  1,  4,  2, 0x0
-gsSP1Triangle  5,  6,  2, 0x0
-gsSP1Triangle  4,  5,  2, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle 10,  7,  9, 0x0
-gsSP1Triangle  9, 11, 12, 0x0
-gsSP1Triangle 12, 13,  9, 0x0
-gsSP1Triangle 13, 10,  9, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  3,  0, 0x0
+gsSP2Triangles  1,  4,  2, 0x0,  5,  6,  2, 0x0
+gsSP2Triangles  4,  5,  2, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles 10,  7,  9, 0x0,  9, 11, 12, 0x0
+gsSP2Triangles 12, 13,  9, 0x0, 13, 10,  9, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_0400FF88 # 0x0400FF88 - 0x04010260
 gsSPVertex mario_seg4_vertex_0400F878, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  4,  1,  5, 0x0
-gsSP1Triangle  1,  3,  5, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  5,  7,  6, 0x0
-gsSP1Triangle  7,  5,  8, 0x0
-gsSP1Triangle  9,  6,  7, 0x0
-gsSP1Triangle  7,  8, 10, 0x0
-gsSP1Triangle 10, 11,  7, 0x0
-gsSP1Triangle  9,  7, 11, 0x0
-gsSP1Triangle 12,  6, 13, 0x0
-gsSP1Triangle  9, 13,  6, 0x0
-gsSP1Triangle  6, 12, 14, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  4,  1,  5, 0x0,  1,  3,  5, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  5,  7,  6, 0x0
+gsSP2Triangles  7,  5,  8, 0x0,  9,  6,  7, 0x0
+gsSP2Triangles  7,  8, 10, 0x0, 10, 11,  7, 0x0
+gsSP2Triangles  9,  7, 11, 0x0, 12,  6, 13, 0x0
+gsSP2Triangles  9, 13,  6, 0x0,  6, 12, 14, 0x0
 gsSPVertex mario_seg4_vertex_0400F968, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10,  7, 0x0
-gsSP1Triangle  7, 10, 11, 0x0
-gsSP1Triangle 11,  8,  7, 0x0
-gsSP1Triangle 12,  8, 11, 0x0
-gsSP1Triangle 13,  0,  2, 0x0
-gsSP1Triangle  2,  1, 14, 0x0
-gsSP1Triangle  2, 15, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10,  7, 0x0
+gsSP2Triangles  7, 10, 11, 0x0, 11,  8,  7, 0x0
+gsSP2Triangles 12,  8, 11, 0x0, 13,  0,  2, 0x0
+gsSP2Triangles  2,  1, 14, 0x0,  2, 15, 13, 0x0
 gsSPVertex mario_seg4_vertex_0400FA68, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  6,  7, 0x0
-gsSP1Triangle  3,  8,  6, 0x0
-gsSP1Triangle  5,  9,  3, 0x0
-gsSP1Triangle  8,  3,  9, 0x0
-gsSP1Triangle  6,  8, 10, 0x0
-gsSP1Triangle 11, 10,  8, 0x0
-gsSP1Triangle  9, 11,  8, 0x0
-gsSP1Triangle  6, 12,  7, 0x0
-gsSP1Triangle 12,  6, 10, 0x0
-gsSP1Triangle  7, 12, 13, 0x0
-gsSP1Triangle 14,  5, 15, 0x0
-gsSP1Triangle 14,  9,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  6,  7, 0x0,  3,  8,  6, 0x0
+gsSP2Triangles  5,  9,  3, 0x0,  8,  3,  9, 0x0
+gsSP2Triangles  6,  8, 10, 0x0, 11, 10,  8, 0x0
+gsSP2Triangles  9, 11,  8, 0x0,  6, 12,  7, 0x0
+gsSP2Triangles 12,  6, 10, 0x0,  7, 12, 13, 0x0
+gsSP2Triangles 14,  5, 15, 0x0, 14,  9,  5, 0x0
 gsSPVertex mario_seg4_vertex_0400FB68, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  1,  3, 0x0
-gsSP1Triangle  1,  4,  3, 0x0
-gsSP1Triangle  5,  4,  6, 0x0
-gsSP1Triangle  4,  5,  3, 0x0
-gsSP1Triangle  2,  3,  7, 0x0
-gsSP1Triangle  7,  3,  5, 0x0
-gsSP1Triangle  8,  2,  7, 0x0
-gsSP1Triangle  2,  8,  0, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle 12, 11, 10, 0x0
-gsSP1Triangle 11,  7, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  1,  3, 0x0
+gsSP2Triangles  1,  4,  3, 0x0,  5,  4,  6, 0x0
+gsSP2Triangles  4,  5,  3, 0x0,  2,  3,  7, 0x0
+gsSP2Triangles  7,  3,  5, 0x0,  8,  2,  7, 0x0
+gsSP2Triangles  2,  8,  0, 0x0,  9, 10, 11, 0x0
+gsSP2Triangles 12, 11, 10, 0x0, 11,  7, 13, 0x0
 gsSP1Triangle 14, 15, 11, 0x0
 gsSPVertex mario_seg4_vertex_0400FC68, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  4, 0x0
-gsSP1Triangle  2,  5,  0, 0x0
-gsSP1Triangle  6,  0,  7, 0x0
-gsSP1Triangle  4,  3,  8, 0x0
-gsSP1Triangle  9,  7,  4, 0x0
-gsSP1Triangle  7, 10, 11, 0x0
-gsSP1Triangle 11,  6,  7, 0x0
-gsSP1Triangle  9, 12, 13, 0x0
-gsSP1Triangle 10,  9, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  4, 0x0
+gsSP2Triangles  2,  5,  0, 0x0,  6,  0,  7, 0x0
+gsSP2Triangles  4,  3,  8, 0x0,  9,  7,  4, 0x0
+gsSP2Triangles  7, 10, 11, 0x0, 11,  6,  7, 0x0
+gsSP2Triangles  9, 12, 13, 0x0, 10,  9, 13, 0x0
 gsSP1Triangle  7,  9, 10, 0x0
 gsSPVertex mario_seg4_vertex_0400FD48, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  5,  7,  6, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9,  8,  7, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 12, 11, 13, 0x0
-gsSP1Triangle 14, 12, 13, 0x0
-gsSP1Triangle 11, 10,  9, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  5,  7,  6, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9,  8,  7, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 12, 11, 13, 0x0
+gsSP2Triangles 14, 12, 13, 0x0, 11, 10,  9, 0x0
 gsSPVertex mario_seg4_vertex_0400FE38, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  2,  1, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle 10,  7,  9, 0x0
-gsSP1Triangle  9,  8,  5, 0x0
-gsSP1Triangle  5,  8,  6, 0x0
-gsSP1Triangle 11,  1,  0, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
-gsSP1Triangle  6, 14,  4, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  2,  1, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles 10,  7,  9, 0x0,  9,  8,  5, 0x0
+gsSP2Triangles  5,  8,  6, 0x0, 11,  1,  0, 0x0
+gsSP2Triangles 11, 12, 13, 0x0,  6, 14,  4, 0x0
 gsSP1Triangle 11,  0, 12, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_04010260 # 0x04010260 - 0x04010348
 gsSPVertex mario_seg4_vertex_0400F648, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  3,  2, 0x0
-gsSP1Triangle  4,  5,  3, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  6,  9,  7, 0x0
-gsSP1Triangle  6,  8, 10, 0x0
-gsSP1Triangle 11,  8, 12, 0x0
-gsSP1Triangle 12,  8,  7, 0x0
-gsSP1Triangle  8, 11, 10, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  3,  2, 0x0,  4,  5,  3, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  6,  9,  7, 0x0
+gsSP2Triangles  6,  8, 10, 0x0, 11,  8, 12, 0x0
+gsSP2Triangles 12,  8,  7, 0x0,  8, 11, 10, 0x0
 gsSP1Triangle 13, 14, 15, 0x0
 gsSPVertex mario_seg4_vertex_0400F748, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  3,  2, 0x0
-gsSP1Triangle  3,  1,  4, 0x0
-gsSP1Triangle  4,  1,  5, 0x0
-gsSP1Triangle  6,  2,  3, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  7,  9, 10, 0x0
-gsSP1Triangle 11, 10,  9, 0x0
-gsSP1Triangle 12,  3,  4, 0x0
-gsSP1Triangle 13,  3, 12, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  3,  2, 0x0
+gsSP2Triangles  3,  1,  4, 0x0,  4,  1,  5, 0x0
+gsSP2Triangles  6,  2,  3, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles  7,  9, 10, 0x0, 11, 10,  9, 0x0
+gsSP2Triangles 12,  3,  4, 0x0, 13,  3, 12, 0x0
 gsSP1Triangle  6,  3, 13, 0x0
 gsSPVertex mario_seg4_vertex_0400F828, 5, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  1,  0, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  1,  0, 0x0
 gsSP1Triangle  1,  4,  2, 0x0
 gsSPEndDisplayList
 
@@ -1983,229 +1711,139 @@ vertex     31,    -85,     87,      0,      0,  0xDB, 0xFD, 0x79, 0xFF
 
 glabel mario_seg4_dl_040112B0 # 0x040112B0 - 0x040112E8
 gsSPVertex mario_seg4_vertex_04010410, 7, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  2,  3,  0, 0x0
-gsSP1Triangle  3,  5,  0, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  2,  3,  0, 0x0,  3,  5,  0, 0x0
 gsSP1Triangle  4,  6,  5, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_040112E8 # 0x040112E8 - 0x04011350
 gsSPVertex mario_seg4_vertex_04010480, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  0,  4, 0x0
-gsSP1Triangle  6,  3,  5, 0x0
-gsSP1Triangle  3,  1,  0, 0x0
-gsSP1Triangle  4,  0,  7, 0x0
-gsSP1Triangle  5,  4,  8, 0x0
-gsSP1Triangle  2,  9, 10, 0x0
-gsSP1Triangle 10,  7,  2, 0x0
-gsSP1Triangle 11,  7, 10, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  0,  4, 0x0,  6,  3,  5, 0x0
+gsSP2Triangles  3,  1,  0, 0x0,  4,  0,  7, 0x0
+gsSP2Triangles  5,  4,  8, 0x0,  2,  9, 10, 0x0
+gsSP2Triangles 10,  7,  2, 0x0, 11,  7, 10, 0x0
 gsSP1Triangle  7,  0,  2, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_04011350 # 0x04011350 - 0x040113A0
 gsSPVertex mario_seg4_vertex_04010540, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  3,  4, 0x0
-gsSP1Triangle  4,  5,  1, 0x0
-gsSP1Triangle  3,  1,  0, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  8,  9,  6, 0x0
-gsSP1Triangle  9, 10,  6, 0x0
-gsSP1Triangle 11,  6, 10, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  3,  4, 0x0
+gsSP2Triangles  4,  5,  1, 0x0,  3,  1,  0, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  8,  9,  6, 0x0
+gsSP2Triangles  9, 10,  6, 0x0, 11,  6, 10, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_040113A0 # 0x040113A0 - 0x04011438
 gsSPVertex mario_seg4_vertex_04010600, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  0,  3, 0x0
-gsSP1Triangle  0,  4,  3, 0x0
-gsSP1Triangle  5,  3,  4, 0x0
-gsSP1Triangle  5,  4,  6, 0x0
-gsSP1Triangle  7,  3,  8, 0x0
-gsSP1Triangle  8,  3,  5, 0x0
-gsSP1Triangle  3,  7,  1, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle 12, 10, 13, 0x0
-gsSP1Triangle 11, 10, 12, 0x0
-gsSP1Triangle 10,  9, 14, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  0,  3, 0x0
+gsSP2Triangles  0,  4,  3, 0x0,  5,  3,  4, 0x0
+gsSP2Triangles  5,  4,  6, 0x0,  7,  3,  8, 0x0
+gsSP2Triangles  8,  3,  5, 0x0,  3,  7,  1, 0x0
+gsSP2Triangles  9, 10, 11, 0x0, 12, 10, 13, 0x0
+gsSP2Triangles 11, 10, 12, 0x0, 10,  9, 14, 0x0
 gsSP1Triangle 15,  9, 11, 0x0
 gsSPVertex mario_seg4_vertex_04010700, 5, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  1,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  1,  3, 0x0
 gsSP1Triangle  2,  4,  0, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_04011438 # 0x04011438 - 0x040116F8
 gsSPVertex mario_seg4_vertex_04010A30, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  1,  3, 0x0
-gsSP1Triangle  3,  4,  2, 0x0
-gsSP1Triangle  1,  5,  3, 0x0
-gsSP1Triangle  6,  7,  3, 0x0
-gsSP1Triangle  7,  4,  3, 0x0
-gsSP1Triangle  6,  3,  5, 0x0
-gsSP1Triangle  4,  7,  8, 0x0
-gsSP1Triangle  9,  4,  8, 0x0
-gsSP1Triangle 10,  6,  5, 0x0
-gsSP1Triangle 10,  5, 11, 0x0
-gsSP1Triangle 12, 13, 14, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  1,  3, 0x0
+gsSP2Triangles  3,  4,  2, 0x0,  1,  5,  3, 0x0
+gsSP2Triangles  6,  7,  3, 0x0,  7,  4,  3, 0x0
+gsSP2Triangles  6,  3,  5, 0x0,  4,  7,  8, 0x0
+gsSP2Triangles  9,  4,  8, 0x0, 10,  6,  5, 0x0
+gsSP2Triangles 10,  5, 11, 0x0, 12, 13, 14, 0x0
 gsSPVertex mario_seg4_vertex_04010B20, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  5,  6,  8, 0x0
-gsSP1Triangle  3,  8,  7, 0x0
-gsSP1Triangle  9,  3,  7, 0x0
-gsSP1Triangle  3,  9,  4, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle  0, 10,  1, 0x0
-gsSP1Triangle 10,  0, 11, 0x0
-gsSP1Triangle 11,  0,  2, 0x0
-gsSP1Triangle 13, 14, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  5,  6,  8, 0x0
+gsSP2Triangles  3,  8,  7, 0x0,  9,  3,  7, 0x0
+gsSP2Triangles  3,  9,  4, 0x0, 10, 11, 12, 0x0
+gsSP2Triangles  0, 10,  1, 0x0, 10,  0, 11, 0x0
+gsSP2Triangles 11,  0,  2, 0x0, 13, 14, 15, 0x0
 gsSPVertex mario_seg4_vertex_04010C20, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  1,  0, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  3,  0,  7, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle 11,  9,  8, 0x0
-gsSP1Triangle 12, 13,  8, 0x0
-gsSP1Triangle  8, 13, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  1,  0, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  3,  0,  7, 0x0
+gsSP2Triangles  8,  9, 10, 0x0, 11,  9,  8, 0x0
+gsSP2Triangles 12, 13,  8, 0x0,  8, 13, 11, 0x0
 gsSP1Triangle  9, 11, 14, 0x0
 gsSPVertex mario_seg4_vertex_04010D10, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  2, 0x0
-gsSP1Triangle  5,  2,  4, 0x0
-gsSP1Triangle  2,  6,  3, 0x0
-gsSP1Triangle  3,  6,  7, 0x0
-gsSP1Triangle  8,  9,  3, 0x0
-gsSP1Triangle  9,  4,  3, 0x0
-gsSP1Triangle  7, 10,  3, 0x0
-gsSP1Triangle  3, 10,  8, 0x0
-gsSP1Triangle 11,  4,  9, 0x0
-gsSP1Triangle 12, 11,  9, 0x0
-gsSP1Triangle 13,  9,  8, 0x0
-gsSP1Triangle  9, 13, 12, 0x0
-gsSP1Triangle  4, 11,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  2, 0x0
+gsSP2Triangles  5,  2,  4, 0x0,  2,  6,  3, 0x0
+gsSP2Triangles  3,  6,  7, 0x0,  8,  9,  3, 0x0
+gsSP2Triangles  9,  4,  3, 0x0,  7, 10,  3, 0x0
+gsSP2Triangles  3, 10,  8, 0x0, 11,  4,  9, 0x0
+gsSP2Triangles 12, 11,  9, 0x0, 13,  9,  8, 0x0
+gsSP2Triangles  9, 13, 12, 0x0,  4, 11,  5, 0x0
 gsSP1Triangle 14, 15, 11, 0x0
 gsSPVertex mario_seg4_vertex_04010E10, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  0,  4, 0x0
-gsSP1Triangle  1,  5,  6, 0x0
-gsSP1Triangle  1,  3,  5, 0x0
-gsSP1Triangle  2,  1,  6, 0x0
-gsSP1Triangle  2,  6,  7, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle  6,  5, 11, 0x0
-gsSP1Triangle 12, 13,  8, 0x0
-gsSP1Triangle 10, 12,  8, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  0,  4, 0x0
+gsSP2Triangles  1,  5,  6, 0x0,  1,  3,  5, 0x0
+gsSP2Triangles  2,  1,  6, 0x0,  2,  6,  7, 0x0
+gsSP2Triangles  8,  9, 10, 0x0,  6,  5, 11, 0x0
+gsSP2Triangles 12, 13,  8, 0x0, 10, 12,  8, 0x0
 gsSP1Triangle 14,  8, 13, 0x0
 gsSPVertex mario_seg4_vertex_04010F00, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  5,  6,  7, 0x0
-gsSP1Triangle  6,  5,  8, 0x0
-gsSP1Triangle  5,  7,  3, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle  6, 12,  7, 0x0
-gsSP1Triangle 13, 10,  9, 0x0
-gsSP1Triangle 14, 13,  9, 0x0
-gsSP1Triangle 15, 10, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  5,  6,  7, 0x0,  6,  5,  8, 0x0
+gsSP2Triangles  5,  7,  3, 0x0,  9, 10, 11, 0x0
+gsSP2Triangles  6, 12,  7, 0x0, 13, 10,  9, 0x0
+gsSP2Triangles 14, 13,  9, 0x0, 15, 10, 13, 0x0
 gsSPVertex mario_seg4_vertex_04011000, 13, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  1, 0x0
-gsSP1Triangle  1,  5,  3, 0x0
-gsSP1Triangle  2,  1,  4, 0x0
-gsSP1Triangle  5,  6,  7, 0x0
-gsSP1Triangle  7,  6,  8, 0x0
-gsSP1Triangle  7,  9,  3, 0x0
-gsSP1Triangle  5,  7,  3, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 12,  6, 10, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  1, 0x0
+gsSP2Triangles  1,  5,  3, 0x0,  2,  1,  4, 0x0
+gsSP2Triangles  5,  6,  7, 0x0,  7,  6,  8, 0x0
+gsSP2Triangles  7,  9,  3, 0x0,  5,  7,  3, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 12,  6, 10, 0x0
 gsSP1Triangle 12,  8,  6, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_040116F8 # 0x040116F8 - 0x04011870
 gsSPVertex mario_seg4_vertex_04010750, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  2,  4, 0x0
-gsSP1Triangle  4,  2,  5, 0x0
-gsSP1Triangle  3,  0,  2, 0x0
-gsSP1Triangle  2,  1,  6, 0x0
-gsSP1Triangle  6,  7,  2, 0x0
-gsSP1Triangle  5,  2,  7, 0x0
-gsSP1Triangle  6,  1,  8, 0x0
-gsSP1Triangle  8,  1,  0, 0x0
-gsSP1Triangle  6,  8,  9, 0x0
-gsSP1Triangle 10,  7,  6, 0x0
-gsSP1Triangle  9, 10,  6, 0x0
-gsSP1Triangle 11, 10,  9, 0x0
-gsSP1Triangle  9,  8, 11, 0x0
-gsSP1Triangle 11,  8, 12, 0x0
-gsSP1Triangle  0, 12,  8, 0x0
-gsSP1Triangle 13, 10, 11, 0x0
-gsSP1Triangle 11, 12, 14, 0x0
-gsSP1Triangle 15, 11, 14, 0x0
-gsSP1Triangle 13, 11, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  2,  4, 0x0
+gsSP2Triangles  4,  2,  5, 0x0,  3,  0,  2, 0x0
+gsSP2Triangles  2,  1,  6, 0x0,  6,  7,  2, 0x0
+gsSP2Triangles  5,  2,  7, 0x0,  6,  1,  8, 0x0
+gsSP2Triangles  8,  1,  0, 0x0,  6,  8,  9, 0x0
+gsSP2Triangles 10,  7,  6, 0x0,  9, 10,  6, 0x0
+gsSP2Triangles 11, 10,  9, 0x0,  9,  8, 11, 0x0
+gsSP2Triangles 11,  8, 12, 0x0,  0, 12,  8, 0x0
+gsSP2Triangles 13, 10, 11, 0x0, 11, 12, 14, 0x0
+gsSP2Triangles 15, 11, 14, 0x0, 13, 11, 15, 0x0
 gsSPVertex mario_seg4_vertex_04010850, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  0, 0x0
-gsSP1Triangle  4,  5,  0, 0x0
-gsSP1Triangle  0,  6,  1, 0x0
-gsSP1Triangle  7,  1,  8, 0x0
-gsSP1Triangle  8,  1,  6, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle  9, 12, 10, 0x0
-gsSP1Triangle 12,  9, 13, 0x0
-gsSP1Triangle 13,  9, 14, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  0, 0x0
+gsSP2Triangles  4,  5,  0, 0x0,  0,  6,  1, 0x0
+gsSP2Triangles  7,  1,  8, 0x0,  8,  1,  6, 0x0
+gsSP2Triangles  9, 10, 11, 0x0,  9, 12, 10, 0x0
+gsSP2Triangles 12,  9, 13, 0x0, 13,  9, 14, 0x0
 gsSPVertex mario_seg4_vertex_04010940, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  1,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  5,  7,  6, 0x0
-gsSP1Triangle  8,  9,  5, 0x0
-gsSP1Triangle  0, 10,  1, 0x0
-gsSP1Triangle  1, 10,  3, 0x0
-gsSP1Triangle 11, 10,  0, 0x0
-gsSP1Triangle 12,  3, 10, 0x0
-gsSP1Triangle 12, 10, 13, 0x0
-gsSP1Triangle 13, 10, 11, 0x0
-gsSP1Triangle  5,  9,  7, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  1,  3, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  5,  7,  6, 0x0
+gsSP2Triangles  8,  9,  5, 0x0,  0, 10,  1, 0x0
+gsSP2Triangles  1, 10,  3, 0x0, 11, 10,  0, 0x0
+gsSP2Triangles 12,  3, 10, 0x0, 12, 10, 13, 0x0
+gsSP2Triangles 13, 10, 11, 0x0,  5,  9,  7, 0x0
 gsSP1Triangle  7,  9, 14, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_04011870 # 0x04011870 - 0x04011960
 gsSPVertex mario_seg4_vertex_040110D0, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  5,  6,  7, 0x0
-gsSP1Triangle  5,  8,  6, 0x0
-gsSP1Triangle  5,  4,  8, 0x0
-gsSP1Triangle  7,  3,  5, 0x0
-gsSP1Triangle  0,  2,  6, 0x0
-gsSP1Triangle  6,  9,  7, 0x0
-gsSP1Triangle  0,  6,  8, 0x0
-gsSP1Triangle  3,  7, 10, 0x0
-gsSP1Triangle  1, 11, 12, 0x0
-gsSP1Triangle 12, 13, 14, 0x0
-gsSP1Triangle 11, 13, 12, 0x0
-gsSP1Triangle  1, 12,  2, 0x0
-gsSP1Triangle 14,  2, 12, 0x0
-gsSP1Triangle 15, 14, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  5,  6,  7, 0x0,  5,  8,  6, 0x0
+gsSP2Triangles  5,  4,  8, 0x0,  7,  3,  5, 0x0
+gsSP2Triangles  0,  2,  6, 0x0,  6,  9,  7, 0x0
+gsSP2Triangles  0,  6,  8, 0x0,  3,  7, 10, 0x0
+gsSP2Triangles  1, 11, 12, 0x0, 12, 13, 14, 0x0
+gsSP2Triangles 11, 13, 12, 0x0,  1, 12,  2, 0x0
+gsSP2Triangles 14,  2, 12, 0x0, 15, 14, 13, 0x0
 gsSPVertex mario_seg4_vertex_040111D0, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  7,  3,  2, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  9, 10,  7, 0x0
-gsSP1Triangle  2,  1, 11, 0x0
-gsSP1Triangle  2, 11,  7, 0x0
-gsSP1Triangle  9, 12, 13, 0x0
-gsSP1Triangle 10,  9, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  7,  3,  2, 0x0
+gsSP2Triangles  7,  8,  9, 0x0,  9, 10,  7, 0x0
+gsSP2Triangles  2,  1, 11, 0x0,  2, 11,  7, 0x0
+gsSP2Triangles  9, 12, 13, 0x0, 10,  9, 13, 0x0
 gsSP1Triangle  8, 12,  9, 0x0
 gsSPEndDisplayList
 
@@ -2813,139 +2451,85 @@ vertex      3,     54,     52,      0,      0,  0x95, 0x1D, 0x3C, 0xFF
 
 glabel mario_seg4_dl_040132B0 # 0x040132B0 - 0x04013318
 gsSPVertex mario_seg4_vertex_04012190, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
-gsSP1Triangle  8,  6,  4, 0x0
-gsSP1Triangle  5,  4,  7, 0x0
-gsSP1Triangle  7,  9,  5, 0x0
-gsSP1Triangle  2,  8, 10, 0x0
-gsSP1Triangle  1,  6,  8, 0x0
-gsSP1Triangle  1,  8,  2, 0x0
-gsSP1Triangle  6, 11,  7, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  4,  6,  7, 0x0,  8,  6,  4, 0x0
+gsSP2Triangles  5,  4,  7, 0x0,  7,  9,  5, 0x0
+gsSP2Triangles  2,  8, 10, 0x0,  1,  6,  8, 0x0
+gsSP2Triangles  1,  8,  2, 0x0,  6, 11,  7, 0x0
 gsSP1Triangle  1, 11,  6, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_04013318 # 0x04013318 - 0x040133A8
 gsSPVertex mario_seg4_vertex_04012310, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  1,  0, 0x0
-gsSP1Triangle  0,  4,  3, 0x0
-gsSP1Triangle  3,  5,  1, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  7,  6,  9, 0x0
-gsSP1Triangle  7, 10,  8, 0x0
-gsSP1Triangle  8, 11,  6, 0x0
-gsSP1Triangle 12,  8, 13, 0x0
-gsSP1Triangle 13,  8, 10, 0x0
-gsSP1Triangle 14,  3,  4, 0x0
-gsSP1Triangle 13, 10, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  1,  0, 0x0
+gsSP2Triangles  0,  4,  3, 0x0,  3,  5,  1, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  7,  6,  9, 0x0
+gsSP2Triangles  7, 10,  8, 0x0,  8, 11,  6, 0x0
+gsSP2Triangles 12,  8, 13, 0x0, 13,  8, 10, 0x0
+gsSP2Triangles 14,  3,  4, 0x0, 13, 10, 15, 0x0
 gsSPVertex mario_seg4_vertex_04012410, 5, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  3,  2, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  3,  2, 0x0
 gsSP1Triangle  2,  3,  4, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_040133A8 # 0x040133A8 - 0x040133F8
 gsSPVertex mario_seg4_vertex_04012250, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  3,  0, 0x0
-gsSP1Triangle  4,  2,  5, 0x0
-gsSP1Triangle  1,  5,  2, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  8,  9,  6, 0x0
-gsSP1Triangle  9,  8, 10, 0x0
-gsSP1Triangle 10,  8, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  3,  0, 0x0
+gsSP2Triangles  4,  2,  5, 0x0,  1,  5,  2, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  8,  9,  6, 0x0
+gsSP2Triangles  9,  8, 10, 0x0, 10,  8, 11, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_040133F8 # 0x040133F8 - 0x040136D0
 gsSPVertex mario_seg4_vertex_04012460, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  3,  5, 0x0
-gsSP1Triangle  3,  6,  7, 0x0
-gsSP1Triangle  4,  8,  2, 0x0
-gsSP1Triangle  8,  4,  9, 0x0
-gsSP1Triangle  2,  1,  4, 0x0
-gsSP1Triangle  6,  5, 10, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
-gsSP1Triangle 14, 13, 12, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  3,  5, 0x0,  3,  6,  7, 0x0
+gsSP2Triangles  4,  8,  2, 0x0,  8,  4,  9, 0x0
+gsSP2Triangles  2,  1,  4, 0x0,  6,  5, 10, 0x0
+gsSP2Triangles 11, 12, 13, 0x0, 14, 13, 12, 0x0
 gsSP1Triangle 13, 14,  0, 0x0
 gsSPVertex mario_seg4_vertex_04012550, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9,  8,  7, 0x0
-gsSP1Triangle 10,  1, 11, 0x0
-gsSP1Triangle  1, 12, 11, 0x0
-gsSP1Triangle 12,  1,  0, 0x0
-gsSP1Triangle 13, 11, 14, 0x0
-gsSP1Triangle 12, 14, 11, 0x0
-gsSP1Triangle 11, 13, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9,  8,  7, 0x0
+gsSP2Triangles 10,  1, 11, 0x0,  1, 12, 11, 0x0
+gsSP2Triangles 12,  1,  0, 0x0, 13, 11, 14, 0x0
+gsSP2Triangles 12, 14, 11, 0x0, 11, 13, 15, 0x0
 gsSPVertex mario_seg4_vertex_04012650, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  6,  4, 0x0
-gsSP1Triangle  3,  5,  7, 0x0
-gsSP1Triangle  8,  7,  5, 0x0
-gsSP1Triangle  4,  8,  5, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle 12, 13, 14, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  6,  4, 0x0,  3,  5,  7, 0x0
+gsSP2Triangles  8,  7,  5, 0x0,  4,  8,  5, 0x0
+gsSP2Triangles  9, 10, 11, 0x0, 12, 13, 14, 0x0
 gsSPVertex mario_seg4_vertex_04012740, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  3,  2, 0x0
-gsSP1Triangle  4,  1,  0, 0x0
-gsSP1Triangle  5,  6,  7, 0x0
-gsSP1Triangle  8,  3,  9, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 13, 11, 10, 0x0
-gsSP1Triangle 11, 13, 14, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  3,  2, 0x0
+gsSP2Triangles  4,  1,  0, 0x0,  5,  6,  7, 0x0
+gsSP2Triangles  8,  3,  9, 0x0, 10, 11, 12, 0x0
+gsSP2Triangles 13, 11, 10, 0x0, 11, 13, 14, 0x0
 gsSPVertex mario_seg4_vertex_04012830, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  5, 0x0
-gsSP1Triangle  8,  7,  6, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle  8,  6,  9, 0x0
-gsSP1Triangle  9, 11, 10, 0x0
-gsSP1Triangle  9, 12, 11, 0x0
-gsSP1Triangle  0, 13,  1, 0x0
-gsSP1Triangle 13, 14,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  5, 0x0,  8,  7,  6, 0x0
+gsSP2Triangles  8,  9, 10, 0x0,  8,  6,  9, 0x0
+gsSP2Triangles  9, 11, 10, 0x0,  9, 12, 11, 0x0
+gsSP2Triangles  0, 13,  1, 0x0, 13, 14,  1, 0x0
 gsSP1Triangle  1, 14, 15, 0x0
 gsSPVertex mario_seg4_vertex_04012930, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  2, 0x0
-gsSP1Triangle  2,  4,  0, 0x0
-gsSP1Triangle  1,  0,  5, 0x0
-gsSP1Triangle  1,  6,  7, 0x0
-gsSP1Triangle  1,  5,  6, 0x0
-gsSP1Triangle  7,  8,  1, 0x0
-gsSP1Triangle  3,  9,  4, 0x0
-gsSP1Triangle  9,  3, 10, 0x0
-gsSP1Triangle  4, 11,  0, 0x0
-gsSP1Triangle 11,  4, 12, 0x0
-gsSP1Triangle  4,  9, 12, 0x0
-gsSP1Triangle 10, 13, 14, 0x0
-gsSP1Triangle  0, 11, 15, 0x0
-gsSP1Triangle  5,  0, 15, 0x0
-gsSP1Triangle 14,  9, 10, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  2, 0x0
+gsSP2Triangles  2,  4,  0, 0x0,  1,  0,  5, 0x0
+gsSP2Triangles  1,  6,  7, 0x0,  1,  5,  6, 0x0
+gsSP2Triangles  7,  8,  1, 0x0,  3,  9,  4, 0x0
+gsSP2Triangles  9,  3, 10, 0x0,  4, 11,  0, 0x0
+gsSP2Triangles 11,  4, 12, 0x0,  4,  9, 12, 0x0
+gsSP2Triangles 10, 13, 14, 0x0,  0, 11, 15, 0x0
+gsSP2Triangles  5,  0, 15, 0x0, 14,  9, 10, 0x0
 gsSPVertex mario_seg4_vertex_04012A30, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  0,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  6,  5,  7, 0x0
-gsSP1Triangle  8,  5,  4, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle  2, 12,  0, 0x0
-gsSP1Triangle 13,  4,  6, 0x0
-gsSP1Triangle  6, 14, 15, 0x0
-gsSP1Triangle  6,  7, 14, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  0,  3, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  6,  5,  7, 0x0
+gsSP2Triangles  8,  5,  4, 0x0,  9, 10, 11, 0x0
+gsSP2Triangles  2, 12,  0, 0x0, 13,  4,  6, 0x0
+gsSP2Triangles  6, 14, 15, 0x0,  6,  7, 14, 0x0
 gsSP1Triangle 13,  6, 15, 0x0
 gsSPVertex mario_seg4_vertex_04012B30, 9, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  0,  2, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  7,  6,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  0,  2, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  7,  6,  5, 0x0
 gsSP1Triangle  8,  5,  4, 0x0
 gsSPVertex mario_seg4_vertex_04013280, 3, 0
 gsSP1Triangle  0,  1,  2, 0x0
@@ -2953,98 +2537,56 @@ gsSPEndDisplayList
 
 glabel mario_seg4_dl_040136D0 # 0x040136D0 - 0x040139C0
 gsSPVertex mario_seg4_vertex_04012BC0, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  6,  7, 0x0
-gsSP1Triangle  3,  7,  4, 0x0
-gsSP1Triangle  8,  4,  9, 0x0
-gsSP1Triangle  7, 10,  4, 0x0
-gsSP1Triangle  4, 10,  9, 0x0
-gsSP1Triangle  8,  5,  4, 0x0
-gsSP1Triangle 11,  1, 12, 0x0
-gsSP1Triangle  1,  0, 12, 0x0
-gsSP1Triangle  1, 13,  2, 0x0
-gsSP1Triangle  1, 11, 14, 0x0
-gsSP1Triangle 13,  1, 14, 0x0
-gsSP1Triangle 15,  2, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  6,  7, 0x0,  3,  7,  4, 0x0
+gsSP2Triangles  8,  4,  9, 0x0,  7, 10,  4, 0x0
+gsSP2Triangles  4, 10,  9, 0x0,  8,  5,  4, 0x0
+gsSP2Triangles 11,  1, 12, 0x0,  1,  0, 12, 0x0
+gsSP2Triangles  1, 13,  2, 0x0,  1, 11, 14, 0x0
+gsSP2Triangles 13,  1, 14, 0x0, 15,  2, 13, 0x0
 gsSPVertex mario_seg4_vertex_04012CC0, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  4,  3,  6, 0x0
-gsSP1Triangle  3,  7,  6, 0x0
-gsSP1Triangle  8,  7,  3, 0x0
-gsSP1Triangle  5,  8,  3, 0x0
-gsSP1Triangle  9, 10,  4, 0x0
-gsSP1Triangle 11,  4,  6, 0x0
-gsSP1Triangle 11,  9,  4, 0x0
-gsSP1Triangle 10,  5,  4, 0x0
-gsSP1Triangle 10, 12,  5, 0x0
-gsSP1Triangle  5, 13, 14, 0x0
-gsSP1Triangle  8,  5, 14, 0x0
-gsSP1Triangle  9,  2, 10, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  4,  3,  6, 0x0,  3,  7,  6, 0x0
+gsSP2Triangles  8,  7,  3, 0x0,  5,  8,  3, 0x0
+gsSP2Triangles  9, 10,  4, 0x0, 11,  4,  6, 0x0
+gsSP2Triangles 11,  9,  4, 0x0, 10,  5,  4, 0x0
+gsSP2Triangles 10, 12,  5, 0x0,  5, 13, 14, 0x0
+gsSP2Triangles  8,  5, 14, 0x0,  9,  2, 10, 0x0
 gsSPVertex mario_seg4_vertex_04012DB0, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  1,  4,  5, 0x0
-gsSP1Triangle  4,  6,  5, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle 10,  7,  9, 0x0
-gsSP1Triangle  8,  7, 11, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
-gsSP1Triangle 14, 11, 13, 0x0
-gsSP1Triangle 14,  8, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  1,  4,  5, 0x0,  4,  6,  5, 0x0
+gsSP2Triangles  7,  8,  9, 0x0, 10,  7,  9, 0x0
+gsSP2Triangles  8,  7, 11, 0x0, 11, 12, 13, 0x0
+gsSP2Triangles 14, 11, 13, 0x0, 14,  8, 11, 0x0
 gsSP1Triangle 15, 13, 12, 0x0
 gsSPVertex mario_seg4_vertex_04012EB0, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  4,  6,  5, 0x0
-gsSP1Triangle  7,  8,  5, 0x0
-gsSP1Triangle  8,  3,  5, 0x0
-gsSP1Triangle  9,  7,  5, 0x0
-gsSP1Triangle 10,  6,  4, 0x0
-gsSP1Triangle  4,  3, 11, 0x0
-gsSP1Triangle  3, 12, 11, 0x0
-gsSP1Triangle 13, 14, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  4,  6,  5, 0x0,  7,  8,  5, 0x0
+gsSP2Triangles  8,  3,  5, 0x0,  9,  7,  5, 0x0
+gsSP2Triangles 10,  6,  4, 0x0,  4,  3, 11, 0x0
+gsSP2Triangles  3, 12, 11, 0x0, 13, 14, 15, 0x0
 gsSPVertex mario_seg4_vertex_04012FB0, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  4,  3, 0x0
-gsSP1Triangle  7,  6,  8, 0x0
-gsSP1Triangle  9,  6,  3, 0x0
-gsSP1Triangle  6,  9,  8, 0x0
-gsSP1Triangle 10, 11,  0, 0x0
-gsSP1Triangle 12,  0,  2, 0x0
-gsSP1Triangle 10,  0, 12, 0x0
-gsSP1Triangle 10,  5, 11, 0x0
-gsSP1Triangle 13, 14, 15, 0x0
-gsSP1Triangle 13,  3, 10, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  4,  3, 0x0,  7,  6,  8, 0x0
+gsSP2Triangles  9,  6,  3, 0x0,  6,  9,  8, 0x0
+gsSP2Triangles 10, 11,  0, 0x0, 12,  0,  2, 0x0
+gsSP2Triangles 10,  0, 12, 0x0, 10,  5, 11, 0x0
+gsSP2Triangles 13, 14, 15, 0x0, 13,  3, 10, 0x0
 gsSPVertex mario_seg4_vertex_040130B0, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  0,  4, 0x0
-gsSP1Triangle  5,  0,  2, 0x0
-gsSP1Triangle  5,  4,  0, 0x0
-gsSP1Triangle  3,  6,  7, 0x0
-gsSP1Triangle  8,  9,  7, 0x0
-gsSP1Triangle  6, 10,  7, 0x0
-gsSP1Triangle  8,  7, 10, 0x0
-gsSP1Triangle  3, 11, 12, 0x0
-gsSP1Triangle 13, 14,  3, 0x0
-gsSP1Triangle 12,  6,  3, 0x0
-gsSP1Triangle  6, 15, 10, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  0,  4, 0x0
+gsSP2Triangles  5,  0,  2, 0x0,  5,  4,  0, 0x0
+gsSP2Triangles  3,  6,  7, 0x0,  8,  9,  7, 0x0
+gsSP2Triangles  6, 10,  7, 0x0,  8,  7, 10, 0x0
+gsSP2Triangles  3, 11, 12, 0x0, 13, 14,  3, 0x0
+gsSP2Triangles 12,  6,  3, 0x0,  6, 15, 10, 0x0
 gsSP1Triangle 12, 15,  6, 0x0
 gsSPVertex mario_seg4_vertex_040131B0, 13, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  1,  0, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  5,  4,  7, 0x0
-gsSP1Triangle  6,  5,  8, 0x0
-gsSP1Triangle  9,  8,  5, 0x0
-gsSP1Triangle  5,  7,  9, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 11, 10,  3, 0x0
-gsSP1Triangle 12,  2, 10, 0x0
-gsSP1Triangle  2,  1, 10, 0x0
-gsSP1Triangle 10,  1,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  1,  0, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  5,  4,  7, 0x0
+gsSP2Triangles  6,  5,  8, 0x0,  9,  8,  5, 0x0
+gsSP2Triangles  5,  7,  9, 0x0, 10, 11, 12, 0x0
+gsSP2Triangles 11, 10,  3, 0x0, 12,  2, 10, 0x0
+gsSP2Triangles  2,  1, 10, 0x0, 10,  1,  3, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_040139C0 # 0x040139C0 - 0x040139E8
@@ -3366,48 +2908,30 @@ vertex     43,     80,    -45,      0,      0,  0x2C, 0x70, 0xDB, 0x00
 
 glabel mario_seg4_dl_040144D8 # 0x040144D8 - 0x04014638
 gsSPVertex mario_seg4_vertex_04014098, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle 12, 13, 14, 0x0
-gsSP1Triangle 12, 15,  6, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
+gsSP2Triangles 12, 13, 14, 0x0, 12, 15,  6, 0x0
 gsSP1Triangle  3, 10,  7, 0x0
 gsSPVertex mario_seg4_vertex_04014198, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  0,  2,  6, 0x0
-gsSP1Triangle  7,  5,  4, 0x0
-gsSP1Triangle  7,  8,  6, 0x0
-gsSP1Triangle  9, 10,  8, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
-gsSP1Triangle  2,  1,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  0,  2,  6, 0x0,  7,  5,  4, 0x0
+gsSP2Triangles  7,  8,  6, 0x0,  9, 10,  8, 0x0
+gsSP2Triangles 11, 12, 13, 0x0,  2,  1,  5, 0x0
 gsSP1Triangle 14, 15,  0, 0x0
 gsSPVertex mario_seg4_vertex_04014298, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  5,  3,  7, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
-gsSP1Triangle 11, 10, 14, 0x0
-gsSP1Triangle  0, 12, 15, 0x0
-gsSP1Triangle 14,  9,  6, 0x0
-gsSP1Triangle  2, 13, 12, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  5,  3,  7, 0x0
+gsSP2Triangles  8,  9, 10, 0x0, 11, 12, 13, 0x0
+gsSP2Triangles 11, 10, 14, 0x0,  0, 12, 15, 0x0
+gsSP2Triangles 14,  9,  6, 0x0,  2, 13, 12, 0x0
 gsSPVertex mario_seg4_vertex_04014398, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle  9, 12, 13, 0x0
-gsSP1Triangle 13, 12, 14, 0x0
-gsSP1Triangle 14, 12,  8, 0x0
-gsSP1Triangle  8, 12, 15, 0x0
-gsSP1Triangle 15, 12,  1, 0x0
-gsSP1Triangle  1, 12,  2, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
+gsSP2Triangles  9, 12, 13, 0x0, 13, 12, 14, 0x0
+gsSP2Triangles 14, 12,  8, 0x0,  8, 12, 15, 0x0
+gsSP2Triangles 15, 12,  1, 0x0,  1, 12,  2, 0x0
 gsSPVertex mario_seg4_vertex_04014498, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  1,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  1,  3, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_04014638 # 0x04014638 - 0x04014668
@@ -3454,18 +2978,12 @@ vertex     -7,     20,     18,      0,      0,  0x81, 0xFF, 0x00, 0x00
 
 glabel mario_seg4_dl_040147D0 # 0x040147D0 - 0x04014840
 gsSPVertex mario_seg4_vertex_040146E0, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  1, 0x0
-gsSP1Triangle  4,  5,  1, 0x0
-gsSP1Triangle  6,  7,  5, 0x0
-gsSP1Triangle  8,  2,  7, 0x0
-gsSP1Triangle  6,  8,  7, 0x0
-gsSP1Triangle  9,  6,  5, 0x0
-gsSP1Triangle 10,  0,  2, 0x0
-gsSP1Triangle  5,  2,  1, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
-gsSP1Triangle 13, 14, 11, 0x0
-gsSP1Triangle  5,  7,  2, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  1, 0x0
+gsSP2Triangles  4,  5,  1, 0x0,  6,  7,  5, 0x0
+gsSP2Triangles  8,  2,  7, 0x0,  6,  8,  7, 0x0
+gsSP2Triangles  9,  6,  5, 0x0, 10,  0,  2, 0x0
+gsSP2Triangles  5,  2,  1, 0x0, 11, 12, 13, 0x0
+gsSP2Triangles 13, 14, 11, 0x0,  5,  7,  2, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_04014840 # 0x04014840 - 0x04014860
@@ -3493,18 +3011,12 @@ vertex     -9,     15,     15,      0,      0,  0x81, 0xFF, 0x00, 0x00
 
 glabel mario_seg4_dl_04014950 # 0x04014950 - 0x040149C0
 gsSPVertex mario_seg4_vertex_04014860, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  1, 0x0
-gsSP1Triangle  4,  5,  1, 0x0
-gsSP1Triangle  6,  7,  5, 0x0
-gsSP1Triangle  8,  2,  7, 0x0
-gsSP1Triangle  6,  8,  7, 0x0
-gsSP1Triangle  9,  6,  5, 0x0
-gsSP1Triangle 10,  0,  2, 0x0
-gsSP1Triangle  1,  7,  2, 0x0
-gsSP1Triangle  1,  5,  7, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
-gsSP1Triangle 13, 14, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  1, 0x0
+gsSP2Triangles  4,  5,  1, 0x0,  6,  7,  5, 0x0
+gsSP2Triangles  8,  2,  7, 0x0,  6,  8,  7, 0x0
+gsSP2Triangles  9,  6,  5, 0x0, 10,  0,  2, 0x0
+gsSP2Triangles  1,  7,  2, 0x0,  1,  5,  7, 0x0
+gsSP2Triangles 11, 12, 13, 0x0, 13, 14, 11, 0x0
 gsSPEndDisplayList
 
 mario_seg4_vertex_040149C0: # 0x040149C0
@@ -3560,41 +3072,25 @@ vertex    -26,     40,     -1,      0,      0,  0x8C, 0xCE, 0x01, 0x00
 
 glabel mario_seg4_dl_04014C90 # 0x04014C90 - 0x04014DC0
 gsSPVertex mario_seg4_vertex_040149C0, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  3,  4, 0x0
-gsSP1Triangle  5,  3,  6, 0x0
-gsSP1Triangle  6,  1,  0, 0x0
-gsSP1Triangle  2,  1,  7, 0x0
-gsSP1Triangle  7,  1,  6, 0x0
-gsSP1Triangle  6,  3,  8, 0x0
-gsSP1Triangle  3,  2,  8, 0x0
-gsSP1Triangle  0,  9, 10, 0x0
-gsSP1Triangle 11,  9,  0, 0x0
-gsSP1Triangle 10, 12, 13, 0x0
-gsSP1Triangle 14, 12, 11, 0x0
-gsSP1Triangle 11, 12,  9, 0x0
-gsSP1Triangle  9, 12, 10, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  3,  4, 0x0
+gsSP2Triangles  5,  3,  6, 0x0,  6,  1,  0, 0x0
+gsSP2Triangles  2,  1,  7, 0x0,  7,  1,  6, 0x0
+gsSP2Triangles  6,  3,  8, 0x0,  3,  2,  8, 0x0
+gsSP2Triangles  0,  9, 10, 0x0, 11,  9,  0, 0x0
+gsSP2Triangles 10, 12, 13, 0x0, 14, 12, 11, 0x0
+gsSP2Triangles 11, 12,  9, 0x0,  9, 12, 10, 0x0
 gsSP1Triangle 15, 11,  0, 0x0
 gsSPVertex mario_seg4_vertex_04014AC0, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  5,  6,  7, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  9, 10,  3, 0x0
-gsSP1Triangle  7,  0,  2, 0x0
-gsSP1Triangle  7,  2, 11, 0x0
-gsSP1Triangle  3, 12, 13, 0x0
-gsSP1Triangle  3, 13,  0, 0x0
-gsSP1Triangle 11,  2, 14, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  5,  6,  7, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles  9, 10,  3, 0x0,  7,  0,  2, 0x0
+gsSP2Triangles  7,  2, 11, 0x0,  3, 12, 13, 0x0
+gsSP2Triangles  3, 13,  0, 0x0, 11,  2, 14, 0x0
 gsSPVertex mario_seg4_vertex_04014BB0, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  0, 0x0
-gsSP1Triangle  5,  2,  6, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  7,  2,  8, 0x0
-gsSP1Triangle  7,  0,  2, 0x0
-gsSP1Triangle  5,  8,  2, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  0, 0x0
+gsSP2Triangles  5,  2,  6, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles  7,  2,  8, 0x0,  7,  0,  2, 0x0
+gsSP2Triangles  5,  8,  2, 0x0, 10, 11, 12, 0x0
 gsSP1Triangle 10, 13, 11, 0x0
 gsSPEndDisplayList
 
@@ -3623,18 +3119,12 @@ vertex     -8,     21,    -15,      0,      0,  0x81, 0xFF, 0x00, 0x00
 
 glabel mario_seg4_dl_04014ED0 # 0x04014ED0 - 0x04014F40
 gsSPVertex mario_seg4_vertex_04014DE0, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  3,  4, 0x0
-gsSP1Triangle  2,  5,  6, 0x0
-gsSP1Triangle  7,  8,  5, 0x0
-gsSP1Triangle  7,  1,  8, 0x0
-gsSP1Triangle  2,  7,  5, 0x0
-gsSP1Triangle  0,  2,  9, 0x0
-gsSP1Triangle  0,  9, 10, 0x0
-gsSP1Triangle  1,  0,  3, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
-gsSP1Triangle 13, 14, 11, 0x0
-gsSP1Triangle  1,  7,  2, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  3,  4, 0x0
+gsSP2Triangles  2,  5,  6, 0x0,  7,  8,  5, 0x0
+gsSP2Triangles  7,  1,  8, 0x0,  2,  7,  5, 0x0
+gsSP2Triangles  0,  2,  9, 0x0,  0,  9, 10, 0x0
+gsSP2Triangles  1,  0,  3, 0x0, 11, 12, 13, 0x0
+gsSP2Triangles 13, 14, 11, 0x0,  1,  7,  2, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_04014F40 # 0x04014F40 - 0x04014F60
@@ -3662,18 +3152,12 @@ vertex     -5,     17,    -12,      0,      0,  0x81, 0xFE, 0x03, 0x00
 
 glabel mario_seg4_dl_04015050 # 0x04015050 - 0x040150C0
 gsSPVertex mario_seg4_vertex_04014F60, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  3,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  4,  9, 10, 0x0
-gsSP1Triangle  3, 11,  9, 0x0
-gsSP1Triangle  3,  6, 11, 0x0
-gsSP1Triangle  4,  3,  9, 0x0
-gsSP1Triangle  5,  4, 12, 0x0
-gsSP1Triangle  5, 12, 13, 0x0
-gsSP1Triangle  6,  5,  7, 0x0
-gsSP1Triangle  2, 14,  0, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  3,  5, 0x0,  6,  7,  8, 0x0
+gsSP2Triangles  4,  9, 10, 0x0,  3, 11,  9, 0x0
+gsSP2Triangles  3,  6, 11, 0x0,  4,  3,  9, 0x0
+gsSP2Triangles  5,  4, 12, 0x0,  5, 12, 13, 0x0
+gsSP2Triangles  6,  5,  7, 0x0,  2, 14,  0, 0x0
 gsSPEndDisplayList
 
 mario_seg4_vertex_040150C0: # 0x040150C0
@@ -3731,42 +3215,25 @@ vertex     42,    -20,     54,      0,      0,  0xD9, 0xBB, 0x62, 0x00
 
 glabel mario_seg4_dl_040153B0 # 0x040153B0 - 0x040154E0
 gsSPVertex mario_seg4_vertex_040150C0, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  0,  2, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  7,  8, 0x0
-gsSP1Triangle  5,  4,  8, 0x0
-gsSP1Triangle  9,  5,  8, 0x0
-gsSP1Triangle 10,  4,  6, 0x0
-gsSP1Triangle  7, 11, 12, 0x0
-gsSP1Triangle  4, 13,  7, 0x0
-gsSP1Triangle  7, 12,  8, 0x0
-gsSP1Triangle 14,  6, 15, 0x0
-gsSP1Triangle  6,  5, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  0,  2, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  7,  8, 0x0
+gsSP2Triangles  5,  4,  8, 0x0,  9,  5,  8, 0x0
+gsSP2Triangles 10,  4,  6, 0x0,  7, 11, 12, 0x0
+gsSP2Triangles  4, 13,  7, 0x0,  7, 12,  8, 0x0
+gsSP2Triangles 14,  6, 15, 0x0,  6,  5, 15, 0x0
 gsSPVertex mario_seg4_vertex_040151C0, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  3,  2, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  6,  7,  2, 0x0
-gsSP1Triangle  2,  8,  9, 0x0
-gsSP1Triangle  9, 10,  4, 0x0
-gsSP1Triangle  1, 11,  3, 0x0
-gsSP1Triangle  3, 12, 13, 0x0
-gsSP1Triangle 11, 14, 15, 0x0
-gsSP1Triangle 15, 14, 12, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  3,  2, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  6,  7,  2, 0x0
+gsSP2Triangles  2,  8,  9, 0x0,  9, 10,  4, 0x0
+gsSP2Triangles  1, 11,  3, 0x0,  3, 12, 13, 0x0
+gsSP2Triangles 11, 14, 15, 0x0, 15, 14, 12, 0x0
 gsSPVertex mario_seg4_vertex_040152C0, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  1,  4, 0x0
-gsSP1Triangle  5,  6,  0, 0x0
-gsSP1Triangle  4,  6,  5, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  7,  9, 10, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 12, 11,  8, 0x0
-gsSP1Triangle  5, 11, 10, 0x0
-gsSP1Triangle 10,  9, 13, 0x0
-gsSP1Triangle 14,  9,  8, 0x0
-gsSP1Triangle  8, 11,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  1,  4, 0x0
+gsSP2Triangles  5,  6,  0, 0x0,  4,  6,  5, 0x0
+gsSP2Triangles  7,  8,  9, 0x0,  7,  9, 10, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 12, 11,  8, 0x0
+gsSP2Triangles  5, 11, 10, 0x0, 10,  9, 13, 0x0
+gsSP2Triangles 14,  9,  8, 0x0,  8, 11,  5, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_040154E0 # 0x040154E0 - 0x04015500
@@ -3802,22 +3269,14 @@ vertex     14,     50,    -23,      0,      0,  0x82, 0xF7, 0xFF, 0x00
 
 glabel mario_seg4_dl_04015620 # 0x04015620 - 0x040156B0
 gsSPVertex mario_seg4_vertex_04015530, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  0,  4, 0x0
-gsSP1Triangle  5,  3,  6, 0x0
-gsSP1Triangle  7,  5,  6, 0x0
-gsSP1Triangle  1,  7,  2, 0x0
-gsSP1Triangle  7,  8,  2, 0x0
-gsSP1Triangle  6,  8,  7, 0x0
-gsSP1Triangle  3,  4,  6, 0x0
-gsSP1Triangle  0,  9,  4, 0x0
-gsSP1Triangle  2,  9,  0, 0x0
-gsSP1Triangle  9,  2,  8, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 12, 13, 10, 0x0
-gsSP1Triangle 13, 14, 10, 0x0
-gsSP1Triangle  8,  6,  9, 0x0
-gsSP1Triangle  6,  4,  9, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  0,  4, 0x0
+gsSP2Triangles  5,  3,  6, 0x0,  7,  5,  6, 0x0
+gsSP2Triangles  1,  7,  2, 0x0,  7,  8,  2, 0x0
+gsSP2Triangles  6,  8,  7, 0x0,  3,  4,  6, 0x0
+gsSP2Triangles  0,  9,  4, 0x0,  2,  9,  0, 0x0
+gsSP2Triangles  9,  2,  8, 0x0, 10, 11, 12, 0x0
+gsSP2Triangles 12, 13, 10, 0x0, 13, 14, 10, 0x0
+gsSP2Triangles  8,  6,  9, 0x0,  6,  4,  9, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_040156B0 # 0x040156B0 - 0x040156E0
@@ -3864,22 +3323,14 @@ vertex     69,     47,     37,      0,      0,  0x7E, 0xFA, 0x01, 0x00
 
 glabel mario_seg4_dl_04015848 # 0x04015848 - 0x040158D8
 gsSPVertex mario_seg4_vertex_04015758, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  2,  4, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  5,  7, 0x0
-gsSP1Triangle  0,  7,  1, 0x0
-gsSP1Triangle  0,  8,  7, 0x0
-gsSP1Triangle  7,  8,  6, 0x0
-gsSP1Triangle  5,  6,  3, 0x0
-gsSP1Triangle  3,  9,  2, 0x0
-gsSP1Triangle  2,  9,  0, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle  8,  0,  9, 0x0
-gsSP1Triangle  9,  6,  8, 0x0
-gsSP1Triangle  9,  3,  6, 0x0
-gsSP1Triangle 12, 13, 10, 0x0
-gsSP1Triangle 13, 14, 10, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  2,  4, 0x0
+gsSP2Triangles  3,  4,  5, 0x0,  6,  5,  7, 0x0
+gsSP2Triangles  0,  7,  1, 0x0,  0,  8,  7, 0x0
+gsSP2Triangles  7,  8,  6, 0x0,  5,  6,  3, 0x0
+gsSP2Triangles  3,  9,  2, 0x0,  2,  9,  0, 0x0
+gsSP2Triangles 10, 11, 12, 0x0,  8,  0,  9, 0x0
+gsSP2Triangles  9,  6,  8, 0x0,  9,  3,  6, 0x0
+gsSP2Triangles 12, 13, 10, 0x0, 13, 14, 10, 0x0
 gsSPEndDisplayList
 
 mario_seg4_vertex_040158D8: # 0x040158D8
@@ -3916,29 +3367,18 @@ vertex     25,    -34,     11,      0,      0,  0xDD, 0x87, 0xFB, 0x00
 
 glabel mario_seg4_dl_04015A98 # 0x04015A98 - 0x04015B60
 gsSPVertex mario_seg4_vertex_040158D8, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  0,  2, 0x0
-gsSP1Triangle  3,  2,  4, 0x0
-gsSP1Triangle  5,  3,  4, 0x0
-gsSP1Triangle  6,  5,  4, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 13,  7,  9, 0x0
-gsSP1Triangle 10, 12, 14, 0x0
-gsSP1Triangle 10, 14, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  0,  2, 0x0
+gsSP2Triangles  3,  2,  4, 0x0,  5,  3,  4, 0x0
+gsSP2Triangles  6,  5,  4, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 13,  7,  9, 0x0
+gsSP2Triangles 10, 12, 14, 0x0, 10, 14, 15, 0x0
 gsSPVertex mario_seg4_vertex_040159D8, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  0,  3, 0x0
-gsSP1Triangle  2,  4,  5, 0x0
-gsSP1Triangle  5,  0,  2, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle 11,  3,  0, 0x0
-gsSP1Triangle 10,  3, 11, 0x0
-gsSP1Triangle  0,  5, 11, 0x0
-gsSP1Triangle 11,  5,  6, 0x0
-gsSP1Triangle 11,  6, 10, 0x0
-gsSP1Triangle  6,  8, 10, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  0,  3, 0x0
+gsSP2Triangles  2,  4,  5, 0x0,  5,  0,  2, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  8,  9, 10, 0x0
+gsSP2Triangles 11,  3,  0, 0x0, 10,  3, 11, 0x0
+gsSP2Triangles  0,  5, 11, 0x0, 11,  5,  6, 0x0
+gsSP2Triangles 11,  6, 10, 0x0,  6,  8, 10, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_04015B60 # 0x04015B60 - 0x04015B80
@@ -3966,22 +3406,14 @@ vertex     14,     50,     24,      0,      0,  0x82, 0xF5, 0x02, 0x00
 
 glabel mario_seg4_dl_04015C70 # 0x04015C70 - 0x04015D00
 gsSPVertex mario_seg4_vertex_04015B80, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  5,  4, 0x0
-gsSP1Triangle  7,  5,  6, 0x0
-gsSP1Triangle  8,  7,  9, 0x0
-gsSP1Triangle 10,  3,  8, 0x0
-gsSP1Triangle  4,  3, 10, 0x0
-gsSP1Triangle  4, 10, 11, 0x0
-gsSP1Triangle  8, 12, 10, 0x0
-gsSP1Triangle  8,  9, 12, 0x0
-gsSP1Triangle  7,  6,  9, 0x0
-gsSP1Triangle  4, 11,  6, 0x0
-gsSP1Triangle  5,  8,  3, 0x0
-gsSP1Triangle  5,  7,  8, 0x0
-gsSP1Triangle  2, 13,  0, 0x0
-gsSP1Triangle  2, 14, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  5,  4, 0x0,  7,  5,  6, 0x0
+gsSP2Triangles  8,  7,  9, 0x0, 10,  3,  8, 0x0
+gsSP2Triangles  4,  3, 10, 0x0,  4, 10, 11, 0x0
+gsSP2Triangles  8, 12, 10, 0x0,  8,  9, 12, 0x0
+gsSP2Triangles  7,  6,  9, 0x0,  4, 11,  6, 0x0
+gsSP2Triangles  5,  8,  3, 0x0,  5,  7,  8, 0x0
+gsSP2Triangles  2, 13,  0, 0x0,  2, 14, 13, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_04015D00 # 0x04015D00 - 0x04015D20
@@ -4009,22 +3441,14 @@ vertex     70,     49,    -37,      0,      0,  0x7E, 0xF9, 0xFE, 0x00
 
 glabel mario_seg4_dl_04015E10 # 0x04015E10 - 0x04015EA0
 gsSPVertex mario_seg4_vertex_04015D20, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  1,  0,  6, 0x0
-gsSP1Triangle  6,  0,  7, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  8,  2, 10, 0x0
-gsSP1Triangle 10,  2,  1, 0x0
-gsSP1Triangle 11, 10,  1, 0x0
-gsSP1Triangle 10,  9,  8, 0x0
-gsSP1Triangle  9, 12,  7, 0x0
-gsSP1Triangle 12,  6,  7, 0x0
-gsSP1Triangle  6, 11,  1, 0x0
-gsSP1Triangle  5, 13,  3, 0x0
-gsSP1Triangle  5, 14, 13, 0x0
-gsSP1Triangle  2,  8,  0, 0x0
-gsSP1Triangle  8,  7,  0, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  1,  0,  6, 0x0,  6,  0,  7, 0x0
+gsSP2Triangles  7,  8,  9, 0x0,  8,  2, 10, 0x0
+gsSP2Triangles 10,  2,  1, 0x0, 11, 10,  1, 0x0
+gsSP2Triangles 10,  9,  8, 0x0,  9, 12,  7, 0x0
+gsSP2Triangles 12,  6,  7, 0x0,  6, 11,  1, 0x0
+gsSP2Triangles  5, 13,  3, 0x0,  5, 14, 13, 0x0
+gsSP2Triangles  2,  8,  0, 0x0,  8,  7,  0, 0x0
 gsSPEndDisplayList
 
 mario_seg4_vertex_04015EA0: # 0x04015EA0
@@ -4055,29 +3479,18 @@ vertex    107,     12,     20,      0,      0,  0x29, 0x77, 0x00, 0x00
 
 glabel mario_seg4_dl_04016000 # 0x04016000 - 0x040160C8
 gsSPVertex mario_seg4_vertex_04015EA0, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  2,  4,  3, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  6,  0, 0x0
-gsSP1Triangle  5,  6,  3, 0x0
-gsSP1Triangle  0,  7,  1, 0x0
-gsSP1Triangle  1,  8,  2, 0x0
-gsSP1Triangle  9,  5,  4, 0x0
-gsSP1Triangle  4, 10,  9, 0x0
-gsSP1Triangle  6,  5, 11, 0x0
-gsSP1Triangle  9, 11,  5, 0x0
-gsSP1Triangle 11, 12,  6, 0x0
-gsSP1Triangle 12,  7,  6, 0x0
-gsSP1Triangle  8,  4,  2, 0x0
-gsSP1Triangle  7,  0,  6, 0x0
-gsSP1Triangle  8, 10,  4, 0x0
-gsSP1Triangle 13, 14, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  2,  4,  3, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  6,  0, 0x0,  5,  6,  3, 0x0
+gsSP2Triangles  0,  7,  1, 0x0,  1,  8,  2, 0x0
+gsSP2Triangles  9,  5,  4, 0x0,  4, 10,  9, 0x0
+gsSP2Triangles  6,  5, 11, 0x0,  9, 11,  5, 0x0
+gsSP2Triangles 11, 12,  6, 0x0, 12,  7,  6, 0x0
+gsSP2Triangles  8,  4,  2, 0x0,  7,  0,  6, 0x0
+gsSP2Triangles  8, 10,  4, 0x0, 13, 14, 15, 0x0
 gsSPVertex mario_seg4_vertex_04015FA0, 6, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  3,  4,  1, 0x0
-gsSP1Triangle  3,  5,  4, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  3,  4,  1, 0x0,  3,  5,  4, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_040160C8 # 0x040160C8 - 0x04016108
@@ -4196,79 +3609,49 @@ vertex     40,    -66,     48,      0,      0,  0x1D, 0x91, 0x35, 0xFF
 
 glabel mario_seg4_dl_04016668 # 0x04016668 - 0x040166B8
 gsSPVertex mario_seg4_vertex_04016148, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  1, 0x0
-gsSP1Triangle  2,  1,  4, 0x0
-gsSP1Triangle  4,  5,  2, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10,  6, 0x0
-gsSP1Triangle  6, 10,  7, 0x0
-gsSP1Triangle  7, 10, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  1, 0x0
+gsSP2Triangles  2,  1,  4, 0x0,  4,  5,  2, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10,  6, 0x0
+gsSP2Triangles  6, 10,  7, 0x0,  7, 10, 11, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_040166B8 # 0x040166B8 - 0x04016800
 gsSPVertex mario_seg4_vertex_04016398, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  0,  3, 0x0
-gsSP1Triangle  3,  4,  1, 0x0
-gsSP1Triangle  2,  5,  0, 0x0
-gsSP1Triangle  4,  3,  6, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  7, 10, 11, 0x0
-gsSP1Triangle  8,  7, 11, 0x0
-gsSP1Triangle 11, 10,  2, 0x0
-gsSP1Triangle 10, 12,  2, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  0,  3, 0x0
+gsSP2Triangles  3,  4,  1, 0x0,  2,  5,  0, 0x0
+gsSP2Triangles  4,  3,  6, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles  7, 10, 11, 0x0,  8,  7, 11, 0x0
+gsSP2Triangles 11, 10,  2, 0x0, 10, 12,  2, 0x0
 gsSP1Triangle 13, 14, 15, 0x0
 gsSPVertex mario_seg4_vertex_04016498, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  1,  0, 0x0
-gsSP1Triangle  4,  2,  1, 0x0
-gsSP1Triangle  1,  3,  4, 0x0
-gsSP1Triangle  5,  2,  4, 0x0
-gsSP1Triangle  6,  2,  5, 0x0
-gsSP1Triangle  4,  3,  7, 0x0
-gsSP1Triangle  8,  9,  7, 0x0
-gsSP1Triangle  5,  4,  7, 0x0
-gsSP1Triangle  9, 10,  7, 0x0
-gsSP1Triangle 11,  8,  7, 0x0
-gsSP1Triangle  3, 11,  7, 0x0
-gsSP1Triangle  7, 10,  5, 0x0
-gsSP1Triangle 10,  9, 12, 0x0
-gsSP1Triangle 10, 13, 14, 0x0
-gsSP1Triangle 12, 13, 10, 0x0
-gsSP1Triangle  5, 10, 14, 0x0
-gsSP1Triangle  9,  8, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  1,  0, 0x0
+gsSP2Triangles  4,  2,  1, 0x0,  1,  3,  4, 0x0
+gsSP2Triangles  5,  2,  4, 0x0,  6,  2,  5, 0x0
+gsSP2Triangles  4,  3,  7, 0x0,  8,  9,  7, 0x0
+gsSP2Triangles  5,  4,  7, 0x0,  9, 10,  7, 0x0
+gsSP2Triangles 11,  8,  7, 0x0,  3, 11,  7, 0x0
+gsSP2Triangles  7, 10,  5, 0x0, 10,  9, 12, 0x0
+gsSP2Triangles 10, 13, 14, 0x0, 12, 13, 10, 0x0
+gsSP2Triangles  5, 10, 14, 0x0,  9,  8, 15, 0x0
 gsSPVertex mario_seg4_vertex_04016598, 13, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  4,  3, 0x0
-gsSP1Triangle  6,  3,  7, 0x0
-gsSP1Triangle  8,  9,  6, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9,  8, 10, 0x0
-gsSP1Triangle 11, 10, 12, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  4,  3, 0x0,  6,  3,  7, 0x0
+gsSP2Triangles  8,  9,  6, 0x0,  6,  7,  8, 0x0
+gsSP2Triangles  9,  8, 10, 0x0, 11, 10, 12, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_04016800 # 0x04016800 - 0x040168A0
 gsSPVertex mario_seg4_vertex_04016208, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  3,  0, 0x0
-gsSP1Triangle  1,  0,  4, 0x0
-gsSP1Triangle  0,  5,  4, 0x0
-gsSP1Triangle  6,  4,  5, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  9, 10,  7, 0x0
-gsSP1Triangle  7, 10, 11, 0x0
-gsSP1Triangle  7, 12,  8, 0x0
-gsSP1Triangle 11, 12,  7, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  3,  0, 0x0
+gsSP2Triangles  1,  0,  4, 0x0,  0,  5,  4, 0x0
+gsSP2Triangles  6,  4,  5, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles  9, 10,  7, 0x0,  7, 10, 11, 0x0
+gsSP2Triangles  7, 12,  8, 0x0, 11, 12,  7, 0x0
 gsSP1Triangle 13, 14, 15, 0x0
 gsSPVertex mario_seg4_vertex_04016308, 9, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  3,  0, 0x0
-gsSP1Triangle  1,  4,  2, 0x0
-gsSP1Triangle  2,  4,  5, 0x0
-gsSP1Triangle  5,  3,  2, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  3,  0, 0x0
+gsSP2Triangles  1,  4,  2, 0x0,  2,  4,  5, 0x0
+gsSP2Triangles  5,  3,  2, 0x0,  6,  7,  8, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_040168A0 # 0x040168A0 - 0x040168C8
@@ -4317,24 +3700,15 @@ vertex     49,     96,      0,      0,      0,  0x2B, 0x77, 0x00, 0x00
 
 glabel mario_seg4_dl_04016A18 # 0x04016A18 - 0x04016AB8
 gsSPVertex mario_seg4_vertex_04016968, 11, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  3,  4, 0x0
-gsSP1Triangle  5,  6,  7, 0x0
-gsSP1Triangle  0,  2,  6, 0x0
-gsSP1Triangle  6,  5,  0, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  7,  8,  5, 0x0
-gsSP1Triangle  3,  9,  4, 0x0
-gsSP1Triangle  8,  7, 10, 0x0
-gsSP1Triangle  4,  9,  8, 0x0
-gsSP1Triangle  5,  9,  3, 0x0
-gsSP1Triangle  3,  0,  5, 0x0
-gsSP1Triangle  5,  8,  9, 0x0
-gsSP1Triangle 10,  7,  6, 0x0
-gsSP1Triangle 10,  4,  8, 0x0
-gsSP1Triangle  2,  1, 10, 0x0
-gsSP1Triangle  6,  2, 10, 0x0
-gsSP1Triangle  1,  4, 10, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  3,  4, 0x0
+gsSP2Triangles  5,  6,  7, 0x0,  0,  2,  6, 0x0
+gsSP2Triangles  6,  5,  0, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  7,  8,  5, 0x0,  3,  9,  4, 0x0
+gsSP2Triangles  8,  7, 10, 0x0,  4,  9,  8, 0x0
+gsSP2Triangles  5,  9,  3, 0x0,  3,  0,  5, 0x0
+gsSP2Triangles  5,  8,  9, 0x0, 10,  7,  6, 0x0
+gsSP2Triangles 10,  4,  8, 0x0,  2,  1, 10, 0x0
+gsSP2Triangles  6,  2, 10, 0x0,  1,  4, 10, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_04016AB8 # 0x04016AB8 - 0x04016AE8
@@ -4378,14 +3752,10 @@ vertex     71,    -30,     23,      0,      0,  0xFD, 0x88, 0xD9, 0x00
 
 glabel mario_seg4_dl_04016C20 # 0x04016C20 - 0x04016C70
 gsSPVertex mario_seg4_vertex_04016B60, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  1, 0x0
-gsSP1Triangle  5,  3,  1, 0x0
-gsSP1Triangle  6,  0,  2, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  2,  1,  4, 0x0
-gsSP1Triangle  7,  9, 10, 0x0
-gsSP1Triangle  7, 10, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  1, 0x0
+gsSP2Triangles  5,  3,  1, 0x0,  6,  0,  2, 0x0
+gsSP2Triangles  7,  8,  9, 0x0,  2,  1,  4, 0x0
+gsSP2Triangles  7,  9, 10, 0x0,  7, 10, 11, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_04016C70 # 0x04016C70 - 0x04016C90
@@ -4410,14 +3780,10 @@ vertex     67,    -14,    -31,      0,      0,  0xFE, 0x88, 0xD9, 0x00
 
 glabel mario_seg4_dl_04016D50 # 0x04016D50 - 0x04016DA0
 gsSPVertex mario_seg4_vertex_04016C90, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  1, 0x0
-gsSP1Triangle  5,  3,  1, 0x0
-gsSP1Triangle  6,  0,  2, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  2,  1,  4, 0x0
-gsSP1Triangle 10,  7,  9, 0x0
-gsSP1Triangle 10,  9, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  1, 0x0
+gsSP2Triangles  5,  3,  1, 0x0,  6,  0,  2, 0x0
+gsSP2Triangles  7,  8,  9, 0x0,  2,  1,  4, 0x0
+gsSP2Triangles 10,  7,  9, 0x0, 10,  9, 11, 0x0
 gsSPEndDisplayList
 
 mario_seg4_vertex_04016DA0: # 0x04016DA0
@@ -4432,16 +3798,11 @@ vertex     20,    -31,    -44,      0,      0,  0xCB, 0xAE, 0xB1, 0x00
 
 glabel mario_seg4_dl_04016E20 # 0x04016E20 - 0x04016E80
 gsSPVertex mario_seg4_vertex_04016DA0, 8, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  3,  2, 0x0
-gsSP1Triangle  4,  5,  3, 0x0
-gsSP1Triangle  0,  6,  7, 0x0
-gsSP1Triangle  0,  2,  6, 0x0
-gsSP1Triangle  4,  7,  5, 0x0
-gsSP1Triangle  3,  1,  4, 0x0
-gsSP1Triangle  2,  3,  5, 0x0
-gsSP1Triangle  0,  7,  4, 0x0
-gsSP1Triangle  4,  1,  0, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  3,  2, 0x0
+gsSP2Triangles  4,  5,  3, 0x0,  0,  6,  7, 0x0
+gsSP2Triangles  0,  2,  6, 0x0,  4,  7,  5, 0x0
+gsSP2Triangles  3,  1,  4, 0x0,  2,  3,  5, 0x0
+gsSP2Triangles  0,  7,  4, 0x0,  4,  1,  0, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_04016E80 # 0x04016E80 - 0x04016EA0
@@ -4466,14 +3827,10 @@ vertex     65,     11,    -34,      0,      0,  0xFC, 0x78, 0xD9, 0x00
 
 glabel mario_seg4_dl_04016F60 # 0x04016F60 - 0x04016FB0
 gsSPVertex mario_seg4_vertex_04016EA0, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  2,  6,  7, 0x0
-gsSP1Triangle  1,  8,  9, 0x0
-gsSP1Triangle  1,  0,  8, 0x0
-gsSP1Triangle  2,  1,  6, 0x0
-gsSP1Triangle  5, 10, 11, 0x0
-gsSP1Triangle  5, 11,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  2,  6,  7, 0x0,  1,  8,  9, 0x0
+gsSP2Triangles  1,  0,  8, 0x0,  2,  1,  6, 0x0
+gsSP2Triangles  5, 10, 11, 0x0,  5, 11,  3, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_04016FB0 # 0x04016FB0 - 0x04016FD0
@@ -4498,14 +3855,10 @@ vertex     54,     14,    -31,      0,      0,  0xFE, 0x78, 0xD8, 0x00
 
 glabel mario_seg4_dl_04017090 # 0x04017090 - 0x040170E0
 gsSPVertex mario_seg4_vertex_04016FD0, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  6,  9,  7, 0x0
-gsSP1Triangle  3,  6,  4, 0x0
-gsSP1Triangle  2, 10, 11, 0x0
-gsSP1Triangle  2, 11,  0, 0x0
-gsSP1Triangle  9,  6,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  6,  9,  7, 0x0
+gsSP2Triangles  3,  6,  4, 0x0,  2, 10, 11, 0x0
+gsSP2Triangles  2, 11,  0, 0x0,  9,  6,  3, 0x0
 gsSPEndDisplayList
 
 mario_seg4_vertex_040170E0: # 0x040170E0
@@ -4520,16 +3873,11 @@ vertex     14,     30,     26,      0,      0,  0xCA, 0x50, 0x51, 0x00
 
 glabel mario_seg4_dl_04017160 # 0x04017160 - 0x040171C0
 gsSPVertex mario_seg4_vertex_040170E0, 8, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  0,  3, 0x0
-gsSP1Triangle  4,  5,  1, 0x0
-gsSP1Triangle  6,  3,  7, 0x0
-gsSP1Triangle  5,  6,  7, 0x0
-gsSP1Triangle  0,  4,  1, 0x0
-gsSP1Triangle  3,  2,  7, 0x0
-gsSP1Triangle  1,  5,  7, 0x0
-gsSP1Triangle  7,  2,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  0,  3, 0x0,  4,  5,  1, 0x0
+gsSP2Triangles  6,  3,  7, 0x0,  5,  6,  7, 0x0
+gsSP2Triangles  0,  4,  1, 0x0,  3,  2,  7, 0x0
+gsSP2Triangles  1,  5,  7, 0x0,  7,  2,  1, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_040171C0 # 0x040171C0 - 0x040171E0
@@ -4564,18 +3912,12 @@ vertex     17,    -44,     58,      0,      0,  0x18, 0x84, 0x01, 0x00
 
 glabel mario_seg4_dl_040172F0 # 0x040172F0 - 0x04017360
 gsSPVertex mario_seg4_vertex_04017210, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  0,  4, 0x0
-gsSP1Triangle  5,  3,  4, 0x0
-gsSP1Triangle  4,  6,  5, 0x0
-gsSP1Triangle  0,  2,  4, 0x0
-gsSP1Triangle  1,  7,  2, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle  9, 11, 10, 0x0
-gsSP1Triangle  6,  4,  7, 0x0
-gsSP1Triangle  4,  2,  7, 0x0
-gsSP1Triangle 12,  7, 13, 0x0
-gsSP1Triangle 12,  6,  7, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  0,  4, 0x0
+gsSP2Triangles  5,  3,  4, 0x0,  4,  6,  5, 0x0
+gsSP2Triangles  0,  2,  4, 0x0,  1,  7,  2, 0x0
+gsSP2Triangles  8,  9, 10, 0x0,  9, 11, 10, 0x0
+gsSP2Triangles  6,  4,  7, 0x0,  4,  2,  7, 0x0
+gsSP2Triangles 12,  7, 13, 0x0, 12,  6,  7, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_04017360 # 0x04017360 - 0x04017390
@@ -4621,18 +3963,12 @@ vertex     70,    -39,     53,      0,      0,  0xED, 0x83, 0x00, 0x00
 
 glabel mario_seg4_dl_040174E8 # 0x040174E8 - 0x04017558
 gsSPVertex mario_seg4_vertex_04017408, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  3,  5, 0x0
-gsSP1Triangle  5,  6,  4, 0x0
-gsSP1Triangle  3,  4,  0, 0x0
-gsSP1Triangle  0,  7,  1, 0x0
-gsSP1Triangle  7,  4,  6, 0x0
-gsSP1Triangle  7,  0,  4, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle  9, 11, 10, 0x0
-gsSP1Triangle  6, 12, 13, 0x0
-gsSP1Triangle 13,  7,  6, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  3,  5, 0x0,  5,  6,  4, 0x0
+gsSP2Triangles  3,  4,  0, 0x0,  0,  7,  1, 0x0
+gsSP2Triangles  7,  4,  6, 0x0,  7,  0,  4, 0x0
+gsSP2Triangles  8,  9, 10, 0x0,  9, 11, 10, 0x0
+gsSP2Triangles  6, 12, 13, 0x0, 13,  7,  6, 0x0
 gsSPEndDisplayList
 
 mario_seg4_vertex_04017558: # 0x04017558
@@ -4653,18 +3989,12 @@ vertex    -49,     70,     63,      0,      0,  0x82, 0x0E, 0x01, 0x00
 
 glabel mario_seg4_dl_04017638 # 0x04017638 - 0x040176A8
 gsSPVertex mario_seg4_vertex_04017558, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  0,  2, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle 10,  4,  6, 0x0
-gsSP1Triangle  7,  9, 11, 0x0
-gsSP1Triangle 12, 10, 13, 0x0
-gsSP1Triangle  7, 10,  8, 0x0
-gsSP1Triangle  7, 11,  5, 0x0
-gsSP1Triangle  5,  4,  7, 0x0
-gsSP1Triangle  7,  4, 10, 0x0
-gsSP1Triangle 12,  8, 10, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  0,  2, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles 10,  4,  6, 0x0,  7,  9, 11, 0x0
+gsSP2Triangles 12, 10, 13, 0x0,  7, 10,  8, 0x0
+gsSP2Triangles  7, 11,  5, 0x0,  5,  4,  7, 0x0
+gsSP2Triangles  7,  4, 10, 0x0, 12,  8, 10, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_040176A8 # 0x040176A8 - 0x040176C8
@@ -4691,18 +4021,12 @@ vertex     17,     51,     27,      0,      0,  0x0B, 0x5C, 0x55, 0x00
 
 glabel mario_seg4_dl_040177A8 # 0x040177A8 - 0x04017818
 gsSPVertex mario_seg4_vertex_040176C8, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  0,  2, 0x0
-gsSP1Triangle  0,  4,  5, 0x0
-gsSP1Triangle  0,  5,  1, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  6,  8,  9, 0x0
-gsSP1Triangle  4,  0, 10, 0x0
-gsSP1Triangle  5,  4, 11, 0x0
-gsSP1Triangle 12,  1,  5, 0x0
-gsSP1Triangle  5, 13, 12, 0x0
-gsSP1Triangle  5, 11, 13, 0x0
-gsSP1Triangle  4, 10, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  0,  2, 0x0
+gsSP2Triangles  0,  4,  5, 0x0,  0,  5,  1, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  6,  8,  9, 0x0
+gsSP2Triangles  4,  0, 10, 0x0,  5,  4, 11, 0x0
+gsSP2Triangles 12,  1,  5, 0x0,  5, 13, 12, 0x0
+gsSP2Triangles  5, 11, 13, 0x0,  4, 10, 11, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_04017818 # 0x04017818 - 0x04017838
@@ -4729,18 +4053,12 @@ vertex     74,     54,    -43,      0,      0,  0xF4, 0x60, 0xAF, 0x00
 
 glabel mario_seg4_dl_04017918 # 0x04017918 - 0x04017988
 gsSPVertex mario_seg4_vertex_04017838, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  3,  0, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
-gsSP1Triangle  8,  9,  1, 0x0
-gsSP1Triangle  0,  8,  1, 0x0
-gsSP1Triangle 10,  1,  9, 0x0
-gsSP1Triangle  9,  8, 11, 0x0
-gsSP1Triangle  8,  0, 12, 0x0
-gsSP1Triangle 12, 11,  8, 0x0
-gsSP1Triangle 11, 13,  9, 0x0
-gsSP1Triangle 13, 10,  9, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  3,  0, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
+gsSP2Triangles  8,  9,  1, 0x0,  0,  8,  1, 0x0
+gsSP2Triangles 10,  1,  9, 0x0,  9,  8, 11, 0x0
+gsSP2Triangles  8,  0, 12, 0x0, 12, 11,  8, 0x0
+gsSP2Triangles 11, 13,  9, 0x0, 13, 10,  9, 0x0
 gsSPEndDisplayList
 
 mario_seg4_vertex_04017988: # 0x04017988
@@ -4761,18 +4079,12 @@ vertex    106,     13,     33,      0,      0,  0x29, 0x77, 0x00, 0x00
 
 glabel mario_seg4_dl_04017A68 # 0x04017A68 - 0x04017AD8
 gsSPVertex mario_seg4_vertex_04017988, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  4, 0x0
-gsSP1Triangle  4,  3,  5, 0x0
-gsSP1Triangle  5,  6,  4, 0x0
-gsSP1Triangle  1,  0,  4, 0x0
-gsSP1Triangle  7,  0,  2, 0x0
-gsSP1Triangle  6,  8,  4, 0x0
-gsSP1Triangle  9,  3,  0, 0x0
-gsSP1Triangle  8,  1,  4, 0x0
-gsSP1Triangle  9,  5,  3, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 10, 13, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  4, 0x0
+gsSP2Triangles  4,  3,  5, 0x0,  5,  6,  4, 0x0
+gsSP2Triangles  1,  0,  4, 0x0,  7,  0,  2, 0x0
+gsSP2Triangles  6,  8,  4, 0x0,  9,  3,  0, 0x0
+gsSP2Triangles  8,  1,  4, 0x0,  9,  5,  3, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 10, 13, 11, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_04017AD8 # 0x04017AD8 - 0x04017B18
@@ -4836,41 +4148,28 @@ vertex     35,     64,     83,      0,      0,  0x29, 0x4B, 0x5D, 0xFF
 
 glabel mario_seg4_dl_04017D68 # 0x04017D68 - 0x04017D98
 gsSPVertex mario_seg4_vertex_04017B58, 8, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  2,  1, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  6,  5,  7, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  2,  1, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  6,  5,  7, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_04017D98 # 0x04017D98 - 0x04017E20
 gsSPVertex mario_seg4_vertex_04017BD8, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  3,  0, 0x0
-gsSP1Triangle  0,  4,  5, 0x0
-gsSP1Triangle  3,  6,  0, 0x0
-gsSP1Triangle  4,  0,  6, 0x0
-gsSP1Triangle  0,  5,  1, 0x0
-gsSP1Triangle  7,  4,  6, 0x0
-gsSP1Triangle  5,  4,  8, 0x0
-gsSP1Triangle  8,  1,  5, 0x0
-gsSP1Triangle  3,  1,  9, 0x0
-gsSP1Triangle  3,  2,  1, 0x0
-gsSP1Triangle  6,  3, 10, 0x0
-gsSP1Triangle 10, 11,  6, 0x0
-gsSP1Triangle 12,  9, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  3,  0, 0x0
+gsSP2Triangles  0,  4,  5, 0x0,  3,  6,  0, 0x0
+gsSP2Triangles  4,  0,  6, 0x0,  0,  5,  1, 0x0
+gsSP2Triangles  7,  4,  6, 0x0,  5,  4,  8, 0x0
+gsSP2Triangles  8,  1,  5, 0x0,  3,  1,  9, 0x0
+gsSP2Triangles  3,  2,  1, 0x0,  6,  3, 10, 0x0
+gsSP2Triangles 10, 11,  6, 0x0, 12,  9, 13, 0x0
 gsSP1Triangle 13,  7, 14, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_04017E20 # 0x04017E20 - 0x04017E78
 gsSPVertex mario_seg4_vertex_04017CC8, 10, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  5,  6,  3, 0x0
-gsSP1Triangle  2,  1,  5, 0x0
-gsSP1Triangle  6,  5,  1, 0x0
-gsSP1Triangle  7,  8,  0, 0x0
-gsSP1Triangle  7,  0,  9, 0x0
-gsSP1Triangle  8,  6,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  5,  6,  3, 0x0,  2,  1,  5, 0x0
+gsSP2Triangles  6,  5,  1, 0x0,  7,  8,  0, 0x0
+gsSP2Triangles  7,  0,  9, 0x0,  8,  6,  1, 0x0
 gsSP1Triangle  1,  0,  8, 0x0
 gsSPEndDisplayList
 
@@ -4970,68 +4269,48 @@ vertex    146,     27,    -91,      0,      0,  0x03, 0x39, 0x8F, 0xFF
 
 glabel mario_seg4_dl_04018270 # 0x04018270 - 0x04018298
 gsSPVertex mario_seg4_vertex_04017F40, 5, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  1, 0x0
 gsSP1Triangle  3,  1,  0, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_04018298 # 0x04018298 - 0x040182C0
 gsSPVertex mario_seg4_vertex_04017F90, 5, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  1,  4, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  1,  4, 0x0
 gsSP1Triangle  3,  2,  1, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_040182C0 # 0x040182C0 - 0x04018300
 gsSPVertex mario_seg4_vertex_04017FE0, 10, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  3,  0, 0x0
-gsSP1Triangle  2,  4,  3, 0x0
-gsSP1Triangle  5,  6,  7, 0x0
-gsSP1Triangle  7,  8,  5, 0x0
-gsSP1Triangle  6,  9,  7, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  3,  0, 0x0
+gsSP2Triangles  2,  4,  3, 0x0,  5,  6,  7, 0x0
+gsSP2Triangles  7,  8,  5, 0x0,  6,  9,  7, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_04018300 # 0x04018300 - 0x04018370
 gsSPVertex mario_seg4_vertex_04018140, 13, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  0,  2, 0x0
-gsSP1Triangle  2,  1,  4, 0x0
-gsSP1Triangle  2,  4,  5, 0x0
-gsSP1Triangle  4,  1,  0, 0x0
-gsSP1Triangle  4,  0,  3, 0x0
-gsSP1Triangle  5,  4,  3, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9,  6,  8, 0x0
-gsSP1Triangle  8,  7, 10, 0x0
-gsSP1Triangle 10,  7, 11, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  0,  2, 0x0
+gsSP2Triangles  2,  1,  4, 0x0,  2,  4,  5, 0x0
+gsSP2Triangles  4,  1,  0, 0x0,  4,  0,  3, 0x0
+gsSP2Triangles  5,  4,  3, 0x0,  6,  7,  8, 0x0
+gsSP2Triangles  9,  6,  8, 0x0,  8,  7, 10, 0x0
+gsSP2Triangles 10,  7, 11, 0x0, 10, 11, 12, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_04018370 # 0x04018370 - 0x040183F0
 gsSPVertex mario_seg4_vertex_04018080, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  0,  4, 0x0
-gsSP1Triangle  4,  0,  2, 0x0
-gsSP1Triangle  2,  1,  5, 0x0
-gsSP1Triangle  6,  2,  5, 0x0
-gsSP1Triangle  6,  7,  2, 0x0
-gsSP1Triangle  7,  4,  2, 0x0
-gsSP1Triangle  3,  4,  8, 0x0
-gsSP1Triangle  4,  7,  8, 0x0
-gsSP1Triangle  9, 10,  3, 0x0
-gsSP1Triangle 10, 11,  3, 0x0
-gsSP1Triangle  8,  7,  6, 0x0
-gsSP1Triangle 10,  5, 11, 0x0
-gsSP1Triangle 10,  9,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  0,  4, 0x0
+gsSP2Triangles  4,  0,  2, 0x0,  2,  1,  5, 0x0
+gsSP2Triangles  6,  2,  5, 0x0,  6,  7,  2, 0x0
+gsSP2Triangles  7,  4,  2, 0x0,  3,  4,  8, 0x0
+gsSP2Triangles  4,  7,  8, 0x0,  9, 10,  3, 0x0
+gsSP2Triangles 10, 11,  3, 0x0,  8,  7,  6, 0x0
+gsSP2Triangles 10,  5, 11, 0x0, 10,  9,  5, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_040183F0 # 0x040183F0 - 0x04018420
 gsSPVertex mario_seg4_vertex_04018210, 6, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  1,  0, 0x0
-gsSP1Triangle  3,  2,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  1,  0, 0x0,  3,  2,  5, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_04018420 # 0x04018420 - 0x04018460
@@ -5347,44 +4626,27 @@ gsSPEndDisplayList
 
 glabel mario_seg4_dl_04018E30 # 0x04018E30 - 0x04018EA0
 gsSPVertex mario_seg4_vertex_04018C08, 13, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  4,  5,  0, 0x0
-gsSP1Triangle  5,  3,  0, 0x0
-gsSP1Triangle  1,  3,  5, 0x0
-gsSP1Triangle  2,  1,  4, 0x0
-gsSP1Triangle  1,  5,  4, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  7,  9,  8, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle 10,  9, 11, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  4,  5,  0, 0x0,  5,  3,  0, 0x0
+gsSP2Triangles  1,  3,  5, 0x0,  2,  1,  4, 0x0
+gsSP2Triangles  1,  5,  4, 0x0,  6,  7,  8, 0x0
+gsSP2Triangles  7,  9,  8, 0x0,  8,  9, 10, 0x0
+gsSP2Triangles 10,  9, 11, 0x0, 10, 11, 12, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_04018EA0 # 0x04018EA0 - 0x04018F68
 gsSPVertex mario_seg4_vertex_04018CD8, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  1,  0, 0x0
-gsSP1Triangle  0,  4,  3, 0x0
-gsSP1Triangle  0,  2,  5, 0x0
-gsSP1Triangle  5,  6,  0, 0x0
-gsSP1Triangle  0,  6,  4, 0x0
-gsSP1Triangle  5,  2,  7, 0x0
-gsSP1Triangle  7,  8,  5, 0x0
-gsSP1Triangle  8,  6,  5, 0x0
-gsSP1Triangle  9,  7, 10, 0x0
-gsSP1Triangle  7,  9, 11, 0x0
-gsSP1Triangle  7, 11,  8, 0x0
-gsSP1Triangle  6,  8,  4, 0x0
-gsSP1Triangle  8, 11, 12, 0x0
-gsSP1Triangle  4,  8, 12, 0x0
-gsSP1Triangle 11,  9, 12, 0x0
-gsSP1Triangle 13, 14, 12, 0x0
-gsSP1Triangle 14,  4, 12, 0x0
-gsSP1Triangle  4, 14,  3, 0x0
-gsSP1Triangle 13, 10,  3, 0x0
-gsSP1Triangle 14, 13,  3, 0x0
-gsSP1Triangle  9, 10, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  1,  0, 0x0
+gsSP2Triangles  0,  4,  3, 0x0,  0,  2,  5, 0x0
+gsSP2Triangles  5,  6,  0, 0x0,  0,  6,  4, 0x0
+gsSP2Triangles  5,  2,  7, 0x0,  7,  8,  5, 0x0
+gsSP2Triangles  8,  6,  5, 0x0,  9,  7, 10, 0x0
+gsSP2Triangles  7,  9, 11, 0x0,  7, 11,  8, 0x0
+gsSP2Triangles  6,  8,  4, 0x0,  8, 11, 12, 0x0
+gsSP2Triangles  4,  8, 12, 0x0, 11,  9, 12, 0x0
+gsSP2Triangles 13, 14, 12, 0x0, 14,  4, 12, 0x0
+gsSP2Triangles  4, 14,  3, 0x0, 13, 10,  3, 0x0
+gsSP2Triangles 14, 13,  3, 0x0,  9, 10, 13, 0x0
 gsSP1Triangle  9, 13, 12, 0x0
 gsSPEndDisplayList
 
@@ -5691,75 +4953,44 @@ vertex     11,      5,     17,      0,      0,  0xFF, 0x1B, 0x7C, 0x00
 
 glabel mario_seg4_dl_04019A68 # 0x04019A68 - 0x04019CA0
 gsSPVertex mario_seg4_vertex_04019538, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  0,  2, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  6,  3,  7, 0x0
-gsSP1Triangle  1,  0,  5, 0x0
-gsSP1Triangle  5,  4,  1, 0x0
-gsSP1Triangle  5,  3,  6, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle  8, 11,  9, 0x0
-gsSP1Triangle 12, 13, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  0,  2, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  6,  3,  7, 0x0
+gsSP2Triangles  1,  0,  5, 0x0,  5,  4,  1, 0x0
+gsSP2Triangles  5,  3,  6, 0x0,  8,  9, 10, 0x0
+gsSP2Triangles  8, 11,  9, 0x0, 12, 13, 11, 0x0
 gsSPVertex mario_seg4_vertex_04019618, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  0, 10,  7, 0x0
-gsSP1Triangle 11, 10,  0, 0x0
-gsSP1Triangle 12, 13, 11, 0x0
-gsSP1Triangle  9,  8, 13, 0x0
-gsSP1Triangle  7,  5,  8, 0x0
-gsSP1Triangle 10, 14,  7, 0x0
-gsSP1Triangle 11, 14, 10, 0x0
-gsSP1Triangle 13,  4, 11, 0x0
-gsSP1Triangle  8,  5, 13, 0x0
-gsSP1Triangle  3, 15,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles  0, 10,  7, 0x0, 11, 10,  0, 0x0
+gsSP2Triangles 12, 13, 11, 0x0,  9,  8, 13, 0x0
+gsSP2Triangles  7,  5,  8, 0x0, 10, 14,  7, 0x0
+gsSP2Triangles 11, 14, 10, 0x0, 13,  4, 11, 0x0
+gsSP2Triangles  8,  5, 13, 0x0,  3, 15,  1, 0x0
 gsSPVertex mario_seg4_vertex_04019718, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  1,  0, 0x0
-gsSP1Triangle  4,  5,  3, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  1,  9, 10, 0x0
-gsSP1Triangle  5, 11,  1, 0x0
-gsSP1Triangle 12, 13,  5, 0x0
-gsSP1Triangle 14,  9, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  1,  0, 0x0
+gsSP2Triangles  4,  5,  3, 0x0,  6,  7,  8, 0x0
+gsSP2Triangles  1,  9, 10, 0x0,  5, 11,  1, 0x0
+gsSP2Triangles 12, 13,  5, 0x0, 14,  9, 15, 0x0
 gsSP1Triangle  4,  7, 12, 0x0
 gsSPVertex mario_seg4_vertex_04019818, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  3,  4, 0x0
-gsSP1Triangle  5,  6,  7, 0x0
-gsSP1Triangle  7,  0,  2, 0x0
-gsSP1Triangle  8,  6,  5, 0x0
-gsSP1Triangle  5,  9, 10, 0x0
-gsSP1Triangle 11,  3,  2, 0x0
-gsSP1Triangle  2, 12, 11, 0x0
-gsSP1Triangle  3, 13,  9, 0x0
-gsSP1Triangle  6,  0,  7, 0x0
-gsSP1Triangle  7,  4,  9, 0x0
-gsSP1Triangle 10, 14, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  3,  4, 0x0
+gsSP2Triangles  5,  6,  7, 0x0,  7,  0,  2, 0x0
+gsSP2Triangles  8,  6,  5, 0x0,  5,  9, 10, 0x0
+gsSP2Triangles 11,  3,  2, 0x0,  2, 12, 11, 0x0
+gsSP2Triangles  3, 13,  9, 0x0,  6,  0,  7, 0x0
+gsSP2Triangles  7,  4,  9, 0x0, 10, 14, 15, 0x0
 gsSP1Triangle 15, 14, 11, 0x0
 gsSPVertex mario_seg4_vertex_04019918, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  3,  4, 0x0
-gsSP1Triangle  4,  3,  5, 0x0
-gsSP1Triangle  5,  6,  7, 0x0
-gsSP1Triangle  7,  6,  0, 0x0
-gsSP1Triangle  2,  8,  9, 0x0
-gsSP1Triangle  4, 10,  8, 0x0
-gsSP1Triangle 11, 10,  4, 0x0
-gsSP1Triangle  7, 12, 11, 0x0
-gsSP1Triangle  9, 12,  7, 0x0
-gsSP1Triangle  6,  3,  1, 0x0
-gsSP1Triangle  6,  5,  3, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
-gsSP1Triangle 14, 10, 11, 0x0
-gsSP1Triangle  8, 10, 15, 0x0
-gsSP1Triangle 10, 14, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  3,  4, 0x0
+gsSP2Triangles  4,  3,  5, 0x0,  5,  6,  7, 0x0
+gsSP2Triangles  7,  6,  0, 0x0,  2,  8,  9, 0x0
+gsSP2Triangles  4, 10,  8, 0x0, 11, 10,  4, 0x0
+gsSP2Triangles  7, 12, 11, 0x0,  9, 12,  7, 0x0
+gsSP2Triangles  6,  3,  1, 0x0,  6,  5,  3, 0x0
+gsSP2Triangles 11, 12, 13, 0x0, 14, 10, 11, 0x0
+gsSP2Triangles  8, 10, 15, 0x0, 10, 14, 15, 0x0
 gsSPVertex mario_seg4_vertex_04019A18, 5, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  0, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  0, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_04019CA0 # 0x04019CA0 - 0x04019CC0
@@ -5865,75 +5096,44 @@ vertex     30,     13,    -30,      0,      0,  0xD3, 0x03, 0x8A, 0x00
 
 glabel mario_seg4_dl_0401A1F0 # 0x0401A1F0 - 0x0401A428
 gsSPVertex mario_seg4_vertex_04019CC0, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  7,  3,  4, 0x0
-gsSP1Triangle  5,  2,  1, 0x0
-gsSP1Triangle  1,  6,  5, 0x0
-gsSP1Triangle  4,  3,  5, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle  9, 11, 10, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  7,  3,  4, 0x0
+gsSP2Triangles  5,  2,  1, 0x0,  1,  6,  5, 0x0
+gsSP2Triangles  4,  3,  5, 0x0,  8,  9, 10, 0x0
+gsSP2Triangles  9, 11, 10, 0x0, 11, 12, 13, 0x0
 gsSPVertex mario_seg4_vertex_04019DA0, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  3,  2, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  9, 10,  2, 0x0
-gsSP1Triangle  2, 10, 11, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
-gsSP1Triangle 12,  8,  7, 0x0
-gsSP1Triangle  8,  5,  9, 0x0
-gsSP1Triangle  9, 14, 10, 0x0
-gsSP1Triangle 10, 14, 11, 0x0
-gsSP1Triangle 11,  6, 12, 0x0
-gsSP1Triangle 12,  5,  8, 0x0
-gsSP1Triangle  1, 15,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  3,  2, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles  9, 10,  2, 0x0,  2, 10, 11, 0x0
+gsSP2Triangles 11, 12, 13, 0x0, 12,  8,  7, 0x0
+gsSP2Triangles  8,  5,  9, 0x0,  9, 14, 10, 0x0
+gsSP2Triangles 10, 14, 11, 0x0, 11,  6, 12, 0x0
+gsSP2Triangles 12,  5,  8, 0x0,  1, 15,  3, 0x0
 gsSPVertex mario_seg4_vertex_04019EA0, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  1,  3, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10,  1, 0x0
-gsSP1Triangle  1, 11,  4, 0x0
-gsSP1Triangle  4, 12, 13, 0x0
-gsSP1Triangle 14, 10, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  1,  3, 0x0
+gsSP2Triangles  3,  4,  5, 0x0,  6,  7,  8, 0x0
+gsSP2Triangles  9, 10,  1, 0x0,  1, 11,  4, 0x0
+gsSP2Triangles  4, 12, 13, 0x0, 14, 10, 15, 0x0
 gsSP1Triangle 13,  7,  5, 0x0
 gsSPVertex mario_seg4_vertex_04019FA0, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  0, 0x0
-gsSP1Triangle  5,  6,  7, 0x0
-gsSP1Triangle  0,  2,  5, 0x0
-gsSP1Triangle  7,  6,  8, 0x0
-gsSP1Triangle  9, 10,  7, 0x0
-gsSP1Triangle  0,  4, 11, 0x0
-gsSP1Triangle 11, 12,  0, 0x0
-gsSP1Triangle 10, 13,  4, 0x0
-gsSP1Triangle  5,  2,  6, 0x0
-gsSP1Triangle 10,  3,  5, 0x0
-gsSP1Triangle 14, 15,  9, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  0, 0x0
+gsSP2Triangles  5,  6,  7, 0x0,  0,  2,  5, 0x0
+gsSP2Triangles  7,  6,  8, 0x0,  9, 10,  7, 0x0
+gsSP2Triangles  0,  4, 11, 0x0, 11, 12,  0, 0x0
+gsSP2Triangles 10, 13,  4, 0x0,  5,  2,  6, 0x0
+gsSP2Triangles 10,  3,  5, 0x0, 14, 15,  9, 0x0
 gsSP1Triangle 11, 15, 14, 0x0
 gsSPVertex mario_seg4_vertex_0401A0A0, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  1, 0x0
-gsSP1Triangle  5,  4,  3, 0x0
-gsSP1Triangle  6,  7,  5, 0x0
-gsSP1Triangle  2,  7,  6, 0x0
-gsSP1Triangle  8,  9,  0, 0x0
-gsSP1Triangle  9, 10,  3, 0x0
-gsSP1Triangle  3, 10, 11, 0x0
-gsSP1Triangle 11, 12,  6, 0x0
-gsSP1Triangle  6, 12,  8, 0x0
-gsSP1Triangle  1,  4,  7, 0x0
-gsSP1Triangle  4,  5,  7, 0x0
-gsSP1Triangle 13, 12, 11, 0x0
-gsSP1Triangle 11, 10, 14, 0x0
-gsSP1Triangle 15, 10,  9, 0x0
-gsSP1Triangle 15, 14, 10, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  1, 0x0
+gsSP2Triangles  5,  4,  3, 0x0,  6,  7,  5, 0x0
+gsSP2Triangles  2,  7,  6, 0x0,  8,  9,  0, 0x0
+gsSP2Triangles  9, 10,  3, 0x0,  3, 10, 11, 0x0
+gsSP2Triangles 11, 12,  6, 0x0,  6, 12,  8, 0x0
+gsSP2Triangles  1,  4,  7, 0x0,  4,  5,  7, 0x0
+gsSP2Triangles 13, 12, 11, 0x0, 11, 10, 14, 0x0
+gsSP2Triangles 15, 10,  9, 0x0, 15, 14, 10, 0x0
 gsSPVertex mario_seg4_vertex_0401A1A0, 5, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  3,  4, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  3,  4, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_0401A428 # 0x0401A428 - 0x0401A448
@@ -6085,121 +5285,74 @@ vertex    228,      1,    228,      0,      0,  0x14, 0x22, 0x78, 0xFF
 
 glabel mario_seg4_dl_0401ABA8 # 0x0401ABA8 - 0x0401ABD0
 gsSPVertex mario_seg4_vertex_0401A478, 5, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  3,  2, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  3,  2, 0x0
 gsSP1Triangle  1,  4,  3, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_0401ABD0 # 0x0401ABD0 - 0x0401AD40
 gsSPVertex mario_seg4_vertex_0401A798, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  0,  2, 0x0
-gsSP1Triangle  2,  4,  5, 0x0
-gsSP1Triangle  6,  2,  1, 0x0
-gsSP1Triangle  2,  6,  4, 0x0
-gsSP1Triangle  7,  4,  8, 0x0
-gsSP1Triangle  8,  4,  6, 0x0
-gsSP1Triangle  4,  9,  5, 0x0
-gsSP1Triangle  4,  7,  9, 0x0
-gsSP1Triangle  5,  9, 10, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
-gsSP1Triangle 13, 14, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  0,  2, 0x0
+gsSP2Triangles  2,  4,  5, 0x0,  6,  2,  1, 0x0
+gsSP2Triangles  2,  6,  4, 0x0,  7,  4,  8, 0x0
+gsSP2Triangles  8,  4,  6, 0x0,  4,  9,  5, 0x0
+gsSP2Triangles  4,  7,  9, 0x0,  5,  9, 10, 0x0
+gsSP2Triangles 11, 12, 13, 0x0, 13, 14, 11, 0x0
 gsSPVertex mario_seg4_vertex_0401A888, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  3,  4, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  5,  2,  1, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  0,  9,  3, 0x0
-gsSP1Triangle 10,  9,  0, 0x0
-gsSP1Triangle 11, 12,  2, 0x0
-gsSP1Triangle  2,  5, 11, 0x0
-gsSP1Triangle  3,  9,  4, 0x0
-gsSP1Triangle 13, 14, 15, 0x0
-gsSP1Triangle 11,  5, 14, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  3,  4, 0x0
+gsSP2Triangles  0,  3,  1, 0x0,  5,  2,  1, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  0,  9,  3, 0x0
+gsSP2Triangles 10,  9,  0, 0x0, 11, 12,  2, 0x0
+gsSP2Triangles  2,  5, 11, 0x0,  3,  9,  4, 0x0
+gsSP2Triangles 13, 14, 15, 0x0, 11,  5, 14, 0x0
 gsSP1Triangle  7, 14,  5, 0x0
 gsSPVertex mario_seg4_vertex_0401A988, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  1,  3, 0x0
-gsSP1Triangle  0,  4,  1, 0x0
-gsSP1Triangle  5,  6,  7, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  7,  6,  8, 0x0
-gsSP1Triangle 10,  7,  9, 0x0
-gsSP1Triangle 11, 12,  9, 0x0
-gsSP1Triangle 10, 13, 14, 0x0
-gsSP1Triangle 12, 13, 10, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  1,  3, 0x0
+gsSP2Triangles  0,  4,  1, 0x0,  5,  6,  7, 0x0
+gsSP2Triangles  7,  8,  9, 0x0,  7,  6,  8, 0x0
+gsSP2Triangles 10,  7,  9, 0x0, 11, 12,  9, 0x0
+gsSP2Triangles 10, 13, 14, 0x0, 12, 13, 10, 0x0
 gsSP1Triangle 13, 12, 15, 0x0
 gsSPVertex mario_seg4_vertex_0401AA88, 8, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  1,  3, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  5,  6, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  1,  3, 0x0
+gsSP2Triangles  3,  4,  5, 0x0,  3,  5,  6, 0x0
 gsSP1Triangle  7,  0,  2, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_0401AD40 # 0x0401AD40 - 0x0401AED0
 gsSPVertex mario_seg4_vertex_0401A4C8, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  3,  0, 0x0
-gsSP1Triangle  2,  1,  4, 0x0
-gsSP1Triangle  2,  5,  6, 0x0
-gsSP1Triangle  6,  3,  2, 0x0
-gsSP1Triangle  5,  2,  4, 0x0
-gsSP1Triangle  3,  7,  0, 0x0
-gsSP1Triangle  3,  6,  8, 0x0
-gsSP1Triangle  3,  8,  7, 0x0
-gsSP1Triangle  9,  0,  7, 0x0
-gsSP1Triangle 10,  0,  9, 0x0
-gsSP1Triangle  1,  0, 10, 0x0
-gsSP1Triangle 11,  1, 10, 0x0
-gsSP1Triangle 11,  4,  1, 0x0
-gsSP1Triangle  7, 12, 13, 0x0
-gsSP1Triangle  8, 12,  7, 0x0
-gsSP1Triangle 13, 14,  7, 0x0
-gsSP1Triangle  7, 14,  9, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  3,  0, 0x0
+gsSP2Triangles  2,  1,  4, 0x0,  2,  5,  6, 0x0
+gsSP2Triangles  6,  3,  2, 0x0,  5,  2,  4, 0x0
+gsSP2Triangles  3,  7,  0, 0x0,  3,  6,  8, 0x0
+gsSP2Triangles  3,  8,  7, 0x0,  9,  0,  7, 0x0
+gsSP2Triangles 10,  0,  9, 0x0,  1,  0, 10, 0x0
+gsSP2Triangles 11,  1, 10, 0x0, 11,  4,  1, 0x0
+gsSP2Triangles  7, 12, 13, 0x0,  8, 12,  7, 0x0
+gsSP2Triangles 13, 14,  7, 0x0,  7, 14,  9, 0x0
 gsSPVertex mario_seg4_vertex_0401A5B8, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  4,  3,  6, 0x0
-gsSP1Triangle  6,  2,  4, 0x0
-gsSP1Triangle  7,  5,  4, 0x0
-gsSP1Triangle  8,  9,  3, 0x0
-gsSP1Triangle  3,  9, 10, 0x0
-gsSP1Triangle 10,  6,  3, 0x0
-gsSP1Triangle  5, 11,  3, 0x0
-gsSP1Triangle  3, 11,  8, 0x0
-gsSP1Triangle 10,  0,  6, 0x0
-gsSP1Triangle  6,  0,  2, 0x0
-gsSP1Triangle  2,  1, 12, 0x0
-gsSP1Triangle  5, 13, 11, 0x0
-gsSP1Triangle  1, 14, 12, 0x0
-gsSP1Triangle 14, 15, 12, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  4,  3,  6, 0x0,  6,  2,  4, 0x0
+gsSP2Triangles  7,  5,  4, 0x0,  8,  9,  3, 0x0
+gsSP2Triangles  3,  9, 10, 0x0, 10,  6,  3, 0x0
+gsSP2Triangles  5, 11,  3, 0x0,  3, 11,  8, 0x0
+gsSP2Triangles 10,  0,  6, 0x0,  6,  0,  2, 0x0
+gsSP2Triangles  2,  1, 12, 0x0,  5, 13, 11, 0x0
+gsSP2Triangles  1, 14, 12, 0x0, 14, 15, 12, 0x0
 gsSPVertex mario_seg4_vertex_0401A6B8, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  1,  0, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  6,  5,  7, 0x0
-gsSP1Triangle  7,  5,  8, 0x0
-gsSP1Triangle  8,  5,  9, 0x0
-gsSP1Triangle  3, 10,  1, 0x0
-gsSP1Triangle 11, 10,  3, 0x0
-gsSP1Triangle  1, 10,  2, 0x0
-gsSP1Triangle  2, 10, 12, 0x0
-gsSP1Triangle 12, 10, 13, 0x0
-gsSP1Triangle 10, 11, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  1,  0, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  6,  5,  7, 0x0
+gsSP2Triangles  7,  5,  8, 0x0,  8,  5,  9, 0x0
+gsSP2Triangles  3, 10,  1, 0x0, 11, 10,  3, 0x0
+gsSP2Triangles  1, 10,  2, 0x0,  2, 10, 12, 0x0
+gsSP2Triangles 12, 10, 13, 0x0, 10, 11, 13, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_0401AED0 # 0x0401AED0 - 0x0401AF20
 gsSPVertex mario_seg4_vertex_0401AB08, 10, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  0,  2, 0x0
-gsSP1Triangle  4,  3,  2, 0x0
-gsSP1Triangle  5,  4,  2, 0x0
-gsSP1Triangle  6,  5,  2, 0x0
-gsSP1Triangle  6,  2,  7, 0x0
-gsSP1Triangle  8,  9,  6, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  0,  2, 0x0
+gsSP2Triangles  4,  3,  2, 0x0,  5,  4,  2, 0x0
+gsSP2Triangles  6,  5,  2, 0x0,  6,  2,  7, 0x0
+gsSP2Triangles  8,  9,  6, 0x0,  6,  7,  8, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_0401AF20 # 0x0401AF20 - 0x0401AF60
@@ -6236,18 +5389,14 @@ vertex    207,   -253,    195,    990,   2012,  0xA8, 0xB3, 0xCF, 0xFF
 
 glabel mario_seg4_dl_0401B080 # 0x0401B080 - 0x0401B0B0
 gsSPVertex mario_seg4_vertex_0401AF60, 10, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  7,  9,  8, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  7,  9,  8, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_0401B0B0 # 0x0401B0B0 - 0x0401B0E0
 gsSPVertex mario_seg4_vertex_0401B000, 8, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  7,  4,  6, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  7,  4,  6, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_0401B0E0 # 0x0401B0E0 - 0x0401B138
@@ -6503,88 +5652,53 @@ vertex     94,    -22,    -18,      0,      0,  0x1C, 0x85, 0x00, 0x00
 
 glabel mario_seg4_dl_0401BC80 # 0x0401BC80 - 0x0401BF30
 gsSPVertex mario_seg4_vertex_0401B2D0, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  0,  2, 0x0
-gsSP1Triangle  2,  4,  3, 0x0
-gsSP1Triangle  5,  6,  7, 0x0
-gsSP1Triangle  8,  7,  9, 0x0
-gsSP1Triangle  7,  6, 10, 0x0
-gsSP1Triangle  7, 10,  9, 0x0
-gsSP1Triangle 11,  8,  9, 0x0
-gsSP1Triangle  7, 12,  5, 0x0
-gsSP1Triangle 10, 13, 14, 0x0
-gsSP1Triangle  6, 15, 10, 0x0
-gsSP1Triangle 10, 14,  9, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  0,  2, 0x0
+gsSP2Triangles  2,  4,  3, 0x0,  5,  6,  7, 0x0
+gsSP2Triangles  8,  7,  9, 0x0,  7,  6, 10, 0x0
+gsSP2Triangles  7, 10,  9, 0x0, 11,  8,  9, 0x0
+gsSP2Triangles  7, 12,  5, 0x0, 10, 13, 14, 0x0
+gsSP2Triangles  6, 15, 10, 0x0, 10, 14,  9, 0x0
 gsSPVertex mario_seg4_vertex_0401B3D0, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  3,  4, 0x0
-gsSP1Triangle  5,  6,  7, 0x0
-gsSP1Triangle  8,  0,  9, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 10, 12, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  3,  4, 0x0
+gsSP2Triangles  5,  6,  7, 0x0,  8,  0,  9, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 10, 12, 13, 0x0
 gsSPVertex mario_seg4_vertex_0401B4B0, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
-gsSP1Triangle  7,  6,  8, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  9,  8, 10, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
+gsSP2Triangles  7,  6,  8, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles  9,  8, 10, 0x0,  9, 10, 11, 0x0
 gsSP1Triangle 12, 13, 14, 0x0
 gsSPVertex mario_seg4_vertex_0401B5A0, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle  2, 12, 13, 0x0
-gsSP1Triangle  3,  5, 12, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
+gsSP2Triangles  2, 12, 13, 0x0,  3,  5, 12, 0x0
 gsSP1Triangle 12, 14, 15, 0x0
 gsSPVertex mario_seg4_vertex_0401B6A0, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle  9, 11, 12, 0x0
-gsSP1Triangle 13, 14, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
+gsSP2Triangles  9, 11, 12, 0x0, 13, 14, 15, 0x0
 gsSPVertex mario_seg4_vertex_0401B7A0, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  4,  3,  6, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  4, 10, 11, 0x0
-gsSP1Triangle 12, 13, 14, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  4,  3,  6, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles  4, 10, 11, 0x0, 12, 13, 14, 0x0
 gsSPVertex mario_seg4_vertex_0401B890, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10,  7, 0x0
-gsSP1Triangle 10,  9, 11, 0x0
-gsSP1Triangle 12, 13, 14, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10,  7, 0x0
+gsSP2Triangles 10,  9, 11, 0x0, 12, 13, 14, 0x0
 gsSPVertex mario_seg4_vertex_0401B980, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  3,  0, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  3,  2,  7, 0x0
-gsSP1Triangle  8,  3,  7, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  3,  0, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  3,  2,  7, 0x0
+gsSP2Triangles  8,  3,  7, 0x0,  9, 10, 11, 0x0
 gsSP1Triangle 12, 13, 14, 0x0
 gsSPVertex mario_seg4_vertex_0401BA70, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle 12, 13, 14, 0x0
-gsSP1Triangle 12, 14, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
+gsSP2Triangles 12, 13, 14, 0x0, 12, 14, 15, 0x0
 gsSPVertex mario_seg4_vertex_0401BB70, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle  8, 10, 11, 0x0
-gsSP1Triangle 12, 13,  9, 0x0
-gsSP1Triangle 12,  9,  8, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
+gsSP2Triangles  8,  9, 10, 0x0,  8, 10, 11, 0x0
+gsSP2Triangles 12, 13,  9, 0x0, 12,  9,  8, 0x0
 gsSPVertex mario_seg4_vertex_0401BC50, 3, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSPEndDisplayList
@@ -6669,67 +5783,42 @@ vertex     53,      0,   -118,      0,      0,  0x2C, 0xB5, 0xA5, 0xFF
 
 glabel mario_seg4_dl_0401C330 # 0x0401C330 - 0x0401C368
 gsSPVertex mario_seg4_vertex_0401BF50, 7, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  0, 0x0
-gsSP1Triangle  3,  5,  4, 0x0
-gsSP1Triangle  2,  3,  0, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  0, 0x0
+gsSP2Triangles  3,  5,  4, 0x0,  2,  3,  0, 0x0
 gsSP1Triangle  5,  6,  4, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_0401C368 # 0x0401C368 - 0x0401C4C8
 gsSPVertex mario_seg4_vertex_0401BFC0, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  1, 0x0
-gsSP1Triangle  3,  1,  0, 0x0
-gsSP1Triangle  3,  5,  6, 0x0
-gsSP1Triangle  3,  0,  5, 0x0
-gsSP1Triangle  5,  7,  8, 0x0
-gsSP1Triangle  5,  8,  6, 0x0
-gsSP1Triangle  0,  2,  5, 0x0
-gsSP1Triangle  6,  9, 10, 0x0
-gsSP1Triangle  8,  9,  6, 0x0
-gsSP1Triangle 11,  8,  7, 0x0
-gsSP1Triangle  8, 12,  9, 0x0
-gsSP1Triangle 12,  8, 11, 0x0
-gsSP1Triangle 13, 14, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  1, 0x0
+gsSP2Triangles  3,  1,  0, 0x0,  3,  5,  6, 0x0
+gsSP2Triangles  3,  0,  5, 0x0,  5,  7,  8, 0x0
+gsSP2Triangles  5,  8,  6, 0x0,  0,  2,  5, 0x0
+gsSP2Triangles  6,  9, 10, 0x0,  8,  9,  6, 0x0
+gsSP2Triangles 11,  8,  7, 0x0,  8, 12,  9, 0x0
+gsSP2Triangles 12,  8, 11, 0x0, 13, 14, 15, 0x0
 gsSPVertex mario_seg4_vertex_0401C0C0, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  1, 0x0
-gsSP1Triangle  4,  2,  1, 0x0
-gsSP1Triangle  5,  1,  0, 0x0
-gsSP1Triangle  1,  6,  3, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9,  7,  6, 0x0
-gsSP1Triangle 10,  4,  3, 0x0
-gsSP1Triangle  9, 11,  7, 0x0
-gsSP1Triangle  7, 11,  8, 0x0
-gsSP1Triangle 12, 11,  9, 0x0
-gsSP1Triangle 13, 14,  4, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  1, 0x0
+gsSP2Triangles  4,  2,  1, 0x0,  5,  1,  0, 0x0
+gsSP2Triangles  1,  6,  3, 0x0,  6,  7,  8, 0x0
+gsSP2Triangles  9,  7,  6, 0x0, 10,  4,  3, 0x0
+gsSP2Triangles  9, 11,  7, 0x0,  7, 11,  8, 0x0
+gsSP2Triangles 12, 11,  9, 0x0, 13, 14,  4, 0x0
 gsSPVertex mario_seg4_vertex_0401C1B0, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  3,  4, 0x0
-gsSP1Triangle  5,  3,  1, 0x0
-gsSP1Triangle  1,  4,  2, 0x0
-gsSP1Triangle  4,  3,  6, 0x0
-gsSP1Triangle  0,  2,  7, 0x0
-gsSP1Triangle  8,  7,  2, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle 12, 10,  9, 0x0
-gsSP1Triangle  7, 10,  0, 0x0
-gsSP1Triangle 10,  7, 11, 0x0
-gsSP1Triangle  0, 10, 12, 0x0
-gsSP1Triangle 11,  8, 13, 0x0
-gsSP1Triangle 14, 12,  9, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  3,  4, 0x0
+gsSP2Triangles  5,  3,  1, 0x0,  1,  4,  2, 0x0
+gsSP2Triangles  4,  3,  6, 0x0,  0,  2,  7, 0x0
+gsSP2Triangles  8,  7,  2, 0x0,  9, 10, 11, 0x0
+gsSP2Triangles 12, 10,  9, 0x0,  7, 10,  0, 0x0
+gsSP2Triangles 10,  7, 11, 0x0,  0, 10, 12, 0x0
+gsSP2Triangles 11,  8, 13, 0x0, 14, 12,  9, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_0401C4C8 # 0x0401C4C8 - 0x0401C510
 gsSPVertex mario_seg4_vertex_0401C2A0, 9, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  3,  5, 0x0
-gsSP1Triangle  7,  6,  5, 0x0
-gsSP1Triangle  0,  7,  5, 0x0
-gsSP1Triangle  0,  5,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  3,  5, 0x0,  7,  6,  5, 0x0
+gsSP2Triangles  0,  7,  5, 0x0,  0,  5,  1, 0x0
 gsSP1Triangle  2,  8,  0, 0x0
 gsSPEndDisplayList
 
@@ -6766,18 +5855,14 @@ vertex   -198,    247,    -55,      0,      0,  0xA7, 0xED, 0x57, 0xFF
 
 glabel mario_seg4_dl_0401C678 # 0x0401C678 - 0x0401C6A8
 gsSPVertex mario_seg4_vertex_0401C538, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_0401C6A8 # 0x0401C6A8 - 0x0401C6D8
 gsSPVertex mario_seg4_vertex_0401C5F8, 8, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  5,  7,  6, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  5,  7,  6, 0x0
 gsSPEndDisplayList
 
 glabel mario_seg4_dl_0401C6D8 # 0x0401C6D8 - 0x0401C730

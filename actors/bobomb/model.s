@@ -39,10 +39,8 @@ gsSPEndDisplayList
 
 glabel bobomb_seg8_dl_08022B08 # 0x08022B08 - 0x08022B58
 gsSPVertex bobomb_seg8_vertex_08022A60, 6, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  1,  0, 0x0
-gsSP1Triangle  0,  2,  4, 0x0
-gsSP1Triangle  3,  5,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  1,  0, 0x0
+gsSP2Triangles  0,  2,  4, 0x0,  3,  5,  1, 0x0
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
@@ -82,14 +80,12 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bobomb_seg8_texture_0801DA60
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex bobomb_seg8_vertex_08022BB8, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bobomb_seg8_texture_0801EA60
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex bobomb_seg8_vertex_08022BF8, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel bobomb_seg8_dl_08022CA0 # 0x08022CA0 - 0x08022D08
@@ -97,14 +93,12 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bobomb_seg8_texture_0801FA60
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex bobomb_seg8_vertex_08022BB8, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bobomb_seg8_texture_08020A60
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex bobomb_seg8_vertex_08022BF8, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel bobomb_seg8_dl_08022D08 # 0x08022D08 - 0x08022D78
@@ -243,93 +237,57 @@ glabel bobomb_seg8_dl_08023270 # 0x08023270 - 0x08023378
 gsSPLight bobomb_seg8_light_08022DF0, 1
 gsSPLight bobomb_seg8_light_08022DE8, 2
 gsSPVertex bobomb_seg8_vertex_08022E30, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  5,  6, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  7,  9, 10, 0x0
-gsSP1Triangle 11, 12,  8, 0x0
-gsSP1Triangle 11,  8,  7, 0x0
-gsSP1Triangle  6, 13, 14, 0x0
-gsSP1Triangle  6, 14,  3, 0x0
-gsSP1Triangle  9,  8, 12, 0x0
-gsSP1Triangle  9, 12,  1, 0x0
-gsSP1Triangle 10,  9, 15, 0x0
-gsSP1Triangle  2,  1, 12, 0x0
-gsSP1Triangle  2, 12, 11, 0x0
-gsSP1Triangle 10,  6,  5, 0x0
-gsSP1Triangle 10,  5,  7, 0x0
-gsSP1Triangle  0, 14, 13, 0x0
-gsSP1Triangle  0, 13, 15, 0x0
-gsSP1Triangle 11,  4,  3, 0x0
-gsSP1Triangle 11,  3,  2, 0x0
-gsSP1Triangle  2,  3, 14, 0x0
-gsSP1Triangle  2, 14,  0, 0x0
-gsSP1Triangle  7,  5,  4, 0x0
-gsSP1Triangle  7,  4, 11, 0x0
-gsSP1Triangle 15, 13,  6, 0x0
-gsSP1Triangle 15,  6, 10, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  5,  6, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles  7,  9, 10, 0x0, 11, 12,  8, 0x0
+gsSP2Triangles 11,  8,  7, 0x0,  6, 13, 14, 0x0
+gsSP2Triangles  6, 14,  3, 0x0,  9,  8, 12, 0x0
+gsSP2Triangles  9, 12,  1, 0x0, 10,  9, 15, 0x0
+gsSP2Triangles  2,  1, 12, 0x0,  2, 12, 11, 0x0
+gsSP2Triangles 10,  6,  5, 0x0, 10,  5,  7, 0x0
+gsSP2Triangles  0, 14, 13, 0x0,  0, 13, 15, 0x0
+gsSP2Triangles 11,  4,  3, 0x0, 11,  3,  2, 0x0
+gsSP2Triangles  2,  3, 14, 0x0,  2, 14,  0, 0x0
+gsSP2Triangles  7,  5,  4, 0x0,  7,  4, 11, 0x0
+gsSP2Triangles 15, 13,  6, 0x0, 15,  6, 10, 0x0
 gsSPVertex bobomb_seg8_vertex_08022F30, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel bobomb_seg8_dl_08023378 # 0x08023378 - 0x08023480
 gsSPLight bobomb_seg8_light_08022DF0, 1
 gsSPLight bobomb_seg8_light_08022DE8, 2
 gsSPVertex bobomb_seg8_vertex_08022F70, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  5,  6, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  7,  9, 10, 0x0
-gsSP1Triangle 10,  9, 11, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle  6, 13, 14, 0x0
-gsSP1Triangle  6, 14,  3, 0x0
-gsSP1Triangle  1, 11,  9, 0x0
-gsSP1Triangle  1,  9,  8, 0x0
-gsSP1Triangle 15,  8,  7, 0x0
-gsSP1Triangle 12, 11,  1, 0x0
-gsSP1Triangle 12,  1,  0, 0x0
-gsSP1Triangle 10,  4,  3, 0x0
-gsSP1Triangle 10,  3,  7, 0x0
-gsSP1Triangle 15, 14, 13, 0x0
-gsSP1Triangle 15, 13,  2, 0x0
-gsSP1Triangle  0,  6,  5, 0x0
-gsSP1Triangle  0,  5, 12, 0x0
-gsSP1Triangle  2, 13,  6, 0x0
-gsSP1Triangle  2,  6,  0, 0x0
-gsSP1Triangle 12,  5,  4, 0x0
-gsSP1Triangle 12,  4, 10, 0x0
-gsSP1Triangle  7,  3, 14, 0x0
-gsSP1Triangle  7, 14, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  5,  6, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles  7,  9, 10, 0x0, 10,  9, 11, 0x0
+gsSP2Triangles 10, 11, 12, 0x0,  6, 13, 14, 0x0
+gsSP2Triangles  6, 14,  3, 0x0,  1, 11,  9, 0x0
+gsSP2Triangles  1,  9,  8, 0x0, 15,  8,  7, 0x0
+gsSP2Triangles 12, 11,  1, 0x0, 12,  1,  0, 0x0
+gsSP2Triangles 10,  4,  3, 0x0, 10,  3,  7, 0x0
+gsSP2Triangles 15, 14, 13, 0x0, 15, 13,  2, 0x0
+gsSP2Triangles  0,  6,  5, 0x0,  0,  5, 12, 0x0
+gsSP2Triangles  2, 13,  6, 0x0,  2,  6,  0, 0x0
+gsSP2Triangles 12,  5,  4, 0x0, 12,  4, 10, 0x0
+gsSP2Triangles  7,  3, 14, 0x0,  7, 14, 15, 0x0
 gsSPVertex bobomb_seg8_vertex_08023070, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel bobomb_seg8_dl_08023480 # 0x08023480 - 0x08023528
 gsSPLight bobomb_seg8_light_08022E08, 1
 gsSPLight bobomb_seg8_light_08022E00, 2
 gsSPVertex bobomb_seg8_vertex_080230B0, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  0,  3, 0x0
-gsSP1Triangle  4,  3,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  6,  8,  9, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 10, 12, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  0,  3, 0x0,  4,  3,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  6,  8,  9, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 10, 12, 13, 0x0
 gsSPVertex bobomb_seg8_vertex_08023190, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle  8, 10, 11, 0x0
-gsSP1Triangle  8, 11, 12, 0x0
-gsSP1Triangle  8, 12, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
+gsSP2Triangles  8,  9, 10, 0x0,  8, 10, 11, 0x0
+gsSP2Triangles  8, 11, 12, 0x0,  8, 12, 13, 0x0
 gsSPEndDisplayList
 
 bobomb_seg8_animvalue_08023528: # 0x08023528

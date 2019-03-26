@@ -201,49 +201,29 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight toad_seg6_light_06005910, 1
 gsSPLight toad_seg6_light_06005908, 2
 gsSPVertex toad_seg6_vertex_06006920, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  0,  4, 0x0
-gsSP1Triangle  2,  4,  0, 0x0
-gsSP1Triangle  0,  5,  6, 0x0
-gsSP1Triangle  3,  5,  0, 0x0
-gsSP1Triangle  6,  1,  0, 0x0
-gsSP1Triangle  6,  5,  7, 0x0
-gsSP1Triangle  3,  7,  5, 0x0
-gsSP1Triangle  1,  6,  8, 0x0
-gsSP1Triangle  8,  6,  9, 0x0
-gsSP1Triangle  7,  9,  6, 0x0
-gsSP1Triangle 10,  9,  7, 0x0
-gsSP1Triangle  3, 11,  7, 0x0
-gsSP1Triangle  7, 11, 10, 0x0
-gsSP1Triangle  8, 12,  1, 0x0
-gsSP1Triangle 13, 14,  8, 0x0
-gsSP1Triangle  9, 13,  8, 0x0
-gsSP1Triangle 12,  8, 14, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  0,  4, 0x0
+gsSP2Triangles  2,  4,  0, 0x0,  0,  5,  6, 0x0
+gsSP2Triangles  3,  5,  0, 0x0,  6,  1,  0, 0x0
+gsSP2Triangles  6,  5,  7, 0x0,  3,  7,  5, 0x0
+gsSP2Triangles  1,  6,  8, 0x0,  8,  6,  9, 0x0
+gsSP2Triangles  7,  9,  6, 0x0, 10,  9,  7, 0x0
+gsSP2Triangles  3, 11,  7, 0x0,  7, 11, 10, 0x0
+gsSP2Triangles  8, 12,  1, 0x0, 13, 14,  8, 0x0
+gsSP2Triangles  9, 13,  8, 0x0, 12,  8, 14, 0x0
 gsSPVertex toad_seg6_vertex_06006A10, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  5,  6,  3, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  9, 10,  7, 0x0
-gsSP1Triangle  1, 11, 12, 0x0
-gsSP1Triangle 13, 11,  1, 0x0
-gsSP1Triangle  1, 12,  2, 0x0
-gsSP1Triangle 13,  1,  0, 0x0
-gsSP1Triangle  2, 12, 14, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  5,  6,  3, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles  9, 10,  7, 0x0,  1, 11, 12, 0x0
+gsSP2Triangles 13, 11,  1, 0x0,  1, 12,  2, 0x0
+gsSP2Triangles 13,  1,  0, 0x0,  2, 12, 14, 0x0
 gsSP1Triangle  2, 14, 15, 0x0
 gsSPVertex toad_seg6_vertex_06006B10, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  1,  3, 0x0
-gsSP1Triangle  4,  0,  5, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  2,  3,  7, 0x0
-gsSP1Triangle  5,  0,  2, 0x0
-gsSP1Triangle  5,  2,  8, 0x0
-gsSP1Triangle  8,  2,  7, 0x0
-gsSP1Triangle  8,  7,  9, 0x0
-gsSP1Triangle  6,  5,  8, 0x0
-gsSP1Triangle  6,  8, 10, 0x0
-gsSP1Triangle 10,  8,  9, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  1,  3, 0x0
+gsSP2Triangles  4,  0,  5, 0x0,  4,  5,  6, 0x0
+gsSP2Triangles  2,  3,  7, 0x0,  5,  0,  2, 0x0
+gsSP2Triangles  5,  2,  8, 0x0,  8,  2,  7, 0x0
+gsSP2Triangles  8,  7,  9, 0x0,  6,  5,  8, 0x0
+gsSP2Triangles  6,  8, 10, 0x0, 10,  8,  9, 0x0
 gsSP1Triangle 10,  9, 11, 0x0
 gsSPEndDisplayList
 
@@ -252,82 +232,50 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, toad_seg6_texture_06006120
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex toad_seg6_vertex_06006BD0, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  0,  2, 0x0
-gsSP1Triangle  2,  1,  4, 0x0
-gsSP1Triangle  2,  4,  5, 0x0
-gsSP1Triangle  3,  2,  6, 0x0
-gsSP1Triangle  6,  2,  5, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  8, 10,  9, 0x0
-gsSP1Triangle  8, 11, 10, 0x0
-gsSP1Triangle 12, 13, 14, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  0,  2, 0x0
+gsSP2Triangles  2,  1,  4, 0x0,  2,  4,  5, 0x0
+gsSP2Triangles  3,  2,  6, 0x0,  6,  2,  5, 0x0
+gsSP2Triangles  7,  8,  9, 0x0,  8, 10,  9, 0x0
+gsSP2Triangles  8, 11, 10, 0x0, 12, 13, 14, 0x0
 gsSPVertex toad_seg6_vertex_06006CC0, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  5,  6, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  7, 10,  8, 0x0
-gsSP1Triangle 11, 10,  7, 0x0
-gsSP1Triangle 11, 12, 10, 0x0
-gsSP1Triangle 13, 12, 11, 0x0
-gsSP1Triangle 14,  1,  0, 0x0
-gsSP1Triangle 15, 14,  0, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  5,  6, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles  7, 10,  8, 0x0, 11, 10,  7, 0x0
+gsSP2Triangles 11, 12, 10, 0x0, 13, 12, 11, 0x0
+gsSP2Triangles 14,  1,  0, 0x0, 15, 14,  0, 0x0
 gsSPVertex toad_seg6_vertex_06006DC0, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9,  7,  6, 0x0
-gsSP1Triangle  9, 10,  7, 0x0
-gsSP1Triangle 11, 10,  9, 0x0
-gsSP1Triangle 12,  4,  3, 0x0
-gsSP1Triangle 13, 14, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9,  7,  6, 0x0
+gsSP2Triangles  9, 10,  7, 0x0, 11, 10,  9, 0x0
+gsSP2Triangles 12,  4,  3, 0x0, 13, 14, 15, 0x0
 gsSPVertex toad_seg6_vertex_06006EC0, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  5,  6, 0x0
-gsSP1Triangle  7,  3,  6, 0x0
-gsSP1Triangle  7,  6,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle 12,  7,  8, 0x0
-gsSP1Triangle 11, 10, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  5,  6, 0x0,  7,  3,  6, 0x0
+gsSP2Triangles  7,  6,  8, 0x0,  9, 10, 11, 0x0
+gsSP2Triangles 12,  7,  8, 0x0, 11, 10, 13, 0x0
 gsSP1Triangle 11, 13, 14, 0x0
 gsSPVertex toad_seg6_vertex_06006FB0, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  4,  3,  0, 0x0
-gsSP1Triangle  4,  5,  3, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle  9, 11, 12, 0x0
-gsSP1Triangle 13, 14, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  4,  3,  0, 0x0,  4,  5,  3, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
+gsSP2Triangles  9, 11, 12, 0x0, 13, 14, 15, 0x0
 gsSPVertex toad_seg6_vertex_060070B0, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  0,  2, 0x0
-gsSP1Triangle  3,  2,  4, 0x0
-gsSP1Triangle  2,  1,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle 11, 10, 12, 0x0
-gsSP1Triangle  9, 13, 10, 0x0
-gsSP1Triangle 14, 13,  9, 0x0
-gsSP1Triangle 14, 15, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  0,  2, 0x0
+gsSP2Triangles  3,  2,  4, 0x0,  2,  1,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
+gsSP2Triangles 11, 10, 12, 0x0,  9, 13, 10, 0x0
+gsSP2Triangles 14, 13,  9, 0x0, 14, 15, 13, 0x0
 gsSPVertex toad_seg6_vertex_060071B0, 5, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSP1Triangle  4,  3,  0, 0x0
 gsSPEndDisplayList
 
 glabel toad_seg6_dl_060076C0 # 0x060076C0 - 0x06007710
 gsSPVertex toad_seg6_vertex_06007200, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  4,  6,  5, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  7, 10,  8, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
-gsSP1Triangle 11, 14, 12, 0x0
-gsSP1Triangle  0, 15,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  4,  6,  5, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles  7, 10,  8, 0x0, 11, 12, 13, 0x0
+gsSP2Triangles 11, 14, 12, 0x0,  0, 15,  1, 0x0
 gsSPEndDisplayList
 
 glabel toad_seg6_dl_06007710 # 0x06007710 - 0x06007788
@@ -410,31 +358,19 @@ glabel toad_seg6_dl_06007960 # 0x06007960 - 0x06007A48
 gsSPLight toad_seg6_light_06007790, 1
 gsSPLight toad_seg6_light_06007788, 2
 gsSPVertex toad_seg6_vertex_060077A0, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
-gsSP1Triangle  4,  7,  8, 0x0
-gsSP1Triangle  8,  5,  4, 0x0
-gsSP1Triangle  9,  7,  6, 0x0
-gsSP1Triangle 10,  8,  7, 0x0
-gsSP1Triangle 10,  7,  9, 0x0
-gsSP1Triangle 10, 11,  8, 0x0
-gsSP1Triangle 12,  8, 11, 0x0
-gsSP1Triangle 12,  5,  8, 0x0
-gsSP1Triangle 10,  9, 13, 0x0
-gsSP1Triangle  0, 14,  1, 0x0
-gsSP1Triangle 15,  0,  2, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  4,  6,  7, 0x0,  4,  7,  8, 0x0
+gsSP2Triangles  8,  5,  4, 0x0,  9,  7,  6, 0x0
+gsSP2Triangles 10,  8,  7, 0x0, 10,  7,  9, 0x0
+gsSP2Triangles 10, 11,  8, 0x0, 12,  8, 11, 0x0
+gsSP2Triangles 12,  5,  8, 0x0, 10,  9, 13, 0x0
+gsSP2Triangles  0, 14,  1, 0x0, 15,  0,  2, 0x0
 gsSPVertex toad_seg6_vertex_060078A0, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  3,  0, 0x0
-gsSP1Triangle  4,  3,  2, 0x0
-gsSP1Triangle  0,  5,  1, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  6,  8,  9, 0x0
-gsSP1Triangle  5,  9,  8, 0x0
-gsSP1Triangle  4,  2, 10, 0x0
-gsSP1Triangle  8,  1,  5, 0x0
-gsSP1Triangle  8,  7, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  3,  0, 0x0
+gsSP2Triangles  4,  3,  2, 0x0,  0,  5,  1, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  6,  8,  9, 0x0
+gsSP2Triangles  5,  9,  8, 0x0,  4,  2, 10, 0x0
+gsSP2Triangles  8,  1,  5, 0x0,  8,  7, 11, 0x0
 gsSPEndDisplayList
 
 glabel toad_seg6_dl_06007A48 # 0x06007A48 - 0x06007A80
@@ -517,54 +453,33 @@ glabel toad_seg6_dl_06007D10 # 0x06007D10 - 0x06007EB0
 gsSPLight toad_seg6_light_06007A88, 1
 gsSPLight toad_seg6_light_06007A80, 2
 gsSPVertex toad_seg6_vertex_06007AB0, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  5,  6, 0x0
-gsSP1Triangle  3,  6,  7, 0x0
-gsSP1Triangle  7,  8,  3, 0x0
-gsSP1Triangle  3,  9,  4, 0x0
-gsSP1Triangle  3,  8,  9, 0x0
-gsSP1Triangle 10,  7,  6, 0x0
-gsSP1Triangle 10,  6, 11, 0x0
-gsSP1Triangle 11,  6,  5, 0x0
-gsSP1Triangle  7,  0,  8, 0x0
-gsSP1Triangle  0,  7, 10, 0x0
-gsSP1Triangle  2, 12, 13, 0x0
-gsSP1Triangle  2,  1, 12, 0x0
-gsSP1Triangle  2,  8,  0, 0x0
-gsSP1Triangle  2, 13,  9, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  5,  6, 0x0,  3,  6,  7, 0x0
+gsSP2Triangles  7,  8,  3, 0x0,  3,  9,  4, 0x0
+gsSP2Triangles  3,  8,  9, 0x0, 10,  7,  6, 0x0
+gsSP2Triangles 10,  6, 11, 0x0, 11,  6,  5, 0x0
+gsSP2Triangles  7,  0,  8, 0x0,  0,  7, 10, 0x0
+gsSP2Triangles  2, 12, 13, 0x0,  2,  1, 12, 0x0
+gsSP2Triangles  2,  8,  0, 0x0,  2, 13,  9, 0x0
 gsSP1Triangle  2,  9,  8, 0x0
 gsSPVertex toad_seg6_vertex_06007B90, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  5,  6, 0x0
-gsSP1Triangle  7,  8,  1, 0x0
-gsSP1Triangle  7,  1,  9, 0x0
-gsSP1Triangle  7, 10,  8, 0x0
-gsSP1Triangle  7,  9,  4, 0x0
-gsSP1Triangle  5,  4,  9, 0x0
-gsSP1Triangle  5,  9,  0, 0x0
-gsSP1Triangle  0,  9,  1, 0x0
-gsSP1Triangle 11,  6,  0, 0x0
-gsSP1Triangle 11,  0,  2, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  5,  6, 0x0,  7,  8,  1, 0x0
+gsSP2Triangles  7,  1,  9, 0x0,  7, 10,  8, 0x0
+gsSP2Triangles  7,  9,  4, 0x0,  5,  4,  9, 0x0
+gsSP2Triangles  5,  9,  0, 0x0,  0,  9,  1, 0x0
+gsSP2Triangles 11,  6,  0, 0x0, 11,  0,  2, 0x0
 gsSP1Triangle  0,  6,  5, 0x0
 gsSPLight toad_seg6_light_06007AA0, 1
 gsSPLight toad_seg6_light_06007A98, 2
 gsSPVertex toad_seg6_vertex_06007C50, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  3,  0, 0x0
-gsSP1Triangle  4,  2,  1, 0x0
-gsSP1Triangle  4,  1,  5, 0x0
-gsSP1Triangle  6,  7,  2, 0x0
-gsSP1Triangle  6,  2,  4, 0x0
-gsSP1Triangle  2,  7,  3, 0x0
-gsSP1Triangle  5,  8,  4, 0x0
-gsSP1Triangle  6,  8,  9, 0x0
-gsSP1Triangle  6,  4,  8, 0x0
-gsSP1Triangle 10,  3,  7, 0x0
-gsSP1Triangle  7, 11, 10, 0x0
-gsSP1Triangle  7,  6, 11, 0x0
-gsSP1Triangle  9, 11,  6, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  3,  0, 0x0
+gsSP2Triangles  4,  2,  1, 0x0,  4,  1,  5, 0x0
+gsSP2Triangles  6,  7,  2, 0x0,  6,  2,  4, 0x0
+gsSP2Triangles  2,  7,  3, 0x0,  5,  8,  4, 0x0
+gsSP2Triangles  6,  8,  9, 0x0,  6,  4,  8, 0x0
+gsSP2Triangles 10,  3,  7, 0x0,  7, 11, 10, 0x0
+gsSP2Triangles  7,  6, 11, 0x0,  9, 11,  6, 0x0
 gsSPEndDisplayList
 
 glabel toad_seg6_dl_06007EB0 # 0x06007EB0 - 0x06007ED8
@@ -618,41 +533,24 @@ glabel toad_seg6_dl_060080C0 # 0x060080C0 - 0x060081F8
 gsSPLight toad_seg6_light_06007EE0, 1
 gsSPLight toad_seg6_light_06007ED8, 2
 gsSPVertex toad_seg6_vertex_06007EF0, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  0,  3, 0x0
-gsSP1Triangle  0,  2,  4, 0x0
-gsSP1Triangle  4,  3,  0, 0x0
-gsSP1Triangle  2,  5,  6, 0x0
-gsSP1Triangle  6,  7,  2, 0x0
-gsSP1Triangle  4,  2,  7, 0x0
-gsSP1Triangle  5,  2,  1, 0x0
-gsSP1Triangle  7,  8,  4, 0x0
-gsSP1Triangle  4,  9,  3, 0x0
-gsSP1Triangle  4,  8, 10, 0x0
-gsSP1Triangle 11,  9,  4, 0x0
-gsSP1Triangle  4, 10, 11, 0x0
-gsSP1Triangle  1,  3, 12, 0x0
-gsSP1Triangle 11,  3,  9, 0x0
-gsSP1Triangle 12,  3, 11, 0x0
-gsSP1Triangle  7, 13,  8, 0x0
-gsSP1Triangle  7,  6, 13, 0x0
-gsSP1Triangle 10, 14, 15, 0x0
-gsSP1Triangle 10, 15, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  0,  3, 0x0
+gsSP2Triangles  0,  2,  4, 0x0,  4,  3,  0, 0x0
+gsSP2Triangles  2,  5,  6, 0x0,  6,  7,  2, 0x0
+gsSP2Triangles  4,  2,  7, 0x0,  5,  2,  1, 0x0
+gsSP2Triangles  7,  8,  4, 0x0,  4,  9,  3, 0x0
+gsSP2Triangles  4,  8, 10, 0x0, 11,  9,  4, 0x0
+gsSP2Triangles  4, 10, 11, 0x0,  1,  3, 12, 0x0
+gsSP2Triangles 11,  3,  9, 0x0, 12,  3, 11, 0x0
+gsSP2Triangles  7, 13,  8, 0x0,  7,  6, 13, 0x0
+gsSP2Triangles 10, 14, 15, 0x0, 10, 15, 11, 0x0
 gsSPVertex toad_seg6_vertex_06007FF0, 13, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  2,  4,  0, 0x0
-gsSP1Triangle  5,  6,  7, 0x0
-gsSP1Triangle  7,  8,  5, 0x0
-gsSP1Triangle  2,  8,  4, 0x0
-gsSP1Triangle  2,  5,  8, 0x0
-gsSP1Triangle  5,  2,  9, 0x0
-gsSP1Triangle  5,  9,  6, 0x0
-gsSP1Triangle  9,  2,  1, 0x0
-gsSP1Triangle 10,  9,  1, 0x0
-gsSP1Triangle 10,  1, 11, 0x0
-gsSP1Triangle  9, 12,  6, 0x0
-gsSP1Triangle  9, 10, 12, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  2,  4,  0, 0x0,  5,  6,  7, 0x0
+gsSP2Triangles  7,  8,  5, 0x0,  2,  8,  4, 0x0
+gsSP2Triangles  2,  5,  8, 0x0,  5,  2,  9, 0x0
+gsSP2Triangles  5,  9,  6, 0x0,  9,  2,  1, 0x0
+gsSP2Triangles 10,  9,  1, 0x0, 10,  1, 11, 0x0
+gsSP2Triangles  9, 12,  6, 0x0,  9, 10, 12, 0x0
 gsSPEndDisplayList
 
 glabel toad_seg6_dl_060081F8 # 0x060081F8 - 0x06008220
@@ -704,41 +602,24 @@ glabel toad_seg6_dl_060083E8 # 0x060083E8 - 0x06008520
 gsSPLight toad_seg6_light_06008228, 1
 gsSPLight toad_seg6_light_06008220, 2
 gsSPVertex toad_seg6_vertex_06008238, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  0, 0x0
-gsSP1Triangle  5,  1,  0, 0x0
-gsSP1Triangle  0,  4,  6, 0x0
-gsSP1Triangle  0,  7,  8, 0x0
-gsSP1Triangle  8,  3,  0, 0x0
-gsSP1Triangle  2,  7,  0, 0x0
-gsSP1Triangle  6,  5,  0, 0x0
-gsSP1Triangle  9, 10,  7, 0x0
-gsSP1Triangle  7, 11,  8, 0x0
-gsSP1Triangle  7,  2,  9, 0x0
-gsSP1Triangle 11,  7, 10, 0x0
-gsSP1Triangle 12,  3,  8, 0x0
-gsSP1Triangle 12,  8, 11, 0x0
-gsSP1Triangle  4,  3,  6, 0x0
-gsSP1Triangle  6,  3, 12, 0x0
-gsSP1Triangle  1,  9,  2, 0x0
-gsSP1Triangle 12, 11, 10, 0x0
-gsSP1Triangle  6, 12, 13, 0x0
-gsSP1Triangle  6, 14, 15, 0x0
-gsSP1Triangle  6, 15,  5, 0x0
-gsSP1Triangle 13, 14,  6, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  0, 0x0
+gsSP2Triangles  5,  1,  0, 0x0,  0,  4,  6, 0x0
+gsSP2Triangles  0,  7,  8, 0x0,  8,  3,  0, 0x0
+gsSP2Triangles  2,  7,  0, 0x0,  6,  5,  0, 0x0
+gsSP2Triangles  9, 10,  7, 0x0,  7, 11,  8, 0x0
+gsSP2Triangles  7,  2,  9, 0x0, 11,  7, 10, 0x0
+gsSP2Triangles 12,  3,  8, 0x0, 12,  8, 11, 0x0
+gsSP2Triangles  4,  3,  6, 0x0,  6,  3, 12, 0x0
+gsSP2Triangles  1,  9,  2, 0x0, 12, 11, 10, 0x0
+gsSP2Triangles  6, 12, 13, 0x0,  6, 14, 15, 0x0
+gsSP2Triangles  6, 15,  5, 0x0, 13, 14,  6, 0x0
 gsSPVertex toad_seg6_vertex_06008338, 11, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  3,  2, 0x0
-gsSP1Triangle  2,  4,  0, 0x0
-gsSP1Triangle  4,  5,  0, 0x0
-gsSP1Triangle  4,  6,  5, 0x0
-gsSP1Triangle  7,  0,  5, 0x0
-gsSP1Triangle  8,  7,  5, 0x0
-gsSP1Triangle  3,  1,  9, 0x0
-gsSP1Triangle  1,  0,  7, 0x0
-gsSP1Triangle  9,  1,  7, 0x0
-gsSP1Triangle  8, 10,  7, 0x0
-gsSP1Triangle  9,  7, 10, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  3,  2, 0x0
+gsSP2Triangles  2,  4,  0, 0x0,  4,  5,  0, 0x0
+gsSP2Triangles  4,  6,  5, 0x0,  7,  0,  5, 0x0
+gsSP2Triangles  8,  7,  5, 0x0,  3,  1,  9, 0x0
+gsSP2Triangles  1,  0,  7, 0x0,  9,  1,  7, 0x0
+gsSP2Triangles  8, 10,  7, 0x0,  9,  7, 10, 0x0
 gsSPEndDisplayList
 
 glabel toad_seg6_dl_06008520 # 0x06008520 - 0x06008560
@@ -809,42 +690,25 @@ glabel toad_seg6_dl_06008748 # 0x06008748 - 0x06008890
 gsSPLight toad_seg6_light_06008568, 1
 gsSPLight toad_seg6_light_06008560, 2
 gsSPVertex toad_seg6_vertex_06008578, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  2,  4,  5, 0x0
-gsSP1Triangle  2,  5,  6, 0x0
-gsSP1Triangle  2,  7,  3, 0x0
-gsSP1Triangle  2,  8,  7, 0x0
-gsSP1Triangle  2,  9,  8, 0x0
-gsSP1Triangle  2,  6,  9, 0x0
-gsSP1Triangle  2,  1, 10, 0x0
-gsSP1Triangle  2, 10,  4, 0x0
-gsSP1Triangle  7, 11,  0, 0x0
-gsSP1Triangle 12, 11,  7, 0x0
-gsSP1Triangle 12,  7,  8, 0x0
-gsSP1Triangle  7,  0,  3, 0x0
-gsSP1Triangle 12,  8,  9, 0x0
-gsSP1Triangle 10,  5,  4, 0x0
-gsSP1Triangle 12,  9, 13, 0x0
-gsSP1Triangle 14,  9,  6, 0x0
-gsSP1Triangle 14, 13,  9, 0x0
-gsSP1Triangle  5, 14,  6, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  2,  4,  5, 0x0,  2,  5,  6, 0x0
+gsSP2Triangles  2,  7,  3, 0x0,  2,  8,  7, 0x0
+gsSP2Triangles  2,  9,  8, 0x0,  2,  6,  9, 0x0
+gsSP2Triangles  2,  1, 10, 0x0,  2, 10,  4, 0x0
+gsSP2Triangles  7, 11,  0, 0x0, 12, 11,  7, 0x0
+gsSP2Triangles 12,  7,  8, 0x0,  7,  0,  3, 0x0
+gsSP2Triangles 12,  8,  9, 0x0, 10,  5,  4, 0x0
+gsSP2Triangles 12,  9, 13, 0x0, 14,  9,  6, 0x0
+gsSP2Triangles 14, 13,  9, 0x0,  5, 14,  6, 0x0
 gsSP1Triangle 10, 15,  5, 0x0
 gsSPVertex toad_seg6_vertex_06008678, 13, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  3,  4,  0, 0x0
-gsSP1Triangle  2,  5,  6, 0x0
-gsSP1Triangle  2,  6,  3, 0x0
-gsSP1Triangle  2,  1,  7, 0x0
-gsSP1Triangle  7,  5,  2, 0x0
-gsSP1Triangle  8,  4,  3, 0x0
-gsSP1Triangle  8,  3,  6, 0x0
-gsSP1Triangle  9,  7,  1, 0x0
-gsSP1Triangle  7, 10,  5, 0x0
-gsSP1Triangle  5, 10, 11, 0x0
-gsSP1Triangle 11,  6,  5, 0x0
-gsSP1Triangle 11, 12,  6, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  3,  4,  0, 0x0,  2,  5,  6, 0x0
+gsSP2Triangles  2,  6,  3, 0x0,  2,  1,  7, 0x0
+gsSP2Triangles  7,  5,  2, 0x0,  8,  4,  3, 0x0
+gsSP2Triangles  8,  3,  6, 0x0,  9,  7,  1, 0x0
+gsSP2Triangles  7, 10,  5, 0x0,  5, 10, 11, 0x0
+gsSP2Triangles 11,  6,  5, 0x0, 11, 12,  6, 0x0
 gsSP1Triangle  6, 12,  8, 0x0
 gsSPEndDisplayList
 
@@ -898,43 +762,25 @@ glabel toad_seg6_dl_06008A90 # 0x06008A90 - 0x06008BD8
 gsSPLight toad_seg6_light_060088C0, 1
 gsSPLight toad_seg6_light_060088B8, 2
 gsSPVertex toad_seg6_vertex_060088D0, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  4, 0x0
-gsSP1Triangle  0,  4,  1, 0x0
-gsSP1Triangle  0,  2,  5, 0x0
-gsSP1Triangle  0,  5,  6, 0x0
-gsSP1Triangle  0,  6,  7, 0x0
-gsSP1Triangle  0,  8,  3, 0x0
-gsSP1Triangle  0,  9,  8, 0x0
-gsSP1Triangle  0, 10,  9, 0x0
-gsSP1Triangle  0,  7, 10, 0x0
-gsSP1Triangle  8, 11, 12, 0x0
-gsSP1Triangle  8,  9, 11, 0x0
-gsSP1Triangle  8, 12,  4, 0x0
-gsSP1Triangle  8,  4,  3, 0x0
-gsSP1Triangle 10, 11,  9, 0x0
-gsSP1Triangle  6,  5,  2, 0x0
-gsSP1Triangle 10, 13, 14, 0x0
-gsSP1Triangle 10,  7, 13, 0x0
-gsSP1Triangle 10, 14, 11, 0x0
-gsSP1Triangle 13,  7,  6, 0x0
-gsSP1Triangle 13,  6, 15, 0x0
-gsSP1Triangle  6,  2, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  4, 0x0
+gsSP2Triangles  0,  4,  1, 0x0,  0,  2,  5, 0x0
+gsSP2Triangles  0,  5,  6, 0x0,  0,  6,  7, 0x0
+gsSP2Triangles  0,  8,  3, 0x0,  0,  9,  8, 0x0
+gsSP2Triangles  0, 10,  9, 0x0,  0,  7, 10, 0x0
+gsSP2Triangles  8, 11, 12, 0x0,  8,  9, 11, 0x0
+gsSP2Triangles  8, 12,  4, 0x0,  8,  4,  3, 0x0
+gsSP2Triangles 10, 11,  9, 0x0,  6,  5,  2, 0x0
+gsSP2Triangles 10, 13, 14, 0x0, 10,  7, 13, 0x0
+gsSP2Triangles 10, 14, 11, 0x0, 13,  7,  6, 0x0
+gsSP2Triangles 13,  6, 15, 0x0,  6,  2, 15, 0x0
 gsSPVertex toad_seg6_vertex_060089D0, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  1,  0,  4, 0x0
-gsSP1Triangle  0,  3,  5, 0x0
-gsSP1Triangle  0,  5,  6, 0x0
-gsSP1Triangle  6,  4,  0, 0x0
-gsSP1Triangle  7,  5,  3, 0x0
-gsSP1Triangle  3,  8,  7, 0x0
-gsSP1Triangle  3,  2,  8, 0x0
-gsSP1Triangle  1,  4,  9, 0x0
-gsSP1Triangle 10,  8,  2, 0x0
-gsSP1Triangle  2, 11, 10, 0x0
-gsSP1Triangle  2,  1, 11, 0x0
-gsSP1Triangle  9, 11,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  1,  0,  4, 0x0,  0,  3,  5, 0x0
+gsSP2Triangles  0,  5,  6, 0x0,  6,  4,  0, 0x0
+gsSP2Triangles  7,  5,  3, 0x0,  3,  8,  7, 0x0
+gsSP2Triangles  3,  2,  8, 0x0,  1,  4,  9, 0x0
+gsSP2Triangles 10,  8,  2, 0x0,  2, 11, 10, 0x0
+gsSP2Triangles  2,  1, 11, 0x0,  9, 11,  1, 0x0
 gsSPEndDisplayList
 
 glabel toad_seg6_dl_06008BD8 # 0x06008BD8 - 0x06008C00

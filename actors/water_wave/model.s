@@ -30,8 +30,7 @@ gsDPSetTileSize 0, 0, 0, 124, 124
 gsSPEndDisplayList
 
 glabel water_waves_seg4_dl_040273A0 # 0x040273A0 - 0x040273D8
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsDPPipeSync
 gsSPTexture 1, 1, 0, 0, 0
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE

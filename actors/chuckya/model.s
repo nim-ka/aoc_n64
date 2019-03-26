@@ -71,8 +71,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, chuckya_seg8_texture_08007F7
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex chuckya_seg8_vertex_08009F78, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel chuckya_seg8_dl_0800A030 # 0x0800A030 - 0x0800A068
@@ -80,8 +79,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, chuckya_seg8_texture_08008F7
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex chuckya_seg8_vertex_08009FB8, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel chuckya_seg8_dl_0800A068 # 0x0800A068 - 0x0800A0E0
@@ -118,8 +116,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, chuckya_seg8_texture_08007F7
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex chuckya_seg8_vertex_0800A0E0, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel chuckya_seg8_dl_0800A198 # 0x0800A198 - 0x0800A1D0
@@ -127,8 +124,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, chuckya_seg8_texture_08008F7
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex chuckya_seg8_vertex_0800A120, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel chuckya_seg8_dl_0800A1D0 # 0x0800A1D0 - 0x0800A248
@@ -165,8 +161,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, chuckya_seg8_texture_08007F7
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex chuckya_seg8_vertex_0800A248, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel chuckya_seg8_dl_0800A300 # 0x0800A300 - 0x0800A338
@@ -174,8 +169,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, chuckya_seg8_texture_08008F7
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex chuckya_seg8_vertex_0800A288, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel chuckya_seg8_dl_0800A338 # 0x0800A338 - 0x0800A3B0
@@ -206,8 +200,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, chuckya_seg8_texture_0800777
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex chuckya_seg8_vertex_0800A3B0, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel chuckya_seg8_dl_0800A428 # 0x0800A428 - 0x0800A498
@@ -237,8 +230,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, chuckya_seg8_texture_0800777
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex chuckya_seg8_vertex_0800A498, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel chuckya_seg8_dl_0800A510 # 0x0800A510 - 0x0800A580
@@ -268,8 +260,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, chuckya_seg8_texture_0800777
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex chuckya_seg8_vertex_0800A580, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel chuckya_seg8_dl_0800A5F8 # 0x0800A5F8 - 0x0800A668
@@ -312,10 +303,8 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight chuckya_seg8_light_0800A670, 1
 gsSPLight chuckya_seg8_light_0800A668, 2
 gsSPVertex chuckya_seg8_vertex_0800A680, 8, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  3,  2, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  7,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  3,  2, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  7,  5, 0x0
 gsSPEndDisplayList
 
 glabel chuckya_seg8_dl_0800A758 # 0x0800A758 - 0x0800A7C8
@@ -356,14 +345,10 @@ glabel chuckya_seg8_dl_0800A870 # 0x0800A870 - 0x0800A8D0
 gsSPLight chuckya_seg8_light_0800A7D0, 1
 gsSPLight chuckya_seg8_light_0800A7C8, 2
 gsSPVertex chuckya_seg8_vertex_0800A7E0, 9, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  0,  2, 0x0
-gsSP1Triangle  1,  4,  2, 0x0
-gsSP1Triangle  5,  6,  2, 0x0
-gsSP1Triangle  6,  7,  2, 0x0
-gsSP1Triangle  8,  5,  2, 0x0
-gsSP1Triangle  7,  3,  2, 0x0
-gsSP1Triangle  4,  8,  2, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  0,  2, 0x0
+gsSP2Triangles  1,  4,  2, 0x0,  5,  6,  2, 0x0
+gsSP2Triangles  6,  7,  2, 0x0,  8,  5,  2, 0x0
+gsSP2Triangles  7,  3,  2, 0x0,  4,  8,  2, 0x0
 gsSPEndDisplayList
 
 glabel chuckya_seg8_dl_0800A8D0 # 0x0800A8D0 - 0x0800A8F0
@@ -390,10 +375,8 @@ glabel chuckya_seg8_dl_0800A958 # 0x0800A958 - 0x0800A998
 gsSPLight chuckya_seg8_light_0800A8F8, 1
 gsSPLight chuckya_seg8_light_0800A8F0, 2
 gsSPVertex chuckya_seg8_vertex_0800A908, 5, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  4, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  0,  4,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  4, 0x0
+gsSP2Triangles  0,  2,  3, 0x0,  0,  4,  1, 0x0
 gsSPEndDisplayList
 
 glabel chuckya_seg8_dl_0800A998 # 0x0800A998 - 0x0800A9B8
@@ -443,16 +426,12 @@ glabel chuckya_seg8_dl_0800AB70 # 0x0800AB70 - 0x0800ABE8
 gsSPLight chuckya_seg8_light_0800A9C0, 1
 gsSPLight chuckya_seg8_light_0800A9B8, 2
 gsSPVertex chuckya_seg8_vertex_0800A9D0, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
 gsSP1Triangle 12, 13, 14, 0x0
 gsSPVertex chuckya_seg8_vertex_0800AAC0, 11, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  7,  8,  9, 0x0
 gsSP1Triangle  7, 10,  8, 0x0
 gsSPEndDisplayList
 

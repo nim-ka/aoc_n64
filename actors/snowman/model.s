@@ -60,8 +60,7 @@ glabel snowman_seg5_dl_0500C4C8 # 0x0500C4C8 - 0x0500C500
 gsSPLight snowman_seg5_light_0500C478, 1
 gsSPLight snowman_seg5_light_0500C470, 2
 gsSPVertex snowman_seg5_vertex_0500C488, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSP1Triangle  0,  3,  1, 0x0
 gsSPEndDisplayList
 
@@ -90,8 +89,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, snowman_seg5_texture_0500947
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex snowman_seg5_vertex_0500C530, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel snowman_seg5_dl_0500C5E8 # 0x0500C5E8 - 0x0500C620
@@ -99,8 +97,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, snowman_seg5_texture_0500A47
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex snowman_seg5_vertex_0500C570, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel snowman_seg5_dl_0500C620 # 0x0500C620 - 0x0500C698
@@ -135,10 +132,8 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, snowman_seg5_texture_0500B47
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex snowman_seg5_vertex_0500C698, 8, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  7,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  7,  5, 0x0
 gsSPEndDisplayList
 
 glabel snowman_seg5_dl_0500C760 # 0x0500C760 - 0x0500C7D0
@@ -200,37 +195,22 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight snowman_seg5_light_0500C7D8, 1
 gsSPLight snowman_seg5_light_0500C7D0, 2
 gsSPVertex snowman_seg5_vertex_0500C7E8, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  4, 0x0
-gsSP1Triangle  4,  1,  0, 0x0
-gsSP1Triangle  5,  4,  3, 0x0
-gsSP1Triangle  5,  6,  4, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
-gsSP1Triangle  7,  1,  4, 0x0
-gsSP1Triangle  7,  6,  8, 0x0
-gsSP1Triangle  9,  8,  6, 0x0
-gsSP1Triangle  9,  6, 10, 0x0
-gsSP1Triangle  5, 10,  6, 0x0
-gsSP1Triangle  7,  2,  1, 0x0
-gsSP1Triangle  8, 11,  7, 0x0
-gsSP1Triangle 11,  2,  7, 0x0
-gsSP1Triangle  5, 12, 13, 0x0
-gsSP1Triangle 13, 14,  5, 0x0
-gsSP1Triangle  5,  3, 12, 0x0
-gsSP1Triangle  5, 14, 10, 0x0
-gsSP1Triangle 10, 14,  9, 0x0
-gsSP1Triangle 13,  9, 14, 0x0
-gsSP1Triangle  8,  9, 13, 0x0
-gsSP1Triangle  2, 15,  0, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  4, 0x0
+gsSP2Triangles  4,  1,  0, 0x0,  5,  4,  3, 0x0
+gsSP2Triangles  5,  6,  4, 0x0,  4,  6,  7, 0x0
+gsSP2Triangles  7,  1,  4, 0x0,  7,  6,  8, 0x0
+gsSP2Triangles  9,  8,  6, 0x0,  9,  6, 10, 0x0
+gsSP2Triangles  5, 10,  6, 0x0,  7,  2,  1, 0x0
+gsSP2Triangles  8, 11,  7, 0x0, 11,  2,  7, 0x0
+gsSP2Triangles  5, 12, 13, 0x0, 13, 14,  5, 0x0
+gsSP2Triangles  5,  3, 12, 0x0,  5, 14, 10, 0x0
+gsSP2Triangles 10, 14,  9, 0x0, 13,  9, 14, 0x0
+gsSP2Triangles  8,  9, 13, 0x0,  2, 15,  0, 0x0
 gsSPVertex snowman_seg5_vertex_0500C8E8, 9, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  2,  1, 0x0
-gsSP1Triangle  4,  5,  2, 0x0
-gsSP1Triangle  2,  6,  4, 0x0
-gsSP1Triangle  2,  5,  7, 0x0
-gsSP1Triangle  0,  2,  7, 0x0
-gsSP1Triangle  3,  6,  2, 0x0
-gsSP1Triangle  7,  8,  0, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  2,  1, 0x0
+gsSP2Triangles  4,  5,  2, 0x0,  2,  6,  4, 0x0
+gsSP2Triangles  2,  5,  7, 0x0,  0,  2,  7, 0x0
+gsSP2Triangles  3,  6,  2, 0x0,  7,  8,  0, 0x0
 gsSPEndDisplayList
 
 glabel snowman_seg5_dl_0500CAA8 # 0x0500CAA8 - 0x0500CB08
@@ -264,8 +244,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, snowman_seg5_texture_0500947
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex snowman_seg5_vertex_0500CB08, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel snowman_seg5_dl_0500CBC0 # 0x0500CBC0 - 0x0500CBF8
@@ -273,8 +252,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, snowman_seg5_texture_0500A47
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex snowman_seg5_vertex_0500CB48, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel snowman_seg5_dl_0500CBF8 # 0x0500CBF8 - 0x0500CC70
@@ -305,8 +283,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, snowman_seg5_texture_0500BC7
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex snowman_seg5_vertex_0500CC70, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel snowman_seg5_dl_0500CCE8 # 0x0500CCE8 - 0x0500CD58

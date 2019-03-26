@@ -33,30 +33,18 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight blue_fish_seg3_light_0301B5D0, 1
 gsSPLight blue_fish_seg3_light_0301B5C8, 2
 gsSPVertex blue_fish_seg3_vertex_0301BDE0, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  0,  4, 0x0
-gsSP1Triangle  5,  0,  3, 0x0
-gsSP1Triangle  2,  6,  0, 0x0
-gsSP1Triangle  0,  6,  4, 0x0
-gsSP1Triangle  5,  1,  0, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
-gsSP1Triangle  6,  2,  7, 0x0
-gsSP1Triangle  7,  8,  4, 0x0
-gsSP1Triangle  9,  4,  8, 0x0
-gsSP1Triangle  9,  3,  4, 0x0
-gsSP1Triangle  2, 10,  7, 0x0
-gsSP1Triangle  1, 11,  2, 0x0
-gsSP1Triangle 11, 10,  2, 0x0
-gsSP1Triangle  1,  5, 12, 0x0
-gsSP1Triangle 12,  5,  3, 0x0
-gsSP1Triangle  9, 11, 12, 0x0
-gsSP1Triangle  3,  9, 12, 0x0
-gsSP1Triangle 12, 11,  1, 0x0
-gsSP1Triangle  8,  7, 10, 0x0
-gsSP1Triangle 13,  9,  8, 0x0
-gsSP1Triangle  9, 13, 11, 0x0
-gsSP1Triangle 11, 13, 10, 0x0
-gsSP1Triangle 10, 13,  8, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  0,  4, 0x0
+gsSP2Triangles  5,  0,  3, 0x0,  2,  6,  0, 0x0
+gsSP2Triangles  0,  6,  4, 0x0,  5,  1,  0, 0x0
+gsSP2Triangles  4,  6,  7, 0x0,  6,  2,  7, 0x0
+gsSP2Triangles  7,  8,  4, 0x0,  9,  4,  8, 0x0
+gsSP2Triangles  9,  3,  4, 0x0,  2, 10,  7, 0x0
+gsSP2Triangles  1, 11,  2, 0x0, 11, 10,  2, 0x0
+gsSP2Triangles  1,  5, 12, 0x0, 12,  5,  3, 0x0
+gsSP2Triangles  9, 11, 12, 0x0,  3,  9, 12, 0x0
+gsSP2Triangles 12, 11,  1, 0x0,  8,  7, 10, 0x0
+gsSP2Triangles 13,  9,  8, 0x0,  9, 13, 11, 0x0
+gsSP2Triangles 11, 13, 10, 0x0, 10, 13,  8, 0x0
 gsSPEndDisplayList
 
 glabel blue_fish_seg3_dl_0301BFB8 # 0x0301BFB8 - 0x0301C018
@@ -91,20 +79,13 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight blue_fish_seg3_light_0301B5D0, 1
 gsSPLight blue_fish_seg3_light_0301B5C8, 2
 gsSPVertex blue_fish_seg3_vertex_0301C018, 9, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  3,  4, 0x0
-gsSP1Triangle  4,  5,  2, 0x0
-gsSP1Triangle  2,  5,  6, 0x0
-gsSP1Triangle  2,  1,  4, 0x0
-gsSP1Triangle  2,  6,  3, 0x0
-gsSP1Triangle  4,  7,  2, 0x0
-gsSP1Triangle  2,  7,  0, 0x0
-gsSP1Triangle  6,  8,  3, 0x0
-gsSP1Triangle  3,  8,  5, 0x0
-gsSP1Triangle  3,  5,  4, 0x0
-gsSP1Triangle  4,  1,  7, 0x0
-gsSP1Triangle  6,  5,  8, 0x0
-gsSP1Triangle  1,  0,  7, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  3,  4, 0x0
+gsSP2Triangles  4,  5,  2, 0x0,  2,  5,  6, 0x0
+gsSP2Triangles  2,  1,  4, 0x0,  2,  6,  3, 0x0
+gsSP2Triangles  4,  7,  2, 0x0,  2,  7,  0, 0x0
+gsSP2Triangles  6,  8,  3, 0x0,  3,  8,  5, 0x0
+gsSP2Triangles  3,  5,  4, 0x0,  4,  1,  7, 0x0
+gsSP2Triangles  6,  5,  8, 0x0,  1,  0,  7, 0x0
 gsSPEndDisplayList
 
 glabel blue_fish_seg3_dl_0301C150 # 0x0301C150 - 0x0301C1B0

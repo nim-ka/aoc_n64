@@ -62,14 +62,10 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight whomp_seg6_light_0601F368, 1
 gsSPLight whomp_seg6_light_0601F360, 2
 gsSPVertex whomp_seg6_vertex_0601F378, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  6,  4, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  7, 10,  8, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
-gsSP1Triangle 11, 13, 14, 0x0
-gsSP1Triangle  0,  2, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  6,  4, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles  7, 10,  8, 0x0, 11, 12, 13, 0x0
+gsSP2Triangles 11, 13, 14, 0x0,  0,  2, 15, 0x0
 gsSPEndDisplayList
 
 glabel whomp_seg6_dl_0601F570 # 0x0601F570 - 0x0601F5A8
@@ -77,8 +73,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, whomp_seg6_texture_0601C360
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex whomp_seg6_vertex_0601F478, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel whomp_seg6_dl_0601F5A8 # 0x0601F5A8 - 0x0601F5E0
@@ -86,8 +81,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, whomp_seg6_texture_0601D360
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex whomp_seg6_vertex_0601F4B8, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel whomp_seg6_dl_0601F5E0 # 0x0601F5E0 - 0x0601F678
@@ -151,16 +145,12 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight whomp_seg6_light_0601F680, 1
 gsSPLight whomp_seg6_light_0601F678, 2
 gsSPVertex whomp_seg6_vertex_0601F690, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  6,  4, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  7, 10,  8, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  6,  4, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles  7, 10,  8, 0x0, 11, 12, 13, 0x0
 gsSP1Triangle 11, 13, 14, 0x0
 gsSPVertex whomp_seg6_vertex_0601F780, 7, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
 gsSP1Triangle  0,  2,  6, 0x0
 gsSPEndDisplayList
 
@@ -218,16 +208,12 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight whomp_seg6_light_0601F8E8, 1
 gsSPLight whomp_seg6_light_0601F8E0, 2
 gsSPVertex whomp_seg6_vertex_0601F8F8, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  6,  4, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  7, 10,  8, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  6,  4, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles  7, 10,  8, 0x0, 11, 12, 13, 0x0
 gsSP1Triangle 11, 13, 14, 0x0
 gsSPVertex whomp_seg6_vertex_0601F9E8, 7, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
 gsSP1Triangle  0,  2,  6, 0x0
 gsSPEndDisplayList
 
@@ -256,8 +242,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, whomp_seg6_texture_0601E360
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex whomp_seg6_vertex_0601FB48, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel whomp_seg6_dl_0601FBC0 # 0x0601FBC0 - 0x0601FC30
@@ -287,8 +272,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, whomp_seg6_texture_0601E360
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex whomp_seg6_vertex_0601FC30, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel whomp_seg6_dl_0601FCA8 # 0x0601FCA8 - 0x0601FD18
@@ -337,18 +321,12 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight whomp_seg6_light_0601FD20, 1
 gsSPLight whomp_seg6_light_0601FD18, 2
 gsSPVertex whomp_seg6_vertex_0601FD30, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  3,  0, 0x0
-gsSP1Triangle  2,  1,  4, 0x0
-gsSP1Triangle  4,  3,  2, 0x0
-gsSP1Triangle  5,  6,  3, 0x0
-gsSP1Triangle  3,  6,  0, 0x0
-gsSP1Triangle  3,  7,  5, 0x0
-gsSP1Triangle  4,  7,  3, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle  8, 11,  9, 0x0
-gsSP1Triangle  8, 12, 11, 0x0
-gsSP1Triangle  8, 10, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  3,  0, 0x0
+gsSP2Triangles  2,  1,  4, 0x0,  4,  3,  2, 0x0
+gsSP2Triangles  5,  6,  3, 0x0,  3,  6,  0, 0x0
+gsSP2Triangles  3,  7,  5, 0x0,  4,  7,  3, 0x0
+gsSP2Triangles  8,  9, 10, 0x0,  8, 11,  9, 0x0
+gsSP2Triangles  8, 12, 11, 0x0,  8, 10, 13, 0x0
 gsSPEndDisplayList
 
 glabel whomp_seg6_dl_0601FEA8 # 0x0601FEA8 - 0x0601FF08
@@ -389,18 +367,12 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight whomp_seg6_light_0601FF10, 1
 gsSPLight whomp_seg6_light_0601FF08, 2
 gsSPVertex whomp_seg6_vertex_0601FF20, 8, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  4,  2,  1, 0x0
-gsSP1Triangle  1,  5,  4, 0x0
-gsSP1Triangle  1,  3,  5, 0x0
-gsSP1Triangle  5,  3,  0, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  0,  7,  5, 0x0
-gsSP1Triangle  5,  7,  6, 0x0
-gsSP1Triangle  6,  2,  4, 0x0
-gsSP1Triangle  0,  2,  6, 0x0
-gsSP1Triangle  0,  6,  7, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  4,  2,  1, 0x0,  1,  5,  4, 0x0
+gsSP2Triangles  1,  3,  5, 0x0,  5,  3,  0, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  0,  7,  5, 0x0
+gsSP2Triangles  5,  7,  6, 0x0,  6,  2,  4, 0x0
+gsSP2Triangles  0,  2,  6, 0x0,  0,  6,  7, 0x0
 gsSPEndDisplayList
 
 glabel whomp_seg6_dl_06020038 # 0x06020038 - 0x06020098

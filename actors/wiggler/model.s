@@ -233,63 +233,39 @@ glabel wiggler_seg5_dl_0500BCB8 # 0x0500BCB8 - 0x0500BE10
 gsSPLight wiggler_seg5_light_0500B238, 1
 gsSPLight wiggler_seg5_light_0500B230, 2
 gsSPVertex wiggler_seg5_vertex_0500B278, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle  8, 10, 11, 0x0
-gsSP1Triangle 12, 13, 14, 0x0
-gsSP1Triangle 12, 14, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
+gsSP2Triangles  8,  9, 10, 0x0,  8, 10, 11, 0x0
+gsSP2Triangles 12, 13, 14, 0x0, 12, 14, 15, 0x0
 gsSPVertex wiggler_seg5_vertex_0500B378, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  2, 0x0
-gsSP1Triangle  6,  2,  5, 0x0
-gsSP1Triangle  7,  6,  8, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 10, 12,  8, 0x0
-gsSP1Triangle  9, 13,  7, 0x0
-gsSP1Triangle 10,  8,  6, 0x0
-gsSP1Triangle 14, 13,  9, 0x0
-gsSP1Triangle 14,  9, 15, 0x0
-gsSP1Triangle  2,  7, 13, 0x0
-gsSP1Triangle  2, 13,  0, 0x0
-gsSP1Triangle  6,  4, 10, 0x0
-gsSP1Triangle  6,  5,  4, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  2, 0x0,  6,  2,  5, 0x0
+gsSP2Triangles  7,  6,  8, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 10, 12,  8, 0x0
+gsSP2Triangles  9, 13,  7, 0x0, 10,  8,  6, 0x0
+gsSP2Triangles 14, 13,  9, 0x0, 14,  9, 15, 0x0
+gsSP2Triangles  2,  7, 13, 0x0,  2, 13,  0, 0x0
+gsSP2Triangles  6,  4, 10, 0x0,  6,  5,  4, 0x0
 gsSPVertex wiggler_seg5_vertex_0500B478, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  1, 0x0
-gsSP1Triangle  4,  1,  6, 0x0
-gsSP1Triangle  7,  6,  8, 0x0
-gsSP1Triangle  7,  9,  6, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 10, 12, 13, 0x0
-gsSP1Triangle 10, 13, 14, 0x0
-gsSP1Triangle 10, 14, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  1, 0x0,  4,  1,  6, 0x0
+gsSP2Triangles  7,  6,  8, 0x0,  7,  9,  6, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 10, 12, 13, 0x0
+gsSP2Triangles 10, 13, 14, 0x0, 10, 14, 15, 0x0
 gsSPVertex wiggler_seg5_vertex_0500B578, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel wiggler_seg5_dl_0500BE10 # 0x0500BE10 - 0x0500BE98
 gsSPLight wiggler_seg5_light_0500B250, 1
 gsSPLight wiggler_seg5_light_0500B248, 2
 gsSPVertex wiggler_seg5_vertex_0500B5B8, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
-gsSP1Triangle  8,  0,  3, 0x0
-gsSP1Triangle  8,  3,  9, 0x0
-gsSP1Triangle  1,  4,  7, 0x0
-gsSP1Triangle  1,  7,  2, 0x0
-gsSP1Triangle  5,  8,  9, 0x0
-gsSP1Triangle  5,  9,  6, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 10, 12, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
+gsSP2Triangles  8,  0,  3, 0x0,  8,  3,  9, 0x0
+gsSP2Triangles  1,  4,  7, 0x0,  1,  7,  2, 0x0
+gsSP2Triangles  5,  8,  9, 0x0,  5,  9,  6, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 10, 12, 13, 0x0
 gsSP1Triangle 10, 13, 14, 0x0
 gsSPEndDisplayList
 
@@ -297,18 +273,12 @@ glabel wiggler_seg5_dl_0500BE98 # 0x0500BE98 - 0x0500BF20
 gsSPLight wiggler_seg5_light_0500B250, 1
 gsSPLight wiggler_seg5_light_0500B248, 2
 gsSPVertex wiggler_seg5_vertex_0500B6A8, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
-gsSP1Triangle  8,  0,  3, 0x0
-gsSP1Triangle  8,  3,  9, 0x0
-gsSP1Triangle  1,  4,  7, 0x0
-gsSP1Triangle  1,  7,  2, 0x0
-gsSP1Triangle  5,  8,  9, 0x0
-gsSP1Triangle  5,  9,  6, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 10, 12, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
+gsSP2Triangles  8,  0,  3, 0x0,  8,  3,  9, 0x0
+gsSP2Triangles  1,  4,  7, 0x0,  1,  7,  2, 0x0
+gsSP2Triangles  5,  8,  9, 0x0,  5,  9,  6, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 10, 12, 13, 0x0
 gsSP1Triangle 10, 13, 14, 0x0
 gsSPEndDisplayList
 
@@ -316,63 +286,39 @@ glabel wiggler_seg5_dl_0500BF20 # 0x0500BF20 - 0x0500C078
 gsSPLight wiggler_seg5_light_0500B238, 1
 gsSPLight wiggler_seg5_light_0500B230, 2
 gsSPVertex wiggler_seg5_vertex_0500B798, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle  8, 10, 11, 0x0
-gsSP1Triangle 12, 13, 14, 0x0
-gsSP1Triangle 12, 14, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
+gsSP2Triangles  8,  9, 10, 0x0,  8, 10, 11, 0x0
+gsSP2Triangles 12, 13, 14, 0x0, 12, 14, 15, 0x0
 gsSPVertex wiggler_seg5_vertex_0500B898, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  0,  6, 0x0
-gsSP1Triangle  3,  6,  7, 0x0
-gsSP1Triangle  8,  9,  7, 0x0
-gsSP1Triangle  8,  7,  6, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle  9, 11, 12, 0x0
-gsSP1Triangle  6, 13,  8, 0x0
-gsSP1Triangle  7,  9, 12, 0x0
-gsSP1Triangle 14,  8, 13, 0x0
-gsSP1Triangle 14, 13, 15, 0x0
-gsSP1Triangle  2, 13,  6, 0x0
-gsSP1Triangle  2,  6,  0, 0x0
-gsSP1Triangle 12,  3,  7, 0x0
-gsSP1Triangle 12,  4,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  0,  6, 0x0,  3,  6,  7, 0x0
+gsSP2Triangles  8,  9,  7, 0x0,  8,  7,  6, 0x0
+gsSP2Triangles  9, 10, 11, 0x0,  9, 11, 12, 0x0
+gsSP2Triangles  6, 13,  8, 0x0,  7,  9, 12, 0x0
+gsSP2Triangles 14,  8, 13, 0x0, 14, 13, 15, 0x0
+gsSP2Triangles  2, 13,  6, 0x0,  2,  6,  0, 0x0
+gsSP2Triangles 12,  3,  7, 0x0, 12,  4,  3, 0x0
 gsSPVertex wiggler_seg5_vertex_0500B998, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  2,  5, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  7,  4,  8, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 10, 12, 13, 0x0
-gsSP1Triangle 10, 13, 14, 0x0
-gsSP1Triangle 10, 14, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  2,  5, 0x0,  4,  5,  6, 0x0
+gsSP2Triangles  7,  8,  9, 0x0,  7,  4,  8, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 10, 12, 13, 0x0
+gsSP2Triangles 10, 13, 14, 0x0, 10, 14, 15, 0x0
 gsSPVertex wiggler_seg5_vertex_0500BA98, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel wiggler_seg5_dl_0500C078 # 0x0500C078 - 0x0500C100
 gsSPLight wiggler_seg5_light_0500B250, 1
 gsSPLight wiggler_seg5_light_0500B248, 2
 gsSPVertex wiggler_seg5_vertex_0500BAD8, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
-gsSP1Triangle  8,  0,  3, 0x0
-gsSP1Triangle  8,  3,  9, 0x0
-gsSP1Triangle  1,  4,  7, 0x0
-gsSP1Triangle  1,  7,  2, 0x0
-gsSP1Triangle  5,  8,  9, 0x0
-gsSP1Triangle  5,  9,  6, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 10, 12, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
+gsSP2Triangles  8,  0,  3, 0x0,  8,  3,  9, 0x0
+gsSP2Triangles  1,  4,  7, 0x0,  1,  7,  2, 0x0
+gsSP2Triangles  5,  8,  9, 0x0,  5,  9,  6, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 10, 12, 13, 0x0
 gsSP1Triangle 10, 13, 14, 0x0
 gsSPEndDisplayList
 
@@ -380,18 +326,12 @@ glabel wiggler_seg5_dl_0500C100 # 0x0500C100 - 0x0500C188
 gsSPLight wiggler_seg5_light_0500B250, 1
 gsSPLight wiggler_seg5_light_0500B248, 2
 gsSPVertex wiggler_seg5_vertex_0500BBC8, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
-gsSP1Triangle  8,  0,  3, 0x0
-gsSP1Triangle  8,  3,  9, 0x0
-gsSP1Triangle  1,  4,  7, 0x0
-gsSP1Triangle  1,  7,  2, 0x0
-gsSP1Triangle  5,  8,  9, 0x0
-gsSP1Triangle  5,  9,  6, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 10, 12, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
+gsSP2Triangles  8,  0,  3, 0x0,  8,  3,  9, 0x0
+gsSP2Triangles  1,  4,  7, 0x0,  1,  7,  2, 0x0
+gsSP2Triangles  5,  8,  9, 0x0,  5,  9,  6, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 10, 12, 13, 0x0
 gsSP1Triangle 10, 13, 14, 0x0
 gsSPEndDisplayList
 
@@ -412,8 +352,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, wiggler_seg5_texture_05005A3
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex wiggler_seg5_vertex_0500C188, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel wiggler_seg5_dl_0500C240 # 0x0500C240 - 0x0500C278
@@ -421,8 +360,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, wiggler_seg5_texture_05006A3
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex wiggler_seg5_vertex_0500C1C8, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel wiggler_seg5_dl_0500C278 # 0x0500C278 - 0x0500C2F0
@@ -912,63 +850,39 @@ glabel wiggler_seg5_dl_0500DC18 # 0x0500DC18 - 0x0500DD70
 gsSPLight wiggler_seg5_light_0500C880, 1
 gsSPLight wiggler_seg5_light_0500C878, 2
 gsSPVertex wiggler_seg5_vertex_0500C8D8, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle  8, 10, 11, 0x0
-gsSP1Triangle 12, 13, 14, 0x0
-gsSP1Triangle 12, 14, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
+gsSP2Triangles  8,  9, 10, 0x0,  8, 10, 11, 0x0
+gsSP2Triangles 12, 13, 14, 0x0, 12, 14, 15, 0x0
 gsSPVertex wiggler_seg5_vertex_0500C9D8, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  2, 0x0
-gsSP1Triangle  6,  2,  5, 0x0
-gsSP1Triangle  7,  6,  8, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 10, 12,  8, 0x0
-gsSP1Triangle  9, 13,  7, 0x0
-gsSP1Triangle 10,  8,  6, 0x0
-gsSP1Triangle 14, 13,  9, 0x0
-gsSP1Triangle 14,  9, 15, 0x0
-gsSP1Triangle  2,  7, 13, 0x0
-gsSP1Triangle  2, 13,  0, 0x0
-gsSP1Triangle  6,  4, 10, 0x0
-gsSP1Triangle  6,  5,  4, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  2, 0x0,  6,  2,  5, 0x0
+gsSP2Triangles  7,  6,  8, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 10, 12,  8, 0x0
+gsSP2Triangles  9, 13,  7, 0x0, 10,  8,  6, 0x0
+gsSP2Triangles 14, 13,  9, 0x0, 14,  9, 15, 0x0
+gsSP2Triangles  2,  7, 13, 0x0,  2, 13,  0, 0x0
+gsSP2Triangles  6,  4, 10, 0x0,  6,  5,  4, 0x0
 gsSPVertex wiggler_seg5_vertex_0500CAD8, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  1, 0x0
-gsSP1Triangle  4,  1,  6, 0x0
-gsSP1Triangle  7,  6,  8, 0x0
-gsSP1Triangle  7,  9,  6, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 10, 12, 13, 0x0
-gsSP1Triangle 10, 13, 14, 0x0
-gsSP1Triangle 10, 14, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  1, 0x0,  4,  1,  6, 0x0
+gsSP2Triangles  7,  6,  8, 0x0,  7,  9,  6, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 10, 12, 13, 0x0
+gsSP2Triangles 10, 13, 14, 0x0, 10, 14, 15, 0x0
 gsSPVertex wiggler_seg5_vertex_0500CBD8, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel wiggler_seg5_dl_0500DD70 # 0x0500DD70 - 0x0500DDF8
 gsSPLight wiggler_seg5_light_0500C898, 1
 gsSPLight wiggler_seg5_light_0500C890, 2
 gsSPVertex wiggler_seg5_vertex_0500CC18, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
-gsSP1Triangle  8,  0,  3, 0x0
-gsSP1Triangle  8,  3,  9, 0x0
-gsSP1Triangle  1,  4,  7, 0x0
-gsSP1Triangle  1,  7,  2, 0x0
-gsSP1Triangle  5,  8,  9, 0x0
-gsSP1Triangle  5,  9,  6, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 10, 12, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
+gsSP2Triangles  8,  0,  3, 0x0,  8,  3,  9, 0x0
+gsSP2Triangles  1,  4,  7, 0x0,  1,  7,  2, 0x0
+gsSP2Triangles  5,  8,  9, 0x0,  5,  9,  6, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 10, 12, 13, 0x0
 gsSP1Triangle 10, 13, 14, 0x0
 gsSPEndDisplayList
 
@@ -976,18 +890,12 @@ glabel wiggler_seg5_dl_0500DDF8 # 0x0500DDF8 - 0x0500DE80
 gsSPLight wiggler_seg5_light_0500C898, 1
 gsSPLight wiggler_seg5_light_0500C890, 2
 gsSPVertex wiggler_seg5_vertex_0500CD08, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
-gsSP1Triangle  8,  0,  3, 0x0
-gsSP1Triangle  8,  3,  9, 0x0
-gsSP1Triangle  1,  4,  7, 0x0
-gsSP1Triangle  1,  7,  2, 0x0
-gsSP1Triangle  5,  8,  9, 0x0
-gsSP1Triangle  5,  9,  6, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 10, 12, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
+gsSP2Triangles  8,  0,  3, 0x0,  8,  3,  9, 0x0
+gsSP2Triangles  1,  4,  7, 0x0,  1,  7,  2, 0x0
+gsSP2Triangles  5,  8,  9, 0x0,  5,  9,  6, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 10, 12, 13, 0x0
 gsSP1Triangle 10, 13, 14, 0x0
 gsSPEndDisplayList
 
@@ -995,63 +903,39 @@ glabel wiggler_seg5_dl_0500DE80 # 0x0500DE80 - 0x0500DFD8
 gsSPLight wiggler_seg5_light_0500C880, 1
 gsSPLight wiggler_seg5_light_0500C878, 2
 gsSPVertex wiggler_seg5_vertex_0500CDF8, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle  8, 10, 11, 0x0
-gsSP1Triangle 12, 13, 14, 0x0
-gsSP1Triangle 12, 14, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
+gsSP2Triangles  8,  9, 10, 0x0,  8, 10, 11, 0x0
+gsSP2Triangles 12, 13, 14, 0x0, 12, 14, 15, 0x0
 gsSPVertex wiggler_seg5_vertex_0500CEF8, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  0,  6, 0x0
-gsSP1Triangle  3,  6,  7, 0x0
-gsSP1Triangle  8,  9,  7, 0x0
-gsSP1Triangle  8,  7,  6, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle  9, 11, 12, 0x0
-gsSP1Triangle  6, 13,  8, 0x0
-gsSP1Triangle  7,  9, 12, 0x0
-gsSP1Triangle 14,  8, 13, 0x0
-gsSP1Triangle 14, 13, 15, 0x0
-gsSP1Triangle  2, 13,  6, 0x0
-gsSP1Triangle  2,  6,  0, 0x0
-gsSP1Triangle 12,  3,  7, 0x0
-gsSP1Triangle 12,  4,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  0,  6, 0x0,  3,  6,  7, 0x0
+gsSP2Triangles  8,  9,  7, 0x0,  8,  7,  6, 0x0
+gsSP2Triangles  9, 10, 11, 0x0,  9, 11, 12, 0x0
+gsSP2Triangles  6, 13,  8, 0x0,  7,  9, 12, 0x0
+gsSP2Triangles 14,  8, 13, 0x0, 14, 13, 15, 0x0
+gsSP2Triangles  2, 13,  6, 0x0,  2,  6,  0, 0x0
+gsSP2Triangles 12,  3,  7, 0x0, 12,  4,  3, 0x0
 gsSPVertex wiggler_seg5_vertex_0500CFF8, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  2,  5, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  7,  4,  8, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 10, 12, 13, 0x0
-gsSP1Triangle 10, 13, 14, 0x0
-gsSP1Triangle 10, 14, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  2,  5, 0x0,  4,  5,  6, 0x0
+gsSP2Triangles  7,  8,  9, 0x0,  7,  4,  8, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 10, 12, 13, 0x0
+gsSP2Triangles 10, 13, 14, 0x0, 10, 14, 15, 0x0
 gsSPVertex wiggler_seg5_vertex_0500D0F8, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel wiggler_seg5_dl_0500DFD8 # 0x0500DFD8 - 0x0500E060
 gsSPLight wiggler_seg5_light_0500C898, 1
 gsSPLight wiggler_seg5_light_0500C890, 2
 gsSPVertex wiggler_seg5_vertex_0500D138, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
-gsSP1Triangle  8,  0,  3, 0x0
-gsSP1Triangle  8,  3,  9, 0x0
-gsSP1Triangle  1,  4,  7, 0x0
-gsSP1Triangle  1,  7,  2, 0x0
-gsSP1Triangle  5,  8,  9, 0x0
-gsSP1Triangle  5,  9,  6, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 10, 12, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
+gsSP2Triangles  8,  0,  3, 0x0,  8,  3,  9, 0x0
+gsSP2Triangles  1,  4,  7, 0x0,  1,  7,  2, 0x0
+gsSP2Triangles  5,  8,  9, 0x0,  5,  9,  6, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 10, 12, 13, 0x0
 gsSP1Triangle 10, 13, 14, 0x0
 gsSPEndDisplayList
 
@@ -1059,18 +943,12 @@ glabel wiggler_seg5_dl_0500E060 # 0x0500E060 - 0x0500E0E8
 gsSPLight wiggler_seg5_light_0500C898, 1
 gsSPLight wiggler_seg5_light_0500C890, 2
 gsSPVertex wiggler_seg5_vertex_0500D228, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
-gsSP1Triangle  8,  0,  3, 0x0
-gsSP1Triangle  8,  3,  9, 0x0
-gsSP1Triangle  1,  4,  7, 0x0
-gsSP1Triangle  1,  7,  2, 0x0
-gsSP1Triangle  5,  8,  9, 0x0
-gsSP1Triangle  5,  9,  6, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 10, 12, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
+gsSP2Triangles  8,  0,  3, 0x0,  8,  3,  9, 0x0
+gsSP2Triangles  1,  4,  7, 0x0,  1,  7,  2, 0x0
+gsSP2Triangles  5,  8,  9, 0x0,  5,  9,  6, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 10, 12, 13, 0x0
 gsSP1Triangle 10, 13, 14, 0x0
 gsSPEndDisplayList
 
@@ -1091,8 +969,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, wiggler_seg5_texture_0500923
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex wiggler_seg5_vertex_0500E0E8, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel wiggler_seg5_dl_0500E1A0 # 0x0500E1A0 - 0x0500E1D8
@@ -1100,8 +977,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, wiggler_seg5_texture_0500A23
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex wiggler_seg5_vertex_0500E128, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel wiggler_seg5_dl_0500E1D8 # 0x0500E1D8 - 0x0500E250
@@ -1134,10 +1010,8 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, wiggler_seg5_texture_05008A3
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex wiggler_seg5_vertex_0500E250, 6, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  3,  0, 0x0
-gsSP1Triangle  2,  4,  3, 0x0
-gsSP1Triangle  0,  5,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  3,  0, 0x0
+gsSP2Triangles  2,  4,  3, 0x0,  0,  5,  1, 0x0
 gsSPEndDisplayList
 
 glabel wiggler_seg5_dl_0500E2F8 # 0x0500E2F8 - 0x0500E368
@@ -1171,10 +1045,8 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, wiggler_seg5_texture_05007A3
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex wiggler_seg5_vertex_0500E368, 8, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  7,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  7,  5, 0x0
 gsSPEndDisplayList
 
 glabel wiggler_seg5_dl_0500E430 # 0x0500E430 - 0x0500E4A0
@@ -1204,8 +1076,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, wiggler_seg5_texture_0500823
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex wiggler_seg5_vertex_0500E4A0, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel wiggler_seg5_dl_0500E518 # 0x0500E518 - 0x0500E588
@@ -1241,8 +1112,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, wiggler_seg5_texture_05005A3
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex wiggler_seg5_vertex_0500E588, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel wiggler_seg5_dl_0500E640 # 0x0500E640 - 0x0500E678
@@ -1250,8 +1120,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, wiggler_seg5_texture_05006A3
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex wiggler_seg5_vertex_0500E5C8, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel wiggler_seg5_dl_0500E678 # 0x0500E678 - 0x0500E6F0

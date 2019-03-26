@@ -62,22 +62,16 @@ glabel koopa_flag_seg6_dl_06000968 # 0x06000968 - 0x06000A08
 gsSPLight koopa_flag_seg6_light_06000850, 1
 gsSPLight koopa_flag_seg6_light_06000848, 2
 gsSPVertex koopa_flag_seg6_vertex_06000878, 5, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  0, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  0, 0x0
 gsSP1Triangle  3,  0,  2, 0x0
 gsSPLight koopa_flag_seg6_light_06000868, 1
 gsSPLight koopa_flag_seg6_light_06000860, 2
 gsSPVertex koopa_flag_seg6_vertex_060008C8, 10, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  3,  0, 0x0
-gsSP1Triangle  4,  2,  1, 0x0
-gsSP1Triangle  5,  0,  3, 0x0
-gsSP1Triangle  3,  6,  5, 0x0
-gsSP1Triangle  7,  5,  6, 0x0
-gsSP1Triangle  6,  8,  7, 0x0
-gsSP1Triangle  9,  7,  8, 0x0
-gsSP1Triangle  8,  4,  9, 0x0
-gsSP1Triangle  1,  9,  4, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  3,  0, 0x0
+gsSP2Triangles  4,  2,  1, 0x0,  5,  0,  3, 0x0
+gsSP2Triangles  3,  6,  5, 0x0,  7,  5,  6, 0x0
+gsSP2Triangles  6,  8,  7, 0x0,  9,  7,  8, 0x0
+gsSP2Triangles  8,  4,  9, 0x0,  1,  9,  4, 0x0
 gsSPEndDisplayList
 
 glabel koopa_flag_seg6_dl_06000A08 # 0x06000A08 - 0x06000A38
@@ -110,8 +104,7 @@ gsSPEndDisplayList
 
 glabel koopa_flag_seg6_dl_06000AE8 # 0x06000AE8 - 0x06000B08
 gsSPVertex koopa_flag_seg6_vertex_06000A68, 5, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  2, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  2, 0x0
 gsSPEndDisplayList
 
 glabel koopa_flag_seg6_dl_06000B08 # 0x06000B08 - 0x06000B80
@@ -142,8 +135,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, koopa_flag_seg6_texture_0600
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex koopa_flag_seg6_vertex_06000B80, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel koopa_flag_seg6_dl_06000BF8 # 0x06000BF8 - 0x06000C68
@@ -173,8 +165,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, koopa_flag_seg6_texture_0600
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex koopa_flag_seg6_vertex_06000C68, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  3,  2, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  3,  2, 0x0
 gsSPEndDisplayList
 
 glabel koopa_flag_seg6_dl_06000CE0 # 0x06000CE0 - 0x06000D50
@@ -201,8 +192,7 @@ vertex      0,      0,   -223,      0,      0,  0xFD, 0xA8, 0x02, 0xFF
 
 glabel koopa_flag_seg6_dl_06000D90 # 0x06000D90 - 0x06000DB0
 gsSPVertex koopa_flag_seg6_vertex_06000D50, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel koopa_flag_seg6_dl_06000DB0 # 0x06000DB0 - 0x06000DF0

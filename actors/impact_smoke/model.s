@@ -34,13 +34,11 @@ gsSPTexture -1, -1, 0, 0, 1
 gsSPEndDisplayList
 
 glabel impact_smoke_seg6_dl_06062AD8 # 0x06062AD8 - 0x06062AF0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel impact_smoke_seg6_dl_06062AF0 # 0x06062AF0 - 0x06062B08
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
 gsSPEndDisplayList
 
 glabel impact_smoke_seg6_dl_06062B08 # 0x06062B08 - 0x06062B38

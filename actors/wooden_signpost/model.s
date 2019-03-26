@@ -29,14 +29,10 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight wooden_signpost_seg3_light_0302C948, 1
 gsSPLight wooden_signpost_seg3_light_0302C940, 2
 gsSPVertex wooden_signpost_seg3_vertex_0302C958, 7, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  3,  0, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  4,  1,  3, 0x0
-gsSP1Triangle  3,  5,  4, 0x0
-gsSP1Triangle  5,  3,  2, 0x0
-gsSP1Triangle  2,  6,  5, 0x0
-gsSP1Triangle  1,  4,  6, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  3,  0, 0x0
+gsSP2Triangles  0,  3,  1, 0x0,  4,  1,  3, 0x0
+gsSP2Triangles  3,  5,  4, 0x0,  5,  3,  2, 0x0
+gsSP2Triangles  2,  6,  5, 0x0,  1,  4,  6, 0x0
 gsSP1Triangle  6,  2,  1, 0x0
 gsSPEndDisplayList
 
@@ -98,17 +94,12 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight wooden_signpost_seg3_light_0302DAB0, 1
 gsSPLight wooden_signpost_seg3_light_0302DAA8, 2
 gsSPVertex wooden_signpost_seg3_vertex_0302DAC0, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  6,  8,  9, 0x0
-gsSP1Triangle  0, 10,  1, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
-gsSP1Triangle  3,  5, 14, 0x0
-gsSP1Triangle 11, 13, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  6,  8,  9, 0x0
+gsSP2Triangles  0, 10,  1, 0x0, 11, 12, 13, 0x0
+gsSP2Triangles  3,  5, 14, 0x0, 11, 13, 15, 0x0
 gsSPVertex wooden_signpost_seg3_vertex_0302DBC0, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel wooden_signpost_seg3_dl_0302DCD0 # 0x0302DCD0 - 0x0302DD08
@@ -116,8 +107,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, wooden_signpost_seg3_texture
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex wooden_signpost_seg3_vertex_0302DC00, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel wooden_signpost_seg3_dl_0302DD08 # 0x0302DD08 - 0x0302DD80

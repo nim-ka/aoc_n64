@@ -136,12 +136,9 @@ gsDPLoadBlock 7, 0, 0, 0x1FF, 0x200
 gsSPLight mad_piano_seg5_light_050086F8, 1
 gsSPLight mad_piano_seg5_light_050086F0, 2
 gsSPVertex mad_piano_seg5_vertex_05008708, 10, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  0,  2,  6, 0x0
-gsSP1Triangle  0,  7,  8, 0x0
-gsSP1Triangle  0,  8,  1, 0x0
-gsSP1Triangle  0,  9,  7, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  0,  2,  6, 0x0,  0,  7,  8, 0x0
+gsSP2Triangles  0,  8,  1, 0x0,  0,  9,  7, 0x0
 gsSPEndDisplayList
 
 glabel mad_piano_seg5_dl_05008BD0 # 0x05008BD0 - 0x05008CB0
@@ -149,28 +146,20 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mad_piano_seg5_texture_05006
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex mad_piano_seg5_vertex_050087A8, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
 gsSP1Triangle 12, 13, 14, 0x0
 gsSPVertex mad_piano_seg5_vertex_05008898, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
 gsSP1Triangle 12, 13, 14, 0x0
 gsSPVertex mad_piano_seg5_vertex_05008988, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
 gsSP1Triangle 12, 13, 14, 0x0
 gsSPVertex mad_piano_seg5_vertex_05008A78, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
 gsSP1Triangle 12, 13, 14, 0x0
 gsSPEndDisplayList
 
@@ -378,38 +367,26 @@ gsDPLoadBlock 7, 0, 0, 0x1FF, 0x200
 gsSPLight mad_piano_seg5_light_05008D48, 1
 gsSPLight mad_piano_seg5_light_05008D40, 2
 gsSPVertex mad_piano_seg5_vertex_05008DA0, 13, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  5,  6, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  7, 10,  8, 0x0
-gsSP1Triangle 11,  7,  9, 0x0
-gsSP1Triangle 11,  9,  1, 0x0
-gsSP1Triangle  0, 12, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  5,  6, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles  7, 10,  8, 0x0, 11,  7,  9, 0x0
+gsSP2Triangles 11,  9,  1, 0x0,  0, 12, 11, 0x0
 gsSP1Triangle  0, 11,  1, 0x0
 gsSPLight mad_piano_seg5_light_05008D60, 1
 gsSPLight mad_piano_seg5_light_05008D58, 2
 gsSPVertex mad_piano_seg5_vertex_05008E70, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
 gsSP1Triangle 12, 13, 14, 0x0
 gsSPVertex mad_piano_seg5_vertex_05008F60, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
 gsSP1Triangle 12, 13, 14, 0x0
 gsSPVertex mad_piano_seg5_vertex_05009050, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  6,  9,  7, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 10, 13, 11, 0x0
-gsSP1Triangle 10, 14, 13, 0x0
-gsSP1Triangle  0, 15,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  6,  9,  7, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 10, 13, 11, 0x0
+gsSP2Triangles 10, 14, 13, 0x0,  0, 15,  1, 0x0
 gsSPEndDisplayList
 
 glabel mad_piano_seg5_dl_050096C8 # 0x050096C8 - 0x050097B0
@@ -417,30 +394,20 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mad_piano_seg5_texture_05007
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x1FF, 0x200
 gsSPVertex mad_piano_seg5_vertex_05009150, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  5,  6, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  7, 10,  8, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  5,  6, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles  7, 10,  8, 0x0, 11, 12, 13, 0x0
 gsSP1Triangle 11, 13, 14, 0x0
 gsSPVertex mad_piano_seg5_vertex_05009240, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  6,  9,  7, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 10, 13, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  6,  9,  7, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 10, 13, 11, 0x0
 gsSP1Triangle  0, 14,  1, 0x0
 gsSPVertex mad_piano_seg5_vertex_05009330, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  7,  5, 0x0
-gsSP1Triangle  4,  6,  8, 0x0
-gsSP1Triangle  4,  8,  9, 0x0
-gsSP1Triangle  4, 10, 11, 0x0
-gsSP1Triangle  4, 11,  7, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  7,  5, 0x0
+gsSP2Triangles  4,  6,  8, 0x0,  4,  8,  9, 0x0
+gsSP2Triangles  4, 10, 11, 0x0,  4, 11,  7, 0x0
 gsSPEndDisplayList
 
 glabel mad_piano_seg5_dl_050097B0 # 0x050097B0 - 0x050097F8
@@ -450,8 +417,7 @@ gsDPLoadBlock 7, 0, 0, 0x1FF, 0x100
 gsSPLight mad_piano_seg5_light_05008D78, 1
 gsSPLight mad_piano_seg5_light_05008D70, 2
 gsSPVertex mad_piano_seg5_vertex_050093F0, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel mad_piano_seg5_dl_050097F8 # 0x050097F8 - 0x05009840
@@ -461,8 +427,7 @@ gsDPLoadBlock 7, 0, 0, 0x1FF, 0x100
 gsSPLight mad_piano_seg5_light_05008D48, 1
 gsSPLight mad_piano_seg5_light_05008D40, 2
 gsSPVertex mad_piano_seg5_vertex_05009430, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel mad_piano_seg5_dl_05009840 # 0x05009840 - 0x05009888
@@ -470,24 +435,18 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mad_piano_seg5_texture_05007
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x1FF, 0x100
 gsSPVertex mad_piano_seg5_vertex_05009470, 8, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  7,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  7,  5, 0x0
 gsSPEndDisplayList
 
 glabel mad_piano_seg5_dl_05009888 # 0x05009888 - 0x050098E8
 gsSPLight mad_piano_seg5_light_05008D90, 1
 gsSPLight mad_piano_seg5_light_05008D88, 2
 gsSPVertex mad_piano_seg5_vertex_050094F0, 10, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  2,  4,  3, 0x0
-gsSP1Triangle  2,  5,  4, 0x0
-gsSP1Triangle  0,  6,  1, 0x0
-gsSP1Triangle  0,  7,  6, 0x0
-gsSP1Triangle  0,  8,  7, 0x0
-gsSP1Triangle  0,  9,  8, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  2,  4,  3, 0x0,  2,  5,  4, 0x0
+gsSP2Triangles  0,  6,  1, 0x0,  0,  7,  6, 0x0
+gsSP2Triangles  0,  8,  7, 0x0,  0,  9,  8, 0x0
 gsSPEndDisplayList
 
 glabel mad_piano_seg5_dl_050098E8 # 0x050098E8 - 0x050099B8

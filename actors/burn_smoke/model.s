@@ -21,8 +21,7 @@ gsSPEndDisplayList
 
 glabel burn_smoke_seg4_dl_04022028 # 0x04022028 - 0x04022048
 gsSPVertex burn_smoke_seg4_vertex_040217C0, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel burn_smoke_seg4_dl_04022048 # 0x04022048 - 0x04022070

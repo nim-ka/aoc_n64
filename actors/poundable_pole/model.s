@@ -71,12 +71,9 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight poundable_pole_seg6_light_06001040, 1
 gsSPLight poundable_pole_seg6_light_06001038, 2
 gsSPVertex poundable_pole_seg6_vertex_06002050, 8, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  4, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  2,  1,  5, 0x0
-gsSP1Triangle  2,  5,  6, 0x0
-gsSP1Triangle  2,  6,  7, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  4, 0x0
+gsSP2Triangles  0,  2,  3, 0x0,  2,  1,  5, 0x0
+gsSP2Triangles  2,  5,  6, 0x0,  2,  6,  7, 0x0
 gsSPEndDisplayList
 
 glabel poundable_pole_seg6_dl_06002358 # 0x06002358 - 0x06002410
@@ -84,24 +81,17 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, poundable_pole_seg6_texture_
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex poundable_pole_seg6_vertex_060020D0, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  5,  6, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  7,  9, 10, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  5,  6, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles  7,  9, 10, 0x0, 11, 12, 13, 0x0
 gsSP1Triangle 12, 11, 14, 0x0
 gsSPVertex poundable_pole_seg6_vertex_060021C0, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  6,  9,  7, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 11, 10, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  6,  9,  7, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 11, 10, 13, 0x0
 gsSP1Triangle  1,  0, 14, 0x0
 gsSPVertex poundable_pole_seg6_vertex_060022B0, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  0,  2, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  0,  2, 0x0
 gsSPEndDisplayList
 
 glabel poundable_pole_seg6_dl_06002410 # 0x06002410 - 0x06002490

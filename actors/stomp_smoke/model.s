@@ -42,8 +42,7 @@ gsDPSetTileSize 0, 0, 0, 124, 124
 gsSPEndDisplayList
 
 glabel stomp_smoke_seg4_dl_04025190 # 0x04025190 - 0x040251C8
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsDPPipeSync
 gsSPTexture 1, 1, 0, 0, 0
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE

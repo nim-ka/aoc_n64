@@ -31,26 +31,16 @@ glabel star_seg3_dl_0302B7B0 # 0x0302B7B0 - 0x0302B870
 gsSPLight star_seg3_light_0302A6E0, 1
 gsSPLight star_seg3_light_0302A6D8, 2
 gsSPVertex star_seg3_vertex_0302B6F0, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  2,  1,  4, 0x0
-gsSP1Triangle  1,  3,  4, 0x0
-gsSP1Triangle  5,  3,  0, 0x0
-gsSP1Triangle  4,  3,  5, 0x0
-gsSP1Triangle  6,  7,  4, 0x0
-gsSP1Triangle  7,  2,  4, 0x0
-gsSP1Triangle  8,  6,  4, 0x0
-gsSP1Triangle  9,  4, 10, 0x0
-gsSP1Triangle  9, 11,  4, 0x0
-gsSP1Triangle  4,  5, 10, 0x0
-gsSP1Triangle 11,  8,  4, 0x0
-gsSP1Triangle  0,  2,  7, 0x0
-gsSP1Triangle  0,  7,  6, 0x0
-gsSP1Triangle  0,  6,  8, 0x0
-gsSP1Triangle  0,  8, 11, 0x0
-gsSP1Triangle  0, 11,  9, 0x0
-gsSP1Triangle 10,  5,  0, 0x0
-gsSP1Triangle 10,  0,  9, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  2,  1,  4, 0x0,  1,  3,  4, 0x0
+gsSP2Triangles  5,  3,  0, 0x0,  4,  3,  5, 0x0
+gsSP2Triangles  6,  7,  4, 0x0,  7,  2,  4, 0x0
+gsSP2Triangles  8,  6,  4, 0x0,  9,  4, 10, 0x0
+gsSP2Triangles  9, 11,  4, 0x0,  4,  5, 10, 0x0
+gsSP2Triangles 11,  8,  4, 0x0,  0,  2,  7, 0x0
+gsSP2Triangles  0,  7,  6, 0x0,  0,  6,  8, 0x0
+gsSP2Triangles  0,  8, 11, 0x0,  0, 11,  9, 0x0
+gsSP2Triangles 10,  5,  0, 0x0, 10,  0,  9, 0x0
 gsSPEndDisplayList
 
 glabel star_seg3_dl_0302B870 # 0x0302B870 - 0x0302B908
@@ -100,10 +90,8 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight star_seg3_light_0302B910, 1
 gsSPLight star_seg3_light_0302B908, 2
 gsSPVertex star_seg3_vertex_0302B920, 10, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  7,  8,  9, 0x0
 gsSPEndDisplayList
 
 glabel star_seg3_dl_0302BA18 # 0x0302BA18 - 0x0302BA88

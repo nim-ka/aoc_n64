@@ -86,75 +86,45 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight cannon_barrel_seg8_light_08005880, 1
 gsSPLight cannon_barrel_seg8_light_08005878, 2
 gsSPVertex cannon_barrel_seg8_vertex_080060A8, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  2,  4,  5, 0x0
-gsSP1Triangle  2,  1,  4, 0x0
-gsSP1Triangle  4,  6,  5, 0x0
-gsSP1Triangle  4,  7,  6, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  7,  9,  6, 0x0
-gsSP1Triangle  8, 10, 11, 0x0
-gsSP1Triangle  8, 11,  9, 0x0
-gsSP1Triangle 10, 12, 11, 0x0
-gsSP1Triangle 10, 13, 12, 0x0
-gsSP1Triangle 14, 15, 12, 0x0
-gsSP1Triangle 14,  3, 15, 0x0
-gsSP1Triangle 14,  0,  3, 0x0
-gsSP1Triangle 14, 12, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  2,  4,  5, 0x0,  2,  1,  4, 0x0
+gsSP2Triangles  4,  6,  5, 0x0,  4,  7,  6, 0x0
+gsSP2Triangles  7,  8,  9, 0x0,  7,  9,  6, 0x0
+gsSP2Triangles  8, 10, 11, 0x0,  8, 11,  9, 0x0
+gsSP2Triangles 10, 12, 11, 0x0, 10, 13, 12, 0x0
+gsSP2Triangles 14, 15, 12, 0x0, 14,  3, 15, 0x0
+gsSP2Triangles 14,  0,  3, 0x0, 14, 12, 13, 0x0
 gsSPEndDisplayList
 
 glabel cannon_barrel_seg8_dl_080064C0 # 0x080064C0 - 0x08006660
 gsSPLight cannon_barrel_seg8_light_08005898, 1
 gsSPLight cannon_barrel_seg8_light_08005890, 2
 gsSPVertex cannon_barrel_seg8_vertex_080061A8, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  4, 0x0
-gsSP1Triangle  6,  4,  3, 0x0
-gsSP1Triangle  4,  8,  5, 0x0
-gsSP1Triangle  4,  7,  9, 0x0
-gsSP1Triangle  4,  9,  2, 0x0
-gsSP1Triangle  4,  2,  1, 0x0
-gsSP1Triangle  4,  1, 10, 0x0
-gsSP1Triangle  4, 10,  8, 0x0
-gsSP1Triangle 11,  9,  7, 0x0
-gsSP1Triangle 11,  7,  6, 0x0
-gsSP1Triangle 12,  2,  9, 0x0
-gsSP1Triangle 12,  9, 11, 0x0
-gsSP1Triangle  0,  2, 12, 0x0
-gsSP1Triangle 13, 10,  1, 0x0
-gsSP1Triangle 13,  1,  0, 0x0
-gsSP1Triangle 14,  8, 10, 0x0
-gsSP1Triangle 14, 10, 13, 0x0
-gsSP1Triangle 15,  8, 14, 0x0
-gsSP1Triangle 15,  5,  8, 0x0
-gsSP1Triangle  3,  5, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  4, 0x0,  6,  4,  3, 0x0
+gsSP2Triangles  4,  8,  5, 0x0,  4,  7,  9, 0x0
+gsSP2Triangles  4,  9,  2, 0x0,  4,  2,  1, 0x0
+gsSP2Triangles  4,  1, 10, 0x0,  4, 10,  8, 0x0
+gsSP2Triangles 11,  9,  7, 0x0, 11,  7,  6, 0x0
+gsSP2Triangles 12,  2,  9, 0x0, 12,  9, 11, 0x0
+gsSP2Triangles  0,  2, 12, 0x0, 13, 10,  1, 0x0
+gsSP2Triangles 13,  1,  0, 0x0, 14,  8, 10, 0x0
+gsSP2Triangles 14, 10, 13, 0x0, 15,  8, 14, 0x0
+gsSP2Triangles 15,  5,  8, 0x0,  3,  5, 15, 0x0
 gsSPVertex cannon_barrel_seg8_vertex_080062A8, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  3,  2, 0x0
-gsSP1Triangle  1,  4,  5, 0x0
-gsSP1Triangle  1,  5,  3, 0x0
-gsSP1Triangle  0,  4,  1, 0x0
-gsSP1Triangle  0,  6,  4, 0x0
-gsSP1Triangle  3,  5,  7, 0x0
-gsSP1Triangle  3,  8,  2, 0x0
-gsSP1Triangle  3,  7,  8, 0x0
-gsSP1Triangle  9,  0,  2, 0x0
-gsSP1Triangle  9,  6,  0, 0x0
-gsSP1Triangle  9, 10,  6, 0x0
-gsSP1Triangle 11,  9,  2, 0x0
-gsSP1Triangle 11, 10,  9, 0x0
-gsSP1Triangle 11, 12, 10, 0x0
-gsSP1Triangle 13, 11,  2, 0x0
-gsSP1Triangle 13, 12, 11, 0x0
-gsSP1Triangle  8,  7, 14, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  3,  2, 0x0
+gsSP2Triangles  1,  4,  5, 0x0,  1,  5,  3, 0x0
+gsSP2Triangles  0,  4,  1, 0x0,  0,  6,  4, 0x0
+gsSP2Triangles  3,  5,  7, 0x0,  3,  8,  2, 0x0
+gsSP2Triangles  3,  7,  8, 0x0,  9,  0,  2, 0x0
+gsSP2Triangles  9,  6,  0, 0x0,  9, 10,  6, 0x0
+gsSP2Triangles 11,  9,  2, 0x0, 11, 10,  9, 0x0
+gsSP2Triangles 11, 12, 10, 0x0, 13, 11,  2, 0x0
+gsSP2Triangles 13, 12, 11, 0x0,  8,  7, 14, 0x0
 gsSP1Triangle 13, 15, 12, 0x0
 gsSPVertex cannon_barrel_seg8_vertex_080063A8, 6, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  0,  4,  3, 0x0
-gsSP1Triangle  5,  0,  2, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  0,  4,  3, 0x0,  5,  0,  2, 0x0
 gsSP1Triangle  5,  4,  0, 0x0
 gsSPEndDisplayList
 

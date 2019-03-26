@@ -58,16 +58,11 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight clam_shell_seg5_light_05001038, 1
 gsSPLight clam_shell_seg5_light_05001030, 2
 gsSPVertex clam_shell_seg5_vertex_05001048, 11, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  0,  4, 0x0
-gsSP1Triangle  4,  5,  3, 0x0
-gsSP1Triangle  4,  0,  6, 0x0
-gsSP1Triangle  6,  7,  4, 0x0
-gsSP1Triangle  3,  8,  0, 0x0
-gsSP1Triangle  6,  0,  9, 0x0
-gsSP1Triangle  2, 10,  9, 0x0
-gsSP1Triangle  9,  7,  6, 0x0
-gsSP1Triangle  9,  0,  2, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  0,  4, 0x0
+gsSP2Triangles  4,  5,  3, 0x0,  4,  0,  6, 0x0
+gsSP2Triangles  6,  7,  4, 0x0,  3,  8,  0, 0x0
+gsSP2Triangles  6,  0,  9, 0x0,  2, 10,  9, 0x0
+gsSP2Triangles  9,  7,  6, 0x0,  9,  0,  2, 0x0
 gsSP1Triangle  8,  1,  0, 0x0
 gsSPEndDisplayList
 
@@ -76,16 +71,11 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, clam_shell_seg5_texture_0500
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex clam_shell_seg5_vertex_050010F8, 11, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  3,  5, 0x0
-gsSP1Triangle  5,  7,  6, 0x0
-gsSP1Triangle  0,  3,  6, 0x0
-gsSP1Triangle  6,  1,  0, 0x0
-gsSP1Triangle  2,  8,  9, 0x0
-gsSP1Triangle  9, 10,  3, 0x0
-gsSP1Triangle  9,  3,  2, 0x0
-gsSP1Triangle  3, 10,  4, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  3,  5, 0x0,  5,  7,  6, 0x0
+gsSP2Triangles  0,  3,  6, 0x0,  6,  1,  0, 0x0
+gsSP2Triangles  2,  8,  9, 0x0,  9, 10,  3, 0x0
+gsSP2Triangles  9,  3,  2, 0x0,  3, 10,  4, 0x0
 gsSP1Triangle  2,  3,  0, 0x0
 gsSPEndDisplayList
 
@@ -142,14 +132,10 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight clam_shell_seg5_light_05001328, 1
 gsSPLight clam_shell_seg5_light_05001320, 2
 gsSPVertex clam_shell_seg5_vertex_05001338, 10, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  0, 0x0
-gsSP1Triangle  4,  5,  0, 0x0
-gsSP1Triangle  0,  5,  6, 0x0
-gsSP1Triangle  0,  7,  8, 0x0
-gsSP1Triangle  2,  7,  0, 0x0
-gsSP1Triangle  8,  3,  0, 0x0
-gsSP1Triangle  0,  9,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  0, 0x0
+gsSP2Triangles  4,  5,  0, 0x0,  0,  5,  6, 0x0
+gsSP2Triangles  0,  7,  8, 0x0,  2,  7,  0, 0x0
+gsSP2Triangles  8,  3,  0, 0x0,  0,  9,  1, 0x0
 gsSP1Triangle  6,  9,  0, 0x0
 gsSPEndDisplayList
 
@@ -158,14 +144,10 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, clam_shell_seg5_texture_0500
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex clam_shell_seg5_vertex_050013D8, 10, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  3,  0, 0x0
-gsSP1Triangle  2,  4,  3, 0x0
-gsSP1Triangle  2,  1,  5, 0x0
-gsSP1Triangle  6,  7,  2, 0x0
-gsSP1Triangle  2,  7,  4, 0x0
-gsSP1Triangle  8,  9,  2, 0x0
-gsSP1Triangle  2,  9,  6, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  3,  0, 0x0
+gsSP2Triangles  2,  4,  3, 0x0,  2,  1,  5, 0x0
+gsSP2Triangles  6,  7,  2, 0x0,  2,  7,  4, 0x0
+gsSP2Triangles  8,  9,  2, 0x0,  2,  9,  6, 0x0
 gsSP1Triangle  5,  8,  2, 0x0
 gsSPEndDisplayList
 

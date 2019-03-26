@@ -99,55 +99,34 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight lakitu_enemy_seg5_light_050124E8, 1
 gsSPLight lakitu_enemy_seg5_light_050124E0, 2
 gsSPVertex lakitu_enemy_seg5_vertex_05012510, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
-gsSP1Triangle  4,  7,  5, 0x0
-gsSP1Triangle  5,  7,  8, 0x0
-gsSP1Triangle  8,  7,  1, 0x0
-gsSP1Triangle  6,  1,  7, 0x0
-gsSP1Triangle  5,  8,  9, 0x0
-gsSP1Triangle  5,  9, 10, 0x0
-gsSP1Triangle  3,  5, 10, 0x0
-gsSP1Triangle  6,  2,  1, 0x0
-gsSP1Triangle  8, 11,  9, 0x0
-gsSP1Triangle  8, 12, 11, 0x0
-gsSP1Triangle  8,  1, 12, 0x0
-gsSP1Triangle 12,  1,  0, 0x0
-gsSP1Triangle 13, 11, 12, 0x0
-gsSP1Triangle 13, 12,  0, 0x0
-gsSP1Triangle 14, 13,  0, 0x0
-gsSP1Triangle  0,  2, 14, 0x0
-gsSP1Triangle 14, 15, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  4,  6,  7, 0x0,  4,  7,  5, 0x0
+gsSP2Triangles  5,  7,  8, 0x0,  8,  7,  1, 0x0
+gsSP2Triangles  6,  1,  7, 0x0,  5,  8,  9, 0x0
+gsSP2Triangles  5,  9, 10, 0x0,  3,  5, 10, 0x0
+gsSP2Triangles  6,  2,  1, 0x0,  8, 11,  9, 0x0
+gsSP2Triangles  8, 12, 11, 0x0,  8,  1, 12, 0x0
+gsSP2Triangles 12,  1,  0, 0x0, 13, 11, 12, 0x0
+gsSP2Triangles 13, 12,  0, 0x0, 14, 13,  0, 0x0
+gsSP2Triangles  0,  2, 14, 0x0, 14, 15, 13, 0x0
 gsSPVertex lakitu_enemy_seg5_vertex_05012610, 10, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  3,  2,  4, 0x0
-gsSP1Triangle  4,  2,  5, 0x0
-gsSP1Triangle  1,  5,  2, 0x0
-gsSP1Triangle  1,  6,  5, 0x0
-gsSP1Triangle  4,  5,  7, 0x0
-gsSP1Triangle  7,  5,  8, 0x0
-gsSP1Triangle  8,  5,  6, 0x0
-gsSP1Triangle  8,  6,  9, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  3,  2,  4, 0x0,  4,  2,  5, 0x0
+gsSP2Triangles  1,  5,  2, 0x0,  1,  6,  5, 0x0
+gsSP2Triangles  4,  5,  7, 0x0,  7,  5,  8, 0x0
+gsSP2Triangles  8,  5,  6, 0x0,  8,  6,  9, 0x0
 gsSPEndDisplayList
 
 glabel lakitu_enemy_seg5_dl_05012890 # 0x05012890 - 0x05012910
 gsSPLight lakitu_enemy_seg5_light_05012500, 1
 gsSPLight lakitu_enemy_seg5_light_050124F8, 2
 gsSPVertex lakitu_enemy_seg5_vertex_050126B0, 11, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  3,  4, 0x0
-gsSP1Triangle  1,  5,  2, 0x0
-gsSP1Triangle  4,  0,  2, 0x0
-gsSP1Triangle  5,  3,  2, 0x0
-gsSP1Triangle  4,  6,  0, 0x0
-gsSP1Triangle  7,  8,  1, 0x0
-gsSP1Triangle  9,  7,  0, 0x0
-gsSP1Triangle  1,  0,  7, 0x0
-gsSP1Triangle  8, 10,  1, 0x0
-gsSP1Triangle  1, 10,  5, 0x0
-gsSP1Triangle  0,  6,  9, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  3,  4, 0x0
+gsSP2Triangles  1,  5,  2, 0x0,  4,  0,  2, 0x0
+gsSP2Triangles  5,  3,  2, 0x0,  4,  6,  0, 0x0
+gsSP2Triangles  7,  8,  1, 0x0,  9,  7,  0, 0x0
+gsSP2Triangles  1,  0,  7, 0x0,  8, 10,  1, 0x0
+gsSP2Triangles  1, 10,  5, 0x0,  0,  6,  9, 0x0
 gsSPEndDisplayList
 
 glabel lakitu_enemy_seg5_dl_05012910 # 0x05012910 - 0x05012978
@@ -277,77 +256,46 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight lakitu_enemy_seg5_light_05012980, 1
 gsSPLight lakitu_enemy_seg5_light_05012978, 2
 gsSPVertex lakitu_enemy_seg5_vertex_05012990, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  1,  4, 0x0
-gsSP1Triangle  3,  5,  1, 0x0
-gsSP1Triangle  1,  6,  7, 0x0
-gsSP1Triangle  1,  5,  6, 0x0
-gsSP1Triangle  1,  0,  4, 0x0
-gsSP1Triangle  1,  7,  2, 0x0
-gsSP1Triangle  8,  7,  6, 0x0
-gsSP1Triangle  9,  7,  8, 0x0
-gsSP1Triangle  2,  7,  9, 0x0
-gsSP1Triangle 10,  0,  2, 0x0
-gsSP1Triangle  2, 11, 10, 0x0
-gsSP1Triangle  2, 12, 11, 0x0
-gsSP1Triangle  2,  9, 12, 0x0
-gsSP1Triangle  9, 13, 12, 0x0
-gsSP1Triangle  9,  8, 13, 0x0
-gsSP1Triangle 14,  5,  3, 0x0
-gsSP1Triangle  5, 15,  6, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  1,  4, 0x0
+gsSP2Triangles  3,  5,  1, 0x0,  1,  6,  7, 0x0
+gsSP2Triangles  1,  5,  6, 0x0,  1,  0,  4, 0x0
+gsSP2Triangles  1,  7,  2, 0x0,  8,  7,  6, 0x0
+gsSP2Triangles  9,  7,  8, 0x0,  2,  7,  9, 0x0
+gsSP2Triangles 10,  0,  2, 0x0,  2, 11, 10, 0x0
+gsSP2Triangles  2, 12, 11, 0x0,  2,  9, 12, 0x0
+gsSP2Triangles  9, 13, 12, 0x0,  9,  8, 13, 0x0
+gsSP2Triangles 14,  5,  3, 0x0,  5, 15,  6, 0x0
 gsSP1Triangle  5, 14, 15, 0x0
 gsSPVertex lakitu_enemy_seg5_vertex_05012A90, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  0,  4,  5, 0x0
-gsSP1Triangle  6,  0,  3, 0x0
-gsSP1Triangle  0,  5,  1, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle 10,  6, 11, 0x0
-gsSP1Triangle 11,  6,  3, 0x0
-gsSP1Triangle  2, 11,  3, 0x0
-gsSP1Triangle 12, 13, 14, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  0,  4,  5, 0x0,  6,  0,  3, 0x0
+gsSP2Triangles  0,  5,  1, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles 10,  6, 11, 0x0, 11,  6,  3, 0x0
+gsSP2Triangles  2, 11,  3, 0x0, 12, 13, 14, 0x0
 gsSPVertex lakitu_enemy_seg5_vertex_05012B80, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  2, 0x0
-gsSP1Triangle  2,  1,  5, 0x0
-gsSP1Triangle  4,  6,  2, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle 10,  9, 11, 0x0
-gsSP1Triangle 10,  7,  9, 0x0
-gsSP1Triangle  7, 12,  8, 0x0
-gsSP1Triangle 13,  8, 12, 0x0
-gsSP1Triangle  9,  8, 14, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  2, 0x0
+gsSP2Triangles  2,  1,  5, 0x0,  4,  6,  2, 0x0
+gsSP2Triangles  7,  8,  9, 0x0, 10,  9, 11, 0x0
+gsSP2Triangles 10,  7,  9, 0x0,  7, 12,  8, 0x0
+gsSP2Triangles 13,  8, 12, 0x0,  9,  8, 14, 0x0
 gsSP1Triangle 15,  8, 13, 0x0
 gsSPVertex lakitu_enemy_seg5_vertex_05012C80, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  2,  4, 0x0
-gsSP1Triangle  5,  6,  2, 0x0
-gsSP1Triangle  2,  6,  4, 0x0
-gsSP1Triangle  5,  2,  1, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 10, 12, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  2,  4, 0x0
+gsSP2Triangles  5,  6,  2, 0x0,  2,  6,  4, 0x0
+gsSP2Triangles  5,  2,  1, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 10, 12, 13, 0x0
 gsSP1Triangle 14, 10, 13, 0x0
 gsSPVertex lakitu_enemy_seg5_vertex_05012D70, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  0, 0x0
-gsSP1Triangle  1,  0,  5, 0x0
-gsSP1Triangle  0,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10,  7, 0x0
-gsSP1Triangle  3,  7, 10, 0x0
-gsSP1Triangle  9,  7,  6, 0x0
-gsSP1Triangle 11, 12, 10, 0x0
-gsSP1Triangle 10, 13, 11, 0x0
-gsSP1Triangle  3, 10, 12, 0x0
-gsSP1Triangle  1, 14,  2, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  0, 0x0
+gsSP2Triangles  1,  0,  5, 0x0,  0,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10,  7, 0x0
+gsSP2Triangles  3,  7, 10, 0x0,  9,  7,  6, 0x0
+gsSP2Triangles 11, 12, 10, 0x0, 10, 13, 11, 0x0
+gsSP2Triangles  3, 10, 12, 0x0,  1, 14,  2, 0x0
 gsSP1Triangle 13,  9, 15, 0x0
 gsSPVertex lakitu_enemy_seg5_vertex_05012E70, 8, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  7,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  7,  5, 0x0
 gsSPEndDisplayList
 
 glabel lakitu_enemy_seg5_dl_05013160 # 0x05013160 - 0x050131C0
@@ -389,10 +337,8 @@ glabel lakitu_enemy_seg5_dl_05013298 # 0x05013298 - 0x050132D8
 gsSPLight lakitu_enemy_seg5_light_050131C8, 1
 gsSPLight lakitu_enemy_seg5_light_050131C0, 2
 gsSPVertex lakitu_enemy_seg5_vertex_050131D8, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
 gsSPEndDisplayList
 
 glabel lakitu_enemy_seg5_dl_050132D8 # 0x050132D8 - 0x05013320
@@ -456,32 +402,19 @@ glabel lakitu_enemy_seg5_dl_050134A8 # 0x050134A8 - 0x05013598
 gsSPLight lakitu_enemy_seg5_light_050133A8, 1
 gsSPLight lakitu_enemy_seg5_light_050133A0, 2
 gsSPVertex lakitu_enemy_seg5_vertex_050133B8, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  3,  5, 0x0
-gsSP1Triangle  3,  7,  4, 0x0
-gsSP1Triangle  6,  1,  3, 0x0
-gsSP1Triangle  1,  7,  3, 0x0
-gsSP1Triangle  8,  7,  0, 0x0
-gsSP1Triangle  7,  8,  4, 0x0
-gsSP1Triangle  0,  7,  1, 0x0
-gsSP1Triangle  9,  4,  8, 0x0
-gsSP1Triangle  4,  9,  5, 0x0
-gsSP1Triangle 10,  8, 11, 0x0
-gsSP1Triangle  9,  8, 10, 0x0
-gsSP1Triangle 11,  8,  0, 0x0
-gsSP1Triangle  0,  2, 11, 0x0
-gsSP1Triangle  2, 12, 11, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 13, 12,  5, 0x0
-gsSP1Triangle  9, 10, 13, 0x0
-gsSP1Triangle  9, 13,  5, 0x0
-gsSP1Triangle 10, 12, 13, 0x0
-gsSP1Triangle  1, 14,  2, 0x0
-gsSP1Triangle  2, 14, 12, 0x0
-gsSP1Triangle  6, 14,  1, 0x0
-gsSP1Triangle  5, 14,  6, 0x0
-gsSP1Triangle  5, 12, 14, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  3,  5, 0x0,  3,  7,  4, 0x0
+gsSP2Triangles  6,  1,  3, 0x0,  1,  7,  3, 0x0
+gsSP2Triangles  8,  7,  0, 0x0,  7,  8,  4, 0x0
+gsSP2Triangles  0,  7,  1, 0x0,  9,  4,  8, 0x0
+gsSP2Triangles  4,  9,  5, 0x0, 10,  8, 11, 0x0
+gsSP2Triangles  9,  8, 10, 0x0, 11,  8,  0, 0x0
+gsSP2Triangles  0,  2, 11, 0x0,  2, 12, 11, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 13, 12,  5, 0x0
+gsSP2Triangles  9, 10, 13, 0x0,  9, 13,  5, 0x0
+gsSP2Triangles 10, 12, 13, 0x0,  1, 14,  2, 0x0
+gsSP2Triangles  2, 14, 12, 0x0,  6, 14,  1, 0x0
+gsSP2Triangles  5, 14,  6, 0x0,  5, 12, 14, 0x0
 gsSPEndDisplayList
 
 lakitu_enemy_seg5_light_05013598: # 0x05013598
@@ -512,32 +445,19 @@ glabel lakitu_enemy_seg5_dl_050136A0 # 0x050136A0 - 0x05013790
 gsSPLight lakitu_enemy_seg5_light_050135A0, 1
 gsSPLight lakitu_enemy_seg5_light_05013598, 2
 gsSPVertex lakitu_enemy_seg5_vertex_050135B0, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
-gsSP1Triangle  4,  7,  5, 0x0
-gsSP1Triangle  6,  4,  8, 0x0
-gsSP1Triangle  3,  8,  4, 0x0
-gsSP1Triangle  9,  7,  6, 0x0
-gsSP1Triangle 10,  7,  9, 0x0
-gsSP1Triangle  5,  7, 10, 0x0
-gsSP1Triangle  3,  5, 11, 0x0
-gsSP1Triangle  5, 10, 11, 0x0
-gsSP1Triangle  1,  6,  2, 0x0
-gsSP1Triangle  2,  6,  8, 0x0
-gsSP1Triangle  9,  6,  1, 0x0
-gsSP1Triangle  1, 12,  9, 0x0
-gsSP1Triangle 12, 10,  9, 0x0
-gsSP1Triangle  1,  0, 12, 0x0
-gsSP1Triangle 11, 13,  3, 0x0
-gsSP1Triangle 14,  0,  2, 0x0
-gsSP1Triangle 14,  2,  8, 0x0
-gsSP1Triangle  3, 14,  8, 0x0
-gsSP1Triangle 13,  0,  3, 0x0
-gsSP1Triangle  3,  0, 14, 0x0
-gsSP1Triangle  0, 13, 12, 0x0
-gsSP1Triangle 10, 13, 11, 0x0
-gsSP1Triangle 12, 13, 10, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  4,  6,  7, 0x0,  4,  7,  5, 0x0
+gsSP2Triangles  6,  4,  8, 0x0,  3,  8,  4, 0x0
+gsSP2Triangles  9,  7,  6, 0x0, 10,  7,  9, 0x0
+gsSP2Triangles  5,  7, 10, 0x0,  3,  5, 11, 0x0
+gsSP2Triangles  5, 10, 11, 0x0,  1,  6,  2, 0x0
+gsSP2Triangles  2,  6,  8, 0x0,  9,  6,  1, 0x0
+gsSP2Triangles  1, 12,  9, 0x0, 12, 10,  9, 0x0
+gsSP2Triangles  1,  0, 12, 0x0, 11, 13,  3, 0x0
+gsSP2Triangles 14,  0,  2, 0x0, 14,  2,  8, 0x0
+gsSP2Triangles  3, 14,  8, 0x0, 13,  0,  3, 0x0
+gsSP2Triangles  3,  0, 14, 0x0,  0, 13, 12, 0x0
+gsSP2Triangles 10, 13, 11, 0x0, 12, 13, 10, 0x0
 gsSPEndDisplayList
 
 lakitu_enemy_seg5_vertex_05013790: # 0x05013790
@@ -559,12 +479,9 @@ glabel lakitu_enemy_seg5_dl_05013860 # 0x05013860 - 0x050138B0
 gsSPLight lakitu_enemy_seg5_light_0500ECB8, 1
 gsSPLight lakitu_enemy_seg5_light_0500ECB0, 2
 gsSPVertex lakitu_enemy_seg5_vertex_05013790, 13, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  0,  2, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  1,  6,  2, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  0,  2, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles  1,  6,  2, 0x0, 10, 11, 12, 0x0
 gsSPEndDisplayList
 
 glabel lakitu_enemy_seg5_dl_050138B0 # 0x050138B0 - 0x050138C0

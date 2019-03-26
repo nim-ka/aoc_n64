@@ -14,8 +14,7 @@ gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_16b, 1, fwoosh_seg5_texture_05015808
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex fwoosh_seg5_vertex_050157C8, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel fwoosh_seg5_dl_05016040 # 0x05016040 - 0x050160B0

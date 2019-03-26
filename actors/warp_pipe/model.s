@@ -95,42 +95,28 @@ gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPLight warp_pipe_seg3_light_030079F0, 1
 gsSPLight warp_pipe_seg3_light_030079E8, 2
 gsSPVertex warp_pipe_seg3_vertex_03007A00, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  5,  6, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  7,  9, 10, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  5,  6, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles  7,  9, 10, 0x0, 11, 12, 13, 0x0
 gsSP1Triangle 11, 13, 14, 0x0
 gsSPVertex warp_pipe_seg3_vertex_03007AF0, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  6,  9,  7, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 10, 13, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  6,  9,  7, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 10, 13, 11, 0x0
 gsSP1Triangle  0, 14,  1, 0x0
 gsSPVertex warp_pipe_seg3_vertex_03007BE0, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  5,  6, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  7,  9, 10, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  5,  6, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles  7,  9, 10, 0x0, 11, 12, 13, 0x0
 gsSP1Triangle 11, 13, 14, 0x0
 gsSPVertex warp_pipe_seg3_vertex_03007CD0, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  6,  8,  9, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 10, 13, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  6,  8,  9, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 10, 13, 11, 0x0
 gsSP1Triangle  0, 14,  1, 0x0
 gsSPVertex warp_pipe_seg3_vertex_03007DC0, 8, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
 gsSPEndDisplayList
 
 glabel warp_pipe_seg3_dl_03008F98 # 0x03008F98 - 0x03008FF8
@@ -195,22 +181,14 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight warp_pipe_seg3_light_03009000, 1
 gsSPLight warp_pipe_seg3_light_03008FF8, 2
 gsSPVertex warp_pipe_seg3_vertex_03009028, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  6,  4, 0x0
-gsSP1Triangle  7,  3,  5, 0x0
-gsSP1Triangle  8,  4,  6, 0x0
-gsSP1Triangle  8,  9,  4, 0x0
-gsSP1Triangle  7,  5, 10, 0x0
-gsSP1Triangle 11,  7, 10, 0x0
-gsSP1Triangle 11, 10, 12, 0x0
-gsSP1Triangle  1, 11, 12, 0x0
-gsSP1Triangle  1, 12,  2, 0x0
-gsSP1Triangle 13, 14,  9, 0x0
-gsSP1Triangle  0,  2, 15, 0x0
-gsSP1Triangle 13,  0, 15, 0x0
-gsSP1Triangle 13, 15, 14, 0x0
-gsSP1Triangle 13,  9,  8, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  6,  4, 0x0,  7,  3,  5, 0x0
+gsSP2Triangles  8,  4,  6, 0x0,  8,  9,  4, 0x0
+gsSP2Triangles  7,  5, 10, 0x0, 11,  7, 10, 0x0
+gsSP2Triangles 11, 10, 12, 0x0,  1, 11, 12, 0x0
+gsSP2Triangles  1, 12,  2, 0x0, 13, 14,  9, 0x0
+gsSP2Triangles  0,  2, 15, 0x0, 13,  0, 15, 0x0
+gsSP2Triangles 13, 15, 14, 0x0, 13,  9,  8, 0x0
 gsSPEndDisplayList
 
 glabel warp_pipe_seg3_dl_03009A20 # 0x03009A20 - 0x03009A50

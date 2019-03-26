@@ -70,39 +70,23 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight mips_seg6_light_06010388, 1
 gsSPLight mips_seg6_light_06010380, 2
 gsSPVertex mips_seg6_vertex_060103B0, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  0,  2, 0x0
-gsSP1Triangle  2,  1,  4, 0x0
-gsSP1Triangle  2,  5,  3, 0x0
-gsSP1Triangle  2,  6,  5, 0x0
-gsSP1Triangle  2,  4,  6, 0x0
-gsSP1Triangle  5,  6,  7, 0x0
-gsSP1Triangle  8,  3,  5, 0x0
-gsSP1Triangle  5,  9,  8, 0x0
-gsSP1Triangle  9,  5,  7, 0x0
-gsSP1Triangle  3, 10,  0, 0x0
-gsSP1Triangle  8, 10,  3, 0x0
-gsSP1Triangle  6, 11,  7, 0x0
-gsSP1Triangle  4, 11,  6, 0x0
-gsSP1Triangle 12, 11,  4, 0x0
-gsSP1Triangle  4,  1, 12, 0x0
-gsSP1Triangle  8,  9, 13, 0x0
-gsSP1Triangle 14, 10,  8, 0x0
-gsSP1Triangle  8, 15, 14, 0x0
-gsSP1Triangle 13, 15,  8, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  0,  2, 0x0
+gsSP2Triangles  2,  1,  4, 0x0,  2,  5,  3, 0x0
+gsSP2Triangles  2,  6,  5, 0x0,  2,  4,  6, 0x0
+gsSP2Triangles  5,  6,  7, 0x0,  8,  3,  5, 0x0
+gsSP2Triangles  5,  9,  8, 0x0,  9,  5,  7, 0x0
+gsSP2Triangles  3, 10,  0, 0x0,  8, 10,  3, 0x0
+gsSP2Triangles  6, 11,  7, 0x0,  4, 11,  6, 0x0
+gsSP2Triangles 12, 11,  4, 0x0,  4,  1, 12, 0x0
+gsSP2Triangles  8,  9, 13, 0x0, 14, 10,  8, 0x0
+gsSP2Triangles  8, 15, 14, 0x0, 13, 15,  8, 0x0
 gsSPVertex mips_seg6_vertex_060104B0, 13, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  1,  0, 0x0
-gsSP1Triangle  2,  4,  0, 0x0
-gsSP1Triangle  5,  6,  1, 0x0
-gsSP1Triangle  5,  1,  7, 0x0
-gsSP1Triangle  7,  1,  3, 0x0
-gsSP1Triangle  5,  8,  6, 0x0
-gsSP1Triangle  6,  9,  2, 0x0
-gsSP1Triangle  2,  9, 10, 0x0
-gsSP1Triangle  2, 10,  4, 0x0
-gsSP1Triangle 11,  5,  7, 0x0
-gsSP1Triangle  9, 12, 10, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  1,  0, 0x0
+gsSP2Triangles  2,  4,  0, 0x0,  5,  6,  1, 0x0
+gsSP2Triangles  5,  1,  7, 0x0,  7,  1,  3, 0x0
+gsSP2Triangles  5,  8,  6, 0x0,  6,  9,  2, 0x0
+gsSP2Triangles  2,  9, 10, 0x0,  2, 10,  4, 0x0
+gsSP2Triangles 11,  5,  7, 0x0,  9, 12, 10, 0x0
 gsSP1Triangle  6,  8,  9, 0x0
 gsSPEndDisplayList
 
@@ -110,16 +94,13 @@ glabel mips_seg6_dl_06010748 # 0x06010748 - 0x060107B8
 gsSPLight mips_seg6_light_060103A0, 1
 gsSPLight mips_seg6_light_06010398, 2
 gsSPVertex mips_seg6_vertex_06010580, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  0,  2, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  0,  2, 0x0
 gsSP1Triangle  3,  2,  1, 0x0
 gsSPLight mips_seg6_light_06010388, 1
 gsSPLight mips_seg6_light_06010380, 2
 gsSPVertex mips_seg6_vertex_060105C0, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  3,  2,  0, 0x0
-gsSP1Triangle  2,  1,  0, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  3,  2,  0, 0x0,  2,  1,  0, 0x0
 gsSPEndDisplayList
 
 glabel mips_seg6_dl_060107B8 # 0x060107B8 - 0x06010820
@@ -195,52 +176,31 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight mips_seg6_light_06010828, 1
 gsSPLight mips_seg6_light_06010820, 2
 gsSPVertex mips_seg6_vertex_06010838, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  3,  4, 0x0
-gsSP1Triangle  0,  5,  1, 0x0
-gsSP1Triangle  1,  6,  3, 0x0
-gsSP1Triangle  1,  4,  2, 0x0
-gsSP1Triangle  7,  1,  5, 0x0
-gsSP1Triangle  6,  1,  7, 0x0
-gsSP1Triangle  8,  6,  9, 0x0
-gsSP1Triangle  5,  9,  6, 0x0
-gsSP1Triangle  8,  3,  6, 0x0
-gsSP1Triangle  7, 10,  6, 0x0
-gsSP1Triangle  5,  6, 10, 0x0
-gsSP1Triangle  8, 11,  3, 0x0
-gsSP1Triangle 11,  4,  3, 0x0
-gsSP1Triangle  9,  5, 12, 0x0
-gsSP1Triangle  8,  9, 13, 0x0
-gsSP1Triangle  9, 12, 13, 0x0
-gsSP1Triangle 11,  2,  4, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  3,  4, 0x0
+gsSP2Triangles  0,  5,  1, 0x0,  1,  6,  3, 0x0
+gsSP2Triangles  1,  4,  2, 0x0,  7,  1,  5, 0x0
+gsSP2Triangles  6,  1,  7, 0x0,  8,  6,  9, 0x0
+gsSP2Triangles  5,  9,  6, 0x0,  8,  3,  6, 0x0
+gsSP2Triangles  7, 10,  6, 0x0,  5,  6, 10, 0x0
+gsSP2Triangles  8, 11,  3, 0x0, 11,  4,  3, 0x0
+gsSP2Triangles  9,  5, 12, 0x0,  8,  9, 13, 0x0
+gsSP2Triangles  9, 12, 13, 0x0, 11,  2,  4, 0x0
 gsSP1Triangle 12, 14, 13, 0x0
 gsSPVertex mips_seg6_vertex_06010928, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  1,  0, 0x0
-gsSP1Triangle  0,  2,  4, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  7,  6,  5, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle 11, 12,  8, 0x0
-gsSP1Triangle  9,  8, 12, 0x0
-gsSP1Triangle  8, 13, 11, 0x0
-gsSP1Triangle 13,  8, 10, 0x0
-gsSP1Triangle 13,  1,  3, 0x0
-gsSP1Triangle 10,  2, 13, 0x0
-gsSP1Triangle  3, 11, 13, 0x0
-gsSP1Triangle  2,  1, 13, 0x0
-gsSP1Triangle 10,  9,  5, 0x0
-gsSP1Triangle  5,  4, 10, 0x0
-gsSP1Triangle 10,  4,  2, 0x0
-gsSP1Triangle  5, 14,  7, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  1,  0, 0x0
+gsSP2Triangles  0,  2,  4, 0x0,  4,  5,  6, 0x0
+gsSP2Triangles  7,  6,  5, 0x0,  8,  9, 10, 0x0
+gsSP2Triangles 11, 12,  8, 0x0,  9,  8, 12, 0x0
+gsSP2Triangles  8, 13, 11, 0x0, 13,  8, 10, 0x0
+gsSP2Triangles 13,  1,  3, 0x0, 10,  2, 13, 0x0
+gsSP2Triangles  3, 11, 13, 0x0,  2,  1, 13, 0x0
+gsSP2Triangles 10,  9,  5, 0x0,  5,  4, 10, 0x0
+gsSP2Triangles 10,  4,  2, 0x0,  5, 14,  7, 0x0
 gsSP1Triangle 12, 14,  9, 0x0
 gsSPVertex mips_seg6_vertex_06010A18, 8, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  1,  0, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  2,  7,  3, 0x0
-gsSP1Triangle  1,  7,  2, 0x0
-gsSP1Triangle  3,  7,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  1,  0, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  2,  7,  3, 0x0
+gsSP2Triangles  1,  7,  2, 0x0,  3,  7,  1, 0x0
 gsSPEndDisplayList
 
 glabel mips_seg6_dl_06010C40 # 0x06010C40 - 0x06010CA0
@@ -296,21 +256,15 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight mips_seg6_light_06010CA8, 1
 gsSPLight mips_seg6_light_06010CA0, 2
 gsSPVertex mips_seg6_vertex_06010CD0, 6, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  3,  2, 0x0
-gsSP1Triangle  0,  4,  1, 0x0
-gsSP1Triangle  4,  0,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  3,  2, 0x0
+gsSP2Triangles  0,  4,  1, 0x0,  4,  0,  5, 0x0
 gsSPLight mips_seg6_light_06010CC0, 1
 gsSPLight mips_seg6_light_06010CB8, 2
 gsSPVertex mips_seg6_vertex_06010D30, 8, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  0,  3, 0x0
-gsSP1Triangle  0,  2,  4, 0x0
-gsSP1Triangle  5,  6,  0, 0x0
-gsSP1Triangle  0,  6,  3, 0x0
-gsSP1Triangle  0,  4,  5, 0x0
-gsSP1Triangle  2,  7,  4, 0x0
-gsSP1Triangle  7,  5,  4, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  0,  3, 0x0
+gsSP2Triangles  0,  2,  4, 0x0,  5,  6,  0, 0x0
+gsSP2Triangles  0,  6,  3, 0x0,  0,  4,  5, 0x0
+gsSP2Triangles  2,  7,  4, 0x0,  7,  5,  4, 0x0
 gsSPEndDisplayList
 
 glabel mips_seg6_dl_06010E60 # 0x06010E60 - 0x06010EC0
@@ -376,8 +330,7 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight mips_seg6_light_06010EC8, 1
 gsSPLight mips_seg6_light_06010EC0, 2
 gsSPVertex mips_seg6_vertex_06010F08, 5, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSP1Triangle  3,  2,  4, 0x0
 gsSPLight mips_seg6_light_06010EE0, 1
 gsSPLight mips_seg6_light_06010ED8, 2
@@ -386,12 +339,9 @@ gsSP1Triangle  0,  1,  2, 0x0
 gsSPLight mips_seg6_light_06010EF8, 1
 gsSPLight mips_seg6_light_06010EF0, 2
 gsSPVertex mips_seg6_vertex_06010F88, 7, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  3,  2,  4, 0x0
-gsSP1Triangle  2,  1,  4, 0x0
-gsSP1Triangle  0,  5,  1, 0x0
-gsSP1Triangle  3,  6,  0, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  3,  2,  4, 0x0,  2,  1,  4, 0x0
+gsSP2Triangles  0,  5,  1, 0x0,  3,  6,  0, 0x0
 gsSPEndDisplayList
 
 glabel mips_seg6_dl_060110B0 # 0x060110B0 - 0x06011110
@@ -449,25 +399,17 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight mips_seg6_light_06011118, 1
 gsSPLight mips_seg6_light_06011110, 2
 gsSPVertex mips_seg6_vertex_06011140, 6, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  3,  0, 0x0
-gsSP1Triangle  2,  4,  3, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  3,  0, 0x0
+gsSP2Triangles  2,  4,  3, 0x0,  3,  4,  5, 0x0
 gsSPLight mips_seg6_light_06011130, 1
 gsSPLight mips_seg6_light_06011128, 2
 gsSPVertex mips_seg6_vertex_060111A0, 10, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  1,  0, 0x0
-gsSP1Triangle  0,  4,  3, 0x0
-gsSP1Triangle  5,  6,  1, 0x0
-gsSP1Triangle  1,  3,  5, 0x0
-gsSP1Triangle  2,  1,  6, 0x0
-gsSP1Triangle  6,  7,  2, 0x0
-gsSP1Triangle  5,  3,  4, 0x0
-gsSP1Triangle  4,  8,  5, 0x0
-gsSP1Triangle  8,  9,  5, 0x0
-gsSP1Triangle  9,  6,  5, 0x0
-gsSP1Triangle  9,  7,  6, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  1,  0, 0x0
+gsSP2Triangles  0,  4,  3, 0x0,  5,  6,  1, 0x0
+gsSP2Triangles  1,  3,  5, 0x0,  2,  1,  6, 0x0
+gsSP2Triangles  6,  7,  2, 0x0,  5,  3,  4, 0x0
+gsSP2Triangles  4,  8,  5, 0x0,  8,  9,  5, 0x0
+gsSP2Triangles  9,  6,  5, 0x0,  9,  7,  6, 0x0
 gsSPEndDisplayList
 
 glabel mips_seg6_dl_06011310 # 0x06011310 - 0x06011370
@@ -522,20 +464,15 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight mips_seg6_light_06011378, 1
 gsSPLight mips_seg6_light_06011370, 2
 gsSPVertex mips_seg6_vertex_060113A0, 5, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  0,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  0,  3, 0x0
 gsSP1Triangle  3,  4,  1, 0x0
 gsSPLight mips_seg6_light_06011390, 1
 gsSPLight mips_seg6_light_06011388, 2
 gsSPVertex mips_seg6_vertex_060113F0, 8, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  3,  4, 0x0
-gsSP1Triangle  3,  2,  1, 0x0
-gsSP1Triangle  3,  5,  6, 0x0
-gsSP1Triangle  6,  4,  3, 0x0
-gsSP1Triangle  1,  5,  3, 0x0
-gsSP1Triangle  6,  7,  4, 0x0
-gsSP1Triangle  4,  7,  0, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  3,  4, 0x0
+gsSP2Triangles  3,  2,  1, 0x0,  3,  5,  6, 0x0
+gsSP2Triangles  6,  4,  3, 0x0,  1,  5,  3, 0x0
+gsSP2Triangles  6,  7,  4, 0x0,  4,  7,  0, 0x0
 gsSP1Triangle  0,  2,  4, 0x0
 gsSPEndDisplayList
 
@@ -594,25 +531,17 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight mips_seg6_light_06011588, 1
 gsSPLight mips_seg6_light_06011580, 2
 gsSPVertex mips_seg6_vertex_060115B0, 6, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  3,  2, 0x0
-gsSP1Triangle  4,  3,  1, 0x0
-gsSP1Triangle  2,  5,  0, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  3,  2, 0x0
+gsSP2Triangles  4,  3,  1, 0x0,  2,  5,  0, 0x0
 gsSPLight mips_seg6_light_060115A0, 1
 gsSPLight mips_seg6_light_06011598, 2
 gsSPVertex mips_seg6_vertex_06011610, 10, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  4, 0x0
-gsSP1Triangle  2,  3,  0, 0x0
-gsSP1Triangle  3,  2,  5, 0x0
-gsSP1Triangle  4,  3,  6, 0x0
-gsSP1Triangle  5,  6,  3, 0x0
-gsSP1Triangle  6,  7,  4, 0x0
-gsSP1Triangle  7,  6,  5, 0x0
-gsSP1Triangle  5,  8,  7, 0x0
-gsSP1Triangle  5,  9,  8, 0x0
-gsSP1Triangle  5,  2,  9, 0x0
-gsSP1Triangle  2,  1,  9, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  4, 0x0
+gsSP2Triangles  2,  3,  0, 0x0,  3,  2,  5, 0x0
+gsSP2Triangles  4,  3,  6, 0x0,  5,  6,  3, 0x0
+gsSP2Triangles  6,  7,  4, 0x0,  7,  6,  5, 0x0
+gsSP2Triangles  5,  8,  7, 0x0,  5,  9,  8, 0x0
+gsSP2Triangles  5,  2,  9, 0x0,  2,  1,  9, 0x0
 gsSPEndDisplayList
 
 glabel mips_seg6_dl_06011780 # 0x06011780 - 0x060117E0
@@ -667,20 +596,15 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight mips_seg6_light_060117E8, 1
 gsSPLight mips_seg6_light_060117E0, 2
 gsSPVertex mips_seg6_vertex_06011810, 5, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  2,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  2,  1, 0x0
 gsSP1Triangle  1,  4,  3, 0x0
 gsSPLight mips_seg6_light_06011800, 1
 gsSPLight mips_seg6_light_060117F8, 2
 gsSPVertex mips_seg6_vertex_06011860, 8, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  5,  6,  3, 0x0
-gsSP1Triangle  6,  7,  3, 0x0
-gsSP1Triangle  5,  4,  1, 0x0
-gsSP1Triangle  6,  5,  0, 0x0
-gsSP1Triangle  1,  0,  5, 0x0
-gsSP1Triangle  2,  7,  6, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  5,  6,  3, 0x0,  6,  7,  3, 0x0
+gsSP2Triangles  5,  4,  1, 0x0,  6,  5,  0, 0x0
+gsSP2Triangles  1,  0,  5, 0x0,  2,  7,  6, 0x0
 gsSP1Triangle  6,  0,  2, 0x0
 gsSPEndDisplayList
 
@@ -737,21 +661,15 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight mips_seg6_light_060119F8, 1
 gsSPLight mips_seg6_light_060119F0, 2
 gsSPVertex mips_seg6_vertex_06011A20, 6, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  1,  4,  2, 0x0
-gsSP1Triangle  5,  2,  4, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  1,  4,  2, 0x0,  5,  2,  4, 0x0
 gsSPLight mips_seg6_light_06011A10, 1
 gsSPLight mips_seg6_light_06011A08, 2
 gsSPVertex mips_seg6_vertex_06011A80, 8, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  4,  5,  1, 0x0
-gsSP1Triangle  1,  3,  6, 0x0
-gsSP1Triangle  5,  2,  1, 0x0
-gsSP1Triangle  6,  4,  1, 0x0
-gsSP1Triangle  4,  7,  5, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  4,  5,  1, 0x0,  1,  3,  6, 0x0
+gsSP2Triangles  5,  2,  1, 0x0,  6,  4,  1, 0x0
+gsSP2Triangles  4,  7,  5, 0x0,  4,  6,  7, 0x0
 gsSPEndDisplayList
 
 glabel mips_seg6_dl_06011BB0 # 0x06011BB0 - 0x06011C10
@@ -806,19 +724,14 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight mips_seg6_light_06011C18, 1
 gsSPLight mips_seg6_light_06011C10, 2
 gsSPVertex mips_seg6_vertex_06011C40, 6, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  1,  3, 0x0
-gsSP1Triangle  1,  4,  3, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  1,  3, 0x0
+gsSP2Triangles  1,  4,  3, 0x0,  3,  4,  5, 0x0
 gsSPLight mips_seg6_light_06011C30, 1
 gsSPLight mips_seg6_light_06011C28, 2
 gsSPVertex mips_seg6_vertex_06011CA0, 7, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  1,  3,  5, 0x0
-gsSP1Triangle  2,  1,  5, 0x0
-gsSP1Triangle  5,  6,  2, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  3,  4,  5, 0x0,  1,  3,  5, 0x0
+gsSP2Triangles  2,  1,  5, 0x0,  5,  6,  2, 0x0
 gsSPEndDisplayList
 
 glabel mips_seg6_dl_06011DB0 # 0x06011DB0 - 0x06011E10
@@ -854,12 +767,9 @@ glabel mips_seg6_dl_06011E88 # 0x06011E88 - 0x06011ED8
 gsSPLight mips_seg6_light_06011E18, 1
 gsSPLight mips_seg6_light_06011E10, 2
 gsSPVertex mips_seg6_vertex_06011E28, 6, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  3,  2, 0x0
-gsSP1Triangle  4,  0,  2, 0x0
-gsSP1Triangle  2,  5,  4, 0x0
-gsSP1Triangle  4,  5,  3, 0x0
-gsSP1Triangle  1,  4,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  3,  2, 0x0
+gsSP2Triangles  4,  0,  2, 0x0,  2,  5,  4, 0x0
+gsSP2Triangles  4,  5,  3, 0x0,  1,  4,  3, 0x0
 gsSPEndDisplayList
 
 glabel mips_seg6_dl_06011ED8 # 0x06011ED8 - 0x06011EF8
@@ -887,12 +797,9 @@ glabel mips_seg6_dl_06011F70 # 0x06011F70 - 0x06011FC0
 gsSPLight mips_seg6_light_06011F00, 1
 gsSPLight mips_seg6_light_06011EF8, 2
 gsSPVertex mips_seg6_vertex_06011F10, 6, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  2, 0x0
-gsSP1Triangle  2,  1,  4, 0x0
-gsSP1Triangle  4,  3,  5, 0x0
-gsSP1Triangle  4,  0,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  2, 0x0,  2,  1,  4, 0x0
+gsSP2Triangles  4,  3,  5, 0x0,  4,  0,  3, 0x0
 gsSPEndDisplayList
 
 glabel mips_seg6_dl_06011FC0 # 0x06011FC0 - 0x06011FE0

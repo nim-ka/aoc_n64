@@ -80,8 +80,7 @@ gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPLight tree_seg3_light_0302DE18, 1
 gsSPLight tree_seg3_light_0302DE10, 2
 gsSPVertex tree_seg3_vertex_03030F60, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
@@ -112,8 +111,7 @@ gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPLight tree_seg3_light_0302DE18, 1
 gsSPLight tree_seg3_light_0302DE10, 2
 gsSPVertex tree_seg3_vertex_03032048, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
@@ -141,8 +139,7 @@ gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPLight tree_seg3_light_0302DE18, 1
 gsSPLight tree_seg3_light_0302DE10, 2
 gsSPVertex tree_seg3_vertex_03032130, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
@@ -173,8 +170,7 @@ gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPLight tree_seg3_light_0302DE18, 1
 gsSPLight tree_seg3_light_0302DE10, 2
 gsSPVertex tree_seg3_vertex_03033218, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE

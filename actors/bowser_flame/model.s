@@ -64,13 +64,11 @@ gsSPTexture -1, -1, 0, 0, 1
 gsSPEndDisplayList
 
 glabel flame_seg6_dl_0601C0B0 # 0x0601C0B0 - 0x0601C0C8
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel flame_seg6_dl_0601C0C8 # 0x0601C0C8 - 0x0601C0E0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
 gsSPEndDisplayList
 
 glabel flame_seg6_dl_0601C0E0 # 0x0601C0E0 - 0x0601C108

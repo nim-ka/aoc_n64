@@ -24,8 +24,7 @@ gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_16b, 1, impact_ring_seg6_texture_0601C
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex impact_ring_seg6_vertex_0601C9D0, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel impact_ring_seg6_dl_0601EA88 # 0x0601EA88 - 0x0601EAC0
@@ -33,8 +32,7 @@ gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_16b, 1, impact_ring_seg6_texture_0601D
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex impact_ring_seg6_vertex_0601CA10, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel impact_ring_seg6_dl_0601EAC0 # 0x0601EAC0 - 0x0601EB40

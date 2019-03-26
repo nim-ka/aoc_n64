@@ -192,37 +192,23 @@ glabel flyguy_seg8_dl_08010840 # 0x08010840 - 0x08010968
 gsSPLight flyguy_seg8_light_080100A8, 1
 gsSPLight flyguy_seg8_light_080100A0, 2
 gsSPVertex flyguy_seg8_vertex_08010130, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  6,  8,  9, 0x0
-gsSP1Triangle  7, 10,  8, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  6,  8,  9, 0x0
+gsSP2Triangles  7, 10,  8, 0x0, 11, 12, 13, 0x0
 gsSP1Triangle 14, 15,  1, 0x0
 gsSPVertex flyguy_seg8_vertex_08010230, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  7,  8,  5, 0x0
-gsSP1Triangle  7,  5,  9, 0x0
-gsSP1Triangle 10,  8, 11, 0x0
-gsSP1Triangle 12, 13, 14, 0x0
-gsSP1Triangle 12, 14, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  7,  8,  5, 0x0
+gsSP2Triangles  7,  5,  9, 0x0, 10,  8, 11, 0x0
+gsSP2Triangles 12, 13, 14, 0x0, 12, 14, 15, 0x0
 gsSPVertex flyguy_seg8_vertex_08010330, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  2,  6,  7, 0x0
-gsSP1Triangle  3,  8,  4, 0x0
-gsSP1Triangle  1,  9,  5, 0x0
-gsSP1Triangle  0,  9,  1, 0x0
-gsSP1Triangle  0,  7, 10, 0x0
-gsSP1Triangle  0, 10, 11, 0x0
-gsSP1Triangle  3,  5, 12, 0x0
-gsSP1Triangle  3, 12, 13, 0x0
-gsSP1Triangle  1,  4,  2, 0x0
-gsSP1Triangle 14, 12,  5, 0x0
-gsSP1Triangle 14,  5,  9, 0x0
-gsSP1Triangle  6,  8, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  2,  6,  7, 0x0,  3,  8,  4, 0x0
+gsSP2Triangles  1,  9,  5, 0x0,  0,  9,  1, 0x0
+gsSP2Triangles  0,  7, 10, 0x0,  0, 10, 11, 0x0
+gsSP2Triangles  3,  5, 12, 0x0,  3, 12, 13, 0x0
+gsSP2Triangles  1,  4,  2, 0x0, 14, 12,  5, 0x0
+gsSP2Triangles 14,  5,  9, 0x0,  6,  8, 15, 0x0
 gsSPVertex flyguy_seg8_vertex_08010430, 3, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSPEndDisplayList
@@ -231,37 +217,23 @@ glabel flyguy_seg8_dl_08010968 # 0x08010968 - 0x08010A90
 gsSPLight flyguy_seg8_light_080100A8, 1
 gsSPLight flyguy_seg8_light_080100A0, 2
 gsSPVertex flyguy_seg8_vertex_08010460, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle 11,  6,  5, 0x0
-gsSP1Triangle 11,  5, 12, 0x0
-gsSP1Triangle 13, 14, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
+gsSP2Triangles  8,  9, 10, 0x0, 11,  6,  5, 0x0
+gsSP2Triangles 11,  5, 12, 0x0, 13, 14, 15, 0x0
 gsSPVertex flyguy_seg8_vertex_08010560, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  2, 0x0
-gsSP1Triangle  5,  4,  3, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  1,  9, 10, 0x0
-gsSP1Triangle  5,  6,  8, 0x0
-gsSP1Triangle 10,  3,  2, 0x0
-gsSP1Triangle  2,  4, 11, 0x0
-gsSP1Triangle  2, 11,  0, 0x0
-gsSP1Triangle  8,  7, 12, 0x0
-gsSP1Triangle 10,  9,  7, 0x0
-gsSP1Triangle 10,  7,  6, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  2, 0x0
+gsSP2Triangles  5,  4,  3, 0x0,  6,  7,  8, 0x0
+gsSP2Triangles  1,  9, 10, 0x0,  5,  6,  8, 0x0
+gsSP2Triangles 10,  3,  2, 0x0,  2,  4, 11, 0x0
+gsSP2Triangles  2, 11,  0, 0x0,  8,  7, 12, 0x0
+gsSP2Triangles 10,  9,  7, 0x0, 10,  7,  6, 0x0
 gsSP1Triangle 13,  9,  1, 0x0
 gsSPVertex flyguy_seg8_vertex_08010640, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle  3, 10, 12, 0x0
-gsSP1Triangle  3, 12,  0, 0x0
-gsSP1Triangle 13, 14, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles 10, 11, 12, 0x0,  3, 10, 12, 0x0
+gsSP2Triangles  3, 12,  0, 0x0, 13, 14, 15, 0x0
 gsSPVertex flyguy_seg8_vertex_08010740, 3, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSPEndDisplayList
@@ -270,12 +242,9 @@ glabel flyguy_seg8_dl_08010A90 # 0x08010A90 - 0x08010AE0
 gsSPLight flyguy_seg8_light_080100C0, 1
 gsSPLight flyguy_seg8_light_080100B8, 2
 gsSPVertex flyguy_seg8_vertex_08010770, 13, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  0,  2, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  1,  6,  2, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  0,  2, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles  1,  6,  2, 0x0, 10, 11, 12, 0x0
 gsSPEndDisplayList
 
 flyguy_seg8_light_08010AE0: # 0x08010AE0
@@ -298,8 +267,7 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight flyguy_seg8_light_08010AE8, 1
 gsSPLight flyguy_seg8_light_08010AE0, 2
 gsSPVertex flyguy_seg8_vertex_08010AF8, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel flyguy_seg8_dl_08010B80 # 0x08010B80 - 0x08010BF0
@@ -485,14 +453,10 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight flyguy_seg8_light_08010BF8, 1
 gsSPLight flyguy_seg8_light_08010BF0, 2
 gsSPVertex flyguy_seg8_vertex_08010C38, 9, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  3,  2, 0x0
-gsSP1Triangle  4,  1,  0, 0x0
-gsSP1Triangle  2,  5,  0, 0x0
-gsSP1Triangle  0,  6,  4, 0x0
-gsSP1Triangle  6,  0,  7, 0x0
-gsSP1Triangle  7,  8,  6, 0x0
-gsSP1Triangle  0,  5,  7, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  3,  2, 0x0
+gsSP2Triangles  4,  1,  0, 0x0,  2,  5,  0, 0x0
+gsSP2Triangles  0,  6,  4, 0x0,  6,  0,  7, 0x0
+gsSP2Triangles  7,  8,  6, 0x0,  0,  5,  7, 0x0
 gsSPEndDisplayList
 
 glabel flyguy_seg8_dl_08011420 # 0x08011420 - 0x080116D0
@@ -502,84 +466,51 @@ gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
 gsSPLight flyguy_seg8_light_08010C10, 1
 gsSPLight flyguy_seg8_light_08010C08, 2
 gsSPVertex flyguy_seg8_vertex_08010CC8, 6, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
 gsSPLight flyguy_seg8_light_08010C28, 1
 gsSPLight flyguy_seg8_light_08010C20, 2
 gsSPVertex flyguy_seg8_vertex_08010D28, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  3,  4, 0x0
-gsSP1Triangle  1,  5,  3, 0x0
-gsSP1Triangle  1,  4,  2, 0x0
-gsSP1Triangle  4,  3,  6, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
-gsSP1Triangle  2,  4,  7, 0x0
-gsSP1Triangle  2,  8,  9, 0x0
-gsSP1Triangle  2,  7,  8, 0x0
-gsSP1Triangle  0,  2,  9, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 10,  3,  5, 0x0
-gsSP1Triangle 10, 12,  3, 0x0
-gsSP1Triangle 10, 13, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  3,  4, 0x0
+gsSP2Triangles  1,  5,  3, 0x0,  1,  4,  2, 0x0
+gsSP2Triangles  4,  3,  6, 0x0,  4,  6,  7, 0x0
+gsSP2Triangles  2,  4,  7, 0x0,  2,  8,  9, 0x0
+gsSP2Triangles  2,  7,  8, 0x0,  0,  2,  9, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 10,  3,  5, 0x0
+gsSP2Triangles 10, 12,  3, 0x0, 10, 13, 11, 0x0
 gsSPVertex flyguy_seg8_vertex_08010E08, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  6,  4, 0x0
-gsSP1Triangle  5,  4,  7, 0x0
-gsSP1Triangle  7,  8,  5, 0x0
-gsSP1Triangle  8,  9,  5, 0x0
-gsSP1Triangle  1, 10, 11, 0x0
-gsSP1Triangle 11,  2,  1, 0x0
-gsSP1Triangle  0,  2, 12, 0x0
-gsSP1Triangle 13,  1, 14, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  6,  4, 0x0,  5,  4,  7, 0x0
+gsSP2Triangles  7,  8,  5, 0x0,  8,  9,  5, 0x0
+gsSP2Triangles  1, 10, 11, 0x0, 11,  2,  1, 0x0
+gsSP2Triangles  0,  2, 12, 0x0, 13,  1, 14, 0x0
 gsSP1Triangle  1,  0, 15, 0x0
 gsSPVertex flyguy_seg8_vertex_08010F08, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  4, 0x0
-gsSP1Triangle  0,  2,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  6,  8,  9, 0x0
-gsSP1Triangle 10,  7,  6, 0x0
-gsSP1Triangle 11,  6, 12, 0x0
-gsSP1Triangle 13, 12,  6, 0x0
-gsSP1Triangle  6, 11, 10, 0x0
-gsSP1Triangle 14,  9,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  4, 0x0
+gsSP2Triangles  0,  2,  5, 0x0,  6,  7,  8, 0x0
+gsSP2Triangles  6,  8,  9, 0x0, 10,  7,  6, 0x0
+gsSP2Triangles 11,  6, 12, 0x0, 13, 12,  6, 0x0
+gsSP2Triangles  6, 11, 10, 0x0, 14,  9,  1, 0x0
 gsSP1Triangle 10, 11, 15, 0x0
 gsSPVertex flyguy_seg8_vertex_08011008, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  4, 0x0
-gsSP1Triangle  0,  2,  5, 0x0
-gsSP1Triangle  0,  6,  7, 0x0
-gsSP1Triangle  5,  8,  0, 0x0
-gsSP1Triangle  0,  7,  3, 0x0
-gsSP1Triangle  5,  9, 10, 0x0
-gsSP1Triangle  5, 10,  8, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
-gsSP1Triangle 13, 12, 14, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  4, 0x0
+gsSP2Triangles  0,  2,  5, 0x0,  0,  6,  7, 0x0
+gsSP2Triangles  5,  8,  0, 0x0,  0,  7,  3, 0x0
+gsSP2Triangles  5,  9, 10, 0x0,  5, 10,  8, 0x0
+gsSP2Triangles 11, 12, 13, 0x0, 13, 12, 14, 0x0
 gsSPVertex flyguy_seg8_vertex_080110F8, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  6,  5,  7, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
-gsSP1Triangle 12, 11, 14, 0x0
-gsSP1Triangle 15, 12, 14, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  6,  5,  7, 0x0
+gsSP2Triangles  8,  9, 10, 0x0, 11, 12, 13, 0x0
+gsSP2Triangles 12, 11, 14, 0x0, 15, 12, 14, 0x0
 gsSPVertex flyguy_seg8_vertex_080111F8, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  0,  2, 0x0
-gsSP1Triangle  1,  4,  5, 0x0
-gsSP1Triangle  2,  1,  5, 0x0
-gsSP1Triangle  2,  5,  6, 0x0
-gsSP1Triangle  7,  3,  2, 0x0
-gsSP1Triangle  6,  7,  2, 0x0
-gsSP1Triangle  3,  7,  8, 0x0
-gsSP1Triangle  5,  9,  6, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  0,  2, 0x0
+gsSP2Triangles  1,  4,  5, 0x0,  2,  1,  5, 0x0
+gsSP2Triangles  2,  5,  6, 0x0,  7,  3,  2, 0x0
+gsSP2Triangles  6,  7,  2, 0x0,  3,  7,  8, 0x0
+gsSP2Triangles  5,  9,  6, 0x0, 10, 11, 12, 0x0
 gsSP1Triangle 11, 13, 12, 0x0
 gsSPVertex flyguy_seg8_vertex_080112D8, 7, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
 gsSP1Triangle  4,  6,  5, 0x0
 gsSPEndDisplayList
 
@@ -587,10 +518,8 @@ glabel flyguy_seg8_dl_080116D0 # 0x080116D0 - 0x08011710
 gsSPLight flyguy_seg8_light_08010C10, 1
 gsSPLight flyguy_seg8_light_08010C08, 2
 gsSPVertex flyguy_seg8_vertex_08011348, 6, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  1,  4,  2, 0x0
-gsSP1Triangle  1,  5,  4, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  1,  4,  2, 0x0,  1,  5,  4, 0x0
 gsSPEndDisplayList
 
 glabel flyguy_seg8_dl_08011710 # 0x08011710 - 0x08011798

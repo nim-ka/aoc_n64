@@ -122,18 +122,12 @@ gsDPLoadBlock 7, 0, 0, 0x1FF, 0x200
 gsSPLight snufit_seg6_light_06008CE8, 1
 gsSPLight snufit_seg6_light_06008CE0, 2
 gsSPVertex snufit_seg6_vertex_06008D10, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  4,  0,  2, 0x0
-gsSP1Triangle  3,  5,  1, 0x0
-gsSP1Triangle  4,  2,  6, 0x0
-gsSP1Triangle  3,  7,  5, 0x0
-gsSP1Triangle  8,  4,  6, 0x0
-gsSP1Triangle  8,  6,  9, 0x0
-gsSP1Triangle 10,  8,  9, 0x0
-gsSP1Triangle 10,  9, 11, 0x0
-gsSP1Triangle 12, 10, 11, 0x0
-gsSP1Triangle 12, 11, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  4,  0,  2, 0x0,  3,  5,  1, 0x0
+gsSP2Triangles  4,  2,  6, 0x0,  3,  7,  5, 0x0
+gsSP2Triangles  8,  4,  6, 0x0,  8,  6,  9, 0x0
+gsSP2Triangles 10,  8,  9, 0x0, 10,  9, 11, 0x0
+gsSP2Triangles 12, 10, 11, 0x0, 12, 11, 13, 0x0
 gsSPEndDisplayList
 
 glabel snufit_seg6_dl_06009278 # 0x06009278 - 0x060092F0
@@ -143,68 +137,41 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight snufit_seg6_light_06008D00, 1
 gsSPLight snufit_seg6_light_06008CF8, 2
 gsSPVertex snufit_seg6_vertex_06008DF0, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  1,  3, 0x0
-gsSP1Triangle  2,  3,  4, 0x0
-gsSP1Triangle  4,  3,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  8,  7,  9, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle 10,  9, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  1,  3, 0x0
+gsSP2Triangles  2,  3,  4, 0x0,  4,  3,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  8,  7,  9, 0x0
+gsSP2Triangles  8,  9, 10, 0x0, 10,  9, 11, 0x0
 gsSPEndDisplayList
 
 glabel snufit_seg6_dl_060092F0 # 0x060092F0 - 0x06009498
 gsSPVertex snufit_seg6_vertex_06008EB0, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  4, 0x0
-gsSP1Triangle  0,  4,  5, 0x0
-gsSP1Triangle  3,  0,  2, 0x0
-gsSP1Triangle  1,  0,  5, 0x0
-gsSP1Triangle  1,  5,  6, 0x0
-gsSP1Triangle  7,  8,  2, 0x0
-gsSP1Triangle  8,  3,  2, 0x0
-gsSP1Triangle  6,  5,  9, 0x0
-gsSP1Triangle  5, 10,  9, 0x0
-gsSP1Triangle  5,  4, 10, 0x0
-gsSP1Triangle  6,  9, 11, 0x0
-gsSP1Triangle 11,  9, 12, 0x0
-gsSP1Triangle  9, 10, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  4, 0x0
+gsSP2Triangles  0,  4,  5, 0x0,  3,  0,  2, 0x0
+gsSP2Triangles  1,  0,  5, 0x0,  1,  5,  6, 0x0
+gsSP2Triangles  7,  8,  2, 0x0,  8,  3,  2, 0x0
+gsSP2Triangles  6,  5,  9, 0x0,  5, 10,  9, 0x0
+gsSP2Triangles  5,  4, 10, 0x0,  6,  9, 11, 0x0
+gsSP2Triangles 11,  9, 12, 0x0,  9, 10, 13, 0x0
 gsSPVertex snufit_seg6_vertex_06008F90, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  5,  4,  6, 0x0
-gsSP1Triangle  5,  6,  7, 0x0
-gsSP1Triangle  7,  6,  8, 0x0
-gsSP1Triangle  6,  0,  8, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  9,  8, 10, 0x0
-gsSP1Triangle  8,  2, 10, 0x0
-gsSP1Triangle  8,  0,  2, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle 11, 10, 12, 0x0
-gsSP1Triangle 10,  2, 12, 0x0
-gsSP1Triangle  2,  1, 12, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  5,  4,  6, 0x0,  5,  6,  7, 0x0
+gsSP2Triangles  7,  6,  8, 0x0,  6,  0,  8, 0x0
+gsSP2Triangles  7,  8,  9, 0x0,  9,  8, 10, 0x0
+gsSP2Triangles  8,  2, 10, 0x0,  8,  0,  2, 0x0
+gsSP2Triangles  9, 10, 11, 0x0, 11, 10, 12, 0x0
+gsSP2Triangles 10,  2, 12, 0x0,  2,  1, 12, 0x0
 gsSP1Triangle  1, 13, 12, 0x0
 gsSPVertex snufit_seg6_vertex_06009070, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  0,  4, 0x0
-gsSP1Triangle  5,  4,  6, 0x0
-gsSP1Triangle  5,  6,  7, 0x0
-gsSP1Triangle  7,  6,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle 11, 10, 12, 0x0
-gsSP1Triangle  0,  2,  4, 0x0
-gsSP1Triangle  4, 13,  6, 0x0
-gsSP1Triangle  4,  2, 13, 0x0
-gsSP1Triangle  6, 14,  8, 0x0
-gsSP1Triangle  6, 13, 14, 0x0
-gsSP1Triangle  8, 14, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  0,  4, 0x0,  5,  4,  6, 0x0
+gsSP2Triangles  5,  6,  7, 0x0,  7,  6,  8, 0x0
+gsSP2Triangles  9, 10, 11, 0x0, 11, 10, 12, 0x0
+gsSP2Triangles  0,  2,  4, 0x0,  4, 13,  6, 0x0
+gsSP2Triangles  4,  2, 13, 0x0,  6, 14,  8, 0x0
+gsSP2Triangles  6, 13, 14, 0x0,  8, 14, 15, 0x0
 gsSPVertex snufit_seg6_vertex_06009170, 7, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  3,  4, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  3,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  3,  4, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  3,  5, 0x0
 gsSP1Triangle  2,  1,  3, 0x0
 gsSPEndDisplayList
 
@@ -265,18 +232,12 @@ gsDPLoadBlock 7, 0, 0, 0x1FF, 0x200
 gsSPLight snufit_seg6_light_06009538, 1
 gsSPLight snufit_seg6_light_06009530, 2
 gsSPVertex snufit_seg6_vertex_06009548, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  0,  3, 0x0
-gsSP1Triangle  1,  5,  2, 0x0
-gsSP1Triangle  4,  3,  6, 0x0
-gsSP1Triangle  1,  7,  5, 0x0
-gsSP1Triangle  8,  4,  6, 0x0
-gsSP1Triangle  8,  6,  9, 0x0
-gsSP1Triangle 10,  8,  9, 0x0
-gsSP1Triangle  7, 10, 11, 0x0
-gsSP1Triangle 10,  9, 11, 0x0
-gsSP1Triangle  7, 11,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  0,  3, 0x0,  1,  5,  2, 0x0
+gsSP2Triangles  4,  3,  6, 0x0,  1,  7,  5, 0x0
+gsSP2Triangles  8,  4,  6, 0x0,  8,  6,  9, 0x0
+gsSP2Triangles 10,  8,  9, 0x0,  7, 10, 11, 0x0
+gsSP2Triangles 10,  9, 11, 0x0,  7, 11,  5, 0x0
 gsSPEndDisplayList
 
 glabel snufit_seg6_dl_06009700 # 0x06009700 - 0x06009748
@@ -284,10 +245,8 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, snufit_seg6_texture_060084E0
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex snufit_seg6_vertex_06009608, 6, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  0,  4,  5, 0x0
-gsSP1Triangle  0,  5,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  0,  4,  5, 0x0,  0,  5,  1, 0x0
 gsSPEndDisplayList
 
 glabel snufit_seg6_dl_06009748 # 0x06009748 - 0x060097C8
@@ -336,18 +295,12 @@ gsDPLoadBlock 7, 0, 0, 0x1FF, 0x200
 gsSPLight snufit_seg6_light_060097D0, 1
 gsSPLight snufit_seg6_light_060097C8, 2
 gsSPVertex snufit_seg6_vertex_060097E0, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  3,  4, 0x0
-gsSP1Triangle  1,  4,  2, 0x0
-gsSP1Triangle  3,  5,  6, 0x0
-gsSP1Triangle  3,  6,  4, 0x0
-gsSP1Triangle  0,  2,  7, 0x0
-gsSP1Triangle  5,  8,  9, 0x0
-gsSP1Triangle  8, 10, 11, 0x0
-gsSP1Triangle  8, 11,  9, 0x0
-gsSP1Triangle 10,  0,  7, 0x0
-gsSP1Triangle 10,  7, 11, 0x0
-gsSP1Triangle  5,  9,  6, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  3,  4, 0x0
+gsSP2Triangles  1,  4,  2, 0x0,  3,  5,  6, 0x0
+gsSP2Triangles  3,  6,  4, 0x0,  0,  2,  7, 0x0
+gsSP2Triangles  5,  8,  9, 0x0,  8, 10, 11, 0x0
+gsSP2Triangles  8, 11,  9, 0x0, 10,  0,  7, 0x0
+gsSP2Triangles 10,  7, 11, 0x0,  5,  9,  6, 0x0
 gsSPEndDisplayList
 
 glabel snufit_seg6_dl_06009938 # 0x06009938 - 0x06009998
@@ -375,8 +328,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, snufit_seg6_texture_060070E0
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex snufit_seg6_vertex_06009998, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel snufit_seg6_dl_06009A10 # 0x06009A10 - 0x06009A80
@@ -416,12 +368,9 @@ glabel snufit_seg6_dl_06009B18 # 0x06009B18 - 0x06009B68
 gsSPLight snufit_seg6_light_06009A88, 1
 gsSPLight snufit_seg6_light_06009A80, 2
 gsSPVertex snufit_seg6_vertex_06009A98, 8, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  3,  0, 0x0
-gsSP1Triangle  1,  0,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  7,  6,  5, 0x0
-gsSP1Triangle  6,  7,  4, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  3,  0, 0x0
+gsSP2Triangles  1,  0,  3, 0x0,  4,  5,  6, 0x0
+gsSP2Triangles  7,  6,  5, 0x0,  6,  7,  4, 0x0
 gsSPEndDisplayList
 
 glabel snufit_seg6_dl_06009B68 # 0x06009B68 - 0x06009B98

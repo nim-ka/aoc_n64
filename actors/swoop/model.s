@@ -97,39 +97,24 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight swoop_seg6_light_06006278, 1
 gsSPLight swoop_seg6_light_06006270, 2
 gsSPVertex swoop_seg6_vertex_06006288, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  5,  6,  3, 0x0
-gsSP1Triangle  3,  7,  4, 0x0
-gsSP1Triangle  8,  4,  7, 0x0
-gsSP1Triangle  7,  9,  8, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 10, 12,  0, 0x0
-gsSP1Triangle  0,  2, 13, 0x0
-gsSP1Triangle  0, 13, 10, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  5,  6,  3, 0x0,  3,  7,  4, 0x0
+gsSP2Triangles  8,  4,  7, 0x0,  7,  9,  8, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 10, 12,  0, 0x0
+gsSP2Triangles  0,  2, 13, 0x0,  0, 13, 10, 0x0
 gsSP1Triangle  1,  0, 12, 0x0
 gsSPVertex swoop_seg6_vertex_06006368, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  5,  4,  6, 0x0
-gsSP1Triangle  3,  7,  8, 0x0
-gsSP1Triangle  3,  8,  4, 0x0
-gsSP1Triangle  2,  9, 10, 0x0
-gsSP1Triangle  2, 10,  0, 0x0
-gsSP1Triangle 11,  1,  0, 0x0
-gsSP1Triangle 11,  0, 12, 0x0
-gsSP1Triangle 13, 14, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  5,  4,  6, 0x0,  3,  7,  8, 0x0
+gsSP2Triangles  3,  8,  4, 0x0,  2,  9, 10, 0x0
+gsSP2Triangles  2, 10,  0, 0x0, 11,  1,  0, 0x0
+gsSP2Triangles 11,  0, 12, 0x0, 13, 14, 15, 0x0
 gsSPVertex swoop_seg6_vertex_06006468, 11, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  3, 0x0
-gsSP1Triangle  4,  3,  2, 0x0
-gsSP1Triangle  4,  6,  5, 0x0
-gsSP1Triangle  7,  1,  0, 0x0
-gsSP1Triangle  0,  8,  7, 0x0
-gsSP1Triangle  9,  1,  7, 0x0
-gsSP1Triangle  2,  1,  9, 0x0
-gsSP1Triangle  2,  9, 10, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  3, 0x0,  4,  3,  2, 0x0
+gsSP2Triangles  4,  6,  5, 0x0,  7,  1,  0, 0x0
+gsSP2Triangles  0,  8,  7, 0x0,  9,  1,  7, 0x0
+gsSP2Triangles  2,  1,  9, 0x0,  2,  9, 10, 0x0
 gsSPEndDisplayList
 
 glabel swoop_seg6_dl_060066F8 # 0x060066F8 - 0x06006758
@@ -137,12 +122,9 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, swoop_seg6_texture_06005270
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex swoop_seg6_vertex_06006518, 10, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  4,  3,  6, 0x0
-gsSP1Triangle  7,  3,  5, 0x0
-gsSP1Triangle  6,  3,  8, 0x0
-gsSP1Triangle  3,  9,  8, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  4,  3,  6, 0x0,  7,  3,  5, 0x0
+gsSP2Triangles  6,  3,  8, 0x0,  3,  9,  8, 0x0
 gsSP1Triangle  7,  9,  3, 0x0
 gsSPEndDisplayList
 
@@ -181,8 +163,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, swoop_seg6_texture_06004270
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex swoop_seg6_vertex_06006808, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel swoop_seg6_dl_06006880 # 0x06006880 - 0x06006938
@@ -240,16 +221,13 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight swoop_seg6_light_06006940, 1
 gsSPLight swoop_seg6_light_06006938, 2
 gsSPVertex swoop_seg6_vertex_06006950, 8, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  3,  2, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  7,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  3,  2, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  7,  5, 0x0
 gsSPEndDisplayList
 
 glabel swoop_seg6_dl_06006A68 # 0x06006A68 - 0x06006A88
 gsSPVertex swoop_seg6_vertex_060069D0, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel swoop_seg6_dl_06006A88 # 0x06006A88 - 0x06006B58
@@ -291,8 +269,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, swoop_seg6_texture_06005A70
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex swoop_seg6_vertex_06006B58, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel swoop_seg6_dl_06006BD0 # 0x06006BD0 - 0x06006C88
@@ -331,8 +308,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, swoop_seg6_texture_06005A70
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex swoop_seg6_vertex_06006C88, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel swoop_seg6_dl_06006D00 # 0x06006D00 - 0x06006DB8

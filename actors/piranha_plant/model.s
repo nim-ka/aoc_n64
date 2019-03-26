@@ -54,8 +54,7 @@ gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPLight piranha_plant_seg6_light_060113B8, 1
 gsSPLight piranha_plant_seg6_light_060113B0, 2
 gsSPVertex piranha_plant_seg6_vertex_060153F8, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel piranha_plant_seg6_dl_06015480 # 0x06015480 - 0x060154F0
@@ -87,8 +86,7 @@ gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPLight piranha_plant_seg6_light_060113B8, 1
 gsSPLight piranha_plant_seg6_light_060113B0, 2
 gsSPVertex piranha_plant_seg6_vertex_060154F0, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel piranha_plant_seg6_dl_06015578 # 0x06015578 - 0x060155E8
@@ -145,21 +143,14 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight piranha_plant_seg6_light_060113B8, 1
 gsSPLight piranha_plant_seg6_light_060113B0, 2
 gsSPVertex piranha_plant_seg6_vertex_060155E8, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  1,  0, 0x0
-gsSP1Triangle  3,  4,  1, 0x0
-gsSP1Triangle  5,  6,  7, 0x0
-gsSP1Triangle  5,  8,  6, 0x0
-gsSP1Triangle  7,  6,  9, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 10, 12, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  1,  0, 0x0
+gsSP2Triangles  3,  4,  1, 0x0,  5,  6,  7, 0x0
+gsSP2Triangles  5,  8,  6, 0x0,  7,  6,  9, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 10, 12, 13, 0x0
 gsSPVertex piranha_plant_seg6_vertex_060156C8, 13, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9,  7,  6, 0x0
-gsSP1Triangle  9, 10,  7, 0x0
-gsSP1Triangle 11,  1,  0, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9,  7,  6, 0x0
+gsSP2Triangles  9, 10,  7, 0x0, 11,  1,  0, 0x0
 gsSP1Triangle 11, 12,  1, 0x0
 gsSPEndDisplayList
 
@@ -287,12 +278,9 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight piranha_plant_seg6_light_060113B8, 1
 gsSPLight piranha_plant_seg6_light_060113B0, 2
 gsSPVertex piranha_plant_seg6_vertex_060158B0, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  5,  7,  6, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  5,  7,  6, 0x0
+gsSP2Triangles  8,  9, 10, 0x0, 11, 12, 13, 0x0
 gsSPEndDisplayList
 
 glabel piranha_plant_seg6_dl_06015EA8 # 0x06015EA8 - 0x06015F68
@@ -302,22 +290,15 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight piranha_plant_seg6_light_060113D0, 1
 gsSPLight piranha_plant_seg6_light_060113C8, 2
 gsSPVertex piranha_plant_seg6_vertex_06015990, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  3, 0x0
-gsSP1Triangle  3,  5,  8, 0x0
-gsSP1Triangle  3,  8,  6, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle  9, 11, 12, 0x0
-gsSP1Triangle 13, 14,  9, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  3, 0x0,  3,  5,  8, 0x0
+gsSP2Triangles  3,  8,  6, 0x0,  9, 10, 11, 0x0
+gsSP2Triangles  9, 11, 12, 0x0, 13, 14,  9, 0x0
 gsSP1Triangle  9, 12, 13, 0x0
 gsSPVertex piranha_plant_seg6_vertex_06015A80, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  5,  6, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  0,  2,  9, 0x0
-gsSP1Triangle  9, 10,  0, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  5,  6, 0x0,  6,  7,  8, 0x0
+gsSP2Triangles  0,  2,  9, 0x0,  9, 10,  0, 0x0
 gsSP1Triangle  9, 11, 10, 0x0
 gsSPEndDisplayList
 
@@ -328,42 +309,28 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight piranha_plant_seg6_light_060113B8, 1
 gsSPLight piranha_plant_seg6_light_060113B0, 2
 gsSPVertex piranha_plant_seg6_vertex_06015B40, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  6,  7, 0x0
-gsSP1Triangle  3,  7,  8, 0x0
-gsSP1Triangle  5,  6,  3, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle 11, 12,  9, 0x0
-gsSP1Triangle 12, 11, 13, 0x0
-gsSP1Triangle  0,  2, 14, 0x0
-gsSP1Triangle 12, 13, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  6,  7, 0x0,  3,  7,  8, 0x0
+gsSP2Triangles  5,  6,  3, 0x0,  9, 10, 11, 0x0
+gsSP2Triangles 11, 12,  9, 0x0, 12, 11, 13, 0x0
+gsSP2Triangles  0,  2, 14, 0x0, 12, 13, 15, 0x0
 gsSPVertex piranha_plant_seg6_vertex_06015C40, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  6,  4, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 11, 13, 12, 0x0
-gsSP1Triangle 14, 15, 12, 0x0
-gsSP1Triangle 13, 14, 12, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  6,  4, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 11, 13, 12, 0x0
+gsSP2Triangles 14, 15, 12, 0x0, 13, 14, 12, 0x0
 gsSPVertex piranha_plant_seg6_vertex_06015D40, 8, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  7,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  7,  5, 0x0
 gsSPEndDisplayList
 
 glabel piranha_plant_seg6_dl_06016060 # 0x06016060 - 0x060160B0
 gsSPLight piranha_plant_seg6_light_060113E8, 1
 gsSPLight piranha_plant_seg6_light_060113E0, 2
 gsSPVertex piranha_plant_seg6_vertex_06015DC0, 8, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  4, 0x0
-gsSP1Triangle  0,  5,  3, 0x0
-gsSP1Triangle  0,  4,  1, 0x0
-gsSP1Triangle  6,  0,  2, 0x0
-gsSP1Triangle  2,  1,  7, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  4, 0x0
+gsSP2Triangles  0,  5,  3, 0x0,  0,  4,  1, 0x0
+gsSP2Triangles  6,  0,  2, 0x0,  2,  1,  7, 0x0
 gsSPEndDisplayList
 
 glabel piranha_plant_seg6_dl_060160B0 # 0x060160B0 - 0x06016120
@@ -513,12 +480,9 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight piranha_plant_seg6_light_060113B8, 1
 gsSPLight piranha_plant_seg6_light_060113B0, 2
 gsSPVertex piranha_plant_seg6_vertex_06016190, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  6,  9,  7, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 11, 13, 12, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  6,  9,  7, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 11, 13, 12, 0x0
 gsSPEndDisplayList
 
 glabel piranha_plant_seg6_dl_060167B8 # 0x060167B8 - 0x06016890
@@ -528,24 +492,16 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight piranha_plant_seg6_light_060113D0, 1
 gsSPLight piranha_plant_seg6_light_060113C8, 2
 gsSPVertex piranha_plant_seg6_vertex_06016270, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  5,  6,  3, 0x0
-gsSP1Triangle  7,  6,  5, 0x0
-gsSP1Triangle  5,  8,  7, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle 12, 10,  9, 0x0
-gsSP1Triangle  9, 13, 12, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  5,  6,  3, 0x0,  7,  6,  5, 0x0
+gsSP2Triangles  5,  8,  7, 0x0,  9, 10, 11, 0x0
+gsSP2Triangles 12, 10,  9, 0x0,  9, 13, 12, 0x0
 gsSP1Triangle 11, 14,  9, 0x0
 gsSPVertex piranha_plant_seg6_vertex_06016360, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  5,  6,  3, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  9, 10,  7, 0x0
-gsSP1Triangle 11,  9,  8, 0x0
-gsSP1Triangle  2, 12,  0, 0x0
-gsSP1Triangle 13, 14, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  5,  6,  3, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles  9, 10,  7, 0x0, 11,  9,  8, 0x0
+gsSP2Triangles  2, 12,  0, 0x0, 13, 14, 15, 0x0
 gsSPVertex piranha_plant_seg6_vertex_06016460, 3, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSPEndDisplayList
@@ -557,25 +513,16 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight piranha_plant_seg6_light_060113B8, 1
 gsSPLight piranha_plant_seg6_light_060113B0, 2
 gsSPVertex piranha_plant_seg6_vertex_06016490, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  0,  4,  5, 0x0
-gsSP1Triangle  0,  3,  4, 0x0
-gsSP1Triangle  0,  6,  1, 0x0
-gsSP1Triangle  0,  5,  6, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  7,  9, 10, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
-gsSP1Triangle 11, 14, 12, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  0,  4,  5, 0x0,  0,  3,  4, 0x0
+gsSP2Triangles  0,  6,  1, 0x0,  0,  5,  6, 0x0
+gsSP2Triangles  7,  8,  9, 0x0,  7,  9, 10, 0x0
+gsSP2Triangles 11, 12, 13, 0x0, 11, 14, 12, 0x0
 gsSPVertex piranha_plant_seg6_vertex_06016580, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  5,  6, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  7,  9, 10, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
-gsSP1Triangle 11, 13, 14, 0x0
-gsSP1Triangle  0, 15,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  5,  6, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles  7,  9, 10, 0x0, 11, 12, 13, 0x0
+gsSP2Triangles 11, 13, 14, 0x0,  0, 15,  1, 0x0
 gsSPEndDisplayList
 
 glabel piranha_plant_seg6_dl_06016960 # 0x06016960 - 0x060169A8
@@ -583,20 +530,16 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, piranha_plant_seg6_texture_0
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex piranha_plant_seg6_vertex_06016680, 6, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  3,  0, 0x0
-gsSP1Triangle  2,  4,  3, 0x0
-gsSP1Triangle  2,  5,  4, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  3,  0, 0x0
+gsSP2Triangles  2,  4,  3, 0x0,  2,  5,  4, 0x0
 gsSPEndDisplayList
 
 glabel piranha_plant_seg6_dl_060169A8 # 0x060169A8 - 0x060169E8
 gsSPLight piranha_plant_seg6_light_060113D0, 1
 gsSPLight piranha_plant_seg6_light_060113C8, 2
 gsSPVertex piranha_plant_seg6_vertex_060166E0, 7, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  1,  3, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  5,  4,  6, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  1,  3, 0x0
+gsSP2Triangles  3,  4,  5, 0x0,  5,  4,  6, 0x0
 gsSPEndDisplayList
 
 glabel piranha_plant_seg6_dl_060169E8 # 0x060169E8 - 0x06016A78
@@ -656,12 +599,9 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight piranha_plant_seg6_light_060113B8, 1
 gsSPLight piranha_plant_seg6_light_060113B0, 2
 gsSPVertex piranha_plant_seg6_vertex_06016AE8, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle  8, 10, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
+gsSP2Triangles  8,  9, 10, 0x0,  8, 10, 11, 0x0
 gsSPEndDisplayList
 
 glabel piranha_plant_seg6_dl_06016C10 # 0x06016C10 - 0x06016C70
@@ -699,12 +639,9 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight piranha_plant_seg6_light_060113B8, 1
 gsSPLight piranha_plant_seg6_light_060113B0, 2
 gsSPVertex piranha_plant_seg6_vertex_06016C70, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle  8, 10, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
+gsSP2Triangles  8,  9, 10, 0x0,  8, 10, 11, 0x0
 gsSPEndDisplayList
 
 glabel piranha_plant_seg6_dl_06016D98 # 0x06016D98 - 0x06016DF8
@@ -742,12 +679,9 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight piranha_plant_seg6_light_060113B8, 1
 gsSPLight piranha_plant_seg6_light_060113B0, 2
 gsSPVertex piranha_plant_seg6_vertex_06016DF8, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle  8, 10, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
+gsSP2Triangles  8,  9, 10, 0x0,  8, 10, 11, 0x0
 gsSPEndDisplayList
 
 glabel piranha_plant_seg6_dl_06016F20 # 0x06016F20 - 0x06016F80

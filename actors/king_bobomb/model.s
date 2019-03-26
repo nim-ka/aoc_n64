@@ -71,8 +71,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, king_bobomb_seg5_texture_050
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex king_bobomb_seg5_vertex_0500A478, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel king_bobomb_seg5_dl_0500A4F0 # 0x0500A4F0 - 0x0500A560
@@ -102,8 +101,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, king_bobomb_seg5_texture_050
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex king_bobomb_seg5_vertex_0500A560, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel king_bobomb_seg5_dl_0500A5D8 # 0x0500A5D8 - 0x0500A648
@@ -133,8 +131,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, king_bobomb_seg5_texture_050
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex king_bobomb_seg5_vertex_0500A648, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel king_bobomb_seg5_dl_0500A6C0 # 0x0500A6C0 - 0x0500A730
@@ -164,8 +161,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, king_bobomb_seg5_texture_050
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex king_bobomb_seg5_vertex_0500A730, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel king_bobomb_seg5_dl_0500A7A8 # 0x0500A7A8 - 0x0500A818
@@ -195,8 +191,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, king_bobomb_seg5_texture_050
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex king_bobomb_seg5_vertex_0500A818, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel king_bobomb_seg5_dl_0500A890 # 0x0500A890 - 0x0500A900
@@ -226,8 +221,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, king_bobomb_seg5_texture_050
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex king_bobomb_seg5_vertex_0500A900, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel king_bobomb_seg5_dl_0500A978 # 0x0500A978 - 0x0500A9E8
@@ -289,43 +283,25 @@ glabel king_bobomb_seg5_dl_0500ABC0 # 0x0500ABC0 - 0x0500AD08
 gsSPLight king_bobomb_seg5_light_0500A9F0, 1
 gsSPLight king_bobomb_seg5_light_0500A9E8, 2
 gsSPVertex king_bobomb_seg5_vertex_0500AA00, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  1,  4,  5, 0x0
-gsSP1Triangle  1,  5,  6, 0x0
-gsSP1Triangle  1,  7,  2, 0x0
-gsSP1Triangle  1,  8,  7, 0x0
-gsSP1Triangle  1,  9,  8, 0x0
-gsSP1Triangle  1,  6,  9, 0x0
-gsSP1Triangle  1, 10,  4, 0x0
-gsSP1Triangle  1,  3, 10, 0x0
-gsSP1Triangle 11, 12,  7, 0x0
-gsSP1Triangle 11,  7,  8, 0x0
-gsSP1Triangle  7, 12,  0, 0x0
-gsSP1Triangle  7,  0,  2, 0x0
-gsSP1Triangle  9, 11,  8, 0x0
-gsSP1Triangle 10,  5,  4, 0x0
-gsSP1Triangle  9, 13, 11, 0x0
-gsSP1Triangle 14, 13,  9, 0x0
-gsSP1Triangle 14,  9,  6, 0x0
-gsSP1Triangle 14,  6,  5, 0x0
-gsSP1Triangle 14,  5, 15, 0x0
-gsSP1Triangle 10, 15,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  1,  4,  5, 0x0,  1,  5,  6, 0x0
+gsSP2Triangles  1,  7,  2, 0x0,  1,  8,  7, 0x0
+gsSP2Triangles  1,  9,  8, 0x0,  1,  6,  9, 0x0
+gsSP2Triangles  1, 10,  4, 0x0,  1,  3, 10, 0x0
+gsSP2Triangles 11, 12,  7, 0x0, 11,  7,  8, 0x0
+gsSP2Triangles  7, 12,  0, 0x0,  7,  0,  2, 0x0
+gsSP2Triangles  9, 11,  8, 0x0, 10,  5,  4, 0x0
+gsSP2Triangles  9, 13, 11, 0x0, 14, 13,  9, 0x0
+gsSP2Triangles 14,  9,  6, 0x0, 14,  6,  5, 0x0
+gsSP2Triangles 14,  5, 15, 0x0, 10, 15,  5, 0x0
 gsSPVertex king_bobomb_seg5_vertex_0500AB00, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  3,  4,  0, 0x0
-gsSP1Triangle  2,  5,  6, 0x0
-gsSP1Triangle  2,  6,  3, 0x0
-gsSP1Triangle  2,  1,  7, 0x0
-gsSP1Triangle  7,  5,  2, 0x0
-gsSP1Triangle  8,  4,  3, 0x0
-gsSP1Triangle  8,  3,  6, 0x0
-gsSP1Triangle  6,  9,  8, 0x0
-gsSP1Triangle  7, 10,  5, 0x0
-gsSP1Triangle  5, 10, 11, 0x0
-gsSP1Triangle 11,  6,  5, 0x0
-gsSP1Triangle 11,  9,  6, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  3,  4,  0, 0x0,  2,  5,  6, 0x0
+gsSP2Triangles  2,  6,  3, 0x0,  2,  1,  7, 0x0
+gsSP2Triangles  7,  5,  2, 0x0,  8,  4,  3, 0x0
+gsSP2Triangles  8,  3,  6, 0x0,  6,  9,  8, 0x0
+gsSP2Triangles  7, 10,  5, 0x0,  5, 10, 11, 0x0
+gsSP2Triangles 11,  6,  5, 0x0, 11,  9,  6, 0x0
 gsSPEndDisplayList
 
 glabel king_bobomb_seg5_dl_0500AD08 # 0x0500AD08 - 0x0500AD38
@@ -380,42 +356,25 @@ glabel king_bobomb_seg5_dl_0500AF20 # 0x0500AF20 - 0x0500B068
 gsSPLight king_bobomb_seg5_light_0500AD40, 1
 gsSPLight king_bobomb_seg5_light_0500AD38, 2
 gsSPVertex king_bobomb_seg5_vertex_0500AD50, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  1,  4,  5, 0x0
-gsSP1Triangle  1,  5,  2, 0x0
-gsSP1Triangle  1,  3,  6, 0x0
-gsSP1Triangle  1,  6,  7, 0x0
-gsSP1Triangle  1,  8,  4, 0x0
-gsSP1Triangle  1,  9,  8, 0x0
-gsSP1Triangle  1, 10,  9, 0x0
-gsSP1Triangle  1,  7, 10, 0x0
-gsSP1Triangle  8, 11,  5, 0x0
-gsSP1Triangle  8,  9, 12, 0x0
-gsSP1Triangle  8, 12, 11, 0x0
-gsSP1Triangle  8,  5,  4, 0x0
-gsSP1Triangle 10, 12,  9, 0x0
-gsSP1Triangle  6,  3,  0, 0x0
-gsSP1Triangle 10, 13, 14, 0x0
-gsSP1Triangle 10,  7, 13, 0x0
-gsSP1Triangle 10, 14, 12, 0x0
-gsSP1Triangle  6, 13,  7, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  1,  4,  5, 0x0,  1,  5,  2, 0x0
+gsSP2Triangles  1,  3,  6, 0x0,  1,  6,  7, 0x0
+gsSP2Triangles  1,  8,  4, 0x0,  1,  9,  8, 0x0
+gsSP2Triangles  1, 10,  9, 0x0,  1,  7, 10, 0x0
+gsSP2Triangles  8, 11,  5, 0x0,  8,  9, 12, 0x0
+gsSP2Triangles  8, 12, 11, 0x0,  8,  5,  4, 0x0
+gsSP2Triangles 10, 12,  9, 0x0,  6,  3,  0, 0x0
+gsSP2Triangles 10, 13, 14, 0x0, 10,  7, 13, 0x0
+gsSP2Triangles 10, 14, 12, 0x0,  6, 13,  7, 0x0
 gsSP1Triangle  6,  0, 15, 0x0
 gsSPVertex king_bobomb_seg5_vertex_0500AE50, 13, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  1,  0,  4, 0x0
-gsSP1Triangle  0,  3,  5, 0x0
-gsSP1Triangle  0,  5,  6, 0x0
-gsSP1Triangle  6,  4,  0, 0x0
-gsSP1Triangle  7,  5,  3, 0x0
-gsSP1Triangle  8,  5,  7, 0x0
-gsSP1Triangle  3,  9,  7, 0x0
-gsSP1Triangle  3,  2,  9, 0x0
-gsSP1Triangle 10,  9,  2, 0x0
-gsSP1Triangle  1,  4, 11, 0x0
-gsSP1Triangle  2, 12, 10, 0x0
-gsSP1Triangle  2,  1, 12, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  1,  0,  4, 0x0,  0,  3,  5, 0x0
+gsSP2Triangles  0,  5,  6, 0x0,  6,  4,  0, 0x0
+gsSP2Triangles  7,  5,  3, 0x0,  8,  5,  7, 0x0
+gsSP2Triangles  3,  9,  7, 0x0,  3,  2,  9, 0x0
+gsSP2Triangles 10,  9,  2, 0x0,  1,  4, 11, 0x0
+gsSP2Triangles  2, 12, 10, 0x0,  2,  1, 12, 0x0
 gsSP1Triangle 11, 12,  1, 0x0
 gsSPEndDisplayList
 
@@ -444,8 +403,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, king_bobomb_seg5_texture_050
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex king_bobomb_seg5_vertex_0500B098, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel king_bobomb_seg5_dl_0500B150 # 0x0500B150 - 0x0500B188
@@ -453,8 +411,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, king_bobomb_seg5_texture_050
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex king_bobomb_seg5_vertex_0500B0D8, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel king_bobomb_seg5_dl_0500B188 # 0x0500B188 - 0x0500B200
@@ -496,10 +453,8 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight king_bobomb_seg5_light_0500B208, 1
 gsSPLight king_bobomb_seg5_light_0500B200, 2
 gsSPVertex king_bobomb_seg5_vertex_0500B218, 6, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  2,  4, 0x0
-gsSP1Triangle  2,  3,  0, 0x0
-gsSP1Triangle  4,  5,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  2,  4, 0x0
+gsSP2Triangles  2,  3,  0, 0x0,  4,  5,  3, 0x0
 gsSPEndDisplayList
 
 glabel king_bobomb_seg5_dl_0500B2D0 # 0x0500B2D0 - 0x0500B330
@@ -537,12 +492,9 @@ glabel king_bobomb_seg5_dl_0500B3C8 # 0x0500B3C8 - 0x0500B418
 gsSPLight king_bobomb_seg5_light_0500B338, 1
 gsSPLight king_bobomb_seg5_light_0500B330, 2
 gsSPVertex king_bobomb_seg5_vertex_0500B348, 8, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  3,  4, 0x0
-gsSP1Triangle  2,  4,  5, 0x0
-gsSP1Triangle  2,  5,  0, 0x0
-gsSP1Triangle  0,  6,  7, 0x0
-gsSP1Triangle  0,  7,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  3,  4, 0x0
+gsSP2Triangles  2,  4,  5, 0x0,  2,  5,  0, 0x0
+gsSP2Triangles  0,  6,  7, 0x0,  0,  7,  1, 0x0
 gsSPEndDisplayList
 
 glabel king_bobomb_seg5_dl_0500B418 # 0x0500B418 - 0x0500B458
@@ -597,25 +549,16 @@ gsDPLoadBlock 7, 0, 0, 0x1FF, 0x200
 gsSPLight king_bobomb_seg5_light_0500B460, 1
 gsSPLight king_bobomb_seg5_light_0500B458, 2
 gsSPVertex king_bobomb_seg5_vertex_0500B470, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  0, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  5,  4,  3, 0x0
-gsSP1Triangle  5,  3,  6, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  9, 10,  7, 0x0
-gsSP1Triangle  7, 11,  8, 0x0
-gsSP1Triangle 12, 13,  8, 0x0
-gsSP1Triangle  8, 11, 12, 0x0
-gsSP1Triangle 12, 14, 13, 0x0
-gsSP1Triangle 13, 14, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  0, 0x0
+gsSP2Triangles  0,  2,  3, 0x0,  5,  4,  3, 0x0
+gsSP2Triangles  5,  3,  6, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles  9, 10,  7, 0x0,  7, 11,  8, 0x0
+gsSP2Triangles 12, 13,  8, 0x0,  8, 11, 12, 0x0
+gsSP2Triangles 12, 14, 13, 0x0, 13, 14, 15, 0x0
 gsSPVertex king_bobomb_seg5_vertex_0500B570, 8, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  4,  5,  1, 0x0
-gsSP1Triangle  1,  3,  4, 0x0
-gsSP1Triangle  4,  6,  5, 0x0
-gsSP1Triangle  5,  6,  7, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  4,  5,  1, 0x0,  1,  3,  4, 0x0
+gsSP2Triangles  4,  6,  5, 0x0,  5,  6,  7, 0x0
 gsSPEndDisplayList
 
 glabel king_bobomb_seg5_dl_0500B6C0 # 0x0500B6C0 - 0x0500B730

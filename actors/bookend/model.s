@@ -65,8 +65,7 @@ gsDPLoadBlock 7, 0, 0, 0x1FF, 0x200
 gsSPLight bookend_seg5_light_05001868, 1
 gsSPLight bookend_seg5_light_05001860, 2
 gsSPVertex bookend_seg5_vertex_05001878, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel bookend_seg5_dl_05001940 # 0x05001940 - 0x05001978
@@ -74,8 +73,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bookend_seg5_texture_0500106
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex bookend_seg5_vertex_050018B8, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel bookend_seg5_dl_05001978 # 0x05001978 - 0x05001A08
@@ -124,8 +122,7 @@ gsDPLoadBlock 7, 0, 0, 0x1FF, 0x200
 gsSPLight bookend_seg5_light_05001A10, 1
 gsSPLight bookend_seg5_light_05001A08, 2
 gsSPVertex bookend_seg5_vertex_05001A20, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel bookend_seg5_dl_05001AE8 # 0x05001AE8 - 0x05001B20
@@ -133,8 +130,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bookend_seg5_texture_0500106
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex bookend_seg5_vertex_05001A60, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel bookend_seg5_dl_05001B20 # 0x05001B20 - 0x05001BB0
@@ -191,8 +187,7 @@ gsDPLoadBlock 7, 0, 0, 0x1FF, 0x200
 gsSPLight bookend_seg5_light_05001BB8, 1
 gsSPLight bookend_seg5_light_05001BB0, 2
 gsSPVertex bookend_seg5_vertex_05001BC8, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel bookend_seg5_dl_05001D10 # 0x05001D10 - 0x05001D68
@@ -200,12 +195,9 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bookend_seg5_texture_05000C6
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x1FF, 0x200
 gsSPVertex bookend_seg5_vertex_05001C08, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle  8, 10, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
+gsSP2Triangles  8,  9, 10, 0x0,  8, 10, 11, 0x0
 gsSPEndDisplayList
 
 glabel bookend_seg5_dl_05001D68 # 0x05001D68 - 0x05001DE0
@@ -259,8 +251,7 @@ gsDPLoadBlock 7, 0, 0, 0x1FF, 0x200
 gsSPLight bookend_seg5_light_05001DE8, 1
 gsSPLight bookend_seg5_light_05001DE0, 2
 gsSPVertex bookend_seg5_vertex_05001DF8, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel bookend_seg5_dl_05001F40 # 0x05001F40 - 0x05001F98
@@ -268,12 +259,9 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bookend_seg5_texture_05000C6
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x1FF, 0x200
 gsSPVertex bookend_seg5_vertex_05001E38, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle  8, 10, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
+gsSP2Triangles  8,  9, 10, 0x0,  8, 10, 11, 0x0
 gsSPEndDisplayList
 
 glabel bookend_seg5_dl_05001F98 # 0x05001F98 - 0x05002010
@@ -321,10 +309,8 @@ gsDPLoadBlock 7, 0, 0, 0x1FF, 0x200
 gsSPLight bookend_seg5_light_05002018, 1
 gsSPLight bookend_seg5_light_05002010, 2
 gsSPVertex bookend_seg5_vertex_05002028, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
 gsSPEndDisplayList
 
 glabel bookend_seg5_dl_05002140 # 0x05002140 - 0x050021B0
@@ -371,10 +357,8 @@ gsDPLoadBlock 7, 0, 0, 0x1FF, 0x200
 gsSPLight bookend_seg5_light_050021B8, 1
 gsSPLight bookend_seg5_light_050021B0, 2
 gsSPVertex bookend_seg5_vertex_050021C8, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
 gsSPEndDisplayList
 
 glabel bookend_seg5_dl_050022E0 # 0x050022E0 - 0x05002350

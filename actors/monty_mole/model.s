@@ -75,18 +75,12 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight monty_mole_seg5_light_05003178, 1
 gsSPLight monty_mole_seg5_light_05003170, 2
 gsSPVertex monty_mole_seg5_vertex_05003188, 8, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  3,  4, 0x0
-gsSP1Triangle  2,  1,  3, 0x0
-gsSP1Triangle  5,  2,  4, 0x0
-gsSP1Triangle  5,  0,  2, 0x0
-gsSP1Triangle  6,  3,  1, 0x0
-gsSP1Triangle  6,  7,  3, 0x0
-gsSP1Triangle  7,  4,  3, 0x0
-gsSP1Triangle  7,  5,  4, 0x0
-gsSP1Triangle  0,  6,  1, 0x0
-gsSP1Triangle  5,  6,  0, 0x0
-gsSP1Triangle  5,  7,  6, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  3,  4, 0x0
+gsSP2Triangles  2,  1,  3, 0x0,  5,  2,  4, 0x0
+gsSP2Triangles  5,  0,  2, 0x0,  6,  3,  1, 0x0
+gsSP2Triangles  6,  7,  3, 0x0,  7,  4,  3, 0x0
+gsSP2Triangles  7,  5,  4, 0x0,  0,  6,  1, 0x0
+gsSP2Triangles  5,  6,  0, 0x0,  5,  7,  6, 0x0
 gsSPEndDisplayList
 
 glabel monty_mole_seg5_dl_050032A0 # 0x050032A0 - 0x05003300
@@ -139,12 +133,9 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight monty_mole_seg5_light_05003308, 1
 gsSPLight monty_mole_seg5_light_05003300, 2
 gsSPVertex monty_mole_seg5_vertex_05003318, 10, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  3,  2, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  6,  5,  7, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  8,  7,  9, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  3,  2, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  6,  5,  7, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  8,  7,  9, 0x0
 gsSPEndDisplayList
 
 glabel monty_mole_seg5_dl_050034A0 # 0x050034A0 - 0x05003518
@@ -152,16 +143,11 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, monty_mole_seg5_texture_0500
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex monty_mole_seg5_vertex_050033B8, 8, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  3,  4, 0x0
-gsSP1Triangle  4,  0,  2, 0x0
-gsSP1Triangle  4,  3,  5, 0x0
-gsSP1Triangle  4,  6,  0, 0x0
-gsSP1Triangle  7,  6,  4, 0x0
-gsSP1Triangle  5,  7,  4, 0x0
-gsSP1Triangle  0,  6,  7, 0x0
-gsSP1Triangle  0,  7,  1, 0x0
-gsSP1Triangle  5,  1,  7, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  3,  4, 0x0
+gsSP2Triangles  4,  0,  2, 0x0,  4,  3,  5, 0x0
+gsSP2Triangles  4,  6,  0, 0x0,  7,  6,  4, 0x0
+gsSP2Triangles  5,  7,  4, 0x0,  0,  6,  7, 0x0
+gsSP2Triangles  0,  7,  1, 0x0,  5,  1,  7, 0x0
 gsSPEndDisplayList
 
 glabel monty_mole_seg5_dl_05003518 # 0x05003518 - 0x05003598
@@ -224,14 +210,10 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight monty_mole_seg5_light_050035A0, 1
 gsSPLight monty_mole_seg5_light_05003598, 2
 gsSPVertex monty_mole_seg5_vertex_050035B0, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  1,  3,  4, 0x0
-gsSP1Triangle  1,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  6,  9,  7, 0x0
-gsSP1Triangle  8, 10,  6, 0x0
-gsSP1Triangle  2, 11,  0, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  1,  3,  4, 0x0,  1,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  6,  9,  7, 0x0
+gsSP2Triangles  8, 10,  6, 0x0,  2, 11,  0, 0x0
 gsSPEndDisplayList
 
 glabel monty_mole_seg5_dl_050037A8 # 0x050037A8 - 0x05003820
@@ -239,16 +221,11 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, monty_mole_seg5_texture_0500
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex monty_mole_seg5_vertex_05003670, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  1,  3, 0x0
-gsSP1Triangle  4,  3,  1, 0x0
-gsSP1Triangle  5,  4,  1, 0x0
-gsSP1Triangle  5,  1,  0, 0x0
-gsSP1Triangle  4,  6,  3, 0x0
-gsSP1Triangle  7,  4,  5, 0x0
-gsSP1Triangle  6,  4,  7, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle 10,  9, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  1,  3, 0x0
+gsSP2Triangles  4,  3,  1, 0x0,  5,  4,  1, 0x0
+gsSP2Triangles  5,  1,  0, 0x0,  4,  6,  3, 0x0
+gsSP2Triangles  7,  4,  5, 0x0,  6,  4,  7, 0x0
+gsSP2Triangles  8,  9, 10, 0x0, 10,  9, 11, 0x0
 gsSPEndDisplayList
 
 glabel monty_mole_seg5_dl_05003820 # 0x05003820 - 0x050038A0
@@ -293,18 +270,12 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight monty_mole_seg5_light_050038A8, 1
 gsSPLight monty_mole_seg5_light_050038A0, 2
 gsSPVertex monty_mole_seg5_vertex_050038B8, 8, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  3,  4, 0x0
-gsSP1Triangle  1,  0,  3, 0x0
-gsSP1Triangle  1,  5,  2, 0x0
-gsSP1Triangle  1,  4,  5, 0x0
-gsSP1Triangle  3,  6,  7, 0x0
-gsSP1Triangle  3,  0,  6, 0x0
-gsSP1Triangle  4,  3,  7, 0x0
-gsSP1Triangle  4,  7,  5, 0x0
-gsSP1Triangle  0,  2,  6, 0x0
-gsSP1Triangle  5,  6,  2, 0x0
-gsSP1Triangle  5,  7,  6, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  3,  4, 0x0
+gsSP2Triangles  1,  0,  3, 0x0,  1,  5,  2, 0x0
+gsSP2Triangles  1,  4,  5, 0x0,  3,  6,  7, 0x0
+gsSP2Triangles  3,  0,  6, 0x0,  4,  3,  7, 0x0
+gsSP2Triangles  4,  7,  5, 0x0,  0,  2,  6, 0x0
+gsSP2Triangles  5,  6,  2, 0x0,  5,  7,  6, 0x0
 gsSPEndDisplayList
 
 glabel monty_mole_seg5_dl_050039D0 # 0x050039D0 - 0x05003A30
@@ -357,12 +328,9 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight monty_mole_seg5_light_05003A38, 1
 gsSPLight monty_mole_seg5_light_05003A30, 2
 gsSPVertex monty_mole_seg5_vertex_05003A48, 10, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  6,  5,  7, 0x0
-gsSP1Triangle  5,  8,  7, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  6,  5,  7, 0x0
+gsSP2Triangles  5,  8,  7, 0x0,  7,  8,  9, 0x0
 gsSPEndDisplayList
 
 glabel monty_mole_seg5_dl_05003BD0 # 0x05003BD0 - 0x05003C48
@@ -370,16 +338,11 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, monty_mole_seg5_texture_0500
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex monty_mole_seg5_vertex_05003AE8, 8, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  1,  3, 0x0
-gsSP1Triangle  2,  4,  5, 0x0
-gsSP1Triangle  5,  0,  2, 0x0
-gsSP1Triangle  2,  3,  6, 0x0
-gsSP1Triangle  6,  4,  2, 0x0
-gsSP1Triangle  5,  7,  0, 0x0
-gsSP1Triangle  3,  1,  0, 0x0
-gsSP1Triangle  7,  3,  0, 0x0
-gsSP1Triangle  3,  7,  6, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  1,  3, 0x0
+gsSP2Triangles  2,  4,  5, 0x0,  5,  0,  2, 0x0
+gsSP2Triangles  2,  3,  6, 0x0,  6,  4,  2, 0x0
+gsSP2Triangles  5,  7,  0, 0x0,  3,  1,  0, 0x0
+gsSP2Triangles  7,  3,  0, 0x0,  3,  7,  6, 0x0
 gsSPEndDisplayList
 
 glabel monty_mole_seg5_dl_05003C48 # 0x05003C48 - 0x05003CC8
@@ -442,14 +405,10 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight monty_mole_seg5_light_05003CD0, 1
 gsSPLight monty_mole_seg5_light_05003CC8, 2
 gsSPVertex monty_mole_seg5_vertex_05003CE0, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  3,  2, 0x0
-gsSP1Triangle  4,  2,  5, 0x0
-gsSP1Triangle  2,  3,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  8,  9,  6, 0x0
-gsSP1Triangle  7, 10,  8, 0x0
-gsSP1Triangle  5, 11,  4, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  3,  2, 0x0
+gsSP2Triangles  4,  2,  5, 0x0,  2,  3,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  8,  9,  6, 0x0
+gsSP2Triangles  7, 10,  8, 0x0,  5, 11,  4, 0x0
 gsSPEndDisplayList
 
 glabel monty_mole_seg5_dl_05003ED8 # 0x05003ED8 - 0x05003F50
@@ -457,16 +416,11 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, monty_mole_seg5_texture_0500
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex monty_mole_seg5_vertex_05003DA0, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  4, 0x0
-gsSP1Triangle  3,  0,  2, 0x0
-gsSP1Triangle  4,  3,  5, 0x0
-gsSP1Triangle  3,  2,  6, 0x0
-gsSP1Triangle  5,  3,  6, 0x0
-gsSP1Triangle  6,  2,  7, 0x0
-gsSP1Triangle  7,  2,  1, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle 11,  9,  8, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  4, 0x0
+gsSP2Triangles  3,  0,  2, 0x0,  4,  3,  5, 0x0
+gsSP2Triangles  3,  2,  6, 0x0,  5,  3,  6, 0x0
+gsSP2Triangles  6,  2,  7, 0x0,  7,  2,  1, 0x0
+gsSP2Triangles  8,  9, 10, 0x0, 11,  9,  8, 0x0
 gsSPEndDisplayList
 
 glabel monty_mole_seg5_dl_05003F50 # 0x05003F50 - 0x05003FD0
@@ -552,20 +506,13 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight monty_mole_seg5_light_05003FD8, 1
 gsSPLight monty_mole_seg5_light_05003FD0, 2
 gsSPVertex monty_mole_seg5_vertex_05003FE8, 13, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  5,  6,  3, 0x0
-gsSP1Triangle  7,  5,  4, 0x0
-gsSP1Triangle  3,  6,  8, 0x0
-gsSP1Triangle  2,  1,  3, 0x0
-gsSP1Triangle  2,  3,  8, 0x0
-gsSP1Triangle  3,  1,  9, 0x0
-gsSP1Triangle  3,  9,  4, 0x0
-gsSP1Triangle  4, 10,  7, 0x0
-gsSP1Triangle 10,  4,  9, 0x0
-gsSP1Triangle  9, 11, 12, 0x0
-gsSP1Triangle 12, 10,  9, 0x0
-gsSP1Triangle 11,  9,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  5,  6,  3, 0x0,  7,  5,  4, 0x0
+gsSP2Triangles  3,  6,  8, 0x0,  2,  1,  3, 0x0
+gsSP2Triangles  2,  3,  8, 0x0,  3,  1,  9, 0x0
+gsSP2Triangles  3,  9,  4, 0x0,  4, 10,  7, 0x0
+gsSP2Triangles 10,  4,  9, 0x0,  9, 11, 12, 0x0
+gsSP2Triangles 12, 10,  9, 0x0, 11,  9,  1, 0x0
 gsSP1Triangle 11,  1,  0, 0x0
 gsSPEndDisplayList
 
@@ -574,41 +521,24 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, monty_mole_seg5_texture_0500
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex monty_mole_seg5_vertex_050040B8, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  4,  7, 0x0
-gsSP1Triangle  4,  3,  8, 0x0
-gsSP1Triangle  8,  7,  4, 0x0
-gsSP1Triangle  4,  6,  5, 0x0
-gsSP1Triangle  9, 10,  3, 0x0
-gsSP1Triangle  5,  9,  3, 0x0
-gsSP1Triangle  7,  1,  6, 0x0
-gsSP1Triangle  7, 11,  1, 0x0
-gsSP1Triangle 12,  2,  1, 0x0
-gsSP1Triangle 12,  1, 11, 0x0
-gsSP1Triangle  0,  6,  1, 0x0
-gsSP1Triangle  0, 13, 14, 0x0
-gsSP1Triangle 15,  6,  0, 0x0
-gsSP1Triangle 15,  5,  6, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  4,  7, 0x0,  4,  3,  8, 0x0
+gsSP2Triangles  8,  7,  4, 0x0,  4,  6,  5, 0x0
+gsSP2Triangles  9, 10,  3, 0x0,  5,  9,  3, 0x0
+gsSP2Triangles  7,  1,  6, 0x0,  7, 11,  1, 0x0
+gsSP2Triangles 12,  2,  1, 0x0, 12,  1, 11, 0x0
+gsSP2Triangles  0,  6,  1, 0x0,  0, 13, 14, 0x0
+gsSP2Triangles 15,  6,  0, 0x0, 15,  5,  6, 0x0
 gsSPVertex monty_mole_seg5_vertex_050041B8, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  0,  4,  3, 0x0
-gsSP1Triangle  0,  5,  4, 0x0
-gsSP1Triangle  6,  7,  0, 0x0
-gsSP1Triangle  0,  7,  8, 0x0
-gsSP1Triangle  0,  2,  6, 0x0
-gsSP1Triangle  0,  8,  5, 0x0
-gsSP1Triangle  2,  9, 10, 0x0
-gsSP1Triangle 10,  6,  2, 0x0
-gsSP1Triangle  6, 10, 11, 0x0
-gsSP1Triangle 11,  7,  6, 0x0
-gsSP1Triangle  7, 12,  8, 0x0
-gsSP1Triangle 13, 14, 11, 0x0
-gsSP1Triangle 11,  9, 13, 0x0
-gsSP1Triangle 15, 14, 13, 0x0
-gsSP1Triangle  7, 14, 12, 0x0
-gsSP1Triangle 11, 14,  7, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  0,  4,  3, 0x0,  0,  5,  4, 0x0
+gsSP2Triangles  6,  7,  0, 0x0,  0,  7,  8, 0x0
+gsSP2Triangles  0,  2,  6, 0x0,  0,  8,  5, 0x0
+gsSP2Triangles  2,  9, 10, 0x0, 10,  6,  2, 0x0
+gsSP2Triangles  6, 10, 11, 0x0, 11,  7,  6, 0x0
+gsSP2Triangles  7, 12,  8, 0x0, 13, 14, 11, 0x0
+gsSP2Triangles 11,  9, 13, 0x0, 15, 14, 13, 0x0
+gsSP2Triangles  7, 14, 12, 0x0, 11, 14,  7, 0x0
 gsSP1Triangle 15, 12, 14, 0x0
 gsSPEndDisplayList
 
@@ -727,10 +657,8 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight monty_mole_seg5_light_05004520, 1
 gsSPLight monty_mole_seg5_light_05004518, 2
 gsSPVertex monty_mole_seg5_vertex_05004530, 6, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  0,  4, 0x0
-gsSP1Triangle  0,  3,  5, 0x0
-gsSP1Triangle  5,  1,  0, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  0,  4, 0x0
+gsSP2Triangles  0,  3,  5, 0x0,  5,  1,  0, 0x0
 gsSP1Triangle  2,  4,  0, 0x0
 gsSPEndDisplayList
 
@@ -739,40 +667,24 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, monty_mole_seg5_texture_0500
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex monty_mole_seg5_vertex_05004590, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  3,  0, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  6,  7,  4, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle 11,  8, 12, 0x0
-gsSP1Triangle 12,  8, 13, 0x0
-gsSP1Triangle 11,  9,  8, 0x0
-gsSP1Triangle 14,  9, 11, 0x0
-gsSP1Triangle 11, 12, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  3,  0, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  6,  7,  4, 0x0
+gsSP2Triangles  8,  9, 10, 0x0, 11,  8, 12, 0x0
+gsSP2Triangles 12,  8, 13, 0x0, 11,  9,  8, 0x0
+gsSP2Triangles 14,  9, 11, 0x0, 11, 12, 15, 0x0
 gsSPVertex monty_mole_seg5_vertex_05004690, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  0,  2, 0x0
-gsSP1Triangle  4,  1,  5, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle 10,  8,  4, 0x0
-gsSP1Triangle  8,  7, 11, 0x0
-gsSP1Triangle  8, 11,  4, 0x0
-gsSP1Triangle  4, 11,  1, 0x0
-gsSP1Triangle 10,  4,  6, 0x0
-gsSP1Triangle 12, 13,  3, 0x0
-gsSP1Triangle  7, 14, 11, 0x0
-gsSP1Triangle  1, 11, 14, 0x0
-gsSP1Triangle  7, 15, 14, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  0,  2, 0x0
+gsSP2Triangles  4,  1,  5, 0x0,  4,  5,  6, 0x0
+gsSP2Triangles  7,  8,  9, 0x0, 10,  8,  4, 0x0
+gsSP2Triangles  8,  7, 11, 0x0,  8, 11,  4, 0x0
+gsSP2Triangles  4, 11,  1, 0x0, 10,  4,  6, 0x0
+gsSP2Triangles 12, 13,  3, 0x0,  7, 14, 11, 0x0
+gsSP2Triangles  1, 11, 14, 0x0,  7, 15, 14, 0x0
 gsSPVertex monty_mole_seg5_vertex_05004790, 10, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  6,  5,  7, 0x0
-gsSP1Triangle  7,  5,  1, 0x0
-gsSP1Triangle  8,  6,  7, 0x0
-gsSP1Triangle  9,  8,  7, 0x0
-gsSP1Triangle  7,  1,  9, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  6,  5,  7, 0x0
+gsSP2Triangles  7,  5,  1, 0x0,  8,  6,  7, 0x0
+gsSP2Triangles  9,  8,  7, 0x0,  7,  1,  9, 0x0
 gsSP1Triangle  9,  1,  0, 0x0
 gsSPEndDisplayList
 
@@ -781,25 +693,18 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, monty_mole_seg5_texture_0500
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex monty_mole_seg5_vertex_05004830, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  0,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  7,  5,  4, 0x0
-gsSP1Triangle  4,  8,  7, 0x0
-gsSP1Triangle  3,  9,  1, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 10, 12, 13, 0x0
-gsSP1Triangle 11, 14, 12, 0x0
-gsSP1Triangle 11, 15, 14, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  0,  3, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  7,  5,  4, 0x0
+gsSP2Triangles  4,  8,  7, 0x0,  3,  9,  1, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 10, 12, 13, 0x0
+gsSP2Triangles 11, 14, 12, 0x0, 11, 15, 14, 0x0
 gsSPVertex monty_mole_seg5_vertex_05004930, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel monty_mole_seg5_dl_05004BE0 # 0x05004BE0 - 0x05004C00
 gsSPVertex monty_mole_seg5_vertex_05004970, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel monty_mole_seg5_dl_05004C00 # 0x05004C00 - 0x05004C90
@@ -842,8 +747,7 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight monty_mole_seg5_light_05004C98, 1
 gsSPLight monty_mole_seg5_light_05004C90, 2
 gsSPVertex monty_mole_seg5_vertex_05004CA8, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel monty_mole_seg5_dl_05004D30 # 0x05004D30 - 0x05004DA0

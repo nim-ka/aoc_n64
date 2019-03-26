@@ -23,8 +23,7 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight cannon_lid_seg8_light_08004048, 1
 gsSPLight cannon_lid_seg8_light_08004040, 2
 gsSPVertex cannon_lid_seg8_vertex_08004858, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel cannon_lid_seg8_dl_080048E0 # 0x080048E0 - 0x08004950

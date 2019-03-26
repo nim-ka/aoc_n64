@@ -32,8 +32,7 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight seaweed_seg6_light_06007E00, 1
 gsSPLight seaweed_seg6_light_06007DF8, 2
 gsSPVertex seaweed_seg6_vertex_06009E10, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel seaweed_seg6_dl_06009E98 # 0x06009E98 - 0x06009F08
@@ -65,8 +64,7 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight seaweed_seg6_light_06007E00, 1
 gsSPLight seaweed_seg6_light_06007DF8, 2
 gsSPVertex seaweed_seg6_vertex_06009F08, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel seaweed_seg6_dl_06009F90 # 0x06009F90 - 0x0600A000
@@ -98,8 +96,7 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight seaweed_seg6_light_06007E00, 1
 gsSPLight seaweed_seg6_light_06007DF8, 2
 gsSPVertex seaweed_seg6_vertex_0600A000, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel seaweed_seg6_dl_0600A088 # 0x0600A088 - 0x0600A0F8
@@ -131,8 +128,7 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight seaweed_seg6_light_06007E00, 1
 gsSPLight seaweed_seg6_light_06007DF8, 2
 gsSPVertex seaweed_seg6_vertex_0600A0F8, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel seaweed_seg6_dl_0600A180 # 0x0600A180 - 0x0600A1F0

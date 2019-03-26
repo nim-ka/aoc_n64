@@ -123,16 +123,11 @@ glabel birds_seg5_dl_05000528 # 0x05000528 - 0x05000598
 gsSPLight birds_seg5_light_05000008, 1
 gsSPLight birds_seg5_light_05000000, 2
 gsSPVertex birds_seg5_vertex_05000048, 9, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  3,  0, 0x0
-gsSP1Triangle  4,  3,  2, 0x0
-gsSP1Triangle  5,  3,  6, 0x0
-gsSP1Triangle  4,  7,  8, 0x0
-gsSP1Triangle  4,  8,  6, 0x0
-gsSP1Triangle  6,  8,  5, 0x0
-gsSP1Triangle  6,  3,  4, 0x0
-gsSP1Triangle  2,  1,  7, 0x0
-gsSP1Triangle  2,  7,  4, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  3,  0, 0x0
+gsSP2Triangles  4,  3,  2, 0x0,  5,  3,  6, 0x0
+gsSP2Triangles  4,  7,  8, 0x0,  4,  8,  6, 0x0
+gsSP2Triangles  6,  8,  5, 0x0,  6,  3,  4, 0x0
+gsSP2Triangles  2,  1,  7, 0x0,  2,  7,  4, 0x0
 gsSPEndDisplayList
 
 glabel birds_seg5_dl_05000598 # 0x05000598 - 0x05000600
@@ -154,63 +149,43 @@ glabel birds_seg5_dl_05000600 # 0x05000600 - 0x05000670
 gsSPLight birds_seg5_light_05000008, 1
 gsSPLight birds_seg5_light_05000000, 2
 gsSPVertex birds_seg5_vertex_05000168, 9, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  3,  0, 0x0
-gsSP1Triangle  0,  3,  4, 0x0
-gsSP1Triangle  5,  3,  6, 0x0
-gsSP1Triangle  5,  7,  8, 0x0
-gsSP1Triangle  5,  8,  4, 0x0
-gsSP1Triangle  6,  7,  5, 0x0
-gsSP1Triangle  4,  3,  5, 0x0
-gsSP1Triangle  4,  8,  1, 0x0
-gsSP1Triangle  4,  1,  0, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  3,  0, 0x0
+gsSP2Triangles  0,  3,  4, 0x0,  5,  3,  6, 0x0
+gsSP2Triangles  5,  7,  8, 0x0,  5,  8,  4, 0x0
+gsSP2Triangles  6,  7,  5, 0x0,  4,  3,  5, 0x0
+gsSP2Triangles  4,  8,  1, 0x0,  4,  1,  0, 0x0
 gsSPEndDisplayList
 
 glabel birds_seg5_dl_05000670 # 0x05000670 - 0x050007E0
 gsSPLight birds_seg5_light_05000008, 1
 gsSPLight birds_seg5_light_05000000, 2
 gsSPVertex birds_seg5_vertex_050001F8, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  1,  9, 10, 0x0
-gsSP1Triangle  1,  0, 11, 0x0
-gsSP1Triangle 12,  3, 13, 0x0
-gsSP1Triangle  8,  5,  4, 0x0
-gsSP1Triangle  5, 14, 10, 0x0
-gsSP1Triangle 13, 15, 12, 0x0
-gsSP1Triangle 11, 15,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  1,  9, 10, 0x0
+gsSP2Triangles  1,  0, 11, 0x0, 12,  3, 13, 0x0
+gsSP2Triangles  8,  5,  4, 0x0,  5, 14, 10, 0x0
+gsSP2Triangles 13, 15, 12, 0x0, 11, 15,  1, 0x0
 gsSPVertex birds_seg5_vertex_050002F8, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  1,  0, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  6,  7,  4, 0x0
-gsSP1Triangle  8,  5,  9, 0x0
-gsSP1Triangle 10,  7, 11, 0x0
-gsSP1Triangle 11, 12, 10, 0x0
-gsSP1Triangle 11, 13,  2, 0x0
-gsSP1Triangle  2, 14, 11, 0x0
-gsSP1Triangle 11,  7,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  1,  0, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  6,  7,  4, 0x0
+gsSP2Triangles  8,  5,  9, 0x0, 10,  7, 11, 0x0
+gsSP2Triangles 11, 12, 10, 0x0, 11, 13,  2, 0x0
+gsSP2Triangles  2, 14, 11, 0x0, 11,  7,  3, 0x0
 gsSP1Triangle  7,  6, 15, 0x0
 gsSPVertex birds_seg5_vertex_050003F8, 3, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSPLight birds_seg5_light_05000038, 1
 gsSPLight birds_seg5_light_05000030, 2
 gsSPVertex birds_seg5_vertex_05000428, 10, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  0,  7, 0x0
-gsSP1Triangle  7,  8,  6, 0x0
-gsSP1Triangle  9,  7,  2, 0x0
-gsSP1Triangle  2,  7,  0, 0x0
-gsSP1Triangle  2,  3,  9, 0x0
-gsSP1Triangle  7,  9,  8, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  0,  7, 0x0,  7,  8,  6, 0x0
+gsSP2Triangles  9,  7,  2, 0x0,  2,  7,  0, 0x0
+gsSP2Triangles  2,  3,  9, 0x0,  7,  9,  8, 0x0
 gsSP1Triangle  5,  4,  1, 0x0
 gsSPLight birds_seg5_light_05000020, 1
 gsSPLight birds_seg5_light_05000018, 2
 gsSPVertex birds_seg5_vertex_050004C8, 6, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  0,  4, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  0,  4, 0x0
 gsSP1Triangle  1,  3,  5, 0x0
 gsSPEndDisplayList
 

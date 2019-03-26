@@ -84,10 +84,8 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight klepto_seg5_light_05003810, 1
 gsSPLight klepto_seg5_light_05003808, 2
 gsSPVertex klepto_seg5_vertex_05003838, 6, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  3,  0, 0x0
-gsSP1Triangle  2,  1,  4, 0x0
-gsSP1Triangle  4,  5,  2, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  3,  0, 0x0
+gsSP2Triangles  2,  1,  4, 0x0,  4,  5,  2, 0x0
 gsSPEndDisplayList
 
 glabel klepto_seg5_dl_05003AC0 # 0x05003AC0 - 0x05003B40
@@ -95,14 +93,10 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, klepto_seg5_texture_05001008
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex klepto_seg5_vertex_05003898, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  3, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle 10,  9, 11, 0x0
-gsSP1Triangle 11, 12, 10, 0x0
-gsSP1Triangle 13, 14, 10, 0x0
-gsSP1Triangle 10, 12, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  3, 0x0,  8,  9, 10, 0x0
+gsSP2Triangles 10,  9, 11, 0x0, 11, 12, 10, 0x0
+gsSP2Triangles 13, 14, 10, 0x0, 10, 12, 13, 0x0
 gsSP1Triangle 10, 14,  8, 0x0
 gsSPVertex klepto_seg5_vertex_05003988, 3, 0
 gsSP1Triangle  0,  1,  2, 0x0
@@ -112,20 +106,13 @@ glabel klepto_seg5_dl_05003B40 # 0x05003B40 - 0x05003BD0
 gsSPLight klepto_seg5_light_05003828, 1
 gsSPLight klepto_seg5_light_05003820, 2
 gsSPVertex klepto_seg5_vertex_050039B8, 11, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  3,  2, 0x0
-gsSP1Triangle  4,  5,  3, 0x0
-gsSP1Triangle  3,  6,  4, 0x0
-gsSP1Triangle  3,  5,  2, 0x0
-gsSP1Triangle  2,  5,  7, 0x0
-gsSP1Triangle  7,  0,  2, 0x0
-gsSP1Triangle  0,  7,  8, 0x0
-gsSP1Triangle  8,  9,  0, 0x0
-gsSP1Triangle  8,  7,  5, 0x0
-gsSP1Triangle 10,  8,  4, 0x0
-gsSP1Triangle  4,  8,  5, 0x0
-gsSP1Triangle 10,  9,  8, 0x0
-gsSP1Triangle 10,  4,  6, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  3,  2, 0x0
+gsSP2Triangles  4,  5,  3, 0x0,  3,  6,  4, 0x0
+gsSP2Triangles  3,  5,  2, 0x0,  2,  5,  7, 0x0
+gsSP2Triangles  7,  0,  2, 0x0,  0,  7,  8, 0x0
+gsSP2Triangles  8,  9,  0, 0x0,  8,  7,  5, 0x0
+gsSP2Triangles 10,  8,  4, 0x0,  4,  8,  5, 0x0
+gsSP2Triangles 10,  9,  8, 0x0, 10,  4,  6, 0x0
 gsSPEndDisplayList
 
 glabel klepto_seg5_dl_05003BD0 # 0x05003BD0 - 0x05003C58
@@ -169,18 +156,12 @@ glabel klepto_seg5_dl_05003D00 # 0x05003D00 - 0x05003D80
 gsSPLight klepto_seg5_light_05003C60, 1
 gsSPLight klepto_seg5_light_05003C58, 2
 gsSPVertex klepto_seg5_vertex_05003C70, 9, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  3,  0, 0x0
-gsSP1Triangle  4,  2,  5, 0x0
-gsSP1Triangle  2,  4,  3, 0x0
-gsSP1Triangle  5,  2,  1, 0x0
-gsSP1Triangle  6,  0,  3, 0x0
-gsSP1Triangle  3,  7,  6, 0x0
-gsSP1Triangle  4,  7,  3, 0x0
-gsSP1Triangle  7,  4,  5, 0x0
-gsSP1Triangle  1,  8,  5, 0x0
-gsSP1Triangle  7,  5,  8, 0x0
-gsSP1Triangle  8,  6,  7, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  3,  0, 0x0
+gsSP2Triangles  4,  2,  5, 0x0,  2,  4,  3, 0x0
+gsSP2Triangles  5,  2,  1, 0x0,  6,  0,  3, 0x0
+gsSP2Triangles  3,  7,  6, 0x0,  4,  7,  3, 0x0
+gsSP2Triangles  7,  4,  5, 0x0,  1,  8,  5, 0x0
+gsSP2Triangles  7,  5,  8, 0x0,  8,  6,  7, 0x0
 gsSPEndDisplayList
 
 glabel klepto_seg5_dl_05003D80 # 0x05003D80 - 0x05003DB0
@@ -217,22 +198,14 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight klepto_seg5_light_05003DB8, 1
 gsSPLight klepto_seg5_light_05003DB0, 2
 gsSPVertex klepto_seg5_vertex_05003DC8, 10, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  2, 0x0
-gsSP1Triangle  5,  2,  1, 0x0
-gsSP1Triangle  2,  5,  3, 0x0
-gsSP1Triangle  4,  0,  2, 0x0
-gsSP1Triangle  6,  7,  5, 0x0
-gsSP1Triangle  1,  6,  5, 0x0
-gsSP1Triangle  7,  3,  5, 0x0
-gsSP1Triangle  4,  3,  8, 0x0
-gsSP1Triangle  3,  7,  8, 0x0
-gsSP1Triangle  1,  0,  9, 0x0
-gsSP1Triangle  6,  1,  9, 0x0
-gsSP1Triangle  9,  8,  6, 0x0
-gsSP1Triangle  7,  6,  8, 0x0
-gsSP1Triangle  8,  9,  4, 0x0
-gsSP1Triangle  0,  4,  9, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  2, 0x0
+gsSP2Triangles  5,  2,  1, 0x0,  2,  5,  3, 0x0
+gsSP2Triangles  4,  0,  2, 0x0,  6,  7,  5, 0x0
+gsSP2Triangles  1,  6,  5, 0x0,  7,  3,  5, 0x0
+gsSP2Triangles  4,  3,  8, 0x0,  3,  7,  8, 0x0
+gsSP2Triangles  1,  0,  9, 0x0,  6,  1,  9, 0x0
+gsSP2Triangles  9,  8,  6, 0x0,  7,  6,  8, 0x0
+gsSP2Triangles  8,  9,  4, 0x0,  0,  4,  9, 0x0
 gsSPEndDisplayList
 
 glabel klepto_seg5_dl_05003F20 # 0x05003F20 - 0x05003F80
@@ -274,26 +247,16 @@ glabel klepto_seg5_dl_05004058 # 0x05004058 - 0x05004118
 gsSPLight klepto_seg5_light_05003F88, 1
 gsSPLight klepto_seg5_light_05003F80, 2
 gsSPVertex klepto_seg5_vertex_05003F98, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  1,  3, 0x0
-gsSP1Triangle  2,  4,  5, 0x0
-gsSP1Triangle  2,  5,  0, 0x0
-gsSP1Triangle  3,  4,  2, 0x0
-gsSP1Triangle  6,  5,  7, 0x0
-gsSP1Triangle  4,  7,  5, 0x0
-gsSP1Triangle  0,  5,  6, 0x0
-gsSP1Triangle  8,  1,  0, 0x0
-gsSP1Triangle  8,  0,  6, 0x0
-gsSP1Triangle  7,  4,  9, 0x0
-gsSP1Triangle  3,  9,  4, 0x0
-gsSP1Triangle  3,  8,  9, 0x0
-gsSP1Triangle  9,  8, 10, 0x0
-gsSP1Triangle  9, 10,  7, 0x0
-gsSP1Triangle  8, 11, 10, 0x0
-gsSP1Triangle  6, 11,  8, 0x0
-gsSP1Triangle  3,  1,  8, 0x0
-gsSP1Triangle 10, 11,  7, 0x0
-gsSP1Triangle  7, 11,  6, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  1,  3, 0x0
+gsSP2Triangles  2,  4,  5, 0x0,  2,  5,  0, 0x0
+gsSP2Triangles  3,  4,  2, 0x0,  6,  5,  7, 0x0
+gsSP2Triangles  4,  7,  5, 0x0,  0,  5,  6, 0x0
+gsSP2Triangles  8,  1,  0, 0x0,  8,  0,  6, 0x0
+gsSP2Triangles  7,  4,  9, 0x0,  3,  9,  4, 0x0
+gsSP2Triangles  3,  8,  9, 0x0,  9,  8, 10, 0x0
+gsSP2Triangles  9, 10,  7, 0x0,  8, 11, 10, 0x0
+gsSP2Triangles  6, 11,  8, 0x0,  3,  1,  8, 0x0
+gsSP2Triangles 10, 11,  7, 0x0,  7, 11,  6, 0x0
 gsSPEndDisplayList
 
 glabel klepto_seg5_dl_05004118 # 0x05004118 - 0x05004148
@@ -324,8 +287,7 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight klepto_seg5_light_05004150, 1
 gsSPLight klepto_seg5_light_05004148, 2
 gsSPVertex klepto_seg5_vertex_05004160, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  1,  0, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  1,  0, 0x0
 gsSPEndDisplayList
 
 glabel klepto_seg5_dl_050041E8 # 0x050041E8 - 0x05004258
@@ -363,14 +325,10 @@ glabel klepto_seg5_dl_050042D0 # 0x050042D0 - 0x05004330
 gsSPLight klepto_seg5_light_05004260, 1
 gsSPLight klepto_seg5_light_05004258, 2
 gsSPVertex klepto_seg5_vertex_05004270, 6, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  0,  3, 0x0
-gsSP1Triangle  4,  0,  2, 0x0
-gsSP1Triangle  0,  4,  3, 0x0
-gsSP1Triangle  5,  1,  3, 0x0
-gsSP1Triangle  1,  5,  2, 0x0
-gsSP1Triangle  5,  4,  2, 0x0
-gsSP1Triangle  4,  5,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  0,  3, 0x0
+gsSP2Triangles  4,  0,  2, 0x0,  0,  4,  3, 0x0
+gsSP2Triangles  5,  1,  3, 0x0,  1,  5,  2, 0x0
+gsSP2Triangles  5,  4,  2, 0x0,  4,  5,  3, 0x0
 gsSPEndDisplayList
 
 glabel klepto_seg5_dl_05004330 # 0x05004330 - 0x05004360
@@ -400,14 +358,10 @@ glabel klepto_seg5_dl_050043D8 # 0x050043D8 - 0x05004438
 gsSPLight klepto_seg5_light_05004368, 1
 gsSPLight klepto_seg5_light_05004360, 2
 gsSPVertex klepto_seg5_vertex_05004378, 6, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  0,  3, 0x0
-gsSP1Triangle  4,  0,  2, 0x0
-gsSP1Triangle  0,  4,  3, 0x0
-gsSP1Triangle  5,  1,  3, 0x0
-gsSP1Triangle  1,  5,  2, 0x0
-gsSP1Triangle  5,  4,  2, 0x0
-gsSP1Triangle  4,  5,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  0,  3, 0x0
+gsSP2Triangles  4,  0,  2, 0x0,  0,  4,  3, 0x0
+gsSP2Triangles  5,  1,  3, 0x0,  1,  5,  2, 0x0
+gsSP2Triangles  5,  4,  2, 0x0,  4,  5,  3, 0x0
 gsSPEndDisplayList
 
 glabel klepto_seg5_dl_05004438 # 0x05004438 - 0x05004468
@@ -474,40 +428,26 @@ glabel klepto_seg5_dl_05004698 # 0x05004698 - 0x050047C8
 gsSPLight klepto_seg5_light_05004470, 1
 gsSPLight klepto_seg5_light_05004468, 2
 gsSPVertex klepto_seg5_vertex_05004498, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  4,  3,  6, 0x0
-gsSP1Triangle  3,  5,  6, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  8,  7, 10, 0x0
-gsSP1Triangle  8, 10,  9, 0x0
-gsSP1Triangle  0, 11,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  4,  3,  6, 0x0,  3,  5,  6, 0x0
+gsSP2Triangles  7,  8,  9, 0x0,  8,  7, 10, 0x0
+gsSP2Triangles  8, 10,  9, 0x0,  0, 11,  1, 0x0
 gsSP1Triangle 11,  0,  2, 0x0
 gsSPLight klepto_seg5_light_05004488, 1
 gsSPLight klepto_seg5_light_05004480, 2
 gsSPVertex klepto_seg5_vertex_05004558, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  3, 0x0
-gsSP1Triangle  7,  4,  3, 0x0
-gsSP1Triangle  5,  4,  6, 0x0
-gsSP1Triangle  7,  6,  4, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle 11, 12,  8, 0x0
-gsSP1Triangle 12,  9,  8, 0x0
-gsSP1Triangle 12, 11,  9, 0x0
-gsSP1Triangle 10,  9, 11, 0x0
-gsSP1Triangle  0,  2, 13, 0x0
-gsSP1Triangle  1,  0, 13, 0x0
-gsSP1Triangle 13,  2, 14, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  3, 0x0,  7,  4,  3, 0x0
+gsSP2Triangles  5,  4,  6, 0x0,  7,  6,  4, 0x0
+gsSP2Triangles  8,  9, 10, 0x0, 11, 12,  8, 0x0
+gsSP2Triangles 12,  9,  8, 0x0, 12, 11,  9, 0x0
+gsSP2Triangles 10,  9, 11, 0x0,  0,  2, 13, 0x0
+gsSP2Triangles  1,  0, 13, 0x0, 13,  2, 14, 0x0
 gsSP1Triangle 14,  2,  1, 0x0
 gsSPVertex klepto_seg5_vertex_05004648, 5, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  0,  3, 0x0
-gsSP1Triangle  3,  2,  1, 0x0
-gsSP1Triangle  4,  2,  3, 0x0
-gsSP1Triangle  2,  4,  0, 0x0
-gsSP1Triangle  3,  0,  4, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  0,  3, 0x0
+gsSP2Triangles  3,  2,  1, 0x0,  4,  2,  3, 0x0
+gsSP2Triangles  2,  4,  0, 0x0,  3,  0,  4, 0x0
 gsSPEndDisplayList
 
 glabel klepto_seg5_dl_050047C8 # 0x050047C8 - 0x050047F8
@@ -574,40 +514,26 @@ glabel klepto_seg5_dl_05004A28 # 0x05004A28 - 0x05004B58
 gsSPLight klepto_seg5_light_05004800, 1
 gsSPLight klepto_seg5_light_050047F8, 2
 gsSPVertex klepto_seg5_vertex_05004828, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  4,  3,  6, 0x0
-gsSP1Triangle  3,  5,  6, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  8,  7, 10, 0x0
-gsSP1Triangle  8, 10,  9, 0x0
-gsSP1Triangle  0, 11,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  4,  3,  6, 0x0,  3,  5,  6, 0x0
+gsSP2Triangles  7,  8,  9, 0x0,  8,  7, 10, 0x0
+gsSP2Triangles  8, 10,  9, 0x0,  0, 11,  1, 0x0
 gsSP1Triangle 11,  0,  2, 0x0
 gsSPLight klepto_seg5_light_05004818, 1
 gsSPLight klepto_seg5_light_05004810, 2
 gsSPVertex klepto_seg5_vertex_050048E8, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  3, 0x0
-gsSP1Triangle  7,  4,  3, 0x0
-gsSP1Triangle  5,  4,  6, 0x0
-gsSP1Triangle  7,  6,  4, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle 11, 12,  8, 0x0
-gsSP1Triangle 12,  9,  8, 0x0
-gsSP1Triangle 12, 11,  9, 0x0
-gsSP1Triangle 10,  9, 11, 0x0
-gsSP1Triangle  0,  2, 13, 0x0
-gsSP1Triangle  1,  0, 13, 0x0
-gsSP1Triangle 13,  2, 14, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  3, 0x0,  7,  4,  3, 0x0
+gsSP2Triangles  5,  4,  6, 0x0,  7,  6,  4, 0x0
+gsSP2Triangles  8,  9, 10, 0x0, 11, 12,  8, 0x0
+gsSP2Triangles 12,  9,  8, 0x0, 12, 11,  9, 0x0
+gsSP2Triangles 10,  9, 11, 0x0,  0,  2, 13, 0x0
+gsSP2Triangles  1,  0, 13, 0x0, 13,  2, 14, 0x0
 gsSP1Triangle 14,  2,  1, 0x0
 gsSPVertex klepto_seg5_vertex_050049D8, 5, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  0,  3, 0x0
-gsSP1Triangle  3,  2,  1, 0x0
-gsSP1Triangle  4,  2,  3, 0x0
-gsSP1Triangle  2,  4,  0, 0x0
-gsSP1Triangle  3,  0,  4, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  0,  3, 0x0
+gsSP2Triangles  3,  2,  1, 0x0,  4,  2,  3, 0x0
+gsSP2Triangles  2,  4,  0, 0x0,  3,  0,  4, 0x0
 gsSPEndDisplayList
 
 glabel klepto_seg5_dl_05004B58 # 0x05004B58 - 0x05004B88
@@ -638,8 +564,7 @@ gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
 gsSPLight klepto_seg5_light_05004B90, 1
 gsSPLight klepto_seg5_light_05004B88, 2
 gsSPVertex klepto_seg5_vertex_05004BA0, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel klepto_seg5_dl_05004C28 # 0x05004C28 - 0x05004C98
@@ -678,8 +603,7 @@ gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
 gsSPLight klepto_seg5_light_05004CA0, 1
 gsSPLight klepto_seg5_light_05004C98, 2
 gsSPVertex klepto_seg5_vertex_05004CB0, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  3,  2, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  3,  2, 0x0
 gsSPEndDisplayList
 
 glabel klepto_seg5_dl_05004D38 # 0x05004D38 - 0x05004DA8
@@ -718,8 +642,7 @@ gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
 gsSPLight klepto_seg5_light_05004DB0, 1
 gsSPLight klepto_seg5_light_05004DA8, 2
 gsSPVertex klepto_seg5_vertex_05004DC0, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel klepto_seg5_dl_05004E48 # 0x05004E48 - 0x05004EB8
@@ -758,8 +681,7 @@ gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
 gsSPLight klepto_seg5_light_05004EC0, 1
 gsSPLight klepto_seg5_light_05004EB8, 2
 gsSPVertex klepto_seg5_vertex_05004ED0, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  3,  2, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  3,  2, 0x0
 gsSPEndDisplayList
 
 glabel klepto_seg5_dl_05004F58 # 0x05004F58 - 0x05004FC8
@@ -798,8 +720,7 @@ gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
 gsSPLight klepto_seg5_light_05004FD0, 1
 gsSPLight klepto_seg5_light_05004FC8, 2
 gsSPVertex klepto_seg5_vertex_05004FE0, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel klepto_seg5_dl_05005068 # 0x05005068 - 0x050050D8
@@ -838,8 +759,7 @@ gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
 gsSPLight klepto_seg5_light_050050E0, 1
 gsSPLight klepto_seg5_light_050050D8, 2
 gsSPVertex klepto_seg5_vertex_050050F0, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  3,  2, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  3,  2, 0x0
 gsSPEndDisplayList
 
 glabel klepto_seg5_dl_05005178 # 0x05005178 - 0x050051E8

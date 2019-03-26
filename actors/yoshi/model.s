@@ -217,20 +217,16 @@ gsDPLoadBlock 7, 0, 0, 0x0FF, 0x200
 gsSPLight yoshi_seg5_light_0501C460, 1
 gsSPLight yoshi_seg5_light_0501C458, 2
 gsSPVertex yoshi_seg5_vertex_0501CAA0, 6, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
 gsSPEndDisplayList
 
 glabel yoshi_seg5_dl_0501D488 # 0x0501D488 - 0x0501D4E0
 gsSPLight yoshi_seg5_light_0501C478, 1
 gsSPLight yoshi_seg5_light_0501C470, 2
 gsSPVertex yoshi_seg5_vertex_0501CB00, 11, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  5,  0,  3, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  6,  8,  9, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  3,  4,  5, 0x0,  5,  0,  3, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  6,  8,  9, 0x0
 gsSP1Triangle  7, 10,  8, 0x0
 gsSPEndDisplayList
 
@@ -238,131 +234,77 @@ glabel yoshi_seg5_dl_0501D4E0 # 0x0501D4E0 - 0x0501D8F8
 gsSPLight yoshi_seg5_light_0501C490, 1
 gsSPLight yoshi_seg5_light_0501C488, 2
 gsSPVertex yoshi_seg5_vertex_0501CBB0, 5, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  1,  0, 0x0
-gsSP1Triangle  4,  1,  3, 0x0
-gsSP1Triangle  2,  1,  4, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  1,  0, 0x0
+gsSP2Triangles  4,  1,  3, 0x0,  2,  1,  4, 0x0
 gsSPLight yoshi_seg5_light_0501C460, 1
 gsSPLight yoshi_seg5_light_0501C458, 2
 gsSPVertex yoshi_seg5_vertex_0501CC00, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  3, 0x0
-gsSP1Triangle  3,  5,  6, 0x0
-gsSP1Triangle  8,  4,  3, 0x0
-gsSP1Triangle  3,  7,  9, 0x0
-gsSP1Triangle 10,  7,  6, 0x0
-gsSP1Triangle  7, 10, 11, 0x0
-gsSP1Triangle  9,  7, 11, 0x0
-gsSP1Triangle 12,  9, 11, 0x0
-gsSP1Triangle  4,  8,  0, 0x0
-gsSP1Triangle  0,  8, 12, 0x0
-gsSP1Triangle 13,  4,  0, 0x0
-gsSP1Triangle  5,  4, 13, 0x0
-gsSP1Triangle 12, 14,  0, 0x0
-gsSP1Triangle  1,  0, 14, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  3, 0x0,  3,  5,  6, 0x0
+gsSP2Triangles  8,  4,  3, 0x0,  3,  7,  9, 0x0
+gsSP2Triangles 10,  7,  6, 0x0,  7, 10, 11, 0x0
+gsSP2Triangles  9,  7, 11, 0x0, 12,  9, 11, 0x0
+gsSP2Triangles  4,  8,  0, 0x0,  0,  8, 12, 0x0
+gsSP2Triangles 13,  4,  0, 0x0,  5,  4, 13, 0x0
+gsSP2Triangles 12, 14,  0, 0x0,  1,  0, 14, 0x0
 gsSP1Triangle  2, 13,  0, 0x0
 gsSPVertex yoshi_seg5_vertex_0501CCF0, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  1,  3, 0x0
-gsSP1Triangle  4,  0,  2, 0x0
-gsSP1Triangle  2,  5,  4, 0x0
-gsSP1Triangle  3,  1,  6, 0x0
-gsSP1Triangle  7,  3,  6, 0x0
-gsSP1Triangle  8,  3,  7, 0x0
-gsSP1Triangle  3,  8,  9, 0x0
-gsSP1Triangle  9, 10,  3, 0x0
-gsSP1Triangle  9, 11, 10, 0x0
-gsSP1Triangle 12, 10, 11, 0x0
-gsSP1Triangle 13, 10, 12, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  1,  3, 0x0
+gsSP2Triangles  4,  0,  2, 0x0,  2,  5,  4, 0x0
+gsSP2Triangles  3,  1,  6, 0x0,  7,  3,  6, 0x0
+gsSP2Triangles  8,  3,  7, 0x0,  3,  8,  9, 0x0
+gsSP2Triangles  9, 10,  3, 0x0,  9, 11, 10, 0x0
+gsSP2Triangles 12, 10, 11, 0x0, 13, 10, 12, 0x0
 gsSP1Triangle 14, 13, 12, 0x0
 gsSPVertex yoshi_seg5_vertex_0501CDE0, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  2, 0x0
-gsSP1Triangle  2,  5,  6, 0x0
-gsSP1Triangle  2,  1,  7, 0x0
-gsSP1Triangle  3,  2,  7, 0x0
-gsSP1Triangle  2,  6,  0, 0x0
-gsSP1Triangle  8,  6,  9, 0x0
-gsSP1Triangle 10,  6,  8, 0x0
-gsSP1Triangle 10,  0,  6, 0x0
-gsSP1Triangle  9,  6,  5, 0x0
-gsSP1Triangle  4,  3, 11, 0x0
-gsSP1Triangle  5, 12,  9, 0x0
-gsSP1Triangle  9, 13,  8, 0x0
-gsSP1Triangle 11, 14, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  2, 0x0
+gsSP2Triangles  2,  5,  6, 0x0,  2,  1,  7, 0x0
+gsSP2Triangles  3,  2,  7, 0x0,  2,  6,  0, 0x0
+gsSP2Triangles  8,  6,  9, 0x0, 10,  6,  8, 0x0
+gsSP2Triangles 10,  0,  6, 0x0,  9,  6,  5, 0x0
+gsSP2Triangles  4,  3, 11, 0x0,  5, 12,  9, 0x0
+gsSP2Triangles  9, 13,  8, 0x0, 11, 14, 15, 0x0
 gsSPVertex yoshi_seg5_vertex_0501CEE0, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  4, 0x0
-gsSP1Triangle  3,  5,  6, 0x0
-gsSP1Triangle  2,  5,  3, 0x0
-gsSP1Triangle  1,  7,  2, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle  6,  5, 11, 0x0
-gsSP1Triangle 11,  5,  2, 0x0
-gsSP1Triangle  2, 12, 11, 0x0
-gsSP1Triangle 13, 11, 12, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  4, 0x0
+gsSP2Triangles  3,  5,  6, 0x0,  2,  5,  3, 0x0
+gsSP2Triangles  1,  7,  2, 0x0,  8,  9, 10, 0x0
+gsSP2Triangles  6,  5, 11, 0x0, 11,  5,  2, 0x0
+gsSP2Triangles  2, 12, 11, 0x0, 13, 11, 12, 0x0
 gsSP1Triangle 14,  8, 15, 0x0
 gsSPVertex yoshi_seg5_vertex_0501CFE0, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  1,  4, 0x0
-gsSP1Triangle  5,  1,  6, 0x0
-gsSP1Triangle  1,  7,  2, 0x0
-gsSP1Triangle  3,  7,  1, 0x0
-gsSP1Triangle  8,  9,  3, 0x0
-gsSP1Triangle  2,  7, 10, 0x0
-gsSP1Triangle  0,  2, 11, 0x0
-gsSP1Triangle 10, 12,  2, 0x0
-gsSP1Triangle 13, 12, 14, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
-gsSP1Triangle 12, 10, 14, 0x0
-gsSP1Triangle 14, 10,  3, 0x0
-gsSP1Triangle  9, 15, 14, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  1,  4, 0x0
+gsSP2Triangles  5,  1,  6, 0x0,  1,  7,  2, 0x0
+gsSP2Triangles  3,  7,  1, 0x0,  8,  9,  3, 0x0
+gsSP2Triangles  2,  7, 10, 0x0,  0,  2, 11, 0x0
+gsSP2Triangles 10, 12,  2, 0x0, 13, 12, 14, 0x0
+gsSP2Triangles 11, 12, 13, 0x0, 12, 10, 14, 0x0
+gsSP2Triangles 14, 10,  3, 0x0,  9, 15, 14, 0x0
 gsSPVertex yoshi_seg5_vertex_0501D0E0, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  0,  2, 0x0
-gsSP1Triangle  4,  5,  0, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle  8, 12,  5, 0x0
-gsSP1Triangle 13,  8,  4, 0x0
-gsSP1Triangle  5, 12,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  0,  2, 0x0
+gsSP2Triangles  4,  5,  0, 0x0,  6,  7,  8, 0x0
+gsSP2Triangles  9, 10, 11, 0x0,  8, 12,  5, 0x0
+gsSP2Triangles 13,  8,  4, 0x0,  5, 12,  1, 0x0
 gsSPVertex yoshi_seg5_vertex_0501D1C0, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  2, 0x0
-gsSP1Triangle  2,  4,  0, 0x0
-gsSP1Triangle  2,  1,  5, 0x0
-gsSP1Triangle  4,  6,  0, 0x0
-gsSP1Triangle  3,  7,  4, 0x0
-gsSP1Triangle  4,  8,  6, 0x0
-gsSP1Triangle  0,  9, 10, 0x0
-gsSP1Triangle 11,  1,  0, 0x0
-gsSP1Triangle  0,  6,  9, 0x0
-gsSP1Triangle  0, 10, 11, 0x0
-gsSP1Triangle 12,  7,  3, 0x0
-gsSP1Triangle  5,  1, 11, 0x0
-gsSP1Triangle 13, 11, 10, 0x0
-gsSP1Triangle 10, 14, 15, 0x0
-gsSP1Triangle 15, 13, 10, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  2, 0x0
+gsSP2Triangles  2,  4,  0, 0x0,  2,  1,  5, 0x0
+gsSP2Triangles  4,  6,  0, 0x0,  3,  7,  4, 0x0
+gsSP2Triangles  4,  8,  6, 0x0,  0,  9, 10, 0x0
+gsSP2Triangles 11,  1,  0, 0x0,  0,  6,  9, 0x0
+gsSP2Triangles  0, 10, 11, 0x0, 12,  7,  3, 0x0
+gsSP2Triangles  5,  1, 11, 0x0, 13, 11, 10, 0x0
+gsSP2Triangles 10, 14, 15, 0x0, 15, 13, 10, 0x0
 gsSP1Triangle 10,  9, 14, 0x0
 gsSPVertex yoshi_seg5_vertex_0501D2C0, 7, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  0,  2, 0x0
-gsSP1Triangle  2,  4,  5, 0x0
-gsSP1Triangle  3,  5,  6, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  0,  2, 0x0
+gsSP2Triangles  2,  4,  5, 0x0,  3,  5,  6, 0x0
 gsSPLight yoshi_seg5_light_0501C478, 1
 gsSPLight yoshi_seg5_light_0501C470, 2
 gsSPVertex yoshi_seg5_vertex_0501D330, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  7,  4,  8, 0x0
-gsSP1Triangle  4,  7,  5, 0x0
-gsSP1Triangle  7,  9, 10, 0x0
-gsSP1Triangle  8,  9,  7, 0x0
-gsSP1Triangle  6,  5, 11, 0x0
-gsSP1Triangle 12, 13,  5, 0x0
-gsSP1Triangle  5, 13, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  7,  4,  8, 0x0
+gsSP2Triangles  4,  7,  5, 0x0,  7,  9, 10, 0x0
+gsSP2Triangles  8,  9,  7, 0x0,  6,  5, 11, 0x0
+gsSP2Triangles 12, 13,  5, 0x0,  5, 13, 11, 0x0
 gsSPVertex yoshi_seg5_vertex_0501D410, 3, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSPEndDisplayList
@@ -1476,60 +1418,39 @@ glabel yoshi_seg5_dl_050212B0 # 0x050212B0 - 0x05021490
 gsSPLight yoshi_seg5_light_0501D9C8, 1
 gsSPLight yoshi_seg5_light_0501D9C0, 2
 gsSPVertex yoshi_seg5_vertex_0501DA50, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
 gsSP1Triangle 12, 13, 14, 0x0
 gsSPVertex yoshi_seg5_vertex_0501DB40, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
 gsSP1Triangle 12, 13, 14, 0x0
 gsSPVertex yoshi_seg5_vertex_0501DC30, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
 gsSP1Triangle  2, 12, 13, 0x0
 gsSPVertex yoshi_seg5_vertex_0501DD10, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle  8, 12,  0, 0x0
-gsSP1Triangle 13, 14, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
+gsSP2Triangles  8, 12,  0, 0x0, 13, 14, 15, 0x0
 gsSPVertex yoshi_seg5_vertex_0501DE10, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  4,  7, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle 11, 12,  9, 0x0
-gsSP1Triangle 13,  0, 14, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  4,  7, 0x0,  8,  9, 10, 0x0
+gsSP2Triangles 11, 12,  9, 0x0, 13,  0, 14, 0x0
 gsSPVertex yoshi_seg5_vertex_0501DF00, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  2, 0x0
-gsSP1Triangle  5,  6,  7, 0x0
-gsSP1Triangle  8,  9,  5, 0x0
-gsSP1Triangle 10,  3,  2, 0x0
-gsSP1Triangle  1, 11,  2, 0x0
-gsSP1Triangle 12, 10, 11, 0x0
-gsSP1Triangle 12, 13, 14, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  2, 0x0
+gsSP2Triangles  5,  6,  7, 0x0,  8,  9,  5, 0x0
+gsSP2Triangles 10,  3,  2, 0x0,  1, 11,  2, 0x0
+gsSP2Triangles 12, 10, 11, 0x0, 12, 13, 14, 0x0
 gsSP1Triangle  9,  8, 13, 0x0
 gsSPVertex yoshi_seg5_vertex_0501DFF0, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
 gsSP1Triangle 12, 13, 10, 0x0
 gsSPVertex yoshi_seg5_vertex_0501E0D0, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9,  8, 10, 0x0
-gsSP1Triangle  1,  4,  3, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9,  8, 10, 0x0
+gsSP2Triangles  1,  4,  3, 0x0, 11, 12, 13, 0x0
 gsSPVertex yoshi_seg5_vertex_0501E1B0, 3, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSPEndDisplayList
@@ -1538,42 +1459,27 @@ glabel yoshi_seg5_dl_05021490 # 0x05021490 - 0x050215D8
 gsSPLight yoshi_seg5_light_0501D9E0, 1
 gsSPLight yoshi_seg5_light_0501D9D8, 2
 gsSPVertex yoshi_seg5_vertex_0501E1E0, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle  8, 10, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
+gsSP2Triangles  8,  9, 10, 0x0,  8, 10, 11, 0x0
 gsSP1Triangle  6, 12, 13, 0x0
 gsSPVertex yoshi_seg5_vertex_0501E2C0, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle  3,  2, 11, 0x0
-gsSP1Triangle  3, 11,  9, 0x0
-gsSP1Triangle 12, 13, 14, 0x0
-gsSP1Triangle 12, 14, 11, 0x0
-gsSP1Triangle  2,  1, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
+gsSP2Triangles  8,  9, 10, 0x0,  3,  2, 11, 0x0
+gsSP2Triangles  3, 11,  9, 0x0, 12, 13, 14, 0x0
+gsSP2Triangles 12, 14, 11, 0x0,  2,  1, 15, 0x0
 gsSP1Triangle  2, 15, 12, 0x0
 gsSPVertex yoshi_seg5_vertex_0501E3C0, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  6,  0, 0x0
-gsSP1Triangle  7,  8,  6, 0x0
-gsSP1Triangle  9,  8,  7, 0x0
-gsSP1Triangle  5, 10,  7, 0x0
-gsSP1Triangle 11,  7, 10, 0x0
-gsSP1Triangle 12, 13, 14, 0x0
-gsSP1Triangle  7,  6,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  0, 0x0
+gsSP2Triangles  7,  8,  6, 0x0,  9,  8,  7, 0x0
+gsSP2Triangles  5, 10,  7, 0x0, 11,  7, 10, 0x0
+gsSP2Triangles 12, 13, 14, 0x0,  7,  6,  5, 0x0
 gsSP1Triangle  0,  3,  4, 0x0
 gsSPVertex yoshi_seg5_vertex_0501E4B0, 8, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  4, 0x0
-gsSP1Triangle  5,  6,  3, 0x0
-gsSP1Triangle  5,  3,  0, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  4, 0x0
+gsSP2Triangles  5,  6,  3, 0x0,  5,  3,  0, 0x0
 gsSP1Triangle  7,  6,  5, 0x0
 gsSPEndDisplayList
 
@@ -1581,86 +1487,55 @@ glabel yoshi_seg5_dl_050215D8 # 0x050215D8 - 0x05021678
 gsSPLight yoshi_seg5_light_0501D9E0, 1
 gsSPLight yoshi_seg5_light_0501D9D8, 2
 gsSPVertex yoshi_seg5_vertex_0501E530, 10, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  1,  0, 0x0
-gsSP1Triangle  1,  4,  5, 0x0
-gsSP1Triangle  2,  6,  7, 0x0
-gsSP1Triangle  5,  8,  6, 0x0
-gsSP1Triangle  2,  9,  0, 0x0
-gsSP1Triangle  9,  7,  4, 0x0
-gsSP1Triangle  2,  5,  6, 0x0
-gsSP1Triangle  6,  8,  7, 0x0
-gsSP1Triangle  7,  8,  4, 0x0
-gsSP1Triangle  4,  8,  5, 0x0
-gsSP1Triangle  2,  1,  5, 0x0
-gsSP1Triangle  4,  3,  9, 0x0
-gsSP1Triangle  9,  3,  0, 0x0
-gsSP1Triangle  7,  9,  2, 0x0
-gsSP1Triangle  1,  3,  4, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  1,  0, 0x0
+gsSP2Triangles  1,  4,  5, 0x0,  2,  6,  7, 0x0
+gsSP2Triangles  5,  8,  6, 0x0,  2,  9,  0, 0x0
+gsSP2Triangles  9,  7,  4, 0x0,  2,  5,  6, 0x0
+gsSP2Triangles  6,  8,  7, 0x0,  7,  8,  4, 0x0
+gsSP2Triangles  4,  8,  5, 0x0,  2,  1,  5, 0x0
+gsSP2Triangles  4,  3,  9, 0x0,  9,  3,  0, 0x0
+gsSP2Triangles  7,  9,  2, 0x0,  1,  3,  4, 0x0
 gsSPEndDisplayList
 
 glabel yoshi_seg5_dl_05021678 # 0x05021678 - 0x05021718
 gsSPLight yoshi_seg5_light_0501D9E0, 1
 gsSPLight yoshi_seg5_light_0501D9D8, 2
 gsSPVertex yoshi_seg5_vertex_0501E5D0, 11, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  0,  6,  7, 0x0
-gsSP1Triangle  4,  8,  1, 0x0
-gsSP1Triangle  2,  9, 10, 0x0
-gsSP1Triangle  4,  0,  7, 0x0
-gsSP1Triangle  1,  8,  2, 0x0
-gsSP1Triangle  2,  8,  3, 0x0
-gsSP1Triangle  3,  8,  4, 0x0
-gsSP1Triangle  5,  6,  9, 0x0
-gsSP1Triangle  9,  6, 10, 0x0
-gsSP1Triangle 10,  6,  0, 0x0
-gsSP1Triangle  4,  1,  0, 0x0
-gsSP1Triangle  2,  3,  9, 0x0
-gsSP1Triangle  5,  9,  3, 0x0
-gsSP1Triangle  2, 10,  0, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  0,  6,  7, 0x0,  4,  8,  1, 0x0
+gsSP2Triangles  2,  9, 10, 0x0,  4,  0,  7, 0x0
+gsSP2Triangles  1,  8,  2, 0x0,  2,  8,  3, 0x0
+gsSP2Triangles  3,  8,  4, 0x0,  5,  6,  9, 0x0
+gsSP2Triangles  9,  6, 10, 0x0, 10,  6,  0, 0x0
+gsSP2Triangles  4,  1,  0, 0x0,  2,  3,  9, 0x0
+gsSP2Triangles  5,  9,  3, 0x0,  2, 10,  0, 0x0
 gsSPEndDisplayList
 
 glabel yoshi_seg5_dl_05021718 # 0x05021718 - 0x05021860
 gsSPLight yoshi_seg5_light_0501D9E0, 1
 gsSPLight yoshi_seg5_light_0501D9D8, 2
 gsSPVertex yoshi_seg5_vertex_0501E680, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle  8, 10, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
+gsSP2Triangles  8,  9, 10, 0x0,  8, 10, 11, 0x0
 gsSP1Triangle 12, 13,  5, 0x0
 gsSPVertex yoshi_seg5_vertex_0501E760, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle  9, 11,  1, 0x0
-gsSP1Triangle  9,  1,  0, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
-gsSP1Triangle 11, 13, 14, 0x0
-gsSP1Triangle 14, 15,  2, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
+gsSP2Triangles  8,  9, 10, 0x0,  9, 11,  1, 0x0
+gsSP2Triangles  9,  1,  0, 0x0, 11, 12, 13, 0x0
+gsSP2Triangles 11, 13, 14, 0x0, 14, 15,  2, 0x0
 gsSP1Triangle 14,  2,  1, 0x0
 gsSPVertex yoshi_seg5_vertex_0501E860, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  5,  6, 0x0
-gsSP1Triangle  4,  7,  8, 0x0
-gsSP1Triangle  8,  7,  9, 0x0
-gsSP1Triangle  8, 10,  5, 0x0
-gsSP1Triangle 10,  8, 11, 0x0
-gsSP1Triangle 12, 13, 14, 0x0
-gsSP1Triangle  5,  4,  8, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  3,  4,  5, 0x0,  3,  5,  6, 0x0
+gsSP2Triangles  4,  7,  8, 0x0,  8,  7,  9, 0x0
+gsSP2Triangles  8, 10,  5, 0x0, 10,  8, 11, 0x0
+gsSP2Triangles 12, 13, 14, 0x0,  5,  4,  8, 0x0
 gsSP1Triangle  6,  0,  3, 0x0
 gsSPVertex yoshi_seg5_vertex_0501E950, 8, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  2, 0x0
-gsSP1Triangle  2,  4,  5, 0x0
-gsSP1Triangle  2,  5,  6, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  2, 0x0
+gsSP2Triangles  2,  4,  5, 0x0,  2,  5,  6, 0x0
 gsSP1Triangle  6,  5,  7, 0x0
 gsSPEndDisplayList
 
@@ -1668,150 +1543,94 @@ glabel yoshi_seg5_dl_05021860 # 0x05021860 - 0x05021900
 gsSPLight yoshi_seg5_light_0501D9E0, 1
 gsSPLight yoshi_seg5_light_0501D9D8, 2
 gsSPVertex yoshi_seg5_vertex_0501E9D0, 10, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  1,  3, 0x0
-gsSP1Triangle  4,  5,  1, 0x0
-gsSP1Triangle  6,  7,  0, 0x0
-gsSP1Triangle  7,  8,  4, 0x0
-gsSP1Triangle  2,  9,  0, 0x0
-gsSP1Triangle  5,  6,  9, 0x0
-gsSP1Triangle  7,  4,  0, 0x0
-gsSP1Triangle  6,  8,  7, 0x0
-gsSP1Triangle  5,  8,  6, 0x0
-gsSP1Triangle  4,  8,  5, 0x0
-gsSP1Triangle  4,  1,  0, 0x0
-gsSP1Triangle  9,  3,  5, 0x0
-gsSP1Triangle  2,  3,  9, 0x0
-gsSP1Triangle  0,  9,  6, 0x0
-gsSP1Triangle  5,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  1,  3, 0x0
+gsSP2Triangles  4,  5,  1, 0x0,  6,  7,  0, 0x0
+gsSP2Triangles  7,  8,  4, 0x0,  2,  9,  0, 0x0
+gsSP2Triangles  5,  6,  9, 0x0,  7,  4,  0, 0x0
+gsSP2Triangles  6,  8,  7, 0x0,  5,  8,  6, 0x0
+gsSP2Triangles  4,  8,  5, 0x0,  4,  1,  0, 0x0
+gsSP2Triangles  9,  3,  5, 0x0,  2,  3,  9, 0x0
+gsSP2Triangles  0,  9,  6, 0x0,  5,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel yoshi_seg5_dl_05021900 # 0x05021900 - 0x050219A0
 gsSPLight yoshi_seg5_light_0501D9E0, 1
 gsSPLight yoshi_seg5_light_0501D9D8, 2
 gsSPVertex yoshi_seg5_vertex_0501EA70, 11, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  2, 0x0
-gsSP1Triangle  1,  8,  4, 0x0
-gsSP1Triangle  9, 10,  0, 0x0
-gsSP1Triangle  6,  2,  4, 0x0
-gsSP1Triangle  0,  8,  1, 0x0
-gsSP1Triangle  5,  8,  0, 0x0
-gsSP1Triangle  4,  8,  5, 0x0
-gsSP1Triangle 10,  7,  3, 0x0
-gsSP1Triangle  9,  7, 10, 0x0
-gsSP1Triangle  2,  7,  9, 0x0
-gsSP1Triangle  2,  1,  4, 0x0
-gsSP1Triangle 10,  5,  0, 0x0
-gsSP1Triangle  5, 10,  3, 0x0
-gsSP1Triangle  2,  9,  0, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  2, 0x0,  1,  8,  4, 0x0
+gsSP2Triangles  9, 10,  0, 0x0,  6,  2,  4, 0x0
+gsSP2Triangles  0,  8,  1, 0x0,  5,  8,  0, 0x0
+gsSP2Triangles  4,  8,  5, 0x0, 10,  7,  3, 0x0
+gsSP2Triangles  9,  7, 10, 0x0,  2,  7,  9, 0x0
+gsSP2Triangles  2,  1,  4, 0x0, 10,  5,  0, 0x0
+gsSP2Triangles  5, 10,  3, 0x0,  2,  9,  0, 0x0
 gsSPEndDisplayList
 
 glabel yoshi_seg5_dl_050219A0 # 0x050219A0 - 0x05021B90
 gsSPLight yoshi_seg5_light_0501D9F8, 1
 gsSPLight yoshi_seg5_light_0501D9F0, 2
 gsSPVertex yoshi_seg5_vertex_0501EB20, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  3,  2, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  5,  7,  6, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  3,  2, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  5,  7,  6, 0x0
+gsSP2Triangles  8,  9, 10, 0x0, 11, 12, 13, 0x0
 gsSP1Triangle 10, 14,  8, 0x0
 gsSPVertex yoshi_seg5_vertex_0501EC10, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  4,  9,  5, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle  8, 13, 14, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  4,  9,  5, 0x0
+gsSP2Triangles 10, 11, 12, 0x0,  8, 13, 14, 0x0
 gsSP1Triangle 15, 10, 12, 0x0
 gsSPVertex yoshi_seg5_vertex_0501ED10, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  0,  2,  9, 0x0
-gsSP1Triangle 10,  3,  5, 0x0
-gsSP1Triangle 11, 10,  5, 0x0
-gsSP1Triangle  5, 12, 11, 0x0
-gsSP1Triangle 13, 14,  6, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  0,  2,  9, 0x0
+gsSP2Triangles 10,  3,  5, 0x0, 11, 10,  5, 0x0
+gsSP2Triangles  5, 12, 11, 0x0, 13, 14,  6, 0x0
 gsSP1Triangle 14, 15,  6, 0x0
 gsSPVertex yoshi_seg5_vertex_0501EE10, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  4, 0x0
-gsSP1Triangle  2,  8,  0, 0x0
-gsSP1Triangle  4,  0,  5, 0x0
-gsSP1Triangle  4,  9,  6, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 13, 14, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  4, 0x0,  2,  8,  0, 0x0
+gsSP2Triangles  4,  0,  5, 0x0,  4,  9,  6, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 13, 14, 15, 0x0
 gsSPVertex yoshi_seg5_vertex_0501EF10, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle  2,  7,  0, 0x0
-gsSP1Triangle 12, 13, 14, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
+gsSP2Triangles  2,  7,  0, 0x0, 12, 13, 14, 0x0
 gsSP1Triangle 10,  3,  5, 0x0
 gsSPVertex yoshi_seg5_vertex_0501F000, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle  9, 12, 10, 0x0
-gsSP1Triangle  7, 13,  8, 0x0
-gsSP1Triangle  5, 14,  3, 0x0
-gsSP1Triangle  2, 15,  0, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
+gsSP2Triangles  9, 12, 10, 0x0,  7, 13,  8, 0x0
+gsSP2Triangles  5, 14,  3, 0x0,  2, 15,  0, 0x0
 gsSPVertex yoshi_seg5_vertex_0501F100, 8, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  0,  3,  4, 0x0
-gsSP1Triangle  0,  4,  5, 0x0
-gsSP1Triangle  0,  5,  6, 0x0
-gsSP1Triangle  0,  6,  7, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  0,  3,  4, 0x0,  0,  4,  5, 0x0
+gsSP2Triangles  0,  5,  6, 0x0,  0,  6,  7, 0x0
 gsSPEndDisplayList
 
 glabel yoshi_seg5_dl_05021B90 # 0x05021B90 - 0x05021CD8
 gsSPLight yoshi_seg5_light_0501D9E0, 1
 gsSPLight yoshi_seg5_light_0501D9D8, 2
 gsSPVertex yoshi_seg5_vertex_0501F180, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  0,  6,  1, 0x0
-gsSP1Triangle  3,  7,  4, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle 11, 12,  4, 0x0
-gsSP1Triangle  7,  3, 13, 0x0
-gsSP1Triangle 14,  5,  4, 0x0
-gsSP1Triangle  9,  5, 14, 0x0
-gsSP1Triangle 13,  3, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  0,  6,  1, 0x0,  3,  7,  4, 0x0
+gsSP2Triangles  8,  9, 10, 0x0, 11, 12,  4, 0x0
+gsSP2Triangles  7,  3, 13, 0x0, 14,  5,  4, 0x0
+gsSP2Triangles  9,  5, 14, 0x0, 13,  3, 15, 0x0
 gsSPVertex yoshi_seg5_vertex_0501F280, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle  2, 12, 13, 0x0
-gsSP1Triangle 14, 12, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
+gsSP2Triangles  2, 12, 13, 0x0, 14, 12, 11, 0x0
 gsSP1Triangle 15,  3,  5, 0x0
 gsSPVertex yoshi_seg5_vertex_0501F380, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle 12, 13, 14, 0x0
-gsSP1Triangle  7, 12,  0, 0x0
-gsSP1Triangle  0, 15,  7, 0x0
-gsSP1Triangle 14,  1, 12, 0x0
-gsSP1Triangle  9, 13, 10, 0x0
-gsSP1Triangle  6, 10,  7, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
+gsSP2Triangles 12, 13, 14, 0x0,  7, 12,  0, 0x0
+gsSP2Triangles  0, 15,  7, 0x0, 14,  1, 12, 0x0
+gsSP2Triangles  9, 13, 10, 0x0,  6, 10,  7, 0x0
 gsSPVertex yoshi_seg5_vertex_0501F480, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  0,  4,  6, 0x0
-gsSP1Triangle  5,  7,  8, 0x0
-gsSP1Triangle  9,  1,  0, 0x0
-gsSP1Triangle 10,  8,  7, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  0,  4,  6, 0x0,  5,  7,  8, 0x0
+gsSP2Triangles  9,  1,  0, 0x0, 10,  8,  7, 0x0
 gsSP1Triangle  1,  9, 11, 0x0
 gsSPEndDisplayList
 
@@ -1819,45 +1638,28 @@ glabel yoshi_seg5_dl_05021CD8 # 0x05021CD8 - 0x05021E38
 gsSPLight yoshi_seg5_light_0501D9E0, 1
 gsSPLight yoshi_seg5_light_0501D9D8, 2
 gsSPVertex yoshi_seg5_vertex_0501F540, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle 12, 13, 14, 0x0
-gsSP1Triangle  3, 15,  4, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
+gsSP2Triangles 12, 13, 14, 0x0,  3, 15,  4, 0x0
 gsSPVertex yoshi_seg5_vertex_0501F640, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  4,  7, 0x0
-gsSP1Triangle  2,  1,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle 12, 13, 14, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  4,  7, 0x0,  2,  1,  8, 0x0
+gsSP2Triangles  9, 10, 11, 0x0, 12, 13, 14, 0x0
 gsSPVertex yoshi_seg5_vertex_0501F730, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9,  7,  5, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle  0,  2, 13, 0x0
-gsSP1Triangle  8, 14, 10, 0x0
-gsSP1Triangle  6,  3,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9,  7,  5, 0x0
+gsSP2Triangles 10, 11, 12, 0x0,  0,  2, 13, 0x0
+gsSP2Triangles  8, 14, 10, 0x0,  6,  3,  5, 0x0
 gsSPVertex yoshi_seg5_vertex_0501F820, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  2, 0x0
-gsSP1Triangle  5,  4,  6, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  6, 10,  5, 0x0
-gsSP1Triangle  2, 11,  3, 0x0
-gsSP1Triangle 12,  7, 13, 0x0
-gsSP1Triangle  8, 14,  6, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  2, 0x0
+gsSP2Triangles  5,  4,  6, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles  6, 10,  5, 0x0,  2, 11,  3, 0x0
+gsSP2Triangles 12,  7, 13, 0x0,  8, 14,  6, 0x0
 gsSP1Triangle 11,  1, 13, 0x0
 gsSPVertex yoshi_seg5_vertex_0501F910, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  2,  1,  6, 0x0
-gsSP1Triangle  4,  3,  7, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle 11, 12,  2, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  2,  1,  6, 0x0,  4,  3,  7, 0x0
+gsSP2Triangles  8,  9, 10, 0x0, 11, 12,  2, 0x0
 gsSP1Triangle 13, 14,  4, 0x0
 gsSPEndDisplayList
 
@@ -1865,40 +1667,25 @@ glabel yoshi_seg5_dl_05021E38 # 0x05021E38 - 0x05021F70
 gsSPLight yoshi_seg5_light_0501D9E0, 1
 gsSPLight yoshi_seg5_light_0501D9D8, 2
 gsSPVertex yoshi_seg5_vertex_0501FA00, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  3,  0, 0x0
-gsSP1Triangle  4,  5,  3, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  2,  9,  3, 0x0
-gsSP1Triangle  8, 10,  2, 0x0
-gsSP1Triangle  8,  2, 11, 0x0
-gsSP1Triangle  3, 12,  4, 0x0
-gsSP1Triangle  2, 10,  9, 0x0
-gsSP1Triangle  7, 13, 10, 0x0
-gsSP1Triangle  5, 14,  0, 0x0
-gsSP1Triangle  0, 14,  1, 0x0
-gsSP1Triangle  1, 14, 11, 0x0
-gsSP1Triangle 11, 14,  6, 0x0
-gsSP1Triangle 10,  8,  7, 0x0
-gsSP1Triangle  3,  9, 12, 0x0
-gsSP1Triangle  2,  1, 11, 0x0
-gsSP1Triangle  8, 11,  6, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  3,  0, 0x0
+gsSP2Triangles  4,  5,  3, 0x0,  6,  7,  8, 0x0
+gsSP2Triangles  2,  9,  3, 0x0,  8, 10,  2, 0x0
+gsSP2Triangles  8,  2, 11, 0x0,  3, 12,  4, 0x0
+gsSP2Triangles  2, 10,  9, 0x0,  7, 13, 10, 0x0
+gsSP2Triangles  5, 14,  0, 0x0,  0, 14,  1, 0x0
+gsSP2Triangles  1, 14, 11, 0x0, 11, 14,  6, 0x0
+gsSP2Triangles 10,  8,  7, 0x0,  3,  9, 12, 0x0
+gsSP2Triangles  2,  1, 11, 0x0,  8, 11,  6, 0x0
 gsSP1Triangle  5,  0,  3, 0x0
 gsSPLight yoshi_seg5_light_0501D9C8, 1
 gsSPLight yoshi_seg5_light_0501D9C0, 2
 gsSPVertex yoshi_seg5_vertex_0501FAF0, 11, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  0,  4, 0x0
-gsSP1Triangle  5,  6,  7, 0x0
-gsSP1Triangle  7,  6,  8, 0x0
-gsSP1Triangle  1,  9,  2, 0x0
-gsSP1Triangle  3,  4,  8, 0x0
-gsSP1Triangle  2,  4,  0, 0x0
-gsSP1Triangle  8,  6, 10, 0x0
-gsSP1Triangle  9,  5,  7, 0x0
-gsSP1Triangle  8, 10,  3, 0x0
-gsSP1Triangle  7,  2,  9, 0x0
-gsSP1Triangle  7,  4,  2, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  0,  4, 0x0
+gsSP2Triangles  5,  6,  7, 0x0,  7,  6,  8, 0x0
+gsSP2Triangles  1,  9,  2, 0x0,  3,  4,  8, 0x0
+gsSP2Triangles  2,  4,  0, 0x0,  8,  6, 10, 0x0
+gsSP2Triangles  9,  5,  7, 0x0,  8, 10,  3, 0x0
+gsSP2Triangles  7,  2,  9, 0x0,  7,  4,  2, 0x0
 gsSP1Triangle  7,  8,  4, 0x0
 gsSPEndDisplayList
 
@@ -1906,106 +1693,66 @@ glabel yoshi_seg5_dl_05021F70 # 0x05021F70 - 0x05022160
 gsSPLight yoshi_seg5_light_0501D9F8, 1
 gsSPLight yoshi_seg5_light_0501D9F0, 2
 gsSPVertex yoshi_seg5_vertex_0501FBA0, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  7,  5, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  7,  5, 0x0
+gsSP2Triangles  8,  9, 10, 0x0, 11, 12, 13, 0x0
 gsSP1Triangle 10, 14,  8, 0x0
 gsSPVertex yoshi_seg5_vertex_0501FC90, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  3,  9,  4, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 13, 14,  6, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  3,  9,  4, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 13, 14,  6, 0x0
 gsSP1Triangle 10, 12, 15, 0x0
 gsSPVertex yoshi_seg5_vertex_0501FD90, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9,  0,  2, 0x0
-gsSP1Triangle  3,  5, 10, 0x0
-gsSP1Triangle  3, 10, 11, 0x0
-gsSP1Triangle 11, 12,  3, 0x0
-gsSP1Triangle  8, 13, 14, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9,  0,  2, 0x0
+gsSP2Triangles  3,  5, 10, 0x0,  3, 10, 11, 0x0
+gsSP2Triangles 11, 12,  3, 0x0,  8, 13, 14, 0x0
 gsSP1Triangle  8, 15, 13, 0x0
 gsSPVertex yoshi_seg5_vertex_0501FE90, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
-gsSP1Triangle  2,  8,  0, 0x0
-gsSP1Triangle  3,  2,  4, 0x0
-gsSP1Triangle  7,  9,  4, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 13, 14, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  4,  6,  7, 0x0,  2,  8,  0, 0x0
+gsSP2Triangles  3,  2,  4, 0x0,  7,  9,  4, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 13, 14, 15, 0x0
 gsSPVertex yoshi_seg5_vertex_0501FF90, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle  2,  7,  0, 0x0
-gsSP1Triangle 12, 13, 14, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
+gsSP2Triangles  2,  7,  0, 0x0, 12, 13, 14, 0x0
 gsSP1Triangle  3,  5, 10, 0x0
 gsSPVertex yoshi_seg5_vertex_05020080, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle 10, 12, 11, 0x0
-gsSP1Triangle  6, 13,  7, 0x0
-gsSP1Triangle  5, 14,  3, 0x0
-gsSP1Triangle  2, 15,  0, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
+gsSP2Triangles 10, 12, 11, 0x0,  6, 13,  7, 0x0
+gsSP2Triangles  5, 14,  3, 0x0,  2, 15,  0, 0x0
 gsSPVertex yoshi_seg5_vertex_05020180, 8, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  0,  2, 0x0
-gsSP1Triangle  4,  3,  2, 0x0
-gsSP1Triangle  5,  4,  2, 0x0
-gsSP1Triangle  6,  5,  2, 0x0
-gsSP1Triangle  7,  6,  2, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  0,  2, 0x0
+gsSP2Triangles  4,  3,  2, 0x0,  5,  4,  2, 0x0
+gsSP2Triangles  6,  5,  2, 0x0,  7,  6,  2, 0x0
 gsSPEndDisplayList
 
 glabel yoshi_seg5_dl_05022160 # 0x05022160 - 0x050222A8
 gsSPLight yoshi_seg5_light_0501D9E0, 1
 gsSPLight yoshi_seg5_light_0501D9D8, 2
 gsSPVertex yoshi_seg5_vertex_05020200, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  1,  6,  2, 0x0
-gsSP1Triangle  4,  7,  5, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle  4, 11, 12, 0x0
-gsSP1Triangle 13,  5,  7, 0x0
-gsSP1Triangle  4,  3, 14, 0x0
-gsSP1Triangle 14,  3,  9, 0x0
-gsSP1Triangle 15,  5, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  1,  6,  2, 0x0,  4,  7,  5, 0x0
+gsSP2Triangles  8,  9, 10, 0x0,  4, 11, 12, 0x0
+gsSP2Triangles 13,  5,  7, 0x0,  4,  3, 14, 0x0
+gsSP2Triangles 14,  3,  9, 0x0, 15,  5, 13, 0x0
 gsSPVertex yoshi_seg5_vertex_05020300, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle 12, 13,  0, 0x0
-gsSP1Triangle  9, 13, 14, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
+gsSP2Triangles 12, 13,  0, 0x0,  9, 13, 14, 0x0
 gsSP1Triangle  3,  5, 15, 0x0
 gsSPVertex yoshi_seg5_vertex_05020400, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle 12, 13, 14, 0x0
-gsSP1Triangle  2, 14,  7, 0x0
-gsSP1Triangle  7, 15,  2, 0x0
-gsSP1Triangle 14,  1, 12, 0x0
-gsSP1Triangle 10, 13, 11, 0x0
-gsSP1Triangle  7, 10,  8, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
+gsSP2Triangles 12, 13, 14, 0x0,  2, 14,  7, 0x0
+gsSP2Triangles  7, 15,  2, 0x0, 14,  1, 12, 0x0
+gsSP2Triangles 10, 13, 11, 0x0,  7, 10,  8, 0x0
 gsSPVertex yoshi_seg5_vertex_05020500, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  4,  2, 0x0
-gsSP1Triangle  7,  8,  3, 0x0
-gsSP1Triangle  2,  1,  9, 0x0
-gsSP1Triangle  8,  7, 10, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  4,  2, 0x0,  7,  8,  3, 0x0
+gsSP2Triangles  2,  1,  9, 0x0,  8,  7, 10, 0x0
 gsSP1Triangle 11,  9,  1, 0x0
 gsSPEndDisplayList
 
@@ -2013,45 +1760,28 @@ glabel yoshi_seg5_dl_050222A8 # 0x050222A8 - 0x05022408
 gsSPLight yoshi_seg5_light_0501D9E0, 1
 gsSPLight yoshi_seg5_light_0501D9D8, 2
 gsSPVertex yoshi_seg5_vertex_050205C0, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle 12, 13, 14, 0x0
-gsSP1Triangle  4, 15,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
+gsSP2Triangles 12, 13, 14, 0x0,  4, 15,  5, 0x0
 gsSPVertex yoshi_seg5_vertex_050206C0, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  4,  7, 0x0
-gsSP1Triangle  8,  1,  0, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle 12, 13, 14, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  4,  7, 0x0,  8,  1,  0, 0x0
+gsSP2Triangles  9, 10, 11, 0x0, 12, 13, 14, 0x0
 gsSPVertex yoshi_seg5_vertex_050207B0, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  3,  7,  9, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 13,  0,  2, 0x0
-gsSP1Triangle 12, 14,  6, 0x0
-gsSP1Triangle  3,  5,  8, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  3,  7,  9, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 13,  0,  2, 0x0
+gsSP2Triangles 12, 14,  6, 0x0,  3,  5,  8, 0x0
 gsSPVertex yoshi_seg5_vertex_050208A0, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  4, 0x0
-gsSP1Triangle  5,  3,  6, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  6, 10,  5, 0x0
-gsSP1Triangle  4, 11,  0, 0x0
-gsSP1Triangle 12,  9, 13, 0x0
-gsSP1Triangle  5, 14,  8, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  4, 0x0
+gsSP2Triangles  5,  3,  6, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles  6, 10,  5, 0x0,  4, 11,  0, 0x0
+gsSP2Triangles 12,  9, 13, 0x0,  5, 14,  8, 0x0
 gsSP1Triangle 12,  1, 11, 0x0
 gsSPVertex yoshi_seg5_vertex_05020990, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  1,  0, 0x0
-gsSP1Triangle  7,  5,  4, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle  0, 11, 12, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  1,  0, 0x0,  7,  5,  4, 0x0
+gsSP2Triangles  8,  9, 10, 0x0,  0, 11, 12, 0x0
 gsSP1Triangle  4, 13, 14, 0x0
 gsSPEndDisplayList
 
@@ -2059,126 +1789,78 @@ glabel yoshi_seg5_dl_05022408 # 0x05022408 - 0x05022608
 gsSPLight yoshi_seg5_light_0501D9E0, 1
 gsSPLight yoshi_seg5_light_0501D9D8, 2
 gsSPVertex yoshi_seg5_vertex_05020A80, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle 12,  4, 13, 0x0
-gsSP1Triangle 14,  5, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
+gsSP2Triangles 12,  4, 13, 0x0, 14,  5, 15, 0x0
 gsSPVertex yoshi_seg5_vertex_05020B80, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  2, 0x0
-gsSP1Triangle  3,  8,  9, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle  7, 10,  8, 0x0
-gsSP1Triangle 12, 13,  6, 0x0
-gsSP1Triangle  1, 14, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  2, 0x0,  3,  8,  9, 0x0
+gsSP2Triangles  9, 10, 11, 0x0,  7, 10,  8, 0x0
+gsSP2Triangles 12, 13,  6, 0x0,  1, 14, 15, 0x0
 gsSPVertex yoshi_seg5_vertex_05020C80, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle 11, 12,  9, 0x0
-gsSP1Triangle  2, 13,  0, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
+gsSP2Triangles 11, 12,  9, 0x0,  2, 13,  0, 0x0
 gsSPVertex yoshi_seg5_vertex_05020D60, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  3,  9,  1, 0x0
-gsSP1Triangle  6, 10, 11, 0x0
-gsSP1Triangle 12, 13,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  3,  9,  1, 0x0
+gsSP2Triangles  6, 10, 11, 0x0, 12, 13,  1, 0x0
 gsSP1Triangle  4, 14, 15, 0x0
 gsSPVertex yoshi_seg5_vertex_05020E60, 3, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSPLight yoshi_seg5_light_0501D9C8, 1
 gsSPLight yoshi_seg5_light_0501D9C0, 2
 gsSPVertex yoshi_seg5_vertex_05020E90, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  5,  9,  3, 0x0
-gsSP1Triangle  7,  6,  4, 0x0
-gsSP1Triangle  1,  9,  2, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle  8,  1,  6, 0x0
-gsSP1Triangle 11, 13, 14, 0x0
-gsSP1Triangle  6,  5,  4, 0x0
-gsSP1Triangle 12, 11, 14, 0x0
-gsSP1Triangle 13, 15, 14, 0x0
-gsSP1Triangle 14, 15,  8, 0x0
-gsSP1Triangle  3, 10, 12, 0x0
-gsSP1Triangle 12,  4,  3, 0x0
-gsSP1Triangle 12, 14,  7, 0x0
-gsSP1Triangle  8,  7, 14, 0x0
-gsSP1Triangle  7,  4, 12, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  5,  9,  3, 0x0
+gsSP2Triangles  7,  6,  4, 0x0,  1,  9,  2, 0x0
+gsSP2Triangles 10, 11, 12, 0x0,  8,  1,  6, 0x0
+gsSP2Triangles 11, 13, 14, 0x0,  6,  5,  4, 0x0
+gsSP2Triangles 12, 11, 14, 0x0, 13, 15, 14, 0x0
+gsSP2Triangles 14, 15,  8, 0x0,  3, 10, 12, 0x0
+gsSP2Triangles 12,  4,  3, 0x0, 12, 14,  7, 0x0
+gsSP2Triangles  8,  7, 14, 0x0,  7,  4, 12, 0x0
 gsSPLight yoshi_seg5_light_0501D9F8, 1
 gsSPLight yoshi_seg5_light_0501D9F0, 2
 gsSPVertex yoshi_seg5_vertex_05020F90, 8, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  3,  5, 0x0
-gsSP1Triangle  7,  6,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  3,  5, 0x0,  7,  6,  5, 0x0
 gsSPEndDisplayList
 
 glabel yoshi_seg5_dl_05022608 # 0x05022608 - 0x050227D8
 gsSPLight yoshi_seg5_light_0501D9E0, 1
 gsSPLight yoshi_seg5_light_0501D9D8, 2
 gsSPVertex yoshi_seg5_vertex_05021010, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle 12,  4, 13, 0x0
-gsSP1Triangle  3,  5, 14, 0x0
-gsSP1Triangle  8,  1,  6, 0x0
-gsSP1Triangle 10,  0, 11, 0x0
-gsSP1Triangle  0,  2, 11, 0x0
-gsSP1Triangle  8, 15,  1, 0x0
-gsSP1Triangle 14,  7,  3, 0x0
-gsSP1Triangle 13,  9, 12, 0x0
-gsSP1Triangle 11, 12,  9, 0x0
-gsSP1Triangle  7, 14,  8, 0x0
-gsSP1Triangle  3, 13,  4, 0x0
-gsSP1Triangle  1, 15,  2, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
+gsSP2Triangles 12,  4, 13, 0x0,  3,  5, 14, 0x0
+gsSP2Triangles  8,  1,  6, 0x0, 10,  0, 11, 0x0
+gsSP2Triangles  0,  2, 11, 0x0,  8, 15,  1, 0x0
+gsSP2Triangles 14,  7,  3, 0x0, 13,  9, 12, 0x0
+gsSP2Triangles 11, 12,  9, 0x0,  7, 14,  8, 0x0
+gsSP2Triangles  3, 13,  4, 0x0,  1, 15,  2, 0x0
 gsSPLight yoshi_seg5_light_0501DA40, 1
 gsSPLight yoshi_seg5_light_0501DA38, 2
 gsSPVertex yoshi_seg5_vertex_05021110, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  2,  1, 0x0
-gsSP1Triangle  6,  7,  4, 0x0
-gsSP1Triangle  3,  8,  9, 0x0
-gsSP1Triangle  4,  7,  5, 0x0
-gsSP1Triangle  0,  6,  1, 0x0
-gsSP1Triangle  9,  2,  3, 0x0
-gsSP1Triangle  4,  1,  6, 0x0
-gsSP1Triangle  2,  9, 10, 0x0
-gsSP1Triangle  5, 11,  3, 0x0
-gsSP1Triangle  2, 10,  0, 0x0
-gsSP1Triangle 11,  8,  3, 0x0
-gsSP1Triangle  1,  4,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  2,  1, 0x0,  6,  7,  4, 0x0
+gsSP2Triangles  3,  8,  9, 0x0,  4,  7,  5, 0x0
+gsSP2Triangles  0,  6,  1, 0x0,  9,  2,  3, 0x0
+gsSP2Triangles  4,  1,  6, 0x0,  2,  9, 10, 0x0
+gsSP2Triangles  5, 11,  3, 0x0,  2, 10,  0, 0x0
+gsSP2Triangles 11,  8,  3, 0x0,  1,  4,  3, 0x0
 gsSPLight yoshi_seg5_light_0501D9C8, 1
 gsSPLight yoshi_seg5_light_0501D9C0, 2
 gsSPVertex yoshi_seg5_vertex_050211D0, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9,  7,  6, 0x0
-gsSP1Triangle 10,  3,  5, 0x0
-gsSP1Triangle  5,  6, 11, 0x0
-gsSP1Triangle  5,  2, 12, 0x0
-gsSP1Triangle  2,  1, 12, 0x0
-gsSP1Triangle  2, 11, 13, 0x0
-gsSP1Triangle  9,  6,  5, 0x0
-gsSP1Triangle 12, 10,  5, 0x0
-gsSP1Triangle  8, 13, 11, 0x0
-gsSP1Triangle 11,  2,  5, 0x0
-gsSP1Triangle  6,  8, 11, 0x0
-gsSP1Triangle  9,  5,  4, 0x0
-gsSP1Triangle  3, 10,  1, 0x0
-gsSP1Triangle 10, 12,  1, 0x0
-gsSP1Triangle  0,  2, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9,  7,  6, 0x0
+gsSP2Triangles 10,  3,  5, 0x0,  5,  6, 11, 0x0
+gsSP2Triangles  5,  2, 12, 0x0,  2,  1, 12, 0x0
+gsSP2Triangles  2, 11, 13, 0x0,  9,  6,  5, 0x0
+gsSP2Triangles 12, 10,  5, 0x0,  8, 13, 11, 0x0
+gsSP2Triangles 11,  2,  5, 0x0,  6,  8, 11, 0x0
+gsSP2Triangles  9,  5,  4, 0x0,  3, 10,  1, 0x0
+gsSP2Triangles 10, 12,  1, 0x0,  0,  2, 13, 0x0
 gsSPEndDisplayList
 
 yoshi_seg5_animvalue_050227D8: # 0x050227D8

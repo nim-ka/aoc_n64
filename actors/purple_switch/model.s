@@ -44,14 +44,10 @@ gsDPLoadBlock 7, 0, 0, 0x03F, 0x200
 gsSPLight purple_switch_seg8_light_0800C098, 1
 gsSPLight purple_switch_seg8_light_0800C090, 2
 gsSPVertex purple_switch_seg8_vertex_0800C528, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  6,  4, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  7, 10,  8, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
-gsSP1Triangle 11, 13, 14, 0x0
-gsSP1Triangle  0,  2, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  6,  4, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles  7, 10,  8, 0x0, 11, 12, 13, 0x0
+gsSP2Triangles 11, 13, 14, 0x0,  0,  2, 15, 0x0
 gsSPEndDisplayList
 
 glabel purple_switch_seg8_dl_0800C6E0 # 0x0800C6E0 - 0x0800C718
@@ -59,8 +55,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, purple_switch_seg8_texture_0
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x1FF, 0x200
 gsSPVertex purple_switch_seg8_vertex_0800C628, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel purple_switch_seg8_dl_0800C718 # 0x0800C718 - 0x0800C7A8

@@ -97,14 +97,10 @@ vertex      0,    160,      0,      0,      0,  0xFF, 0xFF, 0x00, 0xFF
 glabel dirt_seg3_dl_0302C238 # 0x0302C238 - 0x0302C298
 gsSPClearGeometryMode G_CULL_BACK
 gsSPVertex dirt_seg3_vertex_0302C0F8, 10, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  1, 0x0
-gsSP1Triangle  0,  5,  3, 0x0
-gsSP1Triangle  6,  7,  0, 0x0
-gsSP1Triangle  2,  8,  6, 0x0
-gsSP1Triangle  1,  9,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  2,  6,  0, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  1, 0x0
+gsSP2Triangles  0,  5,  3, 0x0,  6,  7,  0, 0x0
+gsSP2Triangles  2,  8,  6, 0x0,  1,  9,  2, 0x0
+gsSP2Triangles  0,  3,  1, 0x0,  2,  6,  0, 0x0
 gsSPSetGeometryMode G_CULL_BACK
 gsSPEndDisplayList
 
@@ -135,14 +131,10 @@ gsSPEndDisplayList
 glabel dirt_seg3_dl_0302C318 # 0x0302C318 - 0x0302C378
 gsSPClearGeometryMode G_LIGHTING | G_CULL_BACK
 gsSPVertex dirt_seg3_vertex_0302C198, 10, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  1, 0x0
-gsSP1Triangle  0,  5,  3, 0x0
-gsSP1Triangle  6,  7,  0, 0x0
-gsSP1Triangle  2,  8,  6, 0x0
-gsSP1Triangle  1,  9,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  2,  6,  0, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  1, 0x0
+gsSP2Triangles  0,  5,  3, 0x0,  6,  7,  0, 0x0
+gsSP2Triangles  2,  8,  6, 0x0,  1,  9,  2, 0x0
+gsSP2Triangles  0,  3,  1, 0x0,  2,  6,  0, 0x0
 gsSPSetGeometryMode G_LIGHTING | G_CULL_BACK
 gsSPEndDisplayList
 

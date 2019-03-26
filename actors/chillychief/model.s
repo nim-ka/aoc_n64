@@ -95,50 +95,35 @@ glabel chilly_chief_seg6_dl_06002B30 # 0x06002B30 - 0x06002BC8
 gsSPLight chilly_chief_seg6_light_06000008, 1
 gsSPLight chilly_chief_seg6_light_06000000, 2
 gsSPVertex chilly_chief_seg6_vertex_06002860, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  1,  3, 0x0
-gsSP1Triangle  2,  3,  4, 0x0
-gsSP1Triangle  1,  5,  6, 0x0
-gsSP1Triangle  1,  6,  7, 0x0
-gsSP1Triangle  0,  5,  1, 0x0
-gsSP1Triangle  0,  2,  8, 0x0
-gsSP1Triangle  8,  2,  9, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle 11,  8, 12, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
-gsSP1Triangle  0,  8, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  1,  3, 0x0
+gsSP2Triangles  2,  3,  4, 0x0,  1,  5,  6, 0x0
+gsSP2Triangles  1,  6,  7, 0x0,  0,  5,  1, 0x0
+gsSP2Triangles  0,  2,  8, 0x0,  8,  2,  9, 0x0
+gsSP2Triangles  8,  9, 10, 0x0, 11,  8, 12, 0x0
+gsSP2Triangles 11, 12, 13, 0x0,  0,  8, 11, 0x0
 gsSPVertex chilly_chief_seg6_vertex_06002940, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel chilly_chief_seg6_dl_06002BC8 # 0x06002BC8 - 0x06002C60
 gsSPLight chilly_chief_seg6_light_06000020, 1
 gsSPLight chilly_chief_seg6_light_06000018, 2
 gsSPVertex chilly_chief_seg6_vertex_06002980, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  1, 0x0
-gsSP1Triangle  3,  1,  0, 0x0
-gsSP1Triangle  5,  6,  7, 0x0
-gsSP1Triangle  5,  7,  1, 0x0
-gsSP1Triangle  1,  7,  2, 0x0
-gsSP1Triangle  8,  0,  2, 0x0
-gsSP1Triangle  9, 10,  0, 0x0
-gsSP1Triangle  9,  0,  8, 0x0
-gsSP1Triangle 11, 12,  8, 0x0
-gsSP1Triangle 11,  8, 13, 0x0
-gsSP1Triangle 13,  8,  2, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  1, 0x0
+gsSP2Triangles  3,  1,  0, 0x0,  5,  6,  7, 0x0
+gsSP2Triangles  5,  7,  1, 0x0,  1,  7,  2, 0x0
+gsSP2Triangles  8,  0,  2, 0x0,  9, 10,  0, 0x0
+gsSP2Triangles  9,  0,  8, 0x0, 11, 12,  8, 0x0
+gsSP2Triangles 11,  8, 13, 0x0, 13,  8,  2, 0x0
 gsSPVertex chilly_chief_seg6_vertex_06002A60, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel chilly_chief_seg6_dl_06002C60 # 0x06002C60 - 0x06002C98
 gsSPLight chilly_chief_seg6_light_06000038, 1
 gsSPLight chilly_chief_seg6_light_06000030, 2
 gsSPVertex chilly_chief_seg6_vertex_06002AA0, 9, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
 gsSP1Triangle  6,  7,  8, 0x0
 gsSPEndDisplayList
 
@@ -159,8 +144,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, chilly_chief_seg6_texture_06
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex chilly_chief_seg6_vertex_06002C98, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel chilly_chief_seg6_dl_06002D50 # 0x06002D50 - 0x06002D88
@@ -168,8 +152,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, chilly_chief_seg6_texture_06
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex chilly_chief_seg6_vertex_06002CD8, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel chilly_chief_seg6_dl_06002D88 # 0x06002D88 - 0x06002E00
@@ -206,8 +189,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, chilly_chief_seg6_texture_06
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex chilly_chief_seg6_vertex_06002E00, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel chilly_chief_seg6_dl_06002EB8 # 0x06002EB8 - 0x06002EF0
@@ -215,8 +197,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, chilly_chief_seg6_texture_06
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex chilly_chief_seg6_vertex_06002E40, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel chilly_chief_seg6_dl_06002EF0 # 0x06002EF0 - 0x06002F68
@@ -249,10 +230,8 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, chilly_chief_seg6_texture_06
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex chilly_chief_seg6_vertex_06002F68, 6, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  5,  0, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  3,  4,  5, 0x0,  3,  5,  0, 0x0
 gsSPEndDisplayList
 
 glabel chilly_chief_seg6_dl_06003010 # 0x06003010 - 0x06003080

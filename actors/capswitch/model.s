@@ -70,14 +70,10 @@ gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPLight capswitch_seg5_light_05001BC0, 1
 gsSPLight capswitch_seg5_light_05001BB8, 2
 gsSPVertex capswitch_seg5_vertex_05002CC8, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  0,  3, 0x0
-gsSP1Triangle  4,  3,  0, 0x0
-gsSP1Triangle  5,  4,  0, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  8,  7,  9, 0x0
-gsSP1Triangle  7,  6, 10, 0x0
-gsSP1Triangle 11,  9,  7, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  0,  3, 0x0
+gsSP2Triangles  4,  3,  0, 0x0,  5,  4,  0, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  8,  7,  9, 0x0
+gsSP2Triangles  7,  6, 10, 0x0, 11,  9,  7, 0x0
 gsSPEndDisplayList
 
 glabel capswitch_seg5_dl_05002E00 # 0x05002E00 - 0x05002E60
@@ -133,30 +129,19 @@ gsDPLoadBlock 7, 0, 0, 0x03F, 0x200
 gsSPLight capswitch_seg5_light_05001BD8, 1
 gsSPLight capswitch_seg5_light_05001BD0, 2
 gsSPVertex capswitch_seg5_vertex_05002E60, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  4,  6,  5, 0x0
-gsSP1Triangle  4,  7,  6, 0x0
-gsSP1Triangle  7,  8,  6, 0x0
-gsSP1Triangle  6,  9, 10, 0x0
-gsSP1Triangle  6,  8,  9, 0x0
-gsSP1Triangle  5,  6, 10, 0x0
-gsSP1Triangle 11,  5, 12, 0x0
-gsSP1Triangle  3,  5, 11, 0x0
-gsSP1Triangle  5, 10, 12, 0x0
-gsSP1Triangle  7,  0,  8, 0x0
-gsSP1Triangle  0,  2,  8, 0x0
-gsSP1Triangle 13, 14, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  4,  6,  5, 0x0,  4,  7,  6, 0x0
+gsSP2Triangles  7,  8,  6, 0x0,  6,  9, 10, 0x0
+gsSP2Triangles  6,  8,  9, 0x0,  5,  6, 10, 0x0
+gsSP2Triangles 11,  5, 12, 0x0,  3,  5, 11, 0x0
+gsSP2Triangles  5, 10, 12, 0x0,  7,  0,  8, 0x0
+gsSP2Triangles  0,  2,  8, 0x0, 13, 14, 15, 0x0
 gsSP1Triangle  1, 13,  2, 0x0
 gsSPVertex capswitch_seg5_vertex_05002F60, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  4,  6,  5, 0x0
-gsSP1Triangle  4,  2,  6, 0x0
-gsSP1Triangle  3,  5,  7, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle  1,  8,  2, 0x0
-gsSP1Triangle  1, 11,  8, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  4,  6,  5, 0x0,  4,  2,  6, 0x0
+gsSP2Triangles  3,  5,  7, 0x0,  8,  9, 10, 0x0
+gsSP2Triangles  1,  8,  2, 0x0,  1, 11,  8, 0x0
 gsSP1Triangle  2,  8, 10, 0x0
 gsSPEndDisplayList
 
@@ -194,30 +179,18 @@ vertex    130,      0,    225,      0,      0,  0x52, 0x0A, 0x5F, 0xFF
 
 glabel capswitch_seg5_dl_05003280 # 0x05003280 - 0x05003350
 gsSPVertex capswitch_seg5_vertex_05003180, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  3,  4, 0x0
-gsSP1Triangle  1,  0,  3, 0x0
-gsSP1Triangle  2,  5,  0, 0x0
-gsSP1Triangle  0,  5,  6, 0x0
-gsSP1Triangle  7,  3,  0, 0x0
-gsSP1Triangle  6,  7,  0, 0x0
-gsSP1Triangle  8,  3,  7, 0x0
-gsSP1Triangle  4,  3,  8, 0x0
-gsSP1Triangle  9, 10,  5, 0x0
-gsSP1Triangle 11,  6,  5, 0x0
-gsSP1Triangle  5, 10, 11, 0x0
-gsSP1Triangle  5,  2,  9, 0x0
-gsSP1Triangle 10,  9, 12, 0x0
-gsSP1Triangle 12, 13, 10, 0x0
-gsSP1Triangle 10, 13, 11, 0x0
-gsSP1Triangle  6, 11, 14, 0x0
-gsSP1Triangle 14, 11, 13, 0x0
-gsSP1Triangle  6, 14,  7, 0x0
-gsSP1Triangle 15,  8, 13, 0x0
-gsSP1Triangle 13,  8, 14, 0x0
-gsSP1Triangle 13, 12, 15, 0x0
-gsSP1Triangle  8, 15,  4, 0x0
-gsSP1Triangle  7, 14,  8, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  3,  4, 0x0
+gsSP2Triangles  1,  0,  3, 0x0,  2,  5,  0, 0x0
+gsSP2Triangles  0,  5,  6, 0x0,  7,  3,  0, 0x0
+gsSP2Triangles  6,  7,  0, 0x0,  8,  3,  7, 0x0
+gsSP2Triangles  4,  3,  8, 0x0,  9, 10,  5, 0x0
+gsSP2Triangles 11,  6,  5, 0x0,  5, 10, 11, 0x0
+gsSP2Triangles  5,  2,  9, 0x0, 10,  9, 12, 0x0
+gsSP2Triangles 12, 13, 10, 0x0, 10, 13, 11, 0x0
+gsSP2Triangles  6, 11, 14, 0x0, 14, 11, 13, 0x0
+gsSP2Triangles  6, 14,  7, 0x0, 15,  8, 13, 0x0
+gsSP2Triangles 13,  8, 14, 0x0, 13, 12, 15, 0x0
+gsSP2Triangles  8, 15,  4, 0x0,  7, 14,  8, 0x0
 gsSPEndDisplayList
 
 glabel capswitch_seg5_dl_05003350 # 0x05003350 - 0x05003370

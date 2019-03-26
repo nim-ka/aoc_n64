@@ -119,70 +119,46 @@ gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPLight door_seg3_light_03009CE8, 1
 gsSPLight door_seg3_light_03009CE0, 2
 gsSPVertex door_seg3_vertex_03013910, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  5,  6, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  7, 10,  8, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
-gsSP1Triangle 11, 13, 14, 0x0
-gsSP1Triangle  0,  2, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  5,  6, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles  7, 10,  8, 0x0, 11, 12, 13, 0x0
+gsSP2Triangles 11, 13, 14, 0x0,  0,  2, 15, 0x0
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, door_seg3_texture_03009D10
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex door_seg3_vertex_03013A10, 8, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
 gsSPEndDisplayList
 
 glabel door_seg3_dl_03013CC8 # 0x03013CC8 - 0x03013D78
 gsSPLight door_seg3_light_03009D00, 1
 gsSPLight door_seg3_light_03009CF8, 2
 gsSPVertex door_seg3_vertex_03013A90, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  3,  4, 0x0
-gsSP1Triangle  2,  1,  3, 0x0
-gsSP1Triangle  5,  2,  4, 0x0
-gsSP1Triangle  5,  0,  2, 0x0
-gsSP1Triangle  6,  4,  3, 0x0
-gsSP1Triangle  7,  6,  3, 0x0
-gsSP1Triangle  7,  3,  1, 0x0
-gsSP1Triangle  6,  5,  4, 0x0
-gsSP1Triangle  0,  7,  1, 0x0
-gsSP1Triangle  8,  9,  7, 0x0
-gsSP1Triangle  9,  6,  7, 0x0
-gsSP1Triangle  8,  7,  0, 0x0
-gsSP1Triangle  9, 10,  6, 0x0
-gsSP1Triangle 10,  5,  6, 0x0
-gsSP1Triangle 10, 11,  5, 0x0
-gsSP1Triangle 11,  0,  5, 0x0
-gsSP1Triangle 11,  8,  0, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  3,  4, 0x0
+gsSP2Triangles  2,  1,  3, 0x0,  5,  2,  4, 0x0
+gsSP2Triangles  5,  0,  2, 0x0,  6,  4,  3, 0x0
+gsSP2Triangles  7,  6,  3, 0x0,  7,  3,  1, 0x0
+gsSP2Triangles  6,  5,  4, 0x0,  0,  7,  1, 0x0
+gsSP2Triangles  8,  9,  7, 0x0,  9,  6,  7, 0x0
+gsSP2Triangles  8,  7,  0, 0x0,  9, 10,  6, 0x0
+gsSP2Triangles 10,  5,  6, 0x0, 10, 11,  5, 0x0
+gsSP2Triangles 11,  0,  5, 0x0, 11,  8,  0, 0x0
 gsSPEndDisplayList
 
 glabel door_seg3_dl_03013D78 # 0x03013D78 - 0x03013E28
 gsSPLight door_seg3_light_03009D00, 1
 gsSPLight door_seg3_light_03009CF8, 2
 gsSPVertex door_seg3_vertex_03013B50, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  0,  3,  4, 0x0
-gsSP1Triangle  0,  5,  1, 0x0
-gsSP1Triangle  5,  0,  4, 0x0
-gsSP1Triangle  2,  1,  6, 0x0
-gsSP1Triangle  1,  7,  6, 0x0
-gsSP1Triangle  1,  5,  7, 0x0
-gsSP1Triangle  2,  6,  3, 0x0
-gsSP1Triangle  5,  4,  7, 0x0
-gsSP1Triangle  6,  8,  9, 0x0
-gsSP1Triangle  3,  6,  9, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  4,  3, 10, 0x0
-gsSP1Triangle  3,  9, 10, 0x0
-gsSP1Triangle  7,  4, 11, 0x0
-gsSP1Triangle  7, 11,  8, 0x0
-gsSP1Triangle  4, 10, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  0,  3,  4, 0x0,  0,  5,  1, 0x0
+gsSP2Triangles  5,  0,  4, 0x0,  2,  1,  6, 0x0
+gsSP2Triangles  1,  7,  6, 0x0,  1,  5,  7, 0x0
+gsSP2Triangles  2,  6,  3, 0x0,  5,  4,  7, 0x0
+gsSP2Triangles  6,  8,  9, 0x0,  3,  6,  9, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  4,  3, 10, 0x0
+gsSP2Triangles  3,  9, 10, 0x0,  7,  4, 11, 0x0
+gsSP2Triangles  7, 11,  8, 0x0,  4, 10, 11, 0x0
 gsSPEndDisplayList
 
 glabel door_seg3_dl_03013E28 # 0x03013E28 - 0x03013EA8
@@ -255,25 +231,21 @@ gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPLight door_seg3_light_03009CE8, 1
 gsSPLight door_seg3_light_03009CE0, 2
 gsSPVertex door_seg3_vertex_03013F20, 8, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  7,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  7,  5, 0x0
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPLight door_seg3_light_03009D00, 1
 gsSPLight door_seg3_light_03009CF8, 2
 gsSPVertex door_seg3_vertex_03013FA0, 8, 0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  7,  5, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  7,  5, 0x0
 gsSPSetGeometryMode G_SHADING_SMOOTH
 gsSPEndDisplayList
 
 glabel door_seg3_dl_03014100 # 0x03014100 - 0x03014128
 gsSPDisplayList door_seg3_dl_03014020
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPSetGeometryMode G_SHADING_SMOOTH
 gsSPEndDisplayList
 
@@ -308,8 +280,7 @@ gsSPLight door_seg3_light_03009CE0, 2
 gsSPEndDisplayList
 
 glabel door_seg3_dl_03014218 # 0x03014218 - 0x03014250
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
@@ -401,10 +372,8 @@ gsSPLight door_seg3_light_03009CE0, 2
 gsSPEndDisplayList
 
 glabel door_seg3_dl_030144E0 # 0x030144E0 - 0x03014528
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
@@ -482,42 +451,25 @@ vertex    546,    412,    -43,      0,      0,  0x70, 0xDB, 0x2E, 0xFF
 
 glabel door_seg3_dl_03014888 # 0x03014888 - 0x030149C0
 gsSPVertex door_seg3_vertex_030146D8, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  6,  4, 0x0
-gsSP1Triangle  7,  6,  3, 0x0
-gsSP1Triangle  8,  3,  5, 0x0
-gsSP1Triangle  8,  7,  3, 0x0
-gsSP1Triangle  9,  5,  4, 0x0
-gsSP1Triangle 10,  9,  4, 0x0
-gsSP1Triangle 10,  4,  6, 0x0
-gsSP1Triangle  9,  8,  5, 0x0
-gsSP1Triangle  7, 10,  6, 0x0
-gsSP1Triangle 11, 12, 10, 0x0
-gsSP1Triangle 11, 10,  7, 0x0
-gsSP1Triangle 12,  9, 10, 0x0
-gsSP1Triangle 12, 13,  9, 0x0
-gsSP1Triangle 13,  8,  9, 0x0
-gsSP1Triangle 14,  7,  8, 0x0
-gsSP1Triangle 13, 14,  8, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  6,  4, 0x0,  7,  6,  3, 0x0
+gsSP2Triangles  8,  3,  5, 0x0,  8,  7,  3, 0x0
+gsSP2Triangles  9,  5,  4, 0x0, 10,  9,  4, 0x0
+gsSP2Triangles 10,  4,  6, 0x0,  9,  8,  5, 0x0
+gsSP2Triangles  7, 10,  6, 0x0, 11, 12, 10, 0x0
+gsSP2Triangles 11, 10,  7, 0x0, 12,  9, 10, 0x0
+gsSP2Triangles 12, 13,  9, 0x0, 13,  8,  9, 0x0
+gsSP2Triangles 14,  7,  8, 0x0, 13, 14,  8, 0x0
 gsSP1Triangle 14, 11,  7, 0x0
 gsSPVertex door_seg3_vertex_030147C8, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  6,  7, 0x0
-gsSP1Triangle  4,  3,  0, 0x0
-gsSP1Triangle  5,  4,  8, 0x0
-gsSP1Triangle  6,  5,  9, 0x0
-gsSP1Triangle  5,  8,  9, 0x0
-gsSP1Triangle  3,  5,  6, 0x0
-gsSP1Triangle  6,  9,  7, 0x0
-gsSP1Triangle  4,  0,  8, 0x0
-gsSP1Triangle  7,  9, 10, 0x0
-gsSP1Triangle  9, 11, 10, 0x0
-gsSP1Triangle  9,  8, 11, 0x0
-gsSP1Triangle  0,  7,  1, 0x0
-gsSP1Triangle  7, 10,  1, 0x0
-gsSP1Triangle  8,  0,  2, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  6,  7, 0x0,  4,  3,  0, 0x0
+gsSP2Triangles  5,  4,  8, 0x0,  6,  5,  9, 0x0
+gsSP2Triangles  5,  8,  9, 0x0,  3,  5,  6, 0x0
+gsSP2Triangles  6,  9,  7, 0x0,  4,  0,  8, 0x0
+gsSP2Triangles  7,  9, 10, 0x0,  9, 11, 10, 0x0
+gsSP2Triangles  9,  8, 11, 0x0,  0,  7,  1, 0x0
+gsSP2Triangles  7, 10,  1, 0x0,  8,  0,  2, 0x0
 gsSP1Triangle  8,  2, 11, 0x0
 gsSPEndDisplayList
 
@@ -525,22 +477,16 @@ glabel door_seg3_dl_030149C0 # 0x030149C0 - 0x03014A20
 gsSPLight door_seg3_light_03009CE8, 1
 gsSPLight door_seg3_light_03009CE0, 2
 gsSPVertex door_seg3_vertex_03014558, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  5,  6, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  7, 10,  8, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
-gsSP1Triangle 11, 13, 14, 0x0
-gsSP1Triangle  0,  2, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  5,  6, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles  7, 10,  8, 0x0, 11, 12, 13, 0x0
+gsSP2Triangles 11, 13, 14, 0x0,  0,  2, 15, 0x0
 gsSPEndDisplayList
 
 glabel door_seg3_dl_03014A20 # 0x03014A20 - 0x03014A50
 gsSPVertex door_seg3_vertex_03014658, 8, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
 gsSPEndDisplayList
 
 glabel door_seg3_dl_03014A50 # 0x03014A50 - 0x03014A80
@@ -695,18 +641,14 @@ glabel door_seg3_dl_03014EF0 # 0x03014EF0 - 0x03014F30
 gsSPLight door_seg3_light_03009CE8, 1
 gsSPLight door_seg3_light_03009CE0, 2
 gsSPVertex door_seg3_vertex_03014DF0, 8, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  7,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  7,  5, 0x0
 gsSPEndDisplayList
 
 glabel door_seg3_dl_03014F30 # 0x03014F30 - 0x03014F68
 gsSPVertex door_seg3_vertex_03014E70, 8, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
 gsSPSetGeometryMode G_SHADING_SMOOTH
 gsSPEndDisplayList
 

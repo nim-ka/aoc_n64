@@ -447,6 +447,15 @@
    .endif
 .endm
 
+.ifndef F3DEX_GBI /* Fallback for 2Triangles in stock Fast3D */
+/* B1: G_TRI1 * 2 */
+.set G_TRI2, 0xB1
+.macro gsSP2Triangles v0, v1, v2, flag0, v3, v4, v5, flag1 /* Note: flag has no effect on this variant of gSP2Triangles */
+    gsSP1Triangle \v0, \v1, \v2, \flag0
+    gsSP1Triangle \v3, \v4, \v5, \flag1
+.endm
+.endif
+
 /* C0: G_NOOP */
 .set G_NOOP, 0xC0
 .macro gsDPNoOp
