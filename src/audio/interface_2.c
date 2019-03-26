@@ -1,11 +1,12 @@
 #include <ultra64.h>
 
 #include "sm64.h"
+#include "dac.h"
+#include "dma.h"
 #include "interface_1.h"
 #include "interface_2.h"
 #include "playback.h"
-#include "dma.h"
-#include "dac.h"
+#include "something.h"
 #include "game/mario.h"
 #include "game/level_update.h"
 #include "game/area.h"

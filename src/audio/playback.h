@@ -83,17 +83,26 @@ struct SubStruct_func_80318870_2
     f32 unkC;
 };
 
+struct SubsubsubStruct_func_80318870_3
+{
+    s32 unk0;
+    s32 unk4;
+    s32 unk8; // compared against 0
+};
+
+struct SubsubStruct_func_80318870_3
+{
+    u32 pad0;
+    u32 unk4;
+    struct SubsubsubStruct_func_80318870_3 *unk8;
+};
+
 struct SubStruct_func_80318870_3
 {
-    struct
-    {
-        u32 unk00;
-        u32 unk04;
-        u32 *unk08;
-    } unk00; //probably struct
-    u32 unk04;
-    u32 *unk08; //probably u16/s16 *
-    u32 *unk0c; //probably struct*?
+    struct SubsubStruct_func_80318870_3 *unk0;
+    u32 pad1;
+    s16 *unk8; // unknown type
+    u32 *unkC; //probably struct*?
     //starts with 2 u32 and then a pointer (probably s16, since most of the audio stuff is s16)
 };
 
@@ -177,16 +186,11 @@ extern struct Struct_func_80318870 *D_80222A10; // points to an array
 extern struct PlaybackListItem D_80225E98;      // head, maybe part of the next array
 extern struct PlaybackListItem D_80225EA8[4];   // four heads
 
-extern void func_803159C0(struct Struct_func_80318870 *arg0);
-extern void func_80315D94(struct Struct_func_80318870 *arg0);
 extern void func_8031A564(u8 *arg0, u32 arg1, s16 *arg2);
-extern void func_80315DE0(struct Struct_func_80318870 *arg0);
 extern struct Struct_func_80318870 *func_8031AF34(void *arg0);
 extern void func_8031AEF4(struct PlaybackListItem *head, struct PlaybackListItem *item);
 extern void func_8031AA10(struct SubStruct_func_80318870 *arg0);
 extern void func_8031AAD0(struct Unk50 *arg0);
-extern void func_80315D88(struct Struct_func_80318870 *arg0, f32 arg1);
-extern void func_803159EC(struct Struct_func_80318870 *arg0, f32 arg1, f32 arg2, u8 arg3);
 
 void func_80318870(struct Struct_func_80318870 *arg0);
 void func_803188E8(struct Struct_func_80318870 *arg0);

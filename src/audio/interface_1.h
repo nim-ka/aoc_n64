@@ -16,6 +16,7 @@ struct Struct80225DD8
 
 struct Struct80222A18;
 
+// extern ? D_80222DD8;
 // extern ? D_80225E98;
 extern struct Struct80225DD8 D_80225DD8;
 // extern ? D_80332AA4;
@@ -49,7 +50,7 @@ extern void func_8031AE24(struct Struct80222A18* arg0);
 // extern ? func_8031C0C4(?);
 // extern ? func_8031C104(?);
 // extern ? func_8031CAD4(?);
-// extern ? func_8031D384(?);
+extern void func_8031D384(s32 arg0);
 extern void func_8031D42C(u32 arg0);
 extern void func_8031D4B8(void);
 

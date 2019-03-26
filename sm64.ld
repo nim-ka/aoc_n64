@@ -120,8 +120,6 @@ SECTIONS
       BUILD_DIR/src/game/obj_behaviors.o(.text);
       BUILD_DIR/src/game/obj_behaviors_2.o(.text);
       BUILD_DIR/src/audio/something.o(.text);
-      BUILD_DIR/src/audio/something_2.o(.text);
-      BUILD_DIR/src/audio/something_3.o(.text);
       BUILD_DIR/src/audio/dac.o(.text);
       BUILD_DIR/src/audio/dma.o(.text);
       BUILD_DIR/src/audio/playback.o(.text);
@@ -333,7 +331,7 @@ SECTIONS
       BUILD_DIR/src/game/hud.o(.rodata*);
       BUILD_DIR/src/game/obj_behaviors.o(.rodata*);
       BUILD_DIR/src/game/obj_behaviors_2.o(.rodata*);
-      BUILD_DIR/src/audio/something_3.o(.rodata*);
+      BUILD_DIR/src/audio/something.o(.rodata*);
       BUILD_DIR/src/audio/dac.o(.rodata*);
       BUILD_DIR/src/audio/playback.o(.rodata*);
       BUILD_DIR/data/audio.rodata.o(.rodata*);

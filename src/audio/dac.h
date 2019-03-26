@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "dma.h"
+#include "data.h"
 
 struct SoundAllocPool
 {
@@ -49,7 +50,7 @@ struct struct_3920_sp1c
     s32 unkC;
     s16 unk10;
     s16 unk12;
-};
+}; // size = 0x14
 
 struct Struct802211B0
 {
@@ -72,21 +73,19 @@ struct Struct802211B0
     void *unk24;
     void *unk28;
     struct struct_3920_sp1c unk2C[2][4];
-};
+}; // 0xCC <= size <= 0x100
 extern struct Struct802211B0 D_802211B0;
 
 extern u8 gAudioHeap[];
-// extern ? D_802211B1;
+extern s16 D_802212A0;
+extern s8 D_802212A2;
+extern u8 D_802212A3;
 extern struct SoundAllocPool D_802212B8;
 extern struct SoundAllocPool D_802212C8;
 extern struct SoundMultiPool D_80221328;
 extern struct SoundMultiPool D_802214F8;
 extern u8 D_802218D0[64];
 extern u8 D_80221910[256];
-// extern ? D_80221A10;
-// extern ? D_80222A18;
-// extern ? D_80222DD8;
-// extern ? D_80225EA8;
 extern u32 D_80226B38;
 extern s32 D_80226D64;
 extern s32 D_80226D70;
@@ -98,18 +97,12 @@ extern s8 D_80226D7F;
 extern volatile s32 D_80226D84; // counter of some sort
 extern u64 *D_80226D90[2];
 extern u64 *D_80226D98; // audio ucode data
-// extern ? D_80332F5C;
-// extern ? D_803330E0;
 extern s32 D_80333EEC; // size of audio heap
 
-// extern ? func_80315E60(?);
-// extern ? func_80315EA4(?);
-// extern ? func_80315F94(?);
 extern void *soundAlloc(struct SoundAllocPool *pool, u32 size);
 extern void func_80316108(s32 arg0);
 extern void *func_803163DC(struct SoundMultiPool *arg0, s32 arg1, s32 alloc, s32 arg3, s32 arg4);
 extern void *func_8031680C(struct SoundMultiPool *arg0, s32 arg1, s32 arg2);
-// extern ? func_803168CC(?);
 extern void func_80316928(struct Struct80332190 *arg0);
 
 #endif /* _AUDIO_DAC_H */

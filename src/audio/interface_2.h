@@ -75,9 +75,6 @@ extern struct Struct80222A18 D_80222A18[3];
 
 extern u64 gAudioSPTaskYieldBuffer[]; // ucode yield data ptr; only used in JP
 
-// from audio_something, updates ucode data
-extern u64 *func_80313CD4(u64 *arg0, s32 *arg1, u16 *arg2, s32 arg3);
-
 struct SPTask *func_8031D924(void);
 void SetSound(int arg0, f32 *arg1);
 void func_8031EED0(void);

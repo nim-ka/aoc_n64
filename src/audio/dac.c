@@ -2,8 +2,10 @@
 
 #include "sm64.h"
 #include "dac.h"
+#include "data.h"
 #include "dma.h"
 #include "playback.h"
+#include "something.h"
 #include "interface_1.h"
 #include "interface_2.h"
 
@@ -30,11 +32,7 @@ extern struct SoundAllocPool D_80221318;
 
 extern struct SoundMultiPool D_802216C8;
 
-extern s16 D_802212A0;
-extern s8 D_802212A2;
-extern u8 D_802212A3;
 extern s32 D_80226D6C;
-extern s16 D_80333EE4;
 
 extern struct Struct803161E0 D_80221898;
 extern struct U32Pair D_802218A8;

@@ -3,6 +3,7 @@
 #include "sm64.h"
 #include "dma.h"
 #include "dac.h"
+#include "data.h"
 #include "interface_1.h"
 #include "interface_2.h"
 

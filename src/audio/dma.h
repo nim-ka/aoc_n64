@@ -56,21 +56,6 @@ struct Struct_func_8031784C
     struct SubB *subB[1];
 };
 
-struct Struct80332190
-{
-    /* 00 */ u32 frequency; //32000, 27000
-    /* 04 */ u8 unk4; //stored in D_80226D70, 16 (mostly), 20, 14, 12, 10, 8 
-    /* 05 */ u8 unk5; //stored in D_802212A2, always 1
-    /* 06 */ u16 size;//sent as param to soundAlloc
-    /* 08 */ u16 unk8; //unknown, stored to D_802211B0.4
-    /* 0A */ u16 unkA; //stored in D_802212A0
-    //these seem important/related.  
-    /* 0C */ u32 unkC; //added with unk10
-    /* 10 */ u32 unk10; //
-    /* 14 */ u32 unk14;//added with 18
-    /* 18 */ u32 unk18;
-}; // size = 0x1C
-
 extern u64 D_802211A0; // audio .stack data start marker
 extern OSMesgQueue D_80225EE8;
 extern OSMesg D_80225F00[0x40];
@@ -108,7 +93,6 @@ extern u32 D_80226E58[];
 extern u16 D_80226E98[];
 extern u64 D_80226EC0; // audio .stack data end marker
 
-extern struct Struct80332190 D_80332190[]; // unknown type, [27]?
 extern s8 D_80333EE8;
 extern s32 D_80333EF0; // amount of heap designated to D_802212B8, 0x2500
 extern volatile s32 D_80333EF4;

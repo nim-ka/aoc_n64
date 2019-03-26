@@ -1,9 +1,10 @@
 #include <ultra64.h>
 
 #include "sm64.h"
-#include "playback.h"
 #include "dac.h"
 #include "data.h"
+#include "playback.h"
+#include "something.h"
 
 #ifdef VERSION_JP
 #define US_FLOAT(x) x
@@ -273,7 +274,7 @@ void func_80318F04(struct Struct_func_80318870 *arg0, struct SubStruct_func_8031
     for (i = -1, pos = 0; pos < 0x40; pos += stepSize)
     {
         i++;
-        arg0->unk34->unk110[i] = wave_samples[arg1->unk50->unk18 - 0x80][pos];
+        arg0->unk34->unk110[i] = gWaveSamples[arg1->unk50->unk18 - 0x80][pos];
     }
 
     for (offset = arg0->unk5; offset < 0x40; offset += arg0->unk5)

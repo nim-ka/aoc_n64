@@ -83,7 +83,7 @@ glabel D_802218D0
     .space 0x40
 glabel D_80221910
     .space 0x100
-glabel D_80221A10
+glabel D_80221A10 # unused?
     .space 0x1000
 glabel D_80222A10
     .space 0x8
