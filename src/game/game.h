@@ -21,7 +21,7 @@ extern OSMesg D_80339CD0;
 extern OSMesg D_80339CD4;
 extern struct VblankHandler gGameVblankHandler;
 extern u32 gFrameBuffers[3];
-extern u32 D_80339CEC;
+extern u32 zBufferPtr;
 extern void *D_80339CF0;
 extern void *D_80339CF4;
 extern struct SPTask *gGfxSPTask;
@@ -49,7 +49,7 @@ extern u16 func_802495B0(u32);
 extern struct MarioAnimation D_80339D10;
 extern struct MarioAnimation gDemo; // gDemo
 
-extern u8 D_80000400[];
+extern u8 gZBuffer[];
 extern u8 gMarioAnims[];
 extern u8 gDemoInputs[];
 extern u8 D_10000000[];

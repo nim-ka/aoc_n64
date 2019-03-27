@@ -33,18 +33,18 @@ struct Struct8032CF10
     u32 unk0[8];
 };
 
-struct Struct8032CF10 D_8032CF10[2] = {
+struct Struct8032CF10 renderModeTable[2] = {
     {{
-        0x0C084000, 0x00442048,   
-        0x00442048, 0x00442048, 
-        0x00443048, 0x004041C8,
-        0x004041C8, 0x004041C8, 
+        G_RM_OPA_SURF,    G_RM_AA_OPA_SURF,
+        G_RM_AA_OPA_SURF, G_RM_AA_OPA_SURF, 
+        G_RM_AA_TEX_EDGE, G_RM_AA_XLU_SURF,
+        G_RM_AA_XLU_SURF, G_RM_AA_XLU_SURF,
     }},
     {{
-        0x00442230, 0x00442078,
-        0x00442D58, 0x00442478, 
-        0x00443078, 0x004049D8,
-        0x00404DD8, 0x004045D8,
+        G_RM_ZB_OPA_SURF,     G_RM_AA_ZB_OPA_SURF,
+        G_RM_AA_ZB_OPA_DECAL, G_RM_AA_ZB_OPA_INTER,
+        G_RM_AA_ZB_TEX_EDGE,  G_RM_AA_ZB_XLU_SURF,
+        G_RM_AA_ZB_XLU_DECAL, G_RM_AA_ZB_XLU_INTER,
     }}
 };
 
@@ -79,7 +79,7 @@ void func_8027B110(struct GraphNodeToggleZBuffer *a)
     struct GraphNodeToggleZBuffer_sub *sp2C;
     int i;
     int sp24 = (a->node.flags & GRAPH_RENDER_Z_BUFFER) != 0;
-    struct Struct8032CF10 *sp20 = &D_8032CF10[sp24];
+    struct Struct8032CF10 *sp20 = &renderModeTable[sp24];
     struct Struct8032CF10 *sp1C = &D_8032CF50[sp24];
 
     if (sp24 != 0)
@@ -817,15 +817,15 @@ void func_8027DB80(struct GraphNodeScreenArea *a, Vp *b, Vp *c, int d)
         vec3s_set(viewport->vp.vscale, a->width * 4, a->height * 4, 511);
         if (b != NULL)
         {
-            ClearFrameBuffer(d);
-            func_8024798C(b);
+            clear_frame_buffer(d);
+            make_viewport_clip_rect(b);
             *viewport = *b;
         }
         //L8027DC94
         else if (c != NULL)
         {
-            ClearFrameBuffer(d);
-            func_8024798C(c);
+            clear_frame_buffer(d);
+            make_viewport_clip_rect(c);
         }
         //L8027DCB0
         mtxf_identity(D_8033A778[D_8033A770]);

@@ -10,23 +10,23 @@ struct GfxPool {
     struct SPTask spTask;
 };
 
-extern u16 D_8032C69C;
+extern u16 frameBufferIndex;
 extern u8 gGfxSPTaskStack[];
 extern u8 gGfxSPTaskOutputBuffer[];
 extern u8 gGfxSPTaskYieldBuffer[];
 extern struct GfxPool gGfxPools[2];
 extern u32 gGlobalTimer;
 
-// extern ? myRdpInit(?);
-// extern ? myRspInit(?);
-// extern ? ClearZBuffer(?);
-// extern ? DisplayFrameBuffer(?);
-extern void ClearFrameBuffer(int);
-extern void DisplayInit(Vp *, int);
-// extern ? func_8024781C(?);
-void func_8024798C(Vp *viewport);
-extern void func_80247C9C(void);
-extern void CleanupDisplayList(void);
+// extern ? my_rdp_init(?);
+// extern ? my_rsp_init(?);
+// extern ? clear_z_buffer(?);
+// extern ? display_frame_buffer(?);
+extern void clear_frame_buffer(int);
+extern void clear_viewport(Vp *, int);
+// extern ? draw_screen_borders(?);
+void make_viewport_clip_rect(Vp *viewport);
+extern void init_render_image(void);
+extern void end_master_display_list(void);
 extern void func_80247D84(void);
 extern void func_80247ED8(void);
 extern void func_80247FAC(void);

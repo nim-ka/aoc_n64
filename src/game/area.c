@@ -425,7 +425,7 @@ void render_game(void)
             D_8033A760 = D_8033A75E;
         
         if (D_8032CE78 != NULL)
-            func_8024798C(D_8032CE78);
+            make_viewport_clip_rect(D_8032CE78);
         else
             gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 0, BORDER_HEIGHT, 320, 240-BORDER_HEIGHT);
         
@@ -452,9 +452,9 @@ void render_game(void)
     {
         func_802D61A8();
         if (D_8032CE78 != 0)
-            DisplayInit(D_8032CE78, gWarpTransFBSetColor);
+            clear_viewport(D_8032CE78, gWarpTransFBSetColor);
         else
-            ClearFrameBuffer(gWarpTransFBSetColor);
+            clear_frame_buffer(gWarpTransFBSetColor);
     }
 
     D_8032CE74 = NULL;

@@ -11,9 +11,14 @@
 int unused8032C690 = 0;
 u32 gGlobalTimer = 0;
 static u16 sCurrFBNum = 0;
-u16 D_8032C69C = 0;
+u16 frameBufferIndex = 0;
 
-void myRdpInit(void)
+/** Initializes the Reality Display Processor (RDP).
+  * This function initializes settings such as texture filtering mode,
+  * scissoring, and render mode (although keep in mind that this render
+  * mode is not used in-game, where it is set in render_graph_node.c).
+ */
+void my_rdp_init(void)
 {
     gDPPipeSync(gDisplayListHead++);
     gDPPipelineMode(gDisplayListHead++, G_PM_1PRIMITIVE);
@@ -30,14 +35,18 @@ void myRdpInit(void)
 
     gDPSetCombineKey(gDisplayListHead++, G_CK_NONE);
     gDPSetAlphaCompare(gDisplayListHead++, G_AC_NONE);
-    gDPSetRenderMode(gDisplayListHead++, 0x0F0A4000, 0x0F0A4000);
+    gDPSetRenderMode(gDisplayListHead++, G_RM_OPA_SURF, G_RM_OPA_SURF2);
     gDPSetColorDither(gDisplayListHead++, G_CD_MAGICSQ);
     gDPSetCycleType(gDisplayListHead++, G_CYC_FILL);
 
     gDPPipeSync(gDisplayListHead++);
 }
 
-void myRspInit(void)
+/** Initializes the RSP's built-in geometry and lighting engines.
+  * Most of these (with the notable exception of gSPNumLights), are
+  * almost immediately overwritten.
+ */
+void my_rsp_init(void)
 {
     gSPClearGeometryMode(gDisplayListHead++,
         G_SHADE | G_SHADING_SMOOTH | G_CULL_BOTH | G_FOG | G_LIGHTING |
@@ -50,34 +59,37 @@ void myRspInit(void)
     gSPTexture(gDisplayListHead++, 0, 0, 0, 0, 0);
 }
 
-void ClearZBuffer(void)
+/** Clear the Z buffer. */
+void clear_z_buffer(void)
 {
     gDPPipeSync(gDisplayListHead++);
 
     gDPSetDepthSource(gDisplayListHead++, G_ZS_PIXEL);
-    gDPSetDepthImage(gDisplayListHead++, D_80339CEC);
+    gDPSetDepthImage(gDisplayListHead++, zBufferPtr);
 
-    gDPSetColorImage(gDisplayListHead++, G_IM_FMT_RGBA, 2, 320, D_80339CEC);
+    gDPSetColorImage(gDisplayListHead++, G_IM_FMT_RGBA, 2, 320, zBufferPtr);
     gDPSetFillColor(gDisplayListHead++,
         GPACK_RGBA5551(255, 255, 240, 0) << 16 | GPACK_RGBA5551(255, 255, 240, 0));
 
     gDPFillRectangle(gDisplayListHead++, 0, BORDER_HEIGHT, 319, 239-BORDER_HEIGHT);
 }
 
-void DisplayFrameBuffer(void)
+/** Sets up the final framebuffer image. */
+void display_frame_buffer(void)
 {
     gDPPipeSync(gDisplayListHead++);
 
     gDPSetCycleType(gDisplayListHead++, G_CYC_1CYCLE);
-    gDPSetColorImage(gDisplayListHead++, G_IM_FMT_RGBA, 2, 320, gFrameBuffers[D_8032C69C]);
+    gDPSetColorImage(gDisplayListHead++, G_IM_FMT_RGBA, 2, 320, gFrameBuffers[frameBufferIndex]);
     gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 0, BORDER_HEIGHT, 320, 240-BORDER_HEIGHT);
 }
 
-void ClearFrameBuffer(int a)
+/** Clears the framebuffer, allowing it to be overwritten. */
+void clear_frame_buffer(int a)
 {
     gDPPipeSync(gDisplayListHead++);
 
-    gDPSetRenderMode(gDisplayListHead++, 0x0F0A4000, 0x0F0A4000);
+    gDPSetRenderMode(gDisplayListHead++, G_RM_OPA_SURF, G_RM_OPA_SURF2);
     gDPSetCycleType(gDisplayListHead++, G_CYC_FILL);
 
     gDPSetFillColor(gDisplayListHead++, a);
@@ -88,32 +100,34 @@ void ClearFrameBuffer(int a)
     gDPSetCycleType(gDisplayListHead++, G_CYC_1CYCLE);
 }
 
-void DisplayInit(Vp *viewport, int b)
+/** Clears and initializes the viewport. */
+void clear_viewport(Vp *viewport, int b)
 {
-    s16 sp26 = (viewport->vp.vtrans[0] - viewport->vp.vscale[0]) / 4 + 1;
-    s16 sp24 = (viewport->vp.vtrans[1] - viewport->vp.vscale[1]) / 4 + 1;
-    s16 sp22 = (viewport->vp.vtrans[0] + viewport->vp.vscale[0]) / 4 - 2;
-    s16 sp20 = (viewport->vp.vtrans[1] + viewport->vp.vscale[1]) / 4 - 2;
+    s16 vpUlx = (viewport->vp.vtrans[0] - viewport->vp.vscale[0]) / 4 + 1;
+    s16 vpUly = (viewport->vp.vtrans[1] - viewport->vp.vscale[1]) / 4 + 1;
+    s16 VpLrx = (viewport->vp.vtrans[0] + viewport->vp.vscale[0]) / 4 - 2;
+    s16 vpLry = (viewport->vp.vtrans[1] + viewport->vp.vscale[1]) / 4 - 2;
 
     gDPPipeSync(gDisplayListHead++);
 
-    gDPSetRenderMode(gDisplayListHead++, 0x0F0A4000, 0x0F0A4000);
+    gDPSetRenderMode(gDisplayListHead++, G_RM_OPA_SURF, G_RM_OPA_SURF2);
     gDPSetCycleType(gDisplayListHead++, G_CYC_FILL);
 
     gDPSetFillColor(gDisplayListHead++, b);
-    gDPFillRectangle(gDisplayListHead++, sp26, sp24, sp22, sp20);
+    gDPFillRectangle(gDisplayListHead++, vpUlx, vpUly, VpLrx, vpLry);
 
     gDPPipeSync(gDisplayListHead++);
 
     gDPSetCycleType(gDisplayListHead++, G_CYC_1CYCLE);
 }
 
-void func_8024781C(void)
+/** Draws the horizontal screen borders */
+void draw_screen_borders(void)
 {
     gDPPipeSync(gDisplayListHead++);
 
     gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 0, 0, 320, 240);
-    gDPSetRenderMode(gDisplayListHead++, 0x0F0A4000, 0x0F0A4000);
+    gDPSetRenderMode(gDisplayListHead++, G_RM_OPA_SURF, G_RM_OPA_SURF2);
     gDPSetCycleType(gDisplayListHead++, G_CYC_FILL);
 
     gDPSetFillColor(gDisplayListHead++,
@@ -125,17 +139,22 @@ void func_8024781C(void)
     #endif
 }
 
-void func_8024798C(Vp *viewport)
+void make_viewport_clip_rect(Vp *viewport)
 {
-    s16 spE = (viewport->vp.vtrans[0] - viewport->vp.vscale[0]) / 4 + 1;
-    s16 spC = (viewport->vp.vtrans[1] - viewport->vp.vscale[1]) / 4 + 1;
-    s16 spA = (viewport->vp.vtrans[0] + viewport->vp.vscale[0]) / 4 - 1;
-    s16 sp8 = (viewport->vp.vtrans[1] + viewport->vp.vscale[1]) / 4 - 1;
+    s16 vpUlx = (viewport->vp.vtrans[0] - viewport->vp.vscale[0]) / 4 + 1;
+    s16 vpPly = (viewport->vp.vtrans[1] - viewport->vp.vscale[1]) / 4 + 1;
+    s16 vpLrx = (viewport->vp.vtrans[0] + viewport->vp.vscale[0]) / 4 - 1;
+    s16 vpLry = (viewport->vp.vtrans[1] + viewport->vp.vscale[1]) / 4 - 1;
 
-    gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, spE, spC, spA, sp8);
+    gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, vpUlx, vpPly, vpLrx, vpLry);
 }
 
-static void CreateTaskStructure(void)
+/** 
+  * Loads the F3D microcodes. 
+  * Refer to this function if you would like to load 
+  * other microcodes (i.e. S2DEX). 
+ */
+static void create_task_structure(void)
 {
     int entries = gDisplayListHead - gGfxPool->buffer;
 
@@ -159,25 +178,27 @@ static void CreateTaskStructure(void)
     gGfxSPTask->task.t.yield_data_size = OS_YIELD_DATA_SIZE;
 }
 
-void func_80247C9C(void)
+/** Starts rendering the scene. */
+void init_render_image(void)
 {
     move_segment_table_to_dmem();
-    myRdpInit();
-    myRspInit();
-    ClearZBuffer();
-    DisplayFrameBuffer();
+    my_rdp_init();
+    my_rsp_init();
+    clear_z_buffer();
+    display_frame_buffer();
 }
 
-void CleanupDisplayList(void)
+/** Ends the master display list. */
+void end_master_display_list(void)
 {
-    func_8024781C();
+    draw_screen_borders();
     if (gShowProfiler)
         draw_profiler();
 
     gDPFullSync(gDisplayListHead++);
     gSPEndDisplayList(gDisplayListHead++);
 
-    CreateTaskStructure();
+    create_task_structure();
 }
 
 void func_80247D84(void)
@@ -220,12 +241,12 @@ void func_80247ED8(void)
     gGfxSPTask = &gGfxPool->spTask;
     gDisplayListHead = gGfxPool->buffer;
     gGfxPoolEnd = (u8 *)(gGfxPool->buffer + GFX_POOL_SIZE);
-    func_80247C9C();
-    ClearFrameBuffer(0);
-    CleanupDisplayList();
-    SendDisplayList(&gGfxPool->spTask);
+    init_render_image();
+    clear_frame_buffer(0);
+    end_master_display_list();
+    send_display_list(&gGfxPool->spTask);
 
-    D_8032C69C++;
+    frameBufferIndex++;
     gGlobalTimer++;
 }
 
@@ -238,6 +259,7 @@ void func_80247FAC(void)
     gGfxPoolEnd = (u8 *)(gGfxPool->buffer + GFX_POOL_SIZE);
 }
 
+/** Handles vsync. */
 void display_and_vsync(void)
 {
     profiler_log_thread5_time(BEFORE_DISPLAY_LISTS);
@@ -247,7 +269,7 @@ void display_and_vsync(void)
         D_8032C6A0();
         D_8032C6A0 = NULL;
     }
-    SendDisplayList(&gGfxPool->spTask);
+    send_display_list(&gGfxPool->spTask);
     profiler_log_thread5_time(AFTER_DISPLAY_LISTS);
     osRecvMesg(&gGameVblankQueue, &D_80339BEC, OS_MESG_BLOCK);
     osViSwapBuffer((void *)PHYSICAL_TO_VIRTUAL(gFrameBuffers[sCurrFBNum]));
@@ -255,7 +277,7 @@ void display_and_vsync(void)
     osRecvMesg(&gGameVblankQueue, &D_80339BEC, OS_MESG_BLOCK);
     if (++sCurrFBNum == 3)
         sCurrFBNum = 0;
-    if (++D_8032C69C == 3)
-        D_8032C69C = 0;
+    if (++frameBufferIndex == 3)
+        frameBufferIndex = 0;
     gGlobalTimer++;
 }

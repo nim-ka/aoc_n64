@@ -402,7 +402,7 @@ void dispatch_audio_sptask(struct SPTask *spTask)
     }
 }
 
-void SendDisplayList(struct SPTask *spTask)
+void send_display_list(struct SPTask *spTask)
 {
     if (spTask != NULL)
     {

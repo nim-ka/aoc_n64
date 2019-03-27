@@ -26,7 +26,7 @@ OSMesg D_80339CD0;
 OSMesg D_80339CD4;
 struct VblankHandler gGameVblankHandler;
 u32 gFrameBuffers[3];
-u32 D_80339CEC;
+u32 zBufferPtr;
 void *D_80339CF0;
 void *D_80339CF4;
 struct SPTask *gGfxSPTask;
@@ -287,7 +287,7 @@ void setup_game_memory(void)
     set_segment_base_addr(0, (void *)0x80000000);
     osCreateMesgQueue(&D_80339CB8, &D_80339CD4, 1);
     osCreateMesgQueue(&gGameVblankQueue, &D_80339CD0, 1);
-    D_80339CEC    = VIRTUAL_TO_PHYSICAL(D_80000400);
+    zBufferPtr    = VIRTUAL_TO_PHYSICAL(gZBuffer);
     gFrameBuffers[0] = VIRTUAL_TO_PHYSICAL(gFrameBuffer0);
     gFrameBuffers[1] = VIRTUAL_TO_PHYSICAL(gFrameBuffer1);
     gFrameBuffers[2] = VIRTUAL_TO_PHYSICAL(gFrameBuffer2);
