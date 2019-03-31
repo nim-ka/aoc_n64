@@ -1151,31 +1151,31 @@ static void treat_far_home_as_mario(f32 threshold)
     }
 }
 
-#include "behaviors/koopa.c.inc" // TODO: Text arg field name
-#include "behaviors/pokey.c.inc"
-#include "behaviors/swoop.c.inc"
-#include "behaviors/fly_guy.c.inc"
-#include "behaviors/goomba.c.inc"
-#include "behaviors/chain_chomp.c.inc" // TODO: chain_chomp_sub_act_lunge documentation
-#include "behaviors/wiggler.c.inc" // TODO
-#include "behaviors/spiny.c.inc"
-#include "behaviors/enemy_lakitu.c.inc" // TODO
-#include "behaviors/cloud.c.inc"
-#include "behaviors/camera_lakitu.c.inc" // TODO: 104 label, follow cam documentation
-#include "behaviors/monty_mole.c.inc" // TODO
-#include "behaviors/platform_on_track.c.inc"
-#include "behaviors/seesaw_platform.c.inc"
-#include "behaviors/ferris_wheel.c.inc"
-#include "behaviors/water_bomb.c.inc" // TODO: Shadow position
-#include "behaviors/ttc_rotating_solid.c.inc"
-#include "behaviors/ttc_pendulum.c.inc"
-#include "behaviors/ttc_treadmill.c.inc" // TODO
-#include "behaviors/ttc_moving_bar.c.inc"
-#include "behaviors/ttc_cog.c.inc"
-#include "behaviors/ttc_pit_block.c.inc"
-#include "behaviors/ttc_elevator.c.inc"
-#include "behaviors/ttc_2d_rotator.c.inc"
-#include "behaviors/ttc_spinner.c.inc"
+#include "behaviors/koopa.inc.c" // TODO: Text arg field name
+#include "behaviors/pokey.inc.c"
+#include "behaviors/swoop.inc.c"
+#include "behaviors/fly_guy.inc.c"
+#include "behaviors/goomba.inc.c"
+#include "behaviors/chain_chomp.inc.c" // TODO: chain_chomp_sub_act_lunge documentation
+#include "behaviors/wiggler.inc.c" // TODO
+#include "behaviors/spiny.inc.c"
+#include "behaviors/enemy_lakitu.inc.c" // TODO
+#include "behaviors/cloud.inc.c"
+#include "behaviors/camera_lakitu.inc.c" // TODO: 104 label, follow cam documentation
+#include "behaviors/monty_mole.inc.c" // TODO
+#include "behaviors/platform_on_track.inc.c"
+#include "behaviors/seesaw_platform.inc.c"
+#include "behaviors/ferris_wheel.inc.c"
+#include "behaviors/water_bomb.inc.c" // TODO: Shadow position
+#include "behaviors/ttc_rotating_solid.inc.c"
+#include "behaviors/ttc_pendulum.inc.c"
+#include "behaviors/ttc_treadmill.inc.c" // TODO
+#include "behaviors/ttc_moving_bar.inc.c"
+#include "behaviors/ttc_cog.inc.c"
+#include "behaviors/ttc_pit_block.inc.c"
+#include "behaviors/ttc_elevator.inc.c"
+#include "behaviors/ttc_2d_rotator.inc.c"
+#include "behaviors/ttc_spinner.inc.c"
 // Finished included files up to here
 
 
@@ -1238,7 +1238,7 @@ struct Struct80331874
 };
 
 // TODO: Finish
-#include "behaviors/mr_blizzard.c.inc"
+#include "behaviors/mr_blizzard.inc.c"
 
 void *D_80331A24[] =
 {
@@ -1416,8 +1416,8 @@ void BehAnimatesOnFloorSwitchPressLoop(void)
     obj_set_model(D_80331A54[o->oBehParams2ndByte][o->oFloorSwitchPressAnimationUnkF8 / 2].unk04);
 }
 
-#include "behaviors/activated_bf_plat.c.inc"
-#include "behaviors/recovery_heart.c.inc"
+#include "behaviors/activated_bf_plat.inc.c"
+#include "behaviors/recovery_heart.inc.c"
 
 void BehCannonBarrelBubblesLoop(void)
 {
@@ -1786,7 +1786,7 @@ void BehUnagiSubobjectLoop(void)
     }
 }
 
-#include "behaviors/dorrie.c.inc"
+#include "behaviors/dorrie.inc.c"
 
 struct ObjectHitbox sHauntedChairHitbox =
 {
@@ -1975,7 +1975,7 @@ void BehHauntedChairLoop(void)
     }
 }
 
-#include "behaviors/mad_piano.c.inc"
+#include "behaviors/mad_piano.inc.c"
 
 struct ObjectHitbox sFlyingBookendHitbox =
 {
@@ -2373,8 +2373,8 @@ void obj_spit_fire(
     }
 }
 
-#include "behaviors/fire_piranha_plant.c.inc"
-#include "behaviors/fire_spitter.c.inc"
+#include "behaviors/fire_piranha_plant.inc.c"
+#include "behaviors/fire_spitter.inc.c"
 
 void BehSmallPiranhaFlameLoop(void)
 {
@@ -2631,11 +2631,11 @@ void BehSnufitBallsLoop(void)
     }
 }
 
-#include "behaviors/horizontal_grindel.c.inc"
-#include "behaviors/eyerok.c.inc"
-#include "behaviors/klepto.c.inc"
-#include "behaviors/bird.c.inc"
-#include "behaviors/racing_penguin.c.inc"
+#include "behaviors/horizontal_grindel.inc.c"
+#include "behaviors/eyerok.inc.c"
+#include "behaviors/klepto.inc.c"
+#include "behaviors/bird.inc.c"
+#include "behaviors/racing_penguin.inc.c"
 
 struct Struct80331C00 D_80331C00[] =
 {
@@ -2859,12 +2859,12 @@ void BehClamShellLoop(void)
     obj_check_attacks(&sClamShellHitbox, o->oAction);
 }
 
-#include "behaviors/skeeter.c.inc"
-#include "behaviors/swing_platform.c.inc"
-#include "behaviors/donut_platform.c.inc"
-#include "behaviors/ddd_pole.c.inc"
-#include "behaviors/reds_star_marker.c.inc"
-#include "behaviors/triplet_butterfly.c.inc"
+#include "behaviors/skeeter.inc.c"
+#include "behaviors/swing_platform.inc.c"
+#include "behaviors/donut_platform.inc.c"
+#include "behaviors/ddd_pole.inc.c"
+#include "behaviors/reds_star_marker.inc.c"
+#include "behaviors/triplet_butterfly.inc.c"
 
 
 static struct ObjectHitbox sBubbaHitbox =

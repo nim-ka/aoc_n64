@@ -52,6 +52,7 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
+.vscode/*
 doxygen/doxygen/*
 build/*
 *.dump
