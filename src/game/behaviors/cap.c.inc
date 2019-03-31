@@ -200,23 +200,23 @@ void BehNormalCapInit(void) {
 }
 
 void func_802F1190(void) {
-    save_file_clear_flags(0x10000);
+    save_file_clear_flags(SAVE_FLAG_CAP_ON_GROUND);
 
     switch (gCurrCourseNum) {
         case COURSE_SSL:
-            save_file_set_flags(0x20000);
+            save_file_set_flags(SAVE_FLAG_CAP_ON_KLEPTO);
             break;
 
         case COURSE_SL:
-            save_file_set_flags(0x80000);
+            save_file_set_flags(SAVE_FLAG_CAP_ON_MR_BLIZZARD);
             break;
 
         case COURSE_TTM:
-            save_file_set_flags(0x40000);
+            save_file_set_flags(SAVE_FLAG_CAP_ON_UKIKI);
             break;
 
         default:
-            save_file_set_flags(0x20000);
+            save_file_set_flags(SAVE_FLAG_CAP_ON_KLEPTO);
             break;
     }
 }
@@ -260,7 +260,7 @@ void BehNormalCapLoop(void) {
         func_802F1190();
 
     if (func_802F0904() == 1)
-        save_file_clear_flags(0x10000);
+        save_file_clear_flags(SAVE_FLAG_CAP_ON_GROUND);
 }
 
 void BehVanishCapInit(void) {

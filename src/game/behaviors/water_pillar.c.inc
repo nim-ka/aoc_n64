@@ -33,7 +33,7 @@ void func_802B95A4(void)
             if(sp1C->oAction > 1)
             {
                 o->oAction++;
-                save_file_set_flags(512);
+                save_file_set_flags(SAVE_FLAG_MOAT_DRAINED);
                 func_80321228();
             }
         }
@@ -76,5 +76,5 @@ void BehWaterLevelPillarLoop(void)
     else
         func_802B95A4();
     gWaterRegions[18] = gWaterLevels[2];
-    gWaterRegions[6]    = gWaterLevels[0];
+    gWaterRegions[6]  = gWaterLevels[0];
 }

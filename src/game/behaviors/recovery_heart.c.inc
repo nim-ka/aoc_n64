@@ -1,4 +1,17 @@
 
+struct ObjectHitbox sRecoveryHeartHitbox =
+{
+    /* interactType:      */ 0,
+    /* downOffset:        */ 0,
+    /* damageOrCoinValue: */ 0,
+    /* health:            */ 0,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 50,
+    /* height:            */ 50,
+    /* hurtboxRadius:     */ 50,
+    /* hurtboxHeight:     */ 50,
+};
+
 void BehRecoveryHeartLoop(void)
 {
     set_object_hitbox(o, &sRecoveryHeartHitbox);

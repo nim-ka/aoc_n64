@@ -1,6 +1,13 @@
 
 // Note: The filename is abbreviated to avoid compiler seg fault on long paths
 
+void *D_80331AD4[] =
+{
+    bits_seg7_collision_0701AD54,
+    bitfs_seg7_collision_070157E0,
+    bitfs_seg7_collision_07015124,
+};
+
 void bhv_activated_back_and_forth_platform_init(void)
 {
     s32 instance = ((u16)(o->oBehParams >> 16) & 0x0300) >> 8;

@@ -1,4 +1,46 @@
 
+struct ObjectHitbox sMrBlizzardHitbox =
+{
+    /* interactType:      */ INTERACT_MR_BLIZZARD,
+    /* downOffset:        */ 24,
+    /* damageOrCoinValue: */ 2,
+    /* health:            */ 99,
+    /* numLootCoins:      */ 3,
+    /* radius:            */ 65,
+    /* height:            */ 170,
+    /* hurtboxRadius:     */ 65,
+    /* hurtboxHeight:     */ 170,
+};
+
+struct SpawnParticlesInfo D_80331A00 =
+{
+    /* behParam:        */ 0,
+    /* count:           */ 6,
+    /* model:           */ MODEL_SNOWMAN_SNOW_BALL,
+    /* offsetY:         */ 0,
+    /* forwardVelBase:  */ 5,
+    /* forwardVelRange: */ 5,
+    /* velYBase:        */ 10,
+    /* velYRange:       */ 10,
+    /* gravity:         */ -3,
+    /* dragStrength:    */ 0,
+    /* sizeBase:        */ 3.0f,
+    /* sizeRange:       */ 5.0f,
+};
+
+struct ObjectHitbox sMrBlizzardSnowballHitbox =
+{
+    /* interactType:      */ INTERACT_MR_BLIZZARD,
+    /* downOffset:        */ 12,
+    /* damageOrCoinValue: */ 1,
+    /* health:            */ 99,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 30,
+    /* height:            */ 30,
+    /* hurtboxRadius:     */ 25,
+    /* hurtboxHeight:     */ 25,
+};
+
 static void func_80306ED4(s8 arg0, s8 arg1, s8 arg2, s8 arg3, s8 arg4)
 {
     D_80331A00.count = arg0;

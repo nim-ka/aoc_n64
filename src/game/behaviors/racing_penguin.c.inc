@@ -1,3 +1,8 @@
+static struct RacingPenguinData sRacingPenguinData[] =
+{
+    { 55, 200.0f, 200.0f },
+    { 164, 350.0f, 250.0f },
+};
 
 void bhv_racing_penguin_init(void)
 {

@@ -1,3 +1,21 @@
+static struct ObjectHitbox sTripletButterflyExplodeHitbox =
+{
+    /* interactType:      */ INTERACT_MR_BLIZZARD,
+    /* downOffset:        */ 50,
+    /* damageOrCoinValue: */ 2,
+    /* health:            */ 1,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 100,
+    /* height:            */ 50,
+    /* hurtboxRadius:     */ 100,
+    /* hurtboxHeight:     */ 50,
+};
+
+static struct TripletButterflyActivationData sTripletButterflyActivationData[] =
+{
+    { 0xB4, NULL, 0.5f },
+    { 0xD4, beh_1up_walking, 1.0f },
+};
 
 static void triplet_butterfly_act_init(void)
 {

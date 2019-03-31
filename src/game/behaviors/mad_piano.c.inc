@@ -1,4 +1,17 @@
 
+static struct ObjectHitbox sMadPianoHitbox =
+{
+    /* interactType:      */ INTERACT_MR_BLIZZARD,
+    /* downOffset:        */ 0,
+    /* damageOrCoinValue: */ 3,
+    /* health:            */ 99,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 200,
+    /* height:            */ 150,
+    /* hurtboxRadius:     */ 200,
+    /* hurtboxHeight:     */ 150,
+};
+
 static void mad_piano_act_wait(void)
 {
     func_8029ED38(0);

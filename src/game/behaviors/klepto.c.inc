@@ -1,3 +1,24 @@
+static struct ObjectHitbox sKleptoHitbox =
+{
+    /* interactType:      */ INTERACT_HIT_FROM_BELOW,
+    /* downOffset:        */ 0,
+    /* damageOrCoinValue: */ 0,
+    /* health:            */ 1,
+    /* numLootCoins:      */ 0,
+    /* radius:            */ 160,
+    /* height:            */ 250,
+    /* hurtboxRadius:     */ 80,
+    /* hurtboxHeight:     */ 200,
+};
+
+static Vec3f sKleptoTargetPositions[] =
+{
+    { 2200.0f, 1250.0f, -2820.0f },
+    { -6200.0f, 1250.0f, -2800.0f },
+    { -6200.0f, 1250.0f, 1150.0f },
+};
+
+static u8 sKleptoAttackHandlers[] = { 2, 2, 5, 5, 2, 2 };
 
 static void klepto_target_mario(void)
 {
