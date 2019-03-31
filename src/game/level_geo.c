@@ -30,7 +30,7 @@ Gfx *Geo18_802761D0(int a, struct GraphNode *b, float c[4][4])
             vec3f_to_vec3s(sp40, D_8032CF9C->unk28);
             vec3f_to_vec3s(sp48, D_8032CF9C->unk1C);
             vec3f_to_vec3s(sp50, D_8033B1B0->unk4);
-            sp3C = func_802DECB8(sp28, sp50, sp40, sp48);
+            sp3C = envfx_update_particles(sp28, sp50, sp40, sp48);
             if (sp3C != NULL)
             {
                 Mtx *mtx = alloc_display_list(sizeof(*mtx));
@@ -49,7 +49,7 @@ Gfx *Geo18_802761D0(int a, struct GraphNode *b, float c[4][4])
         vec3s_copy(sp40, D_80385FDC);
         vec3s_copy(sp48, D_80385FDC);
         vec3s_copy(sp50, D_80385FDC);
-        func_802DECB8(0, sp50, sp40, sp48);
+        envfx_update_particles(0, sp50, sp40, sp48);
     }
     return sp38;
 }

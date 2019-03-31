@@ -45,15 +45,15 @@ void BehWhirlpoolLoop(void)
         o->header.gfx.node.flags &= ~0x10; /* bit 4 */
 
         //not sure if actually an array
-        D_803600B0[7] = 60;
-        D_803600B0[1] = o->oPosX;
-        D_803600B0[3] = o->oPosZ;
-        D_803600B0[4] = o->oPosX;
-        D_803600B0[5] = o->oPosY;
-        D_803600B0[6] = o->oPosZ;
-        D_803600B0[2] = o->oPosY + 800.0f;
-        D_803600B0[8] = o->oWhirlpoolInitFacePitch;
-        D_803600B0[9] = o->oWhirlpoolInitFaceRoll;
+        gEnvFxBubbleConfig[ENVFX_STATE_PARTICLECOUNT] = 60;
+        gEnvFxBubbleConfig[ENVFX_STATE_SRC_X] = o->oPosX;
+        gEnvFxBubbleConfig[ENVFX_STATE_SRC_Z] = o->oPosZ;
+        gEnvFxBubbleConfig[ENVFX_STATE_DEST_X] = o->oPosX;
+        gEnvFxBubbleConfig[ENVFX_STATE_DEST_Y] = o->oPosY;
+        gEnvFxBubbleConfig[ENVFX_STATE_DEST_Z] = o->oPosZ;
+        gEnvFxBubbleConfig[ENVFX_STATE_SRC_Y] = o->oPosY + 800.0f;
+        gEnvFxBubbleConfig[ENVFX_STATE_PITCH] = o->oWhirlpoolInitFacePitch;
+        gEnvFxBubbleConfig[ENVFX_STATE_YAW] = o->oWhirlpoolInitFaceRoll;
         
         func_802E70DC();
         
@@ -62,7 +62,7 @@ void BehWhirlpoolLoop(void)
     else
     {
         o->header.gfx.node.flags |= 0x10; /* bit 4 */
-        D_803600B0[7] = 0;
+        gEnvFxBubbleConfig[ENVFX_STATE_PARTICLECOUNT] = 0;
     }
 
     PlaySound(0x40090001);
@@ -74,12 +74,12 @@ void BehJetStreamLoop(void)
 {
     if (o->oDistanceToMario < 5000.0f)
     {
-        D_803600B0[7] = 60;
-        D_803600B0[1] = o->oPosX;
-        D_803600B0[2] = o->oPosY;
-        D_803600B0[3] = o->oPosZ;
+        gEnvFxBubbleConfig[ENVFX_STATE_PARTICLECOUNT] = 60;
+        gEnvFxBubbleConfig[ENVFX_STATE_SRC_X] = o->oPosX;
+        gEnvFxBubbleConfig[ENVFX_STATE_SRC_Y] = o->oPosY;
+        gEnvFxBubbleConfig[ENVFX_STATE_SRC_Z] = o->oPosZ;
     }
-    else D_803600B0[7] = 0;
+    else gEnvFxBubbleConfig[ENVFX_STATE_PARTICLECOUNT] = 0;
 
     PlaySound(0x40090001);
 }

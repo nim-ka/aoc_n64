@@ -12,22 +12,35 @@
 #include "audio/interface_2.h"
 #include "obj_behaviors.h"
 
-struct struct802DE838 {
-    s16 unk00;
-    s16 unk02;
-    s16 unk04;
+/** This file contains the function that handles 'environment effects',
+ *  which are particle effects related to the level type that, unlike 
+ *  object-based particle effects, are rendered more efficiently by manually
+ *  generating display lists instead of drawing each particle separately. 
+ *  This file implements snow effects, while in 'ingame_menu_3.c' the 
+ *  implementation for flowers (unused), lava bubbles and jetstream bubbles
+ *  can be found. 
+ *  The main entry point for envfx is at the bottom of this file, which is 
+ *  called from Geo18_802761D0 in level_geo.c
+ */
+
+// Might be duplicate
+struct SnowFlakeVertex {
+    s16 x;
+    s16 y;
+    s16 z;
 };
 
-struct struct802DCEE0 *D_80360090;
-Vec3i D_80360098;
-s16 D_803600A4;
-s16 D_803600A6;
-
+struct EnvFxParticle *gEnvFxBuffer;
+Vec3i gSnowCylinderLastPos;
+s16 gSnowParticleCount;
+s16 gSnowParticleMaxCount;
 
 /* DATA */
-s8 D_80330640 = 0;
+s8 gEnvFxMode = 0;
 UNUSED s32 D_80330644 = 0;
-Vtx_t D_80330648[3] = 
+
+/// Template for a snow particle triangle
+Vtx_t gSnowTempVtx[3] = 
 {
     {
         {-5, 5, 0},
@@ -48,360 +61,436 @@ Vtx_t D_80330648[3] =
         {0x7F, 0x7F, 0x7F, 0xFF}
     },
 };
-struct struct802DE838 D_80330678 = {-5, 5, 0};
-struct struct802DE838 D_80330680 = {-5, -5, 0};
-struct struct802DE838 D_80330688 = {5, 5, 0};
+
+// Change these to make snowflakes smaller or bigger
+struct SnowFlakeVertex gSnowFlakeVertex1 = {-5, 5, 0};
+struct SnowFlakeVertex gSnowFlakeVertex2 = {-5, -5, 0};
+struct SnowFlakeVertex gSnowFlakeVertex3 = {5, 5, 0};
 
 extern void *tiny_bubble_dl_0B006AB0;
 extern void *tiny_bubble_dl_0B006A50;
 extern void *tiny_bubble_dl_0B006CD8;
 
-s32 func_802DCEE0(s32 sp28) {
-    switch (sp28) {
-        case 0:
+/** Initialize snow particles by allocating a buffer for storing their state
+ *  and setting a start amount.
+ */
+s32 envfx_init_snow(s32 mode) {
+    switch (mode) {
+        case ENVFX_MODE_NONE:
             return 0;
 
-        case 1:
-            D_803600A6 = 140;
-            D_803600A4 = 5;
+        case ENVFX_SNOW_NORMAL:
+            gSnowParticleMaxCount = 140;
+            gSnowParticleCount = 5;
             break;
 
-        case 2:
-            D_803600A6 = 30;
-            D_803600A4 = 30;
+        case ENVFX_SNOW_WATER:
+            gSnowParticleMaxCount = 30;
+            gSnowParticleCount = 30;
             break;
 
-        case 3:
-            D_803600A6 = 140;
-            D_803600A4 = 140;
+        case ENVFX_SNOW_BLIZZARD:
+            gSnowParticleMaxCount = 140;
+            gSnowParticleCount = 140;
             break;
     }
 
-    D_80360090 = (struct struct802DCEE0 *)mem_pool_alloc(D_8033A124, D_803600A6 * sizeof(struct struct802DCEE0));
-    if (!D_80360090)
+    gEnvFxBuffer = (struct EnvFxParticle *)mem_pool_alloc(D_8033A124, gSnowParticleMaxCount * sizeof(struct EnvFxParticle));
+    if (!gEnvFxBuffer)
         return 0;
 
-    bzero(D_80360090, D_803600A6 * sizeof(struct struct802DCEE0));
+    bzero(gEnvFxBuffer, gSnowParticleMaxCount * sizeof(struct EnvFxParticle));
 
-    D_80330640 = sp28;
+    gEnvFxMode = mode;
     return 1;
 }
 
-void func_802DD028(s32 sp30, Vec3s sp34) {
-    s32 sp2C = gGlobalTimer;
-    f32 sp28;
-    switch (sp30) {
-        case 1:
-            if (D_803600A6 > D_803600A4) {
-                if ((sp2C & 0x3F) == 0)
-                    D_803600A4 += 5;
+/** Update the amount of snow particles on screen. 
+ *  Normal snow starts with few flakes and slowly increases to the maximum.
+ *  For water snow, this is dependent on how deep underwater you are. 
+ *  Blizzard snows starts at the maximum amount and doesn't change.
+ */
+void envfx_update_snowflake_count(s32 mode, Vec3s marioPos) {
+    s32 timer = gGlobalTimer;
+    f32 waterLevel;
+    switch (mode) {
+        case ENVFX_SNOW_NORMAL:
+            if (gSnowParticleMaxCount > gSnowParticleCount) {
+                if ((timer & 0x3F) == 0)
+                    gSnowParticleCount += 5;
             }
             break;
 
-        case 2:
-            sp28 = find_water_level(sp34[0], sp34[2]);
+        case ENVFX_SNOW_WATER:
+            waterLevel = find_water_level(marioPos[0], marioPos[2]);
             
-            D_803600A4 = (((s32)((sp28 - 400.f - (f32)sp34[1]) * 1.0e-3) << 0x10) >> 0x10) * 5;
+            gSnowParticleCount = (((s32)((waterLevel - 400.f - (f32)marioPos[1]) * 1.0e-3) << 0x10) >> 0x10) * 5;
 
-            if (D_803600A4 < 0)
-                D_803600A4 = 0;
+            if (gSnowParticleCount < 0)
+                gSnowParticleCount = 0;
 
-            if (D_803600A4 > D_803600A6)
-                D_803600A4 = D_803600A6;
+            if (gSnowParticleCount > gSnowParticleMaxCount)
+                gSnowParticleCount = gSnowParticleMaxCount;
 
             break;
 
-        case 3:
+        case ENVFX_SNOW_BLIZZARD:
             break;
 
     }
 }
 
-void func_802DD1AC(void *sp18) {
-    if (D_80330640) {
-        if (sp18) {
-            mem_pool_free(D_8033A124, sp18);
+/** Deallocate the buffer storing snow particles and set the environment effect
+ *  to none.
+ */
+void envfx_cleanup_snow(void *snowParticleArray) {
+    if (gEnvFxMode) {
+        if (snowParticleArray) {
+            mem_pool_free(D_8033A124, snowParticleArray);
         }
-        D_80330640 = 0;
+        gEnvFxMode = ENVFX_MODE_NONE;
     }
 }
 
-void func_802DD204(Vec3s sp30, Vec3s sp34, s16 *sp38, s16 *sp3C, s16 *sp40) {
-    f32 sp2C = sp34[0] - sp30[0];
-    f32 sp28 = sp34[1] - sp30[1];  
-    f32 sp24 = sp34[2] - sp30[2];  
+/** Given two points, return the vector from one to the other represented
+ *  as euler angles and a length 
+ */
+void orbit_from_positions(Vec3s from, Vec3s to, s16 *radius, s16 *pitch, s16 *yaw) {
+    f32 dx = to[0] - from[0];
+    f32 dy = to[1] - from[1];  
+    f32 dz = to[2] - from[2];  
 
-    *sp38 = (s16)sqrtf(sp2C * sp2C + sp28 * sp28 + sp24 * sp24);
-    *sp3C = atan2s(sqrtf(sp2C * sp2C + sp24 * sp24), sp28);
-    *sp40 = atan2s(sp24, sp2C);
+    *radius = (s16)sqrtf(dx * dx + dy * dy + dz * dz);
+    *pitch = atan2s(sqrtf(dx * dx + dz * dz), dy);
+    *yaw = atan2s(dz, dx);
 }
 
-void func_802DD32C(Vec3s a0, Vec3s a1, s16 a2, s16 a3, s16 sp12) {
-    a1[0] = a0[0] + a2 * coss(a3) * sins(sp12);
-    a1[1] = a0[1] + a2 * sins(a3);
-    a1[2] = a0[2] + a2 * coss(a3) * coss(sp12);
+/** Calculate the 'result' vector as the position of the 'origin' vector
+ *  with a vector added represented by radius, pitch and yaw. 
+ */
+void pos_from_orbit(Vec3s origin, Vec3s result, s16 radius, s16 pitch, s16 yaw) {
+    result[0] = origin[0] + radius * coss(pitch) * sins(yaw);
+    result[1] = origin[1] + radius * sins(pitch);
+    result[2] = origin[2] + radius * coss(pitch) * coss(yaw);
 }
 
-s32 func_802DD450(s32 a0, s32 a1, s32 a2, s32 a3) {
-    s32 spC = (D_80360090 + a0)->unk04;
-    s32 sp8 = (D_80360090 + a0)->unk08;
-    s32 sp4 = (D_80360090 + a0)->unk0C;
+/** Check whether the snowflake with the given index is inside view, where 
+ *  'view' is a cylinder of radius 300 and height 400 centered at the input
+ *  x, y and z.
+ */
+s32 envfx_is_snowflake_alive(s32 index, s32 snowCylinderX, s32 snowCylinderY, s32 snowCylinderZ) {
+    s32 x = (gEnvFxBuffer + index)->xPos;
+    s32 y = (gEnvFxBuffer + index)->yPos;
+    s32 z = (gEnvFxBuffer + index)->zPos;
 
-    if ((spC - a1) * (spC - a1) 
-        + (sp4 - a3) * (sp4 - a3) >= 0x00015F91)
+    if (sqr(x - snowCylinderX) + sqr(z - snowCylinderZ) > sqr(300))
         return 0;
 
-    if ((sp8 < a2 - 0xC9) || (a2 + 0xC9 < sp8))
+    if ((y < snowCylinderY - 201) || (snowCylinderY + 201 < y))
         return 0;
     
     return 1;
 }
 
-void func_802DD548(s32 sp38, s32 sp3C, s32 sp40) {
-    s32 sp34;
-    s32 sp30 = sp38 - D_80360098[0];
-    s32 sp2C = sp3C - D_80360098[1];
-    s32 sp28 = sp40 - D_80360098[2];
 
-    for (sp34 = 0; sp34 < D_803600A4; sp34++) {
-        (D_80360090 + sp34)->unk00 = func_802DD450(sp34, sp38, sp3C, sp40);
-        if ((D_80360090 + sp34)->unk00 == 0)  {
-            (D_80360090 + sp34)->unk04 = 400.0f * RandomFloat() - 200.0f + sp38 + (s16)(sp30 * 2);
-            (D_80360090 + sp34)->unk0C = 400.0f * RandomFloat() - 200.0f + sp40 + (s16)(sp28 * 2);
-            (D_80360090 + sp34)->unk08 = 200.0f * RandomFloat() + sp3C;
-            (D_80360090 + sp34)->unk00 = 1;   
+/** Update the position of each snowflake. Snowflakes wiggle by having a
+ *  random value added to their position each frame. If snowflakes get out 
+ *  of view (where view = a small cylinder in front of the camera) their 
+ *  position is reset to somewhere in view. 
+ *  Since the cylinder of snow is so close to the camera, snow flakes would
+ *  move out of view very quickly when the camera moves. To mitigate this, 
+ *  a portion of the difference between the previous and current snowCylinder 
+ *  position is added to snowflakes to keep them in view for longer. That's
+ *  why the snow looks a bit off in 3d, it's a lot closer than you'd think
+ *  but appears to be further by means of hacky position updates. This might 
+ *  have been done because larger, further away snowflakes are occluded easily
+ *  by level geometry, wasting many particles.
+ */
+void envfx_update_snow_normal(s32 snowCylinderX, s32 snowCylinderY, s32 snowCylinderZ) {
+    s32 i;
+    s32 deltaX = snowCylinderX - gSnowCylinderLastPos[0];
+    s32 deltaY = snowCylinderY - gSnowCylinderLastPos[1];
+    s32 deltaZ = snowCylinderZ - gSnowCylinderLastPos[2];
+
+    for (i = 0; i < gSnowParticleCount; i++) {
+        (gEnvFxBuffer + i)->isAlive = envfx_is_snowflake_alive(i, snowCylinderX, snowCylinderY, snowCylinderZ);
+        if ((gEnvFxBuffer + i)->isAlive == 0)  {
+            (gEnvFxBuffer + i)->xPos = 400.0f * RandomFloat() - 200.0f + snowCylinderX + (s16)(deltaX * 2);
+            (gEnvFxBuffer + i)->zPos = 400.0f * RandomFloat() - 200.0f + snowCylinderZ + (s16)(deltaZ * 2);
+            (gEnvFxBuffer + i)->yPos = 200.0f * RandomFloat() + snowCylinderY;
+            (gEnvFxBuffer + i)->isAlive = 1;   
         } else {
-            (D_80360090 + sp34)->unk04 += RandomFloat() * 2.0f - 1.0f + (s16)(sp30 / 1.2);
-            (D_80360090 + sp34)->unk08 -= -(s16)(sp2C * 0.8) + 2;
-            (D_80360090 + sp34)->unk0C += RandomFloat() * 2.0f - 1.0f + (s16)(sp28 / 1.2); 
+            (gEnvFxBuffer + i)->xPos += RandomFloat() * 2.0f - 1.0f + (s16)(deltaX / 1.2);
+            (gEnvFxBuffer + i)->yPos -= -(s16)(deltaY * 0.8) + 2;
+            (gEnvFxBuffer + i)->zPos += RandomFloat() * 2.0f - 1.0f + (s16)(deltaZ / 1.2); 
         }
     }
 
-    D_80360098[0] = sp38;
-    D_80360098[1] = sp3C;
-    D_80360098[2] = sp40;
+    gSnowCylinderLastPos[0] = snowCylinderX;
+    gSnowCylinderLastPos[1] = snowCylinderY;
+    gSnowCylinderLastPos[2] = snowCylinderZ;
 }
 
-void func_802DD978(s32 sp38, s32 sp3C, s32 sp40) {
-    s32 sp34;
-    s32 sp30 = sp38 - D_80360098[0];
-    s32 sp2C = sp3C - D_80360098[1];
-    s32 sp28 = sp40 - D_80360098[2];
 
-    for (sp34 = 0; sp34 < D_803600A4; sp34++) {
-        (D_80360090 + sp34)->unk00 = func_802DD450(sp34, sp38, sp3C, sp40);
-        if ((D_80360090 + sp34)->unk00 == 0)  {
-            (D_80360090 + sp34)->unk04 = 400.0f * RandomFloat() - 200.0f + sp38 + (s16)(sp30 * 2);
-            (D_80360090 + sp34)->unk0C = 400.0f * RandomFloat() - 200.0f + sp40 + (s16)(sp28 * 2);
-            (D_80360090 + sp34)->unk08 = 400.0f * RandomFloat() - 200.0f + sp3C;
-            (D_80360090 + sp34)->unk00 = 1;   
+/** Unused function. Basically a copy-paste of envfx_update_snow_normal, 
+ *  but an extra 20 units is added to each snowflake x and snowflakes can 
+ *  respawn in y-range [-200, 200] instead of [0, 200] relative to snowCylinderY
+ *  They also fall a bit faster (with vertical speed -5 instead of -2).
+ */
+void envfx_update_snow_blizzard(s32 snowCylinderX, s32 snowCylinderY, s32 snowCylinderZ) {
+    s32 i;
+    s32 deltaX = snowCylinderX - gSnowCylinderLastPos[0];
+    s32 deltaY = snowCylinderY - gSnowCylinderLastPos[1];
+    s32 deltaZ = snowCylinderZ - gSnowCylinderLastPos[2];
+
+    for (i = 0; i < gSnowParticleCount; i++) {
+        (gEnvFxBuffer + i)->isAlive = envfx_is_snowflake_alive(i, snowCylinderX, snowCylinderY, snowCylinderZ);
+        if ((gEnvFxBuffer + i)->isAlive == 0)  {
+            (gEnvFxBuffer + i)->xPos = 400.0f * RandomFloat() - 200.0f + snowCylinderX + (s16)(deltaX * 2);
+            (gEnvFxBuffer + i)->zPos = 400.0f * RandomFloat() - 200.0f + snowCylinderZ + (s16)(deltaZ * 2);
+            (gEnvFxBuffer + i)->yPos = 400.0f * RandomFloat() - 200.0f + snowCylinderY;
+            (gEnvFxBuffer + i)->isAlive = 1;   
         } else {
-            (D_80360090 + sp34)->unk04 += RandomFloat() * 2.0f - 1.0f + (s16)(sp30 / 1.2) + 20.0f;
-            (D_80360090 + sp34)->unk08 -= -(s16)(sp2C * 0.8) + 5;
-            (D_80360090 + sp34)->unk0C += RandomFloat() * 2.0f - 1.0f + (s16)(sp28 / 1.2);           
+            (gEnvFxBuffer + i)->xPos += RandomFloat() * 2.0f - 1.0f + (s16)(deltaX / 1.2) + 20.0f;
+            (gEnvFxBuffer + i)->yPos -= -(s16)(deltaY * 0.8) + 5;
+            (gEnvFxBuffer + i)->zPos += RandomFloat() * 2.0f - 1.0f + (s16)(deltaZ / 1.2);           
         }
     }
 
-    D_80360098[0] = sp38;
-    D_80360098[1] = sp3C;
-    D_80360098[2] = sp40;
+    gSnowCylinderLastPos[0] = snowCylinderX;
+    gSnowCylinderLastPos[1] = snowCylinderY;
+    gSnowCylinderLastPos[2] = snowCylinderZ;
 }
 
-s32 Unknown802DDDC4(s32 a0, UNUSED s32 sp4, s32 a2) {
-    if (sqr(a0 - 3380) + sqr(a2 + 520) < 0x00895440) 
+/*! Unused function. Checks whether a position is laterally within 3000 units 
+ *  to the point (x: 3380, z: -520). Considering there is an unused blizzard 
+ *  snow mode, this could have been used to check whether Mario is in a 
+ *  'blizzard area'. In Cool Cool Mountain and Snowman's Land the area lies
+ *  near the starting point and doesn't seem meaningfull. Notably, the point is 
+ *  close to the entrance of SL, so maybe there were plans for an extra hint to
+ *  find it. The radius of 3000 units is quite large for that though, covering 
+ *  more than half of the mirror room. Note that in Geo18_802761D0 of level_geo.c
+ *  if a0 == 4, the environment effects are updated with mirror mario's position 
+ *  3 times instead of mario, cam from and cam to positions, further suggesting
+ *  that this had something to do with the mirror room. a0 is fixed to 1 so the
+ *  meaning of that parameter is unclear as well.
+ */
+s32 is_in_mystery_snow_area(s32 x, UNUSED s32 y, s32 z) {
+    if (sqr(x - 3380) + sqr(z + 520) < sqr(3000)) 
         return 1;
     
     return 0;
 }
 
-void func_802DDE28(s32 sp20, s32 sp24, s32 sp28) {
-    s32 sp1C;
+/** Update the position of underwater snow particles. Since they are stationary,
+ *  they merely jump back into view when they are out of view.
+ */
+void envfx_update_snow_water(s32 snowCylinderX, s32 snowCylinderY, s32 snowCylinderZ) {
+    s32 i;
 
-    for (sp1C = 0; sp1C < D_803600A4; sp1C++) {
-        (D_80360090 + sp1C)->unk00 = func_802DD450(sp1C, sp20, sp24, sp28);
-        if ((D_80360090 + sp1C)->unk00 == 0)  {
-            (D_80360090 + sp1C)->unk04 = 400.0f * RandomFloat() - 200.0f + sp20;
-            (D_80360090 + sp1C)->unk0C = 400.0f * RandomFloat() - 200.0f + sp28;
-            (D_80360090 + sp1C)->unk08 = 400.0f * RandomFloat() - 200.0f + sp24;
-            (D_80360090 + sp1C)->unk00 = 1;   
+    for (i = 0; i < gSnowParticleCount; i++) {
+        (gEnvFxBuffer + i)->isAlive = envfx_is_snowflake_alive(i, snowCylinderX, snowCylinderY, snowCylinderZ);
+        if ((gEnvFxBuffer + i)->isAlive == 0)  {
+            (gEnvFxBuffer + i)->xPos = 400.0f * RandomFloat() - 200.0f + snowCylinderX;
+            (gEnvFxBuffer + i)->zPos = 400.0f * RandomFloat() - 200.0f + snowCylinderZ;
+            (gEnvFxBuffer + i)->yPos = 400.0f * RandomFloat() - 200.0f + snowCylinderY;
+            (gEnvFxBuffer + i)->isAlive = 1;   
         }
     }
 }
 
-void func_802DE01C(Vec3s a0, Vec3s a1, Vec3s a2, s16 a3, s16 sp48) {
-    f32 sp34 = coss(a3);
-    f32 sp30 = sins(a3);
-    f32 sp2C = coss(-sp48);
-    f32 sp28 = sins(-sp48);
+/** Rotates the input vertices according to the give pitch and yaw. This
+ *  is needed for billboarding of particles.
+ */
+void rotate_triangle_vertices(Vec3s vertex1, Vec3s vertex2, Vec3s vertex3, s16 pitch, s16 yaw) {
+    f32 cosPitch = coss(pitch);
+    f32 sinPitch = sins(pitch);
+    f32 cosMYaw = coss(-yaw);
+    f32 sinMYaw = sins(-yaw);
 
-    Vec3f sp1C, sp10, sp4;
+    Vec3f v1, v2, v3;
 
-    sp1C[0] = a0[0];
-    sp1C[1] = a0[1];
-    sp1C[2] = a0[2];
+    v1[0] = vertex1[0];
+    v1[1] = vertex1[1];
+    v1[2] = vertex1[2];
 
-    sp10[0] = a1[0];
-    sp10[1] = a1[1];
-    sp10[2] = a1[2];
+    v2[0] = vertex2[0];
+    v2[1] = vertex2[1];
+    v2[2] = vertex2[2];
 
-    sp4[0] = a2[0];
-    sp4[1] = a2[1];
-    sp4[2] = a2[2];
+    v3[0] = vertex3[0];
+    v3[1] = vertex3[1];
+    v3[2] = vertex3[2];
 
-    a0[0] = sp1C[0] * sp2C + sp1C[1] * (sp30 * sp28) + sp1C[2] * (-sp28 * sp34);
-    a0[1] = sp1C[1] * sp34 + sp1C[2] * sp30; 
-    a0[2] = sp1C[0] * sp28 + sp1C[1] * (-sp30 * sp2C) + sp1C[2] * (sp34 * sp2C);
+    vertex1[0] = v1[0] * cosMYaw + v1[1] * (sinPitch * sinMYaw) + v1[2] * (-sinMYaw * cosPitch);
+    vertex1[1] = v1[1] * cosPitch + v1[2] * sinPitch; 
+    vertex1[2] = v1[0] * sinMYaw + v1[1] * (-sinPitch * cosMYaw) + v1[2] * (cosPitch * cosMYaw);
 
-    a1[0] = sp10[0] * sp2C + sp10[1] * (sp30 * sp28) + sp10[2] * (-sp28 * sp34);
-    a1[1] = sp10[1] * sp34 + sp10[2] * sp30; 
-    a1[2] = sp10[0] * sp28 + sp10[1] * (-sp30 * sp2C) + sp10[2] * (sp34 * sp2C);
+    vertex2[0] = v2[0] * cosMYaw + v2[1] * (sinPitch * sinMYaw) + v2[2] * (-sinMYaw * cosPitch);
+    vertex2[1] = v2[1] * cosPitch + v2[2] * sinPitch; 
+    vertex2[2] = v2[0] * sinMYaw + v2[1] * (-sinPitch * cosMYaw) + v2[2] * (cosPitch * cosMYaw);
 
-    a2[0] = sp4[0] * sp2C + sp4[1] * (sp30 * sp28) + sp4[2] * (-sp28 * sp34);
-    a2[1] = sp4[1] * sp34 + sp4[2] * sp30; 
-    a2[2] = sp4[0] * sp28 + sp4[1] * (-sp30 * sp2C) + sp4[2] * (sp34 * sp2C);
+    vertex3[0] = v3[0] * cosMYaw + v3[1] * (sinPitch * sinMYaw) + v3[2] * (-sinMYaw * cosPitch);
+    vertex3[1] = v3[1] * cosPitch + v3[2] * sinPitch; 
+    vertex3[2] = v3[0] * sinMYaw + v3[1] * (-sinPitch * cosMYaw) + v3[2] * (cosPitch * cosMYaw);
 }
 
-void func_802DE424(Gfx *sp28, s32 sp2C, Vec3s sp30, Vec3s sp34, Vec3s sp38) {
-    s32 sp24 = 0;
-    Vtx *sp20 = (Vtx *)alloc_display_list(15 * sizeof(Vtx));
+/** Append 15 vertices to 'gfx', which is enough for 5 snowflakes starting at
+ *  'index' in the buffer. The 3 input vertices represent the roated triangle 
+ *  around (0,0,0) that will be translated to snowflake positions to draw the 
+ *  snowflake image.
+ */
+void append_snowflake_vertex_buffer(Gfx *gfx, s32 index, Vec3s vertex1, Vec3s vertex2, Vec3s vertex3) {
+    s32 i = 0;
+    Vtx *vertBuf = (Vtx *)alloc_display_list(15 * sizeof(Vtx));
 
-    if (sp20 == NULL)
+    if (vertBuf == NULL)
         return;
 
-    for (sp24 = 0; sp24 < 15; sp24 += 3)
+    for (i = 0; i < 15; i += 3)
     {
-        sp20[sp24] = ((Vtx *)D_80330648)[0];
-        sp20[sp24].v.ob[0] = sp30[0] + (D_80360090 + (sp2C + sp24 / 3))->unk04;
-        sp20[sp24].v.ob[1] = sp30[1] + (D_80360090 + (sp2C + sp24 / 3))->unk08;
-        sp20[sp24].v.ob[2] = sp30[2] + (D_80360090 + (sp2C + sp24 / 3))->unk0C;
+        vertBuf[i] = ((Vtx *)gSnowTempVtx)[0];
+        vertBuf[i].v.ob[0] = vertex1[0] + (gEnvFxBuffer + (index + i / 3))->xPos;
+        vertBuf[i].v.ob[1] = vertex1[1] + (gEnvFxBuffer + (index + i / 3))->yPos;
+        vertBuf[i].v.ob[2] = vertex1[2] + (gEnvFxBuffer + (index + i / 3))->zPos;
 
-        sp20[sp24 + 1] = ((Vtx *)D_80330648)[1];
-        sp20[sp24 + 1].v.ob[0] = sp34[0] + (D_80360090 + (sp2C + sp24 / 3))->unk04;
-        sp20[sp24 + 1].v.ob[1] = sp34[1] + (D_80360090 + (sp2C + sp24 / 3))->unk08;
-        sp20[sp24 + 1].v.ob[2] = sp34[2] + (D_80360090 + (sp2C + sp24 / 3))->unk0C;
+        vertBuf[i + 1] = ((Vtx *)gSnowTempVtx)[1];
+        vertBuf[i + 1].v.ob[0] = vertex2[0] + (gEnvFxBuffer + (index + i / 3))->xPos;
+        vertBuf[i + 1].v.ob[1] = vertex2[1] + (gEnvFxBuffer + (index + i / 3))->yPos;
+        vertBuf[i + 1].v.ob[2] = vertex2[2] + (gEnvFxBuffer + (index + i / 3))->zPos;
         
-        sp20[sp24 + 2] = ((Vtx *)D_80330648)[2];
-        sp20[sp24 + 2].v.ob[0] = sp38[0] + (D_80360090 + (sp2C + sp24 / 3))->unk04;
-        sp20[sp24 + 2].v.ob[1] = sp38[1] + (D_80360090 + (sp2C + sp24 / 3))->unk08;
-        sp20[sp24 + 2].v.ob[2] = sp38[2] + (D_80360090 + (sp2C + sp24 / 3))->unk0C;
+        vertBuf[i + 2] = ((Vtx *)gSnowTempVtx)[2];
+        vertBuf[i + 2].v.ob[0] = vertex3[0] + (gEnvFxBuffer + (index + i / 3))->xPos;
+        vertBuf[i + 2].v.ob[1] = vertex3[1] + (gEnvFxBuffer + (index + i / 3))->yPos;
+        vertBuf[i + 2].v.ob[2] = vertex3[2] + (gEnvFxBuffer + (index + i / 3))->zPos;
     }
 
-    gSPVertex(sp28, VIRTUAL_TO_PHYSICAL(sp20), 15, 0);
+    gSPVertex(gfx, VIRTUAL_TO_PHYSICAL(vertBuf), 15, 0);
 }
 
-Gfx *func_802DE838(s32 sp80, Vec3s sp84, Vec3s sp88, Vec3s sp8C) {
-    s32 sp7C;
-    s16 sp7A, sp78, sp76;
-    Vec3s sp70;
-    struct struct802DE838 sp68, sp60, sp58;
-    Gfx *sp54;
-    Gfx *sp50;
+/** Updates positions of snow particles and returns a pointer to a display list
+ *  drawing all snowflakes.
+ */
+Gfx *envfx_update_snow(s32 snowMode, Vec3s marioPos, Vec3s camFrom, Vec3s camTo) {
+    s32 i;
+    s16 radius, pitch, yaw;
+    Vec3s snowCylinderPos;
+    struct SnowFlakeVertex vertex1, vertex2, vertex3;
+    Gfx *gfxStart;
+    Gfx *gfx;
 
-    sp68 = D_80330678;
-    sp60 = D_80330680;
-    sp58 = D_80330688;
+    vertex1 = gSnowFlakeVertex1;
+    vertex2 = gSnowFlakeVertex2;
+    vertex3 = gSnowFlakeVertex3;
 
-    sp54 = (Gfx *)alloc_display_list((D_803600A4 * 6 + 3) * sizeof(Gfx));   
-    sp50 = sp54;
+    gfxStart = (Gfx *)alloc_display_list((gSnowParticleCount * 6 + 3) * sizeof(Gfx));   
+    gfx = gfxStart;
 
-    if (sp54 == NULL)
+    if (gfxStart == NULL)
         return NULL;
 
-    func_802DD028(sp80, sp84);
-    func_802DD204(sp8C, sp88, &sp7A, &sp78, &sp76);
+    envfx_update_snowflake_count(snowMode, marioPos);
+    
+    // Note: to and from are inverted here, so the resulting vector goes towards the camera
+    orbit_from_positions(camTo, camFrom, &radius, &pitch, &yaw); 
 
-    switch (sp80) {
-        case 1:
-            if (sp7A > 250) 
-                sp7A -= 250;
+    switch (snowMode) {
+        case ENVFX_SNOW_NORMAL:
+            // ensure the snow cylinder is no further than 250 units in front 
+            // of the camera, and no closer than 1 unit.
+            if (radius > 250) 
+                radius -= 250;
             else
-                sp7A = 1;
+                radius = 1;
 
-            func_802DD32C(sp8C, sp70, sp7A, sp78, sp76);
-            func_802DD548(sp70[0], sp70[1], sp70[2]);
+            pos_from_orbit(camTo, snowCylinderPos, radius, pitch, yaw);
+            envfx_update_snow_normal(snowCylinderPos[0], snowCylinderPos[1], snowCylinderPos[2]);
             break;
 
-        case 2:
-            if (sp7A > 500) 
-                sp7A -= 500;
+        case ENVFX_SNOW_WATER:
+            if (radius > 500) 
+                radius -= 500;
             else
-                sp7A = 1;
+                radius = 1;
 
-            func_802DD32C(sp8C, sp70, sp7A, sp78, sp76);
-            func_802DDE28(sp70[0], sp70[1], sp70[2]);
+            pos_from_orbit(camTo, snowCylinderPos, radius, pitch, yaw);
+            envfx_update_snow_water(snowCylinderPos[0], snowCylinderPos[1], snowCylinderPos[2]);
             break;
-        case 3:            
-            if (sp7A > 250) 
-                sp7A -= 250;
+        case ENVFX_SNOW_BLIZZARD:
+            if (radius > 250) 
+                radius -= 250;
             else
-                sp7A = 1;
+                radius = 1;
 
-            func_802DD32C(sp8C, sp70, sp7A, sp78, sp76);
-            func_802DD978(sp70[0], sp70[1], sp70[2]);
+            pos_from_orbit(camTo, snowCylinderPos, radius, pitch, yaw);
+            envfx_update_snow_blizzard(snowCylinderPos[0], snowCylinderPos[1], snowCylinderPos[2]);
             break;
     }
 
-    func_802DE01C((s16 *) &sp68, (s16 *) &sp60, (s16 *) &sp58, sp78, sp76);
+    rotate_triangle_vertices((s16 *) &vertex1, (s16 *) &vertex2, (s16 *) &vertex3, pitch, yaw);
 
-    if (sp80 == 1 || sp80 == 3) {
-        gSPDisplayList(sp50++, &tiny_bubble_dl_0B006A50);
-    } else if (sp80 == 2) {
-        gSPDisplayList(sp50++, &tiny_bubble_dl_0B006CD8);  
+    if (snowMode == ENVFX_SNOW_NORMAL || snowMode == ENVFX_SNOW_BLIZZARD) {
+        gSPDisplayList(gfx++, &tiny_bubble_dl_0B006A50); // snowflake with gray edge
+    } else if (snowMode == ENVFX_SNOW_WATER) {
+        gSPDisplayList(gfx++, &tiny_bubble_dl_0B006CD8); // snowflake with blue edge
     }
 
-    for (sp7C = 0; sp7C < D_803600A4; sp7C += 5) {
-        func_802DE424(sp50++, sp7C, (s16 *)&sp68, (s16 *) &sp60, (s16 *)&sp58);
+    for (i = 0; i < gSnowParticleCount; i += 5) {
+        append_snowflake_vertex_buffer(gfx++, i, (s16 *)&vertex1, (s16 *) &vertex2, (s16 *)&vertex3);
 
-        gSP1Triangle(sp50++, 0, 1, 2, 0);
-        gSP1Triangle(sp50++, 3, 4, 5, 0);
-        gSP1Triangle(sp50++, 6, 7, 8, 0);
-        gSP1Triangle(sp50++, 9, 10, 11, 0);
-        gSP1Triangle(sp50++, 12, 13, 14, 0);        
+        gSP1Triangle(gfx++, 0, 1, 2, 0);
+        gSP1Triangle(gfx++, 3, 4, 5, 0);
+        gSP1Triangle(gfx++, 6, 7, 8, 0);
+        gSP1Triangle(gfx++, 9, 10, 11, 0);
+        gSP1Triangle(gfx++, 12, 13, 14, 0);        
     }
 
-    gSPDisplayList(sp50++, &tiny_bubble_dl_0B006AB0)
-    gSPEndDisplayList(sp50++);
+    gSPDisplayList(gfx++, &tiny_bubble_dl_0B006AB0)
+    gSPEndDisplayList(gfx++);
 
-    return sp54;
+    return gfxStart;
 }
 
-void *func_802DECB8(int sp28, Vec3s sp2C, Vec3s sp30, Vec3s sp34) {
-    Gfx *sp24;
+/** Updates the environment effects (snow, flowers, bubbles)
+ *  and returns a display list drawing them.
+ */
+Gfx *envfx_update_particles(int mode, Vec3s marioPos, Vec3s camTo, Vec3s camFrom) {
+    Gfx *gfx;
 
     if (get_dialog_id() != -1)
         return NULL;
 
-    if (D_80330640 != 0 && sp28 != D_80330640)
-        sp28 = 0;
+    if (gEnvFxMode != 0 && mode != gEnvFxMode)
+        mode = 0;
 
-    if (sp28 >= 0xA) {
-        sp24 = func_802E1038(sp28, sp2C, sp30, sp34);
-        return sp24;
+    if (mode >= ENVFX_BUBBLE_START) {
+        gfx = envfx_update_bubbles(mode, marioPos, camTo, camFrom);
+        return gfx;
     }
 
-    if (D_80330640 == 0 && func_802DCEE0(sp28) == 0)
+    if (gEnvFxMode == 0 && envfx_init_snow(mode) == 0)
         return NULL;
 
-    switch (sp28) {
-        case 0:
-            func_802DD1AC(D_80360090);
+    switch (mode) {
+        case ENVFX_MODE_NONE:
+            envfx_cleanup_snow(gEnvFxBuffer);
             return NULL;
 
-        case 1:
-            sp24 = func_802DE838(1, sp2C, sp34, sp30);
+        case ENVFX_SNOW_NORMAL:
+            gfx = envfx_update_snow(1, marioPos, camFrom, camTo);
             break;
         
-        case 2:
-            sp24 = func_802DE838(2, sp2C, sp34, sp30);
+        case ENVFX_SNOW_WATER:
+            gfx = envfx_update_snow(2, marioPos, camFrom, camTo);
             break;
 
-        case 3:
-            sp24 = func_802DE838(3, sp2C, sp34, sp30);
+        case ENVFX_SNOW_BLIZZARD:
+            gfx = envfx_update_snow(3, marioPos, camFrom, camTo);
             break;
 
         default:
             return NULL;
     }
 
-    return sp24;
+    return gfx;
 }
