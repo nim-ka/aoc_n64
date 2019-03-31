@@ -25,7 +25,7 @@ glabel level_castle_courtyard_entry
     jump_link /*target*/ script_func_global_10
     load_model_from_geo /*model*/ MODEL_COURTYARD_SPIKY_TREE,  /*geo*/ spiky_tree_geo
     load_model_from_geo /*model*/ MODEL_COURTYARD_WOODEN_DOOR, /*geo*/ wooden_door_geo
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_03,          /*geo*/ castle_courtyard_geo_000200
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_03,     /*geo*/ castle_courtyard_geo_000200
 
     area /*index*/ 1, /*geo*/ castle_courtyard_geo_000218
         object /*model*/ MODEL_BOO,  /*pos*/ -2360, -100, -2712, /*angle*/ 0,   0, 0, /*behParam*/ 0x01050000, /*beh*/ beh_boo_with_cage
