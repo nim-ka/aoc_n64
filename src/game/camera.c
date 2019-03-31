@@ -24,6 +24,7 @@
 #include "behavior_actions.h"
 #include "behavior_data.h"
 #include "object_list_processor.h"
+#include "prevent_bss_reordering.h"
 
 #define CBUTTON_MASK (U_CBUTTONS | D_CBUTTONS | L_CBUTTONS | R_CBUTTONS)
 

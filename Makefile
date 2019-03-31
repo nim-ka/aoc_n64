@@ -316,11 +316,8 @@ $(MIO0_DIR)/%.mio0.s: $(MIO0_DIR)/%.mio0
 # Source code
 $(BUILD_DIR)/src/goddard/%.o: MIPSISET := -mips1
 $(BUILD_DIR)/src/audio/%.o: CC := python3 tools/asm_processor/build.py $(CC) -- $(AS) $(ASFLAGS) --
+$(BUILD_DIR)/src/audio/%.o: OPT_FLAGS := -O2 -Wo,-loopunroll,0
 $(BUILD_DIR)/src/audio/dma.o: OPT_FLAGS := -O2 -framepointer -Wo,-loopunroll,0
-$(BUILD_DIR)/src/audio/dac.o: OPT_FLAGS := -O2 -Wo,-loopunroll,0
-$(BUILD_DIR)/src/audio/playback.o: OPT_FLAGS := -O2 -Wo,-loopunroll,0
-$(BUILD_DIR)/src/audio/something.o: OPT_FLAGS := -O2 -Wo,-loopunroll,0
-$(BUILD_DIR)/src/audio/interface_2.o: OPT_FLAGS := -O2 -Wo,-loopunroll,0
 $(BUILD_DIR)/lib/src/%.o: OPT_FLAGS :=
 $(BUILD_DIR)/lib/src/math/ll%.o: MIPSISET := -mips3 -32
 $(BUILD_DIR)/lib/src/math/%.o: OPT_FLAGS := -O2

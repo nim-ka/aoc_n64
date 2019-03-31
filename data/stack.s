@@ -89,12 +89,10 @@ glabel D_80222A10
     .space 0x8
 glabel D_80222A18 # size 0x140 * 3
     .space 0x3C0
-glabel D_80222DD8
+glabel D_80222DD8 # 0xC0 * 32
     .space 0x1800
-glabel D_802245D8
-    .space 0x70
-glabel D_80224648
-    .space 0x1790
+glabel D_802245D8 # 0x80 * 48 or 52 (US)
+    .space 0x1800
 .ifndef VERSION_JP
     .space 0x200
 .endif

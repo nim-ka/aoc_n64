@@ -1411,7 +1411,7 @@ static u8 func_8031ED70(UNUSED u8 listIndex, UNUSED u8 item, u8 arg2)
     }
 #endif
 
-    ret = (u8) (D_80222A18[2].unk2C[arg2]->unk59 + D_80331FB0[level][area] +
+    ret = (u8) (D_80222A18[2].unk2C[arg2]->unk54[5] + D_80331FB0[level][area] +
             (US_FLOAT(1.0) - D_80222A18[2].unk2C[arg2]->unk20) * IF_US(48.0, 40.0f));
 
     if (ret > 0x7f)
@@ -1444,7 +1444,7 @@ void func_8031EEF8(void)
     k = 0;
     func_8031DF64();
     func_8031FA4C();
-    if (D_80222A18[2].unk2C[0] == (void *)&D_80225DD8)
+    if (D_80222A18[2].unk2C[0] == &D_80225DD8)
     {
         return;
     }
@@ -1470,8 +1470,8 @@ void func_8031EEF8(void)
 
                     D_80360C48[listIndex][index].unk14++;
                     D_80360C48[listIndex][index].unk18 = 2;
-                    D_80222A18[2].unk2C[k]->unk58 = unk58;
-                    D_80222A18[2].unk2C[k]->unk54 = 1;
+                    D_80222A18[2].unk2C[k]->unk54[4] = unk58;
+                    D_80222A18[2].unk2C[k]->unk54[0] = 1;
 
                     switch (listIndex)
                     {
@@ -1548,24 +1548,24 @@ void func_8031EEF8(void)
                 else if (unk18 == 0)
                 {
                     func_8031E0E4(listIndex, index);
-                    D_80222A18[2].unk2C[k]->unk54 = 0;
+                    D_80222A18[2].unk2C[k]->unk54[0] = 0;
                     func_8031DFE8(listIndex, index);
                 }
 #else
-                else if (D_80222A18[2].unk2C[k]->unk44 == 0)
+                else if (D_80222A18[2].unk2C[k]->unk44[0] == 0)
                 {
                     func_8031E0E4(listIndex, index);
                     D_80360C48[listIndex][index].unk18 = 0;
                     func_8031DFE8(listIndex, index);
                 }
-                else if (unk18 == 0 && D_80222A18[2].unk2C[k]->unk44->unk0b40 == 0)
+                else if (unk18 == 0 && D_80222A18[2].unk2C[k]->unk44[0]->unk0b40 == 0)
                 {
                     func_8031E0E4(listIndex, index);
-                    D_80222A18[2].unk2C[k]->unk54 = 0;
+                    D_80222A18[2].unk2C[k]->unk54[0] = 0;
                     func_8031DFE8(listIndex, index);
                 }
 #endif
-                else if (D_80222A18[2].unk2C[k]->unk44->unk0b80 == 0)
+                else if (D_80222A18[2].unk2C[k]->unk44[0]->unk0b80 == 0)
                 {
                     func_8031E0E4(listIndex, index);
                     D_80360C48[listIndex][index].unk18 = 0;
@@ -1714,7 +1714,7 @@ void func_8031F888(u8 arg0, u8 arg1, u8 arg2, u16 arg3)
 {
     struct Struct80360928 *temp;
 
-    if (D_80222A18[arg0].unk2C[arg1] != (void *)&D_80225DD8)
+    if (D_80222A18[arg0].unk2C[arg1] != &D_80225DD8)
     {
         temp = &D_80360928[arg0][arg1];
         temp->unkC = arg3;
@@ -1730,7 +1730,7 @@ void func_8031F96C(u8 arg0)
 
     for (i = 0; i < 16; i++)
     {
-        if (D_80222A18[arg0].unk2C[i] != (void *)&D_80225DD8 && D_80360928[arg0][i].unkC != 0)
+        if (D_80222A18[arg0].unk2C[i] != &D_80225DD8 && D_80360928[arg0][i].unkC != 0)
         {
             D_80360928[arg0][i].unk8 += D_80360928[arg0][i].unk0;
             D_80222A18[arg0].unk2C[i]->unk1C = D_80360928[arg0][i].unk8;
@@ -2245,7 +2245,7 @@ void Unknown8031FED0(u8 arg0, u32 arg1, s8 arg2)
 
     for (i = 0; i < 16; i++)
     {
-        if (D_80222A18[arg0].unk2C[i] != (void *)&D_80225DD8)
+        if (D_80222A18[arg0].unk2C[i] != &D_80225DD8)
         {
             if ((arg1 & 3) == 0)
             {
@@ -2554,7 +2554,7 @@ void func_80320980(UNUSED u8 arg0, u16 arg1)
 u8 Unknown803209D8(u8 arg0, u8 arg1, u8 arg2)
 {
     u8 ret = 0;
-    if (D_80222A18[arg0].unk2C[arg1] != (void *)&D_80225DD8)
+    if (D_80222A18[arg0].unk2C[arg1] != &D_80225DD8)
     {
         D_80222A18[arg0].unk2C[arg1]->unk0b10 = arg2;
         ret = arg2;

@@ -215,8 +215,6 @@ extern struct Object *D_8032CFD0;
 extern Vec3f D_8032D00C;
 extern u8 D_8032D0B8[];
 
-extern s16 D_8035FE10;
-
 extern void func_8027EFE0(s16);
 extern void func_8027F308(s16);
 extern void func_8027F440(s16, f32, f32, f32);

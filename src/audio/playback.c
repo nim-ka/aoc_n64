@@ -3,6 +3,7 @@
 #include "sm64.h"
 #include "dac.h"
 #include "data.h"
+#include "interface_1.h"
 #include "playback.h"
 #include "something.h"
 
@@ -14,13 +15,13 @@
 
 void func_80318870(struct Struct_func_80318870 *arg0)
 {
-    if (arg0->unk2C->unk14 == 0)
+    if (arg0->unk2C->unk14.unk0 == 0)
     {
-        func_8031A564(&arg0->unk54, arg0->unk2C->unk50->unk7C, &arg0->unk8);
+        func_8031A564(&arg0->unk54, arg0->unk2C->unk50->unk78.unk4, &arg0->unk8);
     }
     else
     {
-        func_8031A564(&arg0->unk54, arg0->unk2C->unk18, &arg0->unk8);
+        func_8031A564(&arg0->unk54, arg0->unk2C->unk14.unk4, &arg0->unk8);
     }
     arg0->unk55 = 1;
     func_803159C0(arg0);
@@ -46,7 +47,8 @@ void func_80318908(void)
     s32 i;
 
     // Macro versions of func_80319564 and func_803195A4
-#define PUSH(item, head) \
+    // (PREPEND does not actually need to be a macro, but it seems likely.)
+#define PREPEND(item, head) \
     ((it = (item), it->prev != NULL) ? it : ( \
         it->prev = (head), \
         it->next = (head)->next, \
@@ -80,7 +82,7 @@ void func_80318908(void)
                             {
                                 func_803188E8(s0);
                                 POP(&s0->unkA4);
-                                PUSH(&s0->unkA4, &D_80225EA8[0]);
+                                PREPEND(&s0->unkA4, &D_80225EA8[0]);
                             }
                             else
                             {
@@ -148,7 +150,7 @@ void func_80318908(void)
             continue;
         }
     }
-#undef PUSH
+#undef PREPEND
 #undef POP
 }
 
@@ -201,15 +203,15 @@ void func_80318D18(struct SubStruct_func_80318870 *arg0, s32 arg1)
         else
         {
             unk44->unk54 |= 0x20;
-            if (arg0->unk14 == 0)
+            if (arg0->unk14.unk0 == 0)
             {
-                unk44->unk62 = arg0->unk50->unk78 * 0x18;
+                unk44->unk62 = arg0->unk50->unk78.unk0 * 0x18;
             }
             else
             {
-                unk44->unk62 = arg0->unk14 * 0x18;
+                unk44->unk62 = arg0->unk14.unk0 * 0x18;
             }
-            unk44->unk60 = (unk44->unk5A * arg0->unk50->unk7A) / 0x10000;
+            unk44->unk60 = (unk44->unk5A * arg0->unk50->unk78.unk2) / 0x10000;
         }
     }
 
@@ -443,7 +445,7 @@ void func_80319428(struct PlaybackListItem *headList, s32 count)
 void func_80319564(struct PlaybackListItem *head, struct PlaybackListItem *item)
 {
     // add 'item' to the front of the list given by 'head', if it's not in any list
-    if (item->prev == 0)
+    if (item->prev == NULL)
     {
         item->prev = head;
         item->next = head->next;
@@ -457,7 +459,7 @@ void func_80319564(struct PlaybackListItem *head, struct PlaybackListItem *item)
 void func_803195A4(struct PlaybackListItem *item)
 {
     // remove 'item' from the list it's in, if any
-    if (item->prev != 0)
+    if (item->prev != NULL)
     {
         item->prev->next = item->next;
         item->next->prev = item->prev;

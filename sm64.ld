@@ -124,7 +124,7 @@ SECTIONS
       BUILD_DIR/src/audio/dma.o(.text);
       BUILD_DIR/src/audio/playback.o(.text);
       BUILD_DIR/asm/audio_playback_2.o(.text);
-      BUILD_DIR/asm/audio_interface_1.o(.text);
+      BUILD_DIR/src/audio/interface_1.o(.text);
       BUILD_DIR/src/audio/interface_2.o(.text);
 #if VERSION_US
       . += 0x40;
@@ -335,6 +335,7 @@ SECTIONS
       BUILD_DIR/src/audio/dac.o(.rodata*);
       BUILD_DIR/src/audio/playback.o(.rodata*);
       BUILD_DIR/data/audio.rodata.o(.rodata*);
+      BUILD_DIR/src/audio/interface_1.o(.rodata*);
       BUILD_DIR/src/audio/interface_2.o(.rodata*);
       BUILD_DIR/libultra.a:guPerspectiveF.o(.rodata*);
       BUILD_DIR/libultra.a:llconv.o(.rodata*);

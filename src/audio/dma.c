@@ -1240,14 +1240,14 @@ void func_803182E0(u32 arg0, u32 arg1, s32 arg2)
             {
                 return;
             }
-            temp->unk6 = sp34;
+            temp->unk6[0] = sp34;
         }
-        else if (func_8031804C(arg1, &temp->unk6) == NULL)
+        else if (func_8031804C(arg1, temp->unk6) == NULL)
         {
             return;
         }
     }
-    else if (func_8031804C(arg1, &temp->unk6) == NULL)
+    else if (func_8031804C(arg1, temp->unk6) == NULL)
     {
         return;
     }

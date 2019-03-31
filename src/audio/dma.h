@@ -2,7 +2,7 @@
 #define _AUDIO_DMA_H
 
 #include "types.h"
-#include "interface_2.h"
+#include "playback.h"
 
 struct Struct80226538
 {
@@ -20,9 +20,9 @@ struct Struct_80226D60
     u8 unk0;
     u8 unk1;
     u8 unk2;
-    void *unk4;
+    struct InstrumentSomething **unk4;
     u32 unk8;
-};
+}; // size = 0xC
 
 struct SubEntry
 {
@@ -77,7 +77,7 @@ extern ALSeqFile *D_80226D50;
 extern ALSeqFile *D_80226D54;
 extern u8 *D_80226D58;
 extern u16 D_80226D5C;
-extern struct Struct_80226D60 *D_80226D60;
+extern struct Struct_80226D60 *D_80226D60; // array of size D_80226D50->seqCount
 extern u32 D_80226D68;
 extern volatile s32 D_80226D80;
 extern s32 D_80226D88;
