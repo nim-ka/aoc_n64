@@ -24,7 +24,7 @@
 #include "spawn_object.h"
 #include "spawn_sound.h"
 #include "room.h"
-#include "ingame_menu_3.h"
+#include "envfx_bubbles.h"
 #include "ingame_menu.h"
 #include "interaction.h"
 

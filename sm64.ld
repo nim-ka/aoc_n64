@@ -113,8 +113,8 @@ SECTIONS
       BUILD_DIR/src/game/paintings.o(.text);
       BUILD_DIR/src/game/print.o(.text);
       BUILD_DIR/src/game/ingame_menu.o(.text);
-      BUILD_DIR/src/game/ingame_menu_2.o(.text);
-      BUILD_DIR/src/game/ingame_menu_3.o(.text);
+      BUILD_DIR/src/game/envfx_snow.o(.text);
+      BUILD_DIR/src/game/envfx_bubbles.o(.text);
       BUILD_DIR/src/game/macro_special_objects.o(.text);
       BUILD_DIR/src/game/hud.o(.text);
       BUILD_DIR/src/game/obj_behaviors.o(.text);
@@ -267,8 +267,8 @@ SECTIONS
       BUILD_DIR/src/game/paintings.o(.data*);
       BUILD_DIR/src/game/print.o(.data*);
       BUILD_DIR/src/game/ingame_menu.o(.data*);
-      BUILD_DIR/src/game/ingame_menu_2.o(.data*);
-      BUILD_DIR/src/game/ingame_menu_3.o(.data*);
+      BUILD_DIR/src/game/envfx_snow.o(.data*);
+      BUILD_DIR/src/game/envfx_bubbles.o(.data*);
       BUILD_DIR/src/game/macro_special_objects.o(.data*);
       BUILD_DIR/src/game/hud.o(.data*);
       BUILD_DIR/src/game/obj_behaviors.o(.data*);
@@ -325,8 +325,8 @@ SECTIONS
       BUILD_DIR/src/game/paintings.o(.rodata*);
       BUILD_DIR/src/game/print.o(.rodata*);
       BUILD_DIR/src/game/ingame_menu.o(.rodata*);
-      BUILD_DIR/src/game/ingame_menu_2.o(.rodata*);
-      BUILD_DIR/src/game/ingame_menu_3.o(.rodata*);
+      BUILD_DIR/src/game/envfx_snow.o(.rodata*);
+      BUILD_DIR/src/game/envfx_bubbles.o(.rodata*);
       BUILD_DIR/src/game/macro_special_objects.o(.rodata*);
       BUILD_DIR/src/game/hud.o(.rodata*);
       BUILD_DIR/src/game/obj_behaviors.o(.rodata*);
@@ -381,8 +381,8 @@ SECTIONS
       BUILD_DIR/src/game/paintings.o(.bss*);
       BUILD_DIR/src/game/print.o(.bss*);
       BUILD_DIR/src/game/ingame_menu.o(.bss*);
-      BUILD_DIR/src/game/ingame_menu_2.o(.bss*);
-      BUILD_DIR/src/game/ingame_menu_3.o(.bss*);
+      BUILD_DIR/src/game/envfx_snow.o(.bss*);
+      BUILD_DIR/src/game/envfx_bubbles.o(.bss*);
       BUILD_DIR/src/game/macro_special_objects.o(.bss*)
       BUILD_DIR/src/game/hud.o(.bss*);
       BUILD_DIR/src/game/obj_behaviors.o(.bss*);

@@ -4,8 +4,8 @@
 #include "display.h"
 #include "memory.h"
 #include "ingame_menu.h"
-#include "ingame_menu_2.h"
-#include "ingame_menu_3.h"
+#include "envfx_snow.h"
+#include "envfx_bubbles.h"
 #include "engine/surface_collision.h"
 #include "engine/math_util.h"
 #include "engine/behavior_script.h"
@@ -14,7 +14,7 @@
 
 /** This file implements environment effects that are not snow:
  *  Flowers (unused), lava bubbles and jetsream/whirlpool bubbles.
- *  Refer to 'ingame_menu_2.c' for more info about environment effects.
+ *  Refer to 'envfx_snow.c' for more info about environment effects.
  *  Note that the term 'bubbles' is used as a collective name for
  *  effects in this file even though flowers aren't bubbles. For the
  *  sake of concise naming, flowers fall under bubbles.

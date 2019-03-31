@@ -10,7 +10,7 @@
 #include "engine/behavior_script.h"
 #include "game.h"
 #include "engine/graph_node.h"
-#include "ingame_menu_2.h"
+#include "envfx_snow.h"
 #include "level_update.h"
 #include "engine/math_util.h"
 #include "memory.h"

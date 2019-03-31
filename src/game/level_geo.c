@@ -6,7 +6,7 @@
 #include "skybox.h"
 #include "engine/math_util.h"
 #include "camera.h"
-#include "ingame_menu_2.h"
+#include "envfx_snow.h"
 
 // level_geo_main?
 Gfx *Geo18_802761D0(int a, struct GraphNode *b, float c[4][4])

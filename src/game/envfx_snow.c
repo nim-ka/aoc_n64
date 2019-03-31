@@ -4,8 +4,8 @@
 #include "display.h"
 #include "memory.h"
 #include "ingame_menu.h"
-#include "ingame_menu_2.h"
-#include "ingame_menu_3.h"
+#include "envfx_snow.h"
+#include "envfx_bubbles.h"
 #include "engine/surface_collision.h"
 #include "engine/math_util.h"
 #include "engine/behavior_script.h"
@@ -16,7 +16,7 @@
  *  which are particle effects related to the level type that, unlike 
  *  object-based particle effects, are rendered more efficiently by manually
  *  generating display lists instead of drawing each particle separately. 
- *  This file implements snow effects, while in 'ingame_menu_3.c' the 
+ *  This file implements snow effects, while in 'envfx_bubbles.c' the 
  *  implementation for flowers (unused), lava bubbles and jetstream bubbles
  *  can be found. 
  *  The main entry point for envfx is at the bottom of this file, which is 
