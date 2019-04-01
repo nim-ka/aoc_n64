@@ -70,11 +70,11 @@ glabel bowser_3_seg7_collision_level # 0x070049C8 - 0x07004B94
 .hword 0x0041
 # special objects 0x43
 .hword 0x0043,    7 # add 7 special objects
-special_object_10_byte /*preset*/ special_null_start,   /*pos*/     0,   307,     0, /*yaw*/  128 # unused, probably an early way to set intial position
-special_object_8_byte  /*preset*/ special_bowser,       /*pos*/    13,   307, -1024
-special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/ -3362,  -204,  1121, /*yaw*/    0
-special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/     0,  -204,  3584, /*yaw*/    0
-special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/  3362,  -204,  1126, /*yaw*/    0
-special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/  2123,  -204, -2912, /*yaw*/    0
-special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/ -2122,  -204, -2912, /*yaw*/    0
+special_object /*preset*/ special_null_start,   /*pos*/     0,   307,     0, /*yaw*/  128 # unused, probably an early way to set intial position
+special_object /*preset*/ special_bowser,       /*pos*/    13,   307, -1024
+special_object /*preset*/ special_level_geo_03, /*pos*/ -3362,  -204,  1121, /*yaw*/    0
+special_object /*preset*/ special_level_geo_03, /*pos*/     0,  -204,  3584, /*yaw*/    0
+special_object /*preset*/ special_level_geo_03, /*pos*/  3362,  -204,  1126, /*yaw*/    0
+special_object /*preset*/ special_level_geo_03, /*pos*/  2123,  -204, -2912, /*yaw*/    0
+special_object /*preset*/ special_level_geo_03, /*pos*/ -2122,  -204, -2912, /*yaw*/    0
 .hword 0x0042

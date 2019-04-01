@@ -2668,8 +2668,8 @@ glabel ssl_seg7_area_2_collision # 0x07023678 - 0x070275BC
 .hword 0x0041
 # special objects 0x43
 .hword 0x0043,    4 # add 4 special objects
-special_object_10_byte /*preset*/ special_null_start,   /*pos*/     0,     0,  6451, /*yaw*/ 128 # unused, probably an early way to set intial position
-special_object_10_byte /*preset*/ special_level_geo_04, /*pos*/  1741,  -101,  1843, /*yaw*/   0
-special_object_10_byte /*preset*/ special_level_geo_04, /*pos*/     0,  -101,   528, /*yaw*/   0
-special_object_10_byte /*preset*/ special_level_geo_04, /*pos*/ -1740,  -101,  1843, /*yaw*/   0
+special_object /*preset*/ special_null_start,   /*pos*/     0,     0,  6451, /*yaw*/ 128 # unused, probably an early way to set intial position
+special_object /*preset*/ special_level_geo_04, /*pos*/  1741,  -101,  1843, /*yaw*/   0
+special_object /*preset*/ special_level_geo_04, /*pos*/     0,  -101,   528, /*yaw*/   0
+special_object /*preset*/ special_level_geo_04, /*pos*/ -1740,  -101,  1843, /*yaw*/   0
 .hword 0x0042

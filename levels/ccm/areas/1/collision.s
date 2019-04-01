@@ -1758,27 +1758,27 @@ glabel ccm_seg7_area_1_collision # 0x070138E8 - 0x07016282
 .hword 0x0041
 # special objects area 1 0x43
 .hword 0x0043,   21 # add 21 special objects
-special_object_10_byte /*preset*/ special_null_start,       /*pos*/ -1512,  2560, -2305, /*yaw*/ 100 # unused, probably an early way to set intial position
-special_object_10_byte /*preset*/ special_level_geo_03,     /*pos*/  -409,  2765, -1637, /*yaw*/   0
-special_object_10_byte /*preset*/ special_level_geo_04,     /*pos*/  2355, -4095,  4096, /*yaw*/   0
-special_object_10_byte /*preset*/ special_level_geo_05,     /*pos*/ -4210, -1446,  1874, /*yaw*/   0
-special_object_10_byte /*preset*/ special_level_geo_05,     /*pos*/  2560,  2560, -1023, /*yaw*/   0
-special_object_10_byte /*preset*/ special_level_geo_06,     /*pos*/  -818,   102,  2048, /*yaw*/   0
-special_object_10_byte /*preset*/ special_level_geo_07,     /*pos*/  -511, -3071, -3583, /*yaw*/   0
-special_object_8_byte  /*preset*/ special_snow_tree,        /*pos*/ -5201, -1740,  2994
-special_object_8_byte  /*preset*/ special_snow_tree,        /*pos*/  1989, -4607,  4949
-special_object_8_byte  /*preset*/ special_snow_tree,        /*pos*/  1248, -4607,  5474
-special_object_8_byte  /*preset*/ special_snow_tree,        /*pos*/ -5508, -1740,  4148
-special_object_8_byte  /*preset*/ special_snow_tree,        /*pos*/ -4576, -1740,  4814
-special_object_8_byte  /*preset*/ special_snow_tree,        /*pos*/  -488,  2560, -2305
-special_object_8_byte  /*preset*/ special_snow_tree,        /*pos*/ -5892, -1740,   811
-special_object_8_byte  /*preset*/ special_snow_tree,        /*pos*/ -3748, -4607,  4464
-special_object_8_byte  /*preset*/ special_snow_tree,        /*pos*/  2237,  2560, -1630
-special_object_8_byte  /*preset*/ special_snow_tree,        /*pos*/  2885,  2560, -1638
-special_object_8_byte  /*preset*/ special_snow_tree,        /*pos*/ -1146, -3583,  5919
-special_object_8_byte  /*preset*/ special_snow_tree,        /*pos*/ -1768,  2560, -1793
-special_object_8_byte  /*preset*/ special_snow_tree,        /*pos*/ -3443,   807, -2713
-special_object_11_byte /*preset*/ special_wooden_door_warp, /*pos*/  2464, -4607,  4302, /*yaw*/ 158, /*behParam2*/ 20
+special_object /*preset*/ special_null_start,       /*pos*/ -1512,  2560, -2305, /*yaw*/ 100 # unused, probably an early way to set intial position
+special_object /*preset*/ special_level_geo_03,     /*pos*/  -409,  2765, -1637, /*yaw*/   0
+special_object /*preset*/ special_level_geo_04,     /*pos*/  2355, -4095,  4096, /*yaw*/   0
+special_object /*preset*/ special_level_geo_05,     /*pos*/ -4210, -1446,  1874, /*yaw*/   0
+special_object /*preset*/ special_level_geo_05,     /*pos*/  2560,  2560, -1023, /*yaw*/   0
+special_object /*preset*/ special_level_geo_06,     /*pos*/  -818,   102,  2048, /*yaw*/   0
+special_object /*preset*/ special_level_geo_07,     /*pos*/  -511, -3071, -3583, /*yaw*/   0
+special_object /*preset*/ special_snow_tree,        /*pos*/ -5201, -1740,  2994
+special_object /*preset*/ special_snow_tree,        /*pos*/  1989, -4607,  4949
+special_object /*preset*/ special_snow_tree,        /*pos*/  1248, -4607,  5474
+special_object /*preset*/ special_snow_tree,        /*pos*/ -5508, -1740,  4148
+special_object /*preset*/ special_snow_tree,        /*pos*/ -4576, -1740,  4814
+special_object /*preset*/ special_snow_tree,        /*pos*/  -488,  2560, -2305
+special_object /*preset*/ special_snow_tree,        /*pos*/ -5892, -1740,   811
+special_object /*preset*/ special_snow_tree,        /*pos*/ -3748, -4607,  4464
+special_object /*preset*/ special_snow_tree,        /*pos*/  2237,  2560, -1630
+special_object /*preset*/ special_snow_tree,        /*pos*/  2885,  2560, -1638
+special_object /*preset*/ special_snow_tree,        /*pos*/ -1146, -3583,  5919
+special_object /*preset*/ special_snow_tree,        /*pos*/ -1768,  2560, -1793
+special_object /*preset*/ special_snow_tree,        /*pos*/ -3443,   807, -2713
+special_object /*preset*/ special_wooden_door_warp, /*pos*/  2464, -4607,  4302, /*yaw*/ 158, /*behParam2*/ 20
 # water boxes (val, loX, hiX, loZ, hiZ, height)
 .hword 0x0044,    1
 .hword     0,  3137,  4228,  3925,  4945, -4638

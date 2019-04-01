@@ -20,6 +20,6 @@ glabel bowser_2_seg7_collision_lava # 0x070019F0 - 0x07001A66
 .hword 0x0041
 # special objects  0x43
 .hword 0x0043,    2 # add 2 special objects
-special_object_10_byte /*preset*/ special_null_start, /*pos*/  0, 1229,     0, /*yaw*/ 128 # unused, probably an early way to set intial position
-special_object_8_byte  /*preset*/ special_bowser,     /*pos*/ -8, 1229, -1418
+special_object /*preset*/ special_null_start, /*pos*/  0, 1229,     0, /*yaw*/ 128 # unused, probably an early way to set intial position
+special_object /*preset*/ special_bowser,     /*pos*/ -8, 1229, -1418
 .hword 0x0042

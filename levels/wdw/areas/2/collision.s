@@ -1327,8 +1327,8 @@ glabel wdw_seg7_area_2_collision # 0x0701633C - 0x07018222
 .hword 0x0041
 # special objects 0x43
 .hword 0x0043,    2 # add 2 special objects
-special_object_8_byte /*preset*/ special_bubble_tree, /*pos*/ 1664, -2457,  -946
-special_object_8_byte /*preset*/ special_bubble_tree, /*pos*/ 1664, -2457, -1637
+special_object /*preset*/ special_bubble_tree, /*pos*/ 1664, -2457,  -946
+special_object /*preset*/ special_bubble_tree, /*pos*/ 1664, -2457, -1637
 # water boxes (val, loX, hiX, loZ, hiZ, height)
 .hword 0x0044,    1
 .hword     0, -3839, -3839,  4608,  4608,  -127

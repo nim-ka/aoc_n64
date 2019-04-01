@@ -980,9 +980,9 @@ glabel thi_seg7_area_2_collision # 0x0700BD60 - 0x0700D444
 .hword 0x0041
 # special objects area 2 0x43
 .hword 0x0043,    3 # add 3 special objects
-special_object_10_byte /*preset*/ special_null_start,   /*pos*/ -2211,  -890,  2212, /*yaw*/ 106 # unused, probably an early way to set intial position
-special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/   -40,  -767, -4494, /*yaw*/   0
-special_object_8_byte  /*preset*/ special_bubble_tree,  /*pos*/  1444,  -153,   676
+special_object /*preset*/ special_null_start,   /*pos*/ -2211,  -890,  2212, /*yaw*/ 106 # unused, probably an early way to set intial position
+special_object /*preset*/ special_level_geo_03, /*pos*/   -40,  -767, -4494, /*yaw*/   0
+special_object /*preset*/ special_bubble_tree,  /*pos*/  1444,  -153,   676
 # water boxes (val, loX, hiX, loZ, hiZ, height)
 .hword 0x0044,    3
 .hword     0, -2457, -2457, -1535,  1874,  -921

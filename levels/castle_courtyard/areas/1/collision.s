@@ -851,25 +851,25 @@ glabel castle_courtyard_seg7_collision # 0x070059A8 - 0x07006E1E
 .hword 0x0041
 # special objects 0x43
 .hword 0x0043,   19 # add 19 special objects
-special_object_10_byte /*preset*/ special_null_start,       /*pos*/    15,    0,   202, /*yaw*/ 128 # unused, probably an early way to set intial position
-special_object_10_byte /*preset*/ special_level_geo_03,     /*pos*/     0, 2048,  2662, /*yaw*/   0
-special_object_8_byte  /*preset*/ special_spiky_tree,       /*pos*/  2272, -214, -1432
-special_object_8_byte  /*preset*/ special_spiky_tree,       /*pos*/   818,   10,   203
-special_object_8_byte  /*preset*/ special_spiky_tree,       /*pos*/  -820,   10,   201
-special_object_8_byte  /*preset*/ special_spiky_tree,       /*pos*/  1681, -214,  -132
-special_object_8_byte  /*preset*/ special_spiky_tree,       /*pos*/  2382, -214,  -843
-special_object_8_byte  /*preset*/ special_spiky_tree,       /*pos*/  -817,   10, -3630
-special_object_8_byte  /*preset*/ special_spiky_tree,       /*pos*/  2769, -214, -1523
-special_object_8_byte  /*preset*/ special_spiky_tree,       /*pos*/  2444, -214, -2330
-special_object_8_byte  /*preset*/ special_spiky_tree,       /*pos*/  2042, -214, -3032
-special_object_8_byte  /*preset*/ special_spiky_tree,       /*pos*/   824,   10, -3633
-special_object_8_byte  /*preset*/ special_spiky_tree,       /*pos*/ -2537, -214,  -759
-special_object_8_byte  /*preset*/ special_spiky_tree,       /*pos*/ -1640, -214, -3228
-special_object_8_byte  /*preset*/ special_spiky_tree,       /*pos*/ -2732, -214, -2166
-special_object_8_byte  /*preset*/ special_spiky_tree,       /*pos*/ -2446, -214, -1786
-special_object_8_byte  /*preset*/ special_spiky_tree,       /*pos*/ -2820, -214, -1317
-special_object_8_byte  /*preset*/ special_spiky_tree,       /*pos*/ -1868, -214,   -45
-special_object_11_byte /*preset*/ special_wooden_door_warp, /*pos*/     0,    0,   461, /*yaw*/   0, /*behParam2*/ 1
+special_object /*preset*/ special_null_start,       /*pos*/    15,    0,   202, /*yaw*/ 128 # unused, probably an early way to set intial position
+special_object /*preset*/ special_level_geo_03,     /*pos*/     0, 2048,  2662, /*yaw*/   0
+special_object /*preset*/ special_spiky_tree,       /*pos*/  2272, -214, -1432
+special_object /*preset*/ special_spiky_tree,       /*pos*/   818,   10,   203
+special_object /*preset*/ special_spiky_tree,       /*pos*/  -820,   10,   201
+special_object /*preset*/ special_spiky_tree,       /*pos*/  1681, -214,  -132
+special_object /*preset*/ special_spiky_tree,       /*pos*/  2382, -214,  -843
+special_object /*preset*/ special_spiky_tree,       /*pos*/  -817,   10, -3630
+special_object /*preset*/ special_spiky_tree,       /*pos*/  2769, -214, -1523
+special_object /*preset*/ special_spiky_tree,       /*pos*/  2444, -214, -2330
+special_object /*preset*/ special_spiky_tree,       /*pos*/  2042, -214, -3032
+special_object /*preset*/ special_spiky_tree,       /*pos*/   824,   10, -3633
+special_object /*preset*/ special_spiky_tree,       /*pos*/ -2537, -214,  -759
+special_object /*preset*/ special_spiky_tree,       /*pos*/ -1640, -214, -3228
+special_object /*preset*/ special_spiky_tree,       /*pos*/ -2732, -214, -2166
+special_object /*preset*/ special_spiky_tree,       /*pos*/ -2446, -214, -1786
+special_object /*preset*/ special_spiky_tree,       /*pos*/ -2820, -214, -1317
+special_object /*preset*/ special_spiky_tree,       /*pos*/ -1868, -214,   -45
+special_object /*preset*/ special_wooden_door_warp, /*pos*/     0,    0,   461, /*yaw*/   0, /*behParam2*/ 1
 # water boxes (val, loX, hiX, loZ, hiZ, height)
 .hword 0x0044,    1
 .hword     0,  -656, -2405,   674, -1074,    51

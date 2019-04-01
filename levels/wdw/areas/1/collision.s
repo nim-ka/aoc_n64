@@ -1352,7 +1352,7 @@ glabel wdw_seg7_area_1_collision # 0x07014150 - 0x070160D6
 .hword 0x0041
 #special object area 1 0x43
 .hword 0x0043,    1 # add 1 special object
-special_object_10_byte /*preset*/ special_null_start, /*pos*/ 3395, 1280, 384, /*yaw*/ 128 # unused, probably an early way to set intial position
+special_object /*preset*/ special_null_start, /*pos*/ 3395, 1280, 384, /*yaw*/ 128 # unused, probably an early way to set intial position
 # water boxes (val, loX, hiX, loZ, hiZ, height)
 .hword 0x0044,    1
 .hword     0, -3839, -3839,  4608,  4608,    31

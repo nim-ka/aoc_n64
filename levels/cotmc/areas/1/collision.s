@@ -996,7 +996,7 @@ glabel cotmc_seg7_collision_level # 0x0700A508 - 0x0700BD38
 .hword 0x0041
 # special object 0x43
 .hword 0x0043,    1 # add 1 special object
-special_object_10_byte /*preset*/ special_null_start, /*pos*/ -4185, 20, -47, /*yaw*/ 64 # unused, probably an early way to set intial position
+special_object /*preset*/ special_null_start, /*pos*/ -4185, 20, -47, /*yaw*/ 64 # unused, probably an early way to set intial position
 # water boxes (val, loX, hiX, loZ, hiZ, height)
 .hword 0x0044,    1
 .hword     0, -1535, -7679,  1536,  3389,     0

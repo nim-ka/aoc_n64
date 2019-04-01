@@ -1434,16 +1434,16 @@ glabel sl_seg7_area_1_collision # 0x0700CBD8 - 0x0700ED92
 .hword 0x0041
 # special objects area 1 0x43
 .hword 0x0043,   10 # add 10 special objects
-special_object_10_byte /*preset*/ special_null_start, /*pos*/  5541,  1024,   443, /*yaw*/ 192 # unused, probably an early way to set intial position
-special_object_8_byte  /*preset*/ special_snow_tree,  /*pos*/  5395,  1054, -5443
-special_object_8_byte  /*preset*/ special_snow_tree,  /*pos*/     0,  4864,     0
-special_object_8_byte  /*preset*/ special_snow_tree,  /*pos*/  5666,  1024, -3341
-special_object_8_byte  /*preset*/ special_snow_tree,  /*pos*/  1919,  1024, -4759
-special_object_8_byte  /*preset*/ special_snow_tree,  /*pos*/  3645,  1024, -5889
-special_object_8_byte  /*preset*/ special_snow_tree,  /*pos*/  1658,  1536, -3605
-special_object_8_byte  /*preset*/ special_snow_tree,  /*pos*/ -3769,  1024, -1197
-special_object_8_byte  /*preset*/ special_snow_tree,  /*pos*/ -2745,  1024,  -582
-special_object_8_byte  /*preset*/ special_snow_tree,  /*pos*/  1766,  2816,  -942
+special_object /*preset*/ special_null_start, /*pos*/  5541,  1024,   443, /*yaw*/ 192 # unused, probably an early way to set intial position
+special_object /*preset*/ special_snow_tree,  /*pos*/  5395,  1054, -5443
+special_object /*preset*/ special_snow_tree,  /*pos*/     0,  4864,     0
+special_object /*preset*/ special_snow_tree,  /*pos*/  5666,  1024, -3341
+special_object /*preset*/ special_snow_tree,  /*pos*/  1919,  1024, -4759
+special_object /*preset*/ special_snow_tree,  /*pos*/  3645,  1024, -5889
+special_object /*preset*/ special_snow_tree,  /*pos*/  1658,  1536, -3605
+special_object /*preset*/ special_snow_tree,  /*pos*/ -3769,  1024, -1197
+special_object /*preset*/ special_snow_tree,  /*pos*/ -2745,  1024,  -582
+special_object /*preset*/ special_snow_tree,  /*pos*/  1766,  2816,  -942
 # water boxes (val, loX, hiX, loZ, hiZ, height)
 .hword 0x0044,    2
 .hword     0, -6194,  -409,   154,  4198,   973

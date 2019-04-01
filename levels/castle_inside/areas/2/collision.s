@@ -3769,8 +3769,8 @@ glabel inside_castle_seg7_area_2_collision # 0x0706E364 - 0x07073AAA
 .hword 0x0041
 # special objects area 2 0x43
 .hword 0x0043,    4 # add 4 special objects
-special_object_10_byte /*preset*/ special_0stars_door, /*pos*/ -2695, 1203,  1828, /*yaw*/  64
-special_object_10_byte /*preset*/ special_0stars_door, /*pos*/  6994, 1203,  1828, /*yaw*/  64
-special_object_10_byte /*preset*/ special_0stars_door, /*pos*/  1670, 1203,  1828, /*yaw*/ 192
-special_object_10_byte /*preset*/ special_wooden_door, /*pos*/  -997, 1203,  1178, /*yaw*/   0
+special_object /*preset*/ special_0stars_door, /*pos*/ -2695, 1203,  1828, /*yaw*/  64
+special_object /*preset*/ special_0stars_door, /*pos*/  6994, 1203,  1828, /*yaw*/  64
+special_object /*preset*/ special_0stars_door, /*pos*/  1670, 1203,  1828, /*yaw*/ 192
+special_object /*preset*/ special_wooden_door, /*pos*/  -997, 1203,  1178, /*yaw*/   0
 .hword 0x0042

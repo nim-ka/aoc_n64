@@ -2536,11 +2536,11 @@ glabel inside_castle_seg7_area_3_collision # 0x07073AAC - 0x070775B4
 .hword 0x0041
 # special objects area 3 0x43
 .hword 0x0043,    5 # add 5 special objects
-special_object_10_byte /*preset*/ special_wooden_door,     /*pos*/ -3097, -1279,  1434, /*yaw*/   0
-special_object_10_byte /*preset*/ special_wooden_door,     /*pos*/  -332,  -767,   205, /*yaw*/   0
-special_object_10_byte /*preset*/ special_wooden_door,     /*pos*/   717, -1177,  -869, /*yaw*/ 192
-special_object_10_byte /*preset*/ special_0stars_door,     /*pos*/  1126, -1074, -2661, /*yaw*/ 192
-special_object_11_byte /*preset*/ special_metal_door_warp, /*pos*/  7885, -1586,  -511, /*yaw*/ 192, /*behParam2*/ 2
+special_object /*preset*/ special_wooden_door,     /*pos*/ -3097, -1279,  1434, /*yaw*/   0
+special_object /*preset*/ special_wooden_door,     /*pos*/  -332,  -767,   205, /*yaw*/   0
+special_object /*preset*/ special_wooden_door,     /*pos*/   717, -1177,  -869, /*yaw*/ 192
+special_object /*preset*/ special_0stars_door,     /*pos*/  1126, -1074, -2661, /*yaw*/ 192
+special_object /*preset*/ special_metal_door_warp, /*pos*/  7885, -1586,  -511, /*yaw*/ 192, /*behParam2*/ 2
 # water boxes (val, loX, hiX, loZ, hiZ, height)
 .hword 0x0044,    3
 .hword     1,   973, -1279,  5786,   256, -1228

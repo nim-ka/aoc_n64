@@ -1819,5 +1819,5 @@ glabel pss_seg7_collision # 0x0700E490 - 0x07010F00
 .hword 0x0041
 # special objects 0x43
 .hword 0x0043,    1 # add 1 special object
-special_object_10_byte /*preset*/ special_null_start, /*pos*/ 5632, 6656, -5631, /*yaw*/ 192
+special_object /*preset*/ special_null_start, /*pos*/ 5632, 6656, -5631, /*yaw*/ 192
 .hword 0x0042

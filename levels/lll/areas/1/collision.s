@@ -1380,7 +1380,7 @@ glabel lll_seg7_area_1_collision # 0x0701ADE8 - 0x0701CE18
 .hword 0x0041
 # special object area 1 0x43
 .hword 0x0043,    1 # add 1 special object
-special_object_10_byte /*preset*/ special_null_start, /*pos*/ -3839, 154, 6272, /*yaw*/ 64 # unused, probably an early way to set intial position
+special_object /*preset*/ special_null_start, /*pos*/ -3839, 154, 6272, /*yaw*/ 64 # unused, probably an early way to set intial position
 .hword 0x0042
 .else
 # collision vertices
@@ -2739,6 +2739,6 @@ special_object_10_byte /*preset*/ special_null_start, /*pos*/ -3839, 154, 6272, 
 .hword 0x0041
 # special object area 2 0x43
 .hword 0x0043,    1 # add 1 special object
-special_object_10_byte /*preset*/ special_null_start, /*pos*/ -3839, 154, 6272, /*yaw*/ 64 # unused, probably an early way to set intial position
+special_object /*preset*/ special_null_start, /*pos*/ -3839, 154, 6272, /*yaw*/ 64 # unused, probably an early way to set intial position
 .hword 0x0042
 .endif

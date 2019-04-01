@@ -849,5 +849,5 @@ glabel vcutm_seg7_collision # 0x07009750 - 0x0700AB0C
 .hword 0x0041
 # special object 0x43 
 .hword 0x0043,    1 # add 1 special object
-special_object_10_byte /*preset*/ special_null_start, /*pos*/ -6143, 5734, -6143, /*yaw*/ 0 # unused, probably an early way to set intial position
+special_object /*preset*/ special_null_start, /*pos*/ -6143, 5734, -6143, /*yaw*/ 0 # unused, probably an early way to set intial position
 .hword 0x0042

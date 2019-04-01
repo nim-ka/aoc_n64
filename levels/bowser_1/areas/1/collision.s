@@ -79,26 +79,26 @@ glabel bowser_1_seg7_collision_level # 0x07002838 - 0x07002AC8
 .hword 0x0041
 # special objects 0x43
 .hword 0x0043,   22 # add 22 special objects
-special_object_10_byte /*preset*/ special_null_start,   /*pos*/     0, 1843,     0, /*yaw*/ 1423 # unused, probably an early way to set intial position
-special_object_8_byte  /*preset*/ special_mine,         /*pos*/  2949,  589,     0
-special_object_8_byte  /*preset*/ special_mine,         /*pos*/     0,  589, -2949
-special_object_8_byte  /*preset*/ special_mine,         /*pos*/     0,  589,  2949
-special_object_8_byte  /*preset*/ special_mine,         /*pos*/ -2949,  589,     0
-special_object_8_byte  /*preset*/ special_bowser,       /*pos*/     0,  300, -1000
-special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/     0,  384,  3072, /*yaw*/    0
-special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/ -2171,  384, -2171, /*yaw*/    0
-special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/     0,  384, -3071, /*yaw*/    0
-special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/ -3071,  384,     0, /*yaw*/    0
-special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/ -2171,  384,  2172, /*yaw*/    0
-special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/ -2621,  384,  1086, /*yaw*/    0
-special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/  2172,  384,  2172, /*yaw*/    0
-special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/  3072,  384,     0, /*yaw*/    0
-special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/  2172,  384, -2171, /*yaw*/    0
-special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/ -1085,  384,  2622, /*yaw*/    0
-special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/  2622,  384,  1086, /*yaw*/    0
-special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/ -2621,  384, -1085, /*yaw*/    0
-special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/ -1085,  384, -2621, /*yaw*/    0
-special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/  1086,  384, -2621, /*yaw*/    0
-special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/  2622,  384, -1085, /*yaw*/    0
-special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/  1086,  384,  2622, /*yaw*/    0
+special_object /*preset*/ special_null_start,   /*pos*/     0, 1843,     0, /*yaw*/ 1423 # unused, probably an early way to set intial position
+special_object /*preset*/ special_mine,         /*pos*/  2949,  589,     0
+special_object /*preset*/ special_mine,         /*pos*/     0,  589, -2949
+special_object /*preset*/ special_mine,         /*pos*/     0,  589,  2949
+special_object /*preset*/ special_mine,         /*pos*/ -2949,  589,     0
+special_object /*preset*/ special_bowser,       /*pos*/     0,  300, -1000
+special_object /*preset*/ special_level_geo_03, /*pos*/     0,  384,  3072, /*yaw*/    0
+special_object /*preset*/ special_level_geo_03, /*pos*/ -2171,  384, -2171, /*yaw*/    0
+special_object /*preset*/ special_level_geo_03, /*pos*/     0,  384, -3071, /*yaw*/    0
+special_object /*preset*/ special_level_geo_03, /*pos*/ -3071,  384,     0, /*yaw*/    0
+special_object /*preset*/ special_level_geo_03, /*pos*/ -2171,  384,  2172, /*yaw*/    0
+special_object /*preset*/ special_level_geo_03, /*pos*/ -2621,  384,  1086, /*yaw*/    0
+special_object /*preset*/ special_level_geo_03, /*pos*/  2172,  384,  2172, /*yaw*/    0
+special_object /*preset*/ special_level_geo_03, /*pos*/  3072,  384,     0, /*yaw*/    0
+special_object /*preset*/ special_level_geo_03, /*pos*/  2172,  384, -2171, /*yaw*/    0
+special_object /*preset*/ special_level_geo_03, /*pos*/ -1085,  384,  2622, /*yaw*/    0
+special_object /*preset*/ special_level_geo_03, /*pos*/  2622,  384,  1086, /*yaw*/    0
+special_object /*preset*/ special_level_geo_03, /*pos*/ -2621,  384, -1085, /*yaw*/    0
+special_object /*preset*/ special_level_geo_03, /*pos*/ -1085,  384, -2621, /*yaw*/    0
+special_object /*preset*/ special_level_geo_03, /*pos*/  1086,  384, -2621, /*yaw*/    0
+special_object /*preset*/ special_level_geo_03, /*pos*/  2622,  384, -1085, /*yaw*/    0
+special_object /*preset*/ special_level_geo_03, /*pos*/  1086,  384,  2622, /*yaw*/    0
 .hword 0x0042

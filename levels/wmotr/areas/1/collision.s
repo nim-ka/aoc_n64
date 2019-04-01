@@ -1,4 +1,3 @@
-
 glabel wmotr_seg7_collision # 0x07010688 - 0x070136A6
 # collision vertices
 .hword 0x0040, 0x02B6
@@ -2061,5 +2060,5 @@ glabel wmotr_seg7_collision # 0x07010688 - 0x070136A6
 .hword 0x0041
 # special object 0x43
 .hword 0x0043,    1 # add 1 special object
-special_object_10_byte /*preset*/ special_null_start, /*pos*/ -67, 1669, -16, /*yaw*/ 192 # unused, probably an early way to set intial position
+special_object /*preset*/ special_null_start, /*pos*/ -67, 1669, -16, /*yaw*/ 192 # unused, probably an early way to set intial position
 .hword 0x0042

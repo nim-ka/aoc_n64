@@ -1568,13 +1568,13 @@ glabel ssl_seg7_area_1_collision # 0x0700FD80 - 0x07012422
 .hword 0x0041
 # special objects 0x43
 .hword 0x0043,    7 # add 7 special objects
-special_object_10_byte /*preset*/ special_null_start,   /*pos*/   653, 38,  6566, /*yaw*/ 64 # unused, probably an early way to set intial position
-special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/  5760,  0,  5751, /*yaw*/  0
-special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/ -3583,  0,  2935, /*yaw*/  0
-special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/  -511,  0,  2935, /*yaw*/  0
-special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/  1024,  0,  3822, /*yaw*/  0
-special_object_10_byte /*preset*/ special_level_geo_03, /*pos*/  3072,  0,   375, /*yaw*/  0
-special_object_8_byte  /*preset*/ special_palm_tree,    /*pos*/ -5989,  0, -4850
+special_object /*preset*/ special_null_start,   /*pos*/   653, 38,  6566, /*yaw*/ 64 # unused, probably an early way to set intial position
+special_object /*preset*/ special_level_geo_03, /*pos*/  5760,  0,  5751, /*yaw*/  0
+special_object /*preset*/ special_level_geo_03, /*pos*/ -3583,  0,  2935, /*yaw*/  0
+special_object /*preset*/ special_level_geo_03, /*pos*/  -511,  0,  2935, /*yaw*/  0
+special_object /*preset*/ special_level_geo_03, /*pos*/  1024,  0,  3822, /*yaw*/  0
+special_object /*preset*/ special_level_geo_03, /*pos*/  3072,  0,   375, /*yaw*/  0
+special_object /*preset*/ special_palm_tree,    /*pos*/ -5989,  0, -4850
 # water boxes (val, loX, hiX, loZ, hiZ, height)
 .hword 0x0044,    3
 .hword    51,  1024, -7065,  7578,  -716,   -50

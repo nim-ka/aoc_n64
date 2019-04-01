@@ -1877,6 +1877,6 @@ glabel ccm_seg7_area_2_collision # 0x07020880 - 0x07023468
 .hword 0x0041
 # special objects area 2 0x43
 .hword 0x0043,    2 # add 2 special objects
-special_object_10_byte /*preset*/ special_null_start,       /*pos*/ -5836,  7465, -6143, /*yaw*/ 64 # unused, probably an early way to set intial position
-special_object_11_byte /*preset*/ special_wooden_door_warp, /*pos*/ -7628, -5836, -6988, /*yaw*/ 64, /*behParam2*/ 20
+special_object /*preset*/ special_null_start,       /*pos*/ -5836,  7465, -6143, /*yaw*/ 64 # unused, probably an early way to set intial position
+special_object /*preset*/ special_wooden_door_warp, /*pos*/ -7628, -5836, -6988, /*yaw*/ 64, /*behParam2*/ 20
 .hword 0x0042

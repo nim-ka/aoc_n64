@@ -1656,21 +1656,21 @@ glabel bob_seg7_collision_level # 0x0700E958 - 0x0701104C
 .hword 0x0041
 # special objects 0x43
 .hword 0x0043,   17 # add 17 special objects 
-special_object_8_byte /*preset*/ special_bubble_tree, /*pos*/ -5792, 1024, -4654
-special_object_8_byte /*preset*/ special_bubble_tree, /*pos*/ -1509,  144,  5094
-special_object_8_byte /*preset*/ special_bubble_tree, /*pos*/ -4095,  768,  3072
-special_object_8_byte /*preset*/ special_bubble_tree, /*pos*/ -5119,  768,  2048
-special_object_8_byte /*preset*/ special_bubble_tree, /*pos*/  5444,  863,  6016
-special_object_8_byte /*preset*/ special_bubble_tree, /*pos*/ -6655,  768,  3584
-special_object_8_byte /*preset*/ special_bubble_tree, /*pos*/ -6130,  900, -6507
-special_object_8_byte /*preset*/ special_bubble_tree, /*pos*/ -6804, 1024, -4866
-special_object_8_byte /*preset*/ special_bubble_tree, /*pos*/  6033, 2194, -7660
-special_object_8_byte /*preset*/ special_bubble_tree, /*pos*/ -4095,  768,  1536
-special_object_8_byte /*preset*/ special_bubble_tree, /*pos*/ -4268,    0,  4768
-special_object_8_byte /*preset*/ special_bubble_tree, /*pos*/ -3583,  768,  2560
-special_object_8_byte /*preset*/ special_bubble_tree, /*pos*/ -6172, 1024,  -430
-special_object_8_byte /*preset*/ special_bubble_tree, /*pos*/  4096, 3072,  1638
-special_object_8_byte /*preset*/ special_bubble_tree, /*pos*/  6799, 2008, -5587
-special_object_8_byte /*preset*/ special_bubble_tree, /*pos*/  2911,  768,  5917
-special_object_8_byte /*preset*/ special_bubble_tree, /*pos*/  4208,  927,  3772
+special_object /*preset*/ special_bubble_tree, /*pos*/ -5792, 1024, -4654
+special_object /*preset*/ special_bubble_tree, /*pos*/ -1509,  144,  5094
+special_object /*preset*/ special_bubble_tree, /*pos*/ -4095,  768,  3072
+special_object /*preset*/ special_bubble_tree, /*pos*/ -5119,  768,  2048
+special_object /*preset*/ special_bubble_tree, /*pos*/  5444,  863,  6016
+special_object /*preset*/ special_bubble_tree, /*pos*/ -6655,  768,  3584
+special_object /*preset*/ special_bubble_tree, /*pos*/ -6130,  900, -6507
+special_object /*preset*/ special_bubble_tree, /*pos*/ -6804, 1024, -4866
+special_object /*preset*/ special_bubble_tree, /*pos*/  6033, 2194, -7660
+special_object /*preset*/ special_bubble_tree, /*pos*/ -4095,  768,  1536
+special_object /*preset*/ special_bubble_tree, /*pos*/ -4268,    0,  4768
+special_object /*preset*/ special_bubble_tree, /*pos*/ -3583,  768,  2560
+special_object /*preset*/ special_bubble_tree, /*pos*/ -6172, 1024,  -430
+special_object /*preset*/ special_bubble_tree, /*pos*/  4096, 3072,  1638
+special_object /*preset*/ special_bubble_tree, /*pos*/  6799, 2008, -5587
+special_object /*preset*/ special_bubble_tree, /*pos*/  2911,  768,  5917
+special_object /*preset*/ special_bubble_tree, /*pos*/  4208,  927,  3772
 .hword 0x0042
