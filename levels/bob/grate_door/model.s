@@ -10,8 +10,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, generic_09008800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex bob_seg7_vertex_0700E810, 5, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  4, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  4, 0x0
 gsSP1Triangle  0,  4,  1, 0x0
 gsSPEndDisplayList
 

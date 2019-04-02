@@ -409,92 +409,56 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight inside_castle_seg7_light_0704AB88, 1
 gsSPLight inside_castle_seg7_light_0704AB80, 2
 gsSPVertex inside_castle_seg7_vertex_0704ABC8, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  0,  4, 0x0
-gsSP1Triangle  5,  0,  2, 0x0
-gsSP1Triangle  0,  5,  4, 0x0
-gsSP1Triangle  3,  4,  6, 0x0
-gsSP1Triangle  7,  3,  6, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle 11,  8, 10, 0x0
-gsSP1Triangle 12,  8, 13, 0x0
-gsSP1Triangle  8, 11, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  0,  4, 0x0
+gsSP2Triangles  5,  0,  2, 0x0,  0,  5,  4, 0x0
+gsSP2Triangles  3,  4,  6, 0x0,  7,  3,  6, 0x0
+gsSP2Triangles  8,  9, 10, 0x0, 11,  8, 10, 0x0
+gsSP2Triangles 12,  8, 13, 0x0,  8, 11, 13, 0x0
 gsSPVertex inside_castle_seg7_vertex_0704ACA8, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  3,  5, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  8, 10, 11, 0x0
-gsSP1Triangle  9,  8, 11, 0x0
-gsSP1Triangle  7,  9, 12, 0x0
-gsSP1Triangle  7, 12, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  3,  5, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles  8, 10, 11, 0x0,  9,  8, 11, 0x0
+gsSP2Triangles  7,  9, 12, 0x0,  7, 12, 13, 0x0
 gsSP1Triangle 14,  7, 13, 0x0
 gsSPVertex inside_castle_seg7_vertex_0704AD98, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  6,  8,  9, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 10, 12, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  6,  8,  9, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 10, 12, 13, 0x0
 gsSP1Triangle  0, 14,  1, 0x0
 gsSPVertex inside_castle_seg7_vertex_0704AE88, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  5,  7,  6, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle  8, 10, 11, 0x0
-gsSP1Triangle 12, 13, 14, 0x0
-gsSP1Triangle 12, 14, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  5,  7,  6, 0x0
+gsSP2Triangles  8,  9, 10, 0x0,  8, 10, 11, 0x0
+gsSP2Triangles 12, 13, 14, 0x0, 12, 14, 15, 0x0
 gsSPLight inside_castle_seg7_light_0704ABA0, 1
 gsSPLight inside_castle_seg7_light_0704AB98, 2
 gsSPVertex inside_castle_seg7_vertex_0704AF88, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  5,  6, 0x0
-gsSP1Triangle  4,  7,  8, 0x0
-gsSP1Triangle  4,  8,  5, 0x0
-gsSP1Triangle  7,  9,  8, 0x0
-gsSP1Triangle  9, 10,  8, 0x0
-gsSP1Triangle 11,  0, 12, 0x0
-gsSP1Triangle  0,  2, 12, 0x0
-gsSP1Triangle 13, 14, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  5,  6, 0x0,  4,  7,  8, 0x0
+gsSP2Triangles  4,  8,  5, 0x0,  7,  9,  8, 0x0
+gsSP2Triangles  9, 10,  8, 0x0, 11,  0, 12, 0x0
+gsSP2Triangles  0,  2, 12, 0x0, 13, 14, 15, 0x0
 gsSPVertex inside_castle_seg7_vertex_0704B088, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  0,  2, 0x0
-gsSP1Triangle  3,  2,  4, 0x0
-gsSP1Triangle  5,  6,  7, 0x0
-gsSP1Triangle  5,  7,  8, 0x0
-gsSP1Triangle  6,  9, 10, 0x0
-gsSP1Triangle  6, 10,  7, 0x0
-gsSP1Triangle  9, 11, 10, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  0,  2, 0x0
+gsSP2Triangles  3,  2,  4, 0x0,  5,  6,  7, 0x0
+gsSP2Triangles  5,  7,  8, 0x0,  6,  9, 10, 0x0
+gsSP2Triangles  6, 10,  7, 0x0,  9, 11, 10, 0x0
 gsSP1Triangle 12, 13, 14, 0x0
 gsSPVertex inside_castle_seg7_vertex_0704B178, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  7,  5, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle  8, 11,  9, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  7,  5, 0x0
+gsSP2Triangles  8,  9, 10, 0x0,  8, 11,  9, 0x0
 gsSP1Triangle 12, 13, 14, 0x0
 gsSPVertex inside_castle_seg7_vertex_0704B268, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  5,  7,  6, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle  9, 11, 10, 0x0
-gsSP1Triangle 12, 13, 14, 0x0
-gsSP1Triangle 13, 15, 14, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  5,  7,  6, 0x0
+gsSP2Triangles  8,  9, 10, 0x0,  9, 11, 10, 0x0
+gsSP2Triangles 12, 13, 14, 0x0, 13, 15, 14, 0x0
 gsSPVertex inside_castle_seg7_vertex_0704B368, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  3,  5, 0x0
-gsSP1Triangle  6,  4,  5, 0x0
-gsSP1Triangle  6,  5,  7, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle 11,  6,  7, 0x0
-gsSP1Triangle 12, 13, 14, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  3,  5, 0x0,  6,  4,  5, 0x0
+gsSP2Triangles  6,  5,  7, 0x0,  8,  9, 10, 0x0
+gsSP2Triangles 11,  6,  7, 0x0, 12, 13, 14, 0x0
 gsSP1Triangle 12, 14, 15, 0x0
 gsSPVertex inside_castle_seg7_vertex_0704B468, 3, 0
 gsSP1Triangle  0,  1,  2, 0x0
@@ -507,53 +471,34 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight inside_castle_seg7_light_0704ABB8, 1
 gsSPLight inside_castle_seg7_light_0704ABB0, 2
 gsSPVertex inside_castle_seg7_vertex_0704B498, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  5,  6, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  7, 10,  8, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  5,  6, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles  7, 10,  8, 0x0, 11, 12, 13, 0x0
 gsSP1Triangle 11, 14, 12, 0x0
 gsSPVertex inside_castle_seg7_vertex_0704B588, 11, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  6,  9,  7, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  6,  9,  7, 0x0
 gsSP1Triangle  0, 10,  1, 0x0
 gsSPLight inside_castle_seg7_light_0704ABA0, 1
 gsSPLight inside_castle_seg7_light_0704AB98, 2
 gsSPVertex inside_castle_seg7_vertex_0704B638, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  2,  1,  4, 0x0
-gsSP1Triangle  1,  5,  4, 0x0
-gsSP1Triangle  1,  6,  7, 0x0
-gsSP1Triangle  1,  7,  8, 0x0
-gsSP1Triangle  1,  8,  5, 0x0
-gsSP1Triangle  2,  4,  9, 0x0
-gsSP1Triangle  9, 10,  2, 0x0
-gsSP1Triangle  9, 11, 10, 0x0
-gsSP1Triangle 12,  2, 10, 0x0
-gsSP1Triangle 13, 14, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  2,  1,  4, 0x0,  1,  5,  4, 0x0
+gsSP2Triangles  1,  6,  7, 0x0,  1,  7,  8, 0x0
+gsSP2Triangles  1,  8,  5, 0x0,  2,  4,  9, 0x0
+gsSP2Triangles  9, 10,  2, 0x0,  9, 11, 10, 0x0
+gsSP2Triangles 12,  2, 10, 0x0, 13, 14, 15, 0x0
 gsSPVertex inside_castle_seg7_vertex_0704B738, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  6,  4, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  7,  9, 10, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  6,  4, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles  7,  9, 10, 0x0, 11, 12, 13, 0x0
 gsSPVertex inside_castle_seg7_vertex_0704B818, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  5,  6, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  7,  9, 10, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  5,  6, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles  7,  9, 10, 0x0, 11, 12, 13, 0x0
 gsSPVertex inside_castle_seg7_vertex_0704B8F8, 8, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
 gsSPEndDisplayList
 
 inside_castle_seg7_dl_0704C528: # 0x0704C528 - 0x0704C5F0
@@ -561,26 +506,17 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, inside_0900B000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex inside_castle_seg7_vertex_0704B978, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  5,  6, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 13, 14, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  5,  6, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 13, 14, 15, 0x0
 gsSPVertex inside_castle_seg7_vertex_0704BA78, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle  9, 12, 10, 0x0
-gsSP1Triangle 13, 14, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
+gsSP2Triangles  9, 12, 10, 0x0, 13, 14, 15, 0x0
 gsSPVertex inside_castle_seg7_vertex_0704BB78, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle  9, 11, 12, 0x0
-gsSP1Triangle  3, 13,  4, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
+gsSP2Triangles  9, 11, 12, 0x0,  3, 13,  4, 0x0
 gsSPEndDisplayList
 
 inside_castle_seg7_dl_0704C5F0: # 0x0704C5F0 - 0x0704C638
@@ -588,10 +524,8 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, inside_09004000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex inside_castle_seg7_vertex_0704BC58, 6, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  0, 0x0
-gsSP1Triangle  4,  0,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  0, 0x0,  4,  0,  3, 0x0
 gsSPEndDisplayList
 
 inside_castle_seg7_dl_0704C638: # 0x0704C638 - 0x0704C6B8
@@ -599,16 +533,12 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, inside_09003000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex inside_castle_seg7_vertex_0704BCB8, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  5,  6, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  7, 10,  8, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  5,  6, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles  7, 10,  8, 0x0, 11, 12, 13, 0x0
 gsSP1Triangle 11, 14, 12, 0x0
 gsSPVertex inside_castle_seg7_vertex_0704BDA8, 7, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
 gsSP1Triangle  0,  6,  1, 0x0
 gsSPEndDisplayList
 
@@ -617,23 +547,15 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, inside_0900A000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex inside_castle_seg7_vertex_0704BE18, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  5,  6, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  7, 10,  8, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
-gsSP1Triangle 11, 14, 12, 0x0
-gsSP1Triangle  0,  2, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  5,  6, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles  7, 10,  8, 0x0, 11, 12, 13, 0x0
+gsSP2Triangles 11, 14, 12, 0x0,  0,  2, 15, 0x0
 gsSPVertex inside_castle_seg7_vertex_0704BF18, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  0,  2,  6, 0x0
-gsSP1Triangle  7,  8,  0, 0x0
-gsSP1Triangle  7,  0,  6, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle  9, 12, 10, 0x0
-gsSP1Triangle  3,  5, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  0,  2,  6, 0x0,  7,  8,  0, 0x0
+gsSP2Triangles  7,  0,  6, 0x0,  9, 10, 11, 0x0
+gsSP2Triangles  9, 12, 10, 0x0,  3,  5, 13, 0x0
 gsSPEndDisplayList
 
 inside_castle_seg7_dl_0704C768: # 0x0704C768 - 0x0704C7A0
@@ -641,8 +563,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, inside_castle_seg7_texture_0
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
 gsSPVertex inside_castle_seg7_vertex_0704BFF8, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 inside_castle_seg7_dl_0704C7A0: # 0x0704C7A0 - 0x0704C7D8
@@ -650,8 +571,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, inside_castle_seg7_texture_0
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
 gsSPVertex inside_castle_seg7_vertex_0704C038, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  3,  0, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  3,  0, 0x0
 gsSPEndDisplayList
 
 glabel inside_castle_seg7_dl_0704C7D8 # 0x0704C7D8 - 0x0704C8B0

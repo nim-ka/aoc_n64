@@ -51,13 +51,11 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight bowser_3_seg7_light_07003358, 1
 gsSPLight bowser_3_seg7_light_07003350, 2
 gsSPVertex bowser_3_seg7_vertex_07003380, 6, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
 gsSPLight bowser_3_seg7_light_07003370, 1
 gsSPLight bowser_3_seg7_light_07003368, 2
 gsSPVertex bowser_3_seg7_vertex_070033E0, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 bowser_3_seg7_dl_07003590: # 0x07003590 - 0x070035F8
@@ -65,14 +63,10 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, bowser_3_seg7_texture_070010
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex bowser_3_seg7_vertex_07003420, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  5,  6, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  7, 10,  8, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
-gsSP1Triangle 11, 14, 12, 0x0
-gsSP1Triangle  0, 15,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  5,  6, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles  7, 10,  8, 0x0, 11, 12, 13, 0x0
+gsSP2Triangles 11, 14, 12, 0x0,  0, 15,  1, 0x0
 gsSPEndDisplayList
 
 glabel bowser_3_seg7_dl_070035F8 # 0x070035F8 - 0x07003688

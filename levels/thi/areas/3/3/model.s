@@ -84,26 +84,17 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, grass_0900B800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex thi_seg7_vertex_07009740, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  5,  6, 0x0
-gsSP1Triangle  4,  7,  5, 0x0
-gsSP1Triangle  4,  8,  7, 0x0
-gsSP1Triangle  6,  5,  7, 0x0
-gsSP1Triangle  6,  7,  9, 0x0
-gsSP1Triangle  9,  7,  8, 0x0
-gsSP1Triangle  9,  8, 10, 0x0
-gsSP1Triangle 11,  0, 12, 0x0
-gsSP1Triangle 12,  0, 13, 0x0
-gsSP1Triangle 11,  1,  0, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  5,  6, 0x0,  4,  7,  5, 0x0
+gsSP2Triangles  4,  8,  7, 0x0,  6,  5,  7, 0x0
+gsSP2Triangles  6,  7,  9, 0x0,  9,  7,  8, 0x0
+gsSP2Triangles  9,  8, 10, 0x0, 11,  0, 12, 0x0
+gsSP2Triangles 12,  0, 13, 0x0, 11,  1,  0, 0x0
 gsSP1Triangle  0,  2, 13, 0x0
 gsSPVertex thi_seg7_vertex_07009820, 11, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  6,  4, 0x0
-gsSP1Triangle  7,  8,  6, 0x0
-gsSP1Triangle  7,  6,  3, 0x0
-gsSP1Triangle  9,  8,  7, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  6,  4, 0x0,  7,  8,  6, 0x0
+gsSP2Triangles  7,  6,  3, 0x0,  9,  8,  7, 0x0
 gsSP1Triangle  0,  2, 10, 0x0
 gsSPEndDisplayList
 
@@ -112,24 +103,17 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, thi_seg7_texture_07000000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex thi_seg7_vertex_070098D0, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  6,  4, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  7, 10,  8, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  6,  4, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles  7, 10,  8, 0x0, 11, 12, 13, 0x0
 gsSP1Triangle 11, 13, 14, 0x0
 gsSPVertex thi_seg7_vertex_070099C0, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  6,  8,  9, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 10, 12, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  6,  8,  9, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 10, 12, 13, 0x0
 gsSP1Triangle  0,  2, 14, 0x0
 gsSPVertex thi_seg7_vertex_07009AB0, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 thi_seg7_dl_07009CF8: # 0x07009CF8 - 0x07009D30
@@ -137,14 +121,12 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, grass_09005800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex thi_seg7_vertex_07009AF0, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 thi_seg7_dl_07009D30: # 0x07009D30 - 0x07009D50
 gsSPVertex thi_seg7_vertex_07009B30, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel thi_seg7_dl_07009D50 # 0x07009D50 - 0x07009DF0

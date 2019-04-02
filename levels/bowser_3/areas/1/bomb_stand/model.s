@@ -40,14 +40,11 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight bowser_3_seg7_light_07004748, 1
 gsSPLight bowser_3_seg7_light_07004740, 2
 gsSPVertex bowser_3_seg7_vertex_07004758, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
 gsSP1Triangle 12, 13, 14, 0x0
 gsSPVertex bowser_3_seg7_vertex_07004848, 9, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
 gsSP1Triangle  6,  7,  8, 0x0
 gsSPEndDisplayList
 

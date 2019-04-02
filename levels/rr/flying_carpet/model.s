@@ -49,18 +49,12 @@ gsSPLight rr_seg7_light_07019230, 2
 gsSPEndDisplayList
 
 glabel rr_seg7_dl_07019360 # 0x07019360 - 0x070193C8
-gsSP1Triangle  0,  1,  3, 0x0
-gsSP1Triangle  3,  1,  4, 0x0
-gsSP1Triangle  1,  2,  4, 0x0
-gsSP1Triangle  4,  2,  5, 0x0
-gsSP1Triangle  3,  4,  6, 0x0
-gsSP1Triangle  6,  4,  7, 0x0
-gsSP1Triangle  4,  5,  7, 0x0
-gsSP1Triangle  7,  5,  8, 0x0
-gsSP1Triangle  6,  7,  9, 0x0
-gsSP1Triangle  9,  7, 10, 0x0
-gsSP1Triangle  7,  8, 10, 0x0
-gsSP1Triangle 10,  8, 11, 0x0
+gsSP2Triangles  0,  1,  3, 0x0,  3,  1,  4, 0x0
+gsSP2Triangles  1,  2,  4, 0x0,  4,  2,  5, 0x0
+gsSP2Triangles  3,  4,  6, 0x0,  6,  4,  7, 0x0
+gsSP2Triangles  4,  5,  7, 0x0,  7,  5,  8, 0x0
+gsSP2Triangles  6,  7,  9, 0x0,  9,  7, 10, 0x0
+gsSP2Triangles  7,  8, 10, 0x0, 10,  8, 11, 0x0
 gsSPEndDisplayList
 
 glabel rr_seg7_dl_070193C8 # 0x070193C8 - 0x070193F0

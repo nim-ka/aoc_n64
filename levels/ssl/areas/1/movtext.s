@@ -45,14 +45,10 @@ glabel ssl_seg7_arr_070127F0 # 0x070127F0 - 0x070128B8
 .hword     0,     0,     0,     0
 
 glabel ssl_seg7_dl_070128B8 # 0x070128B8 - 0x07012900
-gsSP1Triangle  0,  4,  1, 0x0
-gsSP1Triangle  1,  4,  5, 0x0
-gsSP1Triangle  1,  6,  2, 0x0
-gsSP1Triangle  2,  6,  7, 0x0
-gsSP1Triangle  2,  8,  3, 0x0
-gsSP1Triangle  3,  8,  9, 0x0
-gsSP1Triangle  0,  3, 10, 0x0
-gsSP1Triangle  0, 10, 11, 0x0
+gsSP2Triangles  0,  4,  1, 0x0,  1,  4,  5, 0x0
+gsSP2Triangles  1,  6,  2, 0x0,  2,  6,  7, 0x0
+gsSP2Triangles  2,  8,  3, 0x0,  3,  8,  9, 0x0
+gsSP2Triangles  0,  3, 10, 0x0,  0, 10, 11, 0x0
 gsSPEndDisplayList
 
 glabel ssl_seg7_arr_07012900 # 0x07012900 - 0x07012A08
@@ -75,14 +71,10 @@ glabel ssl_seg7_arr_07012900 # 0x07012900 - 0x07012A08
 .hword     3,     0,     0,     0
 
 glabel ssl_seg7_dl_07012A08 # 0x07012A08 - 0x07012A50
-gsSP1Triangle  0, 11, 12, 0x0
-gsSP1Triangle  0, 12,  4, 0x0
-gsSP1Triangle  1,  5, 13, 0x0
-gsSP1Triangle  1, 13,  6, 0x0
-gsSP1Triangle  2,  7, 14, 0x0
-gsSP1Triangle  2, 14,  8, 0x0
-gsSP1Triangle  3,  9, 15, 0x0
-gsSP1Triangle  3, 15, 10, 0x0
+gsSP2Triangles  0, 11, 12, 0x0,  0, 12,  4, 0x0
+gsSP2Triangles  1,  5, 13, 0x0,  1, 13,  6, 0x0
+gsSP2Triangles  2,  7, 14, 0x0,  2, 14,  8, 0x0
+gsSP2Triangles  3,  9, 15, 0x0,  3, 15, 10, 0x0
 gsSPEndDisplayList
 
 glabel ssl_seg7_arr_07012A50 # 0x07012A50 - 0x07012B48
@@ -104,20 +96,12 @@ glabel ssl_seg7_arr_07012A50 # 0x07012A50 - 0x07012B48
 .hword    12,     0,     0,     0
 
 glabel ssl_seg7_dl_07012B48 # 0x07012B48 - 0x07012BD0
-gsSP1Triangle  2,  1,  5, 0x0
-gsSP1Triangle  1,  4,  5, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  1,  3,  4, 0x0
-gsSP1Triangle  4,  7,  5, 0x0
-gsSP1Triangle  5,  7,  8, 0x0
-gsSP1Triangle  4,  3,  7, 0x0
-gsSP1Triangle  3,  6,  7, 0x0
-gsSP1Triangle  8,  7, 11, 0x0
-gsSP1Triangle 11,  7, 10, 0x0
-gsSP1Triangle  7,  9, 10, 0x0
-gsSP1Triangle  7,  6,  9, 0x0
-gsSP1Triangle 11, 10, 13, 0x0
-gsSP1Triangle 11, 13, 14, 0x0
-gsSP1Triangle 10,  9, 13, 0x0
-gsSP1Triangle 13,  9, 12, 0x0
+gsSP2Triangles  2,  1,  5, 0x0,  1,  4,  5, 0x0
+gsSP2Triangles  0,  3,  1, 0x0,  1,  3,  4, 0x0
+gsSP2Triangles  4,  7,  5, 0x0,  5,  7,  8, 0x0
+gsSP2Triangles  4,  3,  7, 0x0,  3,  6,  7, 0x0
+gsSP2Triangles  8,  7, 11, 0x0, 11,  7, 10, 0x0
+gsSP2Triangles  7,  9, 10, 0x0,  7,  6,  9, 0x0
+gsSP2Triangles 11, 10, 13, 0x0, 11, 13, 14, 0x0
+gsSP2Triangles 10,  9, 13, 0x0, 13,  9, 12, 0x0
 gsSPEndDisplayList

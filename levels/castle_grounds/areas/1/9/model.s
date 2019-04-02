@@ -102,19 +102,14 @@ gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPLight castle_grounds_seg7_light_0700BCE0, 1
 gsSPLight castle_grounds_seg7_light_0700BCD8, 2
 gsSPVertex castle_grounds_seg7_vertex_0700BD50, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  7,  5, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle  8, 11,  9, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  7,  5, 0x0
+gsSP2Triangles  8,  9, 10, 0x0,  8, 11,  9, 0x0
 gsSPLight castle_grounds_seg7_light_0700BCF8, 1
 gsSPLight castle_grounds_seg7_light_0700BCF0, 2
 gsSPVertex castle_grounds_seg7_vertex_0700BE10, 8, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  7,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  7,  5, 0x0
 gsSPEndDisplayList
 
 castle_grounds_seg7_dl_0700C110: # 0x0700C110 - 0x0700C210
@@ -124,31 +119,23 @@ gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
 gsSPLight castle_grounds_seg7_light_0700BD10, 1
 gsSPLight castle_grounds_seg7_light_0700BD08, 2
 gsSPVertex castle_grounds_seg7_vertex_0700BE90, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  0,  4,  3, 0x0
-gsSP1Triangle  0,  2,  5, 0x0
-gsSP1Triangle  6,  4,  7, 0x0
-gsSP1Triangle  6,  3,  4, 0x0
-gsSP1Triangle  2,  6,  7, 0x0
-gsSP1Triangle  5,  2,  7, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle  9, 11, 10, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  0,  4,  3, 0x0,  0,  2,  5, 0x0
+gsSP2Triangles  6,  4,  7, 0x0,  6,  3,  4, 0x0
+gsSP2Triangles  2,  6,  7, 0x0,  5,  2,  7, 0x0
+gsSP2Triangles  8,  9, 10, 0x0,  9, 11, 10, 0x0
 gsSPLight castle_grounds_seg7_light_0700BD28, 1
 gsSPLight castle_grounds_seg7_light_0700BD20, 2
 gsSPVertex castle_grounds_seg7_vertex_0700BF50, 6, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
 gsSPLight castle_grounds_seg7_light_0700BD40, 1
 gsSPLight castle_grounds_seg7_light_0700BD38, 2
 gsSPVertex castle_grounds_seg7_vertex_0700BFB0, 6, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
 gsSPLight castle_grounds_seg7_light_0700BCF8, 1
 gsSPLight castle_grounds_seg7_light_0700BCF0, 2
 gsSPVertex castle_grounds_seg7_vertex_0700C010, 6, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
 gsSPEndDisplayList
 
 glabel castle_grounds_seg7_dl_0700C210 # 0x0700C210 - 0x0700C2A0

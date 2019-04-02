@@ -18,14 +18,10 @@ vertex   1075,   -972,   3277,      0,      0,  0x00, 0xFF, 0xFF, 0x40
 
 sa_dl_07002F80: # 0x07002F80 - 0x07002FD0
 gsSPVertex sa_vertex_07002E80, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  7,  5, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle  8, 10, 11, 0x0
-gsSP1Triangle 12, 13, 14, 0x0
-gsSP1Triangle 12, 15, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  7,  5, 0x0
+gsSP2Triangles  8,  9, 10, 0x0,  8, 10, 11, 0x0
+gsSP2Triangles 12, 13, 14, 0x0, 12, 15, 13, 0x0
 gsSPEndDisplayList
 
 glabel sa_seg7_dl_07002FD0 # 0x07002FD0 - 0x07003000

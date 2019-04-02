@@ -19,17 +19,12 @@ glabel bitfs_seg7_arr_07015B48 # 0x07015B48 - 0x07015BA8
 .hword     2, -8191, -3067, -8192,     4,     4,     0,     0
 
 glabel bitfs_seg7_dl_07015BA8 # 0x07015BA8 - 0x07015BC0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel bitfs_seg7_dl_07015BC0 # 0x07015BC0 - 0x07015C08
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  1,  3,  4, 0x0
-gsSP1Triangle  1,  4,  2, 0x0
-gsSP1Triangle  2,  4,  5, 0x0
-gsSP1Triangle  3,  6,  4, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
-gsSP1Triangle  4,  7,  5, 0x0
-gsSP1Triangle  5,  7,  8, 0x0
+gsSP2Triangles  0,  3,  1, 0x0,  1,  3,  4, 0x0
+gsSP2Triangles  1,  4,  2, 0x0,  2,  4,  5, 0x0
+gsSP2Triangles  3,  6,  4, 0x0,  4,  6,  7, 0x0
+gsSP2Triangles  4,  7,  5, 0x0,  5,  7,  8, 0x0
 gsSPEndDisplayList

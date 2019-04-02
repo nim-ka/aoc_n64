@@ -26,12 +26,9 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight bbh_seg7_light_0701F6B0, 1
 gsSPLight bbh_seg7_light_0701F6A8, 2
 gsSPVertex bbh_seg7_vertex_0701F6C0, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  7,  5, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle  8, 11,  9, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  7,  5, 0x0
+gsSP2Triangles  8,  9, 10, 0x0,  8, 11,  9, 0x0
 gsSPEndDisplayList
 
 glabel bbh_seg7_dl_0701F7E8 # 0x0701F7E8 - 0x0701F858

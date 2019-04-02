@@ -67,8 +67,7 @@ gsSPClearGeometryMode G_CULL_BACK
 gsSPLight castle_grounds_seg7_light_0700C4D0, 1
 gsSPLight castle_grounds_seg7_light_0700C4C8, 2
 gsSPVertex castle_grounds_seg7_vertex_0700C530, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPSetGeometryMode G_CULL_BACK
 gsSPEndDisplayList
 
@@ -77,8 +76,7 @@ gsSPClearGeometryMode G_CULL_BACK
 gsSPLight castle_grounds_seg7_light_0700C4D0, 1
 gsSPLight castle_grounds_seg7_light_0700C4C8, 2
 gsSPVertex castle_grounds_seg7_vertex_0700C570, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPSetGeometryMode G_CULL_BACK
 gsSPEndDisplayList
 
@@ -87,8 +85,7 @@ gsSPClearGeometryMode G_CULL_BACK
 gsSPLight castle_grounds_seg7_light_0700C4D0, 1
 gsSPLight castle_grounds_seg7_light_0700C4C8, 2
 gsSPVertex castle_grounds_seg7_vertex_0700C5B0, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPSetGeometryMode G_CULL_BACK
 gsSPEndDisplayList
 
@@ -97,8 +94,7 @@ gsSPClearGeometryMode G_CULL_BACK
 gsSPLight castle_grounds_seg7_light_0700C4E8, 1
 gsSPLight castle_grounds_seg7_light_0700C4E0, 2
 gsSPVertex castle_grounds_seg7_vertex_0700C5F0, 5, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  3,  4, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  3,  4, 0x0
 gsSPLight castle_grounds_seg7_light_0700C4D0, 1
 gsSPLight castle_grounds_seg7_light_0700C4C8, 2
 gsSPVertex castle_grounds_seg7_vertex_0700C640, 3, 0

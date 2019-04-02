@@ -15,14 +15,10 @@ gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_16b, 1, grass_0900B000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex thi_seg7_vertex_07007430, 10, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  2,  1, 0x0
-gsSP1Triangle  3,  4,  2, 0x0
-gsSP1Triangle  5,  6,  7, 0x0
-gsSP1Triangle  5,  3,  8, 0x0
-gsSP1Triangle  5,  4,  3, 0x0
-gsSP1Triangle  5,  9,  4, 0x0
-gsSP1Triangle  5,  7,  9, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  2,  1, 0x0
+gsSP2Triangles  3,  4,  2, 0x0,  5,  6,  7, 0x0
+gsSP2Triangles  5,  3,  8, 0x0,  5,  4,  3, 0x0
+gsSP2Triangles  5,  9,  4, 0x0,  5,  7,  9, 0x0
 gsSPEndDisplayList
 
 glabel thi_seg7_dl_07007538 # 0x07007538 - 0x070075A8

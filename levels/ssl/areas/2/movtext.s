@@ -63,12 +63,9 @@ glabel ssl_seg7_arr_07028760 # 0x07028760 - 0x070287B8
 .hword     1,     0,     0,     0
 
 glabel ssl_seg7_dl_070287B8 # 0x070287B8 - 0x070287F0
-gsSP1Triangle  0,  1,  4, 0x0
-gsSP1Triangle  4,  1,  5, 0x0
-gsSP1Triangle  1,  2,  5, 0x0
-gsSP1Triangle  5,  2,  6, 0x0
-gsSP1Triangle  2,  3,  6, 0x0
-gsSP1Triangle  6,  3,  7, 0x0
+gsSP2Triangles  0,  1,  4, 0x0,  4,  1,  5, 0x0
+gsSP2Triangles  1,  2,  5, 0x0,  5,  2,  6, 0x0
+gsSP2Triangles  2,  3,  6, 0x0,  6,  3,  7, 0x0
 gsSPEndDisplayList
 
 glabel ssl_seg7_arr_070287F0 # 0x070287F0 - 0x07028844
@@ -87,8 +84,6 @@ glabel ssl_seg7_arr_07028844 # 0x07028844 - 0x07028888
 .hword     0,     0
 
 glabel ssl_seg7_dl_07028888 # 0x07028888 - 0x070288B0
-gsSP1Triangle  0,  1,  3, 0x0
-gsSP1Triangle  1,  4,  3, 0x0
-gsSP1Triangle  1,  2,  4, 0x0
-gsSP1Triangle  2,  5,  4, 0x0
+gsSP2Triangles  0,  1,  3, 0x0,  1,  4,  3, 0x0
+gsSP2Triangles  1,  2,  4, 0x0,  2,  5,  4, 0x0
 gsSPEndDisplayList

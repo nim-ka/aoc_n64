@@ -18,8 +18,7 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight inside_castle_seg7_light_070382B8, 1
 gsSPLight inside_castle_seg7_light_070382B0, 2
 gsSPVertex inside_castle_seg7_vertex_070382C8, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  0,  2, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  0,  2, 0x0
 gsSPEndDisplayList
 
 glabel inside_castle_seg7_dl_07038350 # 0x07038350 - 0x070383C0

@@ -35,33 +35,20 @@ vertex    628,      0,  -4947,      0,      0,  0x00, 0x00, 0x00, 0xFF
 
 cotmc_seg7_dl_0700A3D0: # 0x0700A3D0 - 0x0700A4B8
 gsSPVertex cotmc_seg7_vertex_0700A1E0, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  0, 0x0
-gsSP1Triangle  5,  3,  0, 0x0
-gsSP1Triangle  5,  0,  2, 0x0
-gsSP1Triangle  2,  1,  6, 0x0
-gsSP1Triangle  7,  5,  2, 0x0
-gsSP1Triangle  2,  6,  7, 0x0
-gsSP1Triangle  7,  8,  5, 0x0
-gsSP1Triangle  8,  9,  5, 0x0
-gsSP1Triangle  9,  3,  5, 0x0
-gsSP1Triangle  3, 10,  4, 0x0
-gsSP1Triangle 10, 11,  4, 0x0
-gsSP1Triangle 12, 13, 14, 0x0
-gsSP1Triangle 10, 15, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  0, 0x0
+gsSP2Triangles  5,  3,  0, 0x0,  5,  0,  2, 0x0
+gsSP2Triangles  2,  1,  6, 0x0,  7,  5,  2, 0x0
+gsSP2Triangles  2,  6,  7, 0x0,  7,  8,  5, 0x0
+gsSP2Triangles  8,  9,  5, 0x0,  9,  3,  5, 0x0
+gsSP2Triangles  3, 10,  4, 0x0, 10, 11,  4, 0x0
+gsSP2Triangles 12, 13, 14, 0x0, 10, 15, 11, 0x0
 gsSPVertex cotmc_seg7_vertex_0700A2E0, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  3,  4,  1, 0x0
-gsSP1Triangle  3,  5,  4, 0x0
-gsSP1Triangle  6,  4,  7, 0x0
-gsSP1Triangle  4,  5,  7, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9,  6, 10, 0x0
-gsSP1Triangle  6, 11, 10, 0x0
-gsSP1Triangle  9, 10, 12, 0x0
-gsSP1Triangle 10, 13, 14, 0x0
-gsSP1Triangle 10, 14, 12, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  3,  4,  1, 0x0,  3,  5,  4, 0x0
+gsSP2Triangles  6,  4,  7, 0x0,  4,  5,  7, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9,  6, 10, 0x0
+gsSP2Triangles  6, 11, 10, 0x0,  9, 10, 12, 0x0
+gsSP2Triangles 10, 13, 14, 0x0, 10, 14, 12, 0x0
 gsSPEndDisplayList
 
 glabel cotmc_seg7_dl_0700A4B8 # 0x0700A4B8 - 0x0700A508

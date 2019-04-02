@@ -8,14 +8,10 @@ glabel lll_seg7_arr_0702874C # 0x0702874C - 0x070287A8
 .hword    2, -8191,     0, -8192,     4,     4
 
 glabel lll_seg7_dl_070287A8 # 0x070287A8 - 0x070287F0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  1,  3,  4, 0x0
-gsSP1Triangle  1,  4,  2, 0x0
-gsSP1Triangle  2,  4,  5, 0x0
-gsSP1Triangle  3,  6,  4, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
-gsSP1Triangle  4,  7,  5, 0x0
-gsSP1Triangle  5,  7,  8, 0x0
+gsSP2Triangles  0,  3,  1, 0x0,  1,  3,  4, 0x0
+gsSP2Triangles  1,  4,  2, 0x0,  2,  4,  5, 0x0
+gsSP2Triangles  3,  6,  4, 0x0,  4,  6,  7, 0x0
+gsSP2Triangles  4,  7,  5, 0x0,  5,  7,  8, 0x0
 gsSPEndDisplayList
 
 lll_seg7_moving_texture_data_070287F0:
@@ -42,22 +38,13 @@ glabel lll_seg7_arr_07028820 # 0x07028820 - 0x070288C8
 .hword     2,     0,     0,     0
 
 glabel lll_seg7_dl_070288C8 # 0x070288C8 - 0x07028960
-gsSP1Triangle 15, 14,  9, 0x0
-gsSP1Triangle  4,  9,  3, 0x0
-gsSP1Triangle  9, 14,  8, 0x0
-gsSP1Triangle  9,  8,  3, 0x0
-gsSP1Triangle 14, 13,  8, 0x0
-gsSP1Triangle  8, 13,  7, 0x0
-gsSP1Triangle  8,  7,  2, 0x0
-gsSP1Triangle  8,  2,  3, 0x0
-gsSP1Triangle 10,  6,  7, 0x0
-gsSP1Triangle 13, 10,  7, 0x0
-gsSP1Triangle 13, 12, 10, 0x0
-gsSP1Triangle 12, 11, 10, 0x0
-gsSP1Triangle 10, 11,  5, 0x0
-gsSP1Triangle  6, 10,  5, 0x0
-gsSP1Triangle  6,  5,  0, 0x0
-gsSP1Triangle  6,  0,  1, 0x0
-gsSP1Triangle  2,  6,  1, 0x0
-gsSP1Triangle  7,  6,  2, 0x0
+gsSP2Triangles 15, 14,  9, 0x0,  4,  9,  3, 0x0
+gsSP2Triangles  9, 14,  8, 0x0,  9,  8,  3, 0x0
+gsSP2Triangles 14, 13,  8, 0x0,  8, 13,  7, 0x0
+gsSP2Triangles  8,  7,  2, 0x0,  8,  2,  3, 0x0
+gsSP2Triangles 10,  6,  7, 0x0, 13, 10,  7, 0x0
+gsSP2Triangles 13, 12, 10, 0x0, 12, 11, 10, 0x0
+gsSP2Triangles 10, 11,  5, 0x0,  6, 10,  5, 0x0
+gsSP2Triangles  6,  5,  0, 0x0,  6,  0,  1, 0x0
+gsSP2Triangles  2,  6,  1, 0x0,  7,  6,  2, 0x0
 gsSPEndDisplayList

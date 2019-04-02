@@ -6,8 +6,7 @@ vertex   4941,  -3063,  -5631,      0,      0,  0x00, 0x00, 0x00, 0xFF
 
 ddd_seg7_dl_07009010: # 0x07009010 - 0x07009030
 gsSPVertex ddd_seg7_vertex_07008FD0, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel ddd_seg7_dl_07009030 # 0x07009030 - 0x07009080

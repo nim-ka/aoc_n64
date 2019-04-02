@@ -43,17 +43,12 @@ gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPLight hmc_seg7_light_07023EC0, 1
 gsSPLight hmc_seg7_light_07023EB8, 2
 gsSPVertex hmc_seg7_vertex_07023ED0, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle  9, 11, 12, 0x0
-gsSP1Triangle 13, 14, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
+gsSP2Triangles  9, 11, 12, 0x0, 13, 14, 15, 0x0
 gsSPVertex hmc_seg7_vertex_07023FD0, 11, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  3,  9, 10, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  3,  9, 10, 0x0
 gsSPEndDisplayList
 
 glabel hmc_seg7_dl_07024110 # 0x07024110 - 0x070241B8

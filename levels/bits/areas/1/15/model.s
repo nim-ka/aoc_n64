@@ -58,42 +58,28 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, sky_09007000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex bits_seg7_vertex_0700CE50, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  7,  4,  6, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle 11,  8, 12, 0x0
-gsSP1Triangle 12, 13, 11, 0x0
-gsSP1Triangle 12, 14, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  7,  4,  6, 0x0
+gsSP2Triangles  8,  9, 10, 0x0, 11,  8, 12, 0x0
+gsSP2Triangles 12, 13, 11, 0x0, 12, 14, 13, 0x0
 gsSP1Triangle 14, 15, 13, 0x0
 gsSPVertex bits_seg7_vertex_0700CF50, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  3,  0, 0x0
-gsSP1Triangle  2,  4,  3, 0x0
-gsSP1Triangle  2,  5,  4, 0x0
-gsSP1Triangle  6,  1,  0, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  6, 10,  1, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  3,  0, 0x0
+gsSP2Triangles  2,  4,  3, 0x0,  2,  5,  4, 0x0
+gsSP2Triangles  6,  1,  0, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles  6, 10,  1, 0x0, 11, 12, 13, 0x0
 gsSP1Triangle 11, 14, 12, 0x0
 gsSPVertex bits_seg7_vertex_0700D040, 8, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
 gsSPEndDisplayList
 
 bits_seg7_dl_0700D228: # 0x0700D228 - 0x0700D278
 gsSPVertex bits_seg7_vertex_0700D0C0, 8, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  1,  3, 0x0
-gsSP1Triangle  2,  3,  4, 0x0
-gsSP1Triangle  0,  5,  1, 0x0
-gsSP1Triangle  4,  3,  6, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
-gsSP1Triangle  7,  5,  0, 0x0
-gsSP1Triangle  7,  6,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  1,  3, 0x0
+gsSP2Triangles  2,  3,  4, 0x0,  0,  5,  1, 0x0
+gsSP2Triangles  4,  3,  6, 0x0,  4,  6,  7, 0x0
+gsSP2Triangles  7,  5,  0, 0x0,  7,  6,  5, 0x0
 gsSPEndDisplayList
 
 glabel bits_seg7_dl_0700D278 # 0x0700D278 - 0x0700D2F0

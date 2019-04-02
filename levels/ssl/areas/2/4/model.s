@@ -76,12 +76,9 @@ glabel ssl_seg7_arr_070049B4 # 0x070049B4 - 0x07004A38
 .hword     0,     0
 
 glabel ssl_seg7_dl_07004A38 # 0x07004A38 - 0x07004A70
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  0,  3,  4, 0x0
-gsSP1Triangle  0,  4,  5, 0x0
-gsSP1Triangle  0,  5,  6, 0x0
-gsSP1Triangle  0,  6,  7, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  0,  3,  4, 0x0,  0,  4,  5, 0x0
+gsSP2Triangles  0,  5,  6, 0x0,  0,  6,  7, 0x0
 gsSPEndDisplayList
 
 ssl_seg7_vertex_07004A70: # 0x07004A70 - 0x07004AE0
@@ -107,12 +104,9 @@ gsSPLight ssl_seg7_light_07004000, 2
 gsSPTexture -1, -1, 0, 0, 1
 gsDPLoadTextureBlock ssl_seg7_texture_07001000, G_IM_FMT_RGBA, G_IM_SIZ_16b, 32, 32, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_WRAP | G_TX_NOMIRROR, 5, 5, G_TX_NOLOD, G_TX_NOLOD
 gsSPVertex ssl_seg7_vertex_07004A70, 7, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  0,  3,  4, 0x0
-gsSP1Triangle  0,  4,  5, 0x0
-gsSP1Triangle  0,  5,  6, 0x0
-gsSP1Triangle  0,  6,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  0,  3,  4, 0x0,  0,  4,  5, 0x0
+gsSP2Triangles  0,  5,  6, 0x0,  0,  6,  1, 0x0
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
 gsDPSetCycleType G_CYC_1CYCLE

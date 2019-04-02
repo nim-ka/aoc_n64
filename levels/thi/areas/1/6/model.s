@@ -18,8 +18,7 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight thi_seg7_light_070075B0, 1
 gsSPLight thi_seg7_light_070075A8, 2
 gsSPVertex thi_seg7_vertex_070075C0, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  3,  2, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  3,  2, 0x0
 gsSPEndDisplayList
 
 glabel thi_seg7_dl_07007648 # 0x07007648 - 0x070076A8

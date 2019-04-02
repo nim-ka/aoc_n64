@@ -22,14 +22,10 @@ gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
 gsSPLight jrb_seg7_light_0700AD40, 1
 gsSPLight jrb_seg7_light_0700AD38, 2
 gsSPVertex jrb_seg7_vertex_0700AD50, 8, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  0, 0x0
-gsSP1Triangle  5,  4,  6, 0x0
-gsSP1Triangle  6,  4,  7, 0x0
-gsSP1Triangle  4,  1,  0, 0x0
-gsSP1Triangle  2,  5,  6, 0x0
-gsSP1Triangle  7,  2,  6, 0x0
-gsSP1Triangle  3,  0,  2, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  0, 0x0
+gsSP2Triangles  5,  4,  6, 0x0,  6,  4,  7, 0x0
+gsSP2Triangles  4,  1,  0, 0x0,  2,  5,  6, 0x0
+gsSP2Triangles  7,  2,  6, 0x0,  3,  0,  2, 0x0
 gsSPEndDisplayList
 
 glabel jrb_seg7_dl_0700AE48 # 0x0700AE48 - 0x0700AEF0

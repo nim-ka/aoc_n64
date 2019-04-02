@@ -40,12 +40,8 @@ glabel cotmc_seg7_arr_0700BED0 # 0x0700BED0 - 0x0700BF60
 .hword     0,     1,  1024,  1434,  3584,     1,     1,     0 
 
 glabel cotmc_seg7_dl_0700BF60 # 0x0700BF60 - 0x0700BFA8
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  1,  3, 0x0
-gsSP1Triangle  4,  5,  7, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 12, 11, 13, 0x0
-gsSP1Triangle  7,  5,  8, 0x0
-gsSP1Triangle  5,  6,  8, 0x0
-gsSP1Triangle  8,  6,  9, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  1,  3, 0x0
+gsSP2Triangles  4,  5,  7, 0x0, 10, 11, 12, 0x0
+gsSP2Triangles 12, 11, 13, 0x0,  7,  5,  8, 0x0
+gsSP2Triangles  5,  6,  8, 0x0,  8,  6,  9, 0x0
 gsSPEndDisplayList

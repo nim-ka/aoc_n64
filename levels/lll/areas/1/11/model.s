@@ -64,31 +64,19 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight lll_seg7_light_07016660, 1
 gsSPLight lll_seg7_light_07016658, 2
 gsSPVertex lll_seg7_vertex_07016670, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  2, 0x0
-gsSP1Triangle  5,  0,  2, 0x0
-gsSP1Triangle  5,  2,  6, 0x0
-gsSP1Triangle  1,  3,  2, 0x0
-gsSP1Triangle  2,  4,  7, 0x0
-gsSP1Triangle  6,  2,  7, 0x0
-gsSP1Triangle  4,  8,  9, 0x0
-gsSP1Triangle  4,  9, 10, 0x0
-gsSP1Triangle  3,  8,  4, 0x0
-gsSP1Triangle  7,  4, 10, 0x0
-gsSP1Triangle  7, 10, 11, 0x0
-gsSP1Triangle 12, 13,  0, 0x0
-gsSP1Triangle 12,  0,  5, 0x0
-gsSP1Triangle  0, 14,  1, 0x0
-gsSP1Triangle  0, 13, 14, 0x0
-gsSP1Triangle 13, 15, 14, 0x0
-gsSP1Triangle 15, 13, 12, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  2, 0x0
+gsSP2Triangles  5,  0,  2, 0x0,  5,  2,  6, 0x0
+gsSP2Triangles  1,  3,  2, 0x0,  2,  4,  7, 0x0
+gsSP2Triangles  6,  2,  7, 0x0,  4,  8,  9, 0x0
+gsSP2Triangles  4,  9, 10, 0x0,  3,  8,  4, 0x0
+gsSP2Triangles  7,  4, 10, 0x0,  7, 10, 11, 0x0
+gsSP2Triangles 12, 13,  0, 0x0, 12,  0,  5, 0x0
+gsSP2Triangles  0, 14,  1, 0x0,  0, 13, 14, 0x0
+gsSP2Triangles 13, 15, 14, 0x0, 15, 13, 12, 0x0
 gsSPVertex lll_seg7_vertex_07016770, 8, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  1,  0, 0x0
-gsSP1Triangle  4,  0,  5, 0x0
-gsSP1Triangle  3,  0,  4, 0x0
-gsSP1Triangle  3,  6,  1, 0x0
-gsSP1Triangle  7,  3,  4, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  1,  0, 0x0
+gsSP2Triangles  4,  0,  5, 0x0,  3,  0,  4, 0x0
+gsSP2Triangles  3,  6,  1, 0x0,  7,  3,  4, 0x0
 gsSPEndDisplayList
 
 lll_seg7_dl_07016A30: # 0x07016A30 - 0x07016A78
@@ -96,10 +84,8 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, fire_09009000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex lll_seg7_vertex_070167F0, 6, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  0,  4,  5, 0x0
-gsSP1Triangle  0,  5,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  0,  4,  5, 0x0,  0,  5,  3, 0x0
 gsSPEndDisplayList
 
 lll_seg7_dl_07016A78: # 0x07016A78 - 0x07016B00
@@ -107,18 +93,12 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, fire_09009800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex lll_seg7_vertex_07016850, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  1,  0, 0x0
-gsSP1Triangle  4,  5,  1, 0x0
-gsSP1Triangle  3,  2,  6, 0x0
-gsSP1Triangle  3,  6,  7, 0x0
-gsSP1Triangle  7,  6,  8, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 10, 13, 11, 0x0
-gsSP1Triangle 12, 11,  5, 0x0
-gsSP1Triangle 12,  5,  4, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  1,  0, 0x0,  4,  5,  1, 0x0
+gsSP2Triangles  3,  2,  6, 0x0,  3,  6,  7, 0x0
+gsSP2Triangles  7,  6,  8, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 10, 13, 11, 0x0
+gsSP2Triangles 12, 11,  5, 0x0, 12,  5,  4, 0x0
 gsSPEndDisplayList
 
 glabel lll_seg7_dl_07016B00 # 0x07016B00 - 0x07016B70
