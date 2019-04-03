@@ -27,7 +27,7 @@ void func_80191F10(struct ObjNet *net)
     {
         apply_to_obj_types_in_group(
             OBJ_TYPE_ALL,
-            &func_8017BD20,
+            (applyproc_t) func_8017BD20,
             net->unk1D0
         );
     }
@@ -36,7 +36,7 @@ void func_80191F10(struct ObjNet *net)
     {
         apply_to_obj_types_in_group(
             OBJ_TYPE_ALL,
-            &func_8017BD20,
+            (applyproc_t) func_8017BD20,
             net->unk1C8
         );
     }
@@ -86,22 +86,22 @@ void reset_net(struct ObjNet *net)
     {
         apply_to_obj_types_in_group(
             OBJ_TYPE_JOINTS,
-            &func_80191604,
+            (applyproc_t) func_80191604,
             grp
         );
         apply_to_obj_types_in_group(
             OBJ_TYPE_JOINTS,
-            &Unknown80191220,
+            (applyproc_t) Unknown80191220,
             grp
         );
         apply_to_obj_types_in_group(
             OBJ_TYPE_BONES,
-            &func_8018FB58,
+            (applyproc_t) func_8018FB58,
             grp
         );
         apply_to_obj_types_in_group(
             OBJ_TYPE_BONES,
-            &Unknown8018FA68,
+            (applyproc_t) Unknown8018FA68,
             grp
         );
     }
@@ -139,7 +139,7 @@ void Unknown801922FC(struct ObjNet *net)
         {
             apply_to_obj_types_in_group(
                 OBJ_TYPE_JOINTS,
-                &Unknown80181B88,
+                (applyproc_t) Unknown80181B88,
                 group
             );
         }
@@ -269,13 +269,13 @@ void Unknown80192AD0(struct ObjNet *net)
 
     apply_to_obj_types_in_group(
         OBJ_TYPE_JOINTS,
-        Unknown80191824,
+        (applyproc_t) Unknown80191824,
         sp60
     );
     func_80191E88(sp60);
     apply_to_obj_types_in_group(
         OBJ_TYPE_BONES,
-        func_8018F328,
+        (applyproc_t) func_8018F328,
         net->unk20C
     );
 }
@@ -292,7 +292,7 @@ void move_bonesnet(struct ObjNet *net)
     {
         apply_to_obj_types_in_group(
             OBJ_TYPE_JOINTS,
-            Unknown801913C0,
+            (applyproc_t) Unknown801913C0,
             sp24
         );
     }
@@ -340,22 +340,22 @@ void func_80192CCC(struct ObjNet *net)
     {
         apply_to_obj_types_in_group(
             OBJ_TYPE_JOINTS,
-            Unknown80191220,
+            (applyproc_t) Unknown80191220,
             group
         );
         apply_to_obj_types_in_group(
             OBJ_TYPE_JOINTS,
-            Unknown801913F0,
+            (applyproc_t) Unknown801913F0,
             group
         );
         apply_to_obj_types_in_group(
             OBJ_TYPE_JOINTS,
-            Unknown801914F8,
+            (applyproc_t) Unknown801914F8,
             group
         );
         apply_to_obj_types_in_group(
             OBJ_TYPE_JOINTS,
-            Unknown801911A8,
+            (applyproc_t) Unknown801911A8,
             group
         );
     }
@@ -366,12 +366,12 @@ void func_80192CCC(struct ObjNet *net)
     {
         apply_to_obj_types_in_group(
             OBJ_TYPE_JOINTS,
-            Unknown801913C0,
+            (applyproc_t) Unknown801913C0,
             group
         );
         apply_to_obj_types_in_group(
             OBJ_TYPE_BONES,
-            Unknown8018FA68,
+            (applyproc_t) Unknown8018FA68,
             group
         );
     }
@@ -382,40 +382,40 @@ void func_80192CCC(struct ObjNet *net)
 void convert_gd_verts_to_Vn(struct ObjGroup *grp)
 {
     UNUSED u8 pad[0x40-0x2c];
-    Vtx *sp28;
-    struct { u8 b0, b1, b2, b3;} sp24;
+    Vtx *vn;       // 28
+    u8 nx, ny, nz; // 24, 25, 26
     UNUSED u32 pad20;
     register struct VtxLink *vtxlink; // a1
-    register s16 *a2;                 // a2
+    register s16 *vnPos;              // a2
     register s16 x;                   // a3
     register s16 y;                   // t0
     register s16 z;                   // t1
     register struct ObjVertex *vtx;   // t2
     register struct Links *link;      // t3
-    struct ObjHeader *obj;            // sp4
+    struct GdObj *obj;            // sp4
 
     for (link = grp->link1C; link != NULL; link = link->next)
     {
         obj = link->obj;
         vtx = (struct ObjVertex *)obj;
-        x = (s16) vtx->vec20.x;
-        y = (s16) vtx->vec20.y;
-        z = (s16) vtx->vec20.z;
+        x = (s16) vtx->pos.x;
+        y = (s16) vtx->pos.y;
+        z = (s16) vtx->pos.z;
 
-        sp24.b3 = (u8) (vtx->vec2C.x * 255.0f);
-        sp24.b2 = (u8) (vtx->vec2C.y * 255.0f);
-        sp24.b1 = (u8) (vtx->vec2C.z * 255.0f);
+        nx = (u8) (vtx->normal.x * 255.0f);
+        ny = (u8) (vtx->normal.y * 255.0f);
+        nz = (u8) (vtx->normal.z * 255.0f);
 
-        for (vtxlink = vtx->unk44; vtxlink != NULL; vtxlink = vtxlink->prev)
+        for (vtxlink = vtx->gbiVerts; vtxlink != NULL; vtxlink = vtxlink->prev)
         {
-            a2 = vtxlink->data->n.ob; 
-            sp28 = vtxlink->data;
-            *a2++ = x;
-            *a2++ = y;
-            *a2++ = z;
-            sp28->n.n[0] = sp24.b3;
-            sp28->n.n[1] = sp24.b2;
-            sp28->n.n[2] = sp24.b1;
+            vnPos = vtxlink->data->n.ob; 
+            vn = vtxlink->data;
+            *vnPos++ = x;
+            *vnPos++ = y;
+            *vnPos++ = z;
+            vn->n.n[0] = nx;
+            vn->n.n[1] = ny;
+            vn->n.n[2] = nz;
         }
     }
 }
@@ -431,17 +431,17 @@ void convert_gd_verts_to_Vtx(struct ObjGroup *grp)
     register s16 z;                   // t1
     register struct ObjVertex *vtx;   // t2
     register struct Links *link;      // t3
-    struct ObjHeader *obj;            // sp4
+    struct GdObj *obj;            // sp4
 
     for (link = grp->link1C; link != NULL; link = link->next)
     {
         obj = link->obj;
         vtx = (struct ObjVertex *)obj;
-        x = (s16) vtx->vec20.x;
-        y = (s16) vtx->vec20.y;
-        z = (s16) vtx->vec20.z;
+        x = (s16) vtx->pos.x;
+        y = (s16) vtx->pos.y;
+        z = (s16) vtx->pos.z;
 
-        for (vtxlink = vtx->unk44; vtxlink != NULL; vtxlink = vtxlink->prev)
+        for (vtxlink = vtx->gbiVerts; vtxlink != NULL; vtxlink = vtxlink->prev)
         {
             vtxcoords = vtxlink->data->v.ob;
             vtxcoords[0] = x;
@@ -478,7 +478,7 @@ void func_801934D0(struct ObjNet *net)
 {
     struct ObjGroup *grp;        // 2c
     register struct Links *link; // s0
-    struct ObjHeader *obj;       // 24
+    struct GdObj *obj;       // 24
 
     if ((grp = net->unk1C8) != NULL)
     {
@@ -539,12 +539,12 @@ void move_nets(struct ObjGroup *group)
     restart_timer("move_nets");
     apply_to_obj_types_in_group(
         OBJ_TYPE_NETS,
-        &Unknown80192294,
+        (applyproc_t) Unknown80192294,
         group
     );
     apply_to_obj_types_in_group(
         OBJ_TYPE_NETS,
-        &move_net,
+        (applyproc_t) move_net,
         group
     );
     split_timer("move_nets");
@@ -582,22 +582,22 @@ void func_80193848(struct ObjGroup *group)
 {
     apply_to_obj_types_in_group(
         OBJ_TYPE_NETS,
-        reset_net,
+        (applyproc_t) reset_net,
         group
     );
     apply_to_obj_types_in_group(
         OBJ_TYPE_NETS,
-        Unknown80192294,
+        (applyproc_t) Unknown80192294,
         group
     );
     apply_to_obj_types_in_group(
         OBJ_TYPE_NETS,
-        Unknown801922FC,
+        (applyproc_t) Unknown801922FC,
         group
     );
     apply_to_obj_types_in_group(
         OBJ_TYPE_NETS,
-        Unknown8019373C,
+        (applyproc_t) Unknown8019373C,
         group
     );
 }

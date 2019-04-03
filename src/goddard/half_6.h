@@ -26,7 +26,7 @@ extern void load_shapes2(void);
 
 #ifndef _BAD_GD_DECLARATIONS_H_
 /* have to erase type as it is called with f64, f64, f64 in dynlist code */
-extern struct ObjFace* make_face_1(f32, f32, f32);
+extern struct ObjFace* make_face_with_colour(f32, f32, f32);
 #endif
 
 #endif /* _HALF_6_H_ */

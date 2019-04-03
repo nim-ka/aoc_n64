@@ -52,12 +52,12 @@ void Proc8018B83C(void *a0)
     struct ObjGroup *argGroup = a0;
     apply_to_obj_types_in_group(
         OBJ_TYPE_GADGETS,
-        &func_8018BCB8,
+        (applyproc_t) func_8018BCB8,
         argGroup
     );
     apply_to_obj_types_in_group(
         OBJ_TYPE_VIEWS,
-        &Proc801A43DC,
+        (applyproc_t) Proc801A43DC,
         gGdViewsGroup
     );
 }
@@ -84,7 +84,7 @@ void *Unknown8018B900(struct ObjGroup *grp)
     gd_strcpy(sMenuStrBuf, "Default Settings %t %F");    //gd_strcpy?
     apply_to_obj_types_in_group(
         OBJ_TYPE_GROUPS,
-        &cat_grp_name_to_buf,
+        (applyproc_t) cat_grp_name_to_buf,
         grp
     );
     defaultSettingMenu = func_801A43F0(sMenuStrBuf, &Proc8018B83C);
@@ -167,7 +167,7 @@ void func_8018BCB8(struct ObjGadget *gdgt)
     sCurGadgetPtr = gdgt;
     apply_to_obj_types_in_group(
         OBJ_TYPE_VALPTRS,
-        &set_static_gdgt_value,
+        (applyproc_t) set_static_gdgt_value,
         gdgt->unk4C
     );
 }
@@ -246,7 +246,7 @@ void reset_gadgets_in_grp(struct ObjGroup *grp)
 {
     apply_to_obj_types_in_group(
         OBJ_TYPE_GADGETS,
-        &reset_gadget,
+        (applyproc_t) reset_gadget,
         grp
     );
 }

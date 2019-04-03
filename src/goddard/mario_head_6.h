@@ -1,8 +1,25 @@
 #ifndef _MARIO_HEAD_6_H_
 #define _MARIO_HEAD_6_H_
 
-#include "types.h"
+#include <ultra64.h>
 #include "gd_types.h"
+
+// types
+/// Properties types used in [gd_setproperty](@ref gd_setproperty); most are stubbed out.
+enum GdProperty {
+    GD_PROP_OVERLAY       = 4,
+    GD_PROP_LIGHTING      = 11,
+    GD_PROP_AMB_COLOUR    = 12,
+    GD_PROP_DIFUSE_COLOUR = 13,
+    GD_PROP_LIGHT_DIR     = 15,
+    GD_PROP_CULLING       = 16,
+    GD_PROP_STUB17        = 17,
+    GD_PROP_STUB18        = 18,
+    GD_PROP_STUB19        = 19,
+    GD_PROP_STUB20        = 20,
+    GD_PROP_STUB21        = 21,
+    GD_PROP_ZBUF_FN       = 22
+};
 
 // data
 extern s32 gGdFrameBuf;
@@ -45,50 +62,50 @@ extern void translate_load_mtx_gddl(f32, f32, f32);
 extern void func_8019F258(f32, f32, f32);
 extern void func_8019F2C4(f32, s8);
 extern void func_8019F318(struct ObjCamera *a, f32, f32, f32, f32, f32, f32, f32);
-extern void func_8019F9D8(s32);
-extern void *func_8019FA60(f32, f32, f32, f32);
+extern void check_tri_display(s32);
+extern Vtx *make_Vtx_if_new(f32, f32, f32, f32);
 extern void func_8019FEF0(void);
-extern void func_8019FF54(f32, f32, f32, f32, f32, f32, f32, f32, f32);
+extern void add_tri_to_dl(f32, f32, f32, f32, f32, f32, f32, f32, f32);
 extern void func_801A0038(void);
 extern void func_801A0070(void);
 extern void func_801A02B8(f32);
 extern void func_801A0324(s32);
-extern void func_801A033C(s32);
-extern s32 func_801A0354(s32);
-extern void func_801A0448(s32);
+extern void set_light_num(s32);
+extern s32 create_mtl_gddl(s32);
+extern void branch_to_gddl(s32);
 extern void func_801A0478(s32, struct ObjCamera *, struct MyVec3f *, struct MyVec3f *, struct MyVec3f *, struct GdColour *);
 extern s32 func_801A086C(s32, struct GdColour *, s32);
-extern void func_801A15E8(struct MyVec3f *);
-extern void func_801A16C4(struct MyVec3f *);
+extern void set_Vtx_norm_buf_1(struct MyVec3f *);
+extern void set_Vtx_norm_buf_2(struct MyVec3f *);
 extern void set_gd_mtx_parameters(s32);
 extern void gd_set_one_cycle(void);
 extern void func_801A2374(s32);
-extern void func_801A2448(struct ObjView *);
-extern void func_801A34E0(void);
+extern void start_view_dl(struct ObjView *);
+extern void border_active_view(void);
 extern void gd_shading(s32);
 extern s32 gd_getproperty(s32, void *);
-extern void gd_setproperty(s32, f32, f32, f32);
+extern void gd_setproperty(enum GdProperty, f32, f32, f32);
 extern void func_801A3AF0(f32, f32, f32, f32, f32, f32);
 extern void func_801A3C8C(f32, f32, f32, f32);
-extern s32 func_801A3E5C(const char *, struct ObjView *, s32, s32, s32, s32);
+extern s32 setup_view_buffers(const char *, struct ObjView *, s32, s32, s32, s32);
 extern void gd_init_controllers(void);
-extern void Proc801A43DC(struct ObjHeader *); //apply to OBJ_TYPE_VIEWS
+extern void Proc801A43DC(struct GdObj *); //apply to OBJ_TYPE_VIEWS
 extern void *func_801A43F0(const char *, ...);   // TUI code..? query_user? doesn't actually return anything... maybe it returned a "menu *"?
 extern void Proc801A4410(void *);  // function looks like it got various controller/input attributes..?
 extern void Proc801A4424(void *);  // TUI stuff?
 extern void func_801A4438(f32, f32, f32);
 extern void func_801A48C4(u32);
 extern void func_801A48D8(char *);
-extern void func_801A48F0(struct ObjView *);
+extern void set_active_view(struct ObjView *);
 extern void func_801A520C(void);
 extern void gd_init(void);
 extern void func_801A5998(s8 *);    /* convert LE bytes to BE word? */ 
 extern void func_801A59AC(void *);
 extern void func_801A59C0(s8 *);    /* convert LE bytes to BE f32? */ 
-extern void func_801A59D4(s16 *, s32);
-extern void func_801A5A04(s16);
-extern s32 func_801A5A4C(s16 *);
-extern void func_801A5B58(f32, f32);
-extern struct ObjHeader *load_dynlist(struct DynList *);
+extern void init_pick_buf(s16 *, s32);
+extern void store_in_pickbuf(s16);
+extern s32 get_cur_pickbuf_offset(s16 *);
+extern void set_Vtx_tc_buf(f32, f32);
+extern struct GdObj *load_dynlist(struct DynList *);
 
 #endif /* _MARIO_HEAD_6_H_ */

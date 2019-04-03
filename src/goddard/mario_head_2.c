@@ -87,7 +87,7 @@ void func_80181894(struct ObjJoint* joint)
     register struct ObjVertex* connectedVtx;
     register struct Links* link;
     register f32 scaleFactor;
-    struct ObjHeader* linkedObj;
+    struct GdObj* linkedObj;
 
     weightGroup = joint->unk1F4;
     if (weightGroup != NULL)
@@ -107,9 +107,9 @@ void func_80181894(struct ObjJoint* joint)
                 connectedVtx = curWeight->unk3C;
                 scaleFactor = curWeight->unk38;
 
-                connectedVtx->vec20.x += stackVec.x * scaleFactor;
-                connectedVtx->vec20.y += stackVec.y * scaleFactor;
-                connectedVtx->vec20.z += stackVec.z * scaleFactor;
+                connectedVtx->pos.x += stackVec.x * scaleFactor;
+                connectedVtx->pos.y += stackVec.y * scaleFactor;
+                connectedVtx->pos.z += stackVec.z * scaleFactor;
             }
         }
     }
@@ -124,9 +124,9 @@ void Unknown801819D0(struct ObjVertex* vtx)
     if (sTargetWeightID++ == sSkinNetCurWeight->id)
     {
         sSkinNetCurWeight->unk3C = vtx;
-        localVec.x = vtx->vec20.x;
-        localVec.y = vtx->vec20.y;
-        localVec.z = vtx->vec20.z;
+        localVec.x = vtx->pos.x;
+        localVec.y = vtx->pos.y;
+        localVec.z = vtx->pos.z;
 
         func_80196430(&localVec, &D_801B9EA8);
         sSkinNetCurWeight->vec20.x = localVec.x;
@@ -138,11 +138,9 @@ void Unknown801819D0(struct ObjVertex* vtx)
 }
 
 /* @ 2302B0 for 0xA8; orig name: Unknown80181AE0 */
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 void reset_weight(struct ObjWeight* weight)
 {
-    u32 vtxCount;
+    UNUSED u32 vtxCount;
     UNUSED u32 pad20;
     struct ObjGroup* skinGroup;
 
@@ -151,7 +149,7 @@ void reset_weight(struct ObjWeight* weight)
     if ((skinGroup = gGdSkinNet->skinGrp) != NULL)
         vtxCount = apply_to_obj_types_in_group(
             OBJ_TYPE_VERTICES,
-            &Unknown801819D0,
+            (applyproc_t) Unknown801819D0,
             skinGroup
         );
     else 
@@ -160,7 +158,6 @@ void reset_weight(struct ObjWeight* weight)
     if (weight->unk3C == NULL)
         fatal_printf("reset_weight(): Skin vertex ID %d not found", weight->id);
 }
-#pragma GCC diagnostic pop
 
 /* @ 230358 for 0x78; rename to reset_joint_weight? */
 void Unknown80181B88(struct ObjJoint* joint)
@@ -172,7 +169,7 @@ void Unknown80181B88(struct ObjJoint* joint)
     if ((group = joint->unk1F4) != NULL)
         apply_to_obj_types_in_group(
             OBJ_TYPE_WEIGHTS,
-            &reset_weight,
+            (applyproc_t) reset_weight,
             group
         );
 }

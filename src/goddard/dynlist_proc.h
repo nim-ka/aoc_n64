@@ -44,12 +44,12 @@ enum DObjTypes {
 extern void push_dynobj_stash(void);
 extern void pop_dynobj_stash(void);
 extern void reset_dynlist(void);
-extern struct ObjHeader *proc_dynlist(struct DynList *dylist);
+extern struct GdObj *proc_dynlist(struct DynList *dylist);
 extern void d_copystr_to_idbuf(char *);
-extern struct ObjHeader *d_makeobj(enum DObjTypes type, DynId id);
+extern struct GdObj *d_makeobj(enum DObjTypes type, DynId id);
 extern void d_set_shapeptrptr(struct ObjShape **);
-extern struct ObjHeader *d_use_obj(DynId);
-extern void set_cur_dynobj();        //set_cur_dynobj(struct ObjHeader *);
+extern struct GdObj *d_use_obj(DynId);
+extern void set_cur_dynobj();        //set_cur_dynobj(struct GdObj *);
 extern void d_start_group(DynId);
 extern void d_end_group(DynId);
 extern void dynid_is_int(s32);
@@ -68,7 +68,7 @@ extern void d_add_valproc(union ObjVarVal * (*)(union ObjVarVal *, union ObjVarV
 extern void d_set_flags(s32);
 extern void d_set_parm_f(s32, f32);
 extern void d_set_parm_ptr(enum DParmPtr, void *);
-extern void d_set_objheader_flag(s32);
+extern void d_set_obj_draw_flag(enum ObjDrawingFlags);
 extern void d_set_type(s32);
 extern void d_set_colour_num(s32);
 extern void d_set_diffuse(f32, f32, f32);
@@ -78,6 +78,6 @@ extern Mat4* d_get_rot_mtx_ptr(void);
 extern void d_set_idn_mtx(Mat4*);
 extern Mat4* d_get_matrix_ptr(void);
 extern Mat4* d_get_idn_mtx_ptr(void);
-extern float d_calc_world_dist_btwn();  //d_calc_world_dist_btwn(struct ObjHeader *, struct ObjHeader *)
+extern f32 d_calc_world_dist_btwn(struct GdObj *, struct GdObj *);
 
 #endif /* _DYNLIST_PROCESSOR_ */

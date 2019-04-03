@@ -6,7 +6,7 @@
 #include "joint_fns.h"
 #include "gd_main.h"
 #include "mhead_sfx.h"
-#include "game_over_2.h"
+#include "draw_objects.h"
 #include "mario_head_1.h"
 #include "mario_head_2.h"
 #include "dynlist_proc.h"
@@ -51,13 +51,13 @@ void Proc8018E520(struct ObjJoint *self)
     UNUSED u8 pad50[0x10];
     register struct Links *att; // sp4C?
     UNUSED u8 pad48[0x8];
-    struct ObjHeader *attobj;   //sp44
+    struct GdObj *attobj;   //sp44
 
     sp64.x = self->mat128[3][0] - self->unk54.x;
     sp64.y = self->mat128[3][1] - self->unk54.y;
     sp64.z = self->mat128[3][2] - self->unk54.z;
 
-    if (self->header.unk12 & 0x4)
+    if (self->header.drawFlags & OBJ_PICKED)
     {
         self->unk78.x = sp64.x * -0.25; //! -0.25f
         self->unk78.y = sp64.y * -0.25; //! -0.25f
@@ -100,7 +100,7 @@ void Proc8018E520(struct ObjJoint *self)
     self->mat128[3][1] += self->unk78.y;
     self->mat128[3][2] += self->unk78.z;
 
-    if (self->header.unk12 & 0x4)
+    if (self->header.drawFlags & OBJ_PICKED)
     {
         gGdCtrl.csrX -= (gGdCtrl.csrX - gGdCtrl.csrXatApress) * 0.2;
         gGdCtrl.csrY -= (gGdCtrl.csrY - gGdCtrl.csrYatApress) * 0.2;
@@ -127,7 +127,7 @@ void Proc8018EBE8(struct ObjJoint *self)
     struct MyVec3f sp44;
     UNUSED u8 pad2c[0x18];
     register struct Links *att; // sp28
-    struct ObjHeader *attobj;   // sp24
+    struct GdObj *attobj;   // sp24
 
     if (sCurrentMoveCamera == NULL) { return; }
 
@@ -269,8 +269,8 @@ struct ObjJoint *make_joint_withshape(struct ObjShape *shape, s32 flags, f32 x, 
     j->unk1CC = 5;
     j->unk1BC |= flags;
     j->unk1C8 = 9;
-    j->header.unk12 |= 0x8;
-    j->header.unk12 |= 0x2;
+    j->header.drawFlags |= OBJ_IS_GRABBALE;
+    j->header.drawFlags |= OBJ_NOT_DRAWABLE;
     j->fn2C = &Proc8018E520;
     j->unk1D0 = NULL;
 
@@ -378,7 +378,7 @@ void func_8018F520(struct ObjBone *b)
 
     apply_to_obj_types_in_group(
         OBJ_TYPE_JOINTS,
-        &Unknown8018F4CC,
+        (applyproc_t) Unknown8018F4CC,
         b->unk10C
     );
 }
@@ -413,7 +413,7 @@ void func_8018F89C(struct ObjBone *b)
 
     apply_to_obj_types_in_group(
         OBJ_TYPE_JOINTS,
-        &Unknown8018F4CC,
+        (applyproc_t) Unknown8018F4CC,
         b->unk10C
     );
 }
@@ -890,10 +890,10 @@ void func_80190B54(struct ObjJoint *a0, struct ObjJoint *a1, struct MyVec3f *a2)
 }
 
 /* 23F638 -> 23F70C; not called */
-void Unknown80190E68(struct ObjHeader *obj, f32 x, f32 y, f32 z)
+void Unknown80190E68(struct GdObj *obj, f32 x, f32 y, f32 z)
 {
     struct ObjJoint *sp44;
-    struct ObjHeader *sp40;
+    struct GdObj *sp40;
     struct MyVec3f vec; //sp34
     UNUSED u32 pad1C[6];
 
@@ -1115,8 +1115,8 @@ void Unknown80191A1C(struct ObjBone *a0)
 {
     f32 sp3C;
     f32 sp38 = 0.0f;
-    struct ObjHeader *argjoint;
-    struct ObjHeader *tempjoint;
+    struct GdObj *argjoint;
+    struct GdObj *tempjoint;
     struct MyVec3f sp24;
     struct MyVec3f sp18;
 
@@ -1207,17 +1207,17 @@ void func_80191E88(struct ObjGroup *grp)
 {
     apply_to_obj_types_in_group(
         OBJ_TYPE_JOINTS,
-        &Unknown80191BF8,
+        (applyproc_t) Unknown80191BF8,
         grp
     );
     apply_to_obj_types_in_group(
         OBJ_TYPE_JOINTS,
-        &Unknown80191D60,
+        (applyproc_t) Unknown80191D60,
         grp
     );
     apply_to_obj_types_in_group(
         OBJ_TYPE_JOINTS,
-        &Unknown80191E54,
+        (applyproc_t) Unknown80191E54,
         grp
     );
 }

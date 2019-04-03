@@ -17,8 +17,8 @@
 */
 
 /* half6 */ 
-extern struct ObjFace *make_face_1(); 
-/* should be: make_face_1(f32, f32, f32)
+extern struct ObjFace *make_face_with_colour(); 
+/* should be: make_face_with_colour(f32, f32, f32)
 ** So, the '0.0, 0.0, 0.0' floats are being incorrectly promoted to doubles */
 
 /* oldobj */ 
