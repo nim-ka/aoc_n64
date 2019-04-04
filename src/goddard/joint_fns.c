@@ -59,26 +59,26 @@ void Proc8018E520(struct ObjJoint *self)
 
     if (self->header.drawFlags & OBJ_PICKED)
     {
-        self->unk78.x = sp64.x * -0.25; //! -0.25f
-        self->unk78.y = sp64.y * -0.25; //! -0.25f
-        self->unk78.z = sp64.z * -0.25; //! -0.25f
+        self->unk78.x = sp64.x * -0.25; //? -0.25f
+        self->unk78.y = sp64.y * -0.25; //? -0.25f
+        self->unk78.z = sp64.z * -0.25; //? -0.25f
 
         self->unk1BC |= 0x2000;
         ; // necessary?
     } else {
         if (gGdCtrl.trgR == FALSE) // R-trigger not held or released
         {
-            self->unk78.x -= sp64.x * 0.5; //! 0.5f
-            self->unk78.y -= sp64.y * 0.5; //! 0.5f
-            self->unk78.z -= sp64.z * 0.5; //! 0.5f
+            self->unk78.x -= sp64.x * 0.5; //? 0.5f
+            self->unk78.y -= sp64.y * 0.5; //? 0.5f
+            self->unk78.z -= sp64.z * 0.5; //? 0.5f
 
-            self->unk78.x *= 0.8;   //! 0.8f
-            self->unk78.y *= 0.8;   //! 0.8f
-            self->unk78.z *= 0.8;   //! 0.8f
+            self->unk78.x *= 0.8;   //? 0.8f
+            self->unk78.y *= 0.8;   //? 0.8f
+            self->unk78.z *= 0.8;   //? 0.8f
 
-            if ( ABS(self->unk78.x) + ABS(self->unk78.y) + ABS(self->unk78.z) < 1.0) //! 1.0f
+            if ( ABS(self->unk78.x) + ABS(self->unk78.y) + ABS(self->unk78.z) < 1.0) //? 1.0f
             {
-                if (ABS(sp64.x) + ABS(sp64.y) + ABS(sp64.z) < 1.0) //! 1.0f
+                if (ABS(sp64.x) + ABS(sp64.y) + ABS(sp64.z) < 1.0) //? 1.0f
                 {
                     self->unk78.x = self->unk78.y = self->unk78.z = 0.0f;
                     self->mat128[3][0] -= sp64.x;
@@ -147,9 +147,9 @@ void Proc8018EBE8(struct ObjJoint *self)
     sp50.y = -(gGdCtrl.csrY - sp44.y);
     sp50.z = 0.0f;
 
-    sp50.x *= 2.0;  //!2.0f
-    sp50.y *= 2.0;  //!2.0f
-    sp50.z *= 2.0;  //!2.0f
+    sp50.x *= 2.0;  //?2.0f
+    sp50.y *= 2.0;  //?2.0f
+    sp50.z *= 2.0;  //?2.0f
     if (magnitude_vec3f(&sp50) > 30.0f)
     {
         into_unit_vec3f(&sp50);
@@ -291,16 +291,16 @@ void func_8018F328(struct ObjBone *b)
     link = link->next;
     sp20 = (struct ObjJoint *)link->obj;
 
-    b->unk14.x = (sp24->unk14.x + sp20->unk14.x) / 2.0; //!2.0f
-    b->unk14.y = (sp24->unk14.y + sp20->unk14.y) / 2.0; //!2.0f
-    b->unk14.z = (sp24->unk14.z + sp20->unk14.z) / 2.0; //!2.0f
+    b->unk14.x = (sp24->unk14.x + sp20->unk14.x) / 2.0; //?2.0f
+    b->unk14.y = (sp24->unk14.y + sp20->unk14.y) / 2.0; //?2.0f
+    b->unk14.z = (sp24->unk14.z + sp20->unk14.z) / 2.0; //?2.0f
 
     b->unk58.x = sp20->unk14.x - sp24->unk14.x;
     b->unk58.y = sp20->unk14.y - sp24->unk14.y;
     b->unk58.z = sp20->unk14.z - sp24->unk14.z;
 
     into_unit_vec3f(&b->unk58);
-    func_80194358(&b->matB0, &b->unk58, 0); //! 0.0f
+    func_80194358(&b->matB0, &b->unk58, 0); //? 0.0f
 }
 
 /* 23DC9C -> 23DCF0 */
@@ -336,9 +336,9 @@ void func_8018F520(struct ObjBone *b)
     link = link->next;
     spA8 = (struct ObjJoint *)link->obj;
 
-    b->unk14.x = (spAC->unk14.x + spA8->unk14.x) / 2.0; //! 2.0f;
-    b->unk14.y = (spAC->unk14.y + spA8->unk14.y) / 2.0; //! 2.0f;
-    b->unk14.z = (spAC->unk14.z + spA8->unk14.z) / 2.0; //! 2.0f;
+    b->unk14.x = (spAC->unk14.x + spA8->unk14.x) / 2.0; //? 2.0f;
+    b->unk14.y = (spAC->unk14.y + spA8->unk14.y) / 2.0; //? 2.0f;
+    b->unk14.z = (spAC->unk14.z + spA8->unk14.z) / 2.0; //? 2.0f;
     sp90.x = b->unk58.x;
     sp90.y = b->unk58.y;
     sp90.z = b->unk58.z;
@@ -354,7 +354,7 @@ void func_8018F520(struct ObjBone *b)
     b->unk64.y = sp90.y;
     b->unk64.z = sp90.z;
 
-    sp68 = 5.4 / b->unkF8;  //! 5.4f
+    sp68 = 5.4 / b->unkF8;  //? 5.4f
     sp6C.x *= sp68;
     sp6C.y *= sp68;
     sp6C.z *= sp68;
@@ -399,9 +399,9 @@ void func_8018F89C(struct ObjBone *b)
     link = link->next;
     spA8 = (struct ObjJoint *)link->obj;
 
-    b->unk14.x = (spAC->unk14.x + spA8->unk14.x) / 2.0; //! 2.0f;
-    b->unk14.y = (spAC->unk14.y + spA8->unk14.y) / 2.0; //! 2.0f;
-    b->unk14.z = (spAC->unk14.z + spA8->unk14.z) / 2.0; //! 2.0f;
+    b->unk14.x = (spAC->unk14.x + spA8->unk14.x) / 2.0; //? 2.0f;
+    b->unk14.y = (spAC->unk14.y + spA8->unk14.y) / 2.0; //? 2.0f;
+    b->unk14.z = (spAC->unk14.z + spA8->unk14.z) / 2.0; //? 2.0f;
 
     multiply_mat4(&b->matB0, &gGdSkinNet->mat128, &mtx);
     cpy_mat4(&mtx, &b->mat70);
@@ -859,7 +859,7 @@ void func_80190B54(struct ObjJoint *a0, struct ObjJoint *a1, struct MyVec3f *a2)
         D_801BAAE0.y = spA4.y - (sp8C.y * sp7C);
         D_801BAAE0.z = spA4.z - (sp8C.z * sp7C);
 
-        sp78 = 5.4 / sp7C; //! 5.4f
+        sp78 = 5.4 / sp7C; //? 5.4f
         D_801BAAD0.x *= sp78;
         D_801BAAD0.y *= sp78;
         D_801BAAD0.z *= sp78;
@@ -1022,9 +1022,9 @@ void Unknown8019150C(Mat4 *a0, struct MyVec3f *a1)
 {
     struct MyVec3f sp1C;
 
-    sp1C.x = (*a0)[3][0] / 10.0; //! 10.0f
-    sp1C.y = (*a0)[3][1] / 10.0; //! 10.0f
-    sp1C.z = (*a0)[3][2] / 10.0; //! 10.0f
+    sp1C.x = (*a0)[3][0] / 10.0; //? 10.0f
+    sp1C.y = (*a0)[3][1] / 10.0; //? 10.0f
+    sp1C.z = (*a0)[3][2] / 10.0; //? 10.0f
 
     a1->x += sp1C.x;
     a1->y += sp1C.y;
@@ -1102,7 +1102,7 @@ void Unknown801918F4(struct ObjJoint *j)
 
     if (!(j->unk1BC & 0x41))
     {
-        j->unk78.y += sp4 * 0.2;    //! 0.2f 
+        j->unk78.y += sp4 * 0.2;    //? 0.2f 
 
         j->unk3C.x += j->unk78.x;
         j->unk3C.y += j->unk78.y;
@@ -1138,7 +1138,7 @@ void Unknown80191A1C(struct ObjBone *a0)
         sp24.z -= sp18.z;
         into_unit_vec3f(&sp24);
 
-        sp3C = -sp3C * 50.0; //! 50.0f
+        sp3C = -sp3C * 50.0; //? 50.0f
         if (!(((struct ObjJoint *)argjoint)->unk1BC & 0x1))
         {
             func_80190F3C(
@@ -1166,7 +1166,7 @@ void Unknown80191BF8(struct ObjJoint *j)
     if ((sp1C = j->unk3C.y - (D_801A8058 + 30.0f)) < 0.0f && j->unk78.y < 0.0f)
     {
         sp1C += j->unk78.y;
-        sp1C *= 0.8; //! 0.8f
+        sp1C *= 0.8; //? 0.8f
         func_80190F3C(
             j,
             -j->unk78.x * 0.7,
@@ -1185,9 +1185,9 @@ void Unknown80191D60(struct ObjJoint *j)
     j->unk78.y += j->unk3C.y - j->unk14.y;
     j->unk78.z += j->unk3C.z - j->unk14.z;
 
-    j->unk78.x *= 0.9;  //! 0.9f
-    j->unk78.y *= 0.9;  //! 0.9f
-    j->unk78.z *= 0.9;  //! 0.9f
+    j->unk78.x *= 0.9;  //? 0.9f
+    j->unk78.y *= 0.9;  //? 0.9f
+    j->unk78.z *= 0.9;  //? 0.9f
 
     j->unk14.x += j->unk78.x;
     j->unk14.y += j->unk78.y;

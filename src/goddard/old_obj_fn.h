@@ -12,8 +12,8 @@ extern struct ObjGadget *make_gadget(s32, s32);
 extern void reset_gadget(struct ObjGadget*);
 extern void reset_gadgets_in_grp(struct ObjGroup*);
 
-#ifndef _BAD_GD_DECLARATIONS_H_
-/* have to erase type as it is called with <struct ObjValPtrs *, char *, s32, int, int, int> in dynlist code */
+// see bad_declarations.h
+#if !GD_USE_BAD_DECLARATIONS
 extern struct ObjLabel *make_label(struct ObjValPtrs *, char *, s32, f32, f32, f32);
 #endif
 

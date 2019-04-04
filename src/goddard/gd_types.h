@@ -381,12 +381,9 @@ struct ObjCamera {
     /* 0x0E8 */ Mat4 unkE8;
     /* 0x128 */ struct MyVec3f unk128;  //possibly
     /* 0x134 */ struct MyVec3f unk134;
-    /* 0x140 */ struct MyVec3f unk140;  // another rel position related vec?
-    /* 0x14C */ struct MyVec3f unk14C;  // another rel position related vec (*1.5)?
-    /* 0x158 */ struct MyVec3f unk158;  // another rel position related vec (*2.0)?
-    /* 0x164 */ u8  pad164[0x170 - 0x164];
-    /* 0x170 */ s32 unk170; // type flag maybe?
-    /* 0x174 */ s32 unk174;
+    /* 0x140 */ struct MyVec3f positions[4]; // zoom positions (*1, *1.5, *2, empty fourth)
+    /* 0x170 */ s32 zoomLevels; // max number of zoom positions
+    /* 0x174 */ s32 zoom; // index into position vec array
     /* 0x178 */ f32 unk178;
     /* 0x17C */ f32 unk17C;
     /* 0x180 */ struct MyVec3f unk180;

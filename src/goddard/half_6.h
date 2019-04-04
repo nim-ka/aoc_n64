@@ -24,8 +24,8 @@ extern void animate_mario_head_normal(struct ObjAnimator *);
 extern s32 load_mario_head(void (*aniFn)(struct ObjAnimator *));
 extern void load_shapes2(void);
 
-#ifndef _BAD_GD_DECLARATIONS_H_
-/* have to erase type as it is called with f64, f64, f64 in dynlist code */
+// see bad_declarations.h
+#if !GD_USE_BAD_DECLARATIONS
 extern struct ObjFace* make_face_with_colour(f32, f32, f32);
 #endif
 

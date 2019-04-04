@@ -272,8 +272,8 @@ struct Connection *func_801825FC(struct ObjVertex *vtx1, struct ObjVertex *vtx2)
     sp28.y -= sp1C.y;
     sp28.z -= sp1C.z;
     sp34->unk24 = magnitude_vec3f(&sp28);
-    //! Duplicate conditional. Possibly should've checked `vtx2`; 
-    //! Also, this shouldn't be called with particle types...
+    // Duplicate conditional. Possibly should've checked `vtx2`; 
+    // Also, this shouldn't be called with particle types...
     if (vtx1->header.type == OBJ_TYPE_PARTICLES && vtx1->header.type == OBJ_TYPE_PARTICLES)
     {
         if ( (((struct ObjParticle*) vtx1)->unk54 & 4) && 

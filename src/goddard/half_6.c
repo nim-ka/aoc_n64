@@ -380,7 +380,7 @@ s32 scan_to_next_non_whitespace(void)
         if (curChar == '\x1a') 
         {   //'SUB' character: "soft EOF" in older systems
             return FALSE;
-            continue;   //! unreachable 
+            continue;   // unreachable 
         }
 
         if (is_line_end(curChar))
@@ -407,7 +407,7 @@ s32 is_next_buf_word(char* a0)
         if (is_white_space(curChar) || is_line_end(curChar))
         {
             break;
-            continue;   //! unreachable + nonsensical
+            continue;   // unreachable + nonsensical
         }
         wordBuf[bufLength] = curChar;
         bufLength++;
@@ -585,7 +585,7 @@ void func_8019834C(struct ObjShape* shape, f32 x, f32 y, f32 z)
 }
 
 /* @ 246BA4 for 0x70 */
-//! Guessing on the type of a0
+// Guessing on the type of a0
 void Unknown801983D4(struct ObjShape* a0, f32 x, f32 y, f32 z)
 {
     D_801BACC8.x = x;
@@ -646,9 +646,9 @@ void Unknown801985E8(struct ObjShape* shape)
 
     func_8017BE60(&sp18);
 
-    D_801BAD30.x = (f32) ((sp18.vec0.x + sp18.vec1.x) / 2.0);   //! 2.0f
-    D_801BAD30.y = (f32) ((sp18.vec0.y + sp18.vec1.y) / 2.0);   //! 2.0f
-    D_801BAD30.z = (f32) ((sp18.vec0.z + sp18.vec1.z) / 2.0);   //! 2.0f
+    D_801BAD30.x = (f32) ((sp18.vec0.x + sp18.vec1.x) / 2.0);   //? 2.0f
+    D_801BAD30.y = (f32) ((sp18.vec0.y + sp18.vec1.y) / 2.0);   //? 2.0f
+    D_801BAD30.z = (f32) ((sp18.vec0.z + sp18.vec1.z) / 2.0);   //? 2.0f
 
     gd_print_vec("c=", &D_801BAD30);
 
@@ -1154,7 +1154,7 @@ struct ObjShape* make_grid_shape(enum ObjTypeFlag gridType, s32 a1, s32 a2, s32 
     gridShape->faceCount = 0;
     gridShape->vtxCount = 0;
 
-    sp44 = 2.0 / a3;    //! 2.0f
+    sp44 = 2.0 / a3;    //? 2.0f
     sp5C = -1.0f;
     sp6C = 0.0f;
     sp70 = -1.0f;

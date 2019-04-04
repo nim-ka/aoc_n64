@@ -404,7 +404,7 @@ void gd_printf(const char *format, ...)
                 csr++;
                 *csr = '\0';
                 break;
-                break; //! needed to match
+                break; // needed to match
             case 'f':
                 val.f = (f32) va_arg(args, double);
                 csr = sprint_val_withspecifiers(csr, val, spec);
@@ -413,7 +413,8 @@ void gd_printf(const char *format, ...)
                 csr = gd_strcat(csr, va_arg(args, char *));
                 break;
             case 'c':
-                *csr = va_arg(args, int); //! should be char
+                //! @bug formatter 'c' uses `int` for va_arg instead of `char`
+                *csr = va_arg(args, int);
                 csr++;
                 *csr = '\0';
                 break;
@@ -856,7 +857,7 @@ void *gdm_gettestdl(s32 id)
             {
                 fatal_printf("gdm_gettestdl(): DL number %d undefined", id);
             }
-            //! `sYoshiSceneView` is not a group, not that this code is called...
+            //! @bug Code treats `sYoshiSceneView` as group; not called in game though
             apply_to_obj_types_in_group(
                 OBJ_TYPE_VIEWS,
                 (applyproc_t) update_view,
@@ -893,7 +894,7 @@ void *gdm_gettestdl(s32 id)
             {
                 fatal_printf("gdm_gettestdl(): DL number %d undefined", id);
             }
-            //! `sCarSceneView` is not a group, not that this code is called...
+            //! @bug Code treats `sCarSceneView` as group; not called in game though
             apply_to_obj_types_in_group(
                 OBJ_TYPE_VIEWS,
                 (applyproc_t) update_view,
@@ -1031,10 +1032,10 @@ struct GdDisplayList *create_child_gdl(s32 id, struct GdDisplayList *srcDl)
     newDl = alloc_displaylist(id);
     newDl->parent = srcDl;
     cpy_remaining_gddl(newDl, srcDl);
-    //! no return, despite return value being used. 
-    //! Goddard lucked out that `v0` return from `alloc_displaylist 
-    //! is not overwriten... 
-    #ifdef NON_MATCHING
+    //! @bug No return statement, despite return value being used. 
+    //!      Goddard lucked out that `v0` return from alloc_displaylist()
+    //!      is not overwriten, as that pointer is what should be returned
+    #if BUGFIX_GODDARD_MISSING_RETURN
     return newDl;
     #endif
 }
@@ -1558,7 +1559,7 @@ Vtx *make_Vtx_if_new(f32 x, f32 y, f32 z, f32 alpha)
 
     for (i = D_801BB0CC; i < (D_801BB0CC + D_801BB0BC); i++)
     {
-        //! the ifs need to be separate to match...
+        // the ifs need to be separate to match...
         if (sCurrentGdDl->vtx[i].n.ob[0] == (s16) x )
         if (sCurrentGdDl->vtx[i].n.ob[1] == (s16) y )
         if (sCurrentGdDl->vtx[i].n.ob[2] == (s16) z )
@@ -1759,7 +1760,7 @@ void func_801A0478(
     sp3C = sqrtf(SQ(sp40.z) + SQ(sp40.y) + SQ(sp40.x));
     if (sp3C > 0.1)
     {
-        sp3C = 1.0 / sp3C; //! 1.0f
+        sp3C = 1.0 / sp3C; //? 1.0f
         sp40.z *= sp3C;
         sp40.y *= sp3C;
         sp40.x *= sp3C;
@@ -1815,8 +1816,8 @@ s32 func_801A086C(s32 id, struct GdColour *colour, s32 arg2)
         {
             fatal_printf("too many hilites");
         }
-        //! the macro does the 0xFFF mask, 
-        //! but it seems goddard unnecessarily masked the parameters as well
+        // the macro does the 0xFFF mask, 
+        // but it seems goddard unnecessarily masked the parameters as well
         gDPSetTileSize(
             next_gfx(),
             0,
@@ -1935,7 +1936,7 @@ void set_Vtx_norm_buf_2(struct MyVec3f *norm)
     sVtxCvrtNormBuf[1] = (s8) (norm->y * 127.0f);
     sVtxCvrtNormBuf[2] = (s8) (norm->z * 127.0f);
 
-    //! are these stub functions?
+    //? are these stub functions?
     return; // @ 801A17A0
     return; // @ 801A17A8
 }
@@ -2512,7 +2513,6 @@ void func_801A3C8C(f32 fovy, f32 aspect, f32 near, f32 far)
 }
 
 /* 25262C -> 252AF8 */
-//! No actual return
 s32 setup_view_buffers(
     const char *name, struct ObjView *view, 
     UNUSED s32 ulx, UNUSED s32 uly, UNUSED s32 lrx, UNUSED s32 lry
@@ -2584,6 +2584,15 @@ s32 setup_view_buffers(
     {
         view->parent = D_801A86E0;
     }
+
+    //! @ bug No actual return, but the return value is used.
+    //!       There is no obvious value to return. Since the function
+    //!       doesn't use four of its parameters, this function may have
+    //!       had a fair amount of its code commented out. In game, the 
+    //!       returned value is always 0, so the fix returns that value
+    #if BUGFIX_GODDARD_MISSING_RETURN
+    return 0;
+    #endif
 }
 
 /* 252AF8 -> 252BAC; orig name: _InitControllers */
@@ -2609,9 +2618,9 @@ void Proc801A43DC(UNUSED struct GdObj *obj)
 }
 
 /* 252BC0 -> 252BE0 */
-//! no return
 void *func_801A43F0(UNUSED const char *menufmt, ...)
-{
+{ 
+    //! @bug no return; function was stubbed
 }
 
 /* 252BE0 -> 252BF0 */

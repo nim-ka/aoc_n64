@@ -192,7 +192,7 @@ void func_80192528(struct ObjNet *net)
 
     if (net->unk34 & 0x1)
     {
-        net->unk50.y += -4.0; //! 4.0f
+        net->unk50.y += -4.0; //? 4.0f
     }
 
     net->unk14.x += net->unk50.x / 1.0f;
@@ -237,9 +237,9 @@ void func_801926A4(struct ObjNet *net)
     net->unk14.z += net->unk74.z;
     func_8017E9EC(net);
 
-    net->unkA4.x *= 0.98; //! 0.98f
-    net->unkA4.z *= 0.98; //! 0.98f
-    net->unkA4.y *= 0.9;  //! 0.9f
+    net->unkA4.x *= 0.98; //? 0.98f
+    net->unkA4.z *= 0.98; //? 0.98f
+    net->unkA4.y *= 0.9;  //? 0.9f
 }
 
 /* 2412A0 -> 24142C; not called */
@@ -567,7 +567,7 @@ void Unknown8019373C(struct ObjNet *net)
             for (link = net->unk1A8->vtxGroup->link1C; link != NULL; link = link->next)
             {
                 vtx = (struct ObjVertex *)link->obj;
-                if (vtx->unk3C != 1.0) //! 1.0f
+                if (vtx->unk3C != 1.0) //? 1.0f
                 {
                     addto_group(net->unk1A8->unk24, &vtx->header);
                 }

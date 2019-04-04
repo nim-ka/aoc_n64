@@ -6,7 +6,7 @@
 struct GMemBlock {
     /* 0x00 */ union {
         void *ptr;
-        u32 addr;   //! assumes 32bit pointers; use uintptr_t
+        u32 addr;   //TODO: assumes 32bit pointers; use uintptr_t
     } data;
     /* 0x04 */ u32 size;
     /* 0x08 */ u8 blockType;

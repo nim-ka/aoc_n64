@@ -304,7 +304,10 @@ struct ObjZone *make_zone(struct ObjGroup *a0, struct GdPlaneF *a1, struct ObjGr
     newZone->unk2C = a2;
     newZone->unk30 = a0;
 
-    //! return newZone;
+    //! @bug Created `ObjZone` is not returned
+    #if BUGFIX_GODDARD_MISSING_RETURN
+    return newZone;
+    #endif
 }
 
 /* @ 22AF70 for 0x60 */
@@ -518,8 +521,8 @@ struct ObjCamera* make_camera(s32 a0, struct GdObj* a1)
     newCam->unk178 = 0.0f;
     newCam->unk17C = 0.25f;
     
-    newCam->unk174 = 0;
-    newCam->unk170 = -1;
+    newCam->zoom = 0;
+    newCam->zoomLevels = -1;
 
     newCam->unkA4 = 0.0f;
 
@@ -604,7 +607,7 @@ struct ObjView *make_view(const char *name, s32 flags, s32 a2, s32 ulx, s32 uly,
     newView->unk48 = 1.0f;
     newView->unk4C = 1.0f;
 
-    newView->colour.r = newView->id * 0.1;    //! 0.1f, unless the extra precision was wanted for the tenth
+    newView->colour.r = newView->id * 0.1;    //? 0.1f, unless the extra precision was wanted for the tenth
     newView->colour.g = 0.06f;
     newView->colour.b = 1.0f;
 
@@ -988,7 +991,11 @@ struct GdObj* UnknownRecursive8017E2F0(struct GdObj* obj, enum ObjTypeFlag type)
 
     if (curObjType == type)
         return obj;
-    //! return NULL;
+
+    //! @bug Nothing is returned if a GdObj of `type` is not found
+    #if BUGFIX_GODDARD_MISSING_RETURN
+    return NULL;
+    #endif
 }
 
 /* @ 22CBB0 for 0x1A4; orig name: func8017E3E0 */
@@ -1004,12 +1011,16 @@ s32 apply_to_obj_types_in_group(s32 types, applyproc_t fn, struct ObjGroup* grou
 
     fnAppliedCount = 0;
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wreturn-type"
-    //! should be `return fnAppliedCount`;
-    if (group == NULL) 
+    //! @bug When `group` pointer is NULL, garbage is returned, not the 
+    //!      count of `fn` calls
+    if (group == NULL)
+    {
+        #if BUGFIX_GODDARD_MISSING_RETURN
+        return fnAppliedCount;
+        #else
         return;
-#pragma GCC diagnostic pop
+        #endif
+    }
     
     if (group->linkType & 1) // compressed data, not an Obj
         return fnAppliedCount;
@@ -1082,11 +1093,11 @@ void func_8017E584(struct ObjNet* a0, struct MyVec3f* a1, struct MyVec3f* a2)
     cross_product_vec3f(&sp70, a1, &sp94);
     sp2C = (f32) gd_sqrt_d((sp94.x * sp94.x) + (sp94.z * sp94.z));
 
-    if (sp2C > 1000.0)  //! 1000.0f
+    if (sp2C > 1000.0)  //? 1000.0f
         sp2C = 1000.0f;
 
-    sp2C /= 1000.0;     //! 1000.0f
-    sp2C = 1.0 - sp2C;  //! 1.0f - sp2C
+    sp2C /= 1000.0;     //? 1000.0f
+    sp2C = 1.0 - sp2C;  //? 1.0f - sp2C
 
     sp88.x = a2->x * sp2C;
     sp88.y = a2->y * sp2C;
@@ -1122,9 +1133,9 @@ void func_8017E838(struct ObjNet* a0, struct MyVec3f* a1, struct MyVec3f* a2)
     sp64.y -= sp18.y;
     sp64.z -= sp18.z;
 
-    sp64.x *= 0.01;    //! 0.01f;
-    sp64.y *= 0.01;    //! 0.01f;
-    sp64.z *= 0.01;    //! 0.01f;
+    sp64.x *= 0.01;    //? 0.01f;
+    sp64.y *= 0.01;    //? 0.01f;
+    sp64.z *= 0.01;    //? 0.01f;
 
     cross_product_vec3f(a2, &sp64, &sp70);
     limit_vec3f(&sp70, 5.0f);
@@ -1739,7 +1750,7 @@ void find_and_drag_picked_object(struct ObjGroup *group)
 }
 
 /* @ 22F180 for 0x624; orig name: Unknown801809B0 */
-void move_camera(struct ObjCamera* a0)
+void move_camera(struct ObjCamera* cam)
 {
     struct GdObj* spEC;
     struct MyVec3f spE0;
@@ -1753,51 +1764,51 @@ void move_camera(struct ObjCamera* a0)
     struct GdControl* ctrl; // 28
 
     ctrl = &gGdCtrl;
-    if ((a0->unk2C & 0x10) == 0)
+    if ((cam->unk2C & 0x10) == 0)
         return;
     
     spE0.x = spE0.y = spE0.z = 0.0f;
     spB0.x = spB0.y = spB0.z = 0.0f;
 
-    if ((spEC = a0->unk30) != NULL)
+    if ((spEC = cam->unk30) != NULL)
     {
         set_cur_dynobj(spEC);
         d_get_world_pos(&spE0);
         d_get_matrix(&sp70);
 
-        spC8.x = sp70[2][0] - a0->unk58;
-        spC8.z = sp70[2][2] - a0->unk60;
+        spC8.x = sp70[2][0] - cam->unk58;
+        spC8.z = sp70[2][2] - cam->unk60;
 
-        a0->unk58 += spC8.x * a0->unk180.y;
-        a0->unk60 += spC8.z * a0->unk180.y;
+        cam->unk58 += spC8.x * cam->unk180.y;
+        cam->unk60 += spC8.z * cam->unk180.y;
 
-        a0->unkA8[2][0] = a0->unk58;
-        a0->unkA8[2][1] = 0.0f;
-        a0->unkA8[2][2] = a0->unk60;
+        cam->unkA8[2][0] = cam->unk58;
+        cam->unkA8[2][1] = 0.0f;
+        cam->unkA8[2][2] = cam->unk60;
 
-        a0->unkA8[0][0] = a0->unkA8[2][2];
-        a0->unkA8[0][1] = 0.0f;
-        a0->unkA8[0][2] = -a0->unkA8[2][0];
+        cam->unkA8[0][0] = cam->unkA8[2][2];
+        cam->unkA8[0][1] = 0.0f;
+        cam->unkA8[0][2] = -cam->unkA8[2][0];
 
-        a0->unkA8[1][0] = 0.0f;
-        a0->unkA8[1][1] = 1.0f;
-        a0->unkA8[1][2] = 0.0f;
+        cam->unkA8[1][0] = 0.0f;
+        cam->unkA8[1][1] = 1.0f;
+        cam->unkA8[1][2] = 0.0f;
 
-        set_identity_mat4(&a0->unkA8);
+        set_identity_mat4(&cam->unkA8);
     }
     else
-        set_identity_mat4(&a0->unkA8);
+        set_identity_mat4(&cam->unkA8);
     
-    sp2C = &a0->unk64;
-    if ((a0->unk2C & 0x4) != 0)
+    sp2C = &cam->unk64;
+    if ((cam->unk2C & 0x4) != 0)
     {   // new B press
         if (ctrl->btnB != FALSE && ctrl->prevFrame->btnB == FALSE)
         {
-            a0->unk174++;
-            if (a0->unk174 > a0->unk170)
-                a0->unk174 = 0;
+            cam->zoom++;
+            if (cam->zoom > cam->zoomLevels)
+                cam->zoom = 0;
             
-            switch (a0->unk174)
+            switch (cam->zoom)
             {
                 case 0:
                     gd_play_sfx(GD_SFX_CAM_ZOOM_IN);
@@ -1810,55 +1821,51 @@ void move_camera(struct ObjCamera* a0)
         }
             
         if (ctrl->cleft)
-            a0->unk128.y += a0->unk134.y;
+            cam->unk128.y += cam->unk134.y;
         
         if (ctrl->cright)
-            a0->unk128.y -= a0->unk134.y;
+            cam->unk128.y -= cam->unk134.y;
         
         if (ctrl->cup)
-            a0->unk128.x += a0->unk134.x;
+            cam->unk128.x += cam->unk134.x;
         
         if (ctrl->cdown)
-            a0->unk128.x -= a0->unk134.x;
+            cam->unk128.x -= cam->unk134.x;
         
-        a0->unk128.x = func_80194728(a0->unk128.x, 80.0f);
-        #pragma GCC diagnostic push
-        #pragma GCC diagnostic ignored "-Wpointer-to-int-cast"
-        #pragma GCC diagnostic ignored "-Wint-to-pointer-cast"
-        //! wtf; did he mean to multiply the unk140 vec float by un174...? Offset the wrong MyVec3f pointer?
-        a0->unk4C.x = ((struct ObjCamera*) ((s32) a0 + a0->unk174 * 12))->unk140.x;
-        a0->unk4C.y = ((struct ObjCamera*) ((s32) a0 + a0->unk174 * 12))->unk140.y;
-        a0->unk4C.z = ((struct ObjCamera*) ((s32) a0 + a0->unk174 * 12))->unk140.z;
-        #pragma GCC diagnostic pop
+        cam->unk128.x = func_80194728(cam->unk128.x, 80.0f);
 
-        func_80194880(a0->unk128.x, &a0->unk4C.y, &a0->unk4C.z);
-        func_80194880(-a0->unk128.y, &a0->unk4C.x, &a0->unk4C.z);
+        cam->unk4C.x = cam->positions[cam->zoom].x;
+        cam->unk4C.y = cam->positions[cam->zoom].y;
+        cam->unk4C.z = cam->positions[cam->zoom].z;
 
-        a0->unk40.x += (a0->unk4C.x - a0->unk40.x) * a0->unk17C;
-        a0->unk40.y += (a0->unk4C.y - a0->unk40.y) * a0->unk17C;
-        a0->unk40.z += (a0->unk4C.z - a0->unk40.z) * a0->unk17C;
+        func_80194880(cam->unk128.x, &cam->unk4C.y, &cam->unk4C.z);
+        func_80194880(-cam->unk128.y, &cam->unk4C.x, &cam->unk4C.z);
+
+        cam->unk40.x += (cam->unk4C.x - cam->unk40.x) * cam->unk17C;
+        cam->unk40.y += (cam->unk4C.y - cam->unk40.y) * cam->unk17C;
+        cam->unk40.z += (cam->unk4C.z - cam->unk40.z) * cam->unk17C;
     }
     else
         set_identity_mat4(sp2C);
     
-    spD4.x = a0->unk40.x;
-    spD4.y = a0->unk40.y;
-    spD4.z = a0->unk40.z;
+    spD4.x = cam->unk40.x;
+    spD4.y = cam->unk40.y;
+    spD4.z = cam->unk40.z;
 
     spD4.x += spB0.x;
     spD4.y += spB0.y;
     spD4.z += spB0.z;
 
-    multiply_mat4(sp2C, &a0->unkA8, &a0->unkA8);
-    func_80196540(&spD4, &a0->unkA8);
+    multiply_mat4(sp2C, &cam->unkA8, &cam->unkA8);
+    func_80196540(&spD4, &cam->unkA8);
 
-    a0->unk14.x = spD4.x;
-    a0->unk14.y = spD4.y;
-    a0->unk14.z = spD4.z;
+    cam->unk14.x = spD4.x;
+    cam->unk14.y = spD4.y;
+    cam->unk14.z = spD4.z;
 
-    a0->unk14.x += spE0.x;
-    a0->unk14.y += spE0.y;
-    a0->unk14.z += spE0.z;
+    cam->unk14.x += spE0.x;
+    cam->unk14.y += spE0.y;
+    cam->unk14.z += spE0.z;
 }
 
 /* @ 22F7A4 for 0x38; orig name: func_80180FD4 */
@@ -1879,8 +1886,8 @@ void Unknown8018100C(struct ObjLight* light)
 
     if (light->unk40 == 3)
     {
-        if (light->unk30 > 0.0) //! 0.0f
-            light->unk30 -= 0.2; //! 0.2f
+        if (light->unk30 > 0.0) //? 0.0f
+            light->unk30 -= 0.2; //? 0.2f
         
         if (light->unk30 < 0.0f)
             light->unk30 = 0.0f;
@@ -1892,12 +1899,13 @@ void Unknown8018100C(struct ObjLight* light)
     }
     // if (1)?
     return;
-    //! unreachable
+    // unreachable
     light->position.x += light->unk80.x;
     light->position.y += light->unk80.y;
     light->position.z += light->unk80.z;
 
-    if (light->position.x > 500.0f || light->position.y < -500.0f)    //! position.x for second comparison?
+    // should be position.x for second comparison?
+    if (light->position.x > 500.0f || light->position.y < -500.0f)
         light->unk80.x = -light->unk80.x;
     
     if (light->position.y > 500.0f || light->position.y < -500.0f)
@@ -1907,9 +1915,9 @@ void Unknown8018100C(struct ObjLight* light)
         light->unk80.z = -light->unk80.z;
     
     return;
-    //! more unreachable
-    D_801A81C0 += 1.0;  //! 1.0f
-    D_801A81C4 += 0.6;  //! 0.6f
+    // more unreachable
+    D_801A81C0 += 1.0;  //? 1.0f
+    D_801A81C4 += 0.6;  //? 0.6f
 
     set_identity_mat4(&mtx);
     absrot_mat4(&mtx, 1, light->unk68.y);
@@ -1921,9 +1929,9 @@ void Unknown8018100C(struct ObjLight* light)
     light->position.y = light->unk8C.y;
     light->position.z = light->unk8C.z;
     return;
-    //! more unreachable
+    // even more unreachable
     func_80196540(&light->unk80, &mtx);
-    imout();
+    imout(); // this call would cause an issue if it was reachable
 }
 
 /* @ 22FB48 for 0x38; orig name: func_80181378 */

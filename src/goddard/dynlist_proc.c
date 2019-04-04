@@ -452,8 +452,8 @@ void add_to_dynobj_list(struct GdObj *newobj, DynId id)
     sDynListCurInfo = &sGdDynObjList[sLoadedDynObjs];
     sGdDynObjList[sLoadedDynObjs++].obj = newobj;
 
-    //! A good place to bounds-check your array is
-    //! after you finish writing a new member to it.
+    // A good place to bounds-check your array is
+    // after you finish writing a new member to it.
     if (sLoadedDynObjs >= DYNOBJ_LIST_SZ)
         fatal_printf("dMakeObj(): Too many dynlist objects");
 
@@ -500,12 +500,12 @@ struct GdObj *d_makeobj(enum DObjTypes type, DynId id)
         case D_DATA_GRP:
             d_makeobj(D_GROUP, id);
             ((struct ObjGroup *)sDynListCurObj)->linkType = 1;
-            //! bad goddard. set the return of the d_makeobj call to `dobj` and return that. 
-            //! Or, use a goto
-            #pragma GCC diagnostic push
-            #pragma GCC diagnostic ignored "-Wreturn-type"
+            //! @bug Returns garbage when making `D_DATA_GRP` object
+            #if BUGFIX_GODDARD_MISSING_RETURN
+            return NULL;
+            #else
             return;
-            #pragma GCC diagnostic pop
+            #endif
         case D_CAMERA:
             dobj = &make_camera(0, NULL)->header;
             break;
@@ -534,7 +534,9 @@ struct GdObj *d_makeobj(enum DObjTypes type, DynId id)
             dobj = &make_gadget(0, 0)->header;
             break;
         case D_LABEL:
-            //! the final 3 args should be floats, but...
+            //! @bug When making a `D_LABEL`, the call to `make_label()`
+            //!      compiles incorrectly due to Goddard only declaring
+            //!      the functions, not prototyping the functions
             dobj = &make_label(NULL, NULL, 8, 0, 0, 0)->header;
             break;
         case D_VIEW:
@@ -863,7 +865,9 @@ void chk_shapegen(struct ObjShape *shape)
         oldObjHead = gGdObjectList;
         for (i = 0; i < facedata->count; i++)
         {
-            //! Bad call; include proper header to fix
+            //! @bug Call to `make_face_with_colour()` compiles incorrectly 
+            //!      due to Goddard only declaring the functions,
+            //!      not prototyping the functions
             face = make_face_with_colour(1.0, 1.0, 1.0);
             face->mtlId = (s32) facedata->data[i][0];
             add_3_vtx_to_face(
@@ -1494,19 +1498,19 @@ void d_set_rel_pos(f32 x, f32 y, f32 z)
             ((struct ObjCamera *)dynobj)->unk40.y = y;
             ((struct ObjCamera *)dynobj)->unk40.z = z;
 
-            ((struct ObjCamera *)dynobj)->unk140.x = x;
-            ((struct ObjCamera *)dynobj)->unk140.y = y;
-            ((struct ObjCamera *)dynobj)->unk140.z = z;
+            ((struct ObjCamera *)dynobj)->positions[0].x = x;
+            ((struct ObjCamera *)dynobj)->positions[0].y = y;
+            ((struct ObjCamera *)dynobj)->positions[0].z = z;
 
-            ((struct ObjCamera *)dynobj)->unk14C.x = x * 1.5;   //! 1.5f
-            ((struct ObjCamera *)dynobj)->unk14C.y = y * 1.5;   //! 1.5f
-            ((struct ObjCamera *)dynobj)->unk14C.z = z * 1.5;   //! 1.5f
+            ((struct ObjCamera *)dynobj)->positions[1].x = x * 1.5;   //? 1.5f
+            ((struct ObjCamera *)dynobj)->positions[1].y = y * 1.5;   //? 1.5f
+            ((struct ObjCamera *)dynobj)->positions[1].z = z * 1.5;   //? 1.5f
 
-            ((struct ObjCamera *)dynobj)->unk158.x = x * 2.0f;
-            ((struct ObjCamera *)dynobj)->unk158.y = y * 2.0f;
-            ((struct ObjCamera *)dynobj)->unk158.z = z * 2.0f;
+            ((struct ObjCamera *)dynobj)->positions[2].x = x * 2.0f;
+            ((struct ObjCamera *)dynobj)->positions[2].y = y * 2.0f;
+            ((struct ObjCamera *)dynobj)->positions[2].z = z * 2.0f;
 
-            ((struct ObjCamera *)dynobj)->unk170 = 2;
+            ((struct ObjCamera *)dynobj)->zoomLevels = 2;
             break;
         case OBJ_TYPE_VERTICES:
             ((struct ObjVertex *)dynobj)->pos.x = x;
@@ -1615,10 +1619,10 @@ struct ObjGroup *d_get_att_objgroup(void)
     {
         case OBJ_TYPE_JOINTS:
             return ((struct ObjJoint *)sDynListCurObj)->unk1F8;
-            break;  //! lol
+            break;  // lol
         case OBJ_TYPE_NETS:
             return ((struct ObjNet *)sDynListCurObj)->unk1D4;
-            break;  //! lol
+            break;  // lol
         default:
             fatal_printf("%s: Object '%s'(%x) does not support this function.",
                 "dGetAttObjGroup()",
@@ -1626,7 +1630,7 @@ struct ObjGroup *d_get_att_objgroup(void)
                 sDynListCurObj->type
             );
     }
-    //! No `return NULL;`
+    // No null return due to `fatal_printf()` being a non-returning function?
 }
 
 /* 2365E4 -> 2366C0; not called */
@@ -1639,10 +1643,10 @@ struct GdObj *d_get_att_to_obj(void)
     {
         case OBJ_TYPE_JOINTS:
             return ((struct ObjJoint *)sDynListCurObj)->unk20C;
-            break;  //! lol
+            break;  // lol
         case OBJ_TYPE_NETS:
             return ((struct ObjNet *)sDynListCurObj)->unk1E8;
-            break;  //! lol
+            break;  // lol
         default:
             fatal_printf("%s: Object '%s'(%x) does not support this function.",
                 "dGetAttToObj()",
@@ -1650,7 +1654,7 @@ struct GdObj *d_get_att_to_obj(void)
                 sDynListCurObj->type
             );
     }
-    //! No `return NULL;`
+    // No null return due to `fatal_printf()` being a non-returning function?
 }
 
 /* 2366C0 -> 236848; orig name: func_80187EF0 */
@@ -1924,7 +1928,7 @@ struct MyVec3f *d_get_world_pos_ptr(void)
                 sDynListCurObj->type
             );
     }
-    //! No `return NULL;` 
+    // No null return due to `fatal_printf()` being a non-returning function?
 }
 
 /* 23720C -> 237884; orig name: func_80188A3C */
@@ -1985,9 +1989,9 @@ void d_get_world_pos(struct MyVec3f *dst)
             dst->y += ((struct ObjPlane *)sDynListCurObj)->plane28.vec1.y;
             dst->z += ((struct ObjPlane *)sDynListCurObj)->plane28.vec1.z;
 
-            dst->x *= 0.5;  //! 0.5f
-            dst->y *= 0.5;  //! 0.5f
-            dst->z *= 0.5;  //! 0.5f
+            dst->x *= 0.5;  //? 0.5f
+            dst->y *= 0.5;  //? 0.5f
+            dst->z *= 0.5;  //? 0.5f
             break;
         case OBJ_TYPE_ZONES:
             dst->x = ((struct ObjZone *)sDynListCurObj)->unk14.vec0.x;
@@ -1998,9 +2002,9 @@ void d_get_world_pos(struct MyVec3f *dst)
             dst->y += ((struct ObjZone *)sDynListCurObj)->unk14.vec1.y;
             dst->z += ((struct ObjZone *)sDynListCurObj)->unk14.vec1.z;
 
-            dst->x *= 0.5;  //! 0.5f
-            dst->y *= 0.5;  //! 0.5f
-            dst->z *= 0.5;  //! 0.5f
+            dst->x *= 0.5;  //? 0.5f
+            dst->y *= 0.5;  //? 0.5f
+            dst->z *= 0.5;  //? 0.5f
             break;
         case OBJ_TYPE_LIGHTS:
             dst->x = ((struct ObjLight *)sDynListCurObj)->position.x;
@@ -2786,7 +2790,7 @@ void d_get_matrix(Mat4 *dst)
         case OBJ_TYPE_NETS:
             cpy_mat4(&((struct ObjNet *)dynobj)->mat128, dst);
             break;
-            break;  //! lol
+            break;  // lol
         case OBJ_TYPE_JOINTS:
             cpy_mat4(&((struct ObjJoint *)dynobj)->matE8, dst);
             break;
@@ -2819,7 +2823,9 @@ void d_set_matrix(Mat4 *src)
     {
         case OBJ_TYPE_NETS:
             cpy_mat4(src, &((struct ObjNet *)sDynListCurObj)->mat128);
-            cpy_mat4(src, &((struct ObjNet *)sDynListCurObj)->mat128);    //! lol
+            //! @bug When setting an `ObjNet` matrix, the source is copied twice
+            //!      due to a probable copy-paste line repeat error
+            cpy_mat4(src, &((struct ObjNet *)sDynListCurObj)->mat128);
             break;
         case OBJ_TYPE_JOINTS:
             cpy_mat4(src, &((struct ObjJoint *)sDynListCurObj)->matE8);
@@ -2878,7 +2884,7 @@ Mat4 *d_get_rot_mtx_ptr(void)
                 sDynListCurObj->type
             );
     }
-    //! no `return NULL;`
+    // No null return due to `fatal_printf()` being a non-returning function?    
 }
 
 /* 239A34 -> 239B64 */
@@ -2939,7 +2945,7 @@ Mat4 *d_get_matrix_ptr(void)
                 sDynListCurObj->type
             );
     }
-    //! no `return NULL;`
+    // No null return due to `fatal_printf()` being a non-returning function?
 }
 
 /* 239C78 -> 239D4C */
@@ -2966,7 +2972,7 @@ Mat4 *d_get_idn_mtx_ptr(void)
                 sDynListCurObj->type
             );
     }
-    //! no `return NULL;`
+    // No null return due to `fatal_printf()` being a non-returning function?
 }
 
 /* 239D4C -> 239DE8; orig name: func_8018B57C */
@@ -2997,7 +3003,7 @@ void d_set_skin_weight(s32 a0, f32 a1)
     switch (sDynListCurObj->type)
     {
         case OBJ_TYPE_JOINTS:
-            set_skin_weight((struct ObjJoint *)sDynListCurObj, a0, NULL, a1 / 100.0); //! 100.0f
+            set_skin_weight((struct ObjJoint *)sDynListCurObj, a0, NULL, a1 / 100.0); //? 100.0f
             break;
         default:
             fatal_printf("%s: Object '%s'(%x) does not support this function.",

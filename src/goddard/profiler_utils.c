@@ -485,7 +485,7 @@ void fatal_printf(const char *fmt, ...)
 /* 23BBF0 -> 23BC80; orig name: func_8018D420 */
 void add_to_stacktrace(const char *routine)
 {
-    //! Please check array bounds before writing to it
+    // Please check array bounds before writing to it
     sRoutineNames[sNumRoutinesInStack++] = routine;
     sRoutineNames[sNumRoutinesInStack] = NULL;
 
@@ -544,7 +544,7 @@ f32 func_8018D560(void)
         sSecondarySeed = temp;
     }
 
-    val = (sPrimarySeed & 0xFFFF) / 65535.0;  //! 65535.0f
+    val = (sPrimarySeed & 0xFFFF) / 65535.0;  // 65535.0f
 
     return val;
 }
@@ -723,7 +723,7 @@ char *sprint_val_withspecifiers(char *str, union PrintVal val, char *specifiers)
         else 
         {
             gd_strcpy(str, "<BAD TYPE>");
-            str += 10; //! this should be 11?
+            str += 10;
         }
     }
 

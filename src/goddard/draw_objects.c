@@ -122,7 +122,7 @@ void setup_lights(void)
     gd_setproperty(GD_PROP_CULLING, 1.0f, 0.0f, 0.0f); // set G_CULL_BACK
     return;
 
-    //! dead code
+    // dead code
     gd_setproperty(GD_PROP_STUB17, 2.0f, 0.0f, 0.0f);
     gd_setproperty(GD_PROP_ZBUF_FN, 24.0f, 0.0f, 0.0f);
     gd_setproperty(GD_PROP_CULLING, 1.0f, 0.0f, 0.0f);
@@ -751,7 +751,7 @@ void draw_camera(struct ObjCamera *cam)
 
     if (0)
     {
-        //! dead code
+        // dead code
         gd_printf("%f,%f,%f\n", cam->unk14.x, cam->unk14.y, cam->unk14.z);
     }
 
@@ -1065,7 +1065,7 @@ void draw_bone(struct GdObj *obj)
 
     return;
 
-    //! dead code
+    // dead code
     scale.x = 1.0f;
     scale.y = 1.0f;
     scale.z = bone->unkF8 / 50.0f;
@@ -1355,8 +1355,10 @@ s32 create_shape_gddl(struct ObjShape *s)
     {
         printf("Generated 'UNKNOWN' (%d) display list ok.(%d)\n", shapedl, enddl);
     }
-    //! no return value
-    //! return shapedl;
+    
+    #if BUGFIX_GODDARD_MISSING_RETURN
+    return shapedl;
+    #endif
 }
 
 /**

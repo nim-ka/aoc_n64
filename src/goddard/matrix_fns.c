@@ -51,7 +51,7 @@ void func_80193B68(Mat4 *mtx,
         sp58.x = sp40.z;
     }
     //L80193D44
-    sp64 = -1.0 / gd_sqrt_f(SQ(sp58.z) + SQ(sp58.y) + SQ(sp58.x)); //! -1.0f
+    sp64 = -1.0 / gd_sqrt_f(SQ(sp58.z) + SQ(sp58.y) + SQ(sp58.x)); //? -1.0f
     sp58.z *= sp64;
     sp58.y *= sp64;
     sp58.x *= sp64;
@@ -59,7 +59,7 @@ void func_80193B68(Mat4 *mtx,
     sp4C.z = sp88 * sp58.x - sp8C * sp58.y;
     sp4C.y = sp8C * sp58.z - sp84 * sp58.x;
     sp4C.x = sp84 * sp58.y - sp88 * sp58.z;
-    sp64 = 1.0 / gd_sqrt_f(SQ(sp4C.z) + SQ(sp4C.y) + SQ(sp4C.x)); //! 1.0f
+    sp64 = 1.0 / gd_sqrt_f(SQ(sp4C.z) + SQ(sp4C.y) + SQ(sp4C.x)); //? 1.0f
     sp4C.z *= sp64;
     sp4C.y *= sp64;
     sp4C.x *= sp64;
@@ -67,7 +67,7 @@ void func_80193B68(Mat4 *mtx,
     sp84 = sp58.y * sp4C.x - sp58.x * sp4C.y;
     sp88 = sp58.x * sp4C.z - sp58.z * sp4C.x;
     sp8C = sp58.z * sp4C.y - sp58.y * sp4C.z;
-    sp64 = 1.0 / gd_sqrt_f(SQ(sp84) + SQ(sp88) + SQ(sp8C)); //! 1.0f
+    sp64 = 1.0 / gd_sqrt_f(SQ(sp84) + SQ(sp88) + SQ(sp8C)); //? 1.0f
     sp84 *= sp64;
     sp88 *= sp64;
     sp8C *= sp64;
@@ -244,7 +244,7 @@ void Unknown8019498C(Mat4 *a0, int row, f32 a2)
     vec.y = (*a0)[row][1];
     vec.z = (*a0)[row][2];
 
-    func_801961F4(&sp28, &vec, a2 / 2.0); //! 2.0f
+    func_801961F4(&sp28, &vec, a2 / 2.0); //? 2.0f
     multiply_mat4(a0, &sp28, a0);
 }
 
@@ -276,7 +276,7 @@ void absrot_mat4(Mat4 *mtx, s32 axisnum, f32 a2)
             fatal_printf("absrot_matrix4(): Bad axis num");
     }
 
-    func_801961F4(&sp30, &rot, a2 / 2.0); //! 2.0f
+    func_801961F4(&sp30, &rot, a2 / 2.0); //? 2.0f
     multiply_mat4(mtx, &sp30, mtx);
 }
 
@@ -356,7 +356,7 @@ void inverse_mat4(Mat4 *src, Mat4 *dst)
     func_80194F90(src, dst);
     determinant = func_80195578(dst);
 
-    if (ABS(determinant) < 1e-5)    //! 1e-5f
+    if (ABS(determinant) < 1e-5)    //? 1e-5f
     {
         fatal_print("Non-singular matrix, no inverse!\n");
     }
@@ -695,8 +695,8 @@ void Unknown80195D98(f32 *a0, UNUSED int a1, Mat4 *mtx)
         if ((sp20 = i + 1) >= 4) { sp20 = 1; }
         if ((sp1C = sp20 + 1) >= 4) { sp1C = 1; }
         
-        sp3C = 2.0 * a0[i] * a0[sp20]; //! 2.0f
-        sp38 = 2.0 * a0[sp1C] * a0[0]; //! 2.0f
+        sp3C = 2.0 * a0[i] * a0[sp20]; //? 2.0f
+        sp38 = 2.0 * a0[sp1C] * a0[0]; //? 2.0f
 
         (*mtx)[sp20][i] = sp3C - sp38;
         (*mtx)[i][sp20] = sp3C + sp38;
