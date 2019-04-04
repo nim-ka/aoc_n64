@@ -8,12 +8,12 @@ script_func_local_1:
 
 glabel level_bowser_2_entry
     init_level
-    load_mio0 /*seg*/ 0x0A, /*romStart*/ _bitfs_skybox_mio0SegmentRomStart, /*romEnd*/ _bitfs_skybox_mio0SegmentRomEnd
-    cmd1A     /*seg*/ 0x09, /*romStart*/ _fire_mio0SegmentRomStart, /*romEnd*/ _fire_mio0SegmentRomEnd
-    load_mio0 /*seg*/ 0x0B, /*romStart*/ _effect_mio0SegmentRomStart, /*romEnd*/ _effect_mio0SegmentRomEnd
-    load_mio0 /*seg*/ 0x07, /*romStart*/ _bowser_2_segment_7SegmentRomStart, /*romEnd*/ _bowser_2_segment_7SegmentRomEnd
-    load_mio0 /*seg*/ 0x06, /*romStart*/ _group12_mio0SegmentRomStart, /*romEnd*/ _group12_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0D, /*romStart*/ _group12_geoSegmentRomStart, /*romEnd*/ _group12_geoSegmentRomEnd
+    load_mio0         /*seg*/ 0x0A, /*romStart*/ _bitfs_skybox_mio0SegmentRomStart, /*romEnd*/ _bitfs_skybox_mio0SegmentRomEnd
+    load_mio0_texture /*seg*/ 0x09, /*romStart*/ _fire_mio0SegmentRomStart, /*romEnd*/ _fire_mio0SegmentRomEnd
+    load_mio0         /*seg*/ 0x0B, /*romStart*/ _effect_mio0SegmentRomStart, /*romEnd*/ _effect_mio0SegmentRomEnd
+    load_mio0         /*seg*/ 0x07, /*romStart*/ _bowser_2_segment_7SegmentRomStart, /*romEnd*/ _bowser_2_segment_7SegmentRomEnd
+    load_mio0         /*seg*/ 0x06, /*romStart*/ _group12_mio0SegmentRomStart, /*romEnd*/ _group12_mio0SegmentRomEnd
+    load_raw          /*seg*/ 0x0D, /*romStart*/ _group12_geoSegmentRomStart, /*romEnd*/ _group12_geoSegmentRomEnd
     alloc_level_pool
     mario /*unk3*/ 0x01, /*behParam*/ 0x00000001, /*beh*/ beh_mario
     jump_link /*target*/ script_func_global_13

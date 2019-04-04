@@ -5,7 +5,7 @@ glabel rr_geo_0009D0 # 0x0E0009D0
       geo_open_node
          geo_todo_09 100
          geo_open_node
-            geo_background 3, Geo19_802763D4
+            geo_background BACKGROUND_BELOW_CLOUDS, Geo19_802763D4
          geo_close_node
       geo_close_node
       geo_zbuffer 1
@@ -15,8 +15,8 @@ glabel rr_geo_0009D0 # 0x0E0009D0
             geo_todo_0F 14, 0, 2000, 6000, 0, 0, -8000, Geo0F_80287D30
             geo_open_node
                geo_asm 0, Geo18_802D2470
-               geo_display_list 0x04, rr_seg7_dl_07002168
-               geo_todo_17
+               geo_display_list LAYER_ALPHA, rr_seg7_dl_07002168
+               geo_render_obj
                geo_asm 0, Geo18_802761D0
             geo_close_node
          geo_close_node

@@ -81,16 +81,16 @@ glabel intro_geo_000414 # 0x0E000414
          geo_open_node
             geo_todo_0F 0, 0, 0, 1200, 0, 0, 0, 0x00000000
             geo_open_node
-               geo_todo_11 0x01, -230, 300, 0, debug_level_select_dl_07000858
-               geo_todo_11 0x01, -120, 300, 0, debug_level_select_dl_07001100
-               geo_todo_11 0x01,  -20, 300, 0, debug_level_select_dl_07001BA0
-               geo_todo_11 0x01,  100, 300, 0, debug_level_select_dl_070025F0
-               geo_todo_11 0x01,  250, 300, 0, debug_level_select_dl_07003258
-               geo_todo_11 0x01, -310, 100, 0, debug_level_select_dl_07003DB8
-               geo_todo_11 0x01,  -90, 100, 0, debug_level_select_dl_070048C8
-               geo_todo_11 0x01,   60, 100, 0, debug_level_select_dl_07005558
-               geo_todo_11 0x01,  180, 100, 0, debug_level_select_dl_070059F8
-               geo_todo_11 0x01,  300, 100, 0, debug_level_select_dl_070063B0
+               geo_translate_node LAYER_OPAQUE, -230, 300, 0, debug_level_select_dl_07000858
+               geo_translate_node LAYER_OPAQUE, -120, 300, 0, debug_level_select_dl_07001100
+               geo_translate_node LAYER_OPAQUE,  -20, 300, 0, debug_level_select_dl_07001BA0
+               geo_translate_node LAYER_OPAQUE,  100, 300, 0, debug_level_select_dl_070025F0
+               geo_translate_node LAYER_OPAQUE,  250, 300, 0, debug_level_select_dl_07003258
+               geo_translate_node LAYER_OPAQUE, -310, 100, 0, debug_level_select_dl_07003DB8
+               geo_translate_node LAYER_OPAQUE,  -90, 100, 0, debug_level_select_dl_070048C8
+               geo_translate_node LAYER_OPAQUE,   60, 100, 0, debug_level_select_dl_07005558
+               geo_translate_node LAYER_OPAQUE,  180, 100, 0, debug_level_select_dl_070059F8
+               geo_translate_node LAYER_OPAQUE,  300, 100, 0, debug_level_select_dl_070063B0
             geo_close_node
          geo_close_node
       geo_close_node

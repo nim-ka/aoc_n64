@@ -20,7 +20,7 @@ script_func_local_2:
     object /*model*/ MODEL_WF_SLIDING_PLATFORM,         /*pos*/  3328, 1075, -1791, /*angle*/ 0,  90, 0, /*behParam*/ 0x00020000, /*beh*/ beh_wf_sliding_platform
     object /*model*/ MODEL_WF_SLIDING_PLATFORM,         /*pos*/  3328, 1075,  -767, /*angle*/ 0,  90, 0, /*behParam*/ 0x00010000, /*beh*/ beh_wf_sliding_platform
     object /*model*/ MODEL_WF_SLIDING_PLATFORM,         /*pos*/  3328, 1075, -2815, /*angle*/ 0,  90, 0, /*behParam*/ 0x00030000, /*beh*/ beh_wf_sliding_platform
-    object /*model*/ MODEL_WF_TUMBLING_BRIDGE_PART,     /*pos*/  1792, 2496,  1600, /*angle*/ 0,   0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_wf_tumbling_bridge
+    object /*model*/ MODEL_WF_TUMBLING_BRIDGE,          /*pos*/  1792, 2496,  1600, /*angle*/ 0,   0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_wf_tumbling_bridge
     object /*model*/ MODEL_WF_BREAKABLE_WALL_RIGHT,     /*pos*/   512, 2176,  2944, /*angle*/ 0,   0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_wf_breakable_wall_right
     object /*model*/ MODEL_WF_BREAKABLE_WALL_LEFT,      /*pos*/ -1023, 2176,  2944, /*angle*/ 0,   0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_wf_breakable_wall_left
     object /*model*/ MODEL_WF_KICKABLE_BOARD,           /*pos*/    13, 3584, -1407, /*angle*/ 0, 315, 0, /*behParam*/ 0x00000000, /*beh*/ beh_kickable_board, /*acts*/ ACT_2 | ACT_3 | ACT_4 | ACT_5 | ACT_6
@@ -71,51 +71,51 @@ script_func_local_4:
 
 glabel level_wf_entry
     init_level
-    load_mio0 /*seg*/ 0x07, /*romStart*/ _wf_segment_7SegmentRomStart, /*romEnd*/ _wf_segment_7SegmentRomEnd
-    load_mio0 /*seg*/ 0x0A, /*romStart*/ _cloud_floor_skybox_mio0SegmentRomStart, /*romEnd*/ _cloud_floor_skybox_mio0SegmentRomEnd
-    cmd1A     /*seg*/ 0x09, /*romStart*/ _grass_mio0SegmentRomStart, /*romEnd*/ _grass_mio0SegmentRomEnd
-    load_mio0 /*seg*/ 0x05, /*romStart*/ _group1_mio0SegmentRomStart, /*romEnd*/ _group1_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0C, /*romStart*/ _group1_geoSegmentRomStart,  /*romEnd*/ _group1_geoSegmentRomEnd
-    load_mio0 /*seg*/ 0x06, /*romStart*/ _group14_mio0SegmentRomStart, /*romEnd*/ _group14_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0D, /*romStart*/ _group14_geoSegmentRomStart,  /*romEnd*/ _group14_geoSegmentRomEnd
-    load_mio0 /*seg*/ 0x08, /*romStart*/ _common0_mio0SegmentRomStart, /*romEnd*/ _common0_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0F, /*romStart*/ _common0_geoSegmentRomStart,  /*romEnd*/ _common0_geoSegmentRomEnd
+    load_mio0         /*seg*/ 0x07, /*romStart*/ _wf_segment_7SegmentRomStart, /*romEnd*/ _wf_segment_7SegmentRomEnd
+    load_mio0         /*seg*/ 0x0A, /*romStart*/ _cloud_floor_skybox_mio0SegmentRomStart, /*romEnd*/ _cloud_floor_skybox_mio0SegmentRomEnd
+    load_mio0_texture /*seg*/ 0x09, /*romStart*/ _grass_mio0SegmentRomStart, /*romEnd*/ _grass_mio0SegmentRomEnd
+    load_mio0         /*seg*/ 0x05, /*romStart*/ _group1_mio0SegmentRomStart, /*romEnd*/ _group1_mio0SegmentRomEnd
+    load_raw          /*seg*/ 0x0C, /*romStart*/ _group1_geoSegmentRomStart,  /*romEnd*/ _group1_geoSegmentRomEnd
+    load_mio0         /*seg*/ 0x06, /*romStart*/ _group14_mio0SegmentRomStart, /*romEnd*/ _group14_mio0SegmentRomEnd
+    load_raw          /*seg*/ 0x0D, /*romStart*/ _group14_geoSegmentRomStart,  /*romEnd*/ _group14_geoSegmentRomEnd
+    load_mio0         /*seg*/ 0x08, /*romStart*/ _common0_mio0SegmentRomStart, /*romEnd*/ _common0_mio0SegmentRomEnd
+    load_raw          /*seg*/ 0x0F, /*romStart*/ _common0_geoSegmentRomStart,  /*romEnd*/ _common0_geoSegmentRomEnd
     alloc_level_pool
     mario /*unk3*/ 0x01, /*behParam*/ 0x00000001, /*beh*/ beh_mario
     jump_link /*target*/ script_func_global_1
     jump_link /*target*/ script_func_global_2
     jump_link /*target*/ script_func_global_15
-    load_model_from_geo /*model*/ MODEL_WF_BUBBLY_TREE,       /*geo*/ bubbly_tree_geo
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_03,    /*geo*/ wf_geo_0007E0
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_04,    /*geo*/ wf_geo_000820
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_05,    /*geo*/ wf_geo_000860
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_06,    /*geo*/ wf_geo_000878
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_07,    /*geo*/ wf_geo_000890
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_08,    /*geo*/ wf_geo_0008A8
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_09,    /*geo*/ wf_geo_0008E8
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0A,    /*geo*/ wf_geo_000900
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0C,    /*geo*/ wf_geo_000940
-    load_model_from_geo /*model*/ MODEL_WF_GIANT_POLE,        /*geo*/ wf_geo_000AE0
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0E,    /*geo*/ wf_geo_000958
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0F,    /*geo*/ wf_geo_0009A0
-    load_model_from_geo /*model*/ MODEL_WF_ROTATING_PLATFORM, /*geo*/ wf_geo_0009B8
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_11,    /*geo*/ wf_geo_0009D0
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_12,    /*geo*/ wf_geo_0009E8
-    load_model_from_geo /*model*/ MODEL_WF_SMALL_BOMP,               /*geo*/ wf_geo_000A00
-    load_model_from_geo /*model*/ MODEL_WF_LARGE_BOMP,               /*geo*/ wf_geo_000A40
-    load_model_from_geo /*model*/ MODEL_WF_ROTATING_WOODEN_PLATFORM, /*geo*/ wf_geo_000A58
-    load_model_from_geo /*model*/ MODEL_WF_SLIDING_PLATFORM,         /*geo*/ wf_geo_000A98
-    load_model_from_geo /*model*/ MODEL_WF_B0,                       /*geo*/ wf_geo_000AB0
-    load_model_from_geo /*model*/ MODEL_WF_TUMBLING_BRIDGE_PART,     /*geo*/ wf_geo_000AC8
-    load_model_from_geo /*model*/ MODEL_WF_2C,                       /*geo*/ wf_geo_000AF8
-    load_model_from_geo /*model*/ MODEL_WF_2D,                       /*geo*/ wf_geo_000B10
-    load_model_from_geo /*model*/ MODEL_WF_2E,                       /*geo*/ wf_geo_000B38
-    load_model_from_geo /*model*/ MODEL_WF_2F,                       /*geo*/ wf_geo_000B60
-    load_model_from_geo /*model*/ MODEL_WF_BREAKABLE_WALL_RIGHT,     /*geo*/ wf_geo_000B78
-    load_model_from_geo /*model*/ MODEL_WF_BREAKABLE_WALL_LEFT,      /*geo*/ wf_geo_000B90
-    load_model_from_geo /*model*/ MODEL_WF_KICKABLE_BOARD,           /*geo*/ wf_geo_000BA8
-    load_model_from_geo /*model*/ MODEL_WF_TOWER_DOOR,               /*geo*/ wf_geo_000BE0
-    load_model_from_geo /*model*/ MODEL_WF_3A,                       /*geo*/ wf_geo_000BC8
+    load_model_from_geo /*model*/ MODEL_WF_BUBBLY_TREE,                 /*geo*/ bubbly_tree_geo
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_03,              /*geo*/ wf_geo_0007E0
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_04,              /*geo*/ wf_geo_000820
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_05,              /*geo*/ wf_geo_000860
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_06,              /*geo*/ wf_geo_000878
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_07,              /*geo*/ wf_geo_000890
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_08,              /*geo*/ wf_geo_0008A8
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_09,              /*geo*/ wf_geo_0008E8
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0A,              /*geo*/ wf_geo_000900
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0C,              /*geo*/ wf_geo_000940
+    load_model_from_geo /*model*/ MODEL_WF_GIANT_POLE,                  /*geo*/ wf_geo_000AE0
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0E,              /*geo*/ wf_geo_000958
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0F,              /*geo*/ wf_geo_0009A0
+    load_model_from_geo /*model*/ MODEL_WF_ROTATING_PLATFORM,           /*geo*/ wf_geo_0009B8
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_11,              /*geo*/ wf_geo_0009D0
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_12,              /*geo*/ wf_geo_0009E8
+    load_model_from_geo /*model*/ MODEL_WF_SMALL_BOMP,                  /*geo*/ wf_geo_000A00
+    load_model_from_geo /*model*/ MODEL_WF_LARGE_BOMP,                  /*geo*/ wf_geo_000A40
+    load_model_from_geo /*model*/ MODEL_WF_ROTATING_WOODEN_PLATFORM,    /*geo*/ wf_geo_000A58
+    load_model_from_geo /*model*/ MODEL_WF_SLIDING_PLATFORM,            /*geo*/ wf_geo_000A98
+    load_model_from_geo /*model*/ MODEL_WF_TUMBLING_BRIDGE_PART,        /*geo*/ wf_geo_000AB0
+    load_model_from_geo /*model*/ MODEL_WF_TUMBLING_BRIDGE,             /*geo*/ wf_geo_000AC8
+    load_model_from_geo /*model*/ MODEL_WF_TOWER_TRAPEZOID_PLATORM,     /*geo*/ wf_geo_000AF8
+    load_model_from_geo /*model*/ MODEL_WF_TOWER_SQUARE_PLATORM,        /*geo*/ wf_geo_000B10
+    load_model_from_geo /*model*/ MODEL_WF_TOWER_SQUARE_PLATORM_FRAME1, /*geo*/ wf_geo_000B38
+    load_model_from_geo /*model*/ MODEL_WF_TOWER_SQUARE_PLATORM_FRAME2, /*geo*/ wf_geo_000B60
+    load_model_from_geo /*model*/ MODEL_WF_BREAKABLE_WALL_RIGHT,        /*geo*/ wf_geo_000B78
+    load_model_from_geo /*model*/ MODEL_WF_BREAKABLE_WALL_LEFT,         /*geo*/ wf_geo_000B90
+    load_model_from_geo /*model*/ MODEL_WF_KICKABLE_BOARD,              /*geo*/ wf_geo_000BA8
+    load_model_from_geo /*model*/ MODEL_WF_TOWER_DOOR,                  /*geo*/ wf_geo_000BE0
+    load_model_from_geo /*model*/ MODEL_WF_KICKABLE_BOARD_FELLED,       /*geo*/ wf_geo_000BC8
 
     area /*index*/ 1, /*geo*/ wf_geo_000BF8
         object /*model*/ MODEL_NONE, /*pos*/  2600, 1256,  5120, /*angle*/ 0, 90, 0, /*behParam*/ 0x000A0000, /*beh*/ beh_warps_74
@@ -132,7 +132,7 @@ glabel level_wf_entry
         jump_link /*target*/ script_func_local_4
         terrain /*terrainData*/ wf_seg7_collision_070102D8
         macro_objects /*objList*/ wf_seg7_macro_objs
-        cmd30 /*unk2*/ 0x00, /*unk3*/ 0x1E
+        show_dialog /*unk2*/ 0x00, /*dialogid*/ 0x1E
         set_music /*unk2*/ 0x0005, /*seq*/ SEQ_LEVEL_GRASS
         terrain_type /*terrainType*/ 0x0001
     end_area

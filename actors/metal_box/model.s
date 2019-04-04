@@ -54,7 +54,7 @@ gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
 gsSPEndDisplayList
 
-glabel metal_box_seg8_dl_08024BB8 # 0x08024BB8 - 0x08024C28
+glabel metal_box_dl # 0x08024BB8 - 0x08024C28
 gsDPPipeSync
 gsDPSetCombineMode1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPClearGeometryMode G_SHADING_SMOOTH

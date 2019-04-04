@@ -4,20 +4,20 @@ glabel level_main_menu_entry_1
     load_mio0 /*seg*/ 0x07, /*romStart*/ _menu_segment_7SegmentRomStart, /*romEnd*/ _menu_segment_7SegmentRomEnd
     load_raw /*seg*/ 0x13, /*romStart*/ _behaviorSegmentRomStart, /*romEnd*/ _behaviorSegmentRomEnd
     alloc_level_pool
-    load_model_from_geo /*model*/ MODEL_MAIN_MENU_03, /*geo*/ main_menu_geo_0001D0
-    load_model_from_geo /*model*/ MODEL_MAIN_MENU_04, /*geo*/ main_menu_geo_000290
-    load_model_from_geo /*model*/ MODEL_MAIN_MENU_05, /*geo*/ main_menu_geo_0002B8
-    load_model_from_geo /*model*/ MODEL_MAIN_MENU_06, /*geo*/ main_menu_geo_0002E0
-    load_model_from_geo /*model*/ MODEL_MAIN_MENU_07, /*geo*/ main_menu_geo_000308
-    load_model_from_geo /*model*/ MODEL_MAIN_MENU_08, /*geo*/ main_menu_geo_000200
-    load_model_from_geo /*model*/ MODEL_MAIN_MENU_09, /*geo*/ main_menu_geo_000230
-    load_model_from_geo /*model*/ MODEL_MAIN_MENU_0A, /*geo*/ main_menu_geo_000260
-    load_model_from_geo /*model*/ MODEL_MAIN_MENU_0B, /*geo*/ main_menu_geo_000330
-    load_model_from_geo /*model*/ MODEL_MAIN_MENU_0C, /*geo*/ main_menu_geo_000358
+    load_model_from_geo /*model*/ MODEL_MAIN_MENU_MARIO_SAVE_BUTTON,      /*geo*/ main_menu_geo_0001D0
+    load_model_from_geo /*model*/ MODEL_MAIN_MENU_RED_ERASE_BUTTON,       /*geo*/ main_menu_geo_000290
+    load_model_from_geo /*model*/ MODEL_MAIN_MENU_BLUE_COPY_BUTTON,       /*geo*/ main_menu_geo_0002B8
+    load_model_from_geo /*model*/ MODEL_MAIN_MENU_YELLOW_FILE_BUTTON,     /*geo*/ main_menu_geo_0002E0
+    load_model_from_geo /*model*/ MODEL_MAIN_MENU_GREEN_SCORE_BUTTON,     /*geo*/ main_menu_geo_000308
+    load_model_from_geo /*model*/ MODEL_MAIN_MENU_MARIO_SAVE_BUTTON_FADE, /*geo*/ main_menu_geo_000200
+    load_model_from_geo /*model*/ MODEL_MAIN_MENU_MARIO_NEW_BUTTON,       /*geo*/ main_menu_geo_000230
+    load_model_from_geo /*model*/ MODEL_MAIN_MENU_MARIO_NEW_BUTTON_FADE,  /*geo*/ main_menu_geo_000260
+    load_model_from_geo /*model*/ MODEL_MAIN_MENU_PURPLE_SOUND_BUTTON,    /*geo*/ main_menu_geo_000330
+    load_model_from_geo /*model*/ MODEL_MAIN_MENU_GENERIC_BUTTON,         /*geo*/ main_menu_geo_000358
 
     area /*index*/ 1, /*geo*/ main_menu_geo_000380
         object /*model*/ MODEL_NONE,         /*pos*/ 0, 0, -19000, /*angle*/ 0, 0, 0, /*behParam*/ 0x04000000, /*beh*/ beh_menu_button_manager
-        object /*model*/ MODEL_MAIN_MENU_06, /*pos*/ 0, 0, -19000, /*angle*/ 0, 0, 0, /*behParam*/ 0x04000000, /*beh*/ beh_yellow_background_in_menu
+        object /*model*/ MODEL_MAIN_MENU_YELLOW_FILE_BUTTON, /*pos*/ 0, 0, -19000, /*angle*/ 0, 0, 0, /*behParam*/ 0x04000000, /*beh*/ beh_yellow_background_in_menu
         terrain /*terrainData*/ main_menu_seg7_collision
     end_area
 

@@ -58,13 +58,13 @@ script_func_local_7:
 
 glabel level_ttm_entry
     init_level
-    load_mio0 /*seg*/ 0x07, /*romStart*/ _ttm_segment_7SegmentRomStart, /*romEnd*/ _ttm_segment_7SegmentRomEnd
-    cmd1A     /*seg*/ 0x09, /*romStart*/ _mountain_mio0SegmentRomStart, /*romEnd*/ _mountain_mio0SegmentRomEnd
-    load_mio0 /*seg*/ 0x0A, /*romStart*/ _water_skybox_mio0SegmentRomStart, /*romEnd*/ _water_skybox_mio0SegmentRomEnd
-    load_mio0 /*seg*/ 0x05, /*romStart*/ _group6_mio0SegmentRomStart, /*romEnd*/ _group6_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0C, /*romStart*/ _group6_geoSegmentRomStart,  /*romEnd*/ _group6_geoSegmentRomEnd
-    load_mio0 /*seg*/ 0x08, /*romStart*/ _common0_mio0SegmentRomStart, /*romEnd*/ _common0_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0F, /*romStart*/ _common0_geoSegmentRomStart,  /*romEnd*/ _common0_geoSegmentRomEnd
+    load_mio0         /*seg*/ 0x07, /*romStart*/ _ttm_segment_7SegmentRomStart, /*romEnd*/ _ttm_segment_7SegmentRomEnd
+    load_mio0_texture /*seg*/ 0x09, /*romStart*/ _mountain_mio0SegmentRomStart, /*romEnd*/ _mountain_mio0SegmentRomEnd
+    load_mio0         /*seg*/ 0x0A, /*romStart*/ _water_skybox_mio0SegmentRomStart, /*romEnd*/ _water_skybox_mio0SegmentRomEnd
+    load_mio0         /*seg*/ 0x05, /*romStart*/ _group6_mio0SegmentRomStart, /*romEnd*/ _group6_mio0SegmentRomEnd
+    load_raw          /*seg*/ 0x0C, /*romStart*/ _group6_geoSegmentRomStart,  /*romEnd*/ _group6_geoSegmentRomEnd
+    load_mio0         /*seg*/ 0x08, /*romStart*/ _common0_mio0SegmentRomStart, /*romEnd*/ _common0_mio0SegmentRomEnd
+    load_raw          /*seg*/ 0x0F, /*romStart*/ _common0_geoSegmentRomStart,  /*romEnd*/ _common0_geoSegmentRomEnd
     alloc_level_pool
     mario /*unk3*/ 0x01, /*behParam*/ 0x00000001, /*beh*/ beh_mario
     jump_link /*target*/ script_func_global_1
@@ -76,25 +76,25 @@ glabel level_ttm_entry
     load_model_from_geo /*model*/ MODEL_TTM_YELLOW_SMILEY,     /*geo*/ ttm_geo_000D4C
     load_model_from_geo /*model*/ MODEL_TTM_STAR_SMILEY,       /*geo*/ ttm_geo_000D84
     load_model_from_geo /*model*/ MODEL_TTM_MOON_SMILEY,       /*geo*/ ttm_geo_000DBC
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_03, /*geo*/ ttm_geo_000748
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_04, /*geo*/ ttm_geo_000778
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_05, /*geo*/ ttm_geo_0007A8
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_06, /*geo*/ ttm_geo_0007D8
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_07, /*geo*/ ttm_geo_000808
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_08, /*geo*/ ttm_geo_000830
-	load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_09, /*geo*/ ttm_geo_000858
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0A, /*geo*/ ttm_geo_000880
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0B, /*geo*/ ttm_geo_0008A8
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0C, /*geo*/ ttm_geo_0008D0
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0D, /*geo*/ ttm_geo_0008F8
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0F, /*geo*/ ttm_geo_000920
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_10, /*geo*/ ttm_geo_000948
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_11, /*geo*/ ttm_geo_000970
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_12, /*geo*/ ttm_geo_000990
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_13, /*geo*/ ttm_geo_0009C0
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_14, /*geo*/ ttm_geo_0009F0
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_15, /*geo*/ ttm_geo_000A18
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_16, /*geo*/ ttm_geo_000A40
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_03,     /*geo*/ ttm_geo_000748
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_04,     /*geo*/ ttm_geo_000778
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_05,     /*geo*/ ttm_geo_0007A8
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_06,     /*geo*/ ttm_geo_0007D8
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_07,     /*geo*/ ttm_geo_000808
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_08,     /*geo*/ ttm_geo_000830
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_09,     /*geo*/ ttm_geo_000858
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0A,     /*geo*/ ttm_geo_000880
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0B,     /*geo*/ ttm_geo_0008A8
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0C,     /*geo*/ ttm_geo_0008D0
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0D,     /*geo*/ ttm_geo_0008F8
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0F,     /*geo*/ ttm_geo_000920
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_10,     /*geo*/ ttm_geo_000948
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_11,     /*geo*/ ttm_geo_000970
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_12,     /*geo*/ ttm_geo_000990
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_13,     /*geo*/ ttm_geo_0009C0
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_14,     /*geo*/ ttm_geo_0009F0
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_15,     /*geo*/ ttm_geo_000A18
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_16,     /*geo*/ ttm_geo_000A40
 
     area /*index*/ 1, /*geo*/ ttm_geo_000A70
         object /*model*/ MODEL_NONE, /*pos*/   102, -3332,  5734, /*angle*/ 0,   45, 0, /*behParam*/ 0x000A0000, /*beh*/ beh_warps_74

@@ -9,7 +9,7 @@ vertex    -15,     15,      0,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
 snow_ball_seg3_texture_0302C6A0: # 0x0302C6A0
 .incbin "actors/snowball/0.rgba16"
 
-glabel snow_ball_seg3_dl_0302C8A0 # 0x0302C8A0 - 0x0302C938
+glabel snowman_snow_ball_dl # 0x0302C8A0 - 0x0302C938
 gsDPPipeSync
 gsSPClearGeometryMode G_LIGHTING
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_TEXEL0

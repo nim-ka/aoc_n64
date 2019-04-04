@@ -2,7 +2,7 @@ glabel water_bomb_geo # 0x0C000308
    geo_start_distance 150
    geo_open_node
       geo_open_node
-         geo_display_list 0x05, water_bubble_seg5_dl_05011000
+         geo_display_list LAYER_TRANSPARENT, water_bubble_seg5_dl_05011000
       geo_close_node
    geo_close_node
    geo_end

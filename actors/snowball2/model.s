@@ -37,7 +37,7 @@ gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX
 gsSPSetGeometryMode G_LIGHTING
 gsSPEndDisplayList
 
-glabel snowball_seg4_dl_04032A18 # 0x04032A18 - 0x04032A30
+glabel small_snow_ball_dl # 0x04032A18 - 0x04032A30
 gsSPDisplayList snowball_seg4_dl_04032980
 gsSPVertex snowball_seg4_vertex_04032700, 4, 0
 gsSPBranchList snowball_seg4_dl_040329E0

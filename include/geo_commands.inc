@@ -1,3 +1,24 @@
+# drawing layers
+.set LAYER_NULL,                  0
+.set LAYER_OPAQUE,                1
+.set LAYER_OPAQUE_DECAL,          2
+.set LAYER_UNUSED_03,             3
+.set LAYER_ALPHA,                 4
+.set LAYER_TRANSPARENT,           5
+.set LAYER_TRANSPARENT_DECAL,     6
+
+# sky background params
+.set BACKGROUND_OCEAN_SKY,        0
+.set BACKGROUND_FLAMING_SKY,      1
+.set BACKGROUND_UNDERWATER_CITY,  2
+.set BACKGROUND_BELOW_CLOUDS,     3
+.set BACKGROUND_SNOW_MOUNTAINS,   4
+.set BACKGROUND_DESERT,           5
+.set BACKGROUND_HAUNTED,          6
+.set BACKGROUND_GREEN_SKY,        7
+.set BACKGROUND_ABOVE_CLOUDS,     8
+.set BACKGROUND_PURPLE_SKY,       9
+
 # geo layout macros
 
 # 0x00: Branch and store return address
@@ -225,7 +246,7 @@
     .endif
 .endm
 
-# 0x11: TODO Create ? scene graph node with optional display list
+# 0x11: Create translation scene graph node with optional display list
 #   0x01: u8 params
 #     0b1000_0000: if set, enable displayList field and drawingLayer
 #     0b0000_1111: drawingLayer
@@ -233,7 +254,7 @@
 #   0x04: s16 unkY
 #   0x06: s16 unkZ
 #   0x08: [u32 displayList: if MSbit of params set, display list segmented address]
-.macro geo_todo_11 layer, ux, uy, uz, displayList=0
+.macro geo_translate_node layer, ux, uy, uz, displayList=0
     .byte 0x11
     .if (\displayList != 0)
         .byte 0x80 | \layer
@@ -246,7 +267,7 @@
     .endif
 .endm
 
-# 0x12: TODO Create ? scene graph node
+# 0x12: Create rotation scene graph node with optional display list
 #   0x01: u8 params
 #      0b1000_0000: if set, enable displayList field and drawingLayer
 #      0b0000_1111: drawingLayer
@@ -254,7 +275,7 @@
 #   0x04: s16 unkY
 #   0x06: s16 unkZ
 #   0x08: [u32 displayList: if MSbit of params set, display list segmented address]
-.macro geo_todo_12 layer, ux, uy, uz, displayList=0
+.macro geo_rotation_node layer, ux, uy, uz, displayList=0
     .byte 0x12
     .if (\displayList != 0)
         .byte 0x80 | \layer
@@ -327,13 +348,13 @@
     .hword \type, \solidity, \scale
 .endm
 
-# 0x17: TODO Create ? scene graph node
+# 0x17: TODO Create render object scene graph node
 #   0x01-0x03: unused
-.macro geo_todo_17
+.macro geo_render_obj
     .byte 0x17, 0x00, 0x00, 0x00
 .endm
 
-# 0x18: Create ? scene graph node
+# 0x18: Create polygons address scene graph node
 #   0x01: unused
 #   0x02: s16 parameter
 #   0x04: GraphNodeFunc function

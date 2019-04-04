@@ -21,7 +21,7 @@ script_func_local_1:
     return
 
 script_func_local_2:
-    object /*model*/ MODEL_HMC_ARROW_PLATFORM,    /*pos*/  1100,   950,  6350, /*angle*/ 0,   0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_controllable_platform
+    object /*model*/ MODEL_HMC_METAL_PLATFORM,    /*pos*/  1100,   950,  6350, /*angle*/ 0,   0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_controllable_platform
     object /*model*/ MODEL_HMC_ELEVATOR_PLATFORM, /*pos*/ -3243,  1434,  1392, /*angle*/ 0,  27, 0, /*behParam*/ 0x00000000, /*beh*/ beh_hmc_elevator_platform
     object /*model*/ MODEL_HMC_ELEVATOR_PLATFORM, /*pos*/ -2816,  2253, -2509, /*angle*/ 0,   0, 0, /*behParam*/ 0x00010000, /*beh*/ beh_hmc_elevator_platform
     object /*model*/ MODEL_HMC_ELEVATOR_PLATFORM, /*pos*/  -973,  1741, -7347, /*angle*/ 0,   0, 0, /*behParam*/ 0x00020000, /*beh*/ beh_hmc_elevator_platform
@@ -49,29 +49,29 @@ script_func_local_4:
 
 glabel level_hmc_entry
     init_level
-    load_mio0 /*seg*/ 0x07, /*romStart*/ _hmc_segment_7SegmentRomStart, /*romEnd*/ _hmc_segment_7SegmentRomEnd
-    cmd1A     /*seg*/ 0x09, /*romStart*/ _cave_mio0SegmentRomStart, /*romEnd*/ _cave_mio0SegmentRomEnd
-    load_mio0 /*seg*/ 0x05, /*romStart*/ _group6_mio0SegmentRomStart, /*romEnd*/ _group6_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0C, /*romStart*/ _group6_geoSegmentRomStart, /*romEnd*/ _group6_geoSegmentRomEnd
-    load_mio0 /*seg*/ 0x06, /*romStart*/ _group17_mio0SegmentRomStart, /*romEnd*/ _group17_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0D, /*romStart*/ _group17_geoSegmentRomStart, /*romEnd*/ _group17_geoSegmentRomEnd
-    load_mio0 /*seg*/ 0x08, /*romStart*/ _common0_mio0SegmentRomStart, /*romEnd*/ _common0_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0F, /*romStart*/ _common0_geoSegmentRomStart,  /*romEnd*/ _common0_geoSegmentRomEnd
+    load_mio0         /*seg*/ 0x07, /*romStart*/ _hmc_segment_7SegmentRomStart, /*romEnd*/ _hmc_segment_7SegmentRomEnd
+    load_mio0_texture /*seg*/ 0x09, /*romStart*/ _cave_mio0SegmentRomStart, /*romEnd*/ _cave_mio0SegmentRomEnd
+    load_mio0         /*seg*/ 0x05, /*romStart*/ _group6_mio0SegmentRomStart, /*romEnd*/ _group6_mio0SegmentRomEnd
+    load_raw          /*seg*/ 0x0C, /*romStart*/ _group6_geoSegmentRomStart, /*romEnd*/ _group6_geoSegmentRomEnd
+    load_mio0         /*seg*/ 0x06, /*romStart*/ _group17_mio0SegmentRomStart, /*romEnd*/ _group17_mio0SegmentRomEnd
+    load_raw          /*seg*/ 0x0D, /*romStart*/ _group17_geoSegmentRomStart, /*romEnd*/ _group17_geoSegmentRomEnd
+    load_mio0         /*seg*/ 0x08, /*romStart*/ _common0_mio0SegmentRomStart, /*romEnd*/ _common0_mio0SegmentRomEnd
+    load_raw          /*seg*/ 0x0F, /*romStart*/ _common0_geoSegmentRomStart,  /*romEnd*/ _common0_geoSegmentRomEnd
     alloc_level_pool
     mario /*unk3*/ 0x01, /*behParam*/ 0x00000001, /*beh*/ beh_mario
     jump_link /*target*/ script_func_global_1
     jump_link /*target*/ script_func_global_7
     jump_link /*target*/ script_func_global_18
-    load_model_from_geo /*model*/ MODEL_HMC_WOODEN_DOOR,       /*geo*/ wooden_door_geo
-    load_model_from_geo /*model*/ MODEL_HMC_METAL_DOOR,        /*geo*/ metal_door_geo
-    load_model_from_geo /*model*/ MODEL_HMC_HAZY_MAZE_DOOR,    /*geo*/ hazy_maze_door_geo
-    load_model_from_geo /*model*/ MODEL_HMC_ARROW_PLATFORM,    /*geo*/ hmc_geo_0005A0
-    load_model_from_geo /*model*/ MODEL_HMC_37,                /*geo*/ hmc_geo_0005B8
-    load_model_from_geo /*model*/ MODEL_HMC_ELEVATOR_PLATFORM, /*geo*/ hmc_geo_0005D0
-    load_model_from_geo /*model*/ MODEL_HMC_39,                /*geo*/ hmc_geo_000548
-    load_model_from_geo /*model*/ MODEL_HMC_3A,                /*geo*/ hmc_geo_000570
-    load_model_from_geo /*model*/ MODEL_HMC_3B,                /*geo*/ hmc_geo_000588
-    load_model_from_geo /*model*/ MODEL_HMC_3C,                /*geo*/ hmc_geo_000530
+    load_model_from_geo /*model*/ MODEL_HMC_WOODEN_DOOR,          /*geo*/ wooden_door_geo
+    load_model_from_geo /*model*/ MODEL_HMC_METAL_DOOR,           /*geo*/ metal_door_geo
+    load_model_from_geo /*model*/ MODEL_HMC_HAZY_MAZE_DOOR,       /*geo*/ hazy_maze_door_geo
+    load_model_from_geo /*model*/ MODEL_HMC_METAL_PLATFORM,       /*geo*/ hmc_geo_0005A0
+    load_model_from_geo /*model*/ MODEL_HMC_METAL_ARROW_PLATFORM, /*geo*/ hmc_geo_0005B8
+    load_model_from_geo /*model*/ MODEL_HMC_ELEVATOR_PLATFORM,    /*geo*/ hmc_geo_0005D0
+    load_model_from_geo /*model*/ MODEL_HMC_ROLLING_ROCK,         /*geo*/ hmc_geo_000548
+    load_model_from_geo /*model*/ MODEL_HMC_ROCK_PIECE,           /*geo*/ hmc_geo_000570
+    load_model_from_geo /*model*/ MODEL_HMC_ROCK_SMALL_PIECE,     /*geo*/ hmc_geo_000588
+    load_model_from_geo /*model*/ MODEL_HMC_RED_GRILLS,           /*geo*/ hmc_geo_000530
 
     area /*index*/ 1, /*geo*/ hmc_geo_000B90
         object /*model*/ MODEL_NONE, /*pos*/ -7152,  3161, 7181, /*angle*/ 0, 135, 0, /*behParam*/ 0x000A0000, /*beh*/ beh_warps_74

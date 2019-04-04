@@ -26,48 +26,48 @@ script_func_local_2:
 
 glabel level_bits_entry
     init_level
-    load_mio0 /*seg*/ 0x07, /*romStart*/ _bits_segment_7SegmentRomStart, /*romEnd*/ _bits_segment_7SegmentRomEnd
-    load_mio0 /*seg*/ 0x0A, /*romStart*/ _bits_skybox_mio0SegmentRomStart, /*romEnd*/ _bits_skybox_mio0SegmentRomEnd
-    cmd1A     /*seg*/ 0x09, /*romStart*/ _sky_mio0SegmentRomStart, /*romEnd*/ _sky_mio0SegmentRomEnd
-    load_mio0 /*seg*/ 0x06, /*romStart*/ _group14_mio0SegmentRomStart, /*romEnd*/ _group14_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0D, /*romStart*/ _group14_geoSegmentRomStart,  /*romEnd*/ _group14_geoSegmentRomEnd
-    load_mio0 /*seg*/ 0x08, /*romStart*/ _common0_mio0SegmentRomStart, /*romEnd*/ _common0_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0F, /*romStart*/ _common0_geoSegmentRomStart,  /*romEnd*/ _common0_geoSegmentRomEnd
+    load_mio0         /*seg*/ 0x07, /*romStart*/ _bits_segment_7SegmentRomStart, /*romEnd*/ _bits_segment_7SegmentRomEnd
+    load_mio0         /*seg*/ 0x0A, /*romStart*/ _bits_skybox_mio0SegmentRomStart, /*romEnd*/ _bits_skybox_mio0SegmentRomEnd
+    load_mio0_texture /*seg*/ 0x09, /*romStart*/ _sky_mio0SegmentRomStart, /*romEnd*/ _sky_mio0SegmentRomEnd
+    load_mio0         /*seg*/ 0x06, /*romStart*/ _group14_mio0SegmentRomStart, /*romEnd*/ _group14_mio0SegmentRomEnd
+    load_raw          /*seg*/ 0x0D, /*romStart*/ _group14_geoSegmentRomStart,  /*romEnd*/ _group14_geoSegmentRomEnd
+    load_mio0         /*seg*/ 0x08, /*romStart*/ _common0_mio0SegmentRomStart, /*romEnd*/ _common0_mio0SegmentRomEnd
+    load_raw          /*seg*/ 0x0F, /*romStart*/ _common0_geoSegmentRomStart,  /*romEnd*/ _common0_geoSegmentRomEnd
     alloc_level_pool
     mario /*unk3*/ 0x01, /*behParam*/ 0x00000001, /*beh*/ beh_mario
     jump_link /*target*/ script_func_global_15
     jump_link /*target*/ script_func_global_1
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_03, /*geo*/ bits_geo_000430
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_04, /*geo*/ bits_geo_000448
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_05, /*geo*/ bits_geo_000460
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_06, /*geo*/ bits_geo_000478
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_07, /*geo*/ bits_geo_000490
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_08, /*geo*/ bits_geo_0004A8
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_09, /*geo*/ bits_geo_0004C0
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0A, /*geo*/ bits_geo_0004D8
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0B, /*geo*/ bits_geo_0004F0
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0C, /*geo*/ bits_geo_000508
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0D, /*geo*/ bits_geo_000520
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0E, /*geo*/ bits_geo_000538
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0F, /*geo*/ bits_geo_000550
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_10, /*geo*/ bits_geo_000568
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_11, /*geo*/ bits_geo_000580
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_12, /*geo*/ bits_geo_000598
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_13, /*geo*/ bits_geo_0005B0
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_14, /*geo*/ bits_geo_0005C8
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_03,           /*geo*/ bits_geo_000430
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_04,           /*geo*/ bits_geo_000448
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_05,           /*geo*/ bits_geo_000460
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_06,           /*geo*/ bits_geo_000478
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_07,           /*geo*/ bits_geo_000490
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_08,           /*geo*/ bits_geo_0004A8
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_09,           /*geo*/ bits_geo_0004C0
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0A,           /*geo*/ bits_geo_0004D8
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0B,           /*geo*/ bits_geo_0004F0
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0C,           /*geo*/ bits_geo_000508
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0D,           /*geo*/ bits_geo_000520
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0E,           /*geo*/ bits_geo_000538
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0F,           /*geo*/ bits_geo_000550
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_10,           /*geo*/ bits_geo_000568
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_11,           /*geo*/ bits_geo_000580
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_12,           /*geo*/ bits_geo_000598
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_13,           /*geo*/ bits_geo_0005B0
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_14,           /*geo*/ bits_geo_0005C8
     load_model_from_geo /*model*/ MODEL_BITS_SLIDING_PLATFORM,       /*geo*/ bits_geo_0005E0
     load_model_from_geo /*model*/ MODEL_BITS_TWIN_SLIDING_PLATFORMS, /*geo*/ bits_geo_0005F8
     load_model_from_geo /*model*/ MODEL_BITS_OCTAGONAL_PLATFORM,     /*geo*/ bits_geo_000610
-    load_model_from_geo /*model*/ MODEL_BITS_3C,                     /*geo*/ bits_geo_000628
+    load_model_from_geo /*model*/ MODEL_BITS_BLUE_PLATFORM,          /*geo*/ bits_geo_000628
     load_model_from_geo /*model*/ MODEL_BITS_FERRIS_WHEEL_AXLE,      /*geo*/ bits_geo_000640
     load_model_from_geo /*model*/ MODEL_BITS_ARROW_PLATFORM,         /*geo*/ bits_geo_000658
     load_model_from_geo /*model*/ MODEL_BITS_SEESAW_PLATFORM,        /*geo*/ bits_geo_000670
     load_model_from_geo /*model*/ MODEL_BITS_TILTING_W_PLATFORM,     /*geo*/ bits_geo_000688
     load_model_from_geo /*model*/ MODEL_BITS_STAIRCASE,              /*geo*/ bits_geo_0006A0
-    load_model_from_geo /*model*/ MODEL_BITS_42,                     /*geo*/ bits_geo_0006B8
-    load_model_from_geo /*model*/ MODEL_BITS_43,                     /*geo*/ bits_geo_0006D0
-    load_model_from_geo /*model*/ MODEL_BITS_44,                     /*geo*/ bits_geo_0006E8
-    load_model_from_geo /*model*/ MODEL_BITS_45,                     /*geo*/ bits_geo_000700
+    load_model_from_geo /*model*/ MODEL_BITS_STAIRCASE_FRAME1,       /*geo*/ bits_geo_0006B8
+    load_model_from_geo /*model*/ MODEL_BITS_STAIRCASE_FRAME2,       /*geo*/ bits_geo_0006D0
+    load_model_from_geo /*model*/ MODEL_BITS_STAIRCASE_FRAME3,       /*geo*/ bits_geo_0006E8
+    load_model_from_geo /*model*/ MODEL_BITS_STAIRCASE_FRAME4,       /*geo*/ bits_geo_000700
     load_model_from_geo /*model*/ MODEL_BITS_WARP_PIPE,              /*geo*/ warp_pipe_geo
 
     area /*index*/ 1, /*geo*/ bits_geo_000718

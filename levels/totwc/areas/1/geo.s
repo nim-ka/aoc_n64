@@ -5,7 +5,7 @@ glabel totwc_geo_000188 # 0x0E000188
       geo_open_node
          geo_todo_09 100
          geo_open_node
-            geo_background 3, Geo19_802763D4
+            geo_background BACKGROUND_BELOW_CLOUDS, Geo19_802763D4
          geo_close_node
       geo_close_node
       geo_zbuffer 1
@@ -14,10 +14,10 @@ glabel totwc_geo_000188 # 0x0E000188
          geo_open_node
             geo_todo_0F 16, 0, 2000, 6000, 0, 0, 0, Geo0F_80287D30
             geo_open_node
-               geo_display_list 0x01, totwc_seg7_dl_07005D28
-               geo_display_list 0x05, totwc_seg7_dl_07007048
-               geo_display_list 0x05, totwc_seg7_dl_070078B8
-               geo_todo_17
+               geo_display_list LAYER_OPAQUE, totwc_seg7_dl_07005D28
+               geo_display_list LAYER_TRANSPARENT, totwc_seg7_dl_07007048
+               geo_display_list LAYER_TRANSPARENT, totwc_seg7_dl_070078B8
+               geo_render_obj
                geo_asm 0, Geo18_802761D0
             geo_close_node
          geo_close_node

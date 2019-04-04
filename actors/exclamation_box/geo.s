@@ -5,10 +5,10 @@ glabel exclamation_box_geo # 0x0F000694
       geo_open_node
          geo_switch_case 4, GeoSwitchCase8029DB48
          geo_open_node
-            geo_display_list 0x01, exclamation_box_seg8_dl_08019318
-            geo_display_list 0x01, exclamation_box_seg8_dl_08019378
-            geo_display_list 0x01, exclamation_box_seg8_dl_080193D8
-            geo_display_list 0x01, exclamation_box_seg8_dl_08019438
+            geo_display_list LAYER_OPAQUE, exclamation_box_seg8_dl_08019318
+            geo_display_list LAYER_OPAQUE, exclamation_box_seg8_dl_08019378
+            geo_display_list LAYER_OPAQUE, exclamation_box_seg8_dl_080193D8
+            geo_display_list LAYER_OPAQUE, exclamation_box_seg8_dl_08019438
          geo_close_node
       geo_close_node
    geo_close_node

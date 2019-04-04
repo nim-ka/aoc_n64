@@ -54,23 +54,23 @@ script_func_local_8:
 
 glabel level_thi_entry
     init_level
-    load_mio0 /*seg*/ 0x07, /*romStart*/ _thi_segment_7SegmentRomStart, /*romEnd*/ _thi_segment_7SegmentRomEnd
-    cmd1A     /*seg*/ 0x09, /*romStart*/ _grass_mio0SegmentRomStart, /*romEnd*/ _grass_mio0SegmentRomEnd
-    load_mio0 /*seg*/ 0x0A, /*romStart*/ _water_skybox_mio0SegmentRomStart, /*romEnd*/ _water_skybox_mio0SegmentRomEnd
-    load_mio0 /*seg*/ 0x05, /*romStart*/ _group11_mio0SegmentRomStart, /*romEnd*/ _group11_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0C, /*romStart*/ _group11_geoSegmentRomStart,  /*romEnd*/ _group11_geoSegmentRomEnd
-    load_mio0 /*seg*/ 0x06, /*romStart*/ _group14_mio0SegmentRomStart, /*romEnd*/ _group14_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0D, /*romStart*/ _group14_geoSegmentRomStart,  /*romEnd*/ _group14_geoSegmentRomEnd
-    load_mio0 /*seg*/ 0x08, /*romStart*/ _common0_mio0SegmentRomStart, /*romEnd*/ _common0_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0F, /*romStart*/ _common0_geoSegmentRomStart,  /*romEnd*/ _common0_geoSegmentRomEnd
+    load_mio0         /*seg*/ 0x07, /*romStart*/ _thi_segment_7SegmentRomStart, /*romEnd*/ _thi_segment_7SegmentRomEnd
+    load_mio0_texture /*seg*/ 0x09, /*romStart*/ _grass_mio0SegmentRomStart, /*romEnd*/ _grass_mio0SegmentRomEnd
+    load_mio0         /*seg*/ 0x0A, /*romStart*/ _water_skybox_mio0SegmentRomStart, /*romEnd*/ _water_skybox_mio0SegmentRomEnd
+    load_mio0         /*seg*/ 0x05, /*romStart*/ _group11_mio0SegmentRomStart, /*romEnd*/ _group11_mio0SegmentRomEnd
+    load_raw          /*seg*/ 0x0C, /*romStart*/ _group11_geoSegmentRomStart,  /*romEnd*/ _group11_geoSegmentRomEnd
+    load_mio0         /*seg*/ 0x06, /*romStart*/ _group14_mio0SegmentRomStart, /*romEnd*/ _group14_mio0SegmentRomEnd
+    load_raw          /*seg*/ 0x0D, /*romStart*/ _group14_geoSegmentRomStart,  /*romEnd*/ _group14_geoSegmentRomEnd
+    load_mio0         /*seg*/ 0x08, /*romStart*/ _common0_mio0SegmentRomStart, /*romEnd*/ _common0_mio0SegmentRomEnd
+    load_raw          /*seg*/ 0x0F, /*romStart*/ _common0_geoSegmentRomStart,  /*romEnd*/ _common0_geoSegmentRomEnd
     alloc_level_pool
     mario /*unk3*/ 0x01, /*behParam*/ 0x00000001, /*beh*/ beh_mario
     jump_link /*target*/ script_func_global_1
     jump_link /*target*/ script_func_global_12
     jump_link /*target*/ script_func_global_15
-    load_model_from_geo /*model*/ MODEL_THI_BUBBLY_TREE, /*geo*/ bubbly_tree_geo
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_03, /*geo*/ thi_geo_0005F0
-    load_model_from_geo /*model*/ MODEL_THI_WARP_PIPE, /*geo*/ warp_pipe_geo
+    load_model_from_geo /*model*/ MODEL_THI_BUBBLY_TREE,     /*geo*/ bubbly_tree_geo
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_03,   /*geo*/ thi_geo_0005F0
+    load_model_from_geo /*model*/ MODEL_THI_WARP_PIPE,       /*geo*/ warp_pipe_geo
     load_model_from_geo /*model*/ MODEL_THI_HUGE_ISLAND_TOP, /*geo*/ thi_geo_0005B0
     load_model_from_geo /*model*/ MODEL_THI_TINY_ISLAND_TOP, /*geo*/ thi_geo_0005C8
 

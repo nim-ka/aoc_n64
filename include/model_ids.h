@@ -24,7 +24,7 @@
 #define MODEL_STAR                        0x7A        // star_geo
 #define MODEL_TRANSPARENT_STAR            0x79        // transparent_star_geo
 #define MODEL_WOODEN_SIGNPOST             0x7C        // wooden_signpost_geo
-#define MODEL_DL_GLOBAL_A4                0xA4        // snowball_seg4_dl_04032A18
+#define MODEL_SMALL_SNOW_BALL                0xA4        // small_snow_ball_dl
 #define MODEL_RED_FLAME                   0x90        // red_flame_geo
 #define MODEL_BLUE_FLAME                  0x91        // blue_flame_geo
 #define MODEL_BURN_SMOKE                  0x94        // burn_smoke_geo
@@ -33,13 +33,13 @@
 #define MODEL_FISH                        0xB9        // fish_geo
 #define MODEL_FISH_2                      0xBA        // fish2_geo
 #define MODEL_SPARKLES_ANIMATION          0x8F        // sparkles_animation_geo
-#define MODEL_DL_GLOBAL_9F                0x9F        // coins_TODO_seg3_dl_0302BCD0
+#define MODEL_SAND_DUST                0x9F        // sand_seg3_dl_0302BCD0
 #define MODEL_BUTTERFLY                   0xBB        // butterfly_geo
 #define MODEL_BURN_SMOKE_                 0x9C        // burn_smoke_geo
-#define MODEL_DL_GLOBAL_A1                0xA1        // coins_TODO_seg3_dl_0301CB00
+#define MODEL_PEBBLE                0xA1        // pebble_seg3_dl_0301CB00
 #define MODEL_MIST                        0x8E        // mist_geo
 #define MODEL_WHITE_PUFF                  0xE0        // white_puff_geo
-#define MODEL_DL_GLOBAL_9E                0x9E        // snow_ball_seg3_dl_0302C8A0
+#define MODEL_SNOWMAN_SNOW_BALL_DL                0x9E        // snowman_snow_ball_dl
 #define MODEL_SNOWMAN_SNOW_BALL           0xA0        // snowman_snow_ball_geo
 #define MODEL_YELLOW_COIN_NO_SHADOW       0x75        // yellow_coin_no_shadow_geo
 #define MODEL_BLUE_COIN                   0x76        // blue_coin_geo
@@ -71,10 +71,10 @@
 #define MODEL_EXCLAMATION_BOX_OUTLINE     0x83        // exclamation_box_outline_geo
 #define MODEL_EXCLAMATION_BOX             0x89        // exclamation_box_geo
 #define MODEL_GOOMBA                      0xC0        // goomba_geo
-#define MODEL_DL_COMMON1_84               0x84        // exclamation_point_seg8_dl_08025F08
+#define MODEL_EXCLAMATION_POINT               0x84        // exclamation_point_seg8_dl_08025F08
 #define MODEL_KOOPA_SHELL                 0xBE        // koopa_shell_geo
 #define MODEL_METAL_BOX                   0xD9        // metal_box_geo
-#define MODEL_DL_COMMON1_DA               0xDA        // metal_box_seg8_dl_08024BB8
+#define MODEL_METAL_BOX_DL               0xDA        // metal_box_dl
 #define MODEL_BLACK_BOBOMB                0xBC        // black_bobomb_geo
 #define MODEL_BOBOMB_BUDDY                 0xC3        // bobomb_buddy_geo
 #define MODEL_DL_CANNON_LID               0xC9        // cannon_closed_seg8_dl_080048E0
@@ -132,9 +132,9 @@
 #define MODEL_PENGUIN                     0x57        // penguin_geo
 
 // cotmc, pss, totwc, vcutm
-#define MODEL_DL_COMMON9_54               0x54        // capswitch_seg5_dl_05002E00
+#define MODEL_CAP_SWITCH_EXCLAMATION               0x54        // cap_switch_exclamation_seg5_dl_05002E00
 #define MODEL_CAP_SWITCH                  0x55        // cap_switch_geo
-#define MODEL_DL_COMMON9_56               0x56        // cap_switch_base_seg5_dl_05003120
+#define MODEL_CAP_SWITCH_BASE               0x56        // cap_switch_base_seg5_dl_05003120
 
 // bbh, castle courtyard
 #define MODEL_BOO                         0x54        // boo_geo
@@ -159,13 +159,13 @@
 #define MODEL_BUBBA                       0x59        // bubba_geo
 
 // bowser 1, bowser 2, bowser 3
-#define MODEL_COMMON13_64                 0x64        // bowser_geo
-#define MODEL_COMMON13_65                 0x65        // bowser_bomb_geo
+#define MODEL_BOWSER                 0x64        // bowser_geo
+#define MODEL_BOWSER_BOMB2                 0x65        // bowser_bomb_geo
 #define MODEL_BOWSER_BOMB                 0xB3        // bowser_bomb_geo
-#define MODEL_COMMON13_66                 0x66        // bowser_clouds_geo
-#define MODEL_COMMON13_67                 0x67        // bowser_flames_geo
-#define MODEL_COMMON13_68                 0x68        // invisible_bowser_accessory_geo
-#define MODEL_COMMON13_69                 0x69        // bowser2_geo
+#define MODEL_BOWSER_SMOKE                 0x66        // bowser_impact_smoke_geo
+#define MODEL_BOWSER_FLAMES                 0x67        // bowser_flames_geo
+#define MODEL_BOWSER_WAVE                 0x68        // invisible_bowser_accessory_geo
+#define MODEL_BOWSER2                 0x69        // bowser2_geo
 
 // ddd, jrb, sa, wdw
 #define MODEL_BUB                         0x64        // cheep_cheep_geo
@@ -194,7 +194,7 @@
 #define MODEL_TOAD                        0xDD        // toad_geo
 
 // ccm, sl
-#define MODEL_COMMON17_64                 0x64        // chilly_chief_seg6_geo
+#define MODEL_CHILL_BULLY                 0x64        // chilly_chief_seg6_geo
 #define MODEL_BIG_CHILL_BULLY                 0x65        // chilly_chief_seg6_geo2
 #define MODEL_MONEYBAG                    0x66        // moneybag_geo
 
@@ -238,11 +238,11 @@
 #define MODEL_BBH_STAIRCASE_STEP          0x35        // geo_bbh_0005B0
 #define MODEL_BBH_TILTING_FLOOR_PLATFORM  0x36        // geo_bbh_0005C8
 #define MODEL_BBH_TUMBLING_PLATFORM       0x37        // geo_bbh_0005E0
-#define MODEL_BBH_38                      0x38        // geo_bbh_0005F8
+#define MODEL_BBH_TUMBLING_PLATFORM_PART                      0x38        // geo_bbh_0005F8
 #define MODEL_BBH_MOVING_BOOKSHELF        0x39        // geo_bbh_000610
 #define MODEL_BBH_MESH_ELEVATOR           0x3A        // geo_bbh_000628
 #define MODEL_BBH_MERRY_GO_ROUND          0x3B        // geo_bbh_000640
-#define MODEL_BBH_3C                      0x3C        // geo_bbh_000658
+#define MODEL_BBH_WOODEN_TOMB                      0x3C        // geo_bbh_000658
 
 // ccm
 #define MODEL_CCM_CABIN_DOOR              0x27        // cabin_door_geo
@@ -252,16 +252,16 @@
 #define MODEL_CCM_SNOWMAN_HEAD                      0x37        // ccm_geo_00040C
 
 // castle
-#define MODEL_CASTLE_35                   0x35        // castle_geo_000F18
+#define MODEL_CASTLE_BOWSER_TRAP                   0x35        // castle_geo_000F18
 #define MODEL_CASTLE_WATER_LEVEL_PILLAR                   0x36        // castle_geo_001940
 #define MODEL_CASTLE_CLOCK_MINUTE_HAND                   0x37        // castle_geo_001530
 #define MODEL_CASTLE_CLOCK_HOUR_HAND                   0x38        // castle_geo_001548
 #define MODEL_CASTLE_CLOCK_PENDULUM                   0x39        // castle_geo_001518
-#define MODEL_CASTLE_26                   0x26        // castle_door_geo
-#define MODEL_CASTLE_27                   0x27        // wooden_door_geo
+#define MODEL_CASTLE_CASTLE_DOOR                   0x26        // castle_door_geo
+#define MODEL_CASTLE_WOODEN_DOOR                   0x27        // wooden_door_geo
 #define MODEL_CASTLE_METAL_DOOR           0x29        // metal_door_geo
-#define MODEL_CASTLE_CASTLE_DOOR          0x1C        // castle_door_geo
-#define MODEL_CASTLE_WOODEN_DOOR          0x1D        // wooden_door_geo
+#define MODEL_CASTLE_CASTLE_DOOR2          0x1C        // castle_door_geo
+#define MODEL_CASTLE_WOODEN_DOOR2          0x1D        // wooden_door_geo
 #define MODEL_CASTLE_DOOR_0_STARS         0x22        // castle_door_0_star_geo
 #define MODEL_CASTLE_DOOR_1_STAR          0x23        // castle_door_1_star_geo
 #define MODEL_CASTLE_DOOR_3_STARS         0x24        // castle_door_3_stars_geo
@@ -275,13 +275,13 @@
 #define MODEL_HMC_WOODEN_DOOR             0x1D        // wooden_door_geo
 #define MODEL_HMC_METAL_DOOR              0x1F        // metal_door_geo
 #define MODEL_HMC_HAZY_MAZE_DOOR          0x20        // hazy_maze_door_geo
-#define MODEL_HMC_ARROW_PLATFORM                      0x36        // hmc_geo_0005A0
-#define MODEL_HMC_37                      0x37        // hmc_geo_0005B8
+#define MODEL_HMC_METAL_PLATFORM                      0x36        // hmc_geo_0005A0
+#define MODEL_HMC_METAL_ARROW_PLATFORM                      0x37        // hmc_geo_0005B8
 #define MODEL_HMC_ELEVATOR_PLATFORM                      0x38        // hmc_geo_0005D0
-#define MODEL_HMC_39                      0x39        // hmc_geo_000548
-#define MODEL_HMC_3A                      0x3A        // hmc_geo_000570
-#define MODEL_HMC_3B                      0x3B        // hmc_geo_000588
-#define MODEL_HMC_3C                      0x3C        // hmc_geo_000530
+#define MODEL_HMC_ROLLING_ROCK                      0x39        // hmc_geo_000548
+#define MODEL_HMC_ROCK_PIECE                      0x3A        // hmc_geo_000570
+#define MODEL_HMC_ROCK_SMALL_PIECE                      0x3B        // hmc_geo_000588
+#define MODEL_HMC_RED_GRILLS                      0x3C        // hmc_geo_000530
 
 // ssl
 #define MODEL_SSL_PALM_TREE               0x1B        // palm_tree_geo
@@ -296,12 +296,12 @@
 #define MODEL_BOB_BUBBLY_TREE             0x17        // bubbly_tree_geo
 #define MODEL_BOB_CHAIN_CHOMP_GATE        0x36        // bob_geo_000440
 #define MODEL_BOB_SEESAW_PLATFORM         0x37        // bob_geo_000458
-#define MODEL_BOB_38                      0x38        // bob_geo_000470
+#define MODEL_BOB_BARS_GRILLS                      0x38        // bob_geo_000470
 
 // sl
-#define MODEL_SL_36                       0x36        // sl_geo_000390
-#define MODEL_SL_37                       0x37        // sl_geo_000360
-#define MODEL_SL_38                       0x38        // sl_geo_000378
+#define MODEL_SL_SNOW_TRIANGLE                       0x36        // sl_geo_000390
+#define MODEL_SL_CRACKED_ICE                       0x37        // sl_geo_000360
+#define MODEL_SL_CRACKED_ICE_CHUNK                       0x38        // sl_geo_000378
 #define MODEL_SL_SNOW_TREE                0x19        // snow_tree_geo
 
 // wdw
@@ -315,12 +315,12 @@
 #define MODEL_WDW_ROTATING_PLATFORM                      0x3C        // wdw_geo_000640
 
 // jrb
-#define MODEL_JRB_35                      0x35        // jrb_geo_000978
-#define MODEL_JRB_36                      0x36        // jrb_geo_0009B0
-#define MODEL_JRB_37                      0x37        // jrb_geo_0009E8
-#define MODEL_JRB_38                      0x38        // jrb_geo_000A00
-#define MODEL_JRB_39                      0x39        // jrb_geo_000990
-#define MODEL_JRB_3A                      0x3A        // jrb_geo_0009C8
+#define MODEL_JRB_SHIP_LEFT_HALF_PART                      0x35        // jrb_geo_000978
+#define MODEL_JRB_SHIP_BACK_LEFT_PART                      0x36        // jrb_geo_0009B0
+#define MODEL_JRB_SHIP_RIGHT_HALF_PART                      0x37        // jrb_geo_0009E8
+#define MODEL_JRB_SHIP_BACK_RIGHT_PART                      0x38        // jrb_geo_000A00
+#define MODEL_JRB_SUNKEN_SHIP                      0x39        // jrb_geo_000990
+#define MODEL_JRB_SUNKEN_SHIP_BACK                      0x3A        // jrb_geo_0009C8
 #define MODEL_JRB_ROCK                    0x3B        // jrb_geo_000930
 #define MODEL_JRB_SLIDING_BOX             0x3C        // jrb_geo_000960
 #define MODEL_JRB_FALLING_PILLAR          0x3D        // jrb_geo_000900
@@ -355,18 +355,18 @@
 #define MODEL_RR_FLYING_CARPET                       0x37        // rr_geo_000848
 #define MODEL_RR_OCTAGONAL_PLATFORM                       0x38        // rr_geo_0008A8
 #define MODEL_RR_ROTATING_BRIDGE_PLATFORM                       0x39        // rr_geo_000878
-#define MODEL_RR_3A                       0x3A        // rr_geo_0008D8
+#define MODEL_RR_TRIANGLE_PLATFORM                       0x3A        // rr_geo_0008D8
 #define MODEL_RR_CRUISER_WING                       0x3B        // rr_geo_000890
 #define MODEL_RR_SEESAW_PLATFORM                       0x3C        // rr_geo_000908
-#define MODEL_RR_3D                       0x3D        // rr_geo_000940
+#define MODEL_RR_L_SHAPED_PLATFORM                       0x3D        // rr_geo_000940
 #define MODEL_RR_SWINGING_PLATFORM                       0x3E        // rr_geo_000860
-#define MODEL_RR_3F                       0x3F        // rr_geo_000920
+#define MODEL_RR_DONUT_PLATFORM                       0x3F        // rr_geo_000920
 #define MODEL_RR_ELEVATOR_PLATFORM                       0x40        // rr_geo_0008F0
 #define MODEL_RR_TRICKY_TRIANGLES                       0x41        // rr_geo_000958
-#define MODEL_RR_42                       0x42        // rr_geo_000970
-#define MODEL_RR_43                       0x43        // rr_geo_000988
-#define MODEL_RR_44                       0x44        // rr_geo_0009A0
-#define MODEL_RR_45                       0x45        // rr_geo_0009B8
+#define MODEL_RR_TRICKY_TRIANGLES_FRAME1                       0x42        // rr_geo_000970
+#define MODEL_RR_TRICKY_TRIANGLES_FRAME2                       0x43        // rr_geo_000988
+#define MODEL_RR_TRICKY_TRIANGLES_FRAME3                       0x44        // rr_geo_0009A0
+#define MODEL_RR_TRICKY_TRIANGLES_FRAME4                       0x45        // rr_geo_0009B8
 
 // castle grounds
 
@@ -376,29 +376,29 @@
 #define MODEL_BITDW_SEESAW_PLATFORM       0x37        // geo_bitdw_000540
 #define MODEL_BITDW_SLIDING_PLATFORM      0x38        // geo_bitdw_000528
 #define MODEL_BITDW_FERRIS_WHEEL_AXLE     0x39        // geo_bitdw_000570
-#define MODEL_BITDW_3A                    0x3A        // geo_bitdw_000588
-#define MODEL_BITDW_3B                    0x3B        // geo_bitdw_0005A0
-#define MODEL_BITDW_3C                    0x3C        // geo_bitdw_0005B8
-#define MODEL_BITDW_3D                    0x3D        // geo_bitdw_0005D0
-#define MODEL_BITDW_3E                    0x3E        // geo_bitdw_0005E8
+#define MODEL_BITDW_BLUE_PLATFORM                    0x3A        // geo_bitdw_000588
+#define MODEL_BITDW_STAIRCASE_FRAME4                    0x3B        // geo_bitdw_0005A0
+#define MODEL_BITDW_STAIRCASE_FRAME3                    0x3C        // geo_bitdw_0005B8
+#define MODEL_BITDW_STAIRCASE_FRAME2                    0x3D        // geo_bitdw_0005D0
+#define MODEL_BITDW_STAIRCASE_FRAME1                    0x3E        // geo_bitdw_0005E8
 #define MODEL_BITDW_STAIRCASE             0x3F        // geo_bitdw_000600
 
 // vcutm
-#define MODEL_VCUTM_36                    0x36        // vcutm_geo_0001F0
+#define MODEL_VCUTM_SEESAW_PLATFORM                    0x36        // vcutm_geo_0001F0
 #define MODEL_VCUTM_WARP_PIPE             0x16        // warp_pipe_geo
 
 // bitfs
 #define MODEL_BITFS_PLATFORM_ON_TRACK       0x36        // bitfs_geo_000758
 #define MODEL_BITFS_TILTING_SQUARE_PLATFORM 0x37        // bitfs_geo_0006C0
 #define MODEL_BITFS_SINKING_PLATFORMS       0x38        // bitfs_geo_000770
-#define MODEL_BITFS_39                      0x39        // bitfs_geo_0006A8
+#define MODEL_BITFS_BLUE_POLE                      0x39        // bitfs_geo_0006A8
 #define MODEL_BITFS_SINKING_CAGE_PLATFORM   0x3A        // bitfs_geo_000690
 #define MODEL_BITFS_ELEVATOR                0x3B        // bitfs_geo_000678
 #define MODEL_BITFS_STRETCHING_PLATFORMS    0x3C        // bitfs_geo_000708
 #define MODEL_BITFS_SEESAW_PLATFORM         0x3D        // bitfs_geo_000788
 #define MODEL_BITFS_MOVING_SQUARE_PLATFORM  0x3E        // bitfs_geo_000728
 #define MODEL_BITFS_SLIDING_PLATFORM        0x3F        // bitfs_geo_000740
-#define MODEL_BITFS_40                      0x40        // bitfs_geo_0006D8
+#define MODEL_BITFS_TUMBLING_PLATFORM_PART                      0x40        // bitfs_geo_0006D8
 #define MODEL_BITFS_TUMBLING_PLATFORM       0x41        // bitfs_geo_0006F0
 
 // sa
@@ -407,16 +407,16 @@
 #define MODEL_BITS_SLIDING_PLATFORM       0x36        // bits_geo_0005E0
 #define MODEL_BITS_TWIN_SLIDING_PLATFORMS 0x37        // bits_geo_0005F8
 #define MODEL_BITS_OCTAGONAL_PLATFORM     0x39        // bits_geo_000610
-#define MODEL_BITS_3C                     0x3C        // bits_geo_000628
+#define MODEL_BITS_BLUE_PLATFORM                     0x3C        // bits_geo_000628
 #define MODEL_BITS_FERRIS_WHEEL_AXLE      0x3D        // bits_geo_000640
 #define MODEL_BITS_ARROW_PLATFORM         0x3E        // bits_geo_000658
 #define MODEL_BITS_SEESAW_PLATFORM        0x3F        // bits_geo_000670
 #define MODEL_BITS_TILTING_W_PLATFORM     0x40        // bits_geo_000688
 #define MODEL_BITS_STAIRCASE              0x41        // bits_geo_0006A0
-#define MODEL_BITS_42                     0x42        // bits_geo_0006B8
-#define MODEL_BITS_43                     0x43        // bits_geo_0006D0
-#define MODEL_BITS_44                     0x44        // bits_geo_0006E8
-#define MODEL_BITS_45                     0x45        // bits_geo_000700
+#define MODEL_BITS_STAIRCASE_FRAME1                     0x42        // bits_geo_0006B8
+#define MODEL_BITS_STAIRCASE_FRAME2                     0x43        // bits_geo_0006D0
+#define MODEL_BITS_STAIRCASE_FRAME3                     0x44        // bits_geo_0006E8
+#define MODEL_BITS_STAIRCASE_FRAME4                     0x45        // bits_geo_000700
 #define MODEL_BITS_WARP_PIPE              0x49        // warp_pipe_geo
 
 // lll
@@ -426,28 +426,28 @@
 #define MODEL_LLL_SINKING_RECTANGULAR_PLATFORM                      0x3F        // lll_geo_000BC8
 #define MODEL_LLL_SINKING_SQUARE_PLATFORMS                      0x40        // lll_geo_000BE0
 #define MODEL_LLL_TILTING_SQUARE_PLATFORM                      0x41        // lll_geo_000BF8
-#define MODEL_LLL_43                      0x43        // lll_geo_000C10
-#define MODEL_LLL_44                      0x44        // lll_geo_000C30
-#define MODEL_LLL_45                      0x45        // lll_geo_000C50
-#define MODEL_LLL_46                      0x46        // lll_geo_000C70
-#define MODEL_LLL_47                      0x47        // lll_geo_000C90
-#define MODEL_LLL_48                      0x48        // lll_geo_000CB0
-#define MODEL_LLL_49                      0x49        // lll_geo_000CD0
-#define MODEL_LLL_4A                      0x4A        // lll_geo_000CF0
-#define MODEL_LLL_4B                      0x4B        // lll_geo_000D10
-#define MODEL_LLL_4C                      0x4C        // lll_geo_000D30
-#define MODEL_LLL_4D                      0x4D        // lll_geo_000D50
-#define MODEL_LLL_4E                      0x4E        // lll_geo_000D70
-#define MODEL_LLL_4F                      0x4F        // lll_geo_000D90
-#define MODEL_LLL_50                      0x50        // lll_geo_000DB0
+#define MODEL_LLL_BOWSER_PIECE_1                      0x43        // lll_geo_000C10
+#define MODEL_LLL_BOWSER_PIECE_2                      0x44        // lll_geo_000C30
+#define MODEL_LLL_BOWSER_PIECE_3                      0x45        // lll_geo_000C50
+#define MODEL_LLL_BOWSER_PIECE_4                      0x46        // lll_geo_000C70
+#define MODEL_LLL_BOWSER_PIECE_5                      0x47        // lll_geo_000C90
+#define MODEL_LLL_BOWSER_PIECE_6                      0x48        // lll_geo_000CB0
+#define MODEL_LLL_BOWSER_PIECE_7                      0x49        // lll_geo_000CD0
+#define MODEL_LLL_BOWSER_PIECE_8                      0x4A        // lll_geo_000CF0
+#define MODEL_LLL_BOWSER_PIECE_9                      0x4B        // lll_geo_000D10
+#define MODEL_LLL_BOWSER_PIECE_10                      0x4C        // lll_geo_000D30
+#define MODEL_LLL_BOWSER_PIECE_11                      0x4D        // lll_geo_000D50
+#define MODEL_LLL_BOWSER_PIECE_12                      0x4E        // lll_geo_000D70
+#define MODEL_LLL_BOWSER_PIECE_13                      0x4F        // lll_geo_000D90
+#define MODEL_LLL_BOWSER_PIECE_14                      0x50        // lll_geo_000DB0
 #define MODEL_LLL_MOVING_OCTAGONAL_MESH_PLATFORM                      0x36        // lll_geo_000B08
 #define MODEL_LLL_SINKING_ROCK_BLOCK                      0x37        // lll_geo_000DD0
 #define MODEL_LLL_ROLLING_LOG                      0x39        // lll_geo_000DE8
 #define MODEL_LLL_ROTATING_HEXAGONAL_PLATFORM                      0x09        // lll_geo_000A78
-#define MODEL_LLL_35                      0x35        // lll_geo_000B50
-#define MODEL_LLL_3B                      0x3B        // lll_geo_000B68
-#define MODEL_LLL_3C                      0x3C        // lll_geo_000B80
-#define MODEL_LLL_3D                      0x3D        // lll_geo_000B98
+#define MODEL_LLL_WOOD_BRIDGE                      0x35        // lll_geo_000B50
+#define MODEL_LLL_LARGE_WOOD_BRIDGE                      0x3B        // lll_geo_000B68
+#define MODEL_LLL_FALLING_PLATFORM                      0x3C        // lll_geo_000B80
+#define MODEL_LLL_LARGE_FALLING_PLATFORM                      0x3D        // lll_geo_000B98
 #define MODEL_LLL_VOLCANO_FALLING_TRAP                      0x53        // lll_geo_000EA8
 
 // ddd
@@ -463,17 +463,17 @@
 #define MODEL_WF_LARGE_BOMP                       0xB1        // wf_geo_000A40
 #define MODEL_WF_ROTATING_WOODEN_PLATFORM                       0xAF        // wf_geo_000A58
 #define MODEL_WF_SLIDING_PLATFORM                       0xAD        // wf_geo_000A98
-#define MODEL_WF_B0                       0xB0        // wf_geo_000AB0
-#define MODEL_WF_TUMBLING_BRIDGE_PART                       0xB2        // wf_geo_000AC8
-#define MODEL_WF_2C                       0x2C        // wf_geo_000AF8
-#define MODEL_WF_2D                       0x2D        // wf_geo_000B10
-#define MODEL_WF_2E                       0x2E        // wf_geo_000B38
-#define MODEL_WF_2F                       0x2F        // wf_geo_000B60
+#define MODEL_WF_TUMBLING_BRIDGE_PART                       0xB0        // wf_geo_000AB0
+#define MODEL_WF_TUMBLING_BRIDGE                       0xB2        // wf_geo_000AC8
+#define MODEL_WF_TOWER_TRAPEZOID_PLATORM                       0x2C        // wf_geo_000AF8
+#define MODEL_WF_TOWER_SQUARE_PLATORM                       0x2D        // wf_geo_000B10
+#define MODEL_WF_TOWER_SQUARE_PLATORM_FRAME1                       0x2E        // wf_geo_000B38
+#define MODEL_WF_TOWER_SQUARE_PLATORM_FRAME2                       0x2F        // wf_geo_000B60
 #define MODEL_WF_BREAKABLE_WALL_RIGHT                       0x36        // wf_geo_000B78
 #define MODEL_WF_BREAKABLE_WALL_LEFT                       0x37        // wf_geo_000B90
 #define MODEL_WF_KICKABLE_BOARD                       0x38        // wf_geo_000BA8
 #define MODEL_WF_TOWER_DOOR                       0x39        // wf_geo_000BE0
-#define MODEL_WF_3A                       0x3A        // wf_geo_000BC8
+#define MODEL_WF_KICKABLE_BOARD_FELLED                       0x3A        // wf_geo_000BC8
 
 // ending
 
@@ -525,15 +525,15 @@
 #define MODEL_TTM_MOON_SMILEY                      0x3A        // ttm_geo_000DBC
 
 // main menu
-#define MODEL_MAIN_MENU_03                0x03        // main_menu_geo_0001D0
-#define MODEL_MAIN_MENU_04                0x04        // main_menu_geo_000290
-#define MODEL_MAIN_MENU_05                0x05        // main_menu_geo_0002B8
-#define MODEL_MAIN_MENU_06                0x06        // main_menu_geo_0002E0
-#define MODEL_MAIN_MENU_07                0x07        // main_menu_geo_000308
-#define MODEL_MAIN_MENU_08                0x08        // main_menu_geo_000200
-#define MODEL_MAIN_MENU_09                0x09        // main_menu_geo_000230
-#define MODEL_MAIN_MENU_0A                0x0A        // main_menu_geo_000260
-#define MODEL_MAIN_MENU_0B                0x0B        // main_menu_geo_000330
-#define MODEL_MAIN_MENU_0C                0x0C        // main_menu_geo_000358
+#define MODEL_MAIN_MENU_MARIO_SAVE_BUTTON                0x03        // main_menu_geo_0001D0
+#define MODEL_MAIN_MENU_RED_ERASE_BUTTON                0x04        // main_menu_geo_000290
+#define MODEL_MAIN_MENU_BLUE_COPY_BUTTON                0x05        // main_menu_geo_0002B8
+#define MODEL_MAIN_MENU_YELLOW_FILE_BUTTON                0x06        // main_menu_geo_0002E0
+#define MODEL_MAIN_MENU_GREEN_SCORE_BUTTON                0x07        // main_menu_geo_000308
+#define MODEL_MAIN_MENU_MARIO_SAVE_BUTTON_FADE                0x08        // main_menu_geo_000200
+#define MODEL_MAIN_MENU_MARIO_NEW_BUTTON                0x09        // main_menu_geo_000230
+#define MODEL_MAIN_MENU_MARIO_NEW_BUTTON_FADE                0x0A        // main_menu_geo_000260
+#define MODEL_MAIN_MENU_PURPLE_SOUND_BUTTON                0x0B        // main_menu_geo_000330
+#define MODEL_MAIN_MENU_GENERIC_BUTTON                0x0C        // main_menu_geo_000358
 
 #endif

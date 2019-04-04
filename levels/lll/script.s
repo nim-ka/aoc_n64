@@ -20,28 +20,28 @@ script_func_local_1:
     return
 
 script_func_local_2:
-    object /*model*/ MODEL_LLL_DRAWBRIDGE_PART,              /*pos*/ -1919,  307,  3648, /*angle*/ 0,  0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_lll_drawbridge_spawner
-    object /*model*/ MODEL_LLL_ROTATING_BLOCK_FIRE_BARS,     /*pos*/ -5119,  307, -4095, /*angle*/ 0,  0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_lll_rotating_block_with_fire_bars
-    object /*model*/ MODEL_LLL_ROTATING_HEXAGONAL_RING,      /*pos*/     0,    0,     0, /*angle*/ 0,  0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_lll_rotating_hexagonal_ring
-    object /*model*/ MODEL_LLL_SINKING_RECTANGULAR_PLATFORM, /*pos*/  3968,    0,  1408, /*angle*/ 0, 90, 0, /*behParam*/ 0x00000000, /*beh*/ beh_lll_sinking_rectangular_platform
-    object /*model*/ MODEL_LLL_SINKING_RECTANGULAR_PLATFORM, /*pos*/ -5759,    0,  3072, /*angle*/ 0,  0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_lll_sinking_rectangular_platform
-    object /*model*/ MODEL_LLL_SINKING_RECTANGULAR_PLATFORM, /*pos*/  2816,    0,   512, /*angle*/ 0, 90, 0, /*behParam*/ 0x00000000, /*beh*/ beh_lll_sinking_rectangular_platform
-    object /*model*/ MODEL_LLL_SINKING_RECTANGULAR_PLATFORM, /*pos*/ -1791,    0, -4095, /*angle*/ 0, 90, 0, /*behParam*/ 0x00000000, /*beh*/ beh_lll_sinking_rectangular_platform
-    object /*model*/ MODEL_LLL_SINKING_SQUARE_PLATFORMS,     /*pos*/  3840,    0, -3199, /*angle*/ 0,  0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_lll_sinking_square_platforms
-    object /*model*/ MODEL_LLL_TILTING_SQUARE_PLATFORM,      /*pos*/   922, -153,  2150, /*angle*/ 0,  0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_lll_tilting_square_platform
-    object /*model*/ MODEL_LLL_TILTING_SQUARE_PLATFORM,      /*pos*/  1741, -153,  1741, /*angle*/ 0,  0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_lll_tilting_square_platform
-    object /*model*/ MODEL_LLL_TILTING_SQUARE_PLATFORM,      /*pos*/  1741, -153,  2560, /*angle*/ 0,  0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_lll_tilting_square_platform
-    object /*model*/ MODEL_LLL_TILTING_SQUARE_PLATFORM,      /*pos*/  2099, -153,  -306, /*angle*/ 0,  0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_lll_tilting_square_platform
-    object /*model*/ MODEL_NONE,                             /*pos*/ -5119,  102,  1024, /*angle*/ 0,  0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_lll_bowser_puzzle
+    object /*model*/ MODEL_LLL_DRAWBRIDGE_PART,                /*pos*/ -1919,  307,  3648, /*angle*/ 0,  0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_lll_drawbridge_spawner
+    object /*model*/ MODEL_LLL_ROTATING_BLOCK_FIRE_BARS,       /*pos*/ -5119,  307, -4095, /*angle*/ 0,  0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_lll_rotating_block_with_fire_bars
+    object /*model*/ MODEL_LLL_ROTATING_HEXAGONAL_RING,        /*pos*/     0,    0,     0, /*angle*/ 0,  0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_lll_rotating_hexagonal_ring
+    object /*model*/ MODEL_LLL_SINKING_RECTANGULAR_PLATFORM,   /*pos*/  3968,    0,  1408, /*angle*/ 0, 90, 0, /*behParam*/ 0x00000000, /*beh*/ beh_lll_sinking_rectangular_platform
+    object /*model*/ MODEL_LLL_SINKING_RECTANGULAR_PLATFORM,   /*pos*/ -5759,    0,  3072, /*angle*/ 0,  0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_lll_sinking_rectangular_platform
+    object /*model*/ MODEL_LLL_SINKING_RECTANGULAR_PLATFORM,   /*pos*/  2816,    0,   512, /*angle*/ 0, 90, 0, /*behParam*/ 0x00000000, /*beh*/ beh_lll_sinking_rectangular_platform
+    object /*model*/ MODEL_LLL_SINKING_RECTANGULAR_PLATFORM,   /*pos*/ -1791,    0, -4095, /*angle*/ 0, 90, 0, /*behParam*/ 0x00000000, /*beh*/ beh_lll_sinking_rectangular_platform
+    object /*model*/ MODEL_LLL_SINKING_SQUARE_PLATFORMS,       /*pos*/  3840,    0, -3199, /*angle*/ 0,  0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_lll_sinking_square_platforms
+    object /*model*/ MODEL_LLL_TILTING_SQUARE_PLATFORM,        /*pos*/   922, -153,  2150, /*angle*/ 0,  0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_lll_tilting_square_platform
+    object /*model*/ MODEL_LLL_TILTING_SQUARE_PLATFORM,        /*pos*/  1741, -153,  1741, /*angle*/ 0,  0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_lll_tilting_square_platform
+    object /*model*/ MODEL_LLL_TILTING_SQUARE_PLATFORM,        /*pos*/  1741, -153,  2560, /*angle*/ 0,  0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_lll_tilting_square_platform
+    object /*model*/ MODEL_LLL_TILTING_SQUARE_PLATFORM,        /*pos*/  2099, -153,  -306, /*angle*/ 0,  0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_lll_tilting_square_platform
+    object /*model*/ MODEL_NONE,                               /*pos*/ -5119,  102,  1024, /*angle*/ 0,  0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_lll_bowser_puzzle
     return
 
 script_func_local_3:
-    object /*model*/ MODEL_LLL_MOVING_OCTAGONAL_MESH_PLATFORM, /*pos*/  1124,   0, -4607, /*angle*/ 0,  0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_lll_moving_octagonal_mesh_platform
-    object /*model*/ MODEL_LLL_MOVING_OCTAGONAL_MESH_PLATFORM, /*pos*/  7168,   0,  2432, /*angle*/ 0,  0, 0, /*behParam*/ 0x00010000, /*beh*/ beh_lll_moving_octagonal_mesh_platform
-    object /*model*/ MODEL_LLL_SINKING_ROCK_BLOCK,             /*pos*/  7168,   0,  7296, /*angle*/ 0,  0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_lll_sinking_rock_block
-    object /*model*/ MODEL_LLL_ROLLING_LOG,                    /*pos*/  6144, 307,  6016, /*angle*/ 0, 90, 0, /*behParam*/ 0x00000000, /*beh*/ beh_lll_rolling_log
-    object /*model*/ MODEL_LLL_ROTATING_HEXAGONAL_PLATFORM,    /*pos*/ -5119,   0, -4095, /*angle*/ 0,  0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_lll_rotating_hexagonal_platform
-    object /*model*/ MODEL_NONE,                               /*pos*/ -3583,   0, -4095, /*angle*/ 0,  0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_lll_floating_wood_bridge
+    object /*model*/ MODEL_LLL_MOVING_OCTAGONAL_MESH_PLATFORM, /*pos*/  1124,    0, -4607, /*angle*/ 0,  0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_lll_moving_octagonal_mesh_platform
+    object /*model*/ MODEL_LLL_MOVING_OCTAGONAL_MESH_PLATFORM, /*pos*/  7168,    0,  2432, /*angle*/ 0,  0, 0, /*behParam*/ 0x00010000, /*beh*/ beh_lll_moving_octagonal_mesh_platform
+    object /*model*/ MODEL_LLL_SINKING_ROCK_BLOCK,             /*pos*/  7168,    0,  7296, /*angle*/ 0,  0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_lll_sinking_rock_block
+    object /*model*/ MODEL_LLL_ROLLING_LOG,                    /*pos*/  6144,  307,  6016, /*angle*/ 0, 90, 0, /*behParam*/ 0x00000000, /*beh*/ beh_lll_rolling_log
+    object /*model*/ MODEL_LLL_ROTATING_HEXAGONAL_PLATFORM,    /*pos*/ -5119,    0, -4095, /*angle*/ 0,  0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_lll_rotating_hexagonal_platform
+    object /*model*/ MODEL_NONE,                               /*pos*/ -3583,    0, -4095, /*angle*/ 0,  0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_lll_floating_wood_bridge
     return
 
 script_func_local_4:
@@ -93,60 +93,60 @@ script_func_local_7:
 
 glabel level_lll_entry
     init_level
-    load_mio0 /*seg*/ 0x07, /*romStart*/ _lll_segment_7SegmentRomStart, /*romEnd*/ _lll_segment_7SegmentRomEnd
-    cmd1A     /*seg*/ 0x09, /*romStart*/ _fire_mio0SegmentRomStart, /*romEnd*/ _fire_mio0SegmentRomEnd
-    load_mio0 /*seg*/ 0x0A, /*romStart*/ _bitfs_skybox_mio0SegmentRomStart, /*romEnd*/ _bitfs_skybox_mio0SegmentRomEnd
-    load_mio0 /*seg*/ 0x0B, /*romStart*/ _effect_mio0SegmentRomStart, /*romEnd*/ _effect_mio0SegmentRomEnd
-    load_mio0 /*seg*/ 0x05, /*romStart*/ _group2_mio0SegmentRomStart, /*romEnd*/ _group2_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0C, /*romStart*/ _group2_geoSegmentRomStart,  /*romEnd*/ _group2_geoSegmentRomEnd
-    load_mio0 /*seg*/ 0x06, /*romStart*/ _group17_mio0SegmentRomStart, /*romEnd*/ _group17_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0D, /*romStart*/ _group17_geoSegmentRomStart,  /*romEnd*/ _group17_geoSegmentRomEnd
-    load_mio0 /*seg*/ 0x08, /*romStart*/ _common0_mio0SegmentRomStart, /*romEnd*/ _common0_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0F, /*romStart*/ _common0_geoSegmentRomStart,  /*romEnd*/ _common0_geoSegmentRomEnd
+    load_mio0         /*seg*/ 0x07, /*romStart*/ _lll_segment_7SegmentRomStart, /*romEnd*/ _lll_segment_7SegmentRomEnd
+    load_mio0_texture /*seg*/ 0x09, /*romStart*/ _fire_mio0SegmentRomStart, /*romEnd*/ _fire_mio0SegmentRomEnd
+    load_mio0         /*seg*/ 0x0A, /*romStart*/ _bitfs_skybox_mio0SegmentRomStart, /*romEnd*/ _bitfs_skybox_mio0SegmentRomEnd
+    load_mio0         /*seg*/ 0x0B, /*romStart*/ _effect_mio0SegmentRomStart, /*romEnd*/ _effect_mio0SegmentRomEnd
+    load_mio0         /*seg*/ 0x05, /*romStart*/ _group2_mio0SegmentRomStart, /*romEnd*/ _group2_mio0SegmentRomEnd
+    load_raw          /*seg*/ 0x0C, /*romStart*/ _group2_geoSegmentRomStart,  /*romEnd*/ _group2_geoSegmentRomEnd
+    load_mio0         /*seg*/ 0x06, /*romStart*/ _group17_mio0SegmentRomStart, /*romEnd*/ _group17_mio0SegmentRomEnd
+    load_raw          /*seg*/ 0x0D, /*romStart*/ _group17_geoSegmentRomStart,  /*romEnd*/ _group17_geoSegmentRomEnd
+    load_mio0         /*seg*/ 0x08, /*romStart*/ _common0_mio0SegmentRomStart, /*romEnd*/ _common0_mio0SegmentRomEnd
+    load_raw          /*seg*/ 0x0F, /*romStart*/ _common0_geoSegmentRomStart,  /*romEnd*/ _common0_geoSegmentRomEnd
     alloc_level_pool
     mario /*unk3*/ 0x01, /*behParam*/ 0x00000001, /*beh*/ beh_mario
     jump_link /*target*/ script_func_global_1
     jump_link /*target*/ script_func_global_3
     jump_link /*target*/ script_func_global_18
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_03, /*geo*/ lll_geo_0009E0
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_04, /*geo*/ lll_geo_0009F8
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_05, /*geo*/ lll_geo_000A10
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_06, /*geo*/ lll_geo_000A28
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_07, /*geo*/ lll_geo_000A40
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_08, /*geo*/ lll_geo_000A60
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0A, /*geo*/ lll_geo_000A90
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0B, /*geo*/ lll_geo_000AA8
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0C, /*geo*/ lll_geo_000AC0
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0D, /*geo*/ lll_geo_000AD8
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0E, /*geo*/ lll_geo_000AF0
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_03,                  /*geo*/ lll_geo_0009E0
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_04,                  /*geo*/ lll_geo_0009F8
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_05,                  /*geo*/ lll_geo_000A10
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_06,                  /*geo*/ lll_geo_000A28
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_07,                  /*geo*/ lll_geo_000A40
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_08,                  /*geo*/ lll_geo_000A60
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0A,                  /*geo*/ lll_geo_000A90
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0B,                  /*geo*/ lll_geo_000AA8
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0C,                  /*geo*/ lll_geo_000AC0
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0D,                  /*geo*/ lll_geo_000AD8
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0E,                  /*geo*/ lll_geo_000AF0
     load_model_from_geo /*model*/ MODEL_LLL_DRAWBRIDGE_PART,                /*geo*/ lll_geo_000B20
     load_model_from_geo /*model*/ MODEL_LLL_ROTATING_BLOCK_FIRE_BARS,       /*geo*/ lll_geo_000B38
     load_model_from_geo /*model*/ MODEL_LLL_ROTATING_HEXAGONAL_RING,        /*geo*/ lll_geo_000BB0
     load_model_from_geo /*model*/ MODEL_LLL_SINKING_RECTANGULAR_PLATFORM,   /*geo*/ lll_geo_000BC8
     load_model_from_geo /*model*/ MODEL_LLL_SINKING_SQUARE_PLATFORMS,       /*geo*/ lll_geo_000BE0
     load_model_from_geo /*model*/ MODEL_LLL_TILTING_SQUARE_PLATFORM,        /*geo*/ lll_geo_000BF8
-    load_model_from_geo /*model*/ MODEL_LLL_43,                             /*geo*/ lll_geo_000C10
-    load_model_from_geo /*model*/ MODEL_LLL_44,                             /*geo*/ lll_geo_000C30
-    load_model_from_geo /*model*/ MODEL_LLL_45,                             /*geo*/ lll_geo_000C50
-    load_model_from_geo /*model*/ MODEL_LLL_46,                             /*geo*/ lll_geo_000C70
-    load_model_from_geo /*model*/ MODEL_LLL_47,                             /*geo*/ lll_geo_000C90
-    load_model_from_geo /*model*/ MODEL_LLL_48,                             /*geo*/ lll_geo_000CB0
-    load_model_from_geo /*model*/ MODEL_LLL_49,                             /*geo*/ lll_geo_000CD0
-    load_model_from_geo /*model*/ MODEL_LLL_4A,                             /*geo*/ lll_geo_000CF0
-    load_model_from_geo /*model*/ MODEL_LLL_4B,                             /*geo*/ lll_geo_000D10
-    load_model_from_geo /*model*/ MODEL_LLL_4C,                             /*geo*/ lll_geo_000D30
-    load_model_from_geo /*model*/ MODEL_LLL_4D,                             /*geo*/ lll_geo_000D50
-    load_model_from_geo /*model*/ MODEL_LLL_4E,                             /*geo*/ lll_geo_000D70
-    load_model_from_geo /*model*/ MODEL_LLL_4F,                             /*geo*/ lll_geo_000D90
-    load_model_from_geo /*model*/ MODEL_LLL_50,                             /*geo*/ lll_geo_000DB0
+    load_model_from_geo /*model*/ MODEL_LLL_BOWSER_PIECE_1,                 /*geo*/ lll_geo_000C10
+    load_model_from_geo /*model*/ MODEL_LLL_BOWSER_PIECE_2,                 /*geo*/ lll_geo_000C30
+    load_model_from_geo /*model*/ MODEL_LLL_BOWSER_PIECE_3,                 /*geo*/ lll_geo_000C50
+    load_model_from_geo /*model*/ MODEL_LLL_BOWSER_PIECE_4,                 /*geo*/ lll_geo_000C70
+    load_model_from_geo /*model*/ MODEL_LLL_BOWSER_PIECE_5,                 /*geo*/ lll_geo_000C90
+    load_model_from_geo /*model*/ MODEL_LLL_BOWSER_PIECE_6,                 /*geo*/ lll_geo_000CB0
+    load_model_from_geo /*model*/ MODEL_LLL_BOWSER_PIECE_7,                 /*geo*/ lll_geo_000CD0
+    load_model_from_geo /*model*/ MODEL_LLL_BOWSER_PIECE_8,                 /*geo*/ lll_geo_000CF0
+    load_model_from_geo /*model*/ MODEL_LLL_BOWSER_PIECE_9,                 /*geo*/ lll_geo_000D10
+    load_model_from_geo /*model*/ MODEL_LLL_BOWSER_PIECE_10,                /*geo*/ lll_geo_000D30
+    load_model_from_geo /*model*/ MODEL_LLL_BOWSER_PIECE_11,                /*geo*/ lll_geo_000D50
+    load_model_from_geo /*model*/ MODEL_LLL_BOWSER_PIECE_12,                /*geo*/ lll_geo_000D70
+    load_model_from_geo /*model*/ MODEL_LLL_BOWSER_PIECE_13,                /*geo*/ lll_geo_000D90
+    load_model_from_geo /*model*/ MODEL_LLL_BOWSER_PIECE_14,                /*geo*/ lll_geo_000DB0
     load_model_from_geo /*model*/ MODEL_LLL_MOVING_OCTAGONAL_MESH_PLATFORM, /*geo*/ lll_geo_000B08
     load_model_from_geo /*model*/ MODEL_LLL_SINKING_ROCK_BLOCK,             /*geo*/ lll_geo_000DD0
     load_model_from_geo /*model*/ MODEL_LLL_ROLLING_LOG,                    /*geo*/ lll_geo_000DE8
     load_model_from_geo /*model*/ MODEL_LLL_ROTATING_HEXAGONAL_PLATFORM,    /*geo*/ lll_geo_000A78
-    load_model_from_geo /*model*/ MODEL_LLL_35,                             /*geo*/ lll_geo_000B50
-    load_model_from_geo /*model*/ MODEL_LLL_3B,                             /*geo*/ lll_geo_000B68
-    load_model_from_geo /*model*/ MODEL_LLL_3C,                             /*geo*/ lll_geo_000B80
-    load_model_from_geo /*model*/ MODEL_LLL_3D,                             /*geo*/ lll_geo_000B98
+    load_model_from_geo /*model*/ MODEL_LLL_WOOD_BRIDGE,                    /*geo*/ lll_geo_000B50
+    load_model_from_geo /*model*/ MODEL_LLL_LARGE_WOOD_BRIDGE,              /*geo*/ lll_geo_000B68
+    load_model_from_geo /*model*/ MODEL_LLL_FALLING_PLATFORM,               /*geo*/ lll_geo_000B80
+    load_model_from_geo /*model*/ MODEL_LLL_LARGE_FALLING_PLATFORM,         /*geo*/ lll_geo_000B98
     load_model_from_geo /*model*/ MODEL_LLL_VOLCANO_FALLING_TRAP,           /*geo*/ lll_geo_000EA8
 
     area /*index*/ 1, /*geo*/ lll_geo_000E00
@@ -167,7 +167,7 @@ glabel level_lll_entry
         jump_link /*target*/ script_func_local_5
         terrain /*terrainData*/ lll_seg7_area_1_collision
         macro_objects /*objList*/ lll_seg7_area_1_macro_objs
-        cmd30 /*unk2*/ 0x00, /*unk3*/ 0x61
+        show_dialog /*unk2*/ 0x00, /*dialogid*/ 0x61
         set_music /*unk2*/ 0x0000, /*seq*/ SEQ_LEVEL_HOT
         terrain_type /*terrainType*/ 0x0001
     end_area

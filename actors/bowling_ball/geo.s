@@ -7,7 +7,7 @@ glabel bowling_ball_geo # 0x0F000640
    geo_open_node
       geo_scale 0x00, 170393
       geo_open_node
-         geo_display_list 0x04, bobomb_seg8_dl_08022D08
+         geo_display_list LAYER_ALPHA, bobomb_seg8_dl_08022D08
       geo_close_node
    geo_close_node
    geo_end
@@ -17,7 +17,7 @@ glabel bowling_ball2_geo # 0x0F00066C
    geo_open_node
       geo_scale 0x00, 170393
       geo_open_node
-         geo_display_list 0x04, bobomb_seg8_dl_08022D08
+         geo_display_list LAYER_ALPHA, bobomb_seg8_dl_08022D08
       geo_close_node
    geo_close_node
    geo_end

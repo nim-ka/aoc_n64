@@ -14,10 +14,10 @@ glabel ttm_geo_000BEC # 0x0E000BEC
          geo_open_node
             geo_todo_0F 9, 0, 2000, 6000, 0, 0, 0, Geo0F_80287D30
             geo_open_node
-               geo_display_list 0x01, ttm_seg7_dl_070249A0
-               geo_display_list 0x01, ttm_seg7_dl_07024C78
-               geo_display_list 0x01, ttm_seg7_dl_07025F48
-               geo_todo_17
+               geo_display_list LAYER_OPAQUE, ttm_seg7_dl_070249A0
+               geo_display_list LAYER_OPAQUE, ttm_seg7_dl_07024C78
+               geo_display_list LAYER_OPAQUE, ttm_seg7_dl_07025F48
+               geo_render_obj
                geo_asm 0, Geo18_802761D0
             geo_close_node
          geo_close_node

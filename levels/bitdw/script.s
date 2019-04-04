@@ -24,45 +24,45 @@ script_func_local_3:
 
 glabel level_bitdw_entry
     init_level
-    load_mio0 /*seg*/ 0x07, /*romStart*/ _bitdw_segment_7SegmentRomStart, /*romEnd*/ _bitdw_segment_7SegmentRomEnd
-    load_mio0 /*seg*/ 0x0A, /*romStart*/ _bidw_skybox_mio0SegmentRomStart, /*romEnd*/ _bidw_skybox_mio0SegmentRomEnd
-    cmd1A     /*seg*/ 0x09, /*romStart*/ _sky_mio0SegmentRomStart, /*romEnd*/ _sky_mio0SegmentRomEnd
-    load_mio0 /*seg*/ 0x05, /*romStart*/ _group11_mio0SegmentRomStart, /*romEnd*/ _group11_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0C, /*romStart*/ _group11_geoSegmentRomStart,  /*romEnd*/ _group11_geoSegmentRomEnd
-    load_mio0 /*seg*/ 0x06, /*romStart*/ _group17_mio0SegmentRomStart, /*romEnd*/ _group17_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0D, /*romStart*/ _group17_geoSegmentRomStart,  /*romEnd*/ _group17_geoSegmentRomEnd
-    load_mio0 /*seg*/ 0x08, /*romStart*/ _common0_mio0SegmentRomStart, /*romEnd*/ _common0_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0F, /*romStart*/ _common0_geoSegmentRomStart,  /*romEnd*/ _common0_geoSegmentRomEnd
+    load_mio0         /*seg*/ 0x07, /*romStart*/ _bitdw_segment_7SegmentRomStart, /*romEnd*/ _bitdw_segment_7SegmentRomEnd
+    load_mio0         /*seg*/ 0x0A, /*romStart*/ _bidw_skybox_mio0SegmentRomStart, /*romEnd*/ _bidw_skybox_mio0SegmentRomEnd
+    load_mio0_texture /*seg*/ 0x09, /*romStart*/ _sky_mio0SegmentRomStart, /*romEnd*/ _sky_mio0SegmentRomEnd
+    load_mio0         /*seg*/ 0x05, /*romStart*/ _group11_mio0SegmentRomStart, /*romEnd*/ _group11_mio0SegmentRomEnd
+    load_raw          /*seg*/ 0x0C, /*romStart*/ _group11_geoSegmentRomStart,  /*romEnd*/ _group11_geoSegmentRomEnd
+    load_mio0         /*seg*/ 0x06, /*romStart*/ _group17_mio0SegmentRomStart, /*romEnd*/ _group17_mio0SegmentRomEnd
+    load_raw          /*seg*/ 0x0D, /*romStart*/ _group17_geoSegmentRomStart,  /*romEnd*/ _group17_geoSegmentRomEnd
+    load_mio0         /*seg*/ 0x08, /*romStart*/ _common0_mio0SegmentRomStart, /*romEnd*/ _common0_mio0SegmentRomEnd
+    load_raw          /*seg*/ 0x0F, /*romStart*/ _common0_geoSegmentRomStart,  /*romEnd*/ _common0_geoSegmentRomEnd
     alloc_level_pool
     mario /*unk3*/ 0x01, /*behParam*/ 0x00000001, /*beh*/ beh_mario
     jump_link /*target*/ script_func_global_12
     jump_link /*target*/ script_func_global_18
     jump_link /*target*/ script_func_global_1
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_03, /*geo*/ geo_bitdw_0003C0
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_04, /*geo*/ geo_bitdw_0003D8
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_05, /*geo*/ geo_bitdw_0003F0
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_06, /*geo*/ geo_bitdw_000408
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_07, /*geo*/ geo_bitdw_000420
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_08, /*geo*/ geo_bitdw_000438
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_09, /*geo*/ geo_bitdw_000450
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0A, /*geo*/ geo_bitdw_000468
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0B, /*geo*/ geo_bitdw_000480
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0C, /*geo*/ geo_bitdw_000498
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0D, /*geo*/ geo_bitdw_0004B0
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0E, /*geo*/ geo_bitdw_0004C8
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0F, /*geo*/ geo_bitdw_0004E0
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_10, /*geo*/ geo_bitdw_0004F8
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_11, /*geo*/ geo_bitdw_000510
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_03,       /*geo*/ geo_bitdw_0003C0
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_04,       /*geo*/ geo_bitdw_0003D8
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_05,       /*geo*/ geo_bitdw_0003F0
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_06,       /*geo*/ geo_bitdw_000408
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_07,       /*geo*/ geo_bitdw_000420
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_08,       /*geo*/ geo_bitdw_000438
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_09,       /*geo*/ geo_bitdw_000450
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0A,       /*geo*/ geo_bitdw_000468
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0B,       /*geo*/ geo_bitdw_000480
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0C,       /*geo*/ geo_bitdw_000498
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0D,       /*geo*/ geo_bitdw_0004B0
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0E,       /*geo*/ geo_bitdw_0004C8
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0F,       /*geo*/ geo_bitdw_0004E0
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_10,       /*geo*/ geo_bitdw_0004F8
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_11,       /*geo*/ geo_bitdw_000510
     load_model_from_geo /*model*/ MODEL_BITDW_WARP_PIPE,         /*geo*/ warp_pipe_geo
     load_model_from_geo /*model*/ MODEL_BITDW_SQUARE_PLATFORM,   /*geo*/ geo_bitdw_000558
     load_model_from_geo /*model*/ MODEL_BITDW_SEESAW_PLATFORM,   /*geo*/ geo_bitdw_000540
     load_model_from_geo /*model*/ MODEL_BITDW_SLIDING_PLATFORM,  /*geo*/ geo_bitdw_000528
     load_model_from_geo /*model*/ MODEL_BITDW_FERRIS_WHEEL_AXLE, /*geo*/ geo_bitdw_000570
-    load_model_from_geo /*model*/ MODEL_BITDW_3A,                /*geo*/ geo_bitdw_000588
-    load_model_from_geo /*model*/ MODEL_BITDW_3B,                /*geo*/ geo_bitdw_0005A0
-    load_model_from_geo /*model*/ MODEL_BITDW_3C,                /*geo*/ geo_bitdw_0005B8
-    load_model_from_geo /*model*/ MODEL_BITDW_3D,                /*geo*/ geo_bitdw_0005D0
-    load_model_from_geo /*model*/ MODEL_BITDW_3E,                /*geo*/ geo_bitdw_0005E8
+    load_model_from_geo /*model*/ MODEL_BITDW_BLUE_PLATFORM,     /*geo*/ geo_bitdw_000588
+    load_model_from_geo /*model*/ MODEL_BITDW_STAIRCASE_FRAME4,  /*geo*/ geo_bitdw_0005A0
+    load_model_from_geo /*model*/ MODEL_BITDW_STAIRCASE_FRAME3,  /*geo*/ geo_bitdw_0005B8
+    load_model_from_geo /*model*/ MODEL_BITDW_STAIRCASE_FRAME2,  /*geo*/ geo_bitdw_0005D0
+    load_model_from_geo /*model*/ MODEL_BITDW_STAIRCASE_FRAME1,  /*geo*/ geo_bitdw_0005E8
     load_model_from_geo /*model*/ MODEL_BITDW_STAIRCASE,         /*geo*/ geo_bitdw_000600
 
     area /*index*/ 1, /*geo*/ geo_bitdw_000618
@@ -78,7 +78,7 @@ glabel level_bitdw_entry
         jump_link /*target*/ script_func_local_3
         terrain /*terrainData*/ bitdw_seg7_collision_level
         macro_objects /*objList*/ bitdw_seg7_macro_objs
-        cmd30 /*unk2*/ 0x00, /*unk3*/ 0x5A
+        show_dialog /*unk2*/ 0x00, /*dialogid*/ 0x5A
         set_music /*unk2*/ 0x0000, /*seq*/ SEQ_LEVEL_KOOPA_ROAD
         terrain_type /*terrainType*/ 0x0001
     end_area

@@ -6,7 +6,7 @@ void BehSquishablePlatformLoop(void)
     o->oPlatformTimer += 0x80;
 }
 
-void BehBifsSinkingPlatformLoop(void)
+void BehBitfsSinkingPlatformLoop(void)
 {
     o->oPosY -= sins(o->oPlatformTimer) * 0.58; //! float double conversion error accumulates on Wii VC causing the platform to rise up
     o->oPlatformTimer += 0x100;
@@ -18,7 +18,7 @@ void BehDddMovingPoleLoop(void)
     copy_object_pos_and_angle(o,o->parentObj);
 }
 
-void BehBifsSinkingCagePlatformLoop(void)
+void BehBitfsSinkingCagePlatformLoop(void)
 {
     if(o->oBehParams2ndByte != 0)
     {

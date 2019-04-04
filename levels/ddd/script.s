@@ -14,17 +14,17 @@ script_func_local_2:
     return
 
 script_func_local_3:
-    object /*model*/ MODEL_DDD_BOWSER_SUB_DOOR, /*pos*/ 0, 0, 0, /*angle*/ 0, 0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_bowser_sub_door
-    object /*model*/ MODEL_DDD_BOWSER_SUB,      /*pos*/ 0, 0, 0, /*angle*/ 0, 0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_bowsers_sub
-    object /*model*/ MODEL_DDD_POLE, /*pos*/ 5120, 1005,  3584, /*angle*/ 0, 180, 0, /*behParam*/ 0x001E0000, /*beh*/ bDDDPole
-    object /*model*/ MODEL_DDD_POLE, /*pos*/ 5605, 1005,  3380, /*angle*/ 0, 270, 0, /*behParam*/ 0x00150000, /*beh*/ bDDDPole
-    object /*model*/ MODEL_DDD_POLE, /*pos*/ 1800, 1005,  1275, /*angle*/ 0,   0, 0, /*behParam*/ 0x000B0000, /*beh*/ bDDDPole
-    object /*model*/ MODEL_DDD_POLE, /*pos*/ 4000, 1005,  1075, /*angle*/ 0, 180, 0, /*behParam*/ 0x000B0000, /*beh*/ bDDDPole
-    object /*model*/ MODEL_DDD_POLE, /*pos*/ 1830, 1005,   520, /*angle*/ 0, 270, 0, /*behParam*/ 0x00140000, /*beh*/ bDDDPole
-    object /*model*/ MODEL_DDD_POLE, /*pos*/ 4000, 1005,  1275, /*angle*/ 0,   0, 0, /*behParam*/ 0x000B0000, /*beh*/ bDDDPole
-    object /*model*/ MODEL_DDD_POLE, /*pos*/ 5760, 1005,   360, /*angle*/ 0, 270, 0, /*behParam*/ 0x00170000, /*beh*/ bDDDPole
-    object /*model*/ MODEL_DDD_POLE, /*pos*/ 3310, 1005, -1945, /*angle*/ 0,   0, 0, /*behParam*/ 0x00170000, /*beh*/ bDDDPole
-    object /*model*/ MODEL_DDD_POLE, /*pos*/ 3550, 1005, -2250, /*angle*/ 0,   0, 0, /*behParam*/ 0x000D0000, /*beh*/ bDDDPole
+    object /*model*/ MODEL_DDD_BOWSER_SUB_DOOR, /*pos*/    0,    0,     0, /*angle*/ 0,   0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_bowser_sub_door
+    object /*model*/ MODEL_DDD_BOWSER_SUB,      /*pos*/    0,    0,     0, /*angle*/ 0,   0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_bowsers_sub
+    object /*model*/ MODEL_DDD_POLE,            /*pos*/ 5120, 1005,  3584, /*angle*/ 0, 180, 0, /*behParam*/ 0x001E0000, /*beh*/ bDDDPole
+    object /*model*/ MODEL_DDD_POLE,            /*pos*/ 5605, 1005,  3380, /*angle*/ 0, 270, 0, /*behParam*/ 0x00150000, /*beh*/ bDDDPole
+    object /*model*/ MODEL_DDD_POLE,            /*pos*/ 1800, 1005,  1275, /*angle*/ 0,   0, 0, /*behParam*/ 0x000B0000, /*beh*/ bDDDPole
+    object /*model*/ MODEL_DDD_POLE,            /*pos*/ 4000, 1005,  1075, /*angle*/ 0, 180, 0, /*behParam*/ 0x000B0000, /*beh*/ bDDDPole
+    object /*model*/ MODEL_DDD_POLE,            /*pos*/ 1830, 1005,   520, /*angle*/ 0, 270, 0, /*behParam*/ 0x00140000, /*beh*/ bDDDPole
+    object /*model*/ MODEL_DDD_POLE,            /*pos*/ 4000, 1005,  1275, /*angle*/ 0,   0, 0, /*behParam*/ 0x000B0000, /*beh*/ bDDDPole
+    object /*model*/ MODEL_DDD_POLE,            /*pos*/ 5760, 1005,   360, /*angle*/ 0, 270, 0, /*behParam*/ 0x00170000, /*beh*/ bDDDPole
+    object /*model*/ MODEL_DDD_POLE,            /*pos*/ 3310, 1005, -1945, /*angle*/ 0,   0, 0, /*behParam*/ 0x00170000, /*beh*/ bDDDPole
+    object /*model*/ MODEL_DDD_POLE,            /*pos*/ 3550, 1005, -2250, /*angle*/ 0,   0, 0, /*behParam*/ 0x000D0000, /*beh*/ bDDDPole
     return
 
 script_func_local_4:
@@ -40,16 +40,16 @@ script_func_local_5:
 
 glabel level_ddd_entry
     init_level
-    load_mio0 /*seg*/ 0x07, /*romStart*/ _ddd_segment_7SegmentRomStart, /*romEnd*/ _ddd_segment_7SegmentRomEnd
-    cmd1A     /*seg*/ 0x09, /*romStart*/ _water_mio0SegmentRomStart, /*romEnd*/ _water_mio0SegmentRomEnd
-    load_mio0 /*seg*/ 0x0B, /*romStart*/ _effect_mio0SegmentRomStart, /*romEnd*/ _effect_mio0SegmentRomEnd
-    load_mio0 /*seg*/ 0x0A, /*romStart*/ _water_skybox_mio0SegmentRomStart, /*romEnd*/ _water_skybox_mio0SegmentRomEnd
-    load_mio0 /*seg*/ 0x05, /*romStart*/ _group4_mio0SegmentRomStart, /*romEnd*/ _group4_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0C, /*romStart*/ _group4_geoSegmentRomStart,  /*romEnd*/ _group4_geoSegmentRomEnd
-    load_mio0 /*seg*/ 0x06, /*romStart*/ _group13_mio0SegmentRomStart, /*romEnd*/ _group13_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0D, /*romStart*/ _group13_geoSegmentRomStart,  /*romEnd*/ _group13_geoSegmentRomEnd
-    load_mio0 /*seg*/ 0x08, /*romStart*/ _common0_mio0SegmentRomStart, /*romEnd*/ _common0_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0F, /*romStart*/ _common0_geoSegmentRomStart,  /*romEnd*/ _common0_geoSegmentRomEnd
+    load_mio0         /*seg*/ 0x07, /*romStart*/ _ddd_segment_7SegmentRomStart, /*romEnd*/ _ddd_segment_7SegmentRomEnd
+    load_mio0_texture /*seg*/ 0x09, /*romStart*/ _water_mio0SegmentRomStart, /*romEnd*/ _water_mio0SegmentRomEnd
+    load_mio0         /*seg*/ 0x0B, /*romStart*/ _effect_mio0SegmentRomStart, /*romEnd*/ _effect_mio0SegmentRomEnd
+    load_mio0         /*seg*/ 0x0A, /*romStart*/ _water_skybox_mio0SegmentRomStart, /*romEnd*/ _water_skybox_mio0SegmentRomEnd
+    load_mio0         /*seg*/ 0x05, /*romStart*/ _group4_mio0SegmentRomStart, /*romEnd*/ _group4_mio0SegmentRomEnd
+    load_raw          /*seg*/ 0x0C, /*romStart*/ _group4_geoSegmentRomStart,  /*romEnd*/ _group4_geoSegmentRomEnd
+    load_mio0         /*seg*/ 0x06, /*romStart*/ _group13_mio0SegmentRomStart, /*romEnd*/ _group13_mio0SegmentRomEnd
+    load_raw          /*seg*/ 0x0D, /*romStart*/ _group13_geoSegmentRomStart,  /*romEnd*/ _group13_geoSegmentRomEnd
+    load_mio0         /*seg*/ 0x08, /*romStart*/ _common0_mio0SegmentRomStart, /*romEnd*/ _common0_mio0SegmentRomEnd
+    load_raw          /*seg*/ 0x0F, /*romStart*/ _common0_geoSegmentRomStart,  /*romEnd*/ _common0_geoSegmentRomEnd
     alloc_level_pool
     mario /*unk3*/ 0x01, /*behParam*/ 0x00000001, /*beh*/ beh_mario
     jump_link /*target*/ script_func_global_1

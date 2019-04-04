@@ -35,7 +35,7 @@ glabel level_bowser_3_entry
     load_model_from_geo /*model*/ MODEL_BOWSER_3_FALLING_PLATFORM_8,  /*geo*/ bowser_3_geo_000338
     load_model_from_geo /*model*/ MODEL_BOWSER_3_FALLING_PLATFORM_9,  /*geo*/ bowser_3_geo_000350
     load_model_from_geo /*model*/ MODEL_BOWSER_3_FALLING_PLATFORM_10, /*geo*/ bowser_3_geo_000368
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_03,                 /*geo*/ bowser_3_geo_000380
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_03,            /*geo*/ bowser_3_geo_000380
 
     area /*index*/ 1, /*geo*/ bowser_3_geo_000398
         object /*model*/ MODEL_NONE, /*pos*/ 0, 1307, 0, /*angle*/ 0, 183, 0, /*behParam*/ 0x000A0000, /*beh*/ beh_warps_6C

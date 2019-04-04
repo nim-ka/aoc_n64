@@ -10,14 +10,14 @@ script_func_local_2:
 
 glabel level_cotmc_entry
     init_level
-    load_mio0 /*seg*/ 0x07, /*romStart*/ _cotmc_segment_7SegmentRomStart, /*romEnd*/ _cotmc_segment_7SegmentRomEnd
-    cmd1A     /*seg*/ 0x09, /*romStart*/ _cave_mio0SegmentRomStart, /*romEnd*/ _cave_mio0SegmentRomEnd
-    load_mio0 /*seg*/ 0x05, /*romStart*/ _group8_mio0SegmentRomStart, /*romEnd*/ _group8_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0C, /*romStart*/ _group8_geoSegmentRomStart,  /*romEnd*/ _group8_geoSegmentRomEnd
-    load_mio0 /*seg*/ 0x06, /*romStart*/ _group17_mio0SegmentRomStart, /*romEnd*/ _group17_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0D, /*romStart*/ _group17_geoSegmentRomStart,  /*romEnd*/ _group17_geoSegmentRomEnd
-    load_mio0 /*seg*/ 0x08, /*romStart*/ _common0_mio0SegmentRomStart, /*romEnd*/ _common0_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0F, /*romStart*/ _common0_geoSegmentRomStart,  /*romEnd*/ _common0_geoSegmentRomEnd
+    load_mio0         /*seg*/ 0x07, /*romStart*/ _cotmc_segment_7SegmentRomStart, /*romEnd*/ _cotmc_segment_7SegmentRomEnd
+    load_mio0_texture /*seg*/ 0x09, /*romStart*/ _cave_mio0SegmentRomStart, /*romEnd*/ _cave_mio0SegmentRomEnd
+    load_mio0         /*seg*/ 0x05, /*romStart*/ _group8_mio0SegmentRomStart, /*romEnd*/ _group8_mio0SegmentRomEnd
+    load_raw          /*seg*/ 0x0C, /*romStart*/ _group8_geoSegmentRomStart,  /*romEnd*/ _group8_geoSegmentRomEnd
+    load_mio0         /*seg*/ 0x06, /*romStart*/ _group17_mio0SegmentRomStart, /*romEnd*/ _group17_mio0SegmentRomEnd
+    load_raw          /*seg*/ 0x0D, /*romStart*/ _group17_geoSegmentRomStart,  /*romEnd*/ _group17_geoSegmentRomEnd
+    load_mio0         /*seg*/ 0x08, /*romStart*/ _common0_mio0SegmentRomStart, /*romEnd*/ _common0_mio0SegmentRomEnd
+    load_raw          /*seg*/ 0x0F, /*romStart*/ _common0_geoSegmentRomStart,  /*romEnd*/ _common0_geoSegmentRomEnd
     alloc_level_pool
     mario /*unk3*/ 0x01, /*behParam*/ 0x00000001, /*beh*/ beh_mario
     jump_link /*target*/ script_func_global_9
@@ -34,7 +34,7 @@ glabel level_cotmc_entry
         jump_link /*target*/ script_func_local_1
         terrain /*terrainData*/ cotmc_seg7_collision_level
         macro_objects /*objList*/ cotmc_seg7_macro_objs
-        cmd30 /*unk2*/ 0x00, /*unk3*/ 0x82
+        show_dialog /*unk2*/ 0x00, /*dialogid*/ 0x82
         set_music /*unk2*/ 0x0004, /*seq*/ SEQ_LEVEL_UNDERGROUND
         terrain_type /*terrainType*/ 0x0001
     end_area

@@ -22,7 +22,7 @@ glabel level_main_scripts_entry
     load_model_from_geo /*model*/ MODEL_STAR,                    /*geo*/ star_geo
     load_model_from_geo /*model*/ MODEL_TRANSPARENT_STAR,        /*geo*/ transparent_star_geo
     load_model_from_geo /*model*/ MODEL_WOODEN_SIGNPOST,         /*geo*/ wooden_signpost_geo
-    load_model_from_dl  /*model*/ MODEL_DL_GLOBAL_A4,            /*dl*/  snowball_seg4_dl_04032A18,  /*unk2*/ 0x40
+    load_model_from_dl  /*model*/ MODEL_SMALL_SNOW_BALL,         /*dl*/  small_snow_ball_dl,          /*layer*/ LAYER_ALPHA
     load_model_from_geo /*model*/ MODEL_RED_FLAME,               /*geo*/ red_flame_geo
     load_model_from_geo /*model*/ MODEL_BLUE_FLAME,              /*geo*/ blue_flame_geo
     load_model_from_geo /*model*/ MODEL_BURN_SMOKE,              /*geo*/ burn_smoke_geo
@@ -31,13 +31,13 @@ glabel level_main_scripts_entry
     load_model_from_geo /*model*/ MODEL_FISH,                    /*geo*/ fish_geo
     load_model_from_geo /*model*/ MODEL_FISH_2,                  /*geo*/ fish2_geo
     load_model_from_geo /*model*/ MODEL_SPARKLES_ANIMATION,      /*geo*/ sparkles_animation_geo
-    load_model_from_dl  /*model*/ MODEL_DL_GLOBAL_9F,            /*dl*/  sand_seg3_dl_0302BCD0,      /*unk2*/ 0x40
+    load_model_from_dl  /*model*/ MODEL_SAND_DUST,               /*dl*/  sand_seg3_dl_0302BCD0,       /*layer*/ LAYER_ALPHA
     load_model_from_geo /*model*/ MODEL_BUTTERFLY,               /*geo*/ butterfly_geo
     load_model_from_geo /*model*/ MODEL_BURN_SMOKE_COPY,         /*geo*/ burn_smoke_geo
-    load_model_from_dl  /*model*/ MODEL_DL_GLOBAL_A1,            /*dl*/  pebble_seg3_dl_0301CB00,    /*unk2*/ 0x40
+    load_model_from_dl  /*model*/ MODEL_PEBBLE,                  /*dl*/  pebble_seg3_dl_0301CB00,     /*layer*/ LAYER_ALPHA
     load_model_from_geo /*model*/ MODEL_MIST,                    /*geo*/ mist_geo
     load_model_from_geo /*model*/ MODEL_WHITE_PUFF,              /*geo*/ white_puff_geo
-    load_model_from_dl  /*model*/ MODEL_DL_GLOBAL_9E,            /*dl*/  snow_ball_seg3_dl_0302C8A0, /*unk2*/ 0x40
+    load_model_from_dl  /*model*/ MODEL_SNOWMAN_SNOW_BALL_DL,    /*dl*/  snowman_snow_ball_dl,        /*layer*/ LAYER_ALPHA
     load_model_from_geo /*model*/ MODEL_SNOWMAN_SNOW_BALL,       /*geo*/ snowman_snow_ball_geo
     load_model_from_geo /*model*/ MODEL_YELLOW_COIN_NO_SHADOW,   /*geo*/ yellow_coin_no_shadow_geo
     load_model_from_geo /*model*/ MODEL_BLUE_COIN,               /*geo*/ blue_coin_geo
@@ -253,13 +253,13 @@ glabel script_func_global_1
     load_model_from_geo /*model*/ MODEL_EXCLAMATION_BOX_OUTLINE, /*geo*/ exclamation_box_outline_geo
     load_model_from_geo /*model*/ MODEL_EXCLAMATION_BOX,         /*geo*/ exclamation_box_geo
     load_model_from_geo /*model*/ MODEL_GOOMBA,                  /*geo*/ goomba_geo
-    load_model_from_dl  /*model*/ MODEL_DL_COMMON1_84,           /*dl*/  exclamation_box_outline_seg8_dl_08025F08, /*unk2*/ 0x40
+    load_model_from_dl  /*model*/ MODEL_EXCLAMATION_POINT,       /*dl*/  exclamation_box_outline_seg8_dl_08025F08, /*layer*/ LAYER_ALPHA
     load_model_from_geo /*model*/ MODEL_KOOPA_SHELL,             /*geo*/ koopa_shell_geo
     load_model_from_geo /*model*/ MODEL_METAL_BOX,               /*geo*/ metal_box_geo
-    load_model_from_dl  /*model*/ MODEL_DL_COMMON1_DA,           /*dl*/  metal_box_seg8_dl_08024BB8,               /*unk2*/ 0x10
+    load_model_from_dl  /*model*/ MODEL_METAL_BOX_DL,            /*dl*/  metal_box_dl,                             /*layer*/ LAYER_OPAQUE
     load_model_from_geo /*model*/ MODEL_BLACK_BOBOMB,            /*geo*/ black_bobomb_geo
     load_model_from_geo /*model*/ MODEL_BOBOMB_BUDDY,            /*geo*/ bobomb_buddy_geo
-    load_model_from_dl  /*model*/ MODEL_DL_CANNON_LID,           /*dl*/  cannon_lid_seg8_dl_080048E0,              /*unk2*/ 0x10
+    load_model_from_dl  /*model*/ MODEL_DL_CANNON_LID,           /*dl*/  cannon_lid_seg8_dl_080048E0,              /*layer*/ LAYER_OPAQUE
     load_model_from_geo /*model*/ MODEL_BOWLING_BALL,            /*geo*/ bowling_ball_geo
     load_model_from_geo /*model*/ MODEL_CANNON_BARREL,           /*geo*/ cannon_barrel_geo
     load_model_from_geo /*model*/ MODEL_CANNON_BASE,             /*geo*/ cannon_base_geo
@@ -294,7 +294,7 @@ glabel script_func_global_5
     load_model_from_geo /*model*/ MODEL_MANTA_RAY,               /*geo*/ manta_seg5_geo_05008D14
     load_model_from_geo /*model*/ MODEL_UNAGI,                   /*geo*/ unagi_geo
     load_model_from_geo /*model*/ MODEL_SUSHI,                   /*geo*/ sushi_geo
-    load_model_from_dl  /*model*/ MODEL_DL_WHIRLPOOL,            /*dl*/  whirlpool_seg5_dl_05013CB8, /*unk2*/ 0x50
+    load_model_from_dl  /*model*/ MODEL_DL_WHIRLPOOL,            /*dl*/  whirlpool_seg5_dl_05013CB8, /*layer*/ LAYER_TRANSPARENT
     load_model_from_geo /*model*/ MODEL_CLAM_SHELL,              /*geo*/ clam_shell_geo
     return
 
@@ -308,7 +308,7 @@ glabel script_func_global_6
     return
 
 glabel script_func_global_7
-    load_model_from_dl  /*model*/ MODEL_DL_MONTY_MOLE_HOLE,      /*dl*/  monty_mole_hole_seg5_dl_05000840, /*unk2*/ 0x60
+    load_model_from_dl  /*model*/ MODEL_DL_MONTY_MOLE_HOLE,      /*dl*/  monty_mole_hole_seg5_dl_05000840, /*layer*/ LAYER_TRANSPARENT_DECAL
     load_model_from_geo /*model*/ MODEL_MONTY_MOLE,              /*geo*/ monty_mole_geo
     load_model_from_geo /*model*/ MODEL_UKIKI,                   /*geo*/ ukiki_geo
     load_model_from_geo /*model*/ MODEL_FWOOSH,                  /*geo*/ fwoosh_geo
@@ -322,9 +322,9 @@ glabel script_func_global_8
     return
 
 glabel script_func_global_9
-    load_model_from_dl  /*model*/ MODEL_DL_COMMON9_54,           /*dl*/  capswitch_seg5_dl_05002E00,       /*unk2*/ 0x40
+    load_model_from_dl  /*model*/ MODEL_CAP_SWITCH_EXCLAMATION,  /*dl*/  cap_switch_exclamation_seg5_dl_05002E00, /*layer*/ LAYER_ALPHA
     load_model_from_geo /*model*/ MODEL_CAP_SWITCH,              /*geo*/ cap_switch_geo
-    load_model_from_dl  /*model*/ MODEL_DL_COMMON9_56,           /*dl*/  cap_switch_base_seg5_dl_05003120, /*unk2*/ 0x10
+    load_model_from_dl  /*model*/ MODEL_CAP_SWITCH_BASE,         /*dl*/  cap_switch_base_seg5_dl_05003120,        /*layer*/ LAYER_OPAQUE
     return
 
 glabel script_func_global_10
@@ -333,7 +333,7 @@ glabel script_func_global_10
     load_model_from_geo /*model*/ MODEL_HAUNTED_CHAIR,           /*geo*/ haunted_chair_geo
     load_model_from_geo /*model*/ MODEL_MAD_PIANO,               /*geo*/ mad_piano_geo
     load_model_from_geo /*model*/ MODEL_BOOKEND_PART,            /*geo*/ bookend_part_geo
-    load_model_from_geo /*model*/ MODEL_BOOKEND,              /*geo*/ bookend_geo
+    load_model_from_geo /*model*/ MODEL_BOOKEND,                 /*geo*/ bookend_geo
     load_model_from_geo /*model*/ MODEL_HAUNTED_CAGE,            /*geo*/ haunted_cage_geo
     return
 
@@ -353,13 +353,13 @@ glabel script_func_global_12
     return
 
 glabel script_func_global_13
-    load_model_from_geo /*model*/ MODEL_COMMON13_64,             /*geo*/ bowser_geo
-    load_model_from_geo /*model*/ MODEL_COMMON13_65,             /*geo*/ bowser_bomb_geo
+    load_model_from_geo /*model*/ MODEL_BOWSER,                  /*geo*/ bowser_geo
+    load_model_from_geo /*model*/ MODEL_BOWSER_BOMB2,            /*geo*/ bowser_bomb_geo
     load_model_from_geo /*model*/ MODEL_BOWSER_BOMB,             /*geo*/ bowser_bomb_geo
-    load_model_from_geo /*model*/ MODEL_COMMON13_66,             /*geo*/ bowser_impact_smoke_geo
-    load_model_from_geo /*model*/ MODEL_COMMON13_67,             /*geo*/ bowser_flames_geo
-    load_model_from_geo /*model*/ MODEL_COMMON13_68,             /*geo*/ invisible_bowser_accessory_geo
-    load_model_from_geo /*model*/ MODEL_COMMON13_69,             /*geo*/ bowser2_geo
+    load_model_from_geo /*model*/ MODEL_BOWSER_SMOKE,            /*geo*/ bowser_impact_smoke_geo
+    load_model_from_geo /*model*/ MODEL_BOWSER_FLAMES,           /*geo*/ bowser_flames_geo
+    load_model_from_geo /*model*/ MODEL_BOWSER_WAVE,             /*geo*/ invisible_bowser_accessory_geo
+    load_model_from_geo /*model*/ MODEL_BOWSER2,                 /*geo*/ bowser2_geo
     return
 
 glabel script_func_global_14
@@ -392,8 +392,8 @@ glabel script_func_global_16
     return
 
 glabel script_func_global_17
-    load_model_from_geo /*model*/ MODEL_COMMON17_64,             /*geo*/ chilly_chief_seg6_geo
-    load_model_from_geo /*model*/ MODEL_BIG_CHILL_BULLY,             /*geo*/ chilly_chief_seg6_geo2
+    load_model_from_geo /*model*/ MODEL_CHILL_BULLY,             /*geo*/ chilly_chief_seg6_geo
+    load_model_from_geo /*model*/ MODEL_BIG_CHILL_BULLY,         /*geo*/ chilly_chief_seg6_geo2
     load_model_from_geo /*model*/ MODEL_MONEYBAG,                /*geo*/ moneybag_geo
     return
 

@@ -199,23 +199,23 @@ script_func_local_4:
 
 glabel level_castle_entry
     init_level
-    load_mio0 /*seg*/ 0x07, /*romStart*/ _castle_inside_segment_7SegmentRomStart, /*romEnd*/ _castle_inside_segment_7SegmentRomEnd
-    cmd1A     /*seg*/ 0x09, /*romStart*/ _inside_mio0SegmentRomStart, /*romEnd*/ _inside_mio0SegmentRomEnd
-    load_mio0 /*seg*/ 0x06, /*romStart*/ _group15_mio0SegmentRomStart, /*romEnd*/ _group15_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0D, /*romStart*/ _group15_geoSegmentRomStart,  /*romEnd*/ _group15_geoSegmentRomEnd
+    load_mio0         /*seg*/ 0x07, /*romStart*/ _castle_inside_segment_7SegmentRomStart, /*romEnd*/ _castle_inside_segment_7SegmentRomEnd
+    load_mio0_texture /*seg*/ 0x09, /*romStart*/ _inside_mio0SegmentRomStart, /*romEnd*/ _inside_mio0SegmentRomEnd
+    load_mio0         /*seg*/ 0x06, /*romStart*/ _group15_mio0SegmentRomStart, /*romEnd*/ _group15_mio0SegmentRomEnd
+    load_raw          /*seg*/ 0x0D, /*romStart*/ _group15_geoSegmentRomStart,  /*romEnd*/ _group15_geoSegmentRomEnd
     alloc_level_pool
     mario /*unk3*/ 0x01, /*behParam*/ 0x00000001, /*beh*/ beh_mario
     jump_link /*target*/ script_func_global_16
-    load_model_from_geo /*model*/ MODEL_CASTLE_35,                 /*geo*/ castle_geo_000F18
+    load_model_from_geo /*model*/ MODEL_CASTLE_BOWSER_TRAP,        /*geo*/ castle_geo_000F18
     load_model_from_geo /*model*/ MODEL_CASTLE_WATER_LEVEL_PILLAR, /*geo*/ castle_geo_001940
     load_model_from_geo /*model*/ MODEL_CASTLE_CLOCK_MINUTE_HAND,  /*geo*/ castle_geo_001530
     load_model_from_geo /*model*/ MODEL_CASTLE_CLOCK_HOUR_HAND,    /*geo*/ castle_geo_001548
     load_model_from_geo /*model*/ MODEL_CASTLE_CLOCK_PENDULUM,     /*geo*/ castle_geo_001518
-    load_model_from_geo /*model*/ MODEL_CASTLE_26,                 /*geo*/ castle_door_geo
-    load_model_from_geo /*model*/ MODEL_CASTLE_27,                 /*geo*/ wooden_door_geo
-    load_model_from_geo /*model*/ MODEL_CASTLE_METAL_DOOR,         /*geo*/ metal_door_geo
     load_model_from_geo /*model*/ MODEL_CASTLE_CASTLE_DOOR,        /*geo*/ castle_door_geo
     load_model_from_geo /*model*/ MODEL_CASTLE_WOODEN_DOOR,        /*geo*/ wooden_door_geo
+    load_model_from_geo /*model*/ MODEL_CASTLE_METAL_DOOR,         /*geo*/ metal_door_geo
+    load_model_from_geo /*model*/ MODEL_CASTLE_CASTLE_DOOR2,       /*geo*/ castle_door_geo
+    load_model_from_geo /*model*/ MODEL_CASTLE_WOODEN_DOOR2,       /*geo*/ wooden_door_geo
     load_model_from_geo /*model*/ MODEL_CASTLE_DOOR_0_STARS,       /*geo*/ castle_door_0_star_geo
     load_model_from_geo /*model*/ MODEL_CASTLE_DOOR_1_STAR,        /*geo*/ castle_door_1_star_geo
     load_model_from_geo /*model*/ MODEL_CASTLE_DOOR_3_STARS,       /*geo*/ castle_door_3_stars_geo

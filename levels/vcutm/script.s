@@ -1,6 +1,6 @@
 script_func_local_1:
-    object /*model*/ MODEL_VCUTM_36, /*pos*/   154, -1919, -6256, /*angle*/ 0, 270, 0, /*behParam*/ 0x00070000, /*beh*/ bSeesawPlatform
-    object /*model*/ MODEL_VCUTM_36, /*pos*/ -2047, -3378, -2047, /*angle*/ 0,   0, 0, /*behParam*/ 0x00070000, /*beh*/ bSeesawPlatform
+    object /*model*/ MODEL_VCUTM_SEESAW_PLATFORM, /*pos*/   154, -1919, -6256, /*angle*/ 0, 270, 0, /*behParam*/ 0x00070000, /*beh*/ bSeesawPlatform
+    object /*model*/ MODEL_VCUTM_SEESAW_PLATFORM, /*pos*/ -2047, -3378, -2047, /*angle*/ 0,   0, 0, /*behParam*/ 0x00070000, /*beh*/ bSeesawPlatform
 	#! invalid model IDs - model ID 0x37 isn't loaded
     object /*model*/ 0x37,           /*pos*/  3251, -1082, -6256, /*angle*/ 0, 270, 0, /*behParam*/ 0x014B0000, /*beh*/ beh_checkerboard_elevator_group
     object /*model*/ 0x37,           /*pos*/  2355, -1901, -6256, /*angle*/ 0, 270, 0, /*behParam*/ 0x014B0000, /*beh*/ beh_checkerboard_elevator_group
@@ -18,18 +18,18 @@ script_func_local_3:
 
 glabel level_vcutm_entry
     init_level
-    cmd1A     /*seg*/ 0x09, /*romStart*/ _outside_mio0SegmentRomStart, /*romEnd*/ _outside_mio0SegmentRomEnd
-    load_mio0 /*seg*/ 0x07, /*romStart*/ _vcutm_segment_7SegmentRomStart, /*romEnd*/ _vcutm_segment_7SegmentRomEnd
-    load_mio0 /*seg*/ 0x05, /*romStart*/ _group8_mio0SegmentRomStart, /*romEnd*/ _group8_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0C, /*romStart*/ _group8_geoSegmentRomStart,  /*romEnd*/ _group8_geoSegmentRomEnd
-    load_mio0 /*seg*/ 0x08, /*romStart*/ _common0_mio0SegmentRomStart, /*romEnd*/ _common0_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0F, /*romStart*/ _common0_geoSegmentRomStart,  /*romEnd*/ _common0_geoSegmentRomEnd
+    load_mio0_texture /*seg*/ 0x09, /*romStart*/ _outside_mio0SegmentRomStart, /*romEnd*/ _outside_mio0SegmentRomEnd
+    load_mio0         /*seg*/ 0x07, /*romStart*/ _vcutm_segment_7SegmentRomStart, /*romEnd*/ _vcutm_segment_7SegmentRomEnd
+    load_mio0         /*seg*/ 0x05, /*romStart*/ _group8_mio0SegmentRomStart, /*romEnd*/ _group8_mio0SegmentRomEnd
+    load_raw          /*seg*/ 0x0C, /*romStart*/ _group8_geoSegmentRomStart,  /*romEnd*/ _group8_geoSegmentRomEnd
+    load_mio0         /*seg*/ 0x08, /*romStart*/ _common0_mio0SegmentRomStart, /*romEnd*/ _common0_mio0SegmentRomEnd
+    load_raw          /*seg*/ 0x0F, /*romStart*/ _common0_geoSegmentRomStart,  /*romEnd*/ _common0_geoSegmentRomEnd
     alloc_level_pool
     mario /*unk3*/ 0x01, /*behParam*/ 0x00000001, /*beh*/ beh_mario
     jump_link /*target*/ script_func_global_1
     jump_link /*target*/ script_func_global_9
-    load_model_from_geo /*model*/ MODEL_VCUTM_36, /*geo*/ vcutm_geo_0001F0
-    load_model_from_geo /*model*/ MODEL_VCUTM_WARP_PIPE, /*geo*/ warp_pipe_geo
+    load_model_from_geo /*model*/ MODEL_VCUTM_SEESAW_PLATFORM, /*geo*/ vcutm_geo_0001F0
+    load_model_from_geo /*model*/ MODEL_VCUTM_WARP_PIPE,       /*geo*/ warp_pipe_geo
 
     area /*index*/ 1, /*geo*/ vcutm_geo_000208
         object /*model*/ MODEL_NONE, /*pos*/ -6143, 6734, -6143, /*angle*/ 0, 0, 0, /*behParam*/ 0x000A0000, /*beh*/ beh_warps_64
@@ -42,7 +42,7 @@ glabel level_vcutm_entry
         jump_link /*target*/ script_func_local_2
         terrain /*terrainData*/ vcutm_seg7_collision
         macro_objects /*objList*/ vcutm_seg7_macro_objs
-        cmd30 /*unk2*/ 0x00, /*unk3*/ 0x81
+        show_dialog /*unk2*/ 0x00, /*dialogid*/ 0x81
         set_music /*unk2*/ 0x0000, /*seq*/ SEQ_LEVEL_SLIDE
         terrain_type /*terrainType*/ 0x0001
     end_area

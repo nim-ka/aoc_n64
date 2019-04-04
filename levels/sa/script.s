@@ -9,14 +9,14 @@ script_func_local_2:
 
 glabel level_sa_entry
     init_level
-    load_mio0 /*seg*/ 0x07, /*romStart*/ _sa_segment_7SegmentRomStart, /*romEnd*/ _sa_segment_7SegmentRomEnd
-    cmd1A     /*seg*/ 0x09, /*romStart*/ _inside_mio0SegmentRomStart, /*romEnd*/ _inside_mio0SegmentRomEnd
-    load_mio0 /*seg*/ 0x0A, /*romStart*/ _cloud_floor_skybox_mio0SegmentRomStart, /*romEnd*/ _cloud_floor_skybox_mio0SegmentRomEnd
-    load_mio0 /*seg*/ 0x0B, /*romStart*/ _effect_mio0SegmentRomStart, /*romEnd*/ _effect_mio0SegmentRomEnd
-    load_mio0 /*seg*/ 0x05, /*romStart*/ _group4_mio0SegmentRomStart, /*romEnd*/ _group4_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0C, /*romStart*/ _group4_geoSegmentRomStart,  /*romEnd*/ _group4_geoSegmentRomEnd
-    load_mio0 /*seg*/ 0x06, /*romStart*/ _group13_mio0SegmentRomStart, /*romEnd*/ _group13_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0D, /*romStart*/ _group13_geoSegmentRomStart,  /*romEnd*/ _group13_geoSegmentRomEnd
+    load_mio0         /*seg*/ 0x07, /*romStart*/ _sa_segment_7SegmentRomStart, /*romEnd*/ _sa_segment_7SegmentRomEnd
+    load_mio0_texture /*seg*/ 0x09, /*romStart*/ _inside_mio0SegmentRomStart, /*romEnd*/ _inside_mio0SegmentRomEnd
+    load_mio0         /*seg*/ 0x0A, /*romStart*/ _cloud_floor_skybox_mio0SegmentRomStart, /*romEnd*/ _cloud_floor_skybox_mio0SegmentRomEnd
+    load_mio0         /*seg*/ 0x0B, /*romStart*/ _effect_mio0SegmentRomStart, /*romEnd*/ _effect_mio0SegmentRomEnd
+    load_mio0         /*seg*/ 0x05, /*romStart*/ _group4_mio0SegmentRomStart, /*romEnd*/ _group4_mio0SegmentRomEnd
+    load_raw          /*seg*/ 0x0C, /*romStart*/ _group4_geoSegmentRomStart,  /*romEnd*/ _group4_geoSegmentRomEnd
+    load_mio0         /*seg*/ 0x06, /*romStart*/ _group13_mio0SegmentRomStart, /*romEnd*/ _group13_mio0SegmentRomEnd
+    load_raw          /*seg*/ 0x0D, /*romStart*/ _group13_geoSegmentRomStart,  /*romEnd*/ _group13_geoSegmentRomEnd
     alloc_level_pool
     mario /*unk3*/ 0x01, /*behParam*/ 0x00000001, /*beh*/ beh_mario
     jump_link /*target*/ script_func_global_5

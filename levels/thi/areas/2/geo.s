@@ -7,7 +7,7 @@ glabel thi_geo_0006D4 # 0x0E0006D4
       geo_open_node
          geo_todo_09 100
          geo_open_node
-            geo_background 0, Geo19_802763D4
+            geo_background BACKGROUND_OCEAN_SKY, Geo19_802763D4
          geo_close_node
       geo_close_node
       geo_zbuffer 1
@@ -18,15 +18,15 @@ glabel thi_geo_0006D4 # 0x0E0006D4
             geo_open_node
                geo_scale 0x00, 19660
                geo_open_node
-                  geo_display_list 0x01, thi_seg7_dl_07005260
-                  geo_display_list 0x01, thi_seg7_dl_07006968
-                  geo_display_list 0x04, thi_seg7_dl_07007008
-                  geo_display_list 0x05, thi_seg7_dl_070072E8
+                  geo_display_list LAYER_OPAQUE, thi_seg7_dl_07005260
+                  geo_display_list LAYER_OPAQUE, thi_seg7_dl_07006968
+                  geo_display_list LAYER_ALPHA, thi_seg7_dl_07007008
+                  geo_display_list LAYER_TRANSPARENT, thi_seg7_dl_070072E8
                geo_close_node
-               geo_display_list 0x06, thi_seg7_dl_07007538
+               geo_display_list LAYER_TRANSPARENT_DECAL, thi_seg7_dl_07007538
                geo_asm    0, Geo18_802D01E0
                geo_asm 4866, Geo18_802D104C
-               geo_todo_17
+               geo_render_obj
                geo_asm    0, Geo18_802761D0
             geo_close_node
          geo_close_node

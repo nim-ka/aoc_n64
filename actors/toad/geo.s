@@ -1,48 +1,48 @@
 glabel toad_geo_000114 # 0x0D000114
    geo_node_start
    geo_open_node
-      geo_dl_translated 0x01, 0, 0, 0
+      geo_dl_translated LAYER_OPAQUE, 0, 0, 0
       geo_open_node
-         geo_dl_translated 0x01, 0, 0, 0
+         geo_dl_translated LAYER_OPAQUE, 0, 0, 0
          geo_open_node
-            geo_dl_translated 0x01, 83, 0, 0
+            geo_dl_translated LAYER_OPAQUE, 83, 0, 0
             geo_open_node
-               geo_dl_translated 0x01, 126, -37, 0, toad_seg6_dl_06007710
+               geo_dl_translated LAYER_OPAQUE, 126, -37, 0, toad_seg6_dl_06007710
             geo_close_node
-            geo_dl_translated 0x01, 25, 8, 0, toad_seg6_dl_06007A48
-            geo_dl_translated 0x01, 34, 8, 0, toad_seg6_dl_06007EB0
-            geo_dl_translated 0x01, 4, 7, 38
+            geo_dl_translated LAYER_OPAQUE, 25, 8, 0, toad_seg6_dl_06007A48
+            geo_dl_translated LAYER_OPAQUE, 34, 8, 0, toad_seg6_dl_06007EB0
+            geo_dl_translated LAYER_OPAQUE, 4, 7, 38
             geo_open_node
-               geo_dl_translated 0x01, 0, 0, 0
+               geo_dl_translated LAYER_OPAQUE, 0, 0, 0
                geo_open_node
-                  geo_dl_translated 0x01, 37, 0, 0
+                  geo_dl_translated LAYER_OPAQUE, 37, 0, 0
                   geo_open_node
-                     geo_dl_translated 0x01, 9, -25, 3, toad_seg6_dl_06008890
+                     geo_dl_translated LAYER_OPAQUE, 9, -25, 3, toad_seg6_dl_06008890
                   geo_close_node
                geo_close_node
             geo_close_node
-            geo_dl_translated 0x01, 4, 7, -38
+            geo_dl_translated LAYER_OPAQUE, 4, 7, -38
             geo_open_node
-               geo_dl_translated 0x01, 0, 0, 0
+               geo_dl_translated LAYER_OPAQUE, 0, 0, 0
                geo_open_node
-                  geo_dl_translated 0x01, 37, 0, 0
+                  geo_dl_translated LAYER_OPAQUE, 37, 0, 0
                   geo_open_node
-                     geo_dl_translated 0x01, 9, -25, -3, toad_seg6_dl_06008BD8
+                     geo_dl_translated LAYER_OPAQUE, 9, -25, -3, toad_seg6_dl_06008BD8
                   geo_close_node
                geo_close_node
             geo_close_node
-            geo_dl_translated 0x01, 61, -3, 52
+            geo_dl_translated LAYER_OPAQUE, 61, -3, 52
             geo_open_node
-               geo_dl_translated 0x01, 0, 0, 0
+               geo_dl_translated LAYER_OPAQUE, 0, 0, 0
                geo_open_node
-                  geo_dl_translated 0x01, 17, 0, 4, toad_seg6_dl_060081F8
+                  geo_dl_translated LAYER_OPAQUE, 17, 0, 4, toad_seg6_dl_060081F8
                geo_close_node
             geo_close_node
-            geo_dl_translated 0x01, 61, -3, -52
+            geo_dl_translated LAYER_OPAQUE, 61, -3, -52
             geo_open_node
-               geo_dl_translated 0x01, 0, 0, 0
+               geo_dl_translated LAYER_OPAQUE, 0, 0, 0
                geo_open_node
-                  geo_dl_translated 0x01, 17, 0, -4, toad_seg6_dl_06008520
+                  geo_dl_translated LAYER_OPAQUE, 17, 0, -4, toad_seg6_dl_06008520
                geo_close_node
             geo_close_node
          geo_close_node
@@ -53,59 +53,59 @@ glabel toad_geo_000114 # 0x0D000114
 glabel toad_geo_00027C # 0x0D00027C
    geo_node_start
    geo_open_node
-      geo_dl_translated 0x05, 0, 0, 0
+      geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0
       geo_open_node
-         geo_dl_translated 0x05, 0, 0, 0
+         geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0
          geo_open_node
-            geo_dl_translated 0x05, 83, 0, 0
+            geo_dl_translated LAYER_TRANSPARENT, 83, 0, 0
             geo_open_node
 .ifdef VERSION_JP
-               geo_dl_translated 0x05, 126, -37, 0, toad_seg6_dl_06007710
+               geo_dl_translated LAYER_TRANSPARENT, 126, -37, 0, toad_seg6_dl_06007710
 .else
-               geo_dl_translated 0x05, 126, -37, 0, toad_seg6_us_dl_06007788
+               geo_dl_translated LAYER_TRANSPARENT, 126, -37, 0, toad_seg6_us_dl_06007788
 .endif
             geo_close_node
 .ifdef VERSION_JP
-            geo_dl_translated 0x05, 25, 8, 0, toad_seg6_dl_06007A48
+            geo_dl_translated LAYER_TRANSPARENT, 25, 8, 0, toad_seg6_dl_06007A48
 .else
-            geo_dl_translated 0x05, 25, 8, 0, toad_seg6_us_dl_06007B00
+            geo_dl_translated LAYER_TRANSPARENT, 25, 8, 0, toad_seg6_us_dl_06007B00
 .endif
-            geo_dl_translated 0x05, 34, 8, 0, toad_seg6_dl_06007EB0
-            geo_dl_translated 0x05, 4, 7, 38
+            geo_dl_translated LAYER_TRANSPARENT, 34, 8, 0, toad_seg6_dl_06007EB0
+            geo_dl_translated LAYER_TRANSPARENT, 4, 7, 38
             geo_open_node
-               geo_dl_translated 0x05, 0, 0, 0
+               geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0
                geo_open_node
-                  geo_dl_translated 0x05, 37, 0, 0
+                  geo_dl_translated LAYER_TRANSPARENT, 37, 0, 0
                   geo_open_node
-                     geo_dl_translated 0x05, 9, -25, 3, toad_seg6_dl_06008890
+                     geo_dl_translated LAYER_TRANSPARENT, 9, -25, 3, toad_seg6_dl_06008890
                   geo_close_node
                geo_close_node
             geo_close_node
-            geo_dl_translated 0x05, 4, 7, -38
+            geo_dl_translated LAYER_TRANSPARENT, 4, 7, -38
             geo_open_node
-               geo_dl_translated 0x05, 0, 0, 0
+               geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0
                geo_open_node
-                  geo_dl_translated 0x05, 37, 0, 0
+                  geo_dl_translated LAYER_TRANSPARENT, 37, 0, 0
                   geo_open_node
-                     geo_dl_translated 0x05, 9, -25, -3, toad_seg6_dl_06008BD8
+                     geo_dl_translated LAYER_TRANSPARENT, 9, -25, -3, toad_seg6_dl_06008BD8
                   geo_close_node
                geo_close_node
             geo_close_node
-            geo_dl_translated 0x05, 61, -3, 52
+            geo_dl_translated LAYER_TRANSPARENT, 61, -3, 52
             geo_open_node
-               geo_dl_translated 0x05, 0, 0, 0
+               geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0
                geo_open_node
-                  geo_dl_translated 0x05, 17, 0, 4, toad_seg6_dl_060081F8
+                  geo_dl_translated LAYER_TRANSPARENT, 17, 0, 4, toad_seg6_dl_060081F8
                geo_close_node
             geo_close_node
-            geo_dl_translated 0x05, 61, -3, -52
+            geo_dl_translated LAYER_TRANSPARENT, 61, -3, -52
             geo_open_node
-               geo_dl_translated 0x05, 0, 0, 0
+               geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0
                geo_open_node
 .ifdef VERSION_JP
-                  geo_dl_translated 0x05, 17, 0, -4, toad_seg6_dl_06008520
+                  geo_dl_translated LAYER_TRANSPARENT, 17, 0, -4, toad_seg6_dl_06008520
 .else
-                  geo_dl_translated 0x05, 17, 0, -4, toad_seg6_us_dl_06008608
+                  geo_dl_translated LAYER_TRANSPARENT, 17, 0, -4, toad_seg6_us_dl_06008608
 .endif
                geo_close_node
             geo_close_node

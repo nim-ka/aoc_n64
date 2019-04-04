@@ -50,53 +50,53 @@ script_func_local_3:
 
 glabel level_rr_entry
     init_level
-    load_mio0 /*seg*/ 0x07, /*romStart*/ _rr_segment_7SegmentRomStart, /*romEnd*/ _rr_segment_7SegmentRomEnd
-    cmd1A     /*seg*/ 0x09, /*romStart*/ _sky_mio0SegmentRomStart, /*romEnd*/ _sky_mio0SegmentRomEnd
-    load_mio0 /*seg*/ 0x0A, /*romStart*/ _cloud_floor_skybox_mio0SegmentRomStart, /*romEnd*/ _cloud_floor_skybox_mio0SegmentRomEnd
-    load_mio0 /*seg*/ 0x05, /*romStart*/ _group11_mio0SegmentRomStart, /*romEnd*/ _group11_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0C, /*romStart*/ _group11_geoSegmentRomStart,  /*romEnd*/ _group11_geoSegmentRomEnd
-    load_mio0 /*seg*/ 0x08, /*romStart*/ _common0_mio0SegmentRomStart, /*romEnd*/ _common0_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0F, /*romStart*/ _common0_geoSegmentRomStart, /*romEnd*/ _common0_geoSegmentRomEnd
+    load_mio0         /*seg*/ 0x07, /*romStart*/ _rr_segment_7SegmentRomStart, /*romEnd*/ _rr_segment_7SegmentRomEnd
+    load_mio0_texture /*seg*/ 0x09, /*romStart*/ _sky_mio0SegmentRomStart, /*romEnd*/ _sky_mio0SegmentRomEnd
+    load_mio0         /*seg*/ 0x0A, /*romStart*/ _cloud_floor_skybox_mio0SegmentRomStart, /*romEnd*/ _cloud_floor_skybox_mio0SegmentRomEnd
+    load_mio0         /*seg*/ 0x05, /*romStart*/ _group11_mio0SegmentRomStart, /*romEnd*/ _group11_mio0SegmentRomEnd
+    load_raw          /*seg*/ 0x0C, /*romStart*/ _group11_geoSegmentRomStart,  /*romEnd*/ _group11_geoSegmentRomEnd
+    load_mio0         /*seg*/ 0x08, /*romStart*/ _common0_mio0SegmentRomStart, /*romEnd*/ _common0_mio0SegmentRomEnd
+    load_raw          /*seg*/ 0x0F, /*romStart*/ _common0_geoSegmentRomStart, /*romEnd*/ _common0_geoSegmentRomEnd
     alloc_level_pool
     mario /*unk3*/ 0x01, /*behParam*/ 0x00000001, /*beh*/ beh_mario
     jump_link /*target*/ script_func_global_12
     jump_link /*target*/ script_func_global_1
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_03, /*geo*/ rr_geo_000660
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_04, /*geo*/ rr_geo_000678
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_05, /*geo*/ rr_geo_000690
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_06, /*geo*/ rr_geo_0006A8
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_07, /*geo*/ rr_geo_0006C0
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_08, /*geo*/ rr_geo_0006D8
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_09, /*geo*/ rr_geo_0006F0
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0A, /*geo*/ rr_geo_000708
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0B, /*geo*/ rr_geo_000720
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0C, /*geo*/ rr_geo_000738
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0D, /*geo*/ rr_geo_000758
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0E, /*geo*/ rr_geo_000770
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0F, /*geo*/ rr_geo_000788
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_10, /*geo*/ rr_geo_0007A0
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_11, /*geo*/ rr_geo_0007B8
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_12, /*geo*/ rr_geo_0007D0
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_13, /*geo*/ rr_geo_0007E8
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_14, /*geo*/ rr_geo_000800
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_15, /*geo*/ rr_geo_000818
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_16, /*geo*/ rr_geo_000830
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_03,           /*geo*/ rr_geo_000660
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_04,           /*geo*/ rr_geo_000678
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_05,           /*geo*/ rr_geo_000690
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_06,           /*geo*/ rr_geo_0006A8
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_07,           /*geo*/ rr_geo_0006C0
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_08,           /*geo*/ rr_geo_0006D8
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_09,           /*geo*/ rr_geo_0006F0
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0A,           /*geo*/ rr_geo_000708
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0B,           /*geo*/ rr_geo_000720
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0C,           /*geo*/ rr_geo_000738
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0D,           /*geo*/ rr_geo_000758
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0E,           /*geo*/ rr_geo_000770
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_0F,           /*geo*/ rr_geo_000788
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_10,           /*geo*/ rr_geo_0007A0
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_11,           /*geo*/ rr_geo_0007B8
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_12,           /*geo*/ rr_geo_0007D0
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_13,           /*geo*/ rr_geo_0007E8
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_14,           /*geo*/ rr_geo_000800
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_15,           /*geo*/ rr_geo_000818
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_16,           /*geo*/ rr_geo_000830
     load_model_from_geo /*model*/ MODEL_RR_SLIDING_PLATFORM,         /*geo*/ rr_geo_0008C0
     load_model_from_geo /*model*/ MODEL_RR_FLYING_CARPET,            /*geo*/ rr_geo_000848
     load_model_from_geo /*model*/ MODEL_RR_OCTAGONAL_PLATFORM,       /*geo*/ rr_geo_0008A8
     load_model_from_geo /*model*/ MODEL_RR_ROTATING_BRIDGE_PLATFORM, /*geo*/ rr_geo_000878
-    load_model_from_geo /*model*/ MODEL_RR_3A, /*geo*/ rr_geo_0008D8
+    load_model_from_geo /*model*/ MODEL_RR_TRIANGLE_PLATFORM,        /*geo*/ rr_geo_0008D8
     load_model_from_geo /*model*/ MODEL_RR_CRUISER_WING,             /*geo*/ rr_geo_000890
     load_model_from_geo /*model*/ MODEL_RR_SEESAW_PLATFORM,          /*geo*/ rr_geo_000908
-    load_model_from_geo /*model*/ MODEL_RR_3D, /*geo*/ rr_geo_000940
+    load_model_from_geo /*model*/ MODEL_RR_L_SHAPED_PLATFORM,        /*geo*/ rr_geo_000940
     load_model_from_geo /*model*/ MODEL_RR_SWINGING_PLATFORM,        /*geo*/ rr_geo_000860
-    load_model_from_geo /*model*/ MODEL_RR_3F, /*geo*/ rr_geo_000920
+    load_model_from_geo /*model*/ MODEL_RR_DONUT_PLATFORM,           /*geo*/ rr_geo_000920
     load_model_from_geo /*model*/ MODEL_RR_ELEVATOR_PLATFORM,        /*geo*/ rr_geo_0008F0
     load_model_from_geo /*model*/ MODEL_RR_TRICKY_TRIANGLES,         /*geo*/ rr_geo_000958
-    load_model_from_geo /*model*/ MODEL_RR_42, /*geo*/ rr_geo_000970
-    load_model_from_geo /*model*/ MODEL_RR_43, /*geo*/ rr_geo_000988
-    load_model_from_geo /*model*/ MODEL_RR_44, /*geo*/ rr_geo_0009A0
-    load_model_from_geo /*model*/ MODEL_RR_45, /*geo*/ rr_geo_0009B8
+    load_model_from_geo /*model*/ MODEL_RR_TRICKY_TRIANGLES_FRAME1,  /*geo*/ rr_geo_000970
+    load_model_from_geo /*model*/ MODEL_RR_TRICKY_TRIANGLES_FRAME2,  /*geo*/ rr_geo_000988
+    load_model_from_geo /*model*/ MODEL_RR_TRICKY_TRIANGLES_FRAME3,  /*geo*/ rr_geo_0009A0
+    load_model_from_geo /*model*/ MODEL_RR_TRICKY_TRIANGLES_FRAME4,  /*geo*/ rr_geo_0009B8
 
     area /*index*/ 1, /*geo*/ rr_geo_0009D0
         object /*model*/ MODEL_NONE, /*pos*/ 2599, -833, 2071, /*angle*/ 0, 90, 0, /*behParam*/ 0x000A0000, /*beh*/ beh_warps_74

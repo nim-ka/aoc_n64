@@ -23,29 +23,29 @@ script_func_local_1:
     return
 
 script_func_local_2:
-    object /*model*/ MODEL_NONE,   /*pos*/ -5812,  100, -5937, /*angle*/ 0,   0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_waterfall_sound_loop
-    object /*model*/ MODEL_NONE,   /*pos*/ -7430, 1500,   873, /*angle*/ 0,   0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_birds_sound_loop
-    object /*model*/ MODEL_NONE,   /*pos*/   -80, 1500,  5004, /*angle*/ 0,   0, 0, /*behParam*/ 0x00010000, /*beh*/ beh_birds_sound_loop
-    object /*model*/ MODEL_NONE,   /*pos*/  7131, 1500, -2989, /*angle*/ 0,   0, 0, /*behParam*/ 0x00020000, /*beh*/ beh_birds_sound_loop
-    object /*model*/ MODEL_NONE,   /*pos*/ -7430, 1500, -5937, /*angle*/ 0,   0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_ambiant_sounds
-    object /*model*/ MODEL_CASTLE_GROUNDS_VCUTM_GRILL,  /*pos*/ 0, 0, 0, /*angle*/ 0, 0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_moat_grills
-    object /*model*/ MODEL_NONE,   /*pos*/     0,    0,     0, /*angle*/ 0,   0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_invisible_objects_under_bridge
-    object /*model*/ MODEL_MIST,   /*pos*/ -4878, -787, -5690, /*angle*/ 0,   0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_water_mist2
-    object /*model*/ MODEL_MIST,   /*pos*/ -4996, -787, -5548, /*angle*/ 0,   0, 0, /*behParam*/ 0x00010000, /*beh*/ beh_water_mist2
-    object /*model*/ MODEL_MIST,   /*pos*/ -5114, -787, -5406, /*angle*/ 0,   0, 0, /*behParam*/ 0x00020000, /*beh*/ beh_water_mist2
-    object /*model*/ MODEL_MIST,   /*pos*/ -5212, -787, -5219, /*angle*/ 0,   0, 0, /*behParam*/ 0x00030000, /*beh*/ beh_water_mist2
-    object /*model*/ MODEL_MIST,   /*pos*/ -5311, -787, -5033, /*angle*/ 0,   0, 0, /*behParam*/ 0x00040000, /*beh*/ beh_water_mist2
-    object /*model*/ MODEL_MIST,   /*pos*/ -5419, -787, -4895, /*angle*/ 0,   0, 0, /*behParam*/ 0x00050000, /*beh*/ beh_water_mist2
-    object /*model*/ MODEL_MIST,   /*pos*/ -5527, -787, -4757, /*angle*/ 0,   0, 0, /*behParam*/ 0x00060000, /*beh*/ beh_water_mist2
-    object /*model*/ MODEL_MIST,   /*pos*/ -5686, -787, -4733, /*angle*/ 0,   0, 0, /*behParam*/ 0x00070000, /*beh*/ beh_water_mist2
-    object /*model*/ MODEL_MIST,   /*pos*/ -5845, -787, -4710, /*angle*/ 0,   0, 0, /*behParam*/ 0x00080000, /*beh*/ beh_water_mist2
-    object /*model*/ MODEL_NONE,   /*pos*/  5223, -975,  1667, /*angle*/ 0,   0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_fish_2
-    object /*model*/ MODEL_BIRDS,  /*pos*/ -5069,  850,  3221, /*angle*/ 0,   0, 0, /*behParam*/ 0x00010000, /*beh*/ bBird
-    object /*model*/ MODEL_BIRDS,  /*pos*/ -4711,  742,   433, /*angle*/ 0,   0, 0, /*behParam*/ 0x00010000, /*beh*/ bBird
-    object /*model*/ MODEL_BIRDS,  /*pos*/  5774,  913, -1114, /*angle*/ 0,   0, 0, /*behParam*/ 0x00010000, /*beh*/ bBird
-    object /*model*/ MODEL_NONE,   /*pos*/ -1328,  260,  4664, /*angle*/ 0, 180, 0, /*behParam*/ 0x00280000, /*beh*/ beh_intro_scene
-    object /*model*/ MODEL_CASTLE_GROUNDS_CANNON_GRILL, /*pos*/ 0, 0, 0, /*angle*/ 0, 0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_hidden_at_120_stars
-    object /*model*/ MODEL_LAKITU, /*pos*/    11,  803, -3015, /*angle*/ 0,   0, 0, /*behParam*/ 0x00010000, /*beh*/ bCameraLakitu
+    object /*model*/ MODEL_NONE,                        /*pos*/ -5812,  100, -5937, /*angle*/ 0,   0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_waterfall_sound_loop
+    object /*model*/ MODEL_NONE,                        /*pos*/ -7430, 1500,   873, /*angle*/ 0,   0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_birds_sound_loop
+    object /*model*/ MODEL_NONE,                        /*pos*/   -80, 1500,  5004, /*angle*/ 0,   0, 0, /*behParam*/ 0x00010000, /*beh*/ beh_birds_sound_loop
+    object /*model*/ MODEL_NONE,                        /*pos*/  7131, 1500, -2989, /*angle*/ 0,   0, 0, /*behParam*/ 0x00020000, /*beh*/ beh_birds_sound_loop
+    object /*model*/ MODEL_NONE,                        /*pos*/ -7430, 1500, -5937, /*angle*/ 0,   0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_ambiant_sounds
+    object /*model*/ MODEL_CASTLE_GROUNDS_VCUTM_GRILL,  /*pos*/     0,    0,     0, /*angle*/ 0,   0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_moat_grills
+    object /*model*/ MODEL_NONE,                        /*pos*/     0,    0,     0, /*angle*/ 0,   0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_invisible_objects_under_bridge
+    object /*model*/ MODEL_MIST,                        /*pos*/ -4878, -787, -5690, /*angle*/ 0,   0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_water_mist2
+    object /*model*/ MODEL_MIST,                        /*pos*/ -4996, -787, -5548, /*angle*/ 0,   0, 0, /*behParam*/ 0x00010000, /*beh*/ beh_water_mist2
+    object /*model*/ MODEL_MIST,                        /*pos*/ -5114, -787, -5406, /*angle*/ 0,   0, 0, /*behParam*/ 0x00020000, /*beh*/ beh_water_mist2
+    object /*model*/ MODEL_MIST,                        /*pos*/ -5212, -787, -5219, /*angle*/ 0,   0, 0, /*behParam*/ 0x00030000, /*beh*/ beh_water_mist2
+    object /*model*/ MODEL_MIST,                        /*pos*/ -5311, -787, -5033, /*angle*/ 0,   0, 0, /*behParam*/ 0x00040000, /*beh*/ beh_water_mist2
+    object /*model*/ MODEL_MIST,                        /*pos*/ -5419, -787, -4895, /*angle*/ 0,   0, 0, /*behParam*/ 0x00050000, /*beh*/ beh_water_mist2
+    object /*model*/ MODEL_MIST,                        /*pos*/ -5527, -787, -4757, /*angle*/ 0,   0, 0, /*behParam*/ 0x00060000, /*beh*/ beh_water_mist2
+    object /*model*/ MODEL_MIST,                        /*pos*/ -5686, -787, -4733, /*angle*/ 0,   0, 0, /*behParam*/ 0x00070000, /*beh*/ beh_water_mist2
+    object /*model*/ MODEL_MIST,                        /*pos*/ -5845, -787, -4710, /*angle*/ 0,   0, 0, /*behParam*/ 0x00080000, /*beh*/ beh_water_mist2
+    object /*model*/ MODEL_NONE,                        /*pos*/  5223, -975,  1667, /*angle*/ 0,   0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_fish_2
+    object /*model*/ MODEL_BIRDS,                       /*pos*/ -5069,  850,  3221, /*angle*/ 0,   0, 0, /*behParam*/ 0x00010000, /*beh*/ bBird
+    object /*model*/ MODEL_BIRDS,                       /*pos*/ -4711,  742,   433, /*angle*/ 0,   0, 0, /*behParam*/ 0x00010000, /*beh*/ bBird
+    object /*model*/ MODEL_BIRDS,                       /*pos*/  5774,  913, -1114, /*angle*/ 0,   0, 0, /*behParam*/ 0x00010000, /*beh*/ bBird
+    object /*model*/ MODEL_NONE,                        /*pos*/ -1328,  260,  4664, /*angle*/ 0, 180, 0, /*behParam*/ 0x00280000, /*beh*/ beh_intro_scene
+    object /*model*/ MODEL_CASTLE_GROUNDS_CANNON_GRILL, /*pos*/     0,    0,     0, /*angle*/ 0,   0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_hidden_at_120_stars
+    object /*model*/ MODEL_LAKITU,                      /*pos*/    11,  803, -3015, /*angle*/ 0,   0, 0, /*behParam*/ 0x00010000, /*beh*/ bCameraLakitu
     return
 
 script_func_local_3:
@@ -73,21 +73,21 @@ script_func_local_4:
 
 glabel level_castle_grounds_entry
     init_level
-    load_mio0 /*seg*/ 0x07, /*romStart*/ _castle_grounds_segment_7SegmentRomStart, /*romEnd*/ _castle_grounds_segment_7SegmentRomEnd
-    load_mio0 /*seg*/ 0x0A, /*romStart*/ _water_skybox_mio0SegmentRomStart, /*romEnd*/ _water_skybox_mio0SegmentRomEnd
-    cmd1A     /*seg*/ 0x09, /*romStart*/ _outside_mio0SegmentRomStart, /*romEnd*/ _outside_mio0SegmentRomEnd
-    load_mio0 /*seg*/ 0x05, /*romStart*/ _group10_mio0SegmentRomStart, /*romEnd*/ _group10_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0C, /*romStart*/ _group10_geoSegmentRomStart,  /*romEnd*/ _group10_geoSegmentRomEnd
-    load_mio0 /*seg*/ 0x06, /*romStart*/ _group15_mio0SegmentRomStart, /*romEnd*/ _group15_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0D, /*romStart*/ _group15_geoSegmentRomStart,  /*romEnd*/ _group15_geoSegmentRomEnd
-    load_mio0 /*seg*/ 0x08, /*romStart*/ _common0_mio0SegmentRomStart, /*romEnd*/ _common0_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0F, /*romStart*/ _common0_geoSegmentRomStart,  /*romEnd*/ _common0_geoSegmentRomEnd
+    load_mio0         /*seg*/ 0x07, /*romStart*/ _castle_grounds_segment_7SegmentRomStart, /*romEnd*/ _castle_grounds_segment_7SegmentRomEnd
+    load_mio0         /*seg*/ 0x0A, /*romStart*/ _water_skybox_mio0SegmentRomStart, /*romEnd*/ _water_skybox_mio0SegmentRomEnd
+    load_mio0_texture /*seg*/ 0x09, /*romStart*/ _outside_mio0SegmentRomStart, /*romEnd*/ _outside_mio0SegmentRomEnd
+    load_mio0         /*seg*/ 0x05, /*romStart*/ _group10_mio0SegmentRomStart, /*romEnd*/ _group10_mio0SegmentRomEnd
+    load_raw          /*seg*/ 0x0C, /*romStart*/ _group10_geoSegmentRomStart,  /*romEnd*/ _group10_geoSegmentRomEnd
+    load_mio0         /*seg*/ 0x06, /*romStart*/ _group15_mio0SegmentRomStart, /*romEnd*/ _group15_mio0SegmentRomEnd
+    load_raw          /*seg*/ 0x0D, /*romStart*/ _group15_geoSegmentRomStart,  /*romEnd*/ _group15_geoSegmentRomEnd
+    load_mio0         /*seg*/ 0x08, /*romStart*/ _common0_mio0SegmentRomStart, /*romEnd*/ _common0_mio0SegmentRomEnd
+    load_raw          /*seg*/ 0x0F, /*romStart*/ _common0_geoSegmentRomStart,  /*romEnd*/ _common0_geoSegmentRomEnd
     alloc_level_pool
     mario /*unk3*/ 0x01, /*behParam*/ 0x00000001, /*beh*/ beh_mario
     jump_link /*target*/ script_func_global_1
     jump_link /*target*/ script_func_global_11
     jump_link /*target*/ script_func_global_16
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_03,                /*geo*/ castle_grounds_geo_0006F4
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_03,           /*geo*/ castle_grounds_geo_0006F4
     load_model_from_geo /*model*/ MODEL_CASTLE_GROUNDS_BUBBLY_TREE,  /*geo*/ bubbly_tree_geo
     load_model_from_geo /*model*/ MODEL_CASTLE_GROUNDS_WARP_PIPE,    /*geo*/ warp_pipe_geo
     load_model_from_geo /*model*/ MODEL_CASTLE_GROUNDS_CASTLE_DOOR,  /*geo*/ castle_door_geo

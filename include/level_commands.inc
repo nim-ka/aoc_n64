@@ -1,23 +1,23 @@
 .include "model_ids.inc"
 
 
-.set OP_AND, 0
+.set OP_AND,  0
 .set OP_NAND, 1
-.set OP_EQ, 2
-.set OP_NEQ, 3
-.set OP_LT, 4
-.set OP_LEQ, 5
-.set OP_GT, 6
-.set OP_GEQ, 7
+.set OP_EQ,   2
+.set OP_NEQ,  3
+.set OP_LT,   4
+.set OP_LEQ,  5
+.set OP_GT,   6
+.set OP_GEQ,  7
 
-.set OP_SET, 0
-.set OP_GET, 1
+.set OP_SET,  0
+.set OP_GET,  1
 
 .set VAR_CURR_SAVE_FILE_NUM, 0
-.set VAR_CURR_COURSE_NUM, 1
-.set VAR_CURR_ACT_NUM, 2
-.set VAR_CURR_LEVEL_NUM, 3
-.set VAR_CURR_AREA_INDEX, 4
+.set VAR_CURR_COURSE_NUM,    1
+.set VAR_CURR_ACT_NUM,       2
+.set VAR_CURR_LEVEL_NUM,     3
+.set VAR_CURR_AREA_INDEX,    4
 
 
 .macro execute seg, script, scriptEnd, entry
@@ -172,12 +172,12 @@
     .word \romEnd
 .endm
 
-.macro cmd19 unk2
+.macro load_mario_head sethead
     .byte 0x19, 0x04
-    .hword \unk2
+    .hword \sethead
 .endm
 
-.macro cmd1A seg, romStart, romEnd
+.macro load_mio0_texture seg, romStart, romEnd
     .byte 0x1A, 0x0C
     .hword \seg
     .word \romStart
@@ -216,9 +216,9 @@
     .hword 0
 .endm
 
-.macro load_model_from_dl model, dl, unk2
+.macro load_model_from_dl model, dl, layer
     .byte 0x21, 0x08
-    .byte \unk2
+    .byte \layer
 	.byte \model
     .word \dl
 .endm
@@ -324,7 +324,7 @@
     .word \surfaceRooms
 .endm
 
-.macro cmd30 unk2, unk3
+.macro show_dialog unk2, unk3
     .byte 0x30, 0x04
     .byte \unk2
     .byte \unk3
@@ -409,6 +409,24 @@
     .byte \op
     .byte \var
 .endm
+
+/* Layer Defines */
+
+# drawing layers
+.set LAYER_NULL,              0x00
+.set LAYER_OPAQUE,            0x10
+.set LAYER_OPAQUE_DECAL,      0x20
+.set LAYER_UNUSED_03,         0x30
+.set LAYER_ALPHA,             0x40
+.set LAYER_TRANSPARENT,       0x50
+.set LAYER_TRANSPARENT_DECAL, 0x60
+
+
+
+/* Head Defines */
+
+.set REGULAR_FACE,   0x0002
+.set DIZZY_FACE,     0x0003
 
 /* Music Defines */
 

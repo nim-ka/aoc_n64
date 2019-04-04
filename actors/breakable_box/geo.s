@@ -5,8 +5,8 @@ glabel breakable_box_geo # 0x0F0005D0
       geo_open_node
          geo_switch_case 2, GeoSwitchCase8029DB48
          geo_open_node
-            geo_display_list 0x01, breakable_box_seg8_dl_08012D20
-            geo_display_list 0x01, breakable_box_seg8_dl_08012D48
+            geo_display_list LAYER_OPAQUE, breakable_box_seg8_dl_08012D20
+            geo_display_list LAYER_OPAQUE, breakable_box_seg8_dl_08012D48
          geo_close_node
       geo_close_node
    geo_close_node
@@ -17,8 +17,8 @@ glabel breakable_box_small_geo # 0x0F000610
    geo_open_node
       geo_switch_case 2, GeoSwitchCase8029DB48
       geo_open_node
-         geo_display_list 0x01, breakable_box_seg8_dl_08012D20
-         geo_display_list 0x01, breakable_box_seg8_dl_08012D48
+         geo_display_list LAYER_OPAQUE, breakable_box_seg8_dl_08012D20
+         geo_display_list LAYER_OPAQUE, breakable_box_seg8_dl_08012D48
       geo_close_node
    geo_close_node
    geo_end

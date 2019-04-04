@@ -14,15 +14,15 @@ glabel ssl_geo_0007CC # 0x0E0007CC
          geo_open_node
             geo_todo_0F 4, 0, 2000, 6000, 0, 0, 0, Geo0F_80287D30
             geo_open_node
-               geo_display_list 0x01, ssl_seg7_dl_0701EE80
-               geo_display_list 0x04, ssl_seg7_dl_0701F920
-               geo_display_list 0x06, ssl_seg7_dl_0701FCE0
+               geo_display_list LAYER_OPAQUE, ssl_seg7_dl_0701EE80
+               geo_display_list LAYER_ALPHA, ssl_seg7_dl_0701F920
+               geo_display_list LAYER_TRANSPARENT_DECAL, ssl_seg7_dl_0701FCE0
                geo_asm 2050, Geo18_802D2108
                geo_asm    0, Geo18_802D01E0
                geo_asm 2049, Geo18_802D1B70
                geo_asm 2050, Geo18_802D1B70
                geo_asm 2051, Geo18_802D1B70
-               geo_todo_17
+               geo_render_obj
                geo_asm    0, Geo18_802761D0
             geo_close_node
          geo_close_node

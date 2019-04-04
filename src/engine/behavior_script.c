@@ -103,7 +103,7 @@ static s32 beh_cmd_unhide(void)
     return BEH_CONTINUE;
 }
 
-static s32 Behavior35(void)
+static s32 beh_cmd_graph_clear(void)
 {
     gCurrentObject->header.gfx.node.flags &= ~GRAPH_RENDER_01;
     gBehCommand++;
@@ -125,7 +125,7 @@ static s32 beh_cmd_graph_node(void)
     return BEH_CONTINUE;
 }
 
-static s32 Behavior1C(void)
+static s32 beh_cmd_obj_load_chill(void)
 {
     u32 arg0 = gBehCommand[1];
     void *arg1 = (void *) gBehCommand[2];
@@ -138,7 +138,7 @@ static s32 Behavior1C(void)
     return BEH_CONTINUE;
 }
 
-static s32 Behavior2C(void)
+static s32 beh_cmd_obj_spawn(void)
 {
     u32 arg0 = gBehCommand[1];
     void *arg1 = (void *) gBehCommand[2];
@@ -153,7 +153,7 @@ static s32 Behavior2C(void)
     return BEH_CONTINUE;
 }
 
-static s32 Behavior29(void)
+static s32 beh_cmd_obj_load_chill_param(void)
 {
     u32 behParam = (s16)(gBehCommand[0] & 0xFFFF);
     u32 arg1 = gBehCommand[1];
@@ -181,7 +181,7 @@ static s32 beh_cmd_break(void)
 }
 
 // unused
-static s32 Behavior0B(void)
+static s32 beh_cmd_break2(void)
 {
     return BEH_BREAK;
 }
@@ -494,7 +494,7 @@ static s32 beh_cmd_obj_set_int32(void)
     return BEH_CONTINUE;
 }
 
-static s32 Behavior28(void)
+static s32 beh_cmd_obj_animate(void)
 {    
     s32 animIndex = (u8)((gBehCommand[0] >> 16) & 0xFF);
     u32* animations = gCurrentObject->oAnimations;
@@ -505,7 +505,7 @@ static s32 Behavior28(void)
     return BEH_CONTINUE;
 }
 
-static s32 Behavior1E(void)
+static s32 beh_cmd_obj_drop_floor(void)
 {
     f32 x = gCurrentObject->oPosX;
     f32 y = gCurrentObject->oPosY;
@@ -588,7 +588,7 @@ static s32 beh_cmd_set_hitbox(void)
     return BEH_CONTINUE;
 }
 
-static s32 Behavior2E(void)
+static s32 beh_cmd_obj_set_float2(void)
 {
     s16 arg0 = gBehCommand[1] >> 16;
     s16 arg1 = gBehCommand[1] & 0xFFFF;
@@ -600,7 +600,7 @@ static s32 Behavior2E(void)
     return BEH_CONTINUE;
 }
 
-static s32 Behavior2B(void)
+static s32 beh_cmd_collision_sphere(void)
 {
     s16 colSphereX = gBehCommand[1] >> 16;
     s16 colSphereY = gBehCommand[1] & 0xFFFF;
@@ -660,7 +660,7 @@ static s32 beh_cmd_collision_data(void)
     return BEH_CONTINUE;
 }
 
-static s32 Behavior2D(void)
+static s32 beh_cmd_obj_set_pos(void)
 {
     gCurrentObject->oHomeX = gCurrentObject->oPosX;
     gCurrentObject->oHomeY = gCurrentObject->oPosY;
@@ -697,7 +697,7 @@ static s32 beh_cmd_scale(void)
     return BEH_CONTINUE;
 }
 
-static s32 Behavior30(void)
+static s32 beh_cmd_obj_set_gravity(void)
 {
     UNUSED f32 sp04, sp00;
 
@@ -729,7 +729,7 @@ static s32 beh_cmd_obj_bit_clear_int32(void)
     return BEH_CONTINUE;
 }
 
-static s32 Behavior37(void)
+static s32 beh_cmd_spawn_addr(void)
 {
     struct WaterSplashParams *arg0 = (struct WaterSplashParams *) gBehCommand[1];
     spawn_water_splash(gCurrentObject, arg0);
@@ -737,7 +737,7 @@ static s32 Behavior37(void)
     return BEH_CONTINUE;
 }
 
-static s32 Behavior34(void)
+static s32 beh_cmd_text_anim_rate(void)
 {
     u8 objectOffset = (gBehCommand[0] >> 16) & 0xFF;
     s16 arg1 = (gBehCommand[0] & 0xFFFF);
@@ -768,7 +768,7 @@ static BehCommandProc BehaviorJumpTable[] =
     beh_cmd_begin_loop,
     beh_cmd_end_loop,
     beh_cmd_break,
-    Behavior0B,
+    beh_cmd_break2,
     beh_cmd_callnative,
     beh_cmd_obj_add_float,
     beh_cmd_obj_set_float,
@@ -785,9 +785,9 @@ static BehCommandProc BehaviorJumpTable[] =
     Behavior19,
     Behavior1A,
     beh_cmd_graph_node,
-    Behavior1C,
+    beh_cmd_obj_load_chill,
     beh_cmd_deactivate,
-    Behavior1E,
+    beh_cmd_obj_drop_floor,
     beh_cmd_obj_sum_float,
     beh_cmd_obj_sum_int,
     beh_cmd_billboard,
@@ -797,22 +797,22 @@ static BehCommandProc BehaviorJumpTable[] =
     beh_cmd_delay_var,
     Behavior26,
     beh_cmd_obj_set_int32,
-    Behavior28,
-    Behavior29,
+    beh_cmd_obj_animate,
+    beh_cmd_obj_load_chill_param,
     beh_cmd_collision_data,
-    Behavior2B,
-    Behavior2C,
-    Behavior2D,
-    Behavior2E,
+    beh_cmd_collision_sphere,
+    beh_cmd_obj_spawn,
+    beh_cmd_obj_set_pos,
+    beh_cmd_obj_set_float2,
     beh_cmd_interact_type,
-    Behavior30,
+    beh_cmd_obj_set_gravity,
     Behavior31,
     beh_cmd_scale,
     beh_cmd_obj_bit_clear_int32,
-    Behavior34,
-    Behavior35,
+    beh_cmd_text_anim_rate,
+    beh_cmd_graph_clear,
     Behavior36,
-    Behavior37,
+    beh_cmd_spawn_addr,
 };
 
 void cur_object_exec_behavior(void)

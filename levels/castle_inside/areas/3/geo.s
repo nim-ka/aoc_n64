@@ -1,17 +1,17 @@
 glabel castle_geo_001958 # 0x0E001958
    geo_node_start
    geo_open_node
-      geo_display_list 0x01, inside_castle_seg7_dl_0705E088
-      geo_display_list 0x04, inside_castle_seg7_dl_0705E2A0
-      geo_display_list 0x05, inside_castle_seg7_dl_0705E450
+      geo_display_list LAYER_OPAQUE, inside_castle_seg7_dl_0705E088
+      geo_display_list LAYER_ALPHA, inside_castle_seg7_dl_0705E2A0
+      geo_display_list LAYER_TRANSPARENT, inside_castle_seg7_dl_0705E450
    geo_close_node
    geo_return
 
 glabel castle_geo_001980 # 0x0E001980
    geo_node_start
    geo_open_node
-      geo_display_list 0x01, inside_castle_seg7_dl_070616E8
-      geo_display_list 0x05, inside_castle_seg7_dl_07061C20
+      geo_display_list LAYER_OPAQUE, inside_castle_seg7_dl_070616E8
+      geo_display_list LAYER_TRANSPARENT, inside_castle_seg7_dl_07061C20
       geo_asm    0, Geo18_802D5D0C
       geo_asm  260, Geo18_802D5B98
       geo_asm  261, Geo18_802D5B98
@@ -23,8 +23,8 @@ glabel castle_geo_001980 # 0x0E001980
 glabel castle_geo_0019C8 # 0x0E0019C8
    geo_node_start
    geo_open_node
-      geo_display_list 0x01, inside_castle_seg7_dl_07064B78
-      geo_display_list 0x04, inside_castle_seg7_dl_07064D58
+      geo_display_list LAYER_OPAQUE, inside_castle_seg7_dl_07064B78
+      geo_display_list LAYER_ALPHA, inside_castle_seg7_dl_07064D58
       geo_asm 0, Geo18_802D5D0C
       geo_asm 262, Geo18_802D5B98
    geo_close_node
@@ -33,9 +33,9 @@ glabel castle_geo_0019C8 # 0x0E0019C8
 glabel castle_geo_0019F8 # 0x0E0019F8
    geo_node_start
    geo_open_node
-      geo_display_list 0x01, inside_castle_seg7_dl_07066CE0
-      geo_display_list 0x05, inside_castle_seg7_dl_07066E90
-      geo_display_list 0x04, inside_castle_seg7_dl_07066FA0
+      geo_display_list LAYER_OPAQUE, inside_castle_seg7_dl_07066CE0
+      geo_display_list LAYER_TRANSPARENT, inside_castle_seg7_dl_07066E90
+      geo_display_list LAYER_ALPHA, inside_castle_seg7_dl_07066FA0
       geo_asm    0, Geo18_802D01E0
       geo_asm 1554, Geo18_802D104C
    geo_close_node
@@ -44,7 +44,7 @@ glabel castle_geo_0019F8 # 0x0E0019F8
 glabel castle_geo_001A30 # 0x0E001A30
    geo_node_start
    geo_open_node
-      geo_display_list 0x01, inside_castle_seg7_dl_07068850
+      geo_display_list LAYER_OPAQUE, inside_castle_seg7_dl_07068850
       geo_asm   0, Geo18_802D5D0C
       geo_asm 263, Geo18_802D5B98
    geo_close_node
@@ -53,11 +53,11 @@ glabel castle_geo_001A30 # 0x0E001A30
 glabel castle_geo_001A58 # 0x0E001A58
    geo_node_start
    geo_open_node
-      geo_display_list 0x01, inside_castle_seg7_dl_0705E088
-      geo_display_list 0x04, inside_castle_seg7_dl_0705E2A0
-      geo_display_list 0x05, inside_castle_seg7_dl_0705E450
-      geo_display_list 0x01, inside_castle_seg7_dl_070616E8
-      geo_display_list 0x05, inside_castle_seg7_dl_07061C20
+      geo_display_list LAYER_OPAQUE, inside_castle_seg7_dl_0705E088
+      geo_display_list LAYER_ALPHA, inside_castle_seg7_dl_0705E2A0
+      geo_display_list LAYER_TRANSPARENT, inside_castle_seg7_dl_0705E450
+      geo_display_list LAYER_OPAQUE, inside_castle_seg7_dl_070616E8
+      geo_display_list LAYER_TRANSPARENT, inside_castle_seg7_dl_07061C20
       geo_asm    0, Geo18_802D5D0C
       geo_asm  260, Geo18_802D5B98
       geo_asm  261, Geo18_802D5B98
@@ -69,10 +69,10 @@ glabel castle_geo_001A58 # 0x0E001A58
 glabel castle_geo_001AB8 # 0x0E001AB8
    geo_node_start
    geo_open_node
-      geo_display_list 0x01, inside_castle_seg7_dl_0705E088
-      geo_display_list 0x04, inside_castle_seg7_dl_0705E2A0
-      geo_display_list 0x05, inside_castle_seg7_dl_0705E450
-      geo_display_list 0x01, inside_castle_seg7_dl_07068850
+      geo_display_list LAYER_OPAQUE, inside_castle_seg7_dl_0705E088
+      geo_display_list LAYER_ALPHA, inside_castle_seg7_dl_0705E2A0
+      geo_display_list LAYER_TRANSPARENT, inside_castle_seg7_dl_0705E450
+      geo_display_list LAYER_OPAQUE, inside_castle_seg7_dl_07068850
       geo_asm   0, Geo18_802D5D0C
       geo_asm 263, Geo18_802D5B98
    geo_close_node
@@ -81,12 +81,12 @@ glabel castle_geo_001AB8 # 0x0E001AB8
 glabel castle_geo_001AF8 # 0x0E001AF8
    geo_node_start
    geo_open_node
-      geo_display_list 0x01, inside_castle_seg7_dl_0705E088
-      geo_display_list 0x04, inside_castle_seg7_dl_0705E2A0
-      geo_display_list 0x05, inside_castle_seg7_dl_0705E450
-      geo_display_list 0x01, inside_castle_seg7_dl_07066CE0
-      geo_display_list 0x05, inside_castle_seg7_dl_07066E90
-      geo_display_list 0x04, inside_castle_seg7_dl_07066FA0
+      geo_display_list LAYER_OPAQUE, inside_castle_seg7_dl_0705E088
+      geo_display_list LAYER_ALPHA, inside_castle_seg7_dl_0705E2A0
+      geo_display_list LAYER_TRANSPARENT, inside_castle_seg7_dl_0705E450
+      geo_display_list LAYER_OPAQUE, inside_castle_seg7_dl_07066CE0
+      geo_display_list LAYER_TRANSPARENT, inside_castle_seg7_dl_07066E90
+      geo_display_list LAYER_ALPHA, inside_castle_seg7_dl_07066FA0
       geo_asm    0, Geo18_802D01E0
       geo_asm 1554, Geo18_802D104C
    geo_close_node
@@ -95,11 +95,11 @@ glabel castle_geo_001AF8 # 0x0E001AF8
 glabel castle_geo_001B48 # 0x0E001B48
    geo_node_start
    geo_open_node
-      geo_display_list 0x01, inside_castle_seg7_dl_070616E8
-      geo_display_list 0x05, inside_castle_seg7_dl_07061C20
-      geo_display_list 0x01, inside_castle_seg7_dl_07066CE0
-      geo_display_list 0x05, inside_castle_seg7_dl_07066E90
-      geo_display_list 0x04, inside_castle_seg7_dl_07066FA0
+      geo_display_list LAYER_OPAQUE, inside_castle_seg7_dl_070616E8
+      geo_display_list LAYER_TRANSPARENT, inside_castle_seg7_dl_07061C20
+      geo_display_list LAYER_OPAQUE, inside_castle_seg7_dl_07066CE0
+      geo_display_list LAYER_TRANSPARENT, inside_castle_seg7_dl_07066E90
+      geo_display_list LAYER_ALPHA, inside_castle_seg7_dl_07066FA0
       geo_asm    0, Geo18_802D5D0C
       geo_asm  260, Geo18_802D5B98
       geo_asm  261, Geo18_802D5B98
@@ -112,10 +112,10 @@ glabel castle_geo_001B48 # 0x0E001B48
 glabel castle_geo_001BB0 # 0x0E001BB0
    geo_node_start
    geo_open_node
-      geo_display_list 0x01, inside_castle_seg7_dl_070616E8
-      geo_display_list 0x05, inside_castle_seg7_dl_07061C20
-      geo_display_list 0x01, inside_castle_seg7_dl_07064B78
-      geo_display_list 0x04, inside_castle_seg7_dl_07064D58
+      geo_display_list LAYER_OPAQUE, inside_castle_seg7_dl_070616E8
+      geo_display_list LAYER_TRANSPARENT, inside_castle_seg7_dl_07061C20
+      geo_display_list LAYER_OPAQUE, inside_castle_seg7_dl_07064B78
+      geo_display_list LAYER_ALPHA, inside_castle_seg7_dl_07064D58
       geo_asm    0, Geo18_802D5D0C
       geo_asm  260, Geo18_802D5B98
       geo_asm  261, Geo18_802D5B98
@@ -154,7 +154,7 @@ glabel castle_geo_001C10 # 0x0E001C10
                   geo_branch 1, castle_geo_001B48 # 0x0E001B48
                   geo_branch 1, castle_geo_001BB0 # 0x0E001BB0
                geo_close_node
-               geo_todo_17
+               geo_render_obj
                geo_asm 0, Geo18_802761D0
             geo_close_node
          geo_close_node

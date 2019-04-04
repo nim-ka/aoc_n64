@@ -13,7 +13,7 @@ static struct SpawnParticlesInfo sMontyMoleRiseFromGroundParticles =
 {
     /* behParam:        */ 0,
     /* count:           */ 3,
-    /* model:           */ MODEL_DL_GLOBAL_9F,
+    /* model:           */ MODEL_SAND_DUST,
     /* offsetY:         */ 0,
     /* forwardVelBase:  */ 4,
     /* forwardVelRange: */ 4,
@@ -64,7 +64,7 @@ static struct SpawnParticlesInfo sMontyMoleRockBreakParticles =
 {
     /* behParam:        */ 0,
     /* count:           */ 2,
-    /* model:           */ MODEL_DL_GLOBAL_A1,
+    /* model:           */ MODEL_PEBBLE,
     /* offsetY:         */ 10,
     /* forwardVelBase:  */ 4,
     /* forwardVelRange: */ 4,
@@ -306,7 +306,7 @@ static void monty_mole_act_spawn_rock(void)
     {
         if (o->oBehParams2ndByte != MONTY_MOLE_BP_NO_ROCK &&
             abs_angle_diff(o->oAngleToMario, o->oMoveAngleYaw) < 0x4000 &&
-            (rock = spawn_object(o, MODEL_DL_GLOBAL_A1, bMontyMoleRock)) != NULL)
+            (rock = spawn_object(o, MODEL_PEBBLE, bMontyMoleRock)) != NULL)
         {
             o->prevObj = rock;
             o->oAction = MONTY_MOLE_ACT_THROW_ROCK;

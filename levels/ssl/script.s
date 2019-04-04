@@ -3,14 +3,14 @@ script_func_local_1:
     return
 
 script_func_local_2:
-    object /*model*/ MODEL_SSL_TOX_BOX, /*pos*/ -1284,    0, -5895, /*angle*/ 0, 0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_tox_box
-    object /*model*/ MODEL_SSL_TOX_BOX, /*pos*/  1283,    0, -4865, /*angle*/ 0, 0, 0, /*behParam*/ 0x00010000, /*beh*/ beh_tox_box
-    object /*model*/ MODEL_SSL_TOX_BOX, /*pos*/  4873,    0, -3335, /*angle*/ 0, 0, 0, /*behParam*/ 0x00020000, /*beh*/ beh_tox_box
-    object /*model*/ MODEL_TORNADO,     /*pos*/ -3600, -200,  2940, /*angle*/ 0, 0, 0, /*behParam*/ 0x00120000, /*beh*/ beh_tornado
-    object /*model*/ MODEL_TORNADO,     /*pos*/  1017, -200,  3832, /*angle*/ 0, 0, 0, /*behParam*/ 0x00190000, /*beh*/ beh_tornado, /*acts*/ ACT_4 | ACT_5 | ACT_6
-    object /*model*/ MODEL_TORNADO,     /*pos*/  3066, -200,   400, /*angle*/ 0, 0, 0, /*behParam*/ 0x00190000, /*beh*/ beh_tornado, /*acts*/ ACT_4 | ACT_5 | ACT_6
-    object /*model*/ MODEL_KLEPTO,      /*pos*/  2200, 1174, -2820, /*angle*/ 0, 0, 0, /*behParam*/ 0x00010000, /*beh*/ bKlepto,     /*acts*/ ACT_1
-    object /*model*/ MODEL_KLEPTO,      /*pos*/ -5963,  573, -4784, /*angle*/ 0, 0, 0, /*behParam*/ 0x00000000, /*beh*/ bKlepto,     /*acts*/ ACT_2 | ACT_3 | ACT_4 | ACT_5 | ACT_6
+    object /*model*/ MODEL_SSL_TOX_BOX,     /*pos*/ -1284,    0, -5895, /*angle*/ 0, 0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_tox_box
+    object /*model*/ MODEL_SSL_TOX_BOX,     /*pos*/  1283,    0, -4865, /*angle*/ 0, 0, 0, /*behParam*/ 0x00010000, /*beh*/ beh_tox_box
+    object /*model*/ MODEL_SSL_TOX_BOX,     /*pos*/  4873,    0, -3335, /*angle*/ 0, 0, 0, /*behParam*/ 0x00020000, /*beh*/ beh_tox_box
+    object /*model*/ MODEL_TORNADO,         /*pos*/ -3600, -200,  2940, /*angle*/ 0, 0, 0, /*behParam*/ 0x00120000, /*beh*/ beh_tornado
+    object /*model*/ MODEL_TORNADO,         /*pos*/  1017, -200,  3832, /*angle*/ 0, 0, 0, /*behParam*/ 0x00190000, /*beh*/ beh_tornado, /*acts*/ ACT_4 | ACT_5 | ACT_6
+    object /*model*/ MODEL_TORNADO,         /*pos*/  3066, -200,   400, /*angle*/ 0, 0, 0, /*behParam*/ 0x00190000, /*beh*/ beh_tornado, /*acts*/ ACT_4 | ACT_5 | ACT_6
+    object /*model*/ MODEL_KLEPTO,          /*pos*/  2200, 1174, -2820, /*angle*/ 0, 0, 0, /*behParam*/ 0x00010000, /*beh*/ bKlepto,     /*acts*/ ACT_1
+    object /*model*/ MODEL_KLEPTO,          /*pos*/ -5963,  573, -4784, /*angle*/ 0, 0, 0, /*behParam*/ 0x00000000, /*beh*/ bKlepto,     /*acts*/ ACT_2 | ACT_3 | ACT_4 | ACT_5 | ACT_6
     return
 
 script_func_local_3:
@@ -46,26 +46,26 @@ script_func_local_6:
 
 glabel level_ssl_entry
     init_level
-    load_mio0 /*seg*/ 0x07, /*romStart*/ _ssl_segment_7SegmentRomStart, /*romEnd*/ _ssl_segment_7SegmentRomEnd
-    load_mio0 /*seg*/ 0x0A, /*romStart*/ _ssl_skybox_mio0SegmentRomStart, /*romEnd*/ _ssl_skybox_mio0SegmentRomEnd
-    cmd1A     /*seg*/ 0x09, /*romStart*/ _generic_mio0SegmentRomStart, /*romEnd*/ _generic_mio0SegmentRomEnd
-    load_mio0 /*seg*/ 0x05, /*romStart*/ _group5_mio0SegmentRomStart, /*romEnd*/ _group5_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0C, /*romStart*/ _group5_geoSegmentRomStart,  /*romEnd*/ _group5_geoSegmentRomEnd
-    load_mio0 /*seg*/ 0x08, /*romStart*/ _common0_mio0SegmentRomStart, /*romEnd*/ _common0_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0F, /*romStart*/ _common0_geoSegmentRomStart,  /*romEnd*/ _common0_geoSegmentRomEnd
+    load_mio0         /*seg*/ 0x07, /*romStart*/ _ssl_segment_7SegmentRomStart, /*romEnd*/ _ssl_segment_7SegmentRomEnd
+    load_mio0         /*seg*/ 0x0A, /*romStart*/ _ssl_skybox_mio0SegmentRomStart, /*romEnd*/ _ssl_skybox_mio0SegmentRomEnd
+    load_mio0_texture /*seg*/ 0x09, /*romStart*/ _generic_mio0SegmentRomStart, /*romEnd*/ _generic_mio0SegmentRomEnd
+    load_mio0         /*seg*/ 0x05, /*romStart*/ _group5_mio0SegmentRomStart, /*romEnd*/ _group5_mio0SegmentRomEnd
+    load_raw          /*seg*/ 0x0C, /*romStart*/ _group5_geoSegmentRomStart,  /*romEnd*/ _group5_geoSegmentRomEnd
+    load_mio0         /*seg*/ 0x08, /*romStart*/ _common0_mio0SegmentRomStart, /*romEnd*/ _common0_mio0SegmentRomEnd
+    load_raw          /*seg*/ 0x0F, /*romStart*/ _common0_geoSegmentRomStart,  /*romEnd*/ _common0_geoSegmentRomEnd
     alloc_level_pool
     mario /*unk3*/ 0x01, /*behParam*/ 0x00000001, /*beh*/ beh_mario
     jump_link /*target*/ script_func_global_1
     jump_link /*target*/ script_func_global_6
-    load_model_from_geo /*model*/ MODEL_SSL_PALM_TREE, /*geo*/ palm_tree_geo
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_03, /*geo*/ ssl_geo_0005C0
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_04, /*geo*/ ssl_geo_0005D8
-    load_model_from_geo /*model*/ MODEL_SSL_PYRAMID_TOP, /*geo*/ ssl_geo_000618
-    load_model_from_geo /*model*/ MODEL_SSL_GRINDEL, /*geo*/ ssl_geo_000734
-    load_model_from_geo /*model*/ MODEL_SSL_SPINDEL, /*geo*/ ssl_geo_000764
+    load_model_from_geo /*model*/ MODEL_SSL_PALM_TREE,           /*geo*/ palm_tree_geo
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_03,       /*geo*/ ssl_geo_0005C0
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_04,       /*geo*/ ssl_geo_0005D8
+    load_model_from_geo /*model*/ MODEL_SSL_PYRAMID_TOP,         /*geo*/ ssl_geo_000618
+    load_model_from_geo /*model*/ MODEL_SSL_GRINDEL,             /*geo*/ ssl_geo_000734
+    load_model_from_geo /*model*/ MODEL_SSL_SPINDEL,             /*geo*/ ssl_geo_000764
     load_model_from_geo /*model*/ MODEL_SSL_MOVING_PYRAMID_WALL, /*geo*/ ssl_geo_000794
-    load_model_from_geo /*model*/ MODEL_SSL_PYRAMID_ELEVATOR, /*geo*/ ssl_geo_0007AC
-    load_model_from_geo /*model*/ MODEL_SSL_TOX_BOX, /*geo*/ ssl_geo_000630
+    load_model_from_geo /*model*/ MODEL_SSL_PYRAMID_ELEVATOR,    /*geo*/ ssl_geo_0007AC
+    load_model_from_geo /*model*/ MODEL_SSL_TOX_BOX,             /*geo*/ ssl_geo_000630
 
     area /*index*/ 1, /*geo*/ ssl_geo_000648
         object /*model*/ MODEL_NONE, /*pos*/   653, 1038,  6566, /*angle*/ 0,  90, 0, /*behParam*/ 0x000A0000, /*beh*/ beh_warps_74

@@ -5,7 +5,7 @@ glabel bowser_3_geo_000398 # 0x0E000398
       geo_open_node
          geo_todo_09 100
          geo_open_node
-            geo_background 9, Geo19_802763D4
+            geo_background BACKGROUND_PURPLE_SKY, Geo19_802763D4
          geo_close_node
       geo_close_node
       geo_zbuffer 1
@@ -14,8 +14,8 @@ glabel bowser_3_geo_000398 # 0x0E000398
          geo_open_node
             geo_todo_0F 11, 0, 2000, 6000, 0, 0, 0, Geo0F_80287D30
             geo_open_node
-               geo_display_list 0x01, bowser_3_seg7_dl_070046B0
-               geo_todo_17
+               geo_display_list LAYER_OPAQUE, bowser_3_seg7_dl_070046B0
+               geo_render_obj
                geo_asm 0, Geo18_802761D0
             geo_close_node
          geo_close_node

@@ -29,14 +29,14 @@ GeoLayoutCommandProc GeoLayoutJumpTable[] =
     geo_layout_cmd_node_switch_case,
     geo_layout_cmd_0F,
     geo_layout_cmd_node_translation_rotation_optional_display_list,
-    geo_layout_cmd_11,
-    geo_layout_cmd_12,
+    geo_layout_cmd_node_translation_node_optional_display_list,
+    geo_layout_cmd_node_rotation_node_optional_display_list,
     geo_layout_cmd_node_display_list_translated,
     geo_layout_cmd_node_billboard_optional_display_list,
     geo_layout_cmd_node_display_list,
     geo_layout_cmd_node_shadow,
-    geo_layout_cmd_17,
-    geo_layout_cmd_18,
+    geo_layout_cmd_node_render_obj,
+    geo_layout_cmd_node_poly_addr,
     geo_layout_cmd_node_background,
     geo_layout_cmd_nop,
     geo_layout_cmd_1B,
@@ -442,7 +442,7 @@ void geo_layout_cmd_node_translation_rotation_optional_display_list(void)
 }
 
 /*
-  0x11: Create ? scene graph node with optional display list
+  0x11: Create translation scene graph node with optional display list
    cmd+0x01: u8 params
      (params & 0x80): if set, enable displayList field and drawingLayer
      (params & 0x0F): drawingLayer
@@ -451,7 +451,7 @@ void geo_layout_cmd_node_translation_rotation_optional_display_list(void)
    cmd+0x06: s16 unkZ
   [cmd+0x08: void *displayList]
 */
-void geo_layout_cmd_11(void)
+void geo_layout_cmd_node_translation_node_optional_display_list(void)
 {
     struct GraphNode016 *graphNode;
 
@@ -488,7 +488,7 @@ void geo_layout_cmd_11(void)
    cmd+0x06: s16 unkZ
   [cmd+0x08: void *displayList]
 */
-void geo_layout_cmd_12(void)
+void geo_layout_cmd_node_rotation_node_optional_display_list(void)
 {
     struct GraphNode017 *graphNode;
 
@@ -650,8 +650,8 @@ void geo_layout_cmd_node_shadow(void)
     gGeoLayoutCommand += 0x08;
 }
 
-// 0x17: Create ? scene graph node (GraphNode029)
-void geo_layout_cmd_17(void)
+// 0x17: Create render object scene graph node (GraphNode029)
+void geo_layout_cmd_node_render_obj(void)
 {
     struct GraphNode029 *graphNode;
 
@@ -663,11 +663,11 @@ void geo_layout_cmd_17(void)
 }
 
 /*
-  0x18: Create ? scene graph node (GraphNode12A)
+  0x18: Create polygons address scene graph node (GraphNode12A)
    cmd+0x02: s16 parameter
    cmd+0x04: GraphNodeFunc func
 */
-void geo_layout_cmd_18(void)
+void geo_layout_cmd_node_poly_addr(void)
 {
     struct GraphNode12A *graphNode;
 

@@ -76,7 +76,7 @@ gsSP2Triangles  6,  7,  8, 0x0,  8,  7,  9, 0x0
 gsSP2Triangles  7,  6, 10, 0x0, 11,  9,  7, 0x0
 gsSPEndDisplayList
 
-glabel capswitch_seg5_dl_05002E00 # 0x05002E00 - 0x05002E60
+glabel cap_switch_exclamation_seg5_dl_05002E00 # 0x05002E00 - 0x05002E60
 gsDPPipeSync
 gsDPSetCombineMode1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_SHADE, G_ACMUX_0
 gsDPSetTile G_IM_FMT_IA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD

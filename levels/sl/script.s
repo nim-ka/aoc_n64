@@ -22,25 +22,25 @@ script_func_local_4:
 
 glabel level_sl_entry
     init_level
-    load_mio0 /*seg*/ 0x07, /*romStart*/ _sl_segment_7SegmentRomStart, /*romEnd*/ _sl_segment_7SegmentRomEnd
-    cmd1A     /*seg*/ 0x09, /*romStart*/ _snow_mio0SegmentRomStart, /*romEnd*/ _snow_mio0SegmentRomEnd
-    load_mio0 /*seg*/ 0x0B, /*romStart*/ _effect_mio0SegmentRomStart, /*romEnd*/ _effect_mio0SegmentRomEnd
-    load_mio0 /*seg*/ 0x0A, /*romStart*/ _ccm_skybox_mio0SegmentRomStart, /*romEnd*/ _ccm_skybox_mio0SegmentRomEnd
-    load_mio0 /*seg*/ 0x05, /*romStart*/ _group7_mio0SegmentRomStart, /*romEnd*/ _group7_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0C, /*romStart*/ _group7_geoSegmentRomStart,  /*romEnd*/ _group7_geoSegmentRomEnd
-    load_mio0 /*seg*/ 0x06, /*romStart*/ _group16_mio0SegmentRomStart, /*romEnd*/ _group16_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0D, /*romStart*/ _group16_geoSegmentRomStart,  /*romEnd*/ _group16_geoSegmentRomEnd
-    load_mio0 /*seg*/ 0x08, /*romStart*/ _common0_mio0SegmentRomStart, /*romEnd*/ _common0_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0F, /*romStart*/ _common0_geoSegmentRomStart,  /*romEnd*/ _common0_geoSegmentRomEnd
+    load_mio0         /*seg*/ 0x07, /*romStart*/ _sl_segment_7SegmentRomStart, /*romEnd*/ _sl_segment_7SegmentRomEnd
+    load_mio0_texture /*seg*/ 0x09, /*romStart*/ _snow_mio0SegmentRomStart, /*romEnd*/ _snow_mio0SegmentRomEnd
+    load_mio0         /*seg*/ 0x0B, /*romStart*/ _effect_mio0SegmentRomStart, /*romEnd*/ _effect_mio0SegmentRomEnd
+    load_mio0         /*seg*/ 0x0A, /*romStart*/ _ccm_skybox_mio0SegmentRomStart, /*romEnd*/ _ccm_skybox_mio0SegmentRomEnd
+    load_mio0         /*seg*/ 0x05, /*romStart*/ _group7_mio0SegmentRomStart, /*romEnd*/ _group7_mio0SegmentRomEnd
+    load_raw          /*seg*/ 0x0C, /*romStart*/ _group7_geoSegmentRomStart,  /*romEnd*/ _group7_geoSegmentRomEnd
+    load_mio0         /*seg*/ 0x06, /*romStart*/ _group16_mio0SegmentRomStart, /*romEnd*/ _group16_mio0SegmentRomEnd
+    load_raw          /*seg*/ 0x0D, /*romStart*/ _group16_geoSegmentRomStart,  /*romEnd*/ _group16_geoSegmentRomEnd
+    load_mio0         /*seg*/ 0x08, /*romStart*/ _common0_mio0SegmentRomStart, /*romEnd*/ _common0_mio0SegmentRomEnd
+    load_raw          /*seg*/ 0x0F, /*romStart*/ _common0_geoSegmentRomStart,  /*romEnd*/ _common0_geoSegmentRomEnd
     alloc_level_pool
     mario /*unk3*/ 0x01, /*behParam*/ 0x00000001, /*beh*/ beh_mario
     jump_link /*target*/ script_func_global_1
     jump_link /*target*/ script_func_global_8
     jump_link /*target*/ script_func_global_17
-    load_model_from_geo /*model*/ MODEL_SL_36, /*geo*/ sl_geo_000390
-    load_model_from_geo /*model*/ MODEL_SL_37, /*geo*/ sl_geo_000360
-    load_model_from_geo /*model*/ MODEL_SL_38, /*geo*/ sl_geo_000378
-    load_model_from_geo /*model*/ MODEL_SL_SNOW_TREE, /*geo*/ snow_tree_geo
+    load_model_from_geo /*model*/ MODEL_SL_SNOW_TRIANGLE,      /*geo*/ sl_geo_000390
+    load_model_from_geo /*model*/ MODEL_SL_CRACKED_ICE,        /*geo*/ sl_geo_000360
+    load_model_from_geo /*model*/ MODEL_SL_CRACKED_ICE_CHUNK,  /*geo*/ sl_geo_000378
+    load_model_from_geo /*model*/ MODEL_SL_SNOW_TREE,          /*geo*/ snow_tree_geo
 
     area /*index*/ 1, /*geo*/ sl_geo_0003A8
         object /*model*/ MODEL_NONE, /*pos*/  5541, 2024,   443, /*angle*/ 0, 270, 0, /*behParam*/ 0x000A0000, /*beh*/ beh_warps_74

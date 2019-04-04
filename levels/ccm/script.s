@@ -1,5 +1,5 @@
 script_func_local_1:
-    object /*model*/ MODEL_CCM_ROPEWAY_LIFT, /*pos*/ 531, -4430, 6426, /*angle*/ 0, 0, 0, /*behParam*/ 0x07120000, /*beh*/ bPlatformOnTrack
+    object /*model*/ MODEL_CCM_ROPEWAY_LIFT, /*pos*/ 531, -4430, 6426,    /*angle*/ 0,   0, 0, /*behParam*/ 0x07120000, /*beh*/ bPlatformOnTrack
     return
 
 script_func_local_2:
@@ -29,31 +29,31 @@ script_func_local_4:
 
 glabel level_ccm_entry
     init_level
-    load_mio0 /*seg*/ 0x07, /*romStart*/ _ccm_segment_7SegmentRomStart, /*romEnd*/ _ccm_segment_7SegmentRomEnd
-    cmd1A     /*seg*/ 0x09, /*romStart*/ _snow_mio0SegmentRomStart, /*romEnd*/ _snow_mio0SegmentRomEnd
-    load_mio0 /*seg*/ 0x0B, /*romStart*/ _effect_mio0SegmentRomStart, /*romEnd*/ _effect_mio0SegmentRomEnd
-    load_mio0 /*seg*/ 0x0A, /*romStart*/ _ccm_skybox_mio0SegmentRomStart, /*romEnd*/ _ccm_skybox_mio0SegmentRomEnd
-    load_mio0 /*seg*/ 0x05, /*romStart*/ _group7_mio0SegmentRomStart, /*romEnd*/ _group7_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0C, /*romStart*/ _group7_geoSegmentRomStart,  /*romEnd*/ _group7_geoSegmentRomEnd
-    load_mio0 /*seg*/ 0x06, /*romStart*/ _group16_mio0SegmentRomStart, /*romEnd*/ _group16_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0D, /*romStart*/ _group16_geoSegmentRomStart,  /*romEnd*/ _group16_geoSegmentRomEnd
-    load_mio0 /*seg*/ 0x08, /*romStart*/ _common0_mio0SegmentRomStart, /*romEnd*/ _common0_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0F, /*romStart*/ _common0_geoSegmentRomStart,  /*romEnd*/ _common0_geoSegmentRomEnd
+    load_mio0         /*seg*/ 0x07, /*romStart*/ _ccm_segment_7SegmentRomStart, /*romEnd*/ _ccm_segment_7SegmentRomEnd
+    load_mio0_texture /*seg*/ 0x09, /*romStart*/ _snow_mio0SegmentRomStart, /*romEnd*/ _snow_mio0SegmentRomEnd
+    load_mio0         /*seg*/ 0x0B, /*romStart*/ _effect_mio0SegmentRomStart, /*romEnd*/ _effect_mio0SegmentRomEnd
+    load_mio0         /*seg*/ 0x0A, /*romStart*/ _ccm_skybox_mio0SegmentRomStart, /*romEnd*/ _ccm_skybox_mio0SegmentRomEnd
+    load_mio0         /*seg*/ 0x05, /*romStart*/ _group7_mio0SegmentRomStart, /*romEnd*/ _group7_mio0SegmentRomEnd
+    load_raw          /*seg*/ 0x0C, /*romStart*/ _group7_geoSegmentRomStart,  /*romEnd*/ _group7_geoSegmentRomEnd
+    load_mio0         /*seg*/ 0x06, /*romStart*/ _group16_mio0SegmentRomStart, /*romEnd*/ _group16_mio0SegmentRomEnd
+    load_raw          /*seg*/ 0x0D, /*romStart*/ _group16_geoSegmentRomStart,  /*romEnd*/ _group16_geoSegmentRomEnd
+    load_mio0         /*seg*/ 0x08, /*romStart*/ _common0_mio0SegmentRomStart, /*romEnd*/ _common0_mio0SegmentRomEnd
+    load_raw          /*seg*/ 0x0F, /*romStart*/ _common0_geoSegmentRomStart,  /*romEnd*/ _common0_geoSegmentRomEnd
     alloc_level_pool
     mario /*unk3*/ 0x01, /*behParam*/ 0x00000001, /*beh*/ beh_mario
     jump_link /*target*/ script_func_global_1
     jump_link /*target*/ script_func_global_8
     jump_link /*target*/ script_func_global_17
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_03,     /*geo*/ ccm_geo_00042C
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_04,     /*geo*/ ccm_geo_00045C
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_05,     /*geo*/ ccm_geo_000494
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_06,     /*geo*/ ccm_geo_0004BC
-    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_07,     /*geo*/ ccm_geo_0004E4
-    load_model_from_geo /*model*/ MODEL_CCM_CABIN_DOOR,   /*geo*/ cabin_door_geo
-    load_model_from_geo /*model*/ MODEL_CCM_SNOW_TREE,    /*geo*/ snow_tree_geo
-    load_model_from_geo /*model*/ MODEL_CCM_ROPEWAY_LIFT, /*geo*/ ccm_geo_0003D0
-    load_model_from_geo /*model*/ MODEL_CCM_SNOWMAN_BASE, /*geo*/ ccm_geo_0003F0
-    load_model_from_geo /*model*/ MODEL_CCM_SNOWMAN_HEAD, /*geo*/ ccm_geo_00040C
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_03, /*geo*/ ccm_geo_00042C
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_04, /*geo*/ ccm_geo_00045C
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_05, /*geo*/ ccm_geo_000494
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_06, /*geo*/ ccm_geo_0004BC
+    load_model_from_geo /*model*/ MODEL_LEVEL_GEOMETRY_07, /*geo*/ ccm_geo_0004E4
+    load_model_from_geo /*model*/ MODEL_CCM_CABIN_DOOR,    /*geo*/ cabin_door_geo
+    load_model_from_geo /*model*/ MODEL_CCM_SNOW_TREE,     /*geo*/ snow_tree_geo
+    load_model_from_geo /*model*/ MODEL_CCM_ROPEWAY_LIFT,  /*geo*/ ccm_geo_0003D0
+    load_model_from_geo /*model*/ MODEL_CCM_SNOWMAN_BASE,  /*geo*/ ccm_geo_0003F0
+    load_model_from_geo /*model*/ MODEL_CCM_SNOWMAN_HEAD,  /*geo*/ ccm_geo_00040C
 
     area /*index*/ 1, /*geo*/ ccm_geo_00051C
         object /*model*/ MODEL_NONE, /*pos*/ -1512,  3560, -2305, /*angle*/ 0,  140, 0, /*behParam*/ 0x000A0000, /*beh*/ beh_warps_74
@@ -72,7 +72,7 @@ glabel level_ccm_entry
         jump_link /*target*/ script_func_local_3
         terrain /*terrainData*/ ccm_seg7_area_1_collision
         macro_objects /*objList*/ ccm_seg7_area_1_macro_objs
-        cmd30 /*unk2*/ 0x00, /*unk3*/ 0x30
+        show_dialog /*unk2*/ 0x00, /*dialogid*/ 0x30
         set_music /*unk2*/ 0x0000, /*seq*/ SEQ_LEVEL_SNOW
         terrain_type /*terrainType*/ 0x0002
     end_area

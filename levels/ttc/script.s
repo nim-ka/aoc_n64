@@ -1,25 +1,25 @@
 script_func_local_1:
-    object /*model*/ MODEL_NONE,   /*pos*/ -1080, -840, 1573, /*angle*/ 0,   0, 0, /*behParam*/ 0x00560000, /*beh*/ beh_pole_grabbing
-    object /*model*/ MODEL_THWOMP, /*pos*/  1919, 6191, 1919, /*angle*/ 0, 225, 0, /*behParam*/ 0x00000000, /*beh*/ beh_thwomp_2
+    object /*model*/ MODEL_NONE,   /*pos*/ -1080,  -840,  1573, /*angle*/ 0,   0, 0, /*behParam*/ 0x00560000, /*beh*/ beh_pole_grabbing
+    object /*model*/ MODEL_THWOMP, /*pos*/  1919,  6191,  1919, /*angle*/ 0, 225, 0, /*behParam*/ 0x00000000, /*beh*/ beh_thwomp_2
     return
 
 script_func_local_2:
-    object /*model*/ MODEL_STAR, /*pos*/ -1450, -1130, -1050, /*angle*/ 0, 0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_star,                 /*acts*/ ALL_ACTS
-    object /*model*/ MODEL_STAR, /*pos*/ -1850,   300,  -950, /*angle*/ 0, 0, 0, /*behParam*/ 0x01000000, /*beh*/ beh_star,                 /*acts*/ ALL_ACTS
-    object /*model*/ MODEL_STAR, /*pos*/ -1300, -2250, -1300, /*angle*/ 0, 0, 0, /*behParam*/ 0x02000000, /*beh*/ beh_star,                 /*acts*/ ALL_ACTS
-    object /*model*/ MODEL_STAR, /*pos*/  2200,  7300,  2210, /*angle*/ 0, 0, 0, /*behParam*/ 0x03000000, /*beh*/ beh_star,                 /*acts*/ ALL_ACTS
-    object /*model*/ MODEL_STAR, /*pos*/ -1050,  2400,  -790, /*angle*/ 0, 0, 0, /*behParam*/ 0x04000000, /*beh*/ beh_star,                 /*acts*/ ALL_ACTS
-    object /*model*/ MODEL_NONE, /*pos*/  1815, -3200,   800, /*angle*/ 0, 0, 0, /*behParam*/ 0x05000000, /*beh*/ beh_hidden_red_coin_star, /*acts*/ ALL_ACTS
+    object /*model*/ MODEL_STAR,   /*pos*/ -1450, -1130, -1050, /*angle*/ 0,   0, 0, /*behParam*/ 0x00000000, /*beh*/ beh_star,                 /*acts*/ ALL_ACTS
+    object /*model*/ MODEL_STAR,   /*pos*/ -1850,   300,  -950, /*angle*/ 0,   0, 0, /*behParam*/ 0x01000000, /*beh*/ beh_star,                 /*acts*/ ALL_ACTS
+    object /*model*/ MODEL_STAR,   /*pos*/ -1300, -2250, -1300, /*angle*/ 0,   0, 0, /*behParam*/ 0x02000000, /*beh*/ beh_star,                 /*acts*/ ALL_ACTS
+    object /*model*/ MODEL_STAR,   /*pos*/  2200,  7300,  2210, /*angle*/ 0,   0, 0, /*behParam*/ 0x03000000, /*beh*/ beh_star,                 /*acts*/ ALL_ACTS
+    object /*model*/ MODEL_STAR,   /*pos*/ -1050,  2400,  -790, /*angle*/ 0,   0, 0, /*behParam*/ 0x04000000, /*beh*/ beh_star,                 /*acts*/ ALL_ACTS
+    object /*model*/ MODEL_NONE,   /*pos*/  1815, -3200,   800, /*angle*/ 0,   0, 0, /*behParam*/ 0x05000000, /*beh*/ beh_hidden_red_coin_star, /*acts*/ ALL_ACTS
     return
 
 glabel level_ttc_entry
     init_level
-    load_mio0 /*seg*/ 0x07, /*romStart*/ _ttc_segment_7SegmentRomStart, /*romEnd*/ _ttc_segment_7SegmentRomEnd
-    cmd1A     /*seg*/ 0x09, /*romStart*/ _machine_mio0SegmentRomStart, /*romEnd*/ _machine_mio0SegmentRomEnd
-    load_mio0 /*seg*/ 0x05, /*romStart*/ _group1_mio0SegmentRomStart, /*romEnd*/ _group1_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0C, /*romStart*/ _group1_geoSegmentRomStart,  /*romEnd*/ _group1_geoSegmentRomEnd
-    load_mio0 /*seg*/ 0x08, /*romStart*/ _common0_mio0SegmentRomStart, /*romEnd*/ _common0_mio0SegmentRomEnd
-    load_raw  /*seg*/ 0x0F, /*romStart*/ _common0_geoSegmentRomStart,  /*romEnd*/ _common0_geoSegmentRomEnd
+    load_mio0         /*seg*/ 0x07, /*romStart*/ _ttc_segment_7SegmentRomStart, /*romEnd*/ _ttc_segment_7SegmentRomEnd
+    load_mio0_texture /*seg*/ 0x09, /*romStart*/ _machine_mio0SegmentRomStart, /*romEnd*/ _machine_mio0SegmentRomEnd
+    load_mio0         /*seg*/ 0x05, /*romStart*/ _group1_mio0SegmentRomStart, /*romEnd*/ _group1_mio0SegmentRomEnd
+    load_raw          /*seg*/ 0x0C, /*romStart*/ _group1_geoSegmentRomStart,  /*romEnd*/ _group1_geoSegmentRomEnd
+    load_mio0         /*seg*/ 0x08, /*romStart*/ _common0_mio0SegmentRomStart, /*romEnd*/ _common0_mio0SegmentRomEnd
+    load_raw          /*seg*/ 0x0F, /*romStart*/ _common0_geoSegmentRomStart,  /*romEnd*/ _common0_geoSegmentRomEnd
     alloc_level_pool
     mario /*unk3*/ 0x01, /*behParam*/ 0x00000001, /*beh*/ beh_mario
     jump_link /*target*/ script_func_global_1
