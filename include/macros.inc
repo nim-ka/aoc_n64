@@ -87,7 +87,7 @@ binid
 .macro leveldata name
 .section .seg07, "a"
 .align 4
-.incbin "mio0/\name\()/level.mio0"
+.incbin "mio0/\name\()/leveldata.mio0"
 .align 4
 .endm
 

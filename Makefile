@@ -286,10 +286,10 @@ $(BUILD_DIR)/bin/%.o: bin/%.s
 $(BUILD_DIR)/bin/%.o: actors/%.s
 	$(AS) $(ASFLAGS) --no-pad-sections -o $@ $<
 
-$(BUILD_DIR)/bin/%/level.o: levels/%/level.s
+$(BUILD_DIR)/bin/%/leveldata.o: levels/%/leveldata.s
 	$(AS) $(ASFLAGS) --no-pad-sections -o $@ $<
 
-$(BUILD_DIR)/bin/%/header.o: levels/%/header.s $(MIO0_DIR)/%/level.mio0 levels/%/script.s
+$(BUILD_DIR)/bin/%/header.o: levels/%/header.s $(MIO0_DIR)/%/leveldata.mio0 levels/%/script.s
 	$(AS) $(ASFLAGS) --no-pad-sections -o $@ $<
 
 # TODO: ideally this would be `-Trodata-segment=0x07000000` but that doesn't set the address
@@ -298,7 +298,7 @@ $(BUILD_DIR)/bin/%.elf: $(BUILD_DIR)/bin/%.o
 
 # Override for level.elf, which otherwise matches the above pattern
 .SECONDEXPANSION:
-$(BUILD_DIR)/bin/%/level.elf: $(BUILD_DIR)/bin/%/level.o $(BUILD_DIR)/bin/$$(TEXTURE_BIN).elf
+$(BUILD_DIR)/bin/%/leveldata.elf: $(BUILD_DIR)/bin/%/leveldata.o $(BUILD_DIR)/bin/$$(TEXTURE_BIN).elf
 	$(LD) -e 0 -Ttext=$(SEGMENT_ADDRESS) -Map $@.map --just-symbols=$(BUILD_DIR)/bin/$(TEXTURE_BIN).elf -o $@ $<
 
 $(BUILD_DIR)/bin/%.bin: $(BUILD_DIR)/bin/%.elf
