@@ -5,8 +5,7 @@
 #include "interface_1.h"
 #include "interface_2.h"
 #include "playback.h"
-
-#define IS_SPECIAL(ptr) ((u32)(ptr) != (u32)&D_80225DD8)
+#include "playback2.h"
 
 void func_8031CAD4(struct Struct80222A18 *arg0);
 
@@ -81,7 +80,7 @@ s32 func_8031A920(struct Struct80225DD8 *arg0, s32 arg1)
     sub->unk0b20 = 0;
     sub->unk0b10 = 0;
     sub->unk0b40 = 0;
-    sub->unk4 = 0;
+    sub->unk04.unk00 = 0;
     sub->unk6C = 0;
     sub->unk1 = 0;
     sub->unk2 = 0x80;

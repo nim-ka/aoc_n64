@@ -5,6 +5,7 @@
 
 #define MINUS_ONE ((struct SubStruct_func_80318870 *)(-1))
 #define INSTRUMENT_SENTINEL ((struct InstrumentSomething *)(1))
+#define IS_SPECIAL(ptr) ((u32)(ptr) != (u32)&D_80225DD8)
 
 struct PlaybackListItem
 {
@@ -23,6 +24,19 @@ struct PlaybackListItem
         s32 count;
     } u;
     struct PlaybackListItem *unkC;
+};
+
+struct struct8031A078 {
+    u8 unk00;
+    s8 pad01[0x4 - 0x1];
+    f32 unk04;
+    f32 unk08;
+    f32 unk0C;
+};
+
+struct SubstructInstrumentSomething {
+    s16 unk00;
+    s16 unk02;
 };
 
 // Mainly used in interface_2, but declared here to reduce header dependencies
@@ -79,14 +93,14 @@ struct Substruct80225DD8
 {
     u8 unk0; // set to 0x20
     u16 unk2;
-    u16 *unk4; // set to &D_80332AB4, might be a struct*
+    struct SubstructInstrumentSomething *unk4; // set to &D_80332AB4
 };
 
 struct InstrumentSomething
 {
     u8 pad[3];
     u8 unk3;
-    u16 *unk4;
+    struct SubstructInstrumentSomething *unk4;
 };
 
 struct Struct80225DD8
@@ -143,10 +157,7 @@ struct SubStruct_func_80318870
     u8 unk1;
     u8 unk2; // set to 0x80
     u8 pad1[1];
-    u8 unk4;
-    u8 pad2[2];
-    u8 unk7;
-    u8 pad3[0xC];
+    struct struct8031A078 unk04;
     struct Substruct80225DD8 unk14;
     u8 pad4[2];
     u16 unk1E;
@@ -200,6 +211,22 @@ struct SubStruct_func_80318870_3
     //starts with 2 u32 and then a pointer (probably s16, since most of the audio stuff is s16)
 };
 
+struct SubStruct_func_8031A584 {
+    u8 unk00;
+    u8 unk01;
+    s16 unk02;
+    s16 unk04;
+    s16 unk06;
+    s16 unk08;
+    s16 unk0A;
+    s16 unk0C;
+    s16 unk0E;
+    s32 unk10;
+    s32 unk14;
+    s16 *unk18;
+    struct SubstructInstrumentSomething *unk1C;
+};
+
 struct Struct_func_80318870
 {
     u8 unk0b80 : 1;
@@ -238,21 +265,9 @@ struct Struct_func_80318870
     u8 unk40;
     u8 unk41;
     struct SubStruct_func_80318870_2 unk44;
-    // struct {
-    u8 unk54;
-    u8 unk55;
-    u8 pad3[0x4];
-    s16 unk5A;
-    u8 pad4[0x4];
-    s16 unk60;
-    s16 unk62;
-    u8 pad5[0xc];
-    // }; ?
-    struct PlaybackListItem *unk70;
-    u8 pad6[4];
-    f32 unk78;
-    f32 unk7C;
-    u8 pad7[0x10];
+    struct SubStruct_func_8031A584 unk54;
+    struct struct8031A078 unk74;
+    u8 pad7[0x90 - 0x84];
     u8 unk90;
     u8 pad8[0xb];
     s16 unk9C;
@@ -324,11 +339,5 @@ struct Struct_func_80318870 *func_803198E0(struct SubStruct_func_80318870 *arg0)
 void func_80319BC8(void);
 void func_80319D40(void);
 
-// from playback_2
-extern void func_80319E78(struct Struct80222A18 *arg0);
-extern void func_8031A418(struct Struct_func_80318870 *arg0);
-extern void func_8031A478(struct Struct_func_80318870 *arg0);
-extern void func_8031A564(u8 *arg0, u16 *arg1, s16 *arg2);
-extern void func_8031A584(u8 *arg0);
 
 #endif /* _AUDIO_PLAYBACK_H */

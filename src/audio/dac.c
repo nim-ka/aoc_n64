@@ -793,10 +793,10 @@ void func_80316928(struct Struct80332190 *arg0)
         func_803168CC();
         for (i = 0; i < D_80226D70; i++)
         {
-            if (D_80222A10[i].unk0b80 && D_80222A10[i].unk55)
+            if (D_80222A10[i].unk0b80 && D_80222A10[i].unk54.unk01)
             {
-                D_80222A10[i].unk62 = 0x8000 / D_80226D7E;
-                D_80222A10[i].unk54 |= 0x10;
+                D_80222A10[i].unk54.unk0E = 0x8000 / D_80226D7E;
+                D_80222A10[i].unk54.unk00 |= 0x10;
             }
         }
 

@@ -6,6 +6,7 @@
 #include "interface_1.h"
 #include "playback.h"
 #include "something.h"
+#include "playback2.h"
 
 #ifdef VERSION_JP
 #define US_FLOAT(x) x
@@ -23,7 +24,7 @@ void func_80318870(struct Struct_func_80318870 *arg0)
     {
         func_8031A564(&arg0->unk54, arg0->unk2C->unk14.unk4, &arg0->unk8);
     }
-    arg0->unk55 = 1;
+    arg0->unk54.unk01 = 1;
     func_803159C0(arg0);
     func_80315D94(arg0);
 }
@@ -109,7 +110,7 @@ void func_80318908(void)
             }
             else
             {
-                if (s0->unk55 == 0)
+                if (s0->unk54.unk01 == 0)
                 {
                     func_803188E8(s0);
                     func_8031AEF4(&s0->unkA4.unkC[0], POP(&s0->unkA4));
@@ -183,7 +184,7 @@ void func_80318D18(struct SubStruct_func_80318870 *arg0, s32 arg1)
     }
 
     arg0->unk1 = 0;
-    if (unk44->unk55 != 6)
+    if (unk44->unk54.unk01  != 6)
     {
         sub->unk4 = arg0->unk34;
         sub->unk8 = arg0->unk2C;
@@ -197,21 +198,21 @@ void func_80318D18(struct SubStruct_func_80318870 *arg0, s32 arg1)
         unk44->unk2C = MINUS_ONE;
         if (arg1 == 7)
         {
-            unk44->unk62 = 0x8000 / D_80226D7E;
-            unk44->unk54 |= 0x10;
+            unk44->unk54.unk0E = 0x8000 / D_80226D7E;
+            unk44->unk54.unk00 |= 0x10;
         }
         else
         {
-            unk44->unk54 |= 0x20;
+            unk44->unk54.unk00 |= 0x20;
             if (arg0->unk14.unk0 == 0)
             {
-                unk44->unk62 = arg0->unk50->unk78.unk0 * 0x18;
+                unk44->unk54.unk0E = arg0->unk50->unk78.unk0 * 0x18;
             }
             else
             {
-                unk44->unk62 = arg0->unk14.unk0 * 0x18;
+                unk44->unk54.unk0E = arg0->unk14.unk0 * 0x18;
             }
-            unk44->unk60 = (unk44->unk5A * arg0->unk50->unk78.unk2) / 0x10000;
+            unk44->unk54.unk0C = (unk44->unk54.unk06 * arg0->unk50->unk78.unk2) / 0x10000;
         }
     }
 
@@ -530,8 +531,8 @@ void func_8031975C(struct Struct_func_80318870 *arg0, struct SubStruct_func_8031
 {
     arg0->unk30 = arg1;
     arg0->unk4 = 1;
-    arg0->unk62 = 0x8000 / D_80226D7E;
-    arg0->unk54 |= 0x10;
+    arg0->unk54.unk0E = 0x8000 / D_80226D7E;
+    arg0->unk54.unk00 |= 0x10;
 }
 
 struct Struct_func_80318870 *func_803197B4(struct PlaybackListItem *headList, struct SubStruct_func_80318870 *arg1)
@@ -725,11 +726,11 @@ void func_80319D40(void)
         temp->unk41 = 0x3f;
         temp->unk44.unk8 = 0.0f;
         temp->unk8 = 0;
-        temp->unk55 = 0;
-        temp->unk54 = 0;
+        temp->unk54.unk01 = 0;
+        temp->unk54.unk00 = 0;
         temp->unk90 = 0;
-        temp->unk78 = 0.0f;
-        temp->unk7C = 0.0f;
+        temp->unk74.unk04 = 0.0f;
+        temp->unk74.unk08 = 0.0f;
         temp->unk34 = soundAlloc(&D_802212C8, 0x190);
     }
 }

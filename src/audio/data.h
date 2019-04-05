@@ -3,6 +3,8 @@
 
 #include <ultra64.h>
 
+#include "playback.h"
+
 struct Struct80332190
 {
     /*0x00*/ u32 frequency; // 32000, 27000
@@ -27,7 +29,7 @@ extern f32 D_80332884[128];
 extern u8 D_80332A84[16];
 extern u8 D_80332A94[16];
 extern u8 D_80332AA4[16];
-extern u16 D_80332AB4[6];
+extern struct SubstructInstrumentSomething D_80332AB4[3];
 
 extern s16 *gWaveSamples[4];
 
