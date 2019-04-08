@@ -10,7 +10,7 @@ glabel wiggler2_geo # 0x0500C778
           geo_open_node
             geo_billboard
             geo_open_node
-              geo_display_list 4, wiggler_seg5_dl_0500C278
+              geo_display_list LAYER_ALPHA, wiggler_seg5_dl_0500C278
             geo_close_node
           geo_close_node
           geo_open_node

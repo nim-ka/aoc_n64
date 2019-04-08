@@ -32,7 +32,7 @@ glabel chilly_chief_seg6_geo # 0x06003754
             geo_open_node
 			  geo_billboard
               geo_open_node
-			    geo_display_list 4, 0x06002D88
+			    geo_display_list LAYER_ALPHA, 0x06002D88
               geo_close_node
             geo_close_node
 			geo_dl_translated 1, 0, 0, 0, chilly_chief_seg6_dl_06002C60
@@ -76,7 +76,7 @@ glabel chilly_chief_seg6_geo2 # 0x06003874
             geo_open_node
               geo_billboard
               geo_open_node
-			    geo_display_list 4, chilly_chief_seg6_dl_06002EF0
+			    geo_display_list LAYER_ALPHA, chilly_chief_seg6_dl_06002EF0
               geo_close_node
             geo_close_node
 			geo_dl_translated 1, 0, 0, 0, chilly_chief_seg6_dl_06002C60

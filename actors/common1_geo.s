@@ -23,16 +23,16 @@ glabel number_geo # 0x16000E14
    geo_open_node
       geo_switch_case 10, GeoSwitchCase8029DB48
       geo_open_node
-         geo_display_list 0x04, seg2_dl_0200F078
-         geo_display_list 0x04, seg2_dl_0200F0A8
-         geo_display_list 0x04, seg2_dl_0200F0D8
-         geo_display_list 0x04, seg2_dl_0200F108
-         geo_display_list 0x04, seg2_dl_0200F138
-         geo_display_list 0x04, seg2_dl_0200F168
-         geo_display_list 0x04, seg2_dl_0200F198
-         geo_display_list 0x04, seg2_dl_0200F1C8
-         geo_display_list 0x04, seg2_dl_0200F1F8
-         geo_display_list 0x04, seg2_dl_0200F228
+         geo_display_list LAYER_ALPHA, seg2_dl_0200F078
+         geo_display_list LAYER_ALPHA, seg2_dl_0200F0A8
+         geo_display_list LAYER_ALPHA, seg2_dl_0200F0D8
+         geo_display_list LAYER_ALPHA, seg2_dl_0200F108
+         geo_display_list LAYER_ALPHA, seg2_dl_0200F138
+         geo_display_list LAYER_ALPHA, seg2_dl_0200F168
+         geo_display_list LAYER_ALPHA, seg2_dl_0200F198
+         geo_display_list LAYER_ALPHA, seg2_dl_0200F1C8
+         geo_display_list LAYER_ALPHA, seg2_dl_0200F1F8
+         geo_display_list LAYER_ALPHA, seg2_dl_0200F228
       geo_close_node
    geo_close_node
    geo_end

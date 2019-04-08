@@ -1,4 +1,6 @@
-glabel mario_geo_0002E0 # 0x170002E0
+# Normal Mario Geo
+
+glabel mario_geo_face_and_wings # 0x170002E0
    geo_asm 0, Geo18_802773A4
    geo_rotation_node 0x00, 0, 0, 0
    geo_open_node
@@ -6,25 +8,25 @@ glabel mario_geo_0002E0 # 0x170002E0
       geo_open_node
          geo_switch_case 0, GeoSwitchCase802771BC
          geo_open_node
-            geo_display_list LAYER_OPAQUE, mario_seg4_dl_040119A0
-            geo_display_list LAYER_OPAQUE, mario_seg4_dl_04011A90
-            geo_display_list LAYER_OPAQUE, mario_seg4_dl_04011B80
-            geo_display_list LAYER_OPAQUE, mario_seg4_dl_04011C70
-            geo_display_list LAYER_OPAQUE, mario_seg4_dl_04011D60
-            geo_display_list LAYER_OPAQUE, mario_seg4_dl_04011E50
-            geo_display_list LAYER_OPAQUE, mario_seg4_dl_04011F40
-            geo_display_list LAYER_OPAQUE, mario_seg4_dl_04012030
+            geo_display_list LAYER_OPAQUE, mario_cap_on_eyes_front
+            geo_display_list LAYER_OPAQUE, mario_cap_on_eyes_half_closed
+            geo_display_list LAYER_OPAQUE, mario_cap_on_eyes_closed
+            geo_display_list LAYER_OPAQUE, mario_cap_on_eyes_right # unused
+            geo_display_list LAYER_OPAQUE, mario_cap_on_eyes_left # unused
+            geo_display_list LAYER_OPAQUE, mario_cap_on_eyes_up # unused
+            geo_display_list LAYER_OPAQUE, mario_cap_on_eyes_down # unused
+            geo_display_list LAYER_OPAQUE, mario_cap_on_eyes_dead
          geo_close_node
          geo_switch_case 0, GeoSwitchCase802771BC
          geo_open_node
-            geo_display_list LAYER_OPAQUE, mario_seg4_dl_040139E8
-            geo_display_list LAYER_OPAQUE, mario_seg4_dl_04013AB8
-            geo_display_list LAYER_OPAQUE, mario_seg4_dl_04013B88
-            geo_display_list LAYER_OPAQUE, mario_seg4_dl_04013C58
-            geo_display_list LAYER_OPAQUE, mario_seg4_dl_04013D28
-            geo_display_list LAYER_OPAQUE, mario_seg4_dl_04013DF8
-            geo_display_list LAYER_OPAQUE, mario_seg4_dl_04013EC8
-            geo_display_list LAYER_OPAQUE, mario_seg4_dl_04013F98
+            geo_display_list LAYER_OPAQUE, mario_cap_off_eyes_front
+            geo_display_list LAYER_OPAQUE, mario_cap_off_eyes_half_closed
+            geo_display_list LAYER_OPAQUE, mario_cap_off_eyes_closed
+            geo_display_list LAYER_OPAQUE, mario_cap_off_eyes_right # unused
+            geo_display_list LAYER_OPAQUE, mario_cap_off_eyes_left # unused
+            geo_display_list LAYER_OPAQUE, mario_cap_off_eyes_up # unused
+            geo_display_list LAYER_OPAQUE, mario_cap_off_eyes_down # unused
+            geo_display_list LAYER_OPAQUE, mario_cap_off_eyes_dead
          geo_close_node
       geo_close_node
       geo_translate_rotate 0, 142, -51, -126, 22, -40, -135
@@ -32,7 +34,7 @@ glabel mario_geo_0002E0 # 0x170002E0
          geo_asm 0, Geo18_80277824
          geo_rotation_node 0x00, 0, 0, 0
          geo_open_node
-            geo_display_list LAYER_ALPHA, mario_seg4_dl_0401CA00
+            geo_display_list LAYER_ALPHA, mario_cap_wings # left
          geo_close_node
       geo_close_node
       geo_translate_rotate 0, 142, -51, 126, -22, 40, -135
@@ -40,13 +42,13 @@ glabel mario_geo_0002E0 # 0x170002E0
          geo_asm 1, Geo18_80277824
          geo_rotation_node 0x00, 0, 0, 0
          geo_open_node
-            geo_display_list LAYER_ALPHA, mario_seg4_dl_0401CA00
+            geo_display_list LAYER_ALPHA, mario_cap_wings # right
          geo_close_node
       geo_close_node
    geo_close_node
    geo_return
 
-glabel mario_geo_00041C # 0x1700041C
+glabel mario_geo_left_hand # 0x1700041C
    geo_switch_case 1, GeoSwitchCase802774F4
    geo_open_node
       geo_dl_translated LAYER_OPAQUE, 60, 0, 0
@@ -54,17 +56,17 @@ glabel mario_geo_00041C # 0x1700041C
          geo_asm 1, Geo18_802775CC
          geo_scale 0x00, 65536
          geo_open_node
-            geo_display_list LAYER_OPAQUE, mario_seg4_dl_0400D8F0
+            geo_display_list LAYER_OPAQUE, mario_left_hand_closed
          geo_close_node
       geo_close_node
-      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_seg4_dl_04019CA0
-      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_seg4_dl_0400D8F0
-      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_seg4_dl_0400D8F0
-      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_seg4_dl_0400D8F0
+      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_left_hand_open
+      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_left_hand_closed
+      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_left_hand_closed
+      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_left_hand_closed
    geo_close_node
    geo_return
 
-glabel mario_geo_000494 # 0x17000494
+glabel mario_geo_right_hand # 0x17000494
    geo_switch_case 0, GeoSwitchCase802774F4
    geo_open_node
       geo_dl_translated LAYER_OPAQUE, 60, 0, 0
@@ -72,55 +74,57 @@ glabel mario_geo_000494 # 0x17000494
          geo_asm 0, Geo18_802775CC
          geo_scale 0x00, 65536
          geo_open_node
-            geo_display_list LAYER_OPAQUE, mario_seg4_dl_0400E458
+            geo_display_list LAYER_OPAQUE, mario_right_hand_closed
          geo_close_node
          geo_todo_1C 0x00, 0, 0, 0, Geo1C_8027795C
       geo_close_node
-      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_seg4_dl_0401A428
+      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_right_hand_open
       geo_open_node
          geo_todo_1C 0x00, 0, 0, 0, Geo1C_8027795C
       geo_close_node
-      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_seg4_dl_0401BF30
-      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_seg4_dl_0401B158
-      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_seg4_dl_0401B158
+      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_right_hand_peace # here we go hand
+      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_right_hand_cap
+      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_right_hand_cap
       geo_open_node
-         geo_display_list LAYER_ALPHA, mario_seg4_dl_0401B1D8
+         geo_display_list LAYER_ALPHA, mario_right_hand_cap_wings
       geo_close_node
    geo_close_node
    geo_return
 
-glabel mario_geo_00053C # 0x1700053C
+# The body loads all the parts with some shared dls to apply the solid color of the dl that has it, the same rule applies to the medium and low poly geos
+
+glabel mario_geo_body # 0x1700053C
    geo_dl_translated LAYER_OPAQUE, 0, 0, 0
    geo_open_node
-      geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_seg4_dl_0400CC98
+      geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_butt # starts sharing solid color with mario_torso (blue)
       geo_open_node
          geo_asm 0, Geo18_802B1BB0
          geo_asm 0, Geo18_80277294
          geo_rotation_node 0x00, 0, 0, 0
          geo_open_node
-            geo_dl_translated LAYER_OPAQUE, 68, 0, 0, mario_seg4_dl_04010370
+            geo_dl_translated LAYER_OPAQUE, 68, 0, 0, mario_torso
             geo_open_node
                geo_dl_translated LAYER_OPAQUE, 87, 0, 0
                geo_open_node
-                  geo_branch 1, mario_geo_0002E0
+                  geo_branch 1, mario_geo_face_and_wings # stops sharing because faces has its own dl
                geo_close_node
                geo_dl_translated LAYER_OPAQUE, 67, -10, 79
                geo_open_node
-                  geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_seg4_dl_0400D1D8
+                  geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_left_arm # starts sharing solid color with mario_left_forearm (red)
                   geo_open_node
-                     geo_dl_translated LAYER_OPAQUE, 65, 0, 0, mario_seg4_dl_0400D2F8
+                     geo_dl_translated LAYER_OPAQUE, 65, 0, 0, mario_left_forearm_shared_dl
                      geo_open_node
-                        geo_branch 1, mario_geo_00041C
+                        geo_branch 1, mario_geo_left_hand # stops sharing because hand has its solid color (white)
                      geo_close_node
                   geo_close_node
                geo_close_node
                geo_dl_translated LAYER_OPAQUE, 68, -10, -79
                geo_open_node
-                  geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_seg4_dl_0400DDE8
+                  geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_right_arm # starts sharing solid color of his dl with mario_right_forearm (red)
                   geo_open_node
-                     geo_dl_translated LAYER_OPAQUE, 65, 0, 0, mario_seg4_dl_0400DF08
+                     geo_dl_translated LAYER_OPAQUE, 65, 0, 0, mario_right_forearm_shared_dl
                      geo_open_node
-                        geo_branch 1, mario_geo_000494
+                        geo_branch 1, mario_geo_right_hand # stops sharing because hand has its solid color (white)
                      geo_close_node
                   geo_close_node
                geo_close_node
@@ -128,26 +132,26 @@ glabel mario_geo_00053C # 0x1700053C
          geo_close_node
          geo_dl_translated LAYER_OPAQUE, 13, -8, 42
          geo_open_node
-            geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_seg4_dl_0400E7B0
+            geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_left_thigh # starts sharing solid color of his dl with mario_left_leg (blue)
             geo_open_node
-               geo_dl_translated LAYER_OPAQUE, 89, 0, 0, mario_seg4_dl_0400E918
+               geo_dl_translated LAYER_OPAQUE, 89, 0, 0, mario_left_leg_shared_dl
                geo_open_node
-                  geo_dl_translated LAYER_OPAQUE, 67, 0, 0, mario_seg4_dl_0400ECA0
+                  geo_dl_translated LAYER_OPAQUE, 67, 0, 0, mario_left_foot # stops sharing because foot has its solid color (brown)
                geo_close_node
             geo_close_node
          geo_close_node
          geo_dl_translated LAYER_OPAQUE, 13, -8, -42
          geo_open_node
-            geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_seg4_dl_0400EFB8
+            geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_right_thigh # starts sharing solid color of his dl with mario_left_leg (blue)
             geo_open_node
-               geo_dl_translated LAYER_OPAQUE, 89, 0, 0, mario_seg4_dl_0400F1D8
+               geo_dl_translated LAYER_OPAQUE, 89, 0, 0, mario_right_leg_shared_dl
                geo_open_node
                   geo_dl_translated LAYER_OPAQUE, 67, 0, 0
                   geo_open_node
                      geo_asm 2, Geo18_802775CC
                      geo_scale 0x00, 65536
                      geo_open_node
-                        geo_display_list LAYER_OPAQUE, mario_seg4_dl_0400F4E8
+                        geo_display_list LAYER_OPAQUE, mario_right_foot # stops sharing because foot has its solid color (brown)
                      geo_close_node
                   geo_close_node
                geo_close_node
@@ -157,7 +161,7 @@ glabel mario_geo_00053C # 0x1700053C
    geo_close_node
    geo_return
 
-glabel mario_geo_0006F8 # 0x170006F8
+glabel mario_geo_medium_poly_left_hand # 0x170006F8
    geo_switch_case 1, GeoSwitchCase802774F4
    geo_open_node
       geo_dl_translated LAYER_OPAQUE, 60, 0, 0
@@ -165,17 +169,17 @@ glabel mario_geo_0006F8 # 0x170006F8
          geo_asm 1, Geo18_802775CC
          geo_scale 0x00, 65536
          geo_open_node
-            geo_display_list LAYER_OPAQUE, mario_seg4_dl_04014DC0
+            geo_display_list LAYER_OPAQUE, mario_medium_poly_left_hand_closed
          geo_close_node
       geo_close_node
-      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_seg4_dl_04019CA0
-      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_seg4_dl_04014DC0
-      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_seg4_dl_04014DC0
-      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_seg4_dl_04014DC0
+      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_left_hand_open
+      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_medium_poly_left_hand_closed 
+      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_medium_poly_left_hand_closed
+      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_medium_poly_left_hand_closed
    geo_close_node
    geo_return
 
-glabel mario_geo_000770 # 0x17000770
+glabel mario_geo_medium_poly_right_hand # 0x17000770
    geo_switch_case 0, GeoSwitchCase802774F4
    geo_open_node
       geo_dl_translated LAYER_OPAQUE, 60, 0, 0
@@ -183,55 +187,55 @@ glabel mario_geo_000770 # 0x17000770
          geo_asm 0, Geo18_802775CC
          geo_scale 0x00, 65536
          geo_open_node
-            geo_display_list LAYER_OPAQUE, mario_seg4_dl_040154E0
+            geo_display_list LAYER_OPAQUE, mario_medium_poly_right_hand_closed
          geo_close_node
          geo_todo_1C 0x00, 0, 0, 0, Geo1C_8027795C
       geo_close_node
-      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_seg4_dl_0401A428
+      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_right_hand_open
       geo_open_node
          geo_todo_1C 0x00, 0, 0, 0, Geo1C_8027795C
       geo_close_node
-      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_seg4_dl_0401BF30
-      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_seg4_dl_0401B158
-      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_seg4_dl_0401B158
+      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_right_hand_peace # here we go hand
+      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_right_hand_cap
+      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_right_hand_cap
       geo_open_node
-         geo_display_list LAYER_ALPHA, mario_seg4_dl_0401B1D8
+         geo_display_list LAYER_ALPHA, mario_right_hand_cap_wings
       geo_close_node
    geo_close_node
    geo_return
 
-glabel mario_geo_000818 # 0x17000818
+glabel mario_geo_medium_poly_body # 0x17000818
    geo_dl_translated LAYER_OPAQUE, 0, 0, 0
    geo_open_node
-      geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_seg4_dl_04014638
+      geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_medium_poly_butt # starts sharing solid color with mario_torso (blue)
       geo_open_node
          geo_asm 0, Geo18_802B1BB0
          geo_asm 0, Geo18_80277294
          geo_rotation_node 0x00, 0, 0, 0
          geo_open_node
-            geo_dl_translated LAYER_OPAQUE, 68, 0, 0, mario_seg4_dl_040168C8
+            geo_dl_translated LAYER_OPAQUE, 68, 0, 0, mario_medium_poly_torso
             geo_open_node
                geo_dl_translated LAYER_OPAQUE, 87, 0, 0
                geo_open_node
-                  geo_branch 1, mario_geo_0002E0
+                  geo_branch 1, mario_geo_face_and_wings # stops sharing because faces has its own dl - medium poly mario uses high poly face
                geo_close_node
                geo_dl_translated LAYER_OPAQUE, 67, -10, 79
                geo_open_node
-                  geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_seg4_dl_04014840
+                  geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_medium_poly_left_arm # starts sharing solid color with mario_left_forearm (red)
                   geo_open_node
-                     geo_dl_translated LAYER_OPAQUE, 65, 0, 0, mario_seg4_dl_04014950
+                     geo_dl_translated LAYER_OPAQUE, 65, 0, 0, mario_medium_poly_left_forearm_shared_dl
                      geo_open_node
-                        geo_branch 1, mario_geo_0006F8
+                        geo_branch 1, mario_geo_medium_poly_left_hand # stops sharing because hand has its solid color (white)
                      geo_close_node
                   geo_close_node
                geo_close_node
                geo_dl_translated LAYER_OPAQUE, 68, -10, -79
                geo_open_node
-                  geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_seg4_dl_04014F40
+                  geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_medium_poly_right_arm # starts sharing solid color of his dl with mario_right_forearm (red)
                   geo_open_node
-                     geo_dl_translated LAYER_OPAQUE, 65, 0, 0, mario_seg4_dl_04015050
+                     geo_dl_translated LAYER_OPAQUE, 65, 0, 0, mario_medium_poly_right_forearm_shared_dl
                      geo_open_node
-                        geo_branch 1, mario_geo_000770
+                        geo_branch 1, mario_geo_medium_poly_right_hand # stops sharing because hand has its solid color (white)
                      geo_close_node
                   geo_close_node
                geo_close_node
@@ -239,26 +243,26 @@ glabel mario_geo_000818 # 0x17000818
          geo_close_node
          geo_dl_translated LAYER_OPAQUE, 13, -8, 42
          geo_open_node
-            geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_seg4_dl_040156B0
+            geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_medium_poly_left_thigh # starts sharing solid color of his dl with mario_left_leg (blue)
             geo_open_node
-               geo_dl_translated LAYER_OPAQUE, 89, 0, 0, mario_seg4_dl_04015848
+               geo_dl_translated LAYER_OPAQUE, 89, 0, 0, mario_medium_poly_left_leg_shared_dl
                geo_open_node
-                  geo_dl_translated LAYER_OPAQUE, 67, 0, 0, mario_seg4_dl_04015B60
+                  geo_dl_translated LAYER_OPAQUE, 67, 0, 0, mario_medium_poly_left_foot  # stops sharing because foot has its solid color (brown)
                geo_close_node
             geo_close_node
          geo_close_node
          geo_dl_translated LAYER_OPAQUE, 13, -8, -42
          geo_open_node
-            geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_seg4_dl_04015D00
+            geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_medium_poly_right_thigh # starts sharing solid color of his dl with mario_left_leg (blue)
             geo_open_node
-               geo_dl_translated LAYER_OPAQUE, 89, 0, 0, mario_seg4_dl_04015E10
+               geo_dl_translated LAYER_OPAQUE, 89, 0, 0, mario_medium_poly_right_leg_shared_dl
                geo_open_node
                   geo_dl_translated LAYER_OPAQUE, 67, 0, 0
                   geo_open_node
                      geo_asm 2, Geo18_802775CC
                      geo_scale 0x00, 65536
                      geo_open_node
-                        geo_display_list LAYER_OPAQUE, mario_seg4_dl_040160C8
+                        geo_display_list LAYER_OPAQUE, mario_medium_poly_right_foot # stops sharing because foot has its solid color (brown)
                      geo_close_node
                   geo_close_node
                geo_close_node
@@ -268,7 +272,7 @@ glabel mario_geo_000818 # 0x17000818
    geo_close_node
    geo_return
 
-glabel mario_geo_0009D4 # 0x170009D4
+glabel mario_geo_low_poly_face_and_wings # 0x170009D4
    geo_asm 0, Geo18_802773A4
    geo_rotation_node 0x00, 0, 0, 0
    geo_open_node
@@ -276,25 +280,25 @@ glabel mario_geo_0009D4 # 0x170009D4
       geo_open_node
          geo_switch_case 0, GeoSwitchCase802771BC
          geo_open_node
-            geo_display_list LAYER_OPAQUE, mario_seg4_dl_04018460
-            geo_display_list LAYER_OPAQUE, mario_seg4_dl_04018530
-            geo_display_list LAYER_OPAQUE, mario_seg4_dl_04018600
-            geo_display_list LAYER_OPAQUE, mario_seg4_dl_040186D0
-            geo_display_list LAYER_OPAQUE, mario_seg4_dl_040187A0
-            geo_display_list LAYER_OPAQUE, mario_seg4_dl_04018870
-            geo_display_list LAYER_OPAQUE, mario_seg4_dl_04018940
-            geo_display_list LAYER_OPAQUE, mario_seg4_dl_04018A10
+            geo_display_list LAYER_OPAQUE, mario_low_poly_cap_on_eyes_front
+            geo_display_list LAYER_OPAQUE, mario_low_poly_cap_on_eyes_half_closed
+            geo_display_list LAYER_OPAQUE, mario_low_poly_cap_on_eyes_closed
+            geo_display_list LAYER_OPAQUE, mario_low_poly_cap_on_eyes_right # unused
+            geo_display_list LAYER_OPAQUE, mario_low_poly_cap_on_eyes_left # unused
+            geo_display_list LAYER_OPAQUE, mario_low_poly_cap_on_eyes_up # unused
+            geo_display_list LAYER_OPAQUE, mario_low_poly_cap_on_eyes_down # unused
+            geo_display_list LAYER_OPAQUE, mario_low_poly_cap_on_eyes_dead
          geo_close_node
          geo_switch_case 0, GeoSwitchCase802771BC
          geo_open_node
-            geo_display_list LAYER_OPAQUE, mario_seg4_dl_04018F90
-            geo_display_list LAYER_OPAQUE, mario_seg4_dl_04019040
-            geo_display_list LAYER_OPAQUE, mario_seg4_dl_040190F0
-            geo_display_list LAYER_OPAQUE, mario_seg4_dl_040191A0
-            geo_display_list LAYER_OPAQUE, mario_seg4_dl_04019250
-            geo_display_list LAYER_OPAQUE, mario_seg4_dl_04019300
-            geo_display_list LAYER_OPAQUE, mario_seg4_dl_040193B0
-            geo_display_list LAYER_OPAQUE, mario_seg4_dl_04019460
+            geo_display_list LAYER_OPAQUE, mario_low_poly_cap_off_eyes_front
+            geo_display_list LAYER_OPAQUE, mario_low_poly_cap_off_eyes_half_closed
+            geo_display_list LAYER_OPAQUE, mario_low_poly_cap_off_eyes_closed
+            geo_display_list LAYER_OPAQUE, mario_low_poly_cap_off_eyes_right # unused
+            geo_display_list LAYER_OPAQUE, mario_low_poly_cap_off_eyes_left # unused
+            geo_display_list LAYER_OPAQUE, mario_low_poly_cap_off_eyes_up # unused
+            geo_display_list LAYER_OPAQUE, mario_low_poly_cap_off_eyes_down # unused
+            geo_display_list LAYER_OPAQUE, mario_low_poly_cap_off_eyes_dead
          geo_close_node
       geo_close_node
       geo_translate_rotate 0, 142, -51, -126, 22, -40, -135
@@ -302,7 +306,7 @@ glabel mario_geo_0009D4 # 0x170009D4
          geo_asm 0, Geo18_80277824
          geo_rotation_node 0x00, 0, 0, 0
          geo_open_node
-            geo_display_list LAYER_ALPHA, mario_seg4_dl_0401CA00
+            geo_display_list LAYER_ALPHA, mario_cap_wings # left
          geo_close_node
       geo_close_node
       geo_translate_rotate 0, 142, -51, 126, -22, 40, -135
@@ -310,13 +314,13 @@ glabel mario_geo_0009D4 # 0x170009D4
          geo_asm 1, Geo18_80277824
          geo_rotation_node 0x00, 0, 0, 0
          geo_open_node
-            geo_display_list LAYER_ALPHA, mario_seg4_dl_0401CA00
+            geo_display_list LAYER_ALPHA, mario_cap_wings # right
          geo_close_node
       geo_close_node
    geo_close_node
    geo_return
 
-glabel mario_geo_000B10 # 0x17000B10
+glabel mario_geo_low_poly_left_hand # 0x17000B10
    geo_switch_case 1, GeoSwitchCase802774F4
    geo_open_node
       geo_dl_translated LAYER_OPAQUE, 60, 0, 0
@@ -324,17 +328,17 @@ glabel mario_geo_000B10 # 0x17000B10
          geo_asm 1, Geo18_802775CC
          geo_scale 0x00, 65536
          geo_open_node
-            geo_display_list LAYER_OPAQUE, mario_seg4_dl_04016E80
+            geo_display_list LAYER_OPAQUE, mario_low_poly_left_hand_closed
          geo_close_node
       geo_close_node
-      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_seg4_dl_04019CA0
-      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_seg4_dl_04016E80
-      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_seg4_dl_04016E80
-      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_seg4_dl_04016E80
+      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_left_hand_open
+      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_low_poly_left_hand_closed
+      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_low_poly_left_hand_closed
+      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_low_poly_left_hand_closed
    geo_close_node
    geo_return
 
-glabel mario_geo_000B88 # 0x17000B88
+glabel mario_geo_low_poly_right_hand # 0x17000B88
    geo_switch_case 0, GeoSwitchCase802774F4
    geo_open_node
       geo_dl_translated LAYER_OPAQUE, 60, 0, 0
@@ -342,55 +346,55 @@ glabel mario_geo_000B88 # 0x17000B88
          geo_asm 0, Geo18_802775CC
          geo_scale 0x00, 65536
          geo_open_node
-            geo_display_list LAYER_OPAQUE, mario_seg4_dl_040171C0
+            geo_display_list LAYER_OPAQUE, mario_low_poly_right_hand_closed
          geo_close_node
          geo_todo_1C 0x00, 0, 0, 0, Geo1C_8027795C
       geo_close_node
-      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_seg4_dl_0401A428
+      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_right_hand_open
       geo_open_node
          geo_todo_1C 0x00, 0, 0, 0, Geo1C_8027795C
       geo_close_node
-      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_seg4_dl_0401BF30
-      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_seg4_dl_0401B158
-      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_seg4_dl_0401B158
+      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_right_hand_peace # here we go hand
+      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_right_hand_cap
+      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_right_hand_cap
       geo_open_node
-         geo_display_list LAYER_ALPHA, mario_seg4_dl_0401B1D8
+         geo_display_list LAYER_ALPHA, mario_right_hand_cap_wings
       geo_close_node
    geo_close_node
    geo_return
 
-glabel mario_geo_000C30 # 0x17000C30
+glabel mario_geo_low_poly_body # 0x17000C30
    geo_dl_translated LAYER_OPAQUE, 0, 0, 0
    geo_open_node
-      geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_seg4_dl_04016AB8
+      geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_low_poly_butt # starts sharing solid color with mario_torso (blue)
       geo_open_node
          geo_asm 0, Geo18_802B1BB0
          geo_asm 0, Geo18_80277294
          geo_rotation_node 0x00, 0, 0, 0
          geo_open_node
-            geo_dl_translated LAYER_OPAQUE, 68, 0, 0, mario_seg4_dl_04017EA0
+            geo_dl_translated LAYER_OPAQUE, 68, 0, 0, mario_low_poly_torso
             geo_open_node
                geo_dl_translated LAYER_OPAQUE, 87, 0, 0
                geo_open_node
-                  geo_branch 1, mario_geo_0009D4
+                  geo_branch 1, mario_geo_low_poly_face_and_wings # stops sharing because faces has its own dl
                geo_close_node
                geo_dl_translated LAYER_OPAQUE, 67, -10, 79
                geo_open_node
-                  geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_seg4_dl_04016C70
+                  geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_low_poly_left_arm  # starts sharing solid color with mario_left_forearm (red)
                   geo_open_node
-                     geo_dl_translated LAYER_OPAQUE, 65, 0, 0, mario_seg4_dl_04016D50
+                     geo_dl_translated LAYER_OPAQUE, 65, 0, 0, mario_low_poly_left_forearm_shared_dl
                      geo_open_node
-                        geo_branch 1, mario_geo_000B10
+                        geo_branch 1, mario_geo_low_poly_left_hand # stops sharing because hand has its solid color (white)
                      geo_close_node
                   geo_close_node
                geo_close_node
                geo_dl_translated LAYER_OPAQUE, 68, -10, -79
                geo_open_node
-                  geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_seg4_dl_04016FB0
+                  geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_low_poly_right_arm # starts sharing solid color of his dl with mario_right_forearm (red)
                   geo_open_node
-                     geo_dl_translated LAYER_OPAQUE, 65, 0, 0, mario_seg4_dl_04017090
+                     geo_dl_translated LAYER_OPAQUE, 65, 0, 0, mario_low_poly_right_forearm_shared_dl
                      geo_open_node
-                        geo_branch 1, mario_geo_000B88
+                        geo_branch 1, mario_geo_low_poly_right_hand # stops sharing because hand has its solid color (white)
                      geo_close_node
                   geo_close_node
                geo_close_node
@@ -398,26 +402,26 @@ glabel mario_geo_000C30 # 0x17000C30
          geo_close_node
          geo_dl_translated LAYER_OPAQUE, 13, -8, 42
          geo_open_node
-            geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_seg4_dl_04017360
+            geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_low_poly_left_thigh # starts sharing solid color of his dl with mario_left_leg (blue)
             geo_open_node
-               geo_dl_translated LAYER_OPAQUE, 89, 0, 0, mario_seg4_dl_040174E8
+               geo_dl_translated LAYER_OPAQUE, 89, 0, 0, mario_low_poly_left_leg_shared_dl
                geo_open_node
-                  geo_dl_translated LAYER_OPAQUE, 67, 0, 0, mario_seg4_dl_040176A8
+                  geo_dl_translated LAYER_OPAQUE, 67, 0, 0, mario_low_poly_left_foot # stops sharing because foot has its solid color (brown)
                geo_close_node
             geo_close_node
          geo_close_node
          geo_dl_translated LAYER_OPAQUE, 13, -8, -42
          geo_open_node
-            geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_seg4_dl_04017818
+            geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_low_poly_right_thigh # starts sharing solid color of his dl with mario_left_leg (blue)
             geo_open_node
-               geo_dl_translated LAYER_OPAQUE, 89, 0, 0, mario_seg4_dl_04017918
+               geo_dl_translated LAYER_OPAQUE, 89, 0, 0, mario_low_poly_right_leg_shared_dl
                geo_open_node
                   geo_dl_translated LAYER_OPAQUE, 67, 0, 0
                   geo_open_node
                      geo_asm 2, Geo18_802775CC
                      geo_scale 0x00, 65536
                      geo_open_node
-                        geo_display_list LAYER_OPAQUE, mario_seg4_dl_04017AD8
+                        geo_display_list LAYER_OPAQUE, mario_low_poly_right_foot # stops sharing because foot has its solid color (brown)
                      geo_close_node
                   geo_close_node
                geo_close_node
@@ -427,7 +431,9 @@ glabel mario_geo_000C30 # 0x17000C30
    geo_close_node
    geo_return
 
-glabel mario_geo_000DEC # 0x17000DEC
+# Vanish Mario Geo
+
+glabel mario_vanish_geo_face_and_wings # 0x17000DEC
    geo_asm 0, Geo18_802773A4
    geo_rotation_node 0x00, 0, 0, 0
    geo_open_node
@@ -435,25 +441,25 @@ glabel mario_geo_000DEC # 0x17000DEC
       geo_open_node
          geo_switch_case 0, GeoSwitchCase802771BC
          geo_open_node
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_040119A0
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_04011A90
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_04011B80
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_04011C70
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_04011D60
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_04011E50
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_04011F40
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_04012030
+            geo_display_list LAYER_TRANSPARENT, mario_cap_on_eyes_front
+            geo_display_list LAYER_TRANSPARENT, mario_cap_on_eyes_half_closed
+            geo_display_list LAYER_TRANSPARENT, mario_cap_on_eyes_closed
+            geo_display_list LAYER_TRANSPARENT, mario_cap_on_eyes_right # unused
+            geo_display_list LAYER_TRANSPARENT, mario_cap_on_eyes_left # unused
+            geo_display_list LAYER_TRANSPARENT, mario_cap_on_eyes_up # unused
+            geo_display_list LAYER_TRANSPARENT, mario_cap_on_eyes_down # unused
+            geo_display_list LAYER_TRANSPARENT, mario_cap_on_eyes_dead
          geo_close_node
          geo_switch_case 0, GeoSwitchCase802771BC
          geo_open_node
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_040139E8
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_04013AB8
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_04013B88
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_04013C58
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_04013D28
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_04013DF8
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_04013EC8
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_04013F98
+            geo_display_list LAYER_TRANSPARENT, mario_cap_off_eyes_front
+            geo_display_list LAYER_TRANSPARENT, mario_cap_off_eyes_half_closed
+            geo_display_list LAYER_TRANSPARENT, mario_cap_off_eyes_closed
+            geo_display_list LAYER_TRANSPARENT, mario_cap_off_eyes_right # unused
+            geo_display_list LAYER_TRANSPARENT, mario_cap_off_eyes_left # unused
+            geo_display_list LAYER_TRANSPARENT, mario_cap_off_eyes_up # unused
+            geo_display_list LAYER_TRANSPARENT, mario_cap_off_eyes_down # unused
+            geo_display_list LAYER_TRANSPARENT, mario_cap_off_eyes_dead
          geo_close_node
       geo_close_node
       geo_translate_rotate 0, 142, -51, -126, 22, -40, -135
@@ -461,7 +467,7 @@ glabel mario_geo_000DEC # 0x17000DEC
          geo_asm 0, Geo18_80277824
          geo_rotation_node 0x00, 0, 0, 0
          geo_open_node
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_0401CAB8
+            geo_display_list LAYER_TRANSPARENT, mario_cap_wings_transparent
          geo_close_node
       geo_close_node
       geo_translate_rotate 0, 142, -51, 126, -22, 40, -135
@@ -469,13 +475,13 @@ glabel mario_geo_000DEC # 0x17000DEC
          geo_asm 1, Geo18_80277824
          geo_rotation_node 0x00, 0, 0, 0
          geo_open_node
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_0401CAB8
+            geo_display_list LAYER_TRANSPARENT, mario_cap_wings_transparent
          geo_close_node
       geo_close_node
    geo_close_node
    geo_return
 
-glabel mario_geo_000F28 # 0x17000F28
+glabel mario_vanish_geo_left_hand # 0x17000F28
    geo_switch_case 1, GeoSwitchCase802774F4
    geo_open_node
       geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0
@@ -483,17 +489,17 @@ glabel mario_geo_000F28 # 0x17000F28
          geo_asm 1, Geo18_802775CC
          geo_scale 0x00, 65536
          geo_open_node
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_0400D8F0
+            geo_display_list LAYER_TRANSPARENT, mario_left_hand_closed
          geo_close_node
       geo_close_node
-      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_seg4_dl_04019CA0
-      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_seg4_dl_0400D8F0
-      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_seg4_dl_0400D8F0
-      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_seg4_dl_0400D8F0
+      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_left_hand_open
+      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_left_hand_closed
+      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_left_hand_closed
+      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_left_hand_closed
    geo_close_node
    geo_return
 
-glabel mario_geo_000FA0 # 0x17000FA0
+glabel mario_vanish_geo_right_hand # 0x17000FA0
    geo_switch_case 0, GeoSwitchCase802774F4
    geo_open_node
       geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0
@@ -501,55 +507,57 @@ glabel mario_geo_000FA0 # 0x17000FA0
          geo_asm 0, Geo18_802775CC
          geo_scale 0x00, 65536
          geo_open_node
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_0400E458
+            geo_display_list LAYER_TRANSPARENT, mario_right_hand_closed
          geo_close_node
          geo_todo_1C 0x00, 0, 0, 0, Geo1C_8027795C
       geo_close_node
-      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_seg4_dl_0401A428
+      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_right_hand_open
       geo_open_node
          geo_todo_1C 0x00, 0, 0, 0, Geo1C_8027795C
       geo_close_node
-      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_seg4_dl_0401BF30
-      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_seg4_dl_0401B158
-      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_seg4_dl_0401B158
+      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_right_hand_peace # here we go hand
+      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_right_hand_cap
+      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_right_hand_cap
       geo_open_node
-         geo_display_list LAYER_ALPHA, mario_seg4_dl_0401B1D8
+         geo_display_list LAYER_ALPHA, mario_right_hand_cap_wings
       geo_close_node
    geo_close_node
    geo_return
 
-glabel mario_geo_001048 # 0x17001048
+# Same rule body as Normal Mario
+
+glabel mario_vanish_geo_body # 0x17001048
    geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0
    geo_open_node
-      geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_seg4_dl_0400CC98
+      geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_butt
       geo_open_node
          geo_asm 0, Geo18_802B1BB0
          geo_asm 0, Geo18_80277294
          geo_rotation_node 0x00, 0, 0, 0
          geo_open_node
-            geo_dl_translated LAYER_TRANSPARENT, 68, 0, 0, mario_seg4_dl_04010370
+            geo_dl_translated LAYER_TRANSPARENT, 68, 0, 0, mario_torso
             geo_open_node
                geo_dl_translated LAYER_TRANSPARENT, 87, 0, 0
                geo_open_node
-                  geo_branch 1, mario_geo_000DEC
+                  geo_branch 1, mario_vanish_geo_face_and_wings
                geo_close_node
                geo_dl_translated LAYER_TRANSPARENT, 67, -10, 79
                geo_open_node
-                  geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_seg4_dl_0400D1D8
+                  geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_left_arm
                   geo_open_node
-                     geo_dl_translated LAYER_TRANSPARENT, 65, 0, 0, mario_seg4_dl_0400D2F8
+                     geo_dl_translated LAYER_TRANSPARENT, 65, 0, 0, mario_left_forearm_shared_dl
                      geo_open_node
-                        geo_branch 1, mario_geo_000F28
+                        geo_branch 1, mario_vanish_geo_left_hand
                      geo_close_node
                   geo_close_node
                geo_close_node
                geo_dl_translated LAYER_TRANSPARENT, 68, -10, -79
                geo_open_node
-                  geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_seg4_dl_0400DDE8
+                  geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_right_arm
                   geo_open_node
-                     geo_dl_translated LAYER_TRANSPARENT, 65, 0, 0, mario_seg4_dl_0400DF08
+                     geo_dl_translated LAYER_TRANSPARENT, 65, 0, 0, mario_right_forearm_shared_dl
                      geo_open_node
-                        geo_branch 1, mario_geo_000FA0
+                        geo_branch 1, mario_vanish_geo_right_hand
                      geo_close_node
                   geo_close_node
                geo_close_node
@@ -557,26 +565,26 @@ glabel mario_geo_001048 # 0x17001048
          geo_close_node
          geo_dl_translated LAYER_TRANSPARENT, 13, -8, 42
          geo_open_node
-            geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_seg4_dl_0400E7B0
+            geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_left_thigh
             geo_open_node
-               geo_dl_translated LAYER_TRANSPARENT, 89, 0, 0, mario_seg4_dl_0400E918
+               geo_dl_translated LAYER_TRANSPARENT, 89, 0, 0, mario_left_leg_shared_dl
                geo_open_node
-                  geo_dl_translated LAYER_TRANSPARENT, 67, 0, 0, mario_seg4_dl_0400ECA0
+                  geo_dl_translated LAYER_TRANSPARENT, 67, 0, 0, mario_left_foot
                geo_close_node
             geo_close_node
          geo_close_node
          geo_dl_translated LAYER_TRANSPARENT, 13, -8, -42
          geo_open_node
-            geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_seg4_dl_0400EFB8
+            geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_right_thigh
             geo_open_node
-               geo_dl_translated LAYER_TRANSPARENT, 89, 0, 0, mario_seg4_dl_0400F1D8
+               geo_dl_translated LAYER_TRANSPARENT, 89, 0, 0, mario_right_leg_shared_dl
                geo_open_node
                   geo_dl_translated LAYER_TRANSPARENT, 67, 0, 0
                   geo_open_node
                      geo_asm 2, Geo18_802775CC
                      geo_scale 0x00, 65536
                      geo_open_node
-                        geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_0400F4E8
+                        geo_display_list LAYER_TRANSPARENT, mario_right_foot
                      geo_close_node
                   geo_close_node
                geo_close_node
@@ -586,7 +594,7 @@ glabel mario_geo_001048 # 0x17001048
    geo_close_node
    geo_return
 
-glabel mario_geo_001204 # 0x17001204
+glabel mario_vanish_geo_medium_poly_left_hand # 0x17001204
    geo_switch_case 1, GeoSwitchCase802774F4
    geo_open_node
       geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0
@@ -594,17 +602,17 @@ glabel mario_geo_001204 # 0x17001204
          geo_asm 1, Geo18_802775CC
          geo_scale 0x00, 65536
          geo_open_node
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_04014DC0
+            geo_display_list LAYER_TRANSPARENT, mario_medium_poly_left_hand_closed
          geo_close_node
       geo_close_node
-      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_seg4_dl_04019CA0
-      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_seg4_dl_04014DC0
-      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_seg4_dl_04014DC0
-      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_seg4_dl_04014DC0
+      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_left_hand_open
+      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_medium_poly_left_hand_closed
+      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_medium_poly_left_hand_closed
+      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_medium_poly_left_hand_closed
    geo_close_node
    geo_return
 
-glabel mario_geo_00127C # 0x1700127C
+glabel mario_vanish_geo_medium_poly_right_hand # 0x1700127C
    geo_switch_case 0, GeoSwitchCase802774F4
    geo_open_node
       geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0
@@ -612,55 +620,55 @@ glabel mario_geo_00127C # 0x1700127C
          geo_asm 0, Geo18_802775CC
          geo_scale 0x00, 65536
          geo_open_node
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_040154E0
+            geo_display_list LAYER_TRANSPARENT, mario_medium_poly_right_hand_closed
          geo_close_node
          geo_todo_1C 0x00, 0, 0, 0, Geo1C_8027795C
       geo_close_node
-      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_seg4_dl_0401A428
+      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_right_hand_open
       geo_open_node
          geo_todo_1C 0x00, 0, 0, 0, Geo1C_8027795C
       geo_close_node
-      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_seg4_dl_0401BF30
-      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_seg4_dl_0401B158
-      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_seg4_dl_0401B158
+      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_right_hand_peace # here we go hand
+      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_right_hand_cap
+      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_right_hand_cap
       geo_open_node
-         geo_display_list LAYER_ALPHA, mario_seg4_dl_0401B1D8
+         geo_display_list LAYER_ALPHA, mario_right_hand_cap_wings
       geo_close_node
    geo_close_node
    geo_return
 
-glabel mario_geo_001324 # 0x17001324
+glabel mario_vanish_geo_medium_poly_body # 0x17001324
    geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0
    geo_open_node
-      geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_seg4_dl_04014638
+      geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_medium_poly_butt
       geo_open_node
          geo_asm 0, Geo18_802B1BB0
          geo_asm 0, Geo18_80277294
          geo_rotation_node 0x00, 0, 0, 0
          geo_open_node
-            geo_dl_translated LAYER_TRANSPARENT, 68, 0, 0, mario_seg4_dl_040168C8
+            geo_dl_translated LAYER_TRANSPARENT, 68, 0, 0, mario_medium_poly_torso
             geo_open_node
                geo_dl_translated LAYER_TRANSPARENT, 87, 0, 0
                geo_open_node
-                  geo_branch 1, mario_geo_000DEC
+                  geo_branch 1, mario_vanish_geo_face_and_wings
                geo_close_node
                geo_dl_translated LAYER_TRANSPARENT, 67, -10, 79
                geo_open_node
-                  geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_seg4_dl_04014840
+                  geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_medium_poly_left_arm
                   geo_open_node
-                     geo_dl_translated LAYER_TRANSPARENT, 65, 0, 0, mario_seg4_dl_04014950
+                     geo_dl_translated LAYER_TRANSPARENT, 65, 0, 0, mario_medium_poly_left_forearm_shared_dl
                      geo_open_node
-                        geo_branch 1, mario_geo_001204
+                        geo_branch 1, mario_vanish_geo_medium_poly_left_hand
                      geo_close_node
                   geo_close_node
                geo_close_node
                geo_dl_translated LAYER_TRANSPARENT, 68, -10, -79
                geo_open_node
-                  geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_seg4_dl_04014F40
+                  geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_medium_poly_right_arm
                   geo_open_node
-                     geo_dl_translated LAYER_TRANSPARENT, 65, 0, 0, mario_seg4_dl_04015050
+                     geo_dl_translated LAYER_TRANSPARENT, 65, 0, 0, mario_medium_poly_right_forearm_shared_dl
                      geo_open_node
-                        geo_branch 1, mario_geo_00127C
+                        geo_branch 1, mario_vanish_geo_medium_poly_right_hand
                      geo_close_node
                   geo_close_node
                geo_close_node
@@ -668,26 +676,26 @@ glabel mario_geo_001324 # 0x17001324
          geo_close_node
          geo_dl_translated LAYER_TRANSPARENT, 13, -8, 42
          geo_open_node
-            geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_seg4_dl_040156B0
+            geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_medium_poly_left_thigh
             geo_open_node
-               geo_dl_translated LAYER_TRANSPARENT, 89, 0, 0, mario_seg4_dl_04015848
+               geo_dl_translated LAYER_TRANSPARENT, 89, 0, 0, mario_medium_poly_left_leg_shared_dl
                geo_open_node
-                  geo_dl_translated LAYER_TRANSPARENT, 67, 0, 0, mario_seg4_dl_04015B60
+                  geo_dl_translated LAYER_TRANSPARENT, 67, 0, 0, mario_medium_poly_left_foot
                geo_close_node
             geo_close_node
          geo_close_node
          geo_dl_translated LAYER_TRANSPARENT, 13, -8, -42
          geo_open_node
-            geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_seg4_dl_04015D00
+            geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_medium_poly_right_thigh
             geo_open_node
-               geo_dl_translated LAYER_TRANSPARENT, 89, 0, 0, mario_seg4_dl_04015E10
+               geo_dl_translated LAYER_TRANSPARENT, 89, 0, 0, mario_medium_poly_right_leg_shared_dl
                geo_open_node
                   geo_dl_translated LAYER_TRANSPARENT, 67, 0, 0
                   geo_open_node
                      geo_asm 2, Geo18_802775CC
                      geo_scale 0x00, 65536
                      geo_open_node
-                        geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_040160C8
+                        geo_display_list LAYER_TRANSPARENT, mario_medium_poly_right_foot
                      geo_close_node
                   geo_close_node
                geo_close_node
@@ -697,7 +705,7 @@ glabel mario_geo_001324 # 0x17001324
    geo_close_node
    geo_return
 
-glabel mario_geo_0014E0 # 0x170014E0
+glabel mario_vanish_geo_low_poly_face_and_wings # 0x170014E0
    geo_asm 0, Geo18_802773A4
    geo_rotation_node 0x00, 0, 0, 0
    geo_open_node
@@ -705,25 +713,25 @@ glabel mario_geo_0014E0 # 0x170014E0
       geo_open_node
          geo_switch_case 0, GeoSwitchCase802771BC
          geo_open_node
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_04018460
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_04018530
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_04018600
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_040186D0
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_040187A0
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_04018870
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_04018940
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_04018A10
+            geo_display_list LAYER_TRANSPARENT, mario_low_poly_cap_on_eyes_front
+            geo_display_list LAYER_TRANSPARENT, mario_low_poly_cap_on_eyes_half_closed
+            geo_display_list LAYER_TRANSPARENT, mario_low_poly_cap_on_eyes_closed
+            geo_display_list LAYER_TRANSPARENT, mario_low_poly_cap_on_eyes_right
+            geo_display_list LAYER_TRANSPARENT, mario_low_poly_cap_on_eyes_left
+            geo_display_list LAYER_TRANSPARENT, mario_low_poly_cap_on_eyes_up
+            geo_display_list LAYER_TRANSPARENT, mario_low_poly_cap_on_eyes_down
+            geo_display_list LAYER_TRANSPARENT, mario_low_poly_cap_on_eyes_dead
          geo_close_node
          geo_switch_case 0, GeoSwitchCase802771BC
          geo_open_node
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_04018F90
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_04019040
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_040190F0
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_040191A0
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_04019250
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_04019300
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_040193B0
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_04019460
+            geo_display_list LAYER_TRANSPARENT, mario_low_poly_cap_off_eyes_front
+            geo_display_list LAYER_TRANSPARENT, mario_low_poly_cap_off_eyes_half_closed
+            geo_display_list LAYER_TRANSPARENT, mario_low_poly_cap_off_eyes_closed
+            geo_display_list LAYER_TRANSPARENT, mario_low_poly_cap_off_eyes_right
+            geo_display_list LAYER_TRANSPARENT, mario_low_poly_cap_off_eyes_left
+            geo_display_list LAYER_TRANSPARENT, mario_low_poly_cap_off_eyes_up
+            geo_display_list LAYER_TRANSPARENT, mario_low_poly_cap_off_eyes_down
+            geo_display_list LAYER_TRANSPARENT, mario_low_poly_cap_off_eyes_dead
          geo_close_node
       geo_close_node
       geo_translate_rotate 0, 142, -51, -126, 22, -40, -135
@@ -731,7 +739,7 @@ glabel mario_geo_0014E0 # 0x170014E0
          geo_asm 0, Geo18_80277824
          geo_rotation_node 0x00, 0, 0, 0
          geo_open_node
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_0401CAB8
+            geo_display_list LAYER_TRANSPARENT, mario_cap_wings_transparent
          geo_close_node
       geo_close_node
       geo_translate_rotate 0, 142, -51, 126, -22, 40, -135
@@ -739,13 +747,13 @@ glabel mario_geo_0014E0 # 0x170014E0
          geo_asm 1, Geo18_80277824
          geo_rotation_node 0x00, 0, 0, 0
          geo_open_node
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_0401CAB8
+            geo_display_list LAYER_TRANSPARENT, mario_cap_wings_transparent
          geo_close_node
       geo_close_node
    geo_close_node
    geo_return
 
-glabel mario_geo_00161C # 0x1700161C
+glabel mario_vanish_geo_low_poly_left_hand # 0x1700161C
    geo_switch_case 1, GeoSwitchCase802774F4
    geo_open_node
       geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0
@@ -753,17 +761,17 @@ glabel mario_geo_00161C # 0x1700161C
          geo_asm 1, Geo18_802775CC
          geo_scale 0x00, 65536
          geo_open_node
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_04016E80
+            geo_display_list LAYER_TRANSPARENT, mario_low_poly_left_hand_closed
          geo_close_node
       geo_close_node
-      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_seg4_dl_04019CA0
-      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_seg4_dl_04016E80
-      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_seg4_dl_04016E80
-      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_seg4_dl_04016E80
+      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_left_hand_open
+      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_low_poly_left_hand_closed
+      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_low_poly_left_hand_closed
+      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_low_poly_left_hand_closed
    geo_close_node
    geo_return
 
-glabel mario_geo_001694 # 0x17001694
+glabel mario_vanish_geo_low_poly_right_hand # 0x17001694
    geo_switch_case 0, GeoSwitchCase802774F4
    geo_open_node
       geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0
@@ -771,55 +779,55 @@ glabel mario_geo_001694 # 0x17001694
          geo_asm 0, Geo18_802775CC
          geo_scale 0x00, 65536
          geo_open_node
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_040171C0
+            geo_display_list LAYER_TRANSPARENT, mario_low_poly_right_hand_closed
          geo_close_node
          geo_todo_1C 0x00, 0, 0, 0, Geo1C_8027795C
       geo_close_node
-      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_seg4_dl_0401A428
+      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_right_hand_open
       geo_open_node
          geo_todo_1C 0x00, 0, 0, 0, Geo1C_8027795C
       geo_close_node
-      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_seg4_dl_0401BF30
-      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_seg4_dl_0401B158
-      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_seg4_dl_0401B158
+      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_right_hand_peace # here we go hand
+      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_right_hand_cap
+      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_right_hand_cap
       geo_open_node
-         geo_display_list LAYER_ALPHA, mario_seg4_dl_0401B1D8
+         geo_display_list LAYER_ALPHA, mario_right_hand_cap_wings
       geo_close_node
    geo_close_node
    geo_return
 
-glabel mario_geo_00173C # 0x1700173C
+glabel mario_vanish_geo_low_poly_body # 0x1700173C
    geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0
    geo_open_node
-      geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_seg4_dl_04016AB8
+      geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_low_poly_butt
       geo_open_node
          geo_asm 0, Geo18_802B1BB0
          geo_asm 0, Geo18_80277294
          geo_rotation_node 0x00, 0, 0, 0
          geo_open_node
-            geo_dl_translated LAYER_TRANSPARENT, 68, 0, 0, mario_seg4_dl_04017EA0
+            geo_dl_translated LAYER_TRANSPARENT, 68, 0, 0, mario_low_poly_torso
             geo_open_node
                geo_dl_translated LAYER_TRANSPARENT, 87, 0, 0
                geo_open_node
-                  geo_branch 1, mario_geo_0014E0
+                  geo_branch 1, mario_vanish_geo_low_poly_face_and_wings
                geo_close_node
                geo_dl_translated LAYER_TRANSPARENT, 67, -10, 79
                geo_open_node
-                  geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_seg4_dl_04016C70
+                  geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_low_poly_left_arm
                   geo_open_node
-                     geo_dl_translated LAYER_TRANSPARENT, 65, 0, 0, mario_seg4_dl_04016D50
+                     geo_dl_translated LAYER_TRANSPARENT, 65, 0, 0, mario_low_poly_left_forearm_shared_dl
                      geo_open_node
-                        geo_branch 1, mario_geo_00161C
+                        geo_branch 1, mario_vanish_geo_low_poly_left_hand
                      geo_close_node
                   geo_close_node
                geo_close_node
                geo_dl_translated LAYER_TRANSPARENT, 68, -10, -79
                geo_open_node
-                  geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_seg4_dl_04016FB0
+                  geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_low_poly_right_arm
                   geo_open_node
-                     geo_dl_translated LAYER_TRANSPARENT, 65, 0, 0, mario_seg4_dl_04017090
+                     geo_dl_translated LAYER_TRANSPARENT, 65, 0, 0, mario_low_poly_right_forearm_shared_dl
                      geo_open_node
-                        geo_branch 1, mario_geo_001694
+                        geo_branch 1, mario_vanish_geo_low_poly_right_hand
                      geo_close_node
                   geo_close_node
                geo_close_node
@@ -827,26 +835,26 @@ glabel mario_geo_00173C # 0x1700173C
          geo_close_node
          geo_dl_translated LAYER_TRANSPARENT, 13, -8, 42
          geo_open_node
-            geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_seg4_dl_04017360
+            geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_low_poly_left_thigh
             geo_open_node
-               geo_dl_translated LAYER_TRANSPARENT, 89, 0, 0, mario_seg4_dl_040174E8
+               geo_dl_translated LAYER_TRANSPARENT, 89, 0, 0, mario_low_poly_left_leg_shared_dl
                geo_open_node
-                  geo_dl_translated LAYER_TRANSPARENT, 67, 0, 0, mario_seg4_dl_040176A8
+                  geo_dl_translated LAYER_TRANSPARENT, 67, 0, 0, mario_low_poly_left_foot
                geo_close_node
             geo_close_node
          geo_close_node
          geo_dl_translated LAYER_TRANSPARENT, 13, -8, -42
          geo_open_node
-            geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_seg4_dl_04017818
+            geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_low_poly_right_thigh
             geo_open_node
-               geo_dl_translated LAYER_TRANSPARENT, 89, 0, 0, mario_seg4_dl_04017918
+               geo_dl_translated LAYER_TRANSPARENT, 89, 0, 0, mario_low_poly_right_leg_shared_dl
                geo_open_node
                   geo_dl_translated LAYER_TRANSPARENT, 67, 0, 0
                   geo_open_node
                      geo_asm 2, Geo18_802775CC
                      geo_scale 0x00, 65536
                      geo_open_node
-                        geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_04017AD8
+                        geo_display_list LAYER_TRANSPARENT, mario_low_poly_right_foot
                      geo_close_node
                   geo_close_node
                geo_close_node
@@ -856,21 +864,23 @@ glabel mario_geo_00173C # 0x1700173C
    geo_close_node
    geo_return
 
-glabel mario_geo_0018F8 # 0x170018F8
+# Metal Mario Geo
+
+glabel mario_metal_geo_face_and_wings # 0x170018F8
    geo_asm 0, Geo18_802773A4
    geo_rotation_node 0x00, 0, 0, 0
    geo_open_node
       geo_switch_case 0, GeoSwitchCase80277740
       geo_open_node
-         geo_display_list LAYER_OPAQUE, mario_seg4_dl_04012120
-         geo_display_list LAYER_OPAQUE, mario_seg4_dl_04014068
+         geo_display_list LAYER_OPAQUE, mario_metal_cap_on_shared_dl
+         geo_display_list LAYER_OPAQUE, mario_metal_cap_off_shared_dl
       geo_close_node
       geo_translate_rotate 0, 142, -51, -126, 22, -40, -135
       geo_open_node
          geo_asm 0, Geo18_80277824
          geo_rotation_node 0x00, 0, 0, 0
          geo_open_node
-            geo_display_list LAYER_ALPHA, mario_seg4_dl_0401CB70
+            geo_display_list LAYER_ALPHA, mario_metal_cap_wings # left
          geo_close_node
       geo_close_node
       geo_translate_rotate 0, 142, -51, 126, -22, 40, -135
@@ -878,13 +888,13 @@ glabel mario_geo_0018F8 # 0x170018F8
          geo_asm 1, Geo18_80277824
          geo_rotation_node 0x00, 0, 0, 0
          geo_open_node
-            geo_display_list LAYER_ALPHA, mario_seg4_dl_0401CB70
+            geo_display_list LAYER_ALPHA, mario_metal_cap_wings # right
          geo_close_node
       geo_close_node
    geo_close_node
    geo_return
 
-glabel mario_geo_0019A4 # 0x170019A4
+glabel mario_metal_geo_left_hand # 0x170019A4
    geo_switch_case 1, GeoSwitchCase802774F4
    geo_open_node
       geo_dl_translated LAYER_OPAQUE, 60, 0, 0
@@ -892,17 +902,17 @@ glabel mario_geo_0019A4 # 0x170019A4
          geo_asm 1, Geo18_802775CC
          geo_scale 0x00, 65536
          geo_open_node
-            geo_display_list LAYER_OPAQUE, mario_seg4_dl_0400D758
+            geo_display_list LAYER_OPAQUE, mario_left_hand_closed_shared_dl
          geo_close_node
       geo_close_node
-      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_seg4_dl_04019A68
-      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_seg4_dl_0400D758
-      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_seg4_dl_0400D758
-      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_seg4_dl_0400D758
+      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_left_hand_open_shared_dl
+      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_left_hand_closed_shared_dl
+      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_left_hand_closed_shared_dl
+      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_left_hand_closed_shared_dl
    geo_close_node
    geo_return
 
-glabel mario_geo_001A1C # 0x17001A1C
+glabel mario_metal_geo_right_hand # 0x17001A1C
    geo_switch_case 0, GeoSwitchCase802774F4
    geo_open_node
       geo_dl_translated LAYER_OPAQUE, 60, 0, 0
@@ -910,55 +920,57 @@ glabel mario_geo_001A1C # 0x17001A1C
          geo_asm 0, Geo18_802775CC
          geo_scale 0x00, 65536
          geo_open_node
-            geo_display_list LAYER_OPAQUE, mario_seg4_dl_0400E478
+            geo_display_list LAYER_OPAQUE, mario_metal_right_hand_closed
          geo_close_node
          geo_todo_1C 0x00, 0, 0, 0, Geo1C_8027795C
       geo_close_node
-      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_seg4_dl_0401A448
+      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_metal_right_hand_open
       geo_open_node
          geo_todo_1C 0x00, 0, 0, 0, Geo1C_8027795C
       geo_close_node
-      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_seg4_dl_0401BC80
-      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_seg4_dl_0401B230
-      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_seg4_dl_0401B230
+      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_right_hand_peace_shared_dl # here we go hand
+      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_metal_right_hand_cap_shared_dl
+      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_metal_right_hand_cap_shared_dl
       geo_open_node
-         geo_display_list LAYER_ALPHA, mario_seg4_dl_0401B278
+         geo_display_list LAYER_ALPHA, mario_metal_right_hand_cap_shared_dl_wings
       geo_close_node
    geo_close_node
    geo_return
 
-glabel mario_geo_001AC4 # 0x17001AC4
+# A difference from Normal Mario is that the dls after the butt and left thigh shares the metal texture of it, same rule applies to the medium and low poly geos
+
+glabel mario_metal_geo_body # 0x17001AC4
    geo_dl_translated LAYER_OPAQUE, 0, 0, 0
    geo_open_node
-      geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_seg4_dl_0400CCC8
+      geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_metal_butt # starts sharing metal texture with the dls below
       geo_open_node
          geo_asm 0, Geo18_802B1BB0
          geo_asm 0, Geo18_80277294
          geo_rotation_node 0x00, 0, 0, 0
          geo_open_node
-            geo_dl_translated LAYER_OPAQUE, 68, 0, 0, mario_seg4_dl_040103F0
+            geo_dl_translated LAYER_OPAQUE, 68, 0, 0, mario_metal_torso_shared_dl
             geo_open_node
                geo_dl_translated LAYER_OPAQUE, 87, 0, 0
                geo_open_node
-                  geo_branch 1, mario_geo_0018F8
+                  geo_branch 1, mario_metal_geo_face_and_wings # unlike normal mario geo, these dls still share the metal texture
                geo_close_node
                geo_dl_translated LAYER_OPAQUE, 67, -10, 79
                geo_open_node
-                  geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_seg4_dl_0400D090
+                  geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_left_arm_shared_dl
                   geo_open_node
-                     geo_dl_translated LAYER_OPAQUE, 65, 0, 0, mario_seg4_dl_0400D2F8
+                     geo_dl_translated LAYER_OPAQUE, 65, 0, 0, mario_left_forearm_shared_dl
                      geo_open_node
-                        geo_branch 1, mario_geo_0019A4
+                        geo_branch 1, mario_metal_geo_left_hand
                      geo_close_node
                   geo_close_node
                geo_close_node
                geo_dl_translated LAYER_OPAQUE, 68, -10, -79
                geo_open_node
-                  geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_seg4_dl_0400DCA0
+                  geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_right_arm_shared_dl
                   geo_open_node
-                     geo_dl_translated LAYER_OPAQUE, 65, 0, 0, mario_seg4_dl_0400DF08
+                     geo_dl_translated LAYER_OPAQUE, 65, 0, 0, mario_right_forearm_shared_dl
                      geo_open_node
-                        geo_branch 1, mario_geo_001A1C
+                        geo_branch 1, mario_metal_geo_right_hand # stop sharing because the wing metal cap of it
                      geo_close_node
                   geo_close_node
                geo_close_node
@@ -966,26 +978,26 @@ glabel mario_geo_001AC4 # 0x17001AC4
          geo_close_node
          geo_dl_translated LAYER_OPAQUE, 13, -8, 42
          geo_open_node
-            geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_seg4_dl_0400E7E0
+            geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_metal_left_thigh # starts sharing metal texture with the dls below
             geo_open_node
-               geo_dl_translated LAYER_OPAQUE, 89, 0, 0, mario_seg4_dl_0400E918
+               geo_dl_translated LAYER_OPAQUE, 89, 0, 0, mario_left_leg_shared_dl
                geo_open_node
-                  geo_dl_translated LAYER_OPAQUE, 67, 0, 0, mario_seg4_dl_0400EBB8
+                  geo_dl_translated LAYER_OPAQUE, 67, 0, 0, mario_left_foot_shared_dl
                geo_close_node
             geo_close_node
          geo_close_node
          geo_dl_translated LAYER_OPAQUE, 13, -8, -42
          geo_open_node
-            geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_seg4_dl_0400EEB0
+            geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_right_thigh_shared_dl
             geo_open_node
-               geo_dl_translated LAYER_OPAQUE, 89, 0, 0, mario_seg4_dl_0400F1D8
+               geo_dl_translated LAYER_OPAQUE, 89, 0, 0, mario_right_leg_shared_dl
                geo_open_node
                   geo_dl_translated LAYER_OPAQUE, 67, 0, 0
                   geo_open_node
                      geo_asm 2, Geo18_802775CC
                      geo_scale 0x00, 65536
                      geo_open_node
-                        geo_display_list LAYER_OPAQUE, mario_seg4_dl_0400F528
+                        geo_display_list LAYER_OPAQUE, mario_metal_right_foot
                      geo_close_node
                   geo_close_node
                geo_close_node
@@ -995,7 +1007,7 @@ glabel mario_geo_001AC4 # 0x17001AC4
    geo_close_node
    geo_return
 
-glabel mario_geo_001C80 # 0x17001C80
+glabel mario_metal_geo_medium_poly_left_hand # 0x17001C80
    geo_switch_case 1, GeoSwitchCase802774F4
    geo_open_node
       geo_dl_translated LAYER_OPAQUE, 60, 0, 0
@@ -1003,17 +1015,17 @@ glabel mario_geo_001C80 # 0x17001C80
          geo_asm 1, Geo18_802775CC
          geo_scale 0x00, 65536
          geo_open_node
-            geo_display_list LAYER_OPAQUE, mario_seg4_dl_04014C90
+            geo_display_list LAYER_OPAQUE, mario_medium_poly_left_hand_closed_shared_dl
          geo_close_node
       geo_close_node
-      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_seg4_dl_04019A68
-      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_seg4_dl_04014C90
-      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_seg4_dl_04014C90
-      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_seg4_dl_04014C90
+      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_left_hand_open_shared_dl
+      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_medium_poly_left_hand_closed_shared_dl
+      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_medium_poly_left_hand_closed_shared_dl
+      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_medium_poly_left_hand_closed_shared_dl
    geo_close_node
    geo_return
 
-glabel mario_geo_001CF8 # 0x17001CF8
+glabel mario_metal_geo_medium_poly_right_hand # 0x17001CF8
    geo_switch_case 0, GeoSwitchCase802774F4
    geo_open_node
       geo_dl_translated LAYER_OPAQUE, 60, 0, 0
@@ -1021,55 +1033,55 @@ glabel mario_geo_001CF8 # 0x17001CF8
          geo_asm 0, Geo18_802775CC
          geo_scale 0x00, 65536
          geo_open_node
-            geo_display_list LAYER_OPAQUE, mario_seg4_dl_04015500
+            geo_display_list LAYER_OPAQUE, mario_metal_medium_poly_right_hand_closed
          geo_close_node
          geo_todo_1C 0x00, 0, 0, 0, Geo1C_8027795C
       geo_close_node
-      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_seg4_dl_0401A448
+      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_metal_right_hand_open
       geo_open_node
          geo_todo_1C 0x00, 0, 0, 0, Geo1C_8027795C
       geo_close_node
-      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_seg4_dl_0401BC80
-      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_seg4_dl_0401B230
-      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_seg4_dl_0401B230
+      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_right_hand_peace_shared_dl # here we go hand
+      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_metal_right_hand_cap_shared_dl
+      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_metal_right_hand_cap_shared_dl
       geo_open_node
-         geo_display_list LAYER_ALPHA, mario_seg4_dl_0401B278
+         geo_display_list LAYER_ALPHA, mario_metal_right_hand_cap_shared_dl_wings
       geo_close_node
    geo_close_node
    geo_return
 
-glabel mario_geo_001DA0 # 0x17001DA0
+glabel mario_metal_geo_medium_poly_body # 0x17001DA0
    geo_dl_translated LAYER_OPAQUE, 0, 0, 0
    geo_open_node
-      geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_seg4_dl_04014668
+      geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_metal_medium_poly_butt
       geo_open_node
          geo_asm 0, Geo18_802B1BB0
          geo_asm 0, Geo18_80277294
          geo_rotation_node 0x00, 0, 0, 0
          geo_open_node
-            geo_dl_translated LAYER_OPAQUE, 68, 0, 0, mario_seg4_dl_04016948
+            geo_dl_translated LAYER_OPAQUE, 68, 0, 0, mario_metal_medium_poly_torso
             geo_open_node
                geo_dl_translated LAYER_OPAQUE, 87, 0, 0
                geo_open_node
-                  geo_branch 1, mario_geo_0018F8
+                  geo_branch 1, mario_metal_geo_face_and_wings
                geo_close_node
                geo_dl_translated LAYER_OPAQUE, 67, -10, 79
                geo_open_node
-                  geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_seg4_dl_040147D0
+                  geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_medium_poly_left_arm_shared_dl
                   geo_open_node
-                     geo_dl_translated LAYER_OPAQUE, 65, 0, 0, mario_seg4_dl_04014950
+                     geo_dl_translated LAYER_OPAQUE, 65, 0, 0, mario_medium_poly_left_forearm_shared_dl
                      geo_open_node
-                        geo_branch 1, mario_geo_001C80
+                        geo_branch 1, mario_metal_geo_medium_poly_left_hand
                      geo_close_node
                   geo_close_node
                geo_close_node
                geo_dl_translated LAYER_OPAQUE, 68, -10, -79
                geo_open_node
-                  geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_seg4_dl_04014ED0
+                  geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_medium_poly_right_arm_shared_dl
                   geo_open_node
-                     geo_dl_translated LAYER_OPAQUE, 65, 0, 0, mario_seg4_dl_04015050
+                     geo_dl_translated LAYER_OPAQUE, 65, 0, 0, mario_medium_poly_right_forearm_shared_dl
                      geo_open_node
-                        geo_branch 1, mario_geo_001CF8
+                        geo_branch 1, mario_metal_geo_medium_poly_right_hand
                      geo_close_node
                   geo_close_node
                geo_close_node
@@ -1077,26 +1089,26 @@ glabel mario_geo_001DA0 # 0x17001DA0
          geo_close_node
          geo_dl_translated LAYER_OPAQUE, 13, -8, 42
          geo_open_node
-            geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_seg4_dl_040156E0
+            geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_metal_medium_poly_left_thigh
             geo_open_node
-               geo_dl_translated LAYER_OPAQUE, 89, 0, 0, mario_seg4_dl_04015848
+               geo_dl_translated LAYER_OPAQUE, 89, 0, 0, mario_medium_poly_left_leg_shared_dl
                geo_open_node
-                  geo_dl_translated LAYER_OPAQUE, 67, 0, 0, mario_seg4_dl_04015A98
+                  geo_dl_translated LAYER_OPAQUE, 67, 0, 0, mario_medium_poly_left_foot_shared_dl
                geo_close_node
             geo_close_node
          geo_close_node
          geo_dl_translated LAYER_OPAQUE, 13, -8, -42
          geo_open_node
-            geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_seg4_dl_04015C70
+            geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_medium_poly_right_thigh_shared_dl
             geo_open_node
-               geo_dl_translated LAYER_OPAQUE, 89, 0, 0, mario_seg4_dl_04015E10
+               geo_dl_translated LAYER_OPAQUE, 89, 0, 0, mario_medium_poly_right_leg_shared_dl
                geo_open_node
                   geo_dl_translated LAYER_OPAQUE, 67, 0, 0
                   geo_open_node
                      geo_asm 2, Geo18_802775CC
                      geo_scale 0x00, 65536
                      geo_open_node
-                        geo_display_list LAYER_OPAQUE, mario_seg4_dl_04016108
+                        geo_display_list LAYER_OPAQUE, mario_metal_medium_poly_right_foot
                      geo_close_node
                   geo_close_node
                geo_close_node
@@ -1106,21 +1118,21 @@ glabel mario_geo_001DA0 # 0x17001DA0
    geo_close_node
    geo_return
 
-glabel mario_geo_001F5C # 0x17001F5C
+glabel mario_metal_geo_low_poly_face_and_wings # 0x17001F5C
    geo_asm 0, Geo18_802773A4
    geo_rotation_node 0x00, 0, 0, 0
    geo_open_node
       geo_switch_case 0, GeoSwitchCase80277740
       geo_open_node
-         geo_display_list LAYER_OPAQUE, mario_seg4_dl_04018AE0
-         geo_display_list LAYER_OPAQUE, mario_seg4_dl_04019510
+         geo_display_list LAYER_OPAQUE, mario_metal_low_poly_cap_on
+         geo_display_list LAYER_OPAQUE, mario_metal_low_poly_cap_off
       geo_close_node
       geo_translate_rotate 0, 142, -51, -126, 22, -40, -135
       geo_open_node
          geo_asm 0, Geo18_80277824
          geo_rotation_node 0x00, 0, 0, 0
          geo_open_node
-            geo_display_list LAYER_ALPHA, mario_seg4_dl_0401CB70
+            geo_display_list LAYER_ALPHA, mario_metal_cap_wings
          geo_close_node
       geo_close_node
       geo_translate_rotate 0, 142, -51, 126, -22, 40, -135
@@ -1128,13 +1140,13 @@ glabel mario_geo_001F5C # 0x17001F5C
          geo_asm 1, Geo18_80277824
          geo_rotation_node 0x00, 0, 0, 0
          geo_open_node
-            geo_display_list LAYER_ALPHA, mario_seg4_dl_0401CB70
+            geo_display_list LAYER_ALPHA, mario_metal_cap_wings
          geo_close_node
       geo_close_node
    geo_close_node
    geo_return
 
-glabel mario_geo_002008 # 0x17002008
+glabel mario_metal_geo_low_poly_left_hand # 0x17002008
    geo_switch_case 1, GeoSwitchCase802774F4
    geo_open_node
       geo_dl_translated LAYER_OPAQUE, 60, 0, 0
@@ -1142,17 +1154,17 @@ glabel mario_geo_002008 # 0x17002008
          geo_asm 1, Geo18_802775CC
          geo_scale 0x00, 65536
          geo_open_node
-            geo_display_list LAYER_OPAQUE, mario_seg4_dl_04016E20
+            geo_display_list LAYER_OPAQUE, mario_low_poly_left_hand_closed_shared_dl
          geo_close_node
       geo_close_node
-      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_seg4_dl_04019A68
-      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_seg4_dl_04016E20
-      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_seg4_dl_04016E20
-      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_seg4_dl_04016E20
+      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_left_hand_open_shared_dl
+      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_low_poly_left_hand_closed_shared_dl
+      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_low_poly_left_hand_closed_shared_dl
+      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_low_poly_left_hand_closed_shared_dl
    geo_close_node
    geo_return
 
-glabel mario_geo_002080 # 0x17002080
+glabel mario_metal_geo_low_poly_right_hand # 0x17002080
    geo_switch_case 0, GeoSwitchCase802774F4
    geo_open_node
       geo_dl_translated LAYER_OPAQUE, 60, 0, 0
@@ -1160,55 +1172,55 @@ glabel mario_geo_002080 # 0x17002080
          geo_asm 0, Geo18_802775CC
          geo_scale 0x00, 65536
          geo_open_node
-            geo_display_list LAYER_OPAQUE, mario_seg4_dl_040171E0
+            geo_display_list LAYER_OPAQUE, mario_metal_low_poly_right_hand_closed
          geo_close_node
          geo_todo_1C 0x00, 0, 0, 0, Geo1C_8027795C
       geo_close_node
-      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_seg4_dl_0401A448
+      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_metal_right_hand_open
       geo_open_node
          geo_todo_1C 0x00, 0, 0, 0, Geo1C_8027795C
       geo_close_node
-      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_seg4_dl_0401BC80
-      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_seg4_dl_0401B230
-      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_seg4_dl_0401B230
+      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_right_hand_peace_shared_dl # here we go hand
+      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_metal_right_hand_cap_shared_dl
+      geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_metal_right_hand_cap_shared_dl
       geo_open_node
-         geo_display_list LAYER_ALPHA, mario_seg4_dl_0401B278
+         geo_display_list LAYER_ALPHA, mario_metal_right_hand_cap_shared_dl_wings
       geo_close_node
    geo_close_node
    geo_return
 
-glabel mario_geo_002128 # 0x17002128
+glabel mario_metal_geo_low_poly_body # 0x17002128
    geo_dl_translated LAYER_OPAQUE, 0, 0, 0
    geo_open_node
-      geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_seg4_dl_04016AE8
+      geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_metal_low_poly_butt
       geo_open_node
          geo_asm 0, Geo18_802B1BB0
          geo_asm 0, Geo18_80277294
          geo_rotation_node 0x00, 0, 0, 0
          geo_open_node
-            geo_dl_translated LAYER_OPAQUE, 68, 0, 0, mario_seg4_dl_04017F20
+            geo_dl_translated LAYER_OPAQUE, 68, 0, 0, mario_metal_low_poly_torso
             geo_open_node
                geo_dl_translated LAYER_OPAQUE, 87, 0, 0
                geo_open_node
-                  geo_branch 1, mario_geo_001F5C
+                  geo_branch 1, mario_metal_geo_low_poly_face_and_wings
                geo_close_node
                geo_dl_translated LAYER_OPAQUE, 67, -10, 79
                geo_open_node
-                  geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_seg4_dl_04016C20
+                  geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_low_poly_left_arm_shared_dl
                   geo_open_node
-                     geo_dl_translated LAYER_OPAQUE, 65, 0, 0, mario_seg4_dl_04016D50
+                     geo_dl_translated LAYER_OPAQUE, 65, 0, 0, mario_low_poly_left_forearm_shared_dl
                      geo_open_node
-                        geo_branch 1, mario_geo_002008
+                        geo_branch 1, mario_metal_geo_low_poly_left_hand
                      geo_close_node
                   geo_close_node
                geo_close_node
                geo_dl_translated LAYER_OPAQUE, 68, -10, -79
                geo_open_node
-                  geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_seg4_dl_04016F60
+                  geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_low_poly_right_arm_shared_dl
                   geo_open_node
-                     geo_dl_translated LAYER_OPAQUE, 65, 0, 0, mario_seg4_dl_04017090
+                     geo_dl_translated LAYER_OPAQUE, 65, 0, 0, mario_low_poly_right_forearm_shared_dl
                      geo_open_node
-                        geo_branch 1, mario_geo_002080
+                        geo_branch 1, mario_metal_geo_low_poly_right_hand
                      geo_close_node
                   geo_close_node
                geo_close_node
@@ -1216,26 +1228,26 @@ glabel mario_geo_002128 # 0x17002128
          geo_close_node
          geo_dl_translated LAYER_OPAQUE, 13, -8, 42
          geo_open_node
-            geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_seg4_dl_04017390
+            geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_metal_low_poly_left_thigh
             geo_open_node
-               geo_dl_translated LAYER_OPAQUE, 89, 0, 0, mario_seg4_dl_040174E8
+               geo_dl_translated LAYER_OPAQUE, 89, 0, 0, mario_low_poly_left_leg_shared_dl
                geo_open_node
-                  geo_dl_translated LAYER_OPAQUE, 67, 0, 0, mario_seg4_dl_04017638
+                  geo_dl_translated LAYER_OPAQUE, 67, 0, 0, mario_low_poly_left_foot_shared_dl
                geo_close_node
             geo_close_node
          geo_close_node
          geo_dl_translated LAYER_OPAQUE, 13, -8, -42
          geo_open_node
-            geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_seg4_dl_040177A8
+            geo_dl_translated LAYER_OPAQUE, 0, 0, 0, mario_low_poly_right_thigh_shared_dl
             geo_open_node
-               geo_dl_translated LAYER_OPAQUE, 89, 0, 0, mario_seg4_dl_04017918
+               geo_dl_translated LAYER_OPAQUE, 89, 0, 0, mario_low_poly_right_leg_shared_dl
                geo_open_node
                   geo_dl_translated LAYER_OPAQUE, 67, 0, 0
                   geo_open_node
                      geo_asm 2, Geo18_802775CC
                      geo_scale 0x00, 65536
                      geo_open_node
-                        geo_display_list LAYER_OPAQUE, mario_seg4_dl_04017B18
+                        geo_display_list LAYER_OPAQUE, mario_metal_low_poly_right_foot
                      geo_close_node
                   geo_close_node
                geo_close_node
@@ -1245,21 +1257,23 @@ glabel mario_geo_002128 # 0x17002128
    geo_close_node
    geo_return
 
-glabel mario_geo_0022E4 # 0x170022E4
+# Metal Vanish Mario Geo
+
+glabel mario_metal_vanish_geo_face_and_wings # 0x170022E4
    geo_asm 0, Geo18_802773A4
    geo_rotation_node 0x00, 0, 0, 0
    geo_open_node
       geo_switch_case 0, GeoSwitchCase80277740
       geo_open_node
-         geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_04012120
-         geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_04014068
+         geo_display_list LAYER_TRANSPARENT, mario_metal_cap_on_shared_dl
+         geo_display_list LAYER_TRANSPARENT, mario_metal_cap_off_shared_dl
       geo_close_node
       geo_translate_rotate 0, 142, -51, -126, 22, -40, -135
       geo_open_node
          geo_asm 0, Geo18_80277824
          geo_rotation_node 0x00, 0, 0, 0
          geo_open_node
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_0401CC28
+            geo_display_list LAYER_TRANSPARENT, mario_metal_cap_wings_transparent
          geo_close_node
       geo_close_node
       geo_translate_rotate 0, 142, -51, 126, -22, 40, -135
@@ -1267,13 +1281,13 @@ glabel mario_geo_0022E4 # 0x170022E4
          geo_asm 1, Geo18_80277824
          geo_rotation_node 0x00, 0, 0, 0
          geo_open_node
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_0401CC28
+            geo_display_list LAYER_TRANSPARENT, mario_metal_cap_wings_transparent
          geo_close_node
       geo_close_node
    geo_close_node
    geo_return
 
-glabel mario_geo_002390 # 0x17002390
+glabel mario_metal_vanish_geo_left_hand # 0x17002390
    geo_switch_case 0, GeoSwitchCase802774F4
    geo_open_node
       geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0
@@ -1281,17 +1295,17 @@ glabel mario_geo_002390 # 0x17002390
          geo_asm 1, Geo18_802775CC
          geo_scale 0x00, 65536
          geo_open_node
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_0400D758
+            geo_display_list LAYER_TRANSPARENT, mario_left_hand_closed_shared_dl
          geo_close_node
       geo_close_node
-      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_seg4_dl_04019A68
-      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_seg4_dl_0400D758
-      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_seg4_dl_0400D758
-      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_seg4_dl_0400D758
+      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_left_hand_open_shared_dl
+      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_left_hand_closed_shared_dl
+      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_left_hand_closed_shared_dl
+      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_left_hand_closed_shared_dl
    geo_close_node
    geo_return
 
-glabel mario_geo_002408 # 0x17002408
+glabel mario_metal_vanish_geo_right_hand # 0x17002408
    geo_switch_case 0, GeoSwitchCase802774F4
    geo_open_node
       geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0
@@ -1299,55 +1313,57 @@ glabel mario_geo_002408 # 0x17002408
          geo_asm 0, Geo18_802775CC
          geo_scale 0x00, 65536
          geo_open_node
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_0400E478
+            geo_display_list LAYER_TRANSPARENT, mario_metal_right_hand_closed
          geo_close_node
          geo_todo_1C 0x00, 0, 0, 0, Geo1C_8027795C
       geo_close_node
-      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_seg4_dl_0401A448
+      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_metal_right_hand_open
       geo_open_node
          geo_todo_1C 0x00, 0, 0, 0, Geo1C_8027795C
       geo_close_node
-      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_seg4_dl_0401BC80
-      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_seg4_dl_0401B230
-      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_seg4_dl_0401B230
+      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_right_hand_peace_shared_dl # here we go hand
+      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_metal_right_hand_cap_shared_dl
+      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_metal_right_hand_cap_shared_dl
       geo_open_node
-         geo_display_list LAYER_ALPHA, mario_seg4_dl_0401B278
+         geo_display_list LAYER_ALPHA, mario_metal_right_hand_cap_shared_dl_wings
       geo_close_node
    geo_close_node
    geo_return
 
-glabel mario_geo_0024B0 # 0x170024B0
+# Same rules as Metal Mario
+
+glabel mario_metal_vanish_geo_body # 0x170024B0
    geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0
    geo_open_node
-      geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_seg4_dl_0400CCC8
+      geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_metal_butt
       geo_open_node
          geo_asm 0, Geo18_802B1BB0
          geo_asm 0, Geo18_80277294
          geo_rotation_node 0x00, 0, 0, 0
          geo_open_node
-            geo_dl_translated LAYER_TRANSPARENT, 68, 0, 0, mario_seg4_dl_040103F0
+            geo_dl_translated LAYER_TRANSPARENT, 68, 0, 0, mario_metal_torso_shared_dl
             geo_open_node
                geo_dl_translated LAYER_TRANSPARENT, 87, 0, 0
                geo_open_node
-                  geo_branch 1, mario_geo_0022E4
+                  geo_branch 1, mario_metal_vanish_geo_face_and_wings
                geo_close_node
                geo_dl_translated LAYER_TRANSPARENT, 67, -10, 79
                geo_open_node
-                  geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_seg4_dl_0400D090
+                  geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_left_arm_shared_dl
                   geo_open_node
-                     geo_dl_translated LAYER_TRANSPARENT, 65, 0, 0, mario_seg4_dl_0400D2F8
+                     geo_dl_translated LAYER_TRANSPARENT, 65, 0, 0, mario_left_forearm_shared_dl
                      geo_open_node
-                        geo_branch 1, mario_geo_002390
+                        geo_branch 1, mario_metal_vanish_geo_left_hand
                      geo_close_node
                   geo_close_node
                geo_close_node
                geo_dl_translated LAYER_TRANSPARENT, 68, -10, -79
                geo_open_node
-                  geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_seg4_dl_0400DCA0
+                  geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_right_arm_shared_dl
                   geo_open_node
-                     geo_dl_translated LAYER_TRANSPARENT, 65, 0, 0, mario_seg4_dl_0400DF08
+                     geo_dl_translated LAYER_TRANSPARENT, 65, 0, 0, mario_right_forearm_shared_dl
                      geo_open_node
-                        geo_branch 1, mario_geo_002408
+                        geo_branch 1, mario_metal_vanish_geo_right_hand
                      geo_close_node
                   geo_close_node
                geo_close_node
@@ -1355,26 +1371,26 @@ glabel mario_geo_0024B0 # 0x170024B0
          geo_close_node
          geo_dl_translated LAYER_TRANSPARENT, 13, -8, 42
          geo_open_node
-            geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_seg4_dl_0400E7E0
+            geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_metal_left_thigh
             geo_open_node
-               geo_dl_translated LAYER_TRANSPARENT, 89, 0, 0, mario_seg4_dl_0400E918
+               geo_dl_translated LAYER_TRANSPARENT, 89, 0, 0, mario_left_leg_shared_dl
                geo_open_node
-                  geo_dl_translated LAYER_TRANSPARENT, 67, 0, 0, mario_seg4_dl_0400EBB8
+                  geo_dl_translated LAYER_TRANSPARENT, 67, 0, 0, mario_left_foot_shared_dl
                geo_close_node
             geo_close_node
          geo_close_node
          geo_dl_translated LAYER_TRANSPARENT, 13, -8, -42
          geo_open_node
-            geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_seg4_dl_0400EEB0
+            geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_right_thigh_shared_dl
             geo_open_node
-               geo_dl_translated LAYER_TRANSPARENT, 89, 0, 0, mario_seg4_dl_0400F1D8
+               geo_dl_translated LAYER_TRANSPARENT, 89, 0, 0, mario_right_leg_shared_dl
                geo_open_node
                   geo_dl_translated LAYER_TRANSPARENT, 67, 0, 0
                   geo_open_node
                      geo_asm 2, Geo18_802775CC
                      geo_scale 0x00, 65536
                      geo_open_node
-                        geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_0400F528
+                        geo_display_list LAYER_TRANSPARENT, mario_metal_right_foot
                      geo_close_node
                   geo_close_node
                geo_close_node
@@ -1384,7 +1400,7 @@ glabel mario_geo_0024B0 # 0x170024B0
    geo_close_node
    geo_return
 
-glabel mario_geo_00266C # 0x1700266C
+glabel mario_metal_vanish_geo_medium_poly_left_hand # 0x1700266C
    geo_switch_case 0, GeoSwitchCase802774F4
    geo_open_node
       geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0
@@ -1392,17 +1408,17 @@ glabel mario_geo_00266C # 0x1700266C
          geo_asm 1, Geo18_802775CC
          geo_scale 0x00, 65536
          geo_open_node
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_04014C90
+            geo_display_list LAYER_TRANSPARENT, mario_medium_poly_left_hand_closed_shared_dl
          geo_close_node
       geo_close_node
-      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_seg4_dl_04019A68
-      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_seg4_dl_04014C90
-      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_seg4_dl_04014C90
-      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_seg4_dl_04014C90
+      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_left_hand_open_shared_dl
+      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_medium_poly_left_hand_closed_shared_dl
+      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_medium_poly_left_hand_closed_shared_dl
+      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_medium_poly_left_hand_closed_shared_dl
    geo_close_node
    geo_return
 
-glabel mario_geo_0026E4 # 0x170026E4
+glabel mario_metal_vanish_geo_medium_poly_right_hand # 0x170026E4
    geo_switch_case 0, GeoSwitchCase802774F4
    geo_open_node
       geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0
@@ -1410,57 +1426,57 @@ glabel mario_geo_0026E4 # 0x170026E4
          geo_asm 0, Geo18_802775CC
          geo_scale 0x00, 65536
          geo_open_node
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_04015500
+            geo_display_list LAYER_TRANSPARENT, mario_metal_medium_poly_right_hand_closed
          geo_close_node
          geo_todo_1C 0x00, 0, 0, 0, Geo1C_8027795C
       geo_close_node
-      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_seg4_dl_0401A448
+      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_metal_right_hand_open
       geo_open_node
          geo_todo_1C 0x00, 0, 0, 0, Geo1C_8027795C
       geo_close_node
-      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_seg4_dl_0401BC80
-      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_seg4_dl_0401B230
-      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_seg4_dl_0401B230
+      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_right_hand_peace_shared_dl # here we go hand
+      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_metal_right_hand_cap_shared_dl
+      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_metal_right_hand_cap_shared_dl
       geo_open_node
-         geo_display_list LAYER_ALPHA, mario_seg4_dl_0401B278
+         geo_display_list LAYER_ALPHA, mario_metal_right_hand_cap_shared_dl_wings
       geo_close_node
    geo_close_node
    geo_return
 
-glabel mario_geo_00278C # 0x1700278C
+glabel mario_metal_vanish_geo_medium_poly_body # 0x1700278C
    geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0
    geo_open_node
-      geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_seg4_dl_04014668
+      geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_metal_medium_poly_butt
       geo_open_node
          geo_asm 0, Geo18_802B1BB0
          geo_asm 0, Geo18_80277294
          geo_rotation_node 0x00, 0, 0, 0
          geo_open_node
-            geo_dl_translated LAYER_TRANSPARENT, 68, 0, 0, mario_seg4_dl_04016948
+            geo_dl_translated LAYER_TRANSPARENT, 68, 0, 0, mario_metal_medium_poly_torso
             geo_open_node
                geo_dl_translated LAYER_TRANSPARENT, 87, 0, 0
                geo_open_node
-                  geo_branch 1, mario_geo_0022E4
+                  geo_branch 1, mario_metal_vanish_geo_face_and_wings
                geo_close_node
                geo_dl_translated LAYER_TRANSPARENT, 67, -10, 79
                geo_open_node
-                  geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_seg4_dl_040147D0
+                  geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_medium_poly_left_arm_shared_dl
                   geo_open_node
-                     geo_dl_translated LAYER_TRANSPARENT, 65, 0, 0, mario_seg4_dl_04014950
+                     geo_dl_translated LAYER_TRANSPARENT, 65, 0, 0, mario_medium_poly_left_forearm_shared_dl
                      geo_open_node
-                        geo_branch 1, mario_geo_00266C
+                        geo_branch 1, mario_metal_vanish_geo_medium_poly_left_hand
                      geo_close_node
                   geo_close_node
                geo_close_node
                geo_dl_translated LAYER_TRANSPARENT, 68, -10, -79
                geo_open_node
-                  geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_seg4_dl_04014ED0
+                  geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_medium_poly_right_arm_shared_dl
                   geo_open_node
-                     geo_dl_translated LAYER_TRANSPARENT, 65, 0, 0, mario_seg4_dl_04015050
+                     geo_dl_translated LAYER_TRANSPARENT, 65, 0, 0, mario_medium_poly_right_forearm_shared_dl
                      geo_open_node
                         geo_switch_case 0, GeoSwitchCase802774F4
                         geo_open_node
-                           geo_branch 1, mario_geo_0026E4
+                           geo_branch 1, mario_metal_vanish_geo_medium_poly_right_hand
                         geo_close_node
                      geo_close_node
                   geo_close_node
@@ -1469,26 +1485,26 @@ glabel mario_geo_00278C # 0x1700278C
          geo_close_node
          geo_dl_translated LAYER_TRANSPARENT, 13, -8, 42
          geo_open_node
-            geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_seg4_dl_040156E0
+            geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_metal_medium_poly_left_thigh
             geo_open_node
-               geo_dl_translated LAYER_TRANSPARENT, 89, 0, 0, mario_seg4_dl_04015848
+               geo_dl_translated LAYER_TRANSPARENT, 89, 0, 0, mario_medium_poly_left_leg_shared_dl
                geo_open_node
-                  geo_dl_translated LAYER_TRANSPARENT, 67, 0, 0, mario_seg4_dl_04015A98
+                  geo_dl_translated LAYER_TRANSPARENT, 67, 0, 0, mario_medium_poly_left_foot_shared_dl
                geo_close_node
             geo_close_node
          geo_close_node
          geo_dl_translated LAYER_TRANSPARENT, 13, -8, -42
          geo_open_node
-            geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_seg4_dl_04015C70
+            geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_medium_poly_right_thigh_shared_dl
             geo_open_node
-               geo_dl_translated LAYER_TRANSPARENT, 89, 0, 0, mario_seg4_dl_04015E10
+               geo_dl_translated LAYER_TRANSPARENT, 89, 0, 0, mario_medium_poly_right_leg_shared_dl
                geo_open_node
                   geo_dl_translated LAYER_TRANSPARENT, 67, 0, 0
                   geo_open_node
                      geo_asm 2, Geo18_802775CC
                      geo_scale 0x00, 65536
                      geo_open_node
-                        geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_04016108
+                        geo_display_list LAYER_TRANSPARENT, mario_metal_medium_poly_right_foot
                      geo_close_node
                   geo_close_node
                geo_close_node
@@ -1498,21 +1514,21 @@ glabel mario_geo_00278C # 0x1700278C
    geo_close_node
    geo_return
 
-glabel mario_geo_002958 # 0x17002958
+glabel mario_metal_vanish_geo_low_poly_face_and_wings # 0x17002958
    geo_asm 0, Geo18_802773A4
    geo_rotation_node 0x00, 0, 0, 0
    geo_open_node
       geo_switch_case 0, GeoSwitchCase80277740
       geo_open_node
-         geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_04018AE0
-         geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_04019510
+         geo_display_list LAYER_TRANSPARENT, mario_metal_low_poly_cap_on
+         geo_display_list LAYER_TRANSPARENT, mario_metal_low_poly_cap_off
       geo_close_node
       geo_translate_rotate 0, 142, -51, -126, 22, -40, -135
       geo_open_node
          geo_asm 0, Geo18_80277824
          geo_rotation_node 0x00, 0, 0, 0
          geo_open_node
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_0401CC28
+            geo_display_list LAYER_TRANSPARENT, mario_metal_cap_wings_transparent
          geo_close_node
       geo_close_node
       geo_translate_rotate 0, 142, -51, 126, -22, 40, -135
@@ -1520,13 +1536,13 @@ glabel mario_geo_002958 # 0x17002958
          geo_asm 1, Geo18_80277824
          geo_rotation_node 0x00, 0, 0, 0
          geo_open_node
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_0401CC28
+            geo_display_list LAYER_TRANSPARENT, mario_metal_cap_wings_transparent
          geo_close_node
       geo_close_node
    geo_close_node
    geo_return
 
-glabel mario_geo_002A04 # 0x17002A04
+glabel mario_metal_vanish_geo_low_poly_left_hand # 0x17002A04
    geo_switch_case 0, GeoSwitchCase802774F4
    geo_open_node
       geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0
@@ -1534,17 +1550,17 @@ glabel mario_geo_002A04 # 0x17002A04
          geo_asm 1, Geo18_802775CC
          geo_scale 0x00, 65536
          geo_open_node
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_04016E20
+            geo_display_list LAYER_TRANSPARENT, mario_low_poly_left_hand_closed_shared_dl
          geo_close_node
       geo_close_node
-      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_seg4_dl_04019A68
-      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_seg4_dl_04016E20
-      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_seg4_dl_04016E20
-      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_seg4_dl_04016E20
+      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_left_hand_open_shared_dl
+      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_low_poly_left_hand_closed_shared_dl
+      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_low_poly_left_hand_closed_shared_dl
+      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_low_poly_left_hand_closed_shared_dl
    geo_close_node
    geo_return
 
-glabel mario_geo_002A7C # 0x17002A7C
+glabel mario_metal_vanish_geo_low_poly_right_hand # 0x17002A7C
    geo_switch_case 0, GeoSwitchCase802774F4
    geo_open_node
       geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0
@@ -1552,55 +1568,55 @@ glabel mario_geo_002A7C # 0x17002A7C
          geo_asm 0, Geo18_802775CC
          geo_scale 0x00, 65536
          geo_open_node
-            geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_040171E0
+            geo_display_list LAYER_TRANSPARENT, mario_metal_low_poly_right_hand_closed
          geo_close_node
          geo_todo_1C 0x00, 0, 0, 0, Geo1C_8027795C
       geo_close_node
-      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_seg4_dl_0401A448
+      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_metal_right_hand_open
       geo_open_node
          geo_todo_1C 0x00, 0, 0, 0, Geo1C_8027795C
       geo_close_node
-      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_seg4_dl_0401BC80
-      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_seg4_dl_0401B230
-      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_seg4_dl_0401B230
+      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_right_hand_peace_shared_dl # here we go hand
+      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_metal_right_hand_cap_shared_dl
+      geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_metal_right_hand_cap_shared_dl
       geo_open_node
-         geo_display_list LAYER_ALPHA, mario_seg4_dl_0401B278
+         geo_display_list LAYER_ALPHA, mario_metal_right_hand_cap_shared_dl_wings
       geo_close_node
    geo_close_node
    geo_return
 
-glabel mario_geo_002B24 # 0x17002B24
+glabel mario_metal_vanish_geo_low_poly_body # 0x17002B24
    geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0
    geo_open_node
-      geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_seg4_dl_04016AE8
+      geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_metal_low_poly_butt
       geo_open_node
          geo_asm 0, Geo18_802B1BB0
          geo_asm 0, Geo18_80277294
          geo_rotation_node 0x00, 0, 0, 0
          geo_open_node
-            geo_dl_translated LAYER_TRANSPARENT, 68, 0, 0, mario_seg4_dl_04017F20
+            geo_dl_translated LAYER_TRANSPARENT, 68, 0, 0, mario_metal_low_poly_torso
             geo_open_node
                geo_dl_translated LAYER_TRANSPARENT, 87, 0, 0
                geo_open_node
-                  geo_branch 1, mario_geo_002958
+                  geo_branch 1, mario_metal_vanish_geo_low_poly_face_and_wings
                geo_close_node
                geo_dl_translated LAYER_TRANSPARENT, 67, -10, 79
                geo_open_node
-                  geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_seg4_dl_04016C20
+                  geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_low_poly_left_arm_shared_dl
                   geo_open_node
-                     geo_dl_translated LAYER_TRANSPARENT, 65, 0, 0, mario_seg4_dl_04016D50
+                     geo_dl_translated LAYER_TRANSPARENT, 65, 0, 0, mario_low_poly_left_forearm_shared_dl
                      geo_open_node
-                        geo_branch 1, mario_geo_002A04
+                        geo_branch 1, mario_metal_vanish_geo_low_poly_left_hand
                      geo_close_node
                   geo_close_node
                geo_close_node
                geo_dl_translated LAYER_TRANSPARENT, 68, -10, -79
                geo_open_node
-                  geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_seg4_dl_04016F60
+                  geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_low_poly_right_arm_shared_dl
                   geo_open_node
-                     geo_dl_translated LAYER_TRANSPARENT, 65, 0, 0, mario_seg4_dl_04017090
+                     geo_dl_translated LAYER_TRANSPARENT, 65, 0, 0, mario_low_poly_right_forearm_shared_dl
                      geo_open_node
-                        geo_branch 1, mario_geo_002A7C
+                        geo_branch 1, mario_metal_vanish_geo_low_poly_right_hand
                      geo_close_node
                   geo_close_node
                geo_close_node
@@ -1608,26 +1624,26 @@ glabel mario_geo_002B24 # 0x17002B24
          geo_close_node
          geo_dl_translated LAYER_TRANSPARENT, 13, -8, 42
          geo_open_node
-            geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_seg4_dl_04017390
+            geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_metal_low_poly_left_thigh
             geo_open_node
-               geo_dl_translated LAYER_TRANSPARENT, 89, 0, 0, mario_seg4_dl_040174E8
+               geo_dl_translated LAYER_TRANSPARENT, 89, 0, 0, mario_low_poly_left_leg_shared_dl
                geo_open_node
-                  geo_dl_translated LAYER_TRANSPARENT, 67, 0, 0, mario_seg4_dl_04017638
+                  geo_dl_translated LAYER_TRANSPARENT, 67, 0, 0, mario_low_poly_left_foot_shared_dl
                geo_close_node
             geo_close_node
          geo_close_node
          geo_dl_translated LAYER_TRANSPARENT, 13, -8, -42
          geo_open_node
-            geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_seg4_dl_040177A8
+            geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, mario_low_poly_right_thigh_shared_dl
             geo_open_node
-               geo_dl_translated LAYER_TRANSPARENT, 89, 0, 0, mario_seg4_dl_04017918
+               geo_dl_translated LAYER_TRANSPARENT, 89, 0, 0, mario_low_poly_right_leg_shared_dl
                geo_open_node
                   geo_dl_translated LAYER_TRANSPARENT, 67, 0, 0
                   geo_open_node
                      geo_asm 2, Geo18_802775CC
                      geo_scale 0x00, 65536
                      geo_open_node
-                        geo_display_list LAYER_TRANSPARENT, mario_seg4_dl_04017B18
+                        geo_display_list LAYER_TRANSPARENT, mario_metal_low_poly_right_foot
                      geo_close_node
                   geo_close_node
                geo_close_node
@@ -1637,53 +1653,61 @@ glabel mario_geo_002B24 # 0x17002B24
    geo_close_node
    geo_return
 
-glabel mario_geo_002CE0 # 0x17002CE0
+# High Poly
+
+glabel mario_geo_load_body # 0x17002CE0
    geo_switch_case 0, GeoSwitchCase802776D8
    geo_open_node
-      geo_branch 1, mario_geo_00053C
-      geo_branch 1, mario_geo_001048
-      geo_branch 1, mario_geo_001AC4
-      geo_branch 1, mario_geo_0024B0
+      geo_branch 1, mario_geo_body
+      geo_branch 1, mario_vanish_geo_body
+      geo_branch 1, mario_metal_geo_body
+      geo_branch 1, mario_metal_vanish_geo_body
    geo_close_node
    geo_return
 
-glabel mario_geo_002D14 # 0x17002D14
+# Medium Poly
+
+glabel mario_geo_load_medium_poly_body # 0x17002D14
    geo_switch_case 0, GeoSwitchCase802776D8
    geo_open_node
-      geo_branch 1, mario_geo_000818
-      geo_branch 1, mario_geo_001324
-      geo_branch 1, mario_geo_001DA0
-      geo_branch 1, mario_geo_00278C
+      geo_branch 1, mario_geo_medium_poly_body
+      geo_branch 1, mario_vanish_geo_medium_poly_body
+      geo_branch 1, mario_metal_geo_medium_poly_body
+      geo_branch 1, mario_metal_vanish_geo_medium_poly_body
    geo_close_node
    geo_return
 
-glabel mario_geo_002D48 # 0x17002D48
+# Low Poly
+
+glabel mario_geo_load_low_poly_body # 0x17002D48
    geo_switch_case 0, GeoSwitchCase802776D8
    geo_open_node
-      geo_branch 1, mario_geo_000C30
-      geo_branch 1, mario_geo_00173C
-      geo_branch 1, mario_geo_002128
-      geo_branch 1, mario_geo_002B24
+      geo_branch 1, mario_geo_low_poly_body
+      geo_branch 1, mario_vanish_geo_low_poly_body
+      geo_branch 1, mario_metal_geo_low_poly_body
+      geo_branch 1, mario_metal_vanish_geo_low_poly_body
    geo_close_node
    geo_return
 
-glabel mario_geo_002D7C # 0x17002D7C
+glabel mario_geo_render_body # 0x17002D7C
    geo_node_start
    geo_open_node
       geo_render_range -2048, 600
       geo_open_node
-         geo_branch 1, mario_geo_002CE0
+         geo_branch 1, mario_geo_load_body
       geo_close_node
       geo_render_range 600, 1600
       geo_open_node
-         geo_branch 1, mario_geo_002D14
+         geo_branch 1, mario_geo_load_medium_poly_body
       geo_close_node
       geo_render_range 1600, 32767
       geo_open_node
-         geo_branch 1, mario_geo_002D48
+         geo_branch 1, mario_geo_load_low_poly_body
       geo_close_node
    geo_close_node
    geo_return
+
+# This last geo is used to load all of Mario Geo in the Level Scripts
 
 glabel mario_geo # 0x17002DD4
    geo_shadow SHADOW_CIRCLE_PLAYER, 0xB4, 100
@@ -1694,8 +1718,8 @@ glabel mario_geo # 0x17002DD4
          geo_asm 0, Geo18_802770A4
          geo_switch_case 0, GeoSwitchCase80277150
          geo_open_node
-            geo_branch 1, mario_geo_002CE0
-            geo_branch 1, mario_geo_002D7C
+            geo_branch 1, mario_geo_load_body
+            geo_branch 1, mario_geo_render_body
          geo_close_node
          geo_asm 1, Geo18_80277D6C
       geo_close_node
