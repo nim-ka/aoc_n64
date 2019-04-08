@@ -244,6 +244,12 @@ $(BUILD_DIR)/bin/%.ia4: textures/%.ia4.png
 $(BUILD_DIR)/bin/%.ia1: textures/%.ia1.png
 	$(N64GRAPHICS) -i $@ -g $< -f ia1
 
+$(BUILD_DIR)/bin/%.ci8: textures/%.ci8.png
+	$(N64GRAPHICS) -i $@ -g $< -f ci8
+
+$(BUILD_DIR)/bin/%.ci4: textures/%.ci4.png
+	$(N64GRAPHICS) -i $@ -g $< -f ci4
+
 # texture generation 2nd method: rgba16s are preferred (and used
 # more often) over the ones listed below due to more colors.
 $(BUILD_DIR)/actors/%.rgba16: actors/%.rgba16.png
@@ -261,6 +267,12 @@ $(BUILD_DIR)/actors/%.ia4: actors/%.ia4.png
 $(BUILD_DIR)/actors/%.ia1: actors/%.ia1.png
 	$(N64GRAPHICS) -i $@ -g $< -f ia1
 
+$(BUILD_DIR)/actors/%.ci8: actors/%.ci8.png
+	$(N64GRAPHICS) -i $@ -g $< -f ci8
+
+$(BUILD_DIR)/actors/%.ci4: actors/%.ci4.png
+	$(N64GRAPHICS) -i $@ -g $< -f ci4
+
 # texture generation 3rd method: rgba16s are preferred (and used
 # more often) over the ones listed below due to more colors.
 $(BUILD_DIR)/levels/%.rgba16: levels/%.rgba16.png
@@ -277,6 +289,12 @@ $(BUILD_DIR)/levels/%.ia4: levels/%.ia4.png
 
 $(BUILD_DIR)/levels/%.ia1: levels/%.ia1.png
 	$(N64GRAPHICS) -i $@ -g $< -f ia1
+
+$(BUILD_DIR)/levels/%.ci8: levels/%.ci8.png
+	$(N64GRAPHICS) -i $@ -g $< -f ci8
+
+$(BUILD_DIR)/levels/%.ci4: levels/%.ci4.png
+	$(N64GRAPHICS) -i $@ -g $< -f ci4
 
 # compressed segment generation
 $(BUILD_DIR)/bin/%.o: bin/%.s
