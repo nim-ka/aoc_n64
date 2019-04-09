@@ -14,9 +14,6 @@ glabel outside_09001000 # 0x09001000
 glabel outside_09002000 # 0x09002000
 .incbin "bin/outside/castle_grounds_textures.02000.rgba16"
 
-glabel outside_09002800 # 0x09002800
-.incbin "bin/outside/castle_grounds_textures.02800.rgba16"
-
 glabel outside_09003000 # 0x09003000
 .incbin "bin/outside/castle_grounds_textures.03000.rgba16"
 
@@ -28,9 +25,6 @@ glabel outside_09004000 # 0x09004000
 
 glabel outside_09004800 # 0x09004800
 .incbin "bin/outside/castle_grounds_textures.04800.rgba16"
-
-glabel outside_09005000 # 0x09005000
-.incbin "bin/outside/castle_grounds_textures.05000.rgba16"
 
 glabel outside_09005800 # 0x09005800
 .incbin "bin/outside/castle_grounds_textures.05800.rgba16"
