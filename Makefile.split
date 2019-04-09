@@ -140,8 +140,9 @@ $(BUILD_DIR)/bin/common1.elf: SEGMENT_ADDRESS := 0x03000000
 # TODO: Preprocess these rules from the level configs?
 
 define level_rules = 
-    $(1)_SEG7_FILES := $$(basename $$(notdir $$(wildcard levels/$(1)/*.png)))
-    $$(BUILD_DIR)/bin/$(1)/leveldata.o: $$(addprefix $$(BUILD_DIR)/levels/$(1)/,$$($(1)_SEG7_FILES))
+    $(1)_SEG7_FILES     := $$(basename $$(notdir $$(wildcard levels/$(1)/*.png)))
+    $(1)_SEG7_FILES_RAW := $(shell find levels/$(1)/ -type f -iname '*')
+    $$(BUILD_DIR)/bin/$(1)/leveldata.o: $$(addprefix $$(BUILD_DIR)/levels/$(1)/,$$($(1)_SEG7_FILES)) $$($(1)_SEG7_FILES_RAW)
     $$(BUILD_DIR)/bin/$(1)/leveldata.elf: SEGMENT_ADDRESS := $(2)
     $$(BUILD_DIR)/bin/$(1)/leveldata.elf: TEXTURE_BIN := $(3)
 endef
