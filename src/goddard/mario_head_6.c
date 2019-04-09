@@ -9,7 +9,7 @@
 
 #include "mario_head_6.h"
 #include "gd_main.h"
-#include "debug_memory.h"
+#include "gd_memory.h"
 #include "mhead_sfx.h"
 #include "draw_objects.h"
 #include "mario_head_1.h"
@@ -2585,11 +2585,11 @@ s32 setup_view_buffers(
         view->parent = D_801A86E0;
     }
 
-    //! @ bug No actual return, but the return value is used.
-    //!       There is no obvious value to return. Since the function
-    //!       doesn't use four of its parameters, this function may have
-    //!       had a fair amount of its code commented out. In game, the 
-    //!       returned value is always 0, so the fix returns that value
+    //! @bug No actual return, but the return value is used.
+    //!      There is no obvious value to return. Since the function
+    //!      doesn't use four of its parameters, this function may have
+    //!      had a fair amount of its code commented out. In game, the 
+    //!      returned value is always 0, so the fix returns that value
     #if BUGFIX_GODDARD_MISSING_RETURN
     return 0;
     #endif

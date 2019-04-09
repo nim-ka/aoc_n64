@@ -2,7 +2,7 @@
 
 #include "sm64.h"
 #include "gd_main.h"
-#include "debug_memory.h"
+#include "gd_memory.h"
 #include "mario_head_1.h"
 #include "profiler_utils.h"
 #include "mario_head_6.h"

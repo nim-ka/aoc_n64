@@ -503,7 +503,7 @@ SECTIONS
       BUILD_DIR/src/game/file_select.o(.text);
       BUILD_DIR/src/game/star_select.o(.text);
       BUILD_DIR/src/goddard/gd_main.o(.text);
-      BUILD_DIR/src/goddard/debug_memory.o(.text);
+      BUILD_DIR/src/goddard/gd_memory.o(.text);
       BUILD_DIR/src/goddard/mhead_sfx.o(.text);
       BUILD_DIR/src/goddard/draw_objects.o(.text);
       BUILD_DIR/src/goddard/mario_head_1.o(.text);
@@ -539,7 +539,7 @@ SECTIONS
       BUILD_DIR/data/goddard_tex_dl.o(.rodata*);
       /* goddard subsystem rodata */
       BUILD_DIR/src/goddard/gd_main.o(.rodata*);
-      BUILD_DIR/src/goddard/debug_memory.o(.rodata*);
+      BUILD_DIR/src/goddard/gd_memory.o(.rodata*);
       BUILD_DIR/src/goddard/draw_objects.o(.rodata*);
       BUILD_DIR/src/goddard/mario_head_1.o(.rodata*);
       BUILD_DIR/src/goddard/mario_head_2.o(.rodata*);
@@ -560,7 +560,7 @@ SECTIONS
       BUILD_DIR/src/game/file_select.o(.bss*);
       BUILD_DIR/src/game/star_select.o(.bss*);
       BUILD_DIR/src/goddard/gd_main.o(.bss*);
-      BUILD_DIR/src/goddard/debug_memory.o(.bss*);
+      BUILD_DIR/src/goddard/gd_memory.o(.bss*);
       BUILD_DIR/src/goddard/mhead_sfx.o(.bss*);
       BUILD_DIR/src/goddard/draw_objects.o(.bss*);
       BUILD_DIR/src/goddard/mario_head_1.o(.bss*);

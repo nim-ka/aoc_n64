@@ -1,23 +1,38 @@
 #include <ultra64.h>
 
 #include "sm64.h"
-#include "debug_memory.h"
+#include "gd_memory.h"
 #include "profiler_utils.h"
 #include "mario_head_6.h"
 
+/**
+ * @file gd_memory.c
+ * 
+ * This file contains the functions need to manage allocation form
+ * goddard's heap. However, the actual, useable allocation functions
+ * are `gd_malloc()`, `gd_malloc_perm()`, and `gd_malloc_temp()`, as 
+ * well as `gd_free()`. This file is for managing the underlying memory
+ * block lists.
+ */
+
 /* bss */
-static struct GMemBlock* sFreeBlockListHead;
-static struct GMemBlock* sUsedBlockListHead;
-static struct GMemBlock* sEmptyBlockListHead;
+static struct GMemBlock *sFreeBlockListHead;
+static struct GMemBlock *sUsedBlockListHead;
+static struct GMemBlock *sEmptyBlockListHead;
 
 /* Forward Declarations */
-void empty_mem_block(struct GMemBlock*);
-struct GMemBlock* into_gd_free_mem(struct GMemBlock* oldBlock);
-struct GMemBlock* make_mem_block(u32, u8);
-u32 print_list_stats(struct GMemBlock*, s32, s32);
+void empty_mem_block(struct GMemBlock *);
+struct GMemBlock *into_free_memblock(struct GMemBlock *);
+struct GMemBlock *make_mem_block(u32, u8);
+u32 print_list_stats(struct GMemBlock *, s32, s32);
 
-/* @ 225EB0 for 0x104; orig name: func_801776E0 */
-void empty_mem_block(struct GMemBlock* block)
+/**
+ * Empty a `GMemBlock` into a default state. This empty block
+ * doesn't point to any data, nor does it have any size. The 
+ * block is removed from whatever list is was in, and is added
+ * to the empty block list.
+ */ 
+void empty_mem_block(struct GMemBlock *block)
 {
     if (block->next != NULL)
         block->next->prev = block->prev;
@@ -27,11 +42,11 @@ void empty_mem_block(struct GMemBlock* block)
 
     switch (block->blockType)
     {
-        case FREE_G_MEM_BLOCK:
+        case G_MEM_BLOCK_FREE:
             if (block->prev == NULL)
                 sFreeBlockListHead = block->next;
             break;
-        case USED_G_MEM_BLOCK:
+        case G_MEM_BLOCK_USED:
             if (block->prev == NULL)
                 sUsedBlockListHead = block->next;
             break;
@@ -47,35 +62,48 @@ void empty_mem_block(struct GMemBlock* block)
     block->size = 0;
 }
 
-/* @ 225FB4 for 0xB8; orig name: func_801777E4 */
-struct GMemBlock* into_gd_free_mem(struct GMemBlock* oldBlock)
+/**
+ * Transform a `GMemBlock` into a free block that points to memory available
+ * for allocation. 
+ * 
+ * @returns pointer to the free `GMemBlock` */
+struct GMemBlock *into_free_memblock(struct GMemBlock *block)
 {
-    struct GMemBlock* newBlock;
-    void* data_ptr;
+    struct GMemBlock *freeBlock;
+    void *data_ptr;
     u8 permanence;
     u32 space;
 
-    data_ptr = oldBlock->data.ptr;
-    space = oldBlock->size;
-    permanence = oldBlock->permFlag;
+    data_ptr = block->data.ptr;
+    space = block->size;
+    permanence = block->permFlag;
 
-    empty_mem_block(oldBlock);
-    newBlock = make_mem_block(FREE_G_MEM_BLOCK, permanence);
-    newBlock->data.ptr = data_ptr;
-    newBlock->size = space;
-    newBlock->permFlag = permanence;
+    empty_mem_block(block);
+    freeBlock = make_mem_block(G_MEM_BLOCK_FREE, permanence);
+    freeBlock->data.ptr = data_ptr;
+    freeBlock->size = space;
+    freeBlock->permFlag = permanence;
 
-    return newBlock;
+    return freeBlock;
 }
 
-/* @ 22606C for 0x1DC; orig name: MakeMemBlock */
-struct GMemBlock* make_mem_block(u32 blockType, u8 permFlag)
+/**
+ * Allocate a new `GMemBlock` structure of the given type and permanence.
+ * It does not assign any heap space to the new block.
+ *
+ * @param blockType either `G_MEM_BLOCK_FREE` or `G_MEM_BLOCK_USED`
+ * @param permFlag  some sort of permanence value, where setting one the upper
+ *                  four bits imply a permanent block, while setting one the lower
+ *                  four bits imply a temporary block
+ * @returns a pointer to the new `GMemBlock`
+ */
+struct GMemBlock *make_mem_block(u32 blockType, u8 permFlag)
 {
-    struct GMemBlock* newMemBlock;
+    struct GMemBlock *newMemBlock;
 
     if (sEmptyBlockListHead == NULL)
     {
-        sEmptyBlockListHead = (struct GMemBlock*) gd_allocblock(sizeof(struct GMemBlock));
+        sEmptyBlockListHead = (struct GMemBlock *)gd_allocblock(sizeof(struct GMemBlock));
 
         if (sEmptyBlockListHead == NULL)
             fatal_printf("MakeMemBlock() unable to allocate");
@@ -90,13 +118,13 @@ struct GMemBlock* make_mem_block(u32 blockType, u8 permFlag)
 
     switch (blockType)
     {
-        case FREE_G_MEM_BLOCK:
+        case G_MEM_BLOCK_FREE:
             newMemBlock->next = sFreeBlockListHead;
             if (newMemBlock->next != NULL) 
                sFreeBlockListHead->prev = newMemBlock;
             sFreeBlockListHead = newMemBlock;
             break;
-        case USED_G_MEM_BLOCK:
+        case G_MEM_BLOCK_USED:
             newMemBlock->next = sUsedBlockListHead;
             if (newMemBlock->next != NULL)
                 sUsedBlockListHead->prev = newMemBlock;
@@ -112,21 +140,27 @@ struct GMemBlock* make_mem_block(u32 blockType, u8 permFlag)
     return newMemBlock;
 }
 
-/* @ 226248 for 0xA0; orig name: Free */
-u32 gd_free_mem(void* data)
+/**
+ * Free memory allocated on the goddard heap.
+ * 
+ * @param ptr pointer to heap allocated memory
+ * @returns size of memory freed
+ * @retval  0    `ptr` did not point to a valid memory block
+ */
+u32 gd_free_mem(void *ptr)
 {
-    register struct GMemBlock* curBlock;
+    register struct GMemBlock *curBlock;
     u32 bytesFreed;
-    register void* targetBlock; /* use as an int type instead of comparing pointer types? */
+    register void *targetBlock; //TODO: uintptr_t with cast below
 
-    targetBlock = data;
+    targetBlock = ptr;
 
     for (curBlock = sUsedBlockListHead; curBlock != NULL; curBlock = curBlock->next)
     {
         if (targetBlock == curBlock->data.ptr)
         {
             bytesFreed = curBlock->size;
-            into_gd_free_mem(curBlock);
+            into_free_memblock(curBlock);
             return bytesFreed;
         }
     }
@@ -135,14 +169,20 @@ u32 gd_free_mem(void* data)
     return 0;
 }
 
-/* @ 2262E8 for 0x224; orig name: func_80177B18 */
-void* gd_request_mem(u32 size, u8 permanence)
+/**
+ * Request a pointer to goddard heap memory of at least `size` and
+ * of the same `permanence`.
+ * 
+ * @retuns pointer to heap
+ * @retval NULL could not fulfill the request
+ */
+void *gd_request_mem(u32 size, u8 permanence)
 {
-    struct GMemBlock* foundBlock = NULL;
-    struct GMemBlock* curBlock;
-    struct GMemBlock* newBlock;
+    struct GMemBlock *foundBlock = NULL;
+    struct GMemBlock *curBlock;
+    struct GMemBlock *newBlock;
 
-    newBlock = make_mem_block(USED_G_MEM_BLOCK, permanence);
+    newBlock = make_mem_block(G_MEM_BLOCK_USED, permanence);
     curBlock = sFreeBlockListHead;
 
     while (curBlock != NULL)
@@ -190,22 +230,28 @@ void* gd_request_mem(u32 size, u8 permanence)
     return newBlock->data.ptr;
 }
 
-/* @ 22650C for 0x90; orig name: func_80177D3C */
-struct GMemBlock* gd_add_mem_to_heap(u32 size, u32 addr, u8 permanence)
-{
-    struct GMemBlock* newBlock;
+/**
+ * Add memory of `size` at `addr` to the goddard heap for later allocation. 
+ * 
+ * @returns `GMemBlock` that contains info about the new heap memory
+ */
+struct GMemBlock *gd_add_mem_to_heap(u32 size, u32 addr, u8 permanence)
+{ //TODO: uintptr_t addr
+    struct GMemBlock *newBlock;
     /* eight-byte align the new block's data stats */ 
     size = (size - 8) & ~7;
     addr = (addr + 8) & ~7;
 
-    newBlock = make_mem_block(FREE_G_MEM_BLOCK, permanence);
+    newBlock = make_mem_block(G_MEM_BLOCK_FREE, permanence);
     newBlock->data.addr = addr;
     newBlock->size = size;
 
     return newBlock;
 }
 
-/* @ 22659C for 0x28; orig name: func_80177DCC*/
+/**
+ * NULL the various `GMemBlock` list heads
+ */
 void init_mem_block_lists(void)
 {
     sFreeBlockListHead = NULL;
@@ -213,8 +259,17 @@ void init_mem_block_lists(void)
     sEmptyBlockListHead = NULL;
 }
 
-/* @ 2265C4 for 0x17C; orig name: func_80177DF4 */
-u32 print_list_stats(struct GMemBlock* block, s32 printBlockInfo, s32 permanence)
+/**
+ * Print information (size, entries) about the `GMemBlock` list. It can print
+ * information for individual blocks as well as summary info for the entry list.
+ * 
+ * @param block          `GMemBlock` to start reading the list
+ * @param printBlockInfo If `TRUE`, print information about every block
+ *                       in the list
+ * @param permanence     Limit info printed to blocks with this permanence
+ * @returns number of entries
+ */
+u32 print_list_stats(struct GMemBlock *block, s32 printBlockInfo, s32 permanence)
 {
     u32 entries = 0;
     u32 totalSize = 0;
@@ -243,7 +298,10 @@ u32 print_list_stats(struct GMemBlock* block, s32 printBlockInfo, s32 permanence
     return entries;
 }
 
-/* @ 226740 for 0x12C; orig name: MemStats*/
+/**
+ * Print summary information about all used, free, and empty
+ * `GMemBlock`s.
+ */
 void mem_stats(void)
 {
     struct GMemBlock* list;
