@@ -139,368 +139,47 @@ $(BUILD_DIR)/bin/common1.elf: SEGMENT_ADDRESS := 0x03000000
 # as-is.
 # TODO: Preprocess these rules from the level configs?
 
-# BBH (Big Boo's Haunt)
-LEVEL_NAME := bbh
-LEVEL_SEG_ADDR := 0x07000000
-LEVEL_TEXT_BIN := spooky
-# ---------- COPY THE RULES AS-IS -----------
-$(LEVEL_NAME)_SEG7_FILES               := $(basename $(notdir $(wildcard levels/$(LEVEL_NAME)/*.png)))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.o: $(addprefix $(BUILD_DIR)/levels/$(LEVEL_NAME)/,$($(LEVEL_NAME)_SEG7_FILES))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: SEGMENT_ADDRESS := $(LEVEL_SEG_ADDR)
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: TEXTURE_BIN := $(LEVEL_TEXT_BIN)
-# -------------------------------------------
+define level_rules = 
+    $(1)_SEG7_FILES := $$(basename $$(notdir $$(wildcard levels/$(1)/*.png)))
+    $$(BUILD_DIR)/bin/$(1)/leveldata.o: $$(addprefix $$(BUILD_DIR)/levels/$(1)/,$$($(1)_SEG7_FILES))
+    $$(BUILD_DIR)/bin/$(1)/leveldata.elf: SEGMENT_ADDRESS := $(2)
+    $$(BUILD_DIR)/bin/$(1)/leveldata.elf: TEXTURE_BIN := $(3)
+endef
 
-# CCM (Cool Cool Mountain)
-LEVEL_NAME := ccm
-LEVEL_SEG_ADDR := 0x07000000
-LEVEL_TEXT_BIN := snow
-# ---------- COPY THE RULES AS-IS -----------
-$(LEVEL_NAME)_SEG7_FILES               := $(basename $(notdir $(wildcard levels/$(LEVEL_NAME)/*.png)))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.o: $(addprefix $(BUILD_DIR)/levels/$(LEVEL_NAME)/,$($(LEVEL_NAME)_SEG7_FILES))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: SEGMENT_ADDRESS := $(LEVEL_SEG_ADDR)
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: TEXTURE_BIN := $(LEVEL_TEXT_BIN)
-# -------------------------------------------
-
-# Castle Inside (Inside Princess Peach's Castle)
-LEVEL_NAME := castle_inside
-LEVEL_SEG_ADDR := 0x07000000
-LEVEL_TEXT_BIN := inside
-# ---------- COPY THE RULES AS-IS -----------
-$(LEVEL_NAME)_SEG7_FILES               := $(basename $(notdir $(wildcard levels/$(LEVEL_NAME)/*.png)))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.o: $(addprefix $(BUILD_DIR)/levels/$(LEVEL_NAME)/,$($(LEVEL_NAME)_SEG7_FILES))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: SEGMENT_ADDRESS := $(LEVEL_SEG_ADDR)
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: TEXTURE_BIN := $(LEVEL_TEXT_BIN)
-# -------------------------------------------
-
-# HMC (Hazy Maze Cave)
-LEVEL_NAME := hmc
-LEVEL_SEG_ADDR := 0x07000000
-LEVEL_TEXT_BIN := cave
-# ---------- COPY THE RULES AS-IS -----------
-$(LEVEL_NAME)_SEG7_FILES               := $(basename $(notdir $(wildcard levels/$(LEVEL_NAME)/*.png)))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.o: $(addprefix $(BUILD_DIR)/levels/$(LEVEL_NAME)/,$($(LEVEL_NAME)_SEG7_FILES))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: SEGMENT_ADDRESS := $(LEVEL_SEG_ADDR)
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: TEXTURE_BIN := $(LEVEL_TEXT_BIN)
-# -------------------------------------------
-
-# SSL (Shifting Sand Land)
-LEVEL_NAME := ssl
-LEVEL_SEG_ADDR := 0x07000000
-LEVEL_TEXT_BIN := generic
-# ---------- COPY THE RULES AS-IS -----------
-$(LEVEL_NAME)_SEG7_FILES               := $(basename $(notdir $(wildcard levels/$(LEVEL_NAME)/*.png)))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.o: $(addprefix $(BUILD_DIR)/levels/$(LEVEL_NAME)/,$($(LEVEL_NAME)_SEG7_FILES))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: SEGMENT_ADDRESS := $(LEVEL_SEG_ADDR)
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: TEXTURE_BIN := $(LEVEL_TEXT_BIN)
-# -------------------------------------------
-
-# BOB (Bob-Omb Battlefield)
-LEVEL_NAME := bob
-LEVEL_SEG_ADDR := 0x07000000
-LEVEL_TEXT_BIN := generic
-# ---------- COPY THE RULES AS-IS -----------
-$(LEVEL_NAME)_SEG7_FILES               := $(basename $(notdir $(wildcard levels/$(LEVEL_NAME)/*.png)))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.o: $(addprefix $(BUILD_DIR)/levels/$(LEVEL_NAME)/,$($(LEVEL_NAME)_SEG7_FILES))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: SEGMENT_ADDRESS := $(LEVEL_SEG_ADDR)
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: TEXTURE_BIN := $(LEVEL_TEXT_BIN)
-# -------------------------------------------
-
-# SL (Snowman's Land)
-LEVEL_NAME := sl
-LEVEL_SEG_ADDR := 0x07000000
-LEVEL_TEXT_BIN := snow
-# ---------- COPY THE RULES AS-IS -----------
-$(LEVEL_NAME)_SEG7_FILES               := $(basename $(notdir $(wildcard levels/$(LEVEL_NAME)/*.png)))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.o: $(addprefix $(BUILD_DIR)/levels/$(LEVEL_NAME)/,$($(LEVEL_NAME)_SEG7_FILES))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: SEGMENT_ADDRESS := $(LEVEL_SEG_ADDR)
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: TEXTURE_BIN := $(LEVEL_TEXT_BIN)
-# -------------------------------------------
-
-# WDW (Wet Dry World)
-LEVEL_NAME := wdw
-LEVEL_SEG_ADDR := 0x07000000
-LEVEL_TEXT_BIN := grass
-# ---------- COPY THE RULES AS-IS -----------
-$(LEVEL_NAME)_SEG7_FILES               := $(basename $(notdir $(wildcard levels/$(LEVEL_NAME)/*.png)))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.o: $(addprefix $(BUILD_DIR)/levels/$(LEVEL_NAME)/,$($(LEVEL_NAME)_SEG7_FILES))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: SEGMENT_ADDRESS := $(LEVEL_SEG_ADDR)
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: TEXTURE_BIN := $(LEVEL_TEXT_BIN)
-# -------------------------------------------
-
-# JRB (Jolly Roger Bay)
-LEVEL_NAME := jrb
-LEVEL_SEG_ADDR := 0x07000000
-LEVEL_TEXT_BIN := water
-# ---------- COPY THE RULES AS-IS -----------
-$(LEVEL_NAME)_SEG7_FILES               := $(basename $(notdir $(wildcard levels/$(LEVEL_NAME)/*.png)))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.o: $(addprefix $(BUILD_DIR)/levels/$(LEVEL_NAME)/,$($(LEVEL_NAME)_SEG7_FILES))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: SEGMENT_ADDRESS := $(LEVEL_SEG_ADDR)
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: TEXTURE_BIN := $(LEVEL_TEXT_BIN)
-# -------------------------------------------
-
-# THI (Tiny Huge Island)
-LEVEL_NAME := thi
-LEVEL_SEG_ADDR := 0x07000000
-LEVEL_TEXT_BIN := grass
-# ---------- COPY THE RULES AS-IS -----------
-$(LEVEL_NAME)_SEG7_FILES               := $(basename $(notdir $(wildcard levels/$(LEVEL_NAME)/*.png)))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.o: $(addprefix $(BUILD_DIR)/levels/$(LEVEL_NAME)/,$($(LEVEL_NAME)_SEG7_FILES))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: SEGMENT_ADDRESS := $(LEVEL_SEG_ADDR)
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: TEXTURE_BIN := $(LEVEL_TEXT_BIN)
-# -------------------------------------------
-
-# TTC (Tick Tock Clock)
-LEVEL_NAME := ttc
-LEVEL_SEG_ADDR := 0x07000000
-LEVEL_TEXT_BIN := machine
-# ---------- COPY THE RULES AS-IS -----------
-$(LEVEL_NAME)_SEG7_FILES               := $(basename $(notdir $(wildcard levels/$(LEVEL_NAME)/*.png)))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.o: $(addprefix $(BUILD_DIR)/levels/$(LEVEL_NAME)/,$($(LEVEL_NAME)_SEG7_FILES))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: SEGMENT_ADDRESS := $(LEVEL_SEG_ADDR)
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: TEXTURE_BIN := $(LEVEL_TEXT_BIN)
-# -------------------------------------------
-
-# RR (Rainbow Ride)
-LEVEL_NAME := rr
-LEVEL_SEG_ADDR := 0x07000000
-LEVEL_TEXT_BIN := sky
-# ---------- COPY THE RULES AS-IS -----------
-$(LEVEL_NAME)_SEG7_FILES               := $(basename $(notdir $(wildcard levels/$(LEVEL_NAME)/*.png)))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.o: $(addprefix $(BUILD_DIR)/levels/$(LEVEL_NAME)/,$($(LEVEL_NAME)_SEG7_FILES))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: SEGMENT_ADDRESS := $(LEVEL_SEG_ADDR)
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: TEXTURE_BIN := $(LEVEL_TEXT_BIN)
-# -------------------------------------------
-
-# Castle Grounds (Outside Princess Peach's Castle)
-LEVEL_NAME := castle_grounds
-LEVEL_SEG_ADDR := 0x07000000
-LEVEL_TEXT_BIN := outside
-# ---------- COPY THE RULES AS-IS -----------
-$(LEVEL_NAME)_SEG7_FILES               := $(basename $(notdir $(wildcard levels/$(LEVEL_NAME)/*.png)))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.o: $(addprefix $(BUILD_DIR)/levels/$(LEVEL_NAME)/,$($(LEVEL_NAME)_SEG7_FILES))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: SEGMENT_ADDRESS := $(LEVEL_SEG_ADDR)
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: TEXTURE_BIN := $(LEVEL_TEXT_BIN)
-# -------------------------------------------
-
-# BitDW (Bowser in the Dark World)
-LEVEL_NAME := bitdw
-LEVEL_SEG_ADDR := 0x07000000
-LEVEL_TEXT_BIN := sky
-# ---------- COPY THE RULES AS-IS -----------
-$(LEVEL_NAME)_SEG7_FILES               := $(basename $(notdir $(wildcard levels/$(LEVEL_NAME)/*.png)))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.o: $(addprefix $(BUILD_DIR)/levels/$(LEVEL_NAME)/,$($(LEVEL_NAME)_SEG7_FILES))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: SEGMENT_ADDRESS := $(LEVEL_SEG_ADDR)
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: TEXTURE_BIN := $(LEVEL_TEXT_BIN)
-# -------------------------------------------
-
-# VCUTM (Vanish Cap under the Moat)
-LEVEL_NAME := vcutm
-LEVEL_SEG_ADDR := 0x07000000
-LEVEL_TEXT_BIN := outside
-# ---------- COPY THE RULES AS-IS -----------
-$(LEVEL_NAME)_SEG7_FILES               := $(basename $(notdir $(wildcard levels/$(LEVEL_NAME)/*.png)))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.o: $(addprefix $(BUILD_DIR)/levels/$(LEVEL_NAME)/,$($(LEVEL_NAME)_SEG7_FILES))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: SEGMENT_ADDRESS := $(LEVEL_SEG_ADDR)
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: TEXTURE_BIN := $(LEVEL_TEXT_BIN)
-# -------------------------------------------
-
-# BITFS (Bowser in the Fire Sea)
-LEVEL_NAME := bitfs
-LEVEL_SEG_ADDR := 0x07000000
-LEVEL_TEXT_BIN := sky
-# ---------- COPY THE RULES AS-IS -----------
-$(LEVEL_NAME)_SEG7_FILES               := $(basename $(notdir $(wildcard levels/$(LEVEL_NAME)/*.png)))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.o: $(addprefix $(BUILD_DIR)/levels/$(LEVEL_NAME)/,$($(LEVEL_NAME)_SEG7_FILES))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: SEGMENT_ADDRESS := $(LEVEL_SEG_ADDR)
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: TEXTURE_BIN := $(LEVEL_TEXT_BIN)
-# -------------------------------------------
-
-# SA (The Secret Aquarium)
-LEVEL_NAME := sa
-LEVEL_SEG_ADDR := 0x07000000
-LEVEL_TEXT_BIN := inside
-# ---------- COPY THE RULES AS-IS -----------
-$(LEVEL_NAME)_SEG7_FILES               := $(basename $(notdir $(wildcard levels/$(LEVEL_NAME)/*.png)))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.o: $(addprefix $(BUILD_DIR)/levels/$(LEVEL_NAME)/,$($(LEVEL_NAME)_SEG7_FILES))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: SEGMENT_ADDRESS := $(LEVEL_SEG_ADDR)
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: TEXTURE_BIN := $(LEVEL_TEXT_BIN)
-# -------------------------------------------
-
-# BITS (Bowser in the Sky)
-LEVEL_NAME := bits
-LEVEL_SEG_ADDR := 0x07000000
-LEVEL_TEXT_BIN := sky
-# ---------- COPY THE RULES AS-IS -----------
-$(LEVEL_NAME)_SEG7_FILES               := $(basename $(notdir $(wildcard levels/$(LEVEL_NAME)/*.png)))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.o: $(addprefix $(BUILD_DIR)/levels/$(LEVEL_NAME)/,$($(LEVEL_NAME)_SEG7_FILES))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: SEGMENT_ADDRESS := $(LEVEL_SEG_ADDR)
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: TEXTURE_BIN := $(LEVEL_TEXT_BIN)
-# -------------------------------------------
-
-# LLL (Lethal Lava Land)
-LEVEL_NAME := lll
-LEVEL_SEG_ADDR := 0x07000000
-LEVEL_TEXT_BIN := fire
-# ---------- COPY THE RULES AS-IS -----------
-$(LEVEL_NAME)_SEG7_FILES               := $(basename $(notdir $(wildcard levels/$(LEVEL_NAME)/*.png)))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.o: $(addprefix $(BUILD_DIR)/levels/$(LEVEL_NAME)/,$($(LEVEL_NAME)_SEG7_FILES))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: SEGMENT_ADDRESS := $(LEVEL_SEG_ADDR)
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: TEXTURE_BIN := $(LEVEL_TEXT_BIN)
-# -------------------------------------------
-
-# DDD (Dire Dire Docks)
-LEVEL_NAME := ddd
-LEVEL_SEG_ADDR := 0x07000000
-LEVEL_TEXT_BIN := water
-# ---------- COPY THE RULES AS-IS -----------
-$(LEVEL_NAME)_SEG7_FILES               := $(basename $(notdir $(wildcard levels/$(LEVEL_NAME)/*.png)))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.o: $(addprefix $(BUILD_DIR)/levels/$(LEVEL_NAME)/,$($(LEVEL_NAME)_SEG7_FILES))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: SEGMENT_ADDRESS := $(LEVEL_SEG_ADDR)
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: TEXTURE_BIN := $(LEVEL_TEXT_BIN)
-# -------------------------------------------
-
-# WF
-LEVEL_NAME := wf
-LEVEL_SEG_ADDR := 0x07000000
-LEVEL_TEXT_BIN := grass
-# ---------- COPY THE RULES AS-IS -----------
-$(LEVEL_NAME)_SEG7_FILES               := $(basename $(notdir $(wildcard levels/$(LEVEL_NAME)/*.png)))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.o: $(addprefix $(BUILD_DIR)/levels/$(LEVEL_NAME)/,$($(LEVEL_NAME)_SEG7_FILES))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: SEGMENT_ADDRESS := $(LEVEL_SEG_ADDR)
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: TEXTURE_BIN := $(LEVEL_TEXT_BIN)
-# -------------------------------------------
-
-# Ending
-LEVEL_NAME := ending
-LEVEL_SEG_ADDR := 0x07000000
-LEVEL_TEXT_BIN := generic
-# ---------- COPY THE RULES AS-IS -----------
-$(LEVEL_NAME)_SEG7_FILES               := $(basename $(notdir $(wildcard levels/$(LEVEL_NAME)/*.png)))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.o: $(addprefix $(BUILD_DIR)/levels/$(LEVEL_NAME)/,$($(LEVEL_NAME)_SEG7_FILES))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: SEGMENT_ADDRESS := $(LEVEL_SEG_ADDR)
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: TEXTURE_BIN := $(LEVEL_TEXT_BIN)
-# -------------------------------------------
-
-# Castle Courtyard (The Courtyard of Princess Peach's Castle)
-LEVEL_NAME := castle_courtyard
-LEVEL_SEG_ADDR := 0x07000000
-LEVEL_TEXT_BIN := outside
-# ---------- COPY THE RULES AS-IS -----------
-$(LEVEL_NAME)_SEG7_FILES               := $(basename $(notdir $(wildcard levels/$(LEVEL_NAME)/*.png)))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.o: $(addprefix $(BUILD_DIR)/levels/$(LEVEL_NAME)/,$($(LEVEL_NAME)_SEG7_FILES))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: SEGMENT_ADDRESS := $(LEVEL_SEG_ADDR)
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: TEXTURE_BIN := $(LEVEL_TEXT_BIN)
-# -------------------------------------------
-
-# PSS (The Princess's Secret Slide)
-LEVEL_NAME := pss
-LEVEL_SEG_ADDR := 0x07000000
-LEVEL_TEXT_BIN := mountain
-# ---------- COPY THE RULES AS-IS -----------
-$(LEVEL_NAME)_SEG7_FILES               := $(basename $(notdir $(wildcard levels/$(LEVEL_NAME)/*.png)))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.o: $(addprefix $(BUILD_DIR)/levels/$(LEVEL_NAME)/,$($(LEVEL_NAME)_SEG7_FILES))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: SEGMENT_ADDRESS := $(LEVEL_SEG_ADDR)
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: TEXTURE_BIN := $(LEVEL_TEXT_BIN)
-# -------------------------------------------
-
-# COTMC (Cavern of the Metal Cap)
-LEVEL_NAME := cotmc
-LEVEL_SEG_ADDR := 0x07000000
-LEVEL_TEXT_BIN := cave
-# ---------- COPY THE RULES AS-IS -----------
-$(LEVEL_NAME)_SEG7_FILES               := $(basename $(notdir $(wildcard levels/$(LEVEL_NAME)/*.png)))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.o: $(addprefix $(BUILD_DIR)/levels/$(LEVEL_NAME)/,$($(LEVEL_NAME)_SEG7_FILES))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: SEGMENT_ADDRESS := $(LEVEL_SEG_ADDR)
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: TEXTURE_BIN := $(LEVEL_TEXT_BIN)
-# -------------------------------------------
-
-# TOTWC (Tower of the Wing Cap)
-LEVEL_NAME := totwc
-LEVEL_SEG_ADDR := 0x07000000
-LEVEL_TEXT_BIN := sky
-# ---------- COPY THE RULES AS-IS -----------
-$(LEVEL_NAME)_SEG7_FILES               := $(basename $(notdir $(wildcard levels/$(LEVEL_NAME)/*.png)))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.o: $(addprefix $(BUILD_DIR)/levels/$(LEVEL_NAME)/,$($(LEVEL_NAME)_SEG7_FILES))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: SEGMENT_ADDRESS := $(LEVEL_SEG_ADDR)
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: TEXTURE_BIN := $(LEVEL_TEXT_BIN)
-# -------------------------------------------
-
-# BOWSER_1 (Bowser in the Dark World [Boss Area])
-LEVEL_NAME := bowser_1
-LEVEL_SEG_ADDR := 0x07000000
-LEVEL_TEXT_BIN := generic
-# ---------- COPY THE RULES AS-IS -----------
-$(LEVEL_NAME)_SEG7_FILES               := $(basename $(notdir $(wildcard levels/$(LEVEL_NAME)/*.png)))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.o: $(addprefix $(BUILD_DIR)/levels/$(LEVEL_NAME)/,$($(LEVEL_NAME)_SEG7_FILES))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: SEGMENT_ADDRESS := $(LEVEL_SEG_ADDR)
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: TEXTURE_BIN := $(LEVEL_TEXT_BIN)
-# -------------------------------------------
-
-# WMOTR (Wing Mario over the Rainbow)
-LEVEL_NAME := wmotr
-LEVEL_SEG_ADDR := 0x07000000
-LEVEL_TEXT_BIN := generic
-# ---------- COPY THE RULES AS-IS -----------
-$(LEVEL_NAME)_SEG7_FILES               := $(basename $(notdir $(wildcard levels/$(LEVEL_NAME)/*.png)))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.o: $(addprefix $(BUILD_DIR)/levels/$(LEVEL_NAME)/,$($(LEVEL_NAME)_SEG7_FILES))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: SEGMENT_ADDRESS := $(LEVEL_SEG_ADDR)
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: TEXTURE_BIN := $(LEVEL_TEXT_BIN)
-# -------------------------------------------
-
-# BOWSER_2 (Bowser in the Fire Sea [Boss Area])
-LEVEL_NAME := bowser_2
-LEVEL_SEG_ADDR := 0x07000000
-LEVEL_TEXT_BIN := fire
-# ---------- COPY THE RULES AS-IS -----------
-$(LEVEL_NAME)_SEG7_FILES               := $(basename $(notdir $(wildcard levels/$(LEVEL_NAME)/*.png)))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.o: $(addprefix $(BUILD_DIR)/levels/$(LEVEL_NAME)/,$($(LEVEL_NAME)_SEG7_FILES))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: SEGMENT_ADDRESS := $(LEVEL_SEG_ADDR)
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: TEXTURE_BIN := $(LEVEL_TEXT_BIN)
-# -------------------------------------------
-
-# BOWSER_3 (Bowser in the Sky [Boss Area])
-LEVEL_NAME := bowser_3
-LEVEL_SEG_ADDR := 0x07000000
-LEVEL_TEXT_BIN := generic
-# ---------- COPY THE RULES AS-IS -----------
-$(LEVEL_NAME)_SEG7_FILES               := $(basename $(notdir $(wildcard levels/$(LEVEL_NAME)/*.png)))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.o: $(addprefix $(BUILD_DIR)/levels/$(LEVEL_NAME)/,$($(LEVEL_NAME)_SEG7_FILES))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: SEGMENT_ADDRESS := $(LEVEL_SEG_ADDR)
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: TEXTURE_BIN := $(LEVEL_TEXT_BIN)
-# -------------------------------------------
-
-# TTM (Tall Tall Mountain)
-LEVEL_NAME := ttm
-LEVEL_SEG_ADDR := 0x07000000
-LEVEL_TEXT_BIN := mountain
-# ---------- COPY THE RULES AS-IS -----------
-$(LEVEL_NAME)_SEG7_FILES               := $(basename $(notdir $(wildcard levels/$(LEVEL_NAME)/*.png)))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.o: $(addprefix $(BUILD_DIR)/levels/$(LEVEL_NAME)/,$($(LEVEL_NAME)_SEG7_FILES))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: SEGMENT_ADDRESS := $(LEVEL_SEG_ADDR)
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: TEXTURE_BIN := $(LEVEL_TEXT_BIN)
-# -------------------------------------------
-
-# Intro (Super Mario 64 Logo)
-LEVEL_NAME := intro
-LEVEL_SEG_ADDR := 0x07000000
-LEVEL_TEXT_BIN := generic
-# ---------- COPY THE RULES AS-IS -----------
-$(LEVEL_NAME)_SEG7_FILES               := $(basename $(notdir $(wildcard levels/$(LEVEL_NAME)/*.png)))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.o: $(addprefix $(BUILD_DIR)/levels/$(LEVEL_NAME)/,$($(LEVEL_NAME)_SEG7_FILES))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: SEGMENT_ADDRESS := $(LEVEL_SEG_ADDR)
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: TEXTURE_BIN := $(LEVEL_TEXT_BIN)
-# -------------------------------------------
-
-# Menu (File Select)
-LEVEL_NAME := menu
-LEVEL_SEG_ADDR := 0x07000000
-LEVEL_TEXT_BIN := generic
-# ---------- COPY THE RULES AS-IS -----------
-$(LEVEL_NAME)_SEG7_FILES               := $(basename $(notdir $(wildcard levels/$(LEVEL_NAME)/*.png)))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.o: $(addprefix $(BUILD_DIR)/levels/$(LEVEL_NAME)/,$($(LEVEL_NAME)_SEG7_FILES))
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: SEGMENT_ADDRESS := $(LEVEL_SEG_ADDR)
-$(BUILD_DIR)/bin/$(LEVEL_NAME)/leveldata.elf: TEXTURE_BIN := $(LEVEL_TEXT_BIN)
-# -------------------------------------------
+$(eval $(call level_rules,bbh,0x07000000,spooky)) # BBH (Big Boo's Haunt)
+$(eval $(call level_rules,ccm,0x07000000,snow)) # CCM (Cool Cool Mountain)
+$(eval $(call level_rules,castle_inside,0x07000000,inside)) # Castle Inside (Inside Princess Peach's Castle)
+$(eval $(call level_rules,hmc,0x07000000,cave))# HMC (Hazy Maze Cave)
+$(eval $(call level_rules,ssl,0x07000000,generic)) # SSL (Shifting Sand Land)
+$(eval $(call level_rules,bob,0x07000000,generic)) # BOB (Bob-Omb Battlefield)
+$(eval $(call level_rules,sl,0x07000000,snow)) # SL (Snowman's Land)
+$(eval $(call level_rules,wdw,0x07000000,grass)) # WDW (Wet Dry World)
+$(eval $(call level_rules,jrb,0x07000000,water)) # JRB (Jolly Roger Bay)
+$(eval $(call level_rules,thi,0x07000000,grass)) # THI (Tiny Huge Island)
+$(eval $(call level_rules,ttc,0x07000000,machine)) # TTC (Tick Tock Clock)
+$(eval $(call level_rules,rr,0x07000000,sky)) # RR (Rainbow Ride)
+$(eval $(call level_rules,castle_grounds,0x07000000,outside)) # Castle Grounds (Outside Princess Peach's Castle)
+$(eval $(call level_rules,bitdw,0x07000000,sky)) # BitDW (Bowser in the Dark World)
+$(eval $(call level_rules,vcutm,0x07000000,outside)) # VCUTM (Vanish Cap under the Moat)
+$(eval $(call level_rules,bitfs,0x07000000,sky)) # BITFS (Bowser in the Fire Sea)
+$(eval $(call level_rules,sa,0x07000000,inside)) # SA (The Secret Aquarium)
+$(eval $(call level_rules,bits,0x07000000,sky)) # BITS (Bowser in the Sky)
+$(eval $(call level_rules,lll,0x07000000,fire)) # LLL (Lethal Lava Land)
+$(eval $(call level_rules,ddd,0x07000000,water)) # DDD (Dire Dire Docks)
+$(eval $(call level_rules,wf,0x07000000,grass)) # WF (Whomp's Fortress)
+$(eval $(call level_rules,ending,0x07000000,generic)) # Ending
+$(eval $(call level_rules,castle_courtyard,0x07000000,outside)) # Castle Courtyard (The Courtyard of Princess Peach's Castle)
+$(eval $(call level_rules,pss,0x07000000,mountain)) # PSS (The Princess's Secret Slide)
+$(eval $(call level_rules,cotmc,0x07000000,cave)) # COTMC (Cavern of the Metal Cap)
+$(eval $(call level_rules,totwc,0x07000000,sky)) # TOTWC (Tower of the Wing Cap)
+$(eval $(call level_rules,bowser_1,0x07000000,generic)) # BOWSER_1 (Bowser in the Dark World [Boss Area])
+$(eval $(call level_rules,wmotr,0x07000000,generic)) # WMOTR (Wing Mario over the Rainbow)
+$(eval $(call level_rules,bowser_2,0x07000000,fire)) # BOWSER_2 (Bowser in the Fire Sea [Boss Area])
+$(eval $(call level_rules,bowser_3,0x07000000,generic)) # BOWSER_3 (Bowser in the Sky [Boss Area])
+$(eval $(call level_rules,totwc,0x07000000,sky)) # TOTWC (Tower of the Wing Cap)
+$(eval $(call level_rules,ttm,0x07000000,mountain)) # TTM (Tall Tall Mountain)
+$(eval $(call level_rules,intro,0x07000000,generic)) # Intro (Super Mario 64 Logo)
+$(eval $(call level_rules,menu,0x07000000,generic)) # Menu (File Select)
 
 # --------------------------------------
 # Texture Bin Rules
