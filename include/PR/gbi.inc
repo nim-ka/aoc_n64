@@ -510,7 +510,7 @@
 .set G_LOADTLUT, 0xF0
 .macro gsDPLoadTLUTCmd tile, count
    .word G_LOADTLUT << 24
-   .word ((\tile & 0x7) << 24) | (\count & 0x3FFF) << 10
+   .word ((\tile & 0x7) << 24) | ((\count - 1) & 0x3FF) << 14
 .endm
 
 /* F1: unused */
