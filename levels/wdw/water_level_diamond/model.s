@@ -65,23 +65,19 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight wdw_seg7_light_07012F20, 1
 gsSPLight wdw_seg7_light_07012F18, 2
 gsSPVertex wdw_seg7_vertex_07012F78, 6, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
 gsSPLight wdw_seg7_light_07012F38, 1
 gsSPLight wdw_seg7_light_07012F30, 2
 gsSPVertex wdw_seg7_vertex_07012FD8, 6, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
 gsSPLight wdw_seg7_light_07012F50, 1
 gsSPLight wdw_seg7_light_07012F48, 2
 gsSPVertex wdw_seg7_vertex_07013038, 6, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
 gsSPLight wdw_seg7_light_07012F68, 1
 gsSPLight wdw_seg7_light_07012F60, 2
 gsSPVertex wdw_seg7_vertex_07013098, 6, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
 gsSPEndDisplayList
 
 glabel wdw_seg7_dl_070131B8 # 0x070131B8 - 0x07013238

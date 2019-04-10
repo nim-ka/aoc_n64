@@ -26,12 +26,9 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight vcutm_seg7_light_07007F98, 1
 gsSPLight vcutm_seg7_light_07007F90, 2
 gsSPVertex vcutm_seg7_vertex_07007FA8, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  7,  5, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle  8, 11,  9, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  7,  5, 0x0
+gsSP2Triangles  8,  9, 10, 0x0,  8, 11,  9, 0x0
 gsSPEndDisplayList
 
 glabel vcutm_seg7_dl_070080D0 # 0x070080D0 - 0x07008140

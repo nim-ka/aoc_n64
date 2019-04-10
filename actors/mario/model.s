@@ -4609,19 +4609,15 @@ vertex    192,    -28,     78,      0,      0,  0x56, 0xF4, 0x5C, 0xFF
 
 glabel mario_low_poly_mario_eyes_cap_off_dl # 0x04018DC8 - 0x04018DF0
 gsSPVertex mario_low_poly_mario_eyes_cap_off_dl_vertex, 5, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  1,  4, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  1,  4, 0x0
 gsSP1Triangle  3,  2,  1, 0x0
 gsSPEndDisplayList
 
 glabel mario_low_poly_mustache_cap_off_dl # 0x04018DF0 - 0x04018E30
 gsSPVertex mario_low_poly_mustache_cap_off_dl_vertex, 10, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  2,  4,  0, 0x0
-gsSP1Triangle  5,  6,  7, 0x0
-gsSP1Triangle  6,  8,  7, 0x0
-gsSP1Triangle  7,  9,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  2,  4,  0, 0x0,  5,  6,  7, 0x0
+gsSP2Triangles  6,  8,  7, 0x0,  7,  9,  5, 0x0
 gsSPEndDisplayList
 
 glabel mario_low_poly_face_part_cap_off_dl # 0x04018E30 - 0x04018EA0
@@ -5954,28 +5950,26 @@ gsSPDisplayList mario_wings_half_2_unused_dl
 gsSPDisplayList mario_cap_wings_unused_end_dl
 gsSPEndDisplayList
 
-mario_seg4_vertex_0401C940: # 0x0401C940
+mario_wings_half_1_dl_vertex: # 0x0401C940
 vertex   -105,    212,      0,      0,      0,  0x00, 0x00, 0x7F, 0xFF
 vertex   -105,      0,      0,      0,   2012,  0x00, 0x00, 0x7F, 0xFF
 vertex      0,      0,      0,    990,   2012,  0x00, 0x00, 0x7F, 0xFF
 vertex      0,    212,      0,    990,      0,  0x00, 0x00, 0x7F, 0xFF
 
-mario_seg4_vertex_0401C980: # 0x0401C980
+mario_wings_half_2_dl_vertex: # 0x0401C980
 vertex      0,      0,      0,      0,   2012,  0x00, 0x00, 0x7F, 0xFF
 vertex    106,    212,      0,    990,      0,  0x00, 0x00, 0x7F, 0xFF
 vertex      0,    212,      0,      0,      0,  0x00, 0x00, 0x7F, 0xFF
 vertex    106,      0,      0,    990,   2012,  0x00, 0x00, 0x7F, 0xFF
 
 glabel mario_wings_half_1_dl # 0x0401C9C0 - 0x0401C9E0
-gsSPVertex mario_seg4_vertex_0401C940, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSPVertex mario_wings_half_1_dl_vertex, 4, 0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel mario_wings_half_2_dl # 0x0401C9E0 - 0x0401CA00
-gsSPVertex mario_seg4_vertex_0401C980, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSPVertex mario_wings_half_2_dl_vertex, 4, 0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel mario_cap_wings # 0x0401CA00 - 0x0401CAB8

@@ -70,18 +70,12 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight ttm_seg7_light_07011DF0, 1
 gsSPLight ttm_seg7_light_07011DE8, 2
 gsSPVertex ttm_seg7_vertex_07011E00, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  5,  6, 0x0
-gsSP1Triangle  3,  7,  8, 0x0
-gsSP1Triangle  3,  8,  9, 0x0
-gsSP1Triangle  3,  9, 10, 0x0
-gsSP1Triangle  3, 10,  4, 0x0
-gsSP1Triangle  0, 11, 12, 0x0
-gsSP1Triangle  0, 13, 11, 0x0
-gsSP1Triangle  0, 14, 13, 0x0
-gsSP1Triangle  0,  2, 14, 0x0
-gsSP1Triangle  0, 12, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  5,  6, 0x0,  3,  7,  8, 0x0
+gsSP2Triangles  3,  8,  9, 0x0,  3,  9, 10, 0x0
+gsSP2Triangles  3, 10,  4, 0x0,  0, 11, 12, 0x0
+gsSP2Triangles  0, 13, 11, 0x0,  0, 14, 13, 0x0
+gsSP2Triangles  0,  2, 14, 0x0,  0, 12, 15, 0x0
 gsSPEndDisplayList
 
 ttm_seg7_dl_070121B8: # 0x070121B8 - 0x07012270
@@ -89,24 +83,17 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mountain_09005000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex ttm_seg7_vertex_07011F00, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  6,  4, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  7, 10,  8, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  6,  4, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles  7, 10,  8, 0x0, 11, 12, 13, 0x0
 gsSP1Triangle 14, 11, 13, 0x0
 gsSPVertex ttm_seg7_vertex_07011FF0, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9,  6,  8, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 11, 13, 12, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9,  6,  8, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 11, 13, 12, 0x0
 gsSP1Triangle  0, 14,  1, 0x0
 gsSPVertex ttm_seg7_vertex_070120E0, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel ttm_seg7_dl_07012270 # 0x07012270 - 0x070122F0

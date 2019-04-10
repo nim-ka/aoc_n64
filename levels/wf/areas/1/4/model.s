@@ -17,10 +17,8 @@ vertex   -824,   2688,  -1017,      0,      0,  0xFF, 0xFF, 0x00, 0x80
 
 wf_seg7_dl_07005658: # 0x07005658 - 0x07005690
 gsSPVertex wf_seg7_vertex_07005568, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
 gsSP1Triangle 12, 13, 14, 0x0
 gsSPEndDisplayList
 

@@ -25,19 +25,13 @@ vertex  -4335,    320,  -6760,      0,      0,  0xFF, 0xAA, 0x00, 0xFF
 
 ttm_seg7_dl_07024C00: # 0x07024C00 - 0x07024C78
 gsSPVertex ttm_seg7_vertex_07024AB0, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  4, 0x0
-gsSP1Triangle  0,  5,  3, 0x0
-gsSP1Triangle  2,  6,  0, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle  9, 11, 12, 0x0
-gsSP1Triangle  9, 13,  7, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  4, 0x0
+gsSP2Triangles  0,  5,  3, 0x0,  2,  6,  0, 0x0
+gsSP2Triangles  7,  8,  9, 0x0,  9, 10, 11, 0x0
+gsSP2Triangles  9, 11, 12, 0x0,  9, 13,  7, 0x0
 gsSPVertex ttm_seg7_vertex_07024B90, 7, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  4, 0x0
-gsSP1Triangle  0,  5,  1, 0x0
-gsSP1Triangle  4,  6,  0, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  4, 0x0
+gsSP2Triangles  0,  5,  1, 0x0,  4,  6,  0, 0x0
 gsSPEndDisplayList
 
 glabel ttm_seg7_dl_07024C78 # 0x07024C78 - 0x07024CA8

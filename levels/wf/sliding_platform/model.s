@@ -24,8 +24,7 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight wf_seg7_light_0700EA30, 1
 gsSPLight wf_seg7_light_0700EA28, 2
 gsSPVertex wf_seg7_vertex_0700EA40, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 wf_seg7_dl_0700EB08: # 0x0700EB08 - 0x0700EB40
@@ -33,8 +32,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, grass_09001000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex wf_seg7_vertex_0700EA80, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel wf_seg7_dl_0700EB40 # 0x0700EB40 - 0x0700EBB8

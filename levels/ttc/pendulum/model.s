@@ -94,14 +94,10 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x200
 gsSPLight ttc_seg7_light_0700F098, 1
 gsSPLight ttc_seg7_light_0700F090, 2
 gsSPVertex ttc_seg7_vertex_0700F0A8, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  5,  6, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  7, 10,  8, 0x0
-gsSP1Triangle  9, 11, 12, 0x0
-gsSP1Triangle  9,  8, 11, 0x0
-gsSP1Triangle  0, 13,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  5,  6, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles  7, 10,  8, 0x0,  9, 11, 12, 0x0
+gsSP2Triangles  9,  8, 11, 0x0,  0, 13,  1, 0x0
 gsSPEndDisplayList
 
 ttc_seg7_dl_0700F5A0: # 0x0700F5A0 - 0x0700F670
@@ -109,26 +105,17 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, machine_09001800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex ttc_seg7_vertex_0700F188, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  5,  6, 0x0
-gsSP1Triangle  3,  7,  8, 0x0
-gsSP1Triangle  3,  6,  9, 0x0
-gsSP1Triangle  3, 10, 11, 0x0
-gsSP1Triangle  3, 11, 12, 0x0
-gsSP1Triangle  3,  8, 10, 0x0
-gsSP1Triangle  3,  9, 13, 0x0
-gsSP1Triangle  3, 13, 14, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  5,  6, 0x0,  3,  7,  8, 0x0
+gsSP2Triangles  3,  6,  9, 0x0,  3, 10, 11, 0x0
+gsSP2Triangles  3, 11, 12, 0x0,  3,  8, 10, 0x0
+gsSP2Triangles  3,  9, 13, 0x0,  3, 13, 14, 0x0
 gsSP1Triangle  3, 14,  7, 0x0
 gsSPVertex ttc_seg7_vertex_0700F278, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  4, 0x0
-gsSP1Triangle  0,  5,  6, 0x0
-gsSP1Triangle  0,  7,  1, 0x0
-gsSP1Triangle  0,  8,  7, 0x0
-gsSP1Triangle  0,  6,  8, 0x0
-gsSP1Triangle  0,  9, 10, 0x0
-gsSP1Triangle  0, 10, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  4, 0x0
+gsSP2Triangles  0,  5,  6, 0x0,  0,  7,  1, 0x0
+gsSP2Triangles  0,  8,  7, 0x0,  0,  6,  8, 0x0
+gsSP2Triangles  0,  9, 10, 0x0,  0, 10, 11, 0x0
 gsSP1Triangle  0, 11,  3, 0x0
 gsSPEndDisplayList
 
@@ -137,31 +124,19 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, machine_09005000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex ttc_seg7_vertex_0700F338, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  5,  6, 0x0
-gsSP1Triangle  7,  4,  3, 0x0
-gsSP1Triangle  7,  8,  4, 0x0
-gsSP1Triangle  9,  6,  5, 0x0
-gsSP1Triangle  9, 10,  6, 0x0
-gsSP1Triangle  8,  7, 11, 0x0
-gsSP1Triangle  8, 11, 12, 0x0
-gsSP1Triangle  1, 12, 11, 0x0
-gsSP1Triangle  1,  0, 12, 0x0
-gsSP1Triangle 13, 14, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  5,  6, 0x0,  7,  4,  3, 0x0
+gsSP2Triangles  7,  8,  4, 0x0,  9,  6,  5, 0x0
+gsSP2Triangles  9, 10,  6, 0x0,  8,  7, 11, 0x0
+gsSP2Triangles  8, 11, 12, 0x0,  1, 12, 11, 0x0
+gsSP2Triangles  1,  0, 12, 0x0, 13, 14, 15, 0x0
 gsSPVertex ttc_seg7_vertex_0700F438, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  1,  3, 0x0
-gsSP1Triangle  2,  3,  4, 0x0
-gsSP1Triangle  4,  3,  5, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  6,  5,  7, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  8,  7,  9, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle 10,  9, 11, 0x0
-gsSP1Triangle 12, 11, 13, 0x0
-gsSP1Triangle 12, 13, 14, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  1,  3, 0x0
+gsSP2Triangles  2,  3,  4, 0x0,  4,  3,  5, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  6,  5,  7, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  8,  7,  9, 0x0
+gsSP2Triangles  8,  9, 10, 0x0, 10,  9, 11, 0x0
+gsSP2Triangles 12, 11, 13, 0x0, 12, 13, 14, 0x0
 gsSPEndDisplayList
 
 glabel ttc_seg7_dl_0700F760 # 0x0700F760 - 0x0700F830

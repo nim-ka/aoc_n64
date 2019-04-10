@@ -113,28 +113,23 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight ttm_seg7_light_07010AE0, 1
 gsSPLight ttm_seg7_light_07010AD8, 2
 gsSPVertex ttm_seg7_vertex_07010B20, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
 gsSP1Triangle 12, 13, 14, 0x0
 gsSPVertex ttm_seg7_vertex_07010C10, 3, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSPLight ttm_seg7_light_07010AF8, 1
 gsSPLight ttm_seg7_light_07010AF0, 2
 gsSPVertex ttm_seg7_vertex_07010C40, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
 gsSP1Triangle 12, 13, 14, 0x0
 gsSPVertex ttm_seg7_vertex_07010D30, 3, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSPLight ttm_seg7_light_07010B10, 1
 gsSPLight ttm_seg7_light_07010B08, 2
 gsSPVertex ttm_seg7_vertex_07010D60, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 ttm_seg7_dl_07011078: # 0x07011078 - 0x07011128
@@ -144,20 +139,15 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight ttm_seg7_light_07010AE0, 1
 gsSPLight ttm_seg7_light_07010AD8, 2
 gsSPVertex ttm_seg7_vertex_07010DA0, 6, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
 gsSPLight ttm_seg7_light_07010B10, 1
 gsSPLight ttm_seg7_light_07010B08, 2
 gsSPVertex ttm_seg7_vertex_07010E00, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle 12,  6,  8, 0x0
-gsSP1Triangle 13, 14, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
+gsSP2Triangles 12,  6,  8, 0x0, 13, 14, 15, 0x0
 gsSPVertex ttm_seg7_vertex_07010F00, 9, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
 gsSP1Triangle  6,  7,  8, 0x0
 gsSPEndDisplayList
 

@@ -41,17 +41,13 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight ttm_seg7_light_0700BE98, 1
 gsSPLight ttm_seg7_light_0700BE90, 2
 gsSPVertex ttm_seg7_vertex_0700BEC0, 8, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  6,  7,  4, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  6,  7,  4, 0x0
 gsSPLight ttm_seg7_light_0700BEB0, 1
 gsSPLight ttm_seg7_light_0700BEA8, 2
 gsSPVertex ttm_seg7_vertex_0700BF40, 10, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  3,  2, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  3,  2, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  7,  8,  9, 0x0
 gsSPEndDisplayList
 
 glabel ttm_seg7_dl_0700C070 # 0x0700C070 - 0x0700C0E0

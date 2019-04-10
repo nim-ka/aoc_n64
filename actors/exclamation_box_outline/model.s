@@ -60,18 +60,13 @@ vertex    -25,     52,    -25,      0,      0,  0x00, 0x7F, 0x00, 0x50
 
 glabel exclamation_box_outline_seg8_dl_08024EB8 # 0x08024EB8 - 0x08024F30
 gsSPVertex exclamation_box_outline_seg8_vertex_08024D18, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  5,  6, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  7,  9, 10, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  5,  6, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles  7,  9, 10, 0x0, 11, 12, 13, 0x0
 gsSP1Triangle 11, 13, 14, 0x0
 gsSPVertex exclamation_box_outline_seg8_vertex_08024E08, 11, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  7,  8,  9, 0x0
 gsSP1Triangle  7,  9, 10, 0x0
 gsSPEndDisplayList
 
@@ -148,19 +143,13 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, exclamation_box_outline_seg8
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex exclamation_box_outline_seg8_vertex_08025008, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  1,  5, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  7,  9, 10, 0x0
-gsSP1Triangle 11,  8, 12, 0x0
-gsSP1Triangle 11, 13,  8, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  1,  5, 0x0,  4,  5,  6, 0x0
+gsSP2Triangles  7,  8,  9, 0x0,  7,  9, 10, 0x0
+gsSP2Triangles 11,  8, 12, 0x0, 11, 13,  8, 0x0
 gsSPVertex exclamation_box_outline_seg8_vertex_080250E8, 8, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
 gsSPEndDisplayList
 
 glabel exclamation_box_outline_seg8_dl_080259F8 # 0x080259F8 - 0x08025A68
@@ -202,8 +191,7 @@ gsDPLoadBlock 7, 0, 0, 0x1FF, 0x200
 gsSPLight exclamation_box_outline_seg8_light_08025A70, 1
 gsSPLight exclamation_box_outline_seg8_light_08025A68, 2
 gsSPVertex exclamation_box_outline_seg8_vertex_08025E80, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel exclamation_box_outline_seg8_dl_08025F08 # 0x08025F08 - 0x08025F78

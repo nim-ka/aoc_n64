@@ -79,29 +79,21 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight ttm_seg7_light_0700D258, 1
 gsSPLight ttm_seg7_light_0700D250, 2
 gsSPVertex ttm_seg7_vertex_0700D298, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
-gsSP1Triangle  9, 12, 10, 0x0
-gsSP1Triangle 13, 14, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
+gsSP2Triangles  9, 12, 10, 0x0, 13, 14, 15, 0x0
 gsSPVertex ttm_seg7_vertex_0700D398, 10, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  3,  5,  9, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  3,  5,  9, 0x0
 gsSPLight ttm_seg7_light_0700D270, 1
 gsSPLight ttm_seg7_light_0700D268, 2
 gsSPVertex ttm_seg7_vertex_0700D438, 6, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  3,  2, 0x0
-gsSP1Triangle  1,  4,  3, 0x0
-gsSP1Triangle  0,  2,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  3,  2, 0x0
+gsSP2Triangles  1,  4,  3, 0x0,  0,  2,  5, 0x0
 gsSPLight ttm_seg7_light_0700D288, 1
 gsSPLight ttm_seg7_light_0700D280, 2
 gsSPVertex ttm_seg7_vertex_0700D498, 7, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
 gsSP1Triangle  0,  2,  6, 0x0
 gsSPEndDisplayList
 
@@ -112,8 +104,7 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight ttm_seg7_light_0700D258, 1
 gsSPLight ttm_seg7_light_0700D250, 2
 gsSPVertex ttm_seg7_vertex_0700D508, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel ttm_seg7_dl_0700D688 # 0x0700D688 - 0x0700D700
