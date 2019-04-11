@@ -2,7 +2,6 @@ CC := gcc
 CFLAGS := -I . -Wall -Wextra -pedantic -std=c99 -O3 -s
 PROGRAMS := n64graphics mio0 n64cksum textconv patch_libultra_math iplfontutil
 
-
 n64graphics_SOURCES := n64graphics.c utils.c
 n64graphics_CFLAGS  := -DN64GRAPHICS_STANDALONE
 
@@ -16,7 +15,8 @@ patch_libultra_math_SOURCES := patch_libultra_math.c
 
 iplfontutil_SOURCES := iplfontutil.c
 
-all: $(PROGRAMS)
+all: $(PROGRAMS) 
+	$(MAKE) -C n64graphics_ci/
 
 clean:
 	$(RM) $(PROGRAMS)
