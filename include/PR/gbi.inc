@@ -741,6 +741,35 @@
     gsDPSetTileSize G_TX_RENDERTILE, 0, 0, ((\width - 1) << G_TEXTURE_IMAGE_FRAC), ((\height - 1) << G_TEXTURE_IMAGE_FRAC)
 .endm
 
+/* 
+ * gsDPLoadTLUT_pal16, loads 16 colors into the TLUT
+ * Parameters:
+    pal = palette number to use.
+    timg_pal = label to palette data
+ */
+.macro gsDPLoadTLUT_pal16 pal, timg_pal
+    gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, \timg_pal
+    gsDPTileSync
+    gsDPSetTile 0, 0, 0, (256+(((\pal)&0xf)*16)), G_TX_LOADTILE, 0, 0, 0, 0, 0, 0, 0
+    gsDPLoadSync
+    gsDPLoadTLUTCmd G_TX_LOADTILE, 16
+    gsDPPipeSync
+.endm
+
+/* 
+ * gsDPLoadTLUT_pal256, loads 256 colors into the TLUT
+ * Parameters:
+    timg_pal = label to palette data
+ */
+.macro gsDPLoadTLUT_pal256 timg_pal
+    gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, \timg_pal
+    gsDPTileSync
+    gsDPSetTile 0, 0, 0, 256, G_TX_LOADTILE, 0, 0, 0, 0, 0, 0, 0
+    gsDPLoadSync
+    gsDPLoadTLUTCmd G_TX_LOADTILE, 256
+    gsDPPipeSync
+.endm
+
 /* Index in DMEM table */
 .set G_MW_NUMLIGHT, 0x02
 .set G_MW_FOG, 0x08
