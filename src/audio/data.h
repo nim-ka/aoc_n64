@@ -22,13 +22,12 @@ struct Struct80332190
 extern struct Struct80332190 D_80332190[18];
 extern u16 D_80332388[128]; // unused
 
-extern f32 D_80332488[127];
-extern f32 D_80332684[128];
+extern f32 D_80332488[255];
 extern f32 D_80332884[128];
 
 extern u8 D_80332A84[16];
 extern u8 D_80332A94[16];
-extern u8 D_80332AA4[16];
+extern s8 D_80332AA4[16];
 extern struct SubstructInstrumentSomething D_80332AB4[3];
 
 extern s16 *gWaveSamples[4];

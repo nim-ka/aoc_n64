@@ -64,7 +64,7 @@ struct Struct80222A18
     /*0x00E*/ u16 unkE;
     /*0x010*/ u16 unk10;
     /*0x012*/ u16 unk12;
-    /*0x014*/ void *unk14;
+    /*0x014*/ u8 *unk14; // buffer of some sort
     /*0x018*/ f32 unk18; // set to 1.0f
     /*0x01C*/ f32 unk1C; // set to 0.0f
     /*0x020*/ f32 unk20; // set to 0.0f
@@ -103,6 +103,13 @@ struct InstrumentSomething
     struct SubstructInstrumentSomething *unk4;
 };
 
+struct Interface1Buffer {
+    u8 *unk0;
+    u8 *unk4[4];
+    u8 unk14[4];
+    u8 unk18;
+};
+
 struct Struct80225DD8
 {
     /*0x00*/ u8 unk0b80 : 1;
@@ -126,7 +133,7 @@ struct Struct80225DD8
     /*0x10*/ s16 unk10;
     /*0x12*/ s16 unk12;
     /*0x14*/ s16 unk14;
-    /*0x16*/ s16 unk16;
+    /*0x16*/ u16 unk16;
     /*0x18*/ s16 unk18; // this - 0x80 defines which wave to use (0,1,2,3) (sawtooth, triangle, sine, square), set by SetInstrument. Sometimes 0 or return value of func_8031BEB0
     /*0x1A*/ s16 unk1A;
     /*0x1C*/ f32 unk1C;
@@ -134,16 +141,14 @@ struct Struct80225DD8
     /*0x24*/ f32 unk24;
     /*0x28*/ f32 unk28;
     /*0x2C*/ f32 unk2C;
-    /*    */ u8 pad4[4];
+    /*0x30*/ u8 (*unk30)[2][2];
     /*0x34*/ struct Struct_func_80318870 *unk34;
     /*0x38*/ struct SubStruct_func_80318870 *unk38;
     /*0x3C*/ struct InstrumentSomething *unk3C;
     /*0x40*/ struct Struct80222A18 *unk40;
     /*0x44*/ struct SubStruct_func_80318870 *unk44[4];
-    /*0x54*/ u8 unk54[8]; // func_8031A810 claims s8 (sets values to -1), func_8031ED70 u8
-    /*0x5C*/ void *unk5C; // unknown type, same as Struct80222A18.unk14
-    /*    */ u8 pad8[0x74 - 0x60];
-    /*0x74*/ u8 unk74;
+    /*0x54*/ s8 unk54[8];
+    /*0x5C*/ struct Interface1Buffer unk5C;
     /*0x78*/ struct Substruct80225DD8 unk78;
     /*0x80*/ struct PlaybackListItem unk80[4]; // heads
 }; // size = 0xC0
@@ -175,7 +180,8 @@ struct SubStruct_func_80318870
     void *unk48;
     struct SubStruct_func_80318870_3 *unk4C; // unknown type
     struct Struct80225DD8 *unk50;
-    u8 pad6[0x18];
+    void *unk54;
+    u8 pad6[0x14];
     u8 unk6C;
     struct PlaybackListItem unk70;
 }; // size = 0x80

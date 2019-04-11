@@ -1411,7 +1411,7 @@ static u8 func_8031ED70(UNUSED u8 listIndex, UNUSED u8 item, u8 arg2)
     }
 #endif
 
-    ret = (u8) (D_80222A18[2].unk2C[arg2]->unk54[5] + D_80331FB0[level][area] +
+    ret = (u8) ((u8) D_80222A18[2].unk2C[arg2]->unk54[5] + D_80331FB0[level][area] +
             (US_FLOAT(1.0) - D_80222A18[2].unk2C[arg2]->unk20) * IF_US(48.0, 40.0f));
 
     if (ret > 0x7f)

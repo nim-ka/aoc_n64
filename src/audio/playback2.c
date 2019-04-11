@@ -1,6 +1,7 @@
 #include <ultra64.h>
 
 #include "sm64.h"
+#include "data.h"
 #include "playback.h"
 
 union s8arr_u16 {
@@ -69,9 +70,6 @@ struct struct8031A418_2 { // Struct80222A18
     struct struct8031A078 unk74;
     struct struct8031A17C unk84;
 };
-
-extern f32 D_80332684[];
-extern s8 D_80332AA4;
 
 #ifdef VERSION_JP
 #define US_FLOAT(x) x
@@ -157,7 +155,7 @@ f32 func_8031A078(struct struct8031A078 *a0) {
     if (v0 >= 127)
         v0 = 127;
 
-    result = US_FLOAT(1.0) + (D_80332684[v0] - US_FLOAT(1.0)) * a0->unk0C;
+    result = US_FLOAT(1.0) + (D_80332488[v0 + 127] - US_FLOAT(1.0)) * a0->unk0C;
     return result;
 }
 
@@ -239,7 +237,7 @@ f32 func_8031A204(struct struct8031A17C *a0) {
     v0 = func_8031A17C(a0);
     f2 = (f32)a0->unk10 /  US_FLOAT(4096.0);
 
-    result = f2 * (D_80332684[v0] - US_FLOAT(1.0)) + US_FLOAT(1.0);
+    result = f2 * (D_80332488[v0 + 127] - US_FLOAT(1.0)) + US_FLOAT(1.0);
     return result;
 }
 
@@ -270,7 +268,7 @@ void func_8031A478(struct struct8031A418_2 *a0) {
 
     v0->unk0C.as_s8[0] = 1;
     v0->unk04 = 0;
-    v0->unk08.as_s8ptr = &D_80332AA4;
+    v0->unk08.as_s8ptr = D_80332AA4;
     v0->unk00 = a0->unk2C[0]->unk50;
 
     v1 = v0->unk00;
@@ -296,7 +294,7 @@ void func_8031A478(struct struct8031A418_2 *a0) {
     a0->unk74 = a0->unk2C[0]->unk04;
 }
 
-void func_8031A564(struct SubStruct_func_8031A584 *a0, struct SubStructInstrumentSomething *a1, s16 *a2) {
+void func_8031A564(struct SubStruct_func_8031A584 *a0, struct SubstructInstrumentSomething *a1, s16 *a2) {
     a0->unk00 = 0;
     a0->unk01 = 0;
     a0->unk02 = 0;

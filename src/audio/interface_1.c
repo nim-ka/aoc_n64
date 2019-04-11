@@ -7,12 +7,28 @@
 #include "playback.h"
 #include "playback2.h"
 
+#ifdef VERSION_JP
+#define US_FLOAT(x) x
+#else
+#define US_FLOAT(x) x ## f
+#endif
+
+// Convert u8 or u16 to float. On JP, this uses a u32->f32 conversion,
+// resulting in more bloated codegen, while on US it goes through s32.
+// Since u8 and u16 fit losslessly in both, behavior is the same.
+#ifdef VERSION_JP
+#define FLOAT_CAST(x) (f32) (x)
+#else
+#define FLOAT_CAST(x) (f32) (s32) (x)
+#endif
+
+void func_8031B0A4(struct SubStruct_func_80318870 *arg0);
+void func_8031C104(struct Struct80225DD8 *arg0);
 void func_8031CAD4(struct Struct80222A18 *arg0);
 
 void func_8031A810(struct Struct80225DD8 *arg0)
 {
     s32 i;
-    s8 minus_one = -1;
 
     arg0->unk0b80 = 0;
     arg0->unk0b40 = 0;
@@ -22,7 +38,7 @@ void func_8031A810(struct Struct80225DD8 *arg0)
     arg0->unk0b4 = 0;
     arg0->unk1A = 0;
     arg0->unk0b2 = 0;
-    arg0->unk74 = 0;
+    arg0->unk5C.unk18 = 0;
     arg0->unk20 = 1.0f;
     arg0->unk1C = 1.0f;
     arg0->unk2C = 1.0f;
@@ -46,7 +62,7 @@ void func_8031A810(struct Struct80225DD8 *arg0)
 
     for (i = 0; i < 8; i++)
     {
-        arg0->unk54[i] = minus_one;
+        arg0->unk54[i] = -1;
     }
 
     arg0->unk0b1 = 0;
@@ -222,8 +238,8 @@ void func_8031AD80(struct Struct80222A18 *arg0, u8 arg1, void *arg2)
     {
         temp->unk0b80 = 1;
         temp->unk0b40 = 0;
-        temp->unk74 = 0;
-        temp->unk5C = arg2;
+        temp->unk5C.unk18 = 0;
+        temp->unk5C.unk0 = arg2;
         temp->unk16 = 0;
         for (i = 0; i < 4; i++)
         {
@@ -308,26 +324,26 @@ void func_8031AF74(void)
     }
 }
 
-u8 func_8031B01C(u8 **arg0)
+u8 func_8031B01C(struct Interface1Buffer *arg0)
 {
-    u8 *old = (*arg0)++;
+    u8 *old = arg0->unk0++;
     return *old;
 }
 
-s16 func_8031B030(u8 **arg0)
+s16 func_8031B030(struct Interface1Buffer *arg0)
 {
-    s16 ret = *((*arg0)++) << 8;
-    ret = *((*arg0)++) | ret;
+    s16 ret = *(arg0->unk0++) << 8;
+    ret = *(arg0->unk0++) | ret;
     return ret;
 }
 
-u16 func_8031B060(u8 **arg0)
+u16 func_8031B060(struct Interface1Buffer *arg0)
 {
-    u16 ret = *((*arg0)++);
+    u16 ret = *(arg0->unk0++);
     if (ret & 0x80)
     {
         ret = (ret << 8) & 0x7f00;
-        ret = *((*arg0)++) | ret;
+        ret = *(arg0->unk0++) | ret;
     }
     return ret;
 }
@@ -2451,14 +2467,359 @@ void SetInstrument(struct Struct80225DD8 *arg0, u8 arg1)
 
 void func_8031C0C4(struct Struct80225DD8 *arg0, u8 arg1)
 {
-#ifdef VERSION_JP
-    arg0->unk20 = (f32) arg1 / 127.0;
-#else
-    arg0->unk20 = (f32) (s32) arg1 / 127.0f;
-#endif
+    arg0->unk20 = FLOAT_CAST(arg1) / US_FLOAT(127.0);
 }
 
-#ifdef VERSION_JP
+#if NON_MATCHING
+
+void func_8031C104(struct Struct80225DD8 *arg0)
+{
+    u16 sp5A;
+    s8 value; // sp53
+    u8 sp38;
+    u8 instr; // v1, s1
+    u8 loBits; // t0, a0
+    struct Interface1Buffer *buf;
+    struct Struct80222A18 *unk40;
+    u8 temp;
+    s8 tempSigned;
+    s32 temp32;
+    s32 i;
+    u8 temp2;
+
+    if (!arg0->unk0b80)
+    {
+        return;
+    }
+
+    if (arg0->unk0b20)
+    {
+        for (i = 0; i < 4; i++)
+        {
+            if (arg0->unk44[i] != 0)
+            {
+                func_8031B0A4(arg0->unk44[i]);
+            }
+        }
+        return;
+    }
+
+    unk40 = arg0->unk40;
+    if (unk40->unk0b20 && (arg0->unk2 & 0x80) != 0)
+    {
+        return;
+    }
+
+    if (arg0->unk16 != 0)
+    {
+        arg0->unk16--;
+    }
+
+    buf = &arg0->unk5C;
+    if (arg0->unk16 == 0)
+    {
+        for (;;)
+        {
+            instr = func_8031B01C(buf);
+            if (instr == 0xff)
+            {
+                // This fixes a reordering in 'case 0x90', somehow
+                sp5A = buf->unk18;
+                if (sp5A == 0)
+                {
+                    func_8031AAD0(arg0);
+                    break;
+                }
+                buf->unk18--,
+                buf->unk0 = buf->unk4[buf->unk18];
+            }
+            if (instr == 0xfe)
+            {
+                break;
+            }
+            if (instr == 0xfd)
+            {
+                arg0->unk16 = func_8031B060(buf);
+                break;
+            }
+            if (instr == 0xf3)
+            {
+                arg0->unk0b20 = 1;
+                break;
+            }
+
+            // (new_var = instr fixes order of s1/s2, but causes a reordering
+            // towards the bottom of the function)
+            if (instr > 0xc0)
+            {
+                switch (instr)
+                {
+                case 0xfc:
+                    sp5A = func_8031B030(buf);
+                    buf->unk18++,
+                    buf->unk4[buf->unk18 - 1] = buf->unk0;
+                    buf->unk0 = unk40->unk14 + sp5A;
+                    break;
+                case 0xf8:
+                    buf->unk14[buf->unk18] = func_8031B01C(buf);
+                    buf->unk18++,
+                    buf->unk4[buf->unk18 - 1] = buf->unk0;
+                    break;
+                case 0xf7:
+                    buf->unk14[buf->unk18 - 1]--;
+                    if (buf->unk14[buf->unk18 - 1] != 0)
+                    {
+                        buf->unk0 = buf->unk4[buf->unk18 - 1];
+                    }
+                    else
+                    {
+                        buf->unk18--;
+                    }
+                    break;
+                case 0xf6:
+                    buf->unk18--;
+                    break;
+                case 0xf5:
+                case 0xf9:
+                case 0xfa:
+                case 0xfb:
+                    sp5A = func_8031B030(buf);
+                    if (instr == 0xfa && value != 0) break;
+                    if (instr == 0xf9 && value >= 0) break;
+                    if (instr == 0xf5 && value < 0) break;
+                    buf->unk0 = unk40->unk14 + sp5A;
+                    break;
+                case 0xf2:
+                    // arg0->unk80 should live in a saved register
+                    func_803192FC(arg0->unk80);
+                    temp = func_8031B01C(buf);
+                    func_80319428(arg0->unk80, temp);
+                    break;
+                case 0xf1:
+                    func_803192FC(arg0->unk80);
+                    break;
+                case 0xc2:
+                    sp5A = func_8031B030(buf);
+                    arg0->unk30 = (void *)(unk40->unk14 + sp5A);
+                    break;
+                case 0xc5:
+                    if (value != -1)
+                    {
+                        sp5A = (*arg0->unk30)[value][1] + ((*arg0->unk30)[value][0] << 8);
+                        arg0->unk30 = (void *)(unk40->unk14 + sp5A);
+                    }
+                    break;
+                case 0xc1:
+                    SetInstrument(arg0, func_8031B01C(buf));
+                    break;
+                case 0xc3:
+                    arg0->unk0b2 = 0;
+                    break;
+                case 0xc4:
+                    arg0->unk0b2 = 1;
+                    break;
+                case 0xdf:
+                    func_8031C0C4(arg0, func_8031B01C(buf));
+                    break;
+                case 0xe0:
+                    arg0->unk1C = FLOAT_CAST(func_8031B01C(buf)) / US_FLOAT(128.0);
+                    break;
+                case 0xde:
+                    sp5A = func_8031B030(buf);
+                    arg0->unk2C = FLOAT_CAST(sp5A) / US_FLOAT(32768.0);
+                    break;
+                case 0xd3:
+                    temp = func_8031B01C(buf) + 0x7f;
+                    arg0->unk2C = D_80332488[temp];
+                    break;
+                case 0xdd:
+                    arg0->unk24 = FLOAT_CAST(func_8031B01C(buf)) / US_FLOAT(128.0);
+                    break;
+                case 0xdc:
+                    arg0->unk28 = FLOAT_CAST(func_8031B01C(buf)) / US_FLOAT(128.0);
+                    break;
+                case 0xdb:
+                    tempSigned = *buf->unk0;
+                    buf->unk0++;
+                    arg0->unk1A = tempSigned;
+                    break;
+                case 0xda:
+                    sp5A = func_8031B030(buf);
+                    arg0->unk78.unk4 = (struct SubstructInstrumentSomething *)
+                        (unk40->unk14 + sp5A);
+                    break;
+                case 0xd9:
+                    arg0->unk78.unk0 = func_8031B01C(buf);
+                    break;
+                case 0xd8:
+                    arg0->unkE = func_8031B01C(buf) * 8;
+                    arg0->unkA = 0;
+                    arg0->unk12 = 0;
+                    break;
+                case 0xd7:
+                    arg0->unk8 = arg0->unkC = func_8031B01C(buf) * 32;
+                    arg0->unk10 = 0;
+                    break;
+                case 0xe2:
+                    arg0->unkA = func_8031B01C(buf) * 8;
+                    arg0->unkE = func_8031B01C(buf) * 8;
+                    arg0->unk12 = func_8031B01C(buf) * 16;
+                    break;
+                case 0xe1:
+                    arg0->unk8 = func_8031B01C(buf) * 32;
+                    arg0->unkC = func_8031B01C(buf) * 32;
+                    arg0->unk10 = func_8031B01C(buf) * 16;
+                    break;
+                case 0xe3:
+                    arg0->unk14 = func_8031B01C(buf) * 16;
+                    break;
+                case 0xd6:
+                    temp = func_8031B01C(buf);
+                    if (temp == 0)
+                    {
+                        temp = D_80226D7E;
+                    }
+                    arg0->unk6 = temp;
+                    break;
+                case 0xd4:
+                    arg0->unk3 = func_8031B01C(buf);
+                    break;
+                case 0xc6:
+                    temp = func_8031B01C(buf);
+                    temp32 = ((u16 *)D_80226D58)[unk40->unk5];
+                    temp = D_80226D58[temp32 + D_80226D58[temp32] - temp];
+                    // temp should be in a saved register across this call
+                    if (func_8031680C(&D_802214F8, 2, temp) != 0)
+                    {
+                        arg0->unk5 = temp;
+                    }
+                    break;
+                case 0xc7:
+                    // sp38 doesn't go on the stack
+                    sp38 = value;
+                    temp2 = func_8031B01C(buf);
+                    sp5A = func_8031B030(buf);
+                    unk40->unk14[sp5A] = sp38 + temp2;
+                    break;
+                case 0xc8:
+                case 0xc9:
+                case 0xcc:
+                    temp = func_8031B01C(buf);
+                    if (instr == 0xc8)
+                    {
+                        value -= temp;
+                    }
+                    else if (instr == 0xcc)
+                    {
+                        value = temp;
+                    }
+                    else
+                    {
+                        value &= temp;
+                    }
+                    break;
+                case 0xca:
+                    arg0->unk2 = func_8031B01C(buf);
+                    break;
+                case 0xcb:
+                    sp5A = func_8031B030(buf);
+                    value = unk40->unk14[sp5A + value];
+                    break;
+                case 0xd0:
+                    arg0->unk0b4 = func_8031B01C(buf);
+                    break;
+                case 0xd1:
+                    arg0->unk1 = func_8031B01C(buf);
+                    break;
+                case 0xd2:
+                    arg0->unk78.unk2 = func_8031B01C(buf) << 8;
+                    break;
+                case 0xe4:
+                    if (value != -1)
+                    {
+                        u8 (*thingy)[2] = *arg0->unk30;
+                        buf->unk18++,
+                        buf->unk4[buf->unk18 - 1] = buf->unk0;
+                        sp5A = thingy[value][1] + (thingy[value][0] << 8);
+                        buf->unk0 = unk40->unk14 + sp5A;
+                    }
+                    break;
+                }
+            }
+            else
+            {
+                // loBits is recomputed a lot
+                loBits = instr & 0xf;
+                // #define loBits (instr & 0xf)
+                switch (instr & 0xf0)
+                {
+                case 0x00:
+                    if (arg0->unk44[loBits] != 0)
+                    {
+                        value = arg0->unk44[loBits]->unk0b40;
+                    }
+                    break;
+                case 0x70:
+                    arg0->unk54[loBits] = value;
+                    break;
+                case 0x80:
+                    value = arg0->unk54[loBits];
+                    if (loBits < 4)
+                    {
+                        arg0->unk54[loBits] = -1;
+                    }
+                    break;
+                case 0x50:
+                    value -= arg0->unk54[loBits];
+                    break;
+                case 0x90:
+                    sp5A = func_8031B030(buf);
+                    if (func_8031A920(arg0, loBits) == 0)
+                    {
+                        arg0->unk44[loBits]->unk54 = unk40->unk14 + sp5A;
+                    }
+                    break;
+                case 0xa0:
+                    func_8031AA4C(arg0, loBits);
+                    break;
+                case 0xb0:
+                    if (value != -1 && func_8031A920(arg0, loBits) != -1)
+                    {
+                        temp = (*arg0->unk30)[value][0] + ((*arg0->unk30)[value][1] << 8);
+                        arg0->unk44[loBits]->unk54 = unk40->unk14 + temp;
+                    }
+                    break;
+                case 0x60:
+                    arg0->unk4 = loBits;
+                    break;
+                case 0x10:
+                    sp5A = func_8031B030(buf);
+                    func_8031AD80(unk40, loBits, unk40->unk14 + sp5A);
+                    break;
+                case 0x20:
+                    func_8031AAD0(unk40->unk2C[loBits]);
+                    break;
+                case 0x30:
+                    unk40->unk2C[loBits]->unk54[func_8031B01C(buf)] = value;
+                    break;
+                case 0x40:
+                    value = unk40->unk2C[loBits]->unk54[func_8031B01C(buf)];
+                    break;
+                }
+            }
+        }
+    }
+
+    for (i = 0; i < 4; i++)
+    {
+        if (arg0->unk44[i] != 0)
+        {
+            func_8031B0A4(arg0->unk44[i]);
+        }
+    }
+}
+
+#elif defined(VERSION_JP)
 GLOBAL_ASM(
 .late_rodata
 .late_rodata_alignment 8
