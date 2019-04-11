@@ -185,7 +185,7 @@ void envfx_update_lava(Vec3s centerPos) {
     }
 
     if ((chance = (s32)(RandomFloat() * 16.0f)) == 8)
-        SetSound(0x300D0081, D_803320E0);
+        SetSound(SOUND_GENERAL_QUIETBUBBLE2, D_803320E0);
 }
 
 /** Rotate the input x, y and z around the rotation origin of the whirlpool

@@ -12,7 +12,7 @@ void BehBowserBombLoop(void)
     if (o->oInteractStatus & 0x200000) /* bit 21 */
     {
         spawn_object(o, 103, beh_bowser_bomb_explosion);
-        create_sound_spawner(0x312F0081);
+        create_sound_spawner(SOUND_GENERAL_EXPLOSION5);
         func_8027F440(3, o->oPosX, o->oPosY, o->oPosZ);
         o->activeFlags = 0;
     }

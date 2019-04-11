@@ -305,7 +305,7 @@ void shelled_koopa_attack_handler(s32 attackType)
 {
     if (o->header.gfx.scale[0] > 0.8f)
     {
-        PlaySound2(0x503EA081);
+        PlaySound2(SOUND_OBJECT_KOOPADAMAGE);
 
         o->oKoopaMovementType = KOOPA_BP_UNSHELLED;
         o->oAction = KOOPA_UNSHELLED_ACT_LYING;

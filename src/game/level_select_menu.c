@@ -198,11 +198,11 @@ int func_8016F3CC(void)
     {
         if(gGlobalTimer < 0x81)
         {
-            SetSound(0x2432FF81, D_803320E0);
+            SetSound(SOUND_MARIO_HELLO, D_803320E0);
         }
         else
         {
-            SetSound(0x2433FFA1, D_803320E0);
+            SetSound(SOUND_MARIO_PRESSSTARTTOPLAY, D_803320E0);
         }
         D_U_801A7C34 = 0;
     }
@@ -230,7 +230,7 @@ int func_8016F444(void)
 #ifdef VERSION_US
     if(D_U_801A7C38 == 1)
     {
-        SetSound(0x2431FF81, D_803320E0);
+        SetSound(SOUND_MARIO_GAMEOVER, D_803320E0);
         D_U_801A7C38 = 0;
     }
 #endif

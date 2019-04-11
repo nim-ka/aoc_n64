@@ -19,9 +19,9 @@ void func_802BE3B4(s32 a0)
     if(o->oSoundStateID == 0)
     {
         if(a0 == 0)
-            sp1C = 0x50020081; // TODO: Sound macro
+            sp1C = SOUND_OBJECT_PENGUINWALKING1;
         else
-            sp1C = 0x50098081;
+            sp1C = SOUND_OBJECT_PENGUINWALKING2;
         func_802BE2E8(1,11,sp1C);
     }
 }
@@ -153,7 +153,7 @@ void ActionTuxiesMother0(void)
         }
     }
     if(obj_check_anim_frame(1))
-        PlaySound2(0x502D0081);
+        PlaySound2(SOUND_OBJECT_BIGPENGUIN);
 }
 
 void (*TableTuxiesMotherActions[])(void) = {ActionTuxiesMother0,ActionTuxiesMother1,ActionTuxiesMother2};
@@ -210,7 +210,7 @@ void ActionSmallPenguin3(void)
     if(o->oTimer > 5)
     {
         if(o->oTimer == 6)
-            PlaySound2(0x501F4081);
+            PlaySound2(SOUND_OBJECT_BABYPENGUINTRICK);
         func_8029ED38(1);
         if(o->oTimer > 25)
             if(!mario_is_dive_sliding())
@@ -305,9 +305,9 @@ void BehSmallPenguinLoop(void)
         copy_object_pos(o,gMarioObject);
         if(gGlobalTimer % 30 == 0)
 #ifndef VERSION_JP
-            SetSound(0x90450081,&gMarioObject->header.gfx.unk54);
+            SetSound(SOUND_CH9_UNK45,&gMarioObject->header.gfx.unk54);
 #else
-            SetSound(0x90450081,&o->header.gfx.unk54);
+            SetSound(SOUND_CH9_UNK45,&o->header.gfx.unk54);
 #endif
         break;
     case 2:

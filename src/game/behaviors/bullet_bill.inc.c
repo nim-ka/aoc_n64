@@ -51,7 +51,7 @@ void ActionBulletBill2(void)
             obj_rotate_yaw_toward(o->oAngleToMario,0x100);
         if(o->oTimer == 50)
         {
-            PlaySound2(0x501A5081);
+            PlaySound2(SOUND_OBJECT_POUNDINGCANNON);
             ShakeScreen(1);
         }
         if(o->oTimer > 150 || o->oMoveFlags & 0x200)

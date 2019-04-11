@@ -94,7 +94,7 @@ void func_802EFDA0(void) {
 
         o->parentObj->oAction = 2;
         o->parentObj->oVelY = 100.0f;
-        PlaySound2(0x5064C081);
+        PlaySound2(SOUND_OBJECT_WATERBOMBBOUNCING2);
     }
 
     if (o->oTimer == 200) {
@@ -139,13 +139,13 @@ void BehSnowmansBottomLoop(void) {
         case 1:
             func_802EFC44();
             func_802EFB84(o->oSnowmansBottomUnkF4);
-            PlaySound(0x400A0001);
+            PlaySound(SOUND_ENVIRONMENT_UNKNOWN2);
             break;
 
         case 2:
             func_802EFDA0();
             func_802EFB84(o->oSnowmansBottomUnkF4);
-            PlaySound(0x400A0001);
+            PlaySound(SOUND_ENVIRONMENT_UNKNOWN2);
             break;
 
         case 3:
@@ -211,7 +211,7 @@ void BehSnowmansHeadLoop(void) {
             if (o->oPosY < -994.0f) {
                 o->oPosY = -994.0f;
                 o->oAction = 4;
-                PlaySound2(0x5065D081);
+                PlaySound2(SOUND_OBJECT_EXPLODE);
                 func_80321228();
             }
             break;

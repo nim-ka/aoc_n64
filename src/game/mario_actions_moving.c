@@ -150,11 +150,11 @@ void func_80263AD4(struct MarioState *m, s16 arg1, s16 arg2)
         }
         else if (m->marioObj->header.gfx.unk38.animID == 0x0092)
         {
-            func_802510E4(m, SOUND_ACTION_UNKNOWN620, 0);
+            func_802510E4(m, SOUND_TERRAIN_5, 0);
         }
         else
         {
-            func_802510E4(m, SOUND_ACTION_UNKNOWN610, 0);
+            func_802510E4(m, SOUND_TERRAIN_3, 0);
         }
     }
 }
@@ -1622,7 +1622,7 @@ static s32 act_dive_slide(struct MarioState *m)
             m, m->forwardVel > 0.0f ? ACT_FORWARD_ROLLOUT : ACT_BACKWARD_ROLLOUT, 0);
     }
 
-    func_802512E4(m, SOUND_ACTION_UNKNOWN418);
+    func_802512E4(m, SOUND_TERRAIN_4);
 
     //! If the dive slide ends on the same frame that we pick up on object,
     // mario will not be in the dive slide action for the call to
@@ -1652,7 +1652,7 @@ static s32 common_ground_knockback_action(
     s32 val04;
 
     if (arg3)
-        func_802513AC(m, SOUND_ACTION_UNKNOWN418);
+        func_802513AC(m, SOUND_TERRAIN_4);
 
     if (arg4 > 0)
         func_80250F50(m, SOUND_MARIO_ATTACKED, MARIO_UNKNOWN_17);
@@ -1710,7 +1710,7 @@ static s32 act_hard_backward_ground_kb(struct MarioState *m)
 #endif
 
     if (val04 == 0x45)
-        func_802512E4(m, SOUND_ACTION_UNKNOWN408);
+        func_802512E4(m, SOUND_TERRAIN_2);
 
     return FALSE;
 }
@@ -1752,7 +1752,7 @@ static s32 act_ground_bonk(struct MarioState *m)
 {
     s32 val04 = common_ground_knockback_action(m, 0x008A, 0x20, TRUE, m->actionArg);
     if (val04 == 0x20)
-        func_80251280(m, SOUND_ACTION_UNKNOWN408);
+        func_80251280(m, SOUND_TERRAIN_2);
     return FALSE;
 }
 
@@ -1761,14 +1761,14 @@ static s32 act_death_exit_land(struct MarioState *m)
     s32 val04;
 
     apply_landing_accel(m, 0.9f);
-    func_802513AC(m, SOUND_ACTION_UNKNOWN418);
+    func_802513AC(m, SOUND_TERRAIN_4);
 
     val04 = func_802507E8(m, 0x0001);
 
     if (val04 == 0x36)
         SetSound(SOUND_MARIO_MAMAMIA, &m->marioObj->header.gfx.unk54);
     if (val04 == 0x44)
-        func_80251280(m, SOUND_ACTION_UNKNOWN408);
+        func_80251280(m, SOUND_TERRAIN_2);
 
     if (func_80250770(m))
         set_mario_action(m, ACT_IDLE, 0);
@@ -1803,7 +1803,7 @@ static u32 common_landing_action(struct MarioState *m, s16 animation, u32 airAct
         m->particleFlags |= PARTICLE_DUST;
 
     func_802507E8(m, animation);
-    func_802512E4(m, SOUND_ACTION_UNKNOWN408);
+    func_802512E4(m, SOUND_TERRAIN_2);
 
     if (m->floor->type >= SURFACE_SHALLOW_QUICKSAND && m->floor->type <= SURFACE_MOVING_QUICKSAND)
         m->quicksandDepth += (4 - m->actionTimer) * 3.5f - 0.5f;

@@ -68,7 +68,7 @@ static void fire_piranha_plant_act_hide(void)
         {
             if (--o->oFirePiranhaPlantDeathSpinTimer == 0)
             {
-                PlaySound2(0x50744081);
+                PlaySound2(SOUND_OBJECT_ENEMYDEFEATSHRINK);
             }
         }
     }
@@ -98,7 +98,7 @@ static void fire_piranha_plant_act_hide(void)
             o->oTimer > 100 &&
             o->oDistanceToMario > 100.0f && o->oDistanceToMario < 800.0f)
         {
-            PlaySound2(0x50542081);
+            PlaySound2(SOUND_OBJECT_PIRANHAPLANTAPPEAR);
 
             o->oFirePiranhaPlantActive = TRUE;
             sNumActiveFirePiranhaPlants += 1;
@@ -127,7 +127,7 @@ static void fire_piranha_plant_act_grow(void)
     {
         if (o->oTimer > 80)
         {
-            PlaySound2(0x50334081);
+            PlaySound2(SOUND_OBJECT_PIRANHAPLANTSHRINK);
             o->oAction = FIRE_PIRANHA_PLANT_ACT_HIDE;
             func_8029ED38(0);
         }
@@ -141,7 +141,7 @@ static void fire_piranha_plant_act_grow(void)
             {
                 if (obj_check_anim_frame(56))
                 {
-                    PlaySound2(0x50558081);
+                    PlaySound2(SOUND_OBJECT_FLAMEBLOWN);
                     obj_spit_fire(
                         0,
                         (s32)(30.0f * o->oFirePiranhaPlantNeutralScale),

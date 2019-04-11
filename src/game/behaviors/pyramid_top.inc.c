@@ -66,14 +66,14 @@ void BehPyramidTopLoop(void) {
 
         case 1:
             if (o->oTimer == 0) 
-                PlaySound2(0x814BE081);
+                PlaySound2(SOUND_CH8_UNK4B);
             
             func_802EF238();
             break;
 
         case 2:
             if (o->oTimer == 0) 
-                create_sound_spawner(0x814CF081);
+                create_sound_spawner(SOUND_CH8_UNK4C);
 
             func_802EF450();
             break;

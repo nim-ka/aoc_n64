@@ -69,7 +69,7 @@ void BehStarSpawnLoop(void) {
             o->oPosY = o->oStarSpawnUnkFC + sins((o->oTimer * 0x8000) / 30) * 400.0f;
             o->oFaceAngleYaw += 0x1000;
             spawn_object(o, 0, beh_powerup_sparkles2);
-            PlaySound(0x40140011);
+            PlaySound(SOUND_ENVIRONMENT_STAR);
             if (o->oTimer == 30) {
                 o->oAction = 2;
                 o->oForwardVel = 0;
@@ -86,10 +86,10 @@ void BehStarSpawnLoop(void) {
             spawn_object(o, 0, beh_powerup_sparkles2);
             func_802E4250(o);
             o->oFaceAngleYaw = o->oFaceAngleYaw - o->oTimer * 0x10 + 0x1000;
-            PlaySound(0x40140011);
+            PlaySound(SOUND_ENVIRONMENT_STAR);
 
             if (o->oPosY < o->oHomeY) {
-                PlaySound2(0x3057FF91);
+                PlaySound2(SOUND_GENERAL_STARAPPEARS);
                 obj_become_tangible();
                 o->oPosY = o->oHomeY;
                 o->oAction = 3;

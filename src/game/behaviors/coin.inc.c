@@ -86,9 +86,9 @@ void BehCoinLoop(void)
     }
     if(o->oTimer == 0)
 #ifndef VERSION_JP
-        PlaySound2(0x38300081);
+        PlaySound2(SOUND_GENERAL_COINSPURT_2);
 #else
-        PlaySound2(0x30300081);
+        PlaySound2(SOUND_GENERAL_COINSPURT);
 #endif
     if(o->oVelY < 0)
         obj_become_tangible();
@@ -104,12 +104,12 @@ void BehCoinLoop(void)
 #ifndef VERSION_JP
     if(o->oMoveFlags & 0x2000) {
 	if(o->oUnk1B0 < 5)
-            PlaySound2(0x30364081);
+            PlaySound2(SOUND_GENERAL_COINDROP);
         o->oUnk1B0++;
     }
 #else
     if(o->oMoveFlags & 0x2000)
-        PlaySound2(0x30364081);
+        PlaySound2(SOUND_GENERAL_COINDROP);
 #endif
     if(obj_wait_then_blink(400,20))
         mark_object_for_deletion(o);
@@ -231,7 +231,7 @@ void ActionCoinInsideBoo1(void)
     obj_update_floor_and_walls();
     obj_if_hit_wall_bounce_away();
     if(o->oMoveFlags & 0x2000)
-        PlaySound2(0x30364081);
+        PlaySound2(SOUND_GENERAL_COINDROP);
     if(o->oTimer > 90 || (o->oMoveFlags & 1))
     {
         set_object_hitbox(o,&sYellowCoinHitbox);

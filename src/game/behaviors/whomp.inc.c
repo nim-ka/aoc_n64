@@ -15,7 +15,7 @@ void func_802C61CC(void)
         sp28 |= obj_check_anim_frame_in_range(23,3);
     }
     if(sp28)
-        PlaySound2(0x50155081);
+        PlaySound2(SOUND_OBJECT_POUNDING1);
 }
 
 void ActionWhomp0(void)
@@ -153,7 +153,7 @@ void ActionWhomp5(void)
 {
     if(o->oSubAction == 0 && o->oMoveFlags & 1)
     {
-        PlaySound2(0x50166081);
+        PlaySound2(SOUND_OBJECT_BULLYTHWOMP_LOWPRIO);
         ShakeScreen(1);
         o->oVelY = 0.0f;
         o->oSubAction++;
@@ -170,8 +170,8 @@ void func_802C6954(void)
         if(obj_is_mario_ground_pounding_platform())
         {
             o->oHealth--;
-            PlaySound2(0x935AC081);
-            PlaySound2(0x5147C081);
+            PlaySound2(SOUND_CH9_UNK5A);
+            PlaySound2(SOUND_OBJECT_KINGWHOMPDEATH);
             if(o->oHealth == 0)
                 o->oAction = 8;
             else
@@ -273,7 +273,7 @@ void ActionWhomp8(void)
             ShakeScreen(1);
             o->oPosY += 100.0f;
             CreateStar(180.0f,3880.0f,340.0f);
-            PlaySound2(0x5147C081);
+            PlaySound2(SOUND_OBJECT_KINGWHOMPDEATH);
             o->oAction = 9;
         }
     }
@@ -282,7 +282,7 @@ void ActionWhomp8(void)
         func_802AA618(0,0,100.0f);
         func_802AD82C(20,138,3.0f,4);
         ShakeScreen(1);
-        create_sound_spawner(0x500Ca081);
+        create_sound_spawner(SOUND_OBJECT_THWOMP);
         mark_object_for_deletion(o);
     }
 }

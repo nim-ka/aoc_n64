@@ -20,7 +20,7 @@ void BehWFRotatingWoodenPlatformLoop(void)
     o->oAngleVelYaw = 0x100;
     if(o->oTimer > 126)
         o->oAction = 0;
-    PlaySound(0x40080001);
+    PlaySound(SOUND_ENVIRONMENT_ELEVATOR2);
     }
     obj_rotate_face_angle_using_vel();
 }

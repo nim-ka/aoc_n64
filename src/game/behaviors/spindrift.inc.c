@@ -16,7 +16,7 @@ struct ObjectHitbox sSpindriftHitbox =
 void BehSpindriftLoop(void)
 {
     o->activeFlags |= 0x400;
-    if(obj_set_hitbox_and_die_if_attacked(&sSpindriftHitbox,0x50244081,0))
+    if(obj_set_hitbox_and_die_if_attacked(&sSpindriftHitbox,SOUND_OBJECT_DYINGENEMY1,0))
         obj_change_action(1);
     obj_update_floor_and_walls();
     switch(o->oAction)

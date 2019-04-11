@@ -15,7 +15,7 @@ void BehWFElevatorTowerPlatformLoop(void)
             o->oAction++;
         break;
     case 1:
-        PlaySound(0x40020001);
+        PlaySound(SOUND_ENVIRONMENT_ELEVATOR1);
         if(o->oTimer > 140)
             o->oAction++;
         else
@@ -26,7 +26,7 @@ void BehWFElevatorTowerPlatformLoop(void)
             o->oAction++;
         break;
     case 3:
-        PlaySound(0x40020001);
+        PlaySound(SOUND_ENVIRONMENT_ELEVATOR1);
         if(o->oTimer > 140)
             o->oAction = 0;
         else

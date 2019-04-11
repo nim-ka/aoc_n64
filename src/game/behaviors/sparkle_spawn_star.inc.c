@@ -21,7 +21,7 @@ void BehUnused080CInit(void)
     sp24 =(o->oBehParams >> 24) & 0xFF;
     if(func_802A377C(sp24) & save_file_get_star_flags(gCurrSaveFileNum-1,gCurrCourseNum-1))
         obj_set_model(121);
-    PlaySound2(0x8057FF91);
+    PlaySound2(SOUND_CH8_UNK57);
 }
 
 void func_802AA788(void)
@@ -79,7 +79,7 @@ void BehUnused080CLoop(void)
             o->oGravity = -4.0f;
             func_802A3004();
         }
-        PlaySound(0x40140011);
+        PlaySound(SOUND_ENVIRONMENT_STAR);
         spawn_object(o,0,beh_powerup_sparkles2);
         if(o->oVelY < 0 && o->oPosY < o->oHomeY)
         {

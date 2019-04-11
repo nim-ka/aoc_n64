@@ -34,14 +34,15 @@
 u32 D_80339F10;
 s8 filler80339F1C[0x80339F30 - 0x80339F1C];
 
+// Sound terrain types. See audio_defines.h.
 s8 D_8032CB40[7][6] = {
-	{0x00, 0x03, 0x01, 0x01, 0x01, 0x00},
-	{0x03, 0x03, 0x03, 0x03, 0x01, 0x01},
-	{0x05, 0x06, 0x05, 0x06, 0x03, 0x03},
-	{0x07, 0x03, 0x07, 0x07, 0x03, 0x03},
-	{0x04, 0x04, 0x04, 0x04, 0x03, 0x03},
-	{0x00, 0x03, 0x01, 0x06, 0x03, 0x06},
-	{0x03, 0x03, 0x03, 0x03, 0x06, 0x06}
+	{0, 3, 1, 1, 1, 0},
+	{3, 3, 3, 3, 1, 1},
+	{5, 6, 5, 6, 3, 3},
+	{7, 3, 7, 7, 3, 3},
+	{4, 4, 4, 4, 3, 3},
+	{0, 3, 1, 6, 3, 6},
+	{3, 3, 3, 3, 6, 6}
 };
 
 u8 D_8032CB7B[16] = {
@@ -228,13 +229,11 @@ void func_80250FBC(struct MarioState *m)
     {
 #ifdef VERSION_US
         if (m->action == ACT_TRIPLE_JUMP)
-            SetSound(
-                (((D_80226EB8 % 5) << 0x10) + SOUND_MARIO_YAHOO2),
+            SetSound(SOUND_MARIO_YAHOO2 + ((D_80226EB8 % 5) << 0x10),
                 &m->marioObj->header.gfx.unk54);
         else
 #endif
-            SetSound(
-                (((D_80226EB8 % 3) << 0x10) + 0x24008081),
+            SetSound(SOUND_MARIO_YAH + ((D_80226EB8 % 3) << 0x10),
                 &m->marioObj->header.gfx.unk54);
         m->flags |= MARIO_UNKNOWN_17;
     }
@@ -261,7 +260,7 @@ void func_802510E4(struct MarioState *m, u32 arg1, u32 arg2)
         else if (m->unk14 == 0x50000)
             m->particleFlags |= PARTICLE_14;
     }
-    if ((m->flags & MARIO_METAL_CAP) || arg1 == 0x4438081 || arg1 == SOUND_MARIO_HOO6)
+    if ((m->flags & MARIO_METAL_CAP) || arg1 == SOUND_ACTION_UNKNOWN443 || arg1 == SOUND_MARIO_HOO6)
         SetSound(arg1, &m->marioObj->header.gfx.unk54);
     else
         SetSound((m->unk14 + arg1), &m->marioObj->header.gfx.unk54);
@@ -277,28 +276,28 @@ void func_80251218(struct MarioState *m, u32 arg1, u32 arg2) {
 
 void func_80251280(struct MarioState *m, u32 arg1)
 {
-    func_802510E4(m, (m->flags & MARIO_METAL_CAP) ? 0x4299081 : arg1, 1);
+    func_802510E4(m, (m->flags & MARIO_METAL_CAP) ? SOUND_ACTION_UNKNOWN429 : arg1, 1);
 }
 
 void func_802512E4(struct MarioState *m, u32 arg1)
 {
-    func_80251218(m, (m->flags & MARIO_METAL_CAP) ? 0x4299081 : arg1, 1);
+    func_80251218(m, (m->flags & MARIO_METAL_CAP) ? SOUND_ACTION_UNKNOWN429 : arg1, 1);
 }
 
 void func_80251348(struct MarioState *m, u32 arg1)
 {
-    func_802510E4(m, (m->flags & MARIO_METAL_CAP) ? 0x42b9081 : arg1, 1);
+    func_802510E4(m, (m->flags & MARIO_METAL_CAP) ? SOUND_ACTION_UNKNOWN42B : arg1, 1);
 }
 
 void func_802513AC(struct MarioState *m, u32 arg1)
 {
-    func_80251218(m, (m->flags & MARIO_METAL_CAP) ? 0x42b9081 : arg1, 1);
+    func_80251218(m, (m->flags & MARIO_METAL_CAP) ? SOUND_ACTION_UNKNOWN42B : arg1, 1);
 }
 
 void func_80251410(struct MarioState *m, s32 arg1, s32 arg2)
 {
-    if (arg1 == 0x4008081)
-        func_80251218(m, (m->flags & MARIO_METAL_CAP) ? 0x4289081 : 0x4008081, 1);
+    if (arg1 == SOUND_TERRAIN_1)
+        func_80251218(m, (m->flags & MARIO_METAL_CAP) ? SOUND_ACTION_UNKNOWN428 : SOUND_TERRAIN_1, 1);
     else
         func_80250F50(m, arg1, MARIO_UNKNOWN_16);
 
@@ -407,7 +406,6 @@ u32 func_8025167C(struct MarioState *m)
             }
             sp8 = D_8032CB40[terrainType][spE] << 0x10;
         }
-
     }
     return sp8;
 }
@@ -1197,7 +1195,7 @@ void func_80253E34(struct MarioState *m)
             m->health = 0xFF;
 
         if (((m->action & ACT_GROUP_MASK) == ACT_GROUP_SUBMERGED) && (m->health < 0x300))
-            SetSound(0x1c180001, D_803320E0);
+            SetSound(SOUND_UNKNOWN_UNK1C18, D_803320E0);
     }
 }
 

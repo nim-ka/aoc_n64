@@ -238,9 +238,9 @@ s32 act_start_sleeping(struct MarioState *m) {
             break;
     }
     
-    func_80260BC4(m, 1, 0x29, 0x043F8081);
-    func_80260BC4(m, 1, 0x31, 0x043F8081);
-    func_80260BC4(m, 3, 0x0F, (m->unk14 + 0x04188081));
+    func_80260BC4(m, 1, 0x29, SOUND_ACTION_PATBACK);
+    func_80260BC4(m, 1, 0x31, SOUND_ACTION_PATBACK);
+    func_80260BC4(m, 3, 0x0F, (m->unk14 + SOUND_TERRAIN_4));
     
     if(func_80250770(m))
         m->actionState++;
@@ -248,18 +248,18 @@ s32 act_start_sleeping(struct MarioState *m) {
 #ifdef VERSION_US
     if (m->actionState == 2) {
         if (sp24 == -1) {
-            SetSound(0x240D8081, &m->marioObj->header.gfx.unk54);
+            SetSound(SOUND_MARIO_YAWNING, &m->marioObj->header.gfx.unk54);
         }
     }
     
     if (m->actionState == 1) {
         if (sp24 == -1) {
-            SetSound(0x24378081, &m->marioObj->header.gfx.unk54);
+            SetSound(SOUND_MARIO_IMATIRED, &m->marioObj->header.gfx.unk54);
         }
     }
 #else
     if (m->actionState == 2)
-        func_80250F50(m, 0x240D8081, MARIO_UNKNOWN_17);
+        func_80250F50(m, SOUND_MARIO_YAWNING, MARIO_UNKNOWN_17);
 #endif
 
     stationary_ground_step(m);
@@ -291,11 +291,11 @@ s32 act_sleeping(struct MarioState *m) {
             }
             
             if (sp24 == 2) {
-                SetSound(0x240E8081, &m->marioObj->header.gfx.unk54);   
+                SetSound(SOUND_MARIO_SNORING1, &m->marioObj->header.gfx.unk54);   
             }
 
             if (sp24 == 20) {
-                SetSound(0x240F8081, &m->marioObj->header.gfx.unk54);
+                SetSound(SOUND_MARIO_SNORING2, &m->marioObj->header.gfx.unk54);
             }
 
             if (func_80250770(m)) {
@@ -308,7 +308,7 @@ s32 act_sleeping(struct MarioState *m) {
         }
         case 1: {
             if (func_802507E8(m, 0x86) == 18) {
-                func_80251348(m, 0x04188081);
+                func_80251348(m, SOUND_TERRAIN_4);
             }
 
             if (func_80250770(m)) {
@@ -319,14 +319,14 @@ s32 act_sleeping(struct MarioState *m) {
         case 2: {
             sp24 = func_802507E8(m, 0x87);
 #ifdef VERSION_US
-            func_80250F50(m, 0x2435ff81, MARIO_UNKNOWN_16);
+            func_80250F50(m, SOUND_MARIO_SNORING3, MARIO_UNKNOWN_16);
 #else
             if (sp24 == 2) {
-                SetSound(0x240F8081, &m->marioObj->header.gfx.unk54);
+                SetSound(SOUND_MARIO_SNORING2, &m->marioObj->header.gfx.unk54);
             }
 
             if (sp24 == 25) {
-                SetSound(0x240E8081, &m->marioObj->header.gfx.unk54);
+                SetSound(SOUND_MARIO_SNORING1, &m->marioObj->header.gfx.unk54);
             }
 #endif
             break;
@@ -337,10 +337,10 @@ s32 act_sleeping(struct MarioState *m) {
 
 s32 act_waking_up(struct MarioState *m) {
     if (!m->actionTimer) {
-        func_803205E8(0x240E8081, &m->marioObj->header.gfx.unk54);
-        func_803205E8(0x240F8081, &m->marioObj->header.gfx.unk54);
+        func_803205E8(SOUND_MARIO_SNORING1, &m->marioObj->header.gfx.unk54);
+        func_803205E8(SOUND_MARIO_SNORING2, &m->marioObj->header.gfx.unk54);
 #ifdef VERSION_US
-        func_803205E8(0x2435FF81, &m->marioObj->header.gfx.unk54);
+        func_803205E8(SOUND_MARIO_SNORING3, &m->marioObj->header.gfx.unk54);
 #endif
         func_80248CB8(2);
     }
@@ -395,10 +395,10 @@ s32 act_shivering(struct MarioState *m) {
             sp24 = func_802507E8(m, 0x19);
             if(sp24 == 0x31) {
                 m->particleFlags |= PARTICLE_17;
-                SetSound(0x24168081, &m->marioObj->header.gfx.unk54);
+                SetSound(SOUND_MARIO_HOO2, &m->marioObj->header.gfx.unk54);
             }
             if(sp24 == 7 || sp24 == 0x51) {
-                SetSound(0x062C0081, &m->marioObj->header.gfx.unk54);
+                SetSound(SOUND_ACTION_UNKNOWN62C, &m->marioObj->header.gfx.unk54);
             }
             if(func_802507AC(m)) {
                 m->actionState = 1;
@@ -408,7 +408,7 @@ s32 act_shivering(struct MarioState *m) {
         case 1: {
             sp24 = func_802507E8(m, 0x1B);
             if(sp24 == 9 || sp24 == 0x19 || sp24 == 0x2C) {
-                SetSound(0x062C0081, &m->marioObj->header.gfx.unk54);
+                SetSound(SOUND_ACTION_UNKNOWN62C, &m->marioObj->header.gfx.unk54);
             }
             break;
         }
@@ -433,15 +433,15 @@ s32 act_coughing(struct MarioState *m) {
     stationary_ground_step(m);
     sp1C = func_802507E8(m, 0x30);
     if (sp1C == 0x19 || sp1C == 0x23) {
-        SetSound(0x241D8081, &m->marioObj->header.gfx.unk54);
+        SetSound(SOUND_MARIO_COUGHING4, &m->marioObj->header.gfx.unk54);
     }
 
     if (sp1C == 0x32 || sp1C == 0x3A) {
-        SetSound(0x241C8081, &m->marioObj->header.gfx.unk54);
+        SetSound(SOUND_MARIO_COUGHING3, &m->marioObj->header.gfx.unk54);
     }
 
     if (sp1C == 0x47 || sp1C == 0x50) {
-        SetSound(0x241B8081, &m->marioObj->header.gfx.unk54);
+        SetSound(SOUND_MARIO_COUGHING2, &m->marioObj->header.gfx.unk54);
     }
 
     return 0;
@@ -590,8 +590,7 @@ s32 act_panting(struct MarioState *m) {
     }
     
     if (func_802507E8(m, 0xba) == 1) {
-        SetSound(
-            ((D_80226EB8 % 3U) << 0x10) + 0x24188081,
+        SetSound(SOUND_MARIO_HOO3 + ((D_80226EB8 % 3U) << 0x10),
             &m->marioObj->header.gfx.unk54);
     }
     
@@ -666,7 +665,7 @@ s32 act_butt_slide_stop(struct MarioState *m) {
     
     func_80261D70(m, 0x8f, ACT_IDLE);
     if (m->marioObj->header.gfx.unk38.animFrame == 6) {
-        func_80251280(m, 0x4088081);
+        func_80251280(m, SOUND_TERRAIN_2);
     }
     
     return 0;

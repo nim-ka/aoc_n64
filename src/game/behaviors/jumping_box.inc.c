@@ -75,7 +75,7 @@ void BehJumpingBoxLoop(void)
     }
     if(o->oInteractStatus & 0x400000)
     {
-        create_sound_spawner(0x3041C081);
+        create_sound_spawner(SOUND_GENERAL_BREAKBOX);
         func_802A3C98(46.0f,1);
     }
     o->oInteractStatus = 0;

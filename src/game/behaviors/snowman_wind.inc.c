@@ -39,6 +39,6 @@ void BehSnowmanWindBlowingLoop(void)
                 o->oMoveAngleYaw = o->oSnowmanWindBlowingUnkF4 - 0x1500;
         }
         func_802C76E0(12,3.0f,0,0,0.0f);
-        PlaySound(0x60044001);
+        PlaySound(SOUND_CH6_UNKNOWN004_2);
     }
 }

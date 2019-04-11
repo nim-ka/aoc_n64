@@ -13,7 +13,7 @@ void BehTumblingBookshelfLoop(void)
         break;
     case 1:
         o->oPosX += 5.0f;
-        PlaySound(0x410D0001);
+        PlaySound(SOUND_ENVIRONMENT_ELEVATOR4_2);
         if(o->oTimer > 101)
             mark_object_for_deletion(o);
         break;

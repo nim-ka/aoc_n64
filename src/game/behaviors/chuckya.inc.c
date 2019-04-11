@@ -138,7 +138,7 @@ void ActionChuckya0(void)
         o->OBJECT_FIELD_S32(0x1D)++;
     func_8029ED38(4);
     if(o->oForwardVel > 1.0f)
-        PlaySound(0x600A4001);
+        PlaySound(SOUND_CH6_UNKNOWN00A);
     print_debug_bottom_up("fg %d",sp3C);
     print_debug_bottom_up("sp %d",o->oForwardVel);
 }
@@ -182,7 +182,7 @@ void ActionChuckya1(void)
             func_8029ED38(3);
             if(obj_check_anim_frame(18))
             {
-                PlaySound2(0x501EA081);
+                PlaySound2(SOUND_OBJECT_UNKNOWN4);
                 o->oUnk88 = 2;
                 o->oAction = 3;
                 o->oInteractStatus &= ~0x800;
@@ -206,7 +206,7 @@ void ActionChuckya2(void)
     {
         mark_object_for_deletion(o);
         spawn_object_loot_yellow_coins(o,5,20.0f);
-        func_802A3034(0x516E0081);
+        func_802A3034(SOUND_OBJECT_CHUCKYADEATH);
     }
 }
 
@@ -221,7 +221,7 @@ void func_802A97B8(void)
     {
         o->oAction = 1;
         o->oUnk88 = 1;
-        PlaySound2(0x501D8081);
+        PlaySound2(SOUND_OBJECT_UNKNOWN3);
     }
 }
 

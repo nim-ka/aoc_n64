@@ -70,9 +70,9 @@ void CheckWaterRingCollection(f32 avgScale, struct Object* ringManager)
                 {
                     SpawnOrangeNumber(ringSpawner->oWaterRingSpawnerRingsCollected, 0, -40, 0);
 #ifdef VERSION_JP
-                    SetSound(0x701EFF81, D_803320E0);
+                    SetSound(SOUND_MENU_STARSOUND, D_803320E0);
 #else
-                    SetSound(0x70302081 + ((ringSpawner->oUnk1AF - 1) << 16), D_803320E0);
+                    SetSound(SOUND_MENU_COLLECTSECRET + (((u8)ringSpawner->oWaterRingSpawnerRingsCollected - 1) << 16), D_803320E0);
 #endif
                 }
                 

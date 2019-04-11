@@ -30,7 +30,7 @@ void BehWaterAirBubbleLoop(void)
     o->oPosZ += RandomFloat() * 4.0f - 2.0f;
     if(o->oInteractStatus & 0x8000 || o->oTimer > 200)
     {
-        PlaySound2(0x300B0081);
+        PlaySound2(SOUND_GENERAL_QUIETBUBBLE);
         mark_object_for_deletion(o);
         for(i=0;i<30;i++)
             spawn_object(o,168,beh_bubble_maybe);
@@ -44,7 +44,7 @@ void BehBubbleWaveInit(void)
 {
     o->OBJECT_FIELD_S32(0x1D) = 0x800 + (s32)(RandomFloat() * 2048.0f);
     o->OBJECT_FIELD_S32(0x1E) = 0x800 + (s32)(RandomFloat() * 2048.0f);
-    PlaySound2(0x300B0081);
+    PlaySound2(SOUND_GENERAL_QUIETBUBBLE);
 }
 
 void Unknown802A7E48(void)

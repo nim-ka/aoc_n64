@@ -7,6 +7,6 @@ void BehTowerDoorLoop(void)
     if(func_802A9A0C(0))
     {
         func_802A3C98(80.0f,0);
-        create_sound_spawner(0x300F0081);
+        create_sound_spawner(SOUND_GENERAL_EXPLOSION3);
     }
 }

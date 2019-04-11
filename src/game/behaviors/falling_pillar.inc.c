@@ -47,7 +47,7 @@ void BehFallingPillarLoop(void) {
                 o->oForwardVel = 1.0f;
                 func_802F6308();
                 o->oAction = 1;
-                PlaySound2(0x30560081);
+                PlaySound2(SOUND_GENERAL_POUNDROCK);
             }
             break;
 
@@ -70,7 +70,7 @@ void BehFallingPillarLoop(void) {
                 func_8027F440(2, o->oPosX, o->oPosY, o->oPosZ);
                 func_802AA618(0, 0, 92.0f);
                 o->activeFlags = 0;
-                create_sound_spawner(0x30440081);
+                create_sound_spawner(SOUND_GENERAL_BIGPOUND);
             }
             break;
     }

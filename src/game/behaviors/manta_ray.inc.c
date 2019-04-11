@@ -60,7 +60,7 @@ void func_802F5E20(void) {
 
     func_802A2A38();
     if (sp1E == 0)
-        PlaySound2(0x30090081);
+        PlaySound2(SOUND_GENERAL_MOVINGWATER);
 }
 
 void func_802F5FD8(void) {

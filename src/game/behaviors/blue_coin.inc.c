@@ -44,7 +44,7 @@ void BehBlueCoinSwitchLoop(void)
                 o->oAction++;
                 o->oVelY = -20.0f;
                 o->oGravity = 0.0f;
-                PlaySound2(0x3067A081);
+                PlaySound2(SOUND_GENERAL_SWITCHDOOROPEN);
             }
         load_object_collision_model();
         break;
@@ -64,9 +64,9 @@ void BehBlueCoinSwitchLoop(void)
         break;
     case 2:
         if(o->oTimer < 200)
-            SetSound(0x8054F011,D_803320E0);
+            SetSound(SOUND_CH8_UNK54,D_803320E0);
         else
-            SetSound(0x8055F011,D_803320E0);
+            SetSound(SOUND_CH8_UNK55,D_803320E0);
         if(obj_nearest_object_with_behavior(beh_hidden_blue_coin) == 0 || o->oTimer > 240)
             mark_object_for_deletion(o);
         break;

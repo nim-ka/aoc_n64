@@ -114,7 +114,7 @@ void BehBowlingBallRollLoop(void)
     }
     
     if ((collisionFlags & OBJ_COL_FLAG_GROUNDED) && (o->oVelY > 5.0f))
-        PlaySound2(0x30400081);
+        PlaySound2(SOUND_GENERAL_QUIETPOUND1_LOWPRIO);
 }
 
 void BehBowlingBallInitializeLoop(void)
@@ -262,7 +262,7 @@ void BehBOBPitBowlingBallLoop(void)
     
     func_802EDA14();
     func_8027F440(4, o->oPosX, o->oPosY, o->oPosZ);
-    PlaySound(0x400A0001);
+    PlaySound(SOUND_ENVIRONMENT_UNKNOWN2);
     SetObjectVisibility(o, 3000);
 }
 
@@ -286,12 +286,12 @@ void BehFreeBowlingBallRollLoop(void)
     if (o->oForwardVel > 10.0f)
     {
         func_8027F440(4, o->oPosX, o->oPosY, o->oPosZ);
-        PlaySound(0x400A0001);
+        PlaySound(SOUND_ENVIRONMENT_UNKNOWN2);
     }
     
     if ((collisionFlags & OBJ_COL_FLAG_GROUNDED)
     &&  !(collisionFlags & OBJ_COL_FLAGS_LANDED))
-        PlaySound2(0x30400081);
+        PlaySound2(SOUND_GENERAL_QUIETPOUND1_LOWPRIO);
         
     if (!IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, 6000))
     {

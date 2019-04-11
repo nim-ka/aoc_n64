@@ -35,7 +35,7 @@ void func_802C50F4(void)
             o->oRotatingMerryGoRoundUnkF8 = 0;
         }
         else
-            PlaySound(0x400F4001);
+            PlaySound(SOUND_ENVIRONMENT_BOATROCKING2);
     }
 }
 
@@ -48,7 +48,7 @@ void BehRotatingMerryGoRoundLoop(void)
     }
     else
     {
-        SetSound(0x60098001,D_803320E0);
+        SetSound(SOUND_CH6_UNKNOWN009,D_803320E0);
         if(gMarioCurrentRoom != 13 && gMarioCurrentRoom != 0)
             o->oRotatingMerryGoRoundUnkFC = 0;
     }

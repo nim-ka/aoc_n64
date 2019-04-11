@@ -2,7 +2,7 @@
 
 void BehExplosionInit(void)
 {
-    create_sound_spawner(0x802E2081);
+    create_sound_spawner(SOUND_CH8_UNK2E);
     func_8027F308(1);
     
     o->oOpacity = 255;

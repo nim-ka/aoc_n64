@@ -30,7 +30,7 @@ void BehSmallBompLoop(void)
             {
                 o->oAction = BOMP_ACT_EXTEND;
                 o->oForwardVel = 40.0f;
-                PlaySound2(0x50130081);
+                PlaySound2(SOUND_OBJECT_UNKNOWN2);
             }
             break;
             
@@ -46,7 +46,7 @@ void BehSmallBompLoop(void)
                 o->oAction = BOMP_ACT_RETRACT;
                 o->oForwardVel = 10.0f;
                 o->oMoveAngleYaw -= 0x8000;
-                PlaySound2(0x50130081);
+                PlaySound2(SOUND_OBJECT_UNKNOWN2);
             }
             break;
             
@@ -96,7 +96,7 @@ void BehLargeBompLoop(void)
             {
                 o->oAction = BOMP_ACT_EXTEND;
                 o->oForwardVel = 10.0f;
-                PlaySound2(0x50130081);
+                PlaySound2(SOUND_OBJECT_UNKNOWN2);
             }
             break;
             
@@ -112,7 +112,7 @@ void BehLargeBompLoop(void)
                 o->oAction = BOMP_ACT_RETRACT;
                 o->oForwardVel = 10.0f;
                 o->oMoveAngleYaw -= 0x8000;
-                PlaySound2(0x50130081);
+                PlaySound2(SOUND_OBJECT_UNKNOWN2);
             }
             break;
             

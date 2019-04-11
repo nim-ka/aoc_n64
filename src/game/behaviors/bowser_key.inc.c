@@ -33,9 +33,9 @@ void BehBowserKey2Loop(void)
             o->oAction++;
         else if(o->oMoveFlags & 1)
 #ifndef VERSION_JP
-            PlaySound2(0x38378081);
+            PlaySound2(SOUND_GENERAL_UNKNOWN3_2);
 #else
-            PlaySound2(0x30370081);	
+            PlaySound2(SOUND_GENERAL_UNKNOWN3_LOWPRIO);	
 #endif
     }
     else

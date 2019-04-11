@@ -57,7 +57,7 @@ static void skeeter_act_idle(void)
                 }
                 else if (func_8029F788())
                 {
-                    PlaySound2(0x504F0081);
+                    PlaySound2(SOUND_OBJECT_WALKINGWATER);
                     o->oAction = SKEETER_ACT_LUNGE;
                     o->oForwardVel = 80.0f;
                     o->oSkeeterUnk1AC = 0;
@@ -119,7 +119,7 @@ static void skeeter_act_walk(void)
         sp24 = 0.12f * o->oForwardVel;
 
         func_8029ED98(2, sp24);
-        func_802F9378(3, 13, 0x504E0081);
+        func_802F9378(3, 13, SOUND_OBJECT_SKEETERWALK);
 
         if (o->oSkeeterUnkF8 != 0)
         {
@@ -170,7 +170,7 @@ static void skeeter_act_walk(void)
 
 void bhv_skeeter_update(void)
 {
-    o->oDeathSound = 0x5072C081;
+    o->oDeathSound = SOUND_OBJECT_SNUFITDEATH;
     treat_far_home_as_mario(1000.0f);
 
     obj_update_floor_and_walls();

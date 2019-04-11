@@ -537,7 +537,7 @@ void handleMenuScrolling(s8 scrollDirection, s8 *currentIndex, s8 minIndex, s8 m
         }
         else
         {
-            SetSound(0x7000F881, D_803320E0);
+            SetSound(SOUND_MENU_CHANGESELECT, D_803320E0);
             currentIndex[0]++;
         }
     }
@@ -550,7 +550,7 @@ void handleMenuScrolling(s8 scrollDirection, s8 *currentIndex, s8 minIndex, s8 m
         }
         else
         {
-            SetSound(0x7000F881, D_803320E0);
+            SetSound(SOUND_MENU_CHANGESELECT, D_803320E0);
             currentIndex[0]--;
         }
     }
@@ -1288,7 +1288,7 @@ void func_802D91C0(s16 sp4a)
     {
         if(sp28[i] == sp4a && D_80330430 == 1)
         {
-            SetSound(0x701EFF81, D_803320E0);
+            SetSound(SOUND_MENU_STARSOUND, D_803320E0);
             return;
         }
     }
@@ -1332,7 +1332,7 @@ void func_802D91C0(s16 sp4a)
     {
         if(sp28[i] == sp4a && D_80330430 == 1)
         {
-            SetSound(0x701EFF81, D_803320E0);
+            SetSound(SOUND_MENU_STARSOUND, D_803320E0);
             return;
         }
     }
@@ -1409,7 +1409,7 @@ void func_802D93E0(void)
         if(gDiagBoxOpenTimer == DEFAULT_DIAGBOX_ANGLE)
         {
             func_80320A68(gDialogID);
-            SetSound(0x70040081, D_803320E0);
+            SetSound(SOUND_MENU_MESSAGEAPPEAR, D_803320E0);
         }
 
         if(gDiagBoxType == DIAG_TYPE_ROTATE)
@@ -1443,7 +1443,7 @@ void func_802D93E0(void)
             else
             {
                 gDiagBoxState = DIAG_STATE_SCROLLING;
-                SetSound(0x70130081, D_803320E0);
+                SetSound(SOUND_MENU_MESSAGENEXTPAGE, D_803320E0);
             }
         }
         break;
@@ -1461,7 +1461,7 @@ void func_802D93E0(void)
         if(gDiagBoxOpenTimer == 20.0f)
         {
             level_set_transition(0, 0);
-            SetSound(0x70050081, D_803320E0);
+            SetSound(SOUND_MENU_MESSAGEDISAPPEAR, D_803320E0);
             
             if(gDiagBoxType == DIAG_TYPE_ZOOM)
                 StopMario(2);
@@ -1519,7 +1519,7 @@ void func_802D93E0(void)
         if(gDiagBoxOpenTimer == DEFAULT_DIAGBOX_ANGLE)
         {
             func_80320A68(gDialogID);
-            SetSound(0x70040081, D_803320E0);
+            SetSound(SOUND_MENU_MESSAGEAPPEAR, D_803320E0);
         }
 
         if(gDiagBoxType == 0)
@@ -1554,7 +1554,7 @@ void func_802D93E0(void)
                else
                {
                    gDiagBoxState = DIAG_STATE_SCROLLING;
-                   SetSound(0x70130081, D_803320E0);
+                   SetSound(SOUND_MENU_MESSAGENEXTPAGE, D_803320E0);
                }
            }
            sp2F = 1;
@@ -1574,7 +1574,7 @@ void func_802D93E0(void)
         if(gDiagBoxOpenTimer == 20.0f)
         {
             level_set_transition(0, 0);
-            SetSound(0x70050081, D_803320E0);
+            SetSound(SOUND_MENU_MESSAGEDISAPPEAR, D_803320E0);
 
             if(gDiagBoxType == DIAG_TYPE_ZOOM)
                 StopMario(2);
@@ -2315,9 +2315,9 @@ s16 func_802DBBB0(void)
         D_80360088 = 0;
         level_set_transition(-1, 0);
 #ifdef VERSION_JP
-        SetSound(0x7002F081, D_803320E0);
+        SetSound(SOUND_MENU_PAUSE1, D_803320E0);
 #else
-        SetSound(0x7002FF81, D_803320E0);
+        SetSound(SOUND_MENU_PAUSE1_HIGHPRIO, D_803320E0);
 #endif
 
         if(gCurrCourseNum > 0 && gCurrCourseNum < 26)
@@ -2343,7 +2343,7 @@ s16 func_802DBBB0(void)
            gPlayer3Controller->buttonPressed & START_BUTTON)
         {
             level_set_transition(0, 0);
-            SetSound(0x7003FF81, D_803320E0);
+            SetSound(SOUND_MENU_PAUSE2, D_803320E0);
             gDiagBoxState = DIAG_STATE_OPENING;
             D_8033047C = -1;
 
@@ -2369,7 +2369,7 @@ s16 func_802DBBB0(void)
            gPlayer3Controller->buttonPressed & START_BUTTON)
         {
             level_set_transition(0, 0);
-            SetSound(0x7003FF81, D_803320E0);
+            SetSound(SOUND_MENU_PAUSE2, D_803320E0);
             D_8033047C = -1;
             gDiagBoxState = DIAG_STATE_OPENING;
 
@@ -2441,17 +2441,17 @@ void func_802DC050(s16 sp32, s16 sp36)
         if((D_803305C4 & 1) || gDisplayedCoins > 70)
         {
             D_803305C8++;
-            SetSound(0x70150081, D_803320E0);
+            SetSound(SOUND_MENU_YOSHIGAINLIVES, D_803320E0);
 
             if(D_803305C8 ==  50 || D_803305C8 == 100 || D_803305C8 == 150)
             {
-                SetSound(0x3058FF81, D_803320E0);
+                SetSound(SOUND_GENERAL_1UP, D_803320E0);
                 gMarioState[0].numLives++;
             }
         }
 
         if(gDisplayedCoins == D_803305C8 && D_8032CE2C != 0)
-            SetSound(0x70222081, D_803320E0);
+            SetSound(SOUND_MENU_MARIOCASTLEWARP2, D_803320E0);
     }
 }
 
@@ -2668,7 +2668,7 @@ s16 func_802DCBD4(void)
             gPlayer3Controller->buttonPressed & START_BUTTON))
         {
             level_set_transition(0, 0);
-            SetSound(0x701EFF81, D_803320E0);
+            SetSound(SOUND_MENU_STARSOUND, D_803320E0);
             gDiagBoxState = DIAG_STATE_OPENING;
             D_8033047C = -1;
             sp26 = D_80330430;

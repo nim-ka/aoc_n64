@@ -106,7 +106,7 @@ void ActionExclamationBox4(void)
     func_802C0DF0(D_8032FC40,o->oBehParams2ndByte);
     func_802AA618(0,0,46.0f);
     func_802AD82C(20,139,0.3f,o->oAnimState);
-    create_sound_spawner(0x3041C081);
+    create_sound_spawner(SOUND_GENERAL_BREAKBOX);
     if(o->oBehParams2ndByte < 3)
     {
         o->oAction = 5;

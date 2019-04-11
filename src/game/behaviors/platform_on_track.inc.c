@@ -185,7 +185,7 @@ static void platform_on_track_act_move_along_track(void)
             if (o->oPlatformOnTrackPrevWaypointFlags == WAYPOINT_FLAGS_END ||
                 o->oPlatformOnTrackPrevWaypointFlags == WAYPOINT_FLAGS_PLATFORM_ON_TRACK_PAUSE)
             {
-                PlaySound2(SOUND_GENERAL_UNKNOWN4);
+                PlaySound2(SOUND_GENERAL_UNKNOWN4_LOWPRIO);
 
                 o->oForwardVel = 0.0f;
                 if (o->oPlatformOnTrackPrevWaypointFlags == WAYPOINT_FLAGS_END)

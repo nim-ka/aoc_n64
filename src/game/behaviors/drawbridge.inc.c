@@ -41,7 +41,7 @@ void BehLLLDrawbridgeLoop(void)
         if (o->oTimer >= 51 && (globalTimer % 8) == 0)
         {
             o->oAction = LLL_DRAWBRIDGE_ACT_LOWER;
-            PlaySound2(0x30344081);
+            PlaySound2(SOUND_GENERAL_BOATTILT1);
         }    
     }
     
@@ -54,7 +54,7 @@ void BehLLLDrawbridgeLoop(void)
         if (o->oTimer >= 51 && (globalTimer % 8) == 0)
         {
             o->oAction = LLL_DRAWBRIDGE_ACT_RAISE;
-            PlaySound2(0x30354081);
+            PlaySound2(SOUND_GENERAL_BOATTILT2);
         }
     }
 }

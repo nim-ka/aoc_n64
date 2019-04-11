@@ -44,7 +44,7 @@ void BehOpenableGrillLoop(void)
         if(sp3C->oAction == 2)
         {
             o->oUnk88 = 2;
-            PlaySound2(0x303FA081);
+            PlaySound2(SOUND_GENERAL_CAGEOPEN);
             o->oAction++;
             if(o->oBehParams2ndByte != 0)
                 func_80321228();

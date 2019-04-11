@@ -37,14 +37,14 @@ void BehRedCoinLoop(void) {
         if (o->parentObj != NULL) {
             o->parentObj->oHiddenRedCoinStarCoinsCollected++;
 #ifdef VERSION_JP
-            create_sound_spawner(0x30689081);
+            create_sound_spawner(SOUND_GENERAL_REDCOIN);
 #endif
             if (o->parentObj->oHiddenRedCoinStarCoinsCollected != 8) {
                 SpawnOrangeNumber(o->parentObj->oHiddenRedCoinStarCoinsCollected, 0, 0, 0);
             }
 
 #ifdef VERSION_US
-            SetSound(0x78289081 + (((u8)o->parentObj->oHiddenRedCoinStarCoinsCollected - 1) << 16), D_803320E0);
+            SetSound(SOUND_MENU_COLLECTREDCOIN + (((u8)o->parentObj->oHiddenRedCoinStarCoinsCollected - 1) << 16), D_803320E0);
 #endif
         }
 

@@ -30,7 +30,7 @@ void func_802C567C(void)
 void func_802C5700(void)
 {
     if(o->oTimer == 0)
-        PlaySound2(0x300E8081);
+        PlaySound2(SOUND_GENERAL_UNUSED);
     o->oAngleVelRoll -= 0x100;
     o->oFaceAngleRoll += o->oAngleVelRoll;
     if(o->oFaceAngleRoll < -0x4000)

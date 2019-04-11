@@ -52,13 +52,13 @@ void BehWaterLevelDiamondLoop(void)
             else
             {
                 if(o->oTimer == 0)
-                    PlaySound2(0x30668081);
+                    PlaySound2(SOUND_GENERAL_WATERLEVELTRIG);
                 else
                 {
                     if(*gWaterLevels > o->oWaterLevelTriggerUnkF8)
-                        PlaySound(0x41160001);
+                        PlaySound(SOUND_ENVIRONMENT_WATERDRAIN);
                     else
-                        PlaySound(0x41160001); // same as above
+                        PlaySound(SOUND_ENVIRONMENT_WATERDRAIN); // same as above
                 }
                 o->oAngleVelYaw = 0x800;
             }

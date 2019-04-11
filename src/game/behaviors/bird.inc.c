@@ -7,7 +7,7 @@ static void bird_act_init(void)
     {
         if (o->oBehParams2ndByte != BIRD_BP_SPAWNED)
         {
-            PlaySound2(0x30690081);
+            PlaySound2(SOUND_GENERAL_BIRDSFLYAWAY);
 
             for (i = 0; i < 6; i++)
             {

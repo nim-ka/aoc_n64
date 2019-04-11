@@ -28,7 +28,7 @@ void BehTHITinyIslandTopLoop(void)
                     o->oAction++;
                     obj_spawn_particles(&D_8032F134);
                     func_802AD82C(20,138,0.3f,3);
-                    PlaySound2(0x30008081);
+                    PlaySound2(SOUND_GENERAL_EXPLOSION);
                     obj_hide();
                 }
         }
@@ -37,7 +37,7 @@ void BehTHITinyIslandTopLoop(void)
             if(o->oTimer < 50)
             {
                 gWaterRegions[18]--;
-                PlaySound(0x41160001);
+                PlaySound(SOUND_ENVIRONMENT_WATERDRAIN);
             }
             else
             {

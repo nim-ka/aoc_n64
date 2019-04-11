@@ -23,5 +23,5 @@ void func_802BBFDC(void)
     size = RandomFloat() * 6.0 + 3.0;
     scale_object_xyz(sp1C,size,size,size);
     if(RandomFloat() < 0.1)
-        PlaySound2(0x300C8081);
+        PlaySound2(SOUND_GENERAL_EXPLOSION2);
 }

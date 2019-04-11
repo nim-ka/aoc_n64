@@ -21,7 +21,7 @@ void BehRRCruiserWingLoop(void)
 #ifndef VERSION_JP
     if (o->oTimer == 64)
     {
-        PlaySound2(0x30750081);
+        PlaySound2(SOUND_GENERAL_BOATROCK);
         o->oTimer = 0;
     }
 #endif

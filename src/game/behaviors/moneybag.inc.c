@@ -75,7 +75,7 @@ void MoneybagJump(s8 collisionFlags)
             if (func_8029F788() == 1)
             {
                 o->oMoneybagJumpState = MONEYBAG_JUMP_JUMP;
-                PlaySound2(0x306D2081);
+                PlaySound2(SOUND_GENERAL_BOING2_LOWPRIO);
             }
             break;
             
@@ -162,7 +162,7 @@ void MoneybagReturnHomeLoop(void)
     {
         spawn_object(o, 116, beh_moneybag_hidden);
 #ifdef VERSION_US
-        PlaySound2(0x30762081);
+        PlaySound2(SOUND_GENERAL_VANISHSFX);
 #endif
         SetObjAnimation(0);
         o->oAction = MONEYBAG_ACT_DISAPPEAR;
@@ -191,7 +191,7 @@ void MoneybagDeathLoop(void)
     if (o->oTimer == 1)
     {
         ObjSpawnYellowCoins(o, 5);
-        create_sound_spawner(0x30713081);
+        create_sound_spawner(SOUND_GENERAL_SPLATTERING);
         func_802A3004();
         o->activeFlags = 0;
     }
@@ -242,7 +242,7 @@ void BehMoneybagHiddenLoop(void)
             {
                 spawn_object(o, 102, beh_moneybag);
 #ifdef VERSION_US
-                PlaySound2(0x30762081);
+                PlaySound2(SOUND_GENERAL_VANISHSFX);
 #endif
                 o->oAction = FAKE_MONEYBAG_COIN_ACT_TRANSFORM;
             }

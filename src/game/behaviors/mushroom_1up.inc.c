@@ -4,7 +4,7 @@ void Beh1UpInteract(void) {
     UNUSED s32 sp1C;
 
     if (are_objects_collided(o, gMarioObject) == 1) {
-        SetSound(0x3058FF81, D_803320E0);
+        SetSound(SOUND_GENERAL_1UP, D_803320E0);
         gMarioState->numLives++;
         o->activeFlags = 0;
     }
@@ -74,7 +74,7 @@ void Beh1UpWalkingLoop(void) {
                 spawn_object(o, 0, beh_powerup_sparkles2);
 
             if (o->oTimer == 0)
-                SetSound(0x8063D081, D_803320E0);
+                SetSound(SOUND_CH8_UNK63, D_803320E0);
 
             func_802F2D40();
 
@@ -111,7 +111,7 @@ void Beh1UpRunningAwayLoop(void) {
                 spawn_object(o, 0, beh_powerup_sparkles2);
 
             if (o->oTimer == 0)
-                SetSound(0x8063D081, D_803320E0);
+                SetSound(SOUND_CH8_UNK63, D_803320E0);
 
             func_802F2D40();
 
@@ -217,7 +217,7 @@ void Beh1UpHiddenLoop(void) {
                 o->oVelY = 40.0f; 
                 o->oAction = 3;
                 o->header.gfx.node.flags &= ~0x10;
-                SetSound(0x8063D081, D_803320E0);
+                SetSound(SOUND_CH8_UNK63, D_803320E0);
             }
             break;
 
@@ -269,7 +269,7 @@ void Beh1UpHiddenInPoleLoop(void) {
                 o->oVelY = 40.0f; 
                 o->oAction = 3;
                 o->header.gfx.node.flags &= ~0x10;
-                SetSound(0x8063D081, D_803320E0);
+                SetSound(SOUND_CH8_UNK63, D_803320E0);
             }
             break;
 

@@ -3822,27 +3822,27 @@ void func_8028B21C(void)
 
 void func_8028B268(void)
 {
-    SetSound(0x70060081, D_803320E0);
+    SetSound(SOUND_MENU_CAMERAZOOMIN, D_803320E0);
 }
 
 void func_8028B29C(void)
 {
-    SetSound(0x70070081, D_803320E0);
+    SetSound(SOUND_MENU_CAMERAZOOMOUT, D_803320E0);
 }
 
 void func_8028B2D0(void)
 {
-    SetSound(0x700F0081, D_803320E0);
+    SetSound(SOUND_MENU_CAMERATURN, D_803320E0);
 }
 
 void func_8028B304(void)
 {
-    SetSound(0x700E0081, D_803320E0);
+    SetSound(SOUND_MENU_CAMERABUZZ, D_803320E0);
 }
 
 void func_8028B338(void)
 {
-    SetSound(0x701A8081, D_803320E0);
+    SetSound(SOUND_MENU_CLICKCHANGEVIEW, D_803320E0);
 }
 
 void func_8028B36C(void)
@@ -7833,7 +7833,7 @@ static void CutsceneIntroPeach0_3(UNUSED struct LevelCamera *a)
 #if VERSION_US
 static void CutsceneIntroPeach0_4(UNUSED struct LevelCamera *a)
 {
-    SetSound(0x2428FF81, D_803320E0);
+    SetSound(SOUND_PEACH_DEARMARIO, D_803320E0);
 }
 #endif
 
@@ -9616,7 +9616,7 @@ void BehBeginningLakituLoop(void)
             gCurrentObject->oPosZ = gCurrLevelCamera->unk10[2];
         }
         if (gCutsceneTimer > 52)
-            PlaySound(0x6002FF01);
+            PlaySound(SOUND_CH6_UNKNOWN002_HIGHPRIO);
         if (func_8029ACAC(gCurrentObject, D_8032E3CC, D_8032E2B4) == 1)
             gCurrentObject->oAction += 1;
         
@@ -9624,10 +9624,10 @@ void BehBeginningLakituLoop(void)
         {
 #if VERSION_US
         case 534:
-            PlaySound2(0x04568081);
+            PlaySound2(SOUND_ACTION_UNKNOWN456);
             break;
         case 581:
-            PlaySound2(0x045E8081);
+            PlaySound2(SOUND_ACTION_UNKNOWN45E);
             break;
 #endif
         case 73:
@@ -9657,11 +9657,11 @@ void BehBeginningLakituLoop(void)
             gCurrentObject->oFaceAngleYaw = gCurrentObject->oMoveAngleYaw + 0x4000;
             gCurrentObject->oMoveAnglePitch = 0x800;
         }
-        PlaySound(0x6002FF01);
+        PlaySound(SOUND_CH6_UNKNOWN002_HIGHPRIO);
         break;
         
     case 3:
-        PlaySound(0x6002FF01);
+        PlaySound(SOUND_CH6_UNKNOWN002_HIGHPRIO);
         vec3f_set(sp58, -1128.f, 560.f, 4664.f);
         gCurrentObject->oMoveAngleYaw += 0x200;
         gCurrentObject->oIntroLakituUnk100 = approach_f32_exponential_2(gCurrentObject->oIntroLakituUnk100, 100.f, 0.03f);
@@ -9688,7 +9688,7 @@ void BehBeginningLakituLoop(void)
         }
 #if VERSION_US
         if (gCurrentObject->oTimer == 14)
-            PlaySound2(0x045F8081);
+            PlaySound2(SOUND_ACTION_UNKNOWN45F);
 #endif
         break;
     
@@ -9755,7 +9755,7 @@ void BehEndBirds1Loop(void)
         if (gCurrentObject->oTimer < 100)
             func_8029A7DC(gCurrentObject, sp34, 0, 0, 0x20, 0x20);
         if ((gCurrentObject->oEndBirdUnk104 == 0.f) && (gCurrentObject->oTimer == 0))
-            PlaySound2(0x30690081);
+            PlaySound2(SOUND_GENERAL_BIRDSFLYAWAY);
         if (gCutsceneTimer == 0)
             mark_object_for_deletion(gCurrentObject);
         break;
@@ -9788,7 +9788,7 @@ void BehEndBirds2Loop(void)
         func_8029A7DC(gCurrentObject, sp3C, 0, 0, 8, 8);
         
         if ((gCurrentObject->oEndBirdUnk104 == 0.f) && (gCurrentObject->oTimer == 0))
-            PlaySound2(0x30690081);
+            PlaySound2(SOUND_GENERAL_BIRDSFLYAWAY);
         break;
     }
     

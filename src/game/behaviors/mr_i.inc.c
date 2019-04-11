@@ -50,7 +50,7 @@ void func_802A525C(void)
     particle->oPosY += 50.0f * sp18;
     particle->oPosX += sins(o->oMoveAngleYaw) * 90.0f * sp18;
     particle->oPosZ += coss(o->oMoveAngleYaw) * 90.0f * sp18;
-    PlaySound2(0x50010081);
+    PlaySound2(SOUND_OBJECT_MRISHOOT);
 }
 
 void BehMrIBodyLoop(void)
@@ -100,14 +100,14 @@ void ActionMrI3(void)
         sp36 = o->oMoveAngleYaw;
         o->oMoveAngleYaw += sp34 * coss(0x4000 * sp2C);
         if(sp36 < 0 && o->oMoveAngleYaw >= 0)
-            PlaySound2(0x906B0081);
+            PlaySound2(SOUND_CH9_UNK6B);
         o->oMoveAnglePitch = (1.0 - coss(0x4000 * sp2C)) * -0x4000;
         obj_shake_y(4.0f);
     }
     else if(o->oTimer < 96)
     {
         if(o->oTimer == 64)
-            PlaySound2(0x50140081);
+            PlaySound2(SOUND_OBJECT_MRIDEATH);
         sp30 = (o->oTimer - 63)/32.0f;
         o->oMoveAngleYaw += sp34 * coss(0x4000 * sp2C);
         o->oMoveAnglePitch = (1.0 - coss(0x4000 * sp2C)) * - 0x4000;

@@ -84,7 +84,7 @@ void BehRollingLogLoop(void) {
     o->oFaceAnglePitch += o->oAngleVelPitch;
     if (absf_2(o->oFaceAnglePitch & 0x1FFF) < 528.0f
         && o->oAngleVelPitch != 0) {
-        PlaySound2(0x32250081);
+        PlaySound2(SOUND_GENERAL_UNKNOWN1_2);
     }
 }
 
@@ -98,7 +98,7 @@ void func_802F2820(void) {
         o->oAngleVelPitch = 0;
         o->oUnknownUnkF4_F32 = 0;
         o->oAction = 2;
-        PlaySound2(0x30440081);
+        PlaySound2(SOUND_GENERAL_BIGPOUND);
         func_8027F440(3, o->oPosX, o->oPosY, o->oPosZ);
     }
 }
@@ -118,7 +118,7 @@ void BehLLLVolcanoFallingTrap(void) {
         case 0:
             if (IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, 1000)) {
                 o->oAction = 1;
-                PlaySound2(0x30430081);
+                PlaySound2(SOUND_GENERAL_QUIETPOUND2);
             }
             break;
 
@@ -131,7 +131,7 @@ void BehLLLVolcanoFallingTrap(void) {
                 o->oPosY = o->oHomeY + sins(o->oTimer * 0x1000) * 10.0f;
             }
             if (o->oTimer == 50) {
-                PlaySound2(0x30450081);
+                PlaySound2(SOUND_GENERAL_UNK45);
                 o->oAction = 3;
             }
             break;

@@ -8,7 +8,7 @@ void BehSlidingSnowMoundLoop(void) {
             if (o->oTimer >= 118)
                 o->oAction = 1;
 
-            PlaySound(0x40188001);
+            PlaySound(SOUND_ENVIRONMENT_SINKQUICKSAND);
             break;
 
         case 1:

@@ -100,10 +100,10 @@ void func_802F7750(void) {
         o->oAction = 0;
     }
     if (func_8029F788() == 1 && (sp26 & 0x04)) {
-        PlaySound2(0x506C0081);
+        PlaySound2(SOUND_OBJECT_MIPSRABBITWATER);
         spawn_object(o, 0, beh_surface_wave_shrinking);
     } else if (func_8029F788() == 1) {
-        PlaySound2(0x506A0081);
+        PlaySound2(SOUND_OBJECT_MIPSRABBIT);
     }
 }
 

@@ -332,7 +332,7 @@ void ObjSplash(s32 waterY, s32 objY)
     if ((f32)(waterY + 30) > o->oPosY && o->oPosY > (f32)(waterY - 30))
     {
         spawn_object(o, 0xA6, beh_object_water_wave);
-        if (o->oVelY < -20.0f) PlaySound2(0x50324081);
+        if (o->oVelY < -20.0f) PlaySound2(SOUND_OBJECT_DIVINGINTOWATER);
     }
     
     if ((objY + 50) < waterY && (globalTimer & 0x1F) == 0) spawn_object(o, 0xA4, beh_object_bubble); /* 0x1F is bits 4-0 */
@@ -654,7 +654,7 @@ s32 ObjLavaDeath(void)
     
     if ((o->oTimer % 8) == 0)
     {
-        PlaySound2(0x5118A081);
+        PlaySound2(SOUND_OBJECT_BULLYEXPLODE_2);
         deathSmoke = spawn_object(o, 0x96, beh_bobomb_bully_death_smoke);
         deathSmoke->oPosX += RandomFloat() * 20.0f;
         deathSmoke->oPosY += RandomFloat() * 20.0f;
@@ -736,11 +736,11 @@ s32 Unknown802E4DF4(s16 *arg0)
 // or are they? TODO: misc.inc.c?
 
 void BehWaterfallSoundLoop(void) {
-    PlaySound(0x40010001);
+    PlaySound(SOUND_ENVIRONMENT_WATERFALL2);
 }
 
 void BehVolcanoSoundLoop(void) {
-    PlaySound(0x41030001);
+    PlaySound(SOUND_ENVIRONMENT_DRONING1);
 }
 
 void BehCastleFlagWavingInit(void) {
@@ -753,15 +753,15 @@ void BehBirdsSoundLoop(void) {
 
     switch(o->oBehParams2ndByte) {
         case 0:
-            PlaySound(0x90524001);
+            PlaySound(SOUND_CH9_UNK52);
             break;
 
         case 1:
-            PlaySound(0x80504001);
+            PlaySound(SOUND_CH8_UNK50);
             break;
 
         case 2:
-            PlaySound(0x50514001);
+            PlaySound(SOUND_OBJECT_BIRDS2);
             break;
     }
 }
@@ -770,14 +770,14 @@ void BehAmbiantSoundsInit(void) {
     if (gCurrLevelCamera->preset == CAMERA_PRESET_SECRET_AQUARIUM)
         return;
 
-    SetSound(0x60104001, D_803320E0);
+    SetSound(SOUND_CH6_UNKNOWN010, D_803320E0);
 }
 
 void BehSandSoundLoop(void) {
     if (gCurrLevelCamera->preset == CAMERA_PRESET_SECRET_AQUARIUM)
         return;
 
-    PlaySound(0x400E0001);
+    PlaySound(SOUND_ENVIRONMENT_MOVINGSAND);
 }
 
 void BehHiddenAt120StarsInit(void) {

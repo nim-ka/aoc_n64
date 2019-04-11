@@ -32,7 +32,7 @@ void func_802F7E58(void) {
 
     SetObjAnimation(1);
     if (sp24 == 0 || sp24 == 15) 
-        PlaySound2(0x306E2081);
+        PlaySound2(SOUND_GENERAL_UNKNOWN5);
 
     if (o->oInteractStatus == 0x8000)
         o->oAction = 2;
@@ -108,7 +108,7 @@ void func_802F82F8(void) {
     o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, o->oYoshiUnk100, 0x500);
     if (IsPointCloseToObject(o, o->oHomeX, 3174.0f, o->oHomeZ, 200)) {
         SetObjAnimation(2);
-        PlaySound2(0x306F3081);
+        PlaySound2(SOUND_GENERAL_ENEMYALERT1);
         o->oForwardVel = 50.0f;
         o->oVelY = 40.0f;
         o->oMoveAngleYaw = -0x3FFF;
@@ -116,7 +116,7 @@ void func_802F82F8(void) {
     }
 
     if (sp26 == 0 || sp26 == 15) {
-        PlaySound2(0x306E2081);
+        PlaySound2(SOUND_GENERAL_UNKNOWN5);
     }
 }
 
@@ -136,14 +136,14 @@ void func_802F84FC(void) {
     s32 sp1C = gGlobalTimer;
     
     if (gDisplayedLives == 100) {
-        SetSound(0x3058FF81, D_803320E0);
+        SetSound(SOUND_GENERAL_1UP, D_803320E0);
         D_8032CE34.specialTripleJump = 1;
         o->oAction = 3;
         return;
     }
 
     if ((sp1C & 0x03) == 0) {
-        SetSound(0x70150081, D_803320E0);
+        SetSound(SOUND_MENU_YOSHIGAINLIVES, D_803320E0);
         gMarioState->numLives++;
     }
 }

@@ -33,7 +33,7 @@ void BehScuttlebugLoop(void)
     UNUSED s32 unused;
     f32 sp18;
     obj_update_floor_and_walls();
-    if(o->oSubAction != 0 && obj_set_hitbox_and_die_if_attacked(&sScuttlebugHitbox,0x50244081,o->oScuttlebugUnkF4))
+    if(o->oSubAction != 0 && obj_set_hitbox_and_die_if_attacked(&sScuttlebugHitbox,SOUND_OBJECT_DYINGENEMY1,o->oScuttlebugUnkF4))
         o->oSubAction = 3;
     if(o->oSubAction != 1)
         o->oScuttlebugUnkF8 = 0;
@@ -41,7 +41,7 @@ void BehScuttlebugLoop(void)
     {
     case 0:
         if(o->oMoveFlags & 1)
-            PlaySound2(0x502F0081);
+            PlaySound2(SOUND_OBJECT_GOOMBAALERT);
         if(o->oMoveFlags & 3)
         {
             o->oHomeX = o->oPosX;
@@ -64,7 +64,7 @@ void BehScuttlebugLoop(void)
                 {
                     o->oScuttlebugUnkF8 = 1;
                     o->oVelY = 20.0f;
-                    PlaySound2(0x90444081);
+                    PlaySound2(SOUND_CH9_UNK44);
                 }
             }
             else if(o->oScuttlebugUnkF8 == 1)
@@ -91,7 +91,7 @@ void BehScuttlebugLoop(void)
         o->oFlags &= ~8;
         o->oForwardVel = -10.0f;
         o->oVelY = 30.0f;
-        PlaySound2(0x90444081);
+        PlaySound2(SOUND_CH9_UNK44);
         o->oSubAction++;
         break;
     case 4:
@@ -118,7 +118,7 @@ void BehScuttlebugLoop(void)
         sp18 = 3.0f;
     func_8029ED98(0,sp18);
     if(o->oMoveFlags & 3)
-        func_802BE2E8(1,23,0x90434081);
+        func_802BE2E8(1,23,SOUND_CH9_UNK43);
     if(o->parentObj != o)
     {
         if(obj_is_hidden(o))
@@ -136,7 +136,7 @@ void BehScuttlebugSpawnLoop(void)
     {
         if(o->oTimer > 30 && 500.0f < o->oDistanceToMario && o->oDistanceToMario < 1500.0f)
         {
-            PlaySound2(0x90444081);
+            PlaySound2(SOUND_CH9_UNK44);
             scuttlebug = spawn_object(o,101,beh_scuttlebug);
             scuttlebug->oScuttlebugUnkF4 = o->oScuttlebugSpawnerUnkF4;
             scuttlebug->oForwardVel = 30.0f;

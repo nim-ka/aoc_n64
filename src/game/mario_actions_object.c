@@ -308,7 +308,7 @@ static s32 act_holding_bowser(struct MarioState *m)
     {
 #if VERSION_US
         if (m->angleVel[1] <= -0xE00 || m->angleVel[1] >= 0xE00)
-            SetSound(0x24368081, &m->marioObj->header.gfx.unk54);
+            SetSound(SOUND_MARIO_SOLONGABOWSER, &m->marioObj->header.gfx.unk54);
         else
             SetSound(SOUND_MARIO_HEREWEGO, &m->marioObj->header.gfx.unk54);
 #else

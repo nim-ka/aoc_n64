@@ -20,7 +20,7 @@ s32 func_802BD4A8(void)
         func_80321080(50);
         if(o->oInteractStatus & 0x4000)
         {
-            PlaySound2(0x90116081);
+            PlaySound2(SOUND_CH9_UNK11);
             for(i=0;i<20;i++)
                 spawn_object(o,170,beh_giant_piranha_particle);
             o->oAction = 5;
@@ -98,7 +98,7 @@ void ActionPiranhaPlant26(void)
 {
     if(o->oTimer == 0)
     {
-        PlaySound2(0x50744081);
+        PlaySound2(SOUND_OBJECT_ENEMYDEFEATSHRINK);
         o->oPiranhaPlant2UnkF8 = 1.0f;
     }
     if(o->oPiranhaPlant2UnkF8 > 0.0f)
@@ -146,7 +146,7 @@ void ActionPiranhaPlant22(void)
     obj_set_hitbox_radius_and_height(150.0f,100.0f);
     obj_set_hurtbox_radius_and_height(150.0f,100.0f);
     if(item_in_array(frame,D_8032F998))
-        PlaySound2(0x90105081);
+        PlaySound2(SOUND_CH9_UNK10);
     o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, o->oAngleToMario, 0x400);
     if(o->oDistanceToMario > 500.0f)
         if(func_8029F788())

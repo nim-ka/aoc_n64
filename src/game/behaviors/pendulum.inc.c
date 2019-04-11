@@ -13,5 +13,5 @@ void BehOscillatingPendulumLoop(void) {
 
     o->oFaceAngleRoll += o->oAngleVelRoll;
     if (o->oAngleVelRoll == 0x10 || o->oAngleVelRoll == -0x10)
-        PlaySound2(0x30170081);
+        PlaySound2(SOUND_GENERAL_BIGCLOCK);
 }

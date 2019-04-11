@@ -9,7 +9,7 @@ void BehWFBreakableWallLoop(void)
         {
             if(obj_has_behavior(beh_wf_breakable_wall_right))
                 func_80321228();
-            create_sound_spawner(0x300F0081);
+            create_sound_spawner(SOUND_GENERAL_EXPLOSION3);
             o->oInteractType = 8;
             o->oDamageOrCoinValue = 1;
             func_802A3C98(80.0f,0);

@@ -77,7 +77,7 @@ static void racing_penguin_act_race(void)
         targetSpeed = o->oPosY - gMarioObject->oPosY;
         minSpeed = 70.0f;
 
-        PlaySound(0x60050001);
+        PlaySound(SOUND_CH6_UNKNOWN005);
 
         if (targetSpeed < 100.0f || (o->oPathedPrevWaypointFlags & WAYPOINT_MASK_00FF) >= 35)
         {
@@ -125,7 +125,7 @@ static void racing_penguin_act_finish_race(void)
     {
         if (o->oTimer > 5 && (o->oMoveFlags & 0x00000200))
         {
-            PlaySound2(0x50684081);
+            PlaySound2(SOUND_OBJECT_POUNDINGLOUD);
             func_8027F440(1, o->oPosX, o->oPosY, o->oPosZ);
             o->oForwardVel = 0.0f;
         }

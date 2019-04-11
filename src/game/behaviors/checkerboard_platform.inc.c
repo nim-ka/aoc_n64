@@ -61,7 +61,7 @@ void BehCheckerboardPlatformLoop(void)
     f32 sp24 = o->oUnk1AC_F32;
     o->oCheckerBoardPlatformUnkF8 = 0;
     if(o->oDistanceToMario < 1000.0f)
-        PlaySound(0x400D0001);
+        PlaySound(SOUND_ENVIRONMENT_ELEVATOR4);
     switch(o->oAction)
     {
     case 0:

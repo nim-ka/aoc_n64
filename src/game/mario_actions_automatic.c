@@ -637,7 +637,7 @@ static s32 act_ledge_climb_fast(struct MarioState *m)
     update_ledge_climb(m, 0x0034, ACT_IDLE);
     
     if (m->marioObj->header.gfx.unk38.animFrame == 8)
-        func_80251280(m, SOUND_ACTION_UNKNOWN408);
+        func_80251280(m, SOUND_TERRAIN_2);
     func_8025F188(m);
 
     return FALSE;

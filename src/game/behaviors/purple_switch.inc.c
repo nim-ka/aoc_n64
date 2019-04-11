@@ -16,7 +16,7 @@ void BehFloorSwitchLoop(void)
         func_802A3398(2,3,1.5f,0.2f);
         if(o->oTimer == 3)
         {
-            PlaySound2(0x803EC081);
+            PlaySound2(SOUND_CH8_UNK3E);
             o->oAction = 2;
             ShakeScreen(1);
         }
@@ -29,9 +29,9 @@ void BehFloorSwitchLoop(void)
             else
             {
                 if(o->oTimer < 360)
-                    SetSound(0x8054F011,D_803320E0);
+                    SetSound(SOUND_CH8_UNK54,D_803320E0);
                 else
-                    SetSound(0x8055F011,D_803320E0);
+                    SetSound(SOUND_CH8_UNK55,D_803320E0);
                 if(o->oTimer > 400)
                     o->oAction = 4;
             }

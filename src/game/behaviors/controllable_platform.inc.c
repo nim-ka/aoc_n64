@@ -30,7 +30,7 @@ void BehControllablePlatformSubLoop(void) {
             if (gMarioObject->platform == o) {
                 D_80331694 = o->oBehParams2ndByte;
                 o->oAction = 1;
-                PlaySound2(0x303E0081);
+                PlaySound2(SOUND_GENERAL_SWITCH3);
             }
             break;
 
@@ -71,7 +71,7 @@ void func_802F3F80(s8 sp1B) {
     o->oTimer = 0;
     D_80331694 = 5;
 
-    PlaySound2(0x30404081);
+    PlaySound2(SOUND_GENERAL_QUIETPOUND1);
 }
 
 void func_802F3FD8(s8 sp1B, s8 sp1C[3], Vec3f sp20, UNUSED Vec3f sp24, Vec3f sp28) {
@@ -211,5 +211,5 @@ void BehControllablePlatformLoop(void) {
     o->oPosX += o->oVelX;
     o->oPosZ += o->oVelZ;
     if (D_80331694 != 0 && D_80331694 != 6)
-        PlaySound(0x40080001);
+        PlaySound(SOUND_ENVIRONMENT_ELEVATOR2);
 }

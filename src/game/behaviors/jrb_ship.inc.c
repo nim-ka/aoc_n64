@@ -33,7 +33,7 @@ void BehShipPart3Loop(void)
     o->oAngleVelPitch = o->oFaceAnglePitch - sp1E;
     o->oAngleVelRoll = o->oFaceAngleRoll - sp1C;
     if(gMarioObject->oPosY > 1000.0f)
-        PlaySound(0x400B0001);
+        PlaySound(SOUND_ENVIRONMENT_BOATROCKING1);
 }
 
 void BehJrbSlidingBox(void)
@@ -88,7 +88,7 @@ void BehJrbSlidingBox(void)
     o->oParentRelativePosZ += o->oJrbSlidingBoxUnkFC;
     if(gMarioObject->oPosY > 1000.0f)
         if(absf(o->oJrbSlidingBoxUnkFC) > 3.0f)
-            PlaySound(0x60050001);
+            PlaySound(SOUND_CH6_UNKNOWN005);
     set_object_hitbox(o,&sSkullSlidingBoxHitbox);
     if(!(o->oJrbSlidingBoxUnkF8 & 0x7FFF))
         obj_become_tangible();

@@ -25,9 +25,9 @@ void func_802BCFC4(f32 a0,f32 a1,s16 a2,s16 a3) // 0x18 0x1c 0x22 0x26
     {
         o->oAction = func_802A32E0();
 #ifndef VERSION_JP
-        PlaySound2(0x30468081);
+        PlaySound2(SOUND_GENERAL_UNK46);
 #else
-        PlaySound2(0x30460081);
+        PlaySound2(SOUND_GENERAL_UNK46_LOWPRIO);
 #endif
     }
 }

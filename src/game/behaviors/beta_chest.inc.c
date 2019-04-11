@@ -25,7 +25,7 @@ void BehBetaChestUpperLoop(void)
         if(o->oTimer == 0)
         {
             spawn_object_relative(0,0,-80,120,o,168,beh_water_air_bubble);
-            SetSound(0x31228081,&o->header.gfx.unk54);
+            SetSound(SOUND_GENERAL_CLAMSHELL1,&o->header.gfx.unk54);
         }
         o->oFaceAnglePitch -= 0x400;
         if(o->oFaceAnglePitch < -0x4000)

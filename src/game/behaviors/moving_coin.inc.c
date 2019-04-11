@@ -36,7 +36,7 @@ s32 CoinStep(s16 *collisionFlagsPtr)
     
     if ((*collisionFlagsPtr & 0x1) != 0 && (*collisionFlagsPtr & 0x8) == 0) /* bit 0, bit 3 */
     {
-        PlaySound2(0x30364081);
+        PlaySound2(SOUND_GENERAL_COINDROP);
         return 1;
     }
     
@@ -125,7 +125,7 @@ void BehMovingBlueCoinLoop(void)
             if ((collisionFlags & 0x1) != 0) /* bit 0 */
             {
                 o->oForwardVel += 25.0f;
-                if ((collisionFlags & 0x8) == 0) PlaySound2(0x30364081); /* bit 3 */
+                if ((collisionFlags & 0x8) == 0) PlaySound2(SOUND_GENERAL_COINDROP); /* bit 3 */
             }
             else o->oForwardVel *= 0.98;
             

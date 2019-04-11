@@ -1,5 +1,7 @@
 #!/bin/bash
 
+shopt -s globstar
+
 if [ "$#" -ne "2" ];
 then
 	echo "usage: $0 old_name new_name"
@@ -8,4 +10,4 @@ fi
 
 #echo "Replace $1 with $2?"
 #read
-grep -rl "$1" asm/*.s bin/*.s bin/*.in levels/*.s data/*.s src/*.c src/*/*.c src/*.h src/*/*.h src/*.in include/*.h undefined_syms.txt | xargs sed -i "s/\b$1\b/$2/g"
+grep -rl "$1" asm/*.s bin/*.s data/*.s levels/**/*.s src/**/*.{c,h} include/**/*.{h,in} undefined_syms.txt | xargs sed -i "s/\b$1\b/$2/g"

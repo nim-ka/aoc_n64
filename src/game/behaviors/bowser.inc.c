@@ -64,7 +64,7 @@ void BehBowserFlameSpawnLoop(void)
             sp30 = 0;
         if(sp30 > 45 && sp30 < 85)
         {
-            PlaySound(0x60000001);
+            PlaySound(SOUND_CH6_UNKNOWN000);
             sp2C = sp1C[5*sp30];
             sp28 = sp1C[5*sp30+2];
             o->oPosX = bowser->oPosX + (sp28 * sp20 + sp2C * sp24);
@@ -125,7 +125,7 @@ void func_802B392C(s32* a)
         {
             func_802A11B4(o,8);
             func_802AA618(0,0,60.0f);
-            PlaySound2(0x50030081);
+            PlaySound2(SOUND_OBJECT_BOWSERWALK);
         }
     }
 }
@@ -369,7 +369,7 @@ void ActionBowser15(void)
 {
     o->oForwardVel = 0.0f;
     if(o->oTimer == 0)
-        PlaySound2(0x50080081);
+        PlaySound2(SOUND_OBJECT_BOWSERINHALING);
     if(func_802A4AB0(6))
         o->oAction = 0;
 }
@@ -421,7 +421,7 @@ void ActionBowser16(void)
         o->oUnk1AC_S16 = 0;
         o->oBowserUnkF8 = 30;
         if(o->oTimer == 0)
-            PlaySound2(0x90668081);
+            PlaySound2(SOUND_CH9_UNK66);
         if(o->oOpacity == 0)
         {
             o->oSubAction++;
@@ -441,7 +441,7 @@ void ActionBowser16(void)
             {
                 o->oSubAction = 2;
                 o->oMoveAngleYaw =    o->oAngleToMario; // large change in angle?
-                PlaySound2(0x90668081);
+                PlaySound2(SOUND_CH9_UNK66);
             }
         break;
     case 2:
@@ -461,7 +461,7 @@ void ActionBowser8(void) // only in sky
     frame = o->header.gfx.unk38.animFrame;
     if(frame > 24 && frame < 36)
         {
-            PlaySound(0x60000001);
+            PlaySound(SOUND_CH6_UNKNOWN000);
             if(frame == 35)
                 spawn_object_relative(1,0,0x190,0x64,o,0x90,beh_blue_bowser_flame);
             else
@@ -882,7 +882,7 @@ void ActionBowser2(void)
 void ActionBowser3(void)
 {
     if(item_in_array(o->oTimer,D_8032F514))
-        PlaySound2(0x50030081);
+        PlaySound2(SOUND_OBJECT_BOWSERWALK);
     if(func_802A4AB0(10))
         o->oAction = 0;
 }
@@ -894,7 +894,7 @@ void func_802B5C78(void)
     else
     {
         D_8032CFD0 = spawn_object(o,204,&beh_bowser_key_2);
-        PlaySound2(0x80610081);
+        PlaySound2(SOUND_CH8_UNK61);
     }
     D_8032CFD0->oAngleVelYaw = o->oAngleVelYaw;
 }
@@ -917,7 +917,7 @@ void func_802B5DD8(void)
     o->oUnk1B0_S16 = 1;
     func_802B392C(&o->oBowserUnkF8);
     if(o->oMoveFlags & 1)
-        PlaySound2(0x50030081);
+        PlaySound2(SOUND_OBJECT_BOWSERWALK);
     if(o->oMoveFlags & 2)
     {
         o->oForwardVel = 0.0f;
@@ -981,7 +981,7 @@ s32 func_802B6120(void)
         if(obj_update_dialogue_unk1(2,18,D_8032F518[0][o->oBehParams2ndByte],0))
         {
             o->oBowserUnkF8++;
-            PlaySound2(0x80600081);
+            PlaySound2(SOUND_CH8_UNK60);
             func_80320040(0,60);
             func_8031F7CC(0,1);
         }
@@ -1103,7 +1103,7 @@ void ActionBowser19(void)
                     sp28 = (o->oTimer-D_8032F518[1+i][0])*sp28;
                 func_802B64E8(platform,sp28);
                 if(sp28 != 0)
-                    SetSound(0x41150001,&platform->header.gfx.unk54);
+                    SetSound(SOUND_ENVIRONMENT_UNKNOWN4,&platform->header.gfx.unk54);
                 sp1C = 0;
                 break;
             }
@@ -1138,8 +1138,57 @@ s32 func_802B67C4(void) // bowser off stage?
     return 0;
 }
 
-void (*TableBowserActions[])(void) = {ActionBowser0,ActionBowser1,ActionBowser2,ActionBowser3,ActionBowser4,ActionBowser5,ActionBowser6,ActionBowser7,ActionBowser8,ActionBowser9,ActionBowser10,ActionBowser11,ActionBowser12,ActionBowser13,ActionBowser14,ActionBowser15,ActionBowser16,ActionBowser17,ActionBowser18,ActionBowser19};
-struct SoundState D_8032F5B8[] = {{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0},{1,0,-1,0x50030081},{1,0,-1,0x90040081},{1,0,-1,0x90040081},{0,0,0,0},{0,0,0,0},{1,20,40,0x50030081},{1,20,-1,0x50030081},{1,20,40,0x50030081},{1,0,-1,0x50050081},{1,0,-1,0x50060081},{1,8,-1,0x50030081},{1,8,17,0x50030081},{1,8,-10,0x50030081},{0,0,0,0},{1,5,-1,0x50558081},{0,0,0,0},{0,0,0,0},{1,0,-1,0x50050081},{1,0,-1,0x90040081}};
+void (*TableBowserActions[])(void) = {
+    ActionBowser0,
+    ActionBowser1,
+    ActionBowser2,
+    ActionBowser3,
+    ActionBowser4,
+    ActionBowser5,
+    ActionBowser6,
+    ActionBowser7,
+    ActionBowser8,
+    ActionBowser9,
+    ActionBowser10,
+    ActionBowser11,
+    ActionBowser12,
+    ActionBowser13,
+    ActionBowser14,
+    ActionBowser15,
+    ActionBowser16,
+    ActionBowser17,
+    ActionBowser18,
+    ActionBowser19
+};
+struct SoundState D_8032F5B8[] = {
+    {0, 0,  0,   NO_SOUND},
+    {0, 0,  0,   NO_SOUND},
+    {0, 0,  0,   NO_SOUND},
+    {0, 0,  0,   NO_SOUND},
+    {0, 0,  0,   NO_SOUND},
+    {0, 0,  0,   NO_SOUND},
+    {0, 0,  0,   NO_SOUND},
+    {0, 0,  0,   NO_SOUND},
+    {1, 0,  -1,  SOUND_OBJECT_BOWSERWALK},
+    {1, 0,  -1,  SOUND_CH9_UNK04},
+    {1, 0,  -1,  SOUND_CH9_UNK04},
+    {0, 0,  0,   NO_SOUND},
+    {0, 0,  0,   NO_SOUND},
+    {1, 20, 40,  SOUND_OBJECT_BOWSERWALK},
+    {1, 20, -1,  SOUND_OBJECT_BOWSERWALK},
+    {1, 20, 40,  SOUND_OBJECT_BOWSERWALK},
+    {1, 0,  -1,  SOUND_OBJECT_BOWSERTAILPICKUP},
+    {1, 0,  -1,  SOUND_OBJECT_BOWSERDEFEATED},
+    {1, 8,  -1,  SOUND_OBJECT_BOWSERWALK},
+    {1, 8,  17,  SOUND_OBJECT_BOWSERWALK},
+    {1, 8,  -10, SOUND_OBJECT_BOWSERWALK},
+    {0, 0,  0,   NO_SOUND},
+    {1, 5,  -1,  SOUND_OBJECT_FLAMEBLOWN},
+    {0, 0,  0,   NO_SOUND},
+    {0, 0,  0,   NO_SOUND},
+    {1, 0,  -1,  SOUND_OBJECT_BOWSERTAILPICKUP},
+    {1, 0,  -1,  SOUND_CH9_UNK04}
+};
 s8 D_8032F690[4] = {0,0,1,0};
 s8 D_8032F694[4] = {1,1,3,0};
 extern u8 bowser_3_seg7_collision_07004B94[];
@@ -1152,7 +1201,19 @@ extern u8 bowser_3_seg7_collision_07004EAC[];
 extern u8 bowser_3_seg7_collision_07004F30[];
 extern u8 bowser_3_seg7_collision_07004FB4[];
 extern u8 bowser_3_seg7_collision_07005038[];
-struct Struct8032F698 D_8032F698[] = {{NULL,0,0,0,0},{bowser_3_seg7_collision_07004B94,-800,-1000,-20992,0},{bowser_3_seg7_collision_07004C18,-1158,390,-18432,0},{bowser_3_seg7_collision_07004C9C,-1158,390,-7680,0},{bowser_3_seg7_collision_07004D20,0,1240,-6144,0},{bowser_3_seg7_collision_07004DA4,0,1240,6144,0},{bowser_3_seg7_collision_07004E28,1158,390,7680,0},{bowser_3_seg7_collision_07004EAC,1158,390,18432,0},{bowser_3_seg7_collision_07004F30,800,-1000,20992,0},{bowser_3_seg7_collision_07004FB4,800,-1000,-31744,0},{bowser_3_seg7_collision_07005038,-800,-1000,31744,0}};
+struct Struct8032F698 D_8032F698[] = {
+    {NULL,0,0,0,0},
+    {bowser_3_seg7_collision_07004B94, -800,  -1000, -20992, 0},
+    {bowser_3_seg7_collision_07004C18, -1158, 390,   -18432, 0},
+    {bowser_3_seg7_collision_07004C9C, -1158, 390,   -7680,  0},
+    {bowser_3_seg7_collision_07004D20, 0,     1240,  -6144,  0},
+    {bowser_3_seg7_collision_07004DA4, 0,     1240,  6144,   0},
+    {bowser_3_seg7_collision_07004E28, 1158,  390,   7680,   0},
+    {bowser_3_seg7_collision_07004EAC, 1158,  390,   18432,  0},
+    {bowser_3_seg7_collision_07004F30, 800,   -1000, 20992,  0},
+    {bowser_3_seg7_collision_07004FB4, 800,   -1000, -31744, 0},
+    {bowser_3_seg7_collision_07005038, -800,  -1000, 31744,  0}
+};
 
 void func_802B688C(void)
 {
@@ -1182,7 +1243,7 @@ void func_802B697C(void)
     switch(o->oBowserUnk10E)
     {
     case 0:
-        PlaySound2(0x50050081);
+        PlaySound2(SOUND_OBJECT_BOWSERTAILPICKUP);
         func_8029FA5C(3,1);
         o->oBowserUnk10E++;
         break;
@@ -1456,7 +1517,7 @@ void ActionFallingBowserPlatform2(void)
     f32 sp1C;
     UNUSED struct Object* sp18 = o->oPlatformUnkF8;
     if(o->oTimer == 0 || o->oTimer == 22)
-        PlaySound2(0x31628081);
+        PlaySound2(SOUND_GENERAL_BOWSERPLATFORM_2);
     if(o->oTimer < 22)
     {
         func_8027F308(10);

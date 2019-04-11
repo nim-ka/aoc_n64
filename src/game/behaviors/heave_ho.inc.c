@@ -15,7 +15,7 @@ void BehHeaveHoThrowMarioLoop(void)
     case 1:
         break;
     case 2:
-        PlaySound2(0x505D4081);
+        PlaySound2(SOUND_OBJECT_HEAVEHOTOSSED);
         gMarioObject->oInteractStatus |= 4;
         gMarioStates->forwardVel = -45.0f;
         gMarioStates->vel[1] = 95.0f;
@@ -110,7 +110,7 @@ void func_802B18B4(void)
     else
         o->oGraphYOffset = 0.0f;
     if(o->oForwardVel > 3.0f)
-        PlaySound(0x60064001);
+        PlaySound(SOUND_CH6_UNKNOWN006);
     if(o->oAction != 0 && o->oMoveFlags & (0x40 | 0x20 | 0x10 | 0x8))
         o->oAction = 0;
     if(o->oInteractStatus & 0x800)

@@ -14,6 +14,6 @@ void BehSushiSharkLoop(void)
         if(o->oPosY - sp1C > -200.0f)
             spawn_object_with_scale(o,163,beh_water_type,4.0f);
     if((o->oTimer & 0xF) == 0)
-        PlaySound2(0x50008081);
+        PlaySound2(SOUND_OBJECT_WATERSOUND);
     o->oInteractStatus = 0;
 }

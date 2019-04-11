@@ -19,7 +19,7 @@ void BehRecoveryHeartLoop(void)
     {
         if (o->oSpinningHeartPlayedSound == 0)
         {
-            PlaySound2(0x3064C081);
+            PlaySound2(SOUND_GENERAL_HEARTSPIN);
             o->oSpinningHeartPlayedSound += 1;
         }
 

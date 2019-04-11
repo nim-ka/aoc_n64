@@ -65,7 +65,7 @@ void BehWhirlpoolLoop(void)
         gEnvFxBubbleConfig[ENVFX_STATE_PARTICLECOUNT] = 0;
     }
 
-    PlaySound(0x40090001);
+    PlaySound(SOUND_ENVIRONMENT_WATER);
 
     func_802E70A8();
 }
@@ -81,5 +81,5 @@ void BehJetStreamLoop(void)
     }
     else gEnvFxBubbleConfig[ENVFX_STATE_PARTICLECOUNT] = 0;
 
-    PlaySound(0x40090001);
+    PlaySound(SOUND_ENVIRONMENT_WATER);
 }

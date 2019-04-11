@@ -16,7 +16,7 @@ void BehTumblingBridgePlatformLoop(void)
         if(o->oTimer > 5)
         {
             o->oAction++;
-            PlaySound2(0x302D8081);
+            PlaySound2(SOUND_GENERAL_PLATFORM);
         }
         break;
     case 2:

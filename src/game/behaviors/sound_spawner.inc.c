@@ -2,6 +2,6 @@
 
 void BehPlaySound(void)
 {
-    s32 sp1C = o->oUnknownUnkF4_S32; // sound spawner
-    SetSound(sp1C,&o->header.gfx.unk54);
+    s32 sp1C = o->oSoundEffectUnkF4;
+    SetSound(sp1C, &o->header.gfx.unk54);
 }

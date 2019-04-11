@@ -39,7 +39,7 @@ void ActionTweester0(void)
     }
     else
     {
-        PlaySound(0x40050001);
+        PlaySound(SOUND_ENVIRONMENT_WIND1);
         func_802C231C(o->oTimer / 60.0f);
         if(o->oTimer > 59)
             o->oAction = 1;
@@ -50,7 +50,7 @@ void ActionTweester1(void)
 {
     f32 sp1C = o->oBehParams2ndByte * 0x64;
     o->oUnk1BC = obj_angle_to_home();
-    PlaySound(0x40050001);
+    PlaySound(SOUND_ENVIRONMENT_WIND1);
     if(obj_lateral_dist_from_mario_to_home() < sp1C && o->oSubAction == 0)
     {
         o->oForwardVel = 20.0f;

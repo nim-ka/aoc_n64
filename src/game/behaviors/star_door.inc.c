@@ -24,7 +24,7 @@ void BehStarDoorLoop(void)
         break;
     case 1:
         if(o->oTimer == 0 && (s16)(o->oMoveAngleYaw) >= 0)
-            PlaySound2(0x304EC081);
+            PlaySound2(SOUND_GENERAL_STARDOOROPEN);
         obj_become_intangible();
         o->oUnkBC = -8.0f;
         func_802A4DB0();
@@ -37,7 +37,7 @@ void BehStarDoorLoop(void)
         break;
     case 3:
         if(o->oTimer == 0 && (s16)(o->oMoveAngleYaw) >= 0)
-            PlaySound2(0x304FC081);
+            PlaySound2(SOUND_GENERAL_STARDOORCLOSE);
         o->oUnkBC = 8.0f;
         func_802A4DB0();
         if(o->oTimer >= 16)

@@ -73,7 +73,7 @@ void HootFreeStep(s16 fastOscY, s32 speed)
         o->oPosZ = zPrev;
     }
     
-    if (sp26 == 0) PlaySound2(0x300A0081);
+    if (sp26 == 0) PlaySound2(SOUND_GENERAL_SWISHWATER);
 }
 
 void PlayerSetHootYaw(void)
@@ -107,7 +107,7 @@ void HootCarryStep(s32 speed, UNUSED f32 xPrev, UNUSED f32 zPrev)
     o->oPosY -= o->oVelY + coss((s32)(sp22 * 6553.6)) * 50.0f / 4.0f;
     o->oPosZ += o->oVelZ;
     
-    if (sp22 == 0) PlaySound2(0x300A0081);
+    if (sp22 == 0) PlaySound2(SOUND_GENERAL_SWISHWATER);
 }
 
 //sp48 = xPrev
@@ -162,7 +162,7 @@ void HootAscentLoop(f32 xPrev, f32 zPrev)
     
     if (o->oTimer >= 29)
     {
-        PlaySound(0x40108001);
+        PlaySound(SOUND_ENVIRONMENT_WIND2);
         o->header.gfx.unk38.animFrame = 1;
     }
     

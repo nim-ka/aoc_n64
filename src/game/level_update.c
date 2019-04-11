@@ -898,9 +898,9 @@ static void update_hud_values(void)
             {
                 u32 coinSound;
                 if (gMarioState->action & (ACT_FLAG_SWIMMING | ACT_FLAG_METAL_WATER))
-                    coinSound = 0x38128081;
+                    coinSound = SOUND_GENERAL_COINWATER1;
                 else
-                    coinSound = 0x38118081;
+                    coinSound = SOUND_GENERAL_COIN2;
 
                 gDisplayedCoins += 1;
                 SetSound(coinSound, &gMarioState->marioObj->header.gfx.unk54);

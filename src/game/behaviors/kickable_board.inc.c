@@ -52,7 +52,7 @@ void BehKickableBoardLoop(void)
             if(gMarioObject->oPosY > o->oPosY + 160.0f && sp24 == 2)
             {
                 o->oAction++;
-                PlaySound2(0x315A4081);
+                PlaySound2(SOUND_GENERAL_BUTTONPRESS_2);
             }
             else
                 o->oTimer = 0;
@@ -66,7 +66,7 @@ void BehKickableBoardLoop(void)
         else
             func_802A9B54();
         if(!(o->OBJECT_FIELD_S32(0x1B) & 0x7FFF))
-            PlaySound2(0x315A4081);
+            PlaySound2(SOUND_GENERAL_BUTTONPRESS_2);
         o->OBJECT_FIELD_S32(0x1B) += 0x400;
         break;
     case 2:
@@ -80,7 +80,7 @@ void BehKickableBoardLoop(void)
             o->oAngleVelPitch = 0;
             o->oAction++;
             ShakeScreen(1);
-            PlaySound2(0x303D8081);
+            PlaySound2(SOUND_GENERAL_UNKNOWN4);
         }
         load_object_collision_model();
         break;

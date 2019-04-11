@@ -1387,11 +1387,11 @@ void BehAnimatesOnFloorSwitchPressLoop(void)
     {
         if (o->oFloorSwitchPressAnimationUnkF4 < 60)
         {
-            PlaySound(0x8055F011);
+            PlaySound(SOUND_CH8_UNK55);
         }
         else
         {
-            PlaySound(0x8054F011);
+            PlaySound(SOUND_CH8_UNK54);
         }
 
         if (--o->oFloorSwitchPressAnimationUnkF4 == 0)
@@ -1505,7 +1505,7 @@ void func_80308E84(void)
                 }
                 else
                 {
-                    PlaySound2(0x50254081);
+                    PlaySound2(SOUND_OBJECT_CANNON4);
                     o->oCannonUnkF4 = 70;
                     o->oCannonUnkFC = 0x1000 + 0x400 * (RandomU16() & 0x3);
                     o->oCannonUnk100 = -0x2000 + o->oMoveAngleYaw + 0x1000 * (RandomU16() % 5);
@@ -1614,7 +1614,7 @@ void func_803092AC(s32 arg0)
 
     if (obj_check_anim_frame(6))
     {
-        PlaySound2(0x30090081);
+        PlaySound2(SOUND_GENERAL_MOVINGWATER);
     }
 
     if (obj_follow_path(0) == -1)
@@ -1669,7 +1669,7 @@ void func_80309530(void)
 
             if (o->oTimer > 60 && o->oUnagiUnk1AC < 1000.0f)
             {
-                PlaySound2(0x524A0081);
+                PlaySound2(SOUND_OBJECT_EEL_2);
                 o->oUnagiUnkF8 = o->oUnagiUnk110 = 30.0f;
             }
             else
@@ -1883,7 +1883,7 @@ void func_8030A5D8(void)
         {
             if (o->oFaceAnglePitch < 0)
             {
-                PlaySound2(0x305F0081);
+                PlaySound2(SOUND_GENERAL_MOVINGBOOMAYBE);
                 val08 = 4.0f;
             }
             else
@@ -1938,7 +1938,7 @@ void func_8030A968(void)
         {
             if (--o->oHauntedChairUnkF4 == 0)
             {
-                PlaySound2(0x305D0081);
+                PlaySound2(SOUND_GENERAL_HAUNTEDCHAIR);
                 o->oMoveAnglePitch = obj_turn_pitch_toward_mario(120.0f, 0);
                 o->oMoveAngleYaw = o->oAngleToMario;
                 obj_compute_vel_from_move_pitch(50.0f);
@@ -1947,7 +1947,7 @@ void func_8030A968(void)
             {
                 if (gGlobalTimer % 4 == 0)
                 {
-                    PlaySound2(0x315C0081);
+                    PlaySound2(SOUND_GENERAL_SWISHAIR_2);
                 }
                 o->oFaceAngleYaw += 0x2710;
             }
@@ -2014,7 +2014,7 @@ void func_8030AF6C(void)
 {
     if (obj_is_near_to_and_facing_mario(400.0f, 0x3000))
     {
-        PlaySound2(0x502C8081);
+        PlaySound2(SOUND_OBJECT_DEFAULTDEATH);
         o->oAction = 1;
         o->oBookendUnkF4 = o->oFaceAnglePitch + 0x7FFF;
         o->oBookendUnkF8 = o->oFaceAngleRoll - 0x7FFF;
@@ -2091,7 +2091,7 @@ void BehFlyingBookendLoop(void)
 {
     if (!(o->activeFlags & 0x0008))
     {
-        o->oDeathSound = 0x50155081;
+        o->oDeathSound = SOUND_OBJECT_POUNDING1;
         obj_scale(o->header.gfx.scale[0]);
 
         switch (o->oAction)
@@ -2125,7 +2125,7 @@ void BehBookendSpawnLoop(void)
             if (sp1C != NULL)
             {
                 sp1C->oAction = 3;
-                PlaySound2(0x502C8081);
+                PlaySound2(SOUND_OBJECT_DEFAULTDEATH);
             }
             o->oTimer = 0;
         }
@@ -2274,7 +2274,7 @@ void BehBookSwitchLoop(void)
             o->oAction = 1;
             if (o->oBookSwitchUnkF4 == 0.0f)
             {
-                PlaySound2(0x502C8081);
+                PlaySound2(SOUND_OBJECT_DEFAULTDEATH);
             }
 
             if (approach_f32_ptr(&o->oBookSwitchUnkF4, 50.0f, 20.0f))
@@ -2301,7 +2301,7 @@ void BehBookSwitchLoop(void)
                 {
                     if (o->parentObj->oBookSwitchManagerUnkF4 == o->oBehParams2ndByte)
                     {
-                        SetSound(0x806AA081, D_803320E0);
+                        SetSound(SOUND_CH8_UNK6A, D_803320E0);
                         o->parentObj->oBookSwitchManagerUnkF4 += 1;
                     }
                     else
@@ -2309,7 +2309,7 @@ void BehBookSwitchLoop(void)
                         sp36 = RandomU16() & 0x1;
                         sp34 = gMarioObject->oPosZ + 1.5f * gMarioStates[0].vel[2];
 
-                        SetSound(0x700E0081, D_803320E0);
+                        SetSound(SOUND_MENU_CAMERABUZZ, D_803320E0);
                         if (sp34 > 0)
                         {
                             sp34 = 0;
@@ -2532,7 +2532,7 @@ void func_8030CA38(void)
     else if (o->oSnufitUnk10C < 3 && o->oTimer >= 3)
     {
         o->oSnufitUnk10C += 1;
-        PlaySound2(0x504D0081);
+        PlaySound2(SOUND_OBJECT_SNUFITSHOOT);
         spawn_object_relative(0, 0, -20, 40, o, 0xB4, beh_snufit_balls);
         o->oSnufitUnkF4 = -30;
         o->oTimer = 0;
@@ -2543,7 +2543,7 @@ void BehSnufitLoop(void)
 {
     if (!(o->activeFlags & 0x0008))
     {
-        o->oDeathSound = 0x5072C081;
+        o->oDeathSound = SOUND_OBJECT_SNUFITDEATH;
         if (o->oDistanceToMario < 800.0f)
         {
             obj_turn_pitch_toward_mario(120.0f, 2000);
@@ -2697,7 +2697,7 @@ void func_80311264(void)
 
             if (obj_face_pitch_approach(0, -o->oAngleVelPitch))
             {
-                PlaySound2(0x315B0081);
+                PlaySound2(SOUND_GENERAL_ELEVATORMOVE_2);
                 obj_perform_position_op(0);
                 o->oMoveAngleYaw = o->oFaceAngleYaw - 0x4000;
 
@@ -2726,7 +2726,7 @@ void func_80311264(void)
                 {
                     if (val00 < 150.0f && val00 > -450.0f)
                     {
-                        PlaySound2(0x315A0081);
+                        PlaySound2(SOUND_GENERAL_BUTTONPRESS_2_LOWPRIO);
                         o->oAction = 1;
                     }
                 }
@@ -2755,7 +2755,7 @@ void func_80311520(void)
         {
             if (gGlobalTimer % 4 == 0)
             {
-                PlaySound2(0x315B0081);
+                PlaySound2(SOUND_GENERAL_ELEVATORMOVE_2);
             }
             o->oFaceAngleRoll = 400 * (gGlobalTimer % 2) - 200;
         }
@@ -2801,7 +2801,7 @@ void func_803116F8(void)
 {
     if (func_802F92EC(0, 25))
     {
-        PlaySound2(0x30274081);
+        PlaySound2(SOUND_GENERAL_CLAMSHELL4);
         func_802ADA94();
         obj_become_tangible();
 
@@ -2810,7 +2810,7 @@ void func_803116F8(void)
     }
     else if (o->oTimer > 150 && o->oDistanceToMario < 500.0f)
     {
-        PlaySound2(0x30264081);
+        PlaySound2(SOUND_GENERAL_CLAMSHELL3);
         o->oAction = 1;
     }
     else if (o->oClamUnkF4 != 0)
@@ -2941,7 +2941,7 @@ void func_80313170(void)
     {
         if (--o->oBubbaUnk100 == 0)
         {
-            PlaySound2(0x50734081);
+            PlaySound2(SOUND_OBJECT_CHOMPINGSOUND);
             o->oAction = 0;
         }
         else if (o->oBubbaUnk100 < 15)

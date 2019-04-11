@@ -15,7 +15,7 @@ void func_802F05DC(void) {
 
     sp1E = func_802E4204();
     if ((sp1E & 0x09) == 0x01 && o->oVelY > 10.0f) {
-        PlaySound2(0x30480081);
+        PlaySound2(SOUND_GENERAL_GRINDELROLL);
         func_802A3004();
     } 
 
@@ -38,7 +38,7 @@ void BehBigBoulderLoop(void) {
         case 1:
             func_802F05DC();
             func_802EFB84(1.5f);
-            PlaySound(0x400A0001);
+            PlaySound(SOUND_ENVIRONMENT_UNKNOWN2);
             break;
     }
 

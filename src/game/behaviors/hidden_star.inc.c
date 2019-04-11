@@ -43,9 +43,9 @@ void BehHiddenStarTriggerLoop(void) {
             }
 
 #ifdef VERSION_JP
-            SetSound(0x701EFF81, D_803320E0);
+            SetSound(SOUND_MENU_STARSOUND, D_803320E0);
 #else
-            SetSound(0x70302081 + (((u8)hiddenStar->oHiddenStarSecretsCollected - 1) << 16), D_803320E0);
+            SetSound(SOUND_MENU_COLLECTSECRET + (((u8)hiddenStar->oHiddenStarSecretsCollected - 1) << 16), D_803320E0);
 #endif
         }
 

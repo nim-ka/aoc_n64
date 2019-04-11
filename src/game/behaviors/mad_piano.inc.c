@@ -39,7 +39,7 @@ static void mad_piano_act_attack(void)
 {
     obj_update_floor_and_walls();
     func_8029ED38(1);
-    func_802F9378(0, 0, 0x52564081);
+    func_802F9378(0, 0, SOUND_OBJECT_MADPIANOCHOMPING);
     
     if (o->oDistanceToMario < 500.0f)
     {

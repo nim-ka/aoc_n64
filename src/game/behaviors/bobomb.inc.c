@@ -97,7 +97,7 @@ void BobombChaseMarioLoop(void)
 
     collisionFlags = ObjectStep();
 
-    if (sp1a == 5 || sp1a == 16) PlaySound2(0x50270081);
+    if (sp1a == 5 || sp1a == 16) PlaySound2(SOUND_OBJECT_BOBOMBWALK);
 
     obj_turn_toward_object(o, gMarioObject, 16, 0x800);
     ObjCheckFloorDeath(collisionFlags, D_803600E0);
@@ -278,7 +278,7 @@ void BehBobombLoop(void)
             if ((dustPeriodMinus1 & o->oBobombFuseTimer) == 0) /* oBobombFuseTimer % 2 or oBobombFuseTimer % 8 */
                 spawn_object(o, 150, beh_bobomb_fuse_smoke);
                 
-            PlaySound(0x60086001);
+            PlaySound(SOUND_CH6_UNKNOWN008);
             
             o->oBobombFuseTimer++;
         }
@@ -313,7 +313,7 @@ void BobombBuddyIdleLoop(void)
 
     collisionFlags = ObjectStep();
 
-    if ((sp1a == 5) || (sp1a == 16)) PlaySound2(0x50270081);
+    if ((sp1a == 5) || (sp1a == 16)) PlaySound2(SOUND_OBJECT_BOBOMBWALK);
 
     if (o->oDistanceToMario < 1000.0f)
         o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, o->oAngleToMario, 0x140);
@@ -396,13 +396,13 @@ void BobombBuddyTalkLoop(void)
 void BobombBuddyTurnToTalkLoop(void)
 {
     s16 sp1e = o->header.gfx.unk38.animFrame;
-    if ((sp1e == 5) || (sp1e == 16)) PlaySound2(0x50270081);
+    if ((sp1e == 5) || (sp1e == 16)) PlaySound2(SOUND_OBJECT_BOBOMBWALK);
     
     o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, o->oAngleToMario, 0x1000);
     if ((s16)o->oMoveAngleYaw == (s16)o->oAngleToMario)
         o->oAction = BOBOMB_BUDDY_ACT_TALK;
     
-    PlaySound2(0x045BFF81);
+    PlaySound2(SOUND_ACTION_UNKNOWN45B);
 }
 
 void BobombBuddyActionLoop(void)

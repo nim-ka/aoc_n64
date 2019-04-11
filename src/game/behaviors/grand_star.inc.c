@@ -32,7 +32,7 @@ void BehGrandStarLoop(void)
         {
             set_object_angle(o,0,0,0);
             o->oAngleVelYaw = 0x400;
-            PlaySound2(0x8057FF91);
+            PlaySound2(SOUND_CH8_UNK57);
         }
         if(o->oTimer > 70)
             o->oAction++;
@@ -42,7 +42,7 @@ void BehGrandStarLoop(void)
     {
         if(o->oTimer == 0)
         {
-            PlaySound2(0x30730081);
+            PlaySound2(SOUND_GENERAL_GRANDSTAR);
             func_8028F9E8(173,o);
             o->oGrandStarUnk108 = func_802B2894(sp28,&o->oPosX,80.0f,-2.0f);
         }
@@ -55,7 +55,7 @@ void BehGrandStarLoop(void)
                 o->oVelY = 60.0f;
                 o->oForwardVel = 0.0f;
                 o->oSubAction++;
-                PlaySound2(0x30740081);
+                PlaySound2(SOUND_GENERAL_GRANDSTARJUMP);
             }
         }
         else if(o->oVelY < 0.0f && o->oPosY < o->oHomeY + 200.0f)
@@ -66,7 +66,7 @@ void BehGrandStarLoop(void)
             set_mario_npc_dialogue(0);
             o->oAction++;
             o->oInteractStatus = 0;
-            PlaySound2(0x30740081);
+            PlaySound2(SOUND_GENERAL_GRANDSTARJUMP);
         }
         func_802B2328(3,200,80,-60);
     }

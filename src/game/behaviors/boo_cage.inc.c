@@ -38,7 +38,7 @@ void BehBooCageLoop(void)
         obj_move_standard(-78);
         spawn_object(o,0,beh_powerup_sparkles2);
         if(o->oMoveFlags & 1)
-            PlaySound2(0x305E0081);
+            PlaySound2(SOUND_GENERAL_SOFTLANDING);
         if(o->oMoveFlags & (0x40 | 0x10 | 0x2))
             o->oAction++;
         break;

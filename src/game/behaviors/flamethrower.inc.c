@@ -69,7 +69,7 @@ void BehFlamethrowerLoop(void)
         o->oFlameThowerUnk110 = sp34;
         flame = spawn_object_relative(o->oBehParams2ndByte,0,0,0,o,sp30,beh_flamethrower_flame);
         flame->oForwardVel = flameVel;
-        PlaySound(0x60048001);
+        PlaySound(SOUND_CH6_UNKNOWN004);
     }
     else if(o->oTimer > 60)
         o->oAction = 0;

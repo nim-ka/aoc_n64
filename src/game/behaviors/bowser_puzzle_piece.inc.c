@@ -81,7 +81,7 @@ void func_802BE014(f32 a0,f32 a1,s32 a2,UNUSED s32 a3)
     else
     {
         if(o->oTimer == 20)
-            PlaySound2(0x90192081);
+            PlaySound2(SOUND_CH9_UNK19);
         if(o->oTimer < a2 + 20)
         {
             o->oBowserPuzzlePieceUnkFC += a0;

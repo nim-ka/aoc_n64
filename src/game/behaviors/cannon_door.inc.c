@@ -20,7 +20,7 @@ void BehCannonClosedInit(void)
 
 void CannonTrapDoorOpeningLoop(void)
 {
-    if (o->oTimer == 0) PlaySound2(0x30478081);
+    if (o->oTimer == 0) PlaySound2(SOUND_GENERAL_CANNONUP);
 
     if (o->oTimer < 30)
     {

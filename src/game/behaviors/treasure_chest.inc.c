@@ -31,9 +31,9 @@ void BehTreasureChestTopLoop(void) {
             if (o->oTimer == 0) {
                 if (sp34->oUnknownUnkFC_S32 == 0) {
                     spawn_object_relative(0, 0, -80, 120, o, 168, beh_water_air_bubble);
-                    SetSound(0x31228081, &o->header.gfx.unk54);
+                    SetSound(SOUND_GENERAL_CLAMSHELL1, &o->header.gfx.unk54);
                 } else {
-                    SetSound(0x31208081, &o->header.gfx.unk54);
+                    SetSound(SOUND_GENERAL_OPENCHEST1, &o->header.gfx.unk54);
                 }
             }
 
@@ -72,7 +72,7 @@ void BehTreasureChestBottomLoop(void) {
                 if (IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, 150)) {
                     if (!o->parentObj->oUnknownUnkF8_S32) {
                         if (o->parentObj->oUnknownUnkF4_S32 == o->oBehParams2ndByte) {
-                            SetSound(0x806AA081, D_803320E0);
+                            SetSound(SOUND_CH8_UNK6A, D_803320E0);
                             o->parentObj->oUnknownUnkF4_S32++;
                             o->oAction = 1;
                         }
@@ -81,7 +81,7 @@ void BehTreasureChestBottomLoop(void) {
                             o->parentObj->oUnknownUnkF8_S32 = 1;
                             o->oAction = 2;
                             obj_become_tangible();
-                            SetSound(0x700E0081, D_803320E0);
+                            SetSound(SOUND_MENU_CAMERABUZZ, D_803320E0);
                         }
                     }
                 }
@@ -133,7 +133,7 @@ void BehTreasureChestShipLoop(void) {
         case 1:
             if (gWaterRegions != NULL) {
                 gWaterRegions[6] += -5;
-                SetSound(0x41160001, D_803320E0);
+                SetSound(SOUND_ENVIRONMENT_WATERDRAIN, D_803320E0);
                 func_8027F308(9);
                 if (gWaterRegions[6] < -335) {
                     gWaterRegions[6] = -335;

@@ -12,7 +12,7 @@ void BehWdwExpressElevatorLoop(void)
     {
         o->oVelY = -20.0f;
         o->oPosY += o->oVelY;
-        PlaySound(0x400D0001);
+        PlaySound(SOUND_ENVIRONMENT_ELEVATOR4);
         if(o->oTimer > 132)
             o->oAction++;
     }
@@ -25,7 +25,7 @@ void BehWdwExpressElevatorLoop(void)
     {
         o->oVelY = 10.0f;
         o->oPosY += o->oVelY;
-        PlaySound(0x400D0001);
+        PlaySound(SOUND_ENVIRONMENT_ELEVATOR4);
         if(o->oPosY >= o->oHomeY)
         {
             o->oPosY = o->oHomeY;

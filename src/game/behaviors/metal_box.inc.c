@@ -41,7 +41,7 @@ void BehPushableLoop(void)
             if(func_802B0C54(8.0f,150.0f))
             {
                 o->oForwardVel = 4.0f;
-                PlaySound(0x40178001);
+                PlaySound(SOUND_ENVIRONMENT_METALBOXPUSH);
             }
         }
     }

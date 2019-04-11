@@ -59,8 +59,8 @@ void BullyCheckMarioCollision(void)
 {
     if (o->oInteractStatus & 0x8000) /* bit 15 */
     {
-        if (o->oBehParams2ndByte == BULLY_BP_SIZE_SMALL) PlaySound2(0x901C0081);
-        else PlaySound2(0x90570081);
+        if (o->oBehParams2ndByte == BULLY_BP_SIZE_SMALL) PlaySound2(SOUND_CH9_UNK1C);
+        else PlaySound2(SOUND_CH9_UNK57);
         
         o->oInteractStatus &= ~0x8000; /* bit 15 */
         o->oAction = BULLY_ACT_KNOCKBACK;
@@ -162,8 +162,8 @@ void PlayBullyStompingSound(void)
         case BULLY_ACT_PATROL:
             if (sp26 == 0 || sp26 == 12)
             {
-                if (o->oBehParams2ndByte == BULLY_BP_SIZE_SMALL) PlaySound2(0x501B3081);
-                else PlaySound2(0x50366081);
+                if (o->oBehParams2ndByte == BULLY_BP_SIZE_SMALL) PlaySound2(SOUND_OBJECT_BULLYWALK);
+                else PlaySound2(SOUND_OBJECT_BULLYWALKING);
             }
             break;
             
@@ -171,8 +171,8 @@ void PlayBullyStompingSound(void)
         case BULLY_ACT_BACK_UP:
             if (sp26 == 0 || sp26 == 5)
             {
-                if (o->oBehParams2ndByte == BULLY_BP_SIZE_SMALL) PlaySound2(0x501B3081);
-                else PlaySound2(0x50366081);
+                if (o->oBehParams2ndByte == BULLY_BP_SIZE_SMALL) PlaySound2(SOUND_OBJECT_BULLYWALK);
+                else PlaySound2(SOUND_OBJECT_BULLYWALKING);
             }
             break;
     }
@@ -196,9 +196,9 @@ void BullySpawnCoin(void)
 {
     struct Object *coin = spawn_object(o, 116, beh_moving_yellow_coin);
 #ifdef VERSION_JP
-    PlaySound2(0x30300081);
+    PlaySound2(SOUND_GENERAL_COINSPURT);
 #else
-    PlaySound2(0x38300081);
+    PlaySound2(SOUND_GENERAL_COINSPURT_2);
 #endif
     coin->oForwardVel = 10.0f;
     coin->oVelY = 100.0f;
@@ -377,7 +377,7 @@ void BehBigBullyWithMinionsLoop(void)
                 
             if (collisionFlags == 1)
             {
-                PlaySound2(0x500CA081);
+                PlaySound2(SOUND_OBJECT_THWOMP);
                 func_8027F440(1, o->oPosX, o->oPosY, o->oPosZ);
                 func_802A3004();
             }

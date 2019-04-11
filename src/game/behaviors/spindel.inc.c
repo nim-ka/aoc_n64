@@ -68,7 +68,7 @@ void BehSpindelLoop(void) {
 
         if (absf_2(o->oMoveAnglePitch & 0x1fff) < 800.0f
             && o->oAngleVelPitch != 0) {
-            PlaySound2(0x80482081);
+            PlaySound2(SOUND_CH8_UNK48);
         }
 
         sp1C = sins(o->oMoveAnglePitch * 4) * 23.0;

@@ -139,7 +139,7 @@ s32 func_802C3008(void)
         if(o->oOpacity == 40)
         {
             o->oBooUnkF4 = 0xFF;
-            PlaySound2(0x50480081);
+            PlaySound2(SOUND_OBJECT_BOOLAUGH2);
         }
         if(o->oOpacity > 180)
             sp1C = 1;
@@ -284,12 +284,12 @@ s32 func_802C3778(void)
         {
             obj_become_intangible();
             o->oInteractStatus = 0;
-            PlaySound2(0x500B0081);
+            PlaySound2(SOUND_OBJECT_BOOLAUGH1);
             sp1C = 1;
         }
         else
         {
-            PlaySound2(0x500A0081);
+            PlaySound2(SOUND_OBJECT_UNKNOWN1);
             o->oInteractStatus = 0;
             sp1C = -1;
         }
@@ -385,7 +385,7 @@ void ActionBoo1(void)
     if(sp1C == 1)
         o->oAction = 3;
     if(sp1C == 1)
-        create_sound_spawner(0x50244081);
+        create_sound_spawner(SOUND_OBJECT_DYINGENEMY1);
 }
 
 void ActionBoo2(void)
@@ -417,7 +417,7 @@ void ActionBoo4(void)
         sp1C = 107;
     if(obj_update_dialogue_unk1(2,2,sp1C,0))
     {
-        create_sound_spawner(0x50244081);
+        create_sound_spawner(SOUND_OBJECT_DYINGENEMY1);
         mark_object_for_deletion(o);
         if(sp1C == 108)
             func_80321228();
@@ -506,7 +506,7 @@ void ActionBooGivingStar1(void)
     if(sp24 == 1)
         o->oAction = 3;
     if(sp24 == 1)
-        create_sound_spawner(0x500CA081);
+        create_sound_spawner(SOUND_OBJECT_THWOMP);
 }
 
 void ActionBooGivingStar2(void)
@@ -687,7 +687,7 @@ void BehSpawnBigBooLoop(void)
 #ifndef VERSION_JP
                 func_80321228();
 #else
-                SetSound(0x806AA081,D_803320E0);
+                SetSound(SOUND_CH8_UNK6A,D_803320E0);
 #endif
             }
         }
@@ -732,7 +732,7 @@ void BehBooInCastleLoop(void)
         if(o->oDistanceToMario < 1000.0f)
         {
             o->oAction++;
-            PlaySound2(0x50480081);
+            PlaySound2(SOUND_OBJECT_BOOLAUGH2);
         }
         o->oForwardVel = 0.0f;
         sp1E = o->oAngleToMario;
@@ -776,7 +776,7 @@ void BehBooBossSpawnedBridgeLoop(void)
         o->oAction++;
     case 1:
         o->oPosY += 8.0f;
-        PlaySound(0x40080001);
+        PlaySound(SOUND_ENVIRONMENT_ELEVATOR2);
         if(o->oPosY > sp24)
         {
             o->oPosY = sp24;
@@ -785,7 +785,7 @@ void BehBooBossSpawnedBridgeLoop(void)
         break;
     case 2:
         if(o->oTimer == 0)
-            PlaySound2(0x303D0081);
+            PlaySound2(SOUND_GENERAL_UNKNOWN4_LOWPRIO);
         if(func_802A362C(o->oTimer))
             o->oAction++;
         break;

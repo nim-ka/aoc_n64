@@ -148,7 +148,7 @@ void BehAmpHomingLoop(void)
 
         case AMP_HOMING_ACT_CHASE:
             AmpHomingChaseLoop();
-            PlaySound(0x60034001);
+            PlaySound(SOUND_CH6_UNKNOWN003);
             break;
             
         case AMP_HOMING_ACT_GIVE_UP:
@@ -223,7 +223,7 @@ void AmpIdleLoop(void)
     
     o->oAmpYPhase++;
     
-    PlaySound(0x60034001);
+    PlaySound(SOUND_CH6_UNKNOWN003);
 }
 
 void BehAmpLoop(void)

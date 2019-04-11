@@ -87,7 +87,7 @@ void bhv_donut_platform_update(void)
         else
         {
             func_802A3C98(150.0f, 1);
-            create_sound_spawner(0x302E2081);
+            create_sound_spawner(SOUND_GENERAL_EXPLOSION4);
         }
     }
     else

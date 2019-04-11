@@ -66,7 +66,7 @@ void func_802B0F54(void)
             func_802A3004();
             func_802AD82C(30,138,3.0f,4);
             o->oAction++;
-            PlaySound2(0x3041c081);
+            PlaySound2(SOUND_GENERAL_BREAKBOX);
         }
         load_object_collision_model();
     }

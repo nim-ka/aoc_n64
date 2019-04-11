@@ -10,7 +10,7 @@ void bhv_horizontal_grindel_update(void)
     {
         if (!o->oHorizontalGrindelOnGround)
         {
-            PlaySound2(0x500CA081);
+            PlaySound2(SOUND_OBJECT_THWOMP);
             o->oHorizontalGrindelOnGround = TRUE;
             func_8027F440(1, o->oPosX, o->oPosY, o->oPosZ);
 
@@ -30,7 +30,7 @@ void bhv_horizontal_grindel_update(void)
                 }
                 else
                 {
-                    PlaySound2(0x50468081);
+                    PlaySound2(SOUND_OBJECT_KINGBOBOMBJUMP);
                     o->oForwardVel = 11.0f;
                     o->oVelY = 70.0f;
                     o->oGravity = -4.0f;
