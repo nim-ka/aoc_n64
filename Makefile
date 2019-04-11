@@ -73,7 +73,7 @@ ACTOR_DIR := actors
 
 # Directories containing source files
 SRC_DIRS := src src/engine src/game src/goddard src/goddard/dynlists src/audio
-ASM_DIRS := asm actors lib data levels sound demos anims text
+ASM_DIRS := asm actors lib data levels assets text
 BIN_DIRS := bin
 
 ULTRA_SRC_DIRS := lib/src lib/src/math

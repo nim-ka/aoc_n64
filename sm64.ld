@@ -703,15 +703,15 @@ SECTIONS
    /* 4E9FA0-? [?] */
    BEGIN_SEG(assets, __romPos)
    {
-      BUILD_DIR/anims/mario_anim_data.o(.data);
+      BUILD_DIR/assets/mario_anim_data.o(.data);
       . = ALIGN(0x10);
-      BUILD_DIR/demos/demo_data.o(.data);
+      BUILD_DIR/assets/demo_data.o(.data);
       . = ALIGN(0x10);
-      BUILD_DIR/sound/sound_data.ctl.o(.data);
+      BUILD_DIR/assets/sound_data.ctl.o(.data);
       . = ALIGN(0x10);
-      BUILD_DIR/sound/sound_data.tbl.o(.data);
+      BUILD_DIR/assets/sound_data.tbl.o(.data);
       . = ALIGN(0x10);
-      BUILD_DIR/sound/music_data.sbk.o(.data);
+      BUILD_DIR/assets/music_data.sbk.o(.data);
       . = ALIGN(0x10);
    }
    END_SEG(assets)
