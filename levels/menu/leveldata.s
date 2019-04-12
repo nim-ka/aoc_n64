@@ -61,14 +61,10 @@ main_menu_seg7_dl_070031A0: # 0x070031A0 - 0x07003218
 gsSPLight main_menu_seg7_light_07000008, 1
 gsSPLight main_menu_seg7_light_07000000, 2
 gsSPVertex main_menu_seg7_vertex_07003018, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  3,  2, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  5,  7,  6, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle 11,  8, 10, 0x0
-gsSP1Triangle 12, 13, 14, 0x0
-gsSP1Triangle 15, 12, 14, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  3,  2, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  5,  7,  6, 0x0
+gsSP2Triangles  8,  9, 10, 0x0, 11,  8, 10, 0x0
+gsSP2Triangles 12, 13, 14, 0x0, 15, 12, 14, 0x0
 gsDPTileSync
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 16, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 6, G_TX_NOLOD
 gsDPSetTileSize 0, 0, 0, 252, 124
@@ -76,8 +72,7 @@ gsSPEndDisplayList
 
 main_menu_seg7_dl_07003218: # 0x07003218 - 0x07003258
 gsSPVertex main_menu_seg7_vertex_07003118, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  3,  2, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  3,  2, 0x0
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
@@ -105,8 +100,7 @@ main_menu_seg7_dl_070032E0: # 0x070032E0 - 0x07003330
 gsSPLight main_menu_seg7_light_07000008, 1
 gsSPLight main_menu_seg7_light_07000000, 2
 gsSPVertex main_menu_seg7_vertex_07003258, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  3,  2, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  3,  2, 0x0
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
@@ -151,8 +145,7 @@ gsSPClearGeometryMode G_SHADING_SMOOTH
 gsSPLight main_menu_seg7_light_07000008, 1
 gsSPLight main_menu_seg7_light_07000000, 2
 gsSPVertex main_menu_seg7_vertex_07003258, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  1,  3,  2, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  1,  3,  2, 0x0
 gsDPPipeSync
 gsSPSetGeometryMode G_SHADING_SMOOTH
 gsSPEndDisplayList
@@ -252,36 +245,23 @@ main_menu_seg7_dl_07006038: # 0x07006038 - 0x07006150
 gsSPLight main_menu_seg7_light_07003458, 1
 gsSPLight main_menu_seg7_light_07003450, 2
 gsSPVertex main_menu_seg7_vertex_07005C68, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  6,  9,  7, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 13, 14, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  6,  9,  7, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 13, 14, 15, 0x0
 gsSPVertex main_menu_seg7_vertex_07005D68, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  6,  9,  7, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 13, 14, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  6,  9,  7, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 13, 14, 15, 0x0
 gsSPVertex main_menu_seg7_vertex_07005E68, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  0,  4,  3, 0x0
-gsSP1Triangle  5,  2,  6, 0x0
-gsSP1Triangle  5,  6,  7, 0x0
-gsSP1Triangle  6,  3,  4, 0x0
-gsSP1Triangle  6,  4,  7, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  0,  4,  3, 0x0,  5,  2,  6, 0x0
+gsSP2Triangles  5,  6,  7, 0x0,  6,  3,  4, 0x0
+gsSP2Triangles  6,  4,  7, 0x0,  8,  9, 10, 0x0
 gsSP1Triangle 11, 12, 13, 0x0
 gsSPVertex main_menu_seg7_vertex_07005F48, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9,  6,  8, 0x0
-gsSP1Triangle 10,  0,  2, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9,  6,  8, 0x0
+gsSP2Triangles 10,  0,  2, 0x0, 11, 12, 13, 0x0
 gsSP1Triangle 12, 14, 13, 0x0
 gsSPEndDisplayList
 
@@ -380,8 +360,7 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
 gsDPSetTileSize 0, 0, 0, 124, 124
 gsSPVertex main_menu_seg7_vertex_070062E8, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPTexture 1, 1, 0, 0, 0
 
 # There were multiple matching pairs, so I don't know if this is correct or not.
@@ -1082,8 +1061,7 @@ gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 16, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
 gsDPSetTileSize 0, 0, 0, 252, 124
 gsSPVertex main_menu_seg7_vertex_0700F1A8, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, main_menu_seg7_texture_0700E1A8
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
 gsDPLoadSync
@@ -1091,8 +1069,7 @@ gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 16, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
 gsDPSetTileSize 0, 0, 0, 252, 124
 gsSPVertex main_menu_seg7_vertex_0700F1E8, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 
 # There were multiple matching pairs, so I don't know if this is correct or not.
 gsDPSetRenderMode G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2 

@@ -37,23 +37,19 @@ gsSPVertex title_screen_bg_vertex_0A000000, 16, 0
 gsSPEndDisplayList
 
 glabel title_screen_bg_dl_0A000130 # 0x0A000130 - 0x0A000148
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel title_screen_bg_dl_0A000148 # 0x0A000148 - 0x0A000160
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
 gsSPEndDisplayList
 
 glabel title_screen_bg_dl_0A000160 # 0x0A000160 - 0x0A000178
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle  8, 10, 11, 0x0
+gsSP2Triangles  8,  9, 10, 0x0,  8, 10, 11, 0x0
 gsSPEndDisplayList
 
 glabel title_screen_bg_dl_0A000178 # 0x0A000178 - 0x0A000190
-gsSP1Triangle 12, 13, 14, 0x0
-gsSP1Triangle 12, 14, 15, 0x0
+gsSP2Triangles 12, 13, 14, 0x0, 12, 14, 15, 0x0
 gsSPEndDisplayList
 
 glabel title_screen_bg_dl_0A000190 # 0x0A000190 - 0x0A0001C0

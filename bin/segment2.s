@@ -1335,8 +1335,7 @@ gsSPClearGeometryMode G_LIGHTING
 gsDPSetCombineMode1Cycle G_CCMUX_SHADE, G_CCMUX_0, G_CCMUX_ENVIRONMENT, G_CCMUX_0, G_ACMUX_SHADE, G_ACMUX_0, G_ACMUX_ENVIRONMENT, G_ACMUX_0
 gsDPSetRenderMode G_RM_XLU_SURF, G_RM_XLU_SURF2
 gsSPVertex seg2_vertex_0200EDA8, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 seg2_vertex_0200EE28: # 0x0200EE28 - 0x0200EE68
@@ -1370,8 +1369,7 @@ glabel seg2_dl_0200EEA8
     gsDPSetTile G_IM_FMT_IA, G_IM_SIZ_4b, 1, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 3, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 4, G_TX_NOLOD
     gsDPSetTileSize 0, 0, 0, 60, 28
     gsSPVertex seg2_vertex_0200EE28, 4, 0
-    gsSP1Triangle  0,  1,  2, 0x0
-    gsSP1Triangle  0,  2,  3, 0x0
+    gsSP2Triangles  0,  1,  2, 0x0, 0,  2,  3, 0x0
     gsSPEndDisplayList
 .else
 glabel seg2_dl_0200EE68 # 0x0200EE68 - 0x0200EEA8
@@ -1391,8 +1389,7 @@ glabel seg2_dl_0200EEA8 # 0x0200EEA8 - 0x0200EEF0
     gsDPSetTile G_IM_FMT_IA, G_IM_SIZ_8b, 1, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 4, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 3, G_TX_NOLOD
     gsDPSetTileSize 0, 0, 0, 28, 60
     gsSPVertex seg2_vertex_0200EE28, 4, 0
-    gsSP1Triangle  0,  1,  2, 0x0
-    gsSP1Triangle  0,  2,  3, 0x0
+    gsSP2Triangles  0,  1,  2, 0x0, 0,  2,  3, 0x0
     gsSPEndDisplayList
 .endif
 
@@ -1456,8 +1453,7 @@ gsSPEndDisplayList
 
 glabel seg2_dl_0200F038 # 0x0200F038 - 0x0200F078
 gsSPVertex seg2_vertex_0200EFB0, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPTexture -32768, -32768, 0, 0, 0
 gsDPPipeSync
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
@@ -1604,13 +1600,11 @@ seg2_matrix_020144B0: # 0x020144B0 - 0x020144F0
 .hword     0,     0,     0,     0
 
 glabel seg2_dl_020144F0 # 0x020144F0 - 0x02014508
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel seg2_dl_02014508 # 0x02014508 - 0x02014520
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
 gsSPEndDisplayList
 
 glabel seg2_dl_02014520 # 0x02014520 - 0x02014548
@@ -1631,19 +1625,14 @@ gsDPLoadTextureBlock seg2_texture_0200F358, G_IM_FMT_IA, G_IM_SIZ_8b, 16, 16, 0,
 gsSPEndDisplayList
 
 glabel seg2_dl_020145D8 # 0x020145D8 - 0x02014620
-gsSP1Triangle  0,  3,  4, 0x0
-gsSP1Triangle  0,  4,  1, 0x0
-gsSP1Triangle  1,  4,  2, 0x0
-gsSP1Triangle  2,  4,  5, 0x0
-gsSP1Triangle  3,  6,  4, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
-gsSP1Triangle  4,  7,  8, 0x0
-gsSP1Triangle  4,  8,  5, 0x0
+gsSP2Triangles  0,  3,  4, 0x0,  0,  4,  1, 0x0
+gsSP2Triangles  1,  4,  2, 0x0,  2,  4,  5, 0x0
+gsSP2Triangles  3,  6,  4, 0x0,  4,  6,  7, 0x0
+gsSP2Triangles  4,  7,  8, 0x0,  4,  8,  5, 0x0
 gsSPEndDisplayList
 
 glabel seg2_dl_02014620 # 0x02014620 - 0x02014638
-gsSP1Triangle  0,  2,  1, 0x0
-gsSP1Triangle  1,  2,  3, 0x0
+gsSP2Triangles  0,  2,  1, 0x0,  1,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel seg2_dl_02014638 # 0x02014638 - 0x02014660
@@ -1675,14 +1664,10 @@ gsDPSetRenderMode G_RM_OPA_SURF, G_RM_OPA_SURF2
 gsSPEndDisplayList
 
 glabel seg2_dl_020146C0 # 0x020146C0 - 0x02014708
-gsSP1Triangle  0,  4,  1, 0x0
-gsSP1Triangle  1,  4,  5, 0x0
-gsSP1Triangle  1,  5,  2, 0x0
-gsSP1Triangle  2,  5,  6, 0x0
-gsSP1Triangle  2,  6,  7, 0x0
-gsSP1Triangle  2,  7,  3, 0x0
-gsSP1Triangle  3,  4,  0, 0x0
-gsSP1Triangle  3,  7,  4, 0x0
+gsSP2Triangles  0,  4,  1, 0x0,  1,  4,  5, 0x0
+gsSP2Triangles  1,  5,  2, 0x0,  2,  5,  6, 0x0
+gsSP2Triangles  2,  6,  7, 0x0,  2,  7,  3, 0x0
+gsSP2Triangles  3,  4,  0, 0x0,  3,  7,  4, 0x0
 gsSPEndDisplayList
 
 glabel seg2_dl_02014708 # 0x02014708 - 0x02014738
@@ -1814,10 +1799,8 @@ gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX
 gsSPEndDisplayList
 
 glabel seg2_dl_02014A30 # 0x02014A30 - 0x02014A60
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
 gsSP1Triangle 12, 13, 14, 0x0
 gsSPEndDisplayList
 
