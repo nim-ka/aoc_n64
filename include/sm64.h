@@ -483,6 +483,10 @@
 //Border Height Define for NTSC Versions
 #define BORDER_HEIGHT 8
 
+//Screen Size Defines
+#define SCREEN_WIDTH 320
+#define SCREEN_HEIGHT 240
+
 /*
  this input mask is unused by the controller,
  but END_DEMO is used internally to signal

@@ -23,7 +23,7 @@ void my_rdp_init(void)
     gDPPipeSync(gDisplayListHead++);
     gDPPipelineMode(gDisplayListHead++, G_PM_1PRIMITIVE);
     
-    gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 0, 0, 320, 240);
+    gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     gDPSetCombine(gDisplayListHead++, 0xFFFFFF, 0xFFFE793C);
 
     gDPSetTextureLOD(gDisplayListHead++, G_TL_TILE);
@@ -67,11 +67,11 @@ void clear_z_buffer(void)
     gDPSetDepthSource(gDisplayListHead++, G_ZS_PIXEL);
     gDPSetDepthImage(gDisplayListHead++, zBufferPtr);
 
-    gDPSetColorImage(gDisplayListHead++, G_IM_FMT_RGBA, 2, 320, zBufferPtr);
+    gDPSetColorImage(gDisplayListHead++, G_IM_FMT_RGBA, 2, SCREEN_WIDTH, zBufferPtr);
     gDPSetFillColor(gDisplayListHead++,
         GPACK_RGBA5551(255, 255, 240, 0) << 16 | GPACK_RGBA5551(255, 255, 240, 0));
 
-    gDPFillRectangle(gDisplayListHead++, 0, BORDER_HEIGHT, 319, 239-BORDER_HEIGHT);
+    gDPFillRectangle(gDisplayListHead++, 0, BORDER_HEIGHT, SCREEN_WIDTH-1, SCREEN_HEIGHT-1-BORDER_HEIGHT);
 }
 
 /** Sets up the final framebuffer image. */
@@ -80,8 +80,8 @@ void display_frame_buffer(void)
     gDPPipeSync(gDisplayListHead++);
 
     gDPSetCycleType(gDisplayListHead++, G_CYC_1CYCLE);
-    gDPSetColorImage(gDisplayListHead++, G_IM_FMT_RGBA, 2, 320, gFrameBuffers[frameBufferIndex]);
-    gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 0, BORDER_HEIGHT, 320, 240-BORDER_HEIGHT);
+    gDPSetColorImage(gDisplayListHead++, G_IM_FMT_RGBA, 2, SCREEN_WIDTH, gFrameBuffers[frameBufferIndex]);
+    gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 0, BORDER_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT-BORDER_HEIGHT);
 }
 
 /** Clears the framebuffer, allowing it to be overwritten. */
@@ -93,7 +93,7 @@ void clear_frame_buffer(int a)
     gDPSetCycleType(gDisplayListHead++, G_CYC_FILL);
 
     gDPSetFillColor(gDisplayListHead++, a);
-    gDPFillRectangle(gDisplayListHead++, 0, BORDER_HEIGHT, 319, 239-BORDER_HEIGHT);
+    gDPFillRectangle(gDisplayListHead++, 0, BORDER_HEIGHT, SCREEN_WIDTH-1, SCREEN_HEIGHT-1-BORDER_HEIGHT);
 
     gDPPipeSync(gDisplayListHead++);
 
@@ -126,7 +126,7 @@ void draw_screen_borders(void)
 {
     gDPPipeSync(gDisplayListHead++);
 
-    gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 0, 0, 320, 240);
+    gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     gDPSetRenderMode(gDisplayListHead++, G_RM_OPA_SURF, G_RM_OPA_SURF2);
     gDPSetCycleType(gDisplayListHead++, G_CYC_FILL);
 
@@ -134,8 +134,8 @@ void draw_screen_borders(void)
         GPACK_RGBA5551(0, 0, 0, 0) << 16 | GPACK_RGBA5551(0, 0, 0, 0));
     
     #if BORDER_HEIGHT != 0
-        gDPFillRectangle(gDisplayListHead++, 0, 0, 319, BORDER_HEIGHT-1);
-        gDPFillRectangle(gDisplayListHead++, 0, 240-BORDER_HEIGHT, 319, 239);
+        gDPFillRectangle(gDisplayListHead++, 0, 0, SCREEN_WIDTH-1, BORDER_HEIGHT-1);
+        gDPFillRectangle(gDisplayListHead++, 0, SCREEN_HEIGHT-BORDER_HEIGHT, SCREEN_WIDTH-1, SCREEN_HEIGHT-1);
     #endif
 }
 
@@ -216,16 +216,16 @@ void func_80247D84(void)
             fbNum = sCurrFBNum - 1;
 
         sp18 = (u64 *)PHYSICAL_TO_VIRTUAL(gFrameBuffers[fbNum]);
-        sp18 += D_8032C648++ * 80;
+        sp18 += D_8032C648++ * (SCREEN_WIDTH/4);
 
-        for (sp24 = 0; sp24 < 16; sp24++)
+        for (sp24 = 0; sp24 < ((SCREEN_HEIGHT/16)+1); sp24++)
         {
-            for (sp20 = 0; sp20 < 80; sp20++)
+            for (sp20 = 0; sp20 < (SCREEN_WIDTH/4); sp20++)
             {
                 *sp18 = 0;
                 sp18++;
             }
-            sp18 += 0x460;
+            sp18 += ((SCREEN_WIDTH/4)*14);
         }
     }
 
