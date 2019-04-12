@@ -2470,7 +2470,7 @@ void func_8031C0C4(struct Struct80225DD8 *arg0, u8 arg1)
     arg0->unk20 = FLOAT_CAST(arg1) / US_FLOAT(127.0);
 }
 
-#if NON_MATCHING
+#ifdef NON_MATCHING
 
 void func_8031C104(struct Struct80225DD8 *arg0)
 {

@@ -110,7 +110,7 @@ ULTRA_O_FILES := $(foreach file,$(ULTRA_S_FILES),$(BUILD_DIR)/$(file:.s=.o)) \
 DEP_FILES := $(O_FILES:.o=.d) $(ULTRA_O_FILES:.o=.d)
 
 # Files with NON_MATCHING ifdefs
-NON_MATCHING_C_FILES != grep -rl 'ifdef NON_MATCHING' $(wildcard src/audio/*.c)
+NON_MATCHING_C_FILES != grep -rl NON_MATCHING $(wildcard src/audio/*.c)
 NON_MATCHING_O_FILES = $(foreach file,$(NON_MATCHING_C_FILES),$(BUILD_DIR)/$(file:.c=.o))
 NON_MATCHING_DEP = $(BUILD_DIR)/src/audio/non_matching_dep
 
