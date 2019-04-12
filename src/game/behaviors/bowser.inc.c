@@ -37,7 +37,21 @@ s8 D_8032F4FC[] = {7,8,9,12,13,14,15,4,3,16,17,19,3,3,3,3};
 s16 D_8032F50C[] = {60,0};
 s16 D_8032F510[] = {50,0};
 s8 D_8032F514[] = {24,42,60,-1};
-s16 D_8032F518[][3] = {{119,120,121},{0,1,10},{40,0,0},{74,-1,-10},{114,1,-20},{134,-1,20},{154,1,40},{164,-1,-40},{174,1,-80},{179,-1,80},{184,1,160},{186,-1,-160},{186,1,0}}; // probably wrong. the first three should be separate from the rest
+s16 D_8032F518[3] = {119,120,121};
+s16 D_8032F520[][3] = {
+    { 1,  10,  40},
+    { 0,  0,   74},
+    {-1, -10,  114},
+    { 1, -20,  134},
+    {-1,  20,  154},
+    { 1,  40,  164},
+    {-1, -40,  174},
+    { 1, -80,  179},
+    {-1,  80,  184},
+    { 1,  160, 186},
+    {-1, -160, 186},
+    { 1, 0,    0}
+};
 
 void BehBowserTailAnchorLoop(void)
 {
@@ -978,7 +992,7 @@ s32 func_802B6120(void)
             func_8031FFB4(0,60,40);
             o->oBowserUnkF8++;
         }
-        if(obj_update_dialogue_unk1(2,18,D_8032F518[0][o->oBehParams2ndByte],0))
+        if(obj_update_dialogue_unk1(2,18,D_8032F518[o->oBehParams2ndByte],0))
         {
             o->oBowserUnkF8++;
             PlaySound2(SOUND_CH8_UNK60);
@@ -1092,15 +1106,15 @@ void ActionBowser19(void)
     {
         i = 0;
         sp1C = 1;
-        while(D_8032F518[1+i][3]!=0)
+        while(D_8032F520[i][2]!=0)
         {
-            if(o->oTimer < D_8032F518[1+i][3])
+            if(o->oTimer < D_8032F520[i][2])
             {
-                sp28 = D_8032F518[1+i][2];
-                if(D_8032F518[1+i][1] > 0)
-                    sp28 = (D_8032F518[1+i][3]-o->oTimer-1)*sp28;
+                sp28 = D_8032F520[i][1];
+                if(D_8032F520[i][0] > 0)
+                    sp28 = (D_8032F520[i][2]-o->oTimer-1)*sp28;
                 else
-                    sp28 = (o->oTimer-D_8032F518[1+i][0])*sp28;
+                    sp28 = (o->oTimer-D_8032F520[i-1][2])*sp28;
                 func_802B64E8(platform,sp28);
                 if(sp28 != 0)
                     SetSound(SOUND_ENVIRONMENT_UNKNOWN4,&platform->header.gfx.unk54);
