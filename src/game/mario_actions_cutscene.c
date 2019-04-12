@@ -263,23 +263,23 @@ void BehEndToadLoop(void)
 }
 
 // no clue what this does
-s32 GeoSwitchCase80257198(s32 a0, struct Object *o, UNUSED s32 a2)
+s32 GeoSwitchCase80257198(s32 run, struct GraphNode *node, UNUSED s32 a2)
 {
-    struct Object *obj = o;
+    struct GraphNodeSwitchCase *switchCase = (struct GraphNodeSwitchCase *)node;
     s16 sp2;
 
-    if (a0 == 1)
+    if (run == TRUE)
     {
         if (D_8032CBE4 == 0)
         {
             sp2 = (gAreaUpdateCounter + 0x20) >> 1 & 0x1F;
             if (sp2 < 7)
-                obj->header.gfx.angle[2] = D_8032CBE8 * 4 + D_8032CBEC[sp2];
+                switchCase->unk1E = D_8032CBE8 * 4 + D_8032CBEC[sp2];
             else
-                obj->header.gfx.angle[2] = D_8032CBE8 * 4 + 1;
+                switchCase->unk1E = D_8032CBE8 * 4 + 1;
         }
         else
-            obj->header.gfx.angle[2] = D_8032CBE8 * 4 + D_8032CBE4 - 1;
+            switchCase->unk1E = D_8032CBE8 * 4 + D_8032CBE4 - 1;
     }
 
     return 0;

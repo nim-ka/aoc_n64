@@ -302,35 +302,35 @@ Gfx *Geo18_802770A4(int a, struct GraphNode *b, UNUSED Mat4 *c)
     return sp28;
 }
 
-Gfx *GeoSwitchCase80277150(int a, struct GraphNode *b, UNUSED Mat4 *c)
+Gfx *GeoSwitchCase80277150(s32 run, struct GraphNode *node, UNUSED Mat4 *c)
 {
-    struct Struct80277150 *sp4 = (struct Struct80277150 *)b;
-    struct Struct8033A040 *sp0 = &D_8033A040[sp4->unk1C];
+    struct GraphNodeSwitchCase *switchCase = (struct GraphNodeSwitchCase *)node;
+    struct Struct8033A040 *sp0 = &D_8033A040[switchCase->numCases];
 
-    if (a == 1)
-        sp4->unk1E = ((sp0->unk0 & 0x200) == 0);
+    if (run == TRUE)
+        switchCase->unk1E = ((sp0->unk0 & 0x200) == 0);
     return NULL;
 }
 
-Gfx *GeoSwitchCase802771BC(int a, struct GraphNode *b, UNUSED Mat4 *c)
+Gfx *GeoSwitchCase802771BC(s32 run, struct GraphNode *node, UNUSED Mat4 *c)
 {
-    struct Struct80277150 *spC = (struct Struct80277150 *)b;
-    struct Struct8033A040 *sp8 = &D_8033A040[spC->unk1C];
+    struct GraphNodeSwitchCase *switchCase = (struct GraphNodeSwitchCase *)node;
+    struct Struct8033A040 *sp8 = &D_8033A040[switchCase->numCases];
     s16 sp6;
 
-    if (a == 1)
+    if (run == TRUE)
     {
         if (sp8->unk5 == 0)
         {
-            sp6 = ((spC->unk1C * 32 + gAreaUpdateCounter) >> 1) & 0x1F;
+            sp6 = ((switchCase->numCases * 32 + gAreaUpdateCounter) >> 1) & 0x1F;
             if (sp6 < 7)
-                spC->unk1E = D_8032CDF0[sp6];
+                switchCase->unk1E = D_8032CDF0[sp6];
             else
-                spC->unk1E = 0;
+                switchCase->unk1E = 0;
         }
         else
         {
-            spC->unk1E = sp8->unk5 - 1;
+            switchCase->unk1E = sp8->unk5 - 1;
         }
     }
     return NULL;
@@ -386,23 +386,23 @@ Gfx *Geo18_802773A4(int a, struct GraphNode *b, UNUSED Mat4 *c)
     return NULL;
 }
 
-Gfx *GeoSwitchCase802774F4(int a, struct GraphNode *b, UNUSED Mat4 *c)
+Gfx *GeoSwitchCase802774F4(s32 run, struct GraphNode *node, UNUSED Mat4 *c)
 {
-    struct Struct80277150 *sp4 = (struct Struct80277150 *)b;
+    struct GraphNodeSwitchCase *switchCase = (struct GraphNodeSwitchCase *)node;
     struct Struct8033A040 *sp0 = &D_8033A040[0];
 
-    if (a == 1)
+    if (run == TRUE)
     {
         if (sp0->unk6 == 0)
         {
-            sp4->unk1E = ((sp0->unk0 & 0x10000000) != 0);
+            switchCase->unk1E = ((sp0->unk0 & 0x10000000) != 0);
         }
         else
         {
-            if (sp4->unk1C == 0)
-                sp4->unk1E = (sp0->unk6 < 5) ? sp0->unk6 : 1;
+            if (switchCase->numCases == 0)
+                switchCase->unk1E = (sp0->unk6 < 5) ? sp0->unk6 : 1;
             else
-                sp4->unk1E = (sp0->unk6 < 2) ? sp0->unk6 : 0;
+                switchCase->unk1E = (sp0->unk6 < 2) ? sp0->unk6 : 0;
         }
     }
     return NULL;
@@ -430,35 +430,35 @@ Gfx *Geo18_802775CC(int a, struct GraphNode *b, UNUSED Mat4 *c)
     return NULL;
 }
 
-Gfx *GeoSwitchCase802776D8(int a, struct GraphNode *b, UNUSED Mat4 *c)
+Gfx *GeoSwitchCase802776D8(s32 run, struct GraphNode *node, UNUSED Mat4 *c)
 {
-    struct Struct80277150 *sp4 = (struct Struct80277150 *)b;
-    struct Struct8033A040 *sp0 = &D_8033A040[sp4->unk1C];
+    struct GraphNodeSwitchCase *switchCase = (struct GraphNodeSwitchCase *)node;
+    struct Struct8033A040 *sp0 = &D_8033A040[switchCase->numCases];
 
-    if (a == 1)
-        sp4->unk1E = sp0->unk8 >> 8;
+    if (run == TRUE)
+        switchCase->unk1E = sp0->unk8 >> 8;
     return NULL;
 }
 
-Gfx *GeoSwitchCase80277740(int a, struct GraphNode *b, UNUSED Mat4 *c)
+Gfx *GeoSwitchCase80277740(s32 run, struct GraphNode *node, UNUSED Mat4 *c)
 {
-    struct GraphNode *spC = b->next;
-    struct Struct80277150 *sp8 = (struct Struct80277150 *)b;
-    struct Struct8033A040 *sp4 = &D_8033A040[sp8->unk1C];
+    struct GraphNode *next = node->next;
+    struct GraphNodeSwitchCase *switchCase = (struct GraphNodeSwitchCase *)node;
+    struct Struct8033A040 *sp4 = &D_8033A040[switchCase->numCases];
 
-    if (a == 1)
+    if (run == TRUE)
     {
-        sp8->unk1E = sp4->unk4 & 1;
-        while (spC != b)
+        switchCase->unk1E = sp4->unk4 & 1;
+        while (next != node)
         {
-            if (spC->type == 21)
+            if (next->type == 21)
             {
                 if (sp4->unk4 & 2)
-                    spC->flags |= 1;
+                    next->flags |= 1;
                 else
-                    spC->flags &= ~1;
+                    next->flags &= ~1;
             }
-            spC = spC->next;
+            next = next->next;
         }
     }
     return NULL;

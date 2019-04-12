@@ -1383,85 +1383,86 @@ s32 Geo18_802B798C(s32 arg0,UNUSED s32 arg1, Mat4 arg2)
     return 0;
 }
 
-void func_802B70C8(struct Object* a0,struct GraphNodeObject* a1)
+void func_802B70C8(struct Object* a0, struct GraphNodeSwitchCase * switchCase)
 {
     s32 sp1C;
     s16 sp1A;
     sp1A = abs_angle_diff(a0->oMoveAngleYaw,a0->oAngleToMario);
-    sp1C = a1->angle[2];
+    sp1C = switchCase->unk1E;
     switch(sp1C)
     {
     case 0:
         if(sp1A > 0x2000)
         {
             if(a0->oAngleVelYaw > 0)
-                a1->angle[2] = 5;
+                switchCase->unk1E = 5;
             if(a0->oAngleVelYaw < 0)
-                a1->angle[2] = 3;
+                switchCase->unk1E = 3;
         }
         if(a0->oUnk1AE > 50)
-            a1->angle[2] = 1;
+            switchCase->unk1E = 1;
         break;
     case 1:
         if(a0->oUnk1AE > 2)
-            a1->angle[2] = 2;
+            switchCase->unk1E = 2;
         break;
     case 2:
         if(a0->oUnk1AE > 2)
-            a1->angle[2] = 9;
+            switchCase->unk1E = 9;
         break;
     case 9:
         if(a0->oUnk1AE > 2)
-            a1->angle[2] = 0;
+            switchCase->unk1E = 0;
         break;
     case 5:
         if(a0->oUnk1AE > 2)
         {
-            a1->angle[2] = 6;
+            switchCase->unk1E = 6;
             if(a0->oAngleVelYaw <= 0)
-                a1->angle[2] = 0;
+                switchCase->unk1E = 0;
         }
         break;
     case 6:
         if(a0->oAngleVelYaw <= 0)
-            a1->angle[2] = 5;
+            switchCase->unk1E = 5;
         break;
     case 3:
         if(a0->oUnk1AE > 2)
         {
-            a1->angle[2] = 4;
+            switchCase->unk1E = 4;
             if(a0->oAngleVelYaw >= 0)
-                a1->angle[2] = 0;
+                switchCase->unk1E = 0;
         }
         break;
     case 4:
         if(a0->oAngleVelYaw >= 0)
-            a1->angle[2] = 3;
+            switchCase->unk1E = 3;
         break;
     default:
-        a1->angle[2] = 0;
+        switchCase->unk1E = 0;
     }
-    if(a1->angle[2] != sp1C)
+    if(switchCase->unk1E != sp1C)
         a0->oUnk1AE = -1;
 }
 
-s32 GeoSwitchCase802B7C64(s32 a0,struct GraphNodeObject* a1,UNUSED s32 a2)
+s32 GeoSwitchCase802B7C64(s32 run, struct GraphNode* node, UNUSED Mat4 *a2)
 {
     UNUSED s16 sp36;
     UNUSED s32 unused;
     struct Object* sp2C = (struct Object*)D_8032CFA0;
-    struct GraphNodeObject* sp28 = a1;
-    if(a0 == 1)
+    struct GraphNodeSwitchCase* switchCase = (struct GraphNodeSwitchCase *)node;
+
+    if(run == TRUE)
     {
         if(D_8032CFA4 != NULL)
             sp2C = (struct Object*)D_8032CFA4->unk1C;
         switch(sp36 = sp2C->oUnk1B0_S16)
         {
         case 0:
-            func_802B70C8(sp2C,sp28);
+            func_802B70C8(sp2C,switchCase);
             break;
         case 1:
-            sp28->angle[2] = 2;
+            switchCase->unk1E = 2;
             break;
         }
         sp2C->oUnk1AE++;

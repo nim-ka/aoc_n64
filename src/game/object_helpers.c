@@ -167,48 +167,56 @@ Gfx *Geo18_8029D924(s32 sp40, struct struct8029D924 *sp44, UNUSED s32 sp48)
     return sp3C;
 }
 
-s32 GeoSwitchCase8029DB48(s32 a0, struct Object *a1)
+/** @bug Every geo function declares the 3 parameters of run, node, and the matrix array.
+ * This one (see also GeoSwitchCaseBlinking) doesn't. When executed, the node function
+ * executor passes the 3rd argument to a function that doesn't declare it. This is
+ * undefined behavior, but harmless in practice due to the o32 calling convention.
+ */
+s32 GeoSwitchCase8029DB48(s32 run, struct GraphNode *node)
 {
-    struct Object *sp4;
-    struct Object *sp0;
+    struct Object *obj;
+    struct GraphNodeSwitchCase *switchCase;
 
-    if (a0 == 1)
+    if (run == TRUE)
     {
-        sp4 = (struct Object *)D_8032CFA0; // TODO: change global type to Object pointer
-        sp0 = a1;
+        obj = (struct Object *)D_8032CFA0; // TODO: change global type to Object pointer
+        
+        // move to a local var because GraphNodes are passed in all geo functions.
+        // cast the pointer.
+        switchCase = (struct GraphNodeSwitchCase *)node;
 
         if (D_8032CFA4 != 0)
         {
-            sp4 = (struct Object *)D_8032CFA4->unk1C;
+            obj = (struct Object *)D_8032CFA4->unk1C;
         }
 
-        if (sp4->oAnimState >= sp0->header.gfx.angle[1])
+        // if the case is greater than the number of cases, set to 0 to avoid overflowing
+        // the switch.
+        if (obj->oAnimState >= switchCase->numCases)
         {
-            sp4->oAnimState = 0;
+            obj->oAnimState = 0;
         }
 
-        sp0->header.gfx.angle[2] = sp4->oAnimState;
+        // assign the case number for execution.
+        switchCase->unk1E = obj->oAnimState;
     }
 
     return 0;
 }
 
-s32 GeoSwitchCaseBlinking(s32 sp28, struct GraphNodeObject *sp2C)
+//! @bug Same issue as GeoSwitchCase8029DB48.
+s32 GeoSwitchCaseBlinking(s32 run, struct GraphNode *node)
 {
     s16 sp26;
     struct Surface *sp20;
-    UNUSED struct Object *sp1C;
-    struct GraphNodeObject *sp18;
+    UNUSED struct Object *sp1C = (struct Object *)D_8032CFA0; // TODO: change global type to Object pointer
+    struct GraphNodeSwitchCase *switchCase = (struct GraphNodeSwitchCase *)node;
 
-    sp1C = (struct Object *)D_8032CFA0; // TODO: change global type to Object pointer
-
-    sp18 = sp2C;
-
-    if (sp28 == 1)
+    if (run == TRUE)
     {
         if (gMarioObject == NULL)
         {
-            sp18->angle[2] = 0;
+            switchCase->unk1E = 0;
         }
         else
         {
@@ -224,14 +232,14 @@ s32 GeoSwitchCaseBlinking(s32 sp28, struct GraphNodeObject *sp2C)
 
                 if (sp26 >= 0)
                 {
-                    sp18->angle[2] = sp26;
+                    switchCase->unk1E = sp26;
                 }
             }
         }
     }
     else
     {
-        sp18->angle[2] = 0;
+        switchCase->unk1E = 0;
     }
 
     return 0;

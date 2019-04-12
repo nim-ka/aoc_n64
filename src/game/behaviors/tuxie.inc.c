@@ -319,28 +319,29 @@ void BehSmallPenguinLoop(void)
     }
 }
 
-s32    GeoSwitchCase802BFBAC(s32 a0,struct GraphNodeObject* a1,UNUSED Mat4 *a2)
+s32    GeoSwitchCase802BFBAC(s32 run, struct GraphNode* node, UNUSED Mat4 *a2)
 {
     struct Object* sp24;
-    struct GraphNodeObject* sp20;
+    struct GraphNodeSwitchCase* switchCase;
     s32 sp1C;
-    if(a0 == 1)
+
+    if(run == TRUE)
     {
         sp24 = (struct Object*)D_8032CFA0;
-        sp20 = a1;
-        sp20->angle[2] = 0;
+        switchCase = (struct GraphNodeSwitchCase *)node;
+        switchCase->unk1E = 0;
         sp1C = gGlobalTimer % 50;
         if(sp1C < 43)
-            sp20->angle[2] = 0;
+            switchCase->unk1E = 0;
         else if(sp1C < 45)
-            sp20->angle[2] = 1;
+            switchCase->unk1E = 1;
         else if(sp1C < 47)
-            sp20->angle[2] = 2;
+            switchCase->unk1E = 2;
         else
-            sp20->angle[2] = 1;
+            switchCase->unk1E = 1;
         if(segmented_to_virtual(beh_tuxies_mother) == sp24->behavior)
             if(sp24->oForwardVel > 5.0f)
-                sp20->angle[2] = 3;
+                switchCase->unk1E = 3;
     }
     return 0;
 }
