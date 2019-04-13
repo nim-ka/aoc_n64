@@ -7,7 +7,6 @@
 #include "config.h"
 #include "object_fields.h"
 #include "object_constants.h"
-#include "object_lists.h"
 #include "audio_defines.h"
 #include "model_ids.h"
 #include "mario_animation_ids.h"

@@ -3247,7 +3247,7 @@ labels:
    - [0x8029B664, "BehEndBirds1Loop"]
    - [0x8029B7E4, "BehEndBirds2Loop"]
    - [0x8029BAD4, "BehIntroSceneLoop"]
-   - [0x8029C2D8, "BehMarioLoop2"]
+   - [0x8029C2D8, "bhv_mario_update"]
    - [0x8029CD48, "Unknown8029CD48"]
    - [0x8029D100, "Geo18_8029D890"]
    - [0x8029D194, "Geo18_8029D924"]

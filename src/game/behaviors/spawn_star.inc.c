@@ -33,7 +33,7 @@ void BehCollectStarLoop(void) {
     o->oFaceAngleYaw += 0x800;
     
     if (o->oInteractStatus & 0x8000) {
-        hide_object(o);
+        mark_obj_for_deletion(o);
         o->oInteractStatus = 0;
     }
 
@@ -50,7 +50,7 @@ void BehStarSpawnInit(void) {
     else 
         func_8028F9E8(176, o);
 
-    set_time_stop_flag(10);
+    set_time_stop_flags(TIME_STOP_ENABLED | TIME_STOP_MARIO_AND_DOORS);
     o->activeFlags |= 0x20;
     obj_become_intangible();
 }
@@ -100,12 +100,12 @@ void BehStarSpawnLoop(void) {
             o->oFaceAngleYaw += 0x800;
             if (o->oTimer == 20) {
                 D_8033B858 = 1;
-                clear_time_stop_flag(10);
+                clear_time_stop_flags(TIME_STOP_ENABLED | TIME_STOP_MARIO_AND_DOORS);
                 o->activeFlags &= ~0x20;
             }
 
             if (o->oInteractStatus & 0x8000) {
-                hide_object(o);
+                mark_obj_for_deletion(o);
                 o->oInteractStatus = 0;
             }
             break;

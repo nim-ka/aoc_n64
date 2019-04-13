@@ -2913,7 +2913,7 @@ labels:
    - [0x8029BF64, "BehEndBirds2Loop"]
    - [0x8029C254, "BehIntroSceneLoop"]
    # object_list_processor
-   - [0x8029CA58, "BehMarioLoop2"]
+   - [0x8029CA58, "bhv_mario_update"]
    - [0x8029D4D0, "Unknown8029CD48"]
    # object_helpers
    - [0x8029D890, "Geo18_8029D890"]

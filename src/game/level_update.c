@@ -18,6 +18,7 @@
 #include "obj_behaviors.h"
 #include "display.h"
 #include "save_file.h"
+#include "debug_course.h"
 
 #define PLAY_MODE_NORMAL        0
 #define PLAY_MODE_PAUSED        2

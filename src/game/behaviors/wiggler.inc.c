@@ -132,7 +132,7 @@ static void wiggler_init_segments(void)
     struct ChainSegment *segments;
     struct Object *bodyPart;
 
-    segments = mem_pool_alloc(D_8035FE0C, 4 * sizeof(struct ChainSegment));
+    segments = mem_pool_alloc(gObjectMemoryPool, 4 * sizeof(struct ChainSegment));
     if (segments != NULL)
     {
         // Each segment represents the global position and orientation of each

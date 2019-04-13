@@ -27,7 +27,7 @@ void func_802E5B7C(void)
     {
         ObjSpawnYellowCoins(o, 1);
         o->oBehParams = 0x100;
-        func_8029C6D8(o, 1);
+        set_object_respawn_info_bits(o, 1);
     }
 }
 

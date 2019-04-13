@@ -64,7 +64,7 @@ static void chain_chomp_act_uninitialized(void)
 
     if (o->oDistanceToMario < 3000.0f)
     {
-        segments = mem_pool_alloc(D_8035FE0C, 5 * sizeof(struct ChainSegment));
+        segments = mem_pool_alloc(gObjectMemoryPool, 5 * sizeof(struct ChainSegment));
         if (segments != NULL)
         {
             // Each segment represents the offset of a chain part to the pivot.
@@ -541,7 +541,7 @@ static void chain_chomp_act_move(void)
 static void chain_chomp_act_unload_chain(void)
 {
     obj_hide();
-    mem_pool_free(D_8035FE0C, o->oChainChompSegments);
+    mem_pool_free(gObjectMemoryPool, o->oChainChompSegments);
 
     o->oAction = CHAIN_CHOMP_ACT_UNINITIALIZED;
 
@@ -615,7 +615,7 @@ void bhv_wooden_post_update(void)
             if (absi(o->oWoodenPostTotalMarioAngle) > 0x30000 && o->oTimer < 200)
             {
                 spawn_object_loot_yellow_coins(o, 5, 20.0f);
-                func_8029C6D8(o, 1);
+                set_object_respawn_info_bits(o, 1);
             }
         }
 

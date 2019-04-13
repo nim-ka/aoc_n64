@@ -47,7 +47,7 @@ void BehFlamethrowerLoop(void)
     UNUSED u8 pad[8];
     if(o->oAction == 0)
     {
-        if(gCurrLevelNum != LEVEL_BBH || D_8035FEF4 == 1)
+        if(gCurrLevelNum != LEVEL_BBH || gBBHMerryGoRoundActive == 1)
             if(o->oDistanceToMario < 2000.0f)
                 o->oAction++;
     }

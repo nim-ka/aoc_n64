@@ -118,7 +118,7 @@ static struct Object *link_objects_with_behavior(void *behavior)
     obj = (struct Object *)listHead->next;
     while (obj != (struct Object *)listHead)
     {
-        if (obj->behavior == behaviorAddr && obj->activeFlags != ACTIVE_FLAGS_INACTIVE)
+        if (obj->behavior == behaviorAddr && obj->activeFlags != ACTIVE_FLAGS_DEACTIVATED)
         {
             obj->parentObj = lastObject;
             lastObject = obj;

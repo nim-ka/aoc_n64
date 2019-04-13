@@ -755,22 +755,22 @@ static void return_to_main_menu(s16 prevMenuButtonId, struct Object *sourceButto
         if (prevMenuButtonId == MENU_BUTTON_SCORE)
         {
             for (buttonID = 7; buttonID < 14; buttonID++)
-                hide_object(sMainMenuButtons[buttonID]);
+                mark_obj_for_deletion(sMainMenuButtons[buttonID]);
         }
         if (prevMenuButtonId == MENU_BUTTON_COPY)
         {
             for (buttonID = 14; buttonID < 21; buttonID++)
-                hide_object(sMainMenuButtons[buttonID]);
+                mark_obj_for_deletion(sMainMenuButtons[buttonID]);
         }
         if (prevMenuButtonId == MENU_BUTTON_ERASE)
         {
             for (buttonID = 21; buttonID < 28; buttonID++)
-                hide_object(sMainMenuButtons[buttonID]);
+                mark_obj_for_deletion(sMainMenuButtons[buttonID]);
         }
         if (prevMenuButtonId == MENU_BUTTON_SOUND_MODE)
         {
             for (buttonID = 29; buttonID < 32; buttonID++)
-                hide_object(sMainMenuButtons[buttonID]);
+                mark_obj_for_deletion(sMainMenuButtons[buttonID]);
         }
     }
 }
@@ -791,17 +791,17 @@ static void score_menu_init_from_submenu(s16 prevMenuButtonId, struct Object *so
         if (prevMenuButtonId == MENU_BUTTON_SCORE) //! Not possible, this is checking if the score menu was opened from the score menu!
         {
             for (buttonID = 7; buttonID < 14; buttonID++)
-                hide_object(sMainMenuButtons[buttonID]);
+                mark_obj_for_deletion(sMainMenuButtons[buttonID]);
         }
         if (prevMenuButtonId == MENU_BUTTON_COPY)
         {
             for (buttonID = 14; buttonID < 21; buttonID++)
-                hide_object(sMainMenuButtons[buttonID]);
+                mark_obj_for_deletion(sMainMenuButtons[buttonID]);
         }
         if (prevMenuButtonId == MENU_BUTTON_ERASE)
         {
             for (buttonID = 21; buttonID < 28; buttonID++)
-                hide_object(sMainMenuButtons[buttonID]);
+                mark_obj_for_deletion(sMainMenuButtons[buttonID]);
         }
         sSelectedButtonID = MENU_BUTTON_SCORE;
         SetSound(SOUND_MENU_CAMERAZOOMIN, D_803320E0);
@@ -826,17 +826,17 @@ static void copy_menu_init_from_submenu(s16 prevMenuButtonId, struct Object *sou
         if (prevMenuButtonId == MENU_BUTTON_SCORE)
         {
             for (buttonID = 7; buttonID < 14; buttonID++)
-                hide_object(sMainMenuButtons[buttonID]);
+                mark_obj_for_deletion(sMainMenuButtons[buttonID]);
         }
         if (prevMenuButtonId == MENU_BUTTON_COPY) //! Not possible, this is checking if the copy menu was opened from the copy menu!
         {
             for (buttonID = 14; buttonID < 21; buttonID++)
-                hide_object(sMainMenuButtons[buttonID]);
+                mark_obj_for_deletion(sMainMenuButtons[buttonID]);
         }
         if (prevMenuButtonId == MENU_BUTTON_ERASE)
         {
             for (buttonID = 21; buttonID < 28; buttonID++)
-                hide_object(sMainMenuButtons[buttonID]);
+                mark_obj_for_deletion(sMainMenuButtons[buttonID]);
         }
         sSelectedButtonID = MENU_BUTTON_COPY;
         SetSound(SOUND_MENU_CAMERAZOOMIN, D_803320E0);
@@ -861,17 +861,17 @@ static void erase_menu_init_from_submenu(s16 prevMenuButtonId, struct Object *so
         if (prevMenuButtonId == MENU_BUTTON_SCORE)
         {
             for (buttonID = 7; buttonID < 14; buttonID++)
-                hide_object(sMainMenuButtons[buttonID]);
+                mark_obj_for_deletion(sMainMenuButtons[buttonID]);
         }
         if (prevMenuButtonId == MENU_BUTTON_COPY)
         {
             for (buttonID = 14; buttonID < 21; buttonID++)
-                hide_object(sMainMenuButtons[buttonID]);
+                mark_obj_for_deletion(sMainMenuButtons[buttonID]);
         }
         if (prevMenuButtonId == MENU_BUTTON_ERASE) //! Not possible, this is checking if the erase menu was opened from the erase menu!
         {
             for (buttonID = 21; buttonID < 28; buttonID++)
-                hide_object(sMainMenuButtons[buttonID]);
+                mark_obj_for_deletion(sMainMenuButtons[buttonID]);
         }
         sSelectedButtonID = MENU_BUTTON_ERASE;
         SetSound(SOUND_MENU_CAMERAZOOMIN, D_803320E0);

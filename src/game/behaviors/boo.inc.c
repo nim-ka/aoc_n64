@@ -32,7 +32,7 @@ s32 func_802C2A94(void)
 {
     if(obj_has_behavior(beh_spawned_boo) || obj_has_behavior(beh_spawned_boo_2))
     {
-        if(D_8035FEF4 == 0)
+        if(gBBHMerryGoRoundActive == 0)
             return 1;
         else
             return 0;
@@ -42,7 +42,7 @@ s32 func_802C2A94(void)
         if(o->activeFlags & 8)
             return 1;
         if(o->oRoom == 10)
-            if(gTimeStopState & 0x20)
+            if(gTimeStopState & TIME_STOP_MARIO_OPENED_DOOR)
                 return 1;
     }
     return 0;
@@ -57,7 +57,7 @@ s32 func_802C2B68(void)
         sp1C = 1500.0f;
     if(obj_has_behavior(beh_spawned_boo) || obj_has_behavior(beh_spawned_boo_2))
     {
-        if(D_8035FEF4 == 1)
+        if(gBBHMerryGoRoundActive == 1)
             return 1;
         else
             return 0;
@@ -496,7 +496,7 @@ void ActionBooGivingStar1(void)
     sp24 = func_802C3778();
     if(obj_has_behavior(beh_spawned_boo))
     {
-        if(D_8035FEF4 == 0)
+        if(gBBHMerryGoRoundActive == 0)
             o->oAction = 0;
     }
     else if(func_802C2A94())

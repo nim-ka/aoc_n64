@@ -16,7 +16,7 @@ void BehTreeSnowOrLeafLoop(void)
         mark_object_for_deletion(o);
     if(o->oTimer > 100)
         mark_object_for_deletion(o);
-    if(gPostUpdateObjCount > 212)
+    if(gPrevFrameObjectCount > 212)
         mark_object_for_deletion(o);
     o->oFaceAnglePitch += o->oAngleVelPitch;
     o->oFaceAngleRoll += o->oAngleVelRoll;
@@ -40,7 +40,7 @@ void BehSnowLeafParticleSpawnInit(void)
     s32 isSnow;
     f32 scale;
     UNUSED s32 unused2;
-    gMarioObject->oUnkE0 &= ~0x2000;
+    gMarioObject->oActiveParticleFlags &= ~0x2000;
     if(gCurrLevelNum == LEVEL_CCM || gCurrLevelNum == LEVEL_SL)
         isSnow = 1;
     else

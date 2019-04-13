@@ -17,7 +17,15 @@
 #define ACTIVE_FLAG_UNK9                   (1 <<  9) // 0x0200
 #define ACTIVE_FLAG_UNK10                  (1 << 10) // 0x0400
 
-#define ACTIVE_FLAGS_INACTIVE 0
+#define ACTIVE_FLAGS_DEACTIVATED 0
+
+/* respawnInfoType */
+#define RESPAWN_INFO_TYPE_NULL 0
+#define RESPAWN_INFO_TYPE_32   1
+#define RESPAWN_INFO_TYPE_16   2
+
+/* respawnInfo */
+#define RESPAWN_INFO_DONT_RESPAWN 0xFF
 
 /* oFlags */
 #define OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE         (1 <<  0) // 0x00000001
@@ -34,7 +42,7 @@
 #define OBJ_FLAG_0800                             (1 << 11) // 0x00000800
 #define OBJ_FLAG_1000                             (1 << 12) // 0x00001000
 #define OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO           (1 << 13) // 0x00002000
-#define OBJ_FLAG_4000                             (1 << 14) // 0x00004000
+#define OBJ_FLAG_PERSISTENT_RESPAWN               (1 << 14) // 0x00004000
 #define OBJ_FLAG_8000                             (1 << 15) // 0x00008000
 #define OBJ_FLAG_30                               (1 << 30) // 0x40000000
 
@@ -91,6 +99,26 @@
     OBJ_MOVE_UNDERWATER_ON_GROUND)
 #define OBJ_MOVE_MASK_HIT_WALL_OR_IN_WATER \
     (OBJ_MOVE_HIT_WALL | OBJ_MOVE_MASK_IN_WATER)
+
+/* oActiveParticleFlags */
+#define ACTIVE_PARTICLE_0    0x00000001
+#define ACTIVE_PARTICLE_3    0x00000008
+#define ACTIVE_PARTICLE_4    0x00000010
+#define ACTIVE_PARTICLE_5    0x00000020
+#define ACTIVE_PARTICLE_6    0x00000040
+#define ACTIVE_PARTICLE_7    0x00000080
+#define ACTIVE_PARTICLE_8    0x00000100
+#define ACTIVE_PARTICLE_9    0x00000200
+#define ACTIVE_PARTICLE_10   0x00000400
+#define ACTIVE_PARTICLE_11   0x00000800
+#define ACTIVE_PARTICLE_12   0x00001000
+#define ACTIVE_PARTICLE_13   0x00002000
+#define ACTIVE_PARTICLE_14   0x00004000
+#define ACTIVE_PARTICLE_15   0x00008000
+#define ACTIVE_PARTICLE_16   0x00010000
+#define ACTIVE_PARTICLE_17   0x00020000
+#define ACTIVE_PARTICLE_18   0x00040000
+#define ACTIVE_PARTICLE_19   0x00080000
 
 /* oAction */
 #define OBJ_ACT_LAVA_DEATH 100

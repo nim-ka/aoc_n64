@@ -749,7 +749,7 @@ static s32 beh_cmd_text_anim_rate(void)
     return BEH_CONTINUE;
 }
 
-void func_80385BF0(void)
+void stub_80385BF0(void)
 {
     // (empty function)
 }

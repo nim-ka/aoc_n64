@@ -693,7 +693,7 @@ void func_8037C51C(struct GraphNodeObject *graphNode, struct SpawnInfo *sp1c)
     graphNode->pos[2] = (f32) sp1c->startPos[2];
 
     graphNode->unk18 = sp1c->areaIndex;
-    graphNode->unk19 = sp1c->unk0D;
+    graphNode->unk19 = sp1c->activeAreaIndex;
     graphNode->asGraphNode = sp1c->unk18;
     graphNode->unk4C = sp1c;
     graphNode->throwMatrix = NULL;

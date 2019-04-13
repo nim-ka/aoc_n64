@@ -64,14 +64,6 @@ struct SpawnParticlesInfo
     /*0x10*/ f32 sizeRange;
 };
 
-#define TIME_STOP_UNKNOWN_0       (1 << 0)
-#define TIME_STOP_ENABLED         (1 << 1)
-#define TIME_STOP_UNKNOWN_2       (1 << 2)
-#define TIME_STOP_MARIO_AND_DOORS (1 << 3)
-#define TIME_STOP_ALL_OBJECTS     (1 << 4)
-#define TIME_STOP_UNKNOWN_5       (1 << 5)
-#define TIME_STOP_ACTIVE          (1 << 6)
-
 // extern ? D_80336610;
 extern struct GraphNode **gLoadedGraphNodes;
 // extern ? sLevelsWithRooms;

@@ -29,7 +29,7 @@ void func_802AA788(void)
     set_object_hitbox(o,&sSparkleSpawnStarHitbox);
     if(o->oInteractStatus & 0x8000)
     {
-        hide_object(o);
+        mark_obj_for_deletion(o);
         o->oInteractStatus = 0;
     }
 }
@@ -67,7 +67,7 @@ void BehUnused080CLoop(void)
         if(o->oTimer == 0)
         {
             func_8028F9E8(173,o);
-            set_time_stop_flag(10);
+            set_time_stop_flags(TIME_STOP_ENABLED | TIME_STOP_MARIO_AND_DOORS);
             o->activeFlags |= 0x20;
             o->oAngleVelYaw = 0x800;
             if(o->oBehParams2ndByte == 0)
@@ -114,7 +114,7 @@ void BehUnused080CLoop(void)
     {
         if(gCurrLevelCamera->unk30 == 0 && D_8032CFF4 == 0)
         {
-            clear_time_stop_flag(10);
+            clear_time_stop_flags(TIME_STOP_ENABLED | TIME_STOP_MARIO_AND_DOORS);
             o->activeFlags &= ~0x20;
             o->oAction++;
         }

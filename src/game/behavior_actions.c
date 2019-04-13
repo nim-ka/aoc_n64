@@ -100,7 +100,7 @@ struct Struct8032FCE8 {
 
 extern void BehClimbDetectLoop();
 extern s16 gDebugInfo[][8];
-extern s8 D_8035FE68[][2];
+extern s8 gDoorAdjacentRooms[][2];
 extern s32 inside_castle_seg7_dl_0702A880;
 extern u8 inside_castle_seg7_collision_ddd_warp_2[];
 extern u8 inside_castle_seg7_collision_ddd_warp[];

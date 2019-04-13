@@ -29,7 +29,7 @@ void Unknown802ADAF4(void)
 //TODO Fix name
 void func_802ADBBC(u32 flags)
 {
-    o->parentObj->oUnkE0 &= flags^-1; // Clear the flags given (could just be ~flags)
+    o->parentObj->oActiveParticleFlags &= flags^-1; // Clear the flags given (could just be ~flags)
 }
 
 void BehGroundSnowInit(void)

@@ -2229,7 +2229,7 @@ void func_80285E70(struct LevelCamera *a)
         D_8033B328.unk7A += D_8033B3DC;
         if (a->preset != CAMERA_PRESET_C_UP_LOOK && a->unk30 == 0)
         {
-            D_8035FE10 = 1;
+            gCheckingSurfaceCollisionsForCamera = 1;
             sp34 = find_floor(
                 D_8033B328.unk8C[0],
                 D_8033B328.unk8C[1] + 20.f,
@@ -2240,7 +2240,7 @@ void func_80285E70(struct LevelCamera *a)
                 if (D_8033B328.unk8C[1] < (sp34 += 100.f))
                     D_8033B328.unk8C[1] = sp34;
                 else
-                    D_8035FE10 = 0;
+                    gCheckingSurfaceCollisionsForCamera = 0;
             }
         }
         vec3f_copy(D_8033B250.unk14, D_8032D000->unk4);
@@ -2284,7 +2284,7 @@ void func_80286348(struct LevelCamera *a)
     D_8033B278.unk20 = D_8033B278.unk8;
     D_8033B278.unk2C = D_8033B278.unk10;
     func_8028F678(&D_8033B278);
-    D_8035FE10 = 1;
+    gCheckingSurfaceCollisionsForCamera = 1;
     vec3f_copy(a->unk10, D_8033B328.unk0[3]);
     vec3f_copy(a->unk4, D_8033B328.unk0[2]);
     a->angle = D_8033B328.unk7C;
@@ -2386,7 +2386,7 @@ void func_80286348(struct LevelCamera *a)
     }
     func_8028BB3C(a, func_8028BCC8(a));
     dummy_802877D8(a);
-    D_8035FE10 = 0;
+    gCheckingSurfaceCollisionsForCamera = 0;
     if (gCurrLevelNum != LEVEL_CASTLE)
     {
         if ((a->unk30 == 0 && (gPlayer1Controller->buttonDown & R_TRIG) && func_8028803C(0) == 2)
@@ -5642,8 +5642,8 @@ s32 func_8028F2F0(struct LevelCamera *a, Vec3f b, s16 *c, s16 d)
 void func_8028F678(struct Struct8033B278 *a)
 {
     struct Surface *sp1C;
-    s16 sp1A = D_8035FE10;
-    D_8035FE10 = 1;
+    s16 sp1A = gCheckingSurfaceCollisionsForCamera;
+    gCheckingSurfaceCollisionsForCamera = 1;
     
     if (find_floor(D_8032D000->unk4[0], D_8032D000->unk4[1] + 10.f, D_8032D000->unk4[2], &sp1C) != -11000.f)
         a->unk8 = sp1C->type;
@@ -5655,11 +5655,11 @@ void func_8028F678(struct Struct8033B278 *a)
     else
         a->unk10 = 0;
     
-    D_8035FE10 = 0;
+    gCheckingSurfaceCollisionsForCamera = 0;
     a->unk4 = find_floor(D_8032D000->unk4[0], D_8032D000->unk4[1] + 10.f, D_8032D000->unk4[2], &a->unk0);
     a->unk14 = find_ceil(D_8032D000->unk4[0], D_8032D000->unk4[1] - 10.f, D_8032D000->unk4[2], &a->unkC);
     a->unk30 = find_water_level(D_8032D000->unk4[0], D_8032D000->unk4[2]);
-    D_8035FE10 = sp1A;
+    gCheckingSurfaceCollisionsForCamera = sp1A;
 }
 
 void func_8028F800(u8 a, struct Object *b)
@@ -7347,7 +7347,7 @@ static void CutsceneDialog0_1(struct LevelCamera *a)
     s16 sp18;
     
     func_80290564(a);
-    set_time_stop_flag(6);
+    set_time_stop_flags(TIME_STOP_ENABLED | TIME_STOP_UNKNOWN_2);
     
 #if VERSION_US
     if (a->preset == CAMERA_PRESET_BOWSER_FIGHT)
@@ -7440,7 +7440,7 @@ void CutsceneDialog2(struct LevelCamera *a)
 {
     D_8033B4DA |= 0x4000;
     a->unk30 = 0;
-    clear_time_stop_flag(6);
+    clear_time_stop_flags(TIME_STOP_ENABLED | TIME_STOP_UNKNOWN_2);
 }
 
 static void CutsceneReadMessage0_1(struct LevelCamera *a)
@@ -7479,7 +7479,7 @@ void CutsceneReadMessage0(struct LevelCamera *a)
         if (get_dialog_id() != -1)
         {
             D_8033B6F0[0].unk1C[0] += 1;
-            set_time_stop_flag(6);
+            set_time_stop_flags(TIME_STOP_ENABLED | TIME_STOP_UNKNOWN_2);
         }
         break;
     case 1:
@@ -7492,7 +7492,7 @@ void CutsceneReadMessage0(struct LevelCamera *a)
             func_802902A8(a);
             func_80285A8C(a, 15);
             D_8033B4DA |= 0x4000;
-            clear_time_stop_flag(6);
+            clear_time_stop_flags(TIME_STOP_ENABLED | TIME_STOP_UNKNOWN_2);
             D_8033B400 = D_8033B6F0[1].unk1C[0];
             D_8033B402 = D_8033B6F0[1].unk1C[1];
             func_80290598(a);

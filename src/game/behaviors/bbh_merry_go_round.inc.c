@@ -22,12 +22,12 @@ void func_802C50F4(void)
         if(obj_is_mario_on_platform() || sp1A == SURFACE_001A)  //Surface 1A is floor of Merry-Go-Round
         {
             func_80320F84(19,0,78,50);
-            D_8035FEF4 = 1;
+            gBBHMerryGoRoundActive = 1;
         }
         else
         {
             func_80320F84(19,45,20,200);
-            D_8035FEF4 = 0;
+            gBBHMerryGoRoundActive = 0;
         }
         if(gMarioCurrentRoom != 0 && gMarioCurrentRoom != 10)
         {

@@ -22,7 +22,7 @@ s32 RandomSign(void);
 
 void func_80383D68(struct Object *object);
 
-void func_80385BF0(void);
+void stub_80385BF0(void);
 
 void cur_object_exec_behavior(void);
 

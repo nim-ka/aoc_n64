@@ -44,7 +44,7 @@ void spawn_macro_abs_yrot_2params(u32 model, u32 *behavior, s16 x, s16 y, s16 z,
 {
     if (behavior != NULL)
     {
-        struct Object *newObj = spawn_object_abs_with_rot(&D_8035FB18, 0, model, behavior, x, y, z, 0, convert_rotation(ry), 0);
+        struct Object *newObj = spawn_object_abs_with_rot(&gMacroObjectDefaultParent, 0, model, behavior, x, y, z, 0, convert_rotation(ry), 0);
         newObj->oBehParams = ((u32) params) << 16;
     }
 }
@@ -58,7 +58,7 @@ void spawn_macro_abs_yrot_param1(u32 model, u32 *behavior, s16 x, s16 y, s16 z, 
 {
     if (behavior != NULL)
     {
-        struct Object *newObj = spawn_object_abs_with_rot(&D_8035FB18, 0, model, behavior, x, y, z, 0, convert_rotation(ry), 0);
+        struct Object *newObj = spawn_object_abs_with_rot(&gMacroObjectDefaultParent, 0, model, behavior, x, y, z, 0, convert_rotation(ry), 0);
         newObj->oBehParams = ((u32) param) << 24;
     }
 }
@@ -69,7 +69,7 @@ void spawn_macro_abs_yrot_param1(u32 model, u32 *behavior, s16 x, s16 y, s16 z, 
  */
 void spawn_macro_abs_special(u32 model, u32 *behavior, s16 x, s16 y, s16 z, s16 unkA, s16 unkB, s16 unkC)
 {
-    struct Object *newObj = spawn_object_abs_with_rot(&D_8035FB18, 0, model, behavior, x, y, z, 0, 0, 0);
+    struct Object *newObj = spawn_object_abs_with_rot(&gMacroObjectDefaultParent, 0, model, behavior, x, y, z, 0, 0, 0);
 
     // Are all three of these values unused?
     newObj->oUnknownUnk108_F32 = (f32) unkA;
@@ -84,7 +84,7 @@ void Unknown802E142C(u32 (*a0)[], s16 a1[])
         
     sp3A = &beh_yellow_coin == a0 ? 116 : 0;
     
-    sp3C = spawn_object_abs_with_rot(&D_8035FB18, 0, sp3A, a0, a1[1], a1[2], a1[3], 0, convert_rotation(a1[0]), 0);
+    sp3C = spawn_object_abs_with_rot(&gMacroObjectDefaultParent, 0, sp3A, a0, a1[1], a1[2], a1[3], 0, convert_rotation(a1[0]), 0);
 
     sp3C->oUnk1A8 = a1[4];
     sp3C->oBehParams = (a1[4] & 0xFF) >> 16;
@@ -112,8 +112,8 @@ void spawn_macro_objects(s16 areaIndex, s16* macroObjList)
     struct Object* newObj;
     struct LoadedPreset preset;
 
-    D_8035FB18.header.gfx.unk18 = areaIndex;
-    D_8035FB18.header.gfx.unk19 = areaIndex;
+    gMacroObjectDefaultParent.header.gfx.unk18 = areaIndex;
+    gMacroObjectDefaultParent.header.gfx.unk19 = areaIndex;
 
     while (TRUE)
     {
@@ -140,12 +140,13 @@ void spawn_macro_objects(s16 areaIndex, s16* macroObjList)
         if (preset.param != 0)
             macroObject[MACRO_OBJ_PARAMS] = (macroObject[MACRO_OBJ_PARAMS] & 0xFF00) + (preset.param & 0x00FF);
 
-        if (((macroObject[MACRO_OBJ_PARAMS] >> 8) & 0x00FF) != 0xFF)
+        // If object has been killed, prevent it from respawning
+        if (((macroObject[MACRO_OBJ_PARAMS] >> 8) & RESPAWN_INFO_DONT_RESPAWN) != RESPAWN_INFO_DONT_RESPAWN)
         {
             // Spawn the new macro object.
             newObj = spawn_object_abs_with_rot
             (
-                &D_8035FB18,                                    // Parent object
+                &gMacroObjectDefaultParent,                                    // Parent object
                 0,                                              // Unused
                 preset.model,                                   // Model ID
                 preset.beh,                                     // Behavior address
@@ -160,8 +161,8 @@ void spawn_macro_objects(s16 areaIndex, s16* macroObjList)
             newObj->oUnk1A8 = macroObject[MACRO_OBJ_PARAMS];
             newObj->oBehParams = ((macroObject[MACRO_OBJ_PARAMS] & 0x00FF) << 16) + (macroObject[MACRO_OBJ_PARAMS] & 0xFF00);
             newObj->oBehParams2ndByte = macroObject[MACRO_OBJ_PARAMS] & 0x00FF;
-            newObj->unk1F6 = 2;
-            newObj->unk25C = macroObjList - 1;
+            newObj->respawnInfoType = RESPAWN_INFO_TYPE_16;
+            newObj->respawnInfo = macroObjList - 1;
             newObj->parentObj = newObj;
         }
     }
@@ -181,8 +182,8 @@ void spawn_macro_objects_hardcoded(s16 areaIndex, s16* macroObjList)
 
     UNUSED u8 pad2[10];
 
-    D_8035FB18.header.gfx.unk18 = areaIndex;
-    D_8035FB18.header.gfx.unk19 = areaIndex;
+    gMacroObjectDefaultParent.header.gfx.unk18 = areaIndex;
+    gMacroObjectDefaultParent.header.gfx.unk19 = areaIndex;
 
     while (TRUE)
     {
@@ -245,8 +246,8 @@ void spawn_special_objects(s16 areaIndex, s16** specialObjList)
     numOfSpecialObjects = **specialObjList;
     (*specialObjList)++;
 
-    D_8035FB18.header.gfx.unk18 = areaIndex;
-    D_8035FB18.header.gfx.unk19 = areaIndex;
+    gMacroObjectDefaultParent.header.gfx.unk18 = areaIndex;
+    gMacroObjectDefaultParent.header.gfx.unk19 = areaIndex;
 
     for (i = 0; i < numOfSpecialObjects; i++)
     {

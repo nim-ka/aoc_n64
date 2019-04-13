@@ -11,6 +11,6 @@
 // extern ? func_802C89CC(?);
 // extern ? func_802C8AD4(?);
 // extern ? func_802C8B50(?);
-extern void func_802C8C44(void);
+extern void detect_object_collisions(void);
 
 #endif /* _OBJECT_COLLISION_H */

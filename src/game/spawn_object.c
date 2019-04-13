@@ -13,177 +13,264 @@
 #include "spawn_object.h"
 #include "object_list_processor.h"
 
+/**
+ * An unused linked list struct that seems to have been replaced by ObjectNode.
+ */
 struct LinkedList
 {
-    struct LinkedList *prev;
     struct LinkedList *next;
+    struct LinkedList *prev;
 };
 
-void Unknown802C8CF0(struct LinkedList *a, struct LinkedList **head, struct LinkedList *c, int size, int count)
+/**
+ * Clear the doubly linked usedList. Singly link each item in the pool into
+ * a list, and return this list in pFreeList.
+ * Appears to have been replaced by init_free_object_list.
+ */
+static void unused_init_free_list(
+    struct LinkedList *usedList,
+    struct LinkedList **pFreeList,
+    struct LinkedList *pool,
+    int itemSize,
+    int poolLength)
 {
     int i;
-    struct LinkedList *addr = c;
+    struct LinkedList *node = pool;
 
-    a->prev = a;
-    a->next = a;
-    *head = c;
+    usedList->next = usedList;
+    usedList->prev = usedList;
 
-    for (i = 0; i < count - 1; i++)
+    *pFreeList = pool;
+
+    for (i = 0; i < poolLength - 1; i++)
     {
-        addr = (struct LinkedList *)((u8 *)addr + size);
-        c->prev = addr;
-        c = addr;
+        // Add next node to free list
+        node = (struct LinkedList *)((u8 *)node + itemSize);
+        pool->next = node;
+        pool = node;
     }
-    c->prev = NULL;
+
+    // End the list
+    pool->next = NULL;
 }
 
-struct LinkedList *Unknown802C8D60(struct LinkedList *a, struct LinkedList *b)
+/**
+ * Attempt to allocate a node from freeList (singly linked) and append it
+ * to the end of destList (doubly linked). Return the object, or NULL if
+ * freeList is empty.
+ * Appears to have been replaced by try_allocate_object.
+ */
+static struct LinkedList *unused_try_allocate(
+    struct LinkedList *destList,
+    struct LinkedList *freeList)
 {
-    struct LinkedList *sp4 = b->prev;
+    struct LinkedList *node = freeList->next;
 
-    if (sp4 != NULL)
+    if (node != NULL)
     {
-        b->prev = sp4->prev;
-        sp4->next = a->next;
-        sp4->prev = a;
-        a->next->prev = sp4;
-        a->next = sp4;
+        // Remove from free list
+        freeList->next = node->next;
+
+        // Insert at the end of destination list
+        node->prev = destList->prev;
+        node->next = destList;
+        destList->prev->next = node;
+        destList->prev = node;
     }
-    return sp4;
+
+    return node;
 }
 
-struct Object *try_get_next_obj(struct ObjectNode *objList, struct ObjectNode *b)
+/**
+ * Attempt to allocate an object from freeList (singly linked) and append it
+ * to the end of destList (doubly linked). Return the object, or NULL if
+ * freeList is empty.
+ */
+static struct Object *try_allocate_object(
+    struct ObjectNode *destList,
+    struct ObjectNode *freeList)
 {
     struct ObjectNode *nextObj;
 
-    // if the next pointer isnt NULL, we are not at the end of the list.
-    // Set and nest the nextObj pointer.
-    if ((nextObj = b->next) != NULL)
+    if ((nextObj = freeList->next) != NULL)
     {
-        b->next = nextObj->next;
-        nextObj->prev = objList->prev;
-        nextObj->next = objList;
-        objList->prev->next = nextObj;
-        objList->prev = nextObj;
+        // Remove from free list
+        freeList->next = nextObj->next;
+
+        // Insert at end of destination list
+        nextObj->prev = destList->prev;
+        nextObj->next = destList;
+        destList->prev->next = nextObj;
+        destList->prev = nextObj;
     }
     else
-        return NULL; // we are at the end of the list. There is nothing to allocate.
+    {
+        return NULL;
+    }
 
-    // FIXME: What types do these functions actually take?
-    func_8037C0BC((struct GraphNode *)nextObj);
-    func_8037C044(&D_8038BD88, (struct GraphNode *)nextObj);
+    func_8037C0BC(&nextObj->gfx.node);
+    func_8037C044(&D_8038BD88, &nextObj->gfx.node);
+
     return (struct Object *)nextObj;
 }
 
-void Unknown802C8E70(struct LinkedList *a, struct LinkedList *b)
+/**
+ * Remove the node from the doubly linked list it's in, and place it in the
+ * singly linked freeList.
+ * This function seems to have been replaced by deallocate_object.
+ */
+static void unused_deallocate(
+    struct LinkedList *freeList, struct LinkedList *node)
 {
-    b->prev->next = b->next;
-    b->next->prev = b->prev;
-    b->prev = a->prev;
-    a->prev = b;
+    // Remove from doubly linked list
+    node->next->prev = node->prev;
+    node->prev->next = node->next;
+
+    // Insert at beginning of singly linked list
+    node->next = freeList->next;
+    freeList->next = node;
 }
 
-void func_802C8EA4(struct ObjectNode *a, struct ObjectNode *b)
+/**
+ * Remove the given object from the object list that it's currently in, and
+ * insert it at the beginning of the free list (singly linked).
+ */
+static void deallocate_object(struct ObjectNode *freeList, struct ObjectNode *obj)
 {
-    b->next->prev = b->prev;
-    b->prev->next = b->next;
-    b->next = a->next;
-    a->next = b;
+    // Remove from object list
+    obj->next->prev = obj->prev;
+    obj->prev->next = obj->next;
+
+    // Insert at beginning of free list
+    obj->next = freeList->next;
+    freeList->next = obj;
 }
 
-void init_free_obj_list(void)
+/**
+ * Add every object in the pool to the free object list.
+ */
+void init_free_object_list(void)
 {
     int i;
-    int objLimit = OBJECT_ARRAY_SIZE;
-    struct Object *obj = &gObjectPool[0];
+    int poolLength = OBJECT_POOL_CAPACITY;
 
+    // Add the first object in the pool to the free list
+    struct Object *obj = &gObjectPool[0];
     gFreeObjectList.next = (struct ObjectNode *)obj;
 
-    for (i = 0; i < objLimit - 1; i++)
+    // Link each object in the pool to the following object
+    for (i = 0; i < poolLength - 1; i++)
     {
-        obj->header.next = &obj[1].header;
+        obj->header.next = &(obj + 1)->header;
         obj++;
     }
+
+    // End the list
     obj->header.next = NULL;
 }
 
-void clear_object_lists(struct ObjectNode *obj)
+/**
+ * Clear each object list, without adding the objects back to the free list.
+ */
+void clear_object_lists(struct ObjectNode *objLists)
 {
     int i;
 
-    for (i = 0; i < 13; i++)
+    for (i = 0; i < NUM_OBJ_LISTS; i++)
     {
-        obj[i].next = &obj[i];
-        obj[i].prev = &obj[i];
+        objLists[i].next = &objLists[i];
+        objLists[i].prev = &objLists[i];
     }
 }
 
-void UnknownRecursive802C8FF8(struct Object *a)
+/**
+ * This function looks broken, but it appears to attempt to delete the leaf
+ * graph nodes under obj and obj's siblings.
+ */
+static void unused_delete_leaf_nodes(struct Object *obj)
 {
-    struct Object *sp24;
-    struct Object *sp20;
-    struct Object *sp1C = a;
+    struct Object *children;
+    struct Object *sibling;
+    struct Object *obj0 = obj;
 
-    if ((sp24 = (struct Object *)a->header.gfx.node.children) != NULL)
-        UnknownRecursive802C8FF8(sp24);
+    if ((children = (struct Object *)obj->header.gfx.node.children) != NULL)
+    {
+        unused_delete_leaf_nodes(children);
+    }
     else
-        hide_object(a);
-
-    while ((sp20 = (struct Object *)a->header.gfx.node.next) == sp1C)
     {
-        UnknownRecursive802C8FF8(sp20);
-        a = (struct Object *)sp20->header.gfx.node.next;
+        // No children
+        mark_obj_for_deletion(obj);
+    }
+
+    // Probably meant to be !=
+    while ((sibling = (struct Object *)obj->header.gfx.node.next) == obj0)
+    {
+        unused_delete_leaf_nodes(sibling);
+        obj = (struct Object *)sibling->header.gfx.node.next;
     }
 }
 
-void unload_obj(struct Object *obj)
+/**
+ * Free the given object.
+ */
+void unload_object(struct Object *obj)
 {
-    obj->activeFlags = 0;
-    obj->prevObj = 0;
+    obj->activeFlags = ACTIVE_FLAGS_DEACTIVATED;
+    obj->prevObj = NULL;
+
     obj->header.gfx.throwMatrix = NULL;
     func_803206F8(&obj->header.gfx.unk54);
-    func_8037C0BC((struct GraphNode *)obj);
-    func_8037C044(&D_8038BD88, (struct GraphNode *) obj);
-    obj->header.gfx.node.flags &= ~4;
-    obj->header.gfx.node.flags &= ~1;
-    func_802C8EA4(&gFreeObjectList, &obj->header);
+    func_8037C0BC(&obj->header.gfx.node);
+    func_8037C044(&D_8038BD88, &obj->header.gfx.node);
+
+    obj->header.gfx.node.flags &= ~GRAPH_RENDER_BILLBOARD;
+    obj->header.gfx.node.flags &= ~GRAPH_RENDER_01;
+
+    deallocate_object(&gFreeObjectList, &obj->header);
 }
 
-struct Object *try_init_object(struct ObjectNode *objList)
+/**
+ * Attempt to allocate a new object slot into the given object list, freeing
+ * an unimportant object if necessary. If this is not possible, hang using an
+ * infinite loop.
+ */
+static struct Object *allocate_object(struct ObjectNode *objList)
 {
     int i;
-    struct Object *obj = try_get_next_obj(objList, &gFreeObjectList);
-    struct Object *unloadObj;
+    struct Object *obj = try_allocate_object(objList, &gFreeObjectList);
 
     // The object list is full if the newly created pointer is NULL.
     // If this happens, we first attempt to unload unimportant objects
     // in order to finish allocating the object.
     if (obj == NULL)
     {
-        unloadObj = find_unimportant_object(); // try to get the pointer to the next unimportant obj.
+        // Look for an unimportant object to kick out.
+        struct Object *unimportantObj = find_unimportant_object();
 
-        // if the retrieved slot is NULL, it is because the object list is
-        // completely exhausted with important objects. This behavior if left
-        // unchecked quickly becomes erroneous, so hang the game forever if
-        // the object list gets full with important objects.
-        if (unloadObj == NULL)
+        // If no unimportant object exists, then the object pool is exhausted.
+        if (unimportantObj == NULL)
         {
-            while (1)
-                ;
+            // We've met with a terrible fate.
+            while (TRUE) {}
         }
         else
         {
-            // unload the unimportant object and load the new object in.
-            unload_obj(unloadObj);
-            obj = try_get_next_obj(objList, &gFreeObjectList);
-            if (gCurrentObject == obj) // hmm...
+            // If an unimportant object does exist, unload it and take its slot.
+            unload_object(unimportantObj);
+            obj = try_allocate_object(objList, &gFreeObjectList);
+            if (gCurrentObject == obj)
             {
+                //! Uh oh, the unimportant object was in the middle of
+                //  updating! This could cause some interesting logic errors,
+                //  but I don't know of any unimportant objects that spawn
+                //  other objects.
             }
         }
     }
 
-    // we have gotten a good pointer to an object. initialize the
-    // object contents below.
+    // Initialize object fields
+
     obj->activeFlags = ACTIVE_FLAG_ACTIVE | ACTIVE_FLAG_UNK8;
     obj->parentObj = obj;
     obj->prevObj = NULL;
@@ -191,34 +278,46 @@ struct Object *try_init_object(struct ObjectNode *objList)
     obj->numCollidedObjs = 0;
 
     for (i = 0; i < 0x50; i++)
+    {
         obj->rawData.asU32[i] = 0;
+    }
 
     obj->unk1C8 = 0;
     obj->stackIndex = 0;
     obj->unk1F4 = 0;
+
     obj->hitboxRadius = 50.0f;
     obj->hitboxHeight = 100.0f;
     obj->hurtboxRadius = 0.0f;
     obj->hurtboxHeight = 0.0f;
     obj->hitboxDownOffset = 0.0f;
     obj->unk210 = 0;
+
     obj->platform = NULL;
     obj->collisionData = NULL;
     obj->oIntangibleTimer = -1;
     obj->oDamageOrCoinValue = 0;
     obj->oHealth = 2048;
+
     obj->oCollisionDistance = 1000.0f;
     if (gCurrLevelNum == LEVEL_TTC)
+    {
         obj->oDrawingDistance = 2000.0f;
+    }
     else
+    {
         obj->oDrawingDistance = 4000.0f;
+    }
+
     mtxf_identity(obj->transform);
-    obj->unk1F6 = 0;
-    obj->unk25C = 0;
+
+    obj->respawnInfoType = RESPAWN_INFO_TYPE_NULL;
+    obj->respawnInfo = NULL;
+
     obj->oDistanceToMario = 19000.0f;
     obj->oRoom = -1;
 
-    obj->header.gfx.node.flags &= ~0x10;
+    obj->header.gfx.node.flags &= ~GRAPH_RENDER_10;
     obj->header.gfx.pos[0] = -10000.0f;
     obj->header.gfx.pos[1] = -10000.0f;
     obj->header.gfx.pos[2] = -10000.0f;
@@ -227,56 +326,81 @@ struct Object *try_init_object(struct ObjectNode *objList)
     return obj;
 }
 
-void put_obj_on_floor(struct Object *obj)
+/**
+ * If the object is close to being on the floor, move it to be exactly on the
+ * floor.
+ */
+static void snap_object_to_floor(struct Object *obj)
 {
     struct Surface *surface;
 
     obj->oFloorHeight = find_floor(obj->oPosX, obj->oPosY, obj->oPosZ, &surface);
-    if (obj->oFloorHeight + 2.0f > obj->oPosY && obj->oPosY > obj->oFloorHeight - 10.0f)
+
+    if (obj->oFloorHeight + 2.0f > obj->oPosY &&
+        obj->oPosY > obj->oFloorHeight - 10.0f)
     {
         obj->oPosY = obj->oFloorHeight;
         obj->oMoveFlags |= OBJ_MOVE_ON_GROUND;
     }
 }
 
+/**
+ * Spawn an object at the origin with the behavior script at virtual address
+ * behScript.
+ */
 struct Object *create_object(u32 *behScript)
 {
-    int listIndex;
+    s32 objListIndex;
     struct Object *obj;
     struct ObjectNode *objList;
-    u32 *behavior = (u32 *)behScript;
+    void *behavior = (void *)behScript;
 
-    if ((*behScript >> 24) == 0)
-        listIndex = (*behScript >> 16) & 0xFFFF;
+    // If the first behavior script command is "begin <object list>", then
+    // extract the object list from it
+    if ((behScript[0] >> 24) == 0)
+    {
+        objListIndex = (behScript[0] >> 16) & 0xFFFF;
+    }
     else
-        listIndex = 8;
+    {
+        objListIndex = OBJ_LIST_DEFAULT;
+    }
 
-    objList = &gObjectLists[listIndex];
-    obj = try_init_object(objList);
+    objList = &gObjectLists[objListIndex];
+    obj = allocate_object(objList);
+
     obj->behScript = behScript;
     obj->behavior = behavior;
-    if (listIndex == OBJ_LIST_UNIMPORTANT)
-        obj->activeFlags |= ACTIVE_FLAG_UNIMPORTANT;
-    switch (listIndex)
+
+    if (objListIndex == OBJ_LIST_UNIMPORTANT)
     {
-    // these types of objects should spawn on the ground, so where they are created,
-    // place them on the ground.
+        obj->activeFlags |= ACTIVE_FLAG_UNIMPORTANT;
+    }
+
+    //! They intended to snap certain objects to the floor when they spawn.
+    //  However, at this point the object's position is the origin. So this will
+    //  place the object at the floor beneath the origin. Typically this
+    //  doesn't matter since the caller of this function sets oPosX/Y/Z
+    //  themselves.
+    switch (objListIndex)
+    {
     case OBJ_LIST_GENACTOR:
     case OBJ_LIST_PUSHABLE:
     case OBJ_LIST_POLELIKE:
-        //! At this point the object's position is the origin. So this will
-        //  place the object at the floor beneath the origin. Typically this
-        //  doesn't matter since the caller of this function sets oPosX/Y/Z
-        //  themselves.
-        put_obj_on_floor(obj);
+        snap_object_to_floor(obj);
         break;
     default:
         break;
     }
+
     return obj;
 }
 
-void hide_object(struct Object *obj)
+/**
+ * Mark an object to be unloaded at the end of the frame.
+ */
+void mark_obj_for_deletion(struct Object *obj)
 {
-    obj->activeFlags = 0;
+    //! Same issue as mark_object_for_deletion
+    obj->activeFlags = ACTIVE_FLAGS_DEACTIVATED;
 }

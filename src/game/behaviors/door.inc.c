@@ -34,7 +34,7 @@ void func_802AC130(void)
     if(o->oTimer == 0)
     {
         PlaySound2(D_8032F328[sp1C]);
-        gTimeStopState |= 0x20;
+        gTimeStopState |= TIME_STOP_MARIO_OPENED_DOOR;
     }
     if(o->oTimer == 70)
     {
@@ -76,26 +76,35 @@ void BehDoorLoop(void)
 
 void BehDoorInit(void)
 {
-    f32 sp24 = o->oPosX;
-    f32 sp20 = o->oPosZ;
-    struct Surface* sp1C;
-    find_floor(sp24,o->oPosY,sp20,&sp1C);
-    if(sp1C != NULL)
-        o->OBJECT_FIELD_S32(0x1C) = sp1C->room;
-    sp24 = o->oPosX + sins(o->oMoveAngleYaw) * 200.0f;
-    sp20 = o->oPosZ + coss(o->oMoveAngleYaw) * 200.0f;
-    find_floor(sp24,o->oPosY,sp20,&sp1C);
-    if(sp1C != NULL)
-        o->OBJECT_FIELD_S32(0x1D) = sp1C->room;
-    sp24 = o->oPosX + sins(o->oMoveAngleYaw) * -200.0f;
-    sp20 = o->oPosZ + coss(o->oMoveAngleYaw) * -200.0f;
-    find_floor(sp24,o->oPosY,sp20,&sp1C);
-    if(sp1C != NULL)
-        o->OBJECT_FIELD_S32(0x1E) = sp1C->room;
-    if(o->OBJECT_FIELD_S32(0x1C) > 0 && o->OBJECT_FIELD_S32(0x1C) < 60)
+    f32 x = o->oPosX;
+    f32 z = o->oPosZ;
+    struct Surface* floor;
+    find_floor(x, o->oPosY, z, &floor);
+    if (floor != NULL)
     {
-        D_8035FE68[o->OBJECT_FIELD_S32(0x1C)][0] = o->OBJECT_FIELD_S32(0x1D);
-        D_8035FE68[o->OBJECT_FIELD_S32(0x1C)][1] = o->OBJECT_FIELD_S32(0x1E);
+        o->OBJECT_FIELD_S32(0x1C) = floor->room;
+    }
+
+    x = o->oPosX + sins(o->oMoveAngleYaw) * 200.0f;
+    z = o->oPosZ + coss(o->oMoveAngleYaw) * 200.0f;
+    find_floor(x,o->oPosY,z,&floor);
+    if (floor != NULL)
+    {
+        o->OBJECT_FIELD_S32(0x1D) = floor->room;
+    }
+
+    x = o->oPosX + sins(o->oMoveAngleYaw) * -200.0f;
+    z = o->oPosZ + coss(o->oMoveAngleYaw) * -200.0f;
+    find_floor(x, o->oPosY, z, &floor);
+    if (floor != NULL)
+    {
+        o->OBJECT_FIELD_S32(0x1E) = floor->room;
+    }
+
+    if (o->OBJECT_FIELD_S32(0x1C) > 0 && o->OBJECT_FIELD_S32(0x1C) < 60)
+    {
+        gDoorAdjacentRooms[o->OBJECT_FIELD_S32(0x1C)][0] = o->OBJECT_FIELD_S32(0x1D);
+        gDoorAdjacentRooms[o->OBJECT_FIELD_S32(0x1C)][1] = o->OBJECT_FIELD_S32(0x1E);
     }
 }
 
@@ -110,13 +119,13 @@ void BehStarDoorLoop2(void)
             sp4 = 1;
         else if(gMarioCurrentRoom == o->OBJECT_FIELD_S32(0x1E))
             sp4 = 1;
-        else if(D_8035FE68[gMarioCurrentRoom][0] == o->OBJECT_FIELD_S32(0x1D))
+        else if(gDoorAdjacentRooms[gMarioCurrentRoom][0] == o->OBJECT_FIELD_S32(0x1D))
             sp4 = 1;
-        else if(D_8035FE68[gMarioCurrentRoom][0] == o->OBJECT_FIELD_S32(0x1E))
+        else if(gDoorAdjacentRooms[gMarioCurrentRoom][0] == o->OBJECT_FIELD_S32(0x1E))
             sp4 = 1;
-        else if(D_8035FE68[gMarioCurrentRoom][1] == o->OBJECT_FIELD_S32(0x1D))
+        else if(gDoorAdjacentRooms[gMarioCurrentRoom][1] == o->OBJECT_FIELD_S32(0x1D))
             sp4 = 1;
-        else if(D_8035FE68[gMarioCurrentRoom][1] == o->OBJECT_FIELD_S32(0x1E))
+        else if(gDoorAdjacentRooms[gMarioCurrentRoom][1] == o->OBJECT_FIELD_S32(0x1E))
             sp4 = 1;
     }
     else

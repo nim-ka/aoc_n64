@@ -21,49 +21,149 @@
 #include "object_list_processor.h"
 #include "mario.h"
 
-struct ParticleType
-{
-    u32 flag;
-    u32 unk4;
-    u8 unk8;
-    u8 unk9;
-    u16 unkA;
-    void *beh;
-};
+/**
+ * Nodes used to represent the doubly linked object lists.
+ */
+struct ObjectNode gObjectListArray[16];
 
-struct ObjectNode D_8033B870[16];
+/**
+ * Flags controlling what debug info is displayed.
+ */
+s32 gDebugInfoFlags;
 
-int gDebugInfoFlags;
-int gNumFindFloorMisses;
-UNUSED s32 D_8033BEF8;
-int gUnknownWallCount;
-u32 gUpdatedObjectCount;
+/**
+ * The number of times per frame find_floor found no static floor beneath an
+ * object, and therefore either returned a dynamic floor or NULL.
+ */
+s32 gNumFindFloorMisses;
+
+UNUSED s32 unused_8033BEF8;
+
+/**
+ * An unused debug counter with the label "WALL".
+ */
+s32 gUnknownWallCount;
+
+/**
+ * Roughly the number of objects that have been processed this frame so far.
+ * A bug in update_terrain_objects makes this count inaccurate.
+ */
+u32 gObjectCounter;
+
+/**
+ * The number of times find_floor has been called.
+ */
 s16 gNumFindFloorCalls;
+
+/**
+ * The number of times find_ceil has been called.
+ */
 s16 gNumFindCeilCalls;
+
+/**
+ * The number of times find_wall_collisions has been called.
+ */
 s16 gNumFindWallCalls;
+
+/**
+ * An array of debug controls that could be used to tweak in-game parameters.
+ * The only used rows are [4] and [5] (effectinfo and enemyinfo).
+ */
 s16 gDebugInfo[16][8];
 s16 gDebugInfoOverwrite[16][8];
 
+/**
+ * A set of flags to control which objects are updated on a given frame.
+ * This is used during dialogue and cutscenes to freeze most objects in place.
+ */
 u32 gTimeStopState;
-struct Object gObjectPool[OBJECT_ARRAY_SIZE];
-struct Object D_8035FB18;
+
+/**
+ * The pool that objects are allocated from.
+ */
+struct Object gObjectPool[OBJECT_POOL_CAPACITY];
+
+/**
+ * A special object whose purpose is to act as a parent for macro objects.
+ */
+struct Object gMacroObjectDefaultParent;
+
+/**
+ * A pointer to gObjectListArray.
+ * Given an object list index idx, gObjectLists[idx] is the head of a doubly
+ * linked list of all currently spawned objects in the list.
+ */
 struct ObjectNode *gObjectLists;
 
+/**
+ * A singly linked list of available slots in the object pool.
+ */
 struct ObjectNode gFreeObjectList;
+
+/**
+ * The object representing mario.
+ */
 struct Object *gMarioObject;
+
+/**
+ * An object variable that may have been used to represent the planned
+ * second player. This is speculation, based on its position and its usage in
+ * shadow.c.
+ */
 struct Object *gLuigiObject;
 
+/**
+ * The object whose behavior script is currently being updated.
+ * This object is used frequently in object behavior code, and so is often
+ * aliased as "o".
+ */
 struct Object *gCurrentObject;
-u32 *gBehCommand;
-s16 gPostUpdateObjCount;
-s32 gSurfaceNodesAllocated;
-s32 gSurfacesAllocated;
-s32 gNumStaticSurfaceNodes;
-s32 gNumStaticSurfaces;
-struct MemoryPool *D_8035FE0C;
 
-static s8 sObjectListUpdateOrder[] = 
-{ 
+/**
+ * The next object behavior command to be executed.
+ */
+u32 *gBehCommand;
+
+/**
+ * The number of objects that were processed last frame, which may miss some
+ * objects that were spawned last frame and all objects that were spawned this
+ * frame. It also includes objects that were unloaded last frame.
+ * Besides this, a bug in update_terrain_objects makes this count inaccurate.
+ */
+s16 gPrevFrameObjectCount;
+
+/**
+ * The total number of surface nodes allocated (a node is allocated for each
+ * spatial partition cell that a surface intersects).
+ */
+s32 gSurfaceNodesAllocated;
+
+/**
+ * The total number of surfaces allocated.
+ */
+s32 gSurfacesAllocated;
+
+/**
+ * The number of nodes that have been created for static surfaces.
+ */
+s32 gNumStaticSurfaceNodes;
+
+/**
+ * The number of static surfaces in the pool.
+ */
+s32 gNumStaticSurfaces;
+
+/**
+ * A pool used by chain chomp and wiggler to allocate their body parts.
+ */
+struct MemoryPool *gObjectMemoryPool;
+
+
+/**
+ * The order that object lists are processed in a frame.
+ */
+static s8 sObjectListUpdateOrder[] =
+{
     OBJ_LIST_SPAWNER,
     OBJ_LIST_SURFACE,
     OBJ_LIST_POLELIKE,
@@ -77,34 +177,56 @@ static s8 sObjectListUpdateOrder[] =
     -1
 };
 
-static struct ParticleType sParticleTypes[] = {
-    { PARTICLE_DUST,     0x00000001, 0x8E, 0x00, 0x0000, beh_mario_dust_generator              },
-    { PARTICLE_1,        0x00040000, 0x00, 0x00, 0x0000, beh_wall_tiny_star_particle_spawn     },
-    { PARTICLE_4,        0x00000010, 0x00, 0x00, 0x0000, beh_pound_tiny_star_particle_spawn    },
-    { PARTICLE_SPARKLES, 0x00000008, 0x95, 0x00, 0x0000, beh_special_triple_jump_sparkles      },
-    { PARTICLE_5,        0x00000020, 0xA8, 0x00, 0x0000, beh_bubble_mario                      },
-    { PARTICLE_6,        0x00000040, 0xA7, 0x00, 0x0000, beh_water_splash                      },
-    { PARTICLE_7,        0x00000080, 0xA6, 0x00, 0x0000, beh_surface_waves                     },
-    { PARTICLE_9,        0x00000200, 0xA4, 0x00, 0x0000, beh_water_waves                       },
-    { PARTICLE_10,       0x00000400, 0xA3, 0x00, 0x0000, beh_wave_trail_on_surface             },
-    { PARTICLE_11,       0x00000800, 0x90, 0x00, 0x0000, beh_flame_mario                       },
-    { PARTICLE_8,        0x00000100, 0x00, 0x00, 0x0000, beh_waves_generator                   },
-    { PARTICLE_12,       0x00001000, 0x00, 0x00, 0x0000, beh_surface_wave_shrinking            },
-    { PARTICLE_LEAVES,   0x00002000, 0x00, 0x00, 0x0000, beh_snow_leaf_particle_spawn          },
-    { PARTICLE_14,       0x00010000, 0x00, 0x00, 0x0000, beh_ground_snow                       },
-    { PARTICLE_17,       0x00020000, 0x00, 0x00, 0x0000, beh_water_mist_spawn                  },
-    { PARTICLE_15,       0x00004000, 0x00, 0x00, 0x0000, beh_ground_sand                       },
-    { PARTICLE_16,       0x00008000, 0x00, 0x00, 0x0000, beh_pound_white_puffs                 },
-    { PARTICLE_18,       0x00080000, 0x00, 0x00, 0x0000, beh_punch_tiny_triangle_spawn         },
-    { 0,                 0x00000000, 0x00, 0x00, 0x0000, NULL                                  },
+/**
+ * Info needed to spawn particles and keep track of which have been spawned for
+ * an object.
+ */
+struct ParticleProperties
+{
+    u32 particleFlag;
+    u32 activeParticleFlag;
+    u8 model;
+    void *behavior;
 };
 
+/**
+ * A table mapping particle flags to various properties use when spawning a particle.
+ */
+static struct ParticleProperties sParticleTypes[] =
+{
+    { PARTICLE_DUST,     ACTIVE_PARTICLE_0,  MODEL_MIST,            beh_mario_dust_generator              },
+    { PARTICLE_1,        ACTIVE_PARTICLE_18, MODEL_NONE,            beh_wall_tiny_star_particle_spawn     },
+    { PARTICLE_4,        ACTIVE_PARTICLE_4,  MODEL_NONE,            beh_pound_tiny_star_particle_spawn    },
+    { PARTICLE_SPARKLES, ACTIVE_PARTICLE_3,  MODEL_SPARKLES,        beh_special_triple_jump_sparkles      },
+    { PARTICLE_5,        ACTIVE_PARTICLE_5,  MODEL_BUBBLE,          beh_bubble_mario                      },
+    { PARTICLE_6,        ACTIVE_PARTICLE_6,  MODEL_WATER_SPLASH,    beh_water_splash                      },
+    { PARTICLE_7,        ACTIVE_PARTICLE_7,  MODEL_WATER_WAVES_2,   beh_surface_waves                     },
+    { PARTICLE_9,        ACTIVE_PARTICLE_9,  MODEL_SMALL_SNOW_BALL, beh_water_waves                       },
+    { PARTICLE_10,       ACTIVE_PARTICLE_10, MODEL_WATER_WAVES,     beh_wave_trail_on_surface             },
+    { PARTICLE_11,       ACTIVE_PARTICLE_11, MODEL_RED_FLAME,       beh_flame_mario                       },
+    { PARTICLE_8,        ACTIVE_PARTICLE_8,  MODEL_NONE,            beh_waves_generator                   },
+    { PARTICLE_12,       ACTIVE_PARTICLE_12, MODEL_NONE,            beh_surface_wave_shrinking            },
+    { PARTICLE_LEAVES,   ACTIVE_PARTICLE_13, MODEL_NONE,            beh_snow_leaf_particle_spawn          },
+    { PARTICLE_14,       ACTIVE_PARTICLE_16, MODEL_NONE,            beh_ground_snow                       },
+    { PARTICLE_17,       ACTIVE_PARTICLE_17, MODEL_NONE,            beh_water_mist_spawn                  },
+    { PARTICLE_15,       ACTIVE_PARTICLE_14, MODEL_NONE,            beh_ground_sand                       },
+    { PARTICLE_16,       ACTIVE_PARTICLE_15, MODEL_NONE,            beh_pound_white_puffs                 },
+    { PARTICLE_18,       ACTIVE_PARTICLE_19, MODEL_NONE,            beh_punch_tiny_triangle_spawn         },
+    { 0,                 0,                  MODEL_NONE,            NULL                                  },
+};
+
+/**
+ * Copy position, velocity, and angle variables from MarioState to the mario
+ * object.
+ */
 static void copy_mario_state_to_object(void)
 {
     s32 i = 0;
     // L is real
     if (gCurrentObject != gMarioObject)
+    {
         i += 1;
+    }
 
     gCurrentObject->oVelX = gMarioStates[i].vel[0];
     gCurrentObject->oVelY = gMarioStates[i].vel[1];
@@ -127,45 +249,64 @@ static void copy_mario_state_to_object(void)
     gCurrentObject->oAngleVelRoll = gMarioStates[i].angleVel[2];
 }
 
-static void spawn_particle(u32 flags, s16 seg, void *script)
+/**
+ * Spawn a particle at gCurrentObject's location.
+ */
+static void spawn_particle(u32 activeParticleFlag, s16 model, void *behavior)
 {
-    if (!(gCurrentObject->oUnkE0 & flags))
+    if (!(gCurrentObject->oActiveParticleFlags & activeParticleFlag))
     {
         struct Object *particle;
-        gCurrentObject->oUnkE0 |= flags;
-        particle = spawn_object_at_origin(gCurrentObject, 0, seg, script);
+        gCurrentObject->oActiveParticleFlags |= activeParticleFlag;
+        particle = spawn_object_at_origin(gCurrentObject, 0, model, behavior);
         copy_object_pos_and_angle(particle, gCurrentObject);
     }
 }
 
-void BehMarioLoop2(void)
+/**
+ * Mario's primary behavior update function.
+ */
+void bhv_mario_update(void)
 {
-    u32 particleFlags = 0; 
+    u32 particleFlags = 0;
     s32 i;
 
     particleFlags = func_80254604(gCurrentObject);
     gCurrentObject->oMarioParticleFlags = particleFlags;
+
+    // Mario code updates MarioState's versions of position etc, so we need
+    // to sync it with the mario object
     copy_mario_state_to_object();
 
     i = 0;
-    while (sParticleTypes[i].flag != 0)
+    while (sParticleTypes[i].particleFlag != 0)
     {
-        if (particleFlags & sParticleTypes[i].flag)
-            spawn_particle(sParticleTypes[i].unk4, sParticleTypes[i].unk8, sParticleTypes[i].beh);
+        if (particleFlags & sParticleTypes[i].particleFlag)
+        {
+            spawn_particle(
+                sParticleTypes[i].activeParticleFlag,
+                sParticleTypes[i].model,
+                sParticleTypes[i].behavior);
+        }
 
         i++;
     }
 }
 
-static s32 update_objects_starting_at(struct ObjectNode *listHead, struct ObjectNode *firstObj)
+/**
+ * Update every object that occurs after firstObj in the given object list,
+ * including firstObj itself. Return the number of objects that were updated.
+ */
+static s32 update_objects_starting_at(
+    struct ObjectNode *objList, struct ObjectNode *firstObj)
 {
     s32 count = 0;
-    
-    while (listHead != firstObj)
-    {
-        gCurrentObject = (struct Object *) firstObj;
 
-        gCurrentObject->header.gfx.node.flags |= 0x0020;
+    while (objList != firstObj)
+    {
+        gCurrentObject = (struct Object *)firstObj;
+
+        gCurrentObject->header.gfx.node.flags |= GRAPH_RENDER_20;
         cur_object_exec_behavior();
 
         firstObj = firstObj->next;
@@ -175,42 +316,59 @@ static s32 update_objects_starting_at(struct ObjectNode *listHead, struct Object
     return count;
 }
 
-static s32 update_objects_during_time_stop(struct ObjectNode *listHead, struct ObjectNode *firstObj)
+/**
+ * Update objects in objList starting with firstObj while time stop is active.
+ * This means that only certain select objects will be updated, such as mario,
+ * doors, unimportant objects, and the object that initiated time stop.
+ * The exact set of objects that are updated depends on which flags are set
+ * in gTimeStopState.
+ * Return the total number of objects in the list (including those that weren't
+ * updated)
+ */
+static s32 update_objects_during_time_stop(
+    struct ObjectNode *objList,
+    struct ObjectNode *firstObj)
 {
     s32 count = 0;
     s32 unfrozen;
 
-    while (listHead != firstObj)
+    while (objList != firstObj)
     {
-        gCurrentObject = (struct Object *) firstObj;
+        gCurrentObject = (struct Object *)firstObj;
 
         unfrozen = FALSE;
+
+        // Selectively unfreeze certain objects
         if (!(gTimeStopState & TIME_STOP_ALL_OBJECTS))
-        { 
+        {
             if (gCurrentObject == gMarioObject &&
                 !(gTimeStopState & TIME_STOP_MARIO_AND_DOORS))
             {
                 unfrozen = TRUE;
             }
-            
+
             if ((gCurrentObject->oInteractType & (INTERACT_DOOR | INTERACT_WARP_DOOR)) &&
                 !(gTimeStopState & TIME_STOP_MARIO_AND_DOORS))
             {
                 unfrozen = TRUE;
             }
 
-            if (gCurrentObject->activeFlags & (ACTIVE_FLAG_UNIMPORTANT | ACTIVE_FLAG_INITIATED_TIME_STOP))
+            if (gCurrentObject->activeFlags &
+                (ACTIVE_FLAG_UNIMPORTANT | ACTIVE_FLAG_INITIATED_TIME_STOP))
+            {
                 unfrozen = TRUE;
+            }
         }
 
+        // Only update if unfrozen
         if (unfrozen)
         {
-            gCurrentObject->header.gfx.node.flags |= 0x20;
+            gCurrentObject->header.gfx.node.flags |= GRAPH_RENDER_20;
             cur_object_exec_behavior();
         }
         else
         {
-            gCurrentObject->header.gfx.node.flags &= ~0x20;
+            gCurrentObject->header.gfx.node.flags &= ~GRAPH_RENDER_20;
         }
 
         firstObj = firstObj->next;
@@ -220,128 +378,171 @@ static s32 update_objects_during_time_stop(struct ObjectNode *listHead, struct O
     return count;
 }
 
+/**
+ * Update every object in the given list. Return the total number of objects in
+ * the list.
+ */
 static s32 update_objects_in_list(struct ObjectNode *objList)
 {
     s32 count;
     struct ObjectNode *firstObj = objList->next;
 
     if (!(gTimeStopState & TIME_STOP_ACTIVE))
+    {
         count = update_objects_starting_at(objList, firstObj);
+    }
     else
+    {
         count = update_objects_during_time_stop(objList, firstObj);
+    }
 
     return count;
 }
 
-static s32 func_8029C618(struct ObjectNode *objList)
+/**
+ * Unload any objects in the list that have been deactivated.
+ */
+static s32 unload_deactivated_objects_in_list(struct ObjectNode *objList)
 {
     struct ObjectNode *obj = objList->next;
 
     while (objList != obj)
     {
-        gCurrentObject = (struct Object *) obj;
-        
+        gCurrentObject = (struct Object *)obj;
+
         obj = obj->next;
 
         if ((gCurrentObject->activeFlags & ACTIVE_FLAG_ACTIVE) != ACTIVE_FLAG_ACTIVE)
         {
-            if (!(gCurrentObject->oFlags & OBJ_FLAG_4000))
-                func_8029C6D8(gCurrentObject, 0xFF);
+            // Prevent object from respawning after exiting and re-entering the
+            // area
+            if (!(gCurrentObject->oFlags & OBJ_FLAG_PERSISTENT_RESPAWN))
+            {
+                set_object_respawn_info_bits(gCurrentObject, RESPAWN_INFO_DONT_RESPAWN);
+            }
 
-            unload_obj(gCurrentObject);
+            unload_object(gCurrentObject);
         }
     }
 
     return 0;
 }
 
-void func_8029C6D8(struct Object *a0, u8 a1)
-{  
-    s32 *spC;
-    u16 *sp8;
+/**
+ * OR the object's respawn info with bits << 8. If bits = 0xFF, this prevents
+ * the object from respawning after leaving and re-entering the area.
+ * For macro objects, respawnInfo points to the 16 bit entry in the macro object
+ * list. For other objects, it points to the 32 bit behaviorArg in the
+ * SpawnInfo.
+ */
+void set_object_respawn_info_bits(struct Object *obj, u8 bits)
+{
+    u32 *info32;
+    u16 *info16;
 
-    switch(a0->unk1F6)
+    switch (obj->respawnInfoType)
     {
-    case 1:
-        spC = a0->unk25C;
-        *spC |= a1 << 8; 
+    case RESPAWN_INFO_TYPE_32:
+        info32 = (u32 *)obj->respawnInfo;
+        *info32 |= bits << 8;
         break;
-    
-    case 2:
-        sp8 = a0->unk25C;
-        *sp8 |= a1 << 8; 
+
+    case RESPAWN_INFO_TYPE_16:
+        info16 = (u16 *)obj->respawnInfo;
+        *info16 |= bits << 8;
         break;
     }
 }
 
-void func_8029C75C(UNUSED s32 sp28, s32 sp2C)
+/**
+ * Unload all objects whose activeAreaIndex is areaIndex.
+ */
+void unload_objects_from_area(UNUSED s32 unused, s32 areaIndex)
 {
-    struct ObjectNode *sp24, *sp20, *sp1C;
-    s32 sp18;
-    gObjectLists = D_8033B870;
-    
-    for (sp18 = 0; sp18 < 13; sp18++)
-    {
-        sp1C = gObjectLists + sp18;
-        sp20 = sp1C->next;
+    struct Object *obj;
+    struct ObjectNode *node;
+    struct ObjectNode *list;
+    s32 i;
+    gObjectLists = gObjectListArray;
 
-        while (sp20 != sp1C)
+    for (i = 0; i < NUM_OBJ_LISTS; i++)
+    {
+        list = gObjectLists + i;
+        node = list->next;
+
+        while (node != list)
         {
-            sp24 = sp20;
-            sp20 = sp20->next;
-            if (sp24->gfx.unk19 == sp2C)
-                unload_obj((struct Object *) sp24);
+            obj = (struct Object *)node;
+            node = node->next;
+
+            if (obj->header.gfx.unk19 == areaIndex)
+            {
+                unload_object(obj);
+            }
         }
     }
 }
 
-void spawn_objects_from_info(UNUSED s32 unusedArg, struct SpawnInfo *spawnInfo)
+/**
+ * Spawn objects given a list of SpawnInfos. Called when loading an area.
+ */
+void spawn_objects_from_info(UNUSED s32 unused, struct SpawnInfo *spawnInfo)
 {
-    gObjectLists = D_8033B870;
+    gObjectLists = gObjectListArray;
     gTimeStopState = 0;
 
-    D_8035FEF2 = 0;
-    D_8035FEF4 = 0;
+    gWDWWaterLevelChanging = FALSE;
+    gBBHMerryGoRoundActive = FALSE;
 
-#if VERSION_US
-    func_u_802C8F28();
+    //! (Spawning Displacement) On the Japanese version, mario's platform object
+    //  isn't cleared when transitioning between areas. This can cause mario to
+    //  receive displacement after spawning.
+#ifndef VERSION_JP
+    clear_mario_platform();
 #endif
 
-    if (gCurrAreaIndex == 2) 
-        D_8035FEEC |= 1;
+    if (gCurrAreaIndex == 2)
+    {
+        gCCMEnteredSlide |= 1;
+    }
 
     while (spawnInfo != NULL)
     {
         struct Object *object;
         UNUSED s32 unused;
         void *script;
-        UNUSED s16 arg16;
+        UNUSED s16 arg16 = (s16)(spawnInfo->behaviorArg & 0xFFFF);
 
-        arg16 = (s16)(spawnInfo->behaviorArg & 0xFFFF);
         script = segmented_to_virtual(spawnInfo->behaviorScript);
 
-        if ((spawnInfo->behaviorArg & 0xFF00) != 0xFF00)
+        // If the object was previously killed/collected, don't respawn it
+        if ((spawnInfo->behaviorArg & (RESPAWN_INFO_DONT_RESPAWN << 8)) !=
+            (RESPAWN_INFO_DONT_RESPAWN << 8))
         {
             object = create_object(script);
- 
-            // Behavior parameters are actually four separate bytes, but are stored as an int. This makes accessing individual params
-            // quite awkward. Params 3 and 4 are almost never used.
+
+            // Behavior parameters are often treated as four separate bytes, but
+            // are stored as an s32.
             object->oBehParams = spawnInfo->behaviorArg;
-            // The second byte of the behavior parameters is copied over to a special field.
-            object->oBehParams2ndByte = ((spawnInfo->behaviorArg) >> 16) & 0xff;
+            // The second byte of the behavior parameters is copied over to a special field
+            // as it is the most frequently used by objects.
+            object->oBehParams2ndByte = ((spawnInfo->behaviorArg) >> 16) & 0xFF;
+
             object->behavior = script;
             object->unk1C8 = 0;
-            object->unk1F6 = 1;
-            object->unk25C = &spawnInfo->behaviorArg; 
+
+            // Record death/collection in the SpawnInfo
+            object->respawnInfoType = RESPAWN_INFO_TYPE_32;
+            object->respawnInfo = &spawnInfo->behaviorArg;
 
             if (spawnInfo->behaviorArg & 0x01)
             {
                 gMarioObject = object;
-                func_8037C138((struct GraphNode *) object);
+                func_8037C138(&object->header.gfx.node);
             }
 
-            func_8037C51C((struct GraphNodeObject *) object, spawnInfo);
-            
+            func_8037C51C((struct GraphNodeObject *)object, spawnInfo);
+
             object->oPosX = spawnInfo->startPos[0];
             object->oPosY = spawnInfo->startPos[1];
             object->oPosZ = spawnInfo->startPos[2];
@@ -349,89 +550,110 @@ void spawn_objects_from_info(UNUSED s32 unusedArg, struct SpawnInfo *spawnInfo)
             object->oFaceAnglePitch = spawnInfo->startAngle[0];
             object->oFaceAngleYaw = spawnInfo->startAngle[1];
             object->oFaceAngleRoll = spawnInfo->startAngle[2];
-            
+
             object->oMoveAnglePitch = spawnInfo->startAngle[0];
             object->oMoveAngleYaw = spawnInfo->startAngle[1];
             object->oMoveAngleRoll = spawnInfo->startAngle[2];
 
         }
-        
+
         spawnInfo = spawnInfo->next;
     }
 }
 
-static void func_8029CA50()
+static void stub_8029CA50()
 {
 }
 
-void func_8029CA60(void)
-{ 
+/**
+ * Clear objects, dynamic surfaces, and some miscellaneous level data used by
+ * objects.
+ */
+void clear_objects(void)
+{
     s32 i;
 
-    D_8035FEE6 = 0;
+    gTHIWaterLowered = 0;
     gTimeStopState = 0;
     gMarioObject = NULL;
     gMarioCurrentRoom = 0;
 
     for (i = 0; i < 60; i++)
     {
-        D_8035FE68[i][0] = 0;
-        D_8035FE68[i][1] = 0;
+        gDoorAdjacentRooms[i][0] = 0;
+        gDoorAdjacentRooms[i][1] = 0;
     }
 
     debug_unknown_level_select_check();
-    init_free_obj_list();
-    clear_object_lists(D_8033B870);
-    func_80385BF0();
-    func_8029CA50();
 
-    for (i = 0; i < OBJECT_ARRAY_SIZE; i++)
+    init_free_object_list();
+    clear_object_lists(gObjectListArray);
+
+    stub_80385BF0();
+    stub_8029CA50();
+
+    for (i = 0; i < OBJECT_POOL_CAPACITY; i++)
     {
-        gObjectPool[i].activeFlags = 0;
+        gObjectPool[i].activeFlags = ACTIVE_FLAGS_DEACTIVATED;
         func_8037C3D0(&gObjectPool[i].header.gfx);
     }
 
-    D_8035FE0C = mem_pool_init(0x800, MEMORY_POOL_LEFT);
-    gObjectLists = D_8033B870;
+    gObjectMemoryPool = mem_pool_init(0x800, MEMORY_POOL_LEFT);
+    gObjectLists = gObjectListArray;
+
     clear_dynamic_surfaces();
 }
 
+/**
+ * Update spawner and surface objects.
+ */
 static void update_terrain_objects(void)
 {
-    gUpdatedObjectCount = update_objects_in_list(&gObjectLists[OBJ_LIST_SPAWNER]);
+    gObjectCounter = update_objects_in_list(&gObjectLists[OBJ_LIST_SPAWNER]);
     //! This was meant to be +=
-    gUpdatedObjectCount = update_objects_in_list(&gObjectLists[OBJ_LIST_SURFACE]);
-} 
+    gObjectCounter = update_objects_in_list(&gObjectLists[OBJ_LIST_SURFACE]);
+}
 
-
+/**
+ * Update all other object lists besides spawner and surface objects, using
+ * the order specified by sObjectListUpdateOrder.
+ */
 static void update_non_terrain_objects(void)
 {
-    UNUSED s32 unused; 
+    UNUSED s32 unused;
     s32 listIndex;
 
     s32 i = 2;
     while ((listIndex = sObjectListUpdateOrder[i]) != -1)
     {
-        gUpdatedObjectCount += update_objects_in_list(&gObjectLists[listIndex]);
+        gObjectCounter += update_objects_in_list(&gObjectLists[listIndex]);
         i += 1;
     }
 }
 
-static void func_8029CCA0(void)
+/**
+ * Unload deactivated objects in any object list.
+ */
+static void unload_deactivated_objects(void)
 {
-    UNUSED s32 unused; 
+    UNUSED s32 unused;
     s32 listIndex;
 
     s32 i = 0;
     while ((listIndex = sObjectListUpdateOrder[i]) != -1)
     {
-        func_8029C618(&gObjectLists[listIndex]);
+        unload_deactivated_objects_in_list(&gObjectLists[listIndex]);
         i += 1;
     }
 
+    // TIME_STOP_UNKNOWN_0 was most likely intended to be used to track whether
+    // any objects had been deactivated
     gTimeStopState &= ~TIME_STOP_UNKNOWN_0;
 }
 
+/**
+ * Unused profiling function.
+ */
 static u16 unused_get_elapsed_time(u64 *cycleCounts, s32 index)
 {
     u16 time;
@@ -439,61 +661,85 @@ static u16 unused_get_elapsed_time(u64 *cycleCounts, s32 index)
 
     cycles = cycleCounts[index] - cycleCounts[index - 1];
     if (cycles < 0)
+    {
         cycles = 0;
+    }
 
     time = (u16) (((u64) cycles * 1000000 / osClockRate) / 16667.0 * 1000.0);
     if (time > 999)
+    {
         time = 999;
-    
+    }
+
     return time;
 }
 
-void update_objects(UNUSED s32 sp108)
+/**
+ * Update all objects. This includes script execution, object collision detection,
+ * and object surface management.
+ */
+void update_objects(UNUSED s32 unused)
 {
     s64 cycleCounts[30];
 
     cycleCounts[0] = get_current_clock();
 
-    gTimeStopState &= ~TIME_STOP_UNKNOWN_5;
+    gTimeStopState &= ~TIME_STOP_MARIO_OPENED_DOOR;
 
     gNumRoomedObjectsInMarioRoom = 0;
     gNumRoomedObjectsNotInMarioRoom = 0;
-    D_8035FE10 = 0;
+    gCheckingSurfaceCollisionsForCamera = FALSE;
 
     reset_debug_objectinfo();
     stub_802CA5D0();
-    
-    gObjectLists = D_8033B870;
-    
+
+    gObjectLists = gObjectListArray;
+
+    // If time stop is not active, unload object surfaces
     cycleCounts[1] = get_clock_difference(cycleCounts[0]);
     clear_dynamic_surfaces();
 
+    // Update spawners and objects with surfaces
     cycleCounts[2] = get_clock_difference(cycleCounts[0]);
     update_terrain_objects();
-    
+
+    // If mario was touching a moving platform at the end of last frame, apply
+    // displacement now
+    //! If the platform object unloaded and a different object took its place,
+    //  displacement could be applied incorrectly
     apply_mario_platform_displacement();
-    
+
+    // Detect which objects are intersecting
     cycleCounts[3] = get_clock_difference(cycleCounts[0]);
-    func_802C8C44();
-    
+    detect_object_collisions();
+
+    // Update all other objects that haven't been updated yet
     cycleCounts[4] = get_clock_difference(cycleCounts[0]);
     update_non_terrain_objects();
-    
+
+    // Unload any objects that have been deactivated
     cycleCounts[5] = get_clock_difference(cycleCounts[0]);
-    func_8029CCA0();
-    
+    unload_deactivated_objects();
+
+    // Check if mario is on a platform object and save this object
     cycleCounts[6] = get_clock_difference(cycleCounts[0]);
     update_mario_platform();
-    
-    cycleCounts[7] = get_clock_difference(cycleCounts[0]);  
+
+    cycleCounts[7] = get_clock_difference(cycleCounts[0]);
 
     cycleCounts[0] = 0;
     try_print_debug_mario_object_info();
 
+    // If time stop was enabled this frame, activate it now so that it will
+    // take effect next frame
     if (gTimeStopState & TIME_STOP_ENABLED)
+    {
         gTimeStopState |= TIME_STOP_ACTIVE;
-    else 
+    }
+    else
+    {
         gTimeStopState &= ~TIME_STOP_ACTIVE;
-    
-    gPostUpdateObjCount = gUpdatedObjectCount;
+    }
+
+    gPrevFrameObjectCount = gObjectCounter;
 }

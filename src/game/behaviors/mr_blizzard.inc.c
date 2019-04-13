@@ -261,7 +261,7 @@ static void func_80307650(void)
                 if (!(o->oBehParams & 0x0000FF00))
                 {
                     spawn_object_loot_yellow_coins(o, o->oNumLootCoins, 20.0f);
-                    func_8029C6D8(o, 1);
+                    set_object_respawn_info_bits(o, 1);
                 }
             }
         }

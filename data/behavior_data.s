@@ -5,13 +5,13 @@
 
 # TODO: Use C preprocessor define instead of redefining the lists seperately.
 .set OBJ_LIST_PLAYER,         0
-.set OBJ_LIST_UNK1,           1
+.set OBJ_LIST_UNUSED_1,       1
 .set OBJ_LIST_DESTRUCTIVE,    2
-.set OBJ_LIST_UNK3,           3
+.set OBJ_LIST_UNUSED_3,       3
 .set OBJ_LIST_GENACTOR,       4
 .set OBJ_LIST_PUSHABLE,       5
 .set OBJ_LIST_LEVEL,          6
-.set OBJ_LIST_UNK7,           7
+.set OBJ_LIST_UNUSED_7,       7
 .set OBJ_LIST_DEFAULT,        8
 .set OBJ_LIST_SURFACE,        9
 .set OBJ_LIST_POLELIKE,       10
@@ -33,7 +33,7 @@
 .set OBJ_FLAG_0800,                             (1 << 11) # 0x0800
 .set OBJ_FLAG_1000,                             (1 << 12) # 0x1000
 .set OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO,           (1 << 13) # 0x2000
-.set OBJ_FLAG_4000,                             (1 << 14) # 0x4000
+.set OBJ_FLAG_PERSISTENT_RESPAWN,               (1 << 14) # 0x4000
 .set OBJ_FLAG_8000,                             (1 << 15) # 0x8000
 
 # TODO: Use C preprocessor define instead of redefining the lists seperately. (object_fields.h)
@@ -1690,7 +1690,7 @@ glabel beh_heave_ho_throw_mario # 15A4
 
 glabel beh_ccm_touched_star_spawn # 15C0
     begin OBJ_LIST_LEVEL
-    obj_or_int objFlags, (OBJ_FLAG_4000 | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
+    obj_or_int objFlags, (OBJ_FLAG_PERSISTENT_RESPAWN | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
     set_hitbox 0x01F4, 0x01F4
     obj_set_int objIntangibleTimer, 0
     begin_loop
@@ -3218,13 +3218,13 @@ glabel beh_mario # 2EA0
     set_hitbox 0x0025, 0x00A0
     begin_loop
         callnative try_print_debug_mario_level_info
-        callnative BehMarioLoop2
+        callnative bhv_mario_update
         callnative try_do_mario_debug_object_spawn
     end_loop
 
 glabel beh_toad_message # 2ED8
     begin OBJ_LIST_GENACTOR
-    obj_or_int objFlags, (OBJ_FLAG_4000 | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
+    obj_or_int objFlags, (OBJ_FLAG_PERSISTENT_RESPAWN | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
     obj_set_int32 objAnimations, toad_seg6_anims_0600FB58
     animate 0x06
     interact_type INTERACT_TEXT
@@ -3396,7 +3396,7 @@ glabel beh_seaweed_bundle # 3138
 
 glabel beh_bobomb # 3154
     begin OBJ_LIST_DESTRUCTIVE
-    obj_or_int objFlags, (OBJ_FLAG_4000 | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_HOLDABLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
+    obj_or_int objFlags, (OBJ_FLAG_PERSISTENT_RESPAWN | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_HOLDABLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
     obj_set_int32 objAnimations, bobomb_seg8_anims_0802396C
     drop_floor
     animate 0x00
@@ -3438,7 +3438,7 @@ glabel beh_bobomb_buddy # 31BC
 # The only difference between this and the previous behavior are what objFlags and objVarFC are set to, why didn't they just use a jump?
 glabel beh_bobomb_buddy_opens_cannon # 3208
     begin OBJ_LIST_GENACTOR
-    obj_or_int objFlags, (OBJ_FLAG_4000 | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_HOLDABLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
+    obj_or_int objFlags, (OBJ_FLAG_PERSISTENT_RESPAWN | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_HOLDABLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
     obj_set_int32 objAnimations, bobomb_seg8_anims_0802396C
     interact_type INTERACT_TEXT
     drop_floor
@@ -3454,7 +3454,7 @@ glabel beh_bobomb_buddy_opens_cannon # 3208
 
 glabel beh_cannon_closed # 3254
     begin OBJ_LIST_SURFACE
-    obj_or_int objFlags, (OBJ_FLAG_4000 | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
+    obj_or_int objFlags, (OBJ_FLAG_PERSISTENT_RESPAWN | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
     collision_data cannon_lid_seg8_collision_08004950
     obj_set_pos
     callnative BehCannonClosedInit
@@ -4200,7 +4200,7 @@ glabel beh_star_spawn_coordinates # 3E44
 
 glabel beh_hidden_red_coin_star # 3E6C
     begin OBJ_LIST_LEVEL
-    obj_or_int objFlags, (OBJ_FLAG_4000 | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
+    obj_or_int objFlags, (OBJ_FLAG_PERSISTENT_RESPAWN | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
     callnative BehHiddenRedCoinStarInit
     begin_loop
         callnative BehHiddenRedCoinStarLoop
@@ -4221,14 +4221,14 @@ glabel beh_red_coin # 3E8C
 
 glabel beh_bowser_course_red_coin_star # 3EC4
     begin OBJ_LIST_LEVEL
-    obj_or_int objFlags, (OBJ_FLAG_4000 | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
+    obj_or_int objFlags, (OBJ_FLAG_PERSISTENT_RESPAWN | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
     begin_loop
         callnative BehBowserCourseRedCoinStarLoop
     end_loop
 
 glabel beh_hidden_star # 3EDC
     begin OBJ_LIST_LEVEL
-    obj_or_int objFlags, (OBJ_FLAG_4000 | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
+    obj_or_int objFlags, (OBJ_FLAG_PERSISTENT_RESPAWN | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
     callnative BehHiddenStarInit
     begin_loop
         callnative BehHiddenStarLoop

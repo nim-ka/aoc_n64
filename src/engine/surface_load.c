@@ -418,7 +418,7 @@ void alloc_surface_pools(void)
     sSurfacePoolSize = 2300;
     sSurfaceNodePool = main_pool_alloc(7000 * sizeof(struct SurfaceNode), MEMORY_POOL_LEFT);
     sSurfacePool = main_pool_alloc(sSurfacePoolSize * sizeof(struct Surface), MEMORY_POOL_LEFT);
-    D_8035FEEC = 0;
+    gCCMEnteredSlide = 0;
     func_802DA4DC();
 }
 

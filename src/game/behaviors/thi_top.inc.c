@@ -6,7 +6,7 @@ UNUSED u8 unused8032F134[] = {10,11,12};
 
 void BehTHIHugeIslandTopLoop(void)
 {
-    if(D_8035FEE6 & 1)
+    if(gTHIWaterLowered & 1)
     {
         if(o->oTimer == 0)
             gWaterRegions[18] = 3000;
@@ -18,7 +18,7 @@ void BehTHIHugeIslandTopLoop(void)
 
 void BehTHITinyIslandTopLoop(void)
 {
-    if(!(D_8035FEE6 & 1)) // last bit not set
+    if(!(gTHIWaterLowered & 1)) // last bit not set
     {
         if(o->oAction == 0)
         {
@@ -41,7 +41,7 @@ void BehTHITinyIslandTopLoop(void)
             }
             else
             {
-                D_8035FEE6 |= 1; // set last bit
+                gTHIWaterLowered |= 1; // set last bit
                 func_80321228();
                 o->oAction += 1;
             }

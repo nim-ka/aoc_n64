@@ -223,7 +223,7 @@ void BehCoinFormationLoop(void)
         o->oAction = 0;
         break;
     }
-    func_8029C6D8(o,o->OBJECT_FIELD_S32(0x1B) & 0xFF); // Casting to u8 doesn't seem to match
+    set_object_respawn_info_bits(o,o->OBJECT_FIELD_S32(0x1B) & 0xFF); // Casting to u8 doesn't seem to match
 }
 
 void ActionCoinInsideBoo1(void)

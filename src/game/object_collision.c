@@ -174,7 +174,7 @@ void func_802C8B50(void)
     }
 }
 
-void func_802C8C44(void)
+void detect_object_collisions(void)
 {
     func_802C88A8((struct Object *)&gObjectLists[OBJ_LIST_POLELIKE]);
     func_802C88A8((struct Object *)&gObjectLists[OBJ_LIST_PLAYER]);

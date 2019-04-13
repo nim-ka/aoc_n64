@@ -1041,7 +1041,7 @@ struct Object *obj_find_nearest_object_with_behavior(void *behavior, f32 *dist)
     {
         if (obj->behavior == behaviorAddr)
         {
-            if (obj->activeFlags != ACTIVE_FLAGS_INACTIVE && obj != o)
+            if (obj->activeFlags != ACTIVE_FLAGS_DEACTIVATED && obj != o)
             {
                 f32 objDist = dist_between_objects(o, obj);
                 if (objDist < minDist)
@@ -1121,7 +1121,7 @@ struct Object *obj_find_nearby_held_actor(void *behavior, f32 maxDist)
     {
         if (obj->behavior == behaviorAddr)
         {
-            if (obj->activeFlags != ACTIVE_FLAGS_INACTIVE)
+            if (obj->activeFlags != ACTIVE_FLAGS_DEACTIVATED)
             {
                 // This includes the dropped and thrown states. By combining
                 // instant release, this allows us to activate mama penguin
@@ -1396,13 +1396,16 @@ s32 obj_clear_interact_status_flag(s32 flag)
     return FALSE;
 }
 
+/**
+ * Mark an object to be unloaded at the end of the frame.
+ */
 void mark_object_for_deletion(struct Object *obj)
 {
     //! This clears all activeFlags. Since some of these flags disable behavior,
     //  setting it to 0 could potentially enable unexpected behavior. After an
     //  object is marked for deletion, it still updates on that frame (I think),
     //  so this is worth looking into.
-    obj->activeFlags = ACTIVE_FLAGS_INACTIVE;
+    obj->activeFlags = ACTIVE_FLAGS_DEACTIVATED;
 }
 
 void obj_disable(void)
@@ -2568,14 +2571,14 @@ void obj_spawn_particles(struct SpawnParticlesInfo *info)
     s32 numParticles = info->count;
 
     // If there are a lot of objects already, limit the number of particles
-    if (gPostUpdateObjCount > 150 && numParticles > 10)
+    if (gPrevFrameObjectCount > 150 && numParticles > 10)
     {
         numParticles = 10;
     }
 
     // We're close to running out of object slots, so don't spawn particles at
     // all
-    if (gPostUpdateObjCount > 210)
+    if (gPrevFrameObjectCount > 210)
     {
         numParticles = 0;
     }
@@ -2979,11 +2982,11 @@ void obj_enable_rendering_if_mario_in_room(void)
         {
             marioInRoom = TRUE;
         }
-        else if (D_8035FE68[gMarioCurrentRoom][0] == o->oRoom)
+        else if (gDoorAdjacentRooms[gMarioCurrentRoom][0] == o->oRoom)
         {
             marioInRoom = TRUE;
         }
-        else if (D_8035FE68[gMarioCurrentRoom][1] == o->oRoom)
+        else if (gDoorAdjacentRooms[gMarioCurrentRoom][1] == o->oRoom)
         {
             marioInRoom = TRUE;
         }
@@ -3132,12 +3135,12 @@ void disable_time_stop(void)
     gTimeStopState &= ~TIME_STOP_ENABLED;
 }
 
-void set_time_stop_flag(s32 flag)
+void set_time_stop_flags(s32 flag)
 {
     gTimeStopState |= flag;
 }
 
-void clear_time_stop_flag(s32 flag)
+void clear_time_stop_flags(s32 flag)
 {
     gTimeStopState = gTimeStopState & (flag ^ 0xFFFFFFFF);
 }

@@ -41,7 +41,7 @@ void BehFlameMarioLoop(void)
     set_object_parent_relative_pos(o,40,-120,0);
     if(!(gMarioObject->oMarioParticleFlags & 0x800))
     {
-        o->parentObj->oUnkE0 &= ~0x800;
+        o->parentObj->oActiveParticleFlags &= ~0x800;
         mark_object_for_deletion(o);
         gMarioObject->prevObj = NULL;
     }

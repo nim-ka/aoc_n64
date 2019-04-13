@@ -354,7 +354,7 @@ static void level_cmd_1A(void)
 static void level_cmd_init_level(void)
 {
     init_graph_node_start(NULL, (struct GraphNodeStart *) &D_8038BD88);
-    func_8029CA60();
+    clear_objects();
     clear_areas();
     main_pool_push_state();
 
@@ -363,7 +363,7 @@ static void level_cmd_init_level(void)
 
 static void level_cmd_clear_level(void)
 {
-    func_8029CA60();
+    clear_objects();
     func_8027A7C4();
     clear_areas();
     main_pool_pop_state();
@@ -480,7 +480,7 @@ static void level_cmd_init_mario(void)
     vec3s_set(gMarioSpawnInfo->startPos, 0, 0, 0);
     vec3s_set(gMarioSpawnInfo->startAngle, 0, 0, 0);
 
-    gMarioSpawnInfo->unk0D = -1;
+    gMarioSpawnInfo->activeAreaIndex = -1;
     gMarioSpawnInfo->areaIndex = 0;
     gMarioSpawnInfo->behaviorArg = CMD_GET(u32, 4);
     gMarioSpawnInfo->behaviorScript = CMD_GET(void *, 8);
@@ -510,7 +510,7 @@ static void level_cmd_place_object(void)
         spawnInfo->startAngle[2] = CMD_GET(s16, 14) * 0x8000 / 180;
 
         spawnInfo->areaIndex = sCurrAreaIndex;
-        spawnInfo->unk0D = sCurrAreaIndex;
+        spawnInfo->activeAreaIndex = sCurrAreaIndex;
 
         spawnInfo->behaviorArg = CMD_GET(u32, 16);
         spawnInfo->behaviorScript = CMD_GET(void *, 20);

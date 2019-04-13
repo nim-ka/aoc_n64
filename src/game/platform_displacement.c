@@ -33,6 +33,11 @@ void update_mario_platform(void)
 
     if (gMarioObject == NULL) return;
 
+    //! If mario moves onto a rotating platform in a PU, the find_floor call
+    //  will detect the platform and he will end up receiving a large amount
+    //  of displacement since he is considered to be far from the platform's
+    //  axis of rotation.
+
     marioX = gMarioObject->oPosX;
     marioY = gMarioObject->oPosY;
     marioZ = gMarioObject->oPosZ;
@@ -187,7 +192,7 @@ void apply_mario_platform_displacement(void)
 /**
  * Set mario's platform to NULL.
  */
-void func_u_802C8F28(void)
+void clear_mario_platform(void)
 {
     gMarioPlatform = NULL;
 }

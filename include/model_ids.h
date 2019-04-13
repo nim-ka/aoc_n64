@@ -24,7 +24,7 @@
 #define MODEL_STAR                        0x7A        // star_geo
 #define MODEL_TRANSPARENT_STAR            0x79        // transparent_star_geo
 #define MODEL_WOODEN_SIGNPOST             0x7C        // wooden_signpost_geo
-#define MODEL_SMALL_SNOW_BALL                0xA4        // small_snow_ball_dl
+#define MODEL_SMALL_SNOW_BALL             0xA4        // small_snow_ball_dl
 #define MODEL_RED_FLAME                   0x90        // red_flame_geo
 #define MODEL_BLUE_FLAME                  0x91        // blue_flame_geo
 #define MODEL_BURN_SMOKE                  0x94        // burn_smoke_geo
@@ -33,13 +33,13 @@
 #define MODEL_FISH                        0xB9        // fish_geo
 #define MODEL_FISH_2                      0xBA        // fish2_geo
 #define MODEL_SPARKLES_ANIMATION          0x8F        // sparkles_animation_geo
-#define MODEL_SAND_DUST                0x9F        // sand_seg3_dl_0302BCD0
+#define MODEL_SAND_DUST                   0x9F        // sand_seg3_dl_0302BCD0
 #define MODEL_BUTTERFLY                   0xBB        // butterfly_geo
 #define MODEL_BURN_SMOKE_                 0x9C        // burn_smoke_geo
-#define MODEL_PEBBLE                0xA1        // pebble_seg3_dl_0301CB00
+#define MODEL_PEBBLE                      0xA1        // pebble_seg3_dl_0301CB00
 #define MODEL_MIST                        0x8E        // mist_geo
 #define MODEL_WHITE_PUFF                  0xE0        // white_puff_geo
-#define MODEL_SNOWMAN_SNOW_BALL_DL                0x9E        // snowman_snow_ball_dl
+#define MODEL_SNOWMAN_SNOW_BALL_DL        0x9E        // snowman_snow_ball_dl
 #define MODEL_SNOWMAN_SNOW_BALL           0xA0        // snowman_snow_ball_geo
 #define MODEL_YELLOW_COIN_NO_SHADOW       0x75        // yellow_coin_no_shadow_geo
 #define MODEL_BLUE_COIN                   0x76        // blue_coin_geo

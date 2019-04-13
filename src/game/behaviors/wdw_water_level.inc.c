@@ -32,10 +32,10 @@ void BehWaterLevelDiamondLoop(void)
         case 1:
             if(are_objects_collided(o,gMarioObject))
             {
-                if(D_8035FEF2 == 0)
+                if(gWDWWaterLevelChanging == 0)
                 {
                     o->oAction++;
-                    D_8035FEF2 = 1;
+                    gWDWWaterLevelChanging = 1;
                 }
             }
             break;
@@ -66,7 +66,7 @@ void BehWaterLevelDiamondLoop(void)
         case 3:
             if(!are_objects_collided(o,gMarioObject))
             {
-                D_8035FEF2 = 0;
+                gWDWWaterLevelChanging = 0;
                 o->oAction = 1;
                 o->oAngleVelYaw = 0;
             }

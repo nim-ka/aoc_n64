@@ -43,7 +43,7 @@ void BehBowserKey2Loop(void)
         set_object_hitbox(o,&sBowserKeyHitbox);
         if(o->oInteractStatus & 0x8000)
         {
-            hide_object(o);
+            mark_obj_for_deletion(o);
             o->oInteractStatus = 0;
         }
     }

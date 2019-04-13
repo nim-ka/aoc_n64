@@ -102,7 +102,7 @@ static s32 find_wall_collisions_from_list(
             }
         }
 
-        if (D_8035FE10)
+        if (gCheckingSurfaceCollisionsForCamera)
         {
             if (surf->flags & SURFACE_FLAG_1)
                 continue;
@@ -216,7 +216,7 @@ static struct Surface *find_ceil_from_list(
         if ((z2 - z) * (x3 - x2) - (x2 - x) * (z3 - z2) > 0) continue;
         if ((z3 - z) * (x1 - x3) - (x3 - x) * (z1 - z3) > 0) continue;
 
-        if (D_8035FE10 != 0)
+        if (gCheckingSurfaceCollisionsForCamera != 0)
         {
             if (surf->flags & SURFACE_FLAG_1)
                 continue;
@@ -338,7 +338,7 @@ static struct Surface *find_floor_from_list(
         if ((z2 - z) * (x3 - x2) - (x2 - x) * (z3 - z2) < 0) continue;
         if ((z3 - z) * (x1 - x3) - (x3 - x) * (z1 - z3) < 0) continue;
 
-        if (D_8035FE10 != 0)
+        if (gCheckingSurfaceCollisionsForCamera != 0)
         {
             if (surf->flags & 0x02)
                 continue;

@@ -4,7 +4,7 @@
 #include "types.h"
 
 /*.bss*/
-extern struct Object D_8035FB18;
+extern struct Object gMacroObjectDefaultParent;
 
 /* Functions */
 extern s16  convert_rotation(s16 inRotation);

@@ -190,11 +190,11 @@ void HootActionLoop(void)
             
             if (o->oPosY < 2700.0f)
             {
-                set_time_stop_flag(10);
+                set_time_stop_flags(TIME_STOP_ENABLED | TIME_STOP_MARIO_AND_DOORS);
                 
                 if (func_8028F8E0(162, o, 45))
                 {
-                    clear_time_stop_flag(10);
+                    clear_time_stop_flags(TIME_STOP_ENABLED | TIME_STOP_MARIO_AND_DOORS);
                     
                     o->oAction = HOOT_ACT_TIRED;
                 }

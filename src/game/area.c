@@ -271,7 +271,7 @@ void func_8027A998(void)
 {
     if (gCurrentArea != NULL)
     {
-        func_8029C75C(0, gCurrentArea->index);
+        unload_objects_from_area(0, gCurrentArea->index);
         func_8037C360(gCurrentArea->unk04, 2);
 
         gCurrentArea->flags = 0;
@@ -296,7 +296,7 @@ void func_8027AA88(void)
 {
     if (gCurrentArea != NULL && (gCurrentArea->flags & 0x01))
     {
-        func_8029C75C(0, gMarioSpawnInfo->unk0D);
+        unload_objects_from_area(0, gMarioSpawnInfo->activeAreaIndex);
 
         gCurrentArea->flags &= ~0x01;
         if (gCurrentArea->flags == 0)
@@ -314,7 +314,7 @@ void change_area(s32 index)
         load_area(index);
         
         gCurrentArea->flags = areaFlags;
-        gMarioObject->oUnkE0 = 0;
+        gMarioObject->oActiveParticleFlags = 0;
     }
 
     if (areaFlags & 0x01)

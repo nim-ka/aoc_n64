@@ -2,7 +2,7 @@
 
 void BehCcmTouchedStarSpawnLoop(void)
 {
-    if(D_8035FEEC & 1)
+    if(gCCMEnteredSlide & 1)
     {
         o->oPosY += 100.0f;
         o->oPosX = 2780.0f;

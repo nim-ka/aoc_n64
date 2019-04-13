@@ -159,7 +159,7 @@ static void mark_goomba_as_dead(void)
 {
     if (o->parentObj != o)
     {
-        func_8029C6D8(o->parentObj, (o->oBehParams2ndByte & GOOMBA_BP_TRIPLET_FLAG_MASK) >> 2);
+        set_object_respawn_info_bits(o->parentObj, (o->oBehParams2ndByte & GOOMBA_BP_TRIPLET_FLAG_MASK) >> 2);
 
         o->parentObj->oBehParams = o->parentObj->oBehParams |
             (o->oBehParams2ndByte & GOOMBA_BP_TRIPLET_FLAG_MASK) << 6;

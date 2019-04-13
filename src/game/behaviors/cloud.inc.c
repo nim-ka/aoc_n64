@@ -146,7 +146,7 @@ static void cloud_act_main(void)
     if (o->parentObj != o)
     {
         // Despawn if the parent lakitu does
-        if (o->parentObj->activeFlags == ACTIVE_FLAGS_INACTIVE)
+        if (o->parentObj->activeFlags == ACTIVE_FLAGS_DEACTIVATED)
         {
             o->oAction = CLOUD_ACT_UNLOAD;
         }

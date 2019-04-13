@@ -49,7 +49,7 @@ void BehSurfaceWavesLoop(void)
     o->oPosY = gMarioStates->waterLevel + 5;
     if(!(gMarioObject->oMarioParticleFlags & 0x80))
     {
-        gMarioObject->oUnkE0 &= 0xFF7F;
+        gMarioObject->oActiveParticleFlags &= 0xFF7F;
         o->activeFlags = 0;
     }
 }

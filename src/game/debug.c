@@ -328,7 +328,7 @@ void reset_debug_objectinfo(void)
 {
     gNumFindFloorMisses = 0;
     gUnknownWallCount = 0;
-    gUpdatedObjectCount = 0;
+    gObjectCounter = 0;
     sDebugStringArrPrinted = FALSE;
     D_8035FEE2 = 0;
     D_8035FEE4 = 0;
@@ -489,7 +489,7 @@ void try_print_debug_mario_object_info(void)
         }
     }
 
-    print_debug_top_down_mapinfo("obj  %d", gUpdatedObjectCount);
+    print_debug_top_down_mapinfo("obj  %d", gObjectCounter);
 
     if(gNumFindFloorMisses)
         print_debug_bottom_up("NULLBG %d", gNumFindFloorMisses);
