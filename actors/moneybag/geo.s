@@ -40,7 +40,7 @@ glabel moneybag_geo # 0x0D0000F0
       geo_scale 0x00, 16384
       geo_open_node
          geo_asm 0, Geo18_8029D924
-         geo_switch_case 2, GeoSwitchCase8029DB48
+         geo_switch_case 2, geo_switch_anim_state
          geo_open_node
             geo_branch 1, moneybag_geo_000000
             geo_branch 1, moneybag_geo_000078

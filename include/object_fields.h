@@ -99,6 +99,7 @@
 #define /*0x198*/ oNumLootCoins OBJECT_FIELD_S32(0x44)
 #define /*0x19C*/ oDrawingDistance OBJECT_FIELD_F32(0x45)
 #define /*0x1A0*/ oRoom OBJECT_FIELD_S32(0x46)
+// another object specific range, anim related
 #define /*0x1A8*/ oUnk1A8 OBJECT_FIELD_U32(0x48)
 #define /*0x1AC*/ oUnk1AC_VPTR OBJECT_FIELD_VPTR(0x49)
 #define /*0x1AC*/ oUnk1AC_S32 OBJECT_FIELD_S32(0x49)
@@ -106,8 +107,10 @@
 #define /*0x1AC*/ oUnk1AC_S16 OBJECT_FIELD_S16(0x49, 0)
 #define /*0x1AE*/ oUnk1AE OBJECT_FIELD_S16(0x49, 1)
 #define /*0x1B0*/ oUnk1B0 OBJECT_FIELD_S32(0x4A)
+#define /*0x1B0*/ oEyesShut OBJECT_FIELD_S16(0x4A, 0)
 #define /*0x1B0*/ oUnk1B0_S16 OBJECT_FIELD_S16(0x4A, 0)
 #define /*0x1B2*/ oUnk1B2 OBJECT_FIELD_S16(0x4A, 1)
+// more generic fields
 #define /*0x1B4*/ oWallAngle OBJECT_FIELD_U32(0x4B)
 #define /*0x1B8*/ oFloorType OBJECT_FIELD_S16(0x4C, 0)
 #define /*0x1BA*/ oFloorRoom OBJECT_FIELD_S16(0x4C, 1)

@@ -69,7 +69,7 @@ glabel eyerok_geo_0002AC # 0x0C0002AC
          geo_close_node
          geo_dl_translated LAYER_OPAQUE, 0, 0, 0, eyerok_seg5_dl_0500C908
          geo_open_node
-            geo_switch_case 4, GeoSwitchCase8029DB48
+            geo_switch_case 4, geo_switch_anim_state
             geo_open_node
                geo_display_list LAYER_ALPHA, eyerok_seg5_dl_0500C9B8
                geo_display_list LAYER_ALPHA, eyerok_seg5_dl_0500CA50

@@ -236,7 +236,7 @@ glabel castle_geo_001400 # 0x0E001400
          geo_open_node
             geo_todo_0F 13, 0, 2000, 6000, 0, 0, 0, Geo0F_80287D30
             geo_open_node
-               geo_switch_case 17, GeoSwitchCaseBlinking
+               geo_switch_case 17, geo_switch_area
                geo_open_node
                   geo_branch 1, castle_geo_000F30 # 0x0E000F30
                   geo_branch 1, castle_geo_000F70 # 0x0E000F70

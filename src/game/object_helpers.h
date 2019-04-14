@@ -168,8 +168,8 @@ extern s8 D_8035FFAC;
 
 // extern ? Geo18_8029D890(?);
 // extern ? Geo18_8029D924(?);
-// extern ? GeoSwitchCase8029DB48(?);
-// extern ? GeoSwitchCaseBlinking(?);
+// extern ? geo_switch_anim_state(?);
+// extern ? geo_switch_area(?);
 extern void func_8029D558(Mat4, struct Object *);
 void apply_object_scale_to_matrix(struct Object *, Mat4, Mat4);
 extern void func_8029D704(Mat4,Mat4,Mat4);

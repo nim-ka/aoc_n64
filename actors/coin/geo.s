@@ -1,7 +1,7 @@
 glabel yellow_coin_geo # 0x1600013C
    geo_shadow SHADOW_CIRCLE_UNK1, 0xB4, 50
    geo_open_node
-      geo_switch_case 8, GeoSwitchCase8029DB48
+      geo_switch_case 8, geo_switch_anim_state
       geo_open_node
          geo_display_list LAYER_ALPHA, coin_seg3_dl_03007800
          geo_display_list LAYER_ALPHA, coin_seg3_dl_03007800
@@ -18,7 +18,7 @@ glabel yellow_coin_geo # 0x1600013C
 glabel yellow_coin_no_shadow_geo # 0x160001A0
    geo_node_start
    geo_open_node
-      geo_switch_case 8, GeoSwitchCase8029DB48
+      geo_switch_case 8, geo_switch_anim_state
       geo_open_node
          geo_display_list LAYER_ALPHA, coin_seg3_dl_03007800
          geo_display_list LAYER_ALPHA, coin_seg3_dl_03007800
@@ -35,7 +35,7 @@ glabel yellow_coin_no_shadow_geo # 0x160001A0
 glabel blue_coin_geo # 0x16000200
    geo_shadow SHADOW_CIRCLE_UNK1, 0xB4, 80
    geo_open_node
-      geo_switch_case 8, GeoSwitchCase8029DB48
+      geo_switch_case 8, geo_switch_anim_state
       geo_open_node
          geo_display_list LAYER_ALPHA, coin_seg3_dl_030078A0
          geo_display_list LAYER_ALPHA, coin_seg3_dl_030078A0
@@ -52,7 +52,7 @@ glabel blue_coin_geo # 0x16000200
 glabel blue_coin_no_shadow_geo # 0x16000264
    geo_node_start
    geo_open_node
-      geo_switch_case 8, GeoSwitchCase8029DB48
+      geo_switch_case 8, geo_switch_anim_state
       geo_open_node
          geo_display_list LAYER_ALPHA, coin_seg3_dl_030078A0
          geo_display_list LAYER_ALPHA, coin_seg3_dl_030078A0
@@ -69,7 +69,7 @@ glabel blue_coin_no_shadow_geo # 0x16000264
 glabel red_coin_geo # 0x160002C4
    geo_shadow SHADOW_CIRCLE_UNK1, 0xB4, 80
    geo_open_node
-      geo_switch_case 8, GeoSwitchCase8029DB48
+      geo_switch_case 8, geo_switch_anim_state
       geo_open_node
          geo_display_list LAYER_ALPHA, coin_seg3_dl_03007940
          geo_display_list LAYER_ALPHA, coin_seg3_dl_03007940
@@ -86,7 +86,7 @@ glabel red_coin_geo # 0x160002C4
 glabel red_coin_no_shadow_geo # 0x16000328
    geo_node_start
    geo_open_node
-      geo_switch_case 8, GeoSwitchCase8029DB48
+      geo_switch_case 8, geo_switch_anim_state
       geo_open_node
          geo_display_list LAYER_ALPHA, coin_seg3_dl_03007940
          geo_display_list LAYER_ALPHA, coin_seg3_dl_03007940

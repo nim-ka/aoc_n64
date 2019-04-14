@@ -364,7 +364,7 @@ void ActionBowser18() // unused?
 
 void ActionBowser0() // only lasts one frame
 {
-    o->oUnk1B0_S16 = 0;
+    o->oEyesShut = 0;
     func_8029ED38(12);
     // stop him still
     o->oAngleVelYaw = 0;
@@ -493,7 +493,7 @@ void ActionBowser12(void)
         o->oForwardVel = -400.0f;
         o->oVelY = 100.0f;
         o->oMoveAngleYaw = o->oBowserAngleToCentre + 0x8000;
-        o->oUnk1B0_S16 = 1;
+        o->oEyesShut = 1;
     }
     if(o->oSubAction == 0)
     {
@@ -522,7 +522,7 @@ void ActionBowser12(void)
                 o->oAction = 3;
             else
                 o->oAction = 0;
-            o->oUnk1B0_S16 = 0;
+            o->oEyesShut = 0;
         }
     }
     else {}
@@ -928,7 +928,7 @@ void func_802B5D18(void)
 
 void func_802B5DD8(void)
 {
-    o->oUnk1B0_S16 = 1;
+    o->oEyesShut = 1;
     func_802B392C(&o->oBowserUnkF8);
     if(o->oMoveFlags & 1)
         PlaySound2(SOUND_OBJECT_BOWSERWALK);
@@ -1359,7 +1359,7 @@ void BehBowserInit(void)
     func_802A11B4(o,4);
     o->oAction = 5;
     o->oUnk1AE = 0;
-    o->oUnk1B0_S16 = 0;
+    o->oEyesShut = 0;
 }
 
 #undef BITDW
@@ -1445,27 +1445,31 @@ void func_802B70C8(struct Object* a0, struct GraphNodeSwitchCase * switchCase)
         a0->oUnk1AE = -1;
 }
 
-s32 GeoSwitchCase802B7C64(s32 run, struct GraphNode* node, UNUSED Mat4 *a2)
+/** Geo switch for controlling the state of bowser's eye direction and open/closed
+  * state. Checks whether oEyesShut is TRUE and closes eyes if so and processes
+  * direction otherwise.
+  */
+s32 geo_switch_bowser_eyes(s32 run, struct GraphNode *node, UNUSED Mat4 *mtx)
 {
     UNUSED s16 sp36;
     UNUSED s32 unused;
-    struct Object* sp2C = (struct Object*)D_8032CFA0;
-    struct GraphNodeSwitchCase* switchCase = (struct GraphNodeSwitchCase *)node;
+    struct Object *obj = (struct Object *)D_8032CFA0;
+    struct GraphNodeSwitchCase *switchCase = (struct GraphNodeSwitchCase *)node;
 
     if(run == TRUE)
     {
         if(D_8032CFA4 != NULL)
-            sp2C = (struct Object*)D_8032CFA4->unk1C;
-        switch(sp36 = sp2C->oUnk1B0_S16)
+            obj = (struct Object *)D_8032CFA4->unk1C;
+        switch(sp36 = obj->oEyesShut)
         {
-        case 0:
-            func_802B70C8(sp2C,switchCase);
+        case 0: // eyes open, handle eye looking direction
+            func_802B70C8(obj, switchCase);
             break;
-        case 1:
+        case 1: // eyes closed, blinking
             switchCase->unk1E = 2;
             break;
         }
-        sp2C->oUnk1AE++;
+        obj->oUnk1AE++;
     }
     return 0;
 }

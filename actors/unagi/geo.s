@@ -13,7 +13,7 @@ glabel unagi_geo # 0x0C00010C
                   geo_open_node
                      geo_dl_translated LAYER_OPAQUE, 475, 0, 0, unagi_seg5_dl_0500D828
                      geo_open_node
-                        geo_switch_case 2, GeoSwitchCase8029DB48
+                        geo_switch_case 2, geo_switch_anim_state
                         geo_open_node
                            geo_node_start
                            geo_node_start

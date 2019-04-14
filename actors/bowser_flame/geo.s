@@ -1,7 +1,7 @@
 glabel bowser_flames_geo # 0x0D000000
    geo_node_start
    geo_open_node
-      geo_switch_case 14, GeoSwitchCase8029DB48
+      geo_switch_case 14, geo_switch_anim_state
       geo_open_node
          geo_display_list LAYER_TRANSPARENT, flame_seg6_dl_0601C108
          geo_display_list LAYER_TRANSPARENT, flame_seg6_dl_0601C1A8

@@ -11,7 +11,7 @@ glabel yoshi_geo # 0x0C000468
                geo_open_node
                   geo_dl_translated LAYER_OPAQUE, 222, 0, 0
                   geo_open_node
-                     geo_switch_case 2, GeoSwitchCase8029DB48
+                     geo_switch_case 2, geo_switch_anim_state
                      geo_open_node
                         geo_display_list LAYER_OPAQUE, yoshi_seg5_dl_0501D970
                         geo_display_list LAYER_OPAQUE, yoshi_seg5_dl_0501D998

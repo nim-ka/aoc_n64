@@ -35,7 +35,7 @@ glabel black_bobomb_geo # 0x0F0007B8
                   geo_close_node
                geo_close_node
                geo_dl_translated LAYER_OPAQUE, 0, 0, 0, bobomb_seg8_dl_08023480
-               geo_switch_case 2, GeoSwitchCase8029DB48
+               geo_switch_case 2, geo_switch_anim_state
                geo_open_node
                   geo_dl_translated LAYER_ALPHA, 0, 0, 0, bobomb_seg8_dl_08022B58
                   geo_dl_translated LAYER_ALPHA, 0, 0, 0, bobomb_seg8_dl_08022B88
@@ -83,7 +83,7 @@ glabel bobomb_buddy_geo # 0x0F0008F4
                   geo_close_node
                geo_close_node
                geo_dl_translated LAYER_OPAQUE, 0, 0, 0, bobomb_seg8_dl_08023480
-               geo_switch_case 2, GeoSwitchCase8029DB48
+               geo_switch_case 2, geo_switch_anim_state
                geo_open_node
                   geo_dl_translated LAYER_ALPHA, 0, 0, 0, bobomb_seg8_dl_08022B58
                   geo_dl_translated LAYER_ALPHA, 0, 0, 0, bobomb_seg8_dl_08022B88

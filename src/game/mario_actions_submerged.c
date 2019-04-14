@@ -319,7 +319,7 @@ static void update_swimming_pitch(struct MarioState *m)
 
 static void common_idle_step(struct MarioState *m, s32 animation, s32 arg)
 {
-    s16 *val = &m->unk98->unk12;
+    s16 *val = &m->unk98->unk12[0];
 
     update_swimming_yaw(m);
     update_swimming_pitch(m);
@@ -478,7 +478,7 @@ static void common_swimming_step(struct MarioState *m, s16 swimStrength)
     }
 
     func_80270504(m);
-    m->unk98->unk12 = approach_s32(m->unk98->unk12, 0, 0x200, 0x200);
+    m->unk98->unk12[0] = approach_s32(m->unk98->unk12[0], 0, 0x200, 0x200);
 
     func_802710CC(m);
     set_swimming_at_surface_particles(m, PARTICLE_10);
@@ -784,7 +784,7 @@ static s32 act_water_throw(struct MarioState *m)
     func_802507E8(m, 0x00B1);
     func_80250F50(m, SOUND_ACTION_UNKNOWN433, MARIO_UNKNOWN_16);
 
-    m->unk98->unk12 = approach_s32(m->unk98->unk12, 0, 0x200, 0x200);
+    m->unk98->unk12[0] = approach_s32(m->unk98->unk12[0], 0, 0x200, 0x200);
 
     if (m->actionTimer++ == 5)
         mario_throw_held_object(m);
@@ -806,7 +806,7 @@ static s32 act_water_punch(struct MarioState *m)
     perform_water_step(m);
     func_80270504(m);
 
-    m->unk98->unk12 = approach_s32(m->unk98->unk12, 0, 0x200, 0x200);
+    m->unk98->unk12[0] = approach_s32(m->unk98->unk12[0], 0, 0x200, 0x200);
 
     func_80250F50(m, SOUND_ACTION_UNKNOWN433, MARIO_UNKNOWN_16);
 
@@ -850,7 +850,7 @@ static void common_water_knockback_step(struct MarioState *m, s32 animation, u32
     perform_water_step(m);
     func_802507E8(m, animation);
 
-    m->unk98->unk12 = 0;
+    m->unk98->unk12[0] = 0;
 
     if (func_80250770(m))
     {
@@ -893,7 +893,7 @@ static s32 act_water_shocked(struct MarioState *m)
 
     stationary_slow_down(m);
     perform_water_step(m);
-    m->unk98->unk12 = 0;
+    m->unk98->unk12[0] = 0;
     return FALSE;
 }
 
@@ -1470,8 +1470,8 @@ s32 mario_execute_submerged_action(struct MarioState *m)
 
     m->quicksandDepth = 0.0f;
 
-    m->unk98->unk14 = 0;
-    m->unk98->unk16 = 0;
+    m->unk98->unk12[1] = 0;
+    m->unk98->unk12[2] = 0;
 
     switch (m->action)
     {

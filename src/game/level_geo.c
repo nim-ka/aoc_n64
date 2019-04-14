@@ -2,11 +2,12 @@
 
 #include "sm64.h"
 #include "rendering_graph_node.h"
-#include "castle_message_behaviors.h"
+#include "mario_misc.h"
 #include "skybox.h"
 #include "engine/math_util.h"
 #include "camera.h"
 #include "envfx_snow.h"
+#include "level_geo.h"
 
 // level_geo_main?
 Gfx *Geo18_802761D0(int a, struct GraphNode *b, float c[4][4])
@@ -58,7 +59,7 @@ Gfx *Geo18_802761D0(int a, struct GraphNode *b, float c[4][4])
 Gfx *Geo19_802763D4(int a, struct GraphNode *b, UNUSED Mat4 *c)
 {
     Gfx *sp3C = NULL;
-    struct Struct802763D4 *sp38 = (struct Struct802763D4 *)b;
+    struct GraphNodeBackground *sp38 = (struct GraphNodeBackground *)b;
 
     if (a == 3)
     {
@@ -69,7 +70,7 @@ Gfx *Geo19_802763D4(int a, struct GraphNode *b, UNUSED Mat4 *c)
         struct GraphNode *sp34 = D_8032CF90->unk20[0];
         struct Struct802763D4_Unknown *sp30 = (struct Struct802763D4_Unknown *)sp34->parent;
 
-        sp3C = func_802CF414(0, sp38->unk1C, sp30->unk1C,
+        sp3C = func_802CF414(0, sp38->background, sp30->unk1C,
             D_8033B328.unk8C[0], D_8033B328.unk8C[1], D_8033B328.unk8C[2],
             D_8033B328.unk80[0], D_8033B328.unk80[1], D_8033B328.unk80[2]);
     }

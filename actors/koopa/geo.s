@@ -7,7 +7,7 @@ glabel koopa_without_shell_geo # 0x0D0000D0
          geo_open_node
             geo_dl_translated LAYER_OPAQUE, 0, 0, 0, koopa_seg6_dl_0600C498
             geo_open_node
-               geo_switch_case 2, GeoSwitchCase8029DB48
+               geo_switch_case 2, geo_switch_anim_state
                geo_open_node
                   geo_dl_translated LAYER_OPAQUE, 114, 0, 0, koopa_seg6_dl_06007AF8
                   geo_dl_translated LAYER_OPAQUE, 114, 0, 0, koopa_seg6_dl_06007B20
@@ -55,7 +55,7 @@ glabel koopa_with_shell_geo # 0x0D000214
          geo_open_node
             geo_dl_translated LAYER_OPAQUE, 0, 0, 0, koopa_seg6_dl_06008250
             geo_open_node
-               geo_switch_case 2, GeoSwitchCase8029DB48
+               geo_switch_case 2, geo_switch_anim_state
                geo_open_node
                   geo_dl_translated LAYER_OPAQUE, 114, 0, 0, koopa_seg6_dl_06007AF8
                   geo_dl_translated LAYER_OPAQUE, 114, 0, 0, koopa_seg6_dl_06007B20

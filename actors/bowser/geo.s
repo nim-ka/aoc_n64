@@ -48,7 +48,7 @@ glabel bowser_geo_0000D8 # 0x0D0000D8
                geo_open_node
                   geo_dl_translated LAYER_OPAQUE, -13, 258, 0, bowser_seg6_dl_060431F0
                geo_close_node
-               geo_switch_case 9, GeoSwitchCase802B7C64
+               geo_switch_case 9, geo_switch_bowser_eyes
                geo_open_node
                   geo_dl_translated LAYER_OPAQUE, 0, 0, 0, bowser_seg6_dl_06042348
                   geo_dl_translated LAYER_OPAQUE, 0, 0, 0, bowser_seg6_dl_060423A0
@@ -158,7 +158,7 @@ glabel bowser_geo_000424 # 0x0D000424
                geo_open_node
                   geo_dl_translated LAYER_TRANSPARENT, -13, 258, 0, bowser_seg6_dl_060431F0
                geo_close_node
-               geo_switch_case 9, GeoSwitchCase802B7C64
+               geo_switch_case 9, geo_switch_bowser_eyes
                geo_open_node
                   geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, bowser_seg6_dl_06042348
                   geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, bowser_seg6_dl_060423A0
@@ -272,7 +272,7 @@ glabel bowser_geo_000770 # 0x0D000770
                geo_open_node
                   geo_dl_translated LAYER_TRANSPARENT, -13, 258, 0, bowser_seg6_dl_060431F0
                geo_close_node
-               geo_switch_case 9, GeoSwitchCase802B7C64
+               geo_switch_case 9, geo_switch_bowser_eyes
                geo_open_node
                   geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, bowser_seg6_dl_06042348
                   geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, bowser_seg6_dl_060423A0
@@ -343,10 +343,10 @@ glabel bowser_geo # 0x0D000AB8 / 0AC4
    geo_open_node
       geo_asm 0, Geo18_8029D924
 .ifdef VERSION_JP
-      geo_switch_case 2, GeoSwitchCase8029DB48
+      geo_switch_case 2, geo_switch_anim_state
 .endif
 .ifdef VERSION_US
-      geo_switch_case 3, GeoSwitchCase8029DB48
+      geo_switch_case 3, geo_switch_anim_state
 .endif
       geo_open_node
          geo_node_start
@@ -379,10 +379,10 @@ glabel bowser2_geo # 0x0D000B18 / 0B40
       geo_asm 0, Geo18_8029D924
 
 .ifdef VERSION_JP
-      geo_switch_case 2, GeoSwitchCase8029DB48
+      geo_switch_case 2, geo_switch_anim_state
 .endif
 .ifdef VERSION_US
-      geo_switch_case 3, GeoSwitchCase8029DB48
+      geo_switch_case 3, geo_switch_anim_state
 .endif
       geo_open_node
 

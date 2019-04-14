@@ -262,19 +262,19 @@ void BehEndToadLoop(void)
     }
 }
 
-// no clue what this does
-s32 GeoSwitchCase80257198(s32 run, struct GraphNode *node, UNUSED s32 a2)
+// Geo switch case function for controlling Peach's eye state.
+s32 geo_switch_peach_eyes(s32 run, struct GraphNode *node, UNUSED s32 a2)
 {
     struct GraphNodeSwitchCase *switchCase = (struct GraphNodeSwitchCase *)node;
-    s16 sp2;
+    s16 timer;
 
     if (run == TRUE)
     {
         if (D_8032CBE4 == 0)
         {
-            sp2 = (gAreaUpdateCounter + 0x20) >> 1 & 0x1F;
-            if (sp2 < 7)
-                switchCase->unk1E = D_8032CBE8 * 4 + D_8032CBEC[sp2];
+            timer = (gAreaUpdateCounter + 0x20) >> 1 & 0x1F;
+            if (timer < 7)
+                switchCase->unk1E = D_8032CBE8 * 4 + D_8032CBEC[timer];
             else
                 switchCase->unk1E = D_8032CBE8 * 4 + 1;
         }
@@ -514,7 +514,7 @@ static s32 act_reading_npc_dialogue(struct MarioState *m)
     }
     vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
     vec3s_set(m->marioObj->header.gfx.angle, 0, m->faceAngle[1], 0);
-    vec3s_set(&m->unk98->unk12, m->actionTimer, 0, 0);
+    vec3s_set(m->unk98->unk12, m->actionTimer, 0, 0);
 
     if (m->actionState != 8)
         m->actionState++;
@@ -612,7 +612,7 @@ static s32 act_reading_automatic_dialogue(struct MarioState *m)
         }
     }
     // apply head turn
-    vec3s_set(&m->unk98->unk12, m->actionTimer, 0, 0);
+    vec3s_set(m->unk98->unk12, m->actionTimer, 0, 0);
     return FALSE;
 }
 

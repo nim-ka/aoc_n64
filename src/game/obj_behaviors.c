@@ -17,7 +17,7 @@
 #include "object_list_processor.h"
 #include "save_file.h"
 #include "area.h"
-#include "castle_message_behaviors.h"
+#include "mario_misc.h"
 #include "level_update.h"
 #include "audio/interface_2.h"
 #include "behavior_actions.h"

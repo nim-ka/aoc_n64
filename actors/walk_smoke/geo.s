@@ -1,5 +1,5 @@
 glabel smoke_geo # 0x17000038
-   geo_switch_case 7, GeoSwitchCase8029DB48
+   geo_switch_case 7, geo_switch_anim_state
    geo_open_node
       geo_display_list LAYER_TRANSPARENT, smoke_seg4_dl_04021718
       geo_display_list LAYER_TRANSPARENT, smoke_seg4_dl_04021730

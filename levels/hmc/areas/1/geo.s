@@ -267,7 +267,7 @@ glabel hmc_geo_000B90 # 0x0E000B90
          geo_open_node
             geo_todo_0F 16, 0, 2000, 6000, 0, 0, 0, Geo0F_80287D30
             geo_open_node
-               geo_switch_case 18, GeoSwitchCaseBlinking
+               geo_switch_case 18, geo_switch_area
                geo_open_node
                   geo_branch 1, hmc_geo_0005E8 # 0x0E0005E8
                   geo_branch 1, hmc_geo_000618 # 0x0E000618

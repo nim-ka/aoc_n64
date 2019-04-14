@@ -821,7 +821,7 @@ static void func_802659E8(struct MarioState *m, Vec3f startPos)
 
 static void func_80265C28(struct MarioState *m, s16 startYaw)
 {
-    struct UnknownStruct4 *val0C = m->unk98;
+    struct UnknownStruct4_New *val0C = m->unk98;
     UNUSED struct Object *marioObj = m->marioObj;
     s16 val06 = m->marioObj->header.gfx.unk38.animID;
     s16 dYaw;
@@ -840,19 +840,19 @@ static void func_80265C28(struct MarioState *m, s16 startYaw)
         if (val00 > 0x1555) val00 = 0x1555;
         if (val00 < 0) val00 = 0;
 
-        val0C->unk10 = approach_s32(val0C->unk10, val02, 0x400, 0x400);
-        val0C->unk0C = approach_s32(val0C->unk0C, val00, 0x400, 0x400);;
+        val0C->unkC[2] = approach_s32(val0C->unkC[2], val02, 0x400, 0x400);
+        val0C->unkC[0] = approach_s32(val0C->unkC[0], val00, 0x400, 0x400);;
     }
     else
     {
-        val0C->unk10 = 0;
-        val0C->unk0C = 0;
+        val0C->unkC[2] = 0;
+        val0C->unkC[0] = 0;
     }
 }
 
 static void func_80265DBC(struct MarioState *m, s16 startYaw)
 {
-    struct UnknownStruct4 *val0C = m->unk98;
+    struct UnknownStruct4_New *val0C = m->unk98;
     struct Object *marioObj = m->marioObj;
     s16 dYaw = m->faceAngle[1] - startYaw;
     s16 val04 = -(s16)(dYaw * m->forwardVel / 12.0f);
@@ -864,11 +864,11 @@ static void func_80265DBC(struct MarioState *m, s16 startYaw)
     if (val02 > 0x1000) val02 = 0x1000;
     if (val02 < 0) val02 = 0;
 
-    val0C->unk10 = approach_s32(val0C->unk10, val04, 0x200, 0x200);
-    val0C->unk0C = approach_s32(val0C->unk0C, val02, 0x200, 0x200);
-    val0C->unk16 = -val0C->unk10;
+    val0C->unkC[2] = approach_s32(val0C->unkC[2], val04, 0x200, 0x200);
+    val0C->unkC[0] = approach_s32(val0C->unkC[0], val02, 0x200, 0x200);
+    val0C->unk12[2] = -val0C->unkC[2];
 
-    marioObj->header.gfx.angle[2] = val0C->unk10;
+    marioObj->header.gfx.angle[2] = val0C->unkC[2];
     marioObj->header.gfx.pos[1] += 45.0f;
 }
 
@@ -1409,8 +1409,8 @@ static s32 act_burning_ground(struct MarioState *m)
 static void func_80267814(struct MarioState *m)
 {
     s16 intendedDYaw = m->intendedYaw - m->faceAngle[1];
-    m->unk98->unk0C = (s32)(5461.3335f * m->intendedMag / 32.0f * coss(intendedDYaw));
-    m->unk98->unk10 = (s32)(-(5461.3335f * m->intendedMag / 32.0f * sins(intendedDYaw)));
+    m->unk98->unkC[0] = (s32)(5461.3335f * m->intendedMag / 32.0f * coss(intendedDYaw));
+    m->unk98->unkC[2] = (s32)(-(5461.3335f * m->intendedMag / 32.0f * sins(intendedDYaw)));
 }
 
 static void common_slide_action(

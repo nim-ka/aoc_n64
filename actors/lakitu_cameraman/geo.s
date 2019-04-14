@@ -9,7 +9,7 @@ glabel lakitu_geo # 0x0D000000
             geo_open_node
                geo_dl_translated LAYER_OPAQUE, 132, 0, 0, lakitu_seg6_dl_06004680
                geo_open_node
-                  geo_switch_case 2, GeoSwitchCase8029DB48
+                  geo_switch_case 2, geo_switch_anim_state
                   geo_open_node
                      geo_display_list LAYER_ALPHA, lakitu_seg6_dl_06004C60
                      geo_display_list LAYER_ALPHA, lakitu_seg6_dl_06004C88

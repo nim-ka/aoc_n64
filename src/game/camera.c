@@ -5,7 +5,7 @@
 #include "sm64.h"
 #include "camera.h"
 #include "audio/interface_2.h"
-#include "castle_message_behaviors.h"
+#include "mario_misc.h"
 #include "game.h"
 #include "hud.h"
 #include "engine/math_util.h"

@@ -1,7 +1,7 @@
 glabel explosion_geo # 0x16000040
    geo_node_start
    geo_open_node
-      geo_switch_case 9, GeoSwitchCase8029DB48
+      geo_switch_case 9, geo_switch_anim_state
       geo_open_node
          geo_display_list LAYER_TRANSPARENT, explosion_seg3_dl_03004298
          geo_display_list LAYER_TRANSPARENT, explosion_seg3_dl_03004298

@@ -23,13 +23,13 @@ glabel penguin_geo # 0x0C000104
             geo_close_node
             geo_dl_translated LAYER_OPAQUE, 0, 111, -19
             geo_open_node
-               geo_switch_case 5, GeoSwitchCase802BFBAC
+               geo_switch_case 5, geo_switch_tuxie_mother_eyes
                geo_open_node
                   geo_dl_translated LAYER_OPAQUE, 0, 0, 0, penguin_seg5_dl_05006428
                   geo_dl_translated LAYER_OPAQUE, 0, 0, 0, penguin_seg5_dl_05006458
                   geo_dl_translated LAYER_OPAQUE, 0, 0, 0, penguin_seg5_dl_05006488
                   geo_dl_translated LAYER_OPAQUE, 0, 0, 0, penguin_seg5_dl_050064B8
-                  geo_dl_translated LAYER_OPAQUE, 0, 0, 0, penguin_seg5_dl_050064E8
+                  geo_dl_translated LAYER_OPAQUE, 0, 0, 0, penguin_seg5_dl_050064E8 # unused, seen in Shoshinkai 1995 footage
                geo_close_node
             geo_close_node
          geo_close_node

@@ -9,7 +9,7 @@ glabel enemy_lakitu_geo # 0x0C0001BC
             geo_open_node
                geo_dl_translated LAYER_OPAQUE, 132, 0, 0, lakitu_enemy_seg5_dl_05013160
                geo_open_node
-                  geo_switch_case 2, GeoSwitchCase8029DB48
+                  geo_switch_case 2, geo_switch_anim_state
                   geo_open_node
                      geo_display_list LAYER_ALPHA, lakitu_enemy_seg5_dl_05013350
                      geo_display_list LAYER_ALPHA, lakitu_enemy_seg5_dl_05013378

@@ -9,7 +9,7 @@ glabel peach_geo_000098 # 0x0C000098
             geo_open_node
                geo_dl_translated LAYER_OPAQUE, 132, 0, 0
                geo_open_node
-                  geo_switch_case 8, GeoSwitchCase80257198
+                  geo_switch_case 8, geo_switch_peach_eyes
                   geo_open_node
                      geo_display_list LAYER_OPAQUE, peach_seg5_dl_05005CE0
                      geo_display_list LAYER_OPAQUE, peach_seg5_dl_05005D38
@@ -75,7 +75,7 @@ glabel peach_geo_000254 # 0x0C000254
             geo_open_node
                geo_dl_translated LAYER_TRANSPARENT, 132, 0, 0
                geo_open_node
-                  geo_switch_case 8, GeoSwitchCase80257198
+                  geo_switch_case 8, geo_switch_peach_eyes
                   geo_open_node
                      geo_display_list LAYER_TRANSPARENT, peach_seg5_dl_05005CE0
                      geo_display_list LAYER_TRANSPARENT, peach_seg5_dl_05005D38
@@ -136,7 +136,7 @@ glabel peach_geo # 0x0C000410
       geo_scale 0x00, 16384
       geo_open_node
          geo_asm 10, Geo18_8029D924
-         geo_switch_case 2, GeoSwitchCase8029DB48
+         geo_switch_case 2, geo_switch_anim_state
          geo_open_node
             geo_branch 1, peach_geo_000098
             geo_branch 1, peach_geo_000254

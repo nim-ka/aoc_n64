@@ -8,7 +8,7 @@ glabel red_flame_shadow_geo # 0x16000B10
 glabel red_flame_geo # 0x16000B2C
    geo_node_start
    geo_open_node
-      geo_switch_case 8, GeoSwitchCase8029DB48
+      geo_switch_case 8, geo_switch_anim_state
       geo_open_node
          geo_display_list LAYER_TRANSPARENT, flame_seg3_dl_0301B3B0
          geo_display_list LAYER_TRANSPARENT, flame_seg3_dl_0301B3C8
@@ -25,7 +25,7 @@ glabel red_flame_geo # 0x16000B2C
 glabel blue_flame_geo # 0x16000B8C
    geo_node_start
    geo_open_node
-      geo_switch_case 8, GeoSwitchCase8029DB48
+      geo_switch_case 8, geo_switch_anim_state
       geo_open_node
          geo_display_list LAYER_TRANSPARENT, flame_seg3_dl_0301B500
          geo_display_list LAYER_TRANSPARENT, flame_seg3_dl_0301B518

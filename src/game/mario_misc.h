@@ -1,5 +1,5 @@
-#ifndef _CASTLE_MESSAGE_BEHAVIORS_H
-#define _CASTLE_MESSAGE_BEHAVIORS_H
+#ifndef _MARIO_MISC_H
+#define _MARIO_MISC_H
 
 #include "types.h"
 
@@ -29,20 +29,6 @@ enum UnlockDoorStarStates {
     UNLOCK_DOOR_STAR_WAITING,
     UNLOCK_DOOR_STAR_SPAWNING_PARTICLES,
     UNLOCK_DOOR_STAR_DONE
-};
-
-struct Struct802761D0
-{
-    u16 unk0;
-    s16 unk2;
-    u8 filler4[0x18-0x4];
-};
-
-struct Struct802763D4
-{
-    u8 filler0[0x18];
-    s32 unk18;
-    s32 unk1C;
 };
 
 struct Struct802763D4_Unknown
@@ -135,43 +121,26 @@ struct Struct80277D6C
     s32 unk18;
 };
 
-struct Struct8033A040
-{
-    u32 unk0;
-    s8 unk4;
-    s8 unk5;
-    s8 unk6;
-    s8 unk7;
-    s16 unk8;
-    u8 fillerA[1];
-    u8 unkB;
-    Vec3s unkC;
-    Vec3s unk12;
-    u8 filler18[0x28-0x18];
-};
-
 extern struct GraphNodeObject D_80339FE0;
-extern struct Struct8033A040 D_8033A040[2]; 
+extern struct UnknownStruct4_New D_8033A040[2]; 
 
-extern Gfx *Geo18_802761D0(int a, struct GraphNode *b, float c[4][4]);
-extern Gfx *Geo19_802763D4(int a, struct GraphNode *b, UNUSED Mat4 *c);
 extern Gfx *Geo18_802764B0(int a, struct GraphNode *b, Mat4 *c);
 extern void beh_toad_message_loop(void);
 extern void beh_toad_message_init(void);
 extern void beh_unlock_door_star_init(void);
 extern void beh_unlock_door_star_loop(void);
 extern Gfx *Geo18_802770A4(int a, struct GraphNode *b, UNUSED Mat4 *c);
-extern Gfx *GeoSwitchCase80277150(s32 run, struct GraphNode *node, UNUSED Mat4 *c);
-extern Gfx *GeoSwitchCase802771BC(s32 run, struct GraphNode *node, UNUSED Mat4 *c);
+extern s32 geo_switch_mario_stand_run(s32 run, struct GraphNode *node, UNUSED Mat4 *c);
+extern s32 geo_switch_mario_eyes(s32 run, struct GraphNode *node, UNUSED Mat4 *c);
 extern Gfx *Geo18_80277294(int a, struct GraphNode *b, UNUSED Mat4 *c);
 extern Gfx *Geo18_802773A4(int a, struct GraphNode *b, UNUSED Mat4 *c);
-extern Gfx *GeoSwitchCase802774F4(s32 run, struct GraphNode *node, UNUSED Mat4 *c);
+extern s32 geo_switch_mario_hand(s32 run, struct GraphNode *node, UNUSED Mat4 *c);
 extern Gfx *Geo18_802775CC(int a, struct GraphNode *b, UNUSED Mat4 *c);
-extern Gfx *GeoSwitchCase802776D8(s32 run, struct GraphNode *node, UNUSED Mat4 *c);
-extern Gfx *GeoSwitchCase80277740(s32 run, struct GraphNode *node, UNUSED Mat4 *c);
+extern s32 geo_switch_mario_cap_effect(s32 run, struct GraphNode *node, UNUSED Mat4 *c);
+extern s32 geo_switch_mario_cap_on_off(s32 run, struct GraphNode *node, UNUSED Mat4 *c);
 extern Gfx *Geo18_80277824(int a, struct GraphNode *b, UNUSED Mat4 *c);
 extern Gfx *Geo1C_8027795C(int a, struct GraphNode *b, Mat4 *c);
 extern Gfx *Geo18_80277B14(int a, struct GraphNode *b, UNUSED Mat4 *c);
 extern Gfx *Geo18_80277D6C(int a, struct GraphNode *b, UNUSED Mat4 *c);
 
-#endif /* _CASTLE_MESSAGE_BEHAVIOR_H */
+#endif /* _MARIO_MISC_H */

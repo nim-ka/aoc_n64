@@ -21,7 +21,7 @@ actorgeo mario_cap
 glabel number_geo # 0x16000E14
    geo_node_start
    geo_open_node
-      geo_switch_case 10, GeoSwitchCase8029DB48
+      geo_switch_case 10, geo_switch_anim_state
       geo_open_node
          geo_display_list LAYER_ALPHA, seg2_dl_0200F078
          geo_display_list LAYER_ALPHA, seg2_dl_0200F0A8

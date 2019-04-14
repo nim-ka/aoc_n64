@@ -361,7 +361,8 @@ void func_802BAE40(void)
         exec_anim_sound_state(D_8032F7D8);
 }
 
-void Unknown802BAEE0(void)
+// Unused function for timing ukiki's blinking. Image still present in Ukiki's actor graphics.
+void ukiki_blink_timer(void)
 {
     if(gGlobalTimer % 50 < 7)
         o->oAnimState = 1;

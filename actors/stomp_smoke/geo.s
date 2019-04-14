@@ -1,5 +1,5 @@
 glabel spot_on_ground_geo # 0x1700009C
-   geo_switch_case 6, GeoSwitchCase8029DB48
+   geo_switch_case 6, geo_switch_anim_state
    geo_open_node
       geo_display_list LAYER_TRANSPARENT, stomp_smoke_seg4_dl_040251F8
       geo_display_list LAYER_TRANSPARENT, stomp_smoke_seg4_dl_04025210
@@ -11,7 +11,7 @@ glabel spot_on_ground_geo # 0x1700009C
    geo_end
 
 glabel mario_TODO_geo_0000E0 # 0x170000E0
-   geo_switch_case 6, GeoSwitchCase8029DB48
+   geo_switch_case 6, geo_switch_anim_state
    geo_open_node
       geo_display_list LAYER_TRANSPARENT, stomp_smoke_seg4_dl_04025288
       geo_display_list LAYER_TRANSPARENT, stomp_smoke_seg4_dl_040252A0

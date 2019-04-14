@@ -7,7 +7,7 @@ glabel ukiki_geo # 0x0C000110
          geo_open_node
             geo_dl_translated LAYER_OPAQUE, 0, 99, -11
             geo_open_node
-               geo_switch_case 4, GeoSwitchCase8029DB48
+               geo_switch_case 4, geo_switch_anim_state
                geo_open_node
                   geo_node_start
                   geo_open_node

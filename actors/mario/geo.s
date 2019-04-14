@@ -4,9 +4,9 @@ glabel mario_geo_face_and_wings # 0x170002E0
    geo_asm 0, Geo18_802773A4
    geo_rotation_node 0x00, 0, 0, 0
    geo_open_node
-      geo_switch_case 0, GeoSwitchCase80277740
+      geo_switch_case 0, geo_switch_mario_cap_on_off
       geo_open_node
-         geo_switch_case 0, GeoSwitchCase802771BC
+         geo_switch_case 0, geo_switch_mario_eyes
          geo_open_node
             geo_display_list LAYER_OPAQUE, mario_cap_on_eyes_front
             geo_display_list LAYER_OPAQUE, mario_cap_on_eyes_half_closed
@@ -17,7 +17,7 @@ glabel mario_geo_face_and_wings # 0x170002E0
             geo_display_list LAYER_OPAQUE, mario_cap_on_eyes_down # unused
             geo_display_list LAYER_OPAQUE, mario_cap_on_eyes_dead
          geo_close_node
-         geo_switch_case 0, GeoSwitchCase802771BC
+         geo_switch_case 0, geo_switch_mario_eyes
          geo_open_node
             geo_display_list LAYER_OPAQUE, mario_cap_off_eyes_front
             geo_display_list LAYER_OPAQUE, mario_cap_off_eyes_half_closed
@@ -49,7 +49,7 @@ glabel mario_geo_face_and_wings # 0x170002E0
    geo_return
 
 glabel mario_geo_left_hand # 0x1700041C
-   geo_switch_case 1, GeoSwitchCase802774F4
+   geo_switch_case 1, geo_switch_mario_hand
    geo_open_node
       geo_dl_translated LAYER_OPAQUE, 60, 0, 0
       geo_open_node
@@ -67,7 +67,7 @@ glabel mario_geo_left_hand # 0x1700041C
    geo_return
 
 glabel mario_geo_right_hand # 0x17000494
-   geo_switch_case 0, GeoSwitchCase802774F4
+   geo_switch_case 0, geo_switch_mario_hand
    geo_open_node
       geo_dl_translated LAYER_OPAQUE, 60, 0, 0
       geo_open_node
@@ -162,7 +162,7 @@ glabel mario_geo_body # 0x1700053C
    geo_return
 
 glabel mario_geo_medium_poly_left_hand # 0x170006F8
-   geo_switch_case 1, GeoSwitchCase802774F4
+   geo_switch_case 1, geo_switch_mario_hand
    geo_open_node
       geo_dl_translated LAYER_OPAQUE, 60, 0, 0
       geo_open_node
@@ -180,7 +180,7 @@ glabel mario_geo_medium_poly_left_hand # 0x170006F8
    geo_return
 
 glabel mario_geo_medium_poly_right_hand # 0x17000770
-   geo_switch_case 0, GeoSwitchCase802774F4
+   geo_switch_case 0, geo_switch_mario_hand
    geo_open_node
       geo_dl_translated LAYER_OPAQUE, 60, 0, 0
       geo_open_node
@@ -276,9 +276,9 @@ glabel mario_geo_low_poly_face_and_wings # 0x170009D4
    geo_asm 0, Geo18_802773A4
    geo_rotation_node 0x00, 0, 0, 0
    geo_open_node
-      geo_switch_case 0, GeoSwitchCase80277740
+      geo_switch_case 0, geo_switch_mario_cap_on_off
       geo_open_node
-         geo_switch_case 0, GeoSwitchCase802771BC
+         geo_switch_case 0, geo_switch_mario_eyes
          geo_open_node
             geo_display_list LAYER_OPAQUE, mario_low_poly_cap_on_eyes_front
             geo_display_list LAYER_OPAQUE, mario_low_poly_cap_on_eyes_half_closed
@@ -289,7 +289,7 @@ glabel mario_geo_low_poly_face_and_wings # 0x170009D4
             geo_display_list LAYER_OPAQUE, mario_low_poly_cap_on_eyes_down # unused
             geo_display_list LAYER_OPAQUE, mario_low_poly_cap_on_eyes_dead
          geo_close_node
-         geo_switch_case 0, GeoSwitchCase802771BC
+         geo_switch_case 0, geo_switch_mario_eyes
          geo_open_node
             geo_display_list LAYER_OPAQUE, mario_low_poly_cap_off_eyes_front
             geo_display_list LAYER_OPAQUE, mario_low_poly_cap_off_eyes_half_closed
@@ -321,7 +321,7 @@ glabel mario_geo_low_poly_face_and_wings # 0x170009D4
    geo_return
 
 glabel mario_geo_low_poly_left_hand # 0x17000B10
-   geo_switch_case 1, GeoSwitchCase802774F4
+   geo_switch_case 1, geo_switch_mario_hand
    geo_open_node
       geo_dl_translated LAYER_OPAQUE, 60, 0, 0
       geo_open_node
@@ -339,7 +339,7 @@ glabel mario_geo_low_poly_left_hand # 0x17000B10
    geo_return
 
 glabel mario_geo_low_poly_right_hand # 0x17000B88
-   geo_switch_case 0, GeoSwitchCase802774F4
+   geo_switch_case 0, geo_switch_mario_hand
    geo_open_node
       geo_dl_translated LAYER_OPAQUE, 60, 0, 0
       geo_open_node
@@ -437,9 +437,9 @@ glabel mario_vanish_geo_face_and_wings # 0x17000DEC
    geo_asm 0, Geo18_802773A4
    geo_rotation_node 0x00, 0, 0, 0
    geo_open_node
-      geo_switch_case 0, GeoSwitchCase80277740
+      geo_switch_case 0, geo_switch_mario_cap_on_off
       geo_open_node
-         geo_switch_case 0, GeoSwitchCase802771BC
+         geo_switch_case 0, geo_switch_mario_eyes
          geo_open_node
             geo_display_list LAYER_TRANSPARENT, mario_cap_on_eyes_front
             geo_display_list LAYER_TRANSPARENT, mario_cap_on_eyes_half_closed
@@ -450,7 +450,7 @@ glabel mario_vanish_geo_face_and_wings # 0x17000DEC
             geo_display_list LAYER_TRANSPARENT, mario_cap_on_eyes_down # unused
             geo_display_list LAYER_TRANSPARENT, mario_cap_on_eyes_dead
          geo_close_node
-         geo_switch_case 0, GeoSwitchCase802771BC
+         geo_switch_case 0, geo_switch_mario_eyes
          geo_open_node
             geo_display_list LAYER_TRANSPARENT, mario_cap_off_eyes_front
             geo_display_list LAYER_TRANSPARENT, mario_cap_off_eyes_half_closed
@@ -482,7 +482,7 @@ glabel mario_vanish_geo_face_and_wings # 0x17000DEC
    geo_return
 
 glabel mario_vanish_geo_left_hand # 0x17000F28
-   geo_switch_case 1, GeoSwitchCase802774F4
+   geo_switch_case 1, geo_switch_mario_hand
    geo_open_node
       geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0
       geo_open_node
@@ -500,7 +500,7 @@ glabel mario_vanish_geo_left_hand # 0x17000F28
    geo_return
 
 glabel mario_vanish_geo_right_hand # 0x17000FA0
-   geo_switch_case 0, GeoSwitchCase802774F4
+   geo_switch_case 0, geo_switch_mario_hand
    geo_open_node
       geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0
       geo_open_node
@@ -595,7 +595,7 @@ glabel mario_vanish_geo_body # 0x17001048
    geo_return
 
 glabel mario_vanish_geo_medium_poly_left_hand # 0x17001204
-   geo_switch_case 1, GeoSwitchCase802774F4
+   geo_switch_case 1, geo_switch_mario_hand
    geo_open_node
       geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0
       geo_open_node
@@ -613,7 +613,7 @@ glabel mario_vanish_geo_medium_poly_left_hand # 0x17001204
    geo_return
 
 glabel mario_vanish_geo_medium_poly_right_hand # 0x1700127C
-   geo_switch_case 0, GeoSwitchCase802774F4
+   geo_switch_case 0, geo_switch_mario_hand
    geo_open_node
       geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0
       geo_open_node
@@ -709,9 +709,9 @@ glabel mario_vanish_geo_low_poly_face_and_wings # 0x170014E0
    geo_asm 0, Geo18_802773A4
    geo_rotation_node 0x00, 0, 0, 0
    geo_open_node
-      geo_switch_case 0, GeoSwitchCase80277740
+      geo_switch_case 0, geo_switch_mario_cap_on_off
       geo_open_node
-         geo_switch_case 0, GeoSwitchCase802771BC
+         geo_switch_case 0, geo_switch_mario_eyes
          geo_open_node
             geo_display_list LAYER_TRANSPARENT, mario_low_poly_cap_on_eyes_front
             geo_display_list LAYER_TRANSPARENT, mario_low_poly_cap_on_eyes_half_closed
@@ -722,7 +722,7 @@ glabel mario_vanish_geo_low_poly_face_and_wings # 0x170014E0
             geo_display_list LAYER_TRANSPARENT, mario_low_poly_cap_on_eyes_down
             geo_display_list LAYER_TRANSPARENT, mario_low_poly_cap_on_eyes_dead
          geo_close_node
-         geo_switch_case 0, GeoSwitchCase802771BC
+         geo_switch_case 0, geo_switch_mario_eyes
          geo_open_node
             geo_display_list LAYER_TRANSPARENT, mario_low_poly_cap_off_eyes_front
             geo_display_list LAYER_TRANSPARENT, mario_low_poly_cap_off_eyes_half_closed
@@ -754,7 +754,7 @@ glabel mario_vanish_geo_low_poly_face_and_wings # 0x170014E0
    geo_return
 
 glabel mario_vanish_geo_low_poly_left_hand # 0x1700161C
-   geo_switch_case 1, GeoSwitchCase802774F4
+   geo_switch_case 1, geo_switch_mario_hand
    geo_open_node
       geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0
       geo_open_node
@@ -772,7 +772,7 @@ glabel mario_vanish_geo_low_poly_left_hand # 0x1700161C
    geo_return
 
 glabel mario_vanish_geo_low_poly_right_hand # 0x17001694
-   geo_switch_case 0, GeoSwitchCase802774F4
+   geo_switch_case 0, geo_switch_mario_hand
    geo_open_node
       geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0
       geo_open_node
@@ -870,7 +870,7 @@ glabel mario_metal_geo_face_and_wings # 0x170018F8
    geo_asm 0, Geo18_802773A4
    geo_rotation_node 0x00, 0, 0, 0
    geo_open_node
-      geo_switch_case 0, GeoSwitchCase80277740
+      geo_switch_case 0, geo_switch_mario_cap_on_off
       geo_open_node
          geo_display_list LAYER_OPAQUE, mario_metal_cap_on_shared_dl
          geo_display_list LAYER_OPAQUE, mario_metal_cap_off_shared_dl
@@ -895,7 +895,7 @@ glabel mario_metal_geo_face_and_wings # 0x170018F8
    geo_return
 
 glabel mario_metal_geo_left_hand # 0x170019A4
-   geo_switch_case 1, GeoSwitchCase802774F4
+   geo_switch_case 1, geo_switch_mario_hand
    geo_open_node
       geo_dl_translated LAYER_OPAQUE, 60, 0, 0
       geo_open_node
@@ -913,7 +913,7 @@ glabel mario_metal_geo_left_hand # 0x170019A4
    geo_return
 
 glabel mario_metal_geo_right_hand # 0x17001A1C
-   geo_switch_case 0, GeoSwitchCase802774F4
+   geo_switch_case 0, geo_switch_mario_hand
    geo_open_node
       geo_dl_translated LAYER_OPAQUE, 60, 0, 0
       geo_open_node
@@ -1008,7 +1008,7 @@ glabel mario_metal_geo_body # 0x17001AC4
    geo_return
 
 glabel mario_metal_geo_medium_poly_left_hand # 0x17001C80
-   geo_switch_case 1, GeoSwitchCase802774F4
+   geo_switch_case 1, geo_switch_mario_hand
    geo_open_node
       geo_dl_translated LAYER_OPAQUE, 60, 0, 0
       geo_open_node
@@ -1026,7 +1026,7 @@ glabel mario_metal_geo_medium_poly_left_hand # 0x17001C80
    geo_return
 
 glabel mario_metal_geo_medium_poly_right_hand # 0x17001CF8
-   geo_switch_case 0, GeoSwitchCase802774F4
+   geo_switch_case 0, geo_switch_mario_hand
    geo_open_node
       geo_dl_translated LAYER_OPAQUE, 60, 0, 0
       geo_open_node
@@ -1122,7 +1122,7 @@ glabel mario_metal_geo_low_poly_face_and_wings # 0x17001F5C
    geo_asm 0, Geo18_802773A4
    geo_rotation_node 0x00, 0, 0, 0
    geo_open_node
-      geo_switch_case 0, GeoSwitchCase80277740
+      geo_switch_case 0, geo_switch_mario_cap_on_off
       geo_open_node
          geo_display_list LAYER_OPAQUE, mario_metal_low_poly_cap_on
          geo_display_list LAYER_OPAQUE, mario_metal_low_poly_cap_off
@@ -1147,7 +1147,7 @@ glabel mario_metal_geo_low_poly_face_and_wings # 0x17001F5C
    geo_return
 
 glabel mario_metal_geo_low_poly_left_hand # 0x17002008
-   geo_switch_case 1, GeoSwitchCase802774F4
+   geo_switch_case 1, geo_switch_mario_hand
    geo_open_node
       geo_dl_translated LAYER_OPAQUE, 60, 0, 0
       geo_open_node
@@ -1165,7 +1165,7 @@ glabel mario_metal_geo_low_poly_left_hand # 0x17002008
    geo_return
 
 glabel mario_metal_geo_low_poly_right_hand # 0x17002080
-   geo_switch_case 0, GeoSwitchCase802774F4
+   geo_switch_case 0, geo_switch_mario_hand
    geo_open_node
       geo_dl_translated LAYER_OPAQUE, 60, 0, 0
       geo_open_node
@@ -1263,7 +1263,7 @@ glabel mario_metal_vanish_geo_face_and_wings # 0x170022E4
    geo_asm 0, Geo18_802773A4
    geo_rotation_node 0x00, 0, 0, 0
    geo_open_node
-      geo_switch_case 0, GeoSwitchCase80277740
+      geo_switch_case 0, geo_switch_mario_cap_on_off
       geo_open_node
          geo_display_list LAYER_TRANSPARENT, mario_metal_cap_on_shared_dl
          geo_display_list LAYER_TRANSPARENT, mario_metal_cap_off_shared_dl
@@ -1288,7 +1288,7 @@ glabel mario_metal_vanish_geo_face_and_wings # 0x170022E4
    geo_return
 
 glabel mario_metal_vanish_geo_left_hand # 0x17002390
-   geo_switch_case 0, GeoSwitchCase802774F4
+   geo_switch_case 0, geo_switch_mario_hand
    geo_open_node
       geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0
       geo_open_node
@@ -1306,7 +1306,7 @@ glabel mario_metal_vanish_geo_left_hand # 0x17002390
    geo_return
 
 glabel mario_metal_vanish_geo_right_hand # 0x17002408
-   geo_switch_case 0, GeoSwitchCase802774F4
+   geo_switch_case 0, geo_switch_mario_hand
    geo_open_node
       geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0
       geo_open_node
@@ -1401,7 +1401,7 @@ glabel mario_metal_vanish_geo_body # 0x170024B0
    geo_return
 
 glabel mario_metal_vanish_geo_medium_poly_left_hand # 0x1700266C
-   geo_switch_case 0, GeoSwitchCase802774F4
+   geo_switch_case 0, geo_switch_mario_hand
    geo_open_node
       geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0
       geo_open_node
@@ -1419,7 +1419,7 @@ glabel mario_metal_vanish_geo_medium_poly_left_hand # 0x1700266C
    geo_return
 
 glabel mario_metal_vanish_geo_medium_poly_right_hand # 0x170026E4
-   geo_switch_case 0, GeoSwitchCase802774F4
+   geo_switch_case 0, geo_switch_mario_hand
    geo_open_node
       geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0
       geo_open_node
@@ -1474,7 +1474,7 @@ glabel mario_metal_vanish_geo_medium_poly_body # 0x1700278C
                   geo_open_node
                      geo_dl_translated LAYER_TRANSPARENT, 65, 0, 0, mario_medium_poly_right_forearm_shared_dl
                      geo_open_node
-                        geo_switch_case 0, GeoSwitchCase802774F4
+                        geo_switch_case 0, geo_switch_mario_hand
                         geo_open_node
                            geo_branch 1, mario_metal_vanish_geo_medium_poly_right_hand
                         geo_close_node
@@ -1518,7 +1518,7 @@ glabel mario_metal_vanish_geo_low_poly_face_and_wings # 0x17002958
    geo_asm 0, Geo18_802773A4
    geo_rotation_node 0x00, 0, 0, 0
    geo_open_node
-      geo_switch_case 0, GeoSwitchCase80277740
+      geo_switch_case 0, geo_switch_mario_cap_on_off
       geo_open_node
          geo_display_list LAYER_TRANSPARENT, mario_metal_low_poly_cap_on
          geo_display_list LAYER_TRANSPARENT, mario_metal_low_poly_cap_off
@@ -1543,7 +1543,7 @@ glabel mario_metal_vanish_geo_low_poly_face_and_wings # 0x17002958
    geo_return
 
 glabel mario_metal_vanish_geo_low_poly_left_hand # 0x17002A04
-   geo_switch_case 0, GeoSwitchCase802774F4
+   geo_switch_case 0, geo_switch_mario_hand
    geo_open_node
       geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0
       geo_open_node
@@ -1561,7 +1561,7 @@ glabel mario_metal_vanish_geo_low_poly_left_hand # 0x17002A04
    geo_return
 
 glabel mario_metal_vanish_geo_low_poly_right_hand # 0x17002A7C
-   geo_switch_case 0, GeoSwitchCase802774F4
+   geo_switch_case 0, geo_switch_mario_hand
    geo_open_node
       geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0
       geo_open_node
@@ -1656,7 +1656,7 @@ glabel mario_metal_vanish_geo_low_poly_body # 0x17002B24
 # High Poly
 
 glabel mario_geo_load_body # 0x17002CE0
-   geo_switch_case 0, GeoSwitchCase802776D8
+   geo_switch_case 0, geo_switch_mario_cap_effect
    geo_open_node
       geo_branch 1, mario_geo_body
       geo_branch 1, mario_vanish_geo_body
@@ -1668,7 +1668,7 @@ glabel mario_geo_load_body # 0x17002CE0
 # Medium Poly
 
 glabel mario_geo_load_medium_poly_body # 0x17002D14
-   geo_switch_case 0, GeoSwitchCase802776D8
+   geo_switch_case 0, geo_switch_mario_cap_effect
    geo_open_node
       geo_branch 1, mario_geo_medium_poly_body
       geo_branch 1, mario_vanish_geo_medium_poly_body
@@ -1680,7 +1680,7 @@ glabel mario_geo_load_medium_poly_body # 0x17002D14
 # Low Poly
 
 glabel mario_geo_load_low_poly_body # 0x17002D48
-   geo_switch_case 0, GeoSwitchCase802776D8
+   geo_switch_case 0, geo_switch_mario_cap_effect
    geo_open_node
       geo_branch 1, mario_geo_low_poly_body
       geo_branch 1, mario_vanish_geo_low_poly_body
@@ -1716,7 +1716,7 @@ glabel mario_geo # 0x17002DD4
       geo_open_node
          geo_asm 0, Geo18_80277D6C
          geo_asm 0, Geo18_802770A4
-         geo_switch_case 0, GeoSwitchCase80277150
+         geo_switch_case 0, geo_switch_mario_stand_run
          geo_open_node
             geo_branch 1, mario_geo_load_body
             geo_branch 1, mario_geo_render_body

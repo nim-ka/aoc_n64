@@ -9,7 +9,7 @@ glabel amp_geo # 0x0F000028
             geo_open_node
                geo_dl_translated LAYER_OPAQUE, 0, 0, 0
                geo_open_node
-                  geo_switch_case 2, GeoSwitchCase8029DB48
+                  geo_switch_case 2, geo_switch_anim_state
                   geo_open_node
                      geo_dl_translated LAYER_OPAQUE, 0, 0, 0
                      geo_dl_translated LAYER_ALPHA, 0, 0, 0, amp_seg8_dl_08002BA0
@@ -17,7 +17,7 @@ glabel amp_geo # 0x0F000028
                geo_close_node
                geo_dl_translated LAYER_OPAQUE, 0, 0, 0
                geo_open_node
-                  geo_switch_case 2, GeoSwitchCase8029DB48
+                  geo_switch_case 2, geo_switch_anim_state
                   geo_open_node
                      geo_dl_translated LAYER_OPAQUE, 0, 0, 0
                      geo_dl_translated LAYER_ALPHA, 0, 0, 0, amp_seg8_dl_08002BA0
@@ -25,7 +25,7 @@ glabel amp_geo # 0x0F000028
                geo_close_node
                geo_dl_translated LAYER_OPAQUE, 0, 0, 0
                geo_open_node
-                  geo_switch_case 2, GeoSwitchCase8029DB48
+                  geo_switch_case 2, geo_switch_anim_state
                   geo_open_node
                      geo_dl_translated LAYER_OPAQUE, 0, 0, 0
                      geo_dl_translated LAYER_ALPHA, 0, 0, 0, amp_seg8_dl_08002BA0
@@ -33,7 +33,7 @@ glabel amp_geo # 0x0F000028
                geo_close_node
                geo_dl_translated LAYER_OPAQUE, 0, 0, 0
                geo_open_node
-                  geo_switch_case 2, GeoSwitchCase8029DB48
+                  geo_switch_case 2, geo_switch_anim_state
                   geo_open_node
                      geo_dl_translated LAYER_OPAQUE, 0, 0, 0
                      geo_dl_translated LAYER_ALPHA, 0, 0, 0, amp_seg8_dl_08002BA0

@@ -122,7 +122,7 @@ glabel toad_geo # 0x0D0003E4
          geo_scale 0x00, 16384
          geo_open_node
             geo_asm 10, Geo18_8029D924
-            geo_switch_case 2, GeoSwitchCase8029DB48
+            geo_switch_case 2, geo_switch_anim_state
             geo_open_node
                geo_branch 1, toad_geo_000114
                geo_branch 1, toad_geo_00027C

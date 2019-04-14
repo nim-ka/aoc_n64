@@ -1,7 +1,7 @@
 glabel dirt_animation_geo # 0x16000ED4
    geo_start_distance 300
    geo_open_node
-      geo_switch_case 6, GeoSwitchCase8029DB48
+      geo_switch_case 6, geo_switch_anim_state
       geo_open_node
          geo_display_list LAYER_OPAQUE, dirt_seg3_dl_0302C378
          geo_display_list LAYER_OPAQUE, dirt_seg3_dl_0302C3B0
@@ -17,7 +17,7 @@ glabel dirt_animation_geo # 0x16000ED4
 glabel cartoon_star_geo # 0x16000F24
    geo_start_distance 300
    geo_open_node
-      geo_switch_case 5, GeoSwitchCase8029DB48
+      geo_switch_case 5, geo_switch_anim_state
       geo_open_node
          geo_display_list LAYER_OPAQUE, dirt_seg3_dl_0302C298
          geo_display_list LAYER_OPAQUE, dirt_seg3_dl_0302C2B8

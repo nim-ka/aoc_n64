@@ -7,7 +7,7 @@
 #include "behavior_actions.h"
 #include "behavior_data.h"
 #include "camera.h"
-#include "castle_message_behaviors.h"
+#include "mario_misc.h"
 #include "display.h"
 #include "game.h"
 #include "engine/graph_node.h"
@@ -1201,7 +1201,7 @@ void func_80253E34(struct MarioState *m)
 
 void func_80254088(struct MarioState *m)
 {
-    m->unk98->unk00 = m->action;
+    m->unk98->action = m->action;
     m->unk94->unk00 = m->action;
 
     vec3s_copy(m->unk94->unk10, m->faceAngle);
@@ -1212,7 +1212,7 @@ void func_80254088(struct MarioState *m)
 
 void func_8025410C(struct MarioState *m)
 {
-    struct UnknownStruct4 *sp4 = m->unk98;
+    struct UnknownStruct4_New *sp4 = m->unk98;
     sp4->unk04 = 1;
     sp4->unk05 = 0;
     sp4->unk06 = 0;
@@ -1283,7 +1283,7 @@ s32 func_802541BC(struct MarioState *m)
 
 void func_8025435C(struct MarioState *m)
 {
-    struct UnknownStruct4 *sp1C = m->unk98;
+    struct UnknownStruct4_New *sp1C = m->unk98;
     s32 sp18 = func_802541BC(m);
 
     if (sp18 & MARIO_VANISH_CAP)
@@ -1496,7 +1496,7 @@ void func_80254CE0(void)
     gMarioState->spawnInfo = &gPlayerSpawnInfos[0];
     // TODO: Unify these structs! :D
     gMarioState->unk94 = (struct UnknownStruct6 *) D_8033B1B0;
-    gMarioState->unk98 = (struct UnknownStruct4 *) D_8033A040;
+    gMarioState->unk98 = &D_8033A040[0];
     gMarioState->controller = &gControllers[0];
     gMarioState->animation = &D_80339D10;
     gMarioState->numCoins = 0;

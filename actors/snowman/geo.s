@@ -20,7 +20,7 @@ glabel mr_blizzard_hidden_geo # 0x0C00021C
             geo_close_node
             geo_dl_translated LAYER_ALPHA, 356, 0, 0, snowman_seg5_dl_0500CCE8
             geo_dl_translated LAYER_ALPHA, 356, 0, 0, snowman_seg5_dl_0500C760
-            geo_switch_case 2, GeoSwitchCase8029DB48
+            geo_switch_case 2, geo_switch_anim_state
             geo_open_node
                geo_node_start
                geo_node_start

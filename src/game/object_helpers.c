@@ -168,11 +168,11 @@ Gfx *Geo18_8029D924(s32 sp40, struct struct8029D924 *sp44, UNUSED s32 sp48)
 }
 
 /** @bug Every geo function declares the 3 parameters of run, node, and the matrix array.
- * This one (see also GeoSwitchCaseBlinking) doesn't. When executed, the node function
+ * This one (see also geo_switch_area) doesn't. When executed, the node function
  * executor passes the 3rd argument to a function that doesn't declare it. This is
  * undefined behavior, but harmless in practice due to the o32 calling convention.
  */
-s32 GeoSwitchCase8029DB48(s32 run, struct GraphNode *node)
+s32 geo_switch_anim_state(s32 run, struct GraphNode *node)
 {
     struct Object *obj;
     struct GraphNodeSwitchCase *switchCase;
@@ -204,8 +204,8 @@ s32 GeoSwitchCase8029DB48(s32 run, struct GraphNode *node)
     return 0;
 }
 
-//! @bug Same issue as GeoSwitchCase8029DB48.
-s32 GeoSwitchCaseBlinking(s32 run, struct GraphNode *node)
+//! @bug Same issue as geo_switch_anim_state.
+s32 geo_switch_area(s32 run, struct GraphNode *node)
 {
     s16 sp26;
     struct Surface *sp20;

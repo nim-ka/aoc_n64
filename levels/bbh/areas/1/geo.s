@@ -416,7 +416,7 @@ glabel geo_bbh_000F00 # 0x0E000F00
          geo_open_node
             geo_todo_0F 4, 0, 2000, 6000, 0, 0, 0, Geo0F_80287D30
             geo_open_node
-               geo_switch_case 32, GeoSwitchCaseBlinking
+               geo_switch_case 32, geo_switch_area
                geo_open_node
                   geo_branch 1, geo_bbh_000670 # 0x0E000670
                   geo_branch 1, geo_bbh_0006B0 # 0x0E0006B0
