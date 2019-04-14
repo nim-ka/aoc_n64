@@ -5,7 +5,7 @@ glabel geo_bitdw_000618 # 0x0E000618
       geo_open_node
          geo_todo_09 100
          geo_open_node
-            geo_background BACKGROUND_GREEN_SKY, Geo19_802763D4
+            geo_background BACKGROUND_GREEN_SKY, geo_skybox_main
          geo_close_node
       geo_close_node
       geo_zbuffer 1

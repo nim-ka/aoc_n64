@@ -5,7 +5,7 @@ glabel wmotr_geo_0001F0 # 0x0E0001F0
       geo_open_node
          geo_todo_09 100
          geo_open_node
-            geo_background BACKGROUND_BELOW_CLOUDS, Geo19_802763D4
+            geo_background BACKGROUND_BELOW_CLOUDS, geo_skybox_main
          geo_close_node
       geo_close_node
       geo_zbuffer 1

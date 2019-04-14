@@ -5,7 +5,7 @@ glabel jrb_geo_000A18 # 0x0E000A18
       geo_open_node
          geo_todo_09 100
          geo_open_node
-            geo_background BACKGROUND_ABOVE_CLOUDS, Geo19_802763D4
+            geo_background BACKGROUND_ABOVE_CLOUDS, geo_skybox_main
          geo_close_node
       geo_close_node
       geo_zbuffer 1

@@ -5,7 +5,7 @@ glabel castle_grounds_geo_00073C # 0x0E00073C
       geo_open_node
          geo_todo_09 100
          geo_open_node
-            geo_background BACKGROUND_OCEAN_SKY, Geo19_802763D4
+            geo_background BACKGROUND_OCEAN_SKY, geo_skybox_main
          geo_close_node
       geo_close_node
       geo_zbuffer 1

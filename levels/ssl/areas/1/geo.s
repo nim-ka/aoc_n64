@@ -5,7 +5,7 @@ glabel ssl_geo_000648 # 0x0E000648
       geo_open_node
          geo_todo_09 100
          geo_open_node
-            geo_background BACKGROUND_DESERT, Geo19_802763D4
+            geo_background BACKGROUND_DESERT, geo_skybox_main
          geo_close_node
       geo_close_node
       geo_zbuffer 1

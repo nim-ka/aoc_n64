@@ -9,7 +9,7 @@
 #include "envfx_snow.h"
 #include "level_geo.h"
 
-// level_geo_main?
+// geo_exec_level?
 Gfx *Geo18_802761D0(int a, struct GraphNode *b, float c[4][4])
 {
     Vec3s sp50;
@@ -55,24 +55,23 @@ Gfx *Geo18_802761D0(int a, struct GraphNode *b, float c[4][4])
     return sp38;
 }
 
-// skybox_geo_main?
-Gfx *Geo19_802763D4(int a, struct GraphNode *b, UNUSED Mat4 *c)
+Gfx *geo_skybox_main(s32 run, struct GraphNode *node, UNUSED Mat4 *mtx)
 {
-    Gfx *sp3C = NULL;
-    struct GraphNodeBackground *sp38 = (struct GraphNodeBackground *)b;
+    Gfx *gfx = NULL;
+    struct GraphNodeBackground *backgroundNode = (struct GraphNodeBackground *)node;
 
-    if (a == 3)
+    if (run == 3)
     {
-        sp38->unk18 = 0;
+        backgroundNode->unk18 = 0;
     }
-    else if (a == 1)
+    else if (run == TRUE)
     {
-        struct GraphNode *sp34 = D_8032CF90->unk20[0];
-        struct Struct802763D4_Unknown *sp30 = (struct Struct802763D4_Unknown *)sp34->parent;
+        struct GraphNode114 *sp34 = (struct GraphNode114 *)D_8032CF90->unk20[0];
+        struct GraphNodeCamFrustum *camFrustum = (struct GraphNodeCamFrustum *)sp34->fnNode.node.parent;
 
-        sp3C = func_802CF414(0, sp38->background, sp30->unk1C,
+        gfx = func_802CF414(0, backgroundNode->background, camFrustum->fov,
             D_8033B328.unk8C[0], D_8033B328.unk8C[1], D_8033B328.unk8C[2],
             D_8033B328.unk80[0], D_8033B328.unk80[1], D_8033B328.unk80[2]);
     }
-    return sp3C;
+    return gfx;
 }

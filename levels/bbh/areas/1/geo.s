@@ -407,7 +407,7 @@ glabel geo_bbh_000F00 # 0x0E000F00
       geo_open_node
          geo_todo_09 100
          geo_open_node
-            geo_background BACKGROUND_HAUNTED, Geo19_802763D4
+            geo_background BACKGROUND_HAUNTED, geo_skybox_main
          geo_close_node
       geo_close_node
       geo_zbuffer 1
