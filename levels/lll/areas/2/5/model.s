@@ -17,12 +17,9 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, lll_seg7_texture_0700D000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x0FF, 0x200
 gsSPVertex lll_seg7_vertex_07025AC0, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  7,  5, 0x0
-gsSP1Triangle  8,  9, 10, 0x0
-gsSP1Triangle  8, 11,  9, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  7,  5, 0x0
+gsSP2Triangles  8,  9, 10, 0x0,  8, 11,  9, 0x0
 gsSPEndDisplayList
 
 glabel lll_seg7_dl_07025BD8 # 0x07025BD8 - 0x07025C90

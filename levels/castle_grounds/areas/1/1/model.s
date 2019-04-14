@@ -975,12 +975,9 @@ gsSP2Triangles  6,  3,  5, 0x0,  7,  8,  9, 0x0
 gsSP2Triangles  7, 10,  8, 0x0, 11, 12, 13, 0x0
 gsSP1Triangle 11, 14, 12, 0x0
 gsSPVertex castle_grounds_seg7_vertex_070040D0, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  6,  9,  7, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 10, 13, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  6,  9,  7, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 10, 13, 11, 0x0
 gsSP1Triangle  0, 14,  1, 0x0
 gsSPVertex castle_grounds_seg7_vertex_070041C0, 15, 0
 gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0

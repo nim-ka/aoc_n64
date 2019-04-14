@@ -212,8 +212,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spindrift_seg5_texture_05001
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex spindrift_seg5_vertex_050026D0, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel spindrift_seg5_dl_05002748 # 0x05002748 - 0x050027B8
@@ -243,8 +242,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spindrift_seg5_texture_05000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex spindrift_seg5_vertex_050027B8, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  2,  1,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  2,  1,  3, 0x0
 gsSPEndDisplayList
 
 glabel spindrift_seg5_dl_05002830 # 0x05002830 - 0x050028A0
@@ -313,8 +311,7 @@ gsSPClearGeometryMode G_CULL_BACK
 gsSPLight spindrift_seg5_light_05002978, 1
 gsSPLight spindrift_seg5_light_05002970, 2
 gsSPVertex spindrift_seg5_vertex_05002988, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPSetGeometryMode G_CULL_BACK
 gsSPEndDisplayList
 
@@ -353,8 +350,7 @@ gsSPClearGeometryMode G_CULL_BACK
 gsSPLight spindrift_seg5_light_05002A88, 1
 gsSPLight spindrift_seg5_light_05002A80, 2
 gsSPVertex spindrift_seg5_vertex_05002A98, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  0,  2, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  0,  2, 0x0
 gsSPSetGeometryMode G_CULL_BACK
 gsSPEndDisplayList
 
@@ -404,10 +400,8 @@ gsSPClearGeometryMode G_CULL_BACK
 gsSPLight spindrift_seg5_light_05002B98, 1
 gsSPLight spindrift_seg5_light_05002B90, 2
 gsSPVertex spindrift_seg5_vertex_05002BA8, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
 gsSP1Triangle 12, 13, 14, 0x0
 gsSPSetGeometryMode G_CULL_BACK
 gsSPEndDisplayList

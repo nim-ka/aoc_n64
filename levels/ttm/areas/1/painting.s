@@ -16,13 +16,11 @@ vertex    614,    614,      0,   2012,    -28,  0x00, 0x00, 0x7F, 0xFF
 vertex      0,    614,      0,    -32,    -28,  0x00, 0x00, 0x7F, 0xFF
 
 glabel ttm_seg7_dl_07012388 # 0x07012388 - 0x070123A0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel ttm_seg7_dl_070123A0 # 0x070123A0 - 0x070123B8
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
 gsSPEndDisplayList
 
 glabel ttm_seg7_dl_070123B8 # 0x070123B8 - 0x07012410

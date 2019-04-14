@@ -18,8 +18,7 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight wf_seg7_light_07006560, 1
 gsSPLight wf_seg7_light_07006558, 2
 gsSPVertex wf_seg7_vertex_07006570, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel wf_seg7_dl_070065F8 # 0x070065F8 - 0x07006668

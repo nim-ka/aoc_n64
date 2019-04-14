@@ -100,8 +100,7 @@ gsDPSetTile G_IM_FMT_IA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_
 gsDPSetTileSize 0, 0, 0, 124, 124
 gsSPTexture -1, -1, 0, 0, 1
 gsSPVertex flame_seg3_vertex_030172E0, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
 gsSPSetGeometryMode G_LIGHTING | G_SHADING_SMOOTH

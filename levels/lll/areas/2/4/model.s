@@ -52,45 +52,28 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, fire_09009000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex lll_seg7_vertex_07025648, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  0,  4,  5, 0x0
-gsSP1Triangle  0,  5,  3, 0x0
-gsSP1Triangle  0,  6,  4, 0x0
-gsSP1Triangle  0,  7,  8, 0x0
-gsSP1Triangle  0,  8,  9, 0x0
-gsSP1Triangle  0, 10,  7, 0x0
-gsSP1Triangle  0, 11, 10, 0x0
-gsSP1Triangle  0,  2, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  0,  4,  5, 0x0,  0,  5,  3, 0x0
+gsSP2Triangles  0,  6,  4, 0x0,  0,  7,  8, 0x0
+gsSP2Triangles  0,  8,  9, 0x0,  0, 10,  7, 0x0
+gsSP2Triangles  0, 11, 10, 0x0,  0,  2, 11, 0x0
 gsSPEndDisplayList
 
 lll_seg7_dl_07025970: # 0x07025970 - 0x07025A48
 gsSPVertex lll_seg7_vertex_07025708, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  6,  4, 0x0
-gsSP1Triangle  3,  7,  8, 0x0
-gsSP1Triangle  3,  5,  7, 0x0
-gsSP1Triangle  9,  8,  7, 0x0
-gsSP1Triangle  9,  7, 10, 0x0
-gsSP1Triangle 11,  9, 10, 0x0
-gsSP1Triangle 11, 10, 12, 0x0
-gsSP1Triangle  1, 11, 12, 0x0
-gsSP1Triangle  1, 12,  2, 0x0
-gsSP1Triangle 13, 14, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  6,  4, 0x0,  3,  7,  8, 0x0
+gsSP2Triangles  3,  5,  7, 0x0,  9,  8,  7, 0x0
+gsSP2Triangles  9,  7, 10, 0x0, 11,  9, 10, 0x0
+gsSP2Triangles 11, 10, 12, 0x0,  1, 11, 12, 0x0
+gsSP2Triangles  1, 12,  2, 0x0, 13, 14, 15, 0x0
 gsSPVertex lll_seg7_vertex_07025808, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  0,  2, 0x0
-gsSP1Triangle  3,  2,  4, 0x0
-gsSP1Triangle  5,  3,  4, 0x0
-gsSP1Triangle  5,  4,  6, 0x0
-gsSP1Triangle  7,  5,  6, 0x0
-gsSP1Triangle  7,  6,  8, 0x0
-gsSP1Triangle  9,  7,  8, 0x0
-gsSP1Triangle  9,  8, 10, 0x0
-gsSP1Triangle 11,  9, 10, 0x0
-gsSP1Triangle 12, 11, 13, 0x0
-gsSP1Triangle 12, 13, 14, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  0,  2, 0x0
+gsSP2Triangles  3,  2,  4, 0x0,  5,  3,  4, 0x0
+gsSP2Triangles  5,  4,  6, 0x0,  7,  5,  6, 0x0
+gsSP2Triangles  7,  6,  8, 0x0,  9,  7,  8, 0x0
+gsSP2Triangles  9,  8, 10, 0x0, 11,  9, 10, 0x0
+gsSP2Triangles 12, 11, 13, 0x0, 12, 13, 14, 0x0
 gsSPEndDisplayList
 
 glabel lll_seg7_dl_07025A48 # 0x07025A48 - 0x07025AC0

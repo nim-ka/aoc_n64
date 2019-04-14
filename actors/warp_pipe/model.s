@@ -195,8 +195,7 @@ glabel warp_pipe_seg3_dl_03009A20 # 0x03009A20 - 0x03009A50
 gsSPLight warp_pipe_seg3_light_03009018, 1
 gsSPLight warp_pipe_seg3_light_03009010, 2
 gsSPVertex warp_pipe_seg3_vertex_03009128, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel warp_pipe_seg3_dl_03009A50 # 0x03009A50 - 0x03009AC8

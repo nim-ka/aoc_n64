@@ -331,8 +331,7 @@ gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
 gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
 gsSP1Triangle 12, 13, 14, 0x0
 gsSPVertex koopa_shell_seg8_vertex_080270A8, 6, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
 gsSPEndDisplayList
 
 glabel koopa_shell_seg8_dl_080273C8 # 0x080273C8 - 0x08027420

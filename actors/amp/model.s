@@ -435,8 +435,7 @@ glabel amp_seg8_dl_08003DA8 # 0x08003DA8 - 0x08003DD8
 gsSPLight amp_seg8_vertex_08002EE0 + 0x8, 1
 gsSPLight amp_seg8_vertex_08002EE0, 2
 gsSPVertex amp_seg8_vertex_08003860, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 glabel amp_seg8_dl_08003DD8 # 0x08003DD8 - 0x08003E00
@@ -450,8 +449,7 @@ glabel amp_seg8_dl_08003E00 # 0x08003E00 - 0x08003E30
 gsSPLight amp_seg8_vertex_08002EE0 + 0x8, 1
 gsSPLight amp_seg8_vertex_08002EE0, 2
 gsSPVertex amp_seg8_vertex_080038D0, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 amp_seg8_animvalue_08003E30: # 0x08003E30

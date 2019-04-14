@@ -17,12 +17,9 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, spooky_09006800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex bbh_seg7_vertex_0701EF58, 12, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  4,  3,  5, 0x0
-gsSP1Triangle  4,  6,  3, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle 10,  5, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  4,  3,  5, 0x0,  4,  6,  3, 0x0
+gsSP2Triangles  7,  8,  9, 0x0, 10,  5, 11, 0x0
 gsSPEndDisplayList
 
 glabel bbh_seg7_dl_0701F070 # 0x0701F070 - 0x0701F0E0

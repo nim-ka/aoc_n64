@@ -122,12 +122,9 @@ gsSP2Triangles  4,  5,  6, 0x0,  4,  7,  5, 0x0
 gsSP2Triangles  8,  9, 10, 0x0, 11, 12, 13, 0x0
 gsSP1Triangle 11, 14, 12, 0x0
 gsSPVertex bits_seg7_vertex_07015E08, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  5,  6, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  7, 10,  8, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  5,  6, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles  7, 10,  8, 0x0, 11, 12, 13, 0x0
 gsSPVertex bits_seg7_vertex_07015EE8, 14, 0
 gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
 gsSP2Triangles  3,  5,  6, 0x0,  7,  8,  9, 0x0

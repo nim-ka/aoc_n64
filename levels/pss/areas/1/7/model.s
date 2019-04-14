@@ -18,8 +18,7 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight pss_seg7_light_0700E350, 1
 gsSPLight pss_seg7_light_0700E348, 2
 gsSPVertex pss_seg7_vertex_0700E360, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  0,  2, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  0,  2, 0x0
 gsSPEndDisplayList
 
 glabel pss_seg7_dl_0700E3E8 # 0x0700E3E8 - 0x0700E490

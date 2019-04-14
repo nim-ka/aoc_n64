@@ -103,54 +103,34 @@ gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_16b, 1, pss_seg7_texture_07000800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex pss_seg7_vertex_0700D3A8, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  6,  4, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  7, 10,  8, 0x0
-gsSP1Triangle 11, 12, 13, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  6,  4, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles  7, 10,  8, 0x0, 11, 12, 13, 0x0
 gsSP1Triangle 11, 13, 14, 0x0
 gsSPVertex pss_seg7_vertex_0700D498, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  6,  9,  7, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 10, 13, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  6,  9,  7, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 10, 13, 11, 0x0
 gsSP1Triangle  0,  2, 14, 0x0
 gsSPVertex pss_seg7_vertex_0700D588, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  5, 0x0
-gsSP1Triangle  3,  6,  4, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle  7,  9, 10, 0x0
-gsSP1Triangle 11,  7, 10, 0x0
-gsSP1Triangle 11, 12,  7, 0x0
-gsSP1Triangle 13, 14, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
+gsSP2Triangles  3,  6,  4, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles  7,  9, 10, 0x0, 11,  7, 10, 0x0
+gsSP2Triangles 11, 12,  7, 0x0, 13, 14, 15, 0x0
 gsSPVertex pss_seg7_vertex_0700D688, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  3,  4,  0, 0x0
-gsSP1Triangle  3,  0,  5, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  6,  9,  7, 0x0
-gsSP1Triangle 10,  6,  8, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  0, 0x0
+gsSP2Triangles  3,  0,  5, 0x0,  6,  7,  8, 0x0
+gsSP2Triangles  6,  9,  7, 0x0, 10,  6,  8, 0x0
 gsSP1Triangle 11, 12, 13, 0x0
 gsSPVertex pss_seg7_vertex_0700D768, 15, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  0,  3, 0x0
-gsSP1Triangle  4,  5,  0, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  6,  9,  7, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 13, 14,  6, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  0,  3, 0x0,  4,  5,  0, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  6,  9,  7, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 13, 14,  6, 0x0
 gsSPVertex pss_seg7_vertex_0700D858, 13, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
-gsSP1Triangle  4,  5,  0, 0x0
-gsSP1Triangle  4,  0,  2, 0x0
-gsSP1Triangle  6,  7,  8, 0x0
-gsSP1Triangle  9, 10, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
+gsSP2Triangles  4,  5,  0, 0x0,  4,  0,  2, 0x0
+gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
 gsSP1Triangle  9, 12, 10, 0x0
 gsSPEndDisplayList
 

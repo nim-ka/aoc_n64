@@ -592,12 +592,9 @@ gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
 gsSP2Triangles  3,  5,  6, 0x0,  0,  7,  1, 0x0
 gsSP2Triangles  8,  9, 10, 0x0, 11, 12, 13, 0x0
 gsSPVertex lakitu_seg6_vertex_06005070, 14, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  7,  8,  9, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 10, 13, 11, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  7,  8,  9, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 10, 13, 11, 0x0
 gsSPLight lakitu_seg6_light_06004D00, 1
 gsSPLight lakitu_seg6_light_06004CF8, 2
 gsSPVertex lakitu_seg6_vertex_06005150, 8, 0

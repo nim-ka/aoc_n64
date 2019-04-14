@@ -35,16 +35,11 @@ gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight wf_seg7_light_0700E7D8, 1
 gsSPLight wf_seg7_light_0700E7D0, 2
 gsSPVertex wf_seg7_vertex_0700E7E8, 16, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
-gsSP1Triangle  4,  7,  8, 0x0
-gsSP1Triangle  4,  9,  5, 0x0
-gsSP1Triangle 10, 11, 12, 0x0
-gsSP1Triangle 10, 12,  6, 0x0
-gsSP1Triangle 13,  1,  0, 0x0
-gsSP1Triangle 13, 14, 15, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
+gsSP2Triangles  4,  7,  8, 0x0,  4,  9,  5, 0x0
+gsSP2Triangles 10, 11, 12, 0x0, 10, 12,  6, 0x0
+gsSP2Triangles 13,  1,  0, 0x0, 13, 14, 15, 0x0
 gsSP1Triangle 13, 15,  1, 0x0
 gsSPVertex wf_seg7_vertex_0700E8E8, 3, 0
 gsSP1Triangle  0,  1,  2, 0x0

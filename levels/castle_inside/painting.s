@@ -46,13 +46,11 @@ vertex  -1562,    307,  -3724,   2012,      0,  0x00, 0x00, 0x7F, 0xFF
 vertex  -1866,    307,  -4258,    -32,      0,  0x00, 0x00, 0x7F, 0xFF
 
 inside_castle_seg7_dl_07021A18: # 0x07021A18 - 0x07021A30
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  2,  3, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 inside_castle_seg7_dl_07021A30: # 0x07021A30 - 0x07021A48
-gsSP1Triangle  4,  5,  6, 0x0
-gsSP1Triangle  4,  6,  7, 0x0
+gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
 gsSPEndDisplayList
 
 inside_castle_seg7_dl_07021A48: # 0x07021A48 - 0x07021AA0

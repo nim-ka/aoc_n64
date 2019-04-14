@@ -708,8 +708,7 @@ gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, hmc_seg7_texture_07001000
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x100
 gsSPVertex hmc_seg7_vertex_070168D8, 4, 0
-gsSP1Triangle  0,  1,  2, 0x0
-gsSP1Triangle  0,  3,  1, 0x0
+gsSP2Triangles  0,  1,  2, 0x0,  0,  3,  1, 0x0
 gsSPEndDisplayList
 
 glabel hmc_seg7_dl_070173A8 # 0x070173A8 - 0x070174B0

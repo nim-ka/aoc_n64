@@ -29,21 +29,13 @@ glabel castle_grounds_seg7_arr_07010E98
 .hword  2961, -6761,     6,     9
 
 glabel castle_grounds_seg7_dl_07010F30 # 0x07010F30 - 0x07010FC0
-gsSP1Triangle  0,  1,  5, 0x0
-gsSP1Triangle  0,  5,  4, 0x0
-gsSP1Triangle  1,  2,  6, 0x0
-gsSP1Triangle  1,  6,  5, 0x0
-gsSP1Triangle  2,  3,  6, 0x0
-gsSP1Triangle  3,  7,  6, 0x0
-gsSP1Triangle  4,  5,  9, 0x0
-gsSP1Triangle  4,  9,  8, 0x0
-gsSP1Triangle  5,  6,  9, 0x0
-gsSP1Triangle  6, 10,  9, 0x0
-gsSP1Triangle  6,  7, 10, 0x0
-gsSP1Triangle  8,  9, 12, 0x0
-gsSP1Triangle  8, 12, 11, 0x0
-gsSP1Triangle  9, 10, 13, 0x0
-gsSP1Triangle  9, 13, 12, 0x0
-gsSP1Triangle 10,  7, 14, 0x0
+gsSP2Triangles  0,  1,  5, 0x0,  0,  5,  4, 0x0
+gsSP2Triangles  1,  2,  6, 0x0,  1,  6,  5, 0x0
+gsSP2Triangles  2,  3,  6, 0x0,  3,  7,  6, 0x0
+gsSP2Triangles  4,  5,  9, 0x0,  4,  9,  8, 0x0
+gsSP2Triangles  5,  6,  9, 0x0,  6, 10,  9, 0x0
+gsSP2Triangles  6,  7, 10, 0x0,  8,  9, 12, 0x0
+gsSP2Triangles  8, 12, 11, 0x0,  9, 10, 13, 0x0
+gsSP2Triangles  9, 13, 12, 0x0, 10,  7, 14, 0x0
 gsSP1Triangle 10, 14, 13, 0x0
 gsSPEndDisplayList

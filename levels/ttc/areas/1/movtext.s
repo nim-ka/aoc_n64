@@ -70,14 +70,9 @@ glabel ttc_seg7_arr_07016904 # 0x07016904 - 0x070169C8
 .hword 0
 
 glabel ttc_seg7_dl_070169C8 # 0x070169C8 - 0x07016A20
-gsSP1Triangle  0,  1,  6, 0x0
-gsSP1Triangle  1,  7,  6, 0x0
-gsSP1Triangle  1,  2,  7, 0x0
-gsSP1Triangle  2,  8,  7, 0x0
-gsSP1Triangle  2,  3,  8, 0x0
-gsSP1Triangle  3,  9,  8, 0x0
-gsSP1Triangle  3,  4,  9, 0x0
-gsSP1Triangle  4, 10,  9, 0x0
-gsSP1Triangle  4,  5, 10, 0x0
-gsSP1Triangle  5, 11, 10, 0x0
+gsSP2Triangles  0,  1,  6, 0x0,  1,  7,  6, 0x0
+gsSP2Triangles  1,  2,  7, 0x0,  2,  8,  7, 0x0
+gsSP2Triangles  2,  3,  8, 0x0,  3,  9,  8, 0x0
+gsSP2Triangles  3,  4,  9, 0x0,  4, 10,  9, 0x0
+gsSP2Triangles  4,  5, 10, 0x0,  5, 11, 10, 0x0
 gsSPEndDisplayList
