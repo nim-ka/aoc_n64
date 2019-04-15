@@ -19,7 +19,7 @@ glabel thi_geo_00079C # 0x0E00079C
                geo_display_list LAYER_OPAQUE, thi_seg7_dl_07009D50
                geo_display_list LAYER_ALPHA, thi_seg7_dl_07009F58
                geo_render_obj
-               geo_asm 0, Geo18_802761D0
+               geo_asm 0, geo_exec_level
             geo_close_node
          geo_close_node
       geo_close_node

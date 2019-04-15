@@ -21,7 +21,7 @@ glabel wf_geo_000BF8 # 0x0E000BF8
                geo_render_obj
                geo_asm    0, Geo18_802D01E0
                geo_asm 9217, Geo18_802D104C
-               geo_asm    0, Geo18_802761D0
+               geo_asm    0, geo_exec_level
             geo_close_node
          geo_close_node
       geo_close_node

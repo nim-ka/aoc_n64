@@ -20,7 +20,7 @@ glabel jrb_geo_000AFC # 0x0E000AFC
                geo_asm    0, Geo18_802D01E0
                geo_asm 4610, Geo18_802D104C
                geo_render_obj
-               geo_asm    2, Geo18_802761D0
+               geo_asm    2, geo_exec_level
             geo_close_node
          geo_close_node
       geo_close_node

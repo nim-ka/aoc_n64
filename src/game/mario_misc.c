@@ -262,20 +262,20 @@ void beh_unlock_door_star_loop(void)
 }
 
 
-static Gfx *func_802769E0(struct Struct802769E0 *a, s16 b)
+static Gfx *func_802769E0(struct GraphNode12A *node, s16 b)
 {
     Gfx *sp2C;
     Gfx *sp28 = NULL;
 
     if (b == 255)
     {
-        a->unk2 = (a->unk2 & 0xFF) | 0x100;
+        node->fnNode.node.flags = (node->fnNode.node.flags & 0xFF) | 0x100;
         sp28 = alloc_display_list(2 * sizeof(*sp28));
         sp2C = sp28;
     }
     else
     {
-        a->unk2 = (a->unk2 & 0xFF) | 0x500;
+        node->fnNode.node.flags = (node->fnNode.node.flags & 0xFF) | 0x500;
         sp28 = alloc_display_list(3 * sizeof(*sp28));
         sp2C = sp28;
         gDPSetAlphaCompare(sp2C++, G_AC_DITHER);
@@ -285,16 +285,16 @@ static Gfx *func_802769E0(struct Struct802769E0 *a, s16 b)
     return sp28;
 }
 
-Gfx *Geo18_802770A4(int a, struct GraphNode *b, UNUSED Mat4 *c)
+Gfx *Geo18_802770A4(s32 run, struct GraphNode *node, UNUSED Mat4 *c)
 {
     UNUSED u8 unused1[4];
     Gfx *sp28 = NULL;
-    struct Struct802769E0 *sp24 = (struct Struct802769E0 *)b;
+    struct GraphNode12A *sp24 = (struct GraphNode12A *)node;
     struct UnknownStruct4_New *sp20 = &D_8033A040[sp24->unk18];
     s16 sp1E;
     UNUSED u8 unused2[4];
 
-    if (a == 1)
+    if (run == TRUE)
     {
         sp1E = (sp20->unk08 & 0x100) ? (sp20->unk08 & 0xFF) : 255;
         sp28 = func_802769E0(sp24, sp1E);
@@ -337,34 +337,34 @@ s32 geo_switch_mario_eyes(s32 run, struct GraphNode *node, UNUSED Mat4 *c)
     return 0;
 }
 
-Gfx *Geo18_80277294(int a, struct GraphNode *b, UNUSED Mat4 *c)
+Gfx *Geo18_80277294(s32 run, struct GraphNode *node, UNUSED Mat4 *c)
 {
-    struct Struct80277294 *sp24 = (struct Struct80277294 *)b;
+    struct GraphNode12A *sp24 = (struct GraphNode12A *)node;
     struct UnknownStruct4_New *sp20 = &D_8033A040[sp24->unk18];
     int action = sp20->action;
 
-    if (a == 1)
+    if (run == TRUE)
     {
-        struct Struct80277294_2 *sp18 = (struct Struct80277294_2 *)b->next;
+        struct GraphNode017 *sp18 = (struct GraphNode017 *)node->next;
 
         if (action != 0x00840452 && action != 0x00840454 && action != 0x04000440 && action != 0x20810446)
             vec3s_copy(sp20->unkC, D_80385FDC);
-        sp18->unk18 = sp20->unkC[1];
-        sp18->unk1A = sp20->unkC[2];
-        sp18->unk1C = sp20->unkC[0];
+        sp18->unk18[0] = sp20->unkC[1];
+        sp18->unk18[1] = sp20->unkC[2];
+        sp18->unk18[2] = sp20->unkC[0];
     }
     return NULL;
 }
 
-Gfx *Geo18_802773A4(int a, struct GraphNode *b, UNUSED Mat4 *c)
+Gfx *Geo18_802773A4(s32 run, struct GraphNode *node, UNUSED Mat4 *c)
 {
-    struct Struct802773A4 *sp2C = (struct Struct802773A4 *)b;
+    struct GraphNode12A *sp2C = (struct GraphNode12A *)node;
     struct UnknownStruct4_New *sp28 = &D_8033A040[sp2C->unk18];
     int action = sp28->action;
 
-    if (a == 1)
+    if (run == TRUE)
     {
-        struct Struct802773A4_2 *sp20 = (struct Struct802773A4_2 *)b->next;
+        struct GraphNode017 *sp20 = (struct GraphNode017 *)node->next;
         u8 *sp1C = (u8 *)D_8032CF9C->unk18;
 
         if (*sp1C == 6)
@@ -409,15 +409,15 @@ s32 geo_switch_mario_hand(s32 run, struct GraphNode *node, UNUSED Mat4 *c)
     return 0;
 }
 
-Gfx *Geo18_802775CC(int a, struct GraphNode *b, UNUSED Mat4 *c)
+Gfx *Geo18_802775CC(s32 run, struct GraphNode *node, UNUSED Mat4 *c)
 {
-    struct Struct802775CC *spC = (struct Struct802775CC *)b;
-    struct Struct80277150 *sp8 = (struct Struct80277150 *)b->next;
+    struct GraphNode12A *spC = (struct GraphNode12A *)node;
+    struct GraphNodeScaleOptionalDisplayList *sp8 = (struct GraphNodeScaleOptionalDisplayList *)node->next;
     struct UnknownStruct4_New *sp4 = &D_8033A040[0];
 
-    if (a == 1)
+    if (run == TRUE)
     {
-        sp8->unk18 = 1.0f;
+        sp8->scale = 1.0f;
         if (spC->unk18 == sp4->unk0B >> 6)
         {
             if (D_8032CE0C != gAreaUpdateCounter && (sp4->unk0B & 0x3F) > 0)
@@ -425,7 +425,7 @@ Gfx *Geo18_802775CC(int a, struct GraphNode *b, UNUSED Mat4 *c)
                 sp4->unk0B--;
                 D_8032CE0C = gAreaUpdateCounter;
             }
-            sp8->unk18 = D_8032CDF8[spC->unk18 * 6 + (sp4->unk0B & 0x3F)] / 10.0f;
+            sp8->scale = D_8032CDF8[spC->unk18 * 6 + (sp4->unk0B & 0x3F)] / 10.0f;
         }
     }
     return NULL;
@@ -465,23 +465,23 @@ s32 geo_switch_mario_cap_on_off(s32 run, struct GraphNode *node, UNUSED Mat4 *c)
     return 0;
 }
 
-Gfx *Geo18_80277824(int a, struct GraphNode *b, UNUSED Mat4 *c)
+Gfx *Geo18_80277824(s32 run, struct GraphNode *node, UNUSED Mat4 *c)
 {
     s16 spE;
-    struct Struct80277824 *sp8 = (struct Struct80277824 *)b;
+    struct GraphNode12A *sp8 = (struct GraphNode12A *)node;
 
-    if (a == 1)
+    if (run == TRUE)
     {
-        struct Struct80277824_2 *sp4 = (struct Struct80277824_2 *)b->next;
+        struct GraphNode017 *sp4 = (struct GraphNode017 *)node->next;
 
         if (D_8033A040[sp8->unk18 >> 1].unk07 == 0)
             spE = (coss((gAreaUpdateCounter & 0xF) << 12) + 1.0f) * 4096.0f;
         else
             spE = (coss((gAreaUpdateCounter & 7) << 13) + 1.0f) * 6144.0f;
         if (!(sp8->unk18 & 1))
-            sp4->unk18 = -spE;
+            sp4->unk18[0] = -spE;
         else
-            sp4->unk18 = spE;
+            sp4->unk18[0] = spE;
     }
     return NULL;
 }
@@ -522,18 +522,18 @@ Gfx *Geo1C_8027795C(int a, struct GraphNode *b, Mat4 *c)
     return NULL;
 }
 
-Gfx *Geo18_80277B14(int a, struct GraphNode *b, UNUSED Mat4 *c)
+Gfx *Geo18_80277B14(s32 run, struct GraphNode *node, UNUSED Mat4 *c)
 {
     float sp34;
     struct Object *sp30 = gMarioStates->marioObj;
 
-    switch (a)
+    switch (run)
     {
     case 0:
         init_graph_node_object(NULL, &D_80339FE0, NULL, D_80385FD0, D_80385FDC, D_80385FE4);
         break;
     case 3:
-        func_8037C044(b, &D_80339FE0.node);
+        func_8037C044(node, &D_80339FE0.node);
         break;
     case 2:
         func_8037C0BC(&D_80339FE0.node);
@@ -569,9 +569,9 @@ Gfx *Geo18_80277B14(int a, struct GraphNode *b, UNUSED Mat4 *c)
     return NULL;
 }
 
-Gfx *Geo18_80277D6C(int a, struct GraphNode *b, UNUSED Mat4 *c)
+Gfx *Geo18_80277D6C(int a, struct GraphNode *node, UNUSED Mat4 *c)
 {
-    struct Struct80277D6C *sp34 = (struct Struct80277D6C *)b;
+    struct GraphNode12A *sp34 = (struct GraphNode12A *)node;
     Gfx *sp30 = NULL;
 
     if (a == 1 && D_8032CFA0 == &D_80339FE0)
@@ -590,7 +590,7 @@ Gfx *Geo18_80277D6C(int a, struct GraphNode *b, UNUSED Mat4 *c)
             gSPSetGeometryMode(&sp30[1], G_CULL_BACK);
             gSPEndDisplayList(&sp30[2]);
         }
-        sp34->node.flags = (sp34->node.flags & 0xFF) | 0x100;
+        sp34->fnNode.node.flags = (sp34->fnNode.node.flags & 0xFF) | 0x100;
     }
     return sp30;
 }

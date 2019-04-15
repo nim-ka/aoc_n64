@@ -25,7 +25,7 @@ glabel jrb_geo_000A18 # 0x0E000A18
                geo_asm 4609, Geo18_802D104C
                geo_asm 4613, Geo18_802D104C
                geo_render_obj
-               geo_asm   14, Geo18_802761D0
+               geo_asm   14, geo_exec_level
             geo_close_node
          geo_close_node
       geo_close_node

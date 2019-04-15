@@ -17,7 +17,7 @@ glabel rr_geo_0009D0 # 0x0E0009D0
                geo_asm 0, Geo18_802D2470
                geo_display_list LAYER_ALPHA, rr_seg7_dl_07002168
                geo_render_obj
-               geo_asm 0, Geo18_802761D0
+               geo_asm 0, geo_exec_level
             geo_close_node
          geo_close_node
       geo_close_node

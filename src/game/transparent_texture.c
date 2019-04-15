@@ -52,38 +52,38 @@ s32 round_float(float f12)
         return (s16)(f12 - 0.5);
 }
 
-struct StructGeo802D2360 *Geo18_802D2360(s32 sp30, short *sp34, UNUSED s32 sp38)
+Gfx *Geo18_802D2360(s32 run, struct GraphNode *node, UNUSED f32 mtx[4][4])
 {
     s32 flags;
-    short *sp28;
+    struct GraphNode12A *sp28;
     Gfx *dlist = NULL;
-    void *sp20 = NULL;
+    Gfx *gfx = NULL;
 
-    if (sp30 == 1)
+    if (run == TRUE)
     {
         flags = save_file_get_flags();
         if (gDisplayedStars >= 0xa && (flags & SAVE_FLAG_HAVE_WING_CAP) == 0)
         {
-            sp20 = alloc_display_list(0x10);
-            if (sp20 == NULL)
+            gfx = alloc_display_list(0x10);
+            if (gfx == NULL)
                 return NULL;
             else
-                dlist = sp20;
+                dlist = gfx;
 
-            sp28 = sp34;
-            sp28[1] = (sp28[1] & 0xFF) | 0x500;
+            sp28 = (struct GraphNode12A *)node;
+            sp28->fnNode.node.flags = (sp28->fnNode.node.flags & 0xFF) | 0x500;
             
             gSPDisplayList(dlist++, inside_castle_seg7_dl_0702A880);
             gSPEndDisplayList(dlist);
         }
     }
 
-    return sp20;
+    return gfx;
 }
 
-struct StructGeo802D2360 *Geo18_802D2470(s32 a0, UNUSED void *sp4, UNUSED s32 sp8) {
-
-    if (a0 != 1)
+Gfx *Geo18_802D2470(s32 run, UNUSED struct GraphNode *node, UNUSED f32 mtx[4][4])
+{
+    if (run != TRUE)
     {
         D_80330398 = 0;
         D_80330394 = gAreaUpdateCounter - 1;
@@ -100,18 +100,18 @@ struct StructGeo802D2360 *Geo18_802D2470(s32 a0, UNUSED void *sp4, UNUSED s32 sp
     return NULL;
 }
 
-void *Geo18_802D2520(s32 sp80, short *sp84, UNUSED s32 sp88)
+Gfx *Geo18_802D2520(s32 run, struct GraphNode *node, UNUSED s32 sp88)
 {
     s16 n, sp7C, sp7A, x, y, z, tx, ty;
     Vtx *verts;
-    short *sp68 = sp84;
+    struct GraphNode12A *sp68 = (struct GraphNode12A *)node;
 
     s16 *sp64 = (s16 *)segmented_to_virtual(&rr_seg7_transparent_texture_data_07019248);
     Gfx *sp60 = NULL, *sp5C = NULL;
     struct Object *sp58;
     
 
-    if (sp80 == 1)
+    if (run == TRUE)
     {
         verts = alloc_display_list(0x150);
         sp60 = alloc_display_list(0x38);
@@ -120,7 +120,7 @@ void *Geo18_802D2520(s32 sp80, short *sp84, UNUSED s32 sp88)
 
         if (verts == NULL || sp60 == NULL) return 0;
 
-        sp68[1] = (sp68[1] & 0xFF) | 0x100;
+        sp68->fnNode.node.flags = (sp68->fnNode.node.flags & 0xFF) | 0x100;
 
         for (n = 0; n <= 20; n++)
         {
@@ -162,22 +162,22 @@ void *Geo18_802D2520(s32 sp80, short *sp84, UNUSED s32 sp88)
     return sp60; 
 }
 
-Gfx *Geo18_802D28CC(s32 sp30, short *sp34, UNUSED s32 sp38)
+Gfx *Geo18_802D28CC(s32 run, struct GraphNode *node, UNUSED s32 sp38)
 {
-    short *sp2C = sp34;
-    Gfx *sp28 = NULL;
-    Gfx *sp24 = NULL;
+    struct GraphNode12A *sp2C = (struct GraphNode12A *)node;
+    Gfx *gfxRet = NULL;
+    Gfx *gfx = NULL;
 
-    if (sp30 == 1)
+    if (run == TRUE)
     {
-        sp28 = alloc_display_list(3 * sizeof(*sp28));
-        sp24 = sp28;
+        gfxRet = alloc_display_list(3 * sizeof(*gfxRet));
+        gfx = gfxRet;
 
-        sp2C[1] = (sp2C[1] & 0xFF) | 0x100;
-        gSPDisplayList(sp24++, seg2_dl_02014660);
-        gSPDisplayList(sp24++, cake_end_dl_07026400);
-        gSPEndDisplayList(sp24);
+        sp2C->fnNode.node.flags = (sp2C->fnNode.node.flags & 0xFF) | 0x100;
+        gSPDisplayList(gfx++, seg2_dl_02014660);
+        gSPDisplayList(gfx++, cake_end_dl_07026400);
+        gSPEndDisplayList(gfx);
     }
 
-    return sp28;  
+    return gfxRet;  
 }

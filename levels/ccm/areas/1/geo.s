@@ -22,7 +22,7 @@ glabel ccm_geo_00051C # 0x0E00051C
                geo_asm    0, Geo18_802D01E0
                geo_asm 1281, Geo18_802D104C
                geo_render_obj
-               geo_asm    1, Geo18_802761D0
+               geo_asm    1, geo_exec_level
             geo_close_node
          geo_close_node
       geo_close_node

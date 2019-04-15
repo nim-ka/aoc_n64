@@ -18,7 +18,7 @@ glabel totwc_geo_000188 # 0x0E000188
                geo_display_list LAYER_TRANSPARENT, totwc_seg7_dl_07007048
                geo_display_list LAYER_TRANSPARENT, totwc_seg7_dl_070078B8
                geo_render_obj
-               geo_asm 0, Geo18_802761D0
+               geo_asm 0, geo_exec_level
             geo_close_node
          geo_close_node
       geo_close_node

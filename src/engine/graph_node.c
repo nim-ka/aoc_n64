@@ -454,7 +454,7 @@ struct GraphNode12A *init_graph_node_12A(struct AllocOnlyPool *pool, struct Grap
 
 // background
 struct GraphNodeBackground *init_graph_node_background(struct AllocOnlyPool *pool, struct GraphNodeBackground *graphNode,
-    u16 background, GraphNodeFunc backgroundFunc, s32 sp28)
+    u16 background, GraphNodeFunc backgroundFunc, s32 zero)
 {
     if(pool != NULL)
     {
@@ -467,7 +467,7 @@ struct GraphNodeBackground *init_graph_node_background(struct AllocOnlyPool *poo
 
         graphNode->background = (background << 16) | background;
         graphNode->fnNode.func = backgroundFunc;
-        graphNode->unk18 = sp28;
+        graphNode->unused = zero; // always 0, unused
 
         if(backgroundFunc != NULL)
         {

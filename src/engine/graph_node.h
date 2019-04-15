@@ -207,13 +207,13 @@ struct GraphNode029
 struct GraphNode12A
 {
     /*0x00*/ struct FnGraphNode fnNode;
-    /*0x18*/ s32 unk18;
+    /*0x18*/ u32 unk18;
 };
 
 struct GraphNodeBackground
 {
     /*0x00*/ struct FnGraphNode fnNode;
-    /*0x18*/ s32 unk18;
+    /*0x18*/ s32 unused;
     /*0x1C*/ s32 background; // background ID, or rgba5551 color if fnNode.func is null
 };
 

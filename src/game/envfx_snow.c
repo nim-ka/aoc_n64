@@ -20,7 +20,7 @@
  *  implementation for flowers (unused), lava bubbles and jetstream bubbles
  *  can be found. 
  *  The main entry point for envfx is at the bottom of this file, which is 
- *  called from Geo18_802761D0 in level_geo.c
+ *  called from geo_exec_level in level_geo.c
  */
 
 // Might be duplicate
@@ -269,7 +269,7 @@ void envfx_update_snow_blizzard(s32 snowCylinderX, s32 snowCylinderY, s32 snowCy
  *  near the starting point and doesn't seem meaningfull. Notably, the point is 
  *  close to the entrance of SL, so maybe there were plans for an extra hint to
  *  find it. The radius of 3000 units is quite large for that though, covering 
- *  more than half of the mirror room. Note that in Geo18_802761D0 of level_geo.c
+ *  more than half of the mirror room. Note that in geo_exec_level of level_geo.c
  *  if a0 == 4, the environment effects are updated with mirror mario's position 
  *  3 times instead of mario, cam from and cam to positions, further suggesting
  *  that this had something to do with the mirror room. a0 is fixed to 1 so the

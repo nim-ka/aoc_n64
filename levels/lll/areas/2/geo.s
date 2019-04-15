@@ -23,7 +23,7 @@ glabel lll_geo_000EC0 # 0x0E000EC0
                geo_asm 8706, Geo18_802D1B70
                geo_asm 8706, Geo18_802D104C
                geo_render_obj
-               geo_asm    0, Geo18_802761D0
+               geo_asm    0, geo_exec_level
             geo_close_node
          geo_close_node
       geo_close_node

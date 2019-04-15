@@ -79,7 +79,7 @@ extern void beh_menu_button_init(void);
 extern void beh_menu_button_loop(void);
 extern void beh_menu_button_manager_init(void);
 extern void beh_menu_button_manager_loop(void);
-extern int Geo18_80176688(int a, UNUSED int b, UNUSED int c);
+extern Gfx *Geo18_80176688(s32 run, UNUSED struct GraphNode *node, UNUSED f32 mtx[4][4]);
 extern void LevelProc_801766DC(UNUSED int a, UNUSED int b);
 extern int LevelProc_801768A0(UNUSED int a, UNUSED int b);
 

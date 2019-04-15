@@ -1,12 +1,12 @@
 // door_key.c.inc
 
-s32 Geo18_802BA2B0(s32 a0,struct GraphNode* a1,UNUSED void* a2)
+Gfx *Geo18_802BA2B0(s32 run, struct GraphNode* node, UNUSED f32 mtx[4][4])
 {
     struct Object* sp4;
-    if(a0 == 1)
+    if(run == TRUE)
     {
         sp4 = (struct Object*)D_8032CFA0;
-        (*(f32*)&((struct GraphNodeObject*)a1->next)->unk18) = sp4->oUnknownUnkF4_F32; // FIXME
+        ((struct GraphNodeScaleOptionalDisplayList *)node->next)->scale = sp4->oUnknownUnkF4_F32;
     }
     return 0;
 }

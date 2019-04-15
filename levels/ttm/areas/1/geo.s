@@ -26,7 +26,7 @@ glabel ttm_geo_000A70 # 0x0E000A70
                geo_asm 13828, Geo18_802D1B70
                geo_asm 13829, Geo18_802D1B70
                geo_asm 13825, Geo18_802D104C
-               geo_asm     0, Geo18_802761D0
+               geo_asm     0, geo_exec_level
             geo_close_node
          geo_close_node
       geo_close_node

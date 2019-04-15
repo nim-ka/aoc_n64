@@ -21,7 +21,7 @@ glabel ddd_geo_0004C0 # 0x0E0004C0
                geo_asm    0, Geo18_802D01E0
                geo_asm 8961, Geo18_802D104C
                geo_render_obj
-               geo_asm   13, Geo18_802761D0
+               geo_asm   13, geo_exec_level
             geo_close_node
          geo_close_node
       geo_close_node

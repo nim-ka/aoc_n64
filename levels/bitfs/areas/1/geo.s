@@ -20,7 +20,7 @@ glabel bitfs_geo_0007A0 # 0x0E0007A0
                geo_asm 6402, Geo18_802D1B70
                geo_asm 6403, Geo18_802D1B70
                geo_render_obj
-               geo_asm   12, Geo18_802761D0
+               geo_asm   12, geo_exec_level
             geo_close_node
          geo_close_node
       geo_close_node

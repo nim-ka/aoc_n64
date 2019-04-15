@@ -17,7 +17,7 @@ glabel sa_geo_000170 # 0x0E000170
                geo_display_list LAYER_OPAQUE, sa_seg7_dl_07002DE8
                geo_display_list LAYER_TRANSPARENT, sa_seg7_dl_07002FD0
                geo_render_obj
-               geo_asm 2, Geo18_802761D0
+               geo_asm 2, geo_exec_level
             geo_close_node
          geo_close_node
       geo_close_node

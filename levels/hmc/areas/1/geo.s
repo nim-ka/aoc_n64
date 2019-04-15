@@ -289,7 +289,7 @@ glabel hmc_geo_000B90 # 0x0E000B90
                   geo_branch 1, hmc_geo_000B48 # 0x0E000B48
                geo_close_node
                geo_render_obj
-               geo_asm 0, Geo18_802761D0
+               geo_asm 0, geo_exec_level
             geo_close_node
          geo_close_node
       geo_close_node

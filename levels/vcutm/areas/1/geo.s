@@ -19,7 +19,7 @@ glabel vcutm_geo_000208 # 0x0E000208
                geo_display_list LAYER_OPAQUE, vcutm_seg7_dl_070093E8
                geo_display_list LAYER_ALPHA, vcutm_seg7_dl_070080D0
                geo_render_obj
-               geo_asm 0, Geo18_802761D0
+               geo_asm 0, geo_exec_level
             geo_close_node
          geo_close_node
       geo_close_node

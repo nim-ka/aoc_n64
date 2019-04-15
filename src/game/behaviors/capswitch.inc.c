@@ -60,19 +60,20 @@ void BehCapSwitchLoop(void)
     obj_call_action_function(TableCapSwitchActions);
 }
 
-int Geo18_802A719C(s32 arg0,UNUSED s32 arg1,Mat4 arg2)
+Gfx *Geo18_802A719C(s32 run, UNUSED struct GraphNode *node, Mat4 mtx)
 {
     Mat4 sp20;
     struct Object* sp1C;
-    if(arg0 == 1)
+
+    if(run == TRUE)
     {
         sp1C = (struct Object*)D_8032CFA0;
         if(sp1C->prevObj != NULL)
         {
-            func_8029D704(sp20,arg2,D_8032CF9C->unk34);
+            func_8029D704(sp20,mtx,D_8032CF9C->unk34);
             func_8029D558(sp20,sp1C->prevObj);
             func_8029EA0C(sp1C->prevObj);
         }
     }
-    return 0;
+    return NULL;
 }

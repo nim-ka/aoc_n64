@@ -9,8 +9,12 @@
 #include "envfx_snow.h"
 #include "level_geo.h"
 
-// geo_exec_level?
-Gfx *Geo18_802761D0(int a, struct GraphNode *b, float c[4][4])
+struct Local12AParam {
+ /*0x00*/ u16 unk0;
+ /*0x02*/ u16 unk2;
+};
+
+Gfx *geo_exec_level(s32 run, struct GraphNode *node, float c[4][4])
 {
     Vec3s sp50;
     Vec3s sp48;
@@ -18,15 +22,15 @@ Gfx *Geo18_802761D0(int a, struct GraphNode *b, float c[4][4])
     void *sp3C;
     Gfx *sp38 = NULL;
 
-    if (a == 1 && D_8032CF9C != NULL)
+    if (run == TRUE && D_8032CF9C != NULL)
     {
-        struct Struct802761D0 *sp34 = (struct Struct802761D0 *)b;
-        struct Struct802761D0 *sp30 = sp34 + 1;
+        struct GraphNode12A *execNode = (struct GraphNode12A *)node;
+        struct Local12AParam *params = (struct Local12AParam *)&execNode->unk18; // accessed a s32 as 2 u16s by pointing to the variable and casting to a local struct as necessary.
 
-        if (sp30->unk0 != gAreaUpdateCounter)
+        if (params->unk0 != gAreaUpdateCounter)
         {
             UNUSED int sp2C = D_8032CF9C->unk18;
-            int sp28 = (u16)sp30->unk2;
+            int sp28 = params->unk2;
 
             vec3f_to_vec3s(sp40, D_8032CF9C->unk28);
             vec3f_to_vec3s(sp48, D_8032CF9C->unk1C);
@@ -40,12 +44,12 @@ Gfx *Geo18_802761D0(int a, struct GraphNode *b, float c[4][4])
                 mtxf_to_mtx(mtx, c);
                 gSPMatrix(&sp38[0], VIRTUAL_TO_PHYSICAL(mtx), G_MTX_MODELVIEW | G_MTX_LOAD);
                 gSPBranchList(&sp38[1], VIRTUAL_TO_PHYSICAL(sp3C));
-                sp34->unk2 = (sp34->unk2 & 0xFF) | 0x400;
+                execNode->fnNode.node.flags = (execNode->fnNode.node.flags & 0xFF) | 0x400;
             }
-            sp30->unk0 = gAreaUpdateCounter;
+            params->unk0 = gAreaUpdateCounter;
         }
     }
-    else if (a == 4)
+    else if (run == 4)
     {
         vec3s_copy(sp40, D_80385FDC);
         vec3s_copy(sp48, D_80385FDC);
@@ -60,9 +64,9 @@ Gfx *geo_skybox_main(s32 run, struct GraphNode *node, UNUSED Mat4 *mtx)
     Gfx *gfx = NULL;
     struct GraphNodeBackground *backgroundNode = (struct GraphNodeBackground *)node;
 
-    if (run == 3)
+    if (run == 3) // pretty sure this cant be called: 3 is never passed via geo function calls.
     {
-        backgroundNode->unk18 = 0;
+        backgroundNode->unused = 0;
     }
     else if (run == TRUE)
     {

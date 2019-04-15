@@ -22,7 +22,7 @@ glabel pss_geo_000100 # 0x0E000100
                geo_display_list LAYER_OPAQUE, pss_seg7_dl_0700E2B0
                geo_display_list LAYER_OPAQUE_DECAL, pss_seg7_dl_0700E3E8
                geo_render_obj
-               geo_asm 0, Geo18_802761D0
+               geo_asm 0, geo_exec_level
             geo_close_node
          geo_close_node
       geo_close_node

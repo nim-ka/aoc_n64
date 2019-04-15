@@ -242,11 +242,12 @@ static void ShowActSelectorMenu(void)
     gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D160);
 }
 
-int Geo18_80177518(s16 a, UNUSED int b)
+//! @bug Another geo function missing the third param. Harmless in practice due to o32 convention.
+Gfx *Geo18_80177518(s16 run, UNUSED struct GraphNode *node)
 {
-    if (a == 1)
+    if (run == TRUE)
         ShowActSelectorMenu();
-    return 0;
+    return NULL;
 }
 
 void LevelProc_80177560(UNUSED int a, UNUSED int b)

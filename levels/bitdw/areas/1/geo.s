@@ -16,7 +16,7 @@ glabel geo_bitdw_000618 # 0x0E000618
             geo_open_node
                geo_display_list LAYER_ALPHA, bitdw_seg7_dl_070020C8
                geo_render_obj
-               geo_asm 0, Geo18_802761D0
+               geo_asm 0, geo_exec_level
             geo_close_node
          geo_close_node
       geo_close_node

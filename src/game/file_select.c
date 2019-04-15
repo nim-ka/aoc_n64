@@ -1943,14 +1943,14 @@ static void draw_current_menu(void)
         sMainMenuTimer += 1;
 }
 
-int Geo18_80176688(int a, UNUSED int b, UNUSED int c)
+Gfx *Geo18_80176688(s32 run, UNUSED struct GraphNode *node, UNUSED f32 mtx[4][4])
 {
-    if (a == 1)
+    if (run == TRUE)
     {
         draw_current_menu();
         draw_cursor();
     }
-    return 0;
+    return NULL;
 }
 // Returning to file select screen after game overing
 void LevelProc_801766DC(UNUSED int a, UNUSED int b)

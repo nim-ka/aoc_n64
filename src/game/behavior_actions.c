@@ -191,16 +191,17 @@ void func_802AA618(s32 sp18,s32 sp1C,f32 sp20)
 #include "behaviors/breakable_box.inc.c"
 
 // not sure what this is doing here. not in a behavior file.
-s32 Geo18_802B1BB0(s32 a0,UNUSED s32 a1, Mat4 a2)
+s32 Geo18_802B1BB0(s32 run, UNUSED struct GraphNode *node, Mat4 mtx)
 {
     Mat4 sp20;
     struct Object* sp1C;
-    if(a0 == 1)
+
+    if(run == TRUE)
     {
         sp1C = (struct Object*)D_8032CFA0;
         if(sp1C == gMarioObject && sp1C->prevObj != NULL)
         {
-            func_8029D704(sp20,a2,D_8032CF9C->unk34);
+            func_8029D704(sp20,mtx,D_8032CF9C->unk34);
             func_8029D558(sp20,sp1C->prevObj);
             func_8029EA0C(sp1C->prevObj);
         }

@@ -6,6 +6,7 @@
 #include "memory.h"
 #include "save_file.h"
 #include "engine/surface_collision.h"
+#include "engine/graph_node.h"
 #include "transparent_texture.h"
 #include "area.h"
 
@@ -796,15 +797,15 @@ struct Struct802D4E04
     u32 unk18;
 };
 
-void func_802D4E04(struct Struct802D4E04 *a, struct PaintingData *b)
+void func_802D4E04(struct GraphNode12A *a, struct PaintingData *b)
 {
     switch (b->unk6D)
     {
     case 0xFF:
-        a->unk2 = (a->unk2 & 0xFF) | 0x100;
+        a->fnNode.node.flags = (a->fnNode.node.flags & 0xFF) | 0x100;
         break;
     default:
-        a->unk2 = (a->unk2 & 0xFF) | 0x500;
+        a->fnNode.node.flags = (a->fnNode.node.flags & 0xFF) | 0x500;
         break;
     }
 }
@@ -878,20 +879,20 @@ void func_802D4FC0(struct PaintingData *a, void **b)
     }
 }
 
-Gfx *Geo18_802D5B98(int a, struct Struct802D4E04 *b, UNUSED int c)
+Gfx *Geo18_802D5B98(s32 run, struct GraphNode *node, UNUSED int c)
 {
-    struct Struct802D4E04 *sp2C = b;
+    struct GraphNode12A *sp2C = (struct GraphNode12A *)node;
     int sp28 = (sp2C->unk18 >> 8) & 0xFF;
     int sp24 = sp2C->unk18 & 0xFF;
     Gfx *sp20 = NULL;
     struct PaintingData **sp1C = D_803303EC[sp28];
     struct PaintingData *sp18 = segmented_to_virtual(sp1C[sp24]);
 
-    if (a != 1)
+    if (run != TRUE)
     {
         func_802D4C98(sp18);
     }
-    else if (a == 1)
+    else if (run == TRUE) // because the extra comparison was really necessary...
     {
         if (sp28 == 1 && sp24 == 7)
             func_802D4CC8(sp18, 3456.0f, 5529.6f, 20.0f);
@@ -911,11 +912,11 @@ Gfx *Geo18_802D5B98(int a, struct Struct802D4E04 *b, UNUSED int c)
     return sp20;
 }
 
-int Geo18_802D5D0C(int a, UNUSED int b, UNUSED int c)
+Gfx *Geo18_802D5D0C(s32 run, UNUSED struct GraphNode *node, UNUSED f32 c[4][4])
 {
-    struct Surface *sp1C;
+    struct Surface *surface;
 
-    if (a != 1)
+    if (run != TRUE)
     {
         D_803303FC = gAreaUpdateCounter - 1;
         D_803303F8 = gAreaUpdateCounter;
@@ -924,11 +925,11 @@ int Geo18_802D5D0C(int a, UNUSED int b, UNUSED int c)
     {
         D_803303FC = D_803303F8;
         D_803303F8 = gAreaUpdateCounter;
-        find_floor(gMarioObject->oPosX, gMarioObject->oPosY, gMarioObject->oPosZ, &sp1C);
-        D_8035FF90 = sp1C->type;
+        find_floor(gMarioObject->oPosX, gMarioObject->oPosY, gMarioObject->oPosZ, &surface);
+        D_8035FF90 = surface->type;
         D_8035FF94 = gMarioObject->oPosX;
         D_8035FF98 = gMarioObject->oPosY;
         D_8035FF9C = gMarioObject->oPosZ;
     }
-    return 0;
+    return NULL;
 }

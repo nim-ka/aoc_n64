@@ -452,7 +452,7 @@ glabel geo_bbh_000F00 # 0x0E000F00
                   geo_branch 1, geo_bbh_000EB0 # 0x0E000EB0
                geo_close_node
                geo_render_obj
-               geo_asm 0, Geo18_802761D0
+               geo_asm 0, geo_exec_level
             geo_close_node
          geo_close_node
       geo_close_node

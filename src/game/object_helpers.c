@@ -49,47 +49,39 @@ extern void func_802AD82C(s32, s32, f32, s32);
 
 #define o gCurrentObject
 
-s32 Geo18_8029D890(s32 sp60, UNUSED s32 sp64, void *sp68)
+Gfx *Geo18_8029D890(s32 run, UNUSED struct GraphNode *node, f32 mtx[4][4])
 {
     Mat4 sp20;
     struct Object *sp1C;
 
-    if (sp60 == 1)
+    if (run == TRUE)
     {
         sp1C = (struct Object *)D_8032CFA0; // TODO: change global type to Object pointer
         if (sp1C->prevObj)
         {
-            func_8029D704(sp20, sp68, D_8032CF9C->unk34);
+            func_8029D704(sp20, mtx, D_8032CF9C->unk34);
             func_8029D558(sp20, sp1C->prevObj);
             func_8029EA0C(sp1C->prevObj);
         }
     }
-    return 0;
+    return NULL;
 }
 
-struct struct8029D924
-{
-    /*0x00*/ s16 unk00;
-    /*0x02*/ s16 unk02;
-    /*0x04*/ s8 filler04[0x18-0x04];
-    /*0x18*/ s32 unk18;
-};
-
-Gfx *Geo18_8029D924(s32 sp40, struct struct8029D924 *sp44, UNUSED s32 sp48)
+Gfx *Geo18_8029D924(s32 run, struct GraphNode *node, UNUSED s32 sp48)
 {
     Gfx *sp3C, *sp38;
     struct Object *sp34;
-    struct struct8029D924 *sp30;
-    UNUSED struct struct8029D924 *sp2C;
+    struct GraphNode12A *sp30;
+    UNUSED struct GraphNode12A *sp2C;
     s32 sp28;
 
     sp3C = NULL;
 
-    if (sp40 == 1)
+    if (run == TRUE)
     {
         sp34 = (struct Object *) D_8032CFA0; // TODO: change this to object pointer?
-        sp30 = sp44;
-        sp2C = sp44;
+        sp30 = (struct GraphNode12A *)node;
+        sp2C = (struct GraphNode12A *)node;
 
         if (D_8032CFA4)
         {
@@ -105,11 +97,11 @@ Gfx *Geo18_8029D924(s32 sp40, struct struct8029D924 *sp44, UNUSED s32 sp48)
         {
             if (sp30->unk18 == 20)
             {
-                sp30->unk02 = 0x600 | (sp30->unk02 & 0xFF);
+                sp30->fnNode.node.flags = 0x600 | (sp30->fnNode.node.flags & 0xFF);
             }
             else
             {
-                sp30->unk02 = 0x100 | (sp30->unk02 & 0xFF);
+                sp30->fnNode.node.flags = 0x100 | (sp30->fnNode.node.flags & 0xFF);
             }
 
             sp34->oAnimState = 0;
@@ -118,11 +110,11 @@ Gfx *Geo18_8029D924(s32 sp40, struct struct8029D924 *sp44, UNUSED s32 sp48)
         {
             if (sp30->unk18 == 20)
             {
-                sp30->unk02 = 0x600 | (sp30->unk02 & 0xFF);
+                sp30->fnNode.node.flags = 0x600 | (sp30->fnNode.node.flags & 0xFF);
             }
             else
             {
-                sp30->unk02 = 0x500 | (sp30->unk02 & 0xFF);
+                sp30->fnNode.node.flags = 0x500 | (sp30->fnNode.node.flags & 0xFF);
             }
 
             sp34->oAnimState = 1;
@@ -3085,17 +3077,16 @@ s32 obj_hide_if_mario_far_away_y(f32 distY)
     }
 }
 
-s32 Geo18_802A45E4(s32 a0, struct GraphNode *node, UNUSED void *a3)
+Gfx *Geo18_802A45E4(s32 run, struct GraphNode *node, UNUSED f32 mtx[4][4])
 {
-    if (a0 == 1)
+    if (run == TRUE)
     {
-        // TODO: what is the right type?
-        ((struct GraphNode_802A45E4*)node->next)->unk18 = 300;
-        ((struct GraphNode_802A45E4*)node->next)->unk1A = 300;
-        ((struct GraphNode_802A45E4*)node->next)->unk1C = 0;
+        ((struct GraphNodeTranslationRotationOptionalDisplayList*)node->next)->translation[0] = 300;
+        ((struct GraphNodeTranslationRotationOptionalDisplayList*)node->next)->translation[1] = 300;
+        ((struct GraphNodeTranslationRotationOptionalDisplayList*)node->next)->translation[2] = 0;
     }
 
-    return 0;
+    return NULL;
 }
 
 s32 Unknown802A3E84(s32 a0, struct GraphNode *a1, UNUSED s32 sp8)

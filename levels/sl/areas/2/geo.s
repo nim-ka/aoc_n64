@@ -19,7 +19,7 @@ glabel sl_geo_000484 # 0x0E000484
                geo_display_list LAYER_TRANSPARENT, sl_seg7_dl_0700C9E8
                geo_display_list LAYER_TRANSPARENT, sl_seg7_dl_0700CB58
                geo_render_obj
-               geo_asm 0, Geo18_802761D0
+               geo_asm 0, geo_exec_level
             geo_close_node
          geo_close_node
       geo_close_node

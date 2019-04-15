@@ -22,7 +22,7 @@ glabel thi_geo_000608 # 0x0E000608
                geo_asm    0, Geo18_802D01E0
                geo_asm 4865, Geo18_802D104C
                geo_render_obj
-               geo_asm    0, Geo18_802761D0
+               geo_asm    0, geo_exec_level
             geo_close_node
          geo_close_node
       geo_close_node

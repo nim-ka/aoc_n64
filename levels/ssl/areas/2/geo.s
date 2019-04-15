@@ -23,7 +23,7 @@ glabel ssl_geo_0007CC # 0x0E0007CC
                geo_asm 2050, Geo18_802D1B70
                geo_asm 2051, Geo18_802D1B70
                geo_render_obj
-               geo_asm    0, Geo18_802761D0
+               geo_asm    0, geo_exec_level
             geo_close_node
          geo_close_node
       geo_close_node

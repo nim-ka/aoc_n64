@@ -168,7 +168,7 @@ glabel castle_geo_001858 # 0x0E001858
                   geo_branch 1, castle_geo_001800 # 0x0E001800
                geo_close_node
                geo_render_obj
-               geo_asm 0, Geo18_802761D0
+               geo_asm 0, geo_exec_level
             geo_close_node
          geo_close_node
       geo_close_node

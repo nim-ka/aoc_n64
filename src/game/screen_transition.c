@@ -4,6 +4,7 @@
 #include "area.h"
 #include "game.h"
 #include "engine/math_util.h"
+#include "engine/graph_node.h"
 #include "memory.h"
 #include "transparent_texture.h"
 
@@ -310,14 +311,14 @@ static Gfx *func_802CC2E8(void)
     return dlist;
 }
 
-Gfx *Geo18_802CD1E8(int sp20, struct GraphNode *sp24, UNUSED int sp28)
+Gfx *Geo18_802CD1E8(s32 run, struct GraphNode *node, UNUSED f32 mtx[4][4])
 {
-    struct GraphNode *sp1C = sp24;
+    struct GraphNode12A *sp1C = (struct GraphNode12A *)node;
     Gfx *dlist = NULL;
 
-    if (sp20 == 1 && gCurrentArea != NULL && gCurrentArea->camera->preset == CAMERA_PRESET_INSIDE_CANNON)
+    if (run == TRUE && gCurrentArea != NULL && gCurrentArea->camera->preset == CAMERA_PRESET_INSIDE_CANNON)
     {
-        sp1C->flags = (sp1C->flags & 0xFF) | 0x500;
+        sp1C->fnNode.node.flags = (sp1C->fnNode.node.flags & 0xFF) | 0x500;
         dlist = func_802CC2E8();
     }
     return dlist;

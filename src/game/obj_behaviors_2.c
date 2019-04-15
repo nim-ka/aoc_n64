@@ -2438,7 +2438,7 @@ void BehFlyGuyFlameLoop(void)
     obj_scale(o->header.gfx.scale[0]);
 }
 
-s32 Geo18_8030D93C(s32 arg0, struct GraphNode *arg1, UNUSED void *arg2)
+Gfx *Geo18_8030D93C(s32 arg0, struct GraphNode *node, UNUSED void *arg2)
 {
     struct Object *sp4;
     struct GraphNodeTranslationRotationOptionalDisplayList *sp0;
@@ -2446,17 +2446,17 @@ s32 Geo18_8030D93C(s32 arg0, struct GraphNode *arg1, UNUSED void *arg2)
     if (arg0 == 1)
     {
         sp4 = (struct Object *)D_8032CFA0;
-        sp0 = (struct GraphNodeTranslationRotationOptionalDisplayList *)arg1->next;
+        sp0 = (struct GraphNodeTranslationRotationOptionalDisplayList *)node->next;
 
         sp0->translation[0] = sp4->OBJECT_FIELD_S16(0x49, 0);
         sp0->translation[1] = sp4->OBJECT_FIELD_S16(0x49, 1);
         sp0->translation[2] = sp4->OBJECT_FIELD_S16(0x4A, 0);
     }
 
-    return 0;
+    return NULL;
 }
 
-s32 Geo18_8030D9AC(s32 arg0, struct GraphNode *arg1, UNUSED void *arg2)
+Gfx *Geo18_8030D9AC(s32 arg0, struct GraphNode *node, UNUSED void *arg2)
 {
     struct Object *sp4;
     struct GraphNodeScaleOptionalDisplayList *sp0;
@@ -2464,12 +2464,12 @@ s32 Geo18_8030D9AC(s32 arg0, struct GraphNode *arg1, UNUSED void *arg2)
     if (arg0 == 1)
     {
         sp4 = (struct Object *)D_8032CFA0;
-        sp0 = (struct GraphNodeScaleOptionalDisplayList *)arg1->next;
+        sp0 = (struct GraphNodeScaleOptionalDisplayList *)node->next;
 
         sp0->scale = sp4->OBJECT_FIELD_S16(0x4A, 1) / 1000.0f;
     }
 
-    return 0;
+    return NULL;
 }
 
 struct ObjectHitbox sSnufitHitbox =
