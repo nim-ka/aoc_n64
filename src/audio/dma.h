@@ -15,15 +15,6 @@ struct Struct80226538
     u8 unkE; // counter, gets decremented
 }; // size = 0x10
 
-struct Struct_80226D60
-{
-    u8 unk0;
-    u8 unk1;
-    u8 unk2;
-    struct InstrumentSomething **unk4;
-    u32 unk8;
-}; // size = 0xC
-
 struct SubEntry
 {
     u8 unk0;
@@ -32,6 +23,7 @@ struct SubEntry
     void *unk8; // points into mem
     void *unkC; // points into mem
 };
+
 struct SubA
 {
     u16 pad;
@@ -40,21 +32,34 @@ struct SubA
     u8 pad2[4];
     void *unkC; // points into mem
 };
-struct SubB
+
+struct InstrumentSomething
 {
     u8 unk0;
-    void *unk4;
+    u8 pad[2];
+    u8 unk3; // might be the lower half of a u16, if the first part of this is a Substruct80225DD8
+    struct SubstructInstrumentSomething *unk4;
     struct SubEntry *unk8;
     u32 pad2;
     struct SubEntry *unk10;
     u32 pad3;
     struct SubEntry *unk18;
 };
+
 struct Struct_func_8031784C
 {
     struct SubA **header;
-    struct SubB *subB[1];
+    struct InstrumentSomething *subB[1];
 };
+
+struct Struct_80226D60
+{
+    u8 unk0;
+    u8 unk1;
+    u8 unk2;
+    struct InstrumentSomething **unk4;
+    struct SubA **unk8;
+}; // size = 0xC
 
 extern u64 D_802211A0; // audio .stack data start marker
 extern OSMesgQueue D_80225EE8;

@@ -689,8 +689,8 @@ static void unused_80317844(void) {}
 void func_8031784C(struct Struct_func_8031784C *mem, u8 *offset, u32 arg2, u32 arg3)
 {
     // Make pointers into real pointers rather than indices
-    struct SubB *subB;
-    struct SubB **itSubB;
+    struct InstrumentSomething *subB;
+    struct InstrumentSomething **itSubB;
     u32 i;
     u32 memBase = (u32)mem;
     u32 offsetBase = (u32)offset;
@@ -994,8 +994,9 @@ void *func_80317A88(s32 arg0, s32 arg1)
     func_8031784C(ret, D_80226D54->seqArray[arg0].offset, unk1, unk2);
     D_80226D60[arg0].unk1 = (u8)unk1;
     D_80226D60[arg0].unk2 = (u8)unk2;
-    D_80226D60[arg0].unk4 = (void *)((u32)ret + 4);
-    D_80226D60[arg0].unk8 = *(u32 *)ret;
+    // (Guessing at type)
+    D_80226D60[arg0].unk4 = ((struct Struct_func_8031784C *)ret)->subB;
+    D_80226D60[arg0].unk8 = ((struct Struct_func_8031784C *)ret)->header;
     D_802218D0[arg0] = 2;
     return ret;
 }
@@ -1277,11 +1278,11 @@ void func_803182E0(u32 arg0, u32 arg1, s32 arg2)
     }
 
     func_8031D42C(arg0);
-    temp->unk84 = 0;
+    temp->unk6C.unk18 = 0;
     temp->unk12 = 0;
     temp->unk0b80 = 1;
     temp->unk14 = ret;
-    temp->unk6C = ret;
+    temp->unk6C.unk0 = ret;
 }
 
 #ifdef NON_MATCHING

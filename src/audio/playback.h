@@ -39,6 +39,17 @@ struct SubstructInstrumentSomething {
     s16 unk02;
 };
 
+struct Interface1Buffer {
+    u8 *unk0;
+    u8 *unk4[4];
+    u8 unk14[4];
+    u8 unk18;
+}; // size = 0x1C
+
+// declared in dma.h
+struct Struct_func_8031784C;
+struct InstrumentSomething;
+
 // Mainly used in interface_2, but declared here to reduce header dependencies
 // (This file has become sort of a dumping group for structs. Which is pretty
 // convenient, but really we should have a separate header for that.)
@@ -49,7 +60,7 @@ struct Struct80222A18
     /*0x000*/ u8 unk0b20 : 1;
     /*0x000*/ u8 unk0b10 : 1;
     /*0x000*/ u8 unk0b8 : 1;
-    /*0x001*/ u8 unk1; // s8 according to func_8031D4B8, set to -1
+    /*0x001*/ s8 unk1;
     /*0x002*/ u8 unk2;
     /*0x003*/ u8 unk3;
     /*0x004*/ u8 unk4; // set to 0xe0
@@ -62,7 +73,7 @@ struct Struct80222A18
     /*0x00A*/ u16 unkA; // set to 0x78 on JP, 0x1680 on US
     /*0x00C*/ u16 unkC;
     /*0x00E*/ u16 unkE;
-    /*0x010*/ u16 unk10;
+    /*0x010*/ s16 unk10;
     /*0x012*/ u16 unk12;
     /*0x014*/ u8 *unk14; // buffer of some sort
     /*0x018*/ f32 unk18; // set to 1.0f
@@ -71,9 +82,7 @@ struct Struct80222A18
     /*0x024*/ f32 unk24; // set to 0.5f
     /*     */ u8 pad3[4];
     /*0x02C*/ struct Struct80225DD8 *unk2C[16];
-    /*0x06C*/ void *unk6C;
-    /*     */ u8 pad4[0x14];
-    /*0x084*/ u8 unk84;
+    /*0x06C*/ struct Interface1Buffer unk6C;
     /*0x088*/ u8 *unk88; // set to &D_80332A84, some sort of curve
     /*0x08C*/ u8 *unk8C; // set to &D_80332A94, some sort of curve
     /*0x090*/ struct PlaybackListItem unk90[4]; // heads
@@ -84,7 +93,7 @@ struct Struct80222A18
     /*0x118*/ OSMesg mesg2;
     /*0x11C*/ OSIoMesg ioMesg2;
     /*0x130*/ u8 *currentMemAddr;
-    /*0x134*/ void *mem;
+    /*0x134*/ struct Struct_func_8031784C *mem;
     /*0x138*/ u32 currentDevAddr;
     /*0x13C*/ s32 size;
 }; // size = 0x140
@@ -94,21 +103,7 @@ struct Substruct80225DD8
     u8 unk0; // set to 0x20
     u16 unk2;
     struct SubstructInstrumentSomething *unk4; // set to &D_80332AB4
-};
-
-struct InstrumentSomething
-{
-    u8 pad[3];
-    u8 unk3;
-    struct SubstructInstrumentSomething *unk4;
-};
-
-struct Interface1Buffer {
-    u8 *unk0;
-    u8 *unk4[4];
-    u8 unk14[4];
-    u8 unk18;
-};
+}; // size = 0x8
 
 struct Struct80225DD8
 {
@@ -127,9 +122,9 @@ struct Struct80225DD8
     /*0x05*/ u8 unk5; // set to Struct80222A18.unk6
     /*0x06*/ u8 unk6;
     /*0x08*/ s16 unk8; // set to 0x800
-    /*0x0A*/ s16 unkA;
+    /*0x0A*/ u16 unkA;
     /*0x0C*/ s16 unkC; // set to 0x800
-    /*0x0E*/ s16 unkE;
+    /*0x0E*/ u16 unkE;
     /*0x10*/ s16 unk10;
     /*0x12*/ s16 unk12;
     /*0x14*/ s16 unk14;
