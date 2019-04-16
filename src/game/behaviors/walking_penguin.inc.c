@@ -63,7 +63,7 @@ void BehWalkingPenguinLoop(void)
     }
     obj_move_standard(-78);
     if(!obj_hide_if_mario_far_away_y(1000.0f))
-        func_802BE3B4(1);
+        play_penguin_walking_sound(1);
     sp2C = o->oPosX + sins(0xDBB0) * 60.0f;
     sp28 = o->oPosZ + coss(0xDBB0) * 60.0f;
     sp2C += sp24 * sins(0x1BB0);

@@ -172,7 +172,7 @@ static void racing_penguin_act_show_final_text(void)
             func_8029ED38(0);
 
 #ifndef VERSION_JP
-            func_802BE3B4(1);
+            play_penguin_walking_sound(1);
 #endif
 
             o->oForwardVel = 4.0f;

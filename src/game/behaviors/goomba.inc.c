@@ -342,6 +342,12 @@ void bhv_goomba_update(void)
         case GOOMBA_ACT_JUMP:           goomba_act_jump();           break;
         }
 
+        //! @bug Weak attacks on huge goombas in a triplet mark them as dead even if they're not.
+        // obj_handle_attacks returns the type of the attack, which is non-zero
+        // even for Mario's weak attacks. Thus, if Mario weakly attacks a huge goomba
+        // without harming it (e.g. by punching it), the goomba will be marked as dead
+        // and will not respawn if Mario leaves and re-enters the spawner's radius
+        // even though the goomba isn't actually dead.
         if (obj_handle_attacks(
             &sGoombaHitbox, GOOMBA_ACT_ATTACKED_MARIO, sGoombaAttackHandlers[o->oGoombaSize & 1]))
         {

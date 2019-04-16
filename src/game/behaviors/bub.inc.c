@@ -128,21 +128,6 @@ void ActionCheepCheep2(void)
 
 void (*TableCheepCheepActions[])(void) = {ActionCheepCheep0,ActionCheepCheep1,ActionCheepCheep2};
 
-struct ObjectHitbox sExclamationBoxHitbox =
-{
-    /* interactType: */      INTERACT_BREAKABLE,
-    /* downOffset: */        5,
-    /* damageOrCoinValue: */ 0,
-    /* health: */            1,
-    /* numLootCoins: */      0,
-    /* radius: */            40,
-    /* height: */            30,
-    /* hurtboxRadius: */     40,
-    /* hurtboxHeight: */     30,
-};
-
-struct Struct802C0DF0 D_8032FC40[] = {{0,0,0,135,beh_wing_cap},{1,0,0,134,beh_metal_cap},{2,0,0,136,beh_vanish_cap},{3,0,0,190,beh_koopa_shell},{4,0,0,116,beh_single_coin_gets_spawned},{5,0,0,0,beh_three_coins_spawn},{6,0,0,0,beh_ten_coins_spawn},{7,0,0,212,beh_1up_walking},{8,0,0,122,beh_spawned_star},{9,0,0,212,beh_1up_running_away},{10,0,1,122,beh_spawned_star},{11,0,2,122,beh_spawned_star},{12,0,3,122,beh_spawned_star},{13,0,4,122,beh_spawned_star},{14,0,5,122,beh_spawned_star},{99,0,0,0,NULL}};
-
 void BehCheepCheepLoop(void)
 {
     o->oCheepCheepUnkF4 = find_water_level(o->oPosX,o->oPosZ);

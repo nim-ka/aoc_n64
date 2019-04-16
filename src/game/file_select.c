@@ -1680,8 +1680,7 @@ static void draw_erase_menu(void)
 static void draw_sound_mode_menu(void)
 {
     int mode;
-#ifdef VERSION_JP
-#else
+#ifndef VERSION_JP
     s16 textX;
 #endif
     unsigned char textSoundSelect[] = {TEXT_SOUND_SELECT};

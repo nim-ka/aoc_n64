@@ -161,7 +161,7 @@ s32 act_idle(struct MarioState *m) {
         
         if (func_80250770(m)) {
             if (++m->actionState == 3) {
-                f32 sp24 = m->pos[1] - func_80251CF8(m, -0x8000, 60.0f);
+                f32 sp24 = m->pos[1] - find_floor_height_relative_polar(m, -0x8000, 60.0f);
                 if (sp24 < -24.0f || 24.0f < sp24 || m->floor->flags & 1) {
                     m->actionState = 0;
                 } else {
@@ -276,7 +276,7 @@ s32 act_sleeping(struct MarioState *m) {
         return set_mario_action(m, ACT_WAKING_UP, m->actionState);
     }
 
-    if (m->pos[1] - func_80251CF8(m, -0x8000, 60.0f) > 24.0f) {
+    if (m->pos[1] - find_floor_height_relative_polar(m, -0x8000, 60.0f) > 24.0f) {
         return set_mario_action(m, ACT_WAKING_UP, m->actionState);
     }
     

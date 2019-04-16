@@ -45,7 +45,7 @@ void func_802F4DB4(void) {
 
     if (sp1E & 2) {
         func_802A3004();
-        func_802AD82C(20, 138, 0.7f, 3);
+        spawn_triangle_break_particles(20, 138, 0.7f, 3);
         ObjSpawnYellowCoins(o, 3);
         create_sound_spawner(SOUND_GENERAL_BREAKBOX);
         o->activeFlags = 0;
@@ -54,22 +54,25 @@ void func_802F4DB4(void) {
     ObjCheckFloorDeath(sp1E, D_803600E0);
 }
 
-void func_802F4EB8(void) {
-    o->oUnknownUnkFC_S32++;
-    if (o->oUnknownUnkFC_S32 > 810) {
-        if (o->oUnknownUnkFC_S32 & 1)
+void breakable_box_small_released_loop(void) {
+    o->oBreakableBoxSmallFramesSinceReleased++;
+    
+    // Begin flashing
+    if (o->oBreakableBoxSmallFramesSinceReleased > 810) {
+        if (o->oBreakableBoxSmallFramesSinceReleased & 1)
             o->header.gfx.node.flags |= 0x10;
         else
             o->header.gfx.node.flags &= ~0x10;
     }
 
-    if (o->oUnknownUnkFC_S32 > 900) {
-        RespawnBobombOrCorkbox(130, beh_breakable_box_small, 3000);
+    // Despawn, and create a corkbox respawner
+    if (o->oBreakableBoxSmallFramesSinceReleased > 900) {
+        create_respawner(130, beh_breakable_box_small, 3000);
         o->activeFlags = 0;
     }
 }
 
-void func_802F4F84(void) {
+void breakable_box_small_idle_loop(void) {
     switch(o->oAction) {
         case 0: 
             func_802F4DB4();
@@ -81,25 +84,25 @@ void func_802F4F84(void) {
 
         case 101:
             o->activeFlags = 0;
-            RespawnBobombOrCorkbox(130, beh_breakable_box_small, 3000);
+            create_respawner(130, beh_breakable_box_small, 3000);
             break;
     }
 
-    if (o->oUnknownUnkF4_S32 == 1)
-        func_802F4EB8();
+    if (o->oBreakableBoxSmallReleased == 1)
+        breakable_box_small_released_loop();
 }
 
-void func_802F5048(void) {
+void breakable_box_small_get_dropped(void) {
     obj_become_tangible();
     obj_enable_rendering();
     obj_get_dropped();
     o->header.gfx.node.flags &= ~0x10;
     o->oHeldState = 0;
-    o->oUnknownUnkF4_S32 = 1;
-    o->oUnknownUnkFC_S32 = 0;
+    o->oBreakableBoxSmallReleased = 1;
+    o->oBreakableBoxSmallFramesSinceReleased = 0;
 }
 
-void func_802F50C0(void) {
+void breakable_box_small_get_thrown(void) {
     obj_become_tangible();
     obj_enable_rendering_2();
     obj_enable_rendering();
@@ -108,15 +111,15 @@ void func_802F50C0(void) {
     o->oFlags &= ~0x08;
     o->oForwardVel = 40.0f;
     o->oVelY = 20.0f;
-    o->oUnknownUnkF4_S32 = 1;
-    o->oUnknownUnkFC_S32 = 0;
+    o->oBreakableBoxSmallReleased = 1;
+    o->oBreakableBoxSmallFramesSinceReleased = 0;
     o->activeFlags &= ~0x200;
 }
 
 void BehBreakableBoxSmallLoop(void) {
     switch (o->oHeldState) {
         case 0:
-            func_802F4F84();
+            breakable_box_small_idle_loop();
             break;
 
         case 1:
@@ -125,11 +128,11 @@ void BehBreakableBoxSmallLoop(void) {
             break;
 
         case 2:
-            func_802F50C0();
+            breakable_box_small_get_thrown();
             break;
 
         case 3:
-            func_802F5048();
+            breakable_box_small_get_dropped();
             break;
     }
 

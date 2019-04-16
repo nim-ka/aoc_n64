@@ -47,7 +47,7 @@ void BehOpenableGrillLoop(void)
             PlaySound2(SOUND_GENERAL_CAGEOPEN);
             o->oAction++;
             if(o->oBehParams2ndByte != 0)
-                func_80321228();
+                play_puzzle_jingle();
         }
         break;
     case 3:

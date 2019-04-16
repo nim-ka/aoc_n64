@@ -26,7 +26,7 @@ void BehBooCageLoop(void)
         {
             o->oAction++;
             o->oVelY = 60.0f;
-            func_80321228();
+            play_puzzle_jingle();
         }
         else
             copy_object_pos_and_angle(o,o->parentObj);

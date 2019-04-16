@@ -98,7 +98,7 @@ void func_802EFDA0(void) {
     }
 
     if (o->oTimer == 200) {
-        RespawnBobombOrCorkbox(210, beh_snowmans_bottom, 3000);
+        create_respawner(210, beh_snowmans_bottom, 3000);
         o->activeFlags = 0;
     }
 }
@@ -212,7 +212,7 @@ void BehSnowmansHeadLoop(void) {
                 o->oPosY = -994.0f;
                 o->oAction = 4;
                 PlaySound2(SOUND_OBJECT_EXPLODE);
-                func_80321228();
+                play_puzzle_jingle();
             }
             break;
 

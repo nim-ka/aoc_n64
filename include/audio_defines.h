@@ -354,7 +354,7 @@
 /* not verified */ #define SOUND_GENERAL_BOING1         SOUND_ARG_LOAD(3, 0, 0x6C, 0x40, 8)
 /* not verified */ #define SOUND_GENERAL_BOING2_LOWPRIO SOUND_ARG_LOAD(3, 0, 0x6D, 0x20, 8)
 /* not verified */ #define SOUND_GENERAL_BOING2         SOUND_ARG_LOAD(3, 0, 0x6D, 0x40, 8)
-/* not verified */ #define SOUND_GENERAL_UNKNOWN5       SOUND_ARG_LOAD(3, 0, 0x6E, 0x20, 8)
+/* not verified */ #define SOUND_GENERAL_YOSHIWALK      SOUND_ARG_LOAD(3, 0, 0x6E, 0x20, 8)
 /* not verified */ #define SOUND_GENERAL_ENEMYALERT1    SOUND_ARG_LOAD(3, 0, 0x6F, 0x30, 8)
 /* not verified */ #define SOUND_GENERAL_YOSHI          SOUND_ARG_LOAD(3, 0, 0x70, 0x30, 8)
 /* not verified */ #define SOUND_GENERAL_SPLATTERING    SOUND_ARG_LOAD(3, 0, 0x71, 0x30, 8)
@@ -370,7 +370,7 @@
 /* not verified */ #define SOUND_GENERAL_METALPOUND2    0x307B
 /* not verified */ #define SOUND_GENERAL_BOING4         0x307C
 /* not verified */ #define SOUND_GENERAL_BOING5         0x307D
-/* not verified */ #define SOUND_GENERAL_YOSHIWALK      0x307E
+/* not verified */ #define SOUND_GENERAL_UNKNOWN5       0x307E // Unused, sounds identical to YOSHIWALK
 /* not verified */ #define SOUND_GENERAL_ENEMYALERT2    0x307F
 
 /* Environment Sound Effects */

@@ -59,7 +59,7 @@ void BehPyramidTopLoop(void) {
     switch(o->oAction) {
         case 0:
             if (o->oPyramidTopUnkF4 == 4) {
-                func_80321228();
+                play_puzzle_jingle();
                 o->oAction = 1;
             }
             break;

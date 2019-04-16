@@ -41,7 +41,7 @@ struct MacroPreset MacroObjectPresets[] = {
     {beh_bouncing_fireball, MODEL_NONE, 0}, // unused
     {beh_large_fish_group, MODEL_NONE, 0}, // unused
     {beh_large_fish_group, MODEL_NONE, 1},
-    {beh_multiple_coins, MODEL_NONE, 0}, // unused
+    {beh_beta_fish_splash_spawner, MODEL_NONE, 0},
     {beh_hidden_1up_in_pole_spawner, MODEL_NONE, 0},
     {bGoomba, MODEL_GOOMBA, 1},
     {bGoomba, MODEL_GOOMBA, 2},

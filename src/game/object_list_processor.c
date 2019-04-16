@@ -492,7 +492,7 @@ void spawn_objects_from_info(UNUSED s32 unused, struct SpawnInfo *spawnInfo)
     gTimeStopState = 0;
 
     gWDWWaterLevelChanging = FALSE;
-    gBBHMerryGoRoundActive = FALSE;
+    gMarioOnMerryGoRound = 0;
 
     //! (Spawning Displacement) On the Japanese version, mario's platform object
     //  isn't cleared when transitioning between areas. This can cause mario to
@@ -573,7 +573,7 @@ void clear_objects(void)
 {
     s32 i;
 
-    gTHIWaterLowered = 0;
+    gTHIWaterDrained = 0;
     gTimeStopState = 0;
     gMarioObject = NULL;
     gMarioCurrentRoom = 0;

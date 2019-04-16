@@ -1361,15 +1361,12 @@ static f32 func_8031EB24(u8 listIndex, u8 item, f32 arg2)
         {
 #ifdef VERSION_JP
             if (f12 != 0.0)
-            {
-                f12 -= (f32) (D_80226EB8 & 0xf) / 192.0;
-            }
 #else
             if (f12 >= 0.08f)
-            {
-                f12 -= (f32) (D_80226EB8 & 0xf) / 192.0f;
-            }
 #endif
+            {
+                f12 -= (f32) (D_80226EB8 & 0xf) / US_FLOAT(192.0);
+            }
         }
     }
     else
@@ -2601,7 +2598,7 @@ void func_80320A68(u8 dialogId)
     // "You've stepped on the (Wing|Metal|Vanish) Cap Switch"
     if (dialogId == 10 || dialogId == 11 || dialogId == 12)
     {
-        func_80321228();
+        play_puzzle_jingle();
     }
 #endif
 }
@@ -2836,7 +2833,12 @@ void func_803211EC(void)
     func_803200E4(50);
 }
 
-void func_80321228(void)
+/**
+    Plays the puzzle jingle. Plays the dadada dadada *dadada* jingle
+    that usually plays when you solve a "puzzle", like chests, talking to
+    yoshi, releasing chain chomp, opening the pyramid top, etc.
+*/
+void play_puzzle_jingle(void)
 {
     SetMusic(1, 0x1b, 0);
     D_8033211C = 0x94;

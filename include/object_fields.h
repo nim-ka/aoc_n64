@@ -231,10 +231,10 @@
 #define /*0x104*/ oBobombExpBubGfxExpRateX OBJECT_FIELD_S32(0x1F)
 #define /*0x108*/ oBobombExpBubGfxExpRateY OBJECT_FIELD_S32(0x20)
 
-/* Bob-omb and Cork Box Respawner */
-#define /*0x0F4*/ oBreakableBoxBackupUnkF4 OBJECT_FIELD_S32(0x1B)
-#define /*0x0F8*/ oBBCBRespawnerMinSpawnDist OBJECT_FIELD_F32(0x1C)
-#define /*0x0FC*/ oBBCBRespawnerBehaviorToSpawn OBJECT_FIELD_VPTR(0x1D)
+/* Object Respawner */
+#define /*0x0F4*/ oRespawnerModelToRespawn OBJECT_FIELD_S32(0x1B)
+#define /*0x0F8*/ oRespawnerMinSpawnDist OBJECT_FIELD_F32(0x1C)
+#define /*0x0FC*/ oRespawnerBehaviorToRespawn OBJECT_FIELD_VPTR(0x1D)
 
 /* Bully (all variants) */
 #define /*0x0F4*/ oBullySubtype OBJECT_FIELD_S32(0x1B)
@@ -489,7 +489,7 @@
 
 /* WaterLevelTrigger */
 #define /*0x0F4*/ oWaterLevelTriggerUnkF4 OBJECT_FIELD_S32(0x1B)
-#define /*0x0F8*/ oWaterLevelTriggerUnkF8 OBJECT_FIELD_S32(0x1C)
+#define /*0x0F8*/ oWaterLevelTriggerTargetWaterLevel OBJECT_FIELD_S32(0x1C)
 
 /* Tweester */
 #define /*0x0F4*/ oTweesterUnkF4 OBJECT_FIELD_S32(0x1B)
@@ -995,6 +995,10 @@
 #define /*0x0FC*/ oControllablePlatformUnkFC OBJECT_FIELD_F32(0x1D)
 #define /*0x100*/ oControllablePlatformUnk100 OBJECT_FIELD_S32(0x1E)
 
+/* BreakableBoxSmall */
+#define /*0x0F4*/ oBreakableBoxSmallReleased OBJECT_FIELD_S32(0x1B)
+#define /*0x0FC*/ oBreakableBoxSmallFramesSinceReleased OBJECT_FIELD_S32(0x1D)
+
 /* FloatingPlatform */
 #define /*0x0F4*/ oFloatingPlatformUnkFC OBJECT_FIELD_S32(0x1B)
 
@@ -1017,8 +1021,8 @@
 
 /* Yoshi */
 #define /*0x0F4*/ oYoshiUnkF4 OBJECT_FIELD_S32(0x1B)
-#define /*0x0FC*/ oYoshiUnkFC OBJECT_FIELD_S32(0x1D)
-#define /*0x100*/ oYoshiUnk100 OBJECT_FIELD_S32(0x1E)
+#define /*0x0FC*/ oYoshiChosenHome OBJECT_FIELD_S32(0x1D)
+#define /*0x100*/ oYoshiTargetYaw OBJECT_FIELD_S32(0x1E)
 
 /* End birds */
 #define /*0x104*/ oEndBirdUnk104 OBJECT_FIELD_F32(0x1F)

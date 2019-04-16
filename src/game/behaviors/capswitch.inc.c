@@ -40,7 +40,7 @@ void ActionActivateCapSwitch2(void)
         {
             ShakeScreen(1);
             func_802A3004();
-            func_802AD82C(60,139,0.3f,o->oBehParams2ndByte);
+            spawn_triangle_break_particles(60, 139, 0.3f, o->oBehParams2ndByte);
         }
     }
     else

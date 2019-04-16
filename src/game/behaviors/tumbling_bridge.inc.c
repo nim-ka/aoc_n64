@@ -1,5 +1,17 @@
 // tumbling_bridge.c.inc
 
+extern u8 wf_seg7_collision_tumbling_bridge[];
+extern u8 bbh_seg7_collision_07026B1C[];
+extern u8 lll_seg7_collision_0701D21C[];
+extern u8 bitfs_seg7_collision_07015288[];
+
+struct Struct8032F34C TableTumblingBridgeParams[] = {
+    {9, -512, 0x80, 0xB0, wf_seg7_collision_tumbling_bridge},
+    {9, -412, 103, 56, bbh_seg7_collision_07026B1C},
+    {9, -512, 0x80, 60, lll_seg7_collision_0701D21C},
+    {9, -512, 0x80, 0x40, bitfs_seg7_collision_07015288}
+};
+
 void BehTumblingBridgePlatformLoop(void)
 {
     switch(o->oAction)
@@ -39,30 +51,48 @@ void BehTumblingBridgePlatformLoop(void)
 
 void ActionTumblingBridge1(void)
 {
-    struct Object* sp44;
-    s32 sp40;
-    s32 sp3C = o->oBehParams2ndByte;
-    s32 sp38;
-    s32 sp34;
-    s32 sp30 = 0;
-    s32 sp2C = 0;
-    for(sp40=0;sp40 < D_8032F34C[sp3C].unk0 ;sp40++)
+    struct Object *platformObj;
+    s32 i;
+    s32 bridgeID = o->oBehParams2ndByte;
+    s32 relativePlatformX;
+    s32 relativePlatformZ;
+    s32 relativePlatformY = 0;
+    s32 relativeInitialPlatformY = 0;
+    
+    for (i = 0; i < TableTumblingBridgeParams[bridgeID].numBridgeSections; i++)
     {
-        sp38 = 0;
-        sp34 = 0;
-        if(sp3C == 3)
-            sp38 = D_8032F34C[sp3C].unk1 + D_8032F34C[sp3C].unk2 * sp40;
+        relativePlatformX = 0;
+        relativePlatformZ = 0;
+        
+        if (bridgeID == 3)
+            relativePlatformX =
+                TableTumblingBridgeParams[bridgeID].bridgeRelativeStartingXorZ +
+                TableTumblingBridgeParams[bridgeID].platformWidth * i;
         else
-            sp34 = D_8032F34C[sp3C].unk1 + D_8032F34C[sp3C].unk2 * sp40;
-        if(obj_has_behavior(beh_tumbling_platform))
+            relativePlatformZ =
+                TableTumblingBridgeParams[bridgeID].bridgeRelativeStartingXorZ +
+                TableTumblingBridgeParams[bridgeID].platformWidth * i;
+        
+        if (obj_has_behavior(beh_tumbling_platform))
         {
-            if(sp40 % 3 == 0)
-                sp30 -= 150;
-            sp2C = 450;
+            if (i % 3 == 0)
+                relativePlatformY -= 150;
+            relativeInitialPlatformY = 450;
         }
-        sp44 = spawn_object_relative(0,sp38,sp30+sp2C,sp34,o,D_8032F34C[sp3C].unk3,beh_tumbling_bridge_platform);
-        set_object_collision_data(sp44,D_8032F34C[sp3C].unk4);
+        
+        platformObj = spawn_object_relative(
+            0,
+            relativePlatformX,
+            relativePlatformY + relativeInitialPlatformY,
+            relativePlatformZ,
+            o,
+            TableTumblingBridgeParams[bridgeID].model,
+            beh_tumbling_bridge_platform
+        );
+        
+        set_object_collision_data(platformObj, TableTumblingBridgeParams[bridgeID].segAddr);
     }
+    
     o->oAction = 2;
 }
 

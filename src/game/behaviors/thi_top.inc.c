@@ -6,7 +6,7 @@ UNUSED u8 unused8032F134[] = {10,11,12};
 
 void BehTHIHugeIslandTopLoop(void)
 {
-    if(gTHIWaterLowered & 1)
+    if(gTHIWaterDrained & 1)
     {
         if(o->oTimer == 0)
             gWaterRegions[18] = 3000;
@@ -18,7 +18,7 @@ void BehTHIHugeIslandTopLoop(void)
 
 void BehTHITinyIslandTopLoop(void)
 {
-    if(!(gTHIWaterLowered & 1)) // last bit not set
+    if(!(gTHIWaterDrained & 1)) // last bit not set
     {
         if(o->oAction == 0)
         {
@@ -27,7 +27,7 @@ void BehTHITinyIslandTopLoop(void)
                 {
                     o->oAction++;
                     obj_spawn_particles(&D_8032F134);
-                    func_802AD82C(20,138,0.3f,3);
+                    spawn_triangle_break_particles(20,138,0.3f,3);
                     PlaySound2(SOUND_GENERAL_EXPLOSION);
                     obj_hide();
                 }
@@ -41,8 +41,8 @@ void BehTHITinyIslandTopLoop(void)
             }
             else
             {
-                gTHIWaterLowered |= 1; // set last bit
-                func_80321228();
+                gTHIWaterDrained |= 1; // set last bit
+                play_puzzle_jingle();
                 o->oAction += 1;
             }
         }

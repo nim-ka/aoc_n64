@@ -48,11 +48,11 @@ struct Struct8032F24A {
 };
 
 struct Struct8032F34C {
-    s16 unk0;
-    s16 unk1;
-    s16 unk2;
-    s16 unk3;
-    void* unk4;
+    s16 numBridgeSections;
+    s16 bridgeRelativeStartingXorZ;
+    s16 platformWidth;
+    s16 model;
+    void* segAddr;
 };
 
 struct Struct8032FB4C {
@@ -75,8 +75,8 @@ struct Struct802C0DF0 {
     u8 unk0;
     u8 unk1;
     u8 unk2;
-    u8 unk3;
-    void* unk4;
+    u8 model;
+    void* behavior;
 };
 
 struct Struct8032FE4C {
@@ -179,7 +179,7 @@ void func_802AA618(s32 sp18,s32 sp1C,f32 sp20)
 #include "behaviors/bouncing_fireball.inc.c"
 #include "behaviors/shock_wave.inc.c"
 #include "behaviors/flame_mario.inc.c"
-#include "behaviors/unused_1298.inc.c"
+#include "behaviors/beta_fish_splash_spawner.inc.c"
 #include "behaviors/spindrift.inc.c"
 #include "behaviors/tower_platform.inc.c"
 #include "behaviors/tree_particles.inc.c"
@@ -276,7 +276,7 @@ void func_802B2328(s32 n,s32 a1,s32 a2,s32 r) // n is the number of objects to s
 #include "behaviors/bbh_tumbling_bookshelf.inc.c"
 #include "behaviors/bbh_merry_go_round.inc.c"
 #include "behaviors/static_checkered_platform.inc.c"
-#include "behaviors/bait_coin.inc.c"
+#include "behaviors/beta_following_circling_obj.inc.c"
 #ifdef VERSION_US
 #include "behaviors/music_touch.inc.c"
 #endif

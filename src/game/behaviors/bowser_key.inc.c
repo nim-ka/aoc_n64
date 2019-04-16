@@ -29,9 +29,9 @@ void BehBowserKey2Loop(void)
         spawn_object(o,0,beh_powerup_sparkles2);
         obj_update_floor_and_walls();
         obj_move_standard(78);
-        if(o->oMoveFlags & 2)
+        if(o->oMoveFlags & OBJ_MOVE_ON_GROUND)
             o->oAction++;
-        else if(o->oMoveFlags & 1)
+        else if(o->oMoveFlags & OBJ_MOVE_LANDED)
 #ifndef VERSION_JP
             PlaySound2(SOUND_GENERAL_UNKNOWN3_2);
 #else

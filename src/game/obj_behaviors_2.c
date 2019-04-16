@@ -2191,7 +2191,7 @@ void func_8030B5A4(void)
                 }
                 else if (o->oTimer == 30)
                 {
-                    func_80321228();
+                    play_puzzle_jingle();
                 }
             }
             else

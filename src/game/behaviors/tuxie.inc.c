@@ -13,7 +13,7 @@ s32 func_802BE2E8(s16 a0,s16 a1,s32 a2)
     return 0;
 }
 
-void func_802BE3B4(s32 a0)
+void play_penguin_walking_sound(s32 a0)
 {
     s32 sp1C;
     if(o->oSoundStateID == 0)
@@ -164,7 +164,7 @@ void BehTuxiesMotherLoop(void)
     obj_update_floor_and_walls();
     obj_call_action_function(TableTuxiesMotherActions);
     obj_move_standard(-78);
-    func_802BE3B4(1);
+    play_penguin_walking_sound(1);
     o->oInteractStatus = 0;
 }
 
@@ -288,7 +288,7 @@ void func_802BF048(void)
     obj_update_floor_and_walls();
     obj_call_action_function(TableSmallPenguinActions);
     obj_move_standard(-78);
-    func_802BE3B4(0);
+    play_penguin_walking_sound(0);
 }
 
 void BehSmallPenguinLoop(void)

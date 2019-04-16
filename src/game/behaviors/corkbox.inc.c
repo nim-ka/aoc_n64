@@ -41,27 +41,23 @@ void BehBobombExplosionBubbleLoop(void)
     o->oTimer++;
 }
 
-void BehBobombCorkBoxRespawnerLoop(void)
+void BehRespawnerLoop(void)
 {
-    struct Object *sp1c;
+    struct Object *spawnedObject;
     
-    if (!IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, o->oBBCBRespawnerMinSpawnDist))
+    if (!IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, o->oRespawnerMinSpawnDist))
     {
-        sp1c = spawn_object(o, o->oBreakableBoxBackupUnkF4, o->oBBCBRespawnerBehaviorToSpawn);
-        sp1c->oBehParams = o->oBehParams;
+        spawnedObject = spawn_object(o, o->oRespawnerModelToRespawn, o->oRespawnerBehaviorToRespawn);
+        spawnedObject->oBehParams = o->oBehParams;
         o->activeFlags = 0;
     }
 }
 
-//sp38 = arg0
-//sp3c = behToSpawn
-//sp40 = minSpawnDist
-
-void RespawnBobombOrCorkbox(s32 arg0, void *behToSpawn, s32 minSpawnDist)
+void create_respawner(s32 model, void *behToSpawn, s32 minSpawnDist)
 {
-    struct Object *respawner = spawn_object_abs_with_rot(o, 0, 0, beh_bobomb_cork_box_respawner, o->oHomeX, o->oHomeY, o->oHomeZ, 0, 0, 0);
+    struct Object *respawner = spawn_object_abs_with_rot(o, 0, 0, beh_respawner, o->oHomeX, o->oHomeY, o->oHomeZ, 0, 0, 0);
     respawner->oBehParams = o->oBehParams;
-    respawner->oBreakableBoxBackupUnkF4 = arg0;
-    respawner->oBBCBRespawnerMinSpawnDist = minSpawnDist;
-    respawner->oBBCBRespawnerBehaviorToSpawn = behToSpawn;
+    respawner->oRespawnerModelToRespawn = model;
+    respawner->oRespawnerMinSpawnDist = minSpawnDist;
+    respawner->oRespawnerBehaviorToRespawn = behToSpawn;
 }

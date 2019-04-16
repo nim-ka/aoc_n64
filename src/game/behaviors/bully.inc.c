@@ -363,7 +363,7 @@ void BehBigBullyWithMinionsLoop(void)
             //  be reduced by 3 frames (16.67%) on the first hit.
             if (o->oBullyKBTimerAndMinionKOCounter == 3)
             {
-                func_80321228();
+                play_puzzle_jingle();
                 
                 if (o->oTimer >= 91)
                     o->oAction = BULLY_ACT_ACTIVATE_AND_FALL;

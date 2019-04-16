@@ -41,7 +41,7 @@ void BobombExplodeLoop(void)
         explosion->oGraphYOffset += 100.0f;
         
         func_802E5B7C();
-        RespawnBobombOrCorkbox(0xBC, beh_bobomb, 3000);
+        create_respawner(0xBC, beh_bobomb, 3000);
         o->activeFlags = 0;
     }
 }
@@ -131,12 +131,12 @@ void GenericBobombFreeLoop(void)
             break;
             
         case BOBOMB_ACT_LAVA_DEATH:
-            if (ObjLavaDeath() == 1) RespawnBobombOrCorkbox(188, beh_bobomb, 3000);
+            if (ObjLavaDeath() == 1) create_respawner(188, beh_bobomb, 3000);
             break;
             
         case BOBOMB_ACT_DEATH_PLANE_DEATH:
             o->activeFlags = 0;
-            RespawnBobombOrCorkbox(188, beh_bobomb, 3000);
+            create_respawner(188, beh_bobomb, 3000);
             break;
     }
     
@@ -158,12 +158,12 @@ void StationaryBobombFreeLoop(void)
             break;
             
         case BOBOMB_ACT_LAVA_DEATH:
-            if (ObjLavaDeath() == 1) RespawnBobombOrCorkbox(188, beh_bobomb, 3000);
+            if (ObjLavaDeath() == 1) create_respawner(188, beh_bobomb, 3000);
             break;
             
         case BOBOMB_ACT_DEATH_PLANE_DEATH:
             o->activeFlags = 0;
-            RespawnBobombOrCorkbox(188, beh_bobomb, 3000);
+            create_respawner(188, beh_bobomb, 3000);
             break;
     }
     

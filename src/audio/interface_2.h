@@ -34,7 +34,7 @@ void func_80321080(u16 arg0);
 void func_803210D4(u16 arg0);
 void func_803211B0(void);
 void func_803211EC(void);
-void func_80321228(void);
+void play_puzzle_jingle(void);
 void func_80321264(void);
 void func_803212A0(u8 arg0);
 void func_803212F0(void);

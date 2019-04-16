@@ -1003,7 +1003,7 @@ s32 func_802B6120(void)
     else if(func_802B5F20())
     {
         func_802B60B8();
-        func_802AD82C(20,116,1.0f,0);
+        spawn_triangle_break_particles(20,116,1.0f,0);
         func_802B5C78();
         set_mario_npc_dialogue(0);
         ret = 1;

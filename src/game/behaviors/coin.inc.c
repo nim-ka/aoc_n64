@@ -72,7 +72,7 @@ void BehCoinLoop(void)
     obj_move_standard(-62);
     if((sp1C = o->oFloor) != NULL)
     {
-        if(o->oMoveFlags & 2)
+        if(o->oMoveFlags & OBJ_MOVE_ON_GROUND)
             o->oSubAction = 1;
         if(o->oSubAction == 1)
         {
@@ -92,23 +92,23 @@ void BehCoinLoop(void)
 #endif
     if(o->oVelY < 0)
         obj_become_tangible();
-    if(o->oMoveFlags & 1)
+    if(o->oMoveFlags & OBJ_MOVE_LANDED)
     {
 #ifndef VERSION_JP
-        if(o->oMoveFlags & 0x4800)
+        if(o->oMoveFlags & (OBJ_MOVE_ABOVE_DEATH_BARRIER | OBJ_MOVE_ABOVE_LAVA))
 #else
-        if(o->oMoveFlags & 0x800)	
+        if(o->oMoveFlags & OBJ_MOVE_ABOVE_LAVA)	
 #endif
             mark_object_for_deletion(o);
     }
 #ifndef VERSION_JP
-    if(o->oMoveFlags & 0x2000) {
-	if(o->oUnk1B0 < 5)
-            PlaySound2(SOUND_GENERAL_COINDROP);
+    if(o->oMoveFlags & OBJ_MOVE_13) {
+		    if(o->oUnk1B0 < 5)
+            PlaySound2(0x30364081);
         o->oUnk1B0++;
     }
 #else
-    if(o->oMoveFlags & 0x2000)
+    if(o->oMoveFlags & OBJ_MOVE_13)
         PlaySound2(SOUND_GENERAL_COINDROP);
 #endif
     if(obj_wait_then_blink(400,20))
@@ -230,9 +230,9 @@ void ActionCoinInsideBoo1(void)
 {
     obj_update_floor_and_walls();
     obj_if_hit_wall_bounce_away();
-    if(o->oMoveFlags & 0x2000)
+    if(o->oMoveFlags & OBJ_MOVE_13)
         PlaySound2(SOUND_GENERAL_COINDROP);
-    if(o->oTimer > 90 || (o->oMoveFlags & 1))
+    if(o->oTimer > 90 || (o->oMoveFlags & OBJ_MOVE_LANDED))
     {
         set_object_hitbox(o,&sYellowCoinHitbox);
         obj_become_tangible();

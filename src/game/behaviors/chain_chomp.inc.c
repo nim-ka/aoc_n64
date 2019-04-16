@@ -590,7 +590,7 @@ void bhv_wooden_post_update(void)
         o->oWoodenPostOffsetY = -190.0f;
         if (o->parentObj != o)
         {
-            func_80321228();
+            play_puzzle_jingle();
             o->parentObj->oChainChompReleaseStatus = CHAIN_CHOMP_RELEASED_TRIGGER_CUTSCENE;
             o->parentObj = o;
         }
@@ -641,7 +641,7 @@ void bhv_chain_chomp_gate_update(void)
         func_802A3034(SOUND_GENERAL_EXPLOSION3);
         func_8027F440(1, o->oPosX, o->oPosY, o->oPosZ);
         func_802AA618(0, 0x7F, 200.0f);
-        func_802AD82C(30, 0x8A, 3.0f, 4);
+        spawn_triangle_break_particles(30, 0x8A, 3.0f, 4);
         mark_object_for_deletion(o);
     }
 }

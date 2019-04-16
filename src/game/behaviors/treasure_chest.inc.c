@@ -124,7 +124,7 @@ void BehTreasureChestShipLoop(void) {
     switch (o->oAction) {
         case 0: 
             if (o->oUnknownUnkF4_S32 == 5) {
-                func_80321228();
+                play_puzzle_jingle();
                 func_8031F810(0, 127, 1000);
                 o->oAction = 1;
             }
@@ -157,7 +157,7 @@ void BehTreasureChestJrbLoop(void) {
     switch (o->oAction) {
         case 0:
             if (o->oTreasureChestJrbUnkF4 == 5) {
-                func_80321228();
+                play_puzzle_jingle();
                 o->oAction = 1;
             }
             break;
@@ -189,7 +189,7 @@ void BehTreasureChestLoop(void) {
     switch (o->oAction) {
         case 0:
             if (o->oTreasureChestJrbUnkF4 == 5) {
-                func_80321228();
+                play_puzzle_jingle();
                 o->oAction = 1;
             }
             break;

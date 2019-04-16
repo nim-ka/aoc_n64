@@ -317,7 +317,7 @@ void ActionUkikiOpenCage4(void)
             o->oForwardVel = 0.0f;
         if(o->oMoveFlags & 1)
         {
-            func_80321228();
+            play_puzzle_jingle();
             func_8029ED38(5);
             o->oSubAction++;
             o->oUnk1B0_S16 = 32;

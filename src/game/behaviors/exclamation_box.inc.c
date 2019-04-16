@@ -1,5 +1,37 @@
 // exclamation_box.c.inc
 
+struct ObjectHitbox sExclamationBoxHitbox =
+{
+    /* interactType: */      INTERACT_BREAKABLE,
+    /* downOffset: */        5,
+    /* damageOrCoinValue: */ 0,
+    /* health: */            1,
+    /* numLootCoins: */      0,
+    /* radius: */            40,
+    /* height: */            30,
+    /* hurtboxRadius: */     40,
+    /* hurtboxHeight: */     30,
+};
+
+struct Struct802C0DF0 TableExclamationBoxContents[] = {
+    {0, 0, 0, 135, beh_wing_cap},
+    {1, 0, 0, 134, beh_metal_cap},
+    {2, 0, 0, 136, beh_vanish_cap},
+    {3, 0, 0, 190, beh_koopa_shell},
+    {4, 0, 0, 116, beh_single_coin_gets_spawned},
+    {5, 0, 0, 0, beh_three_coins_spawn},
+    {6, 0, 0, 0, beh_ten_coins_spawn},
+    {7, 0, 0, 212, beh_1up_walking},
+    {8, 0, 0, 122, beh_spawned_star},
+    {9, 0, 0, 212, beh_1up_running_away},
+    {10, 0, 1, 122, beh_spawned_star},
+    {11, 0, 2, 122, beh_spawned_star},
+    {12, 0, 3, 122, beh_spawned_star},
+    {13, 0, 4, 122, beh_spawned_star},
+    {14, 0, 5, 122, beh_spawned_star},
+    {99, 0, 0, 0, NULL}
+};
+
 void BehRotatinExclamationBoxLoop(void)
 {
     if(o->parentObj->oAction != 1)
@@ -70,7 +102,7 @@ void ActionExclamationBox3(void)
         o->oVelY = 0.0f;
         o->oGravity = 0.0f;
     }
-    o->oExclamationBoxUnkF8 =    (sins(o->oExclamationBoxUnkFC) + 1.0) * 0.3 + 0.0;
+    o->oExclamationBoxUnkF8 = (sins(o->oExclamationBoxUnkFC) + 1.0) * 0.3 + 0.0;
     o->oExclamationBoxUnkF4 = (-sins(o->oExclamationBoxUnkFC) + 1.0) * 0.5 + 1.0;
     o->oGraphYOffset = (-sins(o->oExclamationBoxUnkFC) + 1.0) * 26.0;
     o->oExclamationBoxUnkFC += 0x1000;
@@ -81,19 +113,20 @@ void ActionExclamationBox3(void)
         o->oAction = 4;
 }
 
-void func_802C0DF0(struct Struct802C0DF0* a0,u8 a1)
+void func_802C0DF0(struct Struct802C0DF0 *a0, u8 a1)
 {
-    struct Object* sp1C = NULL;
-    while(a0->unk0!=99)
+    struct Object *sp1C = NULL;
+    
+    while(a0->unk0 != 99)
     {
         if(a1 == a0->unk0)
         {
-            sp1C = spawn_object(o,a0->unk3,a0->unk4);
+            sp1C = spawn_object(o, a0->model, a0->behavior);
             sp1C->oVelY = 20.0f;
             sp1C->oForwardVel = 3.0f;
             sp1C->oMoveAngleYaw = gMarioObject->oMoveAngleYaw;
             o->oBehParams |= a0->unk2 << 24;
-            if(a0->unk3 == 122)
+            if(a0->model == 122)
                 o->oFlags |= 0x4000;
             break;
         }
@@ -103,11 +136,11 @@ void func_802C0DF0(struct Struct802C0DF0* a0,u8 a1)
 
 void ActionExclamationBox4(void)
 {
-    func_802C0DF0(D_8032FC40,o->oBehParams2ndByte);
-    func_802AA618(0,0,46.0f);
-    func_802AD82C(20,139,0.3f,o->oAnimState);
+    func_802C0DF0(TableExclamationBoxContents, o->oBehParams2ndByte);
+    func_802AA618(0, 0, 46.0f);
+    spawn_triangle_break_particles(20, 139, 0.3f, o->oAnimState);
     create_sound_spawner(SOUND_GENERAL_BREAKBOX);
-    if(o->oBehParams2ndByte < 3)
+    if (o->oBehParams2ndByte < 3)
     {
         o->oAction = 5;
         obj_hide();

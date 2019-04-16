@@ -179,7 +179,7 @@ void func_802C6954(void)
                 func_802B8F7C(pos,&o->oPosX);
                 func_802B8F7C(&o->oPosX,&gMarioObject->oPosX);
                 func_802AA618(0,0,100.0f);
-                func_802AD82C(20,138,3.0f,4);
+                spawn_triangle_break_particles(20,138,3.0f,4);
                 ShakeScreen(1);
                 func_802B8F7C(&o->oPosX,pos);
             }
@@ -269,7 +269,7 @@ void ActionWhomp8(void)
             obj_hide();
             obj_become_intangible();
             func_802AA618(0,0,200.0f);
-            func_802AD82C(20,138,3.0f,4);
+            spawn_triangle_break_particles(20,138,3.0f,4);
             ShakeScreen(1);
             o->oPosY += 100.0f;
             CreateStar(180.0f,3880.0f,340.0f);
@@ -280,7 +280,7 @@ void ActionWhomp8(void)
     else
     {
         func_802AA618(0,0,100.0f);
-        func_802AD82C(20,138,3.0f,4);
+        spawn_triangle_break_particles(20,138,3.0f,4);
         ShakeScreen(1);
         create_sound_spawner(SOUND_OBJECT_THWOMP);
         mark_object_for_deletion(o);

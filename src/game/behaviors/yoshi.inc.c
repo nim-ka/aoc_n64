@@ -1,7 +1,9 @@
 // yoshi.c.inc
 
-//Variety of X,Z coordinates that Yoshi's home swaps between
-static s16 D_8033171C[] = {
+// X/Z coordinates of Yoshi's homes that he switches between.
+// Note that this doesn't contain the Y coordinate since the castle roof is flat,
+// so o->oHomeY is never updated.
+static s16 sYoshiHomeLocations[] = {
      0,     -5625, 
     -1364,  -5912, 
     -1403,  -4609, 
@@ -20,61 +22,63 @@ void BehYoshiInit(void) {
     }
 }
 
-void func_802F7E58(void) {
+void yoshi_walk_loop(void) {
     UNUSED s16 sp26;
     s16 sp24 = o->header.gfx.unk38.animFrame;
 
     o->oForwardVel = 10.0f;
     sp26 = ObjectStep();
-    o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, o->oYoshiUnk100, 0x500);
+    o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, o->oYoshiTargetYaw, 0x500);
     if (IsPointCloseToObject(o, o->oHomeX, 3174.0f, o->oHomeZ, 200))
-        o->oAction = 0;
+        o->oAction = YOSHI_ACT_IDLE;
 
     SetObjAnimation(1);
     if (sp24 == 0 || sp24 == 15) 
-        PlaySound2(SOUND_GENERAL_UNKNOWN5);
+        PlaySound2(SOUND_GENERAL_YOSHIWALK);
 
     if (o->oInteractStatus == 0x8000)
-        o->oAction = 2;
+        o->oAction = YOSHI_ACT_TALK;
 
     if (o->oPosY < 2100.0f) {
-        RespawnBobombOrCorkbox(85, beh_yoshi, 3000);
+        create_respawner(85, beh_yoshi, 3000);
         o->activeFlags = 0;
     }
 }
 
-void func_802F7FA4(void) {
-    s16 sp1E;
+void yoshi_idle_loop(void) {
+    s16 chosenHome;
     UNUSED s16 sp1C = o->header.gfx.unk38.animFrame;
 
     if (o->oTimer > 90) {
-        sp1E = RandomFloat() * 3.99;
-        if (o->oYoshiUnkFC == sp1E) {
+        chosenHome = RandomFloat() * 3.99;
+        
+        if (o->oYoshiChosenHome == chosenHome) {
             return;
         }
         else {
-            o->oYoshiUnkFC = sp1E;
+            o->oYoshiChosenHome = chosenHome;
         }
 
-        o->oHomeX = D_8033171C[o->oYoshiUnkFC * 2];
-        o->oHomeZ = D_8033171C[o->oYoshiUnkFC * 2 + 1];
-        o->oYoshiUnk100 = atan2s(o->oHomeZ - o->oPosZ, o->oHomeX - o->oPosX);
-        o->oAction = 1; 
+        o->oHomeX = sYoshiHomeLocations[o->oYoshiChosenHome * 2];
+        o->oHomeZ = sYoshiHomeLocations[o->oYoshiChosenHome * 2 + 1];
+        o->oYoshiTargetYaw = atan2s(o->oHomeZ - o->oPosZ, o->oHomeX - o->oPosX);
+        o->oAction = YOSHI_ACT_WALK; 
     }
 
     SetObjAnimation(0);
     if (o->oInteractStatus == 0x8000) 
-        o->oAction = 2;
+        o->oAction = YOSHI_ACT_TALK;
 
+    // Credits; Yoshi appears at this position overlooking the castle near the end of the credits
     if (D_8033B1B0->unk1C[1] == 11 || D_8033B1B0->unk1C[1] == 12) {
-        o->oAction = 10;
+        o->oAction = YOSHI_ACT_CREDITS;
         o->oPosX = -1798.0f;
         o->oPosY = 3174.0f;
         o->oPosZ = -3644.0f;
     }
 }
 
-void func_802F818C(void) {
+void yoshi_talk_loop(void) {
     if ((s16) o->oMoveAngleYaw == (s16)o->oAngleToMario) {
         SetObjAnimation(0);
         if (set_mario_npc_dialogue(1) == 2) {
@@ -82,21 +86,21 @@ void func_802F818C(void) {
             if (func_8028F8E0(162, o, 161)) {
                 o->activeFlags &= ~0x20;
                 o->oInteractStatus = 0;
-                o->oHomeX = D_8033171C[2];
-                o->oHomeZ = D_8033171C[3];
-                o->oYoshiUnk100 = atan2s(o->oHomeZ - o->oPosZ, o->oHomeX - o->oPosX);
-                o->oAction = 5;
+                o->oHomeX = sYoshiHomeLocations[2];
+                o->oHomeZ = sYoshiHomeLocations[3];
+                o->oYoshiTargetYaw = atan2s(o->oHomeZ - o->oPosZ, o->oHomeX - o->oPosX);
+                o->oAction = YOSHI_ACT_GIVE_PRESENT;
             }
         }
     }
     else {
         SetObjAnimation(1);
-        func_80321228();
+        play_puzzle_jingle();
         o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, o->oAngleToMario, 0x500);
     }
 }
 
-void func_802F82F8(void) {
+void yoshi_walk_and_jump_off_roof_loop(void) {
     s16 sp26 = o->header.gfx.unk38.animFrame;
 
     o->oForwardVel = 10.0f;
@@ -105,22 +109,22 @@ void func_802F82F8(void) {
     if (o->oTimer == 0)
         func_8028F9E8(173, o);
 
-    o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, o->oYoshiUnk100, 0x500);
+    o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, o->oYoshiTargetYaw, 0x500);
     if (IsPointCloseToObject(o, o->oHomeX, 3174.0f, o->oHomeZ, 200)) {
         SetObjAnimation(2);
         PlaySound2(SOUND_GENERAL_ENEMYALERT1);
         o->oForwardVel = 50.0f;
         o->oVelY = 40.0f;
         o->oMoveAngleYaw = -0x3FFF;
-        o->oAction = 4;
+        o->oAction = YOSHI_ACT_FINISH_JUMPING_AND_DESPAWN;
     }
 
     if (sp26 == 0 || sp26 == 15) {
-        PlaySound2(SOUND_GENERAL_UNKNOWN5);
+        PlaySound2(SOUND_GENERAL_YOSHIWALK);
     }
 }
 
-void func_802F8450(void) {
+void yoshi_finish_jumping_and_despawn_loop(void) {
     func_8029F728();
     func_802E4250(o);
     o->oVelY -= 2.0;
@@ -132,13 +136,13 @@ void func_802F8450(void) {
     }
 }
 
-void func_802F84FC(void) {
+void yoshi_give_present_loop(void) {
     s32 sp1C = gGlobalTimer;
     
     if (gDisplayedLives == 100) {
         SetSound(SOUND_GENERAL_1UP, D_803320E0);
         D_8032CE34.specialTripleJump = 1;
-        o->oAction = 3;
+        o->oAction = YOSHI_ACT_WALK_JUMP_OFF_ROOF;
         return;
     }
 
@@ -150,31 +154,31 @@ void func_802F84FC(void) {
 
 void BehYoshiLoop(void) {
     switch (o->oAction) {
-        case 0:
-            func_802F7FA4();
+        case YOSHI_ACT_IDLE:
+            yoshi_idle_loop();
             break;
 
-        case 1:
-            func_802F7E58();
+        case YOSHI_ACT_WALK:
+            yoshi_walk_loop();
             break;
 
-        case 2:
-            func_802F818C();
+        case YOSHI_ACT_TALK:
+            yoshi_talk_loop();
             break;
 
-        case 3:
-            func_802F82F8();
+        case YOSHI_ACT_WALK_JUMP_OFF_ROOF:
+            yoshi_walk_and_jump_off_roof_loop();
             break;
 
-        case 4: 
-            func_802F8450();
+        case YOSHI_ACT_FINISH_JUMPING_AND_DESPAWN: 
+            yoshi_finish_jumping_and_despawn_loop();
             break;
 
-        case 5:
-            func_802F84FC();
+        case YOSHI_ACT_GIVE_PRESENT:
+            yoshi_give_present_loop();
             break;
 
-        case 10:
+        case YOSHI_ACT_CREDITS:
             SetObjAnimation(0);
             break;
     }

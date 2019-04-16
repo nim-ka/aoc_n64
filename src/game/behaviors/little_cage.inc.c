@@ -16,7 +16,7 @@ void BehLittleCage2Loop(void)
     case 1:
         mark_object_for_deletion(o);
         func_802A3004();
-        func_802AD82C(20,138,0.7,3);
+        spawn_triangle_break_particles(20, 138, 0.7, 3);
         CreateStar(2500.0f,-1200.0f,1300.0f);
         break;
     }

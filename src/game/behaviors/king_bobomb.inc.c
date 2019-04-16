@@ -207,7 +207,7 @@ void ActionKingBobomb7(void)
         obj_hide();
         obj_become_intangible();
         func_802AA618(0,0,200.0f);
-        func_802AD82C(20,138,3.0f,4);
+        spawn_triangle_break_particles(20,138,3.0f,4);
         ShakeScreen(1);
 #ifndef VERSION_JP
         obj_spawn_star_at_y_offset(2000.0f, 4500.0f, -4500.0f, 200.0f);

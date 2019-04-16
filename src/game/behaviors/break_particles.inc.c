@@ -1,19 +1,19 @@
 // break_particles.c.inc
 
-void func_802AD82C(s16 arg0,s16 arg1,f32 arg2,s16 arg3)
+void spawn_triangle_break_particles(s16 numTris, s16 triModel, f32 triSize, s16 triAnimState)
 {
     struct Object* triangle;
     s32 i;
-    for(i=0;i<arg0;i++)
+    for(i = 0; i < numTris; i++)
     {
-        triangle = spawn_object(o,arg1,beh_break_box_triangle);
-        triangle->oAnimState = arg3;
+        triangle = spawn_object(o, triModel, beh_break_box_triangle);
+        triangle->oAnimState = triAnimState;
         triangle->oPosY += 100.0f;
         triangle->oMoveAngleYaw = RandomU16();
         triangle->oFaceAngleYaw = triangle->oMoveAngleYaw;
         triangle->oFaceAnglePitch = RandomU16();
         triangle->oVelY = random_f32_around_zero(50.0f);
-        if(arg1 == 138 || arg1 == 56)
+        if (triModel == 138 || triModel == 56)
         {
             triangle->oAngleVelPitch = 0xF00;
             triangle->oAngleVelYaw = 0x500;
@@ -24,6 +24,6 @@ void func_802AD82C(s16 arg0,s16 arg1,f32 arg2,s16 arg3)
             triangle->oAngleVelPitch = 0x80 * (s32)(RandomFloat() + 50.0f);
             triangle->oForwardVel = 30.0f;
         }
-        scale_object(triangle,arg2);
+        scale_object(triangle, triSize);
     }
 }

@@ -6,7 +6,7 @@ void BehPlayMusicTrackWhenTouchedLoop(void)
     {
         if(o->oDistanceToMario < 200.0f)
         {
-            func_80321228();
+            play_puzzle_jingle();
             o->oAction++;
         }
     }

@@ -14,9 +14,9 @@ struct ObjectHitbox sBooGivingStarHitbox =
     /* hurtboxHeight: */     60,
 };
 
-s16 D_8032FD24[][3] = {{0,50,0},{210,110,210},{-210,70,-210}};
+s16 TableCourtyardBooTripletPos[][3] = {{0,50,0},{210,110,210},{-210,70,-210}};
 
-void func_802C2A28(void)
+void boo_stop(void)
 {
     o->oForwardVel = 0.0f;
     o->oVelY = 0.0f;
@@ -32,14 +32,14 @@ s32 func_802C2A94(void)
 {
     if(obj_has_behavior(beh_spawned_boo) || obj_has_behavior(beh_spawned_boo_2))
     {
-        if(gBBHMerryGoRoundActive == 0)
+        if(gMarioOnMerryGoRound == 0)
             return 1;
         else
             return 0;
     }
     else
     {
-        if(o->activeFlags & 8)
+        if(o->activeFlags & ACTIVE_FLAG_IN_DIFFERENT_ROOM)
             return 1;
         if(o->oRoom == 10)
             if(gTimeStopState & TIME_STOP_MARIO_OPENED_DOOR)
@@ -48,28 +48,28 @@ s32 func_802C2A94(void)
     return 0;
 }
 
-s32 func_802C2B68(void)
+s32 boo_should_be_active(void)
 {
-    f32 sp1C;
+    f32 radius;
     if(obj_has_behavior(beh_patrolling_boo))
-        sp1C = 5000.0f;
+        radius = 5000.0f;
     else
-        sp1C = 1500.0f;
+        radius = 1500.0f;
     if(obj_has_behavior(beh_spawned_boo) || obj_has_behavior(beh_spawned_boo_2))
     {
-        if(gBBHMerryGoRoundActive == 1)
+        if(gMarioOnMerryGoRound == 1)
             return 1;
         else
             return 0;
     }
     else if(o->oRoom == -1)
     {
-        if(o->oDistanceToMario < sp1C)
+        if(o->oDistanceToMario < radius)
             return 1;
     }
     else if(!func_802C2A94())
     {
-        if(o->oDistanceToMario < sp1C && (o->oRoom == gMarioCurrentRoom || gMarioCurrentRoom == 0))
+        if(o->oDistanceToMario < radius && (o->oRoom == gMarioCurrentRoom || gMarioCurrentRoom == 0))
                 return 1;
     }
     return 0;
@@ -85,7 +85,15 @@ void BehBooGroupInit(void)
     {
         for(i=0;i<3;i++)
         {
-            sp28 = spawn_object_relative(1,D_8032FD24[i][0],D_8032FD24[i][1],D_8032FD24[i][2],o,84,beh_boo_2);
+            sp28 = spawn_object_relative(
+                1,
+                TableCourtyardBooTripletPos[i][0],
+                TableCourtyardBooTripletPos[i][1],
+                TableCourtyardBooTripletPos[i][2],
+                o,
+                84,
+                beh_boo_2
+            );
             sp28->oMoveAngleYaw = RandomU16();
         }
     }
@@ -190,7 +198,7 @@ void func_802C3384(void)
 
 s32 func_802C33D0(f32 a0)
 {
-    func_802C2A28();
+    boo_stop();
     if(o->oTimer == 0)
         func_802C313C(0);
     if(o->oTimer < 32)
@@ -207,7 +215,7 @@ s32 func_802C33D0(f32 a0)
 
 s32 func_802C34B4(f32 a0)
 {
-    func_802C2A28();
+    boo_stop();
     if(o->oTimer == 0)
         func_802C313C(1);
     if(o->oTimer < 32)
@@ -245,7 +253,7 @@ s32 func_802C35C0(void)
 #ifndef VERSION_JP
             if(o->oBooUnk108 != 0)
             {
-		sp1C = o->oBooUnk108;
+                sp1C = o->oBooUnk108;
                 if(!obj_has_behavior(beh_boo_3))
                 {
                     sp1C[107]++;
@@ -336,12 +344,13 @@ void ActionBoo0(void)
         o->oRoom = 10;
     obj_set_pos_to_home();
     o->oMoveAngleYaw = o->oBooUnk110;
-    func_802C2A28();
+    boo_stop();
     o->oBooUnk108 = obj_nearest_object_with_behavior(beh_boo_giving_star);
     o->oBooUnkF8 = 1.0f;
     o->oBooUnkF4 = 0xFF;
-    if(func_802C2B68())
+    if(boo_should_be_active())
     {
+		// Condition is met if the object is beh_patrolling_boo or beh_spawned_boo_2
         if(o->oBehParams2ndByte == 2)
         {
             o->oBooUnk108 = 0;
@@ -408,19 +417,23 @@ void ActionBoo3(void)
     }
 }
 
+// Called when a Go on a Ghost Hunt boo dies
 void ActionBoo4(void)
 {
-    s32 sp1C;
+    s32 dialogID;
+    
+    // If there are no remaining "minion" boos, show the dialog of the Big Boo
     if(obj_nearest_object_with_behavior(beh_boo_2) == NULL)
-        sp1C = 108;
+        dialogID = 108;
     else
-        sp1C = 107;
-    if(obj_update_dialogue_unk1(2,2,sp1C,0))
+        dialogID = 107;
+    
+    if(obj_update_dialogue_unk1(2,2,dialogID,0))
     {
         create_sound_spawner(SOUND_OBJECT_DYINGENEMY1);
         mark_object_for_deletion(o);
-        if(sp1C == 108)
-            func_80321228();
+        if(dialogID == 108) // If the Big Boo should spawn, play the jingle
+            play_puzzle_jingle();
     }
 }
 
@@ -449,9 +462,9 @@ void ActionBooGivingStar0(void)
     }
     o->oBooUnk108 = 0;
 #ifndef VERSION_JP
-    if(func_802C2B68() && gDebugInfo[5][0] + 5 <= o->oUnk1AC_S32)
+    if(boo_should_be_active() && gDebugInfo[5][0] + 5 <= o->oUnk1AC_S32)
 #else
-    if(func_802C2B68() && o->oUnk1AC_S32 >= 5)
+    if(boo_should_be_active() && o->oUnk1AC_S32 >= 5)
 #endif
     {
         o->oAction = 1;
@@ -468,7 +481,7 @@ void ActionBooGivingStar0(void)
     {
         obj_hide();
         obj_become_intangible();
-        func_802C2A28();
+        boo_stop();
     }
 }
 
@@ -496,7 +509,7 @@ void ActionBooGivingStar1(void)
     sp24 = func_802C3778();
     if(obj_has_behavior(beh_spawned_boo))
     {
-        if(gBBHMerryGoRoundActive == 0)
+        if(gMarioOnMerryGoRound == 0)
             o->oAction = 0;
     }
     else if(func_802C2A94())
@@ -568,7 +581,7 @@ void ActionBooGivingStar3(void)
 void ActionBooGivingStar4(void)
 {
 #ifdef VERSION_US
-    func_802C2A28();
+    boo_stop();
 #endif
     if(o->oBehParams2ndByte == 0)
     {
@@ -606,7 +619,7 @@ void ActionBooWithCage0(void)
     o->oBooUnkF8 = 2.0f;
     obj_scale(2.0f);
     obj_become_tangible();
-    if(func_802C2B68())
+    if(boo_should_be_active())
         o->oAction = 1;
 }
 
@@ -685,7 +698,7 @@ void BehSpawnBigBooLoop(void)
                 copy_object_behavior_params(sp24,o);
                 o->oAction = 2;
 #ifndef VERSION_JP
-                func_80321228();
+                play_puzzle_jingle();
 #else
                 SetSound(SOUND_CH8_UNK6A,D_803320E0);
 #endif
@@ -791,7 +804,7 @@ void BehBooBossSpawnedBridgeLoop(void)
         break;
     case 3:
         if(o->oTimer == 0 && o->oBehParams2ndByte == 1)
-            func_80321228();
+            play_puzzle_jingle();
         break;
     }
 }

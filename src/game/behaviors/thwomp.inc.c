@@ -53,12 +53,6 @@ void ActionGrindelThwomp0(void)
 
 void (*TableGrindelThwompActions[])(void) = {ActionGrindelThwomp0,ActionGrindelThwomp1,ActionGrindelThwomp2,ActionGrindelThwomp3,ActionGrindelThwomp4};
 
-extern u8 wf_seg7_collision_tumbling_bridge[];
-extern u8 bbh_seg7_collision_07026B1C[];
-extern u8 lll_seg7_collision_0701D21C[];
-extern u8 bitfs_seg7_collision_07015288[];
-struct Struct8032F34C D_8032F34C[] = {{9,-512,0x80,0xB0,wf_seg7_collision_tumbling_bridge},{9,-412,103,56,bbh_seg7_collision_07026B1C},{9,-512,0x80,60,lll_seg7_collision_0701D21C},{9,-512,0x80,0x40,bitfs_seg7_collision_07015288}};
-
 void BehGrindelThwompLoop(void)
 {
     obj_call_action_function(TableGrindelThwompActions);

@@ -524,12 +524,12 @@ s32 func_80251BF8(struct MarioState *m)
     return result;
 }
 
-f32 func_80251CF8(struct MarioState *m, s32 unk1, f32 unk2)
+f32 find_floor_height_relative_polar(struct MarioState *m, s32 angleFromMario, f32 distFromMario)
 {
     struct Surface *floor;
     f32 floorY;
-    f32 y = sins(m->faceAngle[1] + (s16) unk1) * unk2;
-	f32 x = coss(m->faceAngle[1] + (s16) unk1) * unk2;
+    f32 y = sins(m->faceAngle[1] + (s16) angleFromMario) * distFromMario;
+	f32 x = coss(m->faceAngle[1] + (s16) angleFromMario) * distFromMario;
 
     floorY = find_floor(m->pos[0] + y, m->pos[1] + 100.0f, m->pos[2] + x, &floor);
     return floorY;

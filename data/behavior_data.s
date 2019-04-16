@@ -1493,12 +1493,12 @@ glabel beh_black_smoke_upward # 127C
     end_repeat
     deactivate
 
-glabel beh_multiple_coins # 1298
+glabel beh_beta_fish_splash_spawner # 1298
     begin OBJ_LIST_DEFAULT
     obj_or_int objFlags, (OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
     graph_clear
     begin_loop
-        callnative BehMultipleCoinsLoop
+        callnative BehBetaFishSplashSpawnerLoop
     end_loop
 
 glabel beh_spindrift # 12B4
@@ -2862,7 +2862,7 @@ glabel beh_plays_music_track_when_touched # 2998
 glabel beh_inside_cannon # 2998
     break
 
-glabel beh_bait_coin # 299C
+glabel beh_beta_following_circling_obj # 299C
     begin OBJ_LIST_DESTRUCTIVE
     obj_or_int objFlags, (OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
     billboard
@@ -2871,7 +2871,7 @@ glabel beh_bait_coin # 299C
     obj_set_int objIntangibleTimer, 0
     begin_loop
         obj_add_int objAnimState, 1
-        callnative BehInsideCannonLoop
+        callnative BehBetaFollowingCirclingObjLoop
     end_loop
 
 glabel beh_static_checkered_platform # 29CC
@@ -3672,11 +3672,11 @@ glabel beh_bobomb_explosion_bubble_3600 # 35E0
     obj_add_float_rand objPosZ, -2, 4
     return
 
-glabel beh_bobomb_cork_box_respawner # 35F4
+glabel beh_respawner # 35F4
     begin OBJ_LIST_DEFAULT
     obj_or_int objFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE
     begin_loop
-        callnative BehBobombCorkBoxRespawnerLoop
+        callnative BehRespawnerLoop
     end_loop
 
 glabel beh_small_bully # 360C

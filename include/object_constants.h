@@ -310,6 +310,16 @@
     #define FREE_BBALL_ACT_ROLL 1
     #define FREE_BBALL_ACT_RESET 2
 
+/* Yoshi */
+    /* oAction */
+    #define YOSHI_ACT_IDLE 0
+    #define YOSHI_ACT_WALK 1
+    #define YOSHI_ACT_TALK 2
+    #define YOSHI_ACT_WALK_JUMP_OFF_ROOF 3
+    #define YOSHI_ACT_FINISH_JUMPING_AND_DESPAWN 4
+    #define YOSHI_ACT_GIVE_PRESENT 5
+    #define YOSHI_ACT_CREDITS 10
+
 /* Koopa */
     /* oAction */
     #define KOOPA_UNSHELLED_ACT_RUN 0
@@ -644,5 +654,16 @@
     #define TRIPLET_BUTTERFLY_TYPE_NORMAL -1
     #define TRIPLET_BUTTERFLY_TYPE_EXPLODES 0
     #define TRIPLET_BUTTERFLY_TYPE_SPAWN_1UP 1
+
+/* Water level diamond */
+    /* oAction */
+    // Loading
+    #define WATER_LEVEL_DIAMOND_ACT_INIT 0
+    // Idling when Mario isn't inside its hitbox
+    #define WATER_LEVEL_DIAMOND_ACT_IDLE 1
+    // While the water level is changing
+    #define WATER_LEVEL_DIAMOND_ACT_CHANGE_WATER_LEVEL 2
+    // After the water level has changed but Mario hasn't left its hitbox yet
+    #define WATER_LEVEL_DIAMOND_ACT_IDLE_SPINNING 3
 
 #endif

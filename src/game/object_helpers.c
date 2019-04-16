@@ -45,7 +45,7 @@ extern struct Object *obj_find_nearest_object_with_behavior(void *, f32 *);
 extern void obj_move_y(f32, f32, f32);
 static s32 clear_move_flag(u32 *, s32);
 extern void func_802AA618(s32, s32, f32);
-extern void func_802AD82C(s32, s32, f32, s32);
+extern void spawn_triangle_break_particles(s32, s32, f32, s32);
 
 #define o gCurrentObject
 
@@ -3037,7 +3037,7 @@ s32 obj_set_hitbox_and_die_if_attacked(
 void func_802A3C98(f32 sp18, s32 sp1C)
 {
     func_802AA618(0, 0, sp18);
-    func_802AD82C(30, 138, 3.0f, 4);
+    spawn_triangle_break_particles(30, 138, 3.0f, 4);
     mark_object_for_deletion(o);
 
     if (sp1C == 1)

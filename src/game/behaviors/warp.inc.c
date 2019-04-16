@@ -17,7 +17,7 @@ void BehWarpLoop(void)
     o->oInteractStatus = 0;
 }
 
-void BehFadingWarpLoop() // identical to the above function
+void BehFadingWarpLoop() // identical to the above function except for o->hitboxRadius
 {
     u16 sp6;
     if(o->oTimer == 0)

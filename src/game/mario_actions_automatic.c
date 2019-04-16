@@ -577,7 +577,7 @@ static s32 act_ledge_grab(struct MarioState *m)
         }
     }
 
-    heightAboveFloor = m->pos[1] - func_80251CF8(m, -0x8000, 30.0f);
+    heightAboveFloor = m->pos[1] - find_floor_height_relative_polar(m, -0x8000, 30.0f);
     if (hasSpaceForMario && heightAboveFloor < 100.0f)
         return set_mario_action(m, ACT_LEDGE_CLIMB_FAST, 0);
 
