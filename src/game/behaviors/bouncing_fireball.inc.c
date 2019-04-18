@@ -42,7 +42,7 @@ void BehBouncingFireballLoop(void)
             o->oAction = 1;
         break;
     case 1:
-        sp2C = spawn_object(o,144,beh_bouncing_fireball_flame);
+        sp2C = spawn_object(o,MODEL_RED_FLAME,beh_bouncing_fireball_flame);
         sp28 = (10 - o->oTimer) * 0.5;
         scale_object_xyz(sp2C,sp28,sp28,sp28);
         if(o->oTimer == 0)

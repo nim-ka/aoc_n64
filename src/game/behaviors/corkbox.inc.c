@@ -32,7 +32,7 @@ void BehBobombExplosionBubbleLoop(void)
     {
         o->activeFlags = 0;
         o->oPosY += 5.0f;
-        spawn_object(o, 165, beh_water_surface_white_wave_2);
+        spawn_object(o, MODEL_SPOT_ON_GROUND, beh_water_surface_white_wave_2);
     }
     
     if (o->oTimer >= 61) o->activeFlags = 0;
@@ -55,7 +55,7 @@ void BehRespawnerLoop(void)
 
 void create_respawner(s32 model, void *behToSpawn, s32 minSpawnDist)
 {
-    struct Object *respawner = spawn_object_abs_with_rot(o, 0, 0, beh_respawner, o->oHomeX, o->oHomeY, o->oHomeZ, 0, 0, 0);
+    struct Object *respawner = spawn_object_abs_with_rot(o, 0, MODEL_NONE, beh_respawner, o->oHomeX, o->oHomeY, o->oHomeZ, 0, 0, 0);
     respawner->oBehParams = o->oBehParams;
     respawner->oRespawnerModelToRespawn = model;
     respawner->oRespawnerMinSpawnDist = minSpawnDist;

@@ -6,7 +6,7 @@ void BehFloorSwitchLoop(void)
     switch(o->oAction)
     {
     case 0:
-        obj_set_model(207);
+        obj_set_model(MODEL_PURPLE_SWITCH);
         obj_scale(1.5f);
         if(gMarioObject->platform == o && !(gMarioStates->action & 0x2000))
             if(lateral_dist_between_objects(o,gMarioObject) < 127.5)

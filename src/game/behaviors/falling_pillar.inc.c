@@ -24,7 +24,7 @@ void func_802F6308(void) {
     s32 sp2C;
 
     for (sp2C = 0; sp2C < 4; sp2C++) {
-        spawn_object_relative(sp2C, 0, sp2C * 400 + 300, 0, o, 0, &beh_some_subojbject_of_falling_pillar);
+        spawn_object_relative(sp2C, 0, sp2C * 400 + 300, 0, o, MODEL_NONE, &beh_some_subojbject_of_falling_pillar);
     }
 }
 

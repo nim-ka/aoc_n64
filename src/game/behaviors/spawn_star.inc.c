@@ -20,10 +20,10 @@ void BehCollectStarInit(void) {
     sp1F = (o->oBehParams >> 24) & 0xFF;
     sp1E = save_file_get_star_flags(gCurrSaveFileNum - 1, gCurrCourseNum - 1);
     if (sp1E & (1 << sp1F)) {
-        o->header.gfx.asGraphNode = gLoadedGraphNodes[121];
+        o->header.gfx.asGraphNode = gLoadedGraphNodes[MODEL_TRANSPARENT_STAR];
     } 
     else {
-        o->header.gfx.asGraphNode = gLoadedGraphNodes[122];
+        o->header.gfx.asGraphNode = gLoadedGraphNodes[MODEL_STAR];
     }
 
     set_object_hitbox(o, &sCollectStarHitbox);
@@ -68,7 +68,7 @@ void BehStarSpawnLoop(void) {
             o->oStarSpawnUnkFC += o->oVelY;
             o->oPosY = o->oStarSpawnUnkFC + sins((o->oTimer * 0x8000) / 30) * 400.0f;
             o->oFaceAngleYaw += 0x1000;
-            spawn_object(o, 0, beh_powerup_sparkles2);
+            spawn_object(o, MODEL_NONE, beh_powerup_sparkles2);
             PlaySound(SOUND_ENVIRONMENT_STAR);
             if (o->oTimer == 30) {
                 o->oAction = 2;
@@ -83,7 +83,7 @@ void BehStarSpawnLoop(void) {
             else    
                 o->oVelY = -10.0f; 
 
-            spawn_object(o, 0, beh_powerup_sparkles2);
+            spawn_object(o, MODEL_NONE, beh_powerup_sparkles2);
             func_802E4250(o);
             o->oFaceAngleYaw = o->oFaceAngleYaw - o->oTimer * 0x10 + 0x1000;
             PlaySound(SOUND_ENVIRONMENT_STAR);
@@ -113,7 +113,7 @@ void BehStarSpawnLoop(void) {
 }
 
 struct Object *func_802F1A50(struct Object *sp30, f32 sp34, f32 sp38, f32 sp3C) {
-    sp30 = spawn_object_abs_with_rot(o, 0, 122, beh_star_spawn_coordinates, o->oPosX, o->oPosY, o->oPosZ, 0, 0, 0);
+    sp30 = spawn_object_abs_with_rot(o, 0, MODEL_STAR, beh_star_spawn_coordinates, o->oPosX, o->oPosY, o->oPosZ, 0, 0, 0);
     sp30->oBehParams = o->oBehParams;
     sp30->oHomeX = sp34;
     sp30->oHomeY = sp38;
@@ -147,11 +147,11 @@ void BehHiddenRedCoinStarInit(void) {
     struct Object *sp30;
 
     if (gCurrCourseNum != 3)
-        spawn_object(o, 121, bRedCoinStarMarker);
+        spawn_object(o, MODEL_TRANSPARENT_STAR, bRedCoinStarMarker);
 
     sp36 = count_objects_with_behavior(beh_red_coin);
     if (sp36 == 0) {
-        sp30 = spawn_object_abs_with_rot(o, 0, 122, beh_star, o->oPosX, o->oPosY, o->oPosZ, 0, 0, 0);
+        sp30 = spawn_object_abs_with_rot(o, 0, MODEL_STAR, beh_star, o->oPosX, o->oPosY, o->oPosZ, 0, 0, 0);
         sp30->oBehParams = o->oBehParams;
         o->activeFlags = 0;
     }

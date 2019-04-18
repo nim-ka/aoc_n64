@@ -4,32 +4,32 @@ void ActionFish0(void)
 {
     s32 i;
     s32 sp38;
-    s16 sp36;
+    s16 model;
     f32 sp30;
     u32* sp2C;
     struct Object* sp28;
     switch(o->oBehParams2ndByte)
     {
     case 0:
-        sp36 = 185;
+        model = MODEL_FISH;
         sp38 = 20;
         sp30 = 1500.0f;
         sp2C = blue_fish_seg3_anims_0301C2B0;
         break;
     case 1:
-        sp36 = 185;
+        model = MODEL_FISH;
         sp38 = 5;
         sp30 = 1500.0f;
         sp2C = blue_fish_seg3_anims_0301C2B0;
         break;
     case 2:
-        sp36 = 103;
+        model = MODEL_CYAN_FISH;
         sp38 = 20;
         sp30 = 1500.0f;
         sp2C = cyan_fish_seg6_anims_0600E264;
         break;
     case 3:
-        sp36 = 103;
+        model = MODEL_CYAN_FISH;
         sp38 = 5;
         sp30 = 1500.0f;
         sp2C = cyan_fish_seg6_anims_0600E264;
@@ -39,7 +39,7 @@ void ActionFish0(void)
     {
         for(i=0;i<sp38;i++)
         {
-            sp28 = spawn_object(o,sp36,beh_fish_group2);
+            sp28 = spawn_object(o,model,beh_fish_group2);
             sp28->oBehParams2ndByte = o->oBehParams2ndByte;
             func_8029EE20(sp28,sp2C,0);
             translate_object_xyz_random(sp28,700.0f);

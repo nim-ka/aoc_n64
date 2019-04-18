@@ -127,10 +127,10 @@ static s32 beh_cmd_graph_node(void)
 
 static s32 beh_cmd_obj_load_chill(void)
 {
-    u32 arg0 = gBehCommand[1];
+    u32 model = gBehCommand[1];
     void *arg1 = (void *) gBehCommand[2];
     
-    struct Object *object = spawn_object_at_origin(gCurrentObject, 0, arg0, arg1);
+    struct Object *object = spawn_object_at_origin(gCurrentObject, 0, model, arg1);
     
     copy_object_pos_and_angle(object, gCurrentObject);
     
@@ -140,10 +140,10 @@ static s32 beh_cmd_obj_load_chill(void)
 
 static s32 beh_cmd_obj_spawn(void)
 {
-    u32 arg0 = gBehCommand[1];
+    u32 model = gBehCommand[1];
     void *arg1 = (void *) gBehCommand[2];
     
-    struct Object *object = spawn_object_at_origin(gCurrentObject, 0, arg0, arg1);
+    struct Object *object = spawn_object_at_origin(gCurrentObject, 0, model, arg1);
     
     copy_object_pos_and_angle(object, gCurrentObject);
     
@@ -156,10 +156,10 @@ static s32 beh_cmd_obj_spawn(void)
 static s32 beh_cmd_obj_load_chill_param(void)
 {
     u32 behParam = (s16)(gBehCommand[0] & 0xFFFF);
-    u32 arg1 = gBehCommand[1];
+    u32 model = gBehCommand[1];
     void *arg2 = (void *) gBehCommand[2];
     
-    struct Object *object = spawn_object_at_origin(gCurrentObject, 0, arg1, arg2);
+    struct Object *object = spawn_object_at_origin(gCurrentObject, 0, model, arg2);
     
     copy_object_pos_and_angle(object, gCurrentObject);
     

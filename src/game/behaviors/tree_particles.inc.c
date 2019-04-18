@@ -49,7 +49,7 @@ void BehSnowLeafParticleSpawnInit(void)
     {
         if(RandomFloat() < 0.5)
         {
-            obj = spawn_object(o,158,beh_tree_snow);
+            obj = spawn_object(o,MODEL_SNOWMAN_SNOW_BALL_DL,beh_tree_snow);
             scale = RandomFloat();
             scale_object_xyz(obj,scale,scale,scale);
             obj->oMoveAngleYaw = RandomU16();
@@ -61,7 +61,7 @@ void BehSnowLeafParticleSpawnInit(void)
     {
         if(RandomFloat() < 0.3)
         {
-            obj = spawn_object(o,162,beh_tree_leaf);
+            obj = spawn_object(o,MODEL_LEAVES,beh_tree_leaf);
             scale = RandomFloat() * 3.0f;
             scale_object_xyz(obj,scale,scale,scale);
             obj->oMoveAngleYaw = RandomU16();

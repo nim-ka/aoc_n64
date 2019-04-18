@@ -80,11 +80,11 @@ void spawn_macro_abs_special(u32 model, u32 *behavior, s16 x, s16 y, s16 z, s16 
 void Unknown802E142C(u32 (*a0)[], s16 a1[])
 {    
     struct Object *sp3C;
-    s16 sp3A;
+    s16 model;
         
-    sp3A = &beh_yellow_coin == a0 ? 116 : 0;
+    model = &beh_yellow_coin == a0 ? MODEL_YELLOW_COIN : MODEL_NONE;
     
-    sp3C = spawn_object_abs_with_rot(&gMacroObjectDefaultParent, 0, sp3A, a0, a1[1], a1[2], a1[3], 0, convert_rotation(a1[0]), 0);
+    sp3C = spawn_object_abs_with_rot(&gMacroObjectDefaultParent, 0, model, a0, a1[1], a1[2], a1[3], 0, convert_rotation(a1[0]), 0);
 
     sp3C->oUnk1A8 = a1[4];
     sp3C->oBehParams = (a1[4] & 0xFF) >> 16;

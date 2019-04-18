@@ -3,7 +3,7 @@
 void BehBreakableBoxLoop(void)
 {
     set_object_hitbox(o, &sBreakableBoxHitbox);
-    obj_set_model(130);
+    obj_set_model(MODEL_BREAKABLE_BOX_SMALL);
     if(o->oTimer == 0)
         func_802B0E74();
     if(obj_was_attacked_or_ground_pounded() != 0)

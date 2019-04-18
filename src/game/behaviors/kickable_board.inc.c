@@ -71,7 +71,7 @@ void BehKickableBoardLoop(void)
         break;
     case 2:
         obj_become_intangible();
-        obj_set_model(58);
+        obj_set_model(MODEL_WF_KICKABLE_BOARD_FELLED);
         o->oAngleVelPitch -= 0x80;
         o->oFaceAnglePitch += o->oAngleVelPitch;
         if(o->oFaceAnglePitch < -0x4000)

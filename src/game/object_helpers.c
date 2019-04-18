@@ -565,9 +565,9 @@ struct Object *spawn_object_rel_with_rot(struct Object *parent, u32 model, void 
     return newObj;
 }
 
-struct Object *Unknown8029E330(struct Object *sp20, s32 sp24, void *sp28)
+struct Object *Unknown8029E330(struct Object *sp20, s32 model, void *sp28)
 {
-    struct Object *sp1C = spawn_object(sp20, sp24, sp28);
+    struct Object *sp1C = spawn_object(sp20, model, sp28);
     sp1C->oFlags |= OBJ_FLAG_0020 | OBJ_FLAG_0800;
     return sp1C;
 }
@@ -1978,7 +1978,7 @@ void obj_set_hurtbox_radius_and_height(f32 radius, f32 height)
 }
 
 static void spawn_object_loot_coins(
-    struct Object *obj, s32 numCoins, f32 sp30, void *coinBehavior, s16 posJitter, s16 sp3E)
+    struct Object *obj, s32 numCoins, f32 sp30, void *coinBehavior, s16 posJitter, s16 model)
 {
     s32 i;
     f32 spawnHeight;
@@ -2000,7 +2000,7 @@ static void spawn_object_loot_coins(
 
         obj->oNumLootCoins--;
 
-        coin = spawn_object(obj, sp3E, coinBehavior);
+        coin = spawn_object(obj, model, coinBehavior);
         translate_object_xz_random(coin, posJitter);
         coin->oPosY = spawnHeight;
         coin->oUnknownUnk110_F32 = sp30;
@@ -2009,12 +2009,12 @@ static void spawn_object_loot_coins(
 
 void spawn_object_loot_blue_coins(struct Object *obj, s32 numCoins, f32 sp28, s16 posJitter)
 {
-    spawn_object_loot_coins(obj, numCoins, sp28, beh_blue_coin_jumping, posJitter, 118);
+    spawn_object_loot_coins(obj, numCoins, sp28, beh_blue_coin_jumping, posJitter, MODEL_BLUE_COIN);
 }
 
 void spawn_object_loot_yellow_coins(struct Object *obj, s32 numCoins, f32 sp28)
 {
-    spawn_object_loot_coins(obj, numCoins, sp28, beh_single_coin_gets_spawned, 0, 116);
+    spawn_object_loot_coins(obj, numCoins, sp28, beh_single_coin_gets_spawned, 0, MODEL_YELLOW_COIN);
 }
 
 void obj_spawn_loot_coin_at_mario_pos(void)
@@ -2027,7 +2027,7 @@ void obj_spawn_loot_coin_at_mario_pos(void)
 
     o->oNumLootCoins--;
 
-    coin = spawn_object(o, 116, beh_single_coin_gets_spawned);
+    coin = spawn_object(o, MODEL_YELLOW_COIN, beh_single_coin_gets_spawned);
     coin->oVelY = 30.0f;
 
     copy_object_pos(coin, gMarioObject);
@@ -2858,7 +2858,7 @@ s32 obj_call_action_function(void (*actionFunctions[])(void))
 
 static struct Object *func_802A36D8(s32 sp20, s32 sp24)
 {
-    struct Object *sp1C = spawn_object(o, 122, beh_unused_080C);
+    struct Object *sp1C = spawn_object(o, MODEL_STAR, beh_unused_080C);
     sp1C->oUnk1B0 = sp24;
     sp1C->oBehParams = o->oBehParams;
     sp1C->oBehParams2ndByte = sp20;
@@ -3564,7 +3564,7 @@ void obj_spawn_loot_blue_coin(void)
 {
     if (o->oNumLootCoins >= 5)
     {
-        spawn_object(o, 118, beh_mr_i_blue_coin);
+        spawn_object(o, MODEL_BLUE_COIN, beh_mr_i_blue_coin);
         o->oNumLootCoins -= 5;
     }
 }

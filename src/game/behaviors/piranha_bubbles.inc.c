@@ -55,7 +55,7 @@ void BehPiranhaPlantBubbleLoop(void)
         obj_disable_rendering();
         scale = 0;
         for(i=0;i<15;i++)
-            try_to_spawn_object(0,1.0f,o,168,beh_piranha_plant_waking_bubbles);
+            try_to_spawn_object(0,1.0f,o,MODEL_BUBBLE,beh_piranha_plant_waking_bubbles);
         o->oAction = 0;
         scale = 1.0f;
         break;

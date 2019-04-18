@@ -52,13 +52,13 @@ void BehControllablePlatformSubLoop(void) {
 
 void BehControllablePlatformInit(void) {
     struct Object *sp34;
-    sp34 = spawn_object_rel_with_rot(o, 55, beh_controllable_platform_sub, 0, 51, 204, 0, 0, 0);
+    sp34 = spawn_object_rel_with_rot(o, MODEL_HMC_METAL_ARROW_PLATFORM, beh_controllable_platform_sub, 0, 51, 204, 0, 0, 0);
     sp34->oBehParams2ndByte = 1;
-    sp34 = spawn_object_rel_with_rot(o, 55, beh_controllable_platform_sub, 0, 51, -204, 0, -0x8000, 0);
+    sp34 = spawn_object_rel_with_rot(o, MODEL_HMC_METAL_ARROW_PLATFORM, beh_controllable_platform_sub, 0, 51, -204, 0, -0x8000, 0);
     sp34->oBehParams2ndByte = 2;
-    sp34 = spawn_object_rel_with_rot(o, 55, beh_controllable_platform_sub, 204, 51, 0, 0, 0x4000, 0);
+    sp34 = spawn_object_rel_with_rot(o, MODEL_HMC_METAL_ARROW_PLATFORM, beh_controllable_platform_sub, 204, 51, 0, 0, 0x4000, 0);
     sp34->oBehParams2ndByte = 3;
-    sp34 = spawn_object_rel_with_rot(o, 55, beh_controllable_platform_sub, -204, 51, 0, 0, -0x4000, 0);
+    sp34 = spawn_object_rel_with_rot(o, MODEL_HMC_METAL_ARROW_PLATFORM, beh_controllable_platform_sub, -204, 51, 0, 0, -0x4000, 0);
     sp34->oBehParams2ndByte = 4;
 
     D_80331694 = 0;
@@ -203,7 +203,7 @@ void BehControllablePlatformLoop(void) {
 
         case 6:
             if (ObjFlickerAndDisappear(o, 150))
-                spawn_object_abs_with_rot(o, 0, 54, beh_controllable_platform, o->oHomeX, o->oHomeY, o->oHomeZ, 0, 0, 0);
+                spawn_object_abs_with_rot(o, 0, MODEL_HMC_METAL_PLATFORM, beh_controllable_platform, o->oHomeX, o->oHomeY, o->oHomeZ, 0, 0, 0);
             break;
     }
 

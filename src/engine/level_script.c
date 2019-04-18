@@ -462,15 +462,15 @@ static void level_cmd_23(void)
         f32 f;
     } arg2;
 
-    s16 arg0L = CMD_GET(s16, 2) & 0x0FFF;
+    s16 model = CMD_GET(s16, 2) & 0x0FFF;
     s16 arg0H = CMD_GET(u16, 2) >> 12;
     void *arg1 = CMD_GET(void *, 4);
-    arg2.i = CMD_GET(s32, 8);
+    arg2.i = CMD_GET(s32, 8); // store the raw word as a union int. this allows is to reinterpret the contents as a float without the value being converted implicitly.
 
-    if (arg0L < 256)
+    if (model < 256)
         // GraphNodeScaleOptionalDisplayList has a GraphNode at the top. This
         // is being stored to the array, so cast the pointer.
-        gLoadedGraphNodes[arg0L] = (struct GraphNode *)init_graph_node_scale_optional_display_list(sLevelPool, 0, arg0H, arg1, arg2.f);
+        gLoadedGraphNodes[model] = (struct GraphNode *)init_graph_node_scale_optional_display_list(sLevelPool, 0, arg0H, arg1, arg2.f);
 
     sCurrentCmd = CMD_NEXT;
 }
@@ -493,12 +493,12 @@ static void level_cmd_init_mario(void)
 static void level_cmd_place_object(void)
 {
     u8 val7 = 1 << (gCurrActNum + 31);
-    u16 val4;
+    u16 model;
     struct SpawnInfo *spawnInfo;
 
     if (sCurrAreaIndex != -1 && ((CMD_GET(u8, 2) & val7) || CMD_GET(u8, 2) == 0x1F))
     {
-        val4 = CMD_GET(u8, 3);
+        model = CMD_GET(u8, 3);
         spawnInfo = alloc_only_pool_alloc(sLevelPool, sizeof(struct SpawnInfo));
         
         spawnInfo->startPos[0] = CMD_GET(s16, 4);
@@ -514,7 +514,7 @@ static void level_cmd_place_object(void)
 
         spawnInfo->behaviorArg = CMD_GET(u32, 16);
         spawnInfo->behaviorScript = CMD_GET(void *, 20);
-        spawnInfo->unk18 = gLoadedGraphNodes[val4];
+        spawnInfo->unk18 = gLoadedGraphNodes[model];
         spawnInfo->next = gAreas[sCurrAreaIndex].objectSpawnInfos;
         
         gAreas[sCurrAreaIndex].objectSpawnInfos = spawnInfo;

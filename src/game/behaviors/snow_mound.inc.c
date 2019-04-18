@@ -31,7 +31,7 @@ void BehSnowMoundSpawnLoop(void) {
         return;
 
     if (o->oTimer == 64 || o->oTimer == 128 || o->oTimer == 192 || o->oTimer == 224 || o->oTimer == 256) 
-        sp1C = spawn_object(o, 54, beh_sliding_snow_mound);
+        sp1C = spawn_object(o, MODEL_SL_SNOW_TRIANGLE, beh_sliding_snow_mound);
 
     if (o->oTimer == 256) {
         sp1C->header.gfx.scale[0] = 2.0f;

@@ -5,7 +5,7 @@ void func_802ADC20(s16 pitch, s16 yaw)
     s32 i;
     for(i=0;i<3;i++)
     {
-        struct Object* wind = spawn_object(o,142,beh_wind);
+        struct Object* wind = spawn_object(o,MODEL_MIST,beh_wind);
         wind->oMoveAngleYaw = yaw;
         wind->oMoveAnglePitch = pitch;
     }

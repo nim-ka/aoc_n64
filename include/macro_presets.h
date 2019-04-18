@@ -109,7 +109,7 @@ struct MacroPreset MacroObjectPresets[] = {
     {beh_small_bully, MODEL_BULLY, 0},
     {beh_small_bully, MODEL_BULLY_BOSS, 0}, // unused
     {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_stub_1D0C, 0x0058, 0}, // unused
+    {beh_stub_1D0C, MODEL_UNKNOWN_58, 0}, // unused
     {beh_bouncing_fireball, MODEL_NONE, 0},
     {beh_flamethrower, MODEL_NONE, 4},
     {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
@@ -136,7 +136,7 @@ struct MacroPreset MacroObjectPresets[] = {
     {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
     {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
     {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_unused_fake_star, 0x0054, 0}, // unused
+    {beh_unused_fake_star, MODEL_UNKNOWN_54, 0}, // unused
     {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
     {beh_unagi, MODEL_UNAGI, 0}, // unused
     {beh_sushi_shark, MODEL_SUSHI, 0}, // unused
@@ -316,7 +316,7 @@ struct MacroPreset MacroObjectPresets[] = {
     {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
     {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
     {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, 0x0054, 0}, // unused
+    {beh_yellow_coin, MODEL_UNKNOWN_54, 0}, // unused
     {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
     {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
     {beh_yellow_coin, MODEL_YELLOW_COIN, 0},

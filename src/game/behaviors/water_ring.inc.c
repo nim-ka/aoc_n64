@@ -153,7 +153,7 @@ void BehJetStreamWaterRingLoop(void)
 
 void Unknown802EB8A4(void)
 {
-    struct Object *ringManager = spawn_object(o, 0, beh_manta_ray_ring_manager);
+    struct Object *ringManager = spawn_object(o, MODEL_NONE, beh_manta_ray_ring_manager);
     o->parentObj = ringManager;
 }
 
@@ -175,7 +175,7 @@ void JetStreamRingSpawnerActiveLoop(void)
     ||  (o->oTimer == 200)
     ||  (o->oTimer == 250))
     {
-        waterRing = spawn_object(o, 104, beh_jet_stream_water_ring);
+        waterRing = spawn_object(o, MODEL_WATER_RING, beh_jet_stream_water_ring);
         waterRing->oWaterRingIndex = currentObj->oWaterRingMgrNextRingIndex;
         currentObj->oWaterRingMgrNextRingIndex++;
         if (currentObj->oWaterRingMgrNextRingIndex >= 10001) currentObj->oWaterRingMgrNextRingIndex = 0;

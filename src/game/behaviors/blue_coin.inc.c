@@ -22,7 +22,7 @@ void BehHiddenBlueCoinsLoop(void)
         obj_become_tangible();
         if(o->oInteractStatus & 0x8000)
         {
-            spawn_object(o,149,beh_golden_coin_sparkles);
+            spawn_object(o,MODEL_SPARKLES,beh_golden_coin_sparkles);
             mark_object_for_deletion(o);
         }
         if(obj_wait_then_blink(200,20))

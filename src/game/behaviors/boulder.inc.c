@@ -56,13 +56,13 @@ void BehBigBoulderGeneratorLoop(void) {
 
     if (IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, 6000)) {
         if ((o->oTimer & 0x3F) == 0) {
-            sp1C = spawn_object(o, 57, beh_big_boulder);
+            sp1C = spawn_object(o, MODEL_HMC_ROLLING_ROCK, beh_big_boulder);
             sp1C->oMoveAngleYaw = RandomFloat() * 4096.0f;
         }
     } 
     else {
         if ((o->oTimer & 0x7F) == 0) {
-            sp1C = spawn_object(o, 57, beh_big_boulder);
+            sp1C = spawn_object(o, MODEL_HMC_ROLLING_ROCK, beh_big_boulder);
             sp1C->oMoveAngleYaw = RandomFloat() * 4096.0f;
         }
     }

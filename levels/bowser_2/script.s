@@ -15,7 +15,7 @@ glabel level_bowser_2_entry
     load_mio0         /*seg*/ 0x06, /*romStart*/ _group12_mio0SegmentRomStart, /*romEnd*/ _group12_mio0SegmentRomEnd
     load_raw          /*seg*/ 0x0D, /*romStart*/ _group12_geoSegmentRomStart, /*romEnd*/ _group12_geoSegmentRomEnd
     alloc_level_pool
-    mario /*unk3*/ 0x01, /*behParam*/ 0x00000001, /*beh*/ beh_mario
+    mario /*model*/ MODEL_MARIO, /*behParam*/ 0x00000001, /*beh*/ beh_mario
     jump_link /*target*/ script_func_global_13
     load_model_from_geo /*model*/ MODEL_BOWSER_2_TILTING_ARENA, /*geo*/ bowser_2_geo_000170
 

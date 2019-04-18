@@ -30,7 +30,7 @@ void func_802AC0B8(void)
 
 void func_802AC130(void)
 {
-    s32 sp1C = obj_has_model(31);
+    s32 sp1C = obj_has_model(MODEL_HMC_METAL_DOOR);
     if(o->oTimer == 0)
     {
         PlaySound2(D_8032F328[sp1C]);
@@ -44,7 +44,7 @@ void func_802AC130(void)
 
 void func_802AC1CC(void)
 {
-    s32 sp1C = obj_has_model(31);
+    s32 sp1C = obj_has_model(MODEL_HMC_METAL_DOOR);
     if(o->oTimer == 30)
         PlaySound2(D_8032F330[sp1C]);
 }

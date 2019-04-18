@@ -14,7 +14,7 @@ void BehBetaMovingFlamesSpawnLoop(void)
     switch(o->oAction)
     {
     case 0: case 1: case 2: case 3: case 4: case 5: case 6: case 7:
-        spawn_object(o,144,beh_beta_moving_flames);
+        spawn_object(o,MODEL_RED_FLAME,beh_beta_moving_flames);
         o->oAction++;
         break;
     case 8:

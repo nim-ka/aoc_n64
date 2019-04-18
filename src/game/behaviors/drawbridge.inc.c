@@ -4,12 +4,12 @@ void BehLLLDrawbridgeSpawnerLoop(void)
 {
     struct Object *drawbridge1, *drawbridge2;
     
-    drawbridge1 = spawn_object(o, 56, beh_lll_drawbridge);
+    drawbridge1 = spawn_object(o, MODEL_LLL_DRAWBRIDGE_PART, beh_lll_drawbridge);
     drawbridge1->oMoveAngleYaw = o->oMoveAngleYaw;
     drawbridge1->oPosX += coss(o->oMoveAngleYaw) * 640.0f;
     drawbridge1->oPosZ += sins(o->oMoveAngleYaw) * 640.0f;
     
-    drawbridge2 = spawn_object(o, 56, beh_lll_drawbridge);
+    drawbridge2 = spawn_object(o, MODEL_LLL_DRAWBRIDGE_PART, beh_lll_drawbridge);
     drawbridge2->oMoveAngleYaw = o->oMoveAngleYaw + 0x8000;
     drawbridge2->oPosX += coss(o->oMoveAngleYaw) * -640.0f;
     drawbridge2->oPosZ += sins(o->oMoveAngleYaw) * -640.0f;

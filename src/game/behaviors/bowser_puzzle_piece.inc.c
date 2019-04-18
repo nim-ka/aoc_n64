@@ -32,7 +32,7 @@ void BehLLLBowserPuzzleLoop(void)
         if(o->oBowserPuzzleUnkF4 == 3 && o->oDistanceToMario < 1000.0f)
         {
             for(i=0;i<5;i++)
-                sp28 = spawn_object(o,116,beh_single_coin_gets_spawned);
+                sp28 = spawn_object(o,MODEL_YELLOW_COIN,beh_single_coin_gets_spawned);
             o->oBowserPuzzleUnkF4 = 0;
             o->oAction++;
         }

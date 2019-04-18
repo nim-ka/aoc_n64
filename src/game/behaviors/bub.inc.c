@@ -12,7 +12,7 @@ void ActionBirdChirpChirp0(void)
     if(o->oDistanceToMario < 1500.0f)
     {
         for(i=0;i<sp18;i++)
-            spawn_object(o,100,beh_bub);
+            spawn_object(o,MODEL_BUB,beh_bub);
         o->oAction = 1;
     }
 }
@@ -95,7 +95,7 @@ void ActionCheepCheep2(void)
     if(o->oTimer < 20)
     {
         if(o->oInteractStatus & 0x8000)
-            spawn_object(o,164,beh_small_particle_snow);
+            spawn_object(o,MODEL_SMALL_SNOW_BALL,beh_small_particle_snow);
     }
     else
         o->oInteractStatus = 0;

@@ -2211,7 +2211,7 @@ static void generate_yellow_sparkles(s16 x, s16 y, s16 z, f32 radius)
     s16 offsetZ = radius * coss(sSparkleGenTheta) * coss(sSparkleGenPhi);
 
     spawn_object_abs_with_rot(
-        gCurrentObject, 0, 0, beh_powerup_sparkles2,
+        gCurrentObject, 0, MODEL_NONE, beh_powerup_sparkles2,
         x + offsetX, y + offsetY, z + offsetZ,
         0, 0, 0
     );
@@ -2222,7 +2222,7 @@ static void generate_yellow_sparkles(s16 x, s16 y, s16 z, f32 radius)
     offsetX = offsetZ * 4 / 3;
 
     spawn_object_abs_with_rot(
-        gCurrentObject, 0, 0, beh_powerup_sparkles2,
+        gCurrentObject, 0, MODEL_NONE, beh_powerup_sparkles2,
         x - offsetX, y - offsetY, z - offsetZ,
         0, 0, 0
     );

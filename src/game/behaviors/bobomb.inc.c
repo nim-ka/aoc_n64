@@ -37,11 +37,11 @@ void BobombExplodeLoop(void)
     if (o->oTimer < 5) obj_scale(1.0 + (f32)o->oTimer / 5.0);
     else
     {
-        explosion = spawn_object(o, 205, beh_explosion);
+        explosion = spawn_object(o, MODEL_EXPLOSION, beh_explosion);
         explosion->oGraphYOffset += 100.0f;
         
         func_802E5B7C();
-        create_respawner(0xBC, beh_bobomb, 3000);
+        create_respawner(MODEL_BLACK_BOBOMB, beh_bobomb, 3000);
         o->activeFlags = 0;
     }
 }
@@ -131,12 +131,12 @@ void GenericBobombFreeLoop(void)
             break;
             
         case BOBOMB_ACT_LAVA_DEATH:
-            if (ObjLavaDeath() == 1) create_respawner(188, beh_bobomb, 3000);
+            if (ObjLavaDeath() == 1) create_respawner(MODEL_BLACK_BOBOMB, beh_bobomb, 3000);
             break;
             
         case BOBOMB_ACT_DEATH_PLANE_DEATH:
             o->activeFlags = 0;
-            create_respawner(188, beh_bobomb, 3000);
+            create_respawner(MODEL_BLACK_BOBOMB, beh_bobomb, 3000);
             break;
     }
     
@@ -158,12 +158,12 @@ void StationaryBobombFreeLoop(void)
             break;
             
         case BOBOMB_ACT_LAVA_DEATH:
-            if (ObjLavaDeath() == 1) create_respawner(188, beh_bobomb, 3000);
+            if (ObjLavaDeath() == 1) create_respawner(MODEL_BLACK_BOBOMB, beh_bobomb, 3000);
             break;
             
         case BOBOMB_ACT_DEATH_PLANE_DEATH:
             o->activeFlags = 0;
-            create_respawner(188, beh_bobomb, 3000);
+            create_respawner(MODEL_BLACK_BOBOMB, beh_bobomb, 3000);
             break;
     }
     
@@ -276,7 +276,7 @@ void BehBobombLoop(void)
             else dustPeriodMinus1 = 7;
         
             if ((dustPeriodMinus1 & o->oBobombFuseTimer) == 0) /* oBobombFuseTimer % 2 or oBobombFuseTimer % 8 */
-                spawn_object(o, 150, beh_bobomb_fuse_smoke);
+                spawn_object(o, MODEL_SMOKE, beh_bobomb_fuse_smoke);
                 
             PlaySound(SOUND_CH6_UNKNOWN008);
             

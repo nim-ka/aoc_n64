@@ -43,7 +43,7 @@ void BehFlamethrowerLoop(void)
     struct Object* flame;
     f32 flameVel;
     s32 sp34;
-    s32 sp30;
+    s32 model;
     UNUSED u8 pad[8];
     if(o->oAction == 0)
     {
@@ -53,10 +53,10 @@ void BehFlamethrowerLoop(void)
     }
     else if(o->oAction == 1)
     {
-        sp30 = 144;
+        model = MODEL_RED_FLAME;
         flameVel = 95.0f;
         if(o->oBehParams2ndByte == 1)
-            sp30 = 145;
+            model = MODEL_BLUE_FLAME;
         if(o->oBehParams2ndByte == 2)
             flameVel = 50.0f;
         sp34 = 1;
@@ -67,7 +67,7 @@ void BehFlamethrowerLoop(void)
         else
             o->oAction++;
         o->oFlameThowerUnk110 = sp34;
-        flame = spawn_object_relative(o->oBehParams2ndByte,0,0,0,o,sp30,beh_flamethrower_flame);
+        flame = spawn_object_relative(o->oBehParams2ndByte,0,0,0,o,model,beh_flamethrower_flame);
         flame->oForwardVel = flameVel;
         PlaySound(SOUND_CH6_UNKNOWN004);
     }

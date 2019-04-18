@@ -147,7 +147,7 @@ static void fire_piranha_plant_act_grow(void)
                         (s32)(30.0f * o->oFirePiranhaPlantNeutralScale),
                         (s32)(140.0f * o->oFirePiranhaPlantNeutralScale),
                         2.5f * o->oFirePiranhaPlantNeutralScale,
-                        0xCB,
+                        MODEL_RED_FLAME_SHADOW,
                         20.0f,
                         15.0f,
                         0x1000);

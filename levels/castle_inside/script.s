@@ -204,7 +204,7 @@ glabel level_castle_entry
     load_mio0         /*seg*/ 0x06, /*romStart*/ _group15_mio0SegmentRomStart, /*romEnd*/ _group15_mio0SegmentRomEnd
     load_raw          /*seg*/ 0x0D, /*romStart*/ _group15_geoSegmentRomStart,  /*romEnd*/ _group15_geoSegmentRomEnd
     alloc_level_pool
-    mario /*unk3*/ 0x01, /*behParam*/ 0x00000001, /*beh*/ beh_mario
+    mario /*model*/ MODEL_MARIO, /*behParam*/ 0x00000001, /*beh*/ beh_mario
     jump_link /*target*/ script_func_global_16
     load_model_from_geo /*model*/ MODEL_CASTLE_BOWSER_TRAP,        /*geo*/ castle_geo_000F18
     load_model_from_geo /*model*/ MODEL_CASTLE_WATER_LEVEL_PILLAR, /*geo*/ castle_geo_001940

@@ -229,9 +229,9 @@
     .word \geo
 .endm
 
-.macro cmd23 unk2, unk4, unk8
+.macro cmd23 model, unk4, unk8
     .byte 0x23, 0x0C
-    .hword \unk2
+    .hword \model
     .word \unk4
     .word \unk8
 .endm

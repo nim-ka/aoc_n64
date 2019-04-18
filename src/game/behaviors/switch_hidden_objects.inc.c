@@ -39,7 +39,7 @@ void func_802B0F54(void)
 {
     struct Object* sp1C;
     set_object_hitbox(o,&sBreakableBoxHitbox);
-    obj_set_model(130);
+    obj_set_model(MODEL_BREAKABLE_BOX_SMALL);
     if(o->oAction == 0)
     {
         obj_disable_rendering();

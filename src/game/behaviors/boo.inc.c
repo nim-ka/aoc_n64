@@ -91,7 +91,7 @@ void BehBooGroupInit(void)
                 TableCourtyardBooTripletPos[i][1],
                 TableCourtyardBooTripletPos[i][2],
                 o,
-                84,
+                MODEL_BOO,
                 beh_boo_2
             );
             sp28->oMoveAngleYaw = RandomU16();
@@ -589,9 +589,9 @@ void ActionBooGivingStar4(void)
         if(o->oTimer > 60 && o->oDistanceToMario < 600.0f)
         {
             set_object_pos(o,973,0,717);
-            spawn_object_relative(0,0,0,     0,o,53,beh_boo_boss_spawned_bridge);
-            spawn_object_relative(1,0,0,-200,o,53,beh_boo_boss_spawned_bridge);
-            spawn_object_relative(2,0,0, 200,o,53,beh_boo_boss_spawned_bridge);
+            spawn_object_relative(0,0,0,     0,o,MODEL_BBH_STAIRCASE_STEP,beh_boo_boss_spawned_bridge);
+            spawn_object_relative(1,0,0,-200,o,MODEL_BBH_STAIRCASE_STEP,beh_boo_boss_spawned_bridge);
+            spawn_object_relative(2,0,0, 200,o,MODEL_BBH_STAIRCASE_STEP,beh_boo_boss_spawned_bridge);
             mark_object_for_deletion(o);
         }
     }
@@ -656,7 +656,7 @@ void BehBooWithCageInit(void)
         mark_object_for_deletion(o);
     else
     {
-        cage = spawn_object(o,90,beh_boo_cage);
+        cage = spawn_object(o,MODEL_HAUNTED_CAGE,beh_boo_cage);
         cage->oBehParams = o->oBehParams;
     }
 }
@@ -686,7 +686,7 @@ void BehSpawnBigBooLoop(void)
                 {
                     if(o->oBooUnkFC - o->oUnk88 < 2)
                     {
-                        spawn_object(o,84,beh_spawned_boo_2);
+                        spawn_object(o,MODEL_BOO,beh_spawned_boo_2);
                         o->oBooUnkFC++;
                     }
                 }
@@ -694,7 +694,7 @@ void BehSpawnBigBooLoop(void)
             }
             if(o->oUnk88 > 4)
             {
-                sp24 = spawn_object(o,84,beh_spawned_boo);
+                sp24 = spawn_object(o,MODEL_BOO,beh_spawned_boo);
                 copy_object_behavior_params(sp24,o);
                 o->oAction = 2;
 #ifndef VERSION_JP

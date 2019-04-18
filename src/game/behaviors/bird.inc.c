@@ -11,7 +11,7 @@ static void bird_act_init(void)
 
             for (i = 0; i < 6; i++)
             {
-                spawn_object(o, 0x54, bBird);
+                spawn_object(o, MODEL_BIRDS, bBird);
             }
 
             o->oHomeX = -20.0f;

@@ -17,10 +17,10 @@ void func_802BCA8C(void)
 {
     UNUSED s32 unused;
     struct Object* drop;
-    spawn_object(o,163,beh_water_type);
+    spawn_object(o,MODEL_WATER_WAVES,beh_water_type);
     if(gMarioStates->forwardVel > 10.0f)
     {
-        drop = spawn_object_with_scale(o,164,beh_water_drops,1.5f);
+        drop = spawn_object_with_scale(o,MODEL_SMALL_SNOW_BALL,beh_water_drops,1.5f);
         drop->oVelY = RandomFloat() * 30.0f;
         translate_object_xz_random(drop,110.0f);
     }
@@ -49,12 +49,12 @@ void BehKoopaShellFlameSpawn(void)
 {
     s32 i;
     for(i=0;i<2;i++)
-        spawn_object(o,144,beh_koopa_shell_flame);
+        spawn_object(o,MODEL_RED_FLAME,beh_koopa_shell_flame);
 }
 
 void func_802BCCD4(f32 a)
 {
-    struct Object* sp1C = spawn_object(o,0,beh_powerup_sparkles2);
+    struct Object* sp1C = spawn_object(o,MODEL_NONE,beh_powerup_sparkles2);
     sp1C->oPosY += a;
 }
 

@@ -83,14 +83,14 @@ void func_802AFAFC(void)
     o->oPlatformSpawnerUnk100 = 704.0f;
     o->oPlatformSpawnerUnk104 = 380.0f;
     o->oPlatformSpawnerUnk108 = 3.0f;
-    func_802AF9A4(45,beh_wf_solid_tower_platform);
-    func_802AF9A4(45,beh_wf_sliding_tower_platform);
-    func_802AF9A4(45,beh_wf_solid_tower_platform);
-    func_802AF9A4(45,beh_wf_sliding_tower_platform);
-    func_802AF9A4(45,beh_wf_solid_tower_platform);
-    func_802AF9A4(45,beh_wf_sliding_tower_platform);
-    func_802AF9A4(45,beh_wf_solid_tower_platform);
-    func_802AF9A4(47,beh_wf_elevator_tower_platform);
+    func_802AF9A4(MODEL_WF_TOWER_SQUARE_PLATORM,beh_wf_solid_tower_platform);
+    func_802AF9A4(MODEL_WF_TOWER_SQUARE_PLATORM,beh_wf_sliding_tower_platform);
+    func_802AF9A4(MODEL_WF_TOWER_SQUARE_PLATORM,beh_wf_solid_tower_platform);
+    func_802AF9A4(MODEL_WF_TOWER_SQUARE_PLATORM,beh_wf_sliding_tower_platform);
+    func_802AF9A4(MODEL_WF_TOWER_SQUARE_PLATORM,beh_wf_solid_tower_platform);
+    func_802AF9A4(MODEL_WF_TOWER_SQUARE_PLATORM,beh_wf_sliding_tower_platform);
+    func_802AF9A4(MODEL_WF_TOWER_SQUARE_PLATORM,beh_wf_solid_tower_platform);
+    func_802AF9A4(MODEL_WF_TOWER_SQUARE_PLATORM_FRAME2,beh_wf_elevator_tower_platform);
 }
 
 void BehTowerPlatformGroupLoop(void)

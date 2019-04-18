@@ -87,7 +87,7 @@ void BehBowserFlameSpawnLoop(void)
             o->oMoveAnglePitch = sp1C[5*sp30+4] + 0xC00;
             o->oMoveAngleYaw = sp1C[5*sp30+3] + (s16)bowser->oMoveAngleYaw;
             if(!(sp30 & 1))
-                spawn_object(o,144,beh_flame_moving_forward_growing);
+                spawn_object(o,MODEL_RED_FLAME,beh_flame_moving_forward_growing);
         }
     }
 }
@@ -123,7 +123,7 @@ s32 func_802B38B4(void)
     struct Object* wave;
     if(o->oBehParams2ndByte == 2)
     {
-        wave = spawn_object(o,104,beh_bowser_shock_wave);
+        wave = spawn_object(o,MODEL_BOWSER_WAVE,beh_bowser_shock_wave);
         wave->oPosY = o->oFloorHeight;
         return 1;
     }
@@ -477,9 +477,9 @@ void ActionBowser8(void) // only in sky
         {
             PlaySound(SOUND_CH6_UNKNOWN000);
             if(frame == 35)
-                spawn_object_relative(1,0,0x190,0x64,o,0x90,beh_blue_bowser_flame);
+                spawn_object_relative(1,0,0x190,0x64,o,MODEL_RED_FLAME,beh_blue_bowser_flame);
             else
-                spawn_object_relative(0,0,0x190,0x64,o,0x90,beh_blue_bowser_flame);
+                spawn_object_relative(0,0,0x190,0x64,o,MODEL_RED_FLAME,beh_blue_bowser_flame);
         }
     if(func_8029F788())
         o->oAction = 0;
@@ -668,7 +668,7 @@ void ActionBowser9(void)
         o->oBowserUnk108 = RandomFloat() * 3.0f + 1.0f;
     func_8029ED38(22);
     if(obj_check_anim_frame(5))
-        obj_spit_fire(0,200,180,7.0f,144,30.0f,10.0f,0x1000);
+        obj_spit_fire(0,200,180,7.0f,MODEL_RED_FLAME,30.0f,10.0f,0x1000);
     if(func_8029F788())
         o->oSubAction++;
     if(o->oSubAction >= o->oBowserUnk108)
@@ -904,10 +904,10 @@ void ActionBowser3(void)
 void func_802B5C78(void)
 {
     if(BITS)
-        D_8032CFD0 = spawn_object(o,122,&beh_grand_star);
+        D_8032CFD0 = spawn_object(o,MODEL_STAR,&beh_grand_star);
     else
     {
-        D_8032CFD0 = spawn_object(o,204,&beh_bowser_key_2);
+        D_8032CFD0 = spawn_object(o,MODEL_BOWSER_KEY_2,&beh_bowser_key_2);
         PlaySound2(SOUND_CH8_UNK61);
     }
     D_8032CFD0->oAngleVelYaw = o->oAngleVelYaw;
@@ -1029,7 +1029,7 @@ s32 func_802B6254(void)
         }
         if(obj_update_dialogue_unk1(2,18,sp1C,0))
         {
-            obj_set_model(0x69);
+            obj_set_model(MODEL_BOWSER2);
             func_80320040(0,60);
             func_8031F7CC(0,1);
             func_802B5C78();
@@ -1603,9 +1603,9 @@ void BehFallingBowserPlatformLoop(void)
 void func_802B7A58(void)
 {
     mark_object_for_deletion(o);
-    spawn_object_with_scale(o,0,&beh_black_smoke_upward,1.0f);
+    spawn_object_with_scale(o,MODEL_NONE,&beh_black_smoke_upward,1.0f);
     if(RandomFloat() < 0.1)
-        spawn_object(o,116,&beh_temporary_yellow_coin);
+        spawn_object(o,MODEL_YELLOW_COIN,&beh_temporary_yellow_coin);
 }
 
 s32 func_802B7ADC(s32 a0)
@@ -1710,7 +1710,7 @@ void BehFlameMovingForwardGrowingLoop(void)
     if(o->oPosY < o->oFloorHeight)
     {
         o->oPosY = o->oFloorHeight;
-        sp18 = spawn_object(o,0x90,&beh_flame_bowser);
+        sp18 = spawn_object(o,MODEL_RED_FLAME,&beh_flame_bowser);
         mark_object_for_deletion(o);
     }
 }
@@ -1741,9 +1741,9 @@ void BehFlameFloatingLandingLoop(void)
     if(o->oMoveFlags & 1)
     {
         if(o->oBehParams2ndByte == 0)
-            spawn_object(o,0x90,&beh_flame_large_burning_out);
+            spawn_object(o,MODEL_RED_FLAME,&beh_flame_large_burning_out);
         else
-            spawn_object(o,0,&beh_blue_flames_group);
+            spawn_object(o,MODEL_NONE,&beh_blue_flames_group); //? wonder if they meant MODEL_BLUE_FLAME?
         mark_object_for_deletion(o);
     }
     o->oGraphYOffset = o->header.gfx.scale[1] * 14.0f;
@@ -1828,7 +1828,7 @@ void BehBlueFlamesGroupLoop(void)
         {
             for(i=0;i<3;i++)
             {
-                flame = spawn_object(o,145,beh_flame_bouncing);
+                flame = spawn_object(o,MODEL_BLUE_FLAME,beh_flame_bouncing);
                 flame->oMoveAngleYaw += i * 0x5555;
                 flame->header.gfx.scale[0] = o->oBlueFlameUnkF8;
             }

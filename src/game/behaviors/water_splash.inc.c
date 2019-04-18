@@ -1,9 +1,9 @@
 // water_splash.c.inc
 
-struct WaterSplashParams D_8032FDAC = {2 ,164,beh_water_drops,0,0,5.0f,3.0f,30.0f,20.0f,0.5f,1.0f};
-struct WaterSplashParams D_8032FDD0 = {34,164,beh_water_drops,0,0,2.0f,3.0f,20.0f,20.0f,0.5f,1.0f};
-struct WaterSplashParams D_8032FDF4 = {34,185,beh_water_drops,0,0,2.0f,3.0f,20.0f,20.0f,1.0f,0.0f};
-struct WaterSplashParams D_8032FE18 = {98,164,beh_water_drops,0x6000,0,2.0f,8.0f,10.0f,10.0f,0.5f,1.0f};
+struct WaterSplashParams D_8032FDAC = {2 ,MODEL_SMALL_SNOW_BALL,beh_water_drops,0,0,5.0f,3.0f,30.0f,20.0f,0.5f,1.0f};
+struct WaterSplashParams D_8032FDD0 = {34,MODEL_SMALL_SNOW_BALL,beh_water_drops,0,0,2.0f,3.0f,20.0f,20.0f,0.5f,1.0f};
+struct WaterSplashParams D_8032FDF4 = {34,MODEL_FISH,beh_water_drops,0,0,2.0f,3.0f,20.0f,20.0f,1.0f,0.0f};
+struct WaterSplashParams D_8032FE18 = {98,MODEL_SMALL_SNOW_BALL,beh_water_drops,0x6000,0,2.0f,8.0f,10.0f,10.0f,0.5f,1.0f};
 
 void BehWaterSplashLoop(void)
 {
@@ -21,7 +21,7 @@ void BehWaterDropsLoop(void)
     f32 sp20 = find_water_level(o->oPosX,o->oPosZ);
     if(o->oTimer == 0)
     {
-        if(obj_has_model(185))
+        if(obj_has_model(MODEL_FISH))
             o->header.gfx.node.flags &= ~4;
         else
             o->header.gfx.node.flags |= 4;
@@ -33,7 +33,7 @@ void BehWaterDropsLoop(void)
     {
         if(sp20 > o->oPosY)
         {
-            try_to_spawn_object(0,1.0f,o,165,beh_water_surface_white_wave);
+            try_to_spawn_object(0,1.0f,o,MODEL_SPOT_ON_GROUND,beh_water_surface_white_wave);
             mark_object_for_deletion(o);
         }
         else if(o->oTimer > 20)

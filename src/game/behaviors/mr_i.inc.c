@@ -32,7 +32,7 @@ void ActionMrIParticle1(void)
     s32 i;
     mark_object_for_deletion(o);
     for(i = 0;i<10;i++)
-        spawn_object(o,0xaa,beh_giant_piranha_particle);
+        spawn_object(o,MODEL_PURPLE_MARBLE,beh_giant_piranha_particle);
 }
 
 void (*TableMrIParticleActions[])(void) = {ActionMrIParticle0,ActionMrIParticle1};
@@ -46,7 +46,7 @@ void func_802A525C(void)
 {
     struct Object* particle;
     f32 sp18 = o->header.gfx.scale[1];
-    particle = spawn_object(o,170,beh_mr_i_particle);
+    particle = spawn_object(o,MODEL_PURPLE_MARBLE,beh_mr_i_particle);
     particle->oPosY += 50.0f * sp18;
     particle->oPosX += sins(o->oMoveAngleYaw) * 90.0f * sp18;
     particle->oPosZ += coss(o->oMoveAngleYaw) * 90.0f * sp18;

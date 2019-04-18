@@ -143,7 +143,7 @@ s16 D_8032F0CC[] = {6047,5664,5292,4934,4587,4254,3933,3624,3329,3046,2775,2517,
 
 
 // not in behavior file
-struct SpawnParticlesInfo D_8032F270 = {2,20,142,0,40,5,30,20,252,30,330.0f,10.0f};
+struct SpawnParticlesInfo D_8032F270 = {2,20,MODEL_MIST,0,40,5,30,20,252,30,330.0f,10.0f};
 
 void func_802AA618(s32 sp18,s32 sp1C,f32 sp20)
 {
@@ -226,7 +226,7 @@ void func_802B2328(s32 n,s32 a1,s32 a2,s32 r) // n is the number of objects to s
                                     sins(D_8035FF10+i*seperation)*a1,
                                     (i+1)*a2,
                                     coss(D_8035FF10+i*seperation)*a1,
-                                    o,0,beh_powerup_sparkles2);
+                                    o,MODEL_NONE,beh_powerup_sparkles2);
 
     D_8035FF10 += r*0x100;
 }

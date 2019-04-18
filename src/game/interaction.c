@@ -355,7 +355,7 @@ void mario_blow_off_cap(struct MarioState *m, f32 capSpeed)
 
         m->flags &= ~(MARIO_UNKNOWN_00 | MARIO_CAP_ON_HEAD);
 
-        capObject = spawn_object(m->marioObj, 136, beh_normal_cap);
+        capObject = spawn_object(m->marioObj, MODEL_MARIOS_CAP, beh_normal_cap);
 
         capObject->oPosY += (m->action & ACT_FLAG_SHORT_HITBOX) ? 120.0f : 180.0f;
         capObject->oForwardVel = capSpeed;

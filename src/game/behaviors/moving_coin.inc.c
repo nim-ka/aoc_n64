@@ -53,7 +53,7 @@ void MovingCoinFlickerLoop(void)
 
 void CoinCollected(void)
 {
-    spawn_object(o, 149, beh_golden_coin_sparkles);
+    spawn_object(o, MODEL_SPARKLES, beh_golden_coin_sparkles);
     o->activeFlags = 0;
 }
 

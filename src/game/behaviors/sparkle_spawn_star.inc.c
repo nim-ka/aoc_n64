@@ -20,7 +20,7 @@ void BehUnused080CInit(void)
         o->oBehParams = o->parentObj->oBehParams;
     sp24 =(o->oBehParams >> 24) & 0xFF;
     if(func_802A377C(sp24) & save_file_get_star_flags(gCurrSaveFileNum-1,gCurrCourseNum-1))
-        obj_set_model(121);
+        obj_set_model(MODEL_TRANSPARENT_STAR);
     PlaySound2(SOUND_CH8_UNK57);
 }
 
@@ -80,7 +80,7 @@ void BehUnused080CLoop(void)
             func_802A3004();
         }
         PlaySound(SOUND_ENVIRONMENT_STAR);
-        spawn_object(o,0,beh_powerup_sparkles2);
+        spawn_object(o,MODEL_NONE,beh_powerup_sparkles2);
         if(o->oVelY < 0 && o->oPosY < o->oHomeY)
         {
             o->oAction++;
@@ -108,7 +108,7 @@ void BehUnused080CLoop(void)
             o->oGravity = 0;
             o->oAction++;
         }
-        spawn_object(o,0,beh_powerup_sparkles2);
+        spawn_object(o,MODEL_NONE,beh_powerup_sparkles2);
     }
     else if(o->oAction == 2)
     {
@@ -131,7 +131,7 @@ void BehUnused080CLoop(void)
 
 void BehSpawnStarObjects(u32 sp20)
 {
-    struct Object* sp1C = spawn_object(o,122,beh_unused_080C);
+    struct Object* sp1C = spawn_object(o,MODEL_STAR,beh_unused_080C);
     sp1C->oBehParams = sp20 << 24;
     sp1C->oUnk190 = 0x400;
     set_object_angle(sp1C,0,0,0);

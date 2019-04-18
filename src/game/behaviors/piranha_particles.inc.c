@@ -11,6 +11,6 @@ void BehPiranhaParticlesSpawnLoop(void)
     {
         mark_object_for_deletion(o);
         for(i=0;i<10;i++)
-            spawn_object(o,170,beh_giant_piranha_particle);
+            spawn_object(o,MODEL_PURPLE_MARBLE,beh_giant_piranha_particle);
     }
 }

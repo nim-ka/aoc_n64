@@ -26,7 +26,7 @@ void BehCheckerboardElevatorGroupInit(void)
             sp38 = -D_8032F754[sp34].unk0;
         else
             sp38 = D_8032F754[sp34].unk0;
-        sp2C = spawn_object_relative(i,0,i*sp3C,sp38,o,202,beh_checkerboard_platform_sub);
+        sp2C = spawn_object_relative(i,0,i*sp3C,sp38,o,MODEL_CHECKERBOARD_PLATFORM,beh_checkerboard_platform_sub);
         sp2C->oUnk1AC_F32 = D_8032F754[sp34].unk2;
         func_802B8F7C(sp2C->header.gfx.scale,D_8032F754[sp34].unk1);
     }

@@ -8,7 +8,7 @@ void BehBetaBooKeyOutsideLoop(void)
     {
         o->parentObj->oUnk88 = 1;
         mark_object_for_deletion(o);
-        spawn_object(o,149,beh_golden_coin_sparkles);
+        spawn_object(o,MODEL_SPARKLES,beh_golden_coin_sparkles);
     }
 }
 
@@ -36,7 +36,7 @@ void ActionBetaBooKeyInside2(void)
         {
             o->parentObj->oInteractStatus = 1;
             mark_object_for_deletion(o);
-            spawn_object(o,149,beh_golden_coin_sparkles);
+            spawn_object(o,MODEL_SPARKLES,beh_golden_coin_sparkles);
         }
     }
 }

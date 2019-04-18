@@ -25,7 +25,7 @@ void func_802BB9F0(s32 a0)
         sp20 = 3;
     for(i=0;i<sp20;i++)
     {
-        sp2C = spawn_object(o,144,beh_lll_rotating_hex_flame);
+        sp2C = spawn_object(o,MODEL_RED_FLAME,beh_lll_rotating_hex_flame);
         sp2C->oLllRotatingHexFlameUnkF4 += sp1C;
         sp2C->oLllRotatingHexFlameUnkF8 = o->oPosY - 200.0f;
         sp2C->oLllRotatingHexFlameUnkFC += sp18;

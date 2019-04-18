@@ -17,9 +17,9 @@ void BehExplosionLoop(void)
         if (find_water_level(o->oPosX, o->oPosZ) > o->oPosY)
         {
             for (i = 0; i < 40; i++)
-                spawn_object(o, 164, beh_bobomb_explosion_bubble);
+                spawn_object(o, MODEL_SMALL_SNOW_BALL, beh_bobomb_explosion_bubble);
         }
-        else spawn_object(o, 150, beh_bobomb_bully_death_smoke);
+        else spawn_object(o, MODEL_SMOKE, beh_bobomb_bully_death_smoke);
         
         o->activeFlags = 0;
     }

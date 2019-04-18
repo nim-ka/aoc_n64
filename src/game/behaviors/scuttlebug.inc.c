@@ -137,7 +137,7 @@ void BehScuttlebugSpawnLoop(void)
         if(o->oTimer > 30 && 500.0f < o->oDistanceToMario && o->oDistanceToMario < 1500.0f)
         {
             PlaySound2(SOUND_CH9_UNK44);
-            scuttlebug = spawn_object(o,101,beh_scuttlebug);
+            scuttlebug = spawn_object(o,MODEL_SCUTTLEBUG,beh_scuttlebug);
             scuttlebug->oScuttlebugUnkF4 = o->oScuttlebugSpawnerUnkF4;
             scuttlebug->oForwardVel = 30.0f;
             scuttlebug->oVelY = 80.0f;

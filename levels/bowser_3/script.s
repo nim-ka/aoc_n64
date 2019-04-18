@@ -23,7 +23,7 @@ glabel level_bowser_3_entry
     load_raw  /*seg*/ 0x0D, /*romStart*/ _group12_geoSegmentRomStart,  /*romEnd*/ _group12_geoSegmentRomEnd
     load_mio0 /*seg*/ 0x0A, /*romStart*/ _bits_skybox_mio0SegmentRomStart, /*romEnd*/ _bits_skybox_mio0SegmentRomEnd
     alloc_level_pool
-    mario /*unk3*/ 0x01, /*behParam*/ 0x00000001, /*beh*/ beh_mario
+    mario /*model*/ MODEL_MARIO, /*behParam*/ 0x00000001, /*beh*/ beh_mario
     jump_link /*target*/ script_func_global_13
     load_model_from_geo /*model*/ MODEL_BOWSER_3_FALLING_PLATFORM_1,  /*geo*/ bowser_3_geo_000290
     load_model_from_geo /*model*/ MODEL_BOWSER_3_FALLING_PLATFORM_2,  /*geo*/ bowser_3_geo_0002A8

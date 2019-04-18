@@ -21,7 +21,7 @@ void BehLLLFloatingWoodBridgeLoop(void)
         {
             for(i=1;i<4;i++)
             {
-                sp3C = spawn_object_relative(0,(i-2)*300,0,0,o,53,beh_lll_wood_piece);
+                sp3C = spawn_object_relative(0,(i-2)*300,0,0,o,MODEL_LLL_WOOD_BRIDGE,beh_lll_wood_piece);
                 sp3C->oLllWoodPieceUnkF4 = i * 4096;
             }
             o->oAction = 1;

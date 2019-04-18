@@ -10,8 +10,8 @@ void BehFloorTrapInCastleLoop(void)
 void BehCastleFloorTrapInit(void)
 {
     struct Object* sp2C;
-    sp2C = spawn_object_relative(0,-358,0,0,o,53,beh_floor_trap_in_castle);
-    sp2C = spawn_object_relative(0, 358,0,0,o,53,beh_floor_trap_in_castle);
+    sp2C = spawn_object_relative(0,-358,0,0,o,MODEL_CASTLE_BOWSER_TRAP,beh_floor_trap_in_castle);
+    sp2C = spawn_object_relative(0, 358,0,0,o,MODEL_CASTLE_BOWSER_TRAP,beh_floor_trap_in_castle);
     sp2C->oMoveAngleYaw += 0x8000;
 }
 

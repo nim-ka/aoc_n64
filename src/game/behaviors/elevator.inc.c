@@ -115,13 +115,13 @@ void BehElevatorInit(void)
 
 void (*TableElevatorActions[])(void) = {ActionElevator0,ActionElevator1,ActionElevator2,ActionElevator3,ActionElevator4};
 
-struct SpawnParticlesInfo D_8032F3CC = {3,20,142,20,10,5,0,0,0,30,30.0f,1.5f};
+struct SpawnParticlesInfo D_8032F3CC = {3,20,MODEL_MIST,20,10,5,0,0,0,30,30.0f,1.5f};
 
-struct SpawnParticlesInfo D_8032F3E0 = {0,5,159,0,0,20,20,0,252,30,5.0f,2.0f};
+struct SpawnParticlesInfo D_8032F3E0 = {0,5,MODEL_SAND_DUST,0,0,20,20,0,252,30,5.0f,2.0f};
 
 s16 D_8032F3F4[] = {2,-8,1,4};
 
-struct SpawnParticlesInfo D_8032F3FC = {0,5,158,0,0,20,20,0,252,30,2.0f,2.0f};
+struct SpawnParticlesInfo D_8032F3FC = {0,5,MODEL_SNOWMAN_SNOW_BALL_DL,0,0,20,20,0,252,30,2.0f,2.0f};
 
 void BehElevatorLoop(void)
 {

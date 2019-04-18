@@ -6,7 +6,7 @@ void BehHiddenStarInit(void) {
 
     sp36 = count_objects_with_behavior(beh_hidden_star_trigger);
     if (sp36 == 0) {
-        sp30 = spawn_object_abs_with_rot(o, 0, 122, beh_star, o->oPosX, o->oPosY, o->oPosZ, 0, 0, 0);
+        sp30 = spawn_object_abs_with_rot(o, 0, MODEL_STAR, beh_star, o->oPosX, o->oPosY, o->oPosZ, 0, 0, 0);
         sp30->oBehParams = o->oBehParams;
         o->activeFlags = 0;
     }

@@ -28,7 +28,7 @@ static void fire_spitter_act_spit_fire(void)
         else
         {
             PlaySound2(SOUND_OBJECT_FLAMEBLOWN);
-            obj_spit_fire(0, 0, 0, 5.0f, 0xCB, 20.0f, 15.0f, 0x1000);
+            obj_spit_fire(0, 0, 0, 5.0f, MODEL_RED_FLAME_SHADOW, 20.0f, 15.0f, 0x1000);
         }
     }
 }

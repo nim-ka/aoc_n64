@@ -45,7 +45,7 @@ void ActionBulletBill2(void)
     {
         if(o->oTimer > 70)
             obj_update_floor_and_walls();
-        spawn_object(o,150,beh_white_puff_smoke);
+        spawn_object(o,MODEL_SMOKE,beh_white_puff_smoke);
         o->oForwardVel = 30.0f;
         if(o->oDistanceToMario > 300.0f)
             obj_rotate_yaw_toward(o->oAngleToMario,0x100);

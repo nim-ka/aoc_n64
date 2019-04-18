@@ -14,21 +14,21 @@ struct ObjectHitbox sExclamationBoxHitbox =
 };
 
 struct Struct802C0DF0 TableExclamationBoxContents[] = {
-    {0, 0, 0, 135, beh_wing_cap},
-    {1, 0, 0, 134, beh_metal_cap},
-    {2, 0, 0, 136, beh_vanish_cap},
-    {3, 0, 0, 190, beh_koopa_shell},
-    {4, 0, 0, 116, beh_single_coin_gets_spawned},
-    {5, 0, 0, 0, beh_three_coins_spawn},
-    {6, 0, 0, 0, beh_ten_coins_spawn},
-    {7, 0, 0, 212, beh_1up_walking},
-    {8, 0, 0, 122, beh_spawned_star},
-    {9, 0, 0, 212, beh_1up_running_away},
-    {10, 0, 1, 122, beh_spawned_star},
-    {11, 0, 2, 122, beh_spawned_star},
-    {12, 0, 3, 122, beh_spawned_star},
-    {13, 0, 4, 122, beh_spawned_star},
-    {14, 0, 5, 122, beh_spawned_star},
+    {0, 0, 0, MODEL_MARIOS_WING_CAP, beh_wing_cap},
+    {1, 0, 0, MODEL_MARIOS_METAL_CAP, beh_metal_cap},
+    {2, 0, 0, MODEL_MARIOS_CAP, beh_vanish_cap},
+    {3, 0, 0, MODEL_KOOPA_SHELL, beh_koopa_shell},
+    {4, 0, 0, MODEL_YELLOW_COIN, beh_single_coin_gets_spawned},
+    {5, 0, 0, MODEL_NONE, beh_three_coins_spawn},
+    {6, 0, 0, MODEL_NONE, beh_ten_coins_spawn},
+    {7, 0, 0, MODEL_1UP, beh_1up_walking},
+    {8, 0, 0, MODEL_STAR, beh_spawned_star},
+    {9, 0, 0, MODEL_1UP, beh_1up_running_away},
+    {10, 0, 1, MODEL_STAR, beh_spawned_star},
+    {11, 0, 2, MODEL_STAR, beh_spawned_star},
+    {12, 0, 3, MODEL_STAR, beh_spawned_star},
+    {13, 0, 4, MODEL_STAR, beh_spawned_star},
+    {14, 0, 5, MODEL_STAR, beh_spawned_star},
     {99, 0, 0, 0, NULL}
 };
 
@@ -60,13 +60,13 @@ void ActionExclamationBox1(void)
     obj_become_intangible();
     if(o->oTimer == 0)
     {
-        spawn_object(o,132,beh_rotating_exclamation_mark);
-        obj_set_model(131);
+        spawn_object(o,MODEL_EXCLAMATION_POINT,beh_rotating_exclamation_mark);
+        obj_set_model(MODEL_EXCLAMATION_BOX_OUTLINE);
     }
     if((save_file_get_flags() & D_8032F0C0[o->oBehParams2ndByte]) || ((o->oBehParams >> 24) & 0xFF) != 0)
     {
         o->oAction = 2;
-        obj_set_model(137);
+        obj_set_model(MODEL_EXCLAMATION_BOX);
     }
 }
 

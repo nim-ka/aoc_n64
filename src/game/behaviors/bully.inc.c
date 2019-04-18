@@ -194,7 +194,7 @@ void BullyStep(void)
 
 void BullySpawnCoin(void)
 {
-    struct Object *coin = spawn_object(o, 116, beh_moving_yellow_coin);
+    struct Object *coin = spawn_object(o, MODEL_YELLOW_COIN, beh_moving_yellow_coin);
 #ifdef VERSION_JP
     PlaySound2(SOUND_GENERAL_COINSPURT);
 #else
@@ -224,7 +224,7 @@ void BullyLavaDeath(void)
             else
             {
                 CreateStar(0, 950.0f, -6800.0f);
-                spawn_object_abs_with_rot(o, 0, 0, beh_tumbling_platform, 0, 154, -5631, 0, 0, 0);
+                spawn_object_abs_with_rot(o, 0, MODEL_NONE, beh_tumbling_platform, 0, 154, -5631, 0, 0, 0);
             }
         }
     }
@@ -290,7 +290,7 @@ void BehBullyLoop(void)
 
 void BigBullySpawnMinion(s32 arg0, s32 arg1, s32 arg2, s16 arg3)
 {
-    struct Object *bully = spawn_object_abs_with_rot(o, 0, 86, beh_small_bully, arg0, arg1, arg2, 0, arg3, 00);
+    struct Object *bully = spawn_object_abs_with_rot(o, 0, MODEL_BULLY, beh_small_bully, arg0, arg1, arg2, 0, arg3, 00);
     bully->oBullySubtype = BULLY_STYPE_MINION;
     bully->oBehParams2ndByte = BULLY_BP_SIZE_SMALL;
 }

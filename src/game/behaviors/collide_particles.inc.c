@@ -29,7 +29,7 @@ void BehPunchTinyTriangleInit(void)
     struct Object* triangle;
     for(i=0;i<6;i++)
     {
-        triangle = spawn_object(o,138,beh_punch_tiny_triangle);
+        triangle = spawn_object(o,MODEL_DIRT_ANIMATION,beh_punch_tiny_triangle);
         triangle->oMoveAngleYaw = gMarioObject->oMoveAngleYaw + D_8032F2CC[2*i] + 0x8000;
         triangle->oVelY = sins(D_8032F2CC[2*i+1]) * 25.0f;
         triangle->oForwardVel = coss(D_8032F2CC[2*i+1]) * 25.0f;
@@ -59,7 +59,7 @@ void BehTinyStarParticlesInit(void)
     struct Object* particle;
     for(i=0;i<7;i++)
     {
-        particle = spawn_object(o,139,beh_wall_tiny_star_particle);
+        particle = spawn_object(o,MODEL_CARTOON_STAR,beh_wall_tiny_star_particle);
         particle->oMoveAngleYaw = gMarioObject->oMoveAngleYaw + D_8032F2E4[2*i] + 0x8000;
         particle->oVelY = sins(D_8032F2E4[2*i+1]) * 25.0f;
         particle->oForwardVel = coss(D_8032F2E4[2*i+1]) * 25.0f;
@@ -88,7 +88,7 @@ void BehPoundTinyStarParticleInit(void)
     struct Object* particle;
     for(sp24=0;sp24<sp20;sp24++)
     {
-        particle = spawn_object(o,139,beh_pound_tiny_star_particle);
+        particle = spawn_object(o,MODEL_CARTOON_STAR,beh_pound_tiny_star_particle);
         particle->oMoveAngleYaw = (sp24 << 16)/sp20;
     }
 }

@@ -45,7 +45,7 @@ void (*TableJumpingBoxActions[])(void) = {ActionJumpingBox0,ActionJumpingBox1};
 
 void func_802B1F84(void)
 {
-    obj_set_model(129);
+    obj_set_model(MODEL_BREAKABLE_BOX);
     obj_scale(0.5f);
     set_object_hitbox(o,&sJumpingBoxHitbox);
     obj_update_floor_and_walls();
@@ -62,7 +62,7 @@ void BehJumpingBoxLoop(void)
         break;
     case HELD_HELD:
         copy_object_pos(o,gMarioObject);
-        obj_set_model(130);
+        obj_set_model(MODEL_BREAKABLE_BOX_SMALL);
         func_8029FA5C(-1,0);
         break;
     case HELD_THROWN:

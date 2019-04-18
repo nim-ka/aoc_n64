@@ -4,7 +4,7 @@
 void BehWaterMistSpawnLoop(void)
 {
     func_802ADBBC(0x20000);
-    spawn_object(o,142,beh_water_mist);
+    spawn_object(o,MODEL_MIST,beh_water_mist);
 }
 
 void BehWaterMistLoop(void)

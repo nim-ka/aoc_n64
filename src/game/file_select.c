@@ -304,46 +304,46 @@ static void score_menu_create_buttons(struct Object *scoreButton)
 {
     // File A
     if (save_file_exists(0) == TRUE)
-        sMainMenuButtons[MENU_BUTTON_SCORE_FILE_A] = spawn_object_rel_with_rot(scoreButton, 3, beh_menu_button, 711, 311,
+        sMainMenuButtons[MENU_BUTTON_SCORE_FILE_A] = spawn_object_rel_with_rot(scoreButton, MODEL_MAIN_MENU_MARIO_SAVE_BUTTON, beh_menu_button, 711, 311,
             -100, 0, -0x8000, 0);
     else
-        sMainMenuButtons[MENU_BUTTON_SCORE_FILE_A] = spawn_object_rel_with_rot(scoreButton, 9, beh_menu_button, 711, 311,
+        sMainMenuButtons[MENU_BUTTON_SCORE_FILE_A] = spawn_object_rel_with_rot(scoreButton, MODEL_MAIN_MENU_MARIO_NEW_BUTTON, beh_menu_button, 711, 311,
             -100, 0, -0x8000, 0);
     sMainMenuButtons[MENU_BUTTON_SCORE_FILE_A]->oMenuButtonScale = 0.11111111f;
     // File B
     if (save_file_exists(1) == TRUE)
-        sMainMenuButtons[MENU_BUTTON_SCORE_FILE_B] = spawn_object_rel_with_rot(scoreButton, 3, beh_menu_button, -166, 311,
+        sMainMenuButtons[MENU_BUTTON_SCORE_FILE_B] = spawn_object_rel_with_rot(scoreButton, MODEL_MAIN_MENU_MARIO_SAVE_BUTTON, beh_menu_button, -166, 311,
             -100, 0, -0x8000, 0);
     else
-        sMainMenuButtons[MENU_BUTTON_SCORE_FILE_B] = spawn_object_rel_with_rot(scoreButton, 9, beh_menu_button, -166, 311,
+        sMainMenuButtons[MENU_BUTTON_SCORE_FILE_B] = spawn_object_rel_with_rot(scoreButton, MODEL_MAIN_MENU_MARIO_NEW_BUTTON, beh_menu_button, -166, 311,
             -100, 0, -0x8000, 0);
     sMainMenuButtons[MENU_BUTTON_SCORE_FILE_B]->oMenuButtonScale = 0.11111111f;
     // File C
     if (save_file_exists(2) == TRUE)
-        sMainMenuButtons[MENU_BUTTON_SCORE_FILE_C] = spawn_object_rel_with_rot(scoreButton, 3, beh_menu_button, 711, 0,
+        sMainMenuButtons[MENU_BUTTON_SCORE_FILE_C] = spawn_object_rel_with_rot(scoreButton, MODEL_MAIN_MENU_MARIO_SAVE_BUTTON, beh_menu_button, 711, 0,
             -100, 0, -0x8000, 0);
     else
-        sMainMenuButtons[MENU_BUTTON_SCORE_FILE_C] = spawn_object_rel_with_rot(scoreButton, 9, beh_menu_button, 711, 0,
+        sMainMenuButtons[MENU_BUTTON_SCORE_FILE_C] = spawn_object_rel_with_rot(scoreButton, MODEL_MAIN_MENU_MARIO_NEW_BUTTON, beh_menu_button, 711, 0,
             -100, 0, -0x8000, 0);
     sMainMenuButtons[MENU_BUTTON_SCORE_FILE_C]->oMenuButtonScale = 0.11111111f;
     // File D
     if (save_file_exists(3) == TRUE)
-        sMainMenuButtons[MENU_BUTTON_SCORE_FILE_D] = spawn_object_rel_with_rot(scoreButton, 3, beh_menu_button, -166, 0,
+        sMainMenuButtons[MENU_BUTTON_SCORE_FILE_D] = spawn_object_rel_with_rot(scoreButton, MODEL_MAIN_MENU_MARIO_SAVE_BUTTON, beh_menu_button, -166, 0,
             -100, 0, -0x8000, 0);
     else
-        sMainMenuButtons[MENU_BUTTON_SCORE_FILE_D] = spawn_object_rel_with_rot(scoreButton, 9, beh_menu_button, -166, 0,
+        sMainMenuButtons[MENU_BUTTON_SCORE_FILE_D] = spawn_object_rel_with_rot(scoreButton, MODEL_MAIN_MENU_MARIO_NEW_BUTTON, beh_menu_button, -166, 0,
             -100, 0, -0x8000, 0);
     sMainMenuButtons[MENU_BUTTON_SCORE_FILE_D]->oMenuButtonScale = 0.11111111f;
     // Return to main menu button
-    sMainMenuButtons[MENU_BUTTON_SCORE_RETURN] = spawn_object_rel_with_rot(scoreButton, 6, beh_menu_button, 711, -388,
+    sMainMenuButtons[MENU_BUTTON_SCORE_RETURN] = spawn_object_rel_with_rot(scoreButton, MODEL_MAIN_MENU_YELLOW_FILE_BUTTON, beh_menu_button, 711, -388,
         -100, 0, -0x8000, 0);
     sMainMenuButtons[MENU_BUTTON_SCORE_RETURN]->oMenuButtonScale = 0.11111111f;
     // Switch to copy menu button
-    sMainMenuButtons[MENU_BUTTON_SCORE_COPY_FILE] = spawn_object_rel_with_rot(scoreButton, 5, beh_menu_button, 0, -388,
+    sMainMenuButtons[MENU_BUTTON_SCORE_COPY_FILE] = spawn_object_rel_with_rot(scoreButton, MODEL_MAIN_MENU_BLUE_COPY_BUTTON, beh_menu_button, 0, -388,
         -100, 0, -0x8000, 0);
     sMainMenuButtons[MENU_BUTTON_SCORE_COPY_FILE]->oMenuButtonScale = 0.11111111f;
     // Switch to erase menu button
-    sMainMenuButtons[MENU_BUTTON_SCORE_ERASE_FILE] = spawn_object_rel_with_rot(scoreButton, 4, beh_menu_button, -711, -388,
+    sMainMenuButtons[MENU_BUTTON_SCORE_ERASE_FILE] = spawn_object_rel_with_rot(scoreButton, MODEL_MAIN_MENU_RED_ERASE_BUTTON, beh_menu_button, -711, -388,
         -100, 0, -0x8000, 0);
     sMainMenuButtons[MENU_BUTTON_SCORE_ERASE_FILE]->oMenuButtonScale = 0.11111111f;
 }
@@ -406,46 +406,46 @@ static void copy_menu_create_buttons(struct Object * copyButton)
 {
     // File A
     if (save_file_exists(0) == TRUE)
-        sMainMenuButtons[MENU_BUTTON_COPY_FILE_A] = spawn_object_rel_with_rot(copyButton, 3, beh_menu_button, 711, 311,
+        sMainMenuButtons[MENU_BUTTON_COPY_FILE_A] = spawn_object_rel_with_rot(copyButton, MODEL_MAIN_MENU_MARIO_SAVE_BUTTON, beh_menu_button, 711, 311,
             -100, 0, -0x8000, 0);
     else
-        sMainMenuButtons[MENU_BUTTON_COPY_FILE_A] = spawn_object_rel_with_rot(copyButton, 9, beh_menu_button, 711, 311,
+        sMainMenuButtons[MENU_BUTTON_COPY_FILE_A] = spawn_object_rel_with_rot(copyButton, MODEL_MAIN_MENU_MARIO_NEW_BUTTON, beh_menu_button, 711, 311,
             -100, 0, -0x8000, 0);
     sMainMenuButtons[MENU_BUTTON_COPY_FILE_A]->oMenuButtonScale = 0.11111111f;
     // File B
     if (save_file_exists(1) == TRUE)
-        sMainMenuButtons[MENU_BUTTON_COPY_FILE_B] = spawn_object_rel_with_rot(copyButton, 3, beh_menu_button, -166, 311,
+        sMainMenuButtons[MENU_BUTTON_COPY_FILE_B] = spawn_object_rel_with_rot(copyButton, MODEL_MAIN_MENU_MARIO_SAVE_BUTTON, beh_menu_button, -166, 311,
             -100, 0, -0x8000, 0);
     else
-        sMainMenuButtons[MENU_BUTTON_COPY_FILE_B] = spawn_object_rel_with_rot(copyButton, 9, beh_menu_button, -166, 311,
+        sMainMenuButtons[MENU_BUTTON_COPY_FILE_B] = spawn_object_rel_with_rot(copyButton, MODEL_MAIN_MENU_MARIO_NEW_BUTTON, beh_menu_button, -166, 311,
             -100, 0, -0x8000, 0);
     sMainMenuButtons[MENU_BUTTON_COPY_FILE_B]->oMenuButtonScale = 0.11111111f;
     // File C
     if (save_file_exists(2) == TRUE)
-        sMainMenuButtons[MENU_BUTTON_COPY_FILE_C] = spawn_object_rel_with_rot(copyButton, 3, beh_menu_button, 711, 0,
+        sMainMenuButtons[MENU_BUTTON_COPY_FILE_C] = spawn_object_rel_with_rot(copyButton, MODEL_MAIN_MENU_MARIO_SAVE_BUTTON, beh_menu_button, 711, 0,
             -100, 0, -0x8000, 0);
     else
-        sMainMenuButtons[MENU_BUTTON_COPY_FILE_C] = spawn_object_rel_with_rot(copyButton, 9, beh_menu_button, 711, 0,
+        sMainMenuButtons[MENU_BUTTON_COPY_FILE_C] = spawn_object_rel_with_rot(copyButton, MODEL_MAIN_MENU_MARIO_NEW_BUTTON, beh_menu_button, 711, 0,
             -100, 0, -0x8000, 0);
     sMainMenuButtons[MENU_BUTTON_COPY_FILE_C]->oMenuButtonScale = 0.11111111f;
     // File D
     if (save_file_exists(3) == TRUE)
-        sMainMenuButtons[MENU_BUTTON_COPY_FILE_D] = spawn_object_rel_with_rot(copyButton, 3, beh_menu_button, -166, 0,
+        sMainMenuButtons[MENU_BUTTON_COPY_FILE_D] = spawn_object_rel_with_rot(copyButton, MODEL_MAIN_MENU_MARIO_SAVE_BUTTON, beh_menu_button, -166, 0,
             -100, 0, -0x8000, 0);
     else
-        sMainMenuButtons[MENU_BUTTON_COPY_FILE_D] = spawn_object_rel_with_rot(copyButton, 9, beh_menu_button, -166, 0,
+        sMainMenuButtons[MENU_BUTTON_COPY_FILE_D] = spawn_object_rel_with_rot(copyButton, MODEL_MAIN_MENU_MARIO_NEW_BUTTON, beh_menu_button, -166, 0,
             -100, 0, -0x8000, 0);
     sMainMenuButtons[MENU_BUTTON_COPY_FILE_D]->oMenuButtonScale = 0.11111111f;
     // Return to main menu button
-    sMainMenuButtons[MENU_BUTTON_COPY_RETURN] = spawn_object_rel_with_rot(copyButton, 6, beh_menu_button, 711, -388,
+    sMainMenuButtons[MENU_BUTTON_COPY_RETURN] = spawn_object_rel_with_rot(copyButton, MODEL_MAIN_MENU_YELLOW_FILE_BUTTON, beh_menu_button, 711, -388,
         -100, 0, -0x8000, 0);
     sMainMenuButtons[MENU_BUTTON_COPY_RETURN]->oMenuButtonScale = 0.11111111f;
     // Switch to scire menu button
-    sMainMenuButtons[MENU_BUTTON_COPY_CHECK_SCORE] = spawn_object_rel_with_rot(copyButton, 7, beh_menu_button, 0, -388,
+    sMainMenuButtons[MENU_BUTTON_COPY_CHECK_SCORE] = spawn_object_rel_with_rot(copyButton, MODEL_MAIN_MENU_GREEN_SCORE_BUTTON, beh_menu_button, 0, -388,
         -100, 0, -0x8000, 0);
     sMainMenuButtons[MENU_BUTTON_COPY_CHECK_SCORE]->oMenuButtonScale = 0.11111111f;
     // Switch to erase menu button
-    sMainMenuButtons[MENU_BUTTON_COPY_ERASE_FILE] = spawn_object_rel_with_rot(copyButton, 4, beh_menu_button, -711, -388,
+    sMainMenuButtons[MENU_BUTTON_COPY_ERASE_FILE] = spawn_object_rel_with_rot(copyButton, MODEL_MAIN_MENU_RED_ERASE_BUTTON, beh_menu_button, -711, -388,
         -100, 0, -0x8000, 0);
     sMainMenuButtons[MENU_BUTTON_COPY_ERASE_FILE]->oMenuButtonScale = 0.11111111f;
 }
@@ -486,8 +486,8 @@ static void CopyMenuCopyFile(struct Object *copyButton, int copyFileButtonId)
             sFadeOutText = 1;
             sMainMenuTimer = 0;
             save_file_copy(sSelectedFile, copyFileButtonId - 14);
-            sMainMenuButtons[copyFileButtonId]->header.gfx.asGraphNode = gLoadedGraphNodes[8];
-            sMainMenuButtons[copyFileButtonId - 14]->header.gfx.asGraphNode = gLoadedGraphNodes[8];
+            sMainMenuButtons[copyFileButtonId]->header.gfx.asGraphNode = gLoadedGraphNodes[MODEL_MAIN_MENU_MARIO_SAVE_BUTTON_FADE];
+            sMainMenuButtons[copyFileButtonId - 14]->header.gfx.asGraphNode = gLoadedGraphNodes[MODEL_MAIN_MENU_MARIO_SAVE_BUTTON_FADE];
         }
         else
         {
@@ -556,46 +556,46 @@ static void erase_menu_create_buttons(struct Object *eraseButton)
 {
     // File A
     if (save_file_exists(0) == TRUE)
-        sMainMenuButtons[MENU_BUTTON_ERASE_FILE_A] = spawn_object_rel_with_rot(eraseButton, 3, beh_menu_button, 711, 311,
+        sMainMenuButtons[MENU_BUTTON_ERASE_FILE_A] = spawn_object_rel_with_rot(eraseButton, MODEL_MAIN_MENU_MARIO_SAVE_BUTTON, beh_menu_button, 711, 311,
             -100, 0, -0x8000, 0);
     else
-        sMainMenuButtons[MENU_BUTTON_ERASE_FILE_A] = spawn_object_rel_with_rot(eraseButton, 9, beh_menu_button, 711, 311,
+        sMainMenuButtons[MENU_BUTTON_ERASE_FILE_A] = spawn_object_rel_with_rot(eraseButton, MODEL_MAIN_MENU_MARIO_NEW_BUTTON, beh_menu_button, 711, 311,
             -100, 0, -0x8000, 0);
     sMainMenuButtons[MENU_BUTTON_ERASE_FILE_A]->oMenuButtonScale = 0.11111111f;
     // File B
     if (save_file_exists(1) == TRUE)
-        sMainMenuButtons[MENU_BUTTON_ERASE_FILE_B] = spawn_object_rel_with_rot(eraseButton, 3, beh_menu_button, -166, 311,
+        sMainMenuButtons[MENU_BUTTON_ERASE_FILE_B] = spawn_object_rel_with_rot(eraseButton, MODEL_MAIN_MENU_MARIO_SAVE_BUTTON, beh_menu_button, -166, 311,
             -100, 0, -0x8000, 0);
     else
-        sMainMenuButtons[MENU_BUTTON_ERASE_FILE_B] = spawn_object_rel_with_rot(eraseButton, 9, beh_menu_button, -166, 311,
+        sMainMenuButtons[MENU_BUTTON_ERASE_FILE_B] = spawn_object_rel_with_rot(eraseButton, MODEL_MAIN_MENU_MARIO_NEW_BUTTON, beh_menu_button, -166, 311,
             -100, 0, -0x8000, 0);
     sMainMenuButtons[MENU_BUTTON_ERASE_FILE_B]->oMenuButtonScale = 0.11111111f;
     // File C
     if (save_file_exists(2) == TRUE)
-        sMainMenuButtons[MENU_BUTTON_ERASE_FILE_C] = spawn_object_rel_with_rot(eraseButton, 3, beh_menu_button, 711, 0,
+        sMainMenuButtons[MENU_BUTTON_ERASE_FILE_C] = spawn_object_rel_with_rot(eraseButton, MODEL_MAIN_MENU_MARIO_SAVE_BUTTON, beh_menu_button, 711, 0,
             -100, 0, -0x8000, 0);
     else
-        sMainMenuButtons[MENU_BUTTON_ERASE_FILE_C] = spawn_object_rel_with_rot(eraseButton, 9, beh_menu_button, 711, 0,
+        sMainMenuButtons[MENU_BUTTON_ERASE_FILE_C] = spawn_object_rel_with_rot(eraseButton, MODEL_MAIN_MENU_MARIO_NEW_BUTTON, beh_menu_button, 711, 0,
             -100, 0, -0x8000, 0);
     sMainMenuButtons[MENU_BUTTON_ERASE_FILE_C]->oMenuButtonScale = 0.11111111f;
     // File D
     if (save_file_exists(3) == TRUE)
-        sMainMenuButtons[MENU_BUTTON_ERASE_FILE_D] = spawn_object_rel_with_rot(eraseButton, 3, beh_menu_button, -166, 0,
+        sMainMenuButtons[MENU_BUTTON_ERASE_FILE_D] = spawn_object_rel_with_rot(eraseButton, MODEL_MAIN_MENU_MARIO_SAVE_BUTTON, beh_menu_button, -166, 0,
             -100, 0, -0x8000, 0);
     else
-        sMainMenuButtons[MENU_BUTTON_ERASE_FILE_D] = spawn_object_rel_with_rot(eraseButton, 9, beh_menu_button, -166, 0,
+        sMainMenuButtons[MENU_BUTTON_ERASE_FILE_D] = spawn_object_rel_with_rot(eraseButton, MODEL_MAIN_MENU_MARIO_NEW_BUTTON, beh_menu_button, -166, 0,
             -100, 0, -0x8000, 0);
     sMainMenuButtons[MENU_BUTTON_ERASE_FILE_D]->oMenuButtonScale = 0.11111111f;
     // Return to main menu button
-    sMainMenuButtons[MENU_BUTTON_ERASE_RETURN] = spawn_object_rel_with_rot(eraseButton, 6, beh_menu_button, 711, -388,
+    sMainMenuButtons[MENU_BUTTON_ERASE_RETURN] = spawn_object_rel_with_rot(eraseButton, MODEL_MAIN_MENU_YELLOW_FILE_BUTTON, beh_menu_button, 711, -388,
         -100, 0, -0x8000, 0);
     sMainMenuButtons[MENU_BUTTON_ERASE_RETURN]->oMenuButtonScale = 0.11111111f;
     // Switch to score menu button
-    sMainMenuButtons[MENU_BUTTON_ERASE_CHECK_SCORE] = spawn_object_rel_with_rot(eraseButton, 7, beh_menu_button, 0, -388,
+    sMainMenuButtons[MENU_BUTTON_ERASE_CHECK_SCORE] = spawn_object_rel_with_rot(eraseButton, MODEL_MAIN_MENU_GREEN_SCORE_BUTTON, beh_menu_button, 0, -388,
         -100, 0, -0x8000, 0);
     sMainMenuButtons[MENU_BUTTON_ERASE_CHECK_SCORE]->oMenuButtonScale = 0.11111111f;
     // Switch to copy menu button
-    sMainMenuButtons[MENU_BUTTON_ERASE_COPY_FILE] = spawn_object_rel_with_rot(eraseButton, 5, beh_menu_button, -711, -388,
+    sMainMenuButtons[MENU_BUTTON_ERASE_COPY_FILE] = spawn_object_rel_with_rot(eraseButton, MODEL_MAIN_MENU_BLUE_COPY_BUTTON, beh_menu_button, -711, -388,
         -100, 0, -0x8000, 0);
     sMainMenuButtons[MENU_BUTTON_ERASE_COPY_FILE]->oMenuButtonScale = 0.11111111f;
 }
@@ -683,15 +683,15 @@ static void erase_menu_check_clicked_buttons(struct Object *eraseButton)
 static void sound_mode_menu_create_buttons(struct Object *soundModeButton)
 {
     // Stereo option button
-    sMainMenuButtons[MENU_BUTTON_STEREO] = spawn_object_rel_with_rot(soundModeButton, 12, beh_menu_button, 533, 0,
+    sMainMenuButtons[MENU_BUTTON_STEREO] = spawn_object_rel_with_rot(soundModeButton, MODEL_MAIN_MENU_GENERIC_BUTTON, beh_menu_button, 533, 0,
         -100, 0, -0x8000, 0);
     sMainMenuButtons[MENU_BUTTON_STEREO]->oMenuButtonScale = 0.11111111f;
     // Mono option button
-    sMainMenuButtons[MENU_BUTTON_MONO] = spawn_object_rel_with_rot(soundModeButton, 12, beh_menu_button, 0, 0,
+    sMainMenuButtons[MENU_BUTTON_MONO] = spawn_object_rel_with_rot(soundModeButton, MODEL_MAIN_MENU_GENERIC_BUTTON, beh_menu_button, 0, 0,
         -100, 0, -0x8000, 0);
     sMainMenuButtons[MENU_BUTTON_MONO]->oMenuButtonScale = 0.11111111f;
     // Headset option button
-    sMainMenuButtons[MENU_BUTTON_HEADSET] = spawn_object_rel_with_rot(soundModeButton, 12, beh_menu_button, -533, 0,
+    sMainMenuButtons[MENU_BUTTON_HEADSET] = spawn_object_rel_with_rot(soundModeButton, MODEL_MAIN_MENU_GENERIC_BUTTON, beh_menu_button, -533, 0,
         -100, 0, -0x8000, 0);
     sMainMenuButtons[MENU_BUTTON_HEADSET]->oMenuButtonScale = 0.11111111f;
     // Zoom in current selection
@@ -884,7 +884,7 @@ void beh_menu_button_manager_init(void)
 {
     // File A
     if (save_file_exists(0) == TRUE)
-        sMainMenuButtons[MENU_BUTTON_PLAY_FILE_A] = spawn_object_rel_with_rot(gCurrentObject, 8, beh_menu_button,
+        sMainMenuButtons[MENU_BUTTON_PLAY_FILE_A] = spawn_object_rel_with_rot(gCurrentObject, MODEL_MAIN_MENU_MARIO_SAVE_BUTTON_FADE, beh_menu_button,
             -6400, 2800, 0, 0, 0, 0);
     else
         sMainMenuButtons[MENU_BUTTON_PLAY_FILE_A] = spawn_object_rel_with_rot(gCurrentObject, 10, beh_menu_button,
@@ -892,42 +892,42 @@ void beh_menu_button_manager_init(void)
     sMainMenuButtons[MENU_BUTTON_PLAY_FILE_A]->oMenuButtonScale = 1.0f;
     // File B
     if (save_file_exists(1) == TRUE)
-        sMainMenuButtons[MENU_BUTTON_PLAY_FILE_B] = spawn_object_rel_with_rot(gCurrentObject, 8, beh_menu_button,
+        sMainMenuButtons[MENU_BUTTON_PLAY_FILE_B] = spawn_object_rel_with_rot(gCurrentObject, MODEL_MAIN_MENU_MARIO_SAVE_BUTTON_FADE, beh_menu_button,
             1500, 2800, 0, 0, 0, 0);
     else
-        sMainMenuButtons[MENU_BUTTON_PLAY_FILE_B] = spawn_object_rel_with_rot(gCurrentObject, 10, beh_menu_button,
+        sMainMenuButtons[MENU_BUTTON_PLAY_FILE_B] = spawn_object_rel_with_rot(gCurrentObject, MODEL_MAIN_MENU_MARIO_NEW_BUTTON_FADE, beh_menu_button,
             1500, 2800, 0, 0, 0, 0);
     sMainMenuButtons[MENU_BUTTON_PLAY_FILE_B]->oMenuButtonScale = 1.0f;
     // File C
     if (save_file_exists(2) == TRUE)
-        sMainMenuButtons[MENU_BUTTON_PLAY_FILE_C] = spawn_object_rel_with_rot(gCurrentObject, 8, beh_menu_button,
+        sMainMenuButtons[MENU_BUTTON_PLAY_FILE_C] = spawn_object_rel_with_rot(gCurrentObject, MODEL_MAIN_MENU_MARIO_SAVE_BUTTON_FADE, beh_menu_button,
             -6400, 0, 0, 0, 0, 0);
     else
-        sMainMenuButtons[MENU_BUTTON_PLAY_FILE_C] = spawn_object_rel_with_rot(gCurrentObject, 10, beh_menu_button,
+        sMainMenuButtons[MENU_BUTTON_PLAY_FILE_C] = spawn_object_rel_with_rot(gCurrentObject, MODEL_MAIN_MENU_MARIO_NEW_BUTTON_FADE, beh_menu_button,
             -6400, 0, 0, 0, 0, 0);
     sMainMenuButtons[MENU_BUTTON_PLAY_FILE_C]->oMenuButtonScale = 1.0f;
     // File D
     if (save_file_exists(3) == TRUE)
-        sMainMenuButtons[MENU_BUTTON_PLAY_FILE_D] = spawn_object_rel_with_rot(gCurrentObject, 8, beh_menu_button,
+        sMainMenuButtons[MENU_BUTTON_PLAY_FILE_D] = spawn_object_rel_with_rot(gCurrentObject, MODEL_MAIN_MENU_MARIO_SAVE_BUTTON_FADE, beh_menu_button,
             1500, 0, 0, 0, 0, 0);
     else
-        sMainMenuButtons[MENU_BUTTON_PLAY_FILE_D] = spawn_object_rel_with_rot(gCurrentObject, 10, beh_menu_button,
+        sMainMenuButtons[MENU_BUTTON_PLAY_FILE_D] = spawn_object_rel_with_rot(gCurrentObject, MODEL_MAIN_MENU_MARIO_NEW_BUTTON_FADE, beh_menu_button,
             1500, 0, 0, 0, 0, 0);
     sMainMenuButtons[MENU_BUTTON_PLAY_FILE_D]->oMenuButtonScale = 1.0f;
     // Score menu button
-    sMainMenuButtons[MENU_BUTTON_SCORE] = spawn_object_rel_with_rot(gCurrentObject, 7, beh_menu_button,
+    sMainMenuButtons[MENU_BUTTON_SCORE] = spawn_object_rel_with_rot(gCurrentObject, MODEL_MAIN_MENU_GREEN_SCORE_BUTTON, beh_menu_button,
         -6400, -3500, 0, 0, 0, 0);
     sMainMenuButtons[MENU_BUTTON_SCORE]->oMenuButtonScale = 1.0f;
     // Copy menu button
-    sMainMenuButtons[MENU_BUTTON_COPY] = spawn_object_rel_with_rot(gCurrentObject, 5, beh_menu_button,
+    sMainMenuButtons[MENU_BUTTON_COPY] = spawn_object_rel_with_rot(gCurrentObject, MODEL_MAIN_MENU_BLUE_COPY_BUTTON, beh_menu_button,
         -2134, -3500, 0, 0, 0, 0);
     sMainMenuButtons[MENU_BUTTON_COPY]->oMenuButtonScale = 1.0f;
     // Erase menu button
-    sMainMenuButtons[MENU_BUTTON_ERASE] = spawn_object_rel_with_rot(gCurrentObject, 4, beh_menu_button,
+    sMainMenuButtons[MENU_BUTTON_ERASE] = spawn_object_rel_with_rot(gCurrentObject, MODEL_MAIN_MENU_RED_ERASE_BUTTON, beh_menu_button,
         2134, -3500, 0, 0, 0, 0);
     sMainMenuButtons[MENU_BUTTON_ERASE]->oMenuButtonScale = 1.0f;
     // Sound mode menu button
-    sMainMenuButtons[MENU_BUTTON_SOUND_MODE] = spawn_object_rel_with_rot(gCurrentObject, 11, beh_menu_button,
+    sMainMenuButtons[MENU_BUTTON_SOUND_MODE] = spawn_object_rel_with_rot(gCurrentObject, MODEL_MAIN_MENU_PURPLE_SOUND_BUTTON, beh_menu_button,
         6400, -3500, 0, 0, 0, 0);
     sMainMenuButtons[MENU_BUTTON_SOUND_MODE]->oMenuButtonScale = 1.0f;
 
@@ -1527,8 +1527,8 @@ static void erase_menu_yes_no_prompt(s16 x, s16 y)
             sFadeOutText = 1;
             sMainMenuTimer = 0;
             save_file_erase(sSelectedFile);
-            sMainMenuButtons[MENU_BUTTON_ERASE_FILE_A + sSelectedFile]->header.gfx.asGraphNode = gLoadedGraphNodes[10];
-            sMainMenuButtons[sSelectedFile]->header.gfx.asGraphNode = gLoadedGraphNodes[10];
+            sMainMenuButtons[MENU_BUTTON_ERASE_FILE_A + sSelectedFile]->header.gfx.asGraphNode = gLoadedGraphNodes[MODEL_MAIN_MENU_MARIO_NEW_BUTTON_FADE];
+            sMainMenuButtons[sSelectedFile]->header.gfx.asGraphNode = gLoadedGraphNodes[MODEL_MAIN_MENU_MARIO_NEW_BUTTON_FADE];
             D_801A7C04 = 0;
         }
         else if (D_801A7C04 == 2)

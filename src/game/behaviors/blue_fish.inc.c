@@ -66,7 +66,7 @@ void BehTankFishGroupsLoop(void)
         {
             for(i=0;i<15;i++)
             {
-                fish = spawn_object_relative(0,300,0,-200,o,185,beh_blue_fish);
+                fish = spawn_object_relative(0,300,0,-200,o,MODEL_FISH,beh_blue_fish);
                 translate_object_xyz_random(fish,200.0f);
             }
             o->oAction++;

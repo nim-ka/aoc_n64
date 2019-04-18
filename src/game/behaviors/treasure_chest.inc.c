@@ -30,7 +30,7 @@ void BehTreasureChestTopLoop(void) {
         case 1:
             if (o->oTimer == 0) {
                 if (sp34->oUnknownUnkFC_S32 == 0) {
-                    spawn_object_relative(0, 0, -80, 120, o, 168, beh_water_air_bubble);
+                    spawn_object_relative(0, 0, -80, 120, o, MODEL_BUBBLE, beh_water_air_bubble);
                     SetSound(SOUND_GENERAL_CLAMSHELL1, &o->header.gfx.unk54);
                 } else {
                     SetSound(SOUND_GENERAL_OPENCHEST1, &o->header.gfx.unk54);
@@ -61,7 +61,7 @@ void BehTreasureChestTopLoop(void) {
 }
 
 void BehTreasureChestBottomInit(void) {
-    spawn_object_relative(0, 0, 102, -77, o, 102, beh_treasure_chest_top);
+    spawn_object_relative(0, 0, 102, -77, o, MODEL_TREASURE_CHEST_LID, beh_treasure_chest_top);
     set_object_hitbox(o, &sTreasureChestBottomHitbox);
 }
 
@@ -107,7 +107,7 @@ void BehTreasureChestBottomLoop(void) {
 
 void func_802F6E8C(s8 sp3B, s32 sp3C, s32 sp40, s32 sp44, s16 sp4A) {
     struct Object *sp34;
-    sp34 = spawn_object_abs_with_rot(o, 0, 101, beh_treasure_chest_bottom, sp3C, sp40, sp44, 0, sp4A, 0);
+    sp34 = spawn_object_abs_with_rot(o, 0, MODEL_TREASURE_CHEST_BASE, beh_treasure_chest_bottom, sp3C, sp40, sp44, 0, sp4A, 0);
     sp34->oBehParams2ndByte = sp3B;
 }
 

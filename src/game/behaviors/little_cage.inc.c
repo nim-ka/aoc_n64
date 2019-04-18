@@ -7,7 +7,7 @@ void BehLittleCage2Loop(void)
     case 0:
         if(o->oTimer == 0)
             if(func_802A377C(1) & save_file_get_star_flags(gCurrSaveFileNum-1,gCurrCourseNum-1))
-                obj_set_model(121);
+                obj_set_model(MODEL_TRANSPARENT_STAR);
         copy_object_pos(o,o->parentObj);
         copy_object_behavior_params(o,o->parentObj);
         if(o->parentObj->oAction == 3)

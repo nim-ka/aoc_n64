@@ -8,14 +8,14 @@ void BehCelebrationStarInit(void)
     o->oMoveAngleYaw = gMarioObject->header.gfx.angle[1] + 0x8000;
     o->oCelebStarDiameterOfRotation = 100;
 #ifdef VERSION_JP
-    o->header.gfx.asGraphNode = gLoadedGraphNodes[122];
+    o->header.gfx.asGraphNode = gLoadedGraphNodes[MODEL_STAR];
     obj_scale(0.4f);
     o->oFaceAnglePitch = 0;
     o->oFaceAngleRoll = 0;
 #else
     if (gCurrLevelNum == LEVEL_BOWSER_1 || gCurrLevelNum == LEVEL_BOWSER_2)
     {
-        o->header.gfx.asGraphNode = gLoadedGraphNodes[204];
+        o->header.gfx.asGraphNode = gLoadedGraphNodes[MODEL_BOWSER_KEY_2];
         o->oFaceAnglePitch = 0;
         o->oFaceAngleRoll = 49152;
         obj_scale(0.1f);
@@ -23,7 +23,7 @@ void BehCelebrationStarInit(void)
     }
     else
     {
-        o->header.gfx.asGraphNode = gLoadedGraphNodes[122];
+        o->header.gfx.asGraphNode = gLoadedGraphNodes[MODEL_STAR];
         o->oFaceAnglePitch = 0;
         o->oFaceAngleRoll = 0;
         obj_scale(0.4f);
@@ -43,7 +43,7 @@ void CelebrationStarSpinAroundMarioLoop(void)
     if (o-> oTimer == 40) o->oAction = CELEB_STAR_ACT_FACE_CAMERA;
     if (o-> oTimer < 35)
     {
-        spawn_object(o, 149, beh_celebration_star_sparkle);
+        spawn_object(o, MODEL_SPARKLES, beh_celebration_star_sparkle);
         o->oCelebStarDiameterOfRotation++;
     }
     else o->oCelebStarDiameterOfRotation -= 20;

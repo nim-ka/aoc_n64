@@ -33,7 +33,7 @@ void BehWaterAirBubbleLoop(void)
         PlaySound2(SOUND_GENERAL_QUIETBUBBLE);
         mark_object_for_deletion(o);
         for(i=0;i<30;i++)
-            spawn_object(o,168,beh_bubble_maybe);
+            spawn_object(o,MODEL_BUBBLE,beh_bubble_maybe);
     }
     if(find_water_level(o->oPosX,o->oPosZ) < o->oPosY)
         mark_object_for_deletion(o);
@@ -75,7 +75,7 @@ void BehSmallWaterWaveLoop(void)
         o->activeFlags = 0;
         o->oPosY += 5.0f;
         if(gFreeObjectList.next != NULL)
-            spawn_object(o,165,beh_water_surface_white_wave_2);
+            spawn_object(o,MODEL_SPOT_ON_GROUND,beh_water_surface_white_wave_2);
     }
     if(o->oInteractStatus & 0x8000)
         mark_object_for_deletion(o);
@@ -105,7 +105,7 @@ void BehParticleLoop() {
     if(o->oPosY > sp24 && o->oTimer)
     {
         mark_object_for_deletion(o);
-        try_to_spawn_object(5,0,o,165,beh_water_surface_white_wave_2);
+        try_to_spawn_object(5,0,o,MODEL_SPOT_ON_GROUND,beh_water_surface_white_wave_2);
     }
 }
 
@@ -120,13 +120,13 @@ void BehFishGroupLoop(void)
 {
     if(gMarioCurrentRoom == 15 || gMarioCurrentRoom == 7)
         if(gGlobalTimer & 1)
-            spawn_object(o,164,beh_small_particle_bubbles);
+            spawn_object(o,MODEL_SMALL_SNOW_BALL,beh_small_particle_bubbles);
 }
 
 void BehWaterWavesInit(void)
 {
     s32 sp1C;
     for(sp1C=0;sp1C<3;sp1C++)
-        spawn_object(o,164,beh_small_particle);
+        spawn_object(o,MODEL_SMALL_SNOW_BALL,beh_small_particle);
 
 }

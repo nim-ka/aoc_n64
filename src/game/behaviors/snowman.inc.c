@@ -31,7 +31,7 @@ void BehSnowmansBottomInit(void) {
     if (sp34 != NULL) {
         o->parentObj = sp34;
     }
-    spawn_object_abs_with_rot(o, 0, 0, beh_snowmans_body_checkpoint, -402, 461, -2898, 0, 0, 0);
+    spawn_object_abs_with_rot(o, 0, MODEL_NONE, beh_snowmans_body_checkpoint, -402, 461, -2898, 0, 0, 0);
 }
 
 void func_802EFB2C(void) {
@@ -98,7 +98,7 @@ void func_802EFDA0(void) {
     }
 
     if (o->oTimer == 200) {
-        create_respawner(210, beh_snowmans_bottom, 3000);
+        create_respawner(MODEL_CCM_SNOWMAN_BASE, beh_snowmans_bottom, 3000);
         o->activeFlags = 0;
     }
 }
@@ -179,7 +179,7 @@ void BehSnowmansHeadInit(void) {
 
     if ((sp37 & (1 << sp36))
         && gCurrActNum != sp36 + 1) {
-        spawn_object_abs_with_rot(o, 0, 210, beh_big_snowman_whole, -4230, -1344, 1813, 0, 0, 0);
+        spawn_object_abs_with_rot(o, 0, MODEL_CCM_SNOWMAN_BASE, beh_big_snowman_whole, -4230, -1344, 1813, 0, 0, 0);
         o->oPosX = -4230.0f;
         o->oPosY = -994.0f;
         o->oPosZ = 1813.0f;

@@ -19,7 +19,7 @@ s32 func_802AAD54(void)
 {
     if(o->oInteractStatus & 0x8000 && !(o->oInteractStatus & 0x800000))
     {
-        spawn_object(o,149,beh_golden_coin_sparkles);
+        spawn_object(o,MODEL_SPARKLES,beh_golden_coin_sparkles);
         mark_object_for_deletion(o);
         return 1;
     }
@@ -34,7 +34,7 @@ void BehYellowCoinInit(void)
     bhv_init_room();
     obj_update_floor_height();
     if(500.0f < absf(o->oPosY - o->oFloorHeight))
-        obj_set_model(117);
+        obj_set_model(MODEL_YELLOW_COIN_NO_SHADOW);
     if(o->oFloorHeight < -10000.0f)
         mark_object_for_deletion(o);
 }
@@ -136,7 +136,7 @@ void BehCoinFormationSpawnLoop(void)
         {
             obj_update_floor_height();
             if(absf(o->oPosY-o->oFloorHeight) > 250.0f)
-                obj_set_model(117);
+                obj_set_model(MODEL_YELLOW_COIN_NO_SHADOW);
         }
     }
     else
@@ -189,7 +189,7 @@ void func_802AB364(s32 sp50,s32 sp54)
         sp38 = 0;
     if(sp3C)
     {
-        sp4C = spawn_object_relative(sp50,sp40[0],sp40[1],sp40[2],o,116,beh_coin_formation_spawn);
+        sp4C = spawn_object_relative(sp50,sp40[0],sp40[1],sp40[2],o,MODEL_YELLOW_COIN,beh_coin_formation_spawn);
         sp4C->OBJECT_FIELD_S32(0x1C) = sp38;
     }
 }
@@ -240,7 +240,7 @@ void ActionCoinInsideBoo1(void)
     }
     obj_move_standard(-30);
     func_802AAD54();
-    if(obj_has_model(118))
+    if(obj_has_model(MODEL_BLUE_COIN))
         o->oDamageOrCoinValue = 5;
     if(obj_wait_then_blink(400,20))
         mark_object_for_deletion(o);
@@ -254,7 +254,7 @@ void ActionCoinInsideBoo0(void)
     obj_become_intangible();
     if(o->oTimer == 0 && gCurrLevelNum == LEVEL_BBH)
     {
-        obj_set_model(118);
+        obj_set_model(MODEL_BLUE_COIN);
         obj_scale(0.7);
     }
     copy_object_pos(o,parent);
@@ -286,7 +286,7 @@ void BehGoldenCoinSparklesLoop(void)
     struct Object* sp2C;
     UNUSED s32 unused;
     f32 sp24 = 30.0f;
-    sp2C = spawn_object(o,149,beh_coin_sparkles);
+    sp2C = spawn_object(o,MODEL_SPARKLES,beh_coin_sparkles);
     sp2C->oPosX += RandomFloat() * sp24 - sp24/2;
     sp2C->oPosZ += RandomFloat() * sp24 - sp24/2;
 }

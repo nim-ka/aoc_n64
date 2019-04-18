@@ -213,7 +213,7 @@ void BehGenericBowlingBallSpawnerLoop(void)
         {
             if  ((s32)(RandomFloat() * o->oBBallSpwnrSpawnOdds) == 0)
             {
-                bowlingBall = spawn_object(o, 180, beh_bowling_ball);
+                bowlingBall = spawn_object(o, MODEL_BOWLING_BALL, beh_bowling_ball);
                 bowlingBall->oBehParams2ndByte = o->oBehParams2ndByte;
             }
         }
@@ -237,7 +237,7 @@ void BehTHIBowlingBallSpawnerLoop(void)
         {
             if  ((s32)(RandomFloat() * 1.5) == 0)
             {
-                bowlingBall = spawn_object(o, 180, beh_bowling_ball);
+                bowlingBall = spawn_object(o, MODEL_BOWLING_BALL, beh_bowling_ball);
                 bowlingBall->oBehParams2ndByte = o->oBehParams2ndByte;
             }
         }

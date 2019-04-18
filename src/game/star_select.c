@@ -60,7 +60,7 @@ void Show100CoinStar(u8 stars)
     if (stars & (1 << 6))
     {
         // If the 100 coin star has been collected, create a new star selector next to the coin score.
-        sStarSelectIcons[6] = spawn_object_abs_with_rot(gCurrentObject, 0, 122, beh_star_in_act_selector, 370, 24, -300, 0, 0, 0);
+        sStarSelectIcons[6] = spawn_object_abs_with_rot(gCurrentObject, 0, MODEL_STAR, beh_star_in_act_selector, 370, 24, -300, 0, 0, 0);
         sStarSelectIcons[6]->oStarSelectorSize = 0.8;
         sStarSelectIcons[6]->oStarSelectorType = STAR_SELECTOR_100_COINS;
     }

@@ -2,7 +2,7 @@
 
 void BehBlackSmokeUpwardLoop(void)
 {
-    spawn_object_with_scale(o,148,beh_black_smoke_bowser,o->header.gfx.scale[0]);
+    spawn_object_with_scale(o,MODEL_BURN_SMOKE,beh_black_smoke_bowser,o->header.gfx.scale[0]);
 }
 
 void BehBlackSmokeBowserLoop(void)
@@ -36,7 +36,7 @@ void BehFlameMarioLoop(void)
     obj_scale(2.0f);
     if(o->oTimer != 0)
         if(o->oTimer&1)
-            spawn_object(o,148,beh_black_smoke_mario);
+            spawn_object(o,MODEL_BURN_SMOKE,beh_black_smoke_mario);
     gMarioObject->prevObj = o; // weird?
     set_object_parent_relative_pos(o,40,-120,0);
     if(!(gMarioObject->oMarioParticleFlags & 0x800))

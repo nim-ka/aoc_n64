@@ -537,11 +537,11 @@ void try_do_mario_debug_object_spawn(void)
     if(sDebugPage == DEBUG_PAGE_STAGEINFO && gDebugInfo[DEBUG_PAGE_ENEMYINFO][7] == 1)
     {
         if(gPlayer1Controller->buttonPressed & R_JPAD)
-            spawn_object_relative(0, 0, 100, 200, gCurrentObject, 190, beh_koopa_shell);
+            spawn_object_relative(0, 0, 100, 200, gCurrentObject, MODEL_KOOPA_SHELL, beh_koopa_shell);
         if(gPlayer1Controller->buttonPressed & L_JPAD)
-            spawn_object_relative(0, 0, 100, 200, gCurrentObject, 130, beh_jumping_box);
+            spawn_object_relative(0, 0, 100, 200, gCurrentObject, MODEL_BREAKABLE_BOX_SMALL, beh_jumping_box);
         if(gPlayer1Controller->buttonPressed & D_JPAD)
-            spawn_object_relative(0, 0, 100, 200, gCurrentObject, 190, beh_koopa_shell_underwater);
+            spawn_object_relative(0, 0, 100, 200, gCurrentObject, MODEL_KOOPA_SHELL, beh_koopa_shell_underwater);
     }
 }
 

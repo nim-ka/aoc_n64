@@ -71,7 +71,7 @@ void Beh1UpWalkingLoop(void) {
     switch(o->oAction) {
         case 0:
             if (o->oTimer >= 18) 
-                spawn_object(o, 0, beh_powerup_sparkles2);
+                spawn_object(o, MODEL_NONE, beh_powerup_sparkles2);
 
             if (o->oTimer == 0)
                 SetSound(SOUND_CH8_UNK63, D_803320E0);
@@ -108,7 +108,7 @@ void Beh1UpRunningAwayLoop(void) {
     switch (o->oAction) {
         case 0:
             if (o->oTimer >= 18) 
-                spawn_object(o, 0, beh_powerup_sparkles2);
+                spawn_object(o, MODEL_NONE, beh_powerup_sparkles2);
 
             if (o->oTimer == 0)
                 SetSound(SOUND_CH8_UNK63, D_803320E0);
@@ -123,7 +123,7 @@ void Beh1UpRunningAwayLoop(void) {
             break;
 
         case 1:
-            spawn_object(o, 0, beh_powerup_sparkles2);
+            spawn_object(o, MODEL_NONE, beh_powerup_sparkles2);
             func_802F2F8C(sp26);
             break;
 
@@ -173,7 +173,7 @@ void Beh1UpSlidingLoop(void) {
     }
 
     Beh1UpInteract();
-    spawn_object(o, 0, beh_powerup_sparkles2);
+    spawn_object(o, MODEL_NONE, beh_powerup_sparkles2);
 }
 
 void Beh1UpLoop(void) {
@@ -195,7 +195,7 @@ void Beh1UpJumpOnApproachLoop(void) {
         case 1:
             sp26 = ObjectStep();
             func_802F2F8C(sp26);
-            spawn_object(o, 0, beh_powerup_sparkles2);
+            spawn_object(o, MODEL_NONE, beh_powerup_sparkles2);
             break;
 
         case 2:
@@ -224,7 +224,7 @@ void Beh1UpHiddenLoop(void) {
         case 1:
             sp26 = ObjectStep();
             func_802F2F8C(sp26);
-            spawn_object(o, 0, beh_powerup_sparkles2);
+            spawn_object(o, MODEL_NONE, beh_powerup_sparkles2);
             break;
 
         case 2:
@@ -236,7 +236,7 @@ void Beh1UpHiddenLoop(void) {
         case 3:
             sp26 = ObjectStep();
             if (o->oTimer >= 18) 
-                spawn_object(o, 0, beh_powerup_sparkles2);
+                spawn_object(o, MODEL_NONE, beh_powerup_sparkles2);
 
             func_802F2D40();
 
@@ -281,7 +281,7 @@ void Beh1UpHiddenInPoleLoop(void) {
         case 3:
             sp26 = ObjectStep();
             if (o->oTimer >= 18) 
-                spawn_object(o, 0, beh_powerup_sparkles2);
+                spawn_object(o, MODEL_NONE, beh_powerup_sparkles2);
 
             func_802F2D40();
 
@@ -311,9 +311,9 @@ void Beh1UpHiddenInPoleSpawnerLoop(void) {
     s8 sp2F;
 
     if (IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, 700)) {
-        spawn_object_relative(2, 0, 50, 0, o, 212, beh_hidden_1up_in_pole);
+        spawn_object_relative(2, 0, 50, 0, o, MODEL_1UP, beh_hidden_1up_in_pole);
         for (sp2F = 0; sp2F < 2; sp2F++) {
-            spawn_object_relative(0, 0, sp2F * -200, 0, o, 0, beh_hidden_1up_in_pole_trigger);
+            spawn_object_relative(0, 0, sp2F * -200, 0, o, MODEL_NONE, beh_hidden_1up_in_pole_trigger);
         }
 
         o->activeFlags = 0;

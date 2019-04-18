@@ -1330,25 +1330,25 @@ void BehOctagonalPlatformRotatingLoop(void)
 struct Struct80331A54 D_80331A54[][5] =
 {
     {
-        { bits_seg7_collision_0701B734, 0x0045 },
-        { bits_seg7_collision_0701B59C, 0x0044 },
-        { bits_seg7_collision_0701B404, 0x0043 },
-        { bits_seg7_collision_0701B26C, 0x0042 },
-        { bits_seg7_collision_0701B0D4, 0x0041 },
+        { bits_seg7_collision_0701B734, MODEL_BITS_STAIRCASE_FRAME4 },
+        { bits_seg7_collision_0701B59C, MODEL_BITS_STAIRCASE_FRAME3 },
+        { bits_seg7_collision_0701B404, MODEL_BITS_STAIRCASE_FRAME2 },
+        { bits_seg7_collision_0701B26C, MODEL_BITS_STAIRCASE_FRAME1 },
+        { bits_seg7_collision_0701B0D4, MODEL_BITS_STAIRCASE },
     },
     {
-        { bitdw_seg7_collision_0700FD9C, 0x003F },
-        { bitdw_seg7_collision_0700FC7C, 0x003E },
-        { bitdw_seg7_collision_0700FB5C, 0x003D },
-        { bitdw_seg7_collision_0700FA3C, 0x003C },
-        { bitdw_seg7_collision_0700F91C, 0x003B },
+        { bitdw_seg7_collision_0700FD9C, MODEL_BITDW_STAIRCASE },
+        { bitdw_seg7_collision_0700FC7C, MODEL_BITDW_STAIRCASE_FRAME1 },
+        { bitdw_seg7_collision_0700FB5C, MODEL_BITDW_STAIRCASE_FRAME2 },
+        { bitdw_seg7_collision_0700FA3C, MODEL_BITDW_STAIRCASE_FRAME3 },
+        { bitdw_seg7_collision_0700F91C, MODEL_BITDW_STAIRCASE_FRAME4 },
     },
     {
-        { rr_seg7_collision_0702A6B4, 0x0045 },
-        { rr_seg7_collision_0702A32C, 0x0044 },
-        { rr_seg7_collision_07029FA4, 0x0043 },
-        { rr_seg7_collision_07029C1C, 0x0042 },
-        { rr_seg7_collision_07029924, 0x0041 },
+        { rr_seg7_collision_0702A6B4, MODEL_RR_TRICKY_TRIANGLES_FRAME4 },
+        { rr_seg7_collision_0702A32C, MODEL_RR_TRICKY_TRIANGLES_FRAME3 },
+        { rr_seg7_collision_07029FA4, MODEL_RR_TRICKY_TRIANGLES_FRAME2 },
+        { rr_seg7_collision_07029C1C, MODEL_RR_TRICKY_TRIANGLES_FRAME1 },
+        { rr_seg7_collision_07029924, MODEL_RR_TRICKY_TRIANGLES },
     },
 };
 
@@ -1450,7 +1450,7 @@ void BehCannonBarrelBubblesLoop(void)
                 {
                     o->oForwardVel = 35.0f;
 
-                    val04 = spawn_object(o, 0x54, bWaterBomb);
+                    val04 = spawn_object(o, MODEL_WATER_BOMB, bWaterBomb);
                     if (val04 != NULL)
                     {
                         val04->oForwardVel = -100.0f;
@@ -1472,7 +1472,7 @@ void func_80308DF0(void)
 {
     if (o->oDistanceToMario < 2000.0f)
     {
-        spawn_object(o, 0x7F, beh_cannon_barrel_bubbles);
+        spawn_object(o, MODEL_CANNON_BARREL, beh_cannon_barrel_bubbles);
         obj_unhide();
 
         o->oAction = 1;
@@ -1727,7 +1727,7 @@ void BehUnagiLoop(void)
         {
             for (val04 = -4; val04 < 4; val04++)
             {
-                spawn_object_relative(val04, 0, 0, 0, o, 0, beh_unagi_subobject);
+                spawn_object_relative(val04, 0, 0, 0, o, MODEL_NONE, beh_unagi_subobject);
             }
             o->oUnagiUnk1B2 = 1;
         }
@@ -2018,7 +2018,7 @@ void func_8030AF6C(void)
         o->oAction = 1;
         o->oBookendUnkF4 = o->oFaceAnglePitch + 0x7FFF;
         o->oBookendUnkF8 = o->oFaceAngleRoll - 0x7FFF;
-        obj_set_model(0x58);
+        obj_set_model(MODEL_BOOKEND_PART);
     }
 }
 
@@ -2121,7 +2121,7 @@ void BehBookendSpawnLoop(void)
     {
         if (o->oTimer > 40 && obj_is_near_to_and_facing_mario(600.0f, 0x2000))
         {
-            sp1C = spawn_object(o, 0x59, beh_flying_bookend);
+            sp1C = spawn_object(o, MODEL_BOOKEND, beh_flying_bookend);
             if (sp1C != NULL)
             {
                 sp1C->oAction = 3;
@@ -2140,7 +2140,7 @@ void func_8030B464(void)
     {
         for (val04 = 0; val04 < 3; val04++)
         {
-            spawn_object_relative(val04, D_80331B30[val04].unk00, D_80331B30[val04].unk02, 0, o, 0x59, beh_book_switch);
+            spawn_object_relative(val04, D_80331B30[val04].unk00, D_80331B30[val04].unk02, 0, o, MODEL_BOOKEND, beh_book_switch);
         }
 
         o->oAction = 1;
@@ -2318,7 +2318,7 @@ void BehBookSwitchLoop(void)
                         sp38 = spawn_object_abs_with_rot(
                             o,
                             0,
-                            0x59,
+                            MODEL_BOOKEND,
                             beh_flying_bookend,
                             0x1FC * sp36 - 0x8CA,
                             890,
@@ -2533,7 +2533,7 @@ void func_8030CA38(void)
     {
         o->oSnufitUnk10C += 1;
         PlaySound2(SOUND_OBJECT_SNUFITSHOOT);
-        spawn_object_relative(0, 0, -20, 40, o, 0xB4, beh_snufit_balls);
+        spawn_object_relative(0, 0, -20, 40, o, MODEL_BOWLING_BALL, beh_snufit_balls);
         o->oSnufitUnkF4 = -30;
         o->oTimer = 0;
     }
@@ -2661,7 +2661,7 @@ void BehHauntedRoomCheckLoop(void)
             {
                 val06 = D_80331C00[val08].unk02;
 
-                val0C = spawn_object_relative(val08 & 0x00000001, D_80331C00[val08].unk00, 0, val06, o, 60, beh_haunted_room_check_subobject);
+                val0C = spawn_object_relative(val08 & 0x00000001, D_80331C00[val08].unk00, 0, val06, o, MODEL_BBH_WOODEN_TOMB, beh_haunted_room_check_subobject);
                 if (val0C != NULL)
                 {
                     if (val06 > 0)
@@ -2837,7 +2837,7 @@ void func_803117F4(void)
             val04 = (s16)(100.0f * sins(val06));
             val02 = (s16)(100.0f * coss(val06));
 
-            spawn_object_relative(0, val04, 30, val02, o, 0xA8, beh_bubble_maybe);
+            spawn_object_relative(0, val04, 30, val02, o, MODEL_BUBBLE, beh_bubble_maybe);
         }
     }
     else if (obj_check_anim_frame(30))
@@ -3035,7 +3035,7 @@ void BehBubbaLoop(void)
     {
         if (o->oMoveFlags & 0x00000008)
         {
-            sp38 = spawn_object(o, 0xA7, beh_water_splash);
+            sp38 = spawn_object(o, MODEL_WATER_SPLASH, beh_water_splash);
             if (sp38 != NULL)
             {
                 scale_object(sp38, 3.0f);
@@ -3051,7 +3051,7 @@ void BehBubbaLoop(void)
             {
                 sp36 = RandomU16();
                 o->oBubbaUnk10C -= 1.0f;
-                spawn_object_relative(0, 150.0f * coss(sp36), 0x64, 150.0f * sins(sp36), o, 0xA4, beh_small_particle_snow);
+                spawn_object_relative(0, 150.0f * coss(sp36), 0x64, 150.0f * sins(sp36), o, MODEL_SMALL_SNOW_BALL, beh_small_particle_snow);
             }
         }
 

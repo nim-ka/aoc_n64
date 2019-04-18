@@ -20,12 +20,12 @@ void BehBetaTrampolineSpawnLoop(void)
 void BehBetaTrampolineLoop(void)
 {
     struct Object* sp1C;
-    obj_set_model(181);
+    obj_set_model(MODEL_TRAMPOLINE);
     if(o->oTimer == 0)
     {
-        sp1C = spawn_object(o,182,beh_beta_trampoline_spawn);
+        sp1C = spawn_object(o,MODEL_TRAMPOLINE_CENTER,beh_beta_trampoline_spawn);
         sp1C->oPosY -= 75.0f;
-        sp1C = spawn_object(o,183,beh_static_object);
+        sp1C = spawn_object(o,MODEL_TRAMPOLINE_BASE,beh_static_object);
         sp1C->oPosY -= 150.0f;
     }
     if(gMarioObject->platform == o)

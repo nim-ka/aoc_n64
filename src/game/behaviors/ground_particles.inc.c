@@ -19,7 +19,7 @@ void BehUnused0E40Init(void)
 
 void Unknown802ADAF4(void)
 {
-    struct Object* smoke = spawn_object_with_scale(o,150,beh_white_puff_smoke2,1.0f);
+    struct Object* smoke = spawn_object_with_scale(o,MODEL_SMOKE,beh_white_puff_smoke2,1.0f);
     smoke->oForwardVel = D_8032F3F4[0];
     smoke->oVelY = D_8032F3F4[1];
     smoke->oGravity = D_8032F3F4[2];

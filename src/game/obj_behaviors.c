@@ -331,11 +331,11 @@ void ObjSplash(s32 waterY, s32 objY)
     u32 globalTimer = gGlobalTimer;
     if ((f32)(waterY + 30) > o->oPosY && o->oPosY > (f32)(waterY - 30))
     {
-        spawn_object(o, 0xA6, beh_object_water_wave);
+        spawn_object(o, MODEL_WATER_WAVES_2, beh_object_water_wave);
         if (o->oVelY < -20.0f) PlaySound2(SOUND_OBJECT_DIVINGINTOWATER);
     }
     
-    if ((objY + 50) < waterY && (globalTimer & 0x1F) == 0) spawn_object(o, 0xA4, beh_object_bubble); /* 0x1F is bits 4-0 */
+    if ((objY + 50) < waterY && (globalTimer & 0x1F) == 0) spawn_object(o, MODEL_SMALL_SNOW_BALL, beh_object_bubble); /* 0x1F is bits 4-0 */
 }
 
 //sp3c = objX
@@ -545,7 +545,7 @@ void ObjSpawnYellowCoins(struct Object *obj, s32 nCoins)
 
     for(count = 0; count < (s8)nCoins; count++)
     {
-        coin = spawn_object(obj, 0x74, beh_moving_yellow_coin);
+        coin = spawn_object(obj, MODEL_YELLOW_COIN, beh_moving_yellow_coin);
         coin->oForwardVel = RandomFloat() * 20.0f;
         coin->oVelY = RandomFloat() * 40.0f + 20.0f;
         coin->oMoveAngleYaw = RandomU16();
@@ -655,7 +655,7 @@ s32 ObjLavaDeath(void)
     if ((o->oTimer % 8) == 0)
     {
         PlaySound2(SOUND_OBJECT_BULLYEXPLODE_2);
-        deathSmoke = spawn_object(o, 0x96, beh_bobomb_bully_death_smoke);
+        deathSmoke = spawn_object(o, MODEL_SMOKE, beh_bobomb_bully_death_smoke);
         deathSmoke->oPosX += RandomFloat() * 20.0f;
         deathSmoke->oPosY += RandomFloat() * 20.0f;
         deathSmoke->oPosZ += RandomFloat() * 20.0f;
@@ -676,7 +676,7 @@ void SpawnOrangeNumber(s8 arg0, s16 arg1, s16 arg2, s16 arg3)
     
     if (arg0 >= 10) return;
 
-    orangeNumber = spawn_object_relative(arg0, arg1, arg2, arg3, o, 219, beh_orange_number);
+    orangeNumber = spawn_object_relative(arg0, arg1, arg2, arg3, o, MODEL_NUMBER, beh_orange_number);
     orangeNumber->oPosY += 25.0f;
 }
 

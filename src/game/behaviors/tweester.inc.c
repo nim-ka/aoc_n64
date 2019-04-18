@@ -73,7 +73,7 @@ void ActionTweester1(void)
         o->oMoveAngleYaw = o->oWallAngle;
     obj_move_standard(60);
     func_802C231C(1.0f);
-    spawn_object(o,159,beh_tornado_sand_particle);
+    spawn_object(o,MODEL_SAND_DUST,beh_tornado_sand_particle);
 }
 
 void ActionTweester2(void)
