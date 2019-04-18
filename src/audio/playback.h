@@ -121,13 +121,13 @@ struct Struct80225DD8
     /*0x03*/ u8 unk4; // set to 3
     /*0x05*/ u8 unk5; // set to Struct80222A18.unk6
     /*0x06*/ u8 unk6;
-    /*0x08*/ s16 unk8; // set to 0x800
+    /*0x08*/ u16 unk8; // set to 0x800
     /*0x0A*/ u16 unkA;
-    /*0x0C*/ s16 unkC; // set to 0x800
+    /*0x0C*/ u16 unkC; // set to 0x800
     /*0x0E*/ u16 unkE;
-    /*0x10*/ s16 unk10;
-    /*0x12*/ s16 unk12;
-    /*0x14*/ s16 unk14;
+    /*0x10*/ u16 unk10;
+    /*0x12*/ u16 unk12;
+    /*0x14*/ u16 unk14;
     /*0x16*/ u16 unk16;
     /*0x18*/ s16 unk18; // this - 0x80 defines which wave to use (0,1,2,3) (sawtooth, triangle, sine, square), set by SetInstrument. Sometimes 0 or return value of func_8031BEB0
     /*0x1A*/ s16 unk1A;
@@ -157,9 +157,9 @@ struct SubStruct_func_80318870
     u8 unk1;
     u8 unk2; // set to 0x80
     u8 pad1[1];
-    struct struct8031A078 unk04;
+    struct struct8031A078 unk4;
     struct Substruct80225DD8 unk14;
-    u8 pad4[2];
+    u16 unk1C;
     u16 unk1E;
     f32 unk20;
     f32 unk24;
@@ -168,16 +168,14 @@ struct SubStruct_func_80318870
     f32 unk30;
     f32 unk34;
     u8 pad5[4];
-    u16 unk3C;
-    u16 unk3E;
+    s16 unk3C;
+    s16 unk3E;
     u16 unk40;
     struct Struct_func_80318870 *unk44;
     void *unk48;
     struct SubStruct_func_80318870_3 *unk4C; // unknown type
     struct Struct80225DD8 *unk50;
-    void *unk54;
-    u8 pad6[0x14];
-    u8 unk6C;
+    struct Interface1Buffer unk54;
     struct PlaybackListItem unk70;
 }; // size = 0x80
 
@@ -187,7 +185,7 @@ struct SubStruct_func_80318870_2
     f32 unk4;
     f32 unk8;
     f32 unkC;
-};
+}; // size = 0x10
 
 struct SubsubsubStruct_func_80318870_3
 {
@@ -226,7 +224,19 @@ struct SubStruct_func_8031A584 {
     s32 unk14;
     s16 *unk18;
     struct SubstructInstrumentSomething *unk1C;
-};
+}; // size = 0x20
+
+struct Struct8031A17C {
+    struct Struct80225DD8 *unk0;
+    u32 unk4;
+    s8 *unk8;
+    u8 unkC;
+    u16 unkE;
+    u16 unk10;
+    u16 unk12;
+    u16 unk14;
+    u16 unk16;
+}; // size = 0x18
 
 struct Struct_func_80318870
 {
@@ -268,9 +278,7 @@ struct Struct_func_80318870
     struct SubStruct_func_80318870_2 unk44;
     struct SubStruct_func_8031A584 unk54;
     struct struct8031A078 unk74;
-    u8 pad7[0x90 - 0x84];
-    u8 unk90;
-    u8 pad8[0xb];
+    struct Struct8031A17C unk84;
     s16 unk9C;
     s16 unk9E;
     s16 unkA0;

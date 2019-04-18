@@ -728,7 +728,7 @@ void func_80319D40(void)
         temp->unk8 = 0;
         temp->unk54.unk01 = 0;
         temp->unk54.unk00 = 0;
-        temp->unk90 = 0;
+        temp->unk84.unkC = 0;
         temp->unk74.unk04 = 0.0f;
         temp->unk74.unk08 = 0.0f;
         temp->unk34 = soundAlloc(&D_802212C8, 0x190);

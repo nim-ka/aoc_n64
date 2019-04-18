@@ -96,8 +96,8 @@ s32 func_8031A920(struct Struct80225DD8 *arg0, s32 arg1)
     sub->unk0b20 = 0;
     sub->unk0b10 = 0;
     sub->unk0b40 = 0;
-    sub->unk04.unk00 = 0;
-    sub->unk6C = 0;
+    sub->unk4.unk00 = 0;
+    sub->unk54.unk18 = 0;
     sub->unk1 = 0;
     sub->unk2 = 0x80;
     sub->unk1E = 0;
@@ -735,7 +735,7 @@ void func_8031C104(struct Struct80225DD8 *arg0)
                     sp5A = func_8031B030(buf);
                     if (func_8031A920(arg0, loBits) == 0)
                     {
-                        arg0->unk44[loBits]->unk54 = unk40->unk14 + sp5A;
+                        arg0->unk44[loBits]->unk54.unk0 = unk40->unk14 + sp5A;
                     }
                     break;
                 case 0xa0:
@@ -745,7 +745,7 @@ void func_8031C104(struct Struct80225DD8 *arg0)
                     if (value != -1 && func_8031A920(arg0, loBits) != -1)
                     {
                         temp = (*arg0->unk30)[value][0] + ((*arg0->unk30)[value][1] << 8);
-                        arg0->unk44[loBits]->unk54 = unk40->unk14 + temp;
+                        arg0->unk44[loBits]->unk54.unk0 = unk40->unk14 + temp;
                     }
                     break;
                 case 0x60:
