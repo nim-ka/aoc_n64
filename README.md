@@ -1,6 +1,6 @@
 # Super Mario 64
 
-This is a disassembly of Super Mario 64.
+This is a decompilation of Super Mario 64.
 
 It builds the following rom(s):
 
