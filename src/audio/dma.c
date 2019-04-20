@@ -70,12 +70,12 @@ void func_8031715C()
 
 #ifdef NON_MATCHING
 
-void *func_80317270(s32 arg0, u32 arg1, s32 arg2, u8 *arg3)
+void *func_80317270(u8 *arg0, u32 arg1, s32 arg2, u8 *arg3)
 {
     struct Struct80226538 *temp; // v1
     struct Struct80226538 *dma; // sp58, t0
     u32 transfer; // v0
-    s32 devAddr; // s0
+    u32 devAddr; // s0
     u32 i; // a0
     u32 dmaIndex; // sp48, t2
     s32 hasDma = 0; // t4
@@ -85,7 +85,7 @@ void *func_80317270(s32 arg0, u32 arg1, s32 arg2, u8 *arg3)
         for (i = D_80226B3C; i < D_80226B38; i++)
         {
             temp = D_80226538 + i;
-            transfer = arg0 - temp->unk4;
+            transfer = (u32) arg0 - temp->unk4;
             if ((s32)transfer >= 0 && temp->unkA - arg1 >= transfer)
             {
                 if (temp->unkE == 0 && D_80226D4B != D_80226D49)
@@ -99,7 +99,7 @@ void *func_80317270(s32 arg0, u32 arg1, s32 arg2, u8 *arg3)
                 }
                 temp->unkE = 60;
                 *arg3 = (u8)i;
-                transfer = arg0 - temp->unk4;
+                transfer = (u32) arg0 - temp->unk4;
                 return temp->unk0 + transfer;
             }
             dma = temp;
@@ -115,7 +115,7 @@ void *func_80317270(s32 arg0, u32 arg1, s32 arg2, u8 *arg3)
     else
     {
         dma = &D_80226538[*arg3];
-        transfer = arg0 - dma->unk4;
+        transfer = (u32) arg0 - dma->unk4;
         if ((s32)transfer >= 0 && dma->unkA - arg1 >= transfer)
         {
             if (dma->unkE == 0)
@@ -126,7 +126,7 @@ void *func_80317270(s32 arg0, u32 arg1, s32 arg2, u8 *arg3)
                     D_80226538[D_80226B48[D_80226D48]].unkD = dma->unkD;
                 }
                 D_80226D48++;
-                transfer = arg0 - dma->unk4;
+                transfer = (u32) arg0 - dma->unk4;
             }
             dma->unkE = 2;
             return dma->unk0 + transfer;
@@ -141,7 +141,7 @@ void *func_80317270(s32 arg0, u32 arg1, s32 arg2, u8 *arg3)
     }
 
     transfer = dma->unkA;
-    devAddr = arg0 & ~0xF;
+    devAddr = (u32) arg0 & ~0xF;
     dma->unkE = 2;
     dma->unk4 = devAddr;
     dma->unk8 = transfer;
@@ -152,7 +152,7 @@ void *func_80317270(s32 arg0, u32 arg1, s32 arg2, u8 *arg3)
     osPiStartDma(&D_80226000[D_80226D84 - 1], OS_MESG_PRI_NORMAL, OS_READ,
             devAddr, dma->unk0, transfer, &D_80225EE8);
     *arg3 = dmaIndex;
-    return dma->unk0 + arg0 - devAddr;
+    return dma->unk0 + (u32) arg0 - devAddr;
 }
 
 #elif defined(VERSION_JP)
@@ -255,9 +255,9 @@ void func_8031784C(struct Struct_func_8031784C *mem, u8 *offset, u32 arg2, u32 a
     u32 memBase = (u32)mem;
     u32 offsetBase = (u32)offset;
 
-#define INIT_SUB(sub) \
+#define INIT_SUB(subAndF32) \
     { \
-        struct SubEntry **itSubEntry = &sub; \
+        struct SubEntry **itSubEntry = &subAndF32.unk0; \
         if ((*itSubEntry) != 0) \
         { \
             /* Making these volatile gives correct codegen further down; it makes

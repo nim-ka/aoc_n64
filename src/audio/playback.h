@@ -28,7 +28,6 @@ struct PlaybackListItem
 
 struct struct8031A078 {
     u8 unk00;
-    s8 pad01[0x4 - 0x1];
     f32 unk04;
     f32 unk08;
     f32 unk0C;
@@ -47,6 +46,7 @@ struct Interface1Buffer {
 }; // size = 0x1C
 
 // declared in dma.h
+struct SubEntryAndF32;
 struct Struct_func_8031784C;
 struct InstrumentSomething;
 
@@ -156,7 +156,6 @@ struct SubStruct_func_80318870
     u8 unk0b10 : 1;
     u8 unk1;
     u8 unk2; // set to 0x80
-    u8 pad1[1];
     struct struct8031A078 unk4;
     struct Substruct80225DD8 unk14;
     u16 unk1C;
@@ -170,10 +169,10 @@ struct SubStruct_func_80318870
     u8 pad5[4];
     s16 unk3C;
     s16 unk3E;
-    u16 unk40;
+    s16 unk40;
     struct Struct_func_80318870 *unk44;
-    void *unk48;
-    struct SubStruct_func_80318870_3 *unk4C; // unknown type
+    struct InstrumentSomething *unk48;
+    struct SubEntryAndF32 *unk4C;
     struct Struct80225DD8 *unk50;
     struct Interface1Buffer unk54;
     struct PlaybackListItem unk70;
@@ -186,29 +185,6 @@ struct SubStruct_func_80318870_2
     f32 unk8;
     f32 unkC;
 }; // size = 0x10
-
-struct SubsubsubStruct_func_80318870_3
-{
-    s32 unk0;
-    s32 unk4;
-    s32 unk8; // compared against 0
-};
-
-struct SubsubStruct_func_80318870_3
-{
-    u32 pad0;
-    u32 unk4;
-    struct SubsubsubStruct_func_80318870_3 *unk8;
-};
-
-struct SubStruct_func_80318870_3
-{
-    struct SubsubStruct_func_80318870_3 *unk0;
-    u32 pad1;
-    s16 *unk8; // unknown type
-    u32 *unkC; //probably struct*?
-    //starts with 2 u32 and then a pointer (probably s16, since most of the audio stuff is s16)
-};
 
 struct SubStruct_func_8031A584 {
     u8 unk00;
@@ -265,7 +241,7 @@ struct Struct_func_80318870
     f32 unk18;
     f32 unk1C;
     u16 unk20;
-    struct SubStruct_func_80318870_3 *unk24; // unknown type, pointer
+    struct SubEntryAndF32 *unk24;
     struct SubStruct_func_80318870 *unk28;
     struct SubStruct_func_80318870 *unk2C;
     struct SubStruct_func_80318870 *unk30;

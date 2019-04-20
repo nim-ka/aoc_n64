@@ -227,16 +227,16 @@ u64 *func_80314480(u16 *arg0, s32 arg1, u64 *arg2)
 {
     s32 sp174;
     struct Struct_func_80318870 *s7;
-    struct SubStruct_func_80318870_3 *sp164;
-    struct SubsubsubStruct_func_80318870_3 *sp160;
-    u32 *sp15C;
+    struct SubEntry *sp164;
+    struct SubSubEntry *sp160;
+    s16 *sp15C;
     s32 t2; //150
     s32 t3; //14c
     s32 sp148; //audio flags?
     UNUSED u8 pad8[0x14];
     s32 sp130;
     UNUSED u8 pad7[0xC];
-    s32 sp120;
+    u8 *sp120;
     u32 t5; //108, definitely unsigned
     //UNUSED u8 pad6[4];
     s32 sp110;
@@ -316,9 +316,7 @@ u64 *func_80314480(u16 *arg0, s32 arg1, u64 *arg2)
             v1_1 = s7->unk20 + (sp5c * arg1) * 2;
             s7->unk20 = v1_1; // 16-bit store, can't reuse
 
-            sp164 = s7->unk24;
-
-            if (sp164 == NULL)
+            if (s7->unk24 == NULL)
             {
                 // v1_1 >> 0x10 stored in s0
                 arg2 = func_80314F08(arg2, s7, v1_1 >> 0x10);
@@ -328,15 +326,17 @@ u64 *func_80314480(u16 *arg0, s32 arg1, u64 *arg2)
             }
             else
             {
+                sp164 = s7->unk24->unk0;
+
                 // sp58 is a low-numbered register, so possibly a temporary.
                 // Should it be used for v1_1 >> 0x10 above as well? But then
                 // the asm matches worse. This variable seems to highly involved
                 // in causing this function not to match...
                 sp58 = v1_1 >> 0x10; // v0
 
-                sp160 = sp164->unk0->unk8;
+                sp160 = sp164->unk8;
                 sp110 = sp160->unk4;
-                sp120 = sp164->unk0->unk4;
+                sp120 = sp164->unk4;
 
                 sp54 = (spE8 == 1);
 
@@ -366,11 +366,11 @@ u64 *func_80314480(u16 *arg0, s32 arg1, u64 *arg2)
                         t5 = sp58;
                     }
 
-                    if (sp15C != &sp164->unkC[2])
+                    if (sp15C != sp164->unkC->book)
                     {
                         u32 v1;
-                        sp15C = &sp164->unkC[2];
-                        v1 = sp164->unkC[0] * sp164->unkC[1];
+                        sp15C = sp164->unkC->book;
+                        v1 = sp164->unkC->order * sp164->unkC->npredictors;
                         aLoadADPCM(arg2++, v1 * 16, FIX(sp15C));
                     }
 
@@ -424,7 +424,8 @@ u64 *func_80314480(u16 *arg0, s32 arg1, u64 *arg2)
                         if (t0 != 0)
                         {
                             // maybe keep a var for t0 * 9?
-                            v0_2 = func_80317270((s7->unk14 - s2 + 0x10) / 16 * 9 + sp120, t0 * 9, sp148, &s7->unk3);
+                            v0_2 = func_80317270(sp120 + (s7->unk14 - s2 + 0x10) / 16 * 9,
+                                    t0 * 9, sp148, &s7->unk3);
                             a3 = (u32)v0_2 & 0xf;
                             aSetBuffer(arg2++, 0, 0x3f0, 0, t0 * 9 + a3);
                             aLoadBuffer(arg2++, FIX(v0_2 - a3));

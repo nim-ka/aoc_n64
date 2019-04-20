@@ -15,22 +15,35 @@ struct Struct80226538
     u8 unkE; // counter, gets decremented
 }; // size = 0x10
 
+struct SubSubEntry
+{
+    s32 unk0;
+    s32 unk4;
+    s32 unk8; // compared against 0
+};
+
 struct SubEntry
 {
     u8 unk0;
     u8 unk1;
-    void *unk4; // points into offset
-    void *unk8; // points into mem
-    void *unkC; // points into mem
+    u8 *unk4; // points into offset
+    struct SubSubEntry *unk8; // points into mem
+    ALADPCMBook *unkC; // points into mem
+};
+
+struct SubEntryAndF32
+{
+    struct SubEntry *unk0;
+    f32 unk4;
 };
 
 struct SubA
 {
-    u16 pad;
+    u8 unk0;
+    u8 pad;
     u8 unk2;
-    struct SubEntry *unk4;
-    u8 pad2[4];
-    void *unkC; // points into mem
+    struct SubEntryAndF32 unk4;
+    struct SubstructInstrumentSomething *unkC; // points into mem
 };
 
 struct InstrumentSomething
@@ -39,11 +52,9 @@ struct InstrumentSomething
     u8 pad[2];
     u8 unk3; // might be the lower half of a u16, if the first part of this is a Substruct80225DD8
     struct SubstructInstrumentSomething *unk4;
-    struct SubEntry *unk8;
-    u32 pad2;
-    struct SubEntry *unk10;
-    u32 pad3;
-    struct SubEntry *unk18;
+    struct SubEntryAndF32 unk8;
+    struct SubEntryAndF32 unk10;
+    struct SubEntryAndF32 unk18;
 };
 
 struct Struct_func_8031784C
@@ -111,7 +122,7 @@ void BlockDmaCopy(u32 devAddr, void *vAddr, u32 nbytes);
 void func_80317034(u32 devAddr, void *vAddr, u32 nbytes, OSMesgQueue *queue, OSIoMesg *mesg);
 void func_803170A0(u32 *devAddr, u8 **vAddr, s32 *size, OSMesgQueue *queue, OSIoMesg *mesg);
 void func_8031715C(void);
-void *func_80317270(s32 arg0, u32 arg1, s32 arg2, u8 *arg3);
+void *func_80317270(u8 *arg0, u32 arg1, s32 arg2, u8 *arg3);
 void func_8031758C(s32 arg0);
 void func_8031784C(struct Struct_func_8031784C *arg0, u8 *offset, u32 arg2, u32 arg3);
 void *func_80317A88(s32 arg0, s32 arg1);

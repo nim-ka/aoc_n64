@@ -513,7 +513,7 @@ s32 func_80319660(struct Struct_func_80318870 *arg0, struct SubStruct_func_80318
     arg1->unk44 = arg0;
     arg1->unk50->unk34 = arg0;
     arg1->unk50->unk38 = arg1;
-    if (arg0->unk24 == 0)
+    if (arg0->unk24 == NULL)
     {
         func_80318F04(arg0, arg1);
     }

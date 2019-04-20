@@ -1,6 +1,12 @@
 #ifndef _ULTRA64_LIBAUDIO_H_
 #define _ULTRA64_LIBAUDIO_H_
 
+typedef struct
+{
+    s32 order;
+    s32 npredictors;
+    s16 book[1]; // variable size, 8-byte aligned
+} ALADPCMBook;
 
 typedef struct
 {
