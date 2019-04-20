@@ -21,7 +21,7 @@ void func_802F3C50(void) {
     }
 }
 
-void BehControllablePlatformSubLoop(void) {
+void bhv_controllable_platform_sub_loop(void) {
     switch (o->oAction) {
         case 0:
             if (o->oTimer < 30)
@@ -50,15 +50,15 @@ void BehControllablePlatformSubLoop(void) {
         o->activeFlags = 0;
 }
 
-void BehControllablePlatformInit(void) {
+void bhv_controllable_platform_init(void) {
     struct Object *sp34;
-    sp34 = spawn_object_rel_with_rot(o, MODEL_HMC_METAL_ARROW_PLATFORM, beh_controllable_platform_sub, 0, 51, 204, 0, 0, 0);
+    sp34 = spawn_object_rel_with_rot(o, MODEL_HMC_METAL_ARROW_PLATFORM, bhvControllablePlatformSub, 0, 51, 204, 0, 0, 0);
     sp34->oBehParams2ndByte = 1;
-    sp34 = spawn_object_rel_with_rot(o, MODEL_HMC_METAL_ARROW_PLATFORM, beh_controllable_platform_sub, 0, 51, -204, 0, -0x8000, 0);
+    sp34 = spawn_object_rel_with_rot(o, MODEL_HMC_METAL_ARROW_PLATFORM, bhvControllablePlatformSub, 0, 51, -204, 0, -0x8000, 0);
     sp34->oBehParams2ndByte = 2;
-    sp34 = spawn_object_rel_with_rot(o, MODEL_HMC_METAL_ARROW_PLATFORM, beh_controllable_platform_sub, 204, 51, 0, 0, 0x4000, 0);
+    sp34 = spawn_object_rel_with_rot(o, MODEL_HMC_METAL_ARROW_PLATFORM, bhvControllablePlatformSub, 204, 51, 0, 0, 0x4000, 0);
     sp34->oBehParams2ndByte = 3;
-    sp34 = spawn_object_rel_with_rot(o, MODEL_HMC_METAL_ARROW_PLATFORM, beh_controllable_platform_sub, -204, 51, 0, 0, -0x4000, 0);
+    sp34 = spawn_object_rel_with_rot(o, MODEL_HMC_METAL_ARROW_PLATFORM, bhvControllablePlatformSub, -204, 51, 0, 0, -0x4000, 0);
     sp34->oBehParams2ndByte = 4;
 
     D_80331694 = 0;
@@ -131,7 +131,7 @@ void func_802F43EC(void) {
     s16 sp1C = gMarioObject->header.gfx.pos[2] - o->oPosZ;
 
     if (gMarioObject->platform == o || gMarioObject->platform 
-            == obj_nearest_object_with_behavior(beh_controllable_platform_sub)) {
+            == obj_nearest_object_with_behavior(bhvControllablePlatformSub)) {
         o->oFaceAnglePitch = sp1C * 4;
         o->oFaceAngleRoll = -sp1E * 4;
         if (D_80331694 == 6) {
@@ -143,7 +143,7 @@ void func_802F43EC(void) {
     else { }
 }
 
-void BehControllablePlatformLoop(void) {
+void bhv_controllable_platform_loop(void) {
     s8 sp54[3];
     Vec3f sp48;
     Vec3f sp3C;
@@ -203,7 +203,7 @@ void BehControllablePlatformLoop(void) {
 
         case 6:
             if (ObjFlickerAndDisappear(o, 150))
-                spawn_object_abs_with_rot(o, 0, MODEL_HMC_METAL_PLATFORM, beh_controllable_platform, o->oHomeX, o->oHomeY, o->oHomeZ, 0, 0, 0);
+                spawn_object_abs_with_rot(o, 0, MODEL_HMC_METAL_PLATFORM, bhvControllablePlatform, o->oHomeX, o->oHomeY, o->oHomeZ, 0, 0, 0);
             break;
     }
 

@@ -13,7 +13,7 @@ struct ObjectHitbox sBowserKeyHitbox =
     /* hurtboxHeight: */     100,
 };
 
-void BehBowserKey2Loop(void)
+void bhv_bowser_key_2_loop(void)
 {
     obj_scale(0.5f);
     if(o->oAngleVelYaw > 0x400)
@@ -26,7 +26,7 @@ void BehBowserKey2Loop(void)
         if(o->oTimer == 0)
             o->oVelY = 70.0f;
         func_802B2328(3,200,80,-60);
-        spawn_object(o,0,beh_powerup_sparkles2);
+        spawn_object(o,0,bhvPowerupSparkles2);
         obj_update_floor_and_walls();
         obj_move_standard(78);
         if(o->oMoveFlags & OBJ_MOVE_ON_GROUND)

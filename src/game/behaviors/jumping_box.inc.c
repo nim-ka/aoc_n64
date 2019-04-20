@@ -53,7 +53,7 @@ void func_802B1F84(void)
     obj_call_action_function(TableJumpingBoxActions);
 }
 
-void BehJumpingBoxLoop(void)
+void bhv_jumping_box_loop(void)
 {
     switch(o->oHeldState)
     {

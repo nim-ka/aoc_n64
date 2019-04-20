@@ -1,6 +1,6 @@
 // flamethrower.c.inc
 
-void BehFlamethrowerFlameLoop(void)
+void bhv_flamethrower_flame_loop(void)
 {
     f32 size;
     s32 sp18;
@@ -38,7 +38,7 @@ void BehFlamethrowerFlameLoop(void)
     o->oInteractStatus = 0;
 }
 
-void BehFlamethrowerLoop(void)
+void bhv_flamethrower_loop(void)
 {
     struct Object* flame;
     f32 flameVel;
@@ -67,7 +67,7 @@ void BehFlamethrowerLoop(void)
         else
             o->oAction++;
         o->oFlameThowerUnk110 = sp34;
-        flame = spawn_object_relative(o->oBehParams2ndByte,0,0,0,o,model,beh_flamethrower_flame);
+        flame = spawn_object_relative(o->oBehParams2ndByte,0,0,0,o,model,bhvFlamethrowerFlame);
         flame->oForwardVel = flameVel;
         PlaySound(SOUND_CH6_UNKNOWN004);
     }
@@ -75,9 +75,9 @@ void BehFlamethrowerLoop(void)
         o->oAction = 0;
 }
 
-void BehRRRotatingBridgePlatformLoop(void)
+void bhv_rr_rotating_bridge_platform_loop(void)
 {
     o->oMoveAngleYaw -= 0x80;
     o->oAngleVelYaw = -0x80;
-    BehFlamethrowerLoop();
+    bhv_flamethrower_loop();
 }

@@ -1,12 +1,12 @@
 // tower_platform.c.inc
 
-void BehWFSolidTowerPlatformLoop(void)
+void bhv_wf_solid_tower_platform_loop(void)
 {
     if(o->parentObj->oAction==3)
         mark_object_for_deletion(o);
 }
 
-void BehWFElevatorTowerPlatformLoop(void)
+void bhv_wf_elevator_tower_platform_loop(void)
 {
     switch(o->oAction)
     {
@@ -37,7 +37,7 @@ void BehWFElevatorTowerPlatformLoop(void)
         mark_object_for_deletion(o);
 }
 
-void BehWFSlidingTowerPlatformLoop(void)
+void bhv_wf_sliding_tower_platform_loop(void)
 {
     s32 sp24 = o->oPlatformUnk110/o->oPlatformUnk10C;
     switch(o->oAction)
@@ -83,17 +83,17 @@ void func_802AFAFC(void)
     o->oPlatformSpawnerUnk100 = 704.0f;
     o->oPlatformSpawnerUnk104 = 380.0f;
     o->oPlatformSpawnerUnk108 = 3.0f;
-    func_802AF9A4(MODEL_WF_TOWER_SQUARE_PLATORM,beh_wf_solid_tower_platform);
-    func_802AF9A4(MODEL_WF_TOWER_SQUARE_PLATORM,beh_wf_sliding_tower_platform);
-    func_802AF9A4(MODEL_WF_TOWER_SQUARE_PLATORM,beh_wf_solid_tower_platform);
-    func_802AF9A4(MODEL_WF_TOWER_SQUARE_PLATORM,beh_wf_sliding_tower_platform);
-    func_802AF9A4(MODEL_WF_TOWER_SQUARE_PLATORM,beh_wf_solid_tower_platform);
-    func_802AF9A4(MODEL_WF_TOWER_SQUARE_PLATORM,beh_wf_sliding_tower_platform);
-    func_802AF9A4(MODEL_WF_TOWER_SQUARE_PLATORM,beh_wf_solid_tower_platform);
-    func_802AF9A4(MODEL_WF_TOWER_SQUARE_PLATORM_FRAME2,beh_wf_elevator_tower_platform);
+    func_802AF9A4(MODEL_WF_TOWER_SQUARE_PLATORM,bhvWfSolidTowerPlatform);
+    func_802AF9A4(MODEL_WF_TOWER_SQUARE_PLATORM,bhvWfSlidingTowerPlatform);
+    func_802AF9A4(MODEL_WF_TOWER_SQUARE_PLATORM,bhvWfSolidTowerPlatform);
+    func_802AF9A4(MODEL_WF_TOWER_SQUARE_PLATORM,bhvWfSlidingTowerPlatform);
+    func_802AF9A4(MODEL_WF_TOWER_SQUARE_PLATORM,bhvWfSolidTowerPlatform);
+    func_802AF9A4(MODEL_WF_TOWER_SQUARE_PLATORM,bhvWfSlidingTowerPlatform);
+    func_802AF9A4(MODEL_WF_TOWER_SQUARE_PLATORM,bhvWfSolidTowerPlatform);
+    func_802AF9A4(MODEL_WF_TOWER_SQUARE_PLATORM_FRAME2,bhvWfElevatorTowerPlatform);
 }
 
-void BehTowerPlatformGroupLoop(void)
+void bhv_tower_platform_group_loop(void)
 {
     f32 marioY = gMarioObject->oPosY;
     o->oDistanceToMario = dist_between_objects(o,gMarioObject);

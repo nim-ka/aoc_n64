@@ -1,6 +1,6 @@
 // warp.c.inc
 
-void BehWarpLoop(void)
+void bhv_warp_loop(void)
 {
     u16 sp6;
     if(o->oTimer == 0)

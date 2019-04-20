@@ -1,6 +1,6 @@
 
 /**
- * Behavior for bFlyGuy.
+ * Behavior for bhvFlyGuy.
  */
 
 

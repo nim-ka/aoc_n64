@@ -26,7 +26,7 @@ static struct ObjectHitbox sMoneybagHiddenHitbox =
     /* hurtboxHeight:     */ 50,
 };
 
-void BehMoneybagInit(void)
+void bhv_moneybag_init(void)
 {
     o->oGravity = 3.0f;
     o->oFriction = 1.0f;
@@ -160,7 +160,7 @@ void MoneybagReturnHomeLoop(void)
     
     if (IsPointCloseToObject(o, o->oHomeX, o->oHomeY, o->oHomeZ, 100))
     {
-        spawn_object(o, MODEL_YELLOW_COIN, beh_moneybag_hidden);
+        spawn_object(o, MODEL_YELLOW_COIN, bhvMoneybagHidden);
 #ifdef VERSION_US
         PlaySound2(SOUND_GENERAL_VANISHSFX);
 #endif
@@ -197,7 +197,7 @@ void MoneybagDeathLoop(void)
     }
 }
 
-void BehMoneybagLoop(void)
+void bhv_moneybag_loop(void)
 {
     switch (o->oAction)
     {
@@ -231,7 +231,7 @@ void BehMoneybagLoop(void)
     }
 }
 
-void BehMoneybagHiddenLoop(void)
+void bhv_moneybag_hidden_loop(void)
 {
     set_object_hitbox(o, &sMoneybagHiddenHitbox);
     
@@ -240,7 +240,7 @@ void BehMoneybagHiddenLoop(void)
         case FAKE_MONEYBAG_COIN_ACT_IDLE:
             if (IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, 400))
             {
-                spawn_object(o, MODEL_MONEYBAG, beh_moneybag);
+                spawn_object(o, MODEL_MONEYBAG, bhvMoneybag);
 #ifdef VERSION_US
                 PlaySound2(SOUND_GENERAL_VANISHSFX);
 #endif

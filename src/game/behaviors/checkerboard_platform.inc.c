@@ -9,7 +9,7 @@ void func_802B8F7C(Vec3f dest,Vec3f src)
     dest[2] = src[2];
 }
 
-void BehCheckerboardElevatorGroupInit(void)
+void bhv_checkerboard_elevator_group_init(void)
 {
     s32 sp3C;
     s32 sp38;
@@ -26,7 +26,7 @@ void BehCheckerboardElevatorGroupInit(void)
             sp38 = -D_8032F754[sp34].unk0;
         else
             sp38 = D_8032F754[sp34].unk0;
-        sp2C = spawn_object_relative(i,0,i*sp3C,sp38,o,MODEL_CHECKERBOARD_PLATFORM,beh_checkerboard_platform_sub);
+        sp2C = spawn_object_relative(i,0,i*sp3C,sp38,o,MODEL_CHECKERBOARD_PLATFORM,bhvCheckerboardPlatformSub);
         sp2C->oUnk1AC_F32 = D_8032F754[sp34].unk2;
         func_802B8F7C(sp2C->header.gfx.scale,D_8032F754[sp34].unk1);
     }
@@ -51,12 +51,12 @@ void func_802B91A0(s32 a0,s16 a1)
     o->oCheckerBoardPlatformUnkF8 = a0;
 }
 
-void BehCheckerboardPlatformInit(void)
+void bhv_checkerboard_platform_init(void)
 {
     o->oCheckerBoardPlatformUnkFC = o->parentObj->oBehParams2ndByte;
 }
 
-void BehCheckerboardPlatformLoop(void)
+void bhv_checkerboard_platform_loop(void)
 {
     f32 sp24 = o->oUnk1AC_F32;
     o->oCheckerBoardPlatformUnkF8 = 0;

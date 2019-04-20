@@ -1,6 +1,6 @@
 // express_elevator.c.inc
 
-void BehWdwExpressElevatorLoop(void)
+void bhv_wdw_express_elevator_loop(void)
 {
     o->oVelY = 0.0f;
     if(o->oAction == 0)

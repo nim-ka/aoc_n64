@@ -30,9 +30,9 @@ void ActionTuxiesMother2(void)
 {
     f32 sp24;
     UNUSED s32 unused;
-    struct Object* sp1C = obj_find_nearest_object_with_behavior(beh_small_penguin,&sp24);
+    struct Object* sp1C = obj_find_nearest_object_with_behavior(bhvSmallPenguin,&sp24);
     UNUSED s32 unused2;
-    if(obj_find_nearby_held_actor(beh_unused_20E0,1000.0f) != NULL)
+    if(obj_find_nearby_held_actor(bhvUnused20E0,1000.0f) != NULL)
     {
         if(o->oSubAction == 0)
         {
@@ -96,7 +96,7 @@ void ActionTuxiesMother1(void)
         if(o->prevObj->oHeldState == HELD_FREE)
         {
             ((s32*)o->prevObj)[o->oUnk190+34] &= ~0x40; //FIXME: find something more normal?
-            set_object_behavior(o->prevObj,beh_unused_20E0);
+            set_object_behavior(o->prevObj,bhvUnused20E0);
 #ifndef VERSION_JP
             obj_spawn_star_at_y_offset(3167.0f, -4300.0f, 5108.0f, 200.0f);
 #else
@@ -109,7 +109,7 @@ void ActionTuxiesMother1(void)
         if(o->prevObj->oHeldState == HELD_FREE)
         {
             ((s32*)o->prevObj)[o->oUnk190+34] &= ~0x40;
-            set_object_behavior(o->prevObj,beh_penguin_baby);
+            set_object_behavior(o->prevObj,bhvPenguinBaby);
             o->oAction = 2;
         }
         break;
@@ -122,7 +122,7 @@ void ActionTuxiesMother0(void)
     f32 sp28;
     struct Object* sp24;
     sp2C = 0;
-    sp24 = obj_find_nearest_object_with_behavior(beh_small_penguin,&sp28);
+    sp24 = obj_find_nearest_object_with_behavior(bhvSmallPenguin,&sp28);
     obj_scale(4.0f);
     func_8029ED38(3);
     if(sp28 < 500.0f)
@@ -158,7 +158,7 @@ void ActionTuxiesMother0(void)
 
 void (*TableTuxiesMotherActions[])(void) = {ActionTuxiesMother0,ActionTuxiesMother1,ActionTuxiesMother2};
 
-void BehTuxiesMotherLoop(void)
+void bhv_tuxies_mother_loop(void)
 {
     o->activeFlags |= 0x400;
     obj_update_floor_and_walls();
@@ -181,7 +181,7 @@ void ActionSmallPenguin2(void)
 {
     s32 sp1C = 0;
     if(o->oTimer == 0)
-        if(obj_dist_to_nearest_object_with_behavior(beh_tuxies_mother) < 1000.0f)
+        if(obj_dist_to_nearest_object_with_behavior(bhvTuxiesMother) < 1000.0f)
             sp1C = 1;
     func_8029ED38(0);
     o->oForwardVel = o->oSmallPenguinUnk104 + 3.0f;
@@ -241,7 +241,7 @@ void ActionSmallPenguin0(void)
         o->oSmallPenguinUnk108 = RandomFloat() * 100.0f;
         o->oSmallPenguinUnk104 = RandomFloat();
         o->oForwardVel = 0.0f;
-        if(obj_dist_to_nearest_object_with_behavior(beh_tuxies_mother) < 1000.0f)
+        if(obj_dist_to_nearest_object_with_behavior(bhvTuxiesMother) < 1000.0f)
             sp1C = 1;
     }
     if(o->oDistanceToMario < 1000.0f && o->oSmallPenguinUnk108 + 600.0f < o->oDistanceToMario)
@@ -258,7 +258,7 @@ void ActionSmallPenguin5(void)
 {
     f32 sp24;
     s16 sp22;
-    struct Object* sp1C = obj_nearest_object_with_behavior(beh_tuxies_mother);
+    struct Object* sp1C = obj_nearest_object_with_behavior(bhvTuxiesMother);
     if(sp1C != NULL)
     {
         if(o->oDistanceToMario < 1000.0f)
@@ -291,7 +291,7 @@ void func_802BF048(void)
     play_penguin_walking_sound(0);
 }
 
-void BehSmallPenguinLoop(void)
+void bhv_small_penguin_loop(void)
 {
     switch(o->oHeldState)
     {
@@ -300,8 +300,8 @@ void BehSmallPenguinLoop(void)
         break;
     case 1:
         func_8029FA5C(0,0);
-        if(obj_has_behavior(beh_penguin_baby))
-            set_object_behavior(o,beh_small_penguin);
+        if(obj_has_behavior(bhvPenguinBaby))
+            set_object_behavior(o,bhvSmallPenguin);
         copy_object_pos(o,gMarioObject);
         if(gGlobalTimer % 30 == 0)
 #ifndef VERSION_JP
@@ -349,7 +349,7 @@ s32 geo_switch_tuxie_mother_eyes(s32 run, struct GraphNode *node, UNUSED Mat4 *m
           * after giving it back. The easiest way to check this is to see if she's
           * moving, since she only does when she's chasing Mario.
           */
-        if(segmented_to_virtual(beh_tuxies_mother) == obj->behavior)
+        if(segmented_to_virtual(bhvTuxiesMother) == obj->behavior)
             if(obj->oForwardVel > 5.0f)
                 switchCase->unk1E = 3;
     }

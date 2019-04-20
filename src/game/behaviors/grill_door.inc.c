@@ -4,7 +4,7 @@ extern u8 bob_seg7_collision_gate[];
 extern u8 hmc_seg7_collision_0702B65C[];
 struct Struct8032FCE8 D_8032FCE8[] = {{320,MODEL_BOB_BARS_GRILLS,bob_seg7_collision_gate},{410,MODEL_HMC_RED_GRILLS,hmc_seg7_collision_0702B65C}};
 
-void BehBobHmcCageDoorLoop(void)
+void bhv_bob_hmc_cage_door_loop(void)
 {
     if(gCurrentObject->oAction == 0)
     {
@@ -20,7 +20,7 @@ void BehBobHmcCageDoorLoop(void)
     }
 }
 
-void BehOpenableGrillLoop(void)
+void bhv_openable_grill_loop(void)
 {
     struct Object* sp3C;
     s32 sp38;
@@ -28,15 +28,15 @@ void BehOpenableGrillLoop(void)
     {
     case 0:
         sp38 = o->oBehParams2ndByte;
-        sp3C = spawn_object_relative(-1,D_8032FCE8[sp38].unk0,0,0,o,D_8032FCE8[sp38].unk1,beh_bob_hmc_cage_door);
+        sp3C = spawn_object_relative(-1,D_8032FCE8[sp38].unk0,0,0,o,D_8032FCE8[sp38].unk1,bhvOpenableCageDoor);
         sp3C->oMoveAngleYaw += 0x8000;
         set_object_collision_data(sp3C,D_8032FCE8[sp38].unk2);
-        sp3C = spawn_object_relative(1,-D_8032FCE8[sp38].unk0,0,0,o,D_8032FCE8[sp38].unk1,beh_bob_hmc_cage_door);
+        sp3C = spawn_object_relative(1,-D_8032FCE8[sp38].unk0,0,0,o,D_8032FCE8[sp38].unk1,bhvOpenableCageDoor);
         set_object_collision_data(sp3C,D_8032FCE8[sp38].unk2);
         o->oAction++;
         break;
     case 1:
-        if((o->oOpenableGrillUnkF4 = obj_nearest_object_with_behavior(&beh_floor_switch_grills)) != NULL)
+        if((o->oOpenableGrillUnkF4 = obj_nearest_object_with_behavior(&bhvFloorSwitchGrills)) != NULL)
             o->oAction++;
         break;
     case 2:

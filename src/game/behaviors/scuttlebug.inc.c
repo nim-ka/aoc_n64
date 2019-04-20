@@ -28,7 +28,7 @@ s32 func_802C5A64(s32* a0)
     return 0;
 }
 
-void BehScuttlebugLoop(void)
+void bhv_scuttlebug_loop(void)
 {
     UNUSED s32 unused;
     f32 sp18;
@@ -129,7 +129,7 @@ void BehScuttlebugLoop(void)
     obj_move_standard(-50);
 }
 
-void BehScuttlebugSpawnLoop(void)
+void bhv_scuttlebug_spawn_loop(void)
 {
     struct Object* scuttlebug;
     if(o->oAction == 0)
@@ -137,7 +137,7 @@ void BehScuttlebugSpawnLoop(void)
         if(o->oTimer > 30 && 500.0f < o->oDistanceToMario && o->oDistanceToMario < 1500.0f)
         {
             PlaySound2(SOUND_CH9_UNK44);
-            scuttlebug = spawn_object(o,MODEL_SCUTTLEBUG,beh_scuttlebug);
+            scuttlebug = spawn_object(o,MODEL_SCUTTLEBUG,bhvScuttlebug);
             scuttlebug->oScuttlebugUnkF4 = o->oScuttlebugSpawnerUnkF4;
             scuttlebug->oForwardVel = 30.0f;
             scuttlebug->oVelY = 80.0f;

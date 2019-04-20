@@ -19,7 +19,7 @@ s32 func_802AAD54(void)
 {
     if(o->oInteractStatus & 0x8000 && !(o->oInteractStatus & 0x800000))
     {
-        spawn_object(o,MODEL_SPARKLES,beh_golden_coin_sparkles);
+        spawn_object(o,MODEL_SPARKLES,bhvGoldenCoinSparkles);
         mark_object_for_deletion(o);
         return 1;
     }
@@ -27,9 +27,9 @@ s32 func_802AAD54(void)
     return 0;
 }
 
-void BehYellowCoinInit(void)
+void bhv_yellow_coin_init(void)
 {
-    obj_set_behavior(beh_yellow_coin);
+    obj_set_behavior(bhvYellowCoin);
     set_object_hitbox(o,&sYellowCoinHitbox);
     bhv_init_room();
     obj_update_floor_height();
@@ -39,13 +39,13 @@ void BehYellowCoinInit(void)
         mark_object_for_deletion(o);
 }
 
-void BehYellowCoinLoop(void)
+void bhv_yellow_coin_loop(void)
 {
     func_802AAD54();
     o->oAnimState++;
 }
 
-void BehTempCoinLoop(void)
+void bhv_temp_coin_loop(void)
 {
     o->oAnimState++;
     if(obj_wait_then_blink(200,20))
@@ -53,17 +53,17 @@ void BehTempCoinLoop(void)
     func_802AAD54();
 }
 
-void BehCoinInit(void)
+void bhv_coin_init(void)
 {
     o->oVelY = RandomFloat() * 10.0f + 30 + o->OBJECT_FIELD_F32(0x22);
     o->oForwardVel = RandomFloat() * 10.0f;
     o->oMoveAngleYaw = RandomU16();
-    obj_set_behavior(beh_yellow_coin);
+    obj_set_behavior(bhvYellowCoin);
     set_object_hitbox(o,&sYellowCoinHitbox);
     obj_become_intangible();
 }
 
-void BehCoinLoop(void)
+void bhv_coin_loop(void)
 {
     struct Surface* sp1C;
     s16 sp1A;
@@ -116,11 +116,11 @@ void BehCoinLoop(void)
     func_802AAD54();
 }
 
-void BehCoinFormationSpawnLoop(void)
+void bhv_coin_formation_spawn_loop(void)
 {
     if(o->oTimer == 0)
     {
-        obj_set_behavior(beh_yellow_coin);
+        obj_set_behavior(bhvYellowCoin);
         set_object_hitbox(o,&sYellowCoinHitbox);
         bhv_init_room();
         if(o->OBJECT_FIELD_S32(0x1C))
@@ -189,17 +189,17 @@ void func_802AB364(s32 sp50,s32 sp54)
         sp38 = 0;
     if(sp3C)
     {
-        sp4C = spawn_object_relative(sp50,sp40[0],sp40[1],sp40[2],o,MODEL_YELLOW_COIN,beh_coin_formation_spawn);
+        sp4C = spawn_object_relative(sp50,sp40[0],sp40[1],sp40[2],o,MODEL_YELLOW_COIN,bhvCoinFormationSpawn);
         sp4C->OBJECT_FIELD_S32(0x1C) = sp38;
     }
 }
 
-void BehCoinFormationInit(void)
+void bhv_coin_formation_init(void)
 {
     o->OBJECT_FIELD_S32(0x1B) = (o->oBehParams >> 8) & 0xFF;
 }
 
-void BehCoinFormationLoop(void)
+void bhv_coin_formation_loop(void)
 {
     s32 bitIndex;
     switch(o->oAction)
@@ -236,7 +236,7 @@ void ActionCoinInsideBoo1(void)
     {
         set_object_hitbox(o,&sYellowCoinHitbox);
         obj_become_tangible();
-        obj_set_behavior(beh_yellow_coin);
+        obj_set_behavior(bhvYellowCoin);
     }
     obj_move_standard(-30);
     func_802AAD54();
@@ -271,22 +271,22 @@ void ActionCoinInsideBoo0(void)
 
 void (*TableCoinInsideBooActions[])(void) = {ActionCoinInsideBoo0,ActionCoinInsideBoo1};
 
-void BehCoinInsideBooLoop(void)
+void bhv_coin_inside_boo_loop(void)
 {
     obj_call_action_function(TableCoinInsideBooActions);
 }
 
-void BehCoinSparklesLoop(void)
+void bhv_coin_sparkles_loop(void)
 {
     obj_scale(0.6f);
 }
 
-void BehGoldenCoinSparklesLoop(void)
+void bhv_golden_coin_sparkles_loop(void)
 {
     struct Object* sp2C;
     UNUSED s32 unused;
     f32 sp24 = 30.0f;
-    sp2C = spawn_object(o,MODEL_SPARKLES,beh_coin_sparkles);
+    sp2C = spawn_object(o,MODEL_SPARKLES,bhvCoinSparkles);
     sp2C->oPosX += RandomFloat() * sp24 - sp24/2;
     sp2C->oPosZ += RandomFloat() * sp24 - sp24/2;
 }

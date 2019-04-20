@@ -2,8 +2,8 @@
 #define _BEHAVIOR_ACTIONS_H
 
 extern void func_802AA618(s32,s32,f32);
-extern void BehSpawnStarObjects(u32);
-extern void BehStarDoorLoop2();
+extern void bhv_spawn_star_objects(u32);
+extern void bhv_star_door_loop_2();
 extern void spawn_triangle_break_particles(s16,s16,f32,s16);
 extern void func_802ADA94(void);
 extern void func_802ADBBC(u32);

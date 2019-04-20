@@ -17,7 +17,7 @@ static s16 sTTCSpinnerSpeeds[] =
 
 
 /**
- * Update function for bTTCSpinner.
+ * Update function for bhvTTCSpinner.
  */
 void bhv_ttc_spinner_update(void)
 {

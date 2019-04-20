@@ -13,7 +13,7 @@ static struct ObjectHitbox sWhirlpoolHitbox =
     /* hurtboxHeight:     */ 0,
 };
 
-void BehWhirlpoolInit(void)
+void bhv_whirlpool_init(void)
 {
     o->oWhirlpoolInitFacePitch = o->oFaceAnglePitch;
     o->oWhirlpoolInitFaceRoll = o->oFaceAngleRoll;
@@ -38,7 +38,7 @@ void func_802E70DC(void)
     ObjOrientGraph(o, normalX, normalY, normalZ);
 }
 
-void BehWhirlpoolLoop(void)
+void bhv_whirlpool_loop(void)
 {
     if (o->oDistanceToMario < 5000.0f)
     {
@@ -70,7 +70,7 @@ void BehWhirlpoolLoop(void)
     func_802E70A8();
 }
 
-void BehJetStreamLoop(void)
+void bhv_jet_stream_loop(void)
 {
     if (o->oDistanceToMario < 5000.0f)
     {

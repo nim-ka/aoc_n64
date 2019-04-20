@@ -1,6 +1,6 @@
 // mushroom_1up.c.inc
 
-void Beh1UpInteract(void) {
+void bhv_1up_interact(void) {
     UNUSED s32 sp1C;
 
     if (are_objects_collided(o, gMarioObject) == 1) {
@@ -10,15 +10,15 @@ void Beh1UpInteract(void) {
     }
 }
 
-void Beh1UpCommonInit(void) {
+void bhv_1up_common_init(void) {
     o->oMoveAnglePitch = -0x4000;
     o->oGravity = 3.0f;
     o->oFriction = 1.0f;
     o->oBuoyancy = 1.0f;
 }
 
-void Beh1UpInit(void) {
-    Beh1UpCommonInit();
+void bhv_1up_init(void) {
+    bhv_1up_common_init();
     if (o->oBehParams2ndByte == 1) {
         if ((save_file_get_flags() & 0x50) == 0)
             o->activeFlags = 0;
@@ -51,13 +51,13 @@ void func_802F2E18(void) {
     o->oMoveAnglePitch = approach_s16_symmetric(o->oMoveAnglePitch, sp2A, 0x1000);
     o->oVelY = sins(o->oMoveAnglePitch) * 30.0f;
     o->oForwardVel = coss(o->oMoveAnglePitch) * 30.0f;
-    Beh1UpInteract();
+    bhv_1up_interact();
 }
 
 void func_802F2F8C(s16 sp1A) {
     o->oForwardVel = 8.0f;
     o->oMoveAngleYaw = o->oAngleToMario + 0x8000;
-    Beh1UpInteract();
+    bhv_1up_interact();
     if (sp1A & 0x02) 
         o->oAction = 2;
 
@@ -65,13 +65,13 @@ void func_802F2F8C(s16 sp1A) {
         o->oAction = 2;
 }
 
-void Beh1UpWalkingLoop(void) {
+void bhv_1up_walking_loop(void) {
     ObjectStep();
 
     switch(o->oAction) {
         case 0:
             if (o->oTimer >= 18) 
-                spawn_object(o, MODEL_NONE, beh_powerup_sparkles2);
+                spawn_object(o, MODEL_NONE, bhvPowerupSparkles2);
 
             if (o->oTimer == 0)
                 SetSound(SOUND_CH8_UNK63, D_803320E0);
@@ -89,26 +89,26 @@ void Beh1UpWalkingLoop(void) {
             if (o->oTimer > 300)
                 o->oAction = 2;
 
-            Beh1UpInteract();
+            bhv_1up_interact();
             break;
 
         case 2:
             ObjFlickerAndDisappear(o, 30);
-            Beh1UpInteract();
+            bhv_1up_interact();
             break;
     }
 
     SetObjectVisibility(o, 3000);
 }
 
-void Beh1UpRunningAwayLoop(void) {
+void bhv_1up_running_away_loop(void) {
     s16 sp26;
 
     sp26 = ObjectStep();
     switch (o->oAction) {
         case 0:
             if (o->oTimer >= 18) 
-                spawn_object(o, MODEL_NONE, beh_powerup_sparkles2);
+                spawn_object(o, MODEL_NONE, bhvPowerupSparkles2);
 
             if (o->oTimer == 0)
                 SetSound(SOUND_CH8_UNK63, D_803320E0);
@@ -123,13 +123,13 @@ void Beh1UpRunningAwayLoop(void) {
             break;
 
         case 1:
-            spawn_object(o, MODEL_NONE, beh_powerup_sparkles2);
+            spawn_object(o, MODEL_NONE, bhvPowerupSparkles2);
             func_802F2F8C(sp26);
             break;
 
         case 2:
             ObjFlickerAndDisappear(o, 30);
-            Beh1UpInteract();
+            bhv_1up_interact();
             break;
     }
 
@@ -154,7 +154,7 @@ void func_802F3328(void) {
         o->oAction = 2;
 }
 
-void Beh1UpSlidingLoop(void) {
+void bhv_1up_sliding_loop(void) {
     switch (o->oAction) {
         case 0:
             SetObjectVisibility(o, 3000);
@@ -168,20 +168,20 @@ void Beh1UpSlidingLoop(void) {
 
         case 2:
             ObjFlickerAndDisappear(o, 30);
-            Beh1UpInteract();
+            bhv_1up_interact();
             break;
     }
 
-    Beh1UpInteract();
-    spawn_object(o, MODEL_NONE, beh_powerup_sparkles2);
+    bhv_1up_interact();
+    spawn_object(o, MODEL_NONE, bhvPowerupSparkles2);
 }
 
-void Beh1UpLoop(void) {
-    Beh1UpInteract();
+void bhv_1up_loop(void) {
+    bhv_1up_interact();
     SetObjectVisibility(o, 3000);
 }
 
-void Beh1UpJumpOnApproachLoop(void) {
+void bhv_1up_jump_on_approach_loop(void) {
     s16 sp26;
 
     switch (o->oAction) {
@@ -195,12 +195,12 @@ void Beh1UpJumpOnApproachLoop(void) {
         case 1:
             sp26 = ObjectStep();
             func_802F2F8C(sp26);
-            spawn_object(o, MODEL_NONE, beh_powerup_sparkles2);
+            spawn_object(o, MODEL_NONE, bhvPowerupSparkles2);
             break;
 
         case 2:
             sp26 = ObjectStep();
-            Beh1UpInteract();
+            bhv_1up_interact();
             ObjFlickerAndDisappear(o, 30);
             break;
     }
@@ -208,7 +208,7 @@ void Beh1UpJumpOnApproachLoop(void) {
     SetObjectVisibility(o, 3000);
 }
 
-void Beh1UpHiddenLoop(void) {
+void bhv_1up_hidden_loop(void) {
     s16 sp26;
     switch (o->oAction) {
         case 0:
@@ -224,19 +224,19 @@ void Beh1UpHiddenLoop(void) {
         case 1:
             sp26 = ObjectStep();
             func_802F2F8C(sp26);
-            spawn_object(o, MODEL_NONE, beh_powerup_sparkles2);
+            spawn_object(o, MODEL_NONE, bhvPowerupSparkles2);
             break;
 
         case 2:
             sp26 = ObjectStep();
-            Beh1UpInteract();
+            bhv_1up_interact();
             ObjFlickerAndDisappear(o, 30);
             break;
 
         case 3:
             sp26 = ObjectStep();
             if (o->oTimer >= 18) 
-                spawn_object(o, MODEL_NONE, beh_powerup_sparkles2);
+                spawn_object(o, MODEL_NONE, bhvPowerupSparkles2);
 
             func_802F2D40();
 
@@ -249,10 +249,10 @@ void Beh1UpHiddenLoop(void) {
     }
 }
 
-void Beh1UpHiddenTriggerLoop(void) {
+void bhv_1up_hidden_trigger_loop(void) {
     struct Object *sp1C;
     if (are_objects_collided(o, gMarioObject) == 1) {
-        sp1C = obj_nearest_object_with_behavior(beh_hidden_1up);
+        sp1C = obj_nearest_object_with_behavior(bhvHidden1up);
         if (sp1C != NULL) 
             sp1C->o1UpHiddenUnkF4++;
 
@@ -260,7 +260,7 @@ void Beh1UpHiddenTriggerLoop(void) {
     }
 }
 
-void Beh1UpHiddenInPoleLoop(void) {
+void bhv_1up_hidden_in_pole_loop(void) {
     UNUSED s16 sp26;
     switch (o->oAction) {
         case 0:
@@ -281,7 +281,7 @@ void Beh1UpHiddenInPoleLoop(void) {
         case 3:
             sp26 = ObjectStep();
             if (o->oTimer >= 18) 
-                spawn_object(o, MODEL_NONE, beh_powerup_sparkles2);
+                spawn_object(o, MODEL_NONE, bhvPowerupSparkles2);
 
             func_802F2D40();
 
@@ -294,11 +294,11 @@ void Beh1UpHiddenInPoleLoop(void) {
     }
 }
 
-void Beh1UpHiddenInPoleTriggerLoop(void) {
+void bhv_1up_hidden_in_pole_trigger_loop(void) {
     struct Object *sp1C;
 
     if (are_objects_collided(o, gMarioObject) == 1) {
-        sp1C = obj_nearest_object_with_behavior(beh_hidden_1up_in_pole);
+        sp1C = obj_nearest_object_with_behavior(bhvHidden1upInPole);
         if (sp1C != NULL) {
             sp1C->o1UpHiddenUnkF4++;;
         }
@@ -307,13 +307,13 @@ void Beh1UpHiddenInPoleTriggerLoop(void) {
     }
 }
 
-void Beh1UpHiddenInPoleSpawnerLoop(void) {
+void bhv_1up_hidden_in_pole_spawner_loop(void) {
     s8 sp2F;
 
     if (IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, 700)) {
-        spawn_object_relative(2, 0, 50, 0, o, MODEL_1UP, beh_hidden_1up_in_pole);
+        spawn_object_relative(2, 0, 50, 0, o, MODEL_1UP, bhvHidden1upInPole);
         for (sp2F = 0; sp2F < 2; sp2F++) {
-            spawn_object_relative(0, 0, sp2F * -200, 0, o, MODEL_NONE, beh_hidden_1up_in_pole_trigger);
+            spawn_object_relative(0, 0, sp2F * -200, 0, o, MODEL_NONE, bhvHidden1upInPoleTrigger);
         }
 
         o->activeFlags = 0;

@@ -94,7 +94,7 @@ void ActionElevator3() // nearly identical to action 2
         o->oAction = 0;
 }
 
-void BehElevatorInit(void)
+void bhv_elevator_init(void)
 {
     s32 sp1C = D_8032F38C[o->oBehParams2ndByte*3+2];
     if(sp1C == 0)
@@ -102,7 +102,7 @@ void BehElevatorInit(void)
         o->OBJECT_FIELD_F32(0x1B) = D_8032F38C[o->oBehParams2ndByte*3];
         o->OBJECT_FIELD_F32(0x1C) = o->oHomeY;
         o->OBJECT_FIELD_F32(0x1D) = (o->OBJECT_FIELD_F32(0x1B) + o->OBJECT_FIELD_F32(0x1C))/2.0f;
-        o->OBJECT_FIELD_S32(0x1E) = obj_has_behavior(beh_rr_elevator_platform);
+        o->OBJECT_FIELD_S32(0x1E) = obj_has_behavior(bhvRrElevatorPlatform);
     }
     else
     {
@@ -123,7 +123,7 @@ s16 D_8032F3F4[] = {2,-8,1,4};
 
 struct SpawnParticlesInfo D_8032F3FC = {0,5,MODEL_SNOWMAN_SNOW_BALL_DL,0,0,20,20,0,252,30,2.0f,2.0f};
 
-void BehElevatorLoop(void)
+void bhv_elevator_loop(void)
 {
     obj_call_action_function(TableElevatorActions);
 }

@@ -1,6 +1,6 @@
 // piranha_particles.c.inc
 
-void BehPiranhaParticlesSpawnLoop(void)
+void bhv_piranha_particles_spawn_loop(void)
 {
     s32 i;
     obj_update_floor_and_walls();
@@ -11,6 +11,6 @@ void BehPiranhaParticlesSpawnLoop(void)
     {
         mark_object_for_deletion(o);
         for(i=0;i<10;i++)
-            spawn_object(o,MODEL_PURPLE_MARBLE,beh_giant_piranha_particle);
+            spawn_object(o,MODEL_PURPLE_MARBLE,bhvGiantPiranhaParticle);
     }
 }

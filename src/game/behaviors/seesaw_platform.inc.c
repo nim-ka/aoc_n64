@@ -1,6 +1,6 @@
 
 /**
- * Behavior for bSeesawPlatform.
+ * Behavior for bhvSeesawPlatform.
  */
 
 
@@ -21,7 +21,7 @@ static void *sSeesawPlatformCollisionModels[] =
 
 
 /**
- * Init function for bSeesawPlatform.
+ * Init function for bhvSeesawPlatform.
  */
 void bhv_seesaw_platform_init(void)
 {
@@ -37,7 +37,7 @@ void bhv_seesaw_platform_init(void)
 }
 
 /**
- * Update function for bSeesawPlatform.
+ * Update function for bhvSeesawPlatform.
  */
 void bhv_seesaw_platform_update(void)
 {

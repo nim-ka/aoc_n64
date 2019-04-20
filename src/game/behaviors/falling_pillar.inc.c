@@ -14,7 +14,7 @@ static struct ObjectHitbox sFallingPillarHitbox =
     /* hurtboxHeight:     */ 0,
 };
 
-void BehFallingPillarInit(void) {
+void bhv_falling_pillar_init(void) {
     o->oGravity = 0.5f;
     o->oFriction = 0.91f;
     o->oBuoyancy = 1.3f;
@@ -24,7 +24,7 @@ void func_802F6308(void) {
     s32 sp2C;
 
     for (sp2C = 0; sp2C < 4; sp2C++) {
-        spawn_object_relative(sp2C, 0, sp2C * 400 + 300, 0, o, MODEL_NONE, &beh_some_subojbject_of_falling_pillar);
+        spawn_object_relative(sp2C, 0, sp2C * 400 + 300, 0, o, MODEL_NONE, &bhvSomeSubojbjectOfFallingPillar);
     }
 }
 
@@ -38,7 +38,7 @@ s16 func_802F6388(void) {
     return atan2s(sp18 - o->oPosZ, sp1C - o->oPosX);
 }
 
-void BehFallingPillarLoop(void) {
+void bhv_falling_pillar_loop(void) {
     s16 sp26;
     switch(o->oAction) {
         case 0:
@@ -76,7 +76,7 @@ void BehFallingPillarLoop(void) {
     }
 }
 
-void BehSomeSubobjectFallingPillarLoop(void) {
+void bhv_some_subobject_falling_pillar_loop(void) {
     s32 sp2C = o->parentObj->oFaceAnglePitch;
     s32 sp28 = o->parentObj->oFaceAngleYaw;
     f32 sp24 = o->parentObj->oPosX;

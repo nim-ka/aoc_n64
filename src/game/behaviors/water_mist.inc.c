@@ -1,7 +1,7 @@
 // water_mist.c.inc
 // TODO: there is confusion with the earlier mist file. Clarify?
 
-void BehWaterMist2Loop(void)
+void bhv_water_mist_2_loop(void)
 {
     o->oPosY = find_water_level(o->oHomeX,o->oHomeZ) + 20.0f;
     o->oPosX = o->oHomeX + random_f32_around_zero(150.0f);

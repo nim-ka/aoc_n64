@@ -557,7 +557,7 @@ static void load_object_surfaces(s16 **data, s16 *vertexData)
     flags = get_surface_flags(surfaceType);
     flags |= SURFACE_FLAG_DYNAMIC;
 
-    if (gCurrentObject->behavior == segmented_to_virtual(beh_ddd_warp))
+    if (gCurrentObject->behavior == segmented_to_virtual(bhvDddWarp))
         room = 5;
     else
         room = 0;

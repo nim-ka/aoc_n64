@@ -1,6 +1,6 @@
 // clock_arm.c.inc
 
-void BehRotatingClockArmLoop(void)
+void bhv_rotating_clock_arm_loop(void)
 {
     struct Surface* sp1C;
     u16 sp1A = o->oFaceAngleRoll;
@@ -15,7 +15,7 @@ void BehRotatingClockArmLoop(void)
     {
         if(sp1C != NULL && (sp1C->type == SURFACE_TTC_PAINTING_1 || sp1C->type == SURFACE_TTC_PAINTING_2 || sp1C->type == SURFACE_TTC_PAINTING_3))
         {
-            if(obj_has_behavior(beh_clock_minute_hand))
+            if(obj_has_behavior(bhvClockMinuteHand))
             {
                 if(sp1A < 0xAAA)
                     gTTCSpeedSetting = 3;

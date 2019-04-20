@@ -1,6 +1,6 @@
 
 /**
- * Behavior for bTTCRotatingSolid, which are the rotating cube and triangular
+ * Behavior for bhvTTCRotatingSolid, which are the rotating cube and triangular
  * prism.
  */
 
@@ -27,7 +27,7 @@ static u8 sTTCRotatingSolidInitialDelays[] =
 
 
 /**
- * Init function for bTTCRotatingSolid.
+ * Init function for bhvTTCRotatingSolid.
  */
 void bhv_ttc_rotating_solid_init(void)
 {
@@ -42,7 +42,7 @@ void bhv_ttc_rotating_solid_init(void)
 }
 
 /**
- * Update function for bTTCRotatingSolid.
+ * Update function for bhvTTCRotatingSolid.
  * Wait a bit, dip down and back up, play a sound, then rotate.
  */
 void bhv_ttc_rotating_solid_update(void)

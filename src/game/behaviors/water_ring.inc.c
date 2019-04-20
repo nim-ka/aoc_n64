@@ -35,7 +35,7 @@ void WaterRingInit(void)
     // o->oFaceAngleRoll *= -1;
 }
 
-void BehJetStreamWaterRingInit(void)
+void bhv_jet_stream_water_ring_init(void)
 {
     WaterRingInit();
     o->oOpacity = 70;
@@ -137,7 +137,7 @@ void JetStreamWaterRingNotCollectedLoop(void)
     o->oWaterRingAvgScale = avgScale;
 }
 
-void BehJetStreamWaterRingLoop(void)
+void bhv_jet_stream_water_ring_loop(void)
 {
     switch (o->oAction)
     {
@@ -153,7 +153,7 @@ void BehJetStreamWaterRingLoop(void)
 
 void Unknown802EB8A4(void)
 {
-    struct Object *ringManager = spawn_object(o, MODEL_NONE, beh_manta_ray_ring_manager);
+    struct Object *ringManager = spawn_object(o, MODEL_NONE, bhvMantaRayRingManager);
     o->parentObj = ringManager;
 }
 
@@ -175,14 +175,14 @@ void JetStreamRingSpawnerActiveLoop(void)
     ||  (o->oTimer == 200)
     ||  (o->oTimer == 250))
     {
-        waterRing = spawn_object(o, MODEL_WATER_RING, beh_jet_stream_water_ring);
+        waterRing = spawn_object(o, MODEL_WATER_RING, bhvJetStreamWaterRing);
         waterRing->oWaterRingIndex = currentObj->oWaterRingMgrNextRingIndex;
         currentObj->oWaterRingMgrNextRingIndex++;
         if (currentObj->oWaterRingMgrNextRingIndex >= 10001) currentObj->oWaterRingMgrNextRingIndex = 0;
     }
 }
 
-void BehJetStreamRingSpawnerLoop(void)
+void bhv_jet_stream_ring_spawner_loop(void)
 {
     switch (o->oAction)
     {
@@ -204,7 +204,7 @@ void BehJetStreamRingSpawnerLoop(void)
     }
 }
 
-void BehMantaRayWaterRingInit(void)
+void bhv_manta_ray_water_ring_init(void)
 {
     WaterRingInit();
     o->oOpacity = 150;
@@ -234,7 +234,7 @@ void MantaRayWaterRingNotCollectedLoop(void)
     o->oWaterRingAvgScale = avgScale;
 }
 
-void BehMantaRayWaterRingLoop(void)
+void bhv_manta_ray_water_ring_loop(void)
 {
     switch (o->oAction)
     {

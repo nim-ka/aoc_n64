@@ -1,6 +1,6 @@
 // explosion.c.inc
 
-void BehExplosionInit(void)
+void bhv_explosion_init(void)
 {
     create_sound_spawner(SOUND_CH8_UNK2E);
     func_8027F308(1);
@@ -8,7 +8,7 @@ void BehExplosionInit(void)
     o->oOpacity = 255;
 }
 
-void BehExplosionLoop(void)
+void bhv_explosion_loop(void)
 {
     s32 i;
     
@@ -17,9 +17,9 @@ void BehExplosionLoop(void)
         if (find_water_level(o->oPosX, o->oPosZ) > o->oPosY)
         {
             for (i = 0; i < 40; i++)
-                spawn_object(o, MODEL_SMALL_SNOW_BALL, beh_bobomb_explosion_bubble);
+                spawn_object(o, MODEL_SMALL_SNOW_BALL, bhvBobombExplosionBubble);
         }
-        else spawn_object(o, MODEL_SMOKE, beh_bobomb_bully_death_smoke);
+        else spawn_object(o, MODEL_SMOKE, bhvBobombBullyDeathSmoke);
         
         o->activeFlags = 0;
     }

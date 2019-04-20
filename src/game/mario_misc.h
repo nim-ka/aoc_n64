@@ -125,10 +125,10 @@ extern struct GraphNodeObject D_80339FE0;
 extern struct UnknownStruct4_New D_8033A040[2]; 
 
 extern Gfx *Geo18_802764B0(int a, struct GraphNode *b, Mat4 *c);
-extern void beh_toad_message_loop(void);
-extern void beh_toad_message_init(void);
-extern void beh_unlock_door_star_init(void);
-extern void beh_unlock_door_star_loop(void);
+extern void bhvToadMessage_loop(void);
+extern void bhvToadMessage_init(void);
+extern void bhvUnlockDoorStar_init(void);
+extern void bhvUnlockDoorStar_loop(void);
 extern Gfx *Geo18_802770A4(int a, struct GraphNode *b, UNUSED Mat4 *c);
 extern s32 geo_switch_mario_stand_run(s32 run, struct GraphNode *node, UNUSED Mat4 *c);
 extern s32 geo_switch_mario_eyes(s32 run, struct GraphNode *node, UNUSED Mat4 *c);

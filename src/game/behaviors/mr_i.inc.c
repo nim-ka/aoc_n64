@@ -2,7 +2,7 @@
 
 // this is actually the MrI particle loop function. piranha
 // plant code later on reuses this function.
-void BehPiranhaParticleLoop(void)
+void bhv_piranha_particle_loop(void)
 {
     if(o->oTimer == 0)
     {
@@ -32,12 +32,12 @@ void ActionMrIParticle1(void)
     s32 i;
     mark_object_for_deletion(o);
     for(i = 0;i<10;i++)
-        spawn_object(o,MODEL_PURPLE_MARBLE,beh_giant_piranha_particle);
+        spawn_object(o,MODEL_PURPLE_MARBLE,bhvGiantPiranhaParticle);
 }
 
 void (*TableMrIParticleActions[])(void) = {ActionMrIParticle0,ActionMrIParticle1};
 
-void BehMrIParticleLoop(void)
+void bhv_mr_i_particle_loop(void)
 {
     obj_call_action_function(TableMrIParticleActions);
 }
@@ -46,14 +46,14 @@ void func_802A525C(void)
 {
     struct Object* particle;
     f32 sp18 = o->header.gfx.scale[1];
-    particle = spawn_object(o,MODEL_PURPLE_MARBLE,beh_mr_i_particle);
+    particle = spawn_object(o,MODEL_PURPLE_MARBLE,bhvMrIParticle);
     particle->oPosY += 50.0f * sp18;
     particle->oPosX += sins(o->oMoveAngleYaw) * 90.0f * sp18;
     particle->oPosZ += coss(o->oMoveAngleYaw) * 90.0f * sp18;
     PlaySound2(SOUND_OBJECT_MRISHOOT);
 }
 
-void BehMrIBodyLoop(void)
+void bhv_mr_i_body_loop(void)
 {
     copy_object_pos_and_angle(o,o->parentObj);
     if(!(8 & o->activeFlags))
@@ -279,7 +279,7 @@ struct ObjectHitbox sMrIHitbox =
     /* hurtboxHeight: */     0,
 };
 
-void BehMrILoop(void)
+void bhv_mr_i_loop(void)
 {
     set_object_hitbox(o,&sMrIHitbox);
     obj_call_action_function(TableMrIActions);

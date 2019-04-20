@@ -723,7 +723,7 @@ static void general_star_dance_handler(struct MarioState *m, s32 isInWater)
         switch (++m->actionTimer)
         {
             case 1:
-                spawn_object(m->marioObj, MODEL_STAR, beh_celebration_star);
+                spawn_object(m->marioObj, MODEL_STAR, bhvCelebrationStar);
                 func_80248D48();
                 if (m->actionArg & 1)
                 {
@@ -947,7 +947,7 @@ static s32 act_unlocking_key_door(struct MarioState *m)
 
     if (m->actionTimer == 0)
     {
-        spawn_obj_at_mario_rel_yaw(m, MODEL_BOWSER_KEY, beh_door_key1, 0);
+        spawn_obj_at_mario_rel_yaw(m, MODEL_BOWSER_KEY, bhvDoorKey1, 0);
         func_802507E8(m, M_ANIM_UNLOCK_DOOR);
     }
 
@@ -999,7 +999,7 @@ static s32 act_unlocking_star_door(struct MarioState *m)
         case 1:
             if (func_80250770(m))
             {
-                spawn_object(m->marioObj, MODEL_STAR, beh_unlock_door_star);
+                spawn_object(m->marioObj, MODEL_STAR, bhvUnlockDoorStar);
                 m->actionState++;
             }
             break;
@@ -1306,7 +1306,7 @@ static s32 act_exit_land_save_dialogue(struct MarioState *m)
             switch (animFrame)
             {
                 case -1:
-                    spawn_obj_at_mario_rel_yaw(m, 200, beh_door_key2, -32768);
+                    spawn_obj_at_mario_rel_yaw(m, 200, bhvDoorKey2, -32768);
                     //! fall through
                 case 67:
                     SetSound(SOUND_ACTION_SWISH1, &m->marioObj->header.gfx.unk54);
@@ -1941,7 +1941,7 @@ static void intro_cutscene_peach_lakitu_scene(struct MarioState *m)
         if (m->actionTimer++ == 37)
         {
             sIntroWarpPipeObj = spawn_object_abs_with_rot(
-                gCurrentObject, 0, MODEL_CASTLE_GROUNDS_WARP_PIPE, beh_static_object,
+                gCurrentObject, 0, MODEL_CASTLE_GROUNDS_WARP_PIPE, bhvStaticObject,
                 -1328, 60, 4664,
                 0, 180, 0
             );
@@ -2211,7 +2211,7 @@ static void generate_yellow_sparkles(s16 x, s16 y, s16 z, f32 radius)
     s16 offsetZ = radius * coss(sSparkleGenTheta) * coss(sSparkleGenPhi);
 
     spawn_object_abs_with_rot(
-        gCurrentObject, 0, MODEL_NONE, beh_powerup_sparkles2,
+        gCurrentObject, 0, MODEL_NONE, bhvPowerupSparkles2,
         x + offsetX, y + offsetY, z + offsetZ,
         0, 0, 0
     );
@@ -2222,7 +2222,7 @@ static void generate_yellow_sparkles(s16 x, s16 y, s16 z, f32 radius)
     offsetX = offsetZ * 4 / 3;
 
     spawn_object_abs_with_rot(
-        gCurrentObject, 0, MODEL_NONE, beh_powerup_sparkles2,
+        gCurrentObject, 0, MODEL_NONE, bhvPowerupSparkles2,
         x - offsetX, y - offsetY, z - offsetZ,
         0, 0, 0
     );
@@ -2281,7 +2281,7 @@ static void end_peach_cutscene_mario_landing(struct MarioState *m)
         m->capTimer = 60;
 
         sEndGrandStarObj = spawn_object_abs_with_rot(
-            gCurrentObject, 0, MODEL_STAR, beh_static_object,
+            gCurrentObject, 0, MODEL_STAR, bhvStaticObject,
             0, 2528, -1800,
             0, 0, 0
         );
@@ -2330,18 +2330,18 @@ static void end_peach_cutscene_spawn_peach(struct MarioState *m)
         mark_object_for_deletion(sEndGrandStarObj);
 
         sEndPeachObj = spawn_object_abs_with_rot(
-            gCurrentObject, 0, MODEL_PEACH, beh_end_peach,
+            gCurrentObject, 0, MODEL_PEACH, bhvEndPeach,
             0, 2428, -1300, 0, 0, 0
         );
         D_8032CFC4 = sEndPeachObj;
 
         sEndRightToadObj = spawn_object_abs_with_rot(
-            gCurrentObject, 0, MODEL_TOAD, beh_end_toad,
+            gCurrentObject, 0, MODEL_TOAD, bhvEndToad,
             200, 906, -1290, 0, 0, 0
         );
 
         sEndLeftToadObj = spawn_object_abs_with_rot(
-            gCurrentObject, 0, MODEL_TOAD, beh_end_toad,
+            gCurrentObject, 0, MODEL_TOAD, bhvEndToad,
             -200, 906, -1290, 0, 0, 0
         );
 
@@ -2791,17 +2791,17 @@ static s32 act_end_waving_cutscene(struct MarioState *m)
         m->unk94->unk1E = 12;
 
         sEndPeachObj = spawn_object_abs_with_rot(
-            gCurrentObject, 0, MODEL_PEACH, beh_end_peach,
+            gCurrentObject, 0, MODEL_PEACH, bhvEndPeach,
             60, 906, -1180, 0, 0, 0
         );
 
         sEndRightToadObj = spawn_object_abs_with_rot(
-            gCurrentObject, 0, MODEL_TOAD, beh_end_toad,
+            gCurrentObject, 0, MODEL_TOAD, bhvEndToad,
             180, 906, -1170, 0, 0, 0
         );
 
         sEndLeftToadObj = spawn_object_abs_with_rot(
-            gCurrentObject, 0, MODEL_TOAD, beh_end_toad,
+            gCurrentObject, 0, MODEL_TOAD, bhvEndToad,
             -180, 906, -1170, 0, 0, 0
         );
 

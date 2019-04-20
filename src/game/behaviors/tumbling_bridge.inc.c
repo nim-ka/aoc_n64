@@ -12,7 +12,7 @@ struct Struct8032F34C TableTumblingBridgeParams[] = {
     {9, -512, 0x80, MODEL_BITFS_TUMBLING_PLATFORM_PART, bitfs_seg7_collision_07015288}
 };
 
-void BehTumblingBridgePlatformLoop(void)
+void bhv_tumbling_bridge_platform_loop(void)
 {
     switch(o->oAction)
     {
@@ -73,7 +73,7 @@ void ActionTumblingBridge1(void)
                 TableTumblingBridgeParams[bridgeID].bridgeRelativeStartingXorZ +
                 TableTumblingBridgeParams[bridgeID].platformWidth * i;
         
-        if (obj_has_behavior(beh_tumbling_platform))
+        if (obj_has_behavior(bhvLllTumblingBridge))
         {
             if (i % 3 == 0)
                 relativePlatformY -= 150;
@@ -87,7 +87,7 @@ void ActionTumblingBridge1(void)
             relativePlatformZ,
             o,
             TableTumblingBridgeParams[bridgeID].model,
-            beh_tumbling_bridge_platform
+            bhvTumblingBridgePlatform
         );
         
         set_object_collision_data(platformObj, TableTumblingBridgeParams[bridgeID].segAddr);
@@ -99,7 +99,7 @@ void ActionTumblingBridge1(void)
 void ActionTumblingBridge2(void)
 {
     obj_hide();
-    if(obj_has_behavior(beh_tumbling_platform))
+    if(obj_has_behavior(bhvLllTumblingBridge))
         obj_unhide();
     else if(o->oDistanceToMario > 1200.0f)
     {
@@ -116,7 +116,7 @@ void ActionTumblingBridge3(void)
 
 void ActionTumblingBridge0(void)
 {
-    if(obj_has_behavior(beh_tumbling_platform) || o->oDistanceToMario < 1000.0f)
+    if(obj_has_behavior(bhvLllTumblingBridge) || o->oDistanceToMario < 1000.0f)
         o->oAction = 1;
 }
 
@@ -124,7 +124,7 @@ void (*TableTumblingBridgeActions[])(void) = {ActionTumblingBridge0,ActionTumbli
 
 s16 D_8032F38C[] = {-51,0,0,-461,0,0,-512,0,0,-2611,0,0,-2360,0,0,214,0,0,-50,1945,1,0};
 
-void BehTumblingBridgeLoop(void)
+void bhv_tumbling_bridge_loop(void)
 {
     obj_call_action_function(TableTumblingBridgeActions);
 }

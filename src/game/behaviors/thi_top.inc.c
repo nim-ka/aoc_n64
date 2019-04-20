@@ -4,7 +4,7 @@ struct SpawnParticlesInfo D_8032F134 = {0,30,MODEL_SMALL_SNOW_BALL,0,40,0,20,40,
 
 UNUSED u8 unused8032F134[] = {10,11,12};
 
-void BehTHIHugeIslandTopLoop(void)
+void bhv_thi_huge_island_top_loop(void)
 {
     if(gTHIWaterDrained & 1)
     {
@@ -16,7 +16,7 @@ void BehTHIHugeIslandTopLoop(void)
         load_object_collision_model();
 }
 
-void BehTHITinyIslandTopLoop(void)
+void bhv_thi_tiny_island_top_loop(void)
 {
     if(!(gTHIWaterDrained & 1)) // last bit not set
     {

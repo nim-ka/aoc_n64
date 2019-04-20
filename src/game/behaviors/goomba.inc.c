@@ -1,6 +1,6 @@
 
 /**
- * Behavior for bGoomba and bGoombaTripletSpawner,
+ * Behavior for bhvGoomba and bhvGoombaTripletSpawner,
  * Goombas can either be spawned individually, or spawned by a triplet spawner.
  * The triplet spawner comes before its spawned goombas in processing order.
  */
@@ -106,7 +106,7 @@ void bhv_goomba_triplet_spawner_update(void)
                         dx, 0, dz,
                         o,
                         MODEL_GOOMBA,
-                        bGoomba);
+                        bhvGoomba);
                 }
             }
 

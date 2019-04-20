@@ -1,7 +1,7 @@
 
 /**
- * Behavior for bPokey and bPokeyBodyPart.
- * bPokey is responsible for the behavior of the pokey itself, as well as
+ * Behavior for bhvPokey and bhvPokeyBodyPart.
+ * bhvPokey is responsible for the behavior of the pokey itself, as well as
  * spawning the body parts.
  * Pokey comes before its body parts in processing order, and the body parts
  * are processed top to bottom.
@@ -190,7 +190,7 @@ static void pokey_act_uninitialized(void)
                 0, -i*120 + 480, 0,
                 o,
                 partModel,
-                bPokeyBodyPart);
+                bhvPokeyBodyPart);
 
             if (bodyPart != NULL)
             {
@@ -254,7 +254,7 @@ static void pokey_act_wander(void)
                         0, 0, 0,
                         o,
                         MODEL_POKEY_BODY_PART,
-                        bPokeyBodyPart);
+                        bhvPokeyBodyPart);
 
                     if (bodyPart != NULL)
                     {

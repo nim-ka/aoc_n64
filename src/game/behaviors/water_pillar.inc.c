@@ -19,7 +19,7 @@ void func_802B95A4(void)
             o->oAction++;
         break;
     case 2:
-        sp1C = obj_nearest_object_with_behavior(beh_water_level_pillar);
+        sp1C = obj_nearest_object_with_behavior(bhvWaterLevelPillar);
         if(sp1C != NULL)
         {
             if(sp1C->oAction < 2)
@@ -27,7 +27,7 @@ void func_802B95A4(void)
         }
         break;
     case 3:
-        sp1C = obj_nearest_object_with_behavior(beh_water_level_pillar);
+        sp1C = obj_nearest_object_with_behavior(bhvWaterLevelPillar);
         if(sp1C != NULL)
         {
             if(sp1C->oAction > 1)
@@ -64,13 +64,13 @@ void func_802B97E4(void)
     }
 }
 
-void BehWaterLevelPillarInit(void)
+void bhv_water_level_pillar_init(void)
 {
     if(save_file_get_flags() & SAVE_FLAG_MOAT_DRAINED)
         o->oWaterLevelPillarUnkF8 = 1;
 }
 
-void BehWaterLevelPillarLoop(void)
+void bhv_water_level_pillar_loop(void)
 {
     if(o->oWaterLevelPillarUnkF8)
         func_802B97E4();

@@ -1,6 +1,6 @@
 // blue_coin.c.inc
 
-void BehHiddenBlueCoinsLoop(void)
+void bhv_hidden_blue_coins_loop(void)
 {
     struct Object* coinSwitch;
     switch(o->oAction)
@@ -8,7 +8,7 @@ void BehHiddenBlueCoinsLoop(void)
     case 0:
         obj_disable_rendering();
         obj_become_intangible();
-        o->oHiddenBlueCoinsUnkF8 = obj_nearest_object_with_behavior(beh_blue_coin_switch);
+        o->oHiddenBlueCoinsUnkF8 = obj_nearest_object_with_behavior(bhvBlueCoinSwitch);
         if(o->oHiddenBlueCoinsUnkF8 != NULL)
             o->oAction++;
         break;
@@ -22,7 +22,7 @@ void BehHiddenBlueCoinsLoop(void)
         obj_become_tangible();
         if(o->oInteractStatus & 0x8000)
         {
-            spawn_object(o,MODEL_SPARKLES,beh_golden_coin_sparkles);
+            spawn_object(o,MODEL_SPARKLES,bhvGoldenCoinSparkles);
             mark_object_for_deletion(o);
         }
         if(obj_wait_then_blink(200,20))
@@ -32,7 +32,7 @@ void BehHiddenBlueCoinsLoop(void)
     o->oInteractStatus = 0;
 }
 
-void BehBlueCoinSwitchLoop(void)
+void bhv_blue_coin_switch_loop(void)
 {
     obj_scale(3.0f);
     switch(o->oAction)
@@ -67,7 +67,7 @@ void BehBlueCoinSwitchLoop(void)
             SetSound(SOUND_CH8_UNK54,D_803320E0);
         else
             SetSound(SOUND_CH8_UNK55,D_803320E0);
-        if(obj_nearest_object_with_behavior(beh_hidden_blue_coin) == 0 || o->oTimer > 240)
+        if(obj_nearest_object_with_behavior(bhvHiddenBlueCoin) == 0 || o->oTimer > 240)
             mark_object_for_deletion(o);
         break;
     }

@@ -1,7 +1,7 @@
 // wdw_water_level.c.inc
 
 // called when WDW is loaded.
-void BehInitChangingWaterLevelLoop(void)
+void bhv_init_changing_water_level_loop(void)
 {
     if(gCurrentObject->oAction == 0)
     {
@@ -17,7 +17,7 @@ void BehInitChangingWaterLevelLoop(void)
     }
 }
 
-void BehWaterLevelDiamondLoop(void)
+void bhv_water_level_diamond_loop(void)
 {
     if(gWaterRegions != NULL)
     {

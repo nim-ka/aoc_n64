@@ -14,7 +14,7 @@ struct ObjectHitbox sBreakableBoxSmallHitbox =
     /* hurtboxHeight:     */ 250,
 };
 
-void BehBreakableBoxSmallInit(void) {
+void bhv_breakable_box_small_init(void) {
     o->oGravity = 2.5f;
     o->oFriction = 0.99f;
     o->oBuoyancy = 1.4f;
@@ -25,7 +25,7 @@ void BehBreakableBoxSmallInit(void) {
 }
 
 void func_802F4CE8(void) {
-    struct Object *sp24 = spawn_object(o, MODEL_SMOKE, beh_smoke);
+    struct Object *sp24 = spawn_object(o, MODEL_SMOKE, bhvSmoke);
     sp24->oPosX += (s32)(RandomFloat() * 80.0f) - 40;
     sp24->oPosZ += (s32)(RandomFloat() * 80.0f) - 40;
 }
@@ -67,7 +67,7 @@ void breakable_box_small_released_loop(void) {
 
     // Despawn, and create a corkbox respawner
     if (o->oBreakableBoxSmallFramesSinceReleased > 900) {
-        create_respawner(MODEL_BREAKABLE_BOX_SMALL, beh_breakable_box_small, 3000);
+        create_respawner(MODEL_BREAKABLE_BOX_SMALL, bhvBreakableBoxSmall, 3000);
         o->activeFlags = 0;
     }
 }
@@ -84,7 +84,7 @@ void breakable_box_small_idle_loop(void) {
 
         case 101:
             o->activeFlags = 0;
-            create_respawner(MODEL_BREAKABLE_BOX_SMALL, beh_breakable_box_small, 3000);
+            create_respawner(MODEL_BREAKABLE_BOX_SMALL, bhvBreakableBoxSmall, 3000);
             break;
     }
 
@@ -116,7 +116,7 @@ void breakable_box_small_get_thrown(void) {
     o->activeFlags &= ~0x200;
 }
 
-void BehBreakableBoxSmallLoop(void) {
+void bhv_breakable_box_small_loop(void) {
     switch (o->oHeldState) {
         case 0:
             breakable_box_small_idle_loop();

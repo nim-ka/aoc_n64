@@ -26,7 +26,7 @@ s32 func_802B0C54(f32 a0,f32 a1)
         return 0;
 }
 
-void BehPushableLoop(void)
+void bhv_pushable_loop(void)
 {
     UNUSED s16 unused;
     s16 sp1C;

@@ -1,8 +1,8 @@
 
 /**
- * Behavior for bKoopa and bKoopaRaceEndpoint.
- * bKoopa includes normal, unshelled, tiny, and Koopa the Quick.
- * When the race begins, koopa the quick sets his parent to bKoopaRaceEndpoint
+ * Behavior for bhvKoopa and bhvKoopaRaceEndpoint.
+ * bhvKoopa includes normal, unshelled, tiny, and Koopa the Quick.
+ * When the race begins, koopa the quick sets his parent to bhvKoopaRaceEndpoint
  * which assists in determining the state of the race. It is positioned at the
  * flag.
  */
@@ -265,7 +265,7 @@ static void koopa_dive_update_speed(f32 decel)
         {
             if (!(o->oTimer % 4))
             {
-                spawn_object_with_scale(o, MODEL_SMOKE, beh_white_puff_smoke2, 1.0f);
+                spawn_object_with_scale(o, MODEL_SMOKE, bhvWhitePuffSmoke2, 1.0f);
             }
         }
     }
@@ -319,7 +319,7 @@ void shelled_koopa_attack_handler(s32 attackType)
         }
 
         obj_set_model(MODEL_KOOPA_WITHOUT_SHELL);
-        spawn_object(o, MODEL_KOOPA_SHELL, beh_koopa_shell);
+        spawn_object(o, MODEL_KOOPA_SHELL, bhvKoopaShell);
 
         //! Because bob-ombs/corkboxes come after koopa in processing order,
         //  they can interact with the koopa on the same frame that this
@@ -407,7 +407,7 @@ static void koopa_unshelled_act_run(void)
         }
 
         // If shell exists, then turn toward shell
-        shell = obj_find_nearest_object_with_behavior(beh_koopa_shell, &distToShell);
+        shell = obj_find_nearest_object_with_behavior(bhvKoopaShell, &distToShell);
         if (shell != NULL)
         {
             //! This overrides turning toward home
@@ -471,7 +471,7 @@ static void koopa_unshelled_act_dive(void)
 
     if (o->oTimer > 10)
     {
-        shell = obj_find_nearest_object_with_behavior(beh_koopa_shell, &distToShell);
+        shell = obj_find_nearest_object_with_behavior(bhvKoopaShell, &distToShell);
 
         // If we got the shell and mario didn't, put on the shell
         //! The shell comes after koopa in processing order, and the shell is
@@ -622,7 +622,7 @@ static void koopa_the_quick_act_show_init_text(void)
         o->oAction = KOOPA_THE_QUICK_ACT_RACE;
         o->oForwardVel = 0.0f;
 
-        o->parentObj = obj_nearest_object_with_behavior(bKoopaRaceEndpoint);
+        o->parentObj = obj_nearest_object_with_behavior(bhvKoopaRaceEndpoint);
         o->oPathedStartWaypoint = o->oPathedPrevWaypoint =
             segmented_to_virtual(sKoopaTheQuickProperties[o->oKoopaTheQuickRaceIndex].path);
 
@@ -647,7 +647,7 @@ static s32 koopa_the_quick_detect_bowling_ball(void)
     s16 angleToBall;
     f32 ballSpeedInKoopaRunDir;
 
-    ball = obj_find_nearest_object_with_behavior(beh_bowling_ball, &distToBall);
+    ball = obj_find_nearest_object_with_behavior(bhvBowlingBall, &distToBall);
     if (ball != NULL)
     {
         angleToBall = obj_turn_toward_object(o, ball, O_MOVE_ANGLE_YAW_INDEX, 0);
@@ -961,7 +961,7 @@ void bhv_koopa_update(void)
 }
 
 /**
- * Update function for bKoopaRaceEndpoint.
+ * Update function for bhvKoopaRaceEndpoint.
  */
 void bhv_koopa_race_endpoint_update(void)
 {

@@ -1,14 +1,14 @@
 // corkbox.c.inc
 // TODO: This split seems weird. Investigate further?
 
-void BehBobombBullyDeathSmokeInit(void)
+void bhv_bobomb_bully_death_smoke_init(void)
 {
     o->oPosY -= 300.0f;
     
     obj_scale(10.0f);
 }
 
-void BehBobombExplosionBubbleInit(void)
+void bhv_bobomb_explosion_bubble_init(void)
 {
     scale_object_xyz(o, 2.0f, 2.0f, 1.0f);
     
@@ -18,7 +18,7 @@ void BehBobombExplosionBubbleInit(void)
     o->oVelY = (s32)(RandomFloat() * 4.0f) + 4;
 }
 
-void BehBobombExplosionBubbleLoop(void)
+void bhv_bobomb_explosion_bubble_loop(void)
 {
     f32 waterY = gMarioStates[0].waterLevel;
     
@@ -32,7 +32,7 @@ void BehBobombExplosionBubbleLoop(void)
     {
         o->activeFlags = 0;
         o->oPosY += 5.0f;
-        spawn_object(o, MODEL_SPOT_ON_GROUND, beh_water_surface_white_wave_2);
+        spawn_object(o, MODEL_SPOT_ON_GROUND, bhvWaterSurfaceWhiteWave2);
     }
     
     if (o->oTimer >= 61) o->activeFlags = 0;
@@ -41,7 +41,7 @@ void BehBobombExplosionBubbleLoop(void)
     o->oTimer++;
 }
 
-void BehRespawnerLoop(void)
+void bhv_respawner_loop(void)
 {
     struct Object *spawnedObject;
     
@@ -55,7 +55,7 @@ void BehRespawnerLoop(void)
 
 void create_respawner(s32 model, void *behToSpawn, s32 minSpawnDist)
 {
-    struct Object *respawner = spawn_object_abs_with_rot(o, 0, MODEL_NONE, beh_respawner, o->oHomeX, o->oHomeY, o->oHomeZ, 0, 0, 0);
+    struct Object *respawner = spawn_object_abs_with_rot(o, 0, MODEL_NONE, bhvRespawner, o->oHomeX, o->oHomeY, o->oHomeZ, 0, 0, 0);
     respawner->oBehParams = o->oBehParams;
     respawner->oRespawnerModelToRespawn = model;
     respawner->oRespawnerMinSpawnDist = minSpawnDist;

@@ -1,6 +1,6 @@
 // white_puff.c.inc
 
-void BehWhitePuff1Loop(void)
+void bhv_white_puff_1_loop(void)
 {
     f32 sp1C = 0.1f;
     f32 sp18 = 0.5f;
@@ -16,7 +16,7 @@ void BehWhitePuff1Loop(void)
         mark_object_for_deletion(o);
 }
 
-void BehWhitePuff2Loop(void)
+void bhv_white_puff_2_loop(void)
 {
     if(o->oTimer == 0)
         translate_object_xz_random(o,40.0f);

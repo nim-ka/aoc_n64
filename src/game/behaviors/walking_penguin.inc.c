@@ -14,7 +14,7 @@ s32 func_802C7AD0(void)
         return 0;
 }
 
-void BehWalkingPenguinLoop(void)
+void bhv_walking_penguin_loop(void)
 {
     f32 sp2C;
     f32 sp28;

@@ -1,6 +1,6 @@
 
 /**
- * Behavior for bTTC2DRotator.
+ * Behavior for bhvTTC2DRotator.
  * This includes the hand (in TTC, not the clock in the castle), as well as the
  * purely visual 2D cogs in TTC.
  */
@@ -38,7 +38,7 @@ static s16 sTTC2DRotatorTimeBetweenTurns[][4] =
 
 
 /**
- * Init function for bTTC2DRotator.
+ * Init function for bhvTTC2DRotator.
  */
 void bhv_ttc_2d_rotator_init(void)
 {
@@ -49,7 +49,7 @@ void bhv_ttc_2d_rotator_init(void)
 }
 
 /**
- * Update function for bTTC2DRotator.
+ * Update function for bhvTTC2DRotator.
  * Rotate to target yaw, and make sure we've waited long enough since the last
  * turn, then increment the target yaw and possibly change direction.
  */

@@ -12,7 +12,7 @@ struct ObjectHitbox sRecoveryHeartHitbox =
     /* hurtboxHeight:     */ 50,
 };
 
-void BehRecoveryHeartLoop(void)
+void bhv_recovery_heart_loop(void)
 {
     set_object_hitbox(o, &sRecoveryHeartHitbox);
     if (are_objects_collided(o, gMarioObject))

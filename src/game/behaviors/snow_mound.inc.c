@@ -1,6 +1,6 @@
 // snow_mound.c.inc
 
-void BehSlidingSnowMoundLoop(void) {
+void bhv_sliding_snow_mound_loop(void) {
     switch (o->oAction) {
         case 0:
             o->oVelX = -40.0f;
@@ -23,7 +23,7 @@ void BehSlidingSnowMoundLoop(void) {
     }
 }
 
-void BehSnowMoundSpawnLoop(void) {
+void bhv_snow_mound_spawn_loop(void) {
     struct Object *sp1C;
 
     if (!IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, 6000) 
@@ -31,7 +31,7 @@ void BehSnowMoundSpawnLoop(void) {
         return;
 
     if (o->oTimer == 64 || o->oTimer == 128 || o->oTimer == 192 || o->oTimer == 224 || o->oTimer == 256) 
-        sp1C = spawn_object(o, MODEL_SL_SNOW_TRIANGLE, beh_sliding_snow_mound);
+        sp1C = spawn_object(o, MODEL_SL_SNOW_TRIANGLE, bhvSlidingSnowMound);
 
     if (o->oTimer == 256) {
         sp1C->header.gfx.scale[0] = 2.0f;

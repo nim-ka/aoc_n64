@@ -1,6 +1,6 @@
 // bouncing_fireball.c.inc
 
-void BehBouncingFireballFlameLoop(void)
+void bhv_bouncing_fireball_flame_loop(void)
 {
     o->activeFlags |= 0x400;
     obj_update_floor_and_walls();
@@ -31,7 +31,7 @@ void BehBouncingFireballFlameLoop(void)
     o->oInteractStatus = 0;
 }
 
-void BehBouncingFireballLoop(void)
+void bhv_bouncing_fireball_loop(void)
 {
     struct Object* sp2C;
     f32 sp28;
@@ -42,7 +42,7 @@ void BehBouncingFireballLoop(void)
             o->oAction = 1;
         break;
     case 1:
-        sp2C = spawn_object(o,MODEL_RED_FLAME,beh_bouncing_fireball_flame);
+        sp2C = spawn_object(o,MODEL_RED_FLAME,bhvBouncingFireballFlame);
         sp28 = (10 - o->oTimer) * 0.5;
         scale_object_xyz(sp2C,sp28,sp28,sp28);
         if(o->oTimer == 0)

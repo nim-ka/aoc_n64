@@ -1,6 +1,6 @@
 // breakable_box.c.inc
 
-void BehBreakableBoxLoop(void)
+void bhv_breakable_box_loop(void)
 {
     set_object_hitbox(o, &sBreakableBoxHitbox);
     obj_set_model(MODEL_BREAKABLE_BOX_SMALL);

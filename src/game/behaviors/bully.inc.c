@@ -26,7 +26,7 @@ static struct ObjectHitbox sBigBullyHitbox =
     /* hurtboxHeight:     */ 225,
 };
 
-void BehSmallBullyInit(void)
+void bhv_small_bully_init(void)
 {
     SetObjAnimation(0);
     
@@ -40,7 +40,7 @@ void BehSmallBullyInit(void)
     set_object_hitbox(o, &sSmallBullyHitbox);
 }
 
-void BehBigBullyInit(void)
+void bhv_big_bully_init(void)
 {
     SetObjAnimation(0);
     
@@ -194,7 +194,7 @@ void BullyStep(void)
 
 void BullySpawnCoin(void)
 {
-    struct Object *coin = spawn_object(o, MODEL_YELLOW_COIN, beh_moving_yellow_coin);
+    struct Object *coin = spawn_object(o, MODEL_YELLOW_COIN, bhvMovingYellowCoin);
 #ifdef VERSION_JP
     PlaySound2(SOUND_GENERAL_COINSPURT);
 #else
@@ -224,13 +224,13 @@ void BullyLavaDeath(void)
             else
             {
                 CreateStar(0, 950.0f, -6800.0f);
-                spawn_object_abs_with_rot(o, 0, MODEL_NONE, beh_tumbling_platform, 0, 154, -5631, 0, 0, 0);
+                spawn_object_abs_with_rot(o, 0, MODEL_NONE, bhvLllTumblingBridge, 0, 154, -5631, 0, 0, 0);
             }
         }
     }
 }
 
-void BehBullyLoop(void)
+void bhv_bully_loop(void)
 {
     o->oBullyPrevX = o->oPosX;
     o->oBullyPrevY = o->oPosY;
@@ -290,12 +290,12 @@ void BehBullyLoop(void)
 
 void BigBullySpawnMinion(s32 arg0, s32 arg1, s32 arg2, s16 arg3)
 {
-    struct Object *bully = spawn_object_abs_with_rot(o, 0, MODEL_BULLY, beh_small_bully, arg0, arg1, arg2, 0, arg3, 00);
+    struct Object *bully = spawn_object_abs_with_rot(o, 0, MODEL_BULLY, bhvSmallBully, arg0, arg1, arg2, 0, arg3, 00);
     bully->oBullySubtype = BULLY_STYPE_MINION;
     bully->oBehParams2ndByte = BULLY_BP_SIZE_SMALL;
 }
 
-void BehBigBullyWithMinionsInit(void)
+void bhv_big_bully_with_minions_init(void)
 {
     BigBullySpawnMinion(4454, 307, -5426, 0);
     BigBullySpawnMinion(3840, 307, -6041, 0);
@@ -317,7 +317,7 @@ void BigBullyWithMinionsLavaDeath(void)
     }
 }
 
-void BehBigBullyWithMinionsLoop(void)
+void bhv_big_bully_with_minions_loop(void)
 {
     s16 collisionFlags;
     

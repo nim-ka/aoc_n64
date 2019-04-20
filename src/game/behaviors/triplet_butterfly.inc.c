@@ -14,7 +14,7 @@ static struct ObjectHitbox sTripletButterflyExplodeHitbox =
 static struct TripletButterflyActivationData sTripletButterflyActivationData[] =
 {
     { MODEL_BOWLING_BALL, NULL, 0.5f },
-    { MODEL_1UP, beh_1up_walking, 1.0f },
+    { MODEL_1UP, bhv1upWalking, 1.0f },
 };
 
 static void triplet_butterfly_act_init(void)
@@ -29,7 +29,7 @@ static void triplet_butterfly_act_init(void)
         {
             for (i = 1; i <= 2; i++)
             {
-                spawn_object_relative(i, 0, 0, 0, o, MODEL_BUTTERFLY, bTripletButterfly);
+                spawn_object_relative(i, 0, 0, 0, o, MODEL_BUTTERFLY, bhvTripletButterfly);
             }
 
             o->oTripletButterflySelectedButterfly = RandomU16() % 3;
@@ -107,7 +107,7 @@ static void triplet_butterfly_act_activate(void)
     {
         if (o->oTripletButterflyModel == 0)
         {
-            spawn_object_relative_with_scale(0, 0, -40, 0, 1.5f, o, 0x96, beh_white_puff_smoke2);
+            spawn_object_relative_with_scale(0, 0, -40, 0, 1.5f, o, 0x96, bhvWhitePuffSmoke2);
             o->oTripletButterflyModel = sTripletButterflyActivationData[o->oTripletButterflyType].model;
             obj_set_model(o->oTripletButterflyModel);
             obj_set_billboard(o);
@@ -146,7 +146,7 @@ static void triplet_butterfly_act_explode(void)
     if (o->oAction == -1 || (o->oMoveFlags & 0x00000200) || o->oTimer >= 158)
     {
         o->oPosY += o->oGraphYOffset;
-        spawn_object(o, MODEL_EXPLOSION, beh_explosion);
+        spawn_object(o, MODEL_EXPLOSION, bhvExplosion);
         mark_object_for_deletion(o);
     }
     else

@@ -1,6 +1,6 @@
 
 /**
- * Behavior for bSpiny.
+ * Behavior for bhvSpiny.
  * When spawned by lakitu, its parent object is the lakitu.
  * Lakitu comes before it spawned spinies in processing order.
  */
@@ -212,7 +212,7 @@ static void spiny_act_thrown_by_lakitu(void)
 }
 
 /**
- * Update function for bSpiny.
+ * Update function for bhvSpiny.
  */
 void bhv_spiny_update(void)
 {

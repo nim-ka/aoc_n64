@@ -1,6 +1,6 @@
 // hoot.c.inc
 
-void BehHootInit(void)
+void bhv_hoot_init(void)
 {
     SetObjAnimation(0);
 
@@ -252,7 +252,7 @@ void HootAwakeLoop(void)
     SetObjectVisibility(o, 2000);
 }
 
-void BehHootLoop(void)
+void bhv_hoot_loop(void)
 {
     switch (o->oHootAvailability)
     {

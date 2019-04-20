@@ -1,6 +1,6 @@
 // bbh_tilt_floor.c.inc
 
-void BehBbhTiltFloorPlatformLoop(void)
+void bhv_bbh_tilt_floor_platform_loop(void)
 {
 #ifndef VERSION_JP
     UNUSED s32 unused;

@@ -149,13 +149,13 @@ static u32 get_mario_cap_flag(struct Object *capObject)
 {
     void *script = virtual_to_segmented(0x13, capObject->behavior);
 
-    if (script == beh_normal_cap)
+    if (script == bhvNormalCap)
         return MARIO_UNKNOWN_00;
-    else if (script == beh_metal_cap)
+    else if (script == bhvMetalCap)
         return MARIO_METAL_CAP;
-    else if (script == beh_wing_cap)
+    else if (script == bhvWingCap)
         return MARIO_WING_CAP;
-    else if (script == beh_vanish_cap)
+    else if (script == bhvVanishCap)
         return MARIO_VANISH_CAP;
 
     return 0;
@@ -286,7 +286,7 @@ void mario_grab_used_object(struct MarioState *m)
     if (m->heldObj == NULL)
     {
         m->heldObj = m->usedObj;
-        set_object_held_state(m->heldObj, beh_carry_something3);
+        set_object_held_state(m->heldObj, bhvCarrySomething3);
     }
 }
 
@@ -294,10 +294,10 @@ void mario_drop_held_object(struct MarioState *m)
 {
     if (m->heldObj != NULL)
     {
-        if (m->heldObj->behavior == segmented_to_virtual(beh_koopa_shell_underwater))
+        if (m->heldObj->behavior == segmented_to_virtual(bhvKoopaShellUnderwater))
             func_8024931C();
 
-        set_object_held_state(m->heldObj, beh_carry_something4);
+        set_object_held_state(m->heldObj, bhvCarrySomething4);
 
         m->heldObj->oPosX = m->unk98->unk18[0];
         m->heldObj->oPosY = m->pos[1];
@@ -313,10 +313,10 @@ void mario_throw_held_object(struct MarioState *m)
 {
     if (m->heldObj != NULL)
     {
-        if (m->heldObj->behavior == segmented_to_virtual(beh_koopa_shell_underwater))
+        if (m->heldObj->behavior == segmented_to_virtual(bhvKoopaShellUnderwater))
             func_8024931C();
 
-        set_object_held_state(m->heldObj, beh_carry_something5);
+        set_object_held_state(m->heldObj, bhvCarrySomething5);
 
         m->heldObj->oPosX = m->unk98->unk18[0] + 32.0f * sins(m->faceAngle[1]);
         m->heldObj->oPosY = m->unk98->unk18[1];
@@ -355,7 +355,7 @@ void mario_blow_off_cap(struct MarioState *m, f32 capSpeed)
 
         m->flags &= ~(MARIO_UNKNOWN_00 | MARIO_CAP_ON_HEAD);
 
-        capObject = spawn_object(m->marioObj, MODEL_MARIOS_CAP, beh_normal_cap);
+        capObject = spawn_object(m->marioObj, MODEL_MARIOS_CAP, bhvNormalCap);
 
         capObject->oPosY += (m->action & ACT_FLAG_SHORT_HITBOX) ? 120.0f : 180.0f;
         capObject->oForwardVel = capSpeed;
@@ -431,7 +431,7 @@ u32 mario_check_object_grab(struct MarioState *m)
     {
         script = virtual_to_segmented(0x13, m->interactObj->behavior);
 
-        if (script == beh_bowser)
+        if (script == bhvBowser)
         {
             s16 facingDYaw = m->faceAngle[1] - m->interactObj->oMoveAngleYaw;
             if (facingDYaw >= -0x5555 && facingDYaw <= 0x5555)
@@ -786,7 +786,7 @@ static u32 interact_coin(struct MarioState *m, UNUSED u32 interactType, struct O
     if (COURSE_IS_MAIN_COURSE(gCurrCourseNum) &&
         m->numCoins - o->oDamageOrCoinValue < 100 && m->numCoins >= 100)
     {
-        BehSpawnStarObjects(6);
+        bhv_spawn_star_objects(6);
     }
 
     return FALSE;
@@ -830,7 +830,7 @@ static u32 interact_star_or_key(struct MarioState *m, UNUSED u32 interactType, s
         if (m->action & ACT_FLAG_AIR)
             starGrabAction = ACT_FALL_AFTER_STAR_GRAB;
 
-        spawn_object(o, 0, beh_star_key_collection_puff_spawner);
+        spawn_object(o, 0, bhvStarKeyCollectionPuffSpawner);
 
         o->oInteractStatus = INT_STATUS_INTERACTED;
         m->interactObj = o;
@@ -1688,7 +1688,7 @@ static u32 interact_grabbable(struct MarioState *m, u32 interactType, struct Obj
         }
     }
 
-    if (script != beh_bowser)
+    if (script != bhvBowser)
         push_mario_out_of_object(m, o, -5.0f);
     return FALSE;
 }

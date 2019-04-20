@@ -18,7 +18,7 @@ void func_802AA0D4(void)
     set_object_hitbox(o,&sKoopaShellUnderwaterHitbox);
 }
 
-void BehKoopaShellUnderwaterLoop(void)
+void bhv_koopa_shell_underwater_loop(void)
 {
     switch(o->oHeldState)
     {

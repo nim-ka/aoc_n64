@@ -73,7 +73,7 @@ void ActionTweester1(void)
         o->oMoveAngleYaw = o->oWallAngle;
     obj_move_standard(60);
     func_802C231C(1.0f);
-    spawn_object(o,MODEL_SAND_DUST,beh_tornado_sand_particle);
+    spawn_object(o,MODEL_SAND_DUST,bhvTornadoSandParticle);
 }
 
 void ActionTweester2(void)
@@ -93,14 +93,14 @@ void ActionTweester2(void)
 
 void (*TableTweesterActions[])(void) = {ActionTweester0,ActionTweester1,ActionTweester2};
 
-void BehTweesterLoop(void)
+void bhv_tweester_loop(void)
 {
     set_object_hitbox(o,&sTweesterHitbox);
     obj_call_action_function(TableTweesterActions);
     o->oInteractStatus = 0;
 }
 
-void BehTweesterSandParticleLoop(void)
+void bhv_tweester_sand_particle_loop(void)
 {
     o->oMoveAngleYaw += 0x3700;
     o->oForwardVel += 15.0f;

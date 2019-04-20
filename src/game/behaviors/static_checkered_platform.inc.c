@@ -1,6 +1,6 @@
 // static_checkered_platform.c.inc
 
-void BehStaticCheckeredPlatformLoop(void)
+void bhv_static_checkered_platform_loop(void)
 {
     if(gDebugInfo[5][0] == 1)
     {

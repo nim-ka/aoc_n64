@@ -1,6 +1,6 @@
 
 /**
- * Behaviors for bFerrisWheelAxle and bFerrisWheelPlatform.
+ * Behaviors for bhvFerrisWheelAxle and bhvFerrisWheelPlatform.
  * These are the revolving sets of four platforms in BitDW and BitS.
  * The axle spawns the four platforms.
  */
@@ -35,7 +35,7 @@ static struct FerrisWheelProperties sFerrisWheelProperties[] =
 
 
 /**
- * Init function for bFerrisWheelAxle.
+ * Init function for bhvFerrisWheelAxle.
  * It doesn't have an update function, but it increments its roll in its
  * behavior script.
  */
@@ -54,7 +54,7 @@ void bhv_ferris_wheel_axle_init(void)
             0, 0, 0,
             o,
             sFerrisWheelProperties[o->oBehParams2ndByte].platformModel,
-            bFerrisWheelPlatform);
+            bhvFerrisWheelPlatform);
 
         if (platform != NULL)
         {
@@ -65,7 +65,7 @@ void bhv_ferris_wheel_axle_init(void)
 }
 
 /**
- * Update function for bFerrisWheelPlatform.
+ * Update function for bhvFerrisWheelPlatform.
  * Position self relative to parent using the parent's roll.
  */
 void bhv_ferris_wheel_platform_update(void)

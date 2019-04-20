@@ -8,11 +8,11 @@ void func_802A4DB0(void)
     o->oPosZ += o->oVelZ;
 }
 
-void BehStarDoorLoop(void)
+void bhv_star_door_loop(void)
 {
     UNUSED u8 pad[4];
     struct Object* sp18;
-    sp18 = obj_nearest_object_with_behavior(beh_star_door);
+    sp18 = obj_nearest_object_with_behavior(bhvStarDoor);
     switch(o->oAction)
     {
     case 0:

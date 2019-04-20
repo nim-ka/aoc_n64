@@ -62,7 +62,7 @@ void bhv_donut_platform_spawner_update(void)
                     sDonutPlatformPositions[i][2],
                     o,
                     MODEL_RR_DONUT_PLATFORM,
-                    bDonutPlatform) != NULL)
+                    bhvDonutPlatform) != NULL)
                 {
                     o->oDonutPlatformSpawnerSpawnedPlatforms |= platformFlag;
                 }

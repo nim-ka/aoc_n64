@@ -15,11 +15,11 @@ void func_802BDD0C(f32 a0)
 {
     s32 i;
     for(i=0;i<14;i++)
-        func_802BDC60(D_8032FB4C[i].unk0,beh_lll_bowser_puzzle_piece,D_8032FB4C[i].unk1*a0/10.0f,D_8032FB4C[i].unk2*a0/10.0f,D_8032FB4C[i].unk3,D_8032FB4C[i].unk4);
+        func_802BDC60(D_8032FB4C[i].unk0,bhvLllBowserPuzzlePiece,D_8032FB4C[i].unk1*a0/10.0f,D_8032FB4C[i].unk2*a0/10.0f,D_8032FB4C[i].unk3,D_8032FB4C[i].unk4);
     o->oAction++;
 }
 
-void BehLLLBowserPuzzleLoop(void)
+void bhv_lll_bowser_puzzle_loop(void)
 {
     s32 i;
     UNUSED struct Object* sp28;
@@ -32,7 +32,7 @@ void BehLLLBowserPuzzleLoop(void)
         if(o->oBowserPuzzleUnkF4 == 3 && o->oDistanceToMario < 1000.0f)
         {
             for(i=0;i<5;i++)
-                sp28 = spawn_object(o,MODEL_YELLOW_COIN,beh_single_coin_gets_spawned);
+                sp28 = spawn_object(o,MODEL_YELLOW_COIN,bhvSingleCoinGetsSpawned);
             o->oBowserPuzzleUnkF4 = 0;
             o->oAction++;
         }
@@ -126,7 +126,7 @@ void ActionBowserPuzzlePiece6(void)
 
 void (*TableBowserPuzzlePieceActions[])(void) = {ActionBowserPuzzlePiece0,ActionBowserPuzzlePiece1,ActionBowserPuzzlePiece2,ActionBowserPuzzlePiece3,ActionBowserPuzzlePiece4,ActionBowserPuzzlePiece5,ActionBowserPuzzlePiece6};
 
-void BehLLLBowserPuzzlePieceLoop(void)
+void bhv_lll_bowser_puzzle_piece_loop(void)
 {
     func_802BDF2C();
     obj_call_action_function(TableBowserPuzzlePieceActions);

@@ -135,7 +135,7 @@ Gfx *Geo18_8029D924(s32 run, struct GraphNode *node, UNUSED s32 sp48)
                 }
             }
 #else // gDebugInfo accesses were removed in all non-JP versions.
-            if (sp28 == 0 && segmented_to_virtual(beh_bowser) == sp34->behavior)
+            if (sp28 == 0 && segmented_to_virtual(bhvBowser) == sp34->behavior)
             {
                 sp34->oAnimState = 2;
             }
@@ -309,17 +309,17 @@ void set_object_held_state(struct Object *obj, void *heldBehavior)
 
     if (obj->oFlags & OBJ_FLAG_HOLDABLE)
     {
-        if (heldBehavior == beh_carry_something3)
+        if (heldBehavior == bhvCarrySomething3)
         {
             obj->oHeldState = HELD_HELD;
         }
 
-        if (heldBehavior == beh_carry_something5)
+        if (heldBehavior == bhvCarrySomething5)
         {
             obj->oHeldState = HELD_THROWN;
         }
 
-        if (heldBehavior == beh_carry_something4)
+        if (heldBehavior == bhvCarrySomething4)
         {
             obj->oHeldState = HELD_DROPPED;
         }
@@ -1335,7 +1335,7 @@ static void obj_move_after_thrown_or_dropped(f32 forwardVel, f32 velY)
 
 void obj_get_thrown_or_placed(f32 forwardVel, f32 velY, s32 thrownAction)
 {
-    if (o->behavior == segmented_to_virtual(beh_bowser))
+    if (o->behavior == segmented_to_virtual(bhvBowser))
     {
         // Interestingly, when bowser is thrown, he is offset slightly to
         // mario's right
@@ -2009,12 +2009,12 @@ static void spawn_object_loot_coins(
 
 void spawn_object_loot_blue_coins(struct Object *obj, s32 numCoins, f32 sp28, s16 posJitter)
 {
-    spawn_object_loot_coins(obj, numCoins, sp28, beh_blue_coin_jumping, posJitter, MODEL_BLUE_COIN);
+    spawn_object_loot_coins(obj, numCoins, sp28, bhvBlueCoinJumping, posJitter, MODEL_BLUE_COIN);
 }
 
 void spawn_object_loot_yellow_coins(struct Object *obj, s32 numCoins, f32 sp28)
 {
-    spawn_object_loot_coins(obj, numCoins, sp28, beh_single_coin_gets_spawned, 0, MODEL_YELLOW_COIN);
+    spawn_object_loot_coins(obj, numCoins, sp28, bhvSingleCoinGetsSpawned, 0, MODEL_YELLOW_COIN);
 }
 
 void obj_spawn_loot_coin_at_mario_pos(void)
@@ -2027,7 +2027,7 @@ void obj_spawn_loot_coin_at_mario_pos(void)
 
     o->oNumLootCoins--;
 
-    coin = spawn_object(o, MODEL_YELLOW_COIN, beh_single_coin_gets_spawned);
+    coin = spawn_object(o, MODEL_YELLOW_COIN, bhvSingleCoinGetsSpawned);
     coin->oVelY = 30.0f;
 
     copy_object_pos(coin, gMarioObject);
@@ -2579,7 +2579,7 @@ void obj_spawn_particles(struct SpawnParticlesInfo *info)
     {
         scale = RandomFloat() * (info->sizeRange * 0.1f) + info->sizeBase * 0.1f;
 
-        particle = spawn_object(o, info->model, beh_white_puff_explosion);
+        particle = spawn_object(o, info->model, bhvWhitePuffExplosion);
 
         particle->oBehParams2ndByte = info->behParam;
         particle->oMoveAngleYaw = RandomU16();
@@ -2858,7 +2858,7 @@ s32 obj_call_action_function(void (*actionFunctions[])(void))
 
 static struct Object *func_802A36D8(s32 sp20, s32 sp24)
 {
-    struct Object *sp1C = spawn_object(o, MODEL_STAR, beh_unused_080C);
+    struct Object *sp1C = spawn_object(o, MODEL_STAR, bhvUnused080C);
     sp1C->oUnk1B0 = sp24;
     sp1C->oBehParams = o->oBehParams;
     sp1C->oBehParams2ndByte = sp20;
@@ -3564,7 +3564,7 @@ void obj_spawn_loot_blue_coin(void)
 {
     if (o->oNumLootCoins >= 5)
     {
-        spawn_object(o, MODEL_BLUE_COIN, beh_mr_i_blue_coin);
+        spawn_object(o, MODEL_BLUE_COIN, bhvMrIBlueCoin);
         o->oNumLootCoins -= 5;
     }
 }

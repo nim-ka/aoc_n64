@@ -1,6 +1,6 @@
 // sliding_platform.c.inc
 
-void BehWFSlidingPlatformInit(void)
+void bhv_wf_sliding_platform_init(void)
 {
     o->oFaceAngleYaw -= 0x4000;
     o->oPosX += 2.0f;
@@ -24,7 +24,7 @@ void BehWFSlidingPlatformInit(void)
     o->oTimer = RandomFloat() * 100.0f;
 }
 
-void BehWFSlidingPlatformLoop(void)
+void bhv_wf_sliding_platform_loop(void)
 {
     switch (o->oAction)
     {

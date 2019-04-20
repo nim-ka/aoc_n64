@@ -1,6 +1,6 @@
 
 /**
- * Behavior for bMontyMole, bMontyMoleHole, and bMontyMoleRock.
+ * Behavior for bhvMontyMole, bhvMontyMoleHole, and bhvMontyMoleRock.
  * The monty mole holes are placed statically. The monty moles repeatedly
  * search for an available hole to pop out of.
  */
@@ -184,14 +184,14 @@ static struct Object *monty_mole_select_available_hole(f32 minDistToMario)
 }
 
 /**
- * Update function for bMontyMoleHole.
+ * Update function for bhvMontyMoleHole.
  */
 void bhv_monty_mole_hole_update(void)
 {
     // If hole list hasn't been constructed yet, construct it
     if (o->parentObj == o)
     {
-        sMontyMoleHoleList = link_objects_with_behavior(bMontyMoleHole);
+        sMontyMoleHoleList = link_objects_with_behavior(bhvMontyMoleHole);
         sMontyMoleKillStreak = 0;
     }
     else if (o->oMontyMoleHoleCooldown > 0)
@@ -211,7 +211,7 @@ static void monty_mole_spawn_dirt_particles(s8 offsetY, s8 velYBase)
 }
 
 /**
- * Init function for bMontyMole.
+ * Init function for bhvMontyMole.
  */
 void bhv_monty_mole_init(void)
 {
@@ -306,7 +306,7 @@ static void monty_mole_act_spawn_rock(void)
     {
         if (o->oBehParams2ndByte != MONTY_MOLE_BP_NO_ROCK &&
             abs_angle_diff(o->oAngleToMario, o->oMoveAngleYaw) < 0x4000 &&
-            (rock = spawn_object(o, MODEL_PEBBLE, bMontyMoleRock)) != NULL)
+            (rock = spawn_object(o, MODEL_PEBBLE, bhvMontyMoleRock)) != NULL)
         {
             o->prevObj = rock;
             o->oAction = MONTY_MOLE_ACT_THROW_ROCK;
@@ -427,7 +427,7 @@ static void monty_mole_act_jump_out_of_hole(void)
 }
 
 /**
- * Update function for bMontyMole.
+ * Update function for bhvMontyMole.
  */
 void bhv_monty_mole_update(void)
 {
@@ -469,7 +469,7 @@ void bhv_monty_mole_update(void)
                 if (sMontyMoleKillStreak == 7)
                 {
                     play_puzzle_jingle();
-                    spawn_object(o, MODEL_1UP, beh_1up_walking);
+                    spawn_object(o, MODEL_1UP, bhv1upWalking);
                 }
             }
             else
@@ -541,7 +541,7 @@ static void monty_mole_rock_act_move(void)
 }
 
 /**
- * Update function for bMontyMoleRock.
+ * Update function for bhvMontyMoleRock.
  */
 void bhv_monty_mole_rock_update(void)
 {

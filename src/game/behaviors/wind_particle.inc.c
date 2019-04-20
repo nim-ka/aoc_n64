@@ -13,7 +13,7 @@ struct ObjectHitbox sWindParticleHitbox =
     /* hurtboxHeight: */     70,
 };
 
-void BehWhiteWindParticleLoop(void)
+void bhv_white_wind_particle_loop(void)
 {
     struct Object* sp34;
     f32 sp30;
@@ -22,7 +22,7 @@ void BehWhiteWindParticleLoop(void)
     set_object_hitbox(o,&sWindParticleHitbox);
     if(o->oTimer == 0)
     {
-        o->oWhiteWindParticleUnkF4 = obj_nearest_object_with_behavior(beh_walking_penguin);
+        o->oWhiteWindParticleUnkF4 = obj_nearest_object_with_behavior(bhvWalkingPenguin);
         translate_object_xyz_random(o,100.0f);
         o->oForwardVel = coss(o->oMoveAnglePitch) * 100.0f;
         o->oVelY = sins(o->oMoveAnglePitch) * -100.0f;
@@ -50,10 +50,10 @@ void func_802C76E0(s32 a0,f32 a1,f32 a2,f32 a3,f32 a4)
 {
     if((gGlobalTimer & 1) != 0)
     {
-        spawn_object_relative_with_scale(a0,a2,a3,a4,0.5f,o,158,beh_tiny_white_wind_particle);
-        spawn_object_relative_with_scale(a0,a2,a3,a4,a1,o,0,beh_wind_particle);
+        spawn_object_relative_with_scale(a0,a2,a3,a4,0.5f,o,158,bhvTinyWhiteWindParticle);
+        spawn_object_relative_with_scale(a0,a2,a3,a4,a1,o,0,bhvWindParticle);
     }
     else
-        spawn_object_relative_with_scale(a0,a2,a3,a4,a1,o,142,beh_wind_particle);
-    spawn_object_relative_with_scale(a0,a2,a3,a4,a1,o,0,beh_wind_particle);
+        spawn_object_relative_with_scale(a0,a2,a3,a4,a1,o,142,bhvWindParticle);
+    spawn_object_relative_with_scale(a0,a2,a3,a4,a1,o,0,bhvWindParticle);
 }

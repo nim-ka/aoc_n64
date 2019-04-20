@@ -13,7 +13,7 @@ struct ObjectHitbox sSkullSlidingBoxHitbox =
     /* hurtboxHeight: */     0,
 };
 
-void BehSunkenShipPartLoop(void)
+void bhv_sunken_ship_part_loop(void)
 {
     if(o->oDistanceToMario > 10000.0f)
         o->oOpacity = 140;
@@ -22,7 +22,7 @@ void BehSunkenShipPartLoop(void)
     obj_disable_rendering();
 }
 
-void BehShipPart3Loop(void)
+void bhv_ship_part_3_loop(void)
 {
     s16 sp1E = o->oFaceAnglePitch;
     s16 sp1C = o->oFaceAngleRoll;
@@ -36,7 +36,7 @@ void BehShipPart3Loop(void)
         PlaySound(SOUND_ENVIRONMENT_BOATROCKING1);
 }
 
-void BehJrbSlidingBox(void)
+void bhv_jrb_sliding_box_loop(void)
 {
     Mat4 sp60;
     Vec3f sp54;
@@ -49,7 +49,7 @@ void BehJrbSlidingBox(void)
     s16 sp1E;
     if(o->oJrbSlidingBoxUnkF4 == NULL)
     {
-        sp3C = obj_nearest_object_with_behavior(beh_in_sunken_ship_3);
+        sp3C = obj_nearest_object_with_behavior(bhvInSunkenShip3);
         if(sp3C != NULL) // NULL check only for assignment, not for dereference?
             o->oJrbSlidingBoxUnkF4 = sp3C;
         o->oParentRelativePosX = o->oPosX - sp3C->oPosX;

@@ -1,6 +1,6 @@
 // snowman_wind.c.inc
 
-void BehSnowmanWindBlowingLoop(void)
+void bhv_snowman_wind_blowing_loop(void)
 {
     UNUSED s32 sp34;
     s16 sp32;

@@ -58,7 +58,7 @@ Gfx *Geo18_802764B0(s32 run, struct GraphNode *node, Mat4 *c)
     return sp24;
 }
 
-static void beh_toad_message_faded(void)
+static void bhvToadMessage_faded(void)
 {
     if (gCurrentObject->oDistanceToMario > 700.0f)
         gCurrentObject->oToadMessageRecentlyTalked = 0;
@@ -66,7 +66,7 @@ static void beh_toad_message_faded(void)
         gCurrentObject->oToadMessageState = TOAD_MESSAGE_OPACIFYING;
 }
 
-static void beh_toad_message_opaque(void)
+static void bhvToadMessage_opaque(void)
 {
     if (gCurrentObject->oDistanceToMario > 700.0f)
     {
@@ -87,7 +87,7 @@ static void beh_toad_message_opaque(void)
     }
 }
 
-static void beh_toad_message_talking(void)
+static void bhvToadMessage_talking(void)
 {
     if (obj_update_dialogue_unk2(3, 1, 162, gCurrentObject->oToadMessageDialogNum) != 0)
     {
@@ -97,33 +97,33 @@ static void beh_toad_message_talking(void)
         {
         case TOAD_STAR_1_DIALOG:
             gCurrentObject->oToadMessageDialogNum = TOAD_STAR_1_DIALOG_AFTER;
-            BehSpawnStarObjects(0);
+            bhv_spawn_star_objects(0);
             break;
         case TOAD_STAR_2_DIALOG:
             gCurrentObject->oToadMessageDialogNum = TOAD_STAR_2_DIALOG_AFTER;
-            BehSpawnStarObjects(1);
+            bhv_spawn_star_objects(1);
             break;
         case TOAD_STAR_3_DIALOG:
             gCurrentObject->oToadMessageDialogNum = TOAD_STAR_3_DIALOG_AFTER;
-            BehSpawnStarObjects(2);
+            bhv_spawn_star_objects(2);
             break;
         }
     }
 }
 
-static void beh_toad_message_opacifying(void)
+static void bhvToadMessage_opacifying(void)
 {
     if ((gCurrentObject->oOpacity += 6) == 255)
         gCurrentObject->oToadMessageState = TOAD_MESSAGE_OPAQUE;
 }
 
-static void beh_toad_message_fading(void)
+static void bhvToadMessage_fading(void)
 {
     if ((gCurrentObject->oOpacity -= 6) == 81)
         gCurrentObject->oToadMessageState = TOAD_MESSAGE_FADED;
 }
 
-void beh_toad_message_loop(void)
+void bhvToadMessage_loop(void)
 {
     if (gCurrentObject->header.gfx.node.flags & 1)
     {
@@ -131,25 +131,25 @@ void beh_toad_message_loop(void)
         switch (gCurrentObject->oToadMessageState)
         {
         case TOAD_MESSAGE_FADED:
-            beh_toad_message_faded();
+            bhvToadMessage_faded();
             break;
         case TOAD_MESSAGE_OPAQUE:
-            beh_toad_message_opaque();
+            bhvToadMessage_opaque();
             break;
         case TOAD_MESSAGE_OPACIFYING:
-            beh_toad_message_opacifying();
+            bhvToadMessage_opacifying();
             break;
         case TOAD_MESSAGE_FADING:
-            beh_toad_message_fading();
+            bhvToadMessage_fading();
             break;
         case TOAD_MESSAGE_TALKING:
-            beh_toad_message_talking();
+            bhvToadMessage_talking();
             break;
         }
     }
 }
 
-void beh_toad_message_init(void)
+void bhvToadMessage_init(void)
 {
     int saveFlags = save_file_get_flags();
     int starCount = save_file_get_total_star_count(gCurrSaveFileNum - 1, 0, 24);
@@ -187,9 +187,9 @@ void beh_toad_message_init(void)
     }
 }
 
-static void beh_unlock_door_star_spawn_particle(s16 angleOffset)
+static void bhvUnlockDoorStar_spawn_particle(s16 angleOffset)
 {
-    struct Object *sparkleParticle = spawn_object(gCurrentObject, 0, beh_powerup_sparkles2);
+    struct Object *sparkleParticle = spawn_object(gCurrentObject, 0, bhvPowerupSparkles2);
 
     sparkleParticle->oPosX += 100.0f * sins((gCurrentObject->oUnlockDoorStarTimer * 0x2800) + angleOffset);
     sparkleParticle->oPosZ += 100.0f * coss((gCurrentObject->oUnlockDoorStarTimer * 0x2800) + angleOffset);
@@ -197,7 +197,7 @@ static void beh_unlock_door_star_spawn_particle(s16 angleOffset)
     sparkleParticle->oPosY -= gCurrentObject->oUnlockDoorStarTimer * 10.0f;
 }
 
-void beh_unlock_door_star_init(void)
+void bhvUnlockDoorStar_init(void)
 {
     gCurrentObject->oUnlockDoorStarState = UNLOCK_DOOR_STAR_RISING;
     gCurrentObject->oUnlockDoorStarTimer = 0;
@@ -209,7 +209,7 @@ void beh_unlock_door_star_init(void)
     scale_object(gCurrentObject, 0.5f);
 }
 
-void beh_unlock_door_star_loop(void)
+void bhvUnlockDoorStar_loop(void)
 {
     UNUSED u8 unused1[4];
     s16 prevYaw = gCurrentObject->oMoveAngleYaw;
@@ -242,8 +242,8 @@ void beh_unlock_door_star_loop(void)
         break;
     case UNLOCK_DOOR_STAR_SPAWNING_PARTICLES:
         // Spawn two particles, opposite sides of the star.
-        beh_unlock_door_star_spawn_particle(0);
-        beh_unlock_door_star_spawn_particle(0x8000);
+        bhvUnlockDoorStar_spawn_particle(0);
+        bhvUnlockDoorStar_spawn_particle(0x8000);
         if (gCurrentObject->oUnlockDoorStarTimer++ == 20)
         {
             gCurrentObject->oUnlockDoorStarTimer = 0;

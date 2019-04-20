@@ -1,8 +1,8 @@
 
 /**
- * Behavior for bCameraLakitu. This includes both the intro lakitu and the
+ * Behavior for bhvCameraLakitu. This includes both the intro lakitu and the
  * lakitu visible in the mirror room.
- * TODO: Processing order relative to bCloud
+ * TODO: Processing order relative to bhvCloud
  */
 
 
@@ -29,7 +29,7 @@ void bhv_camera_lakitu_init(void)
             2.0f,
             o,
             MODEL_MIST,
-            bCloud);
+            bhvCloud);
     }
 }
 
@@ -76,7 +76,7 @@ static void camera_lakitu_intro_act_spawn_cloud(void)
             2.0f,
             o,
             MODEL_MIST,
-            bCloud);
+            bhvCloud);
     }
 }
 

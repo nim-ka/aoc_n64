@@ -1,19 +1,19 @@
 // beta_chest.c.inc
 
-void BehBetaChestInit(void)
+void bhv_beta_chest_init(void)
 {
     obj_set_model(MODEL_TREASURE_CHEST_BASE);
     o->oMoveAngleYaw = RandomU16(); // Pointless
     o->oMoveAngleYaw = 0;
-    spawn_object_relative(0,0,97,-77,o,MODEL_TREASURE_CHEST_LID,beh_beta_chest_upper);
+    spawn_object_relative(0,0,97,-77,o,MODEL_TREASURE_CHEST_LID,bhvBetaChestUpper);
 }
 
-void BehBetaChestLoop(void)
+void bhv_beta_chest_loop(void)
 {
     obj_push_mario_away_from_cylinder(200.0f,200.0f);
 }
 
-void BehBetaChestUpperLoop(void)
+void bhv_beta_chest_upper_loop(void)
 {
     switch(o->oAction)
     {
@@ -24,7 +24,7 @@ void BehBetaChestUpperLoop(void)
     case 1:
         if(o->oTimer == 0)
         {
-            spawn_object_relative(0,0,-80,120,o,MODEL_BUBBLE,beh_water_air_bubble);
+            spawn_object_relative(0,0,-80,120,o,MODEL_BUBBLE,bhvWaterAirBubble);
             SetSound(SOUND_GENERAL_CLAMSHELL1,&o->header.gfx.unk54);
         }
         o->oFaceAnglePitch -= 0x400;

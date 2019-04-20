@@ -1,6 +1,6 @@
 // little_cage.c.inc
 
-void BehLittleCage2Loop(void)
+void bhv_little_cage_2_loop(void)
 {
     switch(o->oAction)
     {
@@ -53,7 +53,7 @@ void ActionLittleCage3(void)
 
 void (*TableLittleCageActions[])(void) = {ActionLittleCage0,ActionLittleCage1,ActionLittleCage2,ActionLittleCage3};
 
-void BehLittleCageLoop(void)
+void bhv_little_cage_loop(void)
 {
     obj_call_action_function(TableLittleCageActions);
 }

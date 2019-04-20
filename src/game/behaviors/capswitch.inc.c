@@ -5,7 +5,7 @@ void ActionActivateCapSwitch0(void)
     o->oAnimState = o->oBehParams2ndByte;
     obj_scale(0.5f);
     o->oPosY += 71.0f;
-    spawn_object_relative_with_scale(0,0,-71,0,0.5f,o,86,beh_cap_switch_base);
+    spawn_object_relative_with_scale(0,0,-71,0,0.5f,o,86,bhvCapSwitchBase);
     if(gCurrLevelNum != LEVEL_UNKNOWN_32)
     {
         if(save_file_get_flags() & D_8032F0C0[o->oBehParams2ndByte])
@@ -55,7 +55,7 @@ void ActionActivateCapSwitch3(){} // dead function
 
 void (*TableCapSwitchActions[])(void) = {ActionActivateCapSwitch0,ActionActivateCapSwitch1,ActionActivateCapSwitch2,ActionActivateCapSwitch3};
 
-void BehCapSwitchLoop(void)
+void bhv_cap_switch_loop(void)
 {
     obj_call_action_function(TableCapSwitchActions);
 }

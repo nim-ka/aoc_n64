@@ -47,7 +47,7 @@ void func_802B0F54(void)
         if(o->oTimer == 0)
             func_802B0E74();
         if(o->oUnknownUnkF4_S32 == 0)
-            o->oHiddenObjectUnkF4 = obj_nearest_object_with_behavior(beh_floor_switch_hidden_objects);
+            o->oHiddenObjectUnkF4 = obj_nearest_object_with_behavior(bhvFloorSwitchHiddenObjects);
         if((sp1C = o->oHiddenObjectUnkF4) != NULL)
             if(sp1C->oAction == 2)
             {
@@ -90,7 +90,7 @@ void func_802B1138(void)
         obj_disable_rendering();
         obj_become_intangible();
         if(o->oHiddenObjectUnkF4 == NULL)
-            o->oHiddenObjectUnkF4 = obj_nearest_object_with_behavior(beh_floor_switch_hidden_objects);
+            o->oHiddenObjectUnkF4 = obj_nearest_object_with_behavior(bhvFloorSwitchHiddenObjects);
         if((sp1C = o->oHiddenObjectUnkF4) != NULL)
             if(sp1C->oAction == 2)
             {
@@ -108,7 +108,7 @@ void func_802B1138(void)
     }
 }
 
-void BehHiddenObjectLoop(void)
+void bhv_hidden_object_loop(void)
 {
     if(o->oBehParams2ndByte == 0)
         func_802B0F54(); // Confused, that function has code depending on the action

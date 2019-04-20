@@ -226,7 +226,7 @@ void func_802B2328(s32 n,s32 a1,s32 a2,s32 r) // n is the number of objects to s
                                     sins(D_8035FF10+i*seperation)*a1,
                                     (i+1)*a2,
                                     coss(D_8035FF10+i*seperation)*a1,
-                                    o,MODEL_NONE,beh_powerup_sparkles2);
+                                    o,MODEL_NONE,bhvPowerupSparkles2);
 
     D_8035FF10 += r*0x100;
 }

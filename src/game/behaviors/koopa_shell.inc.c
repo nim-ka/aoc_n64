@@ -17,16 +17,16 @@ void func_802BCA8C(void)
 {
     UNUSED s32 unused;
     struct Object* drop;
-    spawn_object(o,MODEL_WATER_WAVES,beh_water_type);
+    spawn_object(o,MODEL_WATER_WAVES,bhvWaterType);
     if(gMarioStates->forwardVel > 10.0f)
     {
-        drop = spawn_object_with_scale(o,MODEL_SMALL_SNOW_BALL,beh_water_drops,1.5f);
+        drop = spawn_object_with_scale(o,MODEL_SMALL_SNOW_BALL,bhvWaterDrops,1.5f);
         drop->oVelY = RandomFloat() * 30.0f;
         translate_object_xz_random(drop,110.0f);
     }
 }
 
-void BehKoopaShellFlameLoop(void)
+void bhv_koopa_shell_flame_loop(void)
 {
     if(o->oTimer == 0)
     {
@@ -45,20 +45,20 @@ void BehKoopaShellFlameLoop(void)
     obj_scale(o->oKoopaShellFlameUnkF8);
 }
 
-void BehKoopaShellFlameSpawn(void)
+void bhv_koopa_shell_flame_spawn(void)
 {
     s32 i;
     for(i=0;i<2;i++)
-        spawn_object(o,MODEL_RED_FLAME,beh_koopa_shell_flame);
+        spawn_object(o,MODEL_RED_FLAME,bhvKoopaShellFlame);
 }
 
 void func_802BCCD4(f32 a)
 {
-    struct Object* sp1C = spawn_object(o,MODEL_NONE,beh_powerup_sparkles2);
+    struct Object* sp1C = spawn_object(o,MODEL_NONE,bhvPowerupSparkles2);
     sp1C->oPosY += a;
 }
 
-void BehKoopaShellLoop(void)
+void bhv_koopa_shell_loop(void)
 {
     struct Surface* sp34;
     set_object_hitbox(o,&sKoopaShellHitbox);
@@ -82,7 +82,7 @@ void BehKoopaShellLoop(void)
         else if(5.0f > absf(o->oPosY-o->oFloorHeight))
         {
             if(sp34 != NULL && sp34->type == 1)
-                    BehKoopaShellFlameSpawn();
+                    bhv_koopa_shell_flame_spawn();
             else
                     func_802BCCD4(10.0f);
         }

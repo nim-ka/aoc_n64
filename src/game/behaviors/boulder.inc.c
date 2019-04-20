@@ -1,6 +1,6 @@
 // boulder.c.inc
 
-void BehBigBoulderInit(void) {
+void bhv_big_boulder_init(void) {
     o->oHomeX = o->oPosX;
     o->oHomeY = o->oPosY;
     o->oHomeZ = o->oPosZ;
@@ -26,7 +26,7 @@ void func_802F05DC(void) {
         o->activeFlags = 0;
 }
 
-void BehBigBoulderLoop(void) {
+void bhv_big_boulder_loop(void) {
     obj_scale(1.5f);
     o->oGraphYOffset = 270.0f;
     switch (o->oAction) {
@@ -45,7 +45,7 @@ void BehBigBoulderLoop(void) {
     func_802EFB2C();
 }
 
-void BehBigBoulderGeneratorLoop(void) {
+void bhv_big_boulder_generator_loop(void) {
     struct Object *sp1C;
     if (o->oTimer >= 256) {
         o->oTimer = 0;
@@ -56,13 +56,13 @@ void BehBigBoulderGeneratorLoop(void) {
 
     if (IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, 6000)) {
         if ((o->oTimer & 0x3F) == 0) {
-            sp1C = spawn_object(o, MODEL_HMC_ROLLING_ROCK, beh_big_boulder);
+            sp1C = spawn_object(o, MODEL_HMC_ROLLING_ROCK, bhvBigBoulder);
             sp1C->oMoveAngleYaw = RandomFloat() * 4096.0f;
         }
     } 
     else {
         if ((o->oTimer & 0x7F) == 0) {
-            sp1C = spawn_object(o, MODEL_HMC_ROLLING_ROCK, beh_big_boulder);
+            sp1C = spawn_object(o, MODEL_HMC_ROLLING_ROCK, bhvBigBoulder);
             sp1C->oMoveAngleYaw = RandomFloat() * 4096.0f;
         }
     }

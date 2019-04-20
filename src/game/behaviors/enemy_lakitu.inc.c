@@ -1,8 +1,8 @@
 
 /**
- * Behavior for bEnemyLakitu.
+ * Behavior for bhvEnemyLakitu.
  * Lakitu comes before it spawned spinies in processing order.
- * TODO: bCloud processing oredr
+ * TODO: bhvCloud processing oredr
  */
 
 
@@ -36,7 +36,7 @@ static void enemy_lakitu_act_uninitialized(void)
             2.0f,
             o,
             MODEL_MIST,
-            bCloud);
+            bhvCloud);
 
         obj_unhide();
         o->oAction = ENEMY_LAKITU_ACT_MAIN;
@@ -128,7 +128,7 @@ static void enemy_lakitu_sub_act_no_spiny(void)
         o->oDistanceToMario < 800.0f &&
         abs_angle_diff(o->oAngleToMario, o->oFaceAngleYaw) < 0x4000)
     {
-        struct Object *spiny = spawn_object(o, MODEL_SPINY_BALL, bSpiny);
+        struct Object *spiny = spawn_object(o, MODEL_SPINY_BALL, bhvSpiny);
         if (spiny != NULL)
         {
             o->prevObj = spiny;
@@ -218,7 +218,7 @@ static void enemy_lakitu_act_main(void)
 }
 
 /**
- * Update function for bEnemyLakitu.
+ * Update function for bhvEnemyLakitu.
  */
 void bhv_enemy_lakitu_update(void)
 {

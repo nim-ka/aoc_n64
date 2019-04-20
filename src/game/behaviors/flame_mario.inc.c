@@ -1,11 +1,11 @@
 // flame_mario.c.inc
 
-void BehBlackSmokeUpwardLoop(void)
+void bhv_black_smoke_upward_loop(void)
 {
-    spawn_object_with_scale(o,MODEL_BURN_SMOKE,beh_black_smoke_bowser,o->header.gfx.scale[0]);
+    spawn_object_with_scale(o,MODEL_BURN_SMOKE,bhvBlackSmokeBowser,o->header.gfx.scale[0]);
 }
 
-void BehBlackSmokeBowserLoop(void)
+void bhv_black_smoke_bowser_loop(void)
 {
     if(o->oTimer == 0)
     {
@@ -18,7 +18,7 @@ void BehBlackSmokeBowserLoop(void)
     o->oPosY += o->oVelY;
 }
 
-void BehBlackSmokeMarioLoop(void)
+void bhv_black_smoke_mario_loop(void)
 {
     if(o->oTimer == 0)
     {
@@ -31,12 +31,12 @@ void BehBlackSmokeMarioLoop(void)
     o->oPosY += o->oVelY;
 }
 
-void BehFlameMarioLoop(void)
+void bhv_flame_mario_loop(void)
 {
     obj_scale(2.0f);
     if(o->oTimer != 0)
         if(o->oTimer&1)
-            spawn_object(o,MODEL_BURN_SMOKE,beh_black_smoke_mario);
+            spawn_object(o,MODEL_BURN_SMOKE,bhvBlackSmokeMario);
     gMarioObject->prevObj = o; // weird?
     set_object_parent_relative_pos(o,40,-120,0);
     if(!(gMarioObject->oMarioParticleFlags & 0x800))

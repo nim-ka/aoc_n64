@@ -1,6 +1,6 @@
 // pound_explode.c.inc
 
-void BehPoundExplodesLoop(void)
+void bhv_pound_explodes_loop(void)
 {
     obj_scale(1.02f);
     if(o->oAction == 0)

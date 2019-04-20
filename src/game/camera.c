@@ -9600,7 +9600,7 @@ void BehBeginningLakituLoop(void)
         obj_disable_rendering();
         gCurrentObject->oIntroLakituUnkFC = 0.f;
         gCurrentObject->oIntroLakituUnkF8 = 0.f;
-        gCurrentObject->oUnk1AC_VPTR = spawn_object_relative_with_scale(1, 0, 0, 0, 2.f, gCurrentObject, MODEL_MIST, bCloud);
+        gCurrentObject->oUnk1AC_VPTR = spawn_object_relative_with_scale(1, 0, 0, 0, 2.f, gCurrentObject, MODEL_MIST, bhvCloud);
         if (gCurrLevelCamera->unk30 == 177)
             gCurrentObject->oAction = 100;
         else
@@ -9831,30 +9831,30 @@ void BehIntroSceneLoop(void)
         switch (D_8033B85C)
         {
         case 6:
-            sp34 = spawn_object(gCurrentObject, MODEL_LAKITU, beh_beginning_lakitu);
+            sp34 = spawn_object(gCurrentObject, MODEL_LAKITU, bhvBeginningLakitu);
             break;
         case 5:
-            sp34 = spawn_object(gCurrentObject, MODEL_PEACH, beh_beginning_peach);
+            sp34 = spawn_object(gCurrentObject, MODEL_PEACH, bhvBeginningPeach);
             break;
         case 7:
-            func_8029B964(gCurrentObject,    0,  205,   500, 0x1000,  0x6000, -0x1E00, 25, MODEL_BIRDS, beh_end_birds_1);
-            func_8029B964(gCurrentObject,    0,  205,   800, 0x1800,  0x6000, -0x1400, 35, MODEL_BIRDS, beh_end_birds_1);
-            func_8029B964(gCurrentObject, -100,  300,   500,  0x800,  0x6000,       0, 25, MODEL_BIRDS, beh_end_birds_1);
-            func_8029B964(gCurrentObject,  100, -200,   800,      0,  0x4000,  0x1400, 45, MODEL_BIRDS, beh_end_birds_1);
-            func_8029B964(gCurrentObject,  -80,  300,   350, 0x1800,  0x5000,   0xA00, 35, MODEL_BIRDS, beh_end_birds_1);
-            func_8029B964(gCurrentObject, -300,  300,   500,  0x800,  0x6000,  0x2800, 25, MODEL_BIRDS, beh_end_birds_1);
-            func_8029B964(gCurrentObject, -400, -200,   800,      0,  0x4000, -0x1400, 45, MODEL_BIRDS, beh_end_birds_1);
+            func_8029B964(gCurrentObject,    0,  205,   500, 0x1000,  0x6000, -0x1E00, 25, MODEL_BIRDS, bhvEndBirds1);
+            func_8029B964(gCurrentObject,    0,  205,   800, 0x1800,  0x6000, -0x1400, 35, MODEL_BIRDS, bhvEndBirds1);
+            func_8029B964(gCurrentObject, -100,  300,   500,  0x800,  0x6000,       0, 25, MODEL_BIRDS, bhvEndBirds1);
+            func_8029B964(gCurrentObject,  100, -200,   800,      0,  0x4000,  0x1400, 45, MODEL_BIRDS, bhvEndBirds1);
+            func_8029B964(gCurrentObject,  -80,  300,   350, 0x1800,  0x5000,   0xA00, 35, MODEL_BIRDS, bhvEndBirds1);
+            func_8029B964(gCurrentObject, -300,  300,   500,  0x800,  0x6000,  0x2800, 25, MODEL_BIRDS, bhvEndBirds1);
+            func_8029B964(gCurrentObject, -400, -200,   800,      0,  0x4000, -0x1400, 45, MODEL_BIRDS, bhvEndBirds1);
             break;
         case 9:
-            func_8029B964(gCurrentObject,   50,  205,   500, 0x1000,  0x6000,       0, 35, MODEL_BIRDS, beh_end_birds_1);
-            func_8029B964(gCurrentObject,    0,  285,   800, 0x1800,  0x6000,       0, 35, MODEL_BIRDS, beh_end_birds_1);
+            func_8029B964(gCurrentObject,   50,  205,   500, 0x1000,  0x6000,       0, 35, MODEL_BIRDS, bhvEndBirds1);
+            func_8029B964(gCurrentObject,    0,  285,   800, 0x1800,  0x6000,       0, 35, MODEL_BIRDS, bhvEndBirds1);
             break;
         case 8:
-            func_8029B964(gCurrentObject, -100, -100,  -700,      0,       0,  -0xF00, 25, MODEL_BIRDS, beh_end_birds_2);
-            func_8029B964(gCurrentObject, -250,  255,  -200,      0,       0, -0x1400, 25, MODEL_BIRDS, beh_end_birds_2);
-            func_8029B964(gCurrentObject, -100,  155,  -600,      0,       0,  -0x500, 35, MODEL_BIRDS, beh_end_birds_2);
-            func_8029B964(gCurrentObject,  250,  200, -1200,      0,       0,  -0x700, 25, MODEL_BIRDS, beh_end_birds_2);
-            func_8029B964(gCurrentObject, -250,  255,  -700,      0,       0,       0, 25, MODEL_BIRDS, beh_end_birds_2);
+            func_8029B964(gCurrentObject, -100, -100,  -700,      0,       0,  -0xF00, 25, MODEL_BIRDS, bhvEndBirds2);
+            func_8029B964(gCurrentObject, -250,  255,  -200,      0,       0, -0x1400, 25, MODEL_BIRDS, bhvEndBirds2);
+            func_8029B964(gCurrentObject, -100,  155,  -600,      0,       0,  -0x500, 35, MODEL_BIRDS, bhvEndBirds2);
+            func_8029B964(gCurrentObject,  250,  200, -1200,      0,       0,  -0x700, 25, MODEL_BIRDS, bhvEndBirds2);
+            func_8029B964(gCurrentObject, -250,  255,  -700,      0,       0,       0, 25, MODEL_BIRDS, bhvEndBirds2);
             break;
         }
         

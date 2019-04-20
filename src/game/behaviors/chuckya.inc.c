@@ -27,7 +27,7 @@ void func_802A8D18(f32 sp28,f32 sp2C,s32 sp30)
         mark_object_for_deletion(o);
 }
 
-void BehChuckyaAnchorMarioLoop(void)
+void bhv_chuckya_anchor_mario_loop(void)
 {
     func_802A8D18(40.0f,40.0f,64);
 }
@@ -225,7 +225,7 @@ void func_802A97B8(void)
     }
 }
 
-void BehChuckyaLoop(void)
+void bhv_chuckya_loop(void)
 {
     f32 sp2C = 20.0f;
     f32 sp28 = 50.0f;

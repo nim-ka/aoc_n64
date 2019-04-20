@@ -1,12 +1,12 @@
 // bullet_bill.c.inc
 
 // bullet bill smoke
-void BehWhitePuffSmokeInit(void)
+void bhv_white_puff_smoke_init(void)
 {
     obj_scale(RandomFloat()*2.0f + 2.0);
 }
 
-void BehBulletBillInit(void)
+void bhv_bullet_bill_init(void)
 {
     o->oBulletBillUnkF8 = o->oMoveAngleYaw;
 }
@@ -45,7 +45,7 @@ void ActionBulletBill2(void)
     {
         if(o->oTimer > 70)
             obj_update_floor_and_walls();
-        spawn_object(o,MODEL_SMOKE,beh_white_puff_smoke);
+        spawn_object(o,MODEL_SMOKE,bhvWhitePuffSmoke);
         o->oForwardVel = 30.0f;
         if(o->oDistanceToMario > 300.0f)
             obj_rotate_yaw_toward(o->oAngleToMario,0x100);
@@ -83,7 +83,7 @@ void ActionBulletBill4(void)
 
 void (*TableBulletBillActions[])(void) = {ActionBulletBill0,ActionBulletBill1,ActionBulletBill2,ActionBulletBill3,ActionBulletBill4};
 
-void BehBulletBillLoop(void)
+void bhv_bullet_bill_loop(void)
 {
     obj_call_action_function(TableBulletBillActions);
     if(obj_check_interacted())

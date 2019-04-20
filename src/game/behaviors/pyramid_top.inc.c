@@ -1,10 +1,10 @@
 // pyramid_top.c.inc
 
-void BehPyramidTopInit(void) {
-    spawn_object_abs_with_rot(o, 0, MODEL_NONE, beh_collision_box_subbehavior, 1789, 1024, 764, 0, 0, 0);
-    spawn_object_abs_with_rot(o, 0, MODEL_NONE, beh_collision_box_subbehavior, 1789, 896, -2579, 0, 0, 0);
-    spawn_object_abs_with_rot(o, 0, MODEL_NONE, beh_collision_box_subbehavior, -5883, 1024, -2579, 0, 0, 0);
-    spawn_object_abs_with_rot(o, 0, MODEL_NONE, beh_collision_box_subbehavior, -5883, 1024, 764, 0, 0, 0);
+void bhv_pyramid_top_init(void) {
+    spawn_object_abs_with_rot(o, 0, MODEL_NONE, bhvCollisionBoxSubbehavior, 1789, 1024, 764, 0, 0, 0);
+    spawn_object_abs_with_rot(o, 0, MODEL_NONE, bhvCollisionBoxSubbehavior, 1789, 896, -2579, 0, 0, 0);
+    spawn_object_abs_with_rot(o, 0, MODEL_NONE, bhvCollisionBoxSubbehavior, -5883, 1024, -2579, 0, 0, 0);
+    spawn_object_abs_with_rot(o, 0, MODEL_NONE, bhvCollisionBoxSubbehavior, -5883, 1024, 764, 0, 0, 0);
 }
 
 void func_802EF238(void) {
@@ -26,7 +26,7 @@ void func_802EF238(void) {
     }
 
     if (o->oTimer < 90) {
-        sp1C = spawn_object(o, MODEL_DIRT_ANIMATION, beh_pyramid_top_explosion);
+        sp1C = spawn_object(o, MODEL_DIRT_ANIMATION, bhvPyramidTopExplosion);
         sp1C->oForwardVel = RandomFloat() * 10.0f + 20.0f;
         sp1C->oMoveAngleYaw = RandomU16();
         sp1C->oUnknownUnkF4_F32 = 0.8f;
@@ -44,7 +44,7 @@ void func_802EF450(void) {
     func_802AA618(0, 0, 690.0f);
 
     for (sp1A = 0; sp1A < 30; sp1A++) {
-        sp1C = spawn_object(o, MODEL_DIRT_ANIMATION, beh_pyramid_top_explosion);
+        sp1C = spawn_object(o, MODEL_DIRT_ANIMATION, bhvPyramidTopExplosion);
         sp1C->oForwardVel = RandomFloat() * 50.0f + 80.0f;
         sp1C->oVelY = RandomFloat() * 80.0f + 20.0f;
         sp1C->oMoveAngleYaw = RandomU16();
@@ -55,7 +55,7 @@ void func_802EF450(void) {
     o->activeFlags = 0;
 }
 
-void BehPyramidTopLoop(void) {
+void bhv_pyramid_top_loop(void) {
     switch(o->oAction) {
         case 0:
             if (o->oPyramidTopUnkF4 == 4) {
@@ -80,14 +80,14 @@ void BehPyramidTopLoop(void) {
     }
 }
 
-void BehPyramidTopExplosionInit(void) {
+void bhv_pyramid_top_explosion_init(void) {
     o->oFriction = 0.999f;
     o->oBuoyancy = 2.0f;
     o->oAnimState = 3;
     obj_scale(o->oPyramidTopExplosionUnkF4);
 }
 
-void BehPyramidTopExplosionLoop(void) {
+void bhv_pyramid_top_explosion_loop(void) {
     ObjectStep();
     o->oFaceAngleYaw += 0x1000;
     o->oFaceAnglePitch += 0x1000;
@@ -96,7 +96,7 @@ void BehPyramidTopExplosionLoop(void) {
         o->activeFlags = 0;
 } 
 
-void BehCollisionBoxSubBehaviorLoop(void) {
+void bhv_collision_box_sub_bhvavior_loop(void) {
     obj_become_tangible();
     if (are_objects_collided(o, gMarioObject) == 1) {
         o->parentObj->oUnknownUnkF4_S32++;

@@ -1,11 +1,11 @@
 // water_splash.c.inc
 
-struct WaterSplashParams D_8032FDAC = {2 ,MODEL_SMALL_SNOW_BALL,beh_water_drops,0,0,5.0f,3.0f,30.0f,20.0f,0.5f,1.0f};
-struct WaterSplashParams D_8032FDD0 = {34,MODEL_SMALL_SNOW_BALL,beh_water_drops,0,0,2.0f,3.0f,20.0f,20.0f,0.5f,1.0f};
-struct WaterSplashParams D_8032FDF4 = {34,MODEL_FISH,beh_water_drops,0,0,2.0f,3.0f,20.0f,20.0f,1.0f,0.0f};
-struct WaterSplashParams D_8032FE18 = {98,MODEL_SMALL_SNOW_BALL,beh_water_drops,0x6000,0,2.0f,8.0f,10.0f,10.0f,0.5f,1.0f};
+struct WaterSplashParams D_8032FDAC = {2 ,MODEL_SMALL_SNOW_BALL,bhvWaterDrops,0,0,5.0f,3.0f,30.0f,20.0f,0.5f,1.0f};
+struct WaterSplashParams D_8032FDD0 = {34,MODEL_SMALL_SNOW_BALL,bhvWaterDrops,0,0,2.0f,3.0f,20.0f,20.0f,0.5f,1.0f};
+struct WaterSplashParams D_8032FDF4 = {34,MODEL_FISH,bhvWaterDrops,0,0,2.0f,3.0f,20.0f,20.0f,1.0f,0.0f};
+struct WaterSplashParams D_8032FE18 = {98,MODEL_SMALL_SNOW_BALL,bhvWaterDrops,0x6000,0,2.0f,8.0f,10.0f,10.0f,0.5f,1.0f};
 
-void BehWaterSplashLoop(void)
+void bhv_water_splash_loop(void)
 {
     s32 i;
     if(o->oTimer == 0)
@@ -15,7 +15,7 @@ void BehWaterSplashLoop(void)
             spawn_water_splash(o,&D_8032FDAC);
 }
 
-void BehWaterDropsLoop(void)
+void bhv_water_drops_loop(void)
 {
     UNUSED s32 unused;
     f32 sp20 = find_water_level(o->oPosX,o->oPosZ);
@@ -33,7 +33,7 @@ void BehWaterDropsLoop(void)
     {
         if(sp20 > o->oPosY)
         {
-            try_to_spawn_object(0,1.0f,o,MODEL_SPOT_ON_GROUND,beh_water_surface_white_wave);
+            try_to_spawn_object(0,1.0f,o,MODEL_SPOT_ON_GROUND,bhvWaterSurfaceWhiteWave);
             mark_object_for_deletion(o);
         }
         else if(o->oTimer > 20)
@@ -43,7 +43,7 @@ void BehWaterDropsLoop(void)
         mark_object_for_deletion(o);
 }
 
-void BehSurfaceWavesLoop(void)
+void bhv_surface_waves_loop(void)
 {
     copy_object_pos(o,gMarioObject);
     o->oPosY = gMarioStates->waterLevel + 5;
@@ -54,19 +54,19 @@ void BehSurfaceWavesLoop(void)
     }
 }
 
-void BehWaterSurfaceWhiteWaveInit(void)
+void bhv_water_surface_white_wave_init(void)
 {
     obj_scale(RandomFloat()+1.5);
 }
 
-void BehObjectBubbleRipplesInit(void)
+void bhv_object_bubble_ripples_init(void)
 {
     f32 sp1C = find_water_level(o->oPosX,o->oPosZ);
     scale_object_xyz(o,0.5,1.0f,0.5f);
     o->oPosY = sp1C + 5.0f;
 }
 
-void BehSurfaceWaveShrinkingInit(void)
+void bhv_surface_wave_shrinking_init(void)
 {
     UNUSED struct Object* sp1C;
     if((RandomU16() & 0xFF) <= 0) // weird
@@ -76,7 +76,7 @@ void BehSurfaceWaveShrinkingInit(void)
     }
 }
 
-void BehWaveTrailLoop(void)
+void bhv_wave_trail_loop(void)
 {
     f32 sp1C = find_water_level(o->oPosX,o->oPosZ);
     if(o->oTimer == 0)

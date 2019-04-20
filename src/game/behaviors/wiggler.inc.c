@@ -1,10 +1,10 @@
 
 /**
- * Behavior for bWiggler and bWigglerBodyPart.
- * The bWiggler object controls the wiggler's behavior, and physically manifests
- * as the wiggler's head. The bWigglerBodyPart objects represent the 3 tail body
+ * Behavior for bhvWiggler and bhvWigglerBodyPart.
+ * The bhvWiggler object controls the wiggler's behavior, and physically manifests
+ * as the wiggler's head. The bhvWigglerBodyPart objects represent the 3 tail body
  * parts, numbered 1 closest to the head, and 3 at the end of the tail.
- * Processing order is bWiggler, then bWigglerBodyPart 1, 2, then 3.
+ * Processing order is bhvWiggler, then bhvWigglerBodyPart 1, 2, then 3.
  */
 
 
@@ -60,7 +60,7 @@ static f32 sWigglerSpeeds[] = { 2.0f, 40.0f, 30.0f, 16.0f };
 
 
 /**
- * Update function for bWigglerBodyPart.
+ * Update function for bhvWigglerBodyPart.
  * Set object position and angle based on wiggler segment data and avoid falling
  * through the floor.
  * Tangible if the wiggler is not in the shrinking action, but does nothing on
@@ -161,7 +161,7 @@ static void wiggler_init_segments(void)
                 0, 0, 0,
                 o,
                 MODEL_WIGGLER_BODY_PART,
-                bWigglerBodyPart);
+                bhvWigglerBodyPart);
             if (bodyPart != NULL)
             {
                 func_8029EE20(bodyPart, wiggler_seg5_anims_0500C874, 0);
@@ -466,7 +466,7 @@ void wiggler_jumped_on_attack_handler(void)
 }
 
 /**
- * Update function for bWiggler.
+ * Update function for bhvWiggler.
  */
 void bhv_wiggler_update(void)
 {

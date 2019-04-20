@@ -1,6 +1,6 @@
 
 /**
- * Behavior for bTTCPitBlock. This is the block that moves up and down near the
+ * Behavior for bhvTTCPitBlock. This is the block that moves up and down near the
  * Pit and the Pendulum star.
  */
 
@@ -39,7 +39,7 @@ static struct TTCPitBlockProperties sTTCPitBlockProperties[][2] =
 
 
 /**
- * Init function for bTTCPitBlock.
+ * Init function for bhvTTCPitBlock.
  */
 void bhv_ttc_pit_block_init(void)
 {
@@ -55,7 +55,7 @@ void bhv_ttc_pit_block_init(void)
 }
 
 /**
- * Update function for bTTCPitBlock.
+ * Update function for bhvTTCPitBlock.
  * Move up and down, pausing before changing direction.
  */
 void bhv_ttc_pit_block_update(void)

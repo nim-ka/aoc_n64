@@ -1,6 +1,6 @@
 // white_puff_explode.c.inc
 
-void BehWhitePuffExplosingLoop(void)
+void bhv_white_puff_exploding_loop(void)
 {
     f32 sp24;
     if(o->oTimer == 0)

@@ -27,9 +27,9 @@ static struct ObjectHitbox sMantaRayHitbox =
     /* hurtboxHeight:     */ 50,
 };
 
-void BehMantaRayInit(void) {
+void bhv_manta_ray_init(void) {
     struct Object *sp1C;
-    sp1C = spawn_object(o, MODEL_NONE, beh_manta_ray_ring_manager);
+    sp1C = spawn_object(o, MODEL_NONE, bhvMantaRayRingManager);
     o->parentObj = sp1C;
     set_object_hitbox(o, &sMantaRayHitbox);
     obj_scale(2.5f);
@@ -71,7 +71,7 @@ void func_802F5FD8(void) {
         o->oTimer = 0;
 
     if (o->oTimer == 0 || o->oTimer == 50 || o->oTimer == 150 || o->oTimer == 200 || o->oTimer == 250) {
-        sp18 = spawn_object(o, MODEL_WATER_RING, beh_manta_ray_water_ring);
+        sp18 = spawn_object(o, MODEL_WATER_RING, bhvMantaRayWaterRing);
         sp18->oFaceAngleYaw = o->oMoveAngleYaw;
         sp18->oFaceAnglePitch = o->oMoveAnglePitch + 0x4000;
         sp18->oPosX = o->oPosX + 200.0f * sins(o->oMoveAngleYaw + 0x8000);
@@ -85,7 +85,7 @@ void func_802F5FD8(void) {
     }
 }
 
-void BehMantaRayLoop(void) {
+void bhv_manta_ray_loop(void) {
     switch (o->oAction) {
         case 0:
             func_802F5E20();

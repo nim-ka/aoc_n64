@@ -13,7 +13,7 @@ struct ObjectHitbox sSparkleSpawnStarHitbox =
     /* hurtboxHeight: */     0,
 };
 
-void BehUnused080CInit(void)
+void bhv_unused_080c_init(void)
 {
     s32 sp24;
     if(!(o->oUnk190 & 0x400))
@@ -60,7 +60,7 @@ void func_802AA918(void)
         o->oAngleVelYaw -= 0x40;
 }
 
-void BehUnused080CLoop(void)
+void bhv_unused_080c_loop(void)
 {
     if(o->oAction == 0)
     {
@@ -80,7 +80,7 @@ void BehUnused080CLoop(void)
             func_802A3004();
         }
         PlaySound(SOUND_ENVIRONMENT_STAR);
-        spawn_object(o,MODEL_NONE,beh_powerup_sparkles2);
+        spawn_object(o,MODEL_NONE,bhvPowerupSparkles2);
         if(o->oVelY < 0 && o->oPosY < o->oHomeY)
         {
             o->oAction++;
@@ -108,7 +108,7 @@ void BehUnused080CLoop(void)
             o->oGravity = 0;
             o->oAction++;
         }
-        spawn_object(o,MODEL_NONE,beh_powerup_sparkles2);
+        spawn_object(o,MODEL_NONE,bhvPowerupSparkles2);
     }
     else if(o->oAction == 2)
     {
@@ -129,9 +129,9 @@ void BehUnused080CLoop(void)
     o->oInteractStatus = 0;
 }
 
-void BehSpawnStarObjects(u32 sp20)
+void bhv_spawn_star_objects(u32 sp20)
 {
-    struct Object* sp1C = spawn_object(o,MODEL_STAR,beh_unused_080C);
+    struct Object* sp1C = spawn_object(o,MODEL_STAR,bhvUnused080C);
     sp1C->oBehParams = sp20 << 24;
     sp1C->oUnk190 = 0x400;
     set_object_angle(sp1C,0,0,0);

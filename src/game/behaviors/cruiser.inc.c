@@ -1,12 +1,12 @@
 // cruiser.c.inc
 
-void BehRRCruiserWingInit(void)
+void bhv_rr_cruiser_wing_init(void)
 {
     o->oRRCruiserWingUnkF4 = o->oFaceAngleYaw;
     o->oRRCruiserWingUnkF8 = o->oFaceAnglePitch;
 }
 
-void BehRRCruiserWingLoop(void)
+void bhv_rr_cruiser_wing_loop(void)
 {
     if (o->oBehParams2ndByte == 0)
     {

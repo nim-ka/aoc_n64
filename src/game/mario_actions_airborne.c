@@ -822,7 +822,7 @@ static s32 act_water_jump(struct MarioState *m)
         mario_set_forward_vel(m, 15.0f);
 
     func_80251410(m, SOUND_ACTION_UNKNOWN432, 0);
-    func_802507E8(m, 0x004D);
+    func_802507E8(m, M_ANIM_SINGLE_JUMP);
 
     switch (perform_air_step(m, AIR_STEP_CHECK_LEDGE_GRAB))
     {
@@ -837,7 +837,7 @@ static s32 act_water_jump(struct MarioState *m)
 
     case AIR_STEP_GRABBED_LEDGE:
 #if VERSION_US
-        func_802507E8(m, 51);
+        func_802507E8(m, M_ANIM_IDLE_ON_LEDGE);
 #endif
         set_mario_action(m, ACT_LEDGE_GRAB, 0);
         func_80285BD8(m->area->camera, m->area->camera->unk1, 1);

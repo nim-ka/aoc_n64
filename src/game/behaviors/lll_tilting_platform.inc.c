@@ -13,7 +13,7 @@ void func_802BC544(Mat4 a0,f32 a1,f32 a2,f32 a3)
     mtxf_from_up_direction(a0,sp24,sp18,0);
 }
 
-void BehTiltingPlatformInit(void)
+void bhv_tilting_platform_init(void)
 {
     Mat4* sp1C = &o->transform;
     o->oTiltingPlatformUnkF4 = 0.0f;
@@ -39,7 +39,7 @@ f32 func_802BC66C(f32 a0,f32 a1,f32 a2)
     return sp4;
 }
 
-void BehTiltingPlatformLoop(void)
+void bhv_tilting_platform_loop(void)
 {
     f32 dx;
     f32 dy;

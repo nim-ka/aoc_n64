@@ -1,12 +1,12 @@
 // spindel.c.inc
 
-void BehSpindelInit(void) {
+void bhv_spindel_init(void) {
     o->oHomeY = o->oPosY;
     o->oUnknownUnkF4_S32 = 0;
     o->oUnknownUnkF8_S32 = 0;
 }
 
-void BehSpindelLoop(void) {
+void bhv_spindel_loop(void) {
     f32 sp1C;
     s32 sp18;
 

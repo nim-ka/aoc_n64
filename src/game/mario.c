@@ -1479,7 +1479,7 @@ void func_802548BC(void)
 
     if (save_file_get_cap_pos(capPos))
     {
-        capObject = spawn_object(gMarioState->marioObj, MODEL_MARIOS_CAP, beh_normal_cap);
+        capObject = spawn_object(gMarioState->marioObj, MODEL_MARIOS_CAP, bhvNormalCap);
         capObject->oPosX = capPos[0];
         capObject->oPosY = capPos[1];
         capObject->oPosZ = capPos[2];

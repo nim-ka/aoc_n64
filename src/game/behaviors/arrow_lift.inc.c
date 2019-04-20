@@ -34,7 +34,7 @@ s8 func_802F5A9C(void) {
     return sp1F;
 }
 
-void BehArrowLiftLoop(void) {
+void bhv_arrow_lift_loop(void) {
     switch(o->oAction) {
         case 0:
             if (o->oTimer > 60) {

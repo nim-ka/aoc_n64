@@ -53,11 +53,11 @@ void MovingCoinFlickerLoop(void)
 
 void CoinCollected(void)
 {
-    spawn_object(o, MODEL_SPARKLES, beh_golden_coin_sparkles);
+    spawn_object(o, MODEL_SPARKLES, bhvGoldenCoinSparkles);
     o->activeFlags = 0;
 }
 
-void BehMovingYellowCoinInit(void)
+void bhv_moving_yellow_coin_init(void)
 {
     o->oGravity = 3.0f;
     o->oFriction = 1.0f;
@@ -66,7 +66,7 @@ void BehMovingYellowCoinInit(void)
     set_object_hitbox(o, &sMovingYellowCoinHitbox);
 }
 
-void BehMovingYellowCoinLoop(void)
+void bhv_moving_yellow_coin_loop(void)
 {
     s16 collisionFlags;
     switch (o->oAction)
@@ -100,7 +100,7 @@ void BehMovingYellowCoinLoop(void)
     }
 }
 
-void BehMovingBlueCoinInit(void)
+void bhv_moving_blue_coin_init(void)
 {
     o->oGravity = 5.0f;
     o->oFriction = 1.0f;
@@ -109,7 +109,7 @@ void BehMovingBlueCoinInit(void)
     set_object_hitbox(o, &sMovingBlueCoinHitbox);
 }
 
-void BehMovingBlueCoinLoop(void)
+void bhv_moving_blue_coin_loop(void)
 {
     s16 collisionFlags;
 
@@ -142,7 +142,7 @@ void BehMovingBlueCoinLoop(void)
     }
 }
 
-void BehBlueCoinSlidingJumpingInit(void)
+void bhv_blue_coin_sliding_jumping_init(void)
 {
     o->oGravity = 3.0;
     o->oFriction = 0.98;
@@ -178,7 +178,7 @@ void func_802E54DC(void)
         o->oAction = 3;
 }
 
-void BehBlueCoinSlidingLoop(void)
+void bhv_blue_coin_sliding_loop(void)
 {
     s16 collisionFlags;
 
@@ -226,7 +226,7 @@ void BehBlueCoinSlidingLoop(void)
     }
 }
 
-void BehBlueCoinJumpingLoop(void)
+void bhv_blue_coin_jumping_loop(void)
 {
     s16 collisionFlags;
 

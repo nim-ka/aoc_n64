@@ -1,6 +1,6 @@
 // beta_boo_key.c.inc
 
-void BehBetaBooKeyOutsideLoop(void)
+void bhv_beta_boo_key_outside_loop(void)
 {
     o->oFaceAngleRoll += 0x200;
     o->oFaceAngleYaw    += 0x200;
@@ -8,7 +8,7 @@ void BehBetaBooKeyOutsideLoop(void)
     {
         o->parentObj->oUnk88 = 1;
         mark_object_for_deletion(o);
-        spawn_object(o,MODEL_SPARKLES,beh_golden_coin_sparkles);
+        spawn_object(o,MODEL_SPARKLES,bhvGoldenCoinSparkles);
     }
 }
 
@@ -36,7 +36,7 @@ void ActionBetaBooKeyInside2(void)
         {
             o->parentObj->oInteractStatus = 1;
             mark_object_for_deletion(o);
-            spawn_object(o,MODEL_SPARKLES,beh_golden_coin_sparkles);
+            spawn_object(o,MODEL_SPARKLES,bhvGoldenCoinSparkles);
         }
     }
 }
@@ -74,7 +74,7 @@ void ActionBetaBooKeyInside0(void)
 
 void (*TableBetaBooKeyInsideActions[])(void) = {ActionBetaBooKeyInside0,ActionBetaBooKeyInside1,ActionBetaBooKeyInside2};
 
-void BehBetaBooKeyInsideLoop(void)
+void bhv_beta_boo_key_inside_loop(void)
 {
     obj_call_action_function(TableBetaBooKeyInsideActions);
 }

@@ -1,6 +1,6 @@
 // beta_green_shell.c.inc
 
-void BehBetaGreenShellInit(void)
+void bhv_beta_green_shell_init(void)
 {
     o->oGravity = 2.5;
     o->oFriction = 0.8;
@@ -30,7 +30,7 @@ void BetaGreenShellThrown(void)
     o->oVelY = 20.0;
 }
 
-void BehBetaGreenShellLoop(void)
+void bhv_beta_green_shell_loop(void)
 {
     switch (o->oHeldState)
     {

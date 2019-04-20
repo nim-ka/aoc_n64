@@ -444,7 +444,7 @@ void bhv_klepto_update(void)
             if (o->oAnimState == KLEPTO_ANIM_STATE_HOLDING_CAP)
             {
                 save_file_clear_flags(SAVE_FLAG_CAP_ON_KLEPTO);
-                spawn_object(o, MODEL_MARIOS_CAP, beh_normal_cap);
+                spawn_object(o, MODEL_MARIOS_CAP, bhvNormalCap);
             }
             else if (o->oAnimState == KLEPTO_ANIM_STATE_HOLDING_STAR)
             {

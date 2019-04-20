@@ -39,7 +39,7 @@ void func_802C50F4(void)
     }
 }
 
-void BehRotatingMerryGoRoundLoop(void)
+void bhv_rotating_merry_go_round_loop(void)
 {
     if(o->oRotatingMerryGoRoundUnkFC == 0)
     {

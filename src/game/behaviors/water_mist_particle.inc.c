@@ -1,13 +1,13 @@
 // water_mist_particle.c.inc
 // TODO: Is this really "mist"?
 
-void BehWaterMistSpawnLoop(void)
+void bhv_water_mist_spawn_loop(void)
 {
     func_802ADBBC(0x20000);
-    spawn_object(o,MODEL_MIST,beh_water_mist);
+    spawn_object(o,MODEL_MIST,bhvWaterMist);
 }
 
-void BehWaterMistLoop(void)
+void bhv_water_mist_loop(void)
 {
     f32 sp1C;
     if(o->oTimer == 0)

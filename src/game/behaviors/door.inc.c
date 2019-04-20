@@ -21,7 +21,7 @@ void func_802AC070(s32 sp18)
 
 void func_802AC0B8(void)
 {
-    if(segmented_to_virtual(beh_door) == o->behavior)
+    if(segmented_to_virtual(bhvDoor) == o->behavior)
         D_8033B1B0->unk1C[1] = 6;
     else
         D_8033B1B0->unk1C[1] = 5;
@@ -49,7 +49,7 @@ void func_802AC1CC(void)
         PlaySound2(D_8032F330[sp1C]);
 }
 
-void BehDoorLoop(void)
+void bhv_door_loop(void)
 {
     s32 sp1C = 0;
     while(D_8032F300[sp1C][0] != -1)
@@ -71,10 +71,10 @@ void BehDoorLoop(void)
     }
     if(o->oAction == 0)
         load_object_collision_model();
-    BehStarDoorLoop2();
+    bhv_star_door_loop_2();
 }
 
-void BehDoorInit(void)
+void bhv_door_init(void)
 {
     f32 x = o->oPosX;
     f32 z = o->oPosZ;
@@ -108,7 +108,7 @@ void BehDoorInit(void)
     }
 }
 
-void BehStarDoorLoop2(void)
+void bhv_star_door_loop_2(void)
 {
     s32 sp4 = 0;
     if(gMarioCurrentRoom != 0)

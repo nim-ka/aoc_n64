@@ -1,6 +1,6 @@
 // king_bobomb.c.inc
 
-void BehBobombAnchorMarioLoop(void)
+void bhv_bobomb_anchor_mario_loop(void)
 {
     func_802A8D18(50.0f,50.0f,64);
 }
@@ -347,7 +347,7 @@ void func_802A7748(void)
         obj_disable_rendering();
 }
 
-void BehKingBobombLoop(void)
+void bhv_king_bobomb_loop(void)
 {
     f32 sp34 = 20.0f;
     f32 sp30 = 50.0f;

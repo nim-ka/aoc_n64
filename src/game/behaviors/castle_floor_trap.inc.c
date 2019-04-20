@@ -1,17 +1,17 @@
 // castle_floor_trap.c.inc
 
-void BehFloorTrapInCastleLoop(void)
+void bhv_floor_trap_in_castle_loop(void)
 {
     if(gMarioObject->platform == o)
         o->parentObj->oInteractStatus |= 0x100000;
     o->oFaceAngleRoll = o->parentObj->oFaceAngleRoll;
 }
 
-void BehCastleFloorTrapInit(void)
+void bhv_castle_floor_trap_init(void)
 {
     struct Object* sp2C;
-    sp2C = spawn_object_relative(0,-358,0,0,o,MODEL_CASTLE_BOWSER_TRAP,beh_floor_trap_in_castle);
-    sp2C = spawn_object_relative(0, 358,0,0,o,MODEL_CASTLE_BOWSER_TRAP,beh_floor_trap_in_castle);
+    sp2C = spawn_object_relative(0,-358,0,0,o,MODEL_CASTLE_BOWSER_TRAP,bhvFloorTrapInCastle);
+    sp2C = spawn_object_relative(0, 358,0,0,o,MODEL_CASTLE_BOWSER_TRAP,bhvFloorTrapInCastle);
     sp2C->oMoveAngleYaw += 0x8000;
 }
 
@@ -62,7 +62,7 @@ void func_802C5854(void)
     o->oFaceAngleRoll = -0x3C00;
 }
 
-void BehCastleFloorTrapLoop(void)
+void bhv_castle_floor_trap_loop(void)
 {
     UNUSED s32 unused[3];
     switch(o->oAction)

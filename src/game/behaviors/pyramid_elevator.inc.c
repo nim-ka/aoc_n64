@@ -1,17 +1,17 @@
 // pyramid_elevator.c.inc
 
-void BehPyramidElevatorInit(void) {
+void bhv_pyramid_elevator_init(void) {
     s32 sp1C;
     struct Object *sp18;
 
     for (sp1C = 0; sp1C < 10; sp1C++)
     {
-        sp18 = spawn_object(o, MODEL_BOWLING_BALL_2, beh_pyramid_elevator_metal_balls);
+        sp18 = spawn_object(o, MODEL_BOWLING_BALL_2, bhvPyramidElevatorMetalBalls);
         sp18->oPosY = 4600 - sp1C * 460;
     }
 }
 
-void BehPyramidElevatorLoop(void) {
+void bhv_pyramid_elevator_loop(void) {
     switch (o->oAction) {
         case 0:
             if (gMarioObject->platform == o)
@@ -43,11 +43,11 @@ void BehPyramidElevatorLoop(void) {
     }
 }
 
-void BehPyramidElevatorMetalBallsLoop(void) {
+void bhv_pyramid_elevator_metal_balls_loop(void) {
     struct Object *sp1C;
 
     obj_scale(0.15f);
-    sp1C = obj_nearest_object_with_behavior(beh_pyramid_elevator);
+    sp1C = obj_nearest_object_with_behavior(bhvPyramidElevator);
     
     if (sp1C != NULL) {
         if (sp1C->oAction != 0)

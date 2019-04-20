@@ -1,6 +1,6 @@
 
 /**
- * Behavior for bTTCCog. This includes both the hexagonal cogs and the
+ * Behavior for bhvTTCCog. This includes both the hexagonal cogs and the
  * triangular prisms that rotate around the y axis.
  */
 
@@ -26,7 +26,7 @@ static s16 sTTCCogNormalSpeeds[] = { 200, 400 };
 
 
 /**
- * Init function for bTTCCog.
+ * Init function for bhvTTCCog.
  */
 void bhv_ttc_cog_init(void)
 {
@@ -36,7 +36,7 @@ void bhv_ttc_cog_init(void)
 }
 
 /**
- * Update function for bTTCCog.
+ * Update function for bhvTTCCog.
  */
 void bhv_ttc_cog_update(void)
 {

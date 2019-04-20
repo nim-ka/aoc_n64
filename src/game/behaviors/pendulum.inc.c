@@ -1,11 +1,11 @@
 // pendulum.c.inc
 
-void BehOscillatingPendulumInit(void) {
+void bhv_oscillating_pendulum_init(void) {
     o->oAngleVelRoll = 0x100;
     bhv_init_room();
 }
 
-void BehOscillatingPendulumLoop(void) {
+void bhv_oscillating_pendulum_loop(void) {
     if (o->oFaceAngleRoll > 0) 
         o->oAngleVelRoll += -0x08;
     else 

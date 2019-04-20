@@ -13,7 +13,7 @@ static struct ObjectHitbox sCollectStarHitbox =
     /* hurtboxHeight:     */ 0,
 };
 
-void BehCollectStarInit(void) {
+void bhv_collect_star_init(void) {
     s8 sp1F;
     u8 sp1E;
 
@@ -29,7 +29,7 @@ void BehCollectStarInit(void) {
     set_object_hitbox(o, &sCollectStarHitbox);
 }
 
-void BehCollectStarLoop(void) {
+void bhv_collect_star_loop(void) {
     o->oFaceAngleYaw += 0x800;
     
     if (o->oInteractStatus & 0x8000) {
@@ -39,7 +39,7 @@ void BehCollectStarLoop(void) {
 
 }
 
-void BehStarSpawnInit(void) {
+void bhv_star_spawn_init(void) {
     o->oMoveAngleYaw = atan2s(o->oHomeZ - o->oPosZ, o->oHomeX - o->oPosX);
     o->oStarSpawnDisFromHome = sqrtf(sqr(o->oHomeX - o->oPosX) + sqr(o->oHomeZ - o->oPosZ));
     o->oVelY = (o->oHomeY - o->oPosY) / 30.0f;
@@ -55,7 +55,7 @@ void BehStarSpawnInit(void) {
     obj_become_intangible();
 }
 
-void BehStarSpawnLoop(void) {
+void bhv_star_spawn_loop(void) {
     switch (o->oAction) {
         case 0:
             o->oFaceAngleYaw += 0x1000;
@@ -68,7 +68,7 @@ void BehStarSpawnLoop(void) {
             o->oStarSpawnUnkFC += o->oVelY;
             o->oPosY = o->oStarSpawnUnkFC + sins((o->oTimer * 0x8000) / 30) * 400.0f;
             o->oFaceAngleYaw += 0x1000;
-            spawn_object(o, MODEL_NONE, beh_powerup_sparkles2);
+            spawn_object(o, MODEL_NONE, bhvPowerupSparkles2);
             PlaySound(SOUND_ENVIRONMENT_STAR);
             if (o->oTimer == 30) {
                 o->oAction = 2;
@@ -83,7 +83,7 @@ void BehStarSpawnLoop(void) {
             else    
                 o->oVelY = -10.0f; 
 
-            spawn_object(o, MODEL_NONE, beh_powerup_sparkles2);
+            spawn_object(o, MODEL_NONE, bhvPowerupSparkles2);
             func_802E4250(o);
             o->oFaceAngleYaw = o->oFaceAngleYaw - o->oTimer * 0x10 + 0x1000;
             PlaySound(SOUND_ENVIRONMENT_STAR);
@@ -113,7 +113,7 @@ void BehStarSpawnLoop(void) {
 }
 
 struct Object *func_802F1A50(struct Object *sp30, f32 sp34, f32 sp38, f32 sp3C) {
-    sp30 = spawn_object_abs_with_rot(o, 0, MODEL_STAR, beh_star_spawn_coordinates, o->oPosX, o->oPosY, o->oPosZ, 0, 0, 0);
+    sp30 = spawn_object_abs_with_rot(o, 0, MODEL_STAR, bhvStarSpawnCoordinates, o->oPosX, o->oPosY, o->oPosZ, 0, 0, 0);
     sp30->oBehParams = o->oBehParams;
     sp30->oHomeX = sp34;
     sp30->oHomeY = sp38;
@@ -142,16 +142,16 @@ void func_802F1BD4(f32 sp20, f32 sp24, f32 sp28) {
     sp1C->oUnk190 |= 0x400;
 }
 
-void BehHiddenRedCoinStarInit(void) {
+void bhv_hidden_red_coin_star_init(void) {
     s16 sp36;
     struct Object *sp30;
 
     if (gCurrCourseNum != 3)
-        spawn_object(o, MODEL_TRANSPARENT_STAR, bRedCoinStarMarker);
+        spawn_object(o, MODEL_TRANSPARENT_STAR, bhvRedCoinStarMarker);
 
-    sp36 = count_objects_with_behavior(beh_red_coin);
+    sp36 = count_objects_with_behavior(bhvRedCoin);
     if (sp36 == 0) {
-        sp30 = spawn_object_abs_with_rot(o, 0, MODEL_STAR, beh_star, o->oPosX, o->oPosY, o->oPosZ, 0, 0, 0);
+        sp30 = spawn_object_abs_with_rot(o, 0, MODEL_STAR, bhvStar, o->oPosX, o->oPosY, o->oPosZ, 0, 0, 0);
         sp30->oBehParams = o->oBehParams;
         o->activeFlags = 0;
     }
@@ -159,7 +159,7 @@ void BehHiddenRedCoinStarInit(void) {
     o->oHiddenRedCoinStarCoinsCollected = 8 - sp36;
 }
 
-void BehHiddenRedCoinStarLoop(void) {
+void bhv_hidden_red_coin_star_loop(void) {
     D_8036008E = o->oHiddenRedCoinStarCoinsCollected;
     switch (o->oAction) {
         case 0:

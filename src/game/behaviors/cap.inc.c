@@ -103,7 +103,7 @@ void func_802F0B68(void) {
     func_802F09C0();
 }
 
-void BehWingCapInit(void) {
+void bhv_wing_cap_init(void) {
     o->oGravity = 1.2f;
     o->oFriction = 0.999f;
     o->oBuoyancy = 0.9f;
@@ -136,7 +136,7 @@ void func_802F0E0C(void) {
         func_802F0D70();
 }
 
-void BehWingVanishCapLoop(void) {
+void bhv_wing_vanish_cap_loop(void) {
     switch (o->oAction) { 
         case 0:
             func_802F0E0C();
@@ -155,7 +155,7 @@ void BehWingVanishCapLoop(void) {
     func_802F0904();
 }
 
-void BehMetalCapInit(void) {
+void bhv_metal_cap_init(void) {
     o->oGravity = 2.4f;
     o->oFriction = 0.999f;
     o->oBuoyancy = 1.5f;
@@ -171,7 +171,7 @@ void func_802F0FE0(void) {
         func_802F09C0();
 }
 
-void BehMetalCapLoop(void) {
+void bhv_metal_cap_loop(void) {
     switch (o->oAction) { 
         case 0:
             func_802F0FE0();
@@ -190,7 +190,7 @@ void BehMetalCapLoop(void) {
     func_802F0978();
 }
 
-void BehNormalCapInit(void) {
+void bhv_normal_cap_init(void) {
     o->oGravity = 0.7f;
     o->oFriction = 0.89f;
     o->oBuoyancy = 0.9f;
@@ -241,7 +241,7 @@ void func_802F1234(void) {
         func_802F0D70();
 }
 
-void BehNormalCapLoop(void) {
+void bhv_normal_cap_loop(void) {
     switch (o->oAction) { 
         case 0:
             func_802F1234();
@@ -263,7 +263,7 @@ void BehNormalCapLoop(void) {
         save_file_clear_flags(SAVE_FLAG_CAP_ON_GROUND);
 }
 
-void BehVanishCapInit(void) {
+void bhv_vanish_cap_init(void) {
     o->oGravity = 1.2f;
     o->oFriction = 0.999f;
     o->oBuoyancy = 0.9f;

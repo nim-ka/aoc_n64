@@ -1,6 +1,6 @@
 // lll_hexagonal_ring.c.inc
 
-void BehLLLRotatingHexagonalRingLoop(void)
+void bhv_lll_rotating_hexagonal_ring_loop(void)
 {
     UNUSED s32 unused;
     o->oCollisionDistance = 4000.0f;

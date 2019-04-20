@@ -16,8 +16,8 @@ glabel level_main_menu_entry_1
     load_model_from_geo /*model*/ MODEL_MAIN_MENU_GENERIC_BUTTON,         /*geo*/ main_menu_geo_000358
 
     area /*index*/ 1, /*geo*/ main_menu_geo_000380
-        object /*model*/ MODEL_NONE,         /*pos*/ 0, 0, -19000, /*angle*/ 0, 0, 0, /*behParam*/ 0x04000000, /*beh*/ beh_menu_button_manager
-        object /*model*/ MODEL_MAIN_MENU_YELLOW_FILE_BUTTON, /*pos*/ 0, 0, -19000, /*angle*/ 0, 0, 0, /*behParam*/ 0x04000000, /*beh*/ beh_yellow_background_in_menu
+        object /*model*/ MODEL_NONE,         /*pos*/ 0, 0, -19000, /*angle*/ 0, 0, 0, /*behParam*/ 0x04000000, /*beh*/ bhvMenuButtonManager
+        object /*model*/ MODEL_MAIN_MENU_YELLOW_FILE_BUTTON, /*pos*/ 0, 0, -19000, /*angle*/ 0, 0, 0, /*behParam*/ 0x04000000, /*beh*/ bhvYellowBackgroundInMenu
         terrain /*terrainData*/ main_menu_seg7_collision
     end_area
 
@@ -45,7 +45,7 @@ glabel level_main_menu_entry_2
     alloc_level_pool
 
     area /*index*/ 2, /*geo*/ main_menu_geo_000408
-        object /*model*/ MODEL_NONE, /*pos*/ 0, -100, 0, /*angle*/ 0, 0, 0, /*behParam*/ 0x04000000, /*beh*/ beh_act_selector
+        object /*model*/ MODEL_NONE, /*pos*/ 0, -100, 0, /*angle*/ 0, 0, 0, /*behParam*/ 0x04000000, /*beh*/ bhvActSelector
         terrain /*terrainData*/ main_menu_seg7_collision
     end_area
 

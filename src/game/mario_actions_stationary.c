@@ -160,13 +160,21 @@ s32 act_idle(struct MarioState *m) {
         }
         
         if (func_80250770(m)) {
+            // Fall asleep after 10 head turning cycles.
+            // act_start_sleeping is triggered earlier in the function
+            // when actionState == 3. This happens when Mario's done
+            // turning his head back and forth. However, we do some checks
+            // here to make sure that Mario would be able to sleep here,
+            // and that he's gone through 10 cycles before sleeping.
+            // actionTimer is used to track how many cycles have passed.
             if (++m->actionState == 3) {
                 f32 sp24 = m->pos[1] - find_floor_height_relative_polar(m, -0x8000, 60.0f);
                 if (sp24 < -24.0f || 24.0f < sp24 || m->floor->flags & 1) {
                     m->actionState = 0;
                 } else {
+                    // If Mario hasn't turned his head 10 times yet, stay idle instead of going to sleep.
                     m->actionTimer++;
-                    if (m->actionTimer < 0xA) {
+                    if (m->actionTimer < 10) {
                         m->actionState = 0;
                     }
                 }
@@ -179,8 +187,7 @@ s32 act_idle(struct MarioState *m) {
     return 0;
 }
 
-void func_80260BC4(struct MarioState *m, u32 actionState, s32 animFrame,
-                    u32 sound) 
+void func_80260BC4(struct MarioState *m, u32 actionState, s32 animFrame, u32 sound)
 {
     if (m->actionState == actionState && m->marioObj->header.gfx.unk38.animFrame == animFrame)
     {
@@ -448,7 +455,7 @@ s32 act_coughing(struct MarioState *m) {
 }
 
 s32 func_802615C4(struct MarioState *m) {
-    if (segmented_to_virtual(&beh_jumping_box) == m->heldObj->behavior) {
+    if (segmented_to_virtual(&bhvJumpingBox) == m->heldObj->behavior) {
         return set_mario_action(m, ACT_CRAZY_BOX_BOUNCE, 0);
     }
 

@@ -23,14 +23,14 @@ void boo_stop(void)
     o->oGravity = 0.0f;
 }
 
-void BehBooInit(void)
+void bhv_boo_init(void)
 {
     o->oBooUnk110 = o->oMoveAngleYaw;
 }
 
 s32 func_802C2A94(void)
 {
-    if(obj_has_behavior(beh_spawned_boo) || obj_has_behavior(beh_spawned_boo_2))
+    if(obj_has_behavior(bhvSpawnedBoo) || obj_has_behavior(bhvSpawnedBoo2))
     {
         if(gMarioOnMerryGoRound == 0)
             return 1;
@@ -51,11 +51,11 @@ s32 func_802C2A94(void)
 s32 boo_should_be_active(void)
 {
     f32 radius;
-    if(obj_has_behavior(beh_patrolling_boo))
+    if(obj_has_behavior(bhvPatrollingBoo))
         radius = 5000.0f;
     else
         radius = 1500.0f;
-    if(obj_has_behavior(beh_spawned_boo) || obj_has_behavior(beh_spawned_boo_2))
+    if(obj_has_behavior(bhvSpawnedBoo) || obj_has_behavior(bhvSpawnedBoo2))
     {
         if(gMarioOnMerryGoRound == 1)
             return 1;
@@ -75,7 +75,7 @@ s32 boo_should_be_active(void)
     return 0;
 }
 
-void BehBooGroupInit(void)
+void bhv_boo_group_init(void)
 {
     s32 i;
     struct Object* sp28;
@@ -92,7 +92,7 @@ void BehBooGroupInit(void)
                 TableCourtyardBooTripletPos[i][2],
                 o,
                 MODEL_BOO,
-                beh_boo_2
+                bhvBoo2
             );
             sp28->oMoveAngleYaw = RandomU16();
         }
@@ -254,7 +254,7 @@ s32 func_802C35C0(void)
             if(o->oBooUnk108 != 0)
             {
                 sp1C = o->oBooUnk108;
-                if(!obj_has_behavior(beh_boo_3))
+                if(!obj_has_behavior(bhvBoo3))
                 {
                     sp1C[107]++;
                 }
@@ -345,12 +345,12 @@ void ActionBoo0(void)
     obj_set_pos_to_home();
     o->oMoveAngleYaw = o->oBooUnk110;
     boo_stop();
-    o->oBooUnk108 = obj_nearest_object_with_behavior(beh_boo_giving_star);
+    o->oBooUnk108 = obj_nearest_object_with_behavior(bhvBooGivingStar);
     o->oBooUnkF8 = 1.0f;
     o->oBooUnkF4 = 0xFF;
     if(boo_should_be_active())
     {
-		// Condition is met if the object is beh_patrolling_boo or beh_spawned_boo_2
+		// Condition is met if the object is bhvPatrollingBoo or bhvSpawnedBoo2
         if(o->oBehParams2ndByte == 2)
         {
             o->oBooUnk108 = 0;
@@ -423,7 +423,7 @@ void ActionBoo4(void)
     s32 dialogID;
     
     // If there are no remaining "minion" boos, show the dialog of the Big Boo
-    if(obj_nearest_object_with_behavior(beh_boo_2) == NULL)
+    if(obj_nearest_object_with_behavior(bhvBoo2) == NULL)
         dialogID = 108;
     else
         dialogID = 107;
@@ -439,13 +439,13 @@ void ActionBoo4(void)
 
 void (*TableBooActions[])(void) = {ActionBoo0,ActionBoo1,ActionBoo2,ActionBoo3,ActionBoo4,ActionBoo5};
 
-void BehBooLoop(void)
+void bhv_boo_loop(void)
 {
     obj_update_floor_and_walls();
     obj_call_action_function(TableBooActions);
     obj_move_standard(78);
     func_802C2D7C();
-    if(object_has_behavior(o->parentObj,beh_spawn_big_boo))
+    if(object_has_behavior(o->parentObj,bhvSpawnBigBoo))
     {
         if(o->activeFlags == 0)
             o->parentObj->oUnk88++;
@@ -455,7 +455,7 @@ void BehBooLoop(void)
 
 void ActionBooGivingStar0(void)
 {
-    if(obj_has_behavior(beh_patrolling_boo))
+    if(obj_has_behavior(bhvPatrollingBoo))
     {
         func_802C49E0();
         o->oUnk1AC_S32 = 10;
@@ -507,7 +507,7 @@ void ActionBooGivingStar1(void)
     }
     func_802C3830(-100.0f,sp22,sp1C);
     sp24 = func_802C3778();
-    if(obj_has_behavior(beh_spawned_boo))
+    if(obj_has_behavior(bhvSpawnedBoo))
     {
         if(gMarioOnMerryGoRound == 0)
             o->oAction = 0;
@@ -542,7 +542,7 @@ void func_802C4220(void)
 {
     struct Object* sp1C;
     CreateStar(-1600.0f,-2100.0f,205.0f);
-    sp1C = obj_nearest_object_with_behavior(beh_rotating_merry_go_round);
+    sp1C = obj_nearest_object_with_behavior(bhvRotatingMerryGoRound);
     if(sp1C != NULL)
         sp1C->oUnk88 = 1;
 }
@@ -589,9 +589,9 @@ void ActionBooGivingStar4(void)
         if(o->oTimer > 60 && o->oDistanceToMario < 600.0f)
         {
             set_object_pos(o,973,0,717);
-            spawn_object_relative(0,0,0,     0,o,MODEL_BBH_STAIRCASE_STEP,beh_boo_boss_spawned_bridge);
-            spawn_object_relative(1,0,0,-200,o,MODEL_BBH_STAIRCASE_STEP,beh_boo_boss_spawned_bridge);
-            spawn_object_relative(2,0,0, 200,o,MODEL_BBH_STAIRCASE_STEP,beh_boo_boss_spawned_bridge);
+            spawn_object_relative(0,0,0,     0,o,MODEL_BBH_STAIRCASE_STEP,bhvBooBossSpawnedBridge);
+            spawn_object_relative(1,0,0,-200,o,MODEL_BBH_STAIRCASE_STEP,bhvBooBossSpawnedBridge);
+            spawn_object_relative(2,0,0, 200,o,MODEL_BBH_STAIRCASE_STEP,bhvBooBossSpawnedBridge);
             mark_object_for_deletion(o);
         }
     }
@@ -601,7 +601,7 @@ void ActionBooGivingStar4(void)
 
 void (*TableBooGivingStarActions[])(void) = {ActionBooGivingStar0,ActionBooGivingStar1,ActionBooGivingStar2,ActionBooGivingStar3,ActionBooGivingStar4};
 
-void BehBooGivingStarLoop(void)
+void bhv_boo_giving_star_loop(void)
 {
     set_object_hitbox(o,&sBooGivingStarHitbox);
     o->oGraphYOffset = o->oBooUnkF8 * 60.0f;
@@ -649,21 +649,21 @@ void ActionBooWithCage3(void)
         mark_object_for_deletion(o);
 }
 
-void BehBooWithCageInit(void)
+void bhv_boo_with_cage_init(void)
 {
     struct Object* cage;
     if(gDisplayedStars < 12)
         mark_object_for_deletion(o);
     else
     {
-        cage = spawn_object(o,MODEL_HAUNTED_CAGE,beh_boo_cage);
+        cage = spawn_object(o,MODEL_HAUNTED_CAGE,bhvBooCage);
         cage->oBehParams = o->oBehParams;
     }
 }
 
 void (*TableBooWithCageActions[])(void) = {ActionBooWithCage0,ActionBooWithCage1,ActionBooWithCage2,ActionBooWithCage3};
 
-void BehBooWithCageLoop(void)
+void bhv_boo_with_cage_loop(void)
 {
     obj_update_floor_and_walls();
     obj_call_action_function(TableBooWithCageActions);
@@ -672,7 +672,7 @@ void BehBooWithCageLoop(void)
     o->oInteractStatus = 0;
 }
 
-void BehSpawnBigBooLoop(void)
+void bhv_spawn_big_boo_loop(void)
 {
     struct Object* sp24;
     switch(o->oAction)
@@ -686,7 +686,7 @@ void BehSpawnBigBooLoop(void)
                 {
                     if(o->oBooUnkFC - o->oUnk88 < 2)
                     {
-                        spawn_object(o,MODEL_BOO,beh_spawned_boo_2);
+                        spawn_object(o,MODEL_BOO,bhvSpawnedBoo2);
                         o->oBooUnkFC++;
                     }
                 }
@@ -694,7 +694,7 @@ void BehSpawnBigBooLoop(void)
             }
             if(o->oUnk88 > 4)
             {
-                sp24 = spawn_object(o,MODEL_BOO,beh_spawned_boo);
+                sp24 = spawn_object(o,MODEL_BOO,bhvSpawnedBoo);
                 copy_object_behavior_params(sp24,o);
                 o->oAction = 2;
 #ifndef VERSION_JP
@@ -719,12 +719,12 @@ void func_802C49E0(void)
     D_8032CFD0 = o;
 }
 
-void BehAnimatedTextureLoop(void)
+void bhv_animated_texture_loop(void)
 {
     func_802A3470();
 }
 
-void BehBooInCastleLoop(void)
+void bhv_boo_in_castle_loop(void)
 {
     s16 sp1E;
     o->oBooUnkF8 = 2.0f;
@@ -773,7 +773,7 @@ void BehBooInCastleLoop(void)
     obj_move_using_fvel_and_gravity();
 }
 
-void BehBooBossSpawnedBridgeLoop(void)
+void bhv_boo_boss_spawned_bridge_loop(void)
 {
     f32 sp24;
     switch(o->oBehParams2ndByte)

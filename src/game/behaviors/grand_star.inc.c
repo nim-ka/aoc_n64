@@ -21,7 +21,7 @@ void func_802B29B0(void)
     o->oForwardVel = 0.0f;
 }
 
-void BehGrandStarLoop(void)
+void bhv_grand_star_loop(void)
 {
     UNUSED s32 unused;
     Vec3f sp28;

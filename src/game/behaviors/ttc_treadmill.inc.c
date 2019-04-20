@@ -1,6 +1,6 @@
 
 /**
- * Behavior for bTTCTreadmill.
+ * Behavior for bhvTTCTreadmill.
  * The first treadmill in processing order is the "master treadmill". It is
  * responsible for playing sounds and calling RNG to control all the other
  * treadmills.
@@ -47,7 +47,7 @@ void bhv_ttc_treadmill_init(void)
 }
 
 /**
- * Update function for bTTCTreadmill. It calls obj_compute_vel_xz afterward.
+ * Update function for bhvTTCTreadmill. It calls obj_compute_vel_xz afterward.
  */
 void bhv_ttc_treadmill_update(void)
 {

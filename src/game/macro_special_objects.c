@@ -82,7 +82,7 @@ void Unknown802E142C(u32 (*a0)[], s16 a1[])
     struct Object *sp3C;
     s16 model;
         
-    model = &beh_yellow_coin == a0 ? MODEL_YELLOW_COIN : MODEL_NONE;
+    model = &bhvYellowCoin == a0 ? MODEL_YELLOW_COIN : MODEL_NONE;
     
     sp3C = spawn_object_abs_with_rot(&gMacroObjectDefaultParent, 0, model, a0, a1[1], a1[2], a1[3], 0, convert_rotation(a1[0]), 0);
 
@@ -202,25 +202,25 @@ void spawn_macro_objects_hardcoded(s16 areaIndex, s16* macroObjList)
         switch (macroObjPreset)
         {
             case 0:
-                spawn_macro_abs_yrot_2params(MODEL_NONE, beh_boo_boss_spawned_bridge, macroObjX, macroObjY, macroObjZ, macroObjRY, 0);
+                spawn_macro_abs_yrot_2params(MODEL_NONE, bhvBooBossSpawnedBridge, macroObjX, macroObjY, macroObjZ, macroObjRY, 0);
                 break;
             case 1:
-                spawn_macro_abs_yrot_2params(MODEL_BBH_TILTING_FLOOR_PLATFORM, beh_bbh_tilt_floor_platforms, macroObjX, macroObjY, macroObjZ, macroObjRY, 0);
+                spawn_macro_abs_yrot_2params(MODEL_BBH_TILTING_FLOOR_PLATFORM, bhvBbhTiltFloorPlatforms, macroObjX, macroObjY, macroObjZ, macroObjRY, 0);
                 break;
             case 2:
-                spawn_macro_abs_yrot_2params(MODEL_BBH_TUMBLING_PLATFORM, beh_bbh_tumbling_platform_group, macroObjX, macroObjY, macroObjZ, macroObjRY, 0);
+                spawn_macro_abs_yrot_2params(MODEL_BBH_TUMBLING_PLATFORM, bhvBbhTumblingBridge, macroObjX, macroObjY, macroObjZ, macroObjRY, 0);
                 break;
             case 3:
-                spawn_macro_abs_yrot_2params(MODEL_BBH_MOVING_BOOKSHELF, beh_tumbling_bookshelf, macroObjX, macroObjY, macroObjZ, macroObjRY, 0);
+                spawn_macro_abs_yrot_2params(MODEL_BBH_MOVING_BOOKSHELF, bhvTumblingBookshelf, macroObjX, macroObjY, macroObjZ, macroObjRY, 0);
                 break;
             case 4:
-                spawn_macro_abs_yrot_2params(MODEL_BBH_MESH_ELEVATOR, beh_mesh_elevator, macroObjX, macroObjY, macroObjZ, macroObjRY, 0);
+                spawn_macro_abs_yrot_2params(MODEL_BBH_MESH_ELEVATOR, bhvMeshElevator, macroObjX, macroObjY, macroObjZ, macroObjRY, 0);
                 break;
             case 20:
-                spawn_macro_abs_yrot_2params(MODEL_YELLOW_COIN, beh_yellow_coin, macroObjX, macroObjY, macroObjZ, macroObjRY, 0);
+                spawn_macro_abs_yrot_2params(MODEL_YELLOW_COIN, bhvYellowCoin, macroObjX, macroObjY, macroObjZ, macroObjRY, 0);
                 break;
             case 21:
-                spawn_macro_abs_yrot_2params(MODEL_YELLOW_COIN, beh_yellow_coin, macroObjX, macroObjY, macroObjZ, macroObjRY, 0);
+                spawn_macro_abs_yrot_2params(MODEL_YELLOW_COIN, bhvYellowCoin, macroObjX, macroObjY, macroObjZ, macroObjRY, 0);
                 break;
             default:
                 break;

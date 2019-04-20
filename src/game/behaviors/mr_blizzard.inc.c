@@ -79,7 +79,7 @@ static void func_8030702C(void)
     if (o->oMrBlizzardUnkF8 == NULL && func_802F92EC(0, 5))
     {
         o->oMrBlizzardUnkF8 = spawn_object_relative(
-            0, -70, (s32)(o->oMrBlizzardUnk10C + 153.0f), 0, o, MODEL_SNOWMAN_SNOW_BALL, bMrBlizzardSnowball);
+            0, -70, (s32)(o->oMrBlizzardUnk10C + 153.0f), 0, o, MODEL_SNOWMAN_SNOW_BALL, bhvMrBlizzardSnowball);
     }
     else if (obj_check_anim_frame(10))
     {
@@ -218,7 +218,7 @@ static void func_80307650(void)
             {
                 save_file_clear_flags(SAVE_FLAG_CAP_ON_MR_BLIZZARD);
 
-                val04 = spawn_object_relative(0, 5, 105, 0, o, MODEL_MARIOS_CAP, beh_normal_cap);
+                val04 = spawn_object_relative(0, 5, 105, 0, o, MODEL_MARIOS_CAP, bhvNormalCap);
                 if (val04 != NULL)
                 {
                     val04->oMoveAngleYaw = o->oFaceAngleYaw +

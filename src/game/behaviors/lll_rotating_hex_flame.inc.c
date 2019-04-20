@@ -1,6 +1,6 @@
 // lll_rotating_hex_flame.c.inc
 
-void BehLllRotatingHexFlameLoop(void)
+void bhv_lll_rotating_hex_flame_loop(void)
 {
     f32 sp24 = o->oLllRotatingHexFlameUnkF4;
     f32 sp20 = o->oLllRotatingHexFlameUnkF8;
@@ -25,7 +25,7 @@ void func_802BB9F0(s32 a0)
         sp20 = 3;
     for(i=0;i<sp20;i++)
     {
-        sp2C = spawn_object(o,MODEL_RED_FLAME,beh_lll_rotating_hex_flame);
+        sp2C = spawn_object(o,MODEL_RED_FLAME,bhvLllRotatingHexFlame);
         sp2C->oLllRotatingHexFlameUnkF4 += sp1C;
         sp2C->oLllRotatingHexFlameUnkF8 = o->oPosY - 200.0f;
         sp2C->oLllRotatingHexFlameUnkFC += sp18;
@@ -65,7 +65,7 @@ void ActionRotatingCwFireBars3(void)
 
 void (*TableRotatingCwFireBarsActions[])(void) = {ActionRotatingCwFireBars0,ActionRotatingCwFireBars1,ActionRotatingCwFireBars2,ActionRotatingCwFireBars3};
 
-void BehLLLRotatingBlockFireBarsLoop(void)
+void bhv_lll_rotating_block_fire_bars_loop(void)
 {
     obj_call_action_function(TableRotatingCwFireBarsActions);
     if(o->oBehParams2ndByte == 0)

@@ -1,6 +1,6 @@
 // piranha_bubbles.c.inc
 
-void BehPiranhaPlantWakingBubblesLoop(void)
+void bhv_piranha_plant_waking_bubbles_loop(void)
 {
     if(o->oTimer == 0)
     {
@@ -11,7 +11,7 @@ void BehPiranhaPlantWakingBubblesLoop(void)
     obj_move_using_fvel_and_gravity();
 }
 
-void BehPiranhaPlantBubbleLoop(void)
+void bhv_piranha_plant_bubble_loop(void)
 {
     struct Object* parent = o->parentObj;
     f32 scale = 0;
@@ -55,7 +55,7 @@ void BehPiranhaPlantBubbleLoop(void)
         obj_disable_rendering();
         scale = 0;
         for(i=0;i<15;i++)
-            try_to_spawn_object(0,1.0f,o,MODEL_BUBBLE,beh_piranha_plant_waking_bubbles);
+            try_to_spawn_object(0,1.0f,o,MODEL_BUBBLE,bhvPiranhaPlantWakingBubbles);
         o->oAction = 0;
         scale = 1.0f;
         break;

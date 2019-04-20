@@ -13,372 +13,372 @@ struct MacroPreset
 };
 
 struct MacroPreset MacroObjectPresets[] = {
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_one_coin, MODEL_YELLOW_COIN, 0},
-    {beh_moving_blue_coin, MODEL_BLUE_COIN, 0},
-    {beh_blue_coin_sliding, MODEL_BLUE_COIN, 0}, // unused
-    {beh_red_coin, MODEL_RED_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_coin_formation, MODEL_NONE, 0},
-    {beh_coin_formation, MODEL_NONE, COIN_FORMATION_FLAG_RING},
-    {beh_coin_formation, MODEL_NONE, COIN_FORMATION_FLAG_ARROW},
-    {beh_coin_formation, MODEL_NONE, COIN_FORMATION_FLAG_FLYING},
-    {beh_coin_formation, MODEL_NONE, COIN_FORMATION_FLAG_FLYING | COIN_FORMATION_FLAG_VERTICAL},
-    {beh_coin_formation, MODEL_NONE, COIN_FORMATION_FLAG_FLYING | COIN_FORMATION_FLAG_RING},
-    {beh_coin_formation, MODEL_NONE, COIN_FORMATION_FLAG_FLYING | COIN_FORMATION_FLAG_RING | COIN_FORMATION_FLAG_VERTICAL},
-    {beh_coin_formation, MODEL_NONE, COIN_FORMATION_FLAG_FLYING | COIN_FORMATION_FLAG_ARROW}, // unused
-    {beh_hidden_star_trigger, MODEL_NONE, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_unused_fake_star, MODEL_STAR, 0}, // unused
-    {beh_message_panel, MODEL_WOODEN_SIGNPOST, 0},
-    {beh_cannon_closed, MODEL_DL_CANNON_LID, 0},
-    {beh_bobomb_buddy_opens_cannon, MODEL_BOBOMB_BUDDY, 0},
-    {beh_butterfly, MODEL_BUTTERFLY, 0}, // unused
-    {beh_bouncing_fireball, MODEL_NONE, 0}, // unused
-    {beh_large_fish_group, MODEL_NONE, 0}, // unused
-    {beh_large_fish_group, MODEL_NONE, 1},
-    {beh_beta_fish_splash_spawner, MODEL_NONE, 0},
-    {beh_hidden_1up_in_pole_spawner, MODEL_NONE, 0},
-    {bGoomba, MODEL_GOOMBA, 1},
-    {bGoomba, MODEL_GOOMBA, 2},
-    {bGoombaTripletSpawner, MODEL_NONE, 0},
-    {bGoombaTripletSpawner, MODEL_NONE, 8}, // unused
-    {beh_sign_on_wall, MODEL_NONE, 0},
-    {beh_chuckya, MODEL_CHUCKYA, 0},
-    {beh_cannon, MODEL_CANNON_BASE, 0},
-    {bGoomba, MODEL_GOOMBA, 0},
-    {beh_amp_homing, MODEL_AMP, 0},
-    {beh_amp_circling, MODEL_AMP, 0},
-    {beh_carry_something1, 0x007D, 0}, // unused
-    {beh_beta_trampoline, 0x00B5, 0}, // unused
-    {beh_free_bowling_ball, MODEL_BOWLING_BALL, 0}, // unused
-    {beh_snufit, MODEL_SNUFIT, 0},
-    {beh_recovery_heart, MODEL_HEART, 0},
-    {beh_1up_sliding, MODEL_1UP, 0},
-    {beh_1up, MODEL_1UP, 0},
-    {beh_1up_jump_on_approach, MODEL_1UP, 0}, // unused
-    {beh_hidden_1up, MODEL_1UP, 0},
-    {beh_hidden_1up_trigger, MODEL_NONE, 0},
-    {beh_1up, MODEL_1UP, 1},
-    {beh_1up, MODEL_1UP, 2},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_blue_coin_switch, MODEL_BLUE_COIN_SWITCH, 0},
-    {beh_hidden_blue_coin, MODEL_BLUE_COIN, 0},
-    {beh_cap_switch, MODEL_CAP_SWITCH, 0}, // unused
-    {beh_cap_switch, MODEL_CAP_SWITCH, 1}, // unused
-    {beh_cap_switch, MODEL_CAP_SWITCH, 2}, // unused
-    {beh_cap_switch, MODEL_CAP_SWITCH, 3}, // unused
-    {beh_water_level_diamond, MODEL_BREAKABLE_BOX, 0}, // unused
-    {beh_exclamation_box, MODEL_EXCLAMATION_BOX, 0},
-    {beh_exclamation_box, MODEL_EXCLAMATION_BOX, 1},
-    {beh_exclamation_box, MODEL_EXCLAMATION_BOX, 2},
-    {beh_exclamation_box, MODEL_EXCLAMATION_BOX, 3},
-    {beh_exclamation_box, MODEL_EXCLAMATION_BOX, 4}, // unused
-    {beh_exclamation_box, MODEL_EXCLAMATION_BOX, 5},
-    {beh_exclamation_box, MODEL_EXCLAMATION_BOX, 6},
-    {beh_exclamation_box, MODEL_EXCLAMATION_BOX, 7},
-    {beh_exclamation_box, MODEL_EXCLAMATION_BOX, 8},
-    {beh_breakable_box, MODEL_BREAKABLE_BOX, 0},
-    {beh_breakable_box, MODEL_BREAKABLE_BOX, 1},
-    {beh_pushable_metal_box, MODEL_METAL_BOX, 0},
-    {beh_breakable_box_small, MODEL_BREAKABLE_BOX_SMALL, 0},
-    {beh_floor_switch_hidden_objects, MODEL_PURPLE_SWITCH, 0},
-    {beh_hidden_object, MODEL_BREAKABLE_BOX, 0},
-    {beh_hidden_object, MODEL_BREAKABLE_BOX, 1}, // unused
-    {beh_hidden_object, MODEL_BREAKABLE_BOX, 2}, // unused
-    {beh_breakable_box, MODEL_BREAKABLE_BOX, 3},
-    {beh_koopa_shell_underwater, MODEL_KOOPA_SHELL, 0},
-    {beh_exclamation_box, MODEL_EXCLAMATION_BOX, 9},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_bullet_bill, MODEL_BULLET_BILL, 0}, // unused
-    {beh_heave_ho, MODEL_HEAVE_HO, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_thwomp_2, MODEL_THWOMP, 0}, // unused
-    {bFireSpitter, MODEL_BOWLING_BALL, 0},
-    {bFlyGuy, MODEL_FLYGUY, 1},
-    {beh_jumping_box, MODEL_BREAKABLE_BOX, 0},
-    {bTripletButterfly, MODEL_BUTTERFLY, 0},
-    {bTripletButterfly, MODEL_BUTTERFLY, 4},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_small_bully, MODEL_BULLY, 0},
-    {beh_small_bully, MODEL_BULLY_BOSS, 0}, // unused
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_stub_1D0C, MODEL_UNKNOWN_58, 0}, // unused
-    {beh_bouncing_fireball, MODEL_NONE, 0},
-    {beh_flamethrower, MODEL_NONE, 4},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {bWoodenPost, MODEL_WOODEN_POST, 0},
-    {bWaterBombSpawner, MODEL_NONE, 0},
-    {bEnemyLakitu, MODEL_ENEMY_LAKITU, 0},
-    {bKoopa, MODEL_KOOPA_WITH_SHELL, 2}, // unused
-    {bKoopaRaceEndpoint, MODEL_NONE, 0}, // unused
-    {beh_bobomb, MODEL_BLACK_BOBOMB, 0},
-    {beh_water_bomb_cannon, MODEL_CANNON_BASE, 0}, // unused
-    {beh_bobomb_buddy_opens_cannon, MODEL_BOBOMB_BUDDY, 0}, // unused
-    {beh_water_bomb_cannon, MODEL_CANNON_BASE, 0},
-    {beh_bobomb, MODEL_BLACK_BOBOMB, 1},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_unused_fake_star, MODEL_UNKNOWN_54, 0}, // unused
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_unagi, MODEL_UNAGI, 0}, // unused
-    {beh_sushi_shark, MODEL_SUSHI, 0}, // unused
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_static_object, MODEL_KLEPTO, 0}, // unused
-    {beh_tornado, MODEL_TORNADO, 0}, // unused
-    {bPokey, MODEL_NONE, 0},
-    {bPokey, MODEL_NONE, 0}, // unused
-    {beh_tox_box, MODEL_SSL_TOX_BOX, 0}, // unused
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {bMontyMole, MODEL_MONTY_MOLE, 0}, // unused
-    {bMontyMole, MODEL_MONTY_MOLE, 1},
-    {bMontyMoleHole, MODEL_DL_MONTY_MOLE_HOLE, 0},
-    {bFlyGuy, MODEL_FLYGUY, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {bWiggler, MODEL_WIGGLER, 0}, // unused
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_spindrift, MODEL_SPINDRIFT, 0},
-    {bMrBlizzard, MODEL_MR_BLIZZARD_HIDDEN, 0},
-    {bMrBlizzard, MODEL_MR_BLIZZARD_HIDDEN, 0}, // unused
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_small_penguin, MODEL_PENGUIN, 0}, // unused
-    {beh_tuxies_mother, MODEL_PENGUIN, 0}, // unused
-    {beh_tuxies_mother, MODEL_PENGUIN, 0}, // unused
-    {bMrBlizzard, MODEL_MR_BLIZZARD_HIDDEN, 1}, // unused
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_haunted_chair, MODEL_HAUNTED_CHAIR, 0}, // unused
-    {beh_haunted_chair, MODEL_HAUNTED_CHAIR, 0},
-    {beh_haunted_chair, MODEL_HAUNTED_CHAIR, 0}, // unused
-    {beh_boo_2, MODEL_BOO, 0}, // unused
-    {beh_boo_2, MODEL_BOO, 0}, // unused
-    {beh_boo_group, MODEL_BOO, 0}, // unused
-    {beh_boo_with_cage, MODEL_BOO, 0}, // unused
-    {beh_beta_boo_key_outside, MODEL_SMALL_KEY, 0}, // unused
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_chirp_chirp, MODEL_NONE, 0},
-    {beh_seaweed_bundle, MODEL_NONE, 0},
-    {beh_beta_chest, MODEL_TREASURE_CHEST_BASE, 0}, // unused
-    {beh_bowser_bomb, MODEL_WATER_MINE, 0}, // unused
-    {beh_large_fish_group, MODEL_NONE, 2}, // unused
-    {beh_large_fish_group, MODEL_NONE, 3},
-    {beh_jet_stream_ring_spawner, MODEL_WATER_RING, 0}, // unused
-    {beh_jet_stream_ring_spawner, MODEL_WATER_RING, 0}, // unused
-    {bSkeeter, MODEL_SKEETER, 0},
-    {beh_clam_shell, MODEL_CLAM_SHELL, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_ukiki_open_cage, MODEL_UKIKI, 0}, // unused
-    {beh_ukiki_open_cage, MODEL_UKIKI, 1}, // unused
-    {beh_piranha_plant_2, MODEL_PIRANHA_PLANT, 0}, // unused
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_small_whomp, MODEL_WHOMP, 0},
-    {bChainChomp, MODEL_CHAIN_CHOMP, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {bKoopa, MODEL_KOOPA_WITH_SHELL, 1},
-    {bKoopa, MODEL_KOOPA_WITHOUT_SHELL, 0}, // unused
-    {bWoodenPost, MODEL_WOODEN_POST, 0}, // unused
-    {bFirePiranhaPlant, MODEL_PIRANHA_PLANT, 0},
-    {bFirePiranhaPlant, MODEL_PIRANHA_PLANT, 1}, // unused
-    {bKoopa, MODEL_KOOPA_WITH_SHELL, 4},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_moneybag_hidden, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {bSwoop, MODEL_SWOOP, 0},
-    {bSwoop, MODEL_SWOOP, 1},
-    {beh_mr_i, MODEL_NONE, 0},
-    {beh_scuttlebug_spawn, MODEL_NONE, 0},
-    {beh_scuttlebug, MODEL_SCUTTLEBUG, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_UNKNOWN_54, 0}, // unused
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {bTTCRotatingSolid, MODEL_TTC_ROTATING_CUBE, 0},
-    {bTTCRotatingSolid, MODEL_TTC_ROTATING_PRISM, 1},
-    {bTTCPendulum, MODEL_TTC_PENDULUM, 0},
-    {bTTCTreadmill, MODEL_TTC_LARGE_TREADMILL, 0},
-    {bTTCTreadmill, MODEL_TTC_SMALL_TREADMILL, 1},
-    {bTTCMovingBar, MODEL_TTC_PUSH_BLOCK, 0},
-    {bTTCCog, MODEL_TTC_ROTATING_HEXAGON, 0},
-    {bTTCCog, MODEL_TTC_ROTATING_TRIANGLE, 2},
-    {bTTCPitBlock, MODEL_TTC_PIT_BLOCK, 0},
-    {bTTCPitBlock, MODEL_TTC_PIT_BLOCK_2, 1}, // unused
-    {bTTCElevator, MODEL_TTC_ELEVATOR_PLATFORM, 0},
-    {bTTC2DRotator, MODEL_TTC_CLOCK_HAND, 0},
-    {bTTCSpinner, MODEL_TTC_SPINNER, 0},
-    {bTTC2DRotator, MODEL_TTC_SMALL_GEAR, 1},
-    {bTTC2DRotator, MODEL_TTC_LARGE_GEAR, 1},
-    {bTTCTreadmill, MODEL_TTC_LARGE_TREADMILL, 2},
-    {bTTCTreadmill, MODEL_TTC_SMALL_TREADMILL, 3},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_exclamation_box, MODEL_EXCLAMATION_BOX, 10},
-    {beh_exclamation_box, MODEL_EXCLAMATION_BOX, 11},
-    {beh_exclamation_box, MODEL_EXCLAMATION_BOX, 12},
-    {beh_exclamation_box, MODEL_EXCLAMATION_BOX, 13}, // unused
-    {beh_exclamation_box, MODEL_EXCLAMATION_BOX, 14},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_sliding_platform2, MODEL_BITS_SLIDING_PLATFORM, 0}, // unused
-    {beh_sliding_platform2, MODEL_BITS_TWIN_SLIDING_PLATFORMS, 0}, // unused
-    {beh_another_tilting_platform, 0x0038, 0}, // unused
-    {beh_octagonal_platform_rotating, MODEL_BITS_OCTAGONAL_PLATFORM, 0}, // unused
-    {beh_animates_on_floor_switch_press, MODEL_BITS_STAIRCASE, 0}, // unused
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {bFerrisWheelAxle, MODEL_BITS_FERRIS_WHEEL_AXLE, 0}, // unused
-    {bActivatedBackAndForthPlatform, MODEL_BITS_ARROW_PLATFORM, 0}, // unused
-    {bSeesawPlatform, MODEL_BITS_SEESAW_PLATFORM, 0}, // unused
-    {bSeesawPlatform, MODEL_BITS_TILTING_W_PLATFORM, 0}, // unused
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0},
-    {beh_yellow_coin, MODEL_YELLOW_COIN, 0}
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvOneCoin, MODEL_YELLOW_COIN, 0},
+    {bhvMovingBlueCoin, MODEL_BLUE_COIN, 0},
+    {bhvBlueCoinSliding, MODEL_BLUE_COIN, 0}, // unused
+    {bhvRedCoin, MODEL_RED_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvCoinFormation, MODEL_NONE, 0},
+    {bhvCoinFormation, MODEL_NONE, COIN_FORMATION_FLAG_RING},
+    {bhvCoinFormation, MODEL_NONE, COIN_FORMATION_FLAG_ARROW},
+    {bhvCoinFormation, MODEL_NONE, COIN_FORMATION_FLAG_FLYING},
+    {bhvCoinFormation, MODEL_NONE, COIN_FORMATION_FLAG_FLYING | COIN_FORMATION_FLAG_VERTICAL},
+    {bhvCoinFormation, MODEL_NONE, COIN_FORMATION_FLAG_FLYING | COIN_FORMATION_FLAG_RING},
+    {bhvCoinFormation, MODEL_NONE, COIN_FORMATION_FLAG_FLYING | COIN_FORMATION_FLAG_RING | COIN_FORMATION_FLAG_VERTICAL},
+    {bhvCoinFormation, MODEL_NONE, COIN_FORMATION_FLAG_FLYING | COIN_FORMATION_FLAG_ARROW}, // unused
+    {bhvHiddenStarTrigger, MODEL_NONE, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvUnusedFakeStar, MODEL_STAR, 0}, // unused
+    {bhvMessagePanel, MODEL_WOODEN_SIGNPOST, 0},
+    {bhvCannonClosed, MODEL_DL_CANNON_LID, 0},
+    {bhvBobombBuddyOpensCannon, MODEL_BOBOMB_BUDDY, 0},
+    {bhvButterfly, MODEL_BUTTERFLY, 0}, // unused
+    {bhvBouncingFireball, MODEL_NONE, 0}, // unused
+    {bhvLargeFishGroup, MODEL_NONE, 0}, // unused
+    {bhvLargeFishGroup, MODEL_NONE, 1},
+    {bhvBetaFishSplashSpawner, MODEL_NONE, 0},
+    {bhvHidden1upInPoleSpawner, MODEL_NONE, 0},
+    {bhvGoomba, MODEL_GOOMBA, 1},
+    {bhvGoomba, MODEL_GOOMBA, 2},
+    {bhvGoombaTripletSpawner, MODEL_NONE, 0},
+    {bhvGoombaTripletSpawner, MODEL_NONE, 8}, // unused
+    {bhvSignOnWall, MODEL_NONE, 0},
+    {bhvChuckya, MODEL_CHUCKYA, 0},
+    {bhvCannon, MODEL_CANNON_BASE, 0},
+    {bhvGoomba, MODEL_GOOMBA, 0},
+    {bhvAmpHoming, MODEL_AMP, 0},
+    {bhvAmpCircling, MODEL_AMP, 0},
+    {bhvCarrySomething1, 0x007D, 0}, // unused
+    {bhvBetaTrampoline, 0x00B5, 0}, // unused
+    {bhvFreeBowlingBall, MODEL_BOWLING_BALL, 0}, // unused
+    {bhvSnufit, MODEL_SNUFIT, 0},
+    {bhvRecoveryHeart, MODEL_HEART, 0},
+    {bhv1upSliding, MODEL_1UP, 0},
+    {bhv1Up, MODEL_1UP, 0},
+    {bhv1upJumpOnApproach, MODEL_1UP, 0}, // unused
+    {bhvHidden1up, MODEL_1UP, 0},
+    {bhvHidden1upTrigger, MODEL_NONE, 0},
+    {bhv1Up, MODEL_1UP, 1},
+    {bhv1Up, MODEL_1UP, 2},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvBlueCoinSwitch, MODEL_BLUE_COIN_SWITCH, 0},
+    {bhvHiddenBlueCoin, MODEL_BLUE_COIN, 0},
+    {bhvCapSwitch, MODEL_CAP_SWITCH, 0}, // unused
+    {bhvCapSwitch, MODEL_CAP_SWITCH, 1}, // unused
+    {bhvCapSwitch, MODEL_CAP_SWITCH, 2}, // unused
+    {bhvCapSwitch, MODEL_CAP_SWITCH, 3}, // unused
+    {bhvWaterLevelDiamond, MODEL_BREAKABLE_BOX, 0}, // unused
+    {bhvExclamationBox, MODEL_EXCLAMATION_BOX, 0},
+    {bhvExclamationBox, MODEL_EXCLAMATION_BOX, 1},
+    {bhvExclamationBox, MODEL_EXCLAMATION_BOX, 2},
+    {bhvExclamationBox, MODEL_EXCLAMATION_BOX, 3},
+    {bhvExclamationBox, MODEL_EXCLAMATION_BOX, 4}, // unused
+    {bhvExclamationBox, MODEL_EXCLAMATION_BOX, 5},
+    {bhvExclamationBox, MODEL_EXCLAMATION_BOX, 6},
+    {bhvExclamationBox, MODEL_EXCLAMATION_BOX, 7},
+    {bhvExclamationBox, MODEL_EXCLAMATION_BOX, 8},
+    {bhvBreakableBox, MODEL_BREAKABLE_BOX, 0},
+    {bhvBreakableBox, MODEL_BREAKABLE_BOX, 1},
+    {bhvPushableMetalBox, MODEL_METAL_BOX, 0},
+    {bhvBreakableBoxSmall, MODEL_BREAKABLE_BOX_SMALL, 0},
+    {bhvFloorSwitchHiddenObjects, MODEL_PURPLE_SWITCH, 0},
+    {bhvHiddenObject, MODEL_BREAKABLE_BOX, 0},
+    {bhvHiddenObject, MODEL_BREAKABLE_BOX, 1}, // unused
+    {bhvHiddenObject, MODEL_BREAKABLE_BOX, 2}, // unused
+    {bhvBreakableBox, MODEL_BREAKABLE_BOX, 3},
+    {bhvKoopaShellUnderwater, MODEL_KOOPA_SHELL, 0},
+    {bhvExclamationBox, MODEL_EXCLAMATION_BOX, 9},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvBulletBill, MODEL_BULLET_BILL, 0}, // unused
+    {bhvHeaveHo, MODEL_HEAVE_HO, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvThwomp2, MODEL_THWOMP, 0}, // unused
+    {bhvFireSpitter, MODEL_BOWLING_BALL, 0},
+    {bhvFlyGuy, MODEL_FLYGUY, 1},
+    {bhvJumpingBox, MODEL_BREAKABLE_BOX, 0},
+    {bhvTripletButterfly, MODEL_BUTTERFLY, 0},
+    {bhvTripletButterfly, MODEL_BUTTERFLY, 4},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvSmallBully, MODEL_BULLY, 0},
+    {bhvSmallBully, MODEL_BULLY_BOSS, 0}, // unused
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvStub1D0C, MODEL_UNKNOWN_58, 0}, // unused
+    {bhvBouncingFireball, MODEL_NONE, 0},
+    {bhvFlamethrower, MODEL_NONE, 4},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvWoodenPost, MODEL_WOODEN_POST, 0},
+    {bhvWaterBombSpawner, MODEL_NONE, 0},
+    {bhvEnemyLakitu, MODEL_ENEMY_LAKITU, 0},
+    {bhvKoopa, MODEL_KOOPA_WITH_SHELL, 2}, // unused
+    {bhvKoopaRaceEndpoint, MODEL_NONE, 0}, // unused
+    {bhvBobomb, MODEL_BLACK_BOBOMB, 0},
+    {bhvWaterBombCannon, MODEL_CANNON_BASE, 0}, // unused
+    {bhvBobombBuddyOpensCannon, MODEL_BOBOMB_BUDDY, 0}, // unused
+    {bhvWaterBombCannon, MODEL_CANNON_BASE, 0},
+    {bhvBobomb, MODEL_BLACK_BOBOMB, 1},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvUnusedFakeStar, MODEL_UNKNOWN_54, 0}, // unused
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvUnagi, MODEL_UNAGI, 0}, // unused
+    {bhvSushiShark, MODEL_SUSHI, 0}, // unused
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvStaticObject, MODEL_KLEPTO, 0}, // unused
+    {bhvTornado, MODEL_TORNADO, 0}, // unused
+    {bhvPokey, MODEL_NONE, 0},
+    {bhvPokey, MODEL_NONE, 0}, // unused
+    {bhvToxBox, MODEL_SSL_TOX_BOX, 0}, // unused
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvMontyMole, MODEL_MONTY_MOLE, 0}, // unused
+    {bhvMontyMole, MODEL_MONTY_MOLE, 1},
+    {bhvMontyMoleHole, MODEL_DL_MONTY_MOLE_HOLE, 0},
+    {bhvFlyGuy, MODEL_FLYGUY, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvWiggler, MODEL_WIGGLER, 0}, // unused
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvSpindrift, MODEL_SPINDRIFT, 0},
+    {bhvMrBlizzard, MODEL_MR_BLIZZARD_HIDDEN, 0},
+    {bhvMrBlizzard, MODEL_MR_BLIZZARD_HIDDEN, 0}, // unused
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvSmallPenguin, MODEL_PENGUIN, 0}, // unused
+    {bhvTuxiesMother, MODEL_PENGUIN, 0}, // unused
+    {bhvTuxiesMother, MODEL_PENGUIN, 0}, // unused
+    {bhvMrBlizzard, MODEL_MR_BLIZZARD_HIDDEN, 1}, // unused
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvHauntedChair, MODEL_HAUNTED_CHAIR, 0}, // unused
+    {bhvHauntedChair, MODEL_HAUNTED_CHAIR, 0},
+    {bhvHauntedChair, MODEL_HAUNTED_CHAIR, 0}, // unused
+    {bhvBoo2, MODEL_BOO, 0}, // unused
+    {bhvBoo2, MODEL_BOO, 0}, // unused
+    {bhvBooGroup, MODEL_BOO, 0}, // unused
+    {bhvBooWithCage, MODEL_BOO, 0}, // unused
+    {bhvBetaBooKeyOutside, MODEL_SMALL_KEY, 0}, // unused
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvChirpChirp, MODEL_NONE, 0},
+    {bhvSeaweedBundle, MODEL_NONE, 0},
+    {bhvBetaChest, MODEL_TREASURE_CHEST_BASE, 0}, // unused
+    {bhvBowserBomb, MODEL_WATER_MINE, 0}, // unused
+    {bhvLargeFishGroup, MODEL_NONE, 2}, // unused
+    {bhvLargeFishGroup, MODEL_NONE, 3},
+    {bhvJetStreamRingSpawner, MODEL_WATER_RING, 0}, // unused
+    {bhvJetStreamRingSpawner, MODEL_WATER_RING, 0}, // unused
+    {bhvSkeeter, MODEL_SKEETER, 0},
+    {bhvClamShell, MODEL_CLAM_SHELL, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvUkikiOpenCage, MODEL_UKIKI, 0}, // unused
+    {bhvUkikiOpenCage, MODEL_UKIKI, 1}, // unused
+    {bhvPiranhaPlant2, MODEL_PIRANHA_PLANT, 0}, // unused
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvSmallWhomp, MODEL_WHOMP, 0},
+    {bhvChainChomp, MODEL_CHAIN_CHOMP, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvKoopa, MODEL_KOOPA_WITH_SHELL, 1},
+    {bhvKoopa, MODEL_KOOPA_WITHOUT_SHELL, 0}, // unused
+    {bhvWoodenPost, MODEL_WOODEN_POST, 0}, // unused
+    {bhvFirePiranhaPlant, MODEL_PIRANHA_PLANT, 0},
+    {bhvFirePiranhaPlant, MODEL_PIRANHA_PLANT, 1}, // unused
+    {bhvKoopa, MODEL_KOOPA_WITH_SHELL, 4},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvMoneybagHidden, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvSwoop, MODEL_SWOOP, 0},
+    {bhvSwoop, MODEL_SWOOP, 1},
+    {bhvMrI, MODEL_NONE, 0},
+    {bhvScuttlebugSpawn, MODEL_NONE, 0},
+    {bhvScuttlebug, MODEL_SCUTTLEBUG, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_UNKNOWN_54, 0}, // unused
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvTTCRotatingSolid, MODEL_TTC_ROTATING_CUBE, 0},
+    {bhvTTCRotatingSolid, MODEL_TTC_ROTATING_PRISM, 1},
+    {bhvTTCPendulum, MODEL_TTC_PENDULUM, 0},
+    {bhvTTCTreadmill, MODEL_TTC_LARGE_TREADMILL, 0},
+    {bhvTTCTreadmill, MODEL_TTC_SMALL_TREADMILL, 1},
+    {bhvTTCMovingBar, MODEL_TTC_PUSH_BLOCK, 0},
+    {bhvTTCCog, MODEL_TTC_ROTATING_HEXAGON, 0},
+    {bhvTTCCog, MODEL_TTC_ROTATING_TRIANGLE, 2},
+    {bhvTTCPitBlock, MODEL_TTC_PIT_BLOCK, 0},
+    {bhvTTCPitBlock, MODEL_TTC_PIT_BLOCK_2, 1}, // unused
+    {bhvTTCElevator, MODEL_TTC_ELEVATOR_PLATFORM, 0},
+    {bhvTTC2DRotator, MODEL_TTC_CLOCK_HAND, 0},
+    {bhvTTCSpinner, MODEL_TTC_SPINNER, 0},
+    {bhvTTC2DRotator, MODEL_TTC_SMALL_GEAR, 1},
+    {bhvTTC2DRotator, MODEL_TTC_LARGE_GEAR, 1},
+    {bhvTTCTreadmill, MODEL_TTC_LARGE_TREADMILL, 2},
+    {bhvTTCTreadmill, MODEL_TTC_SMALL_TREADMILL, 3},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvExclamationBox, MODEL_EXCLAMATION_BOX, 10},
+    {bhvExclamationBox, MODEL_EXCLAMATION_BOX, 11},
+    {bhvExclamationBox, MODEL_EXCLAMATION_BOX, 12},
+    {bhvExclamationBox, MODEL_EXCLAMATION_BOX, 13}, // unused
+    {bhvExclamationBox, MODEL_EXCLAMATION_BOX, 14},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvSlidingPlatform2, MODEL_BITS_SLIDING_PLATFORM, 0}, // unused
+    {bhvSlidingPlatform2, MODEL_BITS_TWIN_SLIDING_PLATFORMS, 0}, // unused
+    {bhvAnotherTiltingPlatform, 0x0038, 0}, // unused
+    {bhvOctagonalPlatformRotating, MODEL_BITS_OCTAGONAL_PLATFORM, 0}, // unused
+    {bhvAnimatesOnFloorSwitchPress, MODEL_BITS_STAIRCASE, 0}, // unused
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvFerrisWheelAxle, MODEL_BITS_FERRIS_WHEEL_AXLE, 0}, // unused
+    {bhvActivatedBackAndForthPlatform, MODEL_BITS_ARROW_PLATFORM, 0}, // unused
+    {bhvSeesawPlatform, MODEL_BITS_SEESAW_PLATFORM, 0}, // unused
+    {bhvSeesawPlatform, MODEL_BITS_TILTING_W_PLATFORM, 0}, // unused
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0},
+    {bhvYellowCoin, MODEL_YELLOW_COIN, 0}
 };
 
 #endif // _MACRO_PRESETS_H

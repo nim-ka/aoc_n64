@@ -296,7 +296,7 @@ void ActionWhomp9(void)
 void (*TableWhompActions[])(void) = {ActionWhomp0,ActionWhomp1,ActionWhomp2,ActionWhomp3,ActionWhomp4,ActionWhomp5,ActionWhomp6,ActionWhomp7,ActionWhomp8,ActionWhomp9};
 
 //MM
-void BehWhompLoop(void)
+void bhv_whomp_loop(void)
 {
     obj_update_floor_and_walls();
     obj_call_action_function(TableWhompActions);

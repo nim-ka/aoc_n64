@@ -1,6 +1,6 @@
 
 /**
- * Behavior for bSwoop.
+ * Behavior for bhvSwoop.
  * Has a native room.
  */
 

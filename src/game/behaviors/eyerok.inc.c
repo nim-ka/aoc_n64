@@ -40,8 +40,8 @@ static void eyerok_boss_act_sleep(void)
 {
     if (o->oTimer == 0)
     {
-        eyerok_spawn_hand(-1, 0x58, beh_eyerok_hand);
-        eyerok_spawn_hand(1, 0x59, beh_eyerok_hand);
+        eyerok_spawn_hand(-1, 0x58, bhvEyerokHand);
+        eyerok_spawn_hand(1, 0x59, bhvEyerokHand);
     }
     else if (o->oDistanceToMario < 500.0f)
     {
@@ -182,7 +182,7 @@ static void eyerok_boss_act_die(void)
     }
 }
 
-void BehEyerokBossLoop(void)
+void bhv_eyerok_boss_loop(void)
 {
     switch (o->oAction)
     {
@@ -654,7 +654,7 @@ static void eyerok_hand_act_double_pound(void)
     }
 }
 
-void BehEyerokHandLoop(void)
+void bhv_eyerok_hand_loop(void)
 {
     o->header.gfx.scale[0] = 1.5f;
     

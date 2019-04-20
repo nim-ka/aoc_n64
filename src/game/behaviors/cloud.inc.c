@@ -1,9 +1,9 @@
 
 /**
- * Behavior for bCloud and bCloudPart.
- * bCloud includes both fwoosh and the cloud that lakitu rides (both nice and
+ * Behavior for bhvCloud and bhvCloudPart.
+ * bhvCloud includes both fwoosh and the cloud that lakitu rides (both nice and
  * evil).
- * bCloudPart is spawned by bCloud and is either a "chunk" of cloud, or fwoosh's
+ * bhvCloudPart is spawned by bhvCloud and is either a "chunk" of cloud, or fwoosh's
  * face. It is purely visual.
  * If spawned by a lakitu, its parent will be the lakitu.
  * Processing order is lakitu -> cloud -> its cloud parts.
@@ -32,7 +32,7 @@ static void cloud_act_spawn_parts(void)
             0, 0, 0,
             o,
             MODEL_MIST,
-            bCloudPart);
+            bhvCloudPart);
 
         if (cloudPart != NULL)
         {
@@ -48,7 +48,7 @@ static void cloud_act_spawn_parts(void)
             0, 0, 0,
             o,
             MODEL_FWOOSH,
-            bCloudPart);
+            bhvCloudPart);
 
         obj_scale(3.0f);
 
@@ -133,7 +133,7 @@ static void cloud_fwoosh_update(void)
 }
 
 /**
- * Main update function for bCloud. This controls the cloud's movement, when it
+ * Main update function for bhvCloud. This controls the cloud's movement, when it
  * unloads, and when fwoosh blows wind.
  */
 static void cloud_act_main(void)
@@ -198,7 +198,7 @@ static void cloud_act_unload(void)
 }
 
 /**
- * Update function for bCloud.
+ * Update function for bhvCloud.
  */
 void bhv_cloud_update(void)
 {
@@ -212,7 +212,7 @@ void bhv_cloud_update(void)
 }
 
 /**
- * Update function for bCloudPart. Follow the parent cloud with some oscillation.
+ * Update function for bhvCloudPart. Follow the parent cloud with some oscillation.
  */
 void bhv_cloud_part_update(void)
 {

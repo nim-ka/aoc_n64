@@ -1,13 +1,13 @@
 // bomp.c.inc
 
-void BehSmallBompInit(void)
+void bhv_small_bomp_init(void)
 {
     o->oFaceAngleYaw -= 0x4000;
     o->oSmallBompInitX = o->oPosX;
     o->oTimer = RandomFloat() * 100.0f;
 }
 
-void BehSmallBompLoop(void)
+void bhv_small_bomp_loop(void)
 {
     switch (o->oAction)
     {
@@ -67,13 +67,13 @@ void BehSmallBompLoop(void)
     }
 }
 
-void BehLargeBompInit(void)
+void bhv_large_bomp_init(void)
 {
     o->oMoveAngleYaw += 0x4000;
     o->oTimer = RandomFloat() * 100.0f;
 }
 
-void BehLargeBompLoop(void)
+void bhv_large_bomp_loop(void)
 {
     switch (o->oAction)
     {

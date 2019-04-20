@@ -1,13 +1,13 @@
 // breakable_wall.c.inc
 
-void BehWFBreakableWallLoop(void)
+void bhv_wf_breakable_wall_loop(void)
 {
     if(gMarioStates->action == ACT_SHOT_FROM_CANNON)
     {
         obj_become_tangible();
         if(are_objects_collided(o,gMarioObject))
         {
-            if(obj_has_behavior(beh_wf_breakable_wall_right))
+            if(obj_has_behavior(bhvWfBreakableWallRight))
                 play_puzzle_jingle();
             create_sound_spawner(SOUND_GENERAL_EXPLOSION3);
             o->oInteractType = 8;

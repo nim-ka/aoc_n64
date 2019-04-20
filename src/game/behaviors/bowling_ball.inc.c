@@ -41,7 +41,7 @@ static s16 D_80331608[] = {
     0xFFFF, 0x0000
 };
 
-void BehBowlingBallInit(void)
+void bhv_bowling_ball_init(void)
 {
     o->oGravity = 5.5f;
     o->oFriction = 1.0f;
@@ -81,7 +81,7 @@ void func_802EDA6C(void)
     }
 }
 
-void BehBowlingBallRollLoop(void)
+void bhv_bowling_ball_roll_loop(void)
 {
     s16 collisionFlags;
     s32 sp18;
@@ -117,7 +117,7 @@ void BehBowlingBallRollLoop(void)
         PlaySound2(SOUND_GENERAL_QUIETPOUND1_LOWPRIO);
 }
 
-void BehBowlingBallInitializeLoop(void)
+void bhv_bowling_ball_initializeLoop(void)
 {
     s32 sp1c;
     
@@ -155,17 +155,17 @@ void BehBowlingBallInitializeLoop(void)
     }
 }
 
-void BehBowlingBallLoop(void)
+void bhv_bowling_ball_loop(void)
 {
     switch (o->oAction)
     {
         case BBALL_ACT_INITIALIZE:
             o->oAction = BBALL_ACT_ROLL;
-            BehBowlingBallInitializeLoop();
+            bhv_bowling_ball_initializeLoop();
             break;
             
         case BBALL_ACT_ROLL:
-            BehBowlingBallRollLoop();
+            bhv_bowling_ball_roll_loop();
             break;
     }
     
@@ -175,7 +175,7 @@ void BehBowlingBallLoop(void)
     SetObjectVisibility(o, 4000);
 }
 
-void BehGenericBowlingBallSpawnerInit(void)
+void bhv_generic_bowling_ball_spawner_init(void)
 {
     switch (o->oBehParams2ndByte)
     {
@@ -196,7 +196,7 @@ void BehGenericBowlingBallSpawnerInit(void)
     }
 }
 
-void BehGenericBowlingBallSpawnerLoop(void)
+void bhv_generic_bowling_ball_spawner_loop(void)
 {
     struct Object *bowlingBall;
     
@@ -213,14 +213,14 @@ void BehGenericBowlingBallSpawnerLoop(void)
         {
             if  ((s32)(RandomFloat() * o->oBBallSpwnrSpawnOdds) == 0)
             {
-                bowlingBall = spawn_object(o, MODEL_BOWLING_BALL, beh_bowling_ball);
+                bowlingBall = spawn_object(o, MODEL_BOWLING_BALL, bhvBowlingBall);
                 bowlingBall->oBehParams2ndByte = o->oBehParams2ndByte;
             }
         }
     }
 }
 
-void BehTHIBowlingBallSpawnerLoop(void)
+void bhv_thi_bowling_ball_spawner_loop(void)
 {
     struct Object *bowlingBall;
     
@@ -237,21 +237,21 @@ void BehTHIBowlingBallSpawnerLoop(void)
         {
             if  ((s32)(RandomFloat() * 1.5) == 0)
             {
-                bowlingBall = spawn_object(o, MODEL_BOWLING_BALL, beh_bowling_ball);
+                bowlingBall = spawn_object(o, MODEL_BOWLING_BALL, bhvBowlingBall);
                 bowlingBall->oBehParams2ndByte = o->oBehParams2ndByte;
             }
         }
     }
 }
 
-void BehBOBPitBowlingBallInit(void)
+void bhv_bob_pit_bowling_ball_init(void)
 {
     o->oGravity = 12.0f;
     o->oFriction = 1.0f;
     o->oBuoyancy = 2.0f;
 }
 
-void BehBOBPitBowlingBallLoop(void)
+void bhv_bob_pit_bowling_ball_loop(void)
 {
     f32 *sp1c;
     UNUSED s16 collisionFlags = ObjectStep();
@@ -266,7 +266,7 @@ void BehBOBPitBowlingBallLoop(void)
     SetObjectVisibility(o, 3000);
 }
 
-void BehFreeBowlingBallInit(void)
+void bhv_free_bowling_ball_init(void)
 {
     o->oGravity = 5.5f;
     o->oFriction = 1.0f;
@@ -278,7 +278,7 @@ void BehFreeBowlingBallInit(void)
     o->oMoveAngleYaw = 0;
 }
 
-void BehFreeBowlingBallRollLoop(void)
+void bhv_free_bowling_ball_roll_loop(void)
 {
     s16 collisionFlags = ObjectStep();
     func_802EDA14();
@@ -301,12 +301,12 @@ void BehFreeBowlingBallRollLoop(void)
         o->oPosX = o->oHomeX;
         o->oPosY = o->oHomeY;
         o->oPosZ = o->oHomeZ;
-        BehFreeBowlingBallInit();
+        bhv_free_bowling_ball_init();
         o->oAction = FREE_BBALL_ACT_RESET;
     }
 }
 
-void BehFreeBowlingBallLoop(void)
+void bhv_free_bowling_ball_loop(void)
 {
     o->oGravity = 5.5f;
     
@@ -322,7 +322,7 @@ void BehFreeBowlingBallLoop(void)
             break;
             
         case FREE_BBALL_ACT_ROLL:
-            BehFreeBowlingBallRollLoop();
+            bhv_free_bowling_ball_roll_loop();
             break;
             
         case FREE_BBALL_ACT_RESET:

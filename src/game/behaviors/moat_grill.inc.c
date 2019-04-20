@@ -1,6 +1,6 @@
 // moat_grill.c.inc
 
-void BehMoatGrillsLoop(void)
+void bhv_moat_grills_loop(void)
 {
     if(save_file_get_flags() & SAVE_FLAG_MOAT_DRAINED)
         obj_set_model(MODEL_NONE);

@@ -9,7 +9,7 @@ s32 func_802B02FC(u16 yaw,s32 a)
         return 0;
 }
 
-void BehSquarishPathMovingLoop(void)
+void bhv_squarish_path_moving_loop(void)
 {
     o->oForwardVel = 10.0f;
     switch(o->oAction)

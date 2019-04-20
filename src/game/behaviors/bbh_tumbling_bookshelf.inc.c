@@ -1,6 +1,6 @@
 // bbh_tumbling_bookshelf.c.inc
 
-void BehTumblingBookshelfLoop(void)
+void bhv_tumbling_bookshelf_loop(void)
 {
     o->oDistanceToMario = dist_between_objects(o,gMarioObject); //hmm...
     o->oFaceAngleYaw = 0;

@@ -49,7 +49,7 @@ void func_802F55CC(void) {
         o->oUnknownUnk100_S32 = 0;
 }
 
-void BehFloatingPlatformLoop(void) {
+void bhv_floating_platform_loop(void) {
     o->oHomeY = func_802F54F8();
     if (o->oFloatingPlatformUnkFC == 0)
         o->oAction = 0;

@@ -1,6 +1,6 @@
 
 /**
- * Behavior for bTTCMovingBar.
+ * Behavior for bhvTTCMovingBar.
  */
 
 
@@ -23,7 +23,7 @@ static s8 sTTCMovingBarRandomDelays[] = { 1, 12, 55, 100 };
 
 
 /**
- * Init function for bTTCMovingBar.
+ * Init function for bhvTTCMovingBar.
  */
 void bhv_ttc_moving_bar_init(void)
 {
@@ -174,7 +174,7 @@ static void ttc_moving_bar_act_retract(void)
 }
 
 /**
- * Update function for bTTCMovingBar.
+ * Update function for bhvTTCMovingBar.
  */
 void bhv_ttc_moving_bar_update(void)
 {

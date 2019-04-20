@@ -1,6 +1,6 @@
 // beta_trampoline.c.inc
 
-void BehBetaTrampolineSpawnLoop(void)
+void bhv_beta_trampoline_spawn_loop(void)
 {
     f32 yScale;
     f32 yDisplacement;
@@ -17,15 +17,15 @@ void BehBetaTrampolineSpawnLoop(void)
     scale_object_xyz(o,1.0f,yScale,1.0f);
 }
 
-void BehBetaTrampolineLoop(void)
+void bhv_beta_trampoline_loop(void)
 {
     struct Object* sp1C;
     obj_set_model(MODEL_TRAMPOLINE);
     if(o->oTimer == 0)
     {
-        sp1C = spawn_object(o,MODEL_TRAMPOLINE_CENTER,beh_beta_trampoline_spawn);
+        sp1C = spawn_object(o,MODEL_TRAMPOLINE_CENTER,bhvBetaTrampolineSpawn);
         sp1C->oPosY -= 75.0f;
-        sp1C = spawn_object(o,MODEL_TRAMPOLINE_BASE,beh_static_object);
+        sp1C = spawn_object(o,MODEL_TRAMPOLINE_BASE,bhvStaticObject);
         sp1C->oPosY -= 150.0f;
     }
     if(gMarioObject->platform == o)

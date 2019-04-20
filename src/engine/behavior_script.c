@@ -627,11 +627,11 @@ static s32 Behavior24(void)
 
 static s32 beh_cmd_begin(void)
 {
-    if (obj_has_behavior(beh_haunted_chair))
+    if (obj_has_behavior(bhvHauntedChair))
         bhv_init_room();
-    if (obj_has_behavior(bMadPiano))
+    if (obj_has_behavior(bhvMadPiano))
         bhv_init_room();
-    if (obj_has_behavior(beh_message_panel))
+    if (obj_has_behavior(bhvMessagePanel))
         gCurrentObject->oCollisionDistance = 150.0f;
     gBehCommand++;
     return BEH_CONTINUE;

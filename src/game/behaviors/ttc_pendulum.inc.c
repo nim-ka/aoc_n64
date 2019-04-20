@@ -1,6 +1,6 @@
 
 /**
- * Behavior for bTTCPendulum. This is not the pendulum inside the clock in the
+ * Behavior for bhvTTCPendulum. This is not the pendulum inside the clock in the
  * castle, but rather the one in TTC itself.
  */
 
@@ -18,7 +18,7 @@ static f32 sTTCPendulumInitialAccels[] =
 
 
 /**
- * Init function for bTTCPendulum.
+ * Init function for bhvTTCPendulum.
  */
 void bhv_ttc_pendulum_init(void)
 {
@@ -34,7 +34,7 @@ void bhv_ttc_pendulum_init(void)
 }
 
 /**
- * Update function for bTTCPendulum.
+ * Update function for bhvTTCPendulum.
  */
 void bhv_ttc_pendulum_update(void)
 {

@@ -295,7 +295,7 @@ static void platform_on_track_update_pos_or_spawn_ball(s32 ballIndex, f32 x, f32
                 0, 0, 0,
                 o,
                 MODEL_BOWLING_BALL_2,
-                bTrackBall);
+                bhvTrackBall);
 
             if (trackBall != NULL)
             {
@@ -823,7 +823,7 @@ static void obj_die_if_health_non_positive(void)
 
         if (o->oNumLootCoins < 0)
         {
-            spawn_object(o, MODEL_BLUE_COIN, beh_mr_i_blue_coin);
+            spawn_object(o, MODEL_BLUE_COIN, bhvMrIBlueCoin);
         }
         else
         {
@@ -1356,7 +1356,7 @@ s16 D_80331ACC[] = { 250, 200, 200 };
 
 void BehAnimatesOnFloorSwitchPressInit(void)
 {
-    o->parentObj = obj_nearest_object_with_behavior(beh_floor_switch_animates_object);
+    o->parentObj = obj_nearest_object_with_behavior(bhvFloorSwitchAnimatesObject);
 }
 
 void BehAnimatesOnFloorSwitchPressLoop(void)
@@ -1450,7 +1450,7 @@ void BehCannonBarrelBubblesLoop(void)
                 {
                     o->oForwardVel = 35.0f;
 
-                    val04 = spawn_object(o, MODEL_WATER_BOMB, bWaterBomb);
+                    val04 = spawn_object(o, MODEL_WATER_BOMB, bhvWaterBomb);
                     if (val04 != NULL)
                     {
                         val04->oForwardVel = -100.0f;
@@ -1472,7 +1472,7 @@ void func_80308DF0(void)
 {
     if (o->oDistanceToMario < 2000.0f)
     {
-        spawn_object(o, MODEL_CANNON_BARREL, beh_cannon_barrel_bubbles);
+        spawn_object(o, MODEL_CANNON_BARREL, bhvCannonBarrelBubbles);
         obj_unhide();
 
         o->oAction = 1;
@@ -1727,7 +1727,7 @@ void BehUnagiLoop(void)
         {
             for (val04 = -4; val04 < 4; val04++)
             {
-                spawn_object_relative(val04, 0, 0, 0, o, MODEL_NONE, beh_unagi_subobject);
+                spawn_object_relative(val04, 0, 0, 0, o, MODEL_NONE, bhvUnagiSubobject);
             }
             o->oUnagiUnk1B2 = 1;
         }
@@ -1806,7 +1806,7 @@ void BehHauntedChairInit(void)
     struct Object *val04;
     f32 val00;
 
-    val04 = obj_find_nearest_object_with_behavior(bMadPiano, &val00);
+    val04 = obj_find_nearest_object_with_behavior(bhvMadPiano, &val00);
     if (val04 != NULL && val00 < 300.0f)
     {
         o->parentObj = val04;
@@ -2121,7 +2121,7 @@ void BehBookendSpawnLoop(void)
     {
         if (o->oTimer > 40 && obj_is_near_to_and_facing_mario(600.0f, 0x2000))
         {
-            sp1C = spawn_object(o, MODEL_BOOKEND, beh_flying_bookend);
+            sp1C = spawn_object(o, MODEL_BOOKEND, bhvFlyingBookend);
             if (sp1C != NULL)
             {
                 sp1C->oAction = 3;
@@ -2140,7 +2140,7 @@ void func_8030B464(void)
     {
         for (val04 = 0; val04 < 3; val04++)
         {
-            spawn_object_relative(val04, D_80331B30[val04].unk00, D_80331B30[val04].unk02, 0, o, MODEL_BOOKEND, beh_book_switch);
+            spawn_object_relative(val04, D_80331B30[val04].unk00, D_80331B30[val04].unk02, 0, o, MODEL_BOOKEND, bhvBookSwitch);
         }
 
         o->oAction = 1;
@@ -2184,7 +2184,7 @@ void func_8030B5A4(void)
             {
                 if (o->oTimer > 100)
                 {
-                    o->parentObj = obj_nearest_object_with_behavior(beh_tumbling_bookshelf);
+                    o->parentObj = obj_nearest_object_with_behavior(bhvTumblingBookshelf);
                     o->parentObj->oAction = 1;
                     o->oPosX = o->parentObj->oPosX;
                     o->oAction = 3;
@@ -2319,7 +2319,7 @@ void BehBookSwitchLoop(void)
                             o,
                             0,
                             MODEL_BOOKEND,
-                            beh_flying_bookend,
+                            bhvFlyingBookend,
                             0x1FC * sp36 - 0x8CA,
                             890,
                             sp34,
@@ -2362,7 +2362,7 @@ void obj_spit_fire(
         scale,
         o,
         model,
-        beh_small_piranha_flame);
+        bhvSmallPiranhaFlame);
 
     if (sp2C != NULL)
     {
@@ -2405,11 +2405,11 @@ void BehSmallPiranhaFlameLoop(void)
 
         obj_compute_vel_from_move_pitch(o->oSmallPiranhaFlameUnkF4);
         obj_move_standard(-78);
-        spawn_object_with_scale(o, o->oSmallPiranhaFlameUnkFC, beh_small_piranha_flame, 0.4f * o->header.gfx.scale[0]);
+        spawn_object_with_scale(o, o->oSmallPiranhaFlameUnkFC, bhvSmallPiranhaFlame, 0.4f * o->header.gfx.scale[0]);
 
         if (o->oTimer > o->oSmallPiranhaFlameUnk100)
         {
-            spawn_object_relative_with_scale(1, 0, o->oGraphYOffset, 0, o->header.gfx.scale[0], o, o->oSmallPiranhaFlameUnkFC, beh_flyguy_flame);
+            spawn_object_relative_with_scale(1, 0, o->oGraphYOffset, 0, o->header.gfx.scale[0], o, o->oSmallPiranhaFlameUnkFC, bhvFlyguyFlame);
             o->oSmallPiranhaFlameUnk100 = random_linear_offset(8, 15);
             o->oTimer = 0;
         }
@@ -2533,7 +2533,7 @@ void func_8030CA38(void)
     {
         o->oSnufitUnk10C += 1;
         PlaySound2(SOUND_OBJECT_SNUFITSHOOT);
-        spawn_object_relative(0, 0, -20, 40, o, MODEL_BOWLING_BALL, beh_snufit_balls);
+        spawn_object_relative(0, 0, -20, 40, o, MODEL_BOWLING_BALL, bhvSnufitBalls);
         o->oSnufitUnkF4 = -30;
         o->oTimer = 0;
     }
@@ -2661,7 +2661,7 @@ void BehHauntedRoomCheckLoop(void)
             {
                 val06 = D_80331C00[val08].unk02;
 
-                val0C = spawn_object_relative(val08 & 0x00000001, D_80331C00[val08].unk00, 0, val06, o, MODEL_BBH_WOODEN_TOMB, beh_haunted_room_check_subobject);
+                val0C = spawn_object_relative(val08 & 0x00000001, D_80331C00[val08].unk00, 0, val06, o, MODEL_BBH_WOODEN_TOMB, bhvHauntedRoomCheckSubobject);
                 if (val0C != NULL)
                 {
                     if (val06 > 0)
@@ -2837,7 +2837,7 @@ void func_803117F4(void)
             val04 = (s16)(100.0f * sins(val06));
             val02 = (s16)(100.0f * coss(val06));
 
-            spawn_object_relative(0, val04, 30, val02, o, MODEL_BUBBLE, beh_bubble_maybe);
+            spawn_object_relative(0, val04, 30, val02, o, MODEL_BUBBLE, bhvBubbleMaybe);
         }
     }
     else if (obj_check_anim_frame(30))
@@ -3035,7 +3035,7 @@ void BehBubbaLoop(void)
     {
         if (o->oMoveFlags & 0x00000008)
         {
-            sp38 = spawn_object(o, MODEL_WATER_SPLASH, beh_water_splash);
+            sp38 = spawn_object(o, MODEL_WATER_SPLASH, bhvWaterSplash);
             if (sp38 != NULL)
             {
                 scale_object(sp38, 3.0f);
@@ -3051,7 +3051,7 @@ void BehBubbaLoop(void)
             {
                 sp36 = RandomU16();
                 o->oBubbaUnk10C -= 1.0f;
-                spawn_object_relative(0, 150.0f * coss(sp36), 0x64, 150.0f * sins(sp36), o, MODEL_SMALL_SNOW_BALL, beh_small_particle_snow);
+                spawn_object_relative(0, 150.0f * coss(sp36), 0x64, 150.0f * sins(sp36), o, MODEL_SMALL_SNOW_BALL, bhvSmallParticleSnow);
             }
         }
 

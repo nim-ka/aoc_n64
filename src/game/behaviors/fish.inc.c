@@ -39,7 +39,7 @@ void ActionFish0(void)
     {
         for(i=0;i<sp38;i++)
         {
-            sp28 = spawn_object(o,model,beh_fish_group2);
+            sp28 = spawn_object(o,model,bhvFishGroup2);
             sp28->oBehParams2ndByte = o->oBehParams2ndByte;
             func_8029EE20(sp28,sp2C,0);
             translate_object_xyz_random(sp28,700.0f);
@@ -62,7 +62,7 @@ void ActionFish2(void)
 
 void (*TableFishActions[])(void) = {ActionFish0,ActionFish1,ActionFish2};
 
-void BehFishLoop(void)
+void bhv_fish_loop(void)
 {
     obj_call_action_function(TableFishActions);
 }
@@ -172,7 +172,7 @@ void ActionFishGroup0(void)
 
 void (*TableFishGroupActions[])(void) = {ActionFishGroup0,ActionFishGroup1,ActionFishGroup2};
 
-void BehFishGroup2Loop(void) //TODO rename
+void bhv_fish_group_2_loop(void) //TODO rename
 {
     UNUSED s32 unused[4];
     obj_scale(1.0f);

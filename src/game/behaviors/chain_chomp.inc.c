@@ -1,11 +1,11 @@
 
 /**
- * Behavior for bChainChomp, bChainChompChainPart, bWoodenPost, and bChainChompGate.
- * bChainChomp spawns its bWoodenPost in its behavior script. It spawns 5 chain
+ * Behavior for bhvChainChomp, bhvChainChompChainPart, bhvWoodenPost, and bhvChainChompGate.
+ * bhvChainChomp spawns its bhvWoodenPost in its behavior script. It spawns 5 chain
  * parts. Part 0 is the "pivot", which is positioned at the wooden post while
  * the chomp is chained up. Parts 1-4 are the other parts, starting from the
  * chain chomp and moving toward the pivot.
- * Processing order is bWoodenPost, bChainChompGate, bChainChomp, bChainChompChainPart.
+ * Processing order is bhvWoodenPost, bhvChainChompGate, bhvChainChomp, bhvChainChompChainPart.
  * The chain parts are processed starting at the post and ending at the chomp.
  */
 
@@ -81,7 +81,7 @@ static void chain_chomp_act_uninitialized(void)
 
             // Spawn the pivot and set to parent
             if ((o->parentObj = spawn_object(
-                o, CHAIN_CHOMP_CHAIN_PART_BP_PIVOT, bChainChompChainPart)) != NULL)
+                o, CHAIN_CHOMP_CHAIN_PART_BP_PIVOT, bhvChainChompChainPart)) != NULL)
             {
                 // Spawn the non-pivot chain parts, starting from the chain
                 // chomp and moving toward the pivot
@@ -92,7 +92,7 @@ static void chain_chomp_act_uninitialized(void)
                         0, 0, 0,
                         o,
                         MODEL_METALLIC_BALL,
-                        bChainChompChainPart);
+                        bhvChainChompChainPart);
                 }
 
                 o->oAction = CHAIN_CHOMP_ACT_MOVE;
@@ -628,7 +628,7 @@ void bhv_wooden_post_update(void)
  */
 void bhv_chain_chomp_gate_init(void)
 {
-    o->parentObj = obj_nearest_object_with_behavior(bChainChomp);
+    o->parentObj = obj_nearest_object_with_behavior(bhvChainChomp);
 }
 
 /**

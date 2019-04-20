@@ -13,7 +13,7 @@ struct ObjectHitbox sSpindriftHitbox =
     /* hurtboxHeight: */     70,
 };
 
-void BehSpindriftLoop(void)
+void bhv_spindrift_loop(void)
 {
     o->activeFlags |= 0x400;
     if(obj_set_hitbox_and_die_if_attacked(&sSpindriftHitbox,SOUND_OBJECT_DYINGENEMY1,0))

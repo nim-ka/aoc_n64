@@ -2,7 +2,7 @@
 
 f32 D_8032F420[] = {1.9f,2.4f,4.0f,4.8f};
 
-void BehBowserShockWave(void)
+void bhv_bowser_shock_wave_loop(void)
 {
     f32 sp2C,sp28,sp24,sp20;
     s16 sp1E = 70;

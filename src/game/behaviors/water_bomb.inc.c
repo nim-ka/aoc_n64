@@ -1,6 +1,6 @@
 
 /**
- * Behaviors for bWaterBombSpawner, bWaterBomb, and bWaterBombShadow.
+ * Behaviors for bhvWaterBombSpawner, bhvWaterBomb, and bhvWaterBombShadow.
  * The spawner spawns the water bombs that fall on mario from above. These ones
  * start in the WATER_BOMB_ACT_INIT action.
  * Water bombs can also be shot by cannons. These ones stay in the
@@ -60,7 +60,7 @@ static struct SpawnParticlesInfo sWaterBombCannonParticle =
 
 
 /**
- * Update function for bWaterBombSpawner.
+ * Update function for bhvWaterBombSpawner.
  * Spawn water bombs targeting mario when he comes in range.
  */
 void bhv_water_bomb_spawner_update(void)
@@ -87,7 +87,7 @@ void bhv_water_bomb_spawner_update(void)
                 0, 2000, 0,
                 o,
                 MODEL_WATER_BOMB,
-                bWaterBomb);
+                bhvWaterBomb);
 
             if (waterBomb != NULL)
             {
@@ -101,7 +101,7 @@ void bhv_water_bomb_spawner_update(void)
                 waterBomb->oPosZ = gMarioObject->oPosZ +
                     waterBombDistToMario * coss(gMarioObject->oMoveAngleYaw);
 
-                spawn_object(waterBomb, MODEL_WATER_BOMB_SHADOW, bWaterBombShadow);
+                spawn_object(waterBomb, MODEL_WATER_BOMB_SHADOW, bhvWaterBombShadow);
 
                 o->oWaterBombSpawnerBombActive = TRUE;
                 o->oWaterBombSpawnerTimeToSpawn = random_linear_offset(0, 50);
@@ -252,7 +252,7 @@ static void water_bomb_act_shot_from_cannon(void)
 }
 
 /**
- * Update function for bWaterBomb.
+ * Update function for bhvWaterBomb.
  */
 void bhv_water_bomb_update(void)
 {
@@ -275,7 +275,7 @@ void bhv_water_bomb_update(void)
 }
 
 /**
- * Update function for bWaterBombShadow.
+ * Update function for bhvWaterBombShadow.
  * Despawn when the parent water bomb does.
  */
 void bhv_water_bomb_shadow_update(void)

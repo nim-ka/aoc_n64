@@ -262,7 +262,7 @@ void ActionUkikiOpenCage4(void)
     struct Object* sp24;
     f32 sp20 = 0.0f;
     s16 sp1E = 0;
-    sp24 = obj_nearest_object_with_behavior(beh_unused_0F14);
+    sp24 = obj_nearest_object_with_behavior(bhvUnused0F14);
     if(sp24 != NULL)
     {
         sp20 = lateral_dist_between_objects(o,sp24->parentObj);
@@ -450,7 +450,7 @@ void func_802BB0E4(void)
     }
 }
 
-void BehUkikiOpenCageInit(void)
+void bhv_ukiki_open_cage_init(void)
 {
     if(o->oBehParams2ndByte == 1)
         if(save_file_get_flags() & SAVE_FLAG_CAP_ON_UKIKI)
@@ -460,7 +460,7 @@ void BehUkikiOpenCageInit(void)
         }
 }
 
-void BehUkikiOpenCageLoop(void)
+void bhv_ukiki_open_cage_loop(void)
 {
     switch(o->oHeldState)
     {

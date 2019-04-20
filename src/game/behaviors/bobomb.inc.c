@@ -13,7 +13,7 @@ static struct ObjectHitbox sBobombHitbox =
     /* hurtboxHeight:     */ 0,
 };
 
-void BehBobombInit(void)
+void bhv_bobomb_init(void)
 {
     o->oGravity = 2.5;
     o->oFriction = 0.8;
@@ -37,11 +37,11 @@ void BobombExplodeLoop(void)
     if (o->oTimer < 5) obj_scale(1.0 + (f32)o->oTimer / 5.0);
     else
     {
-        explosion = spawn_object(o, MODEL_EXPLOSION, beh_explosion);
+        explosion = spawn_object(o, MODEL_EXPLOSION, bhvExplosion);
         explosion->oGraphYOffset += 100.0f;
         
         func_802E5B7C();
-        create_respawner(MODEL_BLACK_BOBOMB, beh_bobomb, 3000);
+        create_respawner(MODEL_BLACK_BOBOMB, bhvBobomb, 3000);
         o->activeFlags = 0;
     }
 }
@@ -131,12 +131,12 @@ void GenericBobombFreeLoop(void)
             break;
             
         case BOBOMB_ACT_LAVA_DEATH:
-            if (ObjLavaDeath() == 1) create_respawner(MODEL_BLACK_BOBOMB, beh_bobomb, 3000);
+            if (ObjLavaDeath() == 1) create_respawner(MODEL_BLACK_BOBOMB, bhvBobomb, 3000);
             break;
             
         case BOBOMB_ACT_DEATH_PLANE_DEATH:
             o->activeFlags = 0;
-            create_respawner(MODEL_BLACK_BOBOMB, beh_bobomb, 3000);
+            create_respawner(MODEL_BLACK_BOBOMB, bhvBobomb, 3000);
             break;
     }
     
@@ -158,12 +158,12 @@ void StationaryBobombFreeLoop(void)
             break;
             
         case BOBOMB_ACT_LAVA_DEATH:
-            if (ObjLavaDeath() == 1) create_respawner(MODEL_BLACK_BOBOMB, beh_bobomb, 3000);
+            if (ObjLavaDeath() == 1) create_respawner(MODEL_BLACK_BOBOMB, bhvBobomb, 3000);
             break;
             
         case BOBOMB_ACT_DEATH_PLANE_DEATH:
             o->activeFlags = 0;
-            create_respawner(MODEL_BLACK_BOBOMB, beh_bobomb, 3000);
+            create_respawner(MODEL_BLACK_BOBOMB, bhvBobomb, 3000);
             break;
     }
     
@@ -244,7 +244,7 @@ void ObjRandomBlink(s32 *blinkTimer)
     }
 }
 
-void BehBobombLoop(void)
+void bhv_bobomb_loop(void)
 {
     s8 dustPeriodMinus1;
     if (IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, 4000) != 0)
@@ -276,7 +276,7 @@ void BehBobombLoop(void)
             else dustPeriodMinus1 = 7;
         
             if ((dustPeriodMinus1 & o->oBobombFuseTimer) == 0) /* oBobombFuseTimer % 2 or oBobombFuseTimer % 8 */
-                spawn_object(o, MODEL_SMOKE, beh_bobomb_fuse_smoke);
+                spawn_object(o, MODEL_SMOKE, bhvBobombFuseSmoke);
                 
             PlaySound(SOUND_CH6_UNKNOWN008);
             
@@ -285,7 +285,7 @@ void BehBobombLoop(void)
     }
 }
 
-void BehBobombFuseSmokeInit(void)
+void bhv_bobomb_fuse_smoke_init(void)
 {
     o->oPosX += (s32)(RandomFloat() * 80.0f) - 40;
     o->oPosY += (s32)(RandomFloat() * 80.0f) + 60;
@@ -293,7 +293,7 @@ void BehBobombFuseSmokeInit(void)
     obj_scale(1.2f);
 }
 
-void BehBobombBuddyInit(void)
+void bhv_bobomb_buddy_init(void)
 {
     o->oGravity = 2.5;
     o->oFriction = 0.8;
@@ -336,14 +336,14 @@ void BobombBuddyCannonLoop(s16 arg0, s16 arg1)
             if (sp2a != 0)
             {
                 save_file_set_cannon_unlocked();
-                sp2c = obj_nearest_object_with_behavior(beh_cannon_closed);
+                sp2c = obj_nearest_object_with_behavior(bhvCannonClosed);
                 if (sp2c != 0) o->oBobombBuddyCannonStatus = BOBOMB_BUDDY_CANNON_OPENING;
                 else o->oBobombBuddyCannonStatus = BOBOMB_BUDDY_CANNON_STOP_TALKING;
             }
             break;
             
         case BOBOMB_BUDDY_CANNON_OPENING:
-            sp2c = obj_nearest_object_with_behavior(beh_cannon_closed);
+            sp2c = obj_nearest_object_with_behavior(bhvCannonClosed);
             sp28 = func_8028F9E8(150, sp2c);
             if (sp28 == -1) o->oBobombBuddyCannonStatus = BOBOMB_BUDDY_CANNON_OPENED;
             break;
@@ -425,7 +425,7 @@ void BobombBuddyActionLoop(void)
     SetObjectVisibility(o, 3000);
 }
 
-void BehBobombBuddyLoop(void)
+void bhv_bobomb_buddy_loop(void)
 {
     BobombBuddyActionLoop();
     

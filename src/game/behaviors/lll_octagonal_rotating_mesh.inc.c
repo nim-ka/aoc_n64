@@ -61,7 +61,7 @@ s32 func_802BB680(s32* a0,f32* a1,s32 a2,s32 a3)
         return 0;
 }
 
-void BehLLLMovingOctagonalMeshPlatformLoop(void)
+void bhv_lll_moving_octagonal_mesh_platform_loop(void)
 {
     if(o->oAction == 0)
     {

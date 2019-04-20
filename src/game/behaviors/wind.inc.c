@@ -5,14 +5,14 @@ void func_802ADC20(s16 pitch, s16 yaw)
     s32 i;
     for(i=0;i<3;i++)
     {
-        struct Object* wind = spawn_object(o,MODEL_MIST,beh_wind);
+        struct Object* wind = spawn_object(o,MODEL_MIST,bhvWind);
         wind->oMoveAngleYaw = yaw;
         wind->oMoveAnglePitch = pitch;
     }
 }
 
 
-void BehWindLoop(void)
+void bhv_wind_loop(void)
 {
     s16 sp2E = 500;
     f32 sp28 = 1.0f;

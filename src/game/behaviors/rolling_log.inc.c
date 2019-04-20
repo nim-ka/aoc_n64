@@ -6,7 +6,7 @@
 // hypothesis is that the object in the middle here used to be
 // a rolling log of another variation.
 
-void BehTTMRollingLogInit(void) {
+void bhv_ttm_rolling_log_init(void) {
     o->oPitouneUnkF8 = 3970.0f;
     o->oPitouneUnkFC = 3654.0f;
     o->oPitouneUnkF4 = 271037.0f;
@@ -60,7 +60,7 @@ void func_802F238C(void) {
     }
 }
 
-void BehRollingLogLoop(void) {
+void bhv_rolling_log_loop(void) {
     f32 prevX = o->oPosX;
     f32 prevZ = o->oPosZ;
 
@@ -113,7 +113,7 @@ void func_802F2924(void) {
         o->oAction = 0;
 }
 
-void BehLLLVolcanoFallingTrap(void) {
+void bhvLllVolcanoFallingTrap_loop(void) {
     switch (o->oAction) {
         case 0:
             if (IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, 1000)) {
@@ -142,7 +142,7 @@ void BehLLLVolcanoFallingTrap(void) {
     }
 }
 
-void BehLLLRollingLogInit(void) {
+void bhv_lll_rolling_log_init(void) {
     o->oPitouneUnkF8 = 5120.0f;
     o->oPitouneUnkFC = 6016.0f;
     o->oPitouneUnkF4 = 1048576.0f;

@@ -10,7 +10,7 @@ static s16 sYoshiHomeLocations[] = {
     -1004,  -5308
 };
 
-void BehYoshiInit(void) {
+void bhv_yoshi_init(void) {
     o->oGravity = 2.0f;
     o->oFriction = 0.9f;
     o->oBuoyancy = 1.3f;
@@ -40,7 +40,7 @@ void yoshi_walk_loop(void) {
         o->oAction = YOSHI_ACT_TALK;
 
     if (o->oPosY < 2100.0f) {
-        create_respawner(MODEL_YOSHI, beh_yoshi, 3000);
+        create_respawner(MODEL_YOSHI, bhvYoshi, 3000);
         o->activeFlags = 0;
     }
 }

@@ -1,6 +1,6 @@
 // cannon.c.inc
 
-void BehCannonBaseUnusedLoop(void)
+void bhv_cannon_base_unused_loop(void)
 {
     o->oPosY += o->oVelY;
 }
@@ -128,7 +128,7 @@ void (*TableOpenedCannonActions[])(void) =    {ActionOpenedCannon0,ActionOpenedC
 
 u8 unused0EA1FC[] = {2,0,0,0,0,0,0,0,63,128,0,0,2,0,0,0,65,32,0,0,63,128,0,0,2,0,0,0,65,160,0,0,63,128,0,0,2,0,0,0,65,160,0,0,63,128,0,0,8,0,0,0,65,32,0,0,63,128,0,0};
 
-void BehCannonBaseLoop(void)
+void bhv_cannon_base_loop(void)
 {
     obj_call_action_function(TableOpenedCannonActions);
     if(o->OBJECT_FIELD_S32(0x1C))
@@ -136,7 +136,7 @@ void BehCannonBaseLoop(void)
     o->oInteractStatus = 0;
 }
 
-void BehCannonBarrelLoop(void)
+void bhv_cannon_barrel_loop(void)
 {
     struct Object* parent = o->parentObj;
     if(parent->header.gfx.node.flags & GRAPH_RENDER_01)

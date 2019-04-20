@@ -1,8 +1,8 @@
 // powerup_sparkles.c.inc
 
-void BehPowerupSparklesLoop(void)
+void bhv_powerup_sparkles_loop(void)
 {
-    struct Object* sp24 = try_to_spawn_object(0,1.0f,o,MODEL_SPARKLES_ANIMATION,beh_powerup_sparkles1);
+    struct Object* sp24 = try_to_spawn_object(0,1.0f,o,MODEL_SPARKLES_ANIMATION,bhvPowerupSparkles1);
     if(sp24 != NULL)
     {
         translate_object_xyz_random(sp24,90.0f);

@@ -12,7 +12,7 @@ static struct ObjectHitbox sRollingSphereHitbox = {
     /* hurtboxHeight:     */ 0,
 };
 
-void BehSnowmansBottomInit(void) {
+void bhv_snowmans_bottom_init(void) {
     struct Object *sp34;
 
     o->oHomeX = o->oPosX;
@@ -27,11 +27,11 @@ void BehSnowmansBottomInit(void) {
     o->oForwardVel = 0;
     o->oSnowmansBottomUnkF4 = 0.4f;
 
-    sp34 = obj_nearest_object_with_behavior(beh_snowmans_head);
+    sp34 = obj_nearest_object_with_behavior(bhvSnowmansHead);
     if (sp34 != NULL) {
         o->parentObj = sp34;
     }
-    spawn_object_abs_with_rot(o, 0, MODEL_NONE, beh_snowmans_body_checkpoint, -402, 461, -2898, 0, 0, 0);
+    spawn_object_abs_with_rot(o, 0, MODEL_NONE, bhvSnowmansBodyCheckpoint, -402, 461, -2898, 0, 0, 0);
 }
 
 void func_802EFB2C(void) {
@@ -98,7 +98,7 @@ void func_802EFDA0(void) {
     }
 
     if (o->oTimer == 200) {
-        create_respawner(MODEL_CCM_SNOWMAN_BASE, beh_snowmans_bottom, 3000);
+        create_respawner(MODEL_CCM_SNOWMAN_BASE, bhvSnowmansBottom, 3000);
         o->activeFlags = 0;
     }
 }
@@ -120,7 +120,7 @@ void func_802EFF58(void) {
     }
 }
 
-void BehSnowmansBottomLoop(void) {
+void bhv_snowmans_bottom_loop(void) {
     s16 sp1E;
 
     switch (o->oAction) {
@@ -164,7 +164,7 @@ void BehSnowmansBottomLoop(void) {
 
 }
 
-void BehSnowmansHeadInit(void) {
+void bhv_snowmans_head_init(void) {
     u8 sp37;
     s8 sp36;
 
@@ -179,7 +179,7 @@ void BehSnowmansHeadInit(void) {
 
     if ((sp37 & (1 << sp36))
         && gCurrActNum != sp36 + 1) {
-        spawn_object_abs_with_rot(o, 0, MODEL_CCM_SNOWMAN_BASE, beh_big_snowman_whole, -4230, -1344, 1813, 0, 0, 0);
+        spawn_object_abs_with_rot(o, 0, MODEL_CCM_SNOWMAN_BASE, bhvBigSnowmanWhole, -4230, -1344, 1813, 0, 0, 0);
         o->oPosX = -4230.0f;
         o->oPosY = -994.0f;
         o->oPosZ = 1813.0f;
@@ -187,7 +187,7 @@ void BehSnowmansHeadInit(void) {
     }
 }
 
-void BehSnowmansHeadLoop(void) {
+void bhv_snowmans_head_loop(void) {
     UNUSED s16 sp1E;
     s16 sp1C;
 
@@ -228,7 +228,7 @@ void BehSnowmansHeadLoop(void) {
     obj_push_mario_away_from_cylinder(180.0f, 150.0f);
 }
 
-void BehSnowmansBodyCheckpointLoop(void) {
+void bhv_snowmans_body_checkpoint_loop(void) {
     if (IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, 800)) {
         o->parentObj->oUnk1AC_S32++;
         o->activeFlags = 0;

@@ -11,7 +11,7 @@ Gfx *Geo18_802BA2B0(s32 run, struct GraphNode* node, UNUSED f32 mtx[4][4])
     return 0;
 }
 
-void BehDoorKey1Loop(void)
+void bhv_door_key_1_loop(void)
 {
     s32 sp1C;
     sp1C = o->header.gfx.unk38.animFrame;
@@ -32,7 +32,7 @@ void BehDoorKey1Loop(void)
         mark_object_for_deletion(o);
 }
 
-void BehDoorKey2Loop(void)
+void bhv_door_key_2_loop(void)
 {
     s32 sp1C = o->header.gfx.unk38.animFrame;
     func_8029ED38(1);

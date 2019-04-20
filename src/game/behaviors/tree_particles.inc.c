@@ -1,6 +1,6 @@
 // tree_particles.c.inc
 
-void BehTreeSnowOrLeafLoop(void)
+void bhv_tree_snow_or_leaf_loop(void)
 {
     obj_update_floor_height();
     if(o->oTimer == 0)
@@ -33,7 +33,7 @@ void BehTreeSnowOrLeafLoop(void)
     o->oPosY += o->oVelY;
 }
 
-void BehSnowLeafParticleSpawnInit(void)
+void bhv_snow_leaf_particle_spawn_init(void)
 {
     struct Object* obj; // Either snow or leaf
     UNUSED s32 unused;
@@ -49,7 +49,7 @@ void BehSnowLeafParticleSpawnInit(void)
     {
         if(RandomFloat() < 0.5)
         {
-            obj = spawn_object(o,MODEL_SNOWMAN_SNOW_BALL_DL,beh_tree_snow);
+            obj = spawn_object(o,MODEL_SNOWMAN_SNOW_BALL_DL,bhvTreeSnow);
             scale = RandomFloat();
             scale_object_xyz(obj,scale,scale,scale);
             obj->oMoveAngleYaw = RandomU16();
@@ -61,7 +61,7 @@ void BehSnowLeafParticleSpawnInit(void)
     {
         if(RandomFloat() < 0.3)
         {
-            obj = spawn_object(o,MODEL_LEAVES,beh_tree_leaf);
+            obj = spawn_object(o,MODEL_LEAVES,bhvTreeLeaf);
             scale = RandomFloat() * 3.0f;
             scale_object_xyz(obj,scale,scale,scale);
             obj->oMoveAngleYaw = RandomU16();

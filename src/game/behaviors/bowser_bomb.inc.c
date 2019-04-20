@@ -1,17 +1,17 @@
 // bowser_bomb.c.inc
 
-void BehBowserBombLoop(void)
+void bhv_bowser_bomb_loop(void)
 {
     if (are_objects_collided(o, gMarioObject) == 1)
     {
         o->oInteractStatus &= ~0x8000; /* bit 15 */
-        spawn_object(o, MODEL_EXPLOSION, beh_explosion);
+        spawn_object(o, MODEL_EXPLOSION, bhvExplosion);
         o->activeFlags = 0;
     }
     
     if (o->oInteractStatus & 0x200000) /* bit 21 */
     {
-        spawn_object(o, MODEL_BOWSER_FLAMES, beh_bowser_bomb_explosion);
+        spawn_object(o, MODEL_BOWSER_FLAMES, bhvBowserBombExplosion);
         create_sound_spawner(SOUND_GENERAL_EXPLOSION5);
         func_8027F440(3, o->oPosX, o->oPosY, o->oPosZ);
         o->activeFlags = 0;
@@ -20,14 +20,14 @@ void BehBowserBombLoop(void)
     SetObjectVisibility(o, 7000);
 }
 
-void BehBowserBombExplosionLoop(void)
+void bhv_bowser_bomb_explosion_loop(void)
 {
     struct Object *mineSmoke;
     
     obj_scale((f32)o->oTimer / 14.0f * 9.0 + 1.0);
     if ((o->oTimer % 4 == 0) && (o->oTimer < 20))
     {
-        mineSmoke = spawn_object(o, MODEL_BOWSER_SMOKE, beh_bowser_bomb_smoke);
+        mineSmoke = spawn_object(o, MODEL_BOWSER_SMOKE, bhvBowserBombSmoke);
         mineSmoke->oPosX += RandomFloat() * 600.0f - 400.0f;
         mineSmoke->oPosZ += RandomFloat() * 600.0f - 400.0f;
         mineSmoke->oVelY += RandomFloat() * 10.0f;
@@ -37,7 +37,7 @@ void BehBowserBombExplosionLoop(void)
     if (o->oTimer == 28) o->activeFlags = 0;
 }
 
-void BehBowserBombSmokeLoop(void)
+void bhv_bowser_bomb_smoke_loop(void)
 {
     obj_scale((f32)o->oTimer / 14.0f * 9.0 + 1.0);
     if (o->oTimer % 2 == 0) o->oAnimState++;

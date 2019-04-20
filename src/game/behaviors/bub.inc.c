@@ -12,7 +12,7 @@ void ActionBirdChirpChirp0(void)
     if(o->oDistanceToMario < 1500.0f)
     {
         for(i=0;i<sp18;i++)
-            spawn_object(o,MODEL_BUB,beh_bub);
+            spawn_object(o,MODEL_BUB,bhvBub);
         o->oAction = 1;
     }
 }
@@ -35,7 +35,7 @@ void ActionBirdChirpChirp3(void)
 
 void (*TableBirdChirpChirpActions[])(void) = {ActionBirdChirpChirp0,ActionBirdChirpChirp1,ActionBirdChirpChirp2,ActionBirdChirpChirp3};
 
-void BehBirdChirpChirpLoop(void)
+void bhv_bird_chirp_chirp_loop(void)
 {
     obj_call_action_function(TableBirdChirpChirpActions);
 }
@@ -95,7 +95,7 @@ void ActionCheepCheep2(void)
     if(o->oTimer < 20)
     {
         if(o->oInteractStatus & 0x8000)
-            spawn_object(o,MODEL_SMALL_SNOW_BALL,beh_small_particle_snow);
+            spawn_object(o,MODEL_SMALL_SNOW_BALL,bhvSmallParticleSnow);
     }
     else
         o->oInteractStatus = 0;
@@ -128,7 +128,7 @@ void ActionCheepCheep2(void)
 
 void (*TableCheepCheepActions[])(void) = {ActionCheepCheep0,ActionCheepCheep1,ActionCheepCheep2};
 
-void BehCheepCheepLoop(void)
+void bhv_cheep_cheep_loop(void)
 {
     o->oCheepCheepUnkF4 = find_water_level(o->oPosX,o->oPosZ);
     o->oCheepCheepUnkF8 = gMarioObject->oPosY + o->oCheepCheepUnkFC;

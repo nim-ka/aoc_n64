@@ -29,7 +29,7 @@ void func_802A9B54(void)
     o->OBJECT_FIELD_S32(0x1B) = 0;
 }
 
-void BehKickableBoardLoop(void)
+void bhv_kickable_board_loop(void)
 {
     s32 sp24;
     switch(o->oAction)

@@ -13,7 +13,7 @@ static struct ObjectHitbox sAmpHitbox =
     /* hurtboxHeight:     */ 60,
 };
 
-void BehAmpHomingInit(void)
+void bhv_amp_homing_init(void)
 {
     o->oHomeX = o->oPosX;
     o->oHomeY = o->oPosY;
@@ -130,7 +130,7 @@ void AmpAttackCooldownLoop(void)
     }
 }
 
-void BehAmpHomingLoop(void)
+void bhv_amp_homing_loop(void)
 {
     switch (o->oAction)
     {
@@ -165,7 +165,7 @@ void BehAmpHomingLoop(void)
     o->oAmpHomingYPhase++;
 }
 
-void BehAmpInit(void)
+void bhv_amp_init(void)
 {
     o->oHomeX = o->oPosX;
     o->oHomeY = o->oPosY;
@@ -226,7 +226,7 @@ void AmpIdleLoop(void)
     PlaySound(SOUND_CH6_UNKNOWN003);
 }
 
-void BehAmpLoop(void)
+void bhv_amp_loop(void)
 {
     switch (o->oAction)
     {

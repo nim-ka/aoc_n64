@@ -32,10 +32,10 @@ static void racing_penguin_act_show_init_text(void)
     response = obj_update_race_proposition_dialogue(sRacingPenguinData[o->oBehParams2ndByte].text);
     if (response == 1)
     {
-        child = obj_nearest_object_with_behavior(bPenguinRaceFinishLine);
+        child = obj_nearest_object_with_behavior(bhvPenguinRaceFinishLine);
         child->parentObj = o;
 
-        child = obj_nearest_object_with_behavior(bPenguinRaceShortcutCheck);
+        child = obj_nearest_object_with_behavior(bhvPenguinRaceShortcutCheck);
         child->parentObj = o;
 
         o->oPathedStartWaypoint = o->oPathedPrevWaypoint = segmented_to_virtual(ccm_seg7_trajectory_penguin_race);
@@ -102,7 +102,7 @@ static void racing_penguin_act_race(void)
 
         if (func_8029F828() && (o->oMoveFlags & 0x00000003))
         {
-            spawn_object_relative_with_scale(0, 0, -100, 0, 4.0f, o, 150, beh_white_puff_smoke2);
+            spawn_object_relative_with_scale(0, 0, -100, 0, 4.0f, o, 150, bhvWhitePuffSmoke2);
         }
     }
 

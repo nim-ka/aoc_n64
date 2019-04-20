@@ -1,6 +1,6 @@
 // celebration_star.c.inc
 
-void BehCelebrationStarInit(void)
+void bhv_celebration_star_init(void)
 {
     o->oHomeX = gMarioObject->header.gfx.pos[0];
     o->oPosY = gMarioObject->header.gfx.pos[1] + 30.0f;
@@ -43,7 +43,7 @@ void CelebrationStarSpinAroundMarioLoop(void)
     if (o-> oTimer == 40) o->oAction = CELEB_STAR_ACT_FACE_CAMERA;
     if (o-> oTimer < 35)
     {
-        spawn_object(o, MODEL_SPARKLES, beh_celebration_star_sparkle);
+        spawn_object(o, MODEL_SPARKLES, bhvCelebrationStarSparkle);
         o->oCelebStarDiameterOfRotation++;
     }
     else o->oCelebStarDiameterOfRotation -= 20;
@@ -76,7 +76,7 @@ void CelebrationStarFaceCameraLoop(void)
     if (o->oTimer == 59) o->activeFlags = 0;
 }
 
-void BehCelebrationStarLoop(void)
+void bhv_celebration_star_loop(void)
 {
     switch (o->oAction)
     {
@@ -90,14 +90,14 @@ void BehCelebrationStarLoop(void)
     }
 }
 
-void BehCelebrationStarSparkleLoop(void)
+void bhv_celebration_star_sparkle_loop(void)
 {
     o->oPosY -= 15.0f;
     
     if (o->oTimer == 12) o->activeFlags = 0;
 }
 
-void BehStarKeyCollectionPuffSpawnerLoop(void)
+void bhv_star_key_collection_puff_spawner_loop(void)
 {
     func_802AA618(0, 10, 30.0f);
     o->activeFlags = 0;

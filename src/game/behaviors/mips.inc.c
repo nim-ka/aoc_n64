@@ -1,6 +1,6 @@
 // mips.c.inc
 
-void BehMipsInit(void) {
+void bhv_mips_init(void) {
     u8 sp1F;
     sp1F = save_file_get_star_flags(gCurrSaveFileNum - 1, -1);
     if (save_file_get_total_star_count(gCurrSaveFileNum - 1, 0, 24) >= 15 
@@ -101,7 +101,7 @@ void func_802F7750(void) {
     }
     if (func_8029F788() == 1 && (sp26 & 0x04)) {
         PlaySound2(SOUND_OBJECT_MIPSRABBITWATER);
-        spawn_object(o, MODEL_NONE, beh_surface_wave_shrinking);
+        spawn_object(o, MODEL_NONE, bhvSurfaceWaveShrinking);
     } else if (func_8029F788() == 1) {
         PlaySound2(SOUND_OBJECT_MIPSRABBIT);
     }
@@ -124,7 +124,7 @@ void func_802F78D8(void) {
         o->oFlags |= 0x08;
         o->oMoveAngleYaw = o->oFaceAngleYaw;
         if (sp1E & 0x04)
-            spawn_object(o, MODEL_NONE, beh_surface_wave_shrinking);
+            spawn_object(o, MODEL_NONE, bhvSurfaceWaveShrinking);
     }
 }
 
@@ -134,7 +134,7 @@ void func_802F7984(void) {
     o->oForwardVel = 0;
     sp1E = ObjectStep();
     if (o->oMipsUnkF4 == 1) {
-        BehSpawnStarObjects(o->oBehParams2ndByte + 3);
+        bhv_spawn_star_objects(o->oBehParams2ndByte + 3);
         o->oMipsUnkF4 = 2;
     }
 }
@@ -210,7 +210,7 @@ void func_802F7C48(void) {
     o->oAction = 3;
 }
 
-void BehMipsLoop(void) {
+void bhv_mips_loop(void) {
     switch (o->oHeldState) {
         case 0:
             func_802F7A04();

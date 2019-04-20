@@ -1,6 +1,6 @@
 
 /**
- * Behavior for bTTCElevator.
+ * Behavior for bhvTTCElevator.
  */
 
 
@@ -17,7 +17,7 @@ static s8 sTTCElevatorSpeeds[] =
 
 
 /**
- * Init function for bTTCElevator.
+ * Init function for bhvTTCElevator.
  */
 void bhv_ttc_elevator_init(void)
 {
@@ -31,7 +31,7 @@ void bhv_ttc_elevator_init(void)
 }
 
 /**
- * Update function for bTTCElevator.
+ * Update function for bhvTTCElevator.
  */
 void bhv_ttc_elevator_update(void)
 {

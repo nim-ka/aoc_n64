@@ -1,12 +1,12 @@
 // hidden_star.c.inc
 
-void BehHiddenStarInit(void) {
+void bhv_hidden_star_init(void) {
     s16 sp36;
     struct Object *sp30;
 
-    sp36 = count_objects_with_behavior(beh_hidden_star_trigger);
+    sp36 = count_objects_with_behavior(bhvHiddenStarTrigger);
     if (sp36 == 0) {
-        sp30 = spawn_object_abs_with_rot(o, 0, MODEL_STAR, beh_star, o->oPosX, o->oPosY, o->oPosZ, 0, 0, 0);
+        sp30 = spawn_object_abs_with_rot(o, 0, MODEL_STAR, bhvStar, o->oPosX, o->oPosY, o->oPosZ, 0, 0, 0);
         sp30->oBehParams = o->oBehParams;
         o->activeFlags = 0;
     }
@@ -14,7 +14,7 @@ void BehHiddenStarInit(void) {
     o->oHiddenStarSecretsCollected = 5 - sp36;
 }
 
-void BehHiddenStarLoop(void) {
+void bhv_hidden_star_loop(void) {
     switch(o->oAction) {
         case 0:
             if (o->oHiddenStarSecretsCollected == 5)
@@ -32,10 +32,10 @@ void BehHiddenStarLoop(void) {
 }
 
 /* TODO: this is likely not a checkpoint but a Secret */
-void BehHiddenStarTriggerLoop(void) {
+void bhv_hidden_star_trigger_loop(void) {
     struct Object *hiddenStar;
     if (are_objects_collided(o, gMarioObject) == 1) {
-        hiddenStar = obj_nearest_object_with_behavior(beh_hidden_star);
+        hiddenStar = obj_nearest_object_with_behavior(bhvHiddenStar);
         if (hiddenStar != NULL) {
             hiddenStar->oHiddenStarSecretsCollected++;
             if (hiddenStar->oHiddenStarSecretsCollected != 5) {
@@ -53,7 +53,7 @@ void BehHiddenStarTriggerLoop(void) {
     }
 }
 
-void BehBowserCourseRedCoinStarLoop(void) {
+void bhv_bowser_course_red_coin_star_loop(void) {
     D_8036008E = o->oBowserCourseRedCoinStarCoinsCollected;
     switch(o->oAction) {
         case 0:

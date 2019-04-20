@@ -22,7 +22,7 @@ s32 func_802BD4A8(void)
         {
             PlaySound2(SOUND_CH9_UNK11);
             for(i=0;i<20;i++)
-                spawn_object(o,MODEL_PURPLE_MARBLE,beh_giant_piranha_particle);
+                spawn_object(o,MODEL_PURPLE_MARBLE,bhvGiantPiranhaParticle);
             o->oAction = 5;
         }
         else
@@ -193,7 +193,7 @@ s8 D_8032FB30[] = {2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,-1};
 
 struct Struct8032FB4C D_8032FB4C[] = {{MODEL_LLL_BOWSER_PIECE_1,251,241,1,D_8032F9C4},{MODEL_LLL_BOWSER_PIECE_2,5,241,0,D_8032F9E0},{MODEL_LLL_BOWSER_PIECE_3,241,251,0,D_8032FADC},{MODEL_LLL_BOWSER_PIECE_4,251,251,0,D_8032FAF8},{MODEL_LLL_BOWSER_PIECE_5,5,251,0,D_8032F9FC},{MODEL_LLL_BOWSER_PIECE_6,15,251,0,D_8032FA18},{MODEL_LLL_BOWSER_PIECE_7,241,5,0,D_8032FAC0},{MODEL_LLL_BOWSER_PIECE_8,251,5,0,D_8032FAA4},{MODEL_LLL_BOWSER_PIECE_9,5,5,0,D_8032FA50},{MODEL_LLL_BOWSER_PIECE_10,15,5,0,D_8032FA34},{MODEL_LLL_BOWSER_PIECE_11,241,15,0,D_8032FB14},{MODEL_LLL_BOWSER_PIECE_12,251,15,0,D_8032FA88},{MODEL_LLL_BOWSER_PIECE_13,5,15,0,D_8032FA6C},{MODEL_LLL_BOWSER_PIECE_14,15,15,0,D_8032FB30}};
 
-void BehPiranhaPlant2Loop(void)
+void bhv_piranha_plant_2_loop(void)
 {
     obj_call_action_function(TablePiranhaPlantActions);
     if(gCurrLevelNum == LEVEL_WF)

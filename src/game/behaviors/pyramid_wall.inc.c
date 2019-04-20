@@ -1,6 +1,6 @@
 // pyramid_wall.c.inc
 
-void BehSSLMovingPyramidWallInit(void) {
+void bhv_ssl_moving_pyramid_wall_init(void) {
 
     switch (o->oBehParams2ndByte) {
         case 0:
@@ -18,7 +18,7 @@ void BehSSLMovingPyramidWallInit(void) {
     }
 }
 
-void BehSSLMovingPyramidWallLoop(void) {
+void bhv_ssl_moving_pyramid_wall_loop(void) {
     switch (o->oAction) {
         case 0:
             o->oVelY = -5.12f;

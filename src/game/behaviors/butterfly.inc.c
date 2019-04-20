@@ -1,6 +1,6 @@
 // butterfly.c.inc
 
-void BehButterflyInit(void)
+void bhv_butterfly_init(void)
 {
     SetObjAnimation(1);
 
@@ -98,7 +98,7 @@ void ButterflyReturnHomeLoop(void)
     }
 }
 
-void BehButterflyLoop(void)
+void bhv_butterfly_loop(void)
 {
     switch (o->oAction)
     {

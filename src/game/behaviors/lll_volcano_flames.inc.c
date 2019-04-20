@@ -1,6 +1,6 @@
 // lll_volcano_flames.c.inc
 
-void BehVolcanoFlamesLoop(void)
+void bhv_volcano_flames_loop(void)
 {
     obj_update_floor_height();
     obj_compute_vel_xz();
@@ -15,7 +15,7 @@ void func_802BBFDC(void)
 {
     struct Object* sp1C;
     f32 size;
-    sp1C = spawn_object(o,MODEL_RED_FLAME,beh_volcano_flames);
+    sp1C = spawn_object(o,MODEL_RED_FLAME,bhvVolcanoFlames);
     sp1C->oPosY += 550.0f;
     sp1C->oMoveAngleYaw = RandomU16() << 0x10 >> 0x10;
     sp1C->oForwardVel = RandomFloat() * 40.0f + 20.0f;

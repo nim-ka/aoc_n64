@@ -53,7 +53,7 @@ s16 D_8032F520[][3] = {
     { 1, 0,    0}
 };
 
-void BehBowserTailAnchorLoop(void)
+void bhv_bowser_tail_anchor_loop(void)
 {
     obj_call_action_function(TableBowserTailAnchorActions);
     o->oParentRelativePosX = 90.0f;
@@ -62,7 +62,7 @@ void BehBowserTailAnchorLoop(void)
     o->oInteractStatus = 0;
 }
 
-void BehBowserFlameSpawnLoop(void)
+void bhv_bowser_flame_spawn_loop(void)
 {
     struct Object* bowser = o->parentObj;
     s32 sp30;
@@ -87,12 +87,12 @@ void BehBowserFlameSpawnLoop(void)
             o->oMoveAnglePitch = sp1C[5*sp30+4] + 0xC00;
             o->oMoveAngleYaw = sp1C[5*sp30+3] + (s16)bowser->oMoveAngleYaw;
             if(!(sp30 & 1))
-                spawn_object(o,MODEL_RED_FLAME,beh_flame_moving_forward_growing);
+                spawn_object(o,MODEL_RED_FLAME,bhvFlameMovingForwardGrowing);
         }
     }
 }
 
-void BehBowserBodyAnchorLoop(void)
+void bhv_bowser_body_anchor_loop(void)
 {
     copy_object_pos_and_angle(o,o->parentObj);
     if(o->parentObj->oAction == 4) {
@@ -123,7 +123,7 @@ s32 func_802B38B4(void)
     struct Object* wave;
     if(o->oBehParams2ndByte == 2)
     {
-        wave = spawn_object(o,MODEL_BOWSER_WAVE,beh_bowser_shock_wave);
+        wave = spawn_object(o,MODEL_BOWSER_WAVE,bhvBowserShockWave);
         wave->oPosY = o->oFloorHeight;
         return 1;
     }
@@ -477,9 +477,9 @@ void ActionBowser8(void) // only in sky
         {
             PlaySound(SOUND_CH6_UNKNOWN000);
             if(frame == 35)
-                spawn_object_relative(1,0,0x190,0x64,o,MODEL_RED_FLAME,beh_blue_bowser_flame);
+                spawn_object_relative(1,0,0x190,0x64,o,MODEL_RED_FLAME,bhvBlueBowserFlame);
             else
-                spawn_object_relative(0,0,0x190,0x64,o,MODEL_RED_FLAME,beh_blue_bowser_flame);
+                spawn_object_relative(0,0,0x190,0x64,o,MODEL_RED_FLAME,bhvBlueBowserFlame);
         }
     if(func_8029F788())
         o->oAction = 0;
@@ -731,8 +731,8 @@ void ActionBowser7(void)
     case 3:
         o->oBowserUnkF8 = 0;
         func_8029ED38(21);
-        spawn_object_relative_with_scale(0, 100,-50,0,3.0f,o,150,&beh_white_puff_smoke2);
-        spawn_object_relative_with_scale(0,-100,-50,0,3.0f,o,150,&beh_white_puff_smoke2);
+        spawn_object_relative_with_scale(0, 100,-50,0,3.0f,o,150,&bhvWhitePuffSmoke2);
+        spawn_object_relative_with_scale(0,-100,-50,0,3.0f,o,150,&bhvWhitePuffSmoke2);
         if(approach_f32_signed(&o->oForwardVel,0,-1.0f))
             o->oSubAction = 2;
         func_8029F728();
@@ -761,7 +761,7 @@ s32 func_802B5588(void)
 {
     struct Object* mine;
     f32 sp18;
-    mine = obj_find_nearest_object_with_behavior(beh_bowser_bomb, &sp18);
+    mine = obj_find_nearest_object_with_behavior(bhvBowserBomb, &sp18);
     if(mine != NULL && sp18 < 800.0f)
     {
         mine->oInteractStatus |= 0x200000;
@@ -904,10 +904,10 @@ void ActionBowser3(void)
 void func_802B5C78(void)
 {
     if(BITS)
-        D_8032CFD0 = spawn_object(o,MODEL_STAR,&beh_grand_star);
+        D_8032CFD0 = spawn_object(o,MODEL_STAR,&bhvGrandStar);
     else
     {
-        D_8032CFD0 = spawn_object(o,MODEL_BOWSER_KEY_2,&beh_bowser_key_2);
+        D_8032CFD0 = spawn_object(o,MODEL_BOWSER_KEY_2,&bhvBowserKey2);
         PlaySound2(SOUND_CH8_UNK61);
     }
     D_8032CFD0->oAngleVelYaw = o->oAngleVelYaw;
@@ -1094,7 +1094,7 @@ void func_802B64E8(struct Object* bowser,s16 a1)
 
 void ActionBowser19(void)
 {
-    struct Object* platform = obj_nearest_object_with_behavior(beh_tilting_bowser_lava_platform);
+    struct Object* platform = obj_nearest_object_with_behavior(bhvTiltingBowserLavaPlatform);
     UNUSED s16 sp2A = o->oBowserAngleToCentre + 0x8000;
     s16 sp28;
     UNUSED s32 unused;
@@ -1297,7 +1297,7 @@ void func_802B6AC0(void)
     o->oSubAction = 0;
 }
 
-void BehBowserLoop(void)
+void bhv_bowser_loop(void)
 {
     s16 angleToMario;    // AngleToMario    from Bowser's perspective
     s16 angleToCentre; // AngleToCentre from Bowser's perspective
@@ -1341,7 +1341,7 @@ void BehBowserLoop(void)
         }
 }
 
-void BehBowserInit(void)
+void bhv_bowser_init(void)
 {
     s32 level; // 0 is dw, 1 is fs, 2 is sky
     o->oBowserUnk110 = 1;
@@ -1505,7 +1505,7 @@ Gfx *Geo18_802B7D44(s32 a0, struct GraphNode *node, UNUSED s32 a2)
 
 void ActionFallingBowserPlatform0(void)
 {
-    o->oPlatformUnkF8 = obj_nearest_object_with_behavior(&beh_bowser);
+    o->oPlatformUnkF8 = obj_nearest_object_with_behavior(&bhvBowser);
     set_object_collision_data(o,D_8032F698[o->oBehParams2ndByte].unk0);
     if(o->oBowserUnkF8 != 0)
         o->oAction = 1;
@@ -1595,7 +1595,7 @@ struct ObjectHitbox sBowserFlameHitbox =
 
 f32 D_8032F748[] = {-8.0f,-6.0f,-3.0f};
 
-void BehFallingBowserPlatformLoop(void)
+void bhv_falling_bowser_platform_loop(void)
 {
     obj_call_action_function(TableFallingBowserPlatformActions);
 }
@@ -1603,9 +1603,9 @@ void BehFallingBowserPlatformLoop(void)
 void func_802B7A58(void)
 {
     mark_object_for_deletion(o);
-    spawn_object_with_scale(o,MODEL_NONE,&beh_black_smoke_upward,1.0f);
+    spawn_object_with_scale(o,MODEL_NONE,&bhvBlackSmokeUpward,1.0f);
     if(RandomFloat() < 0.1)
-        spawn_object(o,MODEL_YELLOW_COIN,&beh_temporary_yellow_coin);
+        spawn_object(o,MODEL_YELLOW_COIN,&bhvTemporaryYellowCoin);
 }
 
 s32 func_802B7ADC(s32 a0)
@@ -1619,7 +1619,7 @@ s32 func_802B7ADC(s32 a0)
     return 0;
 }
 
-void BehFlameBowserInit(void)
+void bhv_flame_bowser_init(void)
 {
     o->oAnimState = (s32)(RandomFloat() * 10.0f);
     o->oMoveAngleYaw = RandomU16();
@@ -1632,7 +1632,7 @@ void BehFlameBowserInit(void)
     o->oFlameUnkF4 = RandomFloat() + 1.0f;
 }
 
-void BehFlameLargeBurningOutInit(void)
+void bhv_flame_large_burning_out_init(void)
 {
     o->oAnimState = (s32)(RandomFloat() * 10.0f);
     o->oMoveAngleYaw = RandomU16();
@@ -1649,7 +1649,7 @@ void func_802B7CFC(void)
     o->oPosZ += coss(o->oMoveAngleYaw) * sins(sp4) * 4.0f;
 }
 
-void BehFlameBowserLoop(void)
+void bhv_flame_bowser_loop(void)
 {
     obj_update_floor_and_walls();
     obj_move_standard(78);
@@ -1662,7 +1662,7 @@ void BehFlameBowserLoop(void)
         if(o->oMoveFlags & 1)
         {
             o->oAction++;
-            if(obj_has_behavior(beh_flame_large_burning_out))
+            if(obj_has_behavior(bhvFlameLargeBurningOut))
                 o->oFlameUnkF4 = 8.0f;
             else
                 o->oFlameUnkF4 = RandomFloat() * 2.0f + 6.0f;
@@ -1686,7 +1686,7 @@ void BehFlameBowserLoop(void)
     set_object_hitbox(o,&sBowserFlameHitbox);
 }
 
-void BehFlameMovingForwardGrowingInit(void)
+void bhv_flame_moving_forward_growing_init(void)
 {
     o->oForwardVel = 30.0f;
     translate_object_xz_random(o,80.0f);
@@ -1694,7 +1694,7 @@ void BehFlameMovingForwardGrowingInit(void)
     o->oFlameUnkF4 = 3.0f;
 }
 
-void BehFlameMovingForwardGrowingLoop(void)
+void bhv_flame_moving_forward_growing_loop(void)
 {
     UNUSED s32 unused;
     UNUSED struct Object* sp18;
@@ -1710,12 +1710,12 @@ void BehFlameMovingForwardGrowingLoop(void)
     if(o->oPosY < o->oFloorHeight)
     {
         o->oPosY = o->oFloorHeight;
-        sp18 = spawn_object(o,MODEL_RED_FLAME,&beh_flame_bowser);
+        sp18 = spawn_object(o,MODEL_RED_FLAME,&bhvFlameBowser);
         mark_object_for_deletion(o);
     }
 }
 
-void BehFlameFloatingLandingInit(void)
+void bhv_flame_floating_landing_init(void)
 {
     o->oAnimState = (s32)(RandomFloat() * 10.0f);
     o->oMoveAngleYaw = RandomU16();
@@ -1728,7 +1728,7 @@ void BehFlameFloatingLandingInit(void)
     o->oFlameUnkF8 = RandomFloat() * 64.0f;
 }
 
-void BehFlameFloatingLandingLoop(void)
+void bhv_flame_floating_landing_loop(void)
 {
     UNUSED s32 unused;
     obj_update_floor_and_walls();
@@ -1741,15 +1741,15 @@ void BehFlameFloatingLandingLoop(void)
     if(o->oMoveFlags & 1)
     {
         if(o->oBehParams2ndByte == 0)
-            spawn_object(o,MODEL_RED_FLAME,&beh_flame_large_burning_out);
+            spawn_object(o,MODEL_RED_FLAME,&bhvFlameLargeBurningOut);
         else
-            spawn_object(o,MODEL_NONE,&beh_blue_flames_group); //? wonder if they meant MODEL_BLUE_FLAME?
+            spawn_object(o,MODEL_NONE,&bhvBlueFlamesGroup); //? wonder if they meant MODEL_BLUE_FLAME?
         mark_object_for_deletion(o);
     }
     o->oGraphYOffset = o->header.gfx.scale[1] * 14.0f;
 }
 
-void BehBlueBowserFlameInit(void)
+void bhv_blue_bowser_flame_init(void)
 {
     translate_object_xz_random(o,80.0f);
     o->oAnimState = (s32)(RandomFloat() * 10.0f);
@@ -1761,7 +1761,7 @@ void BehBlueBowserFlameInit(void)
     o->oFlameUnkF8 = (s32)(RandomFloat() * 64.0f);
 }
 
-void BehBlueBowserFlameLoop(void)
+void bhv_blue_bowser_flame_loop(void)
 {
     s32 i;
     set_object_hitbox(o,&sGrowingBowserFlameHitbox);
@@ -1774,17 +1774,17 @@ void BehBlueBowserFlameLoop(void)
     {
         if(o->oBehParams2ndByte == 0)
             for(i=0;i<3;i++)
-                spawn_object_relative_with_scale(0,0,0,0,5.0f,o,144,&beh_flame_floating_landing);
+                spawn_object_relative_with_scale(0,0,0,0,5.0f,o,144,&bhvFlameFloatingLanding);
         else
         {
-            spawn_object_relative_with_scale(1,0,0,0,8.0f,o,145,&beh_flame_floating_landing);
-            spawn_object_relative_with_scale(2,0,0,0,8.0f,o,145,&beh_flame_floating_landing);
+            spawn_object_relative_with_scale(1,0,0,0,8.0f,o,145,&bhvFlameFloatingLanding);
+            spawn_object_relative_with_scale(2,0,0,0,8.0f,o,145,&bhvFlameFloatingLanding);
         }
         mark_object_for_deletion(o);
     }
 }
 
-void BehFlameBouncingInit(void)
+void bhv_flame_bouncing_init(void)
 {
     o->oAnimState = (s32)(RandomFloat() * 10.0f);
     o->oVelY = 30.0f;
@@ -1793,11 +1793,11 @@ void BehFlameBouncingInit(void)
     o->oFlameUnkF8 = (s32)(RandomFloat() * 64.0f);
 }
 
-void BehFlameBouncingLoop(void)
+void bhv_flame_bouncing_loop(void)
 {
     struct Object* sp1C;
     if(o->oTimer == 0)
-        o->oFlameUnk100 = obj_nearest_object_with_behavior(&beh_bowser);
+        o->oFlameUnk100 = obj_nearest_object_with_behavior(&bhvBowser);
     sp1C = o->oFlameUnk100;
     o->oForwardVel = 15.0f;
     o->oBounce = -1.0f;
@@ -1813,7 +1813,7 @@ void BehFlameBouncingLoop(void)
                 mark_object_for_deletion(o);
 }
 
-void BehBlueFlamesGroupLoop(void)
+void bhv_blue_flames_group_loop(void)
 {
     struct Object* flame;
     s32 i;
@@ -1828,7 +1828,7 @@ void BehBlueFlamesGroupLoop(void)
         {
             for(i=0;i<3;i++)
             {
-                flame = spawn_object(o,MODEL_BLUE_FLAME,beh_flame_bouncing);
+                flame = spawn_object(o,MODEL_BLUE_FLAME,bhvFlameBouncing);
                 flame->oMoveAngleYaw += i * 0x5555;
                 flame->header.gfx.scale[0] = o->oBlueFlameUnkF8;
             }

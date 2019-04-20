@@ -1,6 +1,6 @@
 
 /**
- * Behavior for bPlatformOnTrack and bTrackBall.
+ * Behavior for bhvPlatformOnTrack and bhvTrackBall.
  * The platform spawns up to 5 track balls at a time, which then despawn
  * themselves as the platform moves past them.
  */
@@ -62,7 +62,7 @@ static void platform_on_track_mario_not_on_platform(void)
 }
 
 /**
- * Init function for bPlatformOnTrack.
+ * Init function for bhvPlatformOnTrack.
  */
 void bhv_platform_on_track_init(void)
 {
@@ -333,7 +333,7 @@ static void platform_on_track_rock_ski_lift(void)
 }
 
 /**
- * Update function for bPlatformOnTrack.
+ * Update function for bhvPlatformOnTrack.
  */
 void bhv_platform_on_track_update(void)
 {
@@ -364,7 +364,7 @@ void bhv_platform_on_track_update(void)
 }
 
 /**
- * Update function for bTrackBall.
+ * Update function for bhvTrackBall.
  */
 void bhv_track_ball_update(void)
 {

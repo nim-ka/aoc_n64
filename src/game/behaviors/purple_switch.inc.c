@@ -1,6 +1,6 @@
 // purple_switch.c.inc
 
-void BehFloorSwitchLoop(void)
+void bhv_floor_switch_loop(void)
 {
     UNUSED s32 unused;
     switch(o->oAction)
