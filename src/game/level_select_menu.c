@@ -85,7 +85,7 @@ static char gLevelSelect_StageNamesText[64][16] = {
 static u16 gDemoCountdown = 0;
 #ifdef VERSION_US
 static s16 D_U_801A7C34 = 1;
-static s16 D_U_801A7C38 = 1;
+static s16 gameOverNotPlayed = 1;
 #endif
 
 // run the demo timer on the PRESS START screen.
@@ -228,10 +228,10 @@ int func_8016F444(void)
     int sp1C = 0;
 
 #ifdef VERSION_US
-    if(D_U_801A7C38 == 1)
+    if(gameOverNotPlayed == 1)
     {
         SetSound(SOUND_MARIO_GAMEOVER, D_803320E0);
-        D_U_801A7C38 = 0;
+        gameOverNotPlayed = 0;
     }
 #endif
 
@@ -242,7 +242,7 @@ int func_8016F444(void)
         SetSound(SOUND_MENU_STARSOUND, D_803320E0);
         sp1C = 100 + gDebugLevelSelect;
 #ifdef VERSION_US
-        D_U_801A7C38 = 1;
+        gameOverNotPlayed = 1;
 #endif
     }
     return run_press_start_demo_timer(sp1C);

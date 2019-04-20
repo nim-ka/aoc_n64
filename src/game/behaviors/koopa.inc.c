@@ -974,7 +974,7 @@ void bhv_koopa_race_endpoint_update(void)
 
             if (!o->oKoopaRaceEndpointKoopaFinished)
             {
-                func_803212F0();
+                play_race_fanfare();
                 if (gMarioShotFromCannon)
                 {
                     o->oKoopaRaceEndpointRaceStatus = -1;

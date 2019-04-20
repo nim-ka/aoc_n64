@@ -81,7 +81,7 @@ static void bhvToadMessage_opaque(void)
             {
                 gCurrentObject->oInteractStatus = 0;
                 gCurrentObject->oToadMessageState = TOAD_MESSAGE_TALKING;
-                func_8032132C();
+                play_toads_jingle();
             }
         }
     }

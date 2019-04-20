@@ -89,12 +89,12 @@ void bhv_unused_080c_loop(void)
             o->oGravity = -1.0f;
             if(o->oUnk190 & 0x400)
 #ifndef VERSION_JP
-                func_803212A0(1);
+                play_power_star_jingle(1);
 #else
-                func_803212A0(0);
+                play_power_star_jingle(0);
 #endif
             else
-                func_803212A0(1);
+                play_power_star_jingle(1);
         }
     }
     else if(o->oAction == 1)

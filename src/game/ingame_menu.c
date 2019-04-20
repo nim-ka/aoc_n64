@@ -1279,7 +1279,7 @@ void func_802D91C0(s16 sp4a)
     {
         if(sp34[i] == sp4a && D_80330430 == 1)
         {
-            func_803212F0();
+            play_race_fanfare();
             return;
         }
     }
@@ -1323,7 +1323,7 @@ void func_802D91C0(s16 sp4a)
     {
         if(sp34[i] == sp4a && D_80330430 == 1)
         {
-            func_803212F0();
+            play_race_fanfare();
             return;
         }
     }
@@ -2461,7 +2461,7 @@ void func_802DC2B4(s32 sp18, u8 sp1f)
        (D_8032CE30 & sp1f) == 0 &&
        D_803305CC == 0)
     {
-        func_80321264();
+        play_star_fanfare();
         D_803305CC = sp18;
     }
 }

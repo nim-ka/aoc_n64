@@ -11,6 +11,7 @@
 #include "game/level_update.h"
 #include "game/area.h"
 #include "game/room.h"
+#include "seq_ids.h"
 
 #ifdef VERSION_JP
 #define US_FLOAT(x) x
@@ -1812,7 +1813,7 @@ void func_80320A68(u8 dialogId)
         SetSound(D_80331DF4[soundId], D_803320E0);
         if (soundId == 2)
         {
-            SetMusic(1, 0x10, 0);
+            SetMusic(1, SEQ_EVENT_KOOPA_MESSAGE, 0);
         }
     }
 
@@ -2041,16 +2042,16 @@ void func_803210D4(u16 arg0)
     D_8033210C = 1;
 }
 
-void func_803211B0(void)
+void play_course_clear(void)
 {
-    SetMusic(1, 1, 0);
+    SetMusic(1, SEQ_EVENT_CUTSCENE_COLLECT_STAR, 0);
     D_8033211C = 0x80;
     func_803200E4(50);
 }
 
-void func_803211EC(void)
+void play_peachs_jingle(void)
 {
-    SetMusic(1, 0x1d, 0);
+    SetMusic(1, SEQ_EVENT_PEACH_MESSAGE, 0);
     D_8033211C = 0x80;
     func_803200E4(50);
 }
@@ -2062,39 +2063,39 @@ void func_803211EC(void)
 */
 void play_puzzle_jingle(void)
 {
-    SetMusic(1, 0x1b, 0);
+    SetMusic(1, SEQ_EVENT_SOLVE_PUZZLE, 0);
     D_8033211C = 0x94;
     func_803200E4(50);
 }
 
-void func_80321264(void)
+void play_star_fanfare(void)
 {
-    SetMusic(1, 0x12, 0);
+    SetMusic(1, SEQ_EVENT_HIGH_SCORE, 0);
     D_8033211C = 0x94;
     func_803200E4(50);
 }
 
-void func_803212A0(u8 arg0)
+void play_power_star_jingle(u8 arg0)
 {
     if (arg0 == 0)
     {
         D_80363812 = 0;
     }
-    SetMusic(1, 0x15, 0);
+    SetMusic(1, SEQ_EVENT_CUTSCENE_STAR_SPAWN, 0);
     D_8033211C = 0x94;
     func_803200E4(50);
 }
 
-void func_803212F0(void)
+void play_race_fanfare(void)
 {
-    SetMusic(1, 0x14, 0);
+    SetMusic(1, SEQ_EVENT_RACE, 0);
     D_8033211C = 0x94;
     func_803200E4(50);
 }
 
-void func_8032132C(void)
+void play_toads_jingle(void)
 {
-    SetMusic(1, 0x1c, 0);
+    SetMusic(1, SEQ_EVENT_TOAD_MESSAGE, 0);
     D_8033211C = 0x94;
     func_803200E4(50);
 }

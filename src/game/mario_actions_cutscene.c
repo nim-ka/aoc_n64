@@ -344,7 +344,7 @@ static void handle_save_menu(struct MarioState *m)
             dialogueID = get_star_collection_dialogue(m);
             if (dialogueID != 0)
             {
-                func_803211EC();
+                play_peachs_jingle();
                 // look up for dialogue
                 set_mario_action(m, ACT_READING_AUTOMATIC_DIALOGUE, dialogueID);
             }
@@ -727,7 +727,7 @@ static void general_star_dance_handler(struct MarioState *m, s32 isInWater)
                 func_80248D48();
                 if (m->actionArg & 1)
                 {
-                    func_803211B0();
+                    play_course_clear();
                 }
                 else
                 {
