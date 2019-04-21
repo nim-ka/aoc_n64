@@ -47,11 +47,11 @@ static void play_climbing_sounds(struct MarioState *m, s32 b)
     if (b == 1)
     {
         if (func_80250B68(m, 1) != 0)
-            SetSound(isOnTree ? SOUND_ACTION_CLIMBUPTREE : SOUND_ACTION_UNKNOWN441, &m->marioObj->header.gfx.unk54);
+            SetSound(isOnTree ? SOUND_ACTION_CLIMBUPTREE : SOUND_ACTION_UNKNOWN441, m->marioObj->header.gfx.cameraToObject);
     }
     else
     {
-        SetSound(isOnTree ? SOUND_UNKNOWN_UNK1412 : SOUND_UNKNOWN_UNK1411, &m->marioObj->header.gfx.unk54);
+        SetSound(isOnTree ? SOUND_UNKNOWN_UNK1412 : SOUND_UNKNOWN_UNK1411, m->marioObj->header.gfx.cameraToObject);
     }
 }
 
@@ -469,7 +469,7 @@ static s32 act_hang_moving(struct MarioState *m)
         func_802507E8(m, 0x005D);
 
     if (m->marioObj->header.gfx.unk38.animFrame == 12)
-        SetSound(SOUND_ACTION_UNKNOWN42D, &m->marioObj->header.gfx.unk54);
+        SetSound(SOUND_ACTION_UNKNOWN42D, m->marioObj->header.gfx.cameraToObject);
 
     if (func_802507AC(m))
     {
@@ -724,8 +724,8 @@ static s32 act_in_cannon(struct MarioState *m)
             m->pos[1] += 120.0f * sins(m->faceAngle[0]);
             m->pos[2] += 120.0f * coss(m->faceAngle[0]) * coss(m->faceAngle[1]);
             
-            SetSound(SOUND_ACTION_UNKNOWN456, &m->marioObj->header.gfx.unk54);
-            SetSound(SOUND_OBJECT_POUNDINGCANNON, &m->marioObj->header.gfx.unk54);
+            SetSound(SOUND_ACTION_UNKNOWN456, m->marioObj->header.gfx.cameraToObject);
+            SetSound(SOUND_OBJECT_POUNDINGCANNON, m->marioObj->header.gfx.cameraToObject);
 
             m->marioObj->header.gfx.node.flags |= 0x0001;
             
@@ -736,7 +736,7 @@ static s32 act_in_cannon(struct MarioState *m)
         else
         {
             if (m->faceAngle[0] != startFacePitch || m->faceAngle[1] != startFaceYaw)
-                SetSound(SOUND_MOVING_UNKNOWN19, &m->marioObj->header.gfx.unk54);
+                SetSound(SOUND_MOVING_UNKNOWN19, m->marioObj->header.gfx.cameraToObject);
         }
     }
 
@@ -814,7 +814,7 @@ static s32 act_tornado_twirling(struct MarioState *m)
 
     // Play sound on angle overflow
     if (prevTwirlYaw > m->twirlYaw)
-        SetSound(SOUND_ACTION_UNKNOWN438, &m->marioObj->header.gfx.unk54);
+        SetSound(SOUND_ACTION_UNKNOWN438, m->marioObj->header.gfx.cameraToObject);
     
     vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
     vec3s_set(m->marioObj->header.gfx.angle, 0, m->faceAngle[1] + m->twirlYaw, 0);

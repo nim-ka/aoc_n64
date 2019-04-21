@@ -31,9 +31,9 @@ void bhv_treasure_chest_top_loop(void) {
             if (o->oTimer == 0) {
                 if (sp34->oUnknownUnkFC_S32 == 0) {
                     spawn_object_relative(0, 0, -80, 120, o, MODEL_BUBBLE, bhvWaterAirBubble);
-                    SetSound(SOUND_GENERAL_CLAMSHELL1, &o->header.gfx.unk54);
+                    SetSound(SOUND_GENERAL_CLAMSHELL1, o->header.gfx.cameraToObject);
                 } else {
-                    SetSound(SOUND_GENERAL_OPENCHEST1, &o->header.gfx.unk54);
+                    SetSound(SOUND_GENERAL_OPENCHEST1, o->header.gfx.cameraToObject);
                 }
             }
 

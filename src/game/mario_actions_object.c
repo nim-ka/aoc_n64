@@ -38,7 +38,7 @@ s32 mario_update_punch_sequence(struct MarioState *m)
     switch (m->actionArg)
     {
     case 0:
-        SetSound(SOUND_MARIO_YAH2, &m->marioObj->header.gfx.unk54);
+        SetSound(SOUND_MARIO_YAH2, m->marioObj->header.gfx.cameraToObject);
         // Fall-through:
     case 1:
         func_802507E8(m, 103);
@@ -73,7 +73,7 @@ s32 mario_update_punch_sequence(struct MarioState *m)
         break;
 
     case 3:
-        SetSound(SOUND_MARIO_WAH4, &m->marioObj->header.gfx.unk54);
+        SetSound(SOUND_MARIO_WAH4, m->marioObj->header.gfx.cameraToObject);
         // Fall-through:
     case 4:
         func_802507E8(m, 104);
@@ -289,7 +289,7 @@ static s32 act_picking_up_bowser(struct MarioState *m)
         m->angleVel[1] = 0;
         m->unk98->unk0A = 3;
         mario_grab_used_object(m);
-        SetSound(SOUND_MARIO_HRMM, &m->marioObj->header.gfx.unk54);
+        SetSound(SOUND_MARIO_HRMM, m->marioObj->header.gfx.cameraToObject);
     }
 
     func_802507E8(m, 181);
@@ -308,11 +308,11 @@ static s32 act_holding_bowser(struct MarioState *m)
     {
 #if VERSION_US
         if (m->angleVel[1] <= -0xE00 || m->angleVel[1] >= 0xE00)
-            SetSound(SOUND_MARIO_SOLONGABOWSER, &m->marioObj->header.gfx.unk54);
+            SetSound(SOUND_MARIO_SOLONGABOWSER, m->marioObj->header.gfx.cameraToObject);
         else
-            SetSound(SOUND_MARIO_HEREWEGO, &m->marioObj->header.gfx.unk54);
+            SetSound(SOUND_MARIO_HEREWEGO, m->marioObj->header.gfx.cameraToObject);
 #else
-        SetSound(SOUND_MARIO_HEREWEGO, &m->marioObj->header.gfx.unk54);
+        SetSound(SOUND_MARIO_HEREWEGO, m->marioObj->header.gfx.cameraToObject);
 #endif
         return set_mario_action(m, ACT_RELEASING_BOWSER, 0);
     }
@@ -368,9 +368,9 @@ static s32 act_holding_bowser(struct MarioState *m)
 
     // play sound on overflow
     if (m->angleVel[1] <= -0x100 && spin < m->faceAngle[1])
-        SetSound(SOUND_OBJECT_BOWSERSPINNING, &m->marioObj->header.gfx.unk54);
+        SetSound(SOUND_OBJECT_BOWSERSPINNING, m->marioObj->header.gfx.cameraToObject);
     if (m->angleVel[1] >= 0x100 && spin > m->faceAngle[1])
-        SetSound(SOUND_OBJECT_BOWSERSPINNING, &m->marioObj->header.gfx.unk54);
+        SetSound(SOUND_OBJECT_BOWSERSPINNING, m->marioObj->header.gfx.cameraToObject);
 
     stationary_ground_step(m);
     if (m->angleVel[1] >= 0)

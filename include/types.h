@@ -151,9 +151,7 @@ struct GraphNodeObject
     /*0x38*/ struct GraphNodeObject_sub unk38;
     /*0x4C*/ struct SpawnInfo *unk4C;
     /*0x50*/ void *throwMatrix; // matrix ptr
-    /*0x54*/ f32 unk54;
-    /*0x58*/ f32 unk58;
-    /*0x5C*/ f32 unk5C;
+    /*0x54*/ Vec3f cameraToObject;
 };
 
 struct ObjectNode

@@ -305,9 +305,9 @@ void bhv_small_penguin_loop(void)
         copy_object_pos(o,gMarioObject);
         if(gGlobalTimer % 30 == 0)
 #ifndef VERSION_JP
-            SetSound(SOUND_CH9_UNK45,&gMarioObject->header.gfx.unk54);
+            SetSound(SOUND_CH9_UNK45,gMarioObject->header.gfx.cameraToObject);
 #else
-            SetSound(SOUND_CH9_UNK45,&o->header.gfx.unk54);
+            SetSound(SOUND_CH9_UNK45,o->header.gfx.cameraToObject);
 #endif
         break;
     case 2:

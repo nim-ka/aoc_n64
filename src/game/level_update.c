@@ -904,7 +904,7 @@ static void update_hud_values(void)
                     coinSound = SOUND_GENERAL_COIN2;
 
                 gDisplayedCoins += 1;
-                SetSound(coinSound, &gMarioState->marioObj->header.gfx.unk54);
+                SetSound(coinSound, gMarioState->marioObj->header.gfx.cameraToObject);
             }
         }
 

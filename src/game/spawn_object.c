@@ -220,7 +220,7 @@ void unload_object(struct Object *obj)
     obj->prevObj = NULL;
 
     obj->header.gfx.throwMatrix = NULL;
-    func_803206F8(&obj->header.gfx.unk54);
+    func_803206F8(obj->header.gfx.cameraToObject);
     func_8037C0BC(&obj->header.gfx.node);
     func_8037C044(&D_8038BD88, &obj->header.gfx.node);
 

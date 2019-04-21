@@ -89,11 +89,11 @@ void mario_bonk_reflection(struct MarioState *m, u32 negateSpeed)
         s16 wallAngle = atan2s(m->wall->normal.z, m->wall->normal.x);
         m->faceAngle[1] = wallAngle - (s16) (m->faceAngle[1] - wallAngle);
 
-        SetSound((m->flags & MARIO_METAL_CAP) ? SOUND_ACTION_UNKNOWN442 : SOUND_ACTION_UNKNOWN445, &m->marioObj->header.gfx.unk54);
+        SetSound((m->flags & MARIO_METAL_CAP) ? SOUND_ACTION_UNKNOWN442 : SOUND_ACTION_UNKNOWN445, m->marioObj->header.gfx.cameraToObject);
     }
     else
     {
-        SetSound(SOUND_ACTION_UNKNOWN444, &m->marioObj->header.gfx.unk54);
+        SetSound(SOUND_ACTION_UNKNOWN444, m->marioObj->header.gfx.cameraToObject);
     }
 
     if (negateSpeed)
@@ -224,7 +224,7 @@ u32 mario_update_windy_ground(struct MarioState *m)
         m->vel[2] += pushSpeed * coss(pushAngle);
 
 #if !VERSION_US
-        SetSound(SOUND_ENVIRONMENT_WIND2, &m->marioObj->header.gfx.unk54);
+        SetSound(SOUND_ENVIRONMENT_WIND2, m->marioObj->header.gfx.cameraToObject);
 #endif
         return 1;
     }
@@ -645,7 +645,7 @@ static void apply_vertical_wind(struct MarioState *m)
             }
 
 #if !VERSION_US
-            SetSound(SOUND_ENVIRONMENT_WIND2, &m->marioObj->header.gfx.unk54);
+            SetSound(SOUND_ENVIRONMENT_WIND2, m->marioObj->header.gfx.cameraToObject);
 #endif
         }
     }

@@ -127,7 +127,7 @@ void func_80248FBC(void)
     if (D_8035FFA8 != NULL && D_8035FFA8->unk7 == 2)
     {
         if (D_8032C780 == 0)
-            SetSound(SOUND_UNKNOWN_UNK3828, &gMarioStates[0].marioObj->header.gfx.unk54);
+            SetSound(SOUND_UNKNOWN_UNK3828, gMarioStates[0].marioObj->header.gfx.cameraToObject);
         D_8032C780 = 1;
     }
     else

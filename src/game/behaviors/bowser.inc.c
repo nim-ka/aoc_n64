@@ -100,7 +100,7 @@ void bhv_bowser_body_anchor_loop(void)
         if(o->parentObj->oSubAction == 11)
             o->oInteractType = 0;
         else
-	    o->oInteractType = 0x800000;    
+        o->oInteractType = 0x800000;    
 #else
         o->oInteractType = 0x800000;
 #endif
@@ -1117,7 +1117,7 @@ void ActionBowser19(void)
                     sp28 = (o->oTimer-D_8032F520[i-1][2])*sp28;
                 func_802B64E8(platform,sp28);
                 if(sp28 != 0)
-                    SetSound(SOUND_ENVIRONMENT_UNKNOWN4,&platform->header.gfx.unk54);
+                    SetSound(SOUND_ENVIRONMENT_UNKNOWN4,platform->header.gfx.cameraToObject);
                 sp1C = 0;
                 break;
             }

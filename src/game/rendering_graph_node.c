@@ -598,9 +598,9 @@ void func_8027D14C(struct Object *a)
 
         mtxf_scale_vec3f(D_8033A778[D_8033A770 + 1], D_8033A778[D_8033A770 + 1], a->header.gfx.scale);
         a->header.gfx.throwMatrix = D_8033A778[++D_8033A770];
-        a->header.gfx.unk54 = D_8033A778[D_8033A770][3][0];
-        a->header.gfx.unk58 = D_8033A778[D_8033A770][3][1];
-        a->header.gfx.unk5C = D_8033A778[D_8033A770][3][2];
+        a->header.gfx.cameraToObject[0] = D_8033A778[D_8033A770][3][0];
+        a->header.gfx.cameraToObject[1] = D_8033A778[D_8033A770][3][1];
+        a->header.gfx.cameraToObject[2] = D_8033A778[D_8033A770][3][2];
         // FIXME: correct types
         if (a->header.gfx.unk38.curAnim != NULL)
             func_8027C988(&a->header.gfx.unk38, sp2C);
