@@ -162,7 +162,7 @@ struct Struct8033B328
     u8 unk3C;
     u8 unk3D;
     u8 filler3E[10];
-    float unk48;
+    f32 unk48;
     s16 unk4C;
     s16 unk4E;
     u8 filler50[2];
@@ -186,10 +186,10 @@ struct Struct8033B328
     s16 unk9E;
     s16 unkA0;
     s16 unkA2;
-    float unkA4;
-    float unkA8;
-    float unkAC;
-    float unkB0;
+    f32 unkA4;
+    f32 unkA8;
+    f32 unkAC;
+    f32 unkB0;
 };
 
 // bss order hack to not affect BSS order. if possible, remove me, but it will be hard to match otherwise

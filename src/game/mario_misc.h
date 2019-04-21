@@ -34,7 +34,7 @@ enum UnlockDoorStarStates {
 struct Struct802763D4_Unknown
 {
     u8 filler0[0x1C];
-    float unk1C;
+    f32 unk1C;
 };
 
 struct Struct802769E0
@@ -49,7 +49,7 @@ struct Struct80277150
 {
     struct GraphNode node;
     u8 filler14[0x4];
-    float unk18;
+    f32 unk18;
     s16 unk1C;
     s16 unk1E;
 };
@@ -124,23 +124,23 @@ struct Struct80277D6C
 extern struct GraphNodeObject D_80339FE0;
 extern struct UnknownStruct4_New D_8033A040[2]; 
 
-extern Gfx *Geo18_802764B0(int a, struct GraphNode *b, Mat4 *c);
+extern Gfx *Geo18_802764B0(s32 a, struct GraphNode *b, Mat4 *c);
 extern void bhvToadMessage_loop(void);
 extern void bhvToadMessage_init(void);
 extern void bhvUnlockDoorStar_init(void);
 extern void bhvUnlockDoorStar_loop(void);
-extern Gfx *Geo18_802770A4(int a, struct GraphNode *b, UNUSED Mat4 *c);
+extern Gfx *Geo18_802770A4(s32 a, struct GraphNode *b, UNUSED Mat4 *c);
 extern s32 geo_switch_mario_stand_run(s32 run, struct GraphNode *node, UNUSED Mat4 *c);
 extern s32 geo_switch_mario_eyes(s32 run, struct GraphNode *node, UNUSED Mat4 *c);
-extern Gfx *Geo18_80277294(int a, struct GraphNode *b, UNUSED Mat4 *c);
-extern Gfx *Geo18_802773A4(int a, struct GraphNode *b, UNUSED Mat4 *c);
+extern Gfx *Geo18_80277294(s32 a, struct GraphNode *b, UNUSED Mat4 *c);
+extern Gfx *Geo18_802773A4(s32 a, struct GraphNode *b, UNUSED Mat4 *c);
 extern s32 geo_switch_mario_hand(s32 run, struct GraphNode *node, UNUSED Mat4 *c);
-extern Gfx *Geo18_802775CC(int a, struct GraphNode *b, UNUSED Mat4 *c);
+extern Gfx *Geo18_802775CC(s32 a, struct GraphNode *b, UNUSED Mat4 *c);
 extern s32 geo_switch_mario_cap_effect(s32 run, struct GraphNode *node, UNUSED Mat4 *c);
 extern s32 geo_switch_mario_cap_on_off(s32 run, struct GraphNode *node, UNUSED Mat4 *c);
-extern Gfx *Geo18_80277824(int a, struct GraphNode *b, UNUSED Mat4 *c);
-extern Gfx *Geo1C_8027795C(int a, struct GraphNode *b, Mat4 *c);
-extern Gfx *Geo18_80277B14(int a, struct GraphNode *b, UNUSED Mat4 *c);
-extern Gfx *Geo18_80277D6C(int a, struct GraphNode *b, UNUSED Mat4 *c);
+extern Gfx *Geo18_80277824(s32 a, struct GraphNode *b, UNUSED Mat4 *c);
+extern Gfx *Geo1C_8027795C(s32 a, struct GraphNode *b, Mat4 *c);
+extern Gfx *Geo18_80277B14(s32 a, struct GraphNode *b, UNUSED Mat4 *c);
+extern Gfx *Geo18_80277D6C(s32 a, struct GraphNode *b, UNUSED Mat4 *c);
 
 #endif /* _MARIO_MISC_H */

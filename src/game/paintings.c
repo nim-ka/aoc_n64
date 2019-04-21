@@ -63,7 +63,7 @@ float (*D_8035FFA4)[3];
 struct PaintingData *D_8035FFA8;
 u8 D_8035FFAC;
 
-extern float D_8032FFDC;
+extern f32 D_8032FFDC;
 
 struct PaintingData *hmcPaintings[] =
 {
@@ -125,7 +125,7 @@ void func_802D1EE0(s16 *a, void **b)
 float func_802D1F94(struct PaintingData *a)
 {
     //! unnecessary use of double constants
-    float sp4 = D_8035FF98 - a->unk14 + 50.0;
+    f32 sp4 = D_8035FF98 - a->unk14 + 50.0;
 
     if (sp4 < 0.0)
         sp4 = 0.0;
@@ -136,7 +136,7 @@ float func_802D1F94(struct PaintingData *a)
 
 float func_802D2028(struct PaintingData *a)
 {
-    float sp4 = a->unk18 - D_8035FF9C;
+    f32 sp4 = a->unk18 - D_8035FF9C;
 
     if (sp4 < 0.0)
         sp4 = 0.0;
@@ -163,9 +163,9 @@ float func_802D20A4(struct PaintingData *a, s8 b)
 
 float func_802D2160(struct PaintingData *a)
 {
-    float spC = a->unk74 / 4.0;
-    float sp8 = a->unk74 / 2.0;
-    float sp4 = a->unk74 * 3.0 / 4.0;
+    f32 spC = a->unk74 / 4.0;
+    f32 sp8 = a->unk74 / 2.0;
+    f32 sp4 = a->unk74 * 3.0 / 4.0;
 
     if (a->unk6 & 0x20)
         return spC;
@@ -183,7 +183,7 @@ float func_802D2160(struct PaintingData *a)
 
 float func_802D22A0(struct PaintingData *a)
 {
-    float sp4 = D_8035FF94 - a->unk10;
+    f32 sp4 = D_8035FF94 - a->unk10;
 
     if (sp4 < 0.0)
         sp4 = 0.0;
@@ -410,16 +410,16 @@ void func_802D310C(struct PaintingData *a)
     }
 }
 
-int func_802D320C(struct PaintingData *a, float b, float c)
+int func_802D320C(struct PaintingData *a, f32 b, f32 c)
 {
-    float sp3C = a->unk1C;
-    float sp38 = a->unk34;
-    float sp34 = a->unk40;
-    float sp30 = a->unk4C;
-    float sp2C = a->unk50;
-    float sp28 = a->unk54;
-    float sp24;
-    float sp20;
+    f32 sp3C = a->unk1C;
+    f32 sp38 = a->unk34;
+    f32 sp34 = a->unk40;
+    f32 sp30 = a->unk4C;
+    f32 sp2C = a->unk50;
+    f32 sp28 = a->unk54;
+    f32 sp24;
+    f32 sp20;
 
     b *= a->unk74 / 614.0;
     c *= a->unk74 / 614.0;
@@ -431,7 +431,7 @@ int func_802D320C(struct PaintingData *a, float b, float c)
     }
     else
     {
-        float sp1C = sp3C * cosf(sp38 * (M_PI * 2) * (sp30 - sp20));
+        f32 sp1C = sp3C * cosf(sp38 * (M_PI * 2) * (sp30 - sp20));
 
         return round_float(sp1C);
     }
@@ -476,15 +476,15 @@ void Print2(s16 *a, s16 b, s16 c)
         s16 sp42 = a[sp44];
         s16 sp40 = a[sp44 + 1];
         s16 sp3E = a[sp44 + 2];
-        float sp38 = D_8035FFA0[sp42][0];
-        float sp34 = D_8035FFA0[sp42][1];
-        float sp30 = D_8035FFA0[sp42][2];
-        float sp2C = D_8035FFA0[sp40][0];
-        float sp28 = D_8035FFA0[sp40][1];
-        float sp24 = D_8035FFA0[sp40][2];
-        float sp20 = D_8035FFA0[sp3E][0];
-        float sp1C = D_8035FFA0[sp3E][1];
-        float sp18 = D_8035FFA0[sp3E][2];
+        f32 sp38 = D_8035FFA0[sp42][0];
+        f32 sp34 = D_8035FFA0[sp42][1];
+        f32 sp30 = D_8035FFA0[sp42][2];
+        f32 sp2C = D_8035FFA0[sp40][0];
+        f32 sp28 = D_8035FFA0[sp40][1];
+        f32 sp24 = D_8035FFA0[sp40][2];
+        f32 sp20 = D_8035FFA0[sp3E][0];
+        f32 sp1C = D_8035FFA0[sp3E][1];
+        f32 sp18 = D_8035FFA0[sp3E][2];
 
         D_8035FFA4[sp46][0] = (sp28 - sp34) * (sp18 - sp24) - (sp24 - sp30) * (sp1C - sp28);
         D_8035FFA4[sp46][1] = (sp24 - sp30) * (sp20 - sp2C) - (sp2C - sp38) * (sp18 - sp24);
@@ -492,7 +492,7 @@ void Print2(s16 *a, s16 b, s16 c)
     }
 }
 
-int func_802D3918(float a)
+int func_802D3918(f32 a)
 {
     s8 sp7;
 
@@ -516,10 +516,10 @@ void func_802D39DC(s16 *a, s16 b)
 
     for (sp32 = 0; sp32 < b; sp32++)
     {
-        float sp28 = 0.0f;
-        float sp24 = 0.0f;
-        float sp20 = 0.0f;
-        float sp1C;
+        f32 sp28 = 0.0f;
+        f32 sp24 = 0.0f;
+        f32 sp20 = 0.0f;
+        f32 sp1C;
 
         sp2E = a[sp2C];
         for (sp30 = 0; sp30 < sp2E; sp30++)
@@ -621,7 +621,7 @@ void *func_802D3CF0(u8 *img, s16 b, s16 c, s16 *d, s16 e, s16 f, u8 g)
 
 Gfx *func_802D43FC(struct PaintingData *a)
 {
-    float sp4C = a->unk74 / 614.0;
+    f32 sp4C = a->unk74 / 614.0;
     void *sp48 = alloc_display_list(64);
     void *sp44 = alloc_display_list(64);
     void *sp40 = alloc_display_list(64);
@@ -760,7 +760,7 @@ void func_802D4C98(struct PaintingData *a)
     D_8035FFA8 = NULL;
 }
 
-void func_802D4CC8(struct PaintingData *a, float b, float c, float d)
+void func_802D4CC8(struct PaintingData *a, f32 b, f32 c, f32 d)
 {
     u32 sp24 = save_file_get_star_flags(gCurrSaveFileNum - 1, 8);
     u32 sp20 = save_file_get_flags();
@@ -879,11 +879,11 @@ void func_802D4FC0(struct PaintingData *a, void **b)
     }
 }
 
-Gfx *Geo18_802D5B98(s32 run, struct GraphNode *node, UNUSED int c)
+Gfx *Geo18_802D5B98(s32 run, struct GraphNode *node, UNUSED s32 c)
 {
     struct GraphNode12A *sp2C = (struct GraphNode12A *)node;
-    int sp28 = (sp2C->unk18 >> 8) & 0xFF;
-    int sp24 = sp2C->unk18 & 0xFF;
+    s32 sp28 = (sp2C->unk18 >> 8) & 0xFF;
+    s32 sp24 = sp2C->unk18 & 0xFF;
     Gfx *sp20 = NULL;
     struct PaintingData **sp1C = D_803303EC[sp28];
     struct PaintingData *sp18 = segmented_to_virtual(sp1C[sp24]);

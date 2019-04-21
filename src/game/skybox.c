@@ -13,9 +13,9 @@ struct Struct8035FF50
 {
     u16 unk0;
     s16 unk2;
-    int unk4;
-    int unk8;
-    int unkC;
+    s32 unk4;
+    s32 unk8;
+    s32 unkC;
 };
 
 struct Struct8032FFC8
@@ -66,23 +66,23 @@ u8 gSkyboxColors[][3] =
 
 //! double literals are used instead of floats
 
-int func_802CEAD0(s8 a, float b)
+int func_802CEAD0(s8 a, f32 b)
 {
-    float spC = D_8035FF50[a].unk0;
-    float sp8 = (115200.0 * spC) / (b * 65536.0);
-    int sp4 = sp8 + 0.5;
+    f32 spC = D_8035FF50[a].unk0;
+    f32 sp8 = (115200.0 * spC) / (b * 65536.0);
+    s32 sp4 = sp8 + 0.5;
 
     if (sp4 > 1280)
         sp4 -= sp4 / 1280 * 1280;
     return 1280 - sp4;
 }
 
-int func_802CEBBC(s8 a, UNUSED float b)
+int func_802CEBBC(s8 a, UNUSED f32 b)
 {
-    float sp24 = (float)D_8035FF50[a].unk2 * 360.0 / 65535.0;
-    float sp20 = 360.0f * sp24 / 90.0;
-    int sp1C = round_float(sp20);
-    int sp18 = sp1C + 0x258;
+    f32 sp24 = (f32)D_8035FF50[a].unk2 * 360.0 / 65535.0;
+    f32 sp20 = 360.0f * sp24 / 90.0;
+    s32 sp1C = round_float(sp20);
+    s32 sp18 = sp1C + 0x258;
 
     if (sp18 > 960)
         sp18 = 960;
@@ -93,14 +93,14 @@ int func_802CEBBC(s8 a, UNUSED float b)
 
 int func_802CEC9C(s8 a)
 {
-    int sp4 = D_8035FF50[a].unk4 / 160;
-    int sp0 = (960 - D_8035FF50[a].unk8) / 120;
+    s32 sp4 = D_8035FF50[a].unk4 / 160;
+    s32 sp0 = (960 - D_8035FF50[a].unk8) / 120;
 
     return sp0 * 10 + sp4;
 }
 
 // generates vertices for some rectangle
-Vtx *make_skybox_rect(int a, s8 b)
+Vtx *make_skybox_rect(s32 a, s8 b)
 {
     Vtx *verts = alloc_display_list(4 * sizeof(*verts));
     s16 x = a % 10 * 160;
@@ -145,14 +145,14 @@ Vtx *make_skybox_rect(int a, s8 b)
 
 void func_802CEF4C(Gfx **dlist, s8 b, s8 c, s8 d)
 {
-    int sp54;
-    int sp50;
+    s32 sp54;
+    s32 sp50;
 
     for (sp54 = 0; sp54 < 3; sp54++)
     {
         for (sp50 = 0; sp50 < 3; sp50++)
         {
-            int sp4C = D_8035FF50[c].unkC + sp54 * 10 + sp50;
+            s32 sp4C = D_8035FF50[c].unkC + sp54 * 10 + sp50;
             struct Gfx *sp48 = ((struct SkyboxList *)segmented_to_virtual((void *)gSkyboxLists[b]))->ptr[sp4C];
             Vtx *vertices = make_skybox_rect(sp4C, d);
 
@@ -170,10 +170,10 @@ void func_802CEF4C(Gfx **dlist, s8 b, s8 c, s8 d)
 
 void *func_802CF188(s8 a)
 {
-    float left = D_8035FF50[a].unk4;
-    float right = D_8035FF50[a].unk4 + 0x140;
-    float bottom = D_8035FF50[a].unk8 - 0xF0;
-    float top = D_8035FF50[a].unk8;
+    f32 left = D_8035FF50[a].unk4;
+    f32 right = D_8035FF50[a].unk4 + 0x140;
+    f32 bottom = D_8035FF50[a].unk8 - 0xF0;
+    f32 top = D_8035FF50[a].unk8;
     Mtx *mtx = alloc_display_list(sizeof(*mtx));
 
     if (mtx != NULL)
@@ -189,7 +189,7 @@ void *func_802CF188(s8 a)
 
 Gfx *func_802CF2A8(s8 a, s8 b, s8 c)
 {
-    int sp3C = 68;
+    s32 sp3C = 68;
     void *sp38 = alloc_display_list(sp3C * 8);
     Gfx *dlist = sp38;
 
@@ -211,12 +211,12 @@ Gfx *func_802CF2A8(s8 a, s8 b, s8 c)
     return sp38;
 }
 
-Gfx *func_802CF414(s8 a, s8 b, float c, float d, float e, float f, float g,
-    float h, float i)
+Gfx *func_802CF414(s8 a, s8 b, f32 c, f32 d, f32 e, f32 f, f32 g,
+    f32 h, f32 i)
 {
-    float sp34 = g - d;
-    float sp30 = h - e;
-    float sp2C = i - f;
+    f32 sp34 = g - d;
+    f32 sp30 = h - e;
+    f32 sp2C = i - f;
     s8 sp2B = 1;
 
     if (b == 8 && !(save_file_get_star_flags(gCurrSaveFileNum - 1, 2) & 1))

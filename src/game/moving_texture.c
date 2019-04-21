@@ -142,7 +142,7 @@ struct Struct802D0DD4 D_8033031C[] =
 
 Gfx *Geo18_802D0080(s32 run, UNUSED struct GraphNode *node, UNUSED f32 mtx[4][4])
 {
-    int spC;
+    s32 spC;
     UNUSED u8 unused[] = {1, 0, 4, 0, 7, 0, 10, 0};
     s16 sp2;
 
@@ -182,8 +182,8 @@ Gfx *Geo18_802D01E0(s32 run, UNUSED struct GraphNode *node, UNUSED f32 mtx[4][4]
     return NULL;
 }
 
-void func_802CF774(Vtx *verts, int n, s16 x, s16 y, s16 z, s16 f, s16 g,
-    float h, u8 alpha)
+void func_802CF774(Vtx *verts, s32 n, s16 x, s16 y, s16 z, s16 f, s16 g,
+    f32 h, u8 alpha)
 {
     s16 tx = 32.0 * (32.0 * h - 1.0) * sins(f + g);
     s16 ty = 32.0 * (32.0 * h - 1.0) * coss(f + g);
@@ -303,7 +303,7 @@ Gfx *func_802CFFA4(s16 a, void *b)
     Gfx *sp2C = alloc_display_list((sp32 + 1) * sizeof(*sp2C));
     Gfx *sp28 = sp2C;
     Gfx *sp24;
-    int sp20;
+    s32 sp20;
 
     if (sp2C == NULL)
         return NULL;
@@ -327,7 +327,7 @@ struct Struct802D00D0
 Gfx *func_802D00D0(s16 a, s16 b, void *c)
 {
     struct Struct802D00D0 *sp1C = segmented_to_virtual(c);
-    int sp18 = 0;
+    s32 sp18 = 0;
     
     while (sp1C[sp18].unk0 != -1)
     {
@@ -432,7 +432,7 @@ Gfx *Geo18_802D104C(s32 run, struct GraphNode *node, UNUSED f32 mtx[4][4])
     s16 sp32;
     s16 sp30;
     s16 sp2E;
-    int sp28;
+    s32 sp28;
 
     if (run == TRUE)
     {
@@ -481,7 +481,7 @@ Gfx *Geo18_802D104C(s32 run, struct GraphNode *node, UNUSED f32 mtx[4][4])
     return sp44;
 }
 
-void func_802D0850(s16 *a, int b)
+void func_802D0850(s16 *a, s32 b)
 {
     s16 sp6 = a[0];
     s16 *sp0 = a + b;
@@ -532,7 +532,7 @@ void func_802D08EC(Vtx *vtx, s16 *b, struct Struct802D0DD4 *c, s8 d)
     }
 }
 
-void func_802D0A94(Vtx *verts, int n, s16 *c, struct Struct802D0DD4 *d, s8 e)
+void func_802D0A94(Vtx *verts, s32 n, s16 *c, struct Struct802D0DD4 *d, s8 e)
 {
     u8 alpha = d->unk1F;
     s16 x;
@@ -591,7 +591,7 @@ Gfx *func_802D0DD4(s16 *a, struct Struct802D0DD4 *b, s8 c)
     Vtx *verts = alloc_display_list(b->unk8 * sizeof(*verts));
     Gfx *sp50 = alloc_display_list(11 * sizeof(*sp50));
     Gfx *sp4C = sp50;
-    int sp48;
+    s32 sp48;
     
     if (verts == NULL || sp50 == NULL)
         return NULL;
@@ -615,7 +615,7 @@ Gfx *func_802D0DD4(s16 *a, struct Struct802D0DD4 *b, s8 c)
 
 Gfx *Geo18_802D1B70(s32 run, struct GraphNode *node, UNUSED f32 mtx[4][4])
 {
-    int sp24;
+    s32 sp24;
     s16 *sp20;
     struct GraphNode12A *sp1C;
     Gfx *sp18 = NULL;
@@ -642,7 +642,7 @@ Gfx *Geo18_802D1B70(s32 run, struct GraphNode *node, UNUSED f32 mtx[4][4])
 
 Gfx *Geo18_802D1CDC(s32 run, struct GraphNode *node, UNUSED f32 mtx[4][4])
 {
-    int sp24;
+    s32 sp24;
     s16 *sp20;
     struct GraphNode12A *sp1C;
     Gfx *sp18 = NULL;
@@ -669,7 +669,7 @@ Gfx *Geo18_802D1CDC(s32 run, struct GraphNode *node, UNUSED f32 mtx[4][4])
 
 Gfx *Geo18_802D1E48(s32 run, struct GraphNode *node, UNUSED f32 mtx[4][4])
 {
-    int sp24;
+    s32 sp24;
     s16 *sp20;
     struct GraphNode12A *sp1C;
     Gfx *sp18 = NULL;
@@ -695,7 +695,7 @@ Gfx *Geo18_802D1E48(s32 run, struct GraphNode *node, UNUSED f32 mtx[4][4])
 
 Gfx *Geo18_802D1FA8(s32 run, struct GraphNode *node, UNUSED f32 mtx[4][4])
 {
-    int sp24;
+    s32 sp24;
     s16 *sp20;
     struct GraphNode12A *sp1C;
     Gfx *sp18 = NULL;

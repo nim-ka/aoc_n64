@@ -9,8 +9,8 @@
 struct Object *Unknown802C8460(struct Object *a)
 {
     struct Object *sp24;
-    UNUSED int unused;
-    int i;
+    UNUSED s32 unused;
+    s32 i;
 
     for (i = 0; i < a->numCollidedObjs; i++)
     {
@@ -24,18 +24,18 @@ struct Object *Unknown802C8460(struct Object *a)
 
 int func_802C8504(struct Object *a, struct Object *b)
 {
-    float sp3C = a->oPosY - a->hitboxDownOffset;
-    float sp38 = b->oPosY - b->hitboxDownOffset;
-    float dx = a->oPosX - b->oPosX;
-    UNUSED float sp30 = sp3C - sp38;
-    float dz = a->oPosZ - b->oPosZ;
-    float collisionRadius = a->hitboxRadius + b->hitboxRadius;
-    float distance = sqrtf(dx * dx + dz * dz);
+    f32 sp3C = a->oPosY - a->hitboxDownOffset;
+    f32 sp38 = b->oPosY - b->hitboxDownOffset;
+    f32 dx = a->oPosX - b->oPosX;
+    UNUSED f32 sp30 = sp3C - sp38;
+    f32 dz = a->oPosZ - b->oPosZ;
+    f32 collisionRadius = a->hitboxRadius + b->hitboxRadius;
+    f32 distance = sqrtf(dx * dx + dz * dz);
 
     if (collisionRadius > distance)
     {
-        float sp20 = a->hitboxHeight + sp3C;
-        float sp1C = b->hitboxHeight + sp38;
+        f32 sp20 = a->hitboxHeight + sp3C;
+        f32 sp1C = b->hitboxHeight + sp38;
 
         if (sp3C > sp1C)
             return 0;
@@ -59,21 +59,21 @@ int func_802C8504(struct Object *a, struct Object *b)
 
 int func_802C870C(struct Object *a, struct Object *b)
 {
-    float sp3C = a->oPosY - a->hitboxDownOffset;
-    float sp38 = b->oPosY - b->hitboxDownOffset;
-    float sp34 = a->oPosX - b->oPosX;
-    UNUSED float sp30 = sp3C - sp38;
-    float sp2C = a->oPosZ - b->oPosZ;
-    float sp28 = a->hurtboxRadius + b->hurtboxRadius;
-    float sp24 = sqrtf(sp34 * sp34 + sp2C * sp2C);
+    f32 sp3C = a->oPosY - a->hitboxDownOffset;
+    f32 sp38 = b->oPosY - b->hitboxDownOffset;
+    f32 sp34 = a->oPosX - b->oPosX;
+    UNUSED f32 sp30 = sp3C - sp38;
+    f32 sp2C = a->oPosZ - b->oPosZ;
+    f32 sp28 = a->hurtboxRadius + b->hurtboxRadius;
+    f32 sp24 = sqrtf(sp34 * sp34 + sp2C * sp2C);
 
     if (a == gMarioObject)
         b->oUnk190 |= 2;
 
     if (sp28 > sp24)
     {
-        float sp20 = a->hitboxHeight + sp3C;
-        float sp1C = b->hurtboxHeight + sp38;
+        f32 sp20 = a->hitboxHeight + sp3C;
+        f32 sp1C = b->hurtboxHeight + sp38;
 
         if (sp3C > sp1C)
             return 0;

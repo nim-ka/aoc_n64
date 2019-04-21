@@ -41,7 +41,7 @@ static struct MemTracker *sActiveMemTrackers[16];        // @ 801BA920
 /* @ 23A980 -> 23AA34; orig name: func_8018C1B0 */
 struct MemTracker *new_memtracker(const char *name)
 {
-    int i;
+    s32 i;
     struct MemTracker *memtrack = NULL;
 
     for (i = 0; i < ARRAY_COUNT(sMemTrackers); i++)
@@ -62,7 +62,7 @@ struct MemTracker *new_memtracker(const char *name)
 /* @ 23AA34 -> 23AADC; orig name: func_8018C264 */
 struct MemTracker *get_memtracker(const char *tracker)
 {
-    int i;  // sp1C
+    s32 i;  // sp1C
 
     for (i = 0; i < ARRAY_COUNT(sMemTrackers); i++)
     {
@@ -136,7 +136,7 @@ u32 stop_memtracker(const char *name)
 /* @ 23AD94 -> 23AE20; orig name: func_8018C5C4 */
 void remove_all_memtrackers(void)
 {
-    int i;
+    s32 i;
 
     for (i = 0; i < ARRAY_COUNT(sMemTrackers); i++)
     {   //L8018C5CC
@@ -156,7 +156,7 @@ struct MemTracker *get_memtracker_by_id(s32 id)
 /* 23AE44 -> 23AEFC; orig name: func_8018C674 */
 void print_all_memtrackers(void)
 {
-    int i;
+    s32 i;
 
     for (i = 0; i < ARRAY_COUNT(sMemTrackers); i++)
     {
@@ -173,7 +173,7 @@ void print_all_memtrackers(void)
 /* 23AEFC -> 23AFB0; orig name: func_8018C72C */
 void print_all_timers(void)
 {
-    int i;
+    s32 i;
 
     gd_printf("\nTimers:\n");
     for (i = 0; i < ARRAY_COUNT(sTimers); i++)
@@ -182,7 +182,7 @@ void print_all_timers(void)
         {
             gd_printf("'%s' = %f (%d)\n", 
                 sTimers[i].name, 
-                (f64) sTimers[i].scaledTotal,
+                sTimers[i].scaledTotal,
                 sTimers[i].resetCount
             );
         }
@@ -204,7 +204,7 @@ void activate_timing(void)
 /* 23AFE4 -> 23B118; orig name: func_8018C814 */
 void remove_all_timers(void)
 {
-    int i;
+    s32 i;
 
     for (i = 0; i < ARRAY_COUNT(sTimers); i++)
     {
@@ -213,7 +213,7 @@ void remove_all_timers(void)
         sTimers[i].unk0C = 0.0f;
         sTimers[i].scaledTotal = 0.0f;
         sTimers[i].prevScaledTotal = 0.0f;
-        sTimers[i].unk1C = D_801A8284[(unsigned int)i % 7];
+        sTimers[i].unk1C = D_801A8284[(u32)i % 7];
         sTimers[i].resetCount = 0;
     }
     activate_timing();
@@ -222,7 +222,7 @@ void remove_all_timers(void)
 /* 23B118 -> 23B1C4; orig name: func_8018C948 */
 struct GdTimer *new_timer(const char *name)
 {
-    int i;
+    s32 i;
     struct GdTimer *timer = NULL;
 
     for (i = 0; i < ARRAY_COUNT(sTimers); i++)
@@ -241,7 +241,7 @@ struct GdTimer *new_timer(const char *name)
 /* 23B1C4 -> 23B284; orig name: func_8018C9F4 */
 struct GdTimer *get_timer(const char *timerName)
 {
-    int i;
+    s32 i;
 
     for (i = 0; i < ARRAY_COUNT(sTimers); i++)
     {
@@ -302,7 +302,7 @@ void split_timer_ptr(struct GdTimer *timer)
 /* 23B42C -> 23B49C; not called; orig name: Unknown8018CC5C */
 void split_all_timers(void)
 {
-    int i;
+    s32 i;
     struct GdTimer *timer;
 
     for (i = 0; i < ARRAY_COUNT(sTimers); i++)
@@ -318,7 +318,7 @@ void split_all_timers(void)
 /* 23B49C -> 23B530; not called; orig name: Unknown8018CCCC */
 void start_all_timers(void)
 {
-    int i;
+    s32 i;
     struct GdTimer *timer;
 
     if (!sTimingActive) { return; }
@@ -433,7 +433,7 @@ void fatal_print(const char *str)
 /* 23B8B8 -> 23B928; orig name: func_8018D0E8 */
 void print_stack_trace(void)
 {
-    int i;
+    s32 i;
 
     for (i = 0; i < sNumRoutinesInStack; i++)
     {
@@ -456,11 +456,11 @@ void fatal_printf(const char *fmt, ...)
         case '%':
             switch (cur = *fmt++)
             {
-            case 'd': gd_printf("%d", va_arg(vl, int));    break;
+            case 'd': gd_printf("%d", va_arg(vl, s32));    break;
             case 'f': gd_printf("%f", va_arg(vl, double)); break;
             case 's': gd_printf("%s", va_arg(vl, char *)); break;
             case 'c': gd_printf("%c", va_arg(vl, char));   break;
-            case 'x': gd_printf("%x", va_arg(vl, int));    break;
+            case 'x': gd_printf("%x", va_arg(vl, s32));    break;
             default : gd_printf("%c", cur);
             }
             break;
@@ -499,7 +499,7 @@ void add_to_stacktrace(const char *routine)
 // remove a routine from the stack trace routine buffer
 void imout(void)
 {
-    int i;
+    s32 i;
 
     if (--sNumRoutinesInStack < 0)
     {
@@ -522,7 +522,7 @@ void imout(void)
 f32 func_8018D560(void)
 {
     u32 temp;
-    unsigned int i;
+    u32 i;
     f32 val;
 
     for (i = 0; i < 4; i++)
@@ -597,7 +597,7 @@ s32 gd_atoi(const char *str)
 /* 23BFD8 -> 23C018; orig name: func_8018D808 */
 f64 gd_lazy_atof(const char *str, UNUSED u32 *unk)
 {
-    return (f64) gd_atoi(str);
+    return gd_atoi(str);
 }
 
 /* 23C018 -> 23C078; orig name: func_8018D848 */
@@ -666,7 +666,7 @@ char *sprint_num(char *str, s32 val, s32 padnum)
 /* 23C174 -> 23C1C8; orig name: func_8018D9A4 */
 s32 int_sci_notation(s32 base, s32 significand)
 {
-    int i;
+    s32 i;
 
     for (i = 1; i < significand; i++)
     {
@@ -833,7 +833,7 @@ struct GdFile *gd_fopen(const char *filename, const char *mode)
 {
     struct GdFile *f;        // sp74
     char *loadedname;        // sp70
-    unsigned int i;          // sp6C
+    u32 i;          // sp6C
     UNUSED u32 pad68;
     struct UnkBufThing buf;  // sp24
     u8 *bufbytes;            // sp20
@@ -885,7 +885,7 @@ struct GdFile *gd_fopen(const char *filename, const char *mode)
 s32 gd_fread(s8* buf, s32 bytes, UNUSED s32 count, struct GdFile* f)
 {
     s32 bytesToRead = bytes;
-    int bytesread;
+    s32 bytesread;
 
     if (f->pos + bytesToRead > f->size)
     {

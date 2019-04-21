@@ -9,7 +9,7 @@ extern f32 D_803320E0[6];
 extern u64 gAudioSPTaskYieldBuffer[]; // ucode yield data ptr; only used in JP
 
 struct SPTask *func_8031D924(void);
-void SetSound(int arg0, f32 *arg1);
+void SetSound(s32 arg0, f32 *arg1);
 void func_8031EED0(void);
 void func_8031F7CC(u8 arg0, u16 arg1);
 void func_8031F810(u8 arg0, u8 arg1, u16 arg2);

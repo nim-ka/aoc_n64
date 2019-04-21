@@ -41,7 +41,7 @@ extern struct Struct803161E0 D_802218C0;
 
 void func_80315E60(void)
 {
-    int i;
+    s32 i;
 
     for (i = 0; i < 64; i++)
     {
@@ -55,9 +55,9 @@ void func_80315E60(void)
 }
 
 
-void func_80315EA4(int arg0)
+void func_80315EA4(s32 arg0)
 {
-    int i;
+    s32 i;
 
     for (i = 0; i < D_80226D70; i++)
     {
@@ -78,9 +78,9 @@ void func_80315EA4(int arg0)
 }
 
 
-void func_80315F94(int arg0)
+void func_80315F94(s32 arg0)
 {
-    int i;
+    s32 i;
 
     for (i = 0; i < 3; i++)
     {
@@ -202,7 +202,7 @@ static void unused_803163D4()
 void *func_803163DC(struct SoundMultiPool *arg0, s32 count, s32 size, s32 arg3, s32 arg4)
 {
     // arg3 = 0, 1 or 2?
-    // arg4 = some int?
+    // arg4 = some s32?
 
     u8 *table; // sp5C
     u8 index; // sp5B

@@ -136,9 +136,9 @@ void Unknown801781DC(struct ObjZone *zone)
 {
     struct MyVec3f lightPos; // 3c
     struct ObjUnk200000 *unk;
-    float sp34;
-    float sp30;
-    float sp2C;
+    f32 sp34;
+    f32 sp30;
+    f32 sp2C;
     struct ObjLight *light;
     register struct Links *link = zone->unk30->link1C; // s0 (24)
     struct GdObj *obj; // 20
@@ -296,7 +296,7 @@ void draw_light(struct ObjLight *light)
     struct MyVec3f sp94;
     Mat4 sp54;
     UNUSED Mat4 *uMatPtr;     // 50
-    UNUSED float uMultiplier; // 4c
+    UNUSED f32 uMultiplier; // 4c
     struct ObjShape *shape;   // 48
 
     if (sSceneProcessType == FIND_PICKS) { return; }
@@ -392,7 +392,7 @@ void create_mtl_gddl_if_empty(struct ObjMaterial *mtl)
  */
 void check_face_bad_vtx(struct ObjFace *face)
 {
-    int i;
+    s32 i;
     struct ObjVertex *vtx;
 
     for (i = 0; i < face->vtxCount; i++)
@@ -415,7 +415,7 @@ void check_face_bad_vtx(struct ObjFace *face)
  * @brief Convert a numeric index into pointer to a struct GdColour
  * 
  * A simple switch case to convert from index @p idx to a pointer to the
- * three float GdColour structure. Goddard stored the index in a structure, 
+ * three f32 GdColour structure. Goddard stored the index in a structure, 
  * and uses this function to get the colour RGB values if needed. 
  * -1 uses the environment colour.
  * A possible enhancement for this is to ennumerate all colours, and then
@@ -706,7 +706,7 @@ void draw_net(struct ObjNet *self)
 /* 227F3C -> 22803C; orig name: Proc8017976C */
 void draw_gadget(struct ObjGadget *gdgt)
 {
-    int colour = 0;
+    s32 colour = 0;
 
     if (gdgt->unk5C != 0)
         colour = gdgt->unk5C;
@@ -728,7 +728,7 @@ void draw_gadget(struct ObjGadget *gdgt)
 void draw_camera(struct ObjCamera *cam)
 {
     struct MyVec3f sp44;
-    UNUSED float sp40 = 0.0f;
+    UNUSED f32 sp40 = 0.0f;
 
     sp44.x = 0.0f;
     sp44.y = 0.0f;
@@ -1009,7 +1009,7 @@ void draw_particle(struct GdObj *obj)
     UNUSED u8 unused1[16];
     struct GdColour *white; // 60
     struct GdColour *black; // 5c
-    float sp58;
+    f32 sp58;
     UNUSED u8 unused2[16];
 
     if (ptc->unk5C > 0)
@@ -1059,7 +1059,7 @@ void draw_bone(struct GdObj *obj)
 {
     struct ObjBone *bone = (struct ObjBone *)obj;
     UNUSED u8 unused1[4];
-    int colour;
+    s32 colour;
     UNUSED u8 unused2[4];
     struct MyVec3f scale; // guess
 
@@ -1099,9 +1099,9 @@ void draw_joint(struct GdObj *obj)
 {
     struct ObjJoint *joint = (struct ObjJoint *)obj;
     UNUSED u8 unused1[4];
-    UNUSED float sp7C = 70.0f;
+    UNUSED f32 sp7C = 70.0f;
     UNUSED u8 unused2[4];
-    UNUSED int sp74 = 1;
+    UNUSED s32 sp74 = 1;
     s32 colour;
     UNUSED u8 unused[8];
     struct ObjShape *boneShape;
@@ -1193,9 +1193,9 @@ void register_light(struct ObjLight *light)
 /* 229180 -> 229564 */
 void Proc8017A980(struct ObjLight *light)
 {
-    float sp24; // diffuse factor?
-    float sp20;
-    float sp1C;
+    f32 sp24; // diffuse factor?
+    f32 sp20;
+    f32 sp1C;
 
     light->colour.r = light->diffuse.r * light->unk30;
     light->colour.g = light->diffuse.g * light->unk30;
@@ -1371,7 +1371,7 @@ s32 create_shape_gddl(struct ObjShape *s)
  */
 void create_gddl_for_shapes(struct ObjGroup *grp)
 {
-    UNUSED int shapedls = apply_to_obj_types_in_group(
+    UNUSED s32 shapedls = apply_to_obj_types_in_group(
         OBJ_TYPE_SHAPES, 
         (applyproc_t) create_shape_gddl, 
         grp
@@ -1426,7 +1426,7 @@ void map_face_materials(struct ObjGroup *faces, struct ObjGroup *mtls)
  */ 
 void calc_vtx_normal(struct ObjVertex *vtx, struct ObjGroup *facegrp)
 {
-    int i;
+    s32 i;
     s32 facesAdded;
     register struct Links *faceLink;
     struct ObjFace *curFace;
@@ -1470,7 +1470,7 @@ void calc_vtx_normal(struct ObjVertex *vtx, struct ObjGroup *facegrp)
  */
 void find_thisface_verts(struct ObjFace *face, struct ObjGroup *verts)
 {
-    int i;
+    s32 i;
     u32 linkVtxIdx;
     struct Links *link;
 
@@ -1623,11 +1623,11 @@ void set_view_update_camera(struct ObjCamera *cam)
  */
 void update_view(struct ObjView *view)
 {
-    int i;
+    s32 i;
     s32 pickOffset;
     s32 pickDataSize;
-    int j;
-    int pickDataIdx;
+    s32 j;
+    s32 pickDataIdx;
     s32 pickedObjType;
     char objTypeAbbr[0x100];
 

@@ -47,7 +47,7 @@ static struct GdPlaneF sGdNullPlaneF = {        // @ 801A8258
     { 0.0, 0.0, 0.0 },
     { 0.0, 0.0, 0.0 }
 };
-static s32 sGdDynObjIdIsInt = FALSE;            // @ 801A8270; str (0) or int (1) for Dyn Obj ID
+static s32 sGdDynObjIdIsInt = FALSE;            // @ 801A8270; str (0) or s32 (1) for Dyn Obj ID
 
 // bss
 static char sIntDynIdBuffer[8];                // @ 801B9F00; Another DynObjId string buffer
@@ -331,7 +331,7 @@ struct DynObjInfo *get_dynobj_info(DynId id)
 /* 232CC0 -> 232D1C */
 void Unknown801844F0(void)
 {
-    UNUSED int pad;
+    UNUSED s32 pad;
 
     if (sLoadedDynObjs == 0) { return; }
 
@@ -712,7 +712,7 @@ void alloc_animdata(struct ObjAnimator *a0)
 {
     UNUSED u32 pad5C;
     // probably should be MyVec3f[3], not triangle...
-    struct GdTriangleF tri;           //+58; temp float for converting half to f32?
+    struct GdTriangleF tri;           //+58; temp f32 for converting half to f32?
     s16 (*halfarr)[9];                //+54; data to convert into a AnimMtxVec
     struct AnimDataInfo *curAnimSrc;  //+50; source animation data...
     struct AnimDataInfo *animDst;     //+4c; destination anim data II
@@ -1233,7 +1233,7 @@ void d_end_group(DynId id)
     UNUSED u32 pad;
     struct DynObjInfo *info = get_dynobj_info(id);  // sp20;
     struct ObjGroup *dynGrp;    // sp1C
-    int i;                      // sp18
+    s32 i;                      // sp18
 
     if (info == NULL)
         fatal_printf("dEndGroup(\"%s\"): Undefined group", DynIdAsStr(id));

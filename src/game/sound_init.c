@@ -236,7 +236,7 @@ void func_80249418(void)
     }
 }
 
-void func_80249464(int a, void *b)
+void func_80249464(s32 a, void *b)
 {
     SetSound(D_8032C6F0[a], b);
 }

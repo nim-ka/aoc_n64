@@ -22,7 +22,7 @@ struct Connection {
     u8 filler0[0x1C];
     VtxPtc unk1C;
     VtxPtc unk20;
-    float unk24;
+    f32 unk24;
     u32 unk28;  //union tag? 0 = vertex; 1 = particle?
 };
 
@@ -91,8 +91,8 @@ void func_80181C00(struct ObjVertex *vtx1, struct ObjVertex *vtx2)
 /* 2304E4 -> 230680 */
 void Unknown80181D14(struct ObjFace *face)
 {
-    int i;
-    int j;
+    s32 i;
+    s32 j;
     struct ObjVertex *vtx1;
     struct ObjVertex *vtx2;
 
@@ -154,8 +154,8 @@ void func_80182088(struct Connection *cxn)
 {
     struct MyVec3f sp4C;
     UNUSED u8 unused[0x24];
-    float sp24;
-    float sp20;
+    f32 sp24;
+    f32 sp20;
     struct ObjParticle *sp1C;
     struct ObjParticle *sp18;
 
@@ -287,7 +287,7 @@ struct Connection *func_801825FC(struct ObjVertex *vtx1, struct ObjVertex *vtx2)
 /* 230F48 -> 2311D8 */
 int func_80182778(struct ObjParticle *ptc)
 {
-    int sp4 = 0;
+    s32 sp4 = 0;
 
     if (ptc->unk7C->unk20 == 2 && ptc->unk74 == 1)
     {
@@ -359,12 +359,12 @@ void func_80182A08(struct ObjParticle *ptc, struct MyVec3f *b)
 /* 231454 -> 231D40; orig name: Unknown80182C84 */
 void move_particle(struct ObjParticle *ptc)
 {
-    float sp7C;
+    f32 sp7C;
     UNUSED u8 unused2[12];
     struct MyVec3f sp64;
     struct ObjParticle *sp60;
     UNUSED u8 unused1[4];
-    int sp58;
+    s32 sp58;
     UNUSED u8 unused4[4];
     UNUSED u8 unused5[4];
     struct ObjCamera *sp4C;
@@ -533,7 +533,7 @@ void move_particles_in_grp(struct ObjGroup *group)
 void Unknown801835C8(struct ObjParticle *ptc)
 {
     struct MyVec3f sp54;
-    float sp50;
+    f32 sp50;
     register struct Links *link;
 
     gd_printf("p(%d)=", ptc->unkB4->objCount);
@@ -560,19 +560,19 @@ void Unknown801835C8(struct ObjParticle *ptc)
     gd_printf("\n");
 }
 
-void Unknown80183870(UNUSED int a)
+void Unknown80183870(UNUSED s32 a)
 {
 }
 
-void Unknown80183884(UNUSED int a)
+void Unknown80183884(UNUSED s32 a)
 {
 }
 
-void Unknown80183898(UNUSED int a, UNUSED int b, UNUSED int c)
+void Unknown80183898(UNUSED s32 a, UNUSED s32 b, UNUSED s32 c)
 {
 }
 
-void Unknown801838B4(UNUSED int a, UNUSED int b, UNUSED int c)
+void Unknown801838B4(UNUSED s32 a, UNUSED s32 b, UNUSED s32 c)
 {
 }
 

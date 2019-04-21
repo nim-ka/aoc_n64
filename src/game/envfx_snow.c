@@ -454,7 +454,7 @@ Gfx *envfx_update_snow(s32 snowMode, Vec3s marioPos, Vec3s camFrom, Vec3s camTo)
 /** Updates the environment effects (snow, flowers, bubbles)
  *  and returns a display list drawing them.
  */
-Gfx *envfx_update_particles(int mode, Vec3s marioPos, Vec3s camTo, Vec3s camFrom) {
+Gfx *envfx_update_particles(s32 mode, Vec3s marioPos, Vec3s camTo, Vec3s camFrom) {
     Gfx *gfx;
 
     if (get_dialog_id() != -1)

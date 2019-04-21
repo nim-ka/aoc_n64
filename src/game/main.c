@@ -183,9 +183,9 @@ static void receive_new_tasks(void)
     }
 }
 
-static void start_sptask(int taskType)
+static void start_sptask(s32 taskType)
 {
-    UNUSED int pad;  // needed to pad the stack
+    UNUSED s32 pad;  // needed to pad the stack
 
     if (taskType == M_AUDTASK)
         gActiveSPTask = sCurrentAudioSPTask;
@@ -224,7 +224,7 @@ static void pretend_audio_sptask_done(void)
 
 static void handle_vblank(void)
 {
-    UNUSED int pad;  // needed to pad the stack
+    UNUSED s32 pad;  // needed to pad the stack
 
     Dummy802461EC();
     sNumVblanks++;
@@ -371,7 +371,7 @@ static void thread3_main(UNUSED void *arg)
     }
 }
 
-void set_vblank_handler(int index, struct VblankHandler *handler, OSMesgQueue *queue, OSMesg *msg)
+void set_vblank_handler(s32 index, struct VblankHandler *handler, OSMesgQueue *queue, OSMesg *msg)
 {
     handler->queue = queue;
     handler->msg = msg;
@@ -439,7 +439,7 @@ static void turn_off_audio(void)
 static void thread1_idle(UNUSED void *arg)
 {
 #if VERSION_US
-    int sp24 = osTvType;
+    s32 sp24 = osTvType;
 #endif
 
     osCreateViManager(OS_PRIORITY_VIMGR);

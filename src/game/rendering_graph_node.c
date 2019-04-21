@@ -77,8 +77,8 @@ extern Vec3s D_80385FDC;
 void func_8027B110(struct GraphNodeToggleZBuffer *a)
 {
     struct GraphNodeToggleZBuffer_sub *sp2C;
-    int i;
-    int sp24 = (a->node.flags & GRAPH_RENDER_Z_BUFFER) != 0;
+    s32 i;
+    s32 sp24 = (a->node.flags & GRAPH_RENDER_Z_BUFFER) != 0;
     struct Struct8032CF10 *sp20 = &renderModeTable[sp24];
     struct Struct8032CF10 *sp1C = &D_8032CF50[sp24];
 
@@ -129,7 +129,7 @@ void func_8027B354(void *displayList, s16 b)
 
 void func_8027B450(struct GraphNodeToggleZBuffer *a) // 004
 {
-    int sp1C;
+    s32 sp1C;
 
     if (D_8032CF94 == NULL && a->node.children != NULL)
     {
@@ -147,10 +147,10 @@ void func_8027B4E8(struct GraphNode002 *a)
     if (a->node.children != NULL)
     {
         Mtx *mtx = alloc_display_list(sizeof(*mtx));
-        float left   = (D_8032CF90->x - D_8032CF90->width) / 2.0f * a->unk14;
-        float right  = (D_8032CF90->x + D_8032CF90->width) / 2.0f * a->unk14;
-        float top    = (D_8032CF90->y - D_8032CF90->height) / 2.0f * a->unk14;
-        float bottom = (D_8032CF90->y + D_8032CF90->height) / 2.0f * a->unk14;
+        f32 left   = (D_8032CF90->x - D_8032CF90->width) / 2.0f * a->unk14;
+        f32 right  = (D_8032CF90->x + D_8032CF90->width) / 2.0f * a->unk14;
+        f32 top    = (D_8032CF90->y - D_8032CF90->height) / 2.0f * a->unk14;
+        f32 bottom = (D_8032CF90->y + D_8032CF90->height) / 2.0f * a->unk14;
 
         guOrtho(mtx, left, right, bottom, top, -2.0f, 2.0f, 1.0f);
         gSPPerspNormalize(gDisplayListHead++, 0xFFFF);
@@ -168,7 +168,7 @@ void func_8027B6C4(struct GraphNodeCamFrustum *a)
     {
         u16 perspNorm;
         Mtx *mtx = alloc_display_list(sizeof(*mtx));
-        float aspect = (float)D_8032CF90->width / (float)D_8032CF90->height;
+        f32 aspect = (f32)D_8032CF90->width / (f32)D_8032CF90->height;
 
         guPerspective(mtx, &perspNorm, a->fov, aspect, a->near, a->far, 1.0f);
         gSPPerspNormalize(gDisplayListHead++, perspNorm);
@@ -196,7 +196,7 @@ void func_8027B840(struct GraphNodeRenderRange *a)
 void func_8027B8D4(struct GraphNodeSwitchCase *a)
 {
     struct GraphNode *sp1C = a->fnNode.node.children;
-    int sp18;
+    s32 sp18;
 
     if (a->fnNode.func != NULL)
         a->fnNode.func(1, &a->fnNode.node, D_8033A778[D_8033A770]);
@@ -208,7 +208,7 @@ void func_8027B8D4(struct GraphNodeSwitchCase *a)
 
 void func_8027B9A8(struct GraphNode114 *a) // 114
 {
-    float sp28[4][4];
+    f32 sp28[4][4];
     Mtx *sp24 = alloc_display_list(sizeof(*sp24));
     Mtx *sp20 = alloc_display_list(sizeof(*sp20));
 
@@ -235,7 +235,7 @@ void func_8027B9A8(struct GraphNode114 *a) // 114
 
 void func_8027BB64(struct GraphNodeTranslationRotationOptionalDisplayList *a)
 {
-    float sp28[4][4];
+    f32 sp28[4][4];
     Vec3f sp1C;
     Mtx *sp18 = alloc_display_list(sizeof(*sp18));
 
@@ -254,7 +254,7 @@ void func_8027BB64(struct GraphNodeTranslationRotationOptionalDisplayList *a)
 
 void func_8027BC88(struct GraphNode016 *a)
 {
-    float sp28[4][4];
+    f32 sp28[4][4];
     Vec3f sp1C;
     Mtx *sp18 = alloc_display_list(sizeof(*sp18));
 
@@ -273,7 +273,7 @@ void func_8027BC88(struct GraphNode016 *a)
 
 void func_8027BDAC(struct GraphNode017 *a)
 {
-    float sp20[4][4];
+    f32 sp20[4][4];
     Mtx *sp1C = alloc_display_list(sizeof(*sp1C));
 
     mtxf_rotate_zxy_and_translate(sp20, D_80385FD0, a->unk18);
@@ -290,7 +290,7 @@ void func_8027BDAC(struct GraphNode017 *a)
 
 void func_8027BEC4(struct GraphNodeScaleOptionalDisplayList *a)
 {
-    UNUSED float sp28[4][4];
+    UNUSED f32 sp28[4][4];
     Vec3f sp1C;
     Mtx *sp18 = alloc_display_list(sizeof(*sp18));
 
@@ -340,7 +340,7 @@ void func_8027C1F4(struct GraphNode12A *a)
 {
     if (a->fnNode.func != NULL)
     {
-        int sp1C = a->fnNode.func(1, &a->fnNode.node, (struct AllocOnlyPool *) D_8033A778[D_8033A770]);
+        s32 sp1C = a->fnNode.func(1, &a->fnNode.node, (struct AllocOnlyPool *) D_8033A778[D_8033A770]);
 
         if (sp1C != 0)
         {
@@ -354,7 +354,7 @@ void func_8027C1F4(struct GraphNode12A *a)
 
 void func_8027C2A8(struct GraphNodeBackground *a)
 {
-    int sp3C = 0;
+    s32 sp3C = 0;
 
     if (a->fnNode.func != NULL)
         sp3C = a->fnNode.func(1, &a->fnNode.node, (struct AllocOnlyPool *) D_8033A778[D_8033A770]);
@@ -384,7 +384,7 @@ void func_8027C2A8(struct GraphNodeBackground *a)
 
 void func_8027C4C0(struct GraphNodeDisplayListTranslated *a)
 {
-    float sp40[4][4];
+    f32 sp40[4][4];
     Vec3s sp38;
     Vec3f sp2C;
     Mtx *sp28 = alloc_display_list(sizeof(*sp28));
@@ -447,7 +447,7 @@ void func_8027C4C0(struct GraphNodeDisplayListTranslated *a)
     D_8033A770--;
 }
 
-void func_8027C988(struct GraphNodeObject_sub *a, int b)
+void func_8027C988(struct GraphNodeObject_sub *a, s32 b)
 {
     struct Animation *sp1C = a->curAnim;
 
@@ -471,19 +471,19 @@ void func_8027C988(struct GraphNodeObject_sub *a, int b)
     if (sp1C->unk02 == 0)
         D_8033B00C = 1.0f;
     else
-        D_8033B00C = (float)a->animYTrans / (float)sp1C->unk02;
+        D_8033B00C = (f32)a->animYTrans / (f32)sp1C->unk02;
 }
 
 void func_8027CB08(struct GraphNodeShadow *a)
 {
     Gfx *sp94;
-    float sp54[4][4];
+    f32 sp54[4][4];
     Vec3f sp48;
     Vec3f sp3C;
-    float sp38;
-    float sp34;
-    float sp30;
-    float sp2C;
+    f32 sp38;
+    f32 sp34;
+    f32 sp30;
+    f32 sp2C;
     struct GraphNode *sp28;
     Mtx *sp24;
 
@@ -546,14 +546,14 @@ void func_8027CB08(struct GraphNodeShadow *a)
         func_8027D8F8(a->node.children);
 }
 
-extern float D_80335DF8;
+extern f32 D_80335DF8;
 
 int func_8027CF68(struct GraphNodeObject *a, Mat4 b)
 {
     s16 spE;
     s16 spC;
     struct GraphNode *sp8;
-    float sp4;
+    f32 sp4;
 
     if (a->node.flags & 0x10)
         return 0;
@@ -561,7 +561,7 @@ int func_8027CF68(struct GraphNodeObject *a, Mat4 b)
     spC = (D_8032CF98->fov / 2.0f + 1.0f) * 32768.0f / 180.0f + 0.5f;
     sp4 = -b[3][2] * sins(spC) / coss(spC);
     if (sp8 != NULL && sp8->type == GRAPH_NODE_TYPE_02F)
-        spE = (float)((struct GraphNode02F *)sp8)->unk14;  //! Why is there a float cast?
+        spE = (f32)((struct GraphNode02F *)sp8)->unk14;  //! Why is there a f32 cast?
     else
         spE = 300;
     if (b[3][2] > -100.0f + spE)
@@ -578,7 +578,7 @@ int func_8027CF68(struct GraphNodeObject *a, Mat4 b)
 void func_8027D14C(struct Object *a)
 {
     Mat4 sp30;
-    int sp2C = (a->header.gfx.node.flags & GRAPH_RENDER_20) != 0;
+    s32 sp2C = (a->header.gfx.node.flags & GRAPH_RENDER_20) != 0;
 
     if (a->header.gfx.unk18 == D_8032CF90->unk14)
     {
@@ -650,7 +650,7 @@ void func_8027D4D4(struct GraphNode12E *a)
         a->fnNode.func(1, &a->fnNode.node, D_8033A778[D_8033A770]);
     if (a->unk1C != NULL && a->unk1C->asGraphNode != NULL)
     {
-        UNUSED int sp1C = (a->unk1C->node.flags & GRAPH_RENDER_20) != 0;
+        UNUSED s32 sp1C = (a->unk1C->node.flags & GRAPH_RENDER_20) != 0;
 
         sp24[0] = a->unk20[0] / 4.0f;
         sp24[1] = a->unk20[1] / 4.0f;
@@ -800,9 +800,9 @@ void func_8027D8F8(struct GraphNode *rootGraphNode)
     } while (sp2E && (curGraphNode = curGraphNode->next) != rootGraphNode);
 }
 
-void func_8027DB80(struct GraphNodeScreenArea *a, Vp *b, Vp *c, int d)
+void func_8027DB80(struct GraphNodeScreenArea *a, Vp *b, Vp *c, s32 d)
 {
-    UNUSED int unused;
+    UNUSED s32 unused;
 
     if (a->node.flags & GRAPH_RENDER_01)
     {

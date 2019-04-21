@@ -36,7 +36,7 @@ typedef u32 uintptr_t;
 #define SQ(n) ((n) * (n))
 #define MTX_INTPART_PACK(w1, w2)  (((w1) & 0xFFFF0000) | (((w2) >> 16) & 0xFFFF))
 #define MTX_FRACPART_PACK(w1, w2) ((((w1) << 16) & 0xFFFF0000) | ((w2) & 0xFFFF))
-#define LOOKAT_PACK(c) ((int) MIN(((c) * (128.0)),127.0) & 0xff)
+#define LOOKAT_PACK(c) ((s32) MIN(((c) * (128.0)),127.0) & 0xff)
 // For fill cycle mode color packing
 #define FILL_RGBA5551(r,g,b,a) ((GPACK_RGBA5551((r),(g),(b),(a)) << 16) | (GPACK_RGBA5551((r),(g),(b),(a))))
 
@@ -321,20 +321,20 @@ Vp *next_vp(void)
 /* 249AAC -> 249AEC */
 f64 gd_sin_d(f64 x)
 {
-    return (f64) sinf((f32) x);
+    return sinf(x);
 }
 
 /* 249AEC -> 249B2C */
 f64 gd_cos_d(f64 x)
 {
-    return (f64) cosf((f32) x);
+    return cosf(x);
 }
 
 /* 249B2C -> 249BA4 */
 f64 gd_sqrt_d(f64 x)
 {
     if (x < 1.0e-7) { return 0.0; }
-    return (f64) sqrtf((f32) x);
+    return sqrtf(x);
 }
 
 /* 249BA4 -> 249BCC */
@@ -346,7 +346,7 @@ f64 Unknown8019B3D4(UNUSED f64 x)
 /* 249BCC -> 24A19C */
 void gd_printf(const char *format, ...)
 {
-    int i;              // 15c
+    s32 i;              // 15c
     UNUSED u32 pad158;
     char c;             // 157
     char f;             // 156
@@ -367,7 +367,7 @@ void gd_printf(const char *format, ...)
         case '%':
             f = *format++;
             i = 0;
-            // handle float precision formatter (N.Mf)
+            // handle f32 precision formatter (N.Mf)
             if (f >= '0' && f <= '9')
             {
                 for (i = 0; i < 3; i++)
@@ -392,11 +392,11 @@ void gd_printf(const char *format, ...)
             switch ((c = spec[0]))
             {
             case 'd':
-                val.i = va_arg(args, int);
+                val.i = va_arg(args, s32);
                 csr = sprint_val_withspecifiers(csr, val, spec);
                 break;
             case 'x':
-                val.i = va_arg(args, unsigned int);
+                val.i = va_arg(args, u32);
                 csr = sprint_val_withspecifiers(csr, val, spec);
                 break;
             case '%':
@@ -413,8 +413,8 @@ void gd_printf(const char *format, ...)
                 csr = gd_strcat(csr, va_arg(args, char *));
                 break;
             case 'c':
-                //! @bug formatter 'c' uses `int` for va_arg instead of `char`
-                *csr = va_arg(args, int);
+                //! @bug formatter 'c' uses `s32` for va_arg instead of `char`
+                *csr = va_arg(args, s32);
                 csr++;
                 *csr = '\0';
                 break;
@@ -817,7 +817,7 @@ void gd_vblank(void)
 /* 24AFC0 -> 24B058; orig name: func_8019C7F0 */
 void gd_copy_p1_contpad(OSContPad *p1cont)
 {
-    unsigned int i;                         // 24
+    u32 i;                         // 24
     u8 *contdata = (u8 *)p1cont;            // 20
     u8 *gd_contdata = (u8 *)&sGdContPads[0]; // 1c
 
@@ -1330,11 +1330,11 @@ u32 Unknown8019EC88(Gfx *dl, UNUSED s32 arg1)
 /* 24D4C4 -> 24D63C; orig name: func_8019ECF4 */
 void mat4_to_Mtx(const Mat4 *src, Mtx *dst)
 {
-    int i; // 14
-    int j; // 10
+    s32 i; // 14
+    s32 j; // 10
     s32 w1;
     s32 w2;
-    s32 *mtxInt = (s32 *)dst->m[0]; // int part
+    s32 *mtxInt = (s32 *)dst->m[0]; // s32 part
     s32 *mtxFrc = (s32 *)dst->m[2]; // frac part
 
     for (i = 0; i < 4; i++)
@@ -1463,7 +1463,7 @@ void func_8019F318(struct ObjCamera *cam,
     func_80193B68(&cam->unkE8,
         arg1, arg2, arg3,
         arg4, arg5, arg6,
-        gd_sin_d((f64) arg7), gd_cos_d((f64) arg7), 0.0f
+        gd_sin_d(arg7), gd_cos_d(arg7), 0.0f
     );
     // 8019F3C8
     mat4_to_Mtx(&cam->unkE8, &DL_CURRENT_MTX(sCurrentGdDl));
@@ -1555,7 +1555,7 @@ void check_tri_display(s32 vtxcount)
 Vtx *make_Vtx_if_new(f32 x, f32 y, f32 z, f32 alpha)
 {
     Vtx *vtx = NULL; // 1c
-    int i;           // 18
+    s32 i;           // 18
 
     for (i = D_801BB0CC; i < (D_801BB0CC + D_801BB0BC); i++)
     {
@@ -1630,7 +1630,7 @@ void func_801A0038(void)
 void func_801A0070(void)
 {
     UNUSED u32 pad;
-    int i; // 28
+    s32 i; // 28
     UNUSED s32 startvtx; // 24
 
     startvtx = D_801BB0CC;
@@ -1783,7 +1783,7 @@ void func_801A0478(
 s32 func_801A086C(s32 id, struct GdColour *colour, s32 arg2)
 {
     UNUSED u32 pad60[2];
-    int i; // 5c
+    s32 i; // 5c
     s32 sp58 = D_801BB188; // number of lights?
     s32 sp4C[3]; // converted color array
     s32 sp40[3]; // bytes from weird struct in bss
@@ -2146,7 +2146,7 @@ void start_view_dl(struct ObjView *view)
 /* 251014 -> 251A1C; orig name: func_801A2844 */
 void parse_p1_controller(void)
 {
-    unsigned int i;           // 3c
+    u32 i;           // 3c
     struct GdControl *gdctrl; // 38
     OSContPad *p1cont;        // 34
     OSContPad *p1contPrev;    // 30
@@ -2248,7 +2248,7 @@ void parse_p1_controller(void)
         activate_timing();
     }
 
-    for (i = 0; ((int)i) < D_801A86F0; i++)
+    for (i = 0; ((s32)i) < D_801A86F0; i++)
     {
         D_801BD7A0[i]->flags &= ~VIEW_UPDATE;
     }
@@ -2599,7 +2599,7 @@ s32 setup_view_buffers(
 void gd_init_controllers(void)
 {
     OSContPad *p1cont = &sPrevFrameCont[0]; // 1c
-    unsigned int i; // 18
+    u32 i; // 18
 
     osCreateMesgQueue(&D_801BE830, D_801BE848, ARRAY_COUNT(D_801BE848));
     osSetEventMesg(OS_EVENT_SI, &D_801BE830, (OSMesg) OS_MESG_SI_COMPLETE);
@@ -2684,7 +2684,7 @@ void *Unknown801A45E4(const char *file, s32 fmt, s32 size, u32 arg3, u32 arg4)
     struct GdFile *txFile; // 3c
     void *texture; // 38
     u32 txSize; // 34
-    unsigned int i; // 30
+    u32 i; // 30
     u16 *txHalf; // 2C
     u8 buf[3]; // 28
     u8 alpha; // 27
@@ -2893,7 +2893,7 @@ void Unknown801A4F58(void)
     register s16 r; // t0
     register s16 g; // t1
     register s16 b; // t2
-    register int i; // t3
+    register s32 i; // t3
 
     cbufOff = sScreenView2->colourBufs[gGdFrameBuf ^ 1];
     cbufOn = sScreenView2->colourBufs[gGdFrameBuf];
@@ -3004,7 +3004,7 @@ void Unknown801A5344(void)
 /* 253BC8 -> 2540E0 */
 void gd_init(void)
 {
-    int i;    // 34
+    s32 i;    // 34
     UNUSED u32 pad30;
     s8 *data; // 2c
 
@@ -3097,7 +3097,7 @@ void gd_init(void)
 void Unknown801A5910(char *arg0, s32 len)
 {
     char buf[100]; // 4
-    int i; // 0
+    s32 i; // 0
 
     for (i = 0; i < len; i++)
     {
@@ -3362,8 +3362,8 @@ void Unknown801A5FF8(struct ObjGroup *arg0)
 /* 254AC0 -> 254DFC; orig name: PutSprite */
 void gd_put_sprite(u16 *sprite, s32 x, s32 y, s32 wx, s32 wy)
 {
-    int c; // 5c
-    int r; // 58
+    s32 c; // 5c
+    s32 r; // 58
 
     gSPDisplayList(next_gfx(), osVirtualToPhysical(marioHeadDl801B52D8));
     for (r = 0; r < wy; r += 0x20)
@@ -3459,7 +3459,7 @@ void make_timer_gadgets(void)
     struct ObjGadget *bar5;      // 54
     struct ObjGadget *bar6;      // 50
     struct GdTimer *timer;       // 4c
-    int i;                       // 48
+    s32 i;                       // 48
     char timerNameBuf[0x20];     // 28
 
     d_start_group("timerg");
@@ -3675,8 +3675,8 @@ void stub_801A71B8(UNUSED u32 a0)
 /* 25599C -> 255EB0; not called */
 void func_801A71CC(struct ObjNet *net)
 {
-    int i;                        // spB4
-    int j;                        // spB0
+    s32 i;                        // spB4
+    s32 j;                        // spB0
     f32 spAC;
     f32 spA8;
     struct GdPlaneF sp90;

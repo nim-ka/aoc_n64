@@ -62,8 +62,8 @@ static const char *sDebugEnemyStringInfo[] =
     "B" // cursor
 };
 
-static int sDebugInfoDPadMask = 0;
-static int sDebugInfoDPadUpdID = 0;
+static s32 sDebugInfoDPadMask = 0;
+static s32 sDebugInfoDPadUpdID = 0;
 static s8 sDebugLvSelectCheckFlag = FALSE;
 
 #define DEBUG_PAGE_MIN DEBUG_PAGE_OBJECTINFO
@@ -128,7 +128,7 @@ static void set_print_state_info(s16 *printState, s16 xCursor, s16 yCursor, s16 
  * the next entry in the list. If the current print state array is too far down the list, this
  * will print "DPRINT OVER" instead, signaling that the print state overflowed.
  */
-static void print_text_array_info(s16 *printState, const char *str, int number)
+static void print_text_array_info(s16 *printState, const char *str, s32 number)
 {
     if(!printState[DEBUG_PSTATE_DISABLED])
     {
@@ -158,19 +158,19 @@ void set_text_array_x_y(s32 xOffset, s32 yOffset)
  * These series of dprint functions print methods depending on the context of the
  * current debug mode as well as the printer array (down to up vs up to down).
  */
-void print_debug_bottom_up(const char *str, int number)
+void print_debug_bottom_up(const char *str, s32 number)
 {
     if(gDebugInfoFlags & DEBUG_INFO_FLAG_DPRINT)
         print_text_array_info(gDebugPrintState2, str, number);
 }
 
-void print_debug_top_down_objectinfo(const char *str, int number)
+void print_debug_top_down_objectinfo(const char *str, s32 number)
 {
     if((gDebugInfoFlags & DEBUG_INFO_FLAG_DPRINT) && sDebugPage == DEBUG_PAGE_OBJECTINFO)
         print_text_array_info(gDebugPrintState1, str, number);
 }
 
-void print_debug_top_down_mapinfo(const char *str, int number)
+void print_debug_top_down_mapinfo(const char *str, s32 number)
 {
     if(sNoExtraDebug) // how come this is the only instance of the sNoExtraDebug check?
         return;
@@ -179,7 +179,7 @@ void print_debug_top_down_mapinfo(const char *str, int number)
         print_text_array_info(gDebugPrintState1, str, number);
 }
 
-static void print_debug_top_down_normal(const char *str, int number)
+static void print_debug_top_down_normal(const char *str, s32 number)
 {
     if(gDebugInfoFlags & DEBUG_INFO_FLAG_DPRINT)
         print_text_array_info(gDebugPrintState1, str, number);
@@ -190,12 +190,12 @@ static void print_mapinfo(void)
     struct Surface *pfloor;
     f32 bgY;
     f32 water;
-    int area;
-    int angY;
+    s32 area;
+    s32 angY;
 
     angY = gCurrentObject->oMoveAngleYaw / 182.044000;
-    area  = ((int)gCurrentObject->oPosX + 0x2000) / 1024
-          + ((int)gCurrentObject->oPosZ + 0x2000) / 1024 * 16;
+    area  = ((s32)gCurrentObject->oPosX + 0x2000) / 1024
+          + ((s32)gCurrentObject->oPosZ + 0x2000) / 1024 * 16;
 
     bgY = find_floor(gCurrentObject->oPosX, gCurrentObject->oPosY, gCurrentObject->oPosZ, &pfloor);
     water = find_water_level(gCurrentObject->oPosX, gCurrentObject->oPosZ);
@@ -245,7 +245,7 @@ static void print_stageinfo(void)
  */
 static void print_string_array_info(const char **strArr)
 {
-    int i;
+    s32 i;
 
     if(sDebugStringArrPrinted == FALSE)
     {
@@ -276,7 +276,7 @@ static void print_enemyinfo(void)
 
 static void update_debug_dpadmask(void)
 {
-    int dPadMask = gPlayer1Controller->buttonDown & (U_JPAD | D_JPAD | L_JPAD | R_JPAD);
+    s32 dPadMask = gPlayer1Controller->buttonDown & (U_JPAD | D_JPAD | L_JPAD | R_JPAD);
 
     if(!dPadMask)
     {
@@ -416,7 +416,7 @@ static void try_change_debug_page(void)
  */
 static void try_modify_debug_controls(void)
 {
-    int sp4;
+    s32 sp4;
 
     if(gPlayer1Controller->buttonPressed & Z_TRIG)
     {
@@ -532,7 +532,7 @@ void try_print_debug_mario_level_info(void)
  */
 void try_do_mario_debug_object_spawn(void)
 {
-    UNUSED int unused;
+    UNUSED s32 unused;
 
     if(sDebugPage == DEBUG_PAGE_STAGEINFO && gDebugInfo[DEBUG_PAGE_ENEMYINFO][7] == 1)
     {

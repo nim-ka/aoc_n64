@@ -56,7 +56,7 @@ extern Vec3s unused80385FF0;
 #define GRAPH_NODE_TYPE_12E                                        (0x02E | GRAPH_NODE_TYPE_FUNCTIONAL)
 #define GRAPH_NODE_TYPE_02F                                         0x02F
 
-typedef int (*GraphNodeFunc)(s32 unk, struct GraphNode *node, void *);
+typedef s32 (*GraphNodeFunc)(s32 unk, struct GraphNode *node, void *);
 
 struct FnGraphNode
 {

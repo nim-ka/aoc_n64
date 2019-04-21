@@ -1015,7 +1015,7 @@ void read_ARK_shape(struct ObjShape* shape, char* fileName)
         {
             shape->faceCount++;
             gd_fread(face.bytes, 0x10, 1, sGdShapeFile);
-            func_801A59C0(&face.bytes[0x4]); // read word as float?
+            func_801A59C0(&face.bytes[0x4]); // read word as f32?
             func_801A59C0(&face.bytes[0x8]);
             func_801A59C0(&face.bytes[0xC]);
 

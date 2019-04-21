@@ -162,7 +162,7 @@ struct GdObj* make_object(enum ObjTypeFlag objType)
     struct GdObj *newObj;
     struct GdObj *objListOldHead;
     s32 objSize;
-    int i;
+    s32 i;
     drawmethod_t objDrawFn;
     const char *objNameStr;
     u8 *newObjBytes;
@@ -363,8 +363,8 @@ struct VtxLink * make_vtx_link(struct VtxLink * prevlink, Vtx * data)
     newLink->data = data;
     // WTF?
     #pragma GCC diagnostic push
-    #pragma GCC diagnostic ignored "-Wpointer-to-int-cast"
-    if ( ((int) (newLink)) == 0x3F800000)
+    #pragma GCC diagnostic ignored "-Wpointer-to-s32-cast"
+    if ( ((s32) (newLink)) == 0x3F800000)
         fatal_printf("bad3\n");
     #pragma GCC diagnostic pop
     return newLink;
@@ -392,7 +392,7 @@ void reset_plane(struct ObjPlane* plane)
     UNUSED u32 sp40;
     UNUSED u32 sp3C;
     UNUSED u32 sp38;
-    int i;
+    s32 i;
     s32 sp30;
     register f32 sp28;
 
@@ -709,7 +709,7 @@ void sprint_obj_id(char* str, struct GdObj* obj)
 }
 
 /* @ 22C094 for 0x210 */
-struct ObjGroup* make_group(int count, ...)
+struct ObjGroup* make_group(s32 count, ...)
 {
     va_list args;
     s32 i;
@@ -1947,7 +1947,7 @@ void move_lights_in_grp(struct ObjGroup* group)
 /* @ 22FB80 for 0xAC; orig name: func_801813B0 */
 void move_group_members(void)
 {
-    int i;
+    s32 i;
 
     if (gGdMoveScene != 0)
     {

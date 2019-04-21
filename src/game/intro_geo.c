@@ -87,11 +87,11 @@ Gfx *geo18_title_screen(u32 sp50, struct GraphNode *sp54, UNUSED u32 sp58)
    Gfx *displayList; // sp48
    Gfx *displayListIter; // sp44
    Mtx *scaleMat; // sp40
-   float *scaleTable1; // sp3c
-   float *scaleTable2; // sp38
-   float scaleX; // sp34
-   float scaleY; // sp30
-   float scaleZ; // sp2c
+   f32 *scaleTable1; // sp3c
+   f32 *scaleTable2; // sp38
+   f32 scaleX; // sp34
+   f32 scaleY; // sp30
+   f32 scaleZ; // sp2c
    graphNode = sp54;
    displayList = NULL;
    displayListIter = NULL;
@@ -188,7 +188,7 @@ Gfx *intro_backdrop_one_image(u32 index, s8 *backgroundTable)
    Gfx *displayList; // sp58
    Gfx *displayListIter; // sp54
    u32 *vIntroBgTable; // sp50
-   int i; // sp4c
+   s32 i; // sp4c
    mtx = alloc_display_list(sizeof(*mtx));
    displayList = alloc_display_list(36 * sizeof(*displayList));
    displayListIter = displayList;
@@ -215,11 +215,11 @@ Gfx *intro_backdrop_one_image(u32 index, s8 *backgroundTable)
 Gfx *geo18_intro_backdrop(u32 sp48, struct GraphNode *sp4c, UNUSED u32 sp50)
 {
    struct GraphNodeMore *graphNode; // sp44
-   int index; // sp40
+   s32 index; // sp40
    s8 *backgroundTable; // sp3c
    Gfx *displayList; // sp38
    Gfx *displayListIter; // sp34
-   int i; // sp30
+   s32 i; // sp30
    graphNode = (struct GraphNodeMore *)sp4c;
    index = graphNode->unk18 & 0xff; // TODO: word at offset 0x18 of struct GraphNode
    backgroundTable = introBackgroundTables[index];
@@ -247,8 +247,8 @@ Gfx *geo18_game_over_tile(u32 sp40, struct GraphNode *sp44, UNUSED u32 sp48)
    struct GraphNode *graphNode; // sp3c
    Gfx *displayList; // sp38
    Gfx *displayListIter; // sp34
-   int j; // sp30
-   int i; // sp2c
+   s32 j; // sp30
+   s32 i; // sp2c
    graphNode = sp44;
    displayList = NULL;
    displayListIter = NULL;
@@ -256,7 +256,7 @@ Gfx *geo18_game_over_tile(u32 sp40, struct GraphNode *sp44, UNUSED u32 sp48)
    {
       gGameOverFrameCounter = 0;
       gGameOverTableIndex = -2;
-      for (i = 0; i < (int)sizeof(gameOverBackgroundTable); ++i)
+      for (i = 0; i < (s32)sizeof(gameOverBackgroundTable); ++i)
       {
          gameOverBackgroundTable[i] = INTRO_BACKGROUND_GAME_OVER;
       }
@@ -289,7 +289,7 @@ Gfx *geo18_game_over_tile(u32 sp40, struct GraphNode *sp44, UNUSED u32 sp48)
       graphNode->flags = (graphNode->flags & 0xFF) | 0x100;
       gSPDisplayList(displayListIter++, &seg2_dl_02014660);
       gSPDisplayList(displayListIter++, &title_screen_bg_dl_0A000100);
-      for (j = 0; j < (int)sizeof(gameOverBackgroundTable); ++j)
+      for (j = 0; j < (s32)sizeof(gameOverBackgroundTable); ++j)
       {
          gSPDisplayList(displayListIter++, intro_backdrop_one_image(j, gameOverBackgroundTable));
       }

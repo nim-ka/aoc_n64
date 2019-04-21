@@ -9,7 +9,7 @@
 
 /* This file was spilt out of debug_memory.asm based on rodata.
  * The rodata for functions after this "__main__" function have string literals following 
- * float literal, which implies that this is its own file
+ * f32 literal, which implies that this is its own file
  */
 
 // data

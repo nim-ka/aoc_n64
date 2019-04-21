@@ -123,7 +123,7 @@ static void animate_power_meter_emphasized(void)
 
     if (!(hudDisplayFlags & HUD_DISPLAY_FLAG_EMPHASIZE_POWER))
     {
-        if ( (f64) sPowerMeterHUD.d_EC == 45.0 )
+        if (sPowerMeterHUD.d_EC == 45.0)
             sPowerMeterHUD.animation = POWER_METER_DEEMPHASIZING;
     } else {
         sPowerMeterHUD.d_EC = 0;
@@ -173,7 +173,7 @@ void func_802E261C(s16 numHealthWedges)
     if (numHealthWedges == 8 && D_803600D0 == 7)
         sPowerMeterHUD.d_EC = 0;
     
-    if (numHealthWedges == 8 && (f64) sPowerMeterHUD.d_EC > 45.0)
+    if (numHealthWedges == 8 && sPowerMeterHUD.d_EC > 45.0)
         sPowerMeterHUD.animation = POWER_METER_HIDING;
     
     D_803600D0 = numHealthWedges;

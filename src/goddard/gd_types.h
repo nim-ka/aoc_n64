@@ -509,7 +509,7 @@ struct ObjLabel {
 }; /* sizeof = 0x34 */
 
 /* unk30 types:
- * 3 = float? float pointer?
+ * 3 = f32? f32 pointer?
 **/
 
 struct ObjAnimator {

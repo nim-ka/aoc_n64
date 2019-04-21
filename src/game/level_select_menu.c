@@ -95,7 +95,7 @@ static s16 gameOverNotPlayed = 1;
 
 // don't shift this function from being the first function in the segment.
 // the level scripts assume this function is the first, so it cant be moved.
-int run_press_start_demo_timer(int timer)
+int run_press_start_demo_timer(s32 timer)
 {
     gCurrDemoInput = NULL;
 
@@ -137,7 +137,7 @@ int run_press_start_demo_timer(int timer)
 
 s16 level_select_input_loop(void)
 {
-    int stageChanged = FALSE;
+    s32 stageChanged = FALSE;
 
     // perform the ID updates per each button press.
     if(gPlayer1Controller->buttonPressed & A_BUTTON)
@@ -191,7 +191,7 @@ s16 level_select_input_loop(void)
 
 int func_8016F3CC(void)
 {
-    int sp1C = 0;
+    s32 sp1C = 0;
 
 #ifdef VERSION_US
     if(D_U_801A7C34 == 1)
@@ -225,7 +225,7 @@ int func_8016F3CC(void)
 
 int func_8016F444(void)
 {
-    int sp1C = 0;
+    s32 sp1C = 0;
 
 #ifdef VERSION_US
     if(gameOverNotPlayed == 1)
@@ -257,7 +257,7 @@ int func_8016F4BC(void)
 
 s32 LevelProc_8016F508(s16 arg1, UNUSED s32 arg2)
 {
-    int retVar;
+    s32 retVar;
 
     switch(arg1)
     {

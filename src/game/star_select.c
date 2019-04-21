@@ -69,7 +69,7 @@ void Show100CoinStar(u8 stars)
 void BehActSelectorInit(void)
 {
     s16 i = 0;
-    int selectorModelIDs[10];
+    s32 selectorModelIDs[10];
     u8 stars = save_file_get_star_flags(gCurrSaveFileNum - 1, gCurrCourseNum -1);
 
     sVisibleStars = 0;
@@ -250,7 +250,7 @@ Gfx *Geo18_80177518(s16 run, UNUSED struct GraphNode *node)
     return NULL;
 }
 
-void LevelProc_80177560(UNUSED int a, UNUSED int b)
+void LevelProc_80177560(UNUSED s32 a, UNUSED s32 b)
 {
     u8 stars = save_file_get_star_flags(gCurrSaveFileNum - 1, gCurrCourseNum - 1);
 
@@ -265,7 +265,7 @@ void LevelProc_80177560(UNUSED int a, UNUSED int b)
         sObtainedStars--;
 }
 
-int LevelProc_80177610(UNUSED int a, UNUSED int b)
+int LevelProc_80177610(UNUSED s32 a, UNUSED s32 b)
 {
     if (sActSelectorMenuTimer >= 11)
     {

@@ -824,7 +824,7 @@ void linear_mtxf_transpose_mul_vec3f(Mat4 m, Vec3f dst, Vec3f v)
 
 void apply_scale_to_object_transform(struct Object *obj)
 {
-    float scaleX, scaleY, scaleZ;
+    f32 scaleX, scaleY, scaleZ;
 
     scaleX = obj->header.gfx.scale[0];
     scaleY = obj->header.gfx.scale[1];

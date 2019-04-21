@@ -16,7 +16,7 @@ extern void *bhvSoundSpawner;
  */
 void exec_anim_sound_state(struct SoundState *soundStates)
 {
-    int stateIdx = gCurrentObject->oSoundStateID;
+    s32 stateIdx = gCurrentObject->oSoundStateID;
 
     switch(soundStates[stateIdx].playSound)
     {
@@ -27,7 +27,7 @@ void exec_anim_sound_state(struct SoundState *soundStates)
             break;
         case TRUE:
         {
-            int animFrame;
+            s32 animFrame;
 
             // in the sound state information, -1 (0xFF) is for empty
             // animFrame entries. These checks skips them.
@@ -83,9 +83,9 @@ void PlaySound2(s32 soundMagic)
  * Technically, these functions are only educated guesses. Trust these
  * interpretations at your own discrection.
  */
-int calc_dist_to_volume_range_1(float distance) // range from 60-124
+int calc_dist_to_volume_range_1(f32 distance) // range from 60-124
 {
-    int volume;
+    s32 volume;
 
     if (distance < 500.0f)
         volume = 127;
@@ -97,9 +97,9 @@ int calc_dist_to_volume_range_1(float distance) // range from 60-124
     return volume;
 }
 
-int calc_dist_to_volume_range_2(float distance) // range from 79.2-143.2
+int calc_dist_to_volume_range_2(f32 distance) // range from 79.2-143.2
 {
-    int volume;
+    s32 volume;
 
     if (distance < 1300.0f)
         volume = 127;

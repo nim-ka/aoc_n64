@@ -129,7 +129,7 @@ void bhv_moving_blue_coin_loop(void)
             }
             else o->oForwardVel *= 0.98;
             
-            if ((f64)o->oForwardVel > 75.0) o->oForwardVel = 75.0f;
+            if (o->oForwardVel > 75.0) o->oForwardVel = 75.0f;
             
             ObjFlickerAndDisappear(o, 600);
             break;

@@ -539,7 +539,7 @@ void Unknown8018FF28(struct ObjJoint *a0, struct ObjJoint *a1)
 /* 23E758 -> 23E7B8; not called */
 void Unknown8018FF88(s32 size)
 {
-    int i;
+    s32 i;
 
     for (i = 0; i < size - 1; i++)
     {
@@ -552,7 +552,7 @@ s32 func_8018FFE8(struct ObjBone **a0, struct ObjJoint **a1, struct ObjJoint *a2
 {
     struct ObjBone *b;          // 1C
     struct ObjJoint *sp18;
-    int sp14 = 0;
+    s32 sp14 = 0;
     struct ObjGroup *bonegrp;   // 10
     struct ObjGroup *grp;       // 0c
     struct Links *bonelink;     // 08

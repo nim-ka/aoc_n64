@@ -14,7 +14,7 @@
 #define US_FLOAT(x) x ## f
 #endif
 
-// Convert u8 or u16 to float. On JP, this uses a u32->f32 conversion,
+// Convert u8 or u16 to f32. On JP, this uses a u32->f32 conversion,
 // resulting in more bloated codegen, while on US it goes through s32.
 // Since u8 and u16 fit losslessly in both, behavior is the same.
 #ifdef VERSION_JP

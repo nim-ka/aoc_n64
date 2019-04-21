@@ -38,7 +38,7 @@ s8 D_8036008E;
 extern u8 D_8032CE20;
 extern u8 D_8032CE24;
 
-extern int func_8028803C(int);
+extern s32 func_8028803C(s32);
 
 enum DiagBoxState {
     DIAG_STATE_OPENING,

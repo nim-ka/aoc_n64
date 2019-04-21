@@ -231,7 +231,7 @@ void spawn_macro_objects_hardcoded(s16 areaIndex, s16* macroObjList)
 void spawn_special_objects(s16 areaIndex, s16** specialObjList)
 {
     s32 numOfSpecialObjects;
-    int i;
+    s32 i;
     u32 offset;
     s16 x;
     s16 y;
@@ -298,7 +298,7 @@ void spawn_special_objects(s16 areaIndex, s16** specialObjList)
                 (*specialObjList)++;
                 extraParams[1] = **specialObjList; // Unknown, gets put into obj->oUnknownUnk10C_F32 as a float
                 (*specialObjList)++;
-                extraParams[2] = **specialObjList; // Unknown, gets put into obj->oUnknownUnk110_F32 as a float 
+                extraParams[2] = **specialObjList; // Unknown, gets put into obj->oUnknownUnk110_F32 as a f32 
                 (*specialObjList)++;
                 spawn_macro_abs_special(model, behavior, x, y, z, extraParams[0], extraParams[1], extraParams[2]);
                 break;

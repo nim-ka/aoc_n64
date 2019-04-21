@@ -16,6 +16,6 @@
 
 // Used to communicate from whirlpool behavior to envfx
 extern s16 gEnvFxBubbleConfig[10];
-extern Gfx *envfx_update_bubbles(int sp28, Vec3s sp2C, Vec3s sp30, Vec3s sp34);
+extern Gfx *envfx_update_bubbles(s32 sp28, Vec3s sp2C, Vec3s sp30, Vec3s sp34);
 
 #endif // INGAME_MENU_3_H

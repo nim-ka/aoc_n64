@@ -465,7 +465,7 @@ static void level_cmd_23(void)
     s16 model = CMD_GET(s16, 2) & 0x0FFF;
     s16 arg0H = CMD_GET(u16, 2) >> 12;
     void *arg1 = CMD_GET(void *, 4);
-    arg2.i = CMD_GET(s32, 8); // store the raw word as a union int. this allows is to reinterpret the contents as a float without the value being converted implicitly.
+    arg2.i = CMD_GET(s32, 8); // store the raw word as a union s32. this allows is to reinterpret the contents as a f32 without the value being converted implicitly.
 
     if (model < 256)
         // GraphNodeScaleOptionalDisplayList has a GraphNode at the top. This

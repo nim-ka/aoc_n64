@@ -13,9 +13,9 @@
 static u8 D_8032FF60[4] = {0};
 static u16 D_8032FF64[2] = {0};
 
-static int func_802CAAE0(s8 a0, u8 a1)
+static s32 func_802CAAE0(s8 a0, u8 a1)
 {
-    int sp4 = 0;
+    s32 sp4 = 0;
 
     D_8032FF60[a0]++;
 
@@ -35,10 +35,10 @@ static u8 func_802CAB60(s8 a0, s8 a1, u8 a2)
     switch (a0)
     {
     case 0:
-        sp7 = (float)D_8032FF60[a1] * 255.0 / (float)(a2 - 1) + 0.5;
+        sp7 = (f32)D_8032FF60[a1] * 255.0 / (f32)(a2 - 1) + 0.5;
         break;
     case 1:
-        sp7 = (1.0 - D_8032FF60[a1] / (float)(a2 - 1)) * 255.0 + 0.5;
+        sp7 = (1.0 - D_8032FF60[a1] / (f32)(a2 - 1)) * 255.0 + 0.5;
         break;
     }
     return sp7;
@@ -64,7 +64,7 @@ static Vtx *func_802CADB4(struct WarpTransitionData *transData, u8 alpha)
     return verts;
 }
 
-static int func_802CAF38(s8 a0, u8 a1, struct WarpTransitionData *transData, u8 alpha)
+static s32 func_802CAF38(s8 a0, u8 a1, struct WarpTransitionData *transData, u8 alpha)
 {
     Vtx *verts = func_802CADB4(transData, alpha);
 
@@ -80,14 +80,14 @@ static int func_802CAF38(s8 a0, u8 a1, struct WarpTransitionData *transData, u8 
     return func_802CAAE0(a0, a1);
 }
 
-static int func_802CB0E4(s8 a0, u8 a1, struct WarpTransitionData *transData)
+static s32 func_802CB0E4(s8 a0, u8 a1, struct WarpTransitionData *transData)
 {
     u8 alpha = func_802CAB60(1, a0, a1);
 
     return func_802CAF38(a0, a1, transData, alpha);
 }
 
-static int func_802CB140(s8 a0, u8 a1, struct WarpTransitionData *transData)
+static s32 func_802CB140(s8 a0, u8 a1, struct WarpTransitionData *transData)
 {
     u8 alpha = func_802CAB60(0, a0, a1);
 
@@ -96,55 +96,55 @@ static int func_802CB140(s8 a0, u8 a1, struct WarpTransitionData *transData)
 
 static s16 func_802CB19C(s8 a0, s8 a1, struct WarpTransitionData *transData)
 {
-    float spC = transData->endCircleRadius - transData->startCircleRadius;
-    float sp8 = D_8032FF60[a0] * spC / (float)(a1 - 1);
-    float sp4 = transData->startCircleRadius + sp8;
+    f32 spC = transData->endCircleRadius - transData->startCircleRadius;
+    f32 sp8 = D_8032FF60[a0] * spC / (f32)(a1 - 1);
+    f32 sp4 = transData->startCircleRadius + sp8;
 
     return sp4 + 0.5;
 }
 
-static float func_802CB274(s8 a0, s8 a1, struct WarpTransitionData *transData)
+static f32 func_802CB274(s8 a0, s8 a1, struct WarpTransitionData *transData)
 {
-    float sp2C = transData->startCircleX;
-    float sp28 = transData->startCircleY;
-    float sp24 = transData->endCircleX;
-    float sp20 = transData->endCircleY;
-    float sp1C = sqrtf((sp2C - sp24) * (sp2C - sp24) + (sp28 - sp20) * (sp28 - sp20));
-    float sp18 = (float)D_8032FF60[a0] * sp1C / (float)(a1 - 1);
+    f32 sp2C = transData->startCircleX;
+    f32 sp28 = transData->startCircleY;
+    f32 sp24 = transData->endCircleX;
+    f32 sp20 = transData->endCircleY;
+    f32 sp1C = sqrtf((sp2C - sp24) * (sp2C - sp24) + (sp28 - sp20) * (sp28 - sp20));
+    f32 sp18 = (f32)D_8032FF60[a0] * sp1C / (f32)(a1 - 1);
 
     return sp18;
 }
 
 static u16 func_802CB384(struct WarpTransitionData *transData)
 {
-    float sp1C = transData->endCircleX - transData->startCircleX;
-    float sp18 = transData->endCircleY - transData->startCircleY;
+    f32 sp1C = transData->endCircleX - transData->startCircleX;
+    f32 sp18 = transData->endCircleY - transData->startCircleY;
 
     return atan2s(sp1C, sp18);
 }
 
-static s16 func_802CB400(struct WarpTransitionData *transData, float a1, u16 a2)
+static s16 func_802CB400(struct WarpTransitionData *transData, f32 a1, u16 a2)
 {
-    float sp4 = transData->startCircleX + coss(a2) * a1;
+    f32 sp4 = transData->startCircleX + coss(a2) * a1;
 
     return sp4 + 0.5;
 }
 
-static s16 func_802CB484(struct WarpTransitionData *transData, float a1, u16 a2)
+static s16 func_802CB484(struct WarpTransitionData *transData, f32 a1, u16 a2)
 {
-    float sp4 = transData->startCircleY + sins(a2) * a1;
+    f32 sp4 = transData->startCircleY + sins(a2) * a1;
 
     return sp4 + 0.5;
 }
 
-static void func_802CB508(Vtx *verts, int n, s8 a2, struct WarpTransitionData *transData, s16 sp62, s16 sp66, s16 sp6A, s16 sp6E, s16 sp72, s16 sp76)
+static void func_802CB508(Vtx *verts, s32 n, s8 a2, struct WarpTransitionData *transData, s16 sp62, s16 sp66, s16 sp6A, s16 sp6E, s16 sp72, s16 sp76)
 {
     u8 r = transData->red;
     u8 g = transData->green;
     u8 b = transData->blue;
     u16 sp4A = D_8032FF64[a2];
-    float sp44 = sp6A * coss(sp4A) - sp6E * sins(sp4A) + sp62;
-    float sp40 = sp6A * sins(sp4A) + sp6E * coss(sp4A) + sp66;
+    f32 sp44 = sp6A * coss(sp4A) - sp6E * sins(sp4A) + sp62;
+    f32 sp40 = sp6A * sins(sp4A) + sp6E * coss(sp4A) + sp66;
     s16 x = round_float(sp44);
     s16 y = round_float(sp40);
 
@@ -182,9 +182,9 @@ static void *D_8032FF68[] =
     seg2_texture_02011458,
 };
 
-static int func_802CB9F8(s8 spBB, s8 spBF, struct WarpTransitionData *transData, s8 spC7, s8 spCB)
+static s32 func_802CB9F8(s8 spBB, s8 spBF, struct WarpTransitionData *transData, s8 spC7, s8 spCB)
 {
-    float spB4 = func_802CB274(spBB, spBF, transData);
+    f32 spB4 = func_802CB274(spBB, spBF, transData);
     u16 spB2 = func_802CB384(transData);
     s16 spB0 = func_802CB400(transData, spB4, spB2);
     s16 spAE = func_802CB484(transData, spB4, spB2);

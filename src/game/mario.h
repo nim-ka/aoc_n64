@@ -39,7 +39,7 @@ extern s32 mario_facing_downhill(struct MarioState *, s32);
 extern u32 func_802519A8(struct MarioState *);
 extern s32 mario_floor_is_slope(struct MarioState *m);
 extern s32 func_80251BF8(struct MarioState *);
-extern float find_floor_height_relative_polar(struct MarioState *, s32, f32);
+extern f32 find_floor_height_relative_polar(struct MarioState *, s32, f32);
 extern s16 func_80251DD4(struct MarioState *, s16);
 extern void func_80251F74(struct MarioState *);
 extern void func_80252070(struct MarioState *);

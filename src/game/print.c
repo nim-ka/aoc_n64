@@ -26,22 +26,22 @@ struct TextLabel *sTextLabels[52];
 
 s16 sTextLabelsCount = 0;
 
-static int int_pow(int n, int exponent)
+static s32 int_pow(s32 n, s32 exponent)
 {
-    int result = 1;
-    int i;
+    s32 result = 1;
+    s32 i;
 
     for (i = 0; i < exponent; i++)
         result = n * result;
     return result;
 }
 
-static void format_integer(int n, int base, char *dest, int *totalLength, u8 width, s8 zeroPad)
+static void format_integer(s32 n, s32 base, char *dest, s32 *totalLength, u8 width, s8 zeroPad)
 {
     u32 powBase;
-    int numDigits = 0;
-    int i;
-    int len = 0;
+    s32 numDigits = 0;
+    s32 i;
+    s32 len = 0;
     s8 digit;
     s8 negative = FALSE;
     char pad;
@@ -109,7 +109,7 @@ static void format_integer(int n, int base, char *dest, int *totalLength, u8 wid
     *totalLength += numDigits + len;
 }
 
-static void parse_width_field(const char *str, int *srcIndex, u8 *width, s8 *zeroPad)
+static void parse_width_field(const char *str, s32 *srcIndex, u8 *width, s8 *zeroPad)
 {
     s8 digits[12];  // unknown length
     s8 digitsLen = 0;
@@ -140,14 +140,14 @@ static void parse_width_field(const char *str, int *srcIndex, u8 *width, s8 *zer
     *width = *width + digits[digitsLen - 1];
 }
 
-void print_text_fmt_int(int x, int y, const char *str, int n)
+void print_text_fmt_int(s32 x, s32 y, const char *str, s32 n)
 {
     char c = 0;
     s8 zeroPad = FALSE;
     u8 width = 0;
-    int base = 0;
-    int len = 0;
-    int srcIndex = 0;
+    s32 base = 0;
+    s32 len = 0;
+    s32 srcIndex = 0;
 
     if ((sTextLabels[sTextLabelsCount] = (struct TextLabel *)mem_pool_alloc(D_8033A124, 60)) == NULL)
         return;
@@ -183,11 +183,11 @@ void print_text_fmt_int(int x, int y, const char *str, int n)
     sTextLabelsCount++;
 }
 
-void print_text(int x, int y, const char *str)
+void print_text(s32 x, s32 y, const char *str)
 {
     char c = 0;
-    int len = 0;
-    int srcIndex = 0;
+    s32 len = 0;
+    s32 srcIndex = 0;
 
     if ((sTextLabels[sTextLabelsCount] = (struct TextLabel *)mem_pool_alloc(D_8033A124, 60)) == NULL)
         return;
@@ -207,13 +207,13 @@ void print_text(int x, int y, const char *str)
     sTextLabelsCount++;
 }
 
-void print_text_centered(int x, int y, const char *str)
+void print_text_centered(s32 x, s32 y, const char *str)
 {
     char c = 0;
     UNUSED s8 sp36 = 0;
-    UNUSED int sp30 = 0;
-    int len = 0;
-    int srcIndex = 0;
+    UNUSED s32 sp30 = 0;
+    s32 len = 0;
+    s32 srcIndex = 0;
     
     if ((sTextLabels[sTextLabelsCount] = (struct TextLabel *)mem_pool_alloc(D_8033A124, 60)) == NULL)
         return;
@@ -276,7 +276,7 @@ static void add_glyph_texture(s8 glyphIndex)
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200EC98);
 }
 
-static void func_802D5FEC(int *x, int *y)
+static void func_802D5FEC(s32 *x, s32 *y)
 {
     if (*x < 10)
         *x = 10;
@@ -289,12 +289,12 @@ static void func_802D5FEC(int *x, int *y)
         *y = 220;
 }
 
-static void func_802D605C(int x, int y, int pos)
+static void func_802D605C(s32 x, s32 y, s32 pos)
 {
-    int sp34 = x + pos * 12;
-    int sp30 = 224 - y;
-    int sp2C;
-    int sp28;
+    s32 sp34 = x + pos * 12;
+    s32 sp30 = 224 - y;
+    s32 sp2C;
+    s32 sp28;
 
     func_802D5FEC(&sp34, &sp30);
     sp2C = sp34;
@@ -304,8 +304,8 @@ static void func_802D605C(int x, int y, int pos)
 
 void func_802D61A8(void)
 {
-    int i;
-    int j;
+    s32 i;
+    s32 j;
     s8 glyphIndex;
     Mtx *mtx;
 

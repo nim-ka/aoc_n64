@@ -43,9 +43,9 @@ void make_vertex(Vtx *vtx, s32 n, s16 x, s16 y, s16 z, s16 tx, s16 ty, u8 r, u8 
     vtx[n].v.cn[3] = a;
 }
 
-s32 round_float(float f12)
+s32 round_float(f32 f12)
 {
-    //! double literals instead of float literals
+    //! double literals instead of f32 literals
     if (f12 >= 0.0)
         return (s16)(f12 + 0.5);
     else

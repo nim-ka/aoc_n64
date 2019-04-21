@@ -151,10 +151,10 @@ void bhvToadMessage_loop(void)
 
 void bhvToadMessage_init(void)
 {
-    int saveFlags = save_file_get_flags();
-    int starCount = save_file_get_total_star_count(gCurrSaveFileNum - 1, 0, 24);
-    int dialogNum = (gCurrentObject->oBehParams >> 24) & 0xFF;
-    int enoughStars = TRUE;
+    s32 saveFlags = save_file_get_flags();
+    s32 starCount = save_file_get_total_star_count(gCurrSaveFileNum - 1, 0, 24);
+    s32 dialogNum = (gCurrentObject->oBehParams >> 24) & 0xFF;
+    s32 enoughStars = TRUE;
 
     switch (dialogNum)
     {
@@ -341,7 +341,7 @@ Gfx *Geo18_80277294(s32 run, struct GraphNode *node, UNUSED Mat4 *c)
 {
     struct GraphNode12A *sp24 = (struct GraphNode12A *)node;
     struct UnknownStruct4_New *sp20 = &D_8033A040[sp24->unk18];
-    int action = sp20->action;
+    s32 action = sp20->action;
 
     if (run == TRUE)
     {
@@ -360,7 +360,7 @@ Gfx *Geo18_802773A4(s32 run, struct GraphNode *node, UNUSED Mat4 *c)
 {
     struct GraphNode12A *sp2C = (struct GraphNode12A *)node;
     struct UnknownStruct4_New *sp28 = &D_8033A040[sp2C->unk18];
-    int action = sp28->action;
+    s32 action = sp28->action;
 
     if (run == TRUE)
     {
@@ -486,7 +486,7 @@ Gfx *Geo18_80277824(s32 run, struct GraphNode *node, UNUSED Mat4 *c)
     return NULL;
 }
 
-Gfx *Geo1C_8027795C(int a, struct GraphNode *b, Mat4 *c)
+Gfx *Geo1C_8027795C(s32 a, struct GraphNode *b, Mat4 *c)
 {
     struct Struct8027795C *sp2C = (struct Struct8027795C *)b;
     Mat4 *sp28 = c;
@@ -524,7 +524,7 @@ Gfx *Geo1C_8027795C(int a, struct GraphNode *b, Mat4 *c)
 
 Gfx *Geo18_80277B14(s32 run, struct GraphNode *node, UNUSED Mat4 *c)
 {
-    float sp34;
+    f32 sp34;
     struct Object *sp30 = gMarioStates->marioObj;
 
     switch (run)
@@ -569,7 +569,7 @@ Gfx *Geo18_80277B14(s32 run, struct GraphNode *node, UNUSED Mat4 *c)
     return NULL;
 }
 
-Gfx *Geo18_80277D6C(int a, struct GraphNode *node, UNUSED Mat4 *c)
+Gfx *Geo18_80277D6C(s32 a, struct GraphNode *node, UNUSED Mat4 *c)
 {
     struct GraphNode12A *sp34 = (struct GraphNode12A *)node;
     Gfx *sp30 = NULL;

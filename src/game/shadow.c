@@ -225,7 +225,7 @@ s8 init_shadow(
     if (sp20 == 0.0) {
         s->floorTilt = 0;
     } else {
-        s->floorTilt = 90.0 - (f64) atan2_deg(sp20, s->floorNormalY);
+        s->floorTilt = 90.0 - atan2_deg(sp20, s->floorNormalY);
     }
     return 0;
 }
@@ -323,8 +323,8 @@ void calculate_vertex_xyz(
     s8 index, struct Shadow s, f32 *xPosVtx, f32 *yPosVtx, f32 *zPosVtx,
     s8 shadowVertexType
 ) {
-    f32 sp6c = cosf((f64) s.floorTilt * M_PI / 180.0) * s.shadowScale;
-    f32 sp68 = (f64) s.floorDownwardAngle * M_PI / 180.0;
+    f32 sp6c = cosf(s.floorTilt * M_PI / 180.0) * s.shadowScale;
+    f32 sp68 = s.floorDownwardAngle * M_PI / 180.0;
     f32 sp60;
     f32 sp64;
     s8 xCoordUnit;
@@ -333,8 +333,8 @@ void calculate_vertex_xyz(
 
     get_vertex_coords(index, shadowVertexType, &xCoordUnit, &zCoordUnit);
 
-    sp60 = (f64) (xCoordUnit * s.shadowScale) / 2.0;
-    sp64 = (f64) (zCoordUnit * sp6c) / 2.0;
+    sp60 = (xCoordUnit * s.shadowScale) / 2.0;
+    sp64 = (zCoordUnit * sp6c) / 2.0;
 
     *xPosVtx = (sp64 * sinf(sp68)) + (sp60 * cosf(sp68)) + s.parentX;
     *zPosVtx = (sp64 * cosf(sp68)) - (sp60 * sinf(sp68)) + s.parentZ;
@@ -390,7 +390,7 @@ void make_shadow_vertex(Vtx *vertices, s8 index, struct Shadow s, s8 shadowVerte
     // disabled by the gameshark code in this video:
     // https://www.youtube.com/watch?v=MSIh4rtNGF0.
     // The code in the video will make "extrapolate_vertex_y_position"
-    // return the same value as the last float-returning function did; in this
+    // return the same value as the last f32-returning function did; in this
     // case, that's func_803814B8, which this if-statement was designed to
     // overwrite in the first place.
     // The last condition here means the y-position calculated previously

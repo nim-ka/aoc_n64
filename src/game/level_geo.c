@@ -14,7 +14,7 @@ struct Local12AParam {
  /*0x02*/ u16 unk2;
 };
 
-Gfx *geo_exec_level(s32 run, struct GraphNode *node, float c[4][4])
+Gfx *geo_exec_level(s32 run, struct GraphNode *node, f32 c[4][4])
 {
     Vec3s sp50;
     Vec3s sp48;
@@ -29,8 +29,8 @@ Gfx *geo_exec_level(s32 run, struct GraphNode *node, float c[4][4])
 
         if (params->unk0 != gAreaUpdateCounter)
         {
-            UNUSED int sp2C = D_8032CF9C->unk18;
-            int sp28 = params->unk2;
+            UNUSED s32 sp2C = D_8032CF9C->unk18;
+            s32 sp28 = params->unk2;
 
             vec3f_to_vec3s(sp40, D_8032CF9C->unk28);
             vec3f_to_vec3s(sp48, D_8032CF9C->unk1C);

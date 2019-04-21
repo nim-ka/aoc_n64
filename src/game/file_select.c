@@ -82,11 +82,11 @@ void beh_yellow_background_menu_loop(void)
 }
 
 // Test if a button was clicked
-static int button_clicked_test(s16 x, s16 y, float depth) // depth = 200.0 for main menu, 22.0 for submenus.
+static s32 button_clicked_test(s16 x, s16 y, f32 depth) // depth = 200.0 for main menu, 22.0 for submenus.
 {
-    float a = 52.4213;
-    float newX = ((float)x * 160.0) / (a * depth);
-    float newY = ((float)y * 120.0) / (a * 3.0f / 4.0f * depth);
+    f32 a = 52.4213;
+    f32 newX = ((f32)x * 160.0) / (a * depth);
+    f32 newY = ((f32)y * 120.0) / (a * 3.0f / 4.0f * depth);
     s16 maxX = newX + 25.0f;
     s16 minX = newX - 25.0f;
     s16 maxY = newY + 21.0f;
@@ -352,7 +352,7 @@ static void score_menu_check_clicked_buttons(struct Object *scoreButton)
 {
     if (scoreButton->oMenuButtonState == MENU_BUTTON_STATE_FULLSCREEN)
     {
-        int buttonId;
+        s32 buttonId;
 
         for (buttonId = 7; buttonId < 14; buttonId++)
         {
@@ -450,7 +450,7 @@ static void copy_menu_create_buttons(struct Object * copyButton)
     sMainMenuButtons[MENU_BUTTON_COPY_ERASE_FILE]->oMenuButtonScale = 0.11111111f;
 }
 
-static void CopyMenuCopyFile(struct Object *copyButton, int copyFileButtonId)
+static void CopyMenuCopyFile(struct Object *copyButton, s32 copyFileButtonId)
 {
     switch (copyButton->oMenuButtonActionPhase)
     {
@@ -513,7 +513,7 @@ static void copy_menu_check_clicked_buttons(struct Object *copyButton)
 {
     if (copyButton->oMenuButtonState == MENU_BUTTON_STATE_FULLSCREEN)
     {
-        int buttonId;
+        s32 buttonId;
 
         for (buttonId = 14; buttonId < 21; buttonId++)
         {
@@ -600,7 +600,7 @@ static void erase_menu_create_buttons(struct Object *eraseButton)
     sMainMenuButtons[MENU_BUTTON_ERASE_COPY_FILE]->oMenuButtonScale = 0.11111111f;
 }
 
-static void erase_menu_erase_file(struct Object *eraseButton, int eraseFileButtonId)
+static void erase_menu_erase_file(struct Object *eraseButton, s32 eraseFileButtonId)
 {
     switch (eraseButton->oMenuButtonActionPhase)
     {
@@ -641,7 +641,7 @@ static void erase_menu_check_clicked_buttons(struct Object *eraseButton)
 {
     if (eraseButton->oMenuButtonState == MENU_BUTTON_STATE_FULLSCREEN)
     {
-        int buttonId;
+        s32 buttonId;
 
         for (buttonId = 21; buttonId < 28; buttonId++)
         {
@@ -702,7 +702,7 @@ static void sound_mode_menu_check_clicked_buttons(struct Object *soundModeButton
 {
     if (soundModeButton->oMenuButtonState == MENU_BUTTON_STATE_FULLSCREEN)
     {
-        int buttonId;
+        s32 buttonId;
 
         for (buttonId = 29; buttonId < 32; buttonId++)
         {
@@ -732,7 +732,7 @@ static void sound_mode_menu_check_clicked_buttons(struct Object *soundModeButton
     }
 }
 
-static void main_menu_file_selected(struct Object *fileButton, int fileNum)
+static void main_menu_file_selected(struct Object *fileButton, s32 fileNum)
 {
     if (fileButton->oMenuButtonState == MENU_BUTTON_STATE_FULLSCREEN)
         D_801A7C0C = fileNum;
@@ -740,7 +740,7 @@ static void main_menu_file_selected(struct Object *fileButton, int fileNum)
 
 static void return_to_main_menu(s16 prevMenuButtonId, struct Object *sourceButton)
 {
-    int buttonID;
+    s32 buttonID;
 
     if (sourceButton->oMenuButtonState == MENU_BUTTON_STATE_DEFAULT && sMainMenuButtons[prevMenuButtonId]->oMenuButtonState == MENU_BUTTON_STATE_FULLSCREEN)
     {
@@ -777,7 +777,7 @@ static void return_to_main_menu(s16 prevMenuButtonId, struct Object *sourceButto
 
 static void score_menu_init_from_submenu(s16 prevMenuButtonId, struct Object *sourceButton)
 {
-    int buttonID;
+    s32 buttonID;
 
     if (sourceButton->oMenuButtonState == MENU_BUTTON_STATE_DEFAULT && sMainMenuButtons[prevMenuButtonId]->oMenuButtonState == MENU_BUTTON_STATE_FULLSCREEN)
     {
@@ -812,7 +812,7 @@ static void score_menu_init_from_submenu(s16 prevMenuButtonId, struct Object *so
 
 static void copy_menu_init_from_submenu(s16 prevMenuButtonId, struct Object *sourceButton)
 {
-    int buttonID;
+    s32 buttonID;
 
     if (sourceButton->oMenuButtonState == MENU_BUTTON_STATE_DEFAULT && sMainMenuButtons[prevMenuButtonId]->oMenuButtonState == MENU_BUTTON_STATE_FULLSCREEN)
     {
@@ -847,7 +847,7 @@ static void copy_menu_init_from_submenu(s16 prevMenuButtonId, struct Object *sou
 
 static void erase_menu_init_from_submenu(s16 prevMenuButtonId, struct Object *sourceButton)
 {
-    int buttonID;
+    s32 buttonID;
 
     if (sourceButton->oMenuButtonState == MENU_BUTTON_STATE_DEFAULT && sMainMenuButtons[prevMenuButtonId]->oMenuButtonState == MENU_BUTTON_STATE_FULLSCREEN)
     {
@@ -1205,7 +1205,7 @@ static void menu_print_generic_text(s16 x, s16 y, const unsigned char *text)
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
 }
 
-static int update_text_fade_out(void)
+static s32 update_text_fade_out(void)
 {
     if (sFadeOutText == 1)
     {
@@ -1679,7 +1679,7 @@ static void draw_erase_menu(void)
 
 static void draw_sound_mode_menu(void)
 {
-    int mode;
+    s32 mode;
 #ifndef VERSION_JP
     s16 textX;
 #endif
@@ -1894,8 +1894,8 @@ static void draw_file_scores(s8 fileNum)
 
 static void draw_current_menu(void)
 {
-    UNUSED int unused1;
-    UNUSED int unused2;
+    UNUSED s32 unused1;
+    UNUSED s32 unused2;
 
     dl_add_new_ortho_matrix();
     switch (sSelectedButtonID)
@@ -1952,7 +1952,7 @@ Gfx *Geo18_80176688(s32 run, UNUSED struct GraphNode *node, UNUSED f32 mtx[4][4]
     return NULL;
 }
 // Returning to file select screen after game overing
-void LevelProc_801766DC(UNUSED int a, UNUSED int b)
+void LevelProc_801766DC(UNUSED s32 a, UNUSED s32 b)
 {
     sSelectedButtonID = MENU_BUTTON_NONE;
     sCurrentMenuLevel = MENU_LAYER_MAIN;
@@ -1990,7 +1990,7 @@ void LevelProc_801766DC(UNUSED int a, UNUSED int b)
     sSoundMode = save_file_get_sound_mode();
 }
 
-int LevelProc_801768A0(UNUSED int a, UNUSED int b)
+int LevelProc_801768A0(UNUSED s32 a, UNUSED s32 b)
 {
     area_update_objects();
     return D_801A7C0C;

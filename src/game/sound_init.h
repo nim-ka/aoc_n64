@@ -35,7 +35,7 @@ extern void func_8024931C(void);
 extern void func_80249368(u16);
 extern void func_802493D4(void);
 extern void func_80249418(void);
-extern void func_80249464(int, void *);
+extern void func_80249464(s32, void *);
 extern void func_802494A8(void);
 extern void thread4_sound(void *);
 

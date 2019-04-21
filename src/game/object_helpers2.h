@@ -86,7 +86,7 @@ s32 obj_check_interacted(void);
 void obj_spawn_loot_blue_coin(void);
 
 #ifdef VERSION_US
-void obj_spawn_star_at_y_offset(float f12, float f14, float a2, float a3);
+void obj_spawn_star_at_y_offset(f32 f12, f32 f14, f32 a2, f32 a3);
 #endif
 
 #endif /* OBJECT_HELPERS2_H */

@@ -93,7 +93,7 @@ void adjust_analog_stick(struct Controller *controller)
     controller->stickX = 0;
     controller->stickY = 0;
 
-    // modulate the rawStickX and rawStickY to be the new float values by adding/subtracting 6.
+    // modulate the rawStickX and rawStickY to be the new f32 values by adding/subtracting 6.
     if(controller->rawStickX <= -8)
         controller->stickX = controller->rawStickX + 6;
 
@@ -106,7 +106,7 @@ void adjust_analog_stick(struct Controller *controller)
     if(controller->rawStickY >=  8)
         controller->stickY = controller->rawStickY - 6;
 
-    // calculate float magnitude from the center by vector length.
+    // calculate f32 magnitude from the center by vector length.
     controller->stickMag = sqrtf(controller->stickX * controller->stickX 
                                + controller->stickY * controller->stickY);
 
@@ -193,7 +193,7 @@ void run_demo_inputs(void)
 // update the controller struct with available inputs if present.
 void read_controller_inputs(void)
 {
-    int i;
+    s32 i;
 
     // if any controllers are plugged in, update the
     // controller information.
@@ -345,6 +345,6 @@ void thread5_game_loop(UNUSED void *arg)
         if(gShowDebugText)
             // subtract the end of the gfx pool with the display list to obtain the
             // amount of free space remaining.
-            print_text_fmt_int(180, 20, "BUF %d", (int)gGfxPoolEnd - (int)gDisplayListHead);
+            print_text_fmt_int(180, 20, "BUF %d", (s32)gGfxPoolEnd - (s32)gDisplayListHead);
     }
 }

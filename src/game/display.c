@@ -85,7 +85,7 @@ void display_frame_buffer(void)
 }
 
 /** Clears the framebuffer, allowing it to be overwritten. */
-void clear_frame_buffer(int a)
+void clear_frame_buffer(s32 a)
 {
     gDPPipeSync(gDisplayListHead++);
 
@@ -101,7 +101,7 @@ void clear_frame_buffer(int a)
 }
 
 /** Clears and initializes the viewport. */
-void clear_viewport(Vp *viewport, int b)
+void clear_viewport(Vp *viewport, s32 b)
 {
     s16 vpUlx = (viewport->vp.vtrans[0] - viewport->vp.vscale[0]) / 4 + 1;
     s16 vpUly = (viewport->vp.vtrans[1] - viewport->vp.vscale[1]) / 4 + 1;
@@ -156,7 +156,7 @@ void make_viewport_clip_rect(Vp *viewport)
  */
 static void create_task_structure(void)
 {
-    int entries = gDisplayListHead - gGfxPool->buffer;
+    s32 entries = gDisplayListHead - gGfxPool->buffer;
 
     gGfxSPTask->msgqueue = &D_80339CB8;
     gGfxSPTask->msg = (OSMesg *)2;
@@ -203,9 +203,9 @@ void end_master_display_list(void)
 
 void func_80247D84(void)
 {
-    int sp24;
-    int sp20;
-    int fbNum;
+    s32 sp24;
+    s32 sp20;
+    s32 fbNum;
     u64 *sp18;
 
     if (gResetTimer != 0 && D_8032C648 < 15)

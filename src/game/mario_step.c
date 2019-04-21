@@ -451,7 +451,7 @@ static u32 perform_air_quarter_step(
         floor->originOffset = floorHeight; //! Incorrect origin offset (no effect)
     }
 
-    //! This check uses float, but findFloor uses short (overflow jumps)
+    //! This check uses f32, but findFloor uses short (overflow jumps)
     if (nextPos[1] <= floorHeight)
     {
         if (ceilHeight - floorHeight > 160.0f)

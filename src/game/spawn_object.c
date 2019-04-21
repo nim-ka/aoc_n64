@@ -31,10 +31,10 @@ static void unused_init_free_list(
     struct LinkedList *usedList,
     struct LinkedList **pFreeList,
     struct LinkedList *pool,
-    int itemSize,
-    int poolLength)
+    s32 itemSize,
+    s32 poolLength)
 {
-    int i;
+    s32 i;
     struct LinkedList *node = pool;
 
     usedList->next = usedList;
@@ -151,8 +151,8 @@ static void deallocate_object(struct ObjectNode *freeList, struct ObjectNode *ob
  */
 void init_free_object_list(void)
 {
-    int i;
-    int poolLength = OBJECT_POOL_CAPACITY;
+    s32 i;
+    s32 poolLength = OBJECT_POOL_CAPACITY;
 
     // Add the first object in the pool to the free list
     struct Object *obj = &gObjectPool[0];
@@ -174,7 +174,7 @@ void init_free_object_list(void)
  */
 void clear_object_lists(struct ObjectNode *objLists)
 {
-    int i;
+    s32 i;
 
     for (i = 0; i < NUM_OBJ_LISTS; i++)
     {
@@ -237,7 +237,7 @@ void unload_object(struct Object *obj)
  */
 static struct Object *allocate_object(struct ObjectNode *objList)
 {
-    int i;
+    s32 i;
     struct Object *obj = try_allocate_object(objList, &gFreeObjectList);
 
     // The object list is full if the newly created pointer is NULL.

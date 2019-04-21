@@ -111,7 +111,7 @@ void ActionMrI3(void)
         sp30 = (o->oTimer - 63)/32.0f;
         o->oMoveAngleYaw += sp34 * coss(0x4000 * sp2C);
         o->oMoveAnglePitch = (1.0 - coss(0x4000 * sp2C)) * - 0x4000;
-        obj_shake_y((s32)((1.0f - sp30) * 4)); // trucating the float?
+        obj_shake_y((s32)((1.0f - sp30) * 4)); // trucating the f32?
         sp20 = coss(0x4000 * sp30) * 0.4 + 0.6;
         obj_scale(sp20*sp1C);
     }

@@ -248,7 +248,7 @@ void geo_layout_cmd_node_cam_frustum(void)
         gGeoLayoutCommand += 0x04;
     }
 
-    graphNode = init_graph_node_cam_frustum(gGraphNodePool, NULL, (float)fov, near, far, frustumFunc, 0);
+    graphNode = init_graph_node_cam_frustum(gGraphNodePool, NULL, (f32)fov, near, far, frustumFunc, 0);
 
     register_scene_graph_node(&graphNode->fnNode.node);
 

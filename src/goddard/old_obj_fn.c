@@ -217,7 +217,7 @@ void reset_gadget(struct ObjGadget *gdgt)
     struct ObjValPtrs *vp;
 
     if (gdgt->unk3C - gdgt->unk38 == 0.0f)
-        fatal_printf("gadget has zero range (%f -> %f)\n", (f64) gdgt->unk38, (f64) gdgt->unk3C);
+        fatal_printf("gadget has zero range (%f -> %f)\n", gdgt->unk38, gdgt->unk3C);
 
     sp34 = (f32) (1.0 / (gdgt->unk3C - gdgt->unk38));
 

@@ -80,7 +80,7 @@ extern void bhvMenuButton_loop(void);
 extern void bhvMenuButtonManager_init(void);
 extern void bhvMenuButtonManager_loop(void);
 extern Gfx *Geo18_80176688(s32 run, UNUSED struct GraphNode *node, UNUSED f32 mtx[4][4]);
-extern void LevelProc_801766DC(UNUSED int a, UNUSED int b);
-extern int LevelProc_801768A0(UNUSED int a, UNUSED int b);
+extern void LevelProc_801766DC(UNUSED s32 a, UNUSED s32 b);
+extern s32 LevelProc_801768A0(UNUSED s32 a, UNUSED s32 b);
 
 #endif /* _FILE_SELECT_H */

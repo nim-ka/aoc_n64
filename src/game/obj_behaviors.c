@@ -155,7 +155,7 @@ s32 ObjFindWall(f32 objNewX, f32 objY, f32 objNewZ, f32 objVelX, f32 objVelZ)
 
 s32 TurnObjAwayFromAwkwardFloor(struct Surface* objFloor, f32 floorY, f32 objVelX, f32 objVelZ)
 {
-    float floor_nX, floor_nY, floor_nZ, objVelXCopy, objVelZCopy, objYawX, objYawZ;
+    f32 floor_nX, floor_nY, floor_nZ, objVelXCopy, objVelZCopy, objYawX, objYawZ;
     
     if (objFloor == NULL)
     {
@@ -232,13 +232,13 @@ void CalcNewObjVelAndPosY(struct Surface* objFloor, f32 objFloorY, f32 objVelX, 
     f32 objFriction;
     
     o->oVelY -= o->oGravity;
-    if ((f64)o->oVelY > 75.0) o->oVelY = 75.0;
-    if ((f64)o->oVelY < -75.0) o->oVelY = -75.0;
+    if (o->oVelY > 75.0) o->oVelY = 75.0;
+    if (o->oVelY < -75.0) o->oVelY = -75.0;
     
     o->oPosY += o->oVelY;
     if (o->oPosY < objFloorY) {
         o->oPosY = objFloorY;
-        if ((f64)o->oVelY < -17.5)
+        if (o->oVelY < -17.5)
             o->oVelY = -(o->oVelY / 2.0f);
         else o->oVelY = 0;
     }
@@ -285,12 +285,12 @@ void CalcNewObjVelAndPosYUnderwater(struct Surface* objFloor, f32 floorY, f32 ob
     if (o->oPosY < floorY)
     {
         o->oPosY = floorY;
-        if ((f64)o->oVelY < -17.5)
+        if (o->oVelY < -17.5)
             o->oVelY = -(o->oVelY / 2.0f);
         else o->oVelY = 0;
     }
     
-    if ((f64)o->oForwardVel > 12.5 && (waterY + 30.0f) > o->oPosY && waterY - 30.0f < o->oPosY)
+    if (o->oForwardVel > 12.5 && (waterY + 30.0f) > o->oPosY && waterY - 30.0f < o->oPosY)
         o->oVelY = -o->oVelY;
     
     if ((s32)o->oPosY >= (s32)floorY && (s32)o->oPosY < (s32)floorY + 37)
@@ -303,7 +303,7 @@ void CalcNewObjVelAndPosYUnderwater(struct Surface* objFloor, f32 floorY, f32 ob
     if (objVelX < 0.000001 && objVelX > -0.000001) objVelX = 0;
     if (objVelZ < 0.000001 && objVelZ > -0.000001) objVelZ = 0;
     
-    if ((f64)o->oVelY < 0.000001 && (f64)o->oVelY > -0.000001) o->oVelY = 0;
+    if (o->oVelY < 0.000001 && o->oVelY > -0.000001) o->oVelY = 0;
     
     if (objVelX != 0 || objVelZ != 0) o->oMoveAngleYaw = atan2s(objVelZ, objVelX);
     o->oForwardVel = sqrtf(objVelX * objVelX + objVelZ * objVelZ) * 0.8;

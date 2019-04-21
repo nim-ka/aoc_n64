@@ -235,7 +235,7 @@ void func_80194880(f32 a0, f32 *a1, f32 *a2)
 }
 
 /* 24315C -> 243224 */
-void Unknown8019498C(Mat4 *a0, int row, f32 a2)
+void Unknown8019498C(Mat4 *a0, s32 row, f32 a2)
 {
     Mat4 sp28;
     struct MyVec3f vec;
@@ -331,8 +331,8 @@ f32 dot_product_vec3f(struct MyVec3f *a, struct MyVec3f *b)
 /* 2435CC -> 24364C */
 void Unknown80194DFC(Mat4 *src, Mat4 *dst)
 {
-    int i;
-    int j;
+    s32 i;
+    s32 j;
 
     for (i = 0; i < 4; i++)
     {
@@ -349,8 +349,8 @@ void Unknown80194DFC(Mat4 *src, Mat4 *dst)
 /* 24364C -> 243760; orig name: func_80194E7C */
 void inverse_mat4(Mat4 *src, Mat4 *dst)
 {
-    int i;
-    int j;
+    s32 i;
+    s32 j;
     f32 determinant;
 
     func_80194F90(src, dst);
@@ -582,7 +582,7 @@ f32 func_8019590C(f32 a, f32 b, f32 c, f32 d)
 /* 244120 -> 2441B0 */
 void Unknown80195950(Mat4 *mtx, struct MyVec3f *vec, f32 x, f32 y, f32 z)
 {
-    int i;
+    s32 i;
 
     vec->x = -x;
     vec->y = -y;
@@ -627,7 +627,7 @@ void Unknown801959E0(f32 *a0, struct MyVec3f *vec, f32 a2, s32 a3, s32 sp38)
 }
 
 /* 2442D4 -> 244448 */
-void Unknown80195B04(f32 *a0, UNUSED int a1, f32 a2, f32 a3, s32 sp28, s32 sp2C)
+void Unknown80195B04(f32 *a0, UNUSED s32 a1, f32 a2, f32 a3, s32 sp28, s32 sp2C)
 {
     s32 sp14;
     s32 sp10;
@@ -649,8 +649,8 @@ void Unknown80195B04(f32 *a0, UNUSED int a1, f32 a2, f32 a3, s32 sp28, s32 sp2C)
 /* 244448 -> 244568 */
 void func_80195C78(Mat4 *mtx)
 {
-    int i;       // 14
-    int j;       // 10
+    s32 i;       // 14
+    s32 j;       // 10
     f32 temp[3]; // 04
 
     for (i = 0; i < 3; i++)
@@ -677,12 +677,12 @@ void func_80195C78(Mat4 *mtx)
 }
 
 /* 244568 -> 2447A4 */
-void Unknown80195D98(f32 *a0, UNUSED int a1, Mat4 *mtx)
+void Unknown80195D98(f32 *a0, UNUSED s32 a1, Mat4 *mtx)
 {
     f32 sp3C;
     f32 sp38;
     f32 temp[4]; // 28
-    int i;       // 24
+    s32 i;       // 24
     s32 sp20;    // row?
     s32 sp1C;
 
@@ -886,8 +886,8 @@ void gd_print_plane(UNUSED const char *prefix, UNUSED const struct GdPlaneF *p)
 /* 245794 -> 245838 */
 void gd_print_mtx(UNUSED const char *prefix, const Mat4 *mtx)
 {
-    int i; // 1c
-    int j; // 18
+    s32 i; // 1c
+    s32 j; // 18
 
     for (i = 0; i < 4; i++)
     {
@@ -902,7 +902,7 @@ void gd_print_mtx(UNUSED const char *prefix, const Mat4 *mtx)
 /* 245838 -> 2458C0 */
 void Unknown80197068(const char *prefix, const f32 *f)
 {
-    int i; // 1c
+    s32 i; // 1c
 
     gd_printf(prefix);
     for (i = 0; i < 4; i++)
@@ -913,7 +913,7 @@ void Unknown80197068(const char *prefix, const f32 *f)
 }
 
 /* 2458C0 -> 245A48 */
-void Unknown801970F0(Mat4 *dst, f32 x, f32 y, f32 z, int copy)
+void Unknown801970F0(Mat4 *dst, f32 x, f32 y, f32 z, s32 copy)
 {
     f32 sp74 = 100.0f;
     Mat4 sp34;

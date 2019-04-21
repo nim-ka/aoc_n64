@@ -38,7 +38,7 @@ void HootFloorBounce(void)
     
     floorY = HootFindNextFloor(&sp1c, 0);
     if (floorY + 125.0f > o->oPosY) o->oPosY = floorY + 125.0f;
-    if ((f64)o->oMoveAnglePitch < -21845.3328) o->oMoveAnglePitch = -21845;
+    if (o->oMoveAnglePitch < -21845.3328) o->oMoveAnglePitch = -21845;
 }
 
 //sp30 = fastOscY

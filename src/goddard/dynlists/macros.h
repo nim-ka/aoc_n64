@@ -64,7 +64,7 @@
 #define SetFriction(x, y, z) \
     { 10, {0}, {0}, {(x), (y), (z)} }
 
-/* Set the spring float of a Bone */
+/* Set the spring f32 of a Bone */
 /* Supported Objs: bones */
 #define SetSpring(x) \
     { 11, {0}, {0}, {(x), 0.0, 0.0} }
@@ -73,7 +73,7 @@
 #define JumpToList(w1) \
     { 12, {(void *)(w1)}, {0}, {0.0, 0.0, 0.0} }
 
-/* Store either the enumerated "colour" number in an object, or the RGB float values the number refers to */
+/* Store either the enumerated "colour" number in an object, or the RGB f32 values the number refers to */
 /* Supported Objs: joints, particles, nets, faces, gadgets */
 #define SetColourNum(w2) \
     { 13, {0}, {(void *)(w2)}, {0.0, 0.0, 0.0} }
@@ -215,7 +215,7 @@
 #define CopyStrToIdBuf(w1) \
     { 43, {(void *)(w1)}, {0}, {0.0, 0.0, 0.0} }
 
-/* Set float paramter PARAM to VALUE. TODO: Ennumerate parameters */
+/* Set f32 paramter PARAM to VALUE. TODO: Ennumerate parameters */
 /* Supported Objs: shapes, vertices, gadgets */
 #define SetParamF(w2, x) \
     { 44, {0}, {(void *)(w2)}, {(x), 0.0, 0.0} }

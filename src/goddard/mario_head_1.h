@@ -67,7 +67,7 @@ extern struct ObjAnimator* make_animator(void);
 extern struct ObjWeight* make_weight(UNUSED s32, s32, struct ObjVertex*, f32);
 extern struct ObjGroup* make_group_of_type(enum ObjTypeFlag, struct GdObj*, struct GdObj*);
 extern void sprint_obj_id(char*, struct GdObj*);
-extern struct ObjGroup* make_group(int count, ...);
+extern struct ObjGroup* make_group(s32 count, ...);
 extern void addto_group(struct ObjGroup*, struct GdObj*);
 extern void addto_groupfirst(struct ObjGroup*, struct GdObj*);
 extern s32 group_contains_obj(struct ObjGroup*, struct GdObj*);
