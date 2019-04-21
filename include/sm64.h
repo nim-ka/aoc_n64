@@ -12,6 +12,7 @@
 #include "audio_defines.h"
 #include "model_ids.h"
 #include "mario_animation_ids.h"
+#include "mario_geo_switch_case_ids.h"
 #include "unused.h"
 
 #define ARRAY_COUNT(arr) (s32)(sizeof(arr) / sizeof(arr[0]))

@@ -521,7 +521,7 @@ static s32 act_triple_jump(struct MarioState *m)
 #else
     func_80251410(m, SOUND_TERRAIN_1, SOUND_MARIO_YAHOO);
 #endif
-    
+
     common_air_action_step(m, ACT_TRIPLE_JUMP_LAND, 0x00C1, 0);
     play_flip_sounds(m, 2, 8, 20);
     return FALSE;
@@ -822,7 +822,7 @@ static s32 act_water_jump(struct MarioState *m)
         mario_set_forward_vel(m, 15.0f);
 
     func_80251410(m, SOUND_ACTION_UNKNOWN432, 0);
-    func_802507E8(m, M_ANIM_SINGLE_JUMP);
+    func_802507E8(m, MARIO_ANIM_SINGLE_JUMP);
 
     switch (perform_air_step(m, AIR_STEP_CHECK_LEDGE_GRAB))
     {
@@ -837,7 +837,7 @@ static s32 act_water_jump(struct MarioState *m)
 
     case AIR_STEP_GRABBED_LEDGE:
 #if VERSION_US
-        func_802507E8(m, M_ANIM_IDLE_ON_LEDGE);
+        func_802507E8(m, MARIO_ANIM_IDLE_ON_LEDGE);
 #endif
         set_mario_action(m, ACT_LEDGE_GRAB, 0);
         func_80285BD8(m->area->camera, m->area->camera->unk1, 1);
@@ -1220,10 +1220,10 @@ static s32 act_thrown_backward(struct MarioState *m)
         landAction = ACT_BACKWARD_GROUND_KB;
 
     func_80250F50(m, SOUND_MARIO_WAAAOOOW, MARIO_UNKNOWN_17);
-    
+
     common_air_knockback_step(
         m, landAction, ACT_HARD_BACKWARD_GROUND_KB, 0x0002, m->forwardVel);
-    
+
     m->forwardVel *= 0.98f;
     return FALSE;
 }
@@ -1239,7 +1239,7 @@ static s32 act_thrown_forward(struct MarioState *m)
         landAction = ACT_FORWARD_GROUND_KB;
 
     func_80250F50(m, SOUND_MARIO_WAAAOOOW, MARIO_UNKNOWN_17);
-    
+
     if (common_air_knockback_step(
             m, landAction, ACT_HARD_FORWARD_GROUND_KB, 0x002D, m->forwardVel) == AIR_STEP_NONE)
     {
@@ -1249,7 +1249,7 @@ static s32 act_thrown_forward(struct MarioState *m)
 
         m->marioObj->header.gfx.angle[0] = pitch + 0x1800;
     }
-    
+
     m->forwardVel *= 0.98f;
     return FALSE;
 }
@@ -1726,7 +1726,7 @@ static s32 act_shot_from_cannon(struct MarioState *m)
 
     if ((m->flags & MARIO_WING_CAP) && m->vel[1] < 0.0f)
         set_mario_action(m, ACT_FLYING, 0);
-    
+
     if ((m->forwardVel -= 0.05) < 10.0f)
         mario_set_forward_vel(m, 10.0f);
 
@@ -1916,7 +1916,7 @@ static s32 act_flying_triple_jump(struct MarioState *m)
 
         if (m->marioObj->header.gfx.unk38.animFrame == 7)
             SetSound(SOUND_ACTION_SWISH2, m->marioObj->header.gfx.cameraToObject);
-    
+
         if (func_802507AC(m))
         {
             func_802507E8(m, 0x006F);
@@ -1931,10 +1931,10 @@ static s32 act_flying_triple_jump(struct MarioState *m)
     {
         if (m->area->camera->preset != CAMERA_PRESET_SECRET_AQUARIUM)
             func_80285BD8(m->area->camera, 3, 1);
-        
+
         if (m->forwardVel < 32.0f)
             mario_set_forward_vel(m, 32.0f);
-        
+
         set_mario_action(m, ACT_FLYING, 1);
     }
 
