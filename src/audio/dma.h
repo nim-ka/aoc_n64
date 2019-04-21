@@ -40,7 +40,7 @@ struct SubEntryAndF32
 struct SubA
 {
     u8 unk0;
-    u8 pad;
+    u8 unk1;
     u8 unk2;
     struct SubEntryAndF32 unk4;
     struct SubstructInstrumentSomething *unkC; // points into mem
@@ -49,8 +49,9 @@ struct SubA
 struct InstrumentSomething
 {
     u8 unk0;
-    u8 pad[2];
-    u8 unk3; // might be the lower half of a u16, if the first part of this is a Substruct80225DD8
+    u8 unk1;
+    u8 unk2;
+    u8 unk3;
     struct SubstructInstrumentSomething *unk4;
     struct SubEntryAndF32 unk8;
     struct SubEntryAndF32 unk10;

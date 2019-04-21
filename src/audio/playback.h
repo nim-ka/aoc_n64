@@ -24,7 +24,7 @@ struct PlaybackListItem
         s32 count;
     } u;
     struct PlaybackListItem *unkC;
-};
+}; // size = 0x10
 
 struct struct8031A078 {
     u8 unk00;
@@ -80,7 +80,7 @@ struct Struct80222A18
     /*0x01C*/ f32 unk1C; // set to 0.0f
     /*0x020*/ f32 unk20; // set to 0.0f
     /*0x024*/ f32 unk24; // set to 0.5f
-    /*     */ u8 pad3[4];
+    /*     */ u8 pad[4];
     /*0x02C*/ struct Struct80225DD8 *unk2C[16];
     /*0x06C*/ struct Interface1Buffer unk6C;
     /*0x088*/ u8 *unk88; // set to &D_80332A84, some sort of curve
@@ -156,17 +156,19 @@ struct SubStruct_func_80318870
     u8 unk0b10 : 1;
     u8 unk1;
     u8 unk2; // set to 0x80
+    u8 unk3;
     struct struct8031A078 unk4;
     struct Substruct80225DD8 unk14;
     u16 unk1C;
-    u16 unk1E;
+    s16 unk1E;
     f32 unk20;
     f32 unk24;
     f32 unk28;
     f32 unk2C;
     f32 unk30;
     f32 unk34;
-    u8 pad5[4];
+    s16 unk38;
+    s16 unk3A;
     s16 unk3C;
     s16 unk3E;
     s16 unk40;
@@ -232,7 +234,7 @@ struct Struct_func_80318870
     u8 unk6;
     u8 unk7;
     s16 unk8;
-    u8 pad1[0x2];
+    u8 pad1[2];
     u16 unkC;
     u16 unkE;
     u16 unk10;
@@ -260,7 +262,7 @@ struct Struct_func_80318870
     s16 unkA0;
     s16 unkA2;
     struct PlaybackListItem unkA4; // item, not head
-    u8 pad10[0x0c];
+    u8 pad2[0xc];
 }; // size = 0xC0
 
 //this is probably just an array with a bunch of indexes

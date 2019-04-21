@@ -348,8 +348,566 @@ u16 func_8031B060(struct Interface1Buffer *arg0)
     return ret;
 }
 
-// TODO: come up with a NON_MATCHING version of this.
-#ifdef VERSION_JP
+#ifdef NON_MATCHING
+
+void func_8031B0A4(struct SubStruct_func_80318870 *arg0)
+{
+    struct Struct80222A18 *sp5C; // t4
+    struct Struct80225DD8 *sp58; // t5
+    struct Interface1Buffer *buf; // v0
+    struct Substruct80225DD8 *temp_v0_11;
+    struct struct8031A078 *temp_v0_22;
+    struct InstrumentSomething **temp_a1_3;
+    struct InstrumentSomething *phi_a0;
+    struct SubEntryAndF32 *phi_v0_5;
+    struct SubEntryAndF32 *phi_v0_6;
+    struct InstrumentSomething *phi_v1_2;
+    struct SubA *subA;
+    u8 sp3F;
+    u8 instr; // a0
+    u8 sp3D; // t0
+    u8 loBits;
+    u16 sp3A; // t2, a0, a1
+    s32 sp30; // t3
+    f32 sp28; // f0
+    f32 sp24;
+    u8 temp8;
+    u8 *old;
+    u8 *old2;
+    u8 temp_v0_20;
+    u8 phi_a1_3;
+    f32 temp_f12;
+    f32 temp_f2;
+    s32 temp_a0_5;
+    u8 temp_t0;
+    s32 temp_t1;
+    s32 temp_t1_2;
+    u8 temp_a0_6;
+    u8 temp_t7_4;
+    s32 temp_a3;
+    u8 phi_v0_2;
+    s32 phi_v1;
+    f32 phi_f0;
+
+    sp3F = 1;
+    if (arg0->unk0b80 == 0)
+    {
+        return;
+    }
+
+    if (arg0->unk3C >= 2)
+    {
+        arg0->unk3C--;
+        if (!arg0->unk0b20 && arg0->unk3E >= arg0->unk3C)
+        {
+            func_80318EC4(arg0);
+            arg0->unk0b20 = 1;
+        }
+        return;
+    }
+
+    if (!arg0->unk0b10)
+    {
+        func_80318EC4(arg0);
+    }
+
+    if ((arg0->unk4.unk00 & ~0x80) == 1 || (arg0->unk4.unk00 & ~0x80) == 2)
+    {
+        arg0->unk4.unk00 = 0;
+    }
+
+    sp58 = arg0->unk50;
+    sp5C = sp58->unk40;
+
+    for (;;)
+    {
+        // (Moving buf outside the loop improves initial regalloc, but is wrong)
+        buf = &arg0->unk54;
+        old2 = buf->unk0++;
+        instr = *old2;
+        if (instr <= 0xc0)
+        {
+            break;
+        }
+
+        switch (instr)
+        {
+        case 0xff:
+            if (buf->unk18 == 0)
+            {
+                func_8031AA10(arg0);
+                return;
+            }
+            buf->unk18--,
+            buf->unk0 = buf->unk4[buf->unk18];
+            break;
+
+        case 0xfc:
+            // Something is wrong with the codegen here... It almost looks like
+            // it's inlining func_8031B030, but it lacks a s16 cast.
+            sp3A = *(buf->unk0++) << 8;
+            sp3A = *(buf->unk0++) | sp3A;
+            buf->unk18++;
+            buf->unk4[buf->unk18 - 1] = buf->unk0;
+            buf->unk0 = sp5C->unk14 + sp3A;
+            break;
+
+        case 0xf8:
+            old = buf->unk0++;
+            buf->unk14[buf->unk18] = *old;
+            buf->unk18++;
+            buf->unk4[buf->unk18 - 1] = buf->unk0;
+            break;
+
+        case 0xf7:
+            buf->unk14[buf->unk18 - 1]--;
+            if (buf->unk14[buf->unk18 - 1] != 0)
+            {
+                buf->unk0 = buf->unk4[buf->unk18 - 1];
+            }
+            else
+            {
+                buf->unk18--;
+            }
+            break;
+
+        case 0xfb:
+            sp3A = *(buf->unk0++) << 8;
+            sp3A = *(buf->unk0++) | sp3A;
+            buf->unk0 = sp5C->unk14 + sp3A;
+            break;
+
+        case 0xc1:
+        case 0xca:
+            temp_a0_5 = *(buf->unk0++);
+            if (instr == 0xc1)
+            {
+                arg0->unk24 = (f32) (temp_a0_5 * temp_a0_5);
+            }
+            else
+            {
+                arg0->unk28 = (f32) temp_a0_5 / US_FLOAT(128.0);
+            }
+            break;
+
+        case 0xc2:
+        case 0xc9:
+            temp_a0_6 = *(buf->unk0++);
+            if (instr == 0xc9)
+            {
+                arg0->unk2 = temp_a0_6;
+            }
+            else
+            {
+                arg0->unk1E = temp_a0_6;
+            }
+            break;
+
+        case 0xc4:
+        case 0xc5:
+            if (instr == 0xc4)
+            {
+                temp8 = 1;
+            }
+            else
+            {
+                temp8 = 0;
+            }
+            arg0->unk0b10 = temp8;
+            func_80318EC4(arg0);
+            break;
+
+        case 0xc3:
+            // This doesn't match very well... sp3A is definitely set here
+            // (it's falsely preserved until after the loop), but maybe there's
+            // also inlining going on, with sp3A as a temp variable being used
+            // for no good reason? Or it could just be a macro.
+            sp3A = *(buf->unk0++);
+            if (sp3A & 0x80)
+            {
+                sp3A = (sp3A << 8) & 0x7f00;
+                sp3A = *(buf->unk0++) | sp3A;
+            }
+            arg0->unk38 = sp3A;
+            break;
+
+        case 0xc6:
+            old = buf->unk0++;
+            phi_v0_2 = *old;
+            if (phi_v0_2 >= 0x7f)
+            {
+                break;
+            }
+            temp_a3 = sp58->unk5;
+            if (phi_v0_2 >= D_80226D60[temp_a3].unk1)
+            {
+                phi_v0_2 = D_80226D60[temp_a3].unk1;
+                if (phi_v0_2 == 0)
+                {
+                    break;
+                }
+                phi_v0_2--;
+            }
+
+            temp_a1_3 = &arg0->unk48;
+            phi_a0 = D_80226D60[temp_a3].unk4[phi_v0_2];
+            if (phi_a0 == NULL)
+            {
+                while (phi_v0_2 != 0xff)
+                {
+                    phi_a0 = D_80226D60[temp_a3].unk4[phi_v0_2];
+                    if (phi_a0 != NULL)
+                    {
+                        break;
+                    }
+                    phi_v0_2--;
+                }
+            }
+
+            temp_v0_11 = &arg0->unk14;
+            if ((D_802214F8.first.pool.unk0 <= (u8 *) phi_a0 &&
+                    (u8 *) phi_a0 <= D_802214F8.first.pool.unk0 + D_802214F8.first.pool.unk8) ||
+                (D_802214F8.second.pool.unk0 <= (u8 *) phi_a0 &&
+                    (u8 *) phi_a0 <= D_802214F8.second.pool.unk0 + D_802214F8.second.pool.unk8))
+            {
+                temp_v0_11->unk4 = phi_a0->unk4;
+                temp_v0_11->unk0 = phi_a0->unk3;
+                *temp_a1_3 = phi_a0;
+            }
+            else
+            {
+                D_80331D40 = phi_v0_2 + 0x20000;
+                *temp_a1_3 = NULL;
+            }
+            break;
+
+        case 0xc7:
+            old = buf->unk0++;
+            arg0->unk4.unk00 = *old;
+            old = buf->unk0++;
+            temp_t7_4 = sp58->unk1A + *old + arg0->unk1E + sp5C->unk10;
+            if (temp_t7_4 >= 0x80)
+            {
+                temp_t7_4 = 0;
+            }
+            arg0->unk3 = temp_t7_4;
+
+            if (arg0->unk4.unk00 & 0x80)
+            {
+                arg0->unk1C = *(buf->unk0++);
+                break;
+            }
+
+            sp3A = *(buf->unk0++);
+            if (sp3A & 0x80)
+            {
+                sp3A = (sp3A << 8) & 0x7f00;
+                sp3A = *(buf->unk0++) | sp3A;
+            }
+            arg0->unk1C = sp3A;
+            break;
+
+        case 0xc8:
+            arg0->unk4.unk00 = 0;
+            break;
+
+        default:
+            loBits = instr & 0xf;
+            switch (instr & 0xf0)
+            {
+            case 0xd0:
+                sp3A = sp5C->unk88[loBits];
+                arg0->unk24 = (f32) (sp3A * sp3A);
+                break;
+            case 0xe0:
+                arg0->unk2 = sp5C->unk8C[loBits];
+                break;
+            }
+        }
+    }
+
+    buf = &arg0->unk54;
+    if (instr == 0xc0)
+    {
+        sp3A = *(buf->unk0++);
+        if (sp3A & 0x80)
+        {
+            sp3A = (sp3A << 8) & 0x7f00;
+            sp3A = *(buf->unk0++) | sp3A;
+        }
+        arg0->unk3C = sp3A;
+        arg0->unk0b20 = 1;
+    }
+    else
+    {
+        arg0->unk0b20 = 0;
+
+        if (sp58->unk0b2 == 1)
+        {
+            temp_t1_2 = instr & 0xc0;
+
+            // phi_a0_3 = sp3A; // real assignment, or same vars?
+            buf = &arg0->unk54;
+            switch (temp_t1_2)
+            {
+            case 0x00:
+                sp3A = *(buf->unk0++);
+                if (sp3A & 0x80)
+                {
+                    sp3A = (sp3A << 8) & 0x7f00;
+                    sp3A = *(buf->unk0++) | sp3A;
+                }
+                sp30 = *(buf->unk0++);
+                arg0->unk2 = *(buf->unk0++);
+                arg0->unk3A = sp3A;
+                break;
+
+            case 0x40:
+                sp3A = *(buf->unk0++);
+                if (sp3A & 0x80)
+                {
+                    sp3A = (sp3A << 8) & 0x7f00;
+                    sp3A = *(buf->unk0++) | sp3A;
+                }
+                sp30 = *(buf->unk0++);
+                arg0->unk2 = 0;
+                arg0->unk3A = sp3A;
+                break;
+
+            case 0x80:
+                sp30 = *(buf->unk0++);
+                arg0->unk2 = *(buf->unk0++);
+                sp3A = arg0->unk3A;
+                break;
+            }
+
+            arg0->unk24 = sp30 * sp30;
+            phi_v1 = instr - temp_t1_2;
+        }
+        else
+        {
+            temp_t1 = instr & 0xc0;
+
+            buf = &arg0->unk54;
+
+            // phi_a0_3 = sp3A;
+            switch (temp_t1)
+            {
+            case 0x00:
+                sp3A = *(buf->unk0++);
+                if (sp3A & 0x80)
+                {
+                    sp3A = (sp3A << 8) & 0x7f00;
+                    sp3A = *(buf->unk0++) | sp3A;
+                }
+                arg0->unk3A = sp3A;
+                break;
+
+            case 0x40:
+                sp3A = arg0->unk38;
+                break;
+
+            case 0x80:
+                sp3A = arg0->unk3A;
+                break;
+            }
+
+            phi_v1 = instr - temp_t1;
+        }
+
+        arg0->unk3C = sp3A;
+        arg0->unk3E = arg0->unk2 * sp3A / 256;
+        if ((sp5C->unk0b20 && (sp58->unk2 & 0x40) != 0) ||
+            sp58->unk0b10 || !sp58->unk0b8)
+        {
+            arg0->unk0b20 = 1;
+        }
+        else
+        {
+            if (sp58->unk18 == 0)
+            {
+                temp_t0 = phi_v1 + sp58->unk1A + arg0->unk1E;
+                if (temp_t0 >= D_80226D60[sp58->unk5].unk2)
+                {
+                    temp_t0 = D_80226D60[sp58->unk5].unk2;
+                    if (temp_t0 == 0)
+                    {
+                        arg0->unk0b20 = 1;
+                        goto skip;
+                    }
+                    temp_t0--;
+                }
+
+                subA = D_80226D60[sp58->unk5].unk8[temp_t0];
+                if (subA == NULL)
+                {
+                    arg0->unk0b20 = 1;
+                }
+                else
+                {
+                    arg0->unk14.unk4 = subA->unkC;
+                    arg0->unk14.unk0 = subA->unk0;
+
+                    arg0->unk28 = FLOAT_CAST(subA->unk1) / US_FLOAT(128.0);
+                    arg0->unk4C = &subA->unk4;
+                    arg0->unk20 = arg0->unk4C->unk4;
+                }
+skip:;
+            }
+            else
+            {
+                temp_v0_20 = phi_v1 + sp5C->unk10 + sp58->unk1A + arg0->unk1E;
+                if (temp_v0_20 >= 0x80)
+                {
+                    arg0->unk0b20 = 1;
+                }
+                else
+                {
+                    phi_v1_2 = arg0->unk48;
+                    if (arg0->unk48 == NULL)
+                    {
+                        phi_v1_2 = sp58->unk3C;
+                    }
+
+                    if (arg0->unk4.unk00 != 0)
+                    {
+                        phi_a1_3 = arg0->unk3;
+                        if (phi_a1_3 < temp_v0_20)
+                        {
+                            phi_a1_3 = temp_v0_20;
+                        }
+                        if (phi_v1_2 != NULL)
+                        {
+                            if (phi_a1_3 < phi_v1_2->unk1)
+                            {
+                                phi_v0_5 = &phi_v1_2->unk8;
+                            }
+                            else if (phi_a1_3 <= phi_v1_2->unk2)
+                            {
+                                phi_v0_5 = &phi_v1_2->unk10;
+                            }
+                            else
+                            {
+                                phi_v0_5 = &phi_v1_2->unk18;
+                            }
+                            sp3F = (phi_v0_5 == arg0->unk4C);
+                            arg0->unk4C = phi_v0_5;
+                            phi_f0 = phi_v0_5->unk4;
+                        }
+                        else
+                        {
+                            arg0->unk4C = NULL;
+                            phi_f0 = 1.0f;
+                        }
+
+                        temp_f2 = D_80332884[temp_v0_20] * phi_f0;
+                        temp_f12 = D_80332884[arg0->unk3] * phi_f0;
+
+                        temp_v0_22 = &arg0->unk4;
+                        switch (arg0->unk4.unk00 & ~0x80)
+                        {
+                        case 1:
+                        case 3:
+                        case 5:
+                            sp24 = temp_f2;
+                            sp28 = temp_f12;
+                            break;
+                        case 2:
+                        case 4:
+                            sp24 = temp_f12;
+                            sp28 = temp_f2;
+                            break;
+                        }
+
+                        temp_v0_22->unk0C = sp24 / sp28 - US_FLOAT(1.0);
+                        if (arg0->unk4.unk00 & 0x80)
+                        {
+                            temp_v0_22->unk08 = US_FLOAT(32512.0) * FLOAT_CAST(sp5C->unkA) /
+                                ((f32) arg0->unk3C * (f32) D_80226D7C * FLOAT_CAST(arg0->unk1C));
+                        }
+                        else
+                        {
+                            temp_v0_22->unk08 = US_FLOAT(127.0) / FLOAT_CAST(arg0->unk1C);
+                        }
+                        temp_v0_22->unk04 = 0.0f;
+                        arg0->unk20 = sp28;
+                        if ((arg0->unk4.unk00 & ~0x80) == 5)
+                        {
+                            arg0->unk3 = temp_v0_20;
+                        }
+                    }
+                    else if (phi_v1_2 != NULL)
+                    {
+                        if (temp_v0_20 < phi_v1_2->unk1)
+                        {
+                            phi_v0_6 = &phi_v1_2->unk8;
+                        }
+                        else if (temp_v0_20 <= phi_v1_2->unk2)
+                        {
+                            phi_v0_6 = &phi_v1_2->unk10;
+                        }
+                        else
+                        {
+                            phi_v0_6 = &phi_v1_2->unk18;
+                        }
+                        sp3F = (phi_v0_6 == arg0->unk4C);
+                        arg0->unk4C = phi_v0_6;
+                        arg0->unk20 = phi_v0_6->unk4 * D_80332884[temp_v0_20];
+                    }
+                    else
+                    {
+                        arg0->unk4C = NULL;
+                        arg0->unk20 = D_80332884[temp_v0_20];
+                    }
+                }
+            }
+            arg0->unk40 = arg0->unk3C;
+        }
+    }
+
+    if (arg0->unk0b20 == 1)
+    {
+        if (arg0->unk44 != NULL || arg0->unk0b10)
+        {
+            func_80318EC4(arg0);
+        }
+        return;
+    }
+
+    if (!arg0->unk0b10)
+    {
+        sp3D = 1;
+    }
+    else if (arg0->unk44 == NULL || arg0->unk1 == 0)
+    {
+        sp3D = 1;
+    }
+    else if (sp3F == 0)
+    {
+        func_80318EC4(arg0);
+        sp3D = 1;
+    }
+    else
+    {
+        sp3D = 0;
+        if (arg0->unk4C == NULL)
+        {
+            func_80319164(arg0->unk44, arg0);
+        }
+    }
+
+    if (sp3D != 0)
+    {
+        arg0->unk44 = func_803198E0(arg0);
+    }
+
+    if (arg0->unk44 != NULL && arg0->unk44->unk2C == arg0)
+    {
+        func_8031A478(arg0->unk44);
+    }
+}
+
+#elif defined(VERSION_JP)
 GLOBAL_ASM("asm/non_matchings/func_8031B0A4_jp.s")
 #else
 GLOBAL_ASM("asm/non_matchings/func_8031B0A4_us.s")
