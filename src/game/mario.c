@@ -1316,10 +1316,10 @@ void func_8025435C(struct MarioState *m)
         m->marioObj->hitboxHeight = 100.0f;
     else
         m->marioObj->hitboxHeight = 160.0f;
-    if ((m->flags & MARIO_UNKNOWN_07) && (m->unkB5 != 0xFF))
+    if ((m->flags & MARIO_TELEPORTING) && (m->fadeWarpOpacity != 0xFF))
     {
         sp1C->unk08 &= ~0xFF;
-        sp1C->unk08 |= (m->unkB5 | 0x100);
+        sp1C->unk08 |= (m->fadeWarpOpacity | 0x100);
     }
 }
 

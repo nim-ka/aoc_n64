@@ -1639,10 +1639,10 @@ static s32 act_teleport_fade_out(struct MarioState *m)
         m, m->prevAction == ACT_CROUCHING ? \
         MARIO_ANIM_CROUCHING : MARIO_ANIM_DIALOGUE_FIRST_PERSON
     );
-    m->flags |= MARIO_UNKNOWN_07;
+    m->flags |= MARIO_TELEPORTING;
 
     if (m->actionTimer < 32)
-        m->unkB5 = (-m->actionTimer << 3) + 0xF8;
+        m->fadeWarpOpacity = (-m->actionTimer << 3) + 0xF8;
 
     if (m->actionTimer++ == 20)
         level_trigger_warp(m, WARP_OP_TELEPORT);
@@ -1659,12 +1659,12 @@ static s32 act_teleport_fade_in(struct MarioState *m)
 
     if (m->actionTimer < 32)
     {
-        m->flags |= MARIO_UNKNOWN_07;
-        m->unkB5 = m->actionTimer << 3;
+        m->flags |= MARIO_TELEPORTING;
+        m->fadeWarpOpacity = m->actionTimer << 3;
     }
     else
     {
-        m->flags &= ~MARIO_UNKNOWN_07;
+        m->flags &= ~MARIO_TELEPORTING;
     }
 
     if (m->actionTimer++ == 32)
