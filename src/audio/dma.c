@@ -686,10 +686,10 @@ void func_803182E0(u32 arg0, u32 arg1, s32 arg2)
     temp->unk6C.unk0 = ret;
 }
 
-#ifdef NON_MATCHING
-void InitAudioSystem(void)
+void InitAudioSystem()
 {
-    u8 buf[10]; // 0x68
+    UNUSED s8 test[36];
+    u8 buf[10];
     u32 alloc;
     s32 i;
     s32 j;
@@ -698,7 +698,7 @@ void InitAudioSystem(void)
     s32 lim2;
     s32 i2;
     void *data;
-    UNUSED s32 temp;
+    UNUSED s8 test2[8];
 
     D_80333EF4 = 0;
 
@@ -709,17 +709,16 @@ void InitAudioSystem(void)
         D_80226E98[i] = 0;
     }
 
-    lim2 = D_80333EEC / 8;
-    ptr64 = (u64 *) gAudioHeap;
-    for (i = 0; i <= lim2 - 1; i++)
+    lim2 = D_80333EEC;
+    for (i = 0; i <= lim2 / 8 - 1; i++)
     {
-        ptr64[i] = 0;
+        ((u64 *) gAudioHeap)[i] = 0;
     }
 
-    i2 = ((u32)&D_80226EC0 - (u32)&D_802211A0) >> 3;
-    ptr64 = &D_802211A0 - 1;
     i = 0;
-    for (; i2 >= 0; i2--)
+    lim = (((u32) (&D_80226EC0)) - ((u32) (&D_802211A0))) / 8;
+    ptr64 = (&D_802211A0) - 1;
+    for (i2 = lim; i2 >= 0; i2--)
     {
         i++;
         ptr64[i] = 0;
@@ -789,7 +788,3 @@ void InitAudioSystem(void)
     func_8031D4B8();
     D_80333EF4 = 0x76557364;
 }
-
-#else
-GLOBAL_ASM("asm/non_matchings/InitAudioSystem.s")
-#endif
