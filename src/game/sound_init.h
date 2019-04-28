@@ -22,7 +22,7 @@ extern void func_80248CB8(s32);
 extern void func_80248C28(s32);
 extern void func_80248D48(void);
 extern void func_80248D90(void);
-extern void func_80248DD8(u16);
+extern void set_sound_mode(u16);
 extern void func_80248E24(s16 a);
 extern void func_80248FBC(void);
 extern void func_80249040(void);

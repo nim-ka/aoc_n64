@@ -6,10 +6,11 @@
 
 struct WarpNode;
 
-extern u8 D_8032CE24;
-extern s8 D_8032CE28;
-extern u8 D_8032CE2C;
-extern u8 D_8032CE30;
+extern u8 gLastCompletedCourseNum;
+extern u8 gLastCompletedStarNum;
+extern s8 sUnusedGotGlobalCoinHiScore;
+extern u8 gGotFileCoinHiScore;
+extern u8 gCurrCourseStarFlags;
 extern u8 gSpecialTripleJump;
 extern s8 gLevelToCourseNumTable[LEVEL_MAX];
 
@@ -35,9 +36,6 @@ extern s8 gLevelToCourseNumTable[LEVEL_MAX];
 #define SAVE_FLAG_CAP_ON_UKIKI           /* 0x040000 */ (1 << 18)
 #define SAVE_FLAG_CAP_ON_MR_BLIZZARD     /* 0x080000 */ (1 << 19)
 #define SAVE_FLAG_UNLOCKED_50_STAR_DOOR  /* 0x100000 */ (1 << 20)
-
-extern u8 D_8032CE20;
-extern u8 D_8032CE24;
 
 // Variables for setting a warp checkpoint.
 extern u8 gWarpCheckpointActNum;

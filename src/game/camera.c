@@ -4064,7 +4064,7 @@ s32 func_8028BB8C(UNUSED struct LevelCamera *a)
 {
     u8 sp7 = 0;
     u8 sp6 = 0;
-    u8 sp5 = (D_8032CE24 - 1) / 2;
+    u8 sp5 = (gLastCompletedStarNum - 1) / 2;
     u8 sp4 = gCurrCourseNum;
 
     if (sp5 > 3)
@@ -4072,7 +4072,7 @@ s32 func_8028BB8C(UNUSED struct LevelCamera *a)
     if (sp4 > COURSE_MAX)
         sp4 = COURSE_NONE;
     sp6 = D_8032E8A4[sp4][sp5];
-    if (D_8032CE24 & 1)
+    if (gLastCompletedStarNum & 1)
         sp6 &= 0xF;
     else
         sp6 = sp6 >> 4;
@@ -6417,12 +6417,12 @@ void func_80291FE8(struct LevelCamera *a, s16 b, s16 c)
 static void CutsceneStarDance3_1(struct LevelCamera *a)
 {
     UNUSED u32 pad[2];
-    
-    if ((D_8032CE24 == 4) && (gCurrCourseNum == COURSE_JRB))
+
+    if ((gLastCompletedStarNum == 4) && (gCurrCourseNum == COURSE_JRB))
         func_80291FE8(a, 0, 0x4000);
-    if ((D_8032CE24 == 1) && (gCurrCourseNum == COURSE_DDD))
+    if ((gLastCompletedStarNum == 1) && (gCurrCourseNum == COURSE_DDD))
         func_80291FE8(a, 0x8000, 0x5000);
-    if ((D_8032CE24 == 5) && (gCurrCourseNum == COURSE_WDW))
+    if ((gLastCompletedStarNum == 5) && (gCurrCourseNum == COURSE_WDW))
         func_80291FE8(a, 0x8000, 0x800);
     
     vec3f_copy(D_8033B6F0[9].unk4, a->unk4);
@@ -6443,8 +6443,8 @@ static void CutsceneStarDance3_3(struct LevelCamera *a)
     s16 sp2E, sp2C;
     f32 sp28;
     s16 sp26 = 0x1800;
-    
-    if (((D_8032CE24 == 6) && (gCurrCourseNum == COURSE_SL)) || ((D_8032CE24 == 4) && (gCurrCourseNum == COURSE_TTC)))
+
+    if (((gLastCompletedStarNum == 6) && (gCurrCourseNum == COURSE_SL)) || ((gLastCompletedStarNum == 4) && (gCurrCourseNum == COURSE_TTC)))
         sp26 = 0x800;
     
     vec3f_get_dist_and_angle(D_8032D000->unk4, a->unk10, &sp28, &sp2E, &sp2C);
@@ -6515,13 +6515,13 @@ static void CutsceneStarDance2_1(struct LevelCamera *a)
         a->unk3A = a->angle;
     }
     
-    if ((D_8032CE24 == 6) && (gCurrCourseNum == COURSE_CCM))
+    if ((gLastCompletedStarNum == 6) && (gCurrCourseNum == COURSE_CCM))
         func_80291FE8(a, 0x5600, 0x800);
-    if ((D_8032CE24 == 2) && (gCurrCourseNum == COURSE_TTM))
+    if ((gLastCompletedStarNum == 2) && (gCurrCourseNum == COURSE_TTM))
         func_80291FE8(a, 0, 0x800);
-    if ((D_8032CE24 == 1) && (gCurrCourseNum == COURSE_SL))
+    if ((gLastCompletedStarNum == 1) && (gCurrCourseNum == COURSE_SL))
         func_80291FE8(a, 0x2000, 0x800);
-    if ((D_8032CE24 == 3) && (gCurrCourseNum == COURSE_RR))
+    if ((gLastCompletedStarNum == 3) && (gCurrCourseNum == COURSE_RR))
         func_80291FE8(a, 0, 0x800);
 }
 

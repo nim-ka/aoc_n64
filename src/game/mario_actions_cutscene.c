@@ -759,7 +759,7 @@ static void general_star_dance_handler(struct MarioState *m, s32 isInWater)
                 else
                 {
                     enable_time_stop();
-                    func_802D8050(D_8032CE24 == 7 ? 13 : 14);
+                    func_802D8050(gLastCompletedStarNum == 7 ? 13 : 14);
                     m->actionState = 1;
                 }
                 break;
@@ -1295,7 +1295,7 @@ static s32 act_exit_land_save_dialogue(struct MarioState *m)
             );
             if (func_802507AC(m))
             {
-                if (D_8032CE20 != COURSE_BITDW && D_8032CE20 != COURSE_BITFS)
+                if (gLastCompletedCourseNum != COURSE_BITDW && gLastCompletedCourseNum != COURSE_BITFS)
                     enable_time_stop();
 
                 func_802D9A14(2);
@@ -1304,7 +1304,7 @@ static s32 act_exit_land_save_dialogue(struct MarioState *m)
                 m->actionState = 3; // star exit with cap
                 if (!(m->flags & MARIO_CAP_ON_HEAD))
                     m->actionState = 2; // star exit without cap
-                if (D_8032CE20 == COURSE_BITDW || D_8032CE20 == COURSE_BITFS)
+                if (gLastCompletedCourseNum == COURSE_BITDW || gLastCompletedCourseNum == COURSE_BITFS)
                     m->actionState = 1; // key exit
             }
             break;

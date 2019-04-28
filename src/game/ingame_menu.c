@@ -35,8 +35,8 @@ s16 gCutsceneMsgXOffset;
 s16 gCutsceneMsgYOffset;
 s8 D_8036008E;
 
-extern u8 D_8032CE20;
-extern u8 D_8032CE24;
+extern u8 gLastCompletedCourseNum;
+extern u8 gLastCompletedStarNum;
 
 extern s32 func_8028803C(s32);
 
@@ -2164,13 +2164,13 @@ void func_802DB540(void)
 {
     u8 sp07;
 
-    if(D_8032CE20 == 0)
+    if (gLastCompletedCourseNum == 0)
     {
         sp07 = 0;
     }
     else
     {
-        sp07 = D_8032CE20 - 1;
+        sp07 = gLastCompletedCourseNum - 1;
 
         if(sp07 >= 15)
             sp07 = 15;
@@ -2431,7 +2431,7 @@ void func_802DC050(s16 sp32, s16 sp36)
         D_803305C0 = 1;
         D_803305C8 = gDisplayedCoins;
 
-        if(D_8032CE2C != 0)
+        if (gGotFileCoinHiScore != 0)
         {
             func_802DBE2C(0);
         }
@@ -2450,16 +2450,16 @@ void func_802DC050(s16 sp32, s16 sp36)
             }
         }
 
-        if(gDisplayedCoins == D_803305C8 && D_8032CE2C != 0)
+        if (gDisplayedCoins == D_803305C8 && gGotFileCoinHiScore != 0)
             SetSound(SOUND_MENU_MARIOCASTLEWARP2, D_803320E0);
     }
 }
 
 void func_802DC2B4(s32 sp18, u8 sp1f)
 {
-    if(gDisplayedCoins == D_803305C8 &&
-       (D_8032CE30 & sp1f) == 0 &&
-       D_803305CC == 0)
+    if (gDisplayedCoins == D_803305C8 &&
+        (gCurrCourseStarFlags & sp1f) == 0 &&
+        D_803305CC == 0)
     {
         play_star_fanfare();
         D_803305CC = sp18;
@@ -2480,22 +2480,22 @@ void func_802DC330(void)
 
     u8 sp58[4];
 
-    if(D_8032CE20 < 16)
+    if (gLastCompletedCourseNum < 16)
     {
         func_802DC050(118, 103);
-        func_802DC2B4(1, 1 << (D_8032CE24 + 31));
+        func_802DC2B4(1, 1 << (gLastCompletedStarNum + 31));
 
-        if(D_8032CE24 == 7)
+        if (gLastCompletedStarNum == 7)
         {
             sp5c = segmented_to_virtual(sp64[91]);
         }
         else
         {
-            sp5c = segmented_to_virtual(sp64[(D_8032CE20*6 + D_8032CE24) - 7]);
+            sp5c = segmented_to_virtual(sp64[(gLastCompletedCourseNum * 6 + gLastCompletedStarNum) - 7]);
         }
 
         gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
-        Int2Str(D_8032CE20, sp58);
+        Int2Str(gLastCompletedCourseNum, sp58);
         gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, D_80360088);
         PrintGenericText(65, 165, sp78);
         PrintGenericText(95, 165, sp58);
@@ -2504,9 +2504,9 @@ void func_802DC330(void)
         PrintGenericText(93, 167, sp58);
         gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
     }
-    else if(D_8032CE20 == 16 || D_8032CE20 == 17)
+    else if (gLastCompletedCourseNum == 16 || gLastCompletedCourseNum == 17)
     {
-        sp5c = segmented_to_virtual(sp60[D_8032CE20-1]);
+        sp5c = segmented_to_virtual(sp60[gLastCompletedCourseNum - 1]);
         gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
         gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, D_80360088);
         PrintGenericText(71, 130, sp5c);
@@ -2524,7 +2524,7 @@ void func_802DC330(void)
     {
         sp5c = segmented_to_virtual(sp64[90]);
         func_802DC050(118, 103);
-        func_802DC2B4(1, 1 << (D_8032CE24 + 31));
+        func_802DC2B4(1, 1 << (gLastCompletedStarNum + 31));
     }
 
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED00);
@@ -2551,22 +2551,22 @@ void func_802DC330(void)
 
     u8 sp58[4];
 
-    if(D_8032CE20 < 16)
+    if (gLastCompletedCourseNum < 16)
     {
         func_802DC050(118, 103);
-        func_802DC2B4(1, 1 << (D_8032CE24 + 31));
+        func_802DC2B4(1, 1 << (gLastCompletedStarNum + 31));
 
-        if(D_8032CE24 == 7)
+        if (gLastCompletedStarNum == 7)
         {
             sp5c = segmented_to_virtual(sp64[91]);
         }
         else
         {
-            sp5c = segmented_to_virtual(sp64[(D_8032CE20 * 6 + D_8032CE24) - 7]);
+            sp5c = segmented_to_virtual(sp64[(gLastCompletedCourseNum * 6 + gLastCompletedStarNum) - 7]);
         }
 
         gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
-        Int2Str(D_8032CE20, sp58);
+        Int2Str(gLastCompletedCourseNum, sp58);
         gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, D_80360088);
         PrintGenericText(65, 165, sp78);
         PrintGenericText(104, 165, sp58);
@@ -2575,9 +2575,9 @@ void func_802DC330(void)
         PrintGenericText(102, 167, sp58);
         gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
     }
-    else if(D_8032CE20 == 16 || D_8032CE20 == 17)
+    else if (gLastCompletedCourseNum == 16 || gLastCompletedCourseNum == 17)
     {
-        sp5c = segmented_to_virtual(sp60[D_8032CE20-1]);
+        sp5c = segmented_to_virtual(sp60[gLastCompletedCourseNum - 1]);
         gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
         gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, D_80360088);
         PrintGenericText(71, 130, sp5c);
@@ -2595,7 +2595,7 @@ void func_802DC330(void)
     {
         sp5c = segmented_to_virtual(sp64[90]);
         func_802DC050(118, 103);
-        func_802DC2B4(1, 1 << (D_8032CE24 + 31));
+        func_802DC2B4(1, 1 << (gLastCompletedStarNum + 31));
     }
 
     gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED00);

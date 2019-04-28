@@ -11,6 +11,7 @@
 
 #define MENU_DATA_MAGIC 0x4849
 #define SAVE_FILE_MAGIC 0x4441
+#define NUM_SAVE_FILES 4
 
 struct SaveBlockSignature
 {
@@ -44,7 +45,7 @@ struct MainMenuSaveData
     // Each save file has a 2 bit "age" for each course. The higher this value,
     // the older the high score is. This is used for tie-breaking when displaying
     // on the high score screen.
-    u32 coinScoreAges[4];
+    u32 coinScoreAges[NUM_SAVE_FILES];
     u16 soundMode;
     u8 filler12[0x1C-0x12];
 
@@ -54,7 +55,7 @@ struct MainMenuSaveData
 struct SaveBuffer
 {
     // Each of the four save files has two copies. If one is bad, the other is used as a backup.
-    struct SaveFile files[4][2];
+    struct SaveFile files[NUM_SAVE_FILES][2];
     // The main menu data has two copies. If one is bad, the other is used as a backup.
     struct MainMenuSaveData menuData[2];
 };
@@ -68,11 +69,11 @@ u8 gWarpCheckpointWarpNode;
 s8 gMainMenuDataModified;
 s8 gSaveFileModified;
 
-u8 D_8032CE20 = 0;
-u8 D_8032CE24 = 0;
-s8 D_8032CE28 = 0;
-u8 D_8032CE2C = 0;
-u8 D_8032CE30 = 0;
+u8 gLastCompletedCourseNum = 0;
+u8 gLastCompletedStarNum = 0;
+s8 sUnusedGotGlobalCoinHiScore = 0;
+u8 gGotFileCoinHiScore = 0;
+u8 gCurrCourseStarFlags = 0;
 
 u8 gSpecialTripleJump = 0;
 
@@ -120,8 +121,9 @@ s8 gLevelToCourseNumTable[LEVEL_MAX] = {
 // TODO: This should be defined in this file.
 extern struct SaveBuffer gSaveBuffer;
 
-
-static void func_80278BB0(void)
+// This was probably used to set progress to 100% for debugging, but
+// it was removed from the release ROM.
+static void no_op(void)
 {
     UNUSED s32 pad;
 }
@@ -305,7 +307,7 @@ static void touch_coin_score_age(s32 fileIndex, s32 courseIndex)
 
     if (currentAge != 0)
     {
-        for (i = 0; i < 4; i++)
+        for (i = 0; i < NUM_SAVE_FILES; i++)
         {
             age = get_coin_score_age(i, courseIndex);
             if (age < currentAge)
@@ -432,7 +434,7 @@ void save_file_load_all(void)
         break;
     }
 
-    for (file = 0; file < 4; file++)
+    for (file = 0; file < NUM_SAVE_FILES; file++)
     {
         // Verify the save file and create a backup copy if only one of the slots is valid.
         validSlots = verify_save_block_signature(&gSaveBuffer.files[file][0], sizeof(gSaveBuffer.files[file][0]), SAVE_FILE_MAGIC);
@@ -451,7 +453,7 @@ void save_file_load_all(void)
         }
     }
 
-    func_80278BB0();
+    no_op();
 }
 
 /**
@@ -489,10 +491,10 @@ void save_file_collect_star_or_key(s16 coinScore, s16 starIndex)
     s32 starFlag = 1 << starIndex;
     UNUSED s32 flags = save_file_get_flags();
 
-    D_8032CE20 = courseIndex + 1;
-    D_8032CE24 = starIndex + 1;
-    D_8032CE28 = 0;
-    D_8032CE2C = 0;
+    gLastCompletedCourseNum = courseIndex + 1;
+    gLastCompletedStarNum = starIndex + 1;
+    sUnusedGotGlobalCoinHiScore = 0;
+    gGotFileCoinHiScore = 0;
 
     if (courseIndex >= COURSE_STAGES_MIN - 1 && courseIndex <= COURSE_STAGES_MAX - 1)
     {
@@ -500,14 +502,14 @@ void save_file_collect_star_or_key(s16 coinScore, s16 starIndex)
         // truncation. This can allow a high score to decrease.
         
         if (coinScore > ((u16)save_file_get_max_coin_score(courseIndex) & 0xFFFF))
-            D_8032CE28 = 1;
+            sUnusedGotGlobalCoinHiScore = 1;
 
         if (coinScore > save_file_get_course_coin_score(fileIndex, courseIndex))
         {
             gSaveBuffer.files[fileIndex][0].courseCoinScores[courseIndex] = coinScore;
             touch_coin_score_age(fileIndex, courseIndex);
 
-            D_8032CE2C = 1;
+            gGotFileCoinHiScore = 1;
             gSaveFileModified = TRUE;
         }
     }
@@ -551,7 +553,7 @@ u32 save_file_get_max_coin_score(s32 courseIndex)
     s32 maxScoreAge = -1;
     s32 maxScoreFileNum = 0;
 
-    for (fileIndex = 0; fileIndex < 4; fileIndex++)
+    for (fileIndex = 0; fileIndex < NUM_SAVE_FILES; fileIndex++)
     {
         if (save_file_get_star_flags(fileIndex, courseIndex) != 0)
         {
@@ -695,7 +697,7 @@ s32 save_file_get_cap_pos(Vec3s capPos)
 
 void save_file_set_sound_mode(u16 mode)
 {
-    func_80248DD8(mode);
+    set_sound_mode(mode);
     gSaveBuffer.menuData[0].soundMode = mode;
 
     gMainMenuDataModified = TRUE;
@@ -737,16 +739,16 @@ void disable_warp_checkpoint(void)
  * Checks the upper bit of the WarpNode->destLevel byte to see if the 
  * game should set a warp checkpoint.
  */
-void check_if_should_set_warp_checkpoint(struct WarpNode *a)
+void check_if_should_set_warp_checkpoint(struct WarpNode *warpNode)
 {
-    if (a->destLevel & 0x80)
+    if (warpNode->destLevel & 0x80)
     {
         // Overwrite the warp checkpoint variables.
         gWarpCheckpointActNum = gCurrActNum;
         gWarpCheckpointCourseNum = gCurrCourseNum;
-        gWarpCheckpointLevelID = a->destLevel & 0x7F;
-        gWarpCheckpointAreaNum = a->destArea;
-        gWarpCheckpointWarpNode = a->destNode;
+        gWarpCheckpointLevelID = warpNode->destLevel & 0x7F;
+        gWarpCheckpointAreaNum = warpNode->destArea;
+        gWarpCheckpointWarpNode = warpNode->destNode;
     }
 }
 
@@ -755,17 +757,17 @@ void check_if_should_set_warp_checkpoint(struct WarpNode *a)
  * also update the level, area, and destination node of the input WarpNode.
  * returns TRUE if input WarpNode was updated, and FALSE if not.
  */
-s32 check_warp_checkpoint(struct WarpNode *a)
+s32 check_warp_checkpoint(struct WarpNode *warpNode)
 {
     s16 isWarpCheckpointActive = FALSE;
-    s16 currCourseNum = gLevelToCourseNumTable[(a->destLevel & 0x7F) - 1];
+    s16 currCourseNum = gLevelToCourseNumTable[(warpNode->destLevel & 0x7F) - 1];
 
     // gSavedCourseNum is only used in this function. 
     if (gWarpCheckpointCourseNum != 0 && gSavedCourseNum == currCourseNum && gWarpCheckpointActNum == gCurrActNum)
     {
-        a->destLevel = gWarpCheckpointLevelID;
-        a->destArea = gWarpCheckpointAreaNum;
-        a->destNode = gWarpCheckpointWarpNode;
+        warpNode->destLevel = gWarpCheckpointLevelID;
+        warpNode->destArea = gWarpCheckpointAreaNum;
+        warpNode->destNode = gWarpCheckpointWarpNode;
         isWarpCheckpointActive = TRUE;
     }
     else

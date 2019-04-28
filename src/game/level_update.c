@@ -1300,7 +1300,7 @@ s32 lvl_set_current_level(UNUSED s16 arg0, s32 levelNum)
     {
         gMarioState->numCoins = 0;
         gDisplayedCoins = 0;
-        D_8032CE30 = save_file_get_star_flags(gCurrSaveFileNum - 1, gCurrCourseNum - 1);
+        gCurrCourseStarFlags = save_file_get_star_flags(gCurrSaveFileNum - 1, gCurrCourseNum - 1);
     }
 
     if (gSavedCourseNum != gCurrCourseNum)

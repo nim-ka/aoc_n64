@@ -93,10 +93,10 @@ void func_80248D90(void)
     }
 }
 
-void func_80248DD8(u16 a)
+void set_sound_mode(u16 mode)
 {
-    if (a < 3)
-        func_80321434(D_8032C6E8[a]);
+    if (mode < 3)
+        func_80321434(D_8032C6E8[mode]);
 }
 
 void func_80248E24(s16 a)
