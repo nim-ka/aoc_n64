@@ -688,22 +688,19 @@ void func_803182E0(u32 arg0, u32 arg1, s32 arg2)
 
 void InitAudioSystem()
 {
-    UNUSED s8 test[36];
-    u8 buf[10];
+    UNUSED s8 pad[32];
+    u8 buf[0x10];
+    s32 i, j, k;
+    s32 lim1, lim2, lim3;
     u32 alloc;
-    s32 i;
-    s32 j;
     u64 *ptr64;
-    s32 lim;
-    s32 lim2;
-    s32 i2;
     void *data;
-    UNUSED s8 test2[8];
+    UNUSED s32 pad2;
 
     D_80333EF4 = 0;
 
-    lim = D_80333EE8;
-    for (i = 0; i < lim; i++)
+    lim1 = D_80333EE8;
+    for (i = 0; i < lim1; i++)
     {
         D_80226E58[i] = 0;
         D_80226E98[i] = 0;
@@ -716,9 +713,9 @@ void InitAudioSystem()
     }
 
     i = 0;
-    lim = (((u32) (&D_80226EC0)) - ((u32) (&D_802211A0))) / 8;
-    ptr64 = (&D_802211A0) - 1;
-    for (i2 = lim; i2 >= 0; i2--)
+    lim3 = ((u32) &D_80226EC0 - (u32) &D_802211A0) / 8;
+    ptr64 = &D_802211A0 - 1;
+    for (k = lim3; k >= 0; k--)
     {
         i++;
         ptr64[i] = 0;

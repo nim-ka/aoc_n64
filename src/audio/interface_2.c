@@ -124,43 +124,43 @@ u8 D_80331E34 = 0;
 //   - mask << 8 | index, where index points into D_80331F50
 //   - one number for each bit set in mask
 s16 D_80331E38[] = // BBH
-{10,
+{SEQ_LEVEL_SPOOKY,
     0x01 << 8 | 6, 13,
     0x01 << 8 | 6, 10,
     5};
 s16 D_80331E44[] = // DDD
-{5,
+{SEQ_LEVEL_WATER,
     0x12 << 8 | 0, -800, 1,
     0x52 << 8 | 0, -2000, 470, 1,
     0x42 << 8 | 2, 100, 2,
     1};
 s16 D_80331E5C[] = // JRB
-{5,
+{SEQ_LEVEL_WATER,
     0x50 << 8 | 0, 945, -5260,
     0x02 << 8 | 0, 2,
     0x40 << 8 | 0, 1000,
     0x44 << 8 | 2, -3100, -900,
     1, 5};
 s16 D_80331E78[] = // WDW
-{12,
+{SEQ_LEVEL_UNDERGROUND,
     0x0a << 8 | 4, -670, 1,
     0x02 << 8 | 4, 2,
     3};
 s16 D_80331E88[] = // HMC
-{12,
+{SEQ_LEVEL_UNDERGROUND,
     0x88 << 8 | 4, 0, -203,
     0x18 << 8 | 4, 0, -2400,
     3};
 s16 D_80331E98[] = // LEVEL_UNKNOWN_38
-{12,
+{SEQ_LEVEL_UNDERGROUND,
     0x02 << 8 | 3, 1,
     0x02 << 8 | 4, 2,
     0x02 << 8 | 7, 3,
     0};
 s16 D_80331EA8[] = {0, 0};
 
-u8 D_80331EAC = 0xff; // current music?
-u8 D_80331EB0 = 0xff;
+u8 D_80331EAC = 0xff; // current area music?
+u8 D_80331EB0 = 0xff; // current music?
 
 #define _ D_80331EA8
 s16 *D_80331EB4[LEVEL_MAX+1] = {
