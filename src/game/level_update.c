@@ -1268,7 +1268,7 @@ s32 lvl_init_from_save_file(UNUSED s16 arg0, s32 levelNum)
     gCurrCourseNum = COURSE_NONE;
     gSavedCourseNum = 0;
     gCurrCreditsEntry = NULL;
-    D_8032CE34.specialTripleJump = 0;
+    gSpecialTripleJump = 0;
 
     func_80254CE0();
     disable_warp_checkpoint();
@@ -1285,7 +1285,7 @@ s32 lvl_set_current_level(UNUSED s16 arg0, s32 levelNum)
 
     D_8032C9E0 = 0;
     gCurrLevelNum = levelNum;
-    gCurrCourseNum = D_8032CE34.levelToCourseNumTable[levelNum];
+    gCurrCourseNum = gLevelToCourseNumTable[levelNum - 1];
 
     if (gCurrDemoInput != NULL ||
         gCurrCreditsEntry != NULL ||

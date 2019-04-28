@@ -6,18 +6,12 @@
 
 struct WarpNode;
 
-struct Struct8032CE34 {
-    u8 specialTripleJump;
-    s8 unused01;
-    s8 unused02;
-    s8 levelToCourseNumTable[LEVEL_MAX + 1];
-};
-
 extern u8 D_8032CE24;
 extern s8 D_8032CE28;
 extern u8 D_8032CE2C;
 extern u8 D_8032CE30;
-extern struct Struct8032CE34 D_8032CE34;
+extern u8 gSpecialTripleJump;
+extern s8 gLevelToCourseNumTable[LEVEL_MAX];
 
 // game progress flags
 #define SAVE_FLAG_FILE_EXISTS            /* 0x000001 */ (1 << 0)

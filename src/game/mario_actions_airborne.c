@@ -507,7 +507,7 @@ static s32 act_double_jump(struct MarioState *m)
 
 static s32 act_triple_jump(struct MarioState *m)
 {
-    if (D_8032CE34.specialTripleJump)
+    if (gSpecialTripleJump)
         return set_mario_action(m, ACT_SPECIAL_TRIPLE_JUMP, 0);
 
     if (m->input & INPUT_B_PRESSED)

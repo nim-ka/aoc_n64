@@ -141,7 +141,7 @@ void yoshi_give_present_loop(void) {
     
     if (gDisplayedLives == 100) {
         SetSound(SOUND_GENERAL_1UP, D_803320E0);
-        D_8032CE34.specialTripleJump = 1;
+        gSpecialTripleJump = 1;
         o->oAction = YOSHI_ACT_WALK_JUMP_OFF_ROOF;
         return;
     }
