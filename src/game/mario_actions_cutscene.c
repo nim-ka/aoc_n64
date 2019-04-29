@@ -23,43 +23,21 @@
 #include "behavior_data.h"
 #include "object_list_processor.h"
 
-// TODO: put these elsewhere
-#define SAVE_OPT_SAVE_AND_CONTINUE  1
-#define SAVE_OPT_SAVE_AND_QUIT      2
-#define SAVE_OPT_CONTINUE_DONT_SAVE 3
+// TODO: put this elsewhere
+enum SaveOption
+{
+    SAVE_OPT_SAVE_AND_CONTINUE = 1,
+    SAVE_OPT_SAVE_AND_QUIT,
+    SAVE_OPT_CONTINUE_DONT_SAVE
+};
 
-#define INTRO_CUTSCENE_HIDE_HUD_AND_MARIO 0
-#define INTRO_CUTSCENE_PEACH_LAKITU_SCENE 1
-#define INTRO_CUTSCENE_RAISE_PIPE         2
-#define INTRO_CUTSCENE_JUMP_OUT_OF_PIPE   3
-#define INTRO_CUTSCENE_LAND_OUTSIDE_PIPE  4
-#define INTRO_CUTSCENE_LOWER_PIPE         5
-#define INTRO_CUTSCENE_SET_MARIO_TO_IDLE  6
-
-#define GRAND_STAR_CUTSCENE_FALLING    0
-#define GRAND_STAR_CUTSCENE_TAKING_OFF 1
-#define GRAND_STAR_CUTSCENE_FLYING     2
-
-#define END_PEACH_CUTSCENE_MARIO_FALLING     0
-#define END_PEACH_CUTSCENE_MARIO_LANDING     1
-#define END_PEACH_CUTSCENE_SUMMON_GRAND_STAR 2
-#define END_PEACH_CUTSCENE_SPAWN_PEACH       3
-#define END_PEACH_CUTSCENE_DESCEND_PEACH     4
-#define END_PEACH_CUTSCENE_RUN_TO_PEACH      5
-#define END_PEACH_CUTSCENE_DIALOGUE_1        6
-#define END_PEACH_CUTSCENE_DIALOGUE_2        7
-#define END_PEACH_CUTSCENE_KISS_FROM_PEACH   8
-#define END_PEACH_CUTSCENE_STAR_DANCE        9
-#define END_PEACH_CUTSCENE_DIALOGUE_3        10
-#define END_PEACH_CUTSCENE_RUN_TO_CASTLE     11
-#define END_PEACH_CUTSCENE_FADE_OUT          12
 
 static struct Object *sIntroWarpPipeObj;
 static struct Object *sEndPeachObj;
 static struct Object *sEndRightToadObj;
 static struct Object *sEndLeftToadObj;
-static struct Object *sEndGrandStarObj;
-static UNUSED s32 D_80339F44;
+static struct Object *sEndJumboStarObj;
+static UNUSED s32 sUnused;
 static s16 sEndPeachAnimation;
 static s16 sEndToadAnims[2];
 
@@ -72,65 +50,38 @@ static s8 D_8032CBE8 = 0;
 static s8 D_8032CBEC[7] = { 2, 3, 2, 1, 2, 3, 2 };
 
 static u8 sStarsNeededForDialogue[6] = { 1, 3, 8, 30, 50, 70 };
-static Vec4s D_8032CBFC = { 20, 0, 678, -2916 };
 
-// speculation: list of keyframes as a test for camera movement in cutscenes
-static UNUSED struct Struct8032E040 D_8032CC04[26] = {
-    { 0, 30, {     0,    680,  -3500 } },
-    { 0, 40, {  1000,    700,  -4000 } },
-    { 0, 50, {  2500,    750,  -3500 } },
-    { 0, 50, {  3500,    800,  -2000 } },
-    { 0, 50, {  4000,    850,      0 } },
-    { 0, 50, {  3500,    900,   2000 } },
-    { 0, 50, {  2000,    950,   3500 } },
-    { 0, 50, {     0,   1000,   4000 } },
-    { 0, 50, { -2000,   1050,   3500 } },
-    { 0, 50, { -3500,   1100,   2000 } },
-    { 0, 50, { -4000,   1150,      0 } },
-    { 0, 50, { -3500,   1200,  -2000 } },
-    { 0, 50, { -2000,   1250,  -3500 } },
-    { 0, 50, {     0,   1300,  -4000 } },
-    { 0, 50, {  2000,   1350,  -3500 } },
-    { 0, 50, {  3500,   1400,  -2000 } },
-    { 0, 50, {  4000,   1450,      0 } },
-    { 0, 50, {  3500,   1500,   2000 } },
-    { 0, 50, {  2000,   1600,   3500 } },
-    { 0, 50, {     0,   1700,   4000 } },
-    { 0, 50, { -2000,   1800,   3500 } },
-    { 0, 50, { -3500,   1900,   2000 } },
-    { 0, 30, { -4000,   2000,      0 } },
-    { 0,  0, { -3500,   2100,  -2000 } },
-    { 0,  0, { -2000,   2200,  -3500 } },
-    { 0,  0, {     0,   2300,  -4000 } },
+// data for the jumbo star cutscene
+static Vec4s sJumboStarKeyframes[27] =
+{
+    {     20,      0,    678,  -2916 },
+    {     30,      0,    680,  -3500 },
+    {     40,   1000,    700,  -4000 },
+    {     50,   2500,    750,  -3500 },
+    {     50,   3500,    800,  -2000 },
+    {     50,   4000,    850,      0 },
+    {     50,   3500,    900,   2000 },
+    {     50,   2000,    950,   3500 },
+    {     50,      0,   1000,   4000 },
+    {     50,  -2000,   1050,   3500 },
+    {     50,  -3500,   1100,   2000 },
+    {     50,  -4000,   1150,      0 },
+    {     50,  -3500,   1200,  -2000 },
+    {     50,  -2000,   1250,  -3500 },
+    {     50,      0,   1300,  -4000 },
+    {     50,   2000,   1350,  -3500 },
+    {     50,   3500,   1400,  -2000 },
+    {     50,   4000,   1450,      0 },
+    {     50,   3500,   1500,   2000 },
+    {     50,   2000,   1600,   3500 },
+    {     50,      0,   1700,   4000 },
+    {     50,  -2000,   1800,   3500 },
+    {     50,  -3500,   1900,   2000 },
+    {     30,  -4000,   2000,      0 },
+    {      0,  -3500,   2100,  -2000 },
+    {      0,  -2000,   2200,  -3500 },
+    {      0,      0,   2300,  -4000 },
 };
-// static UNUSED u8 D_8032CC04[208] = {
-//     0x00, 0x1E, 0x00, 0x00, 0x02, 0xA8, 0xF2, 0x54,
-//     0x00, 0x28, 0x03, 0xE8, 0x02, 0xBC, 0xF0, 0x60,
-//     0x00, 0x32, 0x09, 0xC4, 0x02, 0xEE, 0xF2, 0x54,
-//     0x00, 0x32, 0x0D, 0xAC, 0x03, 0x20, 0xF8, 0x30,
-//     0x00, 0x32, 0x0F, 0xA0, 0x03, 0x52, 0x00, 0x00,
-//     0x00, 0x32, 0x0D, 0xAC, 0x03, 0x84, 0x07, 0xD0,
-//     0x00, 0x32, 0x07, 0xD0, 0x03, 0xB6, 0x0D, 0xAC,
-//     0x00, 0x32, 0x00, 0x00, 0x03, 0xE8, 0x0F, 0xA0,
-//     0x00, 0x32, 0xF8, 0x30, 0x04, 0x1A, 0x0D, 0xAC,
-//     0x00, 0x32, 0xF2, 0x54, 0x04, 0x4C, 0x07, 0xD0,
-//     0x00, 0x32, 0xF0, 0x60, 0x04, 0x7E, 0x00, 0x00,
-//     0x00, 0x32, 0xF2, 0x54, 0x04, 0xB0, 0xF8, 0x30,
-//     0x00, 0x32, 0xF8, 0x30, 0x04, 0xE2, 0xF2, 0x54,
-//     0x00, 0x32, 0x00, 0x00, 0x05, 0x14, 0xF0, 0x60,
-//     0x00, 0x32, 0x07, 0xD0, 0x05, 0x46, 0xF2, 0x54,
-//     0x00, 0x32, 0x0D, 0xAC, 0x05, 0x78, 0xF8, 0x30,
-//     0x00, 0x32, 0x0F, 0xA0, 0x05, 0xAA, 0x00, 0x00,
-//     0x00, 0x32, 0x0D, 0xAC, 0x05, 0xDC, 0x07, 0xD0,
-//     0x00, 0x32, 0x07, 0xD0, 0x06, 0x40, 0x0D, 0xAC,
-//     0x00, 0x32, 0x00, 0x00, 0x06, 0xA4, 0x0F, 0xA0,
-//     0x00, 0x32, 0xF8, 0x30, 0x07, 0x08, 0x0D, 0xAC,
-//     0x00, 0x32, 0xF2, 0x54, 0x07, 0x6C, 0x07, 0xD0,
-//     0x00, 0x1E, 0xF0, 0x60, 0x07, 0xD0, 0x00, 0x00,
-//     0x00, 0x00, 0xF2, 0x54, 0x08, 0x34, 0xF8, 0x30,
-//     0x00, 0x00, 0xF8, 0x30, 0x08, 0x98, 0xF2, 0x54,
-//     0x00, 0x00, 0x00, 0x00, 0x08, 0xFC, 0xF0, 0x60,
-// };
 
 static s32 sSparkleGenTheta = 0;
 static s32 sSparkleGenPhi   = 0;
@@ -2041,6 +1992,17 @@ static void intro_cutscene_set_mario_to_idle(struct MarioState *m)
     stop_and_set_height_to_floor(m);
 }
 
+enum
+{
+    INTRO_CUTSCENE_HIDE_HUD_AND_MARIO,
+    INTRO_CUTSCENE_PEACH_LAKITU_SCENE,
+    INTRO_CUTSCENE_RAISE_PIPE,
+    INTRO_CUTSCENE_JUMP_OUT_OF_PIPE,
+    INTRO_CUTSCENE_LAND_OUTSIDE_PIPE,
+    INTRO_CUTSCENE_LOWER_PIPE,
+    INTRO_CUTSCENE_SET_MARIO_TO_IDLE
+};
+
 static s32 act_intro_cutscene(struct MarioState *m)
 {
     switch (m->actionArg)
@@ -2056,8 +2018,8 @@ static s32 act_intro_cutscene(struct MarioState *m)
     return FALSE;
 }
 
-// grand star cutscene: mario lands after grabbing the grand star
-static void grand_star_cutscene_falling(struct MarioState *m)
+// jumbo star cutscene: mario lands after grabbing the jumbo star
+static void jumbo_star_cutscene_falling(struct MarioState *m)
 {
     if (m->actionState == 0)
     {
@@ -2089,8 +2051,8 @@ static void grand_star_cutscene_falling(struct MarioState *m)
     }
 }
 
-// grand star cutscene: mario takes off
-static s32 grand_star_cutscene_taking_off(struct MarioState *m)
+// jumbo star cutscene: mario takes off
+static s32 jumbo_star_cutscene_taking_off(struct MarioState *m)
 {
     struct Object *marioObj = m->marioObj;
     s32 animFrame;
@@ -2147,8 +2109,8 @@ static s32 grand_star_cutscene_taking_off(struct MarioState *m)
     return FALSE;
 }
 
-// grand star cutscene: mario flying
-static s32 grand_star_cutscene_flying(struct MarioState *m)
+// jumbo star cutscene: mario flying
+static s32 jumbo_star_cutscene_flying(struct MarioState *m)
 {
     Vec3f targetPos;
     UNUSED struct Object *marioObj = m->marioObj;
@@ -2162,7 +2124,7 @@ static s32 grand_star_cutscene_flying(struct MarioState *m)
     {
         case 0:
             func_802507E8(m, MARIO_ANIM_WING_CAP_FLY);
-            func_8037AFB8(&D_8032CBFC);
+            func_8037AFB8(sJumboStarKeyframes);
             m->actionState++;
             // fall through
         case 1:
@@ -2203,13 +2165,20 @@ static s32 grand_star_cutscene_flying(struct MarioState *m)
     return FALSE;
 }
 
-static s32 act_grand_star_cutscene(struct MarioState *m)
+enum
+{
+    JUMBO_STAR_CUTSCENE_FALLING,
+    JUMBO_STAR_CUTSCENE_TAKING_OFF,
+    JUMBO_STAR_CUTSCENE_FLYING
+};
+
+static s32 act_jumbo_star_cutscene(struct MarioState *m)
 {
     switch (m->actionArg)
     {
-        case GRAND_STAR_CUTSCENE_FALLING:    grand_star_cutscene_falling(m);    break;
-        case GRAND_STAR_CUTSCENE_TAKING_OFF: grand_star_cutscene_taking_off(m); break;
-        case GRAND_STAR_CUTSCENE_FLYING:     grand_star_cutscene_flying(m);     break;
+        case JUMBO_STAR_CUTSCENE_FALLING:    jumbo_star_cutscene_falling(m);    break;
+        case JUMBO_STAR_CUTSCENE_TAKING_OFF: jumbo_star_cutscene_taking_off(m); break;
+        case JUMBO_STAR_CUTSCENE_FLYING:     jumbo_star_cutscene_flying(m);     break;
     }
     return FALSE;
 }
@@ -2279,7 +2248,7 @@ static void end_peach_cutscene_mario_falling(struct MarioState *m)
     }
 }
 
-// set mario on the ground, wait and spawn the grand star outside the castle.
+// set mario on the ground, wait and spawn the jumbo star outside the castle.
 static void end_peach_cutscene_mario_landing(struct MarioState *m)
 {
     func_802507E8(m, MARIO_ANIM_GENERAL_LAND);
@@ -2290,18 +2259,18 @@ static void end_peach_cutscene_mario_landing(struct MarioState *m)
         // make wing cap run out
         m->capTimer = 60;
 
-        sEndGrandStarObj = spawn_object_abs_with_rot(
+        sEndJumboStarObj = spawn_object_abs_with_rot(
             gCurrentObject, 0, MODEL_STAR, bhvStaticObject,
             0, 2528, -1800,
             0, 0, 0
         );
-        scale_object(sEndGrandStarObj, 3.0);
+        scale_object(sEndJumboStarObj, 3.0);
         advance_cutscene_step(m);
     }
 }
 
 // raise hand animation, lower hand animation, do some special effects
-static void end_peach_cutscene_summon_grand_star(struct MarioState *m)
+static void end_peach_cutscene_summon_jumbo_star(struct MarioState *m)
 {
     func_802507E8(
         m, m->actionState == 0 ? \
@@ -2315,9 +2284,9 @@ static void end_peach_cutscene_summon_grand_star(struct MarioState *m)
     if (m->actionTimer == 255)
         advance_cutscene_step(m);
 
-    sEndGrandStarObj->oFaceAngleYaw += 0x0400;
+    sEndJumboStarObj->oFaceAngleYaw += 0x0400;
     generate_yellow_sparkles(0, 2528, -1800, 250.0f);
-    SetSound(SOUND_CH6_UNKNOWN00B, sEndGrandStarObj->header.gfx.cameraToObject);
+    SetSound(SOUND_CH6_UNKNOWN00B, sEndJumboStarObj->header.gfx.cameraToObject);
 }
 
 // free peach from the stained glass window
@@ -2337,7 +2306,7 @@ static void end_peach_cutscene_spawn_peach(struct MarioState *m)
     }
     if (m->actionTimer == 40)
     {
-        mark_object_for_deletion(sEndGrandStarObj);
+        mark_object_for_deletion(sEndJumboStarObj);
 
         sEndPeachObj = spawn_object_abs_with_rot(
             gCurrentObject, 0, MODEL_PEACH, bhvEndPeach,
@@ -2706,13 +2675,30 @@ static void end_peach_cutscene_fade_out(struct MarioState *m)
     }
 }
 
+enum
+{
+    END_PEACH_CUTSCENE_MARIO_FALLING,
+    END_PEACH_CUTSCENE_MARIO_LANDING,
+    END_PEACH_CUTSCENE_SUMMON_JUMBO_STAR,
+    END_PEACH_CUTSCENE_SPAWN_PEACH,
+    END_PEACH_CUTSCENE_DESCEND_PEACH,
+    END_PEACH_CUTSCENE_RUN_TO_PEACH,
+    END_PEACH_CUTSCENE_DIALOGUE_1,
+    END_PEACH_CUTSCENE_DIALOGUE_2,
+    END_PEACH_CUTSCENE_KISS_FROM_PEACH,
+    END_PEACH_CUTSCENE_STAR_DANCE,
+    END_PEACH_CUTSCENE_DIALOGUE_3,
+    END_PEACH_CUTSCENE_RUN_TO_CASTLE,
+    END_PEACH_CUTSCENE_FADE_OUT
+};
+
 static s32 act_end_peach_cutscene(struct MarioState *m)
 {
     switch (m->actionArg)
     {
         case END_PEACH_CUTSCENE_MARIO_FALLING:     end_peach_cutscene_mario_falling(m);     break;
         case END_PEACH_CUTSCENE_MARIO_LANDING:     end_peach_cutscene_mario_landing(m);     break;
-        case END_PEACH_CUTSCENE_SUMMON_GRAND_STAR: end_peach_cutscene_summon_grand_star(m); break;
+        case END_PEACH_CUTSCENE_SUMMON_JUMBO_STAR: end_peach_cutscene_summon_jumbo_star(m); break;
         case END_PEACH_CUTSCENE_SPAWN_PEACH:       end_peach_cutscene_spawn_peach(m);       break;
         case END_PEACH_CUTSCENE_DESCEND_PEACH:     end_peach_cutscene_descend_peach(m);     break;
         case END_PEACH_CUTSCENE_RUN_TO_PEACH:      end_peach_cutscene_run_to_peach(m);      break;
@@ -2870,7 +2856,7 @@ s32 mario_execute_cutscene_action(struct MarioState *m)
         case ACT_READING_NPC_DIALOGUE:       cancel = act_reading_npc_dialogue(m);       break;
         case ACT_DEBUG_FREE_MOVE:            cancel = act_debug_free_move(m);            break;
         case ACT_READING_SIGN:               cancel = act_reading_sign(m);               break;
-        case ACT_GRAND_STAR_CUTSCENE:        cancel = act_grand_star_cutscene(m);        break;
+        case ACT_JUMBO_STAR_CUTSCENE:        cancel = act_jumbo_star_cutscene(m);        break;
         case ACT_WAITING_FOR_DIALOGUE:       cancel = act_waiting_for_dialogue(m);       break;
         case ACT_STANDING_DEATH:             cancel = act_standing_death(m);             break;
         case ACT_QUICKSAND_DEATH:            cancel = act_quicksand_death(m);            break;
