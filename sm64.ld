@@ -419,6 +419,7 @@ SECTIONS
       /* data */
       BUILD_DIR/src/engine/graph_node.o(.data*);
       BUILD_DIR/src/engine/math_util.o(.data*);
+      BUILD_DIR/data/trig_tables.o(.data*);
       BUILD_DIR/src/engine/geo_layout.o(.data*);
       BUILD_DIR/src/engine/level_script.o(.data*);
       BUILD_DIR/src/engine/behavior_script.o(.data*);

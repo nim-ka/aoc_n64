@@ -19,8 +19,7 @@
 .endm
 
 glabel gDemoInputs
-.hword 0 # current segment
-.hword (demo_entry_end - demo_entry_start) / 8 # number of entries
+.word (demo_entry_end - demo_entry_start) / 8 # number of entries
 
 .align 3, 0x00
 demo_entry_start:

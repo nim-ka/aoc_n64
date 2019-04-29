@@ -20,8 +20,7 @@
 .endm
 
 glabel gMarioAnims
-.hword 0 # current segment
-.hword (anim_table_end - anim_table_start) / 8 # number of entries
+.word (anim_table_end - anim_table_start) / 8 # number of entries
 .word 0
 
 anim_table_start:

@@ -11,8 +11,6 @@ Vec4s *D_8038BC90;
 float D_8038BC94;
 int D_8038BC98;
 
-#include "math_tables.h"
-
 // These functions have bogus return values.
 // Disable the compiler warning.
 #pragma GCC diagnostic push
@@ -518,8 +516,8 @@ void mtxf_to_mtx(Mtx *a, f32 b[4][4])
     {
         sp14 = *t1++ * 0x10000;
         //! endian-dependent code
-        *a3++ = ((s16 *)&sp14)[0];  // upper bits
-        *t0++ = ((s16 *)&sp14)[1];  // lower bits
+        *a3++ = GET_HIGH_S16_OF_32(sp14);  // upper bits
+        *t0++ = GET_LOW_S16_OF_32(sp14);  // lower bits
     }
 }
 

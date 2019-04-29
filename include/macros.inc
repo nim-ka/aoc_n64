@@ -101,3 +101,10 @@ binid
 .include "levels/\name\()/geo.s"
 .align 4
 .endm
+
+.macro dialog_entry w1, w2, w3, w4
+    .word \w1
+    .byte (\w2 >> 24), 0x00
+    .hword (\w2 & 0xFFFF), (\w3 >> 16), 0x0000
+    .long \w4
+.endm

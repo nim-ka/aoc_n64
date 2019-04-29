@@ -15,6 +15,24 @@
 #include "mario_geo_switch_case_ids.h"
 #include "unused.h"
 
+// Use these macros in places where aliasing is used to split a variable into
+// smaller parts
+#if ENDIAN_IND
+#define GET_HIGH_U16_OF_32(var) ((u16)((var) >> 16))
+#define GET_HIGH_S16_OF_32(var) ((s16)((var) >> 16))
+#define GET_LOW_U16_OF_32(var) ((u16)((var) & 0xFFFF))
+#define GET_LOW_S16_OF_32(var) ((s16)((var) & 0xFFFF))
+#define SET_HIGH_U16_OF_32(var, val) ((var) = ((var) & 0xFFFF) | ((val) << 16))
+#define SET_HIGH_S16_OF_32(var, val) ((var) = ((var) & 0xFFFF) | ((val) << 16))
+#else
+#define GET_HIGH_U16_OF_32(var) (((u16 *)&(var))[0])
+#define GET_HIGH_S16_OF_32(var) (((s16 *)&(var))[0])
+#define GET_LOW_U16_OF_32(var) (((u16 *)&(var))[1])
+#define GET_LOW_S16_OF_32(var) (((s16 *)&(var))[1])
+#define SET_HIGH_U16_OF_32(var, val) ((((u16 *)&(var))[0]) = (val))
+#define SET_HIGH_S16_OF_32(var, val) ((((s16 *)&(var))[0]) = (val))
+#endif
+
 #define ARRAY_COUNT(arr) (s32)(sizeof(arr) / sizeof(arr[0]))
 
 #define SURFACE_DEFAULT                      0x0000

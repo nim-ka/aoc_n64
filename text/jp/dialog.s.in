@@ -2058,345 +2058,345 @@ Dialog169: # 0x0200D504
 # dialog table 0x0200D548
 .balign 4
 dialog_text_000:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog000
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog000
 dialog_text_001:
-.word 0x00000001, 0x0400005F, 0x00C80000, Dialog001
+dialog_entry 0x00000001, 0x0400005F, 0x00C80000, Dialog001
 dialog_text_002:
-.word 0x00000001, 0x0400005F, 0x00C80000, Dialog002
+dialog_entry 0x00000001, 0x0400005F, 0x00C80000, Dialog002
 dialog_text_003:
-.word 0x00000001, 0x0500005F, 0x00C80000, Dialog003
+dialog_entry 0x00000001, 0x0500005F, 0x00C80000, Dialog003
 dialog_text_004:
-.word 0x00000001, 0x0300005F, 0x00C80000, Dialog004
+dialog_entry 0x00000001, 0x0300005F, 0x00C80000, Dialog004
 dialog_text_005:
-.word 0x00000001, 0x0400001E, 0x00C80000, Dialog005
+dialog_entry 0x00000001, 0x0400001E, 0x00C80000, Dialog005
 dialog_text_006:
-.word 0x00000001, 0x0400001E, 0x00C80000, Dialog006
+dialog_entry 0x00000001, 0x0400001E, 0x00C80000, Dialog006
 dialog_text_007:
-.word 0x00000001, 0x0600001E, 0x00C80000, Dialog007
+dialog_entry 0x00000001, 0x0600001E, 0x00C80000, Dialog007
 dialog_text_008:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog008
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog008
 dialog_text_009:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog009
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog009
 dialog_text_010:
-.word 0x00000001, 0x0300001E, 0x00C80000, Dialog010
+dialog_entry 0x00000001, 0x0300001E, 0x00C80000, Dialog010
 dialog_text_011:
-.word 0x00000001, 0x0300001E, 0x00C80000, Dialog011
+dialog_entry 0x00000001, 0x0300001E, 0x00C80000, Dialog011
 dialog_text_012:
-.word 0x00000001, 0x0300001E, 0x00C80000, Dialog012
+dialog_entry 0x00000001, 0x0300001E, 0x00C80000, Dialog012
 dialog_text_013:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog013
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog013
 dialog_text_014:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog014
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog014
 dialog_text_015:
-.word 0x00000001, 0x0400001E, 0x00C80000, Dialog015
+dialog_entry 0x00000001, 0x0400001E, 0x00C80000, Dialog015
 dialog_text_016:
-.word 0x00000001, 0x0400001E, 0x00C80000, Dialog016
+dialog_entry 0x00000001, 0x0400001E, 0x00C80000, Dialog016
 dialog_text_017:
-.word 0x00000001, 0x0400001E, 0x00C80000, Dialog017
+dialog_entry 0x00000001, 0x0400001E, 0x00C80000, Dialog017
 dialog_text_018:
-.word 0x00000001, 0x0400001E, 0x00C80000, Dialog018
+dialog_entry 0x00000001, 0x0400001E, 0x00C80000, Dialog018
 dialog_text_019:
-.word 0x00000001, 0x0200001E, 0x00C80000, Dialog019
+dialog_entry 0x00000001, 0x0200001E, 0x00C80000, Dialog019
 dialog_text_020:
-.word 0x00000001, 0x0500005F, 0x00960000, Dialog020
+dialog_entry 0x00000001, 0x0500005F, 0x00960000, Dialog020
 dialog_text_021:
-.word 0x00000001, 0x0500005F, 0x00C80000, Dialog021
+dialog_entry 0x00000001, 0x0500005F, 0x00C80000, Dialog021
 dialog_text_022:
-.word 0x00000001, 0x0300005F, 0x00C80000, Dialog022
+dialog_entry 0x00000001, 0x0300005F, 0x00C80000, Dialog022
 dialog_text_023:
-.word 0x00000001, 0x0300005F, 0x00C80000, Dialog023
+dialog_entry 0x00000001, 0x0300005F, 0x00C80000, Dialog023
 dialog_text_024:
-.word 0x00000001, 0x0300005F, 0x00C80000, Dialog024
+dialog_entry 0x00000001, 0x0300005F, 0x00C80000, Dialog024
 dialog_text_025:
-.word 0x00000001, 0x0300005F, 0x00C80000, Dialog025
+dialog_entry 0x00000001, 0x0300005F, 0x00C80000, Dialog025
 dialog_text_026:
-.word 0x00000001, 0x0300005F, 0x00C80000, Dialog026
+dialog_entry 0x00000001, 0x0300005F, 0x00C80000, Dialog026
 dialog_text_027:
-.word 0x00000001, 0x0300005F, 0x00C80000, Dialog027
+dialog_entry 0x00000001, 0x0300005F, 0x00C80000, Dialog027
 dialog_text_028:
-.word 0x00000001, 0x0300005F, 0x00C80000, Dialog028
+dialog_entry 0x00000001, 0x0300005F, 0x00C80000, Dialog028
 dialog_text_029:
-.word 0x00000001, 0x0400005F, 0x00C80000, Dialog029
+dialog_entry 0x00000001, 0x0400005F, 0x00C80000, Dialog029
 dialog_text_030:
-.word 0x00000001, 0x0400001E, 0x00C80000, Dialog030
+dialog_entry 0x00000001, 0x0400001E, 0x00C80000, Dialog030
 dialog_text_031:
-.word 0x00000001, 0x0300001E, 0x00C80000, Dialog031
+dialog_entry 0x00000001, 0x0300001E, 0x00C80000, Dialog031
 dialog_text_032:
-.word 0x00000001, 0x0400001E, 0x00C80000, Dialog032
+dialog_entry 0x00000001, 0x0400001E, 0x00C80000, Dialog032
 dialog_text_033:
-.word 0x00000001, 0x0400001E, 0x00C80000, Dialog033
+dialog_entry 0x00000001, 0x0400001E, 0x00C80000, Dialog033
 dialog_text_034:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog034
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog034
 dialog_text_035:
-.word 0x00000001, 0x0400001E, 0x00C80000, Dialog035
+dialog_entry 0x00000001, 0x0400001E, 0x00C80000, Dialog035
 dialog_text_036:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog036
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog036
 dialog_text_037:
-.word 0x00000001, 0x0300001E, 0x00C80000, Dialog037
+dialog_entry 0x00000001, 0x0300001E, 0x00C80000, Dialog037
 dialog_text_038:
-.word 0x00000001, 0x0300005F, 0x00C80000, Dialog038
+dialog_entry 0x00000001, 0x0300005F, 0x00C80000, Dialog038
 dialog_text_039:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog039
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog039
 dialog_text_040:
-.word 0x00000001, 0x0300001E, 0x00C80000, Dialog040
+dialog_entry 0x00000001, 0x0300001E, 0x00C80000, Dialog040
 dialog_text_041:
-.word 0x00000001, 0x0400001E, 0x00C80000, Dialog041
+dialog_entry 0x00000001, 0x0400001E, 0x00C80000, Dialog041
 dialog_text_042:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog042
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog042
 dialog_text_043:
-.word 0x00000001, 0x0400001E, 0x00C80000, Dialog043
+dialog_entry 0x00000001, 0x0400001E, 0x00C80000, Dialog043
 dialog_text_044:
-.word 0x00000001, 0x0500005F, 0x00C80000, Dialog044
+dialog_entry 0x00000001, 0x0500005F, 0x00C80000, Dialog044
 dialog_text_045:
-.word 0x00000001, 0x0500005F, 0x00C80000, Dialog045
+dialog_entry 0x00000001, 0x0500005F, 0x00C80000, Dialog045
 dialog_text_046:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog046
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog046
 dialog_text_047:
-.word 0x00000001, 0x0300005F, 0x00C80000, Dialog047
+dialog_entry 0x00000001, 0x0300005F, 0x00C80000, Dialog047
 dialog_text_048:
-.word 0x00000001, 0x0400001E, 0x00C80000, Dialog048
+dialog_entry 0x00000001, 0x0400001E, 0x00C80000, Dialog048
 dialog_text_049:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog049
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog049
 dialog_text_050:
-.word 0x00000001, 0x0400001E, 0x00C80000, Dialog050
+dialog_entry 0x00000001, 0x0400001E, 0x00C80000, Dialog050
 dialog_text_051:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog051
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog051
 dialog_text_052:
-.word 0x00000001, 0x0400001E, 0x00C80000, Dialog052
+dialog_entry 0x00000001, 0x0400001E, 0x00C80000, Dialog052
 dialog_text_053:
-.word 0x00000001, 0x0600001E, 0x00C80000, Dialog053
+dialog_entry 0x00000001, 0x0600001E, 0x00C80000, Dialog053
 dialog_text_054:
-.word 0x00000001, 0x0400001E, 0x00C80000, Dialog054
+dialog_entry 0x00000001, 0x0400001E, 0x00C80000, Dialog054
 dialog_text_055:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog055
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog055
 dialog_text_056:
-.word 0x00000001, 0x0300001E, 0x00C80000, Dialog056
+dialog_entry 0x00000001, 0x0300001E, 0x00C80000, Dialog056
 dialog_text_057:
-.word 0x00000001, 0x0400001E, 0x00C80000, Dialog057
+dialog_entry 0x00000001, 0x0400001E, 0x00C80000, Dialog057
 dialog_text_058:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog058
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog058
 dialog_text_059:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog059
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog059
 dialog_text_060:
-.word 0x00000001, 0x0400001E, 0x00C80000, Dialog060
+dialog_entry 0x00000001, 0x0400001E, 0x00C80000, Dialog060
 dialog_text_061:
-.word 0x00000001, 0x0600001E, 0x00C80000, Dialog061
+dialog_entry 0x00000001, 0x0600001E, 0x00C80000, Dialog061
 dialog_text_062:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog062
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog062
 dialog_text_063:
-.word 0x00000001, 0x0400001E, 0x00C80000, Dialog063
+dialog_entry 0x00000001, 0x0400001E, 0x00C80000, Dialog063
 dialog_text_064:
-.word 0x00000001, 0x0400001E, 0x00C80000, Dialog064
+dialog_entry 0x00000001, 0x0400001E, 0x00C80000, Dialog064
 dialog_text_065:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog065
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog065
 dialog_text_066:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog066
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog066
 dialog_text_067:
-.word 0x00000001, 0x0400001E, 0x00C80000, Dialog067
+dialog_entry 0x00000001, 0x0400001E, 0x00C80000, Dialog067
 dialog_text_068:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog068
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog068
 dialog_text_069:
-.word 0x00000001, 0x0300001E, 0x00C80000, Dialog069
+dialog_entry 0x00000001, 0x0300001E, 0x00C80000, Dialog069
 dialog_text_070:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog070
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog070
 dialog_text_071:
-.word 0x00000001, 0x0400001E, 0x00C80000, Dialog071
+dialog_entry 0x00000001, 0x0400001E, 0x00C80000, Dialog071
 dialog_text_072:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog072
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog072
 dialog_text_073:
-.word 0x00000001, 0x0500005F, 0x00C80000, Dialog073
+dialog_entry 0x00000001, 0x0500005F, 0x00C80000, Dialog073
 dialog_text_074:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog074
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog074
 dialog_text_075:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog075
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog075
 dialog_text_076:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog076
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog076
 dialog_text_077:
-.word 0x00000001, 0x03000096, 0x00C80000, Dialog077
+dialog_entry 0x00000001, 0x03000096, 0x00C80000, Dialog077
 dialog_text_078:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog078
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog078
 dialog_text_079:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog079
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog079
 dialog_text_080:
-.word 0x00000001, 0x0300001E, 0x00C80000, Dialog080
+dialog_entry 0x00000001, 0x0300001E, 0x00C80000, Dialog080
 dialog_text_081:
-.word 0x00000001, 0x0600001E, 0x00C80000, Dialog081
+dialog_entry 0x00000001, 0x0600001E, 0x00C80000, Dialog081
 dialog_text_082:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog082
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog082
 dialog_text_083:
-.word 0x00000001, 0x0400001E, 0x00C80000, Dialog083
+dialog_entry 0x00000001, 0x0400001E, 0x00C80000, Dialog083
 dialog_text_084:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog084
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog084
 dialog_text_085:
-.word 0x00000001, 0x0400001E, 0x00C80000, Dialog085
+dialog_entry 0x00000001, 0x0400001E, 0x00C80000, Dialog085
 dialog_text_086:
-.word 0x00000001, 0x0300001E, 0x00C80000, Dialog086
+dialog_entry 0x00000001, 0x0300001E, 0x00C80000, Dialog086
 dialog_text_087:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog087
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog087
 dialog_text_088:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog088
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog088
 dialog_text_089:
-.word 0x00000001, 0x0400005F, 0x00C80000, Dialog089
+dialog_entry 0x00000001, 0x0400005F, 0x00C80000, Dialog089
 dialog_text_090:
-.word 0x00000001, 0x0600001E, 0x00C80000, Dialog090
+dialog_entry 0x00000001, 0x0600001E, 0x00C80000, Dialog090
 dialog_text_091:
-.word 0x00000001, 0x0300001E, 0x00C80000, Dialog091
+dialog_entry 0x00000001, 0x0300001E, 0x00C80000, Dialog091
 dialog_text_092:
-.word 0x00000001, 0x0300001E, 0x00C80000, Dialog092
+dialog_entry 0x00000001, 0x0300001E, 0x00C80000, Dialog092
 dialog_text_093:
-.word 0x00000001, 0x0400001E, 0x00C80000, Dialog093
+dialog_entry 0x00000001, 0x0400001E, 0x00C80000, Dialog093
 dialog_text_094:
-.word 0x00000001, 0x0300001E, 0x00C80000, Dialog094
+dialog_entry 0x00000001, 0x0300001E, 0x00C80000, Dialog094
 dialog_text_095:
-.word 0x00000001, 0x0300001E, 0x00C80000, Dialog095
+dialog_entry 0x00000001, 0x0300001E, 0x00C80000, Dialog095
 dialog_text_096:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog096
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog096
 dialog_text_097:
-.word 0x00000001, 0x0400001E, 0x00C80000, Dialog097
+dialog_entry 0x00000001, 0x0400001E, 0x00C80000, Dialog097
 dialog_text_098:
-.word 0x00000001, 0x0300005F, 0x00C80000, Dialog098
+dialog_entry 0x00000001, 0x0300005F, 0x00C80000, Dialog098
 dialog_text_099:
-.word 0x00000001, 0x0300005F, 0x00C80000, Dialog099
+dialog_entry 0x00000001, 0x0300005F, 0x00C80000, Dialog099
 dialog_text_100:
-.word 0x00000001, 0x0400005F, 0x00C80000, Dialog100
+dialog_entry 0x00000001, 0x0400005F, 0x00C80000, Dialog100
 dialog_text_101:
-.word 0x00000001, 0x0500005F, 0x00C80000, Dialog101
+dialog_entry 0x00000001, 0x0500005F, 0x00C80000, Dialog101
 dialog_text_102:
-.word 0x00000001, 0x0400001E, 0x00C80000, Dialog102
+dialog_entry 0x00000001, 0x0400001E, 0x00C80000, Dialog102
 dialog_text_103:
-.word 0x00000001, 0x0400005F, 0x00C80000, Dialog103
+dialog_entry 0x00000001, 0x0400005F, 0x00C80000, Dialog103
 dialog_text_104:
-.word 0x00000001, 0x0600001E, 0x00C80000, Dialog104
+dialog_entry 0x00000001, 0x0600001E, 0x00C80000, Dialog104
 dialog_text_105:
-.word 0x00000001, 0x0300005F, 0x00C80000, Dialog105
+dialog_entry 0x00000001, 0x0300005F, 0x00C80000, Dialog105
 dialog_text_106:
-.word 0x00000001, 0x0300005F, 0x00C80000, Dialog106
+dialog_entry 0x00000001, 0x0300005F, 0x00C80000, Dialog106
 dialog_text_107:
-.word 0x00000001, 0x0300005F, 0x00C80000, Dialog107
+dialog_entry 0x00000001, 0x0300005F, 0x00C80000, Dialog107
 dialog_text_108:
-.word 0x00000001, 0x0300005F, 0x00C80000, Dialog108
+dialog_entry 0x00000001, 0x0300005F, 0x00C80000, Dialog108
 dialog_text_109:
-.word 0x00000001, 0x0400005F, 0x00C80000, Dialog109
+dialog_entry 0x00000001, 0x0400005F, 0x00C80000, Dialog109
 dialog_text_110:
-.word 0x00000001, 0x0300005F, 0x00C80000, Dialog110
+dialog_entry 0x00000001, 0x0300005F, 0x00C80000, Dialog110
 dialog_text_111:
-.word 0x00000001, 0x0300005F, 0x00C80000, Dialog111
+dialog_entry 0x00000001, 0x0300005F, 0x00C80000, Dialog111
 dialog_text_112:
-.word 0x00000001, 0x0400001E, 0x00C80000, Dialog112
+dialog_entry 0x00000001, 0x0400001E, 0x00C80000, Dialog112
 dialog_text_113:
-.word 0x00000001, 0x0600001E, 0x00C80000, Dialog113
+dialog_entry 0x00000001, 0x0600001E, 0x00C80000, Dialog113
 dialog_text_114:
-.word 0x00000001, 0x0400005F, 0x00C80000, Dialog114
+dialog_entry 0x00000001, 0x0400005F, 0x00C80000, Dialog114
 dialog_text_115:
-.word 0x00000001, 0x0500005F, 0x00C80000, Dialog115
+dialog_entry 0x00000001, 0x0500005F, 0x00C80000, Dialog115
 dialog_text_116:
-.word 0x00000001, 0x0500005F, 0x00C80000, Dialog116
+dialog_entry 0x00000001, 0x0500005F, 0x00C80000, Dialog116
 dialog_text_117:
-.word 0x00000001, 0x0300005F, 0x00C80000, Dialog117
+dialog_entry 0x00000001, 0x0300005F, 0x00C80000, Dialog117
 dialog_text_118:
-.word 0x00000001, 0x0500005F, 0x00C80000, Dialog118
+dialog_entry 0x00000001, 0x0500005F, 0x00C80000, Dialog118
 dialog_text_119:
-.word 0x00000001, 0x0400001E, 0x00C80000, Dialog119
+dialog_entry 0x00000001, 0x0400001E, 0x00C80000, Dialog119
 dialog_text_120:
-.word 0x00000001, 0x0400001E, 0x00C80000, Dialog120
+dialog_entry 0x00000001, 0x0400001E, 0x00C80000, Dialog120
 dialog_text_121:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog121
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog121
 dialog_text_122:
-.word 0x00000001, 0x0600001E, 0x00C80000, Dialog122
+dialog_entry 0x00000001, 0x0600001E, 0x00C80000, Dialog122
 dialog_text_123:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog123
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog123
 dialog_text_124:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog124
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog124
 dialog_text_125:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog125
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog125
 dialog_text_126:
-.word 0x00000001, 0x0600001E, 0x00C80000, Dialog126
+dialog_entry 0x00000001, 0x0600001E, 0x00C80000, Dialog126
 dialog_text_127:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog127
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog127
 dialog_text_128:
-.word 0x00000001, 0x0400005F, 0x00C80000, Dialog128
+dialog_entry 0x00000001, 0x0400005F, 0x00C80000, Dialog128
 dialog_text_129:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog129
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog129
 dialog_text_130:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog130
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog130
 dialog_text_131:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog131
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog131
 dialog_text_132:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog132
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog132
 dialog_text_133:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog133
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog133
 dialog_text_134:
-.word 0x00000001, 0x0400001E, 0x00C80000, Dialog134
+dialog_entry 0x00000001, 0x0400001E, 0x00C80000, Dialog134
 dialog_text_135:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog135
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog135
 dialog_text_136:
-.word 0x00000001, 0x0400001E, 0x00C80000, Dialog136
+dialog_entry 0x00000001, 0x0400001E, 0x00C80000, Dialog136
 dialog_text_137:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog137
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog137
 dialog_text_138:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog138
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog138
 dialog_text_139:
-.word 0x00000001, 0x0600001E, 0x00C80000, Dialog139
+dialog_entry 0x00000001, 0x0600001E, 0x00C80000, Dialog139
 dialog_text_140:
-.word 0x00000001, 0x0600001E, 0x00C80000, Dialog140
+dialog_entry 0x00000001, 0x0600001E, 0x00C80000, Dialog140
 dialog_text_141:
-.word 0x00000001, 0x05000096, 0x00C80000, Dialog141
+dialog_entry 0x00000001, 0x05000096, 0x00C80000, Dialog141
 dialog_text_142:
-.word 0x00000001, 0x05000096, 0x00C80000, Dialog142
+dialog_entry 0x00000001, 0x05000096, 0x00C80000, Dialog142
 dialog_text_143:
-.word 0x00000001, 0x06000096, 0x00C80000, Dialog143
+dialog_entry 0x00000001, 0x06000096, 0x00C80000, Dialog143
 dialog_text_144:
-.word 0x00000001, 0x05000096, 0x00C80000, Dialog144
+dialog_entry 0x00000001, 0x05000096, 0x00C80000, Dialog144
 dialog_text_145:
-.word 0x00000001, 0x04000096, 0x00C80000, Dialog145
+dialog_entry 0x00000001, 0x04000096, 0x00C80000, Dialog145
 dialog_text_146:
-.word 0x00000001, 0x06000096, 0x00C80000, Dialog146
+dialog_entry 0x00000001, 0x06000096, 0x00C80000, Dialog146
 dialog_text_147:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog147
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog147
 dialog_text_148:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog148
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog148
 dialog_text_149:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog149
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog149
 dialog_text_150:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog150
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog150
 dialog_text_151:
-.word 0x00000001, 0x0400001E, 0x00C80000, Dialog151
+dialog_entry 0x00000001, 0x0400001E, 0x00C80000, Dialog151
 dialog_text_152:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog152
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog152
 dialog_text_153:
-.word 0x00000001, 0x0400001E, 0x00C80000, Dialog153
+dialog_entry 0x00000001, 0x0400001E, 0x00C80000, Dialog153
 dialog_text_154:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog154
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog154
 dialog_text_155:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog155
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog155
 dialog_text_156:
-.word 0x00000001, 0x0400001E, 0x00C80000, Dialog156
+dialog_entry 0x00000001, 0x0400001E, 0x00C80000, Dialog156
 dialog_text_157:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog157
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog157
 dialog_text_158:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog158
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog158
 dialog_text_159:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog159
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog159
 dialog_text_160:
-.word 0x00000001, 0x0400001E, 0x00C80000, Dialog160
+dialog_entry 0x00000001, 0x0400001E, 0x00C80000, Dialog160
 dialog_text_161:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog161
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog161
 dialog_text_162:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog162
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog162
 dialog_text_163:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog163
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog163
 dialog_text_164:
-.word 0x00000001, 0x0400001E, 0x00C80000, Dialog164
+dialog_entry 0x00000001, 0x0400001E, 0x00C80000, Dialog164
 dialog_text_165:
-.word 0x00000001, 0x0400001E, 0x00C80000, Dialog165
+dialog_entry 0x00000001, 0x0400001E, 0x00C80000, Dialog165
 dialog_text_166:
-.word 0x00000001, 0x0600001E, 0x00C80000, Dialog166
+dialog_entry 0x00000001, 0x0600001E, 0x00C80000, Dialog166
 dialog_text_167:
-.word 0x00000001, 0x0400001E, 0x00C80000, Dialog167
+dialog_entry 0x00000001, 0x0400001E, 0x00C80000, Dialog167
 dialog_text_168:
-.word 0x00000001, 0x0400001E, 0x00C80000, Dialog168
+dialog_entry 0x00000001, 0x0400001E, 0x00C80000, Dialog168
 dialog_text_169:
-.word 0x00000001, 0x0500001E, 0x00C80000, Dialog169
+dialog_entry 0x00000001, 0x0500001E, 0x00C80000, Dialog169
 
 # dialog table
 glabel seg2_dialog_table # 0x0200DFE8

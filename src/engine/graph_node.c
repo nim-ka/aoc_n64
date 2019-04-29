@@ -781,15 +781,15 @@ s16 func_8037C844(struct GraphNodeObject_sub *a0, s32* a1)
             sp04 = (a0->animFrame - 1) << 16;
         }
 
-        if(*(s16*)&sp04 < sp00->unk06)
+        if(GET_HIGH_S16_OF_32(sp04) < sp00->unk06)
         {
             if(sp00->flags & ANIM_FLAG_NOLOOP)
             {
-                *(s16 *)&sp04 = sp00->unk06;
+                SET_HIGH_S16_OF_32(sp04, sp00->unk06);
             }
             else
             {
-                *(s16 *)&sp04 = sp00->unk08 - 1;
+                SET_HIGH_S16_OF_32(sp04, sp00->unk08 - 1);
             }
         }
     }
@@ -804,15 +804,15 @@ s16 func_8037C844(struct GraphNodeObject_sub *a0, s32* a1)
             sp04 = (a0->animFrame + 1) << 16;
         }
 
-        if(*(s16 *)&sp04 >= sp00->unk08)
+        if(GET_HIGH_S16_OF_32(sp04) >= sp00->unk08)
         {
             if(sp00->flags & ANIM_FLAG_NOLOOP)
             {
-                *(s16 *) &sp04 = sp00->unk08 - 1;
+                SET_HIGH_S16_OF_32(sp04, sp00->unk08 - 1);
             }
             else
             {
-                *(s16 *) &sp04 = sp00->unk06;
+                SET_HIGH_S16_OF_32(sp04, sp00->unk06);
             }
         }
     }
@@ -822,7 +822,7 @@ s16 func_8037C844(struct GraphNodeObject_sub *a0, s32* a1)
         a1[0] = sp04;
     }
 
-    return *(s16 *) &sp04;
+    return GET_HIGH_S16_OF_32(sp04);
 }
 
 void Unknown8037C9E8(struct GraphNodeObject *sp28, Vec3f sp2c)

@@ -510,11 +510,7 @@ static s32 act_disappeared(struct MarioState *m)
 
 static s32 act_reading_automatic_dialogue(struct MarioState *m)
 {
-    union
-    {
-        u32 raw;
-        u16 diagArg[2];
-    } actionArg;
+    u32 actionArg;
 
     m->actionState++;
     if (m->actionState == 2)
@@ -533,11 +529,11 @@ static s32 act_reading_automatic_dialogue(struct MarioState *m)
         // set mario dialogue
         if (m->actionState == 9)
         {
-            actionArg.raw = m->actionArg;
-            if (actionArg.diagArg[0] == 0)
-                func_802D7F90(actionArg.diagArg[1]);
+            actionArg = m->actionArg;
+            if (GET_HIGH_U16_OF_32(actionArg) == 0)
+                func_802D7F90(GET_LOW_U16_OF_32(actionArg));
             else
-                func_802D7FCC(actionArg.diagArg[0], actionArg.diagArg[1]);
+                func_802D7FCC(GET_HIGH_U16_OF_32(actionArg), GET_LOW_U16_OF_32(actionArg));
         }
         // wait until dialogue is done
         else if (m->actionState == 10)

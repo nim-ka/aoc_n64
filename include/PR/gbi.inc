@@ -13,8 +13,7 @@
 
 /* DMA helper */
 .macro gsDma1p cmd, segAddr, length, params
-   .byte \cmd, \params
-   .hword \length
+   .word (\cmd << 24) | ((\params & 0xFFFF) << 16) | (\length & 0xFFFF)
    .word \segAddr
 .endm
 
@@ -80,14 +79,15 @@
 .set G_LOAD_UCODE, 0xAF
 .macro gsSPLoadUcode ucdstart, uctstart
    .word G_RDPHALF_1 << 24, \ucdstart + 0x80000000
-   .hword G_LOAD_UCODE << 8, UCODE_SIZE
+   .word G_LOAD_UCODE << 24 | UCODE_SIZE
    .word \uctstart + 0x80000000
 .endm
 
 /* B1: G_TRI2 */
 .set G_TRI2, 0xB1
 .macro gsSP2Triangles v0, v1, v2, flag0, v3, v4, v5, flag1 /* Note: flag has no effect on this variant of gSP2Triangles */
-   .byte G_TRI2, \v0*2, \v1*2, \v2*2, 0x00, \v3*2, \v4*2, \v5*2
+   .word (G_TRI2 << 24) | (\v0*2 << 16) | (\v1*2 << 8) | \v2*2
+   .word (0x00 << 24) | (\v3*2 << 16) | (\v4*2 << 8) | \v5*2
 .endm
 .endif
 
@@ -441,9 +441,9 @@
 .macro gsSP1Triangle v0, v1, v2, flag /* Note: flag has no effect on this variant of gSP1Triangle */
    .word G_TRI1 << 24
    .ifndef F3DEX_GBI
-   .byte 0x00, \v0*10, \v1*10, \v2*10
+   .word (\v0*10 << 16) | (\v1*10 << 8) | \v2*10
    .else
-   .byte 0x00, \v0*2, \v1*2, \v2*2
+   .word (\v0*2 << 16) | (\v1*2 << 8) | \v2*2
    .endif
 .endm
 
@@ -568,7 +568,7 @@
 /* helper for RGBA colors */
 .macro sDPRGBColor cmd r, g, b, a
    .word \cmd << 24
-   .byte \r, \g, \b, \a
+   .word (\r << 24) | (\g << 16) | (\b << 8) | \a
 .endm
 
 /* F8: G_SETFOGCOLOR */
@@ -587,7 +587,7 @@
 .set G_SETPRIMCOLOR, 0xFA
 .macro gsDPSetPrimColor m, l, r, g, b, a
    .word (G_SETPRIMCOLOR << 24) | ((\m & 0xFF) << 8) | (\l & 0xFF)
-   .byte \r, \g, \b, \a
+   .word (\r << 24) | (\g << 16) | (\b << 8) | \a
 .endm
 
 /* FB: G_SETENVCOLOR */

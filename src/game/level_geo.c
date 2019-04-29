@@ -9,11 +9,6 @@
 #include "envfx_snow.h"
 #include "level_geo.h"
 
-struct Local12AParam {
- /*0x00*/ u16 unk0;
- /*0x02*/ u16 unk2;
-};
-
 Gfx *geo_exec_level(s32 run, struct GraphNode *node, f32 c[4][4])
 {
     Vec3s sp50;
@@ -25,12 +20,12 @@ Gfx *geo_exec_level(s32 run, struct GraphNode *node, f32 c[4][4])
     if (run == TRUE && D_8032CF9C != NULL)
     {
         struct GraphNode12A *execNode = (struct GraphNode12A *)node;
-        struct Local12AParam *params = (struct Local12AParam *)&execNode->unk18; // accessed a s32 as 2 u16s by pointing to the variable and casting to a local struct as necessary.
+        u32 *params = &execNode->unk18; // accessed a s32 as 2 u16s by pointing to the variable and casting to a local struct as necessary.
 
-        if (params->unk0 != gAreaUpdateCounter)
+        if (GET_HIGH_U16_OF_32(*params) != gAreaUpdateCounter)
         {
             UNUSED s32 sp2C = D_8032CF9C->unk18;
-            s32 sp28 = params->unk2;
+            s32 sp28 = GET_LOW_U16_OF_32(*params);
 
             vec3f_to_vec3s(sp40, D_8032CF9C->unk28);
             vec3f_to_vec3s(sp48, D_8032CF9C->unk1C);
@@ -46,7 +41,7 @@ Gfx *geo_exec_level(s32 run, struct GraphNode *node, f32 c[4][4])
                 gSPBranchList(&sp38[1], VIRTUAL_TO_PHYSICAL(sp3C));
                 execNode->fnNode.node.flags = (execNode->fnNode.node.flags & 0xFF) | 0x400;
             }
-            params->unk0 = gAreaUpdateCounter;
+            SET_HIGH_U16_OF_32(*params, gAreaUpdateCounter);
         }
     }
     else if (run == 4)

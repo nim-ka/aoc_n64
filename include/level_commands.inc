@@ -218,8 +218,7 @@
 
 .macro load_model_from_dl model, dl, layer
     .byte 0x21, 0x08
-    .byte \layer
-	.byte \model
+    .hword (\layer << 8) | \model
     .word \dl
 .endm
 

@@ -257,6 +257,9 @@ static void wiggler_act_walk(void)
     }
     else
     {
+        //! Every object's health is initially 2048, and wiggler's doesn't change
+        //  to 4 until after this runs the first time. It indexes out of bounds
+        //  and uses the value 113762.3 for one frame on US.
         obj_forward_vel_approach(sWigglerSpeeds[o->oHealth - 1], 1.0f);
 
         if (o->oWigglerWalkAwayFromWallTimer != 0)

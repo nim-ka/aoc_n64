@@ -12,6 +12,9 @@ GRUCODE ?= f3d_old
 COMPARE ?= 1
 # If NON_MATCHING is 1, define the NON_MATCHING macro when building
 NON_MATCHING ?= 0
+# If ENDIAN_IND is 1, enable non-matching code changes that try to ensure
+# endianness independence
+ENDIAN_IND ?= 0
 
 ifeq ($(VERSION),jp)
   VERSION_CFLAGS := -DVERSION_JP=1
@@ -57,6 +60,12 @@ ifeq ($(NON_MATCHING),1)
   VERSION_CFLAGS := $(VERSION_CFLAGS) -DNON_MATCHING=1
   COMPARE := 0
 endif
+
+ifeq ($(ENDIAN_IND),1)
+  VERSION_CFLAGS := $(VERSION_CFLAGS) -DENDIAN_IND=1
+  COMPARE := 0
+endif
+
 ################ Target Executable and Sources ###############
 
 # BUILD_DIR is location where all build artifacts are placed
