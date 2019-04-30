@@ -85,7 +85,7 @@ void ActionCheepCheep1(void)
     if(o->oDistanceToMario < 200.0f)
         if(o->oCheepCheepUnk108 < 0.5)
             o->oAction = 2;
-    if(o->oInteractStatus & 0x8000)
+    if(o->oInteractStatus & INT_STATUS_INTERACTED)
         o->oAction = 2;
 }
 
@@ -94,7 +94,7 @@ void ActionCheepCheep2(void)
     f32 dy;
     if(o->oTimer < 20)
     {
-        if(o->oInteractStatus & 0x8000)
+        if(o->oInteractStatus & INT_STATUS_INTERACTED)
             spawn_object(o,MODEL_SMALL_SNOW_BALL,bhvSmallParticleSnow);
     }
     else

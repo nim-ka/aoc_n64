@@ -3,7 +3,7 @@
 void bhv_floor_trap_in_castle_loop(void)
 {
     if(gMarioObject->platform == o)
-        o->parentObj->oInteractStatus |= 0x100000;
+        o->parentObj->oInteractStatus |= INTERACT_TRAP_TURN;
     o->oFaceAngleRoll = o->parentObj->oFaceAngleRoll;
 }
 
@@ -15,19 +15,19 @@ void bhv_castle_floor_trap_init(void)
     sp2C->oMoveAngleYaw += 0x8000;
 }
 
-void func_802C567C(void)
+void bhv_castle_floor_trap_open_detect(void)
 {
     if(gMarioStates->action == ACT_SPECIAL_EXIT_AIRBORNE || gMarioStates->action == ACT_SPECIAL_DEATH_EXIT)
-        o->oAction = 4;
+        o->oAction = 4; // rotates trapdoor so it looks always open
     else
     {
     o->oAngleVelRoll = 0x400;
-    if(o->oInteractStatus & 0x100000)
-        o->oAction = 1;
+    if(o->oInteractStatus & INTERACT_TRAP_TURN)
+        o->oAction = 1; // detects interact then opens the trapdoor
     }
 }
 
-void func_802C5700(void)
+void bhv_castle_floor_trap_open(void)
 {
     if(o->oTimer == 0)
         PlaySound2(SOUND_GENERAL_UNUSED);
@@ -36,28 +36,28 @@ void func_802C5700(void)
     if(o->oFaceAngleRoll < -0x4000)
     {
         o->oFaceAngleRoll = -0x4000;
-        o->oAction = 2;
+        o->oAction = 2; // after opening is done, enable close detection
     }
 }
 
-void func_802C57A4(void)
+void bhv_castle_floor_trap_close_detect(void)
 {
     if(o->oDistanceToMario > 1000.0f)
-        o->oAction = 3;
+        o->oAction = 3; // close trapdoor
 }
 
-void func_802C57E8(void)
+void bhv_castle_floor_trap_close(void)
 {
     o->oFaceAngleRoll += 0x400;
     if(o->oFaceAngleRoll > 0)
     {
         o->oFaceAngleRoll = 0;
-        o->oAction = 0;
-        o->oInteractStatus &= 0xFFEFFFFF;
+        o->oAction = 0; // after closing, reloads open detection
+        o->oInteractStatus &= ~(INTERACT_TRAP_TURN);
     }
 }
 
-void func_802C5854(void)
+void bhv_castle_floor_trap_rotate(void)
 {
     o->oFaceAngleRoll = -0x3C00;
 }
@@ -67,10 +67,10 @@ void bhv_castle_floor_trap_loop(void)
     UNUSED s32 unused[3];
     switch(o->oAction)
     {
-    case 0: func_802C567C(); break;
-    case 1: func_802C5700(); break;
-    case 2: func_802C57A4(); break;
-    case 3: func_802C57E8(); break;
-    case 4: func_802C5854(); break;
+    case 0: bhv_castle_floor_trap_open_detect(); break;
+    case 1: bhv_castle_floor_trap_open(); break;
+    case 2: bhv_castle_floor_trap_close_detect(); break;
+    case 3: bhv_castle_floor_trap_close(); break;
+    case 4: bhv_castle_floor_trap_rotate(); break;
     }
 }

@@ -30,9 +30,9 @@ void bhv_amp_homing_init(void)
 void CheckAmpAttack(void)
 {
     set_object_hitbox(o, &sAmpHitbox);
-    if (o->oInteractStatus & 0x8000) /* bit 15 */
+    if (o->oInteractStatus & INT_STATUS_INTERACTED) /* bit 15 */
     {
-        if (o->oInteractStatus & 0x8000) /* bit 15 */
+        if (o->oInteractStatus & INT_STATUS_INTERACTED) /* bit 15 */
             o->oAction = AMP_HOMING_ACT_ATTACK_COOLDOWN;
             
         o->oInteractStatus = 0;

@@ -15,7 +15,7 @@ static struct ObjectHitbox sCapHitbox =
 
 s32 func_802F0904(void) {
     set_object_hitbox(o, &sCapHitbox);
-    if (o->oInteractStatus & 0x8000) {
+    if (o->oInteractStatus & INT_STATUS_INTERACTED) {
         o->activeFlags = 0;
         o->oInteractStatus = 0;
         return 1;

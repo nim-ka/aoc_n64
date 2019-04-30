@@ -23,7 +23,7 @@
 #define INTERACT_BULLY          /* 0x00020000 */ (1 << 17)
 #define INTERACT_FLAME          /* 0x00040000 */ (1 << 18)
 #define INTERACT_KOOPA_SHELL    /* 0x00080000 */ (1 << 19)
-#define INTERACT_UNKNOWN_20     /* 0x00100000 */ (1 << 20)
+#define INTERACT_TRAP_TURN      /* 0x00100000 */ (1 << 20)
 #define INTERACT_MR_BLIZZARD    /* 0x00200000 */ (1 << 21)
 #define INTERACT_HIT_FROM_BELOW /* 0x00400000 */ (1 << 22)
 #define INTERACT_TEXT           /* 0x00800000 */ (1 << 23)

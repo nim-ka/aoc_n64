@@ -10,13 +10,13 @@ void func_802A8D18(f32 sp28,f32 sp2C,s32 sp30)
         func_802A2008(gMarioObject,o);
         break;
     case 2:
-        gMarioObject->oInteractStatus |= sp30+4;
+        gMarioObject->oInteractStatus |= (sp30+INT_STATUS_MARIO_UNK2);
         gMarioStates->forwardVel = sp28;
         gMarioStates->vel[1] = sp2C;
         o->parentObj->oUnk88 = 0;
         break;
     case 3:
-        gMarioObject->oInteractStatus |= 0x44;
+        gMarioObject->oInteractStatus |= (INT_STATUS_MARIO_UNK2+INT_STATUS_MARIO_UNK6); // loads 2 interactions at once?
         gMarioStates->forwardVel = 10.0f;
         gMarioStates->vel[1] = 10.0f;
         o->parentObj->oUnk88 = 0;
@@ -163,12 +163,12 @@ void ActionChuckya1(void)
             {
                 o->oUnk88 = 3;
                 o->oAction = 3;
-                o->oInteractStatus &= ~0x800;
+                o->oInteractStatus &= ~(INT_STATUS_GRABBED_MARIO);
             }
             else
             {
                 func_8029ED38(1);
-                o->oMoveAngleYaw += 0x800;
+                o->oMoveAngleYaw += INT_STATUS_GRABBED_MARIO;
                 if(o->OBJECT_FIELD_S32(0x1D)-- < 0)
                     if(func_802B0C54(50.0f,150.0f) || o->OBJECT_FIELD_S32(0x1D) < -16)
                     {
@@ -185,7 +185,7 @@ void ActionChuckya1(void)
                 PlaySound2(SOUND_OBJECT_UNKNOWN4);
                 o->oUnk88 = 2;
                 o->oAction = 3;
-                o->oInteractStatus &= ~0x800;
+                o->oInteractStatus &= ~(INT_STATUS_GRABBED_MARIO);
             }
         }
     }
@@ -217,7 +217,7 @@ void func_802A97B8(void)
     obj_update_floor_and_walls();
     obj_call_action_function(TableChuckyaActions);
     obj_move_standard(-30);
-    if(o->oInteractStatus & 0x800)
+    if(o->oInteractStatus & INT_STATUS_GRABBED_MARIO)
     {
         o->oAction = 1;
         o->oUnk88 = 1;

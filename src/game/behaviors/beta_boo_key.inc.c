@@ -34,7 +34,7 @@ void ActionBetaBooKeyInside2(void)
         obj_become_tangible();
         if(are_objects_collided(o,gMarioObject))
         {
-            o->parentObj->oInteractStatus = 1;
+            o->parentObj->oInteractStatus = INTERACT_HOOT; //! This inteaction could had an early action in the beta
             mark_object_for_deletion(o);
             spawn_object(o,MODEL_SPARKLES,bhvGoldenCoinSparkles);
         }

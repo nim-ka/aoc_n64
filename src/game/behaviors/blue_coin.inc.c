@@ -20,7 +20,7 @@ void bhv_hidden_blue_coins_loop(void)
     case 2:
         obj_enable_rendering();
         obj_become_tangible();
-        if(o->oInteractStatus & 0x8000)
+        if(o->oInteractStatus & INT_STATUS_INTERACTED)
         {
             spawn_object(o,MODEL_SPARKLES,bhvGoldenCoinSparkles);
             mark_object_for_deletion(o);

@@ -107,7 +107,7 @@ static void triplet_butterfly_act_activate(void)
     {
         if (o->oTripletButterflyModel == 0)
         {
-            spawn_object_relative_with_scale(0, 0, -40, 0, 1.5f, o, 0x96, bhvWhitePuffSmoke2);
+            spawn_object_relative_with_scale(0, 0, -40, 0, 1.5f, o, MODEL_SMOKE, bhvWhitePuffSmoke2);
             o->oTripletButterflyModel = sTripletButterflyActivationData[o->oTripletButterflyType].model;
             obj_set_model(o->oTripletButterflyModel);
             obj_set_billboard(o);

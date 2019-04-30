@@ -28,7 +28,7 @@ void bhv_water_air_bubble_loop(void)
     }
     o->oPosX += RandomFloat() * 4.0f - 2.0f;
     o->oPosZ += RandomFloat() * 4.0f - 2.0f;
-    if(o->oInteractStatus & 0x8000 || o->oTimer > 200)
+    if(o->oInteractStatus & INT_STATUS_INTERACTED || o->oTimer > 200)
     {
         PlaySound2(SOUND_GENERAL_QUIETBUBBLE);
         mark_object_for_deletion(o);
@@ -77,7 +77,7 @@ void bhv_small_water_wave_loop(void)
         if(gFreeObjectList.next != NULL)
             spawn_object(o,MODEL_SPOT_ON_GROUND,bhvWaterSurfaceWhiteWave2);
     }
-    if(o->oInteractStatus & 0x8000)
+    if(o->oInteractStatus & INT_STATUS_INTERACTED)
         mark_object_for_deletion(o);
 }
 

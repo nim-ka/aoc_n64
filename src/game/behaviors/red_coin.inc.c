@@ -33,7 +33,7 @@ void bhv_red_coin_init(void) {
 }
 
 void bhv_red_coin_loop(void) {
-    if (o->oInteractStatus & 0x8000) {
+    if (o->oInteractStatus & INT_STATUS_INTERACTED) {
         if (o->parentObj != NULL) {
             o->parentObj->oHiddenRedCoinStarCoinsCollected++;
 #ifdef VERSION_JP

@@ -26,7 +26,7 @@ void bhv_bowser_key_2_loop(void)
         if(o->oTimer == 0)
             o->oVelY = 70.0f;
         func_802B2328(3,200,80,-60);
-        spawn_object(o,0,bhvPowerupSparkles2);
+        spawn_object(o,MODEL_NONE,bhvPowerupSparkles2);
         obj_update_floor_and_walls();
         obj_move_standard(78);
         if(o->oMoveFlags & OBJ_MOVE_ON_GROUND)
@@ -41,7 +41,7 @@ void bhv_bowser_key_2_loop(void)
     else
     {
         set_object_hitbox(o,&sBowserKeyHitbox);
-        if(o->oInteractStatus & 0x8000)
+        if(o->oInteractStatus & INT_STATUS_INTERACTED)
         {
             mark_obj_for_deletion(o);
             o->oInteractStatus = 0;

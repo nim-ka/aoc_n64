@@ -111,7 +111,7 @@ void ActionKingBobomb3(void)
                 o->oUnk88 = 3;
                 o->oAction = 2;
                 o->OBJECT_FIELD_S32(0x20) = 35;
-                o->oInteractStatus &= ~0x800;
+                o->oInteractStatus &= ~(INT_STATUS_GRABBED_MARIO);
             }
             else
             {
@@ -135,7 +135,7 @@ void ActionKingBobomb3(void)
             else if(func_8029F788())
             {
                 o->oAction = 1;
-                o->oInteractStatus &= ~0x800;
+                o->oInteractStatus &= ~(INT_STATUS_GRABBED_MARIO);
             }
         }
     }

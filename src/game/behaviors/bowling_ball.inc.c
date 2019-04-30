@@ -52,7 +52,7 @@ void func_802EDA14(void)
 {
     set_object_hitbox(o, &sBowlingBallHitbox);
     
-    if (o->oInteractStatus & 0x8000) o->oInteractStatus = 0;
+    if (o->oInteractStatus & INT_STATUS_INTERACTED) o->oInteractStatus = 0;
 }
 
 void func_802EDA6C(void)

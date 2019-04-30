@@ -17,7 +17,7 @@ void bhv_object_bubble_loop(void)
     {
         if (gFreeObjectList.next)
         {
-            bubbleRipples = spawn_object_at_origin(o, 0, 165, bhvObjectBubbleRipples);
+            bubbleRipples = spawn_object_at_origin(o, 0, MODEL_SPOT_ON_GROUND, bhvObjectBubbleRipples);
             bubbleRipples->oPosX = o->oPosX;
             bubbleRipples->oPosY = bubbleY + 5.0f;
             bubbleRipples->oPosZ = o->oPosZ;

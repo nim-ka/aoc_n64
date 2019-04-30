@@ -16,7 +16,7 @@ void bhv_heave_ho_throw_mario_loop(void)
         break;
     case 2:
         PlaySound2(SOUND_OBJECT_HEAVEHOTOSSED);
-        gMarioObject->oInteractStatus |= 4;
+        gMarioObject->oInteractStatus |= INT_STATUS_MARIO_UNK2;
         gMarioStates->forwardVel = -45.0f;
         gMarioStates->vel[1] = 95.0f;
         o->parentObj->oUnk88 = 0;
@@ -113,7 +113,7 @@ void func_802B18B4(void)
         PlaySound(SOUND_CH6_UNKNOWN006);
     if(o->oAction != 0 && o->oMoveFlags & (0x40 | 0x20 | 0x10 | 0x8))
         o->oAction = 0;
-    if(o->oInteractStatus & 0x800)
+    if(o->oInteractStatus & INT_STATUS_GRABBED_MARIO)
     {
         o->oInteractStatus = 0;
         o->oUnk88 = 1;

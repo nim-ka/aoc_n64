@@ -93,7 +93,7 @@ void bhv_moving_yellow_coin_loop(void)
             break;
     }
 
-    if ((o->oInteractStatus & 0x8000) != 0) /* bit 15 */
+    if ((o->oInteractStatus & INT_STATUS_INTERACTED) != 0) /* bit 15 */
     {
         CoinCollected();
         o->oInteractStatus = 0;
@@ -135,7 +135,7 @@ void bhv_moving_blue_coin_loop(void)
             break;
     }
     
-    if ((o->oInteractStatus & 0x8000) != 0) /* bit 15 */
+    if ((o->oInteractStatus & INT_STATUS_INTERACTED) != 0) /* bit 15 */
     {
         CoinCollected();
         o->oInteractStatus = 0;
@@ -219,7 +219,7 @@ void bhv_blue_coin_sliding_loop(void)
             break;
     }
 
-    if ((o->oInteractStatus & 0x8000) != 0) /* bit 15 */
+    if ((o->oInteractStatus & INT_STATUS_INTERACTED) != 0) /* bit 15 */
     {
         CoinCollected();
         o->oInteractStatus = 0;
@@ -267,7 +267,7 @@ void bhv_blue_coin_jumping_loop(void)
             break;
     }
     
-    if ((o->oInteractStatus & 0x8000) != 0) /* bit 15 */
+    if ((o->oInteractStatus & INT_STATUS_INTERACTED) != 0) /* bit 15 */
     {
         CoinCollected();
         o->oInteractStatus = 0;

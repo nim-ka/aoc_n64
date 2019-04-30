@@ -39,15 +39,15 @@ void MoneybagCheckMarioCollision(void)
 {
     set_object_hitbox(o, &sMoneybagHitbox);
     
-    if (o->oInteractStatus & 0x8000) /* bit 15 */
+    if (o->oInteractStatus & INT_STATUS_INTERACTED) /* bit 15 */
     {
-        if (o->oInteractStatus & 0x2000) /* bit 13 */
+        if (o->oInteractStatus & INT_STATUS_ATTACKED_MARIO) /* bit 13 */
         {
             o->oMoveAngleYaw = o->oAngleToMario + 0x8000;
             o->oVelY = 30.0f;
         }
         
-        if (o->oInteractStatus & 0x4000) /* bit 14 */
+        if (o->oInteractStatus & INT_STATUS_WAS_ATTACKED) /* bit 14 */
         {
             o->oAction = MONEYBAG_ACT_DEATH;
         }

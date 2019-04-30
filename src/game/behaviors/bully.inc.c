@@ -57,12 +57,12 @@ void bhv_big_bully_init(void)
 
 void BullyCheckMarioCollision(void)
 {
-    if (o->oInteractStatus & 0x8000) /* bit 15 */
+    if (o->oInteractStatus & INT_STATUS_INTERACTED) /* bit 15 */
     {
         if (o->oBehParams2ndByte == BULLY_BP_SIZE_SMALL) PlaySound2(SOUND_CH9_UNK1C);
         else PlaySound2(SOUND_CH9_UNK57);
         
-        o->oInteractStatus &= ~0x8000; /* bit 15 */
+        o->oInteractStatus &= ~INT_STATUS_INTERACTED; /* bit 15 */
         o->oAction = BULLY_ACT_KNOCKBACK;
         o->oFlags &= ~0x8; /* bit 3 */
         SetObjAnimation(3);

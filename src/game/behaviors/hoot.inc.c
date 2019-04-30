@@ -131,7 +131,7 @@ void HootSurfaceCollision(f32 xPrev, UNUSED f32 yPrev, f32 zPrev)
         o->oPosX = hitbox.x;
         o->oPosY = hitbox.y;
         o->oPosZ = hitbox.z;
-        gMarioObject->oInteractStatus |= 0x80; /* bit 7 */
+        gMarioObject->oInteractStatus |= INT_STATUS_MARIO_UNK7; /* bit 7 */
     }
     
     floorY = func_803814B8(o->oPosX, o->oPosY, o->oPosZ, &sp44);
@@ -210,7 +210,7 @@ void HootActionLoop(void)
             
             HootCarryStep(20, xPrev, zPrev);
             
-            if (o->oTimer >= 61) gMarioObject->oInteractStatus |= 0x80; /* bit 7 */
+            if (o->oTimer >= 61) gMarioObject->oInteractStatus |= INT_STATUS_MARIO_UNK7; /* bit 7 */
             break;
     }
     
@@ -231,7 +231,7 @@ void HootTurnToHome(void)
 
 void HootAwakeLoop(void)
 {
-    if (o->oInteractStatus == 0x1)
+    if (o->oInteractStatus == INTERACT_HOOT)
     {
         HootActionLoop();
         

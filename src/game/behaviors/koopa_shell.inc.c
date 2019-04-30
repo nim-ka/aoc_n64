@@ -68,7 +68,7 @@ void bhv_koopa_shell_loop(void)
     case 0:
         obj_update_floor_and_walls();
         obj_if_hit_wall_bounce_away();
-        if(o->oInteractStatus & 0x8000)
+        if(o->oInteractStatus & INT_STATUS_INTERACTED)
             o->oAction++;
         o->oFaceAngleYaw += 0x1000;
         obj_move_standard(-20);
@@ -89,7 +89,7 @@ void bhv_koopa_shell_loop(void)
         else
             func_802BCCD4(10.0f);
         o->oFaceAngleYaw = gMarioObject->oMoveAngleYaw;
-        if(o->oInteractStatus & 0x400000)
+        if(o->oInteractStatus & INT_STATUS_STOP_RIDING)
         {
             mark_object_for_deletion(o);
             func_802A3004();

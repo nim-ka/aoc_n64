@@ -37,7 +37,7 @@ void bhv_snowmans_bottom_init(void) {
 void func_802EFB2C(void) {
     set_object_hitbox(o, &sRollingSphereHitbox);
 
-    if ((o->oInteractStatus & 0x8000) != 0) {
+    if ((o->oInteractStatus & INT_STATUS_INTERACTED) != 0) {
         o->oInteractStatus = 0;
     }
 }

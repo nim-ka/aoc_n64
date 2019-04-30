@@ -277,7 +277,7 @@ s32 func_802C35C0(void)
 
 s32 func_802C3738(u32 a0)
 {
-    if((o->oInteractStatus & 0xFF) == a0)
+    if((o->oInteractStatus & INT_STATUS_ATTACK_MASK) == a0)
         return 1;
     else
         return 0;
@@ -286,9 +286,9 @@ s32 func_802C3738(u32 a0)
 s32 func_802C3778(void)
 {
     s32 sp1C = 0;
-    if(o->oInteractStatus & 0x8000)
+    if(o->oInteractStatus & INT_STATUS_INTERACTED)
     {
-        if(o->oInteractStatus & 0x4000 && func_802C3738(3) == 0)
+        if(o->oInteractStatus & INT_STATUS_WAS_ATTACKED && func_802C3738(3) == 0)
         {
             obj_become_intangible();
             o->oInteractStatus = 0;

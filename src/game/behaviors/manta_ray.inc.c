@@ -102,6 +102,6 @@ void bhv_manta_ray_loop(void) {
             break; 
     }
 
-    if (o->oInteractStatus & 0x8000)
+    if (o->oInteractStatus & INT_STATUS_INTERACTED)
         o->oInteractStatus = 0;
 }

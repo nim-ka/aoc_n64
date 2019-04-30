@@ -24,7 +24,7 @@ void ActionOpenedCannon0(void)
     {
         obj_become_tangible();
         obj_enable_rendering();
-        if(o->oInteractStatus & 0x8000 && (!(o->oInteractStatus & 0x800000)))
+        if(o->oInteractStatus & INT_STATUS_INTERACTED && (!(o->oInteractStatus & INT_STATUS_TOUCHED_BOB_OMB))) // bob-omb explodes when it gets into a cannon
         {
             o->oAction = 4;
             o->OBJECT_FIELD_S32(0x21) = 1;

@@ -49,9 +49,9 @@ void BobombExplodeLoop(void)
 void CheckBobombInteractions(void)
 {
     set_object_hitbox(o, &sBobombHitbox);
-    if ((o->oInteractStatus & 0x8000) != 0) /* bit 15 */
+    if ((o->oInteractStatus & INT_STATUS_INTERACTED) != 0) /* bit 15 */
     {
-        if ((o->oInteractStatus & 0x2) != 0) /* bit 1 */
+        if ((o->oInteractStatus & INTERACT_GRABBABLE) != 0) /* bit 1 */
         {
             o->oMoveAngleYaw = gMarioObject->header.gfx.angle[1];
             o->oForwardVel = 25.0;
@@ -59,7 +59,7 @@ void CheckBobombInteractions(void)
             o->oAction = BOBOMB_ACT_LAUNCHED;
         }
 
-        if ((o->oInteractStatus & 0x800000) != 0) /* bit 23 */
+        if ((o->oInteractStatus & INTERACT_TEXT) != 0) /* bit 23 */
             o->oAction = BOBOMB_ACT_EXPLODE;
 
         o->oInteractStatus = 0;
@@ -191,7 +191,7 @@ void BobombHeldLoop(void)
         //  BobombExplodeLoop() will not execute until the bob-omb's held state changes. 
         //  This allows the Bob-omb to be regrabbed indefinitely.                        
             
-        gMarioObject->oInteractStatus |= 0x8; /* bit 3 */
+        gMarioObject->oInteractStatus |= INTERACT_DAMAGE; /* bit 3 */
         o->oAction = BOBOMB_ACT_EXPLODE;
     }
 }
@@ -318,7 +318,7 @@ void BobombBuddyIdleLoop(void)
     if (o->oDistanceToMario < 1000.0f)
         o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, o->oAngleToMario, 0x140);
 
-    if (o->oInteractStatus == 0x8000) o->oAction = BOBOMB_BUDDY_ACT_TURN_TO_TALK;
+    if (o->oInteractStatus == INT_STATUS_INTERACTED) o->oAction = BOBOMB_BUDDY_ACT_TURN_TO_TALK;
 }
 
 //sp30 = arg0

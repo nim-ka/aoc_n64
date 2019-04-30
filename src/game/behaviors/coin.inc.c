@@ -15,9 +15,9 @@ struct ObjectHitbox sYellowCoinHitbox =
 
 s16 D_8032F2A4[][2] = {{0,-150},{0,-50},{0,50},{0,150},{-50,100},{-100,50},{50,100},{100,50}};
 
-s32 func_802AAD54(void)
+s32 bhv_coin_sparkles_init(void)
 {
-    if(o->oInteractStatus & 0x8000 && !(o->oInteractStatus & 0x800000))
+    if(o->oInteractStatus & INT_STATUS_INTERACTED && !(o->oInteractStatus & INTERACT_TEXT))
     {
         spawn_object(o,MODEL_SPARKLES,bhvGoldenCoinSparkles);
         mark_object_for_deletion(o);
@@ -41,7 +41,7 @@ void bhv_yellow_coin_init(void)
 
 void bhv_yellow_coin_loop(void)
 {
-    func_802AAD54();
+    bhv_coin_sparkles_init();
     o->oAnimState++;
 }
 
@@ -50,7 +50,7 @@ void bhv_temp_coin_loop(void)
     o->oAnimState++;
     if(obj_wait_then_blink(200,20))
         mark_object_for_deletion(o);
-    func_802AAD54();
+    bhv_coin_sparkles_init();
 }
 
 void bhv_coin_init(void)
@@ -113,7 +113,7 @@ void bhv_coin_loop(void)
 #endif
     if(obj_wait_then_blink(400,20))
         mark_object_for_deletion(o);
-    func_802AAD54();
+    bhv_coin_sparkles_init();
 }
 
 void bhv_coin_formation_spawn_loop(void)
@@ -141,7 +141,7 @@ void bhv_coin_formation_spawn_loop(void)
     }
     else
     {
-        if(func_802AAD54())
+        if(bhv_coin_sparkles_init())
             o->parentObj->OBJECT_FIELD_S32(0x1B) |= func_802A377C(o->oBehParams2ndByte);
         o->oAnimState++;
     }
@@ -239,7 +239,7 @@ void ActionCoinInsideBoo1(void)
         obj_set_behavior(bhvYellowCoin);
     }
     obj_move_standard(-30);
-    func_802AAD54();
+    bhv_coin_sparkles_init();
     if(obj_has_model(MODEL_BLUE_COIN))
         o->oDamageOrCoinValue = 5;
     if(obj_wait_then_blink(400,20))

@@ -111,7 +111,7 @@ static struct InteractionHandler sInteractionHandlers[] =
         { INTERACT_CLAM_OR_BUBBA,  interact_clam_or_bubba   },
         { INTERACT_BULLY,          interact_bully           },
         { INTERACT_SHOCK,          interact_shock           },
-        { INTERACT_UNKNOWN_20,     interact_bounce_top      },
+        { INTERACT_TRAP_TURN,      interact_bounce_top      },
         { INTERACT_MR_BLIZZARD,    interact_mr_blizzard     },
         { INTERACT_HIT_FROM_BELOW, interact_hit_from_below  },
         { INTERACT_BOUNCE_TOP,     interact_bounce_top      },
@@ -830,7 +830,7 @@ static u32 interact_star_or_key(struct MarioState *m, UNUSED u32 interactType, s
         if (m->action & ACT_FLAG_AIR)
             starGrabAction = ACT_FALL_AFTER_STAR_GRAB;
 
-        spawn_object(o, 0, bhvStarKeyCollectionPuffSpawner);
+        spawn_object(o, MODEL_NONE, bhvStarKeyCollectionPuffSpawner);
 
         o->oInteractStatus = INT_STATUS_INTERACTED;
         m->interactObj = o;

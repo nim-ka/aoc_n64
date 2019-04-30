@@ -73,7 +73,7 @@ void bhv_grand_star_loop(void)
     else
     {
         obj_become_tangible();
-        if(o->oInteractStatus & 0x8000)
+        if(o->oInteractStatus & INT_STATUS_INTERACTED)
         {
             mark_object_for_deletion(o);
             o->oInteractStatus = 0;

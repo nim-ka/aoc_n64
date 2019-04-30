@@ -27,7 +27,7 @@ void bhv_unused_080c_init(void)
 void func_802AA788(void)
 {
     set_object_hitbox(o,&sSparkleSpawnStarHitbox);
-    if(o->oInteractStatus & 0x8000)
+    if(o->oInteractStatus & INT_STATUS_INTERACTED)
     {
         mark_obj_for_deletion(o);
         o->oInteractStatus = 0;

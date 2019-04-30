@@ -550,9 +550,9 @@ s32 func_802B4A94(void)
         if(BITDW)
         {
             if(o->oDistanceToMario < 850.0f)
-                gMarioObject->oInteractStatus |= 2;
+                gMarioObject->oInteractStatus |= INTERACT_GRABBABLE;
             else
-                gMarioObject->oInteractStatus |= 1;
+                gMarioObject->oInteractStatus |= INTERACT_HOOT; // hmm...
         }
         return 1;
     }
@@ -731,8 +731,8 @@ void ActionBowser7(void)
     case 3:
         o->oBowserUnkF8 = 0;
         func_8029ED38(21);
-        spawn_object_relative_with_scale(0, 100,-50,0,3.0f,o,150,&bhvWhitePuffSmoke2);
-        spawn_object_relative_with_scale(0,-100,-50,0,3.0f,o,150,&bhvWhitePuffSmoke2);
+        spawn_object_relative_with_scale(0, 100,-50,0,3.0f,o,MODEL_SMOKE,&bhvWhitePuffSmoke2);
+        spawn_object_relative_with_scale(0,-100,-50,0,3.0f,o,MODEL_SMOKE,&bhvWhitePuffSmoke2);
         if(approach_f32_signed(&o->oForwardVel,0,-1.0f))
             o->oSubAction = 2;
         func_8029F728();
@@ -764,7 +764,7 @@ s32 func_802B5588(void)
     mine = obj_find_nearest_object_with_behavior(bhvBowserBomb, &sp18);
     if(mine != NULL && sp18 < 800.0f)
     {
-        mine->oInteractStatus |= 0x200000;
+        mine->oInteractStatus |= INTERACT_MR_BLIZZARD;
         return 1;
     }
     return 0;
@@ -1774,11 +1774,11 @@ void bhv_blue_bowser_flame_loop(void)
     {
         if(o->oBehParams2ndByte == 0)
             for(i=0;i<3;i++)
-                spawn_object_relative_with_scale(0,0,0,0,5.0f,o,144,&bhvFlameFloatingLanding);
+                spawn_object_relative_with_scale(0,0,0,0,5.0f,o,MODEL_RED_FLAME,&bhvFlameFloatingLanding);
         else
         {
-            spawn_object_relative_with_scale(1,0,0,0,8.0f,o,145,&bhvFlameFloatingLanding);
-            spawn_object_relative_with_scale(2,0,0,0,8.0f,o,145,&bhvFlameFloatingLanding);
+            spawn_object_relative_with_scale(1,0,0,0,8.0f,o,MODEL_BLUE_FLAME,&bhvFlameFloatingLanding);
+            spawn_object_relative_with_scale(2,0,0,0,8.0f,o,MODEL_BLUE_FLAME,&bhvFlameFloatingLanding);
         }
         mark_object_for_deletion(o);
     }

@@ -15,10 +15,10 @@ s32 func_802BD4A8(void)
 {
     s32 i;
     s32 sp18 = 1;
-    if(o->oInteractStatus & 0x8000)
+    if(o->oInteractStatus & INT_STATUS_INTERACTED)
     {
         func_80321080(50);
-        if(o->oInteractStatus & 0x4000)
+        if(o->oInteractStatus & INT_STATUS_WAS_ATTACKED)
         {
             PlaySound2(SOUND_CH9_UNK11);
             for(i=0;i<20;i++)
@@ -151,7 +151,7 @@ void ActionPiranhaPlant22(void)
     if(o->oDistanceToMario > 500.0f)
         if(func_8029F788())
             o->oAction = 4;
-    if(o->oInteractStatus & 0x8000)
+    if(o->oInteractStatus & INT_STATUS_INTERACTED)
         if(gMarioState->flags & 4)
             o->oAction = 5;
 }

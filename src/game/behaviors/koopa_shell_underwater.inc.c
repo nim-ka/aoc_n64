@@ -34,7 +34,7 @@ void bhv_koopa_shell_underwater_loop(void)
         func_802A3004();
         break;
     }
-    if(o->oInteractStatus & 0x400000)
+    if(o->oInteractStatus & INT_STATUS_STOP_RIDING)
     {
         mark_object_for_deletion(o);
         func_802A3004();

@@ -50,10 +50,10 @@ void func_802C76E0(s32 a0,f32 a1,f32 a2,f32 a3,f32 a4)
 {
     if((gGlobalTimer & 1) != 0)
     {
-        spawn_object_relative_with_scale(a0,a2,a3,a4,0.5f,o,158,bhvTinyWhiteWindParticle);
-        spawn_object_relative_with_scale(a0,a2,a3,a4,a1,o,0,bhvWindParticle);
+        spawn_object_relative_with_scale(a0,a2,a3,a4,0.5f,o,MODEL_SNOWMAN_SNOW_BALL_DL,bhvTinyWhiteWindParticle);
+        spawn_object_relative_with_scale(a0,a2,a3,a4,a1,o,MODEL_NONE,bhvWindParticle);
     }
     else
-        spawn_object_relative_with_scale(a0,a2,a3,a4,a1,o,142,bhvWindParticle);
-    spawn_object_relative_with_scale(a0,a2,a3,a4,a1,o,0,bhvWindParticle);
+        spawn_object_relative_with_scale(a0,a2,a3,a4,a1,o,MODEL_MIST,bhvWindParticle);
+    spawn_object_relative_with_scale(a0,a2,a3,a4,a1,o,MODEL_NONE,bhvWindParticle);
 }

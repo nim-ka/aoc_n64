@@ -102,7 +102,7 @@ static void racing_penguin_act_race(void)
 
         if (func_8029F828() && (o->oMoveFlags & 0x00000003))
         {
-            spawn_object_relative_with_scale(0, 0, -100, 0, 4.0f, o, 150, bhvWhitePuffSmoke2);
+            spawn_object_relative_with_scale(0, 0, -100, 0, 4.0f, o, MODEL_SMOKE, bhvWhitePuffSmoke2);
         }
     }
 

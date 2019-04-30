@@ -36,7 +36,7 @@ void yoshi_walk_loop(void) {
     if (sp24 == 0 || sp24 == 15) 
         PlaySound2(SOUND_GENERAL_YOSHIWALK);
 
-    if (o->oInteractStatus == 0x8000)
+    if (o->oInteractStatus == INT_STATUS_INTERACTED)
         o->oAction = YOSHI_ACT_TALK;
 
     if (o->oPosY < 2100.0f) {
@@ -66,7 +66,7 @@ void yoshi_idle_loop(void) {
     }
 
     SetObjAnimation(0);
-    if (o->oInteractStatus == 0x8000) 
+    if (o->oInteractStatus == INT_STATUS_INTERACTED) 
         o->oAction = YOSHI_ACT_TALK;
 
     // Credits; Yoshi appears at this position overlooking the castle near the end of the credits

@@ -36,7 +36,7 @@ void bhv_boo_cage_loop(void)
         o->oFaceAngleRoll = 0;
         obj_update_floor_and_walls();
         obj_move_standard(-78);
-        spawn_object(o,0,bhvPowerupSparkles2);
+        spawn_object(o,MODEL_NONE,bhvPowerupSparkles2);
         if(o->oMoveFlags & 1)
             PlaySound2(SOUND_GENERAL_SOFTLANDING);
         if(o->oMoveFlags & (0x40 | 0x10 | 0x2))

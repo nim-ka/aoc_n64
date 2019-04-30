@@ -1382,7 +1382,7 @@ s32 obj_clear_interact_status_flag(s32 flag)
 {
     if (o->oInteractStatus & flag)
     {
-        o->oInteractStatus &= flag ^ 0xFFFFFFFF;
+        o->oInteractStatus &= flag ^ ~(0);
         return TRUE;
     }
     return FALSE;
