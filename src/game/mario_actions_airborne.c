@@ -1875,10 +1875,10 @@ static s32 act_riding_hoot(struct MarioState *m)
 
     if (m->actionState == 0)
     {
-        set_mario_animation(m, MARIO_ANIM_GRAB_WIRE_NET);
+        set_mario_animation(m, MARIO_ANIM_HANG_ON_CEILING);
         if (func_80250770(m))
         {
-            set_mario_animation(m, MARIO_ANIM_HANG_ON_TO_WIRE_NET);
+            set_mario_animation(m, MARIO_ANIM_HANG_ON_OWL);
             m->actionState = 1;
         }
     }

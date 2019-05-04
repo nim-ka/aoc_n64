@@ -557,7 +557,7 @@ static s32 act_breaststroke(struct MarioState *m)
         func_8027107C(m);
     }
 
-    set_mario_animation(m, MARIO_ANIM_SWIM1);
+    set_mario_animation(m, MARIO_ANIM_SWIM_PART1);
     common_swimming_step(m, D_8032CDD4);
 
     return FALSE;
@@ -590,7 +590,7 @@ static s32 act_swimming_end(struct MarioState *m)
     m->actionTimer++;
 
     m->forwardVel -= 0.25f;
-    set_mario_animation(m, MARIO_ANIM_SWIM2);
+    set_mario_animation(m, MARIO_ANIM_SWIM_PART2);
     common_swimming_step(m, D_8032CDD4);
 
     return FALSE;
@@ -667,7 +667,7 @@ static s32 act_hold_breaststroke(struct MarioState *m)
         func_8027107C(m);
     }
 
-    set_mario_animation(m, MARIO_ANIM_SWIM_WITH_OBJ1);
+    set_mario_animation(m, MARIO_ANIM_SWIM_WITH_OBJ_PART1);
     common_swimming_step(m, 0x00A0);
     return FALSE;
 }
@@ -695,7 +695,7 @@ static s32 act_hold_swimming_end(struct MarioState *m)
     m->actionTimer++;
 
     m->forwardVel -= 0.25f;
-    set_mario_animation(m, MARIO_ANIM_SWIM_WITH_OBJ2);
+    set_mario_animation(m, MARIO_ANIM_SWIM_WITH_OBJ_PART2);
     common_swimming_step(m, 0x00A0);
     return FALSE;
 }
@@ -813,13 +813,13 @@ static s32 act_water_punch(struct MarioState *m)
     switch (m->actionState)
     {
     case 0:
-        set_mario_animation(m, MARIO_ANIM_WATER_GRAB_OBJ1);
+        set_mario_animation(m, MARIO_ANIM_WATER_GRAB_OBJ_PART1);
         if (func_80250770(m))
             m->actionState = check_water_grab(m) + 1;
         break;
 
     case 1:
-        set_mario_animation(m, MARIO_ANIM_WATER_GRAB_OBJ2);
+        set_mario_animation(m, MARIO_ANIM_WATER_GRAB_OBJ_PART2);
         if (func_80250770(m))
             set_mario_action(m, ACT_WATER_ACTION_END, 0);
         break;
@@ -902,14 +902,14 @@ static s32 act_drowning(struct MarioState *m)
     switch (m->actionState)
     {
     case 0:
-        set_mario_animation(m, MARIO_ANIM_DROWNING1);
+        set_mario_animation(m, MARIO_ANIM_DROWNING_PART1);
         m->unk98->unk05 = 2;
         if (func_80250770(m))
             m->actionState = 1;
         break;
 
     case 1:
-        set_mario_animation(m, MARIO_ANIM_DROWNING2);
+        set_mario_animation(m, MARIO_ANIM_DROWNING_PART2);
         m->unk98->unk05 = 8;
         if (m->marioObj->header.gfx.unk38.animFrame == 30)
             level_trigger_warp(m, WARP_OP_DEATH);

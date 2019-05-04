@@ -264,11 +264,11 @@ static s32 act_grab_pole_fast(struct MarioState *m)
     {
         if (marioObj->oMarioPoleYawVel > 0x800)
         {
-            set_mario_animation(m, MARIO_ANIM_GRAB_POLE_SWING1);
+            set_mario_animation(m, MARIO_ANIM_GRAB_POLE_SWING_PART1);
         }
         else
         {
-            set_mario_animation(m, MARIO_ANIM_GRAB_POLE_SWING2);
+            set_mario_animation(m, MARIO_ANIM_GRAB_POLE_SWING_PART2);
             if (func_80250770(m) != 0)
             {
                 marioObj->oMarioPoleYawVel = 0;
@@ -418,7 +418,7 @@ static s32 act_start_hanging(struct MarioState *m)
     if (m->ceil->type != SURFACE_HANGABLE)
         return set_mario_action(m, ACT_FREEFALL, 0);
 
-    set_mario_animation(m, MARIO_ANIM_GRAB_WIRE_NET);
+    set_mario_animation(m, MARIO_ANIM_HANG_ON_CEILING);
     func_80250F50(m, SOUND_ACTION_UNKNOWN42D, MARIO_UNKNOWN_16);
     update_hang_stationary(m);
 
@@ -605,7 +605,7 @@ static s32 act_ledge_climb_slow(struct MarioState *m)
     if (m->actionTimer == 10)
         func_80250F50(m, SOUND_MARIO_EEUH, MARIO_UNKNOWN_17);
 
-    update_ledge_climb(m, 0, ACT_IDLE);
+    update_ledge_climb(m, MARIO_ANIM_SLOW_LEDGE_GRAB, ACT_IDLE);
 
     func_8025F188(m);
     if (m->marioObj->header.gfx.unk38.animFrame == 17)
@@ -621,7 +621,7 @@ static s32 act_ledge_climb_down(struct MarioState *m)
 
     func_80250F50(m, SOUND_MARIO_WHOA, MARIO_UNKNOWN_17);
 
-    update_ledge_climb(m, 0x001C, ACT_LEDGE_GRAB);
+    update_ledge_climb(m, MARIO_ANIM_CLIMB_DOWN_LEDGE, ACT_LEDGE_GRAB);
     m->actionArg = 1;
 
     return FALSE;
@@ -634,7 +634,7 @@ static s32 act_ledge_climb_fast(struct MarioState *m)
 
     func_80250F50(m, SOUND_MARIO_UH2, MARIO_UNKNOWN_17);
 
-    update_ledge_climb(m, 0x0034, ACT_IDLE);
+    update_ledge_climb(m, MARIO_ANIM_FAST_LEDGE_GRAB, ACT_IDLE);
 
     if (m->marioObj->header.gfx.unk38.animFrame == 8)
         func_80251280(m, SOUND_TERRAIN_2);

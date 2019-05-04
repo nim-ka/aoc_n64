@@ -454,7 +454,7 @@ static s32 act_reading_npc_dialogue(struct MarioState *m)
         // set animation
         set_mario_animation(
             m, m->heldObj == NULL ? \
-            MARIO_ANIM_DIALOGUE_FIRST_PERSON : MARIO_ANIM_IDLE_WITH_LIGHT_OBJ
+            MARIO_ANIM_FIRST_PERSON : MARIO_ANIM_IDLE_WITH_LIGHT_OBJ
         );
     }
     else if (m->actionState >= 9 && m->actionState < 17)
@@ -486,7 +486,7 @@ static s32 act_waiting_for_dialogue(struct MarioState *m)
 {
     set_mario_animation(
         m, m->heldObj == NULL ? \
-        MARIO_ANIM_DIALOGUE_FIRST_PERSON : MARIO_ANIM_IDLE_WITH_LIGHT_OBJ
+        MARIO_ANIM_FIRST_PERSON : MARIO_ANIM_IDLE_WITH_LIGHT_OBJ
     );
     vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
     vec3s_set(m->marioObj->header.gfx.angle, 0, m->faceAngle[1], 0);
@@ -519,7 +519,7 @@ static s32 act_reading_automatic_dialogue(struct MarioState *m)
     {
         set_mario_animation(
             m, m->prevAction == ACT_STAR_DANCE_WATER ? \
-            MARIO_ANIM_WATER_IDLE : MARIO_ANIM_DIALOGUE_FIRST_PERSON
+            MARIO_ANIM_WATER_IDLE : MARIO_ANIM_FIRST_PERSON
         );
         // always look up for automatic dialogues
         m->actionTimer -= 1024;
@@ -584,7 +584,7 @@ static s32 act_reading_sign(struct MarioState *m)
             StopMario(1);
             enable_time_stop();
             // reading sign
-            set_mario_animation(m, MARIO_ANIM_DIALOGUE_FIRST_PERSON);
+            set_mario_animation(m, MARIO_ANIM_FIRST_PERSON);
             m->actionState = 1;
             // intentional fall through
         // turn toward sign
@@ -1014,7 +1014,7 @@ static s32 act_entering_star_door(struct MarioState *m)
     // set mario's animation
     if (m->actionTimer < 15)
     {
-        set_mario_animation(m, MARIO_ANIM_DIALOGUE_FIRST_PERSON);
+        set_mario_animation(m, MARIO_ANIM_FIRST_PERSON);
     }
 
     // go through door? for 20 frames
@@ -1105,7 +1105,7 @@ s32 act_warp_door_spawn(struct MarioState *m)
         else
             set_mario_action(m, ACT_IDLE, 0);
     }
-    set_mario_animation(m, MARIO_ANIM_DIALOGUE_FIRST_PERSON);
+    set_mario_animation(m, MARIO_ANIM_FIRST_PERSON);
     stop_and_set_height_to_floor(m);
     return FALSE;
 }
@@ -1584,7 +1584,7 @@ static s32 act_teleport_fade_out(struct MarioState *m)
     func_80250F50(m, SOUND_ACTION_UNKNOWN457, MARIO_UNKNOWN_16);
     set_mario_animation(
         m, m->prevAction == ACT_CROUCHING ? \
-        MARIO_ANIM_CROUCHING : MARIO_ANIM_DIALOGUE_FIRST_PERSON
+        MARIO_ANIM_CROUCHING : MARIO_ANIM_FIRST_PERSON
     );
     m->flags |= MARIO_TELEPORTING;
 
@@ -1602,7 +1602,7 @@ static s32 act_teleport_fade_out(struct MarioState *m)
 static s32 act_teleport_fade_in(struct MarioState *m)
 {
     func_80250F50(m, SOUND_ACTION_UNKNOWN457, MARIO_UNKNOWN_16);
-    set_mario_animation(m, MARIO_ANIM_DIALOGUE_FIRST_PERSON);
+    set_mario_animation(m, MARIO_ANIM_FIRST_PERSON);
 
     if (m->actionTimer < 32)
     {
@@ -1964,7 +1964,7 @@ static void intro_cutscene_lower_pipe(struct MarioState *m)
     if (m->actionTimer++ == 0)
     {
         SetSound(SOUND_MENU_ENTERPIPE, sIntroWarpPipeObj->header.gfx.cameraToObject);
-        set_mario_animation(m, MARIO_ANIM_DIALOGUE_FIRST_PERSON);
+        set_mario_animation(m, MARIO_ANIM_FIRST_PERSON);
     }
 
     sIntroWarpPipeObj->oPosY -= 5.0f;
@@ -2600,7 +2600,7 @@ static void end_peach_cutscene_star_dance(struct MarioState *m)
 // "...for Mario..."
 static void end_peach_cutscene_dialogue_3(struct MarioState *m)
 {
-    set_mario_animation(m, MARIO_ANIM_DIALOGUE_FIRST_PERSON);
+    set_mario_animation(m, MARIO_ANIM_FIRST_PERSON);
 
     sEndPeachObj->oPosY     = func_8025BC14(sEndPeachObj);
     sEndRightToadObj->oPosY = func_8025BC14(sEndRightToadObj);
@@ -2737,7 +2737,7 @@ static s32 act_credits_cutscene(struct MarioState *m)
     }
     else
     {
-        set_mario_animation(m, MARIO_ANIM_DIALOGUE_FIRST_PERSON);
+        set_mario_animation(m, MARIO_ANIM_FIRST_PERSON);
         if (m->actionTimer > 0)
             stop_and_set_height_to_floor(m);
     }

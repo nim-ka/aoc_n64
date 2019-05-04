@@ -1078,11 +1078,11 @@ static s32 act_turning_around(struct MarioState *m)
 
     if (m->forwardVel >= 18.0f)
     {
-        set_mario_animation(m, MARIO_ANIM_TURNING1);
+        set_mario_animation(m, MARIO_ANIM_TURNING_PART1);
     }
     else
     {
-        set_mario_animation(m, MARIO_ANIM_TURNING2);
+        set_mario_animation(m, MARIO_ANIM_TURNING_PART2);
         if (func_80250770(m))
         {
             if (m->forwardVel > 0.0f)
@@ -1104,7 +1104,7 @@ static s32 act_finish_turning_around(struct MarioState *m)
         return func_80252E74(m, ACT_SIDE_FLIP, 0);
 
     update_walking_speed(m);
-    set_mario_animation(m, MARIO_ANIM_TURNING2);
+    set_mario_animation(m, MARIO_ANIM_TURNING_PART2);
 
     if (perform_ground_step(m) == GROUND_STEP_LEFT_GROUND)
         set_mario_action(m, ACT_FREEFALL, 0);

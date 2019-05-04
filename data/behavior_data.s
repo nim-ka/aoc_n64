@@ -237,7 +237,7 @@
     .word (0x1B << 24) | (0x00 << 16) | (\model_id & 0xFFFF)
 .endm
 
-.macro obj_chill model_id, beh
+.macro obj_child model_id, beh
     bytes4 0x1C, 0x00, 0x00, 0x00
     .word \model_id, \beh
 .endm
@@ -284,7 +284,7 @@
     bytes4 0x28, \animIndex, 0x00, 0x00
 .endm
 
-.macro obj_chill_param behParam, model_id, beh
+.macro obj_child_param behParam, model_id, beh
     .word (0x29 << 24) | (0x00 << 16) | (\behParam & 0xFFFF)
     .word \model_id
     .word \beh
@@ -378,7 +378,7 @@ glabel bhvMrI # 0054
     begin OBJ_LIST_GENACTOR
     obj_or_int objFlags, (OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_MOVE_XZ_USING_FVEL | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
     obj_set_pos
-    obj_chill MODEL_MR_I_IRIS, bhvMrIBody
+    obj_child MODEL_MR_I_IRIS, bhvMrIBody
     geo_layout MODEL_MR_I
     billboard
     callnative bhv_init_room
@@ -520,7 +520,7 @@ glabel bhvBubbleMario # 02B8
     graph_clear
     obj_set_int_rand objVarF4, 0x0002, 0x0009
     delay_var objVarF4
-    obj_chill MODEL_BUBBLE, bhvSmallWaterWave
+    obj_child MODEL_BUBBLE, bhvSmallWaterWave
     obj_bit_clear_int32 objUnkE0, 0x00000020
     deactivate
 
@@ -630,7 +630,7 @@ glabel bhvFishGroup # 0494
 glabel bhvCannon # 04A8
     begin OBJ_LIST_LEVEL
     obj_or_int objFlags, (OBJ_FLAG_ACTIVE_FROM_AFAR | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
-    obj_chill MODEL_CANNON_BARREL, bhvCannonBarrel
+    obj_child MODEL_CANNON_BARREL, bhvCannonBarrel
     obj_set_int objInteractType, 0x4000
     obj_add_float objPosY, -340
     obj_set_pos
@@ -922,7 +922,7 @@ glabel bhvThreeCoinsSpawn # 0964
     begin OBJ_LIST_DEFAULT
     obj_or_int objFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE
     begin_repeat 3
-        obj_chill MODEL_YELLOW_COIN, bhvSingleCoinGetsSpawned
+        obj_child MODEL_YELLOW_COIN, bhvSingleCoinGetsSpawned
     end_repeat
     deactivate
 
@@ -930,7 +930,7 @@ glabel bhvTenCoinsSpawn # 0984
     begin OBJ_LIST_DEFAULT
     obj_or_int objFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE
     begin_repeat 10
-        obj_chill MODEL_YELLOW_COIN, bhvSingleCoinGetsSpawned
+        obj_child MODEL_YELLOW_COIN, bhvSingleCoinGetsSpawned
     end_repeat
     deactivate
 
@@ -1300,8 +1300,8 @@ glabel bhvLittleCage # 0F48
     obj_or_int objFlags, (OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
     obj_set_pos
     collision_data ttm_seg7_collision_little_cage
-    obj_chill MODEL_STAR, bhvLittleCage2
-    obj_chill MODEL_NONE, bhvUnused0F14
+    obj_child MODEL_STAR, bhvLittleCage2
+    obj_child MODEL_NONE, bhvUnused0F14
     obj_set_float objCollisionDistance, 0x4E20
     gravity 0x001E, 0xFE70, 0xFFCE, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
     begin_loop
@@ -1323,7 +1323,7 @@ glabel bhvBitfsSinkingCagePlatform # 0FC8
     obj_or_int objFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE
     collision_data bitfs_seg7_collision_sinking_cage_platform
     obj_set_pos
-    obj_chill MODEL_BITFS_BLUE_POLE, bhvDddMovingPole
+    obj_child MODEL_BITFS_BLUE_POLE, bhvDddMovingPole
     begin_loop
         callnative bhv_bitfs_sinking_cage_platform_loop
         callnative load_object_collision_model
@@ -1839,8 +1839,8 @@ glabel bhvBowser # 1850
     drop_floor
     obj_set_pos
     obj_set_int32 objAnimations, bowser_seg6_anims_06057690
-    obj_chill MODEL_NONE, bhvBowserBodyAnchor
-    obj_chill MODEL_BOWSER_BOMB2, bhvBowserFlameSpawn
+    obj_child MODEL_NONE, bhvBowserBodyAnchor
+    obj_child MODEL_BOWSER_BOMB2, bhvBowserFlameSpawn
     obj_spawn MODEL_NONE, bhvBowserTailAnchor
     obj_set_int objNumLootCoins, 0x0032
     gravity 0x0000, 0xFE70, 0xFFBA, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
@@ -2271,7 +2271,7 @@ glabel bhvPiranhaPlant2 # 1FBC
     obj_set_int objIntangibleTimer, 0
     obj_set_int objDamageOrCoinValue, 3
     obj_set_int objNumLootCoins, 5
-    obj_chill MODEL_BUBBLE, bhvPiranhaPlantBubble
+    obj_child MODEL_BUBBLE, bhvPiranhaPlantBubble
     obj_set_float objDrawingDistance, 0x07D0
     obj_set_pos
     begin_loop
@@ -2567,8 +2567,8 @@ glabel bhvMarioDustGenerator # 24AC
     begin OBJ_LIST_DEFAULT
     obj_bit_clear_int32 objUnkE0, 0x00000001
     graph_clear
-    obj_chill MODEL_MIST, bhvWhitePuff1
-    obj_chill MODEL_SMOKE, bhvWhitePuff2
+    obj_child MODEL_MIST, bhvWhitePuff1
+    obj_child MODEL_SMOKE, bhvWhitePuff2
     delay 1
     deactivate
 
@@ -2770,7 +2770,7 @@ glabel bhvBoo2 # 2804
     obj_set_float2 0x0028, 0x003C
     obj_set_float objGraphYOffset, 30
     callnative bhv_init_room
-    obj_chill MODEL_YELLOW_COIN, bhvCoinInsideBoo
+    obj_child MODEL_YELLOW_COIN, bhvCoinInsideBoo
     gravity 0x001E, 0x0000, 0xFFCE, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
     callnative bhv_boo_init
     begin_loop
@@ -4627,7 +4627,7 @@ glabel bhvKoopaRaceEndpoint # 45B0
     begin OBJ_LIST_DEFAULT
     obj_or_int objFlags, (OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
     drop_floor
-    obj_chill_param 0x0000, MODEL_KOOPA_FLAG, bhvKoopaFlag
+    obj_child_param 0x0000, MODEL_KOOPA_FLAG, bhvKoopaFlag
     begin_loop
         callnative bhv_koopa_race_endpoint_update
     end_loop
@@ -4722,7 +4722,7 @@ glabel bhvChainChomp # 476C
     obj_set_pos
     obj_set_float objGraphYOffset, 0x00F0
     scale 200
-    obj_chill_param 0x0000, MODEL_WOODEN_POST, bhvWoodenPost
+    obj_child_param 0x0000, MODEL_WOODEN_POST, bhvWoodenPost
     begin_loop
         callnative bhv_chain_chomp_update
     end_loop
