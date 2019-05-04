@@ -67,7 +67,7 @@ s32 func_802507AC(struct MarioState *m)
     return o->header.gfx.unk38.animFrame >= (o->header.gfx.unk38.curAnim->unk08 - 2);
 }
 
-s16 func_802507E8(struct MarioState *m, s32 targetAnimID)
+s16 set_mario_animation(struct MarioState *m, s32 targetAnimID)
 {
     struct Object *o = m->marioObj;
     struct Animation *targetAnim = m->animation->targetAnim;

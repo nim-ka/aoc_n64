@@ -13,7 +13,7 @@ extern struct Object *gLuigiObject;
 
 extern s32 func_80250770(struct MarioState *);
 extern s32 func_802507AC(struct MarioState *);
-extern s16 func_802507E8(struct MarioState *, s32);
+extern s16 set_mario_animation(struct MarioState *, s32);
 extern s16 func_80250934(struct MarioState *, s32, s32);
 extern void func_80250AAC(struct MarioState *, s16);
 extern s32 func_80250B68(struct MarioState *, s16);
