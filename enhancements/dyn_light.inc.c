@@ -1,15 +1,15 @@
 /* 
  * This file demonstrates how to manipulate display list data from C. *
- * To use it, #include "../enhnacements/dyn_light.c.inc" and hook it on to a function that is called once per frame. 
+ * To use it, #include "../../enhancements/dyn_light.inc.c" and hook it on to a function that is called once per frame. 
  */
 
 #ifndef _DYNLIGHTS_H
 #define _DYNLIGHTS_H
 
-#include "area.h" /* Get level info */
-#include "level_update.h" /* gMarioState */
-#include "memory.h"
-#include "print.h"
+#include "../src/game/area.h" /* Get level info */
+#include "../src/game/level_update.h" /* gMarioState */
+#include "../src/game/memory.h"
+#include "../src/game/print.h"
 
 /* 
  * Common values for shading, which are manipulated with the SHADE_* defines
@@ -45,13 +45,13 @@ typedef struct /* Ambient lights */
     unsigned char byte[15];
 } Light3;
 
-/* ! GLABEL THESE: actors/mario/actor.s ! */
+/* ! GLABEL THESE: actors/mario/model.s ! */
 
-extern Light2 *mario_seg4_light_04000000;
-extern Light2 *mario_seg4_light_04000018;
-extern Light2 *mario_seg4_light_04000030;
-extern Light2 *mario_seg4_light_04000048;
-extern Light2 *mario_seg4_light_04000078;
+extern Light2 *mario_amb_light_group1;
+extern Light2 *mario_amb_light_group2;
+extern Light2 *mario_amb_light_group3;
+extern Light2 *mario_amb_light_group4;
+extern Light2 *mario_amb_light_group6;
 
 /* OPTIONAL: Add level lights here--just like Mario they have to be glabel'd. */
 
@@ -62,27 +62,27 @@ extern Light2 *mario_seg4_light_04000078;
 void set_mario_shade_light(f32 mode)
 {
     Light2 *ptr;
-    ptr = segmented_to_virtual(&mario_seg4_light_04000000);
+    ptr = segmented_to_virtual(&mario_amb_light_group1);
     ptr->byte[2] = VAL1 * mode;
     ptr->byte[6] = VAL1 * mode;
-    ptr = segmented_to_virtual(&mario_seg4_light_04000018);
+    ptr = segmented_to_virtual(&mario_amb_light_group2);
     ptr->byte[0] = VAL1 * mode;
     ptr->byte[4] = VAL1 * mode;
-    ptr = segmented_to_virtual(&mario_seg4_light_04000030);
+    ptr = segmented_to_virtual(&mario_amb_light_group3);
     ptr->byte[0] = VAL1 * mode;
     ptr->byte[1] = VAL1 * mode;
     ptr->byte[2] = VAL1 * mode;
     ptr->byte[4] = VAL1 * mode;
     ptr->byte[5] = VAL1 * mode;
     ptr->byte[6] = VAL1 * mode;
-    ptr = segmented_to_virtual(&mario_seg4_light_04000048);
+    ptr = segmented_to_virtual(&mario_amb_light_group4);
     ptr->byte[0] = VAL2 * mode;
     ptr->byte[1] = VAL3 * mode;
     ptr->byte[2] = VAL4 * mode;
     ptr->byte[4] = VAL2 * mode;
     ptr->byte[5] = VAL3 * mode;
     ptr->byte[6] = VAL4 * mode;
-    ptr = segmented_to_virtual(&mario_seg4_light_04000078);
+    ptr = segmented_to_virtual(&mario_amb_light_group6);
     ptr->byte[0] = VAL2 * mode;
     ptr->byte[1] = VAL7 * mode;
     ptr->byte[4] = VAL2 * mode;
