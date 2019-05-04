@@ -520,10 +520,10 @@ struct SPTask *func_8031D924(void)
     task->flags = 0;
     task->ucode_boot = rspF3DBootStart;
     task->ucode_boot_size = (u32) rspF3DBootEnd - (u32) rspF3DBootStart;
-    task->ucode = rspF3DAudioStart;
+    task->ucode = rspAspMainStart;
     task->ucode_size = 0x800;
-    task->ucode_data = rspF3DAudioDataStart;
-    task->ucode_data_size = (rspF3DAudioDataEnd - rspF3DAudioDataStart) * sizeof(u64);
+    task->ucode_data = rspAspMainDataStart;
+    task->ucode_data_size = (rspAspMainDataEnd - rspAspMainDataStart) * sizeof(u64);
     task->dram_stack = NULL;
     task->dram_stack_size = 0;
     task->output_buff = NULL;

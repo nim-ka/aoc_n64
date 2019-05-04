@@ -168,7 +168,7 @@ glabel func_8031D924
 /* 0D8B98 8031DB98 3C058033 */  lui   $a1, %hi(rspF3DBootStart) # $a1, 0x8033
 /* 0D8B9C 8031DB9C 3C0D8033 */  lui   $t5, %hi(rspF3DBootEnd) # $t5, 0x8033
 /* 0D8BA0 8031DBA0 24A5A320 */  addiu $a1, %lo(rspF3DBootStart) # addiu $a1, $a1, -0x5ce0
-/* 0D8BA4 8031DBA4 3C078034 */  lui   $a3, %hi(rspF3DAudioDataStart) # $a3, 0x8034
+/* 0D8BA4 8031DBA4 3C078034 */  lui   $a3, %hi(rspAspMainDataStart) # $a3, 0x8034
 /* 0D8BA8 8031DBA8 240C0002 */  li    $t4, 2
 /* 0D8BAC 8031DBAC 25ADA3F0 */  addiu $t5, %lo(rspF3DBootEnd) # addiu $t5, $t5, -0x5c10
 /* 0D8BB0 8031DBB0 00007812 */  mflo  $t7
@@ -176,15 +176,15 @@ glabel func_8031D924
 /* 0D8BB8 8031DBB8 8CC66D88 */  lw    $a2, %lo(D_80226D88)($a2)
 /* 0D8BBC 8031DBBC AF000040 */  sw    $zero, 0x40($t8)
 /* 0D8BC0 8031DBC0 8D390000 */  lw    $t9, ($t1)
-/* 0D8BC4 8031DBC4 24E78F50 */  addiu $a3, %lo(rspF3DAudioDataStart) # addiu $a3, $a3, -0x70b0
+/* 0D8BC4 8031DBC4 24E78F50 */  addiu $a3, %lo(rspAspMainDataStart) # addiu $a3, $a3, -0x70b0
 /* 0D8BC8 8031DBC8 01A57023 */  subu  $t6, $t5, $a1
 /* 0D8BCC 8031DBCC AF200044 */  sw    $zero, 0x44($t9)
 /* 0D8BD0 8031DBD0 8D230000 */  lw    $v1, ($t1)
-/* 0D8BD4 8031DBD4 3C198034 */  lui   $t9, %hi(rspF3DAudioDataEnd) # $t9, 0x8034
-/* 0D8BD8 8031DBD8 3C0F8033 */  lui   $t7, %hi(rspF3DAudioStart) # $t7, 0x8033
-/* 0D8BDC 8031DBDC 27399210 */  addiu $t9, %lo(rspF3DAudioDataEnd) # addiu $t9, $t9, -0x6df0
+/* 0D8BD4 8031DBD4 3C198034 */  lui   $t9, %hi(rspAspMainDataEnd) # $t9, 0x8034
+/* 0D8BD8 8031DBD8 3C0F8033 */  lui   $t7, %hi(rspAspMainStart) # $t7, 0x8033
+/* 0D8BDC 8031DBDC 27399210 */  addiu $t9, %lo(rspAspMainDataEnd) # addiu $t9, $t9, -0x6df0
 /* 0D8BE0 8031DBE0 AC6C0000 */  sw    $t4, ($v1)
-/* 0D8BE4 8031DBE4 25EFB800 */  addiu $t7, %lo(rspF3DAudioStart) # addiu $t7, $t7, -0x4800
+/* 0D8BE4 8031DBE4 25EFB800 */  addiu $t7, %lo(rspAspMainStart) # addiu $t7, $t7, -0x4800
 /* 0D8BE8 8031DBE8 24180800 */  li    $t8, 2048
 /* 0D8BEC 8031DBEC 03276023 */  subu  $t4, $t9, $a3
 /* 0D8BF0 8031DBF0 000C68C3 */  sra   $t5, $t4, 3

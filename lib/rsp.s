@@ -34,10 +34,10 @@ glabel rspF3DEnd
 /* Audio Bins */
 
 .balign 16
-glabel rspF3DAudioStart
-    .incbin "lib/PR/audio/F3D_audio.bin"
-    .incbin "lib/PR/audio/F3D_audio_unk.bin"
-glabel rspF3DAudioEnd
+glabel rspAspMainStart
+    .incbin "lib/PR/audio/aspMain.bin"
+    .incbin "lib/PR/audio/aspMain_unk.bin"
+glabel rspAspMainEnd
 
 /*
  * LESS COMMON MICROCODES
@@ -112,13 +112,11 @@ glabel rspF3DDataEnd
 /* Audio Data */
 
 .balign 16
-glabel rspF3DAudioDataStart
-    .incbin "lib/PR/audio/F3D_audio_data.bin"
-glabel rspF3DAudioDataEnd
+glabel rspAspMainDataStart
+    .incbin "lib/PR/audio/aspMain_data.bin"
+glabel rspAspMainDataEnd
 
-/*
- * LESS COMMON MICROCODES
- */
+/* LESS COMMON MICROCODES */
 
 /* Fast3DEX NoN Data */
 

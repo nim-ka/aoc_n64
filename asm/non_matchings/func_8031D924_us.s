@@ -168,7 +168,7 @@ glabel func_8031D924
 /* 0D9A2C 8031EA2C 3C058033 */  lui   $a1, %hi(rspF3DBootStart) # $a1, 0x8033
 /* 0D9A30 8031EA30 3C0D8033 */  lui   $t5, %hi(rspF3DBootEnd) # $t5, 0x8033
 /* 0D9A34 8031EA34 24A5B260 */  addiu $a1, %lo(rspF3DBootStart) # addiu $a1, $a1, -0x4da0
-/* 0D9A38 8031EA38 3C078034 */  lui   $a3, %hi(rspF3DAudioDataStart) # $a3, 0x8034
+/* 0D9A38 8031EA38 3C078034 */  lui   $a3, %hi(rspAspMainDataStart) # $a3, 0x8034
 /* 0D9A3C 8031EA3C 240C0002 */  li    $t4, 2
 /* 0D9A40 8031EA40 25ADB330 */  addiu $t5, %lo(rspF3DBootEnd) # addiu $t5, $t5, -0x4cd0
 /* 0D9A44 8031EA44 00007812 */  mflo  $t7
@@ -176,15 +176,15 @@ glabel func_8031D924
 /* 0D9A4C 8031EA4C 8CC66B88 */  lw    $a2, %lo(D_80226D88)($a2)
 /* 0D9A50 8031EA50 AF000040 */  sw    $zero, 0x40($t8)
 /* 0D9A54 8031EA54 8D390000 */  lw    $t9, ($t1)
-/* 0D9A58 8031EA58 24E7A2C0 */  addiu $a3, %lo(rspF3DAudioDataStart) # addiu $a3, $a3, -0x5d40
+/* 0D9A58 8031EA58 24E7A2C0 */  addiu $a3, %lo(rspAspMainDataStart) # addiu $a3, $a3, -0x5d40
 /* 0D9A5C 8031EA5C 01A57023 */  subu  $t6, $t5, $a1
 /* 0D9A60 8031EA60 AF200044 */  sw    $zero, 0x44($t9)
 /* 0D9A64 8031EA64 8D230000 */  lw    $v1, ($t1)
-/* 0D9A68 8031EA68 3C198034 */  lui   $t9, %hi(rspF3DAudioDataEnd) # $t9, 0x8034
-/* 0D9A6C 8031EA6C 3C0F8033 */  lui   $t7, %hi(rspF3DAudioStart) # $t7, 0x8033
-/* 0D9A70 8031EA70 2739A580 */  addiu $t9, %lo(rspF3DAudioDataEnd) # addiu $t9, $t9, -0x5a80
+/* 0D9A68 8031EA68 3C198034 */  lui   $t9, %hi(rspAspMainDataEnd) # $t9, 0x8034
+/* 0D9A6C 8031EA6C 3C0F8033 */  lui   $t7, %hi(rspAspMainStart) # $t7, 0x8033
+/* 0D9A70 8031EA70 2739A580 */  addiu $t9, %lo(rspAspMainDataEnd) # addiu $t9, $t9, -0x5a80
 /* 0D9A74 8031EA74 AC6C0000 */  sw    $t4, ($v1)
-/* 0D9A78 8031EA78 25EFC740 */  addiu $t7, %lo(rspF3DAudioStart) # addiu $t7, $t7, -0x38c0
+/* 0D9A78 8031EA78 25EFC740 */  addiu $t7, %lo(rspAspMainStart) # addiu $t7, $t7, -0x38c0
 /* 0D9A7C 8031EA7C 24180800 */  li    $t8, 2048
 /* 0D9A80 8031EA80 03276023 */  subu  $t4, $t9, $a3
 /* 0D9A84 8031EA84 000C68C3 */  sra   $t5, $t4, 3
