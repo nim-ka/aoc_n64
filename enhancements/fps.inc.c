@@ -8,7 +8,7 @@
  * 
  * Add this include statement to the top of game.c
  *  
- * #include "../enhancements/fps.c.inc"
+ * #include "../../enhancements/fps.inc.c"
  * 
  * Then, at the end of the while(1) loop in the function thread5_game_loop()
  * add the function call render_fps()
