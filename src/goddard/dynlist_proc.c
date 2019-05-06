@@ -3,8 +3,9 @@
 #include "sm64.h"
 #include "gd_types.h"
 #include "bad_declarations.h"
-#include "gd_main.h"
+#include "prevent_bss_reordering.h"
 
+#include "gd_main.h"
 #include "draw_objects.h"
 #include "mario_head_1.h"
 #include "mario_head_3.h"
@@ -17,14 +18,33 @@
 #include "half_6.h"
 #include "mario_head_6.h"
 
+/**
+ * @file dynlist_proc.c
+ * 
+ * Functions for parsing and processing Goddard's DynList object format. 
+ * It also has utility functions for abstracting at runtime over the various
+ * flavors of `GdObj`s.
+ */ 
+
+// constants
+/// Size of the dynamic object name buffer
+#define DYNOBJ_NAME_SIZE 8
+/// Total number of dynamic `GdObj`s that can be created
+#define DYNOBJ_LIST_SIZE 3000
+/// Maximum number of verticies supported when adding vertices node to an `ObjShape`
+#define VTX_BUF_SIZE 3000
+
 // types
+/// Information about a dynamically created `GdObj`
 struct DynObjInfo {
-    char name[8];
+    char name[DYNOBJ_NAME_SIZE];
     struct GdObj *obj;
-    s32 id;
+    s32 num;
     s32 unk;
 };
-// "convenient" accessors for the DynList entry data 
+/// @name DynList Accessors
+/// Accessor marcos for easy interpretation of data in a `DynList` packet
+///@{
 #define Dyn1AsInt(dyn) ((dyn)->w1.word)
 #define Dyn1AsPtr(dyn) ((dyn)->w1.ptr)
 #define Dyn1AsStr(dyn) ((dyn)->w1.str)
@@ -39,26 +59,27 @@ struct DynObjInfo {
 #define DynVecX(dyn) ((dyn)->vec.x)
 #define DynVecY(dyn) ((dyn)->vec.y)
 #define DynVecZ(dyn) ((dyn)->vec.z)
+///@}
 
 // data
 static struct DynObjInfo *sGdDynObjList = NULL; // @ 801A8250; info for all loaded/made dynobjs
-static struct GdObj *sDynListCurObj = NULL; // @ 801A8254
+static struct GdObj *sDynListCurObj = NULL;     // @ 801A8254
 static struct GdPlaneF sGdNullPlaneF = {        // @ 801A8258
     { 0.0, 0.0, 0.0 },
     { 0.0, 0.0, 0.0 }
 };
-static s32 sGdDynObjIdIsInt = FALSE;            // @ 801A8270; str (0) or s32 (1) for Dyn Obj ID
+static s32 sGdDynObjIdIsInt = FALSE;           // @ 801A8270; str (0) or int (1) for Dyn Obj ID
 
 // bss
-static char sIntDynIdBuffer[8];                // @ 801B9F00; Another DynObjId string buffer
+static char sIntDynIdBuffer[DYNOBJ_NAME_SIZE]; ///< buffer for returning formated string from `print_int_dynid()`
 static struct DynObjInfo sNullDynObjInfo;      // @ 801B9F08
-static char sDynIdBuf[8];                      // @ 801B9F20; small buf for printing dynid to?
+static char sDynIdBuf[DYNOBJ_NAME_SIZE];       // @ 801B9F20; small buf for printing dynid to?
 static s32 sUnnamedObjCount;                   // @ 801B9F28; used to print empty string ids (not NULL char *) to sDynIdBuf
 static s32 sLoadedDynObjs;                     // @ 801B9F2C; total loaded dynobjs
 static struct DynObjInfo *sDynListCurInfo;     // @ 801B9F30; info for most recently added object
-static struct DynObjInfo *sSecondaryInfoStash; // @ 801B9F34; what is it's purpose?
+static struct DynObjInfo *sParentNetInfo;      ///< Information for `ObjNet` made by `d_add_net_with_subgroup()`
 static struct DynObjInfo *sStashedDynObjInfo;  // @ 801B9F38
-static struct GdObj *sStashedDynObj;       // @ 801B9F3C
+static struct GdObj *sStashedDynObj;           // @ 801B9F3C
 static s32 sDynNetCount;                       // @ 801B9F40
 static char sDynNetIdBuf[0x20];                // @ 801B9F48
 static char sBackBuf[0x100];                   // @ 801B9F68
@@ -66,7 +87,7 @@ static char sBackBuf[0x100];                   // @ 801B9F68
 // necessary foreward declarations
 void d_add_net_with_subgroup(s32, DynId);
 void d_end_net_subgroup(DynId);
-void d_attach_net_to_joint(s32, DynId);
+void d_attach_joint_to_net(s32, DynId);
 void d_addto_group(DynId);
 void d_link_with(DynId);
 void d_link_with_ptr(void *);
@@ -79,7 +100,7 @@ void d_clear_flags(s32);
 void d_attach(DynId);
 void d_attach_to(s32, struct GdObj *);
 void d_attachto_dynid(s32, DynId);
-void d_set_att_offset(struct MyVec3f *);
+void d_set_att_offset(const struct MyVec3f *);
 void d_set_nodegroup(DynId);
 void d_set_matgroup(DynId);
 void d_set_skinshape(DynId);
@@ -100,21 +121,27 @@ void d_make_netfromshapeid(DynId);
 void d_make_netfromshape_ptrptr(struct ObjShape **);
 void add_to_dynobj_list(struct GdObj *, DynId);
 
-/* 2320E0 -> 232110; orig name: func_80183910 */
+/**
+ * Store the active dynamic `GdObj` into a one object stash.
+ */
 void push_dynobj_stash(void)
 {
     sStashedDynObjInfo = sDynListCurInfo;
     sStashedDynObj = sDynListCurObj;
 }
 
-/* 232110 -> 232140; orig name: func_80183940 */
+/**
+ * Set the stashed `GdObj` as the active dynamic `GdObj`.
+ */
 void pop_dynobj_stash(void)
 {
     sDynListCurObj = sStashedDynObj;
     sDynListCurInfo = sStashedDynObjInfo;
 }
 
-/* 232140 -> 2321B0; orig name: func_80183970 */
+/**
+ * Reset dynlist related variables to a starting state
+ */
 void reset_dynlist(void)
 {
     sUnnamedObjCount = 0;
@@ -127,7 +154,12 @@ void reset_dynlist(void)
     gd_strcpy(sNullDynObjInfo.name, "NullObj");
 }
 
-/* 2321B0 -> 2329EC; orig name: func_801839E0 */
+/**
+ * Parse a `DynList` array into active `GdObj`s. 
+ * 
+ * @returns Pointer to current dynamically created dynamic `GdObj`.
+ *          Normally the dynlist specifically sets an object for return.
+ */
 struct GdObj *proc_dynlist(struct DynList *dylist)
 {
     UNUSED u32 pad[2];
@@ -148,7 +180,7 @@ struct GdObj *proc_dynlist(struct DynList *dylist)
             case 48:
                 d_end_net_subgroup(Dyn1AsID(dylist)); break;
             case 47:
-                d_attach_net_to_joint(Dyn2AsInt(dylist), Dyn1AsID(dylist)); break;
+                d_attach_joint_to_net(Dyn2AsInt(dylist), Dyn1AsID(dylist)); break;
             case 16:
                 d_start_group(Dyn1AsID(dylist)); break;
             case 17:
@@ -260,7 +292,12 @@ struct GdObj *proc_dynlist(struct DynList *dylist)
     return sDynListCurObj;
 }
 
-/* 2329EC -> 232A90; orig name: func_8018421C */
+/**
+ * Copy input `str` into a buffer that will be concatenated to a dynamic
+ * `GdObj`'s name string when creating a new dynamic object. If input
+ * is `NULL`, then a generic string is created based on the number of
+ * unnamed objects.
+ */
 void d_copystr_to_idbuf(char *str)
 {
     if (str != NULL)
@@ -272,8 +309,15 @@ void d_copystr_to_idbuf(char *str)
     }
 }
 
-/* 232A90 -> 232B38 */
-void Unknown801842C0(char *str)
+/**
+ * Concatenate input `str` into a buffer that will be concatenated to a dynamic
+ * `GdObj`'s name string when creating a new dynamic object. If input
+ * is `NULL`, then a generic string is created based on the number of
+ * unnamed objects.
+ * 
+ * @note Not called
+ */
+void d_catstr_to_idbuf(char *str)
 {
     char buf[0xff + 1];
 
@@ -288,23 +332,32 @@ void Unknown801842C0(char *str)
     gd_strcat(sDynIdBuf, buf);
 }
 
-/* 232B38 -> 232B6C; orig name: func_80184368 */
+/**
+ * Stash the current string that is appended to a created dynamic `GdObj` name.
+ */
 void cpy_idbuf_to_backbuf(void)
 {
     gd_strcpy(sBackBuf, sDynIdBuf);
 }
 
-/* 232B6C -> 232BA0; orig name: func_8018439C */
+/**
+ * Pop the stash for the string that is appended to a created dynamic `GdObj` name.
+ */
 void cpy_backbuf_to_idbuf(void)
 {
     gd_strcpy(sDynIdBuf, sBackBuf);
 }
 
-/* 232BA0 -> 232CC0; orig name: func_801843D0 */
+/**
+ * Get the `DynObjInfo` struct for object `id`
+ * 
+ * @param id Either a string or integer id for a dynamic `GdObj`
+ * @returns pointer to that object's information
+ */
 struct DynObjInfo *get_dynobj_info(DynId id)
 {
     struct DynObjInfo *foundDynobj;
-    char buf[0xff + 1];
+    char buf[0x100];
     s32 i;
 
     if (sLoadedDynObjs == 0) { return NULL; }
@@ -328,24 +381,33 @@ struct DynObjInfo *get_dynobj_info(DynId id)
     return foundDynobj;
 }
 
-/* 232CC0 -> 232D1C */
-void Unknown801844F0(void)
+/**
+ * Reset the number of created dynamic objects and 
+ * free the dynamic object information list (`sGdDynObjList`).
+ * The objects themselves still exist, though.
+ * 
+ * @note Not called
+ */
+void reset_dynamic_objs(void)
 {
     UNUSED s32 pad;
 
     if (sLoadedDynObjs == 0) { return; }
 
-    gd_free(sGdDynObjList);    //free objlist?
+    gd_free(sGdDynObjList);
     sLoadedDynObjs = 0;
     sGdDynObjList = NULL;
 }
 
-/* 232D1C -> 232DD0; orig name: func_8018454C */
+/**
+ * Create an `ObjNet` and an associated node `ObjGroup`. This function creates
+ * its own naming string to append to later created dynamic objects.
+ */
 void d_add_net_with_subgroup(UNUSED s32 a0, DynId id)
 {
-    /* This makes a ObjNet */
     d_makeobj(D_NET, id);
     d_set_obj_draw_flag(OBJ_NOT_DRAWABLE);
+    // this creates a string to append to the names of the objs created after this
     sprintf(sDynNetIdBuf, "c%d", ++sDynNetCount);
     d_set_type(4);
     cpy_idbuf_to_backbuf();
@@ -353,10 +415,12 @@ void d_add_net_with_subgroup(UNUSED s32 a0, DynId id)
     d_start_group(id);
     cpy_backbuf_to_idbuf();
     d_use_obj(id);
-    sSecondaryInfoStash = sDynListCurInfo;
+    sParentNetInfo = sDynListCurInfo;
 }
 
-/* 232DD0 -> 232E3C; orig name: func_80184600 */
+/**
+ * End the `ObjNet`+`ObjGroup` set created by `d_add_net_with_subgroup()`.
+ */
 void d_end_net_subgroup(DynId id)
 {
     d_use_obj(id);
@@ -365,23 +429,32 @@ void d_end_net_subgroup(DynId id)
     d_end_group(id);
     d_set_nodegroup(id);
     cpy_backbuf_to_idbuf();
-    sSecondaryInfoStash = NULL;
+    sParentNetInfo = NULL;
 }
 
-/* 232E3C -> 232EB8 */
-void d_attach_net_to_joint(UNUSED s32 a0, DynId id)
+/**
+ * Create an `ObjJoint` and add that to the `ObjNet` created by 
+ * `d_add_net_with_subgroup()`.
+ * 
+ * @param arg0 Not used
+ * @param id   Id for created `ObjJoint`
+ */
+void d_attach_joint_to_net(UNUSED s32 arg0, DynId id)
 {
-    UNUSED struct DynObjInfo *sp24 = sDynListCurInfo;
+    UNUSED struct DynObjInfo *curInfo = sDynListCurInfo;
     UNUSED u32 pad[2];
 
     d_makeobj(D_JOINT, id);
     d_set_type(3);
     d_set_shapeptrptr(NULL);
-    d_attach_to(0xD, sSecondaryInfoStash->obj);
-    sSecondaryInfoStash = sDynListCurInfo;
+    d_attach_to(0xD, sParentNetInfo->obj);
+    sParentNetInfo = sDynListCurInfo;
 }
 
-/* 232EB8 -> 232F30; orig name: func_801846E8 */
+/**
+ * Create a new `ObjNet` linked with the dynamic `ObjShape` `id`.
+ * The newly made net is added to the dynamic object list.
+ */
 void d_make_netfromshapeid(DynId id)
 {
     struct DynObjInfo *dyninfo = get_dynobj_info(id);
@@ -394,19 +467,26 @@ void d_make_netfromshapeid(DynId id)
     add_to_dynobj_list(&net->header, NULL);
 }
 
-/* 232F30 -> 232F78; org name: func_80184760 */
-void d_make_netfromshape_ptrptr(struct ObjShape **objptr)
+/**
+ * Create a new `ObjNet` linked with the doubly indirected `ObjShape`.
+ * The newly made net is added to the dynamic object list, but 
+ * the shape is not moved into the dynamic list.
+ */
+void d_make_netfromshape_ptrptr(struct ObjShape **shapePtr)
 {
     UNUSED u32 pad;
-    struct ObjNet *net = make_netfromshape(*objptr);
+    struct ObjNet *net = make_netfromshape(*shapePtr);
 
     printf("dMakeNetFromShapePtrPtr\n");
 
     add_to_dynobj_list(&net->header, NULL);
 }
 
-/* 232F78 -> 233214; orig name: func_801847A8 */
-#define DYNOBJ_LIST_SZ 3000
+/**
+ * Add `newobj` identified by `id` to the dynamic `GdObj` list. Once a `GdObj`
+ * is in the dynamic list, it can referred to by its `id` when that object is
+ * needed later.
+ */
 void add_to_dynobj_list(struct GdObj *newobj, DynId id)
 {
     UNUSED u32 pad;
@@ -416,7 +496,7 @@ void add_to_dynobj_list(struct GdObj *newobj, DynId id)
 
     if (sGdDynObjList == NULL)
     {
-        sGdDynObjList = gd_malloc_temp(DYNOBJ_LIST_SZ * sizeof(struct DynObjInfo));
+        sGdDynObjList = gd_malloc_temp(DYNOBJ_LIST_SIZE * sizeof(struct DynObjInfo));
         if (sGdDynObjList == NULL)
             fatal_printf("dMakeObj(): Cant allocate dynlist memory");
     }
@@ -443,25 +523,30 @@ void add_to_dynobj_list(struct GdObj *newobj, DynId id)
 
     gd_strcat(sGdDynObjList[sLoadedDynObjs].name, sDynIdBuf);
 
-    if (gd_strlen(sGdDynObjList[sLoadedDynObjs].name) > 7)   //strlen
+    if (gd_strlen(sGdDynObjList[sLoadedDynObjs].name) > (DYNOBJ_NAME_SIZE - 1))
     {
         fatal_printf("dyn list obj name too long '%s'", sGdDynObjList[sLoadedDynObjs].name);
     }
 
-    sGdDynObjList[sLoadedDynObjs].id = sLoadedDynObjs;
+    sGdDynObjList[sLoadedDynObjs].num = sLoadedDynObjs;
     sDynListCurInfo = &sGdDynObjList[sLoadedDynObjs];
     sGdDynObjList[sLoadedDynObjs++].obj = newobj;
 
     // A good place to bounds-check your array is
     // after you finish writing a new member to it.
-    if (sLoadedDynObjs >= DYNOBJ_LIST_SZ)
+    if (sLoadedDynObjs >= DYNOBJ_LIST_SIZE)
         fatal_printf("dMakeObj(): Too many dynlist objects");
 
     sDynListCurObj = newobj;
 }
-#undef DYNOBJ_LIST_SZ
 
-/* 233214 -> 233288; orig name: func_80184A44 */
+/**
+ * Format `id` into string, if `DynId`s are currently being interpreted
+ * as numbers.
+ * 
+ * @returns pointer to global buffer for id
+ * @retval NULL if `id` is `NULL` or if `DynId`s are interpreted as strings
+ */
 char *print_int_dynid(DynId id)
 {
     if (id && sGdDynObjIdIsInt)
@@ -473,7 +558,13 @@ char *print_int_dynid(DynId id)
     return NULL;
 }
 
-/* 233288 -> 23358C */
+/**
+ * Create a new `GdObj` of `type` and add that object to the 
+ * dynamic object list with `id`. Created objects have default
+ * parameters, which are usually 0 or NULL.
+ * 
+ * @returns pointer to created object
+ */
 struct GdObj *d_makeobj(enum DObjTypes type, DynId id)
 {
     struct GdObj *dobj;
@@ -564,7 +655,11 @@ struct GdObj *d_makeobj(enum DObjTypes type, DynId id)
     return dobj;
 }
 
-/* 23358C -> 233654 */
+/**
+ * Attach dynamic object `id` to the current active `ObjJoint` object.
+ * 
+ * @note This function doesn't actually do anything.
+ */
 void d_attach(DynId id)
 {
     struct DynObjInfo *info;
@@ -589,13 +684,16 @@ void d_attach(DynId id)
     }
 }
 
-/* 233654 -> 2339FC */
-void d_attach_to(s32 a0, struct GdObj *obj)
+/** 
+ * Attach the current dynamic `GdObj` into the proper subgroup of `obj` and set
+ * the "attach flags" of the current dynamic object to `flag`
+ */
+void d_attach_to(s32 flag, struct GdObj *obj)
 {
     UNUSED u32 pad4C;
     struct ObjGroup *attgrp;
     UNUSED u32 pad[2];
-    UNUSED struct DynObjInfo *info = sDynListCurInfo;
+    UNUSED struct DynObjInfo *curInfo = sDynListCurInfo;
     struct MyVec3f dynobjPos;   // transformed into attach offset
     struct MyVec3f objPos;
 
@@ -643,7 +741,7 @@ void d_attach_to(s32 a0, struct GdObj *obj)
 
     addto_group(attgrp, sDynListCurObj);
 
-    if (a0 & 9)
+    if (flag & 9)
     {
         d_get_world_pos(&dynobjPos);
         set_cur_dynobj(obj);
@@ -658,19 +756,19 @@ void d_attach_to(s32 a0, struct GdObj *obj)
     switch (sDynListCurObj->type)
     {
         case OBJ_TYPE_JOINTS:
-            ((struct ObjJoint *)sDynListCurObj)->unk1FC = a0;
+            ((struct ObjJoint *)sDynListCurObj)->unk1FC = flag;
             ((struct ObjJoint *)sDynListCurObj)->unk20C = obj;
             break;
         case OBJ_TYPE_NETS:
-            ((struct ObjNet *)sDynListCurObj)->unk1E4 = a0;
+            ((struct ObjNet *)sDynListCurObj)->unk1E4 = flag;
             ((struct ObjNet *)sDynListCurObj)->unk1E8 = obj;
             break;
         case OBJ_TYPE_PARTICLES:
-            ((struct ObjParticle *)sDynListCurObj)->unkB8 = a0;
+            ((struct ObjParticle *)sDynListCurObj)->unkB8 = flag;
             ((struct ObjParticle *)sDynListCurObj)->unkBC = obj;
             break;
         case OBJ_TYPE_ANIMATORS:
-            ((struct ObjAnimator *)sDynListCurObj)->unk34 = a0;
+            ((struct ObjAnimator *)sDynListCurObj)->unk34 = flag;
             ((struct ObjAnimator *)sDynListCurObj)->unk44 = obj;
             break;
         default:
@@ -681,11 +779,14 @@ void d_attach_to(s32 a0, struct GdObj *obj)
             );
     }
 
-    if (a0 & 9) { d_set_att_offset(&dynobjPos); }
+    if (flag & 9) { d_set_att_offset(&dynobjPos); }
 }
 
-/* 2339FC -> 233AA0; orig name: func_8018522C */
-void d_attachto_dynid(s32 a0, DynId id)
+/**
+ * Attach the current dynamic object to dynamic object `id`. This function
+ * is a wrapper around `d_attach_to()`
+ */
+void d_attachto_dynid(s32 flag, DynId id)
 {
     struct DynObjInfo *info;
 
@@ -696,23 +797,30 @@ void d_attachto_dynid(s32 a0, DynId id)
     info = get_dynobj_info(id);
     if (info == NULL)
         fatal_printf("dAttachTo(\"%s\"): Undefined object", DynIdAsStr(id));
-    d_attach_to(a0, info->obj);
+    
+    d_attach_to(flag, info->obj);
 }
 
-/* 233AA0 -> 233AEC; orig name: func_801852D0 */
+/**
+ * Helper function to copy bytes. Where's memcpy when you need it?
+ */
 void copy_bytes(u8 *src, u8 *dst, s32 num)
 {
     if (num == 0) { return; }
     while ( num-- ) { *dst++ = *src++; }
 }
 
-/* 233AEC -> 2340A8; orig name: func_8018531C */
-// TODO: create types for all animation datas...?
-void alloc_animdata(struct ObjAnimator *a0)
+/**
+ * Allocate the animation data for `animator` onto the goddard heap. 
+ * Animation data of type `::GD_ANIM_9H` is converted to a `AnimMtxVec` struct,
+ * rather than solely byted copied like the other types.
+ */
+void alloc_animdata(struct ObjAnimator *animator)
 {
     UNUSED u32 pad5C;
-    // probably should be MyVec3f[3], not triangle...
-    struct GdTriangleF tri;           //+58; temp f32 for converting half to f32?
+    // probably should be three MyVec3fs, not triangle...
+    // vec0 = position; vec1 = scale? rotation?; vec2 = translation
+    struct GdTriangleF tri;           //+58; temp float for converting half to f32?
     s16 (*halfarr)[9];                //+54; data to convert into a AnimMtxVec
     struct AnimDataInfo *curAnimSrc;  //+50; source animation data...
     struct AnimDataInfo *animDst;     //+4c; destination anim data II
@@ -723,13 +831,13 @@ void alloc_animdata(struct ObjAnimator *a0)
     s32 animCnt;                      //+38; count of animdata "info" structs
     s32 i;                            //+34
     void *allocSpace;                 //+30; allocated animdata space
-    f32 sp2C = 0.1f;
+    f32 allocMtxScale = 0.1f;         //+2C; scale postion/rotation of GD_ANIM_9H data
     struct AnimMtxVec *curMtxVec;     //+28
     UNUSED u32 pad20;
 
     start_memtracker("animdata");
 
-    if ((animgrp = a0->animdata) == NULL)
+    if ((animgrp = animator->animdata) == NULL)
         fatal_printf("no anim group");
     
     if ((curAnimSrc = (struct AnimDataInfo *)animgrp->link1C->obj) == NULL)
@@ -775,12 +883,12 @@ void alloc_animdata(struct ObjAnimator *a0)
                     halfarr = &((s16 (*)[9])curAnimSrc->data)[dataIdx];
                     curMtxVec = &((struct AnimMtxVec *)allocSpace)[dataIdx];
 
-                    tri.vec0.x = (f32) (*halfarr)[0] * sp2C;
-                    tri.vec0.y = (f32) (*halfarr)[1] * sp2C;
-                    tri.vec0.z = (f32) (*halfarr)[2] * sp2C;
-                    tri.vec1.x = (f32) (*halfarr)[3] * sp2C;
-                    tri.vec1.y = (f32) (*halfarr)[4] * sp2C;
-                    tri.vec1.z = (f32) (*halfarr)[5] * sp2C;
+                    tri.vec0.x = (f32) (*halfarr)[0] * allocMtxScale;
+                    tri.vec0.y = (f32) (*halfarr)[1] * allocMtxScale;
+                    tri.vec0.z = (f32) (*halfarr)[2] * allocMtxScale;
+                    tri.vec1.x = (f32) (*halfarr)[3] * allocMtxScale;
+                    tri.vec1.y = (f32) (*halfarr)[4] * allocMtxScale;
+                    tri.vec1.z = (f32) (*halfarr)[5] * allocMtxScale;
                     tri.vec2.x = (f32) (*halfarr)[6];
                     tri.vec2.y = (f32) (*halfarr)[7];
                     tri.vec2.z = (f32) (*halfarr)[8];
@@ -811,8 +919,15 @@ void alloc_animdata(struct ObjAnimator *a0)
     stop_memtracker("animdata");
 }
 
-/* 2340A8 -> 234840 */
-#define VTX_BUF_SZ 3000
+/**
+ * Generate or create the various `ObjVertex`, `ObjFace`, and/or
+ * `ObjMaterial` when groups of those structures are attached to
+ * `shape`. This function is called when `d_set_nodegroup()`, 
+ * `d_set_planegroup()`, or `d_set_matgroup()` are called 
+ * when an `ObjShape` is the active dynamic object.
+ * 
+ * @note Face/vertices need to be set before materials
+ */
 void chk_shapegen(struct ObjShape *shape)
 {
     struct ObjFace *face;         // sp5C; made face
@@ -847,10 +962,10 @@ void chk_shapegen(struct ObjShape *shape)
         if (vtxdata->type != 1)
             fatal_printf("unsupported vertex type");
 
-        if (vtxdata->count >= VTX_BUF_SZ)
+        if (vtxdata->count >= VTX_BUF_SIZE)
             fatal_printf("shapegen() too many vertices");
 
-        vtxbuf = gd_malloc_temp(VTX_BUF_SZ * sizeof(struct ObjVertex *));
+        vtxbuf = gd_malloc_temp(VTX_BUF_SIZE * sizeof(struct ObjVertex *));
         oldObjHead = gGdObjectList;
 
         for (i = 0; i < vtxdata->count; i++)
@@ -905,7 +1020,7 @@ void chk_shapegen(struct ObjShape *shape)
             }
         }
         
-        gd_free(vtxbuf);    //gd_free
+        gd_free(vtxbuf);
         madeFaces = make_group_of_type(OBJ_TYPE_FACES, oldObjHead, NULL);
         shape->faceGroup = madeFaces;
         shape->vtxGroup = madeVtx;
@@ -926,9 +1041,15 @@ void chk_shapegen(struct ObjShape *shape)
     imout();
     stop_memtracker("chk_shapegen");
 }
-#undef VTX_BUF_SZ
 
-/* 234840 -> 2349E0 */
+/**
+ * Set the "node group" of the current dynamic object to dynamic object `id`.
+ * The node group depends on the type of the current dynamic object:
+ * * the vertex group is set for `ObjShape`
+ * * the joints/weight group is set for `ObjNet`
+ * * data is set for `ObjAnimator`
+ * * something is set for `ObjGadget`
+ */
 void d_set_nodegroup(DynId id)
 {
     struct DynObjInfo *info;    // sp2C
@@ -967,7 +1088,9 @@ void d_set_nodegroup(DynId id)
     }
 }
 
-/* 2349E0 -> 234AD0; orig name: func_80186210 */
+/**
+ * Set the material group of the current dynamic `ObjShape` to `id`.
+ */
 void d_set_matgroup(DynId id)
 {
     struct DynObjInfo *info;    // sp1C
@@ -994,7 +1117,12 @@ void d_set_matgroup(DynId id)
     }
 }
 
-/* 234AD0 -> 234B6C; orig name: func_80186300 */
+/**
+ * At one time in the past, this set the s and t value of the current 
+ * dynamic `ObjVertex`. However, this function does nothing now. 
+ * See `BetaVtx` for a possible remnant of vertex code that had
+ * ST coordinates.
+ */
 void d_set_texture_st(UNUSED f32 s, UNUSED f32 t)
 {
     UNUSED u32 pad[2];
@@ -1015,7 +1143,9 @@ void d_set_texture_st(UNUSED f32 s, UNUSED f32 t)
     }
 }
 
-/* 234B6C -> 234C18; orig name: func_8018639C */
+/**
+ * Set the texture pointer of the current dynamic `ObjMaterial`.
+ */
 void d_use_texture(void *texture)
 {
     if (sDynListCurObj == NULL)
@@ -1035,7 +1165,10 @@ void d_use_texture(void *texture)
     }
 }
 
-/* 234C18 -> 234CFC; orig name: func_80186448 */
+/**
+ * Set the current dynamic `ObjNet`'s skin group with the vertex group from
+ * the dynamic `ObjShape` with `id`.
+ */
 void d_set_skinshape(DynId id)
 {
     struct DynObjInfo *info;
@@ -1061,7 +1194,12 @@ void d_set_skinshape(DynId id)
     }
 }
 
-/* 234CFC -> 234D88; orig name: func_8018652C */
+/**
+ * Map the material ids for the `ObjFace`s in the current dynamic `ObjGroup` 
+ * to pointer to `ObjMaterial`s in the `ObjGroup` `id`.
+ * 
+ * See `map_face_materials()` for more info.
+ */
 void d_map_materials(DynId id)
 {
     struct DynObjInfo *info;
@@ -1076,7 +1214,12 @@ void d_map_materials(DynId id)
     map_face_materials((struct ObjGroup *)sDynListCurObj, (struct ObjGroup *)info->obj);
 }
 
-/* 234D88 -> 234E14 */
+/**
+ * Map the vertex ids for the `ObjFace`s in the current dynamic `ObjGroup` 
+ * to pointer to `ObjVertex` in the `ObjGroup` `id`.
+ * 
+ * See `map_vertices()` for more info.
+ */
 void d_map_vertices(DynId id)
 {
     struct DynObjInfo *info;
@@ -1091,7 +1234,12 @@ void d_map_vertices(DynId id)
     map_vertices((struct ObjGroup *)sDynListCurObj, (struct ObjGroup *)info->obj);
 }
 
-/* 234E14 -> 234F34; orig name: func_80186644 */
+/**
+ * In practice, this is used to set the faces of the current 
+ * active dynamic `ObjShape` to the dynamic group `id` of `ObjFace`s.
+ * It also has interactions with `ObjNet`s, but there are no examples
+ * of that usage in existing code.
+ */
 void d_set_planegroup(DynId id)
 {
     struct DynObjInfo *info;    //sp2C
@@ -1122,7 +1270,10 @@ void d_set_planegroup(DynId id)
     }
 }
 
-/* 234F34 -> 2350F0; orig name: func_80186764 */
+/**
+ * Set the shape pointer of the current active dynamic object to the
+ * pointer pointed to by `shpPtrptr`.
+ */
 void d_set_shapeptrptr(struct ObjShape **shpPtrptr)
 {
     struct ObjShape *defaultptr = NULL;
@@ -1163,7 +1314,10 @@ void d_set_shapeptrptr(struct ObjShape **shpPtrptr)
     }
 }
 
-/* 2350F0 -> 23528C; orig name: func_80186920 */
+/**
+ * Set the shape pointer of the current active dynamic object to dynamic
+ * `ObjShape` `id`.
+ */
 void d_set_shapeptr(DynId id)
 {
     struct DynObjInfo *info;    // sp24
@@ -1200,7 +1354,9 @@ void d_set_shapeptr(DynId id)
     }
 }
 
-/* 23528C -> 235314 */
+/**
+ * Set the current active dynamic object to object `id`.
+ */
 struct GdObj *d_use_obj(DynId id)
 {
     struct DynObjInfo *info = get_dynobj_info(id);
@@ -1213,21 +1369,29 @@ struct GdObj *d_use_obj(DynId id)
     return info->obj;
 }
 
-/* 235314 -> 23533C; orig name: func_80186B44 */
+/**
+ * Set the current active dynamic object to `obj`. This object can 
+ * any type of `GdObj`, not just an object created through the 
+ * dynmaic object system.
+ */
 void set_cur_dynobj(struct GdObj *obj)
 {
     sDynListCurObj = obj;
     sDynListCurInfo = &sNullDynObjInfo;
 }
 
-/* 23533C -> 23536C; orig name: func_80186B6C */
+/**
+ * Start a dynamic `ObjGroup` identified with `id`.
+ */
 void d_start_group(DynId id)
 {
     d_makeobj(D_GROUP, id);
 }
 
-/* 23536C -> 235470 */
-/* Enclose all dynobj(s) created between the creation of the d_group `id` and now */
+/**
+ * Add all dynamic objects created between the start of dynamic `ObjGroup` `id`
+ * and this call.
+ */
 void d_end_group(DynId id)
 {
     UNUSED u32 pad;
@@ -1239,7 +1403,7 @@ void d_end_group(DynId id)
         fatal_printf("dEndGroup(\"%s\"): Undefined group", DynIdAsStr(id));
 
     dynGrp = (struct ObjGroup *)info->obj;
-    for (i = info->id + 1; i < sLoadedDynObjs; i++)
+    for (i = info->num + 1; i < sLoadedDynObjs; i++)
     {
         if (sGdDynObjList[i].obj->type != OBJ_TYPE_GROUPS)
         {
@@ -1248,7 +1412,9 @@ void d_end_group(DynId id)
     }
 }
 
-/* 235470 -> 2354EC; orig name: func_80186CA0 */
+/**
+ * Add the current dynamic object to the dynamic `ObjGroup` `id`.
+ */
 void d_addto_group(DynId id)
 {
     UNUSED u32 pad;
@@ -1262,13 +1428,21 @@ void d_addto_group(DynId id)
     addto_group(targetGrp, sDynListCurObj);
 }
 
-/* 2354EC -> 235504; orig name: func_80186D1C */
-void dynid_is_int(s32 b)
+/**
+ * Set if `DynId` should be treated as integer values, 
+ * or as `char *` string pointers.
+ * 
+ * @param isIntBool `TRUE` to interpret ids as integers
+ */ 
+void dynid_is_int(s32 isIntBool)
 {
-    sGdDynObjIdIsInt = b;
+    sGdDynObjIdIsInt = isIntBool;
 }
 
-/* 235504 -> 23579C */
+/** 
+ * Set the initial position of the current dynamic object
+ * to `(x, y, z)`.
+ */
 void d_set_init_pos(f32 x, f32 y, f32 z)
 {
     UNUSED u32 pad2c[3];
@@ -1328,8 +1502,11 @@ void d_set_init_pos(f32 x, f32 y, f32 z)
     }
 }
 
-/* 23579C -> 2358D4 ; not called */
-void d_set_velocity(struct MyVec3f *vel)
+/**
+ * Set the velocity of the current active dynamic object. The
+ * values of the input `MyVec3f` are copied into the object.
+ */
+void d_set_velocity(const struct MyVec3f *vel)
 {
     struct GdObj *dynobj = sDynListCurObj;
     
@@ -1357,7 +1534,11 @@ void d_set_velocity(struct MyVec3f *vel)
     }
 }
 
-/* 2358D4 -> 235A2C; not called */
+/**
+ * Read the velocity value of the current dynamic object into `dst`
+ * 
+ * @param[out] dst values are copied to this `MyVec3f`
+ */
 void d_get_velocity(struct MyVec3f *dst)
 {
     struct GdObj *dynobj = sDynListCurObj;
@@ -1383,8 +1564,13 @@ void d_get_velocity(struct MyVec3f *dst)
     }
 } 
 
-/* 235A2C -> 235B10; not called */
-void d_set_torque(struct MyVec3f *src)
+/**
+ * Set the torque vectore for the current dynamic object. 
+ * Values from input `MyVec3f` are copied into the object.
+ * 
+ * @note Not called
+ */
+void d_set_torque(const struct MyVec3f *src)
 {
     struct GdObj *dynobj = sDynListCurObj;
 
@@ -1407,7 +1593,10 @@ void d_set_torque(struct MyVec3f *src)
     }
 }
 
-/* 235B10 -> 235C98; orig name: func_80187340 */
+/**
+ * Get the initial position of the current dynamic object and 
+ * store in `dst`.
+ */
 void d_get_init_pos(struct MyVec3f *dst)
 {
     struct GdObj *dynobj = sDynListCurObj;
@@ -1441,7 +1630,10 @@ void d_get_init_pos(struct MyVec3f *dst)
     }
 }
 
-/* 235C98 -> 235E24; orig name: func_801874C8 */
+/**
+ * Get the initial rotation of the current dynamic object and 
+ * store in `dst`.
+ */
 void d_get_init_rot(struct MyVec3f *dst)
 {
     struct GdObj *dynobj = sDynListCurObj;
@@ -1473,11 +1665,16 @@ void d_get_init_rot(struct MyVec3f *dst)
     }
 }
 
-/* 235E24 -> 236140 */
+/**
+ * Set the position of the current dynamic object.
+ * 
+ * @note This function automatically adjusts the three zoom levels
+ *       for an `ObjCamera`. 
+ */
 void d_set_rel_pos(f32 x, f32 y, f32 z)
 {
     struct GdObj *dynobj = sDynListCurObj;  // sp34
-    UNUSED struct MyVec3f unusedVec;            // sp28
+    UNUSED struct MyVec3f unusedVec;        // sp28
 
     if (sDynListCurObj == NULL)
         fatal_printf("proc_dynlist(): No current object");
@@ -1538,7 +1735,9 @@ void d_set_rel_pos(f32 x, f32 y, f32 z)
     }
 }
 
-/* 236140 -> 236310; not called */
+/**
+ * Offset the current position of the current dynamic object.
+ */
 void d_addto_rel_pos(struct MyVec3f *src)
 {
     struct GdObj *dynobj = sDynListCurObj;  // sp24
@@ -1572,7 +1771,9 @@ void d_addto_rel_pos(struct MyVec3f *src)
     }
 }
 
-/* 236310 -> 236508; orig name: func_80187B40 */
+/**
+ * Store the current dynamic object's position into `dst`.
+ */
 void d_get_rel_pos(struct MyVec3f *dst)
 {
     if (sDynListCurObj == NULL)
@@ -1609,7 +1810,10 @@ void d_get_rel_pos(struct MyVec3f *dst)
     }
 }
 
-/* 236508 -> 2365E4; orig name: func_80187D38 */
+/**
+ * Return a pointer to the attached object group of the current
+ * dynamic object.
+ */
 struct ObjGroup *d_get_att_objgroup(void)
 {
     if (sDynListCurObj == NULL)
@@ -1633,7 +1837,9 @@ struct ObjGroup *d_get_att_objgroup(void)
     // No null return due to `fatal_printf()` being a non-returning function?
 }
 
-/* 2365E4 -> 2366C0; not called */
+/**
+ * Return a pointer to the attached object of the current dynamic object.
+ */
 struct GdObj *d_get_att_to_obj(void)
 {
     if (sDynListCurObj == NULL)
@@ -1657,7 +1863,9 @@ struct GdObj *d_get_att_to_obj(void)
     // No null return due to `fatal_printf()` being a non-returning function?
 }
 
-/* 2366C0 -> 236848; orig name: func_80187EF0 */
+/**
+ * Store the current dynamic object's scale into `dst`.
+ */
 void d_get_scale(struct MyVec3f *dst)
 {
     struct GdObj *dynobj;   // sp24
@@ -1692,8 +1900,10 @@ void d_get_scale(struct MyVec3f *dst)
     }
 }
 
-/* 236848 -> 236A0C; orig name: func_80188078 */
-void d_set_att_offset(struct MyVec3f *off)
+/**
+ * Set the offset of the attached object on the current dynamic object.
+ */
+void d_set_att_offset(const struct MyVec3f *off)
 {
     struct GdObj *dynobj;   // sp24
 
@@ -1732,7 +1942,14 @@ void d_set_att_offset(struct MyVec3f *off)
     }
 }
 
-/* 236A0C -> 236B60; not called */
+/**
+ * An incorrectly-coded recursive function that was presumably supposed to
+ * set the offset of an attached object. Now, it will only call itself
+ * until it encounters a NULL pointer, which will trigger a `fatal_printf()`
+ * call.
+ * 
+ * @note Not called
+ */
 void d_set_att_to_offset(UNUSED u32 a)
 {
     struct GdObj *dynobj;   // sp3c
@@ -1772,7 +1989,11 @@ void d_set_att_to_offset(UNUSED u32 a)
     pop_dynobj_stash();
 }
 
-/* 236B60 -> 236CB4; not called */
+/**
+ * Store the offset of the attached object into `dst`.
+ * 
+ * @note Not called
+ */
 void d_get_att_offset(struct MyVec3f *dst)
 {
     if (sDynListCurObj == NULL)
@@ -1801,7 +2022,9 @@ void d_get_att_offset(struct MyVec3f *dst)
     }
 }
 
-/* 236CB4 -> 236DC8; not called */
+/**
+ * Get the attached object flags for the current dynamic object.
+ */
 s32 d_get_att_flags(void)
 {
     s32 attflag;    // sp24
@@ -1831,7 +2054,11 @@ s32 d_get_att_flags(void)
     return attflag;
 }
 
-/* 236DC8 -> 237038 */
+/**
+ * Set the world position of the current dynamic object.
+ * 
+ * @note Sets the upper left coordinates of an `ObjView`
+ */
 void d_set_world_pos(f32 x, f32 y, f32 z)
 {
     if (sDynListCurObj == NULL)
@@ -1878,7 +2105,10 @@ void d_set_world_pos(f32 x, f32 y, f32 z)
     }
 }
 
-/* 237038 -> 237140; orig name: func_80188868 */
+/**
+ * Set the normal of the current dynamic `ObjVertex`. The input `x, y, z` values
+ * are normalized into a unit vector before setting the vertex normal.
+ */
 void d_set_normal(f32 x, f32 y, f32 z)
 {
     struct MyVec3f normal;  // sp1C
@@ -1907,7 +2137,12 @@ void d_set_normal(f32 x, f32 y, f32 z)
     }
 }
 
-/* 237140 -> 23720C ; not called */
+/**
+ * Get a pointer to the world position vector of the active
+ * dynamic object. This is a pointer inside the actual object.
+ * 
+ * @note Not called.
+ */
 struct MyVec3f *d_get_world_pos_ptr(void)
 {
     if (sDynListCurObj == NULL)
@@ -1931,7 +2166,9 @@ struct MyVec3f *d_get_world_pos_ptr(void)
     // No null return due to `fatal_printf()` being a non-returning function?
 }
 
-/* 23720C -> 237884; orig name: func_80188A3C */
+/**
+ * Copy the world position of the current dynamic object into `dst`.
+ */
 void d_get_world_pos(struct MyVec3f *dst)
 {
     if (sDynListCurObj == NULL)
@@ -2020,14 +2257,22 @@ void d_get_world_pos(struct MyVec3f *dst)
     }
 }
 
-/* 237884 -> 2378D0; orig name: func_801890B4 */
+/**
+ * Create a new dynamic `ObjVertex` at point `pos`.
+ * 
+ * @param[in] pos values are copied to set vertex position
+ */
 void d_make_vertex(struct MyVec3f *pos)
 {
     d_makeobj(D_VERTEX, AsDynId(NULL));
     d_set_init_pos(pos->x, pos->y, pos->z);
 }
 
-/* 2378D0 -> 237AEC */
+/**
+ * Scale the current dynamic object by factor `(x, y, z)`.
+ * 
+ * @note Sets the lower right coordinates of an `ObjView`
+ */
 void d_set_scale(f32 x, f32 y, f32 z)
 {
     struct GdObj *initDynobj;    // sp24;
@@ -2059,7 +2304,7 @@ void d_set_scale(f32 x, f32 y, f32 z)
         case OBJ_TYPE_GADGETS:
             if (((struct ObjGadget *)initDynobj)->unk50 != NULL)
             {
-                func_8019834C(((struct ObjGadget *)initDynobj)->unk50, x, y, z);
+                scale_verts_in_shape(((struct ObjGadget *)initDynobj)->unk50, x, y, z);
             }
             ((struct ObjGadget *)initDynobj)->unk40.x = x;
             ((struct ObjGadget *)initDynobj)->unk40.y = y;
@@ -2077,7 +2322,9 @@ void d_set_scale(f32 x, f32 y, f32 z)
     pop_dynobj_stash();
 }
 
-/* 237AEC -> 237C14; orig name: func_8018931C */
+/**
+ * Set the rotation value of the current active dynamic object.
+ */
 void d_set_rotation(f32 x, f32 y, f32 z)
 {
     struct GdObj *dynobj;   // sp2C
@@ -2108,7 +2355,9 @@ void d_set_rotation(f32 x, f32 y, f32 z)
     }
 }
 
-/* 237C14 -> 237CF0; orig name: func_80189444 */
+/**
+ * Set the center of gravity of the current dynamic `ObjNet`.
+ */
 void d_center_of_gravity(f32 x, f32 y, f32 z)
 {
     if (sDynListCurObj == NULL)
@@ -2130,7 +2379,9 @@ void d_center_of_gravity(f32 x, f32 y, f32 z)
     }
 }
 
-/* 237CF0 -> 237DCC; orig name: func_80189520 */
+/**
+ * Set the shape offset of the current dynamic `ObjJoint`.
+ */
 void d_set_shape_offset(f32 x, f32 y, f32 z)
 {
     if (sDynListCurObj == NULL)
@@ -2152,7 +2403,12 @@ void d_set_shape_offset(f32 x, f32 y, f32 z)
     }
 }
 
-/* 237DCC -> 237F68 */
+/**
+ * Create a new `ObjValPtr` to dynamic object `objId` and attach
+ * that valptr to the current dynamic object.
+ * 
+ * @param type `::ValPtrType`
+ */
 void d_add_valptr(DynId objId, u32 vflags, s32 type, u32 offset)
 {
     struct GdObj *dynobj;   // sp2C
@@ -2171,7 +2427,9 @@ void d_add_valptr(DynId objId, u32 vflags, s32 type, u32 offset)
             fatal_printf("dAddValPtr(\"%s\"): Undefined object", DynIdAsStr(objId));
         
         valptr = make_valptrs(info->obj, vflags, type, offset);
-    } else {
+    } 
+    else 
+    {
         valptr = make_valptrs(objId, vflags, type, offset);
     }
     
@@ -2196,7 +2454,10 @@ void d_add_valptr(DynId objId, u32 vflags, s32 type, u32 offset)
     }
 }
 
-/* 237F68 -> 238020; orig name: func_80189798 */
+/**
+ * Add a value processing function (`valptrproc_t`) to the current 
+ * dynamic `ObjLabel`.
+ */
 void d_add_valproc(valptrproc_t proc)
 {
     struct GdObj *dynobj;   // sp1C
@@ -2219,12 +2480,16 @@ void d_add_valproc(valptrproc_t proc)
     }
 }
 
-/* 238020 -> 238368; orig name: func_80189850 */
+/**
+ * Link a variable pointer to the current active dynamic object.
+ * In the final game, this is used to link arrays of raw vertex, face, 
+ * or animation data to `ObjGroup`s, or to link joints to `ObjAnimator`s.
+ */ 
 void d_link_with_ptr(void *ptr)
 {
-    struct GdObj *dynobj;   // sp34
-    struct ObjValPtrs *valptr;  // sp30
-    struct Links *link;         // sp2C
+    struct GdObj *dynobj;      // sp34
+    struct ObjValPtrs *valptr; // sp30
+    struct Links *link;        // sp2C
 
     if (sDynListCurObj == NULL)
         fatal_printf("proc_dynlist(): No current object");
@@ -2286,7 +2551,10 @@ void d_link_with_ptr(void *ptr)
     imout();
 }
 
-/* 238368 -> 238438; orig name: func_80189B98 */
+/**
+ * Link the dynamic object `id` to the current dynamic object by wrapping
+ * `d_link_with_ptr()`.
+ */
 void d_link_with(DynId id)
 {   
     struct DynObjInfo *info;                        // sp1C
@@ -2306,7 +2574,9 @@ void d_link_with(DynId id)
     sDynListCurInfo = origInfo;
 }
 
-/* 238438 -> 238644; orig name: func_80189C68 */
+/**
+ * Set the object specific flags of the current dynamic object.
+ */
 void d_set_flags(s32 flags)
 {
     struct GdObj *dynobj;  // sp24
@@ -2350,7 +2620,9 @@ void d_set_flags(s32 flags)
     }
 }
 
-/* 238644 -> 2387BC; orig name: func_80189E74 */
+/**
+ * Clear object specific flags from the current dynamic object.
+ */
 void d_clear_flags(s32 flags)
 {
     if (sDynListCurObj == NULL)
@@ -2382,9 +2654,12 @@ void d_clear_flags(s32 flags)
     }
 }
 
-/* 2387BC -> 2389E8; orig name: func_80189FEC*/
-// TODO: enumerate the param types?
-void d_set_parm_f(s32 param, f32 val)
+/**
+ * Set variable float parameters on the current dynamic object.
+ * These are mainly used for `ObjGadget`s to set the drawing size
+ * range.
+ */
+void d_set_parm_f(enum DParmF param, f32 val)
 {
     if (sDynListCurObj == NULL)
         fatal_printf("proc_dynlist(): No current object");
@@ -2394,7 +2669,7 @@ void d_set_parm_f(s32 param, f32 val)
     case OBJ_TYPE_SHAPES:
         switch (param)
         {
-        case 1:
+        case PARM_F_ALPHA:
             ((struct ObjShape *)sDynListCurObj)->unk58 = val;
             break;
         default:
@@ -2408,13 +2683,13 @@ void d_set_parm_f(s32 param, f32 val)
     case OBJ_TYPE_GADGETS:
         switch (param) 
         {
-        case 2: // range left?
+        case PARM_F_RANGE_LEFT:
             ((struct ObjGadget *)sDynListCurObj)->unk38 = val;
             break;
-        case 3: // range right?
+        case PARM_F_RANGE_RIGHT:
             ((struct ObjGadget *)sDynListCurObj)->unk3C = val;
             break;
-        case 6: // union type
+        case PARM_F_VARVAL:
             ((struct ObjGadget *)sDynListCurObj)->varval.f = val;
             break;
         default:
@@ -2428,7 +2703,7 @@ void d_set_parm_f(s32 param, f32 val)
     case OBJ_TYPE_VERTICES:
         switch (param)
         {
-        case 1:
+        case PARM_F_ALPHA:
             ((struct ObjVertex *)sDynListCurObj)->alpha = val;
             break;
         default:
@@ -2448,8 +2723,11 @@ void d_set_parm_f(s32 param, f32 val)
     }
 }
 
-/* 2389E8 -> 238BC0 */
-// TODO: rename "d_set_parm_ptr"
+/**
+ * Set various pointer parameters for the current dynamic object.
+ * Normally, this is used to set `char *` pointer for various objects,
+ * but it can also set the vertices for an `ObjFace`.
+ */
 void d_set_parm_ptr(enum DParmPtr param, void *ptr)
 {
     if (sDynListCurObj == NULL)
@@ -2500,7 +2778,9 @@ void d_set_parm_ptr(enum DParmPtr param, void *ptr)
     }
 }
 
-/* 238BC0 -> 238C20; orig name: func_8018A3F0 */
+/**
+ * Set the generic drawing flags for the current dynamic object.
+ */
 void d_set_obj_draw_flag(enum ObjDrawingFlags flag)
 {
     if (sDynListCurObj == NULL)
@@ -2509,7 +2789,9 @@ void d_set_obj_draw_flag(enum ObjDrawingFlags flag)
     sDynListCurObj->drawFlags |= flag;
 }
 
-/* 238C20 -> 238D90 */
+/**
+ * Set an object specific type field for the current dynamic object.
+ */
 void d_set_type(s32 type)
 {
     struct GdObj *dynobj = sDynListCurObj;  // sp24
@@ -2546,7 +2828,9 @@ void d_set_type(s32 type)
     }
 }
 
-/* 238D90 -> 238EB8; orig name: func_8018A5C0 */
+/**
+ * Set the specific object ID field for the current dynamic object. 
+ */
 void d_set_id(s32 id)
 {
     struct GdObj *dynobj = sDynListCurObj;  // sp24
@@ -2577,8 +2861,11 @@ void d_set_id(s32 id)
     }
 }
 
-/* 238EB8 -> 23907C */
 // TODO: enumerate colors?
+/**
+ * Set the colour of the current dynamic object. The input color is an index
+ * for `gd_get_colour()`
+ */
 void d_set_colour_num(s32 colornum)
 {
     struct GdColour *rgbcolor;    // sp24
@@ -2623,7 +2910,9 @@ void d_set_colour_num(s32 colornum)
     }
 }
 
-/* 23907C -> 23912C */
+/**
+ * Set the material ID of the current dynamic `ObjFace`.
+ */
 void d_set_material(UNUSED void *a0, s32 mtlId)
 {
     if (sDynListCurObj == NULL)
@@ -2643,7 +2932,9 @@ void d_set_material(UNUSED void *a0, s32 mtlId)
     }
 }
 
-/* 23912C -> 239208; orig name: func_8018A95C */
+/**
+ * Set the friction vec of the current dynamic `ObjJoint`.
+ */
 void d_friction(f32 x, f32 y, f32 z)
 {
     if (sDynListCurObj == NULL)
@@ -2665,7 +2956,9 @@ void d_friction(f32 x, f32 y, f32 z)
     }
 }
 
-/* 239208 -> 2392B4; orig name: func_8018AA38 */
+/**
+ * Set the spring constant of the current dynamic `ObjBone`.
+ */
 void d_set_spring(f32 spring)
 {
     if (sDynListCurObj == NULL)
@@ -2685,7 +2978,9 @@ void d_set_spring(f32 spring)
     }
 }
 
-/* 2392B4 -> 239390; orig name: func_8018AAE4 */
+/**
+ * Set the ambient color of the current dynamic `ObjMaterial`.
+ */ 
 void d_set_ambient(f32 r, f32 g, f32 b)
 {
     if (sDynListCurObj == NULL)
@@ -2707,7 +3002,9 @@ void d_set_ambient(f32 r, f32 g, f32 b)
     }
 }
 
-/* 239390 -> 2394C0; orig name: func_8018ABC0 */
+/**
+ * Set the diffuse color of the current dynamic `ObjMaterial` or `ObjLight`.
+ */ 
 void d_set_diffuse(f32 r, f32 g, f32 b)
 {
     if (sDynListCurObj == NULL)
@@ -2734,7 +3031,9 @@ void d_set_diffuse(f32 r, f32 g, f32 b)
     }
 }
 
-/* 2394C0 -> 23956C; orig name: func_8018ACF0*/
+/**
+ * Set the control type of the current dynamic `ObjNet`.
+ */ 
 void d_set_control_type(s32 ctrltype)
 {
     if (sDynListCurObj == NULL)
@@ -2754,7 +3053,11 @@ void d_set_control_type(s32 ctrltype)
     }
 }
 
-/* 23956C -> 239640; orig name: func_8018AD9C */
+/**
+ * Get a pointer to a `GdPlaneF` in the current dynamic object.
+ * If the current object does not have a plane, a pointer to
+ * a global plane at (0,0) is returned.
+ */
 struct GdPlaneF *d_get_plane(void)
 {
     if (sDynListCurObj == NULL)
@@ -2776,7 +3079,9 @@ struct GdPlaneF *d_get_plane(void)
     }
 }
 
-/* 239640 -> 23978C; orig name: func_8018AE70 */
+/**
+ * Copy the matrix from the current dynamic object into `dst`.
+ */
 void d_get_matrix(Mat4 *dst)
 {
     struct GdObj *dynobj;   // sp24
@@ -2813,7 +3118,9 @@ void d_get_matrix(Mat4 *dst)
     }
 }
 
-/* 23978C -> 2398A0; not called */
+/**
+ * Set the matrix of the current dynamic object by copying `src` into the object.
+ */
 void d_set_matrix(Mat4 *src)
 {
     if (sDynListCurObj == NULL)
@@ -2842,7 +3149,10 @@ void d_set_matrix(Mat4 *src)
     }
 }
 
-/* 2398A0 -> 239978; not called */
+/**
+ * Set the rotation matrix of the current dynamic object by copying 
+ * the input matrix `src`.
+ */
 void d_set_rot_mtx(Mat4 *src)
 {
     if (sDynListCurObj == NULL)
@@ -2865,7 +3175,9 @@ void d_set_rot_mtx(Mat4 *src)
     }
 }
 
-/* 239978 -> 239A34 */
+/**
+ * Get a pointer to the current dynamic object's rotation matrix.
+ */
 Mat4 *d_get_rot_mtx_ptr(void)
 {
     if (sDynListCurObj == NULL)
@@ -2887,7 +3199,9 @@ Mat4 *d_get_rot_mtx_ptr(void)
     // No null return due to `fatal_printf()` being a non-returning function?    
 }
 
-/* 239A34 -> 239B64 */
+/**
+ * Copy `src` into the identity matrix of the current dynamic object.
+ */
 void d_set_idn_mtx(Mat4 *src)
 {
     struct GdObj *dynobj;   // sp24
@@ -2918,7 +3232,9 @@ void d_set_idn_mtx(Mat4 *src)
     }
 }
 
-/* 239B64 -> 239C78 */
+/**
+ * Get a pointer to the current dynamic object's matrix.
+ */
 Mat4 *d_get_matrix_ptr(void)
 {
     if (sDynListCurObj == NULL)
@@ -2948,7 +3264,9 @@ Mat4 *d_get_matrix_ptr(void)
     // No null return due to `fatal_printf()` being a non-returning function?
 }
 
-/* 239C78 -> 239D4C */
+/**
+ * Get a pointer to the current dynamic object's identity matrix.
+ */
 Mat4 *d_get_idn_mtx_ptr(void)
 {
     struct GdObj *dynobj;   // sp24
@@ -2975,7 +3293,10 @@ Mat4 *d_get_idn_mtx_ptr(void)
     // No null return due to `fatal_printf()` being a non-returning function?
 }
 
-/* 239D4C -> 239DE8; orig name: func_8018B57C */
+/**
+ * Use the dynamic object system to calculate the distance between
+ * two `GdObj`s. The objects don't have to be dynamic objects.
+ */
 f32 d_calc_world_dist_btwn(struct GdObj *obj1, struct GdObj *obj2)
 {
     struct MyVec3f obj1pos;     // sp34
@@ -2994,8 +3315,11 @@ f32 d_calc_world_dist_btwn(struct GdObj *obj1, struct GdObj *obj2)
     return magnitude_vec3f(&posdiff);
 }
 
-/* 239DE8 -> 239EC0 */
-void d_set_skin_weight(s32 a0, f32 a1)
+/**
+ * Create a new weight for the current dynamic `ObjJoint`. The input weight value
+ * is out of 100.
+ */
+void d_set_skin_weight(s32 id, f32 percentWeight)
 {
     if (sDynListCurObj == NULL)
         fatal_printf("proc_dynlist(): No current object");
@@ -3003,7 +3327,7 @@ void d_set_skin_weight(s32 a0, f32 a1)
     switch (sDynListCurObj->type)
     {
         case OBJ_TYPE_JOINTS:
-            set_skin_weight((struct ObjJoint *)sDynListCurObj, a0, NULL, a1 / 100.0); //? 100.0f
+            set_skin_weight((struct ObjJoint *)sDynListCurObj, id, NULL, percentWeight / 100.0); //? 100.0f
             break;
         default:
             fatal_printf("%s: Object '%s'(%x) does not support this function.",

@@ -430,12 +430,12 @@ void Unknown8018FA68(struct ObjBone *b)
 }
 
 /* 23E298 -> 23E328; orig name: func_8018FAC8 */
-s32 set_skin_weight(struct ObjJoint *j, s32 a1, struct ObjVertex *vtx, f32 a3)
+s32 set_skin_weight(struct ObjJoint *j, s32 id, struct ObjVertex *vtx, f32 weight)
 {
     struct ObjWeight *w;
 
     if (j->unk1F4 == NULL) { j->unk1F4 = make_group(0); }
-    w = make_weight(0, a1, vtx, a3);
+    w = make_weight(0, id, vtx, weight);
     addto_group(j->unk1F4, &w->header);
 
     return TRUE;

@@ -5,19 +5,34 @@
 #include "gd_types.h"
 
 // types
-/* Unfortunately, goddard didn't use a union to encode the DynObj Id.
-** So, the best I can come up with is this typedef and accessor macros 
-** As the "actual type" is `void *`, the type is NULL-able and is used as such */
+/// @name DynId Type
+/// @{
+/// A new type for identification of `GdObj`s in the dynamic object list.
 typedef void *DynId;
+/// Macros for casting between types of ids, 
+/// as the id can be either a number or a string.
+/// @{
 #define DynIdAsStr(id) ((char *)(id))
 #define DynIdAsInt(id) ((u32)(id))
 #define AsDynId(unk)   ((DynId)(unk))
-// parameters for `d_set_parm_ptr`
+/// @}
+/// @}
+
+/// parameters types for `d_set_parm_ptr()`
 enum DParmPtr {
-    PARM_PTR_OBJ_VTX = 1,
-    PARM_PTR_CHAR    = 5
+    PARM_PTR_OBJ_VTX = 1, ///< parameter is an `ObjVertex` to add to an `ObjFace`
+    PARM_PTR_CHAR    = 5  ///< parameter is a `char *`
 };
-// d_makeobj types
+
+/// parameters for `d_set_parm_f()`
+enum DParmF {
+    PARM_F_ALPHA = 1,       ///< Set the alpha value for an `ObjShape` or `ObjVertex`
+    PARM_F_RANGE_LEFT = 2,  ///< Set the left range for an `ObjGadget`
+    PARM_F_RANGE_RIGHT = 3, ///< Set the right range for an `ObjGadget`
+    PARM_F_VARVAL = 6       ///< Set the float variable value union in an `ObjGadget`
+};
+
+/// `d_makeobj()` object types
 enum DObjTypes {
     D_CAR_DYNAMICS  = 0,
     D_NET           = 1,
@@ -34,7 +49,7 @@ enum DObjTypes {
     D_LABEL         = 12,
     D_VIEW          = 13,
     D_ANIMATOR      = 14,
-    D_DATA_GRP      = 15,
+    D_DATA_GRP      = 15, ///< An `ObjGroup` that links to raw vertex or face data
     D_PARTICLE      = 16,
     D_LIGHT         = 17,
     D_GROUP         = 18
@@ -66,7 +81,7 @@ extern void d_set_scale(f32, f32, f32);
 extern void d_add_valptr(DynId, u32, s32, u32);
 extern void d_add_valproc(union ObjVarVal * (*)(union ObjVarVal *, union ObjVarVal));
 extern void d_set_flags(s32);
-extern void d_set_parm_f(s32, f32);
+extern void d_set_parm_f(enum DParmF, f32);
 extern void d_set_parm_ptr(enum DParmPtr, void *);
 extern void d_set_obj_draw_flag(enum ObjDrawingFlags);
 extern void d_set_type(s32);

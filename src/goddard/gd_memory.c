@@ -8,7 +8,7 @@
 /**
  * @file gd_memory.c
  * 
- * This file contains the functions need to manage allocation form
+ * This file contains the functions need to manage allocation in
  * goddard's heap. However, the actual, useable allocation functions
  * are `gd_malloc()`, `gd_malloc_perm()`, and `gd_malloc_temp()`, as 
  * well as `gd_free()`. This file is for managing the underlying memory
@@ -173,7 +173,7 @@ u32 gd_free_mem(void *ptr)
  * Request a pointer to goddard heap memory of at least `size` and
  * of the same `permanence`.
  * 
- * @retuns pointer to heap
+ * @return pointer to heap
  * @retval NULL could not fulfill the request
  */
 void *gd_request_mem(u32 size, u8 permanence)

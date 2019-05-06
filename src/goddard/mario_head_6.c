@@ -3468,8 +3468,8 @@ void make_timer_gadgets(void)
     d_set_world_pos(20.0f, 5.0f, 0.0f);
     d_set_scale(50.0f, 5.0f, 0.0f);
     d_set_type(4);
-    d_set_parm_f(2, 0);
-    d_set_parm_f(3, sTimeScaleFactor);
+    d_set_parm_f(PARM_F_RANGE_LEFT, 0);
+    d_set_parm_f(PARM_F_RANGE_RIGHT, sTimeScaleFactor);
     d_add_valptr(AsDynId(0), 0, 2, (uintptr_t)&sTimeScaleFactor);
     bar1 = (struct ObjGadget *)d_use_obj("bar1");
     bar1->unk5C = 1;
@@ -3479,8 +3479,8 @@ void make_timer_gadgets(void)
     d_set_world_pos(70.0f, 5.0f, 0.0f);
     d_set_scale(50.0f, 5.0f, 0.0f);
     d_set_type(4);
-    d_set_parm_f(2, 0);
-    d_set_parm_f(3, sTimeScaleFactor);
+    d_set_parm_f(PARM_F_RANGE_LEFT, 0);
+    d_set_parm_f(PARM_F_RANGE_RIGHT, sTimeScaleFactor);
     d_add_valptr(AsDynId(0), 0, 2, (uintptr_t)&sTimeScaleFactor);
     bar2 = (struct ObjGadget *)d_use_obj("bar2");
     bar2->unk5C = 9;
@@ -3490,8 +3490,8 @@ void make_timer_gadgets(void)
     d_set_world_pos(120.0f, 5.0f, 0.0f);
     d_set_scale(50.0f, 5.0f, 0.0f);
     d_set_type(4);
-    d_set_parm_f(2, 0);
-    d_set_parm_f(3, sTimeScaleFactor);
+    d_set_parm_f(PARM_F_RANGE_LEFT, 0);
+    d_set_parm_f(PARM_F_RANGE_RIGHT, sTimeScaleFactor);
     d_add_valptr(AsDynId(0), 0, 2, (uintptr_t)&sTimeScaleFactor);
     bar3 = (struct ObjGadget *)d_use_obj("bar3");
     bar3->unk5C = 1;
@@ -3501,8 +3501,8 @@ void make_timer_gadgets(void)
     d_set_world_pos(170.0f, 5.0f, 0.0f);
     d_set_scale(50.0f, 5.0f, 0.0f);
     d_set_type(4);
-    d_set_parm_f(2, 0);
-    d_set_parm_f(3, sTimeScaleFactor);
+    d_set_parm_f(PARM_F_RANGE_LEFT, 0);
+    d_set_parm_f(PARM_F_RANGE_RIGHT, sTimeScaleFactor);
     d_add_valptr(AsDynId(0), 0, 2, (uintptr_t)&sTimeScaleFactor);
     bar4 = (struct ObjGadget *)d_use_obj("bar4");
     bar4->unk5C = 9;
@@ -3512,8 +3512,8 @@ void make_timer_gadgets(void)
     d_set_world_pos(220.0f, 5.0f, 0.0f);
     d_set_scale(50.0f, 5.0f, 0.0f);
     d_set_type(4);
-    d_set_parm_f(2, 0);
-    d_set_parm_f(3, sTimeScaleFactor);
+    d_set_parm_f(PARM_F_RANGE_LEFT, 0);
+    d_set_parm_f(PARM_F_RANGE_RIGHT, sTimeScaleFactor);
     d_add_valptr(AsDynId(0), 0, 2, (uintptr_t)&sTimeScaleFactor);
     bar5 = (struct ObjGadget *)d_use_obj("bar5");
     bar5->unk5C = 1;
@@ -3523,8 +3523,8 @@ void make_timer_gadgets(void)
     d_set_world_pos(270.0f, 5.0f, 0.0f);
     d_set_scale(50.0f, 5.0f, 0.0f);
     d_set_type(4);
-    d_set_parm_f(2, 0);
-    d_set_parm_f(3, sTimeScaleFactor);
+    d_set_parm_f(PARM_F_RANGE_LEFT, 0);
+    d_set_parm_f(PARM_F_RANGE_RIGHT, sTimeScaleFactor);
     d_add_valptr(AsDynId(0), 0, 2, (uintptr_t)&sTimeScaleFactor);
     bar6 = (struct ObjGadget *)d_use_obj("bar6");
     bar6->unk5C = 9;
@@ -3538,8 +3538,8 @@ void make_timer_gadgets(void)
         d_set_world_pos(20.0f, (f32) ((i * 15) + 15), 0.0f);
         d_set_scale(50.0f, 14.0f, 0);
         d_set_type(4);
-        d_set_parm_f(2, 0.0f);
-        d_set_parm_f(3, 1.0f);
+        d_set_parm_f(PARM_F_RANGE_LEFT, 0.0f);
+        d_set_parm_f(PARM_F_RANGE_RIGHT, 1.0f);
         d_add_valptr(AsDynId(0), 0, 2, (uintptr_t)&timer->prevScaledTotal);
         sTimerGadgets[i] = (struct ObjGadget *)d_use_obj(timerNameBuf);
         sTimerGadgets[i]->unk5C = timer->unk1C;

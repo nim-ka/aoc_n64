@@ -363,7 +363,7 @@ struct VtxLink * make_vtx_link(struct VtxLink * prevlink, Vtx * data)
     newLink->data = data;
     // WTF?
     #pragma GCC diagnostic push
-    #pragma GCC diagnostic ignored "-Wpointer-to-s32-cast"
+    #pragma GCC diagnostic ignored "-Wpointer-to-int-cast"
     if ( ((s32) (newLink)) == 0x3F800000)
         fatal_printf("bad3\n");
     #pragma GCC diagnostic pop
@@ -371,14 +371,14 @@ struct VtxLink * make_vtx_link(struct VtxLink * prevlink, Vtx * data)
 }
 
 /* @ 22B154 for 0x88; orig name: func8017C984 */
-struct ObjValPtrs* make_valptrs(void* a0, s32 a1, s32 a2, s32 a3)
+struct ObjValPtrs* make_valptrs(struct GdObj* obj, s32 flags, enum ValPtrType type, s32 offset)
 {
     struct ObjValPtrs* sp1C = (struct ObjValPtrs*) make_object(OBJ_TYPE_VALPTRS);
 
-    sp1C->obj = a0;
-    sp1C->unk20 = a1;
-    sp1C->offset = a3;
-    sp1C->datatype = a2;
+    sp1C->obj = obj;
+    sp1C->unk20 = flags;
+    sp1C->offset = offset;
+    sp1C->datatype = type;
 
     return sp1C;
 }
@@ -637,13 +637,13 @@ struct ObjAnimator* make_animator(void)
 }
 
 /* @ 22BD84 for 0x78; orig name: func_8017D5B4 */
-struct ObjWeight* make_weight(UNUSED s32 a0, s32 a1, struct ObjVertex* a2, f32 a3)
+struct ObjWeight* make_weight(UNUSED s32 a0, s32 id, struct ObjVertex* vtx, f32 weight)
 {
     struct ObjWeight* newWeight = (struct ObjWeight*) make_object(OBJ_TYPE_WEIGHTS);
 
-    newWeight->id = a1;
-    newWeight->unk38 = a3;
-    newWeight->unk3C = a2;
+    newWeight->id = id;
+    newWeight->unk38 = weight;
+    newWeight->unk3C = vtx;
 
     return newWeight;
 }

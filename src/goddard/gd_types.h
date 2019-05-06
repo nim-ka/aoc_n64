@@ -201,11 +201,11 @@ struct ObjJoint {
     /* 0x1CC */ s32 unk1CC;     // "type"
     /* 0x1D0 */ struct ObjAnimator *unk1D0;
     /* 0x1D4 */ u8  pad1D4[0x1f4-0x1d4];
-    /* 0x1F4 */ struct ObjGroup *unk1F4;    //Group of ObjWeights, only?
-    /* 0x1F8 */ struct ObjGroup *unk1F8;    //attach group
+    /* 0x1F4 */ struct ObjGroup *unk1F4;    //Group of ObjWeights, only? skin weights?
+    /* 0x1F8 */ struct ObjGroup *unk1F8;    //attach object group
     /* 0x1FC */ s32 unk1FC;                 //d_attach_to arg 0; "AttFlag"
     /* 0x200 */ struct MyVec3f unk200;      //attached offset?
-    /* 0x20C */ struct GdObj *unk20C;   //attached object?
+    /* 0x20C */ struct GdObj *unk20C;       //attached object?
     /* 0x210 */ u8  pad210[0x228-0x210];
     /* 0x228 */ f32 unk228;
 }; /* sizeof = 0x22C */
@@ -272,6 +272,17 @@ struct ObjShape {
  * 0x10 - Use vtx position as vtx normal? (`chk_shapegen`)
  */
 
+/* netTypes
+ * 0 - default?
+ * 1 - shape net
+ * 2 - something about the shape unk24 group having vertices too?
+ * 3 - joints?
+ * 4 - dynamic net? bone net?
+ * 5 - particle net?
+ * 6 - stub
+ * 7 - 
+ */
+
 struct ObjNet {
     /* 0x000 */ struct GdObj header;
     /* 0x014 */ struct MyVec3f unk14;   // position? d_set_initpos + d_set_world_pos; print_net says world
@@ -279,7 +290,7 @@ struct ObjNet {
     /* 0x02C */ u8  pad2c[0x34-0x2C];
     /* 0x034 */ s32 unk34;       // "dflags"?
     /* 0x038 */ u32 unk38;      // some sort of id? from move_net
-    /* 0x03C */ s32 unk3C;      // state flags?
+    /* 0x03C */ s32 unk3C;      // state flags? vertex info flags?
     /* 0x040 */ s32 unk40;      // gd "colour"
     /* 0x044 */ struct MyVec3f unk44;   // "force"
     /* 0x050 */ struct MyVec3f unk50;   // velocity
@@ -307,7 +318,7 @@ struct ObjNet {
     /* 0x1C8 */ struct ObjGroup *unk1C8;    // "node group" (joints, weights?)
     /* 0x1CC */ struct ObjGroup *unk1CC;    // plane group (only type 1?)
     /* 0x1D0 */ struct ObjGroup *unk1D0;    // vertex group
-    /* 0x1D4 */ struct ObjGroup *unk1D4;    // attach group?
+    /* 0x1D4 */ struct ObjGroup *unk1D4;    // attached objects group?
     /* 0x1D8 */ struct MyVec3f unk1D8;      // attached offset
     /* 0x1E4 */ s32 unk1E4;                 // d_attach_to arg 0; "AttFlag"
     /* 0x1E8 */ struct GdObj *unk1E8;   // attached obj?
@@ -417,7 +428,7 @@ struct ObjWeight {
     /* 0x1C */ s32 id;   //id
     /* 0x20 */ struct MyVec3f vec20;    //based on func_80181894? maybe a GdPlaneF?
     /* 0x2C */ u8  pad2C[0x38-0x2c];
-    /* 0x38 */ f32 unk38;
+    /* 0x38 */ f32 unk38; // weight (unit?)
     /* 0x3C */ struct ObjVertex* unk3C;
 }; /* sizeof = 0x40 */
 
@@ -514,7 +525,7 @@ struct ObjLabel {
 
 struct ObjAnimator {
     /* 0x00 */ struct GdObj header;
-    /* 0x14 */ struct ObjGroup* unk14;
+    /* 0x14 */ struct ObjGroup* unk14; // joint?
     /* 0x18 */ struct ObjGroup* animdata;  //animation data? a group, but the link points to something weird..
     /* 0x1C */ u8  pad1C[0x4];
     /* 0x20 */ s32 unk20;

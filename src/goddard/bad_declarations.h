@@ -5,7 +5,9 @@
 #include "gd_types.h"
 
 /**
- * @ file bad_declarations.h
+ * @file bad_declarations.h
+ * 
+ * Match incorrect type promotion for two declared functions.
  * 
  * There is an issue with the compiled code for these function calls in files
  * outside of the files in which they were defined. 

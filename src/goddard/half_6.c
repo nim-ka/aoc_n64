@@ -106,8 +106,10 @@ static u8 sUnrefSpaceC80[0x1C];            // @ 801BAC80
 static struct ObjFace * D_801BAC9C;
 static struct ObjFace * D_801BACA0;
 static u8 sUnrefSpaceCA8[0x10];            // @ 801BACA8
-static struct MyVec3f D_801BACB8;
-static struct MyVec3f D_801BACC8;
+/// factor for scaling vertices in an `ObjShape` when calling `scale_verts_in_shape()`
+static struct MyVec3f sVertexScaleFactor;
+/// factor for translating vertices in an `ObjShape` when calling `translate_verts_in_shape()`
+static struct MyVec3f sVertexTranslateOffset;
 static u8 sUnrefSpaceCD8[0x30];            // @ 801BACD8
 static struct ObjGroup * D_801BAD08;       // group of planes from make_netfromshape
 static u8 sUnrefSpaceD10[0x20];            // @ 801BAD10
@@ -534,68 +536,68 @@ void Unknown80198184(struct ObjShape* shape, f32 x, f32 y, f32 z)
 }
 
 /* @ 2469C0 for 0xc8 */
-void Unknown801981F0(struct GdObj* obj)
+void scale_obj_position(struct GdObj* obj)
 {
-    struct MyVec3f vec;
+    struct MyVec3f pos;
 
     if (obj->type == OBJ_TYPE_GROUPS)
         return;
     
     set_cur_dynobj(obj);
-    d_get_rel_pos(&vec);
+    d_get_rel_pos(&pos);
 
-    vec.x *= D_801BACB8.x; 
-    vec.y *= D_801BACB8.y; 
-    vec.z *= D_801BACB8.z;
+    pos.x *= sVertexScaleFactor.x; 
+    pos.y *= sVertexScaleFactor.y; 
+    pos.z *= sVertexScaleFactor.z;
 
-    d_set_rel_pos(vec.x, vec.y, vec.z);
-    d_set_init_pos(vec.x, vec.y, vec.z);
+    d_set_rel_pos(pos.x, pos.y, pos.z);
+    d_set_init_pos(pos.x, pos.y, pos.z);
 }
 
 /* @ 246A88 for 0x94 */
-void Unknown801982B8(struct GdObj* obj)
+void translate_obj_position(struct GdObj* obj)
 {
-    struct MyVec3f sp1C;
+    struct MyVec3f pos;
 
     set_cur_dynobj(obj);
-    d_get_rel_pos(&sp1C);
+    d_get_rel_pos(&pos);
 
-    sp1C.x += D_801BACC8.x;
-    sp1C.y += D_801BACC8.y;
-    sp1C.z += D_801BACC8.z;
+    pos.x += sVertexTranslateOffset.x;
+    pos.y += sVertexTranslateOffset.y;
+    pos.z += sVertexTranslateOffset.z;
 
-    d_set_rel_pos(sp1C.x, sp1C.y, sp1C.z);
+    d_set_rel_pos(pos.x, pos.y, pos.z);
 }
 
 /* @ 246B1C for 0x88 */
-void func_8019834C(struct ObjShape* shape, f32 x, f32 y, f32 z)
+void scale_verts_in_shape(struct ObjShape* shape, f32 x, f32 y, f32 z)
 {
-    D_801BACB8.x = x;
-    D_801BACB8.y = y;
-    D_801BACB8.z = z;
+    sVertexScaleFactor.x = x;
+    sVertexScaleFactor.y = y;
+    sVertexScaleFactor.z = z;
 
     if (shape->vtxGroup != NULL)
     {
         apply_to_obj_types_in_group(
             OBJ_TYPE_ALL,
-            (applyproc_t) Unknown801981F0,
+            (applyproc_t) scale_obj_position,
             shape->vtxGroup
         );
     }
 }
 
-/* @ 246BA4 for 0x70 */
+/* @ 246BA4 for 0x70; not called */
 // Guessing on the type of a0
-void Unknown801983D4(struct ObjShape* a0, f32 x, f32 y, f32 z)
+void translate_verts_in_shape(struct ObjShape* shape, f32 x, f32 y, f32 z)
 {
-    D_801BACC8.x = x;
-    D_801BACC8.y = y;
-    D_801BACC8.z = z;
+    sVertexTranslateOffset.x = x;
+    sVertexTranslateOffset.y = y;
+    sVertexTranslateOffset.z = z;
 
     apply_to_obj_types_in_group(
         OBJ_TYPE_ALL,
-        (applyproc_t) Unknown801982B8,
-        a0->vtxGroup
+        (applyproc_t) translate_obj_position,
+        shape->vtxGroup
     );
 }
 
@@ -1511,10 +1513,10 @@ void load_shapes2(void)
     func_80197280();
     sCubeShape = make_shape(0, "cube");
     D_801A82E4 = (struct ObjShape*) load_dynlist(dynlist_unused);
-    func_8019834C(D_801A82E4, 200.0f, 200.0f, 200.0f);
+    scale_verts_in_shape(D_801A82E4, 200.0f, 200.0f, 200.0f);
 
     D_801A82E8 = (struct ObjShape*) load_dynlist(dynlist_test_cube);
-    func_8019834C(D_801A82E8, 30.0f, 30.0f, 30.0f);
+    scale_verts_in_shape(D_801A82E8, 30.0f, 30.0f, 30.0f);
     sCubeShapeGroup = make_group_of_type(OBJ_TYPE_SHAPES, &sCubeShape->header, NULL);
     create_gddl_for_shapes(sCubeShapeGroup);
 
