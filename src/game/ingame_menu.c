@@ -1862,7 +1862,7 @@ void PrintAnimatedRedCoin(s16 sp4a, s16 sp4e)
 
     dl_add_new_translation_matrix(1, sp4a, sp4e, 0);
     dl_add_new_scale_matrix(2, 0.2f, 0.2f, 1.0f);
-    gSPSetOtherMode(gDisplayListHead++, G_SETOTHERMODE_L, 3, 0x1E, 0x0F0A7008);
+    gDPSetRenderMode(gDisplayListHead++, G_RM_TEX_EDGE, G_RM_TEX_EDGE2);
 
     switch(timer & 6)
     {
@@ -1880,7 +1880,7 @@ void PrintAnimatedRedCoin(s16 sp4a, s16 sp4e)
             break;
     }
 
-    gSPSetOtherMode(gDisplayListHead++, G_SETOTHERMODE_L, 3, 0x1E, 0x00552078);
+    gDPSetRenderMode(gDisplayListHead++, G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
 }
 
