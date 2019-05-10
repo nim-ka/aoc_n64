@@ -903,14 +903,14 @@ static s32 act_drowning(struct MarioState *m)
     {
     case 0:
         set_mario_animation(m, MARIO_ANIM_DROWNING_PART1);
-        m->unk98->unk05 = 2;
+        m->unk98->eyeState = MARIO_EYES_HALF_CLOSED;
         if (func_80250770(m))
             m->actionState = 1;
         break;
 
     case 1:
         set_mario_animation(m, MARIO_ANIM_DROWNING_PART2);
-        m->unk98->unk05 = 8;
+        m->unk98->eyeState = MARIO_EYES_DEAD;
         if (m->marioObj->header.gfx.unk38.animFrame == 30)
             level_trigger_warp(m, WARP_OP_DEATH);
         break;
@@ -928,7 +928,7 @@ static s32 act_water_death(struct MarioState *m)
     stationary_slow_down(m);
     perform_water_step(m);
 
-    m->unk98->unk05 = 8;
+    m->unk98->eyeState = MARIO_EYES_DEAD;
 
     set_mario_animation(m, MARIO_ANIM_WATER_DYING);
     if (set_mario_animation(m, MARIO_ANIM_WATER_DYING) == 35)

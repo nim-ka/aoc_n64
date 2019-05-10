@@ -1212,10 +1212,10 @@ void func_80254088(struct MarioState *m)
 
 void func_8025410C(struct MarioState *m)
 {
-    struct UnknownStruct4_New *sp4 = m->unk98;
-    sp4->unk04 = 1;
-    sp4->unk05 = 0;
-    sp4->unk06 = 0;
+    struct MarioBodyState *sp4 = m->unk98;
+    sp4->capState = MARIO_HAS_DEFAULT_CAP_OFF;
+    sp4->eyeState = MARIO_EYES_BLINK;
+    sp4->handState = MARIO_HAND_FISTS;
     sp4->unk08 = 0;
     sp4->unk07 = 0;
     m->flags &= ~0x40;
@@ -1283,7 +1283,7 @@ s32 func_802541BC(struct MarioState *m)
 
 void func_8025435C(struct MarioState *m)
 {
-    struct UnknownStruct4_New *sp1C = m->unk98;
+    struct MarioBodyState *sp1C = m->unk98;
     s32 sp18 = func_802541BC(m);
 
     if (sp18 & MARIO_VANISH_CAP)
@@ -1301,16 +1301,16 @@ void func_8025435C(struct MarioState *m)
     if (sp18 & MARIO_CAP_IN_HAND)
     {
         if (sp18 & MARIO_WING_CAP)
-            sp1C->unk06 = 4;
+            sp1C->handState = MARIO_HAND_HOLDING_WING_CAP;
         else
-            sp1C->unk06 = 3;
+            sp1C->handState = MARIO_HAND_HOLDING_CAP;
     }
     if (sp18 & MARIO_CAP_ON_HEAD)
     {
         if (sp18 & MARIO_WING_CAP)
-            sp1C->unk04 = 2;
+            sp1C->capState = MARIO_HAS_WING_CAP_ON;
         else
-            sp1C->unk04 = 0;
+            sp1C->capState = MARIO_HAS_DEFAULT_CAP_ON;
     }
     if (m->action & ACT_FLAG_SHORT_HITBOX)
         m->marioObj->hitboxHeight = 100.0f;

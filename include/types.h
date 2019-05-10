@@ -247,12 +247,12 @@ struct Surface
     /*0x2C*/ struct Object *object;
 };
 
-struct UnknownStruct4_New
+struct MarioBodyState
 {
     /*0x00*/ u32 action;
-    /*0x04*/ s8 unk04;
-    /*0x05*/ s8 unk05;
-    /*0x06*/ s8 unk06;
+    /*0x04*/ s8 capState;
+    /*0x05*/ s8 eyeState;
+    /*0x06*/ s8 handState;
     /*0x07*/ s8 unk07;
     /*0x08*/ s16 unk08;
     /*0x0A*/ s8 unk0A;
@@ -320,7 +320,7 @@ struct MarioState
     /*0x8C*/ struct SpawnInfo *spawnInfo;
     /*0x90*/ struct Area *area;
     /*0x94*/ struct CameraPlayerStatus *unk94;
-    /*0x98*/ struct UnknownStruct4_New *unk98;
+    /*0x98*/ struct MarioBodyState *unk98;
     /*0x9C*/ struct Controller *controller;
     /*0xA0*/ struct MarioAnimation *animation;
     /*0xA4*/ u32 collidedObjInteractTypes;

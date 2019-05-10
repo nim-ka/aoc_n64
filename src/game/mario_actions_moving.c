@@ -821,7 +821,7 @@ static void func_802659E8(struct MarioState *m, Vec3f startPos)
 
 static void func_80265C28(struct MarioState *m, s16 startYaw)
 {
-    struct UnknownStruct4_New *val0C = m->unk98;
+    struct MarioBodyState *val0C = m->unk98;
     UNUSED struct Object *marioObj = m->marioObj;
     s16 val06 = m->marioObj->header.gfx.unk38.animID;
     s16 dYaw;
@@ -852,7 +852,7 @@ static void func_80265C28(struct MarioState *m, s16 startYaw)
 
 static void func_80265DBC(struct MarioState *m, s16 startYaw)
 {
-    struct UnknownStruct4_New *val0C = m->unk98;
+    struct MarioBodyState *val0C = m->unk98;
     struct Object *marioObj = m->marioObj;
     s16 dYaw = m->faceAngle[1] - startYaw;
     s16 val04 = -(s16)(dYaw * m->forwardVel / 12.0f);
@@ -1402,7 +1402,7 @@ static s32 act_burning_ground(struct MarioState *m)
     if (m->health < 0x100)
         set_mario_action(m, ACT_STANDING_DEATH, 0);
 
-    m->unk98->unk05 = 8;
+    m->unk98->eyeState = MARIO_EYES_DEAD;
     return FALSE;
 }
 

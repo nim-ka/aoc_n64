@@ -1590,7 +1590,7 @@ static s32 act_lava_boost(struct MarioState *m)
     if (m->health < 0x100)
         level_trigger_warp(m, WARP_OP_DEATH);
 
-    m->unk98->unk05 = 8;
+    m->unk98->eyeState = MARIO_EYES_DEAD;
     return FALSE;
 }
 
