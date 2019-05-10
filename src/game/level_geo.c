@@ -29,7 +29,7 @@ Gfx *geo_exec_level(s32 run, struct GraphNode *node, f32 c[4][4])
 
             vec3f_to_vec3s(sp40, D_8032CF9C->unk28);
             vec3f_to_vec3s(sp48, D_8032CF9C->unk1C);
-            vec3f_to_vec3s(sp50, D_8033B1B0->unk4);
+            vec3f_to_vec3s(sp50, gPlayerStatusForCamera->pos);
             sp3C = envfx_update_particles(sp28, sp50, sp40, sp48);
             if (sp3C != NULL)
             {
@@ -69,8 +69,8 @@ Gfx *geo_skybox_main(s32 run, struct GraphNode *node, UNUSED Mat4 *mtx)
         struct GraphNodeCamFrustum *camFrustum = (struct GraphNodeCamFrustum *)sp34->fnNode.node.parent;
 
         gfx = func_802CF414(0, backgroundNode->background, camFrustum->fov,
-            D_8033B328.unk8C[0], D_8033B328.unk8C[1], D_8033B328.unk8C[2],
-            D_8033B328.unk80[0], D_8033B328.unk80[1], D_8033B328.unk80[2]);
+            gCameraStatus.unk8C[0], gCameraStatus.unk8C[1], gCameraStatus.unk8C[2],
+            gCameraStatus.unk80[0], gCameraStatus.unk80[1], gCameraStatus.unk80[2]);
     }
     return gfx;
 }

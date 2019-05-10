@@ -581,7 +581,7 @@ static s32 act_reading_sign(struct MarioState *m)
     {
         // start dialogue
         case 0:
-            StopMario(1);
+            stop_mario(1);
             enable_time_stop();
             // reading sign
             set_mario_animation(m, MARIO_ANIM_FIRST_PERSON);
@@ -1619,7 +1619,7 @@ static s32 act_teleport_fade_in(struct MarioState *m)
         if (m->pos[1] < m->waterLevel - 100)
         {
             // Check if the camera is not underwater.
-            if (m->area->camera->preset != CAMERA_PRESET_UNDERWATER)
+            if (m->area->camera->preset != CAMERA_PRESET_WATER_SURFACE)
                 // camera related function?
                 func_80285BD8(m->area->camera, 8, 1);
             set_mario_action(m, ACT_WATER_IDLE, 0);
@@ -1640,7 +1640,7 @@ static s32 act_shocked(struct MarioState *m)
 {
     func_80250F50(m, SOUND_MARIO_WAAAOOOW, MARIO_UNKNOWN_16);
     SetSound(SOUND_UNKNOWN_UNK1416, m->marioObj->header.gfx.cameraToObject);
-    func_8027EFE0(10);
+    set_camera_shake(10);
 
     if (set_mario_animation(m, MARIO_ANIM_SHOCKED) == 0)
     {
@@ -1909,7 +1909,7 @@ static void intro_cutscene_peach_lakitu_scene(struct MarioState *m)
 
 static void intro_cutscene_raise_pipe(struct MarioState *m)
 {
-    sIntroWarpPipeObj->oPosY = func_80289524(sIntroWarpPipeObj->oPosY, 260.0f, 10.0f);
+    sIntroWarpPipeObj->oPosY = camera_approach_f32_symmetric(sIntroWarpPipeObj->oPosY, 260.0f, 10.0f);
 
     if (m->actionTimer == 0)
         SetSound(SOUND_MENU_EXITPIPE, sIntroWarpPipeObj->header.gfx.cameraToObject);
@@ -1981,7 +1981,7 @@ static void intro_cutscene_set_mario_to_idle(struct MarioState *m)
 {
     if (gCurrLevelCamera->unk30 == 0)
     {
-        D_8033B4D8 &= ~0x2000;
+        gCameraMovementFlags &= ~0x2000;
         set_mario_action(m, ACT_IDLE, 0);
     }
 
@@ -2308,7 +2308,7 @@ static void end_peach_cutscene_spawn_peach(struct MarioState *m)
             gCurrentObject, 0, MODEL_PEACH, bhvEndPeach,
             0, 2428, -1300, 0, 0, 0
         );
-        D_8032CFC4 = sEndPeachObj;
+        gCutsceneFocus = sEndPeachObj;
 
         sEndRightToadObj = spawn_object_abs_with_rot(
             gCurrentObject, 0, MODEL_TOAD, bhvEndToad,
@@ -2332,7 +2332,7 @@ static void end_peach_cutscene_spawn_peach(struct MarioState *m)
     }
     if (m->actionTimer >= 276)
     {
-        sEndPeachObj->oOpacity = func_80289524(
+        sEndPeachObj->oOpacity = camera_approach_f32_symmetric(
             sEndPeachObj->oOpacity, 255.0f, 2.0f
         );
     }
@@ -2727,7 +2727,7 @@ static s32 act_credits_cutscene(struct MarioState *m)
     // checks if mario is underwater (JRB, DDD, SA, etc.)
     if (m->pos[1] < m->waterLevel - 100)
     {
-        if (m->area->camera->preset != CAMERA_PRESET_SECRET_AQUARIUM)
+        if (m->area->camera->preset != CAMERA_PRESET_BEHIND_MARIO)
             func_80285BD8(m->area->camera, 3, 1);
         set_mario_animation(m, MARIO_ANIM_WATER_IDLE);
         vec3f_copy(m->marioObj->header.gfx.pos, m->pos);

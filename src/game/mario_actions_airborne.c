@@ -86,7 +86,7 @@ static s32 check_fall_damage(struct MarioState *m, u32 hardFallAction)
             if (fallHeight > 3000.0f)
             {
                 m->hurtCounter += (m->flags & MARIO_CAP_ON_HEAD) ? 16 : 24;
-                func_8027EFE0(9);
+                set_camera_shake(9);
                 SetSound(SOUND_MARIO_ATTACKED, m->marioObj->header.gfx.cameraToObject);
                 return drop_and_set_mario_action(m, hardFallAction, 4);
             }
@@ -94,7 +94,7 @@ static s32 check_fall_damage(struct MarioState *m, u32 hardFallAction)
             {
                 m->hurtCounter += (m->flags & MARIO_CAP_ON_HEAD) ? 8 : 12;
                 m->squishTimer = 30;
-                func_8027EFE0(9);
+                set_camera_shake(9);
                 SetSound(SOUND_MARIO_ATTACKED, m->marioObj->header.gfx.cameraToObject);
             }
         }
@@ -974,7 +974,7 @@ static s32 act_ground_pound(struct MarioState *m)
                     set_mario_action(m, ACT_GROUND_POUND_LAND, 0);
                 }
             }
-            func_8027EFE0(2);
+            set_camera_shake(2);
         }
         else if (stepResult == AIR_STEP_HIT_WALL)
         {
@@ -1686,7 +1686,7 @@ static s32 act_jump_kick(struct MarioState *m)
 
 static s32 act_shot_from_cannon(struct MarioState *m)
 {
-    if (m->area->camera->preset != CAMERA_PRESET_SECRET_AQUARIUM)
+    if (m->area->camera->preset != CAMERA_PRESET_BEHIND_MARIO)
         m->unk94->unk1E = 2;
 
     mario_set_forward_vel(m, m->forwardVel);
@@ -1741,19 +1741,19 @@ static s32 act_flying(struct MarioState *m)
 
     if (m->input & INPUT_Z_PRESSED)
     {
-        if (m->area->camera->preset == CAMERA_PRESET_SECRET_AQUARIUM)
+        if (m->area->camera->preset == CAMERA_PRESET_BEHIND_MARIO)
             func_80285BD8(m->area->camera, m->area->camera->unk1, 1);
         return set_mario_action(m, ACT_GROUND_POUND, 1);
     }
 
     if (!(m->flags & MARIO_WING_CAP))
     {
-        if (m->area->camera->preset == CAMERA_PRESET_SECRET_AQUARIUM)
+        if (m->area->camera->preset == CAMERA_PRESET_BEHIND_MARIO)
             func_80285BD8(m->area->camera, m->area->camera->unk1, 1);
         return set_mario_action(m, ACT_FREEFALL, 0);
     }
 
-    if (m->area->camera->preset != CAMERA_PRESET_SECRET_AQUARIUM)
+    if (m->area->camera->preset != CAMERA_PRESET_BEHIND_MARIO)
         func_80285BD8(m->area->camera, 3, 1);
 
     if (m->actionState == 0)
@@ -1894,7 +1894,7 @@ static s32 act_flying_triple_jump(struct MarioState *m)
 #if VERSION_US
     if (m->input & (INPUT_B_PRESSED | INPUT_Z_PRESSED))
     {
-        if (m->area->camera->preset == CAMERA_PRESET_SECRET_AQUARIUM)
+        if (m->area->camera->preset == CAMERA_PRESET_BEHIND_MARIO)
             func_80285BD8(m->area->camera, m->area->camera->unk1, 1);
         if (m->input & INPUT_B_PRESSED)
             return set_mario_action(m, ACT_DIVE, 0);
@@ -1929,7 +1929,7 @@ static s32 act_flying_triple_jump(struct MarioState *m)
 
     if (m->vel[1] < 4.0f)
     {
-        if (m->area->camera->preset != CAMERA_PRESET_SECRET_AQUARIUM)
+        if (m->area->camera->preset != CAMERA_PRESET_BEHIND_MARIO)
             func_80285BD8(m->area->camera, 3, 1);
 
         if (m->forwardVel < 32.0f)
@@ -1938,7 +1938,7 @@ static s32 act_flying_triple_jump(struct MarioState *m)
         set_mario_action(m, ACT_FLYING, 1);
     }
 
-    if (m->actionTimer++ == 10 && m->area->camera->preset != CAMERA_PRESET_SECRET_AQUARIUM)
+    if (m->actionTimer++ == 10 && m->area->camera->preset != CAMERA_PRESET_BEHIND_MARIO)
         func_80285BD8(m->area->camera, 3, 1);
 
     update_air_without_turn(m);

@@ -122,21 +122,21 @@ struct SpawnInfo
 };
 
 // Some of these might need to be renamed at some point.
-#define CAMERA_PRESET_NONE            0x00
-#define CAMERA_PRESET_OPEN_CAMERA     0x01
-#define CAMERA_PRESET_TICK_TOCK_CLOCK 0x02
-#define CAMERA_PRESET_SECRET_AQUARIUM 0x03
-#define CAMERA_PRESET_CLOSE           0x04 // Inside Castle / Big Boo's Haunt
-#define CAMERA_PRESET_C_UP_LOOK       0x06
-#define CAMERA_PRESET_UNDERWATER      0x08
-#define CAMERA_PRESET_SLIDE           0x09
-#define CAMERA_PRESET_INSIDE_CANNON   0x0A
-#define CAMERA_PRESET_BOWSER_FIGHT    0x0B
-#define CAMERA_PRESET_UNKNOWN_0C      0x0C
-#define CAMERA_PRESET_FIXED_REF_POINT 0x0D
-#define CAMERA_PRESET_BOWSER_LEVEL    0x0E
-#define CAMERA_PRESET_FREE_ROAM       0x10
-#define CAMERA_PRESET_UNKNOWN_11      0x11
+#define CAMERA_PRESET_NONE              0x00
+#define CAMERA_PRESET_OPEN_CAMERA       0x01
+#define CAMERA_PRESET_REVERSE_TOWER     0x02
+#define CAMERA_PRESET_BEHIND_MARIO      0x03
+#define CAMERA_PRESET_CLOSE             0x04 // Inside Castle / Big Boo's Haunt
+#define CAMERA_PRESET_C_UP_LOOK         0x06
+#define CAMERA_PRESET_WATER_SURFACE     0x08
+#define CAMERA_PRESET_SLIDE_HOOT        0x09
+#define CAMERA_PRESET_INSIDE_CANNON     0x0A
+#define CAMERA_PRESET_BOSS_FIGHT        0x0B
+#define CAMERA_PRESET_PARALLEL_TRACKING 0x0C
+#define CAMERA_PRESET_FIXED_REF_POINT   0x0D
+#define CAMERA_PRESET_BOWSER_LEVEL      0x0E
+#define CAMERA_PRESET_FREE_ROAM         0x10
+#define CAMERA_PRESET_SPIRAL_STAIRS     0x11
 
 // Used mostly in camera.c
 struct LevelCamera

@@ -192,8 +192,8 @@ void bhv_camera_lakitu_update(void)
         }
         else
         {
-            f32 val0C = (f32)0x875C3D / 0x800 - D_8033B328.unk0[0][3];
-            if (D_8033B328.unk0[0][3] < 1700.0f || val0C < 0.0f)
+            f32 val0C = (f32)0x875C3D / 0x800 - gCameraStatus.camFocAndPosCurrAndGoal[0][3];
+            if (gCameraStatus.camFocAndPosCurrAndGoal[0][3] < 1700.0f || val0C < 0.0f)
             {
                 obj_hide();
             }
@@ -201,15 +201,15 @@ void bhv_camera_lakitu_update(void)
             {
                 obj_unhide();
 
-                o->oPosX = D_8033B328.unk0[0][3];
-                o->oPosY = D_8033B328.unk0[0][4];
-                o->oPosZ = D_8033B328.unk0[0][5];
+                o->oPosX = gCameraStatus.camFocAndPosCurrAndGoal[0][3];
+                o->oPosY = gCameraStatus.camFocAndPosCurrAndGoal[0][4];
+                o->oPosZ = gCameraStatus.camFocAndPosCurrAndGoal[0][5];
 
-                o->oHomeX = D_8033B328.unk0[0][0];
-                o->oHomeZ = D_8033B328.unk0[0][2];
+                o->oHomeX = gCameraStatus.camFocAndPosCurrAndGoal[0][0];
+                o->oHomeZ = gCameraStatus.camFocAndPosCurrAndGoal[0][2];
 
                 o->oFaceAngleYaw = -obj_angle_to_home();
-                o->oFaceAnglePitch = atan2s(obj_lateral_dist_to_home(), o->oPosY - D_8033B328.unk0[0][1]);
+                o->oFaceAnglePitch = atan2s(obj_lateral_dist_to_home(), o->oPosY - gCameraStatus.camFocAndPosCurrAndGoal[0][1]);
 
                 o->oPosX = (f32)0x875C3D / 0x800 + val0C;
             }

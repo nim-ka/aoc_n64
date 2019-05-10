@@ -70,7 +70,7 @@ void yoshi_idle_loop(void) {
         o->oAction = YOSHI_ACT_TALK;
 
     // Credits; Yoshi appears at this position overlooking the castle near the end of the credits
-    if (D_8033B1B0->unk1C[1] == 11 || D_8033B1B0->unk1C[1] == 12) {
+    if (gPlayerStatusForCamera->unk1C[1] == 11 || gPlayerStatusForCamera->unk1C[1] == 12) {
         o->oAction = YOSHI_ACT_CREDITS;
         o->oPosX = -1798.0f;
         o->oPosY = 3174.0f;

@@ -904,13 +904,13 @@ void ActionBowser3(void)
 void func_802B5C78(void)
 {
     if(BITS)
-        D_8032CFD0 = spawn_object(o,MODEL_STAR,&bhvGrandStar);
+        gSecondCameraFocus = spawn_object(o,MODEL_STAR,&bhvGrandStar);
     else
     {
-        D_8032CFD0 = spawn_object(o,MODEL_BOWSER_KEY_2,&bhvBowserKey2);
+        gSecondCameraFocus = spawn_object(o,MODEL_BOWSER_KEY_2,&bhvBowserKey2);
         PlaySound2(SOUND_CH8_UNK61);
     }
-    D_8032CFD0->oAngleVelYaw = o->oAngleVelYaw;
+    gSecondCameraFocus->oAngleVelYaw = o->oAngleVelYaw;
 }
 
 void func_802B5D18(void)
@@ -1540,7 +1540,7 @@ void ActionFallingBowserPlatform2(void)
         PlaySound2(SOUND_GENERAL_BOWSERPLATFORM_2);
     if(o->oTimer < 22)
     {
-        func_8027F308(10);
+        set_camera_shake_2(10);
         o->oVelY = 8.0f;
         o->oGravity = 0.0f;
     }

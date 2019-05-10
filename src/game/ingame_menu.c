@@ -38,7 +38,7 @@ s8 D_8036008E;
 extern u8 gLastCompletedCourseNum;
 extern u8 gLastCompletedStarNum;
 
-extern s32 func_8028803C(s32);
+extern s32 select_or_activate_mario_cam(s32);
 
 enum DiagBoxState {
     DIAG_STATE_OPENING,
@@ -738,7 +738,7 @@ void func_802D8098(void)
     level_set_transition(0, 0);
 
     if(gDiagBoxType == DIAG_TYPE_ZOOM)
-        StopMario(2);
+        stop_mario(2);
 
     gDiagBoxScale = 19.0f;
     gDiagBoxOpenTimer = 90.0f;
@@ -1464,7 +1464,7 @@ void func_802D93E0(void)
             SetSound(SOUND_MENU_MESSAGEDISAPPEAR, D_803320E0);
             
             if(gDiagBoxType == DIAG_TYPE_ZOOM)
-                StopMario(2);
+                stop_mario(2);
 
             gDialogueResponse = D_80330430;
         }
@@ -1577,7 +1577,7 @@ void func_802D93E0(void)
             SetSound(SOUND_MENU_MESSAGEDISAPPEAR, D_803320E0);
 
             if(gDiagBoxType == DIAG_TYPE_ZOOM)
-                StopMario(2);
+                stop_mario(2);
 
             gDialogueResponse = D_80330430;
         }
@@ -1841,7 +1841,7 @@ void func_802DA4DC(void)
 
 void func_802DA4F4(void)
 {
-    if(func_8028803C(0) == 1)
+    if(select_or_activate_mario_cam(0) == 1)
         D_80330530 = 1;
     else
         D_80330530 = 2;
@@ -2044,8 +2044,8 @@ void PauseScreenCameraMenu(s16 sp72, s16 sp76, s8 *sp78, s16 sp7e)
 
     switch(sp78[0])
     {
-    case 1: func_8028803C(1); break;
-    case 2: func_8028803C(2); break;
+    case 1: select_or_activate_mario_cam(1); break;
+    case 2: select_or_activate_mario_cam(2); break;
     }
 #else
     u8 sp64[] = {TEXT_LAKITU_MARIO}; //D_8033054C;
@@ -2071,8 +2071,8 @@ void PauseScreenCameraMenu(s16 sp72, s16 sp76, s8 *sp78, s16 sp7e)
 
     switch(sp78[0])
     {
-    case 1: func_8028803C(1); break;
-    case 2: func_8028803C(2); break;
+    case 1: select_or_activate_mario_cam(1); break;
+    case 2: select_or_activate_mario_cam(2); break;
     }
 #endif
 }

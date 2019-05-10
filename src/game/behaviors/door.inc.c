@@ -22,10 +22,10 @@ void func_802AC070(s32 sp18)
 void func_802AC0B8(void)
 {
     if(segmented_to_virtual(bhvDoor) == o->behavior)
-        D_8033B1B0->unk1C[1] = 6;
+        gPlayerStatusForCamera->unk1C[1] = 6;
     else
-        D_8033B1B0->unk1C[1] = 5;
-    D_8033B1B0->unk20 = o;
+        gPlayerStatusForCamera->unk1C[1] = 5;
+    gPlayerStatusForCamera->usedObj = o;
 }
 
 void func_802AC130(void)

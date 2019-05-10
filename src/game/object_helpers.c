@@ -1948,8 +1948,8 @@ void obj_shake_y(f32 amount)
 
 void func_802A11B4(UNUSED struct Object* a0, s32 a1)
 {
-    D_8033B1B0->unk1C[1] = (s16)a1;
-    D_8032CFD0 = o;
+    gPlayerStatusForCamera->unk1C[1] = (s16)a1;
+    gSecondCameraFocus = o;
 }
 
 void Unknown802A11E4(UNUSED s32 sp0, UNUSED s32 sp4, f32 sp8)

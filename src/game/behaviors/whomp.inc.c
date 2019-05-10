@@ -24,7 +24,7 @@ void ActionWhomp0(void)
     obj_set_pos_to_home();
     if(o->oBehParams2ndByte != 0)
     {
-        D_8032CFD0 = o;
+        gSecondCameraFocus = o;
         obj_scale(2.0f);
         if(o->oSubAction == 0)
         {

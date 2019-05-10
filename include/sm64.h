@@ -93,6 +93,7 @@
 #define SURFACE_TTC_PAINTING_1               0x00F4
 #define SURFACE_TTC_PAINTING_2               0x00F5
 #define SURFACE_TTC_PAINTING_3               0x00F6
+#define SURFACE_UNDER_TRAP_DOOR              0x00FF
 
 #define SURFACE_IS_QUICKSAND(cmd)     (cmd >= 0x21 && cmd < 0x28)   //Doesn't include SURFACE_INSTANT_MOVING_QUICKSAND
 #define SURFACE_IS_NOT_HARD(cmd)      (cmd != SURFACE_HARD && \

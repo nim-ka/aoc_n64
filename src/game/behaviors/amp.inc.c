@@ -41,8 +41,8 @@ void CheckAmpAttack(void)
 
 void AmpHomingAppearLoop(void)
 {
-    f32 sp24 = D_8033B328.unk0[3][0] - o->oPosX;
-    f32 sp20 = D_8033B328.unk0[3][2] - o->oPosZ;
+    f32 sp24 = gCameraStatus.camFocAndPosCurrAndGoal[3][0] - o->oPosX;
+    f32 sp20 = gCameraStatus.camFocAndPosCurrAndGoal[3][2] - o->oPosZ;
     s16 targetYaw = atan2s(sp20, sp24);
     o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, targetYaw, 0x1000);
     

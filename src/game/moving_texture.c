@@ -448,7 +448,7 @@ Gfx *Geo18_802D104C(s32 run, struct GraphNode *node, UNUSED f32 mtx[4][4])
         sp34 = (struct GraphNode12A *)node;
         if (sp34->unk18 == 4613)
         {
-            if (D_8033B328.unk0[3][1] < 1024.0)
+            if (gCameraStatus.camFocAndPosCurrAndGoal[3][1] < 1024.0)
                 return NULL;
             if (save_file_get_star_flags(gCurrSaveFileNum - 1, 2) & 1)
                 return NULL;

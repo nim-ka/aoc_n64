@@ -8,16 +8,81 @@
 #define ABS(x) ((x) > 0.f ? (x) : -(x))
 #define ABS2(x) ((x) >= 0.f ? (x) : -(x))
 
+#define AREA_BBH                0x0041
+#define AREA_CCM_OUTSIDE        0x0051
+#define AREA_CCM_SLIDE          0x0052
+#define AREA_CASTLE_LOBBY       0x0061
+#define AREA_CASTLE_TIPPY       0x0062
+#define AREA_CASTLE_BASTEMENT   0x0063
+#define AREA_HMC                0x0071
+#define AREA_SSL_OUTSIDE        0x0081
+#define AREA_SSL_PYRAMID        0x0082
+#define AREA_SSL_EYEROK         0x0083
+#define AREA_BOB                0x0091
+#define AREA_SL_OUTSIDE         0x00A1
+#define AREA_SL_IGLOO           0x00A2
+#define AREA_WDW_MAIN           0x00B1
+#define AREA_WDW_TOWN           0x00B2
+#define AREA_JRB_MAIN           0x00C1
+#define AREA_JRB_SHIP           0x00C2
+#define AREA_THI_HUGE           0x00D1
+#define AREA_THI_TINY           0x00D2
+#define AREA_THI_WIGGLER        0x00D3
+#define AREA_TTC                0x00E1
+#define AREA_RR                 0x00F1
+#define AREA_OUTSIDE_CASTLE     0x0101
+#define AREA_BITDW              0x0111
+#define AREA_VCUTM              0x0121
+#define AREA_BITFS              0x0131
+#define AREA_SA                 0x0141
+#define AREA_BITS               0x0151
+#define AREA_LLL_OUTSIDE        0x0161
+#define AREA_LLL_VOLCANO        0x0162
+#define AREA_DDD_WHIRLPOOL      0x0171
+#define AREA_DDD_SUB            0x0172
+#define AREA_WF                 0x0181
+#define AREA_ENDING             0x0191
+#define AREA_COURTYARD          0x01A1
+#define AREA_PSS                0x01B1
+#define AREA_COTMC              0x01C1
+#define AREA_TOTWC              0x01D1
+#define AREA_BOWSER_1           0x01E1
+#define AREA_WMOTR              0x01F1
+#define AREA_BOWSER_2           0x0211
+#define AREA_BOWSER_3           0x0221
+#define AREA_TTM_OUTSIDE        0x0241
+
+#define CAM_MODE_MARIO_ACTIVE           0x01
+#define CAM_MODE_LAKITU_WAS_ZOOMED_OUT  0x02
+#define CAM_MODE_MARIO_SELECTED         0x04
+
+#define CAM_MOVE_RETURN_TO_MIDDLE       0x0001
+#define CAM_MOVE_ZOOMED_OUT             0x0002
+#define CAM_MOVE_ROTATE_RIGHT           0x0004
+#define CAM_MOVE_ROTATE_LEFT            0x0008
+#define CAM_MOVE_UNKNOWN_5              0x0010
+#define CAM_MOVE_UNKNOWN_6              0x0020
+#define CAM_MOVE_UNKNOWN_7              0x0040
+#define CAM_MOVE_UNKNOWN_8              0x0080
+#define CAM_MOVE_INTO_C_UP              0x0100
+#define CAM_MOVE_UNKNOWN_10             0x0200
+#define CAM_MOVE_UNKNOWN_11             0x0400
+#define CAM_MOVE_INIT_CAMERA             0x0800
+#define CAM_MOVE_UNK1000                0x1000
+#define CAM_MOVE_C_UP_MODE              0x2000
+#define CAM_MOVE_SUBMERGED              0x4000
+#define CAM_MOVE_PAUSE_SCREEN           0x8000
+
 // sorted
 
-struct Struct8033B1B0
+struct CameraPlayerStatus
 {
-    /*0x00*/ u32 unk0;
-    /*0x04*/ Vec3f unk4;
-    /*0x10*/ Vec3s unk10;
+    /*0x00*/ u32 action;
+    /*0x04*/ Vec3f pos;
+    /*0x10*/ Vec3s faceAngle;
     /*0x16*/ Vec3s unk16;
     /*0x1C*/ s16 unk1C[2];
-    /*0x20*/ struct Object *unk20;
+    /*0x20*/ struct Object *usedObj;
 };
 
 struct Struct8033B250
@@ -56,7 +121,7 @@ struct Struct80287404
 
 typedef void (*CameraCommandProc)(struct LevelCamera *a);
 
-struct Struct8032CA78
+struct TableCamera
 {
     s8 unk0;
     CameraCommandProc unk4;
@@ -87,28 +152,28 @@ struct Struct8033B230
     /*0x18*/ s16 unk18;
 };
 
-struct Struct8032E040
+struct CinematicCameraTable
 {
     /*0x00*/ s8 unk0;
     /*0x01*/ u8 unk1;
     /*0x02*/ Vec3s unk2;
 }; // size = 0x08
 
-struct Struct8033B278
+struct PlayerGeometry
 {
-    struct Surface *unk0;
-    f32 unk4;
-    s16 unk8;
-    struct Surface *unkC;
-    s16 unk10;
-    f32 unk14;
-    struct Surface *unk18;
-    f32 unk1C;
-    s16 unk20;
-    struct Surface *unk24;
-    f32 unk28;
-    s16 unk2C;
-    f32 unk30;
+    /*0x00*/ struct Surface *currFloor;
+    /*0x04*/ f32 currFloorHeight;
+    /*0x08*/ s16 currFloorType;
+    /*0x0C*/ struct Surface *currCeil;
+    /*0x10*/ s16 currCeilType;
+    /*0x14*/ f32 currCeilHeight;
+    /*0x18*/ struct Surface *prevFloor;
+    /*0x1C*/ f32 prevFloorHeight;
+    /*0x20*/ s16 prevFloorType;
+    /*0x24*/ struct Surface *prevCeil;
+    /*0x28*/ f32 prevCeilHeight;
+    /*0x2C*/ s16 prevCeilType;
+    /*0x30*/ f32 waterHeight;
 };
 
 struct Struct8033B418_sub
@@ -130,7 +195,7 @@ struct Struct8033B418
     struct Struct8033B418_sub unk28;
 };
 
-struct Struct8033B470
+struct ParallelTrackingTable
 {
     s16 unk0;
     Vec3f unk4;
@@ -157,57 +222,56 @@ struct Struct8033B6F0
 
 struct Struct8033B328
 {
-    Vec3f unk0[4];
-    u8 filler30[12]; // extra unused Vec3f?
-    u8 unk3C;
-    u8 unk3D;
-    u8 filler3E[10];
-    f32 unk48;
-    s16 unk4C;
-    s16 unk4E;
-    u8 filler50[2];
-    Vec3s unk52;
-    s16 unk58;
-    s16 unk5A;
-    s16 unk5C;
-    u8 filler5E[2];
-    Vec3f unk60;
-    Vec3s unk6C;
-    u8 filler72[8];
-    s16 unk7A;
-    s16 unk7C;
-    s16 unk7E;
-    //u8 unk7A[0x80-0x7A];  // unknown type
-    Vec3f unk80;
-    Vec3f unk8C;
-    s16 unk98;
-    s16 unk9A;
-    s16 unk9C;
-    s16 unk9E;
-    s16 unkA0;
-    s16 unkA2;
-    f32 unkA4;
-    f32 unkA8;
-    f32 unkAC;
-    f32 unkB0;
+    /*0x00*/ Vec3f camFocAndPosCurrAndGoal[4];
+    /*0x30*/ u8 filler30[12]; // extra unused Vec3f?
+    /*0x3C*/ u8 modeActive;
+    /*0x3D*/ u8 modeDefault;
+    /*0x3E*/ u8 filler3E[10];
+    /*0x48*/ float unk48;   //distance?
+    /*0x4C*/ s16 unk4C;     //inclination?
+    /*0x4E*/ s16 unk4E;     //yaw?
+    /*0x50*/ u8 filler50[2];
+    /*0x52*/ Vec3s shakeMagnitude;
+    /*0x58*/ s16 shakePitchOffset;
+    /*0x5A*/ s16 shakePitchIncrement;
+    /*0x5C*/ s16 shakePitchMagIncrement;
+    /*0x5E*/ u8 filler5E[2];
+    /*0x60*/ Vec3f unk60;   //unused
+    /*0x6C*/ Vec3s unk6C;   //unused
+    /*0x72*/ u8 filler72[8];
+    /*0x7A*/ s16 roll;
+    /*0x7C*/ s16 unk7C;     //Yaw something
+    /*0x7E*/ s16 unk7E;     //Yaw something
+    /*0x80*/ Vec3f unk80;   //focus something
+    /*0x8C*/ Vec3f unk8C;   //position something
+    /*0x98*/ s16 shakeRollOffset;
+    /*0x9A*/ s16 shakeRollIncrement;
+    /*0x9C*/ s16 shakeRollMagIncrement;
+    /*0x9E*/ s16 shakeYawOffset;
+    /*0xA0*/ s16 shakeYawIncrement;
+    /*0xA2*/ s16 shakeYawMagIncrement;
+    /*0xA4*/ float unkA4;
+    /*0xA8*/ float unkA8;
+    /*0xAC*/ float unkAC;
+    /*0xB0*/ float unkB0;
 };
 
 // bss order hack to not affect BSS order. if possible, remove me, but it will be hard to match otherwise
 #ifndef INCLUDED_FROM_CAMERA_C
 // BSS
-extern struct Struct8033B1B0 D_8033B1B0[2];
-extern s16 D_8033B314;
-extern s16 D_8033B318;
-extern s16 D_8033B31C;
-extern u16 D_8033B31E;
-extern struct Struct8033B328 D_8033B328;
-extern s16 D_8033B4D8;
+extern struct CameraPlayerStatus gPlayerStatusForCamera[2];
+extern s16 gCameraModeFlags;
+extern s16 sCameraSideCFlags;
+extern s16 gCameraFlags1;
+extern u16 gCButtonsPressed;
+extern struct Struct8033B328 gCameraStatus;
+extern s16 gCameraMovementFlags;
 extern s32 D_8033B858;
 extern struct LevelCamera *gCurrLevelCamera;
 #endif
 
-extern struct Object *D_8032CFC4;
-extern struct Object *D_8032CFD0;
+extern struct Object *gCutsceneFocus;
+extern struct Object *gSecondCameraFocus;
 
 // TODO: sort all of this extremely messy shit out after the split
 // TODO: bring in some externs from camera.c
@@ -215,36 +279,36 @@ extern struct Object *D_8032CFD0;
 extern Vec3f D_8032D00C;
 extern u8 D_8032D0B8[];
 
-extern void func_8027EFE0(s16);
-extern void func_8027F308(s16);
+extern void set_camera_shake(s16);
+extern void set_camera_shake_2(s16);
 extern void func_8027F440(s16, f32, f32, f32);
 extern void func_802852F4(struct LevelCamera *); // static (ASM)
 extern void func_80285A8C(UNUSED struct LevelCamera *, s16);
 extern void func_80285BD8(struct LevelCamera *, s16, s16);
-extern void func_80286348(struct LevelCamera *);
-extern void func_802869B8(struct LevelCamera *);
-extern void func_80286C9C(struct LevelCamera *);
-extern void func_802875DC(void);
+extern void update_camera(struct LevelCamera *);
+extern void reset_camera(struct LevelCamera *);
+extern void init_camera(struct LevelCamera *);
+extern void select_mario_cam_mode(void);
 extern void dummy_802877D8(struct LevelCamera *);
 extern void dummy_802877EC(struct LevelCamera *);
 extern void vec3f_sub(Vec3f, Vec3f);
 extern void object_pos_to_vec3f(Vec3f, struct Object *);
 extern void vec3f_to_object_pos(struct Object *, Vec3f); // static (ASM)
-extern s32 func_80287CFC(Vec3f, struct Struct8032E040[], s16 *, f32 *);
-extern s32 func_8028803C(s32);
-extern s32 func_80288130(s32);
+extern s32 func_80287CFC(Vec3f, struct CinematicCameraTable[], s16 *, f32 *);
+extern s32 select_or_activate_mario_cam(s32);
+extern s32 test_or_set_mario_cam_active(s32);
 extern void func_802882A0(u8);
 extern void func_802883C8(Vec3f, Vec3f);
-extern s32 func_802886FC(u16, u16, u16);
+extern s32 find_c_buttons_pressed(u16, u16, u16);
 extern s32 update_camera_status(struct LevelCamera *);
-extern s32 func_80288974(Vec3f, f32, f32);
-extern s32 func_80288C2C(Vec3f a, Vec3f b, s16 c, s16 d);
-extern s32 func_80288CF0(f32, f32, f32);
+extern s32 find_and_return_count_wall_collisions(Vec3f, f32, f32);
+extern s32 vec3f_rotate_into_yaw_range(Vec3f a, Vec3f b, s16 c, s16 d);
+extern s32 is_within_100_units_of_mario(f32, f32, f32);
 extern s32 func_80288D74(f32 *, f32, f32);
-extern s32 approach_f32_exponential(f32 *, f32, f32);
-extern f32 approach_f32_exponential_2(f32, f32, f32); // static (ASM)
-extern s32 approach_s16_exponential(s16 *, s16, s16);
-extern s32 approach_s16_exponential_2(s16, s16, s16); // static (ASM)
+extern s32 approach_f32_exponential_bool(f32 *, f32, f32);
+extern f32 approach_f32_exponential(f32, f32, f32); // static (ASM)
+extern s32 approach_s16_exponential_bool(s16 *, s16, s16);
+extern s32 approach_s16_exponential(s16, s16, s16); // static (ASM)
 extern void approach_vec3f_exponential(Vec3f, Vec3f, f32, f32, f32); // static (ASM)
 
 
@@ -252,31 +316,31 @@ extern void approach_vec3f_exponential(Vec3f, Vec3f, f32, f32, f32); // static (
 
 extern void func_8028909C(Vec3f, Vec3f, f32, f32, f32); // postdefined
 // extern ? approach_vec3s_exponential(?);
-extern s32 func_80289184(s16 *a, s16 b, s16 c);
-// extern ? func_80289264(?);
+extern s32 camera_approach_s16_symmetric_bool(s16 *a, s16 b, s16 c);
+// extern ? camera_approach_s16_symmetric(?);
 extern s32 func_80289354(s16 *a, s16 b, s16 c); // postdefined
-extern s32 func_802893E4(f32 *, f32, f32);
-extern f32 func_80289524(f32, f32, f32);
+extern s32 camera_approach_f32_symmetric_bool(f32 *, f32, f32);
+extern f32 camera_approach_f32_symmetric(f32, f32, f32);
 void func_80289618(Vec3s a, s16 b, s16 c, s16 d); // postdefined
 // extern ? func_80289738(?);
-extern s32 func_802899A0(Vec3f, Vec3f, f32, f32, f32, f32);
+extern s32 clamp_positions_and_find_yaw_angle(Vec3f, Vec3f, f32, f32, f32, f32);
 // extern ? func_80289A98(?);
-// extern ? func_80289B0C(?);
-// extern ? func_80289F04(?);
+// extern ? is_pos_less_than_bounds(?);
+// extern ? is_behind_surface(?);
 extern s32 func_8028A0D4(Vec3f a, Vec3f b, struct Surface *c, s16 d, s16 e);
-// extern ? func_8028A204(?);
-extern void func_8028A24C(Vec3f, Vec3f, Vec3f, f32);
-// extern ? func_8028A300(?);
-extern s16 func_8028A440(Vec3f, Vec3f);
-extern s16 func_8028A4F0(Vec3f, Vec3f);
-extern void func_8028A578(Vec3f, Vec3f, s16 *, s16 *);
-extern f32 func_8028A640(Vec3f, Vec3f);
-extern f32 func_8028A6E4(Vec3f, Vec3f);
-extern void func_8028A764(Vec3f, Vec3f, s16);
-extern void func_8028A834(Vec3f, Vec3f, s16);
-extern void func_8028A908(s16, s16, s16);
-extern void func_8028A964(s16, s16, s16);
-extern void func_8028AA24(s16, s16, s16);
+// extern ? is_mario_behind_surface(?);
+extern void scale_along_line(Vec3f, Vec3f, Vec3f, f32);
+// extern ? check_if_vector_fits_in_bounds(?);
+extern s16 calculate_verticle_angle(Vec3f, Vec3f);
+extern s16 calculate_yaw(Vec3f, Vec3f);
+extern void calculate_angles(Vec3f, Vec3f, s16 *, s16 *);
+extern f32 calc_abs_dist(Vec3f, Vec3f);
+extern f32 calc_hor_dist(Vec3f, Vec3f);
+extern void rotate_in_xz(Vec3f, Vec3f, s16);
+extern void rotate_in_yz(Vec3f, Vec3f, s16);
+extern void set_camera_pitch_shake(s16, s16, s16);
+extern void set_camera_yaw_shake(s16, s16, s16);
+extern void set_camera_roll_shake(s16, s16, s16);
 extern void func_8028AA80(s16, s16, s16, f32, f32, f32, f32);
 // extern ? Unknown8028AB34(?);
 // extern ? func_8028ABE8(?);
@@ -286,23 +350,23 @@ extern void func_8028AE50(s16 *); // postdefined
 extern s32 func_8028AF24(struct LevelCamera *a, s16 b);
 // extern ? func_8028B13C(?);
 // extern ? func_8028B16C(?);
-extern void func_8028B19C(void);
-extern void func_8028B1DC(void);
-extern void func_8028B21C(void);
-extern void func_8028B268(void);
-extern void func_8028B29C(void);
-extern void func_8028B2D0(void);
-extern void func_8028B304(void); // postdefined
-extern void func_8028B338(void); // postdefined
+extern void play_camera_buzz_if_cdown(void);
+extern void play_camera_buzz_if_cbutton(void);
+extern void play_camera_buzz_if_c_sideways(void);
+extern void play_sound_cbutton_up(void);
+extern void play_sound_cbutton_down(void);
+extern void play_sound_cbutton_side(void);
+extern void play_sound_button_change_blocked(void); // postdefined
+extern void play_sound_rbutton_changed(void); // postdefined
 extern void func_8028B36C(void); // postdefined
 extern s32 func_8028B3DC(struct LevelCamera *a, f32 b);
-extern s32 StopMario(s32);
+extern s32 stop_mario(s32);
 extern void func_8028B7A4(struct LevelCamera *);
 // extern ? func_8028BA38(?);
-extern void func_8028BB3C(struct LevelCamera *a, u8 b); // postdefined
-// extern ? func_8028BB8C(?);
-// extern ? func_8028BC6C(?);
-extern u8 func_8028BCC8(); // postdefined
+extern void set_camera_cutscene_table(struct LevelCamera *a, u8 b); // postdefined
+// extern ? determine_star_fadeout_cutscene_table(?);
+// extern ? return_table_door_push_or_pull(?);
+extern u8 return_cutscene_table(); // postdefined
 extern void func_8028C1A0(f32, f32, f32);
 extern void func_8028C2F0(struct LevelCamera *, f32, f32);
 // extern ? Unknown8028C3AC(?);
@@ -310,15 +374,15 @@ extern void func_8028C2F0(struct LevelCamera *, f32, f32);
 // extern ? Unknown8028C508(?);
 extern void func_8028C5F0(Vec3f, Vec3f, Vec3f, Vec3s);
 // extern ? func_8028C794(?);
-// extern ? func_8028C7EC(?);
+// extern ? determine_pushing_or_pulling_door(?);
 s32 func_8028C824(Vec3f a, Vec3f b, Vec3f c, Vec3f d, Vec3f e, Vec3f f, s16 g); // postdefined
 // extern ? Unknown8028CE1C(?);
-// extern ? func_8028CE4C(?);
-// extern ? func_8028CFAC(?);
-// extern ? func_8028CFFC(?);
-// extern ? func_8028D058(?);
-// extern ? func_8028D098(?);
-// extern ? func_8028D19C(?);
+// extern ? set_camera_preset_fixed_ref_point(?);
+// extern ? set_camera_preset_bowser_level(?);
+// extern ? set_camera_preset_boss_fight(?);
+// extern ? set_camera_preset_close_cam(?);
+// extern ? set_camera_preset_open_camera(?);
+// extern ? parallel_tracking_init(?);
 extern void func_8028D288(); // postdefined
 // extern ? func_8028D32C(?);
 // extern ? CameraRR00(?);
@@ -326,7 +390,7 @@ extern void func_8028D288(); // postdefined
 // extern ? CameraRR02(?);
 // extern ? CameraRR0305(?);
 // extern ? CameraRR01(?);
-// extern ? CameraMetal00(?);
+// extern ? CameraCotMC00(?);
 // extern ? CameraSL00(?);
 // extern ? CameraSL01(?);
 // extern ? CameraHMC00(?);
@@ -351,45 +415,45 @@ extern void func_8028D288(); // postdefined
 // extern ? CameraInside00(?);
 // extern ? CameraInside0E(?);
 // extern ? CameraInside0F(?);
-// extern ? CameraBBH2B2C(?);
+// extern ? bbh_room_6_camera(?);
 // extern ? CameraBBH24(?);
 // extern ? CameraBBH2E2F(?);
-// extern ? CameraBBH020C(?);
+// extern ? bbh_room_1_camera(?);
 // extern ? CameraBBH01(?);
-// extern ? CameraBBH0D0F(?);
-// extern ? CameraBBH1011(?);
-// extern ? CameraBBH12(?);
-// extern ? CameraBBH1314(?);
-// extern ? CameraBBH15(?);
-// extern ? CameraBBH16(?);
-// extern ? CameraBBH17(?);
-// extern ? CameraBBH18(?);
-// extern ? CameraBBH28(?);
-// extern ? CameraBBH29(?);
-// extern ? CameraBBH2A(?);
+// extern ? bbh_room_2_lower_camera(?);
+// extern ? bbh_room_4_camera(?);
+// extern ? bbh_room_8_camera(?);
+// extern ? bbh_room_5_library_camera(?);
+// extern ? bbh_room_5_library_to_hidden_transition(?);
+// extern ? bbh_room_5_hidden_to_library_transition(?);
+// extern ? bbh_room_5_hidden_camera(?);
+// extern ? bbh_room_3_camera(?);
+// extern ? bbh_room_7_mr_i_camera(?);
+// extern ? bbh_room_7_mr_i_to_coffins_transition(?);
+// extern ? bbh_room_7_coffins_to_mr_i_transition(?);
 // extern ? CameraBBH3033(?);
 // extern ? CameraBBH34(?);
 // extern ? CameraBBH38(?);
-// extern ? CameraBBH393A(?);
+// extern ? bbh_room_12_upper_camera(?);
 // extern ? CameraBBH00(?);
-// extern ? CameraBBH1A1B(?);
-// extern ? CameraBBH1C(?);
-// extern ? CameraBBH1E(?);
-// extern ? CameraBBH1D(?);
-// extern ? CameraBBH1F20(?);
-// extern ? CameraBBH21(?);
-// extern ? CameraBBH22(?);
-// extern ? CameraBBH23(?);
-// extern ? CameraBBH3536(?);
+// extern ? bbh_room_2_library_camera(?);
+// extern ? bbh_room_2_library_to_trapdoor_transition(?);
+// extern ? bbh_room_2_trapdoor_camera(?);
+// extern ? bbh_room_2_trapdoor_transition(?);
+// extern ? bbh_room_9_attic_camera(?);
+// extern ? bbh_room_9_attic_transition(?);
+// extern ? bbh_room_9_mr_i_transition(?);
+// extern ? bbh_room_13_balcony_camera(?);
+// extern ? bbh_room_0_camera(?);
 // extern ? CameraCCM00(?);
 // extern ? CameraCCM01(?);
 // extern ? func_8028E634(?);
 // extern ? func_8028E70C(?);
 // extern ? func_8028E774(?);
 extern s16 func_8028E88C(struct LevelCamera *); // postdefined
-extern void func_8028F04C(Vec3f, Vec3f);
+extern void resolve_geometry_collisions(Vec3f, Vec3f);
 extern s32 func_8028F2F0(struct LevelCamera *, Vec3f, s16 *, s16);
-extern void func_8028F678(struct Struct8033B278 *); // postdefined
+extern void find_mario_relative_geometry(struct PlayerGeometry *); // postdefined
 // extern ? func_8028F800(?);
 extern u8 func_8028F834(u8);
 extern s16 func_8028F8E0(u8, struct Object *, s16);
@@ -398,7 +462,7 @@ extern s16 func_8028F9E8(u8, struct Object *);
 // extern ? func_8028FA74(?);
 // extern ? func_8028FABC(?);
 // extern ? func_8028FAE0(?);
-// extern ? func_8028FB44(?);
+// extern ? cap_switch_save(?);
 // extern ? func_8028FB80(?);
 // extern ? func_8028FBD8(?);
 // extern ? func_8028FD94(?);
@@ -408,7 +472,7 @@ extern s16 func_8028F9E8(u8, struct Object *);
 // extern ? CutsceneIntroPeach0_2(?);
 // extern ? CutsceneIntroPeach2_1(?);
 // extern ? func_8028FEDC(?);
-// extern ? func_8028FEFC(?);
+// extern ? move_credits_camera(?);
 // extern ? func_80290144(?);
 // extern ? func_802901B4(?);
 // extern ? func_80290224(?);
@@ -616,7 +680,7 @@ extern s16 func_8028F9E8(u8, struct Object *);
 // extern ? CutsceneUnlockKeyDoor80296CFC(?);
 // extern ? CutsceneUnlockKeyDoor0(?);
 // extern ? func_80296DDC(?);
-// extern ? CutsceneIntroPeach0_3(?);
+// extern ? peach_letter_text(?);
 // extern ? CutsceneIntroPeachCommon(?);
 // extern ? CutsceneIntroPeach4(?);
 // extern ? CutsceneIntroPeach3_2(?);
@@ -624,7 +688,7 @@ extern s16 func_8028F9E8(u8, struct Object *);
 // extern ? CutsceneIntroPeach0_1(?);
 // extern ? CutsceneIntroPeach3_1(?);
 // extern ? CutsceneIntroPeach3_3(?);
-// extern ? CutsceneIntroPeach3_4(?);
+// extern ? intro_pipe_exit_text(?);
 // extern ? CutsceneIntroPeach2(?);
 // extern ? CutsceneIntroPeach3(?);
 // extern ? CutsceneIntroPeach1(?);
@@ -665,7 +729,7 @@ extern s32 func_80299C60(s32, s16);
 extern void func_80299C98(s16, s16, s16);
 // extern ? func_80299D00(?);
 
-extern void func_8029A478(u8);
+extern void set_fov_function(u8);
 extern void func_8029A494(u8);
 extern void func_8029A514(u8, f32, f32, f32);
 // extern ? Unknown8029A664(?);

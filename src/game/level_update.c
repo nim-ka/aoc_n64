@@ -351,7 +351,7 @@ static void init_mario_after_warp(void)
         gMarioState->usedObj = spawnNode->object;
     }
 
-    func_802869B8(gCurrentArea->camera);
+    reset_camera(gCurrentArea->camera);
     sCurrWarpType = WARP_TYPE_NOT_WARPING;
     sDelayedWarpOp = WARP_OP_NONE;
 
@@ -471,7 +471,7 @@ static void func_8024A0E0(void)
 
     set_mario_action(gMarioState, marioAction, 0);
 
-    func_802869B8(gCurrentArea->camera);
+    reset_camera(gCurrentArea->camera);
 
     sCurrWarpType = WARP_TYPE_NOT_WARPING;
     sDelayedWarpOp = WARP_OP_NONE;
@@ -949,7 +949,7 @@ static void basic_update(UNUSED s16 *arg)
     update_hud_values();
 
     if (gCurrentArea != NULL)
-        func_80286348(gCurrentArea->camera);
+        update_camera(gCurrentArea->camera);
 }
 
 static s32 play_mode_normal(void)
@@ -980,7 +980,7 @@ static s32 play_mode_normal(void)
     update_hud_values();
 
     if (gCurrentArea != NULL)
-        func_80286348(gCurrentArea->camera);
+        update_camera(gCurrentArea->camera);
 
     initiate_painting_warp();
     initiate_delayed_warp();
@@ -1000,7 +1000,7 @@ static s32 play_mode_normal(void)
         else if (pressed_paused())
         {
             func_80248C28(1);
-            D_8033B4D8 |= 0x8000;
+            gCameraMovementFlags |= 0x8000;
             set_play_mode(PLAY_MODE_PAUSED);
         }
     }
@@ -1017,7 +1017,7 @@ static s32 play_mode_paused(void)
     else if (D_8033A75E == 1)
     {
         func_80248CB8(1);
-        D_8033B4D8 &= ~0x8000;
+        gCameraMovementFlags &= ~0x8000;
         set_play_mode(PLAY_MODE_NORMAL);
     }
     else
@@ -1035,7 +1035,7 @@ static s32 play_mode_paused(void)
             gSavedCourseNum = 0;
         }
 
-        D_8033B4D8 &= ~0x8000;
+        gCameraMovementFlags &= ~0x8000;
     }
 
     return 0;
@@ -1049,18 +1049,18 @@ static s32 play_mode_frame_advance(void)
 {
     if (gPlayer1Controller->buttonPressed & D_JPAD)
     {
-        D_8033B4D8 &= ~0x8000;
+        gCameraMovementFlags &= ~0x8000;
         play_mode_normal();
     }
     else if (gPlayer1Controller->buttonPressed & START_BUTTON)
     {
-        D_8033B4D8 &= ~0x8000;
+        gCameraMovementFlags &= ~0x8000;
         func_80248CB8(1);
         set_play_mode(PLAY_MODE_NORMAL);
     }
     else
     {
-        D_8033B4D8 |= 0x8000;
+        gCameraMovementFlags |= 0x8000;
     }
 
     return 0;
@@ -1085,7 +1085,7 @@ static s32 play_mode_change_area(void)
     //! This maybe was supposed to be sTransitionTimer == -1? sTransitionUpdate
     // is never set to -1.
     if (sTransitionUpdate == (void (*)(s16 *)) -1)
-        func_80286348(gCurrentArea->camera);
+        update_camera(gCurrentArea->camera);
     else if (sTransitionUpdate != NULL)
         sTransitionUpdate(&sTransitionTimer);
 
@@ -1201,7 +1201,7 @@ static s32 init_level(void)
 
         if (gCurrentArea != NULL)
         {
-            func_802869B8(gCurrentArea->camera);
+            reset_camera(gCurrentArea->camera);
 
             if (gCurrDemoInput != NULL)
             {
@@ -1273,7 +1273,7 @@ s32 lvl_init_from_save_file(UNUSED s16 arg0, s32 levelNum)
     func_80254CE0();
     disable_warp_checkpoint();
     save_file_move_cap_to_default_location();
-    func_802875DC();
+    select_mario_cam_mode();
     func_802E2F40();
 
     return levelNum;

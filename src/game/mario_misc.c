@@ -369,8 +369,8 @@ Gfx *Geo18_802773A4(s32 run, struct GraphNode *node, UNUSED Mat4 *c)
 
         if (*sp1C == 6)
         {
-            sp20->unk18[0] = D_8033B1B0->unk16[1];
-            sp20->unk18[2] = D_8033B1B0->unk16[0];
+            sp20->unk18[0] = gPlayerStatusForCamera->unk16[1];
+            sp20->unk18[2] = gPlayerStatusForCamera->unk16[0];
         }
         else if (action & 0x20000000)
         {

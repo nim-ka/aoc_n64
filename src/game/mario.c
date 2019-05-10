@@ -564,7 +564,7 @@ void func_80251F74(struct MarioState *m)
     if (action == ACT_FIRST_PERSON)
     {
         func_80248CB8(2);
-        D_8033B4D8 &= ~0x2000;
+        gCameraMovementFlags &= ~0x2000;
         func_80285BD8(m->area->camera, -1, 1);
     }
     else if (action == ACT_SLEEPING)
@@ -942,7 +942,7 @@ s32 func_8025325C(struct MarioState *m)
     if ((m->action & ACT_FLAG_DIVING) == 0)
         m->faceAngle[0] = 0;
 
-    if (m->area->camera->preset != CAMERA_PRESET_UNDERWATER)
+    if (m->area->camera->preset != CAMERA_PRESET_WATER_SURFACE)
         func_80285BD8(m->area->camera, 8, 1);
 
     return set_mario_action(m, ACT_WATER_PLUNGE, 0);
@@ -1098,12 +1098,12 @@ void func_80253B2C(struct MarioState *m)
     func_80253730(m);
     func_80253834(m);
     func_802534F4(m);
-    if (D_8033B4D8 & 0x2000)
+    if (gCameraMovementFlags & 0x2000)
     {
         if (m->action & 0x4000000)
             m->input |= INPUT_FIRST_PERSON;
         else
-            D_8033B4D8 &= ~0x2000;
+            gCameraMovementFlags &= ~0x2000;
     }
 
     if (!(m->input & (INPUT_NONZERO_ANALOG | INPUT_A_PRESSED)))
@@ -1495,7 +1495,7 @@ void func_80254CE0(void)
     gMarioState->action = 0;
     gMarioState->spawnInfo = &gPlayerSpawnInfos[0];
     // TODO: Unify these structs! :D
-    gMarioState->unk94 = (struct UnknownStruct6 *) D_8033B1B0;
+    gMarioState->unk94 = (struct UnknownStruct6 *) gPlayerStatusForCamera;
     gMarioState->unk98 = &D_8033A040[0];
     gMarioState->controller = &gControllers[0];
     gMarioState->animation = &D_80339D10;

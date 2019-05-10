@@ -14,7 +14,7 @@ void ActionKingBobomb0(void)
     if(o->oSubAction == 0)
     {
         obj_become_intangible();
-        D_8032CFD0 = o;
+        gSecondCameraFocus = o;
         func_8029ED38(5);
         obj_set_pos_to_home();
         o->oHealth = 3;

@@ -716,7 +716,7 @@ void bhv_spawn_big_boo_loop(void)
 
 void func_802C49E0(void)
 {
-    D_8032CFD0 = o;
+    gSecondCameraFocus = o;
 }
 
 void bhv_animated_texture_loop(void)
