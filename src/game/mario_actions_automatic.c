@@ -13,6 +13,7 @@
 #include "save_file.h"
 #include "engine/surface_collision.h"
 #include "interaction.h"
+#include "camera.h"
 
 
 #define POLE_NONE          0
@@ -519,9 +520,9 @@ static void func_8025F188(struct MarioState *m)
         sp4 = m->actionTimer;
     else
         sp4 = 14.0f;
-    m->unk94->unk04[0] = m->pos[0] + sp4 * sins(m->faceAngle[1]);
-    m->unk94->unk04[2] = m->pos[2] + sp4 * coss(m->faceAngle[1]);
-    m->unk94->unk04[1] = m->pos[1];
+    m->unk94->pos[0] = m->pos[0] + sp4 * sins(m->faceAngle[1]);
+    m->unk94->pos[2] = m->pos[2] + sp4 * coss(m->faceAngle[1]);
+    m->unk94->pos[1] = m->pos[1];
     m->actionTimer++;
     m->flags |= MARIO_UNKNOWN_25;
 }
@@ -672,8 +673,8 @@ static s32 act_in_cannon(struct MarioState *m)
         m->marioObj->header.gfx.node.flags &= ~0x0001;
         m->usedObj->oInteractStatus = INT_STATUS_INTERACTED;
 
-        m->unk94->unk1E = 1;
-        m->unk94->unk20 = m->usedObj;
+        m->unk94->unk1C[1] = 1;
+        m->unk94->usedObj = m->usedObj;
 
         vec3f_set(m->vel, 0.0f, 0.0f, 0.0f);
 

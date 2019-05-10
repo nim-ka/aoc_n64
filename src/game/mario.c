@@ -1202,12 +1202,12 @@ void func_80253E34(struct MarioState *m)
 void func_80254088(struct MarioState *m)
 {
     m->unk98->action = m->action;
-    m->unk94->unk00 = m->action;
+    m->unk94->action = m->action;
 
-    vec3s_copy(m->unk94->unk10, m->faceAngle);
+    vec3s_copy(m->unk94->faceAngle, m->faceAngle);
 
     if ((m->flags & MARIO_UNKNOWN_25) == 0)
-        vec3f_copy(m->unk94->unk04, m->pos);
+        vec3f_copy(m->unk94->pos, m->pos);
 }
 
 void func_8025410C(struct MarioState *m)
@@ -1494,8 +1494,7 @@ void func_80254CE0(void)
     gMarioState->flags = 0;
     gMarioState->action = 0;
     gMarioState->spawnInfo = &gPlayerSpawnInfos[0];
-    // TODO: Unify these structs! :D
-    gMarioState->unk94 = (struct UnknownStruct6 *) gPlayerStatusForCamera;
+    gMarioState->unk94 = &gPlayerStatusForCamera[0];
     gMarioState->unk98 = &D_8033A040[0];
     gMarioState->controller = &gControllers[0];
     gMarioState->animation = &D_80339D10;

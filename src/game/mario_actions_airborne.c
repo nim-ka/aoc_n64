@@ -1687,7 +1687,7 @@ static s32 act_jump_kick(struct MarioState *m)
 static s32 act_shot_from_cannon(struct MarioState *m)
 {
     if (m->area->camera->preset != CAMERA_PRESET_BEHIND_MARIO)
-        m->unk94->unk1E = 2;
+        m->unk94->unk1C[1] = 2;
 
     mario_set_forward_vel(m, m->forwardVel);
 

@@ -1885,15 +1885,14 @@ static void advance_cutscene_step(struct MarioState *m)
 static void intro_cutscene_hide_hud_and_mario(struct MarioState *m)
 {
     gHudDisplayFlags = HUD_DISPLAY_NONE;
-    m->unk94->unk1E = 9;
+    m->unk94->unk1C[1] = 9;
     m->marioObj->header.gfx.node.flags &= ~GRAPH_RENDER_01;
     advance_cutscene_step(m);
 }
 
 static void intro_cutscene_peach_lakitu_scene(struct MarioState *m)
 {
-    // not sure why it loads a s16 here while everything else loads a u16
-    if ((s16)m->unk94->unk1E != 9)
+    if ((s16)m->unk94->unk1C[1] != 9)
     {
         if (m->actionTimer++ == 37)
         {
@@ -2041,7 +2040,7 @@ static void jumbo_star_cutscene_falling(struct MarioState *m)
         set_mario_animation(m, MARIO_ANIM_GENERAL_LAND);
         if (func_80250770(m))
         {
-            m->unk94->unk1E = 10;
+            m->unk94->unk1C[1] = 10;
             advance_cutscene_step(m);
         }
     }
@@ -2229,7 +2228,7 @@ static f32 func_8025BC14(struct Object *o)
 static void end_peach_cutscene_mario_falling(struct MarioState *m)
 {
     if (m->actionTimer == 1)
-        m->unk94->unk1E = 11;
+        m->unk94->unk1C[1] = 11;
 
     m->input |= INPUT_A_DOWN;
     m->flags |= (MARIO_WING_CAP | MARIO_CAP_ON_HEAD);
@@ -2723,7 +2722,7 @@ static s32 act_credits_cutscene(struct MarioState *m)
     s32 width;
     s32 height;
 
-    m->unk94->unk1E = 13;
+    m->unk94->unk1C[1] = 13;
     // checks if mario is underwater (JRB, DDD, SA, etc.)
     if (m->pos[1] < m->waterLevel - 100)
     {
@@ -2780,7 +2779,7 @@ static s32 act_end_waving_cutscene(struct MarioState *m)
 {
     if (m->actionState == 0)
     {
-        m->unk94->unk1E = 12;
+        m->unk94->unk1C[1] = 12;
 
         sEndPeachObj = spawn_object_abs_with_rot(
             gCurrentObject, 0, MODEL_PEACH, bhvEndPeach,

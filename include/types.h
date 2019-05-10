@@ -247,17 +247,6 @@ struct Surface
     /*0x2C*/ struct Object *object;
 };
 
-struct UnknownStruct6 {
-    /*0x00*/ u32 unk00;
-    /*0x04*/ Vec3f unk04;
-    /*0x10*/ Vec3s unk10;
-    /*0x16*/ s16 unk16;
-    /*0x18*/ s16 unk18;
-    u8 filler1A[4];
-    /*0x1E*/ u16 unk1E;
-    /*0x20*/ struct Object *unk20;
-};
-
 struct UnknownStruct4_New
 {
     /*0x00*/ u32 action;
@@ -330,7 +319,7 @@ struct MarioState
     /*0x88*/ struct Object *marioObj;
     /*0x8C*/ struct SpawnInfo *spawnInfo;
     /*0x90*/ struct Area *area;
-    /*0x94*/ struct UnknownStruct6 *unk94;
+    /*0x94*/ struct CameraPlayerStatus *unk94;
     /*0x98*/ struct UnknownStruct4_New *unk98;
     /*0x9C*/ struct Controller *controller;
     /*0xA0*/ struct MarioAnimation *animation;
