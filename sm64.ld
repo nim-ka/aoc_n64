@@ -232,6 +232,7 @@ SECTIONS
       BUILD_DIR/libultra.a:ldiv.o(.text);
       BUILD_DIR/libultra.a:__osGetCause.o(.text);
       BUILD_DIR/libultra.a:__osAtomicDec.o(.text);
+      BUILD_DIR/libultra.a:guLookAtRef.o(.text); /* Fast3DEX2 only */
       BUILD_DIR/lib/rsp.o(.text);
       /* data */
       BUILD_DIR/src/game/main.o(.data*);
@@ -348,6 +349,7 @@ SECTIONS
       BUILD_DIR/libultra.a:_Litob.o(.rodata*);
       BUILD_DIR/libultra.a:_Ldtob.o(.rodata*);
       BUILD_DIR/libultra.a:osSetIntMask.o(.rodata*);
+      BUILD_DIR/libultra.a:guLookAtRef.o(.rodata*); /* Fast3DEX2 only */
       BUILD_DIR/lib/rsp.o(.rodata*);
    }
    END_SEG(main)

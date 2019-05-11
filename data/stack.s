@@ -12,10 +12,11 @@ glabel gAudioHeap
 glabel gAudioSPTaskYieldBuffer
     .space 0x400
 .endif
+
 # Probably Thread 2 stack space; its even in the
 # same area. unreferenced.
 
-.ifndef F3DEX_GBI # F3DEX task yield buffer
+.ifndef F3DEX_GBI_SHARED # F3DEX task yield buffer
     .space 0x1400
 .else
     .space 0x1100
@@ -29,7 +30,7 @@ glabel gThread4Stack
 glabel gThread5Stack
     .space 0x2000
 glabel gGfxSPTaskYieldBuffer
-    .ifndef F3DEX_GBI
+    .ifndef F3DEX_GBI_SHARED
         .space 0x900
     .else
         .space 0xC00

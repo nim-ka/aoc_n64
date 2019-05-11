@@ -34,20 +34,19 @@ else
 endif
 endif
 
-ifeq ($(GRUCODE),f3dex)
+ifeq ($(GRUCODE),f3dex) # Fast3DEX
   GRUCODE_CFLAGS := -DF3DEX_GBI=1
-  GRUCODE_ASFLAGS := --defsym F3DEX_GBI=1
+  GRUCODE_ASFLAGS := --defsym F3DEX_GBI_SHARED=1 --defsym F3DEX_GBI=1
   TARGET := $(TARGET).f3dex
   COMPARE := 0
 else
-ifeq ($(GRUCODE), f3dex2)
-  $(error Fast3DEX2 is not implemented.)
+ifeq ($(GRUCODE), f3dex2) # Fast3DEX2
   GRUCODE_CFLAGS := -DF3DEX_GBI_2=1
-  GRUCODE_ASFLAGS := --defsym F3DEX_GBI_2=1
+  GRUCODE_ASFLAGS := --defsym F3DEX_GBI_SHARED=1 --defsym F3DEX_GBI_2=1
   TARGET := $(TARGET).f3dex2
   COMPARE := 0
 else
-ifeq ($(GRUCODE),f3d_new)
+ifeq ($(GRUCODE),f3d_new) # Fast3D 2.0H (Shindou)
   GRUCODE_CFLAGS := -DF3D_NEW
   GRUCODE_ASFLAGS := --defsym F3D_NEW=1
   TARGET := $(TARGET).f3d_new

@@ -22,7 +22,7 @@ void my_rdp_init(void)
 {
     gDPPipeSync(gDisplayListHead++);
     gDPPipelineMode(gDisplayListHead++, G_PM_1PRIMITIVE);
-    
+
     gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     gDPSetCombine(gDisplayListHead++, 0xFFFFFF, 0xFFFE793C);
 
@@ -57,6 +57,16 @@ void my_rsp_init(void)
 
     gSPNumLights(gDisplayListHead++, 1);
     gSPTexture(gDisplayListHead++, 0, 0, 0, 0, 0);
+
+    /** @bug Nintendo did not explicitly define the clipping ratio.
+     * For Fast3DEX2, this causes the dreaded warped vertices issue
+     * unless the clipping ratio is changed back to the intended value,
+     * as Fast3DEX2 uses a different initial value than Fast3D(EX).
+     */
+
+#ifdef F3DEX_GBI_2
+    gSPClipRatio(gDisplayListHead++, FRUSTRATIO_1);
+#endif
 }
 
 /** Clear the Z buffer. */
