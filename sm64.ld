@@ -579,7 +579,7 @@ SECTIONS
    }
    END_NOLOAD(goddard)
 
-   ASSERT((. <= SEG_STACK), "Error: goddard segment extended into stack.")
+   ASSERT((. <= SEG_POOL_END), "Error: extended past pool end.")
 
    . = SEG_STACK;
    BEGIN_NOLOAD(stack)

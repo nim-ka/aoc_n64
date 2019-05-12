@@ -82,6 +82,17 @@ void func_8027B110(struct GraphNodeToggleZBuffer *a)
     struct Struct8032CF10 *sp20 = &renderModeTable[sp24];
     struct Struct8032CF10 *sp1C = &D_8032CF50[sp24];
 
+    /** @bug This is where the LookAt values should be calculated but aren't.
+     * As a result, environment mapping is broken on Fast3DEX2 without the
+     * changes below.
+     */
+#ifdef F3DEX_GBI_2
+    Mtx lMtx;
+    LookAt lookAt;
+    guLookAtReflect(&lMtx, &lookAt, 0, 0, 0, /* eye */ 0, 0, 1, /* at */ 1, 0, 0 /* up */ );
+    gSPLookAt(gDisplayListHead++, &lookAt);
+#endif
+
     if (sp24 != 0)
     {
         gDPPipeSync(gDisplayListHead++);
@@ -162,16 +173,6 @@ void func_8027B4E8(struct GraphNode002 *a)
 
 void func_8027B6C4(struct GraphNodeCamFrustum *a)
 {
-    /** @bug This is where the LookAt values should be calculated but aren't.
-     * As a result, environment mapping is broken on Fast3DEX2 without the
-     * changes below.
-     */
-
-#ifdef F3DEX_GBI_2
-    Mtx mf;
-    LookAt lookAt;
-#endif
-
     if (a->fnNode.func != NULL)
         a->fnNode.func(1, &a->fnNode.node, D_8033A778[D_8033A770]);
     if (a->fnNode.node.children != NULL)
@@ -182,11 +183,6 @@ void func_8027B6C4(struct GraphNodeCamFrustum *a)
 
         guPerspective(mtx, &perspNorm, a->fov, aspect, a->near, a->far, 1.0f);
         gSPPerspNormalize(gDisplayListHead++, perspNorm);
-
-#ifdef F3DEX_GBI_2
-        guLookAtReflect(&mf, &lookAt, 50, 0, 400, 0, 0, 0, 0, 1, 0);
-        gSPLookAt(gDisplayListHead++, &lookAt);
-#endif
 
         gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(mtx), G_MTX_PROJECTION | G_MTX_LOAD);
 

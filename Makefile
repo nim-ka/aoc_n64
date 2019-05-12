@@ -16,6 +16,8 @@ NON_MATCHING ?= 0
 # endianness independence
 ENDIAN_IND ?= 0
 
+# Release
+
 ifeq ($(VERSION),jp)
   VERSION_CFLAGS := -DVERSION_JP=1
   VERSION_ASFLAGS := --defsym VERSION_JP=1
@@ -33,6 +35,8 @@ else
   $(error unknown version "$(VERSION)")
 endif
 endif
+
+# Microcode
 
 ifeq ($(GRUCODE),f3dex) # Fast3DEX
   GRUCODE_CFLAGS := -DF3DEX_GBI=1
