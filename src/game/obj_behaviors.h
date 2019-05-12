@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "object_helpers2.h"
+#include "engine/surface_collision.h"
 
 struct Struct802E2F58
 {
@@ -117,7 +118,7 @@ void ButterflyFollowMarioLoop(void);
 void ButterflyReturnHomeLoop(void);
 void bhv_butterfly_loop(void);
 void bhv_hoot_init(void);
-f32 HootFindNextFloor(f32 **arg0, f32 arg1);
+f32 HootFindNextFloor(struct FloorGeometry **arg0, f32 arg1);
 void HootFloorBounce(void);
 void HootFreeStep(s16 arg0, s32 arg1);
 void PlayerSetHootYaw(void);

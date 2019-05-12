@@ -46,7 +46,7 @@ glabel mr_blizzard_hidden_geo # 0x0C00021C
    geo_end
 
 glabel mr_blizzard_geo # 0x0C000348
-   geo_shadow SHADOW_CIRCLE_UNK1, 0xB4, 160
+   geo_shadow SHADOW_CIRCLE_4_VERTS, 0xB4, 160
    geo_open_node
       geo_branch_and_link mr_blizzard_hidden_geo
    geo_close_node

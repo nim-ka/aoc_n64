@@ -1,5 +1,5 @@
 glabel red_flame_shadow_geo # 0x16000B10
-   geo_shadow SHADOW_CIRCLE_UNK1, 0x50, 20
+   geo_shadow SHADOW_CIRCLE_4_VERTS, 0x50, 20
    geo_open_node
       geo_branch_and_link red_flame_geo
    geo_close_node

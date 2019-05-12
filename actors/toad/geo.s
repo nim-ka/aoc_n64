@@ -117,7 +117,7 @@ glabel toad_geo_00027C # 0x0D00027C
 glabel toad_geo # 0x0D0003E4
    geo_start_distance 1000
    geo_open_node
-      geo_shadow SHADOW_CIRCLE_UNK0, 0x96, 100
+      geo_shadow SHADOW_CIRCLE_9_VERTS, 0x96, 100
       geo_open_node
          geo_scale 0x00, 16384
          geo_open_node

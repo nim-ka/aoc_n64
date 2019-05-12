@@ -1,5 +1,5 @@
 glabel butterfly_geo # 0x160000A8
-   geo_shadow SHADOW_CIRCLE_UNK1, 0xB4, 25
+   geo_shadow SHADOW_CIRCLE_4_VERTS, 0xB4, 25
    geo_open_node
       geo_scale 0x00, 16384
       geo_open_node

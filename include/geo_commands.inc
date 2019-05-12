@@ -335,9 +335,9 @@
 #   0x02: s16 shadowType (cast to u8)
 #   0x04: s16 shadowSolidity (cast to u8)
 #   0x06: s16 shadowScale
-.set SHADOW_CIRCLE_UNK0,      0x00
-.set SHADOW_CIRCLE_UNK1,      0x01
-.set SHADOW_CIRCLE_UNK2,      0x02  # unused shadow type
+.set SHADOW_CIRCLE_9_VERTS,      0x00
+.set SHADOW_CIRCLE_4_VERTS,      0x01
+.set SHADOW_CIRCLE_4_VERTS_FLAT_UNUSED,      0x02  # unused shadow type
 .set SHADOW_SQUARE_PERMANENT, 0x0A  # square shadow that never disappears
 .set SHADOW_SQUARE_SCALABLE,  0x0B  # square shadow, shrinks with distance
 .set SHADOW_SQUARE_TOGGLABLE, 0x0C  # square shadow, disappears with distance

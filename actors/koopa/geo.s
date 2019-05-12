@@ -1,5 +1,5 @@
 glabel koopa_without_shell_geo # 0x0D0000D0
-   geo_shadow SHADOW_CIRCLE_UNK1, 0x9B, 100
+   geo_shadow SHADOW_CIRCLE_4_VERTS, 0x9B, 100
    geo_open_node
       geo_scale 0x00, 16384
       geo_open_node
@@ -47,7 +47,7 @@ glabel koopa_without_shell_geo # 0x0D0000D0
    geo_end
 
 glabel koopa_with_shell_geo # 0x0D000214
-   geo_shadow SHADOW_CIRCLE_UNK1, 0x9B, 100
+   geo_shadow SHADOW_CIRCLE_4_VERTS, 0x9B, 100
    geo_open_node
       geo_scale 0x00, 16384
       geo_open_node

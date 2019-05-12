@@ -1,5 +1,5 @@
 glabel bully_geo # 0x0C000000
-   geo_shadow SHADOW_CIRCLE_UNK1, 0xC8, 70
+   geo_shadow SHADOW_CIRCLE_4_VERTS, 0xC8, 70
    geo_open_node
       geo_scale 0x00, 24576
       geo_open_node
@@ -43,7 +43,7 @@ glabel bully_geo # 0x0C000000
    geo_end
 
 glabel bully_boss_geo # 0x0C000120
-   geo_shadow SHADOW_CIRCLE_UNK1, 0xC8, 210
+   geo_shadow SHADOW_CIRCLE_4_VERTS, 0xC8, 210
    geo_open_node
       geo_scale 0x00, 49152
       geo_open_node

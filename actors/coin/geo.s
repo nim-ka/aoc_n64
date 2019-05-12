@@ -1,5 +1,5 @@
 glabel yellow_coin_geo # 0x1600013C
-   geo_shadow SHADOW_CIRCLE_UNK1, 0xB4, 50
+   geo_shadow SHADOW_CIRCLE_4_VERTS, 0xB4, 50
    geo_open_node
       geo_switch_case 8, geo_switch_anim_state
       geo_open_node
@@ -33,7 +33,7 @@ glabel yellow_coin_no_shadow_geo # 0x160001A0
    geo_end
 
 glabel blue_coin_geo # 0x16000200
-   geo_shadow SHADOW_CIRCLE_UNK1, 0xB4, 80
+   geo_shadow SHADOW_CIRCLE_4_VERTS, 0xB4, 80
    geo_open_node
       geo_switch_case 8, geo_switch_anim_state
       geo_open_node
@@ -67,7 +67,7 @@ glabel blue_coin_no_shadow_geo # 0x16000264
    geo_end
 
 glabel red_coin_geo # 0x160002C4
-   geo_shadow SHADOW_CIRCLE_UNK1, 0xB4, 80
+   geo_shadow SHADOW_CIRCLE_4_VERTS, 0xB4, 80
    geo_open_node
       geo_switch_case 8, geo_switch_anim_state
       geo_open_node

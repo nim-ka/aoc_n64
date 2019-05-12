@@ -1,5 +1,5 @@
 glabel piranha_plant_geo # 0x0D000358
-   geo_shadow SHADOW_CIRCLE_UNK1, 0x9B, 200
+   geo_shadow SHADOW_CIRCLE_4_VERTS, 0x9B, 200
    geo_open_node
       geo_scale 0x00, 16384
       geo_open_node

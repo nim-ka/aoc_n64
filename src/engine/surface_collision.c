@@ -11,15 +11,7 @@
 #include "game/object_list_processor.h"
 #include "game/room.h"
 
-struct Struct8038BE30 {
-    f32 unk0[4];
-    f32 unk10;
-    f32 unk14;
-    f32 unk18;
-    f32 unk1C;
-};
-
-struct Struct8038BE30 D_8038BE30;
+struct FloorGeometry D_8038BE30;
 
 static u8 unused8038BE50[0x40];
 
@@ -293,21 +285,26 @@ static f32 unused_find_floor_height(struct Object *obj)
     return floorHeight;
 }
 
-f32 func_803814B8(f32 xPos, f32 yPos, f32 zPos, f32 **sp2C)
+/**
+ * Return the floor height underneath (xPos, yPos, zPos) and populate `floorGeo`
+ * with data about the floor's normal vector and origin offset. Also update 
+ * D_8038BE30.
+ */
+f32 find_floor_height_and_data(f32 xPos, f32 yPos, f32 zPos, struct FloorGeometry **floorGeo)
 {
     struct Surface *floor;
     f32 floorHeight = find_floor(xPos, yPos, zPos, &floor);
 
-    *sp2C = NULL;
+    *floorGeo = NULL;
 
     if (floor != NULL)
     {
-        D_8038BE30.unk10 = floor->normal.x;
-        D_8038BE30.unk14 = floor->normal.y;
-        D_8038BE30.unk18 = floor->normal.z;
-        D_8038BE30.unk1C = floor->originOffset;
+        D_8038BE30.normalX = floor->normal.x;
+        D_8038BE30.normalY = floor->normal.y;
+        D_8038BE30.normalZ = floor->normal.z;
+        D_8038BE30.originOffset = floor->originOffset;
 
-        *sp2C = D_8038BE30.unk0;
+        *floorGeo = &D_8038BE30;
     }
     return floorHeight;
 }

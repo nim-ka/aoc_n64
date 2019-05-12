@@ -1,5 +1,5 @@
 glabel marios_cap_geo # 0x16000CA4
-   geo_shadow SHADOW_CIRCLE_UNK0, 0xB4, 75
+   geo_shadow SHADOW_CIRCLE_9_VERTS, 0xB4, 75
    geo_open_node
       geo_scale 0x00, 16384
       geo_open_node
@@ -14,7 +14,7 @@ glabel marios_cap_geo # 0x16000CA4
    geo_end
 
 glabel marios_metal_cap_geo # 0x16000CF0
-   geo_shadow SHADOW_CIRCLE_UNK0, 0xB4, 75
+   geo_shadow SHADOW_CIRCLE_9_VERTS, 0xB4, 75
    geo_open_node
       geo_scale 0x00, 16384
       geo_open_node
@@ -29,7 +29,7 @@ glabel marios_metal_cap_geo # 0x16000CF0
    geo_end
 
 glabel marios_wing_cap_geo # 0x16000D3C
-   geo_shadow SHADOW_CIRCLE_UNK0, 0xB4, 75
+   geo_shadow SHADOW_CIRCLE_9_VERTS, 0xB4, 75
    geo_open_node
       geo_scale 0x00, 16384
       geo_open_node
@@ -51,7 +51,7 @@ glabel marios_wing_cap_geo # 0x16000D3C
    geo_end
 
 glabel marios_winged_metal_cap_geo # 0x16000DA8
-   geo_shadow SHADOW_CIRCLE_UNK0, 0xB4, 75
+   geo_shadow SHADOW_CIRCLE_9_VERTS, 0xB4, 75
    geo_open_node
       geo_scale 0x00, 16384
       geo_open_node

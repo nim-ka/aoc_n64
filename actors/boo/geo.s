@@ -1,5 +1,5 @@
 glabel boo_geo # 0x0C000224
-   geo_shadow SHADOW_CIRCLE_UNK1, 0x96, 70
+   geo_shadow SHADOW_CIRCLE_4_VERTS, 0x96, 70
    geo_open_node
       geo_scale 0x00, 26214
       geo_open_node

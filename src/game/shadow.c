@@ -1,21 +1,29 @@
 #include <ultra64.h>
+#include <math.h>
 
 #include "sm64.h"
+#include "segment2.h"
+
+#include "area.h"
 #include "engine/graph_node.h"
 #include "engine/math_util.h"
 #include "engine/surface_collision.h"
-#include "transparent_texture.h"
-#include "rendering_graph_node.h"
-#include "segment2.h"
+#include "mario_animation_ids.h"
 #include "mario.h"
-#include "area.h"
 #include "memory.h"
-#include "save_file.h"
+#include "rendering_graph_node.h"
 #include "room.h"
+#include "save_file.h"
 #include "shadow.h"
+#include "transparent_texture.h"
 
 /**
- * Encapsulate information about a shadow at the time of its creation.
+ * @file shadow.c
+ * This file implements a self-contained subsystem used to draw shadows.
+ */
+
+/**
+ * Encapsulation of information about a shadow.
  */
 struct Shadow {
     /* The (x, y, z) position of the object whose shadow this is. */
@@ -41,80 +49,73 @@ struct Shadow {
 };
 
 /**
- * Function declarations.
+ * Constant to indicate that a shadow should not be drawn.
+ * This is used to disable shadows during specific frames of Mario's 
+ * animations.
  */
-void rotate_rectangle(f32 *, f32 *, f32, f32);
-f32  atan2_deg(f32, f32);
-f32  scale_shadow_with_distance(f32, f32);
-f32  disable_shadow_with_distance(f32, f32);
-u8   dim_shadow_with_distance(u8, f32);
-f32  get_water_level_below_shadow(struct Shadow *);
-s8   init_shadow(struct Shadow *, f32, f32, f32, s16, u8);
-void get_texture_coords_9_vertices(s8, s16 *, s16 *);
-void get_texture_coords_4_vertices(s8, s16 *, s16 *);
-void make_shadow_vertex_at_xyz(Vtx *, s8, f32, f32, f32, u8, s8);
-f32  extrapolate_vertex_y_position(struct Shadow, f32, f32);
-void get_vertex_coords(s8, s8, s8 *, s8 *);
-void calculate_vertex_xyz(s8, struct Shadow, f32 *, f32 *, f32 *, s8);
-s16  floor_local_tilt(struct Shadow, f32, f32, f32);
-void make_shadow_vertex(Vtx *, s8, struct Shadow, s8);
-void add_shadow_to_display_list(Gfx *, Vtx *, s8, s8);
-void func_802CD7DC(struct Shadow *, u8, s16, s16, s16);
-void func_802CD90C(struct Shadow *, u8, s16, s16, s16);
-s8   func_802CDA44(s32, u8, struct Shadow *);
-void correct_lava_shadow_height(struct Shadow *);
-Gfx *func_802CDCBC(f32, f32, f32, s16, u8, s32);
-Gfx *draw_shadow_circle_9_verts(f32, f32, f32, s16, u8);
-Gfx *draw_shadow_circle_4_verts(f32, f32, f32, s16, u8);
-Gfx *draw_shadow_circle_assuming_flat_ground(f32, f32, f32, s16, u8);
-Gfx *draw_shadow_rectangle(f32, f32, f32, u8);
-s32  get_shadow_height_solidity(f32, f32, f32, f32 *, u8 *);
-Gfx *draw_shadow_square(f32, f32, f32, s16, u8, s8);
-Gfx *draw_shadow_hardcoded_rectangle(f32, f32, f32, s32, u8, s8);
-Gfx *create_shadow_below_xyz(f32, f32, f32, s16, u8, s8);
+#define SHADOW_SOLIDITY_NO_SHADOW   0
+/**
+ * Constant to indicate that a shadow's solidity has been pre-set by a previous
+ * function and should not be overwritten.
+ */
+#define SHADOW_SOILDITY_ALREADY_SET 1
+/**
+ * Constant to indicate that a shadow's solidity has not yet been set.
+ */
+#define SHADOW_SOLIDITY_NOT_YET_SET 2
+
 
 /**
- * In-file constants.
+ * Constant to indicate any sort of circular shadow.
  */
 #define SHADOW_SHAPE_CIRCLE 10
+/**
+ * Constant to indicate any sort of rectangular shadow.
+ */
 #define SHADOW_SHAPE_SQUARE 20
 
 /**
- * Flag for if a shadow has 4 or 9 vertices.
+ * Constant to indicate a shadow consists of 9 vertices.
  */
 #define SHADOW_WITH_9_VERTS 0
+/**
+ * Constant to indicate a shadow consists of 4 vertices.
+ */
 #define SHADOW_WITH_4_VERTS 1
 
 /**
- * A simple struct containing info about hardcoded rectangle shadows.
+ * A struct containing info about hardcoded rectangle shadows.
  */
 typedef struct {
-    /* These must be equal to 1/2 width and length, respectively. */
+    /* Half the width of the rectangle. */
     f32 halfWidth;
+    /* Half the length of the rectangle. */
     f32 halfLength;
-    /* Flag: should this shadow be smaller when its object is further away? */
+    /* Flag for if this shadow be smaller when its object is further away. */
     s8 scaleWithDistance;
 } shadowRectangle;
 
+/**
+ * An array consisting of all the hardcoded rectangle shadows in the game.
+ */
 shadowRectangle rectangles[2] = {
-    // Spindel shadow:
+    /* Shadow for Spindels. */
     {360.0f, 230.0f, TRUE},
-    // TODO: Find out what this is. (In "koopa_log_piranha_whomp_chomp.geo",
-    // it's the "0x16000033" word, indicating shadow type 0x33.)
-    // My guess is that it's for the log, since it's long and thin.
+    /* Shadow for Whomps. */
     {200.0f, 180.0f, TRUE}
 };
 
-s8 D_8035FF40;
-s16 gSurfaceTypeBelowShadow;
+// See shadow.h for documentation.
+static s8 sMarioOnFlyingCarpet;
+static s16 sSurfaceTypeBelowShadow;
 s8 gShadowAboveWaterOrLava;
-s8 D_8035FF45;
+s8 gMarioOnIceOrCarpet;
 
 /**
  * Let (oldZ, oldX) be the relative coordinates of a point on a rectangle,
  * assumed to be centered at the origin on the standard SM64 X-Z plane. This
  * function will update (newZ, newX) to equal the new coordinates of that point
- * after a rotation equal to the yaw of the current(?) object.
+ * after a rotation equal to the yaw of the current graph node object.
  */
 void rotate_rectangle(f32 *newZ, f32 *newX, f32 oldZ, f32 oldX) {
     struct Object *obj = (struct Object *) D_8032CFA0;
@@ -122,6 +123,10 @@ void rotate_rectangle(f32 *newZ, f32 *newX, f32 oldZ, f32 oldX) {
     *newX = oldZ * sins(obj->oFaceAngleYaw) + oldX * coss(obj->oFaceAngleYaw);
 }
 
+/**
+ * Return atan2(a, b) in degrees. Note that the argument order is swapped from 
+ * the standard atan2.
+ */
 f32 atan2_deg(f32 a, f32 b) {
     return ((f32) atan2s(a, b) / 65535.0 * 360.0);
 }
@@ -132,6 +137,7 @@ f32 atan2_deg(f32 a, f32 b) {
  */
 f32 scale_shadow_with_distance(f32 initial, f32 distFromFloor) {
     f32 newScale;
+
     if (distFromFloor <= 0.0) {
         newScale = initial;
     } else if (distFromFloor >= 600.0) {
@@ -172,6 +178,10 @@ u8 dim_shadow_with_distance(u8 solidity, f32 distFromFloor) {
     }
 }
 
+/**
+ * Return the water level below a shadow, or 0 if the water level is below 
+ * -10,000.
+ */
 f32 get_water_level_below_shadow(struct Shadow *s) {
     f32 waterLevel = find_water_level(s->parentX, s->parentZ);
     if (waterLevel < -10000.0) {
@@ -180,58 +190,80 @@ f32 get_water_level_below_shadow(struct Shadow *s) {
         gShadowAboveWaterOrLava = TRUE;
         return waterLevel;
     }
-    //! Missing return statement
+    //! @bug Missing return statement. This compiles to return `waterLevel` 
+    //! incidentally.
 }
 
+/**
+ * Initialize a shadow. Return 0 on success, 1 on failure.
+ * 
+ * @param xPos,yPos,zPos Position of the parent object (not the shadow)
+ * @param shadowScale Diameter of the shadow
+ * @param overwriteSolidity Flag for whether the existing shadow solidity should
+ *                          be dimmed based on its distance to the floor
+ */
 s8 init_shadow(
-    struct Shadow *s, f32 xPos, f32 yPos, f32 zPos, s16 shadowScale, u8 shadowSolidity
+    struct Shadow *s, f32 xPos, f32 yPos, f32 zPos, s16 shadowScale, u8 overwriteSolidity
 ) {
     f32 waterLevel;
-    f32 sp20;
-    f32 *sp1c;
+    f32 floorSteepness;
+    struct FloorGeometry *floorGeometry;
 
     s->parentX = xPos;
     s->parentY = yPos;
     s->parentZ = zPos;
 
-    s->floorHeight = func_803814B8(s->parentX, s->parentY, s->parentZ, &sp1c);
+    s->floorHeight = find_floor_height_and_data(
+        s->parentX, s->parentY, s->parentZ, &floorGeometry);
+
     if (gWaterRegions != 0) {
         waterLevel = get_water_level_below_shadow(s);
     }
     if (gShadowAboveWaterOrLava) {
-        //! Use of potentially undefined variable (waterLevel)
+        //! @bug Use of potentially undefined variable `waterLevel`
         s->floorHeight = waterLevel;
+
+        // Assume that the water is flat.
         s->floorNormalX = 0;
         s->floorNormalY = 1.0;
         s->floorNormalZ = 0;
         s->floorOriginOffset = -waterLevel;
     } else {
-        if (s->floorHeight < -10000.0 || sp1c[5] <= 0.0) {
+        // Don't draw a shadow if the floor is lower than expected possible,
+        // or if the y-normal is negative (an unexpected result).
+        if (s->floorHeight < -10000.0 || floorGeometry->normalY <= 0.0) {
             return 1;
         }
-        s->floorNormalX = sp1c[4];
-        s->floorNormalY = sp1c[5];
-        s->floorNormalZ = sp1c[6];
-        s->floorOriginOffset = sp1c[7];
+
+        s->floorNormalX = floorGeometry->normalX;
+        s->floorNormalY = floorGeometry->normalY;
+        s->floorNormalZ = floorGeometry->normalZ;
+        s->floorOriginOffset = floorGeometry->originOffset;
     }
-    if (shadowSolidity != 0) {
-        s->solidity = dim_shadow_with_distance(shadowSolidity, yPos - s->floorHeight);
+
+    if (overwriteSolidity) {
+        s->solidity = dim_shadow_with_distance(overwriteSolidity, yPos - s->floorHeight);
     }
+
     s->shadowScale = scale_shadow_with_distance(shadowScale, yPos - s->floorHeight);
+
     s->floorDownwardAngle = atan2_deg(s->floorNormalZ, s->floorNormalX);
-    sp20 = sqrtf(
+
+    floorSteepness = sqrtf(
         s->floorNormalX * s->floorNormalX +
         s->floorNormalZ * s->floorNormalZ);
-    if (sp20 == 0.0) {
+
+    // This if-statement avoids dividing by 0.
+    if (floorSteepness == 0.0) {
         s->floorTilt = 0;
     } else {
-        s->floorTilt = 90.0 - atan2_deg(sp20, s->floorNormalY);
+        s->floorTilt = 90.0 - atan2_deg(floorSteepness, s->floorNormalY);
     }
     return 0;
 }
 
 /**
- * Given a vertex number from a shadow with nine vertices, return the
+ * Given a `vertexNum` from a shadow with nine vertices, update the
  * texture coordinates corresponding to that vertex. That is:
  *      0 = (-15, -15)         1 = (0, -15)         2 = (15, -15)
  *      3 = (-15,   0)         4 = (0,   0)         5 = (15,   0)
@@ -243,7 +275,7 @@ void get_texture_coords_9_vertices(s8 vertexNum, s16 *textureX, s16 *textureY) {
 }
 
 /**
- * Given a vertex number from a shadow with four vertices, return the
+ * Given a `vertexNum` from a shadow with four vertices, update the
  * texture coordinates corresponding to that vertex. That is:
  *      0 = (-15, -15)         1 = (15, -15)
  *      2 = (-15,  15)         3 = (15,  15)
@@ -253,6 +285,15 @@ void get_texture_coords_4_vertices(s8 vertexNum, s16 *textureX, s16 *textureY) {
     *textureY = (vertexNum / 2) * 2 * 15 - 15;
 }
 
+/**
+ * Make a shadow's vertex at a position relative to its parent.
+ * 
+ * @param vertices A preallocated display list for vertices
+ * @param index Index into `vertices` to insert the vertex
+ * @param relX,relY,relZ Vertex position relative to its parent object
+ * @param alpha Opacity of the vertex
+ * @param shadowVertexType One of SHADOW_WITH_9_VERTS or SHADOW_WITH_4_VERTS
+ */
 void make_shadow_vertex_at_xyz(
     Vtx *vertices, s8 index, f32 relX, f32 relY, f32 relZ, u8 alpha, s8 shadowVertexType
 ) {
@@ -269,7 +310,9 @@ void make_shadow_vertex_at_xyz(
             get_texture_coords_4_vertices(index, &textureX, &textureY);
             break;
     }
-    if (D_8035FF40) {
+
+    // Move the shadow up and over slightly while standing on a flying carpet.
+    if (sMarioOnFlyingCarpet) {
         vtxX += 5;
         vtxY += 5;
         vtxZ += 5;
@@ -279,14 +322,13 @@ void make_shadow_vertex_at_xyz(
         index,
         vtxX, vtxY, vtxZ,
         textureX << 5, textureY << 5,
-        255, 255, 255, alpha  // RGBA
+        255, 255, 255, alpha  // shadows are black
     );
 }
 
 /**
- * Given an (x, z) position close to a shadow (for example, a vertex position),
- * return the extrapolated y-position for that point given the floor's normal
- * vector.
+ * Given an (x, z)-position close to a shadow, extrapolate the y-position
+ * according to the floor's normal vector.
  */
 f32 extrapolate_vertex_y_position(struct Shadow s, f32 vtxX, f32 vtxZ) {
     return -(
@@ -297,11 +339,11 @@ f32 extrapolate_vertex_y_position(struct Shadow s, f32 vtxX, f32 vtxZ) {
 }
 
 /**
- * Given a vertex number from a shadow with either 4 or 9 vertices, return the
- * texture coordinates corresponding to that vertex, ranging in the square with
- * corners at (-1, -1), (1, -1), (-1, 1), and (1, 1) in the x-z plane. See
- * "get_texture_coords_9_vertices" and "get_texture_coords_4_vertices", which
- * have the same functionality, but return 15 times the values.
+ * Given a shadow vertex with the given `index`, return the corresponding texture 
+ * coordinates ranging in the square with corners at (-1, -1), (1, -1), (-1, 1),
+ * and (1, 1) in the x-z plane. See `get_texture_coords_9_vertices()` and 
+ * `get_texture_coords_4_vertices()`, which have similar functionality, but 
+ * return 15 times these values.
  */
 void get_vertex_coords(s8 index, s8 shadowVertexType, s8 *xCoord, s8 *zCoord) {
     *xCoord = index % (3 - shadowVertexType) - 1;
@@ -319,34 +361,57 @@ void get_vertex_coords(s8 index, s8 shadowVertexType, s8 *xCoord, s8 *zCoord) {
     }
 }
 
+/**
+ * Populate `xPosVtx`, `yPosVtx`, and `zPosVtx` with the (x, y, z) position of the 
+ * shadow vertex with the given index. If the shadow is to have 9 vertices,
+ * then each of those vertices is clamped down to the floor below it. Otherwise,
+ * in the 4 vertex case, the vertex positions are extrapolated from the center
+ * of the shadow.
+ * 
+ * In practice, due to the if-statement in `make_shadow_vertex()`, the 9 
+ * vertex and 4 vertex cases are identical, and the above-described clamping
+ * behavior is overwritten.
+ */
 void calculate_vertex_xyz(
     s8 index, struct Shadow s, f32 *xPosVtx, f32 *yPosVtx, f32 *zPosVtx,
     s8 shadowVertexType
 ) {
-    f32 sp6c = cosf(s.floorTilt * M_PI / 180.0) * s.shadowScale;
-    f32 sp68 = s.floorDownwardAngle * M_PI / 180.0;
-    f32 sp60;
-    f32 sp64;
+    f32 tiltedScale = cosf(s.floorTilt * M_PI / 180.0) * s.shadowScale;
+    f32 downwardAngle = s.floorDownwardAngle * M_PI / 180.0;
+    f32 halfScale;
+    f32 halfTiltedScale;
     s8 xCoordUnit;
     s8 zCoordUnit;
-    f32 *dummy;
+    struct FloorGeometry *dummy;
 
+    // This makes xCoordUnit and yCoordUnit each one of -1, 0, or 1.
     get_vertex_coords(index, shadowVertexType, &xCoordUnit, &zCoordUnit);
 
-    sp60 = (xCoordUnit * s.shadowScale) / 2.0;
-    sp64 = (zCoordUnit * sp6c) / 2.0;
+    halfScale = (xCoordUnit * s.shadowScale) / 2.0;
+    halfTiltedScale = (zCoordUnit * tiltedScale) / 2.0;
 
-    *xPosVtx = (sp64 * sinf(sp68)) + (sp60 * cosf(sp68)) + s.parentX;
-    *zPosVtx = (sp64 * cosf(sp68)) - (sp60 * sinf(sp68)) + s.parentZ;
+    *xPosVtx = (halfTiltedScale * sinf(downwardAngle)) +
+               (halfScale * cosf(downwardAngle)) + s.parentX;
+    *zPosVtx = (halfTiltedScale * cosf(downwardAngle)) -
+               (halfScale * sinf(downwardAngle)) + s.parentZ;
 
     if (gShadowAboveWaterOrLava) {
         *yPosVtx = s.floorHeight;
     } else {
         switch (shadowVertexType) {
+            /**
+             * Note that this dichotomy is later overwritten in 
+             * make_shadow_vertex().
+             */
             case SHADOW_WITH_9_VERTS:
-                *yPosVtx = func_803814B8(*xPosVtx, s.parentY, *zPosVtx, &dummy);
+                // Clamp this vertex's y-position to that of the floor directly 
+                // below it, which may differ from the floor below the center 
+                // vertex.
+                *yPosVtx = find_floor_height_and_data(*xPosVtx, s.parentY, *zPosVtx, &dummy);
                 break;
             case SHADOW_WITH_4_VERTS:
+                // Do not clamp. Instead, extrapolate the y-position of this 
+                // vertex based on the directly floor below the parent object.
                 *yPosVtx = extrapolate_vertex_y_position(s, *xPosVtx, *zPosVtx);
                 break;
         }
@@ -354,14 +419,16 @@ void calculate_vertex_xyz(
 }
 
 /**
- * Given a vertex's (x, y, z) location, return the dot product of the
- * position of that vertex (relative to the middle vertex, i.e. the point
- * right below the object) with the floor normal (at the middle vertex).
+ * Given a vertex's location, return the dot product of the
+ * position of that vertex (relative to the shadow's center) with the floor 
+ * normal (at the shadow's center).
+ * 
  * Since it is a dot product, this returns 0 if these two vectors are
- * perpendicular, meaning the ground is locally flat. It will return nonzero
- * in most cases where vtxY is on a different floor triangle from the
- * middle vertex, as in the case with SHADOW_WITH_9_VERTS, which sets
- * the y-value from func_803814B8().
+ * perpendicular, meaning the ground is locally flat. It returns nonzero
+ * in most cases where `vtxY` is on a different floor triangle from the
+ * center vertex, as in the case with SHADOW_WITH_9_VERTS, which sets
+ * the y-value from `find_floor_height_and_data`. (See the bottom of 
+ * `calculate_vertex_xyz`.)
  */
 s16 floor_local_tilt(struct Shadow s, f32 vtxX, f32 vtxY, f32 vtxZ) {
     f32 relX = vtxX - s.parentX;
@@ -374,29 +441,37 @@ s16 floor_local_tilt(struct Shadow s, f32 vtxX, f32 vtxY, f32 vtxZ) {
     return ret;
 }
 
+/**
+ * Make a particular vertex from a shadow, calculating its position and solidity.
+ */
 void make_shadow_vertex(Vtx *vertices, s8 index, struct Shadow s, s8 shadowVertexType) {
     f32 xPosVtx, yPosVtx, zPosVtx;
     f32 relX, relY, relZ;
-    u8 solidity = s.solidity;
 
+    u8 solidity = s.solidity;
     if (gShadowAboveWaterOrLava != 0) {
         solidity = 200;
     }
 
     calculate_vertex_xyz(index, s, &xPosVtx, &yPosVtx, &zPosVtx, shadowVertexType);
 
-    // I believe this is the hack that makes "SHADOW_WITH_9_VERTS" act
-    // identically to the "SHADOW_WITH_4_VERTS" in the game; this same hack is
-    // disabled by the gameshark code in this video:
-    // https://www.youtube.com/watch?v=MSIh4rtNGF0.
-    // The code in the video will make "extrapolate_vertex_y_position"
-    // return the same value as the last f32-returning function did; in this
-    // case, that's func_803814B8, which this if-statement was designed to
-    // overwrite in the first place.
-    // The last condition here means the y-position calculated previously
-    // was probably on a different floor triangle from the center vertex.
+    /**
+     * This is the hack that makes "SHADOW_WITH_9_VERTS" act identically to
+     * "SHADOW_WITH_4_VERTS" in the game; this same hack is disabled by the 
+     * GameShark code in this video: https://youtu.be/MSIh4rtNGF0. The code in 
+     * the video makes `extrapolate_vertex_y_position` return the same value as 
+     * the last-called function that returns a float; in this case, that's 
+     * `find_floor_height_and_data`, which this if-statement was designed to
+     * overwrite in the first place. Thus, this if-statement is disabled by that
+     * code.
+     * 
+     * The last condition here means the y-position calculated previously
+     * was probably on a different floor triangle from the center vertex.
+     * The gShadowAboveWaterOrLava check is redundant, since `floor_local_tilt`
+     * will always be 0 over water or lava (since they are always flat).
+     */
     if (shadowVertexType == SHADOW_WITH_9_VERTS &&
-        !gShadowAboveWaterOrLava                &&
+        !gShadowAboveWaterOrLava &&
         floor_local_tilt(s, xPosVtx, yPosVtx, zPosVtx) != 0)
     {
         yPosVtx = extrapolate_vertex_y_position(s, xPosVtx, zPosVtx);
@@ -410,99 +485,130 @@ void make_shadow_vertex(Vtx *vertices, s8 index, struct Shadow s, s8 shadowVerte
         vertices, index, relX, relY, relZ, solidity, shadowVertexType);
 }
 
-
+/**
+ * Add a shadow to the given display list.
+ */
 void add_shadow_to_display_list(
     Gfx *displayListHead, Vtx *verts, s8 shadowVertexType, s8 shadowShape
 ) {
     switch (shadowShape) {
         case SHADOW_SHAPE_CIRCLE:
-            gSPDisplayList(displayListHead++, seg2_dl_02014548);
+            gSPDisplayList(displayListHead++, dl_shadow_circle);
             break;
         case SHADOW_SHAPE_SQUARE:
-            gSPDisplayList(displayListHead++, seg2_dl_02014590)
+            gSPDisplayList(displayListHead++, dl_shadow_square)
             break;
     }
     switch (shadowVertexType) {
         case SHADOW_WITH_9_VERTS:
             gSPVertex(displayListHead++, verts, 9, 0);
-            gSPDisplayList(displayListHead++, seg2_dl_020145D8);
+            gSPDisplayList(displayListHead++, dl_shadow_9_verts);
             break;
         case SHADOW_WITH_4_VERTS:
             gSPVertex(displayListHead++, verts, 4, 0);
-            gSPDisplayList(displayListHead++, seg2_dl_02014620);
+            gSPDisplayList(displayListHead++, dl_shadow_4_verts);
             break;
     }
-    gSPDisplayList(displayListHead++, seg2_dl_02014638);
+    gSPDisplayList(displayListHead++, dl_shadow_end);
     gSPEndDisplayList(displayListHead);
 }
 
-// This function just dims all shadows in the midrange logistically, with
-// the midrange being defined by arg4 - arg3 and "quickness" by arg2 - arg3.
-// It doesn't make much sense to me at the moment. Probably related to
-// specific Mario animations.
-void func_802CD7DC(struct Shadow *s, u8 initial, s16 arg2, s16 arg3, s16 arg4) {
-    if (arg2 >= 0 && arg2 < arg3) {
+/**
+ * Linearly interpolate a shadow's solidity between zero and finalSolidity
+ * depending on curr's relation to start and end.
+ */
+void linearly_interpolate_solidity_positive(
+    struct Shadow *s, u8 finalSolidity, s16 curr, s16 start, s16 end
+) {
+    if (curr >= 0 && curr < start) {
         s->solidity = 0;
-    } else if (arg4 < arg2) {
-        s->solidity = initial;
+    } else if (end < curr) {
+        s->solidity = finalSolidity;
     } else {
-        s->solidity = (f32) initial * (arg2 - arg3) / (arg4 - arg3);
+        s->solidity = (f32) finalSolidity * (curr - start) / (end - start);
     }
 }
 
-// Similar to above.
-void func_802CD90C(struct Shadow *s, u8 initial, s16 arg2, s16 arg3, s16 arg4) {
-    if (arg2 >= arg3 && arg4 >= arg2) {
-        s->solidity = ((f32) initial * (1.0 - (f32) (arg2 - arg3) / (arg4 - arg3)));
+/**
+ * Linearly interpolate a shadow's solidity between initialSolidity and zero
+ * depending on curr's relation to start and end. Note that if curr < start,
+ * the solidity will be zero.
+ */
+void linearly_interpolate_solidity_negative(
+    struct Shadow *s, u8 initialSolidity, s16 curr, s16 start, s16 end
+) {
+    // The curr < start case is not handled. Thus, if start != 0, this function
+    // will have the surprising behavior of hiding the shadow until start.
+    // This is not necessarily a bug, since this function is only used once,
+    // with start == 0.
+    if (curr >= start && end >= curr) {
+        s->solidity = (
+            (f32) initialSolidity * 
+            (1.0 - (f32) (curr - start) / (end - start)));
     } else {
         s->solidity = 0;
     }
 }
 
-// Dims shadows according to some formula. Only done for "playable characters".
-// Maybe "shadow addition"?
-s8 func_802CDA44(s32 isLuigi, u8 initialSolidity, struct Shadow *shadow) {
-    struct Object *sp34;
-    s8 sp33;
+/**
+ * Change a shadow's solidity based on the player's current animation frame.
+ */
+s8 correct_shadow_solidity_for_animations(
+    s32 isLuigi, u8 initialSolidity, struct Shadow *shadow
+) {
+    struct Object *player;
+    s8 ret;
     s16 animFrame;
 
     switch (isLuigi) {
         case 0:
-            sp34 = gMarioObject;
+            player = gMarioObject;
             break;
         case 1:
-            //! This is unironically probably Luigi. This variable is never
-            // used anywhere else in the code, lies in memory just after the
-            // Mario object, and appears to have the special "Mario shadows".
-            sp34 = gLuigiObject;
+            /**
+             * This is evidence of a removed second player, likely Luigi.
+             * This variable lies in memory just after the gMarioObject and
+             * has the same type of shadow that Mario does. The `isLuigi`
+             * variable is never 1 in the game. Note that since this was a 
+             * switch-case, not an if-statement, the programmers possibly
+             * intended there to be even more than 2 characters.
+             */
+            player = gLuigiObject;
             break;
     }
-    animFrame = sp34->header.gfx.unk38.animFrame;
-    switch (sp34->header.gfx.unk38.animID) {
-        case 51:
-            sp33 = 0;
+
+    animFrame = player->header.gfx.unk38.animFrame;
+    switch (player->header.gfx.unk38.animID) {
+        case MARIO_ANIM_IDLE_ON_LEDGE:
+            ret = SHADOW_SOLIDITY_NO_SHADOW;
             break;
-        case 52:
-            func_802CD7DC(shadow, initialSolidity, animFrame, 5, 14);
-            sp33 = 1;
+        case MARIO_ANIM_FAST_LEDGE_GRAB:
+            linearly_interpolate_solidity_positive(
+                shadow, initialSolidity, animFrame, 5, 14);
+            ret = SHADOW_SOILDITY_ALREADY_SET;
             break;
-        case 0:
-            func_802CD7DC(shadow, initialSolidity, animFrame, 21, 33);
-            sp33 = 1;
+        case MARIO_ANIM_SLOW_LEDGE_GRAB:
+            linearly_interpolate_solidity_positive(
+                shadow, initialSolidity, animFrame, 21, 33);
+            ret = SHADOW_SOILDITY_ALREADY_SET;
             break;
-        case 28:
-            func_802CD90C(shadow, initialSolidity, animFrame, 0, 5);
-            sp33 = 1;
+        case MARIO_ANIM_CLIMB_DOWN_LEDGE:
+            linearly_interpolate_solidity_negative(
+                shadow, initialSolidity, animFrame, 0, 5);
+            ret = SHADOW_SOILDITY_ALREADY_SET;
             break;
         default:
-            sp33 = 2;
+            ret = SHADOW_SOLIDITY_NOT_YET_SET;
             break;
     }
-    return sp33;
+    return ret;
 }
 
+/**
+ * Slightly change the height of a shadow in levels with lava.
+ */
 void correct_lava_shadow_height(struct Shadow *s) {
-    if (gCurrLevelNum == LEVEL_BITFS && gSurfaceTypeBelowShadow == SURFACE_LAVA) {
+    if (gCurrLevelNum == LEVEL_BITFS && sSurfaceTypeBelowShadow == SURFACE_LAVA) {
         if (s->floorHeight < -3000.0) {
             s->floorHeight = -3062.0;
             gShadowAboveWaterOrLava = TRUE;
@@ -512,15 +618,19 @@ void correct_lava_shadow_height(struct Shadow *s) {
         }
     } else if (
         gCurrLevelNum == LEVEL_LLL &&
-        gCurrAreaIndex == 1        &&
-        gSurfaceTypeBelowShadow == SURFACE_LAVA
+        gCurrAreaIndex == 1 &&
+        sSurfaceTypeBelowShadow == SURFACE_LAVA
     ) {
         s->floorHeight = 5.0;
         gShadowAboveWaterOrLava = TRUE;
     }
 }
 
-Gfx *func_802CDCBC(
+/**
+ * Create a shadow under a player, correcting that shadow's opacity during 
+ * appropriate animations and other states.
+ */
+Gfx *create_shadow_player(
     f32 xPos, f32 yPos, f32 zPos, s16 shadowScale, u8 solidity, s32 isLuigi
 ) {
     Vtx *verts;
@@ -529,31 +639,36 @@ Gfx *func_802CDCBC(
     s8 ret;
     s32 i;
 
-    if (gCurrLevelNum == LEVEL_RR && gSurfaceTypeBelowShadow != SURFACE_DEATH_PLANE) {
-        switch (D_8035FF80) {
-            case 1:
-                D_8035FF45 = 1;
-                D_8035FF40 = 1;
+    // Update global variables about whether Mario is on a flying carpet.
+    if (gCurrLevelNum == LEVEL_RR && sSurfaceTypeBelowShadow != SURFACE_DEATH_PLANE) {
+        switch (gFlyingCarpetState) {
+            case FLYING_CARPET_MOVING_WITHOUT_MARIO:
+                gMarioOnIceOrCarpet = 1;
+                sMarioOnFlyingCarpet = 1;
                 break;
-            case 2:
-                D_8035FF45 = 1;
+            case FLYING_CARPET_MOVING_WITH_MARIO:
+                gMarioOnIceOrCarpet = 1;
                 break;
         }
     }
-    switch (func_802CDA44(isLuigi, solidity, &shadow)) {
-        case 0:
-            return 0;
+
+    switch (correct_shadow_solidity_for_animations(isLuigi, solidity, &shadow)) {
+        case SHADOW_SOLIDITY_NO_SHADOW:
+            return NULL;
             break;
-        case 1:
-            ret = init_shadow(&shadow, xPos, yPos, zPos, shadowScale, 0);
+        case SHADOW_SOILDITY_ALREADY_SET:
+            ret = init_shadow(
+                &shadow, xPos, yPos, zPos, shadowScale, /* overwriteSolidity */ 0);
             break;
-        case 2:
-            ret = init_shadow(&shadow, xPos, yPos, zPos, shadowScale, solidity);
+        case SHADOW_SOLIDITY_NOT_YET_SET:
+            ret = init_shadow(
+                &shadow, xPos, yPos, zPos, shadowScale, solidity);
             break;
     }
     if (ret != 0) {
         return NULL;
     }
+
     verts = alloc_display_list(9 * sizeof(Vtx));
     displayList = alloc_display_list(5 * sizeof(Gfx));
     if (verts == NULL || displayList == NULL) {
@@ -561,6 +676,7 @@ Gfx *func_802CDCBC(
     }
 
     correct_lava_shadow_height(&shadow);
+
     for (i = 0; i < 9; i++) {
         make_shadow_vertex(verts, i, shadow, SHADOW_WITH_9_VERTS);
     }
@@ -569,7 +685,10 @@ Gfx *func_802CDCBC(
     return displayList;
 }
 
-Gfx *draw_shadow_circle_9_verts(f32 xPos, f32 yPos, f32 zPos, s16 shadowScale, u8 solidity) {
+/**
+ * Create a circular shadow composed of 9 vertices.
+ */
+Gfx *create_shadow_circle_9_verts(f32 xPos, f32 yPos, f32 zPos, s16 shadowScale, u8 solidity) {
     Vtx *verts;
     Gfx *displayList;
     struct Shadow shadow;
@@ -593,7 +712,10 @@ Gfx *draw_shadow_circle_9_verts(f32 xPos, f32 yPos, f32 zPos, s16 shadowScale, u
     return displayList;
 }
 
-Gfx *draw_shadow_circle_4_verts(f32 xPos, f32 yPos, f32 zPos, s16 shadowScale, u8 solidity) {
+/**
+ * Create a circular shadow composed of 4 vertices.
+ */
+Gfx *create_shadow_circle_4_verts(f32 xPos, f32 yPos, f32 zPos, s16 shadowScale, u8 solidity) {
     Vtx *verts;
     Gfx *displayList;
     struct Shadow shadow;
@@ -618,14 +740,18 @@ Gfx *draw_shadow_circle_4_verts(f32 xPos, f32 yPos, f32 zPos, s16 shadowScale, u
     return displayList;
 }
 
-Gfx *draw_shadow_circle_assuming_flat_ground(
+/**
+ * Create a circular shadow composed of 4 vertices and assume that the ground
+ * underneath it is totally flat.
+ */
+Gfx *create_shadow_circle_assuming_flat_ground(
     f32 xPos, f32 yPos, f32 zPos, s16 shadowScale, u8 solidity
 ) {
     Vtx *verts;
     Gfx *displayList;
-    f32 *sp34;
+    struct FloorGeometry *dummy; // only for calling find_floor_height_and_data
     f32 distBelowFloor;
-    f32 floorHeight = func_803814B8(xPos, yPos, zPos, &sp34);
+    f32 floorHeight = find_floor_height_and_data(xPos, yPos, zPos, &dummy);
     f32 radius = shadowScale / 2;
 
     if (floorHeight < -10000.0) {
@@ -651,7 +777,11 @@ Gfx *draw_shadow_circle_assuming_flat_ground(
     return displayList;
 }
 
-Gfx *draw_shadow_rectangle(f32 halfWidth, f32 halfLength, f32 relY, u8 solidity) {
+/**
+ * Create a rectangular shadow composed of 4 vertices. This assumes the ground
+ * underneath the shadow is totally flat.
+ */
+Gfx *create_shadow_rectangle(f32 halfWidth, f32 halfLength, f32 relY, u8 solidity) {
     Vtx *verts = alloc_display_list(64);
     Gfx *displayList = alloc_display_list(40);
     f32 frontLeftX, frontLeftZ, frontRightX, frontRightZ,
@@ -661,7 +791,7 @@ Gfx *draw_shadow_rectangle(f32 halfWidth, f32 halfLength, f32 relY, u8 solidity)
         return NULL;
     }
 
-    // TODO: Check that these variables are named properly.
+    // Rotate the shadow based on the parent object's face angle.
     rotate_rectangle( &frontLeftZ,  &frontLeftX, -halfLength, -halfWidth);
     rotate_rectangle(&frontRightZ, &frontRightX, -halfLength,  halfWidth);
     rotate_rectangle(  &backLeftZ,   &backLeftX,  halfLength, -halfWidth);
@@ -677,12 +807,16 @@ Gfx *draw_shadow_rectangle(f32 halfWidth, f32 halfLength, f32 relY, u8 solidity)
     return displayList;
 }
 
+/**
+ * Populate `shadowHeight` and `solidity` appropriately; the default solidity 
+ * value is 200. Return 0 if a shadow should be drawn, 1 if not.
+ */
 s32 get_shadow_height_solidity(
     f32 xPos, f32 yPos, f32 zPos, f32 *shadowHeight, u8 *solidity
 ) {
-    f32 *dummy;
+    struct FloorGeometry *dummy;
     f32 waterLevel;
-    *shadowHeight = func_803814B8(xPos, yPos, zPos, &dummy);
+    *shadowHeight = find_floor_height_and_data(xPos, yPos, zPos, &dummy);
 
     if (*shadowHeight < -10000.0) {
         return 1;
@@ -690,7 +824,7 @@ s32 get_shadow_height_solidity(
         waterLevel = find_water_level(xPos, zPos);
 
         if (waterLevel < -10000.0) {
-            //! Dead if-statement. There may have been an assert here.
+            // Dead if-statement. There may have been an assert here.
         } else if (yPos >= waterLevel && waterLevel >= *shadowHeight) {
             gShadowAboveWaterOrLava = TRUE;
             *shadowHeight = waterLevel;
@@ -700,7 +834,10 @@ s32 get_shadow_height_solidity(
     return 0;
 }
 
-Gfx *draw_shadow_square(
+/**
+ * Create a square shadow composed of 4 vertices.
+ */
+Gfx *create_shadow_square(
     f32 xPos, f32 yPos, f32 zPos, s16 shadowScale, u8 solidity, s8 shadowType
 ) {
     f32 shadowHeight;
@@ -728,11 +865,15 @@ Gfx *draw_shadow_square(
             return NULL;
     }
 
-    return draw_shadow_rectangle(
+    return create_shadow_rectangle(
         shadowRadius, shadowRadius, -distFromShadow, solidity);
 }
 
-Gfx *draw_shadow_hardcoded_rectangle(
+/**
+ * Create a rectangular shadow whose parameters have been hardcoded in the
+ * `rectangles` array.
+ */
+Gfx *create_shadow_hardcoded_rectangle(
     f32 xPos, f32 yPos, f32 zPos,
     UNUSED s32 shadowScale, u8 solidity, s8 shadowType
 ) {
@@ -747,23 +888,30 @@ Gfx *draw_shadow_hardcoded_rectangle(
     }
 
     distFromShadow = yPos - shadowHeight;
-    //! idx could be negative or otherwise out of the bounds of "rectangles".
-    // In practice, it never is, because the programmers only used this twice.
+    /**
+     * Note that idx could be negative or otherwise out of the bounds of 
+     * the `rectangles` array. In practice, it never is, because this was
+     * only used twice.
+     */
     if (rectangles[idx].scaleWithDistance == TRUE) {
-        halfWidth  = scale_shadow_with_distance(
+        halfWidth = scale_shadow_with_distance(
             rectangles[idx].halfWidth, distFromShadow);
         halfLength = scale_shadow_with_distance(
             rectangles[idx].halfLength, distFromShadow);
     } else {
         // This code is never used because the third element of the rectangle
-        // struct is always 1.
-        halfWidth  = rectangles[idx].halfWidth;
+        // struct is always TRUE.
+        halfWidth = rectangles[idx].halfWidth;
         halfLength = rectangles[idx].halfLength;
     }
-    return draw_shadow_rectangle(
+    return create_shadow_rectangle(
         halfWidth, halfLength, -distFromShadow, solidity);
 }
 
+/**
+ * Create a shadow at the absolute position given, with the given parameters.
+ * Return a pointer to the display list representing the shadow.
+ */
 Gfx *create_shadow_below_xyz(
     f32 xPos, f32 yPos, f32 zPos, s16 shadowScale, u8 shadowSolidity, s8 shadowType
 ) {
@@ -772,45 +920,45 @@ Gfx *create_shadow_below_xyz(
     find_floor(xPos, yPos, zPos, &pfloor);
 
     gShadowAboveWaterOrLava = FALSE;
-    D_8035FF45 = 0;
-    D_8035FF40 = 0;
+    gMarioOnIceOrCarpet = 0;
+    sMarioOnFlyingCarpet = 0;
     if (pfloor != NULL) {
         if (pfloor->type == SURFACE_ICE) {
-            D_8035FF45 = 1;
+            gMarioOnIceOrCarpet = 1;
         }
-        gSurfaceTypeBelowShadow = pfloor->type;
+        sSurfaceTypeBelowShadow = pfloor->type;
     }
     switch (shadowType) {
-        case SHADOW_CIRCLE_UNK0:
-            displayList = draw_shadow_circle_9_verts(
+        case SHADOW_CIRCLE_9_VERTS:
+            displayList = create_shadow_circle_9_verts(
                 xPos, yPos, zPos, shadowScale, shadowSolidity);
             break;
-        case SHADOW_CIRCLE_UNK1:
-            displayList = draw_shadow_circle_4_verts(
+        case SHADOW_CIRCLE_4_VERTS:
+            displayList = create_shadow_circle_4_verts(
                 xPos, yPos, zPos, shadowScale, shadowSolidity);
             break;
-        case SHADOW_CIRCLE_UNK2:  // unused shadow type
-            displayList = draw_shadow_circle_assuming_flat_ground(
+        case SHADOW_CIRCLE_4_VERTS_FLAT_UNUSED:  // unused shadow type
+            displayList = create_shadow_circle_assuming_flat_ground(
                 xPos, yPos, zPos, shadowScale, shadowSolidity);
             break;
         case SHADOW_SQUARE_PERMANENT:
-            displayList = draw_shadow_square(
+            displayList = create_shadow_square(
                 xPos, yPos, zPos, shadowScale, shadowSolidity, shadowType);
             break;
         case SHADOW_SQUARE_SCALABLE:
-            displayList = draw_shadow_square(
+            displayList = create_shadow_square(
                 xPos, yPos, zPos, shadowScale, shadowSolidity, shadowType);
             break;
         case SHADOW_SQUARE_TOGGLABLE:
-            displayList = draw_shadow_square(
+            displayList = create_shadow_square(
                 xPos, yPos, zPos, shadowScale, shadowSolidity, shadowType);
             break;
-        case SHADOW_CIRCLE_UNK_0x63:  // maybe Mario?
-            displayList = func_802CDCBC(
-                xPos, yPos, zPos, shadowScale, shadowSolidity, /* isLuigi */ 0);
+        case SHADOW_CIRCLE_PLAYER:
+            displayList = create_shadow_player(
+                xPos, yPos, zPos, shadowScale, shadowSolidity, /* isLuigi */ FALSE);
             break;
         default:
-            displayList = draw_shadow_hardcoded_rectangle(
+            displayList = create_shadow_hardcoded_rectangle(
                 xPos, yPos, zPos, shadowScale, shadowSolidity, shadowType);
             break;
     }

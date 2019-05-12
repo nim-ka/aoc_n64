@@ -22,7 +22,7 @@ extern Gfx cake_end_dl_07026400[];
 
 s16 D_80330390 = 0x01, D_80330394 = 0, D_80330398 = 0;
 
-s8 D_8035FF80;
+s8 gFlyingCarpetState;
 
 extern u16 gAreaUpdateCounter;
 
@@ -88,7 +88,7 @@ Gfx *Geo18_802D2470(s32 run, UNUSED struct GraphNode *node, UNUSED f32 mtx[4][4]
         D_80330398 = 0;
         D_80330394 = gAreaUpdateCounter - 1;
         D_80330390 = gAreaUpdateCounter;
-        D_8035FF80 = 0;
+        gFlyingCarpetState = FLYING_CARPET_IDLE;
     }
     else
     {
@@ -148,14 +148,14 @@ Gfx *Geo18_802D2520(s32 run, struct GraphNode *node, UNUSED s32 sp88)
         sp58 = (struct Object *) D_8032CFA0;
         if (gMarioObject->platform == sp58)
         {
-            D_8035FF80 = 2;
+            gFlyingCarpetState = FLYING_CARPET_MOVING_WITH_MARIO;
         }
         else
         {
             if (sp58->oForwardVel != 0.0)
-                D_8035FF80 = 1;
+                gFlyingCarpetState = FLYING_CARPET_MOVING_WITHOUT_MARIO;
             else
-                D_8035FF80 = 0;
+                gFlyingCarpetState = FLYING_CARPET_IDLE;
         }
     }
 

@@ -1,5 +1,5 @@
 glabel hoot_geo # 0x0C000018
-   geo_shadow SHADOW_CIRCLE_UNK1, 0xFF, 100
+   geo_shadow SHADOW_CIRCLE_4_VERTS, 0xFF, 100
    geo_open_node
       geo_scale 0x00, 16384
       geo_open_node

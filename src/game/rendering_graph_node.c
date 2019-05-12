@@ -545,7 +545,7 @@ void func_8027CB08(struct GraphNodeShadow *a)
             D_8033AF78[D_8033A770] = sp24;
             if (gShadowAboveWaterOrLava == 1)
                 func_8027B354((void *)VIRTUAL_TO_PHYSICAL(sp94), 4);
-            else if (D_8035FF45 == 1)
+            else if (gMarioOnIceOrCarpet == 1)
                 func_8027B354((void *)VIRTUAL_TO_PHYSICAL(sp94), 5);
             else
                 func_8027B354((void *)VIRTUAL_TO_PHYSICAL(sp94), 6);

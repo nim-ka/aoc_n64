@@ -1,5 +1,5 @@
 glabel black_bobomb_geo # 0x0F0007B8
-   geo_shadow SHADOW_CIRCLE_UNK1, 0xC8, 70
+   geo_shadow SHADOW_CIRCLE_4_VERTS, 0xC8, 70
    geo_open_node
       geo_scale 0x00, 24576
       geo_open_node
@@ -47,7 +47,7 @@ glabel black_bobomb_geo # 0x0F0007B8
    geo_end
 
 glabel bobomb_buddy_geo # 0x0F0008F4
-   geo_shadow SHADOW_CIRCLE_UNK1, 0xC8, 70
+   geo_shadow SHADOW_CIRCLE_4_VERTS, 0xC8, 70
    geo_open_node
       geo_scale 0x00, 24576
       geo_open_node

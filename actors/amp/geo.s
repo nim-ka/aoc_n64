@@ -1,5 +1,5 @@
 glabel amp_geo # 0x0F000028
-   geo_shadow SHADOW_CIRCLE_UNK1, 0xC8, 100
+   geo_shadow SHADOW_CIRCLE_4_VERTS, 0xC8, 100
    geo_open_node
       geo_scale 0x00, 16384
       geo_open_node

@@ -1540,11 +1540,11 @@ gsDPLoadBlock 7, 0, 0, 0x0FF, 0x200
 gsSPDisplayList seg2_dl_0200F038
 gsSPEndDisplayList
 
-seg2_texture_0200F258:
-.incbin "bin/segment2/segment2.0F258.ia8"
+texture_shadow_quarter_circle:
+.incbin "bin/segment2/shadow_quarter_circle.ia8"
 
-seg2_texture_0200F358:
-.incbin "bin/segment2/segment2.0F358.ia8"
+texture_shadow_quarter_square:
+.incbin "bin/segment2/shadow_quarter_square.ia8"
 
 glabel seg2_texture_0200F458
 .incbin "bin/segment2/segment2.0F458.ia8"
@@ -1607,35 +1607,35 @@ glabel seg2_dl_02014508 # 0x02014508 - 0x02014520
 gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
 gsSPEndDisplayList
 
-glabel seg2_dl_02014520 # 0x02014520 - 0x02014548
+glabel dl_shadow_begin
 gsDPPipeSync
 gsSPClearGeometryMode G_LIGHTING | G_CULL_BACK
 gsDPSetCombineMode1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_SHADE, G_ACMUX_0
 gsSPTexture -1, -1, 0, 0, 1
 gsSPEndDisplayList
 
-glabel seg2_dl_02014548 # 0x02014548 - 0x02014590
-gsSPDisplayList seg2_dl_02014520
-gsDPLoadTextureBlock seg2_texture_0200F258, G_IM_FMT_IA, G_IM_SIZ_8b, 16, 16, 0, G_TX_WRAP | G_TX_MIRROR, G_TX_WRAP | G_TX_MIRROR, 4, 4, G_TX_NOLOD, G_TX_NOLOD
+glabel dl_shadow_circle
+gsSPDisplayList dl_shadow_begin
+gsDPLoadTextureBlock texture_shadow_quarter_circle, G_IM_FMT_IA, G_IM_SIZ_8b, 16, 16, 0, G_TX_WRAP | G_TX_MIRROR, G_TX_WRAP | G_TX_MIRROR, 4, 4, G_TX_NOLOD, G_TX_NOLOD
 gsSPEndDisplayList
 
-glabel seg2_dl_02014590 # 0x02014590 - 0x020145D8
-gsSPDisplayList seg2_dl_02014520
-gsDPLoadTextureBlock seg2_texture_0200F358, G_IM_FMT_IA, G_IM_SIZ_8b, 16, 16, 0, G_TX_WRAP | G_TX_MIRROR, G_TX_WRAP | G_TX_MIRROR, 4, 4, G_TX_NOLOD, G_TX_NOLOD
+glabel dl_shadow_square
+gsSPDisplayList dl_shadow_begin
+gsDPLoadTextureBlock texture_shadow_quarter_square, G_IM_FMT_IA, G_IM_SIZ_8b, 16, 16, 0, G_TX_WRAP | G_TX_MIRROR, G_TX_WRAP | G_TX_MIRROR, 4, 4, G_TX_NOLOD, G_TX_NOLOD
 gsSPEndDisplayList
 
-glabel seg2_dl_020145D8 # 0x020145D8 - 0x02014620
+glabel dl_shadow_9_verts # 0x020145D8 - 0x02014620
 gsSP2Triangles  0,  3,  4, 0x0,  0,  4,  1, 0x0
 gsSP2Triangles  1,  4,  2, 0x0,  2,  4,  5, 0x0
 gsSP2Triangles  3,  6,  4, 0x0,  4,  6,  7, 0x0
 gsSP2Triangles  4,  7,  8, 0x0,  4,  8,  5, 0x0
 gsSPEndDisplayList
 
-glabel seg2_dl_02014620 # 0x02014620 - 0x02014638
+glabel dl_shadow_4_verts # 0x02014620 - 0x02014638
 gsSP2Triangles  0,  2,  1, 0x0,  1,  2,  3, 0x0
 gsSPEndDisplayList
 
-glabel seg2_dl_02014638 # 0x02014638 - 0x02014660
+glabel dl_shadow_end # 0x02014638 - 0x02014660
 gsDPPipeSync
 gsSPTexture -1, -1, 0, 0, 0
 gsSPSetGeometryMode G_LIGHTING | G_CULL_BACK

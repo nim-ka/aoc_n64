@@ -253,11 +253,11 @@ void bhv_bob_pit_bowling_ball_init(void)
 
 void bhv_bob_pit_bowling_ball_loop(void)
 {
-    f32 *sp1c;
+    struct FloorGeometry *sp1c;
     UNUSED s16 collisionFlags = ObjectStep();
     
-    func_803814B8(o->oPosX, o->oPosY, o->oPosZ, &sp1c);
-    if ((sp1c[4] == 0) && (sp1c[6] == 0))
+    find_floor_height_and_data(o->oPosX, o->oPosY, o->oPosZ, &sp1c);
+    if ((sp1c->normalX == 0) && (sp1c->normalZ == 0))
         o->oForwardVel = 28.0f;
     
     func_802EDA14();

@@ -1,5 +1,5 @@
 glabel star_geo # 0x16000EA0
-   geo_shadow SHADOW_CIRCLE_UNK1, 0x9B, 100
+   geo_shadow SHADOW_CIRCLE_4_VERTS, 0x9B, 100
    geo_open_node
       geo_scale 0x00, 16384
       geo_open_node

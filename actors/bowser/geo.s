@@ -1,5 +1,5 @@
 glabel bowser_geo_0000D8 # 0x0D0000D8
-   geo_shadow SHADOW_CIRCLE_UNK0, 0x9B, 400
+   geo_shadow SHADOW_CIRCLE_9_VERTS, 0x9B, 400
    geo_open_node
       geo_dl_translated LAYER_OPAQUE, 0, 0, 0, bowser_seg6_dl_06040210
       geo_open_node
@@ -105,7 +105,7 @@ glabel bowser_geo_0000D8 # 0x0D0000D8
    geo_return
 
 glabel bowser_geo_000424 # 0x0D000424
-   geo_shadow SHADOW_CIRCLE_UNK0, 0x9B, 400
+   geo_shadow SHADOW_CIRCLE_9_VERTS, 0x9B, 400
    geo_open_node
 .ifdef VERSION_JP
       geo_dl_translated LAYER_TRANSPARENT, 0, 0, 0, bowser_seg6_dl_06040210

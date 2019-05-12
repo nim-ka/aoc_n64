@@ -15,19 +15,19 @@ void bhv_hoot_init(void)
 //sp28 = arg0
 //sp2c = arg1
 
-f32 HootFindNextFloor(f32 **arg0, f32 arg1)
+f32 HootFindNextFloor(struct FloorGeometry **arg0, f32 arg1)
 {
     f32 sp24 = arg1 * sins(o->oMoveAngleYaw) + o->oPosX;
     UNUSED f32 sp20 = o->oPosY;
     f32 sp1c = arg1 * coss(o->oMoveAngleYaw) + o->oPosZ;
-    f32 floorY = func_803814B8(sp24, 10000.0f, sp1c, arg0);
+    f32 floorY = find_floor_height_and_data(sp24, 10000.0f, sp1c, arg0);
     
     return floorY;
 }
 
 void HootFloorBounce(void)
 {
-    f32 *sp1c;
+    struct FloorGeometry *sp1c;
     f32 floorY;
     
     floorY = HootFindNextFloor(&sp1c, 375.0f);
@@ -46,7 +46,7 @@ void HootFloorBounce(void)
 
 void HootFreeStep(s16 fastOscY, s32 speed)
 {
-    f32 *sp2c;
+    struct FloorGeometry *sp2c;
     s16 yaw = o->oMoveAngleYaw;
     s16 pitch = o->oMoveAnglePitch;
     s16 sp26 = o->header.gfx.unk38.animFrame;
@@ -66,7 +66,7 @@ void HootFreeStep(s16 fastOscY, s32 speed)
         o->oPosY -= o->oVelY + coss((s32)(sp26 * 6553.6)) * 50.0f / 4.0f;
     o->oPosZ += o->oVelZ;
     
-    func_803814B8(o->oPosX, o->oPosY, o->oPosZ, &sp2c);
+    find_floor_height_and_data(o->oPosX, o->oPosY, o->oPosZ, &sp2c);
     if (sp2c == NULL)
     {
         o->oPosX = xPrev;
@@ -116,7 +116,7 @@ void HootCarryStep(s32 speed, UNUSED f32 xPrev, UNUSED f32 zPrev)
 
 void HootSurfaceCollision(f32 xPrev, UNUSED f32 yPrev, f32 zPrev)
 {
-    f32 *sp44;
+    struct FloorGeometry *sp44;
     struct WallCollisionData hitbox;
     f32 floorY;
     
@@ -134,7 +134,7 @@ void HootSurfaceCollision(f32 xPrev, UNUSED f32 yPrev, f32 zPrev)
         gMarioObject->oInteractStatus |= INT_STATUS_MARIO_UNK7; /* bit 7 */
     }
     
-    floorY = func_803814B8(o->oPosX, o->oPosY, o->oPosZ, &sp44);
+    floorY = find_floor_height_and_data(o->oPosX, o->oPosY, o->oPosZ, &sp44);
     if (sp44 == NULL)
     {
         o->oPosX = xPrev;

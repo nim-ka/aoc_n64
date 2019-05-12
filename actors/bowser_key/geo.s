@@ -1,5 +1,5 @@
 glabel bowser_key2_geo # 0x16000A84
-   geo_shadow SHADOW_CIRCLE_UNK1, 0x9B, 300
+   geo_shadow SHADOW_CIRCLE_4_VERTS, 0x9B, 300
    geo_open_node
       geo_scale 0x00, 65536
       geo_open_node

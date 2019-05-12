@@ -131,7 +131,7 @@ glabel peach_geo_000254 # 0x0C000254
    geo_return
 
 glabel peach_geo # 0x0C000410
-   geo_shadow SHADOW_CIRCLE_UNK0, 0x96, 100
+   geo_shadow SHADOW_CIRCLE_9_VERTS, 0x96, 100
    geo_open_node
       geo_scale 0x00, 16384
       geo_open_node
