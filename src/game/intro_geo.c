@@ -160,12 +160,12 @@ Gfx *geo18_fade_transition(u32 sp40, struct GraphNode *sp44, UNUSED u32 sp48)
       {
          if (0) {}
          graphNode->flags = (graphNode->flags & 0xFF) | 0x100;
-         gDPSetRenderMode(displayListIter++, 0x00552048, 0); // TODO mode1 | mode2
+         gDPSetRenderMode(displayListIter++, G_RM_AA_OPA_SURF, G_RM_AA_OPA_SURF2);
       }
       else
       {
          graphNode->flags = (graphNode->flags & 0xFF) | 0x500;
-         gDPSetRenderMode(displayListIter++, 0x005041C8 , 0); // TODO mode1 | mode2
+         gDPSetRenderMode(displayListIter++, G_RM_AA_XLU_SURF, G_RM_AA_XLU_SURF2);
          if (0) {}
       }
       gSPDisplayList(displayListIter++, &intro_seg7_dl_0700C6A0);

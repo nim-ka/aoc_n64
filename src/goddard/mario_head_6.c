@@ -1124,10 +1124,7 @@ void gd_draw_rect(f32 ulx, f32 uly, f32 lrx, f32 lry)
 
     gDPPipeSync(next_gfx());
     gDPSetCycleType(next_gfx(), G_CYC_1CYCLE);
-    // upper 0 0 4 4 =   
-    // lower 2 4 7 8 = G_RM_AA_ZB_OPA_SURF2?
-    // TODO: update mode1, mode2 with constants
-    gDPSetRenderMode(next_gfx(), 0x0044 << 16, 0x2478);
+    gDPSetRenderMode(next_gfx(), G_RM_AA_ZB_OPA_INTER, G_RM_NOOP2);
 }
 
 /* 24BED8 -> 24CAC8; orig name: func_8019D708 */
@@ -1170,8 +1167,7 @@ void gd_draw_border_rect(f32 ulx, f32 uly, f32 lrx, f32 lry)
 
     gDPPipeSync(next_gfx());
     gDPSetCycleType(next_gfx(), G_CYC_1CYCLE);
-    // TODO: update mode1, mode2 with constants
-    gDPSetRenderMode(next_gfx(), 0x0044 << 16, 0x2478);
+    gDPSetRenderMode(next_gfx(), G_RM_AA_ZB_OPA_INTER, G_RM_NOOP2);
 }
 
 /* 24CAC8 -> 24CDB4; orig name: func_8019E2F8 */
@@ -1185,8 +1181,7 @@ void gd_set_fill(struct GdColour *colour)
 
     gDPPipeSync(next_gfx());
     gDPSetCycleType(next_gfx(), G_CYC_FILL);
-    // TODO: update mode1, mode2 with constants
-    gDPSetRenderMode(next_gfx(), 0x0F0A << 16, 0x4000);
+    gDPSetRenderMode(next_gfx(), G_RM_OPA_SURF, G_RM_OPA_SURF2);
     gDPSetFillColor(next_gfx(), FILL_RGBA5551(r,g,b,1));
 }
 
@@ -1983,22 +1978,22 @@ void func_801A1A00(void)
     {
         if (D_801BB184 != 0xff)
         {
-            gDPSetRenderMode(next_gfx(), 0x0050 << 16, 0x49d8);
+            gDPSetRenderMode(next_gfx(), G_RM_AA_ZB_XLU_SURF, G_RM_AA_ZB_XLU_SURF2);
         }
         else
         {
-            gDPSetRenderMode(next_gfx(), 0x0044 << 16, 0x2478);
+            gDPSetRenderMode(next_gfx(), G_RM_AA_ZB_OPA_INTER, G_RM_NOOP2);
         }
     }
     else
     {
         if (D_801BB184 != 0xff)
         {
-            gDPSetRenderMode(next_gfx(), 0x0050 << 16, 0x41c8);
+            gDPSetRenderMode(next_gfx(), G_RM_AA_XLU_SURF, G_RM_AA_XLU_SURF2);
         }
         else
         {
-            gDPSetRenderMode(next_gfx(), 0x0044 << 16, 0x2478);
+            gDPSetRenderMode(next_gfx(), G_RM_AA_ZB_OPA_INTER, G_RM_NOOP2);
         }
     }
 }
@@ -2024,7 +2019,7 @@ void Unknown801A1E70(void)
 {
     gDPPipeSync(next_gfx());
     gDPSetCycleType(next_gfx(), G_CYC_FILL);
-    gDPSetRenderMode(next_gfx(), 0x0F0A << 16, 0x4000);
+    gDPSetRenderMode(next_gfx(), G_RM_OPA_SURF, G_RM_OPA_SURF2);
     gd_set_view_zbuf();
     gDPSetColorImage(
         next_gfx(),
@@ -3395,7 +3390,7 @@ void gd_put_sprite(u16 *sprite, s32 x, s32 y, s32 wx, s32 wy)
 
     gDPPipeSync(next_gfx());
     gDPSetCycleType(next_gfx(), G_CYC_1CYCLE);
-    gDPSetRenderMode(next_gfx(), 0x0044 << 16, 0x2478);
+    gDPSetRenderMode(next_gfx(), G_RM_AA_ZB_OPA_INTER, G_RM_NOOP2);
     gSPTexture(next_gfx(), 0x8000, 0x8000, 0, 0, 0);
 }
 

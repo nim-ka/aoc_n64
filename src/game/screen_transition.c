@@ -72,7 +72,7 @@ static s32 func_802CAF38(s8 a0, u8 a1, struct WarpTransitionData *transData, u8 
     {
         gSPDisplayList(gDisplayListHead++, seg2_dl_02014660)
         gDPSetCombine(gDisplayListHead++, 0xFFFFFF, 0xFFFE793C)
-        gDPSetRenderMode(gDisplayListHead++, 0x005041C8, 0)  // TODO: mode1 | mode2
+        gDPSetRenderMode(gDisplayListHead++, G_RM_AA_XLU_SURF, G_RM_AA_XLU_SURF2)
         gSPVertex(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(verts), 4, 0)
         gSPDisplayList(gDisplayListHead++, seg2_dl_020144F0)
         gSPDisplayList(gDisplayListHead++, seg2_dl_02014698)
@@ -196,12 +196,12 @@ static s32 func_802CB9F8(s8 spBB, s8 spBF, struct WarpTransitionData *transData,
         func_802CB6A0(spA8, spBB, transData, spB0, spAE, spAC, spCB);  // TODO types
         gSPDisplayList(gDisplayListHead++, seg2_dl_02014660)
         gDPSetCombine(gDisplayListHead++, 0xFFFFFF, 0xFFFE793C)
-        gDPSetRenderMode(gDisplayListHead++, 0x00552048, 0)  // TODO: mode1 | mode2
+        gDPSetRenderMode(gDisplayListHead++, G_RM_AA_OPA_SURF, G_RM_AA_OPA_SURF2)
         gSPVertex(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(spA8), 8, 0)
         gSPDisplayList(gDisplayListHead++, seg2_dl_020146C0)
         gDPPipeSync(gDisplayListHead++)
         gDPSetCombine(gDisplayListHead++, 0x127E24, 0xFFFFF3F9)
-        gDPSetRenderMode(gDisplayListHead++, 0x005041C8, 0)  // TODO: mode1 | mode2
+        gDPSetRenderMode(gDisplayListHead++, G_RM_AA_XLU_SURF, G_RM_AA_XLU_SURF2)
         gDPSetTextureFilter(gDisplayListHead++, G_TF_BILERP)
         switch (spCB)
         {

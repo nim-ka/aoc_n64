@@ -2,6 +2,7 @@
 .section .rodata
 .include "macros.inc"
 .include "PR/gbi.inc"
+.include "collision.inc"
 
 initbinid
 actor yellow_sphere_small

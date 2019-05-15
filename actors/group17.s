@@ -2,6 +2,7 @@
 .section .rodata
 .include "macros.inc"
 .include "PR/gbi.inc"
+.include "collision.inc"
 
 initbinid
 actor mr_i_eyeball

@@ -885,8 +885,6 @@ void func_802D8830(s8 *sp20, s16 *sp24)
     {
 #ifdef VERSION_JP
         sp20[0]++;
-#else
-        //sp20[0]++;
 #endif
     }
 
