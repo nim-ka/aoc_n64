@@ -82,17 +82,6 @@ void func_8027B110(struct GraphNodeToggleZBuffer *a)
     struct Struct8032CF10 *sp20 = &renderModeTable[sp24];
     struct Struct8032CF10 *sp1C = &D_8032CF50[sp24];
 
-    /** @bug This is where the LookAt values should be calculated but aren't.
-     * As a result, environment mapping is broken on Fast3DEX2 without the
-     * changes below.
-     */
-#ifdef F3DEX_GBI_2
-    Mtx lMtx;
-    LookAt lookAt;
-    guLookAtReflect(&lMtx, &lookAt, 0, 0, 0, /* eye */ 0, 0, 1, /* at */ 1, 0, 0 /* up */ );
-    gSPLookAt(gDisplayListHead++, &lookAt);
-#endif
-
     if (sp24 != 0)
     {
         gDPPipeSync(gDisplayListHead++);
@@ -122,6 +111,19 @@ void func_8027B110(struct GraphNodeToggleZBuffer *a)
 
 void func_8027B354(void *displayList, s16 b)
 {
+
+/** @bug This is where the LookAt values should be calculated but aren't.
+ * As a result, environment mapping is broken on Fast3DEX2 without the
+ * changes below.
+ */
+
+#ifdef F3DEX_GBI_2
+    Mtx lMtx;
+    LookAt lookAt;
+    guLookAtReflect(&lMtx, &lookAt, 0, 0, 0, /* eye */ 0, 0, 1, /* at */ 1, 0, 0 /* up */ );
+    gSPLookAt(gDisplayListHead++, &lookAt);
+#endif
+
     if (D_8032CF94 != 0)
     {
         struct GraphNodeToggleZBuffer_sub *sp1C = alloc_only_pool_alloc(D_8033B018, sizeof(struct GraphNodeToggleZBuffer_sub));
