@@ -109,7 +109,7 @@ SECTIONS
       BUILD_DIR/src/game/shadow.o(.text);
       BUILD_DIR/src/game/skybox.o(.text);
       BUILD_DIR/src/game/moving_texture.o(.text);
-      BUILD_DIR/src/game/transparent_texture.o(.text);
+      BUILD_DIR/src/game/geo_misc.o(.text);
       BUILD_DIR/src/game/paintings.o(.text);
       BUILD_DIR/src/game/print.o(.text);
       BUILD_DIR/src/game/ingame_menu.o(.text);
@@ -264,7 +264,7 @@ SECTIONS
       BUILD_DIR/src/game/shadow.o(.data*);
       BUILD_DIR/src/game/skybox.o(.data*);
       BUILD_DIR/src/game/moving_texture.o(.data*);
-      BUILD_DIR/src/game/transparent_texture.o(.data*);
+      BUILD_DIR/src/game/geo_misc.o(.data*);
       BUILD_DIR/src/game/paintings.o(.data*);
       BUILD_DIR/src/game/print.o(.data*);
       BUILD_DIR/src/game/ingame_menu.o(.data*);
@@ -323,6 +323,7 @@ SECTIONS
       BUILD_DIR/src/game/shadow.o(.rodata*);
       BUILD_DIR/src/game/skybox.o(.rodata*);
       BUILD_DIR/src/game/moving_texture.o(.rodata*);
+      BUILD_DIR/src/game/geo_misc.o(.rodata*);
       BUILD_DIR/src/game/paintings.o(.rodata*);
       BUILD_DIR/src/game/print.o(.rodata*);
       BUILD_DIR/src/game/ingame_menu.o(.rodata*);
@@ -379,7 +380,7 @@ SECTIONS
       BUILD_DIR/src/game/shadow.o(.bss*);
       BUILD_DIR/src/game/skybox.o(.bss*);
       BUILD_DIR/src/game/moving_texture.o(.bss*);
-      BUILD_DIR/src/game/transparent_texture.o(.bss*);
+      BUILD_DIR/src/game/geo_misc.o(.bss*);
       BUILD_DIR/src/game/paintings.o(.bss*);
       BUILD_DIR/src/game/print.o(.bss*);
       BUILD_DIR/src/game/ingame_menu.o(.bss*);

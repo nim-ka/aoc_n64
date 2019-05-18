@@ -35,8 +35,8 @@ glabel sky_09005800 # 0x09005800
 glabel sky_09006000 # 0x09006000
 .incbin "bin/sky/rr_textures.06000.rgba16"
 
-glabel sky_09006800 # 0x09006800
-.incbin "bin/sky/rr_textures.06800.rgba16"
+glabel texture_metal_hole
+.incbin "bin/sky/metal_hole.rgba16"
 
 glabel sky_09007000 # 0x09007000
 .incbin "bin/sky/rr_textures.07000.rgba16"

@@ -7,7 +7,7 @@
 #include "save_file.h"
 #include "segment2.h"
 #include "level_update.h"
-#include "transparent_texture.h"
+#include "geo_misc.h"
 
 struct Struct8035FF50
 {

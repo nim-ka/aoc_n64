@@ -3436,11 +3436,11 @@ labels:
    - [0x802D1E48, "Geo18_802D1E48"] # TTC
    - [0x802D1FA8, "Geo18_802D1FA8"] # SSL
    - [0x802D2108, "Geo18_802D2108"] # SSL/TTC
-   # transparent_texture
-   - [0x802D2360, "Geo18_802D2360"] # inside castle
-   - [0x802D2470, "Geo18_802D2470"] # RR
-   - [0x802D2520, "Geo18_802D2520"] # RR
-   - [0x802D28CC, "Geo18_802D28CC"] # cake end
+   # geo_misc
+   - [0x802D2360, "geo_exec_inside_castle_light"] # inside castle
+   - [0x802D2470, "geo_exec_flying_carpet_timer_update"] # RR
+   - [0x802D2520, "geo_exec_flying_carpet_create"] # RR
+   - [0x802D28CC, "geo_exec_cake_end_screen"] # cake end
    # print
    - [0x802D3EE4, "Print1"]
    - [0x802D404C, "Print2"]

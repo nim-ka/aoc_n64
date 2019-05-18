@@ -1,5 +1,5 @@
-inside_castle_seg7_texture_07000000: # 0x07000000 - 0x07000800
-.incbin "levels/castle_inside/0.ia16"
+texture_castle_light:
+.incbin "levels/castle_inside/castle_light.ia16"
 
 inside_castle_seg7_texture_07000800: # 0x07000800 - 0x07001000
 .incbin "levels/castle_inside/1.rgba16"

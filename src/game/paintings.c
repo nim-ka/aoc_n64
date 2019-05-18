@@ -7,7 +7,7 @@
 #include "save_file.h"
 #include "engine/surface_collision.h"
 #include "engine/graph_node.h"
-#include "transparent_texture.h"
+#include "geo_misc.h"
 #include "area.h"
 
 struct TextLabel

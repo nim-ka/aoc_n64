@@ -6,7 +6,7 @@
 #include "engine/math_util.h"
 #include "engine/graph_node.h"
 #include "memory.h"
-#include "transparent_texture.h"
+#include "geo_misc.h"
 
 #include "segment2.h"
 

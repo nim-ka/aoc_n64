@@ -34,7 +34,7 @@ vertex   3105,   3021,   5989,    478,    990,  0xFF, 0xFF, 0xFF, 0x91
 vertex   2900,   3277,   5989,    990,      0,  0xFF, 0xFF, 0xFF, 0x91
 
 inside_castle_seg7_dl_070518D8: # 0x070518D8 - 0x070519C8
-gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_16b, 1, inside_castle_seg7_texture_07000000
+gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_16b, 1, texture_castle_light
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex inside_castle_seg7_vertex_070516E8, 16, 0

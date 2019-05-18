@@ -9,7 +9,7 @@ vertex  -3037,  -2848,   3022,    990,    990,  0xFF, 0xFF, 0xFF, 0xFF
 vertex  -3141,  -2768,   2961,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
 
 bitdw_seg7_dl_07002080: # 0x07002080 - 0x070020C8
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, sky_09006800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, texture_metal_hole
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex bitdw_seg7_vertex_07002000, 8, 0

@@ -435,7 +435,7 @@ vertex    320,      0,     -1,   2528,    608,  0xFF, 0xFF, 0xFF, 0xFF
 vertex    320,     20,     -1,   2528,      0,  0xFF, 0xFF, 0xFF, 0xFF
 vertex    240,     20,     -1,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
 
-glabel cake_end_dl_07026400 # 0x07026400 - 0x07027350
+glabel dl_cake_end_screen # 0x07026400 - 0x07027350
 gsDPPipeSync
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 

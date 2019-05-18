@@ -29,7 +29,7 @@ vertex     72,     61,   -763,    990,      0,  0xEB, 0xEB, 0x79, 0xFF
 vertex    700,     75,   -771,    990,      0,  0xEB, 0xEB, 0x79, 0xFF
 
 rr_seg7_dl_0700DDF8: # 0x0700DDF8 - 0x0700DE88
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, sky_09006800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, texture_metal_hole
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex rr_seg7_vertex_0700DC58, 15, 0

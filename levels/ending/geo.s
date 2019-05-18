@@ -5,7 +5,7 @@ glabel ending_geo_000050 # 0x0E000050
       geo_open_node
          geo_todo_09 100
          geo_open_node
-            geo_asm 0, Geo18_802D28CC
+            geo_asm 0, geo_exec_cake_end_screen
          geo_close_node
       geo_close_node
       geo_zbuffer 1

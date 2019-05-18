@@ -20,7 +20,7 @@ vertex   -101,   -460,   1178,    990,      0,  0x00, 0x00, 0x7F, 0x60
 vertex   -562,   -858,   1178,      0,    990,  0x00, 0x00, 0x7F, 0x60
 
 inside_castle_seg7_dl_0705E3E8: # 0x0705E3E8 - 0x0705E450
-gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_16b, 1, inside_castle_seg7_texture_07000000
+gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_16b, 1, texture_castle_light
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPLight inside_castle_seg7_light_0705E318, 1

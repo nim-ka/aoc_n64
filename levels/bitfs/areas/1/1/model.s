@@ -13,7 +13,7 @@ vertex  -3173,   3543,   -646,    990,    990,  0xFF, 0xFF, 0xFF, 0xFF
 vertex  -3276,   3543,   -646,      0,    990,  0xFF, 0xFF, 0xFF, 0xFF
 
 bitfs_seg7_dl_070020C0: # 0x070020C0 - 0x07002118
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, sky_09006800
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, texture_metal_hole
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex bitfs_seg7_vertex_07002000, 12, 0

@@ -2,7 +2,7 @@
 #include <math.h>
 
 #include "sm64.h"
-#include "segment2.h"
+#include "shadow.h"
 
 #include "area.h"
 #include "engine/graph_node.h"
@@ -13,9 +13,9 @@
 #include "memory.h"
 #include "rendering_graph_node.h"
 #include "room.h"
+#include "segment2.h"
 #include "save_file.h"
-#include "shadow.h"
-#include "transparent_texture.h"
+#include "geo_misc.h"
 
 /**
  * @file shadow.c

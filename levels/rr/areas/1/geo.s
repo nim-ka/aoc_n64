@@ -14,8 +14,8 @@ glabel rr_geo_0009D0 # 0x0E0009D0
          geo_open_node
             geo_todo_0F 14, 0, 2000, 6000, 0, 0, -8000, Geo0F_80287D30
             geo_open_node
-               geo_asm 0, Geo18_802D2470
-               geo_display_list LAYER_ALPHA, rr_seg7_dl_07002168
+               geo_asm 0, geo_exec_flying_carpet_timer_update
+               geo_display_list LAYER_ALPHA, dl_cruiser_metal_holes
                geo_render_obj
                geo_asm 0, geo_exec_level
             geo_close_node

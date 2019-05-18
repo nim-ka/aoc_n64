@@ -24,7 +24,7 @@
 #include "interaction.h"
 #include "object_list_processor.h"
 #include "spawn_sound.h"
-#include "transparent_texture.h"
+#include "geo_misc.h"
 #include "save_file.h"
 #include "room.h"
 

@@ -3764,10 +3764,10 @@ labels:
    - [0x802D1368, "Geo18_802D1E48"] # TTC
    - [0x802D14C8, "Geo18_802D1FA8"] # SSL
    - [0x802D1628, "Geo18_802D2108"] # SSL/TTC
-   - [0x802D1880, "Geo18_802D2360"] # inside castle
-   - [0x802D1990, "Geo18_802D2470"] # RR
-   - [0x802D1A40, "Geo18_802D2520"] # RR
-   - [0x802D1DEC, "Geo18_802D28CC"] # cake end
+   - [0x802D1880, "geo_exec_inside_castle_light"] # inside castle
+   - [0x802D1990, "geo_exec_flying_carpet_timer_update"] # RR
+   - [0x802D1A40, "geo_exec_flying_carpet_create"] # RR
+   - [0x802D1DEC, "geo_exec_cake_end_screen"] # cake end
    - [0x802D3404, "Print1"]
    - [0x802D356C, "Print2"]
    - [0x802D50B8, "Geo18_802D5B98"] # TTM/HMC/inside castle
