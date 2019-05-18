@@ -70,7 +70,7 @@
         exit_and_execute 0x14, _introSegmentRomStart, _introSegmentRomEnd, level_intro_entry_error_screen
  *
  * Finally, add the following to the top of levels/intro/geo.s:
-    glabel intro_geo_error_screen # 0x0E0002D0
+    glabel intro_geo_error_screen
         geo_node_screen_area 0, 160, 120, 160, 120
         geo_open_node
             geo_zbuffer 0
@@ -107,6 +107,7 @@
 #define REQUIRED_MIN_MEM_SIZE 1048576 * 8
 
 u8 gNotEnoughMemory = FALSE;
+u8 gDelayForErrorMessage = 0;
 
 u8 does_pool_end_lie_out_of_bounds(void *end)
 {
@@ -141,25 +142,30 @@ Gfx *geo18_display_error_message(u32 run, UNUSED struct GraphNode *sp44, UNUSED 
 {
    if (run)
    {
-      // Draw color text title.
-      print_text(10, 210, "ERROR    Need more memory");
+      if(gDelayForErrorMessage > 0)
+      {
+          // Draw color text title.
+          print_text(10, 210, "ERROR    Need more memory");
       
-      // Init generic text rendering
-      dl_add_new_ortho_matrix();
-      gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED00);
-      gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED68);
-      gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
-      
-      // Set text color to white
-      gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
-      
-      PrintGenericText(8, 170, text_console_8mb);
-      PrintGenericText(8, 120, text_pj64);
-      PrintGenericText(8, 54, text_pj64_2);
-      
-      // Cleanup
-      gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
-      gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+          // Init generic text rendering
+          dl_add_new_ortho_matrix();
+          gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68); // Init rendering stuff for generic text
+          
+          // Set text color to white
+          gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
+          
+          PrintGenericText(8, 170, text_console_8mb);
+          PrintGenericText(8, 120, text_pj64);
+          PrintGenericText(8, 54, text_pj64_2);
+          
+          // Cleanup
+          gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED68); // Reset back to default render settings.
+          gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+      }
+      else
+      {
+          gDelayForErrorMessage += 1;
+      }
    }
    
    return 0;
