@@ -93,11 +93,11 @@ float D_8032FFDC = 0.0f;
 s32 D_8032FFE0 = 0;
 u8 *D_8032FFE4[] =
 {
-    seg2_texture_02011C58,
-    seg2_texture_02013458,
-    seg2_texture_02012458,
-    seg2_texture_02012C58,
-    seg2_texture_02013C58,
+    texture_waterbox_water,
+    texture_waterbox_mist,
+    texture_waterbox_jrb_water,
+    texture_waterbox_unknown_water,
+    texture_waterbox_lava,
     ssl_seg7_texture_07004018,
     ssl_seg7_texture_07001000,
     ttc_seg7_texture_07015F90
@@ -108,18 +108,18 @@ struct Struct802D0DD4 D_80330004[] =
     {0x00000801, 0x00000006, 0x00000008, ssl_seg7_arr_07028760, ssl_seg7_dl_070286A0, ssl_seg7_dl_07028718, ssl_seg7_dl_070287B8, 0xff, 0xff, 0xff, 0xff, 0x00000007},
     {0x00000802, 0x00000006, 0x00000008, ssl_seg7_arr_070287F0, ssl_seg7_dl_070285F0, ssl_seg7_dl_07028660, ssl_seg7_dl_070287B8, 0xff, 0xff, 0xff, 0xff, 0x00000003},
     {0x00000803, 0x00000006, 0x00000006, ssl_seg7_arr_07028844, ssl_seg7_dl_070286A0, ssl_seg7_dl_07028718, ssl_seg7_dl_07028888, 0xff, 0xff, 0xff, 0xff, 0x00000007},
-    {0x00001601, 0x00000000, 0x0000000f, castle_grounds_seg7_arr_07010E98, seg2_dl_02014790, seg2_dl_02014810, castle_grounds_seg7_dl_07010F30, 0xff, 0xff, 0xff, 0xb4, 0x00000007},
-    {0x00001901, 0x00000004, 0x00000004, bitfs_seg7_arr_07015AF0, seg2_dl_02014790, seg2_dl_02014810, bitfs_seg7_dl_07015BA8, 0xff, 0xff, 0xff, 0xff, 0x00000001},
-    {0x00001902, 0x00000004, 0x00000004, bitfs_seg7_arr_07015B1C, seg2_dl_02014790, seg2_dl_02014810, bitfs_seg7_dl_07015BA8, 0xff, 0xff, 0xff, 0xb4, 0x00000005},
-    {0x00001903, 0x00000004, 0x00000009, bitfs_seg7_arr_07015B48, seg2_dl_02014790, seg2_dl_02014810, bitfs_seg7_dl_07015BC0, 0xff, 0xff, 0xff, 0xb4, 0x00000005},
-    {0x00002201, 0x00000004, 0x00000009, lll_seg7_arr_0702874C, seg2_dl_02014790, seg2_dl_02014810, lll_seg7_dl_070287A8, 0xff, 0xff, 0xff, 0xc8, 0x00000005},
-    {0x00002202, 0x00000004, 0x00000010, lll_seg7_arr_07028820, seg2_dl_02014790, seg2_dl_02014810, lll_seg7_dl_070288C8, 0xff, 0xff, 0xff, 0xb4, 0x00000007},
+    {0x00001601, 0x00000000, 0x0000000f, castle_grounds_seg7_arr_07010E98, dl_waterbox_rgba16_begin, dl_waterbox_end, castle_grounds_seg7_dl_07010F30, 0xff, 0xff, 0xff, 0xb4, 0x00000007},
+    {0x00001901, 0x00000004, 0x00000004, bitfs_seg7_arr_07015AF0, dl_waterbox_rgba16_begin, dl_waterbox_end, bitfs_seg7_dl_07015BA8, 0xff, 0xff, 0xff, 0xff, 0x00000001},
+    {0x00001902, 0x00000004, 0x00000004, bitfs_seg7_arr_07015B1C, dl_waterbox_rgba16_begin, dl_waterbox_end, bitfs_seg7_dl_07015BA8, 0xff, 0xff, 0xff, 0xb4, 0x00000005},
+    {0x00001903, 0x00000004, 0x00000009, bitfs_seg7_arr_07015B48, dl_waterbox_rgba16_begin, dl_waterbox_end, bitfs_seg7_dl_07015BC0, 0xff, 0xff, 0xff, 0xb4, 0x00000005},
+    {0x00002201, 0x00000004, 0x00000009, lll_seg7_arr_0702874C, dl_waterbox_rgba16_begin, dl_waterbox_end, lll_seg7_dl_070287A8, 0xff, 0xff, 0xff, 0xc8, 0x00000005},
+    {0x00002202, 0x00000004, 0x00000010, lll_seg7_arr_07028820, dl_waterbox_rgba16_begin, dl_waterbox_end, lll_seg7_dl_070288C8, 0xff, 0xff, 0xff, 0xb4, 0x00000007},
     {0x00002801, 0x00000000, 0x0000000e, cotmc_seg7_arr_0700BED0, cotmc_seg7_dl_0700BE10, cotmc_seg7_dl_0700BE88, cotmc_seg7_dl_0700BF60, 0xff, 0xff, 0xff, 0xb4, 0x00000007},
-    {0x00003601, 0x00000000, 0x00000006, ttm_seg7_arr_07017134, seg2_dl_02014790, seg2_dl_02014810, ttm_seg7_dl_07017260, 0xff, 0xff, 0xff, 0xb4, 0x00000005},
-    {0x00003602, 0x00000000, 0x00000006, ttm_seg7_arr_070171A0, seg2_dl_02014790, seg2_dl_02014810, ttm_seg7_dl_07017260, 0xff, 0xff, 0xff, 0xb4, 0x00000005},
-    {0x00003603, 0x00000000, 0x00000004, ttm_seg7_arr_07017174, seg2_dl_02014790, seg2_dl_02014810, ttm_seg7_dl_07017288, 0xff, 0xff, 0xff, 0xb4, 0x00000007},
-    {0x00003604, 0x00000000, 0x00000004, ttm_seg7_arr_070171E0, seg2_dl_02014790, seg2_dl_02014810, ttm_seg7_dl_07017288, 0xff, 0xff, 0xff, 0xb4, 0x00000007},
-    {0x00003605, 0x00000000, 0x00000008, ttm_seg7_arr_0701720C, seg2_dl_02014790, seg2_dl_02014810, ttm_seg7_dl_070172A0, 0xff, 0xff, 0xff, 0xb4, 0x00000007},
+    {0x00003601, 0x00000000, 0x00000006, ttm_seg7_arr_07017134, dl_waterbox_rgba16_begin, dl_waterbox_end, ttm_seg7_dl_07017260, 0xff, 0xff, 0xff, 0xb4, 0x00000005},
+    {0x00003602, 0x00000000, 0x00000006, ttm_seg7_arr_070171A0, dl_waterbox_rgba16_begin, dl_waterbox_end, ttm_seg7_dl_07017260, 0xff, 0xff, 0xff, 0xb4, 0x00000005},
+    {0x00003603, 0x00000000, 0x00000004, ttm_seg7_arr_07017174, dl_waterbox_rgba16_begin, dl_waterbox_end, ttm_seg7_dl_07017288, 0xff, 0xff, 0xff, 0xb4, 0x00000007},
+    {0x00003604, 0x00000000, 0x00000004, ttm_seg7_arr_070171E0, dl_waterbox_rgba16_begin, dl_waterbox_end, ttm_seg7_dl_07017288, 0xff, 0xff, 0xff, 0xb4, 0x00000007},
+    {0x00003605, 0x00000000, 0x00000008, ttm_seg7_arr_0701720C, dl_waterbox_rgba16_begin, dl_waterbox_end, ttm_seg7_dl_070172A0, 0xff, 0xff, 0xff, 0xb4, 0x00000007},
     {0x00000000, 0x00000000, 0x00000000, NULL,       NULL,             NULL,             NULL,       0x00, 0x00, 0x00, 0x00, 0x00000000},
 };
 
@@ -291,7 +291,7 @@ Gfx *func_802CF9A4(s16 y, struct Struct802CF9A4 *b)
         D_8035FF70 = sp74;
     }
     gSPVertex(sp68++, 0x80000000 + (u32)verts, 4, 0)
-    gSPDisplayList(sp68++, seg2_dl_020144F0)
+    gSPDisplayList(sp68++, dl_draw_quad_verts_0123)
     gSPEndDisplayList(sp68)
     return sp6C;
 }
@@ -400,16 +400,16 @@ void func_802D0448(u32 a, Gfx **b)
     switch (a)
     {
     case 1794:
-        gSPDisplayList((*b)++, seg2_dl_020147D0)
+        gSPDisplayList((*b)++, dl_waterbox_ia16_begin)
         break;
     case 2129:
-        gSPDisplayList((*b)++, seg2_dl_020147D0)
+        gSPDisplayList((*b)++, dl_waterbox_ia16_begin)
         break;
     case 4613:
-        gSPDisplayList((*b)++, seg2_dl_020147D0)
+        gSPDisplayList((*b)++, dl_waterbox_ia16_begin)
         break;
     default:
-        gSPDisplayList((*b)++, seg2_dl_02014790)
+        gSPDisplayList((*b)++, dl_waterbox_rgba16_begin)
         break;
     }
 }
@@ -475,7 +475,7 @@ Gfx *Geo18_802D104C(s32 run, struct GraphNode *node, UNUSED f32 mtx[4][4])
             if (sp3C != NULL)
                 gSPDisplayList(sp40++, VIRTUAL_TO_PHYSICAL(sp3C));
         }
-        gSPDisplayList(sp40++, seg2_dl_02014810);
+        gSPDisplayList(sp40++, dl_waterbox_end);
         gSPEndDisplayList(sp40);
     }
     return sp44;

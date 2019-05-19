@@ -64,10 +64,10 @@ enum MenuButtonTypes {
 
 extern Gfx main_menu_seg7_dl_070073A0[];
 extern Gfx main_menu_seg7_dl_070073B8[];
-extern Gfx seg2_dl_0200ED00[];
-extern Gfx seg2_dl_0200ED68[];
-extern Gfx seg2_dl_0200EE68[];
-extern Gfx seg2_dl_0200EEF0[];
+extern Gfx dl_rgba16_text_begin[];
+extern Gfx dl_rgba16_text_end[];
+extern Gfx dl_ia8_text_begin[];
+extern Gfx dl_ia8_text_end[];
 extern Gfx main_menu_seg7_dl_0700D108[];
 extern Gfx main_menu_seg7_dl_0700D160[];
 extern u8 seg2_level_name_table[];

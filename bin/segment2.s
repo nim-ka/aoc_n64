@@ -3,1134 +3,1122 @@
 .include "macros.inc"
 .include "PR/gbi.inc"
 
-seg2_texture_02000000:
+texture_colorful_num_0:
 .incbin "bin/segment2/segment2.00000.rgba16"
 
-seg2_texture_02000200:
+texture_colorful_num_1:
 .incbin "bin/segment2/segment2.00200.rgba16"
 
-seg2_texture_02000400:
+texture_colorful_num_2:
 .incbin "bin/segment2/segment2.00400.rgba16"
 
-seg2_texture_02000600:
+texture_colorful_num_3:
 .incbin "bin/segment2/segment2.00600.rgba16"
 
-seg2_texture_02000800:
+texture_colorful_num_4:
 .incbin "bin/segment2/segment2.00800.rgba16"
 
-seg2_texture_02000A00:
+texture_colorful_num_5:
 .incbin "bin/segment2/segment2.00A00.rgba16"
 
-seg2_texture_02000C00:
+texture_colorful_num_6:
 .incbin "bin/segment2/segment2.00C00.rgba16"
 
-seg2_texture_02000E00:
+texture_colorful_num_7:
 .incbin "bin/segment2/segment2.00E00.rgba16"
 
-seg2_texture_02001000:
+texture_colorful_num_8:
 .incbin "bin/segment2/segment2.01000.rgba16"
 
-seg2_texture_02001200:
+texture_colorful_num_9:
 .incbin "bin/segment2/segment2.01200.rgba16"
 
-seg2_texture_02001400:
+texture_colorful_char_A:
 .incbin "bin/segment2/segment2.01400.rgba16"
 
-seg2_texture_02001600:
+texture_colorful_char_B:
 .incbin "bin/segment2/segment2.01600.rgba16"
 
-seg2_texture_02001800:
+texture_colorful_char_C:
 .incbin "bin/segment2/segment2.01800.rgba16"
 
-seg2_texture_02001A00:
+texture_colorful_char_D:
 .incbin "bin/segment2/segment2.01A00.rgba16"
 
-seg2_texture_02001C00:
+texture_colorful_char_E:
 .incbin "bin/segment2/segment2.01C00.rgba16"
 
-seg2_texture_02001E00:
+texture_colorful_char_F:
 .incbin "bin/segment2/segment2.01E00.rgba16"
 
-seg2_texture_02002000:
+texture_colorful_char_G:
 .incbin "bin/segment2/segment2.02000.rgba16"
 
-seg2_texture_02002200:
+texture_colorful_char_H:
 .incbin "bin/segment2/segment2.02200.rgba16"
 
-seg2_texture_02002400:
+texture_colorful_char_I:
 .incbin "bin/segment2/segment2.02400.rgba16"
 
 .ifdef VERSION_JP
-seg2_texture_02002600:
+texture_colorful_char_J:
 .incbin "bin/segment2/segment2.02600.rgba16"
 .endif
 
-seg2_texture_02002800:
+texture_colorful_char_K:
 .incbin "bin/segment2/segment2.02800.rgba16"
 
-seg2_texture_02002A00:
+texture_colorful_char_L:
 .incbin "bin/segment2/segment2.02A00.rgba16"
 
-seg2_texture_02002C00:
+texture_colorful_char_M:
 .incbin "bin/segment2/segment2.02C00.rgba16"
 
-seg2_texture_02002E00:
+texture_colorful_char_N:
 .incbin "bin/segment2/segment2.02E00.rgba16"
 
-seg2_texture_02003000:
+texture_colorful_char_O:
 .incbin "bin/segment2/segment2.03000.rgba16"
 
-seg2_texture_02003200:
+texture_colorful_char_P:
 .incbin "bin/segment2/segment2.03200.rgba16"
 
 .ifdef VERSION_JP
-seg2_texture_02003400:
+texture_colorful_char_Q:
 .incbin "bin/segment2/segment2.03400.rgba16"
 .endif
 
-seg2_texture_02003600:
+texture_colorful_char_R:
 .incbin "bin/segment2/segment2.03600.rgba16"
 
-seg2_texture_02003800:
+texture_colorful_char_S:
 .incbin "bin/segment2/segment2.03800.rgba16"
 
-seg2_texture_02003A00:
+texture_colorful_char_T:
 .incbin "bin/segment2/segment2.03A00.rgba16"
 
-seg2_texture_02003C00:
+texture_colorful_char_U:
 .incbin "bin/segment2/segment2.03C00.rgba16"
 
 .ifdef VERSION_JP
-seg2_texture_02003E00:
+texture_colorful_char_V:
 .incbin "bin/segment2/segment2.03E00.rgba16"
 .endif
 
-seg2_texture_02004000:
+texture_colorful_char_W:
 .incbin "bin/segment2/segment2.04000.rgba16"
 
 .ifdef VERSION_JP
-seg2_texture_02004200:
+texture_colorful_char_X:
 .incbin "bin/segment2/segment2.04200.rgba16"
 .endif
 
-seg2_texture_02004400:
+texture_colorful_char_Y:
 .incbin "bin/segment2/segment2.04400.rgba16"
 
 .ifdef VERSION_JP
-seg2_texture_02004600:
+texture_colorful_char_Z:
 .incbin "bin/segment2/segment2.04600.rgba16"
 .endif
 
-seg2_texture_02004800:
+texture_colorful_char_apostrophe:
 .incbin "bin/segment2/segment2.04800.rgba16"
 
-seg2_texture_02004A00:
+texture_colorful_char_double_quote:
 .incbin "bin/segment2/segment2.04A00.rgba16"
 
 .ifdef VERSION_JP
-seg2_texture_02004C00:
+texture_colorful_char_exclamation:
 .incbin "bin/segment2/segment2.04C00.rgba16" # JP !
 .endif
 
 .ifdef VERSION_JP
-seg2_texture_02004E00:
+texture_colorful_char_double_exclamation:
 .incbin "bin/segment2/segment2.04E00.rgba16" # JP !!
 .endif
 
 .ifdef VERSION_JP
-seg2_texture_02005000:
+texture_colorful_char_question:
 .incbin "bin/segment2/segment2.05000.rgba16" # JP ?
 .endif
 
 .ifdef VERSION_JP
-seg2_texture_02005200:
+texture_colorful_char_ampersand:
 .incbin "bin/segment2/segment2.05200.rgba16" # JP &
 .endif
 
 .ifdef VERSION_JP
-seg2_texture_02005400:
+texture_colorful_char_percent:
 .incbin "bin/segment2/segment2.05400.rgba16" # JP %
 .endif
 
-seg2_texture_02005600:
+texture_colorful_char_multiply:
 .incbin "bin/segment2/segment2.05600.rgba16"
 
-seg2_texture_02005800:
+texture_colorful_char_coin:
 .incbin "bin/segment2/segment2.05800.rgba16"
 
-seg2_texture_02005A00:
+texture_colorful_char_mario_head:
 .incbin "bin/segment2/segment2.05A00.rgba16"
 
-seg2_texture_02005C00:
+texture_colorful_char_star:
 .incbin "bin/segment2/segment2.05C00.rgba16"
 
 .ifdef VERSION_JP
-seg2_texture_02005E00:
+texture_colorful_char_decimal_point:
 .incbin "bin/segment2/segment2.05E00.rgba16"
 .endif
 
 .ifdef VERSION_JP
-seg2_texture_02006000:
+texture_colorful_char_beta_key:
 .incbin "bin/segment2/segment2.06000.rgba16"
 .endif
 
-seg2_texture_02006200:
+texture_credits_num_3:
 .incbin "bin/segment2/segment2.06200.rgba16"
 
-seg2_texture_02006280:
+texture_credits_num_4:
 .incbin "bin/segment2/segment2.06280.rgba16"
 
-seg2_texture_02006300:
+texture_credits_num_6:
 .incbin "bin/segment2/segment2.06300.rgba16"
 
-seg2_texture_02006380:
+texture_credits_char_A:
 .incbin "bin/segment2/segment2.06380.rgba16"
 
-seg2_texture_02006400:
+texture_credits_char_B:
 .incbin "bin/segment2/segment2.06400.rgba16"
 
-seg2_texture_02006480:
+texture_credits_char_C:
 .incbin "bin/segment2/segment2.06480.rgba16"
 
-seg2_texture_02006500:
+texture_credits_char_D:
 .incbin "bin/segment2/segment2.06500.rgba16"
 
-seg2_texture_02006580:
+texture_credits_char_E:
 .incbin "bin/segment2/segment2.06580.rgba16"
 
-seg2_texture_02006600:
+texture_credits_char_F:
 .incbin "bin/segment2/segment2.06600.rgba16"
 
-seg2_texture_02006680:
+texture_credits_char_G:
 .incbin "bin/segment2/segment2.06680.rgba16"
 
-seg2_texture_02006700:
+texture_credits_char_H:
 .incbin "bin/segment2/segment2.06700.rgba16"
 
-seg2_texture_02006780:
+texture_credits_char_I:
 .incbin "bin/segment2/segment2.06780.rgba16"
 
-seg2_texture_02006800:
+texture_credits_char_J:
 .incbin "bin/segment2/segment2.06800.rgba16"
 
-seg2_texture_02006880:
+texture_credits_char_K:
 .incbin "bin/segment2/segment2.06880.rgba16"
 
-seg2_texture_02006900:
+texture_credits_char_L:
 .incbin "bin/segment2/segment2.06900.rgba16"
 
-seg2_texture_02006980:
+texture_credits_char_M:
 .incbin "bin/segment2/segment2.06980.rgba16"
 
-seg2_texture_02006A00:
+texture_credits_char_N:
 .incbin "bin/segment2/segment2.06A00.rgba16"
 
-seg2_texture_02006A80:
+texture_credits_char_O:
 .incbin "bin/segment2/segment2.06A80.rgba16"
 
-seg2_texture_02006B00:
+texture_credits_char_P:
 .incbin "bin/segment2/segment2.06B00.rgba16"
 
-seg2_texture_02006B80:
+texture_credits_char_Q:
 .incbin "bin/segment2/segment2.06B80.rgba16"
 
-seg2_texture_02006C00:
+texture_credits_char_R:
 .incbin "bin/segment2/segment2.06C00.rgba16"
 
-seg2_texture_02006C80:
+texture_credits_char_S:
 .incbin "bin/segment2/segment2.06C80.rgba16"
 
-seg2_texture_02006D00:
+texture_credits_char_T:
 .incbin "bin/segment2/segment2.06D00.rgba16"
 
-seg2_texture_02006D80:
+texture_credits_char_U:
 .incbin "bin/segment2/segment2.06D80.rgba16"
 
-seg2_texture_02006E00:
+texture_credits_char_V:
 .incbin "bin/segment2/segment2.06E00.rgba16"
 
-seg2_texture_02006E80:
+texture_credits_char_W:
 .incbin "bin/segment2/segment2.06E80.rgba16"
 
-seg2_texture_02006F00:
+texture_credits_char_X:
 .incbin "bin/segment2/segment2.06F00.rgba16"
 
-seg2_texture_02006F80:
+texture_credits_char_Y:
 .incbin "bin/segment2/segment2.06F80.rgba16"
 
-seg2_texture_02007000:
+texture_credits_char_Z:
 .incbin "bin/segment2/segment2.07000.rgba16"
 
-seg2_texture_02007080:
+texture_credits_char_period:
 .incbin "bin/segment2/segment2.07080.rgba16"
 
 .ifdef VERSION_JP # JP Small Font
-seg2_texture_02007100:
+texture_dialog_jp_0:
     .incbin "bin/segment2/segment2.07100.ia1"
     
-seg2_texture_02007110:
+texture_dialog_jp_1:
     .incbin "bin/segment2/segment2.07110.ia1"
     
-seg2_texture_02007120:
+texture_dialog_jp_2:
     .incbin "bin/segment2/segment2.07120.ia1"
     
-seg2_texture_02007130:
+texture_dialog_jp_3:
     .incbin "bin/segment2/segment2.07130.ia1"
     
-seg2_texture_02007140:
+texture_dialog_jp_4:
     .incbin "bin/segment2/segment2.07140.ia1"
     
-seg2_texture_02007150:
+texture_dialog_jp_5:
     .incbin "bin/segment2/segment2.07150.ia1"
     
-seg2_texture_02007160:
+texture_dialog_jp_6:
     .incbin "bin/segment2/segment2.07160.ia1"
     
-seg2_texture_02007170:
+texture_dialog_jp_7:
     .incbin "bin/segment2/segment2.07170.ia1"
     
-seg2_texture_02007180:
+texture_dialog_jp_8:
     .incbin "bin/segment2/segment2.07180.ia1"
     
-seg2_texture_02007190:
+texture_dialog_jp_9:
     .incbin "bin/segment2/segment2.07190.ia1"
     
-seg2_texture_020071A0:
+texture_dialog_jp_A:
     .incbin "bin/segment2/segment2.071A0.ia1"
     
-seg2_texture_020071B0:
+texture_dialog_jp_B:
     .incbin "bin/segment2/segment2.071B0.ia1"
     
-seg2_texture_020071C0:
+texture_dialog_jp_C:
     .incbin "bin/segment2/segment2.071C0.ia1"
     
-seg2_texture_020071D0:
+texture_dialog_jp_D:
     .incbin "bin/segment2/segment2.071D0.ia1"
     
-seg2_texture_020071E0:
+texture_dialog_jp_E:
     .incbin "bin/segment2/segment2.071E0.ia1"
     
-seg2_texture_020071F0:
+texture_dialog_jp_F:
     .incbin "bin/segment2/segment2.071F0.ia1"
     
-seg2_texture_02007200:
+texture_dialog_jp_G:
     .incbin "bin/segment2/segment2.07200.ia1"
     
-seg2_texture_02007210:
+texture_dialog_jp_H:
     .incbin "bin/segment2/segment2.07210.ia1"
     
-seg2_texture_02007220:
+texture_dialog_jp_I:
     .incbin "bin/segment2/segment2.07220.ia1"
     
-seg2_texture_02007230:
+texture_dialog_jp_J:
     .incbin "bin/segment2/segment2.07230.ia1"
     
-seg2_texture_02007240:
+texture_dialog_jp_K:
     .incbin "bin/segment2/segment2.07240.ia1"
     
-seg2_texture_02007250:
+texture_dialog_jp_L:
     .incbin "bin/segment2/segment2.07250.ia1"
     
-seg2_texture_02007260:
+texture_dialog_jp_M:
     .incbin "bin/segment2/segment2.07260.ia1"
     
-seg2_texture_02007270:
+texture_dialog_jp_N:
     .incbin "bin/segment2/segment2.07270.ia1"
     
-seg2_texture_02007280:
+texture_dialog_jp_O:
     .incbin "bin/segment2/segment2.07280.ia1"
     
-seg2_texture_02007290:
+texture_dialog_jp_P:
     .incbin "bin/segment2/segment2.07290.ia1"
     
-seg2_texture_020072A0:
+texture_dialog_jp_Q:
     .incbin "bin/segment2/segment2.072A0.ia1"
     
-seg2_texture_020072B0:
+texture_dialog_jp_R:
     .incbin "bin/segment2/segment2.072B0.ia1"
     
-seg2_texture_020072C0:
+texture_dialog_jp_S:
     .incbin "bin/segment2/segment2.072C0.ia1"
     
-seg2_texture_020072D0:
+texture_dialog_jp_T:
     .incbin "bin/segment2/segment2.072D0.ia1"
     
-seg2_texture_020072E0:
+texture_dialog_jp_U:
     .incbin "bin/segment2/segment2.072E0.ia1"
     
-seg2_texture_020072F0:
+texture_dialog_jp_V:
     .incbin "bin/segment2/segment2.072F0.ia1"
     
-seg2_texture_02007300:
+texture_dialog_jp_W:
     .incbin "bin/segment2/segment2.07300.ia1"
     
-seg2_texture_02007310:
+texture_dialog_jp_X:
     .incbin "bin/segment2/segment2.07310.ia1"
     
-seg2_texture_02007320:
+texture_dialog_jp_Y:
     .incbin "bin/segment2/segment2.07320.ia1"
     
-seg2_texture_02007330:
+texture_dialog_jp_Z:
     .incbin "bin/segment2/segment2.07330.ia1"
     
-seg2_texture_02007340:
+texture_dialog_jp_long_vowel:
     .incbin "bin/segment2/segment2.07340.ia1"
     
-seg2_texture_02007350:
+texture_dialog_jp_exclamation:
     .incbin "bin/segment2/segment2.07350.ia1"
     
-seg2_texture_02007360:
+texture_dialog_jp_dakuten:
     .incbin "bin/segment2/segment2.07360.ia1"
     
-seg2_texture_02007370:
+texture_dialog_jp_handakuten:
     .incbin "bin/segment2/segment2.07370.ia1"
     
-seg2_texture_02007380:
+texture_dialog_jp_percent:
     .incbin "bin/segment2/segment2.07380.ia1"
     
-seg2_texture_02007390:
+texture_dialog_jp_question:
     .incbin "bin/segment2/segment2.07390.ia1"
     
-seg2_texture_020073A0:
+texture_dialog_jp_left_right_arrow:
     .incbin "bin/segment2/segment2.073A0.ia1"
     
-seg2_texture_020073B0:
+texture_dialog_jp_open_parentheses:
     .incbin "bin/segment2/segment2.073B0.ia1"
     
-seg2_texture_020073C0:
+texture_dialog_jp_close_open_parentheses:
     .incbin "bin/segment2/segment2.073C0.ia1"
     
-seg2_texture_020073D0:
+texture_dialog_jp_close_parentheses:
     .incbin "bin/segment2/segment2.073D0.ia1"
     
-seg2_texture_020073E0:
+texture_dialog_jp_coin:
     .incbin "bin/segment2/segment2.073E0.ia1"
     
-seg2_texture_020073F0:
+texture_dialog_jp_multiply:
     .incbin "bin/segment2/segment2.073F0.ia1"
     
-seg2_texture_02007400:
+texture_dialog_jp_star_filled:
     .incbin "bin/segment2/segment2.07400.ia1"
     
-seg2_texture_02007410:
+texture_dialog_jp_star_hollow:
     .incbin "bin/segment2/segment2.07410.ia1"
     
-seg2_texture_02007420:
+texture_dialog_jp_hiragana_a:
     .incbin "bin/segment2/segment2.07420.ia1"
     
-seg2_texture_02007430:
+texture_dialog_jp_hiragana_i:
     .incbin "bin/segment2/segment2.07430.ia1"
     
-seg2_texture_02007440:
+texture_dialog_jp_hiragana_u:
     .incbin "bin/segment2/segment2.07440.ia1"
     
-seg2_texture_02007450:
+texture_dialog_jp_hiragana_c:
     .incbin "bin/segment2/segment2.07450.ia1"
     
-seg2_texture_02007460:
+texture_dialog_jp_hiragana_o:
     .incbin "bin/segment2/segment2.07460.ia1"
     
-seg2_texture_02007470:
+texture_dialog_jp_hiragana_ka:
     .incbin "bin/segment2/segment2.07470.ia1"
     
-seg2_texture_02007480:
+texture_dialog_jp_hiragana_ki:
     .incbin "bin/segment2/segment2.07480.ia1"
     
-seg2_texture_02007490:
+texture_dialog_jp_hiragana_ku:
     .incbin "bin/segment2/segment2.07490.ia1"
     
-seg2_texture_020074A0:
+texture_dialog_jp_hiragana_ke:
     .incbin "bin/segment2/segment2.074A0.ia1"
     
-seg2_texture_020074B0:
+texture_dialog_jp_hiragana_ko:
     .incbin "bin/segment2/segment2.074B0.ia1"
     
-seg2_texture_020074C0:
+texture_dialog_jp_hiragana_sa:
     .incbin "bin/segment2/segment2.074C0.ia1"
     
-seg2_texture_020074D0:
+texture_dialog_jp_hiragana_shi:
     .incbin "bin/segment2/segment2.074D0.ia1"
     
-seg2_texture_020074E0:
+texture_dialog_jp_hiragana_su:
     .incbin "bin/segment2/segment2.074E0.ia1"
     
-seg2_texture_020074F0:
+texture_dialog_jp_hiragana_se:
     .incbin "bin/segment2/segment2.074F0.ia1"
     
-seg2_texture_02007500:
+texture_dialog_jp_hiragana_so:
     .incbin "bin/segment2/segment2.07500.ia1"
     
-seg2_texture_02007510:
+texture_dialog_jp_hiragana_ta:
     .incbin "bin/segment2/segment2.07510.ia1"
     
-seg2_texture_02007520:
+texture_dialog_jp_hiragana_chi:
     .incbin "bin/segment2/segment2.07520.ia1"
     
-seg2_texture_02007530:
+texture_dialog_jp_hiragana_tsu:
     .incbin "bin/segment2/segment2.07530.ia1"
     
-seg2_texture_02007540:
+texture_dialog_jp_hiragana_te:
     .incbin "bin/segment2/segment2.07540.ia1"
     
-seg2_texture_02007550:
+texture_dialog_jp_hiragana_to:
     .incbin "bin/segment2/segment2.07550.ia1"
     
-seg2_texture_02007560:
+texture_dialog_jp_hiragana_na:
     .incbin "bin/segment2/segment2.07560.ia1"
     
-seg2_texture_02007570:
+texture_dialog_jp_hiragana_ni:
     .incbin "bin/segment2/segment2.07570.ia1"
     
-seg2_texture_02007580:
+texture_dialog_jp_hiragana_nu:
     .incbin "bin/segment2/segment2.07580.ia1"
     
-seg2_texture_02007590:
+texture_dialog_jp_hiragana_ne:
     .incbin "bin/segment2/segment2.07590.ia1"
     
-seg2_texture_020075A0:
+texture_dialog_jp_hiragana_no:
     .incbin "bin/segment2/segment2.075A0.ia1"
     
-seg2_texture_020075B0:
+texture_dialog_jp_hiragana_ha:
     .incbin "bin/segment2/segment2.075B0.ia1"
     
-seg2_texture_020075C0:
+texture_dialog_jp_hiragana_hi:
     .incbin "bin/segment2/segment2.075C0.ia1"
     
-seg2_texture_020075D0:
+texture_dialog_jp_hiragana_hu:
     .incbin "bin/segment2/segment2.075D0.ia1"
     
-seg2_texture_020075E0:
+texture_dialog_jp_hiragana_he:
     .incbin "bin/segment2/segment2.075E0.ia1"
     
-seg2_texture_020075F0:
+texture_dialog_jp_hiragana_ho:
     .incbin "bin/segment2/segment2.075F0.ia1"
     
-seg2_texture_02007600:
+texture_dialog_jp_hiragana_ma:
     .incbin "bin/segment2/segment2.07600.ia1"
     
-seg2_texture_02007610:
+texture_dialog_jp_hiragana_mi:
     .incbin "bin/segment2/segment2.07610.ia1"
     
-seg2_texture_02007620:
+texture_dialog_jp_hiragana_mu:
     .incbin "bin/segment2/segment2.07620.ia1"
     
-seg2_texture_02007630:
+texture_dialog_jp_hiragana_me:
     .incbin "bin/segment2/segment2.07630.ia1"
     
-seg2_texture_02007640:
+texture_dialog_jp_hiragana_mo:
     .incbin "bin/segment2/segment2.07640.ia1"
     
-seg2_texture_02007650:
+texture_dialog_jp_hiragana_ya:
     .incbin "bin/segment2/segment2.07650.ia1"
     
-seg2_texture_02007660:
+texture_dialog_jp_hiragana_yu:
     .incbin "bin/segment2/segment2.07660.ia1"
     
-seg2_texture_02007670:
+texture_dialog_jp_hiragana_yo:
     .incbin "bin/segment2/segment2.07670.ia1"
     
-seg2_texture_02007680:
+texture_dialog_jp_hiragana_ra:
     .incbin "bin/segment2/segment2.07680.ia1"
     
-seg2_texture_02007690:
+texture_dialog_jp_hiragana_ri:
     .incbin "bin/segment2/segment2.07690.ia1"
     
-seg2_texture_020076A0:
+texture_dialog_jp_hiragana_ru:
     .incbin "bin/segment2/segment2.076A0.ia1"
     
-seg2_texture_020076B0:
+texture_dialog_jp_hiragana_re:
     .incbin "bin/segment2/segment2.076B0.ia1"
     
-seg2_texture_020076C0:
+texture_dialog_jp_hiragana_ro:
     .incbin "bin/segment2/segment2.076C0.ia1"
     
-seg2_texture_020076D0:
+texture_dialog_jp_hiragana_wa:
     .incbin "bin/segment2/segment2.076D0.ia1"
     
-seg2_texture_020076E0:
+texture_dialog_jp_hiragana_wo:
     .incbin "bin/segment2/segment2.076E0.ia1"
     
-seg2_texture_020076F0:
+texture_dialog_jp_hiragana_n:
     .incbin "bin/segment2/segment2.076F0.ia1"
     
-seg2_texture_02007700:
+texture_dialog_jp_hiragana_small_e:
     .incbin "bin/segment2/segment2.07700.ia1"
     
-seg2_texture_02007710:
+texture_dialog_jp_hiragana_small_tsu:
     .incbin "bin/segment2/segment2.07710.ia1"
     
-seg2_texture_02007720:
+texture_dialog_jp_hiragana_small_ka:
     .incbin "bin/segment2/segment2.07720.ia1"
     
-seg2_texture_02007730:
+texture_dialog_jp_hiragana_small_yu:
     .incbin "bin/segment2/segment2.07730.ia1"
     
-seg2_texture_02007740:
+texture_dialog_jp_hiragana_small_yo:
     .incbin "bin/segment2/segment2.07740.ia1"
     
-seg2_texture_02007750:
+texture_dialog_jp_hiragana_small_a:
     .incbin "bin/segment2/segment2.07750.ia1"
     
-seg2_texture_02007760:
+texture_dialog_jp_hiragana_small_i:
     .incbin "bin/segment2/segment2.07760.ia1"
     
-seg2_texture_02007770:
+texture_dialog_jp_hiragana_small_o:
     .incbin "bin/segment2/segment2.07770.ia1"
     
-seg2_texture_02007780:
+texture_dialog_jp_hiragana_small_u:
     .incbin "bin/segment2/segment2.07780.ia1"
     
-seg2_texture_02007790:
+texture_dialog_jp_interpunct:
     .incbin "bin/segment2/segment2.07790.ia1"
     
-seg2_texture_020077A0:
+texture_dialog_jp_comma:
     .incbin "bin/segment2/segment2.077A0.ia1"
     
-seg2_texture_020077B0:
+texture_dialog_jp_katakana_a:
     .incbin "bin/segment2/segment2.077B0.ia1"
     
-seg2_texture_020077C0:
+texture_dialog_jp_katakana_i:
     .incbin "bin/segment2/segment2.077C0.ia1"
     
-seg2_texture_020077D0:
+texture_dialog_jp_katakana_u:
     .incbin "bin/segment2/segment2.077D0.ia1"
     
-seg2_texture_020077E0:
+texture_dialog_jp_katakana_e:
     .incbin "bin/segment2/segment2.077E0.ia1"
     
-seg2_texture_020077F0:
+texture_dialog_jp_katakana_o:
     .incbin "bin/segment2/segment2.077F0.ia1"
     
-seg2_texture_02007800:
+texture_dialog_jp_katakana_ka:
     .incbin "bin/segment2/segment2.07800.ia1"
     
-seg2_texture_02007810:
+texture_dialog_jp_katakana_ki:
     .incbin "bin/segment2/segment2.07810.ia1"
     
-seg2_texture_02007820:
+texture_dialog_jp_katakana_ku:
     .incbin "bin/segment2/segment2.07820.ia1"
     
-seg2_texture_02007830:
+texture_dialog_jp_katakana_ke:
     .incbin "bin/segment2/segment2.07830.ia1"
     
-seg2_texture_02007840:
+texture_dialog_jp_katakana_ko:
     .incbin "bin/segment2/segment2.07840.ia1"
     
-seg2_texture_02007850:
+texture_dialog_jp_katakana_sa:
     .incbin "bin/segment2/segment2.07850.ia1"
     
-seg2_texture_02007860:
+texture_dialog_jp_katakana_shi:
     .incbin "bin/segment2/segment2.07860.ia1"
     
-seg2_texture_02007870:
+texture_dialog_jp_katakana_su:
     .incbin "bin/segment2/segment2.07870.ia1"
     
-seg2_texture_02007880:
+texture_dialog_jp_katakana_se:
     .incbin "bin/segment2/segment2.07880.ia1"
     
-seg2_texture_02007890:
+texture_dialog_jp_katakana_so:
     .incbin "bin/segment2/segment2.07890.ia1"
     
-seg2_texture_020078A0:
+texture_dialog_jp_katakana_ta:
     .incbin "bin/segment2/segment2.078A0.ia1"
     
-seg2_texture_020078B0:
+texture_dialog_jp_katakana_chi:
     .incbin "bin/segment2/segment2.078B0.ia1"
     
-seg2_texture_020078C0:
+texture_dialog_jp_katakana_tsu:
     .incbin "bin/segment2/segment2.078C0.ia1"
     
-seg2_texture_020078D0:
+texture_dialog_jp_katakana_te:
     .incbin "bin/segment2/segment2.078D0.ia1"
     
-seg2_texture_020078E0:
+texture_dialog_jp_katakana_to:
     .incbin "bin/segment2/segment2.078E0.ia1"
     
-seg2_texture_020078F0:
+texture_dialog_jp_katakana_na:
     .incbin "bin/segment2/segment2.078F0.ia1"
     
-seg2_texture_02007900:
+texture_dialog_jp_katakana_ni:
     .incbin "bin/segment2/segment2.07900.ia1"
     
-seg2_texture_02007910:
+texture_dialog_jp_katakana_nu:
     .incbin "bin/segment2/segment2.07910.ia1"
     
-seg2_texture_02007920:
+texture_dialog_jp_katakana_ne:
     .incbin "bin/segment2/segment2.07920.ia1"
     
-seg2_texture_02007930:
+texture_dialog_jp_katakana_no:
     .incbin "bin/segment2/segment2.07930.ia1"
     
-seg2_texture_02007940:
+texture_dialog_jp_katakana_ha:
     .incbin "bin/segment2/segment2.07940.ia1"
     
-seg2_texture_02007950:
+texture_dialog_jp_katakana_hi:
     .incbin "bin/segment2/segment2.07950.ia1"
     
-seg2_texture_02007960:
+texture_dialog_jp_katakana_hu:
     .incbin "bin/segment2/segment2.07960.ia1"
     
-seg2_texture_02007970:
+texture_dialog_jp_katakana_he:
     .incbin "bin/segment2/segment2.07970.ia1"
     
-seg2_texture_02007980:
+texture_dialog_jp_katakana_ho:
     .incbin "bin/segment2/segment2.07980.ia1"
     
-seg2_texture_02007990:
+texture_dialog_jp_katakana_ma:
     .incbin "bin/segment2/segment2.07990.ia1"
     
-seg2_texture_020079A0:
+texture_dialog_jp_katakana_mi:
     .incbin "bin/segment2/segment2.079A0.ia1"
     
-seg2_texture_020079B0:
+texture_dialog_jp_katakana_mu:
     .incbin "bin/segment2/segment2.079B0.ia1"
     
-seg2_texture_020079C0:
+texture_dialog_jp_katakana_me:
     .incbin "bin/segment2/segment2.079C0.ia1"
     
-seg2_texture_020079D0:
+texture_dialog_jp_katakana_mo:
     .incbin "bin/segment2/segment2.079D0.ia1"
     
-seg2_texture_020079E0:
+texture_dialog_jp_katakana_ya:
     .incbin "bin/segment2/segment2.079E0.ia1"
     
-seg2_texture_020079F0:
+texture_dialog_jp_katakana_yu:
     .incbin "bin/segment2/segment2.079F0.ia1"
     
-seg2_texture_02007A00:
+texture_dialog_jp_katakana_yo:
     .incbin "bin/segment2/segment2.07A00.ia1"
     
-seg2_texture_02007A10:
+texture_dialog_jp_katakana_ra:
     .incbin "bin/segment2/segment2.07A10.ia1"
     
-seg2_texture_02007A20:
+texture_dialog_jp_katakana_ri:
     .incbin "bin/segment2/segment2.07A20.ia1"
     
-seg2_texture_02007A30:
+texture_dialog_jp_katakana_ru:
     .incbin "bin/segment2/segment2.07A30.ia1"
     
-seg2_texture_02007A40:
+texture_dialog_jp_katakana_re:
     .incbin "bin/segment2/segment2.07A40.ia1"
     
-seg2_texture_02007A50:
+texture_dialog_jp_katakana_ro:
     .incbin "bin/segment2/segment2.07A50.ia1"
     
-seg2_texture_02007A60:
+texture_dialog_jp_katakana_wa:
     .incbin "bin/segment2/segment2.07A60.ia1"
     
-seg2_texture_02007A70:
+texture_dialog_jp_katakana_n:
     .incbin "bin/segment2/segment2.07A70.ia1"
     
-seg2_texture_02007A80:
+texture_dialog_jp_katakana_small_e:
     .incbin "bin/segment2/segment2.07A80.ia1"
     
-seg2_texture_02007A90:
+texture_dialog_jp_katakana_small_tsu:
     .incbin "bin/segment2/segment2.07A90.ia1"
     
-seg2_texture_02007AA0:
+texture_dialog_jp_katakana_small_ka:
     .incbin "bin/segment2/segment2.07AA0.ia1"
     
-seg2_texture_02007AB0:
+texture_dialog_jp_katakana_small_yu:
     .incbin "bin/segment2/segment2.07AB0.ia1"
     
-seg2_texture_02007AC0:
+texture_dialog_jp_katakana_small_yo:
     .incbin "bin/segment2/segment2.07AC0.ia1"
     
-seg2_texture_02007AD0:
+texture_dialog_jp_katakana_small_a:
     .incbin "bin/segment2/segment2.07AD0.ia1"
     
-seg2_texture_02007AE0:
+texture_dialog_jp_katakana_small_i:
     .incbin "bin/segment2/segment2.07AE0.ia1"
     
-seg2_texture_02007AF0:
+texture_dialog_jp_katakana_small_u:
     .incbin "bin/segment2/segment2.07AF0.ia1"
     
-seg2_texture_02007B00:
+texture_dialog_jp_katakana_small_o:
     .incbin "bin/segment2/segment2.07B00.ia1"
     
-seg2_texture_02007B10:
+texture_dialog_jp_double_quotation_open:
     .incbin "bin/segment2/segment2.07B10.ia1"
     
-seg2_texture_02007B20:
+texture_dialog_jp_double_quotation_close:
     .incbin "bin/segment2/segment2.07B20.ia1"
     
-seg2_texture_02007B30:
+texture_dialog_jp_wave_dash:
     .incbin "bin/segment2/segment2.07B30.ia1"
     
-seg2_texture_02007B40:
+texture_dialog_jp_ellipsis:
     .incbin "bin/segment2/segment2.07B40.ia1"
 .else # US Small Font, copied from hack64 segment 2 US
-FontTexture_05900:
+texture_dialog_us_0:
     .incbin "bin/segment2/font_graphics.05900.ia4"
 
-FontTexture_05940:
+texture_dialog_us_1:
     .incbin "bin/segment2/font_graphics.05940.ia4"
 
-FontTexture_05980:
+texture_dialog_us_2:
     .incbin "bin/segment2/font_graphics.05980.ia4"
 
-FontTexture_059C0:
+texture_dialog_us_3:
     .incbin "bin/segment2/font_graphics.059C0.ia4"
 
-FontTexture_05A00:
+texture_dialog_us_4:
     .incbin "bin/segment2/font_graphics.05A00.ia4"
 
-FontTexture_05A40:
+texture_dialog_us_5:
     .incbin "bin/segment2/font_graphics.05A40.ia4"
 
-FontTexture_05A80:
+texture_dialog_us_6:
     .incbin "bin/segment2/font_graphics.05A80.ia4"
 
-FontTexture_05AC0:
+texture_dialog_us_7:
     .incbin "bin/segment2/font_graphics.05AC0.ia4"
 
-FontTexture_05B00:
+texture_dialog_us_8:
     .incbin "bin/segment2/font_graphics.05B00.ia4"
 
-FontTexture_05B40:
+texture_dialog_us_9:
     .incbin "bin/segment2/font_graphics.05B40.ia4"
 
-FontTexture_05B80:
+texture_dialog_us_A:
     .incbin "bin/segment2/font_graphics.05B80.ia4"
 
-FontTexture_05BC0:
+texture_dialog_us_B:
     .incbin "bin/segment2/font_graphics.05BC0.ia4"
 
-FontTexture_05C00:
+texture_dialog_us_C:
     .incbin "bin/segment2/font_graphics.05C00.ia4"
 
-FontTexture_05C40:
+texture_dialog_us_D:
     .incbin "bin/segment2/font_graphics.05C40.ia4"
 
-FontTexture_05C80:
+texture_dialog_us_E:
     .incbin "bin/segment2/font_graphics.05C80.ia4"
 
-FontTexture_05CC0:
+texture_dialog_us_F:
     .incbin "bin/segment2/font_graphics.05CC0.ia4"
 
-FontTexture_05D00:
+texture_dialog_us_G:
     .incbin "bin/segment2/font_graphics.05D00.ia4"
 
-FontTexture_05D40:
+texture_dialog_us_H:
     .incbin "bin/segment2/font_graphics.05D40.ia4"
 
-FontTexture_05D80:
+texture_dialog_us_I:
     .incbin "bin/segment2/font_graphics.05D80.ia4"
 
-FontTexture_05DC0:
+texture_dialog_us_J:
     .incbin "bin/segment2/font_graphics.05DC0.ia4"
 
-FontTexture_05E00:
+texture_dialog_us_K:
     .incbin "bin/segment2/font_graphics.05E00.ia4"
 
-FontTexture_05E40:
+texture_dialog_us_L:
     .incbin "bin/segment2/font_graphics.05E40.ia4"
 
-FontTexture_05E80:
+texture_dialog_us_M:
     .incbin "bin/segment2/font_graphics.05E80.ia4"
 
-FontTexture_05EC0:
+texture_dialog_us_N:
     .incbin "bin/segment2/font_graphics.05EC0.ia4"
 
-FontTexture_05F00:
+texture_dialog_us_O:
     .incbin "bin/segment2/font_graphics.05F00.ia4"
 
-FontTexture_05F40:
+texture_dialog_us_P:
     .incbin "bin/segment2/font_graphics.05F40.ia4"
 
-FontTexture_05F80:
+texture_dialog_us_Q:
     .incbin "bin/segment2/font_graphics.05F80.ia4"
 
-FontTexture_05FC0:
+texture_dialog_us_R:
     .incbin "bin/segment2/font_graphics.05FC0.ia4"
 
-FontTexture_06000:
+texture_dialog_us_S:
     .incbin "bin/segment2/font_graphics.06000.ia4"
 
-FontTexture_06040:
+texture_dialog_us_T:
     .incbin "bin/segment2/font_graphics.06040.ia4"
 
-FontTexture_06080:
+texture_dialog_us_U:
     .incbin "bin/segment2/font_graphics.06080.ia4"
 
-FontTexture_060C0:
+texture_dialog_us_V:
     .incbin "bin/segment2/font_graphics.060C0.ia4"
 
-FontTexture_06100:
+texture_dialog_us_W:
     .incbin "bin/segment2/font_graphics.06100.ia4"
 
-FontTexture_06140:
+texture_dialog_us_X:
     .incbin "bin/segment2/font_graphics.06140.ia4"
 
-FontTexture_06180:
+texture_dialog_us_Y:
     .incbin "bin/segment2/font_graphics.06180.ia4"
 
-FontTexture_061C0:
+texture_dialog_us_Z:
     .incbin "bin/segment2/font_graphics.061C0.ia4"
 
-FontTexture_06200:
+texture_dialog_us_a:
     .incbin "bin/segment2/font_graphics.06200.ia4"
 
-FontTexture_06240:
+texture_dialog_us_b:
     .incbin "bin/segment2/font_graphics.06240.ia4"
 
-FontTexture_06280:
+texture_dialog_us_c:
     .incbin "bin/segment2/font_graphics.06280.ia4"
 
-FontTexture_062C0:
+texture_dialog_us_d:
     .incbin "bin/segment2/font_graphics.062C0.ia4"
 
-FontTexture_06300:
+texture_dialog_us_e:
     .incbin "bin/segment2/font_graphics.06300.ia4"
 
-FontTexture_06340:
+texture_dialog_us_f:
     .incbin "bin/segment2/font_graphics.06340.ia4"
 
-FontTexture_06380:
+texture_dialog_us_g:
     .incbin "bin/segment2/font_graphics.06380.ia4"
 
-FontTexture_063C0:
+texture_dialog_us_h:
     .incbin "bin/segment2/font_graphics.063C0.ia4"
 
-FontTexture_06400:
+texture_dialog_us_i:
     .incbin "bin/segment2/font_graphics.06400.ia4"
 
-FontTexture_06440:
+texture_dialog_us_j:
     .incbin "bin/segment2/font_graphics.06440.ia4"
 
-FontTexture_06480:
+texture_dialog_us_k:
     .incbin "bin/segment2/font_graphics.06480.ia4"
 
-FontTexture_064C0:
+texture_dialog_us_l:
     .incbin "bin/segment2/font_graphics.064C0.ia4"
 
-FontTexture_06500:
+texture_dialog_us_m:
     .incbin "bin/segment2/font_graphics.06500.ia4"
 
-FontTexture_06540:
+texture_dialog_us_n:
     .incbin "bin/segment2/font_graphics.06540.ia4"
 
-FontTexture_06580:
+texture_dialog_us_o:
     .incbin "bin/segment2/font_graphics.06580.ia4"
 
-FontTexture_065C0:
+texture_dialog_us_p:
     .incbin "bin/segment2/font_graphics.065C0.ia4"
 
-FontTexture_06600:
+texture_dialog_us_q:
     .incbin "bin/segment2/font_graphics.06600.ia4"
 
-FontTexture_06640:
+texture_dialog_us_r:
     .incbin "bin/segment2/font_graphics.06640.ia4"
 
-FontTexture_06680:
+texture_dialog_us_s:
     .incbin "bin/segment2/font_graphics.06680.ia4"
 
-FontTexture_066C0:
+texture_dialog_us_t:
     .incbin "bin/segment2/font_graphics.066C0.ia4"
 
-FontTexture_06700:
+texture_dialog_us_u:
     .incbin "bin/segment2/font_graphics.06700.ia4"
 
-FontTexture_06740:
+texture_dialog_us_v:
     .incbin "bin/segment2/font_graphics.06740.ia4"
 
-FontTexture_06780:
+texture_dialog_us_w:
     .incbin "bin/segment2/font_graphics.06780.ia4"
 
-FontTexture_067C0:
+texture_dialog_us_x:
     .incbin "bin/segment2/font_graphics.067C0.ia4"
 
-FontTexture_06800:
+texture_dialog_us_y:
     .incbin "bin/segment2/font_graphics.06800.ia4"
 
-FontTexture_06840:
+texture_dialog_us_z:
     .incbin "bin/segment2/font_graphics.06840.ia4"
 
-FontTexture_06880:
+texture_dialog_us_left_right_arrow:
     .incbin "bin/segment2/font_graphics.06880.ia4"
 
-FontTexture_068C0:
+texture_dialog_us_exclamation:
     .incbin "bin/segment2/font_graphics.068C0.ia4"
 
-FontTexture_06900:
+texture_dialog_us_coin:
     .incbin "bin/segment2/font_graphics.06900.ia4"
 
-FontTexture_06940:
+texture_dialog_us_multiply:
     .incbin "bin/segment2/font_graphics.06940.ia4"
 
-FontTexture_06980:
+texture_dialog_us_open_parentheses:
     .incbin "bin/segment2/font_graphics.06980.ia4"
 
-FontTexture_069C0:
+texture_dialog_us_close_open_parentheses:
     .incbin "bin/segment2/font_graphics.069C0.ia4"
 
-FontTexture_06A00:
+texture_dialog_us_close_parentheses:
     .incbin "bin/segment2/font_graphics.06A00.ia4"
 
-FontTexture_06A40:
+texture_dialog_us_tilde:
     .incbin "bin/segment2/font_graphics.06A40.ia4"
 
-FontTexture_06A80:
+texture_dialog_us_period:
     .incbin "bin/segment2/font_graphics.06A80.ia4"
 
-FontTexture_06AC0:
+texture_dialog_us_percent:
     .incbin "bin/segment2/font_graphics.06AC0.ia4"
 
-FontTexture_06B00:
+texture_dialog_us_interpunct:
     .incbin "bin/segment2/font_graphics.06B00.ia4"
 
-FontTexture_06B40:
+texture_dialog_us_comma:
     .incbin "bin/segment2/font_graphics.06B40.ia4"
 
-FontTexture_06B80:
+texture_dialog_us_apostrophe:
     .incbin "bin/segment2/font_graphics.06B80.ia4"
 
-FontTexture_06BC0:
+texture_dialog_us_question:
     .incbin "bin/segment2/font_graphics.06BC0.ia4"
 
-FontTexture_06C00:
+texture_dialog_us_star_filled:
     .incbin "bin/segment2/font_graphics.06C00.ia4"
 
-FontTexture_06C40:
+texture_dialog_us_star_hollow:
     .incbin "bin/segment2/font_graphics.06C40.ia4"
 
-FontTexture_06C80:
+texture_dialog_us_double_quote_open:
     .incbin "bin/segment2/font_graphics.06C80.ia4"
 
-FontTexture_06CC0:
+texture_dialog_us_double_quote_close:
     .incbin "bin/segment2/font_graphics.06CC0.ia4"
 
-FontTexture_06D00:
+texture_dialog_us_ellipsis:
     .incbin "bin/segment2/font_graphics.06D00.ia4"
 
-FontTexture_06D40:
+texture_dialog_us_dash:
     .incbin "bin/segment2/font_graphics.06D40.ia4"
 
-FontTexture_06D80:
+texture_dialog_us_ampersand:
     .incbin "bin/segment2/font_graphics.06D80.ia4"
 
-FontTexture_06DC0:
+texture_dialog_us_button_A:
     .incbin "bin/segment2/font_graphics.06DC0.ia4"
 
-FontTexture_06E00:
+texture_dialog_us_button_B:
     .incbin "bin/segment2/font_graphics.06E00.ia4"
 
-FontTexture_06E40:
+texture_dialog_us_button_C:
     .incbin "bin/segment2/font_graphics.06E40.ia4"
 
-FontTexture_06E80:
+texture_dialog_us_button_Z:
     .incbin "bin/segment2/font_graphics.06E80.ia4"
 
-FontTexture_06EC0:
+texture_dialog_us_button_R:
     .incbin "bin/segment2/font_graphics.06EC0.ia4"
 
-FontTexture_06F00:
+texture_dialog_us_button_C_up:
     .incbin "bin/segment2/font_graphics.06F00.ia4"
 
-FontTexture_06F40:
+texture_dialog_us_button_C_down:
     .incbin "bin/segment2/font_graphics.06F40.ia4"
 
-FontTexture_06F80:
+texture_dialog_us_button_C_left:
     .incbin "bin/segment2/font_graphics.06F80.ia4"
 
-FontTexture_06FC0:
+texture_dialog_us_button_C_right:
     .incbin "bin/segment2/font_graphics.06FC0.ia4"
 .endif
 
-seg2_texture_02007B50:
+texture_colorful_char_camera:
 .incbin "bin/segment2/segment2.07B50.rgba16"
 
-seg2_texture_02007D50:
+texture_colorful_char_lakitu:
 .incbin "bin/segment2/segment2.07D50.rgba16"
 
-seg2_texture_02007F50:
+texture_colorful_char_no_camera:
 .incbin "bin/segment2/segment2.07F50.rgba16"
 
-seg2_texture_02008150:
+texture_colorful_char_arrow_up:
 .incbin "bin/segment2/segment2.08150.rgba16"
 
-seg2_texture_020081D0:
+texture_colorful_char_arrow_down:
 .incbin "bin/segment2/segment2.081D0.rgba16"
 
 # HUD print table 0x02008250-0x02008337
 glabel seg2_hud_lut
 .ifdef VERSION_US
-    .word seg2_texture_02000000, seg2_texture_02000200, seg2_texture_02000400, seg2_texture_02000600
-    .word seg2_texture_02000800, seg2_texture_02000A00, seg2_texture_02000C00, seg2_texture_02000E00
-    .word seg2_texture_02001000, seg2_texture_02001200, seg2_texture_02001400, seg2_texture_02001600
-    .word seg2_texture_02001800, seg2_texture_02001A00, seg2_texture_02001C00, seg2_texture_02001E00
-    .word seg2_texture_02002000, seg2_texture_02002200, seg2_texture_02002400,                   0x0
-    .word seg2_texture_02002800, seg2_texture_02002A00, seg2_texture_02002C00, seg2_texture_02002E00
-    .word seg2_texture_02003000, seg2_texture_02003200,                   0x0, seg2_texture_02003600
-    .word seg2_texture_02003800, seg2_texture_02003A00, seg2_texture_02003C00,                   0x0
-    .word seg2_texture_02004000,                   0x0, seg2_texture_02004400,                   0x0
+    .word texture_colorful_num_0, texture_colorful_num_1, texture_colorful_num_2, texture_colorful_num_3
+    .word texture_colorful_num_4, texture_colorful_num_5, texture_colorful_num_6, texture_colorful_num_7
+    .word texture_colorful_num_8, texture_colorful_num_9, texture_colorful_char_A, texture_colorful_char_B
+    .word texture_colorful_char_C, texture_colorful_char_D, texture_colorful_char_E, texture_colorful_char_F
+    .word texture_colorful_char_G, texture_colorful_char_H, texture_colorful_char_I,                   0x0
+    .word texture_colorful_char_K, texture_colorful_char_L, texture_colorful_char_M, texture_colorful_char_N
+    .word texture_colorful_char_O, texture_colorful_char_P,                   0x0, texture_colorful_char_R
+    .word texture_colorful_char_S, texture_colorful_char_T, texture_colorful_char_U,                   0x0
+    .word texture_colorful_char_W,                   0x0, texture_colorful_char_Y,                   0x0
     .word                   0x0,                   0x0,                   0x0,                   0x0
     .word                   0x0,                   0x0,                   0x0,                   0x0
     .word                   0x0,                   0x0,                   0x0,                   0x0
-    .word                   0x0,                   0x0, seg2_texture_02005600, seg2_texture_02005800
-    .word seg2_texture_02005A00, seg2_texture_02005C00,                   0x0,                   0x0
-    .word seg2_texture_02004800, seg2_texture_02004A00
+    .word                   0x0,                   0x0, texture_colorful_char_multiply, texture_colorful_char_coin
+    .word texture_colorful_char_mario_head, texture_colorful_char_star,                   0x0,                   0x0
+    .word texture_colorful_char_apostrophe, texture_colorful_char_double_quote
 .else
-    .word seg2_texture_02000000, seg2_texture_02000200, seg2_texture_02000400, seg2_texture_02000600
-    .word seg2_texture_02000800, seg2_texture_02000A00, seg2_texture_02000C00, seg2_texture_02000E00
-    .word seg2_texture_02001000, seg2_texture_02001200, seg2_texture_02001400, seg2_texture_02001600
-    .word seg2_texture_02001800, seg2_texture_02001A00, seg2_texture_02001C00, seg2_texture_02001E00
-    .word seg2_texture_02002000, seg2_texture_02002200, seg2_texture_02002400, seg2_texture_02002600
-    .word seg2_texture_02002800, seg2_texture_02002A00, seg2_texture_02002C00, seg2_texture_02002E00
-    .word seg2_texture_02003000, seg2_texture_02003200, seg2_texture_02003400, seg2_texture_02003600
-    .word seg2_texture_02003800, seg2_texture_02003A00, seg2_texture_02003C00, seg2_texture_02003E00
-    .word seg2_texture_02004000, seg2_texture_02004200, seg2_texture_02004400, seg2_texture_02004600
-    .word seg2_texture_02004C00, seg2_texture_02004E00, seg2_texture_02005000, seg2_texture_02005200
-    .word seg2_texture_02005400,                   0x0,                   0x0,                   0x0
+    .word texture_colorful_num_0, texture_colorful_num_1, texture_colorful_num_2, texture_colorful_num_3
+    .word texture_colorful_num_4, texture_colorful_num_5, texture_colorful_num_6, texture_colorful_num_7
+    .word texture_colorful_num_8, texture_colorful_num_9, texture_colorful_char_A, texture_colorful_char_B
+    .word texture_colorful_char_C, texture_colorful_char_D, texture_colorful_char_E, texture_colorful_char_F
+    .word texture_colorful_char_G, texture_colorful_char_H, texture_colorful_char_I, texture_colorful_char_J
+    .word texture_colorful_char_K, texture_colorful_char_L, texture_colorful_char_M, texture_colorful_char_N
+    .word texture_colorful_char_O, texture_colorful_char_P, texture_colorful_char_Q, texture_colorful_char_R
+    .word texture_colorful_char_S, texture_colorful_char_T, texture_colorful_char_U, texture_colorful_char_V
+    .word texture_colorful_char_W, texture_colorful_char_X, texture_colorful_char_Y, texture_colorful_char_Z
+    .word texture_colorful_char_exclamation, texture_colorful_char_double_exclamation, texture_colorful_char_question, texture_colorful_char_ampersand
+    .word texture_colorful_char_percent,                   0x0,                   0x0,                   0x0
     .word                   0x0,                   0x0,                   0x0,                   0x0
-    .word                   0x0,                   0x0, seg2_texture_02005600, seg2_texture_02005800
-    .word seg2_texture_02005A00, seg2_texture_02005C00, seg2_texture_02005E00, seg2_texture_02006000
-    .word seg2_texture_02004800, seg2_texture_02004A00
+    .word                   0x0,                   0x0, texture_colorful_char_multiply, texture_colorful_char_coin
+    .word texture_colorful_char_mario_head, texture_colorful_char_star, texture_colorful_char_decimal_point, texture_colorful_char_beta_key
+    .word texture_colorful_char_apostrophe, texture_colorful_char_double_quote
 .endif
 
 # small font HUD LUT 0x02008338-0x02008737
 glabel seg2_small_font_lut
 .ifdef VERSION_US # US Font Table
-    .word FontTexture_05900, FontTexture_05940, FontTexture_05980, FontTexture_059C0
-    .word FontTexture_05A00, FontTexture_05A40, FontTexture_05A80, FontTexture_05AC0
-    .word FontTexture_05B00, FontTexture_05B40, FontTexture_05B80, FontTexture_05BC0
-    .word FontTexture_05C00, FontTexture_05C40, FontTexture_05C80, FontTexture_05CC0
-    .word FontTexture_05D00, FontTexture_05D40, FontTexture_05D80, FontTexture_05DC0
-    .word FontTexture_05E00, FontTexture_05E40, FontTexture_05E80, FontTexture_05EC0
-    .word FontTexture_05F00, FontTexture_05F40, FontTexture_05F80, FontTexture_05FC0
-    .word FontTexture_06000, FontTexture_06040, FontTexture_06080, FontTexture_060C0
-    .word FontTexture_06100, FontTexture_06140, FontTexture_06180, FontTexture_061C0
-    .word FontTexture_06200, FontTexture_06240, FontTexture_06280, FontTexture_062C0
-    .word FontTexture_06300, FontTexture_06340, FontTexture_06380, FontTexture_063C0
-    .word FontTexture_06400, FontTexture_06440, FontTexture_06480, FontTexture_064C0
-    .word FontTexture_06500, FontTexture_06540, FontTexture_06580, FontTexture_065C0
-    .word FontTexture_06600, FontTexture_06640, FontTexture_06680, FontTexture_066C0
-    .word FontTexture_06700, FontTexture_06740, FontTexture_06780, FontTexture_067C0
-    .word FontTexture_06800, FontTexture_06840, FontTexture_06B80, FontTexture_06A80
+    .word texture_dialog_us_0, texture_dialog_us_1, texture_dialog_us_2, texture_dialog_us_3
+    .word texture_dialog_us_4, texture_dialog_us_5, texture_dialog_us_6, texture_dialog_us_7
+    .word texture_dialog_us_8, texture_dialog_us_9, texture_dialog_us_A, texture_dialog_us_B
+    .word texture_dialog_us_C, texture_dialog_us_D, texture_dialog_us_E, texture_dialog_us_F
+    .word texture_dialog_us_G, texture_dialog_us_H, texture_dialog_us_I, texture_dialog_us_J
+    .word texture_dialog_us_K, texture_dialog_us_L, texture_dialog_us_M, texture_dialog_us_N
+    .word texture_dialog_us_O, texture_dialog_us_P, texture_dialog_us_Q, texture_dialog_us_R
+    .word texture_dialog_us_S, texture_dialog_us_T, texture_dialog_us_U, texture_dialog_us_V
+    .word texture_dialog_us_W, texture_dialog_us_X, texture_dialog_us_Y, texture_dialog_us_Z
+    .word texture_dialog_us_a, texture_dialog_us_b, texture_dialog_us_c, texture_dialog_us_d
+    .word texture_dialog_us_e, texture_dialog_us_f, texture_dialog_us_g, texture_dialog_us_h
+    .word texture_dialog_us_i, texture_dialog_us_j, texture_dialog_us_k, texture_dialog_us_l
+    .word texture_dialog_us_m, texture_dialog_us_n, texture_dialog_us_o, texture_dialog_us_p
+    .word texture_dialog_us_q, texture_dialog_us_r, texture_dialog_us_s, texture_dialog_us_t
+    .word texture_dialog_us_u, texture_dialog_us_v, texture_dialog_us_w, texture_dialog_us_x
+    .word texture_dialog_us_y, texture_dialog_us_z, texture_dialog_us_apostrophe, texture_dialog_us_period
     .word               0x0,               0x0,               0x0,               0x0
     .word               0x0,               0x0,               0x0,               0x0
     .word               0x0,               0x0,               0x0,               0x0
     .word               0x0,               0x0,               0x0,               0x0
-    .word FontTexture_06F00, FontTexture_06F40, FontTexture_06F80, FontTexture_06FC0
-    .word FontTexture_06DC0, FontTexture_06E00, FontTexture_06E40, FontTexture_06E80
-    .word FontTexture_06EC0,               0x0,               0x0,               0x0
+    .word texture_dialog_us_button_C_up, texture_dialog_us_button_C_down, texture_dialog_us_button_C_left, texture_dialog_us_button_C_right
+    .word texture_dialog_us_button_A, texture_dialog_us_button_B, texture_dialog_us_button_C, texture_dialog_us_button_Z
+    .word texture_dialog_us_button_R,               0x0,               0x0,               0x0
     .word               0x0,               0x0,               0x0,               0x0
     .word               0x0,               0x0,               0x0,               0x0
     .word               0x0,               0x0,               0x0,               0x0
     .word               0x0,               0x0,               0x0,               0x0
-    .word               0x0,               0x0,               0x0, FontTexture_06B40
-    .word               0x0,               0x0,               0x0,               0x0
-    .word               0x0,               0x0,               0x0,               0x0
-    .word               0x0,               0x0,               0x0,               0x0
-    .word               0x0,               0x0,               0x0,               0x0
-    .word               0x0,               0x0,               0x0,               0x0
-    .word               0x0,               0x0,               0x0,               0x0
-    .word               0x0,               0x0,               0x0,               0x0
-    .word               0x0,               0x0,               0x0,               0x0
-    .word               0x0,               0x0,               0x0,               0x0
-    .word               0x0,               0x0,               0x0,               0x0
-    .word               0x0,               0x0,               0x0,               0x0
-    .word               0x0,               0x0,               0x0, FontTexture_06D40
+    .word               0x0,               0x0,               0x0, texture_dialog_us_comma
     .word               0x0,               0x0,               0x0,               0x0
     .word               0x0,               0x0,               0x0,               0x0
     .word               0x0,               0x0,               0x0,               0x0
@@ -1142,29 +1130,41 @@ glabel seg2_small_font_lut
     .word               0x0,               0x0,               0x0,               0x0
     .word               0x0,               0x0,               0x0,               0x0
     .word               0x0,               0x0,               0x0,               0x0
+    .word               0x0,               0x0,               0x0, texture_dialog_us_dash
     .word               0x0,               0x0,               0x0,               0x0
     .word               0x0,               0x0,               0x0,               0x0
     .word               0x0,               0x0,               0x0,               0x0
     .word               0x0,               0x0,               0x0,               0x0
     .word               0x0,               0x0,               0x0,               0x0
-    .word               0x0, FontTexture_06980, FontTexture_069C0, FontTexture_06A00
-    .word FontTexture_06880, FontTexture_06D80, FontTexture_06D00,               0x0
     .word               0x0,               0x0,               0x0,               0x0
     .word               0x0,               0x0,               0x0,               0x0
-    .word               0x0,               0x0, FontTexture_068C0, FontTexture_06AC0
-    .word FontTexture_06BC0, FontTexture_06C80, FontTexture_06CC0, FontTexture_06A40
-    .word               0x0, FontTexture_06900, FontTexture_06C00, FontTexture_06940
-    .word FontTexture_06B00, FontTexture_06C40,               0x0,               0x0
+    .word               0x0,               0x0,               0x0,               0x0
+    .word               0x0,               0x0,               0x0,               0x0
+    .word               0x0,               0x0,               0x0,               0x0
+    .word               0x0,               0x0,               0x0,               0x0
+    .word               0x0,               0x0,               0x0,               0x0
+    .word               0x0,               0x0,               0x0,               0x0
+    .word               0x0,               0x0,               0x0,               0x0
+    .word               0x0,               0x0,               0x0,               0x0
+    .word               0x0,               0x0,               0x0,               0x0
+    .word               0x0, texture_dialog_us_open_parentheses, texture_dialog_us_close_open_parentheses, texture_dialog_us_close_parentheses
+    .word texture_dialog_us_left_right_arrow, texture_dialog_us_ampersand, texture_dialog_us_ellipsis,               0x0
+    .word               0x0,               0x0,               0x0,               0x0
+    .word               0x0,               0x0,               0x0,               0x0
+    .word               0x0,               0x0, texture_dialog_us_exclamation, texture_dialog_us_percent
+    .word texture_dialog_us_question, texture_dialog_us_double_quote_open, texture_dialog_us_double_quote_close, texture_dialog_us_tilde
+    .word               0x0, texture_dialog_us_coin, texture_dialog_us_star_filled, texture_dialog_us_multiply
+    .word texture_dialog_us_interpunct, texture_dialog_us_star_hollow,               0x0,               0x0
 .else # JP Font Table
-    .word seg2_texture_02007100, seg2_texture_02007110, seg2_texture_02007120, seg2_texture_02007130
-    .word seg2_texture_02007140, seg2_texture_02007150, seg2_texture_02007160, seg2_texture_02007170
-    .word seg2_texture_02007180, seg2_texture_02007190, seg2_texture_020071A0, seg2_texture_020071B0
-    .word seg2_texture_020071C0, seg2_texture_020071D0, seg2_texture_020071E0, seg2_texture_020071F0
-    .word seg2_texture_02007200, seg2_texture_02007210, seg2_texture_02007220, seg2_texture_02007230
-    .word seg2_texture_02007240, seg2_texture_02007250, seg2_texture_02007260, seg2_texture_02007270
-    .word seg2_texture_02007280, seg2_texture_02007290, seg2_texture_020072A0, seg2_texture_020072B0
-    .word seg2_texture_020072C0, seg2_texture_020072D0, seg2_texture_020072E0, seg2_texture_020072F0
-    .word seg2_texture_02007300, seg2_texture_02007310, seg2_texture_02007320, seg2_texture_02007330
+    .word texture_dialog_jp_0, texture_dialog_jp_1, texture_dialog_jp_2, texture_dialog_jp_3
+    .word texture_dialog_jp_4, texture_dialog_jp_5, texture_dialog_jp_6, texture_dialog_jp_7
+    .word texture_dialog_jp_8, texture_dialog_jp_9, texture_dialog_jp_A, texture_dialog_jp_B
+    .word texture_dialog_jp_C, texture_dialog_jp_D, texture_dialog_jp_E, texture_dialog_jp_F
+    .word texture_dialog_jp_G, texture_dialog_jp_H, texture_dialog_jp_I, texture_dialog_jp_J
+    .word texture_dialog_jp_K, texture_dialog_jp_L, texture_dialog_jp_M, texture_dialog_jp_N
+    .word texture_dialog_jp_O, texture_dialog_jp_P, texture_dialog_jp_Q, texture_dialog_jp_R
+    .word texture_dialog_jp_S, texture_dialog_jp_T, texture_dialog_jp_U, texture_dialog_jp_V
+    .word texture_dialog_jp_W, texture_dialog_jp_X, texture_dialog_jp_Y, texture_dialog_jp_Z
     .word                   0x0,                   0x0,                   0x0,                   0x0
     .word                   0x0,                   0x0,                   0x0,                   0x0
     .word                   0x0,                   0x0,                   0x0,                   0x0
@@ -1172,33 +1172,33 @@ glabel seg2_small_font_lut
     .word                   0x0,                   0x0,                   0x0,                   0x0
     .word                   0x0,                   0x0,                   0x0,                   0x0
     .word                   0x0,                   0x0,                   0x0,                   0x0
-    .word seg2_texture_02007420, seg2_texture_02007430, seg2_texture_02007440, seg2_texture_02007450
-    .word seg2_texture_02007460, seg2_texture_02007470, seg2_texture_02007480, seg2_texture_02007490
-    .word seg2_texture_020074A0, seg2_texture_020074B0, seg2_texture_020074C0, seg2_texture_020074D0
-    .word seg2_texture_020074E0, seg2_texture_020074F0, seg2_texture_02007500, seg2_texture_02007510
-    .word seg2_texture_02007520, seg2_texture_02007530, seg2_texture_02007540, seg2_texture_02007550
-    .word seg2_texture_02007560, seg2_texture_02007570, seg2_texture_02007580, seg2_texture_02007590
-    .word seg2_texture_020075A0, seg2_texture_020075B0, seg2_texture_020075C0, seg2_texture_020075D0
-    .word seg2_texture_020075E0, seg2_texture_020075F0, seg2_texture_02007600, seg2_texture_02007610
-    .word seg2_texture_02007620, seg2_texture_02007630, seg2_texture_02007640, seg2_texture_02007650
-    .word seg2_texture_02007660, seg2_texture_02007670, seg2_texture_02007680, seg2_texture_02007690
-    .word seg2_texture_020076A0, seg2_texture_020076B0, seg2_texture_020076C0, seg2_texture_020076D0
-    .word seg2_texture_020076E0, seg2_texture_020076F0,                   0x0, seg2_texture_020077A0
-    .word seg2_texture_020077B0, seg2_texture_020077C0, seg2_texture_020077D0, seg2_texture_020077E0
-    .word seg2_texture_020077F0, seg2_texture_02007800, seg2_texture_02007810, seg2_texture_02007820
-    .word seg2_texture_02007830, seg2_texture_02007840, seg2_texture_02007850, seg2_texture_02007860
-    .word seg2_texture_02007870, seg2_texture_02007880, seg2_texture_02007890, seg2_texture_020078A0
-    .word seg2_texture_020078B0, seg2_texture_020078C0, seg2_texture_020078D0, seg2_texture_020078E0
-    .word seg2_texture_020078F0, seg2_texture_02007900, seg2_texture_02007910, seg2_texture_02007920
-    .word seg2_texture_02007930, seg2_texture_02007940, seg2_texture_02007950, seg2_texture_02007960
-    .word seg2_texture_02007970, seg2_texture_02007980, seg2_texture_02007990, seg2_texture_020079A0
-    .word seg2_texture_020079B0, seg2_texture_020079C0, seg2_texture_020079D0, seg2_texture_020079E0
-    .word seg2_texture_020079F0, seg2_texture_02007A00, seg2_texture_02007A10, seg2_texture_02007A20
-    .word seg2_texture_02007A30, seg2_texture_02007A40, seg2_texture_02007A50, seg2_texture_02007A60
-    .word                   0x0, seg2_texture_02007A70,                   0x0, seg2_texture_02007340
-    .word seg2_texture_02007700, seg2_texture_02007710, seg2_texture_02007720, seg2_texture_02007730
-    .word seg2_texture_02007740, seg2_texture_02007750, seg2_texture_02007760, seg2_texture_02007780
-    .word seg2_texture_02007770,                   0x0,                   0x0,                   0x0
+    .word texture_dialog_jp_hiragana_a, texture_dialog_jp_hiragana_i, texture_dialog_jp_hiragana_u, texture_dialog_jp_hiragana_c
+    .word texture_dialog_jp_hiragana_o, texture_dialog_jp_hiragana_ka, texture_dialog_jp_hiragana_ki, texture_dialog_jp_hiragana_ku
+    .word texture_dialog_jp_hiragana_ke, texture_dialog_jp_hiragana_ko, texture_dialog_jp_hiragana_sa, texture_dialog_jp_hiragana_shi
+    .word texture_dialog_jp_hiragana_su, texture_dialog_jp_hiragana_se, texture_dialog_jp_hiragana_so, texture_dialog_jp_hiragana_ta
+    .word texture_dialog_jp_hiragana_chi, texture_dialog_jp_hiragana_tsu, texture_dialog_jp_hiragana_te, texture_dialog_jp_hiragana_to
+    .word texture_dialog_jp_hiragana_na, texture_dialog_jp_hiragana_ni, texture_dialog_jp_hiragana_nu, texture_dialog_jp_hiragana_ne
+    .word texture_dialog_jp_hiragana_no, texture_dialog_jp_hiragana_ha, texture_dialog_jp_hiragana_hi, texture_dialog_jp_hiragana_hu
+    .word texture_dialog_jp_hiragana_he, texture_dialog_jp_hiragana_ho, texture_dialog_jp_hiragana_ma, texture_dialog_jp_hiragana_mi
+    .word texture_dialog_jp_hiragana_mu, texture_dialog_jp_hiragana_me, texture_dialog_jp_hiragana_mo, texture_dialog_jp_hiragana_ya
+    .word texture_dialog_jp_hiragana_yu, texture_dialog_jp_hiragana_yo, texture_dialog_jp_hiragana_ra, texture_dialog_jp_hiragana_ri
+    .word texture_dialog_jp_hiragana_ru, texture_dialog_jp_hiragana_re, texture_dialog_jp_hiragana_ro, texture_dialog_jp_hiragana_wa
+    .word texture_dialog_jp_hiragana_wo, texture_dialog_jp_hiragana_n,                   0x0, texture_dialog_jp_comma
+    .word texture_dialog_jp_katakana_a, texture_dialog_jp_katakana_i, texture_dialog_jp_katakana_u, texture_dialog_jp_katakana_e
+    .word texture_dialog_jp_katakana_o, texture_dialog_jp_katakana_ka, texture_dialog_jp_katakana_ki, texture_dialog_jp_katakana_ku
+    .word texture_dialog_jp_katakana_ke, texture_dialog_jp_katakana_ko, texture_dialog_jp_katakana_sa, texture_dialog_jp_katakana_shi
+    .word texture_dialog_jp_katakana_su, texture_dialog_jp_katakana_se, texture_dialog_jp_katakana_so, texture_dialog_jp_katakana_ta
+    .word texture_dialog_jp_katakana_chi, texture_dialog_jp_katakana_tsu, texture_dialog_jp_katakana_te, texture_dialog_jp_katakana_to
+    .word texture_dialog_jp_katakana_na, texture_dialog_jp_katakana_ni, texture_dialog_jp_katakana_nu, texture_dialog_jp_katakana_ne
+    .word texture_dialog_jp_katakana_no, texture_dialog_jp_katakana_ha, texture_dialog_jp_katakana_hi, texture_dialog_jp_katakana_hu
+    .word texture_dialog_jp_katakana_he, texture_dialog_jp_katakana_ho, texture_dialog_jp_katakana_ma, texture_dialog_jp_katakana_mi
+    .word texture_dialog_jp_katakana_mu, texture_dialog_jp_katakana_me, texture_dialog_jp_katakana_mo, texture_dialog_jp_katakana_ya
+    .word texture_dialog_jp_katakana_yu, texture_dialog_jp_katakana_yo, texture_dialog_jp_katakana_ra, texture_dialog_jp_katakana_ri
+    .word texture_dialog_jp_katakana_ru, texture_dialog_jp_katakana_re, texture_dialog_jp_katakana_ro, texture_dialog_jp_katakana_wa
+    .word                   0x0, texture_dialog_jp_katakana_n,                   0x0, texture_dialog_jp_long_vowel
+    .word texture_dialog_jp_hiragana_small_e, texture_dialog_jp_hiragana_small_tsu, texture_dialog_jp_hiragana_small_ka, texture_dialog_jp_hiragana_small_yu
+    .word texture_dialog_jp_hiragana_small_yo, texture_dialog_jp_hiragana_small_a, texture_dialog_jp_hiragana_small_i, texture_dialog_jp_hiragana_small_u
+    .word texture_dialog_jp_hiragana_small_o,                   0x0,                   0x0,                   0x0
     .word                   0x0,                   0x0,                   0x0,                   0x0
     .word                   0x0,                   0x0,                   0x0,                   0x0
     .word                   0x0,                   0x0,                   0x0,                   0x0
@@ -1208,37 +1208,37 @@ glabel seg2_small_font_lut
     .word                   0x0,                   0x0,                   0x0,                   0x0
     .word                   0x0,                   0x0,                   0x0,                   0x0
     .word                   0x0,                   0x0,                   0x0,                   0x0
-    .word seg2_texture_02007A80, seg2_texture_02007A90, seg2_texture_02007AA0, seg2_texture_02007AB0
-    .word seg2_texture_02007AC0, seg2_texture_02007AD0, seg2_texture_02007AE0, seg2_texture_02007AF0
-    .word seg2_texture_02007B00,                   0x0,                   0x0,                   0x0
+    .word texture_dialog_jp_katakana_small_e, texture_dialog_jp_katakana_small_tsu, texture_dialog_jp_katakana_small_ka, texture_dialog_jp_katakana_small_yu
+    .word texture_dialog_jp_katakana_small_yo, texture_dialog_jp_katakana_small_a, texture_dialog_jp_katakana_small_i, texture_dialog_jp_katakana_small_u
+    .word texture_dialog_jp_katakana_small_o,                   0x0,                   0x0,                   0x0
     .word                   0x0,                   0x0,                   0x0,                   0x0
-    .word                   0x0, seg2_texture_020073B0, seg2_texture_020073C0, seg2_texture_020073D0
-    .word seg2_texture_020073A0,                   0x0,                   0x0,                   0x0
+    .word                   0x0, texture_dialog_jp_open_parentheses, texture_dialog_jp_close_open_parentheses, texture_dialog_jp_close_parentheses
+    .word texture_dialog_jp_left_right_arrow,                   0x0,                   0x0,                   0x0
     .word                   0x0,                   0x0,                   0x0,                   0x0
     .word                   0x0,                   0x0,                   0x0,                   0x0
-    .word seg2_texture_02007360, seg2_texture_02007370, seg2_texture_02007350, seg2_texture_02007380
-    .word seg2_texture_02007390, seg2_texture_02007B10, seg2_texture_02007B20, seg2_texture_02007B30
-    .word seg2_texture_02007B40, seg2_texture_020073E0, seg2_texture_02007400, seg2_texture_020073F0
-    .word seg2_texture_02007790, seg2_texture_02007410,                   0x0,                   0x0
+    .word texture_dialog_jp_dakuten, texture_dialog_jp_handakuten, texture_dialog_jp_exclamation, texture_dialog_jp_percent
+    .word texture_dialog_jp_question, texture_dialog_jp_double_quotation_open, texture_dialog_jp_double_quotation_close, texture_dialog_jp_wave_dash
+    .word texture_dialog_jp_ellipsis, texture_dialog_jp_coin, texture_dialog_jp_star_filled, texture_dialog_jp_multiply
+    .word texture_dialog_jp_interpunct, texture_dialog_jp_star_hollow,                   0x0,                   0x0
 .endif
 
 # credits font LUT 0x02008738-0x020087CB
 glabel seg2_credits_font_lut
-.word                   0x0,                   0x0,                   0x0, seg2_texture_02006200
-.word seg2_texture_02006280,                   0x0, seg2_texture_02006300,                   0x0
-.word                   0x0,                   0x0, seg2_texture_02006380, seg2_texture_02006400
-.word seg2_texture_02006480, seg2_texture_02006500, seg2_texture_02006580, seg2_texture_02006600
-.word seg2_texture_02006680, seg2_texture_02006700, seg2_texture_02006780, seg2_texture_02006800
-.word seg2_texture_02006880, seg2_texture_02006900, seg2_texture_02006980, seg2_texture_02006A00
-.word seg2_texture_02006A80, seg2_texture_02006B00, seg2_texture_02006B80, seg2_texture_02006C00
-.word seg2_texture_02006C80, seg2_texture_02006D00, seg2_texture_02006D80, seg2_texture_02006E00
-.word seg2_texture_02006E80, seg2_texture_02006F00, seg2_texture_02006F80, seg2_texture_02007000
-.word seg2_texture_02007080
+.word                   0x0,                   0x0,                   0x0, texture_credits_num_3
+.word texture_credits_num_4,                   0x0, texture_credits_num_6,                   0x0
+.word                   0x0,                   0x0, texture_credits_char_A, texture_credits_char_B
+.word texture_credits_char_C, texture_credits_char_D, texture_credits_char_E, texture_credits_char_F
+.word texture_credits_char_G, texture_credits_char_H, texture_credits_char_I, texture_credits_char_J
+.word texture_credits_char_K, texture_credits_char_L, texture_credits_char_M, texture_credits_char_N
+.word texture_credits_char_O, texture_credits_char_P, texture_credits_char_Q, texture_credits_char_R
+.word texture_credits_char_S, texture_credits_char_T, texture_credits_char_U, texture_credits_char_V
+.word texture_credits_char_W, texture_credits_char_X, texture_credits_char_Y, texture_credits_char_Z
+.word texture_credits_char_period
 
 # HUD camera table 0x020087CC-0x020087E3
 glabel seg2_hud_camera_lut
-.word seg2_texture_02007B50, seg2_texture_02005A00, seg2_texture_02007D50, seg2_texture_02007F50
-.word seg2_texture_02008150, seg2_texture_020081D0
+.word texture_colorful_char_camera, texture_colorful_char_mario_head, texture_colorful_char_lakitu, texture_colorful_char_no_camera
+.word texture_colorful_char_arrow_up, texture_colorful_char_arrow_down
 
 .macro textdata name
 .ifdef VERSION_JP
@@ -1256,7 +1256,7 @@ textdata star
 
 .balign 0x10
 
-glabel seg2_dl_0200EC60 # 0x0200EC60 - 0x0200EC98
+glabel dl_hud_img_begin # 0x0200EC60 - 0x0200EC98
 gsDPPipeSync
 gsDPSetCycleType G_CYC_COPY
 gsDPSetTexturePersp G_TP_NONE
@@ -1265,7 +1265,7 @@ gsDPSetBlendColor 255, 255, 255, 255
 gsDPSetRenderMode G_RM_AA_XLU_SURF, G_RM_AA_XLU_SURF2
 gsSPEndDisplayList
 
-glabel seg2_dl_0200EC98 # 0x0200EC98 - 0x0200ECC8
+glabel dl_hud_img_load_tex_block # 0x0200EC98 - 0x0200ECC8
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 4, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 4, G_TX_NOLOD
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x0FF, 0x200
@@ -1273,7 +1273,7 @@ gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 4, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G
 gsDPSetTileSize 0, 0, 0, 60, 60
 gsSPEndDisplayList
 
-glabel seg2_dl_0200ECC8 # 0x0200ECC8 - 0x0200ED00
+glabel dl_hud_img_end # 0x0200ECC8 - 0x0200ED00
 gsDPPipeSync
 gsDPSetTexturePersp G_TP_PERSP
 
@@ -1289,7 +1289,7 @@ gsDPSetCycleType G_CYC_1CYCLE
 gsSPTexture -1, -1, 0, 0, 0
 gsSPEndDisplayList
 
-glabel seg2_dl_0200ED00 # 0x0200ED00 - 0x0200ED38
+glabel dl_rgba16_text_begin # 0x0200ED00 - 0x0200ED38
 gsDPPipeSync
 gsDPSetTexturePersp G_TP_NONE
 gsDPSetCombineMode1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_ENVIRONMENT, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_ENVIRONMENT, G_ACMUX_0
@@ -1298,7 +1298,7 @@ gsDPSetRenderMode G_RM_AA_XLU_SURF, G_RM_AA_XLU_SURF2
 gsDPSetTextureFilter G_TF_POINT
 gsSPEndDisplayList
 
-glabel seg2_dl_0200ED38 # 0x0200ED38 - 0x0200ED68
+glabel dl_rgba16_load_tex_block # 0x0200ED38 - 0x0200ED68
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 4, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 4, G_TX_NOLOD
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x0FF, 0x200
@@ -1306,7 +1306,7 @@ gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 4, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G
 gsDPSetTileSize 0, 0, 0, 60, 60
 gsSPEndDisplayList
 
-glabel seg2_dl_0200ED68 # 0x0200ED68 - 0x0200EDA8
+glabel dl_rgba16_text_end # 0x0200ED68 - 0x0200EDA8
 gsDPPipeSync
 gsDPSetTexturePersp G_TP_PERSP
 
@@ -1323,22 +1323,22 @@ gsDPSetTextureFilter G_TF_BILERP
 gsSPTexture -1, -1, 0, 0, 0
 gsSPEndDisplayList
 
-seg2_vertex_0200EDA8: # 0x0200EDA8 - 0x0200EDE8
+vertex_text_bg_box: # 0x0200EDA8 - 0x0200EDE8
 vertex      0,    -80,      0,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
 vertex    130,    -80,      0,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
 vertex    130,      0,      0,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
 vertex      0,      0,      0,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
 
-glabel seg2_dl_0200EDE8 # 0x0200EDE8 - 0x0200EE28
+glabel dl_draw_text_bg_box # 0x0200EDE8 - 0x0200EE28
 gsDPPipeSync
 gsSPClearGeometryMode G_LIGHTING
 gsDPSetCombineMode1Cycle G_CCMUX_SHADE, G_CCMUX_0, G_CCMUX_ENVIRONMENT, G_CCMUX_0, G_ACMUX_SHADE, G_ACMUX_0, G_ACMUX_ENVIRONMENT, G_ACMUX_0
 gsDPSetRenderMode G_RM_XLU_SURF, G_RM_XLU_SURF2
-gsSPVertex seg2_vertex_0200EDA8, 4, 0
+gsSPVertex vertex_text_bg_box, 4, 0
 gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
-seg2_vertex_0200EE28: # 0x0200EE28 - 0x0200EE68
+vertex_ia8_char: # 0x0200EE28 - 0x0200EE68
 .ifdef VERSION_US
     vertex      0,      0,      0,      0,    256,  0xFF, 0xFF, 0xFF, 0xFF
     vertex      8,      0,      0,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
@@ -1352,7 +1352,7 @@ seg2_vertex_0200EE28: # 0x0200EE28 - 0x0200EE68
 .endif
 
 .ifdef VERSION_US
-glabel seg2_dl_0200EE68
+glabel dl_ia8_text_begin
     gsDPPipeSync
     gsSPClearGeometryMode G_LIGHTING
     gsDPSetCombineMode1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_ENVIRONMENT, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_ENVIRONMENT, G_ACMUX_0
@@ -1362,17 +1362,17 @@ glabel seg2_dl_0200EE68
     gsSPTexture 65535, 65535, 0, 0, 1
     gsSPEndDisplayList
 
-glabel seg2_dl_0200EEA8
+glabel dl_ia8_render_char
     gsDPSetTile G_IM_FMT_IA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 3, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 4, G_TX_NOLOD
     gsDPLoadSync
     gsDPLoadBlock 7, 0, 0, 0x1F, 0x800
     gsDPSetTile G_IM_FMT_IA, G_IM_SIZ_4b, 1, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 3, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 4, G_TX_NOLOD
     gsDPSetTileSize 0, 0, 0, 60, 28
-    gsSPVertex seg2_vertex_0200EE28, 4, 0
+    gsSPVertex vertex_ia8_char, 4, 0
     gsSP2Triangles  0,  1,  2, 0x0, 0,  2,  3, 0x0
     gsSPEndDisplayList
 .else
-glabel seg2_dl_0200EE68 # 0x0200EE68 - 0x0200EEA8
+glabel dl_ia8_text_begin # 0x0200EE68 - 0x0200EEA8
     gsDPPipeSync
     gsSPClearGeometryMode G_LIGHTING
     gsDPSetCombineMode1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_ENVIRONMENT, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_ENVIRONMENT, G_ACMUX_0
@@ -1382,18 +1382,18 @@ glabel seg2_dl_0200EE68 # 0x0200EE68 - 0x0200EEA8
     gsSPTexture -32768, -32768, 0, 0, 1
     gsSPEndDisplayList
 
-glabel seg2_dl_0200EEA8 # 0x0200EEA8 - 0x0200EEF0
+glabel dl_ia8_render_char # 0x0200EEA8 - 0x0200EEF0
     gsDPSetTile G_IM_FMT_IA, G_IM_SIZ_8b, 0, 0, G_TX_LOADTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 4, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 3, G_TX_NOLOD
     gsDPLoadSync
     gsDPLoadBlock 7, 0, 0, 0x07F, 0x800
     gsDPSetTile G_IM_FMT_IA, G_IM_SIZ_8b, 1, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 4, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 3, G_TX_NOLOD
     gsDPSetTileSize 0, 0, 0, 28, 60
-    gsSPVertex seg2_vertex_0200EE28, 4, 0
+    gsSPVertex vertex_ia8_char, 4, 0
     gsSP2Triangles  0,  1,  2, 0x0, 0,  2,  3, 0x0
     gsSPEndDisplayList
 .endif
 
-glabel seg2_dl_0200EEF0 # 0x0200EEF0 - 0x0200EF30
+glabel dl_ia8_text_end # 0x0200EEF0 - 0x0200EF30
 gsDPPipeSync
 gsSPTexture -1, -1, 0, 0, 0
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
@@ -1410,17 +1410,17 @@ gsDPSetRenderMode G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2
 gsDPSetTextureFilter G_TF_BILERP
 gsSPEndDisplayList
 
-seg2_vertex_0200EF30: # 0x0200EF30 - 0x0200EF60
+vertex_triangle: # 0x0200EF30 - 0x0200EF60
 vertex      0,      0,      0,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
 vertex      8,      8,      0,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
 vertex      0,     16,      0,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
 
-glabel seg2_dl_0200EF60 # 0x0200EF60 - 0x0200EFB0
+glabel dl_draw_triangle # 0x0200EF60 - 0x0200EFB0
 gsSPClearGeometryMode G_LIGHTING
 gsDPSetCombineMode1Cycle G_CCMUX_SHADE, G_CCMUX_0, G_CCMUX_ENVIRONMENT, G_CCMUX_0, G_ACMUX_SHADE, G_ACMUX_0, G_ACMUX_ENVIRONMENT, G_ACMUX_0
 gsDPSetRenderMode G_RM_XLU_SURF, G_RM_XLU_SURF2
 gsDPSetTextureFilter G_TF_POINT
-gsSPVertex seg2_vertex_0200EF30, 3, 0
+gsSPVertex vertex_triangle, 3, 0
 gsSP1Triangle  0,  1,  2, 0x0
 gsSPSetGeometryMode G_LIGHTING
 
@@ -1434,13 +1434,13 @@ gsDPSetRenderMode G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPEndDisplayList
 
-seg2_vertex_0200EFB0: # 0x0200EFB0 - 0x0200EFF0
+vertex_billboard_num: # 0x0200EFB0 - 0x0200EFF0
 vertex    -32,    -32,      0,      0,   1024,  0xFF, 0xFF, 0xFF, 0xFF
 vertex     32,    -32,      0,   1024,   1024,  0xFF, 0xFF, 0xFF, 0xFF
 vertex     32,     32,      0,   1024,      0,  0xFF, 0xFF, 0xFF, 0xFF
 vertex    -32,     32,      0,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
 
-glabel seg2_dl_0200EFF0 # 0x0200EFF0 - 0x0200F038
+glabel dl_billboard_num_begin # 0x0200EFF0 - 0x0200F038
 gsDPPipeSync
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_TEXEL0
 gsSPClearGeometryMode G_LIGHTING
@@ -1451,8 +1451,8 @@ gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 4, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | 
 gsDPSetTileSize 0, 0, 0, 60, 60
 gsSPEndDisplayList
 
-glabel seg2_dl_0200F038 # 0x0200F038 - 0x0200F078
-gsSPVertex seg2_vertex_0200EFB0, 4, 0
+glabel dl_billboard_num_end # 0x0200F038 - 0x0200F078
+gsSPVertex vertex_billboard_num, 4, 0
 gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPTexture -32768, -32768, 0, 0, 0
 gsDPPipeSync
@@ -1460,84 +1460,84 @@ gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX
 gsSPSetGeometryMode G_LIGHTING
 gsSPEndDisplayList
 
-glabel seg2_dl_0200F078 # 0x0200F078 - 0x0200F0A8
-gsSPDisplayList seg2_dl_0200EFF0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, seg2_texture_02000000
+glabel dl_billboard_num_0 # 0x0200F078 - 0x0200F0A8
+gsSPDisplayList dl_billboard_num_begin
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, texture_colorful_num_0
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x0FF, 0x200
-gsSPDisplayList seg2_dl_0200F038
+gsSPDisplayList dl_billboard_num_end
 gsSPEndDisplayList
 
-glabel seg2_dl_0200F0A8 # 0x0200F0A8 - 0x0200F0D8
-gsSPDisplayList seg2_dl_0200EFF0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, seg2_texture_02000200
+glabel dl_billboard_num_1 # 0x0200F0A8 - 0x0200F0D8
+gsSPDisplayList dl_billboard_num_begin
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, texture_colorful_num_1
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x0FF, 0x200
-gsSPDisplayList seg2_dl_0200F038
+gsSPDisplayList dl_billboard_num_end
 gsSPEndDisplayList
 
-glabel seg2_dl_0200F0D8 # 0x0200F0D8 - 0x0200F108
-gsSPDisplayList seg2_dl_0200EFF0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, seg2_texture_02000400
+glabel dl_billboard_num_2 # 0x0200F0D8 - 0x0200F108
+gsSPDisplayList dl_billboard_num_begin
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, texture_colorful_num_2
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x0FF, 0x200
-gsSPDisplayList seg2_dl_0200F038
+gsSPDisplayList dl_billboard_num_end
 gsSPEndDisplayList
 
-glabel seg2_dl_0200F108 # 0x0200F108 - 0x0200F138
-gsSPDisplayList seg2_dl_0200EFF0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, seg2_texture_02000600
+glabel dl_billboard_num_3 # 0x0200F108 - 0x0200F138
+gsSPDisplayList dl_billboard_num_begin
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, texture_colorful_num_3
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x0FF, 0x200
-gsSPDisplayList seg2_dl_0200F038
+gsSPDisplayList dl_billboard_num_end
 gsSPEndDisplayList
 
-glabel seg2_dl_0200F138 # 0x0200F138 - 0x0200F168
-gsSPDisplayList seg2_dl_0200EFF0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, seg2_texture_02000800
+glabel dl_billboard_num_4 # 0x0200F138 - 0x0200F168
+gsSPDisplayList dl_billboard_num_begin
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, texture_colorful_num_4
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x0FF, 0x200
-gsSPDisplayList seg2_dl_0200F038
+gsSPDisplayList dl_billboard_num_end
 gsSPEndDisplayList
 
-glabel seg2_dl_0200F168 # 0x0200F168 - 0x0200F198
-gsSPDisplayList seg2_dl_0200EFF0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, seg2_texture_02000A00
+glabel dl_billboard_num_5 # 0x0200F168 - 0x0200F198
+gsSPDisplayList dl_billboard_num_begin
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, texture_colorful_num_5
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x0FF, 0x200
-gsSPDisplayList seg2_dl_0200F038
+gsSPDisplayList dl_billboard_num_end
 gsSPEndDisplayList
 
-glabel seg2_dl_0200F198 # 0x0200F198 - 0x0200F1C8
-gsSPDisplayList seg2_dl_0200EFF0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, seg2_texture_02000C00
+glabel dl_billboard_num_6 # 0x0200F198 - 0x0200F1C8
+gsSPDisplayList dl_billboard_num_begin
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, texture_colorful_num_6
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x0FF, 0x200
-gsSPDisplayList seg2_dl_0200F038
+gsSPDisplayList dl_billboard_num_end
 gsSPEndDisplayList
 
-glabel seg2_dl_0200F1C8 # 0x0200F1C8 - 0x0200F1F8
-gsSPDisplayList seg2_dl_0200EFF0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, seg2_texture_02000E00
+glabel dl_billboard_num_7 # 0x0200F1C8 - 0x0200F1F8
+gsSPDisplayList dl_billboard_num_begin
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, texture_colorful_num_7
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x0FF, 0x200
-gsSPDisplayList seg2_dl_0200F038
+gsSPDisplayList dl_billboard_num_end
 gsSPEndDisplayList
 
-glabel seg2_dl_0200F1F8 # 0x0200F1F8 - 0x0200F228
-gsSPDisplayList seg2_dl_0200EFF0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, seg2_texture_02001000
+glabel dl_billboard_num_8 # 0x0200F1F8 - 0x0200F228
+gsSPDisplayList dl_billboard_num_begin
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, texture_colorful_num_8
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x0FF, 0x200
-gsSPDisplayList seg2_dl_0200F038
+gsSPDisplayList dl_billboard_num_end
 gsSPEndDisplayList
 
-glabel seg2_dl_0200F228 # 0x0200F228 - 0x0200F258
-gsSPDisplayList seg2_dl_0200EFF0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, seg2_texture_02001200
+glabel dl_billboard_num_9 # 0x0200F228 - 0x0200F258
+gsSPDisplayList dl_billboard_num_begin
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, texture_colorful_num_9
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x0FF, 0x200
-gsSPDisplayList seg2_dl_0200F038
+gsSPDisplayList dl_billboard_num_end
 gsSPEndDisplayList
 
 texture_shadow_quarter_circle:
@@ -1546,40 +1546,40 @@ texture_shadow_quarter_circle:
 texture_shadow_quarter_square:
 .incbin "bin/segment2/shadow_quarter_square.ia8"
 
-glabel seg2_texture_0200F458
+glabel texture_transition_star_half
 .incbin "bin/segment2/segment2.0F458.ia8"
 
-glabel seg2_texture_0200FC58
+glabel texture_transition_circle_half
 .incbin "bin/segment2/segment2.0FC58.ia8"
 
-glabel seg2_texture_02010458
+glabel texture_transition_mario
 .incbin "bin/segment2/segment2.10458.ia8"
 
-glabel seg2_texture_02011458
+glabel texture_transition_bowser_half
 .incbin "bin/segment2/segment2.11458.ia8"
 
-glabel seg2_texture_02011C58
+glabel texture_waterbox_water
 .incbin "bin/segment2/segment2.11C58.rgba16"
 
-glabel seg2_texture_02012458
+glabel texture_waterbox_jrb_water
 .incbin "bin/segment2/segment2.12458.rgba16"
 
-glabel seg2_texture_02012C58
+glabel texture_waterbox_unknown_water
 .incbin "bin/segment2/segment2.12C58.rgba16"
 
-glabel seg2_texture_02013458
+glabel texture_waterbox_mist
 .incbin "bin/segment2/segment2.13458.ia16"
 
-glabel seg2_texture_02013C58
+glabel texture_waterbox_lava
 .incbin "bin/segment2/segment2.13C58.rgba16"
 
 # 14458-178CF: TODO
-seg2_todo_14458:
+light_unused:
 .byte 0x40, 0x40, 0x40, 0x00, 0x40, 0x40, 0x40, 0x00
 .byte 0xFF, 0xFF, 0xFF, 0x00, 0xFF, 0xFF, 0xFF, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-seg2_matrix_02014470: # 0x02014470 - 0x020144B0
+matrix_identity: # 0x02014470 - 0x020144B0
 .hword     1,     0,     0,     0
 .hword     0,     1,     0,     0
 .hword     0,     0,     1,     0
@@ -1589,7 +1589,7 @@ seg2_matrix_02014470: # 0x02014470 - 0x020144B0
 .hword     0,     0,     0,     0
 .hword     0,     0,     0,     0
 
-seg2_matrix_020144B0: # 0x020144B0 - 0x020144F0
+matrix_fullscreen: # 0x020144B0 - 0x020144F0
 .hword     0,     0,     0,     0
 .hword     0,     0,     0,     0
 .hword     0,     0,    -1,     0
@@ -1599,11 +1599,11 @@ seg2_matrix_020144B0: # 0x020144B0 - 0x020144F0
 .hword     0,     0,     0,     0
 .hword     0,     0,     0,     0
 
-glabel seg2_dl_020144F0 # 0x020144F0 - 0x02014508
+glabel dl_draw_quad_verts_0123 # 0x020144F0 - 0x02014508
 gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
-glabel seg2_dl_02014508 # 0x02014508 - 0x02014520
+glabel dl_draw_quad_verts_4567 # 0x02014508 - 0x02014520
 gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
 gsSPEndDisplayList
 
@@ -1642,16 +1642,16 @@ gsSPSetGeometryMode G_LIGHTING | G_CULL_BACK
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPEndDisplayList
 
-glabel seg2_dl_02014660 # 0x02014660 - 0x02014698
+glabel dl_proj_mtx_fullscreen # 0x02014660 - 0x02014698
 gsDPPipeSync
 gsSPClearGeometryMode G_LIGHTING
-gsSPMatrix seg2_matrix_02014470, G_MTX_PROJECTION | G_MTX_LOAD | G_MTX_NOPUSH
-gsSPMatrix seg2_matrix_020144B0, G_MTX_PROJECTION
-gsSPMatrix seg2_matrix_02014470, G_MTX_LOAD
-gsImmp1 G_RDPHALF_1, 0x0000FFFF
+gsSPMatrix matrix_identity, G_MTX_PROJECTION | G_MTX_LOAD | G_MTX_NOPUSH
+gsSPMatrix matrix_fullscreen, G_MTX_PROJECTION
+gsSPMatrix matrix_identity, G_MTX_LOAD
+gsSPPerspNormalize 0xFFFF
 gsSPEndDisplayList
 
-glabel seg2_dl_02014698 # 0x02014698 - 0x020146C0
+glabel dl_screen_transition_end # 0x02014698 - 0x020146C0
 gsDPPipeSync
 gsSPSetGeometryMode G_LIGHTING
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
@@ -1663,37 +1663,37 @@ gsDPSetRenderMode G_RM_OPA_SURF, G_RM_OPA_SURF2
 
 gsSPEndDisplayList
 
-glabel seg2_dl_020146C0 # 0x020146C0 - 0x02014708
+glabel dl_transition_draw_filled_region # 0x020146C0 - 0x02014708
 gsSP2Triangles  0,  4,  1, 0x0,  1,  4,  5, 0x0
 gsSP2Triangles  1,  5,  2, 0x0,  2,  5,  6, 0x0
 gsSP2Triangles  2,  6,  7, 0x0,  2,  7,  3, 0x0
 gsSP2Triangles  3,  4,  0, 0x0,  3,  7,  4, 0x0
 gsSPEndDisplayList
 
-glabel seg2_dl_02014708 # 0x02014708 - 0x02014738
+glabel dl_skybox_begin # 0x02014708 - 0x02014738
 gsDPPipeSync
 gsSPClearGeometryMode G_LIGHTING
 gsDPSetCombineMode1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
-gsImmp1 G_RDPHALF_1, 0x0000FFFF
-gsSPMatrix seg2_matrix_02014470, G_MTX_PROJECTION | G_MTX_LOAD | G_MTX_NOPUSH
+gsSPPerspNormalize 0xFFFF
+gsSPMatrix matrix_identity, G_MTX_PROJECTION | G_MTX_LOAD | G_MTX_NOPUSH
 gsSPEndDisplayList
 
-glabel seg2_dl_02014738 # 0x02014738 - 0x02014768
-gsSPMatrix seg2_matrix_02014470, G_MTX_LOAD
+glabel dl_skybox_tex_settings # 0x02014738 - 0x02014768
+gsSPMatrix matrix_identity, G_MTX_LOAD
 gsSPTexture -1, -1, 0, 0, 1
 gsDPTileSync
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD
 gsDPSetTileSize 0, 0, 0, 124, 124
 gsSPEndDisplayList
 
-glabel seg2_dl_02014768 # 0x02014768 - 0x02014790
+glabel dl_skybox_end # 0x02014768 - 0x02014790
 gsDPPipeSync
 gsSPTexture -1, -1, 0, 0, 0
 gsSPSetGeometryMode G_LIGHTING
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPEndDisplayList
 
-glabel seg2_dl_02014790 # 0x02014790 - 0x020147D0
+glabel dl_waterbox_rgba16_begin # 0x02014790 - 0x020147D0
 gsDPPipeSync
 gsDPSetCombineMode1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_SHADE, G_ACMUX_0
 gsSPClearGeometryMode G_LIGHTING | G_CULL_BACK
@@ -1703,7 +1703,7 @@ gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G
 gsDPSetTileSize 0, 0, 0, 124, 124
 gsSPEndDisplayList
 
-glabel seg2_dl_020147D0 # 0x020147D0 - 0x02014810
+glabel dl_waterbox_ia16_begin # 0x020147D0 - 0x02014810
 gsDPPipeSync
 gsDPSetCombineMode1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_SHADE, G_ACMUX_0
 gsSPClearGeometryMode G_LIGHTING | G_CULL_BACK
@@ -1713,47 +1713,47 @@ gsDPSetTile G_IM_FMT_IA, G_IM_SIZ_16b, 8, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_T
 gsDPSetTileSize 0, 0, 0, 124, 124
 gsSPEndDisplayList
 
-glabel seg2_dl_02014810 # 0x02014810 - 0x02014838
+glabel dl_waterbox_end # 0x02014810 - 0x02014838
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
 gsSPSetGeometryMode G_LIGHTING | G_CULL_BACK
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPEndDisplayList
 
-seg2_texture_02014838: # 0x02014838 - 0x02014878
+texture_ia8_up_arrow: # 0x02014838 - 0x02014878
 .incbin "bin/segment2/segment2.14838.ia8"
 
-glabel seg2_dl_02014878 # 0x02014878 - 0x020148B0
+glabel dl_ia8_up_arrow_begin # 0x02014878 - 0x020148B0
 gsDPPipeSync
 gsSPClearGeometryMode G_LIGHTING
 gsDPSetCombineMode1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_SHADE, G_ACMUX_0
 gsDPSetRenderMode G_RM_XLU_SURF, G_RM_NOOP2
-gsImmp1 G_RDPHALF_1, 0x0000FFFF
-gsSPMatrix seg2_matrix_02014470, G_MTX_PROJECTION | G_MTX_LOAD | G_MTX_NOPUSH
+gsSPPerspNormalize 0xFFFF
+gsSPMatrix matrix_identity, G_MTX_PROJECTION | G_MTX_LOAD | G_MTX_NOPUSH
 gsSPEndDisplayList
 
-glabel seg2_dl_020148B0 # 0x020148B0 - 0x020148E0
-gsSPMatrix seg2_matrix_02014470, G_MTX_LOAD
+glabel dl_rgba16_unknown_tex_settings # 0x020148B0 - 0x020148E0
+gsSPMatrix matrix_identity, G_MTX_LOAD
 gsDPTileSync
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 16, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 6, G_TX_NOLOD
 gsDPSetTileSize 0, 0, 0, 252, 124
 gsSPTexture -1, -1, 0, 0, 1
 gsSPEndDisplayList
 
-glabel seg2_dl_020148E0 # 0x020148E0 - 0x02014938
+glabel dl_ia8_up_arrow_load_texture_block # 0x020148E0 - 0x02014938
 gsDPPipeSync
 gsDPSetCombineMode1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_SHADE, G_ACMUX_0
 gsDPTileSync
 gsDPSetTile G_IM_FMT_IA, G_IM_SIZ_8b, 1, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 3, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 3, G_TX_NOLOD
 gsDPSetTileSize 0, 0, 0, 28, 28
-gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_8b, 1, seg2_texture_02014838
+gsDPSetTextureImage G_IM_FMT_IA, G_IM_SIZ_8b, 1, texture_ia8_up_arrow
 gsDPTileSync
 gsDPSetTile G_IM_FMT_IA, G_IM_SIZ_8b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x03F, 0x800
 gsSPEndDisplayList
 
-glabel seg2_dl_02014938 # 0x02014938 - 0x02014958
+glabel dl_ia8_up_arrow_end # 0x02014938 - 0x02014958
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
@@ -1766,7 +1766,7 @@ seg2_light_02014960: # 0x02014960 - 0x02014970
 .byte 0xFF, 0xFF, 0xFF, 0x00, 0xFF, 0xFF, 0xFF, 0x00
 .byte 0x32, 0x32, 0x32, 0x00, 0x00, 0x00, 0x00, 0x00
 
-glabel seg2_dl_02014970 # 0x02014970 - 0x020149A8
+glabel dl_paintings_rippling_begin # 0x02014970 - 0x020149A8
 gsDPPipeSync
 gsSPSetGeometryMode G_LIGHTING | G_SHADING_SMOOTH
 gsDPSetCombineMode1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_SHADE, G_ACMUX_0
@@ -1775,13 +1775,13 @@ gsSPLight seg2_light_02014958, 2
 gsSPTexture -1, -1, 0, 0, 1
 gsSPEndDisplayList
 
-glabel seg2_dl_020149A8 # 0x020149A8 - 0x020149C8
+glabel dl_paintings_rippling_end # 0x020149A8 - 0x020149C8
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPEndDisplayList
 
-glabel seg2_dl_020149C8 # 0x020149C8 - 0x02014A00
+glabel dl_paintings_env_mapped_begin # 0x020149C8 - 0x02014A00
 gsDPPipeSync
 gsSPSetGeometryMode G_LIGHTING | G_TEXTURE_GEN
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_TEXEL0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
@@ -1790,7 +1790,7 @@ gsSPLight seg2_light_02014958, 2
 gsSPTexture 16384, 16384, 0, 0, 1
 gsSPEndDisplayList
 
-glabel seg2_dl_02014A00 # 0x02014A00 - 0x02014A30
+glabel dl_paintings_env_mapped_end # 0x02014A00 - 0x02014A30
 gsSPTexture 16384, 16384, 0, 0, 0
 gsDPPipeSync
 gsSPSetGeometryMode G_LIGHTING
@@ -1798,7 +1798,7 @@ gsSPClearGeometryMode G_TEXTURE_GEN
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPEndDisplayList
 
-glabel seg2_dl_02014A30 # 0x02014A30 - 0x02014A60
+glabel dl_paintings_draw_ripples # 0x02014A30 - 0x02014A60
 gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
 gsSP2Triangles  6,  7,  8, 0x0,  9, 10, 11, 0x0
 gsSP1Triangle 12, 13, 14, 0x0

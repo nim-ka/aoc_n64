@@ -1191,18 +1191,18 @@ static void draw_cursor(void)
 // Print colorful text
 static void menu_print_title_text(s8 type, s16 x, s16 y, const unsigned char *text)
 {
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED00);
+    gSPDisplayList(gDisplayListHead++, dl_rgba16_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextBaseAlpha - sTextTransparency);
     PutString(type, x, y, text);
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED68);
+    gSPDisplayList(gDisplayListHead++, dl_rgba16_text_end);
 }
 // Print normal white text
 static void menu_print_generic_text(s16 x, s16 y, const unsigned char *text)
 {
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
+    gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextBaseAlpha - sTextTransparency);
     PrintGenericText(x, y, text);
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
+    gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
 }
 
 static s32 update_text_fade_out(void)
@@ -1254,7 +1254,7 @@ static void display_file_star_count(s8 fileNum, s16 x, s16 y)
 
 static void draw_main_menu(void)
 {
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED00);
+    gSPDisplayList(gDisplayListHead++, dl_rgba16_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextBaseAlpha);
     // Display "SELECT FILE" text
 #ifdef VERSION_JP
@@ -1268,8 +1268,8 @@ static void draw_main_menu(void)
     display_file_star_count(2, 92, 118);
     display_file_star_count(3, 209, 118);
     // Display menu names
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED68);
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
+    gSPDisplayList(gDisplayListHead++, dl_rgba16_text_end);
+    gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextBaseAlpha);
 #ifdef VERSION_JP
     PrintGenericText(50, 39, textScore);
@@ -1284,7 +1284,7 @@ static void draw_main_menu(void)
     PrintGenericText(sSoundTextX, 39, textSoundModes[sSoundMode]);
 #endif
     // Display file names
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
+    gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
     gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D108);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextBaseAlpha);
     PrintRegularText(92, 65, textMarioA);
@@ -1330,15 +1330,15 @@ static void draw_score_menu(void)
     }
     score_menu_display_message(sStatusMessageId);
     // Display file star counts
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED00);
+    gSPDisplayList(gDisplayListHead++, dl_rgba16_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextBaseAlpha);
     display_file_star_count(0, 90, 76);
     display_file_star_count(1, 211, 76);
     display_file_star_count(2, 90, 119);
     display_file_star_count(3, 211, 119);
     // Display menu names
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED68);
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
+    gSPDisplayList(gDisplayListHead++, dl_rgba16_text_end);
+    gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextBaseAlpha);
 #ifdef VERSION_JP
     PrintGenericText(45, 35, textReturn);
@@ -1350,7 +1350,7 @@ static void draw_score_menu(void)
     PrintGenericText(231, 35, textEraseFileButton);
 #endif
     // Display file names
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
+    gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
     gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D108);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextBaseAlpha);
     PrintRegularText(89, 62, textMarioA);
@@ -1452,15 +1452,15 @@ static void draw_copy_menu(void)
     copy_menu_update_message();
     copy_menu_display_message(sStatusMessageId);
     // Display file star counts
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED00);
+    gSPDisplayList(gDisplayListHead++, dl_rgba16_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextBaseAlpha);
     display_file_star_count(0, 90, 76);
     display_file_star_count(1, 211, 76);
     display_file_star_count(2, 90, 119);
     display_file_star_count(3, 211, 119);
     // Display menu names
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED68);
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
+    gSPDisplayList(gDisplayListHead++, dl_rgba16_text_end);
+    gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextBaseAlpha);
 #ifdef VERSION_JP
     PrintGenericText(45, 35, textReturn);
@@ -1472,7 +1472,7 @@ static void draw_copy_menu(void)
     PrintGenericText(230, 35, textEraseFileButton);    
 #endif
     // Display file names
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
+    gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
     gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D108);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextBaseAlpha);
     PrintRegularText(89, 62, textMarioA);
@@ -1541,12 +1541,12 @@ static void erase_menu_yes_no_prompt(s16 x, s16 y)
             D_801A7C04 = 0;
         }
     }
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
+    gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
     gDPSetEnvColor(gDisplayListHead++, sYesNoColor[0], sYesNoColor[0], sYesNoColor[0], sTextBaseAlpha);
     PrintGenericText(x + 56, y, textYes);
     gDPSetEnvColor(gDisplayListHead++, sYesNoColor[1], sYesNoColor[1], sYesNoColor[1], sTextBaseAlpha);
     PrintGenericText(x + 98, y, textNo);
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
+    gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
 }
 
 #undef TIMER_VAR1
@@ -1647,15 +1647,15 @@ static void draw_erase_menu(void)
     erase_menu_update_message();
     erase_menu_display_message(sStatusMessageId);
     // Display file star counts
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED00);
+    gSPDisplayList(gDisplayListHead++, dl_rgba16_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextBaseAlpha);
     display_file_star_count(0, 90, 76);
     display_file_star_count(1, 211, 76);
     display_file_star_count(2, 90, 119);
     display_file_star_count(3, 211, 119);
     // Display menu names
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED68);
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
+    gSPDisplayList(gDisplayListHead++, dl_rgba16_text_end);
+    gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextBaseAlpha);
 #ifdef VERSION_JP
     PrintGenericText(45, 35, textReturn);
@@ -1667,7 +1667,7 @@ static void draw_erase_menu(void)
     PrintGenericText(233, 35, textCopyFileButton);
 #endif
     // Display file names
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
+    gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
     gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D108);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextBaseAlpha);
     PrintRegularText(89, 62, textMarioA);
@@ -1685,7 +1685,7 @@ static void draw_sound_mode_menu(void)
 #endif
     unsigned char textSoundSelect[] = {TEXT_SOUND_SELECT};
     // Display "SOUND SELECT" text
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED00);
+    gSPDisplayList(gDisplayListHead++, dl_rgba16_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextBaseAlpha);
 #ifdef VERSION_JP
     PutString(1, 96, 35, textSoundSelect);
@@ -1693,8 +1693,8 @@ static void draw_sound_mode_menu(void)
     PutString(2, 88, 35, textSoundSelect);
 #endif
     // Display mode names
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED68);
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
+    gSPDisplayList(gDisplayListHead++, dl_rgba16_text_end);
+    gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
     for (mode = 0; mode < 3; mode++)
     {
         if (mode == sSoundMode)
@@ -1713,7 +1713,7 @@ static void draw_sound_mode_menu(void)
         PrintGenericText(textX, 87, textSoundModes[mode]);
 #endif
     }
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
+    gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
 }
 
 static unsigned char textStarX[] = {TEXT_STAR_X};
@@ -1817,7 +1817,7 @@ static void draw_file_scores(s8 fileNum)
 
     textFileLetter[0] = fileNum + 0x0A; // get letter of file
     // Print file name at top
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED00);
+    gSPDisplayList(gDisplayListHead++, dl_rgba16_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextBaseAlpha);
 #ifdef VERSION_JP
     PutString(1, 28, 15, textMario);
@@ -1828,7 +1828,7 @@ static void draw_file_scores(s8 fileNum)
 #endif
     // Print file star count at top
     display_file_star_count(fileNum, 124, 15);
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED68);
+    gSPDisplayList(gDisplayListHead++, dl_rgba16_text_end);
     gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D108);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextBaseAlpha);
 

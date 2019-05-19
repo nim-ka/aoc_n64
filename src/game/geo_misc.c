@@ -236,7 +236,7 @@ Gfx *geo_exec_cake_end_screen(
             generatedNode->fnNode.node.flags & 0xFF
         ) | 0x100;
 
-        gSPDisplayList(displayListHead++, seg2_dl_02014660);
+        gSPDisplayList(displayListHead++, dl_proj_mtx_fullscreen);
         gSPDisplayList(displayListHead++, dl_cake_end_screen);
         gSPEndDisplayList(displayListHead);
     }

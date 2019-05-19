@@ -242,11 +242,11 @@ void func_802D6AFC(u8 c)
 
     gDPPipeSync(gDisplayListHead++);
     gDPSetTextureImage(gDisplayListHead++, G_IM_FMT_IA, G_IM_SIZ_8b, 1, VIRTUAL_TO_PHYSICAL(unpackedTexture));
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEA8);
+    gSPDisplayList(gDisplayListHead++, dl_ia8_render_char);
 #else
     gDPPipeSync(gDisplayListHead++);
     gDPSetTextureImage(gDisplayListHead++, G_IM_FMT_IA, G_IM_SIZ_16b, 1, VIRTUAL_TO_PHYSICAL(packedTexture));
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEA8);
+    gSPDisplayList(gDisplayListHead++, dl_ia8_render_char);
 #endif
 }
 
@@ -389,7 +389,7 @@ void PutString(s8 font, s16 x, s16 y, const u8 *str)
         if(font == 2)
             gDPSetTextureImage(gDisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, fontLUT2[str[strPos]]);
 
-        gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED38);
+        gSPDisplayList(gDisplayListHead++, dl_rgba16_load_tex_block);
         gSPTextureRectangle(gDisplayListHead++, curX<<2, curY<<2,
             (curX+16)<<2, (curY+16)<<2, 0, 0, 0, 0x400, 0x400);
 
@@ -414,7 +414,7 @@ void PutString(s8 font, s16 x, s16 y, const u8 *str)
             if(font == 2)
                 gDPSetTextureImage(gDisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, fontLUT2[str[strPos]]);
             
-            gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED38);
+            gSPDisplayList(gDisplayListHead++, dl_rgba16_load_tex_block);
             gSPTextureRectangle(gDisplayListHead++, curX<<2, curY<<2,
                 (curX+16)<<2, (curY+16)<<2, 0, 0, 0, 0x400, 0x400);
             
@@ -785,7 +785,7 @@ void func_802D8134(struct DialogEntry *diagEntry, s8 sp47)
     dl_add_new_scale_matrix(2, 1.1f, ((f32)sp47 / 5.0f) + 0.1, 1.0f);
 #endif
 
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EDE8);
+    gSPDisplayList(gDisplayListHead++, dl_draw_text_bg_box);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
 }
 
@@ -964,7 +964,7 @@ void func_802D8980(s8 sp63, struct DialogEntry *diagEntry)
     else
         totalLines = linesPerBox + 1;
 
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
+    gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
     strIdx = D_8033042C;
 
     if(gDiagBoxState == DIAG_STATE_SCROLLING)
@@ -1056,7 +1056,7 @@ void func_802D8980(s8 sp63, struct DialogEntry *diagEntry)
         strIdx++;
     }
 
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
+    gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
 
     if(gDiagBoxState == DIAG_STATE_WAITBUTTON)
     {
@@ -1095,7 +1095,7 @@ void func_802D8980(s8 sp5B, struct DialogEntry *diagEntry, s8 sp63)
     else
         totalLines = linesPerBox + 1;
 
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
+    gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
     strIdx = D_8033042C;
 
     if(gDiagBoxState == DIAG_STATE_SCROLLING)
@@ -1157,7 +1157,7 @@ void func_802D8980(s8 sp5B, struct DialogEntry *diagEntry, s8 sp63)
         }
         strIdx++;
     }
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
+    gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
     if(gDiagBoxState == 1)
     {
         if(sp45 == 2)
@@ -1186,7 +1186,7 @@ void func_802D8ED4(void)
         gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, 255);
     }
 
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EF60);
+    gSPDisplayList(gDisplayListHead++, dl_draw_triangle);
 #else
     if(gDiagBoxState == DIAG_STATE_WAITBUTTON)
         handleMenuScrolling(MENU_SCROLL_HORIZONTAL, &D_80330430, 1, 2);
@@ -1202,7 +1202,7 @@ void func_802D8ED4(void)
         gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, 255);
     }
 
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EF60);
+    gSPDisplayList(gDisplayListHead++, dl_draw_triangle);
 #endif
 }
 
@@ -1227,7 +1227,7 @@ void func_802D9030(s8 sp3b)
         gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, 255);
     }
 
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EF60);
+    gSPDisplayList(gDisplayListHead++, dl_draw_triangle);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
 #else
     s32 sp34 = gGlobalTimer;
@@ -1248,7 +1248,7 @@ void func_802D9030(s8 sp3b)
         gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, 255);
     }
 
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EF60);
+    gSPDisplayList(gDisplayListHead++, dl_draw_triangle);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
 #endif
 }
@@ -1629,13 +1629,13 @@ void reset_cutscene_msg_fade(void)
 
 void func_802D9A60(void)
 {
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED00);
+    gSPDisplayList(gDisplayListHead++, dl_rgba16_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gCutsceneMsgFade);
 }
 
 void func_802D9AE8(void)
 {
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED68);
+    gSPDisplayList(gDisplayListHead++, dl_rgba16_text_end);
 
     if(gCutsceneMsgFade < 250)
         gCutsceneMsgFade += 25;
@@ -1702,7 +1702,7 @@ void do_cutscene_handler(void)
 
     dl_add_new_ortho_matrix();
 
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
+    gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gCutsceneMsgFade);
 
     // get the x coordinate of where the cutscene string starts.
@@ -1710,7 +1710,7 @@ void do_cutscene_handler(void)
 
     PrintGenericText(x, 240 - gCutsceneMsgYOffset, gEndCutsceneStrings[gCutsceneMsgIndex]);
 
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
+    gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
 
     // if the timing variable is less than 5, increment
     // the fade until we are at full opacity.
@@ -1762,17 +1762,17 @@ void print_peach_letter_message(void)
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gCutsceneMsgFade);
     gSPDisplayList(gDisplayListHead++, castle_grounds_seg7_dl_0700EA58);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
+    gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 20, 20, 20, gCutsceneMsgFade);
 
 #ifdef VERSION_JP
     PrintGenericText(53, 136, str);
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
+    gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
 #else
     PrintGenericText(38, 142, str);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
+    gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
     gDPSetEnvColor(gDisplayListHead++, 200, 80, 120, gCutsceneMsgFade);
     gSPDisplayList(gDisplayListHead++, castle_grounds_seg7_us_dl_0700F2E8);
 #endif
@@ -1811,22 +1811,22 @@ void RenderHudCannonReticle(void)
 
     gDPSetEnvColor(gDisplayListHead++, 50, 50, 50, 180);
     dl_add_new_translation_matrix(1, -20.0f, -8.0f, 0);
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EF60);
+    gSPDisplayList(gDisplayListHead++, dl_draw_triangle);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
 
     dl_add_new_translation_matrix(1, 20.0f, 8.0f, 0);
     dl_add_new_rotation_matrix(2, 180.0f, 0, 0, 1.0f);
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EF60);
+    gSPDisplayList(gDisplayListHead++, dl_draw_triangle);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
 
     dl_add_new_translation_matrix(1, 8.0f, -20.0f, 0);
     dl_add_new_rotation_matrix(2, DEFAULT_DIAGBOX_ANGLE, 0, 0, 1.0f);
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EF60);
+    gSPDisplayList(gDisplayListHead++, dl_draw_triangle);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
 
     dl_add_new_translation_matrix(1, -8.0f, 20.0f, 0);
     dl_add_new_rotation_matrix(2, -DEFAULT_DIAGBOX_ANGLE, 0, 0, 1.0f);
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EF60);
+    gSPDisplayList(gDisplayListHead++, dl_draw_triangle);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
 
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
@@ -1850,7 +1850,7 @@ void ShadeScreen(void)
     dl_add_new_translation_matrix(1, 0, 240.0f, 0);
     dl_add_new_scale_matrix(2, 2.6f, 3.4f, 1.0f);
     gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, 110);
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EDE8);
+    gSPDisplayList(gDisplayListHead++, dl_draw_text_bg_box);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
 }
 
@@ -1911,7 +1911,7 @@ void func_802DA8EC(void)
     u8 courseIndex = gCurrCourseNum - 1;
     u8 starFlags = save_file_get_star_flags(gCurrSaveFileNum - 1, gCurrCourseNum - 1);
 
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED00);
+    gSPDisplayList(gDisplayListHead++, dl_rgba16_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
 
     if(courseIndex < 15)
@@ -1920,8 +1920,8 @@ void func_802DA8EC(void)
         ShowStars(gCurrSaveFileNum - 1, courseIndex, 118, 103);
     }
 
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED68);
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
+    gSPDisplayList(gDisplayListHead++, dl_rgba16_text_end);
+    gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
 
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
 
@@ -1951,7 +1951,7 @@ void func_802DA8EC(void)
 
     PrintGenericText(117, 157, &levelName[3]);
 
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
+    gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
 #else
     u8 sp64[] = {TEXT_COURSE}; //D_80331624;
     u8 sp5c[] = {TEXT_MY_SCORE}; //D_8033162C;
@@ -1969,7 +1969,7 @@ void func_802DA8EC(void)
     u8 courseIndex = gCurrCourseNum - 1;
     u8 starFlags = save_file_get_star_flags(gCurrSaveFileNum - 1, gCurrCourseNum - 1);
 
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED00);
+    gSPDisplayList(gDisplayListHead++, dl_rgba16_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
 
     if(courseIndex < 15)
@@ -1978,8 +1978,8 @@ void func_802DA8EC(void)
         ShowStars(gCurrSaveFileNum - 1, courseIndex, 118, 103);
     }
 
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED68);
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
+    gSPDisplayList(gDisplayListHead++, dl_rgba16_text_end);
+    gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
 
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
 
@@ -2012,7 +2012,7 @@ void func_802DA8EC(void)
         PrintGenericText(94, 157, &levelName[3]);
     }
 
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
+    gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
 #endif
 }
 
@@ -2026,7 +2026,7 @@ void PauseScreenCameraMenu(s16 sp72, s16 sp76, s8 *sp78, s16 sp7e)
 
     handleMenuScrolling(MENU_SCROLL_HORIZONTAL, sp78, 1, 2);
 
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
+    gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
 
     PrintGenericText(sp72+14, sp76+2, sp64);
@@ -2034,10 +2034,10 @@ void PauseScreenCameraMenu(s16 sp72, s16 sp76, s8 *sp78, s16 sp7e)
     PrintGenericText(sp72+124, sp76+2, sp54);
     PrintGenericText(sp72+116, sp76-13, sp3c);
 
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
+    gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
     dl_add_new_translation_matrix(1, ((sp78[0] - 1) * sp7e) + sp72, sp76, 0);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EF60);
+    gSPDisplayList(gDisplayListHead++, dl_draw_triangle);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
 
     switch(sp78[0])
@@ -2053,7 +2053,7 @@ void PauseScreenCameraMenu(s16 sp72, s16 sp76, s8 *sp78, s16 sp7e)
 
     handleMenuScrolling(MENU_SCROLL_HORIZONTAL, sp78, 1, 2);
 
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
+    gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
 
     PrintGenericText(sp72+14, sp76+2, sp64);
@@ -2061,10 +2061,10 @@ void PauseScreenCameraMenu(s16 sp72, s16 sp76, s8 *sp78, s16 sp7e)
     PrintGenericText(sp72+124, sp76+2, sp54);
     PrintGenericText(sp72+119, sp76-13, sp3c);
 
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
+    gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
     dl_add_new_translation_matrix(1, ((sp78[0] - 1) * sp7e) + sp72, sp76 + 2, 0);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EF60);
+    gSPDisplayList(gDisplayListHead++, dl_draw_triangle);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
 
     switch(sp78[0])
@@ -2084,7 +2084,7 @@ void PauseScreen2(s16 sp62, s16 sp66, s8 *sp68, s16 sp6e)
 
     handleMenuScrolling(MENU_SCROLL_VERTICAL, sp68, 1, 3);
 
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
+    gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
 
     PrintGenericText(sp62+10, sp66-2, sp50);
@@ -2093,12 +2093,12 @@ void PauseScreen2(s16 sp62, s16 sp66, s8 *sp68, s16 sp6e)
     if(sp68[0] != 3)
     {
         PrintGenericText(sp62+10, sp66-33, sp34);
-        gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
+        gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
 
         dl_add_new_translation_matrix(1, sp62, (sp66 - ((sp68[0] - 1) * sp6e)) - 4, 0);
 
         gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
-        gSPDisplayList(gDisplayListHead++, seg2_dl_0200EF60);
+        gSPDisplayList(gDisplayListHead++, dl_draw_triangle);
         gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
     }
 
@@ -2113,7 +2113,7 @@ void PauseScreen2(s16 sp62, s16 sp66, s8 *sp68, s16 sp6e)
 
     handleMenuScrolling(MENU_SCROLL_VERTICAL, sp68, 1, 3);
 
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
+    gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
 
     PrintGenericText(sp62+10, sp66-2, sp50);
@@ -2122,12 +2122,12 @@ void PauseScreen2(s16 sp62, s16 sp66, s8 *sp68, s16 sp6e)
     if(sp68[0] != 3)
     {
         PrintGenericText(sp62+10, sp66-33, sp34);
-        gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
+        gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
 
         dl_add_new_translation_matrix(1, sp62 - 4, (sp66 - ((sp68[0] - 1) * sp6e)) - 2, 0);
 
         gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
-        gSPDisplayList(gDisplayListHead++, seg2_dl_0200EF60);
+        gSPDisplayList(gDisplayListHead++, dl_draw_triangle);
         gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
     }
 
@@ -2143,18 +2143,18 @@ void PauseCastleMenuBox(s16 sp42, s16 sp46)
     dl_add_new_translation_matrix(1, sp42-78, sp46-32, 0);
     dl_add_new_scale_matrix(2, 1.2f, 0.8f, 1.0f);
     gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, 105);
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EDE8);
+    gSPDisplayList(gDisplayListHead++, dl_draw_text_bg_box);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
 
     dl_add_new_translation_matrix(1, sp42+6, sp46-28, 0);
     dl_add_new_rotation_matrix(2, DEFAULT_DIAGBOX_ANGLE, 0, 0, 1.0f);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EF60);
+    gSPDisplayList(gDisplayListHead++, dl_draw_triangle);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
     
     dl_add_new_translation_matrix(1, sp42-9, sp46-101, 0);
     dl_add_new_rotation_matrix(2, 270.0f, 0, 0, 1.0f);
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EF60);
+    gSPDisplayList(gDisplayListHead++, dl_draw_triangle);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
 }
 
@@ -2181,12 +2181,12 @@ void PauseScreen1(void)
 {
     u8 sp28[] = {TEXT_PAUSE};
 
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED00);
+    gSPDisplayList(gDisplayListHead++, dl_rgba16_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
 
     PutString(2, 123, 81, sp28);
 
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED68);
+    gSPDisplayList(gDisplayListHead++, dl_rgba16_text_end);
 }
 
 void func_802DB698(s16 sp4a, s16 sp4e, s16 sp52, s16 sp56)
@@ -2272,7 +2272,7 @@ void func_802DB840(s16 sp52, s16 sp56)
         }
     }
 
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
+    gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
 
     if(D_80330430 < 15)
@@ -2294,7 +2294,7 @@ void func_802DB840(s16 sp52, s16 sp56)
 
     PrintGenericText(sp52-9, sp56+30, sp44);
 
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
+    gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
 }
 
 s8 D_803305C0 = 0;
@@ -2389,7 +2389,7 @@ void func_802DBE2C(s8 sp43)
 
     u8 sp27 = (gSineTable[D_80360080 >> 4] * 50.0f) + 200.0f;
 
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED00);
+    gSPDisplayList(gDisplayListHead++, dl_rgba16_text_begin);
     gDPSetEnvColor(gDisplayListHead++, sp27, sp27, sp27, 255);
 
 #ifdef VERSION_JP
@@ -2404,7 +2404,7 @@ void func_802DBE2C(s8 sp43)
         PutString(2, 70, 67, sp28);
 #endif
 
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED68);
+    gSPDisplayList(gDisplayListHead++, dl_rgba16_text_end);
 }
 
 void func_802DC050(s16 sp32, s16 sp36)
@@ -2413,7 +2413,7 @@ void func_802DC050(s16 sp32, s16 sp36)
     u8 sp28[] = {TEXT_UNK33};// D_803305E8;
     u8 sp24[] = {TEXT_UNK32};// D_803305EC;
 
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED00);
+    gSPDisplayList(gDisplayListHead++, dl_rgba16_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
 
     PutString(2, sp32, sp36, sp28);
@@ -2422,7 +2422,7 @@ void func_802DC050(s16 sp32, s16 sp36)
     Int2Str(D_803305C8, sp2c);
     PutString(2, sp32 + 32, sp36, sp2c);
 
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED68);
+    gSPDisplayList(gDisplayListHead++, dl_rgba16_text_end);
 
     if(D_803305C8 >= gDisplayedCoins)
     {
@@ -2492,7 +2492,7 @@ void func_802DC330(void)
             sp5c = segmented_to_virtual(sp64[(gLastCompletedCourseNum * 6 + gLastCompletedStarNum) - 7]);
         }
 
-        gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
+        gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
         Int2Str(gLastCompletedCourseNum, sp58);
         gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, D_80360088);
         PrintGenericText(65, 165, sp78);
@@ -2500,19 +2500,19 @@ void func_802DC330(void)
         gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
         PrintGenericText(63, 167, sp78);
         PrintGenericText(93, 167, sp58);
-        gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
+        gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
     }
     else if (gLastCompletedCourseNum == 16 || gLastCompletedCourseNum == 17)
     {
         sp5c = segmented_to_virtual(sp60[gLastCompletedCourseNum - 1]);
-        gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
+        gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
         gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, D_80360088);
         PrintGenericText(71, 130, sp5c);
         PrintGenericText(205, 130, sp68);
         gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
         PrintGenericText(69, 132, sp5c);
         PrintGenericText(203, 132, sp68);
-        gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
+        gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
         func_802DBE2C(1);
         func_802DC050(118, 111);
         func_802DC2B4(2, 0);
@@ -2525,18 +2525,18 @@ void func_802DC330(void)
         func_802DC2B4(1, 1 << (gLastCompletedStarNum + 31));
     }
 
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED00);
+    gSPDisplayList(gDisplayListHead++, dl_rgba16_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
     PutString(2, 55, 77, sp7c);
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED68);
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
+    gSPDisplayList(gDisplayListHead++, dl_rgba16_text_end);
+    gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, D_80360088);
     PrintGenericText(76, 145, sp5c);
     PrintGenericText(220, 145, sp70);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
     PrintGenericText(74, 147, sp5c);
     PrintGenericText(218, 147, sp70);
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
+    gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
 #else
     u8 sp78[] = {TEXT_COURSE};//D_803305F4;
     UNUSED u8 sp70[] = {TEXT_CATCH};//D_803305F8;
@@ -2563,7 +2563,7 @@ void func_802DC330(void)
             sp5c = segmented_to_virtual(sp64[(gLastCompletedCourseNum * 6 + gLastCompletedStarNum) - 7]);
         }
 
-        gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
+        gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
         Int2Str(gLastCompletedCourseNum, sp58);
         gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, D_80360088);
         PrintGenericText(65, 165, sp78);
@@ -2571,19 +2571,19 @@ void func_802DC330(void)
         gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
         PrintGenericText(63, 167, sp78);
         PrintGenericText(102, 167, sp58);
-        gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
+        gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
     }
     else if (gLastCompletedCourseNum == 16 || gLastCompletedCourseNum == 17)
     {
         sp5c = segmented_to_virtual(sp60[gLastCompletedCourseNum - 1]);
-        gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
+        gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
         gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, D_80360088);
         PrintGenericText(71, 130, sp5c);
         PrintGenericText(func_u_802D8934(sp5c) + 81, 130, sp68);
         gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
         PrintGenericText(69, 132, sp5c);
         PrintGenericText(func_u_802D8934(sp5c) + 79, 132, sp68);
-        gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
+        gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
         func_802DBE2C(1);
         func_802DC050(118, 111);
         func_802DC2B4(2, 0);
@@ -2596,16 +2596,16 @@ void func_802DC330(void)
         func_802DC2B4(1, 1 << (gLastCompletedStarNum + 31));
     }
 
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED00);
+    gSPDisplayList(gDisplayListHead++, dl_rgba16_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
     PutString(2, 55, 77, sp7c);
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED68);
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
+    gSPDisplayList(gDisplayListHead++, dl_rgba16_text_end);
+    gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, D_80360088);
     PrintGenericText(76, 145, sp5c);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
     PrintGenericText(74, 147, sp5c);
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
+    gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
 #endif
 }
 
@@ -2617,7 +2617,7 @@ void Save(s16 sp62, s16 sp66, s8 *sp68, s16 sp6e)
 
     handleMenuScrolling(MENU_SCROLL_VERTICAL, sp68, 1, 3);
 
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
+    gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
 
 #ifdef VERSION_JP
@@ -2630,12 +2630,12 @@ void Save(s16 sp62, s16 sp66, s8 *sp68, s16 sp6e)
     PrintGenericText(sp62 + 12, sp66 - 40, sp34);
 #endif
 
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
+    gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
 
     dl_add_new_translation_matrix(1, sp62, sp66 - ((sp68[0] - 1) * sp6e), 0);
 
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EF60);
+    gSPDisplayList(gDisplayListHead++, dl_draw_triangle);
 
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
 }

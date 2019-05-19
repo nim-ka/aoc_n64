@@ -422,6 +422,7 @@
 /* Index in DMEM table */
 .set G_MW_NUMLIGHT, 0x02
 .set G_MW_FOG, 0x08
+.set G_MW_PERSPNORM, 0x0E
 
 /* Offsets in DMEM table */
 .set G_MWO_NUMLIGHT, 0x00
@@ -496,7 +497,7 @@
 .endm
 
 /* gSPSetGeometryMode */
-.macro gsSPSetGeometryMode flags
+.macro gsSPSetGeometryMode, flags
    .ifdef F3DEX_GBI_2
    .word (G_SETGEOMETRYMODE << 24) | 0x00FFFFFF
    .word \flags
@@ -507,7 +508,7 @@
 .endm
 
 /* gSPClearGeometryMode */
-.macro gsSPClearGeometryMode flags
+.macro gsSPClearGeometryMode, flags
    .ifdef F3DEX_GBI_2
    .word (G_CLEARGEOMETRYMODE << 24) | ((~(\flags)) & 0x00FFFFFF)
    .word 0
@@ -515,6 +516,15 @@
    .word G_CLEARGEOMETRYMODE << 24
    .word \flags
    .endif
+.endm
+
+/* gSPPerspNormalize */
+.macro gsSPPerspNormalize, perspNorm
+    .ifndef F3D_OLD
+        gsMoveWd G_MW_PERSPNORM, 0, \perspNorm
+    .else
+        gsImmp1 G_RDPHALF_1, \perspNorm
+    .endif
 .endm
 
 /* gSPEndDisplayList */

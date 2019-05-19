@@ -17,10 +17,10 @@ struct TextLabel
     char buffer[1];  // unknown length
 };
 
-extern u8 seg2_dl_0200EC60[];
-extern u8 seg2_dl_0200ECC8[];
+extern u8 dl_hud_img_begin[];
+extern u8 dl_hud_img_end[];
 extern u8 seg2_hud_lut[];
-extern u8 seg2_dl_0200EC98[];
+extern u8 dl_hud_img_load_tex_block[];
 
 struct TextLabel *sTextLabels[52];
 
@@ -273,7 +273,7 @@ static void add_glyph_texture(s8 glyphIndex)
 
     gDPPipeSync(gDisplayListHead++);
     gDPSetTextureImage(gDisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, glyphs[glyphIndex]);
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EC98);
+    gSPDisplayList(gDisplayListHead++, dl_hud_img_load_tex_block);
 }
 
 static void func_802D5FEC(s32 *x, s32 *y)
@@ -320,7 +320,7 @@ void func_802D61A8(void)
     guOrtho(mtx, 0.0f, 320.0f, 0.0f, 240.0f, -10.0f, 10.0f, 1.0f);
     gSPPerspNormalize((Gfx *)(gDisplayListHead++), 0x0000FFFF);
     gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(mtx), G_MTX_PROJECTION | G_MTX_LOAD);
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EC60);
+    gSPDisplayList(gDisplayListHead++, dl_hud_img_begin);
 
     for (i = 0; i < sTextLabelsCount; i++)
     {
@@ -336,7 +336,7 @@ void func_802D61A8(void)
         mem_pool_free(D_8033A124, (void *)sTextLabels[i]);
     }
     
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ECC8);
+    gSPDisplayList(gDisplayListHead++, dl_hud_img_end);
 
     sTextLabelsCount = 0;
 }

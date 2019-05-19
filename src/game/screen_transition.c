@@ -70,12 +70,12 @@ static s32 func_802CAF38(s8 a0, u8 a1, struct WarpTransitionData *transData, u8 
 
     if (verts != NULL)
     {
-        gSPDisplayList(gDisplayListHead++, seg2_dl_02014660)
+        gSPDisplayList(gDisplayListHead++, dl_proj_mtx_fullscreen)
         gDPSetCombine(gDisplayListHead++, 0xFFFFFF, 0xFFFE793C)
         gDPSetRenderMode(gDisplayListHead++, G_RM_AA_XLU_SURF, G_RM_AA_XLU_SURF2)
         gSPVertex(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(verts), 4, 0)
-        gSPDisplayList(gDisplayListHead++, seg2_dl_020144F0)
-        gSPDisplayList(gDisplayListHead++, seg2_dl_02014698)
+        gSPDisplayList(gDisplayListHead++, dl_draw_quad_verts_0123)
+        gSPDisplayList(gDisplayListHead++, dl_screen_transition_end)
     }
     return func_802CAAE0(a0, a1);
 }
@@ -176,10 +176,10 @@ static void func_802CB6A0(Vtx *verts, s8 sp47, struct WarpTransitionData *transD
 
 static void *D_8032FF68[] =
 {
-    seg2_texture_0200F458,
-    seg2_texture_0200FC58,
-    seg2_texture_02010458,
-    seg2_texture_02011458,
+    texture_transition_star_half,
+    texture_transition_circle_half,
+    texture_transition_mario,
+    texture_transition_bowser_half,
 };
 
 static s32 func_802CB9F8(s8 spBB, s8 spBF, struct WarpTransitionData *transData, s8 spC7, s8 spCB)
@@ -194,11 +194,11 @@ static s32 func_802CB9F8(s8 spBB, s8 spBF, struct WarpTransitionData *transData,
     if (spA8 != NULL)
     {
         func_802CB6A0(spA8, spBB, transData, spB0, spAE, spAC, spCB);  // TODO types
-        gSPDisplayList(gDisplayListHead++, seg2_dl_02014660)
+        gSPDisplayList(gDisplayListHead++, dl_proj_mtx_fullscreen)
         gDPSetCombine(gDisplayListHead++, 0xFFFFFF, 0xFFFE793C)
         gDPSetRenderMode(gDisplayListHead++, G_RM_AA_OPA_SURF, G_RM_AA_OPA_SURF2)
         gSPVertex(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(spA8), 8, 0)
-        gSPDisplayList(gDisplayListHead++, seg2_dl_020146C0)
+        gSPDisplayList(gDisplayListHead++, dl_transition_draw_filled_region)
         gDPPipeSync(gDisplayListHead++)
         gDPSetCombine(gDisplayListHead++, 0x127E24, 0xFFFFF3F9)
         gDPSetRenderMode(gDisplayListHead++, G_RM_AA_XLU_SURF, G_RM_AA_XLU_SURF2)
@@ -226,9 +226,9 @@ static s32 func_802CB9F8(s8 spBB, s8 spBF, struct WarpTransitionData *transData,
         }
         gSPTexture(gDisplayListHead++, -1, -1, 0, 0, G_ON)
         gSPVertex(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(spA8), 4, 0)
-        gSPDisplayList(gDisplayListHead++, seg2_dl_020144F0)
+        gSPDisplayList(gDisplayListHead++, dl_draw_quad_verts_0123)
         gSPTexture(gDisplayListHead++, -1, -1, 0, 0, G_OFF)
-        gSPDisplayList(gDisplayListHead++, seg2_dl_02014698)
+        gSPDisplayList(gDisplayListHead++, dl_screen_transition_end)
         D_8032FF64[spBB] += transData->unk10;
     }
     else
@@ -287,7 +287,7 @@ static Gfx *func_802CC2E8(void)
         make_vertex(verts, 2, 320, 240, -1,  1152,  192, 0, 0, 0, 255);
         make_vertex(verts, 3,   0, 240, -1, -1152,  192, 0, 0, 0, 255);
 
-        gSPDisplayList(g++, seg2_dl_02014660)
+        gSPDisplayList(g++, dl_proj_mtx_fullscreen)
         gDPSetCombine(g++, 0x127E24, 0xFFFFF3F9)
         gDPSetTextureFilter(g++, G_TF_BILERP)
         gDPSetTextureImage(g++, G_IM_FMT_IA, G_IM_SIZ_16b, 1, D_8032FF68[1])
@@ -299,9 +299,9 @@ static Gfx *func_802CC2E8(void)
         gDPSetTileSize(g++, 0, 0, 0, 124, 252)
         gSPTexture(g++, -1, -1, 0, 0, G_ON)
         gSPVertex(g++, VIRTUAL_TO_PHYSICAL(verts), 4, 0)
-        gSPDisplayList(g++, seg2_dl_020144F0)
+        gSPDisplayList(g++, dl_draw_quad_verts_0123)
         gSPTexture(g++, -1, -1, 0, 0, G_OFF)
-        gSPDisplayList(g++, seg2_dl_02014698)
+        gSPDisplayList(g++, dl_screen_transition_end)
         gSPEndDisplayList(g)
     }
     else

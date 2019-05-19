@@ -164,7 +164,7 @@ static void ShowCourseNumber(void)
 
     gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700F228);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED00);
+    gSPDisplayList(gDisplayListHead++, dl_rgba16_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
 
     Int2Str(gCurrCourseNum, courseNum);
@@ -173,7 +173,7 @@ static void ShowCourseNumber(void)
     else
         PutString(2, 143, 158, courseNum);
 
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED68);
+    gSPDisplayList(gDisplayListHead++, dl_rgba16_text_end);
 }
 
 static void ShowActSelectorMenu(void)
@@ -195,13 +195,13 @@ static void ShowActSelectorMenu(void)
     dl_add_new_ortho_matrix();
 
     // Display the coin highscore.
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED00);
+    gSPDisplayList(gDisplayListHead++, dl_rgba16_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
 
     ShowCoins(1, gCurrSaveFileNum - 1, gCurrCourseNum - 1, 155, 106);
 
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED68);
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68);
+    gSPDisplayList(gDisplayListHead++, dl_rgba16_text_end);
+    gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, 255);
 
     // Display the "MY SCORE" text
@@ -213,7 +213,7 @@ static void ShowActSelectorMenu(void)
     PrintGenericText(x, 33, currLevelName + 3);
 
     // Display the course number.
-    gSPDisplayList(gDisplayListHead++, seg2_dl_0200EEF0);
+    gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
 
     ShowCourseNumber();
 
