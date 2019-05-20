@@ -43,63 +43,63 @@ mario_diff_light_group6: # 0x04000080 # solid color light brown 2 - hair - all p
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
 mario_texture_metal: # 0x04000090
-.incbin "actors/mario/0.rgba16"
+.incbin "actors/mario/metal.rgba16"
 
 mario_texture_yellow_button: # 0x04001090
-.incbin "actors/mario/1.rgba16"
+.incbin "actors/mario/yellow_button.rgba16"
 
 mario_texture_m_logo: # 0x04001890
-.incbin "actors/mario/2.rgba16"
+.incbin "actors/mario/mario_logo.rgba16"
 
 mario_texture_hair_sideburn: # 0x04002090
-.incbin "actors/mario/3.rgba16"
+.incbin "actors/mario/sideburn.rgba16"
 
 mario_texture_mustache: # 0x04002890
-.incbin "actors/mario/4.rgba16"
+.incbin "actors/mario/mustache.rgba16"
 
 mario_texture_eyes_front: # 0x04003090
-.incbin "actors/mario/5.rgba16"
+.incbin "actors/mario/eyes_front.rgba16"
 
 mario_texture_eyes_half_closed: # 0x04003890
-.incbin "actors/mario/6.rgba16"
+.incbin "actors/mario/eyes_half_closed.rgba16"
 
 mario_texture_eyes_closed: # 0x04004090
-.incbin "actors/mario/7.rgba16"
+.incbin "actors/mario/eyes_closed.rgba16"
 
 # Unreferenced
 mario_texture_eyes_closed_unused1: # 0x04004890
-.incbin "actors/mario/8.rgba16"
+.incbin "actors/mario/eyes_closed_unused1.rgba16"
 
 # Unreferenced
 mario_texture_eyes_closed_unused2: # 0x04005090
-.incbin "actors/mario/9.rgba16"
+.incbin "actors/mario/eyes_closed_unused2.rgba16"
 
 mario_texture_eyes_right: # 0x04005890
-.incbin "actors/mario/10.rgba16"
+.incbin "actors/mario/eyes_right.rgba16"
 
 mario_texture_eyes_left: # 0x04006090
-.incbin "actors/mario/11.rgba16"
+.incbin "actors/mario/eyes_left.rgba16"
 
 mario_texture_eyes_up: # 0x04006890
-.incbin "actors/mario/12.rgba16"
+.incbin "actors/mario/eyes_up.rgba16"
 
 mario_texture_eyes_down: # 0x04007090
-.incbin "actors/mario/13.rgba16"
+.incbin "actors/mario/eyes_down.rgba16"
 
 mario_texture_eyes_dead: # 0x04007890
-.incbin "actors/mario/14.rgba16"
+.incbin "actors/mario/eyes_dead.rgba16"
 
 mario_texture_wings_half_1: # 0x04008090
-.incbin "actors/mario/15.rgba16"
+.incbin "actors/mario/wings_half_1.rgba16"
 
 mario_texture_wings_half_2: # 0x04009090
-.incbin "actors/mario/16.rgba16"
+.incbin "actors/mario/wings_half_2.rgba16"
 
 mario_texture_metal_wings_half_1: # 0x0400A090
-.incbin "actors/mario/17.rgba16"
+.incbin "actors/mario/metal_wings_half_1.rgba16"
 
 mario_texture_metal_wings_half_2: # 0x0400B090
-.incbin "actors/mario/18.rgba16"
+.incbin "actors/mario/metal_wings_half_2.rgba16"
 
 mario_butt_dl_vertex_group1: # 0x0400C090
 vertex     -9,     73,    -34,      0,      0,  0xC2, 0x6B, 0xE6, 0x00

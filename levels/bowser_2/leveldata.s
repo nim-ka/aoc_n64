@@ -2,6 +2,7 @@
 .section .rodata
 .include "macros.inc"
 .include "PR/gbi.inc"
+.include "collision.inc"
 .include "special_presets.inc"
 
 .include "levels/bowser_2/texture.s"

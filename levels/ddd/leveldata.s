@@ -2,6 +2,7 @@
 .section .rodata
 .include "macros.inc"
 .include "PR/gbi.inc"
+.include "collision.inc"
 .include "macro_presets.inc"
 
 .include "levels/ddd/texture.s"
