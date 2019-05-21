@@ -111,19 +111,6 @@ void func_8027B110(struct GraphNodeToggleZBuffer *a)
 
 void func_8027B354(void *displayList, s16 b)
 {
-
-/** @bug This is where the LookAt values should be calculated but aren't.
- * As a result, environment mapping is broken on Fast3DEX2 without the
- * changes below.
- */
-
-#ifdef F3DEX_GBI_2
-    Mtx lMtx;
-    LookAt lookAt;
-    guLookAtReflect(&lMtx, &lookAt, 0, 0, 0, /* eye */ 0, 0, 1, /* at */ 1, 0, 0 /* up */ );
-    gSPLookAt(gDisplayListHead++, &lookAt);
-#endif
-
     if (D_8032CF94 != 0)
     {
         struct GraphNodeToggleZBuffer_sub *sp1C = alloc_only_pool_alloc(D_8033B018, sizeof(struct GraphNodeToggleZBuffer_sub));
@@ -724,11 +711,26 @@ void func_8027D8F8(struct GraphNode *rootGraphNode)
     struct GraphNode *curGraphNode = rootGraphNode;
     struct GraphNode *sp24 = curGraphNode->parent;
 
+
+    /** @bug This is where the LookAt values should be calculated but aren't.
+     * As a result, environment mapping is broken on Fast3DEX2 without the
+     * changes below.
+     */
+
+#ifdef F3DEX_GBI_2
+    Mtx lMtx;
+    LookAt lookAt;
+    guLookAtReflect(&lMtx, &lookAt, 0, 0, 0, /* eye */ 0, 0, 1, /* at */ 1, 0, 0 /* up */ );
+#endif
+
     if (sp24 != NULL)
         sp2E = (sp24->type != GRAPH_NODE_TYPE_SWITCH_CASE);
     //L8027D944
     do
     {
+#ifdef F3DEX_GBI_2
+        gSPLookAt(gDisplayListHead++, &lookAt);
+#endif
         if (curGraphNode->flags & GRAPH_RENDER_01)
         {
             if (curGraphNode->flags & GRAPH_RENDER_02)

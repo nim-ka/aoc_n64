@@ -5,14 +5,19 @@
 
 .balign 16
 glabel rspF3DBootStart
-    .incbin "lib/PR/boot/F3D_boot.bin"
+    .ifndef F3DZEX_GBI
+        .incbin "lib/PR/boot/F3D_boot.bin"
+    .else /* Fast3DZEX */
+        .incbin "lib/PR/boot/F3DZEX_boot.bin"
+    .endif
 glabel rspF3DBootEnd
 
-# Both of these ucode bins are 0x1000/0x800 respectively as defined in their
-# ucode initializations, but there's extra data afterwards. However, it's not the
-# RSP data as that is pointed to below in the rodata section. TODO: What are these
-# extra bins?
-
+/* 
+ * Both of these ucode bins are 0x1000/0x800 respectively as defined in their
+ * ucode initializations, but there's extra data afterwards. However, it's not the
+ * RSP data as that is pointed to below in the rodata section. TODO: What are these
+ * extra bins?
+ */
 
 .balign 16
 .ifndef F3DEX_GBI_SHARED
@@ -27,10 +32,12 @@ glabel rspF3DEnd
 
 .else /* Use one of the Fast3DEX series grucodes. */
 glabel rspF3DStart
-    .ifndef F3DEX_GBI_2
-    .incbin "lib/PR/f3dex/F3DEX.bin"
-    .else
-    .incbin "lib/PR/f3dex2/F3DEX2.bin"
+    .if F3DEX_GBI_2 == 1
+        .incbin "lib/PR/f3dex2/F3DEX2.bin"
+    .elseif F3DEX_GBI == 1
+        .incbin "lib/PR/f3dex/F3DEX.bin"
+    .else /* Fast3DZEX */
+        .incbin "lib/PR/f3dex2/F3DZEX.bin"
     .endif
 glabel rspF3DEnd
 .endif
@@ -133,8 +140,8 @@ glabel rspS2DEXEnd
 
 .section .rodata
 
-.ifndef F3DEX_GBI_SHARED /* Use regular Fast3D data (default) */
 .balign 16
+.ifndef F3DEX_GBI_SHARED /* Use regular Fast3D data (default) */
 glabel rspF3DDataStart
     .ifndef F3D_OLD /* OS 2.0H (J2 and IQ) */
     .incbin "lib/PR/f3d/new/F3D_data.bin"
@@ -142,12 +149,15 @@ glabel rspF3DDataStart
     .incbin "lib/PR/f3d/old/F3D_data.bin"
     .endif
 glabel rspF3DDataEnd
+
 .else /* Using one of the Fast3DEX series grucodes */
 glabel rspF3DDataStart
-    .ifndef F3DEX_GBI_2
-    .incbin "lib/PR/f3dex/F3DEX_data.bin"
-    .else
-    .incbin "lib/PR/f3dex2/F3DEX2_data.bin"
+    .if F3DEX_GBI_2 == 1
+        .incbin "lib/PR/f3dex2/F3DEX2_data.bin"
+    .elseif F3DEX_GBI == 1
+        .incbin "lib/PR/f3dex/F3DEX_data.bin"
+    .else /* Fast3DZEX */
+        .incbin "lib/PR/f3dex2/F3DZEX_data.bin"
     .endif
 glabel rspF3DDataEnd
 .endif

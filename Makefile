@@ -55,6 +55,13 @@ ifeq ($(GRUCODE),f3d_new) # Fast3D 2.0H (Shindou)
   GRUCODE_ASFLAGS := --defsym F3D_NEW=1
   TARGET := $(TARGET).f3d_new
   COMPARE := 0
+else
+ifeq ($(GRUCODE),f3dzex) # Fast3DZEX (2.0I / TLoZ: MM)
+  GRUCODE_CFLAGS := -DF3DEX_GBI_2=1
+  GRUCODE_ASFLAGS := --defsym F3DEX_GBI_SHARED=1 --defsym F3DZEX_GBI=1
+  TARGET := $(TARGET).f3dzex
+  COMPARE := 0
+endif
 endif
 endif
 endif

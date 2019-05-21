@@ -3,6 +3,11 @@
  * This supports Fast3D, Fast3DEX, and Fast3DEX2.
  */
 
+/* Fast3DZEX support */
+.ifdef F3DZEX_GBI
+   .set F3DEX_GBI_2, 1
+.endif
+
 /* Macros */
 
 /* commands with no parameters */

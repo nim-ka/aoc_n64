@@ -293,6 +293,7 @@ SECTIONS
       BUILD_DIR/libultra.a:osViData.o(.data*);
       BUILD_DIR/libultra.a:kdebugserver.o(.data*);
       BUILD_DIR/libultra.a:__osSyncPutChars.o(.data*);
+      BUILD_DIR/libultra.a:guRotateF.o(.data);
       /* rodata */
       BUILD_DIR/src/game/main.o(.rodata*);
       BUILD_DIR/src/game/game.o(.rodata*);
