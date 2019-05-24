@@ -149,7 +149,7 @@ Gfx *geo18_display_error_message(u32 run, UNUSED struct GraphNode *sp44, UNUSED 
       
           // Init generic text rendering
           dl_add_new_ortho_matrix();
-          gSPDisplayList(gDisplayListHead++, seg2_dl_0200EE68); // Init rendering stuff for generic text
+          gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin); // Init rendering stuff for generic text
           
           // Set text color to white
           gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
@@ -159,7 +159,7 @@ Gfx *geo18_display_error_message(u32 run, UNUSED struct GraphNode *sp44, UNUSED 
           PrintGenericText(8, 54, text_pj64_2);
           
           // Cleanup
-          gSPDisplayList(gDisplayListHead++, seg2_dl_0200ED68); // Reset back to default render settings.
+          gSPDisplayList(gDisplayListHead++, dl_ia8_text_end); // Reset back to default render settings.
           gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
       }
       else
