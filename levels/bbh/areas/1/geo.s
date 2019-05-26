@@ -401,7 +401,7 @@ glabel geo_bbh_000EB0 # 0x0E000EB0
    geo_return
 
 glabel geo_bbh_000F00 # 0x0E000F00
-   geo_node_screen_area 10, 160, 120, 160, 120
+   geo_node_screen_area 10, SCREEN_WIDTH/2, SCREEN_HEIGHT/2, SCREEN_WIDTH/2, SCREEN_HEIGHT/2
    geo_open_node
       geo_zbuffer 0
       geo_open_node

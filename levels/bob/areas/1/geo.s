@@ -1,5 +1,5 @@
 glabel bob_geo_000488 # 0x0E000488
-   geo_node_screen_area 10, 160, 120, 160, 120
+   geo_node_screen_area 10, SCREEN_WIDTH/2, SCREEN_HEIGHT/2, SCREEN_WIDTH/2, SCREEN_HEIGHT/2
    geo_open_node
       geo_zbuffer 0
       geo_open_node

@@ -252,7 +252,7 @@ glabel hmc_geo_000B48 # 0x0E000B48
    geo_return
 
 glabel hmc_geo_000B90 # 0x0E000B90
-   geo_node_screen_area 10, 160, 120, 160, 120
+   geo_node_screen_area 10, SCREEN_WIDTH/2, SCREEN_HEIGHT/2, SCREEN_WIDTH/2, SCREEN_HEIGHT/2
    geo_open_node
       geo_zbuffer 0
       geo_open_node

@@ -1,7 +1,7 @@
 # SHARE_PATH: [level]/areas/1/1/, [level]/areas/1/2/, [level]/areas/1/3/, [level]/areas/1/4/
 
 glabel thi_geo_0006D4 # 0x0E0006D4
-   geo_node_screen_area 10, 160, 120, 160, 120
+   geo_node_screen_area 10, SCREEN_WIDTH/2, SCREEN_HEIGHT/2, SCREEN_WIDTH/2, SCREEN_HEIGHT/2
    geo_open_node
       geo_zbuffer 0
       geo_open_node

@@ -1,5 +1,5 @@
 glabel intro_geo_0002D0 # 0x0E0002D0
-   geo_node_screen_area 0, 160, 120, 160, 120
+   geo_node_screen_area 0, SCREEN_WIDTH/2, SCREEN_HEIGHT/2, SCREEN_WIDTH/2, SCREEN_HEIGHT/2
    geo_open_node
       geo_zbuffer 0
       geo_open_node
@@ -26,7 +26,7 @@ glabel intro_geo_0002D0 # 0x0E0002D0
    geo_end
 
 glabel intro_geo_00035C # 0x0E00035C
-   geo_node_screen_area 0, 160, 120, 160, 120
+   geo_node_screen_area 0, SCREEN_WIDTH/2, SCREEN_HEIGHT/2, SCREEN_WIDTH/2, SCREEN_HEIGHT/2
    geo_open_node
       geo_zbuffer 0
       geo_open_node
@@ -46,7 +46,7 @@ glabel intro_geo_00035C # 0x0E00035C
    geo_end
 
 glabel intro_geo_0003B8 # 0x0E0003B8
-   geo_node_screen_area 0, 160, 120, 160, 120
+   geo_node_screen_area 0, SCREEN_WIDTH/2, SCREEN_HEIGHT/2, SCREEN_WIDTH/2, SCREEN_HEIGHT/2
    geo_open_node
       geo_zbuffer 0
       geo_open_node
@@ -66,7 +66,7 @@ glabel intro_geo_0003B8 # 0x0E0003B8
    geo_end
 
 glabel intro_geo_000414 # 0x0E000414
-   geo_node_screen_area 0, 160, 120, 160, 120
+   geo_node_screen_area 0, SCREEN_WIDTH/2, SCREEN_HEIGHT/2, SCREEN_WIDTH/2, SCREEN_HEIGHT/2
    geo_open_node
       geo_zbuffer 0
       geo_open_node

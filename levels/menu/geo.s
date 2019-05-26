@@ -103,7 +103,7 @@ glabel main_menu_geo_000358 # 0x0E000358
    geo_end
 
 glabel main_menu_geo_000380 # 0x0E000380
-   geo_node_screen_area 10, 160, 120, 160, 120
+   geo_node_screen_area 10, SCREEN_WIDTH/2, SCREEN_HEIGHT/2, SCREEN_WIDTH/2, SCREEN_HEIGHT/2
    geo_open_node
       geo_zbuffer 0
       geo_open_node
@@ -130,7 +130,7 @@ glabel main_menu_geo_000380 # 0x0E000380
    geo_end
 
 glabel main_menu_geo_000408 # 0x0E000408
-   geo_node_screen_area 10, 160, 120, 160, 120
+   geo_node_screen_area 10, SCREEN_WIDTH/2, SCREEN_HEIGHT/2, SCREEN_WIDTH/2, SCREEN_HEIGHT/2
    geo_open_node
       geo_zbuffer 0
       geo_open_node
