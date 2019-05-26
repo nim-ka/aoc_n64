@@ -27,4 +27,11 @@
 /// incorrect promotion of floats to doubles.
 #define BUGFIX_GODDARD_BAD_DECLARATIONS (0 || BUGFIXES_CRITICAL)
 
+//Screen Size Defines
+#define SCREEN_WIDTH 320
+#define SCREEN_HEIGHT 240
+
+//Border Height Define for NTSC Versions
+#define BORDER_HEIGHT 8
+
 #endif
