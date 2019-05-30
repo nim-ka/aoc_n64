@@ -5,11 +5,7 @@
 
 .balign 16
 glabel rspF3DBootStart
-    .ifndef F3DZEX_GBI
-        .incbin "lib/PR/boot/F3D_boot.bin"
-    .else /* Fast3DZEX */
-        .incbin "lib/PR/boot/F3DZEX_boot.bin"
-    .endif
+    .incbin "lib/PR/boot/F3D_boot.bin"
 glabel rspF3DBootEnd
 
 /* 
