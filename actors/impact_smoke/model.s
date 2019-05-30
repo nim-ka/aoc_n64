@@ -28,8 +28,7 @@ vertex   -150,    150,      0,      0,      0,  0x28, 0x19, 0x14, 0xFF
 glabel impact_smoke_seg6_dl_06062AA8 # 0x06062AA8 - 0x06062AD8
 gsDPPipeSync
 gsDPSetCombineMode1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_ENVIRONMENT, G_ACMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0
-gsSPClearGeometryMode G_LIGHTING
-gsSPSetGeometryMode G_SHADING_SMOOTH
+gsSPGeometryMode G_LIGHTING, G_SHADING_SMOOTH, G_ORDER_CFIRST
 gsSPTexture -1, -1, 0, 0, 1
 gsSPEndDisplayList
 

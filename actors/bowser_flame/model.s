@@ -58,8 +58,7 @@ vertex   -150,    150,      0,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
 glabel flame_seg6_dl_0601C080 # 0x0601C080 - 0x0601C0B0
 gsDPPipeSync
 gsDPSetCombineMode1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_SHADE, G_ACMUX_0
-gsSPClearGeometryMode G_LIGHTING
-gsSPSetGeometryMode G_SHADING_SMOOTH
+gsSPGeometryMode G_LIGHTING, G_SHADING_SMOOTH, G_ORDER_CFIRST
 gsSPTexture -1, -1, 0, 0, 1
 gsSPEndDisplayList
 

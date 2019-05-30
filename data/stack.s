@@ -2,7 +2,7 @@
 
 .section .stack
 
-# general stack .bss
+/* General stack BSS */
 
 glabel gDecompressionHeap
     .space 0xD000
@@ -13,10 +13,12 @@ glabel gAudioSPTaskYieldBuffer
     .space 0x400
 .endif
 
-# Probably Thread 2 stack space; its even in the
-# same area. unreferenced.
+/*
+ * Probably Thread 2 stack space; its even in the
+ * same area. unreferenced.
+ */
 
-.ifndef F3DEX_GBI_SHARED # F3DEX task yield buffer
+.ifndef F3DEX_GBI_SHARED /* F3DEX task yield buffer */
     .space 0x1400
 .else
     .space 0x1100
@@ -39,10 +41,10 @@ glabel gSaveBuffer
     .space 0x200
 glabel gGfxSPTaskStack
     .space 0x400
-glabel gGfxPools # 0xc850 * 2
+glabel gGfxPools /* 0xc850 * 2 */
     .space 0x190a0
 
-# audio stack .bss
+/* Audio stack .bss */
 
 glabel D_802211A0
     .space 0x10
@@ -84,15 +86,15 @@ glabel D_802218D0
     .space 0x40
 glabel D_80221910
     .space 0x100
-glabel D_80221A10 # unused?
+glabel D_80221A10 /* Unused? */
     .space 0x1000
 glabel D_80222A10
     .space 0x8
-glabel D_80222A18 # size 0x140 * 3
+glabel D_80222A18 /* size 0x140 * 3 */
     .space 0x3C0
-glabel D_80222DD8 # 0xC0 * 32
+glabel D_80222DD8 /* 0xC0 * 32 */
     .space 0x1800
-glabel D_802245D8 # 0x80 * 48 or 52 (US)
+glabel D_802245D8 /* 0x80 * 48 or 52 (US) */
     .space 0x1800
 .ifndef VERSION_JP
     .space 0x200
@@ -195,12 +197,14 @@ glabel D_80226EB8
     .space 0x8
 glabel D_80226EC0
     .space 0x8
-# Pad to a multiple of 0x1000
-# (Is gGfxSPTaskOutputBuffer declared in a .o file with large alignment?)
+/*
+ * Pad to a multiple of 0x1000
+ * (Is gGfxSPTaskOutputBuffer declared in a .o file with large alignment?)
+ */
 .ifdef VERSION_JP
     .space 0x138
 .else
     .space 0x338
 .endif
-glabel gGfxSPTaskOutputBuffer
+glabel gGfxSPTaskOutputBuffer /* FIFO buffer */
     .space 0x1F000

@@ -20,8 +20,7 @@ glabel ssl_seg7_dl_07028660 # 0x07028660 - 0x070286A0
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
 gsDPSetCycleType G_CYC_1CYCLE
-gsSPSetGeometryMode G_LIGHTING | G_CULL_BACK
-gsSPClearGeometryMode G_FOG
+gsSPGeometryMode G_FOG, G_LIGHTING | G_CULL_BACK, G_ORDER_SFIRST
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsDPSetRenderMode G_RM_AA_ZB_OPA_INTER, G_RM_NOOP2
 gsSPEndDisplayList
@@ -47,8 +46,7 @@ glabel ssl_seg7_dl_07028718 # 0x07028718 - 0x07028760
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
 gsDPSetCycleType G_CYC_1CYCLE
-gsSPSetGeometryMode G_LIGHTING | G_CULL_BACK
-gsSPClearGeometryMode G_FOG
+gsSPGeometryMode G_FOG, G_LIGHTING | G_CULL_BACK, G_ORDER_SFIRST
 gsDPSetEnvColor 255, 255, 255, 255
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsDPSetRenderMode G_RM_AA_ZB_XLU_INTER, G_RM_NOOP2

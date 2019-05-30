@@ -21,8 +21,7 @@ glabel cotmc_seg7_dl_0700BE88 # 0x0700BE88 - 0x0700BED0
 gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
 gsDPSetCycleType G_CYC_1CYCLE
-gsSPSetGeometryMode G_LIGHTING | G_CULL_BACK
-gsSPClearGeometryMode G_FOG
+gsSPGeometryMode G_FOG, G_LIGHTING | G_CULL_BACK, G_ORDER_SFIRST
 gsDPSetEnvColor 255, 255, 255, 255
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsDPSetRenderMode G_RM_AA_ZB_XLU_INTER, G_RM_NOOP2

@@ -632,13 +632,11 @@ gsSPSetGeometryMode G_LIGHTING | G_CULL_BACK
 gsSPEndDisplayList
 
 glabel eyerok_seg5_dl_0500CC18 # 0x0500CC18 - 0x0500CC30
-gsSPClearGeometryMode G_CULL_BACK
-gsSPSetGeometryMode G_CULL_FRONT
+gsSPGeometryMode G_CULL_BACK, G_CULL_FRONT, G_ORDER_CFIRST
 gsSPEndDisplayList
 
 glabel eyerok_seg5_dl_0500CC30 # 0x0500CC30 - 0x0500CC48
-gsSPClearGeometryMode G_CULL_FRONT
-gsSPSetGeometryMode G_CULL_BACK
+gsSPGeometryMode G_CULL_FRONT, G_CULL_BACK, G_ORDER_CFIRST
 gsSPEndDisplayList
 
 eyerok_seg5_animvalue_0500CC48: # 0x0500CC48

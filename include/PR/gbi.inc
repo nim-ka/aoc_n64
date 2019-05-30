@@ -47,8 +47,7 @@
 .set G_TRI2, 0x06
 .set G_RDPHALF_1, 0xE1
 .set G_RDPHALF_2, 0xF1
-.set G_CLEARGEOMETRYMODE, 0xD9 /* Fast3DEX2 uses one GeometryMode opcode. */
-.set G_SETGEOMETRYMODE, 0xD9
+.set G_GEOMETRYMODE, 0xD9 /* Fast3DEX2 uses one GeometryMode opcode. */
 .set G_ENDDL, 0xDF
 .set G_SETOTHERMODE_L, 0xE2
 .set G_SETOTHERMODE_H, 0xE3
@@ -164,6 +163,13 @@
 .set G_TEXTURE_GEN,        0x00040000
 .set G_TEXTURE_GEN_LINEAR, 0x00080000
 .endif
+
+/*
+ * Used for matching F3DEX2-style geometry mode usage.
+ * Ignored when building with Fast3DEX2.
+ */
+.set G_ORDER_SFIRST, 0
+.set G_ORDER_CFIRST, 1
 
 /* gSPSetOtherMode (L) */
 .set G_MDSFT_ALPHACOMPARE, 0
@@ -501,10 +507,30 @@
    .endif
 .endm
 
+/*
+ * gSPGeometryMode
+ * In Fast3DEX2 it is better to use this, as the RSP geometry mode
+ * is able to be set and cleared in a single command.
+ */
+.macro gsSPGeometryMode cc, ff, order
+   .ifdef F3DEX_GBI_2
+      .word (G_GEOMETRYMODE << 24) | ((~(\cc)) & 0x00FFFFFF)
+      .word \ff
+   .else
+      .if \order == 0
+         gsSPSetGeometryMode \ff
+         gsSPClearGeometryMode \cc
+      .else
+         gsSPClearGeometryMode \cc
+         gsSPSetGeometryMode \ff
+      .endif
+   .endif
+.endm
+
 /* gSPSetGeometryMode */
 .macro gsSPSetGeometryMode, flags
    .ifdef F3DEX_GBI_2
-   .word (G_SETGEOMETRYMODE << 24) | 0x00FFFFFF
+   .word (G_GEOMETRYMODE << 24) | 0x00FFFFFF
    .word \flags
    .else /* Fast3D and Fast3DEX */
    .word G_SETGEOMETRYMODE << 24
@@ -515,7 +541,7 @@
 /* gSPClearGeometryMode */
 .macro gsSPClearGeometryMode, flags
    .ifdef F3DEX_GBI_2
-   .word (G_CLEARGEOMETRYMODE << 24) | ((~(\flags)) & 0x00FFFFFF)
+   .word (G_GEOMETRYMODE << 24) | ((~(\flags)) & 0x00FFFFFF)
    .word 0
    .else /* Fast3D and Fast3DEX */
    .word G_CLEARGEOMETRYMODE << 24
@@ -525,11 +551,11 @@
 
 /* gSPPerspNormalize */
 .macro gsSPPerspNormalize, perspNorm
-    .ifndef F3D_OLD
-        gsMoveWd G_MW_PERSPNORM, 0, \perspNorm
-    .else
-        gsImmp1 G_RDPHALF_1, \perspNorm
-    .endif
+   .ifndef F3D_OLD
+      gsMoveWd G_MW_PERSPNORM, 0, \perspNorm
+   .else
+      gsImmp1 G_RDPHALF_1, \perspNorm
+   .endif
 .endm
 
 /* gSPEndDisplayList */
@@ -539,13 +565,13 @@
 
 /* gSPSetOtherMode */
 .macro gsSPSetOtherMode cmd, sft, len, data
-    .ifdef F3DEX_GBI_2
-    .word ((\cmd & 0xFF) << 24) | ((32 - (\sft & 0xFF) - (\len & 0xFF)) << 8) | ((\len-1) & 0xFF)
-    .word \data
-    .else /* Fast3D and Fast3DEX2 */
-    .word ((\cmd & 0xFF) << 24) | ((\sft & 0xFF) << 8) | (\len & 0xFF)
-    .word \data
-    .endif
+   .ifdef F3DEX_GBI_2
+      .word ((\cmd & 0xFF) << 24) | ((32 - (\sft & 0xFF) - (\len & 0xFF)) << 8) | ((\len-1) & 0xFF)
+      .word \data
+   .else /* Fast3D and Fast3DEX2 */
+      .word ((\cmd & 0xFF) << 24) | ((\sft & 0xFF) << 8) | (\len & 0xFF)
+      .word \data
+   .endif
 .endm
 
 .macro gsSPTexture scaleS, scaleT, level, tile, enable
@@ -580,42 +606,42 @@
 
 /* gDPSetTextureLOD*/
 .macro gsDPSetTextureLOD type
-    gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_TEXTLOD, 1, \type
+   gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_TEXTLOD, 1, \type
 .endm
 
 /* gDPSetTextureTLUT */
 .macro gsDPSetTextureLUT type
-    gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_TEXTLUT, 2, \type
+   gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_TEXTLUT, 2, \type
 .endm
 
 /* gDPSetTextureFilter */
 .macro gsDPSetTextureFilter type
-    gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_TEXTFILT, 2, \type
+   gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_TEXTFILT, 2, \type
 .endm
 
 /* gDPSetTextureConvert */
 .macro gsDPSetTextureConvert type
-    gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_TEXTCONV, 3, \type
+   gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_TEXTCONV, 3, \type
 .endm
 
 /* gDPSetCombineKey */
 .macro gsDPSetCombineKey type
-    gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_COMBKEY, 1, \type
+   gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_COMBKEY, 1, \type
 .endm
 
 /* gDPSetColorDither */
 .macro gsDPSetColorDither mode
-    gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_RGBDITHER, 2, \mode
-    .endm
+   gsSPSetOtherMode G_SETOTHERMODE_H, G_MDSFT_RGBDITHER, 2, \mode
+.endm
 
 /* gsDPSetAlphaCompare */
 .macro gsDPSetAlphaCompare type
-    gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_ALPHACOMPARE, 2, \type
+   gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_ALPHACOMPARE, 2, \type
 .endm
 
 /* gDPSetDepthSource */
 .macro gsDPSetDepthSource src
-    gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_ZSRCSEL, 1, \src
+   gsSPSetOtherMode G_SETOTHERMODE_L, G_MDSFT_ZSRCSEL, 1, \src
 .endm
 
 /* gSPDisplayList */
@@ -652,11 +678,11 @@
  */
 .macro gsSP2Triangles v0, v1, v2, flag0, v3, v4, v5, flag1
    .ifdef F3DEX_GBI_SHARED /* Fast3DEX and Fast3DEX2 have the same G_TRI2 syntax. */
-   .word (G_TRI2 << 24) | (\v0*2 << 16) | (\v1*2 << 8) | \v2*2
-   .word (0x00 << 24) | (\v3*2 << 16) | (\v4*2 << 8) | \v5*2
+      .word (G_TRI2 << 24) | (\v0*2 << 16) | (\v1*2 << 8) | \v2*2
+      .word (0x00 << 24) | (\v3*2 << 16) | (\v4*2 << 8) | \v5*2
    .else /* Backwards compatibility with Fast3D. */
-   gsSP1Triangle \v0, \v1, \v2, \flag0
-   gsSP1Triangle \v3, \v4, \v5, \flag1
+      gsSP1Triangle \v0, \v1, \v2, \flag0
+      gsSP1Triangle \v3, \v4, \v5, \flag1
    .endif
 .endm
 

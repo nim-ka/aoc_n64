@@ -352,8 +352,7 @@ gsDPPipeSync
 gsSPEndDisplayList
 
 glabel marioHeadDl801B5170
-gsSPClearGeometryMode 0xFFFFFFFF
-gsSPSetGeometryMode G_SHADING_SMOOTH | G_SHADE
+gsSPGeometryMode 0xFFFFFFFF, G_SHADING_SMOOTH | G_SHADE, G_ORDER_CFIRST
 gsSPEndDisplayList
 
 glabel marioHeadDl801B5188
@@ -408,9 +407,7 @@ gsDPPipeSync
 gsDPSetRenderMode G_RM_OPA_SURF, G_RM_OPA_SURF2
 # It could also be one of these: 
 # G_RM_OPA_SURF, G_RM_OPA_CI2; G_RM_OPA_CI, G_RM_OPA_SURF2; G_RM_PASS, G_RM_OPA_SURF2;
-
-gsSPClearGeometryMode 0xFFFFFFFF
-gsSPSetGeometryMode G_SHADING_SMOOTH | G_SHADE
+gsSPGeometryMode 0xFFFFFFFF, G_SHADING_SMOOTH | G_SHADE, G_ORDER_CFIRST
 gsDPPipeSync
 gsSPVertex vertex_801B5228, 3, 0
 gsSP1Triangle  0,  1,  2, 0x0

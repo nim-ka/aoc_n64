@@ -1793,8 +1793,7 @@ gsSPEndDisplayList
 glabel dl_paintings_env_mapped_end # 0x02014A00 - 0x02014A30
 gsSPTexture 16384, 16384, 0, 0, 0
 gsDPPipeSync
-gsSPSetGeometryMode G_LIGHTING
-gsSPClearGeometryMode G_TEXTURE_GEN
+gsSPGeometryMode G_TEXTURE_GEN, G_LIGHTING, G_ORDER_SFIRST
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPEndDisplayList
 

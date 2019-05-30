@@ -1762,6 +1762,5 @@ gsDPPipeSync
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsDPSetCycleType G_CYC_1CYCLE
 gsDPSetRenderMode G_RM_AA_ZB_OPA_SURF, G_RM_NOOP2
-gsSPClearGeometryMode G_FOG
-gsSPSetGeometryMode G_LIGHTING
+gsSPGeometryMode G_FOG, G_LIGHTING, G_ORDER_CFIRST
 gsSPEndDisplayList
