@@ -557,7 +557,7 @@ static void bounce_off_object(struct MarioState *m, struct Object *o, f32 velY)
 static void hit_object_from_below(struct MarioState *m, UNUSED struct Object *o)
 {
     m->vel[1] = 0.0f;
-    set_camera_shake(8);
+    set_camera_shake(SHAKE_HIT_FROM_BELOW);
 }
 
 static u32 unused_determine_knockback_action(struct MarioState *m)
@@ -700,7 +700,7 @@ static void bounce_back_from_attack(struct MarioState *m, u32 interaction)
         else
             mario_set_forward_vel(m, -48.0f);
 
-        set_camera_shake(1);
+        set_camera_shake(SHAKE_ATTACK);
         m->particleFlags |= 0x00040000;
     }
 
@@ -720,15 +720,15 @@ static u32 func_8024D664(struct MarioState *m, struct Object *o)
 
 static u32 take_damage_from_interact_object(struct MarioState *m)
 {
-    s32 val4;
+    s32 shake;
     s32 damage = m->interactObj->oDamageOrCoinValue;
 
     if (damage >= 4)
-        val4 = 5;
+        shake = SHAKE_LARGE_DAMAGE;
     else if (damage >= 2)
-        val4 = 4;
+        shake = SHAKE_MED_DAMAGE;
     else
-        val4 = 3;
+        shake = SHAKE_SMALL_DAMAGE;
 
     if (!(m->flags & MARIO_CAP_ON_HEAD))
         damage += (damage + 1) / 2;
@@ -738,7 +738,7 @@ static u32 take_damage_from_interact_object(struct MarioState *m)
 
     m->hurtCounter += 4 * damage;
 
-    set_camera_shake(val4);
+    set_camera_shake(shake);
     return damage;
 }
 
@@ -771,7 +771,7 @@ static void reset_mario_pitch(struct MarioState *m)
     if (m->action == ACT_WATER_JUMP || m->action == ACT_SHOT_FROM_CANNON ||
         m->action == ACT_FLYING)
     {
-        func_80285BD8(m->area->camera, m->area->camera->unk1, 1);
+        func_80285BD8(m->area->camera, m->area->camera->defPreset, 1);
         m->faceAngle[0] = 0;
     }
 }

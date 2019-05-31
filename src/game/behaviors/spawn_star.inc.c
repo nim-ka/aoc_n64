@@ -99,7 +99,7 @@ void bhv_star_spawn_loop(void) {
         case 3:
             o->oFaceAngleYaw += 0x800;
             if (o->oTimer == 20) {
-                D_8033B858 = 1;
+                gCutsceneActive = 1;
                 clear_time_stop_flags(TIME_STOP_ENABLED | TIME_STOP_MARIO_AND_DOORS);
                 o->activeFlags &= ~0x20;
             }

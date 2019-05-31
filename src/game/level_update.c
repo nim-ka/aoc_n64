@@ -510,17 +510,17 @@ static void check_instant_warp(void)
                 gMarioState->marioObj->oPosY = gMarioState->pos[1];
                 gMarioState->marioObj->oPosZ = gMarioState->pos[2];
 
-                cameraAngle = gMarioState->area->camera->angle;
+                cameraAngle = gMarioState->area->camera->trueYaw;
 
                 change_area(warp->area);
                 gMarioState->area = gCurrentArea;
 
-                func_8028C1A0(
+                instant_warp_camera_update(
                     warp->displacement[0],
                     warp->displacement[1],
                     warp->displacement[2]);
 
-                gMarioState->area->camera->angle = cameraAngle;
+                gMarioState->area->camera->trueYaw = cameraAngle;
             }
         }
     }
@@ -1000,7 +1000,7 @@ static s32 play_mode_normal(void)
         else if (pressed_paused())
         {
             func_80248C28(1);
-            gCameraMovementFlags |= 0x8000;
+            gCameraMovementFlags |= CAM_MOVE_PAUSE_SCREEN;
             set_play_mode(PLAY_MODE_PAUSED);
         }
     }
@@ -1017,7 +1017,7 @@ static s32 play_mode_paused(void)
     else if (D_8033A75E == 1)
     {
         func_80248CB8(1);
-        gCameraMovementFlags &= ~0x8000;
+        gCameraMovementFlags &= ~CAM_MOVE_PAUSE_SCREEN;
         set_play_mode(PLAY_MODE_NORMAL);
     }
     else
@@ -1035,7 +1035,7 @@ static s32 play_mode_paused(void)
             gSavedCourseNum = 0;
         }
 
-        gCameraMovementFlags &= ~0x8000;
+        gCameraMovementFlags &= ~CAM_MOVE_PAUSE_SCREEN;
     }
 
     return 0;
@@ -1049,18 +1049,18 @@ static s32 play_mode_frame_advance(void)
 {
     if (gPlayer1Controller->buttonPressed & D_JPAD)
     {
-        gCameraMovementFlags &= ~0x8000;
+        gCameraMovementFlags &= ~CAM_MOVE_PAUSE_SCREEN;
         play_mode_normal();
     }
     else if (gPlayer1Controller->buttonPressed & START_BUTTON)
     {
-        gCameraMovementFlags &= ~0x8000;
+        gCameraMovementFlags &= ~CAM_MOVE_PAUSE_SCREEN;
         func_80248CB8(1);
         set_play_mode(PLAY_MODE_NORMAL);
     }
     else
     {
-        gCameraMovementFlags |= 0x8000;
+        gCameraMovementFlags |= CAM_MOVE_PAUSE_SCREEN;
     }
 
     return 0;

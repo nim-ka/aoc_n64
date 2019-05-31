@@ -10,9 +10,9 @@ glabel castle_grounds_geo_00073C # 0x0E00073C
       geo_close_node
       geo_zbuffer 1
       geo_open_node
-         geo_camera_frustum 45, 100, 20000, Geo0A_8029AA3C
+         geo_camera_frustum 45, 100, 20000, geo_camera_fov
          geo_open_node
-            geo_todo_0F 16, 0, 1500, 2500, 0, 1500, -12000, Geo0F_80287D30
+            geo_camera 16, 0, 1500, 2500, 0, 1500, -12000, geo_camera_preset_and_pos
             geo_open_node
                geo_display_list LAYER_OPAQUE, castle_grounds_seg7_dl_07006D70
                geo_display_list LAYER_OPAQUE, castle_grounds_seg7_dl_070095F0

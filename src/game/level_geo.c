@@ -69,8 +69,8 @@ Gfx *geo_skybox_main(s32 run, struct GraphNode *node, UNUSED Mat4 *mtx)
         struct GraphNodeCamFrustum *camFrustum = (struct GraphNodeCamFrustum *)sp34->fnNode.node.parent;
 
         gfx = func_802CF414(0, backgroundNode->background, camFrustum->fov,
-            gCameraStatus.unk8C[0], gCameraStatus.unk8C[1], gCameraStatus.unk8C[2],
-            gCameraStatus.unk80[0], gCameraStatus.unk80[1], gCameraStatus.unk80[2]);
+            gCameraStatus.pos[0], gCameraStatus.pos[1], gCameraStatus.pos[2],
+            gCameraStatus.focus[0], gCameraStatus.focus[1], gCameraStatus.focus[2]);
     }
     return gfx;
 }

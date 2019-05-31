@@ -73,7 +73,7 @@
 #define SURFACE_HARD_SLIDE                   0x0036
 #define SURFACE_HARD_NOT_SLIPPERY            0x0037
 #define SURFACE_VERTICAL_WIND                0x0038
-#define SURFACE_0065                         0x0065   //Camera
+#define SURFACE_BOSS_FIGHT_CAMERA            0x0065   //Camera
 #define SURFACE_0066                         0x0066   //Camera
 #define SURFACE_0069                         0x0069   //Camera
 #define SURFACE_006E                         0x006E   //Camera

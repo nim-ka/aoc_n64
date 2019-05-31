@@ -130,7 +130,7 @@ void yoshi_finish_jumping_and_despawn_loop(void) {
     o->oVelY -= 2.0;
     if (o->oPosY < 2100.0f) {
         set_mario_npc_dialogue(0);
-        D_8033B858 = 1;
+        gCutsceneActive = 1;
         D_80331508 = 1;
         o->activeFlags = 0;
     }

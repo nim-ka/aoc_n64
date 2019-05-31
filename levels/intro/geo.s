@@ -12,7 +12,7 @@ glabel intro_geo_0002D0 # 0x0E0002D0
       geo_open_node
          geo_camera_frustum 45, 128, 16384
          geo_open_node
-            geo_todo_0F 0, 0, 0, 3200, 0, 0, 0, 0x00000000
+            geo_camera 0, 0, 0, 3200, 0, 0, 0, 0x00000000
             geo_open_node
                geo_asm 0, geo18_title_screen
             geo_close_node
@@ -79,7 +79,7 @@ glabel intro_geo_000414 # 0x0E000414
       geo_open_node
          geo_camera_frustum 45, 128, 16384
          geo_open_node
-            geo_todo_0F 0, 0, 0, 1200, 0, 0, 0, 0x00000000
+            geo_camera 0, 0, 0, 1200, 0, 0, 0, 0x00000000
             geo_open_node
                geo_translate_node LAYER_OPAQUE, -230, 300, 0, debug_level_select_dl_07000858
                geo_translate_node LAYER_OPAQUE, -120, 300, 0, debug_level_select_dl_07001100

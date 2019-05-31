@@ -1540,7 +1540,7 @@ void ActionFallingBowserPlatform2(void)
         PlaySound2(SOUND_GENERAL_BOWSERPLATFORM_2);
     if(o->oTimer < 22)
     {
-        set_camera_shake_2(10);
+        set_camera_shake_2(SHAKE_2_FALLING_BITS_PLAT);
         o->oVelY = 8.0f;
         o->oGravity = 0.0f;
     }

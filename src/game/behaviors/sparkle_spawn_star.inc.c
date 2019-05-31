@@ -103,7 +103,7 @@ void bhv_unused_080c_loop(void)
             o->oVelY = -4.0f;
         if(o->oVelY < 0 && o->oPosY < o->oHomeY)
         {
-            D_8033B858 = 1;
+            gCutsceneActive = 1;
             o->oVelY = 0;
             o->oGravity = 0;
             o->oAction++;
@@ -112,7 +112,7 @@ void bhv_unused_080c_loop(void)
     }
     else if(o->oAction == 2)
     {
-        if(gCurrLevelCamera->unk30 == 0 && D_8032CFF4 == 0)
+        if(gCurrLevelCamera->cutscene == 0 && gCutsceneNumber == 0)
         {
             clear_time_stop_flags(TIME_STOP_ENABLED | TIME_STOP_MARIO_AND_DOORS);
             o->activeFlags &= ~0x20;

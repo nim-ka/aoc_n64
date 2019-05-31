@@ -877,7 +877,7 @@ static s32 act_water_shocked(struct MarioState *m)
 {
     func_80250F50(m, SOUND_MARIO_WAAAOOOW, MARIO_UNKNOWN_16);
     SetSound(SOUND_UNKNOWN_UNK1416, m->marioObj->header.gfx.cameraToObject);
-    set_camera_shake(10);
+    set_camera_shake(SHAKE_SHOCK);
 
     if (set_mario_animation(m, MARIO_ANIM_SHOCKED) == 0)
     {

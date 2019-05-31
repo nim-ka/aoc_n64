@@ -134,7 +134,7 @@ void bhv_treasure_chest_ship_loop(void) {
             if (gWaterRegions != NULL) {
                 gWaterRegions[6] += -5;
                 SetSound(SOUND_ENVIRONMENT_WATERDRAIN, D_803320E0);
-                set_camera_shake_2(9);
+                set_camera_shake_2(SHAKE_2_JRB_SHIP_DRAIN);
                 if (gWaterRegions[6] < -335) {
                     gWaterRegions[6] = -335;
                     o->activeFlags = 0;

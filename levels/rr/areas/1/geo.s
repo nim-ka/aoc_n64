@@ -10,9 +10,9 @@ glabel rr_geo_0009D0 # 0x0E0009D0
       geo_close_node
       geo_zbuffer 1
       geo_open_node
-         geo_camera_frustum 45, 100, 20000, Geo0A_8029AA3C
+         geo_camera_frustum 45, 100, 20000, geo_camera_fov
          geo_open_node
-            geo_todo_0F 14, 0, 2000, 6000, 0, 0, -8000, Geo0F_80287D30
+            geo_camera 14, 0, 2000, 6000, 0, 0, -8000, geo_camera_preset_and_pos
             geo_open_node
                geo_asm 0, geo_exec_flying_carpet_timer_update
                geo_display_list LAYER_ALPHA, dl_cruiser_metal_holes

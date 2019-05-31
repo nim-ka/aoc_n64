@@ -10,9 +10,9 @@ glabel wdw_geo_000658 # 0x0E000658
       geo_close_node
       geo_zbuffer 1
       geo_open_node
-         geo_camera_frustum 45, 100, 12800, Geo0A_8029AA3C
+         geo_camera_frustum 45, 100, 12800, geo_camera_fov
          geo_open_node
-            geo_todo_0F 1, 0, 2000, 6000, -4352, 0, -4352, Geo0F_80287D30
+            geo_camera 1, 0, 2000, 6000, -4352, 0, -4352, geo_camera_preset_and_pos
             geo_open_node
                geo_display_list LAYER_OPAQUE, wdw_seg7_dl_07009AB0
                geo_display_list LAYER_ALPHA, wdw_seg7_dl_0700A138

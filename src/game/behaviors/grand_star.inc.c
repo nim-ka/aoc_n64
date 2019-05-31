@@ -62,7 +62,7 @@ void bhv_grand_star_loop(void)
         {
             o->oPosY = o->oHomeY + 200.0f;
             func_802B29B0();
-            D_8033B858 = 1;
+            gCutsceneActive = 1;
             set_mario_npc_dialogue(0);
             o->oAction++;
             o->oInteractStatus = 0;

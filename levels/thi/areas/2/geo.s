@@ -12,9 +12,9 @@ glabel thi_geo_0006D4 # 0x0E0006D4
       geo_close_node
       geo_zbuffer 1
       geo_open_node
-         geo_camera_frustum 45, 100, 12800, Geo0A_8029AA3C
+         geo_camera_frustum 45, 100, 12800, geo_camera_fov
          geo_open_node
-            geo_todo_0F 1, 0, 2000, 6000, 0, 0, 0, Geo0F_80287D30
+            geo_camera 1, 0, 2000, 6000, 0, 0, 0, geo_camera_preset_and_pos
             geo_open_node
                geo_scale 0x00, 19660
                geo_open_node

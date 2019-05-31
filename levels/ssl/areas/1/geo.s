@@ -10,9 +10,9 @@ glabel ssl_geo_000648 # 0x0E000648
       geo_close_node
       geo_zbuffer 1
       geo_open_node
-         geo_camera_frustum 45, 100, 20000, Geo0A_8029AA3C
+         geo_camera_frustum 45, 100, 20000, geo_camera_fov
          geo_open_node
-            geo_todo_0F 1, 0, 2000, 6000, -2048, 0, -1024, Geo0F_80287D30
+            geo_camera 1, 0, 2000, 6000, -2048, 0, -1024, geo_camera_preset_and_pos
             geo_open_node
                geo_display_list LAYER_OPAQUE, ssl_seg7_dl_07009F48
                geo_display_list LAYER_OPAQUE, ssl_seg7_dl_0700BA78

@@ -10,9 +10,9 @@ glabel thi_geo_00079C # 0x0E00079C
       geo_close_node
       geo_zbuffer 1
       geo_open_node
-         geo_camera_frustum 45, 100, 12800, Geo0A_8029AA3C
+         geo_camera_frustum 45, 100, 12800, geo_camera_fov
          geo_open_node
-            geo_todo_0F 16, 0, 2000, 6000, 0, 0, 0, Geo0F_80287D30
+            geo_camera 16, 0, 2000, 6000, 0, 0, 0, geo_camera_preset_and_pos
             geo_open_node
                geo_display_list LAYER_TRANSPARENT, thi_seg7_dl_07007C20
                geo_display_list LAYER_OPAQUE, thi_seg7_dl_07009670

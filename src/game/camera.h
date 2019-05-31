@@ -67,11 +67,101 @@
 #define CAM_MOVE_INTO_C_UP              0x0100
 #define CAM_MOVE_UNKNOWN_10             0x0200
 #define CAM_MOVE_UNKNOWN_11             0x0400
-#define CAM_MOVE_INIT_CAMERA             0x0800
+#define CAM_MOVE_INIT_CAMERA            0x0800
 #define CAM_MOVE_UNK1000                0x1000
 #define CAM_MOVE_C_UP_MODE              0x2000
 #define CAM_MOVE_SUBMERGED              0x4000
 #define CAM_MOVE_PAUSE_SCREEN           0x8000
+
+#define CAM_FLAG_1_UNKNOWN_0 0x01
+#define CAM_FLAG_1_UNKNOWN_1 0x02
+#define CAM_FLAG_1_UNKNOWN_2 0x04
+#define CAM_FLAG_1_UNUSED_3  0x08
+#define CAM_FLAG_1_UNUSED_4  0x10
+#define CAM_FLAG_1_UNKNOWN_5 0x20
+
+#define CAM_FLAG_2_SMOOTH_MOVEMENT        0x0001
+#define CAM_FLAG_2_UNKNOWN_1              0x0002
+#define CAM_FLAG_2_FRAME_AFTER_CAM_INIT   0x0004
+#define CAM_FLAG_2_UNKNOWN_3              0x0008
+#define CAM_FLAG_2_CCM_SLIDE_SHORTCUT     0x0010
+#define CAM_FLAG_2_COLLIDING_WITH_WALL    0x0020
+#define CAM_FLAG_2_SLEEPING               0x0040
+#define CAM_FLAG_2_UNUSED_7               0x0080
+#define CAM_FLAG_2_UNUSED_8               0x0100
+#define CAM_FLAG_2_UNKNOWN_9              0x0200
+#define CAM_FLAG_2_UNKNOWN_10             0x0400
+#define CAM_FLAG_2_UNKNOWN_11             0x0800
+#define CAM_FLAG_2_BLOCK_LEVEL_SPECIFIC_UPDATES             0x1000
+#define CAM_FLAG_2_UNUSED_13              0x2000
+#define CAM_FLAG_2_UNUSED_CUTSCENE_ACTIVE 0x4000
+#define CAM_FLAG_2_BEHIND_MARIO_POST_DOOR 0x8000
+
+#define SHAKE_ATTACK         1
+#define SHAKE_GROUND_POUND   2
+#define SHAKE_SMALL_DAMAGE   3
+#define SHAKE_MED_DAMAGE     4
+#define SHAKE_LARGE_DAMAGE   5
+#define SHAKE_HIT_FROM_BELOW 8
+#define SHAKE_FALL_DAMAGE    9
+#define SHAKE_SHOCK          10
+
+#define SHAKE_2_UNKNOWN_1         1
+#define SHAKE_2_UNKNOWN_2         2
+#define SHAKE_2_UNKNOWN_3         3
+#define SHAKE_2_UNKNOWN_5         5
+#define SHAKE_2_UNKNOWN_6         6
+#define SHAKE_2_UNKNOWN_7         7
+#define SHAKE_2_UNKNOWN_8         8
+#define SHAKE_2_JRB_SHIP_DRAIN    9
+#define SHAKE_2_FALLING_BITS_PLAT 10
+
+#define CUTSCENE_DOOR_0             130
+#define CUTSCENE_DOOR_1             131
+#define CUTSCENE_ENTER_CANNON       133
+#define CUTSCENE_ENTER_PAINTING     134
+#define CUTSCENE_DEATH_EXIT         135
+#define CUTSCENE_DOOR_WARP          139
+#define CUTSCENE_DOOR_A             140
+#define CUTSCENE_DOOR_B             141
+#define CUTSCENE_INTRO_PEACH        142
+#define CUTSCENE_STAR_DANCE_1_1     143
+#define CUTSCENE_ENTER_BOWSER_ARENA 144
+#define CUTSCENE_0F_TODO            145
+#define CUTSCENE_11_TODO            147
+#define CUTSCENE_SLIDING_DOORS_OPEN 149
+#define CUTSCENE_PREPARE_CANNON     150
+#define CUTSCENE_UNLOCK_KEY_DOOR    151
+#define CUTSCENE_STANDING_DEATH     152
+#define CUTSCENE_DEATH_2            153
+#define CUTSCENE_DEATH_ON_BACK      154
+#define CUTSCENE_QUICKSAND_DEATH    155
+#define CUTSCENE_SUFFOCATION_DEATH  156
+#define CUTSCENE_EXIT_BOWSER_SUCC   157
+#define CUTSCENE_1C_TODO            158
+#define CUTSCENE_WATER_DEATH        159 //Not in cutscene switch
+#define CUTSCENE_EXIT_PAINTING_SUCC 160
+#define CUTSCENE_CAP_SWITCH_PRESS   161
+#define CUTSCENE_DIALOGUE_1         162
+#define CUTSCENE_DIALOGUE_2         163
+#define CUTSCENE_ENTER_PYRAMID_TOP  164
+#define CUTSCENE_STAR_DANCE_2       165
+#define CUTSCENE_STAR_DANCE_3       166
+#define CUTSCENE_KEY_DANCE          167
+#define CUTSCENE_26_TODO            168
+#define CUTSCENE_EXIT_BBH_SUCC      169
+#define CUTSCENE_NONPAINTING_DEATH  170
+#define CUTSCENE_READ_MESSAGE       171
+#define CUTSCENE_PEACH_END          172
+#define CUTSCENE_STAR_SPAWN         173
+#define CUTSCENE_GRAND_STAR         174
+#define CUTSCENE_STAR_DANCE_1_2     175
+#define CUTSCENE_SPECIAL_STAR_SPAWN 176
+#define CUTSCENE_END_WAVING         177
+#define CUTSCENE_CREDITS            178
+#define CUTSCENE_EXIT_WATERFALL     179
+#define CUTSCENE_EXIT_FALL_WMOTR    180
+#define CUTSCENE_ENTER_POOL         181
 
 // sorted
 
@@ -81,20 +171,20 @@ struct CameraPlayerStatus
     /*0x04*/ Vec3f pos;
     /*0x10*/ Vec3s faceAngle;
     /*0x16*/ Vec3s unk16;
-    /*0x1C*/ s16 unk1C[2];
+    /*0x1C*/ s16 unk1C[2]; //only unk1C[1] seems used, represents an effective cutscene
     /*0x20*/ struct Object *usedObj;
 };
 
-struct Struct8033B250
+struct TransitionCamera
 {
-    /*0x00*/ s16 unk0;
-    /*0x02*/ s16 unk2;
-    /*0x04*/ f32 unk4;
-    /*0x08*/ s16 unk8;
-    /*0x0A*/ s16 unkA;
-    /*0x0C*/ f32 unkC;
-    /*0x10*/ s32 unk10;
-    /*0x14*/ Vec3f unk14;
+    /*0x00*/ s16 pitch1;
+    /*0x02*/ s16 yaw1;
+    /*0x04*/ f32 dist1;
+    /*0x08*/ s16 pitch2;
+    /*0x0A*/ s16 yaw2;
+    /*0x0C*/ f32 dist2;
+    /*0x10*/ s32 timer;
+    /*0x14*/ Vec3f marioPos;
     /*0x20*/ u8 pad; // for the structs to align, there has to be an extra unused variable here. type is unknown.
 };
 
@@ -123,7 +213,7 @@ typedef void (*CameraCommandProc)(struct LevelCamera *a);
 
 struct TableCamera
 {
-    s8 unk0;
+    s8 area;
     CameraCommandProc unk4;
     s16 unk8;
     s16 unkA;
@@ -205,8 +295,8 @@ struct ParallelTrackingTable
 
 struct Struct8033B4B8
 {
-    /*0x00*/ Vec3f unk0;
-    /*0x0C*/ Vec3f unkC;
+    /*0x00*/ Vec3f pos;
+    /*0x0C*/ Vec3f focus;
     /*0x18*/ f32 unk18;
     /*0x1C*/ f32 unk1C;
 };
@@ -220,16 +310,16 @@ struct Struct8033B6F0
     s16 unk22;
 };
 
-struct Struct8033B328
+struct CameraState
 {
     /*0x00*/ Vec3f camFocAndPosCurrAndGoal[4];
     /*0x30*/ u8 filler30[12]; // extra unused Vec3f?
     /*0x3C*/ u8 modeActive;
     /*0x3D*/ u8 modeDefault;
     /*0x3E*/ u8 filler3E[10];
-    /*0x48*/ float unk48;   //distance?
-    /*0x4C*/ s16 unk4C;     //inclination?
-    /*0x4E*/ s16 unk4E;     //yaw?
+    /*0x48*/ float focusDistance; //unused
+    /*0x4C*/ s16 pitch; //unused
+    /*0x4E*/ s16 yaw;   //unused
     /*0x50*/ u8 filler50[2];
     /*0x52*/ Vec3s shakeMagnitude;
     /*0x58*/ s16 shakePitchOffset;
@@ -240,10 +330,10 @@ struct Struct8033B328
     /*0x6C*/ Vec3s unk6C;   //unused
     /*0x72*/ u8 filler72[8];
     /*0x7A*/ s16 roll;
-    /*0x7C*/ s16 unk7C;     //Yaw something
-    /*0x7E*/ s16 unk7E;     //Yaw something
-    /*0x80*/ Vec3f unk80;   //focus something
-    /*0x8C*/ Vec3f unk8C;   //position something
+    /*0x7C*/ s16 trueYaw;
+    /*0x7E*/ s16 storedYaw;
+    /*0x80*/ Vec3f focus;
+    /*0x8C*/ Vec3f pos;
     /*0x98*/ s16 shakeRollOffset;
     /*0x9A*/ s16 shakeRollIncrement;
     /*0x9C*/ s16 shakeRollMagIncrement;
@@ -264,9 +354,9 @@ extern s16 gCameraModeFlags;
 extern s16 sCameraSideCFlags;
 extern s16 gCameraFlags1;
 extern u16 gCButtonsPressed;
-extern struct Struct8033B328 gCameraStatus;
+extern struct CameraState gCameraStatus;
 extern s16 gCameraMovementFlags;
-extern s32 D_8033B858;
+extern s32 gCutsceneActive;
 extern struct LevelCamera *gCurrLevelCamera;
 #endif
 
@@ -276,14 +366,14 @@ extern struct Object *gSecondCameraFocus;
 // TODO: sort all of this extremely messy shit out after the split
 // TODO: bring in some externs from camera.c
 
-extern Vec3f D_8032D00C;
+extern Vec3f sFixedPresetBasePosition;
 extern u8 D_8032D0B8[];
 
 extern void set_camera_shake(s16);
 extern void set_camera_shake_2(s16);
 extern void func_8027F440(s16, f32, f32, f32);
-extern void func_802852F4(struct LevelCamera *); // static (ASM)
-extern void func_80285A8C(UNUSED struct LevelCamera *, s16);
+extern void operate_c_up_looking(struct LevelCamera *); // static (ASM)
+extern void init_transitional_movement(UNUSED struct LevelCamera *, s16);
 extern void func_80285BD8(struct LevelCamera *, s16, s16);
 extern void update_camera(struct LevelCamera *);
 extern void reset_camera(struct LevelCamera *);
@@ -297,14 +387,14 @@ extern void vec3f_to_object_pos(struct Object *, Vec3f); // static (ASM)
 extern s32 func_80287CFC(Vec3f, struct CinematicCameraTable[], s16 *, f32 *);
 extern s32 select_or_activate_mario_cam(s32);
 extern s32 test_or_set_mario_cam_active(s32);
-extern void func_802882A0(u8);
-extern void func_802883C8(Vec3f, Vec3f);
+extern void set_spline_values(u8);
+extern void set_face_angle_from_spline(Vec3f, Vec3f);
 extern s32 find_c_buttons_pressed(u16, u16, u16);
 extern s32 update_camera_status(struct LevelCamera *);
 extern s32 find_and_return_count_wall_collisions(Vec3f, f32, f32);
-extern s32 vec3f_rotate_into_yaw_range(Vec3f a, Vec3f b, s16 c, s16 d);
+extern s32 clamp_pitch(Vec3f a, Vec3f b, s16 c, s16 d);
 extern s32 is_within_100_units_of_mario(f32, f32, f32);
-extern s32 func_80288D74(f32 *, f32, f32);
+extern s32 set_or_approach_f32_exponential(f32 *, f32, f32);
 extern s32 approach_f32_exponential_bool(f32 *, f32, f32);
 extern f32 approach_f32_exponential(f32, f32, f32); // static (ASM)
 extern s32 approach_s16_exponential_bool(s16 *, s16, s16);
@@ -314,14 +404,14 @@ extern void approach_vec3f_exponential(Vec3f, Vec3f, f32, f32, f32); // static (
 
 
 
-extern void func_8028909C(Vec3f, Vec3f, f32, f32, f32); // postdefined
+extern void set_or_approach_vec3f_exponential(Vec3f, Vec3f, f32, f32, f32); // postdefined
 // extern ? approach_vec3s_exponential(?);
 extern s32 camera_approach_s16_symmetric_bool(s16 *a, s16 b, s16 c);
 // extern ? camera_approach_s16_symmetric(?);
-extern s32 func_80289354(s16 *a, s16 b, s16 c); // postdefined
+extern s32 set_or_approach_s16_symmetric(s16 *a, s16 b, s16 c); // postdefined
 extern s32 camera_approach_f32_symmetric_bool(f32 *, f32, f32);
 extern f32 camera_approach_f32_symmetric(f32, f32, f32);
-void func_80289618(Vec3s a, s16 b, s16 c, s16 d); // postdefined
+void random_vec3s(Vec3s a, s16 b, s16 c, s16 d); // postdefined
 // extern ? func_80289738(?);
 extern s32 clamp_positions_and_find_yaw_angle(Vec3f, Vec3f, f32, f32, f32, f32);
 // extern ? func_80289A98(?);
@@ -343,10 +433,10 @@ extern void set_camera_yaw_shake(s16, s16, s16);
 extern void set_camera_roll_shake(s16, s16, s16);
 extern void func_8028AA80(s16, s16, s16, f32, f32, f32, f32);
 // extern ? Unknown8028AB34(?);
-// extern ? func_8028ABE8(?);
-extern void func_8028AC30(); // postdefined
-extern void func_8028AD44(); // postdefined
-extern void func_8028AE50(s16 *); // postdefined
+// extern ? increment_shake_offset(?);
+extern void shake_camera_pitch(); // postdefined
+extern void shake_camera_yaw(); // postdefined
+extern void shake_camera_roll(s16 *); // postdefined
 extern s32 func_8028AF24(struct LevelCamera *a, s16 b);
 // extern ? func_8028B13C(?);
 // extern ? func_8028B16C(?);
@@ -361,19 +451,19 @@ extern void play_sound_rbutton_changed(void); // postdefined
 extern void func_8028B36C(void); // postdefined
 extern s32 func_8028B3DC(struct LevelCamera *a, f32 b);
 extern s32 stop_mario(s32);
-extern void func_8028B7A4(struct LevelCamera *);
+extern void handle_c_button_movement(struct LevelCamera *);
 // extern ? func_8028BA38(?);
 extern void set_camera_cutscene_table(struct LevelCamera *a, u8 b); // postdefined
 // extern ? determine_star_fadeout_cutscene_table(?);
 // extern ? return_table_door_push_or_pull(?);
 extern u8 return_cutscene_table(); // postdefined
-extern void func_8028C1A0(f32, f32, f32);
-extern void func_8028C2F0(struct LevelCamera *, f32, f32);
+extern void instant_warp_camera_update(f32, f32, f32);
+extern void approach_camera_height(struct LevelCamera *, f32, f32);
 // extern ? Unknown8028C3AC(?);
-// extern ? func_8028C3CC(?);
+// extern ? set_focus_position(?);
 // extern ? Unknown8028C508(?);
-extern void func_8028C5F0(Vec3f, Vec3f, Vec3f, Vec3s);
-// extern ? func_8028C794(?);
+extern void set_pos_from_face_angle_and_vec3f(Vec3f, Vec3f, Vec3f, Vec3s);
+// extern ? set_pos_from_face_angle_and_rel_coords(?);
 // extern ? determine_pushing_or_pulling_door(?);
 s32 func_8028C824(Vec3f a, Vec3f b, Vec3f c, Vec3f d, Vec3f e, Vec3f f, s16 g); // postdefined
 // extern ? Unknown8028CE1C(?);
@@ -383,7 +473,7 @@ s32 func_8028C824(Vec3f a, Vec3f b, Vec3f c, Vec3f d, Vec3f e, Vec3f f, s16 g); 
 // extern ? set_camera_preset_close_cam(?);
 // extern ? set_camera_preset_open_camera(?);
 // extern ? parallel_tracking_init(?);
-extern void func_8028D288(); // postdefined
+extern void set_fixed_cam_axis_sa_lobby(); // postdefined
 // extern ? func_8028D32C(?);
 // extern ? CameraRR00(?);
 // extern ? CameraRR04(?);
@@ -392,8 +482,8 @@ extern void func_8028D288(); // postdefined
 // extern ? CameraRR01(?);
 // extern ? CameraCotMC00(?);
 // extern ? CameraSL00(?);
-// extern ? CameraSL01(?);
-// extern ? CameraHMC00(?);
+// extern ? camera_change_set_free_roam_mode(?);
+// extern ? camera_change_hmc_maze_entrance(?);
 // extern ? CameraHMC02(?);
 // extern ? CameraHMC03(?);
 // extern ? CameraHMC04(?);
@@ -405,7 +495,7 @@ extern void func_8028D288(); // postdefined
 // extern ? CameraTHI01(?);
 // extern ? CameraRR07(?);
 // extern ? CameraRR08(?);
-// extern ? CameraHMC01(?);
+// extern ? camera_change_hmc_cotmc_pool_entry(?);
 // extern ? CameraInside20(?);
 // extern ? CameraInside1E(?);
 // extern ? CameraInside1F(?);
@@ -445,12 +535,12 @@ extern void func_8028D288(); // postdefined
 // extern ? bbh_room_9_mr_i_transition(?);
 // extern ? bbh_room_13_balcony_camera(?);
 // extern ? bbh_room_0_camera(?);
-// extern ? CameraCCM00(?);
-// extern ? CameraCCM01(?);
-// extern ? func_8028E634(?);
-// extern ? func_8028E70C(?);
-// extern ? func_8028E774(?);
-extern s16 func_8028E88C(struct LevelCamera *); // postdefined
+// extern ? camera_change_activate_ccm_slide_flag(?);
+// extern ? camera_change_deactivate_ccm_slide_flag(?);
+// extern ? surface_type_presets(?);
+// extern ? set_preset_via_surface_or_input(?);
+// extern ? surface_type_presets_thi(?);
+extern s16 level_specific_camera_update(struct LevelCamera *); // postdefined
 extern void resolve_geometry_collisions(Vec3f, Vec3f);
 extern s32 func_8028F2F0(struct LevelCamera *, Vec3f, s16 *, s16);
 extern void find_mario_relative_geometry(struct PlayerGeometry *); // postdefined
@@ -459,7 +549,7 @@ extern u8 func_8028F834(u8);
 extern s16 func_8028F8E0(u8, struct Object *, s16);
 extern s16 func_8028F9A4(u8, struct Object *);
 extern s16 func_8028F9E8(u8, struct Object *);
-// extern ? func_8028FA74(?);
+// extern ? set_cam_yaw_from_focus_and_pos(?);
 // extern ? func_8028FABC(?);
 // extern ? func_8028FAE0(?);
 // extern ? cap_switch_save(?);
@@ -479,10 +569,10 @@ extern s16 func_8028F9E8(u8, struct Object *);
 // extern ? func_802902A8(?);
 // extern ? unused_vec3s_to_vec3f(?);
 // extern ? unused_vec3f_to_vec3s(?);
-// extern ? func_80290390(?);
+// extern ? rotate_camera(?);
 // extern ? CutsceneEnterSomething8029041C(?);
 // extern ? Unknown80290450(?);
-// extern ? func_8029047C(?);
+// extern ? rotate_and_move_vec3f(?);
 // extern ? func_80290514(?);
 // extern ? func_80290564(?);
 // extern ? func_80290598(?);

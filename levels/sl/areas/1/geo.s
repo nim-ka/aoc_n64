@@ -10,9 +10,9 @@ glabel sl_geo_0003A8 # 0x0E0003A8
       geo_close_node
       geo_zbuffer 1
       geo_open_node
-         geo_camera_frustum 45, 100, 20000, Geo0A_8029AA3C
+         geo_camera_frustum 45, 100, 20000, geo_camera_fov
          geo_open_node
-            geo_todo_0F 16, 0, 2000, 6000, 0, 4400, 0, Geo0F_80287D30
+            geo_camera 16, 0, 2000, 6000, 0, 4400, 0, geo_camera_preset_and_pos
             geo_open_node
                geo_display_list LAYER_OPAQUE, sl_seg7_dl_07005478
                geo_display_list LAYER_TRANSPARENT, sl_seg7_dl_070056B0

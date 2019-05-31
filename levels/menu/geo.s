@@ -116,7 +116,7 @@ glabel main_menu_geo_000380 # 0x0E000380
       geo_open_node
          geo_camera_frustum 45, 100, 25000
          geo_open_node
-            geo_todo_0F 0, 0, 0, 1000, 0, 0, 0, 0x00000000
+            geo_camera 0, 0, 0, 1000, 0, 0, 0, 0x00000000
             geo_open_node
                geo_render_obj
             geo_close_node
@@ -143,7 +143,7 @@ glabel main_menu_geo_000408 # 0x0E000408
       geo_open_node
          geo_camera_frustum 45, 100, 25000
          geo_open_node
-            geo_todo_0F 0, 0, 0, 1000, 0, 0, 0, 0x00000000
+            geo_camera 0, 0, 0, 1000, 0, 0, 0, 0x00000000
             geo_open_node
                geo_render_obj
             geo_close_node

@@ -409,7 +409,7 @@ static void chain_chomp_released_jump_away(void)
 {
     if (o->oMoveFlags & OBJ_MOVE_MASK_ON_GROUND)
     {
-        D_8033B858 = TRUE;
+        gCutsceneActive = TRUE;
         o->oChainChompReleaseStatus = CHAIN_CHOMP_RELEASED_END_CUTSCENE;
     }
 }

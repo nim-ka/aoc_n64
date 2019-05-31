@@ -559,12 +559,12 @@ s16 func_80251DD4(struct MarioState *m, s16 unk1)
 void func_80251F74(struct MarioState *m)
 {
     u32 action = m->action;
-    s32 unk0 = m->area->camera->preset;
+    s32 unk0 = m->area->camera->currPreset;
 
     if (action == ACT_FIRST_PERSON)
     {
         func_80248CB8(2);
-        gCameraMovementFlags &= ~0x2000;
+        gCameraMovementFlags &= ~CAM_MOVE_C_UP_MODE;
         func_80285BD8(m->area->camera, -1, 1);
     }
     else if (action == ACT_SLEEPING)
@@ -572,8 +572,8 @@ void func_80251F74(struct MarioState *m)
 
     if (!(action & (ACT_FLAG_SWIMMING | ACT_FLAG_METAL_WATER)))
     {
-        if (unk0 == 3 || unk0 == 8)
-            func_80285BD8(m->area->camera, m->area->camera->unk1, 1);
+        if (unk0 == CAMERA_PRESET_BEHIND_MARIO || unk0 == CAMERA_PRESET_WATER_SURFACE)
+            func_80285BD8(m->area->camera, m->area->camera->defPreset, 1);
     }
 }
 
@@ -923,7 +923,7 @@ s32 func_802530D4(struct MarioState *m)
 
 s32 func_802531B8(struct MarioState *m)
 {
-    func_80285BD8(m->area->camera, m->area->camera->unk1, 1);
+    func_80285BD8(m->area->camera, m->area->camera->defPreset, 1);
     vec3s_set(m->angleVel, 0, 0, 0);
     if (m->heldObj == NULL)
         return set_mario_action(m, ACT_WALKING, 0);
@@ -942,7 +942,7 @@ s32 func_8025325C(struct MarioState *m)
     if ((m->action & ACT_FLAG_DIVING) == 0)
         m->faceAngle[0] = 0;
 
-    if (m->area->camera->preset != CAMERA_PRESET_WATER_SURFACE)
+    if (m->area->camera->currPreset != CAMERA_PRESET_WATER_SURFACE)
         func_80285BD8(m->area->camera, 8, 1);
 
     return set_mario_action(m, ACT_WATER_PLUNGE, 0);
@@ -1032,7 +1032,7 @@ void func_80253730(struct MarioState *m)
     if (m->intendedMag > 0.0f)
     {
         m->intendedYaw =
-            atan2s(-controller->stickY, controller->stickX) + m->area->camera->angle;
+            atan2s(-controller->stickY, controller->stickX) + m->area->camera->trueYaw;
         m->input |= INPUT_NONZERO_ANALOG;
     }
     else
@@ -1098,12 +1098,12 @@ void func_80253B2C(struct MarioState *m)
     func_80253730(m);
     func_80253834(m);
     func_802534F4(m);
-    if (gCameraMovementFlags & 0x2000)
+    if (gCameraMovementFlags & CAM_MOVE_C_UP_MODE)
     {
         if (m->action & 0x4000000)
             m->input |= INPUT_FIRST_PERSON;
         else
-            gCameraMovementFlags &= ~0x2000;
+            gCameraMovementFlags &= ~CAM_MOVE_C_UP_MODE;
     }
 
     if (!(m->input & (INPUT_NONZERO_ANALOG | INPUT_A_PRESSED)))
@@ -1128,18 +1128,18 @@ void func_80253C94(struct MarioState *m)
     if ((m->action & ACT_GROUP_MASK) == ACT_GROUP_SUBMERGED)
     {
         sp1C = (f32) (m->waterLevel - 80) - m->pos[1];
-        sp1A = m->area->camera->preset;
+        sp1A = m->area->camera->currPreset;
         if ((m->action & ACT_FLAG_METAL_WATER))
         {
-            if (sp1A != 4)
+            if (sp1A != CAMERA_PRESET_CLOSE)
                 func_80285BD8(m->area->camera, 4, 1);
         }
         else
         {
-            if ((sp1C > 800.0f) && (sp1A != 3))
+            if ((sp1C > 800.0f) && (sp1A != CAMERA_PRESET_BEHIND_MARIO))
                 func_80285BD8(m->area->camera, 3, 1);
 
-            if ((sp1C < 400.0f) && (sp1A != 8))
+            if ((sp1C < 400.0f) && (sp1A != CAMERA_PRESET_WATER_SURFACE))
                 func_80285BD8(m->area->camera, 8, 1);
 
             if ((m->action & ACT_FLAG_INTANGIBLE) == 0)

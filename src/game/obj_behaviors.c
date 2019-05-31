@@ -748,7 +748,7 @@ void BehCastleFlagWavingInit(void) {
 }
 
 void BehBirdsSoundLoop(void) {
-    if (gCurrLevelCamera->preset == CAMERA_PRESET_BEHIND_MARIO)
+    if (gCurrLevelCamera->currPreset == CAMERA_PRESET_BEHIND_MARIO)
         return;
 
     switch(o->oBehParams2ndByte) {
@@ -767,14 +767,14 @@ void BehBirdsSoundLoop(void) {
 }
 
 void BehAmbiantSoundsInit(void) {
-    if (gCurrLevelCamera->preset == CAMERA_PRESET_BEHIND_MARIO)
+    if (gCurrLevelCamera->currPreset == CAMERA_PRESET_BEHIND_MARIO)
         return;
 
     SetSound(SOUND_CH6_UNKNOWN010, D_803320E0);
 }
 
 void BehSandSoundLoop(void) {
-    if (gCurrLevelCamera->preset == CAMERA_PRESET_BEHIND_MARIO)
+    if (gCurrLevelCamera->currPreset == CAMERA_PRESET_BEHIND_MARIO)
         return;
 
     PlaySound(SOUND_ENVIRONMENT_MOVINGSAND);

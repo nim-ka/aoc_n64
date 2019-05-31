@@ -158,7 +158,7 @@
 #   0x0C: s16 unkY_2
 #   0x0E: s16 unkZ_2
 #   0x10: GraphNodeFunc function
-.macro geo_todo_0F unknown, x1, y1, z1, x2, y2, z2, function
+.macro geo_camera unknown, x1, y1, z1, x2, y2, z2, function
     .byte 0x0F, 0x00
     .hword \unknown, \x1, \y1, \z1, \x2, \y2, \z2
     .word \function

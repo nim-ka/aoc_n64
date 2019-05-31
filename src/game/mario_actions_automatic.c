@@ -202,7 +202,7 @@ static s32 act_climbing_pole(struct MarioState *m)
 {
     s32 sp24;
     struct Object *marioObj = m->marioObj;
-    s16 cameraAngle = m->area->camera->angle;
+    s16 cameraAngle = m->area->camera->trueYaw;
 
 #if VERSION_US
     if (m->health < 0x100)
