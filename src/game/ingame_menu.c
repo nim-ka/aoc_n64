@@ -404,7 +404,7 @@ void PutString(s8 font, s16 x, s16 y, const u8 *str)
 #ifdef VERSION_US
         }
 #endif
-            strPos++;
+        strPos++;
     }
 }
 
@@ -915,18 +915,18 @@ void func_802D8980(s8 sp63, struct DialogEntry *diagEntry, s8 sp5B)
 #endif
 {
     UNUSED s32 u0, u1; // a guess?
-    
+
     u8 strChar; // sp4F;
-    
+
     u8 *str = (u8 *)segmented_to_virtual(diagEntry->str); // sp48
     s8 lineNum = 1; // sp47 in US
 
     s8 totalLines;
-    
+
     s8 sp4d_45 = 0;
     UNUSED s8 sp4c_44 = 0; // only unused in US
     s8 sp4b_43 = 1;
-    
+
     s8 linesPerBox = diagEntry->linesPerBox; // sp42
 
     s16 strIdx;  // sp40
@@ -958,63 +958,53 @@ void func_802D8980(s8 sp63, struct DialogEntry *diagEntry, s8 sp5B)
             sp4d_45 = 2;
             gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
             break;
-            case 0xFE: // newline
-                lineNum++;
-                func_802D8690(lineNum, totalLines, &sp4d_45, &sp4b_43, &linePos);
-                break;
-            case 0xF0: // kana with dakuten
-                sp4c_44 = 1;
-                break;
-            case 0xF1: // kana with handakuten
-                sp4c_44 = 2;
-                break;
-            case 0x9E: // space
+        case 0xFE: // newline
+            lineNum++;
+            func_802D8690(lineNum, totalLines, &sp4d_45, &sp4b_43, &linePos);
+            break;
+        case 0xF0: // kana with dakuten
+            sp4c_44 = 1;
+            break;
+        case 0xF1: // kana with handakuten
+            sp4c_44 = 2;
+            break;
+        case 0x9E: // space
 #ifdef VERSION_JP
-                if(linePos != 0)
+            if(linePos != 0)
 #endif
                 sp4b_43++;
-                linePos++;
-                break;
-#ifdef VERSION_JP                
-            case 0x6E: // handakuten
-                func_802D875C(&sp4b_43, &linePos);
+            linePos++;
             break;
+#ifdef VERSION_JP
+        case 0x6E: // handakuten
+            func_802D875C(&sp4b_43, &linePos);
+        break;
 #else
-            case 0xD0: // '/'
-                sp4b_43 += 2;
-                linePos += 2;
-                break;
-            case 0xD1: // 'the'
-                func_u_802D9634(0, lineNum, &linePos, linesPerBox, sp4b_43, sp5B);
-                sp4b_43 = 1;
-                break;
-            case 0xD2: // 'you'
-                func_u_802D9634(1, lineNum, &linePos, linesPerBox, sp4b_43, sp5B);
-                sp4b_43 = 1;
-                break;
+        case 0xD0: // '/'
+            sp4b_43 += 2;
+            linePos += 2;
+            break;
+        case 0xD1: // 'the'
+            func_u_802D9634(0, lineNum, &linePos, linesPerBox, sp4b_43, sp5B);
+            sp4b_43 = 1;
+            break;
+        case 0xD2: // 'you'
+            func_u_802D9634(1, lineNum, &linePos, linesPerBox, sp4b_43, sp5B);
+            sp4b_43 = 1;
+            break;
 #endif
-            case 0xE0: // star variable
-                func_802D8830(&sp4b_43, &linePos);
-                break;
+        case 0xE0: // star variable
+            func_802D8830(&sp4b_43, &linePos);
+            break;
         default:   // any other character
 #ifdef VERSION_JP
             if(linePos != 0)
                 dl_add_new_translation_matrix(2, sp4b_43 * 10, 0, 0);
-#else
-            if(lineNum >= sp5B && lineNum <= (sp5B + linesPerBox))
-            {
-               if(linePos || sp4b_43 != 1)
-                  dl_add_new_translation_matrix(2, (f32)(D_U_80331370[0x9E] * (sp4b_43 - 1)), 0, 0);
-#endif
 
             func_802D6AFC(strChar);
-#ifdef VERSION_US
-            dl_add_new_translation_matrix(2, (f32)(D_U_80331370[strChar]), 0, 0);
-#endif
             sp4b_43 = 1;
             linePos++;
 
-#ifdef VERSION_JP
             if(sp4c_44 != 0)
             {
                 dl_add_new_translation_matrix(1, 5.0f, 7.0f, 0);
@@ -1022,8 +1012,21 @@ void func_802D8980(s8 sp63, struct DialogEntry *diagEntry, s8 sp5B)
                 gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
                 sp4c_44 = 0;
             }
+#else
+            if(lineNum >= sp5B && lineNum <= (sp5B + linesPerBox))
+            {
+                if(linePos || sp4b_43 != 1)
+                    dl_add_new_translation_matrix(2, (f32)(D_U_80331370[0x9E] * (sp4b_43 - 1)), 0, 0);
+
+                func_802D6AFC(strChar);
+                dl_add_new_translation_matrix(2, (f32)(D_U_80331370[strChar]), 0, 0);
+                sp4b_43 = 1;
+                linePos++;
+            }
+#endif
         }
 
+#ifdef VERSION_JP
         if(linePos == 12)
         {
             if(str[strIdx+1] == 0x6E) // handakuten
@@ -1052,14 +1055,14 @@ void func_802D8980(s8 sp63, struct DialogEntry *diagEntry, s8 sp5B)
             {
                 lineNum++;
                 func_802D8690(lineNum, totalLines, &sp4d_45, &sp4b_43, &linePos);
-#endif
             }
         }
+#endif
 
         strIdx++;
     }
     gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
-    
+
     if(gDiagBoxState == DIAG_STATE_WAITBUTTON)
     {
         if(sp4d_45 == 2)
@@ -1067,7 +1070,7 @@ void func_802D8980(s8 sp63, struct DialogEntry *diagEntry, s8 sp5B)
         else
             gLastDialogPageStrPos = strIdx;
     }
-    
+
     gLastDialogLineNum = lineNum;
 }
 
@@ -1282,7 +1285,7 @@ void func_802D93E0(void)
         }
 #ifndef VERSION_JP
         sp2F = (D_8033041C / 16) + 1;
-#endif  
+#endif
         break;
     case DIAG_STATE_CLOSING:
         if(gDiagBoxOpenTimer == 20.0f)
@@ -1310,7 +1313,7 @@ void func_802D93E0(void)
         }
 #ifndef VERSION_JP
         sp2F = 1;
-#endif  
+#endif
         break;
     }
 
