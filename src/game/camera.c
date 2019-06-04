@@ -5179,13 +5179,13 @@ void surface_type_presets_thi(struct LevelCamera *c)
 #define TABLE_EMPTY {0, NULL, 0, 0, 0, 0, 0, 0, 0}
 
 /**
-/* The SL Table operates camera behavior in front of the snowman who blows air.
-/* The first sets a special preset, while the latter (which encompasses the former)
-/* sets it back.
-/*
-/* This behavior is exploitable, since the ranges assume that Mario must pass through the latter on exit.
-/* Using hyperspeed, the earlier area can be directly exited from, keeping the changes it applies.
-*/
+ * The SL Table operates camera behavior in front of the snowman who blows air.
+ * The first sets a special preset, while the latter (which encompasses the former)
+ * sets it back.
+ *
+ * This behavior is exploitable, since the ranges assume that Mario must pass through the latter on exit.
+ * Using hyperspeed, the earlier area can be directly exited from, keeping the changes it applies.
+ */
 struct TableCamera TableCameraSL[3] = {
     { 1, CameraSL00,    1119,  3584,  1125,  1177,   358,   358, -7463},
     { 1, camera_change_set_free_roam_mode,    1119,  3584,  1125,  4096,  4096,  4096, -7463},
@@ -5193,10 +5193,10 @@ struct TableCamera TableCameraSL[3] = {
 };
 
 /**
-/* The THI table is specifically for the tunnel near the start of the Huge Island.
-/* The first aligns with the tunnel, the latter helps the camera from getting stuck on the 
-/* starting side. Both sides achieve their effect by editing the camera yaw.
-*/
+ * The THI table is specifically for the tunnel near the start of the Huge Island.
+ * The first aligns with the tunnel, the latter helps the camera from getting stuck on the 
+ * starting side. Both sides achieve their effect by editing the camera yaw.
+ */
 struct TableCamera TableCameraTHI[3] = {
     { 1, CameraTHI00,  -4609, -2969,  6448,   100,   300,   300,     0},
     { 1, CameraTHI01,  -4809, -2969,  6448,   100,   300,   300,     0},
