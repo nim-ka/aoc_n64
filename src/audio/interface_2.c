@@ -15,10 +15,8 @@
 
 #ifdef VERSION_JP
 #define US_FLOAT(x) x
-#define IF_US(jp, us) jp
 #else
 #define US_FLOAT(x) x ## f
-#define IF_US(jp, us) us
 #endif
 
 struct Sound
@@ -80,7 +78,7 @@ u8 D_80331D48[170] = {
 /* 0*/ _, 6, 6, 6, 6, 3, 3, 3, _, 3,
 /* 1*/ _, _, _, _, _, _, _, 4, _, _,
 /* 2*/ _, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-/* 3*/ _, _, _, _, _, _, _, IF_US(3, 1), _, _,
+/* 3*/ _, _, _, _, _, _, _, JP_US_DEF(3 , 1), _, _,
 /* 4*/ _, 3, _, _, _, _, _, 6, _, _,
 /* 5*/ _, _, _, _, _, 1, 1, 1, 1, 1,
 /* 6*/ _, _, _, _, _, _, _, 7, _, _,
@@ -228,8 +226,8 @@ u16 D_80332028[LEVEL_MAX+1] = {
     20000, 20000, 20000, 20000, 28000, 17000, 20000, 16000,
     15000, 15000, 14000, 17000, 20000, 20000, 18000, 20000,
     25000, 16000, 30000, 16000, 20000, 16000, 22000, 17000,
-    13000, 20000, 20000, 20000, 18000, 20000, IF_US(25000, 60000),
-    20000, 20000, IF_US(25000, 60000), IF_US(25000, 60000),
+    13000, 20000, 20000, 20000, 18000, 20000, JP_US_DEF(25000 , 60000),
+    20000, 20000, JP_US_DEF(25000 , 60000), JP_US_DEF(25000 , 60000),
     20000, 15000, 20000, 20000
 };
 
@@ -244,8 +242,8 @@ u8 D_803320A4[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}; // pointers to head of list
 u8 D_803320B0[10] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1}; // pointers to head of list
 u8 D_803320BC[10] = {0};
 u8 D_803320C8[10] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1}; // sizes of D_80360C38
-u8 D_803320D4[10] = {0x70, 0x30, IF_US(0x30, 0x40), 0x80, 0x20,
-                     0x80, 0x20, IF_US(0x30, 0x40), 0x80, 0x80};
+u8 D_803320D4[10] = {0x70, 0x30, JP_US_DEF(0x30 , 0x40), 0x80, 0x20,
+                     0x80, 0x20, JP_US_DEF(0x30 , 0x40), 0x80, 0x80};
 f32 D_803320E0[6] = {0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f}; // exported
 u8 D_803320F8[16] = {0}; // (size 10 + file split/unused var?)
 u8 D_80332108 = 0;
@@ -974,7 +972,7 @@ static u8 func_8031ED70(UNUSED u8 listIndex, UNUSED u8 item, u8 arg2)
 #endif
 
     ret = (u8) ((u8) D_80222A18[2].unk2C[arg2]->unk54[5] + D_80331FB0[level][area] +
-            (US_FLOAT(1.0) - D_80222A18[2].unk2C[arg2]->unk20) * IF_US(48.0, 40.0f));
+            (US_FLOAT(1.0) - D_80222A18[2].unk2C[arg2]->unk20) * JP_US_DEF(48.0 , 40.0f));
 
     if (ret > 0x7f)
     {
@@ -1042,12 +1040,12 @@ void func_8031EEF8(void)
                         {
                             if (D_80363808[listIndex] >= 9)
                             {
-                                ret = func_8031EB24(listIndex, index, IF_US(0.8f, 0.9f));
+                                ret = func_8031EB24(listIndex, index, JP_US_DEF(0.8f , 0.9f));
                                 D_80222A18[2].unk2C[k]->unk20 = ret;
                             }
                             else
                             {
-                                ret = func_8031EB24(listIndex, index, IF_US(0.8f, 0.9f));
+                                ret = func_8031EB24(listIndex, index, JP_US_DEF(0.8f , 0.9f));
                                 D_80222A18[2].unk2C[k]->unk20 =
                                     (D_80363808[listIndex] + 8.0f) / 16 * ret;
                             }
@@ -1081,7 +1079,7 @@ void func_8031EEF8(void)
                     case 0:
                     case 2:
                         D_80222A18[2].unk2C[k]->unk20 =
-                            func_8031EB24(listIndex, index, IF_US(0.8f, 0.9f));
+                            func_8031EB24(listIndex, index, JP_US_DEF(0.8f , 0.9f));
                         D_80222A18[2].unk2C[k]->unk24 = func_8031E97C(
                             *D_80360C48[listIndex][index].unk0,
                             *D_80360C48[listIndex][index].unk8);
@@ -1097,7 +1095,7 @@ void func_8031EEF8(void)
                         D_80222A18[2].unk2C[k]->unk3 =
                             func_8031ED70(listIndex, index, k);
                         D_80222A18[2].unk2C[k]->unk20 =
-                            func_8031EB24(listIndex, index, IF_US(1.0f, 0.8f));
+                            func_8031EB24(listIndex, index, JP_US_DEF(1.0f , 0.8f));
                         D_80222A18[2].unk2C[k]->unk24 = func_8031E97C(
                                 *D_80360C48[listIndex][index].unk0,
                                 *D_80360C48[listIndex][index].unk8);
@@ -1147,12 +1145,12 @@ void func_8031EEF8(void)
                         {
                             if (D_80363808[listIndex] >= 9)
                             {
-                                ret = func_8031EB24(listIndex, index, IF_US(0.8f, 0.9f));
+                                ret = func_8031EB24(listIndex, index, JP_US_DEF(0.8f , 0.9f));
                                 D_80222A18[2].unk2C[k]->unk20 = ret;
                             }
                             else
                             {
-                                ret = func_8031EB24(listIndex, index, IF_US(0.8f, 0.9f));
+                                ret = func_8031EB24(listIndex, index, JP_US_DEF(0.8f , 0.9f));
                                 D_80222A18[2].unk2C[k]->unk20 =
                                     (D_80363808[listIndex] + 8.0f) / 16 * ret;
                             }
@@ -1186,7 +1184,7 @@ void func_8031EEF8(void)
                     case 0:
                     case 2:
                         D_80222A18[2].unk2C[k]->unk20 =
-                            func_8031EB24(listIndex, index, IF_US(0.8f, 0.9f));
+                            func_8031EB24(listIndex, index, JP_US_DEF(0.8f , 0.9f));
                         D_80222A18[2].unk2C[k]->unk24 = func_8031E97C(
                             *D_80360C48[listIndex][index].unk0,
                             *D_80360C48[listIndex][index].unk8);
@@ -1202,7 +1200,7 @@ void func_8031EEF8(void)
                         D_80222A18[2].unk2C[k]->unk3 =
                             func_8031ED70(listIndex, index, k);
                         D_80222A18[2].unk2C[k]->unk20 =
-                            func_8031EB24(listIndex, index, IF_US(1.0f, 0.8f));
+                            func_8031EB24(listIndex, index, JP_US_DEF(1.0f , 0.8f));
                         D_80222A18[2].unk2C[k]->unk24 = func_8031E97C(
                                 *D_80360C48[listIndex][index].unk0,
                                 *D_80360C48[listIndex][index].unk8);

@@ -75,6 +75,7 @@ u8 D_U_80331370[256] = { // TODO: Is there a way to auto generate this?
     0,  0,  5,  7,  7,  6,  6,  8,  0,  8, 10,  6,  4, 10,  0,  0
 };
 #endif
+
 s8 gDiagBoxState          = DIAG_STATE_OPENING;
 f32 gDiagBoxOpenTimer     = DEFAULT_DIAGBOX_ANGLE;
 f32 gDiagBoxScale         = DEFAULT_DIAGBOX_SCALE;
@@ -239,15 +240,14 @@ void func_802D6AFC(u8 c)
 
 #ifdef VERSION_JP
     unpackedTexture = func_802D69A0(packedTexture, 8, 16);
-
+    
     gDPPipeSync(gDisplayListHead++);
     gDPSetTextureImage(gDisplayListHead++, G_IM_FMT_IA, G_IM_SIZ_8b, 1, VIRTUAL_TO_PHYSICAL(unpackedTexture));
-    gSPDisplayList(gDisplayListHead++, dl_ia8_render_char);
 #else
     gDPPipeSync(gDisplayListHead++);
     gDPSetTextureImage(gDisplayListHead++, G_IM_FMT_IA, G_IM_SIZ_16b, 1, VIRTUAL_TO_PHYSICAL(packedTexture));
-    gSPDisplayList(gDisplayListHead++, dl_ia8_render_char);
 #endif
+    gSPDisplayList(gDisplayListHead++, dl_ia8_render_char);
 }
 
 #ifdef VERSION_US
@@ -372,30 +372,11 @@ void PutString(s8 font, s16 x, s16 y, const u8 *str)
     if(font == 1)
         xStride = 16;
     else
-#ifdef VERSION_JP
-        xStride = 14;
-#else
-        xStride = 12;
-#endif
+        xStride = JP_US_DEF(14 , 12);
 
     while(str[strPos] != 0xFF)
     {
-#ifdef VERSION_JP
-        gDPPipeSync(gDisplayListHead++);
-
-        if(font == 1)
-            gDPSetTextureImage(gDisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, fontLUT1[str[strPos]]);
-
-        if(font == 2)
-            gDPSetTextureImage(gDisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, fontLUT2[str[strPos]]);
-
-        gSPDisplayList(gDisplayListHead++, dl_rgba16_load_tex_block);
-        gSPTextureRectangle(gDisplayListHead++, curX<<2, curY<<2,
-            (curX+16)<<2, (curY+16)<<2, 0, 0, 0, 0x400, 0x400);
-
-        curX += xStride;
-        strPos++;
-#else
+#ifdef VERSION_US
         if(str[strPos] == 0x9E)
         {
             if(0) //! dead code
@@ -406,6 +387,7 @@ void PutString(s8 font, s16 x, s16 y, const u8 *str)
         }
         else
         {
+#endif
             gDPPipeSync(gDisplayListHead++);
             
             if(font == 1)
@@ -419,9 +401,10 @@ void PutString(s8 font, s16 x, s16 y, const u8 *str)
                 (curX+16)<<2, (curY+16)<<2, 0, 0, 0, 0x400, 0x400);
             
             curX += xStride;
+#ifdef VERSION_US
         }
-        strPos++;
 #endif
+            strPos++;
     }
 }
 
@@ -463,14 +446,12 @@ void PrintRegularText(s16 x, s16 y, const u8 *str)
 
                 mark = DLG_MARK_NONE;
             }
-
 #ifdef VERSION_JP
             curX += 9;
 #else
             curX += D_U_80331370[str[strPos]];
 #endif
         }
-
         strPos++;
     }
 }
@@ -593,7 +574,6 @@ s16 get_str_x_pos_from_center(s16 centerPos, u8 *str, UNUSED f32 scale) // scale
         strPos++;
 #endif
     }
-
     // return the x position of where the string starts as half the string's
     // length from the position of the provided center.
 #ifdef VERSION_JP
@@ -777,13 +757,8 @@ void func_802D8134(struct DialogEntry *diagEntry, s8 sp47)
         break;
     }
 
-#ifdef VERSION_JP
-    dl_add_new_translation_matrix(1, -5.0f, 2.0, 0);
-    dl_add_new_scale_matrix(2, 1.1f, ((f32)sp47 / 4.0f) + 0.1, 1.0f);
-#else
-    dl_add_new_translation_matrix(1, -7.0f, 5.0, 0);
-    dl_add_new_scale_matrix(2, 1.1f, ((f32)sp47 / 5.0f) + 0.1, 1.0f);
-#endif
+    dl_add_new_translation_matrix(1, JP_US_DEF(-5.0f , -7.0f), JP_US_DEF(2.0 , 5.0), 0);
+    dl_add_new_scale_matrix(2, 1.1f, ((f32)sp47 / JP_US_DEF(4.0f , 5.0f)) + 0.1, 1.0f);
 
     gSPDisplayList(gDisplayListHead++, dl_draw_text_bg_box);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
@@ -834,12 +809,8 @@ void func_802D8690(s8 lineNum, s8 sp27, s8 *sp28, s8 *sp2c, s16 *sp30)
         sp28[0] = 1;
         return;
     }
-
-#ifdef VERSION_JP
-    dl_add_new_translation_matrix(1, 5.0f, 2 - (lineNum * 20), 0);
-#else
-    dl_add_new_translation_matrix(1, 0.0f, 2 - (lineNum * 16), 0);
-#endif
+    dl_add_new_translation_matrix(1, JP_US_DEF(5.0f , 0.0f), 2 - (lineNum * JP_US_DEF(20 , 16)), 0);
+    
     sp30[0] = 0;
     sp2c[0] = 1;
 }
@@ -939,23 +910,27 @@ u32 func_802D8954(s16 a0)
 
 #ifdef VERSION_JP
 void func_802D8980(s8 sp63, struct DialogEntry *diagEntry)
+#else
+void func_802D8980(s8 sp63, struct DialogEntry *diagEntry, s8 sp5B)
+#endif
 {
     UNUSED s32 u0, u1; // a guess?
-
-    u8 strChar;
-
-    u8 *str = (u8 *)segmented_to_virtual(diagEntry->str);
+    
+    u8 strChar; // sp4F;
+    
+    u8 *str = (u8 *)segmented_to_virtual(diagEntry->str); // sp48
     s8 lineNum = 1; // sp47 in US
 
     s8 totalLines;
+    
+    s8 sp4d_45 = 0;
+    UNUSED s8 sp4c_44 = 0; // only unused in US
+    s8 sp4b_43 = 1;
+    
+    s8 linesPerBox = diagEntry->linesPerBox; // sp42
 
-    s8 sp4d = 0; // sp45 in US
-    s8 sp4c = 0;
-    s8 sp4b = 1;
-    s8 linesPerBox = diagEntry->linesPerBox;
-
-    s16 strIdx;
-    s16 linePos;
+    s16 strIdx;  // sp40
+    s16 linePos; // sp3E
 
     linePos = 0;
 
@@ -970,9 +945,9 @@ void func_802D8980(s8 sp63, struct DialogEntry *diagEntry)
     if(gDiagBoxState == DIAG_STATE_SCROLLING)
         dl_add_new_translation_matrix(2, 0, (f32)D_8033041C, 0);
 
-    dl_add_new_translation_matrix(1, 5.0f, 2 - lineNum * 20, 0);
+    dl_add_new_translation_matrix(1, JP_US_DEF(5.0f , 0.0f), 2 - lineNum * JP_US_DEF(20 , 16), 0);
 
-    while(sp4d == 0)
+    while(sp4d_45 == 0)
     {
         func_802D8450(sp63, lineNum);
         strChar = str[strIdx];
@@ -980,45 +955,72 @@ void func_802D8980(s8 sp63, struct DialogEntry *diagEntry)
         switch(strChar)
         {
         case 0xFF: // terminator
-            sp4d = 2;
+            sp4d_45 = 2;
             gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
             break;
-        case 0xFE: // newline
-            lineNum++;
-            func_802D8690(lineNum, totalLines, &sp4d, &sp4b, &linePos);
+            case 0xFE: // newline
+                lineNum++;
+                func_802D8690(lineNum, totalLines, &sp4d_45, &sp4b_43, &linePos);
+                break;
+            case 0xF0: // kana with dakuten
+                sp4c_44 = 1;
+                break;
+            case 0xF1: // kana with handakuten
+                sp4c_44 = 2;
+                break;
+            case 0x9E: // space
+#ifdef VERSION_JP
+                if(linePos != 0)
+#endif
+                sp4b_43++;
+                linePos++;
+                break;
+#ifdef VERSION_JP                
+            case 0x6E: // handakuten
+                func_802D875C(&sp4b_43, &linePos);
             break;
-        case 0xF0: // kana with dakuten
-            sp4c = 1;
-            break;
-        case 0xF1: // kana with handakuten
-            sp4c = 2;
-            break;
-        case 0x9E: // [space] L802D8BC4
-            if(linePos != 0)
-                sp4b++;
-
-            linePos++;
-            break;
-        case 0x6E: // handakuten
-            func_802D875C(&sp4b, &linePos);
-            break;
-        case 0xE0: // number of stars [%]
-            func_802D8830(&sp4b, &linePos);
-            break;
+#else
+            case 0xD0: // '/'
+                sp4b_43 += 2;
+                linePos += 2;
+                break;
+            case 0xD1: // 'the'
+                func_u_802D9634(0, lineNum, &linePos, linesPerBox, sp4b_43, sp5B);
+                sp4b_43 = 1;
+                break;
+            case 0xD2: // 'you'
+                func_u_802D9634(1, lineNum, &linePos, linesPerBox, sp4b_43, sp5B);
+                sp4b_43 = 1;
+                break;
+#endif
+            case 0xE0: // star variable
+                func_802D8830(&sp4b_43, &linePos);
+                break;
         default:   // any other character
+#ifdef VERSION_JP
             if(linePos != 0)
-                dl_add_new_translation_matrix(2, sp4b * 10, 0, 0);
+                dl_add_new_translation_matrix(2, sp4b_43 * 10, 0, 0);
+#else
+            if(lineNum >= sp5B && lineNum <= (sp5B + linesPerBox))
+            {
+               if(linePos || sp4b_43 != 1)
+                  dl_add_new_translation_matrix(2, (f32)(D_U_80331370[0x9E] * (sp4b_43 - 1)), 0, 0);
+#endif
 
             func_802D6AFC(strChar);
-            sp4b = 1;
+#ifdef VERSION_US
+            dl_add_new_translation_matrix(2, (f32)(D_U_80331370[strChar]), 0, 0);
+#endif
+            sp4b_43 = 1;
             linePos++;
 
-            if(sp4c != 0)
+#ifdef VERSION_JP
+            if(sp4c_44 != 0)
             {
                 dl_add_new_translation_matrix(1, 5.0f, 7.0f, 0);
-                func_802D6AFC(sp4c + 0xEF);
+                func_802D6AFC(sp4c_44 + 0xEF);
                 gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
-                sp4c = 0;
+                sp4c_44 = 0;
             }
         }
 
@@ -1026,13 +1028,13 @@ void func_802D8980(s8 sp63, struct DialogEntry *diagEntry)
         {
             if(str[strIdx+1] == 0x6E) // handakuten
             {
-                func_802D875C(&sp4b, &linePos);
+                func_802D875C(&sp4b_43, &linePos);
                 strIdx++;
             }
 
             if(str[strIdx+1] == 0x6F) // comma
             {
-                dl_add_new_translation_matrix(2, sp4b * 10, 0, 0);
+                dl_add_new_translation_matrix(2, sp4b_43 * 10, 0, 0);
                 func_802D6AFC(0x6F);
                 strIdx++;
             }
@@ -1042,140 +1044,39 @@ void func_802D8980(s8 sp63, struct DialogEntry *diagEntry)
 
             if(str[strIdx+1] == 0xFF) // terminator
             {
-                sp4d = 2;
+                sp4d_45 = 2;
                 gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
                 break; // exit loop
             }
             else
             {
                 lineNum++;
-                func_802D8690(lineNum, totalLines, &sp4d, &sp4b, &linePos);
+                func_802D8690(lineNum, totalLines, &sp4d_45, &sp4b_43, &linePos);
+#endif
             }
         }
 
         strIdx++;
     }
-
     gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
-
+    
     if(gDiagBoxState == DIAG_STATE_WAITBUTTON)
     {
-        if(sp4d == 2)
+        if(sp4d_45 == 2)
             gLastDialogPageStrPos = -1;
         else
             gLastDialogPageStrPos = strIdx;
     }
-
-    gLastDialogLineNum = lineNum;
-}
-#else
-void func_802D8980(s8 sp5B, struct DialogEntry *diagEntry, s8 sp63)
-{
-    UNUSED s32 u0, u1;
-
-    u8 strChar; // sp4F;
-
-    u8 *str = (u8 *)segmented_to_virtual(diagEntry->str); // sp48
-    s8 lineNum = 1; // sp47 in US
-
-    s8 totalLines;
     
-    s8 sp45 = 0;
-    UNUSED s8 sp44 = 0;
-    s8 sp43 = 1;
-    s8 linesPerBox = diagEntry->linesPerBox; // sp42
-
-    s16 strIdx;  // sp40
-    s16 linePos; // sp3E
-
-    linePos = 0;
-
-    if(gDiagBoxState == DIAG_STATE_SCROLLING)
-        totalLines = (linesPerBox * 2) + 1;
-    else
-        totalLines = linesPerBox + 1;
-
-    gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
-    strIdx = D_8033042C;
-
-    if(gDiagBoxState == DIAG_STATE_SCROLLING)
-        dl_add_new_translation_matrix(2, 0, (f32)D_8033041C, 0);
-
-    dl_add_new_translation_matrix(1, 0.0f, 2 - lineNum * 16, 0);
-
-    while(sp45 == 0)
-    { // L802D9968
-        func_802D8450(sp5B, lineNum);
-        strChar = str[strIdx];
-
-        switch(strChar)
-        {
-            case 0xFF: // terminator
-                sp45 = 2;
-                gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
-                break;
-            case 0xFE: // newline
-                lineNum++;
-                func_802D8690(lineNum, totalLines, &sp45, &sp43, &linePos);
-                break;
-            case 0xF0: // kana with dakuten
-                sp44 = 1;
-                break;
-            case 0xF1: // kana with handakuten
-                sp44 = 2;
-                break;
-            case 0x9E: // space
-                sp43++;
-                linePos++;
-                break;
-            case 0xD0: // '/'
-                sp43 += 2;
-                linePos += 2;
-                break;
-            case 0xD1: // 'the'
-                func_u_802D9634(0, lineNum, &linePos, linesPerBox, sp43, sp63);
-                sp43 = 1;
-                break;
-            case 0xD2: // 'you'
-                func_u_802D9634(1, lineNum, &linePos, linesPerBox, sp43, sp63);
-                sp43 = 1;
-                break;
-            case 0xE0: // star variable
-                func_802D8830(&sp43, &linePos);
-                break;
-            default:
-                if(lineNum >= sp63 && lineNum <= (sp63 + linesPerBox))
-                {
-                    if(linePos || sp43 != 1)
-                        dl_add_new_translation_matrix(2, (f32)(D_U_80331370[0x9E] * (sp43 - 1)), 0, 0);
-
-                    func_802D6AFC(strChar);
-                    dl_add_new_translation_matrix(2, (f32)(D_U_80331370[strChar]), 0, 0);
-                    sp43 = 1;
-                    linePos++;
-                }                
-        }
-        strIdx++;
-    }
-    gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
-    if(gDiagBoxState == 1)
-    {
-        if(sp45 == 2)
-            gLastDialogPageStrPos = -1;
-        else
-            gLastDialogPageStrPos = strIdx;
-    }
     gLastDialogLineNum = lineNum;
 }
-#endif
 
 void func_802D8ED4(void)
 {
-#ifdef VERSION_JP
     if(gDiagBoxState == DIAG_STATE_WAITBUTTON)
         handleMenuScrolling(MENU_SCROLL_HORIZONTAL, &D_80330430, 1, 2);
 
-    dl_add_new_translation_matrix(2, (D_80330430 * 50) - 25, 1 - (gLastDialogLineNum * 20), 0);
+    dl_add_new_translation_matrix(2, (D_80330430 * JP_US_DEF(50 , 56)) - JP_US_DEF(25 , 47), JP_US_DEF(1 , 2) - (gLastDialogLineNum * JP_US_DEF(20 , 16)), 0);
 
     if(gDiagBoxType == DIAG_TYPE_ROTATE)
     {
@@ -1187,34 +1088,16 @@ void func_802D8ED4(void)
     }
 
     gSPDisplayList(gDisplayListHead++, dl_draw_triangle);
-#else
-    if(gDiagBoxState == DIAG_STATE_WAITBUTTON)
-        handleMenuScrolling(MENU_SCROLL_HORIZONTAL, &D_80330430, 1, 2);
-
-    dl_add_new_translation_matrix(2, (D_80330430 * 56) - 47, 2 - (gLastDialogLineNum * 16), 0);
-
-    if(gDiagBoxType == 0)
-    {
-        gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
-    }
-    else
-    {
-        gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, 255);
-    }
-
-    gSPDisplayList(gDisplayListHead++, dl_draw_triangle);
-#endif
 }
 
 void func_802D9030(s8 sp3b)
 {
-#ifdef VERSION_JP
     s32 sp34 = gGlobalTimer;
 
     if(sp34 & 0x08)
         return;
 
-    dl_add_new_translation_matrix(1, 123.0f, (sp3b * -20) + 2, 0);
+    dl_add_new_translation_matrix(1, JP_US_DEF(123.0f , 118.0f), (sp3b * JP_US_DEF(-20 , -16)) + JP_US_DEF(2 , 5), 0);
     dl_add_new_scale_matrix(2, 0.8f, 0.8f, 1.0f);
     dl_add_new_rotation_matrix(2, -DEFAULT_DIAGBOX_ANGLE, 0, 0, 1.0f);
 
@@ -1229,82 +1112,18 @@ void func_802D9030(s8 sp3b)
 
     gSPDisplayList(gDisplayListHead++, dl_draw_triangle);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
-#else
-    s32 sp34 = gGlobalTimer;
-
-    if(sp34 & 0x08)
-        return;
-
-    dl_add_new_translation_matrix(1, 118.0f, (sp3b * -16) + 5, 0);
-    dl_add_new_scale_matrix(2, 0.8f, 0.8f, 1.0f);
-    dl_add_new_rotation_matrix(2, -DEFAULT_DIAGBOX_ANGLE, 0, 0, 1.0f);
-
-    if(gDiagBoxType == 0)
-    {
-        gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
-    }
-    else
-    {
-        gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, 255);
-    }
-
-    gSPDisplayList(gDisplayListHead++, dl_draw_triangle);
-    gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
-#endif
 }
 
 void func_802D91C0(s16 sp4a)
 {
+    s16 sp3c[] = { 0x0011, 0x0072, 0x0080, 0x0075, 0x0096 };
+    s16 sp34[] = { 0x0005, 0x0009, 0x0037, 0x00A4 };
+    s16 sp28[] = { 0x000A, 0x000B, 0x000C, 0x000D, 0x000E };
 #ifdef VERSION_JP
-    s16 sp3c[] = { 0x0011, 0x0072, 0x0080, 0x0075, 0x0096 }; // D_80330454
-    s16 sp34[] = { 0x0005, 0x0009, 0x0037, 0x00A4 }; // D_80330460
-    s16 sp28[] = { 0x000A, 0x000B, 0x000C, 0x000D, 0x000E }; // D_80330468
-    s16 sp20[] = { 0x0011, 0x0073, 0x0076, 0x0098 }; // D_80330474
-
-    s16 i;
-
-    for(i = 0; i < (s16) ARRAY_COUNT(sp3c); i++)
-    {
-        if(sp3c[i] == sp4a)
-        {
-            func_80320040(0, 60);
-            func_80320AE8(0, (4 << 8) | 22, 0);
-            return;
-        }
-    }
-
-    for(i = 0; i < (s16) ARRAY_COUNT(sp34); i++)
-    {
-        if(sp34[i] == sp4a && D_80330430 == 1)
-        {
-            play_race_fanfare();
-            return;
-        }
-    }
-
-    for(i = 0; i < (s16) ARRAY_COUNT(sp28); i++)
-    {
-        if(sp28[i] == sp4a && D_80330430 == 1)
-        {
-            SetSound(SOUND_MENU_STARSOUND, D_803320E0);
-            return;
-        }
-    }
-
-    for(i = 0; i < (s16) ARRAY_COUNT(sp20); i++)
-    {
-        if(sp20[i] == sp4a)
-        {
-            func_8031F7CC(0, 1);
-            return;
-        }
-    }
+    s16 sp20[] = { 0x0011, 0x0073, 0x0076, 0x0098 };
 #else
-    s16 sp3c[] = { 0x0011, 0x0072, 0x0080, 0x0075, 0x0096 }; // D_803314CC
-    s16 sp34[] = { 0x0005, 0x0009, 0x0037, 0x00A4 }; // D_803314D8
-    s16 sp28[] = { 0x000A, 0x000B, 0x000C, 0x000D, 0x000E }; // D_803314E0
-    s16 sp20[] = { 0x0011, 0x0073, 0x0074, 0x0076, 0x0098 }; // D_803314EC
-
+    s16 sp20[] = { 0x0011, 0x0073, 0x0074, 0x0076, 0x0098 };
+#endif
     s16 i;
 
     for(i = 0; i < (s16) ARRAY_COUNT(sp3c); i++)
@@ -1343,7 +1162,6 @@ void func_802D91C0(s16 sp4a)
             return;
         }
     }
-#endif
 }
 
 s16 D_8033047C = -1;
@@ -1390,9 +1208,11 @@ s8 D_80330534 = 1;
 
 void func_802D93E0(void)
 {
-#ifdef VERSION_JP
     void **diagTable = segmented_to_virtual(seg2_dialog_table);
     struct DialogEntry *diagEntry = segmented_to_virtual(diagTable[gDialogID]);
+#ifndef VERSION_JP
+    s8 sp2F;
+#endif
 
     // if the dialog entry is invalid, set the ID to -1.
     if(segmented_to_virtual(NULL) == diagEntry)
@@ -1426,117 +1246,9 @@ void func_802D93E0(void)
             gDiagBoxState = DIAG_STATE_WAITBUTTON;
             D_80330430 = 1;
         }
-        break;
-    case DIAG_STATE_WAITBUTTON:
-        gDiagBoxOpenTimer = 0.0f;
-
-        if((gPlayer3Controller->buttonPressed & A_BUTTON) ||
-           (gPlayer3Controller->buttonPressed & B_BUTTON))
-        {
-            if(gLastDialogPageStrPos == -1)
-            {
-                func_802D91C0(gDialogID);
-                gDiagBoxState = DIAG_STATE_CLOSING;
-            }
-            else
-            {
-                gDiagBoxState = DIAG_STATE_SCROLLING;
-                SetSound(SOUND_MENU_MESSAGENEXTPAGE, D_803320E0);
-            }
-        }
-        break;
-    case DIAG_STATE_SCROLLING:
-        D_8033041C += diagEntry->linesPerBox * 2;
-
-        if(D_8033041C >= diagEntry->linesPerBox * 20)
-        {
-            D_8033042C = gLastDialogPageStrPos;
-            gDiagBoxState = DIAG_STATE_WAITBUTTON;
-            D_8033041C = 0;
-        }
-        break;
-    case DIAG_STATE_CLOSING:
-        if(gDiagBoxOpenTimer == 20.0f)
-        {
-            level_set_transition(0, 0);
-            SetSound(SOUND_MENU_MESSAGEDISAPPEAR, D_803320E0);
-            
-            if(gDiagBoxType == DIAG_TYPE_ZOOM)
-                stop_mario(2);
-
-            gDialogueResponse = D_80330430;
-        }
-
-        gDiagBoxOpenTimer = gDiagBoxOpenTimer + 10.0f;
-        gDiagBoxScale     = gDiagBoxScale + 2.0f;
-
-        if(gDiagBoxOpenTimer == DEFAULT_DIAGBOX_ANGLE)
-        {
-            gDiagBoxState = DIAG_STATE_OPENING;
-            gDialogID = -1;
-            D_8033042C = 0;
-            D_80330434 = 0;
-            gLastDialogPageStrPos = 0;
-            gDialogueResponse = 0;
-        }
-        break;
-    }
-
-    func_802D8134(diagEntry, diagEntry->linesPerBox);
-
-    gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE,
-        func_802D8954(diagEntry->leftOffset),
-        func_802D8954(240 - diagEntry->width),
-        func_802D8954(130 + diagEntry->leftOffset),
-        func_802D8954(240 + ((diagEntry->linesPerBox*80)/4) - diagEntry->width));
-
-    func_802D8980(0, diagEntry);
-
-    if(gLastDialogPageStrPos == -1 && D_80330434 == 1)
-        func_802D8ED4();
-
-    gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 2, 2, 316, 236);
-
-    if(gLastDialogPageStrPos != -1 && gDiagBoxState == DIAG_STATE_WAITBUTTON)
-        func_802D9030(diagEntry->linesPerBox);
-#else
-    void **diagTable = segmented_to_virtual(seg2_dialog_table);
-    struct DialogEntry *diagEntry = segmented_to_virtual(diagTable[gDialogID]);
-    s8 sp2F;
-
-    // if the dialog entry is invalid, set the ID to -1.
-    if(segmented_to_virtual(NULL) == diagEntry)
-    {
-        gDialogID = -1;
-        return;
-    }
-
-    switch(gDiagBoxState)
-    {
-    case DIAG_STATE_OPENING:
-        if(gDiagBoxOpenTimer == DEFAULT_DIAGBOX_ANGLE)
-        {
-            func_80320A68(gDialogID);
-            SetSound(SOUND_MENU_MESSAGEAPPEAR, D_803320E0);
-        }
-
-        if(gDiagBoxType == 0)
-        {
-            gDiagBoxOpenTimer -= 7.5;
-            gDiagBoxScale -= 1.5;
-        }
-        else
-        {
-            gDiagBoxOpenTimer -= 10.0;
-            gDiagBoxScale -= 2.0;
-        }
-
-        if(gDiagBoxOpenTimer == 0.0f)
-        {
-            gDiagBoxState = DIAG_STATE_WAITBUTTON;
-            D_80330430 = 1;
-        }
+#ifndef VERSION_JP
         sp2F = 1;
+#endif
         break;
     case DIAG_STATE_WAITBUTTON:
         gDiagBoxOpenTimer = 0.0f;
@@ -1555,18 +1267,22 @@ void func_802D93E0(void)
                    SetSound(SOUND_MENU_MESSAGENEXTPAGE, D_803320E0);
                }
            }
+#ifndef VERSION_JP
            sp2F = 1;
+#endif
         break;
     case DIAG_STATE_SCROLLING:
         D_8033041C += diagEntry->linesPerBox * 2;
 
-        if(D_8033041C >= diagEntry->linesPerBox * 16)
+        if(D_8033041C >= diagEntry->linesPerBox * JP_US_DEF(20 , 16))
         {
             D_8033042C = gLastDialogPageStrPos;
             gDiagBoxState = DIAG_STATE_WAITBUTTON;
             D_8033041C = 0;
         }
+#ifndef VERSION_JP
         sp2F = (D_8033041C / 16) + 1;
+#endif  
         break;
     case DIAG_STATE_CLOSING:
         if(gDiagBoxOpenTimer == 20.0f)
@@ -1592,7 +1308,9 @@ void func_802D93E0(void)
             gLastDialogPageStrPos = 0;
             gDialogueResponse = 0;
         }
+#ifndef VERSION_JP
         sp2F = 1;
+#endif  
         break;
     }
 
@@ -1601,10 +1319,13 @@ void func_802D93E0(void)
     gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE,
         func_802D8954(diagEntry->leftOffset),
         func_802D8954(240 - diagEntry->width),
-        func_802D8954(132 + diagEntry->leftOffset),
-        func_802D8954(240 + ((diagEntry->linesPerBox*80)/5) - diagEntry->width));
-
+        func_802D8954(JP_US_DEF(130 , 132) + diagEntry->leftOffset),
+        func_802D8954(240 + ((diagEntry->linesPerBox*80)/JP_US_DEF(4 , 5)) - diagEntry->width));
+#ifdef VERSION_JP
+    func_802D8980(0, diagEntry);
+#else
     func_802D8980(0, diagEntry, sp2F);
+#endif
 
     if(gLastDialogPageStrPos == -1 && D_80330434 == 1)
         func_802D8ED4();
@@ -1613,7 +1334,6 @@ void func_802D93E0(void)
 
     if(gLastDialogPageStrPos != -1 && gDiagBoxState == DIAG_STATE_WAITBUTTON)
         func_802D9030(diagEntry->linesPerBox);
-#endif
 }
 
 void func_802D9A14(s16 a0)
@@ -1765,12 +1485,11 @@ void print_peach_letter_message(void)
     gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 20, 20, 20, gCutsceneMsgFade);
 
+    PrintGenericText(JP_US_DEF(53 , 38), JP_US_DEF(136 , 142), str);
 #ifdef VERSION_JP
-    PrintGenericText(53, 136, str);
     gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
 #else
-    PrintGenericText(38, 142, str);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
     gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
     gDPSetEnvColor(gDisplayListHead++, 200, 80, 120, gCutsceneMsgFade);
@@ -1894,11 +1613,10 @@ void func_802DA874(void)
 
 void func_802DA8EC(void)
 {
-#ifdef VERSION_JP
-    u8 sp64[] = {TEXT_COURSE}; //D_80330538;
-    u8 sp5c[] = {TEXT_MY_SCORE}; //D_8033053C;
-    u8 sp58[] = {TEXT_STAR}; //D_80330544;
-    u8 sp54[] = {TEXT_UNFILLED_STAR}; //D_80330548;
+    u8 sp64[] = {TEXT_COURSE};
+    u8 sp5c[] = {TEXT_MY_SCORE};
+    u8 sp58[] = {TEXT_STAR};
+    u8 sp54[] = {TEXT_UNFILLED_STAR};
 
     u8 strCourseNum[4];
 
@@ -1937,7 +1655,7 @@ void func_802DA8EC(void)
     {
         PrintGenericText(63, 157, sp64);
         Int2Str(gCurrCourseNum, strCourseNum);
-        PrintGenericText(93, 157, strCourseNum);
+        PrintGenericText(JP_US_DEF(93 , 100), 157, strCourseNum);
 
         actName = segmented_to_virtual(actNameTbl[gCurrCourseNum * 6 + D_80330534 - 7]);
 
@@ -1947,78 +1665,23 @@ void func_802DA8EC(void)
             PrintGenericText(98, 140, sp54);
 
         PrintGenericText(116, 140, actName);
-    }
-
-    PrintGenericText(117, 157, &levelName[3]);
-
-    gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
-#else
-    u8 sp64[] = {TEXT_COURSE}; //D_80331624;
-    u8 sp5c[] = {TEXT_MY_SCORE}; //D_8033162C;
-    u8 sp58[] = {TEXT_STAR}; //D_80331638;
-    u8 sp54[] = {TEXT_UNFILLED_STAR}; //D_8033163C;
-
-    u8 strCourseNum[4];
-
-    void **levelNameTbl = segmented_to_virtual(seg2_level_name_table);
-    u8 *levelName;
-
-    void **actNameTbl = segmented_to_virtual(seg2_act_name_table);
-    u8 *actName;
-
-    u8 courseIndex = gCurrCourseNum - 1;
-    u8 starFlags = save_file_get_star_flags(gCurrSaveFileNum - 1, gCurrCourseNum - 1);
-
-    gSPDisplayList(gDisplayListHead++, dl_rgba16_text_begin);
-    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
-
-    if(courseIndex < 15)
-    {
-        ShowCoins(1, gCurrSaveFileNum - 1, courseIndex, 178, 103);
-        ShowStars(gCurrSaveFileNum - 1, courseIndex, 118, 103);
-    }
-
-    gSPDisplayList(gDisplayListHead++, dl_rgba16_text_end);
-    gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
-
-    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
-
-    if(courseIndex < 15 &&
-        save_file_get_course_star_count(gCurrSaveFileNum - 1, courseIndex) != 0)
-    {
-        PrintGenericText(62, 121, sp5c);
-    }
-
-    levelName = segmented_to_virtual(levelNameTbl[courseIndex]);
-
-    if(courseIndex < 15)
-    {
-        PrintGenericText(63, 157, sp64);
-        Int2Str(gCurrCourseNum, strCourseNum);
-        PrintGenericText(100, 157, strCourseNum);
-
-        actName = segmented_to_virtual(actNameTbl[gCurrCourseNum * 6 + D_80330534 - 7]);
-
-        if(starFlags & (1 << (D_80330534 + 31)))
-            PrintGenericText(98, 140, sp58);
-        else
-            PrintGenericText(98, 140, sp54);
-
-        PrintGenericText(116, 140, actName);
+#ifndef VERSION_JP
         PrintGenericText(117, 157, &levelName[3]);
+#endif
     }
+#ifndef VERSION_JP
     else
     {
         PrintGenericText(94, 157, &levelName[3]);
     }
-
-    gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
+#else
+    PrintGenericText(117, 157, &levelName[3]);
 #endif
+    gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
 }
 
 void PauseScreenCameraMenu(s16 sp72, s16 sp76, s8 *sp78, s16 sp7e)
 {
-#ifdef VERSION_JP
     u8 sp64[] = {TEXT_LAKITU_MARIO}; //D_8033054C;
     u8 sp54[] = {TEXT_LAKITU_STOP}; //D_80330558;
     u8 sp48[] = {TEXT_NORMAL_UPCLOSE}; //D_80330568;
@@ -2029,13 +1692,13 @@ void PauseScreenCameraMenu(s16 sp72, s16 sp76, s8 *sp78, s16 sp7e)
     gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
 
-    PrintGenericText(sp72+14, sp76+2, sp64);
-    PrintGenericText(sp72+4, sp76-13, sp48);
-    PrintGenericText(sp72+124, sp76+2, sp54);
-    PrintGenericText(sp72+116, sp76-13, sp3c);
+    PrintGenericText(sp72 + 14, sp76 + 2, sp64);
+    PrintGenericText(sp72 + JP_US_DEF(4 , 3), sp76 - 13, sp48);
+    PrintGenericText(sp72 + 124, sp76 + 2, sp54);
+    PrintGenericText(sp72 + JP_US_DEF(116 , 119), sp76 - 13, sp3c);
 
     gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
-    dl_add_new_translation_matrix(1, ((sp78[0] - 1) * sp7e) + sp72, sp76, 0);
+    dl_add_new_translation_matrix(1, ((sp78[0] - 1) * sp7e) + sp72, sp76 + JP_US_DEF(0 , 2), 0);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
     gSPDisplayList(gDisplayListHead++, dl_draw_triangle);
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
@@ -2045,39 +1708,10 @@ void PauseScreenCameraMenu(s16 sp72, s16 sp76, s8 *sp78, s16 sp7e)
     case 1: select_or_activate_mario_cam(1); break;
     case 2: select_or_activate_mario_cam(2); break;
     }
-#else
-    u8 sp64[] = {TEXT_LAKITU_MARIO}; //D_8033054C;
-    u8 sp54[] = {TEXT_LAKITU_STOP}; //D_80330558;
-    u8 sp48[] = {TEXT_NORMAL_UPCLOSE}; //D_80330568;
-    u8 sp3c[] = {TEXT_NORMAL_FIXED}; //D_80330574;
-
-    handleMenuScrolling(MENU_SCROLL_HORIZONTAL, sp78, 1, 2);
-
-    gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
-    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
-
-    PrintGenericText(sp72+14, sp76+2, sp64);
-    PrintGenericText(sp72+3, sp76-13, sp48);
-    PrintGenericText(sp72+124, sp76+2, sp54);
-    PrintGenericText(sp72+119, sp76-13, sp3c);
-
-    gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
-    dl_add_new_translation_matrix(1, ((sp78[0] - 1) * sp7e) + sp72, sp76 + 2, 0);
-    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
-    gSPDisplayList(gDisplayListHead++, dl_draw_triangle);
-    gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
-
-    switch(sp78[0])
-    {
-    case 1: select_or_activate_mario_cam(1); break;
-    case 2: select_or_activate_mario_cam(2); break;
-    }
-#endif
 }
 
 void PauseScreen2(s16 sp62, s16 sp66, s8 *sp68, s16 sp6e)
 {
-#ifdef VERSION_JP
     u8 sp50[] = {TEXT_CONTINUE}; //D_80330580;
     u8 sp44[] = {TEXT_EXIT_COURSE}; //D_80330590;
     u8 sp34[] = {TEXT_CAMERA_ANGLE_R}; //D_8033059C;
@@ -2087,15 +1721,15 @@ void PauseScreen2(s16 sp62, s16 sp66, s8 *sp68, s16 sp6e)
     gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
 
-    PrintGenericText(sp62+10, sp66-2, sp50);
-    PrintGenericText(sp62+10, sp66-17, sp44);
+    PrintGenericText(sp62 + 10, sp66 - 2, sp50);
+    PrintGenericText(sp62 + 10, sp66 - 17, sp44);
 
     if(sp68[0] != 3)
     {
-        PrintGenericText(sp62+10, sp66-33, sp34);
+        PrintGenericText(sp62 + 10, sp66 - 33, sp34);
         gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
 
-        dl_add_new_translation_matrix(1, sp62, (sp66 - ((sp68[0] - 1) * sp6e)) - 4, 0);
+        dl_add_new_translation_matrix(1, sp62 - JP_US_DEF(0 , 4), (sp66 - ((sp68[0] - 1) * sp6e)) - JP_US_DEF(4 , 2), 0);
 
         gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
         gSPDisplayList(gDisplayListHead++, dl_draw_triangle);
@@ -2104,38 +1738,8 @@ void PauseScreen2(s16 sp62, s16 sp66, s8 *sp68, s16 sp6e)
 
     if(sp68[0] == 3)
     {
-        PauseScreenCameraMenu(sp62-42, sp66-42, &D_80330530, 110);
+        PauseScreenCameraMenu(sp62 - 42, sp66 - 42, &D_80330530, 110);
     }
-#else
-    u8 sp50[] = {TEXT_CONTINUE}; //D_80330580;
-    u8 sp44[] = {TEXT_EXIT_COURSE}; //D_80330590;
-    u8 sp34[] = {TEXT_CAMERA_ANGLE_R}; //D_8033059C;
-
-    handleMenuScrolling(MENU_SCROLL_VERTICAL, sp68, 1, 3);
-
-    gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
-    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
-
-    PrintGenericText(sp62+10, sp66-2, sp50);
-    PrintGenericText(sp62+10, sp66-17, sp44);
-
-    if(sp68[0] != 3)
-    {
-        PrintGenericText(sp62+10, sp66-33, sp34);
-        gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
-
-        dl_add_new_translation_matrix(1, sp62 - 4, (sp66 - ((sp68[0] - 1) * sp6e)) - 2, 0);
-
-        gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
-        gSPDisplayList(gDisplayListHead++, dl_draw_triangle);
-        gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
-    }
-
-    if(sp68[0] == 3)
-    {
-        PauseScreenCameraMenu(sp62-42, sp66-42, &D_80330530, 110);
-    }
-#endif
 }
 
 void PauseCastleMenuBox(s16 sp42, s16 sp46)
@@ -2382,7 +1986,7 @@ s16 func_802DBBB0(void)
     return 0;
 }
 
-void func_802DBE2C(s8 sp43)
+void func_802DBE2C(s8 sp4b)
 {
     u8 sp38[] = {TEXT_HISCORE_ENG}; //D_803305D0;
     u8 sp28[] = {TEXT_CONGRATULATIONS}; //D_803305D8;
@@ -2392,17 +1996,10 @@ void func_802DBE2C(s8 sp43)
     gSPDisplayList(gDisplayListHead++, dl_rgba16_text_begin);
     gDPSetEnvColor(gDisplayListHead++, sp27, sp27, sp27, 255);
 
-#ifdef VERSION_JP
-    if(sp43 == 0)
-        PutString(2, 112, 48, sp38);
+    if(sp4b == 0)
+        PutString(2, JP_US_DEF(112 , 109), JP_US_DEF(48 , 36), sp38);
     else
-        PutString(2, 60, 67, sp28);
-#else
-    if(sp43 == 0)
-        PutString(2, 109, 36, sp38);
-    else
-        PutString(2, 70, 67, sp28);
-#endif
+        PutString(2, JP_US_DEF(60 , 70), 67, sp28);
 
     gSPDisplayList(gDisplayListHead++, dl_rgba16_text_end);
 }
@@ -2471,77 +2068,12 @@ void func_802DC330(void)
     u8 sp78[] = {TEXT_COURSE};//D_803305F4;
     u8 sp70[] = {TEXT_CATCH};//D_803305F8;
     u8 sp68[] = {TEXT_CLEAR};//D_80330600;
-
-    u8 **sp64 = segmented_to_virtual(seg2_act_name_table);
-    u8 **sp60 = segmented_to_virtual(seg2_level_name_table);
-    u8 *sp5c;
-
-    u8 sp58[4];
-
-    if (gLastCompletedCourseNum < 16)
-    {
-        func_802DC050(118, 103);
-        func_802DC2B4(1, 1 << (gLastCompletedStarNum + 31));
-
-        if (gLastCompletedStarNum == 7)
-        {
-            sp5c = segmented_to_virtual(sp64[91]);
-        }
-        else
-        {
-            sp5c = segmented_to_virtual(sp64[(gLastCompletedCourseNum * 6 + gLastCompletedStarNum) - 7]);
-        }
-
-        gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
-        Int2Str(gLastCompletedCourseNum, sp58);
-        gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, D_80360088);
-        PrintGenericText(65, 165, sp78);
-        PrintGenericText(95, 165, sp58);
-        gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
-        PrintGenericText(63, 167, sp78);
-        PrintGenericText(93, 167, sp58);
-        gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
-    }
-    else if (gLastCompletedCourseNum == 16 || gLastCompletedCourseNum == 17)
-    {
-        sp5c = segmented_to_virtual(sp60[gLastCompletedCourseNum - 1]);
-        gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
-        gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, D_80360088);
-        PrintGenericText(71, 130, sp5c);
-        PrintGenericText(205, 130, sp68);
-        gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
-        PrintGenericText(69, 132, sp5c);
-        PrintGenericText(203, 132, sp68);
-        gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
-        func_802DBE2C(1);
-        func_802DC050(118, 111);
-        func_802DC2B4(2, 0);
-        return;
-    }
-    else
-    {
-        sp5c = segmented_to_virtual(sp64[90]);
-        func_802DC050(118, 103);
-        func_802DC2B4(1, 1 << (gLastCompletedStarNum + 31));
-    }
-
-    gSPDisplayList(gDisplayListHead++, dl_rgba16_text_begin);
-    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
-    PutString(2, 55, 77, sp7c);
-    gSPDisplayList(gDisplayListHead++, dl_rgba16_text_end);
-    gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
-    gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, D_80360088);
-    PrintGenericText(76, 145, sp5c);
-    PrintGenericText(220, 145, sp70);
-    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
-    PrintGenericText(74, 147, sp5c);
-    PrintGenericText(218, 147, sp70);
-    gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
 #else
     u8 sp78[] = {TEXT_COURSE};//D_803305F4;
-    UNUSED u8 sp70[] = {TEXT_CATCH};//D_803305F8;
+    UNUSED u8 sp70[] = {TEXT_CATCH};//D_803305F8; unused in US
     UNUSED u8 sp68[] = {TEXT_CLEAR};//D_80330600; unused in US
     u8 sp7c[] = {TEXT_UNK35}; //D_803305F0;
+#endif
 
     u8 **sp64 = segmented_to_virtual(seg2_act_name_table);
     u8 **sp60 = segmented_to_virtual(seg2_level_name_table);
@@ -2567,10 +2099,10 @@ void func_802DC330(void)
         Int2Str(gLastCompletedCourseNum, sp58);
         gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, D_80360088);
         PrintGenericText(65, 165, sp78);
-        PrintGenericText(104, 165, sp58);
+        PrintGenericText(JP_US_DEF(95 , 104), 165, sp58);
         gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
         PrintGenericText(63, 167, sp78);
-        PrintGenericText(102, 167, sp58);
+        PrintGenericText(JP_US_DEF(93 , 102), 167, sp58);
         gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
     }
     else if (gLastCompletedCourseNum == 16 || gLastCompletedCourseNum == 17)
@@ -2579,10 +2111,10 @@ void func_802DC330(void)
         gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
         gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, D_80360088);
         PrintGenericText(71, 130, sp5c);
-        PrintGenericText(func_u_802D8934(sp5c) + 81, 130, sp68);
+        PrintGenericText(JP_US_DEF(205 , func_u_802D8934(sp5c) + 81), 130, sp68);
         gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
         PrintGenericText(69, 132, sp5c);
-        PrintGenericText(func_u_802D8934(sp5c) + 79, 132, sp68);
+        PrintGenericText(JP_US_DEF(203 , func_u_802D8934(sp5c) + 79), 132, sp68);
         gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
         func_802DBE2C(1);
         func_802DC050(118, 111);
@@ -2603,10 +2135,15 @@ void func_802DC330(void)
     gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 0, 0, 0, D_80360088);
     PrintGenericText(76, 145, sp5c);
+#ifdef VERSION_JP
+    PrintGenericText(220, 145, sp70);
+#endif
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
     PrintGenericText(74, 147, sp5c);
-    gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
+#ifdef VERSION_JP
+    PrintGenericText(218, 147, sp70);
 #endif
+    gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
 }
 
 void Save(s16 sp62, s16 sp66, s8 *sp68, s16 sp6e)
@@ -2620,15 +2157,9 @@ void Save(s16 sp62, s16 sp66, s8 *sp68, s16 sp6e)
     gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
 
-#ifdef VERSION_JP
-    PrintGenericText(sp62 + 10, sp66 + 2, sp50);
-    PrintGenericText(sp62 + 10, sp66 - 18, sp44);
-    PrintGenericText(sp62 + 10, sp66 - 38, sp34);
-#else
-    PrintGenericText(sp62 + 12, sp66, sp50);
-    PrintGenericText(sp62 + 12, sp66 - 20, sp44);
-    PrintGenericText(sp62 + 12, sp66 - 40, sp34);
-#endif
+    PrintGenericText(sp62 + JP_US_DEF(10 , 12), sp66 + JP_US_DEF(2 , 0), sp50);
+    PrintGenericText(sp62 + JP_US_DEF(10 , 12), sp66 - JP_US_DEF(18 , 20), sp44);
+    PrintGenericText(sp62 + JP_US_DEF(10 , 12), sp66 - JP_US_DEF(38 , 40), sp34);
 
     gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
 

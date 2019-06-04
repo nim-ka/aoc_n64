@@ -15,6 +15,13 @@
 #include "mario_geo_switch_case_ids.h"
 #include "unused.h"
 
+// Reduces big ifdefs that use different values
+#ifdef VERSION_JP
+#define JP_US_DEF(jp , us) jp
+#else
+#define JP_US_DEF(jp , us) us
+#endif
+
 // Use these macros in places where aliasing is used to split a variable into
 // smaller parts
 #if ENDIAN_IND
