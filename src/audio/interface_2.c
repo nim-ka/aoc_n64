@@ -2124,7 +2124,7 @@ void func_80321368(u8 arg0)
     D_8033210C = 0;
 }
 
-void func_80321434(u16 arg0)
+void func_80321434(u8 arg0)
 {
     D_80332108 = (D_80332108 & 0xf) + (arg0 << 4);
     D_80226D7F = arg0;

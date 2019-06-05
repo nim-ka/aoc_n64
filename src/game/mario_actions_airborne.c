@@ -613,8 +613,8 @@ static s32 act_side_flip(struct MarioState *m)
         m->marioObj->header.gfx.angle[1] += 0x8000;
     }
 
-    if (m->marioObj->header.gfx.unk38.animFrame == 6)
-        SetSound(SOUND_ACTION_UNKNOWN45A, m->marioObj->header.gfx.cameraToObject);
+    // (this need to be on one line to match on PAL)
+    if (m->marioObj->header.gfx.unk38.animFrame == 6) SetSound(SOUND_ACTION_UNKNOWN45A, m->marioObj->header.gfx.cameraToObject);
     return FALSE;
 }
 

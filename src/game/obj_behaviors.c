@@ -103,10 +103,10 @@ f32 absf_2(f32 f)
 void TurnObjAwayFromSurface(f32 objVelX, f32 objVelZ, f32 nX, UNUSED f32 nY, f32 nZ, f32 *objYawX, f32 *objYawZ)
 {
     *objYawX = (nZ * nZ - nX * nX) * objVelX / (nX * nX + nZ * nZ)
-          - 2.0f * objVelZ * (nX * nZ) / (nX * nX + nZ * nZ);
+          - 2 * objVelZ * (nX * nZ) / (nX * nX + nZ * nZ);
 
     *objYawZ = (nX * nX - nZ * nZ) * objVelZ / (nX * nX + nZ * nZ)
-          - 2.0f * objVelX * (nX * nZ) / (nX * nX + nZ * nZ);
+          - 2 * objVelX * (nX * nZ) / (nX * nX + nZ * nZ);
 }
 
 //sp78 = objVelX

@@ -169,7 +169,7 @@ static s32 act_holding_pole(struct MarioState *m)
 
     if (m->controller->stickY < -16.0f)
     {
-        marioObj->oMarioPoleYawVel -= m->controller->stickY * 2.0f;
+        marioObj->oMarioPoleYawVel -= m->controller->stickY * 2;
         if (marioObj->oMarioPoleYawVel > 0x1000)
             marioObj->oMarioPoleYawVel = 0x1000;
 

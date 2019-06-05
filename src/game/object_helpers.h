@@ -190,7 +190,7 @@ extern struct Object *spawn_object_abs_with_rot(struct Object *, s16, u32, void 
 extern struct Object *spawn_object_rel_with_rot(struct Object *sp20, u32 sp24, void *sp28, s16 sp2E, s16 sp32, s16 sp36, s16 sp3A, s16 sp3E, s16 sp42);
 // extern ? Unknown8029E330(?);
 extern struct Object *spawn_water_splash(struct Object *, struct WaterSplashParams *);
-extern struct Object *spawn_object_at_origin(struct Object *, u32, u32, void *);
+extern struct Object *spawn_object_at_origin(struct Object *, s32, u32, void *);
 extern struct Object *spawn_object(struct Object *, s32, void *);
 extern struct Object* try_to_spawn_object(s16,f32,struct Object*,s32,void*);
 extern struct Object* spawn_object_with_scale(struct Object*,s32,void*,f32);

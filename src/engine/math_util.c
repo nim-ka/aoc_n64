@@ -150,12 +150,11 @@ void mtxf_identity(f32 mtx[4][4])
     register f32 *dest;
 
     // initialize everything except the first and last cells to 0
-    for (i = 0, dest = (f32 *)mtx + 1; i < 14; i++, dest += 1)
-        *dest = 0;
+    // (this need to be on one line to match on PAL)
+    for (dest = (f32 *)mtx + 1, i = 0; i < 14; dest++, i++) *dest = 0;
 
     // initialize the diagonal cells to 1
-    for (i = 0, dest = (f32 *)mtx; i < 4; i++, dest += 5)
-        *dest = 1;
+    for (dest = (f32 *)mtx, i = 0; i < 4; dest += 5, i++) *dest = 1;
 }
 
 void mtxf_translate(f32 dest[4][4], Vec3f b)

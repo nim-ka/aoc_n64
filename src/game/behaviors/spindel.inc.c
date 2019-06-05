@@ -25,7 +25,7 @@ void bhv_spindel_loop(void) {
     sp18 = 10 - o->oUnknownUnkF4_S32;
 
     if (sp18 < 0)
-        sp18 = -sp18;
+        sp18 *= -1;
 
     sp18 -= 6;
     if (sp18 < 0)

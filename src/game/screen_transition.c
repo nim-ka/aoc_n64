@@ -237,7 +237,7 @@ static s32 func_802CB9F8(s8 spBB, s8 spBF, struct WarpTransitionData *transData,
     return func_802CAAE0(spBB, spBF);
 }
 
-int func_802CC108(s8 sp23, u8 sp27, u8 sp2B, struct WarpTransitionData *sp2C)
+int func_802CC108(s8 sp23, s8 sp27, u8 sp2B, struct WarpTransitionData *sp2C)
 {
     switch (sp27)
     {

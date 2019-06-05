@@ -108,7 +108,7 @@ void ActionMrI3(void)
     {
         if(o->oTimer == 64)
             PlaySound2(SOUND_OBJECT_MRIDEATH);
-        sp30 = (o->oTimer - 63)/32.0f;
+        sp30 = (f32)(o->oTimer - 63)/32;
         o->oMoveAngleYaw += sp34 * coss(0x4000 * sp2C);
         o->oMoveAnglePitch = (1.0 - coss(0x4000 * sp2C)) * - 0x4000;
         obj_shake_y((s32)((1.0f - sp30) * 4)); // trucating the f32?

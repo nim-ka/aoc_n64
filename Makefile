@@ -113,7 +113,6 @@ LEVEL_DIRS := $(patsubst levels/%,%,$(dir $(wildcard levels/*/header.s)))
 
 MIPSISET := -mips2 -32
 
-# TODO: Make this properly apply to the goddard section (it is -g in all releases).
 ifeq ($(VERSION),eu)
   OPT_FLAGS := -O2
 else

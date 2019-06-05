@@ -40,6 +40,6 @@ void play_power_star_jingle(u8 arg0);
 void play_race_fanfare(void);
 void play_toads_jingle(void);
 void func_80321368(u8 arg0);
-void func_80321434(u16 arg0);
+void func_80321434(u8 arg0);
 
 #endif /* _AUDIO_INTERFACE_2_H */

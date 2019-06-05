@@ -875,7 +875,7 @@ Gfx *create_shadow_square(
  */
 Gfx *create_shadow_hardcoded_rectangle(
     f32 xPos, f32 yPos, f32 zPos,
-    UNUSED s32 shadowScale, u8 solidity, s8 shadowType
+    UNUSED s16 shadowScale, u8 solidity, s8 shadowType
 ) {
     f32 shadowHeight;
     f32 distFromShadow;

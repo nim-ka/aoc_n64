@@ -618,7 +618,7 @@ struct Object *spawn_water_splash(struct Object *parent, struct WaterSplashParam
 
 struct Object *spawn_object_at_origin(
     struct Object *parent,
-    UNUSED u32 unusedArg,
+    UNUSED s32 unusedArg,
     u32 model,
     void *behavior)
 {
