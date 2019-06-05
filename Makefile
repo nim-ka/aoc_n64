@@ -32,7 +32,16 @@ ifeq ($(VERSION),us)
   GRUCODE_ASFLAGS := --defsym F3D_OLD=1
   TARGET := sm64.u
 else
+ifeq ($(VERSION),eu)
+  $(warning Building EU is experimental and is prone to breaking. Try at your own risk.)
+  VERSION_CFLAGS := -DVERSION_EU=1
+  VERSION_ASFLAGS := --defsym VERSION_US=1 --defsym VERSION_EU=1
+  GRUCODE_CFLAGS := -DF3D_OLD
+  GRUCODE_ASFLAGS := --defsym F3D_OLD=1
+  TARGET := sm64.eu
+else
   $(error unknown version "$(VERSION)")
+endif
 endif
 endif
 
@@ -103,7 +112,13 @@ ULTRA_BIN_DIRS := lib/bin
 LEVEL_DIRS := $(patsubst levels/%,%,$(dir $(wildcard levels/*/header.s)))
 
 MIPSISET := -mips2 -32
-OPT_FLAGS := -g
+
+# TODO: Make this properly apply to the goddard section (it is -g in all releases).
+ifeq ($(VERSION),eu)
+  OPT_FLAGS := -O2
+else
+  OPT_FLAGS := -g
+endif
 
 # File dependencies and variables for specific files
 include Makefile.split
@@ -356,6 +371,7 @@ $(MIO0_DIR)/%.mio0.s: $(MIO0_DIR)/%.mio0
 	printf ".section .data\n\n.incbin \"$<\"\n" > $@
 
 # Source code
+$(BUILD_DIR)/src/goddard/%.o: OPT_FLAGS := -g
 $(BUILD_DIR)/src/goddard/%.o: MIPSISET := -mips1
 $(BUILD_DIR)/src/audio/%.o: CC := python3 tools/asm_processor/build.py $(CC) -- $(AS) $(ASFLAGS) --
 $(BUILD_DIR)/src/audio/%.o: OPT_FLAGS := -O2 -Wo,-loopunroll,0

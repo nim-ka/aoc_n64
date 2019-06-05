@@ -276,7 +276,7 @@ void func_802B2328(s32 n,s32 a1,s32 a2,s32 r) // n is the number of objects to s
 #include "behaviors/bbh_merry_go_round.inc.c"
 #include "behaviors/static_checkered_platform.inc.c"
 #include "behaviors/beta_following_circling_obj.inc.c"
-#ifdef VERSION_US
+#ifndef VERSION_JP
 #include "behaviors/music_touch.inc.c"
 #endif
 #include "behaviors/castle_floor_trap.inc.c"

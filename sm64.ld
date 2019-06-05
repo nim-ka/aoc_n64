@@ -59,7 +59,7 @@ SECTIONS
 
    BEGIN_SEG(boot, 0x04000000)
    {
-      BUILD_DIR/asm/rom_header.o(.text);
+      BUILD_DIR/data/rom_header.o(.text);
       BUILD_DIR/asm/boot.o(.text);
    }
    END_SEG(boot)

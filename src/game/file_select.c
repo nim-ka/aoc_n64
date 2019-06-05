@@ -17,7 +17,7 @@
 #include "text_strings.h"
 
 
-#ifdef VERSION_US
+#ifndef VERSION_JP
 static s16 sSoundTextX; // The current sound mode is automatically centered on US due to the large length difference between options.
 #endif
 static struct Object *sMainMenuButtons[32];

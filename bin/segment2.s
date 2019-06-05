@@ -1240,13 +1240,23 @@ glabel seg2_hud_camera_lut
 .word texture_colorful_char_camera, texture_colorful_char_mario_head, texture_colorful_char_lakitu, texture_colorful_char_no_camera
 .word texture_colorful_char_arrow_up, texture_colorful_char_arrow_down
 
-.macro textdata name
+/*.macro textdata name
 .ifdef VERSION_JP
 .include "build/jp/text/\name\().s"
 .endif
 .ifdef VERSION_US
 .include "build/us/text/\name\().s"
 .endif
+.endm*/
+
+.macro textdata name
+    .if VERSION_EU == 1
+        .include "build/eu/text/\name\().s"
+    .elseif VERSION_US == 1
+        .include "build/us/text/\name\().s"
+    .else /* NTSC-J 1.0 */
+        .include "build/jp/text/\name\().s"
+    .endif
 .endm
 
 textdata debug

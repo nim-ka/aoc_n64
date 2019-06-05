@@ -3569,7 +3569,7 @@ void obj_spawn_loot_blue_coin(void)
     }
 }
 
-#ifdef VERSION_US
+#if defined(VERSION_US)  || defined(VERSION_EU)
 void obj_spawn_star_at_y_offset(f32 targetX, f32 targetY, f32 targetZ, f32 offsetY)
 {
     f32 objectPosY = o->oPosY;
