@@ -5,20 +5,21 @@ import os.path
 lang = None
 
 # TODO: -S argument for shifted ROMs
-# TODO: some way of ignoring address differences and diff only opcodes
 args = []
 for arg in sys.argv[1:]:
     if arg == '-j':
         lang = 'jp'
     elif arg == '-u':
         lang = 'us'
+    elif arg == '-e':
+        lang = 'eu'
     else:
         args.append(arg)
 
 if lang is None:
     lang = 'us'
     best = 0
-    for path in ['build/us/sm64.u.z64', 'build/jp/sm64.j.z64']:
+    for path in ['build/us/sm64.u.z64', 'build/jp/sm64.j.z64', 'build/eu/sm64.eu.z64']:
         try:
             if os.path.getmtime(path) > best:
                 lang = path.split('/')[1]
@@ -26,11 +27,12 @@ if lang is None:
             pass
     print("Assuming language " + lang)
 
-baserom = 'baserom' if lang == 'jp' else 'baseromus'
+shortlang = ('eu' if lang == 'eu' else lang[0])
+baserom = 'baserom' if lang == 'jp' else 'baseromus' if lang == 'us' else 'baseromeu'
 baseimg = baserom + '.z64'
-basemap = 'sm64.' + lang[0] + '.map'
+basemap = 'sm64.' + shortlang + '.map'
 
-myimg = 'build/' + lang + '/sm64.' + lang[0] + '.z64'
+myimg = 'build/' + lang + '/sm64.' + shortlang + '.z64'
 mymap = 'build/' + lang + '/sm64.map'
 
 if os.path.isfile('expected/' + mymap):
@@ -157,20 +159,19 @@ if args:
             print("function", args[0], "not found")
     exit()
 
-found_first = False
+found_instr_diff = None
 diffs = 0
 shift_cap = 1000
 for i in range(24, len(mybin), 4):
     # (mybin[i:i+4] != basebin[i:i+4], but that's slightly slower in CPython...)
-    if mybin[i] != basebin[i] or mybin[i+1] != basebin[i+1] or mybin[i+2] != basebin[i+2] or mybin[i+3] != basebin[i+3]:
-        if not found_first:
+    if diffs <= shift_cap and (mybin[i] != basebin[i] or mybin[i+1] != basebin[i+1] or mybin[i+2] != basebin[i+2] or mybin[i+3] != basebin[i+3]):
+        if diffs == 0:
             print("First difference at ROM addr " + hex(i) + ", " + search_map(i))
             print("Bytes:", hexbytes(mybin[i:i+4]), 'vs', hexbytes(basebin[i:i+4]))
-            found_first = True
         diffs += 1
-        if diffs > shift_cap:
-            break
-if not found_first:
+    if found_instr_diff is None and mybin[i] >> 2 != basebin[i] >> 2:
+        found_instr_diff = i
+if diffs == 0:
     print("No differences!")
     exit()
 definite_shift = (diffs > shift_cap)
@@ -178,11 +179,18 @@ if not definite_shift:
     print(str(diffs) + " differing word(s).")
 
 if diffs > 100:
-    if not os.path.isfile(basemap):
-        if definite_shift:
-            print("Tons of differences, must be a shifted ROM.")
-        print("To find ROM shifts, copy a clean .map file to " + basemap + " and rerun this script.")
-        exit()
+    if found_instr_diff is not None:
+        i = found_instr_diff
+        print("First instruction difference at ROM addr " + hex(i) + ", " + search_map(i))
+        print("Bytes:", hexbytes(mybin[i:i+4]), 'vs', hexbytes(basebin[i:i+4]))
+    if lang == 'eu':
+        print("Shifted ROM, as expected.")
+    else:
+        if not os.path.isfile(basemap):
+            if definite_shift:
+                print("Tons of differences, must be a shifted ROM.")
+            print("To find ROM shifts, copy a clean .map file to " + basemap + " and rerun this script.")
+            exit()
 
-    if not map_diff():
-        print("No ROM shift{}.".format(" (!?)" if definite_shift else ""))
+        if not map_diff():
+            print("No ROM shift{}.".format(" (!?)" if definite_shift else ""))
