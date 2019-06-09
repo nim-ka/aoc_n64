@@ -2,6 +2,7 @@
 
 BASEROM=baseromus
 LANG=us
+LANG_SHORT=u
 
 POSITIONAL=()
 while [[ $# -gt 0 ]]; do
@@ -9,11 +10,19 @@ case "$1" in
     -j)
         BASEROM=baserom
         LANG=jp
+        LANG_SHORT=j
         shift
         ;;
     -u)
         BASEROM=baseromus
         LANG=us
+        LANG_SHORT=u
+        shift
+        ;;
+    -e)
+        BASEROM=baseromeu
+        LANG=eu
+        LANG_SHORT=eu
         shift
         ;;
     *)
@@ -24,7 +33,6 @@ esac
 done
 set -- "${POSITIONAL[@]}"
 
-LANG_SHORT=${LANG:0:1}
 MAPFILE="build/$LANG/sm64.map"
 MYDUMP=sm64.$LANG_SHORT.dump
 MYIMG=build/$LANG/sm64.$LANG_SHORT.z64

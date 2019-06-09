@@ -4,11 +4,16 @@ import os.path
 
 lang = None
 
-for arg in sys.argv:
+# TODO: -S argument for shifted ROMs
+# TODO: some way of ignoring address differences and diff only opcodes
+args = []
+for arg in sys.argv[1:]:
     if arg == '-j':
         lang = 'jp'
-    if arg == '-u':
+    elif arg == '-u':
         lang = 'us'
+    else:
+        args.append(arg)
 
 if lang is None:
     lang = 'us'
@@ -49,14 +54,19 @@ def search_map(rom_addr):
     last_rom = 0
     last_fn = '<start of rom>'
     last_file = '<no file>'
+    prev_line = ''
     with open(mymap) as f:
         for line in f:
             if 'load address' in line:
                 # Example: ".boot           0x0000000004000000     0x1000 load address 0x0000000000000000"
+                if 'noload' in line or 'noload' in prev_line:
+                    ram_offset = None
+                    continue
                 ram = int(line[16:16+18], 0)
                 rom = int(line[59:59+18], 0)
                 ram_offset = ram - rom
                 continue
+            prev_line = line
 
             if ram_offset is None or '=' in line or '*fill*' in line or ' 0x' not in line:
                 continue
@@ -80,13 +90,18 @@ def parse_map(fname):
     cur_file = '<no file>'
     syms = {}
     prev_sym = None
+    prev_line = ''
     with open(fname) as f:
         for line in f:
             if 'load address' in line:
+                if 'noload' in line or 'noload' in prev_line:
+                    ram_offset = None
+                    continue
                 ram = int(line[16:16+18], 0)
                 rom = int(line[59:59+18], 0)
                 ram_offset = ram - rom
                 continue
+            prev_line = line
 
             if ram_offset is None or '=' in line or '*fill*' in line or ' 0x' not in line:
                 continue
@@ -98,7 +113,7 @@ def parse_map(fname):
             elif '/' in fn:
                 cur_file = fn
             else:
-                syms[fn] = (rom, cur_file, prev_sym)
+                syms[fn] = (rom, cur_file, prev_sym, ram)
                 prev_sym = fn
     return syms
 
@@ -126,6 +141,21 @@ def map_diff():
 
 def hexbytes(bs):
     return ":".join("{:02x}".format(c) for c in bs)
+
+# For convenience, allow `./first-diff.py <ROM addr | RAM addr | function name>`
+# to do a symbol <-> address lookup. This should really be split out into a
+# separate script...
+if args:
+    try:
+        addr = int(args[0], 0)
+        print(args[0], "is", search_map(addr))
+    except ValueError:
+        m = parse_map(mymap)
+        try:
+            print(args[0], "is at position", hex(m[args[0]][0]), "in ROM,", hex(m[args[0]][3]), "in RAM")
+        except KeyError:
+            print("function", args[0], "not found")
+    exit()
 
 found_first = False
 diffs = 0
