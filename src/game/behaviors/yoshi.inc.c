@@ -139,7 +139,7 @@ void yoshi_finish_jumping_and_despawn_loop(void) {
 void yoshi_give_present_loop(void) {
     s32 sp1C = gGlobalTimer;
     
-    if (gDisplayedLives == 100) {
+    if (gHudDisplay.lives == 100) {
         SetSound(SOUND_GENERAL_1UP, D_803320E0);
         gSpecialTripleJump = 1;
         o->oAction = YOSHI_ACT_WALK_JUMP_OFF_ROOF;

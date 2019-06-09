@@ -968,7 +968,7 @@ gsSPTexture -1, -1, 0, 0, 0
 gsDPPipeSync
 gsSPEndDisplayList
 
-.ifdef VERSION_US
+.ifndef VERSION_JP
 glabel peach_seg5_us_dl_05007288 # 0x05007288 - 0x050072E8
 gsDPPipeSync
 gsDPSetCombineMode1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
@@ -2002,7 +2002,7 @@ gsDPSetEnvColor 255, 255, 255, 255
 gsDPSetAlphaCompare G_AC_NONE
 gsSPEndDisplayList
 
-.ifdef VERSION_US
+.ifndef VERSION_JP
 glabel peach_seg5_us_dl_0500A188 # 0x0500A188 - 0x0500A210
 gsDPPipeSync
 gsDPSetCombineMode1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT

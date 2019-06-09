@@ -7,7 +7,7 @@ void bhv_bobomb_anchor_mario_loop(void)
 
 void ActionKingBobomb0(void)
 {
-#ifdef VERSION_US
+#ifndef VERSION_JP
     o->oForwardVel = 0;
     o->oVelY = 0;
 #endif

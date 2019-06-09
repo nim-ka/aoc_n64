@@ -43,7 +43,7 @@ void bhv_red_coin_loop(void) {
                 SpawnOrangeNumber(o->parentObj->oHiddenRedCoinStarCoinsCollected, 0, 0, 0);
             }
 
-#ifdef VERSION_US
+#ifndef VERSION_JP
             SetSound(SOUND_MENU_COLLECTREDCOIN + (((u8)o->parentObj->oHiddenRedCoinStarCoinsCollected - 1) << 16), D_803320E0);
 #endif
         }

@@ -80,13 +80,18 @@ extern s16 sSourceWarpNodeId;
 extern s32 sDelayedWarpArg;
 extern u8 unused4[2];
 extern s8 sTimerRunning;
-extern s16 gDisplayedLives;
-extern s16 gDisplayedCoins;
-extern s16 gDisplayedStars;
-extern s16 gDisplayedHealthWedges;
-extern s16 gDisplayedKeys;
-extern s16 gHudDisplayFlags;
-extern u16 gTimerValueInFrames;
+
+struct HudDisplay {
+    /*0x00*/ s16 lives;
+    /*0x02*/ s16 coins;
+    /*0x04*/ s16 stars;
+    /*0x06*/ s16 wedges;
+    /*0x08*/ s16 keys;
+    /*0x0A*/ s16 flags;
+    /*0x0C*/ u16 timer;
+};
+
+extern struct HudDisplay gHudDisplay;
 extern s8 gSaveFileDoesNotExist;
 
 enum HUDDisplayFlag {
@@ -104,7 +109,7 @@ enum HUDDisplayFlag {
 };
 
 
-u16 level_control_timer(u32 timerOp);
+u16 level_control_timer(s32 timerOp);
 void func_80249788(u32 arg, u32 color);
 void func_8024980C(u32 arg);
 s16 level_trigger_warp(struct MarioState *m, s32 warpOp);

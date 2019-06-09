@@ -314,7 +314,7 @@ void PrintGenericText(s16 x, s16 y, const u8 *str)
             func_802D6AFC(0xF1);
             gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
             break;
-#ifdef VERSION_US
+#ifndef VERSION_JP
         case 0xD0: // '/'
             dl_add_new_translation_matrix(MENU_MTX_NOPUSH, (f32)(D_U_80331370[0x9E] * 2), 0.0f, 0.0f);
             break;
@@ -376,7 +376,7 @@ void PutString(s8 font, s16 x, s16 y, const u8 *str)
 
     while(str[strPos] != 0xFF)
     {
-#ifdef VERSION_US
+#ifndef VERSION_JP
         if(str[strPos] == 0x9E)
         {
             if(0) //! dead code
@@ -401,7 +401,7 @@ void PutString(s8 font, s16 x, s16 y, const u8 *str)
                 (curX+16)<<2, (curY+16)<<2, 0, 0, 0, 0x400, 0x400);
             
             curX += xStride;
-#ifdef VERSION_US
+#ifndef VERSION_JP
         }
 #endif
         strPos++;
@@ -2024,10 +2024,10 @@ void func_802DC050(s16 sp32, s16 sp36)
 
     gSPDisplayList(gDisplayListHead++, dl_rgba16_text_end);
 
-    if(D_803305C8 >= gDisplayedCoins)
+    if(D_803305C8 >= gHudDisplay.coins)
     {
         D_803305C0 = 1;
-        D_803305C8 = gDisplayedCoins;
+        D_803305C8 = gHudDisplay.coins;
 
         if (gGotFileCoinHiScore != 0)
         {
@@ -2036,7 +2036,7 @@ void func_802DC050(s16 sp32, s16 sp36)
     }
     else
     {
-        if((D_803305C4 & 1) || gDisplayedCoins > 70)
+        if((D_803305C4 & 1) || gHudDisplay.coins > 70)
         {
             D_803305C8++;
             SetSound(SOUND_MENU_YOSHIGAINLIVES, D_803320E0);
@@ -2048,14 +2048,14 @@ void func_802DC050(s16 sp32, s16 sp36)
             }
         }
 
-        if (gDisplayedCoins == D_803305C8 && gGotFileCoinHiScore != 0)
+        if (gHudDisplay.coins == D_803305C8 && gGotFileCoinHiScore != 0)
             SetSound(SOUND_MENU_MARIOCASTLEWARP2, D_803320E0);
     }
 }
 
 void func_802DC2B4(s32 sp18, u8 sp1f)
 {
-    if (gDisplayedCoins == D_803305C8 &&
+    if (gHudDisplay.coins == D_803305C8 &&
         (gCurrCourseStarFlags & sp1f) == 0 &&
         D_803305CC == 0)
     {

@@ -831,7 +831,7 @@ void func_803159EC(struct Struct_func_80318870 *arg0, f32 arg1, f32 arg2, u8 arg
         arg0->unk0b4 = 0;
         arg0->unk0b2 = 0;
         arg0->unk1 = 1;
-#ifdef VERSION_US
+#ifndef VERSION_JP
         v0 = (s32)(arg2 * 127.5f) & 127;
 #endif
         f0 = D_80332CE4[v0];
@@ -844,7 +844,7 @@ void func_803159EC(struct Struct_func_80318870 *arg0, f32 arg1, f32 arg2, u8 arg
         arg0->unkE = 0;
         arg0->unkC = 0;
         arg0->unk1 = 0;
-#ifdef VERSION_US
+#ifndef VERSION_JP
         v0 = (s32)(arg2 * 127.5f) & 127;
 #endif
         f0 = D_80332EE4[v0];
@@ -867,7 +867,7 @@ void func_803159EC(struct Struct_func_80318870 *arg0, f32 arg1, f32 arg2, u8 arg
     }
     else
     {
-#ifdef VERSION_US
+#ifndef VERSION_JP
         v0 = (s32)(arg2 * 127.5f) & 127;
 #endif
         f0 = D_803330E4[v0];

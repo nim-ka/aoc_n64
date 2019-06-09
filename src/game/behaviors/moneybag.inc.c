@@ -161,7 +161,7 @@ void MoneybagReturnHomeLoop(void)
     if (IsPointCloseToObject(o, o->oHomeX, o->oHomeY, o->oHomeZ, 100))
     {
         spawn_object(o, MODEL_YELLOW_COIN, bhvMoneybagHidden);
-#ifdef VERSION_US
+#ifndef VERSION_JP
         PlaySound2(SOUND_GENERAL_VANISHSFX);
 #endif
         SetObjAnimation(0);
@@ -241,7 +241,7 @@ void bhv_moneybag_hidden_loop(void)
             if (IsPointCloseToMario(o->oPosX, o->oPosY, o->oPosZ, 400))
             {
                 spawn_object(o, MODEL_MONEYBAG, bhvMoneybag);
-#ifdef VERSION_US
+#ifndef VERSION_JP
                 PlaySound2(SOUND_GENERAL_VANISHSFX);
 #endif
                 o->oAction = FAKE_MONEYBAG_COIN_ACT_TRANSFORM;

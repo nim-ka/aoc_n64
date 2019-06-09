@@ -227,7 +227,7 @@ void func_80250FBC(struct MarioState *m)
 {
     if (!(m->flags & MARIO_UNKNOWN_17))
     {
-#ifdef VERSION_US
+#ifndef VERSION_JP
         if (m->action == ACT_TRIPLE_JUMP)
             SetSound(SOUND_MARIO_YAHOO2 + ((D_80226EB8 % 5) << 0x10),
                 m->marioObj->header.gfx.cameraToObject);
@@ -1391,7 +1391,7 @@ s32 func_80254604(UNUSED struct Object *arg0)
         if (gMarioState->floor->type == SURFACE_HORIZONTAL_WIND)
         {
             func_802ADC20(0, (gMarioState->floor->force << 8));
-            #if VERSION_US
+            #ifndef VERSION_JP
                 SetSound(SOUND_ENVIRONMENT_WIND2, gMarioState->marioObj->header.gfx.cameraToObject);
             #endif
         }
@@ -1399,7 +1399,7 @@ s32 func_80254604(UNUSED struct Object *arg0)
         if (gMarioState->floor->type == SURFACE_VERTICAL_WIND)
         {
             func_802ADC20(1, 0);
-            #if VERSION_US
+            #ifndef VERSION_JP
                 SetSound(SOUND_ENVIRONMENT_WIND2, gMarioState->marioObj->header.gfx.cameraToObject);
             #endif
         }
@@ -1507,6 +1507,6 @@ void func_80254CE0(void)
     gMarioState->health = 0x880;
     gMarioState->unkB8 = gMarioState->numStars;
     gMarioState->unkB0 = 0xBD;
-    gDisplayedCoins = 0;
-    gDisplayedHealthWedges = 8;
+    gHudDisplay.coins = 0;
+    gHudDisplay.wedges = 8;
 }

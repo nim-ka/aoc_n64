@@ -6,14 +6,14 @@ void bhv_mips_init(void) {
     if (save_file_get_total_star_count(gCurrSaveFileNum - 1, 0, 24) >= 15 
         && (sp1F & 0x08) == 0) {
         o->oBehParams2ndByte = 0;
-#ifdef VERSION_US
+#ifndef VERSION_JP
         o->oUnk1AC_F32 = 40.0f;
 #endif
     } 
     else if (save_file_get_total_star_count(gCurrSaveFileNum-1, 0, 24) >= 50
         && (sp1F & 0x10) == 0) {
         o->oBehParams2ndByte = 1;
-#ifdef VERSION_US
+#ifndef VERSION_JP
         o->oUnk1AC_F32 = 45.0f;
 #endif
     }
@@ -22,7 +22,7 @@ void bhv_mips_init(void) {
     }
 
     o->oUnk190 = 0x10;
-#ifdef VERSION_US
+#ifndef VERSION_JP
     o->oGravity = 15.0f;
 #else
     o->oGravity = 2.5f;
@@ -88,7 +88,7 @@ void func_802F7750(void) {
     sp18 = (struct Waypoint *)segmented_to_virtual(*(sp1C + o->oMipsUnkF8));
     o->oMipsUnkFC = sp18;
     sp20 = obj_follow_path(sp20);
-#ifdef VERSION_US
+#ifndef VERSION_JP
     o->oForwardVel = o->oUnk1AC_F32;
 #else
     o->oForwardVel = 45.0f;

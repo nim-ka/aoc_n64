@@ -20,7 +20,7 @@
 .include "levels/castle_grounds/areas/1/11/model.s"
 .include "levels/castle_grounds/areas/1/11/anim.s"
 .include "levels/castle_grounds/areas/1/12/model.s" # Letter
-.ifdef VERSION_US
+.ifndef VERSION_JP
 .include "levels/castle_grounds/areas/1/13/model.s" # Peach signature
 .endif
 .include "levels/castle_grounds/areas/1/collision.s"

@@ -16,9 +16,9 @@
 
 // --| US Version Nintendo Bug Fixes
 /// Fixes bug where obtaining over 999 coins sets the number of lives to 999 (or -25)
-#define BUGFIX_MAX_LIVES (0 || VERSION_US)
+#define BUGFIX_MAX_LIVES (0 || VERSION_US || VERSION_EU)
 /// Fixes bug in Bob-Omb Battlefield where entering a warp stops the Koopa race music
-#define BUGFIX_KOOPA_RACE_MUSIC (0 || VERSION_US)
+#define BUGFIX_KOOPA_RACE_MUSIC (0 || VERSION_US || VERSION_EU)
 
 // --| Goddard / Mario Head Bug Fixes
 /// Goddard left out important and necessary return statements; this puts them back in

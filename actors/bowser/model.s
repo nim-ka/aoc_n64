@@ -1024,7 +1024,7 @@ gsDPSetAlphaCompare G_AC_NONE
 gsSPSetGeometryMode G_LIGHTING
 gsSPEndDisplayList
 
-.ifdef VERSION_US
+.ifndef VERSION_JP
 glabel bowser_seg6_dl_0603B948 # 0x0603B948 - 0x0603B9C8
 gsDPPipeSync
 gsDPSetCombineMode1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
@@ -2534,7 +2534,7 @@ gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX
 gsSPDisplayList bowser_seg6_dl_060401F0
 gsSPEndDisplayList
 
-.ifdef VERSION_US
+.ifndef VERSION_JP
 glabel bowser_seg6_dl_06040358 # 0x06040358 - 0x06040428
 gsDPPipeSync
 gsDPSetCombineMode1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT

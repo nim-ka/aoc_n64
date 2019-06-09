@@ -1054,7 +1054,7 @@ texture_colorful_char_arrow_down:
 
 # HUD print table 0x02008250-0x02008337
 glabel seg2_hud_lut
-.ifdef VERSION_US
+.ifndef VERSION_JP
     .word texture_colorful_num_0, texture_colorful_num_1, texture_colorful_num_2, texture_colorful_num_3
     .word texture_colorful_num_4, texture_colorful_num_5, texture_colorful_num_6, texture_colorful_num_7
     .word texture_colorful_num_8, texture_colorful_num_9, texture_colorful_char_A, texture_colorful_char_B
@@ -1090,7 +1090,7 @@ glabel seg2_hud_lut
 
 # small font HUD LUT 0x02008338-0x02008737
 glabel seg2_small_font_lut
-.ifdef VERSION_US # US Font Table
+.ifndef VERSION_JP # US Font Table
     .word texture_dialog_us_0, texture_dialog_us_1, texture_dialog_us_2, texture_dialog_us_3
     .word texture_dialog_us_4, texture_dialog_us_5, texture_dialog_us_6, texture_dialog_us_7
     .word texture_dialog_us_8, texture_dialog_us_9, texture_dialog_us_A, texture_dialog_us_B
@@ -1340,7 +1340,7 @@ gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
 vertex_ia8_char: # 0x0200EE28 - 0x0200EE68
-.ifdef VERSION_US
+.ifndef VERSION_JP
     vertex      0,      0,      0,      0,    256,  0xFF, 0xFF, 0xFF, 0xFF
     vertex      8,      0,      0,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
     vertex      8,     16,      0,    480,      0,  0xFF, 0xFF, 0xFF, 0xFF
@@ -1352,7 +1352,7 @@ vertex_ia8_char: # 0x0200EE28 - 0x0200EE68
     vertex      0,     16,      0,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
 .endif
 
-.ifdef VERSION_US
+.ifndef VERSION_JP
 glabel dl_ia8_text_begin
     gsDPPipeSync
     gsSPClearGeometryMode G_LIGHTING

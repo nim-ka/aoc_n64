@@ -119,7 +119,7 @@ void func_802E2304(s16 numHealthWedges)
 static void animate_power_meter_emphasized(void)
 {
     s16 hudDisplayFlags;
-    hudDisplayFlags = gHudDisplayFlags;
+    hudDisplayFlags = gHudDisplay.flags;
 
     if (!(hudDisplayFlags & HUD_DISPLAY_FLAG_EMPHASIZE_POWER))
     {
@@ -191,7 +191,7 @@ void func_802E261C(s16 numHealthWedges)
 
 void render_hud_hp(void)
 {
-    s16 shownHealthWedges = gDisplayedHealthWedges;
+    s16 shownHealthWedges = gHudDisplay.wedges;
 
     if (sPowerMeterHUD.animation != POWER_METER_HIDING)
         func_802E261C(shownHealthWedges);
@@ -229,14 +229,14 @@ void render_hud_mario_lives(void)
 {
     print_text(22, HUD_TOP_Y, ",");   // 'Mario Head' glyph
     print_text(38, HUD_TOP_Y, "*");   // 'X' glyph
-    print_text_fmt_int(54, HUD_TOP_Y, "%d", gDisplayedLives);
+    print_text_fmt_int(54, HUD_TOP_Y, "%d", gHudDisplay.lives);
 }
 
 void render_hud_coins(void)
 {
     print_text(168, HUD_TOP_Y, "+");  // 'Coin' glyph
     print_text(184, HUD_TOP_Y, "*");  // 'X' glyph
-    print_text_fmt_int(198, HUD_TOP_Y, "%d", gDisplayedCoins);
+    print_text_fmt_int(198, HUD_TOP_Y, "%d", gHudDisplay.coins);
 }
 
 #ifdef VERSION_JP
@@ -252,19 +252,19 @@ void render_hud_stars(void)
     if (D_803305CC == 1 && gGlobalTimer & 0x00000008)
         return;
 
-    if (gDisplayedStars < 100)
+    if (gHudDisplay.stars < 100)
         showX = 1;
 
     print_text(HUD_STARS_X, HUD_TOP_Y, "-");                  // 'Star' glyph
     if (showX == 1) print_text((HUD_STARS_X + 16), HUD_TOP_Y, "*");  // 'X' glyph
-    print_text_fmt_int(((showX * 14) + (HUD_STARS_X + 16)), HUD_TOP_Y, "%d", gDisplayedStars);
+    print_text_fmt_int(((showX * 14) + (HUD_STARS_X + 16)), HUD_TOP_Y, "%d", gHudDisplay.stars);
 }
 
 void func_802E29D4()
 {
     s16 i;
 
-    for (i = 0; i < gDisplayedKeys; i++)
+    for (i = 0; i < gHudDisplay.keys; i++)
         print_text((i * 16) + 220, 142, "/");     // unused glyph (originally for a key?)
 }
 
@@ -277,7 +277,7 @@ void render_hud_timer(void)
     u16 timerFracSecs;
 
     hudPrintLUT = segmented_to_virtual(&seg2_hud_lut);
-    timerValFrames = gTimerValueInFrames;
+    timerValFrames = gHudDisplay.timer;
     timerMins = timerValFrames / (30 * 60);
     timerSecs = (timerValFrames - (timerMins * 1800)) / 30;
 
@@ -344,7 +344,7 @@ void render_hud(void)
 {
     s16 hudDisplayFlags;
 
-    hudDisplayFlags = gHudDisplayFlags;
+    hudDisplayFlags = gHudDisplay.flags;
 
     if (hudDisplayFlags == HUD_DISPLAY_NONE)
     {

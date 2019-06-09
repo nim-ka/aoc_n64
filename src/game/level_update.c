@@ -142,27 +142,23 @@ s32 sDelayedWarpArg;
 u8 unused4[2];
 
 s8 sTimerRunning;
-s16 gDisplayedLives;
-s16 gDisplayedCoins;
-s16 gDisplayedStars;
-s16 gDisplayedHealthWedges;
-s16 gDisplayedKeys;
-s16 gHudDisplayFlags;
-u16 gTimerValueInFrames;
+
+struct HudDisplay gHudDisplay;
+
 s8 gSaveFileDoesNotExist;
 
 
 void basic_update(s16 *arg);
 
 
-u16 level_control_timer(u32 timerOp)
+u16 level_control_timer(s32 timerOp)
 {
     switch (timerOp)
     {
     case TIMER_CONTROL_SHOW:
-        gHudDisplayFlags |= HUD_DISPLAY_FLAG_TIMER;
+        gHudDisplay.flags |= HUD_DISPLAY_FLAG_TIMER;
         sTimerRunning = FALSE;
-        gTimerValueInFrames = 0;
+        gHudDisplay.timer = 0;
         break;
 
     case TIMER_CONTROL_START:
@@ -174,13 +170,13 @@ u16 level_control_timer(u32 timerOp)
         break;
 
     case TIMER_CONTROL_HIDE:
-        gHudDisplayFlags &= ~HUD_DISPLAY_FLAG_TIMER;
+        gHudDisplay.flags &= ~HUD_DISPLAY_FLAG_TIMER;
         sTimerRunning = FALSE;
-        gTimerValueInFrames = 0;
+        gHudDisplay.timer = 0;
         break;
     }
 
-    return gTimerValueInFrames;
+    return gHudDisplay.timer;
 }
 
 u32 pressed_paused(void)
@@ -376,21 +372,21 @@ void init_mario_after_warp(void)
         if (gMarioState->flags & (MARIO_VANISH_CAP | MARIO_WING_CAP))
             func_80249368(0x0000040E);
 
-#if VERSION_US
+#ifndef VERSION_JP
         if (gCurrLevelNum == LEVEL_BOB && func_80320E98() != 1033 && sTimerRunning != 0)
             func_80320AE8(0, (4 << 8) | 9, 0);
 #endif
 
         if (sDestLevelNum == LEVEL_CASTLE
          && sDestAreaIndex == 1
-#if VERSION_US
+#ifndef VERSION_JP
          && (sDestWarpNodeId == 31 || sDestWarpNodeId == 32)
 #else
          && sDestWarpNodeId == 31
 #endif
         )
         SetSound(SOUND_MENU_MARIOCASTLEWARP, D_803320E0);
-#if VERSION_US
+#ifndef VERSION_JP
         if (sDestLevelNum == 16
          && sDestAreaIndex == 1
          && (sDestWarpNodeId == 7 || sDestWarpNodeId == 10
@@ -737,7 +733,7 @@ s16 level_trigger_warp(struct MarioState *m, s32 warpOp)
             sDelayedWarpTimer = 30;
             sSourceWarpNodeId = WARP_NODE_F2;
             play_transition(WARP_TRANSITION_FADE_INTO_COLOR, 0x1E, 0xFF, 0xFF, 0xFF);
-#if VERSION_US
+#ifndef VERSION_JP
             SetSound(SOUND_MENU_STARSOUND, D_803320E0);
 #endif
             break;
@@ -889,11 +885,11 @@ void update_hud_values(void)
         s16 numHealthWedges = gMarioState->health > 0 ? gMarioState->health >> 8 : 0;
 
         if (gCurrCourseNum > 0)
-            gHudDisplayFlags |= HUD_DISPLAY_FLAG_COIN_COUNT;
+            gHudDisplay.flags |= HUD_DISPLAY_FLAG_COIN_COUNT;
         else
-            gHudDisplayFlags &= ~HUD_DISPLAY_FLAG_COIN_COUNT;
+            gHudDisplay.flags &= ~HUD_DISPLAY_FLAG_COIN_COUNT;
 
-        if (gDisplayedCoins < gMarioState->numCoins)
+        if (gHudDisplay.coins < gMarioState->numCoins)
         {
             if (gGlobalTimer & 0x00000001)
             {
@@ -903,7 +899,7 @@ void update_hud_values(void)
                 else
                     coinSound = SOUND_GENERAL_COIN2;
 
-                gDisplayedCoins += 1;
+                gHudDisplay.coins += 1;
                 SetSound(coinSound, gMarioState->marioObj->header.gfx.cameraToObject);
             }
         }
@@ -915,25 +911,25 @@ void update_hud_values(void)
         if (gMarioState->numCoins > 999)
             gMarioState->numCoins = 999;
 
-        if (gDisplayedCoins > 999)
-            gDisplayedCoins = 999;
+        if (gHudDisplay.coins > 999)
+            gHudDisplay.coins = 999;
 #else
         if (gMarioState->numCoins > 999)
             gMarioState->numLives = (s8) 999; //! Wrong variable
 #endif
 
-        gDisplayedStars = gMarioState->numStars;
-        gDisplayedLives = gMarioState->numLives;
-        gDisplayedKeys = gMarioState->numKeys;
+        gHudDisplay.stars = gMarioState->numStars;
+        gHudDisplay.lives = gMarioState->numLives;
+        gHudDisplay.keys = gMarioState->numKeys;
 
-        if (numHealthWedges > gDisplayedHealthWedges)
+        if (numHealthWedges > gHudDisplay.wedges)
             SetSound(SOUND_MENU_POWERMETER, D_803320E0);
-        gDisplayedHealthWedges = numHealthWedges;
+        gHudDisplay.wedges = numHealthWedges;
 
         if (gMarioState->hurtCounter > 0)
-            gHudDisplayFlags |= HUD_DISPLAY_FLAG_EMPHASIZE_POWER;
+            gHudDisplay.flags |= HUD_DISPLAY_FLAG_EMPHASIZE_POWER;
         else
-            gHudDisplayFlags &= ~HUD_DISPLAY_FLAG_EMPHASIZE_POWER;
+            gHudDisplay.flags &= ~HUD_DISPLAY_FLAG_EMPHASIZE_POWER;
     }
 }
 
@@ -973,8 +969,8 @@ s32 play_mode_normal(void)
     func_8024A02C();
     check_instant_warp();
 
-    if (sTimerRunning && gTimerValueInFrames < 17999)
-        gTimerValueInFrames += 1;
+    if (sTimerRunning && gHudDisplay.timer < 17999)
+        gHudDisplay.timer += 1;
 
     area_update_objects();
     update_hud_values();
@@ -1113,7 +1109,7 @@ s32 play_mode_change_level(void)
     //! If sTransitionTimer is -1, this will miss.
     if (--sTransitionTimer == -1)
     {
-        gHudDisplayFlags = HUD_DISPLAY_NONE;
+        gHudDisplay.flags = HUD_DISPLAY_NONE;
         sTransitionTimer = 0;
         sTransitionUpdate = NULL;
 
@@ -1134,7 +1130,7 @@ s32 play_mode_unused(void)
 {
     if (--sTransitionTimer == -1)
     {
-        gHudDisplayFlags = HUD_DISPLAY_NONE;
+        gHudDisplay.flags = HUD_DISPLAY_NONE;
 
         if (sCurrWarpType != WARP_TYPE_NOT_WARPING)
             return sDestLevelNum;
@@ -1178,9 +1174,9 @@ s32 init_level(void)
     D_80339EE0 = 0;
 
     if (gCurrCreditsEntry == NULL)
-        gHudDisplayFlags = HUD_DISPLAY_DEFAULT;
+        gHudDisplay.flags = HUD_DISPLAY_DEFAULT;
     else
-        gHudDisplayFlags = HUD_DISPLAY_NONE;
+        gHudDisplay.flags = HUD_DISPLAY_NONE;
 
     sTimerRunning = 0;
 
@@ -1299,7 +1295,7 @@ s32 lvl_set_current_level(UNUSED s16 arg0, s32 levelNum)
         gCurrLevelNum != LEVEL_BOWSER_3)
     {
         gMarioState->numCoins = 0;
-        gDisplayedCoins = 0;
+        gHudDisplay.coins = 0;
         gCurrCourseStarFlags = save_file_get_star_flags(gCurrSaveFileNum - 1, gCurrCourseNum - 1);
     }
 

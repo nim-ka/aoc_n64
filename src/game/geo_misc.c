@@ -91,7 +91,7 @@ Gfx *geo_exec_inside_castle_light(
     if (run == TRUE)
     {
         flags = save_file_get_flags();
-        if (gDisplayedStars >= 10 && (flags & SAVE_FLAG_HAVE_WING_CAP) == 0)
+        if (gHudDisplay.stars >= 10 && (flags & SAVE_FLAG_HAVE_WING_CAP) == 0)
         {
             displayList = alloc_display_list(2 * sizeof(*displayList));
             

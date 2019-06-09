@@ -193,7 +193,7 @@ int func_8016F3CC(void)
 {
     s32 sp1C = 0;
 
-#ifdef VERSION_US
+#ifndef VERSION_JP
     if(D_U_801A7C34 == 1)
     {
         if(gGlobalTimer < 0x81)
@@ -227,7 +227,7 @@ int func_8016F444(void)
 {
     s32 sp1C = 0;
 
-#ifdef VERSION_US
+#ifndef VERSION_JP
     if(gameOverNotPlayed == 1)
     {
         SetSound(SOUND_MARIO_GAMEOVER, D_803320E0);
@@ -241,7 +241,7 @@ int func_8016F444(void)
     {
         SetSound(SOUND_MENU_STARSOUND, D_803320E0);
         sp1C = 100 + gDebugLevelSelect;
-#ifdef VERSION_US
+#ifndef VERSION_JP
         gameOverNotPlayed = 1;
 #endif
     }

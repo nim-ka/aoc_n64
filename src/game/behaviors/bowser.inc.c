@@ -96,7 +96,7 @@ void bhv_bowser_body_anchor_loop(void)
 {
     copy_object_pos_and_angle(o,o->parentObj);
     if(o->parentObj->oAction == 4) {
-#ifdef VERSION_US
+#ifndef VERSION_JP
         if(o->parentObj->oSubAction == 11)
             o->oInteractType = 0;
         else
@@ -662,7 +662,7 @@ void ActionBowser10(void)
 
 void ActionBowser9(void)
 {
-    if(gDisplayedHealthWedges < 4)
+    if(gHudDisplay.wedges < 4)
         o->oBowserUnk108 = 3;
     else
         o->oBowserUnk108 = RandomFloat() * 3.0f + 1.0f;
@@ -1018,7 +1018,7 @@ s32 func_802B6254(void)
     s32 sp1C;
     if(o->oBowserUnkF8 < 2)
     {
-        if(gDisplayedStars < 120)
+        if(gHudDisplay.stars < 120)
             sp1C = 121;
         else
             sp1C = 163;

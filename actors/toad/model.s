@@ -295,7 +295,7 @@ gsSPDisplayList toad_seg6_dl_060076C0
 gsDPPipeSync
 gsSPEndDisplayList
 
-.ifdef VERSION_US
+.ifndef VERSION_JP
 glabel toad_seg6_us_dl_06007788 # 0x06007788 - 0x06007808
 gsDPPipeSync
 gsDPSetCombineMode1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_SHADE, G_CCMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
@@ -382,7 +382,7 @@ gsDPPipeSync
 gsSPSetGeometryMode G_CULL_BACK
 gsSPEndDisplayList
 
-.ifdef VERSION_US
+.ifndef VERSION_JP
 glabel toad_seg6_us_dl_06007B00 # 0x06007B00 - 0x06007B28
 gsDPPipeSync
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT
@@ -633,7 +633,7 @@ gsDPSetEnvColor 255, 255, 255, 255
 gsSPEndDisplayList
 
 # US: 8608
-.ifdef VERSION_US
+.ifndef VERSION_JP
 glabel toad_seg6_us_dl_06008608 # 0x06008608 - 0x06008650
 gsDPPipeSync
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_ENVIRONMENT

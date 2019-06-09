@@ -291,7 +291,7 @@ void func_8031FA4C(void);
 u8 func_803200E4(u16 arg0);
 void func_80320ED8(void);
 
-#ifdef VERSION_US
+#ifndef VERSION_JP
 void unused_8031E4F0(void)
 {
     // This is some debug function which is almost entirely optimized away,

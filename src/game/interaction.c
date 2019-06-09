@@ -849,7 +849,7 @@ static u32 interact_star_or_key(struct MarioState *m, UNUSED u32 interactType, s
         }
 
         SetSound(SOUND_MENU_STARSOUND, m->marioObj->header.gfx.cameraToObject);
-#if VERSION_US
+#ifndef VERSION_JP
         func_80251F74(m);
         //func_802521A0
 #endif
@@ -1375,7 +1375,7 @@ static u32 interact_hit_from_below(struct MarioState *m, UNUSED u32 interactType
             {
                 bounce_off_object(m, o, 80.0f);
                 reset_mario_pitch(m);
-#if VERSION_US
+#ifndef VERSION_JP
                 SetSound(SOUND_MARIO_BOING, m->marioObj->header.gfx.cameraToObject);
 #endif
                 return drop_and_set_mario_action(m, ACT_TWIRLING, 0);
@@ -1415,7 +1415,7 @@ static u32 interact_bounce_top(struct MarioState *m, UNUSED u32 interactType, st
             {
                 bounce_off_object(m, o, 80.0f);
                 reset_mario_pitch(m);
-#if VERSION_US
+#ifndef VERSION_JP
                 SetSound(SOUND_MARIO_BOING, m->marioObj->header.gfx.cameraToObject);
 #endif
                 return drop_and_set_mario_action(m, ACT_TWIRLING, 0);
@@ -1880,7 +1880,7 @@ static void check_lava_boost(struct MarioState *m)
 
 static void pss_begin_slide(UNUSED struct MarioState *m)
 {
-    if (!(gHudDisplayFlags & HUD_DISPLAY_FLAG_TIMER))
+    if (!(gHudDisplay.flags & HUD_DISPLAY_FLAG_TIMER))
     {
         level_control_timer(TIMER_CONTROL_SHOW);
         level_control_timer(TIMER_CONTROL_START);

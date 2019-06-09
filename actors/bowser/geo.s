@@ -332,7 +332,7 @@ glabel bowser_geo_000770 # 0x0D000770
    geo_close_node
    geo_return
 
-.ifdef VERSION_US
+.ifndef VERSION_JP
 glabel bowser_shadow_geo # 0x0D000AB8
    geo_shadow 0x00, 0x9B, 400
    geo_return
@@ -345,7 +345,7 @@ glabel bowser_geo # 0x0D000AB8 / 0AC4
 .ifdef VERSION_JP
       geo_switch_case 2, geo_switch_anim_state
 .endif
-.ifdef VERSION_US
+.ifndef VERSION_JP
       geo_switch_case 3, geo_switch_anim_state
 .endif
       geo_open_node
@@ -361,7 +361,7 @@ glabel bowser_geo # 0x0D000AB8 / 0AC4
             geo_branch 1, bowser_geo_000424
          geo_close_node
 
-.ifdef VERSION_US
+.ifndef VERSION_JP
          geo_node_start
          geo_open_node
             geo_asm 0, Geo18_802B7D44
@@ -381,7 +381,7 @@ glabel bowser2_geo # 0x0D000B18 / 0B40
 .ifdef VERSION_JP
       geo_switch_case 2, geo_switch_anim_state
 .endif
-.ifdef VERSION_US
+.ifndef VERSION_JP
       geo_switch_case 3, geo_switch_anim_state
 .endif
       geo_open_node
@@ -398,7 +398,7 @@ glabel bowser2_geo # 0x0D000B18 / 0B40
             geo_branch 1, bowser_geo_000770
          geo_close_node
 
-.ifdef VERSION_US
+.ifndef VERSION_JP
          geo_node_start
          geo_open_node
             geo_asm 0, Geo18_802B7D44

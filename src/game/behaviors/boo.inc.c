@@ -79,7 +79,7 @@ void bhv_boo_group_init(void)
 {
     s32 i;
     struct Object* sp28;
-    if(gDisplayedStars < 12)
+    if(gHudDisplay.stars < 12)
         mark_object_for_deletion(o);
     else
     {
@@ -580,7 +580,7 @@ void ActionBooGivingStar3(void)
 
 void ActionBooGivingStar4(void)
 {
-#ifdef VERSION_US
+#ifndef VERSION_JP
     boo_stop();
 #endif
     if(o->oBehParams2ndByte == 0)
@@ -652,7 +652,7 @@ void ActionBooWithCage3(void)
 void bhv_boo_with_cage_init(void)
 {
     struct Object* cage;
-    if(gDisplayedStars < 12)
+    if(gHudDisplay.stars < 12)
         mark_object_for_deletion(o);
     else
     {
@@ -731,7 +731,7 @@ void bhv_boo_in_castle_loop(void)
     if(o->oAction == 0)
     {
         obj_hide();
-        if(gDisplayedStars < 12)
+        if(gHudDisplay.stars < 12)
             mark_object_for_deletion(o);
         if(gMarioCurrentRoom == 1)
             o->oAction++;

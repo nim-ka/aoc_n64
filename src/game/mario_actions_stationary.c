@@ -196,7 +196,7 @@ void func_80260BC4(struct MarioState *m, u32 actionState, s32 animFrame, u32 sou
 }
 
 s32 act_start_sleeping(struct MarioState *m) {
-#ifdef VERSION_US
+#ifndef VERSION_JP
     s32 sp24;
 #endif
     
@@ -211,7 +211,7 @@ s32 act_start_sleeping(struct MarioState *m) {
     
     switch (m->actionState) {
         case 0:
-#ifdef VERSION_US
+#ifndef VERSION_JP
             sp24 = set_mario_animation(m, MARIO_ANIM_START_SLEEP_IDLE);
 #else
             set_mario_animation(m, MARIO_ANIM_START_SLEEP_IDLE);
@@ -219,7 +219,7 @@ s32 act_start_sleeping(struct MarioState *m) {
             break;
         
         case 1:
-#ifdef VERSION_US
+#ifndef VERSION_JP
             sp24 = set_mario_animation(m, MARIO_ANIM_START_SLEEP_SCRATCH);
 #else
             set_mario_animation(m, MARIO_ANIM_START_SLEEP_SCRATCH);
@@ -227,7 +227,7 @@ s32 act_start_sleeping(struct MarioState *m) {
             break;
         
         case 2:
-#ifdef VERSION_US
+#ifndef VERSION_JP
             sp24 = set_mario_animation(m, MARIO_ANIM_START_SLEEP_YAWN);
 #else
             set_mario_animation(m, MARIO_ANIM_START_SLEEP_YAWN);
@@ -236,7 +236,7 @@ s32 act_start_sleeping(struct MarioState *m) {
             break;
         
         case 3:
-#ifdef VERSION_US
+#ifndef VERSION_JP
             sp24 = set_mario_animation(m, MARIO_ANIM_START_SLEEP_SITTING);
 #else
             set_mario_animation(m, MARIO_ANIM_START_SLEEP_SITTING);
@@ -252,7 +252,7 @@ s32 act_start_sleeping(struct MarioState *m) {
     if(func_80250770(m))
         m->actionState++;
 
-#ifdef VERSION_US
+#ifndef VERSION_JP
     if (m->actionState == 2) {
         if (sp24 == -1) {
             SetSound(SOUND_MARIO_YAWNING, m->marioObj->header.gfx.cameraToObject);
@@ -325,7 +325,7 @@ s32 act_sleeping(struct MarioState *m) {
         }
         case 2: {
             sp24 = set_mario_animation(m, MARIO_ANIM_SLEEP_LYING);
-#ifdef VERSION_US
+#ifndef VERSION_JP
             func_80250F50(m, SOUND_MARIO_SNORING3, MARIO_UNKNOWN_16);
 #else
             if (sp24 == 2) {
@@ -346,7 +346,7 @@ s32 act_waking_up(struct MarioState *m) {
     if (!m->actionTimer) {
         func_803205E8(SOUND_MARIO_SNORING1, m->marioObj->header.gfx.cameraToObject);
         func_803205E8(SOUND_MARIO_SNORING2, m->marioObj->header.gfx.cameraToObject);
-#ifdef VERSION_US
+#ifndef VERSION_JP
         func_803205E8(SOUND_MARIO_SNORING3, m->marioObj->header.gfx.cameraToObject);
 #endif
         func_80248CB8(2);

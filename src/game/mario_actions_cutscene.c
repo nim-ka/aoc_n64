@@ -1884,7 +1884,7 @@ static void advance_cutscene_step(struct MarioState *m)
 
 static void intro_cutscene_hide_hud_and_mario(struct MarioState *m)
 {
-    gHudDisplayFlags = HUD_DISPLAY_NONE;
+    gHudDisplay.flags = HUD_DISPLAY_NONE;
     m->unk94->unk1C[1] = 9;
     m->marioObj->header.gfx.node.flags &= ~GRAPH_RENDER_01;
     advance_cutscene_step(m);
@@ -1923,7 +1923,7 @@ static void intro_cutscene_raise_pipe(struct MarioState *m)
 static void intro_cutscene_jump_out_of_pipe(struct MarioState *m)
 {
     if (m->actionTimer == 25)
-        gHudDisplayFlags = HUD_DISPLAY_DEFAULT;
+        gHudDisplay.flags = HUD_DISPLAY_DEFAULT;
 
     if (m->actionTimer++ >= 118)
     {

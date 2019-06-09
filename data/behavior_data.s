@@ -2846,7 +2846,7 @@ glabel bhvRotatingMerryGoRound # 2968
         callnative load_object_collision_model
     end_loop
 
-.ifdef VERSION_US
+.ifndef VERSION_JP
 glabel bhvPlaysMusicTrackWhenTouched # 2998
     begin OBJ_LIST_DEFAULT
     obj_or_int objFlags, (OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)
@@ -3041,7 +3041,7 @@ glabel bhvWaterDrops # 2C48
 glabel bhvWaterSurfaceWhiteWave # 2C64
     begin OBJ_LIST_DEFAULT
     obj_or_int objFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE
-.ifdef VERSION_US
+.ifndef VERSION_JP
     obj_set_int objFaceAnglePitch, 0
     obj_set_int objFaceAngleYaw, 0
     obj_set_int objFaceAngleRoll, 0
@@ -3062,7 +3062,7 @@ glabel bhvObjectBubbleRipples # 2C8C
     obj_set_float objFaceAngleYaw, 0
     obj_set_float objFaceAngleRoll, 0
 .endif
-.ifdef VERSION_US
+.ifndef VERSION_JP
     obj_set_int objFaceAnglePitch, 0
     obj_set_int objFaceAngleYaw, 0
     obj_set_int objFaceAngleRoll, 0
@@ -3082,7 +3082,7 @@ glabel bhvSurfaceWaves # 2CBC
     obj_set_float objFaceAngleYaw, 0
     obj_set_float objFaceAngleRoll, 0
 .endif
-.ifdef VERSION_US
+.ifndef VERSION_JP
     obj_set_int objFaceAnglePitch, 0
     obj_set_int objFaceAngleYaw, 0
     obj_set_int objFaceAngleRoll, 0
@@ -3106,7 +3106,7 @@ glabel bhvWaterSurfaceWhiteWave2 # 2D04
     obj_set_float objFaceAngleYaw, 0
     obj_set_float objFaceAngleRoll, 0
 .endif
-.ifdef VERSION_US
+.ifndef VERSION_JP
     obj_set_int objFaceAnglePitch, 0
     obj_set_int objFaceAngleYaw, 0
     obj_set_int objFaceAngleRoll, 0

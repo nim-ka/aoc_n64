@@ -4,7 +4,7 @@ void ActionPiranhaPlant20(void)
 {
     obj_become_intangible();
     func_8029ED38(8);
-#ifdef VERSION_US
+#ifndef VERSION_JP
     obj_scale(1);
 #endif
     if(o->oDistanceToMario < 1200.0f)
@@ -41,7 +41,7 @@ void ActionPiranhaPlant21(void)
     func_8029ED38(8);
     obj_set_hitbox_radius_and_height(250.0f,200.0f);
     obj_set_hurtbox_radius_and_height(150.0f,100.0f);
-#ifdef VERSION_US
+#ifndef VERSION_JP
     o->oDamageOrCoinValue = 0;
 #endif
     if(o->oDistanceToMario < 400.0f)
@@ -64,7 +64,7 @@ void ActionPiranhaPlant21(void)
 
 void ActionPiranhaPlant23(void)
 {
-#ifdef VERSION_US
+#ifndef VERSION_JP
     o->oDamageOrCoinValue = 3;
 #endif
     if(o->oTimer == 0)
@@ -74,7 +74,7 @@ void ActionPiranhaPlant23(void)
             o->oAction = 2;
 }
 
-#ifdef VERSION_US
+#ifndef VERSION_JP
 void func_u_802BE0B8(void)
 {
     if(o->activeFlags & 2)
@@ -89,7 +89,7 @@ void ActionPiranhaPlant25(void)
     o->oInteractStatus = 0;
     if(func_8029F788())
         o->oAction = 6;
-#ifdef VERSION_US
+#ifndef VERSION_JP
     func_u_802BE0B8();
 #endif
 }
@@ -110,7 +110,7 @@ void ActionPiranhaPlant26(void)
         o->oAction = 7;
     }
     obj_scale(o->oPiranhaPlant2UnkF8);
-#ifdef VERSION_US
+#ifndef VERSION_JP
     func_u_802BE0B8();
 #endif
 }
