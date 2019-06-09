@@ -68,11 +68,17 @@ extern u16 D_80339ECA;
 extern s16 sTransitionTimer;
 extern void (*sTransitionUpdate)(s16 *);
 extern u8 unused3[4];
-extern u8 sCurrWarpType;
-extern u8 sDestLevelNum;
-extern u8 sDestAreaIndex;
-extern u8 sDestWarpNodeId;
-extern u32 sWarpArg;
+
+struct WarpDest {
+	u8 type;
+	u8 levelNum;
+	u8 areaIdx;
+	u8 nodeId;
+	u32 arg;
+};
+
+extern struct WarpDest sWarpDest;
+
 extern s16 D_80339EE0;
 extern s16 sDelayedWarpOp;
 extern s16 sDelayedWarpTimer;

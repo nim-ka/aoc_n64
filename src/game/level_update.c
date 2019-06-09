@@ -127,11 +127,8 @@ void (*sTransitionUpdate)(s16 *);
 
 u8 unused3[4];
 
-u8 sCurrWarpType;
-u8 sDestLevelNum;
-u8 sDestAreaIndex;
-u8 sDestWarpNodeId;
-u32 sWarpArg;
+struct WarpDest sWarpDest;
+
 s16 D_80339EE0;
 
 s16 sDelayedWarpOp;
@@ -318,7 +315,7 @@ void set_mario_initial_action(struct MarioState *m, u32 spawnType, u32 actionArg
 
 void init_mario_after_warp(void)
 {
-    struct ObjectWarpNode *spawnNode = area_get_warp_node(sDestWarpNodeId);
+    struct ObjectWarpNode *spawnNode = area_get_warp_node(sWarpDest.nodeId);
     u32 marioSpawnType = get_mario_spawn_type(spawnNode->object);
 
     if (gMarioState->action != ACT_UNINITIALIZED)
@@ -332,23 +329,23 @@ void init_mario_after_warp(void)
         gPlayerSpawnInfos[0].startAngle[2] = 0;
 
         if (marioSpawnType == MARIO_SPAWN_UNKNOWN_01)
-            func_8024992C(&gPlayerSpawnInfos[0], sWarpArg);
+            func_8024992C(&gPlayerSpawnInfos[0], sWarpDest.arg);
 
-        if (sCurrWarpType == WARP_TYPE_CHANGE_LEVEL || sCurrWarpType == WARP_TYPE_CHANGE_AREA)
+        if (sWarpDest.type == WARP_TYPE_CHANGE_LEVEL || sWarpDest.type == WARP_TYPE_CHANGE_AREA)
         {
-            gPlayerSpawnInfos[0].areaIndex = sDestAreaIndex;
+            gPlayerSpawnInfos[0].areaIndex = sWarpDest.areaIdx;
             load_mario_area();
         }
 
         func_802548BC();
-        set_mario_initial_action(gMarioState, marioSpawnType, sWarpArg);
+        set_mario_initial_action(gMarioState, marioSpawnType, sWarpDest.arg);
 
         gMarioState->interactObj = spawnNode->object;
         gMarioState->usedObj = spawnNode->object;
     }
 
     reset_camera(gCurrentArea->camera);
-    sCurrWarpType = WARP_TYPE_NOT_WARPING;
+    sWarpDest.type = WARP_TYPE_NOT_WARPING;
     sDelayedWarpOp = WARP_OP_NONE;
 
     switch (marioSpawnType)
@@ -377,20 +374,20 @@ void init_mario_after_warp(void)
             func_80320AE8(0, (4 << 8) | 9, 0);
 #endif
 
-        if (sDestLevelNum == LEVEL_CASTLE
-         && sDestAreaIndex == 1
+        if (sWarpDest.levelNum == LEVEL_CASTLE
+         && sWarpDest.areaIdx == 1
 #ifndef VERSION_JP
-         && (sDestWarpNodeId == 31 || sDestWarpNodeId == 32)
+         && (sWarpDest.nodeId == 31 || sWarpDest.nodeId == 32)
 #else
-         && sDestWarpNodeId == 31
+         && sWarpDest.nodeId == 31
 #endif
         )
         SetSound(SOUND_MENU_MARIOCASTLEWARP, D_803320E0);
 #ifndef VERSION_JP
-        if (sDestLevelNum == 16
-         && sDestAreaIndex == 1
-         && (sDestWarpNodeId == 7 || sDestWarpNodeId == 10
-          || sDestWarpNodeId == 20 || sDestWarpNodeId == 30))
+        if (sWarpDest.levelNum == 16
+         && sWarpDest.areaIdx == 1
+         && (sWarpDest.nodeId == 7 || sWarpDest.nodeId == 10
+          || sWarpDest.nodeId == 20 || sWarpDest.nodeId == 30))
         {
             SetSound(SOUND_MENU_MARIOCASTLEWARP, D_803320E0);
         }
@@ -401,13 +398,13 @@ void init_mario_after_warp(void)
 // used for warps inside one level
 void func_8024A02C(void)
 {
-    if (sCurrWarpType != WARP_TYPE_NOT_WARPING)
+    if (sWarpDest.type != WARP_TYPE_NOT_WARPING)
     {
-        if (sCurrWarpType == WARP_TYPE_CHANGE_AREA)
+        if (sWarpDest.type == WARP_TYPE_CHANGE_AREA)
         {
             level_control_timer(TIMER_CONTROL_HIDE);
             func_8027AA88();
-            load_area(sDestAreaIndex);
+            load_area(sWarpDest.areaIdx);
         }
 
         init_mario_after_warp();
@@ -417,19 +414,19 @@ void func_8024A02C(void)
 // used for warps between levels
 void func_8024A094(void)
 {
-    gCurrLevelNum = sDestLevelNum;
+    gCurrLevelNum = sWarpDest.levelNum;
 
     level_control_timer(TIMER_CONTROL_HIDE);
 
-    load_area(sDestAreaIndex);
+    load_area(sWarpDest.areaIdx);
     init_mario_after_warp();
 }
 
 void func_8024A0E0(void)
 {
-    u32 marioAction;
+    s32 marioAction;
 
-    switch (sDestWarpNodeId)
+    switch (sWarpDest.nodeId)
     {
     case WARP_NODE_CREDITS_START:
         marioAction = ACT_END_PEACH_CUTSCENE;
@@ -444,9 +441,9 @@ void func_8024A0E0(void)
         break;
     }
 
-    gCurrLevelNum = sDestLevelNum;
+    gCurrLevelNum = sWarpDest.levelNum;
 
-    load_area(sDestAreaIndex);
+    load_area(sWarpDest.areaIdx);
 
     vec3s_set(
         gPlayerSpawnInfos[0].startPos,
@@ -460,7 +457,7 @@ void func_8024A0E0(void)
         0x100 * gCurrCreditsEntry->marioAngle,
         0);
 
-    gPlayerSpawnInfos[0].areaIndex = sDestAreaIndex;
+    gPlayerSpawnInfos[0].areaIndex = sWarpDest.areaIdx;
 
     load_mario_area();
     func_802548BC();
@@ -469,7 +466,7 @@ void func_8024A0E0(void)
 
     reset_camera(gCurrentArea->camera);
 
-    sCurrWarpType = WARP_TYPE_NOT_WARPING;
+    sWarpDest.type = WARP_TYPE_NOT_WARPING;
     sDelayedWarpOp = WARP_OP_NONE;
 
     play_transition(WARP_TRANSITION_FADE_FROM_COLOR, 0x14, 0x00, 0x00, 0x00);
@@ -580,25 +577,25 @@ void initiate_warp(s16 destLevel, s16 destArea, s16 destWarpNode, s32 arg3)
 {
     if (destWarpNode >= WARP_NODE_CREDITS_MIN)
     {
-        sCurrWarpType = WARP_TYPE_CHANGE_LEVEL;
+        sWarpDest.type = WARP_TYPE_CHANGE_LEVEL;
     }
     else if (destLevel != gCurrLevelNum)
     {
-        sCurrWarpType = WARP_TYPE_CHANGE_LEVEL;
+        sWarpDest.type = WARP_TYPE_CHANGE_LEVEL;
     }
     else if (destArea != gCurrentArea->index)
     {
-        sCurrWarpType = WARP_TYPE_CHANGE_AREA;
+        sWarpDest.type = WARP_TYPE_CHANGE_AREA;
     }
     else
     {
-        sCurrWarpType = WARP_TYPE_SAME_AREA;
+        sWarpDest.type = WARP_TYPE_SAME_AREA;
     }
 
-    sDestLevelNum = destLevel;
-    sDestAreaIndex = destArea;
-    sDestWarpNodeId = destWarpNode;
-    sWarpArg = arg3;
+    sWarpDest.levelNum = destLevel;
+    sWarpDest.areaIdx = destArea;
+    sWarpDest.nodeId = destWarpNode;
+    sWarpDest.arg = arg3;
 }
 
 /**
@@ -870,7 +867,7 @@ void initiate_delayed_warp(void)
                     sDelayedWarpArg);
 
                 check_if_should_set_warp_checkpoint(&warpNode->node);
-                if (sCurrWarpType != WARP_TYPE_CHANGE_LEVEL)
+                if (sWarpDest.type != WARP_TYPE_CHANGE_LEVEL)
                     level_set_transition(2, NULL);
                 break;
             }
@@ -985,7 +982,7 @@ s32 play_mode_normal(void)
     // warp, change play mode accordingly.
     if (sCurrPlayMode == PLAY_MODE_NORMAL)
     {
-        if (sCurrWarpType == WARP_TYPE_CHANGE_LEVEL)
+        if (sWarpDest.type == WARP_TYPE_CHANGE_LEVEL)
         {
             set_play_mode(PLAY_MODE_CHANGE_LEVEL);
         }
@@ -1113,8 +1110,8 @@ s32 play_mode_change_level(void)
         sTransitionTimer = 0;
         sTransitionUpdate = NULL;
 
-        if (sCurrWarpType != WARP_TYPE_NOT_WARPING)
-            return sDestLevelNum;
+        if (sWarpDest.type != WARP_TYPE_NOT_WARPING)
+            return sWarpDest.levelNum;
         else
             return D_80339EE0;
     }
@@ -1128,17 +1125,19 @@ s32 play_mode_change_level(void)
  */
 s32 play_mode_unused(void)
 {
+#ifndef VERSION_EU
     if (--sTransitionTimer == -1)
     {
         gHudDisplay.flags = HUD_DISPLAY_NONE;
 
-        if (sCurrWarpType != WARP_TYPE_NOT_WARPING)
-            return sDestLevelNum;
+        if (sWarpDest.type != WARP_TYPE_NOT_WARPING)
+            return sWarpDest.levelNum;
         else
             return D_80339EE0;
     }
 
     return 0;
+#endif
 }
 
 s32 update_level(void)
@@ -1180,9 +1179,9 @@ s32 init_level(void)
 
     sTimerRunning = 0;
 
-    if (sCurrWarpType != WARP_TYPE_NOT_WARPING)
+    if (sWarpDest.type != WARP_TYPE_NOT_WARPING)
     {
-        if (sDestWarpNodeId >= WARP_NODE_CREDITS_MIN)
+        if (sWarpDest.nodeId >= WARP_NODE_CREDITS_MIN)
             func_8024A0E0();
         else
             func_8024A094();
@@ -1256,7 +1255,7 @@ s32 lvl_init_or_update(s16 initOrUpdate, UNUSED s32 arg1)
 
 s32 lvl_init_from_save_file(UNUSED s16 arg0, s32 levelNum)
 {
-    sCurrWarpType = WARP_TYPE_NOT_WARPING;
+    sWarpDest.type = WARP_TYPE_NOT_WARPING;
     sDelayedWarpOp = WARP_OP_NONE;
     gSaveFileDoesNotExist = !save_file_exists(gCurrSaveFileNum - 1);
 
