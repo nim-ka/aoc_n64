@@ -3,8 +3,6 @@
 
 // Global header for Super Mario 64
 
-#define static
-
 #include "types.h"
 #include "config.h"
 #include "object_fields.h"

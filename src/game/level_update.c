@@ -152,7 +152,7 @@ u16 gTimerValueInFrames;
 s8 gSaveFileDoesNotExist;
 
 
-static void basic_update(s16 *arg);
+void basic_update(s16 *arg);
 
 
 u16 level_control_timer(u32 timerOp)
@@ -183,7 +183,7 @@ u16 level_control_timer(u32 timerOp)
     return gTimerValueInFrames;
 }
 
-static u32 pressed_paused(void)
+u32 pressed_paused(void)
 {
     u32 val4 = get_dialog_id() >= 0;
     u32 intangible = (gMarioState->action & ACT_FLAG_INTANGIBLE) != 0;
@@ -197,13 +197,13 @@ static u32 pressed_paused(void)
     return FALSE;
 }
 
-static void set_play_mode(s16 playMode)
+void set_play_mode(s16 playMode)
 {
     sCurrPlayMode = playMode;
     D_80339ECA = 0;
 }
 
-static void func_8024975C(s32 arg)
+void func_8024975C(s32 arg)
 {
     sCurrPlayMode = PLAY_MODE_CHANGE_LEVEL;
     D_80339ECA = 0;
@@ -222,7 +222,7 @@ void func_80249788(u32 arg, u32 color)
     func_8024975C(arg);
 }
 
-static void nop_802497FC(void)
+void nop_802497FC(void)
 {
 }
 
@@ -261,7 +261,7 @@ void func_8024980C(u32 arg)
     }
 }
 
-static void func_8024992C(struct SpawnInfo *spawnInfo, u32 arg1)
+void func_8024992C(struct SpawnInfo *spawnInfo, u32 arg1)
 {
     if (arg1 & 0x00000002)
         spawnInfo->startAngle[1] += 0x8000;
@@ -270,7 +270,7 @@ static void func_8024992C(struct SpawnInfo *spawnInfo, u32 arg1)
     spawnInfo->startPos[2] += 300.0f * coss(spawnInfo->startAngle[1]);
 }
 
-static void set_mario_initial_cap_powerup(struct MarioState *m)
+void set_mario_initial_cap_powerup(struct MarioState *m)
 {
     u32 capCourseIndex = gCurrCourseNum - COURSE_CAP_COURSES;
 
@@ -293,7 +293,7 @@ static void set_mario_initial_cap_powerup(struct MarioState *m)
     }
 }
 
-static void set_mario_initial_action(struct MarioState *m, u32 spawnType, u32 actionArg)
+void set_mario_initial_action(struct MarioState *m, u32 spawnType, u32 actionArg)
 {
     switch (spawnType)
     {
@@ -320,7 +320,7 @@ static void set_mario_initial_action(struct MarioState *m, u32 spawnType, u32 ac
     set_mario_initial_cap_powerup(m);
 }
 
-static void init_mario_after_warp(void)
+void init_mario_after_warp(void)
 {
     struct ObjectWarpNode *spawnNode = area_get_warp_node(sDestWarpNodeId);
     u32 marioSpawnType = get_mario_spawn_type(spawnNode->object);
@@ -403,7 +403,7 @@ static void init_mario_after_warp(void)
 }
 
 // used for warps inside one level
-static void func_8024A02C(void)
+void func_8024A02C(void)
 {
     if (sCurrWarpType != WARP_TYPE_NOT_WARPING)
     {
@@ -419,7 +419,7 @@ static void func_8024A02C(void)
 }
 
 // used for warps between levels
-static void func_8024A094(void)
+void func_8024A094(void)
 {
     gCurrLevelNum = sDestLevelNum;
 
@@ -429,7 +429,7 @@ static void func_8024A094(void)
     init_mario_after_warp();
 }
 
-static void func_8024A0E0(void)
+void func_8024A0E0(void)
 {
     u32 marioAction;
 
@@ -482,7 +482,7 @@ static void func_8024A0E0(void)
         func_80249148(gCurrentArea->musicParam, gCurrentArea->musicParam2, 0);
 }
 
-static void check_instant_warp(void)
+void check_instant_warp(void)
 {
     s16 cameraAngle;
     struct Surface *floor;
@@ -526,7 +526,7 @@ static void check_instant_warp(void)
     }
 }
 
-static s16 func_8024A48C(s16 arg)
+s16 func_8024A48C(s16 arg)
 {
 #if BUGFIX_KOOPA_RACE_MUSIC
 
@@ -580,7 +580,7 @@ static s16 func_8024A48C(s16 arg)
 /**
  * Set the current warp type and destination level/area/node.
  */
-static void initiate_warp(s16 destLevel, s16 destArea, s16 destWarpNode, s32 arg3)
+void initiate_warp(s16 destLevel, s16 destArea, s16 destWarpNode, s32 arg3)
 {
     if (destWarpNode >= WARP_NODE_CREDITS_MIN)
     {
@@ -609,7 +609,7 @@ static void initiate_warp(s16 destLevel, s16 destArea, s16 destWarpNode, s32 arg
  * Check if mario is above and close to a painting warp floor, and return the
  * corresponding warp node.
  */
-static struct WarpNode *get_painting_warp_node(void)
+struct WarpNode *get_painting_warp_node(void)
 {
     struct WarpNode *warpNode = NULL;
     s32 paintingIndex = gMarioState->floor->type - SURFACE_PAINTING_WARP_0;
@@ -629,7 +629,7 @@ static struct WarpNode *get_painting_warp_node(void)
 /**
  * Check is mario has entered a painting, and if so, initiate a warp.
  */
-static void initiate_painting_warp(void)
+void initiate_painting_warp(void)
 {
     if (gCurrentArea->paintingWarpNodes != NULL && gMarioState->floor != NULL)
     {
@@ -800,7 +800,7 @@ s16 level_trigger_warp(struct MarioState *m, s32 warpOp)
 /**
  * If a delayed warp is ready, initiate it.
  */
-static void initiate_delayed_warp(void)
+void initiate_delayed_warp(void)
 {
     struct ObjectWarpNode *warpNode;
     s32 destWarpNode;
@@ -882,7 +882,7 @@ static void initiate_delayed_warp(void)
     }
 }
 
-static void update_hud_values(void)
+void update_hud_values(void)
 {
     if (gCurrCreditsEntry == NULL)
     {
@@ -943,7 +943,7 @@ static void update_hud_values(void)
  * presumably to allow painting and camera updating while avoiding triggering the
  * warp twice.
  */
-static void basic_update(UNUSED s16 *arg)
+void basic_update(UNUSED s16 *arg)
 {
     area_update_objects();
     update_hud_values();
@@ -952,7 +952,7 @@ static void basic_update(UNUSED s16 *arg)
         update_camera(gCurrentArea->camera);
 }
 
-static s32 play_mode_normal(void)
+s32 play_mode_normal(void)
 {
     if (gCurrDemoInput != NULL)
     {
@@ -1008,7 +1008,7 @@ static s32 play_mode_normal(void)
     return 0;
 }
 
-static s32 play_mode_paused(void)
+s32 play_mode_paused(void)
 {
     if (D_8033A75E == 0)
     {
@@ -1045,7 +1045,7 @@ static s32 play_mode_paused(void)
  * Debug mode that lets you frame advance by pressing D-pad down. Unfortunately
  * it uses the pause camera, making it basically unusable in most levels.
  */
-static s32 play_mode_frame_advance(void)
+s32 play_mode_frame_advance(void)
 {
     if (gPlayer1Controller->buttonPressed & D_JPAD)
     {
@@ -1080,7 +1080,7 @@ void level_set_transition(s16 length, void (*updateFunction)(s16 *))
 /**
  * Play the transition and then return to normal play mode.
  */
-static s32 play_mode_change_area(void)
+s32 play_mode_change_area(void)
 {
     //! This maybe was supposed to be sTransitionTimer == -1? sTransitionUpdate
     // is never set to -1.
@@ -1105,7 +1105,7 @@ static s32 play_mode_change_area(void)
 /**
  * Play the transition and then return to normal play mode.
  */
-static s32 play_mode_change_level(void)
+s32 play_mode_change_level(void)
 {
     if (sTransitionUpdate != NULL)
         sTransitionUpdate(&sTransitionTimer);
@@ -1130,7 +1130,7 @@ static s32 play_mode_change_level(void)
  * Unused play mode. Doesn't call transition update and doesn't reset transition
  * at the end.
  */
-static s32 play_mode_unused(void)
+s32 play_mode_unused(void)
 {
     if (--sTransitionTimer == -1)
     {
@@ -1145,7 +1145,7 @@ static s32 play_mode_unused(void)
     return 0;
 }
 
-static s32 update_level(void)
+s32 update_level(void)
 {
     s32 val4;
 
@@ -1167,7 +1167,7 @@ static s32 update_level(void)
     return val4;
 }
 
-static s32 init_level(void)
+s32 init_level(void)
 {
     s32 val4 = 0;
 

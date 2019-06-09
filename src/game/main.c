@@ -51,14 +51,14 @@ s8 D_8032C650 = 0;
 
 s8 gShowProfiler = FALSE;
 s8 gShowDebugText = FALSE;
-static u16 sProfilerKeySequence[] = {U_JPAD, U_JPAD, D_JPAD, D_JPAD, L_JPAD, R_JPAD, L_JPAD, R_JPAD};
-static u16 sDebugTextKeySequence[]     = {D_JPAD, D_JPAD, U_JPAD, U_JPAD, L_JPAD, R_JPAD, L_JPAD, R_JPAD};
-static s16 sProfilerKey = 0;
-static s16 sDebugTextKey = 0;
 
 // unused
 void handle_debug_key_sequences(void)
 {
+    static u16 sProfilerKeySequence[] = {U_JPAD, U_JPAD, D_JPAD, D_JPAD, L_JPAD, R_JPAD, L_JPAD, R_JPAD};
+    static u16 sDebugTextKeySequence[]     = {D_JPAD, D_JPAD, U_JPAD, U_JPAD, L_JPAD, R_JPAD, L_JPAD, R_JPAD};
+    static s16 sProfilerKey = 0;
+    static s16 sDebugTextKey = 0;
     if (gPlayer3Controller->buttonPressed != 0)
     {
         if (sProfilerKeySequence[sProfilerKey++] == gPlayer3Controller->buttonPressed)
@@ -83,7 +83,7 @@ void handle_debug_key_sequences(void)
     }
 }
 
-static void Unknown80246170(void)
+void Unknown80246170(void)
 {
     // uninitialized
     OSTime time;
@@ -99,19 +99,19 @@ static void Unknown80246170(void)
 #pragma GCC diagnostic pop
 }
 
-static void Dummy802461CC(void)
+void Dummy802461CC(void)
 {
 }
 
-static void Dummy802461DC(void)
+void Dummy802461DC(void)
 {
 }
 
-static void Dummy802461EC(void)
+void Dummy802461EC(void)
 {
 }
 
-static void setup_mesg_queues(void)
+void setup_mesg_queues(void)
 {
     osCreateMesgQueue(&gDmaMesgQueue, gDmaMesgBuf, ARRAY_COUNT(gDmaMesgBuf));
     osCreateMesgQueue(&gSIEventMesgQueue, gSIEventMesgBuf, ARRAY_COUNT(gSIEventMesgBuf));
@@ -152,7 +152,7 @@ void handle_nmi_request(void)
     func_802491FC(90);
 }
 
-static void receive_new_tasks(void)
+void receive_new_tasks(void)
 {
     struct SPTask *spTask;
 
@@ -183,7 +183,7 @@ static void receive_new_tasks(void)
     }
 }
 
-static void start_sptask(s32 taskType)
+void start_sptask(s32 taskType)
 {
     UNUSED s32 pad;  // needed to pad the stack
 
@@ -197,7 +197,7 @@ static void start_sptask(s32 taskType)
     gActiveSPTask->state = SPTASK_STATE_RUNNING;
 }
 
-static void interrupt_gfx_sptask(void)
+void interrupt_gfx_sptask(void)
 {
     if (gActiveSPTask->task.t.type == M_GFXTASK)
     {
@@ -206,7 +206,7 @@ static void interrupt_gfx_sptask(void)
     }
 }
 
-static void start_gfx_sptask(void)
+void start_gfx_sptask(void)
 {
     if (gActiveSPTask == NULL && sCurrentDisplaySPTask != NULL && sCurrentDisplaySPTask->state == SPTASK_STATE_NOT_STARTED)
     {
@@ -215,14 +215,14 @@ static void start_gfx_sptask(void)
     }
 }
 
-static void pretend_audio_sptask_done(void)
+void pretend_audio_sptask_done(void)
 {
     gActiveSPTask = sCurrentAudioSPTask;
     gActiveSPTask->state = SPTASK_STATE_RUNNING;
     osSendMesg(&gIntrMesgQueue, (OSMesg)MESG_SP_COMPLETE, OS_MESG_NOBLOCK);
 }
 
-static void handle_vblank(void)
+void handle_vblank(void)
 {
     UNUSED s32 pad;  // needed to pad the stack
 
@@ -269,7 +269,7 @@ static void handle_vblank(void)
         osSendMesg(gVblankHandler2->queue, gVblankHandler2->msg, OS_MESG_NOBLOCK);
 }
 
-static void handle_sp_complete(void)
+void handle_sp_complete(void)
 {
     struct SPTask *curSPTask = gActiveSPTask;
 
@@ -322,7 +322,7 @@ static void handle_sp_complete(void)
     }
 }
 
-static void handle_dp_complete(void)
+void handle_dp_complete(void)
 {
     // Gfx SP task is completely done.
     if (sCurrentDisplaySPTask->msgqueue != NULL)
@@ -332,7 +332,7 @@ static void handle_dp_complete(void)
     sCurrentDisplaySPTask = NULL;
 }
 
-static void thread3_main(UNUSED void *arg)
+void thread3_main(UNUSED void *arg)
 {
     setup_mesg_queues();
     AllocPool();
@@ -387,7 +387,7 @@ void set_vblank_handler(s32 index, struct VblankHandler *handler, OSMesgQueue *q
     }
 }
 
-static void SendMessage(OSMesg *msg)
+void SendMessage(OSMesg *msg)
 {
     osWritebackDCacheAll();
     osSendMesg(&gSPTaskMesgQueue, msg, OS_MESG_NOBLOCK);
@@ -421,12 +421,12 @@ void send_display_list(struct SPTask *spTask)
     }
 }
 
-static void turn_on_audio(void)
+void turn_on_audio(void)
 {
     sAudioEnabled = 1;
 }
 
-static void turn_off_audio(void)
+void turn_off_audio(void)
 {
     sAudioEnabled = 0;
     while (sCurrentAudioSPTask != NULL)
@@ -436,7 +436,7 @@ static void turn_off_audio(void)
 /**
  * Initialize hardware, start main thread, then idle.
  */
-static void thread1_idle(UNUSED void *arg)
+void thread1_idle(UNUSED void *arg)
 {
 #if VERSION_US
     s32 sp24 = osTvType;

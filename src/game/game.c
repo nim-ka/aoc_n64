@@ -47,12 +47,13 @@ struct Controller *gPlayer2Controller = &gControllers[1];
 struct Controller *gPlayer3Controller = &gControllers[2];
 struct DemoInput *gCurrDemoInput = NULL; // demo input sequence
 u16 gDemoInputListID = 0;
-struct DemoInput gRecordedDemoInput = {0};
+struct DemoInput gRecordedDemoInput = {0}; // possibly removed in EU. TODO: Check
 
 // this function records distinct inputs over a 255-frame interval to RAM locations and was likely
 // used to record the demo sequences seen in the final game. This function is unused.
 void record_demo(void)
 {
+#ifndef VERSION_EU // this function was stubbed in EU.
     // record the player's button mask and current rawStickX and rawStickY.
     u8 buttonMask = ((gPlayer1Controller->buttonDown & (A_BUTTON   | B_BUTTON   | Z_TRIG     | START_BUTTON)) >> 8) 
                   |  (gPlayer1Controller->buttonDown & (U_CBUTTONS | D_CBUTTONS | L_CBUTTONS | R_CBUTTONS));
@@ -81,6 +82,7 @@ void record_demo(void)
         gRecordedDemoInput.rawStickY = rawStickY;
     }
     gRecordedDemoInput.timer++;
+#endif
 }
 
 // take the updated controller struct and calculate

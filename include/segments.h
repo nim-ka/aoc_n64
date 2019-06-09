@@ -16,7 +16,11 @@
 #define SEG_POOL_END     SEG_STACK
 #define SEG_GODDARD      0x8016F000
 #define SEG_STACK        0x801C1000
+#ifdef VERSION_EU
+#define SEG_MAIN         0x80241800 // TODO: Investigate why it's different?
+#else
 #define SEG_MAIN         0x80246000
+#endif
 #define SEG_ENGINE       0x80378800
 #define SEG_FRAMEBUFFERS 0x8038F800
 

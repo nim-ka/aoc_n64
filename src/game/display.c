@@ -164,7 +164,7 @@ void make_viewport_clip_rect(Vp *viewport)
   * Refer to this function if you would like to load 
   * other microcodes (i.e. S2DEX). 
  */
-static void create_task_structure(void)
+void create_task_structure(void)
 {
     s32 entries = gDisplayListHead - gGfxPool->buffer;
 
@@ -174,7 +174,7 @@ static void create_task_structure(void)
     gGfxSPTask->task.t.ucode_boot = rspF3DBootStart;
     gGfxSPTask->task.t.ucode_boot_size = ((u32)rspF3DBootEnd - (u32)rspF3DBootStart);
     gGfxSPTask->task.t.flags = 0;
-    gGfxSPTask->task.t.ucode = rspF3DBootEnd;
+    gGfxSPTask->task.t.ucode = rspF3DStart;
     gGfxSPTask->task.t.ucode_data = rspF3DDataStart;
     gGfxSPTask->task.t.ucode_size = SP_UCODE_SIZE;
     gGfxSPTask->task.t.ucode_data_size = SP_UCODE_DATA_SIZE;

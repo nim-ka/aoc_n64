@@ -106,8 +106,8 @@ shadowRectangle rectangles[2] = {
 };
 
 // See shadow.h for documentation.
-static s8 sMarioOnFlyingCarpet;
-static s16 sSurfaceTypeBelowShadow;
+s8 sMarioOnFlyingCarpet;
+s16 sSurfaceTypeBelowShadow;
 s8 gShadowAboveWaterOrLava;
 s8 gMarioOnIceOrCarpet;
 

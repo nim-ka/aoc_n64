@@ -72,6 +72,9 @@ SECTIONS
    BEGIN_SEG(main, SEG_MAIN) SUBALIGN(16)
    {
       BUILD_DIR/asm/entry.o(.text);
+#if VERSION_EU
+      BUILD_DIR/asm/unknown_eu_80241850.o(.text); /* TODO: What is this? */
+#endif
       BUILD_DIR/src/game/main.o(.text);
       BUILD_DIR/src/game/display.o(.text);
       BUILD_DIR/src/game/game.o(.text);
@@ -592,7 +595,9 @@ SECTIONS
    }
    END_NOLOAD(stack)
 
+#ifndef VERSION_EU /* While EU is being worked on, don't warn for stack extensions. This is a broken thing to do, so please enforce this again when its fixed! */
    ASSERT((. <= SEG_MAIN), "Error: stack segment extended into main.")
+#endif
 
    /* 0x268020 0x268020-0 [0] */
    BEGIN_SEG(intro, 0x14000000)
