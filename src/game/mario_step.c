@@ -223,7 +223,7 @@ u32 mario_update_windy_ground(struct MarioState *m)
         m->vel[0] += pushSpeed * sins(pushAngle);
         m->vel[2] += pushSpeed * coss(pushAngle);
 
-#if !VERSION_US
+#if VERSION_JP
         SetSound(SOUND_ENVIRONMENT_WIND2, m->marioObj->header.gfx.cameraToObject);
 #endif
         return 1;
@@ -246,7 +246,7 @@ void stop_and_set_height_to_floor(struct MarioState *m)
     vec3s_set(marioObj->header.gfx.angle, 0, m->faceAngle[1], 0);
 }
 
-u32 stationary_ground_step(struct MarioState *m)
+s32 stationary_ground_step(struct MarioState *m)
 {
     u32 takeStep;
     struct Object *marioObj = m->marioObj;
@@ -272,7 +272,7 @@ u32 stationary_ground_step(struct MarioState *m)
     return stepResult;
 }
 
-static u32 perform_ground_quarter_step(struct MarioState *m, Vec3f nextPos)
+static s32 perform_ground_quarter_step(struct MarioState *m, Vec3f nextPos)
 {
     UNUSED struct Surface *lowerWall;
     struct Surface *upperWall;
@@ -335,7 +335,7 @@ static u32 perform_ground_quarter_step(struct MarioState *m, Vec3f nextPos)
     return GROUND_STEP_NONE;
 }
 
-u32 perform_ground_step(struct MarioState *m)
+s32 perform_ground_step(struct MarioState *m)
 {
     s32 i;
     u32 stepResult;
@@ -364,7 +364,7 @@ u32 perform_ground_step(struct MarioState *m)
     return stepResult;
 }
 
-static u32 check_ledge_grab(
+u32 check_ledge_grab(
     struct MarioState *m, struct Surface *wall, Vec3f intendedPos, Vec3f nextPos)
 {
     struct Surface *ledgeFloor;
@@ -372,7 +372,7 @@ static u32 check_ledge_grab(
     f32 displacementX;
     f32 displacementZ;
 
-    if (m->vel[1] > 0.0f)
+    if (m->vel[1] > 0)
         return 0;
 
     displacementX = nextPos[0] - intendedPos[0];
@@ -404,7 +404,7 @@ static u32 check_ledge_grab(
     return 1;
 }
 
-static u32 perform_air_quarter_step(
+s32 perform_air_quarter_step(
     struct MarioState *m, Vec3f intendedPos, u32 stepArg)
 {
     s16 wallDYaw;
@@ -533,7 +533,7 @@ static u32 perform_air_quarter_step(
     return AIR_STEP_NONE;
 }
 
-static void apply_twirl_gravity(struct MarioState *m)
+void apply_twirl_gravity(struct MarioState *m)
 {
     f32 terminalVelocity;
     f32 heaviness = 1.0f;
@@ -548,7 +548,7 @@ static void apply_twirl_gravity(struct MarioState *m)
         m->vel[1] = terminalVelocity;
 }
 
-static u32 should_strengthen_gravity_for_jump_ascent(struct MarioState *m)
+u32 should_strengthen_gravity_for_jump_ascent(struct MarioState *m)
 {
     if (!(m->flags & MARIO_UNKNOWN_08))
         return FALSE;
@@ -562,7 +562,7 @@ static u32 should_strengthen_gravity_for_jump_ascent(struct MarioState *m)
     return FALSE;
 }
 
-static void apply_gravity(struct MarioState *m)
+void apply_gravity(struct MarioState *m)
 {
     if (m->action == ACT_TWIRLING && m->vel[1] < 0.0f)
     {
@@ -622,7 +622,7 @@ static void apply_gravity(struct MarioState *m)
     }
 }
 
-static void apply_vertical_wind(struct MarioState *m)
+void apply_vertical_wind(struct MarioState *m)
 {
     f32 maxVelY;
     f32 offsetY;
@@ -644,19 +644,19 @@ static void apply_vertical_wind(struct MarioState *m)
                     m->vel[1] = maxVelY;
             }
 
-#if !VERSION_US
+#ifdef VERSION_JP
             SetSound(SOUND_ENVIRONMENT_WIND2, m->marioObj->header.gfx.cameraToObject);
 #endif
         }
     }
 }
 
-u32 perform_air_step(struct MarioState *m, u32 stepArg)
+s32 perform_air_step(struct MarioState *m, u32 stepArg)
 {
     Vec3f intendedPos;
     s32 i;
-    u32 quarterStepResult;
-    u32 stepResult = AIR_STEP_NONE;
+    s32 quarterStepResult;
+    s32 stepResult = AIR_STEP_NONE;
 
     m->wall = NULL;
 
@@ -701,14 +701,14 @@ u32 perform_air_step(struct MarioState *m, u32 stepArg)
 
 // They had these functions the whole time and never used them? Lol
 
-static void set_vel_from_pitch_and_yaw(struct MarioState *m)
+void set_vel_from_pitch_and_yaw(struct MarioState *m)
 {
     m->vel[0] = m->forwardVel * coss(m->faceAngle[0]) * sins(m->faceAngle[1]);
     m->vel[1] = m->forwardVel * sins(m->faceAngle[0]);
     m->vel[2] = m->forwardVel * coss(m->faceAngle[0]) * coss(m->faceAngle[1]);
 }
 
-static void set_vel_from_yaw(struct MarioState *m)
+void set_vel_from_yaw(struct MarioState *m)
 {
     m->vel[0] = m->slideVelX = m->forwardVel * sins(m->faceAngle[1]);
     m->vel[1] = 0.0f;

@@ -70,11 +70,11 @@ extern void (*sTransitionUpdate)(s16 *);
 extern u8 unused3[4];
 
 struct WarpDest {
-	u8 type;
-	u8 levelNum;
-	u8 areaIdx;
-	u8 nodeId;
-	u32 arg;
+    u8 type;
+    u8 levelNum;
+    u8 areaIdx;
+    u8 nodeId;
+    u32 arg;
 };
 
 extern struct WarpDest sWarpDest;

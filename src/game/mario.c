@@ -524,12 +524,12 @@ s32 func_80251BF8(struct MarioState *m)
     return result;
 }
 
-f32 find_floor_height_relative_polar(struct MarioState *m, s32 angleFromMario, f32 distFromMario)
+f32 find_floor_height_relative_polar(struct MarioState *m, s16 angleFromMario, f32 distFromMario)
 {
     struct Surface *floor;
     f32 floorY;
-    f32 y = sins(m->faceAngle[1] + (s16) angleFromMario) * distFromMario;
-    f32 x = coss(m->faceAngle[1] + (s16) angleFromMario) * distFromMario;
+    f32 y = sins(m->faceAngle[1] + angleFromMario) * distFromMario;
+    f32 x = coss(m->faceAngle[1] + angleFromMario) * distFromMario;
 
     floorY = find_floor(m->pos[0] + y, m->pos[1] + 100.0f, m->pos[2] + x, &floor);
     return floorY;
@@ -1158,7 +1158,7 @@ void func_80253E34(struct MarioState *m)
 
     if (m->health >= 0x100)
     {
-        if ((m->healCounter | m->hurtCounter) == 0)
+        if (((u32)m->healCounter | (u32)m->hurtCounter) == 0)
         {
             if ((m->input & INPUT_UNKNOWN_8) && ((m->action & ACT_FLAG_INTANGIBLE) == 0))
             {
@@ -1234,17 +1234,17 @@ void func_80254164(struct MarioState *m)
     o->header.gfx.pos[1] -= m->quicksandDepth;
 }
 
-s32 func_802541BC(struct MarioState *m)
+u32 func_802541BC(struct MarioState *m)
 {
-    s32 flags = m->flags;
-    s32 action;
+    u32 flags = m->flags;
+    u32 action;
 
     if (m->capTimer > 0)
     {
-        action = (s32) m->action;
+        action = m->action;
 
         if (
-            (m->capTimer < 0x3D) ||
+            (m->capTimer <= 60) ||
             (
                 (action != ACT_READING_AUTOMATIC_DIALOGUE) &&
                     (action != ACT_READING_NPC_DIALOGUE) &&
@@ -1253,7 +1253,7 @@ s32 func_802541BC(struct MarioState *m)
             )
         )
         {
-            m->capTimer--;
+            m->capTimer-= 1;
         }
 
         if (m->capTimer == 0)
@@ -1268,7 +1268,7 @@ s32 func_802541BC(struct MarioState *m)
         if (m->capTimer == 0x3C)
             func_802493D4();
 
-        if ((m->capTimer < 0x40) && ((1LL << m->capTimer) & D_8032CB80))
+        if ((m->capTimer < 0x40) && ((1ULL << m->capTimer) & D_8032CB80))
         {
             flags &= ~(MARIO_VANISH_CAP | MARIO_METAL_CAP | MARIO_WING_CAP);
             if ((flags &
@@ -1323,7 +1323,7 @@ void func_8025435C(struct MarioState *m)
     }
 }
 
-void Unknown8025453C(u16 arg0, s32 arg1, u16 arg2, u16 arg3)
+static void Unknown8025453C(u16 arg0, s32 arg1, u16 arg2, u16 arg3)
 {
     if ((gPlayer1Controller->buttonDown & 0x2000) &&
             (gPlayer1Controller->buttonPressed & arg0) &&

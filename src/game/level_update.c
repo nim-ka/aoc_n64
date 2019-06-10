@@ -41,6 +41,11 @@
 
 #define WARP_NODE_CREDITS_MIN 0xF8
 
+#ifdef VERSION_EU
+extern void UncIndexCopy(s16, int, int);
+extern int func_eu_8026B05C(void);
+#endif
+
 #ifdef VERSION_JP
 const char *credits01[] = { "1GAME DIRECTOR", "SHIGERU MIYAMOTO" };
 const char *credits02[] = { "2ASSISTANT DIRECTORS", "YOSHIAKI KOIZUMI", "TAKASHI TEZUKA" };
@@ -1255,6 +1260,21 @@ s32 lvl_init_or_update(s16 initOrUpdate, UNUSED s32 arg1)
 
 s32 lvl_init_from_save_file(UNUSED s16 arg0, s32 levelNum)
 {
+#ifdef VERSION_EU
+    // TODO: What is this? Language handling?
+    s16 var = func_eu_8026B05C();
+    switch (var) {
+    case 0:
+        UncIndexCopy(25, 0xE49F0, 0xE9F50);
+        break;
+    case 1:
+        UncIndexCopy(25, 0xE9F50, 0xEF960);
+        break;
+    case 2:
+        UncIndexCopy(25, 0xEF960, 0xF5330);
+        break;
+    }
+#endif
     sWarpDest.type = WARP_TYPE_NOT_WARPING;
     sDelayedWarpOp = WARP_OP_NONE;
     gSaveFileDoesNotExist = !save_file_exists(gCurrSaveFileNum - 1);

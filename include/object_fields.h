@@ -70,7 +70,7 @@
 #define /*0x128*/ oWallHitboxRadius OBJECT_FIELD_F32(0x28)
 #define /*0x12C*/ oDragStrength OBJECT_FIELD_F32(0x29)
 #define /*0x130*/ oInteractType OBJECT_FIELD_U32(0x2A)
-#define /*0x134*/ oInteractStatus OBJECT_FIELD_U32(0x2B)
+#define /*0x134*/ oInteractStatus OBJECT_FIELD_S32(0x2B)
 #define /*0x138*/ O_PARENT_RELATIVE_POS_INDEX 0x2C
 #define /*0x138*/ oParentRelativePosX OBJECT_FIELD_F32(O_PARENT_RELATIVE_POS_INDEX + 0)
 #define /*0x13C*/ oParentRelativePosY OBJECT_FIELD_F32(O_PARENT_RELATIVE_POS_INDEX + 1)

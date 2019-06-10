@@ -204,7 +204,7 @@ glabel func_eu_80241AB4
 /* 0012E4 80241AE4 AFA60150 */  sw    $a2, 0x150($sp)
 /* 0012E8 80241AE8 24841A90 */  addiu $a0, %lo(func_eu_80241A90) # addiu $a0, $a0, 0x1a90
 /* 0012EC 80241AEC 27A70154 */  addiu $a3, $sp, 0x154
-/* 0012F0 80241AF0 0C0BBA68 */  jal   func_802EE9A0
+/* 0012F0 80241AF0 0C0BBA68 */  jal   func_eu_802EE9A0
 /* 0012F4 80241AF4 02402825 */   move  $a1, $s2
 /* 0012F8 80241AF8 18400015 */  blez  $v0, .L80241B50
 /* 0012FC 80241AFC 83AE003C */   lb    $t6, 0x3c($sp)
@@ -632,7 +632,7 @@ glabel func_eu_80241D58
 glabel func_eu_80242134
 /* 001934 80242134 27BDFFE8 */  addiu $sp, $sp, -0x18
 /* 001938 80242138 AFBF0014 */  sw    $ra, 0x14($sp)
-/* 00193C 8024213C 0C0BBDC0 */  jal   func_802EF700
+/* 00193C 8024213C 0C0BBDC0 */  jal   func_eu_802EF700
 /* 001940 80242140 00000000 */   nop   
 /* 001944 80242144 8C4E0004 */  lw    $t6, 4($v0)
 /* 001948 80242148 2404FFFF */  li    $a0, -1
