@@ -1,3 +1,5 @@
+.include "painting_constants.inc"
+
 inside_castle_seg7_light_07021800: # 0x07021800 - 0x07021808
 .byte 0x50, 0x50, 0x50, 0x00, 0x50, 0x50, 0x50, 0x00
 
@@ -1249,39 +1251,38 @@ inside_castle_seg7_painting_textures_07023610:
 inside_castle_seg7_painting_textures_07023618:
 .word inside_castle_seg7_texture_07020800, inside_castle_seg7_texture_0701F800
 
-glabel inside_castle_seg7_painting_struct_07023620 # 0x07023620 - 0x07023698
-.hword 0x0000
-.byte 0x02
-.byte 0x00
-.byte 0x00
-.byte 0x00
-.byte 0x00
-.byte 0x00
-.float    0.0,   90.0, -5222.4, 409.6
-.float -153.6,    0.0,    20.0,  80.0
-.float    1.0, 0.9608,  0.9524,   0.0
-.float   0.24,   0.14,     0.0,  40.0
-.float   30.0,    0.0,     0.0,   0.0
+glabel bob_painting # 0x07023620 - 0x07023698
+/* id */ .hword 0x0000
+/* Face Count */ .byte 0x02
+/* Ripple Shape */ .byte RIPPLE_SHAPE_WAVE
+/* Floor Status */ .byte 0x00, 0x00, 0x00 /* which of the painting's nearby special floors Mario's on */
+/* Ripple Status */ .byte 0x00
+/* Rotation */ .float     0.0,    90.0
+/* Position */ .float -5222.4,   409.6,   -153.6
+/* Ripple Magnitude */ .float     0.0,    20.0,    80.0
+.float     1.0,  0.9608,  0.9524
+.float     0.0,    0.24,    0.14,     0.0,   40.0
+.float    30.0,     0.0,     0.0,    0.0
 .word inside_castle_seg7_painting_dl_07023050
 .word inside_castle_seg7_painting_data_07022518
 .word inside_castle_seg7_painting_textures_070235C0
 .hword 64, 32
 .word inside_castle_seg7_painting_dl_07021AC0
-.byte 0x0A, 0xFF, 0x00, 0x00, 0x00
+.byte RIPPLE_TRIGGER_PROXIMITY, 0xFF, 0x00, 0x00, 0x00
 .byte 0x00, 0x00, 0x00
 .float 614.0
 
-glabel inside_castle_seg7_painting_struct_07023698 # 0x07023698 - 0x07023710
-.hword 0x0001
-.byte 0x02
-.byte 0x00
-.byte 0x00
-.byte 0x00
-.byte 0x00
-.byte 0x00
-.float     0.0,     0.0, -2611.2,  -307.2
-.float -4352.0,     0.0,    20.0,    80.0
-.float     1.0,  0.9608,  0.9524,     0.0
+glabel ccm_painting # 0x07023698 - 0x07023710
+/* id */ .hword 0x0001
+/* Face Count */ .byte 0x02
+/* Ripple Shape */ .byte RIPPLE_SHAPE_WAVE
+/* Floor Status */ .byte 0x00, 0x00, 0x00 /* which of the painting's nearby special floors Mario's on */
+/* Ripple Status */ .byte 0x00
+/* Rotation */ .float     0.0,     0.0
+/* Position */ .float -2611.2,  -307.2, -4352.0
+/* Ripple Magnitude */ .float     0.0,    20.0,    80.0
+.float     1.0,  0.9608,  0.9524
+.float     0.0
 .float    0.24,    0.14,     0.0,    40.0
 .float    30.0,     0.0,     0.0,     0.0
 .word inside_castle_seg7_painting_dl_070230B0
@@ -1289,21 +1290,21 @@ glabel inside_castle_seg7_painting_struct_07023698 # 0x07023698 - 0x07023710
 .word inside_castle_seg7_painting_textures_070235C8
 .hword 64, 32
 .word inside_castle_seg7_painting_dl_07021AC0
-.byte 0x0A, 0xFF, 0x00, 0x00, 0x00
+.byte RIPPLE_TRIGGER_PROXIMITY, 0xFF, 0x00, 0x00, 0x00
 .byte 0x00, 0x00, 0x00
 .float 614.0
 
-glabel inside_castle_seg7_painting_struct_07023710 # 0x07023710 - 0x07023788
-.hword 0x0002
-.byte 0x02
-.byte 0x00
-.byte 0x00
-.byte 0x00
-.byte 0x00
-.byte 0x00
-.float     0.0,     0.0,   -51.2,  -204.8
-.float -4505.6,     0.0,    20.0,    80.0
-.float     1.0,  0.9608,  0.9524,     0.0
+glabel wf_painting # 0x07023710 - 0x07023788
+/* id */ .hword 0x0002
+/* Face Count */ .byte 0x02
+/* Ripple Shape */ .byte RIPPLE_SHAPE_WAVE
+/* Floor Status */ .byte 0x00, 0x00, 0x00 /* which of the painting's nearby special floors Mario's on */
+/* Ripple Status */ .byte 0x00
+/* Rotation */ .float     0.0,     0.0
+/* Position */ .float   -51.2,  -204.8, -4505.6
+/* Ripple Magnitude */ .float     0.0,    20.0,    80.0
+.float     1.0,  0.9608,  0.9524
+.float     0.0
 .float    0.24,    0.14,     0.0,    40.0
 .float    30.0,     0.0,     0.0,     0.0
 .word inside_castle_seg7_painting_dl_07023110
@@ -1311,21 +1312,21 @@ glabel inside_castle_seg7_painting_struct_07023710 # 0x07023710 - 0x07023788
 .word inside_castle_seg7_painting_textures_070235D0
 .hword 64, 32
 .word inside_castle_seg7_painting_dl_07021AC0
-.byte 0x0A, 0xFF, 0x00, 0x00, 0x00
+.byte RIPPLE_TRIGGER_PROXIMITY, 0xFF, 0x00, 0x00, 0x00
 .byte 0x00, 0x00, 0x00
 .float 614.0
 
-glabel inside_castle_seg7_painting_struct_07023788 # 0x07023788 - 0x07023800
-.hword 0x0003
-.byte 0x02
-.byte 0x00
-.byte 0x00
-.byte 0x00
-.byte 0x00
-.byte 0x00
-.float     0.0,   270.0,  4300.8,  409.6
-.float  -537.6,     0.0,    20.0,   80.0
-.float     1.0,  0.9608,  0.9524,    0.0
+glabel jrb_painting # 0x07023788 - 0x07023800
+/* id */ .hword 0x0003
+/* Face Count */ .byte 0x02
+/* Ripple Shape */ .byte RIPPLE_SHAPE_WAVE
+/* Floor Status */ .byte 0x00, 0x00, 0x00 /* which of the painting's nearby special floors Mario's on */
+/* Ripple Status */ .byte 0x00
+/* Rotation */ .float     0.0,   270.0
+/* Position */ .float  4300.8,   409.6,  -537.6
+/* Ripple Magnitude */ .float     0.0,    20.0,    80.0
+.float     1.0,  0.9608,  0.9524
+.float     0.0
 .float    0.24,    0.14,     0.0,   40.0
 .float    30.0,     0.0,     0.0,    0.0
 .word inside_castle_seg7_painting_dl_07023170
@@ -1333,21 +1334,21 @@ glabel inside_castle_seg7_painting_struct_07023788 # 0x07023788 - 0x07023800
 .word inside_castle_seg7_painting_textures_070235D8
 .hword 64, 32
 .word inside_castle_seg7_painting_dl_07021AC0
-.byte 0x0A, 0xFF, 0x00, 0x00, 0x00
+.byte RIPPLE_TRIGGER_PROXIMITY, 0xFF, 0x00, 0x00, 0x00
 .byte 0x00, 0x00, 0x00
 .float 614.0
 
-glabel inside_castle_seg7_painting_struct_07023800 # 0x07023800 - 0x07023878
-.hword 0x0004
-.byte 0x02
-.byte 0x00
-.byte 0x00
-.byte 0x00
-.byte 0x00
-.byte 0x00
-.float     0.0,     0.0, -1689.6, -1126.4
-.float -3942.4,     0.0,    20.0,    80.0
-.float     1.0,  0.9608,  0.9524,     0.0
+glabel lll_painting # 0x07023800 - 0x07023878
+/* id */ .hword 0x0004
+/* Face Count */ .byte 0x02
+/* Ripple Shape */ .byte RIPPLE_SHAPE_WAVE
+/* Floor Status */ .byte 0x00, 0x00, 0x00 /* which of the painting's nearby special floors Mario's on */
+/* Ripple Status */ .byte 0x00
+/* Rotation */ .float     0.0,     0.0
+/* Position */ .float -1689.6, -1126.4, -3942.4
+/* Ripple Magnitude */ .float     0.0,    20.0,    80.0
+.float     1.0,  0.9608,  0.9524
+.float     0.0
 .float    0.24,    0.14,     0.0,    40.0
 .float    30.0,     0.0,     0.0,     0.0
 .word inside_castle_seg7_painting_dl_070231D0
@@ -1355,21 +1356,21 @@ glabel inside_castle_seg7_painting_struct_07023800 # 0x07023800 - 0x07023878
 .word inside_castle_seg7_painting_textures_070235E0
 .hword 64, 32
 .word inside_castle_seg7_painting_dl_07021AC0
-.byte 0x0A, 0xFF, 0x00, 0x00, 0x00
+.byte RIPPLE_TRIGGER_PROXIMITY, 0xFF, 0x00, 0x00, 0x00
 .byte 0x00, 0x00, 0x00
 .float 614.0
 
-glabel inside_castle_seg7_painting_struct_07023878 # 0x07023878 - 0x070238F0
-.hword 0x0005
-.byte 0x02
-.byte 0x00
-.byte 0x00
-.byte 0x00
-.byte 0x00
-.byte 0x00
-.float     0.0,   180.0, -2611.2, -1177.6
-.float -1075.2,     0.0,    20.0,    80.0
-.float     1.0,  0.9608,  0.9524,     0.0
+glabel ssl_painting # 0x07023878 - 0x070238F0
+/* id */ .hword 0x0005
+/* Face Count */ .byte 0x02
+/* Ripple Shape */ .byte RIPPLE_SHAPE_WAVE
+/* Floor Status */ .byte 0x00, 0x00, 0x00 /* which of the painting's nearby special floors Mario's on */
+/* Ripple Status */ .byte 0x00
+/* Rotation */ .float     0.0,   180.0
+/* Position */ .float -2611.2, -1177.6, -1075.2
+/* Ripple Magnitude */ .float     0.0,    20.0,    80.0
+.float     1.0,  0.9608,  0.9524
+.float     0.0
 .float    0.24,    0.14,     0.0,    40.0
 .float    30.0,     0.0,     0.0,     0.0
 .word inside_castle_seg7_painting_dl_07023230
@@ -1377,43 +1378,43 @@ glabel inside_castle_seg7_painting_struct_07023878 # 0x07023878 - 0x070238F0
 .word inside_castle_seg7_painting_textures_070235E8
 .hword 64, 32
 .word inside_castle_seg7_painting_dl_07021AC0
-.byte 0x0A, 0xFF, 0x00, 0x00, 0x00
+.byte RIPPLE_TRIGGER_PROXIMITY, 0xFF, 0x00, 0x00, 0x00
 .byte 0x00, 0x00, 0x00
 .float 614.0
 
-glabel inside_castle_seg7_painting_struct_070238F0 # 0x070238F0 - 0x07023968
-.hword 0x000E
-.byte 0x01
-.byte 0x01
-.byte 0x00
-.byte 0x00
-.byte 0x00
-.byte 0x00
-.float   270.0,   0.0, 2099.2, -1484.8
-.float -2278.4,   0.0,   10.0,    30.0
-.float     1.0,   1.0,   0.98,     0.0
-.float    0.05,  0.05,    0.0,    15.0
-.float    15.0,   0.0,    0.0,     0.0
+glabel hmc_painting # 0x070238F0 - 0x07023968
+/* id */ .hword 0x000E
+/* Face Count */ .byte 0x01
+/* Ripple Shape */ .byte RIPPLE_SHAPE_CONCENTRIC
+/* Floor Status */ .byte 0x00, 0x00, 0x00 /* which of the painting's nearby special floors Mario's on */
+/* Ripple Status */ .byte 0x00
+/* Rotation */ .float   270.0,   0.0
+/* Position */ .float  2099.2, -1484.8, -2278.4
+/* Ripple Magnitude */ .float     0.0,    10.0,    30.0
+.float     1.0,     1.0,    0.98
+.float     0.0
+.float    0.05,    0.05,     0.0,    15.0
+.float    15.0,     0.0,     0.0,     0.0
 .word inside_castle_seg7_painting_dl_07023580
 .word inside_castle_seg7_painting_data_07023044
 .word inside_castle_seg7_painting_textures_070235F0
 .hword 32, 32
 .word inside_castle_seg7_painting_dl_07022640
-.byte 0x14, 0xFF, 0x00, 0x00, 0x00
+.byte RIPPLE_TRIGGER_CONTINUOUS, 0xFF, 0x00, 0x00, 0x00
 .byte 0x00, 0x00, 0x00
 .float 768.0
 
-glabel inside_castle_seg7_painting_struct_07023968 # 0x07023968 - 0x070239E0
-.hword 0x0007
-.byte 0x01
-.byte 0x01
-.byte 0x00
-.byte 0x00
-.byte 0x00
-.byte 0x00
-.float    0.0, 270.0, 3456.0, -1075.2
-.float 1587.2,   0.0,   10.0,    30.0
-.float    1.0,   1.0,   0.98,     0.0
+glabel ddd_painting # 0x07023968 - 0x070239E0
+/* id */ .hword 0x0007
+/* Face Count */ .byte 0x01
+/* Ripple Shape */ .byte RIPPLE_SHAPE_CONCENTRIC
+/* Floor Status */ .byte 0x00, 0x00, 0x00 /* which of the painting's nearby special floors Mario's on */
+/* Ripple Status */ .byte 0x00
+/* Rotation */ .float    0.0, 270.0
+/* Position */ .float 3456.0, -1075.2, 1587.2
+/* Ripple Magnitude */ .float    0.0,   10.0,    30.0
+.float    1.0,   1.0,   0.98
+.float    0.0
 .float   0.05,  0.05  ,  0.0,    15.0
 .float   15.0,   0.0,    0.0,     0.0
 .word inside_castle_seg7_painting_dl_070235B8
@@ -1421,21 +1422,21 @@ glabel inside_castle_seg7_painting_struct_07023968 # 0x07023968 - 0x070239E0
 .word inside_castle_seg7_painting_textures_070235F4
 .hword 32, 32
 .word inside_castle_seg7_painting_dl_07022640
-.byte 0x14, 0xB4, 0x00, 0x00, 0x00
+.byte RIPPLE_TRIGGER_CONTINUOUS, 0xB4, 0x00, 0x00, 0x00
 .byte 0x00, 0x00, 0x00
 .float 819.2
 
-glabel inside_castle_seg7_painting_struct_070239E0 # 0x070239E0 - 0x07023A58
-.hword 0x0008
-.byte 0x02
-.byte 0x00
-.byte 0x00
-.byte 0x00
-.byte 0x00
-.byte 0x00
-.float     0.0,     0.0, -966.656, 1305.6
-.float -143.36,     0.0,     20.0,   80.0
-.float     1.0,  0.9608,   0.9524,    0.0
+glabel wdw_painting # 0x070239E0 - 0x07023A58
+/* id */ .hword 0x0008
+/* Face Count */ .byte 0x02
+/* Ripple Shape */ .byte RIPPLE_SHAPE_WAVE
+/* Floor Status */ .byte 0x00, 0x00, 0x00 /* which of the painting's nearby special floors Mario's on */
+/* Ripple Status */ .byte 0x00
+/* Rotation */ .float     0.0,     0.0
+/* Position */ .float -966.656, 1305.6, -143.36
+/* Ripple Magnitude */ .float     0.0,     20.0,   80.0
+.float     1.0,  0.9608,   0.9524
+.float     0.0
 .float    0.24,    0.14,      0.0,   40.0
 .float    30.0,     0.0,      0.0,    0.0
 .word inside_castle_seg7_painting_dl_07023290
@@ -1443,21 +1444,21 @@ glabel inside_castle_seg7_painting_struct_070239E0 # 0x070239E0 - 0x07023A58
 .word inside_castle_seg7_painting_textures_070235F8
 .hword 64, 32
 .word inside_castle_seg7_painting_dl_07021AC0
-.byte 0x0A, 0xFF, 0x00, 0x00, 0x00
+.byte RIPPLE_TRIGGER_PROXIMITY, 0xFF, 0x00, 0x00, 0x00
 .byte 0x00, 0x00, 0x00
 .float 614.0
 
-glabel inside_castle_seg7_painting_struct_07023A58 # 0x07023A58 - 0x07023AD0
-.hword 0x0009
-.byte 0x02
-.byte 0x00
-.byte 0x00
-.byte 0x00
-.byte 0x00
-.byte 0x00
-.float     0.0,   180.0, -4598.7842, 1354.752
-.float 3005.44,     0.0,       20.0,     80.0
-.float     1.0,  0.9608,     0.9524,      0.0
+glabel thi_tiny_painting # 0x07023A58 - 0x07023AD0
+/* id */ .hword 0x0009
+/* Face Count */ .byte 0x02
+/* Ripple Shape */ .byte RIPPLE_SHAPE_WAVE
+/* Floor Status */ .byte 0x00, 0x00, 0x00 /* which of the painting's nearby special floors Mario's on */
+/* Ripple Status */ .byte 0x00
+/* Rotation */ .float     0.0,   180.0
+/* Position */ .float -4598.7842, 1354.752, 3005.44
+/* Ripple Magnitude */ .float     0.0,       20.0,     80.0
+.float     1.0,  0.9608,     0.9524
+.float     0.0
 .float    0.24,    0.14,        0.0,     40.0
 .float    30.0,     0.0,        0.0,      0.0
 .word inside_castle_seg7_painting_dl_070232F0
@@ -1465,20 +1466,19 @@ glabel inside_castle_seg7_painting_struct_07023A58 # 0x07023A58 - 0x07023AD0
 .word inside_castle_seg7_painting_textures_07023600
 .hword 64, 32
 .word inside_castle_seg7_painting_dl_07021AC0
-.byte 0x0A, 0xFF, 0x00, 0x00, 0x00
+.byte RIPPLE_TRIGGER_PROXIMITY, 0xFF, 0x00, 0x00, 0x00
 .byte 0x00, 0x00, 0x00
 .float 393.216
 
-glabel inside_castle_seg7_painting_struct_07023AD0 # 0x07023AD0 - 0x07023B48
-.hword 0x000A
-.byte 0x02
-.byte 0x00
-.byte 0x00
-.byte 0x00
-.byte 0x00
-.byte 0x00
-.float      0.0,   180.0, -546.816, 1356.8
-.float 3813.376,     0.0,     20.0,   80.0
+glabel ttm_painting # 0x07023AD0 - 0x07023B48
+/* id */ .hword 0x000A
+/* Face Count */ .byte 0x02
+/* Ripple Shape */ .byte RIPPLE_SHAPE_WAVE
+/* Floor Status */ .byte 0x00, 0x00, 0x00 /* which of the painting's nearby special floors Mario's on */
+/* Ripple Status */ .byte 0x00
+/* Rotation */ .float      0.0,   180.0
+/* Position */ .float -546.816, 1356.8, 3813.376
+/* Ripple Magnitude */ .float      0.0,     20.0,   80.0
 .float      1.0,  0.9608,   0.9524,    0.0
 .float     0.24,    0.14,      0.0,   40.0
 .float     30.0,     0.0,      0.0,    0.0
@@ -1487,20 +1487,19 @@ glabel inside_castle_seg7_painting_struct_07023AD0 # 0x07023AD0 - 0x07023B48
 .word inside_castle_seg7_painting_textures_07023608
 .hword 64, 32
 .word inside_castle_seg7_painting_dl_07021AC0
-.byte 0x0A, 0xFF, 0x00, 0x00, 0x00
+.byte RIPPLE_TRIGGER_PROXIMITY, 0xFF, 0x00, 0x00, 0x00
 .byte 0x00, 0x00, 0x00
 .float 256.0
 
-glabel inside_castle_seg7_painting_struct_07023B48 # 0x07023B48 - 0x07023BC0
-.hword 0x000B
-.byte 0x02
-.byte 0x00
-.byte 0x00
-.byte 0x00
-.byte 0x00
-.byte 0x00
-.float       0.0,   180.0,    0.0, 2713.6
-.float 7232.5122,     0.0,   20.0,   80.0
+glabel ttc_painting # 0x07023B48 - 0x07023BC0
+/* id */ .hword 0x000B
+/* Face Count */ .byte 0x02
+/* Ripple Shape */ .byte RIPPLE_SHAPE_WAVE
+/* Floor Status */ .byte 0x00, 0x00, 0x00 /* which of the painting's nearby special floors Mario's on */
+/* Ripple Status */ .byte 0x00
+/* Rotation */ .float       0.0,   180.0
+/* Position */ .float 0.0, 2713.6, 7232.5122
+/* Ripple Magnitude */ .float       0.0,   20.0,   80.0
 .float       1.0,  0.9608, 0.9524,    0.0
 .float      0.24,    0.14,    0.0,   40.0
 .float      30.0,     0.0,    0.0,    0.0
@@ -1509,20 +1508,19 @@ glabel inside_castle_seg7_painting_struct_07023B48 # 0x07023B48 - 0x07023BC0
 .word inside_castle_seg7_painting_textures_07023610
 .hword 64, 32
 .word inside_castle_seg7_painting_dl_07021AC0
-.byte 0x0A, 0xFF, 0x00, 0x00, 0x00
+.byte RIPPLE_TRIGGER_PROXIMITY, 0xFF, 0x00, 0x00, 0x00
 .byte 0x00, 0x00, 0x00
 .float 409.6
 
-glabel inside_castle_seg7_painting_struct_07023BC0 # 0x07023BC0 - 0x07023C38
-.hword 0x000C
-.byte 0x02
-.byte 0x00
-.byte 0x00
-.byte 0x00
-.byte 0x00
-.byte 0x00
-.float     0.0,     0.0, 3179.52, 1408.0
-.float -271.36,     0.0,    20.0,   80.0
+glabel sl_painting # 0x07023BC0 - 0x07023C38
+/* id */ .hword 0x000C
+/* Face Count */ .byte 0x02
+/* Ripple Shape */ .byte RIPPLE_SHAPE_WAVE
+/* Floor Status */ .byte 0x00, 0x00, 0x00 /* which of the painting's nearby special floors Mario's on */
+/* Ripple Status */ .byte 0x00
+/* Rotation */ .float     0.0,     0.0
+/* Position */ .float 3179.52, 1408.0, -271.36
+/* Ripple Magnitude */ .float     0.0,    20.0,   80.0
 .float     1.0,  0.9608,  0.9524,    0.0
 .float    0.24,    0.14,     0.0,   40.0
 .float    30.0,     0.0,     0.0,    0.0
@@ -1531,20 +1529,19 @@ glabel inside_castle_seg7_painting_struct_07023BC0 # 0x07023BC0 - 0x07023C38
 .word inside_castle_seg7_painting_textures_07023618
 .hword 64, 32
 .word inside_castle_seg7_painting_dl_07021AC0
-.byte 0x0A, 0xFF, 0x00, 0x00, 0x00
+.byte RIPPLE_TRIGGER_PROXIMITY, 0xFF, 0x00, 0x00, 0x00
 .byte 0x00, 0x00, 0x00
 .float 716.8
 
-glabel inside_castle_seg7_painting_struct_07023C38 # 0x07023C38 - 0x07023CB0
-.hword 0x000D
-.byte 0x02
-.byte 0x00
-.byte 0x00
-.byte 0x00
-.byte 0x00
-.byte 0x00
-.float      0.0,     0.0, -5614.5918, 1510.4
-.float -3292.16,     0.0,       40.0,  160.0
+glabel thi_huge_painting # 0x07023C38 - 0x07023CB0
+/* id */ .hword 0x000D
+/* Face Count */ .byte 0x02
+/* Ripple Shape */ .byte RIPPLE_SHAPE_WAVE
+/* Floor Status */ .byte 0x00, 0x00, 0x00 /* which of the painting's nearby special floors Mario's on */
+/* Ripple Status */ .byte 0x00
+/* Rotation */ .float      0.0,     0.0
+/* Position */ .float -5614.5918, 1510.4, -3292.16
+/* Ripple Magnitude */ .float      0.0,       40.0,  160.0
 .float      1.0,  0.9608,     0.9524,    0.0
 .float     0.12,    0.07,        0.0,   80.0
 .float     60.0,     0.0,        0.0,    0.0
@@ -1553,6 +1550,6 @@ glabel inside_castle_seg7_painting_struct_07023C38 # 0x07023C38 - 0x07023CB0
 .word inside_castle_seg7_painting_textures_07023600
 .hword 64, 32
 .word inside_castle_seg7_painting_dl_07021AC0
-.byte 0x0A, 0xFF, 0x00, 0x00, 0x00
+.byte RIPPLE_TRIGGER_PROXIMITY, 0xFF, 0x00, 0x00, 0x00
 .byte 0x00, 0x00, 0x00
 .float 1638.4

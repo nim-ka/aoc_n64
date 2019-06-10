@@ -17,50 +17,6 @@ struct Controller
   /*0x18*/ OSContPad *controllerData;
 };
 
-struct PaintingData
-{
-    s16 unk0;
-    s8 faceCount;
-    s8 unk3;
-    s8 unk4;
-    s8 unk5;
-    s8 unk6;
-    s8 unk7;
-    float unk8;
-    float unkC;
-    float unk10;
-    float unk14;
-    float unk18;
-    float unk1C;
-    float unk20;
-    float unk24;
-    float unk28;
-    float unk2C;
-    float unk30;
-    float unk34;
-    float unk38;
-    float unk3C;
-    float unk40;
-    float unk44;
-    float unk48;
-    float unk4C;
-    float unk50;
-    float unk54;
-    Gfx *displayList58;
-    u16 **meshData;
-    u8 **textureArray;
-    s16 textureWidth;
-    s16 textureHeight;
-    Gfx *displayList68;
-    s8 unk6C;
-    u8 unk6D;
-    s8 unk6E;
-    s8 unk6F;
-    s8 unk70;
-    u8 filler71[3];
-    float unk74;
-};
-
 typedef f32 Vec2f[2];
 typedef f32 Vec3f[3];
 typedef s16 Vec3s[3];

@@ -35,7 +35,7 @@ void bhv_bowser_key_2_loop(void)
 #ifndef VERSION_JP
             PlaySound2(SOUND_GENERAL_UNKNOWN3_2);
 #else
-            PlaySound2(SOUND_GENERAL_UNKNOWN3_LOWPRIO);	
+            PlaySound2(SOUND_GENERAL_UNKNOWN3_LOWPRIO);    
 #endif
     }
     else

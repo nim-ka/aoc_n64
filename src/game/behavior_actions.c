@@ -29,6 +29,7 @@
 #include "object_constants.h"
 #include "mario_step.h"
 #include "obj_behaviors_2.h"
+#include "paintings.h"
 #include "platform_displacement.h"
 #include "interaction.h"
 #include "ingame_menu.h"

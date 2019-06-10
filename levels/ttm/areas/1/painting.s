@@ -1,3 +1,5 @@
+.include "painting_constants.inc"
+
 ttm_seg7_light_070122F0: # 0x070122F0 - 0x070122F8
 .byte 0x50, 0x50, 0x50, 0x00, 0x50, 0x50, 0x50, 0x00
 
@@ -524,17 +526,17 @@ gsSPEndDisplayList
 ttm_seg7_painting_textures_07012EF8: # 0x07012EF8 - 0x07012F78
 .word ttm_seg7_texture_07004000, ttm_seg7_texture_07003000
 
-glabel ttm_seg7_painting_struct # 0x07012F00 (PaintingData)
-.hword 0x0000
-.byte 0x02
-.byte 0x00
-.byte 0x00
-.byte 0x00
-.byte 0x00
-.byte 0x00
-.float    0.0,   90.0, 3072.0, 921.6
-.float -819.2,    0.0,   20.0,  80.0
-.float    1.0, 0.9608, 0.9524,   0.0
+glabel ttm_slide_painting # 0x07012F00 (PaintingData)
+/* id */ .hword 0x0000
+/* Face Count */ .byte 0x02
+/* Ripple Shape */ .byte RIPPLE_SHAPE_WAVE
+/* Floor Status */ .byte 0x00, 0x00, 0x00 /* which of the painting's nearby special floors Mario's on */
+/* Ripple Status */ .byte 0x00
+/* Rotation */ .float    0.0,   90.0
+/* Position */ .float 3072.0, 921.6, -819.2
+/* Ripple Magnitude */ .float    0.0,   20.0,  80.0
+.float    1.0, 0.9608, 0.9524
+.float    0.0
 .float   0.24,   0.14,    0.0,  40.0
 .float   30.0,    0.0,    0.0,   0.0
 .word ttm_seg7_painting_dl_07012E98
@@ -542,6 +544,6 @@ glabel ttm_seg7_painting_struct # 0x07012F00 (PaintingData)
 .word ttm_seg7_painting_textures_07012EF8
 .hword 64, 32
 .word ttm_seg7_painting_dl_07012430
-.byte 0x0A, 0xFF, 0x00, 0x00, 0x00
+.byte RIPPLE_TRIGGER_PROXIMITY, 0xFF, 0x00, 0x00, 0x00
 .byte 0x00, 0x00, 0x00
 .float 460.8

@@ -24,6 +24,7 @@
 #include "behavior_actions.h"
 #include "behavior_data.h"
 #include "object_list_processor.h"
+#include "paintings.h"
 #include "prevent_bss_reordering.h"
 
 #define CBUTTON_MASK (U_CBUTTONS | D_CBUTTONS | L_CBUTTONS | R_CBUTTONS)
@@ -8474,23 +8475,23 @@ void CutsceneEnterPainting0(struct LevelCamera *c)
     set_fov_function(6);
     gCameraFlags2 |= CAM_FLAG_2_SMOOTH_MOVEMENT;
 
-    if (D_8035FFA8 != NULL)
+    if (ripplingPainting != NULL)
     {
         sp24[0] = 0;
-        sp24[1] = (D_8035FFA8->unkC / 360.f) * 65536.f;
+        sp24[1] = (ripplingPainting->vYRotation / 360.f) * 65536.f; // convert degrees to IAU
         sp24[2] = 0;
 
-        sp2C[0] = D_8035FFA8->unk74 / 2.0f;
+        sp2C[0] = ripplingPainting->vSize / 2.0f;
         sp2C[1] = sp2C[0];
         sp2C[2] = 0;
-
-        sp44[0] = D_8035FFA8->unk10;
-        sp44[1] = D_8035FFA8->unk14;
-        sp44[2] = D_8035FFA8->unk18;
+        
+        sp44[0] = ripplingPainting->vXPos;
+        sp44[1] = ripplingPainting->vYPos;
+        sp44[2] = ripplingPainting->vZPos;
 
         set_pos_from_face_angle_and_vec3f(sp38, sp44, sp2C, sp24);
         approach_vec3f_exponential(c->focus, sp38, 0.1f, 0.1f, 0.1f);
-        sp2C[2] = -(((D_8035FFA8->unk74 * 1000.f) / 2.0f) / 307.f);
+        sp2C[2] = -(((ripplingPainting->vSize * 1000.f) / 2.0f) / 307.f);
         set_pos_from_face_angle_and_vec3f(sp38, sp44, sp2C, sp24);
         floorHeight = find_floor(sp38[0], sp38[1] + 500.f, sp38[2], &highFloor) + 125.f;
 

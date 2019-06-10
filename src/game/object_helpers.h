@@ -121,7 +121,7 @@ extern void* D_060576FC;
 // extern ? D_8032F738;
 // extern ? D_8032F728;
 // extern ? D_8032F754;
-extern s8 D_8035FFAC;
+extern s8 dddStatus;
 // extern ? D_8035FEE8;
 // extern ? D_8032F77C;
 // extern ? TableUkikiOpenCageActions;

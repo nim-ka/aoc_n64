@@ -11,6 +11,7 @@
 #include "print.h"
 #include "save_file.h"
 #include "sound_init.h"
+#include "paintings.h"
 
 Vec3f D_80339DC0;
 OSMesgQueue gSoundMesgQueue;
@@ -124,7 +125,7 @@ void func_80248E24(s16 a)
 
 void func_80248FBC(void)
 {
-    if (D_8035FFA8 != NULL && D_8035FFA8->unk7 == 2)
+    if (ripplingPainting != NULL && ripplingPainting->rippleStatus == 2) // ripple when Mario enters painting
     {
         if (D_8032C780 == 0)
             SetSound(SOUND_UNKNOWN_UNK3828, gMarioStates[0].marioObj->header.gfx.cameraToObject);

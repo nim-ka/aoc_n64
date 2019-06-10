@@ -772,7 +772,7 @@ void func_80190574(s32 a0, struct ObjJoint *a1, struct ObjJoint *a2, f32 x, f32 
             sp274 = sp26C;
             sp26C = sp270;
         } while (sp220);
-		printf("Exit");
+        printf("Exit");
         // probably sp274(sp26C) because it would make sense to print
         // the iterations of both of these loops.
         printf(" %d(%d)", sp274->id, sp26C->id);

@@ -97,13 +97,13 @@ void bhv_coin_loop(void)
 #ifndef VERSION_JP
         if(o->oMoveFlags & (OBJ_MOVE_ABOVE_DEATH_BARRIER | OBJ_MOVE_ABOVE_LAVA))
 #else
-        if(o->oMoveFlags & OBJ_MOVE_ABOVE_LAVA)	
+        if(o->oMoveFlags & OBJ_MOVE_ABOVE_LAVA)    
 #endif
             mark_object_for_deletion(o);
     }
 #ifndef VERSION_JP
     if(o->oMoveFlags & OBJ_MOVE_13) {
-		    if(o->oUnk1B0 < 5)
+            if(o->oUnk1B0 < 5)
             PlaySound2(0x30364081);
         o->oUnk1B0++;
     }

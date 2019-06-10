@@ -6,7 +6,7 @@ void bhv_cannon_closed_init(void)
 
     if (save_file_is_cannon_unlocked() == 1)
     {
-		// If the cannon is open, spawn a cannon and despawn the object.
+        // If the cannon is open, spawn a cannon and despawn the object.
         cannon = spawn_object(o, MODEL_CANNON_BASE, bhvCannon);
         cannon->oBehParams2ndByte = o->oBehParams2ndByte;
         cannon->oPosX = o->oHomeX;

@@ -1,3 +1,5 @@
+.include "painting_constants.inc"
+
 hmc_seg7_light_070241B8: # 0x070241B8 - 0x070241C0
 .byte 0x50, 0x50, 0x50, 0x00, 0x50, 0x50, 0x50, 0x00
 
@@ -495,17 +497,17 @@ gsSPEndDisplayList
 glabel hmc_seg7_painting_textures_07025518 # 0x07025518 - 0x07025594
 .word hmc_seg7_texture_07024CE0
 
-glabel hmc_seg7_painting_struct # 0x0702551C (PaintingData)
-.hword 0x000E
-.byte 0x01
-.byte 0x01
-.byte 0x00
-.byte 0x00
-.byte 0x00
-.byte 0x00
-.float 270.0,  0.0,  2989.055908, -4485.120117
-.float 5135.359863,  0.0,  10.0,  30.0
-.float 1.0,  1.0,  0.98,  0.0
+glabel cotmc_painting # 0x0702551C (PaintingData)
+/* id */ .hword 0x000E
+/* Face Count */ .byte 0x01
+/* Ripple Shape */ .byte RIPPLE_SHAPE_CONCENTRIC
+/* Floor Status */ .byte 0x00, 0x00 , 0x00 /* which of the painting's nearby special floors Mario's on */
+/* Ripple Status */ .byte 0x00
+/* Rotation */ .float 270.0,  0.0
+/* Position */ .float 2989.055908, -4485.120117, 5135.359863
+/* Ripple Magnitude */ .float 0.0,  10.0,  30.0
+.float 1.0,  1.0,  0.98
+.float 0.0
 .float 0.05,  0.05,  0.0,  15.0
 .float 15.0,  0.0,  0.0,  0.0
 .word hmc_seg7_painting_dl_070254E0
@@ -513,6 +515,6 @@ glabel hmc_seg7_painting_struct # 0x0702551C (PaintingData)
 .word hmc_seg7_painting_textures_07025518
 .hword 32, 32
 .word hmc_seg7_painting_dl_070242D0
-.byte 0x14, 0xFF, 0x00, 0x00, 0x00
+.byte RIPPLE_TRIGGER_CONTINUOUS, 0xFF, 0x00, 0x00, 0x00
 .byte 0x00, 0x00, 0x00
 .float 723.968018

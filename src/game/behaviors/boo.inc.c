@@ -350,7 +350,7 @@ void ActionBoo0(void)
     o->oBooUnkF4 = 0xFF;
     if(boo_should_be_active())
     {
-		// Condition is met if the object is bhvPatrollingBoo or bhvSpawnedBoo2
+        // Condition is met if the object is bhvPatrollingBoo or bhvSpawnedBoo2
         if(o->oBehParams2ndByte == 2)
         {
             o->oBooUnk108 = 0;
