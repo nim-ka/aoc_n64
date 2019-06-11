@@ -48,7 +48,7 @@ u8 gWarpTransBlue = 0;
 s16 gCurrSaveFileNum = 1;
 s16 gCurrLevelNum = 1;
 
-static void *D_8032CE9C[] =
+void *D_8032CE9C[] =
 {
     bhvDoorWarp,
     bhvStar,
@@ -72,7 +72,7 @@ static void *D_8032CE9C[] =
     bhvWarps90,
 };
 
-static u8 D_8032CEEC[] =
+u8 D_8032CEEC[] =
 {
     MARIO_SPAWN_UNKNOWN_01,
     MARIO_SPAWN_UNKNOWN_02,
@@ -96,7 +96,7 @@ static u8 D_8032CEEC[] =
     MARIO_SPAWN_UNKNOWN_25,
 };
 
-static Vp D_8032CF00 =
+Vp D_8032CF00 =
 {{
     {640, 480, 511, 0},
     {640, 480, 511, 0},
@@ -112,7 +112,7 @@ void func_8027A220(Vp *a, Vp *b, u8 c, u8 d, u8 e)
     D_8032CE78 = b;
 }
 
-static void set_warp_transition_rgb(u8 red, u8 green, u8 blue)
+void set_warp_transition_rgb(u8 red, u8 green, u8 blue)
 {
     u16 warpTransitionRGBA16 = ((red >> 3) << 11) | ((green >> 3) << 6) | ((blue >> 3) << 1) | 1;
 
@@ -163,14 +163,14 @@ struct ObjectWarpNode *area_get_warp_node(u8 id)
     return node;
 }
 
-static struct ObjectWarpNode *func_8027A478(struct Object *o)
+struct ObjectWarpNode *func_8027A478(struct Object *o)
 {
     u8 sp1F = (o->oBehParams & 0x00FF0000) >> 16;
 
     return area_get_warp_node(sp1F);
 }
 
-static void func_8027A4C4(void)
+void func_8027A4C4(void)
 {
     struct ObjectWarpNode *sp24;
     struct Object *sp20 = (struct Object *) D_8038BD88.children;

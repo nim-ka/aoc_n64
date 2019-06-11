@@ -36,8 +36,8 @@ ifeq ($(VERSION),eu)
   $(warning Building EU is experimental and is prone to breaking. Try at your own risk.)
   VERSION_CFLAGS := -DVERSION_EU=1
   VERSION_ASFLAGS := --defsym VERSION_US=1 --defsym VERSION_EU=1
-  GRUCODE_CFLAGS := -DF3D_OLD
-  GRUCODE_ASFLAGS := --defsym F3D_OLD=1
+  GRUCODE_CFLAGS := -DF3D_NEW
+  GRUCODE_ASFLAGS := --defsym F3D_NEW=1
   TARGET := sm64.eu
 else
   $(error unknown version "$(VERSION)")

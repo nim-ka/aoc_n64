@@ -14,16 +14,24 @@
 s16 D_8033A770;
 Mat4 D_8033A778[32];
 void *D_8033AF78[32];
-u8 D_8033AFF8;
-u8 D_8033AFF9;
-s16 D_8033AFFA;
-f32 D_8033AFFC;
-u16 *D_8033B000;
-s16 *D_8033B004;
+
+struct UnkRenderingStruct {
+    /*0x00*/ u8 unk0;
+    /*0x01*/ u8 unk1;
+    /*0x02*/ s16 unk2;
+    /*0x04*/ f32 unk4;
+    /*0x08*/ u16 *unk8;
+    /*0x0C*/ s16 *unkC;
+};
+
+struct UnkRenderingStruct gUnkRenderingStruct;
+
+// for some reason, this is an UnkRenderingStruct, but it is not a struct, as
+// it won't match EU otherwise. Only the first set is a struct.
 u8 D_8033B008;
 u8 D_8033B009;
 s16 D_8033B00A;
-float D_8033B00C;
+f32 D_8033B00C;
 u16 *D_8033B010;
 s16 *D_8033B014;
 struct AllocOnlyPool *D_8033B018;
@@ -184,7 +192,11 @@ void func_8027B6C4(struct GraphNodeCamFrustum *a)
     {
         u16 perspNorm;
         Mtx *mtx = alloc_display_list(sizeof(*mtx));
-        f32 aspect = (f32)D_8032CF90->width / (f32)D_8032CF90->height;
+#ifdef VERSION_EU
+        f32 aspect = ((f32)D_8032CF90->width / (f32)D_8032CF90->height) * 1.1f;
+#else
+        f32 aspect = ((f32)D_8032CF90->width / (f32)D_8032CF90->height);
+#endif
 
         guPerspective(mtx, &perspNorm, a->fov, aspect, a->near, a->far, 1.0f);
         gSPPerspNormalize(gDisplayListHead++, perspNorm);
@@ -693,12 +705,12 @@ void func_8027D4D4(struct GraphNode12E *a)
         D_8033A770++;
         mtxf_to_mtx(sp20, D_8033A778[D_8033A770]);
         D_8033AF78[D_8033A770] = sp20;
-        D_8033AFF8 = D_8033B008;
-        D_8033AFF9 = D_8033B009;
-        D_8033AFFA = D_8033B00A;
-        D_8033AFFC = D_8033B00C;
-        D_8033B000 = D_8033B010;
-        D_8033B004 = D_8033B014;
+        gUnkRenderingStruct.unk0 = D_8033B008;
+        gUnkRenderingStruct.unk1 = D_8033B009;
+        gUnkRenderingStruct.unk2 = D_8033B00A;
+        gUnkRenderingStruct.unk4 = D_8033B00C;
+        gUnkRenderingStruct.unk8 = D_8033B010;
+        gUnkRenderingStruct.unkC = D_8033B014;
         D_8033B008 = 0;
         D_8032CFA4 = (void *)a;
         if (a->unk1C->unk38.curAnim != NULL)
@@ -706,12 +718,12 @@ void func_8027D4D4(struct GraphNode12E *a)
         //L8027D7F8
         func_8027D8F8(a->unk1C->asGraphNode);
         D_8032CFA4 = NULL;
-        D_8033B008 = D_8033AFF8;
-        D_8033B009 = D_8033AFF9;
-        D_8033B00A = D_8033AFFA;
-        D_8033B00C = D_8033AFFC;
-        D_8033B010 = D_8033B000;
-        D_8033B014 = D_8033B004;
+        D_8033B008 = gUnkRenderingStruct.unk0;
+        D_8033B009 = gUnkRenderingStruct.unk1;
+        D_8033B00A = gUnkRenderingStruct.unk2;
+        D_8033B00C = gUnkRenderingStruct.unk4;
+        D_8033B010 = gUnkRenderingStruct.unk8;
+        D_8033B014 = gUnkRenderingStruct.unkC;
         D_8033A770--;
     }
     //L8027D884
