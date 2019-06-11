@@ -11,7 +11,7 @@
 .align 4, 0x00
 .incbin "assets/sound/jp/\bank/\name\.bin"
 .endif
-.ifdef VERSION_US
+.ifndef VERSION_JP
 .align 4, 0x00
 .incbin "assets/sound/us/\bank/\name\.bin"
 .endif
@@ -177,7 +177,7 @@ sound 07, 0A
 sound 07, 0B
 sound 07, 0C
 sound 07, 0D
-.ifdef VERSION_US
+.ifndef VERSION_JP
 sound 07, 0E # chain chomp
 .endif
 nlist_07_end:
@@ -199,7 +199,7 @@ sound 08, 0C
 sound 08, 0D
 sound 08, 0E
 sound 08, 0F
-.ifdef VERSION_US
+.ifndef VERSION_JP
 sound 08, 10 # doh
 sound 08, 11 # game over
 sound 08, 12 # hello
@@ -239,7 +239,7 @@ sound 0A, 0B
 sound 0A, 0C
 sound 0A, 0D
 sound 0A, 0E
-.ifdef VERSION_US
+.ifndef VERSION_JP
 sound 0A, 0F # dear mario
 sound 0A, 10 # mario
 sound 0A, 11 # power of the stars

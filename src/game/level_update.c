@@ -42,7 +42,13 @@
 #define WARP_NODE_CREDITS_MIN 0xF8
 
 #ifdef VERSION_EU
-extern void UncIndexCopy(s16, int, int);
+extern u8 language_text_bin_1_start[];
+extern u8 language_text_bin_2_start[];
+extern u8 language_text_bin_3_start[];
+extern u8 language_text_bin_1_end[];
+extern u8 language_text_bin_2_end[];
+extern u8 language_text_bin_3_end[];
+extern void UncIndexCopy(s16, void *, void *);
 extern int func_eu_8026B05C(void);
 #endif
 
@@ -1128,9 +1134,8 @@ s32 play_mode_change_level(void)
  * Unused play mode. Doesn't call transition update and doesn't reset transition
  * at the end.
  */
-s32 play_mode_unused(void)
+static s32 play_mode_unused(void)
 {
-#ifndef VERSION_EU
     if (--sTransitionTimer == -1)
     {
         gHudDisplay.flags = HUD_DISPLAY_NONE;
@@ -1142,7 +1147,6 @@ s32 play_mode_unused(void)
     }
 
     return 0;
-#endif
 }
 
 s32 update_level(void)
@@ -1265,13 +1269,13 @@ s32 lvl_init_from_save_file(UNUSED s16 arg0, s32 levelNum)
     s16 var = func_eu_8026B05C();
     switch (var) {
     case 0:
-        UncIndexCopy(25, 0xE49F0, 0xE9F50);
+        UncIndexCopy(0x19, language_text_bin_1_start, language_text_bin_1_end);
         break;
     case 1:
-        UncIndexCopy(25, 0xE9F50, 0xEF960);
+        UncIndexCopy(0x19, language_text_bin_2_start, language_text_bin_2_end);
         break;
     case 2:
-        UncIndexCopy(25, 0xEF960, 0xF5330);
+        UncIndexCopy(0x19, language_text_bin_3_start, language_text_bin_3_end);
         break;
     }
 #endif

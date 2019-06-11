@@ -188,7 +188,7 @@ void apply_mario_platform_displacement(void)
         apply_platform_displacement(1, platform);
 }
 
-#if defined(VERSION_US) || defined(VERSION_EU)
+#ifndef VERSION_JP
 /**
  * Set mario's platform to NULL.
  */

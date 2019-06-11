@@ -2655,7 +2655,7 @@ void init_camera(struct LevelCamera *c)
     switch (gCurrLevelNum)
     {
     case LEVEL_BOWSER_1:
-#if VERSION_US
+#ifndef VERSION_JP
         if (gCurrDemoInput == NULL)
             set_camera_cutscene_table(c, CUTSCENE_ENTER_BOWSER_ARENA);
         else if (gSecondCameraFocus != NULL)
@@ -4115,7 +4115,7 @@ s32 func_8028B3DC(struct LevelCamera *c, UNUSED f32 b)
         if (gCameraMovementFlags & CAM_MOVE_ZOOMED_OUT)
         {
             gCameraMovementFlags |= CAM_MOVE_UNK1000;
-#if VERSION_US
+#ifndef VERSION_JP
             play_camera_buzz_if_cdown();
 #endif
         }
@@ -4169,7 +4169,7 @@ void handle_c_button_movement(struct LevelCamera *a)
             {
                 gCameraMovementFlags |= CAM_MOVE_UNK1000;
                 D_8033B3F4 = gCameraZoomDist + 400.f;
-#if VERSION_US
+#ifndef VERSION_JP
                 play_camera_buzz_if_cdown();
 #endif
             }
@@ -4785,7 +4785,7 @@ void camera_change_hmc_maze_entrance(struct LevelCamera *c)
         vec3f_get_dist_and_angle(c->focus, gCameraStatus.camFocAndPosCurrAndGoal[3], &sp20, &sp26, &sp24);
         vec3f_set_dist_and_angle(c->focus, gCameraStatus.camFocAndPosCurrAndGoal[3], 300.f, sp26, sp24);
         gCameraStatus.camFocAndPosCurrAndGoal[3][1] = -800.f;
-#if VERSION_US
+#ifndef VERSION_JP
         c->pos[1] = gCameraStatus.camFocAndPosCurrAndGoal[3][1];
         gCameraStatus.camFocAndPosCurrAndGoal[1][1] = gCameraStatus.camFocAndPosCurrAndGoal[3][1];
 #endif
@@ -6037,7 +6037,7 @@ static void unused_8028FE50(UNUSED struct LevelCamera *a)
 
 static void CutsceneIntroPeach0_2(UNUSED struct LevelCamera *a)
 {
-#if VERSION_US
+#ifndef VERSION_JP
     func_8031FFB4(0, 60, 40);
 #endif
     func_8028B13C();
@@ -6045,7 +6045,7 @@ static void CutsceneIntroPeach0_2(UNUSED struct LevelCamera *a)
 
 static void CutsceneIntroPeach2_1(UNUSED struct LevelCamera *a)
 {
-#if VERSION_US
+#ifndef VERSION_JP
     func_80320040(0, 60);
 #endif
     func_8028B16C();
@@ -7566,7 +7566,7 @@ static void CutsceneDialog0_1(struct LevelCamera *c)
     func_80290564(c);
     set_time_stop_flags(TIME_STOP_ENABLED | TIME_STOP_UNKNOWN_2);
 
-#if VERSION_US
+#ifndef VERSION_JP
     if (c->currPreset == CAMERA_PRESET_BOSS_FIGHT)
     {
         vec3f_copy(D_8033B4B8.focus, c->focus);
@@ -8051,7 +8051,7 @@ static void peach_letter_text(UNUSED struct LevelCamera *c)
     func_802D7F90(20);
 }
 
-#if VERSION_US
+#ifndef VERSION_JP
 static void play_sound_peach_reading_letter(UNUSED struct LevelCamera *c)
 {
     SetSound(SOUND_PEACH_DEARMARIO, D_803320E0);
@@ -8113,7 +8113,7 @@ static void intro_pipe_exit_text(UNUSED struct LevelCamera *c)
     func_802D7F90(33);
 }
 
-#if VERSION_US
+#ifndef VERSION_JP
 static void play_sound_intro_turn_on_hud(UNUSED struct LevelCamera *c)
 {
     play_sound_rbutton_changed();
@@ -8122,7 +8122,7 @@ static void play_sound_intro_turn_on_hud(UNUSED struct LevelCamera *c)
 
 void CutsceneIntroPeach2(struct LevelCamera *c)
 {
-#if VERSION_US
+#ifndef VERSION_JP
     call_cutscene_func_in_time_range(play_sound_intro_turn_on_hud, c, 818, 818);
 #endif
     func_80299C60(6, 1);
@@ -8162,7 +8162,7 @@ void CutsceneIntroPeach0(struct LevelCamera *c)
     call_cutscene_func_in_time_range(CutsceneIntroPeach0_2, c, 65, 65);
     call_cutscene_func_in_time_range(CutsceneIntroPeachCommon, c, 0, 0);
     call_cutscene_func_in_time_range(peach_letter_text, c, 65, 65);
-#if VERSION_US
+#ifndef VERSION_JP
     call_cutscene_func_in_time_range(play_sound_peach_reading_letter, c, 83, 83);
 #endif
 
@@ -9843,7 +9843,7 @@ void BehBeginningLakituLoop(void)
 
         switch (gCurrentObject->oTimer)
         {
-#if VERSION_US
+#ifndef VERSION_JP
         case 534:
             PlaySound2(SOUND_ACTION_UNKNOWN456);
             break;
@@ -9907,7 +9907,7 @@ void BehBeginningLakituLoop(void)
             mark_object_for_deletion(gCurrentObject);
             mark_object_for_deletion(gCurrentObject->oUnk1AC_VPTR);
         }
-#if VERSION_US
+#ifndef VERSION_JP
         if (gCurrentObject->oTimer == 14)
             PlaySound2(SOUND_ACTION_UNKNOWN45F);
 #endif

@@ -85,7 +85,7 @@ extern void disable_time_stop_including_mario(void);
 s32 obj_check_interacted(void);
 void obj_spawn_loot_blue_coin(void);
 
-#if defined(VERSION_US) || defined(VERSION_EU)
+#ifndef VERSION_JP
 void obj_spawn_star_at_y_offset(f32 f12, f32 f14, f32 a2, f32 a3);
 #endif
 

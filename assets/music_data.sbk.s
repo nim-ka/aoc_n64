@@ -45,7 +45,7 @@ seq_table seq_1E
 seq_table seq_1F
 seq_table seq_20
 seq_table seq_21
-.ifdef VERSION_US
+.ifndef VERSION_JP
 seq_table seq_22
 .endif
 music_sequence_table_end:
@@ -61,7 +61,7 @@ music_sequence_table_end:
 .ifdef VERSION_JP
 .incbin "assets/music/jp/\name\().m64"
 .endif
-.ifdef VERSION_US
+.ifndef VERSION_JP
 .incbin "assets/music/us/\name\().m64"
 .endif
 \name\()_end:
@@ -101,7 +101,7 @@ sequence seq_1E
 sequence seq_1F
 sequence seq_20
 sequence seq_21
-.ifdef VERSION_US
+.ifndef VERSION_JP
 sequence seq_22
 .endif
 
@@ -150,7 +150,7 @@ instruments instrument_set_1E
 instruments instrument_set_1F
 instruments instrument_set_20
 instruments instrument_set_21
-.ifdef VERSION_US
+.ifndef VERSION_JP
 instruments instrument_set_22
 .endif
 
@@ -222,7 +222,7 @@ instrument_set_20:
 .byte 0x01, 0x23
 instrument_set_21:
 .byte 0x01, 0x24
-.ifdef VERSION_US
+.ifndef VERSION_JP
 instrument_set_22:
 .byte 0x01, 0x1B
 .endif

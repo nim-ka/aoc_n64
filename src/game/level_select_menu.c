@@ -83,7 +83,7 @@ static char gLevelSelect_StageNamesText[64][16] = {
 };
 
 static u16 gDemoCountdown = 0;
-#if defined(VERSION_US) || defined(VERSION_EU)
+#ifndef VERSION_JP
 static s16 D_U_801A7C34 = 1;
 static s16 gameOverNotPlayed = 1;
 #endif

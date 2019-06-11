@@ -1732,14 +1732,8 @@ s32 act_squished(struct MarioState *m)
                     func_80250F50(m, SOUND_MARIO_ATTACKED, MARIO_UNKNOWN_17);
                 }
 
-                /*! @bug This is weird. One of the 1.8 values is definitely a
-               *  double instead of a float. The reason is that in the EU
-               *  build, O2 makes this distinction matter due to failing to
-               *  optimize the double same hex value loads away. Because of
-               *  this, we can't be sure which 1.8 is the typo'd value, but
-               *  its required to match anyway. This ends up having no impact
-               *  on the code. Way to go Nintendo.
-               */
+                // Both of the 1.8's are really floats, but one of them has to
+                // be written as a double for this to match on EU.
                 vec3f_set(m->marioObj->header.gfx.scale, 1.8, 0.05f, 1.8f);
                 m->actionState = 1;
             }

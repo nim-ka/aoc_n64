@@ -343,7 +343,7 @@ void func_802B4144(void)
     }
 }
 
-#if defined(VERSION_US) || defined(VERSION_EU)
+#ifndef VERSION_JP
 void func_u_802B4AF4(void)
 {
     if(o->oVelY < 0 && o->oPosY < (o->oHomeY - 300.0f))

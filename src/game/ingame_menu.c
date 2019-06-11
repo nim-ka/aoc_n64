@@ -250,7 +250,7 @@ void func_802D6AFC(u8 c)
     gSPDisplayList(gDisplayListHead++, dl_ia8_render_char);
 }
 
-#if defined(VERSION_US) || defined(VERSION_EU)
+#ifndef VERSION_JP
 struct MultiTextEntry {
     u8 length;
     u8 str[4];
@@ -583,7 +583,7 @@ s16 get_str_x_pos_from_center(s16 centerPos, u8 *str, UNUSED f32 scale) // scale
 #endif
 }
 
-#if defined(VERSION_US) || defined(VERSION_EU)
+#ifndef VERSION_JP
 // get_str_width
 s16 func_u_802D8934(u8 *str)
 {
@@ -875,7 +875,7 @@ void func_802D8830(s8 *sp20, s16 *sp24)
     sp20[0] = 1;
 }
 
-#if defined(VERSION_US) || defined(VERSION_EU)
+#ifndef VERSION_JP
 void func_u_802D9634(s8 a0, s8 a1, s16 *a2, s8 a3, s8 sp10, s8 sp14)
 {
     s8 i;
@@ -1462,7 +1462,7 @@ void do_cutscene_handler(void)
     gCutsceneMsgTimer++;
 }
 
-#if defined(VERSION_US) || defined(VERSION_EU)
+#ifndef VERSION_JP
 extern Gfx castle_grounds_seg7_us_dl_0700F2E8[];
 #endif
 

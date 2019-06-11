@@ -23,7 +23,7 @@ glabel gDemoInputs
 
 .align 3, 0x00
 demo_entry_start:
-.ifdef VERSION_US
+.ifndef VERSION_JP
 demo  bitdw # Bowser in the Dark World
 .endif
 demo2 wf # Whomp's Fortress (the size is too large, but the demo ends before it can use the PSS demo inputs.)
@@ -43,6 +43,6 @@ demofile pss
 demofile unused # might be an unused demo, but it doesn't define a header, so it cant be
                 # normally called. speculation: "blooper" take for CCM. Mario runs into
                 # the sign and aligns himself as if it were a mistake.
-.ifdef VERSION_US
+.ifndef VERSION_JP
 demofile bitdw
 .endif

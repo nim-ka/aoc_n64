@@ -564,11 +564,12 @@ s32 act_ledge_grab(struct MarioState *m)
             m->hurtCounter += (m->flags & MARIO_CAP_ON_HEAD) ? 12 : 18;
         return let_go_of_ledge(m);
     }
-    #ifdef VERSION_EU
-    if (m->actionTimer == 10 && (m->input & INPUT_NONZERO_ANALOG) && !(m->input & INPUT_A_DOWN)) // On PAL, you can't slow climb up ledges while holding A.
-    #else
+#ifdef VERSION_EU
+    // On PAL, you can't slow climb up ledges while holding A.
+    if (m->actionTimer == 10 && (m->input & INPUT_NONZERO_ANALOG) && !(m->input & INPUT_A_DOWN))
+#else
     if (m->actionTimer == 10 && (m->input & INPUT_NONZERO_ANALOG))
-    #endif
+#endif
     {
         if (intendedDYaw >= -0x4000 && intendedDYaw <= 0x4000)
         {

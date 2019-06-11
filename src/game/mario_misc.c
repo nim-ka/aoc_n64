@@ -27,6 +27,9 @@
 static s8 D_8032CDF0[7] = {0x01, 0x02, 0x01, 0x00, 0x01, 0x02, 0x01};
 static s8 D_8032CDF8[] = {0x0a, 0x0c, 0x10, 0x18, 0x0a, 0x0a, 0x0a, 0x0e, 0x14, 0x1e, 0x0a, 0x0a, 0x0a, 0x10, 0x14, 0x1a, 0x1a, 0x14, 0x00, 0x00};
 
+struct GraphNodeObject D_80339FE0;
+struct MarioBodyState D_8033A040[2]; // 2nd is never accessed in practice, most likely Luigi related
+
 // This whole file is weirdly organized. It has to be the same file due
 // to rodata boundries and function aligns, which means the programmer
 // treated this like a "misc" file for vaguely mario related things
@@ -427,9 +430,6 @@ Gfx *Geo18_802775CC(s32 run, struct GraphNode *node, UNUSED Mat4 *c)
     }
     return NULL;
 }
-
-struct GraphNodeObject D_80339FE0;
-struct MarioBodyState D_8033A040[2]; // 2nd is never accessed in practice, most likely Luigi related
 
 s32 geo_switch_mario_cap_effect(s32 run, struct GraphNode *node, UNUSED Mat4 *c)
 {

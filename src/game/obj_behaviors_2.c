@@ -844,17 +844,11 @@ static void obj_die_if_health_non_positive(void)
     }
 }
 
-#ifndef VERSION_EU
-// This was probably in PAL as well, but removed by the compiler due to being
-// 'static' and unused. Ifdef it to support the '#define static' hack.
-
 static void obj_unused_die(void)
 {
     o->oHealth = 0;
     obj_die_if_health_non_positive();
 }
-
-#endif
 
 static void obj_set_knockback_action(s32 attackType)
 {

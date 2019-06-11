@@ -438,12 +438,12 @@ void turn_off_audio(void)
  */
 void thread1_idle(UNUSED void *arg)
 {
-#if VERSION_US
+#ifdef VERSION_US
     s32 sp24 = osTvType;
 #endif
 
     osCreateViManager(OS_PRIORITY_VIMGR);
-#if VERSION_US
+#ifdef VERSION_US
     if (sp24 == TV_TYPE_NTSC)
         osViSetMode(&osViModeTable[OS_VI_NTSC_LAN1]);
     else
