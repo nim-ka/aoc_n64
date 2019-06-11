@@ -37,12 +37,18 @@ extern s8 gLevelToCourseNumTable[LEVEL_MAX];
 #define SAVE_FLAG_CAP_ON_MR_BLIZZARD     /* 0x080000 */ (1 << 19)
 #define SAVE_FLAG_UNLOCKED_50_STAR_DOOR  /* 0x100000 */ (1 << 20)
 
-// Variables for setting a warp checkpoint.
-extern u8 gWarpCheckpointActNum;
-extern u8 gWarpCheckpointCourseNum;
-extern u8 gWarpCheckpointLevelID;
-extern u8 gWarpCheckpointAreaNum;
-extern u8 gWarpCheckpointWarpNode;
+// Variable for setting a warp checkpoint.
+
+// possibly a WarpDest struct where arg is a union. TODO: Check?
+struct WarpCheckpoint {
+    /*0x00*/ u8 actNum;
+    /*0x01*/ u8 courseNum;
+    /*0x02*/ u8 levelID;
+    /*0x03*/ u8 areaNum;
+    /*0x04*/ u8 warpNode;
+};
+
+extern struct WarpCheckpoint gWarpCheckpoint;
 
 extern s8 gMainMenuDataModified;
 extern s8 gSaveFileModified;

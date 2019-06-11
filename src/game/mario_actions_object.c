@@ -14,10 +14,10 @@
  * Used by act_punching() to determine Mario's forward velocity during each
  * animation frame.
  */
-static s8 sPunchingForwardVelocities[8] = {0, 1, 1, 2, 3, 5, 7, 10};
+s8 sPunchingForwardVelocities[8] = {0, 1, 1, 2, 3, 5, 7, 10};
 
 
-static void animated_stationary_ground_step(struct MarioState *m, s32 animation, u32 endAction)
+void animated_stationary_ground_step(struct MarioState *m, s32 animation, u32 endAction)
 {
     stationary_ground_step(m);
     set_mario_animation(m, animation);
@@ -130,7 +130,7 @@ s32 mario_update_punch_sequence(struct MarioState *m)
     return FALSE;
 }
 
-static s32 act_punching(struct MarioState *m)
+s32 act_punching(struct MarioState *m)
 {
     if (m->input & INPUT_UNKNOWN_10)
         return drop_and_set_mario_action(m, ACT_UNKNOWN_026, 0);
@@ -155,7 +155,7 @@ static s32 act_punching(struct MarioState *m)
     return FALSE;
 }
 
-static s32 act_picking_up(struct MarioState *m)
+s32 act_picking_up(struct MarioState *m)
 {
     if (m->input & INPUT_UNKNOWN_10)
         return drop_and_set_mario_action(m, ACT_UNKNOWN_026, 0);
@@ -195,7 +195,7 @@ static s32 act_picking_up(struct MarioState *m)
     return FALSE;
 }
 
-static s32 act_dive_picking_up(struct MarioState *m)
+s32 act_dive_picking_up(struct MarioState *m)
 {
     if (m->input & INPUT_UNKNOWN_10)
         return drop_and_set_mario_action(m, ACT_UNKNOWN_026, 0);
@@ -210,7 +210,7 @@ static s32 act_dive_picking_up(struct MarioState *m)
     return FALSE;
 }
 
-static s32 act_placing_down(struct MarioState *m)
+s32 act_placing_down(struct MarioState *m)
 {
     if (m->input & INPUT_UNKNOWN_10)
         return drop_and_set_mario_action(m, ACT_UNKNOWN_026, 0);
@@ -225,7 +225,7 @@ static s32 act_placing_down(struct MarioState *m)
     return FALSE;
 }
 
-static s32 act_throwing(struct MarioState *m)
+s32 act_throwing(struct MarioState *m)
 {
     if (m->heldObj && (m->heldObj->oUnk190 & 0x10))
         return set_mario_action(m, ACT_PLACING_DOWN, 0);
@@ -247,7 +247,7 @@ static s32 act_throwing(struct MarioState *m)
     return FALSE;
 }
 
-static s32 act_heavy_throw(struct MarioState *m)
+s32 act_heavy_throw(struct MarioState *m)
 {
     if (m->input & INPUT_UNKNOWN_10)
         return drop_and_set_mario_action(m, ACT_UNKNOWN_026, 0);
@@ -266,7 +266,7 @@ static s32 act_heavy_throw(struct MarioState *m)
     return FALSE;
 }
 
-static s32 act_stomach_slide_stop(struct MarioState *m)
+s32 act_stomach_slide_stop(struct MarioState *m)
 {
     if (m->input & INPUT_UNKNOWN_10)
         return set_mario_action(m, ACT_UNKNOWN_026, 0);
@@ -281,7 +281,7 @@ static s32 act_stomach_slide_stop(struct MarioState *m)
     return FALSE;
 }
 
-static s32 act_picking_up_bowser(struct MarioState *m)
+s32 act_picking_up_bowser(struct MarioState *m)
 {
     if (m->actionState == 0)
     {
@@ -300,13 +300,13 @@ static s32 act_picking_up_bowser(struct MarioState *m)
     return FALSE;
 }
 
-static s32 act_holding_bowser(struct MarioState *m)
+s32 act_holding_bowser(struct MarioState *m)
 {
     s16 spin;
 
     if (m->input & INPUT_B_PRESSED)
     {
-#if VERSION_US
+#ifndef VERSION_JP
         if (m->angleVel[1] <= -0xE00 || m->angleVel[1] >= 0xE00)
             SetSound(SOUND_MARIO_SOLONGABOWSER, m->marioObj->header.gfx.cameraToObject);
         else
@@ -381,7 +381,7 @@ static s32 act_holding_bowser(struct MarioState *m)
     return FALSE;
 }
 
-static s32 act_releasing_bowser(struct MarioState *m)
+s32 act_releasing_bowser(struct MarioState *m)
 {
     if (++m->actionTimer == 1)
     {
@@ -396,7 +396,7 @@ static s32 act_releasing_bowser(struct MarioState *m)
     return FALSE;
 }
 
-static s32 check_common_object_cancels(struct MarioState *m)
+s32 check_common_object_cancels(struct MarioState *m)
 {
     f32 waterSurface = m->waterLevel - 100;
     if (m->pos[1] < waterSurface)

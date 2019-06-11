@@ -183,7 +183,7 @@ s32 check_horizontal_wind(struct MarioState *m)
         m->slideYaw = atan2s(m->slideVelZ, m->slideVelX);
         m->forwardVel = speed * coss(m->faceAngle[1] - m->slideYaw);
 
-#ifndef VERSION_US
+#ifdef VERSION_JP
         SetSound(SOUND_ENVIRONMENT_WIND2, m->marioObj->header.gfx.cameraToObject);
 #endif
         return TRUE;
@@ -516,7 +516,7 @@ s32 act_triple_jump(struct MarioState *m)
     if (m->input & INPUT_Z_PRESSED)
         return set_mario_action(m, ACT_GROUND_POUND, 0);
 
-#if VERSION_US
+#ifndef VERSION_JP
     func_80251410(m, SOUND_TERRAIN_1, 0);
 #else
     func_80251410(m, SOUND_TERRAIN_1, SOUND_MARIO_YAHOO);
@@ -836,7 +836,7 @@ s32 act_water_jump(struct MarioState *m)
         break;
 
     case AIR_STEP_GRABBED_LEDGE:
-#if VERSION_US
+#ifndef VERSION_JP
         set_mario_animation(m, MARIO_ANIM_IDLE_ON_LEDGE);
 #endif
         set_mario_action(m, ACT_LEDGE_GRAB, 0);
@@ -1116,7 +1116,7 @@ u32 common_air_knockback_step(
     case AIR_STEP_LANDED:
         if (!check_fall_damage_or_get_stuck(m, hardFallAction))
         {
-#if VERSION_US
+#ifndef VERSION_JP
             if (m->action == ACT_THROWN_FORWARD || m->action == ACT_THROWN_BACKWARD)
                 set_mario_action(m, landAction, m->hurtCounter);
             else
@@ -1162,7 +1162,7 @@ s32 act_backward_air_kb(struct MarioState *m)
     if (func_8026CDFC(m))
         return 1;
 
-#if VERSION_US
+#ifndef VERSION_JP
     func_u_8026A090(m);
 #else
     func_80250F50(m, SOUND_MARIO_UH, MARIO_UNKNOWN_17);
@@ -1177,7 +1177,7 @@ s32 act_forward_air_kb(struct MarioState *m)
     if (func_8026CDFC(m))
         return 1;
 
-#if VERSION_US
+#ifndef VERSION_JP
     func_u_8026A090(m);
 #else
     func_80250F50(m, SOUND_MARIO_UH, MARIO_UNKNOWN_17);
@@ -1189,7 +1189,7 @@ s32 act_forward_air_kb(struct MarioState *m)
 
 s32 act_hard_backward_air_kb(struct MarioState *m)
 {
-#if VERSION_US
+#ifndef VERSION_JP
     func_u_8026A090(m);
 #else
     func_80250F50(m, SOUND_MARIO_UH, MARIO_UNKNOWN_17);
@@ -1201,7 +1201,7 @@ s32 act_hard_backward_air_kb(struct MarioState *m)
 
 s32 act_hard_forward_air_kb(struct MarioState *m)
 {
-#if VERSION_US
+#ifndef VERSION_JP
     func_u_8026A090(m);
 #else
     func_80250F50(m, SOUND_MARIO_UH, MARIO_UNKNOWN_17);
@@ -1259,7 +1259,7 @@ s32 act_soft_bonk(struct MarioState *m)
     if (func_8026CDFC(m))
         return 1;
 
-#if VERSION_US
+#ifndef VERSION_JP
     func_u_8026A090(m);
 #else
     func_80250F50(m, SOUND_MARIO_UH, MARIO_UNKNOWN_17);
@@ -1292,7 +1292,7 @@ s32 act_getting_blown(struct MarioState *m)
         mario_blow_off_cap(m, 50.0f);
 
     mario_set_forward_vel(m, m->forwardVel);
-#if !VERSION_US
+#ifdef VERSION_JP
     func_80250F50(m, SOUND_MARIO_UH, MARIO_UNKNOWN_17);
 #endif
     set_mario_animation(m, MARIO_ANIM_BACKWARD_AIR_KB);
@@ -1846,7 +1846,7 @@ s32 act_flying(struct MarioState *m)
     if (startPitch <= 0 && m->faceAngle[0] > 0 && m->forwardVel >= 48.0f)
     {
         SetSound(SOUND_ACTION_UNKNOWN456, m->marioObj->header.gfx.cameraToObject);
-#if VERSION_US
+#ifndef VERSION_JP
         SetSound(SOUND_MARIO_YAHOO2 + ((D_80226EB8 % 5) << 16), m->marioObj->header.gfx.cameraToObject);
 #endif
     }
@@ -1891,7 +1891,7 @@ s32 act_riding_hoot(struct MarioState *m)
 
 s32 act_flying_triple_jump(struct MarioState *m)
 {
-#if VERSION_US
+#ifndef VERSION_JP
     if (m->input & (INPUT_B_PRESSED | INPUT_Z_PRESSED))
     {
         if (m->area->camera->currPreset == CAMERA_PRESET_BEHIND_MARIO)
