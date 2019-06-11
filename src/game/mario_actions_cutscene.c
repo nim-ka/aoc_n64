@@ -256,7 +256,7 @@ s32 geo_switch_peach_eyes(s32 run, struct GraphNode *node, UNUSED s32 a2)
 }
 
 // unused
-void Unknown80256FF8(u16 *a0)
+static void Unknown80256FF8(u16 *a0)
 {
     if (get_dialog_id() == -1)
         *a0 = 0;
@@ -1732,7 +1732,15 @@ s32 act_squished(struct MarioState *m)
                     func_80250F50(m, SOUND_MARIO_ATTACKED, MARIO_UNKNOWN_17);
                 }
 
-                vec3f_set(m->marioObj->header.gfx.scale, 1.8f, 0.05f, 1.8f);
+                /*! @bug This is weird. One of the 1.8 values is definitely a
+               *  double instead of a float. The reason is that in the EU
+               *  build, O2 makes this distinction matter due to failing to
+               *  optimize the double same hex value loads away. Because of
+               *  this, we can't be sure which 1.8 is the typo'd value, but
+               *  its required to match anyway. This ends up having no impact
+               *  on the code. Way to go Nintendo.
+               */
+                vec3f_set(m->marioObj->header.gfx.scale, 1.8, 0.05f, 1.8f);
                 m->actionState = 1;
             }
             break;
