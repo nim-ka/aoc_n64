@@ -229,7 +229,7 @@ void func_8027B8D4(struct GraphNodeSwitchCase *a)
 
     if (a->fnNode.func != NULL)
         a->fnNode.func(1, &a->fnNode.node, D_8033A778[D_8033A770]);
-    for (sp18 = 0; sp1C != NULL && a->unk1E > sp18; sp18++)
+    for (sp18 = 0; sp1C != NULL && a->result > sp18; sp18++)
         sp1C = sp1C->next;
     if (sp1C != NULL)
         func_8027D8F8(sp1C);

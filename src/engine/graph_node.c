@@ -173,7 +173,7 @@ struct GraphNodeSwitchCase *init_graph_node_switch_case(struct AllocOnlyPool *po
     {
         init_scene_graph_node_links(&graphNode->fnNode.node, GRAPH_NODE_TYPE_SWITCH_CASE);
         graphNode->numCases = numCases;
-        graphNode->unk1E = sp26;
+        graphNode->result = sp26;
         graphNode->fnNode.func = nodeFunc;
         graphNode->unk18 = sp2c;
 

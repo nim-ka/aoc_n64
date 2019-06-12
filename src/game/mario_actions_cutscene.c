@@ -244,12 +244,12 @@ s32 geo_switch_peach_eyes(s32 run, struct GraphNode *node, UNUSED s32 a2)
         {
             timer = (gAreaUpdateCounter + 0x20) >> 1 & 0x1F;
             if (timer < 7)
-                switchCase->unk1E = D_8032CBE8 * 4 + D_8032CBEC[timer];
+                switchCase->result = D_8032CBE8 * 4 + D_8032CBEC[timer];
             else
-                switchCase->unk1E = D_8032CBE8 * 4 + 1;
+                switchCase->result = D_8032CBE8 * 4 + 1;
         }
         else
-            switchCase->unk1E = D_8032CBE8 * 4 + D_8032CBE4 - 1;
+            switchCase->result = D_8032CBE8 * 4 + D_8032CBE4 - 1;
     }
 
     return 0;
@@ -484,7 +484,7 @@ s32 act_reading_npc_dialogue(struct MarioState *m)
     }
     vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
     vec3s_set(m->marioObj->header.gfx.angle, 0, m->faceAngle[1], 0);
-    vec3s_set(m->unk98->unk12, m->actionTimer, 0, 0);
+    vec3s_set(m->marioBodyState->unk12, m->actionTimer, 0, 0);
 
     if (m->actionState != 8)
         m->actionState++;
@@ -578,7 +578,7 @@ s32 act_reading_automatic_dialogue(struct MarioState *m)
         }
     }
     // apply head turn
-    vec3s_set(m->unk98->unk12, m->actionTimer, 0, 0);
+    vec3s_set(m->marioBodyState->unk12, m->actionTimer, 0, 0);
     return FALSE;
 }
 
@@ -751,7 +751,7 @@ s32 act_star_dance(struct MarioState *m)
     );
     general_star_dance_handler(m, 0);
     if (m->actionState != 2 && m->actionTimer >= 40)
-        m->unk98->handState = MARIO_HAND_PEACE_SIGN;
+        m->marioBodyState->handState = MARIO_HAND_PEACE_SIGN;
     stop_and_set_height_to_floor(m);
     return FALSE;
 }
@@ -767,7 +767,7 @@ s32 act_star_dance_water(struct MarioState *m)
     vec3s_set(m->marioObj->header.gfx.angle, 0, m->faceAngle[1], 0);
     general_star_dance_handler(m, 1);
     if (m->actionState != 2 && m->actionTimer >= 62)
-        m->unk98->handState = MARIO_HAND_PEACE_SIGN;
+        m->marioBodyState->handState = MARIO_HAND_PEACE_SIGN;
     return FALSE;
 }
 
@@ -800,7 +800,7 @@ s32 common_death_handler(
     s32 animFrame = set_mario_animation(m, animation);
     if (animFrame == frameToDeathWarp)
         level_trigger_warp(m, WARP_OP_DEATH);
-    m->unk98->eyeState = MARIO_EYES_DEAD;
+    m->marioBodyState->eyeState = MARIO_EYES_DEAD;
     stop_and_set_height_to_floor(m);
     return animFrame;
 }
@@ -1290,9 +1290,9 @@ s32 act_exit_land_save_dialogue(struct MarioState *m)
         case 2:
             animFrame = set_mario_animation(m, MARIO_ANIM_MISSING_CAP);
             if ((animFrame >= 18 && animFrame < 55) || (animFrame >= 112 && animFrame < 134))
-                m->unk98->handState = MARIO_HAND_OPEN;
+                m->marioBodyState->handState = MARIO_HAND_OPEN;
             if (!(animFrame < 109) && animFrame < 154)
-                m->unk98->eyeState = MARIO_EYES_HALF_CLOSED;
+                m->marioBodyState->eyeState = MARIO_EYES_HALF_CLOSED;
 
             handle_save_menu(m);
             break;
@@ -1656,7 +1656,7 @@ s32 act_shocked(struct MarioState *m)
     if (set_mario_animation(m, MARIO_ANIM_SHOCKED) == 0)
     {
         m->actionTimer++;
-        m->flags |= MARIO_UNKNOWN_06;
+        m->flags |= MARIO_METAL_SHOCK;
     }
 
     if (m->actionArg == 0)
@@ -2163,7 +2163,7 @@ static s32 jumbo_star_cutscene_flying(struct MarioState *m)
             break;
     }
 
-    m->unk98->handState = MARIO_HAND_RIGHT_OPEN;
+    m->marioBodyState->handState = MARIO_HAND_RIGHT_OPEN;
     vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
     m->particleFlags |= PARTICLE_SPARKLES;
 
@@ -2522,7 +2522,7 @@ static void end_peach_cutscene_kiss_from_peach(struct MarioState *m)
     sEndPeachAnimation = 10;
 
     if (m->actionTimer >= 90)
-        m->unk98->eyeState = m->actionTimer < 110 ? \
+        m->marioBodyState->eyeState = m->actionTimer < 110 ? \
             sMarioBlinkOverride[m->actionTimer - 90] : MARIO_EYES_HALF_CLOSED;
 
     switch (m->actionTimer)
@@ -2540,11 +2540,11 @@ static void end_peach_cutscene_kiss_from_peach(struct MarioState *m)
             break;
 
         case 75:
-            m->unk98->eyeState = MARIO_EYES_HALF_CLOSED;
+            m->marioBodyState->eyeState = MARIO_EYES_HALF_CLOSED;
             break;
 
         case 76:
-            m->unk98->eyeState = MARIO_EYES_CLOSED;
+            m->marioBodyState->eyeState = MARIO_EYES_CLOSED;
             break;
 
         case 100:
@@ -2570,10 +2570,10 @@ static void end_peach_cutscene_star_dance(struct MarioState *m)
     if (animFrame == 88)
         SetSound(SOUND_MARIO_HEREWEGO, m->marioObj->header.gfx.cameraToObject);
     if (animFrame >= 98)
-        m->unk98->handState = MARIO_HAND_PEACE_SIGN;
+        m->marioBodyState->handState = MARIO_HAND_PEACE_SIGN;
 
     if (m->actionTimer < 52)
-        m->unk98->eyeState = MARIO_EYES_HALF_CLOSED;
+        m->marioBodyState->eyeState = MARIO_EYES_HALF_CLOSED;
 
     switch (m->actionTimer)
     {
@@ -2825,7 +2825,7 @@ static s32 act_end_waving_cutscene(struct MarioState *m)
 
     m->marioObj->header.gfx.angle[1] += 0x8000;
     m->marioObj->header.gfx.pos[0] -= 60.0f;
-    m->unk98->handState = MARIO_HAND_RIGHT_OPEN;
+    m->marioBodyState->handState = MARIO_HAND_RIGHT_OPEN;
 
     if (m->actionTimer++ == 300)
         level_trigger_warp(m, WARP_OP_CREDITS_END);

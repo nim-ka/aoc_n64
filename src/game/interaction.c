@@ -299,9 +299,9 @@ void mario_drop_held_object(struct MarioState *m)
 
         set_object_held_state(m->heldObj, bhvCarrySomething4);
 
-        m->heldObj->oPosX = m->unk98->unk18[0];
+        m->heldObj->oPosX = m->marioBodyState->unk18[0];
         m->heldObj->oPosY = m->pos[1];
-        m->heldObj->oPosZ = m->unk98->unk18[2];
+        m->heldObj->oPosZ = m->marioBodyState->unk18[2];
 
         m->heldObj->oMoveAngleYaw = m->faceAngle[1];
 
@@ -318,9 +318,9 @@ void mario_throw_held_object(struct MarioState *m)
 
         set_object_held_state(m->heldObj, bhvCarrySomething5);
 
-        m->heldObj->oPosX = m->unk98->unk18[0] + 32.0f * sins(m->faceAngle[1]);
-        m->heldObj->oPosY = m->unk98->unk18[1];
-        m->heldObj->oPosZ = m->unk98->unk18[2] + 32.0f * coss(m->faceAngle[1]);
+        m->heldObj->oPosX = m->marioBodyState->unk18[0] + 32.0f * sins(m->faceAngle[1]);
+        m->heldObj->oPosY = m->marioBodyState->unk18[1];
+        m->heldObj->oPosZ = m->marioBodyState->unk18[2] + 32.0f * coss(m->faceAngle[1]);
 
         m->heldObj->oMoveAngleYaw = m->faceAngle[1];
 

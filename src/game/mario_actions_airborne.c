@@ -729,7 +729,7 @@ s32 act_dive(struct MarioState *m)
     if (mario_check_object_grab(m))
     {
         mario_grab_used_object(m);
-        m->unk98->unk0A = 1;
+        m->marioBodyState->grabPos = GRAB_POS_LIGHT_OBJ;
         if (m->action != ACT_DIVE)
             return TRUE;
     }
@@ -1590,7 +1590,7 @@ s32 act_lava_boost(struct MarioState *m)
     if (m->health < 0x100)
         level_trigger_warp(m, WARP_OP_DEATH);
 
-    m->unk98->eyeState = MARIO_EYES_DEAD;
+    m->marioBodyState->eyeState = MARIO_EYES_DEAD;
     return FALSE;
 }
 
@@ -1663,7 +1663,7 @@ s32 act_jump_kick(struct MarioState *m)
 
     animFrame = m->marioObj->header.gfx.unk38.animFrame;
     if (animFrame == 0)
-        m->unk98->unk0B = 0x86;
+        m->marioBodyState->unk0B = 0x86;
     if (animFrame >= 0 && animFrame < 8)
         m->flags |= MARIO_KICKING;
 

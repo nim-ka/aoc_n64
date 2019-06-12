@@ -1201,7 +1201,7 @@ void func_80253E34(struct MarioState *m)
 
 void func_80254088(struct MarioState *m)
 {
-    m->unk98->action = m->action;
+    m->marioBodyState->action = m->action;
     m->unk94->action = m->action;
 
     vec3s_copy(m->unk94->faceAngle, m->faceAngle);
@@ -1212,11 +1212,11 @@ void func_80254088(struct MarioState *m)
 
 void func_8025410C(struct MarioState *m)
 {
-    struct MarioBodyState *sp4 = m->unk98;
+    struct MarioBodyState *sp4 = m->marioBodyState;
     sp4->capState = MARIO_HAS_DEFAULT_CAP_OFF;
     sp4->eyeState = MARIO_EYES_BLINK;
     sp4->handState = MARIO_HAND_FISTS;
-    sp4->unk08 = 0;
+    sp4->modelState = 0;
     sp4->unk07 = 0;
     m->flags &= ~0x40;
 }
@@ -1281,17 +1281,17 @@ u32 func_802541BC(struct MarioState *m)
     return flags;
 }
 
-void func_8025435C(struct MarioState *m)
+void mario_update_hitbox_and_cap_model(struct MarioState *m)
 {
-    struct MarioBodyState *sp1C = m->unk98;
+    struct MarioBodyState *sp1C = m->marioBodyState;
     s32 sp18 = func_802541BC(m);
 
     if (sp18 & MARIO_VANISH_CAP)
-        sp1C->unk08 = 0x180;
+        sp1C->modelState = MODEL_STATE_NOISE_ALPHA;
     if (sp18 & MARIO_METAL_CAP)
-        sp1C->unk08 |= 0x200;
-    if (sp18 & MARIO_UNKNOWN_06)
-        sp1C->unk08 |= 0x200;
+        sp1C->modelState |= MODEL_STATE_METAL;
+    if (sp18 & MARIO_METAL_SHOCK)
+        sp1C->modelState |= MODEL_STATE_METAL;
 
     if (m->invincTimer >= 3)
     {
@@ -1318,8 +1318,8 @@ void func_8025435C(struct MarioState *m)
         m->marioObj->hitboxHeight = 160.0f;
     if ((m->flags & MARIO_TELEPORTING) && (m->fadeWarpOpacity != 0xFF))
     {
-        sp1C->unk08 &= ~0xFF;
-        sp1C->unk08 |= (m->fadeWarpOpacity | 0x100);
+        sp1C->modelState &= ~0xFF;
+        sp1C->modelState |= (m->fadeWarpOpacity | 0x100);
     }
 }
 
@@ -1386,7 +1386,7 @@ s32 func_80254604(UNUSED struct Object *arg0)
         func_80253C94(gMarioState);
         func_80253E34(gMarioState);
         func_80254088(gMarioState);
-        func_8025435C(gMarioState);
+        mario_update_hitbox_and_cap_model(gMarioState);
 
         if (gMarioState->floor->type == SURFACE_HORIZONTAL_WIND)
         {
@@ -1464,7 +1464,7 @@ void func_802548BC(void)
 
     func_8025410C(gMarioState);
     func_80254088(gMarioState);
-    gMarioState->unk98->unk0B = 0;
+    gMarioState->marioBodyState->unk0B = 0;
     gMarioState->marioObj->oPosX = gMarioState->pos[0];
     gMarioState->marioObj->oPosY = gMarioState->pos[1];
     gMarioState->marioObj->oPosZ = gMarioState->pos[2];
@@ -1495,7 +1495,7 @@ void func_80254CE0(void)
     gMarioState->action = 0;
     gMarioState->spawnInfo = &gPlayerSpawnInfos[0];
     gMarioState->unk94 = &gPlayerStatusForCamera[0];
-    gMarioState->unk98 = &D_8033A040[0];
+    gMarioState->marioBodyState = &D_8033A040[0];
     gMarioState->controller = &gControllers[0];
     gMarioState->animation = &D_80339D10;
     gMarioState->numCoins = 0;

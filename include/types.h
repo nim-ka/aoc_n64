@@ -210,8 +210,8 @@ struct MarioBodyState
     /*0x05*/ s8 eyeState;
     /*0x06*/ s8 handState;
     /*0x07*/ s8 unk07;
-    /*0x08*/ s16 unk08;
-    /*0x0A*/ s8 unk0A;
+    /*0x08*/ s16 modelState;
+    /*0x0A*/ s8 grabPos;
     /*0x0B*/ u8 unk0B;
     /*0x0C*/ Vec3s unkC;
     /*0x12*/ Vec3s unk12;
@@ -276,7 +276,7 @@ struct MarioState
     /*0x8C*/ struct SpawnInfo *spawnInfo;
     /*0x90*/ struct Area *area;
     /*0x94*/ struct CameraPlayerStatus *unk94;
-    /*0x98*/ struct MarioBodyState *unk98;
+    /*0x98*/ struct MarioBodyState *marioBodyState;
     /*0x9C*/ struct Controller *controller;
     /*0xA0*/ struct MarioAnimation *animation;
     /*0xA4*/ u32 collidedObjInteractTypes;

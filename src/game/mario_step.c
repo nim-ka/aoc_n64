@@ -605,7 +605,7 @@ void apply_gravity(struct MarioState *m)
     }
     else if ((m->flags & MARIO_WING_CAP) && m->vel[1] < 0.0f && (m->input & INPUT_A_DOWN))
     {
-        m->unk98->unk07 = 1;
+        m->marioBodyState->unk07 = 1;
 
         m->vel[1] -= 2.0f;
         if (m->vel[1] < -37.5f)

@@ -821,7 +821,7 @@ void func_802659E8(struct MarioState *m, Vec3f startPos)
 
 void func_80265C28(struct MarioState *m, s16 startYaw)
 {
-    struct MarioBodyState *val0C = m->unk98;
+    struct MarioBodyState *val0C = m->marioBodyState;
     UNUSED struct Object *marioObj = m->marioObj;
     s16 val06 = m->marioObj->header.gfx.unk38.animID;
     s16 dYaw;
@@ -852,7 +852,7 @@ void func_80265C28(struct MarioState *m, s16 startYaw)
 
 void func_80265DBC(struct MarioState *m, s16 startYaw)
 {
-    struct MarioBodyState *val0C = m->unk98;
+    struct MarioBodyState *val0C = m->marioBodyState;
     struct Object *marioObj = m->marioObj;
     s16 dYaw = m->faceAngle[1] - startYaw;
     s16 val04 = -(s16)(dYaw * m->forwardVel / 12.0f);
@@ -1402,15 +1402,15 @@ s32 act_burning_ground(struct MarioState *m)
     if (m->health < 0x100)
         set_mario_action(m, ACT_STANDING_DEATH, 0);
 
-    m->unk98->eyeState = MARIO_EYES_DEAD;
+    m->marioBodyState->eyeState = MARIO_EYES_DEAD;
     return FALSE;
 }
 
 void func_80267814(struct MarioState *m)
 {
     s16 intendedDYaw = m->intendedYaw - m->faceAngle[1];
-    m->unk98->unkC[0] = (s32)(5461.3335f * m->intendedMag / 32.0f * coss(intendedDYaw));
-    m->unk98->unkC[2] = (s32)(-(5461.3335f * m->intendedMag / 32.0f * sins(intendedDYaw)));
+    m->marioBodyState->unkC[0] = (s32)(5461.3335f * m->intendedMag / 32.0f * coss(intendedDYaw));
+    m->marioBodyState->unkC[2] = (s32)(-(5461.3335f * m->intendedMag / 32.0f * sins(intendedDYaw)));
 }
 
 void common_slide_action(
@@ -1638,7 +1638,7 @@ s32 act_dive_slide(struct MarioState *m)
     if (mario_check_object_grab(m))
     {
         mario_grab_used_object(m);
-        m->unk98->unk0A = 1;
+        m->marioBodyState->grabPos = GRAB_POS_LIGHT_OBJ;
         return TRUE;
     }
 

@@ -76,11 +76,11 @@ glabel mario_geo_right_hand # 0x17000494
          geo_open_node
             geo_display_list LAYER_OPAQUE, mario_right_hand_closed
          geo_close_node
-         geo_todo_1C 0x00, 0, 0, 0, Geo1C_8027795C
+         geo_todo_1C 0x00, 0, 0, 0, geo_switch_mario_hand_grab_pos
       geo_close_node
       geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_right_hand_open
       geo_open_node
-         geo_todo_1C 0x00, 0, 0, 0, Geo1C_8027795C
+         geo_todo_1C 0x00, 0, 0, 0, geo_switch_mario_hand_grab_pos
       geo_close_node
       geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_right_hand_peace # here we go hand
       geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_right_hand_cap
@@ -189,11 +189,11 @@ glabel mario_geo_medium_poly_right_hand # 0x17000770
          geo_open_node
             geo_display_list LAYER_OPAQUE, mario_medium_poly_right_hand_closed
          geo_close_node
-         geo_todo_1C 0x00, 0, 0, 0, Geo1C_8027795C
+         geo_todo_1C 0x00, 0, 0, 0, geo_switch_mario_hand_grab_pos
       geo_close_node
       geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_right_hand_open
       geo_open_node
-         geo_todo_1C 0x00, 0, 0, 0, Geo1C_8027795C
+         geo_todo_1C 0x00, 0, 0, 0, geo_switch_mario_hand_grab_pos
       geo_close_node
       geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_right_hand_peace # here we go hand
       geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_right_hand_cap
@@ -348,11 +348,11 @@ glabel mario_geo_low_poly_right_hand # 0x17000B88
          geo_open_node
             geo_display_list LAYER_OPAQUE, mario_low_poly_right_hand_closed
          geo_close_node
-         geo_todo_1C 0x00, 0, 0, 0, Geo1C_8027795C
+         geo_todo_1C 0x00, 0, 0, 0, geo_switch_mario_hand_grab_pos
       geo_close_node
       geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_right_hand_open
       geo_open_node
-         geo_todo_1C 0x00, 0, 0, 0, Geo1C_8027795C
+         geo_todo_1C 0x00, 0, 0, 0, geo_switch_mario_hand_grab_pos
       geo_close_node
       geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_right_hand_peace # here we go hand
       geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_right_hand_cap
@@ -509,11 +509,11 @@ glabel mario_vanish_geo_right_hand # 0x17000FA0
          geo_open_node
             geo_display_list LAYER_TRANSPARENT, mario_right_hand_closed
          geo_close_node
-         geo_todo_1C 0x00, 0, 0, 0, Geo1C_8027795C
+         geo_todo_1C 0x00, 0, 0, 0, geo_switch_mario_hand_grab_pos
       geo_close_node
       geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_right_hand_open
       geo_open_node
-         geo_todo_1C 0x00, 0, 0, 0, Geo1C_8027795C
+         geo_todo_1C 0x00, 0, 0, 0, geo_switch_mario_hand_grab_pos
       geo_close_node
       geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_right_hand_peace # here we go hand
       geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_right_hand_cap
@@ -622,11 +622,11 @@ glabel mario_vanish_geo_medium_poly_right_hand # 0x1700127C
          geo_open_node
             geo_display_list LAYER_TRANSPARENT, mario_medium_poly_right_hand_closed
          geo_close_node
-         geo_todo_1C 0x00, 0, 0, 0, Geo1C_8027795C
+         geo_todo_1C 0x00, 0, 0, 0, geo_switch_mario_hand_grab_pos
       geo_close_node
       geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_right_hand_open
       geo_open_node
-         geo_todo_1C 0x00, 0, 0, 0, Geo1C_8027795C
+         geo_todo_1C 0x00, 0, 0, 0, geo_switch_mario_hand_grab_pos
       geo_close_node
       geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_right_hand_peace # here we go hand
       geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_right_hand_cap
@@ -781,11 +781,11 @@ glabel mario_vanish_geo_low_poly_right_hand # 0x17001694
          geo_open_node
             geo_display_list LAYER_TRANSPARENT, mario_low_poly_right_hand_closed
          geo_close_node
-         geo_todo_1C 0x00, 0, 0, 0, Geo1C_8027795C
+         geo_todo_1C 0x00, 0, 0, 0, geo_switch_mario_hand_grab_pos
       geo_close_node
       geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_right_hand_open
       geo_open_node
-         geo_todo_1C 0x00, 0, 0, 0, Geo1C_8027795C
+         geo_todo_1C 0x00, 0, 0, 0, geo_switch_mario_hand_grab_pos
       geo_close_node
       geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_right_hand_peace # here we go hand
       geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_right_hand_cap
@@ -922,11 +922,11 @@ glabel mario_metal_geo_right_hand # 0x17001A1C
          geo_open_node
             geo_display_list LAYER_OPAQUE, mario_metal_right_hand_closed
          geo_close_node
-         geo_todo_1C 0x00, 0, 0, 0, Geo1C_8027795C
+         geo_todo_1C 0x00, 0, 0, 0, geo_switch_mario_hand_grab_pos
       geo_close_node
       geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_metal_right_hand_open
       geo_open_node
-         geo_todo_1C 0x00, 0, 0, 0, Geo1C_8027795C
+         geo_todo_1C 0x00, 0, 0, 0, geo_switch_mario_hand_grab_pos
       geo_close_node
       geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_right_hand_peace_shared_dl # here we go hand
       geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_metal_right_hand_cap_shared_dl
@@ -1035,11 +1035,11 @@ glabel mario_metal_geo_medium_poly_right_hand # 0x17001CF8
          geo_open_node
             geo_display_list LAYER_OPAQUE, mario_metal_medium_poly_right_hand_closed
          geo_close_node
-         geo_todo_1C 0x00, 0, 0, 0, Geo1C_8027795C
+         geo_todo_1C 0x00, 0, 0, 0, geo_switch_mario_hand_grab_pos
       geo_close_node
       geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_metal_right_hand_open
       geo_open_node
-         geo_todo_1C 0x00, 0, 0, 0, Geo1C_8027795C
+         geo_todo_1C 0x00, 0, 0, 0, geo_switch_mario_hand_grab_pos
       geo_close_node
       geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_right_hand_peace_shared_dl # here we go hand
       geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_metal_right_hand_cap_shared_dl
@@ -1174,11 +1174,11 @@ glabel mario_metal_geo_low_poly_right_hand # 0x17002080
          geo_open_node
             geo_display_list LAYER_OPAQUE, mario_metal_low_poly_right_hand_closed
          geo_close_node
-         geo_todo_1C 0x00, 0, 0, 0, Geo1C_8027795C
+         geo_todo_1C 0x00, 0, 0, 0, geo_switch_mario_hand_grab_pos
       geo_close_node
       geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_metal_right_hand_open
       geo_open_node
-         geo_todo_1C 0x00, 0, 0, 0, Geo1C_8027795C
+         geo_todo_1C 0x00, 0, 0, 0, geo_switch_mario_hand_grab_pos
       geo_close_node
       geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_right_hand_peace_shared_dl # here we go hand
       geo_dl_translated LAYER_OPAQUE, 60, 0, 0, mario_metal_right_hand_cap_shared_dl
@@ -1315,11 +1315,11 @@ glabel mario_metal_vanish_geo_right_hand # 0x17002408
          geo_open_node
             geo_display_list LAYER_TRANSPARENT, mario_metal_right_hand_closed
          geo_close_node
-         geo_todo_1C 0x00, 0, 0, 0, Geo1C_8027795C
+         geo_todo_1C 0x00, 0, 0, 0, geo_switch_mario_hand_grab_pos
       geo_close_node
       geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_metal_right_hand_open
       geo_open_node
-         geo_todo_1C 0x00, 0, 0, 0, Geo1C_8027795C
+         geo_todo_1C 0x00, 0, 0, 0, geo_switch_mario_hand_grab_pos
       geo_close_node
       geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_right_hand_peace_shared_dl # here we go hand
       geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_metal_right_hand_cap_shared_dl
@@ -1428,11 +1428,11 @@ glabel mario_metal_vanish_geo_medium_poly_right_hand # 0x170026E4
          geo_open_node
             geo_display_list LAYER_TRANSPARENT, mario_metal_medium_poly_right_hand_closed
          geo_close_node
-         geo_todo_1C 0x00, 0, 0, 0, Geo1C_8027795C
+         geo_todo_1C 0x00, 0, 0, 0, geo_switch_mario_hand_grab_pos
       geo_close_node
       geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_metal_right_hand_open
       geo_open_node
-         geo_todo_1C 0x00, 0, 0, 0, Geo1C_8027795C
+         geo_todo_1C 0x00, 0, 0, 0, geo_switch_mario_hand_grab_pos
       geo_close_node
       geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_right_hand_peace_shared_dl # here we go hand
       geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_metal_right_hand_cap_shared_dl
@@ -1570,11 +1570,11 @@ glabel mario_metal_vanish_geo_low_poly_right_hand # 0x17002A7C
          geo_open_node
             geo_display_list LAYER_TRANSPARENT, mario_metal_low_poly_right_hand_closed
          geo_close_node
-         geo_todo_1C 0x00, 0, 0, 0, Geo1C_8027795C
+         geo_todo_1C 0x00, 0, 0, 0, geo_switch_mario_hand_grab_pos
       geo_close_node
       geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_metal_right_hand_open
       geo_open_node
-         geo_todo_1C 0x00, 0, 0, 0, Geo1C_8027795C
+         geo_todo_1C 0x00, 0, 0, 0, geo_switch_mario_hand_grab_pos
       geo_close_node
       geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_right_hand_peace_shared_dl # here we go hand
       geo_dl_translated LAYER_TRANSPARENT, 60, 0, 0, mario_metal_right_hand_cap_shared_dl

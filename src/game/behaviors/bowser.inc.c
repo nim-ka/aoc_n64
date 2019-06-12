@@ -1389,60 +1389,60 @@ void func_802B70C8(struct Object* a0, struct GraphNodeSwitchCase * switchCase)
     s32 sp1C;
     s16 sp1A;
     sp1A = abs_angle_diff(a0->oMoveAngleYaw,a0->oAngleToMario);
-    sp1C = switchCase->unk1E;
+    sp1C = switchCase->result;
     switch(sp1C)
     {
     case 0:
         if(sp1A > 0x2000)
         {
             if(a0->oAngleVelYaw > 0)
-                switchCase->unk1E = 5;
+                switchCase->result = 5;
             if(a0->oAngleVelYaw < 0)
-                switchCase->unk1E = 3;
+                switchCase->result = 3;
         }
         if(a0->oUnk1AE > 50)
-            switchCase->unk1E = 1;
+            switchCase->result = 1;
         break;
     case 1:
         if(a0->oUnk1AE > 2)
-            switchCase->unk1E = 2;
+            switchCase->result = 2;
         break;
     case 2:
         if(a0->oUnk1AE > 2)
-            switchCase->unk1E = 9;
+            switchCase->result = 9;
         break;
     case 9:
         if(a0->oUnk1AE > 2)
-            switchCase->unk1E = 0;
+            switchCase->result = 0;
         break;
     case 5:
         if(a0->oUnk1AE > 2)
         {
-            switchCase->unk1E = 6;
+            switchCase->result = 6;
             if(a0->oAngleVelYaw <= 0)
-                switchCase->unk1E = 0;
+                switchCase->result = 0;
         }
         break;
     case 6:
         if(a0->oAngleVelYaw <= 0)
-            switchCase->unk1E = 5;
+            switchCase->result = 5;
         break;
     case 3:
         if(a0->oUnk1AE > 2)
         {
-            switchCase->unk1E = 4;
+            switchCase->result = 4;
             if(a0->oAngleVelYaw >= 0)
-                switchCase->unk1E = 0;
+                switchCase->result = 0;
         }
         break;
     case 4:
         if(a0->oAngleVelYaw >= 0)
-            switchCase->unk1E = 3;
+            switchCase->result = 3;
         break;
     default:
-        switchCase->unk1E = 0;
+        switchCase->result = 0;
     }
-    if(switchCase->unk1E != sp1C)
+    if(switchCase->result != sp1C)
         a0->oUnk1AE = -1;
 }
 
@@ -1467,7 +1467,7 @@ s32 geo_switch_bowser_eyes(s32 run, struct GraphNode *node, UNUSED Mat4 *mtx)
             func_802B70C8(obj, switchCase);
             break;
         case 1: // eyes closed, blinking
-            switchCase->unk1E = 2;
+            switchCase->result = 2;
             break;
         }
         obj->oUnk1AE++;

@@ -190,7 +190,7 @@ s32 geo_switch_anim_state(s32 run, struct GraphNode *node)
         }
 
         // assign the case number for execution.
-        switchCase->unk1E = obj->oAnimState;
+        switchCase->result = obj->oAnimState;
     }
 
     return 0;
@@ -208,7 +208,7 @@ s32 geo_switch_area(s32 run, struct GraphNode *node)
     {
         if (gMarioObject == NULL)
         {
-            switchCase->unk1E = 0;
+            switchCase->result = 0;
         }
         else
         {
@@ -224,14 +224,14 @@ s32 geo_switch_area(s32 run, struct GraphNode *node)
 
                 if (sp26 >= 0)
                 {
-                    switchCase->unk1E = sp26;
+                    switchCase->result = sp26;
                 }
             }
         }
     }
     else
     {
-        switchCase->unk1E = 0;
+        switchCase->result = 0;
     }
 
     return 0;

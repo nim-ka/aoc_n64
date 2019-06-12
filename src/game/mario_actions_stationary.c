@@ -232,7 +232,7 @@ s32 act_start_sleeping(struct MarioState *m) {
 #else
             set_mario_animation(m, MARIO_ANIM_START_SLEEP_YAWN);
 #endif
-            m->unk98->eyeState = MARIO_EYES_HALF_CLOSED;
+            m->marioBodyState->eyeState = MARIO_EYES_HALF_CLOSED;
             break;
         
         case 3:
@@ -241,7 +241,7 @@ s32 act_start_sleeping(struct MarioState *m) {
 #else
             set_mario_animation(m, MARIO_ANIM_START_SLEEP_SITTING);
 #endif
-            m->unk98->eyeState = MARIO_EYES_HALF_CLOSED;
+            m->marioBodyState->eyeState = MARIO_EYES_HALF_CLOSED;
             break;
     }
     
@@ -287,7 +287,7 @@ s32 act_sleeping(struct MarioState *m) {
         return set_mario_action(m, ACT_WAKING_UP, m->actionState);
     }
     
-    m->unk98->eyeState = MARIO_EYES_CLOSED;
+    m->marioBodyState->eyeState = MARIO_EYES_CLOSED;
     stationary_ground_step(m);
     switch (m->actionState) {
         case 0: {
@@ -602,7 +602,7 @@ s32 act_panting(struct MarioState *m) {
     }
     
     stationary_ground_step(m);
-    m->unk98->eyeState = MARIO_EYES_HALF_CLOSED;
+    m->marioBodyState->eyeState = MARIO_EYES_HALF_CLOSED;
     return 0;
 }
 
@@ -625,7 +625,7 @@ s32 func_80261C74(struct MarioState *m) {
     
     set_mario_animation(m, MARIO_ANIM_WALK_PANTING);
     stationary_ground_step(m);
-    m->unk98->eyeState = MARIO_EYES_HALF_CLOSED;
+    m->marioBodyState->eyeState = MARIO_EYES_HALF_CLOSED;
     return 0;
 }
 

@@ -125,7 +125,7 @@ struct GraphNodeSwitchCase
     /*0x00*/ struct FnGraphNode fnNode;
     /*0x18*/ s32 unk18;
     /*0x1C*/ s16 numCases;
-    /*0x1E*/ s16 unk1E;
+    /*0x1E*/ s16 result;
 };
 
 struct GraphNode114

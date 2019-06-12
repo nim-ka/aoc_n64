@@ -56,7 +56,7 @@ s32 mario_update_punch_sequence(struct MarioState *m)
         }
 
         if (m->actionArg == 2)
-            m->unk98->unk0B = 4;
+            m->marioBodyState->unk0B = 4;
         break;
 
     case 2:
@@ -86,7 +86,7 @@ s32 mario_update_punch_sequence(struct MarioState *m)
             m->flags |= MARIO_PUNCHING;
 
         if (m->actionArg == 5)
-            m->unk98->unk0B = 68;
+            m->marioBodyState->unk0B = 68;
         break;
 
     case 5:
@@ -105,7 +105,7 @@ s32 mario_update_punch_sequence(struct MarioState *m)
         func_80251218(m, SOUND_MARIO_HOO6, 1);
         animFrame = set_mario_animation(m, MARIO_ANIM_GROUND_KICK);
         if (animFrame == 0)
-            m->unk98->unk0B = 134;
+            m->marioBodyState->unk0B = 134;
 
         if (animFrame >= 0 && animFrame < 8)
             m->flags |= MARIO_KICKING;
@@ -177,14 +177,14 @@ s32 act_picking_up(struct MarioState *m)
     {
         if (m->heldObj->oUnk190 & 0x4)
         {
-            m->unk98->unk0A = 2;
+            m->marioBodyState->grabPos = GRAB_POS_HEAVY_OBJ;
             set_mario_animation(m, MARIO_ANIM_GRAB_HEAVY_OBJECT);
             if (func_80250770(m))
                 set_mario_action(m, ACT_UNKNOWN_008, 0);
         }
         else
         {
-            m->unk98->unk0A = 1;
+            m->marioBodyState->grabPos = GRAB_POS_LIGHT_OBJ;
             set_mario_animation(m, MARIO_ANIM_PICK_UP_LIGHT_OBJ);
             if (func_80250770(m))
                 set_mario_action(m, ACT_UNKNOWN_007, 0);
@@ -287,7 +287,7 @@ s32 act_picking_up_bowser(struct MarioState *m)
     {
         m->actionState = 1;
         m->angleVel[1] = 0;
-        m->unk98->unk0A = 3;
+        m->marioBodyState->grabPos = GRAB_POS_BOWSER;
         mario_grab_used_object(m);
         SetSound(SOUND_MARIO_HRMM, m->marioObj->header.gfx.cameraToObject);
     }

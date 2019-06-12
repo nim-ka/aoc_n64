@@ -294,7 +294,7 @@ Gfx *Geo18_802770A4(s32 run, struct GraphNode *node, UNUSED Mat4 *c)
 
     if (run == TRUE)
     {
-        sp1E = (sp20->unk08 & 0x100) ? (sp20->unk08 & 0xFF) : 255;
+        sp1E = (sp20->modelState & 0x100) ? (sp20->modelState & 0xFF) : 255;
         sp28 = func_802769E0(sp24, sp1E);
     }
     return sp28;
@@ -307,7 +307,7 @@ s32 geo_switch_mario_stand_run(s32 run, struct GraphNode *node, UNUSED Mat4 *mtx
 
     if (run == TRUE)
         // assign result. 0 if moving, 1 if stationary.
-        switchCase->unk1E = ((sp0->action & ACT_FLAG_STATIONARY) == FALSE);
+        switchCase->result = ((sp0->action & ACT_FLAG_STATIONARY) == FALSE);
     return 0;
 }
 
@@ -323,13 +323,13 @@ s32 geo_switch_mario_eyes(s32 run, struct GraphNode *node, UNUSED Mat4 *c)
         {
             sp6 = ((switchCase->numCases * 32 + gAreaUpdateCounter) >> 1) & 0x1F;
             if (sp6 < 7)
-                switchCase->unk1E = D_8032CDF0[sp6];
+                switchCase->result = D_8032CDF0[sp6];
             else
-                switchCase->unk1E = 0;
+                switchCase->result = 0;
         }
         else
         {
-            switchCase->unk1E = sp8->eyeState - 1;
+            switchCase->result = sp8->eyeState - 1;
         }
     }
     return 0;
@@ -394,14 +394,14 @@ s32 geo_switch_mario_hand(s32 run, struct GraphNode *node, UNUSED Mat4 *c)
     {
         if (sp0->handState == 0)
         {
-            switchCase->unk1E = ((sp0->action & ACT_FLAG_SWIMMING_OR_FLYING) != 0);
+            switchCase->result = ((sp0->action & ACT_FLAG_SWIMMING_OR_FLYING) != 0);
         }
         else
         {
             if (switchCase->numCases == 0)
-                switchCase->unk1E = (sp0->handState < 5) ? sp0->handState : 1;
+                switchCase->result = (sp0->handState < 5) ? sp0->handState : 1;
             else
-                switchCase->unk1E = (sp0->handState < 2) ? sp0->handState : 0;
+                switchCase->result = (sp0->handState < 2) ? sp0->handState : 0;
         }
     }
     return 0;
@@ -436,7 +436,7 @@ s32 geo_switch_mario_cap_effect(s32 run, struct GraphNode *node, UNUSED Mat4 *c)
     struct MarioBodyState *sp0 = &D_8033A040[switchCase->numCases];
 
     if (run == TRUE)
-        switchCase->unk1E = sp0->unk08 >> 8;
+        switchCase->result = sp0->modelState >> 8;
     return 0;
 }
 
@@ -448,7 +448,7 @@ s32 geo_switch_mario_cap_on_off(s32 run, struct GraphNode *node, UNUSED Mat4 *c)
 
     if (run == TRUE)
     {
-        switchCase->unk1E = sp4->capState & 1;
+        switchCase->result = sp4->capState & 1;
         while (next != node)
         {
             if (next->type == 21)
@@ -485,7 +485,7 @@ Gfx *Geo18_80277824(s32 run, struct GraphNode *node, UNUSED Mat4 *c)
     return NULL;
 }
 
-Gfx *Geo1C_8027795C(s32 a, struct GraphNode *b, Mat4 *c)
+Gfx *geo_switch_mario_hand_grab_pos(s32 a, struct GraphNode *b, Mat4 *c)
 {
     struct Struct8027795C *sp2C = (struct Struct8027795C *)b;
     Mat4 *sp28 = c;
@@ -497,18 +497,18 @@ Gfx *Geo1C_8027795C(s32 a, struct GraphNode *b, Mat4 *c)
         if (sp24->heldObj != NULL)
         {
             sp2C->unk1C = sp24->heldObj;
-            switch (sp24->unk98->unk0A)
+            switch (sp24->marioBodyState->grabPos)
             {
-            case 1:
+            case GRAB_POS_LIGHT_OBJ:
                 if (sp24->action & ACT_FLAG_THROWING)
                     vec3s_set(sp2C->unk20, 50, 0, 0);
                 else
                     vec3s_set(sp2C->unk20, 50, 0, 110);
                 break;
-            case 2:
+            case GRAB_POS_HEAVY_OBJ:
                 vec3s_set(sp2C->unk20, 145, -173, 180);
                 break;
-            case 3:
+            case GRAB_POS_BOWSER:
                 vec3s_set(sp2C->unk20, 80, -270, 1260);
                 break;
             }
@@ -516,7 +516,7 @@ Gfx *Geo1C_8027795C(s32 a, struct GraphNode *b, Mat4 *c)
     }
     else if (a == 5)
     {
-        func_8037A550(sp24->unk98->unk18, *sp28, D_8032CF9C->unk34);
+        func_8037A550(sp24->marioBodyState->unk18, *sp28, D_8032CF9C->unk34);
     }
     return NULL;
 }

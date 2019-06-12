@@ -332,18 +332,18 @@ s32 geo_switch_tuxie_mother_eyes(s32 run, struct GraphNode *node, UNUSED Mat4 *m
     {
         obj = (struct Object *)D_8032CFA0;
         switchCase = (struct GraphNodeSwitchCase *)node;
-        switchCase->unk1E = 0;
+        switchCase->result = 0;
 
         // timer logic for blinking. uses cases 0-2.
         timer = gGlobalTimer % 50;
         if(timer < 43)
-            switchCase->unk1E = 0;
+            switchCase->result = 0;
         else if(timer < 45)
-            switchCase->unk1E = 1;
+            switchCase->result = 1;
         else if(timer < 47)
-            switchCase->unk1E = 2;
+            switchCase->result = 2;
         else
-            switchCase->unk1E = 1;
+            switchCase->result = 1;
 
         /** make Tuxie's Mother have angry eyes if Mario takes the correct baby
           * after giving it back. The easiest way to check this is to see if she's
@@ -351,7 +351,7 @@ s32 geo_switch_tuxie_mother_eyes(s32 run, struct GraphNode *node, UNUSED Mat4 *m
           */
         if(segmented_to_virtual(bhvTuxiesMother) == obj->behavior)
             if(obj->oForwardVel > 5.0f)
-                switchCase->unk1E = 3;
+                switchCase->result = 3;
     }
     return 0;
 }
