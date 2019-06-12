@@ -4,17 +4,17 @@
 #include "profiler.h"
 #include "game.h"
 
-static s16 gProfilerMode = 0;
+s16 gProfilerMode = 0;
 
 // the thread 3 info is logged on the opposite profiler from what is used by
 // the thread4 and 5 loggers. It's likely because the sound thread runs at a
 // much faster rate and shouldn't be flipping the index for the "slower" game
 // threads, which could leave the frame data in a possibly corrupt or incomplete
 // state.
-static s16 gCurrentFrameIndex1 = 1;
-static s16 gCurrentFrameIndex2 = 0;
+s16 gCurrentFrameIndex1 = 1;
+s16 gCurrentFrameIndex2 = 0;
 
-static struct ProfilerFrameData gProfilerFrameData[2];
+struct ProfilerFrameData gProfilerFrameData[2];
 
 // log the current osTime to the appropriate idx for current thread5 processes.
 void profiler_log_thread5_time(enum ProfilerGameEvent eventID)
@@ -61,7 +61,7 @@ void profiler_log_vblank_time(void)
 }
 
 // draw the specified profiler given the information passed.
-static void draw_profiler_bar(s64 clock_base, s64 clock_start, s64 clock_end, s16 pos_y, u16 color)
+void draw_profiler_bar(s64 clock_base, s64 clock_start, s64 clock_end, s16 pos_y, u16 color)
 {
     s64 duration_start, duration_end;
     s32 rect_x1, rect_x2;
@@ -97,7 +97,7 @@ static void draw_profiler_bar(s64 clock_base, s64 clock_start, s64 clock_end, s1
     }
 }
 
-static void draw_reference_profiler_bars(void)
+void draw_reference_profiler_bars(void)
 {
     // Draws the reference "max" bars underneath the real thing.
 
@@ -136,7 +136,7 @@ static void draw_reference_profiler_bars(void)
   (orange): Time from RSP complete to RDP complete (possibly bugged, see //! note below)
   (red): VBlank Times
 */
-static void draw_profiler_mode_1(void)
+void draw_profiler_mode_1(void)
 {
     s32 i;
     struct ProfilerFrameData *profiler;
@@ -199,7 +199,7 @@ static void draw_profiler_mode_1(void)
   (yellow): RSP Duration
   (red): VBlank Duration
 */
-static void draw_profiler_mode_0(void)
+void draw_profiler_mode_0(void)
 {
     s32 i;
     struct ProfilerFrameData* profiler;

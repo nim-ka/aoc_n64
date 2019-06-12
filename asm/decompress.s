@@ -14,53 +14,95 @@
 # This file is handwritten.
 
 glabel decompress
-/* 039F30 8027EF30 8C980004 */  lw    $t8, 4($a0)
-/* 039F34 8027EF34 8C870008 */  lw    $a3, 8($a0)
-/* 039F38 8027EF38 8C99000C */  lw    $t9, 0xc($a0)
-/* 039F3C 8027EF3C 00003025 */  move  $a2, $zero
-/* 039F40 8027EF40 0305C020 */  add   $t8, $t8, $a1
-/* 039F44 8027EF44 00E43820 */  add   $a3, $a3, $a0
-/* 039F48 8027EF48 0324C820 */  add   $t9, $t9, $a0
-/* 039F4C 8027EF4C 20840010 */  addi  $a0, $a0, 0x10
+.ifdef VERSION_EU
+    lw    $a3, 8($a0)
+    lw    $t9, 0xc($a0)
+    lw    $t8, 4($a0)
+    add   $a3, $a3, $a0
+    add   $t9, $t9, $a0
+    move  $a2, $zero
+    addi  $a0, $a0, 0x10
+    add   $t8, $t8, $a1
+.L8026ED80:
+    bnezl $a2, .L8026ED98
+     slt   $t1, $t0, $zero
+    lw    $t0, ($a0)
+    li    $a2, 32
+    addi  $a0, $a0, 4
+    slt   $t1, $t0, $zero
+.L8026ED98:
+    beql  $t1, $zero, .L8026EDB8
+     lhu   $t2, ($a3)
+    lb    $t2, ($t9)
+    addi  $t9, $t9, 1
+    addi  $a1, $a1, 1
+    b     .L8026EDE4
+     sb    $t2, -1($a1)
+    lhu   $t2, ($a3)
+.L8026EDB8:
+    addi  $a3, $a3, 2
+    srl   $t3, $t2, 0xc
+    andi  $t2, $t2, 0xfff
+    sub   $t1, $a1, $t2
+    addi  $t3, $t3, 3
+.L8026EDCC:
+    lb    $t2, -1($t1)
+    addi  $t3, $t3, -1
+    addi  $t1, $t1, 1
+    addi  $a1, $a1, 1
+    bnez  $t3, .L8026EDCC
+     sb    $t2, -1($a1)
+.L8026EDE4:
+    sll   $t0, $t0, 1
+    bne   $a1, $t8, .L8026ED80
+     addi  $a2, $a2, -1
+    jr    $ra
+     nop   
+.else
+    lw    $t8, 4($a0)
+    lw    $a3, 8($a0)
+    lw    $t9, 0xc($a0)
+    move  $a2, $zero
+    add   $t8, $t8, $a1
+    add   $a3, $a3, $a0
+    add   $t9, $t9, $a0
+    addi  $a0, $a0, 0x10
 .L8027EF50:
-/* 039F50 8027EF50 14C00004 */  bnez  $a2, .L8027EF64
-/* 039F54 8027EF54 00000000 */   nop   
-/* 039F58 8027EF58 8C880000 */  lw    $t0, ($a0)
-/* 039F5C 8027EF5C 24060020 */  li    $a2, 32
-/* 039F60 8027EF60 20840004 */  addi  $a0, $a0, 4
+    bnez  $a2, .L8027EF64
+     nop   
+    lw    $t0, ($a0)
+    li    $a2, 32
+    addi  $a0, $a0, 4
 .L8027EF64:
-/* 039F64 8027EF64 0100482A */  slt   $t1, $t0, $zero
-/* 039F68 8027EF68 11200007 */  beqz  $t1, .L8027EF88
-/* 039F6C 8027EF6C 00000000 */   nop   
-/* 039F70 8027EF70 832A0000 */  lb    $t2, ($t9)
-/* 039F74 8027EF74 23390001 */  addi  $t9, $t9, 1
-/* 039F78 8027EF78 A0AA0000 */  sb    $t2, ($a1)
-/* 039F7C 8027EF7C 20A50001 */  addi  $a1, $a1, 1
-/* 039F80 8027EF80 1000000E */  b     .L8027EFBC
-/* 039F84 8027EF84 00000000 */   nop   
+    slt   $t1, $t0, $zero
+    beqz  $t1, .L8027EF88
+     nop   
+    lb    $t2, ($t9)
+    addi  $t9, $t9, 1
+    sb    $t2, ($a1)
+    addi  $a1, $a1, 1
+    b     .L8027EFBC
+     nop   
 .L8027EF88:
-/* 039F88 8027EF88 94EA0000 */  lhu   $t2, ($a3)
-/* 039F8C 8027EF8C 20E70002 */  addi  $a3, $a3, 2
-/* 039F90 8027EF90 000A5B02 */  srl   $t3, $t2, 0xc
-/* 039F94 8027EF94 314A0FFF */  andi  $t2, $t2, 0xfff
-/* 039F98 8027EF98 00AA4822 */  sub   $t1, $a1, $t2
-/* 039F9C 8027EF9C 216B0003 */  addi  $t3, $t3, 3
+    lhu   $t2, ($a3)
+    addi  $a3, $a3, 2
+    srl   $t3, $t2, 0xc
+    andi  $t2, $t2, 0xfff
+    sub   $t1, $a1, $t2
+    addi  $t3, $t3, 3
 .L8027EFA0:
-/* 039FA0 8027EFA0 812AFFFF */  lb    $t2, -1($t1)
-/* 039FA4 8027EFA4 216BFFFF */  addi  $t3, $t3, -1
-/* 039FA8 8027EFA8 21290001 */  addi  $t1, $t1, 1
-/* 039FAC 8027EFAC A0AA0000 */  sb    $t2, ($a1)
-/* 039FB0 8027EFB0 20A50001 */  addi  $a1, $a1, 1
-/* 039FB4 8027EFB4 1560FFFA */  bnez  $t3, .L8027EFA0
-/* 039FB8 8027EFB8 00000000 */   nop   
+    lb    $t2, -1($t1)
+    addi  $t3, $t3, -1
+    addi  $t1, $t1, 1
+    sb    $t2, ($a1)
+    addi  $a1, $a1, 1
+    bnez  $t3, .L8027EFA0
+     nop   
 .L8027EFBC:
-/* 039FBC 8027EFBC 00084040 */  sll   $t0, $t0, 1
-/* 039FC0 8027EFC0 20C6FFFF */  addi  $a2, $a2, -1
-/* 039FC4 8027EFC4 14B8FFE2 */  bne   $a1, $t8, .L8027EF50
-/* 039FC8 8027EFC8 00000000 */   nop   
-/* 039FCC 8027EFCC 03E00008 */  jr    $ra
-/* 039FD0 8027EFD0 00000000 */   nop   
-
-/* 039FD4 8027EFD4 00000000 */  nop   
-/* 039FD8 8027EFD8 00000000 */  nop   
-/* 039FDC 8027EFDC 00000000 */  nop  
+    sll   $t0, $t0, 1
+    addi  $a2, $a2, -1
+    bne   $a1, $t8, .L8027EF50
+     nop   
+    jr    $ra
+     nop   
+.endif
