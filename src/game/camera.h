@@ -209,7 +209,17 @@ struct Struct80287404
     s16 unk3A;
 };
 
-typedef void (*CameraCommandProc)(struct LevelCamera *a);
+// Camera command procedures are marked as returning s32, but none of them
+// actually return a value. This causes undefined behavior, which we'd rather
+// avoid on modern GCC. Hence, typedef. Interestingly, the void vs s32
+// difference doesn't affect -g, only -O2.
+#ifdef __GNUC__
+typedef void CmdRet;
+#else
+typedef s32 CmdRet;
+#endif
+
+typedef CmdRet (*CameraCommandProc)(struct LevelCamera *a);
 
 struct TableCamera
 {
@@ -344,6 +354,8 @@ struct CameraState
     /*0xA8*/ float unkA8;
     /*0xAC*/ float unkAC;
     /*0xB0*/ float unkB0;
+    /*0xB4*/ s16 cameraKeyCutsceneRollOffset;
+    /*0xB8*/ u32 lastFrameAction;
 };
 
 // bss order hack to not affect BSS order. if possible, remove me, but it will be hard to match otherwise
@@ -465,7 +477,7 @@ extern void approach_camera_height(struct LevelCamera *, f32, f32);
 extern void set_pos_from_face_angle_and_vec3f(Vec3f, Vec3f, Vec3f, Vec3s);
 // extern ? set_pos_from_face_angle_and_rel_coords(?);
 // extern ? determine_pushing_or_pulling_door(?);
-s32 func_8028C824(Vec3f a, Vec3f b, Vec3f c, Vec3f d, Vec3f e, Vec3f f, s16 g); // postdefined
+s16 func_8028C824(Vec3f a, Vec3f b, Vec3f c, Vec3f d, Vec3f e, Vec3f f, s16 g); // postdefined
 // extern ? Unknown8028CE1C(?);
 // extern ? set_camera_preset_fixed_ref_point(?);
 // extern ? set_camera_preset_bowser_level(?);

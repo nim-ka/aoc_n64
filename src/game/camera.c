@@ -62,8 +62,6 @@ s16 gCameraFlags1;
 u16 gCButtonsPressed;
 s16 D_8033B320;
 struct CameraState gCameraStatus;
-s16 sCameraKeyCutsceneRollOffset;
-u32 sLastFrameAction;
 s16 unused_8033B3E4;
 s16 unused_8033B3E6;
 s16 unused_8033B3E8;
@@ -1651,7 +1649,7 @@ s16 return_close_or_free_roam_cam_yaw(struct LevelCamera *c)
     if (-16 < gPlayer1Controller->stickY)
         c->trueYaw = yaw;
 
-    return_height_above_floor(&sp68, 1, 200, &sp64, 0.9f, 200.f);
+    return_height_above_floor(&sp68, 1, 200, &sp64, 0.9f, 200);
     vec3f_copy(spB0, c->pos);
     sp48 = func_8028F2F0(c, spB0, &sp72, 1536);
     if (sp48 == 3)
@@ -1762,7 +1760,7 @@ s16 return_close_or_free_roam_cam_yaw(struct LevelCamera *c)
         {
             sp68 = 375.f;
             if (gCurrLevelArea == AREA_SSL_PYRAMID)
-                sp68 /= 2.f;
+                sp68 /= 2;
         }
         else
         {
@@ -1773,7 +1771,7 @@ s16 return_close_or_free_roam_cam_yaw(struct LevelCamera *c)
     {
         sp68 = 610.f;
         if (gCurrLevelArea == AREA_SSL_PYRAMID || gCurrLevelNum == LEVEL_CASTLE)
-            sp68 /= 2.f;
+            sp68 /= 2;
     }
     sp74 = func_80381D3C(spB0[0], spB0[2]);
     if (sp74 != -11000.f)
@@ -2248,21 +2246,20 @@ void func_80285E70(struct LevelCamera *c)
     UNUSED u8 unused1[12];
     f32 sp34;
     s16 sp32;
-    UNUSED u8 unused2[4];
+    UNUSED u8 unused2[8];
 
     if (gCameraMovementFlags & CAM_MOVE_PAUSE_SCREEN)
     {
     }
     else
     {
-        if (c->cutscene != 0)
+        if (c->cutscene)
         {
         }
-        sp32 = func_8028C824(sp50, sp44, c->pos, c->focus,
-            sCameraPosition, sCameraFocus, c->storedYaw);
-        set_or_approach_s16_symmetric(&c->trueYaw, sp32, D_8032CFD4);
-        if (1)
-        {
+        if (1) {
+            sp32 = func_8028C824(sp50, sp44, c->pos, c->focus,
+                sCameraPosition, sCameraFocus, c->storedYaw);
+            set_or_approach_s16_symmetric(&c->trueYaw, sp32, D_8032CFD4);
             gCameraFlags2 &= ~CAM_FLAG_2_UNUSED_CUTSCENE_ACTIVE;
         }
         else
@@ -2289,10 +2286,10 @@ void func_80285E70(struct LevelCamera *c)
             gCameraFlags2 |= CAM_FLAG_2_SMOOTH_MOVEMENT;
         vec3f_copy(gCameraStatus.pos, gCameraStatus.camFocAndPosCurrAndGoal[1]);
         vec3f_copy(gCameraStatus.focus, gCameraStatus.camFocAndPosCurrAndGoal[0]);
-        if (c->cutscene != 0)
+        if (c->cutscene)
         {
             vec3f_add(gCameraStatus.focus, D_8033B218);
-            vec3f_set(D_8033B218, 0.f, 0.f, 0.f);
+            vec3f_set(D_8033B218, 0, 0, 0);
         }
 
         vec3f_get_dist_and_angle(gCameraStatus.pos, gCameraStatus.focus,
@@ -2306,23 +2303,23 @@ void func_80285E70(struct LevelCamera *c)
 
         set_face_angle_from_spline(gCameraStatus.pos, gCameraStatus.focus);
 
-        if (sMarioStatusForCamera->action == ACT_DIVE && sLastFrameAction != ACT_DIVE)
+        if (sMarioStatusForCamera->action == ACT_DIVE && gCameraStatus.lastFrameAction != ACT_DIVE)
             set_camera_shake(SHAKE_HIT_FROM_BELOW);
 
         gCameraStatus.roll += sCameraCutsceneRollOffset;
-        gCameraStatus.roll += sCameraKeyCutsceneRollOffset;
+        gCameraStatus.roll += gCameraStatus.cameraKeyCutsceneRollOffset;
 
         if (c->currPreset != CAMERA_PRESET_C_UP_LOOK && c->cutscene == 0)
         {
             gCheckingSurfaceCollisionsForCamera = 1;
             sp34 = find_floor(
                 gCameraStatus.pos[0],
-                gCameraStatus.pos[1] + 20,
+                gCameraStatus.pos[1] + 20.0f,
                 gCameraStatus.pos[2],
                 &floor);
             if (sp34 != -11000.f)
             {
-                if (gCameraStatus.pos[1] < (sp34 += 100))
+                if (gCameraStatus.pos[1] < (sp34 += 100.0f))
                     gCameraStatus.pos[1] = sp34;
                 else
                     gCheckingSurfaceCollisionsForCamera = 0;
@@ -2524,7 +2521,7 @@ void update_camera(struct LevelCamera *c)
             play_sound_button_change_blocked();
     }
     func_80285E70(c);
-    sLastFrameAction = sMarioStatusForCamera->action;
+    gCameraStatus.lastFrameAction = sMarioStatusForCamera->action;
 }
 
 void reset_camera(struct LevelCamera *c)
@@ -2588,7 +2585,7 @@ void reset_camera(struct LevelCamera *c)
     gCameraStatus.unk60[0] = 0.f;
     gCameraStatus.unk60[1] = 0.f;
     gCameraStatus.unk60[2] = 0.f;
-    sLastFrameAction = 0;
+    gCameraStatus.lastFrameAction = 0;
     set_fov_function(2);
     D_8033B230.fieldOfView = 45.f;
     D_8033B230.unk8 = 0.f;
@@ -2620,7 +2617,7 @@ void init_camera(struct LevelCamera *c)
     gCameraStatus.unkA4 = 0.8f;
     gCameraStatus.unkA4 = 0.3f;
     gCameraStatus.roll = 0;
-    sCameraKeyCutsceneRollOffset = 0;
+    gCameraStatus.cameraKeyCutsceneRollOffset = 0;
     unused_8033B3E4 = 0;
     gCameraFlags2 &= ~CAM_FLAG_2_SMOOTH_MOVEMENT;
     vec3f_set(sFixedPresetBasePositionOffset, 0.f, 0.f, 0.f);
@@ -2925,8 +2922,8 @@ s32 func_80287CFC(Vec3f a, struct CinematicCameraTable b[], s16 *c, f32 *d)
     s32 i = 0;
     f32 sp34 = *d;
     UNUSED f32 sp30;
-    f32 sp2C = 0.f;
-    f32 sp28 = 0.f;
+    f32 sp2C = 0;
+    f32 sp28 = 0;
     s32 sp24 = *c;
 
     if (*c < 0)
@@ -2944,11 +2941,22 @@ s32 func_80287CFC(Vec3f a, struct CinematicCameraTable b[], s16 *c, f32 *d)
     }
     evaluate_cubic_spline(sp34, a, sp3C[0], sp3C[1], sp3C[2], sp3C[3]);
     if (b[*c + 1].unk1 != 0)
-        sp2C = 1.f / b[*c + 1].unk1;
+        sp2C = 1.0f / b[*c + 1].unk1;
     if (b[*c + 2].unk1 != 0)
-        sp28 = 1.f / b[*c + 2].unk1;
+        sp28 = 1.0f / b[*c + 2].unk1;
     sp30 = (sp28 - sp2C) * *d + sp2C;
-    if (1.f <= (*d += sp30))
+#ifdef VERSION_EU
+    if (gCurrLevelCamera->cutscene == CUTSCENE_INTRO_PEACH) {
+        sp30 += sp30 * 0.19f;
+    }
+    if (gCurrLevelCamera->cutscene == CUTSCENE_CREDITS) {
+        sp30 += sp30 * 0.15f;
+    }
+    if (gCurrLevelCamera->cutscene == CUTSCENE_PEACH_END) {
+        sp30 += sp30 * 0.1f;
+    }
+#endif
+    if (1 <= (*d += sp30))
     {
         (*c)++;
         if (b[*c + 3].unk0 == -1)
@@ -2956,7 +2964,7 @@ s32 func_80287CFC(Vec3f a, struct CinematicCameraTable b[], s16 *c, f32 *d)
             *c = 0;
             sp6C = 1;
         }
-        *d -= 1.f;
+        *d -= 1;
     }
     return sp6C;
 }
@@ -3502,18 +3510,18 @@ void random_vec3s(Vec3s dst, s16 xRange, s16 yRange, s16 zRange)
 
     randomFloat = RandomFloat();
     tempXRange = xRange;
-    dst[0] = randomFloat * tempXRange - tempXRange / 2.f;
+    dst[0] = randomFloat * tempXRange - tempXRange / 2;
 
     randomFloat = RandomFloat();
     tempYRange = yRange;
-    dst[1] = randomFloat * tempYRange - tempYRange / 2.f;
+    dst[1] = randomFloat * tempYRange - tempYRange / 2;
 
     randomFloat = RandomFloat();
     tempZRange = zRange;
-    dst[2] = randomFloat * tempZRange - tempZRange / 2.f;
+    dst[2] = randomFloat * tempZRange - tempZRange / 2;
 }
 
-s32 func_80289738(s16 a, f32 b, f32 c, f32 d, f32 e)
+s16 func_80289738(s16 a, f32 b, f32 c, f32 d, f32 e)
 {
     Vec3f sp3C;
     f32 sp38;
@@ -4263,7 +4271,7 @@ s32 determine_star_fadeout_cutscene_table(UNUSED struct LevelCamera *c)
 
 u8 return_table_door_push_or_pull(u8 pullResult, u8 pushResult)
 {
-    u16 result;
+    s16 result;
 
     if (sMarioStatusForCamera->action == ACT_PULLING_DOOR)
         result = pullResult;
@@ -4452,7 +4460,7 @@ void set_focus_position(struct LevelCamera *c, f32 b, f32 heightOffset, f32 d, s
     c->focus[1] = sMarioStatusForCamera->pos[1] + heightOffset + heightAboveFloor;
 }
 
-void unused_set_camera_position(struct LevelCamera *c, f32 b, f32 heightOffset, f32 d, s16 yawOffset)
+static void unused_set_camera_position(struct LevelCamera *c, f32 b, f32 heightOffset, f32 d, s16 yawOffset)
 {
     u16 yaw = sMarioStatusForCamera->faceAngle[1] + yawOffset;
 
@@ -4493,7 +4501,7 @@ void determine_pushing_or_pulling_door(s16 *a)
         *a = -0x8000;
 }
 
-s32 func_8028C824(Vec3f a, Vec3f b, Vec3f c, Vec3f d, Vec3f e, Vec3f f, s16 yaw)
+s16 func_8028C824(Vec3f a, Vec3f b, Vec3f c, Vec3f d, Vec3f e, Vec3f f, s16 yaw)
 {
     s16 yawVelocity;
     s16 pitchVelocity;
@@ -4577,7 +4585,7 @@ s32 func_8028C824(Vec3f a, Vec3f b, Vec3f c, Vec3f d, Vec3f e, Vec3f f, s16 yaw)
     return yaw;
 }
 
-void Unknown8028CE1C(void)
+static void Unknown8028CE1C(void)
 {
     gCameraFlags2 &= ~(CAM_FLAG_2_UNKNOWN_10 | CAM_FLAG_2_UNKNOWN_11);
     sCameraTransition.timer = 0;
@@ -4705,13 +4713,13 @@ void func_8028D32C(u8 *preset)
         gCameraFlags2 |= CAM_FLAG_2_BLOCK_LEVEL_SPECIFIC_UPDATES;
 }
 
-void CameraRR00(struct LevelCamera *c)
+CmdRet CameraRR00(struct LevelCamera *c)
 {
     set_camera_preset_bowser_level(c);
     sBowserLevelPresetBaseYaw = 0x4000;
 }
 
-void CameraRR04(struct LevelCamera *c)
+CmdRet CameraRR04(struct LevelCamera *c)
 {
     set_camera_preset_bowser_level(c);
     if (c->pos[1] < 6343.f)
@@ -4723,13 +4731,13 @@ void CameraRR04(struct LevelCamera *c)
     }
 }
 
-void CameraRR02(struct LevelCamera *c)
+CmdRet CameraRR02(struct LevelCamera *c)
 {
     if (c->currPreset != CAMERA_PRESET_FIXED_REF_POINT)
         set_camera_preset_fixed_ref_point(c, -2974, 478, -3975);
 }
 
-void CameraRR0305(struct LevelCamera *c)
+CmdRet CameraRR0305(struct LevelCamera *c)
 {
     if (c->currPreset != CAMERA_PRESET_FIXED_REF_POINT)
         set_camera_preset_fixed_ref_point(c, -2953, 798, -3943);
@@ -4737,7 +4745,7 @@ void CameraRR0305(struct LevelCamera *c)
         c->pos[1] = 6043.f;
 }
 
-void CameraRR01(struct LevelCamera *c)
+CmdRet CameraRR01(struct LevelCamera *c)
 {
     if (c->currPreset != CAMERA_PRESET_FIXED_REF_POINT)
     {
@@ -4746,19 +4754,19 @@ void CameraRR01(struct LevelCamera *c)
     }
 }
 
-void CameraCotMC00(UNUSED struct LevelCamera *c)
+CmdRet CameraCotMC00(UNUSED struct LevelCamera *c)
 {
     gCameraMovementFlags |= CAM_MOVE_UNKNOWN_7;
 }
 
-void CameraSL00(struct LevelCamera *c)
+CmdRet CameraSL00(struct LevelCamera *c)
 {
     gCameraFlags2 |= CAM_FLAG_2_BLOCK_LEVEL_SPECIFIC_UPDATES;
     set_camera_preset(c, CAMERA_PRESET_BOWSER_LEVEL, 60);
     sBowserLevelPresetBaseYaw = 0x1D27;
 }
 
-void camera_change_set_free_roam_mode(struct LevelCamera *c)
+CmdRet camera_change_set_free_roam_mode(struct LevelCamera *c)
 {
     set_camera_preset(c, CAMERA_PRESET_FREE_ROAM, 60);
 }
@@ -4775,7 +4783,7 @@ void move_camera_through_floor_while_descending(struct LevelCamera *c, f32 heigh
     }
 }
 
-void camera_change_hmc_maze_entrance(struct LevelCamera *c)
+CmdRet camera_change_hmc_maze_entrance(struct LevelCamera *c)
 {
     s16 sp26, sp24;
     f32 sp20;
@@ -4793,78 +4801,78 @@ void camera_change_hmc_maze_entrance(struct LevelCamera *c)
     }
 }
 
-void CameraHMC02(struct LevelCamera *c)
+CmdRet CameraHMC02(struct LevelCamera *c)
 {
     move_camera_through_floor_while_descending(c, 1536.f);
 }
 
-void CameraHMC03(struct LevelCamera *c)
+CmdRet CameraHMC03(struct LevelCamera *c)
 {
     move_camera_through_floor_while_descending(c, 2355.f);
 }
 
-void CameraHMC04(struct LevelCamera *c)
+CmdRet CameraHMC04(struct LevelCamera *c)
 {
     move_camera_through_floor_while_descending(c, 1843.f);
 }
 
-void CameraHMC05(struct LevelCamera *c)
+CmdRet CameraHMC05(struct LevelCamera *c)
 {
     move_camera_through_floor_while_descending(c, 1843.f);
 }
 
-void CameraSSL00(UNUSED struct LevelCamera *c)
+CmdRet CameraSSL00(UNUSED struct LevelCamera *c)
 {
     func_8028F834(CUTSCENE_ENTER_PYRAMID_TOP);
 }
 
-void CameraSSL0102(struct LevelCamera *c)
+CmdRet CameraSSL0102(struct LevelCamera *c)
 {
     gCameraFlags2 |= CAM_FLAG_2_BLOCK_LEVEL_SPECIFIC_UPDATES;
     set_camera_preset(c, CAMERA_PRESET_CLOSE, 90);
 }
 
-void CameraSSL03(struct LevelCamera *c)
+CmdRet CameraSSL03(struct LevelCamera *c)
 {
     gCameraFlags2 |= CAM_FLAG_2_BLOCK_LEVEL_SPECIFIC_UPDATES;
     set_camera_preset(c, CAMERA_PRESET_REVERSE_TOWER, 90);
 }
 
-void CameraTHI00(UNUSED struct LevelCamera *c)
+CmdRet CameraTHI00(UNUSED struct LevelCamera *c)
 {
     if (sFirstPersonCameraYaw < 0x2AAA)
         sFirstPersonCameraYaw = 0x2AAA;
 }
 
-void CameraTHI01(UNUSED struct LevelCamera *c)
+CmdRet CameraTHI01(UNUSED struct LevelCamera *c)
 {
     if (sFirstPersonCameraYaw > 0x3AAA)
         sFirstPersonCameraYaw = 0x3AAA;
 }
 
-void CameraRR07(struct LevelCamera *c)
+CmdRet CameraRR07(struct LevelCamera *c)
 {
     gCameraFlags2 |= CAM_FLAG_2_BLOCK_LEVEL_SPECIFIC_UPDATES;
     set_camera_preset(c, CAMERA_PRESET_OPEN_CAMERA, 90);
 }
 
-void CameraRR08(struct LevelCamera *c)
+CmdRet CameraRR08(struct LevelCamera *c)
 {
     set_camera_preset(c, CAMERA_PRESET_FREE_ROAM, 90);
 }
 
-void camera_change_hmc_cotmc_pool_entry(struct LevelCamera *c)
+CmdRet camera_change_hmc_cotmc_pool_entry(struct LevelCamera *c)
 {
     if ((sMarioStatusForCamera->action != ACT_SPECIAL_DEATH_EXIT) && (sMarioStatusForCamera->action != ACT_SPECIAL_EXIT_AIRBORNE))
         set_camera_cutscene_table(c, CUTSCENE_ENTER_POOL);
 }
 
-void CameraInside20(UNUSED struct LevelCamera *c)
+CmdRet CameraInside20(UNUSED struct LevelCamera *c)
 {
     vec3f_set(sFixedPresetBasePositionOffset, -813.f - sFixedPresetBasePosition[0], 378.f - sFixedPresetBasePosition[1], 1103.f - sFixedPresetBasePosition[2]);
 }
 
-void CameraInside1E(struct LevelCamera *c)
+CmdRet CameraInside1E(struct LevelCamera *c)
 {
     struct Surface *floor;
     f32 floorHeight = find_floor(c->pos[0], c->pos[1], c->pos[2], &floor);
@@ -4873,7 +4881,7 @@ void CameraInside1E(struct LevelCamera *c)
         vec3f_set(c->pos, -227.f, 1425.f, 1533.f);
 }
 
-void CameraInside1F(struct LevelCamera *c)
+CmdRet CameraInside1F(struct LevelCamera *c)
 {
     struct Surface *floor;
     f32 floorHeight = find_floor(c->pos[0], c->pos[1], c->pos[2], &floor);
@@ -4882,7 +4890,7 @@ void CameraInside1F(struct LevelCamera *c)
         vec3f_set(c->pos, -980.f, 249.f, -1398.f);
 }
 
-void CameraInside01(struct LevelCamera *c)
+CmdRet CameraInside01(struct LevelCamera *c)
 {
     if (c->currPreset != CAMERA_PRESET_FIXED_REF_POINT)
     {
@@ -4892,12 +4900,12 @@ void CameraInside01(struct LevelCamera *c)
     }
 }
 
-void CameraInside1213(struct LevelCamera *c)
+CmdRet CameraInside1213(struct LevelCamera *c)
 {
     set_camera_preset(c, CAMERA_PRESET_SPIRAL_STAIRS, 20);
 }
 
-void CameraUnused(struct LevelCamera *c)
+static CmdRet CameraUnused(struct LevelCamera *c)
 {
     if (c->currPreset == CAMERA_PRESET_SPIRAL_STAIRS)
         set_camera_preset(c, CAMERA_PRESET_CLOSE, 30);
@@ -4905,33 +4913,33 @@ void CameraUnused(struct LevelCamera *c)
         set_camera_preset_close_cam(&c->currPreset);
 }
 
-void CameraInside00(struct LevelCamera *c)
+CmdRet CameraInside00(struct LevelCamera *c)
 {
     set_camera_preset_close_cam(&c->currPreset);
 }
 
-void CameraInside0E(struct LevelCamera *c)
+CmdRet CameraInside0E(struct LevelCamera *c)
 {
     CameraInside00(c);
     c->unk64 = 2;
 }
 
-void CameraInside0F(struct LevelCamera *c)
+CmdRet CameraInside0F(struct LevelCamera *c)
 {
     CameraInside01(c);
 }
 
-void bbh_room_6_camera(struct LevelCamera *c)
+CmdRet bbh_room_6_camera(struct LevelCamera *c)
 {
     parallel_tracking_init(c, BBHRoom6ParallelTrackingTable);
 }
 
-void CameraBBH24(struct LevelCamera *c)
+CmdRet CameraBBH24(struct LevelCamera *c)
 {
     set_camera_preset_close_cam(&c->currPreset);
 }
 
-void CameraBBH2E2F(struct LevelCamera *c)
+CmdRet CameraBBH2E2F(struct LevelCamera *c)
 {
     Vec3f relativePosition;
     set_camera_preset_close_cam(&c->currPreset);
@@ -4942,28 +4950,28 @@ void CameraBBH2E2F(struct LevelCamera *c)
     gCameraFlags2 &= ~CAM_FLAG_2_SMOOTH_MOVEMENT;
 }
 
-void bbh_room_1_camera(struct LevelCamera *c)
+CmdRet bbh_room_1_camera(struct LevelCamera *c)
 {
     set_camera_preset_fixed_ref_point(c, 956, 440, 1994);
 }
 
-void CameraBBH01(struct LevelCamera *c)
+CmdRet CameraBBH01(struct LevelCamera *c)
 {
     c->unk64 = 1;
     bbh_room_1_camera(c);
 }
 
-void bbh_room_2_lower_camera(struct LevelCamera *c)
+CmdRet bbh_room_2_lower_camera(struct LevelCamera *c)
 {
     set_camera_preset_fixed_ref_point(c, 2591, 400, 1284);
 }
 
-void bbh_room_4_camera(struct LevelCamera *c)
+CmdRet bbh_room_4_camera(struct LevelCamera *c)
 {
     set_camera_preset_fixed_ref_point(c, 3529, 340, -1384);
 }
 
-void bbh_room_8_camera(struct LevelCamera *c)
+CmdRet bbh_room_8_camera(struct LevelCamera *c)
 {
     set_camera_preset_fixed_ref_point(c, -500, 740, -1306);
 }
@@ -4972,7 +4980,7 @@ void bbh_room_8_camera(struct LevelCamera *c)
 * In BBH's room 5's library (the first floor room with the vanish cap/boo painting)
 * set the camera preset to fixed and position to (-2172, 200, 675)
 */
-void bbh_room_5_library_camera(struct LevelCamera *c)
+CmdRet bbh_room_5_library_camera(struct LevelCamera *c)
 {
     set_camera_preset_fixed_ref_point(c, -2172, 200, 675);
 }
@@ -4982,58 +4990,58 @@ void bbh_room_5_library_camera(struct LevelCamera *c)
 * set the camera preset to to the hidden room's position
 * if coming from the library.
 */
-void bbh_room_5_library_to_hidden_transition(struct LevelCamera *c)
+CmdRet bbh_room_5_library_to_hidden_transition(struct LevelCamera *c)
 {
     if (set_camera_preset_fixed_ref_point(c, -2172, 200, 675) == 1)
         init_transitional_movement(c, 20);
 }
 
-void bbh_room_5_hidden_to_library_transition(struct LevelCamera *c)
+CmdRet bbh_room_5_hidden_to_library_transition(struct LevelCamera *c)
 {
     if (set_camera_preset_fixed_ref_point(c, -1542, 320, -307) == 1)
         init_transitional_movement(c, 20);
 }
 
-void bbh_room_5_hidden_camera(struct LevelCamera *c)
+CmdRet bbh_room_5_hidden_camera(struct LevelCamera *c)
 {
     c->unk64 = 1;
     set_camera_preset_fixed_ref_point(c, -1542, 320, -307);
 }
 
-void bbh_room_3_camera(struct LevelCamera *c)
+CmdRet bbh_room_3_camera(struct LevelCamera *c)
 {
     set_camera_preset_fixed_ref_point(c, -1893, 320, 2327);
 }
 
-void bbh_room_7_mr_i_camera(struct LevelCamera *c)
+CmdRet bbh_room_7_mr_i_camera(struct LevelCamera *c)
 {
     set_camera_preset_fixed_ref_point(c, 1371, 360, -1302);
 }
 
-void bbh_room_7_mr_i_to_coffins_transition(struct LevelCamera *c)
+CmdRet bbh_room_7_mr_i_to_coffins_transition(struct LevelCamera *c)
 {
     if (set_camera_preset_fixed_ref_point(c, 1371, 360, -1302) == 1)
         init_transitional_movement(c, 20);
 }
 
-void bbh_room_7_coffins_to_mr_i_transition(struct LevelCamera *c)
+CmdRet bbh_room_7_coffins_to_mr_i_transition(struct LevelCamera *c)
 {
     if (set_camera_preset_fixed_ref_point(c, 2115, 260, -772) == 1)
         init_transitional_movement(c, 20);
 }
 
-void CameraBBH3033(struct LevelCamera *c)
+CmdRet CameraBBH3033(struct LevelCamera *c)
 {
     c->unk64 = 1;
     set_camera_preset_close_cam(&c->currPreset);
 }
 
-void CameraBBH34(struct LevelCamera *c)
+CmdRet CameraBBH34(struct LevelCamera *c)
 {
     set_camera_preset_close_cam(&c->currPreset);
 }
 
-void CameraBBH38(struct LevelCamera *c)
+CmdRet CameraBBH38(struct LevelCamera *c)
 {
     if (c->currPreset == CAMERA_PRESET_FIXED_REF_POINT)
     {
@@ -5043,73 +5051,73 @@ void CameraBBH38(struct LevelCamera *c)
     }
 }
 
-void bbh_room_12_upper_camera(struct LevelCamera *c)
+CmdRet bbh_room_12_upper_camera(struct LevelCamera *c)
 {
     c->unk64 = 1;
     set_camera_preset_fixed_ref_point(c, -2932, 296, 4429);
 }
 
-void CameraBBH00(struct LevelCamera *c)
+CmdRet CameraBBH00(struct LevelCamera *c)
 {
     set_camera_preset_close_cam(&c->currPreset);
 }
 
-void bbh_room_2_library_camera(struct LevelCamera *c)
+CmdRet bbh_room_2_library_camera(struct LevelCamera *c)
 {
     set_camera_preset_fixed_ref_point(c, 3493, 440, 617);
 }
 
-void bbh_room_2_library_to_trapdoor_transition(struct LevelCamera *c)
+CmdRet bbh_room_2_library_to_trapdoor_transition(struct LevelCamera *c)
 {
     if (set_camera_preset_fixed_ref_point(c, 3493, 440, 617) == 1)
         init_transitional_movement(c, 20);
 }
 
-void bbh_room_2_trapdoor_camera(struct LevelCamera *c)
+CmdRet bbh_room_2_trapdoor_camera(struct LevelCamera *c)
 {
     set_camera_preset_fixed_ref_point(c, 3502, 440, 1217);
 }
 
-void bbh_room_2_trapdoor_transition(struct LevelCamera *c)
+CmdRet bbh_room_2_trapdoor_transition(struct LevelCamera *c)
 {
     if (set_camera_preset_fixed_ref_point(c, 3502, 440, 1217) == 1)
         init_transitional_movement(c, 20);
 }
 
-void bbh_room_9_attic_camera(struct LevelCamera *c)
+CmdRet bbh_room_9_attic_camera(struct LevelCamera *c)
 {
     set_camera_preset_fixed_ref_point(c, -670, 460, 372);
 }
 
-void bbh_room_9_attic_transition(struct LevelCamera *c)
+CmdRet bbh_room_9_attic_transition(struct LevelCamera *c)
 {
     if (set_camera_preset_fixed_ref_point(c, -670, 460, 372) == 1)
         init_transitional_movement(c, 20);
 }
 
-void bbh_room_9_mr_i_transition(struct LevelCamera *c)
+CmdRet bbh_room_9_mr_i_transition(struct LevelCamera *c)
 {
     if (set_camera_preset_fixed_ref_point(c, 131, 380, -263) == 1)
         init_transitional_movement(c, 20);
 }
 
-void bbh_room_13_balcony_camera(struct LevelCamera *c)
+CmdRet bbh_room_13_balcony_camera(struct LevelCamera *c)
 {
     set_camera_preset_fixed_ref_point(c, 210, 420, 3109);
 }
 
-void bbh_room_0_camera(struct LevelCamera *c)
+CmdRet bbh_room_0_camera(struct LevelCamera *c)
 {
     c->unk64 = 1;
     set_camera_preset_fixed_ref_point(c, -204, 807, 204);
 }
 
-void camera_change_activate_ccm_slide_flag(UNUSED struct LevelCamera *c)
+CmdRet camera_change_activate_ccm_slide_flag(UNUSED struct LevelCamera *c)
 {
     gCameraFlags2 |= CAM_FLAG_2_CCM_SLIDE_SHORTCUT;
 }
 
-void camera_change_deactivate_ccm_slide_flag(UNUSED struct LevelCamera *c)
+CmdRet camera_change_deactivate_ccm_slide_flag(UNUSED struct LevelCamera *c)
 {
     gCameraFlags2 &= ~CAM_FLAG_2_CCM_SLIDE_SHORTCUT;
 }
@@ -6025,7 +6033,7 @@ void unused_8028FDE8(UNUSED struct LevelCamera *a)
     gCutsceneTimer = func_8028FD94(3);
 }
 
-void Cutscene26Todo0(UNUSED struct LevelCamera *a)
+CmdRet Cutscene26Todo0(UNUSED struct LevelCamera *a)
 {
     gCutsceneTimer = func_8028FD94(1);
 }
@@ -6035,7 +6043,7 @@ void unused_8028FE50(UNUSED struct LevelCamera *a)
     gCutsceneTimer = func_8028FD94(2);
 }
 
-void CutsceneIntroPeach0_2(UNUSED struct LevelCamera *a)
+CmdRet CutsceneIntroPeach0_2(UNUSED struct LevelCamera *a)
 {
 #ifndef VERSION_JP
     func_8031FFB4(0, 60, 40);
@@ -6043,7 +6051,7 @@ void CutsceneIntroPeach0_2(UNUSED struct LevelCamera *a)
     func_8028B13C();
 }
 
-void CutsceneIntroPeach2_1(UNUSED struct LevelCamera *a)
+CmdRet CutsceneIntroPeach2_1(UNUSED struct LevelCamera *a)
 {
 #ifndef VERSION_JP
     func_80320040(0, 60);
@@ -6152,7 +6160,7 @@ void rotate_camera(struct LevelCamera *c, s16 incPitch, s16 incYaw)
     vec3f_set_dist_and_angle(c->pos, c->focus, distCamToFocus, pitch, yaw);
 }
 
-void CutsceneEnterSomething8029041C(UNUSED struct LevelCamera *c)
+CmdRet CutsceneEnterSomething8029041C(UNUSED struct LevelCamera *c)
 {
     set_camera_shake_2(SHAKE_2_UNKNOWN_1);
     func_8029A494(1);
@@ -6195,21 +6203,21 @@ void unused_802905C8(UNUSED struct LevelCamera *c)
 {
 }
 
-void Cutscene0FTodo0(UNUSED struct LevelCamera *c)
+CmdRet Cutscene0FTodo0(UNUSED struct LevelCamera *c)
 {
 }
 
-void Cutscene0FTodo1(UNUSED struct LevelCamera *c)
+CmdRet Cutscene0FTodo1(UNUSED struct LevelCamera *c)
 {
 }
 
-void CutscenePeachEnd0_1(struct LevelCamera *c)
+CmdRet CutscenePeachEnd0_1(struct LevelCamera *c)
 {
     vec3f_set(c->focus, -26.f, 0.f, -137.f);
     vec3f_set(c->pos, 165.f, 4725.f, 324.f);
 }
 
-void CutscenePeachEnd0_2(struct LevelCamera *c)
+CmdRet CutscenePeachEnd0_2(struct LevelCamera *c)
 {
     Vec3f sp24;
     vec3f_set(sp24, 0.f, 80.f, 0.f);
@@ -6221,54 +6229,54 @@ void CutscenePeachEnd0_2(struct LevelCamera *c)
     set_pos_from_face_angle_and_vec3f(c->focus, sMarioStatusForCamera->pos, sp24, sMarioStatusForCamera->faceAngle);
 }
 
-void CutscenePeachEnd0(struct LevelCamera *c)
+CmdRet CutscenePeachEnd0(struct LevelCamera *c)
 {
     call_cutscene_func_in_time_range(CutscenePeachEnd0_1, c, 0, 0);
     call_cutscene_func_in_time_range(CutscenePeachEnd0_2, c, 0, -1);
     move_credits_camera(c, -0x2000, 0x2000, -0x2000, 0x2000);
 }
 
-void CutscenePeachEnd2(struct LevelCamera *c)
+CmdRet CutscenePeachEnd2(struct LevelCamera *c)
 {
     vec3f_set(c->focus, 85.f, 826.f, 250.f);
     vec3f_set(c->pos, -51.f, 988.f, -202.f);
     move_credits_camera(c, -0x2000, 0x2000, -0x2000, 0x2000);
 }
 
-void CutscenePeachEndCommon367A(UNUSED struct LevelCamera *c)
+CmdRet CutscenePeachEndCommon367A(UNUSED struct LevelCamera *c)
 {
     D_8033B6F0[9].unk4[0] = 0.f;
     func_8028FABC();
 }
 
-void CutscenePeachEnd3_1(struct LevelCamera *c)
+CmdRet CutscenePeachEnd3_1(struct LevelCamera *c)
 {
     func_80287CFC(c->pos, D_8032E040, &D_8033B6E0, &D_8033B6E4);
     func_80287CFC(c->focus, D_8032E090, &D_8033B6E0, &D_8033B6E4);
 }
 
-void CutscenePeachEnd3(struct LevelCamera *c)
+CmdRet CutscenePeachEnd3(struct LevelCamera *c)
 {
     call_cutscene_func_in_time_range(CutscenePeachEndCommon367A, c, 0, 0);
     call_cutscene_func_in_time_range(CutscenePeachEnd3_1, c, 0, -1);
     move_credits_camera(c, -0x2000, 0x2000, -0x2000, 0x2000);
 }
 
-void CutscenePeachEnd1(struct LevelCamera *c)
+CmdRet CutscenePeachEnd1(struct LevelCamera *c)
 {
     vec3f_set(c->focus, D_8032E090[0].unk2[0], D_8032E090[0].unk2[1] + 80.f, D_8032E090[0].unk2[2]);
     vec3f_set(c->pos, D_8032E040[0].unk2[0], D_8032E040[0].unk2[1], D_8032E040[0].unk2[2] + 150.f);
     move_credits_camera(c, -0x800, 0x2000, -0x2000, 0x2000);
 }
 
-void CutscenePeachEnd4_1(struct LevelCamera *c)
+CmdRet CutscenePeachEnd4_1(struct LevelCamera *c)
 {
     vec3f_set(c->pos, 179.f, 2463.f, -1216.f);
     c->pos[1] = gCutsceneFocus->oPosY + 35.f;
     vec3f_set(c->focus, gCutsceneFocus->oPosX, gCutsceneFocus->oPosY + 125.f, gCutsceneFocus->oPosZ);
 }
 
-void CutscenePeachEnd4(struct LevelCamera *c)
+CmdRet CutscenePeachEnd4(struct LevelCamera *c)
 {
     call_cutscene_func_in_time_range(CutscenePeachEnd4_1, c, 0, 0);
     approach_f32_exponential_bool(&c->pos[1], gCutsceneFocus->oPosY + 35.f, 0.02f);
@@ -6276,24 +6284,24 @@ void CutscenePeachEnd4(struct LevelCamera *c)
     move_credits_camera(c, -0x2000, 0x2000, -0x2000, 0x2000);
 }
 
-void CutscenePeachEnd5_1(UNUSED struct LevelCamera *c)
+CmdRet CutscenePeachEnd5_1(UNUSED struct LevelCamera *c)
 {
     func_8028FABC();
     D_8033B6F0[2].unk4[1] = 150.f;
 }
 
-void CutscenePeachEnd5_2(struct LevelCamera *c)
+CmdRet CutscenePeachEnd5_2(struct LevelCamera *c)
 {
     func_80287CFC(c->pos, D_8032E0E8, &D_8033B6E0, &D_8033B6E4);
     c->pos[1] += gCutsceneFocus->oPosY + D_8033B6F0[3].unk4[1];
 }
 
-void CutscenePeachEnd5_3(UNUSED struct LevelCamera *c)
+CmdRet CutscenePeachEnd5_3(UNUSED struct LevelCamera *c)
 {
     camera_approach_f32_symmetric_bool(&(D_8033B6F0[2].unk4[1]), 90.f, 0.5f);
 }
 
-void CutscenePeachEnd5_4(struct LevelCamera *c)
+CmdRet CutscenePeachEnd5_4(struct LevelCamera *c)
 {
     Vec3f sp1C;
 
@@ -6303,7 +6311,7 @@ void CutscenePeachEnd5_4(struct LevelCamera *c)
     approach_f32_exponential_bool(&c->pos[1], (sp1C[1] += gCutsceneFocus->oPosY), 0.07f);
 }
 
-void CutscenePeachEnd5(struct LevelCamera *c)
+CmdRet CutscenePeachEnd5(struct LevelCamera *c)
 {
     call_cutscene_func_in_time_range(CutscenePeachEnd5_1, c, 0, 0);
     call_cutscene_func_in_time_range(CutscenePeachEnd5_2, c, 0, 299);
@@ -6313,7 +6321,7 @@ void CutscenePeachEnd5(struct LevelCamera *c)
     move_credits_camera(c, -0x2000, 0x2000, -0x2000, 0x2000);
 }
 
-void CutscenePeachEnd6(struct LevelCamera *c)
+CmdRet CutscenePeachEnd6(struct LevelCamera *c)
 {
     call_cutscene_func_in_time_range(CutscenePeachEndCommon367A, c, 0, 0);
     func_80287CFC(c->pos, D_8032E188, &D_8033B6E0, &D_8033B6E4);
@@ -6321,12 +6329,12 @@ void CutscenePeachEnd6(struct LevelCamera *c)
     move_credits_camera(c, -0x2000, 0x2000, -0x2000, 0x2000);
 }
 
-void CutscenePeachEnd7_1(UNUSED struct LevelCamera *c)
+CmdRet CutscenePeachEnd7_1(UNUSED struct LevelCamera *c)
 {
     func_80287CFC(c->focus, D_8032E218, &D_8033B6E0, &D_8033B6E4);
 }
 
-void CutscenePeachEnd7(struct LevelCamera *c)
+CmdRet CutscenePeachEnd7(struct LevelCamera *c)
 {
     call_cutscene_func_in_time_range(CutscenePeachEndCommon367A, c, 0, 0);
     call_cutscene_func_in_time_range(CutscenePeachEnd7_1, c, 0, 0);
@@ -6337,21 +6345,21 @@ void CutscenePeachEnd7(struct LevelCamera *c)
     move_credits_camera(c, -0x800, 0x2000, -0x2000, 0x2000);
 }
 
-void CutscenePeachEnd8(struct LevelCamera *c)
+CmdRet CutscenePeachEnd8(struct LevelCamera *c)
 {
     vec3f_set(c->focus, 11.f, 983.f, -1273.f);
     vec3f_set(c->pos, -473.f, 970.f, -1152.f);
     move_credits_camera(c, -0x800, 0x2000, -0x2000, 0x2000);
 }
 
-void CutscenePeachEnd9_1(struct LevelCamera *c)
+CmdRet CutscenePeachEnd9_1(struct LevelCamera *c)
 {
     set_fov_function(13);
     vec3f_set(c->focus, 350.f, 1034.f, -1216.f);
     vec3f_set(c->pos, -149.f, 1021.f, -1216.f);
 }
 
-void CutscenePeachEnd9_2(struct LevelCamera *c)
+CmdRet CutscenePeachEnd9_2(struct LevelCamera *c)
 {
     Vec3f sp2C, sp20;
 
@@ -6362,25 +6370,25 @@ void CutscenePeachEnd9_2(struct LevelCamera *c)
     approach_vec3f_exponential(c->focus, sp20, 0.2f, 0.1f, 0.2f);
 }
 
-void CutscenePeachEnd9(struct LevelCamera *c)
+CmdRet CutscenePeachEnd9(struct LevelCamera *c)
 {
     call_cutscene_func_in_time_range(CutscenePeachEnd9_1, c, 0, 0);
     call_cutscene_func_in_time_range(CutscenePeachEnd9_2, c, 155, -1);
     move_credits_camera(c, -0x800, 0x2000, -0x2000, 0x2000);
 }
 
-void CutscenePeachEndA_1(struct LevelCamera *c)
+CmdRet CutscenePeachEndA_1(struct LevelCamera *c)
 {
     func_80287CFC(c->focus, D_8032E258, &D_8033B6E0, &D_8033B6E4);
     vec3f_set(c->pos, 699.f, 1680.f, -703.f);
 }
 
-void CutscenePeachEndA_2(UNUSED struct LevelCamera *c)
+CmdRet CutscenePeachEndA_2(UNUSED struct LevelCamera *c)
 {
     D_8033B230.fieldOfView = 37.f;
 }
 
-void CutscenePeachEndA(struct LevelCamera *c)
+CmdRet CutscenePeachEndA(struct LevelCamera *c)
 {
     call_cutscene_func_in_time_range(CutscenePeachEndCommon367A, c, 0, 0);
     call_cutscene_func_in_time_range(CutscenePeachEndA_1, c, 0, 0);
@@ -6392,21 +6400,21 @@ void CutscenePeachEndA(struct LevelCamera *c)
     func_80299C60(8, 710);
 }
 
-void CutscenePeachEndB(struct LevelCamera *c)
+CmdRet CutscenePeachEndB(struct LevelCamera *c)
 {
     set_fov_function(1);
     c->cutscene = 0;
     gCutsceneTimer = -0x8000;
 }
 
-void CutsceneGrandStar0_1(UNUSED struct LevelCamera *c)
+CmdRet CutsceneGrandStar0_1(UNUSED struct LevelCamera *c)
 {
     vec3f_set(D_8033B6F0[0].unk4, 0.f, 150.f, -600.f);
     set_pos_from_face_angle_and_vec3f(D_8033B6F0[1].unk4, sMarioStatusForCamera->pos, D_8033B6F0[0].unk4, sMarioStatusForCamera->faceAngle);
     D_8033B6F0[1].unk4[1] = 457.f;
 }
 
-void CutsceneGrandStar0_2(struct LevelCamera *c)
+CmdRet CutsceneGrandStar0_2(struct LevelCamera *c)
 {
     f32 sp2C;
     s16 sp2A, sp28;
@@ -6421,19 +6429,19 @@ void CutsceneGrandStar0_2(struct LevelCamera *c)
     vec3f_set_dist_and_angle(sMarioStatusForCamera->pos, c->pos, sp24, sp22, sp20);
 }
 
-void CutsceneGrandStar0_4(UNUSED struct LevelCamera *c)
+CmdRet CutsceneGrandStar0_4(UNUSED struct LevelCamera *c)
 {
     vec3s_set(D_8033B6F0[0].unk1C, 0, sMarioStatusForCamera->faceAngle[1], 0);
     vec3f_set(D_8033B6F0[2].unk4, 0.f, 0.f, 0.f);
 }
 
-void CutsceneGrandStar0_5(UNUSED struct LevelCamera *c)
+CmdRet CutsceneGrandStar0_5(UNUSED struct LevelCamera *c)
 {
     camera_approach_f32_symmetric_bool(&D_8033B6F0[2].unk4[2], -40.f, 2.0f);
     D_8033B6F0[2].unk4[0] = 5.0f;
 }
 
-void CutsceneGrandStar0_6(struct LevelCamera *c)
+CmdRet CutsceneGrandStar0_6(struct LevelCamera *c)
 {
     camera_approach_f32_symmetric_bool(&D_8033B6F0[2].unk4[2], 0.f, 2.f);
     D_8033B6F0[2].unk4[0] = 0.f;
@@ -6441,12 +6449,12 @@ void CutsceneGrandStar0_6(struct LevelCamera *c)
     approach_f32_exponential_bool(&c->pos[2], sMarioStatusForCamera->pos[2], 0.01f);
 }
 
-void CutsceneGrandStar0_7(struct LevelCamera *c)
+CmdRet CutsceneGrandStar0_7(struct LevelCamera *c)
 {
     set_pos_from_face_angle_and_vec3f(c->pos, c->pos, D_8033B6F0[2].unk4, D_8033B6F0[0].unk1C);
 }
 
-void CutsceneGrandStar0_3(struct LevelCamera *c)
+CmdRet CutsceneGrandStar0_3(struct LevelCamera *c)
 {
     Vec3f sp24;
 
@@ -6454,7 +6462,7 @@ void CutsceneGrandStar0_3(struct LevelCamera *c)
     approach_vec3f_exponential(c->focus, sp24, 0.5f, 0.8f, 0.5f);
 }
 
-void CutsceneGrandStar0(struct LevelCamera *c)
+CmdRet CutsceneGrandStar0(struct LevelCamera *c)
 {
     gCameraFlags2 |= CAM_FLAG_2_SMOOTH_MOVEMENT;
     call_cutscene_func_in_time_range(CutsceneGrandStar0_1, c, 0, 0);
@@ -6466,7 +6474,7 @@ void CutsceneGrandStar0(struct LevelCamera *c)
     call_cutscene_func_in_time_range(CutsceneGrandStar0_7, c, 110, -1);
 }
 
-void CutsceneGrandStar1_1(struct LevelCamera *c)
+CmdRet CutsceneGrandStar1_1(struct LevelCamera *c)
 {
     vec3f_set(D_8033B6F0[7].unk4, 0.5f, 0.5f, 0.5f);
     vec3f_set(D_8033B6F0[6].unk4, 0.01f, 0.01f, 0.01f);
@@ -6476,7 +6484,7 @@ void CutsceneGrandStar1_1(struct LevelCamera *c)
     D_8033B6F0[8].unk4[0] = 0.f;
 }
 
-void CutsceneGrandStar1_2(UNUSED struct LevelCamera *c)
+CmdRet CutsceneGrandStar1_2(UNUSED struct LevelCamera *c)
 {
     Vec3f sp24;
 
@@ -6486,7 +6494,7 @@ void CutsceneGrandStar1_2(UNUSED struct LevelCamera *c)
     camera_approach_f32_symmetric_bool(&D_8033B6F0[5].unk4[2], -200.f, 6.f);
 }
 
-void CutsceneGrandStar1_3(UNUSED struct LevelCamera *c)
+CmdRet CutsceneGrandStar1_3(UNUSED struct LevelCamera *c)
 {
     camera_approach_f32_symmetric_bool(&D_8033B6F0[8].unk4[0], 15.f, 0.1f);
 
@@ -6499,7 +6507,7 @@ void CutsceneGrandStar1_3(UNUSED struct LevelCamera *c)
     camera_approach_f32_symmetric_bool(&D_8033B6F0[5].unk4[2], 1000.f, D_8033B6F0[8].unk4[0] / 1.5f);
 }
 
-void CutsceneGrandStar1_4(struct LevelCamera *c)
+CmdRet CutsceneGrandStar1_4(struct LevelCamera *c)
 {
     Vec3f sp34, sp28;
     f32 sp24;
@@ -6517,7 +6525,7 @@ void CutsceneGrandStar1_4(struct LevelCamera *c)
     approach_vec3f_exponential(c->focus, sp28, 0.5f, 0.8f, 0.5f);
 }
 
-void CutsceneGrandStar1(struct LevelCamera *c)
+CmdRet CutsceneGrandStar1(struct LevelCamera *c)
 {
     gCameraFlags2 |= CAM_FLAG_2_SMOOTH_MOVEMENT;
     call_cutscene_func_in_time_range(CutsceneGrandStar1_1, c, 0, 0);
@@ -6538,7 +6546,7 @@ void func_80291BBC(struct LevelCamera *a, f32 b, f32 c)
     approach_vec3f_exponential(a->focus, sp2C, c, c, c);
 }
 
-void CutsceneDanceCommon(struct LevelCamera *c)
+CmdRet CutsceneDanceCommon(struct LevelCamera *c)
 {
     s16 sp26, sp24;
     f32 sp20;
@@ -6549,17 +6557,17 @@ void CutsceneDanceCommon(struct LevelCamera *c)
     vec3f_set_dist_and_angle(sMarioStatusForCamera->pos, c->pos, sp20, sp26, sp24);
 }
 
-void CutsceneStarDance1_4(struct LevelCamera *c)
+CmdRet CutsceneStarDance1_4(struct LevelCamera *c)
 {
     rotate_and_move_vec3f(c->pos, sMarioStatusForCamera->pos, 0, 0, 0x200);
 }
 
-void CutsceneStarDance1_5(struct LevelCamera *c)
+CmdRet CutsceneStarDance1_5(struct LevelCamera *c)
 {
     rotate_and_move_vec3f(c->pos, sMarioStatusForCamera->pos, -15.f, 0, 0);
 }
 
-void CutsceneStarDance1_6(struct LevelCamera *c)
+CmdRet CutsceneStarDance1_6(struct LevelCamera *c)
 {
     rotate_and_move_vec3f(c->pos, sMarioStatusForCamera->pos, 20.f, 0, 0);
 }
@@ -6568,22 +6576,22 @@ void dummy_80291DC0(UNUSED struct LevelCamera *c)
 {
 }
 
-void CutsceneStarDance1_1(struct LevelCamera *c)
+CmdRet CutsceneStarDance1_1(struct LevelCamera *c)
 {
     func_80291BBC(c, -100.f, 0.2f);
 }
 
-void CutsceneStarDance1_3(struct LevelCamera *c)
+CmdRet CutsceneStarDance1_3(struct LevelCamera *c)
 {
     func_80291BBC(c, -200.f, 0.03f);
 }
 
-void CutsceneStarDance1_2(UNUSED struct LevelCamera *c)
+CmdRet CutsceneStarDance1_2(UNUSED struct LevelCamera *c)
 {
     func_80299C98(0x200, 40, -0x8000);
 }
 
-void CutsceneStarDance1(struct LevelCamera *c)
+CmdRet CutsceneStarDance1(struct LevelCamera *c)
 {
     gCameraFlags2 |= CAM_FLAG_2_SMOOTH_MOVEMENT;
     D_8032CFD4 = 0;
@@ -6631,7 +6639,7 @@ void func_80291FE8(struct LevelCamera *a, s16 b, s16 c)
     }
 }
 
-void CutsceneStarDance3_1(struct LevelCamera *c)
+CmdRet CutsceneStarDance3_1(struct LevelCamera *c)
 {
     UNUSED u32 pad[2];
 
@@ -6646,7 +6654,7 @@ void CutsceneStarDance3_1(struct LevelCamera *c)
     D_8033B6F0[8].unk1C[0] = 0x2000;
 }
 
-void CutsceneStarDance3_2(struct LevelCamera *c)
+CmdRet CutsceneStarDance3_2(struct LevelCamera *c)
 {
     Vec3f sp24;
 
@@ -6655,7 +6663,7 @@ void CutsceneStarDance3_2(struct LevelCamera *c)
     vec3f_copy(c->focus, D_8033B6F0[9].unk4);
 }
 
-void CutsceneStarDance3_3(struct LevelCamera *c)
+CmdRet CutsceneStarDance3_3(struct LevelCamera *c)
 {
     s16 sp2E, sp2C;
     f32 sp28;
@@ -6671,7 +6679,7 @@ void CutsceneStarDance3_3(struct LevelCamera *c)
     vec3f_set_dist_and_angle(sMarioStatusForCamera->pos, c->pos, sp28, sp2E, sp2C);
 }
 
-void CutsceneStarDance3_4(struct LevelCamera *c)
+CmdRet CutsceneStarDance3_4(struct LevelCamera *c)
 {
     s16 sp26, sp24;
     f32 sp20;
@@ -6683,17 +6691,17 @@ void CutsceneStarDance3_4(struct LevelCamera *c)
     vec3f_set_dist_and_angle(sMarioStatusForCamera->pos, c->pos, sp20, sp26, sp24);
 }
 
-void CutsceneStarDance3_5(UNUSED struct LevelCamera *c)
+CmdRet CutsceneStarDance3_5(UNUSED struct LevelCamera *c)
 {
     set_fov_function(9);
 }
 
-void CutsceneStarDance3_6(UNUSED struct LevelCamera *c)
+CmdRet CutsceneStarDance3_6(UNUSED struct LevelCamera *c)
 {
     func_80299C98(0x300, 48, -0x8000);
 }
 
-void CutsceneStarDance3(struct LevelCamera *c)
+CmdRet CutsceneStarDance3(struct LevelCamera *c)
 {
     gCameraFlags2 |= CAM_FLAG_2_SMOOTH_MOVEMENT;
 
@@ -6718,7 +6726,7 @@ void CutsceneStarDance3(struct LevelCamera *c)
     set_spline_values(1);
 }
 
-void CutsceneStarDance2_1(struct LevelCamera *c)
+CmdRet CutsceneStarDance2_1(struct LevelCamera *c)
 {
     Vec3f sp1C;
 
@@ -6742,7 +6750,7 @@ void CutsceneStarDance2_1(struct LevelCamera *c)
         func_80291FE8(c, 0, 0x800);
 }
 
-void CutsceneStarDance2_3(struct LevelCamera *c)
+CmdRet CutsceneStarDance2_3(struct LevelCamera *c)
 {
     s16 sp26, sp24;
     f32 sp20;
@@ -6754,7 +6762,7 @@ void CutsceneStarDance2_3(struct LevelCamera *c)
     vec3f_set_dist_and_angle(sMarioStatusForCamera->pos, c->pos, sp20, sp26, sp24);
 }
 
-void CutsceneStarDance2_2(struct LevelCamera *c)
+CmdRet CutsceneStarDance2_2(struct LevelCamera *c)
 {
     Vec3f sp24;
 
@@ -6771,23 +6779,23 @@ void func_80292884(struct LevelCamera *c)
     rotate_camera(c, D_8033B6F0[9].unk1C[0], D_8033B6F0[9].unk1C[1]);
 }
 
-void CutsceneStarDance2_4(struct LevelCamera *c)
+CmdRet CutsceneStarDance2_4(struct LevelCamera *c)
 {
     func_80292884(c);
     rotate_and_move_vec3f(c->pos, sMarioStatusForCamera->pos, D_8033B6F0[8].unk4[2], 0, 0);
 }
 
-void CutsceneStarDance2_5(struct LevelCamera *c)
+CmdRet CutsceneStarDance2_5(struct LevelCamera *c)
 {
     rotate_and_move_vec3f(c->pos, sMarioStatusForCamera->pos, 0, 0, 0x80);
 }
 
-void CutsceneStarDance2_6(UNUSED struct LevelCamera *c)
+CmdRet CutsceneStarDance2_6(UNUSED struct LevelCamera *c)
 {
     func_80299C98(0x400, 48, -0x8000);
 }
 
-void CutsceneStarDance2(struct LevelCamera *c)
+CmdRet CutsceneStarDance2(struct LevelCamera *c)
 {
     gCameraFlags2 |= CAM_FLAG_2_SMOOTH_MOVEMENT;
     call_cutscene_func_in_time_range(CutsceneStarDance2_1, c, 0, 0);
@@ -6800,54 +6808,54 @@ void CutsceneStarDance2(struct LevelCamera *c)
     set_spline_values(5);
 }
 
-void CutsceneKeyDance0_6(struct LevelCamera *c)
+CmdRet CutsceneKeyDance0_6(struct LevelCamera *c)
 {
     set_pos_from_face_angle_and_vec3f(c->pos, sMarioStatusForCamera->pos, D_8033B6F0[8].unk4, sMarioStatusForCamera->faceAngle);
     set_pos_from_face_angle_and_vec3f(c->focus, sMarioStatusForCamera->pos, D_8033B6F0[7].unk4, sMarioStatusForCamera->faceAngle);
 }
 
-void CutsceneKeyDance0_2(UNUSED struct LevelCamera *c)
+CmdRet CutsceneKeyDance0_2(UNUSED struct LevelCamera *c)
 {
     vec3f_set(D_8033B6F0[8].unk4, 38.f, 171.f, -248.f);
     vec3f_set(D_8033B6F0[7].unk4, -57.f, 51.f, 187.f);
 }
 
-void CutsceneKeyDance0_3(UNUSED struct LevelCamera *c)
+CmdRet CutsceneKeyDance0_3(UNUSED struct LevelCamera *c)
 {
     vec3f_set(D_8033B6F0[8].unk4, -178.f, 62.f, -132.f);
     vec3f_set(D_8033B6F0[7].unk4, 299.f, 91.f, 58.f);
 }
 
-void CutsceneKeyDance0_4(UNUSED struct LevelCamera *c)
+CmdRet CutsceneKeyDance0_4(UNUSED struct LevelCamera *c)
 {
-    sCameraKeyCutsceneRollOffset = 0x2800;
+    gCameraStatus.cameraKeyCutsceneRollOffset = 0x2800;
     vec3f_set(D_8033B6F0[8].unk4, 89.f, 373.f, -304.f);
     vec3f_set(D_8033B6F0[7].unk4, 0.f, 127.f, 0.f);
 }
 
-void CutsceneKeyDance0_5(UNUSED struct LevelCamera *c)
+CmdRet CutsceneKeyDance0_5(UNUSED struct LevelCamera *c)
 {
-    sCameraKeyCutsceneRollOffset = 0;
+    gCameraStatus.cameraKeyCutsceneRollOffset = 0;
     vec3f_set(D_8033B6F0[8].unk4, 135.f, 158.f, -673.f);
     vec3f_set(D_8033B6F0[7].unk4, -20.f, 135.f, -198.f);
 }
 
-void CutsceneKeyDance0_7(UNUSED struct LevelCamera *c)
+CmdRet CutsceneKeyDance0_7(UNUSED struct LevelCamera *c)
 {
     func_80299C98(0x180, 48, -0x8000);
 }
 
-void CutsceneKeyDance0_8(UNUSED struct LevelCamera *c)
+CmdRet CutsceneKeyDance0_8(UNUSED struct LevelCamera *c)
 {
     set_spline_values(1);
 }
 
-void CutsceneKeyDance0_1(struct LevelCamera *c)
+CmdRet CutsceneKeyDance0_1(struct LevelCamera *c)
 {
     func_80291BBC(c, 0, 0.2f);
 }
 
-void CutsceneKeyDance0(struct LevelCamera *c)
+CmdRet CutsceneKeyDance0(struct LevelCamera *c)
 {
     call_cutscene_func_in_time_range(CutsceneDanceCommon, c, 0, 10);
     call_cutscene_func_in_time_range(CutsceneKeyDance0_1, c, 0, 10);
@@ -6860,23 +6868,23 @@ void CutsceneKeyDance0(struct LevelCamera *c)
     call_cutscene_func_in_time_range(CutsceneKeyDance0_8, c, 52, -1);
 }
 
-void CutsceneEnterBowserPlatform0_4(UNUSED struct LevelCamera *c)
+CmdRet CutsceneEnterBowserPlatform0_4(UNUSED struct LevelCamera *c)
 {
     func_8029A494(2);
 }
 
-void CutsceneEnterBowserPlatform0_3(UNUSED struct LevelCamera *c)
+CmdRet CutsceneEnterBowserPlatform0_3(UNUSED struct LevelCamera *c)
 {
     gSecondCameraFocus->oUnk88 = 1;
 }
 
-void CutsceneEnterBowserPlatform0_5(struct LevelCamera *c)
+CmdRet CutsceneEnterBowserPlatform0_5(struct LevelCamera *c)
 {
     vec3f_set_dist_and_angle(D_8033B6F0[2].unk4, c->pos, D_8033B6F0[3].unk4[2], D_8033B6F0[3].unk1C[0], D_8033B6F0[3].unk1C[1]);
     vec3f_set(D_8033B6F0[2].unk4, gSecondCameraFocus->oPosX, gSecondCameraFocus->oPosY, gSecondCameraFocus->oPosZ);
 }
 
-void CutsceneEnterBowserPlatform0_8(UNUSED struct LevelCamera *c)
+CmdRet CutsceneEnterBowserPlatform0_8(UNUSED struct LevelCamera *c)
 {
     f32 sp1C = 150.0f;
 
@@ -6885,24 +6893,24 @@ void CutsceneEnterBowserPlatform0_8(UNUSED struct LevelCamera *c)
     approach_f32_exponential_bool(&D_8033B6F0[0].unk4[1], sp1C, 0.5f);
 }
 
-void CutsceneEnterBowserPlatform0_9(struct LevelCamera *c)
+CmdRet CutsceneEnterBowserPlatform0_9(struct LevelCamera *c)
 {
     set_pos_from_face_angle_and_vec3f(c->focus, D_8033B6F0[2].unk4, D_8033B6F0[0].unk4, D_8033B6F0[2].unk1C);
 }
 
-void CutsceneEnterBowserPlatform0_7(UNUSED struct LevelCamera *c)
+CmdRet CutsceneEnterBowserPlatform0_7(UNUSED struct LevelCamera *c)
 {
     approach_s16_exponential_bool(&D_8033B6F0[3].unk1C[0], 1736, 30);
     approach_f32_exponential_bool(&D_8033B6F0[0].unk4[2], -200.f, 0.02f);
     approach_f32_exponential_bool(&D_8033B6F0[3].unk4[2], 550.f, 0.02f);
 }
 
-void CutsceneEnterBowserPlatform0_6(UNUSED struct LevelCamera *c)
+CmdRet CutsceneEnterBowserPlatform0_6(UNUSED struct LevelCamera *c)
 {
     approach_f32_exponential_bool(&D_8033B6F0[0].unk4[2], 0.f, 0.05f);
 }
 
-void CutsceneEnterBowserPlatform0_1(UNUSED struct LevelCamera *c)
+CmdRet CutsceneEnterBowserPlatform0_1(UNUSED struct LevelCamera *c)
 {
     func_8028FD94(1);
 }
@@ -6912,7 +6920,7 @@ void func_802930C8(UNUSED struct LevelCamera *c)
     func_8028FD94(0);
 }
 
-void CutsceneEnterBowserPlatform0_2(struct LevelCamera *c)
+CmdRet CutsceneEnterBowserPlatform0_2(struct LevelCamera *c)
 {
     D_8033B6F0[3].unk4[2] = 430.f;
     D_8033B6F0[3].unk1C[1] = gSecondCameraFocus->oMoveAngleYaw - 0x2000;
@@ -6925,7 +6933,7 @@ void CutsceneEnterBowserPlatform0_2(struct LevelCamera *c)
     CutsceneEnterBowserPlatform0_9(c);
 }
 
-void bowser_fight_intro_dialogue(UNUSED struct LevelCamera *c)
+CmdRet bowser_fight_intro_dialogue(UNUSED struct LevelCamera *c)
 {
     s16 dialogue;
 
@@ -6944,7 +6952,7 @@ void bowser_fight_intro_dialogue(UNUSED struct LevelCamera *c)
     func_802D7F90(dialogue);
 }
 
-void CutsceneEnterBowserPlatform1(struct LevelCamera *c)
+CmdRet CutsceneEnterBowserPlatform1(struct LevelCamera *c)
 {
     call_cutscene_func_in_time_range(bowser_fight_intro_dialogue, c, 0, 0);
 
@@ -6952,7 +6960,7 @@ void CutsceneEnterBowserPlatform1(struct LevelCamera *c)
         gCutsceneTimer = 0x7FFF;
 }
 
-void CutsceneEnterBowserPlatform2(struct LevelCamera *c)
+CmdRet CutsceneEnterBowserPlatform2(struct LevelCamera *c)
 {
     func_802930C8(c);
     c->cutscene = 0;
@@ -6962,7 +6970,7 @@ void CutsceneEnterBowserPlatform2(struct LevelCamera *c)
     gSecondCameraFocus->oUnk88 = 2;
 }
 
-void CutsceneEnterBowserPlatform0(struct LevelCamera *c)
+CmdRet CutsceneEnterBowserPlatform0(struct LevelCamera *c)
 {
     func_80299C60(2, 0);
 
@@ -6984,12 +6992,12 @@ void CutsceneEnterBowserPlatform0(struct LevelCamera *c)
     }
 }
 
-void CutsceneStarSpawn0_1(struct LevelCamera *c)
+CmdRet CutsceneStarSpawn0_1(struct LevelCamera *c)
 {
     func_80290224(c);
 }
 
-void CutsceneStarSpawn0_2(struct LevelCamera *c)
+CmdRet CutsceneStarSpawn0_2(struct LevelCamera *c)
 {
     UNUSED f32 sp34;
     Vec3f pos;
@@ -7003,7 +7011,7 @@ void CutsceneStarSpawn0_2(struct LevelCamera *c)
     }
 }
 
-void CutsceneStarSpawn1_1(struct LevelCamera *c)
+CmdRet CutsceneStarSpawn1_1(struct LevelCamera *c)
 {
     Vec3f sp2C, sp20;
 
@@ -7012,13 +7020,13 @@ void CutsceneStarSpawn1_1(struct LevelCamera *c)
     approach_vec3f_exponential(c->pos, sp2C, 0.2f, 0.2f, 0.2f);
 }
 
-void CutsceneStarSpawn1_2(struct LevelCamera *c)
+CmdRet CutsceneStarSpawn1_2(struct LevelCamera *c)
 {
     func_802902A8(c);
     init_transitional_movement(c, 15);
 }
 
-void CutsceneStarSpawn0(struct LevelCamera *c)
+CmdRet CutsceneStarSpawn0(struct LevelCamera *c)
 {
     call_cutscene_func_in_time_range(CutsceneStarSpawn0_1, c, 0, 0);
     call_cutscene_func_in_time_range(CutsceneStarSpawn0_2, c, 0, -1);
@@ -7028,7 +7036,7 @@ void CutsceneStarSpawn0(struct LevelCamera *c)
         gCutsceneTimer = 0x7FFF;
 }
 
-void CutsceneStarSpawn1(struct LevelCamera *c)
+CmdRet CutsceneStarSpawn1(struct LevelCamera *c)
 {
     if ((c->currPreset == CAMERA_PRESET_BOSS_FIGHT) && (test_or_set_mario_cam_active(0) == 2))
         call_cutscene_func_in_time_range(CutsceneStarSpawn1_1, c, 0, -1);
@@ -7039,33 +7047,33 @@ void CutsceneStarSpawn1(struct LevelCamera *c)
     gCameraFlags2 |= CAM_FLAG_2_UNUSED_CUTSCENE_ACTIVE;
 }
 
-void CutsceneStarSpawn2(struct LevelCamera *c)
+CmdRet CutsceneStarSpawn2(struct LevelCamera *c)
 {
     gCameraFlags2 |= CAM_FLAG_2_SMOOTH_MOVEMENT;
     gCutsceneTimer = -0x8000;
     c->cutscene = 0;
 }
 
-void CutsceneExitWaterfall0_1(struct LevelCamera *c)
+CmdRet CutsceneExitWaterfall0_1(struct LevelCamera *c)
 {
     vec3f_set(c->pos, -3899.f, 39.f, -5671.f);
 }
 
-void Cutscene80293794(struct LevelCamera *c)
+CmdRet Cutscene80293794(struct LevelCamera *c)
 {
     vec3f_copy(c->focus, sMarioStatusForCamera->pos);
     c->focus[1] = c->pos[1] + (sMarioStatusForCamera->pos[1] + 125.f - c->pos[1]) * 0.5f;
     approach_vec3f_exponential(c->focus, sMarioStatusForCamera->pos, 0.05f, 0.4f, 0.05f);
 }
 
-void CutsceneExitWaterfall0(struct LevelCamera *c)
+CmdRet CutsceneExitWaterfall0(struct LevelCamera *c)
 {
     call_cutscene_func_in_time_range(CutsceneExitWaterfall0_1, c, 0, 0);
     call_cutscene_func_in_time_range(Cutscene80293794, c, 0, -1);
     set_cam_yaw_from_focus_and_pos(c);
 }
 
-void CutsceneFallCommon1(struct LevelCamera *c)
+CmdRet CutsceneFallCommon1(struct LevelCamera *c)
 {
     gCameraFlags2 |= CAM_FLAG_2_SMOOTH_MOVEMENT;
     gCutsceneTimer = -0x8000;
@@ -7073,42 +7081,42 @@ void CutsceneFallCommon1(struct LevelCamera *c)
     set_cam_yaw_from_focus_and_pos(c);
 }
 
-void CutsceneFallToCastleGrounds0_1(struct LevelCamera *c)
+CmdRet CutsceneFallToCastleGrounds0_1(struct LevelCamera *c)
 {
     vec3f_set(c->pos, 5830.f, 32.f, 3985.f);
 }
 
-void CutsceneFallToCastleGrounds0(struct LevelCamera *c)
+CmdRet CutsceneFallToCastleGrounds0(struct LevelCamera *c)
 {
     call_cutscene_func_in_time_range(CutsceneFallToCastleGrounds0_1, c, 0, 0);
     call_cutscene_func_in_time_range(Cutscene80293794, c, 0, -1);
     set_cam_yaw_from_focus_and_pos(c);
 }
 
-void CutsceneSpecialStarSpawn0_1(struct LevelCamera *c)
+CmdRet CutsceneSpecialStarSpawn0_1(struct LevelCamera *c)
 {
     object_pos_to_vec3f(D_8033B6F0[1].unk4, gCutsceneFocus);
     func_80290224(c);
     D_8033B6F0[2].unk4[2] = D_8033B230.fieldOfView;
 }
 
-void CutsceneSpecialStarSpawn0_3(struct LevelCamera *c)
+CmdRet CutsceneSpecialStarSpawn0_3(struct LevelCamera *c)
 {
     approach_f32_exponential_bool(&c->focus[0], gCutsceneFocus->oPosX, 0.15f);
     approach_f32_exponential_bool(&c->focus[2], gCutsceneFocus->oPosZ, 0.15f);
 }
 
-void CutsceneSpecialStarSpawn0_4(struct LevelCamera *c)
+CmdRet CutsceneSpecialStarSpawn0_4(struct LevelCamera *c)
 {
     approach_f32_exponential_bool(&c->focus[1], gCutsceneFocus->oPosY, 0.1f);
 }
 
-void CutsceneSpecialStarSpawn0_5(struct LevelCamera *c)
+CmdRet CutsceneSpecialStarSpawn0_5(struct LevelCamera *c)
 {
     c->focus[1] = D_8033B6F0[1].unk4[1] + (gCutsceneFocus->oPosY - D_8033B6F0[1].unk4[1]) * 0.8f;
 }
 
-void CutsceneSpecialStarSpawn0_2(struct LevelCamera *c)
+CmdRet CutsceneSpecialStarSpawn0_2(struct LevelCamera *c)
 {
     f32 sp3C;
     s16 sp3A, sp38, sp36;
@@ -7128,12 +7136,12 @@ void CutsceneSpecialStarSpawn0_2(struct LevelCamera *c)
     gCameraFlags2 &= ~CAM_FLAG_2_SMOOTH_MOVEMENT;
 }
 
-void CutsceneSpecialStarSpawn0_6(UNUSED struct LevelCamera *c)
+CmdRet CutsceneSpecialStarSpawn0_6(UNUSED struct LevelCamera *c)
 {
     D_8033B230.fieldOfView = 60.f;
 }
 
-void CutsceneSpecialStarSpawn0(struct LevelCamera *c)
+CmdRet CutsceneSpecialStarSpawn0(struct LevelCamera *c)
 {
     gCameraFlags2 |= CAM_FLAG_2_SMOOTH_MOVEMENT;
     call_cutscene_func_in_time_range(CutsceneSpecialStarSpawn0_1, c, 0, 0);
@@ -7147,7 +7155,7 @@ void CutsceneSpecialStarSpawn0(struct LevelCamera *c)
         gCutsceneTimer = 0x7FFF;
 }
 
-void CutsceneSpecialStarSpawn1(struct LevelCamera *c)
+CmdRet CutsceneSpecialStarSpawn1(struct LevelCamera *c)
 {
     func_802902A8(c);
     gCutsceneTimer = -0x8000;
@@ -7208,7 +7216,7 @@ void func_80293DE8(struct LevelCamera *a, f32 b, s16 c, s16 d, s16 e)
     vec3f_set_dist_and_angle(a->pos, a->focus, sp40, sp3E, sp3C);
 }
 
-void CutscenePrepareCannon0_1(struct LevelCamera *c)
+CmdRet CutscenePrepareCannon0_1(struct LevelCamera *c)
 {
     func_80290144(c);
     vec3f_copy(D_8033B6F0[0].unk4, c->focus);
@@ -7217,7 +7225,7 @@ void CutscenePrepareCannon0_1(struct LevelCamera *c)
     vec3s_set(D_8033B6F0[5].unk1C, 0, 0, 0);
 }
 
-void CutscenePrepareCannon0_2(struct LevelCamera *c)
+CmdRet CutscenePrepareCannon0_2(struct LevelCamera *c)
 {
     func_80293DE8(c, 300.f, 0x2000, 0, D_8033B6F0[5].unk1C[1]);
     camera_approach_s16_symmetric_bool(&D_8033B6F0[5].unk1C[1], 0x400, 17);
@@ -7230,7 +7238,7 @@ void func_802941CC(f32 *a, f32 b)
     camera_approach_f32_symmetric_bool(a, b, sp24);
 }
 
-void CutscenePrepareCannon0_3(struct LevelCamera *c)
+CmdRet CutscenePrepareCannon0_3(struct LevelCamera *c)
 {
     f32 sp1C = calc_abs_dist(c->pos, D_8033B4B8.pos);
 
@@ -7253,7 +7261,7 @@ void CutscenePrepareCannon0_3(struct LevelCamera *c)
         D_8033B6F0[2].unk4[0] -= 1.f;
 }
 
-void CutscenePrepareCannon0(struct LevelCamera *c)
+CmdRet CutscenePrepareCannon0(struct LevelCamera *c)
 {
     gCameraFlags2 |= CAM_FLAG_2_SMOOTH_MOVEMENT;
     call_cutscene_func_in_time_range(CutscenePrepareCannon0_1, c, 0, 0);
@@ -7261,7 +7269,7 @@ void CutscenePrepareCannon0(struct LevelCamera *c)
     call_cutscene_func_in_time_range(CutscenePrepareCannon0_3, c, 141, -1);
 }
 
-void CutscenePrepareCannon1(struct LevelCamera *c)
+CmdRet CutscenePrepareCannon1(struct LevelCamera *c)
 {
     gCutsceneTimer = -0x8000;
     c->cutscene = 0;
@@ -7284,27 +7292,27 @@ void func_80294538(struct LevelCamera *c)
     func_80293DE8(c, 400.f, 0x1000, 0x300, 0);
 }
 
-void CutsceneDeath1_1(struct LevelCamera *c)
+CmdRet CutsceneDeath1_1(struct LevelCamera *c)
 {
     vec3f_copy(D_8033B6F0[0].unk4, c->focus);
     vec3f_copy(D_8033B6F0[3].unk4, sMarioStatusForCamera->pos);
     D_8033B6F0[3].unk4[1] += 70.f;
 }
 
-void CutsceneDeath1_2(struct LevelCamera *c)
+CmdRet CutsceneDeath1_2(struct LevelCamera *c)
 {
     func_80294538(c);
     set_spline_values(4);
 }
 
-void CutsceneDeath1(struct LevelCamera *c)
+CmdRet CutsceneDeath1(struct LevelCamera *c)
 {
     call_cutscene_func_in_time_range(CutsceneDeath1_1, c, 0, 0);
     call_cutscene_func_in_time_range(CutsceneDeath1_2, c, 0, -1);
     gCameraFlags2 |= CAM_FLAG_2_SMOOTH_MOVEMENT;
 }
 
-void CutsceneDeath2_1(struct LevelCamera *c)
+CmdRet CutsceneDeath2_1(struct LevelCamera *c)
 {
     Vec3f sp1C = {0, 40.f, -60.f};
 
@@ -7312,7 +7320,7 @@ void CutsceneDeath2_1(struct LevelCamera *c)
     vec3f_copy(D_8033B6F0[0].unk4, c->focus);
 }
 
-void CutsceneDeath2_2(struct LevelCamera *c)
+CmdRet CutsceneDeath2_2(struct LevelCamera *c)
 {
     func_80293DE8(c, 400.f, 0x1800, 0, -0x400);
 }
@@ -7322,7 +7330,7 @@ void unused_80294748(struct LevelCamera *c)
     func_802944A8(c);
 }
 
-void CutsceneDeath2(struct LevelCamera *c)
+CmdRet CutsceneDeath2(struct LevelCamera *c)
 {
     call_cutscene_func_in_time_range(CutsceneDeath2_1, c, 0, 0);
     call_cutscene_func_in_time_range(CutsceneDeath2_2, c, 0, -1);
@@ -7330,7 +7338,7 @@ void CutsceneDeath2(struct LevelCamera *c)
     set_spline_values(1);
 }
 
-void CutsceneBBHDeath0_1(struct LevelCamera *c)
+CmdRet CutsceneBBHDeath0_1(struct LevelCamera *c)
 {
     Vec3f sp1C = {0, 40.f, 60.f};
 
@@ -7338,12 +7346,12 @@ void CutsceneBBHDeath0_1(struct LevelCamera *c)
     vec3f_copy(D_8033B6F0[0].unk4, c->focus);
 }
 
-void CutsceneBBHDeath0_2(struct LevelCamera *c)
+CmdRet CutsceneBBHDeath0_2(struct LevelCamera *c)
 {
     func_80293DE8(c, 400.f, 0x1800, 0, 0x400);
 }
 
-void CutsceneBBHDeath0(struct LevelCamera *c)
+CmdRet CutsceneBBHDeath0(struct LevelCamera *c)
 {
     call_cutscene_func_in_time_range(CutsceneBBHDeath0_1, c, 0, 0);
     call_cutscene_func_in_time_range(CutsceneBBHDeath0_2, c, 0, -1);
@@ -7351,12 +7359,12 @@ void CutsceneBBHDeath0(struct LevelCamera *c)
     set_spline_values(1);
 }
 
-void CutsceneQuicksandDeath0_1(struct LevelCamera *c)
+CmdRet CutsceneQuicksandDeath0_1(struct LevelCamera *c)
 {
     vec3f_copy(D_8033B6F0[0].unk4, c->focus);
 }
 
-void CutsceneQuicksandDeath0_2(struct LevelCamera *c)
+CmdRet CutsceneQuicksandDeath0_2(struct LevelCamera *c)
 {
     func_80293DE8(c, 400.f, 0x2800, 0x200, 0);
 
@@ -7364,7 +7372,7 @@ void CutsceneQuicksandDeath0_2(struct LevelCamera *c)
         func_802944A8(c);
 }
 
-void CutsceneQuicksandDeath0(struct LevelCamera *c)
+CmdRet CutsceneQuicksandDeath0(struct LevelCamera *c)
 {
     D_8033B6F0[3].unk4[0] = sMarioStatusForCamera->pos[0];
     D_8033B6F0[3].unk4[1] = sMarioStatusForCamera->pos[1] + 20.f;
@@ -7376,7 +7384,7 @@ void CutsceneQuicksandDeath0(struct LevelCamera *c)
     set_spline_values(4);
 }
 
-void Cutscene1ATodo0_3(UNUSED struct LevelCamera *c)
+CmdRet Cutscene1ATodo0_3(UNUSED struct LevelCamera *c)
 {
     Vec3f sp2C;
     Vec3f sp20 = {0, 20.f, 120.f};
@@ -7385,7 +7393,7 @@ void Cutscene1ATodo0_3(UNUSED struct LevelCamera *c)
     approach_vec3f_exponential(D_8033B6F0[3].unk4, sp2C, 0.1f, 0.1f, 0.1f);
 }
 
-void Cutscene1ATodo0_2(struct LevelCamera *c)
+CmdRet Cutscene1ATodo0_2(struct LevelCamera *c)
 {
     UNUSED f32 sp34;
     f32 sp30;
@@ -7401,7 +7409,7 @@ void Cutscene1ATodo0_2(struct LevelCamera *c)
     }
 }
 
-void Cutscene1ATodo0_1(struct LevelCamera *c)
+CmdRet Cutscene1ATodo0_1(struct LevelCamera *c)
 {
     f32 sp24;
     s16 sp22, sp20;
@@ -7411,7 +7419,7 @@ void Cutscene1ATodo0_1(struct LevelCamera *c)
     vec3f_set_dist_and_angle(sMarioStatusForCamera->pos, c->pos, sp24, sp22, sp20);
 }
 
-void Cutscene1ATodo0(struct LevelCamera *c)
+CmdRet Cutscene1ATodo0(struct LevelCamera *c)
 {
     call_cutscene_func_in_time_range(CutsceneDeath2_1, c, 0, 0);
     call_cutscene_func_in_time_range(Cutscene1ATodo0_1, c, 0, -1);
@@ -7421,7 +7429,7 @@ void Cutscene1ATodo0(struct LevelCamera *c)
     set_spline_values(4);
 }
 
-void CutsceneEnterPool0_1(struct LevelCamera *c)
+CmdRet CutsceneEnterPool0_1(struct LevelCamera *c)
 {
     vec3f_copy(D_8033B6F0[3].unk4, sMarioStatusForCamera->pos);
 
@@ -7433,21 +7441,21 @@ void CutsceneEnterPool0_1(struct LevelCamera *c)
     vec3f_copy(D_8033B6F0[0].unk4, c->focus);
 }
 
-void CutsceneEnterPool0_2(struct LevelCamera *c)
+CmdRet CutsceneEnterPool0_2(struct LevelCamera *c)
 {
     UNUSED u32 pad[2];
 
     func_80293DE8(c, 1200.f, 0x2000, 0x200, 0);
 }
 
-void CutsceneEnterPool0(struct LevelCamera *c)
+CmdRet CutsceneEnterPool0(struct LevelCamera *c)
 {
     call_cutscene_func_in_time_range(CutsceneEnterPool0_1, c, 0, 0);
     call_cutscene_func_in_time_range(CutsceneEnterPool0_2, c, 0, -1);
     gCameraFlags2 |= CAM_FLAG_2_SMOOTH_MOVEMENT;
 }
 
-void Cutscene26Todo1_1(struct LevelCamera *c)
+CmdRet Cutscene26Todo1_1(struct LevelCamera *c)
 {
     func_8028FEDC(c);
     func_80290144(c);
@@ -7456,18 +7464,18 @@ void Cutscene26Todo1_1(struct LevelCamera *c)
     vec3f_set(D_8033B6F0[3].unk4, c->xFocus, 1280.f, c->zFocus);
 }
 
-void Cutscene26Todo1_5(UNUSED struct LevelCamera *c)
+CmdRet Cutscene26Todo1_5(UNUSED struct LevelCamera *c)
 {
     set_fov_function(10);
 }
 
-void Cutscene26Todo1_2(struct LevelCamera *c)
+CmdRet Cutscene26Todo1_2(struct LevelCamera *c)
 {
     approach_vec3f_exponential(c->focus, D_8033B6F0[3].unk4, 0.02f, 0.02f, 0.02f);
     gCameraFlags2 |= CAM_FLAG_2_SMOOTH_MOVEMENT;
 }
 
-void Cutscene26Todo1_3(struct LevelCamera *c)
+CmdRet Cutscene26Todo1_3(struct LevelCamera *c)
 {
     s16 sp26, sp24;
     f32 sp20;
@@ -7484,7 +7492,7 @@ void Cutscene26Todo1_3(struct LevelCamera *c)
     c->pos[1] += 500.f;
 }
 
-void Cutscene26Todo1_4(struct LevelCamera *c)
+CmdRet Cutscene26Todo1_4(struct LevelCamera *c)
 {
     s16 sp26, sp24;
     f32 sp20;
@@ -7499,12 +7507,12 @@ void Cutscene26Todo1_4(struct LevelCamera *c)
     set_spline_values(1);
 }
 
-void Cutscene26Todo1_7(UNUSED struct LevelCamera *c)
+CmdRet Cutscene26Todo1_7(UNUSED struct LevelCamera *c)
 {
     set_camera_shake_2(8);
 }
 
-void Cutscene26Todo1_6(struct LevelCamera *c)
+CmdRet Cutscene26Todo1_6(struct LevelCamera *c)
 {
     UNUSED u32 pad[2];
 
@@ -7513,7 +7521,7 @@ void Cutscene26Todo1_6(struct LevelCamera *c)
     set_camera_shake_2(SHAKE_2_UNKNOWN_3);
 }
 
-void Cutscene26Todo1(struct LevelCamera *c)
+CmdRet Cutscene26Todo1(struct LevelCamera *c)
 {
     call_cutscene_func_in_time_range(Cutscene26Todo1_1, c, 0, 0);
     call_cutscene_func_in_time_range(Cutscene26Todo1_2, c, 0, 30);
@@ -7524,20 +7532,20 @@ void Cutscene26Todo1(struct LevelCamera *c)
     call_cutscene_func_in_time_range(Cutscene26Todo1_7, c, 31, 139);
 }
 
-void Cutscene26Todo2(struct LevelCamera *c)
+CmdRet Cutscene26Todo2(struct LevelCamera *c)
 {
     func_802930C8(c);
     func_8028FAE0(c);
     init_transitional_movement(c, 30);
 }
 
-void CutsceneEnterPyramidTop0_1(struct LevelCamera *c)
+CmdRet CutsceneEnterPyramidTop0_1(struct LevelCamera *c)
 {
     vec3f_copy(D_8033B6F0[0].unk4, c->focus);
     vec3f_set(D_8033B6F0[3].unk4, c->xFocus, 1280.f, c->zFocus);
 }
 
-void CutsceneEnterPyramidTop0(struct LevelCamera *c)
+CmdRet CutsceneEnterPyramidTop0(struct LevelCamera *c)
 {
     call_cutscene_func_in_time_range(CutsceneEnterPyramidTop0_1, c, 0, 0);
     func_80293DE8(c, 200.f, 0x3000, 0, 0);
@@ -7557,7 +7565,7 @@ void unused_8029538C(struct LevelCamera *c)
     func_80293DE8(c, sp24, 0x1000, 0x300, 0);
 }
 
-void CutsceneDialog0_1(struct LevelCamera *c)
+CmdRet CutsceneDialog0_1(struct LevelCamera *c)
 {
     UNUSED f32 sp1C;
     UNUSED s16 sp1A;
@@ -7591,7 +7599,7 @@ void CutsceneDialog0_1(struct LevelCamera *c)
         D_8033B6F0[9].unk1C[1] += 0x6000;
 }
 
-void CutsceneDialog0_2(struct LevelCamera *c)
+CmdRet CutsceneDialog0_2(struct LevelCamera *c)
 {
     f32 sp4C;
     s16 sp4A, sp48;
@@ -7615,7 +7623,7 @@ void CutsceneDialog0_2(struct LevelCamera *c)
     c->pos[2] = sp30[2];
 }
 
-void CutsceneDialog0_3(struct LevelCamera *c)
+CmdRet CutsceneDialog0_3(struct LevelCamera *c)
 {
     if (c->cutscene == CUTSCENE_DIALOGUE_2)
         func_802D8050(D_8033B320);
@@ -7625,7 +7633,7 @@ void CutsceneDialog0_3(struct LevelCamera *c)
     D_8033B6F0[8].unk1C[0] = 3;
 }
 
-void CutsceneDialog0(struct LevelCamera *c)
+CmdRet CutsceneDialog0(struct LevelCamera *c)
 {
     call_cutscene_func_in_time_range(CutsceneDialog0_1, c, 0, 0);
     call_cutscene_func_in_time_range(CutsceneDialog0_2, c, 0, -1);
@@ -7648,19 +7656,19 @@ void CutsceneDialog0(struct LevelCamera *c)
     }
 }
 
-void CutsceneDialog1(UNUSED struct LevelCamera *c)
+CmdRet CutsceneDialog1(UNUSED struct LevelCamera *c)
 {
     gCameraFlags2 |= CAM_FLAG_2_UNUSED_CUTSCENE_ACTIVE;
 }
 
-void CutsceneDialog2(struct LevelCamera *c)
+CmdRet CutsceneDialog2(struct LevelCamera *c)
 {
     gCameraFlags2 |= CAM_FLAG_2_UNUSED_CUTSCENE_ACTIVE;
     c->cutscene = 0;
     clear_time_stop_flags(TIME_STOP_ENABLED | TIME_STOP_UNKNOWN_2);
 }
 
-void CutsceneReadMessage0_1(struct LevelCamera *c)
+CmdRet CutsceneReadMessage0_1(struct LevelCamera *c)
 {
     func_80290564(c);
     init_transitional_movement(c, 30);
@@ -7683,7 +7691,7 @@ void unused_80295A28(struct LevelCamera *c)
     set_pos_from_face_angle_and_rel_coords(c->focus, sMarioStatusForCamera->pos, sp20, 0, 70.f, -20.f);
 }
 
-void CutsceneReadMessage0(struct LevelCamera *c)
+CmdRet CutsceneReadMessage0(struct LevelCamera *c)
 {
     UNUSED u32 pad[2];
 
@@ -7718,18 +7726,18 @@ void CutsceneReadMessage0(struct LevelCamera *c)
     gCameraFlags2 |= CAM_FLAG_2_UNUSED_CUTSCENE_ACTIVE;
 }
 
-void CutsceneReadMessage1(UNUSED struct LevelCamera *c)
+CmdRet CutsceneReadMessage1(UNUSED struct LevelCamera *c)
 {
     gCameraFlags2 |= CAM_FLAG_2_UNUSED_CUTSCENE_ACTIVE;
 }
 
-void CutsceneReadMessage2(struct LevelCamera *c)
+CmdRet CutsceneReadMessage2(struct LevelCamera *c)
 {
     gCameraFlags2 |= CAM_FLAG_2_UNUSED_CUTSCENE_ACTIVE;
     c->cutscene = 0;
 }
 
-void CutsceneExitSuccess1(UNUSED struct LevelCamera *c)
+CmdRet CutsceneExitSuccess1(UNUSED struct LevelCamera *c)
 {
     vec3f_copy(D_8033B6F0[7].unk4, sMarioStatusForCamera->pos);
     vec3s_copy(D_8033B6F0[7].unk1C, sMarioStatusForCamera->faceAngle);
@@ -7737,7 +7745,7 @@ void CutsceneExitSuccess1(UNUSED struct LevelCamera *c)
     vec3f_set(D_8033B6F0[5].unk4, 137.f, 226.f, 995.f);
 }
 
-void CutsceneExitSuccess2(struct LevelCamera *c)
+CmdRet CutsceneExitSuccess2(struct LevelCamera *c)
 {
     UNUSED u32 sp34;
     struct Surface *floor;
@@ -7768,7 +7776,7 @@ void CutsceneExitSuccess2(struct LevelCamera *c)
     }
 }
 
-void CutsceneExitSuccess4(struct LevelCamera *c)
+CmdRet CutsceneExitSuccess4(struct LevelCamera *c)
 {
     set_pos_from_face_angle_and_vec3f(c->focus, D_8033B6F0[7].unk4, D_8033B6F0[6].unk4, D_8033B6F0[7].unk1C);
 
@@ -7782,23 +7790,23 @@ void CutsceneExitSuccess4(struct LevelCamera *c)
         c->focus[1] = c->pos[1] + (sMarioStatusForCamera->pos[1] - c->pos[1]) * 0.2f;
 }
 
-void CutsceneExitSuccess3(UNUSED struct LevelCamera *c)
+CmdRet CutsceneExitSuccess3(UNUSED struct LevelCamera *c)
 {
     approach_f32_exponential_bool(&D_8033B6F0[6].unk4[0], -24.f, 0.05f);
 }
 
-void CutsceneExitBowserSuccess0_1(struct LevelCamera *c)
+CmdRet CutsceneExitBowserSuccess0_1(struct LevelCamera *c)
 {
     if (c->cutscene == CUTSCENE_EXIT_BOWSER_SUCC)
         set_camera_pitch_shake(0x800, 0x40, 0x800);
 }
 
-void CutsceneExitSuccess5(UNUSED struct LevelCamera *c)
+CmdRet CutsceneExitSuccess5(UNUSED struct LevelCamera *c)
 {
     set_camera_shake_2(SHAKE_2_UNKNOWN_1);
 }
 
-void CutsceneExitBowserSuccess0(struct LevelCamera *c)
+CmdRet CutsceneExitBowserSuccess0(struct LevelCamera *c)
 {
     call_cutscene_func_in_time_range(CutsceneExitSuccess1, c, 0, 0);
     call_cutscene_func_in_time_range(CutsceneExitSuccess2, c, 0, -1);
@@ -7808,7 +7816,7 @@ void CutsceneExitBowserSuccess0(struct LevelCamera *c)
     call_cutscene_func_in_time_range(CutsceneExitSuccess5, c, 41, 41);
 }
 
-void CutsceneExitNonPainting1(struct LevelCamera *c)
+CmdRet CutsceneExitNonPainting1(struct LevelCamera *c)
 {
     c->cutscene = 0;
 
@@ -7823,12 +7831,12 @@ void CutsceneExitNonPainting1(struct LevelCamera *c)
     set_cam_yaw_from_focus_and_pos(c);
 }
 
-void CutsceneBBHExitSuccess0_1(UNUSED struct LevelCamera *c)
+CmdRet CutsceneBBHExitSuccess0_1(UNUSED struct LevelCamera *c)
 {
     vec3f_set(D_8033B6F0[5].unk4, 137.f, 246.f, 1115.f);
 }
 
-void CutsceneBBHExitSuccess0(struct LevelCamera *c)
+CmdRet CutsceneBBHExitSuccess0(struct LevelCamera *c)
 {
     call_cutscene_func_in_time_range(CutsceneExitSuccess1, c, 0, 0);
     call_cutscene_func_in_time_range(CutsceneBBHExitSuccess0_1, c, 0, 0);
@@ -7839,7 +7847,7 @@ void CutsceneBBHExitSuccess0(struct LevelCamera *c)
     set_cam_yaw_from_focus_and_pos(c);
 }
 
-void CutsceneNonPaintingDeath0_1(UNUSED struct LevelCamera *c)
+CmdRet CutsceneNonPaintingDeath0_1(UNUSED struct LevelCamera *c)
 {
     vec3f_copy(D_8033B6F0[7].unk4, sMarioStatusForCamera->pos);
     vec3s_copy(D_8033B6F0[7].unk1C, sMarioStatusForCamera->faceAngle);
@@ -7847,14 +7855,14 @@ void CutsceneNonPaintingDeath0_1(UNUSED struct LevelCamera *c)
     vec3f_set(D_8033B6F0[5].unk4, 107.f, 226.f, 1187.f);
 }
 
-void Cutscene1CTodo_0(struct LevelCamera *c)
+CmdRet Cutscene1CTodo_0(struct LevelCamera *c)
 {
     call_cutscene_func_in_time_range(CutsceneNonPaintingDeath0_1, c, 0, 0);
     call_cutscene_func_in_time_range(CutsceneExitSuccess2, c, 0, -1);
     call_cutscene_func_in_time_range(CutsceneExitSuccess4, c, 0, -1);
 }
 
-void CutsceneNonPaintingDeath0_2(UNUSED struct LevelCamera *c)
+CmdRet CutsceneNonPaintingDeath0_2(UNUSED struct LevelCamera *c)
 {
     switch (gPrevLevel)
     {
@@ -7870,7 +7878,7 @@ void CutsceneNonPaintingDeath0_2(UNUSED struct LevelCamera *c)
     }
 }
 
-void CutsceneNonPaintingDeath0(struct LevelCamera *c)
+CmdRet CutsceneNonPaintingDeath0(struct LevelCamera *c)
 {
     call_cutscene_func_in_time_range(CutsceneNonPaintingDeath0_1, c, 0, 0);
     call_cutscene_func_in_time_range(CutsceneNonPaintingDeath0_2, c, 0, 0);
@@ -7879,7 +7887,7 @@ void CutsceneNonPaintingDeath0(struct LevelCamera *c)
     gCameraFlags2 |= CAM_FLAG_2_UNUSED_CUTSCENE_ACTIVE;
 }
 
-void CutsceneCapSwitchPress0_1(struct LevelCamera *c)
+CmdRet CutsceneCapSwitchPress0_1(struct LevelCamera *c)
 {
     UNUSED s16 sp26;
     s16 sp24;
@@ -7892,7 +7900,7 @@ void CutsceneCapSwitchPress0_1(struct LevelCamera *c)
 
 }
 
-void CutsceneCapSwitchPress0_4(struct LevelCamera *c)
+CmdRet CutsceneCapSwitchPress0_4(struct LevelCamera *c)
 {
     f32 sp2C;
     s16 sp2A, sp28;
@@ -7911,13 +7919,13 @@ void CutsceneCapSwitchPress0_4(struct LevelCamera *c)
     vec3f_set_dist_and_angle(sMarioStatusForCamera->pos, c->pos, sp2C, sp2A, sp28);
 }
 
-void CutsceneCapSwitchPress0_5(struct LevelCamera *c)
+CmdRet CutsceneCapSwitchPress0_5(struct LevelCamera *c)
 {
     rotate_and_move_vec3f(c->pos, sMarioStatusForCamera->pos, 0, -0x20, 0);
 }
 
 
-void CutsceneCapSwitchPress0_2(struct LevelCamera *c)
+CmdRet CutsceneCapSwitchPress0_2(struct LevelCamera *c)
 {
     s16 sp26, sp24;
     f32 sp20;
@@ -7932,7 +7940,7 @@ void CutsceneCapSwitchPress0_2(struct LevelCamera *c)
     approach_f32_exponential_bool(&c->focus[2], sMarioStatusForCamera->pos[2], 0.1f);
 }
 
-void CutsceneCapSwitchPress0_3(struct LevelCamera *c)
+CmdRet CutsceneCapSwitchPress0_3(struct LevelCamera *c)
 {
     vec3f_copy(c->focus, sMarioStatusForCamera->pos);
     c->focus[1] += 110.f;
@@ -7940,7 +7948,7 @@ void CutsceneCapSwitchPress0_3(struct LevelCamera *c)
     rotate_camera(c, D_8033B6F0[0].unk1C[0], D_8033B6F0[0].unk1C[1]);
 }
 
-void CutsceneCapSwitchPress0_6(UNUSED struct LevelCamera *c)
+CmdRet CutsceneCapSwitchPress0_6(UNUSED struct LevelCamera *c)
 {
     func_802D8050(gCutsceneFocus->oBehParams2ndByte + 10);
 }
@@ -7951,7 +7959,7 @@ void unused_802968E8(struct LevelCamera *c)
     init_transitional_movement(c, 30);
 }
 
-void CutsceneCapSwitchPress0(struct LevelCamera *c)
+CmdRet CutsceneCapSwitchPress0(struct LevelCamera *c)
 {
     f32 sp24;
     s16 sp22, sp20;
@@ -7980,7 +7988,7 @@ void CutsceneCapSwitchPress0(struct LevelCamera *c)
     }
 }
 
-void CutsceneUnlockKeyDoor0_1(struct LevelCamera *c)
+CmdRet CutsceneUnlockKeyDoor0_1(struct LevelCamera *c)
 {
     Vec3f sp24, sp18;
 
@@ -7992,33 +8000,33 @@ void CutsceneUnlockKeyDoor0_1(struct LevelCamera *c)
     set_pos_from_face_angle_and_vec3f(D_8033B6F0[3].unk4, sMarioStatusForCamera->pos, sp18, sMarioStatusForCamera->faceAngle);
 }
 
-void CutsceneUnlockKeyDoor0_2(struct LevelCamera *c)
+CmdRet CutsceneUnlockKeyDoor0_2(struct LevelCamera *c)
 {
     approach_vec3f_exponential(c->pos, D_8033B6F0[2].unk4, 0.1f, 0.1f, 0.1f);
     approach_vec3f_exponential(c->focus,  D_8033B6F0[3].unk4, 0.1f, 0.1f, 0.1f);
 }
 
-void CutsceneUnlockKeyDoor0_5(UNUSED struct LevelCamera *c)
+CmdRet CutsceneUnlockKeyDoor0_5(UNUSED struct LevelCamera *c)
 {
     approach_f32_exponential_bool(&D_8033B6F0[3].unk4[1], sMarioStatusForCamera->pos[1] + 140.f, 0.07f);
 }
 
-void CutsceneUnlockKeyDoor0_6(UNUSED struct LevelCamera *c)
+CmdRet CutsceneUnlockKeyDoor0_6(UNUSED struct LevelCamera *c)
 {
 }
 
-void CutsceneUnlockKeyDoor0_3(struct LevelCamera *c)
+CmdRet CutsceneUnlockKeyDoor0_3(struct LevelCamera *c)
 {
     approach_vec3f_exponential(c->pos, D_8033B6F0[0].unk4, 0.1f, 0.1f, 0.1f);
     approach_vec3f_exponential(c->focus,  D_8033B6F0[1].unk4, 0.1f, 0.1f, 0.1f);
 }
 
-void CutsceneUnlockKeyDoor0_4(UNUSED struct LevelCamera *c)
+CmdRet CutsceneUnlockKeyDoor0_4(UNUSED struct LevelCamera *c)
 {
     func_8029A494(1);
 }
 
-void CutsceneUnlockKeyDoor0(UNUSED struct LevelCamera *c)
+CmdRet CutsceneUnlockKeyDoor0(UNUSED struct LevelCamera *c)
 {
     call_cutscene_func_in_time_range(CutsceneUnlockKeyDoor0_1, c, 0, 0);
     call_cutscene_func_in_time_range(CutsceneUnlockKeyDoor0_2, c, 0, 123);
@@ -8046,19 +8054,19 @@ s32 func_80296DDC(struct LevelCamera *a, struct CinematicCameraTable b[], struct
     return sp1C;
 }
 
-void peach_letter_text(UNUSED struct LevelCamera *c)
+CmdRet peach_letter_text(UNUSED struct LevelCamera *c)
 {
     func_802D7F90(20);
 }
 
 #ifndef VERSION_JP
-void play_sound_peach_reading_letter(UNUSED struct LevelCamera *c)
+CmdRet play_sound_peach_reading_letter(UNUSED struct LevelCamera *c)
 {
     SetSound(SOUND_PEACH_DEARMARIO, D_803320E0);
 }
 #endif
 
-void CutsceneIntroPeachCommon(struct LevelCamera *c)
+CmdRet CutsceneIntroPeachCommon(struct LevelCamera *c)
 {
     if (func_80296DDC(c, D_8032DDF0, D_8032DEA8) != 0)
     {
@@ -8067,7 +8075,7 @@ void CutsceneIntroPeachCommon(struct LevelCamera *c)
     }
 }
 
-void CutsceneIntroPeach4(struct LevelCamera *c)
+CmdRet CutsceneIntroPeach4(struct LevelCamera *c)
 {
     if (get_dialog_id() == -1)
     {
@@ -8079,48 +8087,48 @@ void CutsceneIntroPeach4(struct LevelCamera *c)
     }
 }
 
-void CutsceneIntroPeach3_2(struct LevelCamera *c)
+CmdRet CutsceneIntroPeach3_2(struct LevelCamera *c)
 {
     func_80287CFC(c->pos, D_8032DF60, &D_8033B6E0, &D_8033B6E4);
     func_80287CFC(c->focus, D_8032DFD0, &D_8033B6E0, &D_8033B6E4);
 }
 
-void CutsceneIntroPeach2_2(UNUSED struct LevelCamera *c)
+CmdRet CutsceneIntroPeach2_2(UNUSED struct LevelCamera *c)
 {
     sMarioStatusForCamera->unk1C[1] = 0;
 }
 
-void CutsceneIntroPeach0_1(UNUSED struct LevelCamera *c)
+CmdRet CutsceneIntroPeach0_1(UNUSED struct LevelCamera *c)
 {
     D_8033B230.fieldOfView = 8.f;
     set_fov_function(12);
 }
 
-void CutsceneIntroPeach3_1(UNUSED struct LevelCamera *c)
+CmdRet CutsceneIntroPeach3_1(UNUSED struct LevelCamera *c)
 {
     D_8033B6E0 = 0;
     D_8033B6E4 = 0.1f;
     set_spline_values(4);
 }
 
-void CutsceneIntroPeach3_3(UNUSED struct LevelCamera *c)
+CmdRet CutsceneIntroPeach3_3(UNUSED struct LevelCamera *c)
 {
     set_spline_values(0);
 }
 
-void intro_pipe_exit_text(UNUSED struct LevelCamera *c)
+CmdRet intro_pipe_exit_text(UNUSED struct LevelCamera *c)
 {
     func_802D7F90(33);
 }
 
 #ifndef VERSION_JP
-void play_sound_intro_turn_on_hud(UNUSED struct LevelCamera *c)
+CmdRet play_sound_intro_turn_on_hud(UNUSED struct LevelCamera *c)
 {
     play_sound_rbutton_changed();
 }
 #endif
 
-void CutsceneIntroPeach2(struct LevelCamera *c)
+CmdRet CutsceneIntroPeach2(struct LevelCamera *c)
 {
 #ifndef VERSION_JP
     call_cutscene_func_in_time_range(play_sound_intro_turn_on_hud, c, 818, 818);
@@ -8133,7 +8141,7 @@ void CutsceneIntroPeach2(struct LevelCamera *c)
     D_8033B6F0[1].unk4[1] = 400.f;
 }
 
-void CutsceneIntroPeach3(struct LevelCamera *c)
+CmdRet CutsceneIntroPeach3(struct LevelCamera *c)
 {
     UNUSED u32 pad[2];
 
@@ -8150,12 +8158,12 @@ void CutsceneIntroPeach3(struct LevelCamera *c)
     gCameraFlags2 |= CAM_FLAG_2_UNUSED_CUTSCENE_ACTIVE;
 }
 
-void CutsceneIntroPeach1(UNUSED struct LevelCamera *c)
+CmdRet CutsceneIntroPeach1(UNUSED struct LevelCamera *c)
 {
     set_fov_function(2);
 }
 
-void CutsceneIntroPeach0(struct LevelCamera *c)
+CmdRet CutsceneIntroPeach0(struct LevelCamera *c)
 {
     func_80299C60(5, 0);
     call_cutscene_func_in_time_range(CutsceneIntroPeach0_1, c, 0, 0);
@@ -8172,7 +8180,7 @@ void CutsceneIntroPeach0(struct LevelCamera *c)
     clamp_pitch(c->pos, c->focus, 0x3B00, -0x3B00);
 }
 
-void CutsceneEndWaving0_1(UNUSED struct LevelCamera *c)
+CmdRet CutsceneEndWaving0_1(UNUSED struct LevelCamera *c)
 {
     func_8028FABC();
 }
@@ -8278,7 +8286,7 @@ struct CinematicCameraTable D_8032E52C[9] = {
     {  0,   0, {  -156,   1718,   5086}}
 };
 
-void CutsceneEndWaving0(struct LevelCamera *c)
+CmdRet CutsceneEndWaving0(struct LevelCamera *c)
 {
     call_cutscene_func_in_time_range(CutsceneEndWaving0_1, c, 0, 0);
     func_80287CFC(c->pos, D_8032E4E4, &D_8033B6E0, &D_8033B6E4);
@@ -8286,7 +8294,7 @@ void CutsceneEndWaving0(struct LevelCamera *c)
     func_80299C60(6, 120);
 }
 
-void CutsceneCredits0_1(UNUSED struct LevelCamera *c)
+CmdRet CutsceneCredits0_1(UNUSED struct LevelCamera *c)
 {
     func_8028FABC();
 }
@@ -8332,7 +8340,7 @@ extern struct CinematicCameraTable sDddSubCreditsCameraFocus[5];
 extern struct CinematicCameraTable sCcmOutsideCreditsCameraPositions[4];
 extern struct CinematicCameraTable sCcmOutsideCreditsCameraFocus[4];
 
-void CutsceneCredits0(struct LevelCamera *c)
+CmdRet CutsceneCredits0(struct LevelCamera *c)
 {
     struct CinematicCameraTable *focus, *pos;
 
@@ -8391,7 +8399,7 @@ void CutsceneCredits0(struct LevelCamera *c)
     move_credits_camera(c, -0x2000, 0x2000, -0x4000, 0x4000);
 }
 
-void CutsceneSlidingDoorsOpen0_1(struct LevelCamera *c)
+CmdRet CutsceneSlidingDoorsOpen0_1(struct LevelCamera *c)
 {
     f32 dist;
     s16 pitch, yaw;
@@ -8408,24 +8416,24 @@ void CutsceneSlidingDoorsOpen0_1(struct LevelCamera *c)
     vec3f_set_dist_and_angle(sMarioStatusForCamera->pos, c->pos, dist, pitch, yaw);
 }
 
-void CutsceneSlidingDoorsOpen0_2(UNUSED struct LevelCamera *c)
+CmdRet CutsceneSlidingDoorsOpen0_2(UNUSED struct LevelCamera *c)
 {
     vec3f_copy(D_8033B6F0[1].unk4, sMarioStatusForCamera->pos);
     vec3s_copy(D_8033B6F0[0].unk1C, sMarioStatusForCamera->faceAngle);
     vec3f_set(D_8033B6F0[0].unk4, 80.f, 325.f, 200.f);
 }
 
-void CutsceneSlidingDoorsOpen0_3(UNUSED struct LevelCamera *c)
+CmdRet CutsceneSlidingDoorsOpen0_3(UNUSED struct LevelCamera *c)
 {
     camera_approach_f32_symmetric_bool(&D_8033B6F0[0].unk4[1], 75.f, 10.f);
 }
 
-void CutsceneSlidingDoorsOpen0_4(UNUSED struct LevelCamera *c)
+CmdRet CutsceneSlidingDoorsOpen0_4(UNUSED struct LevelCamera *c)
 {
     camera_approach_f32_symmetric_bool(&D_8033B6F0[0].unk4[1], 125.f, 10.f);
 }
 
-void CutsceneSlidingDoorsOpen0_5(struct LevelCamera *c)
+CmdRet CutsceneSlidingDoorsOpen0_5(struct LevelCamera *c)
 {
     Vec3f sp34;
     UNUSED u32 pad[4];
@@ -8441,7 +8449,7 @@ void CutsceneSlidingDoorsOpen0_5(struct LevelCamera *c)
     set_focus_position(c, 0, 125.f, 0, 0);
 }
 
-void CutsceneSlidingDoorsOpen0(struct LevelCamera *c)
+CmdRet CutsceneSlidingDoorsOpen0(struct LevelCamera *c)
 {
     UNUSED u32 pad[2];
 
@@ -8453,18 +8461,18 @@ void CutsceneSlidingDoorsOpen0(struct LevelCamera *c)
     call_cutscene_func_in_time_range(CutsceneSlidingDoorsOpen0_5, c, 8, -1);
 }
 
-void CutsceneDoubleDoorsOpen1(struct LevelCamera *c)
+CmdRet CutsceneDoubleDoorsOpen1(struct LevelCamera *c)
 {
     func_80290514(c);
     c->cutscene = 0;
     gCameraFlags2 |= CAM_FLAG_2_SMOOTH_MOVEMENT;
 }
 
-void CutsceneEnterPainting0_1(UNUSED struct LevelCamera *c)
+CmdRet CutsceneEnterPainting0_1(UNUSED struct LevelCamera *c)
 {
 }
 
-void CutsceneEnterPainting0(struct LevelCamera *c)
+CmdRet CutsceneEnterPainting0(struct LevelCamera *c)
 {
     struct Surface *floor, *highFloor;
     Vec3f sp44, sp38, sp2C;
@@ -8515,7 +8523,7 @@ void CutsceneEnterPainting0(struct LevelCamera *c)
     c->currPreset = CAMERA_PRESET_CLOSE;
 }
 
-void CutsceneExitPainting80298094(struct LevelCamera *c)
+CmdRet CutsceneExitPainting80298094(struct LevelCamera *c)
 {
     struct Surface *floor;
     f32 floorHeight;
@@ -8543,7 +8551,7 @@ void CutsceneExitPainting80298094(struct LevelCamera *c)
     }
 }
 
-void CutsceneExitPainting80298230(struct LevelCamera *c)
+CmdRet CutsceneExitPainting80298230(struct LevelCamera *c)
 {
     Vec3f sp1C;
 
@@ -8554,7 +8562,7 @@ void CutsceneExitPainting80298230(struct LevelCamera *c)
     c->pos[2] = sp1C[2];
 }
 
-void CutsceneExitPainting802982CC(struct LevelCamera *c)
+CmdRet CutsceneExitPainting802982CC(struct LevelCamera *c)
 {
     struct Surface *floor;
     Vec3f floorHeight;
@@ -8572,7 +8580,7 @@ void CutsceneExitPainting802982CC(struct LevelCamera *c)
     }
 }
 
-void CutsceneExitPainting0(struct LevelCamera *c)
+CmdRet CutsceneExitPainting0(struct LevelCamera *c)
 {
     call_cutscene_func_in_time_range(CutsceneExitPainting80298094, c, 0, 0);
     call_cutscene_func_in_time_range(CutsceneExitPainting80298230, c, 5, -1);
@@ -8586,7 +8594,7 @@ void CutsceneExitPainting0(struct LevelCamera *c)
     set_cam_yaw_from_focus_and_pos(c);
 }
 
-void Cutscene11Todo_0(struct LevelCamera *c)
+CmdRet Cutscene11Todo_0(struct LevelCamera *c)
 {
     UNUSED Vec3f sp3C;
     UNUSED Vec3s sp34;
@@ -8599,7 +8607,7 @@ void Cutscene11Todo_0(struct LevelCamera *c)
     set_focus_position(c, 0.f, 125.f, 0.f, 0);
 }
 
-void Cutscene11Todo_1(struct LevelCamera *c)
+CmdRet Cutscene11Todo_1(struct LevelCamera *c)
 {
     Vec3f sp24;
 
@@ -8609,7 +8617,7 @@ void Cutscene11Todo_1(struct LevelCamera *c)
     set_cam_yaw_from_focus_and_pos(c);
 }
 
-void CutsceneExitPainting1(struct LevelCamera *c)
+CmdRet CutsceneExitPainting1(struct LevelCamera *c)
 {
     c->currPreset = CAMERA_PRESET_CLOSE;
     c->cutscene = 0;
@@ -8619,7 +8627,7 @@ void CutsceneExitPainting1(struct LevelCamera *c)
     set_cam_yaw_from_focus_and_pos(c);
 }
 
-void CutsceneEnterCannon2(struct LevelCamera *c)
+CmdRet CutsceneEnterCannon2(struct LevelCamera *c)
 {
     gCameraFlags2 &= ~CAM_FLAG_2_SMOOTH_MOVEMENT;
     gCameraFlags2 |= CAM_FLAG_2_UNKNOWN_1;
@@ -8628,7 +8636,7 @@ void CutsceneEnterCannon2(struct LevelCamera *c)
     D_8033B410 = 800.f;
 }
 
-void CutsceneEnterCannon1(struct LevelCamera *c)
+CmdRet CutsceneEnterCannon1(struct LevelCamera *c)
 {
     struct Object *o;
     UNUSED u32 pad[2];
@@ -8668,7 +8676,7 @@ void CutsceneEnterCannon1(struct LevelCamera *c)
         c->pos[1] = floorHeight;
 }
 
-void CutsceneEnterCannon0(struct LevelCamera *c)
+CmdRet CutsceneEnterCannon0(struct LevelCamera *c)
 {
     UNUSED u32 pad[2];
     struct Object *o;
@@ -8691,19 +8699,19 @@ void CutsceneEnterCannon0(struct LevelCamera *c)
     D_8033B6F0[4].unk4[1] = 0.f;
 }
 
-void CutsceneDoor0(struct LevelCamera *c)
+CmdRet CutsceneDoor0(struct LevelCamera *c)
 {
     vec3f_copy(D_8033B6F0[0].unk4, c->pos);
     vec3f_copy(D_8033B6F0[1].unk4, c->focus);
 }
 
-void CutsceneDoor1(struct LevelCamera *c)
+CmdRet CutsceneDoor1(struct LevelCamera *c)
 {
     vec3f_copy(c->pos, D_8033B6F0[0].unk4);
     vec3f_copy(c->focus, D_8033B6F0[1].unk4);
 }
 
-void CutsceneDoorWarp1(struct LevelCamera *c)
+CmdRet CutsceneDoorWarp1(struct LevelCamera *c)
 {
     if ((sMarioStatusForCamera->action != ACT_PULLING_DOOR) & (sMarioStatusForCamera->action != ACT_PUSHING_DOOR)) //! bitwise AND instead of boolean
     {
@@ -8712,7 +8720,7 @@ void CutsceneDoorWarp1(struct LevelCamera *c)
     }
 }
 
-void CutsceneDoor2(struct LevelCamera *c)
+CmdRet CutsceneDoor2(struct LevelCamera *c)
 {
     Vec3f sp24;
     s16 sp22;
@@ -8731,7 +8739,7 @@ void CutsceneDoor2(struct LevelCamera *c)
     set_pos_from_face_angle_and_vec3f(c->pos, sMarioStatusForCamera->pos, sp24, D_8033B6F0[0].unk1C);
 }
 
-void CutsceneDoor3(struct LevelCamera *c)
+CmdRet CutsceneDoor3(struct LevelCamera *c)
 {
     s16 pitch, yaw;
     f32 dist;
@@ -8743,7 +8751,7 @@ void CutsceneDoor3(struct LevelCamera *c)
     set_cam_yaw_from_focus_and_pos(c);
 }
 
-void CutsceneDoor4(struct LevelCamera *c)
+CmdRet CutsceneDoor4(struct LevelCamera *c)
 {
     if (c->defPreset == CAMERA_PRESET_FREE_ROAM)
         c->currPreset = CAMERA_PRESET_FREE_ROAM;
@@ -8758,7 +8766,7 @@ void CutsceneDoor4(struct LevelCamera *c)
     set_cam_yaw_from_focus_and_pos(c);
 }
 
-void CutsceneDoorAB_2(struct LevelCamera *c)
+CmdRet CutsceneDoorAB_2(struct LevelCamera *c)
 {
     UNUSED u32 pad[2];
 
