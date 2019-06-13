@@ -5809,10 +5809,10 @@ s32 func_8028F2F0(struct LevelCamera *a, Vec3f pos, s16 *c, s16 d)
 
     vec3f_get_dist_and_angle(sMarioStatusForCamera->pos, pos, &distToMario, &pitchToMario, &yawToMario);
     gCameraFlags2 &= ~CAM_FLAG_2_COLLIDING_WITH_WALL;
-    wallData.offsetY = 100.f;
-    sp44 = 0.f;
-    wallThickness = 150.f;
-    sp38 = 100.f;
+    wallData.offsetY = 100.0f;
+    sp44 = 0.0f;
+    wallThickness = 150.0f;
+    sp38 = 100.0f;
 
     for (i = 0; i < 8; i++)
     {
@@ -5902,13 +5902,13 @@ u8 func_8028F834(u8 a)
     return 0;
 }
 
-u8 unused_8028F860(u8 a)
+s32 unused_8028F860(u8 a)
 {
     if ((gCurrLevelCamera->cutscene == 0) && (sTempCutsceneNumber == 0))
         sTempCutsceneNumber = a;
 
     if ((gCurrLevelCamera->cutscene == a) && (D_8032CFFC != 0))
-        return D_8032CFFC;
+        return (s16)D_8032CFFC;
     else
         return 0;
 }
@@ -6028,24 +6028,24 @@ s16 func_8028FD94(s32 a)
     return timer;
 }
 
-void unused_8028FDE8(UNUSED struct LevelCamera *a)
+static void unused_8028FDE8(UNUSED struct LevelCamera *a)
 {
     gCutsceneTimer = func_8028FD94(3);
 }
 
-CmdRet Cutscene26Todo0(UNUSED struct LevelCamera *a)
+static CmdRet Cutscene26Todo0(UNUSED struct LevelCamera *a)
 {
     gCutsceneTimer = func_8028FD94(1);
 }
 
-void unused_8028FE50(UNUSED struct LevelCamera *a)
+static void unused_8028FE50(UNUSED struct LevelCamera *a)
 {
     gCutsceneTimer = func_8028FD94(2);
 }
 
 CmdRet CutsceneIntroPeach0_2(UNUSED struct LevelCamera *a)
 {
-#ifndef VERSION_JP
+#ifdef VERSION_US
     func_8031FFB4(0, 60, 40);
 #endif
     func_8028B13C();
