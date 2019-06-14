@@ -6059,9 +6059,19 @@ CmdRet CutsceneIntroPeach2_1(UNUSED struct LevelCamera *a)
     func_8028B16C();
 }
 
+// TODO: What is this?
+#ifdef VERSION_EU
+extern void func_eu_802EC284(int, int, int);
+
+CmdRet CutsceneIntroPeach_unkEU(UNUSED struct LevelCamera *a)
+{
+    func_eu_802EC284(0, 60, 40);
+}
+#endif
+
 void func_8028FEDC(UNUSED struct LevelCamera *a)
 {
-    D_8033B40C = 0.f;
+    D_8033B40C = 0;
 }
 
 void move_credits_camera(struct LevelCamera *c, s16 minPitch, s16 maxPitch, s16 minYaw, s16 maxYaw)
@@ -6132,14 +6142,14 @@ void func_802902A8(struct LevelCamera *c)
     vec3f_copy(c->focus, D_8033B4B8.focus);
 }
 
-void unused_vec3s_to_vec3f(Vec3f dst, Vec3s src)
+static void unused_vec3s_to_vec3f(Vec3f dst, Vec3s src)
 {
     dst[0] = src[0];
     dst[1] = src[1];
     dst[2] = src[2];
 }
 
-void unused_vec3f_to_vec3s(Vec3s dst, Vec3f src)
+static void unused_vec3f_to_vec3s(Vec3s dst, Vec3f src)
 {
     // note: unlike vec3f_to_vec3s(), this function doesn't round the numbers and instead simply truncates them
     dst[0] = src[0];
@@ -6166,7 +6176,7 @@ CmdRet CutsceneEnterSomething8029041C(UNUSED struct LevelCamera *c)
     func_8029A494(1);
 }
 
-void unused_80290450(UNUSED struct LevelCamera *c)
+static void unused_80290450(UNUSED struct LevelCamera *c)
 {
     set_camera_shake_2(SHAKE_2_UNKNOWN_2);
 }
@@ -6366,8 +6376,9 @@ CmdRet CutscenePeachEnd9_2(struct LevelCamera *c)
     set_fov_function(2);
     vec3f_set(sp20, 233.f, 1068.f, -1298.f);
     vec3f_set(sp2C, -250.f, 966.f, -1111.f);
-    approach_vec3f_exponential(c->pos, sp2C, 0.2f, 0.1f, 0.2f);
-    approach_vec3f_exponential(c->focus, sp20, 0.2f, 0.1f, 0.2f);
+    //! another double typo
+    approach_vec3f_exponential(c->pos, sp2C, 0.2, 0.1f, 0.2f);
+    approach_vec3f_exponential(c->focus, sp20, 0.2, 0.1f, 0.2f);
 }
 
 CmdRet CutscenePeachEnd9(struct LevelCamera *c)
@@ -7325,7 +7336,7 @@ CmdRet CutsceneDeath2_2(struct LevelCamera *c)
     func_80293DE8(c, 400.f, 0x1800, 0, -0x400);
 }
 
-void unused_80294748(struct LevelCamera *c)
+static void unused_80294748(struct LevelCamera *c)
 {
     func_802944A8(c);
 }
@@ -7556,7 +7567,7 @@ CmdRet CutsceneEnterPyramidTop0(struct LevelCamera *c)
         CutsceneFallCommon1(c);
 }
 
-void unused_8029538C(struct LevelCamera *c)
+static void unused_8029538C(struct LevelCamera *c)
 {
     f32 sp24;
 
@@ -7682,7 +7693,7 @@ CmdRet CutsceneReadMessage0_1(struct LevelCamera *c)
     D_8033B6F0[0].unk1C[0] = 0;
 }
 
-void unused_80295A28(struct LevelCamera *c)
+static void unused_80295A28(struct LevelCamera *c)
 {
     Vec3s sp20;
 
@@ -7953,7 +7964,7 @@ CmdRet CutsceneCapSwitchPress0_6(UNUSED struct LevelCamera *c)
     func_802D8050(gCutsceneFocus->oBehParams2ndByte + 10);
 }
 
-void unused_802968E8(struct LevelCamera *c)
+static void unused_802968E8(struct LevelCamera *c)
 {
     func_802902A8(c);
     init_transitional_movement(c, 30);
@@ -8168,6 +8179,9 @@ CmdRet CutsceneIntroPeach0(struct LevelCamera *c)
     func_80299C60(5, 0);
     call_cutscene_func_in_time_range(CutsceneIntroPeach0_1, c, 0, 0);
     call_cutscene_func_in_time_range(CutsceneIntroPeach0_2, c, 65, 65);
+#ifdef VERSION_EU
+    call_cutscene_func_in_time_range(CutsceneIntroPeach_unkEU, c, 68, 68);
+#endif
     call_cutscene_func_in_time_range(CutsceneIntroPeachCommon, c, 0, 0);
     call_cutscene_func_in_time_range(peach_letter_text, c, 65, 65);
 #ifndef VERSION_JP
@@ -9516,7 +9530,7 @@ void func_80299DB4(struct Struct80287404 *a)
         D_8033B230.unk14 = 0;
 }
 
-void unused_deactivate_sleeping_camera(UNUSED struct MarioState *m)
+static void unused_deactivate_sleeping_camera(UNUSED struct MarioState *m)
 {
     gCameraFlags2 &= ~CAM_FLAG_2_SLEEPING;
 }
@@ -9565,7 +9579,7 @@ void zoom_fov_for_sleep(struct MarioState *m)
         D_8033B230.fieldOfView = 45.f;
 }
 
-void unused_8029A100(UNUSED struct MarioState *m)
+static void unused_8029A100(UNUSED struct MarioState *m)
 {
     camera_approach_f32_symmetric_bool(&D_8033B230.fieldOfView, 30.f, 1.f);
 }
@@ -9697,7 +9711,7 @@ void func_8029A514(u8 a, f32 b, f32 c, f32 d)
     }
 }
 
-void unused_8029A664(struct Object *o, f32 b, f32 c, f32 d)
+static void unused_8029A664(struct Object *o, f32 b, f32 c, f32 d)
 {
     f32 sp1C = RandomFloat();
 
@@ -9706,7 +9720,7 @@ void unused_8029A664(struct Object *o, f32 b, f32 c, f32 d)
     o->oPosZ += (sp1C * d - d / 2.f);
 }
 
-void unused_8029A724(struct Object *o, f32 b, f32 c)
+static void unused_8029A724(struct Object *o, f32 b, f32 c)
 {
     f32 sp1C = RandomFloat();
 
@@ -9847,11 +9861,11 @@ void BehBeginningLakituLoop(void)
         if (gCutsceneTimer > 52)
             PlaySound(SOUND_CH6_UNKNOWN002_HIGHPRIO);
         if (func_8029ACAC(gCurrentObject, D_8032E3CC, D_8032E2B4) == 1)
-            gCurrentObject->oAction += 1;
+            gCurrentObject->oAction += 1; 
 
         switch (gCurrentObject->oTimer)
         {
-#ifndef VERSION_JP
+#ifdef VERSION_US
         case 534:
             PlaySound2(SOUND_ACTION_UNKNOWN456);
             break;
@@ -9872,8 +9886,13 @@ void BehBeginningLakituLoop(void)
             gCurrentObject->oAnimState -= 1;
             break;
         }
+#ifdef VERSION_EU
+        if(gCurrentObject->oTimer == 446)
+            PlaySound2(SOUND_ACTION_UNKNOWN456);
+        if(gCurrentObject->oTimer == 485)
+            PlaySound2(SOUND_ACTION_UNKNOWN45E);
+#endif
         break;
-
     case 2:
         if (gCutsceneTimer > 720)
         {
@@ -9910,7 +9929,13 @@ void BehBeginningLakituLoop(void)
             func_802ADA94();
             gCurrentObject->oPosY += 158.f;
         }
-        if (gCurrentObject->oTimer == 98)
+#ifdef VERSION_EU
+#define TIMER 74
+#else
+#define TIMER 98
+#endif
+
+        if (gCurrentObject->oTimer == TIMER)
         {
             mark_object_for_deletion(gCurrentObject);
             mark_object_for_deletion(gCurrentObject->oUnk1AC_VPTR);
@@ -9920,7 +9945,6 @@ void BehBeginningLakituLoop(void)
             PlaySound2(SOUND_ACTION_UNKNOWN45F);
 #endif
         break;
-
     case 100:
         obj_enable_rendering();
         vec3f_set(sp64, -100.f, 100.f, 300.f);
@@ -9963,6 +9987,7 @@ void BehBeginningLakituLoop(void)
         break;
     }
 }
+#undef TIMER
 
 void BehEndBirds1Loop(void)
 {

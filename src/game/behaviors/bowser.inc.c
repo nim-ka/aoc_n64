@@ -219,7 +219,7 @@ void ActionBowser6(void)
     }
 }
 
-void Unknown802B3CCC(void) // unused
+static void Unknown802B3CCC(void) // unused
 {
     if(gDebugInfo[5][1] != 0)
     {
@@ -1665,16 +1665,16 @@ void bhv_flame_bowser_loop(void)
             if(obj_has_behavior(bhvFlameLargeBurningOut))
                 o->oFlameUnkF4 = 8.0f;
             else
-                o->oFlameUnkF4 = RandomFloat() * 2.0f + 6.0f;
-            o->oForwardVel = 0.0f;
-            o->oVelY = 0.0f;
-            o->oGravity = 0.0f;
+                o->oFlameUnkF4 = RandomFloat() * 2 + 6.0f;
+            o->oForwardVel = 0;
+            o->oVelY = 0;
+            o->oGravity = 0;
         }
     }
     else
     {
         obj_become_tangible();
-        if(o->oTimer > o->oFlameUnkF4 * 10.0f + 5.0f)
+        if(o->oTimer > o->oFlameUnkF4 * 10 + 5.0f)
         {
             o->oFlameUnkF4 -= 0.15;
             if(o->oFlameUnkF4 <= 0.0f)

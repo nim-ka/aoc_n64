@@ -32,7 +32,7 @@ struct ObjectNode gObjectListArray[16];
 s32 gDebugInfoFlags;
 
 /**
- * The number of times per frame find_floor found no static floor beneath an
+ * The number of times per frame find_floor found no floor beneath an
  * object, and therefore either returned a dynamic floor or NULL.
  */
 s32 gNumFindFloorMisses;
@@ -144,12 +144,12 @@ s32 gSurfaceNodesAllocated;
 s32 gSurfacesAllocated;
 
 /**
- * The number of nodes that have been created for static surfaces.
+ * The number of nodes that have been created for surfaces.
  */
 s32 gNumStaticSurfaceNodes;
 
 /**
- * The number of static surfaces in the pool.
+ * The number of surfaces in the pool.
  */
 s32 gNumStaticSurfaces;
 
@@ -162,7 +162,7 @@ struct MemoryPool *gObjectMemoryPool;
 /**
  * The order that object lists are processed in a frame.
  */
-static s8 sObjectListUpdateOrder[] =
+s8 sObjectListUpdateOrder[] =
 {
     OBJ_LIST_SPAWNER,
     OBJ_LIST_SURFACE,
@@ -192,7 +192,7 @@ struct ParticleProperties
 /**
  * A table mapping particle flags to various properties use when spawning a particle.
  */
-static struct ParticleProperties sParticleTypes[] =
+struct ParticleProperties sParticleTypes[] =
 {
     { PARTICLE_DUST,     ACTIVE_PARTICLE_0,  MODEL_MIST,            bhvMarioDustGenerator              },
     { PARTICLE_1,        ACTIVE_PARTICLE_18, MODEL_NONE,            bhvWallTinyStarParticleSpawn     },
@@ -219,7 +219,7 @@ static struct ParticleProperties sParticleTypes[] =
  * Copy position, velocity, and angle variables from MarioState to the mario
  * object.
  */
-static void copy_mario_state_to_object(void)
+void copy_mario_state_to_object(void)
 {
     s32 i = 0;
     // L is real
@@ -252,7 +252,7 @@ static void copy_mario_state_to_object(void)
 /**
  * Spawn a particle at gCurrentObject's location.
  */
-static void spawn_particle(u32 activeParticleFlag, s16 model, void *behavior)
+void spawn_particle(u32 activeParticleFlag, s16 model, void *behavior)
 {
     if (!(gCurrentObject->oActiveParticleFlags & activeParticleFlag))
     {
@@ -297,7 +297,7 @@ void bhv_mario_update(void)
  * Update every object that occurs after firstObj in the given object list,
  * including firstObj itself. Return the number of objects that were updated.
  */
-static s32 update_objects_starting_at(
+s32 update_objects_starting_at(
     struct ObjectNode *objList, struct ObjectNode *firstObj)
 {
     s32 count = 0;
@@ -325,7 +325,7 @@ static s32 update_objects_starting_at(
  * Return the total number of objects in the list (including those that weren't
  * updated)
  */
-static s32 update_objects_during_time_stop(
+s32 update_objects_during_time_stop(
     struct ObjectNode *objList,
     struct ObjectNode *firstObj)
 {
@@ -382,7 +382,7 @@ static s32 update_objects_during_time_stop(
  * Update every object in the given list. Return the total number of objects in
  * the list.
  */
-static s32 update_objects_in_list(struct ObjectNode *objList)
+s32 update_objects_in_list(struct ObjectNode *objList)
 {
     s32 count;
     struct ObjectNode *firstObj = objList->next;
@@ -402,7 +402,7 @@ static s32 update_objects_in_list(struct ObjectNode *objList)
 /**
  * Unload any objects in the list that have been deactivated.
  */
-static s32 unload_deactivated_objects_in_list(struct ObjectNode *objList)
+s32 unload_deactivated_objects_in_list(struct ObjectNode *objList)
 {
     struct ObjectNode *obj = objList->next;
 
@@ -561,7 +561,7 @@ void spawn_objects_from_info(UNUSED s32 unused, struct SpawnInfo *spawnInfo)
     }
 }
 
-static void stub_8029CA50()
+void stub_8029CA50()
 {
 }
 
@@ -607,7 +607,7 @@ void clear_objects(void)
 /**
  * Update spawner and surface objects.
  */
-static void update_terrain_objects(void)
+void update_terrain_objects(void)
 {
     gObjectCounter = update_objects_in_list(&gObjectLists[OBJ_LIST_SPAWNER]);
     //! This was meant to be +=
@@ -618,7 +618,7 @@ static void update_terrain_objects(void)
  * Update all other object lists besides spawner and surface objects, using
  * the order specified by sObjectListUpdateOrder.
  */
-static void update_non_terrain_objects(void)
+void update_non_terrain_objects(void)
 {
     UNUSED s32 unused;
     s32 listIndex;
@@ -634,7 +634,7 @@ static void update_non_terrain_objects(void)
 /**
  * Unload deactivated objects in any object list.
  */
-static void unload_deactivated_objects(void)
+void unload_deactivated_objects(void)
 {
     UNUSED s32 unused;
     s32 listIndex;

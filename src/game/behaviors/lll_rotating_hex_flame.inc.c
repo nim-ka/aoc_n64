@@ -11,7 +11,7 @@ void bhv_lll_rotating_hex_flame_loop(void)
         mark_object_for_deletion(o);
 }
 
-void func_802BB9F0(s32 a0)
+void func_802BB9F0(s16 a0)
 {
     struct Object* sp2C;
     UNUSED s32 unused;
@@ -19,10 +19,7 @@ void func_802BB9F0(s32 a0)
     s32 sp20;
     f32 sp1C = sins(a0) * 200.0f;
     f32 sp18 = coss(a0) * 200.0f;
-    if(o->oBehParams2ndByte == 0)
-        sp20 = 4;
-    else
-        sp20 = 3;
+    sp20 = (o->oBehParams2ndByte == 0) ? 4 : 3;
     for(i=0;i<sp20;i++)
     {
         sp2C = spawn_object(o,MODEL_RED_FLAME,bhvLllRotatingHexFlame);

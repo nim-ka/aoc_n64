@@ -41,8 +41,11 @@ void ActionPiranhaPlant21(void)
     func_8029ED38(8);
     obj_set_hitbox_radius_and_height(250.0f,200.0f);
     obj_set_hurtbox_radius_and_height(150.0f,100.0f);
-#ifndef VERSION_JP
+#ifdef VERSION_US
     o->oDamageOrCoinValue = 0;
+#endif
+#ifdef VERSION_EU // hmm.. better way to write this ifdef?
+    o->oDamageOrCoinValue = 3;
 #endif
     if(o->oDistanceToMario < 400.0f)
     {

@@ -89,6 +89,6 @@ void bhv_pound_tiny_star_particle_init(void)
     for(sp24=0;sp24<sp20;sp24++)
     {
         particle = spawn_object(o,MODEL_CARTOON_STAR,bhvPoundTinyStarParticle);
-        particle->oMoveAngleYaw = (sp24 << 16)/sp20;
+        particle->oMoveAngleYaw = (sp24 * 65536)/sp20;
     }
 }

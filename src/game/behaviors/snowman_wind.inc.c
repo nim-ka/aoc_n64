@@ -10,7 +10,7 @@ void bhv_snowman_wind_blowing_loop(void)
         o->oSnowmanWindBlowingUnkF4 = o->oMoveAngleYaw;
     if(o->oSubAction == 0)
     {
-        o->oDistanceToMario = 0.0f;
+        o->oDistanceToMario = 0;
         func_802B8F7C(pos,&o->oPosX);
         set_object_pos(o,1100,3328,1164);
         if(func_802A3FF8(1000.0f,30.0f,0x7FFF))
@@ -38,7 +38,7 @@ void bhv_snowman_wind_blowing_loop(void)
             else
                 o->oMoveAngleYaw = o->oSnowmanWindBlowingUnkF4 - 0x1500;
         }
-        func_802C76E0(12,3.0f,0,0,0.0f);
+        func_802C76E0(12,3.0f,0,0,0);
         PlaySound(SOUND_CH6_UNKNOWN004_2);
     }
 }

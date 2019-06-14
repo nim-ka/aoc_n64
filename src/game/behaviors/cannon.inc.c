@@ -46,12 +46,12 @@ void ActionOpenedCannon4(void)
     if(o->oTimer == 0)
         PlaySound2(SOUND_OBJECT_CANNON1);
     o->oPosY += 5.0f;
-    o->oPosX += (f32)((o->oTimer/2 & 1) - 0.5) * 2.0f;
-    o->oPosZ += (f32)((o->oTimer/2 & 1) - 0.5) * 2.0f;
+    o->oPosX += (f32)((o->oTimer/2 & 1) - 0.5) * 2;
+    o->oPosZ += (f32)((o->oTimer/2 & 1) - 0.5) * 2;
     if(o->oTimer > 67)
     {
-        o->oPosX += (f32)((o->oTimer/2 & 1) - 0.5) * 4.0f;
-        o->oPosZ += (f32)((o->oTimer/2 & 1) - 0.5) * 4.0f;
+        o->oPosX += (f32)((o->oTimer/2 & 1) - 0.5) * 4;
+        o->oPosZ += (f32)((o->oTimer/2 & 1) - 0.5) * 4;
         o->oAction = 6;
     }
 }

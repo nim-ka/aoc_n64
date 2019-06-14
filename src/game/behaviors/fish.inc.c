@@ -89,12 +89,12 @@ void ActionFishGroup1(void)
         func_8029ED98(0,1.0f);
     if(o->oTimer == 0)
     {
-        o->oForwardVel = RandomFloat() * 2.0f + 3.0f;
+        o->oForwardVel = RandomFloat() * 2 + 3.0f;
         if(gCurrLevelNum == LEVEL_SA)
             o->oFishGroupUnkFC = RandomFloat() * 700.0f;
         else
             o->oFishGroupUnkFC = RandomFloat() * 100.0f;
-        o->oFishGroupUnk104 = RandomFloat() * 500.0f + 200.0f;
+        o->oFishGroupUnk104 = RandomFloat() * 500 + 200.0f;
     }
     o->oFishGroupUnkF8 = gMarioObject->oPosY + o->oFishGroupUnkFC;
     obj_rotate_yaw_toward(o->oAngleToMario,0x400);

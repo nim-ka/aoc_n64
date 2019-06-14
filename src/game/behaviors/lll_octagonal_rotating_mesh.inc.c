@@ -75,7 +75,7 @@ void bhv_lll_moving_octagonal_mesh_platform_loop(void)
     if(func_802BB680(&o->oHorizontalMovementUnk104,&o->oHorizontalMovementUnk108,0x400,-80))
     {
         o->oHorizontalMovementUnkF4 += 0x800;
-        o->oHorizontalMovementUnk100 -= sins(o->oHorizontalMovementUnkF4) * 2.0f;
+        o->oHorizontalMovementUnk100 -= sins(o->oHorizontalMovementUnkF4) * 2;
     }
     o->oPosY = o->oHorizontalMovementUnk100 + o->oHomeY + o->oHorizontalMovementUnk108;
 }

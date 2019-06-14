@@ -10,9 +10,9 @@ void bhv_blue_fish_loop(void)
         if(o->oTimer == 0)
         {
             o->oBlueFishUnk100 = RandomSign() << 11;
-            o->oBlueFishUnkF4 = RandomFloat() * 2.0f;
-            o->oBlueFishUnkF8 = (s32)(RandomFloat() * 30.0f) & 0xFE;
-            sp24 = RandomFloat() * 5.0f;
+            o->oBlueFishUnkF4 = RandomFloat() * 2;
+            o->oBlueFishUnkF8 = (s32)(RandomFloat() * 30) & 0xFE;
+            sp24 = RandomFloat() * 5;
             if(sp24 < 2.0f)
                 o->oAngleVelPitch = random_f32_around_zero(128);
             else

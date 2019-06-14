@@ -62,7 +62,7 @@ void bhv_water_surface_white_wave_init(void)
 void bhv_object_bubble_ripples_init(void)
 {
     f32 sp1C = find_water_level(o->oPosX,o->oPosZ);
-    scale_object_xyz(o,0.5,1.0f,0.5f);
+    scale_object_xyz(o,0.5f,1.0f,0.5f);
     o->oPosY = sp1C + 5.0f;
 }
 

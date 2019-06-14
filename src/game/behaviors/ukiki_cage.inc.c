@@ -363,7 +363,7 @@ void func_802BAE40(void)
 }
 
 // Unused function for timing ukiki's blinking. Image still present in Ukiki's actor graphics.
-void ukiki_blink_timer(void)
+static void ukiki_blink_timer(void)
 {
     if(gGlobalTimer % 50 < 7)
         o->oAnimState = 1;
