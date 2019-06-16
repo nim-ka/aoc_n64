@@ -1,4 +1,4 @@
-# SM64 (US/JP) Segment 02
+# SM64 (US/JP/EU) Segment 02
 .section .rodata
 .include "macros.inc"
 .include "PR/gbi.inc"
@@ -100,7 +100,7 @@ texture_colorful_char_T:
 texture_colorful_char_U:
 .incbin "bin/segment2/segment2.03C00.rgba16"
 
-.ifdef VERSION_JP
+.if VERSION_JP == 1 || VERSION_EU == 1
 texture_colorful_char_V:
 .incbin "bin/segment2/segment2.03E00.rgba16"
 .endif
@@ -116,7 +116,7 @@ texture_colorful_char_X:
 texture_colorful_char_Y:
 .incbin "bin/segment2/segment2.04400.rgba16"
 
-.ifdef VERSION_JP
+.if VERSION_JP == 1 || VERSION_EU == 1
 texture_colorful_char_Z:
 .incbin "bin/segment2/segment2.04600.rgba16"
 .endif
@@ -126,6 +126,11 @@ texture_colorful_char_apostrophe:
 
 texture_colorful_char_double_quote:
 .incbin "bin/segment2/segment2.04A00.rgba16"
+
+.ifdef VERSION_EU
+texture_colorful_char_umlaut:
+.incbin "bin/segment2/segment2.umlaut.rgba16" # EU ¨
+.endif
 
 .ifdef VERSION_JP
 texture_colorful_char_exclamation:
@@ -759,7 +764,308 @@ texture_dialog_jp_wave_dash:
     
 texture_dialog_jp_ellipsis:
     .incbin "bin/segment2/segment2.07B40.ia1"
-.else # US Small Font, copied from hack64 segment 2 US
+.elseif VERSION_EU == 1 # EU Small Font
+texture_dialog_eu_0:
+    .incbin "bin/segment2/font_graphics.05F00.ia1"
+
+texture_dialog_eu_1:
+    .incbin "bin/segment2/font_graphics.05F10.ia1"
+
+texture_dialog_eu_2:
+    .incbin "bin/segment2/font_graphics.05F20.ia1"
+
+texture_dialog_eu_3:
+    .incbin "bin/segment2/font_graphics.05F30.ia1"
+
+texture_dialog_eu_4:
+    .incbin "bin/segment2/font_graphics.05F40.ia1"
+
+texture_dialog_eu_5:
+    .incbin "bin/segment2/font_graphics.05F50.ia1"
+
+texture_dialog_eu_6:
+    .incbin "bin/segment2/font_graphics.05F60.ia1"
+
+texture_dialog_eu_7:
+    .incbin "bin/segment2/font_graphics.05F70.ia1"
+
+texture_dialog_eu_8:
+    .incbin "bin/segment2/font_graphics.05F80.ia1"
+
+texture_dialog_eu_9:
+    .incbin "bin/segment2/font_graphics.05F90.ia1"
+
+texture_dialog_eu_A:
+    .incbin "bin/segment2/font_graphics.05FA0.ia1"
+
+texture_dialog_eu_B:
+    .incbin "bin/segment2/font_graphics.05FB0.ia1"
+
+texture_dialog_eu_C:
+    .incbin "bin/segment2/font_graphics.05FC0.ia1"
+
+texture_dialog_eu_D:
+    .incbin "bin/segment2/font_graphics.05FD0.ia1"
+
+texture_dialog_eu_E:
+    .incbin "bin/segment2/font_graphics.05FE0.ia1"
+
+texture_dialog_eu_F:
+    .incbin "bin/segment2/font_graphics.05FF0.ia1"
+
+texture_dialog_eu_G:
+    .incbin "bin/segment2/font_graphics.06000.ia1"
+
+texture_dialog_eu_H:
+    .incbin "bin/segment2/font_graphics.06010.ia1"
+
+texture_dialog_eu_I:
+    .incbin "bin/segment2/font_graphics.06020.ia1"
+
+texture_dialog_eu_J:
+    .incbin "bin/segment2/font_graphics.06030.ia1"
+
+texture_dialog_eu_K:
+    .incbin "bin/segment2/font_graphics.06040.ia1"
+
+texture_dialog_eu_L:
+    .incbin "bin/segment2/font_graphics.06050.ia1"
+
+texture_dialog_eu_M:
+    .incbin "bin/segment2/font_graphics.06060.ia1"
+
+texture_dialog_eu_N:
+    .incbin "bin/segment2/font_graphics.06070.ia1"
+
+texture_dialog_eu_O:
+    .incbin "bin/segment2/font_graphics.06080.ia1"
+
+texture_dialog_eu_P:
+    .incbin "bin/segment2/font_graphics.06090.ia1"
+
+texture_dialog_eu_Q:
+    .incbin "bin/segment2/font_graphics.060A0.ia1"
+
+texture_dialog_eu_R:
+    .incbin "bin/segment2/font_graphics.060B0.ia1"
+
+texture_dialog_eu_S:
+    .incbin "bin/segment2/font_graphics.060C0.ia1"
+
+texture_dialog_eu_T:
+    .incbin "bin/segment2/font_graphics.060D0.ia1"
+
+texture_dialog_eu_U:
+    .incbin "bin/segment2/font_graphics.060E0.ia1"
+
+texture_dialog_eu_V:
+    .incbin "bin/segment2/font_graphics.060F0.ia1"
+
+texture_dialog_eu_W:
+    .incbin "bin/segment2/font_graphics.06100.ia1"
+
+texture_dialog_eu_X:
+    .incbin "bin/segment2/font_graphics.06110.ia1"
+
+texture_dialog_eu_Y:
+    .incbin "bin/segment2/font_graphics.06120.ia1"
+
+texture_dialog_eu_Z:
+    .incbin "bin/segment2/font_graphics.06130.ia1"
+
+texture_dialog_eu_a:
+    .incbin "bin/segment2/font_graphics.06140.ia1"
+
+texture_dialog_eu_b:
+    .incbin "bin/segment2/font_graphics.06150.ia1"
+
+texture_dialog_eu_c:
+    .incbin "bin/segment2/font_graphics.06160.ia1"
+
+texture_dialog_eu_d:
+    .incbin "bin/segment2/font_graphics.06170.ia1"
+
+texture_dialog_eu_e:
+    .incbin "bin/segment2/font_graphics.06180.ia1"
+
+texture_dialog_eu_f:
+    .incbin "bin/segment2/font_graphics.06190.ia1"
+
+texture_dialog_eu_g:
+    .incbin "bin/segment2/font_graphics.061A0.ia1"
+
+texture_dialog_eu_h:
+    .incbin "bin/segment2/font_graphics.061B0.ia1"
+
+texture_dialog_eu_i:
+    .incbin "bin/segment2/font_graphics.061C0.ia1"
+
+texture_dialog_eu_j:
+    .incbin "bin/segment2/font_graphics.061D0.ia1"
+
+texture_dialog_eu_k:
+    .incbin "bin/segment2/font_graphics.061E0.ia1"
+
+texture_dialog_eu_l:
+    .incbin "bin/segment2/font_graphics.061F0.ia1"
+
+texture_dialog_eu_m:
+    .incbin "bin/segment2/font_graphics.06200.ia1"
+
+texture_dialog_eu_n:
+    .incbin "bin/segment2/font_graphics.06210.ia1"
+
+texture_dialog_eu_o:
+    .incbin "bin/segment2/font_graphics.06220.ia1"
+
+texture_dialog_eu_p:
+    .incbin "bin/segment2/font_graphics.06230.ia1"
+
+texture_dialog_eu_q:
+    .incbin "bin/segment2/font_graphics.06240.ia1"
+
+texture_dialog_eu_r:
+    .incbin "bin/segment2/font_graphics.06250.ia1"
+
+texture_dialog_eu_s:
+    .incbin "bin/segment2/font_graphics.06260.ia1"
+
+texture_dialog_eu_t:
+    .incbin "bin/segment2/font_graphics.06270.ia1"
+
+texture_dialog_eu_u:
+    .incbin "bin/segment2/font_graphics.06280.ia1"
+
+texture_dialog_eu_v:
+    .incbin "bin/segment2/font_graphics.06290.ia1"
+
+texture_dialog_eu_w:
+    .incbin "bin/segment2/font_graphics.062A0.ia1"
+
+texture_dialog_eu_x:
+    .incbin "bin/segment2/font_graphics.062B0.ia1"
+
+texture_dialog_eu_y:
+    .incbin "bin/segment2/font_graphics.062C0.ia1"
+
+texture_dialog_eu_z:
+    .incbin "bin/segment2/font_graphics.062D0.ia1"
+
+texture_dialog_eu_left_right_arrow:
+    .incbin "bin/segment2/font_graphics.062E0.ia1"
+
+texture_dialog_eu_ampersand:
+    .incbin "bin/segment2/font_graphics.062F0.ia1"
+
+texture_dialog_eu_exclamation:
+    .incbin "bin/segment2/font_graphics.06300.ia1"
+
+texture_dialog_eu_coin:
+    .incbin "bin/segment2/font_graphics.06310.ia1"
+
+texture_dialog_eu_multiply:
+    .incbin "bin/segment2/font_graphics.06320.ia1"
+
+texture_dialog_eu_open_parentheses:
+    .incbin "bin/segment2/font_graphics.06330.ia1"
+
+texture_dialog_eu_close_open_parentheses:
+    .incbin "bin/segment2/font_graphics.06340.ia1"
+
+texture_dialog_eu_close_parentheses:
+    .incbin "bin/segment2/font_graphics.06350.ia1"
+
+texture_dialog_eu_tilde:
+    .incbin "bin/segment2/font_graphics.06360.ia1"
+
+texture_dialog_eu_period:
+    .incbin "bin/segment2/font_graphics.06370.ia1"
+
+texture_dialog_eu_percent:
+    .incbin "bin/segment2/font_graphics.06380.ia1"
+
+texture_dialog_eu_interpunct:
+    .incbin "bin/segment2/font_graphics.06390.ia1"
+
+texture_dialog_eu_comma:
+    .incbin "bin/segment2/font_graphics.063A0.ia1"
+
+texture_dialog_eu_apostrophe:
+    .incbin "bin/segment2/font_graphics.063B0.ia1"
+
+texture_dialog_eu_question:
+    .incbin "bin/segment2/font_graphics.063C0.ia1"
+
+texture_dialog_eu_star_filled:
+    .incbin "bin/segment2/font_graphics.063D0.ia1"
+
+texture_dialog_eu_star_hollow:
+    .incbin "bin/segment2/font_graphics.063E0.ia1"
+
+texture_dialog_eu_double_quote_open:
+    .incbin "bin/segment2/font_graphics.063F0.ia1"
+
+texture_dialog_eu_double_quote_close:
+    .incbin "bin/segment2/font_graphics.06400.ia1"
+
+texture_dialog_eu_colon:
+    .incbin "bin/segment2/font_graphics.06410.ia1"
+
+texture_dialog_eu_dash:
+    .incbin "bin/segment2/font_graphics.06420.ia1"
+
+texture_dialog_eu_button_A:
+    .incbin "bin/segment2/font_graphics.06430.ia1"
+
+texture_dialog_eu_button_B:
+    .incbin "bin/segment2/font_graphics.06440.ia1"
+
+texture_dialog_eu_button_C:
+    .incbin "bin/segment2/font_graphics.06450.ia1"
+
+texture_dialog_eu_button_Z:
+    .incbin "bin/segment2/font_graphics.06460.ia1"
+
+texture_dialog_eu_button_R:
+    .incbin "bin/segment2/font_graphics.06470.ia1"
+
+texture_dialog_eu_button_C_up:
+    .incbin "bin/segment2/font_graphics.06480.ia1"
+
+texture_dialog_eu_button_C_down:
+    .incbin "bin/segment2/font_graphics.06490.ia1"
+
+texture_dialog_eu_button_C_left:
+    .incbin "bin/segment2/font_graphics.064A0.ia1"
+
+texture_dialog_eu_button_C_right:
+    .incbin "bin/segment2/font_graphics.064B0.ia1"
+
+texture_dialog_eu_umlaut:
+    .incbin "bin/segment2/font_graphics.064C0.ia1"
+
+texture_dialog_eu_circumflex:
+    .incbin "bin/segment2/font_graphics.064D0.ia1"
+
+texture_dialog_eu_grave:
+    .incbin "bin/segment2/font_graphics.064E0.ia1"
+
+texture_dialog_eu_acute:
+    .incbin "bin/segment2/font_graphics.064F0.ia1"
+
+texture_dialog_eu_cedilla:
+    .incbin "bin/segment2/font_graphics.06500.ia1"
+
+texture_dialog_eu_unknown:
+    .incbin "bin/segment2/font_graphics.06510.ia1"
+
+texture_dialog_eu_Cedilla:
+    .incbin "bin/segment2/font_graphics.06520.ia1"
+
+texture_dialog_eu_sset:
+    .incbin "bin/segment2/font_graphics.06530.ia1"
+
+.else # US Small Font
 texture_dialog_us_0:
     .incbin "bin/segment2/font_graphics.05900.ia4"
 
@@ -1054,7 +1360,23 @@ texture_colorful_char_arrow_down:
 
 # HUD print table 0x02008250-0x02008337
 glabel seg2_hud_lut
-.ifndef VERSION_JP
+.if VERSION_EU == 1
+    .word texture_colorful_num_0,  texture_colorful_num_1,  texture_colorful_num_2,  texture_colorful_num_3
+    .word texture_colorful_num_4,  texture_colorful_num_5,  texture_colorful_num_6,  texture_colorful_num_7
+    .word texture_colorful_num_8,  texture_colorful_num_9,  texture_colorful_char_A, texture_colorful_char_B
+    .word texture_colorful_char_C, texture_colorful_char_D, texture_colorful_char_E, texture_colorful_char_F
+    .word texture_colorful_char_G, texture_colorful_char_H, texture_colorful_char_I,                     0x0
+    .word texture_colorful_char_K, texture_colorful_char_L, texture_colorful_char_M, texture_colorful_char_N
+    .word texture_colorful_char_O, texture_colorful_char_P,                     0x0, texture_colorful_char_R
+    .word texture_colorful_char_S, texture_colorful_char_T, texture_colorful_char_U, texture_colorful_char_V
+    .word texture_colorful_char_W,                     0x0, texture_colorful_char_Y, texture_colorful_char_Z
+    .word                     0x0,                     0x0,                     0x0,                     0x0
+    .word                     0x0,                     0x0,                     0x0,                     0x0
+    .word                     0x0,                     0x0,                     0x0,                     0x0
+    .word                     0x0,                     0x0, texture_colorful_char_multiply, texture_colorful_char_coin
+    .word texture_colorful_char_mario_head, texture_colorful_char_star,         0x0,                     0x0
+    .word texture_colorful_char_apostrophe, texture_colorful_char_double_quote, texture_colorful_char_umlaut
+.elseif VERSION_US == 1
     .word texture_colorful_num_0, texture_colorful_num_1, texture_colorful_num_2, texture_colorful_num_3
     .word texture_colorful_num_4, texture_colorful_num_5, texture_colorful_num_6, texture_colorful_num_7
     .word texture_colorful_num_8, texture_colorful_num_9, texture_colorful_char_A, texture_colorful_char_B
@@ -1090,7 +1412,74 @@ glabel seg2_hud_lut
 
 # small font HUD LUT 0x02008338-0x02008737
 glabel seg2_small_font_lut
-.ifndef VERSION_JP # US Font Table
+.if VERSION_EU == 1 # EU Font Table
+    .word texture_dialog_eu_0, texture_dialog_eu_1, texture_dialog_eu_2, texture_dialog_eu_3
+    .word texture_dialog_eu_4, texture_dialog_eu_5, texture_dialog_eu_6, texture_dialog_eu_7
+    .word texture_dialog_eu_8, texture_dialog_eu_9, texture_dialog_eu_A, texture_dialog_eu_B
+    .word texture_dialog_eu_C, texture_dialog_eu_D, texture_dialog_eu_E, texture_dialog_eu_F
+    .word texture_dialog_eu_G, texture_dialog_eu_H, texture_dialog_eu_I, texture_dialog_eu_J
+    .word texture_dialog_eu_K, texture_dialog_eu_L, texture_dialog_eu_M, texture_dialog_eu_N
+    .word texture_dialog_eu_O, texture_dialog_eu_P, texture_dialog_eu_Q, texture_dialog_eu_R
+    .word texture_dialog_eu_S, texture_dialog_eu_T, texture_dialog_eu_U, texture_dialog_eu_V
+    .word texture_dialog_eu_W, texture_dialog_eu_X, texture_dialog_eu_Y, texture_dialog_eu_Z
+    .word texture_dialog_eu_a, texture_dialog_eu_b, texture_dialog_eu_c, texture_dialog_eu_d
+    .word texture_dialog_eu_e, texture_dialog_eu_f, texture_dialog_eu_g, texture_dialog_eu_h
+    .word texture_dialog_eu_i, texture_dialog_eu_j, texture_dialog_eu_k, texture_dialog_eu_l
+    .word texture_dialog_eu_m, texture_dialog_eu_n, texture_dialog_eu_o, texture_dialog_eu_p
+    .word texture_dialog_eu_q, texture_dialog_eu_r, texture_dialog_eu_s, texture_dialog_eu_t
+    .word texture_dialog_eu_u, texture_dialog_eu_v, texture_dialog_eu_w, texture_dialog_eu_x
+    .word texture_dialog_eu_y, texture_dialog_eu_z, texture_dialog_eu_apostrophe, texture_dialog_eu_period
+    .word 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0
+    .word texture_dialog_eu_button_C_up
+    .word texture_dialog_eu_button_C_down
+    .word texture_dialog_eu_button_C_left
+    .word texture_dialog_eu_button_C_right
+    .word texture_dialog_eu_button_A
+    .word texture_dialog_eu_button_B
+    .word texture_dialog_eu_button_C
+    .word texture_dialog_eu_button_Z
+    .word texture_dialog_eu_button_R
+    .word 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0
+    .word 0x0, 0x0, 0x0, 0x0, 0x0, 0x0
+    .word texture_dialog_eu_comma
+    .word 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0
+    .word 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0
+    .word 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0
+    .word texture_dialog_eu_dash
+    .word 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0
+    .word 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0
+    .word 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0
+    .word 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0
+    .word 0x0
+    .word texture_dialog_eu_open_parentheses
+    .word texture_dialog_eu_close_open_parentheses
+    .word texture_dialog_eu_close_parentheses
+    .word texture_dialog_eu_left_right_arrow
+    .word texture_dialog_eu_ampersand
+    .word texture_dialog_eu_colon
+    .word texture_dialog_eu_acute
+    .word texture_dialog_eu_circumflex
+    .word texture_dialog_eu_umlaut
+    .word texture_dialog_eu_grave
+    .word texture_dialog_eu_unknown
+    .word texture_dialog_eu_sset
+    .word texture_dialog_eu_Cedilla
+    .word texture_dialog_eu_cedilla
+    .word 0x0, 0x0, 0x0
+    .word texture_dialog_eu_exclamation
+    .word texture_dialog_eu_percent
+    .word texture_dialog_eu_question
+    .word texture_dialog_eu_double_quote_open
+    .word texture_dialog_eu_double_quote_close
+    .word texture_dialog_eu_tilde
+    .word 0x0
+    .word texture_dialog_eu_coin
+    .word texture_dialog_eu_star_filled
+    .word texture_dialog_eu_multiply
+    .word texture_dialog_eu_interpunct
+    .word texture_dialog_eu_star_hollow
+    .word 0x0, 0x0
+.elseif VERSION_US == 1 # US Font Table
     .word texture_dialog_us_0, texture_dialog_us_1, texture_dialog_us_2, texture_dialog_us_3
     .word texture_dialog_us_4, texture_dialog_us_5, texture_dialog_us_6, texture_dialog_us_7
     .word texture_dialog_us_8, texture_dialog_us_9, texture_dialog_us_A, texture_dialog_us_B
@@ -1155,7 +1544,7 @@ glabel seg2_small_font_lut
     .word texture_dialog_us_question, texture_dialog_us_double_quote_open, texture_dialog_us_double_quote_close, texture_dialog_us_tilde
     .word               0x0, texture_dialog_us_coin, texture_dialog_us_star_filled, texture_dialog_us_multiply
     .word texture_dialog_us_interpunct, texture_dialog_us_star_hollow,               0x0,               0x0
-.else # JP Font Table
+.elseif VERSION_JP == 1
     .word texture_dialog_jp_0, texture_dialog_jp_1, texture_dialog_jp_2, texture_dialog_jp_3
     .word texture_dialog_jp_4, texture_dialog_jp_5, texture_dialog_jp_6, texture_dialog_jp_7
     .word texture_dialog_jp_8, texture_dialog_jp_9, texture_dialog_jp_A, texture_dialog_jp_B
@@ -1241,19 +1630,19 @@ glabel seg2_hud_camera_lut
 .word texture_colorful_char_arrow_up, texture_colorful_char_arrow_down
 
 .macro textdata name
-    .if VERSION_EU == 1
-        .include "build/eu/text/\name\().s"
-    .elseif VERSION_US == 1
+    .if VERSION_US == 1
         .include "build/us/text/\name\().s"
     .else /* NTSC-J 1.0 */
         .include "build/jp/text/\name\().s"
     .endif
 .endm
 
-textdata debug
-textdata dialog
-textdata level
-textdata star
+.ifndef VERSION_EU
+    textdata debug
+    textdata dialog
+    textdata level
+    textdata star
+.endif
 
 .balign 0x10
 
@@ -1263,7 +1652,12 @@ gsDPSetCycleType G_CYC_COPY
 gsDPSetTexturePersp G_TP_NONE
 gsDPSetAlphaCompare G_AC_THRESHOLD
 gsDPSetBlendColor 255, 255, 255, 255
+.ifdef VERSION_EU
+gsDPSetRenderMode G_RM_NOOP, G_RM_NOOP2
+gsDPSetTextureFilter G_TF_POINT
+.else
 gsDPSetRenderMode G_RM_AA_XLU_SURF, G_RM_AA_XLU_SURF2
+.endif
 gsSPEndDisplayList
 
 glabel dl_hud_img_load_tex_block # 0x0200EC98 - 0x0200ECC8
@@ -1286,8 +1680,13 @@ gsDPSetRenderMode G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2
 # G_RM_AA_OPA_SURF, G_RM_RA_ZB_OPA_SURF2; G_RM_RA_OPA_SURF, G_RM_AA_ZB_OPA_SURF2
 
 gsDPSetAlphaCompare G_AC_NONE
+.ifdef VERSION_EU
+gsDPSetTextureFilter G_TF_BILERP
+gsDPSetCycleType G_CYC_1CYCLE
+.else
 gsDPSetCycleType G_CYC_1CYCLE
 gsSPTexture -1, -1, 0, 0, 0
+.endif
 gsSPEndDisplayList
 
 glabel dl_rgba16_text_begin # 0x0200ED00 - 0x0200ED38
@@ -1339,6 +1738,7 @@ gsSPVertex vertex_text_bg_box, 4, 0
 gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSPEndDisplayList
 
+.ifndef VERSION_EU
 vertex_ia8_char: # 0x0200EE28 - 0x0200EE68
 .ifndef VERSION_JP
     vertex      0,      0,      0,      0,    256,  0xFF, 0xFF, 0xFF, 0xFF
@@ -1351,8 +1751,36 @@ vertex_ia8_char: # 0x0200EE28 - 0x0200EE68
     vertex      8,     16,      0,    512,      0,  0xFF, 0xFF, 0xFF, 0xFF
     vertex      0,     16,      0,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
 .endif
+.endif # !EU
 
-.ifndef VERSION_JP
+.if VERSION_EU == 1
+glabel dl_ia8_text_begin # 0x020073B0
+    gsDPPipeSync
+    gsDPSetTexturePersp G_TP_NONE
+    gsDPSetCombineMode1Cycle G_CCMUX_TEXEL0, G_CCMUX_0, G_CCMUX_ENVIRONMENT, G_CCMUX_0, G_ACMUX_TEXEL0, G_ACMUX_0, G_ACMUX_ENVIRONMENT, G_ACMUX_0
+    gsDPSetEnvColor 255, 255, 255, 255
+    gsDPSetRenderMode G_RM_XLU_SURF, G_RM_XLU_SURF2
+    gsDPSetTextureFilter G_TF_POINT
+    gsSPEndDisplayList
+
+glabel dl_ia8_render_char # 0x020073E8 - 0x02007418
+    gsDPSetTile G_IM_FMT_IA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_MIRROR, 3, G_TX_NOLOD, G_TX_WRAP | G_TX_MIRROR, 4, G_TX_NOLOD
+    gsDPLoadSync
+    gsDPLoadBlock 7, 0, 0, 0x01F, 0x800
+    gsDPSetTile G_IM_FMT_IA, G_IM_SIZ_4b, 1, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | G_TX_MIRROR, 3, G_TX_NOLOD, G_TX_WRAP | G_TX_MIRROR, 4, G_TX_NOLOD
+    gsDPSetTileSize 0, 0, 0, 60, 28
+    gsSPEndDisplayList
+
+glabel dl_ia8_text_end # 0x02007418 - 0x02007450
+    gsDPPipeSync
+    gsDPSetTexturePersp G_TP_PERSP
+    gsDPSetRenderMode G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2 
+    gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
+    gsDPSetEnvColor 255, 255, 255, 255
+    gsDPSetTextureFilter G_TF_BILERP
+    gsSPEndDisplayList
+
+.elseif VERSION_US == 1
 glabel dl_ia8_text_begin
     gsDPPipeSync
     gsSPClearGeometryMode G_LIGHTING
@@ -1394,6 +1822,7 @@ glabel dl_ia8_render_char # 0x0200EEA8 - 0x0200EEF0
     gsSPEndDisplayList
 .endif
 
+.ifndef VERSION_EU
 glabel dl_ia8_text_end # 0x0200EEF0 - 0x0200EF30
 gsDPPipeSync
 gsSPTexture -1, -1, 0, 0, 0
@@ -1410,6 +1839,7 @@ gsDPSetRenderMode G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2
 
 gsDPSetTextureFilter G_TF_BILERP
 gsSPEndDisplayList
+.endif
 
 vertex_triangle: # 0x0200EF30 - 0x0200EF60
 vertex      0,      0,      0,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF

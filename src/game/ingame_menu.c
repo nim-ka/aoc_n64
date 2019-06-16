@@ -1211,6 +1211,8 @@ s8 D_80330534 = 1;
 
 void func_802D93E0(void)
 {
+// TODO: EU relocates dialog table to translation segment 0x19
+#ifndef VERSION_EU
     void **diagTable = segmented_to_virtual(seg2_dialog_table);
     struct DialogEntry *diagEntry = segmented_to_virtual(diagTable[gDialogID]);
 #ifndef VERSION_JP
@@ -1337,6 +1339,7 @@ void func_802D93E0(void)
 
     if(gLastDialogPageStrPos != -1 && gDiagBoxState == DIAG_STATE_WAITBUTTON)
         func_802D9030(diagEntry->linesPerBox);
+#endif // !VERSION_EU
 }
 
 void func_802D9A14(s16 a0)
@@ -1475,6 +1478,8 @@ extern Gfx castle_grounds_seg7_us_dl_0700F2E8[];
 // "Dear Mario" message handler
 void print_peach_letter_message(void)
 {
+// TODO: EU relocates dialog table to translation segment 0x19
+#ifndef VERSION_EU
     void **diagTable = segmented_to_virtual(seg2_dialog_table);
     struct DialogEntry *diagEntry = segmented_to_virtual(diagTable[gDialogID]);
 
@@ -1525,6 +1530,7 @@ void print_peach_letter_message(void)
     }
 
     gCutsceneMsgTimer++;
+#endif // !VERSION_EU
 }
 
 void RenderHudCannonReticle(void)
@@ -1616,6 +1622,8 @@ void func_802DA874(void)
 
 void func_802DA8EC(void)
 {
+// TODO: EU relocates level and act name tables to translation segment 0x19
+#ifndef VERSION_EU
     u8 sp64[] = {TEXT_COURSE};
     u8 sp5c[] = {TEXT_MY_SCORE};
     u8 sp58[] = {TEXT_STAR};
@@ -1681,6 +1689,7 @@ void func_802DA8EC(void)
     PrintGenericText(117, 157, &levelName[3]);
 #endif
     gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
+#endif // !VERSION_EU
 }
 
 void PauseScreenCameraMenu(s16 sp72, s16 sp76, s8 *sp78, s16 sp7e)
@@ -1845,6 +1854,8 @@ void func_802DB698(s16 sp4a, s16 sp4e, s16 sp52, s16 sp56)
 
 void func_802DB840(s16 sp52, s16 sp56)
 {
+// TODO: EU relocates level name table to translation segment 0x19
+#ifndef VERSION_EU
     void **sp4c = segmented_to_virtual(seg2_level_name_table);
 
     u8 sp48[] = {TEXT_COIN_X}; //D_803305B8;
@@ -1902,6 +1913,7 @@ void func_802DB840(s16 sp52, s16 sp56)
     PrintGenericText(sp52-9, sp56+30, sp44);
 
     gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
+#endif // !VERSION_EU
 }
 
 s8 D_803305C0 = 0;
@@ -2066,6 +2078,8 @@ void func_802DC2B4(s32 sp18, u8 sp1f)
 
 void func_802DC330(void)
 {
+// TODO: EU relocates level and act name tables to translation segment 0x19
+#ifndef VERSION_EU
 #ifdef VERSION_JP
     u8 sp7c[] = {TEXT_UNK35}; //D_803305F0;
     u8 sp78[] = {TEXT_COURSE};//D_803305F4;
@@ -2147,6 +2161,7 @@ void func_802DC330(void)
     PrintGenericText(218, 147, sp70);
 #endif
     gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
+#endif // !VERSION_EU
 }
 
 void Save(s16 sp62, s16 sp66, s8 *sp68, s16 sp6e)

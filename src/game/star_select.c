@@ -178,6 +178,8 @@ static void ShowCourseNumber(void)
 
 static void ShowActSelectorMenu(void)
 {
+// TODO: EU relocates level and act name tables to translation segment 0x19
+#ifndef VERSION_EU
 #ifdef VERSION_JP
     unsigned char myScore[] = {TEXT_MYSCORE};
 #else
@@ -240,6 +242,7 @@ static void ShowActSelectorMenu(void)
     }
 
     gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D160);
+#endif // !VERSION_EU
 }
 
 //! @bug Another geo function missing the third param. Harmless in practice due to o32 convention.

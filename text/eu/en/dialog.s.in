@@ -1,6 +1,6 @@
-# dialogs
+# dialogs (EU, English)
 .balign 4
-Dialog000: # 0x02008884
+Dialog000: # 0x19000000
 .byte _("Wow! You're smack in the\n"
         "middle of the battlefield.\n"
         "You'll find the Power\n"
@@ -11,7 +11,7 @@ Dialog000: # 0x02008884
         "Bob-omb Buddy. (Press [B]\n"
         "to talk.) He'll certainly\n"
         "help you out, and so will\n"
-        "his comrades in other\n"
+        "his friends in other\n"
         "areas.\n"
         "To read signs, stop, face\n"
         "them and press [B]. Press [A]\n"
@@ -21,10 +21,10 @@ Dialog000: # 0x02008884
         "and pressing [B].")
 
 .balign 4
-Dialog001: # 0x02008958
+Dialog001: # 0x19000174
 .byte _("Watch out! If you wander\n"
         "around here, you're liable\n"
-        "to be plastered by a\n"
+        "to be splattered by a\n"
         "water bomb!\n"
         "Those enemy Bob-ombs love\n"
         "to fight, and they're\n"
@@ -43,7 +43,7 @@ Dialog001: # 0x02008958
         "the Power Star!")
 
 .balign 4
-Dialog002: # 0x02008A68
+Dialog002: # 0x19000308
 .byte _("Hey, you! It's dangerous\n"
         "ahead, so listen up! Take\n"
         "my advice.\n"
@@ -62,7 +62,7 @@ Dialog002: # 0x02008A68
         "whenever you'd like to!")
 
 .balign 4
-Dialog003: # 0x02008B34
+Dialog003: # 0x19000428
 .byte _("Thank you, Mario! The Big\n"
         "Bob-omb is nothing but a\n"
         "big dud now! But the\n"
@@ -79,7 +79,7 @@ Dialog003: # 0x02008B34
         "set up cannons for you.")
 
 .balign 4
-Dialog004: # 0x02008BFC
+Dialog004: # 0x1900055C
 .byte _("We're peace-loving\n"
         "Bob-ombs, so we don't use\n"
         "cannons.\n"
@@ -91,7 +91,7 @@ Dialog004: # 0x02008BFC
         "you to use. Bon Voyage!")
 
 .balign 4
-Dialog005: # 0x02008C80
+Dialog005: # 0x19000614
 .byte _("Hey, Mario! Is it true\n"
         "that you beat the Big\n"
         "Bob-omb? Cool!\n"
@@ -112,16 +112,16 @@ Dialog005: # 0x02008C80
         "//Go!////Don't Go")
 
 .balign 4
-Dialog006: # 0x02008D54
-.byte _("Hey!!! Don't try to scam\n"
-        "ME. You've gotta run\n"
+Dialog006: # 0x19000760
+.byte _("Hey!!! Don't try to cheat!\n"
+        "You've gotta run\n"
         "the whole course.\n"
         "Later. Look me up when\n"
         "you want to race for\n"
         "real.")
 
 .balign 4
-Dialog007: # 0x02008D80
+Dialog007: # 0x190007CC
 .byte _("Hufff...fff...pufff...\n"
         "Whoa! You...really...are...\n"
         "fast! A human blur!\n"
@@ -129,7 +129,7 @@ Dialog007: # 0x02008D80
         "it, fair and square!")
 
 .balign 4
-Dialog008: # 0x02008DC0
+Dialog008: # 0x1900083C
 .byte _("BEWARE OF CHAIN CHOMP\n"
         "Extreme Danger!\n"
         "Get close and press [C]^\n"
@@ -144,7 +144,7 @@ Dialog008: # 0x02008DC0
         "across the bridge.")
 
 .balign 4
-Dialog009: # 0x02008E44
+Dialog009: # 0x19000910
 .byte _("Long time, no see! Wow,\n"
         "have you gotten fast!\n"
         "Have you been training\n"
@@ -162,7 +162,7 @@ Dialog009: # 0x02008E44
         "//Go//// Don't Go")
 
 .balign 4
-Dialog010: # 0x02008EFC
+Dialog010: # 0x19000A14
 .byte _("You've stepped on the\n"
         "Wing Cap Switch. Wearing\n"
         "the Wing Cap, you can\n"
@@ -176,7 +176,7 @@ Dialog010: # 0x02008EFC
         "//Yes////No")
 
 .balign 4
-Dialog011: # 0x02008F68
+Dialog011: # 0x19000AC4
 .byte _("You've just stepped on\n"
         "the Metal Cap Switch!\n"
         "The Metal Cap makes\n"
@@ -190,7 +190,7 @@ Dialog011: # 0x02008F68
         "//Yes////No")
 
 .balign 4
-Dialog012: # 0x02008FD8
+Dialog012: # 0x19000B78
 .byte _("You've just stepped on\n"
         "the Vanish Cap Switch.\n"
         "The Vanish Cap makes\n"
@@ -204,7 +204,7 @@ Dialog012: # 0x02008FD8
         "//Yes////No")
 
 .balign 4
-Dialog013: # 0x02009048
+Dialog013: # 0x19000C2C
 .byte _("You've collected 100\n"
         "coins! Mario gains more\n"
         "power from the castle.\n"
@@ -212,7 +212,7 @@ Dialog013: # 0x02009048
         "//Yes////No")
 
 .balign 4
-Dialog014: # 0x020090A0
+Dialog014: # 0x19000C90
 .byte _("Wow! Another Power Star!\n"
         "Mario gains more courage\n"
         "from the power of the\n"
@@ -222,7 +222,7 @@ Dialog014: # 0x020090A0
         "//You Bet//Not Now")
 
 .balign 4
-Dialog015: # 0x020090FC
+Dialog015: # 0x19000D04
 .byte _("You can punch enemies to\n"
         "knock them down. Press [A]\n"
         "to jump, [B] to punch.\n"
@@ -233,13 +233,13 @@ Dialog015: # 0x020090FC
         "press [B] again.")
 
 .balign 4
-Dialog016: # 0x02009174
+Dialog016: # 0x19000DB4
 .byte _("Hop on the shiny shell and\n"
         "ride wherever you want to\n"
         "go! Shred those enemies!")
 
 .balign 4
-Dialog017: # 0x020091A8
+Dialog017: # 0x19000E00
 .byte _("I'm the Big Bob-omb, lord\n"
         "of all blasting matter,\n"
         "king of ka-booms the\n"
@@ -266,19 +266,19 @@ Dialog017: # 0x020091A8
         "that you cannot!")
 
 .balign 4
-Dialog018: # 0x02009258
+Dialog018: # 0x19000FBC
 .byte _("I'm sleeping because...\n"
         "...I'm sleepy. I don't\n"
         "like being disturbed.\n"
         "Please walk quietly.")
 
 .balign 4
-Dialog019: # 0x02009284
+Dialog019: # 0x19001018
 .byte _("Shhh! Please walk\n"
         "quietly in the hallway!")
 
 .balign 4
-Dialog020: # 0x02009298
+Dialog020: # 0x19001040
 .byte _("Dear Mario:\n"
         "Please come to the\n"
         "castle. I've baked\n"
@@ -287,26 +287,26 @@ Dialog020: # 0x02009298
         "Princess Toadstool")
 
 .balign 4
-Dialog021: # 0x020092CC
+Dialog021: # 0x190010A0
 .byte _("Welcome.\n"
         "No one's home!\n"
-        "Now scram--\n"
+        "Now get lost\n"
         "and don't come back!\n"
         "Gwa ha ha!")
 
 .balign 4
-Dialog022: # 0x02009304
+Dialog022: # 0x190010E8
 .byte _("You need a key to open\n"
         "this door.")
 
 .balign 4
-Dialog023: # 0x02009314
+Dialog023: # 0x1900110C
 .byte _("This key doesn't fit!\n"
         "Maybe it's for the\n"
         "basement...")
 
 .balign 4
-Dialog024: # 0x0200933C
+Dialog024: # 0x19001140
 .byte _("You need Star power to\n"
         "open this door. Recover a\n"
         "Power Star from an enemy\n"
@@ -314,35 +314,35 @@ Dialog024: # 0x0200933C
         "paintings.")
 
 .balign 4
-Dialog025: # 0x02009390
+Dialog025: # 0x190011B0
 .byte _("It takes the power of\n"
         "3 Stars to open this\n"
         "door. You need [%] more\n"
         "Stars.")
 
 .balign 4
-Dialog026: # 0x020093CC
+Dialog026: # 0x190011F8
 .byte _("It takes the power of\n"
         "8 Stars to open this\n"
         "door. You need [%] more\n"
         "Stars.")
 
 .balign 4
-Dialog027: # 0x02009408
+Dialog027: # 0x19001240
 .byte _("It takes the power of\n"
         "30 Stars to open this\n"
         "door. You need [%] more\n"
         "Stars.")
 
 .balign 4
-Dialog028: # 0x02009444
+Dialog028: # 0x19001288
 .byte _("It takes the power of\n"
         "50 Stars to open this\n"
         "door. You need [%] more\n"
         "Stars.")
 
 .balign 4
-Dialog029: # 0x02009480
+Dialog029: # 0x190012D0
 .byte _("To open the door that\n"
         "leads to the 『endless』\n"
         "stairs, you need 70\n"
@@ -350,7 +350,7 @@ Dialog029: # 0x02009480
         "Bwa ha ha!")
 
 .balign 4
-Dialog030: # 0x020094D4
+Dialog030: # 0x19001320
 .byte _("Hello! The Lakitu Bros.,\n"
         "cutting in with a live\n"
         "update on Mario's\n"
@@ -376,7 +376,7 @@ Dialog030: # 0x020094D4
         "signing off.")
 
 .balign 4
-Dialog031: # 0x0200957C
+Dialog031: # 0x190014E0
 .byte _("No way! You beat me...\n"
         "again!! And I just spent\n"
         "my entire savings on\n"
@@ -388,7 +388,7 @@ Dialog031: # 0x0200957C
         "Congrats, Mario!")
 
 .balign 4
-Dialog032: # 0x020095C8
+Dialog032: # 0x1900159C
 .byte _("If you get the Wing Cap,\n"
         "you can fly! Put the cap\n"
         "on, then do a Triple\n"
@@ -404,7 +404,7 @@ Dialog032: # 0x020095C8
         "press [Z] to land.")
 
 .balign 4
-Dialog033: # 0x02009638
+Dialog033: # 0x19001694
 .byte _("Ciao! You've reached\n"
         "Princess Toadstool's\n"
         "castle via a warp pipe.\n"
@@ -419,7 +419,7 @@ Dialog033: # 0x02009638
         "the castle.")
 
 .balign 4
-Dialog034: # 0x020096C4
+Dialog034: # 0x19001798
 .byte _("Good afternoon. The\n"
         "Lakitu Bros., here,\n"
         "reporting live from just\n"
@@ -455,7 +455,7 @@ Dialog034: # 0x020096C4
         "Lakitu Bros.")
 
 .balign 4
-Dialog035: # 0x02009800
+Dialog035: # 0x19001A00
 .byte _("There are four camera, or\n"
         "『[C],』 Buttons. Press [C]^\n"
         "to look around using the\n"
@@ -478,7 +478,7 @@ Dialog035: # 0x02009800
         "Lakitu's or Mario's view.")
 
 .balign 4
-Dialog036: # 0x02009908
+Dialog036: # 0x19001BA0
 .byte _("OBSERVATION PLATFORM\n"
         "Press [C]^ to take a look\n"
         "around. Don't miss\n"
@@ -495,7 +495,7 @@ Dialog036: # 0x02009908
         "holding [R]. Give it a try!")
 
 .balign 4
-Dialog037: # 0x02009A14
+Dialog037: # 0x19001CB0
 .byte _("I win! You lose!\n"
         "Ha ha ha ha!\n"
         "You're no slouch, but I'm\n"
@@ -503,13 +503,13 @@ Dialog037: # 0x02009A14
         "Better luck next time!")
 
 .balign 4
-Dialog038: # 0x02009A5C
+Dialog038: # 0x19001D14
 .byte _("Reacting to the Star\n"
         "power, the door slowly\n"
         "opens.")
 
 .balign 4
-Dialog039: # 0x02009A88
+Dialog039: # 0x19001D44
 .byte _("No visitors allowed,\n"
         "by decree of\n"
         "the Big Bob-omb\n"
@@ -532,13 +532,13 @@ Dialog039: # 0x02009A88
         "//--The Big Bob-omb")
 
 .balign 4
-Dialog040: # 0x02009B34
+Dialog040: # 0x19001EBC
 .byte _("Warning!\n"
         "Cold, Cold Crevasse\n"
         "Below!")
 
 .balign 4
-Dialog041: # 0x02009B50
+Dialog041: # 0x19001EE0
 .byte _("I win! You lose!\n"
         "Ha ha ha!\n"
         "\n"
@@ -548,7 +548,7 @@ Dialog041: # 0x02009B50
         "Better luck next time!")
 
 .balign 4
-Dialog042: # 0x02009B80
+Dialog042: # 0x19001F48
 .byte _("Caution! Narrow Bridge!\n"
         "Cross slowly!\n"
         "\n"
@@ -567,7 +567,7 @@ Dialog042: # 0x02009B80
         "the [A] Button.")
 
 .balign 4
-Dialog043: # 0x02009C20
+Dialog043: # 0x1900207C
 .byte _("If you jump and hold the\n"
         "[A] Button, you can hang on\n"
         "to some objects overhead.\n"
@@ -575,7 +575,7 @@ Dialog043: # 0x02009C20
         "a flying bird!")
 
 .balign 4
-Dialog044: # 0x02009C68
+Dialog044: # 0x190020EC
 .byte _("Whooo's there? Whooo\n"
         "woke me up? It's still\n"
         "daylight--I should be\n"
@@ -593,7 +593,7 @@ Dialog044: # 0x02009C68
         "grab on.")
 
 .balign 4
-Dialog045: # 0x02009D1C
+Dialog045: # 0x19002208
 .byte _("Whew! I'm just about\n"
         "flapped out. You should\n"
         "lay off the pasta, Mario!\n"
@@ -602,7 +602,7 @@ Dialog045: # 0x02009D1C
         "bye byyyyyyeeee!")
 
 .balign 4
-Dialog046: # 0x02009D88
+Dialog046: # 0x1900228C
 .byte _("You have to master three\n"
         "important jumping\n"
         "techniques.\n"
@@ -630,19 +630,19 @@ Dialog046: # 0x02009D88
         "a chance without them.")
 
 .balign 4
-Dialog047: # 0x02009ED4
+Dialog047: # 0x19002464
 .byte _("Hi! I'll prepare the\n"
         "cannon for you!")
 
 .balign 4
-Dialog048: # 0x02009EF8
+Dialog048: # 0x19002488
 .byte _("Snow Mountain Summit\n"
         "Watch for slippery\n"
         "conditions! Please enter\n"
         "the cottage first.")
 
 .balign 4
-Dialog049: # 0x02009F2C
+Dialog049: # 0x190024DC
 .byte _("Remember that tricky Wall\n"
         "Kick jump? It's a\n"
         "technique you'll have to\n"
@@ -656,7 +656,7 @@ Dialog049: # 0x02009F2C
         "Practice makes perfect!")
 
 .balign 4
-Dialog050: # 0x02009FA4
+Dialog050: # 0x190025C8
 .byte _("Hold [Z] to crouch and\n"
         "slide down a slope.\n"
         "Or press [Z] while in the\n"
@@ -671,7 +671,7 @@ Dialog050: # 0x02009FA4
         "walk to...never mind.")
 
 .balign 4
-Dialog051: # 0x0200A058
+Dialog051: # 0x190026BC
 .byte _("Climbing's easy! When you\n"
         "jump at trees, poles or\n"
         "pillars, you'll grab them\n"
@@ -689,7 +689,7 @@ Dialog051: # 0x0200A058
         "stylin' dismount.")
 
 .balign 4
-Dialog052: # 0x0200A12C
+Dialog052: # 0x190027DC
 .byte _("Stop and press [Z] to\n"
         "crouch, then press [A]\n"
         "to do a high, Backward\n"
@@ -702,7 +702,7 @@ Dialog052: # 0x0200A12C
         "air with both jumps.")
 
 .balign 4
-Dialog053: # 0x0200A1A0
+Dialog053: # 0x19002894
 .byte _("Sometimes, if you pass\n"
         "through a coin ring or\n"
         "find a secret point in a\n"
@@ -713,7 +713,7 @@ Dialog053: # 0x0200A1A0
         "will show up.")
 
 .balign 4
-Dialog054: # 0x0200A1F4
+Dialog054: # 0x19002938
 .byte _("Welcome to the snow\n"
         "slide! Hop on! To speed\n"
         "up, press forward on the\n"
@@ -721,7 +721,7 @@ Dialog054: # 0x0200A1F4
         "down, pull back.")
 
 .balign 4
-Dialog055: # 0x0200A234
+Dialog055: # 0x190029A4
 .byte _("Hey-ey, Mario, buddy,\n"
         "howzit goin'? Step right\n"
         "up. You look like a fast\n"
@@ -736,7 +736,7 @@ Dialog055: # 0x0200A234
         "//Go//// Don't Go")
 
 .balign 4
-Dialog056: # 0x0200A2A0
+Dialog056: # 0x19002A8C
 .byte _("You brrrr-oke my record!\n"
         "Unbelievable! I knew\n"
         "that you were the coolest.\n"
@@ -749,7 +749,7 @@ Dialog056: # 0x0200A2A0
         "earned it!")
 
 .balign 4
-Dialog057: # 0x0200A2E8
+Dialog057: # 0x19002B50
 .byte _("Egad! My baby!! Have you\n"
         "seen my baby??? She's\n"
         "the most precious baby in\n"
@@ -764,7 +764,7 @@ Dialog057: # 0x0200A2E8
         "don't know!")
 
 .balign 4
-Dialog058: # 0x0200A380
+Dialog058: # 0x19002C40
 .byte _("You found my precious,\n"
         "precious baby! Where\n"
         "have you been? How can\n"
@@ -775,14 +775,14 @@ Dialog058: # 0x0200A380
         "gratitude.")
 
 .balign 4
-Dialog059: # 0x0200A3FC
+Dialog059: # 0x19002CE0
 .byte _("That's not my baby! She\n"
         "looks nothing like me!\n"
         "Her parents must be\n"
         "worried sick!")
 
 .balign 4
-Dialog060: # 0x0200A438
+Dialog060: # 0x19002D34
 .byte _("ATTENTION!\n"
         "Read Before Diving In!\n"
         "\n"
@@ -813,14 +813,14 @@ Dialog060: # 0x0200A438
         "jump out.")
 
 .balign 4
-Dialog061: # 0x0200A534
+Dialog061: # 0x19002F08
 .byte _("BRRR! Frostbite Danger!\n"
         "Do not swim here.\n"
         "I'm serious.\n"
         "/--The Penguin")
 
 .balign 4
-Dialog062: # 0x0200A580
+Dialog062: # 0x19002F50
 .byte _("Hidden inside the green\n"
         "block is the amazing\n"
         "Metal Cap.\n"
@@ -831,10 +831,11 @@ Dialog062: # 0x0200A580
         "breathe while wearing it.\n"
         "\n"
         "The only problem:\n"
-        "You can't swim in it.")
+        "Its too heavy to swim\n"
+        "with.")
 
 .balign 4
-Dialog063: # 0x0200A5EC
+Dialog063: # 0x19003020
 .byte _("The Vanish Cap is inside\n"
         "the blue block. Mr. I.\n"
         "will be surprised, since\n"
@@ -845,7 +846,7 @@ Dialog063: # 0x0200A5EC
         "through secret walls, too.")
 
 .balign 4
-Dialog064: # 0x0200A638
+Dialog064: # 0x190030D4
 .byte _("When you put on the Wing\n"
         "Cap that comes from a\n"
         "red block, do the Triple\n"
@@ -858,7 +859,7 @@ Dialog064: # 0x0200A638
         "to land.")
 
 .balign 4
-Dialog065: # 0x0200A6AC
+Dialog065: # 0x190031A4
 .byte _("Swimming Lessons!\n"
         "Tap [A] to do the breast\n"
         "stroke. If you time the\n"
@@ -888,7 +889,7 @@ Dialog065: # 0x0200A6AC
         "are underwater.")
 
 .balign 4
-Dialog066: # 0x0200A7A8
+Dialog066: # 0x19003384
 .byte _("Mario, it's Peach!\n"
         "Please be careful! Bowser\n"
         "is so wicked! He will try\n"
@@ -915,7 +916,7 @@ Dialog066: # 0x0200A7A8
         "fate is in your hands.")
 
 .balign 4
-Dialog067: # 0x0200A884
+Dialog067: # 0x19003580
 .byte _("Tough luck, Mario!\n"
         "Princess Toadstool isn't\n"
         "here...Gwa ha ha!! Go\n"
@@ -927,7 +928,7 @@ Dialog067: # 0x0200A884
         "out of here! Never! Ha!")
 
 .balign 4
-Dialog068: # 0x0200A91C
+Dialog068: # 0x19003648
 .byte _("It's Lethal Lava Land!\n"
         "If you catch fire or fall\n"
         "into a pool of flames,\n"
@@ -938,7 +939,7 @@ Dialog068: # 0x0200A91C
         "calm!")
 
 .balign 4
-Dialog069: # 0x0200A99C
+Dialog069: # 0x190036F0
 .byte _("Sometimes you'll bump into\n"
         "invisible walls at the\n"
         "edges of the painting\n"
@@ -947,7 +948,7 @@ Dialog069: # 0x0200A99C
         "back.")
 
 .balign 4
-Dialog070: # 0x0200AA08
+Dialog070: # 0x1900376C
 .byte _("You can return to the\n"
         "castle's main hall at any\n"
         "time from the painting\n"
@@ -980,7 +981,7 @@ Dialog070: # 0x0200AA08
         "described by the hint.")
 
 .balign 4
-Dialog071: # 0x0200AB18
+Dialog071: # 0x19003984
 .byte _("Danger Ahead!\n"
         "Beware of the strange\n"
         "cloud! Don't inhale!\n"
@@ -991,7 +992,7 @@ Dialog071: # 0x0200AB18
         "Arrow: Entrance-Exit")
 
 .balign 4
-Dialog072: # 0x0200AB74
+Dialog072: # 0x19003A18
 .byte _("High winds ahead!\n"
         "Pull your Cap down tight.\n"
         "If it blows off, you'll\n"
@@ -999,7 +1000,7 @@ Dialog072: # 0x0200AB74
         "mountain.")
 
 .balign 4
-Dialog073: # 0x0200ABC0
+Dialog073: # 0x19003A7C
 .byte _("Aarrgh! Ahoy, matey. I\n"
         "have sunken treasure,\n"
         "here, I do.\n"
@@ -1017,7 +1018,7 @@ Dialog073: # 0x0200ABC0
         "//--The Cap'n")
 
 .balign 4
-Dialog074: # 0x0200AC00
+Dialog074: # 0x19003B3C
 .byte _("You can grab on to the\n"
         "edge of a cliff or ledge\n"
         "with your fingertips and\n"
@@ -1035,7 +1036,7 @@ Dialog074: # 0x0200AC00
         "ledge to climb up quickly.")
 
 .balign 4
-Dialog075: # 0x0200AC8C
+Dialog075: # 0x19003C6C
 .byte _("Mario!! My castle is in\n"
         "great peril. I know that\n"
         "Bowser is the cause...and\n"
@@ -1068,7 +1069,7 @@ Dialog075: # 0x0200AC8C
         "Please!")
 
 .balign 4
-Dialog076: # 0x0200AD94
+Dialog076: # 0x19003E7C
 .byte _("Thanks to the power of\n"
         "the Stars, life is\n"
         "returning to the castle.\n"
@@ -1088,12 +1089,12 @@ Dialog076: # 0x0200AD94
         "way, look what I found!")
 
 .balign 4
-Dialog077: # 0x0200AE58
+Dialog077: # 0x19003FE8
 .byte _("It is decreed that one\n"
         "shall pound the pillars.")
 
 .balign 4
-Dialog078: # 0x0200AE7C
+Dialog078: # 0x19004018
 .byte _("Break open the Blue Coin\n"
         "Block by Pounding the\n"
         "Ground with the [Z] Button.\n"
@@ -1105,7 +1106,7 @@ Dialog078: # 0x0200AE7C
         "collect them! Too bad.")
 
 .balign 4
-Dialog079: # 0x0200AF04
+Dialog079: # 0x190040E0
 .byte _("Owwwuu! Let me go!\n"
         "Uukee-kee! I was only\n"
         "teasing! Can't you take\n"
@@ -1119,11 +1120,11 @@ Dialog079: # 0x0200AF04
         "//Free him/ Hold on")
 
 .balign 4
-Dialog080: # 0x0200AF64
+Dialog080: # 0x190041A0
 .byte _("Eeeh hee hee hee!")
 
 .balign 4
-Dialog081: # 0x0200AF6C
+Dialog081: # 0x190041B4
 .byte _("The mystery is of Wet\n"
         "or Dry.\n"
         "And where does the\n"
@@ -1133,7 +1134,7 @@ Dialog081: # 0x0200AF6C
         "as they enter.")
 
 .balign 4
-Dialog082: # 0x0200AFB8
+Dialog082: # 0x19004230
 .byte _("Hold on to your hat! If\n"
         "you lose it, you'll be\n"
         "injured easily.\n"
@@ -1156,7 +1157,7 @@ Dialog082: # 0x0200AFB8
         "been keeping it for you.")
 
 .balign 4
-Dialog083: # 0x0200B080
+Dialog083: # 0x190043C0
 .byte _("There's something strange\n"
         "about that clock. As you\n"
         "jump inside, watch the\n"
@@ -1165,7 +1166,7 @@ Dialog083: # 0x0200B080
         "Here, Mario, catch!")
 
 .balign 4
-Dialog084: # 0x0200B0E8
+Dialog084: # 0x1900444C
 .byte _("Yeeoww! Unhand me,\n"
         "brute! I'm late, so late,\n"
         "I must make haste!\n"
@@ -1180,7 +1181,7 @@ Dialog084: # 0x0200B0E8
         "for tea!")
 
 .balign 4
-Dialog085: # 0x0200B168
+Dialog085: # 0x19004548
 .byte _("You don't stand a ghost\n"
         "of a chance in this house.\n"
         "If you walk out of here,\n"
@@ -1188,20 +1189,20 @@ Dialog085: # 0x0200B168
         "...a Ghoul Medal...")
 
 .balign 4
-Dialog086: # 0x0200B18C
+Dialog086: # 0x190045B4
 .byte _("Running around in circles\n"
         "makes some bad guys roll\n"
         "their eyes.")
 
 .balign 4
-Dialog087: # 0x0200B1A8
+Dialog087: # 0x190045F4
 .byte _("Santa Claus isn't the only\n"
         "one who can go down a\n"
         "chimney! Come on in!\n"
         "/--Cabin Proprietor")
 
 .balign 4
-Dialog088: # 0x0200B1EC
+Dialog088: # 0x1900464C
 .byte _("Work Elevator\n"
         "For those who get off\n"
         "here: Grab the pole to the\n"
@@ -1209,7 +1210,7 @@ Dialog088: # 0x0200B1EC
         "down.")
 
 .balign 4
-Dialog089: # 0x0200B228
+Dialog089: # 0x190046A8
 .byte _("Both ways fraught with\n"
         "danger! Watch your feet!\n"
         "Those who can't do the\n"
@@ -1225,7 +1226,7 @@ Dialog089: # 0x0200B228
         "Arrow: You are here")
 
 .balign 4
-Dialog090: # 0x0200B2C4
+Dialog090: # 0x190047A4
 .byte _("Bwa ha ha ha!\n"
         "You've stepped right into\n"
         "my trap, just as I knew\n"
@@ -1234,14 +1235,14 @@ Dialog090: # 0x0200B2C4
         "step!")
 
 .balign 4
-Dialog091: # 0x0200B30C
+Dialog091: # 0x19004810
 .byte _("Danger!\n"
         "Strong Gusts!\n"
         "But the wind makes a\n"
         "comfy ride.")
 
 .balign 4
-Dialog092: # 0x0200B334
+Dialog092: # 0x19004848
 .byte _("Pestering me again, are\n"
         "you, Mario? Can't you see\n"
         "that I'm having a merry\n"
@@ -1252,7 +1253,7 @@ Dialog092: # 0x0200B334
         "need them! Bwa ha ha!")
 
 .balign 4
-Dialog093: # 0x0200B3A8
+Dialog093: # 0x19004900
 .byte _("Mario! You again! Well\n"
         "that's just fine--I've\n"
         "been looking for something\n"
@@ -1268,14 +1269,14 @@ Dialog093: # 0x0200B3A8
         "Bwa ha ha ha!")
 
 .balign 4
-Dialog094: # 0x0200B448
+Dialog094: # 0x190049F0
 .byte _("Get a good run up the\n"
         "slope! Do you remember\n"
         "the Long Jump? Run, press\n"
         "[Z], then jump!")
 
 .balign 4
-Dialog095: # 0x0200B4A0
+Dialog095: # 0x19004A40
 .byte _("To read a sign, stand in\n"
         "front of it and press [B],\n"
         "like you did just now.\n"
@@ -1289,7 +1290,7 @@ Dialog095: # 0x0200B4A0
         "Bowser in this course.")
 
 .balign 4
-Dialog096: # 0x0200B51C
+Dialog096: # 0x19004B1C
 .byte _("The path is narrow here.\n"
         "Easy does it! No one is\n"
         "allowed on top of the\n"
@@ -1302,7 +1303,7 @@ Dialog096: # 0x0200B51C
         "tread lightly.")
 
 .balign 4
-Dialog097: # 0x0200B594
+Dialog097: # 0x19004BCC
 .byte _("Don't be a pushover!\n"
         "If anyone tries to shove\n"
         "you around, push back!\n"
@@ -1310,12 +1311,12 @@ Dialog097: # 0x0200B594
         "fiery finish for the loser!")
 
 .balign 4
-Dialog098: # 0x0200B5C8
+Dialog098: # 0x19004C44
 .byte _("Come on in here...\n"
         "...heh, heh, heh...")
 
 .balign 4
-Dialog099: # 0x0200B5E0
+Dialog099: # 0x19004C6C
 .byte _("Eh he he...\n"
         "You're mine, now, hee hee!\n"
         "I'll pass right through\n"
@@ -1323,13 +1324,13 @@ Dialog099: # 0x0200B5E0
         "that? Heh, heh, heh!")
 
 .balign 4
-Dialog100: # 0x0200B628
+Dialog100: # 0x19004CD4
 .byte _("Ukkiki...Wakkiki...kee kee!\n"
         "Ha! I snagged it!\n"
         "It's mine! Heeheeheeee!")
 
 .balign 4
-Dialog101: # 0x0200B64C
+Dialog101: # 0x19004D1C
 .byte _("Ackk! Let...go...\n"
         "You're...choking...me...\n"
         "Cough...I've been framed!\n"
@@ -1341,7 +1342,7 @@ Dialog101: # 0x0200B64C
         "though! Eeeee! Kee keee!")
 
 .balign 4
-Dialog102: # 0x0200B680
+Dialog102: # 0x19004DF8
 .byte _("Pssst! The Boos are super\n"
         "shy. If you look them\n"
         "in the eyes, they fade\n"
@@ -1353,14 +1354,14 @@ Dialog102: # 0x0200B680
         "behind them and punch.")
 
 .balign 4
-Dialog103: # 0x0200B6F8
+Dialog103: # 0x19004EC0
 .byte _("Upon four towers\n"
         "one must alight...\n"
         "Then at the peak\n"
         "shall shine the light...")
 
 .balign 4
-Dialog104: # 0x0200B72C
+Dialog104: # 0x19004F0C
 .byte _("The shadowy star in front\n"
         "of you is a 『Star\n"
         "Marker.』 When you collect\n"
@@ -1368,7 +1369,7 @@ Dialog104: # 0x0200B72C
         "will appear here.")
 
 .balign 4
-Dialog105: # 0x0200B784
+Dialog105: # 0x19004F78
 .byte _("Ready for blastoff! Come\n"
         "on, hop into the cannon!\n"
         "\n"
@@ -1383,12 +1384,12 @@ Dialog105: # 0x0200B784
         "to land.")
 
 .balign 4
-Dialog106: # 0x0200B7FC
+Dialog106: # 0x19005058
 .byte _("Ready for blastoff! Come\n"
         "on, hop into the cannon!")
 
 .balign 4
-Dialog107: # 0x0200B820
+Dialog107: # 0x19005088
 .byte _("Ghosts...\n"
         "...don't...\n"
         "...DIE!\n"
@@ -1397,7 +1398,7 @@ Dialog107: # 0x0200B820
         "...alive?")
 
 .balign 4
-Dialog108: # 0x0200B848
+Dialog108: # 0x190050D8
 .byte _("Boooooo-m! Here comes\n"
         "the master of mischief,\n"
         "the tower of terror,\n"
@@ -1405,7 +1406,7 @@ Dialog108: # 0x0200B848
         "Ka ha ha ha...")
 
 .balign 4
-Dialog109: # 0x0200B868
+Dialog109: # 0x19005134
 .byte _("Ooooo Nooooo!\n"
         "Talk about out-of-body\n"
         "experiences--my body\n"
@@ -1418,7 +1419,7 @@ Dialog109: # 0x0200B868
         "freeze like this!")
 
 .balign 4
-Dialog110: # 0x0200B8A4
+Dialog110: # 0x190051EC
 .byte _("I need a good head on my\n"
         "shoulders. Do you know of\n"
         "anybody in need of a good\n"
@@ -1426,14 +1427,14 @@ Dialog110: # 0x0200B8A4
         "you if you do!")
 
 .balign 4
-Dialog111: # 0x0200B914
+Dialog111: # 0x1900525C
 .byte _("Perfect! What a great\n"
         "new body! Here--this is a\n"
         "present for you. It's sure\n"
         "to warm you up.")
 
 .balign 4
-Dialog112: # 0x0200B964
+Dialog112: # 0x190052B4
 .byte _("Collect as many coins as\n"
         "possible! They'll refill\n"
         "your Power Meter.\n"
@@ -1451,7 +1452,7 @@ Dialog112: # 0x0200B964
         "more power you'll recover.")
 
 .balign 4
-Dialog113: # 0x0200B9D0
+Dialog113: # 0x190053C0
 .byte _("There are special Caps in\n"
         "the red, green and blue\n"
         "blocks. Step on the\n"
@@ -1460,7 +1461,7 @@ Dialog113: # 0x0200B9D0
         "Cap Blocks.")
 
 .balign 4
-Dialog114: # 0x0200BA24
+Dialog114: # 0x1900543C
 .byte _("It makes me so mad! We\n"
         "build your houses, your\n"
         "castles. We pave your\n"
@@ -1476,7 +1477,7 @@ Dialog114: # 0x0200BA24
         "pound me, wimp! Ha!")
 
 .balign 4
-Dialog115: # 0x0200BAFC
+Dialog115: # 0x1900554C
 .byte _("No! Crushed again!\n"
         "I'm just a stepping stone,\n"
         "after all. I won't gravel,\n"
@@ -1484,7 +1485,7 @@ Dialog115: # 0x0200BAFC
         "Take this with you!")
 
 .balign 4
-Dialog116: # 0x0200BB50
+Dialog116: # 0x190055C0
 .byte _("Whaaa....Whaaat?\n"
         "Can it be that a\n"
         "pipsqueak like you has\n"
@@ -1506,7 +1507,7 @@ Dialog116: # 0x0200BB50
         "farewell.")
 
 .balign 4
-Dialog117: # 0x0200BBDC
+Dialog117: # 0x19005728
 .byte _("Who...walk...here?\n"
         "Who...break...seal?\n"
         "Wake..ancient..ones?\n"
@@ -1519,7 +1520,7 @@ Dialog117: # 0x0200BBDC
         "...hand!")
 
 .balign 4
-Dialog118: # 0x0200BC28
+Dialog118: # 0x190057CC
 .byte _("Grrrrumbbble!\n"
         "What...happen?\n"
         "We...crushed like pebble.\n"
@@ -1530,7 +1531,7 @@ Dialog118: # 0x0200BC28
         "We...sleep...darkness.")
 
 .balign 4
-Dialog119: # 0x0200BC68
+Dialog119: # 0x1900586C
 .byte _("Grrr! I was a bit\n"
         "careless. This is not as I\n"
         "had planned...but I still\n"
@@ -1545,7 +1546,7 @@ Dialog119: # 0x0200BC68
         "later!")
 
 .balign 4
-Dialog120: # 0x0200BD0C
+Dialog120: # 0x19005968
 .byte _("Ooowaah! Can it be that\n"
         "I've lost??? The power of\n"
         "the Stars has failed me...\n"
@@ -1562,7 +1563,7 @@ Dialog120: # 0x0200BD0C
         "Gwa ha ha ha!")
 
 .balign 4
-Dialog121: # 0x0200BDA4
+Dialog121: # 0x19005A64
 .byte _("Nooo! It can't be!\n"
         "You've really beaten me,\n"
         "Mario?!! I gave those\n"
@@ -1578,20 +1579,20 @@ Dialog121: # 0x0200BDA4
         "Bwa ha ha!")
 
 .balign 4
-Dialog122: # 0x0200BE8C
+Dialog122: # 0x19005B64
 .byte _("The Black Hole\n"
         "Right: Work Elevator\n"
         "/// Cloudy Maze\n"
         "Left: Underground Lake")
 
 .balign 4
-Dialog123: # 0x0200BEC0
+Dialog123: # 0x19005BB0
 .byte _("Metal Cavern\n"
         "Right: To Waterfall\n"
         "Left: Metal Cap Switch")
 
 .balign 4
-Dialog124: # 0x0200BEEC
+Dialog124: # 0x19005BE8
 .byte _("Work Elevator\n"
         "Danger!!\n"
         "Read instructions\n"
@@ -1601,19 +1602,19 @@ Dialog124: # 0x0200BEEC
         "activated.")
 
 .balign 4
-Dialog125: # 0x0200BF48
+Dialog125: # 0x19005C58
 .byte _("Hazy Maze-Exit\n"
         "Danger! Closed.\n"
         "Turn back now.")
 
 .balign 4
-Dialog126: # 0x0200BF74
+Dialog126: # 0x19005C88
 .byte _("Up: Black Hole\n"
         "Right: Work Elevator\n"
         "/// Hazy Maze")
 
 .balign 4
-Dialog127: # 0x0200BFA8
+Dialog127: # 0x19005CBC
 .byte _("Underground Lake\n"
         "Right: Metal Cave\n"
         "Left: Abandoned Mine\n"
@@ -1624,14 +1625,14 @@ Dialog127: # 0x0200BFA8
         "Don't become his lunch.")
 
 .balign 4
-Dialog128: # 0x0200C024
+Dialog128: # 0x19005D68
 .byte _("You must fight with\n"
         "honor! It is against the\n"
         "royal rules to throw the\n"
         "king out of the ring!")
 
 .balign 4
-Dialog129: # 0x0200C060
+Dialog129: # 0x19005DC0
 .byte _("Welcome to the Vanish\n"
         "Cap Switch Course! All of\n"
         "the blue blocks you find\n"
@@ -1644,7 +1645,7 @@ Dialog129: # 0x0200C060
         "many things. Try it out!")
 
 .balign 4
-Dialog130: # 0x0200C0DC
+Dialog130: # 0x19005EAC
 .byte _("Welcome to the Metal Cap\n"
         "Switch Course! Once you\n"
         "step on the Cap Switch,\n"
@@ -1656,7 +1657,7 @@ Dialog130: # 0x0200C0DC
         "underwater! Try it!")
 
 .balign 4
-Dialog131: # 0x0200C154
+Dialog131: # 0x19005F64
 .byte _("Welcome to the Wing Cap\n"
         "Course! Step on the red\n"
         "switch at the top of the\n"
@@ -1679,7 +1680,7 @@ Dialog131: # 0x0200C154
         "flying an airplane.")
 
 .balign 4
-Dialog132: # 0x0200C21C
+Dialog132: # 0x190060CC
 .byte _("Whoa, Mario, pal, you\n"
         "aren't trying to cheat,\n"
         "are you? Shortcuts aren't\n"
@@ -1690,7 +1691,7 @@ Dialog132: # 0x0200C21C
         "play fair!")
 
 .balign 4
-Dialog133: # 0x0200C250
+Dialog133: # 0x19006164
 .byte _("Am I glad to see you! The\n"
         "Princess...and I...and,\n"
         "well, everybody...we're all\n"
@@ -1722,7 +1723,7 @@ Dialog133: # 0x0200C250
         "Princess must be inside!")
 
 .balign 4
-Dialog134: # 0x0200C398
+Dialog134: # 0x1900639C
 .byte _("The names of the Stars\n"
         "are also hints for\n"
         "finding them. They are\n"
@@ -1740,7 +1741,7 @@ Dialog134: # 0x0200C398
         "your help!")
 
 .balign 4
-Dialog135: # 0x0200C468
+Dialog135: # 0x190064C8
 .byte _("It was Bowser who stole\n"
         "the Stars. I saw him with\n"
         "my own eyes!\n"
@@ -1763,7 +1764,7 @@ Dialog135: # 0x0200C468
         "from them.")
 
 .balign 4
-Dialog136: # 0x0200C534
+Dialog136: # 0x19006618
 .byte _("Wow! You've already\n"
         "recovered that many\n"
         "Stars? Way to go, Mario!\n"
@@ -1795,7 +1796,7 @@ Dialog136: # 0x0200C534
         "land.")
 
 .balign 4
-Dialog137: # 0x0200C614
+Dialog137: # 0x19006808
 .byte _("Thanks, Mario! The castle\n"
         "is recovering its energy\n"
         "as you retrieve Power\n"
@@ -1809,13 +1810,13 @@ Dialog137: # 0x0200C614
         "of the 15 courses!")
 
 .balign 4
-Dialog138: # 0x0200C698
+Dialog138: # 0x19006904
 .byte _("Down: Underground Lake\n"
         "Left: Black Hole\n"
         "Right: Hazy Maze (Closed)")
 
 .balign 4
-Dialog139: # 0x0200C6D8
+Dialog139: # 0x19006948
 .byte _("Above: Automatic Elevator\n"
         "Elevator begins\n"
         "automatically and follows\n"
@@ -1824,7 +1825,7 @@ Dialog139: # 0x0200C6D8
         "automatically, too.")
 
 .balign 4
-Dialog140: # 0x0200C72C
+Dialog140: # 0x190069C0
 .byte _("Elevator Area\n"
         "Right: Hazy Maze\n"
         "/// Entrance\n"
@@ -1833,7 +1834,7 @@ Dialog140: # 0x0200C72C
         "Arrow: You are here")
 
 .balign 4
-Dialog141: # 0x0200C780
+Dialog141: # 0x19006A20
 .byte _("You've recovered one of\n"
         "the stolen Power Stars!\n"
         "Now you can open some of\n"
@@ -1851,7 +1852,7 @@ Dialog141: # 0x0200C780
         "Stars!")
 
 .balign 4
-Dialog142: # 0x0200C83C
+Dialog142: # 0x19006B4C
 .byte _("You've recovered three\n"
         "Power Stars! Now you can\n"
         "open any door with a 3\n"
@@ -1864,7 +1865,7 @@ Dialog142: # 0x0200C83C
         "careful!")
 
 .balign 4
-Dialog143: # 0x0200C8BC
+Dialog143: # 0x19006C08
 .byte _("You've recovered eight of\n"
         "the Power Stars! Now you\n"
         "can open the door with\n"
@@ -1873,7 +1874,7 @@ Dialog143: # 0x0200C8BC
         "hear the Princess calling?")
 
 .balign 4
-Dialog144: # 0x0200C90C
+Dialog144: # 0x19006C94
 .byte _("You've recovered 30\n"
         "Power Stars! Now you can\n"
         "open the door with the\n"
@@ -1893,7 +1894,7 @@ Dialog144: # 0x0200C90C
         "cornered him?")
 
 .balign 4
-Dialog145: # 0x0200C9C4
+Dialog145: # 0x19006DE8
 .byte _("You've recovered 50\n"
         "Power Stars! Now you can\n"
         "open the Star Door on the\n"
@@ -1910,7 +1911,7 @@ Dialog145: # 0x0200C9C4
         "third floor is just ahead.")
 
 .balign 4
-Dialog146: # 0x0200CA5C
+Dialog146: # 0x19006F00
 .byte _("You've found 70 Power\n"
         "Stars! The mystery of the\n"
         "endless stairs is solved,\n"
@@ -1919,7 +1920,7 @@ Dialog146: # 0x0200CA5C
         "on to the final bout!")
 
 .balign 4
-Dialog147: # 0x0200CAAC
+Dialog147: # 0x19006F88
 .byte _("Are you using the Cap\n"
         "Blocks? You really should,\n"
         "you know.\n"
@@ -1942,7 +1943,7 @@ Dialog147: # 0x0200CAAC
         "Cap.")
 
 .balign 4
-Dialog148: # 0x0200CB64
+Dialog148: # 0x190070D4
 .byte _("Snowman Mountain ahead.\n"
         "Keep out! And don't try\n"
         "the Triple Jump over the\n"
@@ -1957,7 +1958,7 @@ Dialog148: # 0x0200CB64
         "//--The Snowman")
 
 .balign 4
-Dialog149: # 0x0200CBE0
+Dialog149: # 0x190071A0
 .byte _("Welcome to\n"
         "Princess Toadstool's\n"
         "secret slide!\n"
@@ -1971,7 +1972,7 @@ Dialog149: # 0x0200CBE0
         "fast, you'll win the Star!")
 
 .balign 4
-Dialog150: # 0x0200CC6C
+Dialog150: # 0x19007270
 .byte _("Waaaa! You've flooded my\n"
         "house! Wh-why?? Look at\n"
         "this mess! What am I\n"
@@ -1989,7 +1990,7 @@ Dialog150: # 0x0200CC6C
         "strange...")
 
 .balign 4
-Dialog151: # 0x0200CCAC
+Dialog151: # 0x190073A0
 .byte _("I can't take this\n"
         "anymore! First you get\n"
         "me all wet, then you\n"
@@ -1999,9 +2000,9 @@ Dialog151: # 0x0200CCAC
         "Waaaaaaaaaaaaaaaaa!!!")
 
 .balign 4
-Dialog152: # 0x0200CCDC
+Dialog152: # 0x19007420
 .byte _("Owwch! Uncle! Uncle!\n"
-        "Okay, I give. Take this\n"
+        "Okay, I give up. Take this\n"
         "Star!\n"
         "Whew! I feel better now.\n"
         "I don't really need it\n"
@@ -2014,7 +2015,7 @@ Dialog152: # 0x0200CCDC
         "back and visit anytime.")
 
 .balign 4
-Dialog153: # 0x0200CD58
+Dialog153: # 0x19007510
 .byte _("Hey! Who's there?\n"
         "What's climbing on me?\n"
         "Is it an ice ant?\n"
@@ -2024,7 +2025,7 @@ Dialog153: # 0x0200CD58
         "blow it away!")
 
 .balign 4
-Dialog154: # 0x0200CD8C
+Dialog154: # 0x19007594
 .byte _("Hold on to your hat! If\n"
         "you lose it, you'll be\n"
         "easily injured. If you\n"
@@ -2041,7 +2042,7 @@ Dialog154: # 0x0200CD8C
         "paintings, right?")
 
 .balign 4
-Dialog155: # 0x0200CE48
+Dialog155: # 0x190076B0
 .byte _("Thanks to the power of\n"
         "the Stars, life is\n"
         "returning to the castle.\n"
@@ -2060,7 +2061,7 @@ Dialog155: # 0x0200CE48
         "the painting.")
 
 .balign 4
-Dialog156: # 0x0200CEFC
+Dialog156: # 0x190077FC
 .byte _("The world inside the\n"
         "clock is so strange!\n"
         "When you jump inside,\n"
@@ -2068,7 +2069,7 @@ Dialog156: # 0x0200CEFC
         "the big hand!")
 
 .balign 4
-Dialog157: # 0x0200CF34
+Dialog157: # 0x19007858
 .byte _("Watch out! Don't let\n"
         "yourself be swallowed by\n"
         "quicksand.\n"
@@ -2083,7 +2084,7 @@ Dialog157: # 0x0200CF34
         "bottomless pits.")
 
 .balign 4
-Dialog158: # 0x0200CFAC
+Dialog158: # 0x19007914
 .byte _("1. If you jump repeatedly\n"
         "and time it right, you'll\n"
         "jump higher and higher.\n"
@@ -2097,23 +2098,23 @@ Dialog158: # 0x0200CFAC
         "using this Wall Kick.")
 
 .balign 4
-Dialog159: # 0x0200D078
+Dialog159: # 0x19007A18
 .byte _("3. If you stop, press [Z]\n"
         "to crouch, then jump, you\n"
         "can perform a Backward\n"
         "Somersault. To do a Long\n"
         "Jump, run fast, press [Z],\n"
-        "then jump.")        
+        "then jump.")
 
 .balign 4
-Dialog160: # 0x0200D0F8
+Dialog160: # 0x19007A98
 .byte _("Press [B] while running\n"
         "fast to do a Body Slide\n"
         "attack. To stand while\n"
         "sliding, press [A] or [B].")
 
 .balign 4
-Dialog161: # 0x0200D158
+Dialog161: # 0x19007AF4
 .byte _("Mario!!!\n"
         "It that really you???\n"
         "It has been so long since\n"
@@ -2133,17 +2134,12 @@ Dialog161: # 0x0200D158
         "『Thanks for playing Super\n"
         "Mario 64! This is the\n"
         "end of the game, but not\n"
-        "the end of the fun.\n"
-        "We want you to keep on\n"
-        "playing, so we have a\n"
-        "little something for you.\n"
-        "We hope that you like it!\n"
-        "Enjoy!!!』\n"
+        "the end of the fun...』\n"
         "\n"
         "The Super Mario 64 Team")
 
 .balign 4
-Dialog162: # 0x0200D1E4
+Dialog162: # 0x19007CA4
 .byte _("No, no, no! Not you\n"
         "again! I'm in a great\n"
         "hurry, can't you see?\n"
@@ -2158,7 +2154,7 @@ Dialog162: # 0x0200D1E4
         "Owww! Let me go!")
 
 .balign 4
-Dialog163: # 0x0200D260
+Dialog163: # 0x19007D98
 .byte _("Noooo! You've really\n"
         "beaten me this time,\n"
         "Mario! I can't stand\n"
@@ -2186,7 +2182,7 @@ Dialog163: # 0x0200D260
         "Buwaa ha ha!")
 
 .balign 4
-Dialog164: # 0x0200D3A8
+Dialog164: # 0x19007F34
 .byte _("Mario! What's up, pal?\n"
         "I haven't been on the\n"
         "slide lately, so I'm out\n"
@@ -2201,7 +2197,7 @@ Dialog164: # 0x0200D3A8
         "//Go//// Don't Go")
 
 .balign 4
-Dialog165: # 0x0200D400
+Dialog165: # 0x19008004
 .byte _("I take no responsibility\n"
         "whatsoever for those who\n"
         "get dizzy and pass out\n"
@@ -2209,14 +2205,14 @@ Dialog165: # 0x0200D400
         "this post.")
 
 .balign 4
-Dialog166: # 0x0200D424
+Dialog166: # 0x1900806C
 .byte _("I'll be back soon.\n"
         "I'm out training now,\n"
         "so come back later.\n"
         "//--Koopa the Quick")
 
 .balign 4
-Dialog167: # 0x0200D46C
+Dialog167: # 0x190080BC
 .byte _("Princess Toadstool's\n"
         "castle is just ahead.\n"
         "\n"
@@ -2229,7 +2225,7 @@ Dialog167: # 0x0200D46C
         "something you're holding.")
 
 .balign 4
-Dialog168: # 0x0200D4D4
+Dialog168: # 0x19008168
 .byte _("Hey! Knock it off! That's\n"
         "the second time you've\n"
         "nailed me. Now you're\n"
@@ -2237,7 +2233,7 @@ Dialog168: # 0x0200D4D4
         "breath!")
 
 .balign 4
-Dialog169: # 0x0200D504
+Dialog169: # 0x190081CC
 .byte _("Keep out!\n"
         "That means you!\n"
         "Arrgghh!\n"
@@ -2246,7 +2242,7 @@ Dialog169: # 0x0200D504
         "without permission will\n"
         "meet certain disaster.")
 
-# dialog table 0x0200D548
+# dialog entry table 0x19008238
 .balign 4
 dialog_text_000:
 dialog_entry 0x00000001, 0x0600001E, 0x00C80000, Dialog000
@@ -2590,7 +2586,7 @@ dialog_text_169:
 dialog_entry 0x00000001, 0x0400001E, 0x00C80000, Dialog169
 
 # dialog table
-glabel seg2_dialog_table # 0x0200DFE8
+glabel dialog_table_eu_en # 0x19008CD8
 .word dialog_text_000, dialog_text_001, dialog_text_002, dialog_text_003
 .word dialog_text_004, dialog_text_005, dialog_text_006, dialog_text_007
 .word dialog_text_008, dialog_text_009, dialog_text_010, dialog_text_011

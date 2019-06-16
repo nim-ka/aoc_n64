@@ -2,8 +2,8 @@
 # General Rules
 # --------------------------------------
 
-# obtain a list of segments from the *.s and *.s.in files in bin directory
-SEGMENTS := $(notdir $(basename $(wildcard bin/*.s) $(basename $(wildcard bin/*.s.in))))
+# obtain a list of segments from the *.s files in bin directory
+SEGMENTS := $(notdir $(basename $(wildcard bin/*.s))) $(addprefix $(VERSION)/,$(notdir $(basename $(wildcard bin/$(VERSION)/*.s))))
 ACTORS := $(filter %/,$(wildcard actors/*/))
 TEXTURE_DIRS := $(addprefix bin/,$(SEGMENTS)) $(ACTORS) bin/intro_raw
 
@@ -32,9 +32,10 @@ ACTOR_GROUPS := \
     common1
 
 LEVEL_FILES := $(addsuffix leveldata,$(LEVEL_DIRS))
-MIO0_FILES := $(addprefix $(MIO0_DIR)/,$(addsuffix .mio0,$(BINARY_SEGMENTS) $(SEGMENTS) $(ACTOR_GROUPS) $(LEVEL_FILES)))
+MIO0_FILES := $(addprefix $(MIO0_DIR)/,$(addsuffix .mio0,$(SEGMENTS) $(ACTOR_GROUPS) $(LEVEL_FILES)))
 MIO0_OBJ_FILES := $(MIO0_FILES:.mio0=.mio0.o)
 
+SEGMENT_ELF_FILES := $(addprefix $(BUILD_DIR)/bin/,$(addsuffix .elf,$(SEGMENTS)))
 ACTOR_ELF_FILES := $(addprefix $(BUILD_DIR)/bin/,$(addsuffix .elf,$(ACTOR_GROUPS)))
 LEVEL_ELF_FILES := $(addprefix $(BUILD_DIR)/bin/,$(addsuffix .elf,$(LEVEL_FILES)))
 
@@ -237,6 +238,11 @@ $(BUILD_DIR)/bin/sky.elf: SEGMENT_ADDRESS := 0x09000000
 $(BUILD_DIR)/bin/machine.elf: SEGMENT_ADDRESS := 0x09000000
 $(BUILD_DIR)/bin/mountain.elf: SEGMENT_ADDRESS := 0x09000000
 $(BUILD_DIR)/bin/grass.elf: SEGMENT_ADDRESS := 0x09000000
+
+# EU segment 19 translations
+$(BUILD_DIR)/bin/$(VERSION)/translation_de.elf: SEGMENT_ADDRESS := 0x19000000
+$(BUILD_DIR)/bin/$(VERSION)/translation_en.elf: SEGMENT_ADDRESS := 0x19000000
+$(BUILD_DIR)/bin/$(VERSION)/translation_fr.elf: SEGMENT_ADDRESS := 0x19000000
 
 # --------------------------------------
 # Skybox Rules

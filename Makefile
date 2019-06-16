@@ -103,7 +103,7 @@ ACTOR_DIR := actors
 # Directories containing source files
 SRC_DIRS := src src/engine src/game src/goddard src/goddard/dynlists src/audio
 ASM_DIRS := asm actors lib data levels assets text
-BIN_DIRS := bin
+BIN_DIRS := bin bin/$(VERSION)
 
 ULTRA_SRC_DIRS := lib/src lib/src/math
 ULTRA_ASM_DIRS := lib/asm lib/data
@@ -128,9 +128,6 @@ S_FILES := $(foreach dir,$(ASM_DIRS),$(wildcard $(dir)/*.s))
 ULTRA_C_FILES := $(foreach dir,$(ULTRA_SRC_DIRS),$(wildcard $(dir)/*.c))
 ULTRA_S_FILES := $(foreach dir,$(ULTRA_ASM_DIRS),$(wildcard $(dir)/*.s))
 LEVEL_S_FILES := $(addsuffix header.s,$(addprefix bin/,$(LEVEL_DIRS)))
-SEG_IN_FILES := $(foreach dir,$(BIN_DIRS),$(wildcard $(dir)/*.s.in))
-SEG_S_FILES := $(foreach dir,$(BIN_DIRS),$(wildcard $(dir)/*.s)) \
-               $(foreach file,$(SEG_IN_FILES),$(file:.s.in=.s))
 
 # Object files
 O_FILES := $(foreach file,$(C_FILES),$(BUILD_DIR)/$(file:.c=.o)) \
@@ -149,7 +146,7 @@ NON_MATCHING_O_FILES = $(foreach file,$(NON_MATCHING_C_FILES),$(BUILD_DIR)/$(fil
 NON_MATCHING_DEP = $(BUILD_DIR)/src/audio/non_matching_dep
 
 # Segment elf files
-SEG_FILES := $(foreach file,$(SEG_S_FILES),$(BUILD_DIR)/$(file:.s=.elf)) $(ACTOR_ELF_FILES) $(LEVEL_ELF_FILES)
+SEG_FILES := $(SEGMENT_ELF_FILES) $(ACTOR_ELF_FILES) $(LEVEL_ELF_FILES)
 
 ##################### Compiler Options #######################
 IRIX_ROOT := tools/ido5.3_compiler
@@ -246,15 +243,18 @@ $(BUILD_DIR)/include/text_strings.h: include/text_strings.h.in | $(BUILD_DIR)
 $(BUILD_DIR)/text/%.s: text/$(VERSION)/%.s.in | $(BUILD_DIR)
 	$(TEXTCONV) charmap.txt $< $@
 
-build/bin/segment2.o: bin/segment2.s
+ifeq ($(VERSION),eu)
+ASM_DIRS += text/de text/en text/fr
+# EU encoded text inserted into individual segment19
+$(BUILD_DIR)/bin/$(VERSION)/translation_de.o: $(BUILD_DIR)/text/de/dialog.s $(BUILD_DIR)/text/de/level.s $(BUILD_DIR)/text/de/star.s
+$(BUILD_DIR)/bin/$(VERSION)/translation_en.o: $(BUILD_DIR)/text/en/dialog.s $(BUILD_DIR)/text/en/level.s $(BUILD_DIR)/text/en/star.s
+$(BUILD_DIR)/bin/$(VERSION)/translation_fr.o: $(BUILD_DIR)/text/fr/dialog.s $(BUILD_DIR)/text/fr/level.s $(BUILD_DIR)/text/fr/star.s
+else
+# non-EU encoded text inserted into segment2
+$(BUILD_DIR)/bin/segment2.o: $(BUILD_DIR)/text/debug.s $(BUILD_DIR)/text/dialog.s $(BUILD_DIR)/text/level.s $(BUILD_DIR)/text/star.s
+endif
 
-bin/segment2.s: $(BUILD_DIR)/text/debug.s $(BUILD_DIR)/text/dialog.s $(BUILD_DIR)/text/level.s $(BUILD_DIR)/text/star.s
-	touch bin/segment2.s
-
-$(MIO0_DIR)/%.mio0: bin/%.bin
-	$(MIO0TOOL) $< $@
-
-ALL_DIRS := $(BUILD_DIR) $(addprefix $(BUILD_DIR)/,$(SRC_DIRS) $(ASM_DIRS) $(ULTRA_SRC_DIRS) $(ULTRA_ASM_DIRS) $(ULTRA_BIN_DIRS) $(BIN_DIRS) $(TEXTURE_DIRS) $(addprefix levels/,$(LEVEL_DIRS)) $(addprefix bin/,$(LEVEL_DIRS)) include) $(MIO0_DIR) $(addprefix $(MIO0_DIR)/,$(LEVEL_DIRS))
+ALL_DIRS := $(BUILD_DIR) $(addprefix $(BUILD_DIR)/,$(SRC_DIRS) $(ASM_DIRS) $(ULTRA_SRC_DIRS) $(ULTRA_ASM_DIRS) $(ULTRA_BIN_DIRS) $(BIN_DIRS) $(TEXTURE_DIRS) $(addprefix levels/,$(LEVEL_DIRS)) $(addprefix bin/,$(LEVEL_DIRS)) include) $(MIO0_DIR) $(addprefix $(MIO0_DIR)/,$(LEVEL_DIRS)) $(addprefix $(MIO0_DIR)/,$(VERSION))
 
 # Make sure build directory exists before compiling anything
 DUMMY != mkdir -p $(ALL_DIRS)

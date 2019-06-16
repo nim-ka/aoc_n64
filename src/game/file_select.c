@@ -1801,6 +1801,8 @@ static void score_file_print_course_star_score(s8 fileNum, s16 courseNum, s16 x,
 
 static void draw_file_scores(s8 fileNum)
 {
+// TODO: EU relocates level name table to translation segment 0x19
+#ifndef VERSION_EU
     unsigned char textMario[] = {TEXT_MARIO};
 #ifdef VERSION_JP
     unsigned char textFileLetter[] = {TEXT_0};
@@ -1890,6 +1892,7 @@ static void draw_file_scores(s8 fileNum)
 #endif
 
     gSPDisplayList(gDisplayListHead++, main_menu_seg7_dl_0700D160);
+#endif // !VERSION_EU
 }
 
 static void draw_current_menu(void)
