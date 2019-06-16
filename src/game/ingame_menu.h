@@ -44,7 +44,6 @@ extern void dl_add_new_translation_matrix(s8 pushOp, f32 x, f32 y, f32 z);
 extern void dl_add_new_rotation_matrix(s8 pushOp, f32 a, f32 x, f32 y, f32 z);
 extern void dl_add_new_scale_matrix(s8 pushOp, f32 x, f32 y, f32 z);
 extern void dl_add_new_ortho_matrix(void);
-extern u8* func_802D69A0(u16* in, s16 width, s16 height);
 extern void func_802D6AFC(u8 c);
 extern void PrintGenericText(s16 x, s16 y, const u8 *str);
 extern void PutString(s8 font, s16 x, s16 y, const u8 *str);

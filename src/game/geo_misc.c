@@ -215,6 +215,15 @@ Gfx *geo_exec_flying_carpet_create(
     return displayList; 
 }
 
+#ifdef VERSION_EU
+extern u16 func_eu_8026B05C(void); // get language ID
+
+// TODO: Symbolize these
+extern Gfx dl_cake_end_screen_eu_070296F8[];
+extern Gfx dl_cake_end_screen_eu_07029768[];
+extern Gfx dl_cake_end_screen_eu_070297D8[];
+#endif
+
 /**
  * Create a display list for the end screen with Peach's delicious cake.
  */
@@ -237,7 +246,22 @@ Gfx *geo_exec_cake_end_screen(
         ) | 0x100;
 
         gSPDisplayList(displayListHead++, dl_proj_mtx_fullscreen);
+#ifdef VERSION_EU
+        switch(func_eu_8026B05C())
+        {
+            case 0:
+                gSPDisplayList(displayListHead++, dl_cake_end_screen_eu_070296F8);
+                break;
+            case 1:
+                gSPDisplayList(displayListHead++, dl_cake_end_screen_eu_07029768);
+                break;
+            case 2:
+                gSPDisplayList(displayListHead++, dl_cake_end_screen_eu_070297D8);
+                break;
+        }
+#else
         gSPDisplayList(displayListHead++, dl_cake_end_screen);
+#endif
         gSPEndDisplayList(displayListHead);
     }
 

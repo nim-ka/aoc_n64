@@ -10,10 +10,10 @@
 
 #include "segment2.h"
 
-static u8 D_8032FF60[4] = {0};
-static u16 D_8032FF64[2] = {0};
+u8 D_8032FF60[4] = {0};
+u16 D_8032FF64[2] = {0};
 
-static s32 func_802CAAE0(s8 a0, u8 a1)
+s32 func_802CAAE0(s8 a0, u8 a1)
 {
     s32 sp4 = 0;
 
@@ -28,7 +28,7 @@ static s32 func_802CAAE0(s8 a0, u8 a1)
     return sp4;
 }
 
-static u8 func_802CAB60(s8 a0, s8 a1, u8 a2)
+u8 func_802CAB60(s8 a0, s8 a1, u8 a2)
 {
     u8 sp7;
 
@@ -44,7 +44,7 @@ static u8 func_802CAB60(s8 a0, s8 a1, u8 a2)
     return sp7;
 }
 
-static Vtx *func_802CADB4(struct WarpTransitionData *transData, u8 alpha)
+Vtx *func_802CADB4(struct WarpTransitionData *transData, u8 alpha)
 {
     Vtx *verts = alloc_display_list(4 * sizeof(*verts));
     u8 r = transData->red;
@@ -64,7 +64,7 @@ static Vtx *func_802CADB4(struct WarpTransitionData *transData, u8 alpha)
     return verts;
 }
 
-static s32 func_802CAF38(s8 a0, u8 a1, struct WarpTransitionData *transData, u8 alpha)
+s32 func_802CAF38(s8 a0, u8 a1, struct WarpTransitionData *transData, u8 alpha)
 {
     Vtx *verts = func_802CADB4(transData, alpha);
 
@@ -80,21 +80,21 @@ static s32 func_802CAF38(s8 a0, u8 a1, struct WarpTransitionData *transData, u8 
     return func_802CAAE0(a0, a1);
 }
 
-static s32 func_802CB0E4(s8 a0, u8 a1, struct WarpTransitionData *transData)
+s32 func_802CB0E4(s8 a0, u8 a1, struct WarpTransitionData *transData)
 {
     u8 alpha = func_802CAB60(1, a0, a1);
 
     return func_802CAF38(a0, a1, transData, alpha);
 }
 
-static s32 func_802CB140(s8 a0, u8 a1, struct WarpTransitionData *transData)
+s32 func_802CB140(s8 a0, u8 a1, struct WarpTransitionData *transData)
 {
     u8 alpha = func_802CAB60(0, a0, a1);
 
     return func_802CAF38(a0, a1, transData, alpha);
 }
 
-static s16 func_802CB19C(s8 a0, s8 a1, struct WarpTransitionData *transData)
+s16 func_802CB19C(s8 a0, s8 a1, struct WarpTransitionData *transData)
 {
     f32 spC = transData->endCircleRadius - transData->startCircleRadius;
     f32 sp8 = D_8032FF60[a0] * spC / (f32)(a1 - 1);
@@ -103,7 +103,7 @@ static s16 func_802CB19C(s8 a0, s8 a1, struct WarpTransitionData *transData)
     return sp4 + 0.5;
 }
 
-static f32 func_802CB274(s8 a0, s8 a1, struct WarpTransitionData *transData)
+f32 func_802CB274(s8 a0, s8 a1, struct WarpTransitionData *transData)
 {
     f32 sp2C = transData->startCircleX;
     f32 sp28 = transData->startCircleY;
@@ -115,7 +115,7 @@ static f32 func_802CB274(s8 a0, s8 a1, struct WarpTransitionData *transData)
     return sp18;
 }
 
-static u16 func_802CB384(struct WarpTransitionData *transData)
+u16 func_802CB384(struct WarpTransitionData *transData)
 {
     f32 sp1C = transData->endCircleX - transData->startCircleX;
     f32 sp18 = transData->endCircleY - transData->startCircleY;
@@ -123,21 +123,21 @@ static u16 func_802CB384(struct WarpTransitionData *transData)
     return atan2s(sp1C, sp18);
 }
 
-static s16 func_802CB400(struct WarpTransitionData *transData, f32 a1, u16 a2)
+s16 func_802CB400(struct WarpTransitionData *transData, f32 a1, u16 a2)
 {
     f32 sp4 = transData->startCircleX + coss(a2) * a1;
 
     return sp4 + 0.5;
 }
 
-static s16 func_802CB484(struct WarpTransitionData *transData, f32 a1, u16 a2)
+s16 func_802CB484(struct WarpTransitionData *transData, f32 a1, u16 a2)
 {
     f32 sp4 = transData->startCircleY + sins(a2) * a1;
 
     return sp4 + 0.5;
 }
 
-static void func_802CB508(Vtx *verts, s32 n, s8 a2, struct WarpTransitionData *transData, s16 sp62, s16 sp66, s16 sp6A, s16 sp6E, s16 sp72, s16 sp76)
+void func_802CB508(Vtx *verts, s32 n, s8 a2, struct WarpTransitionData *transData, s16 sp62, s16 sp66, s16 sp6A, s16 sp6E, s16 sp72, s16 sp76)
 {
     u8 r = transData->red;
     u8 g = transData->green;
@@ -151,7 +151,7 @@ static void func_802CB508(Vtx *verts, s32 n, s8 a2, struct WarpTransitionData *t
     make_vertex(verts, n, x, y, -1, sp72 * 32, sp76 * 32, r, g, b, 255);
 }
 
-static void func_802CB6A0(Vtx *verts, s8 sp47, struct WarpTransitionData *transData, s16 sp4E, s16 sp52, s16 sp56, s8 sp5B)
+void func_802CB6A0(Vtx *verts, s8 sp47, struct WarpTransitionData *transData, s16 sp4E, s16 sp52, s16 sp56, s8 sp5B)
 {
     switch (sp5B)
     {
@@ -174,7 +174,7 @@ static void func_802CB6A0(Vtx *verts, s8 sp47, struct WarpTransitionData *transD
     func_802CB508(verts, 7, sp47, transData, sp4E, sp52, -2000,  2000, 0, 0);
 }
 
-static void *D_8032FF68[] =
+void *D_8032FF68[] =
 {
     texture_transition_star_half,
     texture_transition_circle_half,
@@ -182,7 +182,7 @@ static void *D_8032FF68[] =
     texture_transition_bowser_half,
 };
 
-static s32 func_802CB9F8(s8 spBB, s8 spBF, struct WarpTransitionData *transData, s8 spC7, s8 spCB)
+s32 func_802CB9F8(s8 spBB, s8 spBF, struct WarpTransitionData *transData, s8 spC7, s8 spCB)
 {
     f32 spB4 = func_802CB274(spBB, spBF, transData);
     u16 spB2 = func_802CB384(transData);
@@ -274,7 +274,7 @@ int func_802CC108(s8 sp23, s8 sp27, u8 sp2B, struct WarpTransitionData *sp2C)
     }
 }
 
-static Gfx *func_802CC2E8(void)
+Gfx *func_802CC2E8(void)
 {
     Vtx *verts = alloc_display_list(4 * sizeof(*verts));
     Gfx *dlist = alloc_display_list(16 * sizeof(*dlist));

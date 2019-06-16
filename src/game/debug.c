@@ -35,7 +35,7 @@ extern u8 bhvJumpingBox[];
 extern u8 bhvKoopaShellUnderwater[];
 
 // DEBUG_SYS_EFFECTINFO
-static const char *sDebugEffectStringInfo[] =
+const char *sDebugEffectStringInfo[] =
 {
     "  a0 %d",
     "  a1 %d",
@@ -49,7 +49,7 @@ static const char *sDebugEffectStringInfo[] =
 };
 
 // DEBUG_SYS_ENEMYINFO
-static const char *sDebugEnemyStringInfo[] =
+const char *sDebugEnemyStringInfo[] =
 {
     "  b0 %d",
     "  b1 %d",
@@ -62,31 +62,31 @@ static const char *sDebugEnemyStringInfo[] =
     "B" // cursor
 };
 
-static s32 sDebugInfoDPadMask = 0;
-static s32 sDebugInfoDPadUpdID = 0;
-static s8 sDebugLvSelectCheckFlag = FALSE;
+s32 sDebugInfoDPadMask = 0;
+s32 sDebugInfoDPadUpdID = 0;
+s8 sDebugLvSelectCheckFlag = FALSE;
 
 #define DEBUG_PAGE_MIN DEBUG_PAGE_OBJECTINFO
 #define DEBUG_PAGE_MAX DEBUG_PAGE_ENEMYINFO
 
-static s8 sDebugPage = DEBUG_PAGE_MIN;
-static s8 sNoExtraDebug = FALSE;
-static s8 sDebugStringArrPrinted = FALSE;
-static s8 sDebugSysCursor = 0;
-static s8 sDebugInfoButtonSeqID = 0;
-static s16 sDebugInfoButtonSeq[] = {U_CBUTTONS, L_CBUTTONS, D_CBUTTONS, R_CBUTTONS, -1};
+s8 sDebugPage = DEBUG_PAGE_MIN;
+s8 sNoExtraDebug = FALSE;
+s8 sDebugStringArrPrinted = FALSE;
+s8 sDebugSysCursor = 0;
+s8 sDebugInfoButtonSeqID = 0;
+s16 sDebugInfoButtonSeq[] = {U_CBUTTONS, L_CBUTTONS, D_CBUTTONS, R_CBUTTONS, -1};
 
 // most likely present in an ifdef DEBUG build. TODO: check DD version?
-static void Stub802C9890(void)
+void Stub802C9890(void)
 {}
 
-static void Stub802C98A0(void)
+void Stub802C98A0(void)
 {}
 
-static void Stub802C98B0(void)
+void Stub802C98B0(void)
 {}
 
-static void Stub802C98C0(void)
+void Stub802C98C0(void)
 {}
 
 /*
@@ -113,7 +113,7 @@ s64 get_clock_difference(UNUSED s64 arg0)
  * information. Note the reset of the printing boolean. For all intenses and
  * purposes this creates/formats a new print state.
  */
-static void set_print_state_info(s16 *printState, s16 xCursor, s16 yCursor, s16 minYCursor, s16 maxXCursor, s16 lineYOffset)
+void set_print_state_info(s16 *printState, s16 xCursor, s16 yCursor, s16 minYCursor, s16 maxXCursor, s16 lineYOffset)
 {
     printState[DEBUG_PSTATE_DISABLED]      = FALSE;
     printState[DEBUG_PSTATE_X_CURSOR]      = xCursor;
@@ -128,7 +128,7 @@ static void set_print_state_info(s16 *printState, s16 xCursor, s16 yCursor, s16 
  * the next entry in the list. If the current print state array is too far down the list, this
  * will print "DPRINT OVER" instead, signaling that the print state overflowed.
  */
-static void print_text_array_info(s16 *printState, const char *str, s32 number)
+void print_text_array_info(s16 *printState, const char *str, s32 number)
 {
     if(!printState[DEBUG_PSTATE_DISABLED])
     {
@@ -179,13 +179,14 @@ void print_debug_top_down_mapinfo(const char *str, s32 number)
         print_text_array_info(gDebugPrintState1, str, number);
 }
 
-static void print_debug_top_down_normal(const char *str, s32 number)
+void print_debug_top_down_normal(const char *str, s32 number)
 {
     if(gDebugInfoFlags & DEBUG_INFO_FLAG_DPRINT)
         print_text_array_info(gDebugPrintState1, str, number);
 }
 
-static void print_mapinfo(void)
+#ifndef VERSION_EU
+void print_mapinfo(void)
 {
     struct Surface *pfloor;
     f32 bgY;
@@ -221,18 +222,54 @@ static void print_mapinfo(void)
     if(gCurrentObject->oPosY < water)
         print_debug_top_down_mapinfo("water %d", water);
 }
+#else
+void print_mapinfo(void)
+{
+    // EU mostly stubbed this function out.
+    struct Surface *pfloor;
+    UNUSED f32 bgY;
+    UNUSED f32 water;
+    //s32 area;
+    //s32 angY;
+    //
+    //angY = gCurrentObject->oMoveAngleYaw / 182.044000;
+    //area  = ((s32)gCurrentObject->oPosX + 0x2000) / 1024
+    //      + ((s32)gCurrentObject->oPosZ + 0x2000) / 1024 * 16;
+    //
+    bgY = find_floor(gCurrentObject->oPosX, gCurrentObject->oPosY, gCurrentObject->oPosZ, &pfloor);
+    water = find_water_level(gCurrentObject->oPosX, gCurrentObject->oPosZ);
 
-static void print_checkinfo(void)
+    print_debug_top_down_normal("mapinfo", 0);
+    //print_debug_top_down_mapinfo("area %x", area);
+    //print_debug_top_down_mapinfo("wx   %d", gCurrentObject->oPosX);
+    //print_debug_top_down_mapinfo("wy\t  %d", gCurrentObject->oPosY);
+    //print_debug_top_down_mapinfo("wz   %d", gCurrentObject->oPosZ);
+    //print_debug_top_down_mapinfo("bgY  %d", bgY);
+    //print_debug_top_down_mapinfo("angY %d", angY);
+    //
+    //if(pfloor) // not null
+    //{
+    //    print_debug_top_down_mapinfo("bgcode   %d", pfloor->type);
+    //    print_debug_top_down_mapinfo("bgstatus %d", pfloor->flags);
+    //    print_debug_top_down_mapinfo("bgarea   %d", pfloor->room);
+    //}
+    //
+    //if(gCurrentObject->oPosY < water)
+    //    print_debug_top_down_mapinfo("water %d", water);
+}
+#endif
+
+void print_checkinfo(void)
 {
     print_debug_top_down_normal("checkinfo", 0);
 }
 
-static void print_surfaceinfo(void)
+void print_surfaceinfo(void)
 {
     debug_surface_list_info(gMarioObject->oPosX, gMarioObject->oPosZ);
 }
 
-static void print_stageinfo(void)
+void print_stageinfo(void)
 {
     print_debug_top_down_normal("stageinfo", 0);
     print_debug_top_down_normal("stage param %d", gTTCSpeedSetting);
@@ -243,7 +280,7 @@ static void print_stageinfo(void)
  * also prints the cursor functionality intended to be used with modifying
  * gDebugInfo to set enemy/effect behaviors.
  */
-static void print_string_array_info(const char **strArr)
+void print_string_array_info(const char **strArr)
 {
     s32 i;
 
@@ -262,19 +299,19 @@ static void print_string_array_info(const char **strArr)
     }
 }
 
-static void print_effectinfo(void)
+void print_effectinfo(void)
 {
     print_debug_top_down_normal("effectinfo", 0);
     print_string_array_info(sDebugEffectStringInfo);
 }
 
-static void print_enemyinfo(void)
+void print_enemyinfo(void)
 {
     print_debug_top_down_normal("enemyinfo", 0);
     print_string_array_info(sDebugEnemyStringInfo);
 }
 
-static void update_debug_dpadmask(void)
+void update_debug_dpadmask(void)
 {
     s32 dPadMask = gPlayer1Controller->buttonDown & (U_JPAD | D_JPAD | L_JPAD | R_JPAD);
 
@@ -318,9 +355,9 @@ void debug_unknown_level_select_check(void)
         else
             gDebugInfoFlags = DEBUG_INFO_FLAG_LSELECT;
 
-        gNumFindFloorCalls = 0;
-        gNumFindCeilCalls = 0;
-        gNumFindWallCalls = 0;
+        gNumCalls.floor = 0;
+        gNumCalls.ceil = 0;
+        gNumCalls.wall = 0;
     }
 }
 
@@ -569,7 +606,7 @@ static void Unknown802CA8B4(void)
 }
 
 // unused, what is this?
-static void Unknown802CAA84(s16 *enemyArr)
+void Unknown802CAA84(s16 *enemyArr)
 {
     // copy b1-b4 over to an unknown s16 array
     enemyArr[4] = gDebugInfo[DEBUG_PAGE_ENEMYINFO][1];

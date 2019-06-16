@@ -64,9 +64,15 @@ extern s32 gNumFindFloorMisses;
 extern UNUSED s32 unused_8033BEF8;
 extern s32 gUnknownWallCount;
 extern u32 gObjectCounter;
-extern s16 gNumFindFloorCalls;
-extern s16 gNumFindCeilCalls;
-extern s16 gNumFindWallCalls;
+
+struct NumTimesCalled {
+    /*0x00*/ s16 floor;
+    /*0x02*/ s16 ceil;
+    /*0x04*/ s16 wall;
+};
+
+extern struct NumTimesCalled gNumCalls;
+
 extern s16 gDebugInfo[][8];
 extern s16 gDebugInfoOverwrite[][8];
 

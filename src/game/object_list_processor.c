@@ -51,19 +51,9 @@ s32 gUnknownWallCount;
 u32 gObjectCounter;
 
 /**
- * The number of times find_floor has been called.
+ * The number of times find_floor, find_ceil, and find_wall_collisions have been called respectively.
  */
-s16 gNumFindFloorCalls;
-
-/**
- * The number of times find_ceil has been called.
- */
-s16 gNumFindCeilCalls;
-
-/**
- * The number of times find_wall_collisions has been called.
- */
-s16 gNumFindWallCalls;
+struct NumTimesCalled gNumCalls;
 
 /**
  * An array of debug controls that could be used to tweak in-game parameters.

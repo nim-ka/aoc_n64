@@ -14,8 +14,8 @@
 
 s16 gPaintingMarioFloorType;
 float gPaintingMarioXPos, gPaintingMarioYPos, gPaintingMarioZPos;
-s16(*D_8035FFA0)[5];
-float(*D_8035FFA4)[3];
+struct Thing *D_8035FFA0;
+float(*D_8035FFA4)[3]; //TODO: Use struct
 struct PaintingData *ripplingPainting;
 s8 dddStatus;
 
@@ -369,7 +369,7 @@ void painting_update_ripple_status(struct PaintingData *painting)
     }
 }
 
-int painting_calculate_point_ripple(struct PaintingData *painting, float xpos, float ypos) // note that xpos and ypos correspond to a point on the face of the painting, not actual axes
+s16 painting_calculate_point_ripple(struct PaintingData *painting, float xpos, float ypos) // note that xpos and ypos correspond to a point on the face of the painting, not actual axes
 {
     float rippleMag = painting->currRippleMag;
     float rippleRate = painting->currRippleRate;
@@ -397,7 +397,7 @@ int painting_calculate_point_ripple(struct PaintingData *painting, float xpos, f
     }
 }
 
-int painting_conditionally_calculate_point_ripple(struct PaintingData *painting, s16 condition, s16 xpos, s16 ypos)
+s16 painting_conditionally_calculate_point_ripple(struct PaintingData *painting, s16 condition, s16 xpos, s16 ypos)
 {
     s16 rippleHeight = 0;
 
@@ -410,15 +410,15 @@ void Print1(struct PaintingData *painting, s16 *b, s16 c)
 {
     s16 sp1E;
 
-    D_8035FFA0 = mem_pool_alloc(D_8033A124, c * 10);
+    D_8035FFA0 = mem_pool_alloc(D_8033A124, c * sizeof(struct Thing));
     if (D_8035FFA0 == NULL)
     {
     }
     for (sp1E = 0; sp1E < c; sp1E++)
     {
-        D_8035FFA0[sp1E][0] = b[sp1E * 3 + 1];
-        D_8035FFA0[sp1E][1] = b[sp1E * 3 + 2];
-        D_8035FFA0[sp1E][2] = painting_conditionally_calculate_point_ripple(painting, b[(sp1E + 1) * 3], D_8035FFA0[sp1E][0], D_8035FFA0[sp1E][1]);
+        D_8035FFA0[sp1E].unk0[0] = b[sp1E * 3 + 1];
+        D_8035FFA0[sp1E].unk0[1] = b[sp1E * 3 + 2];
+        D_8035FFA0[sp1E].unk0[2] = painting_conditionally_calculate_point_ripple(painting, b[(sp1E + 1) * 3], D_8035FFA0[sp1E].unk0[0], D_8035FFA0[sp1E].unk0[1]);
     }
 }
 
@@ -426,7 +426,7 @@ void Print2(s16 *a, s16 b, s16 c)
 {
     s16 sp46;
 
-    D_8035FFA4 = mem_pool_alloc(D_8033A124, c * 12);
+    D_8035FFA4 = mem_pool_alloc(D_8033A124, c * 12U); // TODO: Make use sizeof(struct)
     if (D_8035FFA4 == NULL)
     {
     }
@@ -436,15 +436,15 @@ void Print2(s16 *a, s16 b, s16 c)
         s16 sp42 = a[sp44];
         s16 sp40 = a[sp44 + 1];
         s16 sp3E = a[sp44 + 2];
-        f32 sp38 = D_8035FFA0[sp42][0];
-        f32 sp34 = D_8035FFA0[sp42][1];
-        f32 sp30 = D_8035FFA0[sp42][2];
-        f32 sp2C = D_8035FFA0[sp40][0];
-        f32 sp28 = D_8035FFA0[sp40][1];
-        f32 sp24 = D_8035FFA0[sp40][2];
-        f32 sp20 = D_8035FFA0[sp3E][0];
-        f32 sp1C = D_8035FFA0[sp3E][1];
-        f32 sp18 = D_8035FFA0[sp3E][2];
+        f32 sp38 = D_8035FFA0[sp42].unk0[0];
+        f32 sp34 = D_8035FFA0[sp42].unk0[1];
+        f32 sp30 = D_8035FFA0[sp42].unk0[2];
+        f32 sp2C = D_8035FFA0[sp40].unk0[0];
+        f32 sp28 = D_8035FFA0[sp40].unk0[1];
+        f32 sp24 = D_8035FFA0[sp40].unk0[2];
+        f32 sp20 = D_8035FFA0[sp3E].unk0[0];
+        f32 sp1C = D_8035FFA0[sp3E].unk0[1];
+        f32 sp18 = D_8035FFA0[sp3E].unk0[2];
 
         D_8035FFA4[sp46][0] = (sp28 - sp34) * (sp18 - sp24) - (sp24 - sp30) * (sp1C - sp28);
         D_8035FFA4[sp46][1] = (sp24 - sp30) * (sp20 - sp2C) - (sp2C - sp38) * (sp18 - sp24);
@@ -496,15 +496,15 @@ void func_802D39DC(s16 *a, s16 b)
         sp1C = sqrtf(sp28 * sp28 + sp24 * sp24 + sp20 * sp20);
         if (sp1C == 0.0)
         {
-            ((u8 (*)[10])D_8035FFA0)[index][6] = 0;
-            ((u8 (*)[10])D_8035FFA0)[index][7] = 0;
-            ((u8 (*)[10])D_8035FFA0)[index][8] = 0;
+            D_8035FFA0[index].unk6[0] = 0;
+            D_8035FFA0[index].unk6[1] = 0;
+            D_8035FFA0[index].unk6[2] = 0;
         }
         else
         {
-            ((u8 (*)[10])D_8035FFA0)[index][6] = small_float_to_byte(sp28 / sp1C);
-            ((u8 (*)[10])D_8035FFA0)[index][7] = small_float_to_byte(sp24 / sp1C);
-            ((u8 (*)[10])D_8035FFA0)[index][8] = small_float_to_byte(sp20 / sp1C);
+            D_8035FFA0[index].unk6[0] = small_float_to_byte(sp28 / sp1C);
+            D_8035FFA0[index].unk6[1] = small_float_to_byte(sp24 / sp1C);
+            D_8035FFA0[index].unk6[2] = small_float_to_byte(sp20 / sp1C);
         }
     }
 }
@@ -546,11 +546,11 @@ void *func_802D3CF0(u8 *img, s16 b, s16 c, s16 *d, s16 e, s16 f, u8 g)
             tx = d[sp98 * 3 + 2];
             ty = d[sp98 * 3 + 3];
             make_vertex(verts, sp9E * 15 + sp9C,
-                D_8035FFA0[sp96][0], D_8035FFA0[sp96][1], D_8035FFA0[sp96][2],
+                D_8035FFA0[sp96].unk0[0], D_8035FFA0[sp96].unk0[1], D_8035FFA0[sp96].unk0[2],
                 tx, ty,
-                ((s8 (*)[10])D_8035FFA0)[sp96][6],
-                ((s8 (*)[10])D_8035FFA0)[sp96][7],
-                ((s8 (*)[10])D_8035FFA0)[sp96][8],
+                D_8035FFA0[sp96].unk6[0],
+                D_8035FFA0[sp96].unk6[1],
+                D_8035FFA0[sp96].unk6[2],
                 g);
         }
         gSPVertex(sp7C++, VIRTUAL_TO_PHYSICAL(verts + sp9E * 15), 15, 0);
@@ -565,11 +565,11 @@ void *func_802D3CF0(u8 *img, s16 b, s16 c, s16 *d, s16 e, s16 f, u8 g)
         tx = d[sp98 * 3 + 2];
         ty = d[sp98 * 3 + 3];
         make_vertex(verts, sp90 * 15 + sp9C,
-            D_8035FFA0[sp96][0], D_8035FFA0[sp96][1], D_8035FFA0[sp96][2],
+            D_8035FFA0[sp96].unk0[0], D_8035FFA0[sp96].unk0[1], D_8035FFA0[sp96].unk0[2],
             tx, ty,
-            ((s8 (*)[10])D_8035FFA0)[sp96][6],
-            ((s8 (*)[10])D_8035FFA0)[sp96][7],
-            ((s8 (*)[10])D_8035FFA0)[sp96][8],
+            D_8035FFA0[sp96].unk6[0],
+            D_8035FFA0[sp96].unk6[1],
+            D_8035FFA0[sp96].unk6[2],
             g);
     }
     gSPVertex(sp7C++, VIRTUAL_TO_PHYSICAL(verts + sp90 * 15), sp8E * 3, 0);

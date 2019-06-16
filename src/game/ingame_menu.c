@@ -194,7 +194,7 @@ void dl_add_new_ortho_matrix(void)
 }
 
 // dl_add_new_ia8_tex_from_i1
-u8* func_802D69A0(u16* in, s16 width, s16 height)
+static u8* func_802D69A0(u16* in, s16 width, s16 height)
 {
     s32 inPos;
     u16 bitMask;

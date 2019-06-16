@@ -121,7 +121,13 @@ extern float D_8032FFDC;
 // defined in file
 extern s16 gPaintingMarioFloorType;
 extern float gPaintingMarioXPos, gPaintingMarioYPos, gPaintingMarioZPos;
-extern s16 (*D_8035FFA0)[5];
+
+struct Thing { //TODO: Give me a better name
+    /*0x00*/ s16 unk0[3];
+    /*0x06*/ s8 unk6[3];
+};
+
+extern struct Thing *D_8035FFA0;
 extern float (*D_8035FFA4)[3];
 extern struct PaintingData *ripplingPainting;
 extern s8 dddStatus;

@@ -101,3 +101,6 @@ language_text_bin_2_start = 0xE9F50;
 language_text_bin_2_end = 0xEF960;
 language_text_bin_3_start = 0xEF960;
 language_text_bin_3_end = 0xF5330;
+dl_cake_end_screen_eu_070296F8 = 0x070296F8;
+dl_cake_end_screen_eu_07029768 = 0x07029768;
+dl_cake_end_screen_eu_070297D8 = 0x070297D8;

@@ -110,14 +110,25 @@ SECTIONS
       BUILD_DIR/src/game/debug_course.o(.text);
       BUILD_DIR/src/game/object_list_processor.o(.text);
 #if VERSION_EU
-      /* hmm.. in EU, object_helpers moved. Likely a swap with the
-         next file. Moving for now just to diff. TODO, verify */
       BUILD_DIR/src/game/behavior_actions.o(.text);
+      BUILD_DIR/src/game/platform_displacement.o(.text);
+      BUILD_DIR/src/game/spawn_sound.o(.text);
+      BUILD_DIR/src/game/debug.o(.text);
+      BUILD_DIR/src/game/screen_transition.o(.text);
+      BUILD_DIR/src/game/shadow.o(.text);
+      BUILD_DIR/src/game/skybox.o(.text);
+      BUILD_DIR/src/game/moving_texture.o(.text);
+      BUILD_DIR/src/game/geo_misc.o(.text);
+      BUILD_DIR/src/game/paintings.o(.text);
+      BUILD_DIR/src/game/print.o(.text);
+      BUILD_DIR/src/game/ingame_menu.o(.text);
+      // UNSORTED (find where these are)
+      BUILD_DIR/src/game/object_collision.o(.text);
+      BUILD_DIR/src/game/spawn_object.o(.text);
       BUILD_DIR/src/game/object_helpers.o(.text);
 #else
       BUILD_DIR/src/game/object_helpers.o(.text);
       BUILD_DIR/src/game/behavior_actions.o(.text);
-#endif
       BUILD_DIR/src/game/platform_displacement.o(.text);
       BUILD_DIR/src/game/object_collision.o(.text);
       BUILD_DIR/src/game/spawn_object.o(.text);
@@ -131,6 +142,7 @@ SECTIONS
       BUILD_DIR/src/game/paintings.o(.text);
       BUILD_DIR/src/game/print.o(.text);
       BUILD_DIR/src/game/ingame_menu.o(.text);
+#endif
       BUILD_DIR/src/game/envfx_snow.o(.text);
       BUILD_DIR/src/game/envfx_bubbles.o(.text);
       BUILD_DIR/src/game/macro_special_objects.o(.text);

@@ -26,7 +26,7 @@ struct TextLabel *sTextLabels[52];
 
 s16 sTextLabelsCount = 0;
 
-static s32 int_pow(s32 n, s32 exponent)
+s32 int_pow(s32 n, s32 exponent)
 {
     s32 result = 1;
     s32 i;
@@ -36,7 +36,7 @@ static s32 int_pow(s32 n, s32 exponent)
     return result;
 }
 
-static void format_integer(s32 n, s32 base, char *dest, s32 *totalLength, u8 width, s8 zeroPad)
+void format_integer(s32 n, s32 base, char *dest, s32 *totalLength, u8 width, s8 zeroPad)
 {
     u32 powBase;
     s32 numDigits = 0;
@@ -71,8 +71,7 @@ static void format_integer(s32 n, s32 base, char *dest, s32 *totalLength, u8 wid
         // add leading pad
         if (width > numDigits)
         {
-            for (len = 0; len < width - numDigits; len++)
-                dest[len] = pad;
+            for (len = 0; len < width - numDigits; len++) dest[len] = pad;
             if (negative == TRUE)
                 len--;
         }
@@ -89,9 +88,9 @@ static void format_integer(s32 n, s32 base, char *dest, s32 *totalLength, u8 wid
             digit = n / powBase;
             // FIXME: Why doesn't [] match?
             if (digit < 10)
-                *(dest + len + numDigits - i - 1) = digit + '0';
+                *(dest + len + numDigits - 1 - i ) = digit + '0';
             else
-                *(dest + len + numDigits - i - 1) = digit + '7';
+                *(dest + len + numDigits - 1 - i ) = digit + '7';
             n -= digit * powBase;
         }
     }
@@ -100,8 +99,7 @@ static void format_integer(s32 n, s32 base, char *dest, s32 *totalLength, u8 wid
         numDigits = 1;
         if (width > numDigits)
         {
-            for (len = 0; len < width - numDigits; len++)
-                dest[len] = pad;
+            for (len = 0; len < width - numDigits; len++) dest[len] = pad;
         }
         dest[len] = '0';
     }
@@ -109,7 +107,7 @@ static void format_integer(s32 n, s32 base, char *dest, s32 *totalLength, u8 wid
     *totalLength += numDigits + len;
 }
 
-static void parse_width_field(const char *str, s32 *srcIndex, u8 *width, s8 *zeroPad)
+void parse_width_field(const char *str, s32 *srcIndex, u8 *width, s8 *zeroPad)
 {
     s8 digits[12];  // unknown length
     s8 digitsLen = 0;
@@ -232,7 +230,7 @@ void print_text_centered(s32 x, s32 y, const char *str)
     sTextLabelsCount++;
 }
 
-static s8 char_to_glyph_index(char a)
+s8 char_to_glyph_index(char a)
 {
     if (a >= 'A' && a <= 'Z')
         return a - 55;
@@ -267,7 +265,7 @@ static s8 char_to_glyph_index(char a)
     return -1;
 }
 
-static void add_glyph_texture(s8 glyphIndex)
+void add_glyph_texture(s8 glyphIndex)
 {
     u32 *glyphs = segmented_to_virtual(seg2_hud_lut);
 
@@ -276,7 +274,7 @@ static void add_glyph_texture(s8 glyphIndex)
     gSPDisplayList(gDisplayListHead++, dl_hud_img_load_tex_block);
 }
 
-static void func_802D5FEC(s32 *x, s32 *y)
+void func_802D5FEC(s32 *x, s32 *y)
 {
     if (*x < 10)
         *x = 10;
@@ -289,7 +287,7 @@ static void func_802D5FEC(s32 *x, s32 *y)
         *y = 220;
 }
 
-static void func_802D605C(s32 x, s32 y, s32 pos)
+void func_802D605C(s32 x, s32 y, s32 pos)
 {
     s32 sp34 = x + pos * 12;
     s32 sp30 = 224 - y;
@@ -329,8 +327,23 @@ void func_802D61A8(void)
             glyphIndex = char_to_glyph_index(sTextLabels[i]->buffer[j]);
             if (glyphIndex != -1)
             {
+#ifdef VERSION_EU
+                if(glyphIndex == 55)
+                {
+                    add_glyph_texture(30);
+                    func_802D605C(sTextLabels[i]->x, sTextLabels[i]->y, j);
+                    add_glyph_texture(58);
+                    func_802D605C(sTextLabels[i]->x, sTextLabels[i]->y + 3, j);
+                }
+                else
+                {
+                    add_glyph_texture(glyphIndex);
+                    func_802D605C(sTextLabels[i]->x, sTextLabels[i]->y, j);
+                }
+#else
                 add_glyph_texture(glyphIndex);
                 func_802D605C(sTextLabels[i]->x, sTextLabels[i]->y, j);
+#endif
             }
         }
         mem_pool_free(D_8033A124, (void *)sTextLabels[i]);

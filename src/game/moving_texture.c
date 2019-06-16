@@ -561,8 +561,8 @@ void func_802D0A94(Vtx *verts, s32 n, s16 *c, struct Struct802D0DD4 *d, s8 e)
         sp54 = c[5];
         sp4E = c[n * 5 + 4];
         sp4C = c[n * 5 + 5];
-        tx = sp56 + sp4E * 32 * 32;
-        ty = sp54 + sp4C * 32 * 32;
+        tx = sp56 + ((sp4E * 32) * 32U);
+        ty = sp54 + ((sp4C * 32) * 32U);
         r1 = d->unk1C;
         g1 = d->unk1D;
         b1 = d->unk1E;
@@ -576,8 +576,8 @@ void func_802D0A94(Vtx *verts, s32 n, s16 *c, struct Struct802D0DD4 *d, s8 e)
         sp54 = c[8];
         sp4E = c[n * 8 + 7];
         sp4C = c[n * 8 + 8];
-        tx = sp56 + sp4E * 32 * 32;
-        ty = sp54 + sp4C * 32 * 32;
+        tx = sp56 + ((sp4E * 32) * 32U);
+        ty = sp54 + ((sp4C * 32) * 32U);
         r2 = c[n * 8 + 4];
         g2 = c[n * 8 + 5];
         b2 = c[n * 8 + 6];

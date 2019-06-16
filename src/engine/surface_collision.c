@@ -180,7 +180,7 @@ s32 find_wall_collisions(struct WallCollisionData *colData)
     node = gStaticSurfacePartition[cellZ][cellX][SPATIAL_PARTITION_WALLS].next;
     numCollisions += find_wall_collisions_from_list(node, colData);
 
-    gNumFindWallCalls += 1;
+    gNumCalls.wall += 1;
     return numCollisions;
 }
 
@@ -274,7 +274,7 @@ f32 find_ceil(f32 posX, f32 posY, f32 posZ, struct Surface **pceil)
 
     *pceil = ceil;
 
-    gNumFindCeilCalls += 1;
+    gNumCalls.ceil += 1;
     return height;
 }
 
@@ -439,7 +439,7 @@ f32 find_floor(f32 xPos, f32 yPos, f32 zPos, struct Surface **pfloor)
 
     *pfloor = floor;
 
-    gNumFindFloorCalls += 1;
+    gNumCalls.floor += 1;
     return height;
 }
 
@@ -564,9 +564,9 @@ void debug_surface_list_info(f32 xPos, f32 zPos)
 
     set_text_array_x_y(80, -3);
 
-    print_debug_top_down_mapinfo("%d", gNumFindFloorCalls);
-    print_debug_top_down_mapinfo("%d", gNumFindWallCalls);
-    print_debug_top_down_mapinfo("%d", gNumFindCeilCalls);
+    print_debug_top_down_mapinfo("%d", gNumCalls.floor);
+    print_debug_top_down_mapinfo("%d", gNumCalls.wall);
+    print_debug_top_down_mapinfo("%d", gNumCalls.ceil);
 
     set_text_array_x_y(-80, 0);
 
@@ -574,9 +574,9 @@ void debug_surface_list_info(f32 xPos, f32 zPos)
     print_debug_top_down_mapinfo("statbg %d", gNumStaticSurfaces);
     print_debug_top_down_mapinfo("movebg %d", gSurfacesAllocated - gNumStaticSurfaces);
 
-    gNumFindFloorCalls = 0;
-    gNumFindCeilCalls = 0;
-    gNumFindWallCalls = 0;
+    gNumCalls.floor = 0;
+    gNumCalls.ceil = 0;
+    gNumCalls.wall = 0;
 }
 
 static s32 unused_resolve_floor_or_ceil_collisions(
