@@ -11,6 +11,7 @@
 #include "text_strings.h"
 #include "segment2.h"
 #include "segment7.h"
+#include "eu_translation.h"
 #include "ingame_menu.h"
 #include "engine/math_util.h"
 
@@ -1475,15 +1476,33 @@ extern Gfx castle_grounds_seg7_us_dl_0700F2E8[];
 #define PEACH_MESSAGE_TIMER 250
 #endif
 
+extern int D_EU_802FD650;
+
 // "Dear Mario" message handler
 void print_peach_letter_message(void)
 {
-// TODO: EU relocates dialog table to translation segment 0x19
-#ifndef VERSION_EU
-    void **diagTable = segmented_to_virtual(seg2_dialog_table);
-    struct DialogEntry *diagEntry = segmented_to_virtual(diagTable[gDialogID]);
+    void **diagTable;
+    struct DialogEntry *diagEntry;
+    u8 *str;
+#ifdef VERSION_EU
+    D_EU_802FD650 = eu_get_language();
+    switch (D_EU_802FD650) {
+        case LANGUAGE_ENGLISH:
+            diagTable = segmented_to_virtual(dialog_table_eu_en);
+            break;
+        case LANGUAGE_FRENCH:
+            diagTable = segmented_to_virtual(dialog_table_eu_fr);
+            break;
+        case LANGUAGE_GERMAN:
+            diagTable = segmented_to_virtual(dialog_table_eu_de);
+            break;
+    }
+#else
+    diagTable = segmented_to_virtual(seg2_dialog_table);
+#endif
+    diagEntry = segmented_to_virtual(diagTable[gDialogID]);
 
-    u8 *str = segmented_to_virtual(diagEntry->str);
+    str = segmented_to_virtual(diagEntry->str);
 
     dl_add_new_translation_matrix(1, 97.0f, 118.0f, 0);
 
@@ -1530,7 +1549,6 @@ void print_peach_letter_message(void)
     }
 
     gCutsceneMsgTimer++;
-#endif // !VERSION_EU
 }
 
 void RenderHudCannonReticle(void)

@@ -216,8 +216,6 @@ Gfx *geo_exec_flying_carpet_create(
 }
 
 #ifdef VERSION_EU
-extern u16 func_eu_8026B05C(void); // get language ID
-
 // TODO: Symbolize these
 extern Gfx dl_cake_end_screen_eu_070296F8[];
 extern Gfx dl_cake_end_screen_eu_07029768[];
@@ -247,15 +245,15 @@ Gfx *geo_exec_cake_end_screen(
 
         gSPDisplayList(displayListHead++, dl_proj_mtx_fullscreen);
 #ifdef VERSION_EU
-        switch(func_eu_8026B05C())
+        switch(eu_get_language())
         {
-            case 0:
+            case LANGUAGE_ENGLISH:
                 gSPDisplayList(displayListHead++, dl_cake_end_screen_eu_070296F8);
                 break;
-            case 1:
+            case LANGUAGE_FRENCH:
                 gSPDisplayList(displayListHead++, dl_cake_end_screen_eu_07029768);
                 break;
-            case 2:
+            case LANGUAGE_GERMAN:
                 gSPDisplayList(displayListHead++, dl_cake_end_screen_eu_070297D8);
                 break;
         }

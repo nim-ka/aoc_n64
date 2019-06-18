@@ -726,20 +726,20 @@ void save_file_move_cap_to_default_location(void)
 }
 
 #ifdef VERSION_EU
-extern u16 D_EU_802030D2;
+extern u16 gLanguage;
 extern s8 D_EU_80309765;
 extern void func_eu_8026A1FC(void);
 
-void func_eu_8026B028(u16 foo)
+void eu_set_language(u16 language)
 {
-    D_EU_802030D2 = foo;
+    gLanguage = language;
     D_EU_80309765 = 1;
     func_eu_8026A1FC();
 }
 
-u16 func_eu_8026B05C(void)
+u16 eu_get_language(void)
 {
-    return D_EU_802030D2;
+    return gLanguage;
 }
 #endif
 

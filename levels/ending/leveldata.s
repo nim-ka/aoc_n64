@@ -3,6 +3,326 @@
 .include "macros.inc"
 .include "PR/gbi.inc"
 
+.ifdef VERSION_EU
+
+cake_end_texture_07000000: # 0x07000000 - 0x07000FFF
+.incbin "levels/ending/eu_000000.rgba16"
+
+cake_end_texture_07001000: # 0x07001000 - 0x07001FFF
+.incbin "levels/ending/eu_001000.rgba16"
+
+cake_end_texture_07002000: # 0x07002000 - 0x07002FFF
+.incbin "levels/ending/eu_002000.rgba16"
+
+cake_end_texture_07003000: # 0x07003000 - 0x07003FFF
+.incbin "levels/ending/eu_003000.rgba16"
+
+cake_end_texture_07004000: # 0x07004000 - 0x07004FFF
+.incbin "levels/ending/eu_004000.rgba16"
+
+cake_end_texture_07005000: # 0x07005000 - 0x07005FFF
+.incbin "levels/ending/eu_005000.rgba16"
+
+cake_end_texture_07006000: # 0x07006000 - 0x07006FFF
+.incbin "levels/ending/eu_006000.rgba16"
+
+cake_end_texture_07007000: # 0x07007000 - 0x07007FFF
+.incbin "levels/ending/eu_007000.rgba16"
+
+cake_end_texture_07008000: # 0x07008000 - 0x07008FFF
+.incbin "levels/ending/eu_008000.rgba16"
+
+cake_end_texture_07009000: # 0x07009000 - 0x07009FFF
+.incbin "levels/ending/eu_009000.rgba16"
+
+cake_end_texture_0700A000: # 0x0700A000 - 0x0700AFFF
+.incbin "levels/ending/eu_00A000.rgba16"
+
+cake_end_texture_0700B000: # 0x0700B000 - 0x0700BFFF
+.incbin "levels/ending/eu_00B000.rgba16"
+
+cake_end_texture_0700C000: # 0x0700C000 - 0x0700CFFF
+.incbin "levels/ending/eu_00C000.rgba16"
+
+cake_end_texture_0700D000: # 0x0700D000 - 0x0700DFFF
+.incbin "levels/ending/eu_00D000.rgba16"
+
+cake_end_texture_0700E000: # 0x0700E000 - 0x0700EFFF
+.incbin "levels/ending/eu_00E000.rgba16"
+
+cake_end_texture_0700F000: # 0x0700F000 - 0x0700FFFF
+.incbin "levels/ending/eu_00F000.rgba16"
+
+cake_end_texture_07010000: # 0x07010000 - 0x07010FFF
+.incbin "levels/ending/eu_010000.rgba16"
+
+cake_end_texture_07011000: # 0x07011000 - 0x07011FFF
+.incbin "levels/ending/eu_011000.rgba16"
+
+cake_end_texture_07012000: # 0x07012000 - 0x07012FFF
+.incbin "levels/ending/eu_012000.rgba16"
+
+cake_end_texture_07013000: # 0x07013000 - 0x07013FFF
+.incbin "levels/ending/eu_013000.rgba16"
+
+cake_end_texture_07014000: # 0x07014000 - 0x07014FFF
+.incbin "levels/ending/eu_014000.rgba16"
+
+cake_end_texture_07015000: # 0x07015000 - 0x07015FFF
+.incbin "levels/ending/eu_015000.rgba16"
+
+cake_end_texture_07016000: # 0x07016000 - 0x07016FFF
+.incbin "levels/ending/eu_016000.rgba16"
+
+cake_end_texture_07017000: # 0x07017000 - 0x07017FFF
+.incbin "levels/ending/eu_017000.rgba16"
+
+cake_end_texture_07018000: # 0x07018000 - 0x07018FFF
+.incbin "levels/ending/eu_018000.rgba16"
+
+cake_end_texture_07019000: # 0x07019000 - 0x07019FFF
+.incbin "levels/ending/eu_019000.rgba16"
+
+cake_end_texture_0701A000: # 0x0701A000 - 0x0701AFFF
+.incbin "levels/ending/eu_01A000.rgba16"
+
+cake_end_texture_0701B000: # 0x0701B000 - 0x0701BFFF
+.incbin "levels/ending/eu_01B000.rgba16"
+
+cake_end_texture_0701C000: # 0x0701C000 - 0x0701CFFF
+.incbin "levels/ending/eu_01C000.rgba16"
+
+cake_end_texture_0701D000: # 0x0701D000 - 0x0701DFFF
+.incbin "levels/ending/eu_01D000.rgba16"
+
+cake_end_texture_0701E000: # 0x0701E000 - 0x0701EFFF
+.incbin "levels/ending/eu_01E000.rgba16"
+
+cake_end_texture_0701F000: # 0x0701F000 - 0x0701FFFF
+.incbin "levels/ending/eu_01F000.rgba16"
+
+cake_end_texture_07020000: # 0x07020000 - 0x07020FFF
+.incbin "levels/ending/eu_020000.rgba16"
+
+cake_end_texture_07021000: # 0x07021000 - 0x07021FFF
+.incbin "levels/ending/eu_021000.rgba16"
+
+cake_end_texture_07022000: # 0x07022000 - 0x07022FFF
+.incbin "levels/ending/eu_022000.rgba16"
+
+cake_end_texture_07023000: # 0x07023000 - 0x07023FFF
+.incbin "levels/ending/eu_023000.rgba16"
+
+cake_end_texture_07024000: # 0x07024000 - 0x07024FFF
+.incbin "levels/ending/eu_024000.rgba16"
+
+cake_end_texture_07025000: # 0x07025000 - 0x07025FFF
+.incbin "levels/ending/eu_025000.rgba16"
+
+cake_end_texture_07026000: # 0x07026000 - 0x07026FFF
+.incbin "levels/ending/eu_026000.rgba16"
+
+cake_end_texture_07027000: # 0x07027000 - 0x07027FFF
+.incbin "levels/ending/eu_027000.rgba16"
+
+cake_end_texture_07028000: # 0x07028000 - 0x07028FFF
+.incbin "levels/ending/eu_028000.rgba16"
+
+glabel dl_cake_end_screen # 0x07029000 - 0x070296D8
+gsDPPipeSync
+gsDPSetCycleType G_CYC_COPY
+gsDPSetTexturePersp G_TP_NONE
+gsDPSetRenderMode G_RM_NOOP, G_RM_NOOP2
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
+gsDPTileSync
+gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 16, 0, G_TX_RENDERTILE, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, G_TX_NOLOD, G_TX_CLAMP | G_TX_NOMIRROR, 6, G_TX_NOLOD
+gsDPSetTileSize 0, 0, 0, 252, 124
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, cake_end_texture_07000000
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
+gsSPTextureRectangle 0, 32, 252, 156, 0, 0, 0, 4096, 1024
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, cake_end_texture_07001000
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
+gsSPTextureRectangle 256, 32, 508, 156, 0, 0, 0, 4096, 1024
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, cake_end_texture_07002000
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
+gsSPTextureRectangle 512, 32, 764, 156, 0, 0, 0, 4096, 1024
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, cake_end_texture_07003000
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
+gsSPTextureRectangle 768, 32, 1020, 156, 0, 0, 0, 4096, 1024
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, cake_end_texture_07004000
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
+gsSPTextureRectangle 1024, 32, 1276, 156, 0, 0, 0, 4096, 1024
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, cake_end_texture_07005000
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
+gsSPTextureRectangle 0, 160, 252, 284, 0, 0, 0, 4096, 1024
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, cake_end_texture_07006000
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
+gsSPTextureRectangle 256, 160, 508, 284, 0, 0, 0, 4096, 1024
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, cake_end_texture_07007000
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
+gsSPTextureRectangle 512, 160, 764, 284, 0, 0, 0, 4096, 1024
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, cake_end_texture_07008000
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
+gsSPTextureRectangle 768, 160, 1020, 284, 0, 0, 0, 4096, 1024
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, cake_end_texture_07009000
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
+gsSPTextureRectangle 1024, 160, 1276, 284, 0, 0, 0, 4096, 1024
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, cake_end_texture_0700A000
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
+gsSPTextureRectangle 0, 288, 252, 412, 0, 0, 0, 4096, 1024
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, cake_end_texture_0700B000
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
+gsSPTextureRectangle 256, 288, 508, 412, 0, 0, 0, 4096, 1024
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, cake_end_texture_0700C000
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
+gsSPTextureRectangle 512, 288, 764, 412, 0, 0, 0, 4096, 1024
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, cake_end_texture_0700D000
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
+gsSPTextureRectangle 768, 288, 1020, 412, 0, 0, 0, 4096, 1024
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, cake_end_texture_0700E000
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
+gsSPTextureRectangle 1024, 288, 1276, 412, 0, 0, 0, 4096, 1024
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, cake_end_texture_0700F000
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
+gsSPTextureRectangle 0, 416, 252, 540, 0, 0, 0, 4096, 1024
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, cake_end_texture_07010000
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
+gsSPTextureRectangle 256, 416, 508, 540, 0, 0, 0, 4096, 1024
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, cake_end_texture_07011000
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
+gsSPTextureRectangle 512, 416, 764, 540, 0, 0, 0, 4096, 1024
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, cake_end_texture_07012000
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
+gsSPTextureRectangle 768, 416, 1020, 540, 0, 0, 0, 4096, 1024
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, cake_end_texture_07013000
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
+gsSPTextureRectangle 1024, 416, 1276, 540, 0, 0, 0, 4096, 1024
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, cake_end_texture_07014000
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
+gsSPTextureRectangle 0, 544, 252, 668, 0, 0, 0, 4096, 1024
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, cake_end_texture_07015000
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
+gsSPTextureRectangle 256, 544, 508, 668, 0, 0, 0, 4096, 1024
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, cake_end_texture_07016000
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
+gsSPTextureRectangle 512, 544, 764, 668, 0, 0, 0, 4096, 1024
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, cake_end_texture_07017000
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
+gsSPTextureRectangle 768, 544, 1020, 668, 0, 0, 0, 4096, 1024
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, cake_end_texture_07018000
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
+gsSPTextureRectangle 1024, 544, 1276, 668, 0, 0, 0, 4096, 1024
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, cake_end_texture_07019000
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
+gsSPTextureRectangle 0, 672, 252, 796, 0, 0, 0, 4096, 1024
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, cake_end_texture_0701A000
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
+gsSPTextureRectangle 256, 672, 508, 796, 0, 0, 0, 4096, 1024
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, cake_end_texture_0701B000
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
+gsSPTextureRectangle 512, 672, 764, 796, 0, 0, 0, 4096, 1024
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, cake_end_texture_0701C000
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
+gsSPTextureRectangle 768, 672, 1020, 796, 0, 0, 0, 4096, 1024
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, cake_end_texture_0701D000
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
+gsSPTextureRectangle 1024, 672, 1276, 796, 0, 0, 0, 4096, 1024
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, cake_end_texture_0701E000
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
+gsSPTextureRectangle 0, 800, 252, 924, 0, 0, 0, 4096, 1024
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, cake_end_texture_0701F000
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
+gsSPTextureRectangle 256, 800, 508, 924, 0, 0, 0, 4096, 1024
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, cake_end_texture_07020000
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
+gsSPTextureRectangle 512, 800, 764, 924, 0, 0, 0, 4096, 1024
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, cake_end_texture_07021000
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
+gsSPTextureRectangle 768, 800, 1020, 924, 0, 0, 0, 4096, 1024
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, cake_end_texture_07022000
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
+gsSPTextureRectangle 1024, 800, 1276, 924, 0, 0, 0, 4096, 1024
+gsSPEndDisplayList
+
+dl_cake_end_eu_070296D8: # 0x070296D8 - 0x070296F8
+gsDPPipeSync
+gsDPSetCycleType G_CYC_1CYCLE
+gsDPSetTexturePersp G_TP_PERSP
+gsSPEndDisplayList
+
+glabel dl_cake_end_screen_eu_070296F8 # 0x070296F8 - 0x07029768
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, cake_end_texture_07026000
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
+gsSPTextureRectangle 512, 800, 764, 924, 0, 0, 0, 4096, 1024
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, cake_end_texture_07023000
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
+gsSPTextureRectangle 512, 500, 764, 624, 0, 0, 0, 4096, 1024
+gsSPDisplayList dl_cake_end_eu_070296D8
+gsSPEndDisplayList
+
+glabel dl_cake_end_screen_eu_07029768 # 0x07029768 - 0x070297D8
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, cake_end_texture_07027000
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
+gsSPTextureRectangle 512, 800, 764, 924, 0, 0, 0, 4096, 1024
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, cake_end_texture_07024000
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
+gsSPTextureRectangle 512, 500, 764, 624, 0, 0, 0, 4096, 1024
+gsSPDisplayList dl_cake_end_eu_070296D8
+gsSPEndDisplayList
+
+glabel dl_cake_end_screen_eu_070297D8 # 0x070297D8 - 0x07029848
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, cake_end_texture_07028000
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
+gsSPTextureRectangle 512, 800, 764, 924, 0, 0, 0, 4096, 1024
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, cake_end_texture_07025000
+gsDPLoadSync
+gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
+gsSPTextureRectangle 512, 500, 764, 624, 0, 0, 0, 4096, 1024
+gsSPDisplayList dl_cake_end_eu_070296D8
+gsSPEndDisplayList
+
+.else # VERSION_EU
+
 cake_end_texture_07000000: # 0x07000000 - 0x07000C80
 .incbin "levels/ending/0.rgba16"
 
@@ -651,3 +971,5 @@ gsDPSetRenderMode G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2
 # G_RM_AA_OPA_SURF, G_RM_RA_ZB_OPA_SURF2; G_RM_RA_OPA_SURF, G_RM_AA_ZB_OPA_SURF2
 
 gsSPEndDisplayList
+
+.endif

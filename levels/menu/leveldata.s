@@ -755,7 +755,11 @@ texture_0700AF40: # 0x0700AF40
 .incbin "levels/menu/main_menu_seg7_us.0AF40.ia8"
 
 texture_0700AF80: # 0x0700AF80
+.ifdef VERSION_EU
+.incbin "levels/menu/main_menu_seg7_eu.0AF80.ia8"
+.else
 .incbin "levels/menu/main_menu_seg7_us.0AF80.ia8"
+.endif
 
 texture_0700AFC0: # 0x0700AFC0
 .incbin "levels/menu/main_menu_seg7_us.0AFC0.ia8"
@@ -836,10 +840,18 @@ texture_0700B600: # 0x0700B600
 .incbin "levels/menu/main_menu_seg7_us.0B600.ia8"
 
 texture_0700B640: # 0x0700B640
+.ifdef VERSION_EU
+.incbin "levels/menu/main_menu_seg7_eu.0B640.ia8"
+.else
 .incbin "levels/menu/main_menu_seg7_us.0B640.ia8"
+.endif
 
 texture_0700B680: # 0x0700B680
+.ifdef VERSION_EU
+.incbin "levels/menu/main_menu_seg7_eu.0B680.ia8"
+.else
 .incbin "levels/menu/main_menu_seg7_us.0B680.ia8"
+.endif
 
 texture_0700B6C0: # 0x0700B6C0
 .incbin "levels/menu/main_menu_seg7_us.0B6C0.ia8"
@@ -858,6 +870,17 @@ texture_0700B7C0: # 0x0700B7C0
 
 texture_0700B800: # 0x0700B800
 .incbin "levels/menu/main_menu_seg7_us.0B800.ia8"
+.endif
+
+.ifdef VERSION_EU
+texture_0700B840: # 0x0700B840
+.incbin "levels/menu/main_menu_seg7_eu.0B840.ia8"
+
+texture_0700B880: # 0x0700B880
+.incbin "levels/menu/main_menu_seg7_eu.0B880.ia8"
+
+texture_0700B8C0: # 0x0700B8C0
+.incbin "levels/menu/main_menu_seg7_eu.0B8C0.ia8"
 .endif
 
 glabel main_menu_seg7_table_0700CD08 # 0x0700CD08
@@ -984,9 +1007,15 @@ glabel main_menu_seg7_table_0700CD08 # 0x0700CD08
 .word       0x00000000,       0x00000000,       0x00000000,       0x00000000
 .word       0x00000000,       0x00000000,       0x00000000,       0x00000000
 .word       0x00000000,       0x00000000,       0x00000000,       0x00000000
+.ifdef VERSION_EU
+.word       0x00000000, texture_0700B800, texture_0700B8C0,       0x00000000
+.word       0x00000000, texture_0700B840,       0x00000000,       0x00000000
+.word       0x00000000, texture_0700B880,       0x00000000,       0x00000000
+.else
 .word       0x00000000, texture_0700B800,       0x00000000,       0x00000000
 .word       0x00000000,       0x00000000,       0x00000000,       0x00000000
 .word       0x00000000,       0x00000000,       0x00000000,       0x00000000
+.endif
 .word       0x00000000,       0x00000000, texture_0700B6C0,       0x00000000
 .word texture_0700B700,       0x00000000,       0x00000000,       0x00000000
 .word       0x00000000, texture_0700B540, texture_0700B5C0, texture_0700B580
@@ -1025,11 +1054,29 @@ gsSPEndDisplayList
 
 .word 0, 0
 
-main_menu_seg7_texture_0700D1A8: # 0x0700D1A8 - 0x0700E1A8
+.ifdef VERSION_EU
+
+main_menu_seg7_texture_course_upper: # 0x0700BDA0 - 0x0700CDA0
+.incbin "levels/menu/main_menu_seg7_eu.0BDA0.rgba16"
+
+main_menu_seg7_texture_niveau_upper: # 0x0700CDA0 - 0x0700DDA0
+.incbin "levels/menu/main_menu_seg7_eu.0CDA0.rgba16"
+
+main_menu_seg7_texture_kurs_upper: # 0x0700DDA0 - 0x0700EDA0
+.incbin "levels/menu/main_menu_seg7_eu.0DDA0.rgba16"
+
+main_menu_seg7_texture_course_lower: # 0x0700EDA0 - 0x0700FDA0
+.incbin "levels/menu/main_menu_seg7_eu.0EDA0.rgba16"
+
+.else
+
+main_menu_seg7_texture_course_upper: # 0x0700D1A8 - 0x0700E1A8
 .incbin "levels/menu/main_menu_seg7.0D1A8.rgba16"
 
-main_menu_seg7_texture_0700E1A8: # 0x0700E1A8 - 0x0700F1A8
+main_menu_seg7_texture_course_lower: # 0x0700E1A8 - 0x0700F1A8
 .incbin "levels/menu/main_menu_seg7.0E1A8.rgba16"
+
+.endif
 
 main_menu_seg7_vertex_0700F1A8: # 0x0700F1A8 - 0x0700F1E8
 vertex    -32,      0,      0,      0,   1984,  0x00, 0x00, 0x7F, 0x00
@@ -1054,7 +1101,11 @@ gsDPSetRenderMode G_RM_AA_TEX_EDGE, G_RM_AA_TEX_EDGE2
 # G_RM_RA_OPA_SURF, G_RM_AA_TEX_EDGE2; G_RM_AA_TEX_EDGE, G_RM_AA_OPA_SURF2; G_RM_AA_TEX_EDGE, G_RM_RA_OPA_SURF2;
 # G_RM_AA_OPA_SURF, G_RM_AA_TEX_EDGE2;
 
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, main_menu_seg7_texture_0700D1A8
+.ifdef VERSION_EU
+gsSPEndDisplayList
+.else
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, main_menu_seg7_texture_course_upper
+.endif
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
@@ -1062,7 +1113,7 @@ gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 16, 0, G_TX_RENDERTILE, 0, G_TX_WRAP | 
 gsDPSetTileSize 0, 0, 0, 252, 124
 gsSPVertex main_menu_seg7_vertex_0700F1A8, 4, 0
 gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, main_menu_seg7_texture_0700E1A8
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, main_menu_seg7_texture_course_lower
 gsDPSetTile G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOLOD
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x7FF, 0x080
@@ -1081,6 +1132,20 @@ gsDPSetRenderMode G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2
 gsSPTexture 1, 1, 0, 0, 0
 gsDPSetCombineMode1Cycle G_CCMUX_0, G_CCMUX_0, G_CCMUX_0, G_CCMUX_SHADE, G_ACMUX_0, G_ACMUX_0, G_ACMUX_0, G_ACMUX_SHADE
 gsSPEndDisplayList
+
+.ifdef VERSION_EU
+glabel main_menu_seg7_dl_0700FEF0 # 0x0700FEF0 - 0x0700FF00
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, main_menu_seg7_texture_course_upper
+gsSPEndDisplayList
+
+glabel main_menu_seg7_dl_0700FF00 # 0x0700FF00 - 0x0700FF10
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, main_menu_seg7_texture_niveau_upper
+gsSPEndDisplayList
+
+glabel main_menu_seg7_dl_0700FF10 # 0x0700FF10 - 0x0700FF20
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, main_menu_seg7_texture_kurs_upper
+gsSPEndDisplayList
+.endif
 
 glabel main_menu_seg7_collision # 0x0700F2F8 - 0x0700F328
 # collision vertices

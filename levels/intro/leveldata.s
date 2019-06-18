@@ -3042,11 +3042,22 @@ vertex    284,    180,     -1,    544,    512,  0xFF, 0xFF, 0xFF, 0xFF
 vertex    284,    196,     -1,    544,      0,  0xFF, 0xFF, 0xFF, 0xFF
 vertex    268,    196,     -1,      0,      0,  0xFF, 0xFF, 0xFF, 0xFF
 
+.ifdef VERSION_EU
 intro_seg7_texture_0700B4A0: # 0x0700B4A0 - 0x0700B4A2
-.incbin "levels/intro/2.rgba16"
+.incbin "levels/intro/2_eu_copyright.rgba16"
 
 intro_seg7_texture_0700C4A0: # 0x0700C4A0 - 0x0700D4A0
-.incbin "levels/intro/3.rgba16"
+.incbin "levels/intro/3_eu_tm.rgba16"
+
+.else
+
+intro_seg7_texture_0700B4A0: # 0x0700B4A0 - 0x0700B4A2
+.incbin "levels/intro/2_copyright.rgba16"
+
+intro_seg7_texture_0700C4A0: # 0x0700C4A0 - 0x0700D4A0
+.incbin "levels/intro/3_tm.rgba16"
+
+.endif
 
 glabel intro_seg7_dl_0700C6A0 # 0x0700C6A0 - 0x0700C790
 gsDPPipeSync

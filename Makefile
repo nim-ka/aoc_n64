@@ -245,12 +245,12 @@ $(BUILD_DIR)/text/%.s: text/$(VERSION)/%.s.in | $(BUILD_DIR)
 
 ifeq ($(VERSION),eu)
 ASM_DIRS += text/de text/en text/fr
-# EU encoded text inserted into individual segment19
+# EU encoded text inserted into individual segment 0x19 files
 $(BUILD_DIR)/bin/$(VERSION)/translation_de.o: $(BUILD_DIR)/text/de/dialog.s $(BUILD_DIR)/text/de/level.s $(BUILD_DIR)/text/de/star.s
 $(BUILD_DIR)/bin/$(VERSION)/translation_en.o: $(BUILD_DIR)/text/en/dialog.s $(BUILD_DIR)/text/en/level.s $(BUILD_DIR)/text/en/star.s
 $(BUILD_DIR)/bin/$(VERSION)/translation_fr.o: $(BUILD_DIR)/text/fr/dialog.s $(BUILD_DIR)/text/fr/level.s $(BUILD_DIR)/text/fr/star.s
 else
-# non-EU encoded text inserted into segment2
+# non-EU encoded text inserted into segment 0x02
 $(BUILD_DIR)/bin/segment2.o: $(BUILD_DIR)/text/debug.s $(BUILD_DIR)/text/dialog.s $(BUILD_DIR)/text/level.s $(BUILD_DIR)/text/star.s
 endif
 

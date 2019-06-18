@@ -81,4 +81,13 @@ void disable_warp_checkpoint(void);
 void check_if_should_set_warp_checkpoint(struct WarpNode *a);
 s32 check_warp_checkpoint(struct WarpNode *a);
 
+#ifdef VERSION_EU
+#define LANGUAGE_ENGLISH 0
+#define LANGUAGE_FRENCH  1
+#define LANGUAGE_GERMAN  2
+
+void eu_set_language(u16 language);
+u16 eu_get_language(void);
+#endif
+
 #endif

@@ -19,6 +19,10 @@
 #include "display.h"
 #include "save_file.h"
 #include "debug_course.h"
+#ifdef VERSION_EU
+#include "memory.h"
+#include "eu_translation.h"
+#endif
 
 #define PLAY_MODE_NORMAL        0
 #define PLAY_MODE_PAUSED        2
@@ -40,17 +44,6 @@
 #define WARP_NODE_CREDITS_END   0xFA
 
 #define WARP_NODE_CREDITS_MIN 0xF8
-
-#ifdef VERSION_EU
-extern u8 language_text_bin_1_start[];
-extern u8 language_text_bin_2_start[];
-extern u8 language_text_bin_3_start[];
-extern u8 language_text_bin_1_end[];
-extern u8 language_text_bin_2_end[];
-extern u8 language_text_bin_3_end[];
-extern void UncIndexCopy(s16, void *, void *);
-extern int func_eu_8026B05C(void);
-#endif
 
 #ifdef VERSION_JP
 const char *credits01[] = { "1GAME DIRECTOR", "SHIGERU MIYAMOTO" };
@@ -1265,17 +1258,16 @@ s32 lvl_init_or_update(s16 initOrUpdate, UNUSED s32 arg1)
 s32 lvl_init_from_save_file(UNUSED s16 arg0, s32 levelNum)
 {
 #ifdef VERSION_EU
-    // TODO: What is this? Language handling?
-    s16 var = func_eu_8026B05C();
+    s16 var = eu_get_language();
     switch (var) {
-    case 0:
-        UncIndexCopy(0x19, language_text_bin_1_start, language_text_bin_1_end);
+    case LANGUAGE_ENGLISH:
+        load_segment_decompress(0x19, _translation_en_mio0SegmentRomStart, _translation_en_mio0SegmentRomEnd);
         break;
-    case 1:
-        UncIndexCopy(0x19, language_text_bin_2_start, language_text_bin_2_end);
+    case LANGUAGE_FRENCH:
+        load_segment_decompress(0x19, _translation_fr_mio0SegmentRomStart, _translation_fr_mio0SegmentRomEnd);
         break;
-    case 2:
-        UncIndexCopy(0x19, language_text_bin_3_start, language_text_bin_3_end);
+    case LANGUAGE_GERMAN:
+        load_segment_decompress(0x19, _translation_de_mio0SegmentRomStart, _translation_de_mio0SegmentRomEnd);
         break;
     }
 #endif
