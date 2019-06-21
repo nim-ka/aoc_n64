@@ -1,5 +1,9 @@
 glabel penguin_geo # 0x0C000104
+.ifdef VERSION_EU
+   geo_shadow SHADOW_CIRCLE_9_VERTS, 0x96, 60
+.else
    geo_shadow SHADOW_CIRCLE_4_VERTS, 0x96, 100
+.endif
    geo_open_node
       geo_scale 0x00, 16384
       geo_open_node
