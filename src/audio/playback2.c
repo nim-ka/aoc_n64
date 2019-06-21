@@ -1,6 +1,6 @@
 #include <ultra64.h>
+#include <macros.h>
 
-#include "sm64.h"
 #include "data.h"
 #include "playback.h"
 #include "interface_1.h"

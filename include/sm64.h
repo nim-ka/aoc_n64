@@ -11,14 +11,7 @@
 #include "model_ids.h"
 #include "mario_animation_ids.h"
 #include "mario_geo_switch_case_ids.h"
-#include "unused.h"
-
-// Reduces big ifdefs that use different values
-#ifdef VERSION_JP
-#define JP_US_DEF(jp , us) jp
-#else
-#define JP_US_DEF(jp , us) us
-#endif
+#include "macros.h"
 
 // Use these macros in places where aliasing is used to split a variable into
 // smaller parts
@@ -37,8 +30,6 @@
 #define SET_HIGH_U16_OF_32(var, val) ((((u16 *)&(var))[0]) = (val))
 #define SET_HIGH_S16_OF_32(var, val) ((((s16 *)&(var))[0]) = (val))
 #endif
-
-#define ARRAY_COUNT(arr) (s32)(sizeof(arr) / sizeof(arr[0]))
 
 #define SURFACE_DEFAULT                      0x0000
 #define SURFACE_LAVA                         0x0001
@@ -497,12 +488,6 @@
 #define ACT_PICKING_UP_BOWSER          0x00000390 // (0x190 | ACT_FLAG_STATIONARY)
 #define ACT_HOLDING_BOWSER             0x00000391 // (0x191 | ACT_FLAG_STATIONARY)
 #define ACT_RELEASING_BOWSER           0x00000392 // (0x192 | ACT_FLAG_STATIONARY)
-
-
-// Ignore GLOBAL_ASM blocks when syntax-checking with GCC
-#ifdef __GNUC__
-#define GLOBAL_ASM(...)
-#endif
 
 // convert a virtual address to physical.
 #define VIRTUAL_TO_PHYSICAL(addr)    ((u32)(addr) & 0x1FFFFFFF)

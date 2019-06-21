@@ -1,5 +1,6 @@
 #include <ultra64.h>
-#include <unused.h>
+#include <macros.h>
+
 #include "dac.h"
 #include "data.h"
 #include "dma.h"
@@ -21,10 +22,6 @@
 #define US_FLOAT(x) x
 #else
 #define US_FLOAT(x) x##f
-#endif
-
-#ifdef __GNUC__
-#define GLOBAL_ASM(...)
 #endif
 
 u64 *func_80313E54(u16 *arg0, s32 arg1, u64 *arg2, u32 arg3);

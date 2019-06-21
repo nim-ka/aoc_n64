@@ -37,10 +37,11 @@ enum CourseNum
     COURSE_WMOTR,                      // (23) Winged Mario over the Rainbow
     COURSE_SA,                         // (24) Secret Aquarium
     COURSE_CAKE_END,                   // (25) The End (Cake Scene)
-    COURSE_MAX = COURSE_CAKE_END
+    COURSE_COUNT,
+    COURSE_MAX = COURSE_COUNT - 1
 };
 
-#define COURSE_IS_MAIN_COURSE(cmd) (cmd >= 1 && cmd <= 15)
+#define COURSE_IS_MAIN_COURSE(cmd) (cmd >= COURSE_STAGES_MIN && cmd <= COURSE_STAGES_MAX)
 
 enum LevelNum
 {
@@ -84,7 +85,8 @@ enum LevelNum
     LEVEL_TTM,                   // (36) "DONKEY % SLID2" Tall Tall Mountain
     LEVEL_UNKNOWN_37,            // (37) ""
     LEVEL_UNKNOWN_38,            // (38) ""
-    LEVEL_MAX = LEVEL_UNKNOWN_38
+    LEVEL_COUNT,
+    LEVEL_MAX = LEVEL_COUNT - 1
 };
 
 struct WarpNode

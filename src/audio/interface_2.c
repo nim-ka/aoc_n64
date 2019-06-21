@@ -161,11 +161,12 @@ u8 D_80331EAC = 0xff; // current area music?
 u8 D_80331EB0 = 0xff; // current music?
 
 #define _ D_80331EA8
-s16 *D_80331EB4[LEVEL_MAX+1] = {
+s16 *D_80331EB4[] = {
     _, _, _, _, D_80331E38, _, _, D_80331E88, _, _, _, D_80331E78, D_80331E5C,
     _, _, _, _, _, _, _, _, _, _, D_80331E44, _, _, _, _, _, _, _, _, _, _, _,
     _, _, _, D_80331E98
 };
+STATIC_ASSERT(ARRAY_COUNT(D_80331EB4) == LEVEL_COUNT, "change this array if you are adding levels");
 #undef _
 
 struct Struct80331F50 D_80331F50[8] = {
@@ -179,7 +180,7 @@ struct Struct80331F50 D_80331F50[8] = {
     {0xffff, 0, 0x7f, 100, 0,     0, 0, 100}
 };
 
-u8 D_80331FB0[40][3] = {
+u8 D_80331FB0[][3] = {
     {0x00, 0x00, 0x00},
     {0x00, 0x00, 0x00},
     {0x00, 0x00, 0x00},
@@ -219,10 +220,10 @@ u8 D_80331FB0[40][3] = {
     {0x08, 0x08, 0x08},
     {0x00, 0x00, 0x00},
     {0x00, 0x00, 0x00},
-    {0x00, 0x00, 0x00}
 };
+STATIC_ASSERT(ARRAY_COUNT(D_80331FB0) == LEVEL_COUNT, "change this array if you are adding levels");
 
-u16 D_80332028[LEVEL_MAX+1] = {
+u16 D_80332028[] = {
     20000, 20000, 20000, 20000, 28000, 17000, 20000, 16000,
     15000, 15000, 14000, 17000, 20000, 20000, 18000, 20000,
     25000, 16000, 30000, 16000, 20000, 16000, 22000, 17000,
@@ -230,6 +231,7 @@ u16 D_80332028[LEVEL_MAX+1] = {
     20000, 20000, JP_US_DEF(25000 , 60000), JP_US_DEF(25000 , 60000),
     20000, 15000, 20000, 20000
 };
+STATIC_ASSERT(ARRAY_COUNT(D_80332028) == LEVEL_COUNT, "change this array if you are adding levels");
 
 u8 D_80332078[36] = {
     127, 80, 80, 75, 70, 75, 75, 75, 70, 65, 80, 65, 85, 75, 65, 70, 65, 70,

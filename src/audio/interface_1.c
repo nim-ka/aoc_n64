@@ -1,6 +1,6 @@
 #include <ultra64.h>
+#include <macros.h>
 
-#include "sm64.h"
 #include "dac.h"
 #include "dma.h"
 #include "interface_1.h"

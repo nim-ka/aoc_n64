@@ -73,7 +73,7 @@ u8 gCurrCourseStarFlags = 0;
 
 u8 gSpecialTripleJump = 0;
 
-s8 gLevelToCourseNumTable[LEVEL_MAX] = {
+s8 gLevelToCourseNumTable[] = {
     COURSE_NONE,     // LEVEL_UNKNOWN_1
     COURSE_NONE,     // LEVEL_UNKNOWN_2
     COURSE_NONE,     // LEVEL_UNKNOWN_3
@@ -113,6 +113,7 @@ s8 gLevelToCourseNumTable[LEVEL_MAX] = {
     COURSE_NONE,     // LEVEL_UNKNOWN_37
     COURSE_NONE      // LEVEL_UNKNOWN_38
 };
+STATIC_ASSERT(ARRAY_COUNT(gLevelToCourseNumTable) == LEVEL_COUNT - 1, "change this array if you are adding levels");
 
 // TODO: This should be defined in this file.
 extern struct SaveBuffer gSaveBuffer;
