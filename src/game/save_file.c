@@ -9,6 +9,7 @@
 #include "save_file.h"
 #include "sound_init.h"
 
+#define EEPROM_SIZE 0x200
 #define MENU_DATA_MAGIC 0x4849
 #define SAVE_FILE_MAGIC 0x4441
 #define NUM_SAVE_FILES 4
@@ -33,9 +34,9 @@ struct SaveFile
     // Star flags for each course.
     // The most significant bit of the byte *following* each course is set if the
     // cannon is open.
-    u8 courseStars[25];
+    u8 courseStars[COURSE_COUNT];
 
-    u8 courseCoinScores[15];
+    u8 courseCoinScores[COURSE_STAGES_COUNT];
 
     struct SaveBlockSignature signature;
 };
@@ -47,7 +48,9 @@ struct MainMenuSaveData
     // on the high score screen.
     u32 coinScoreAges[NUM_SAVE_FILES];
     u16 soundMode;
-    u8 filler12[0x1C-0x12];
+
+    // Pad to match the EEPROM size of 0x200
+    u8 filler[EEPROM_SIZE / 2 - 6 - NUM_SAVE_FILES * (4 + sizeof(struct SaveFile))];
 
     struct SaveBlockSignature signature;
 };
@@ -59,6 +62,10 @@ struct SaveBuffer
     // The main menu data has two copies. If one is bad, the other is used as a backup.
     struct MainMenuSaveData menuData[2];
 };
+
+STATIC_ASSERT(sizeof(struct SaveBuffer) == EEPROM_SIZE, "eeprom buffer size must match");
+
+extern struct SaveBuffer gSaveBuffer;
 
 struct WarpCheckpoint gWarpCheckpoint;
 
@@ -114,9 +121,6 @@ s8 gLevelToCourseNumTable[] = {
     COURSE_NONE      // LEVEL_UNKNOWN_38
 };
 STATIC_ASSERT(ARRAY_COUNT(gLevelToCourseNumTable) == LEVEL_COUNT - 1, "change this array if you are adding levels");
-
-// TODO: This should be defined in this file.
-extern struct SaveBuffer gSaveBuffer;
 
 // This was probably used to set progress to 100% for debugging, but
 // it was removed from the release ROM.
@@ -493,7 +497,7 @@ void save_file_collect_star_or_key(s16 coinScore, s16 starIndex)
     sUnusedGotGlobalCoinHiScore = 0;
     gGotFileCoinHiScore = 0;
 
-    if (courseIndex >= COURSE_STAGES_MIN - 1 && courseIndex <= COURSE_STAGES_MAX - 1)
+    if (courseIndex >= 0 && courseIndex < COURSE_STAGES_COUNT)
     {
         //! Compares the coin score as a 16 bit value, but only writes the 8 bit
         // truncation. This can allow a high score to decrease.

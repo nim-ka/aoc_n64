@@ -24,7 +24,9 @@ enum CourseNum
     COURSE_THI,                        // (13) Tiny Huge Island
     COURSE_TTC,                        // (14) Tick Tock Clock
     COURSE_RR,                         // (15) Rainbow Ride
-    COURSE_STAGES_MAX = COURSE_RR,
+    COURSE_BONUS_STAGES,
+    COURSE_STAGES_MAX = COURSE_BONUS_STAGES - 1,
+    COURSE_STAGES_COUNT = COURSE_STAGES_MAX,
     /* -------------- Bonus Courses -------------- */
     COURSE_BITDW,                      // (16) Bowser in the Dark World
     COURSE_BITFS,                      // (17) Bowser in the Fire Sea
@@ -37,8 +39,9 @@ enum CourseNum
     COURSE_WMOTR,                      // (23) Winged Mario over the Rainbow
     COURSE_SA,                         // (24) Secret Aquarium
     COURSE_CAKE_END,                   // (25) The End (Cake Scene)
-    COURSE_COUNT,
-    COURSE_MAX = COURSE_COUNT - 1
+    COURSE_AFTER_END,
+    COURSE_MAX = COURSE_AFTER_END - 1,
+    COURSE_COUNT = COURSE_MAX
 };
 
 #define COURSE_IS_MAIN_COURSE(cmd) (cmd >= COURSE_STAGES_MIN && cmd <= COURSE_STAGES_MAX)

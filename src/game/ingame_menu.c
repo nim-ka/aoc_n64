@@ -1661,7 +1661,7 @@ void func_802DA8EC(void)
     gSPDisplayList(gDisplayListHead++, dl_rgba16_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
 
-    if(courseIndex < 15)
+    if(courseIndex < COURSE_STAGES_COUNT)
     {
         ShowCoins(1, gCurrSaveFileNum - 1, courseIndex, 178, 103);
         ShowStars(gCurrSaveFileNum - 1, courseIndex, 118, 103);
@@ -1672,7 +1672,7 @@ void func_802DA8EC(void)
 
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
 
-    if(courseIndex < 15 &&
+    if(courseIndex < COURSE_STAGES_COUNT &&
         save_file_get_course_star_count(gCurrSaveFileNum - 1, courseIndex) != 0)
     {
         PrintGenericText(62, 121, sp5c);
@@ -1680,15 +1680,15 @@ void func_802DA8EC(void)
 
     levelName = segmented_to_virtual(levelNameTbl[courseIndex]);
 
-    if(courseIndex < 15)
+    if(courseIndex < COURSE_STAGES_COUNT)
     {
         PrintGenericText(63, 157, sp64);
         Int2Str(gCurrCourseNum, strCourseNum);
         PrintGenericText(JP_US_DEF(93 , 100), 157, strCourseNum);
 
-        actName = segmented_to_virtual(actNameTbl[gCurrCourseNum * 6 + D_80330534 - 7]);
+        actName = segmented_to_virtual(actNameTbl[(gCurrCourseNum - 1) * 6 + D_80330534 - 1]);
 
-        if(starFlags & (1 << (D_80330534 + 31)))
+        if(starFlags & (1 << (D_80330534 - 1)))
             PrintGenericText(98, 140, sp58);
         else
             PrintGenericText(98, 140, sp54);
@@ -1804,8 +1804,8 @@ void func_802DB540(void)
     {
         sp07 = gLastCompletedCourseNum - 1;
 
-        if(sp07 >= 15)
-            sp07 = 15;
+        if(sp07 >= COURSE_STAGES_COUNT)
+            sp07 = COURSE_STAGES_COUNT;
     }
 
     D_80330430 = sp07;
@@ -1827,7 +1827,7 @@ void func_802DB698(s16 sp4a, s16 sp4e, s16 sp52, s16 sp56)
 {
     s16 sp46 = 0;
     
-    UNUSED u8 sp28[30];
+    u8 sp28[COURSE_STAGES_COUNT * 2];
 
     u8 sp24[] = {TEXT_STAR}; //D_803305B4;
 
@@ -1883,15 +1883,15 @@ void func_802DB840(s16 sp52, s16 sp56)
     u8 sp3c[8];
     s16 sp3a = D_80330430;
 
-    handleMenuScrolling(MENU_SCROLL_VERTICAL, &D_80330430, -1, 16);
+    handleMenuScrolling(MENU_SCROLL_VERTICAL, &D_80330430, -1, COURSE_STAGES_COUNT + 1);
 
-    if(D_80330430 == 16)
+    if(D_80330430 == COURSE_STAGES_COUNT + 1)
         D_80330430 = 0;
 
     if(D_80330430 == -1)
-        D_80330430 = 15;
+        D_80330430 = COURSE_STAGES_COUNT;
 
-    if(D_80330430 != 15)
+    if(D_80330430 != COURSE_STAGES_COUNT)
     {
         while(save_file_get_course_star_count(gCurrSaveFileNum-1, D_80330430) == 0)
         {
@@ -1900,9 +1900,9 @@ void func_802DB840(s16 sp52, s16 sp56)
             else
                 D_80330430--;
             
-            if(D_80330430 == 15 || D_80330430 == -1)
+            if(D_80330430 == COURSE_STAGES_COUNT || D_80330430 == -1)
             {
-                D_80330430 = 15;
+                D_80330430 = COURSE_STAGES_COUNT;
                 break;
             }
         }
@@ -1911,7 +1911,7 @@ void func_802DB840(s16 sp52, s16 sp56)
     gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, D_80360088);
 
-    if(D_80330430 < 15)
+    if(D_80330430 < COURSE_STAGES_COUNT)
     {
         sp44 = segmented_to_virtual(sp4c[D_80330430]);
         func_802DB698(sp52, sp56, gCurrSaveFileNum-1, D_80330430);
@@ -1922,9 +1922,9 @@ void func_802DB840(s16 sp52, s16 sp56)
     else
     {
         u8 sp2c[] = {TEXT_STAR_X}; // D_803305BC
-        sp44 = segmented_to_virtual(sp4c[25]);
+        sp44 = segmented_to_virtual(sp4c[COURSE_MAX]);
         PrintGenericText(sp52+40, sp56+13, sp2c);
-        Int2Str(save_file_get_total_star_count(gCurrSaveFileNum-1, 15, 24), sp3c);
+        Int2Str(save_file_get_total_star_count(gCurrSaveFileNum-1, COURSE_BONUS_STAGES-1, COURSE_MAX-1), sp3c);
         PrintGenericText(sp52+60, sp56+13, sp3c);
     }
 
@@ -1955,7 +1955,7 @@ s16 func_802DBBB0(void)
         SetSound(SOUND_MENU_PAUSE1_HIGHPRIO, D_803320E0);
 #endif
 
-        if(gCurrCourseNum > 0 && gCurrCourseNum < 26)
+        if(gCurrCourseNum >= COURSE_MIN && gCurrCourseNum <= COURSE_MAX)
         {
             func_802DA4F4();
             gDiagBoxState = DIAG_STATE_WAITBUTTON;
@@ -2024,7 +2024,7 @@ void func_802DBE2C(s8 sp4b)
     u8 sp38[] = {TEXT_HISCORE_ENG}; //D_803305D0;
     u8 sp28[] = {TEXT_CONGRATULATIONS}; //D_803305D8;
 
-    u8 sp27 = (gSineTable[D_80360080 >> 4] * 50.0f) + 200.0f;
+    u8 sp27 = sins(D_80360080) * 50.0f + 200.0f;
 
     gSPDisplayList(gDisplayListHead++, dl_rgba16_text_begin);
     gDPSetEnvColor(gDisplayListHead++, sp27, sp27, sp27, 255);
@@ -2116,18 +2116,18 @@ void func_802DC330(void)
 
     u8 sp58[4];
 
-    if (gLastCompletedCourseNum < 16)
+    if (gLastCompletedCourseNum <= COURSE_STAGES_MAX)
     {
         func_802DC050(118, 103);
-        func_802DC2B4(1, 1 << (gLastCompletedStarNum + 31));
+        func_802DC2B4(1, 1 << (gLastCompletedStarNum - 1));
 
         if (gLastCompletedStarNum == 7)
         {
-            sp5c = segmented_to_virtual(sp64[91]);
+            sp5c = segmented_to_virtual(sp64[COURSE_STAGES_MAX * 6 + 1]);
         }
         else
         {
-            sp5c = segmented_to_virtual(sp64[(gLastCompletedCourseNum * 6 + gLastCompletedStarNum) - 7]);
+            sp5c = segmented_to_virtual(sp64[(gLastCompletedCourseNum - 1) * 6 + gLastCompletedStarNum - 1]);
         }
 
         gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
@@ -2140,7 +2140,7 @@ void func_802DC330(void)
         PrintGenericText(JP_US_DEF(93 , 102), 167, sp58);
         gSPDisplayList(gDisplayListHead++, dl_ia8_text_end);
     }
-    else if (gLastCompletedCourseNum == 16 || gLastCompletedCourseNum == 17)
+    else if (gLastCompletedCourseNum == COURSE_BITDW || gLastCompletedCourseNum == COURSE_BITFS)
     {
         sp5c = segmented_to_virtual(sp60[gLastCompletedCourseNum - 1]);
         gSPDisplayList(gDisplayListHead++, dl_ia8_text_begin);
@@ -2158,9 +2158,9 @@ void func_802DC330(void)
     }
     else
     {
-        sp5c = segmented_to_virtual(sp64[90]);
+        sp5c = segmented_to_virtual(sp64[COURSE_STAGES_MAX * 6]);
         func_802DC050(118, 103);
-        func_802DC2B4(1, 1 << (gLastCompletedStarNum + 31));
+        func_802DC2B4(1, 1 << (gLastCompletedStarNum - 1));
     }
 
     gSPDisplayList(gDisplayListHead++, dl_rgba16_text_begin);
