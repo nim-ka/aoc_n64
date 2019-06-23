@@ -13,6 +13,14 @@
 #include "mario_geo_switch_case_ids.h"
 #include "macros.h"
 
+// for the Shygoo crash handler exception. See the README
+// in enhancements/crash.inc.s for more info.
+#ifdef CRASH_SCREEN_INCLUDED
+#define DEBUG_ASSERT(exp) do { if (!(exp)) _n64_assert(__FILE__, __LINE__, #exp, 1); } while (0)
+#else
+#define DEBUG_ASSERT(exp)
+#endif
+
 // Use these macros in places where aliasing is used to split a variable into
 // smaller parts
 #if ENDIAN_IND
