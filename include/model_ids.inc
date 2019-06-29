@@ -525,11 +525,11 @@
 # find me
 # find me
 .set MODEL_SSL_TOX_BOX,                         0xC7        # ssl_geo_000630
-.set MODEL_BOWSER_KEY,                          0xC8        # bowser_key_geo
+.set MODEL_BOWSER_KEY_CUTSCENE,                 0xC8        # bowser_key_cutscene_geo
 .set MODEL_DL_CANNON_LID,                       0xC9        # cannon_closed_seg8_dl_080048E0
 .set MODEL_CHECKERBOARD_PLATFORM,               0xCA        # checkerboard_platform_geo
 .set MODEL_RED_FLAME_SHADOW,                    0xCB        # red_flame_shadow_geo
-.set MODEL_BOWSER_KEY_2,                        0xCC        # bowser_key2_geo
+.set MODEL_BOWSER_KEY,                          0xCC        # bowser_key_geo
 .set MODEL_EXPLOSION,                           0xCD        # explosion_geo
 .set MODEL_SNUFIT,                              0xCE        # snufit_geo
 .set MODEL_PURPLE_SWITCH,                       0xCF        # purple_switch_geo

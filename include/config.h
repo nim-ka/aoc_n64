@@ -19,6 +19,8 @@
 #define BUGFIX_MAX_LIVES (0 || VERSION_US || VERSION_EU)
 /// Fixes bug in Bob-Omb Battlefield where entering a warp stops the Koopa race music
 #define BUGFIX_KOOPA_RACE_MUSIC (0 || VERSION_US || VERSION_EU)
+/// Fixes bug where it shows a star when you grab a key in bowser battle stages
+#define BUGFIX_STAR_BOWSER_KEY (0 || VERSION_US || VERSION_EU)
 
 // --| Goddard / Mario Head Bug Fixes
 /// Goddard left out important and necessary return statements; this puts them back in

@@ -241,7 +241,7 @@ void func_802B2328(s32 n,s32 a1,s32 a2,s32 r) // n is the number of objects to s
 #include "behaviors/ddd_warp.inc.c"
 #include "behaviors/water_pillar.inc.c"
 #include "behaviors/moat_drainer.inc.c"
-#include "behaviors/door_key.inc.c"
+#include "behaviors/bowser_key_cutscene.inc.c"
 #include "behaviors/moat_grill.inc.c"
 #include "behaviors/clock_arm.inc.c"
 #include "behaviors/ukiki_cage.inc.c"

@@ -907,7 +907,7 @@ void func_802B5C78(void)
         gSecondCameraFocus = spawn_object(o,MODEL_STAR,&bhvGrandStar);
     else
     {
-        gSecondCameraFocus = spawn_object(o,MODEL_BOWSER_KEY_2,&bhvBowserKey2);
+        gSecondCameraFocus = spawn_object(o,MODEL_BOWSER_KEY,&bhvBowserKey);
         PlaySound2(SOUND_CH8_UNK61);
     }
     gSecondCameraFocus->oAngleVelYaw = o->oAngleVelYaw;

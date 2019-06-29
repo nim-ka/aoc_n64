@@ -1753,13 +1753,13 @@ glabel bhvIgloo # 16B8
         obj_set_int objInteractStatus, 0
     end_loop
 
-glabel bhvBowserKey2 # 16E4
+glabel bhvBowserKey # 16E4
     begin OBJ_LIST_LEVEL
     obj_or_int objFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE
     obj_set_pos
     gravity 0x001E, 0xFE70, 0xFFBA, 0x03E8, 0x03E8, 0x00C8, 0x0000, 0x0000
     begin_loop
-        callnative bhv_bowser_key_2_loop
+        callnative bhv_bowser_key_loop
     end_loop
 
 glabel bhvGrandStar # 1714
@@ -2010,20 +2010,20 @@ glabel bhvCheckerboardPlatformSub # 1B88
         callnative bhv_checkerboard_platform_loop
     end_loop
 
-glabel bhvDoorKey1 # 1BB4
+glabel bhvBowserKeyUnlockDoor # 1BB4
     begin OBJ_LIST_DEFAULT
-    obj_set_int32 objAnimations, bowser_key_seg3_anims_030172D0
+    obj_set_int32 objAnimations, bowser_key_seg3_anims_list
     obj_or_int objFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE
     begin_loop
-        callnative bhv_door_key_1_loop
+        callnative bhv_bowser_key_unlock_door_loop
     end_loop
 
-glabel bhvDoorKey2 # 1BD4
+glabel bhvBowserKeyCourseExit # 1BD4
     begin OBJ_LIST_DEFAULT
-    obj_set_int32 objAnimations, bowser_key_seg3_anims_030172D0
+    obj_set_int32 objAnimations, bowser_key_seg3_anims_list
     obj_or_int objFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE
     begin_loop
-        callnative bhv_door_key_2_loop
+        callnative bhv_bowser_key_course_exit_loop
     end_loop
 
 glabel bhvInvisibleObjectsUnderBridge # 1BF4

@@ -13,7 +13,7 @@ struct ObjectHitbox sBowserKeyHitbox =
     /* hurtboxHeight: */     100,
 };
 
-void bhv_bowser_key_2_loop(void)
+void bhv_bowser_key_loop(void)
 {
     obj_scale(0.5f);
     if(o->oAngleVelYaw > 0x400)

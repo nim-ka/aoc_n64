@@ -913,7 +913,7 @@ s32 act_unlocking_key_door(struct MarioState *m)
 
     if (m->actionTimer == 0)
     {
-        spawn_obj_at_mario_rel_yaw(m, MODEL_BOWSER_KEY, bhvDoorKey1, 0);
+        spawn_obj_at_mario_rel_yaw(m, MODEL_BOWSER_KEY_CUTSCENE, bhvBowserKeyUnlockDoor, 0);
         set_mario_animation(m, MARIO_ANIM_UNLOCK_DOOR);
     }
 
@@ -1272,7 +1272,7 @@ s32 act_exit_land_save_dialogue(struct MarioState *m)
             switch (animFrame)
             {
                 case -1:
-                    spawn_obj_at_mario_rel_yaw(m, 200, bhvDoorKey2, -32768);
+                    spawn_obj_at_mario_rel_yaw(m, MODEL_BOWSER_KEY_CUTSCENE, bhvBowserKeyCourseExit, -32768);
                     //! fall through
                 case 67:
                     SetSound(SOUND_ACTION_SWISH1, m->marioObj->header.gfx.cameraToObject);

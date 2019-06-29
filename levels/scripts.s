@@ -48,8 +48,8 @@ glabel level_main_scripts_entry
     load_model_from_geo /*model*/ MODEL_MARIOS_WING_CAP,         /*geo*/ marios_wing_cap_geo
     load_model_from_geo /*model*/ MODEL_MARIOS_CAP,              /*geo*/ marios_cap_geo
     load_model_from_geo /*model*/ MODEL_MARIOS_CAP,              /*geo*/ marios_cap_geo # repeated
+    load_model_from_geo /*model*/ MODEL_BOWSER_KEY_CUTSCENE,     /*geo*/ bowser_key_cutscene_geo
     load_model_from_geo /*model*/ MODEL_BOWSER_KEY,              /*geo*/ bowser_key_geo
-    load_model_from_geo /*model*/ MODEL_BOWSER_KEY_2,            /*geo*/ bowser_key2_geo
     load_model_from_geo /*model*/ MODEL_RED_FLAME_SHADOW,        /*geo*/ red_flame_shadow_geo
     load_model_from_geo /*model*/ MODEL_1UP,                     /*geo*/ mushroom_1up_geo
     load_model_from_geo /*model*/ MODEL_RED_COIN,                /*geo*/ red_coin_geo

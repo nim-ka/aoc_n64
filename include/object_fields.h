@@ -381,11 +381,11 @@
 /* WaterLevelPillar */
 #define /*0x0F8*/ oWaterLevelPillarUnkF8 OBJECT_FIELD_S32(0x1C) // boolean?
 
-/* DoorKey1 */
-#define /*0x0F4*/ oDoorKey1UnkF4 OBJECT_FIELD_F32(0x1B)
+/* BowserKeyUnlockDoor */
+#define /*0x0F4*/ oBowserKeyUnlockDoorScale OBJECT_FIELD_F32(0x1B)
 
-/* DoorKey2 */
-#define /*0x0F4*/ oDoorKey2UnkF4 OBJECT_FIELD_F32(0x1B)
+/* bhvBowserKeyCourseExit */
+#define /*0x0F4*/ oBowserKeyCourseExitScale OBJECT_FIELD_F32(0x1B)
 
 /* UkikiOpenCage */
 #define /*0x0F4*/ oUkikiOpenCageUnkF4 OBJECT_FIELD_S16(0x1B, 0)

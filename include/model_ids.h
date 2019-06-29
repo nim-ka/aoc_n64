@@ -524,11 +524,11 @@
 // find me
 // find me
 #define MODEL_SSL_TOX_BOX                 0xC7        // ssl_geo_000630
-#define MODEL_BOWSER_KEY                  0xC8        // bowser_key_geo
+#define MODEL_BOWSER_KEY_CUTSCENE         0xC8        // bowser_key_cutscene_geo
 #define MODEL_DL_CANNON_LID               0xC9        // cannon_closed_seg8_dl_080048E0
 #define MODEL_CHECKERBOARD_PLATFORM       0xCA        // checkerboard_platform_geo
 #define MODEL_RED_FLAME_SHADOW            0xCB        // red_flame_shadow_geo
-#define MODEL_BOWSER_KEY_2                0xCC        // bowser_key2_geo
+#define MODEL_BOWSER_KEY                  0xCC        // bowser_key_geo
 #define MODEL_EXPLOSION                   0xCD        // explosion_geo
 #define MODEL_SNUFIT                      0xCE        // snufit_geo
 #define MODEL_PURPLE_SWITCH               0xCF        // purple_switch_geo

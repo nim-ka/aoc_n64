@@ -1,13 +1,13 @@
 # Bowser Key
 
-bowser_key_seg3_light_030156E0: # 0x030156E0
+bowser_key_amb_light: # 0x030156E0, solid color brown
 .byte 0x3F, 0x2C, 0x00, 0x00, 0x3F, 0x2C, 0x00, 0x00
 
-bowser_key_seg3_light_030156E8: # 0x030156E8
+bowser_key_diff_light: # 0x030156E8, solid color orange
 .byte 0xFF, 0xB2, 0x00, 0x00, 0xFF, 0xB2, 0x00, 0x00
 .byte 0x28, 0x28, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00
 
-bowser_key_seg3_vertex_030156F8: # 0x030156F8
+bowser_key_dl_vertex_group1: # 0x030156F8
 vertex    219,     22,    -17,      0,      0,  0x88, 0x26, 0x00, 0x00
 vertex    219,     22,     17,      0,      0,  0x88, 0x26, 0x00, 0x00
 vertex    230,     57,      7,      0,      0,  0x88, 0x26, 0x00, 0x00
@@ -25,7 +25,7 @@ vertex    257,     22,     17,      0,      0,  0x00, 0x23, 0x79, 0xFF
 vertex    249,     57,      7,      0,      0,  0x00, 0x23, 0x79, 0xFF
 vertex    230,     57,      7,      0,      0,  0x00, 0x23, 0x79, 0xFF
 
-bowser_key_seg3_vertex_030157F8: # 0x030157F8
+bowser_key_dl_vertex_group2: # 0x030157F8
 vertex    230,     57,      7,      0,      0,  0x00, 0x7F, 0x00, 0xFF
 vertex    249,     57,      7,      0,      0,  0x00, 0x7F, 0x00, 0x00
 vertex    249,     57,     -7,      0,      0,  0x00, 0x7F, 0x00, 0x00
@@ -43,7 +43,7 @@ vertex    317,     22,    -17,      0,      0,  0x7F, 0x00, 0x00, 0xFF
 vertex    318,     70,     -9,      0,      0,  0x7F, 0x00, 0x00, 0xFF
 vertex    318,     70,      9,      0,      0,  0x7F, 0x00, 0x00, 0xFF
 
-bowser_key_seg3_vertex_030158F8: # 0x030158F8
+bowser_key_dl_vertex_group3: # 0x030158F8
 vertex    272,     22,     17,      0,      0,  0x00, 0x16, 0x7C, 0xFF
 vertex    317,     22,     17,      0,      0,  0x00, 0x16, 0x7C, 0x00
 vertex    318,     70,      9,      0,      0,  0x00, 0x16, 0x7C, 0x00
@@ -61,7 +61,7 @@ vertex    318,     70,      9,      0,      0,  0x00, 0x7F, 0x00, 0xFF
 vertex    318,     70,     -9,      0,      0,  0x00, 0x7F, 0x00, 0xFF
 vertex    285,     70,     -9,      0,      0,  0x00, 0x7F, 0x00, 0xFF
 
-bowser_key_seg3_vertex_030159F8: # 0x030159F8
+bowser_key_dl_vertex_group4: # 0x030159F8
 vertex    317,    -22,    -17,      0,      0,  0x00, 0x81, 0x00, 0xFF
 vertex    317,    -22,     17,      0,      0,  0x00, 0x81, 0x00, 0x00
 vertex    131,    -22,     17,      0,      0,  0x00, 0x81, 0x00, 0x00
@@ -79,7 +79,7 @@ vertex     20,    -80,    -30,      0,      0,  0xEB, 0xDE, 0x88, 0xFF
 vertex     -4,    -39,    -37,      0,      0,  0xF0, 0xF1, 0x84, 0xFF
 vertex    130,    -39,    -53,      0,      0,  0xF2, 0xF4, 0x83, 0xFF
 
-bowser_key_seg3_vertex_03015AF8: # 0x03015AF8
+bowser_key_dl_vertex_group5: # 0x03015AF8
 vertex     -4,    -39,    -37,      0,      0,  0xF0, 0xF1, 0x84, 0xFF
 vertex     -4,     41,    -37,      0,      0,  0xEF, 0x14, 0x84, 0x00
 vertex    130,     41,    -53,      0,      0,  0xF2, 0x08, 0x83, 0x00
@@ -97,7 +97,7 @@ vertex     -4,     41,     37,      0,      0,  0x8A, 0x2D, 0x00, 0xFF
 vertex     20,     82,     30,      0,      0,  0xAD, 0x5F, 0x00, 0xFF
 vertex     20,     82,    -30,      0,      0,  0xAD, 0x5F, 0x00, 0xFF
 
-bowser_key_seg3_vertex_03015BF8: # 0x03015BF8
+bowser_key_dl_vertex_group6: # 0x03015BF8
 vertex     -4,    -39,    -37,      0,      0,  0x8A, 0xD3, 0x00, 0xFF
 vertex     20,    -80,    -30,      0,      0,  0xAD, 0xA1, 0x00, 0x00
 vertex     20,    -80,     30,      0,      0,  0xAD, 0xA1, 0x00, 0x00
@@ -115,7 +115,7 @@ vertex     92,    113,    -34,      0,      0,  0xCE, 0x74, 0x00, 0xFF
 vertex     20,     82,    -30,      0,      0,  0xAD, 0x5F, 0x00, 0xFF
 vertex     20,     82,     30,      0,      0,  0xAD, 0x5F, 0x00, 0xFF
 
-bowser_key_seg3_vertex_03015CF8: # 0x03015CF8
+bowser_key_dl_vertex_group7: # 0x03015CF8
 vertex     -4,    -39,     37,      0,      0,  0xEF, 0xEC, 0x7C, 0xFF
 vertex     20,    -80,     30,      0,      0,  0xEB, 0xDE, 0x78, 0x00
 vertex     92,   -111,     34,      0,      0,  0xEE, 0xE2, 0x7A, 0x00
@@ -131,7 +131,7 @@ vertex     12,   -121,    -15,      0,      0,  0xC8, 0x19, 0x92, 0xFF
 vertex     16,   -152,    -25,      0,      0,  0xCE, 0x15, 0x8E, 0xFF
 vertex    -51,   -115,      0,      0,      0,  0xE6, 0x21, 0x89, 0xFF
 
-bowser_key_seg3_vertex_03015DD8: # 0x03015DD8
+bowser_key_dl_vertex_group8: # 0x03015DD8
 vertex     16,   -152,     25,      0,      0,  0xCE, 0x15, 0x72, 0xFF
 vertex     12,   -121,     15,      0,      0,  0xC8, 0x19, 0x6E, 0x00
 vertex    -51,   -115,      0,      0,      0,  0xE6, 0x21, 0x77, 0x00
@@ -149,7 +149,7 @@ vertex    -51,    115,      0,      0,      0,  0xE6, 0xDF, 0x77, 0xFF
 vertex     12,    121,     15,      0,      0,  0x99, 0xDC, 0x3F, 0xFF
 vertex     16,    152,     25,      0,      0,  0xCE, 0xEB, 0x72, 0xFF
 
-bowser_key_seg3_vertex_03015ED8: # 0x03015ED8
+bowser_key_dl_vertex_group9: # 0x03015ED8
 vertex    -51,    115,      0,      0,      0,  0xB3, 0x64, 0x00, 0xFF
 vertex     16,    152,     25,      0,      0,  0xBB, 0x59, 0x38, 0x00
 vertex     21,    171,      0,      0,      0,  0xB3, 0x64, 0x00, 0x00
@@ -167,7 +167,7 @@ vertex     56,     97,    -31,      0,      0,  0xDB, 0xF2, 0x88, 0xFF
 vertex     23,     83,    -19,      0,      0,  0x97, 0xE1, 0xC2, 0xFF
 vertex     12,    121,    -15,      0,      0,  0xA7, 0xDE, 0xAD, 0xFF
 
-bowser_key_seg3_vertex_03015FD8: # 0x03015FD8
+bowser_key_dl_vertex_group10: # 0x03015FD8
 vertex     12,    121,     15,      0,      0,  0x99, 0xDC, 0x3F, 0xFF
 vertex     12,    121,    -15,      0,      0,  0xA7, 0xDE, 0xAD, 0x00
 vertex     23,     83,    -19,      0,      0,  0x97, 0xE1, 0xC2, 0x00
@@ -183,7 +183,7 @@ vertex     56,     97,     31,      0,      0,  0x4F, 0x42, 0x49, 0xFF
 vertex     77,    106,      0,      0,      0,  0x50, 0x43, 0x47, 0xFF
 vertex     21,    171,      0,      0,      0,  0x50, 0x45, 0x45, 0xFF
 
-bowser_key_seg3_vertex_030160B8: # 0x030160B8
+bowser_key_dl_vertex_group11: # 0x030160B8
 vertex     16,   -152,    -25,      0,      0,  0xCE, 0x15, 0x8E, 0xFF
 vertex     12,   -121,    -15,      0,      0,  0xC8, 0x19, 0x92, 0x00
 vertex     24,    -82,    -19,      0,      0,  0xC3, 0x0F, 0x93, 0x00
@@ -201,74 +201,74 @@ vertex     21,   -171,      0,      0,      0,  0x50, 0xBB, 0xBB, 0xFF
 vertex     16,   -152,    -25,      0,      0,  0x50, 0xBD, 0xB9, 0xFF
 vertex     57,    -96,    -31,      0,      0,  0x4F, 0xBE, 0xB7, 0xFF
 
-bowser_key_seg3_vertex_030161B8: # 0x030161B8
+bowser_key_dl_vertex_group12: # 0x030161B8
 vertex     16,   -152,     25,      0,      0,  0x50, 0xBD, 0x47, 0xFF
 vertex     21,   -171,      0,      0,      0,  0x50, 0xBB, 0x45, 0x00
 vertex     78,   -105,      0,      0,      0,  0x50, 0xBD, 0x47, 0x00
 vertex     57,    -96,     31,      0,      0,  0x4F, 0xBE, 0x49, 0xFF
 
-glabel bowser_key_seg3_dl_030161F8 # 0x030161F8 - 0x03016530
-gsSPLight bowser_key_seg3_light_030156E8, 1
-gsSPLight bowser_key_seg3_light_030156E0, 2
-gsSPVertex bowser_key_seg3_vertex_030156F8, 16, 0
+glabel bowser_key_dl # 0x030161F8 - 0x03016530
+gsSPLight bowser_key_diff_light, 1
+gsSPLight bowser_key_amb_light, 2
+gsSPVertex bowser_key_dl_vertex_group1, 16, 0
 gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
 gsSP2Triangles  8,  9, 10, 0x0,  8, 10, 11, 0x0
 gsSP2Triangles 12, 13, 14, 0x0, 12, 14, 15, 0x0
-gsSPVertex bowser_key_seg3_vertex_030157F8, 16, 0
+gsSPVertex bowser_key_dl_vertex_group2, 16, 0
 gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
 gsSP2Triangles  8,  9, 10, 0x0,  8, 10, 11, 0x0
 gsSP2Triangles 12, 13, 14, 0x0, 12, 14, 15, 0x0
-gsSPVertex bowser_key_seg3_vertex_030158F8, 16, 0
+gsSPVertex bowser_key_dl_vertex_group3, 16, 0
 gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
 gsSP2Triangles  8,  9, 10, 0x0,  8, 10, 11, 0x0
 gsSP2Triangles 12, 13, 14, 0x0, 12, 14, 15, 0x0
-gsSPVertex bowser_key_seg3_vertex_030159F8, 16, 0
+gsSPVertex bowser_key_dl_vertex_group4, 16, 0
 gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
 gsSP2Triangles  8,  9, 10, 0x0,  8, 10, 11, 0x0
 gsSP2Triangles 12, 13, 14, 0x0, 15, 12, 14, 0x0
-gsSPVertex bowser_key_seg3_vertex_03015AF8, 16, 0
+gsSPVertex bowser_key_dl_vertex_group5, 16, 0
 gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
 gsSP2Triangles  8,  9,  6, 0x0,  5,  8,  6, 0x0
 gsSP2Triangles 10, 11, 12, 0x0, 10, 12, 13, 0x0
 gsSP2Triangles 13, 14, 15, 0x0, 13, 15, 10, 0x0
-gsSPVertex bowser_key_seg3_vertex_03015BF8, 16, 0
+gsSPVertex bowser_key_dl_vertex_group6, 16, 0
 gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
 gsSP2Triangles  8,  9, 10, 0x0,  8, 10, 11, 0x0
 gsSP2Triangles 12, 13, 14, 0x0, 12, 14, 15, 0x0
-gsSPVertex bowser_key_seg3_vertex_03015CF8, 14, 0
+gsSPVertex bowser_key_dl_vertex_group7, 14, 0
 gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
 gsSP2Triangles  8,  9, 10, 0x0, 11, 12, 13, 0x0
-gsSPVertex bowser_key_seg3_vertex_03015DD8, 16, 0
+gsSPVertex bowser_key_dl_vertex_group8, 16, 0
 gsSP2Triangles  0,  1,  2, 0x0,  3,  4,  5, 0x0
 gsSP2Triangles  6,  3,  5, 0x0,  7,  8,  9, 0x0
 gsSP2Triangles 10, 11, 12, 0x0, 13, 14, 15, 0x0
-gsSPVertex bowser_key_seg3_vertex_03015ED8, 16, 0
+gsSPVertex bowser_key_dl_vertex_group9, 16, 0
 gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
 gsSP2Triangles  8,  9, 10, 0x0,  8, 10, 11, 0x0
 gsSP2Triangles 12, 13, 14, 0x0, 15, 12, 14, 0x0
-gsSPVertex bowser_key_seg3_vertex_03015FD8, 14, 0
+gsSPVertex bowser_key_dl_vertex_group10, 14, 0
 gsSP2Triangles  0,  1,  2, 0x0,  0,  2,  3, 0x0
 gsSP2Triangles  4,  0,  3, 0x0,  4,  3,  5, 0x0
 gsSP2Triangles  6,  7,  8, 0x0,  6,  8,  9, 0x0
 gsSP2Triangles 10, 11, 12, 0x0, 13, 10, 12, 0x0
-gsSPVertex bowser_key_seg3_vertex_030160B8, 16, 0
+gsSPVertex bowser_key_dl_vertex_group11, 16, 0
 gsSP2Triangles  0,  1,  2, 0x0,  3,  0,  2, 0x0
 gsSP2Triangles  4,  5,  6, 0x0,  4,  6,  7, 0x0
 gsSP2Triangles  8,  9, 10, 0x0,  8, 10, 11, 0x0
 gsSP2Triangles 12, 13, 14, 0x0, 12, 14, 15, 0x0
-gsSPVertex bowser_key_seg3_vertex_030161B8, 4, 0
+gsSPVertex bowser_key_dl_vertex_group12, 4, 0
 gsSP2Triangles  0,  1,  2, 0x0,  3,  0,  2, 0x0
 gsSPEndDisplayList
 
-bowser_key_seg3_animvalue_03016530: # 0x03016530
+bowser_key_seg3_course_exit_animvalue: # 0x03016530
 .hword 0x0000, 0xFFF9, 0xFFF9, 0xFFF9, 0xFFF9, 0xFFF9, 0xFFF9, 0xFFF9
 .hword 0xFFF9, 0xFFF9, 0xFFF9, 0xFFF9, 0xFFF9, 0xFFF9, 0xFFF9, 0xFFF9
 .hword 0xFFF9, 0xFFF9, 0xFFF9, 0xFFF9, 0xFFF9, 0xFFF9, 0xFFF9, 0xFFF9
@@ -376,23 +376,23 @@ bowser_key_seg3_animvalue_03016530: # 0x03016530
 .hword 0x4282, 0x4264, 0x4249, 0x4232, 0x421E, 0x420E, 0x4202, 0x41FA
 .hword 0x41F8, 0x0000
 
-bowser_key_seg3_animindex_03016BC4: # 0x03016BC4
+bowser_key_seg3_course_exit_animindex: # 0x03016BC4
 .hword 0x008C, 0x0001, 0x008C, 0x008D, 0x008C, 0x0119, 0x0001, 0x0000
 .hword 0x0001, 0x0000, 0x0001, 0x0000, 0x008C, 0x01A5, 0x008C, 0x0231
 .hword 0x008C, 0x02BD
 
-bowser_key_seg3_anim_03016BE8: # 0x03016BE8
+bowser_key_seg3_course_exit_anim: # 0x03016BE8
 .hword 1
 .hword 0
 .hword 0
 .hword 0
 .hword 0x8C
 .hword 0x02
-.word bowser_key_seg3_animvalue_03016530
-.word bowser_key_seg3_animindex_03016BC4
+.word bowser_key_seg3_course_exit_animvalue
+.word bowser_key_seg3_course_exit_animindex
 .word 0
 
-bowser_key_seg3_animvalue_03016C00: # 0x03016C00
+bowser_key_seg3_unlock_door_animvalue: # 0x03016C00
 .hword 0x0000, 0xFFE6, 0xFFE6, 0xFFE6, 0xFFE6, 0xFFE6, 0xFFE6, 0xFFE6
 .hword 0xFFE6, 0xFFE6, 0xFFE6, 0xFFE6, 0xFFE6, 0xFFE6, 0xFFE6, 0xFFE6
 .hword 0xFFE6, 0xFFE6, 0xFFE6, 0xFFE6, 0xFFE6, 0xFFE6, 0xFFE6, 0xFFE6
@@ -500,22 +500,22 @@ bowser_key_seg3_animvalue_03016C00: # 0x03016C00
 .hword 0xE001, 0xE001, 0xE001, 0xE001, 0xE001, 0xE001, 0xE001, 0xE001
 .hword 0xE001, 0x0000
 
-bowser_key_seg3_animindex_03017294: # 0x03017294
+bowser_key_seg3_unlock_door_animindex: # 0x03017294
 .hword 0x008C, 0x0001, 0x008C, 0x008D, 0x008C, 0x0119, 0x0001, 0x0000
 .hword 0x0001, 0x0000, 0x0001, 0x0000, 0x008C, 0x01A5, 0x008C, 0x0231
 .hword 0x008C, 0x02BD
 
-bowser_key_seg3_anim_030172B8: # 0x030172B8
+bowser_key_seg3_unlock_door_anim: # 0x030172B8
 .hword 1
 .hword 0
 .hword 0
 .hword 0
 .hword 0x8C
 .hword 0x02
-.word bowser_key_seg3_animvalue_03016C00
-.word bowser_key_seg3_animindex_03017294
+.word bowser_key_seg3_unlock_door_animvalue
+.word bowser_key_seg3_unlock_door_animindex
 .word 0
 
-glabel bowser_key_seg3_anims_030172D0 # 0x030172D0
-.word bowser_key_seg3_anim_030172B8
-.word bowser_key_seg3_anim_03016BE8
+glabel bowser_key_seg3_anims_list # 0x030172D0
+.word bowser_key_seg3_unlock_door_anim # id 0
+.word bowser_key_seg3_course_exit_anim # id 1
