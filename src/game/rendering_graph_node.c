@@ -36,19 +36,20 @@ u16 *D_8033B010;
 s16 *D_8033B014;
 struct AllocOnlyPool *D_8033B018;
 
-struct Struct8032CF10
+struct RenderModeContainer
 {
     u32 unk0[8];
 };
 
-struct Struct8032CF10 renderModeTable[2] = {
+/* Rendermode settings for cycles 1 and 2 for layers 0-3. */
+struct RenderModeContainer renderModeTable_1Cycle[2] = {
     {{
         G_RM_OPA_SURF,    G_RM_AA_OPA_SURF,
-        G_RM_AA_OPA_SURF, G_RM_AA_OPA_SURF, 
+        G_RM_AA_OPA_SURF, G_RM_AA_OPA_SURF,
         G_RM_AA_TEX_EDGE, G_RM_AA_XLU_SURF,
         G_RM_AA_XLU_SURF, G_RM_AA_XLU_SURF,
     }},
-    {{
+    {{ /* z-buffered */
         G_RM_ZB_OPA_SURF,     G_RM_AA_ZB_OPA_SURF,
         G_RM_AA_ZB_OPA_DECAL, G_RM_AA_ZB_OPA_INTER,
         G_RM_AA_ZB_TEX_EDGE,  G_RM_AA_ZB_XLU_SURF,
@@ -56,18 +57,19 @@ struct Struct8032CF10 renderModeTable[2] = {
     }}
 };
 
-struct Struct8032CF10 D_8032CF50[2] = {
+/* Rendermode settings for cycles 1 and 2 for layers 4-7. */
+struct RenderModeContainer renderModeTable_2Cycle[2] = {
     {{
-        0x03024000, 0x00112048,
-        0x00112048, 0x00112048, 
-        0x00113048, 0x001041C8,
-        0x001041C8, 0x001041C8,
+        G_RM_OPA_SURF2,    G_RM_AA_OPA_SURF2,
+        G_RM_AA_OPA_SURF2, G_RM_AA_OPA_SURF2,
+        G_RM_AA_TEX_EDGE2, G_RM_AA_XLU_SURF2,
+        G_RM_AA_XLU_SURF2, G_RM_AA_XLU_SURF2,
     }},
-    {{
-        0x00112230, 0x00112078,
-        0x00112D58, 0x00112478, 
-        0x00113078, 0x001049D8,
-        0x00104DD8, 0x001045D8,
+    {{ /* z-buffered */
+        G_RM_ZB_OPA_SURF2,     G_RM_AA_ZB_OPA_SURF2,
+        G_RM_AA_ZB_OPA_DECAL2, G_RM_AA_ZB_OPA_INTER2,
+        G_RM_AA_ZB_TEX_EDGE2,  G_RM_AA_ZB_XLU_SURF2,
+        G_RM_AA_ZB_XLU_DECAL2, G_RM_AA_ZB_XLU_INTER2,
     }}
 };
 
@@ -91,8 +93,8 @@ void func_8027B110(struct GraphNodeToggleZBuffer *a)
     struct GraphNodeToggleZBuffer_sub *sp2C;
     s32 i;
     s32 sp24 = (a->node.flags & GRAPH_RENDER_Z_BUFFER) != 0;
-    struct Struct8032CF10 *sp20 = &renderModeTable[sp24];
-    struct Struct8032CF10 *sp1C = &D_8032CF50[sp24];
+    struct RenderModeContainer *sp20 = &renderModeTable_1Cycle[sp24];
+    struct RenderModeContainer *sp1C = &renderModeTable_2Cycle[sp24];
 
     /** @bug This is where the LookAt values should be calculated but aren't.
      * As a result, environment mapping is broken on Fast3DEX2 without the
