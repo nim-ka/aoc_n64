@@ -702,8 +702,8 @@
 #define /*0x108*/ oTTCPendulumSoundTimer OBJECT_FIELD_S32(0x20)
 
 /* TTC treadmill */
-#define /*0x0F4*/ oTTCTreadmillUnkF4 OBJECT_FIELD_S16P(0x1B)
-#define /*0x0F8*/ oTTCTreadmillUnkF8 OBJECT_FIELD_S16P(0x1C)
+#define /*0x0F4*/ oTTCTreadmillBigSurface OBJECT_FIELD_S16P(0x1B)
+#define /*0x0F8*/ oTTCTreadmillSmallSurface OBJECT_FIELD_S16P(0x1C)
 #define /*0x0FC*/ oTTCTreadmillSpeed OBJECT_FIELD_F32(0x1D)
 #define /*0x100*/ oTTCTreadmillTargetSpeed OBJECT_FIELD_F32(0x1E)
 #define /*0x104*/ oTTCTreadmillTimeUntilSwitch OBJECT_FIELD_S32(0x1F)

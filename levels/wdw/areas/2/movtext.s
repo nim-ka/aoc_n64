@@ -1,9 +1,17 @@
-wdw_seg7_moving_texture_data_07018758: # 0x07018758
-.hword     1,     0,    10,    10, -3839, -3839, -3839,  4608
-.hword  4608,  4608,  4608, -3839,     1,   150,     0,     0
+wdw_movtex_area2_water_data: # 0x07018758
+movTexInitLoad     1
+movTexRotSpeed    10
+movTexRotScale    10
+movTex4BoxTris -3839, -3839
+movTex4BoxTris -3839,  4608
+movTex4BoxTris  4608,  4608
+movTex4BoxTris  4608, -3839
+movTexRot      ROTATE_COUNTER_CLOCKWISE
+movTexAlpha     0x96
+movTexDefine   TEXTURE_WATER
+movTexEnd
 
-glabel wdw_seg7_moving_texture_07018778 # 0x07018778
-.hword  0, 0
-.word wdw_seg7_moving_texture_data_07018758
-.hword -1, 0
-.word 0x0
+glabel wdw_movtex_area2_water # 0x07018778
+movTexJump 0, wdw_movtex_area2_water_data
+movTexEndLoad
+movTexEndJump

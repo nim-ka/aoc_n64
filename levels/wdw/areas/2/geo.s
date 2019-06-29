@@ -18,7 +18,7 @@ glabel wdw_geo_000724 # 0x0E000724
                geo_display_list LAYER_ALPHA, wdw_seg7_dl_07012258
                geo_display_list LAYER_TRANSPARENT_DECAL, wdw_seg7_dl_07012908
                geo_asm    0, Geo18_802D01E0
-               geo_asm 4354, Geo18_802D104C
+               geo_asm 0x1102, geo_exec_movtex_box
                geo_render_obj
                geo_asm    0, geo_exec_level
             geo_close_node

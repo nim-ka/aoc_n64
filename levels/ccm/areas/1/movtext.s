@@ -1,9 +1,19 @@
 .balign 4
-ccm_seg7_moving_texture_data: # 0x070166E8
-.hword     1,     0,     5,     2, 3137, 4228, 3137, 4945
-.hword  3925,  4945,  3925,  4228,    1,  150,    0,    0
 
-glabel ccm_seg7_moving_texture # 0x07016708 - 0x07016718
-.hword 0x0000, 0x0000
-.word ccm_seg7_moving_texture_data
-.hword -1, 0, 0, 0
+ccm_movtex_penguin_puddle_water_data: # 0x070166E8
+movTexInitLoad    1
+movTexRotSpeed    5
+movTexRotScale    2
+movTex4BoxTris 3137, 4228
+movTex4BoxTris 3137, 4945
+movTex4BoxTris 3925, 4945
+movTex4BoxTris 3925, 4228
+movTexRot      ROTATE_COUNTER_CLOCKWISE
+movTexAlpha    0x96
+movTexDefine   TEXTURE_WATER
+movTexEnd
+
+glabel ccm_movtex_penguin_puddle_water # 0x07016708 - 0x07016718
+movTexJump 0, ccm_movtex_penguin_puddle_water_data
+movTexEndLoad
+movTexEndJump

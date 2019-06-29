@@ -26,7 +26,7 @@ vertex    512,     26,   -306,   -286,    224,  0x8C, 0x8C, 0x8C, 0xFF
 vertex   -511,     26,   -306,  -1988,  -1480,  0x8C, 0x8C, 0x8C, 0xFF
 vertex    512,    179,   -306,      0,      0,  0x8C, 0x8C, 0x8C, 0xFF
 
-bitfs_seg7_dl_07011D98: # 0x07011D98 - 0x07011E28
+glabel bitfs_seg7_dl_07011D98 # 0x07011D98 - 0x07011E28
 gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, sky_09001800
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100

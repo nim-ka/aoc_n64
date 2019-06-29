@@ -22,7 +22,7 @@ glabel sl_geo_0003A8 # 0x0E0003A8
                geo_display_list LAYER_TRANSPARENT_DECAL, sl_seg7_dl_07008D58
                geo_display_list LAYER_OPAQUE, sl_seg7_dl_0700A5A0
                geo_asm    0, Geo18_802D01E0
-               geo_asm 4097, Geo18_802D104C
+               geo_asm 0x1001, geo_exec_movtex_box
                geo_render_obj
                geo_asm    1, geo_exec_level
             geo_close_node

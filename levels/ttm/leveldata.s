@@ -5,6 +5,7 @@
 .include "collision.inc"
 .include "macro_presets.inc"
 .include "special_presets.inc"
+.include "moving_texture.inc"
 
 .include "levels/ttm/texture.s"
 .include "levels/ttm/areas/1/1/model.s"

@@ -5,6 +5,7 @@
 .include "collision.inc"
 .include "macro_presets.inc"
 .include "special_presets.inc"
+.include "moving_texture.inc"
 
 .include "levels/cotmc/texture.s"
 .include "levels/cotmc/areas/1/1/model.s"

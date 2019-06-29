@@ -1,11 +1,12 @@
 # drawing layers
-.set LAYER_NULL,                  0
+.set LAYER_FORCE,                 0
 .set LAYER_OPAQUE,                1
 .set LAYER_OPAQUE_DECAL,          2
-.set LAYER_UNUSED_03,             3
+.set LAYER_OPAQUE_INTER,          3
 .set LAYER_ALPHA,                 4
 .set LAYER_TRANSPARENT,           5
 .set LAYER_TRANSPARENT_DECAL,     6
+.set LAYER_TRANSPARENT_INTER,     7
 
 # sky background params
 .set BACKGROUND_OCEAN_SKY,        0

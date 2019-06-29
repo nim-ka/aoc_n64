@@ -5,6 +5,7 @@
 .include "collision.inc"
 .include "macro_presets.inc"
 .include "special_presets.inc"
+.include "moving_texture.inc"
 
 .include "levels/hmc/texture.s"
 .include "levels/hmc/areas/1/1/model.s"
@@ -54,4 +55,5 @@
 .include "levels/hmc/areas/1/grill_door/collision.s" # This is odd, but the model data for this is in the middle of area 1. I have to conclude it is an area local object, despite the fact it has collision. Let's hope this is the only oddity...
 .include "levels/hmc/arrow_platform/collision.s"
 .include "levels/hmc/arrow_platform_button/collision.s"
+.include "levels/hmc/areas/1/trajectory.s"
 .include "levels/hmc/areas/1/movtext.s"

@@ -18,7 +18,7 @@ glabel jrb_geo_000AFC # 0x0E000AFC
                geo_display_list LAYER_ALPHA, jrb_seg7_dl_0700FE48
                geo_display_list LAYER_OPAQUE, jrb_seg7_dl_07010548
                geo_asm    0, Geo18_802D01E0
-               geo_asm 4610, Geo18_802D104C
+               geo_asm 0x1202, geo_exec_movtex_box
                geo_render_obj
                geo_asm    2, geo_exec_level
             geo_close_node

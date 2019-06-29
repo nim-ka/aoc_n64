@@ -77,7 +77,7 @@
 .set SURF_PAINTING_A6,  0xA6  # Painting wobble (BoB 1)
 .set SURF_PAINTING_A7,  0xA7  # Painting wobble (BoB 2)
 .set SURF_PAINTING_A8,  0xA8  # Painting wobble (BoB 3)
-.set SURF_PAINTING_A9,  0xA9  # Painting wobble (CCM 1)	
+.set SURF_PAINTING_A9,  0xA9  # Painting wobble (CCM 1)
 .set SURF_PAINTING_AA,  0xAA  # Painting wobble (CCM 2)
 .set SURF_PAINTING_AB,  0xAB  # Painting wobble (CCM 3)
 .set SURF_PAINTING_AC,  0xAC  # Painting wobble (WF 1)

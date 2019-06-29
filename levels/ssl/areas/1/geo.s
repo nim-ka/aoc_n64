@@ -18,13 +18,13 @@ glabel ssl_geo_000648 # 0x0E000648
                geo_display_list LAYER_OPAQUE, ssl_seg7_dl_0700BA78
                geo_display_list LAYER_ALPHA, ssl_seg7_dl_0700BC18
                geo_display_list LAYER_TRANSPARENT_DECAL, ssl_seg7_dl_0700BD00
-               geo_asm 2049, Geo18_802D2108
+               geo_asm 0x0801, Geo18_802D2108
                geo_asm    0, Geo18_802D01E0
-               geo_asm 2049, Geo18_802D104C
-               geo_asm 2129, Geo18_802D104C
-               geo_asm 2049, Geo18_802D1CDC
-               geo_asm 2050, Geo18_802D1CDC
-               geo_asm 2051, Geo18_802D1CDC
+               geo_asm 0x0801, geo_exec_movtex_box
+               geo_asm 0x0851, geo_exec_movtex_box
+               geo_asm 0x0801, Geo18_802D1CDC
+               geo_asm 0x0802, Geo18_802D1CDC
+               geo_asm 0x0803, Geo18_802D1CDC
                geo_render_obj
                geo_asm    0, geo_exec_level
             geo_close_node

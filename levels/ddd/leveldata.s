@@ -4,6 +4,7 @@
 .include "PR/gbi.inc"
 .include "collision.inc"
 .include "macro_presets.inc"
+.include "moving_texture.inc"
 
 .include "levels/ddd/texture.s"
 .include "levels/ddd/areas/1/1/model.s"

@@ -3562,7 +3562,7 @@ gsSP2Triangles  8,  9, 10, 0x0,  8, 10, 11, 0x0
 gsSPEndDisplayList
 
 ssl_seg7_dl_0701EAD8: # 0x0701EAD8 - 0x0701ECB0
-gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, ssl_seg7_texture_07001000
+gsDPSetTextureImage G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, ssl_pyramid_sand
 gsDPLoadSync
 gsDPLoadBlock 7, 0, 0, 0x3FF, 0x100
 gsSPVertex ssl_seg7_vertex_0701B7A8, 14, 0

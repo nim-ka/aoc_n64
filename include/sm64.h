@@ -39,6 +39,16 @@
 #define SET_HIGH_S16_OF_32(var, val) ((((s16 *)&(var))[0]) = (val))
 #endif
 
+// Layers
+#define LAYER_FORCE             0
+#define LAYER_OPAQUE            1
+#define LAYER_OPAQUE_DECAL      2
+#define LAYER_OPAQUE_INTER      3
+#define LAYER_ALPHA             4
+#define LAYER_TRANSPARENT       5
+#define LAYER_TRANSPARENT_DECAL 6
+#define LAYER_TRANSPARENT_INTER 7
+
 #define SURFACE_DEFAULT                      0x0000
 #define SURFACE_LAVA                         0x0001
 #define SURFACE_0004                         0x0004   //Unused?

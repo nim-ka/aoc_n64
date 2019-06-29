@@ -1,9 +1,17 @@
-jrb_seg7_moving_texture_data_0701137C: # 0x0701137C
-.hword     1,     0,    20,     6, -4095, -4095, -4095,  4096
-.hword  4096,  4096,  4096, -4095,     1,   180,     2,     0
+jrb_movtex_sinked_boat_water_data: # 0x0701137C
+movTexInitLoad     1
+movTexRotSpeed    20
+movTexRotScale     6
+movTex4BoxTris -4095, -4095
+movTex4BoxTris -4095,  4096
+movTex4BoxTris  4096,  4096
+movTex4BoxTris  4096, -4095
+movTexRot      ROTATE_COUNTER_CLOCKWISE
+movTexAlpha     0xB4
+movTexDefine   TEXTURE_JRB_WATER
+movTexEnd
 
-glabel jrb_seg7_moving_texture_0701139C # 0x0701139C
-.hword  0, 0
-.word jrb_seg7_moving_texture_data_0701137C
-.hword -1, 0
-.word 0x0
+glabel jrb_movtex_sinked_boat_water # 0x0701139C
+movTexJump 0, jrb_movtex_sinked_boat_water_data
+movTexEndLoad
+movTexEndJump

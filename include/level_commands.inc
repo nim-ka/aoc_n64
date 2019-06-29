@@ -218,7 +218,7 @@
 
 .macro load_model_from_dl model, dl, layer
     .byte 0x21, 0x08
-    .hword (\layer << 8) | \model
+    .hword (\layer << 12) | \model
     .word \dl
 .endm
 
@@ -409,21 +409,7 @@
     .byte \var
 .endm
 
-/* Layer Defines */
-
-# drawing layers
-.set LAYER_NULL,              0x00
-.set LAYER_OPAQUE,            0x10
-.set LAYER_OPAQUE_DECAL,      0x20
-.set LAYER_UNUSED_03,         0x30
-.set LAYER_ALPHA,             0x40
-.set LAYER_TRANSPARENT,       0x50
-.set LAYER_TRANSPARENT_DECAL, 0x60
-
-
-
 /* Head Defines */
 
 .set REGULAR_FACE,   0x0002
 .set DIZZY_FACE,     0x0003
-

@@ -15,8 +15,8 @@ glabel ttc_geo_0003B8 # 0x0E0003B8
             geo_camera 2, 0, 2000, 6000, 0, 0, 0, geo_camera_preset_and_pos
             geo_open_node
                geo_asm    0, Geo18_802D01E0
-               geo_asm 5120, Geo18_802D2108
-               geo_asm 5121, Geo18_802D2108
+               geo_asm 0x1400, Geo18_802D2108
+               geo_asm 0x1401, Geo18_802D2108
                geo_display_list LAYER_OPAQUE, ttc_seg7_dl_0700AD38
                geo_display_list LAYER_TRANSPARENT, ttc_seg7_dl_0700B1D8
                geo_display_list LAYER_ALPHA, ttc_seg7_dl_0700E878

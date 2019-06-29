@@ -5,6 +5,7 @@
 .include "collision.inc"
 .include "macro_presets.inc"
 .include "special_presets.inc"
+.include "moving_texture.inc"
 
 .include "levels/thi/texture.s"
 .include "levels/thi/areas/1/1/model.s" # Area 2 defines a share path to load these DLs as part of its geo script.

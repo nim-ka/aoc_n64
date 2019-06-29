@@ -21,7 +21,7 @@ glabel ddd_geo_000570 # 0x0E000570
                geo_display_list LAYER_ALPHA, ddd_seg7_dl_0700BAE0
                geo_display_list LAYER_OPAQUE, ddd_seg7_dl_0700CE48
                geo_asm    0, Geo18_802D01E0
-               geo_asm 8962, Geo18_802D104C
+               geo_asm 0x2302, geo_exec_movtex_box
                geo_render_obj
                geo_asm   14, geo_exec_level
             geo_close_node

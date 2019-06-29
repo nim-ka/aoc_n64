@@ -18,7 +18,7 @@ glabel lll_geo_000E00 # 0x0E000E00
                geo_display_list LAYER_ALPHA, lll_seg7_dl_070138F8
                geo_display_list LAYER_ALPHA, lll_seg7_dl_070137C0
                geo_asm    0, Geo18_802D01E0
-               geo_asm 8705, Geo18_802D1B70
+               geo_asm 0x2201, Geo18_802D1B70
                geo_render_obj
                geo_asm   12, geo_exec_level
             geo_close_node

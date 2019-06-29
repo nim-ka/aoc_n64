@@ -26,7 +26,7 @@ static void *sPlatformOnTrackPaths[] =
     rr_seg7_trajectory_0702ECC0,
     ccm_seg7_trajectory_0701669C,
     bitfs_seg7_trajectory_070159AC,
-    hmc_seg7_arr_702B86C,
+    hmc_seg7_trajectory_0702B86C,
     lll_seg7_trajectory_0702856C,
     lll_seg7_trajectory_07028660,
     rr_seg7_trajectory_0702ED9C,

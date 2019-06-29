@@ -20,12 +20,12 @@ glabel ttm_geo_000A70 # 0x0E000A70
                geo_asm     0, Geo18_802D5D0C
                geo_asm   512, Geo18_802D5B98
                geo_asm     0, Geo18_802D01E0
-               geo_asm 13825, Geo18_802D1B70
-               geo_asm 13826, Geo18_802D1B70
-               geo_asm 13827, Geo18_802D1B70
-               geo_asm 13828, Geo18_802D1B70
-               geo_asm 13829, Geo18_802D1B70
-               geo_asm 13825, Geo18_802D104C
+               geo_asm 0x3601, Geo18_802D1B70
+               geo_asm 0x3602, Geo18_802D1B70
+               geo_asm 0x3603, Geo18_802D1B70
+               geo_asm 0x3604, Geo18_802D1B70
+               geo_asm 0x3605, Geo18_802D1B70
+               geo_asm 0x3601, geo_exec_movtex_box
                geo_asm     0, geo_exec_level
             geo_close_node
          geo_close_node

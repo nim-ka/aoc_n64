@@ -20,7 +20,7 @@ glabel thi_geo_000608 # 0x0E000608
                geo_display_list LAYER_TRANSPARENT, thi_seg7_dl_070072E8
                geo_display_list LAYER_TRANSPARENT_DECAL, thi_seg7_dl_070073C0
                geo_asm    0, Geo18_802D01E0
-               geo_asm 4865, Geo18_802D104C
+               geo_asm 0x1301, geo_exec_movtex_box
                geo_render_obj
                geo_asm    0, geo_exec_level
             geo_close_node

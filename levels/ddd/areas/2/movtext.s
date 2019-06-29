@@ -1,11 +1,27 @@
-ddd_seg7_moving_texture_data_0700FCC4: # 0x0700FCC4
-.hword     2,     0,    20,    20,     0, -5119,     0,  7168
-.hword  8192,  7168,  8192, -5119,     0,   160,     0,     0
-.hword     0,     5, -6144,  -768, -6144,   768, -2048,   768
-.hword -2048,  -768,     0,   160,     0,     0
+ddd_movtex_area2_water_data: # 0x0700FCC4
+movTexInitLoad     2
+movTexRotSpeed    20   # area 2 general water
+movTexRotSpeed    20
+movTex4BoxTris     0, -5119
+movTex4BoxTris     0,  7168
+movTex4BoxTris  8192,  7168
+movTex4BoxTris  8192, -5119
+movTexRot      ROTATE_CLOCKWISE
+movTexAlpha     0xA0
+movTexDefine   TEXTURE_WATER
+movTexEnd
+movTexRotSpeed     0   # entrance to area 1 water
+movTexRotSpeed     5
+movTex4BoxTris -6144,  -768
+movTex4BoxTris -6144,   768
+movTex4BoxTris -2048,   768
+movTex4BoxTris -2048,  -768
+movTexRot      ROTATE_CLOCKWISE
+movTexAlpha     0xA0
+movTexDefine   TEXTURE_WATER
+movTexEnd
 
-glabel ddd_seg7_moving_texture_0700FD00 # 0x0700FD00
-.hword  0, 0
-.word ddd_seg7_moving_texture_data_0700FCC4
-.hword -1, 0
-.word 0x0
+glabel ddd_movtex_area2_water # 0x0700FD00
+movTexJump 0, ddd_movtex_area2_water_data
+movTexEndLoad
+movTexEndJump

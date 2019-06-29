@@ -20,7 +20,7 @@ glabel ccm_geo_00051C # 0x0E00051C
                geo_display_list LAYER_ALPHA, ccm_seg7_dl_0700D578
                geo_display_list LAYER_TRANSPARENT_DECAL, ccm_seg7_dl_0700DDF0
                geo_asm    0, Geo18_802D01E0
-               geo_asm 1281, Geo18_802D104C
+               geo_asm 0x0501, geo_exec_movtex_box
                geo_render_obj
                geo_asm    1, geo_exec_level
             geo_close_node

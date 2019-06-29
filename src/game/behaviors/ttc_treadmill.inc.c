@@ -31,17 +31,18 @@ static s16 sTTCTreadmillSpeeds[] =
  */
 struct Object *sMasterTreadmill;
 
+extern s16 ttc_movtex_tris_big_surface_treadmill[];
+extern s16 ttc_movtex_tris_small_surface_treadmill[];
 
 void bhv_ttc_treadmill_init(void)
 {
     o->collisionData = segmented_to_virtual(
         sTTCTreadmillCollisionModels[o->oBehParams2ndByte & 0x1]);
 
-    // TODO: Names for treadmill F4 and F8
-    o->oTTCTreadmillUnkF4 = segmented_to_virtual(ttc_seg7_arr_07016840);
-    o->oTTCTreadmillUnkF8 = segmented_to_virtual(ttc_seg7_arr_07016904);
+    o->oTTCTreadmillBigSurface   = segmented_to_virtual(ttc_movtex_tris_big_surface_treadmill);
+    o->oTTCTreadmillSmallSurface = segmented_to_virtual(ttc_movtex_tris_small_surface_treadmill);
 
-    *o->oTTCTreadmillUnkF4 = *o->oTTCTreadmillUnkF8 = sTTCTreadmillSpeeds[gTTCSpeedSetting];
+    *o->oTTCTreadmillBigSurface = *o->oTTCTreadmillSmallSurface = sTTCTreadmillSpeeds[gTTCSpeedSetting];
 
     sMasterTreadmill = NULL;
 }
@@ -76,9 +77,9 @@ void bhv_ttc_treadmill_update(void)
                 approach_f32_ptr(&o->oTTCTreadmillSpeed, o->oTTCTreadmillTargetSpeed, 10.0f);
             }
 
-            *o->oTTCTreadmillUnkF4 = *o->oTTCTreadmillUnkF8 = o->oTTCTreadmillSpeed;
+            *o->oTTCTreadmillBigSurface = *o->oTTCTreadmillSmallSurface = o->oTTCTreadmillSpeed;
         }
     }
 
-    o->oForwardVel = 0.084f * *o->oTTCTreadmillUnkF4;
+    o->oForwardVel = 0.084f * *o->oTTCTreadmillBigSurface;
 }

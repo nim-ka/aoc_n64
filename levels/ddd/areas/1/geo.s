@@ -19,7 +19,7 @@ glabel ddd_geo_0004C0 # 0x0E0004C0
                geo_display_list LAYER_ALPHA, ddd_seg7_dl_07005C40
                geo_display_list LAYER_TRANSPARENT, ddd_seg7_dl_07005F78
                geo_asm    0, Geo18_802D01E0
-               geo_asm 8961, Geo18_802D104C
+               geo_asm 0x2301, geo_exec_movtex_box
                geo_render_obj
                geo_asm   13, geo_exec_level
             geo_close_node

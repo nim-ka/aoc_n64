@@ -31,8 +31,6 @@
 extern u32 wiggler_seg5_anims_0500C874[];
 extern u32 spiny_egg_seg5_anims_050157E4[];
 extern struct ObjectNode *gObjectLists;
-extern u8 ttc_seg7_arr_07016840[];
-extern u8 ttc_seg7_arr_07016904[];
 extern u8 jrb_seg7_trajectory_unagi_1[];
 extern u8 jrb_seg7_trajectory_unagi_2[];
 extern u8 dorrie_seg6_collision_0600FBB8[];
@@ -52,7 +50,7 @@ extern u8 rr_seg7_trajectory_0702EC3C[];
 extern u8 rr_seg7_trajectory_0702ECC0[];
 extern u8 ccm_seg7_trajectory_0701669C[];
 extern u8 bitfs_seg7_trajectory_070159AC[];
-extern u8 hmc_seg7_arr_702B86C[];
+extern u8 hmc_seg7_trajectory_0702B86C[];
 extern u8 lll_seg7_trajectory_0702856C[];
 extern u8 lll_seg7_trajectory_07028660[];
 extern u8 rr_seg7_trajectory_0702ED9C[];

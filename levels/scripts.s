@@ -1,5 +1,6 @@
 .include "macros.inc"
 .include "level_commands.inc"
+.include "geo_commands.inc"
 
 .section .level, "a"
 
