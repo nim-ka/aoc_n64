@@ -80,9 +80,7 @@ SECTIONS
    BEGIN_SEG(main, SEG_MAIN) SUBALIGN(16)
    {
       BUILD_DIR/asm/entry.o(.text);
-#if VERSION_EU
-      BUILD_DIR/asm/unknown_eu_80241850.o(.text); /* TODO: What is this? */
-#endif
+      BUILD_DIR/src/game/crash_screen.o(.text);
       BUILD_DIR/src/game/main.o(.text);
       BUILD_DIR/src/game/display.o(.text);
       BUILD_DIR/src/game/game.o(.text);
@@ -265,6 +263,7 @@ SECTIONS
       BUILD_DIR/libultra.a:guLookAtRef.o(.text); /* Fast3DEX2 only */
       BUILD_DIR/lib/rsp.o(.text);
       /* data */
+      BUILD_DIR/src/game/crash_screen.o(.data*);
       BUILD_DIR/src/game/main.o(.data*);
       BUILD_DIR/src/game/display.o(.data*);
       BUILD_DIR/src/game/game.o(.data*);
@@ -325,6 +324,7 @@ SECTIONS
       BUILD_DIR/libultra.a:__osSyncPutChars.o(.data*);
       BUILD_DIR/libultra.a:guRotateF.o(.data);
       /* rodata */
+      BUILD_DIR/src/game/crash_screen.o(.rodata*);
       BUILD_DIR/src/game/main.o(.rodata*);
       BUILD_DIR/src/game/game.o(.rodata*);
       BUILD_DIR/src/game/sound_init.o(.rodata*);
@@ -387,6 +387,7 @@ SECTIONS
    END_SEG(main)
    BEGIN_NOLOAD(main)
    {
+      BUILD_DIR/src/game/crash_screen.o(.bss*);
       BUILD_DIR/src/game/main.o(.bss*);
       BUILD_DIR/src/game/game.o(.bss*);
       BUILD_DIR/src/game/sound_init.o(.bss*);

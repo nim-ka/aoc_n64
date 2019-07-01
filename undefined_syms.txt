@@ -2,6 +2,7 @@
 osTvType = 0x80000300;
 osRomBase = 0x80000308;
 osResetType = 0x8000030C;
+osMemSize = 0x80000318;
 osAppNmiBuffer = 0x8000031C;
 gZBuffer = 0x80000400; /* boot location */
 
@@ -89,8 +90,8 @@ D_EU_80308818 = 0x80308818;
 D_EU_802421A0 = 0x802421A0;
 func_eu_8026A1FC = 0x8026A1FC;
 func_eu_802EE9A0 = 0x802EE9A0;
-func_eu_802EF700 = 0x802EF700;
 func_eu_802EC284 = 0x802EC284;
 gLanguage = 0x802030D2;
 D_EU_80309765 = 0x80309765;
 D_EU_802FD650 = 0x802FD650;
+__osGetCurrFaultedThread = 0x802EF700;
